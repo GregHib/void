@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.network.Instruction
-import world.gregs.voidps.network.instruct.*
+import world.gregs.voidps.network.client.Instruction
+import world.gregs.voidps.network.client.instruction.*
 
 class InstructionHandlers(
     players: Players,

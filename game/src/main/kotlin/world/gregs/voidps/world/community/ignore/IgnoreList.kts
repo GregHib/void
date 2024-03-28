@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ignore.ignoresDele
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.network.encode.sendIgnoreList
+import world.gregs.voidps.network.login.protocol.encode.sendIgnoreList
 
 val accounts: AccountDefinitions by inject()
 

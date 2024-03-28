@@ -48,7 +48,7 @@ class VersionTableBuilderTest {
     fun `Build version table with large RSA numbers`() {
         val indexCount = 50
 
-        val random = java.util.Random(0)
+        val random = Random(0)
         val exponent = BigInteger(256, random)
         val modulus = BigInteger(256, random)
         val table = VersionTableBuilder(exponent, modulus, indexCount)

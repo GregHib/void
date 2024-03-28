@@ -1,6 +1,5 @@
 package world.gregs.voidps
 
-import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.CharacterTask
@@ -15,7 +14,7 @@ import world.gregs.voidps.engine.client.update.npc.NPCResetTask
 import world.gregs.voidps.engine.client.update.npc.NPCUpdateTask
 import world.gregs.voidps.engine.client.update.player.PlayerResetTask
 import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
-import world.gregs.voidps.engine.data.PlayerAccounts
+import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
@@ -31,18 +30,9 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.network.visual.NPCVisuals
-import world.gregs.voidps.network.visual.PlayerVisuals
-import world.gregs.voidps.network.visual.VisualEncoder
-import world.gregs.voidps.network.visual.VisualMask.NPC_FORCE_CHAT_MASK
-import world.gregs.voidps.network.visual.VisualMask.NPC_WATCH_MASK
-import world.gregs.voidps.network.visual.VisualMask.PLAYER_FORCE_CHAT_MASK
-import world.gregs.voidps.network.visual.VisualMask.PLAYER_WATCH_MASK
-import world.gregs.voidps.network.visual.Visuals
-import world.gregs.voidps.network.visual.encode.ForceChatEncoder
-import world.gregs.voidps.network.visual.encode.WatchEncoder
-import world.gregs.voidps.network.visual.encode.npc.*
-import world.gregs.voidps.network.visual.encode.player.*
+import world.gregs.voidps.network.client.ConnectionQueue
+import world.gregs.voidps.network.login.protocol.npcVisualEncoders
+import world.gregs.voidps.network.login.protocol.playerVisualEncoders
 
 fun getTickStages(
     players: Players = get(),
@@ -50,8 +40,8 @@ fun getTickStages(
     items: FloorItems = get(),
     floorItems: FloorItemTracking = get(),
     objects: GameObjects = get(),
-    queue: ConnectionQueue = get<ConnectionQueue>(),
-    accountSave: PlayerAccounts = get(),
+    queue: ConnectionQueue = get(),
+    accountSave: SaveQueue = get(),
     batches: ZoneBatchUpdates = get(),
     itemDefinitions: ItemDefinitions = get(),
     objectDefinitions: ObjectDefinitions = get(),
@@ -96,37 +86,3 @@ private class AiTick : Runnable {
         World.emit(AiTick)
     }
 }
-
-private fun playerVisualEncoders() = castOf<PlayerVisuals>(
-    WatchEncoder(PLAYER_WATCH_MASK),
-    PlayerTimeBarEncoder(),
-    ForceChatEncoder(PLAYER_FORCE_CHAT_MASK),
-    PlayerHitsEncoder(),
-    PlayerTurnEncoder(),
-    PlayerExactMovementEncoder(),
-    PlayerSecondaryGraphicEncoder(),
-    PlayerColourOverlayEncoder(),
-    TemporaryMoveTypeEncoder(),
-    PlayerPrimaryGraphicEncoder(),
-    PlayerAnimationEncoder(),
-    AppearanceEncoder(),
-    MovementTypeEncoder()
-)
-
-private fun npcVisualEncoders() = castOf<NPCVisuals>(
-    TransformEncoder(),
-    NPCAnimationEncoder(),
-    NPCPrimaryGraphicEncoder(),
-    NPCTurnEncoder(),
-    NPCExactMovementEncoder(),
-    NPCColourOverlayEncoder(),
-    NPCHitsEncoder(),
-    WatchEncoder(NPC_WATCH_MASK),
-    ForceChatEncoder(NPC_FORCE_CHAT_MASK),
-    NPCTimeBarEncoder(),
-    NPCSecondaryGraphicEncoder()
-)
-
-@Suppress("UNCHECKED_CAST")
-private fun <T : Visuals> castOf(vararg encoders: VisualEncoder<out Visuals>) = encoders
-    .map { it as VisualEncoder<T> }

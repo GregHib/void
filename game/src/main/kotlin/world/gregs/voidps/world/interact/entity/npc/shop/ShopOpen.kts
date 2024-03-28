@@ -67,7 +67,7 @@ fun openShopInventory(player: Player, id: String): Inventory {
     return if (id.endsWith("general_store")) {
         GeneralStores.bind(player, id)
     } else {
-        val new = !player.inventories.containsKey(id)
+        val new = !player.inventories.contains(id)
         val inventory = player.inventories.inventory(id)
         if (new) {
             fillShop(inventory, id)

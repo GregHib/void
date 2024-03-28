@@ -11,9 +11,9 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.network.instruct.ClanChatJoin
-import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.network.client.instruction.ClanChatJoin
+import world.gregs.voidps.network.login.protocol.encode.message
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.setRandom
 import world.gregs.voidps.world.interact.entity.combat.damageDealers
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
@@ -31,8 +31,8 @@ internal class LootShareTest : WorldTest() {
     fun start() {
         setRandom(Random)
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
-        mockkStatic("world.gregs.voidps.network.encode.ChatEncoderKt")
-        mockkStatic("world.gregs.voidps.network.encode.ClanEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ChatEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ClanEncoderKt")
     }
 
     @Test

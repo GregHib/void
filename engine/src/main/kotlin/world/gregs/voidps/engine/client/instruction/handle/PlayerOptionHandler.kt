@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.PlayerOptions
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.network.instruct.InteractPlayer
+import world.gregs.voidps.network.client.instruction.InteractPlayer
 
 class PlayerOptionHandler(
     private val players: Players

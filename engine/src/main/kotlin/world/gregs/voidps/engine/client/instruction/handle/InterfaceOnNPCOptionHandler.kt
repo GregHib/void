@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.instruct.InteractInterfaceNPC
+import world.gregs.voidps.network.client.instruction.InteractInterfaceNPC
 
 class InterfaceOnNPCOptionHandler(
     private val npcs: NPCs,

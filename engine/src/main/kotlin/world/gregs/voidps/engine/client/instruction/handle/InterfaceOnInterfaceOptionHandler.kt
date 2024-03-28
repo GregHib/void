@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.instruct.InteractInterfaceItem
+import world.gregs.voidps.network.client.instruction.InteractInterfaceItem
 
 /**
  * @author Jacob Rhiel <jacob.rhiel@gmail.com>

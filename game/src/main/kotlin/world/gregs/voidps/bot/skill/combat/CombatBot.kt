@@ -4,7 +4,7 @@ import world.gregs.voidps.bot.Bot
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.network.instruct.InteractInterface
+import world.gregs.voidps.network.client.instruction.InteractInterface
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spellBook
 
 suspend fun Bot.setAttackStyle(skill: Skill) {

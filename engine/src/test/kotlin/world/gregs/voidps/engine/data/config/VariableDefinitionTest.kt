@@ -6,10 +6,10 @@ import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.encode.sendVarbit
-import world.gregs.voidps.network.encode.sendVarc
-import world.gregs.voidps.network.encode.sendVarcStr
-import world.gregs.voidps.network.encode.sendVarp
+import world.gregs.voidps.network.login.protocol.encode.sendVarbit
+import world.gregs.voidps.network.login.protocol.encode.sendVarc
+import world.gregs.voidps.network.login.protocol.encode.sendVarcStr
+import world.gregs.voidps.network.login.protocol.encode.sendVarp
 
 internal class VariableDefinitionTest {
 
@@ -26,10 +26,10 @@ internal class VariableDefinitionTest {
             "values" to listOf("First", "Second")
         )
         client = mockk(relaxed = true)
-        mockkStatic("world.gregs.voidps.network.encode.VarpEncoderKt")
-        mockkStatic("world.gregs.voidps.network.encode.VarbitEncoderKt")
-        mockkStatic("world.gregs.voidps.network.encode.VarcEncoderKt")
-        mockkStatic("world.gregs.voidps.network.encode.VarcStrEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.VarpEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.VarbitEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.VarcEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.VarcStrEncoderKt")
     }
 
     @Test

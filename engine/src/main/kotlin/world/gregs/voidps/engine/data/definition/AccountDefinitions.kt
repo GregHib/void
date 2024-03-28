@@ -14,15 +14,15 @@ import world.gregs.voidps.engine.timedLoad
 /**
  * Stores data about player accounts whether they're online or offline
  */
-class AccountDefinitions {
-
-    private val definitions: MutableMap<String, AccountDefinition> = Object2ObjectOpenHashMap()
-    private val displayNames: MutableMap<String, String> = Object2ObjectOpenHashMap()
+class AccountDefinitions(
+    private val definitions: MutableMap<String, AccountDefinition> = Object2ObjectOpenHashMap(),
+    private val displayNames: MutableMap<String, String> = Object2ObjectOpenHashMap(),
     private val clans: MutableMap<String, Clan> = Object2ObjectOpenHashMap()
+) {
 
     fun add(player: Player) {
         displayNames[player.accountName] = player.name
-        definitions[player.name] = AccountDefinition(player.accountName, player.name, player.previousName)
+        definitions[player.name] = AccountDefinition(player.accountName, player.name, player.previousName, player.passwordHash)
         clans[player.name] = Clan(
             owner = player.accountName,
             ownerDisplayName = player.name,
@@ -37,35 +37,6 @@ class AccountDefinitions {
         )
     }
 
-    fun add(
-        accountName: String,
-        displayName: String,
-        previousName: String,
-        friends: Map<String, ClanRank>,
-        ignores: List<String>,
-        clanName: String,
-        joinRank: ClanRank,
-        talkRank: ClanRank,
-        kickRank: ClanRank,
-        lootRank: ClanRank,
-        coinShare: Boolean
-    ) {
-        displayNames[accountName] = displayName
-        definitions[displayName] = AccountDefinition(accountName, displayName, previousName)
-        clans[displayName] = Clan(
-            owner = accountName,
-            ownerDisplayName = displayName,
-            name = clanName,
-            friends = friends,
-            ignores = ignores,
-            joinRank = joinRank,
-            talkRank = talkRank,
-            kickRank = kickRank,
-            lootRank = lootRank,
-            coinShare = coinShare,
-        )
-    }
-
     fun update(accountName: String, newName: String, previousDisplayName: String) {
         val definition = definitions.remove(previousDisplayName) ?: return
         definitions[newName] = definition
@@ -73,10 +44,6 @@ class AccountDefinitions {
         definition.previousName = previousDisplayName
         displayNames[accountName] = newName
     }
-
-    fun account(display: String) = getValue(display).accountName
-
-    fun display(account: String) = displayNames[account]
 
     fun clan(displayName: String) = clans[displayName]
 

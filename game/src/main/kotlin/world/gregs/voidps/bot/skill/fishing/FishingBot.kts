@@ -27,7 +27,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.timerStop
-import world.gregs.voidps.network.instruct.InteractNPC
+import world.gregs.voidps.network.client.instruction.InteractNPC
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 
 val areas: AreaDefinitions by inject()

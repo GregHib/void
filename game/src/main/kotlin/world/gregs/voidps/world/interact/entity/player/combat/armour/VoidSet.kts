@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
-import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 playerSpawn { player ->
     if (player.hasFullSet("")) {

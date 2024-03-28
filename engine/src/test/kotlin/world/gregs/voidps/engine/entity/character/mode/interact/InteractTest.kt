@@ -32,8 +32,8 @@ import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.suspend.TickSuspension
-import world.gregs.voidps.network.visual.NPCVisuals
-import world.gregs.voidps.network.visual.PlayerVisuals
+import world.gregs.voidps.network.login.protocol.visual.NPCVisuals
+import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import kotlin.test.assertEquals

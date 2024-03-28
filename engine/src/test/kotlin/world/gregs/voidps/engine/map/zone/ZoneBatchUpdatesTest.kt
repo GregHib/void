@@ -6,7 +6,6 @@ import io.mockk.mockkStatic
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.koin.dsl.module
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
@@ -19,12 +18,12 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.encode.clearZone
-import world.gregs.voidps.network.encode.send
-import world.gregs.voidps.network.encode.sendBatch
-import world.gregs.voidps.network.encode.zone.ObjectAddition
-import world.gregs.voidps.network.encode.zone.ObjectRemoval
-import world.gregs.voidps.network.encode.zone.ZoneUpdate
+import world.gregs.voidps.network.login.protocol.encode.clearZone
+import world.gregs.voidps.network.login.protocol.encode.send
+import world.gregs.voidps.network.login.protocol.encode.sendBatch
+import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAddition
+import world.gregs.voidps.network.login.protocol.encode.zone.ObjectRemoval
+import world.gregs.voidps.network.login.protocol.encode.zone.ZoneUpdate
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
@@ -40,8 +39,8 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
         player = Player()
         client = mockk(relaxed = true)
         update = mockk(relaxed = true)
-        mockkStatic("world.gregs.voidps.network.encode.ZoneEncodersKt")
-        mockkStatic("world.gregs.voidps.network.encode.ZoneUpdateEncodersKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ZoneEncodersKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ZoneUpdateEncodersKt")
         mockkStatic("world.gregs.voidps.engine.entity.character.player.PlayerVisualsKt")
         every { update.size } returns 2
         player.client = client

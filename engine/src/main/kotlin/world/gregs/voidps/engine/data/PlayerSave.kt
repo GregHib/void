@@ -35,7 +35,7 @@ data class PlayerSave(
             levels = Levels(levels),
             body = BodyParts(male, looks, colours),
             variables = variables.toMutableMap(),
-            inventories = Inventories(inventories.toMutableMap()),
+            inventories = Inventories(inventories),
             friends = friends.toMutableMap(),
             ignores = ignores.toMutableList(),
         )
@@ -93,7 +93,7 @@ internal fun Player.copy() = PlayerSave(
     looks = body.looks.copyOf(),
     colours = body.colours.copyOf(),
     variables = variables.data.toMap(),
-    inventories = inventories.inventories.mapValues { (inventories.instances[it.key]?.items ?: it.value).map { itm -> itm.copy() }.toTypedArray() },
+    inventories = inventories.instances.mapValues { it.value.items.map { itm -> itm.copy() }.toTypedArray() },
     friends = friends,
     ignores = ignores.toList()
 )

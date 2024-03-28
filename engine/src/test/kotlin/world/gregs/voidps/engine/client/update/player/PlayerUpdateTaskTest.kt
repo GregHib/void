@@ -20,9 +20,9 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.encode.updatePlayers
-import world.gregs.voidps.network.visual.PlayerVisuals
-import world.gregs.voidps.network.visual.VisualEncoder
+import world.gregs.voidps.network.login.protocol.encode.updatePlayers
+import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
+import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Tile
 
@@ -55,7 +55,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val entities = mockk<PlayerTrackingSet>(relaxed = true)
         every { player.viewport } returns viewport
         every { viewport.players } returns entities
-        mockkStatic("world.gregs.voidps.network.encode.PlayerUpdateEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.PlayerUpdateEncoderKt")
         val client: Client = mockk(relaxed = true)
         every { player.client } returns client
         every { client.updatePlayers(any(), any()) } just Runs

@@ -16,13 +16,13 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
-import world.gregs.voidps.network.visual.NPCVisuals
-import world.gregs.voidps.network.visual.VisualEncoder
-import world.gregs.voidps.network.visual.update.Animation
-import world.gregs.voidps.network.visual.update.Turn
+import world.gregs.voidps.network.login.protocol.visual.NPCVisuals
+import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
+import world.gregs.voidps.network.login.protocol.visual.update.Animation
+import world.gregs.voidps.network.login.protocol.visual.update.Turn
+import world.gregs.voidps.type.Tile
 
 internal class NPCUpdateTaskTest : KoinMock() {
 

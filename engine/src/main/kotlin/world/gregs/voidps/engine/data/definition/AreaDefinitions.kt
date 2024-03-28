@@ -11,11 +11,12 @@ import world.gregs.voidps.type.Zone
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
 
-class AreaDefinitions {
-
-    private var named: Map<String, AreaDefinition> = Object2ObjectOpenHashMap()
-    private var tagged: Map<String, Set<AreaDefinition>> = Object2ObjectOpenHashMap()
+class AreaDefinitions(
+    private var named: Map<String, AreaDefinition> = Object2ObjectOpenHashMap(),
+    private var tagged: Map<String, Set<AreaDefinition>> = Object2ObjectOpenHashMap(),
     private var areas: Map<Int, Set<AreaDefinition>> = Int2ObjectOpenHashMap()
+) {
+
 
     fun getOrNull(name: String): AreaDefinition? {
         return named[name]

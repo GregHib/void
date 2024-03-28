@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.network.instruct.InteractObject
+import world.gregs.voidps.network.client.instruction.InteractObject
 import world.gregs.voidps.type.Tile
 
 class ObjectOptionHandler(

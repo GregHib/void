@@ -7,6 +7,9 @@ import kotlinx.coroutines.isActive
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.network.file.FileProvider
 import world.gregs.voidps.network.file.prefetchKeys
+import world.gregs.voidps.network.login.protocol.readMedium
+import world.gregs.voidps.network.login.protocol.readUByte
+import world.gregs.voidps.network.login.protocol.readUMedium
 import java.util.*
 
 /**
@@ -81,6 +84,7 @@ class FileServer(
                     Request.ENCRYPTION_KEY_UPDATE -> read.readUByte()
                     else -> {
                         logger.warn { "Unknown file-server request $opcode." }
+                        read.cancel()
                         write.close()
                     }
                 }
@@ -89,8 +93,6 @@ class FileServer(
             logger.trace { "Client disconnected: ${hostname}." }
         }
     }
-
-
 
     /**
      * Confirm a session value send by the client is as the server [expected]

@@ -19,12 +19,10 @@ import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
-import world.gregs.voidps.engine.client.ConnectionQueue
-import world.gregs.voidps.engine.client.LoginManager
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.data.PlayerAccounts
+import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -45,6 +43,7 @@ import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.gameModule
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.script.loadScripts
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
@@ -62,7 +61,6 @@ abstract class WorldTest : KoinTest {
     private val logger = InlineLogger()
     private lateinit var engine: GameLoop
     lateinit var players: Players
-    private lateinit var manager: LoginManager
     lateinit var npcs: NPCs
     lateinit var floorItems: FloorItems
     lateinit var objects: GameObjects
@@ -98,15 +96,14 @@ abstract class WorldTest : KoinTest {
     }
 
     fun createPlayer(name: String, tile: Tile = Tile.EMPTY): Player {
-        val accounts: PlayerAccounts = get()
-        val index = players.indexer.obtain()!!
+        val accounts: AccountManager = get()
         val player = Player(tile = tile, accountName = name, passwordHash = "")
-        accounts.initPlayer(player, index)
+        accounts.setup(player)
         accountDefs.add(player)
         tick()
         player["creation"] = -1
         player["skip_level_up"] = true
-        player.login(null, 0)
+        accounts.spawn(player, null, 0)
         player.softTimers.clear("restore_stats")
         player.softTimers.clear("restore_hitpoints")
         tick()
@@ -187,7 +184,6 @@ abstract class WorldTest : KoinTest {
             engine = GameLoop(tickStages, mockk(relaxed = true))
             World.start(true)
         }
-        manager = get()
         players = get()
         npcs = get()
         floorItems = get()
@@ -209,7 +205,6 @@ abstract class WorldTest : KoinTest {
 
     @AfterEach
     fun afterEach() {
-        manager.clear()
         players.clear()
         npcs.clear()
         floorItems.clear()

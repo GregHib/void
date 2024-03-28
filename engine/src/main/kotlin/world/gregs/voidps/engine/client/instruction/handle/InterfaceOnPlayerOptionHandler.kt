@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.interact.ItemOnPlayer
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.network.instruct.InteractInterfacePlayer
+import world.gregs.voidps.network.client.instruction.InteractInterfacePlayer
 
 class InterfaceOnPlayerOptionHandler(
     private val players: Players,

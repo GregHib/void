@@ -2,40 +2,27 @@ package world.gregs.voidps.engine.entity.character.player
 
 import kotlinx.coroutines.flow.MutableSharedFlow
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
-import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.client.variable.Variables
-import world.gregs.voidps.engine.data.PlayerAccounts
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.Despawn
-import world.gregs.voidps.engine.entity.Spawn
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
-import world.gregs.voidps.engine.entity.character.mode.move.AreaEntered
-import world.gregs.voidps.engine.entity.character.mode.move.AreaExited
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.Inventories
-import world.gregs.voidps.engine.map.zone.RegionLoad
 import world.gregs.voidps.engine.queue.ActionQueue
-import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
-import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.encode.login
-import world.gregs.voidps.network.encode.logout
-import world.gregs.voidps.network.visual.PlayerVisuals
+import world.gregs.voidps.network.client.Instruction
+import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
 import world.gregs.voidps.type.Tile
 import kotlin.coroutines.Continuation
 
@@ -104,66 +91,6 @@ class Player(
     override var variables: Variables = PlayerVariables(this, variables)
 
     override val steps = Steps(this)
-
-    fun login(client: Client? = null, displayMode: Int = 0) {
-        interfaces.displayMode = displayMode
-        if (client != null) {
-            this.viewport = Viewport()
-            client.login(name, index, rights.ordinal, membersWorld = World.members)
-            this.client = client
-            interfaces.client = client
-            (variables as PlayerVariables).client = client
-            client.onDisconnecting {
-                logout(false)
-            }
-        }
-        emit(RegionLoad)
-        emit(Spawn)
-        val definitions = get<AreaDefinitions>()
-        for (def in definitions.get(tile.zone)) {
-            if (tile in def.area) {
-                emit(AreaEntered(this, def.name, def.tags, def.area))
-            }
-        }
-    }
-
-    fun logout(safely: Boolean) {
-        if (this["logged_out", false]) {
-            return
-        }
-        this["logged_out"] = true
-        if (safely) {
-            client?.logout()
-            strongQueue("logout") {
-                // Make sure nothing else starts
-            }
-        }
-        disconnect()
-    }
-
-    private fun disconnect() {
-        client?.disconnect()
-        val queue: ConnectionQueue = get()
-        queue.disconnect {
-            val players: Players = get()
-            World.queue("logout", 1) {
-                players.remove(this@Player)
-                players.removeIndex(this@Player)
-                players.releaseIndex(this@Player)
-            }
-            val definitions = get<AreaDefinitions>()
-            for (def in definitions.get(tile.zone)) {
-                if (tile in def.area) {
-                    emit(AreaExited(this@Player, def.name, def.tags, def.area))
-                }
-            }
-            emit(Despawn)
-            this.queue.logout()
-            softTimers.stopAll()
-            timers.stopAll()
-            get<PlayerAccounts>().queueSave(this)
-        }
-    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

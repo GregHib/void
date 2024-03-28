@@ -47,6 +47,7 @@ class FileStorage(
                 accountName = accountName,
                 displayName = displayName,
                 previousName = (variables.getOrDefault("name_history", emptyList<String>()) as List<String>).lastOrNull() ?: "",
+                passwordHash = data["passwordHash"] as String
             )
         }
         return definitions
@@ -85,7 +86,8 @@ class FileStorage(
 
     override fun save(accounts: List<PlayerSave>) {
         for (account in accounts) {
-            yaml.save(directory.resolve(fileName(account.name)), account, writeConfig)
+            val file = directory.resolve(fileName(account.name))
+            yaml.save(file, account, writeConfig)
         }
     }
 

@@ -22,7 +22,7 @@ data class NPCs(
     private val definitions: NPCDefinitions,
     private val collisions: Collisions,
     private val collision: CollisionStrategyProvider
-) : CharacterList<NPC>(MAX_NPCS) {
+) : CharacterList<NPC>() {
     override val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)
     private val logger = InlineLogger()
     private val map: CharacterMap = CharacterMap()
@@ -67,7 +67,6 @@ data class NPCs(
             val element = indexed(index) ?: continue
             super.remove(element)
             removeIndex(element)
-            releaseIndex(element)
         }
     }
 
@@ -96,6 +95,7 @@ data class NPCs(
             logger.warn { "No npc found for name $id" }
             return null
         }
+        val index = index() ?: return null
         val npc = NPC(id, tile)
         npc.def = def
         npc.levels.link(npc, NPCLevels(def))
@@ -110,7 +110,7 @@ data class NPCs(
             npc.mode = Wander(npc, tile)
         }
         val dir = if (direction == Direction.NONE) Direction.all.random() else direction
-        npc.index = indexer.obtain() ?: return null
+        npc.index = index
         npc.face(dir)
         npc.collision = collision.get(npc)
         add(npc)

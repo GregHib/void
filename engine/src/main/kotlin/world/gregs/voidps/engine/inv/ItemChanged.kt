@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 /**
  * An item slot change in an inventory.

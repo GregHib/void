@@ -2,10 +2,8 @@ package world.gregs.voidps.bot
 
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.Contexts
-import world.gregs.voidps.engine.client.ConnectionQueue
-import world.gregs.voidps.engine.client.LoginManager
+import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.ui.event.adminCommand
-import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
@@ -25,8 +23,8 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.engine.timer.worldTimerStart
 import world.gregs.voidps.engine.timer.worldTimerTick
 import world.gregs.voidps.network.client.DummyClient
-import world.gregs.voidps.network.visual.update.player.BodyColour
-import world.gregs.voidps.network.visual.update.player.BodyPart
+import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
+import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
@@ -37,9 +35,6 @@ val lumbridge = areas["lumbridge_teleport"]
 val botCount = getIntProperty("bots", 0)
 
 val bots = mutableListOf<Player>()
-val queue: ConnectionQueue by inject()
-val manager: LoginManager by inject()
-val accounts: PlayerAccounts by inject()
 val enums: EnumDefinitions by inject()
 val structs: StructDefinitions by inject()
 
@@ -76,8 +71,8 @@ adminCommand("bots") {
                         cont.resume(Unit)
                     }
                 }
-                spawn()
             }
+            spawn()
         }
     }
 }
@@ -94,19 +89,18 @@ adminCommand("bot") {
     }
 }
 
+val loader: PlayerAccountLoader by inject()
+
 fun spawn() {
     GlobalScope.launch(Contexts.Game) {
         val name = "Bot ${++counter}"
-        val index = manager.add(name)!!
-        val bot = accounts.getOrElse(name, index) { Player(index = index, tile = lumbridge.random(), accountName = name) }
+        val bot = Player(tile = lumbridge.random(), accountName = name)
+        bot.initBot()
+        loader.connect(bot, if (TaskManager.DEBUG) DummyClient() else null)
         setAppearance(bot)
-        queue.await()
         if (bot.inventory.isEmpty()) {
             bot.inventory.add("coins", 10000)
         }
-        val client = if (TaskManager.DEBUG) DummyClient() else null
-        bot.initBot()
-        bot.login(client, 0)
         bot.emit(StartBot)
         bot.viewport?.loaded = true
         delay(3)

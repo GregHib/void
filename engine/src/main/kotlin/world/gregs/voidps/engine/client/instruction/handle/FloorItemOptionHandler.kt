@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.network.instruct.InteractFloorItem
+import world.gregs.voidps.network.client.instruction.InteractFloorItem
 
 class FloorItemOptionHandler(
     private val items: FloorItems

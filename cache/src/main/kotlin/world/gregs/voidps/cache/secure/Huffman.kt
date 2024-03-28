@@ -23,17 +23,17 @@ class Huffman {
         decryptKeys = IntArray(8)
         val freq = IntArray(33)
         var key = 0
-        //For each non-zero frequency
+        // For each non-zero frequency
         for ((index, size) in huffman.map { it.toInt() }.filter { it != 0 }.toIntArray().withIndex()) {
-            //Calculate maximum frequency
+            // Calculate maximum frequency
             val maximumFreq = 1 shl 32 - size
-            //zero or the previous minimum
+            // zero or the previous minimum
             val currentFreq = freq[size]
-            //Store the min
+            // Store the min
             masks!![index] = currentFreq
-            //Set the frequency to the
-            freq[size] = if (currentFreq and maximumFreq == 0) {//If the min and max are equal ish?
-                //Starting from the bottom find the smallest frequency indices
+            // Set the frequency to the
+            freq[size] = if (currentFreq and maximumFreq == 0) { // If the min and max are equal ish?
+                // Starting from the bottom find the smallest frequency indices
                 for (idx in size - 1 downTo 1) {
                     val leftFreq = freq[idx]
                     if (leftFreq != currentFreq) {
@@ -41,17 +41,17 @@ class Huffman {
                     }
                     val rightFreq = 1 shl 32 - idx
                     if (rightFreq and leftFreq != 0) {
-                        //Move up the tree?
+                        // Move up the tree?
                         freq[idx] = freq[idx - 1]
                         break
                     }
-                    //Merge the two smallest trees
+                    // Merge the two smallest trees
                     freq[idx] = leftFreq + rightFreq
                 }
-                //Sum of their frequencies
+                // Sum of their frequencies
                 maximumFreq + currentFreq
             } else {
-                //Move up the tree?
+                // Move up the tree?
                 freq[size - 1]
             }
             for (idx in size + 1..32) {
@@ -139,11 +139,11 @@ class Huffman {
     fun compress(message: String): ByteArray {
         val writer = BufferWriter(128)
         try {
-            //Format the message
+            // Format the message
             val messageData = formatMessage(message)
-            //Write message length
+            // Write message length
             writer.writeSmart(messageData.size)
-            //Write the compressed message
+            // Write the compressed message
             compress(messageData, writer)
         } catch (exception: Throwable) {
             exception.printStackTrace()
@@ -185,7 +185,7 @@ class Huffman {
                 }
             }
 
-            //Set the packet position to the correct place
+            // Set the packet position to the correct place
             builder.position(7 + position shr 3)
         } catch (e: Exception) {
             e.printStackTrace()

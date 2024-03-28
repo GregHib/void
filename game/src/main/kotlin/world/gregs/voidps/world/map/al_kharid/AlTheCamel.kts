@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.dialogue.*

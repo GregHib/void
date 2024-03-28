@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.ui.interact.ItemOnFloorItem
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.network.instruct.InteractInterfaceFloorItem
+import world.gregs.voidps.network.client.instruction.InteractInterfaceFloorItem
 
 class InterfaceOnFloorItemOptionHandler(
     private val items: FloorItems,

@@ -69,7 +69,6 @@ npcDeath { npc ->
         } else {
             World.queue("remove_npc") {
                 npcs.remove(npc)
-                npcs.releaseIndex(npc)
             }
             npc.emit(Despawn)
         }

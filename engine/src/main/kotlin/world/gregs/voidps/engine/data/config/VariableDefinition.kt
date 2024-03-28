@@ -5,10 +5,10 @@ import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.engine.client.variable.StringValues
 import world.gregs.voidps.engine.client.variable.VariableValues
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.encode.sendVarbit
-import world.gregs.voidps.network.encode.sendVarc
-import world.gregs.voidps.network.encode.sendVarcStr
-import world.gregs.voidps.network.encode.sendVarp
+import world.gregs.voidps.network.login.protocol.encode.sendVarbit
+import world.gregs.voidps.network.login.protocol.encode.sendVarc
+import world.gregs.voidps.network.login.protocol.encode.sendVarcStr
+import world.gregs.voidps.network.login.protocol.encode.sendVarp
 
 open class VariableDefinition internal constructor(
     override var id: Int,

@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.instruct.Walk
+import world.gregs.voidps.network.client.instruction.Walk
 
 class WalkHandler : InstructionHandler<Walk>() {
 

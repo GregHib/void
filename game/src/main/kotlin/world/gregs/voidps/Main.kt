@@ -14,16 +14,13 @@ import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
-import world.gregs.voidps.engine.client.ClientManager
-import world.gregs.voidps.engine.client.ConnectionQueue
-import world.gregs.voidps.engine.client.LoginManager
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
-import world.gregs.voidps.network.protocol
+import world.gregs.voidps.network.login.protocol.decoders
 import world.gregs.voidps.script.loadScripts
 import java.io.File
 import java.util.*
@@ -49,7 +46,7 @@ object Main : CoroutineScope {
 
         // File server
         val cache = timed("cache") { Cache.load(properties) }
-        val server = GameServer.load(cache, properties, ClientManager())
+        val server = GameServer.load(cache, properties)
         val job = server.start(properties.getProperty("port").toInt())
 
         // Content
@@ -57,14 +54,13 @@ object Main : CoroutineScope {
             preload(cache, properties)
         } catch (ex: Exception) {
             logger.error(ex) { "Error loading files." }
-            job.cancel()
+            server.stop()
         }
 
         // Login server
-        val protocol = protocol(get<Huffman>())
-        val accounts: LoginManager = get()
-        val accountLoader = PlayerAccountLoader(get<ConnectionQueue>(), get(), Contexts.Game)
-        val loginServer = LoginServer.load(properties, protocol, accounts, accountLoader)
+        val decoders = decoders(get<Huffman>())
+        val accountLoader: PlayerAccountLoader = get()
+        val loginServer = LoginServer.load(properties, decoders, accountLoader)
 
         // Game world
         val stages = getTickStages()
@@ -78,6 +74,7 @@ object Main : CoroutineScope {
                 job.join()
             } finally {
                 engine.stop()
+                server.stop()
             }
         }
     }

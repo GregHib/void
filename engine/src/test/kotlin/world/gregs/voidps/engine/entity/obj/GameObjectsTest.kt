@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.network.encode.zone.ObjectAddition
-import world.gregs.voidps.network.encode.zone.ObjectRemoval
+import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAddition
+import world.gregs.voidps.network.login.protocol.encode.zone.ObjectRemoval
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse

@@ -1,82 +1,121 @@
 package world.gregs.voidps.engine.client
 
-import io.mockk.coVerify
-import io.mockk.every
-import io.mockk.impl.annotations.RelaxedMockK
-import io.mockk.junit5.MockKExtension
-import io.mockk.mockk
-import io.mockk.spyk
+import io.mockk.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
-import world.gregs.voidps.engine.data.PlayerAccounts
+import world.gregs.voidps.engine.data.AccountManager
+import world.gregs.voidps.engine.data.AccountStorage
+import world.gregs.voidps.engine.data.PlayerSave
+import world.gregs.voidps.engine.data.SaveQueue
+import world.gregs.voidps.engine.data.config.AccountDefinition
+import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.network.NetworkQueue
 import world.gregs.voidps.network.Response
 import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.ConnectionQueue
+import world.gregs.voidps.network.login.protocol.encode.login
+import world.gregs.voidps.type.Tile
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 
-@ExtendWith(MockKExtension::class)
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class PlayerAccountLoaderTest : KoinMock() {
 
-    @RelaxedMockK
-    private lateinit var queue: NetworkQueue
-
-    @RelaxedMockK
-    private lateinit var factory: PlayerAccounts
-
+    private lateinit var queue: ConnectionQueue
+    private lateinit var storage: AccountStorage
+    private lateinit var saveQueue: SaveQueue
+    private lateinit var accounts: AccountManager
+    private lateinit var definitions: AccountDefinitions
     private lateinit var loader: PlayerAccountLoader
+    private var playerSave: PlayerSave? = null
 
     @BeforeEach
     fun setup() {
-        loader = spyk(PlayerAccountLoader(queue, factory, UnconfinedTestDispatcher()))
+        playerSave = null
+        queue = mockk(relaxed = true)
+        storage = object : AccountStorage {
+            override fun names(): Map<String, AccountDefinition> = emptyMap()
+
+            override fun clans(): Map<String, Clan> = emptyMap()
+
+            override fun save(accounts: List<PlayerSave>) {
+            }
+
+            override fun exists(accountName: String): Boolean {
+                return false
+            }
+
+            override fun load(accountName: String): PlayerSave? {
+                return playerSave
+            }
+        }
+        saveQueue = SaveQueue(storage, coroutineContext = TestCoroutineDispatcher())
+        definitions = AccountDefinitions(mutableMapOf("name" to AccountDefinition("name", "oldName", "", "hash")))
+        accounts = mockk(relaxed = true)
+        loader = PlayerAccountLoader(queue, storage, accounts, saveQueue, definitions, UnconfinedTestDispatcher())
     }
 
     @Test
-    fun `Invalid credentials`() = runTest {
-        val client: Client = mockk(relaxed = true)
-        val player: Player = mockk()
-        every { player.passwordHash } returns ""
-        every { factory.getOrElse("name", 2, any()) } returns player
-
-        loader.load(client, "name", "pass", 2, 3)
-
-        coVerify {
-            client.disconnect(Response.INVALID_CREDENTIALS)
-        }
-    }
-
-    @Test
-    fun `Save in progress`() = runTest {
-        val client: Client = mockk(relaxed = true)
-        val player: Player = mockk()
-        every { player.passwordHash } returns ""
-        every { factory.saving("name") } returns true
-
-        loader.load(client, "name", "pass", 2, 3)
-
-        coVerify {
-            client.disconnect(Response.ACCOUNT_ONLINE)
-        }
+    fun `Get password`() {
+        assertEquals("hash", loader.password("name"))
+        assertNull(loader.password("name2"))
     }
 
     @Test
     fun `Successful login`() = runTest {
         val client: Client = mockk(relaxed = true)
-        val player: Player = mockk(relaxed = true)
-        every { player.passwordHash } returns "\$2a\$10\$cPB7bqICWrOILrWnXuYNDu1EsbZal9AjxYMbmpMOtI1kwruazGiby"
-        every { player.instructions } returns MutableSharedFlow()
-        every { factory.getOrElse("name", 2, any()) } returns player
+        playerSave = PlayerSave("name", "hash", Tile.EMPTY, doubleArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), emptyMap(), emptyMap(), emptyMap(), emptyList())
+        coEvery { queue.await() } just Runs
 
-        loader.load(client, "name", "pass", 2, 3)
+        val instructions = loader.load(client, "name", "pass", 2)
+        assertNotNull(instructions)
+    }
+
+    @Test
+    fun `Can't login if account is being saved`() = runTest {
+        saveQueue.save(Player(accountName = "name"))
+        val client: Client = mockk(relaxed = true)
+
+        val instructions = loader.load(client, "name", "pass", 2)
+        assertNull(instructions)
+        coVerify { client.disconnect(Response.ACCOUNT_ONLINE) }
+    }
+
+    @Test
+    fun `Connect initiates and awaits spawn`() = runTest {
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.LoginEncoderKt")
+        val client: Client = mockk(relaxed = true)
+        val player = Player(index = 4, accountName = "name", passwordHash = "\$2a\$10\$cPB7bqICWrOILrWnXuYNDu1EsbZal9AjxYMbmpMOtI1kwruazGiby", variables = mutableMapOf("display_name" to "name"))
+        coEvery { queue.await() } just Runs
+        every { accounts.setup(any()) } returns true
+
+        loader.connect(player, client, 2)
 
         coVerify {
-            player.login(client, 3)
+            queue.await()
+            client.login("name", 4, 0, membersWorld = false)
+            accounts.spawn(player, client, 2)
+        }
+    }
+
+    @Test
+    fun `World full`() = runTest {
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.LoginEncoderKt")
+        val client: Client = mockk(relaxed = true)
+        val player = Player(index = 4, accountName = "name", passwordHash = "\$2a\$10\$cPB7bqICWrOILrWnXuYNDu1EsbZal9AjxYMbmpMOtI1kwruazGiby", variables = mutableMapOf("display_name" to "name"))
+        every { accounts.setup(player) } returns false
+
+        loader.connect(player, client, 2)
+
+        coVerify {
+            client.disconnect(Response.WORLD_FULL)
         }
     }
 

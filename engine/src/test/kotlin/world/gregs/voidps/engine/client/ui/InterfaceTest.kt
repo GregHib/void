@@ -25,7 +25,7 @@ abstract class InterfaceTest : KoinMock() {
         definitions = declare { mockk(relaxed = true) }
         open = mutableSetOf()
         interfaces = spyk(Interfaces(events, client, definitions, open))
-        mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.InterfaceEncodersKt")
         mockkStatic("world.gregs.voidps.engine.client.ui.InterfacesKt")
     }
 }

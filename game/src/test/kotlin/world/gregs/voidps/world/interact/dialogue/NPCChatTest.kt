@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.encode.npcDialogueHead
+import world.gregs.voidps.network.login.protocol.encode.npcDialogueHead
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import kotlin.test.assertTrue
 
@@ -126,7 +126,7 @@ internal class NPCChatTest : DialogueTest() {
     @ParameterizedTest
     @ValueSource(booleans = [true, false])
     fun `Send npc chat head size and animation`(large: Boolean) {
-        mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.InterfaceEncodersKt")
         val client: Client = mockk(relaxed = true)
         player.client = client
         every { interfaceDefinitions.getComponent("dialogue_npc_chat1", any<String>()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
@@ -180,7 +180,7 @@ internal class NPCChatTest : DialogueTest() {
 
     @Test
     fun `Send different npc chat`() {
-        mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.InterfaceEncodersKt")
         mockkStatic("world.gregs.voidps.engine.data.definition.InterfaceDefinitionsKt")
         val client: Client = mockk(relaxed = true)
         player.client = client

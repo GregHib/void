@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
-import world.gregs.voidps.network.encode.*
-import world.gregs.voidps.network.instruct.*
+import world.gregs.voidps.network.client.instruction.*
+import world.gregs.voidps.network.login.protocol.encode.*
 import world.gregs.voidps.world.community.chat.privateStatus
 import world.gregs.voidps.world.community.clan.ownClan
 import world.gregs.voidps.world.script.WorldTest
@@ -22,10 +22,10 @@ internal class IgnoreTest : WorldTest() {
 
     @BeforeAll
     fun start() {
-        mockkStatic("world.gregs.voidps.network.encode.IgnoreEncoderKt")
-        mockkStatic("world.gregs.voidps.network.encode.ChatEncoderKt")
-        mockkStatic("world.gregs.voidps.network.encode.ClanEncoderKt")
-        mockkStatic("world.gregs.voidps.network.encode.FriendsEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.IgnoreEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ChatEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ClanEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.FriendsEncoderKt")
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
     }
 

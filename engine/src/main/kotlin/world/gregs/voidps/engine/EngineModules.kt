@@ -5,10 +5,11 @@ import org.koin.dsl.module
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
-import world.gregs.voidps.engine.client.ConnectionQueue
-import world.gregs.voidps.engine.client.LoginManager
+import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
-import world.gregs.voidps.engine.data.PlayerAccounts
+import world.gregs.voidps.engine.data.AccountManager
+import world.gregs.voidps.engine.data.SafeStorage
+import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.data.json.FileStorage
 import world.gregs.voidps.engine.data.sql.PostgresStorage
@@ -23,6 +24,7 @@ import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.zone.DynamicZones
+import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.type.Tile
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
@@ -37,9 +39,15 @@ val engineModule = module {
     single { FloorItemTracking(get(), get(), get()) }
     single { Hunting(get(), get(), get(), get(), get(), get()) }
     single {
-        PlayerAccounts(get(), get(), get(), get(), get(), get(), Tile(
-            getIntProperty("homeX", 0), getIntProperty("homeY", 0), getIntProperty("homeLevel", 0)
-        ), get())
+        SaveQueue(get(), SafeStorage(File(getProperty<String>("storageFailDirectory"))))
+    }
+    single {
+        val homeTile = Tile(
+            x = getIntProperty("homeX", 0),
+            y = getIntProperty("homeY", 0),
+            level = getIntProperty("homeLevel", 0)
+        )
+        AccountManager(get(), get(), get(), get(), get(), get(), homeTile, get(), get(), get(), get())
     }
     // IO
     single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }
@@ -60,6 +68,7 @@ val engineModule = module {
         }
         FileStorage(get(), saves, get(), getProperty("experienceRate", "1.0").toDouble())
     } }
+    single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
     // Map
     single { ZoneBatchUpdates() }
     single { DynamicZones(get(), get(), get()) }
@@ -68,7 +77,6 @@ val engineModule = module {
     single {
         ConnectionQueue(getIntProperty("connectionPerTickCap", 1))
     }
-    single { LoginManager(get<Players>().indexer) }
     single(createdAtStart = true) { GameObjectCollision(get()) }
     // Collision
     single { Collisions() }

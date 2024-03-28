@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.encode.*
+import world.gregs.voidps.network.login.protocol.encode.*
 
 /**
  * API for the interacting and tracking of client interfaces

@@ -13,9 +13,9 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.network.encode.clanChat
-import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.network.instruct.*
+import world.gregs.voidps.network.client.instruction.*
+import world.gregs.voidps.network.login.protocol.encode.clanChat
+import world.gregs.voidps.network.login.protocol.encode.message
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.interfaceOption
 import kotlin.collections.set
@@ -30,8 +30,8 @@ internal class ClanTest : WorldTest() {
     @BeforeEach
     fun start() {
         huffman = get()
-        mockkStatic("world.gregs.voidps.network.encode.ChatEncoderKt")
-        mockkStatic("world.gregs.voidps.network.encode.ClanEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ChatEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ClanEncoderKt")
     }
 
     @Test

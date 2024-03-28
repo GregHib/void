@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.skill.slayer.hasSlayerTask
 import world.gregs.voidps.world.activity.skill.slayer.isTask
 import world.gregs.voidps.world.activity.skill.slayer.undead

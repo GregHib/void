@@ -2,7 +2,7 @@ package world.gregs.voidps.bot.navigation.graph
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.network.Instruction
+import world.gregs.voidps.network.client.Instruction
 import java.util.*
 
 data class Edge(

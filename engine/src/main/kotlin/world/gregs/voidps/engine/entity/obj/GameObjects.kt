@@ -10,9 +10,9 @@ import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.network.encode.send
-import world.gregs.voidps.network.encode.zone.ObjectAddition
-import world.gregs.voidps.network.encode.zone.ObjectRemoval
+import world.gregs.voidps.network.login.protocol.encode.send
+import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAddition
+import world.gregs.voidps.network.login.protocol.encode.zone.ObjectRemoval
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 

@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.network.encode.updateInterface
+import world.gregs.voidps.network.login.protocol.encode.updateInterface
 
 val definitions: InterfaceDefinitions by inject()
 

@@ -7,9 +7,14 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.cache.secure.RSA
 import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.IsaacCipher
+import world.gregs.voidps.network.login.AccountLoader
+import world.gregs.voidps.network.login.PasswordManager
+import world.gregs.voidps.network.login.protocol.*
 import java.math.BigInteger
 import java.util.*
+import java.util.concurrent.ConcurrentHashMap
 
 /**
  * Connects a client to their account in the game world
@@ -18,11 +23,14 @@ import java.util.*
 class LoginServer(
     private val protocol: Array<Decoder?>,
     private val revision: Int,
+    private val loginLimit: Int,
     private val modulus: BigInteger,
     private val private: BigInteger,
-    private val accounts: SessionManager,
-    private val loader: AccountLoader
+    private val accounts: AccountLoader,
+    private val passwordManager: PasswordManager = PasswordManager(accounts)
 ) : Server {
+
+    internal val online: MutableSet<String> = ConcurrentHashMap.newKeySet()
 
     override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
         write.respond(Response.DATA_CHANGE)
@@ -44,18 +52,18 @@ class LoginServer(
             write.finish(Response.GAME_UPDATE)
             return
         }
-        val rsa = decryptRSA(packet)
-        validateSession(read, rsa, packet, write, hostname)
-    }
-
-    private fun decryptRSA(packet: ByteReadPacket): ByteReadPacket {
         val rsaBlockSize = packet.readUShort().toInt()
+        if (rsaBlockSize == 0) {
+            logger.debug { "Invalid rsa block size." }
+            write.finish(Response.COULD_NOT_COMPLETE_LOGIN)
+            return
+        }
         val data = packet.readBytes(rsaBlockSize)
         val rsa = RSA.crypt(data, modulus, private)
-        return ByteReadPacket(rsa)
+        validateSession(read, ByteReadPacket(rsa), packet, write, hostname)
     }
 
-    suspend fun validateSession(read: ByteReadChannel, rsa: ByteReadPacket, packet: ByteReadPacket, write: ByteWriteChannel, hostname: String) {
+    private suspend fun validateSession(read: ByteReadChannel, rsa: ByteReadPacket, packet: ByteReadPacket, write: ByteWriteChannel, hostname: String) {
         val sessionId = rsa.readUByte().toInt()
         if (sessionId != Request.SESSION) {
             logger.debug { "Bad session id $sessionId" }
@@ -76,22 +84,35 @@ class LoginServer(
         }
         val password: String = rsa.readString()
         val xtea = decryptXtea(packet, isaacKeys)
-
         val username = xtea.readString()
-        if (accounts.count(username) > 0) {
-            write.finish(Response.ACCOUNT_ONLINE)
+        if (!validate(write, username, password)) {
             return
         }
-
-        if (username.length > 12) {
-            write.finish(Response.LOGIN_SERVER_REJECTED_SESSION)
-            return
+        val client = createClient(write, isaacKeys, hostname)
+        client.onDisconnected {
+            online.remove(username)
         }
-
+        val passwordHash = passwordManager.encrypt(username, password)
         xtea.readUByte() // social login
         val displayMode = xtea.readUByte().toInt()
-        val client = createClient(write, isaacKeys, hostname)
-        login(read, client, username, password, displayMode)
+        login(read, client, username, passwordHash, displayMode)
+    }
+
+    suspend fun validate(write: ByteWriteChannel, username: String, password: String): Boolean {
+        val response = passwordManager.validate(username, password)
+        if (response != Response.SUCCESS) {
+            write.finish(response)
+            return false
+        }
+        if (!online.add(username)) {
+            write.finish(Response.ACCOUNT_ONLINE)
+            return false
+        }
+        if (online.size >= loginLimit) {
+            write.finish(Response.WORLD_FULL)
+            return false
+        }
+        return true
     }
 
     private fun createClient(write: ByteWriteChannel, isaacKeys: IntArray, hostname: String): Client {
@@ -109,20 +130,13 @@ class LoginServer(
         return ByteReadPacket(remaining)
     }
 
-    suspend fun login(read: ByteReadChannel, client: Client, username: String, password: String, displayMode: Int) {
-        val index = accounts.add(username)
-        client.onDisconnected {
-            accounts.remove(username)
-        }
-        if (index == null) {
-            client.disconnect(Response.WORLD_FULL)
-            return
-        }
-        val instructions = loader.load(client, username, password, index, displayMode) ?: return
+    suspend fun login(read: ByteReadChannel, client: Client, username: String, passwordHash: String, displayMode: Int) {
         try {
+            val instructions = accounts.load(client, username, passwordHash, displayMode) ?: return
             readPackets(client, instructions, read)
         } finally {
             client.exit()
+            client.disconnect()
         }
     }
 
@@ -144,15 +158,16 @@ class LoginServer(
             decoder.decode(instructions, packet)
         }
     }
-    
+
     companion object {
         private val logger = InlineLogger()
 
-        fun load(properties: Properties, protocol: Array<Decoder?>, accounts: SessionManager, loader: AccountLoader): LoginServer {
+        fun load(properties: Properties, protocol: Array<Decoder?>, loader: AccountLoader): LoginServer {
             val gameModulus = BigInteger(properties.getProperty("gameModulus"), 16)
             val gamePrivate = BigInteger(properties.getProperty("gamePrivate"), 16)
             val revision = properties.getProperty("revision").toInt()
-            return LoginServer(protocol, revision, gameModulus, gamePrivate, accounts, loader)
+            val maxPlayers = properties.getProperty("maxPlayers").toInt()
+            return LoginServer(protocol, revision, maxPlayers, gameModulus, gamePrivate, loader)
         }
     }
 }

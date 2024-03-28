@@ -8,12 +8,12 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.timer.TimerSlot
 import world.gregs.voidps.engine.timer.Timers
-import world.gregs.voidps.network.visual.NPCVisuals
+import world.gregs.voidps.network.login.protocol.visual.NPCVisuals
+import world.gregs.voidps.type.Tile
 import kotlin.coroutines.Continuation
 
 /**

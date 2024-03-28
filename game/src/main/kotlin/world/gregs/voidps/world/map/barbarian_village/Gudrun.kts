@@ -198,7 +198,6 @@ suspend fun CharacterContext.cutscenePart2(instance: Region) {
     for (remove in npc) {
         npcs.remove(remove)
         npcs.removeIndex(remove)
-        npcs.releaseIndex(remove)
     }
     player.moveCamera(Tile(3084, 3421).add(offset), 350)
     player.turnCamera(Tile(3082, 3426).add(offset), 250)

@@ -11,10 +11,10 @@ import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems.Companion.MAX_TILE_ITEMS
-import world.gregs.voidps.network.encode.send
-import world.gregs.voidps.network.encode.zone.FloorItemAddition
-import world.gregs.voidps.network.encode.zone.FloorItemRemoval
-import world.gregs.voidps.network.encode.zone.FloorItemUpdate
+import world.gregs.voidps.network.login.protocol.encode.send
+import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemAddition
+import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemRemoval
+import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemUpdate
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
