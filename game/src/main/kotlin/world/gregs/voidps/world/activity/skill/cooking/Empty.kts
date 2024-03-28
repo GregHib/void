@@ -7,13 +7,7 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryOption
 
 inventoryOption("Empty") {
-    val replacement = when {
-        item.id.startsWith("bucket_of") || item.id.endsWith("compost") || item.id.endsWith("dung") -> "bucket"
-        item.id.startsWith("jug_of") -> "jug"
-        item.id.startsWith("pot_of") -> "empty_pot"
-        item.id.startsWith("bowl_of") -> "bowl"
-        else -> "vial"
-    }
+    val replacement: String = item.def.getOrNull("empty") ?: return@inventoryOption
     player.inventory.replace(slot, item.id, replacement)
     player.message("You empty the ${item.def.name.substringBefore(" (").lowercase()}.", ChatType.Filter)
 }

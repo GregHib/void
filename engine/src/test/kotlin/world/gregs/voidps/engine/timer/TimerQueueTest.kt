@@ -1,8 +1,6 @@
 package world.gregs.voidps.engine.timer
 
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
@@ -53,10 +51,16 @@ internal class TimerQueueTest : TimersTest() {
             timers.run()
             GameLoop.tick++
         }
-        Assertions.assertFalse(timers.contains("timer"))
+        assertFalse(timers.contains("timer"))
         assertEquals(TimerStart("mutable"), emitted.pop())
         assertEquals(TimerStart("fixed"), emitted.pop())
         assertEquals(TimerTick("mutable"), emitted.pop())
         assertTrue(emitted.isEmpty())
+    }
+
+    @Test
+    fun `Can't run two timers with the same name`() {
+        assertTrue(timers.start("1"))
+        assertFalse(timers.start("1"))
     }
 }

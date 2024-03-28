@@ -485,6 +485,7 @@ guam_potion_unf:
   price: 304
   limit: 10000
   weight: 0.056
+  empty: vial
   examine: "I need another ingredient to finish this guam potion."
   kept: "Wilderness"
 guam_potion_unf_noted: 92
@@ -493,6 +494,7 @@ marrentill_potion_unf:
   price: 75
   limit: 10000
   weight: 0.056
+  empty: vial
   examine: "I need another ingredient to finish this marrentill potion."
   kept: "Wilderness"
 marrentill_potion_unf_noted: 94
@@ -501,6 +503,7 @@ tarromin_potion_unf:
   price: 496
   limit: 10000
   weight: 0.056
+  empty: vial
   examine: "I need another ingredient to finish this tarromin potion."
   kept: "Wilderness"
 tarromin_potion_unf_noted: 96
@@ -509,6 +512,7 @@ harralander_potion_unf:
   price: 396
   limit: 10000
   weight: 0.056
+  empty: vial
   examine: "I need another ingredient to finish this harralander potion."
 harralander_potion_unf_noted: 98
 ranarr_potion_unf:
@@ -516,6 +520,7 @@ ranarr_potion_unf:
   price: 3462
   limit: 10000
   weight: 0.056
+  empty: vial
   examine: "I need another ingredient to finish this ranarr potion."
 ranarr_potion_unf_noted: 100
 irit_potion_unf:
@@ -523,6 +528,7 @@ irit_potion_unf:
   price: 2052
   limit: 10000
   weight: 0.056
+  empty: vial
   examine: "I need another ingredient to finish this irit potion."
 irit_potion_unf_noted: 102
 avantoe_potion_unf:
@@ -530,6 +536,7 @@ avantoe_potion_unf:
   price: 4018
   limit: 10000
   weight: 0.056
+  empty: vial
   examine: "I need another ingredient to finish this avantoe potion."
 avantoe_potion_unf_noted: 104
 kwuarm_potion_unf:
@@ -537,6 +544,7 @@ kwuarm_potion_unf:
   price: 2487
   limit: 10000
   weight: 0.056
+  empty: vial
   examine: "I need another ingredient to finish this kwuarm potion."
 kwuarm_potion_unf_noted: 106
 cadantine_potion_unf:
@@ -544,6 +552,7 @@ cadantine_potion_unf:
   price: 1444
   limit: 10000
   weight: 0.056
+  empty: vial
   examine: "I need another ingredient to finish this cadantine potion."
 cadantine_potion_unf_noted: 108
 dwarf_weed_potion_unf:
@@ -551,6 +560,7 @@ dwarf_weed_potion_unf:
   price: 4741
   limit: 10000
   weight: 0.056
+  empty: vial
   examine: "I need another ingredient to finish this dwarf weed potion."
 dwarf_weed_potion_unf_noted: 110
 torstol_potion_unf:
@@ -558,6 +568,7 @@ torstol_potion_unf:
   price: 9732
   limit: 10000
   weight: 0.056
+  empty: vial
   examine: "I need another ingredient to finish this torstol potion."
 torstol_potion_unf_noted: 112
 strength_potion_4:
@@ -565,6 +576,7 @@ strength_potion_4:
   price: 808
   weight: 0.035
   excess: strength_potion_3
+  empty: vial
   examine: "4 doses of strength potion."
 strength_potion_4_noted: 114
 strength_potion_3:
@@ -572,12 +584,14 @@ strength_potion_3:
   price: 610
   weight: 0.03
   excess: strength_potion_2
+  empty: vial
   examine: "3 doses of strength potion."
 strength_potion_3_noted: 116
 strength_potion_2:
   id: 117
   price: 435
   weight: 0.025
+  empty: vial
   examine: "2 doses of strength potion."
 strength_potion_2_noted: 118
 strength_potion_1:
@@ -585,6 +599,7 @@ strength_potion_1:
   price: 263
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of strength potion."
 strength_potion_1_noted: 120
 attack_potion_3:
@@ -592,6 +607,7 @@ attack_potion_3:
   price: 206
   weight: 0.03
   excess: attack_potion_2
+  empty: vial
   examine: "3 doses of attack potion."
 attack_potion_3_noted: 122
 attack_potion_2:
@@ -599,6 +615,7 @@ attack_potion_2:
   price: 194
   weight: 0.025
   excess: attack_potion_1
+  empty: vial
   examine: "2 doses of attack potion."
 attack_potion_2_noted: 124
 attack_potion_1:
@@ -606,6 +623,7 @@ attack_potion_1:
   price: 137
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of attack potion."
 attack_potion_1_noted: 126
 restore_potion_3:
@@ -613,6 +631,7 @@ restore_potion_3:
   price: 30
   weight: 0.03
   excess: restore_potion_2
+  empty: vial
   examine: "3 doses of restore potion."
 restore_potion_3_noted: 128
 restore_potion_2:
@@ -620,6 +639,7 @@ restore_potion_2:
   price: 39
   weight: 0.025
   excess: restore_potion_1
+  empty: vial
   examine: "2 doses of restore potion."
 restore_potion_2_noted: 130
 restore_potion_1:
@@ -627,6 +647,7 @@ restore_potion_1:
   price: 29
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of restore potion."
 restore_potion_1_noted: 132
 defence_potion_3:
@@ -634,6 +655,7 @@ defence_potion_3:
   price: 395
   weight: 0.03
   excess: defence_potion_2
+  empty: vial
   examine: "3 doses of defence potion."
 defence_potion_3_noted: 134
 defence_potion_2:
@@ -641,6 +663,7 @@ defence_potion_2:
   price: 267
   weight: 0.025
   excess: defence_potion_1
+  empty: vial
   examine: "2 doses of defence potion."
 defence_potion_2_noted: 136
 defence_potion_1:
@@ -648,6 +671,7 @@ defence_potion_1:
   price: 160
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of defence potion."
 defence_potion_1_noted: 138
 prayer_potion_3:
@@ -655,6 +679,7 @@ prayer_potion_3:
   price: 2588
   weight: 0.03
   excess: prayer_potion_2
+  empty: vial
   examine: "3 doses of prayer restore potion."
 prayer_potion_3_noted: 140
 prayer_potion_2:
@@ -662,6 +687,7 @@ prayer_potion_2:
   price: 1915
   weight: 0.025
   excess: prayer_potion_1
+  empty: vial
   examine: "2 doses of prayer restore potion."
 prayer_potion_2_noted: 142
 prayer_potion_1:
@@ -669,6 +695,7 @@ prayer_potion_1:
   price: 919
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of prayer restore potion."
 prayer_potion_1_noted: 144
 super_attack_3:
@@ -676,6 +703,7 @@ super_attack_3:
   price: 849
   weight: 0.03
   excess: super_attack_2
+  empty: vial
   examine: "3 doses of super attack potion."
 super_attack_3_noted: 146
 super_attack_2:
@@ -683,6 +711,7 @@ super_attack_2:
   price: 652
   weight: 0.025
   excess: super_attack_1
+  empty: vial
   examine: "2 doses of super attack potion."
 super_attack_2_noted: 148
 super_attack_1:
@@ -690,6 +719,7 @@ super_attack_1:
   price: 603
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of super attack potion."
 super_attack_1_noted: 150
 fishing_potion_3:
@@ -697,6 +727,7 @@ fishing_potion_3:
   price: 45
   weight: 0.03
   excess: fishing_potion_2
+  empty: vial
   examine: "3 doses of fishing potion."
 fishing_potion_3_noted: 152
 fishing_potion_2:
@@ -704,6 +735,7 @@ fishing_potion_2:
   price: 67
   weight: 0.025
   excess: fishing_potion_1
+  empty: vial
   examine: "2 doses of fishing potion."
 fishing_potion_2_noted: 154
 fishing_potion_1:
@@ -711,6 +743,7 @@ fishing_potion_1:
   price: 71
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of Fishing potion."
 fishing_potion_1_noted: 156
 super_strength_3:
@@ -718,6 +751,7 @@ super_strength_3:
   price: 1299
   weight: 0.03
   excess: super_strength_2
+  empty: vial
   examine: "3 doses of super strength potion."
 super_strength_3_noted: 158
 super_strength_2:
@@ -725,6 +759,7 @@ super_strength_2:
   price: 966
   weight: 0.025
   excess: super_strength_1
+  empty: vial
   examine: "2 doses of super strength potion."
 super_strength_2_noted: 160
 super_strength_1:
@@ -732,6 +767,7 @@ super_strength_1:
   price: 474
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of super strength potion."
 super_strength_1_noted: 162
 super_defence_3:
@@ -739,6 +775,7 @@ super_defence_3:
   price: 131
   weight: 0.03
   excess: super_defence_2
+  empty: vial
   examine: "3 doses of super defence potion."
 super_defence_3_noted: 164
 super_defence_2:
@@ -746,6 +783,7 @@ super_defence_2:
   price: 99
   weight: 0.025
   excess: super_defence_1
+  empty: vial
   examine: "2 doses of super defence potion."
 super_defence_2_noted: 166
 super_defence_1:
@@ -753,6 +791,7 @@ super_defence_1:
   price: 52
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of super defence potion."
 super_defence_1_noted: 168
 super_ranging_potion_3:
@@ -760,6 +799,7 @@ super_ranging_potion_3:
   price: 4364
   weight: 0.03
   excess: super_ranging_potion_2
+  empty: vial
   examine: "3 doses of super ranging potion."
 ranging_potion_3_noted: 170
 super_ranging_potion_2:
@@ -767,6 +807,7 @@ super_ranging_potion_2:
   price: 2939
   weight: 0.025
   excess: super_ranging_potion_1
+  empty: vial
   examine: "2 doses of super ranging potion."
 ranging_potion_2_noted: 172
 super_ranging_potion_1:
@@ -774,6 +815,7 @@ super_ranging_potion_1:
   price: 1554
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of super ranging potion."
 ranging_potion_1_noted: 174
 antipoison_3:
@@ -781,6 +823,7 @@ antipoison_3:
   price: 751
   weight: 0.03
   excess: antipoison_2
+  empty: vial
   examine: "3 doses of antipoison potion."
 antipoison_3_noted: 176
 antipoison_2:
@@ -788,6 +831,7 @@ antipoison_2:
   price: 470
   weight: 0.025
   excess: antipoison_1
+  empty: vial
   examine: "2 doses of antipoison potion."
 antipoison_2_noted: 178
 antipoison_1:
@@ -795,6 +839,7 @@ antipoison_1:
   price: 206
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of antipoison potion."
 antipoison_1_noted: 180
 super_antipoison_3:
@@ -802,6 +847,7 @@ super_antipoison_3:
   price: 1426
   weight: 0.03
   excess: super_antipoison_2
+  empty: vial
   examine: "3 doses of super antipoison potion."
 super_antipoison_3_noted: 182
 super_antipoison_2:
@@ -809,6 +855,7 @@ super_antipoison_2:
   price: 871
   weight: 0.025
   excess: super_antipoison_1
+  empty: vial
   examine: "2 doses of super antipoison potion."
 super_antipoison_2_noted: 184
 super_antipoison_1:
@@ -816,12 +863,14 @@ super_antipoison_1:
   price: 421
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of super antipoison potion."
 super_antipoison_1_noted: 186
 weapon_poison:
   &weapon_poison
   id: 187
   weight: 0.025
+  empty: vial
   examine: "A vial of weapon poison."
 weapon_poison_noted: 188
 zamorak_brew_3:
@@ -829,6 +878,7 @@ zamorak_brew_3:
   price: 1195
   weight: 0.03
   excess: zamorak_brew_2
+  empty: vial
   examine: "3 doses of Zamorak brew."
 zamorak_brew_3_noted: 190
 zamorak_brew_2:
@@ -836,6 +886,7 @@ zamorak_brew_2:
   price: 854
   weight: 0.025
   excess: zamorak_brew_1
+  empty: vial
   examine: "2 doses of Zamorak brew."
 zamorak_brew_2_noted: 192
 zamorak_brew_1:
@@ -843,6 +894,7 @@ zamorak_brew_1:
   price: 846
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of Zamorak brew."
 zamorak_brew_1_noted: 194
 acne_potion:
@@ -1002,6 +1054,7 @@ vial_of_water:
   price: 45
   limit: 10000
   weight: 0.02
+  empty: vial
   examine: "A glass vial containing water."
   kept: "Wilderness"
 vial_of_water_noted: 228
@@ -2836,6 +2889,7 @@ bailing_bucket_noted: 584
 bailing_bucket_full:
   id: 585
   weight: 5.0
+  empty: bailing_bucket
   examine: "It's a bailing bucket full of salty water."
 bailing_bucket_noted_2: 586
 orb_of_protection:
@@ -3472,6 +3526,7 @@ unidentified_liquid:
   id: 702
   tradeable: false
   weight: 0.025
+  empty: vial
   examine: "A strong chemical."
   use: "Quest"
   kept: "Wilderness"
@@ -3612,24 +3667,28 @@ golden_bowl_water:
   id: 723
   tradeable: false
   weight: 1.0
+  empty: gold_bowl
   examine: "A specially made golden bowl with water."
   kept: "Wilderness"
 golden_bowl_pure_water:
   id: 724
   tradeable: false
   weight: 1.0
+  empty: gold_bowl
   examine: "A specially made bowl constructed out of pure gold. It has pure water in it."
   kept: "Wilderness"
 golden_bowl_blessed_water:
   id: 725
   tradeable: false
   weight: 1.0
+  empty: blessed_gold_bowl
   examine: "A blessed golden bowl. It has water in it."
   kept: "Wilderness"
 golden_bowl:
   id: 726
   tradeable: false
   weight: 1.0
+  empty: blessed_gold_bowl
   examine: "A blessed golden bowl. It has pure sacred water in it."
   kept: "Wilderness"
 hollow_reed:
@@ -9065,6 +9124,7 @@ bucket_of_sand:
   price: 347
   limit: 10000
   weight: 2.5
+  empty: bucket
   examine: "One of the components for making glass."
 bucket_of_sand_noted: 1784
 glassblowing_pipe:
@@ -9790,6 +9850,7 @@ bowl_of_water:
   price: 61
   limit: 100
   weight: 0.907
+  empty: bowl
   examine: "It's a bowl of water."
   kept: "Wilderness"
 bowl_of_water_noted: 1922
@@ -9816,6 +9877,7 @@ bucket_of_milk:
   price: 90
   limit: 1000
   weight: 2.2
+  empty: bucket
   examine: "It's a bucket of milk."
   kept: "Wilderness"
 bucket_of_milk_noted: 1928
@@ -9825,6 +9887,7 @@ bucket_of_water:
   limit: 100
   weight: 3.0
   aka: [ water ]
+  empty: bucket
   examine: "It's a bucket of water."
   kept: "Wilderness"
 bucket_of_water_noted: 1930
@@ -9841,6 +9904,7 @@ pot_of_flour:
   price: 60
   limit: 1000
   weight: 1.36
+  empty: empty_pot
   examine: "There is flour in this pot."
   kept: "Wilderness"
 pot_of_flour_noted: 1934
@@ -9858,6 +9922,7 @@ jug_of_water:
   price: 84
   limit: 10000
   weight: 1.0
+  empty: jug
   examine: "It's full of water."
   kept: "Wilderness"
 jug_of_water_noted: 1938
@@ -10110,6 +10175,7 @@ jug_of_bad_wine:
   excess: jug
   tradeable: false
   weight: 1.5
+  empty: jug
   examine: "Oh dear, this wine is terrible!"
   kept: "Reclaim"
 jug_of_bad_wine_2:
@@ -12018,6 +12084,7 @@ attack_potion_4:
   price: 288
   weight: 0.035
   excess: attack_potion_3
+  empty: vial
   examine: "4 doses of attack potion."
 attack_potion_4_noted: 2429
 restore_potion_4:
@@ -12025,6 +12092,7 @@ restore_potion_4:
   price: 52
   weight: 0.035
   excess: restore_potion_3
+  empty: vial
   examine: "4 doses of restore potion."
 restore_potion_4_noted: 2431
 defence_potion_4:
@@ -12032,6 +12100,7 @@ defence_potion_4:
   price: 547
   weight: 0.035
   excess: defence_potion_3
+  empty: vial
   examine: "4 doses of defence potion."
 defence_potion_4_noted: 2433
 prayer_potion_4:
@@ -12039,6 +12108,7 @@ prayer_potion_4:
   price: 3543
   weight: 0.035
   excess: prayer_potion_3
+  empty: vial
   aka: [ ppot, p_pot, prayer_potion, prayer_pot, prayer_pots, prayer_potions ]
   examine: "4 doses of prayer restore potion."
 prayer_potion_4_noted: 2435
@@ -12048,6 +12118,7 @@ super_attack_4:
   weight: 0.035
   aka: [ super_att, super_attack, super_attacks ]
   excess: super_attack_3
+  empty: vial
   examine: "4 doses of super attack potion."
 super_attack_4_noted: 2437
 fishing_potion_4:
@@ -12055,6 +12126,7 @@ fishing_potion_4:
   price: 66
   weight: 0.035
   excess: fishing_potion_3
+  empty: vial
   examine: "4 doses of fishing potion."
 fishing_potion_4_noted: 2439
 super_strength_4:
@@ -12063,6 +12135,7 @@ super_strength_4:
   weight: 0.035
   aka: [ super_str, super_strength, super_strengths ]
   excess: super_strength_3
+  empty: vial
   examine: "4 doses of super strength potion."
 super_strength_4_noted: 2441
 super_defence_4:
@@ -12071,6 +12144,7 @@ super_defence_4:
   weight: 0.035
   aka: [ super_def, super_defence, super_defences ]
   excess: super_defence_3
+  empty: vial
   examine: "4 doses of super defence potion."
 super_defence_4_noted: 2443
 super_ranging_potion_4:
@@ -12079,6 +12153,7 @@ super_ranging_potion_4:
   weight: 0.035
   aka: [ super_rng, super_range, super_ranges ]
   excess: super_ranging_potion_3
+  empty: vial
   examine: "4 doses of super ranging potion."
 ranging_potion_4_noted: 2445
 antipoison_4:
@@ -12086,6 +12161,7 @@ antipoison_4:
   price: 1073
   weight: 0.035
   excess: antipoison_3
+  empty: vial
   examine: "4 doses of antipoison potion."
 antipoison_4_noted: 2447
 super_antipoison_4:
@@ -12094,6 +12170,7 @@ super_antipoison_4:
   weight: 0.035
   aka: [ super_anti, super_anti_poison, super_antipoison, super_antipoisons ]
   excess: super_antipoison_3
+  empty: vial
   examine: "4 doses of super antipoison potion."
 super_antipoison_4_noted: 2449
 zamorak_brew_4:
@@ -12102,6 +12179,7 @@ zamorak_brew_4:
   weight: 0.035
   aka: [ zamy_brew, zammy_brew, zamorak_brew, zamorak_brews ]
   excess: zamorak_brew_3
+  empty: vial
   examine: "4 doses of Zamorak brew."
 zamorak_brew_4_noted: 2451
 antifire_4:
@@ -12109,6 +12187,7 @@ antifire_4:
   price: 6263
   weight: 0.035
   excess: antifire_3
+  empty: vial
   examine: "4 doses of anti-firebreath potion."
 antifire_4_noted: 2453
 antifire_3:
@@ -12116,6 +12195,7 @@ antifire_3:
   price: 4557
   weight: 0.03
   excess: antifire_2
+  empty: vial
   examine: "3 doses of anti-firebreath potion."
 antifire_3_noted: 2455
 antifire_2:
@@ -12123,6 +12203,7 @@ antifire_2:
   price: 3200
   weight: 0.025
   excess: antifire_1
+  empty: vial
   examine: "2 doses of anti-firebreath potion."
 antifire_2_noted: 2457
 antifire_1:
@@ -12130,6 +12211,7 @@ antifire_1:
   price: 1559
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of anti-firebreath potion."
 antifire_1_noted: 2459
 flowers_pastel:
@@ -12225,6 +12307,7 @@ lantadyme_potion_unf:
   price: 6630
   limit: 10000
   weight: 0.056
+  empty: vial
   examine: "I need another ingredient to finish this lantadyme potion."
 lantadyme_potion_unf_noted: 2484
 grimy_lantadyme:
@@ -14273,6 +14356,7 @@ toadflax_potion_unf:
   price: 4037
   limit: 10000
   weight: 0.056
+  empty: vial
   examine: "I need another ingredient to finish this toadflax potion."
 toadflax_potion_unf_noted: 3003
 snapdragon_potion_unf:
@@ -14280,6 +14364,7 @@ snapdragon_potion_unf:
   price: 6888
   limit: 10000
   weight: 0.056
+  empty: vial
   examine: "I need another ingredient to finish this snapdragon potion."
 snapdragon_potion_unf_noted: 3005
 firework_2:
@@ -14292,6 +14377,7 @@ energy_potion_4:
   price: 19
   weight: 0.035
   excess: energy_potion_3
+  empty: vial
   examine: "4 doses of energy potion."
 energy_potion_4_noted: 3009
 energy_potion_3:
@@ -14299,6 +14385,7 @@ energy_potion_3:
   price: 10
   weight: 0.03
   excess: energy_potion_2
+  empty: vial
   examine: "3 doses of energy potion."
 energy_potion_3_noted: 3011
 energy_potion_2:
@@ -14306,6 +14393,7 @@ energy_potion_2:
   price: 10
   weight: 0.025
   excess: energy_potion_1
+  empty: vial
   examine: "2 doses of energy potion."
 energy_potion_2_noted: 3013
 energy_potion_1:
@@ -14313,6 +14401,7 @@ energy_potion_1:
   price: 32
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of energy potion."
 energy_potion_1_noted: 3015
 super_energy_4:
@@ -14320,6 +14409,7 @@ super_energy_4:
   price: 3661
   weight: 0.035
   excess: super_energy_3
+  empty: vial
   examine: "4 doses of super energy potion."
 super_energy_4_noted: 3017
 super_energy_3:
@@ -14327,6 +14417,7 @@ super_energy_3:
   price: 2821
   weight: 0.03
   excess: super_energy_2
+  empty: vial
   examine: "3 doses of super energy potion."
 super_energy_3_noted: 3019
 super_energy_2:
@@ -14334,6 +14425,7 @@ super_energy_2:
   price: 1781
   weight: 0.025
   excess: super_energy_1
+  empty: vial
   examine: "2 doses of super energy potion."
 super_energy_2_noted: 3021
 super_energy_1:
@@ -14341,6 +14433,7 @@ super_energy_1:
   price: 1457
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of super energy potion."
 super_energy_1_noted: 3023
 super_restore_4:
@@ -14348,6 +14441,7 @@ super_restore_4:
   price: 6797
   weight: 0.035
   excess: super_restore_3
+  empty: vial
   aka: [ supe, supes, restore, rest, restores, super_rest, super_rests, super_restore, super_restores ]
   examine: "4 doses of super restore potion."
 super_restore_4_noted: 3025
@@ -14356,6 +14450,7 @@ super_restore_3:
   price: 5016
   weight: 0.03
   excess: super_restore_2
+  empty: vial
   examine: "3 doses of super restore potion."
 super_restore_3_noted: 3027
 super_restore_2:
@@ -14363,6 +14458,7 @@ super_restore_2:
   price: 3517
   weight: 0.025
   excess: super_restore_1
+  empty: vial
   examine: "2 doses of super restore potion."
 super_restore_2_noted: 3029
 super_restore_1:
@@ -14370,6 +14466,7 @@ super_restore_1:
   price: 1648
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of super restore potion."
 super_restore_1_noted: 3031
 agility_potion_4:
@@ -14377,6 +14474,7 @@ agility_potion_4:
   price: 215
   weight: 0.035
   excess: agility_potion_3
+  empty: vial
   examine: "4 doses of agility potion."
 agility_potion_4_noted: 3033
 agility_potion_3:
@@ -14384,6 +14482,7 @@ agility_potion_3:
   price: 150
   weight: 0.03
   excess: agility_potion_2
+  empty: vial
   examine: "3 doses of agility potion."
 agility_potion_3_noted: 3035
 agility_potion_2:
@@ -14391,6 +14490,7 @@ agility_potion_2:
   price: 125
   weight: 0.025
   excess: agility_potion_1
+  empty: vial
   examine: "2 doses of agility potion."
 agility_potion_2_noted: 3037
 agility_potion_1:
@@ -14398,6 +14498,7 @@ agility_potion_1:
   price: 215
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of agility potion."
 agility_potion_1_noted: 3039
 super_magic_potion_4:
@@ -14405,6 +14506,7 @@ super_magic_potion_4:
   price: 6810
   weight: 0.035
   excess: super_magic_potion_3
+  empty: vial
   examine: "4 doses of super magic potion."
 magic_potion_4_noted: 3041
 super_magic_potion_3:
@@ -14412,6 +14514,7 @@ super_magic_potion_3:
   price: 5257
   weight: 0.03
   excess: super_magic_potion_2
+  empty: vial
   examine: "3 doses of super magic potion."
 magic_potion_3_noted: 3043
 super_magic_potion_2:
@@ -14419,6 +14522,7 @@ super_magic_potion_2:
   price: 3550
   weight: 0.025
   excess: super_magic_potion_1
+  empty: vial
   examine: "2 doses of super magic potion."
 magic_potion_2_noted: 3045
 super_magic_potion_1:
@@ -14426,6 +14530,7 @@ super_magic_potion_1:
   price: 1783
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of super magic potion."
 magic_potion_1_noted: 3047
 pirates_hook_noted: 3048
@@ -15816,6 +15921,7 @@ serum_207_4:
   id: 3408
   weight: 0.035
   excess: serum_207_3
+  empty: vial
   examine: "4 doses serum 207 as described in Herbi Flax's diary."
 tinderbox_18:
   <<: *tinderbox_2
@@ -15824,6 +15930,7 @@ serum_207_3:
   id: 3410
   weight: 0.03
   excess: serum_207_2
+  empty: vial
   examine: "3 doses serum 207 as described in Herbi Flax's diary."
 tinderbox_19:
   <<: *tinderbox_2
@@ -15832,6 +15939,7 @@ serum_207_2:
   id: 3412
   weight: 0.025
   excess: serum_207_1
+  empty: vial
   examine: "2 doses serum 207 as described in Herbi Flax's diary."
 tinderbox_20:
   <<: *tinderbox_2
@@ -15840,6 +15948,7 @@ serum_207_1:
   id: 3414
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose serum 207 as described in Herbi Flax's diary."
 tinderbox_21:
   <<: *tinderbox_2
@@ -15848,21 +15957,25 @@ serum_208_4:
   id: 3416
   weight: 0.035
   excess: serum_208_3
+  empty: vial
   examine: "4 doses permanent serum 208 as described in Herbi Flax's diary."
 serum_208_3:
   id: 3417
   weight: 0.03
   excess: serum_208_2
+  empty: vial
   examine: "3 doses permanent serum 208 as described in Herbi Flax's diary."
 serum_208_2:
   id: 3418
   weight: 0.025
   excess: serum_208_1
+  empty: vial
   examine: "2 doses permanent serum 208 as described in Herbi Flax's diary."
 serum_208_1:
   id: 3419
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose permanent serum 208 as described in Herbi Flax's diary."
 limestone_brick:
   id: 3420
@@ -15876,6 +15989,7 @@ olive_oil_4:
   price: 341
   weight: 0.035
   excess: olive_oil_3
+  empty: vial
   examine: "4 doses of olive oil."
 olive_oil_4_noted: 3423
 olive_oil_3:
@@ -15883,6 +15997,7 @@ olive_oil_3:
   price: 223
   weight: 0.03
   excess: olive_oil_2
+  empty: vial
   examine: "3 doses of olive oil."
 olive_oil_3_noted: 3425
 olive_oil_2:
@@ -15890,6 +16005,7 @@ olive_oil_2:
   price: 156
   weight: 0.025
   excess: olive_oil_1
+  empty: vial
   examine: "2 doses of olive oil."
 olive_oil_2_noted: 3427
 olive_oil_1:
@@ -15897,6 +16013,7 @@ olive_oil_1:
   price: 92
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of olive oil."
 olive_oil_1_noted: 3429
 sacred_oil_4:
@@ -15904,6 +16021,7 @@ sacred_oil_4:
   price: 2781
   weight: 0.035
   excess: sacred_oil_3
+  empty: vial
   examine: "4 doses of sacred oil."
 sacred_oil_4_noted: 3431
 sacred_oil_3:
@@ -15911,6 +16029,7 @@ sacred_oil_3:
   price: 2097
   weight: 0.03
   excess: sacred_oil_2
+  empty: vial
   examine: "3 doses of sacred oil."
 sacred_oil_3_noted: 3433
 sacred_oil_2:
@@ -15918,6 +16037,7 @@ sacred_oil_2:
   price: 1183
   weight: 0.025
   excess: sacred_oil_1
+  empty: vial
   examine: "2 doses of sacred oil."
 sacred_oil_2_noted: 3435
 sacred_oil_1:
@@ -15925,6 +16045,7 @@ sacred_oil_1:
   price: 1958
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of sacred oil."
 sacred_oil_1_noted: 3437
 pyre_logs:
@@ -18749,6 +18870,7 @@ nettle_water:
     type: heat
     cooked: nettle_tea
     cooked_message: "You boil the water and make nettle tea."
+  empty: bowl
   examine: "It's a bowl of water, with some nettles in it."
   kept: "Reclaim"
 puddle_of_slime:
@@ -18771,6 +18893,7 @@ milky_nettle_tea:
   excess: bowl
   tradeable: false
   weight: 0.907
+  empty: bowl
   examine: "It's a bowl of milky nettle tea."
   kept: "Reclaim"
 nettles:
@@ -18785,6 +18908,7 @@ cup_of_tea_nettle_tea:
   excess: empty_cup
   tradeable: false
   weight: 0.15
+  empty: empty_cup
   examine: "A nice cup of nettle tea."
   kept: "Reclaim"
 cup_of_milky_tea:
@@ -18794,6 +18918,7 @@ cup_of_milky_tea:
   excess: empty_cup
   tradeable: false
   weight: 0.15
+  empty: empty_cup
   examine: "A milky cup of nettle tea."
   kept: "Reclaim"
 porcelain_cup:
@@ -18807,6 +18932,7 @@ cup_of_tea_ghosts_ahoy:
   id: 4245
   tradeable: false
   weight: 0.15
+  empty: porcelain_cup
   examine: "Some nettle tea in a porcelain cup."
   use: "Quest"
   kept: "Reclaim"
@@ -18816,6 +18942,7 @@ cup_of_milky_tea_ghosts_ahoy:
   heals: 0
   tradeable: false
   weight: 0.15
+  empty: porcelain_cup
   examine: "Some milky nettle tea in a porcelain cup."
   kept: "Reclaim"
 mystical_robes:
@@ -18882,102 +19009,119 @@ bonemeal_bones:
   id: 4255
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed bones."
   kept: "Reclaim"
 bat_bonemeal:
   id: 4256
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed bat bones."
   kept: "Reclaim"
 big_bonemeal:
   id: 4257
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed big bones."
   kept: "Reclaim"
 burnt_bonemeal:
   id: 4258
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed burnt bones."
   kept: "Reclaim"
 burnt_jogre_bonemeal:
   id: 4259
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed burnt jogre bones."
   kept: "Reclaim"
 baby_dragon_bonemeal:
   id: 4260
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed baby dragon bones."
   kept: "Reclaim"
 dragon_bonemeal:
   id: 4261
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed dragon bones."
   kept: "Reclaim"
 wolf_bonemeal:
   id: 4262
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed wolf bones."
   kept: "Reclaim"
 small_ninja_monkey_bonemeal:
   id: 4263
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed small ninja monkey bones."
   kept: "Reclaim"
 medium_ninja_monkey_bonemeal:
   id: 4264
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed medium ninja monkey bones."
   kept: "Reclaim"
 gorilla_bonemeal:
   id: 4265
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed gorilla monkey bones."
   kept: "Reclaim"
 bearded_gorilla_bonemeal:
   id: 4266
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed bearded gorilla monkey bones."
   kept: "Reclaim"
 monkey_bonemeal:
   id: 4267
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed monkey bones."
   kept: "Reclaim"
 small_zombie_monkey_bonemeal:
   id: 4268
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed small zombie monkey bones."
   kept: "Reclaim"
 large_zombie_monkey_bonemeal:
   id: 4269
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed large zombie monkey bones."
   kept: "Reclaim"
 skeletal_monkey_bonemeal:
   id: 4270
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed skeleton bones."
   kept: "Reclaim"
 jogre_bonemeal:
   id: 4271
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed jogre bones."
   kept: "Reclaim"
 bone_key_ghosts_ahoy:
@@ -19049,6 +19193,7 @@ bucket_of_slime:
   id: 4286
   tradeable: false
   weight: 3.0
+  empty: bucket
   examine: "It's a bucket of ectoplasm."
   kept: "Wilderness"
 raw_undead_beef:
@@ -19578,6 +19723,7 @@ guthix_rest_4:
   price: 195
   heals: 50
   excess: guthix_rest_3
+  empty: vial
   eat_message: "You drink some of your guthix rest."
   examine: "A cup of Guthix rest."
   weight: 0.05
@@ -19587,6 +19733,7 @@ guthix_rest_3:
   price: 129
   heals: 50
   excess: guthix_rest_2
+  empty: vial
   eat_message: "You drink some of your guthix rest."
   examine: "A cup of Guthix rest."
   weight: 0.05
@@ -19596,6 +19743,7 @@ guthix_rest_2:
   price: 83
   heals: 50
   excess: guthix_rest_1
+  empty: vial
   eat_message: "You drink some of your guthix rest."
   examine: "A cup of Guthix rest."
   weight: 0.05
@@ -19603,8 +19751,9 @@ guthix_rest_2_noted: 4422
 guthix_rest_1:
   id: 4423
   price: 44
-  excess: empty_cup
   heals: 50
+  excess: empty_cup
+  empty: vial
   eat_message: "You drink some of your guthix rest."
   examine: "A cup of Guthix rest."
   weight: 0.05
@@ -19761,6 +19910,7 @@ bowl_of_hot_water:
   price: 96
   limit: 100
   weight: 0.907
+  empty: bowl
   examine: "It's a bowl of hot water."
 bowl_of_hot_water_noted: 4457
 cup_of_water:
@@ -19768,6 +19918,7 @@ cup_of_water:
   price: 38
   limit: 100
   weight: 0.05
+  empty: empty_cup
   examine: "A cup of water."
   kept: "Wilderness"
 cup_of_water_noted: 4459
@@ -19776,11 +19927,13 @@ cup_of_hot_water:
   price: 91
   limit: 100
   weight: 0.05
+  empty: empty_cup
   examine: "It's hot!"
 cup_of_hot_water_noted: 4461
 ruined_herb_tea:
   id: 4462
   weight: 0.05
+  empty: empty_cup
   examine: "A ruined herb tea."
   use: "Limited"
 ruined_herb_tea_noted: 4463
@@ -19788,82 +19941,92 @@ herb_tea_mix_harralander:
   id: 4464
   tradeable: false
   weight: 0.05
+  empty: empty_cup
   examine: "An unfinished herb tea made up of water and harralander."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted: 4465
+herb_tea_mix_harralander_noted: 4465
 herb_tea_mix_guam:
   id: 4466
   tradeable: false
   weight: 0.05
+  empty: empty_cup
   examine: "An unfinished herb tea made up of water and guam."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_2: 4467
+herb_tea_mix_guam_noted: 4467
 herb_tea_mix_marrentill:
   id: 4468
   tradeable: false
   weight: 0.05
+  empty: empty_cup
   examine: "An unfinished herb tea made up of water and marrentill."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_3: 4469
+herb_tea_mix_marrentill_noted: 4469
 herb_tea_mix_harralander_and_marrentill:
   id: 4470
   tradeable: false
   weight: 0.05
+  empty: empty_cup
   examine: "An unfinished herb tea made up of water, harralander and marrentill."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_4: 4471
+herb_tea_mix_harralander_and_marrentill_noted: 4471
 herb_tea_mix_harralander_and_guam:
   id: 4472
   tradeable: false
   weight: 0.05
+  empty: empty_cup
   examine: "An unfinished herb tea made up of water, harralander and guam."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_5: 4473
+herb_tea_mix_harralander_and_guam_noted: 4473
 herb_tea_mix_2_guams:
   id: 4474
   tradeable: false
   weight: 0.05
+  empty: empty_cup
   examine: "An unfinished herb tea made up of water and 2 doses of guam."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_6: 4475
+herb_tea_mix_2_guams_noted: 4475
 herb_tea_mix_guam_and_marrentill:
   id: 4476
   tradeable: false
   weight: 0.05
+  empty: empty_cup
   examine: "An unfinished herb tea made up of water, guam and marrentill."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_7: 4477
+herb_tea_mix_guam_and_marrentill_noted: 4477
 herb_tea_mix_harralander_marrentill_and_guam:
   id: 4478
   tradeable: false
   weight: 0.05
+  empty: empty_cup
   examine: "An unfinished herb tea made up of water, harralander, marrentill and guam."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_8: 4479
+herb_tea_mix_harralander_marrentill_and_guam_noted: 4479
 herb_tea_mix_2_guams_and_marrentill:
   id: 4480
   tradeable: false
   weight: 0.05
+  empty: empty_cup
   examine: "An unfinished herb tea made up of water, 2 doses of guam and marrentill."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_9: 4481
+herb_tea_mix_2_guams_and_marrentill_noted: 4481
 herb_tea_mix_2_guams_and_harralander:
   id: 4482
   tradeable: false
   weight: 0.05
+  empty: empty_cup
   examine: "An unfinished herb tea made up of water, 2 doses of guam and harralander."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_10: 4483
+herb_tea_mix_2_guams_and_harralander_noted: 4483
 safety_guarantee:
   id: 4484
   tradeable: false
@@ -20490,6 +20653,7 @@ ugthanki_dung:
   id: 4601
   tradeable: false
   weight: 0.4
+  empty: bucket
   examine: "Dung of the Camelus Horribleus variety."
   kept: "Reclaim"
 ugthanki_dung_2:
@@ -20620,6 +20784,7 @@ black_mushroom_ink:
   id: 4622
   tradeable: false
   weight: 0.01
+  empty: vial
   examine: "Black ink made out of mushrooms."
   kept: "Wilderness"
 phoenix_quill_pen:
@@ -20879,6 +21044,7 @@ bucket_of_sap:
   id: 4687
   tradeable: false
   weight: 2.5
+  empty: bucket
   examine: "It's a bucket of sap."
   kept: "Reclaim"
 tinderbox_28:
@@ -20912,6 +21078,7 @@ full_bucket:
   id: 4693
   tradeable: false
   weight: 3.0
+  empty: empty_bucket
   examine: "It's a bucket of salty water."
   use: "Quest"
   kept: "Wilderness"
@@ -21547,6 +21714,7 @@ rogues_purse_potion_unf:
   price: 1930
   limit: 10000
   weight: 0.03
+  empty: vial
   examine: "I need another ingredient to finish this rogue's purse potion."
 rogues_purse_potion_unf_noted: 4841
 relicyms_balm_4:
@@ -21554,6 +21722,7 @@ relicyms_balm_4:
   price: 1014
   weight: 0.035
   excess: relicyms_balm_3
+  empty: vial
   examine: "4 doses of Relicym's balm, which helps cure disease."
 relicyms_balm_4_noted: 4843
 relicyms_balm_3:
@@ -21561,6 +21730,7 @@ relicyms_balm_3:
   price: 511
   weight: 0.03
   excess: relicyms_balm_2
+  empty: vial
   examine: "3 doses of Relicym's balm, which helps cure disease."
 relicyms_balm_3_noted: 4845
 relicyms_balm_2:
@@ -21568,6 +21738,7 @@ relicyms_balm_2:
   price: 292
   weight: 0.025
   excess: relicyms_balm_1
+  empty: vial
   examine: "2 doses of Relicym's balm, which helps cure disease."
 relicyms_balm_2_noted: 4847
 relicyms_balm_1:
@@ -21575,6 +21746,7 @@ relicyms_balm_1:
   price: 169
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of Relicym's balm, which helps cure disease."
 relicyms_balm_1_noted: 4849
 ogre_coffin_key:
@@ -21589,24 +21761,28 @@ zogre_bonemeal:
   id: 4852
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed zogre bones."
   kept: "Reclaim"
 fayrg_bonemeal:
   id: 4853
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed fayrg bones."
   kept: "Reclaim"
 raurg_bonemeal:
   id: 4854
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed raurg bones."
   kept: "Reclaim"
 ourg_bonemeal:
   id: 4855
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed ourg bones."
   kept: "Reclaim"
 ahrims_hood_100:
@@ -23362,105 +23538,125 @@ basket_noted: 5377
 apples_1:
   id: 5378
   weight: 0.056
+  empty: basket
   examine: "A fruit basket filled with apples."
 apples_1_noted: 5379
 apples_2:
   id: 5380
   weight: 0.085
+  empty: basket
   examine: "A fruit basket filled with apples."
 apples_2_noted: 5381
 apples_3:
   id: 5382
   weight: 0.113
+  empty: basket
   examine: "A fruit basket filled with apples."
 apples_3_noted: 5383
 apples_4:
   id: 5384
   weight: 0.141
+  empty: basket
   examine: "A fruit basket filled with apples."
 apples_4_noted: 5385
 apples_5:
   id: 5386
   price: 2135
   weight: 0.17
+  empty: basket
   examine: "A fruit basket filled with apples."
 apples_5_noted: 5387
 oranges_1:
   id: 5388
   weight: 0.056
+  empty: basket
   examine: "A fruit basket filled with oranges"
 oranges_1_noted: 5389
 oranges_2:
   id: 5390
   weight: 0.085
+  empty: basket
   examine: "A fruit basket filled with oranges"
 oranges_2_noted: 5391
 oranges_3:
   id: 5392
   weight: 0.113
+  empty: basket
   examine: "A fruit basket filled with oranges"
 oranges_3_noted: 5393
 oranges_4:
   id: 5394
   weight: 0.141
+  empty: basket
   examine: "A fruit basket filled with oranges"
 oranges_4_noted: 5395
 oranges_5:
   id: 5396
   price: 1079
   weight: 0.17
+  empty: basket
   examine: "A fruit basket filled with oranges"
 oranges_5_noted: 5397
 strawberries_1:
   id: 5398
   weight: 0.056
+  empty: basket
   examine: "A fruit basket filled with strawberries."
 strawberries_1_noted: 5399
 strawberries_2:
   id: 5400
   weight: 0.085
+  empty: basket
   examine: "A fruit basket filled with strawberries."
 strawberries_2_noted: 5401
 strawberries_3:
   id: 5402
   weight: 0.113
+  empty: basket
   examine: "A fruit basket filled with strawberries."
 strawberries_3_noted: 5403
 strawberries_4:
   id: 5404
   weight: 0.141
+  empty: basket
   examine: "A fruit basket filled with strawberries."
 strawberries_4_noted: 5405
 strawberries_5:
   id: 5406
   price: 150
   weight: 0.17
+  empty: basket
   examine: "A fruit basket filled with strawberries."
 strawberries_5_noted: 5407
 bananas_1:
   id: 5408
   weight: 0.056
+  empty: basket
   examine: "A fruit basket filled with bananas."
 bananas_1_noted: 5409
 bananas_2:
   id: 5410
   weight: 0.085
+  empty: basket
   examine: "A fruit basket filled with bananas."
 bananas_2_noted: 5411
 bananas_3:
   id: 5412
   weight: 0.113
+  empty: basket
   examine: "A fruit basket filled with bananas."
 bananas_3_noted: 5413
 bananas_4:
   id: 5414
   weight: 0.141
+  empty: basket
   examine: "A fruit basket filled with bananas."
 bananas_4_noted: 5415
 bananas_5:
   id: 5416
   price: 564
   weight: 0.17
+  empty: basket
   examine: "A fruit basket filled with bananas."
 bananas_5_noted: 5417
 empty_sack:
@@ -23474,154 +23670,184 @@ empty_sack_noted: 5419
 potatoes_1:
   id: 5420
   weight: 0.907
+  empty: empty_sack
   examine: "There is 1 potato in this sack."
 potatoes_1_noted: 5421
 potatoes_2:
   id: 5422
   weight: 1.36
+  empty: empty_sack
   examine: "There are 2 potatoes in this sack."
 potatoes_2_noted: 5423
 potatoes_3:
   id: 5424
   weight: 1.814
+  empty: empty_sack
   examine: "There are 3 potatoes in this sack."
 potatoes_3_noted: 5425
 potatoes_4:
   id: 5426
   weight: 2.267
+  empty: empty_sack
   examine: "There are 4 potatoes in this sack."
 potatoes_4_noted: 5427
 potatoes_5:
   id: 5428
   weight: 2.721
+  empty: empty_sack
   examine: "There are 5 potatoes in this sack."
 potatoes_5_noted: 5429
 potatoes_6:
   id: 5430
   weight: 3.175
+  empty: empty_sack
   examine: "There are 6 potatoes in this sack."
 potatoes_6_noted: 5431
 potatoes_7:
   id: 5432
   weight: 3.628
+  empty: empty_sack
   examine: "There are 7 potatoes in this sack."
 potatoes_7_noted: 5433
 potatoes_8:
   id: 5434
   weight: 4.082
+  empty: empty_sack
   examine: "There are 8 potatoes in this sack."
 potatoes_8_noted: 5435
 potatoes_9:
   id: 5436
   weight: 4.535
+  empty: empty_sack
   examine: "There are 9 potatoes in this sack."
 potatoes_9_noted: 5437
 potatoes_10:
   id: 5438
   price: 536
   weight: 4.989
+  empty: empty_sack
   examine: "There are 10 potatoes in this sack."
 potatoes_10_noted: 5439
 onions_1:
   id: 5440
   weight: 0.907
+  empty: empty_sack
   examine: "There is 1 onion in this sack."
 onions_1_noted: 5441
 onions_2:
   id: 5442
   weight: 1.36
+  empty: empty_sack
   examine: "There are 2 onions in this sack."
 onions_2_noted: 5443
 onions_3:
   id: 5444
   weight: 1.814
+  empty: empty_sack
   examine: "There are 3 onions in this sack."
 onions_3_noted: 5445
 onions_4:
   id: 5446
   weight: 2.267
+  empty: empty_sack
   examine: "There are 4 onions in this sack."
 onions_4_noted: 5447
 onions_5:
   id: 5448
   weight: 2.721
+  empty: empty_sack
   examine: "There are 5 onions in this sack."
 onions_5_noted: 5449
 onions_6:
   id: 5450
   weight: 3.175
+  empty: empty_sack
   examine: "There are 6 onions in this sack."
 onions_6_noted: 5451
 onions_7:
   id: 5452
   weight: 3.628
+  empty: empty_sack
   examine: "There are 7 onions in this sack."
 onions_7_noted: 5453
 onions_8:
   id: 5454
   weight: 4.082
+  empty: empty_sack
   examine: "There are 8 onions in this sack."
 onions_8_noted: 5455
 onions_9:
   id: 5456
   weight: 4.535
+  empty: empty_sack
   examine: "There are 9 onions in this sack."
 onions_9_noted: 5457
 onions_10:
   id: 5458
   price: 500
   weight: 4.989
+  empty: empty_sack
   examine: "There are 10 onions in this sack."
 onions_10_noted: 5459
 cabbages_sack_1:
   id: 5460
   weight: 0.907
+  empty: empty_sack
   examine: "There is 1 cabbage in this sack."
 cabbages_1_noted: 5461
 cabbages_sack_2:
   id: 5462
   weight: 1.36
+  empty: empty_sack
   examine: "There are 2 cabbages in this sack."
 cabbages_2_noted: 5463
 cabbages_sack_3:
   id: 5464
   weight: 1.814
+  empty: empty_sack
   examine: "There are 3 cabbages in this sack."
 cabbages_3_noted: 5465
 cabbages_sack_4:
   id: 5466
   weight: 2.267
+  empty: empty_sack
   examine: "There are 4 cabbages in this sack."
 cabbages_4_noted: 5467
 cabbages_sack_5:
   id: 5468
   weight: 2.721
+  empty: empty_sack
   examine: "There are 5 cabbages in this sack."
 cabbages_5_noted: 5469
 cabbages_sack_6:
   id: 5470
   weight: 3.175
+  empty: empty_sack
   examine: "There are 6 cabbages in this sack."
 cabbages_6_noted: 5471
 cabbages_sack_7:
   id: 5472
   weight: 3.628
+  empty: empty_sack
   examine: "There are 7 cabbages in this sack."
 cabbages_7_noted: 5473
 cabbages_sack_8:
   id: 5474
   weight: 4.082
+  empty: empty_sack
   examine: "There are 8 cabbages in this sack."
 cabbages_8_noted: 5475
 cabbages_sack_9:
   id: 5476
   weight: 4.535
+  empty: empty_sack
   examine: "There are 9 cabbages in this sack."
 cabbages_9_noted: 5477
 cabbages_sack_10:
   id: 5478
   price: 698
   weight: 4.989
+  empty: empty_sack
   examine: "There are 10 cabbages in this sack."
 cabbages_10_noted: 5479
 apple_seedling:
@@ -24367,6 +24593,7 @@ shaikahan_bonemeal:
   id: 5615
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed Shaikahan bones."
   kept: "Reclaim"
 bronze_arrow_p+:
@@ -25686,39 +25913,46 @@ coconut_milk:
   price: 1610
   limit: 10000
   weight: 0.035
+  empty: vial
   examine: "A vial filled with coconut milk"
 weapon_poison+_unf:
   id: 5936
   tradeable: false
   weight: 0.035
+  empty: vial
   examine: "A vial of coconut milk and a cactus spine."
   kept: "Reclaim"
 weapon_poison+:
   id: 5937
   weight: 0.035
+  empty: vial
   examine: "A vial of extra-strong weapon poison."
 weapon_poison+_noted: 5938
 weapon_poison++_unf:
   id: 5939
   tradeable: false
   weight: 0.035
+  empty: vial
   examine: "A vial of coconut milk and some deadly nightshade."
   kept: "Reclaim"
 weapon_poison++:
   id: 5940
   weight: 0.035
+  empty: vial
   examine: "A vial of super-strong weapon poison."
 weapon_poison++_noted: 5941
 antipoison+_unf:
   id: 5942
   tradeable: false
   weight: 0.035
+  empty: vial
   examine: "A vial of coconut milk and a toadflax."
   kept: "Reclaim"
 antipoison+_4:
   id: 5943
   price: 1773
   excess: antipoison+_3
+  empty: vial
   examine: "4 doses of extra-strong antipoison potion."
   weight: 0.035
 antipoison+_4_noted: 5944
@@ -25726,6 +25960,7 @@ antipoison+_3:
   id: 5945
   price: 2312
   excess: antipoison+_2
+  empty: vial
   examine: "3 doses of extra-strong antipoison potion."
   weight: 0.035
 antipoison+_3_noted: 5946
@@ -25733,6 +25968,7 @@ antipoison+_2:
   id: 5947
   price: 1852
   excess: antipoison+_1
+  empty: vial
   examine: "2 doses of extra-strong antipoison potion."
   weight: 0.035
 antipoison+_2_noted: 5948
@@ -25740,6 +25976,7 @@ antipoison+_1:
   id: 5949
   price: 1685
   excess: vial
+  empty: vial
   examine: "1 dose of extra-strong antipoison potion."
   weight: 0.035
 antipoison+_1_noted: 5950
@@ -25747,12 +25984,14 @@ antipoison++_unf:
   id: 5951
   tradeable: false
   weight: 0.035
+  empty: vial
   examine: "A vial of coconut milk and an irit."
   kept: "Reclaim"
 antipoison++_4:
   id: 5952
   price: 2995
   excess: antipoison++_3
+  empty: vial
   examine: "4 doses of super-strong antipoison potion."
   weight: 0.035
 antipoison++_4_noted: 5953
@@ -25760,6 +25999,7 @@ antipoison++_3:
   id: 5954
   price: 2690
   excess: antipoison++_2
+  empty: vial
   examine: "3 doses of super-strong antipoison potion."
   weight: 0.035
 antipoison++_3_noted: 5955
@@ -25767,6 +26007,7 @@ antipoison++_2:
   id: 5956
   price: 1011
   excess: antipoison++_1
+  empty: vial
   examine: "2 doses of super-strong antipoison potion."
   weight: 0.035
 antipoison++_2_noted: 5957
@@ -25774,6 +26015,7 @@ antipoison++_1:
   id: 5958
   price: 940
   excess: vial
+  empty: vial
   examine: "1 dose of super-strong antipoison potion."
   weight: 0.035
 antipoison++_1_noted: 5959
@@ -25785,22 +26027,26 @@ tomatoes_1_noted: 5961
 tomatoes_2:
   id: 5962
   weight: 0.085
+  empty: basket
   examine: "A basket filled with tomatoes."
 tomatoes_2_noted: 5963
 tomatoes_3:
   id: 5964
   weight: 0.113
+  empty: basket
   examine: "A basket filled with tomatoes."
 tomatoes_3_noted: 5965
 tomatoes_4:
   id: 5966
   weight: 0.141
+  empty: basket
   examine: "A basket filled with tomatoes."
 tomatoes_4_noted: 5967
 tomatoes_5:
   id: 5968
   price: 192
   weight: 0.17
+  empty: basket
   examine: "A basket filled with tomatoes."
 tomatoes_5_noted: 5969
 curry_leaf:
@@ -25894,6 +26140,7 @@ apple_mush:
   price: 396
   limit: 100
   weight: 1.1
+  empty: bucket
   examine: "A bucket of apple mush."
   kept: "Wilderness"
 apple_mush_noted: 5993
@@ -26036,6 +26283,7 @@ compost:
   price: 184
   limit: 10000
   weight: 3.0
+  empty: bucket
   examine: "Good for plants, helps them grow."
   kept: "Wilderness"
 compost_noted: 6033
@@ -26044,6 +26292,7 @@ supercompost:
   price: 1078
   limit: 10000
   weight: 3.0
+  empty: bucket
   examine: "Super-good for the smallest or largest of plants."
 supercompost_noted: 6035
 plant_cure:
@@ -26051,6 +26300,7 @@ plant_cure:
   price: 203
   limit: 100
   weight: 0.035
+  empty: vial
   examine: "Use this on plants to cure disease."
   kept: "Wilderness"
 plant_cure_noted: 6037
@@ -27718,6 +27968,7 @@ spadeful_of_coke:
   id: 6448
   tradeable: false
   weight: 1.814
+  empty: spade
   examine: "A spadeful of refined coal."
   kept: "Reclaim"
 white_rose_seed:
@@ -27847,6 +28098,7 @@ compost_potion_4:
   price: 12400
   weight: 0.035
   excess: compost_potion_3
+  empty: vial
   examine: "Pour this onto compost to make it into super-compost."
 compost_potion_4_noted: 6471
 compost_potion_3:
@@ -27854,6 +28106,7 @@ compost_potion_3:
   price: 5616
   weight: 0.03
   excess: compost_potion_2
+  empty: vial
   examine: "Pour this onto compost to make it into super-compost."
 compost_potion_3_noted: 6473
 compost_potion_2:
@@ -27861,6 +28114,7 @@ compost_potion_2:
   price: 3102
   weight: 0.025
   excess: compost_potion_1
+  empty: vial
   examine: "Pour this onto compost to make it into super-compost."
 compost_potion_2_noted: 6475
 compost_potion_1:
@@ -27868,6 +28122,7 @@ compost_potion_1:
   price: 1542
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "Pour this onto compost to make it into super-compost."
 compost_potion_1_noted: 6477
 trolley:
@@ -28599,6 +28854,7 @@ fishbowl_water:
   limit: 10000
   tradeable: false
   weight: 2.267
+  empty: fishbowl
   examine: "A fishless fishbowl."
   kept: "Reclaim"
 fishbowl_seaweed:
@@ -28606,6 +28862,7 @@ fishbowl_seaweed:
   limit: 10000
   tradeable: false
   weight: 2.267
+  empty: fishbowl
   examine: "A fishless fishbowl with some seaweed."
   kept: "Reclaim"
 fishbowl_blue:
@@ -28689,6 +28946,7 @@ saradomin_brew_4:
   weight: 0.035
   heals: 20
   excess: saradomin_brew_3
+  empty: vial
   eat_message: "You drink some of the foul liquid."
   aka: [ brew, brews, sara_brew, sara_brews, saradomin_brew, saradomin_brews ]
   examine: "4 doses of Saradomin brew."
@@ -28699,6 +28957,7 @@ saradomin_brew_3:
   weight: 0.03
   heals: 20
   excess: saradomin_brew_2
+  empty: vial
   eat_message: "You drink some of the foul liquid."
   examine: "3 doses of Saradomin brew."
 saradomin_brew_3_noted: 6688
@@ -28708,6 +28967,7 @@ saradomin_brew_2:
   weight: 0.025
   heals: 20
   excess: saradomin_brew_1
+  empty: vial
   eat_message: "You drink some of the foul liquid."
   examine: "2 doses of Saradomin brew."
 saradomin_brew_2_noted: 6690
@@ -28717,6 +28977,7 @@ saradomin_brew_1:
   weight: 0.02
   heals: 20
   excess: vial
+  empty: vial
   eat_message: "You drink some of the foul liquid."
   examine: "1 dose of Saradomin brew."
 saradomin_brew_1_noted: 6692
@@ -28811,6 +29072,7 @@ bucket_of_water_stagnant:
   id: 6712
   tradeable: false
   weight: 3.0
+  empty: bucket
   examine: "It's a bucket of... water?"
   use: "Quest"
   kept: "Wilderness"
@@ -28899,6 +29161,7 @@ dagannoth_bonemeal:
   id: 6728
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed Dagannoth-king bones."
   kept: "Reclaim"
 dagannoth_bones:
@@ -29111,6 +29374,7 @@ cat_antipoison:
   id: 6766
   tradeable: false
   weight: 0.035
+  empty: vial
   examine: "Antipoison for Pox."
   use: "Quest"
   kept: "Wilderness"
@@ -29377,6 +29641,7 @@ wyvern_bonemeal:
   id: 6810
   tradeable: false
   weight: 0.5
+  empty: empty_pot
   examine: "A pot of crushed wyvern bones."
   kept: "Reclaim"
 skeletal_wyvern:
@@ -30683,14 +30948,17 @@ sweetcorn_bowl:
 sweetcorn_noted_2: 7089
 burnt_egg:
   id: 7090
+  empty: bowl
   examine: "A bowl of burnt, overcooked egg."
 burnt_egg_noted: 7091
 burnt_onion:
   id: 7092
+  empty: bowl
   examine: "A bowl of blackened onions."
 burnt_onion_noted: 7093
 burnt_mushroom:
   id: 7094
+  empty: bowl
   examine: "A bowl of burnt sliced mushroom."
 burnt_mushroom_noted: 7095
 gunpowder_cabin_fever:
@@ -32290,6 +32558,7 @@ pot_of_cornflour:
   id: 7468
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "It's cornflour in a pot."
   use: "Quest"
   kept: "Wilderness"
@@ -32300,6 +32569,7 @@ cornflour_mixture:
   id: 7470
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   destroy: "I'll have to get all the ingredients again."
   examine: "A mixture of milk, cream and cornflour."
   use: "Quest"
@@ -32308,6 +32578,7 @@ milky_mixture:
   id: 7471
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   destroy: "I'll have to get all the ingredients again."
   examine: "It's a bucket of milk and cream."
   use: "Quest"
@@ -32324,6 +32595,7 @@ brulee_egg:
   id: 7473
   tradeable: false
   weight: 0.3
+  empty: empty_pot
   destroy: "I'll have to get all the ingredients again."
   examine: "It's just missing a sprinkling of cinnamon."
   use: "Quest"
@@ -32332,6 +32604,7 @@ brulee_vanilla:
   id: 7474
   tradeable: false
   weight: 0.3
+  empty: empty_pot
   destroy: "I'll have to get all the ingredients again."
   examine: "A pot of brulee mixture - needs egg."
   use: "Quest"
@@ -32340,6 +32613,7 @@ brulee_raw:
   id: 7475
   tradeable: false
   weight: 0.3
+  empty: empty_pot
   destroy: "I'll have to get all the ingredients again."
   examine: "Perfect, it just needs flambeing."
   use: "Quest"
@@ -32348,6 +32622,7 @@ brulee_supreme:
   id: 7476
   tradeable: false
   weight: 0.3
+  empty: empty_pot
   destroy: "I'll have to get all the ingredients again."
   examine: "A pot of brulee supreme."
   use: "Quest"
@@ -33172,24 +33447,28 @@ silver_dust_noted: 7651
 guthix_balance_unf:
   id: 7652
   price: 106
+  empty: vial
   examine: "An unfinished potion."
   weight: 0.035
 guthix_balance_unf_noted: 7653
 guthix_balance_unf_2:
   id: 7654
   price: 81
+  empty: vial
   examine: "An unfinished potion."
   weight: 0.035
 guthix_balance_unf_noted_2: 7655
 guthix_balance_unf_3:
   id: 7656
   price: 58
+  empty: vial
   examine: "An unfinished potion."
   weight: 0.035
 guthix_balance_unf_noted_3: 7657
 guthix_balance_unf_4:
   id: 7658
   price: 30
+  empty: vial
   examine: "An unfinished potion."
   weight: 0.035
 guthix_balance_unf_noted_4: 7659
@@ -33197,6 +33476,7 @@ guthix_balance_4:
   id: 7660
   price: 168
   excess: guthix_balance_3
+  empty: vial
   examine: "A potion of harralander, red spiders eggs, garlic and silver dust."
   weight: 0.035
 guthix_balance_4_noted: 7661
@@ -33204,6 +33484,7 @@ guthix_balance_3:
   id: 7662
   price: 174
   excess: guthix_balance_2
+  empty: vial
   examine: "A potion of harralander, red spiders eggs, garlic and silver dust."
   weight: 0.035
 guthix_balance_3_noted: 7663
@@ -33211,6 +33492,7 @@ guthix_balance_2:
   id: 7664
   price: 132
   excess: guthix_balance_1
+  empty: vial
   examine: "A potion of harralander, red spiders eggs, garlic and silver dust."
   weight: 0.035
 guthix_balance_2_noted: 7665
@@ -33218,6 +33500,7 @@ guthix_balance_1:
   id: 7666
   price: 69
   excess: vial
+  empty: vial
   examine: "A potion of harralander, red spiders eggs, garlic and silver dust."
   weight: 0.035
 guthix_balance_1_noted: 7667
@@ -33332,6 +33615,7 @@ hot_kettle:
 pot_of_tea_clay_4:
   &pot_of_tea_clay_4
   id: 7692
+  empty: teapot_clay
   examine: "I'd really like a nice cup of tea."
   weight: 1.5
 pot_of_tea_4_noted: 7693
@@ -33417,6 +33701,7 @@ cup_of_tea_clay:
   limit: 1000
   tradeable: false
   weight: 0.15
+  empty: empty_cup_player_owned_house
   examine: "A nice cup of nettle tea."
   kept: "Reclaim"
 cup_of_tea_clay_milky:
@@ -33424,6 +33709,7 @@ cup_of_tea_clay_milky:
   limit: 1000
   tradeable: false
   weight: 0.15
+  empty: empty_cup_player_owned_house
   examine: "A milky cup of nettle tea."
   kept: "Reclaim"
 porcelain_cup_white:
@@ -33437,6 +33723,7 @@ cup_of_tea_white:
   limit: 1000
   tradeable: false
   weight: 0.15
+  empty: porcelain_cup_white
   examine: "Some nettle tea in a porcelain cup."
   kept: "Reclaim"
 cup_of_tea_white_milky:
@@ -33444,6 +33731,7 @@ cup_of_tea_white_milky:
   limit: 1000
   tradeable: false
   weight: 0.15
+  empty: porcelain_cup_white
   examine: "Some milky nettle tea in a porcelain cup."
   kept: "Reclaim"
 porcelain_cup_gold:
@@ -33457,6 +33745,7 @@ cup_of_tea_gold:
   limit: 1000
   tradeable: false
   weight: 0.15
+  empty: porcelain_cup_gold
   examine: "Some nettle tea in a porcelain cup."
   kept: "Reclaim"
 cup_of_tea_gold_milky:
@@ -33464,6 +33753,7 @@ cup_of_tea_gold_milky:
   limit: 1000
   tradeable: false
   weight: 0.15
+  empty: porcelain_cup_gold
   examine: "Some milky nettle tea in a porcelain cup."
   kept: "Reclaim"
 tea_leaves:
@@ -33789,12 +34079,14 @@ jug_of_vinegar:
   id: 7810
   tradeable: false
   weight: 1.0
+  empty: jug
   examine: "This wine clearly did not age well."
   kept: "Wilderness"
 pot_of_vinegar:
   id: 7811
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "Well, this pot is certainly full of vinegar, and no mistake."
   kept: "Wilderness"
 goblin_skull:
@@ -33809,6 +34101,7 @@ bone_in_vinegar_goblin_skull:
   id: 7813
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a goblin bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -33831,6 +34124,8 @@ bone_in_vinegar_bear_ribs:
   id: 7816
   tradeable: false
   weight: 1.36
+  empty: empty_pot
+  empty: empty_pot
   examine: "There is a bear bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -33844,6 +34139,7 @@ bone_in_vinegar_ram_skull:
   id: 7819
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a ram skull in here."
   use: "Quest"
   kept: "Wilderness"
@@ -33862,6 +34158,7 @@ bone_in_vinegar_unicorn_bone:
   id: 7822
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a unicorn bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -33875,6 +34172,7 @@ bone_in_vinegar_giant_rat_bone:
   id: 7825
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a giant rat bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -33893,6 +34191,7 @@ bone_in_vinegar_giant_bat_wing:
   id: 7828
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a giant bat bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -33906,6 +34205,7 @@ bone_in_vinegar_wolf_bone:
   id: 7831
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a wolf bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -33919,6 +34219,7 @@ bone_in_vinegar_bat_wing:
   id: 7834
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a bat bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -33932,6 +34233,7 @@ bone_in_vinegar_rat_bone:
   id: 7837
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a rat bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -33945,6 +34247,7 @@ bone_in_vinegar_baby_blue_dragon_bone:
   id: 7840
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a baby blue dragon bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -33958,6 +34261,7 @@ bone_in_vinegar_ogre_ribs:
   id: 7843
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is an ogre bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -33971,6 +34275,7 @@ bone_in_vinegar_jogre_bone:
   id: 7846
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a jogre bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -33984,6 +34289,7 @@ bone_in_vinegar_zogre_bone:
   id: 7849
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a zogre bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -33997,6 +34303,7 @@ bone_in_vinegar_mogre_bone:
   id: 7852
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a mogre bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34010,6 +34317,7 @@ bone_in_vinegar_monkey_paw:
   id: 7855
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a monkey bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34023,6 +34331,7 @@ bone_in_vinegar_dagannoth_ribs:
   id: 7858
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a dagannoth bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34036,6 +34345,7 @@ bone_in_vinegar_snake_spine:
   id: 7861
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a snake bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34049,6 +34359,7 @@ bone_in_vinegar_zombie_bone:
   id: 7864
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a zombie bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34062,6 +34373,7 @@ bone_in_vinegar_werewolf_bone:
   id: 7867
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a werewolf bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34075,6 +34387,7 @@ bone_in_vinegar_moss_giant_bone:
   id: 7870
   tradeable: false
   weight: 0.907
+  empty: empty_pot
   examine: "There is a moss giant bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34088,6 +34401,7 @@ bone_in_vinegar_fire_giant_bone:
   id: 7873
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a fire giant bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34101,6 +34415,7 @@ bone_in_vinegar_ice_giant_ribs:
   id: 7876
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is an ice giant bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34114,6 +34429,7 @@ bone_in_vinegar_terrorbird_wing:
   id: 7879
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a terrorbird bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34127,6 +34443,7 @@ bone_in_vinegar_ghoul_bone:
   id: 7882
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a ghoul bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34140,6 +34457,7 @@ bone_in_vinegar_troll_bone:
   id: 7885
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a troll bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34153,6 +34471,7 @@ bone_in_vinegar_seagull_wing:
   id: 7888
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a seagull bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34166,6 +34485,7 @@ bone_in_vinegar_undead_cow_ribs:
   id: 7891
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is an undead cow bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34179,6 +34499,7 @@ bone_in_vinegar_experiment_bone:
   id: 7894
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is an experiment bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34192,6 +34513,7 @@ bone_in_vinegar_rabbit_bone:
   id: 7897
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a rabbit bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34205,6 +34527,7 @@ bone_in_vinegar_basilisk_bone:
   id: 7900
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a basilisk bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34218,6 +34541,7 @@ bone_in_vinegar_desert_lizard_bone:
   id: 7903
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a desert lizard bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34231,6 +34555,7 @@ bone_in_vinegar_cave_goblin_skull:
   id: 7906
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a cave goblin bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34244,6 +34569,7 @@ bone_in_vinegar_big_frog_leg:
   id: 7909
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a big frog bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34257,6 +34583,7 @@ bone_in_vinegar_vulture_wing:
   id: 7912
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a vulture bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -34270,6 +34597,7 @@ bone_in_vinegar_jackal_bone:
   id: 7915
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a jackal bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -38157,6 +38485,7 @@ magic_essence_unf:
   id: 9019
   tradeable: false
   weight: 0.001
+  empty: vial
   examine: "I need another ingredient to finish this Magic essence potion."
   kept: "Reclaim"
 queens_secateurs_a_fairy_tale_ii:
@@ -38171,21 +38500,25 @@ magic_essence_4:
   id: 9021
   weight: 0.035
   excess: magic_essence_3
+  empty: vial
   examine: "4 doses of Magic essence potion."
 magic_essence_3:
   id: 9022
   weight: 0.03
   excess: magic_essence_2
+  empty: vial
   examine: "3 doses of Magic essence potion."
 magic_essence_2:
   id: 9023
   weight: 0.025
   excess: magic_essence_1
+  empty: vial
   examine: "2 doses of Magic essence potion."
 magic_essence_1:
   id: 9024
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of Magic essence potion."
 nuffs_certificate:
   id: 9025
@@ -39458,6 +39791,7 @@ wizard_blizzard_2:
   &wizard_blizzard_2
   id: 9487
   weight: 0.5
+  empty: cocktail_glass
   examine: "This looks like a strange mix."
   kept: "Wilderness"
 wizard_blizzard_noted_2: 9488
@@ -39476,6 +39810,7 @@ short_green_guy_2:
   limit: 1000
   heals: 50
   excess: cocktail_glass
+  empty: cocktail_glass
   weight: 0.5
   examine: "A Short Green Guy... looks good."
   kept: "Wilderness"
@@ -39485,6 +39820,7 @@ pineapple_punch_2:
   limit: 1000
   heals: 90
   excess: cocktail_glass
+  empty: cocktail_glass
   weight: 0.5
   examine: "A fresh healthy fruit mix."
   kept: "Wilderness"
@@ -39494,6 +39830,7 @@ fruit_blast_2:
   limit: 1000
   heals: 90
   excess: cocktail_glass
+  empty: cocktail_glass
   weight: 0.5
   examine: "A cool refreshing fruit mix."
   kept: "Wilderness"
@@ -39503,6 +39840,7 @@ drunk_dragon_2:
   limit: 1000
   heals: 50
   excess: cocktail_glass
+  empty: cocktail_glass
   weight: 0.5
   examine: "A warm creamy alcoholic beverage."
 drunk_dragon_noted_2: 9517
@@ -39510,6 +39848,7 @@ choc_saturday:
   id: 9518
   heals: 50
   excess: cocktail_glass
+  empty: cocktail_glass
   limit: 1000
   examine: "A warm creamy alcoholic beverage"
 choc_saturday_noted_2: 9519
@@ -39518,6 +39857,7 @@ blurberry_special_2:
   limit: 1000
   heals: 60
   excess: cocktail_glass
+  empty: cocktail_glass
   weight: 0.5
   examine: "Looks good... smells strong."
 blurberry_special_noted_2: 9521
@@ -39778,6 +40118,7 @@ magic_glue:
   id: 9592
   tradeable: false
   weight: 2.5
+  empty: bucket
   examine: "Glue made from tree sap and ground mud runes."
   use: "Quest"
   kept: "Wilderness"
@@ -39785,6 +40126,7 @@ weird_gloop:
   id: 9593
   tradeable: false
   weight: 2.5
+  empty: bucket
   examine: "This doesn't look like it will do anything interesting."
   kept: "Wilderness"
 ground_mud_runes:
@@ -40159,6 +40501,7 @@ bucket_of_water_meiyerditch:
   limit: 100
   tradeable: false
   weight: 3.0
+  empty: bucket_meiyerditch
   examine: "It's a bucket of water."
   kept: "Vanish"
 bucket_meiyerditch:
@@ -40563,6 +40906,7 @@ combat_potion_4:
   price: 36
   weight: 0.035
   excess: combat_potion_3
+  empty: vial
   examine: "4 doses of combat potion."
 combat_potion_4_noted: 9740
 combat_potion_3:
@@ -40570,6 +40914,7 @@ combat_potion_3:
   price: 18
   weight: 0.03
   excess: combat_potion_2
+  empty: vial
   examine: "3 doses of combat potion."
 combat_potion_3_noted: 9742
 combat_potion_2:
@@ -40577,6 +40922,7 @@ combat_potion_2:
   price: 33
   weight: 0.025
   excess: combat_potion_1
+  empty: vial
   examine: "2 doses of combat potion."
 combat_potion_2_noted: 9744
 combat_potion_1:
@@ -40584,6 +40930,7 @@ combat_potion_1:
   price: 188
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of combat potion."
 combat_potion_1_noted: 9746
 attack_cape:
@@ -41693,6 +42040,7 @@ sandbag:
   id: 9943
   tradeable: false
   weight: 1.5
+  empty: empty_sack
   slot: "Weapon"
   examine: "A bag full of sand."
   use: "Quest"
@@ -41906,6 +42254,7 @@ hunter_potion_4:
   price: 239
   weight: 0.035
   excess: hunter_potion_3
+  empty: vial
   examine: "4 doses of hunter potion."
 hunter_potion_4_noted: 9999
 hunter_potion_3:
@@ -41913,6 +42262,7 @@ hunter_potion_3:
   price: 131
   weight: 0.03
   excess: hunter_potion_2
+  empty: vial
   examine: "3 doses of hunter potion."
 hunter_potion_3_noted: 10001
 hunter_potion_2:
@@ -41920,6 +42270,7 @@ hunter_potion_2:
   price: 141
   weight: 0.025
   excess: hunter_potion_1
+  empty: vial
   examine: "2 doses of hunter potion."
 hunter_potion_2_noted: 10003
 hunter_potion_1:
@@ -41927,6 +42278,7 @@ hunter_potion_1:
   price: 113
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of hunter potion."
 hunter_potion_1_noted: 10005
 bird_snare:
@@ -46320,48 +46672,56 @@ mixture_step_1_4:
   id: 10909
   price: 8665
   weight: 0.035
+  empty: vial
   examine: "This super restore and unicorn dust potion needs more ingredients."
 mixture_step_1_4_noted: 10910
 mixture_step_1_3:
   id: 10911
   price: 6500
   weight: 0.03
+  empty: vial
   examine: "This super restore and unicorn dust potion needs more ingredients."
 mixture_step_1_3_noted: 10912
 mixture_step_1_2:
   id: 10913
   price: 4335
   weight: 0.025
+  empty: vial
   examine: "This super restore and unicorn dust potion needs more ingredients."
 mixture_step_1_2_noted: 10914
 mixture_step_1:
   id: 10915
   price: 2168
   weight: 0.02
+  empty: vial
   examine: "This super restore and unicorn dust potion needs more ingredients."
 mixture_step_1_1_noted: 10916
 mixture_step_2_4:
   id: 10917
   price: 8665
   weight: 0.035
+  empty: vial
   examine: "This super restore, unicorn dust, snake weed potion needs more ingredients."
 mixture_step_2_4_noted: 10918
 mixture_step_2_3:
   id: 10919
   price: 6500
   weight: 0.03
+  empty: vial
   examine: "This super restore, unicorn dust, snake weed potion needs more ingredients."
 mixture_step_2_3_noted: 10920
 mixture_step_2:
   id: 10921
   price: 4335
   weight: 0.025
+  empty: vial
   examine: "This super restore, unicorn dust, snake weed potion needs more ingredients."
 mixture_step_2_2_noted: 10922
 mixture_step_2_1:
   id: 10923
   price: 2168
   weight: 0.02
+  empty: vial
   examine: "This super restore, unicorn dust, snake weed potion needs more ingredients."
 mixture_step_2_1_noted: 10924
 sanfew_serum_4:
@@ -46369,6 +46729,7 @@ sanfew_serum_4:
   price: 23500
   weight: 0.035
   excess: sanfew_serum_3
+  empty: vial
   examine: "A 4 dose Sanfew Serum."
 sanfew_serum_4_noted: 10926
 sanfew_serum_3:
@@ -46376,6 +46737,7 @@ sanfew_serum_3:
   price: 22700
   weight: 0.03
   excess: sanfew_serum_2
+  empty: vial
   examine: "A 3 dose Sanfew Serum."
 sanfew_serum_3_noted: 10928
 sanfew_serum_2:
@@ -46383,6 +46745,7 @@ sanfew_serum_2:
   price: 14300
   weight: 0.025
   excess: sanfew_serum_1
+  empty: vial
   examine: "A 2 dose Sanfew Serum."
 sanfew_serum_2_noted: 10930
 sanfew_serum_1:
@@ -46390,6 +46753,7 @@ sanfew_serum_1:
   price: 7297
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "A 1 dose Sanfew Serum."
 sanfew_serum_1_noted: 10932
 lumberjack_boots:
@@ -47784,6 +48148,7 @@ shrink_me_quick:
   id: 11204
   tradeable: false
   weight: 0.035
+  empty: vial
   slot: "Weapon"
   destroy: "You will need to make another shrinking potion if you destroy this."
   examine: "Apparently it shrinks you. Very fast."
@@ -48014,6 +48379,7 @@ imp_repellent:
   price: 1222
   limit: 100
   weight: 2.267
+  empty: vial
   examine: "Imps seem to hate this stuff. Can't say I blame them."
 imp_repellent_noted: 11263
 anchovy_oil:
@@ -48021,6 +48387,7 @@ anchovy_oil:
   price: 774
   limit: 100
   weight: 0.035
+  empty: vial
   examine: "Omega 3 oil. Good for the brain, not so for the nose."
 anchovy_oil_noted: 11265
 anchovy_paste:
@@ -48633,6 +49000,7 @@ attack_mix_2:
   weight: 0.075
   heals: 30
   excess: attack_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Attack potion."
 attack_mix_2_noted: 11430
@@ -48642,6 +49010,7 @@ attack_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Attack potion."
 attack_mix_1_noted: 11432
@@ -48651,6 +49020,7 @@ antipoison_mix_2:
   weight: 0.075
   heals: 30
   excess: antipoison_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy antipoison potion."
 antipoison_mix_2_noted: 11434
@@ -48660,6 +49030,7 @@ antipoison_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy antipoison potion."
 antipoison_mix_1_noted: 11436
@@ -48669,6 +49040,7 @@ relicyms_mix_2:
   weight: 0.075
   heals: 30
   excess: relicyms_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Relicym's balm."
 relicyms_mix_2_noted: 11438
@@ -48678,6 +49050,7 @@ relicyms_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Relicym's balm."
 relicyms_mix_1_noted: 11440
@@ -48687,6 +49060,7 @@ strength_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy strength potion."
 strength_mix_1_noted: 11442
@@ -48696,6 +49070,7 @@ strength_mix_2:
   weight: 0.075
   heals: 30
   excess: strength_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy strength potion."
 strength_mix_2_noted: 11444
@@ -48705,6 +49080,7 @@ combat_mix_2:
   weight: 0.075
   heals: 30
   excess: combat_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy combat potion."
 combat_mix_2_noted: 11446
@@ -48714,6 +49090,7 @@ combat_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy combat potion."
 combat_mix_1_noted: 11448
@@ -48723,6 +49100,7 @@ restore_mix_2:
   weight: 0.075
   heals: 30
   excess: restore_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy restore potion."
 restore_mix_2_noted: 11450
@@ -48732,6 +49110,7 @@ restore_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy restore potion."
 restore_mix_1_noted: 11452
@@ -48741,6 +49120,7 @@ energy_mix_2:
   weight: 0.075
   heals: 30
   excess: energy_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy energy potion."
 energy_mix_2_noted: 11454
@@ -48750,6 +49130,7 @@ energy_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy energy potion."
 energy_mix_1_noted: 11456
@@ -48759,6 +49140,7 @@ defence_mix_2:
   weight: 0.075
   heals: 30
   excess: defence_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Defence potion."
 defence_mix_2_noted: 11458
@@ -48768,6 +49150,7 @@ defence_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Defence potion."
 defence_mix_1_noted: 11460
@@ -48777,6 +49160,7 @@ agility_mix_2:
   weight: 0.075
   heals: 30
   excess: agility_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Agility potion."
 agility_mix_2_noted: 11462
@@ -48786,6 +49170,7 @@ agility_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Agility potion."
 agility_mix_1_noted: 11464
@@ -48795,6 +49180,7 @@ prayer_mix_2:
   weight: 0.075
   heals: 30
   excess: prayer_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Prayer potion."
 prayer_mix_2_noted: 11466
@@ -48804,6 +49190,7 @@ prayer_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Prayer potion."
 prayer_mix_1_noted: 11468
@@ -48813,6 +49200,7 @@ super_attack_mix_2:
   weight: 0.075
   heals: 30
   excess: super_attack_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy super Attack potion."
 super_attack_mix_2_noted: 11470
@@ -48822,6 +49210,7 @@ super_attack_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy super Attack potion."
 super_attack_mix_1_noted: 11472
@@ -48831,6 +49220,7 @@ super_antipoison_mix_2:
   weight: 0.075
   heals: 30
   excess: super_antipoison_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy super antipoison potion."
 anti_p_supermix_2_noted: 11474
@@ -48840,6 +49230,7 @@ super_antipoison_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy super antipoison potion."
 anti_p_supermix_1_noted: 11476
@@ -48849,6 +49240,7 @@ fishing_mix_2:
   weight: 0.075
   heals: 30
   excess: fishing_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Fishing potion."
 fishing_mix_2_noted: 11478
@@ -48858,6 +49250,7 @@ fishing_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Fishing potion."
 fishing_mix_1_noted: 11480
@@ -48867,6 +49260,7 @@ super_energy_mix_2:
   weight: 0.075
   heals: 30
   excess: super_energy_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy super energy potion."
 super_energy_mix_2_noted: 11482
@@ -48876,6 +49270,7 @@ super_energy_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy super energy potion."
 super_energy_mix_1_noted: 11484
@@ -48885,6 +49280,7 @@ super_strength_mix_2:
   weight: 0.075
   heals: 30
   excess: super_strength_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy super Strength potion."
 super_strength_mix_2_noted: 11486
@@ -48894,6 +49290,7 @@ super_strength_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy super Strength potion."
 super_strength_mix_1_noted: 11488
@@ -48903,6 +49300,7 @@ magic_essence_mix_2:
   weight: 0.075
   heals: 30
   excess: magic_essence_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Magic essence."
 magic_essence_mix_2_noted: 11490
@@ -48912,6 +49310,7 @@ magic_essence_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Magic essence."
 magic_essence_mix_1_noted: 11492
@@ -48921,6 +49320,7 @@ super_restore_mix_2:
   weight: 0.075
   heals: 30
   excess: super_restore_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy super restore potion."
 super_restore_mix_2_noted: 11494
@@ -48930,6 +49330,7 @@ super_restore_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy super restore potion."
 super_restore_mix_1_noted: 11496
@@ -48939,6 +49340,7 @@ super_defence_mix_2:
   weight: 0.075
   heals: 30
   excess: super_defence_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy super Defence potion."
 super_defence_mix_2_noted: 11498
@@ -48948,6 +49350,7 @@ super_defence_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy super Defence potion."
 super_defence_mix_1_noted: 11500
@@ -48957,6 +49360,7 @@ antipoison+_mix_2:
   weight: 0.075
   heals: 30
   excess: antipoison+_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy extra strength antidote potion."
 antidote+_mix_2_noted: 11502
@@ -48966,6 +49370,7 @@ antipoison+_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy extra strength antidote potion."
 antidote+_mix_1_noted: 11504
@@ -48975,6 +49380,7 @@ antifire_mix_2:
   weight: 0.075
   heals: 30
   excess: antifire_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy anti-firebreath potion."
 antifire_mix_2_noted: 11506
@@ -48984,6 +49390,7 @@ antifire_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy anti-firebreath potion."
 antifire_mix_1_noted: 11508
@@ -48993,6 +49400,7 @@ super_ranging_mix_2:
   weight: 0.075
   heals: 30
   excess: super_ranging_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy super ranging potion."
 ranging_mix_2_noted: 11510
@@ -49002,6 +49410,7 @@ super_ranging_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy super ranging potion."
 ranging_mix_1_noted: 11512
@@ -49011,6 +49420,7 @@ super_magic_mix_2:
   weight: 0.075
   heals: 30
   excess: super_magic_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy super Magic potion."
 magic_mix_2_noted: 11514
@@ -49020,6 +49430,7 @@ super_magic_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy super Magic potion."
 magic_mix_1_noted: 11516
@@ -49029,6 +49440,7 @@ hunting_mix_2:
   weight: 0.075
   heals: 30
   excess: hunting_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Hunter potion."
 hunting_mix_2_noted: 11518
@@ -49038,6 +49450,7 @@ hunting_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Hunter potion."
 hunting_mix_1_noted: 11520
@@ -49047,6 +49460,7 @@ zamorak_mix_2:
   weight: 0.075
   heals: 30
   excess: zamorak_mix_1
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Zamorak brew."
 zamorak_mix_2_noted: 11522
@@ -49056,6 +49470,7 @@ zamorak_mix_1:
   weight: 0.045
   heals: 30
   excess: vial
+  empty: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Zamorak brew."
 zamorak_mix_1_noted: 11524
@@ -49889,19 +50304,23 @@ whitefish:
 goblin_potion_4:
   id: 11809
   weight: 0.035
+  empty: vial
   slot: "Shield"
   examine: "Four doses of goblin transmogrification potion."
 goblin_potion_3:
   id: 11810
   weight: 0.03
+  empty: vial
   examine: "Three doses of goblin transmogrification potion."
 goblin_potion_2:
   id: 11811
   weight: 0.025
+  empty: vial
   examine: "Two doses of goblin transmogrification potion."
 goblin_potion_1:
   id: 11812
   weight: 0.02
+  empty: vial
   examine: "One dose of goblin transmogrification potion."
 tinderbox_41:
   <<: *tinderbox_2
@@ -50445,6 +50864,7 @@ full_crate:
   id: 11971
   tradeable: false
   weight: 30.0
+  empty: empty_crate
   destroy: "I can obtain another one from the archaeologists near Sophanem."
   examine: "A crate full of gear."
   use: "Quest"
@@ -51182,6 +51602,7 @@ summoning_potion_4:
   price: 5369
   weight: 0.035
   excess: summoning_potion_3
+  empty: vial
   examine: "4 Doses of Summoning potion."
 summoning_potion_4_noted: 12141
 summoning_potion_3:
@@ -51189,6 +51610,7 @@ summoning_potion_3:
   price: 4189
   weight: 0.03
   excess: summoning_potion_2
+  empty: vial
   examine: "3 Doses of Summoning potion."
 summoning_potion_3_noted: 12143
 summoning_potion_2:
@@ -51196,6 +51618,7 @@ summoning_potion_2:
   price: 2685
   weight: 0.025
   excess: summoning_potion_1
+  empty: vial
   examine: "2 Doses of Summoning potion."
 summoning_potion_2_noted: 12145
 summoning_potion_1:
@@ -51203,6 +51626,7 @@ summoning_potion_1:
   price: 2427
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "A dose of Summoning potion."
 summoning_potion_1_noted: 12147
 evil_turnip_seed:
@@ -51336,6 +51760,7 @@ spirit_weed_potion_unf:
   price: 4272
   limit: 10000
   weight: 0.907
+  empty: vial
   examine: "I need another ingredient to finish this spirit weed potion."
 spirit_weed_potion_unf_noted: 12182
 spirit_shards:
@@ -53254,6 +53679,7 @@ bucket_of_water_2008_easter_event:
   limit: 100
   tradeable: false
   weight: 3.0
+  empty: empty_bucket
   examine: "It's a bucket of water from the Easter Bunny's warren."
 bucket_of_water_2008_easter_event_2:
   <<: *bucket_of_water_2008_easter_event
@@ -53263,6 +53689,7 @@ bucket_of_coal:
   id: 12652
   tradeable: false
   weight: 3.0
+  empty: empty_bucket
   examine: "It's a bucket of coal from the Easter Bunny's warren."
   use: "Removed"
 bucket_of_coal_2:
@@ -60039,6 +60466,7 @@ magic_unguent:
   id: 14061
   tradeable: false
   weight: 0.005
+  empty: vial
   destroy: "You can get another flask of magic unguent from the chest in Betty's basement."
   examine: "Purple and pungent."
   kept: "Wilderness"
@@ -60046,6 +60474,7 @@ broom_ointment:
   id: 14062
   tradeable: false
   weight: 0.005
+  empty: vial
   destroy: "You can get another flask of broom ointment from Hetty in Rimmington."
   examine: "To be used on brooms."
   use: "Quest"
@@ -62693,6 +63122,7 @@ vial_of_mountain_water:
   id: 14702
   tradeable: false
   weight: 0.02
+  empty: vial
   destroy: "If you throw this away, you will need to get more water from Asleif's spring."
   examine: "A glass vial, full of Asleif's spring water."
   use: "Quest"
@@ -63392,6 +63822,7 @@ spiced_wine:
   id: 14815
   tradeable: false
   weight: 0.453
+  empty: jub
   destroy: "I can make a new jug of spiced wine using wine and spices."
   examine: "Spiced in a way unpalatable to modern tastes."
   use: "Quest"
@@ -63400,6 +63831,7 @@ pot_of_wheat:
   id: 14816
   tradeable: false
   weight: 0.453
+  empty: empty_pot
   destroy: "I can make another pot of wheat using a pot and some wheat."
   examine: "A perfect foodstuff for those long dead."
   use: "Quest"
@@ -63549,6 +63981,7 @@ crafting_potion_4:
   price: 2697
   weight: 0.035
   excess: crafting_potion_3
+  empty: vial
   examine: "4 doses of crafting potion."
 crafting_potion_4_noted: 14839
 crafting_potion_3:
@@ -63556,6 +63989,7 @@ crafting_potion_3:
   price: 2002
   weight: 0.03
   excess: crafting_potion_2
+  empty: vial
   examine: "3 doses of crafting potion."
 crafting_potion_3_noted: 14841
 crafting_potion_2:
@@ -63563,6 +63997,7 @@ crafting_potion_2:
   price: 1197
   weight: 0.025
   excess: crafting_potion_1
+  empty: vial
   examine: "2 doses of crafting potion."
 crafting_potion_2_noted: 14843
 crafting_potion_1:
@@ -63570,6 +64005,7 @@ crafting_potion_1:
   price: 985
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of crafting potion."
 crafting_potion_1_noted: 14845
 fletching_potion_4:
@@ -63577,6 +64013,7 @@ fletching_potion_4:
   price: 31
   weight: 0.035
   excess: fletching_potion_3
+  empty: vial
   examine: "4 doses of fletching potion."
 fletching_potion_4_noted: 14847
 fletching_potion_3:
@@ -63584,6 +64021,7 @@ fletching_potion_3:
   price: 20
   weight: 0.03
   excess: fletching_potion_2
+  empty: vial
   examine: "3 doses of fletching potion."
 fletching_potion_3_noted: 14849
 fletching_potion_2:
@@ -63591,6 +64029,7 @@ fletching_potion_2:
   price: 54
   weight: 0.025
   excess: fletching_potion_1
+  empty: vial
   examine: "2 doses of fletching potion."
 fletching_potion_2_noted: 14851
 fletching_potion_1:
@@ -63598,6 +64037,7 @@ fletching_potion_1:
   price: 72
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of fletching potion."
 fletching_potion_1_noted: 14853
 clean_wergali:
@@ -63612,6 +64052,7 @@ wergali_potion_unf:
   price: 3256
   limit: 10000
   weight: 0.056
+  empty: vial
   examine: "I need another ingredient to finish this wergali potion."
 wergali_potion_unf_noted: 14857
 unfinished_net:
@@ -63623,13 +64064,14 @@ unfinished_net:
 seaweed_net:
   id: 14859
   price: 66
-  examine: "A sturdy net with closing wire."
   weight: 0.68
+  examine: "A sturdy net with closing wire."
 seaweed_net_1:
   &seaweed_net_1
   id: 14860
-  examine: "A sturdy net containing seaweed"
+  empty: seaweed_net
   weight: 0.68
+  examine: "A sturdy net containing seaweed"
 seaweed_net_2:
   <<: *seaweed_net_1
   id: 14861
@@ -64690,6 +65132,7 @@ bone_in_vinegar_foot_bone:
   id: 15129
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a foot bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64713,6 +65156,7 @@ bone_in_vinegar_sabre_like_teeth:
   id: 15132
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There are some sabre-like teeth in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64731,6 +65175,7 @@ bone_in_vinegar_long_sharp_claws:
   id: 15135
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There are long, sharp claws in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64744,6 +65189,7 @@ bone_in_vinegar_fibula_bone:
   id: 15138
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a fibula bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64757,6 +65203,7 @@ bone_in_vinegar_hand_bone:
   id: 15141
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a hand bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64770,6 +65217,7 @@ bone_in_vinegar_green_dragon_tail_bone:
   id: 15144
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a green dragon tail-bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64783,6 +65231,7 @@ bone_in_vinegar_blue_dragon_tail_bone:
   id: 15147
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a blue dragon tail-bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64796,6 +65245,7 @@ bone_in_vinegar_red_dragon_tail_bone:
   id: 15150
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a red dragon tail-bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64809,6 +65259,7 @@ bone_in_vinegar_black_dragon_tail_bone:
   id: 15153
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a black dragon tail-bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64822,6 +65273,7 @@ bone_in_vinegar_skeletal_wyvern_tail_bone:
   id: 15156
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a skeletal wyvern tail-bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64835,6 +65287,7 @@ bone_in_vinegar_bronze_dragon_tail_bone:
   id: 15159
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a bronze dragon tail-bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64848,6 +65301,7 @@ bone_in_vinegar_iron_dragon_tail_bone:
   id: 15162
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is an iron dragon tail-bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64861,6 +65315,7 @@ bone_in_vinegar_steel_dragon_tail_bone:
   id: 15165
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a steel dragon tail-bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64874,6 +65329,7 @@ bone_in_vinegar_mithril_dragon_tail_bone:
   id: 15168
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a mithril dragon tail-bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64887,6 +65343,7 @@ bone_in_vinegar_neck_bone:
   id: 15171
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a neck bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64900,6 +65357,7 @@ bone_in_vinegar_shoulder_bone:
   id: 15174
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a shoulder bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64913,6 +65371,7 @@ bone_in_vinegar_giant_snake_spine:
   id: 15177
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a giant snake spine in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64926,6 +65385,7 @@ bone_in_vinegar_pelvis_bone:
   id: 15180
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a pelvis bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64944,6 +65404,7 @@ bone_in_vinegar_femur_bone:
   id: 15183
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a femur bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -64957,6 +65418,7 @@ bone_in_vinegar_humerus_bone:
   id: 15186
   tradeable: false
   weight: 1.36
+  empty: empty_pot
   examine: "There is a humerus bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -65497,182 +65959,218 @@ recover_special_4:
   id: 15300
   weight: 0.035
   excess: recover_special_3
+  empty: vial
   examine: "4 doses of recover special potion."
 recover_special_3:
   id: 15301
   weight: 0.03
   excess: recover_special_2
+  empty: vial
   examine: "3 doses of recover special potion."
 recover_special_2:
   id: 15302
   weight: 0.025
   excess: recover_special_1
+  empty: vial
   examine: "2 doses of recover special potion."
 recover_special_1:
   id: 15303
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of recover special potion."
 super_antifire_4:
   id: 15304
   weight: 0.035
   excess: super_antifire_3
+  empty: vial
   examine: "4 doses of super antifire potion."
 super_antifire_3:
   id: 15305
   weight: 0.03
   excess: super_antifire_2
+  empty: vial
   examine: "3 doses of super antifire potion."
 super_antifire_2:
   id: 15306
   weight: 0.025
   excess: super_antifire_1
+  empty: vial
   examine: "2 doses of super antifire potion."
 super_antifire_1:
   id: 15307
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of super antifire potion."
 extreme_attack_4:
   id: 15308
   weight: 0.035
   excess: extreme_attack_3
+  empty: vial
   examine: "4 doses of extreme attack potion."
 extreme_attack_3:
   id: 15309
   weight: 0.03
   excess: extreme_attack_2
+  empty: vial
   examine: "3 doses of extreme attack potion."
 extreme_attack_2:
   id: 15310
   weight: 0.025
   excess: extreme_attack_1
+  empty: vial
   examine: "2 doses of extreme attack potion."
 extreme_attack_1:
   id: 15311
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of extreme attack potion."
 extreme_strength_4:
   id: 15312
   weight: 0.035
   excess: extreme_strength_3
+  empty: vial
   examine: "4 doses of extreme strength potion."
 extreme_strength_3:
   id: 15313
   weight: 0.03
   excess: extreme_strength_2
+  empty: vial
   examine: "3 doses of extreme strength potion."
 extreme_strength_2:
   id: 15314
   weight: 0.025
   excess: extreme_strength_1
+  empty: vial
   examine: "2 doses of extreme strength potion."
 extreme_strength_1:
   id: 15315
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of extreme strength potion."
 extreme_defence_4:
   id: 15316
   weight: 0.035
   excess: extreme_defence_3
+  empty: vial
   examine: "4 doses of extreme defence potion."
 extreme_defence_3:
   id: 15317
   weight: 0.03
   excess: extreme_defence_2
+  empty: vial
   examine: "3 doses of extreme defence potion."
 extreme_defence_2:
   id: 15318
   weight: 0.025
   excess: extreme_defence_1
+  empty: vial
   examine: "2 doses of extreme defence potion."
 extreme_defence_1:
   id: 15319
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of extreme defence potion."
 extreme_magic_4:
   id: 15320
   weight: 0.02
   excess: extreme_magic_3
+  empty: vial
   examine: "1 dose of extreme magic potion."
 extreme_magic_3:
   id: 15321
   weight: 0.025
   excess: extreme_magic_2
+  empty: vial
   examine: "2 doses of extreme magic potion."
 extreme_magic_2:
   id: 15322
   weight: 0.03
   excess: extreme_magic_1
+  empty: vial
   examine: "3 doses of extreme magic potion."
 extreme_magic_1:
   id: 15323
   weight: 0.035
   excess: vial
+  empty: vial
   examine: "4 doses of extreme magic potion."
 extreme_ranging_4:
   id: 15324
   weight: 0.035
   excess: extreme_ranging_3
+  empty: vial
   examine: "4 doses of extreme ranging potion."
 extreme_ranging_3:
   id: 15325
   weight: 0.03
   excess: extreme_ranging_2
+  empty: vial
   examine: "3 doses of extreme ranging potion."
 extreme_ranging_2:
   id: 15326
   weight: 0.025
   excess: extreme_ranging_1
+  empty: vial
   examine: "2 doses of extreme ranging potion."
 extreme_ranging_1:
   id: 15327
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of extreme ranging potion."
 super_prayer_4:
   id: 15328
   weight: 0.035
   excess: super_prayer_3
+  empty: vial
   examine: "4 doses of super prayer potion."
 super_prayer_3:
   id: 15329
   weight: 0.03
   excess: super_prayer_2
+  empty: vial
   examine: "3 doses of super prayer potion."
 super_prayer_2:
   id: 15330
   weight: 0.025
   excess: super_prayer_1
+  empty: vial
   examine: "2 doses of super prayer potion."
 super_prayer_1:
   id: 15331
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of super prayer potion."
 overload_4:
   id: 15332
   weight: 0.035
   excess: overload_3
+  empty: vial
   aka: [ overload, ovl, overloads ]
   examine: "4 doses of overload potion."
 overload_3:
   id: 15333
   weight: 0.03
   excess: overload_2
+  empty: vial
   examine: "3 doses of overload potion."
 overload_2:
   id: 15334
   weight: 0.025
   excess: overload_1
+  empty: vial
   examine: "2 doses of overload potion."
 overload_1:
   id: 15335
   weight: 0.02
   excess: vial
+  empty: vial
   examine: "1 dose of overload potion."
 serjeant_cap_2:
   id: 15336
@@ -66228,6 +66726,7 @@ bucket_of_icy_water:
   id: 15427
   tradeable: false
   weight: 3.0
+  empty: empty_bucket
   destroy: "You can get another by filling a bucket at the fountain in the Land of Snow."
   examine: "It's a bucket of ice-cold water."
   kept: "Vanish"
@@ -67526,6 +68025,7 @@ bowl_of_black_mess:
   id: 15688
   tradeable: false
   weight: 0.907
+  empty: bowl
   destroy: "You can replace this by speaking to the impling manager."
   examine: "A black, sticky mess."
   kept: "Vanish"
@@ -67534,6 +68034,7 @@ bowl_of_blue_glaze:
   id: 15689
   tradeable: false
   weight: 0.907
+  empty: bowl
   destroy: "You can replace this by speaking to the impling manager."
   examine: "It's a bowl of sticky blue glaze."
   kept: "Vanish"
@@ -67542,6 +68043,7 @@ bowl_of_red_glaze:
   id: 15690
   tradeable: false
   weight: 0.907
+  empty: bowl
   destroy: "You can replace this by speaking to the impling manager."
   examine: "It's a bowl of sticky red glaze."
   kept: "Vanish"
@@ -67550,6 +68052,7 @@ bowl_of_yellow_glaze:
   id: 15691
   tradeable: false
   weight: 0.907
+  empty: bowl
   destroy: "You can replace this by speaking to the impling manager."
   examine: "It's a bowl of sticky yellow glaze."
   kept: "Vanish"
@@ -67558,6 +68061,7 @@ bowl_of_orange_glaze:
   id: 15692
   tradeable: false
   weight: 0.907
+  empty: bowl
   destroy: "You can replace this by speaking to the impling manager."
   examine: "It's a bowl of sticky orange glaze."
   kept: "Vanish"
@@ -67566,6 +68070,7 @@ bowl_of_green_glaze:
   id: 15693
   tradeable: false
   weight: 0.907
+  empty: bowl
   destroy: "You can replace this by speaking to the impling manager."
   examine: "It's a bowl of sticky green glaze."
   kept: "Vanish"
@@ -67574,6 +68079,7 @@ bowl_of_purple_glaze:
   id: 15694
   tradeable: false
   weight: 0.907
+  empty: bowl
   destroy: "You can replace this by speaking to the impling manager."
   examine: "It's a bowl of sticky purple glaze."
   kept: "Vanish"
@@ -67582,6 +68088,7 @@ bowl_of_vermillion_glaze:
   id: 15695
   tradeable: false
   weight: 0.907
+  empty: bowl
   destroy: "You can replace this by speaking to the impling manager."
   examine: "It's a bowl of sticky vermillion glaze."
   kept: "Vanish"
@@ -67590,6 +68097,7 @@ bowl_of_amber_glaze:
   id: 15696
   tradeable: false
   weight: 0.907
+  empty: bowl
   destroy: "You can replace this by speaking to the impling manager."
   examine: "It's a bowl of sticky amber glaze."
   kept: "Vanish"
@@ -67598,6 +68106,7 @@ bowl_of_chartreuse_glaze:
   id: 15697
   tradeable: false
   weight: 0.907
+  empty: bowl
   destroy: "You can replace this by speaking to the impling manager."
   examine: "It's a bowl of sticky chartreuse glaze."
   kept: "Vanish"
@@ -67606,6 +68115,7 @@ bowl_of_aquamarine_glaze:
   id: 15698
   tradeable: false
   weight: 0.907
+  empty: bowl
   destroy: "You can replace this by speaking to the impling manager."
   examine: "It's a bowl of sticky aquamarine glaze."
   kept: "Vanish"
@@ -67614,6 +68124,7 @@ bowl_of_indigo_glaze:
   id: 15699
   tradeable: false
   weight: 0.907
+  empty: bowl
   destroy: "You can replace this by speaking to the impling manager"
   examine: "It's a bowl of sticky indigo glaze."
   kept: "Vanish"
@@ -67622,6 +68133,7 @@ bowl_of_magenta_glaze:
   id: 15700
   tradeable: false
   weight: 0.907
+  empty: bowl
   destroy: "You can replace this by speaking to the impling manager."
   examine: "It's a bowl of sticky magenta glaze."
   kept: "Vanish"
@@ -75141,6 +75653,7 @@ vial_noted_2: 17491
 vial_of_water_dungeoneering:
   id: 17492
   weight: 0.1
+  empty: vial_dungeoneering
   examine: "A glass vial containing water."
   use: "Dungeoneering"
   kept: "Always"
@@ -75256,6 +75769,7 @@ sagewort_potion_unf:
   &sagewort_potion_unf
   id: 17538
   weight: 0.467
+  empty: vial_dungeoneering
   examine: "I need another ingredient to finish this potion."
   use: "Dungeoneering"
   kept: "Always"
@@ -75298,6 +75812,7 @@ weak_magic_potion:
   heals: 0
   excess: vial_dungeoneering
   weight: 0.467
+  empty: vial_dungeoneering
   examine: "A potion that increases a person's magical abilities."
   use: "Dungeoneering"
   kept: "Always"
@@ -75308,6 +75823,7 @@ weak_ranged_potion:
   heals: 0
   excess: vial_dungeoneering
   weight: 0.467
+  empty: vial_dungeoneering
   examine: "A potion that increases a person's ranged abilities."
   use: "Dungeoneering"
   kept: "Always"
@@ -75318,6 +75834,7 @@ weak_melee_potion:
   heals: 0
   excess: vial_dungeoneering
   weight: 0.467
+  empty: vial_dungeoneering
   examine: "A potion that increases a person's melee abilities."
   use: "Dungeoneering"
   kept: "Always"
@@ -75328,6 +75845,7 @@ weak_defence_potion:
   heals: 0
   excess: vial_dungeoneering
   weight: 0.467
+  empty: vial_dungeoneering
   examine: "A potion that strengthens a person's defences."
   use: "Dungeoneering"
   kept: "Always"
@@ -75338,6 +75856,7 @@ weak_stat_restore_potion:
   heals: 0
   excess: vial_dungeoneering
   weight: 0.467
+  empty: vial_dungeoneering
   examine: "This potion restores drained stats."
   use: "Dungeoneering"
   kept: "Always"
@@ -75347,6 +75866,7 @@ antipoison_dungeoneering:
   heals: 0
   excess: vial_dungeoneering
   weight: 0.467
+  empty: vial_dungeoneering
   examine: "An antidote to cure common poison."
   use: "Dungeoneering"
   kept: "Always"
@@ -75357,6 +75877,7 @@ weak_cure_potion:
   heals: 0
   excess: vial_dungeoneering
   weight: 0.467
+  empty: vial_dungeoneering
   examine: "A potion that protects against poison and dragonfire."
   use: "Dungeoneering"
   kept: "Always"
@@ -75367,6 +75888,7 @@ weak_rejuvenation_potion:
   heals: 0
   excess: vial_dungeoneering
   weight: 0.467
+  empty: vial_dungeoneering
   examine: "A potion that restores prayer and summoning points."
   use: "Dungeoneering"
   kept: "Always"
@@ -75375,6 +75897,7 @@ weak_weapon_poison:
   &weak_weapon_poison
   id: 17572
   weight: 0.467
+  empty: vial_dungeoneering
   examine: "A vial of weapon poison."
   use: "Dungeoneering"
   kept: "Always"
@@ -75385,6 +75908,7 @@ weak_gatherers_potion:
   heals: 0
   excess: vial_dungeoneering
   weight: 0.467
+  empty: vial_dungeoneering
   examine: "A potion that improves a person's gathering skills."
   use: "Dungeoneering"
   kept: "Always"
@@ -75395,6 +75919,7 @@ weak_artisans_potion:
   heals: 0
   excess: vial_dungeoneering
   weight: 0.467
+  empty: vial_dungeoneering
   examine: "A potion that improves a person's creation skills."
   use: "Dungeoneering"
   kept: "Always"
@@ -75405,6 +75930,7 @@ weak_naturalists_potion:
   heals: 0
   excess: vial_dungeoneering
   weight: 0.467
+  empty: vial_dungeoneering
   examine: "A potion that improves Cooking, Farming, Herblore and Runecrafting."
   use: "Dungeoneering"
   kept: "Always"
@@ -75415,6 +75941,7 @@ weak_survivalists_potion:
   heals: 0
   excess: vial_dungeoneering
   weight: 0.467
+  empty: vial_dungeoneering
   examine: "A potion that improves Agility, Thieving, Hunter and Slayer."
   use: "Dungeoneering"
   kept: "Always"
@@ -75424,6 +75951,7 @@ magic_potion_dungeoneering:
   weight: 0.467
   heals: 0
   excess: vial_dungeoneering
+  empty: vial_dungeoneering
   examine: "A potion that increases a person's magical abilities."
   use: "Dungeoneering"
   kept: "Always"
@@ -75439,6 +75967,7 @@ melee_potion:
   weight: 0.467
   heals: 0
   excess: vial_dungeoneering
+  empty: vial_dungeoneering
   examine: "A potion that increases a person's melee abilities."
   use: "Dungeoneering"
   kept: "Always"
@@ -75466,6 +75995,7 @@ weapon_poison_noted_2: 17597
 gatherers_potion:
   id: 17598
   weight: 0.467
+  empty: vial_dungeoneering
   examine: "A potion that improves a person's gathering skills."
   use: "Dungeoneering"
   kept: "Always"
@@ -77994,6 +78524,7 @@ chaotic_maul:
   charges: 30000
   degrade: chaotic_maul_broken
   deplete: combat
+  weapon_type: chaotic_maul
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A maul used to claim life from those who don't deserve it."
@@ -79594,6 +80125,7 @@ frost_dragon_bonemeal:
   id: 18834
   tradeable: false
   weight: 1.5
+  empty: empty_pot
   examine: "A pot of crushed frost dragon bones."
   kept: "Reclaim"
 scroll_of_rigour:
@@ -82909,6 +83441,7 @@ failed_moonshine:
   id: 19839
   tradeable: false
   weight: 0.035
+  empty: empty_moonshine_vial
   examine: "It does not smell pleasant."
   kept: "Vanish"
 pile_of_evil_leaves:
@@ -83395,6 +83928,7 @@ juju_vial_of_water:
   price: 1
   limit: 5000
   weight: 0.02
+  empty: juju_vial
   examine: "A juju vial with water inside."
 juju_vial_of_water_noted: 19995
 juju_vial:
@@ -83408,226 +83942,271 @@ erzille_potion_unf:
   id: 19998
   limit: 1000
   weight: 0.056
+  empty: juju_vial
   examine: "Water mixed with erzille herbs."
 ugune_potion_unf:
   id: 19999
   limit: 1000
   weight: 0.056
+  empty: juju_vial
   examine: "Water mixed with ugune herbs."
 argway_potion_unf:
   id: 20000
   limit: 1000
   weight: 0.056
+  empty: juju_vial
   examine: "Water mixed with argway herbs"
 shengo_potion_unf:
   id: 20001
   limit: 1000
   weight: 0.056
+  empty: juju_vial
   examine: "Water mixed with shengo herbs."
 samaden_potion_unf:
   id: 20002
   limit: 1000
   weight: 0.056
+  empty: juju_vial
   examine: "Water mixed with samaden herbs"
 juju_mining_potion_4:
   id: 20003
   weight: 0.035
   excess: juju_mining_potion_3
+  empty: juju_vial
   examine: "4 doses of juju mining potion."
 juju_mining_potion_3:
   id: 20004
   weight: 0.03
   excess: juju_mining_potion_2
+  empty: juju_vial
   examine: "3 doses of juju mining potion."
 juju_mining_potion_2:
   id: 20005
   weight: 0.025
   excess: juju_mining_potion_1
+  empty: juju_vial
   examine: "2 doses of juju mining potion."
 juju_mining_potion_1:
   id: 20006
   weight: 0.02
   excess: juju_vial
+  empty: juju_vial
   examine: "1 dose of juju mining potion."
 juju_cooking_potion_4:
   id: 20007
   weight: 0.035
   excess: juju_cooking_potion_3
+  empty: juju_vial
   examine: "4 doses of juju cooking potion."
 juju_cooking_potion_3:
   id: 20008
   weight: 0.03
   excess: juju_cooking_potion_2
+  empty: juju_vial
   examine: "3 doses of juju cooking potion."
 juju_cooking_potion_2:
   id: 20009
   weight: 0.025
   excess: juju_cooking_potion_1
+  empty: juju_vial
   examine: "2 doses of juju cooking potion."
 juju_cooking_potion_1:
   id: 20010
   weight: 0.02
   excess: juju_vial
+  empty: juju_vial
   examine: "1 dose of juju cooking potion."
 juju_farming_potion_4:
   id: 20011
   weight: 0.035
   excess: juju_farming_potion_3
+  empty: juju_vial
   examine: "4 doses of juju farming potion."
 juju_farming_potion_3:
   id: 20012
   weight: 0.03
   excess: juju_farming_potion_2
+  empty: juju_vial
   examine: "3 doses of juju farming potion."
 juju_farming_potion_2:
   id: 20013
   weight: 0.025
   excess: juju_farming_potion_1
+  empty: juju_vial
   examine: "2 doses of juju farming potion."
 juju_farming_potion_1:
   id: 20014
   weight: 0.02
   excess: juju_vial
+  empty: juju_vial
   examine: "1 dose of juju farming potion."
 juju_woodcutting_potion_4:
   id: 20015
   weight: 0.035
   excess: juju_woodcutting_potion_3
+  empty: juju_vial
   examine: "4 doses of juju woodcutting potion."
 juju_woodcutting_potion_3:
   id: 20016
   weight: 0.03
   excess: juju_woodcutting_potion_2
+  empty: juju_vial
   examine: "3 doses of juju woodcutting potion."
 juju_woodcutting_potion_2:
   id: 20017
   weight: 0.025
   excess: juju_woodcutting_potion_1
+  empty: juju_vial
   examine: "2 doses of juju woodcutting potion."
 juju_woodcutting_potion_1:
   id: 20018
   weight: 0.02
   excess: juju_vial
+  empty: juju_vial
   examine: "1 dose of juju woodcutting potion."
 juju_fishing_potion_4:
   id: 20019
   weight: 0.035
   excess: juju_fishing_potion_3
+  empty: juju_vial
   examine: "4 doses of juju fishing potion."
 juju_fishing_potion_3:
   id: 20020
   weight: 0.03
   excess: juju_fishing_potion_2
+  empty: juju_vial
   examine: "3 doses of juju fishing potion."
 juju_fishing_potion_2:
   id: 20021
   weight: 0.025
   excess: juju_fishing_potion_1
+  empty: juju_vial
   examine: "2 doses of juju fishing potion."
 juju_fishing_potion_1:
   id: 20022
   weight: 0.02
   excess: juju_vial
+  empty: juju_vial
   examine: "1 dose of juju fishing potion."
 juju_hunter_potion_4:
   id: 20023
   weight: 0.035
   excess: juju_hunter_potion_3
+  empty: juju_vial
   examine: "4 doses of juju hunter potion."
 juju_hunter_potion_3:
   id: 20024
   weight: 0.03
   excess: juju_hunter_potion_2
+  empty: juju_vial
   examine: "3 doses of juju hunter potion."
 juju_hunter_potion_2:
   id: 20025
   weight: 0.025
   excess: juju_hunter_potion_1
+  empty: juju_vial
   examine: "2 doses of juju hunter potion."
 juju_hunter_potion_1:
   id: 20026
   weight: 0.02
   excess: juju_vial
+  empty: juju_vial
   examine: "1 dose of juju hunter potion."
 scentless_potion_4:
   id: 20027
   weight: 0.035
   excess: scentless_potion_3
+  empty: juju_vial
   examine: "4 doses of scentless potion."
 scentless_potion_3:
   id: 20028
   weight: 0.03
   excess: scentless_potion_2
+  empty: juju_vial
   examine: "3 doses of scentless potion."
 scentless_potion_2:
   id: 20029
   weight: 0.025
   excess: scentless_potion_1
+  empty: juju_vial
   examine: "2 doses of scentless potion."
 scentless_potion_1:
   id: 20030
   weight: 0.02
   excess: juju_vial
+  empty: juju_vial
   examine: "1 dose of scentless potion."
 saradomins_blessing_4:
   id: 20031
   weight: 0.035
   excess: saradomins_blessing_3
+  empty: juju_vial
   examine: "4 doses of Saradomin's blessing."
 saradomins_blessing_3:
   id: 20032
   weight: 0.03
   excess: saradomins_blessing_2
+  empty: juju_vial
   examine: "3 doses of Saradomin's blessing."
 saradomins_blessing_2:
   id: 20033
   weight: 0.025
   excess: saradomins_blessing_1
+  empty: juju_vial
   examine: "2 doses of Saradomin's blessing."
 saradomins_blessing_1:
   id: 20034
   weight: 0.02
   excess: juju_vial
+  empty: juju_vial
   examine: "1 dose of Saradomin's blessing."
 guthixs_gift_4:
   id: 20035
   weight: 0.035
   excess: guthixs_gift_3
+  empty: juju_vial
   examine: "4 doses of Guthix's gift."
 guthixs_gift_3:
   id: 20036
   weight: 0.03
   excess: guthixs_gift_2
+  empty: juju_vial
   examine: "3 doses of Guthix's gift."
 guthixs_gift_2:
   id: 20037
   weight: 0.025
   excess: guthixs_gift_1
+  empty: juju_vial
   examine: "2 doses of Guthix's gift."
 guthixs_gift_1:
   id: 20038
   weight: 0.02
   excess: juju_vial
+  empty: juju_vial
   examine: "1 dose of Guthix's gift."
 zamoraks_favour_4:
   id: 20039
   weight: 0.035
   excess: zamoraks_favour_3
+  empty: juju_vial
   examine: "4 doses of Zamorak's favour."
 zamoraks_favour_3:
   id: 20040
   weight: 0.03
   excess: zamoraks_favour_2
+  empty: juju_vial
   examine: "3 doses of Zamorak's favour."
 zamoraks_favour_2:
   id: 20041
   weight: 0.025
   excess: zamoraks_favour_1
+  empty: juju_vial
   examine: "2 doses of Zamorak's favour."
 zamoraks_favour_1:
   id: 20042
   weight: 0.02
   excess: juju_vial
+  empty: juju_vial
   examine: "1 dose of Zamorak's favour."
 juju_hunter_potion_4_2:
   id: 20043

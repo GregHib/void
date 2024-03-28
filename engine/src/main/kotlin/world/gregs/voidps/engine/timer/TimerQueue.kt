@@ -12,6 +12,9 @@ class TimerQueue(
     private val changes = mutableListOf<Timer>()
 
     override fun start(name: String, restart: Boolean): Boolean {
+        if (names.contains(name)) {
+            return false
+        }
         val start = TimerStart(name, restart)
         events.emit(start)
         if (start.cancelled) {

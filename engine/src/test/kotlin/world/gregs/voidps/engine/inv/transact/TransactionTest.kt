@@ -4,11 +4,11 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.engine.inv.transact.operation.TransactionOperationTest
-import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.EventDispatcher
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -38,6 +38,7 @@ class TransactionTest : TransactionOperationTest() {
         transaction.link(inventory2)
         assertTrue(transaction.linked(inventory2.transaction))
         assertTrue(inventory2.transaction.state.hasSaved())
+        assertFalse(transaction.failed)
         assertTrue(transaction.commit())
     }
 
@@ -49,6 +50,7 @@ class TransactionTest : TransactionOperationTest() {
         transaction.start()
         val transaction2 = transaction.link(inventory2)
         transaction2.error = TransactionError.Invalid
+        assertTrue(transaction.failed)
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
     }

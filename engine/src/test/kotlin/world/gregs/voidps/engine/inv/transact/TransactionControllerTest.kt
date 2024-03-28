@@ -4,13 +4,13 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.Inventory
 
 internal class TransactionControllerTest {
 
     private lateinit var inventory: Inventory
-    private lateinit var controller: TransactionController
+    private lateinit var controller: Transaction
 
     @BeforeEach
     fun setup() {
@@ -89,6 +89,7 @@ internal class TransactionControllerTest {
 
         inventory.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
         otherInventory.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
+        assertEquals(TransactionError.None, controller.error)
         assertTrue(controller.commit())
 
         assertEquals("item", inventory[0].id)
@@ -100,6 +101,7 @@ internal class TransactionControllerTest {
         controller.start()
         inventory.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
         controller.error = TransactionError.Invalid
+        assertEquals(TransactionError.Invalid, controller.error)
         assertFalse(controller.commit())
 
         // Check both inventories were reverted
@@ -117,6 +119,7 @@ internal class TransactionControllerTest {
         inventory.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
         otherInventory.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
         otherInventory.transaction.error = TransactionError.Invalid
+        assertEquals(TransactionError.Invalid, controller.error)
         assertFalse(controller.commit())
 
         // Check both inventories were reverted

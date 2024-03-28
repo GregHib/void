@@ -18,9 +18,9 @@ class TaskManager {
         return queue.firstOrNull { it.name == name }
     }
 
-    fun assign(bot: Bot): Task {
+    fun assign(bot: Bot, last: String?): Task {
         return queue
-            .filter { !it.full() && it.requirements.all { req -> req(bot.player) } }
+            .filter { it.name != last && !it.full() && it.requirements.all { req -> req(bot.player) } }
             .minByOrNull { it.distanceTo(bot.tile) } ?: idle
     }
 

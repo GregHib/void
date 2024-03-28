@@ -5354,7 +5354,6 @@ harralander_tar:
   add:
     - item: harralander_tar
       amount: 15
-
   animation: pestle_and_mortar
   message: "You mix the harralander leaf into the swamp tar."
 #crushing items

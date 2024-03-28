@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.entity.item.Item
  * @param sound to play
  * @param message to send
  * @param failure message
+ * @param question override for make-x question
  */
 data class ItemOnItemDefinition(
     val skill: Skill? = null,
@@ -40,7 +41,8 @@ data class ItemOnItemDefinition(
     val graphic: String = "",
     val sound: String = "",
     val message: String = "",
-    val failure: String = ""
+    val failure: String = "",
+    val question: String = "How many would you like to $type?"
 ) {
 
     companion object {
@@ -63,7 +65,8 @@ data class ItemOnItemDefinition(
             graphic = map["graphic"] as? String ?: EMPTY.graphic,
             sound = map["sound"] as? String ?: EMPTY.sound,
             message = map["message"] as? String ?: EMPTY.message,
-            failure = map["failure"] as? String ?: EMPTY.failure
+            failure = map["failure"] as? String ?: EMPTY.failure,
+            question = map["question"] as? String ?: "How many would you like to ${map["type"] as? String ?: EMPTY.type}?"
         )
 
         val EMPTY = ItemOnItemDefinition(Skill.Attack)
