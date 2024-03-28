@@ -53,7 +53,7 @@ class SafeStorage(
           "friends": {
             ${save.friends.toList().joinToString(", ") { "\"${it.first}\": ${it.second}" }},
           },
-          "ignores": [ ${save.ignores.joinToString(", ")} ],
+          "ignores": [ ${save.ignores.joinToString(", ") { "\"${it}\"" }} ],
         }
     """.trimIndent()
 
