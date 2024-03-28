@@ -86,7 +86,8 @@ class FileStorage(
 
     override fun save(accounts: List<PlayerSave>) {
         for (account in accounts) {
-            yaml.save(directory.resolve(fileName(account.name)), account, writeConfig)
+            val file = directory.resolve(fileName(account.name))
+            yaml.save(file, account, writeConfig)
         }
     }
 

@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
@@ -26,6 +25,7 @@ class SafeStorageTest {
         assertFalse(files.isNullOrEmpty())
         val file = files!!.first()
         assertTrue(file.name.endsWith("durial_321.json"))
-        assertTrue(file.readText().contains("\"accountName\": \"durial_321\","))
+        val expected = File("./src/test/resources/player.json").readText()
+        assertEquals(expected, file.readText())
     }
 }
