@@ -41,12 +41,13 @@ itemOnItem { player ->
             player.closeDialogue()
             overlaps.first() to 1
         } else {
-            val type = overlaps.first().type
+            val definition = overlaps.first()
+            val type = definition.type
             val (selection, amount) = makeAmount(
                 overlaps.map { it.add.first().id }.distinct().toList(),
                 type = type.toSentenceCase(),
                 maximum = maximum,
-                text = "How many would you like to $type?"
+                text = definition.question
             )
             overlaps.first { it.add.first().id == selection } to amount
         }
