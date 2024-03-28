@@ -73,3 +73,6 @@ karils_crossbow:
   default: karils_crossbow_shoot
 salamander:
   default: salamander_scorch
+chaotic_maul:
+  default: chaotic_maul_attack
+  hit: chaotic_maul_block

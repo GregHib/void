@@ -1621,6 +1621,8 @@ staff_of_light_jab: 15072
 staff_of_light_swipe: 15071
 staff_of_light_fend: 414
 staff_of_light_hit: 12806
+chaotic_maul_attack: 13055
+chaotic_maul_block: 13054
 pull_lever: 2140
 dragon_breath: 81
 dragon_attack: 91

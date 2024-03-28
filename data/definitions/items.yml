@@ -77994,6 +77994,7 @@ chaotic_maul:
   charges: 30000
   degrade: chaotic_maul_broken
   deplete: combat
+  weapon_type: chaotic_maul
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A maul used to claim life from those who don't deserve it."
