@@ -36,7 +36,8 @@ onEvent<World, AiTick> {
         if (player.isBot) {
             val bot: Bot = player["bot"]!!
             if (!bot.contains("task")) {
-                assign(player, tasks.assign(bot))
+                val lastTask: String? = bot["last_task"]
+                assign(player, tasks.assign(bot, lastTask))
             }
             player.bot.resume("tick")
         }
@@ -46,6 +47,10 @@ onEvent<World, AiTick> {
 fun assign(bot: Player, task: Task) {
     if (bot["debug", false]) {
         logger.debug { "Task assigned: ${bot.accountName} - ${task.name}" }
+    }
+    val last = bot.get<String>("task")
+    if (last != null) {
+        bot["last_task"] = last
     }
     bot["task"] = task.name
     bot["task_started"] = true
