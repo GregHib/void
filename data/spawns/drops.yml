@@ -694,3 +694,199 @@ haakon_the_champion_drop_table:
         - id: uncut_dragonstone
           chance: 2
         - id: loop_half_of_a_key
+dark_wizard_water_drop_table:
+  type: all
+  drops:
+    - type: all
+      drops:
+        - id: bones
+    - roll: 128
+      drops:
+        - id: staff
+          chance: 8
+        - id: black_wizard_hat
+          chance: 6
+          members: false
+        - id: black_wizard_hat
+          chance: 4
+          members: true
+        - id: black_wizard_robe_top
+          chance: 3
+        - id: earth_rune
+          chance: 4
+          amount: 36
+        - id: air_rune
+          chance: 3
+          amount: 10
+        - id: water_rune
+          chance: 3
+          amount: 10
+        - id: earth_rune
+          chance: 3
+          amount: 10
+        - id: fire_rune
+          chance: 3
+          amount: 10
+        - id: air_rune
+          chance: 2
+          amount: 18
+        - id: water_rune
+          chance: 2
+          amount: 18
+        - id: earth_rune
+          chance: 2
+          amount: 18
+        - id: fire_rune
+          chance: 2
+          amount: 18
+        - id: nature_rune
+          chance: 7
+          amount: 4
+        - id: chaos_rune
+          chance: 6
+          amount: 5
+        - id: mind_rune
+          chance: 3
+          amount: 10
+        - id: body_rune
+          chance: 3
+          amount: 10
+        - id: mind_rune
+          chance: 2
+          amount: 18
+        - id: body_rune
+          chance: 2
+          amount: 18
+        - id: blood_rune
+          chance: 2
+          amount: 2
+          members: true
+        - id: cosmic_rune
+          amount: 2
+        - id: law_rune
+          amount: 3
+        - id: coins
+          chance: 17
+        - id: coins
+          chance: 16
+          amount: 2
+        - id: coins
+          chance: 7
+          amount: 4
+        - id: coins
+          chance: 3
+          amount: 29
+        - id: coins
+          amount: 30
+        - id: water_talisman
+        - id: fire_talisman
+        - id: nothing
+          chance: 16
+          amount: 0
+    - roll: 50
+      drops:
+        - id: clue_scroll_easy
+          variable: easy_clue
+          equals: false
+          default: false
+dark_wizard_earth_drop_table:
+  type: all
+  drops:
+    - type: all
+      drops:
+        - id: bones
+    - roll: 128
+      drops:
+        - id: staff
+          chance: 4
+        - id: black_wizard_hat
+          chance: 6
+          members: false
+        - id: black_wizard_hat
+          chance: 4
+          members: true
+        - id: black_wizard_robe_top
+          chance: 3
+        - id: earth_rune
+          chance: 4
+          amount: 36
+        - id: air_rune
+          chance: 3
+          amount: 10
+        - id: water_rune
+          chance: 3
+          amount: 10
+        - id: earth_rune
+          chance: 3
+          amount: 10
+        - id: fire_rune
+          chance: 3
+          amount: 10
+        - id: air_rune
+          chance: 2
+          amount: 18
+        - id: water_rune
+          chance: 2
+          amount: 18
+        - id: earth_rune
+          chance: 2
+          amount: 18
+        - id: fire_rune
+          chance: 2
+          amount: 18
+        - id: nature_rune
+          chance: 7
+          amount: 4
+        - id: chaos_rune
+          chance: 6
+          amount: 5
+        - id: mind_rune
+          chance: 3
+          amount: 10
+        - id: body_rune
+          chance: 3
+          amount: 10
+        - id: mind_rune
+          chance: 2
+          amount: 18
+        - id: body_rune
+          chance: 2
+          amount: 18
+        - id: blood_rune
+          chance: 2
+          amount: 2
+          members: true
+        - id: cosmic_rune
+          amount: 2
+        - id: law_rune
+          amount: 3
+        - id: coins
+          chance: 17
+        - id: coins
+          chance: 16
+          amount: 2
+        - id: coins
+          chance: 7
+          amount: 4
+        - id: coins
+          chance: 3
+          amount: 29
+        - id: coins
+          amount: 30
+        - id: water_talisman
+        - id: fire_talisman
+        - id: nothing
+          chance: 16
+          amount: 0
+    - roll: 35
+      drops:
+        - id: clue_scroll_easy
+          variable: easy_clue
+          equals: false
+          default: false
+human_drop_table:
+  type: all
+  drops:
+    - type: all
+      drops:
+        - id: bones

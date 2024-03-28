@@ -1600,10 +1600,13 @@ dark_wizard_water:
   max_hit_magic: 60
   respawn_delay: 50
   hunt_mode: cowardly
+  wander_radius: 4
+  race: human
   examine: "He works evil magic."
 dark_wizard_water_2:
   <<: *dark_wizard_water
   id: 8872
+  drop_table: dark_wizard_water
 dark_wizard_earth:
   &dark_wizard_earth
   <<: *dark_wizard_water
@@ -1613,6 +1616,7 @@ dark_wizard_earth:
   def: 14
   mage: 22
   hitpoints: 240
+  drop_table: dark_wizard_earth
   examine: "A practicer of dark arts."
 dark_wizard_earth_2:
   <<: *dark_wizard_earth
