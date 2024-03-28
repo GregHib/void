@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.entity.item.drop
 
+import world.gregs.voidps.engine.client.variable.Variables
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.type.random
 
 /**
@@ -18,8 +20,8 @@ data class DropTable(
     override val chance: Int
 ) : Drop {
 
-    fun role(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf(), members: Boolean): MutableList<ItemDrop> {
-        collect(list, maximumRoll, members, random(maximumRoll))
+    fun role(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf(), members: Boolean, variables: Variables? = null): MutableList<ItemDrop> {
+        collect(list, maximumRoll, members, variables, random(maximumRoll))
         return list
     }
 
@@ -27,7 +29,7 @@ data class DropTable(
         return random.nextInt(0, if (roll <= 0 && maximum != -1) maximum else roll)
     }
 
-    fun collect(list: MutableList<ItemDrop>, value: Int, members: Boolean, roll: Int = random(value)): Boolean {
+    fun collect(list: MutableList<ItemDrop>, value: Int, members: Boolean, variables: Variables?, roll: Int = random(value)): Boolean {
         var count = 0
         for (drop in drops) {
             if (drop.chance == 0) {
@@ -40,10 +42,17 @@ data class DropTable(
                         continue
                     }
                 }
-                if (drop.collect(list, value, members) && type == TableType.First) {
+                if (drop.collect(list, value, members, variables) && type == TableType.First) {
                     return true
                 }
-            } else if (drop is ItemDrop && (members || !drop.members)) {
+            } else if (drop is ItemDrop) {
+                if (drop.members && !members) {
+                    continue
+                }
+                val predicate = drop.predicate
+                if (variables != null && predicate != null && !predicate(variables)) {
+                    continue
+                }
                 if (type == TableType.All) {
                     list.add(drop)
                 } else {
@@ -102,10 +111,21 @@ data class DropTable(
 
         fun build(): DropTable {
             if (roll != null) {
-                val total = drops.sumOf { if (it is ItemDrop) it.chance else 0 }
+                val total = drops.sumOf { if (it is ItemDrop && it.members == World.members) it.chance else 0 }
                 check(total <= roll!!) { "Chances $total cannot exceed roll $roll." }
             }
             return DropTable(type, roll ?: 1, drops, chance)
+        }
+    }
+
+    companion object {
+        @Suppress("UNCHECKED_CAST")
+        operator fun invoke(map: Map<String, Any>): DropTable {
+            val type = map["type"] as? TableType ?: TableType.First
+            val roll = map["roll"] as? Int ?: 1
+            val drops = map["drops"] as List<Drop>
+            val chance = map["chance"] as? Int ?: -1
+            return DropTable(type, roll, drops, chance)
         }
     }
 }

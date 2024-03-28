@@ -3,6 +3,8 @@ package world.gregs.voidps.engine.entity.item.drop
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.client.variable.Variables
+import world.gregs.voidps.engine.entity.character.player.Player
 
 internal class DropTableTest {
 
@@ -27,9 +29,23 @@ internal class DropTableTest {
         val root = DropTable(TableType.All, -1, listOf(item1, item2), 1)
 
         val list = mutableListOf<ItemDrop>()
-        root.collect(list, -1, false, -1)
+        root.collect(list, -1, false, null, -1)
 
         assertTrue(list.contains(item1))
+        assertTrue(list.contains(item2))
+    }
+
+    @Test
+    fun `Roll ignores failed predicate`() {
+        val item1 = drop("1", 1, predicate = { false })
+        val item2 = drop("2", 1, predicate = { true })
+        val variables = Variables(Player())
+        val root = DropTable(TableType.All, -1, listOf(item1, item2), 1)
+
+        val list = mutableListOf<ItemDrop>()
+        root.collect(list, -1, false, variables, -1)
+
+        assertFalse(list.contains(item1))
         assertTrue(list.contains(item2))
     }
 
@@ -42,7 +58,7 @@ internal class DropTableTest {
         val root = DropTable(TableType.First, -1, listOf(subTable1, subTable2), 1)
 
         val list = mutableListOf<ItemDrop>()
-        root.collect(list, -1, true, -1)
+        root.collect(list, -1, true, null, -1)
 
         assertTrue(list.contains(item1))
         assertFalse(list.contains(item2))
@@ -57,7 +73,7 @@ internal class DropTableTest {
         val root = DropTable(TableType.All, -1, listOf(subTable1, subTable2), 1)
 
         val list = mutableListOf<ItemDrop>()
-        root.collect(list, -1, false, -1)
+        root.collect(list, -1, false, null, -1)
 
         assertTrue(list.contains(item1))
         assertTrue(list.contains(item2))
@@ -69,7 +85,7 @@ internal class DropTableTest {
         val table = DropTable(TableType.First, -1, listOf(item1), 1)
 
         val list = mutableListOf<ItemDrop>()
-        table.collect(list, -1, false, 100)
+        table.collect(list, -1, false, null, 100)
 
         assertFalse(list.contains(item1))
     }
@@ -81,11 +97,11 @@ internal class DropTableTest {
         val root = DropTable(TableType.All, -1, listOf(item1, item2), 1)
 
         val list = mutableListOf<ItemDrop>()
-        root.collect(list, -1, false, -1)
+        root.collect(list, -1, false, null, -1)
 
         assertTrue(list.contains(item1))
         assertFalse(list.contains(item2))
     }
 
-    private fun drop(id: String, chance: Int, members: Boolean = false): ItemDrop = ItemDrop(id, 1..1, chance, members)
+    private fun drop(id: String, chance: Int, members: Boolean = false, predicate: ((Variables) -> Boolean)? = null): ItemDrop = ItemDrop(id, 1..1, chance, members, predicate)
 }
