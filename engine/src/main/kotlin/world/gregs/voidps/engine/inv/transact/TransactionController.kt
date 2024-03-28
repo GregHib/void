@@ -9,7 +9,7 @@ import com.github.michaelbull.logging.InlineLogger
  */
 abstract class TransactionController {
 
-    abstract var error: TransactionError
+    protected abstract var internalError: TransactionError
     private val transactions: MutableSet<Transaction> = mutableSetOf()
     abstract val state: StateManager
     abstract val changes: ChangeManager
@@ -19,7 +19,7 @@ abstract class TransactionController {
      * Resets the transaction and saves the inventory state
      */
     fun start() {
-        error = TransactionError.None
+        internalError = TransactionError.None
         reset()
         state.save()
     }
@@ -45,18 +45,24 @@ abstract class TransactionController {
      * @return a boolean indicating whether the revert was successful
      */
     fun revert(): Boolean {
-        var success = state.revert()
+        internalError = error()
+        val success = state.revert()
         if (!success) {
             logger.warn { "Failed to revert transaction ${this}." }
         }
         for (transaction in transactions) {
             if (!transaction.state.revert()) {
-                logger.warn { "Failed to revert history for transaction ${transaction}." }
-                success = false
+                throw IllegalStateException("Failed to revert history for transaction $transaction.")
             }
         }
+        resetAll()
         return success
     }
+
+    /**
+     * @return the first error from any linked transactions
+     */
+    protected fun error() = transactions.fold(internalError) { e, txn -> if (e != TransactionError.None) e else txn.error }
 
     /**
      * Permanently applies the changes made to the inventories during the transaction.
@@ -64,13 +70,9 @@ abstract class TransactionController {
      * @return a boolean indicating whether the commit was successful
      */
     fun commit(): Boolean {
-        error = transactions.fold(error) { e, txn -> if (e != TransactionError.None) e else txn.error }
-        if (error != TransactionError.None) {
-            if (!revert()) {
-                resetAll()
-                throw IllegalStateException("Failed to revert history for transaction $this")
-            }
-            resetAll()
+        internalError = error()
+        if (internalError != TransactionError.None) {
+            revert()
             return false
         }
         sendChanges()
