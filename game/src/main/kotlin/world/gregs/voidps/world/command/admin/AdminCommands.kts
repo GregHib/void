@@ -24,18 +24,17 @@ import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.definition.*
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.drop.DropTable
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -384,6 +383,27 @@ class InventoryDelegate(
     }
 }
 
+modCommand("chance") {
+    val table = tables.get(content) ?: tables.get("${content}_drop_table")
+    if (table == null) {
+        player.message("No drop table found for '$content'")
+        return@modCommand
+    }
+    sendChances(player, table)
+}
+
+fun sendChances(player: Player, table: DropTable) {
+    for (index in table.drops.indices) {
+        val drop = table.drops[index]
+        if (drop is ItemDrop) {
+            val (item, chance) = table.chance(index) ?: continue
+            player.message("${item.id} - 1/${chance.toInt()}")
+        } else if (drop is DropTable) {
+            sendChances(player, drop)
+        }
+    }
+}
+
 modCommand("sim") {
     val parts = content.split(" ")
     val name = parts.first()
@@ -437,28 +457,30 @@ modCommand("sim") {
             } else {
                 inventory.sortedByDescending { it.amount.toLong() }
             }
-            var alchValue = 0L
-            var exchangeValue = 0L
-            for (item in inventory.items) {
-                if (item.isNotEmpty()) {
-                    alchValue += alch(item)
-                    exchangeValue += exchange(item)
-                    val (drop, chance) = table.chance(item.id) ?: continue
-                    player.message("${item.id} 1/${count / (item.amount / drop.amount.first)} (1/${chance.toInt()} real)")
+            World.queue("drop_sim") {
+                var alchValue = 0L
+                var exchangeValue = 0L
+                for (item in inventory.items) {
+                    if (item.isNotEmpty()) {
+                        alchValue += alch(item)
+                        exchangeValue += exchange(item)
+                        val (drop, chance) = table.chance(item.id) ?: continue
+                        player.message("${item.id} 1/${count / (item.amount / drop.amount.first)} (1/${chance.toInt()} real)")
+                    }
                 }
+                player.message("Alch price: ${alchValue.toDigitGroupString()}gp (${alchValue.toSIPrefix()})")
+                player.message("Exchange price: ${exchangeValue.toDigitGroupString()}gp (${exchangeValue.toSIPrefix()})")
+                player.interfaces.open("shop")
+                player["free_inventory"] = -1
+                player["main_inventory"] = 510
+                player.interfaceOptions.unlock("shop", "stock", 0 until inventory.size * 6, "Info")
+                for ((index, item) in inventory.items.withIndex()) {
+                    player["amount_$index"] = item.amount
+                }
+                player.sendInventory(inventory, id = 510)
+                player.interfaces.sendVisibility("shop", "store", false)
+                player.interfaces.sendText("shop", "title", "$title - ${alchValue.toDigitGroupString()}gp (${alchValue.toSIPrefix()})")
             }
-            player.message("Alch price: ${alchValue.toDigitGroupString()}gp (${alchValue.toSIPrefix()})")
-            player.message("Exchange price: ${exchangeValue.toDigitGroupString()}gp (${exchangeValue.toSIPrefix()})")
-            player.interfaces.open("shop")
-            player["free_inventory"] = -1
-            player["main_inventory"] = 510
-            player.interfaceOptions.unlock("shop", "stock", 0 until inventory.size * 6, "Info")
-            for ((index, item) in inventory.items.withIndex()) {
-                player["amount_$index"] = item.amount
-            }
-            player.sendInventory(inventory, id = 510)
-            player.interfaces.sendVisibility("shop", "store", false)
-            player.interfaces.sendText("shop", "title", "$title - ${alchValue.toDigitGroupString()}gp (${alchValue.toSIPrefix()})")
         } catch (e: Exception) {
             player.close("shop")
         }
