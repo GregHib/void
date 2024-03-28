@@ -37,7 +37,7 @@ itemOnItem { player ->
     player.closeInterfaces()
     player.weakQueue("item_on_item") {
         val maximum = getMaximum(overlaps, player)
-        val (def, amount) = if (makeImmediately(player, overlaps, maximum)) {
+        val (def, amount) = if (makeImmediately(player, overlaps, maximum, player.inventory)) {
             player.closeDialogue()
             overlaps.first() to 1
         } else {
@@ -148,8 +148,12 @@ interfaceOpen("dialogue_skill_creation") { player ->
     player["selecting_amount"] = true
 }
 
-fun makeImmediately(player: Player, overlaps: List<ItemOnItemDefinition>, maximum: Int): Boolean {
-    return (overlaps.size == 1 && maximum == 1) || player["selecting_amount", false] || player.inCombat
+fun makeImmediately(player: Player, overlaps: List<ItemOnItemDefinition>, maximum: Int, inventory: Inventory): Boolean {
+    if (overlaps.size != 1) {
+        return false
+    }
+    val stackable = overlaps.first().remove.all { inventory.stackable(it.id) } && overlaps.first().one.all { inventory.stackable(it.id) }
+    return stackable || maximum == 1 || player["selecting_amount", false] || player.inCombat
 }
 
 fun getMaximum(overlaps: List<ItemOnItemDefinition>, player: Player): Int {
