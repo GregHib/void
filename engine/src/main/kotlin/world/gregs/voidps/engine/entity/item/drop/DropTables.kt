@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.item.drop
 
-import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.get
@@ -12,7 +11,6 @@ import world.gregs.yaml.read.YamlReaderConfiguration
 @Suppress("UNCHECKED_CAST")
 class DropTables {
 
-    private val logger = InlineLogger()
     private lateinit var tables: Map<String, DropTable>
 
     fun get(key: String) = tables[key]

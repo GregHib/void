@@ -20,7 +20,7 @@ data class DropTable(
     override val chance: Int
 ) : Drop {
 
-    fun role(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf(), members: Boolean, variables: Variables? = null): MutableList<ItemDrop> {
+    fun role(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf(), members: Boolean = false, variables: Variables? = null): MutableList<ItemDrop> {
         collect(list, maximumRoll, members, variables, random(maximumRoll))
         return list
     }
