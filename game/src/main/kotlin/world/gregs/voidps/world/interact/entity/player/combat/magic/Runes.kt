@@ -107,7 +107,7 @@ object Runes {
 }
 
 fun InterfaceComponentDefinition.spellRequiredItems(): List<Item> {
-    val array = anObjectArray4758 ?: return emptyList()
+    val array = requiredItems ?: return emptyList()
     val list = mutableListOf<Item>()
     val definitions: ItemDefinitions = get()
     for (i in 8..14 step 2) {

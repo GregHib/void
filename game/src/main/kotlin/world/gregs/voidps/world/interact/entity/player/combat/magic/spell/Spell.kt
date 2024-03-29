@@ -107,10 +107,10 @@ object Spell {
     }
 
     private val InterfaceComponentDefinition.magicLevel: Int
-        get() = anObjectArray4758?.getOrNull(5) as? Int ?: 0
+        get() = requiredItems?.getOrNull(5) as? Int ?: 0
 
     private val InterfaceComponentDefinition.prettyName: String
-        get() = anObjectArray4758?.getOrNull(6) as? String ?: ""
+        get() = requiredItems?.getOrNull(6) as? String ?: ""
 }
 
 var Character.spell: String

@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.inv.remove.ShopItemAmountBounds
 import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.inv.restrict.ShopRestrictions
 import world.gregs.voidps.engine.inv.stack.AlwaysStack
-import world.gregs.voidps.engine.inv.stack.ItemDependentStack
+import world.gregs.voidps.engine.inv.stack.ItemStackingRule
 import world.gregs.voidps.engine.inv.stack.NeverStack
 
 class Inventories(
@@ -28,7 +28,7 @@ class Inventories(
     lateinit var itemDefinitions: ItemDefinitions
     lateinit var validItemRule: ItemRestrictionRule
     lateinit var events: EventDispatcher
-    lateinit var normalStack: ItemDependentStack
+    lateinit var normalStack: ItemStackingRule
 
     fun start() {
         for ((id, value) in inventories) {
