@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.*
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.core.logger.Level
@@ -65,6 +66,7 @@ abstract class WorldTest : KoinTest {
     lateinit var floorItems: FloorItems
     lateinit var objects: GameObjects
     private lateinit var accountDefs: AccountDefinitions
+    private lateinit var accounts: AccountManager
     private var saves: File? = null
 
     val extraProperties: MutableMap<String, Any> = mutableMapOf()
@@ -96,9 +98,8 @@ abstract class WorldTest : KoinTest {
     }
 
     fun createPlayer(name: String, tile: Tile = Tile.EMPTY): Player {
-        val accounts: AccountManager = get()
         val player = Player(tile = tile, accountName = name, passwordHash = "")
-        accounts.setup(player)
+        assertTrue(accounts.setup(player))
         accountDefs.add(player)
         tick()
         player["creation"] = -1
@@ -189,6 +190,7 @@ abstract class WorldTest : KoinTest {
         floorItems = get()
         objects = get()
         accountDefs = get()
+        accounts = get()
         logger.info { "World startup took ${millis}ms" }
         for (x in 0 until 24 step 8) {
             for (y in 0 until 24 step 8) {

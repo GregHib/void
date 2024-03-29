@@ -12,8 +12,8 @@ itemAdded("clue_scroll_*") { player ->
 }
 
 itemRemoved("clue_scroll_*") { player ->
-    if (!player.ownsItem(item.id)) {
-        val difficulty = item.id.removePrefix("clue_scroll_")
+    if (!player.ownsItem(oldItem.id)) {
+        val difficulty = oldItem.id.removePrefix("clue_scroll_")
         player.clear("${difficulty}_clue")
     }
 }
