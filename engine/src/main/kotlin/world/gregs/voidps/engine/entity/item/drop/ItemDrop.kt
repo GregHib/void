@@ -33,7 +33,7 @@ data class ItemDrop(
             val id = map["id"] as String
             if (itemDefinitions != null && id != "nothing") {
                 if (itemDefinitions.getOrNull(id) == null) {
-                    logger.warn { "Invalid item id $id" }
+                    logger.warn { "Invalid drop id $id" }
                 }
             }
             var predicate: ((Variables) -> Boolean)? = null
