@@ -2877,10 +2877,11 @@ black_wizard_robe_top:
   price: 193
   limit: 100
   weight: 0.907
+  aka: [ black_robe, black_robe_top, black_wizard_robe ]
   slot: "Chest"
   examine: "I can do magic better in this."
   kept: "Wilderness"
-black_robe_noted: 582
+black_wizard_robe_top_noted: 582
 bailing_bucket:
   id: 583
   weight: 1.0

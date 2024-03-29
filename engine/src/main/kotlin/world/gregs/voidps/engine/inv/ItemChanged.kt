@@ -60,17 +60,17 @@ fun itemAdded(item: String = "*", index: Int? = null, inventory: String = "*", h
     Events.handle("item_change", item, index ?: "*", inventory, "*", "*", "*", handler = handler)
 }
 
-fun itemRemoved(item: String = "*", slot: EquipSlot, inventory: String, handler: suspend ItemChanged.(Player) -> Unit) {
+fun itemRemoved(item: String = "*", slot: EquipSlot, inventory: String = "*", handler: suspend ItemChanged.(Player) -> Unit) {
     itemRemoved(item, slot.index, inventory, handler)
 }
 
-fun itemRemoved(item: String = "*", indices: Set<Int>, inventory: String, handler: suspend ItemChanged.(Player) -> Unit) {
+fun itemRemoved(item: String = "*", indices: Set<Int>, inventory: String = "*", handler: suspend ItemChanged.(Player) -> Unit) {
     for (index in indices) {
         itemRemoved(item, index, inventory, handler)
     }
 }
 
-fun itemRemoved(item: String = "*", index: Int? = null, inventory: String, handler: suspend ItemChanged.(Player) -> Unit) {
+fun itemRemoved(item: String = "*", index: Int? = null, inventory: String = "*", handler: suspend ItemChanged.(Player) -> Unit) {
     Events.handle("item_change", "*", index ?: "*", inventory, item, "*", "*", handler = handler)
 }
 

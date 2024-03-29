@@ -12,19 +12,18 @@ object DropTableConverter {
     @JvmStatic
     fun main(args: Array<String>) {
         val string = """
-{{DropsLine|Name=Coins|Quantity=5-32|Rarity=Common|gemw=no|Image=Coins 1000.png}}
-{{DropsLine|Name=Cooked meat|Quantity=1|Rarity=Common}}
-{{DropsLine|Name=Amulet mould|Quantity=1|Rarity=Uncommon}}
-{{DropsLine|Name=Bear fur|Quantity=1|Rarity=Uncommon}}
-{{DropsLine|Name=Beer|Quantity=1|Rarity=Uncommon}}
-{{DropsLine|Name=Flier|Quantity=1|Rarity=Uncommon|gemw=no|Image=Flier.png}}
-{{DropsLine|Name=Clue scroll (easy)|Quantity=1|Rarity=Rare|gemw=no|Image=Clue scroll.png}}
-{{DropsLine|Name=Uncut sapphire|Quantity=1|Rarity=Rare}}
-{{DropsLine|Name=Uncut emerald|Quantity=1|Rarity=Rare}}
-{{DropsLine|Name=Uncut ruby|Quantity=1|Rarity=Rare}}
-{{DropsLine|Name=Uncut diamond|Quantity=1|Rarity=Rare}}
-{{DropsLine|Name=Uncut dragonstone|Quantity=1|Rarity=Rare}}
-{{DropsLine|Name=Loop half of a key|Quantity=1|Rarity=Very rare}}
+===Catalytic runes===
+{{DropsTableHead|version=Low level}}
+{{DropsLine|name=Nature rune|quantity=4|rarity=7/128}}
+{{DropsLine|name=Chaos rune|quantity=5|rarity=6/128}}
+{{DropsLine|name=Mind rune|quantity=10|rarity=3/128}}
+{{DropsLine|name=Body rune|quantity=10|rarity=3/128}}
+{{DropsLine|name=Mind rune|quantity=18|rarity=2/128}}
+{{DropsLine|name=Body rune|quantity=18|rarity=2/128}}
+{{DropsLine|name=Blood rune|namenotes={{(m)}}|quantity=2|rarity=2/128}}
+{{DropsLine|name=Cosmic rune|quantity=2|rarity=1/128}}
+{{DropsLine|name=Law rune|quantity=3|rarity=1/128}}
+{{DropsTableBottom}}
         """.trimIndent()
         val all = mutableListOf<DropTable>()
         var builder = DropTable.Builder()
@@ -39,7 +38,10 @@ object DropTableConverter {
                 builder = DropTable.Builder()
             }
         }
-        all.add(builder.build())
+        val element = builder.build()
+        if (element.drops.isNotEmpty()) {
+            all.add(element)
+        }
         println(Yaml().writeToString(mapOf("drop_table" to combine(all)), writer))
     }
 
@@ -149,7 +151,7 @@ object DropTableConverter {
         if (quantity.contains("-")) {
             val (low, high) = quantity.split("-")
             builder.addDrop(ItemDrop(id, low.toInt()..high.toInt(), chance.toInt(), members))
-        } else if(quantity.contains(",")){
+        } else if (quantity.contains(",")) {
             val values = quantity.split(",").map { it.toInt() }
             val low = values.min()
             val high = values.max()
