@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -36,23 +35,18 @@ itemOnItem(fromInterface = "modern_spellbook", fromComponent = "superheat_item")
     if (!player.has(Skill.Smithing, smelting.level, message = true)) {
         return@itemOnItem
     }
-    val runes = mutableListOf<Item>()
-    val items = mutableListOf<Item>()
     val spell = fromComponent
-    if (!Spell.hasRequirements(player, spell, runes, items)) {
+    if (!Spell.hasRequirements(player, spell)) {
         return@itemOnItem
     }
     player.inventory.transaction {
-        remove(runes)
         remove(smelting.items)
         add(bar)
     }
     when (player.inventory.transaction.error) {
         TransactionError.Invalid -> {}
         TransactionError.None -> {
-//            for (item in items) {
-//                 player.equipment.get(item.id).charge -= item.amount
-//            }
+            Spell.removeRequirements(player, spell)
             player.playSound("superheat_all")
             player.setAnimation(spell)
             player.setGraphic(spell)

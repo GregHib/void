@@ -350,3 +350,15 @@ value_26:
 value_27:
   id: 727
   format: int
+nature_staff_charges:
+  id: 1234
+  format: int
+  persist: true
+law_staff_charges:
+  id: 1235
+  format: int
+  persist: true
+magical_blastbox_bolt: 1334
+magical_blastbox_blast: 1335
+celestial_surgebox_wave: 1402
+celestial_surgebox_surge: 1403

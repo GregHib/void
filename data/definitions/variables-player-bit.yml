@@ -575,3 +575,12 @@ death_altar_ruins:
 blood_altar_ruins:
   id: 619
   format: boolean
+minigame_type:
+  id: 4540
+  format: map
+  default: none
+  values:
+    0: none
+    1: barbarian_assault
+    2: stealing_creation
+    3: fist_of_guthix
