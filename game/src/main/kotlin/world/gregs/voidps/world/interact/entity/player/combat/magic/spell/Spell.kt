@@ -135,13 +135,13 @@ object Spell {
             if (removeBoxes(player, required, spell, "magical_blastbox", "_bolt", "chaos_rune")) {
                 suffix = "_bolt"
                 slot = EquipSlot.Shield
-            } else if (World.members && removeBoxes(player, required, spell, "magical_blastbox", "_blast", "death_rune")) {
+            } else if (removeBoxes(player, required, spell, "magical_blastbox", "_blast", "death_rune")) {
                 suffix = "_blast"
                 slot = EquipSlot.Shield
-            } else if (World.members && removeBoxes(player, required, spell, "celestial_surgebox", "_wave", "blood_rune")) {
+            } else if (removeBoxes(player, required, spell, "celestial_surgebox", "_wave", "blood_rune")) {
                 suffix = "_wave"
                 slot = EquipSlot.Shield
-            } else if (World.members && removeBoxes(player, required, spell, "celestial_surgebox", "_surge", "death_rune")) {
+            } else if (removeBoxes(player, required, spell, "celestial_surgebox", "_surge", "death_rune")) {
                 suffix = "_surge"
                 slot = EquipSlot.Shield
                 required.remove("blood_rune")
@@ -196,26 +196,33 @@ object Spell {
 
     private val elementalRunes = listOf("air_rune", "water_rune", "earth_rune", "fire_rune")
     private val catalyticRunes = listOf("body_rune", "mind_rune", "cosmic_rune", "chaos_rune", "nature_rune", "death_rune", "law_rune", "soul_rune", "blood_rune", "astral_rune")
-    private fun checkMinigame(player: Player, required: MutableMap<String, Int>) {
+
+    private fun Transaction.checkMinigame(player: Player, required: MutableMap<String, Int>) {
         val type = player["minigame_type", "none"]
         if (type != "stealing_creation" && type != "fist_of_guthix" && type != "barbarian_assault") {
             return
         }
         var elemental = player.inventory.count("elemental_rune")
+        var count = 0
         for (rune in elementalRunes) {
             if (required.containsKey(rune) && elemental > 0) {
                 elemental -= required.dec(rune, elemental)
+                count++
             }
         }
-        player.inventory.count("catalytic_rune")
+        count = 0
+        remove("elemental_rune", count)
+        var catalyst = player.inventory.count("catalytic_rune")
         for (rune in catalyticRunes) {
             if (!World.members && rune == "soul_rune") {
                 break
             }
-            if (required.containsKey(rune) && elemental > 0) {
-                elemental -= required.dec(rune, elemental)
+            if (required.containsKey(rune) && catalyst > 0) {
+                catalyst -= required.dec(rune, catalyst)
+                count++
             }
         }
+        remove("catalytic_rune", count)
     }
 
     private fun checkStaves(player: Player, required: MutableMap<String, Int>) {
@@ -262,7 +269,11 @@ object Spell {
             if (id == -1 || amount <= 0) {
                 break
             }
-            map[definitions.get(id).stringId] = amount
+            val item = definitions.get(id)
+            if (item.members && !World.members) {
+                return null
+            }
+            map[item.stringId] = amount
         }
         return map
     }
