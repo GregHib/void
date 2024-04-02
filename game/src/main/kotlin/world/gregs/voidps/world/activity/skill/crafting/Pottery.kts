@@ -65,6 +65,7 @@ fun Player.make(animation: String, obj: GameObject, item: Item, id: String, data
     }
     face(obj)
     if (!has(Skill.Crafting, data.level)) {
+	    message("You need a Crafting level of ${data.level} to make a ${id.toLowerSpaceCase()}.")
         return
     }
     setAnimation(animation)
@@ -73,7 +74,9 @@ fun Player.make(animation: String, obj: GameObject, item: Item, id: String, data
             message("You need some ${item.id.toLowerSpaceCase()} in order to make a ${id.toLowerSpaceCase()}.")
             return@weakQueue
         }
+		player.playSound("pottery")
         exp(Skill.Crafting, data.xp)
         make(animation, obj, item, id, data, amount - 1)
+		message("You make the clay into a ${id.toLowerSpaceCase()}.")
     }
 }

@@ -324,6 +324,11 @@ cow_brown:
 frog_8_frogland:
   <<: *frog_frogland
   id: 403
+father_urhney:
+  id: 458
+  wander_radius: 4
+  race: human
+  examine: "Very holy."
 giant_surprise_exam:
   id: 487
   examine: "I guess he wants to be more than just the muscle."
@@ -436,6 +441,14 @@ duke_horacio:
   race: human
   wander_radius: 3
   examine: "Duke Horacio of Lumbridge."
+tanner:
+  id: 804
+  race: human
+  examine: "Manufacturer of fine leathers."
+master_crafter:
+  id: 805
+  race: human
+  examine: "He's in charge of the Crafting Guild."
 delrith:
   id: 879
   max_hit_melee: 90
@@ -728,6 +741,15 @@ duckling:
   swim: true
   wander_radius: 6
   examine: "Mini quackers."
+master_crafter_2:
+  id: 2732
+  race: human
+  examine: "He works in the Crafting Guild."
+master_crafter_3:
+  id: 2733
+  wander_radius: 4
+  race: human
+  examine: "He wanders around the Crafting Guild pretending to be working."
 thorgel:
   id: 2788
 thorgel_normal:
