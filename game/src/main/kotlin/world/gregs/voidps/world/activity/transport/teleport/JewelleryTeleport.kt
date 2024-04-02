@@ -20,7 +20,7 @@ fun jewelleryTeleport(player: Player, inventory: String, slot: Int, area: Area):
 }
 
 fun itemTeleport(player: Player, inventory: String, slot: Int, area: Area, type: String): Boolean {
-    if (player.queue.contains(ActionPriority.Normal) || !Degrade.discharge(player, inventory, slot)) {
+    if (player.queue.contains(ActionPriority.Normal) || !Degrade.discharge(player, player.inventories.inventory(inventory), slot)) {
         return false
     }
     player.closeInterfaces()

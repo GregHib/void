@@ -48,17 +48,17 @@ internal class CombatDegradeTest : WorldTest() {
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
 
         assertEquals("chaotic_rapier", player.equipped(EquipSlot.Weapon).id)
-        assertTrue(Degrade.charges(player, "worn_equipment", EquipSlot.Weapon.index) < 30000)
+        assertTrue(Degrade.charges(player, player.equipment, EquipSlot.Weapon.index) < 30000)
         assertEquals("dharoks_platebody_100", player.equipped(EquipSlot.Chest).id)
-        assertTrue(Degrade.charges(player, "worn_equipment", EquipSlot.Chest.index) < 22500)
+        assertTrue(Degrade.charges(player, player.equipment, EquipSlot.Chest.index) < 22500)
         assertEquals("statiuss_platelegs_degraded", player.equipped(EquipSlot.Legs).id)
-        assertTrue(Degrade.charges(player, "worn_equipment", EquipSlot.Legs.index) < 6000)
+        assertTrue(Degrade.charges(player, player.equipment, EquipSlot.Legs.index) < 6000)
         assertEquals("binding_necklace", player.equipped(EquipSlot.Amulet).id)
-        assertEquals(16, Degrade.charges(player, "worn_equipment", EquipSlot.Amulet.index))
+        assertEquals(16, Degrade.charges(player, player.equipment, EquipSlot.Amulet.index))
         assertEquals("ring_of_duelling_8", player.equipped(EquipSlot.Ring).id)
-        assertEquals(1, Degrade.charges(player, "worn_equipment", EquipSlot.Ring.index))
+        assertEquals(1, Degrade.charges(player, player.equipment, EquipSlot.Ring.index))
         assertEquals("combat_bracelet_4", player.equipped(EquipSlot.Hands).id)
-        assertEquals(1, Degrade.charges(player, "worn_equipment", EquipSlot.Hands.index))
+        assertEquals(1, Degrade.charges(player, player.equipment, EquipSlot.Hands.index))
     }
 
     @Test
@@ -77,18 +77,18 @@ internal class CombatDegradeTest : WorldTest() {
         player.equipment.set(EquipSlot.Chest.index, "dharoks_platebody_100")
         player.equipment.set(EquipSlot.Legs.index, "statiuss_platelegs_degraded")
 
-        player[Degrade.variable(player.equipment.id, EquipSlot.Weapon.index)] = 1
-        player[Degrade.variable(player.equipment.id, EquipSlot.Chest.index)] = 1
-        player[Degrade.variable(player.equipment.id, EquipSlot.Legs.index)] = 1
+        player[Degrade.variable(player.equipment.id, EquipSlot.Weapon.index, "")] = 1
+        player[Degrade.variable(player.equipment.id, EquipSlot.Chest.index, "")] = 1
+        player[Degrade.variable(player.equipment.id, EquipSlot.Legs.index, "")] = 1
 
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
 
         assertEquals("chaotic_rapier_broken", player.equipped(EquipSlot.Weapon).id)
-        assertEquals(0, Degrade.charges(player, "worn_equipment", EquipSlot.Weapon.index))
+        assertEquals(0, Degrade.charges(player, player.equipment, EquipSlot.Weapon.index))
         assertEquals("dharoks_platebody_75", player.equipped(EquipSlot.Chest).id)
-        assertNotEquals(0, Degrade.charges(player, "worn_equipment", EquipSlot.Chest.index))
+        assertNotEquals(0, Degrade.charges(player, player.equipment, EquipSlot.Chest.index))
         assertTrue(player.equipped(EquipSlot.Legs).isEmpty())
-        assertEquals(0, Degrade.charges(player, "worn_equipment", EquipSlot.Legs.index))
+        assertEquals(0, Degrade.charges(player, player.equipment, EquipSlot.Legs.index))
     }
 }

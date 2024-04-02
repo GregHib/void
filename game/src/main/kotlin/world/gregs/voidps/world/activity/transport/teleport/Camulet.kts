@@ -22,7 +22,7 @@ inventoryItem("Rub", "camulet") {
 }
 
 inventoryItem("Check-charge", "camulet", "inventory") {
-    val charges = Degrade.charges(player, inventory, slot)
+    val charges = Degrade.charges(player, player.inventory, slot)
     player.message("Your Camulet has $charges ${"charge".plural(charges)} left.")
     if (charges == 0) {
         player.message("You can recharge it by applying camel dung.")
@@ -31,7 +31,7 @@ inventoryItem("Check-charge", "camulet", "inventory") {
 
 itemOnItem("ugthanki_dung", "camulet") { player ->
     val slot = if (fromItem.id == "camulet") fromSlot else toSlot
-    val charges = Degrade.charges(player, fromInventory, slot)
+    val charges = Degrade.charges(player, player.inventory, slot)
     if (charges == 4) {
         player.message("Your Camulet already has 4 charges.")
         return@itemOnItem

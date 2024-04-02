@@ -38,6 +38,6 @@ fun degrade(player: Player) {
         if (deplete != "combat") {
             continue
         }
-        Degrade.discharge(player, inventory.id, slot, 1)
+        Degrade.discharge(player, inventory, slot, 1)
     }
 }

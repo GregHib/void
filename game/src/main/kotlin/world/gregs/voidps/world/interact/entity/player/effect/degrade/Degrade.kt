@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
+import world.gregs.voidps.world.interact.entity.player.effect.degrade.Degrade.clear
 
 /**
  * Tracks and manages charges associated with players' items
@@ -31,15 +32,15 @@ object Degrade {
     /**
      * Key used to track item charges at an [inventory] level
      */
-    fun variable(inventory: String, slot: Int) = "charges_${inventory}_$slot"
+    fun variable(inventory: String, slot: Int, suffix: String) = "charges_${inventory}_$slot$suffix"
 
     /**
      * Check [player]'s charges for the item at [slot] in [inventory]
      */
-    fun charges(player: Player, inventory: String, slot: Int): Int {
-        val item = player.inventories.inventory(inventory).getOrNull(slot) ?: return 0
+    fun charges(player: Player, inventory: Inventory, slot: Int, suffix: String = ""): Int {
+        val item = inventory.getOrNull(slot) ?: return 0
         // Inventory tracked item
-        val charge: Int? = player[variable(inventory, slot)]
+        val charge: Int? = player[variable(inventory.id, slot, suffix)]
         if (charge != null) {
             return charge
         }
@@ -57,14 +58,13 @@ object Degrade {
     /**
      * Reduce the item at [slot] in [inventory]'s charges by [amount] and [clear] if charge <= 0
      */
-    fun discharge(player: Player, inventory: String, slot: Int, amount: Int = 1): Boolean {
-        val inv = player.inventories.inventory(inventory)
-        val item = inv.getOrNull(slot) ?: return false
+    fun discharge(player: Player, inventory: Inventory, slot: Int, amount: Int = 1, suffix: String = ""): Boolean {
+        val item = inventory.getOrNull(slot) ?: return false
         if (item.isEmpty()) {
             return false
         }
 
-        val variable = variable(item, inventory, slot)
+        val variable = variable(item, inventory.id, slot, suffix)
         val charge = player[variable] ?: item.def["charges", 0]
         if (charge <= 0) {
             return false
@@ -78,29 +78,28 @@ object Degrade {
         }
 
         // Clear charges and degrade item
-        degrade(player, inv, item, slot, variable)
+        degrade(player, inventory, item, slot, variable)
         return true
     }
 
     /**
      * Removes all charges for item at [slot] in [inventory]
      */
-    fun clear(player: Player, inventory: String, slot: Int) {
-        val inv = player.inventories.inventory(inventory)
-        val item = inv.getOrNull(slot) ?: return
+    fun clear(player: Player, inventory: Inventory, slot: Int, suffix: String = "") {
+        val item = inventory.getOrNull(slot) ?: return
 
-        val variable = variable(item, inventory, slot)
+        val variable = variable(item, inventory.id, slot, suffix)
 
         // Clear charges and degrade item
-        degrade(player, inv, item, slot, variable)
+        degrade(player, inventory, item, slot, variable)
     }
 
     /**
      * Determine tracking variable to use
      */
-    private fun variable(item: Item, inventory: String, slot: Int): String {
+    private fun variable(item: Item, inventory: String, slot: Int, suffix: String): String {
         val playerCharge = item.def["player_charge", false]
-        return if (playerCharge) item.def["charge", "${item.id}_charges"] else variable(inventory, slot)
+        return if (playerCharge) item.def["charge", "${item.id}_charges"] else variable(inventory, slot, suffix)
     }
 
     /**

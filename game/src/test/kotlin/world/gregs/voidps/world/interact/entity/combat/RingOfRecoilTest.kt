@@ -18,11 +18,11 @@ internal class RingOfRecoilTest : WorldTest() {
 
         player.equipment.set(EquipSlot.Ring.index, "ring_of_recoil")
 
-        assertEquals(400, Degrade.charges(player, "worn_equipment", EquipSlot.Ring.index))
+        assertEquals(400, Degrade.charges(player, player.equipment, EquipSlot.Ring.index))
 
         player.directHit(npc, 11)
 
-        assertEquals(389, Degrade.charges(player, "worn_equipment", EquipSlot.Ring.index))
+        assertEquals(389, Degrade.charges(player, player.equipment, EquipSlot.Ring.index))
         assertEquals(89, player.levels.get(Skill.Constitution))
     }
 
