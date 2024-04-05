@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.Equipment
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell.removeItems
 import world.gregs.voidps.world.interact.entity.player.effect.degrade.Degrade
@@ -101,7 +102,7 @@ object Spell {
             removeCombo(required, "steam_rune", "water_rune", "fire_rune")
             removeCombo(required, "lava_rune", "earth_rune", "fire_rune")
         }
-        dungeoneeringStaffCharges(required, player)
+        dungeoneeringStaffCharges(required, player, message)
         checkStaves(player, required)
         // Regular runes
         required.keys.removeIf { key ->
@@ -120,17 +121,25 @@ object Spell {
         }
     }
 
-    private fun Transaction.dungeoneeringStaffCharges(required: MutableMap<String, Int>, player: Player) {
+    private fun Transaction.dungeoneeringStaffCharges(required: MutableMap<String, Int>, player: Player, message: Boolean) {
         if (required.containsKey("nature_rune") && player.equipped(EquipSlot.Weapon).id == "nature_staff") {
             val charges = Degrade.charges(player, player.equipment, EquipSlot.Weapon.index)
             val amount = required.dec("nature_rune", charges)
-            Degrade.discharge(player, player.equipment, EquipSlot.Weapon.index, amount = amount)
-            state.onRevert { Degrade.charge(player, player.equipment, EquipSlot.Weapon.index, amount = amount) }
+            if (random.nextInt(10) == 0 && message) {
+                player.message("Your staff magically pays for the cost of the nature rune.", ChatType.Filter)
+            } else {
+                Degrade.discharge(player, player.equipment, EquipSlot.Weapon.index, amount = amount)
+                state.onRevert { Degrade.charge(player, player.equipment, EquipSlot.Weapon.index, amount = amount) }
+            }
         } else if (required.containsKey("law_rune") && player.equipped(EquipSlot.Weapon).id == "law_staff") {
             val charges = Degrade.charges(player, player.equipment, EquipSlot.Weapon.index)
             val amount = required.dec("law_rune", charges)
-            Degrade.discharge(player, player.equipment, EquipSlot.Weapon.index, amount = amount)
-            state.onRevert { Degrade.charge(player, player.equipment, EquipSlot.Weapon.index, amount = amount) }
+            if (random.nextInt(10) == 0 && message) {
+                player.message("Your staff magically pays for the cost of the law rune.", ChatType.Filter)
+            } else {
+                Degrade.discharge(player, player.equipment, EquipSlot.Weapon.index, amount = amount)
+                state.onRevert { Degrade.charge(player, player.equipment, EquipSlot.Weapon.index, amount = amount) }
+            }
         }
     }
 

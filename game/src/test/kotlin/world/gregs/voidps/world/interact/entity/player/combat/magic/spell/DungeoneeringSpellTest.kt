@@ -1,9 +1,11 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import world.gregs.voidps.FakeRandom
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
@@ -11,10 +13,18 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.setRandom
 import world.gregs.voidps.world.interact.entity.player.effect.degrade.Degrade
 import world.gregs.voidps.world.script.set
 
 class DungeoneeringSpellTest : MagicSpellTest() {
+
+    @BeforeEach
+    fun setup() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(from: Int, until: Int) = 1
+        })
+    }
 
     @ParameterizedTest
     @ValueSource(booleans = [true, false])
@@ -182,5 +192,20 @@ class DungeoneeringSpellTest : MagicSpellTest() {
         assertEquals(9, player.inventory.count("air_rune"))
         assertEquals(8, player.inventory.count("${type}_rune"))
         assertEquals(10, Degrade.charges(player, player.inventory, 2))
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["law", "nature"])
+    fun `Dungeoneering staff can randomly save runes`(type: String) {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(from: Int, until: Int) = 0
+        })
+        val player = player()
+        setItems(Item("${type}_rune", 1, def = ItemDefinition.EMPTY))
+        addItemDef(ItemDefinition(stringId = "${type}_staff", extras = mapOf("charges" to 10)))
+        player.equipment.set(EquipSlot.Weapon.index, "${type}_staff")
+
+        assertTrue(player.removeSpellItems("spell"))
+        assertEquals(10, Degrade.charges(player, player.equipment, EquipSlot.Weapon.index))
     }
 }

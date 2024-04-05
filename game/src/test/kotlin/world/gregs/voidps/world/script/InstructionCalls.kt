@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -24,6 +25,19 @@ import world.gregs.voidps.type.Tile
 /**
  * Helper functions to make fake instruction calls in [WorldTest] tests
  */
+
+fun Player.itemOption(
+    option: String,
+    item: String = "",
+    id: String = "inventory",
+    component: String = "inventory",
+    optionIndex: Int = getOptionIndex(id, component, option) ?: getItemOptionIndex(item, option) ?: -1,
+    inventory: String = "inventory",
+    slot: Int = inventories.inventory(inventory).indexOf(item)
+) {
+    Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
+    emit(InterfaceOption(this, id = id, component = component, optionIndex = optionIndex, option = option, item = Item(item), itemSlot = slot, inventory = inventory))
+}
 
 fun Player.interfaceOption(
     id: String,
@@ -101,11 +115,21 @@ fun Player.dialogueOption(
     emit(ContinueDialogue(id, component, option))
 }
 
+private fun getItemOptionIndex(item: String, option: String): Int? {
+    val definitions: ItemDefinitions = get()
+    val definition = definitions.getOrNull(item) ?: return null
+    return definition.options.indexOf(option)
+}
+
 private fun getOptionIndex(id: String, componentId: String, option: String): Int? {
     val definitions: InterfaceDefinitions = get()
     val component = definitions.getComponent(id, componentId) ?: return null
     val options: Array<String> = component.getOrNull("options") ?: return null
-    return options.indexOf(option)
+    val indexOf = options.indexOf(option)
+    if (indexOf == -1) {
+        return null
+    }
+    return indexOf
 }
 
 fun Player.playerOption(player: Player, option: String) = runTest {
@@ -121,7 +145,14 @@ fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: S
     emit(ItemOnObject(this, obj, id, component, item, itemSlot, inventory))
 }
 
-fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstInventory: String = "inventory", firstComponent: String = "inventory", secondInventory: String = firstInventory, secondComponent: String = firstComponent) {
+fun Player.itemOnItem(
+    firstSlot: Int,
+    secondSlot: Int,
+    firstInventory: String = "inventory",
+    firstComponent: String = "inventory",
+    secondInventory: String = firstInventory,
+    secondComponent: String = firstComponent
+) {
     val one = inventories.inventory(firstInventory)
     val two = inventories.inventory(secondInventory)
     emit(ItemOnItem(
@@ -151,4 +182,4 @@ fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {
     instructions.emit(InteractFloorItem(floorItem.def.id, floorItem.tile.x, floorItem.tile.y, floorItem.def.floorOptions.indexOf(option)))
 }
 
-fun Inventory.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount))  }
+fun Inventory.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }
