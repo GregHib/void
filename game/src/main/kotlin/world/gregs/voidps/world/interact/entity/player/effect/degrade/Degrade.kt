@@ -32,7 +32,7 @@ object Degrade {
     /**
      * Key used to track item charges at an [inventory] level
      */
-    fun variable(inventory: String, slot: Int, suffix: String) = "charges_${inventory}_$slot$suffix"
+    fun variable(inventory: String, slot: Int, suffix: String = "") = "charges_${inventory}_$slot$suffix"
 
     /**
      * Check [player]'s charges for the item at [slot] in [inventory]
@@ -52,7 +52,7 @@ object Degrade {
         }
 
         // Return default
-        return item.def["charges", 0]
+        return item.def["charge_start", item.def["charges", 0]]
     }
 
     /**
@@ -65,7 +65,7 @@ object Degrade {
         }
 
         val variable = variable(item, inventory.id, slot, suffix)
-        val charge = player[variable] ?: item.def["charges", 0]
+        val charge = player[variable] ?: item.def["charge_start", item.def["charges", 0]]
         if (charge <= 0) {
             return false
         }
@@ -83,15 +83,37 @@ object Degrade {
     }
 
     /**
+     * Increase the item at [slot] in [inventory]'s charges by [amount]
+     */
+    fun charge(player: Player, inventory: Inventory, slot: Int, amount: Int = 1, suffix: String = ""): Boolean {
+        val item = inventory.getOrNull(slot) ?: return false
+        if (item.isEmpty()) {
+            return false
+        }
+
+        val variable = variable(item, inventory.id, slot, suffix)
+        val maximum = item.def.getOrNull<Int>("charges") ?: return false
+        if (maximum == 1) {
+            return false
+        }
+        val charge = player[variable] ?: item.def["charge_start", maximum]
+
+        // Calculated increased charge
+        player[variable] = (charge + amount).coerceAtMost(maximum)
+        return true
+    }
+
+    /**
      * Removes all charges for item at [slot] in [inventory]
      */
-    fun clear(player: Player, inventory: Inventory, slot: Int, suffix: String = "") {
-        val item = inventory.getOrNull(slot) ?: return
+    fun clear(player: Player, inventory: Inventory, slot: Int, suffix: String = ""): Boolean {
+        val item = inventory.getOrNull(slot) ?: return false
 
         val variable = variable(item, inventory.id, slot, suffix)
 
         // Clear charges and degrade item
         degrade(player, inventory, item, slot, variable)
+        return true
     }
 
     /**
