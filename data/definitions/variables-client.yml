@@ -358,7 +358,15 @@ law_staff_charges:
   id: 1235
   format: int
   persist: true
-magical_blastbox_bolt: 1334
-magical_blastbox_blast: 1335
-celestial_surgebox_wave: 1402
-celestial_surgebox_surge: 1403
+magical_blastbox_bolt:
+  id: 1334
+  format: int
+magical_blastbox_blast:
+  id: 1335
+  format: int
+celestial_surgebox_wave:
+  id: 1402
+  format: int
+celestial_surgebox_surge:
+  id: 1403
+  format: int

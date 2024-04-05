@@ -37,7 +37,8 @@ inventoryItem("Empty", "law_staff", "inventory") {
 }
 
 itemOnItem("law_rune", "law_staff", "inventory") { player ->
-    val spaces = 1000 - Degrade.charges(player, player.inventory, toSlot)
+    val maximum = toItem.def.getOrNull<Int>("charges") ?: return@itemOnItem
+    val spaces = maximum - Degrade.charges(player, player.inventory, toSlot)
     val count = player.inventory.count(fromItem.id).coerceAtMost(spaces)
     if (count <= 0) {
         player.message("The staff already has the maximum amount of charges.")

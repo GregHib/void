@@ -1,0 +1,115 @@
+package world.gregs.voidps.world.activity.skill.magic
+
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.ui.interact.itemOnItem
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.itemAdded
+import world.gregs.voidps.engine.inv.itemRemoved
+import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.world.interact.dialogue.type.choice
+import world.gregs.voidps.world.interact.entity.player.effect.degrade.Degrade
+import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
+import kotlin.math.min
+
+inventoryItem("Check*", "magical_blastbox*", "inventory") {
+    val charges = Degrade.charges(player, player.inventory, slot)
+    val dungeoneering = if (item.id == "magical_blastbox") "" else "_dungeoneering"
+    val blast = player["magical_blastbox_mode$dungeoneering", false]
+    choice("The box is currently charged with $charges ${if (blast) "Blast" else "Bolt"} ${"spell".plural(charges)}.") {
+        option("I want to empty the ${if (blast) "Blast" else "Bolt"} spells.", filter = { charges > 0 }) { // TODO proper message
+            if (emptyRunes(player, blast, dungeoneering, slot, charges)) {
+                player.message("You empty the box of ${if (blast) "Blast" else "Bolt"} spells.") // TODO proper message
+            } else {
+                player.inventoryFull()
+            }
+        }
+        option("I do not wish to change the box settings.", filter = { charges == 0 })
+        option("Switch to ${if (blast) "Bolt" else "Blast"}.") {
+            if (charges == 0 || emptyRunes(player, blast, dungeoneering, slot, charges)) {
+                player["magical_blastbox_mode$dungeoneering"] = !blast
+                player.message("This box is set to be charged with ${if (!blast) "Blast" else "Bolt"} spells.")
+            } else {
+                player.inventoryFull()
+            }
+        }
+    }
+}
+
+inventoryItem("Check-charges", "magical_blastbox*", "worn_equipment") {
+    val blast = player["magical_blastbox_mode", false]
+    val charges = Degrade.charges(player, player.equipment, EquipSlot.Shield.index)
+    player.message("The box is currently charged with $charges ${if (blast) "Blast" else "Bolt"} ${"spell".plural(charges)}.") // TODO proper message
+}
+
+fun emptyRunes(player: Player, blast: Boolean, dungeoneering: String, slot: Int, charges: Int): Boolean {
+    val success = player.inventory.transaction {
+        if (blast) {
+            add("air_rune$dungeoneering", charges * 3)
+            add("death_rune$dungeoneering", charges)
+        } else {
+            add("air_rune$dungeoneering", charges * 2)
+            add("chaos_rune$dungeoneering", charges)
+        }
+    }
+    if (success) {
+        Degrade.discharge(player, player.inventory, slot, amount = charges)
+    }
+    return success
+}
+
+itemAdded("magical_blastbox*", EquipSlot.Shield, "worn_equipment") { player ->
+    // Should be inventory and index but because charge movement is also updated in itemAdded FIXME when charges are stored in amounts #311
+    val charges = Degrade.charges(player, player.inventories.inventory(from), fromIndex)
+    val type = if (player["magical_blastbox_mode", false]) "blast" else "bolt"
+    player["magical_blastbox_$type"] = charges
+}
+
+itemRemoved("magical_blastbox*", EquipSlot.Shield, "worn_equipment") { player ->
+    val type = if (player["magical_blastbox_mode", false]) "blast" else "bolt"
+    player["magical_blastbox_$type"] = 0
+}
+
+inventoryItem("Charge", "magical_blastbox*", "inventory") {
+    charge(player, item, slot)
+}
+
+itemOnItem("air_rune", "magical_blastbox*", "inventory") {
+    charge(it, toItem, toSlot)
+}
+
+itemOnItem("chaos_rune", "magical_blastbox*", "inventory") {
+    charge(it, toItem, toSlot)
+}
+
+itemOnItem("death_rune", "magical_blastbox*", "inventory") {
+    charge(it, toItem, toSlot)
+}
+
+fun charge(player: Player, item: Item, slot: Int) {
+    val dungeoneering = if (item.id == "magical_blastbox") "" else "_dungeoneering"
+    val blast = player["magical_blastbox_mode$dungeoneering", false]
+    val maximum: Int = item.def.getOrNull("charges") ?: return
+    val charges = Degrade.charges(player, player.inventory, slot)
+    player.inventory.transaction {
+        val actual = (if (blast) {
+            min(inventory.count("air_rune$dungeoneering") / 3, inventory.count("death_rune$dungeoneering"))
+        } else {
+            min(inventory.count("air_rune$dungeoneering") / 2, inventory.count("chaos_rune$dungeoneering"))
+        }).coerceAtMost(maximum - charges)
+
+        remove("air_rune$dungeoneering", actual * if (blast) 3 else 2)
+        remove("${if (blast) "death_rune" else "chaos_rune"}$dungeoneering", actual)
+        if (!failed) {
+            Degrade.charge(player, player.inventory, slot, amount = actual)
+        }
+    }
+    if (player.inventory.transaction.error != TransactionError.None) {
+        player.message("You don't have enough runes to charge the box.") // TODO proper message
+    }
+}

@@ -83538,8 +83538,6 @@ strange_token:
 magical_blastbox_bound:
   id: 19865
   tradeable: false
-  charge: magical_blastbox_bound_charges
-  player_charge: true
   charges: 715827882
   charge_start: 0
   slot: "Shield"
@@ -83548,14 +83546,12 @@ magical_blastbox_bound:
 celestial_surgebox_bound:
   id: 19866
   tradeable: false
-  charge: celestial_surgebox_bound_charges
-  player_charge: true
   charges: 306783378
   charge_start: 0
   slot: "Shield"
   examine: "It could explode at any moment."
   weight: 0.025
-magical_blastbox_dungeonering:
+magical_blastbox_dungeoneering:
   id: 19867
   charges: 715827882
   charge_start: 0
