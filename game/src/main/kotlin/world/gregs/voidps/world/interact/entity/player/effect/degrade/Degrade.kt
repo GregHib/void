@@ -32,15 +32,15 @@ object Degrade {
     /**
      * Key used to track item charges at an [inventory] level
      */
-    fun variable(inventory: String, slot: Int, suffix: String = "") = "charges_${inventory}_$slot$suffix"
+    fun variable(inventory: String, slot: Int) = "charges_${inventory}_$slot"
 
     /**
      * Check [player]'s charges for the item at [slot] in [inventory]
      */
-    fun charges(player: Player, inventory: Inventory, slot: Int, suffix: String = ""): Int {
+    fun charges(player: Player, inventory: Inventory, slot: Int): Int {
         val item = inventory.getOrNull(slot) ?: return 0
         // Inventory tracked item
-        val charge: Int? = player[variable(inventory.id, slot, suffix)]
+        val charge: Int? = player[variable(inventory.id, slot)]
         if (charge != null) {
             return charge
         }
@@ -58,13 +58,13 @@ object Degrade {
     /**
      * Reduce the item at [slot] in [inventory]'s charges by [amount] and [clear] if charge <= 0
      */
-    fun discharge(player: Player, inventory: Inventory, slot: Int, amount: Int = 1, suffix: String = ""): Boolean {
+    fun discharge(player: Player, inventory: Inventory, slot: Int, amount: Int = 1): Boolean {
         val item = inventory.getOrNull(slot) ?: return false
         if (item.isEmpty()) {
             return false
         }
 
-        val variable = variable(item, inventory.id, slot, suffix)
+        val variable = variable(item, inventory.id, slot)
         val charge = player[variable] ?: item.def["charge_start", item.def["charges", 0]]
         if (charge <= 0) {
             return false
@@ -85,13 +85,13 @@ object Degrade {
     /**
      * Increase the item at [slot] in [inventory]'s charges by [amount]
      */
-    fun charge(player: Player, inventory: Inventory, slot: Int, amount: Int = 1, suffix: String = ""): Boolean {
+    fun charge(player: Player, inventory: Inventory, slot: Int, amount: Int = 1): Boolean {
         val item = inventory.getOrNull(slot) ?: return false
         if (item.isEmpty()) {
             return false
         }
 
-        val variable = variable(item, inventory.id, slot, suffix)
+        val variable = variable(item, inventory.id, slot)
         val maximum = item.def.getOrNull<Int>("charges") ?: return false
         if (maximum == 1) {
             return false
@@ -106,10 +106,10 @@ object Degrade {
     /**
      * Removes all charges for item at [slot] in [inventory]
      */
-    fun clear(player: Player, inventory: Inventory, slot: Int, suffix: String = ""): Boolean {
+    fun clear(player: Player, inventory: Inventory, slot: Int): Boolean {
         val item = inventory.getOrNull(slot) ?: return false
 
-        val variable = variable(item, inventory.id, slot, suffix)
+        val variable = variable(item, inventory.id, slot)
 
         // Clear charges and degrade item
         degrade(player, inventory, item, slot, variable)
@@ -119,9 +119,9 @@ object Degrade {
     /**
      * Determine tracking variable to use
      */
-    private fun variable(item: Item, inventory: String, slot: Int, suffix: String): String {
+    private fun variable(item: Item, inventory: String, slot: Int): String {
         val playerCharge = item.def["player_charge", false]
-        return if (playerCharge) item.def["charge", "${item.id}_charges"] else variable(inventory, slot, suffix)
+        return if (playerCharge) item.def["charge", "${item.id}_charges"] else variable(inventory, slot)
     }
 
     /**

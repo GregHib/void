@@ -77,9 +77,9 @@ internal class CombatDegradeTest : WorldTest() {
         player.equipment.set(EquipSlot.Chest.index, "dharoks_platebody_100")
         player.equipment.set(EquipSlot.Legs.index, "statiuss_platelegs_degraded")
 
-        player[Degrade.variable(player.equipment.id, EquipSlot.Weapon.index, "")] = 1
-        player[Degrade.variable(player.equipment.id, EquipSlot.Chest.index, "")] = 1
-        player[Degrade.variable(player.equipment.id, EquipSlot.Legs.index, "")] = 1
+        player[Degrade.variable(player.equipment.id, EquipSlot.Weapon.index)] = 1
+        player[Degrade.variable(player.equipment.id, EquipSlot.Chest.index)] = 1
+        player[Degrade.variable(player.equipment.id, EquipSlot.Legs.index)] = 1
 
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
