@@ -23,7 +23,7 @@ data class ItemDrop(
         if (id == "nothing" || id.isBlank()) {
             return Item.EMPTY
         }
-        return Item(id, amount.random(), definitions.get(id))
+        return Item(id, amount.random())
     }
 
     companion object {

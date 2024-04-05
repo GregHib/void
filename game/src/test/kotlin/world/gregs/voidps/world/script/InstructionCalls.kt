@@ -2,7 +2,6 @@ package world.gregs.voidps.world.script
 
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
@@ -152,4 +151,4 @@ fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {
     instructions.emit(InteractFloorItem(floorItem.def.id, floorItem.tile.x, floorItem.tile.y, floorItem.def.floorOptions.indexOf(option)))
 }
 
-fun Inventory.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount, def = ItemDefinition.EMPTY))  }
+fun Inventory.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount))  }

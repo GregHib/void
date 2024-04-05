@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.inv
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
@@ -25,7 +24,7 @@ class ItemChangedTest  {
         itemChange {
             changes++
         }
-        val change = ItemChanged(from = "inventory", index = 1, oldItem = Item.EMPTY, fromIndex = 1, item = Item("item", 1, def = ItemDefinition.EMPTY), inventory = "bank")
+        val change = ItemChanged(from = "inventory", index = 1, oldItem = Item.EMPTY, fromIndex = 1, item = Item("item", 1), inventory = "bank")
         Events.events.emit(dispatcher, change)
 
         assertEquals(1, changes)
@@ -38,7 +37,7 @@ class ItemChangedTest  {
         itemAdded("coins", inventory = "inventory") {
             additions++
         }
-        val change = ItemChanged(from = "", fromIndex = 0, index = 1, oldItem = Item.EMPTY, item = Item("coins", 1, def = ItemDefinition.EMPTY), inventory = "inventory")
+        val change = ItemChanged(from = "", fromIndex = 0, index = 1, oldItem = Item.EMPTY, item = Item("coins", 1), inventory = "inventory")
         Events.events.emit(dispatcher, change)
 
         assertEquals(1, additions)
@@ -51,7 +50,7 @@ class ItemChangedTest  {
         itemRemoved("coins", inventory = "inventory") {
             removals++
         }
-        val change = ItemChanged(from = "", fromIndex = 0, index = 1, item = Item.EMPTY, oldItem = Item("coins", 1, def = ItemDefinition.EMPTY), inventory = "inventory")
+        val change = ItemChanged(from = "", fromIndex = 0, index = 1, item = Item.EMPTY, oldItem = Item("coins", 1), inventory = "inventory")
         Events.events.emit(dispatcher, change)
 
         assertEquals(1, removals)
@@ -68,7 +67,7 @@ class ItemChangedTest  {
         itemRemoved("coins", inventory = "inventory") {
             removals++
         }
-        val change = ItemChanged(from = "", fromIndex = 0, index = 1, item =  Item("coins", 1, def = ItemDefinition.EMPTY), oldItem = Item("coins", 1, def = ItemDefinition.EMPTY), inventory = "inventory")
+        val change = ItemChanged(from = "", fromIndex = 0, index = 1, item =  Item("coins", 1), oldItem = Item("coins", 1), inventory = "inventory")
         Events.events.emit(dispatcher, change)
 
         assertEquals(1, additions)

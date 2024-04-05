@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.inv.transact.operation
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.inv.stack.NeverStack
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.entity.item.Item
@@ -97,7 +96,7 @@ internal class ShiftItemTest : TransactionOperationTest() {
     fun `Shift item forward to specific index in inventory`() {
         transaction(10, stackRule = NeverStack) {
             add("non_stackable_item", 10)
-            set(3, Item("item", 1, def = ItemDefinition.EMPTY))
+            set(3, Item("item", 1))
         }
         transaction.shift(3, 7)
         assertTrue(transaction.commit())
@@ -110,7 +109,7 @@ internal class ShiftItemTest : TransactionOperationTest() {
     fun `Shift item backwards to specific index in inventory`() {
         transaction(10, stackRule = NeverStack) {
             add("non_stackable_item", 10)
-            set(7, Item("item", 1, def = ItemDefinition.EMPTY))
+            set(7, Item("item", 1))
         }
         transaction.shift(7, 3)
         assertTrue(transaction.commit())

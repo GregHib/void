@@ -31,12 +31,12 @@ class GearDefinitions {
                             val amount = value["amount"] as? Int ?: 1
                             val subList = createList()
                             for (i in id as List<String>) {
-                                subList.add(Item(i, amount, itemDefinitions.get(i)))
+                                subList.add(Item(i, amount))
                             }
                             super.add(list, subList, parentMap)
                         } else {
                             val subList = createList()
-                            subList.add(Item(id as String, value["amount"] as? Int ?: 1, itemDefinitions.get(id)))
+                            subList.add(Item(id as String, value["amount"] as? Int ?: 1))
                             super.add(list, subList, parentMap)
                         }
                     } else if (parentMap == "equipment") {
@@ -44,7 +44,7 @@ class GearDefinitions {
                         super.add(list, Object2ObjectOpenHashMap(value.mapKeys { EquipSlot.valueOf(it.key.toSentenceCase()) }), parentMap)
                     } else if (value is Map<*, *> && value.containsKey("id")) {
                         val id = value["id"] as String
-                        val item = Item(id, value["amount"] as? Int ?: 1, itemDefinitions.get(id))
+                        val item = Item(id, value["amount"] as? Int ?: 1)
                         super.add(list, item, parentMap)
                     } else if (parentMap != "id" && value is Map<*, *>) {
                         count++

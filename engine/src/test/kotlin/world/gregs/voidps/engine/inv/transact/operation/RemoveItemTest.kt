@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.inv.transact.operation
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.inv.remove.ShopItemRemovalChecker
 import world.gregs.voidps.engine.inv.stack.AlwaysStack
 import world.gregs.voidps.engine.inv.stack.NeverStack
@@ -25,7 +24,7 @@ internal class RemoveItemTest : TransactionOperationTest() {
     @Test
     fun `Remove an item with invalid id`() {
         transaction(itemRule = validItems) {
-            set(0, Item("invalid_id", 1, def = ItemDefinition.EMPTY))
+            set(0, Item("invalid_id", 1))
         }
         transaction.remove("invalid_id", 1)
         assertTrue(transaction.commit())
@@ -113,7 +112,7 @@ internal class RemoveItemTest : TransactionOperationTest() {
     @Test
     fun `Remove an item at index with invalid id`() {
         transaction(itemRule = validItems) {
-            set(0, Item("invalid_id", 1, def = ItemDefinition.EMPTY))
+            set(0, Item("invalid_id", 1))
         }
         transaction.remove(0, "invalid_id", 1)
         assertTrue(transaction.commit())

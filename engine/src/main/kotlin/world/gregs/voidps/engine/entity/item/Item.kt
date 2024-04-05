@@ -6,9 +6,10 @@ import world.gregs.voidps.engine.get
 
 data class Item(
     val id: String = "",
-    val amount: Int = 0,
-    val def: ItemDefinition = get<ItemDefinitions>().get(id)
+    val amount: Int = 0
 ) {
+    val def: ItemDefinition
+        get() = get<ItemDefinitions>().get(id)
 
     fun isEmpty() = id.isBlank()
 
@@ -37,6 +38,6 @@ data class Item(
     }
 
     companion object {
-        val EMPTY = Item("", 0, ItemDefinition.EMPTY)
+        val EMPTY = Item("", 0)
     }
 }

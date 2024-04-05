@@ -27,7 +27,7 @@ internal class InventoryTest {
     @BeforeEach
     fun setup() {
         events = mockk(relaxed = true)
-        items = Array(10) { Item("", 0, def = ItemDefinition.EMPTY) }
+        items = Array(10) { Item("", 0) }
         minimumAmounts = IntArray(10)
         inventory = inventory()
     }
@@ -116,7 +116,7 @@ internal class InventoryTest {
         )
         inventory.transaction {
             repeat(8) {
-                set(it, Item("item", def = ItemDefinition.EMPTY))
+                set(it, Item("item"))
             }
         }
         // When
@@ -148,7 +148,7 @@ internal class InventoryTest {
     @Test
     fun `Inventory is empty`() {
         assertTrue(inventory.isEmpty())
-        items[4] = Item("123", 10, def = ItemDefinition.EMPTY)
+        items[4] = Item("123", 10)
         assertFalse(inventory.isEmpty())
     }
 
@@ -157,7 +157,7 @@ internal class InventoryTest {
         // Given
         val index = 1
         val id = "100"
-        items[index] = Item(id, 0, def = ItemDefinition.EMPTY)
+        items[index] = Item(id, 0)
         // When
         val item = inventory[index].id
         // Then
@@ -189,7 +189,7 @@ internal class InventoryTest {
         // Given
         val index = 1
         val amount = 100
-        items[index] = Item("", amount, def = ItemDefinition.EMPTY)
+        items[index] = Item("", amount)
         // When
         val count = inventory[index].amount
         // Then
@@ -199,8 +199,8 @@ internal class InventoryTest {
     @Test
     fun `Get all inventory items`() {
         // Given
-        items[1] = Item("2", 2, def = ItemDefinition.EMPTY)
-        items[3] = Item("4", 4, def = ItemDefinition.EMPTY)
+        items[1] = Item("2", 2)
+        items[3] = Item("4", 4)
         // When
         val items = inventory.items
         // Then
@@ -211,10 +211,10 @@ internal class InventoryTest {
     fun `Get count of all item amounts`() {
         // Given
         every { inventory.stackable("2") } returns true
-        items[1] = Item("2", 2, def = ItemDefinition.EMPTY)
-        items[2] = Item("3", 1, def = ItemDefinition.EMPTY)
-        items[3] = Item("2", 4, def = ItemDefinition.EMPTY)
-        items[4] = Item("2", -1, def = ItemDefinition.EMPTY)
+        items[1] = Item("2", 2)
+        items[2] = Item("3", 1)
+        items[3] = Item("2", 4)
+        items[4] = Item("2", -1)
         // When
         val amounts = inventory.count("2")
         // Then
@@ -225,9 +225,9 @@ internal class InventoryTest {
     fun `Contains an amount of non-stackable items`() {
         // Given
         every { inventory.stackable(any()) } returns false
-        items[0] = Item("not_stackable", 1, def = ItemDefinition.EMPTY)
-        items[1] = Item("not_stackable", 1, def = ItemDefinition.EMPTY)
-        items[2] = Item("not_stackable", 1, def = ItemDefinition.EMPTY)
+        items[0] = Item("not_stackable", 1)
+        items[1] = Item("not_stackable", 1)
+        items[2] = Item("not_stackable", 1)
         // When
         val contains = inventory.contains("not_stackable", 2)
         // Then

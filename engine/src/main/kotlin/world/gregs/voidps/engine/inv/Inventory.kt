@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.inv
 
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.remove.DefaultItemRemovalChecker
 import world.gregs.voidps.engine.inv.remove.ItemRemovalChecker
@@ -119,7 +118,7 @@ class Inventory(
             id: String = "",
             removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
         ) = Inventory(
-            Array(capacity) { Item("", removalCheck.getMinimum(it), def = ItemDefinition.EMPTY) },
+            Array(capacity) { Item("", removalCheck.getMinimum(it)) },
             id,
             itemRule,
             stackRule,

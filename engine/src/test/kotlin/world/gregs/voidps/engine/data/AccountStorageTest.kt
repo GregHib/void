@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data
 
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -240,23 +239,23 @@ abstract class AccountStorageTest {
             ),
             inventories = mapOf(
                 "worn_equipment" to Array(14) { Item.EMPTY }.apply {
-                    this[0] = Item("green_partyhat", 1, def = ItemDefinition.EMPTY)
-                    this[1] = Item("fire_cape", 1, def = ItemDefinition.EMPTY)
-                    this[2] = Item("amulet_of_fury", 1, def = ItemDefinition.EMPTY)
-                    this[3] = Item("abyssal_whip", 1, def = ItemDefinition.EMPTY)
-                    this[4] = Item("ahrims_robe_top", 1, def = ItemDefinition.EMPTY)
-                    this[5] = Item("toktz_ket_xil", 1, def = ItemDefinition.EMPTY)
-                    this[7] = Item("ahrims_robe_skirt", 1, def = ItemDefinition.EMPTY)
-                    this[9] = Item("culinaromancers_gloves_10", 1, def = ItemDefinition.EMPTY)
-                    this[10] = Item("rock_climbing_boots", 1, def = ItemDefinition.EMPTY)
-                    this[12] = Item("berserker_ring", 1, def = ItemDefinition.EMPTY)
+                    this[0] = Item("green_partyhat", 1)
+                    this[1] = Item("fire_cape", 1)
+                    this[2] = Item("amulet_of_fury", 1)
+                    this[3] = Item("abyssal_whip", 1)
+                    this[4] = Item("ahrims_robe_top", 1)
+                    this[5] = Item("toktz_ket_xil", 1)
+                    this[7] = Item("ahrims_robe_skirt", 1)
+                    this[9] = Item("culinaromancers_gloves_10", 1)
+                    this[10] = Item("rock_climbing_boots", 1)
+                    this[12] = Item("berserker_ring", 1)
                 },
                 "inventory" to Array(28) { Item.EMPTY }.apply {
-                    this[0] = Item("armadyl_godsword", def = ItemDefinition.EMPTY)
-                    this[1] = Item("prayer_potion_4", def = ItemDefinition.EMPTY)
+                    this[0] = Item("armadyl_godsword")
+                    this[1] = Item("prayer_potion_4")
                 },
                 "bank" to Array(516) { Item.EMPTY }.apply {
-                    this[0] = Item("coins", 420000000, def = ItemDefinition.EMPTY)
+                    this[0] = Item("coins", 420000000)
                 }
             ),
             friends = mapOf("Greg" to ClanRank.Friend),

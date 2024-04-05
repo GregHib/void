@@ -335,7 +335,7 @@ class DatabaseStorage(
             val amounts = row[InventoriesTable.amounts]
 
             val items = itemIds.zip(amounts).map { (itemId, amount) ->
-                Item(itemId, amount, def = definitions(itemId))
+                Item(itemId, amount)
             }.toTypedArray()
 
             inventoryName to items
