@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 
 val definitions: SpellDefinitions by inject()
 
@@ -28,7 +28,7 @@ interfaceOption("Cast", "vengeance", "lunar_spellbook") {
         player.message("You can only cast vengeance spells once every 30 seconds.")
         return@interfaceOption
     }
-    if (!Spell.removeRequirements(player, spell)) {
+    if (!player.removeSpellItems(spell)) {
         return@interfaceOption
     }
     val definition = definitions.get(spell)

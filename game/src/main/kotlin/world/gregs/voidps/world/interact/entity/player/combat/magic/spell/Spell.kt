@@ -16,11 +16,13 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.Equipment
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell.removeItems
 import world.gregs.voidps.world.interact.entity.player.effect.degrade.Degrade
 import kotlin.math.absoluteValue
 import kotlin.math.max
@@ -28,14 +30,9 @@ import kotlin.math.roundToInt
 
 object Spell {
 
-    fun isMultiTarget(spell: String) = spell.endsWith("_burst") || spell.endsWith("_barrage")
-
     fun canDrain(target: Character, spell: String): Boolean {
         val def = get<SpellDefinitions>().get(spell)
-        val skill = Skill.valueOf(def["drain_skill"])
-        val multiplier: Double = def["drain_multiplier"]
-        val maxDrain = multiplier * target.levels.getMax(skill)
-        return target.levels.getOffset(skill) > -maxDrain
+        return canDrain(target, def)
     }
 
     fun canDrain(target: Character, def: SpellDefinition): Boolean {
@@ -78,23 +75,64 @@ object Spell {
         return damage
     }
 
-    fun removeRequirements(player: Player, spell: String) = requirements(player, spell, remove = true)
-
-    fun hasRequirements(player: Player, spell: String, runes: MutableList<Item> = mutableListOf()) = requirements(player, spell, remove = false)
-
-    private fun requirements(player: Player, spell: String, remove: Boolean): Boolean {
-        val component = get<InterfaceDefinitions>().getComponent(player.spellBook, spell) ?: return false
-        if (!player.has(Skill.Magic, component.magicLevel, message = true)) {
-            return false
+    fun Transaction.removeItems(player: Player, spell: String, message: Boolean = true) {
+        val component = get<InterfaceDefinitions>().getComponent(player.spellBook, spell)
+        if (component == null || !player.has(Skill.Magic, component.magicLevel, message = message)) {
+            error = TransactionError.Deficient(0)
+            return
         }
-        val requiredItems = component.spellRequiredItems() ?: return false
-        if (!hasRequired(player, spell, requiredItems, remove = remove)) {
-            player.message("You do not have the required items to cast this spell.")
-            return false
+        val required = component.spellRequiredItems()
+        if (required == null) {
+            error = TransactionError.Deficient(0)
+            return
         }
-        return true
+        checkInfiniteStaff(player, required, "air")
+        checkInfiniteStaff(player, required, "water")
+        checkInfiniteStaff(player, required, "earth")
+        checkInfiniteStaff(player, required, "fire")
+
+        dungeoneeringMagicBoxes(player, required, spell)
+        checkMinigame(player, required)
+        if (World.members) {
+            removeCombo(required, "mist_rune", "air_rune", "water_rune")
+            removeCombo(required, "dust_rune", "air_rune", "earth_rune")
+            removeCombo(required, "mud_rune", "water_rune", "earth_rune")
+            removeCombo(required, "smoke_rune", "air_rune", "fire_rune")
+            removeCombo(required, "steam_rune", "water_rune", "fire_rune")
+            removeCombo(required, "lava_rune", "earth_rune", "fire_rune")
+        }
+        dungeoneeringStaffCharges(required, player)
+        checkStaves(player, required)
+        // Regular runes
+        required.keys.removeIf { key ->
+            if (!key.endsWith("_rune")) {
+                false
+            } else {
+                remove(key, required.getValue(key))
+                !failed
+            }
+        }
+        if (required.isNotEmpty()) {
+            error = TransactionError.Deficient(required.values.first())
+            if (message) {
+                player.message("You do not have the required items to cast this spell.")
+            }
+        }
     }
 
+    private fun Transaction.dungeoneeringStaffCharges(required: MutableMap<String, Int>, player: Player) {
+        if (required.containsKey("nature_rune") && player.equipped(EquipSlot.Weapon).id == "nature_staff") {
+            val charges = Degrade.charges(player, player.equipment, EquipSlot.Weapon.index)
+            val amount = required.dec("nature_rune", charges)
+            Degrade.discharge(player, player.equipment, EquipSlot.Weapon.index, amount = amount)
+            state.onRevert { Degrade.charge(player, player.equipment, EquipSlot.Weapon.index, amount = amount) }
+        } else if (required.containsKey("law_rune") && player.equipped(EquipSlot.Weapon).id == "law_staff") {
+            val charges = Degrade.charges(player, player.equipment, EquipSlot.Weapon.index)
+            val amount = required.dec("law_rune", charges)
+            Degrade.discharge(player, player.equipment, EquipSlot.Weapon.index, amount = amount)
+            state.onRevert { Degrade.charge(player, player.equipment, EquipSlot.Weapon.index, amount = amount) }
+        }
+    }
 
     private fun MutableMap<String, Int>.dec(key: String, value: Int): Int {
         val count = this[key] ?: return 0
@@ -108,84 +146,31 @@ object Spell {
         return max
     }
 
-    private fun removeBoxes(player: Player, required: MutableMap<String, Int>, spell: String, box: String, suffix: String, catalyst: String): Boolean {
+    private fun Transaction.dungeoneeringMagicBoxes(player: Player, required: MutableMap<String, Int>, spell: String) {
+        if (removeBoxCharges(player, spell, "magical_blastbox", "_bolt")) {
+            required.remove("air_rune")
+            required.remove("chaos_rune")
+        } else if (removeBoxCharges(player, spell, "magical_blastbox", "_blast")) {
+            required.remove("air_rune")
+            required.remove("death_rune")
+        } else if (removeBoxCharges(player, spell, "celestial_surgebox", "_wave")) {
+            required.remove("air_rune")
+            required.remove("blood_rune")
+        } else if (removeBoxCharges(player, spell, "celestial_surgebox", "_surge")) {
+            required.remove("air_rune")
+            required.remove("death_rune")
+            required.remove("blood_rune")
+        }
+    }
+
+    private fun Transaction.removeBoxCharges(player: Player, spell: String, box: String, suffix: String): Boolean {
         if (spell.endsWith(suffix) && player.equipped(EquipSlot.Shield).id.startsWith(box)) {
-            val charges = Degrade.charges(player, "worn_equipment", EquipSlot.Shield.index, suffix)
-            if (charges > 0) {
-                required.remove("air_rune")
-                required.remove(catalyst)
+            if (Degrade.discharge(player, player.equipment, EquipSlot.Shield.index)) {
+                state.onRevert { Degrade.charge(player, player.equipment, EquipSlot.Shield.index) }
                 return true
             }
         }
         return false
-    }
-
-    private fun hasRequired(player: Player, spell: String, required: MutableMap<String, Int>, remove: Boolean): Boolean {
-        var slot = EquipSlot.None
-        var degrade = 1
-        var suffix = ""
-        var success = false
-        player.inventory.transaction {
-            checkInfiniteStaff(player, required, "air")
-            checkInfiniteStaff(player, required, "water")
-            checkInfiniteStaff(player, required, "earth")
-            checkInfiniteStaff(player, required, "fire")
-
-            // Dungeoneering magic boxes
-            if (removeBoxes(player, required, spell, "magical_blastbox", "_bolt", "chaos_rune")) {
-                suffix = "_bolt"
-                slot = EquipSlot.Shield
-            } else if (removeBoxes(player, required, spell, "magical_blastbox", "_blast", "death_rune")) {
-                suffix = "_blast"
-                slot = EquipSlot.Shield
-            } else if (removeBoxes(player, required, spell, "celestial_surgebox", "_wave", "blood_rune")) {
-                suffix = "_wave"
-                slot = EquipSlot.Shield
-            } else if (removeBoxes(player, required, spell, "celestial_surgebox", "_surge", "death_rune")) {
-                suffix = "_surge"
-                slot = EquipSlot.Shield
-                required.remove("blood_rune")
-            }
-            checkMinigame(player, required)
-            if (World.members) {
-                removeCombo(required, "mist_rune", "air_rune", "water_rune")
-                removeCombo(required, "dust_rune", "air_rune", "earth_rune")
-                removeCombo(required, "mud_rune", "water_rune", "earth_rune")
-                removeCombo(required, "smoke_rune", "air_rune", "fire_rune")
-                removeCombo(required, "steam_rune", "water_rune", "fire_rune")
-                removeCombo(required, "lava_rune", "earth_rune", "fire_rune")
-            }
-            // Dungeoneering staves
-            if (required.containsKey("nature_rune") && player.equipped(EquipSlot.Weapon).id == "nature_staff") {
-                val charges = Degrade.charges(player, "worn_equipment", EquipSlot.Weapon.index)
-                degrade = required.dec("nature_rune", charges)
-                slot = EquipSlot.Weapon
-            } else if (required.containsKey("law_rune") && player.equipped(EquipSlot.Weapon).id == "law_staff") {
-                val charges = Degrade.charges(player, "worn_equipment", EquipSlot.Weapon.index)
-                degrade = required.dec("law_rune", charges)
-                slot = EquipSlot.Weapon
-            }
-            checkStaves(player, required)
-            // Regular runes
-            for ((key, amount) in required) {
-                if (!key.endsWith("_rune")) {
-                    continue
-                }
-                remove(key, amount)
-            }
-            if (required.isNotEmpty()) {
-                error = TransactionError.Deficient(required.values.first())
-            }
-            if (!remove) {
-                success = !failed
-                error = TransactionError.Invalid
-            }
-        }
-        if (remove && player.inventory.transaction.error == TransactionError.None && suffix.isEmpty()) {
-            Degrade.discharge(player, "worn_equipment", slot.index, amount = degrade, suffix)
-            success = true
-        }
-        return success
     }
 
     private fun checkInfiniteStaff(player: Player, required: MutableMap<String, Int>, element: String) {
@@ -202,24 +187,22 @@ object Spell {
         if (type != "stealing_creation" && type != "fist_of_guthix" && type != "barbarian_assault") {
             return
         }
-        var elemental = player.inventory.count("elemental_rune")
+        val elemental = inventory.count("elemental_rune")
+        val catalyst = inventory.count("catalytic_rune")
         var count = 0
         for (rune in elementalRunes) {
-            if (required.containsKey(rune) && elemental > 0) {
-                elemental -= required.dec(rune, elemental)
-                count++
+            if (required.containsKey(rune) && count < elemental) {
+                count += required.dec(rune, elemental)
             }
         }
-        count = 0
         remove("elemental_rune", count)
-        var catalyst = player.inventory.count("catalytic_rune")
+        count = 0
         for (rune in catalyticRunes) {
             if (!World.members && rune == "soul_rune") {
                 break
             }
-            if (required.containsKey(rune) && catalyst > 0) {
-                catalyst -= required.dec(rune, catalyst)
-                count++
+            if (required.containsKey(rune) && count < catalyst) {
+                count += required.dec(rune, catalyst)
             }
         }
         remove("catalytic_rune", count)
@@ -237,12 +220,7 @@ object Spell {
         }
     }
 
-    private fun Transaction.removeCombo(
-        required: MutableMap<String, Int>,
-        combo: String,
-        element1: String,
-        element2: String
-    ) {
+    private fun Transaction.removeCombo(required: MutableMap<String, Int>, combo: String, element1: String, element2: String) {
         if (!inventory.contains(combo)) {
             return
         }
@@ -279,6 +257,19 @@ object Spell {
     }
 }
 
+
+fun Player.hasSpellItems(spell: String, message: Boolean = true): Boolean {
+    val transaction = inventory.transaction
+    transaction.start()
+    transaction.removeItems(this, spell, message)
+    val success = !transaction.failed
+    transaction.revert()
+    return success
+}
+
+fun Player.removeSpellItems(spell: String) = inventory.transaction {
+    removeItems(this@removeSpellItems, spell)
+}
 
 var Character.spell: String
     get() = get("spell", get("autocast_spell", ""))

@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.TICKS
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 
 val definitions: SpellDefinitions by inject()
 
@@ -22,7 +22,7 @@ interfaceOption(component = "charge", id = "modern_spellbook") {
         return@interfaceOption
     }
     val spell = component
-    if (!Spell.removeRequirements(player, spell)) {
+    if (!player.removeSpellItems(spell)) {
         return@interfaceOption
     }
 

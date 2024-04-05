@@ -78387,6 +78387,8 @@ nature_staff:
   tradeable: false
   bank_stacks: false
   weight: 2.267
+  charges: 1000
+  charge_start: 0
   category: "staff"
   slot: "Weapon"
   examine: "Buzzing with the essence of nature."
@@ -78396,6 +78398,8 @@ law_staff:
   tradeable: false
   bank_stacks: false
   weight: 2.267
+  charges: 1000
+  charge_start: 0
   category: "staff"
   slot: "Weapon"
   examine: "A perfectly balanced staff."
@@ -82714,11 +82718,13 @@ scroll_of_efficiency:
   destroy: "If you destroy this item you will need to purchase another."
   examine: "Secrets of smithing lie within."
   kept: "Reclaim"
-magical_blastbox_reward:
+magical_blastbox:
   id: 19671
   tradeable: false
   bank_stacks: false
   weight: 0.025
+  charges: 715827882
+  charge_start: 0
   slot: "Shield"
   examine: "It's brimming with power."
   kept: "Reclaim"
@@ -83532,22 +83538,34 @@ strange_token:
 magical_blastbox_bound:
   id: 19865
   tradeable: false
+  charge: magical_blastbox_bound_charges
+  player_charge: true
+  charges: 715827882
+  charge_start: 0
   slot: "Shield"
   examine: "It's brimming with power."
   weight: 0.025
 celestial_surgebox_bound:
   id: 19866
   tradeable: false
+  charge: celestial_surgebox_bound_charges
+  player_charge: true
+  charges: 306783378
+  charge_start: 0
   slot: "Shield"
   examine: "It could explode at any moment."
   weight: 0.025
-magical_blastbox:
+magical_blastbox_dungeonering:
   id: 19867
+  charges: 715827882
+  charge_start: 0
   slot: "Shield"
   examine: "It's brimming with power."
   weight: 0.025
-celestial_surgebox:
+celestial_surgebox_dungeoneering:
   id: 19868
+  charges: 306783378
+  charge_start: 0
   slot: "Shield"
   examine: "It could explode at any moment."
   weight: 0.025
@@ -83613,11 +83631,13 @@ demon_horn_necklace:
   slot: "Amulet"
   examine: "Not everyone's first choice for a piece of jewellery."
   kept: "Reclaim"
-celestial_surgebox_reward:
+celestial_surgebox:
   id: 19889
   tradeable: false
   bank_stacks: false
   weight: 0.025
+  charges: 306783378
+  charge_start: 0
   slot: "Shield"
   examine: "It could explode at any moment."
   kept: "Reclaim"

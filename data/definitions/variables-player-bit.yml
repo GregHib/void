@@ -580,7 +580,7 @@ minigame_type:
   format: map
   default: none
   values:
-    0: none
-    1: barbarian_assault
-    2: stealing_creation
-    3: fist_of_guthix
+    none: 0
+    barbarian_assault: 1
+    stealing_creation: 2
+    fist_of_guthix: 3

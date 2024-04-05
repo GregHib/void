@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
@@ -34,7 +35,7 @@ interfaceOption("Cast", "*_teleport", "*_spellbook") {
     }
     player.closeInterfaces()
     player.queue("teleport", onCancel = null) {
-        if (!Spell.removeRequirements(player, component)) {
+        if (!player.removeSpellItems(component)) {
             cancel()
             return@queue
         }

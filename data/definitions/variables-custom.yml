@@ -301,3 +301,9 @@ hard_clue:
 elite_clue:
   format: boolean
   persist: true
+magical_blastbox_bound_charges:
+  format: int
+  persist: true
+celestial_surgebox_bound_charges:
+  format: int
+  persist: true

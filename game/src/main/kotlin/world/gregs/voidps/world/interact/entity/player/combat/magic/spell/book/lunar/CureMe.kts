@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 import world.gregs.voidps.world.interact.entity.player.toxin.curePoison
 import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
 
@@ -19,7 +20,7 @@ interfaceOption(component = "cure_me", id = "lunar_spellbook") {
         player.message("You are not poisoned.")
         return@interfaceOption
     }
-    if (!Spell.removeRequirements(player, spell)) {
+    if (!player.removeSpellItems(spell)) {
         return@interfaceOption
     }
     val definition = definitions.get(spell)
