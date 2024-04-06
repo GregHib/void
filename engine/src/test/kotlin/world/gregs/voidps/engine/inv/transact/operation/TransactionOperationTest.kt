@@ -37,6 +37,7 @@ abstract class TransactionOperationTest : KoinMock() {
     fun setup() {
         declareMock<ItemDefinitions> {
             every { this@declareMock.get(any<String>()) } returns ItemDefinition()
+            every { this@declareMock.getOrNull(any<String>()) } returns ItemDefinition()
         }
         transaction()
     }

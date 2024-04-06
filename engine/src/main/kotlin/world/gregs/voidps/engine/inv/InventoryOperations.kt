@@ -1,5 +1,10 @@
 package world.gregs.voidps.engine.inv
 
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.transact.charge
+import world.gregs.voidps.engine.inv.transact.discharge
+import world.gregs.voidps.engine.inv.transact.clearCharges
+
 fun Inventory.replace(id: String, with: String) = transaction { replace(id, with) }
 
 fun Inventory.replace(index: Int, id: String, with: String) = transaction { replace(index, id, with) }
@@ -47,3 +52,21 @@ fun Inventory.clear() = transaction { clear() }
 fun Inventory.contains(vararg pairs: Pair<String, Int>) = pairs.all { (id, amount) -> contains(id, amount) }
 
 fun Inventory.contains(pairs: List<Pair<String, Int>>) = pairs.all { (id, amount) -> contains(id, amount) }
+
+fun Inventory.charge(player: Player, index: Int, amount: Int = 1) = transaction { charge(player, index, amount) }
+
+fun Inventory.discharge(player: Player, index: Int, amount: Int = 1) = transaction { discharge(player, index, amount) }
+
+fun Inventory.clearCharges(player: Player, index: Int) = transaction { clearCharges(player, index) }
+
+fun Inventory.charges(player: Player, index: Int): Int {
+    val item = getOrNull(index) ?: return 0
+    if (item.isEmpty()) {
+        return 0
+    }
+    val variable: String? = item.def.getOrNull("charge")
+    if (variable != null) {
+        return player[variable, 0]
+    }
+    return item.charges
+}
