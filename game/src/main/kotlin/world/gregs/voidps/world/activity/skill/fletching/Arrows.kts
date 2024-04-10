@@ -9,22 +9,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 
-
-
-itemOnItem("headless_arrow", "*_arrowtips") {
-    it.weakQueue("feather_to_shaft_dialog") {
-        val (selected, amount) = makeAmount(
-                listOf("headless_arrow"),
-                type = "Make sets: ",
-                maximum = 10,
-                text = "How many sets of 15 do you wish to feather?"
-        )
-        makeHeadlessArrows(player, selected, amount)
-    }
-}
-
-
-
 itemOnItem("feather", "arrow_shaft") {
     if(fromItem.amount <= 15 || toItem.amount <= 15) {
         val amountToMake = minOf(fromItem.amount, toItem.amount)
