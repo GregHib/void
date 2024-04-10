@@ -4301,6 +4301,9 @@ bronze_dart_tip:
   smithing:
     level: 4
     xp: 12.5
+  fletch_dart:
+    level: 1
+    xp: 1.8
   examine: "A deadly looking dart tip made of bronze - needs feathers for flight."
 iron_dart_tip:
   id: 820
@@ -4309,6 +4312,9 @@ iron_dart_tip:
   smithing:
     level: 19
     xp: 25.0
+  fletch_dart:
+    level: 22
+    xp: 3.8
   examine: "A deadly looking dart tip made of iron - needs feathers for flight."
 steel_dart_tip:
   id: 821
@@ -4317,6 +4323,9 @@ steel_dart_tip:
   smithing:
     level: 34
     xp: 37.5
+  fletch_dart:
+    level: 37
+    xp: 7.5
   examine: "A deadly-looking dart tip made of steel - needs feathers for flight."
 mithril_dart_tip:
   id: 822
@@ -4325,6 +4334,9 @@ mithril_dart_tip:
   smithing:
     level: 54
     xp: 50.0
+  fletch_dart:
+    level: 52
+    xp: 11.2
   examine: "A deadly looking dart tip made of mithril - needs feathers for flight."
 adamant_dart_tip:
   id: 823
@@ -4333,6 +4345,9 @@ adamant_dart_tip:
   smithing:
     level: 74
     xp: 62.5
+  fletch_dart:
+    level: 67
+    xp: 15.0
   examine: "A deadly-looking dart tip made of adamant - needs feathers for flight."
 rune_dart_tip:
   id: 824
@@ -4341,6 +4356,9 @@ rune_dart_tip:
   smithing:
     level: 89
     xp: 75.0
+  fletch_dart:
+    level: 81
+    xp: 18.8
   examine: "A deadly-looking dart tip made of runite - needs feathers for flight."
 bronze_javelin:
   id: 825
@@ -39372,10 +39390,16 @@ bronze_bolts_unf:
   smithing:
     level: 3
     xp: 12.5
+  fletch_bolts:
+    level: 9
+    xp: 0.5
   examine: "Unfeathered bronze crossbow bolts."
 blurite_bolts_unf:
   id: 9376
   tradeable: false
+  fletch_bolts:
+    level: 24
+    xp: 1.0
   examine: "Unfeathered blurite crossbow bolts."
   kept: "Reclaim"
 iron_bolts_unf:
@@ -39385,6 +39409,9 @@ iron_bolts_unf:
   smithing:
     level: 18
     xp: 25.0
+  fletch_bolts:
+    level: 39
+    xp: 1.5
   examine: "Unfeathered iron crossbow bolts."
 steel_bolts_unf:
   id: 9378
@@ -39393,6 +39420,9 @@ steel_bolts_unf:
   smithing:
     level: 33
     xp: 37.5
+  fletch_bolts:
+    level: 46
+    xp: 3.5
   examine: "Unfeathered steel crossbow bolts."
 mithril_bolts_unf:
   id: 9379
@@ -39401,6 +39431,9 @@ mithril_bolts_unf:
   smithing:
     level: 53
     xp: 50.0
+  fletch_bolts:
+    level: 54
+    xp: 5.0
   examine: "Unfeathered mithril crossbow bolts."
 adamant_bolts_unf:
   id: 9380
@@ -39409,6 +39442,9 @@ adamant_bolts_unf:
   smithing:
     level: 73
     xp: 62.5
+  fletch_bolts:
+    level: 61
+    xp: 7.0
   examine: "Unfeathered adamantite crossbow bolts."
 rune_bolts_unf:
   id: 9381
@@ -39417,11 +39453,17 @@ rune_bolts_unf:
   smithing:
     level: 88
     xp: 75.0
+  fletch_bolts:
+    level: 69
+    xp: 10.0
   examine: "Unfeathered runite crossbow bolts."
 silver_bolts_unf:
   id: 9382
   price: 1
   limit: 10000
+  fletch_bolts:
+    level: 43
+    xp: 2.5
   examine: "Unfeathered silver crossbow bolts."
 grapple:
   id: 9415
@@ -48227,6 +48269,9 @@ dragon_dart_tip:
   id: 11232
   price: 622
   limit: 1000
+  fletch_dart:
+    level: 95
+    xp: 25.0
   examine: "A deadly looking dragon dart tip - needs feathers for flight."
 dragon_dart_p+:
   id: 11233
