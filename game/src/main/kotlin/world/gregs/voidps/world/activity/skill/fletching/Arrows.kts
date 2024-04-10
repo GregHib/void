@@ -36,8 +36,8 @@ fun makeHeadlessArrows(player: Player, addItem: String, amount: Int) {
     val currentFeathers = player.inventory.count("feather")
 
     val actualAmount = when {
-        currentShafts < 10 || currentFeathers < 10 -> minOf(currentShafts, currentFeathers)
-        else -> 10
+        currentShafts < 15 || currentFeathers < 15 -> minOf(currentShafts, currentFeathers)
+        else -> 15
     }
 
     if (actualAmount < 1) {
@@ -50,7 +50,7 @@ fun makeHeadlessArrows(player: Player, addItem: String, amount: Int) {
             remove("feather", actualAmount)
             remove("arrow_shaft", actualAmount)
             add(addItem, actualAmount)
-            val experiencePerArrow = 15.0 / 10
+            val experiencePerArrow = 15.0 / 15
             val totalExperience = experiencePerArrow * actualAmount
             player.experience.add(Skill.Fletching, totalExperience)
             player.message("You attach feathers to $actualAmount arrow shafts.")
