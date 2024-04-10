@@ -21,10 +21,8 @@ itemOnItem("feather", "*_dart_tip") {
     val currentFeathers = it.inventory.count("feather")
     val currentDartTips = it.inventory.count(dartUsed.id)
 
-    // Calculate the actual number of darts that can be made
     val actualAmount = minOf(currentFeathers, currentDartTips, 10)
 
-    // If we can't make any darts, exit
     if (actualAmount < 1) {
         return@itemOnItem
     }
@@ -36,7 +34,6 @@ itemOnItem("feather", "*_dart_tip") {
         remove("feather", actualAmount)
         add(createdDart, actualAmount)
 
-        // Calculate and award experience based on the actual amount made
         val totalExperience = darts.xp * actualAmount
         it.experience.add(Skill.Fletching, totalExperience)
 
