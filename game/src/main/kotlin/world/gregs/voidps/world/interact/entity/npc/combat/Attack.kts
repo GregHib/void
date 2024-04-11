@@ -36,7 +36,7 @@ fun attackAnimation(npc: NPC): String {
     if (npc.race.isNotEmpty()) {
         return "${npc.race}_attack"
     }
-    return npc.def.getOrNull("hit_anim") ?: ""
+    return npc.def["attack_anim", ""]
 }
 
 fun attackSound(npc: NPC): String {
