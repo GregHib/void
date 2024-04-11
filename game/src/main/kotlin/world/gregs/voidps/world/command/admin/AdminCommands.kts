@@ -150,9 +150,10 @@ adminCommand("items") {
 
 adminCommand("item") {
     val parts = content.split(" ")
-    val id = definitions.get(alternativeNames.getOrDefault(parts[0], parts[0])).stringId
+    val definition = definitions.get(alternativeNames.getOrDefault(parts[0], parts[0]))
+    val id = definition.stringId
     val amount = parts.getOrNull(1) ?: "1"
-    player.inventory.transaction { addToLimit(id, if (amount == "max") Int.MAX_VALUE else amount.toSILong().toInt()) }
+    player.inventory.transaction { addToLimit(id, definition.getOrNull("charges") ?: if (amount == "max") Int.MAX_VALUE else amount.toSILong().toInt()) }
     println(player.inventory.transaction.error)
 }
 
