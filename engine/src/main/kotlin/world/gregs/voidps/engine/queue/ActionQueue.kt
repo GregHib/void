@@ -63,6 +63,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
             character.suspension = null
             action = null
         }
+        pending.removeIf { it.priority == ActionPriority.Weak }
         queue.removeIf {
             if (it.priority == ActionPriority.Weak) {
                 it.cancel()

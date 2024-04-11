@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.entity.item.Item
  * @param message to send
  * @param failure message
  * @param question override for make-x question
+ * @param maximum the maximum number of make-x allowed
  */
 data class ItemOnItemDefinition(
     val skill: Skill? = null,
@@ -42,7 +43,8 @@ data class ItemOnItemDefinition(
     val sound: String = "",
     val message: String = "",
     val failure: String = "",
-    val question: String = "How many would you like to $type?"
+    val question: String = "How many would you like to $type?",
+    val maximum: Int = -1
 ) {
 
     companion object {
@@ -66,7 +68,8 @@ data class ItemOnItemDefinition(
             sound = map["sound"] as? String ?: EMPTY.sound,
             message = map["message"] as? String ?: EMPTY.message,
             failure = map["failure"] as? String ?: EMPTY.failure,
-            question = map["question"] as? String ?: "How many would you like to ${map["type"] as? String ?: EMPTY.type}?"
+            question = map["question"] as? String ?: "How many would you like to ${map["type"] as? String ?: EMPTY.type}?",
+            maximum = map["maximum"] as? Int ?: EMPTY.maximum
         )
 
         val EMPTY = ItemOnItemDefinition(Skill.Attack)

@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.data.SafeStorage
 import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.data.json.FileStorage
-import world.gregs.voidps.engine.data.sql.PostgresStorage
+import world.gregs.voidps.engine.data.sql.DatabaseStorage
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -52,7 +52,7 @@ val engineModule = module {
     // IO
     single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }
     single { if (getProperty("storage", "") == "database") {
-        PostgresStorage.connect(
+        DatabaseStorage.connect(
             getProperty("database_username"),
             getProperty("database_password"),
             getProperty("database_driver"),
@@ -60,7 +60,7 @@ val engineModule = module {
             getProperty("database_pool", "2").toInt(),
         )
         val definitions: ItemDefinitions = get()
-        PostgresStorage { definitions.get(it) }
+        DatabaseStorage { definitions.get(it) }
     } else {
         val saves = File(getProperty<String>("savePath"))
         if (!saves.exists()) {

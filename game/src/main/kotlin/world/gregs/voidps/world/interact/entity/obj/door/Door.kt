@@ -58,25 +58,30 @@ object Door {
     fun closeDoor(player: Player, door: GameObject, def: ObjectDefinition = door.def, ticks: Int = doorResetDelay, collision: Boolean = true): Boolean {
         val double = DoubleDoor.get(door, def, 1)
         if (resetExisting(door, double)) {
-            player.playSound(if (def.isGate()) "close_gate" else "close_door")
+            closeSound(player, def, gate = def.isGate())
             return true
         }
 
         // Single door
         if (double == null && door.id.endsWith("_opened")) {
             replace(door, def, "_opened", "_closed", 0, 3, ticks, collision)
-            player.playSound("close_door")
+            closeSound(player, def, gate = false)
             return true
         }
 
         // Double doors
         if (double != null && door.id.endsWith("_opened") && double.id.endsWith("_opened")) {
             DoubleDoor.close(door, def, double, ticks, collision)
-            player.playSound("close_door")
+            closeSound(player, def, gate = false)
             return true
         }
         player.message("The ${def.name.lowercase()} won't budge.")
         return false
+    }
+
+    private fun closeSound(player: Player, definition: ObjectDefinition, gate: Boolean) {
+        val material = if (definition.contains("material")) "${definition["material", "wood"]}_" else ""
+        player.playSound(if (gate) "${material}gate_close" else "${material}door_close")
     }
 
     /**
@@ -85,25 +90,30 @@ object Door {
     fun openDoor(player: Player, door: GameObject, def: ObjectDefinition = door.def, ticks: Int = doorResetDelay, collision: Boolean = true): Boolean {
         val double = DoubleDoor.get(door, def, 0)
         if (resetExisting(door, double)) {
-            player.playSound(if (def.isGate()) "open_gate" else "open_door")
+            openSound(player, def, gate = def.isGate())
             return true
         }
 
         // Single door
         if (double == null && door.id.endsWith("_closed")) {
             replace(door, def, "_closed", "_opened", 1, 1, ticks, collision)
-            player.playSound("open_door")
+            openSound(player, def, gate = false)
             return true
         }
 
         // Double doors
         if (double != null && door.id.endsWith("_closed") && double.id.endsWith("_closed")) {
             DoubleDoor.open(door, def, double, ticks, collision)
-            player.playSound("open_door")
+            openSound(player, def, gate = false)
             return true
         }
         player.message("The ${def.name.lowercase()} won't budge.")
         return false
+    }
+
+    private fun openSound(player: Player, definition: ObjectDefinition, gate: Boolean) {
+        val material = if (definition.contains("material")) "${definition["material", "wood"]}_" else ""
+        player.playSound(if (gate) "${material}gate_open" else "${material}door_open")
     }
 
     private fun resetExisting(obj: GameObject, double: GameObject?): Boolean {

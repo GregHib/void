@@ -10350,7 +10350,7 @@ premade_drunk_dragon:
   id: 2032
   price: 35
   limit: 1000
-  heals: 40
+  heals: 50
   excess: cocktail_glass
   weight: 0.45
   examine: "A premade Drunk Dragon."
@@ -10378,7 +10378,7 @@ premade_short_green_guy:
   id: 2038
   price: 30
   limit: 1000
-  heals: 30
+  heals: 50
   excess: cocktail_glass
   weight: 0.45
   examine: "A premade Short Green Guy."
@@ -10387,7 +10387,7 @@ premade_wizard_blizzard:
   id: 2040
   price: 27
   limit: 1000
-  heals: 30
+  heals: 50
   excess: cocktail_glass
   weight: 0.45
   examine: "A Premade Wizard Blizzard."
@@ -18905,7 +18905,7 @@ nettles:
   kept: "Reclaim"
 cup_of_tea_nettle_tea:
   id: 4242
-  heals: 0
+  heals: 30
   excess: empty_cup
   tradeable: false
   weight: 0.15
@@ -31197,7 +31197,7 @@ tinderbox_33:
   id: 7156
 braindeath_rum:
   id: 7157
-  heals: 0
+  heals: 14
   tradeable: false
   weight: 0.907
   examine: "I think it is eating through the bottle."

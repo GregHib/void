@@ -14,7 +14,7 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.testcontainers.containers.PostgreSQLContainer
-import world.gregs.voidps.engine.data.sql.PostgresStorage
+import world.gregs.voidps.engine.data.sql.DatabaseStorage
 
 /**
  * Starts a postgres database via docker if available or an in-memory emulation if not
@@ -24,14 +24,14 @@ interface DatabaseTest {
     @BeforeEach
     fun setup() {
         transaction {
-            SchemaUtils.create(*PostgresStorage.tables, inBatch = true)
+            SchemaUtils.create(*DatabaseStorage.tables, inBatch = true)
         }
     }
 
     @AfterEach
     fun tidy() {
         transaction {
-            SchemaUtils.drop(*PostgresStorage.tables, inBatch = true)
+            SchemaUtils.drop(*DatabaseStorage.tables, inBatch = true)
         }
     }
 
@@ -63,7 +63,7 @@ interface DatabaseTest {
                     driverClassName = "org.testcontainers.jdbc.ContainerDatabaseDriver",
                     dialect = "testcontainers"
                 )
-                PostgresStorage.connect(
+                DatabaseStorage.connect(
                     username = "root",
                     password = "password",
                     driver = "org.testcontainers.jdbc.ContainerDatabaseDriver",
@@ -76,7 +76,7 @@ interface DatabaseTest {
                 db = EmbeddedPostgres.builder()
                     .setPort(TEST_PORT)
                     .start()
-                PostgresStorage.connect(
+                DatabaseStorage.connect(
                     username = "postgres",
                     password = "password",
                     driver = "org.postgresql.Driver",
