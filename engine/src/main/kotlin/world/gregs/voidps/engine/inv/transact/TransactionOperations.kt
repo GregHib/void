@@ -2,8 +2,11 @@ package world.gregs.voidps.engine.inv.transact
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.transact.operation.RemoveCharge.discharge
 import world.gregs.voidps.engine.inv.transact.operation.AddCharge.charge
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearCharge.discharge
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
@@ -13,10 +16,9 @@ fun Transaction.remove(items: List<Item>) {
     }
 }
 
-@JvmName("removePairs")
-fun Transaction.remove(items: List<Pair<String, Int>>) {
-    for ((id, amount) in items) {
-        remove(id, amount)
+fun Transaction.add(items: List<Item>) {
+    for (item in items) {
+        add(item.id, item.amount)
     }
 }
 
@@ -58,7 +60,12 @@ fun Transaction.clearCharges(player: Player, index: Int) {
     val variable: String? = item.def.getOrNull("charge")
     if (variable != null) {
         player.clear(variable)
+        state
         return
     }
     discharge(index)
+}
+
+fun Transaction.charges(player: Player, index: Int): Int {
+    return inventory.charges(player, index)
 }

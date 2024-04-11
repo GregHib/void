@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.inv
 
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.transact.charge
 import world.gregs.voidps.engine.inv.transact.discharge
 import world.gregs.voidps.engine.inv.transact.clearCharges
@@ -41,9 +42,33 @@ fun Inventory.shift(fromIndex: Int, toIndex: Int) = transaction { shift(fromInde
 
 fun Inventory.add(id: String, amount: Int = 1) = transaction { add(id, amount) }
 
+fun Inventory.add(vararg ids: String, amount: Int = 1) = transaction {
+    for (id in ids) {
+        add(id, amount)
+    }
+}
+
+fun Inventory.add(items: List<Item>) = transaction {
+    for (item in items) {
+        add(item.id, item.amount)
+    }
+}
+
 fun Inventory.remove(id: String, amount: Int = 1) = transaction { remove(id, amount) }
 
 fun Inventory.remove(index: Int, id: String, amount: Int = 1) = transaction { remove(index, id, amount) }
+
+fun Inventory.remove(vararg ids: String, amount: Int = 1) = transaction {
+    for (id in ids) {
+        remove(id, amount)
+    }
+}
+
+fun Inventory.remove(items: List<Item>) = transaction {
+    for (item in items) {
+        remove(item.id, item.amount)
+    }
+}
 
 fun Inventory.removeToLimit(id: String, amount: Int = 1): Int {
     var removed = 0
@@ -57,9 +82,7 @@ fun Inventory.clear(index: Int) = transaction { clear(index) }
 
 fun Inventory.clear() = transaction { clear() }
 
-fun Inventory.contains(vararg pairs: Pair<String, Int>) = pairs.all { (id, amount) -> contains(id, amount) }
-
-fun Inventory.contains(pairs: List<Pair<String, Int>>) = pairs.all { (id, amount) -> contains(id, amount) }
+fun Inventory.contains(items: List<Item>) = items.all { item -> contains(item.id, item.amount) }
 
 fun Inventory.charge(player: Player, index: Int, amount: Int = 1) = transaction { charge(player, index, amount) }
 

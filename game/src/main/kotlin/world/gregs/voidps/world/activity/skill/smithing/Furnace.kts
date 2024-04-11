@@ -66,7 +66,7 @@ suspend fun CharacterContext.smeltingOptions(
     var max = 0
     for (bar in bars) {
         val smelt: Smelting = itemDefinitions.getOrNull(bar)?.get("smelting") ?: continue
-        val min = smelt.items.minOf { (id, amount) -> player.inventory.count(id, amount) }
+        val min = smelt.items.minOf { item -> player.inventory.count(item.id, item.amount) }
         if (min <= 0) {
             continue
         }

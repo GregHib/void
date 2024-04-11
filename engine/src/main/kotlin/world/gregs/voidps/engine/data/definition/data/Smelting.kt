@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.data.definition.data
 
+import world.gregs.voidps.engine.entity.item.Item
+
 /**
  * @param level mining level required to smelt
  * @param xp experience for successful smelting
@@ -10,7 +12,7 @@ data class Smelting(
     val level: Int = 0,
     val xp: Double = 0.0,
     val chance: Int = 255,
-    val items: List<Pair<String, Int>> = emptyList(),
+    val items: List<Item> = emptyList(),
     val message: String = ""
 ) {
     companion object {
@@ -19,7 +21,7 @@ data class Smelting(
             level = map["level"] as Int,
             xp = map["xp"] as Double,
             chance = (map["chance"] as? IntRange)?.last ?: EMPTY.chance,
-            items = (map["items"] as List<Map<String, Any>>).map { it["item"] as String to (it["amount"] as? Int ?: 1) },
+            items = (map["items"] as List<Map<String, Any>>).map { Item(it["item"] as String, it["amount"] as? Int ?: 1) },
             message = map["message"] as String
         )
 
