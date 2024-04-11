@@ -11,6 +11,8 @@ import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
+import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shift
 import world.gregs.voidps.world.activity.bank.Bank.tabIndex
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 

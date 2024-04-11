@@ -7,14 +7,14 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
  * Stackable items have their stacks reduced by the amount required
  * Not stackable items are removed from as many individual slots as required.
  */
-interface RemoveItem : TransactionOperation {
+object RemoveItem {
 
     /**
      * Removes an item from the inventory.
      * @param id the identifier of the item to be removed.
      * @param amount the number of items to be removed.
      */
-    fun remove(id: String, amount: Int = 1) {
+    fun TransactionOperation.remove(id: String, amount: Int = 1) {
         if (failed) {
             return
         }
@@ -42,7 +42,7 @@ interface RemoveItem : TransactionOperation {
      * @param id the identifier of the item to be removed.
      * @param amount the number of items to be removed.
      */
-    fun remove(index: Int, id: String, amount: Int = 1) {
+    fun TransactionOperation.remove(index: Int, id: String, amount: Int = 1) {
         if (failed) {
             return
         }
@@ -76,7 +76,7 @@ interface RemoveItem : TransactionOperation {
      * @param index the index of the stack in the inventory.
      * @param amount the number of items to be removed from the stack.
      */
-    private fun decreaseStack(index: Int, amount: Int) {
+    private fun TransactionOperation.decreaseStack(index: Int, amount: Int) {
         val item = inventory[index]
         if (item.isEmpty()) {
             error = TransactionError.Invalid
@@ -102,7 +102,7 @@ interface RemoveItem : TransactionOperation {
      * @param id the identifier of the non-stackable items to be removed.
      * @param amount the number of items to be removed.
      */
-    private fun removeNonStackableItems(id: String, amount: Int, start: Int = 0) {
+    private fun TransactionOperation.removeNonStackableItems(id: String, amount: Int, start: Int = 0) {
         // Remove as many non-stackable items as required
         var removed = start
         for (index in inventory.indices) {

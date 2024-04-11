@@ -7,6 +7,8 @@ import world.gregs.voidps.engine.inv.stack.AlwaysStack
 import world.gregs.voidps.engine.inv.stack.NeverStack
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 internal class RemoveItemTest : TransactionOperationTest() {
 

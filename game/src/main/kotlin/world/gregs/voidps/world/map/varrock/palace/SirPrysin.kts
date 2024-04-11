@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -262,9 +263,7 @@ suspend fun NPCOption.giveSilverlight() {
     delay()
     player["demon_slayer_silverlight"] = true
     player["demon_slayer_sir_prysin_sword"] = false
-    player.inventory.transaction {
-        add("silverlight")
-    }
+    player.inventory.add("silverlight")
     item("silverlight", 600, "Sir Prysin hands you a very shiny sword.")
     player.setAnimation("silverlight_showoff")
     player.setGraphic("silverlight_sparkle")

@@ -7,14 +7,14 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
  * Chargeable items charges are increased.
  * Non-chargeable items are ignored.
  */
-interface AddCharge : TransactionOperation {
+object AddCharge {
 
     /**
      * Increases the charges of the item at the specified index by the given amount.
      * @param index the index of the item to be charged.
      * @param amount the number of charges to be added.
      */
-    fun charge(index: Int, amount: Int) {
+    fun TransactionOperation.charge(index: Int, amount: Int) {
         if (failed) {
             return
         }

@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
  * This operation allows shifting an item from one index to another within the same inventory,
  * and shifting the other items to make room for the moved item.
  */
-interface ShiftItem : TransactionOperation {
+object ShiftItem {
 
     /**
      * Shifts an item from a specified index to the next free index of the inventory,
@@ -15,7 +15,7 @@ interface ShiftItem : TransactionOperation {
      * If there is no free space in the inventory the item is moved to the last index.
      * @param index the index of the item to be shifted.
      */
-    fun shiftToFreeIndex(index: Int) {
+    fun TransactionOperation.shiftToFreeIndex(index: Int) {
         if (failed) {
             return
         }
@@ -39,7 +39,7 @@ interface ShiftItem : TransactionOperation {
      * @param fromIndex the index of the item to be shifted.
      * @param toIndex the target index where the item will be moved.
      */
-    fun shift(fromIndex: Int, toIndex: Int) {
+    fun TransactionOperation.shift(fromIndex: Int, toIndex: Int) {
         if (failed || fromIndex == toIndex) {
             return
         }

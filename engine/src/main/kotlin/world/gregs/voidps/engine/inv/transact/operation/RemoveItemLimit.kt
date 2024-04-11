@@ -1,13 +1,14 @@
 package world.gregs.voidps.engine.inv.transact.operation
 
 import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 /**
  * Transaction operation for removing as many items as possible from an inventory.
  * The removeToLimit operation removes items from the inventory until
  * none are remaining or the desired amount is removed.
  */
-interface RemoveItemLimit : RemoveItem {
+object RemoveItemLimit {
 
     /**
      * Removes items from the inventory until none are remaining or the desired amount is removed.
@@ -15,7 +16,7 @@ interface RemoveItemLimit : RemoveItem {
      * @param amount the number of items to be removed.
      * @return the number of items actually removed.
      */
-    fun removeToLimit(id: String, amount: Int = 1): Int {
+    fun TransactionOperation.removeToLimit(id: String, amount: Int = 1): Int {
         if (failed) {
             return 0
         }

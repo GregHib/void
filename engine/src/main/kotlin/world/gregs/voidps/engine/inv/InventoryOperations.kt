@@ -4,6 +4,14 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.transact.charge
 import world.gregs.voidps.engine.inv.transact.discharge
 import world.gregs.voidps.engine.inv.transact.clearCharges
+import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
+import world.gregs.voidps.engine.inv.transact.operation.SwapItem.swap
+import world.gregs.voidps.engine.inv.transact.operation.MoveItem.move
+import world.gregs.voidps.engine.inv.transact.operation.MoveItem.moveAll
+import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shift
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 
 fun Inventory.replace(id: String, with: String) = transaction { replace(id, with) }
 

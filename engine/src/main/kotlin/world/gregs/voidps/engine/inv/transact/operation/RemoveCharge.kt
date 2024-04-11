@@ -7,14 +7,14 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
  * Chargeable items have their charge reduced by the amount required
  * Non-chargeable items are ignored.
  */
-interface RemoveCharge : TransactionOperation {
+object RemoveCharge {
 
     /**
      * Decreases the charges of an item at [index].
      * @param index the index of the item in the inventory.
      * @param amount the number of charges to be removed from the item.
      */
-    fun discharge(index: Int, amount: Int) {
+    fun TransactionOperation.discharge(index: Int, amount: Int) {
         if (failed) {
             return
         }

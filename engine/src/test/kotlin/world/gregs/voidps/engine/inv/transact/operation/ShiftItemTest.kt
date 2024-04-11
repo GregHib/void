@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.inv.stack.NeverStack
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
+import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shift
+import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shiftToFreeIndex
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue

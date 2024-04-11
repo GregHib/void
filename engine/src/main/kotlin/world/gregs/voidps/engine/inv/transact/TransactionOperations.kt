@@ -2,6 +2,10 @@ package world.gregs.voidps.engine.inv.transact
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.transact.operation.RemoveCharge.discharge
+import world.gregs.voidps.engine.inv.transact.operation.AddCharge.charge
+import world.gregs.voidps.engine.inv.transact.operation.ClearCharge.discharge
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 fun Transaction.remove(items: List<Item>) {
     for (item in items) {

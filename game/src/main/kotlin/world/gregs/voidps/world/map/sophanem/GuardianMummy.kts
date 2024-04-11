@@ -4,11 +4,14 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
+import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Uncertain
@@ -87,21 +90,21 @@ suspend fun CharacterContext.sceptreRecharging() {
     npc<Talk>("*sigh* Oh alright. But only if the sceptre is fully empty, I'm not wasting the King's magic...")
     choice("Recharge the sceptre with...") {
         option("Gold artefacts?") {
-            if (player.inventory.transaction { remove(6, gold); replace("pharaohs_sceptre", "pharaohs_sceptre_3") }) {
+            if (player.inventory.chargeSceptre(6, gold)) {
                 statement("You recharge your sceptre with gold artefacts.")
             } else {
                 npc<Talk>("You need to have 6 gold artefacts to recharge your sceptre.")
             }
         }
         option("Stone artefacts?") {
-            if (player.inventory.transaction { remove(12, stone); replace("pharaohs_sceptre", "pharaohs_sceptre_3") }) {
+            if (player.inventory.chargeSceptre(12, stone)) {
                 statement("You recharge your sceptre with stone artefacts.")
             } else {
                 npc<Talk>("You need to have 12 stone artefacts to recharge your sceptre.")
             }
         }
         option("Pottery and Ivory artefacts?") {
-            if (player.inventory.transaction { remove(24, ivory); replace("pharaohs_sceptre", "pharaohs_sceptre_3") }) {
+            if (player.inventory.chargeSceptre(24, ivory)) {
                 statement("You recharge your sceptre with stone artefacts.")
             } else {
                 npc<Talk>("You need to have 24 pottery or ivory artefacts to recharge your sceptre.")
@@ -144,20 +147,21 @@ suspend fun CharacterContext.sceptreDischarging() {
     }
 }
 
-fun Transaction.remove(amount: Int, items: List<String>) {
-    var remaining = amount
-    for (item in items) {
-        if (remaining <= 0) {
-            break
+fun Inventory.chargeSceptre(amount: Int, items: List<String>): Boolean {
+    return transaction {
+        var remaining = amount
+        for (item in items) {
+            if (remaining <= 0) {
+                break
+            }
+            remaining -= removeToLimit(item, remaining)
         }
-        remaining -= removeToLimit(item, remaining)
+        if (remaining > 0) {
+            error = TransactionError.Deficient(remaining)
+        }
+        replace("pharaohs_sceptre", "pharaohs_sceptre_3")
     }
-    if (remaining > 0) {
-        error = TransactionError.Deficient(remaining)
-    }
-    replace("pharaohs_sceptre", "pharaohs_sceptre_3")
 }
-
 
 itemOnNPCOperate("*", "guardian_mummy") {
     player.message("The Mummy is not interested in this")

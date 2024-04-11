@@ -22,16 +22,7 @@ import world.gregs.voidps.engine.inv.transact.operation.*
  */
 class Transaction(
     override val inventory: Inventory
-) : TransactionController(),
-    AddItem, AddItemLimit,
-    ClearItem,
-    MoveItem, MoveItemLimit,
-    RemoveItem, RemoveItemLimit,
-    ReplaceItem,
-    ShiftItem, SwapItem,
-    AddCharge, AddChargeLimit,
-    RemoveCharge, RemoveChargeLimit,
-    ClearCharge {
+) : TransactionController(), TransactionOperation {
 
     override var internalError: TransactionError = TransactionError.None
     override var error: TransactionError

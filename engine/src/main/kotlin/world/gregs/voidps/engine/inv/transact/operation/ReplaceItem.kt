@@ -7,14 +7,14 @@ import world.gregs.voidps.engine.entity.item.Item
  * Transaction operation for replacing items in an inventory.
  * This operation allows replacing an item at a specific index with another item.
  */
-interface ReplaceItem : TransactionOperation {
+object ReplaceItem {
 
     /**
      * Replaces an item in the inventory with another item.
      * @param id the identifier of the item to be replaced.
      * @param with the identifier of the item to replace with.
      */
-    fun replace(id: String, with: String) {
+    fun TransactionOperation.replace(id: String, with: String) {
         replace(inventory.indexOf(id), id, with)
     }
 
@@ -24,7 +24,7 @@ interface ReplaceItem : TransactionOperation {
      * @param id the identifier of the item to be replaced.
      * @param with the identifier of the item to replace with.
      */
-    fun replace(index: Int, id: String, with: String) {
+    fun TransactionOperation.replace(index: Int, id: String, with: String) {
         if (failed) {
             return
         }
@@ -44,7 +44,7 @@ interface ReplaceItem : TransactionOperation {
      * @param id the identifier of the item to be replaced.
      * @param with the identifier of the item to replace with.
      */
-    fun replace(index: Int, id: String, with: String, amount: Int) {
+    fun TransactionOperation.replace(index: Int, id: String, with: String, amount: Int) {
         if (failed) {
             return
         }

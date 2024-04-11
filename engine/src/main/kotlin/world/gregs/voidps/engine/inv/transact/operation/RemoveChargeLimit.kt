@@ -1,13 +1,14 @@
 package world.gregs.voidps.engine.inv.transact.operation
 
 import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.RemoveCharge.discharge
 
 /**
  * Transaction operation for removing charges from an item in an inventory.
  * Chargeable items have their charge reduced by the amount required
  * Non-chargeable items are ignored.
  */
-interface RemoveChargeLimit : RemoveCharge {
+object RemoveChargeLimit {
 
     /**
      * Decreases the charges of an item at [index] until none are remaining or the desired amount is removed.
@@ -15,7 +16,7 @@ interface RemoveChargeLimit : RemoveCharge {
      * @param amount the number of charges to be removed from the item.
      * @return the number of charges actually removed.
      */
-    fun dischargeToLimit(index: Int, amount: Int): Int {
+    fun TransactionOperation.dischargeToLimit(index: Int, amount: Int): Int {
         if (failed) {
             return 0
         }
