@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.Tile
 
-class PostgresStorage(
+class DatabaseStorage(
     private val definitions: (String) -> ItemDefinition = { ItemDefinition.EMPTY }
 ) : AccountStorage {
 
