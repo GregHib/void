@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.inv.stack.NeverStack
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.entity.item.Item
 
-internal class RemoveChargeTest : TransactionOperationTest() {
+internal class RemoveChargeLimitTest : TransactionOperationTest() {
 
     @Test
     fun `Remove charges after the transaction has failed`() {
@@ -18,68 +18,41 @@ internal class RemoveChargeTest : TransactionOperationTest() {
             set(0, Item("item", 1))
         }
         transaction.error = TransactionError.Invalid
-        transaction.discharge(0, 1)
+        assertEquals(0, transaction.dischargeToLimit(0, 1))
         assertFalse(transaction.commit())
         assertEquals(1, inventory[0].amount)
         assertEquals(1, inventory[0].charges)
     }
 
     @Test
-    fun `Can't discharge empty item`() {
-        transaction(stackRule = NeverStack)
-        transaction.discharge(0, 1)
-        assertFalse(transaction.commit())
-    }
-
-    @Test
-    fun `Can't discharge invalid amount`() {
+    fun `Remove invalid charge from item`() {
         every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item", 1))
         }
-        transaction.discharge(0, 0)
+        assertEquals(0, transaction.dischargeToLimit(0, -1))
         assertFalse(transaction.commit())
     }
 
     @Test
-    fun `Can't discharge stackable items`() {
-        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
-        transaction(stackRule = AlwaysStack) {
-            set(0, Item("item", 1))
-        }
-        transaction.discharge(0, 1)
-        assertFalse(transaction.commit())
-    }
-
-    @Test
-    fun `Can't discharge non chargeable items`() {
-        transaction(stackRule = NeverStack) {
-            set(0, Item("item", 1))
-        }
-        transaction.discharge(0, 1)
-        assertFalse(transaction.commit())
-    }
-
-    @Test
-    fun `Can't discharge more charges than available`() {
+    fun `Discharge more charges than available`() {
         every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item", 4))
         }
-        transaction.discharge(0, 5)
-        assertFalse(transaction.commit())
-        assertEquals(4, inventory[0].charges)
+        assertEquals(4, transaction.dischargeToLimit(0, 5))
+        assertTrue(transaction.commit())
+        assertEquals(0, inventory[0].charges)
     }
 
     @Test
-    fun `Remove charges from item`() {
+    fun `Discharge correct amount of charges`() {
         every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
         transaction(stackRule = NeverStack) {
-            set(0, Item("item", 6))
+            set(0, Item("item", 4))
         }
-        transaction.discharge(0, 4)
+        assertEquals(3, transaction.dischargeToLimit(0, 3))
         assertTrue(transaction.commit())
-        assertEquals(1, inventory[0].amount)
-        assertEquals(2, inventory[0].charges)
+        assertEquals(1, inventory[0].charges)
     }
 }

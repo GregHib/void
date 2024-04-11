@@ -18,6 +18,7 @@ internal class AddChargeTest : TransactionOperationTest() {
     @Test
     fun `Add charge after the transaction has failed`() {
         transaction(stackRule = NeverStack)
+        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
         // Set the transaction to failed
         transaction.set(0, Item("item", 0))
         transaction.error = TransactionError.Invalid
@@ -28,7 +29,7 @@ internal class AddChargeTest : TransactionOperationTest() {
 
     @Test
     fun `Add invalid index to inventory`() {
-        transaction(itemRule = validItems, stackRule = NeverStack)
+        transaction(stackRule = NeverStack)
         transaction.charge(-1, 0)
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
@@ -36,8 +37,8 @@ internal class AddChargeTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Add invalid charge to inventory`() {
-        transaction(itemRule = validItems, stackRule = NeverStack)
+    fun `Add charge to empty slot`() {
+        transaction(stackRule = NeverStack)
         transaction.charge(0, 1)
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
@@ -45,7 +46,7 @@ internal class AddChargeTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Add invalid charge of item to inventory`() {
+    fun `Add invalid charge to item`() {
         transaction(stackRule = NeverStack)
         transaction.set(0, Item("item", 1))
         transaction.charge(0, -1)
