@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
+import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val Item.pottery: Pottery
     get() = def["pottery"]
@@ -65,6 +66,7 @@ fun Player.make(animation: String, obj: GameObject, item: Item, id: String, data
     }
     face(obj)
     if (!has(Skill.Crafting, data.level)) {
+	    message("You need a Crafting level of ${data.level} to make a ${id.toLowerSpaceCase()}.")
         return
     }
     setAnimation(animation)
@@ -73,7 +75,9 @@ fun Player.make(animation: String, obj: GameObject, item: Item, id: String, data
             message("You need some ${item.id.toLowerSpaceCase()} in order to make a ${id.toLowerSpaceCase()}.")
             return@weakQueue
         }
+		player.playSound("pottery")
         exp(Skill.Crafting, data.xp)
         make(animation, obj, item, id, data, amount - 1)
+		message("You make the clay into a ${id.toLowerSpaceCase()}.")
     }
 }

@@ -1705,7 +1705,7 @@ door_78_closed:
   id: 2628
   examine: "It's a door."
 guild_door_2_opened:
-  id: 2538
+  id: 2529
   examine: "A door."
 guild_door_2_closed:
   id: 2647
@@ -1800,6 +1800,9 @@ gate_63_closed:
 potters_wheel:
   id: 2642
   examine: "Used for fashioning clay items."
+pottery_oven_crafting_guild:
+  id: 2643
+  examine: "Bake your clay items in here."  
 flax:
   id: 2646
   pickable:
@@ -2370,6 +2373,12 @@ crate_36:
 crate_37:
   id: 4301
   examine: "An old crate for storage."
+pottery_oven_rellekka:
+  id: 4308
+  examine: "Bake your clay items in here."
+potters_wheel_2:
+  id: 4310
+  examine: "Used for fashioning clay items."  
 gate_88_opened:
   id: 4313
   examine: "A wooden gate."
@@ -6195,6 +6204,9 @@ crate_184:
 crate_185:
   id: 20368
   examine: "A wooden crate."
+potters_wheel_3:
+  id: 20375
+  examine: "Used for fashioning clay items."  
 gate_150_opened:
   id: 20392
 gate_150_closed:
@@ -8361,6 +8373,12 @@ gate_205_opened:
 gate_205_closed:
   id: 34780
   examine: "A wooden gate."
+potters_wheel_4:
+  id: 34801
+  examine: "Used for fashioning clay items."
+pottery_oven_east_ardougne:
+  id: 34802
+  examine: "Bake your clay items in here."  
 door_576_opened:
   id: 34808
   examine: "The door is open."
