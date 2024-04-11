@@ -93,6 +93,7 @@ internal class AddChargeTest : TransactionOperationTest() {
         transaction.charge(0, amountToAdd)
 
         assertFalse(transaction.commit())
+        assertEquals(TransactionError.Full(5), transaction.error)
     }
 
     @Test
@@ -105,6 +106,7 @@ internal class AddChargeTest : TransactionOperationTest() {
         transaction.charge(0, amountToAdd)
 
         assertFalse(transaction.commit())
+        assertEquals(TransactionError.Full(10), transaction.error)
     }
 
     @Test
@@ -117,5 +119,6 @@ internal class AddChargeTest : TransactionOperationTest() {
 
         assertFalse(transaction.commit())
         assertEquals(0, inventory[0].charges)
+        assertEquals(TransactionError.Invalid, transaction.error)
     }
 }

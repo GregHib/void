@@ -14,7 +14,7 @@ class Item(
     private val defOrNull: ItemDefinition?
         get() = KoinPlatformTools.defaultContext().getOrNull()?.get<ItemDefinitions>()?.getOrNull(id)
     private val itemCharge: Boolean
-        get() = defOrNull?.contains("charges") == true && defOrNull?.contains("charge") == true
+        get() = defOrNull?.contains("charges") == true && defOrNull?.contains("charge") != true
     val amount: Int
         get() = if (itemCharge) 1 else value
     val charges: Int
