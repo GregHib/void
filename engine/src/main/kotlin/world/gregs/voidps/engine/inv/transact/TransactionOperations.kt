@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.inv.transact
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.transact.operation.RemoveCharge.discharge
 import world.gregs.voidps.engine.inv.transact.operation.AddCharge.charge
@@ -31,7 +30,11 @@ fun Transaction.charge(player: Player, index: Int, amount: Int) {
     val variable: String? = item.def.getOrNull("charge")
     if (variable != null) {
         val maximum = item.def["charges", 0]
-        player[variable] = (player[variable, 0] + amount).coerceAtMost(maximum)
+        val current = player[variable, 0]
+        player[variable] = (current + amount).coerceAtMost(maximum)
+        state.onRevert {
+            player[variable] = current
+        }
         return
     }
     charge(index, amount)
@@ -45,7 +48,11 @@ fun Transaction.discharge(player: Player, index: Int, amount: Int) {
     }
     val variable: String? = item.def.getOrNull("charge")
     if (variable != null) {
-        player[variable] = (player[variable, 0] - amount).coerceAtLeast(0)
+        val current = player[variable, 0]
+        player[variable] = (current - amount).coerceAtLeast(0)
+        state.onRevert {
+            player[variable] = current
+        }
         return
     }
     discharge(index, amount)
@@ -59,8 +66,12 @@ fun Transaction.clearCharges(player: Player, index: Int) {
     }
     val variable: String? = item.def.getOrNull("charge")
     if (variable != null) {
-        player.clear(variable)
-        state
+        val current = player.clear(variable)
+        state.onRevert {
+            if (current != null) {
+                player[variable] = current
+            }
+        }
         return
     }
     discharge(index)

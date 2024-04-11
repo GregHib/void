@@ -7,7 +7,6 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.charges
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.stack.NeverStack
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.TransactionOperationTest
@@ -95,4 +94,137 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
         assertEquals(0, inventory.charges(player,0))
         assertFalse(player.contains("charge_variable"))
     }
+
+    @Test
+    fun `Add charges skips if transaction has failed`() {
+        transaction(stackRule = NeverStack) {
+            set(0, Item("item"))
+        }
+
+        val player = Player()
+        transaction.error = TransactionError.Invalid
+        transaction.charge(player, 0, 2)
+
+        assertFalse(transaction.commit())
+        assertEquals(0, inventory.charges(player,0))
+        assertEquals(0, player["charge_variable", 0])
+    }
+
+    @Test
+    fun `Remove charges skips if transaction has failed`() {
+        transaction(stackRule = NeverStack) {
+            set(0, Item("item"))
+        }
+
+        val player = Player()
+        player["charge_variable"] = 4
+        transaction.error = TransactionError.Invalid
+        transaction.discharge(player, 0, 2)
+
+        assertFalse(transaction.commit())
+        assertEquals(4, player["charge_variable", 0])
+    }
+
+    @Test
+    fun `Clear charges skips if transaction has failed`() {
+        transaction(stackRule = NeverStack) {
+            set(0, Item("item"))
+        }
+
+        val player = Player()
+        player["charge_variable"] = 4
+        transaction.error = TransactionError.Invalid
+        transaction.clearCharges(player, 0)
+
+        assertFalse(transaction.commit())
+        assertEquals(4, player["charge_variable", 0])
+    }
+
+    @Test
+    fun `Add charges reverts on transaction failure`() {
+        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charge" to "charge_variable", "charges" to 10))
+        transaction(stackRule = NeverStack) {
+            set(0, Item("item"))
+        }
+
+        val player = Player()
+        player["charge_variable"] = 1
+        transaction.charge(player, 0, 2)
+        assertEquals(3, inventory.charges(player,0))
+
+        transaction.error = TransactionError.Invalid
+        assertFalse(transaction.commit())
+
+        assertEquals(1, inventory.charges(player,0))
+    }
+
+    @Test
+    fun `Remove charges reverts on transaction failure`() {
+        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charge" to "charge_variable", "charges" to 10))
+        transaction(stackRule = NeverStack) {
+            set(0, Item("item"))
+        }
+
+        val player = Player()
+        player["charge_variable"] = 4
+        transaction.discharge(player, 0, 2)
+        assertEquals(2, inventory.charges(player,0))
+
+        transaction.error = TransactionError.Invalid
+        assertFalse(transaction.commit())
+
+        assertEquals(4, inventory.charges(player,0))
+    }
+
+    @Test
+    fun `Clear charges reverts on transaction failure`() {
+        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charge" to "charge_variable", "charges" to 10))
+        transaction(stackRule = NeverStack) {
+            set(0, Item("item"))
+        }
+
+        val player = Player()
+        player["charge_variable"] = 4
+        transaction.clearCharges(player, 0)
+        assertEquals(0, inventory.charges(player,0))
+
+        transaction.error = TransactionError.Invalid
+        assertFalse(transaction.commit())
+
+        assertEquals(4, inventory.charges(player,0))
+    }
+
+    @Test
+    fun `Add charges fails if slot is empty`() {
+        transaction(stackRule = NeverStack)
+
+        val player = Player()
+        transaction.charge(player, 0, 2)
+
+        assertFalse(transaction.commit())
+        assertEquals(TransactionError.Invalid, transaction.error)
+    }
+
+    @Test
+    fun `Remove charges fails if slot is empty`() {
+        transaction(stackRule = NeverStack)
+
+        val player = Player()
+        transaction.discharge(player, 0, 2)
+
+        assertFalse(transaction.commit())
+        assertEquals(TransactionError.Invalid, transaction.error)
+    }
+
+    @Test
+    fun `Clear charges fails if slot is empty`() {
+        transaction(stackRule = NeverStack)
+
+        val player = Player()
+        transaction.clearCharges(player, 0)
+
+        assertFalse(transaction.commit())
+        assertEquals(TransactionError.Invalid, transaction.error)
+    }
+
 }
