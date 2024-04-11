@@ -13,6 +13,8 @@ import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shift
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
+import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 
 fun Inventory.replace(id: String, with: String) = transaction { replace(id, with) }
 
@@ -33,7 +35,7 @@ fun Inventory.move(fromIndex: Int, target: Inventory, toIndex: Int) = transactio
 fun Inventory.moveToLimit(id: String, amount: Int, target: Inventory): Int {
     var moved = 0
     transaction {
-        moved = moveToLimit(id, amount, target)
+        moved = this.moveToLimit(id, amount, target)
     }
     return moved
 }
@@ -73,7 +75,7 @@ fun Inventory.remove(items: List<Item>) = transaction {
 fun Inventory.removeToLimit(id: String, amount: Int = 1): Int {
     var removed = 0
     transaction {
-        removed = removeToLimit(id, amount)
+        removed = this.removeToLimit(id, amount)
     }
     return removed
 }
