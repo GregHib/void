@@ -19,8 +19,8 @@ npcOperate("Talk-to", "father_urhney") {
             choice {
                 option<Talking>("Repeated failure on mortgage repayments.") {
                     npc<Angry>("What?")
-                    npc<Angry>(" But... I don't have a mortgage! I built this house myself!")
-                    player<Talking>(" Sorry. I must have got the wrong address. All the houses look the same around here.")
+                    npc<Angry>("But... I don't have a mortgage! I built this house myself!")
+                    player<Talking>("Sorry. I must have got the wrong address. All the houses look the same around here.")
                     npc<Angry>("What? What houses? What ARE you talking about???")
                     player<Talking>("Never mind.")
                 }
