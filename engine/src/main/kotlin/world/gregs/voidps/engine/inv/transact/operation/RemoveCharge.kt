@@ -15,6 +15,9 @@ interface RemoveCharge : TransactionOperation {
      * @param amount the number of charges to be removed from the item.
      */
     fun discharge(index: Int, amount: Int) {
+        if (failed) {
+            return
+        }
         val item = inventory[index]
         if (item.isEmpty() || amount <= 0 || inventory.stackable(item.id)) {
             error = TransactionError.Invalid

@@ -15,6 +15,9 @@ interface AddCharge : TransactionOperation {
      * @param amount the number of charges to be added.
      */
     fun charge(index: Int, amount: Int) {
+        if (failed) {
+            return
+        }
         val item = inventory[index]
         if (item.isEmpty() || amount <= 0 || inventory.stackable(item.id)) {
             error = TransactionError.Invalid

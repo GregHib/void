@@ -32,10 +32,11 @@ abstract class TransactionOperationTest : KoinMock() {
             return id.isBlank() || id == "invalid_item"
         }
     }
+    protected lateinit var itemDefinitions: ItemDefinitions
 
     @BeforeEach
     fun setup() {
-        declareMock<ItemDefinitions> {
+        itemDefinitions = declareMock<ItemDefinitions> {
             every { this@declareMock.get(any<String>()) } returns ItemDefinition()
             every { this@declareMock.getOrNull(any<String>()) } returns ItemDefinition()
         }
