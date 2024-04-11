@@ -80,8 +80,8 @@ object Door {
     }
 
     private fun closeSound(player: Player, definition: ObjectDefinition, gate: Boolean) {
-        val material = if(definition.contains("material")) "${definition["material", "wood"]}_" else ""
-        player.playSound(if (gate) "${material}gate_close" else "${material}_door_close")
+        val material = if (definition.contains("material")) "${definition["material", "wood"]}_" else ""
+        player.playSound(if (gate) "${material}gate_close" else "${material}door_close")
     }
 
     /**
@@ -112,8 +112,8 @@ object Door {
     }
 
     private fun openSound(player: Player, definition: ObjectDefinition, gate: Boolean) {
-        val material = if(definition.contains("material")) "${definition["material", "wood"]}_" else ""
-        player.playSound(if (gate) "${material}gate_open" else "${material}_door_open")
+        val material = if (definition.contains("material")) "${definition["material", "wood"]}_" else ""
+        player.playSound(if (gate) "${material}gate_open" else "${material}door_open")
     }
 
     private fun resetExisting(obj: GameObject, double: GameObject?): Boolean {
