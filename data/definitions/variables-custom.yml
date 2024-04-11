@@ -260,7 +260,6 @@ binding_necklace_charges:
   persist: true
 camulet_charges:
   format: int
-  default: 4
   persist: true
 crystal_saw_charges:
   format: int
@@ -273,7 +272,6 @@ explorers_ring_charges:
   persist: true
 falador_shield_charges:
   format: int
-  default: 1
   persist: true
 ibans_staff_charges:
   format: int

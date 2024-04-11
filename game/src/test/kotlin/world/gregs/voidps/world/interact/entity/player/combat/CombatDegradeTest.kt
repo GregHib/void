@@ -40,7 +40,8 @@ internal class CombatDegradeTest : WorldTest() {
         player.equipment.set(EquipSlot.Weapon.index, "chaotic_rapier", 30000)
         player.equipment.set(EquipSlot.Chest.index, "dharoks_platebody")
         player.equipment.set(EquipSlot.Legs.index, "statiuss_platelegs")
-        player.equipment.set(EquipSlot.Amulet.index, "binding_necklace", 16)
+        player["binding_necklace_charges"] = 16
+        player.equipment.set(EquipSlot.Amulet.index, "binding_necklace")
         player.equipment.set(EquipSlot.Ring.index, "ring_of_duelling_8")
         player.equipment.set(EquipSlot.Hands.index, "combat_bracelet_4")
 

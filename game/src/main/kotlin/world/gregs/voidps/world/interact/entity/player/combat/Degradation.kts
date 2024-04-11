@@ -34,7 +34,6 @@ fun degrade(player: Player) {
         return
     }
     player.start("degraded", 1)
-
     val inventory = player.equipment
     for (slot in slots) {
         val equipment = inventory.getOrNull(slot) ?: continue
@@ -49,12 +48,12 @@ fun degrade(player: Player) {
 val itemDefinitions: ItemDefinitions by inject()
 
 itemChange { player ->
-    if (!item.def.contains("charges") || item.charges != 0) {
+    val inventory = player.inventories.inventory(inventory)
+    if (!item.def.contains("charges") || inventory.charges(player, index) != 0) {
         return@itemChange
     }
     val replacement: String = item.def.getOrNull("degrade") ?: return@itemChange
     player.softQueue("degrade") {
-        val inventory = player.inventories.inventory(inventory)
         val success = if (replacement == "destroy") {
             inventory.remove(index, item.id)
         } else {

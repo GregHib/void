@@ -17,6 +17,10 @@ class Item(
         get() = defOrNull?.contains("charges") == true && defOrNull?.contains("charge") != true
     val amount: Int
         get() = if (itemCharge) 1 else value
+
+    /**
+     * Total number of inventory level charges, see [Inventory.charges] for item charges.
+     */
     val charges: Int
         get() = if (itemCharge) value else 0
 

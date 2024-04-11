@@ -29035,6 +29035,7 @@ potato_with_cheese:
 potato_with_cheese_noted: 6706
 camulet:
   id: 6707
+  charges: 4
   charge: camulet_charges
   tradeable: false
   weight: 0.007

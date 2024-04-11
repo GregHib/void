@@ -13,7 +13,8 @@ class DegradeTest : WorldTest() {
         val player = createPlayer("player")
         val slot = EquipSlot.Amulet.index
         val inventory = player.equipment
-        player.equipment.set(slot, "binding_necklace", 16)
+        player["binding_necklace_charges"] = 16
+        player.equipment.set(slot, "binding_necklace")
         assertEquals(16, inventory.charges(player, slot))
         assertTrue(inventory.discharge(player, slot, amount = 6))
         assertEquals(10, inventory.charges(player, slot))
@@ -30,14 +31,15 @@ class DegradeTest : WorldTest() {
         val player = createPlayer("player")
         val slot = EquipSlot.Amulet.index
         val inventory = player.equipment
-        player.equipment.set(slot, "camulet", 4)
+        player["camulet_charges"] = 4
+        inventory.set(slot, "camulet")
         assertEquals(4, inventory.charges(player, slot))
         assertTrue(inventory.discharge(player, slot, amount = 3))
         assertEquals(1, inventory.charges(player, slot))
-        assertFalse(player.equipment[slot].isEmpty())
+        assertFalse(inventory[slot].isEmpty())
 
         inventory.clearCharges(player, slot)
-        assertEquals("camulet", player.equipment[slot].id)
+        assertEquals("camulet", inventory[slot].id)
         assertEquals(0, inventory.charges(player, slot))
     }
 
@@ -139,7 +141,8 @@ class DegradeTest : WorldTest() {
         val player = createPlayer("player")
         val slot = EquipSlot.Amulet.index
         val inventory = player.equipment
-        player.equipment.set(slot, "binding_necklace", 16)
+        player["binding_necklace_charges"] = 16
+        player.equipment.set(slot, "binding_necklace")
         assertEquals(16, inventory.charges(player, slot))
         assertTrue(inventory.discharge(player, slot, amount = 6))
         assertEquals(10, inventory.charges(player, slot))
