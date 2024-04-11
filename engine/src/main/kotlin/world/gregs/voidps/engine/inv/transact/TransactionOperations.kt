@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.transact.operation.RemoveCharge.discharge
-import world.gregs.voidps.engine.inv.transact.operation.AddCharge.charge
+import world.gregs.voidps.engine.inv.transact.operation.AddChargeLimit.chargeToLimit
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearCharge.discharge
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
@@ -37,7 +37,7 @@ fun Transaction.charge(player: Player, index: Int, amount: Int) {
         }
         return
     }
-    charge(index, amount)
+    chargeToLimit(index, amount)
 }
 
 fun Transaction.discharge(player: Player, index: Int, amount: Int) {
