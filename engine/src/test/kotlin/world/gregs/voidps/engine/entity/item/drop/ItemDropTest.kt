@@ -108,9 +108,8 @@ class ItemDropTest {
             "id" to id
         )
 
-        val definitions = ItemDefinitions(emptyArray())
         val drop = ItemDrop(map)
-        val item = drop.toItem(definitions)
+        val item = drop.toItem()
         assertTrue(item.isEmpty())
     }
 
@@ -120,10 +119,8 @@ class ItemDropTest {
             "id" to "bones",
             "amount" to "1-5"
         )
-        val definitions = ItemDefinitions(arrayOf(ItemDefinition(id = 0, stringId = "bones")))
-        definitions.ids = mapOf("bones" to 0)
         val drop = ItemDrop(map)
-        val item = drop.toItem(definitions)
+        val item = drop.toItem()
         assertFalse(item.isEmpty())
         assertEquals("bones", item.id)
         assertTrue(item.amount in 1..5)

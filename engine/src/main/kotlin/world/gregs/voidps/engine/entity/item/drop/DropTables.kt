@@ -36,7 +36,7 @@ class DropTables {
                     } else {
                         super.set(map, key, when (key) {
                             "type" -> TableType.byName(value as String)
-                            "amount" -> if (value is String && value.contains("-")) {
+                            "amount", "charges" -> if (value is String && value.contains("-")) {
                                 value.toIntRange(inclusive = true)
                             } else {
                                 value as Int..value
