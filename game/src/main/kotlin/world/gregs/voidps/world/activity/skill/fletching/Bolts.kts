@@ -28,19 +28,21 @@ itemOnItem("feather", "*_bolts_unf") {
     }
 
     val createdBolt: String = boltUsed.id.replace("_unf", "")
-    it.inventory.transaction {
-        it.setAnimation("tipping_bolts")
+    val success = it.inventory.transaction {
         remove(boltUsed.id, actualAmount)
         remove("feather", actualAmount)
         add(createdBolt, actualAmount)
-
-        val totalExperience = bolts.xp * actualAmount
-        it.experience.add(Skill.Fletching, totalExperience)
-
-        it.message("You fletch $actualAmount bolts.", ChatType.Game)
     }
-}
 
+    if(!success) {
+        return@itemOnItem
+    }
+
+    it.setAnimation("tipping_bolts")
+    val totalExperience = bolts.xp * actualAmount
+    it.experience.add(Skill.Fletching, totalExperience)
+    it.message("You fletch $actualAmount bolts.", ChatType.Game)
+}
 
 val Item.boltsUnf: Boolean
     get() = def.contains("fletch_bolts")

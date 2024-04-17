@@ -28,19 +28,21 @@ itemOnItem("feather", "*_dart_tip") {
     }
 
     val createdDart: String = dartUsed.id.replace("_tip", "")
-    it.inventory.transaction {
-        it.setAnimation("fletch_darts")
+    val success = it.inventory.transaction {
         remove(dartUsed.id, actualAmount)
         remove("feather", actualAmount)
         add(createdDart, actualAmount)
-
-        val totalExperience = darts.xp * actualAmount
-        it.experience.add(Skill.Fletching, totalExperience)
-
-        it.message("You finish making $actualAmount darts.", ChatType.Game)
     }
-}
 
+    if(!success) {
+        return@itemOnItem
+    }
+
+    it.setAnimation("fletch_darts")
+    val totalExperience = darts.xp * actualAmount
+    it.experience.add(Skill.Fletching, totalExperience)
+    it.message("You finish making $actualAmount darts.", ChatType.Game)
+}
 
 val Item.dartUnf: Boolean
     get() = def.contains("fletch_dart")

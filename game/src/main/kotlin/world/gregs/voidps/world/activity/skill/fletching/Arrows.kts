@@ -45,16 +45,19 @@ fun makeHeadlessArrows(player: Player, addItem: String, amount: Int) {
     }
 
     player.weakQueue("feather_to_shaft_create", 2) {
-        player.inventory.transaction {
-            player.setAnimation("feather_to_shaft")
+        val success = player.inventory.transaction {
             remove("feather", actualAmount)
             remove("arrow_shaft", actualAmount)
             add(addItem, actualAmount)
-            val experiencePerArrow = 15.0 / 15
-            val totalExperience = experiencePerArrow * actualAmount
-            player.experience.add(Skill.Fletching, totalExperience)
-            player.message("You attach feathers to $actualAmount arrow shafts.")
         }
+        if(!success) {
+            return@weakQueue
+        }
+        player.setAnimation("feather_to_shaft")
+        val experiencePerArrow = 15.0 / 15
+        val totalExperience = experiencePerArrow * actualAmount
+        player.experience.add(Skill.Fletching, totalExperience)
+        player.message("You attach feathers to $actualAmount arrow shafts.")
         makeHeadlessArrows(player, addItem, amount - 1)
     }
 }
@@ -62,13 +65,18 @@ fun makeHeadlessArrows(player: Player, addItem: String, amount: Int) {
 
 fun makeImmediately(player: Player, addItem: String, amount: Int) {
     player.weakQueue("feather_to_shaft_create", 2) {
-        player.inventory.transaction {
-            player.setAnimation("feather_to_shaft")
+        val success = player.inventory.transaction {
             remove("feather", amount)
             remove("arrow_shaft", amount)
             add(addItem, amount)
-            player.experience.add(Skill.Fletching, 15.0)
-            player.message("You attach feathers to $amount arrow shafts.")
         }
+        if(!success) {
+            return@weakQueue
+        }
+        player.setAnimation("feather_to_shaft")
+        val experiencePerArrow = 15.0 / 15
+        val totalExperience = experiencePerArrow * amount
+        player.experience.add(Skill.Fletching, totalExperience)
+        player.message("You attach feathers to $amount arrow shafts.")
     }
 }
