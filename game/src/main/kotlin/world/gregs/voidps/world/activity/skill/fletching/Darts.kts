@@ -38,7 +38,7 @@ itemOnItem("feather", "*_dart_tip") {
         return@itemOnItem
     }
 
-    it.setAnimation("fletch_darts")
+    it.setAnimation("generic_fletch")
     val totalExperience = darts.xp * actualAmount
     it.experience.add(Skill.Fletching, totalExperience)
     it.message("You finish making $actualAmount darts.", ChatType.Game)

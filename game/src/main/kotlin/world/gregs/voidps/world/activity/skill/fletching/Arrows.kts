@@ -53,7 +53,7 @@ fun makeHeadlessArrows(player: Player, addItem: String, amount: Int) {
         if(!success) {
             return@weakQueue
         }
-        player.setAnimation("feather_to_shaft")
+        player.setAnimation("generic_fletch")
         val experiencePerArrow = 15.0 / 15
         val totalExperience = experiencePerArrow * actualAmount
         player.experience.add(Skill.Fletching, totalExperience)
@@ -73,7 +73,7 @@ fun makeImmediately(player: Player, addItem: String, amount: Int) {
         if(!success) {
             return@weakQueue
         }
-        player.setAnimation("feather_to_shaft")
+        player.setAnimation("generic_fletch")
         val experiencePerArrow = 15.0 / 15
         val totalExperience = experiencePerArrow * amount
         player.experience.add(Skill.Fletching, totalExperience)

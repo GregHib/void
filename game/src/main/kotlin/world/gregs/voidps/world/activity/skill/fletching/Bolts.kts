@@ -38,7 +38,7 @@ itemOnItem("feather", "*_bolts_unf") {
         return@itemOnItem
     }
 
-    it.setAnimation("tipping_bolts")
+    it.setAnimation("generic_fletch")
     val totalExperience = bolts.xp * actualAmount
     it.experience.add(Skill.Fletching, totalExperience)
     it.message("You fletch $actualAmount bolts.", ChatType.Game)
