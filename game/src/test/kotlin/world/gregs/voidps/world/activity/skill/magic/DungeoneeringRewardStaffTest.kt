@@ -2,8 +2,9 @@ package world.gregs.voidps.world.activity.skill.magic
 
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.charge
+import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.world.interact.entity.player.effect.degrade.Degrade
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.itemOnItem
 import world.gregs.voidps.world.script.itemOption
@@ -23,7 +24,7 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
         player.itemOnItem(0, 1)
 
         assertEquals(0, player.inventory.count(rune))
-        assertEquals(10, Degrade.charges(player, player.inventory, 1))
+        assertEquals(10, player.inventory.charges(player, 1))
     }
 
     @Test
@@ -31,12 +32,12 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
         val player = createPlayer("player")
         player.inventory.add(rune, 10)
         player.inventory.add(staff)
-        Degrade.charge(player, player.inventory, 1, 995)
+        player.inventory.charge(player, 1, 995)
 
         player.itemOnItem(0, 1)
 
         assertEquals(5, player.inventory.count(rune))
-        assertEquals(1000, Degrade.charges(player, player.inventory, 1))
+        assertEquals(1000, player.inventory.charges(player, 1))
     }
 
     @Test
@@ -44,12 +45,12 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
         val player = createPlayer("player")
         player.inventory.add(rune, 10)
         player.inventory.add(staff)
-        Degrade.charge(player, player.inventory, 1, 1000)
+        player.inventory.charge(player, 1, 1000)
 
         player.itemOnItem(0, 1)
 
         assertEquals(10, player.inventory.count(rune))
-        assertEquals(1000, Degrade.charges(player, player.inventory, 1))
+        assertEquals(1000, player.inventory.charges(player, 1))
     }
 
     @Test
@@ -61,7 +62,7 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
         player.itemOption("Empty", staff)
 
         assertEquals(10, player.inventory.count(rune))
-        assertEquals(0, Degrade.charges(player, player.inventory, 1))
+        assertEquals(0, player.inventory.charges(player, 1))
     }
 
     @Test
@@ -69,12 +70,12 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
         val player = createPlayer("player")
         player.inventory.add(rune, 10)
         player.inventory.add(staff)
-        Degrade.charge(player, player.inventory, 1, 123)
+        player.inventory.charge(player, 1, 123)
 
         player.itemOption("Empty", staff)
 
         assertEquals(133, player.inventory.count(rune))
-        assertEquals(0, Degrade.charges(player, player.inventory, 1))
+        assertEquals(0, player.inventory.charges(player, 1))
     }
 
     @Test
@@ -82,12 +83,12 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
         val player = createPlayer("player")
         player.inventory.add(staff)
         player.inventory.add("shark", 27)
-        Degrade.charge(player, player.inventory, 0, 10)
+        player.inventory.charge(player,0, 10)
 
         player.itemOption("Empty", staff)
 
         assertEquals(0, player.inventory.count(rune))
-        assertEquals(10, Degrade.charges(player, player.inventory, 0))
+        assertEquals(10, player.inventory.charges(player, 0))
     }
 
     @Test
@@ -96,12 +97,12 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
         player.inventory.add(staff)
         player.inventory.add(rune, 5)
         player.inventory.add("shark", 26)
-        Degrade.charge(player, player.inventory, 0, 10)
+        player.inventory.charge(player, 0, 10)
 
         player.itemOption("Empty", staff)
 
         assertEquals(15, player.inventory.count(rune))
-        assertEquals(0, Degrade.charges(player, player.inventory, 0))
+        assertEquals(0, player.inventory.charges(player,  0))
     }
 
     @Test
@@ -110,12 +111,12 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
         player.inventory.add(staff)
         player.inventory.add(rune, Int.MAX_VALUE - 5)
         player.inventory.add("shark", 26)
-        Degrade.charge(player, player.inventory, 0, 10)
+        player.inventory.charge(player, 0, 10)
 
         player.itemOption("Empty", staff)
 
         assertEquals(Int.MAX_VALUE, player.inventory.count(rune))
-        assertEquals(5, Degrade.charges(player, player.inventory, 0))
+        assertEquals(5, player.inventory.charges(player, 0))
     }
 
     @Test
@@ -124,11 +125,11 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
         player.inventory.add(staff)
         player.inventory.add(rune, Int.MAX_VALUE)
         player.inventory.add("shark", 26)
-        Degrade.charge(player, player.inventory, 0, 10)
+        player.inventory.charge(player, 0, 10)
 
         player.itemOption("Empty", staff)
 
         assertEquals(Int.MAX_VALUE, player.inventory.count(rune))
-        assertEquals(10, Degrade.charges(player, player.inventory, 0))
+        assertEquals(10, player.inventory.charges(player, 0))
     }
 }

@@ -12,7 +12,7 @@ class MinigameSpellTest : MagicSpellTest() {
     @Test
     fun `Remove minigame runes`() {
         val player = player()
-        setItems(Item("earth_rune", 2, def = ItemDefinition.EMPTY), Item("air_rune", 1, def = ItemDefinition.EMPTY), Item("death_rune", 1, def = ItemDefinition.EMPTY))
+        setItems(Item("earth_rune", 2), Item("air_rune", 1), Item("death_rune", 1))
         player["minigame_type"] = "fist_of_guthix"
 
         player.inventory.add("elemental_rune", 10)
@@ -26,7 +26,7 @@ class MinigameSpellTest : MagicSpellTest() {
     @Test
     fun `Remove last minigame runes`() {
         val player = player()
-        setItems(Item("earth_rune", 1, def = ItemDefinition.EMPTY), Item("air_rune", 2, def = ItemDefinition.EMPTY), Item("death_rune", 1, def = ItemDefinition.EMPTY))
+        setItems(Item("earth_rune", 1), Item("air_rune", 2), Item("death_rune", 1))
         player["minigame_type"] = "stealing_creation"
 
         player.inventory.add("elemental_rune", 3)
@@ -40,7 +40,7 @@ class MinigameSpellTest : MagicSpellTest() {
     @Test
     fun `Can't use minigame runes outside of minigame`() {
         val player = player()
-        setItems(Item("earth_rune", 1, def = ItemDefinition.EMPTY), Item("air_rune", 2, def = ItemDefinition.EMPTY), Item("death_rune", 1, def = ItemDefinition.EMPTY))
+        setItems(Item("earth_rune", 1), Item("air_rune", 2), Item("death_rune", 1))
 
         player.inventory.add("elemental_rune", 10)
         player.inventory.add("catalytic_rune", 10)
@@ -53,7 +53,7 @@ class MinigameSpellTest : MagicSpellTest() {
     @Test
     fun `Not enough minigame runes`() {
         val player = player()
-        setItems(Item("air_rune", 3, def = ItemDefinition.EMPTY), Item("death_rune", 1, def = ItemDefinition.EMPTY))
+        setItems(Item("air_rune", 3), Item("death_rune", 1))
         player["minigame_type"] = "barbarian_assault"
 
         player.inventory.add("elemental_rune", 2)

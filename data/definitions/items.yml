@@ -78387,8 +78387,9 @@ nature_staff:
   tradeable: false
   bank_stacks: false
   weight: 2.267
-  charges: 1000
-  charge_start: 0
+  charges_max: 1000
+  charges: 0
+  charge: nature_staff_charges
   category: "staff"
   slot: "Weapon"
   examine: "Buzzing with the essence of nature."
@@ -78398,8 +78399,9 @@ law_staff:
   tradeable: false
   bank_stacks: false
   weight: 2.267
-  charges: 1000
-  charge_start: 0
+  charges_max: 1000
+  charges: 0
+  charge: law_staff_charges
   category: "staff"
   slot: "Weapon"
   examine: "A perfectly balanced staff."
@@ -82723,8 +82725,8 @@ magical_blastbox:
   tradeable: false
   bank_stacks: false
   weight: 0.025
-  charges: 715827882
-  charge_start: 0
+  charges_max: 715827882
+  charges: 0
   slot: "Shield"
   examine: "It's brimming with power."
   kept: "Reclaim"
@@ -83538,30 +83540,30 @@ strange_token:
 magical_blastbox_bound:
   id: 19865
   tradeable: false
-  charges: 715827882
-  charge_start: 0
+  charges_max: 715827882
+  charges: 0
   slot: "Shield"
   examine: "It's brimming with power."
   weight: 0.025
 celestial_surgebox_bound:
   id: 19866
   tradeable: false
-  charges: 306783378
-  charge_start: 0
+  charges_max: 306783378
+  charges: 0
   slot: "Shield"
   examine: "It could explode at any moment."
   weight: 0.025
 magical_blastbox_dungeoneering:
   id: 19867
-  charges: 715827882
-  charge_start: 0
+  charges_max: 715827882
+  charges: 0
   slot: "Shield"
   examine: "It's brimming with power."
   weight: 0.025
 celestial_surgebox_dungeoneering:
   id: 19868
-  charges: 306783378
-  charge_start: 0
+  charges_max: 306783378
+  charges: 0
   slot: "Shield"
   examine: "It could explode at any moment."
   weight: 0.025
@@ -83632,8 +83634,8 @@ celestial_surgebox:
   tradeable: false
   bank_stacks: false
   weight: 0.025
-  charges: 306783378
-  charge_start: 0
+  charges_max: 306783378
+  charges: 0
   slot: "Shield"
   examine: "It could explode at any moment."
   kept: "Reclaim"

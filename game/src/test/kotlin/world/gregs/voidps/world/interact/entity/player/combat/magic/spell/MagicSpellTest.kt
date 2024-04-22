@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevel
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.inv.restrict.NoRestrictions
-import world.gregs.voidps.engine.inv.stack.AlwaysStack
+import world.gregs.voidps.engine.inv.stack.ItemStackingRule
 
 abstract class MagicSpellTest : KoinTest {
 
@@ -67,7 +67,16 @@ abstract class MagicSpellTest : KoinTest {
             val item = items[index]
             information[8 + index * 2] = itemId
             information[9 + index * 2] = item.amount
-            addItemDef(if(item.def == ItemDefinition.EMPTY) ItemDefinition(stringId = item.id) else item.def)
+            addItemDef(ItemDefinition(stringId = item.id, stackable = 1))
+        }
+    }
+
+    fun setItems(vararg items: Pair<Item, ItemDefinition>) {
+        for (index in items.indices) {
+            val (item, def) = items[index]
+            information[8 + index * 2] = itemId
+            information[9 + index * 2] = item.amount
+            addItemDef(if(def == ItemDefinition.EMPTY) ItemDefinition(stringId = item.id) else def)
         }
     }
 
@@ -76,6 +85,12 @@ abstract class MagicSpellTest : KoinTest {
         definition.id = id
         itemIds[definition.stringId] = id
         itemDefs[id] = definition
+    }
+
+    private val normalStackRule = object : ItemStackingRule {
+        override fun stackable(id: String): Boolean {
+            return itemDefinitions.get(id).stackable == 1
+        }
     }
 
     fun player(): Player {
@@ -87,7 +102,7 @@ abstract class MagicSpellTest : KoinTest {
         player.inventories.itemDefinitions = itemDefinitions
         player.inventories.validItemRule = NoRestrictions
         player.inventories.events = player
-        player.inventories.normalStack = AlwaysStack
+        player.inventories.normalStack = normalStackRule
         player.inventories.start()
         player.levels.link(player, PlayerLevels(player.experience))
         return player

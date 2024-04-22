@@ -24,7 +24,7 @@ class CombinationRuneTest : MagicSpellTest() {
         dynamicTest("Remove ${combo.replace("_", " ")}s") {
             World.start(members = true)
             val player = player()
-            setItems(Item(element1, 2, def = ItemDefinition.EMPTY), Item(element2, 1, def = ItemDefinition.EMPTY), Item("chaos_rune", 1, def = ItemDefinition.EMPTY))
+            setItems(Item(element1, 2), Item(element2, 1), Item("chaos_rune", 1))
 
             player.inventory.add(combo, 10)
             player.inventory.add("chaos_rune", 10)
@@ -53,7 +53,7 @@ class CombinationRuneTest : MagicSpellTest() {
         dynamicTest("Use ${element.replace("_", " ")}s when out of ${combo.replace("_", " ")}s") {
             World.start(members = true)
             val player = player()
-            setItems(Item(element, 2, def = ItemDefinition.EMPTY))
+            setItems(Item(element, 2))
 
             player.inventory.add(element, 10)
             player.inventory.add(combo, 1)
