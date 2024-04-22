@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.remove.DefaultItemAmountBounds
 import world.gregs.voidps.engine.inv.remove.ItemAmountBounds
 import world.gregs.voidps.engine.inv.remove.ShopItemAmountBounds
 import world.gregs.voidps.engine.inv.stack.AlwaysStack
-import world.gregs.voidps.engine.inv.stack.DependentOnItem
+import world.gregs.voidps.engine.inv.stack.ItemDependentStack
 import world.gregs.voidps.engine.inv.stack.ItemStackingRule
 import world.gregs.voidps.engine.inv.stack.NeverStack
 
@@ -83,7 +83,7 @@ internal class InventoryTest {
         val definitions: ItemDefinitions = mockk(relaxed = true)
         inventory = inventory(
             items = emptyArray(),
-            stackRule = DependentOnItem(definitions)
+            stackRule = ItemDependentStack(definitions)
         )
         every { definitions.get(id) } returns ItemDefinition(stackable = 1)
         // When
@@ -99,7 +99,7 @@ internal class InventoryTest {
         val definitions: ItemDefinitions = mockk(relaxed = true)
         inventory = inventory(
             items = emptyArray(),
-            stackRule = DependentOnItem(definitions)
+            stackRule = ItemDependentStack(definitions)
         )
         every { definitions.get(id) } returns ItemDefinition(stackable = 0)
         // When

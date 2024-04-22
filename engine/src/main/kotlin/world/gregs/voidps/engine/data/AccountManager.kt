@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.restrict.ValidItemRestriction
-import world.gregs.voidps.engine.inv.stack.DependentOnItem
+import world.gregs.voidps.engine.inv.stack.ItemDependentStack
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.zone.RegionLoad
 import world.gregs.voidps.engine.queue.strongQueue
@@ -58,7 +58,7 @@ class AccountManager(
         player.inventories.definitions = inventoryDefinitions
         player.inventories.itemDefinitions = itemDefinitions
         player.inventories.validItemRule = validItems
-        player.inventories.normalStack = DependentOnItem(itemDefinitions)
+        player.inventories.normalStack = ItemDependentStack(itemDefinitions)
         player.inventories.events = player
         player.inventories.start()
         player.previousTile = player.tile.add(Direction.WEST.delta)
