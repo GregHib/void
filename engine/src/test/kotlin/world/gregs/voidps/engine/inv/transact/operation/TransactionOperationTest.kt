@@ -7,8 +7,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.inv.Inventory
-import world.gregs.voidps.engine.inv.remove.DefaultItemRemovalChecker
-import world.gregs.voidps.engine.inv.remove.ItemRemovalChecker
+import world.gregs.voidps.engine.inv.remove.DefaultItemAmountBounds
+import world.gregs.voidps.engine.inv.remove.ItemAmountBounds
 import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.inv.restrict.NoRestrictions
 import world.gregs.voidps.engine.inv.stack.AlwaysStack
@@ -56,10 +56,10 @@ abstract class TransactionOperationTest : KoinMock() {
         capacity: Int = 5,
         stackRule: ItemStackingRule = AlwaysStack,
         itemRule: ItemRestrictionRule = NoRestrictions,
-        removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
+        amountBounds: ItemAmountBounds = DefaultItemAmountBounds,
         block: Transaction.() -> Unit = {}
     ) {
-        inventory = inventory(capacity, stackRule, itemRule, removalCheck, block)
+        inventory = inventory(capacity, stackRule, itemRule, amountBounds, block)
         transaction = inventory.transaction
         transaction.start()
     }
@@ -68,14 +68,14 @@ abstract class TransactionOperationTest : KoinMock() {
         capacity: Int = 5,
         stackRule: ItemStackingRule = AlwaysStack,
         itemRule: ItemRestrictionRule = NoRestrictions,
-        removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
+        amountBounds: ItemAmountBounds = DefaultItemAmountBounds,
         block: (Transaction.() -> Unit)? = null
     ): Inventory {
         val inventory = Inventory.debug(
             capacity = capacity,
             stackRule = stackRule,
             itemRule = itemRule,
-            removalCheck = removalCheck
+            amountBounds = amountBounds
         )
         val transaction = inventory.transaction
         if (block != null) {

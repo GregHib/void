@@ -19,7 +19,7 @@ object AddItem {
         if (failed) {
             return
         }
-        if (inventory.restricted(id) || inventory.shouldRemove(amount)) {
+        if (inventory.restricted(id) || amount <= inventory.amountBounds.minimum()) {
             error = TransactionError.Invalid
             return
         }

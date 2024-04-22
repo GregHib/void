@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.inv.transact.operation
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.inv.remove.ShopItemRemovalChecker
+import world.gregs.voidps.engine.inv.remove.ShopItemAmountBounds
 import world.gregs.voidps.engine.inv.stack.AlwaysStack
 import world.gregs.voidps.engine.inv.stack.NeverStack
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -35,7 +35,7 @@ internal class RemoveItemTest : TransactionOperationTest() {
 
     @Test
     fun `Remove an item with invalid amount`() {
-        transaction(removalCheck = ShopItemRemovalChecker) {
+        transaction(amountBounds = ShopItemAmountBounds) {
             add("item", 1)
         }
         transaction.remove("item", -1)
@@ -123,7 +123,7 @@ internal class RemoveItemTest : TransactionOperationTest() {
 
     @Test
     fun `Remove an item at index with invalid amount`() {
-        transaction(removalCheck = ShopItemRemovalChecker) {
+        transaction(amountBounds = ShopItemAmountBounds) {
             add("item", 1)
         }
         transaction.remove(0, "item", -1)

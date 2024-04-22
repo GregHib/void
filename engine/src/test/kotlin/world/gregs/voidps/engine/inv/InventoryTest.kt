@@ -10,9 +10,9 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.EventDispatcher
-import world.gregs.voidps.engine.inv.remove.DefaultItemRemovalChecker
-import world.gregs.voidps.engine.inv.remove.ItemRemovalChecker
-import world.gregs.voidps.engine.inv.remove.ShopItemRemovalChecker
+import world.gregs.voidps.engine.inv.remove.DefaultItemAmountBounds
+import world.gregs.voidps.engine.inv.remove.ItemAmountBounds
+import world.gregs.voidps.engine.inv.remove.ShopItemAmountBounds
 import world.gregs.voidps.engine.inv.stack.AlwaysStack
 import world.gregs.voidps.engine.inv.stack.DependentOnItem
 import world.gregs.voidps.engine.inv.stack.ItemStackingRule
@@ -36,13 +36,13 @@ internal class InventoryTest {
         id: String = "123",
         items: Array<Item> = this.items,
         stackRule: ItemStackingRule = AlwaysStack,
-        removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker
+        amountBounds: ItemAmountBounds = DefaultItemAmountBounds
     ): Inventory = spyk(
         Inventory(
             data = items,
             id = id,
             stackRule = stackRule,
-            removalCheck = removalCheck
+            amountBounds = amountBounds
         ).apply {
             transaction.changes.bind(events)
         }
@@ -112,7 +112,7 @@ internal class InventoryTest {
     fun `Spaces counts number of empty items`() {
         // Given
         inventory = inventory(
-            removalCheck = ShopItemRemovalChecker
+            amountBounds = ShopItemAmountBounds
         )
         inventory.transaction {
             repeat(8) {

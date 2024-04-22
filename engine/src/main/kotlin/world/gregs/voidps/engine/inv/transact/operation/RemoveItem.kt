@@ -90,7 +90,7 @@ object RemoveItem {
         // Reduce the amount in the stack
         val combined = item.amount - amount
         // Remove the stack if its amount is zero
-        if (inventory.shouldRemove(combined, index)) {
+        if (combined <= inventory.amountBounds.minimum(index)) {
             set(index, null)
         } else {
             set(index, item.copy(amount = combined))

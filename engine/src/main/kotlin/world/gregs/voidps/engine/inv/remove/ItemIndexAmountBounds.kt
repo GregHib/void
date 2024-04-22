@@ -1,10 +1,10 @@
 package world.gregs.voidps.engine.inv.remove
 
-class ItemIndexRemovalChecker(
+class ItemIndexAmountBounds(
     private val minimumQuantities: IntArray,
     private val default: Int
-) : ItemRemovalChecker {
-    override fun getMinimum(index: Int): Int {
+) : ItemAmountBounds {
+    override fun minimum(index: Int): Int {
         return minimumQuantities.getOrNull(index) ?: default
     }
 }
