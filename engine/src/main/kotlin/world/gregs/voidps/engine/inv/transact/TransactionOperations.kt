@@ -30,8 +30,9 @@ fun Transaction.charge(player: Player, index: Int, amount: Int) {
     }
     val variable: String? = item.def.getOrNull("charge")
     if (variable != null) {
-        val maximum = item.def["charges", 0]
-        val current = player[variable, item.def["charges_start", maximum]]
+        val start = item.def["charges", 0]
+        val maximum = item.def["charges_max", start]
+        val current = player[variable, start]
         player[variable] = (current + amount).coerceAtMost(maximum)
         state.onRevert {
             player[variable] = current

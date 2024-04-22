@@ -23,7 +23,7 @@ object AddCharge {
             error = TransactionError.Invalid
             return
         }
-        val maximum: Int? = item.def.getOrNull("charges")
+        val maximum: Int? = item.def.getOrNull("charges_max") ?: item.def.getOrNull("charges")
         if (maximum == null) {
             error = TransactionError.Invalid
             return

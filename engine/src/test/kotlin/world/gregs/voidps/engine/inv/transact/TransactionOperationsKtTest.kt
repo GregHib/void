@@ -45,7 +45,7 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
 
     @Test
     fun `Add variable charges before item charges`() {
-        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charge" to "charge_variable", "charges" to 10, "charges_start" to 0))
+        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charge" to "charge_variable", "charges_max" to 10, "charges" to 0))
         transaction(capacity = 10, stackRule = NeverStack) {
             set(0, Item("item", 5))
         }
