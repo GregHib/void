@@ -34,7 +34,7 @@ itemChange("trade_offer") { player ->
 }
 
 fun highlightRemovedSlots(player: Player, other: Player, update: ItemChanged) {
-    if (update.item.amount < update.oldItem.amount) {
+    if (update.item.amount < update.fromItem.amount) {
         player.warn("trade_main", "offer_warning", update.index)
         other.warn("trade_main", "other_warning", update.index)
     }
@@ -66,7 +66,7 @@ fun applyUpdates(inventory: Inventory, update: ItemChanged) {
     inventory.transaction { set(update.index, update.item, update.from, update.fromIndex) }
 }
 
-fun removedAnyItems(change: ItemChanged) = change.item.amount < change.oldItem.amount
+fun removedAnyItems(change: ItemChanged) = change.item.amount < change.fromItem.amount
 
 fun modified(player: Player, other: Player, warned: Boolean) {
     if (warned) {

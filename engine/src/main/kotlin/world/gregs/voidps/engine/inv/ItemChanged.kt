@@ -14,7 +14,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
  * @param item the new state of the item
  * @param from the inventory id the item is from
  * @param fromIndex the index in the inventory the item was from
- * @param oldItem the previous state of the item
+ * @param fromItem the previous state of the item
  */
 data class ItemChanged(
     val inventory: String,
@@ -22,12 +22,12 @@ data class ItemChanged(
     val item: Item,
     val from: String,
     val fromIndex: Int,
-    val oldItem: Item
+    val fromItem: Item
 ) : Event {
 
-    val added = oldItem.isEmpty() && item.isNotEmpty()
+    val added = fromItem.isEmpty() && item.isNotEmpty()
 
-    val removed = oldItem.isNotEmpty() && item.isEmpty()
+    val removed = fromItem.isNotEmpty() && item.isEmpty()
 
     override val notification = true
 
@@ -38,7 +38,7 @@ data class ItemChanged(
         1 -> item.id
         2 -> this.index
         3 -> inventory
-        4 -> oldItem.id
+        4 -> fromItem.id
         5 -> fromIndex
         6 -> from
         else -> null

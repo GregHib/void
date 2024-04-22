@@ -24,7 +24,7 @@ class ItemChangedTest  {
         itemChange {
             changes++
         }
-        val change = ItemChanged(from = "inventory", index = 1, oldItem = Item.EMPTY, fromIndex = 1, item = Item("item", 1), inventory = "bank")
+        val change = ItemChanged(from = "inventory", index = 1, fromItem = Item.EMPTY, fromIndex = 1, item = Item("item", 1), inventory = "bank")
         Events.events.emit(dispatcher, change)
 
         assertEquals(1, changes)
@@ -37,7 +37,7 @@ class ItemChangedTest  {
         itemAdded("coins", inventory = "inventory") {
             additions++
         }
-        val change = ItemChanged(from = "", fromIndex = 0, index = 1, oldItem = Item.EMPTY, item = Item("coins", 1), inventory = "inventory")
+        val change = ItemChanged(from = "", fromIndex = 0, index = 1, fromItem = Item.EMPTY, item = Item("coins", 1), inventory = "inventory")
         Events.events.emit(dispatcher, change)
 
         assertEquals(1, additions)
@@ -50,7 +50,7 @@ class ItemChangedTest  {
         itemRemoved("coins", inventory = "inventory") {
             removals++
         }
-        val change = ItemChanged(from = "", fromIndex = 0, index = 1, item = Item.EMPTY, oldItem = Item("coins", 1), inventory = "inventory")
+        val change = ItemChanged(from = "", fromIndex = 0, index = 1, item = Item.EMPTY, fromItem = Item("coins", 1), inventory = "inventory")
         Events.events.emit(dispatcher, change)
 
         assertEquals(1, removals)
@@ -67,7 +67,7 @@ class ItemChangedTest  {
         itemRemoved("coins", inventory = "inventory") {
             removals++
         }
-        val change = ItemChanged(from = "", fromIndex = 0, index = 1, item =  Item("coins", 1), oldItem = Item("coins", 1), inventory = "inventory")
+        val change = ItemChanged(from = "", fromIndex = 0, index = 1, item =  Item("coins", 1), fromItem = Item("coins", 1), inventory = "inventory")
         Events.events.emit(dispatcher, change)
 
         assertEquals(1, additions)
