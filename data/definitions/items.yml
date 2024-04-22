@@ -12574,6 +12574,7 @@ ring_of_recoil:
   charges: 400
   charge: ring_of_recoil_charges
   degrade: destroy
+  degrade_message: "Your Ring of Recoil has shattered."
   aka: [ ror, recoil, recoil_ring ]
   slot: "Ring"
   examine: "An enchanted ring."
