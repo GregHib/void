@@ -34127,7 +34127,6 @@ bone_in_vinegar_bear_ribs:
   tradeable: false
   weight: 1.36
   empty: empty_pot
-  empty: empty_pot
   examine: "There is a bear bone in here."
   use: "Quest"
   kept: "Wilderness"
