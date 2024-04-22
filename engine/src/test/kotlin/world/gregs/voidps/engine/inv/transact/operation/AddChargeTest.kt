@@ -25,7 +25,7 @@ internal class AddChargeTest : TransactionOperationTest() {
         transaction.error = TransactionError.Invalid
         transaction.charge(0, 1)
         // Assert that the charge was not removed from the inventory
-        assertEquals(0, inventory[0].charges)
+        assertEquals(0, inventory[0].value)
     }
 
     @Test
@@ -78,7 +78,7 @@ internal class AddChargeTest : TransactionOperationTest() {
         transaction.charge(0, amountToAdd)
 
         assertTrue(transaction.commit())
-        assertEquals(initialAmount + amountToAdd, inventory[0].charges)
+        assertEquals(initialAmount + amountToAdd, inventory[0].value)
     }
 
     @Test
@@ -118,7 +118,7 @@ internal class AddChargeTest : TransactionOperationTest() {
         transaction.charge(0, charge)
 
         assertFalse(transaction.commit())
-        assertEquals(0, inventory[0].charges)
+        assertEquals(0, inventory[0].value)
         assertEquals(TransactionError.Invalid, transaction.error)
     }
 }

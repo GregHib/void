@@ -24,7 +24,7 @@ internal class ClearChargeTest : TransactionOperationTest() {
 
         assertFalse(transaction.commit())
         assertEquals(1, inventory[0].amount)
-        assertEquals(1, inventory[0].charges)
+        assertEquals(1, inventory[0].value)
     }
 
     @Test
@@ -62,7 +62,7 @@ internal class ClearChargeTest : TransactionOperationTest() {
 
         assertFalse(transaction.commit())
         assertEquals(1, inventory[0].amount)
-        assertEquals(0, inventory[0].charges)
+        assertEquals(0, inventory[0].value)
     }
 
     @Test
@@ -75,6 +75,6 @@ internal class ClearChargeTest : TransactionOperationTest() {
 
         assertTrue(transaction.commit())
         assertEquals(1, inventory[0].amount)
-        assertEquals(0, inventory[0].charges)
+        assertEquals(0, inventory[0].value)
     }
 }

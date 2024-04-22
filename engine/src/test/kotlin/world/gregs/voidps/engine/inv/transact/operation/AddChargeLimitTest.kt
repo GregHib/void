@@ -24,7 +24,7 @@ internal class AddChargeLimitTest : TransactionOperationTest() {
         transaction.chargeToLimit(0, 1)
 
         // Assert that the charge was not removed from the inventory
-        assertEquals(0, inventory[0].charges)
+        assertEquals(0, inventory[0].value)
     }
 
     @Test
@@ -50,7 +50,7 @@ internal class AddChargeLimitTest : TransactionOperationTest() {
         assertEquals(5, transaction.chargeToLimit(0, 6))
 
         assertTrue(transaction.commit())
-        assertEquals(chargeMax, inventory[0].charges)
+        assertEquals(chargeMax, inventory[0].value)
     }
 
     @Test
@@ -63,7 +63,7 @@ internal class AddChargeLimitTest : TransactionOperationTest() {
         assertEquals(10, transaction.chargeToLimit(0, 15))
 
         assertTrue(transaction.commit())
-        assertEquals(Int.MAX_VALUE, inventory[0].charges)
+        assertEquals(Int.MAX_VALUE, inventory[0].value)
     }
 
     @Test
@@ -76,6 +76,6 @@ internal class AddChargeLimitTest : TransactionOperationTest() {
         assertEquals(3, transaction.chargeToLimit(0, 3))
 
         assertTrue(transaction.commit())
-        assertEquals(5, inventory[0].charges)
+        assertEquals(5, inventory[0].value)
     }
 }

@@ -8,7 +8,7 @@ class Item(
     val id: String = "",
     amount: Int = 0
 ) {
-    private val value = amount
+    internal val value = amount
     val def: ItemDefinition
         get() = defOrNull ?: ItemDefinition.EMPTY
     private val defOrNull: ItemDefinition?
@@ -18,12 +18,6 @@ class Item(
     val amount: Int
         get() = if (itemCharge) 1 else value
 
-    /**
-     * Total number of inventory level charges, see [Inventory.charges] for item charges.
-     */
-    val charges: Int
-        get() = if (itemCharge) value else 0
-
     fun isEmpty() = id.isBlank()
 
     fun isNotEmpty() = id.isNotBlank()
@@ -31,7 +25,7 @@ class Item(
     fun copy(id: String = this.id, amount: Int = this.value) = Item(id, amount)
 
     override fun toString(): String {
-        return "Item(id='$id', amount=$amount, charges=$charges)"
+        return "Item(id='$id', amount=$value)"
     }
 
     override fun equals(other: Any?): Boolean {

@@ -22,7 +22,7 @@ internal class RemoveChargeTest : TransactionOperationTest() {
         transaction.discharge(0, 1)
         assertFalse(transaction.commit())
         assertEquals(1, inventory[0].amount)
-        assertEquals(1, inventory[0].charges)
+        assertEquals(1, inventory[0].value)
     }
 
     @Test
@@ -69,7 +69,7 @@ internal class RemoveChargeTest : TransactionOperationTest() {
         }
         transaction.discharge(0, 5)
         assertFalse(transaction.commit())
-        assertEquals(4, inventory[0].charges)
+        assertEquals(4, inventory[0].value)
     }
 
     @Test
@@ -81,6 +81,6 @@ internal class RemoveChargeTest : TransactionOperationTest() {
         transaction.discharge(0, 4)
         assertTrue(transaction.commit())
         assertEquals(1, inventory[0].amount)
-        assertEquals(2, inventory[0].charges)
+        assertEquals(2, inventory[0].value)
     }
 }

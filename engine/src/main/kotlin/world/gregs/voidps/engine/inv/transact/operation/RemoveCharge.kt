@@ -28,12 +28,12 @@ object RemoveCharge {
             return
         }
         // Check if there is enough charges to remove
-        if (item.charges < amount) {
-            error = TransactionError.Deficient(amount = item.charges)
+        if (item.value < amount) {
+            error = TransactionError.Deficient(amount = item.value)
             return
         }
         // Reduce the charges in the stack
-        val combined = item.charges - amount
+        val combined = item.value - amount
         set(index, item.copy(amount = combined))
     }
 

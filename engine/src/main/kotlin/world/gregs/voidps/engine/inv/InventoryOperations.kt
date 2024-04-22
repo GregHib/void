@@ -101,5 +101,5 @@ fun Inventory.charges(player: Player, index: Int): Int {
     if (variable != null) {
         return player[variable, 0]
     }
-    return item.charges
+    return item.value
 }

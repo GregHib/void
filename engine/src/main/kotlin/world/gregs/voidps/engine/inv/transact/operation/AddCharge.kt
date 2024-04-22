@@ -28,17 +28,13 @@ object AddCharge {
             error = TransactionError.Invalid
             return
         }
-        // Check if the stack would exceed the maximum integer value
-        if (item.charges + amount.toLong() > Int.MAX_VALUE) {
-            error = TransactionError.Full(Int.MAX_VALUE - item.charges)
-            return
-        }
-        if (item.charges + amount > maximum) {
-            error = TransactionError.Full(maximum - item.charges)
+        // Check if the stack would exceed the maximum value
+        if (item.value + amount.toLong() > maximum) {
+            error = TransactionError.Full(maximum - item.value)
             return
         }
         // Combine the charges and update the item in the inventory
-        set(index, item.copy(amount = item.charges + amount))
+        set(index, item.copy(amount = item.value + amount))
     }
 
 }
