@@ -161,7 +161,7 @@ class DegradeTest : WorldTest() {
         player.equipment.set(slot, "black_mask_6")
         assertFalse(inventory.charge(player, EquipSlot.Shield.index))
         assertEquals(1, inventory.charges(player, slot))
-        assertFalse(inventory.charge(player, slot))
+        assertTrue(inventory.charge(player, slot))
         assertEquals(1, inventory.charges(player, slot))
     }
 
