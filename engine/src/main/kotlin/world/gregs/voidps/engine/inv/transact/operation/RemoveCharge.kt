@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.inv.transact.operation
 
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
@@ -36,15 +37,20 @@ object RemoveCharge {
         }
         // Reduce the charges in the stack
         val combined = item.value - amount
-        if (combined <= 0) {
-            val replacement = inventory.itemRule.replacement(item.id) ?: return
-            if (replacement.isEmpty()) {
-                remove(index, item.id)
-            } else {
-                replace(index, item.id, replacement.id, replacement.amount)
-            }
-        } else {
+        degrade(item, index, combined)
+    }
+
+    /**
+     * Degrades an item either by removing it, replacing it with another item or doing nothing.
+     */
+    internal fun TransactionOperation.degrade(item: Item, index: Int, combined: Int) {
+        val replacement = inventory.itemRule.replacement(item.id)
+        if (replacement == null) {
             set(index, item.copy(amount = combined))
+        } else if (replacement.isEmpty()) {
+            remove(index, item.id)
+        } else {
+            replace(index, item.id, replacement.id, replacement.amount)
         }
     }
 

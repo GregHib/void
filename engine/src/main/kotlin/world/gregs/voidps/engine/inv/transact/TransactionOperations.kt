@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveCharge.discharge
 import world.gregs.voidps.engine.inv.transact.operation.AddChargeLimit.chargeToLimit
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearCharge.discharge
+import world.gregs.voidps.engine.inv.transact.operation.RemoveCharge.degrade
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 fun Transaction.remove(items: List<Item>) {
@@ -30,7 +31,7 @@ fun Transaction.charge(player: Player, index: Int, amount: Int) {
     val variable: String? = item.def.getOrNull("charge")
     if (variable != null) {
         val maximum = item.def["charges", 0]
-        val current = player[variable, 0]
+        val current = player[variable, item.def["charges_start", maximum]]
         player[variable] = (current + amount).coerceAtMost(maximum)
         state.onRevert {
             player[variable] = current
@@ -49,9 +50,13 @@ fun Transaction.discharge(player: Player, index: Int, amount: Int) {
     val variable: String? = item.def.getOrNull("charge")
     if (variable != null) {
         val current = player[variable, 0]
-        player[variable] = (current - amount).coerceAtLeast(0)
         state.onRevert {
             player[variable] = current
+        }
+        val reduced = (current - amount).coerceAtLeast(0)
+        player[variable] = reduced
+        if (reduced <= 0) {
+            degrade(item, index, reduced)
         }
         return
     }

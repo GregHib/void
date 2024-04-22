@@ -20,7 +20,7 @@ class DegradeTest : WorldTest() {
         assertEquals(10, inventory.charges(player, slot))
         assertFalse(player.equipment[slot].isEmpty())
 
-        inventory.clearCharges(player, slot)
+        inventory.discharge(player, slot, 10)
         tick()
         assertTrue(player.equipment[slot].isEmpty())
         assertEquals(0, inventory.charges(player, slot))
