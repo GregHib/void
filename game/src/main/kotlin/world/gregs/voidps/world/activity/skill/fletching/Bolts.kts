@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.data.definition.data.FletchBolts
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
 
@@ -38,7 +37,6 @@ itemOnItem("feather", "*_bolts_unf") {
         return@itemOnItem
     }
 
-    it.setAnimation("generic_fletch")
     val totalExperience = bolts.xp * actualAmount
     it.experience.add(Skill.Fletching, totalExperience)
     it.message("You fletch $actualAmount bolts.", ChatType.Game)

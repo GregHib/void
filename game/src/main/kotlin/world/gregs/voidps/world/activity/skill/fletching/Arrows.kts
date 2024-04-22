@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
@@ -53,7 +52,6 @@ fun makeHeadlessArrows(player: Player, addItem: String, amount: Int) {
         if(!success) {
             return@weakQueue
         }
-        player.setAnimation("generic_fletch")
         val experiencePerArrow = 15.0 / 15
         val totalExperience = experiencePerArrow * actualAmount
         player.experience.add(Skill.Fletching, totalExperience)
@@ -61,7 +59,6 @@ fun makeHeadlessArrows(player: Player, addItem: String, amount: Int) {
         makeHeadlessArrows(player, addItem, amount - 1)
     }
 }
-
 
 fun makeImmediately(player: Player, addItem: String, amount: Int) {
     player.weakQueue("feather_to_shaft_create", 2) {
@@ -73,7 +70,6 @@ fun makeImmediately(player: Player, addItem: String, amount: Int) {
         if(!success) {
             return@weakQueue
         }
-        player.setAnimation("generic_fletch")
         val experiencePerArrow = 15.0 / 15
         val totalExperience = experiencePerArrow * amount
         player.experience.add(Skill.Fletching, totalExperience)
