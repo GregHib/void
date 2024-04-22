@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.inv.stack.ItemStackingRule
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.script.KoinMock
 
 abstract class TransactionOperationTest : KoinMock() {
@@ -30,6 +31,14 @@ abstract class TransactionOperationTest : KoinMock() {
     val validItems = object : ItemRestrictionRule {
         override fun restricted(id: String): Boolean {
             return id.isBlank() || id == "invalid_item"
+        }
+
+        override fun replacement(id: String): Item? {
+            return when (id) {
+                "replaceable" -> Item("replacement", 2)
+                "destructible" -> Item.EMPTY
+                else -> null
+            }
         }
     }
     protected lateinit var itemDefinitions: ItemDefinitions

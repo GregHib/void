@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.inv.transact.operation
 
 import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 
 /**
  * Transaction operation for removing charges from an item in an inventory.
@@ -34,7 +36,16 @@ object RemoveCharge {
         }
         // Reduce the charges in the stack
         val combined = item.value - amount
-        set(index, item.copy(amount = combined))
+        if (combined <= 0) {
+            val replacement = inventory.itemRule.replacement(item.id) ?: return
+            if (replacement.isEmpty()) {
+                remove(index, item.id)
+            } else {
+                replace(index, item.id, replacement.id, replacement.amount)
+            }
+        } else {
+            set(index, item.copy(amount = combined))
+        }
     }
 
 }

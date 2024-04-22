@@ -94,7 +94,7 @@ fun Inventory.clearCharges(player: Player, index: Int) = transaction { clearChar
 
 fun Inventory.charges(player: Player, index: Int): Int {
     val item = getOrNull(index) ?: return 0
-    if (item.isEmpty()) {
+    if (item.isEmpty() || !item.def.contains("charges")) {
         return 0
     }
     val variable: String? = item.def.getOrNull("charge")

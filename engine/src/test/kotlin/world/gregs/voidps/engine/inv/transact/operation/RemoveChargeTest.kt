@@ -13,6 +13,29 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveCharge.discharge
 internal class RemoveChargeTest : TransactionOperationTest() {
 
     @Test
+    fun `Replace item on degrade`() {
+        every { itemDefinitions.getOrNull("replaceable") } returns ItemDefinition(extras = mapOf("charges" to 5))
+        transaction(stackRule = NeverStack, itemRule = validItems) {
+            set(0, Item("replaceable", 1))
+        }
+        transaction.discharge(0, 1)
+        assertTrue(transaction.commit())
+        assertEquals("replacement", inventory[0].id)
+        assertEquals(2, inventory[0].value)
+    }
+
+    @Test
+    fun `Destroy item on degrade`() {
+        every { itemDefinitions.getOrNull("destructible") } returns ItemDefinition(extras = mapOf("charges" to 5))
+        transaction(stackRule = NeverStack, itemRule = validItems) {
+            set(0, Item("destructible", 1))
+        }
+        transaction.discharge(0, 1)
+        assertTrue(transaction.commit())
+        assertTrue(inventory.isEmpty())
+    }
+
+    @Test
     fun `Remove charges after the transaction has failed`() {
         every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
         transaction(stackRule = NeverStack) {

@@ -67,8 +67,8 @@ fun Transaction.clearCharges(player: Player, index: Int) {
     val variable: String? = item.def.getOrNull("charge")
     if (variable != null) {
         val current = player.clear(variable)
-        state.onRevert {
-            if (current != null) {
+        if (current != null) {
+            state.onRevert {
                 player[variable] = current
             }
         }
