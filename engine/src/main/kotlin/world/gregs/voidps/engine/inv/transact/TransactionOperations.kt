@@ -64,6 +64,7 @@ fun Transaction.discharge(player: Player, index: Int, amount: Int) {
         player[variable] = reduced
         if (reduced <= 0) {
             degrade(item, index)
+            player[variable] = item.def.getOrNull<Int>("charges") ?: 0
         }
         return
     }
