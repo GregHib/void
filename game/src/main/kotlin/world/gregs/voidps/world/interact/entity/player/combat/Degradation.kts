@@ -46,7 +46,14 @@ fun degrade(player: Player) {
 
 itemChange { player ->
     val inventory = player.inventories.inventory(inventory)
-    if (!fromItem.def.contains("charges") || inventory.charges(player, fromIndex) != 0) {
+    val degrade: String = fromItem.def.getOrNull("degrade") ?: return@itemChange
+    if (degrade == "destroy" && item.isNotEmpty()) {
+        return@itemChange
+    }
+    if (item.id != degrade) {
+        return@itemChange
+    }
+    if (inventory.charges(player, fromIndex) != 0) {
         return@itemChange
     }
     val message: String = fromItem.def.getOrNull("degrade_message") ?: return@itemChange
