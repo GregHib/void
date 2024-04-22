@@ -25,7 +25,9 @@ object RemoveChargeLimit {
             TransactionError.None -> amount
             is TransactionError.Deficient -> {
                 this.error = TransactionError.None
-                discharge(index, error.amount)
+                if (error.amount > 0) {
+                    discharge(index, error.amount)
+                }
                 error.amount
             }
             else -> 0

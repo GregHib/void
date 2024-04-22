@@ -24,7 +24,9 @@ object AddChargeLimit {
             TransactionError.None -> amount
             is TransactionError.Full -> {
                 this.error = TransactionError.None
-                charge(index, error.amount)
+                if (error.amount > 0) {
+                    charge(index, error.amount)
+                }
                 error.amount
             }
             else -> 0
