@@ -17,6 +17,6 @@ class ValidItemRestriction(
             return Item.EMPTY
         }
         val replaceDefinition = definitions.get(replacement)
-        return Item(replacement, replaceDefinition["charges", 0])
+        return Item(replacement, replaceDefinition["charges", 1]) // Use charges or default to 1 for amount
     }
 }
