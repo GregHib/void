@@ -37,20 +37,21 @@ object RemoveCharge {
         }
         // Reduce the charges in the stack
         val combined = item.value - amount
-        degrade(item, index, combined)
+        set(index, item.copy(amount = combined))
+        if (combined <= 0) {
+            degrade(item, index)
+        }
     }
 
     /**
      * Degrades an item either by removing it, replacing it with another item or doing nothing.
      */
-    internal fun TransactionOperation.degrade(item: Item, index: Int, combined: Int) {
-        val replacement = inventory.itemRule.replacement(item.id)
-        if (replacement == null) {
-            set(index, item.copy(amount = combined))
-        } else if (replacement.isEmpty()) {
+    internal fun TransactionOperation.degrade(item: Item, index: Int) {
+        val replacement = inventory.itemRule.replacement(item.id) ?: return
+        if (replacement.isEmpty()) {
             remove(index, item.id)
         } else {
-            replace(index, item.id, replacement.id, replacement.amount)
+            replace(index, item.id, replacement.id, replacement.value)
         }
     }
 

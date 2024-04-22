@@ -23,8 +23,11 @@ fun Transaction.add(items: List<Item>) {
 }
 
 fun Transaction.charge(player: Player, index: Int, amount: Int) {
+    if (failed) {
+        return
+    }
     val item = inventory.getOrNull(index)
-    if (failed || item == null || item.isEmpty()) {
+    if (item == null || item.isEmpty()) {
         error = TransactionError.Invalid
         return
     }
@@ -43,8 +46,11 @@ fun Transaction.charge(player: Player, index: Int, amount: Int) {
 }
 
 fun Transaction.discharge(player: Player, index: Int, amount: Int) {
+    if (failed) {
+        return
+    }
     val item = inventory.getOrNull(index)
-    if (failed || item == null || item.isEmpty()) {
+    if (item == null || item.isEmpty()) {
         error = TransactionError.Invalid
         return
     }
@@ -57,7 +63,7 @@ fun Transaction.discharge(player: Player, index: Int, amount: Int) {
         val reduced = (current - amount).coerceAtLeast(0)
         player[variable] = reduced
         if (reduced <= 0) {
-            degrade(item, index, reduced)
+            degrade(item, index)
         }
         return
     }
