@@ -123,7 +123,7 @@ class DatabaseStorage(
             this[InventoriesTable.playerId] = playerIds.getValue(id)
             this[InventoriesTable.inventoryName] = inventory
             this[InventoriesTable.items] = items.map { it.id }
-            this[InventoriesTable.amounts] = items.map { it.amount }
+            this[InventoriesTable.amounts] = items.map { it.value }
         }
     }
 
