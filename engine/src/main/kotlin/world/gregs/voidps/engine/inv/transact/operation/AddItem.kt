@@ -8,18 +8,18 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
  * Stackable items are added to existing stack, or it is added to the first empty slot if no matching stack is found.
  * Items that aren't stackable are added to one or more empty slots, depending on amount and whether it is one or greater.
  */
-interface AddItem : TransactionOperation {
+object AddItem {
 
     /**
      * Adds an item to the inventory.
      * @param id the identifier of the item to be added.
      * @param amount the number of items to be added. Default value is 1.
      */
-    fun add(id: String, amount: Int = 1) {
+    fun TransactionOperation.add(id: String, amount: Int = 1) {
         if (failed) {
             return
         }
-        if (inventory.restricted(id) || inventory.shouldRemove(amount)) {
+        if (inventory.restricted(id) || amount <= inventory.amountBounds.minimum()) {
             error = TransactionError.Invalid
             return
         }
@@ -43,7 +43,7 @@ interface AddItem : TransactionOperation {
      * @param index the index of the stack to be increased.
      * @param amount the number of items to be added to the stack.
      */
-    fun increaseStack(index: Int, amount: Int) {
+    fun TransactionOperation.increaseStack(index: Int, amount: Int) {
         val item = inventory[index]
         if (item.isEmpty()) {
             error = TransactionError.Invalid
@@ -63,7 +63,7 @@ interface AddItem : TransactionOperation {
      * @param id the identifier of the item to be added.
      * @param amount the number of items to be added to the stack.
      **/
-    private fun addItemToEmptySlot(id: String, amount: Int) {
+    private fun TransactionOperation.addItemToEmptySlot(id: String, amount: Int) {
         // Find an empty slot in the inventory
         val emptySlot = inventory.freeIndex()
         if (emptySlot != -1) {
@@ -80,7 +80,7 @@ interface AddItem : TransactionOperation {
      * @param id the identifier of the items to be added.
      * @param amount the number of items to be added.
      */
-    private fun addItemsToSlots(id: String, amount: Int) {
+    private fun TransactionOperation.addItemsToSlots(id: String, amount: Int) {
         for (count in 0 until amount) {
             // Find an empty slot in the inventory
             val emptySlot = inventory.freeIndex()

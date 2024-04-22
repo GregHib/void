@@ -1,9 +1,8 @@
 package world.gregs.voidps.engine.inv
 
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inv.remove.DefaultItemRemovalChecker
-import world.gregs.voidps.engine.inv.remove.ItemRemovalChecker
+import world.gregs.voidps.engine.inv.remove.DefaultItemAmountBounds
+import world.gregs.voidps.engine.inv.remove.ItemAmountBounds
 import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.inv.restrict.NoRestrictions
 import world.gregs.voidps.engine.inv.stack.AlwaysStack
@@ -15,7 +14,7 @@ class Inventory(
     val id: String = "",
     var itemRule: ItemRestrictionRule = NoRestrictions,
     private val stackRule: ItemStackingRule = AlwaysStack,
-    private val removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker
+    internal val amountBounds: ItemAmountBounds = DefaultItemAmountBounds
 ) {
 
     val items: Array<Item>
@@ -37,7 +36,7 @@ class Inventory(
 
     fun inBounds(index: Int) = index in items.indices
 
-    operator fun get(index: Int): Item = getOrNull(index) ?: Item("", removalCheck.getMinimum(index))
+    operator fun get(index: Int): Item = getOrNull(index) ?: Item("", amountBounds.minimum(index))
 
     fun getOrNull(index: Int) = items.getOrNull(index)
 
@@ -80,8 +79,6 @@ class Inventory(
 
     fun stackable(id: String) = stackRule.stackable(id)
 
-    fun shouldRemove(amount: Int, index: Int = -1) = removalCheck.shouldRemove(amount, index)
-
     fun restricted(id: String) = itemRule.restricted(id)
 
     fun transaction(block: Transaction.() -> Unit): Boolean {
@@ -117,13 +114,13 @@ class Inventory(
             itemRule: ItemRestrictionRule = NoRestrictions,
             stackRule: ItemStackingRule = AlwaysStack,
             id: String = "",
-            removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
+            amountBounds: ItemAmountBounds = DefaultItemAmountBounds,
         ) = Inventory(
-            Array(capacity) { Item("", removalCheck.getMinimum(it), def = ItemDefinition.EMPTY) },
+            Array(capacity) { Item("", amountBounds.minimum(it)) },
             id,
             itemRule,
             stackRule,
-            removalCheck
+            amountBounds
         )
     }
 }

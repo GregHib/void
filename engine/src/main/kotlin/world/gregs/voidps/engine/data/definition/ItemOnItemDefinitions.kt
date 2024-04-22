@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import net.pearx.kasechange.toSentenceCase
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.data.yaml.DefinitionIdsConfig
@@ -32,9 +31,9 @@ class ItemOnItemDefinitions {
             val config = object : DefinitionIdsConfig() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
                     super.add(list, if (value is Map<*, *>) {
-                        Item(value["item"] as String, value["amount"] as? Int ?: 1, ItemDefinition.EMPTY)
+                        Item(value["item"] as String, value["amount"] as? Int ?: 1)
                     } else {
-                        Item(value as String, amount = 1, def = ItemDefinition.EMPTY)
+                        Item(value as String, amount = 1)
                     }, parentMap)
                 }
 

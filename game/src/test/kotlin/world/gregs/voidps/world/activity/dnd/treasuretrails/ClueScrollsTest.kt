@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.transact.operation.MoveItem.move
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.script.WorldTest
 import kotlin.test.assertFalse

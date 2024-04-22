@@ -30,6 +30,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
@@ -173,6 +174,8 @@ fun deplete(rock: Rock, obj: GameObject): Boolean {
 }
 
 objectApproach("Prospect") {
+    player.approachRange(1)
+    pause()
     if (target.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
         return@objectApproach

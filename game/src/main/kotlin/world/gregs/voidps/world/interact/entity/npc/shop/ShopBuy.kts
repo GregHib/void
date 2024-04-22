@@ -11,6 +11,8 @@ import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.moveToLimit
 import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import kotlin.math.min
 
 val itemDefs: ItemDefinitions by inject()

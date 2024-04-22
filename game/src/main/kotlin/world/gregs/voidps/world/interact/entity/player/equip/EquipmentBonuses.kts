@@ -29,7 +29,7 @@ playerSpawn { player ->
 }
 
 itemChange("worn_equipment") { player ->
-    updateStats(player, oldItem, false)
+    updateStats(player, fromItem, false)
     updateStats(player, item, true)
 }
 

@@ -7349,7 +7349,7 @@ ibans_staff:
   id: 1409
   weight: 2.267
   charges: 120
-  player_charge: true
+  charge: ibans_staff_charges
   degrade: ibans_staff_broken
   category: "staff"
   slot: "Weapon"
@@ -12572,8 +12572,9 @@ ring_of_recoil:
   limit: 5000
   weight: 0.006
   charges: 400
-  player_charge: true
+  charge: ring_of_recoil_charges
   degrade: destroy
+  degrade_message: "Your Ring of Recoil has shattered."
   aka: [ ror, recoil, recoil_ring ]
   slot: "Ring"
   examine: "An enchanted ring."
@@ -24071,7 +24072,7 @@ binding_necklace:
   limit: 100
   weight: 0.01
   charges: 16
-  player_charge: true
+  charge: binding_necklace_charges
   degrade: destroy
   slot: "Amulet"
   examine: "A necklace embedded with mystical power."
@@ -29036,7 +29037,7 @@ potato_with_cheese_noted: 6706
 camulet:
   id: 6707
   charges: 4
-  player_charge: true
+  charge: camulet_charges
   tradeable: false
   weight: 0.007
   slot: "Amulet"
@@ -34126,7 +34127,6 @@ bone_in_vinegar_bear_ribs:
   tradeable: false
   weight: 1.36
   empty: empty_pot
-  empty: empty_pot
   examine: "There is a bear bone in here."
   use: "Quest"
   kept: "Wilderness"
@@ -38456,7 +38456,7 @@ skull_sceptre:
   tradeable: false
   weight: 1.814
   charges: 10
-  player_charge: true
+  charge: skull_sceptre_charges
   degrade: destroy
   slot: "Weapon"
   destroy: "You can obtain another Sceptre by collecting all four pieces from the Stronghold of Security."
@@ -40317,7 +40317,7 @@ crystal_saw:
   tradeable: false
   weight: 1.0
   charges: 28
-  player_charge: true
+  charge: crystal_saw_charges
   degrade: small_crystal_seed
   slot: "Weapon"
   destroy: "Maybe Brimstail will have another..."
@@ -57914,7 +57914,6 @@ explorers_ring_1:
   weight: 0.004
   charges: 1
   charge: explorers_ring_charges
-  player_charge: true
   aka: [ lumbridge_ring_1 ]
   slot: "Ring"
   destroy: "You will have talk to Explorer Jack in Lumbridge if you destroy this one."
@@ -57926,7 +57925,6 @@ explorers_ring_2:
   weight: 0.004
   charges: 2
   charge: explorers_ring_charges
-  player_charge: true
   aka: [ lumbridge_ring_2 ]
   slot: "Ring"
   destroy: "You will have talk to Bob in Lumbridge if you destroy this one."
@@ -57938,7 +57936,6 @@ explorers_ring_3:
   weight: 0.004
   charges: 3
   charge: explorers_ring_charges
-  player_charge: true
   aka: [ explorers_ring, lumbridge_ring, lumbridge_ring_3 ]
   slot: "Ring"
   destroy: "You will need to obtain a new ring from Ned in Draynor if you destroy this one."
@@ -62374,7 +62371,6 @@ falador_shield_1:
   weight: 3.628
   charges: 1
   charge: falador_shield_charges
-  player_charge: true
   slot: "Shield"
   material: "metal"
   destroy: "You will be able to get a replacement shield from Redbeard Frank in Port Sarim."
@@ -62386,7 +62382,6 @@ falador_shield_2:
   weight: 5.443
   charges: 1
   charge: falador_shield_charges
-  player_charge: true
   slot: "Shield"
   material: "metal"
   destroy: "You will be able to get replacement shield from the chemist in Rimmington."
@@ -62398,7 +62393,6 @@ falador_shield_3:
   weight: 7.257
   charges: 1
   charge: falador_shield_charges
-  player_charge: true
   slot: "Shield"
   material: "metal"
   destroy: "You will be able to get a replacement shield from Sir Vyvin's squire in the White Knights' Castle."
@@ -82973,7 +82967,6 @@ falador_shield_4:
   weight: 7.257
   charges: 1
   charge: falador_shield_charges
-  player_charge: true
   slot: "Shield"
   material: "metal"
   destroy: "You will be able to get a replacement shield from Sir Vyvin's squire in the White Knights' Castle."
@@ -83023,7 +83016,6 @@ explorers_ring_4:
   weight: 0.004
   charges: 3
   charge: explorers_ring_charges
-  player_charge: true
   slot: "Ring"
   destroy: "You will need to obtain a new ring from Ned in Draynor if you destroy this one."
   examine: "A Lumbridge explorer's ring."

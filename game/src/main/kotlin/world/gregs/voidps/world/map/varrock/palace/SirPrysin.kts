@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -221,11 +222,7 @@ val cupboardTile = Tile(3204, 3469)
 suspend fun NPCOption.giveSilverlight() {
     player<Talking>("I've got all three keys!")
     npc<Talking>("Excellent! Now I can give you Silverlight.")
-    player.inventory.transaction {
-        remove("silverlight_key_wizard_traiborn")
-        remove("silverlight_key_captain_rovin")
-        remove("silverlight_key_sir_prysin")
-    }
+    player.inventory.remove("silverlight_key_wizard_traiborn", "silverlight_key_captain_rovin", "silverlight_key_sir_prysin")
     val tile = Tile(3204, 3470)
     target.mode = PauseMode
     target.clearWatch()
@@ -262,9 +259,7 @@ suspend fun NPCOption.giveSilverlight() {
     delay()
     player["demon_slayer_silverlight"] = true
     player["demon_slayer_sir_prysin_sword"] = false
-    player.inventory.transaction {
-        add("silverlight")
-    }
+    player.inventory.add("silverlight")
     item("silverlight", 600, "Sir Prysin hands you a very shiny sword.")
     player.setAnimation("silverlight_showoff")
     player.setGraphic("silverlight_sparkle")

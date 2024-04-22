@@ -2,11 +2,13 @@ package world.gregs.voidps.engine.inv.transact.operation
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.stack.AlwaysStack
 import world.gregs.voidps.engine.inv.stack.NeverStack
 import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.MoveItem.move
+import world.gregs.voidps.engine.inv.transact.operation.MoveItem.moveAll
 
 internal class MoveItemTest : TransactionOperationTest() {
 
@@ -223,7 +225,7 @@ internal class MoveItemTest : TransactionOperationTest() {
             add("item", 4)
         }
         val target = inventory(2, stackRule = AlwaysStack) {
-            set(1, Item("item", Int.MAX_VALUE - 2, def = ItemDefinition.EMPTY))
+            set(1, Item("item", Int.MAX_VALUE - 2))
         }
         transaction.move("item", 3, target, 1)
         assertFalse(transaction.commit())

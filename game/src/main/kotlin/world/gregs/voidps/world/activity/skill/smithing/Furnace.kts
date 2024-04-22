@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
@@ -65,7 +66,7 @@ suspend fun CharacterContext.smeltingOptions(
     var max = 0
     for (bar in bars) {
         val smelt: Smelting = itemDefinitions.getOrNull(bar)?.get("smelting") ?: continue
-        val min = smelt.items.minOf { (id, amount) -> player.inventory.count(id, amount) }
+        val min = smelt.items.minOf { item -> player.inventory.count(item.id, item.amount) }
         if (min <= 0) {
             continue
         }

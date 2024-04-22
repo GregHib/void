@@ -17,13 +17,13 @@ inventoryOption("Boost", "worn_equipment") {
         return@inventoryOption
     }
     if (player.hasClock("skillcape_boost_cooldown")) {
-        player.message("You've already boosted in the last 60 seconds.") // TODO proper message
+        player.message("You've already boosted in the last 60 seconds.") // Custom message
         return@inventoryOption
     }
 
     val skill: Skill = item.def["skillcape_skill"]
     if (player.levels.getOffset(skill) > 0) {
-        player.message("You already have a boost active.") // TODO proper message
+        player.message("You already have a boost active.") // Custom message
         return@inventoryOption
     }
     player.levels.boost(skill, if (skill == Skill.Constitution) 10 else 1)

@@ -42,6 +42,8 @@ import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
+import world.gregs.voidps.engine.inv.transact.charge
+import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.network.login.protocol.encode.playJingle
 import world.gregs.voidps.network.login.protocol.encode.playMIDI
@@ -149,9 +151,24 @@ adminCommand("items") {
 
 adminCommand("item") {
     val parts = content.split(" ")
-    val id = definitions.get(alternativeNames.getOrDefault(parts[0], parts[0])).stringId
+    val definition = definitions.get(alternativeNames.getOrDefault(parts[0], parts[0]))
+    val id = definition.stringId
     val amount = parts.getOrNull(1) ?: "1"
-    player.inventory.transaction { addToLimit(id, if (amount == "max") Int.MAX_VALUE else amount.toSILong().toInt()) }
+    val charges = definition.getOrNull<Int>("charges")
+    player.inventory.transaction {
+        if (charges != null) {
+            for (i in 0 until amount.toSILong()) {
+                val index = inventory.freeIndex()
+                if (index == -1) {
+                    break
+                }
+                set(index, Item(id, 1))
+                charge(player, index, charges)
+            }
+        } else {
+            addToLimit(id, if (amount == "max") Int.MAX_VALUE else amount.toSILong().toInt())
+        }
+    }
     println(player.inventory.transaction.error)
 }
 

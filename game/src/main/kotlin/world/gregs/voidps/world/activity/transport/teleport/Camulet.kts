@@ -5,10 +5,10 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.world.interact.dialogue.type.statement
-import world.gregs.voidps.world.interact.entity.player.effect.degrade.Degrade
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
 val areas: AreaDefinitions by inject()
@@ -22,7 +22,7 @@ inventoryItem("Rub", "camulet") {
 }
 
 inventoryItem("Check-charge", "camulet", "inventory") {
-    val charges = Degrade.charges(player, inventory, slot)
+    val charges = player.inventory.charges(player, slot)
     player.message("Your Camulet has $charges ${"charge".plural(charges)} left.")
     if (charges == 0) {
         player.message("You can recharge it by applying camel dung.")
@@ -31,7 +31,7 @@ inventoryItem("Check-charge", "camulet", "inventory") {
 
 itemOnItem("ugthanki_dung", "camulet") { player ->
     val slot = if (fromItem.id == "camulet") fromSlot else toSlot
-    val charges = Degrade.charges(player, fromInventory, slot)
+    val charges = player.inventory.charges(player, slot)
     if (charges == 4) {
         player.message("Your Camulet already has 4 charges.")
         return@itemOnItem

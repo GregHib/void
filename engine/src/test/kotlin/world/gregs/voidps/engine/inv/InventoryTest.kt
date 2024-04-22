@@ -10,11 +10,11 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.EventDispatcher
-import world.gregs.voidps.engine.inv.remove.DefaultItemRemovalChecker
-import world.gregs.voidps.engine.inv.remove.ItemRemovalChecker
-import world.gregs.voidps.engine.inv.remove.ShopItemRemovalChecker
+import world.gregs.voidps.engine.inv.remove.DefaultItemAmountBounds
+import world.gregs.voidps.engine.inv.remove.ItemAmountBounds
+import world.gregs.voidps.engine.inv.remove.ShopItemAmountBounds
 import world.gregs.voidps.engine.inv.stack.AlwaysStack
-import world.gregs.voidps.engine.inv.stack.DependentOnItem
+import world.gregs.voidps.engine.inv.stack.ItemDependentStack
 import world.gregs.voidps.engine.inv.stack.ItemStackingRule
 import world.gregs.voidps.engine.inv.stack.NeverStack
 
@@ -27,7 +27,7 @@ internal class InventoryTest {
     @BeforeEach
     fun setup() {
         events = mockk(relaxed = true)
-        items = Array(10) { Item("", 0, def = ItemDefinition.EMPTY) }
+        items = Array(10) { Item("", 0) }
         minimumAmounts = IntArray(10)
         inventory = inventory()
     }
@@ -36,13 +36,13 @@ internal class InventoryTest {
         id: String = "123",
         items: Array<Item> = this.items,
         stackRule: ItemStackingRule = AlwaysStack,
-        removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker
+        amountBounds: ItemAmountBounds = DefaultItemAmountBounds
     ): Inventory = spyk(
         Inventory(
             data = items,
             id = id,
             stackRule = stackRule,
-            removalCheck = removalCheck
+            amountBounds = amountBounds
         ).apply {
             transaction.changes.bind(events)
         }
@@ -83,7 +83,7 @@ internal class InventoryTest {
         val definitions: ItemDefinitions = mockk(relaxed = true)
         inventory = inventory(
             items = emptyArray(),
-            stackRule = DependentOnItem(definitions)
+            stackRule = ItemDependentStack(definitions)
         )
         every { definitions.get(id) } returns ItemDefinition(stackable = 1)
         // When
@@ -99,7 +99,7 @@ internal class InventoryTest {
         val definitions: ItemDefinitions = mockk(relaxed = true)
         inventory = inventory(
             items = emptyArray(),
-            stackRule = DependentOnItem(definitions)
+            stackRule = ItemDependentStack(definitions)
         )
         every { definitions.get(id) } returns ItemDefinition(stackable = 0)
         // When
@@ -112,11 +112,11 @@ internal class InventoryTest {
     fun `Spaces counts number of empty items`() {
         // Given
         inventory = inventory(
-            removalCheck = ShopItemRemovalChecker
+            amountBounds = ShopItemAmountBounds
         )
         inventory.transaction {
             repeat(8) {
-                set(it, Item("item", def = ItemDefinition.EMPTY))
+                set(it, Item("item"))
             }
         }
         // When
@@ -148,8 +148,30 @@ internal class InventoryTest {
     @Test
     fun `Inventory is empty`() {
         assertTrue(inventory.isEmpty())
-        items[4] = Item("123", 10, def = ItemDefinition.EMPTY)
+        items[4] = Item("123", 10)
         assertFalse(inventory.isEmpty())
+    }
+
+    @Test
+    fun `Inventory is full`() {
+        assertFalse(inventory.isFull())
+        for (i in items.indices) {
+            items[i] = Item("123", 1)
+        }
+        assertTrue(inventory.isFull())
+    }
+
+    @Test
+    fun `Index of first item`() {
+        items[4] = Item("123", 1)
+        items[5] = Item("123", 1)
+        assertEquals(4, inventory.indexOf("123"))
+    }
+
+    @Test
+    fun `Index of of non-existent item`() {
+        assertEquals(-1, inventory.indexOf(""))
+        assertEquals(-1, inventory.indexOf("123"))
     }
 
     @Test
@@ -157,7 +179,7 @@ internal class InventoryTest {
         // Given
         val index = 1
         val id = "100"
-        items[index] = Item(id, 0, def = ItemDefinition.EMPTY)
+        items[index] = Item(id, 0)
         // When
         val item = inventory[index].id
         // Then
@@ -189,7 +211,7 @@ internal class InventoryTest {
         // Given
         val index = 1
         val amount = 100
-        items[index] = Item("", amount, def = ItemDefinition.EMPTY)
+        items[index] = Item("", amount)
         // When
         val count = inventory[index].amount
         // Then
@@ -199,8 +221,8 @@ internal class InventoryTest {
     @Test
     fun `Get all inventory items`() {
         // Given
-        items[1] = Item("2", 2, def = ItemDefinition.EMPTY)
-        items[3] = Item("4", 4, def = ItemDefinition.EMPTY)
+        items[1] = Item("2", 2)
+        items[3] = Item("4", 4)
         // When
         val items = inventory.items
         // Then
@@ -211,10 +233,10 @@ internal class InventoryTest {
     fun `Get count of all item amounts`() {
         // Given
         every { inventory.stackable("2") } returns true
-        items[1] = Item("2", 2, def = ItemDefinition.EMPTY)
-        items[2] = Item("3", 1, def = ItemDefinition.EMPTY)
-        items[3] = Item("2", 4, def = ItemDefinition.EMPTY)
-        items[4] = Item("2", -1, def = ItemDefinition.EMPTY)
+        items[1] = Item("2", 2)
+        items[2] = Item("3", 1)
+        items[3] = Item("2", 4)
+        items[4] = Item("2", -1)
         // When
         val amounts = inventory.count("2")
         // Then
@@ -222,15 +244,56 @@ internal class InventoryTest {
     }
 
     @Test
+    fun `Count non existing item`() {
+        // Given
+        every { inventory.stackable("2") } returns true
+        // Then
+        assertEquals(0, inventory.count("2"))
+        assertEquals(0, inventory.count("3"))
+    }
+
+    @Test
+    fun `Count multiples of an amount`() {
+        // Given
+        every { inventory.stackable(any()) } returns true
+        items[0] = Item("stackable", 16)
+        // Then
+        assertEquals(5, inventory.count("stackable", 3))
+        assertEquals(3, inventory.count("stackable", 5))
+    }
+
+    @Test
     fun `Contains an amount of non-stackable items`() {
         // Given
         every { inventory.stackable(any()) } returns false
-        items[0] = Item("not_stackable", 1, def = ItemDefinition.EMPTY)
-        items[1] = Item("not_stackable", 1, def = ItemDefinition.EMPTY)
-        items[2] = Item("not_stackable", 1, def = ItemDefinition.EMPTY)
-        // When
-        val contains = inventory.contains("not_stackable", 2)
+        items[0] = Item("not_stackable", 1)
+        items[1] = Item("not_stackable", 1)
+        items[2] = Item("not_stackable", 1)
         // Then
-        assertTrue(contains)
+        assertTrue(inventory.contains("not_stackable", 2))
+        assertTrue(inventory.contains("not_stackable", 3))
+        assertFalse(inventory.contains("not_stackable", 4))
+    }
+
+    @Test
+    fun `Doesn't contain non-existing items`() {
+        // Given
+        every { inventory.stackable(any()) } returns false
+        every { inventory.stackable("stackable") } returns true
+        // Then
+        assertFalse(inventory.contains("stackable", 1))
+        assertFalse(inventory.contains("non-stackable", 1))
+    }
+
+    @Test
+    fun `Contains stackable items`() {
+        // Given
+        every { inventory.stackable(any()) } returns true
+        items[0] = Item("stackable", 15)
+        items[1] = Item("stackable", 1)
+        // Then
+        assertTrue(inventory.contains("stackable", 15))
+        // Then
+        assertFalse(inventory.contains("stackable", 16))
     }
 }

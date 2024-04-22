@@ -1,12 +1,13 @@
 package world.gregs.voidps.engine.inv.transact.operation
 
 import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 
 /**
  * Transaction operation for adding as many items as possible from an inventory.
  * Adds items to the inventory until it reaches its capacity or the desired amount is added.
  */
-interface AddItemLimit : AddItem {
+object AddItemLimit {
 
     /**
      * Adds items to the inventory until it reaches its capacity or the desired amount is added.
@@ -14,7 +15,7 @@ interface AddItemLimit : AddItem {
      * @param amount the number of items to be added.
      * @return the number of items actually added.
      */
-    fun addToLimit(id: String, amount: Int = 1): Int {
+    fun TransactionOperation.addToLimit(id: String, amount: Int = 1): Int {
         if (failed) {
             return 0
         }

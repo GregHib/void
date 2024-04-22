@@ -19,11 +19,11 @@ data class ItemDrop(
         assert(chance > 0) { "Item must have a positive chance." }
     }
 
-    fun toItem(definitions: ItemDefinitions = get()): Item {
+    fun toItem(): Item {
         if (id == "nothing" || id.isBlank()) {
             return Item.EMPTY
         }
-        return Item(id, amount.random(), definitions.get(id))
+        return Item(id, amount.random())
     }
 
     companion object {
@@ -63,7 +63,7 @@ data class ItemDrop(
             }
             return ItemDrop(
                 id = id,
-                amount = map["amount"] as? IntRange ?: 1..1,
+                amount = map["amount"] as? IntRange ?: map["charges"] as? IntRange ?: 1..1,
                 chance = map["chance"] as? Int ?: 1,
                 members = map["members"] as? Boolean ?: false,
                 predicate = predicate

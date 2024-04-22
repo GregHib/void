@@ -1,21 +1,31 @@
 package world.gregs.voidps.engine.entity.item
 
+import org.koin.mp.KoinPlatformTools
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.get
 
-data class Item(
+class Item(
     val id: String = "",
-    val amount: Int = 0,
-    val def: ItemDefinition = get<ItemDefinitions>().get(id)
+    amount: Int = 0
 ) {
+    internal val value = amount
+    val def: ItemDefinition
+        get() = defOrNull ?: ItemDefinition.EMPTY
+    private val defOrNull: ItemDefinition?
+        get() = KoinPlatformTools.defaultContext().getOrNull()?.get<ItemDefinitions>()?.getOrNull(id)
+    private val itemCharge: Boolean
+        get() = defOrNull?.contains("charges") == true && defOrNull?.contains("charge") != true
+    val amount: Int
+        get() = if (itemCharge) 1 else value
 
     fun isEmpty() = id.isBlank()
 
     fun isNotEmpty() = id.isNotBlank()
 
+    fun copy(id: String = this.id, amount: Int = this.value) = Item(id, amount)
+
     override fun toString(): String {
-        return "Item(id='$id', amount=$amount)"
+        return "Item(id='$id', amount=$value)"
     }
 
     override fun equals(other: Any?): Boolean {
@@ -25,18 +35,18 @@ data class Item(
         other as Item
 
         if (id != other.id) return false
-        if (amount != other.amount) return false
+        if (value != other.value) return false
 
         return true
     }
 
     override fun hashCode(): Int {
         var result = id.hashCode()
-        result = 31 * result + amount
+        result = 31 * result + value
         return result
     }
 
     companion object {
-        val EMPTY = Item("", 0, ItemDefinition.EMPTY)
+        val EMPTY = Item("", 0)
     }
 }

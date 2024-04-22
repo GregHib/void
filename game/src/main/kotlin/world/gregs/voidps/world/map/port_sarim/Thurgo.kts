@@ -4,7 +4,10 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.*
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.remove
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
@@ -35,17 +38,22 @@ suspend fun PlayerChoice.madeSword() = option<Cheerful>(
     npc<CheerfulOld>("You're welcome - thanks for the pie!")
 }
 
+val items = listOf(
+    Item("blurite_ore", 1),
+    Item("iron_bar", 2)
+)
+
 suspend fun PlayerChoice.replacementSword() = option<Cheerful>(
     "Can you make that replacement sword now?",
     { !player.holdsItem("blurite_sword") }
 ) {
     npc<UnsureOld>("How are you doing finding those sword materials?")
-    if (player.inventory.contains("blurite_ore" to 1, "iron_bar" to 2)) {
+    if (player.inventory.contains(items)) {
         player<Talking>("I have them right here.")
-
-        player.inventory.remove("iron_bar", 2)
-        player.inventory.remove("blurite_ore")
-        player.inventory.add("blurite_sword")
+        player.inventory.transaction {
+            remove(items)
+            add("blurite_sword")
+        }
         item("blurite_sword", 600, "You give the blurite ore and iron bars to Thurgo. Thurgo makes you a sword.")
         player<Cheerful>("Thank you very much!")
         npc<CheerfulOld>("Just remember to call in with more pie some time!")

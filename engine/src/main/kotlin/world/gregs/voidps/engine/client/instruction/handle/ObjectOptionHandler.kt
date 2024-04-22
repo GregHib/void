@@ -46,7 +46,7 @@ class ObjectOptionHandler(
             logger.warn { "Invalid object option $target $index" }
             return
         }
-        player.mode = Interact(player, target, ObjectOption(player, target, definition, selectedOption), approachRange = -1)
+        player.mode = Interact(player, target, ObjectOption(player, target, definition, selectedOption))
     }
 
     private fun getObject(tile: Tile, objectId: Int): GameObject? {

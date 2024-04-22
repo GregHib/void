@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -219,9 +220,10 @@ fun ChoiceBuilder<NPCOption>.teleportEssenceMine(): Unit = option<Unsure>("Can y
 }
 
 fun NPCOption.teleport() {
-    // TODO animation + gfx
-    target.forceChat = "Seventior disthiae molenko!"
+    target.forceChat = "Seventior Disthine Molenko!"
     player.tele(2910, 4830)
+    target.setGraphic("curse_cast")
+    player.setGraphic("curse_hit")
 }
 
 suspend fun ChoiceBuilder<NPCOption>.whoElseKnows(): Unit = option<Unsure>("Who else knows the teleport to the Rune Essence Mine?") {

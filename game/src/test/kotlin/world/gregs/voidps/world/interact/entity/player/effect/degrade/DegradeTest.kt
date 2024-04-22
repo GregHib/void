@@ -2,10 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.effect.degrade
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.move
-import world.gregs.voidps.engine.inv.swap
+import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.world.script.WorldTest
 
@@ -15,97 +12,178 @@ class DegradeTest : WorldTest() {
     fun `Degrade item with player variable`() {
         val player = createPlayer("player")
         val slot = EquipSlot.Amulet.index
-        val inventoryId = player.equipment.id
+        val inventory = player.equipment
+        player["binding_necklace_charges"] = 16
         player.equipment.set(slot, "binding_necklace")
-        assertEquals(16, Degrade.charges(player, inventoryId, slot))
-        Degrade.discharge(player, inventoryId, slot, amount = 6)
-        assertEquals(10, Degrade.charges(player, inventoryId, slot))
+        assertEquals(16, inventory.charges(player, slot))
+        assertTrue(inventory.discharge(player, slot, amount = 6))
+        assertEquals(10, inventory.charges(player, slot))
         assertFalse(player.equipment[slot].isEmpty())
 
-        Degrade.clear(player, inventoryId, slot)
+        inventory.discharge(player, slot, 10)
+        tick()
         assertTrue(player.equipment[slot].isEmpty())
-        assertEquals(0, Degrade.charges(player, inventoryId, slot))
+        assertEquals(0, inventory.charges(player, slot))
     }
 
     @Test
     fun `Do nothing on item degrade`() {
         val player = createPlayer("player")
         val slot = EquipSlot.Amulet.index
-        val inventoryId = player.equipment.id
-        player.equipment.set(slot, "camulet")
-        assertEquals(4, Degrade.charges(player, inventoryId, slot))
-        Degrade.discharge(player, inventoryId, slot, amount = 3)
-        assertEquals(1, Degrade.charges(player, inventoryId, slot))
-        assertFalse(player.equipment[slot].isEmpty())
+        val inventory = player.equipment
+        player["camulet_charges"] = 4
+        inventory.set(slot, "camulet")
+        assertEquals(4, inventory.charges(player, slot))
+        assertTrue(inventory.discharge(player, slot, amount = 3))
+        assertEquals(1, inventory.charges(player, slot))
+        assertFalse(inventory[slot].isEmpty())
 
-        Degrade.clear(player, inventoryId, slot)
-        assertEquals("camulet", player.equipment[slot].id)
-        assertEquals(0, Degrade.charges(player, inventoryId, slot))
+        inventory.clearCharges(player, slot)
+        assertEquals("camulet", inventory[slot].id)
+        assertEquals(0, inventory.charges(player, slot))
+    }
+
+    @Test
+    fun `Can't degrade item with different charge start`() {
+        val player = createPlayer("player")
+        val slot = EquipSlot.Weapon.index
+        val inventory = player.equipment
+        assertFalse(inventory.discharge(player, slot))
+        player.equipment.set(slot, "nature_staff", 0)
+        assertEquals(0, inventory.charges(player, slot))
+        assertFalse(inventory.discharge(player, slot))
+        assertEquals(0, inventory.charges(player, slot))
+        assertEquals("nature_staff", player.equipment[slot].id)
     }
 
     @Test
     fun `Degrade item without variable`() {
         val player = createPlayer("player")
-        val slot = EquipSlot.Amulet.index
+        val slot = EquipSlot.Hat.index
         player.equipment.set(slot, "black_mask_8")
-        val inventoryId = player.equipment.id
-        assertEquals(1, Degrade.charges(player, inventoryId, slot))
-        Degrade.discharge(player, inventoryId, slot)
-        assertEquals(1, Degrade.charges(player, inventoryId, slot))
+        val inventory = player.equipment
+        assertEquals(1, inventory.charges(player, slot))
+        assertTrue(inventory.discharge(player, slot))
+        tick()
+        assertEquals(1, inventory.charges(player, slot))
         assertEquals("black_mask_7", player.equipment[slot].id)
+    }
+
+    @Test
+    fun `Degrade item without variable into non degradable`() {
+        val player = createPlayer("player")
+        val slot = EquipSlot.Amulet.index
+        player.equipment.set(slot, "amulet_of_glory_1")
+        val inventory = player.equipment
+        assertEquals(1, inventory.charges(player, slot))
+        assertTrue(inventory.discharge(player, slot))
+        tick()
+        assertEquals(0, inventory.charges(player, slot))
+        assertEquals("amulet_of_glory", player.equipment[slot].id)
     }
 
     @Test
     fun `Can't discharge item without charges`() {
         val player = createPlayer("player")
-        val slot = EquipSlot.Amulet.index
+        val slot = EquipSlot.Hat.index
         player.equipment.set(slot, "black_mask")
-        val inventoryId = player.equipment.id
-        assertFalse(Degrade.discharge(player, inventoryId, -1)) // Invalid
-        assertFalse(Degrade.discharge(player, inventoryId, 0)) // Empty
-        assertFalse(Degrade.discharge(player, inventoryId, slot)) // No charges
+        val inventory = player.equipment
+        assertFalse(inventory.discharge(player, -1)) // Invalid
+        assertFalse(inventory.discharge(player, 0)) // Empty
+        assertFalse(inventory.discharge(player, slot)) // No charges
     }
 
     @Test
     fun `Degrade per item`() {
         val player = createPlayer("player")
         val equipSlot = EquipSlot.Weapon.index
-        player.equipment.set(equipSlot, "chaotic_rapier")
-        val equipmentId = player.equipment.id
-        val inventoryId = player.inventory.id
-        assertEquals(30000, Degrade.charges(player, equipmentId, equipSlot))
-        assertEquals(0, Degrade.charges(player, inventoryId, 0))
-        Degrade.discharge(player, equipmentId, equipSlot)
-        assertEquals(29999, Degrade.charges(player, equipmentId, equipSlot))
+        player.equipment.set(equipSlot, "chaotic_rapier", 30000)
+        val equipment = player.equipment
+        val inventory = player.inventory
+        assertEquals(30000, equipment.charges(player, equipSlot))
+        assertEquals(0, inventory.charges(player, 0))
+        assertTrue(equipment.discharge(player, equipSlot))
+        assertEquals(29999, equipment.charges(player, equipSlot))
         assertEquals("chaotic_rapier", player.equipment[equipSlot].id)
 
         player.equipment.move(equipSlot, player.inventory)
 
         assertTrue(player.equipment[equipSlot].isEmpty())
         assertEquals("chaotic_rapier", player.inventory[0].id)
-        assertEquals(29999, Degrade.charges(player, inventoryId, 0))
+        assertEquals(29999, inventory.charges(player, 0))
     }
 
     @Test
     fun `Switch two identical degraded items`() {
         val player = createPlayer("player")
         val equipSlot = EquipSlot.Weapon.index
-        val equipmentId = player.equipment.id
+        val equipment = player.equipment
         val inventorySlot = 0
-        val inventoryId = player.inventory.id
-        player.equipment.set(equipSlot, "chaotic_rapier")
-        player.inventory.set(inventorySlot, "chaotic_rapier")
-        assertEquals(30000, Degrade.charges(player, equipmentId, equipSlot))
-        assertEquals(30000, Degrade.charges(player, inventoryId, inventorySlot))
+        val inventory = player.inventory
+        player.equipment.set(equipSlot, "chaotic_rapier", 30000)
+        player.inventory.set(inventorySlot, "chaotic_rapier", 30000)
+        assertEquals(30000, equipment.charges(player, equipSlot))
+        assertEquals(30000, inventory.charges(player, inventorySlot))
 
-        Degrade.discharge(player, equipmentId, equipSlot)
-        Degrade.discharge(player, inventoryId, inventorySlot, amount = 100)
-        assertEquals(29999, Degrade.charges(player, equipmentId, equipSlot))
-        assertEquals(29900, Degrade.charges(player, inventoryId, inventorySlot))
+        assertTrue(equipment.discharge(player, equipSlot))
+        assertTrue(inventory.discharge(player, inventorySlot, amount = 100))
+        assertEquals(29999, equipment.charges(player, equipSlot))
+        assertEquals(29900, inventory.charges(player, inventorySlot))
 
         player.equipment.swap(equipSlot, player.inventory, inventorySlot)
 
-        assertEquals(29900, Degrade.charges(player, equipmentId, equipSlot))
-        assertEquals(29999, Degrade.charges(player, inventoryId, inventorySlot))
+        assertEquals(29900, equipment.charges(player, equipSlot))
+        assertEquals(29999, inventory.charges(player, inventorySlot))
+    }
+
+    @Test
+    fun `Charge item with player variable`() {
+        val player = createPlayer("player")
+        val slot = EquipSlot.Amulet.index
+        val inventory = player.equipment
+        player["binding_necklace_charges"] = 16
+        player.equipment.set(slot, "binding_necklace")
+        assertEquals(16, inventory.charges(player, slot))
+        assertTrue(inventory.discharge(player, slot, amount = 6))
+        assertEquals(10, inventory.charges(player, slot))
+        assertFalse(player.equipment[slot].isEmpty())
+
+        assertTrue(inventory.charge(player, slot, amount = 5))
+        assertFalse(player.equipment[slot].isEmpty())
+        assertEquals(15, inventory.charges(player, slot))
+    }
+
+    @Test
+    fun `Can't charge item charge`() {
+        val player = createPlayer("player")
+        val slot = EquipSlot.Hat.index
+        val inventory = player.equipment
+        player.equipment.set(slot, "black_mask_6")
+        assertFalse(inventory.charge(player, EquipSlot.Shield.index))
+        assertEquals(1, inventory.charges(player, slot))
+        assertTrue(inventory.charge(player, slot))
+        assertEquals(1, inventory.charges(player, slot))
+    }
+
+    @Test
+    fun `Can't charge non-chargeable item`() {
+        val player = createPlayer("player")
+        val slot = EquipSlot.Weapon.index
+        val inventory = player.equipment
+        player.equipment.set(slot, "abyssal_whip")
+        assertEquals(0, inventory.charges(player, slot))
+        assertFalse(inventory.charge(player, slot))
+        assertEquals(0, inventory.charges(player, slot))
+    }
+
+    @Test
+    fun `Can't do anything with invalid slot`() {
+        val player = createPlayer("player")
+        val slot = EquipSlot.None.index
+        val inventory = player.equipment
+        assertEquals(0, inventory.charges(player, slot))
+        assertFalse(inventory.discharge(player, slot))
+        assertFalse(inventory.clearCharges(player, slot))
+        assertFalse(inventory.charge(player, slot))
     }
 }

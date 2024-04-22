@@ -12,7 +12,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.script.interfaceOption
 
-internal class ChargeGodSpellEffectTest : CombatFormulaTest() {
+internal class AddChargeGodSpellEffectTest : CombatFormulaTest() {
 
     @Test
     fun `God spell and matching cape`() {

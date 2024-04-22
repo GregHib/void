@@ -257,15 +257,12 @@ wilderness_lever_warning:
   default: true
 binding_necklace_charges:
   format: int
-  default: 16
   persist: true
 camulet_charges:
   format: int
-  default: 4
   persist: true
 crystal_saw_charges:
   format: int
-  default: 28
   persist: true
 explorers_ring_last_use:
   format: long
@@ -275,19 +272,15 @@ explorers_ring_charges:
   persist: true
 falador_shield_charges:
   format: int
-  default: 1
   persist: true
 ibans_staff_charges:
   format: int
   default: 120
-  persist: true
 ring_of_recoil_charges:
   format: int
-  default: 400
   persist: true
 skull_sceptre_charges:
   format: int
-  default: 10
   persist: true
 shooting_star_bonus_ore:
   format: int

@@ -74,7 +74,7 @@ playerSpawn { player ->
 }
 
 itemChange("worn_equipment", EquipSlot.Chest) { player ->
-    if (item.def["material", ""] == "metal" || oldItem.def["material", ""] == "metal") {
+    if (item.def["material", ""] == "metal" || fromItem.def["material", ""] == "metal") {
         update(player)
     }
 }

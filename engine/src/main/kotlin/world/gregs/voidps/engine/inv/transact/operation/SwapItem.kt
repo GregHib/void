@@ -6,14 +6,14 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 /**
  * Transaction operation for swapping two items indices inside an inventory.
  */
-interface SwapItem : TransactionOperation {
+object SwapItem {
 
     /**
      * Swaps the position of two items in the inventory.
      * @param fromIndex the index of the first item in the inventory.
      * @param toIndex the index of the second item in the inventory.
      */
-    fun swap(fromIndex: Int, toIndex: Int) {
+    fun TransactionOperation.swap(fromIndex: Int, toIndex: Int) {
         swap(fromIndex, inventory, toIndex)
     }
 
@@ -22,7 +22,7 @@ interface SwapItem : TransactionOperation {
      * @param fromIndex the index of the first item in the inventory.
      * @param toIndex the index of the second item in the inventory.
      */
-    fun swap(fromIndex: Int, target: Inventory, toIndex: Int) {
+    fun TransactionOperation.swap(fromIndex: Int, target: Inventory, toIndex: Int) {
         if (failed) {
             return
         }

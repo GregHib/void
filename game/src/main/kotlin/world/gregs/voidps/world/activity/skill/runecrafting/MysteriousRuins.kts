@@ -35,7 +35,7 @@ itemAdded("*_tiara", EquipSlot.Hat, "worn_equipment") { player ->
 }
 
 itemRemoved("*_tiara", EquipSlot.Hat, "worn_equipment") { player ->
-    toggleAltar(player, oldItem, false)
+    toggleAltar(player, fromItem, false)
 }
 
 fun toggleAltar(player: Player, item: Item, unlocked: Boolean) {

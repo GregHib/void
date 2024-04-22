@@ -8,12 +8,12 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.inv.remove.DefaultItemRemovalChecker
-import world.gregs.voidps.engine.inv.remove.ShopItemRemovalChecker
+import world.gregs.voidps.engine.inv.remove.DefaultItemAmountBounds
+import world.gregs.voidps.engine.inv.remove.ShopItemAmountBounds
 import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.inv.restrict.ShopRestrictions
 import world.gregs.voidps.engine.inv.stack.AlwaysStack
-import world.gregs.voidps.engine.inv.stack.DependentOnItem
+import world.gregs.voidps.engine.inv.stack.ItemDependentStack
 import world.gregs.voidps.engine.inv.stack.NeverStack
 
 class Inventories(
@@ -28,7 +28,7 @@ class Inventories(
     lateinit var itemDefinitions: ItemDefinitions
     lateinit var validItemRule: ItemRestrictionRule
     lateinit var events: EventDispatcher
-    lateinit var normalStack: DependentOnItem
+    lateinit var normalStack: ItemDependentStack
 
     fun start() {
         for ((id, value) in inventories) {
@@ -54,8 +54,8 @@ class Inventories(
             val data = if (ids != null && amounts != null) {
                 Array(def.length) { Item(itemDefinitions.get(ids[it]).stringId, amounts[it]) }
             } else {
-                val removalCheck = if (def["shop", false]) ShopItemRemovalChecker else DefaultItemRemovalChecker
-                Array(def.length) { Item("", removalCheck.getMinimum(it)) }
+                val amountBounds = if (def["shop", false]) ShopItemAmountBounds else DefaultItemAmountBounds
+                Array(def.length) { Item("", amountBounds.minimum(it)) }
             }
             create(inventoryId, data, def)
         }
@@ -67,7 +67,7 @@ class Inventories(
         def: InventoryDefinition
     ): Inventory {
         val shop = def["shop", false]
-        val removalCheck = if (shop) ShopItemRemovalChecker else DefaultItemRemovalChecker
+        val amountBounds = if (shop) ShopItemAmountBounds else DefaultItemAmountBounds
         val stackRule = if (shop) AlwaysStack else when (def["stack", "normal"].lowercase()) {
             "always" -> AlwaysStack
             "never" -> NeverStack
@@ -78,7 +78,7 @@ class Inventories(
             id = inventoryId,
             itemRule = if (shop) ShopRestrictions(data) else validItemRule,
             stackRule = stackRule,
-            removalCheck = removalCheck,
+            amountBounds = amountBounds,
         ).apply {
             transaction.changes.bind(events)
         }

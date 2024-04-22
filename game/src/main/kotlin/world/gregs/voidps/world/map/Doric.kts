@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
@@ -19,11 +20,17 @@ import world.gregs.voidps.world.interact.entity.sound.playJingle
 
 val floorItems: FloorItems by inject()
 
+val ores = listOf(
+    Item("clay", 6),
+    Item("copper_ore", 4),
+    Item("iron_ore", 2)
+)
+
 npcOperate("Talk-to", "doric") {
     when (player.quest("dorics_quest")) {
         "started" -> {
             npc<Unsure>("Have you got my materials yet, traveller?")
-            if (!player.inventory.contains("clay" to 6, "copper_ore" to 4, "iron_ore" to 2)) {
+            if (!player.inventory.contains(ores)) {
                 noOre()
                 return@npcOperate
             }
@@ -109,7 +116,7 @@ suspend fun CharacterContext.startQuest() {
             }
             npc<Talking>("Clay is what I use more than anything, to make casts. Could you get me 6 clay, 4 copper ore, and 2 iron ore, please? I could pay a little, and let you use my anvils. Take this pickaxe with you just in case you need it.")
             player.refreshQuestJournal()
-            if (player.inventory.contains("clay" to 6, "copper_ore" to 4, "iron_ore" to 2)) {
+            if (player.inventory.contains(ores)) {
                 player<Cheerful>("You know, it's funny you should require those exact things!")
                 npc<Unsure>("What do you mean?")
                 player<Cheerful>("I can usually fit 28 things in my backpack and in a world full of quite literally limitless possibilities, a complete coincidence has occurred!")
@@ -128,11 +135,7 @@ suspend fun CharacterContext.startQuest() {
 
 suspend fun CharacterContext.takeOre() {
     item("copper_ore", 600, "You hand the clay, copper, and iron to Doric.")
-    player.inventory.transaction {
-        remove("clay", 6)
-        remove("copper_ore", 4)
-        remove("iron_ore", 2)
-    }
+    player.inventory.remove(ores)
     questComplete()
 }
 

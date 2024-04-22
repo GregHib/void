@@ -2,12 +2,13 @@ package world.gregs.voidps.engine.inv.transact.operation
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.inv.remove.ShopItemRemovalChecker
+import world.gregs.voidps.engine.inv.remove.ShopItemAmountBounds
 import world.gregs.voidps.engine.inv.stack.AlwaysStack
 import world.gregs.voidps.engine.inv.stack.NeverStack
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 internal class RemoveItemTest : TransactionOperationTest() {
 
@@ -25,7 +26,7 @@ internal class RemoveItemTest : TransactionOperationTest() {
     @Test
     fun `Remove an item with invalid id`() {
         transaction(itemRule = validItems) {
-            set(0, Item("invalid_id", 1, def = ItemDefinition.EMPTY))
+            set(0, Item("invalid_id", 1))
         }
         transaction.remove("invalid_id", 1)
         assertTrue(transaction.commit())
@@ -34,7 +35,7 @@ internal class RemoveItemTest : TransactionOperationTest() {
 
     @Test
     fun `Remove an item with invalid amount`() {
-        transaction(removalCheck = ShopItemRemovalChecker) {
+        transaction(amountBounds = ShopItemAmountBounds) {
             add("item", 1)
         }
         transaction.remove("item", -1)
@@ -113,7 +114,7 @@ internal class RemoveItemTest : TransactionOperationTest() {
     @Test
     fun `Remove an item at index with invalid id`() {
         transaction(itemRule = validItems) {
-            set(0, Item("invalid_id", 1, def = ItemDefinition.EMPTY))
+            set(0, Item("invalid_id", 1))
         }
         transaction.remove(0, "invalid_id", 1)
         assertTrue(transaction.commit())
@@ -122,7 +123,7 @@ internal class RemoveItemTest : TransactionOperationTest() {
 
     @Test
     fun `Remove an item at index with invalid amount`() {
-        transaction(removalCheck = ShopItemRemovalChecker) {
+        transaction(amountBounds = ShopItemAmountBounds) {
             add("item", 1)
         }
         transaction.remove(0, "item", -1)

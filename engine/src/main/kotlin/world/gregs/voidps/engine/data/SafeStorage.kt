@@ -38,7 +38,7 @@ class SafeStorage(
             }"
         }
         val inventories = save.inventories.toList()
-            .joinToString(",\n    ") { (id, items) -> "\"${id}\": [ ${items.joinToString(", ") { item -> if (item.isEmpty()) "{}" else "{ \"id\": \"${item.id}\", \"amount\": ${item.amount} }" }} ]" }
+            .joinToString(",\n    ") { (id, items) -> "\"${id}\": [ ${items.joinToString(", ") { item -> if (item.isEmpty()) "{}" else "{ \"id\": \"${item.id}\", \"amount\": ${item.value} }" }} ]" }
         return buildString {
             appendLine("{")
             appendLine("  \"accountName\": \"${save.name}\",")

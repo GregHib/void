@@ -46,7 +46,7 @@ fun loadItemSpawns(
                 }
                 val id = value["id"] as String
                 val tile = Tile.fromMap(value)
-                val amount = value["amount"] as? Int ?: 1
+                val amount = value["amount"] as? Int ?: value["charges"] as? Int ?: 1
                 val delay = value["delay"] as? Int ?: 60
                 spawns.set(tile, ItemSpawn(id, amount, delay))
                 items.add(tile, id, amount)

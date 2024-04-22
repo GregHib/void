@@ -16,7 +16,7 @@ internal class PlayerYamlReaderConfig(
     override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
         if (value is Map<*, *> && value.containsKey("id")) {
             val id = value["id"] as String
-            val item = Item(id, value["amount"] as? Int ?: 0, itemDefinitions.get(id))
+            val item = Item(id, value["amount"] as? Int ?: 0)
             super.add(list, item, parentMap)
         } else if (value is Map<*, *> && value.isEmpty()) {
             super.add(list, Item.EMPTY, parentMap)

@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.engine.inv.moveAll
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
 import world.gregs.voidps.world.activity.bank.isNote
 import world.gregs.voidps.world.activity.bank.noted
 import world.gregs.voidps.world.community.trade.offer

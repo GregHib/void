@@ -1605,9 +1605,9 @@ scythe_chop: 440
 scythe_jab: 438
 scythe_block: 440
 scythe_hit: 435
-ivandis_flail_slash: 9047 # needs verification
-ivandis_flail_crush: 9047 # needs verification
-ivandis_flail_hit: 9048 # needs verification
+ivandis_flail_slash: 9047
+ivandis_flail_crush: 9047
+ivandis_flail_hit: 9048
 sling_rock: 14867 # needs verification
 sling_sling: 14867 # needs verification
 sling_chuck: 14867 # needs verification

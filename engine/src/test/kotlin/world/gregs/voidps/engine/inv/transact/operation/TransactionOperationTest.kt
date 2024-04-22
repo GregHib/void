@@ -7,8 +7,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.inv.Inventory
-import world.gregs.voidps.engine.inv.remove.DefaultItemRemovalChecker
-import world.gregs.voidps.engine.inv.remove.ItemRemovalChecker
+import world.gregs.voidps.engine.inv.remove.DefaultItemAmountBounds
+import world.gregs.voidps.engine.inv.remove.ItemAmountBounds
 import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.inv.restrict.NoRestrictions
 import world.gregs.voidps.engine.inv.stack.AlwaysStack
@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.inv.stack.ItemStackingRule
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.script.KoinMock
 
 abstract class TransactionOperationTest : KoinMock() {
@@ -31,12 +32,22 @@ abstract class TransactionOperationTest : KoinMock() {
         override fun restricted(id: String): Boolean {
             return id.isBlank() || id == "invalid_item"
         }
+
+        override fun replacement(id: String): Item? {
+            return when (id) {
+                "replaceable" -> Item("replacement", 2)
+                "destructible" -> Item.EMPTY
+                else -> null
+            }
+        }
     }
+    protected lateinit var itemDefinitions: ItemDefinitions
 
     @BeforeEach
     fun setup() {
-        declareMock<ItemDefinitions> {
+        itemDefinitions = declareMock<ItemDefinitions> {
             every { this@declareMock.get(any<String>()) } returns ItemDefinition()
+            every { this@declareMock.getOrNull(any<String>()) } returns ItemDefinition()
         }
         transaction()
     }
@@ -45,10 +56,10 @@ abstract class TransactionOperationTest : KoinMock() {
         capacity: Int = 5,
         stackRule: ItemStackingRule = AlwaysStack,
         itemRule: ItemRestrictionRule = NoRestrictions,
-        removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
+        amountBounds: ItemAmountBounds = DefaultItemAmountBounds,
         block: Transaction.() -> Unit = {}
     ) {
-        inventory = inventory(capacity, stackRule, itemRule, removalCheck, block)
+        inventory = inventory(capacity, stackRule, itemRule, amountBounds, block)
         transaction = inventory.transaction
         transaction.start()
     }
@@ -57,14 +68,14 @@ abstract class TransactionOperationTest : KoinMock() {
         capacity: Int = 5,
         stackRule: ItemStackingRule = AlwaysStack,
         itemRule: ItemRestrictionRule = NoRestrictions,
-        removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
+        amountBounds: ItemAmountBounds = DefaultItemAmountBounds,
         block: (Transaction.() -> Unit)? = null
     ): Inventory {
         val inventory = Inventory.debug(
             capacity = capacity,
             stackRule = stackRule,
             itemRule = itemRule,
-            removalCheck = removalCheck
+            amountBounds = amountBounds
         )
         val transaction = inventory.transaction
         if (block != null) {

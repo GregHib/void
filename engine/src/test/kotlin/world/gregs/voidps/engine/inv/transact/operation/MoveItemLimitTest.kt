@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.inv.stack.AlwaysStack
 import world.gregs.voidps.engine.inv.stack.NeverStack
 import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveAllToLimit
+import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
 
 internal class MoveItemLimitTest : TransactionOperationTest() {
 

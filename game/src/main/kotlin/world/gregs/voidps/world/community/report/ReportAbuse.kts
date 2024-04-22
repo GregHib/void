@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.ui.open
 
 interfaceOption("Report Abuse", "report", "filter_buttons") {
     if (player.hasMenuOpen()) {
-        player.message("Please close the interface you have open before using .")// TODO
+        player.message("Please finish what you're doing first.")
         return@interfaceOption
     }
     player.open("report_abuse_select")

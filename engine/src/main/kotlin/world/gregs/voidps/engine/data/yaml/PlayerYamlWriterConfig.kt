@@ -11,8 +11,8 @@ internal class PlayerYamlWriterConfig : YamlWriterConfiguration(forceQuoteString
                 emptyMap()
             } else {
                 val map = mutableMapOf<String, Any>("id" to value.id)
-                if (value.amount != 0) {
-                    map["amount"] = value.amount
+                if (value.value != 0) {
+                    map["amount"] = value.value
                 }
                 map
             }

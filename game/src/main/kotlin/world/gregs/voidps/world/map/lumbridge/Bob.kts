@@ -7,6 +7,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation.interpolate
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Unsure

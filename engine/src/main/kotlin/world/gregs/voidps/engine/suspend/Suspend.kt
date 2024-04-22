@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
+import world.gregs.voidps.engine.queue.Action
 
 fun Character.resumeSuspension(): Boolean {
     val suspend = suspension ?: return false
@@ -91,6 +92,19 @@ context(CharacterContext) fun Character.approachRange(range: Int?, update: Boole
 private val logger = InlineLogger()
 
 context(CharacterContext) suspend fun Character.playAnimation(id: String, override: Boolean = false, canInterrupt: Boolean = true) {
+    val ticks = setAnimation(id, override = override)
+    if (ticks == -1) {
+        logger.warn { "No animation delay $id" }
+    } else {
+        character.start("movement_delay", ticks)
+        if (canInterrupt) {
+            pause(ticks)
+        } else {
+            delay(ticks)
+        }
+    }
+}
+context(Action) suspend fun Character.playAnimation(id: String, override: Boolean = false, canInterrupt: Boolean = true) {
     val ticks = setAnimation(id, override = override)
     if (ticks == -1) {
         logger.warn { "No animation delay $id" }

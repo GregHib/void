@@ -1,13 +1,17 @@
 package world.gregs.voidps.engine.inv.transact.operation
 
 import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 
 /**
  * Transaction operation for moving an item inside an inventory.
  * The moveToLimit operation moves items from the current inventory to another inventory until
  * the target inventory reaches its capacity or the desired amount is moved.
  */
-interface MoveItemLimit : RemoveItemLimit {
+object MoveItemLimit {
 
     /**
      * Moves items from the current inventory to another inventory until the target
@@ -17,7 +21,7 @@ interface MoveItemLimit : RemoveItemLimit {
      * @param target the target inventory for the items.
      * @return the number of items actually moved.
      */
-    fun moveToLimit(id: String, amount: Int, target: Inventory, replace: String = id): Int {
+    fun TransactionOperation.moveToLimit(id: String, amount: Int, target: Inventory, replace: String = id): Int {
         if (failed) {
             return 0
         }
@@ -47,7 +51,7 @@ interface MoveItemLimit : RemoveItemLimit {
      * inventory reaches its capacity or everything is moved.
      * @param target the target inventory for the items.
      */
-    fun moveAllToLimit(target: Inventory) {
+    fun TransactionOperation.moveAllToLimit(target: Inventory) {
         if (failed) {
             return
         }

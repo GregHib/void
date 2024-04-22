@@ -25,7 +25,7 @@ class SafeStorageTest {
         assertFalse(files.isNullOrEmpty())
         val file = files!!.first()
         assertTrue(file.name.endsWith("durial_321.json"))
-        val expected = File("./src/test/resources/player.json").readText()
-        assertEquals(expected, file.readText())
+        val expected = File("./src/test/resources/player.json").readText().replace("\r\n", "\n")
+        assertEquals(expected, file.readText().replace("\r\n", "\n"))
     }
 }

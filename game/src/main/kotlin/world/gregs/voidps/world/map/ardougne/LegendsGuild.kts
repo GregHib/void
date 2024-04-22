@@ -9,14 +9,15 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.world.interact.dialogue.type.item
+import world.gregs.voidps.world.interact.dialogue.type.statement
 
 objectOperate("Look", "legends_guild_totem_pole") {
-    // TODO proper message
     if (player.inventory.contains("combat_bracelet") && player.inventory.replace("combat_bracelet", "combat_bracelet_4")) {
         combatBracelet(player)
     } else if (player.inventory.contains("skills_necklace") && player.inventory.replace("skills_necklace", "skills_necklace_4")) {
         skillsNecklace(player)
     } else {
+        statement("This totem pole is truly awe inspiring. It depicts powerful Karamjan animals. It is very well carved and brings a sense of power and spiritual fulfilment to anyone who looks at it.")
         player.message("You don't have any jewellery that the totem can recharge.")
     }
 }
@@ -42,6 +43,5 @@ suspend fun CharacterContext.combatBracelet(player: Player) {
 suspend fun CharacterContext.skillsNecklace(player: Player) {
     player.message("You touch the jewellery against the totem pole...")
     player.setAnimation("bend_down")
-    // TODO proper message
-    item("skills_necklace", 200, "You feel a power emanating from the totem pole as it recharges your necklace. You can now rub the necklace to teleport to many skilling guilds.")
+    item("skills_necklace", 200, "You feel a power emanating from the totem pole as it recharges your necklace. You can now rub the necklace to teleport and wear it to get more caskets while big net Fishing.")
 }
