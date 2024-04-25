@@ -5874,3 +5874,336 @@ broad_arrows:
   message: "You attach arrows heads to 15 arrow shafts"
   question: "How many set of 15 would you like to make"
   maximum: 10
+unstrung_ogre_comp_bow:
+  skill: fletching
+  level: 30
+  xp: 45.0
+  ticks: 3
+  requires: [ knife ]
+  remove:
+    - item: achey_tree_logs
+    - item: wolf_bones
+  add:
+    - item: unstrung_comp_bow
+  message: "You carefully cut the wood and add the bones."
+  question: "What would you like to fletch?"
+  animation: fletching_bow_log
+# fletching finished bows
+shortbow_finished:
+  skill: fletching
+  level: 5
+  xp: 5.0
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: shortbow_u
+  add:
+    - item: shortbow
+  message: "You add a string to the bow."
+  animation: fletching_string_normal_shortbow
+longbow_finished:
+  skill: fletching
+  level: 10
+  xp: 10.0
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: longbow_u
+  add:
+    - item: longbow
+  message: "You add a string to the bow."
+  animation: fletching_string_normal_longbow
+oak_shortbow_finished:
+  skill: fletching
+  level: 20
+  xp: 16.5
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: oak_shortbow_u
+  add:
+    - item: oak_shortbow
+  message: "You add a string to the bow."
+  animation: fletching_string_oak_shortbow
+oak_longbow_finished:
+  skill: fletching
+  level: 25
+  xp: 25.0
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: oak_longbow_u
+  add:
+    - item: oak_longbow
+  message: "You add a string to the bow."
+  animation: fletching_string_oak_longbow
+ogre_comp_finished:
+  skill: fletching
+  level: 30
+  xp: 45.0
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: unstrung_comp_bow
+  add:
+    - item: comp_ogre_bow
+  message: "You add a string to the bow."
+willow_shortbow_finished:
+  skill: fletching
+  level: 35
+  xp: 33.2
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: willow_shortbow_u
+  add:
+    - item: willow_shortbow
+  message: "You add a string to the bow."
+  animation: fletching_string_willow_shortbow
+willow_longbow_finished:
+  skill: fletching
+  level: 40
+  xp: 41.5
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: willow_longbow_u
+  add:
+    - item: willow_longbow
+  message: "You add a string to the bow."
+  animation: fletching_string_willow_longbow
+maple_shortbow_finished:
+  skill: fletching
+  level: 50
+  xp: 50.0
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: maple_shortbow_u
+  add:
+    - item: maple_shortbow
+  message: "You add a string to the bow."
+  animation: fletching_string_maple_shortbow
+maple_longbow_finished:
+  skill: fletching
+  level: 55
+  xp: 58.2
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: maple_longbow_u
+  add:
+    - item: maple_longbow
+  message: "You add a string to the bow."
+  animation: fletching_string_maple_longbow
+yew_shortbow_finished:
+  skill: fletching
+  level: 65
+  xp: 67.4
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: yew_shortbow_u
+  add:
+    - item: yew_shortbow
+  message: "You add a string to the bow."
+  animation: fletching_string_yew_shortbow
+yew_longbow_finished:
+  skill: fletching
+  level: 70
+  xp: 75.0
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: yew_longbow_u
+  add:
+    - item: yew_longbow
+  message: "You add a string to the bow."
+  animation: fletching_string_yew_longbow
+magic_shortbow_finished:
+  skill: fletching
+  level: 80
+  xp: 83.2
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: magic_shortbow_u
+  add:
+    - item: magic_shortbow
+  message: "You add a string to the bow."
+  animation: fletching_string_magic_shortbow
+magic_longbow_finished:
+  skill: fletching
+  level: 85
+  xp: 91.5
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: magic_longbow_u
+  add:
+    - item: magic_longbow
+  message: "You add a string to the bow."
+  animation: fletching_string_magic_longbow
+#fletching crossbow unfinished
+bronze_crossbow_unfinished:
+  skill: fletching
+  level: 9
+  xp: 12.0
+  ticks: 2
+  remove:
+    - item: wooden_stock
+    - item: bronze_limbs
+  add:
+    - item: bronze_crossbow_u
+  message: "You add a limbs to the stock."
+blurite_crossbow_unfinished:
+  skill: fletching
+  level: 24
+  xp: 32.0
+  ticks: 2
+  remove:
+    - item: oak_stock
+    - item: blurite_limbs
+  add:
+    - item: bluerite_crossbow_u
+  message: "You add a limbs to the stock."
+iron_crossbow_unfinished:
+  skill: fletching
+  level: 24
+  xp: 32.0
+  ticks: 2
+  remove:
+    - item: oak_stock
+    - item: blurite_limbs
+  add:
+    - item: bluerite_crossbow_u
+  message: "You add a limbs to the stock."
+steel_crossbow_unfinished:
+  skill: fletching
+  level: 46
+  xp: 54.0
+  ticks: 2
+  remove:
+    - item: teak_stock
+    - item: steel_limbs
+  add:
+    - item: steel_crossbow_u
+  message: "You add a limbs to the stock."
+mithril_crossbow_unfinished:
+  skill: fletching
+  level: 54
+  xp: 64.0
+  ticks: 2
+  remove:
+    - item: maple_stock
+    - item: mithril_limbs
+  add:
+    - item: mithril_crossbow_u
+  message: "You add a limbs to the stock."
+adamant_crossbow_unfinished:
+  skill: fletching
+  level: 61
+  xp: 82.0
+  ticks: 2
+  remove:
+    - item: mahogany_stock
+    - item: adamant_limbs
+  add:
+    - item: adamant_crossbow_u
+  message: "You add a limbs to the stock."
+rune_crossbow_unfinished:
+  skill: fletching
+  level: 69
+  xp: 100.0
+  ticks: 2
+  remove:
+    - item: yew_stock
+    - item: rune_limbs
+  add:
+    - item: rune_crossbow_u
+  message: "You add a limbs to the stock."
+#fletching crossbow finished
+bronze_crossbow_finished:
+  skill: fletching
+  level: 9
+  xp: 6.0
+  ticks: 2
+  remove:
+    - item: bronze_crossbow_u
+    - item: crossbow_string
+  add:
+    - item: bronze_crossbow
+  message: "You add a string to the stock."
+  animation: fletching_string_bronze_crossbow
+blurite_crossbow_finished:
+  skill: fletching
+  level: 24
+  xp: 16.0
+  ticks: 2
+  remove:
+    - item: blurite_crossbow_u
+    - item: crossbow_string
+  add:
+    - item: blurite_crossbow
+  message: "You add a string to the stock."
+  animation: fletching_string_blurite_crossbow
+iron_crossbow_finished:
+  skill: fletching
+  level: 39
+  xp: 22.0
+  ticks: 2
+  remove:
+    - item: iron_crossbow_u
+    - item: crossbow_string
+  add:
+    - item: iron_crossbow
+  message: "You add a string to the stock."
+  animation: fletching_string_iron_crossbow
+steel_crossbow_finished:
+  skill: fletching
+  level: 46
+  xp: 27.0
+  ticks: 2
+  remove:
+    - item: steel_crossbow_u
+    - item: crossbow_string
+  add:
+    - item: steel_crossbow
+  message: "You add a string to the stock."
+  animation: fletching_string_steel_crossbow
+mithril_crossbow_finished:
+  skill: fletching
+  level: 54
+  xp: 32.0
+  ticks: 2
+  remove:
+    - item: mithril_crossbow_u
+    - item: crossbow_string
+  add:
+    - item: mithril_crossbow
+  message: "You add a string to the stock."
+  animation: fletching_string_mithril_crossbow
+adamant_crossbow_finished:
+  skill: fletching
+  level: 61
+  xp: 41.0
+  ticks: 2
+  remove:
+    - item: adamant_crossbow_u
+    - item: crossbow_string
+  add:
+    - item: adamant_crossbow
+  message: "You add a string to the stock."
+  animation: fletching_string_adamant_crossbow
+rune_crossbow_finished:
+  skill: fletching
+  level: 69
+  xp: 41.0
+  ticks: 2
+  remove:
+    - item: rune_crossbow_u
+    - item: crossbow_string
+  add:
+    - item: rune_crossbow
+  message: "You add a string to the stock."
+  animation: fletching_string_rune_crossbow

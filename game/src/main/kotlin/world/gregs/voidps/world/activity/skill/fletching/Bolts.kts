@@ -8,6 +8,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 itemOnItem("feather", "*_bolts_unf") {
     val boltUsed = if (toItem.boltsUnf) toItem else fromItem
@@ -18,9 +20,9 @@ itemOnItem("feather", "*_bolts_unf") {
     }
 
     val currentFeathers = it.inventory.count("feather")
-    val currentBoltUnfs = it.inventory.count(boltUsed.id)
+    val currentBoltUnf = it.inventory.count(boltUsed.id)
 
-    val actualAmount = minOf(currentFeathers, currentBoltUnfs, 10)
+    val actualAmount = minOf(currentFeathers, currentBoltUnf, 10)
 
     if (actualAmount < 1) {
         return@itemOnItem

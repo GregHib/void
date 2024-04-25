@@ -5,6 +5,8 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 
@@ -16,10 +18,10 @@ itemOnItem("feather", "arrow_shaft") {
     }
     it.weakQueue("feather_to_shaft_dialog") {
         val (selected, amount) = makeAmount(
-                listOf("headless_arrow"),
-                type = "Make sets: ",
-                maximum = 10,
-                text = "How many sets of 15 do you wish to feather?"
+            listOf("headless_arrow"),
+            type = "Make sets: ",
+            maximum = 10,
+            text = "How many sets of 15 do you wish to feather?"
         )
         makeHeadlessArrows(player, selected, amount)
     }
