@@ -140,7 +140,7 @@ fun makeImmediately(player: Player, overlaps: List<ItemOnItemDefinition>, maximu
         return false
     }
     val definition = overlaps.first()
-    val stackable = definition.maximum == -1 &&definition.remove.all { inventory.stackable(it.id) } && definition.one.all { inventory.stackable(it.id) }
+    val stackable = definition.maximum == -1 && definition.remove.all { inventory.stackable(it.id) } && definition.one.all { inventory.stackable(it.id) }
     return stackable || maximum == 1 || player["selecting_amount", false] || player.inCombat
 }
 

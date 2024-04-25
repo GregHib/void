@@ -42,7 +42,7 @@ fun fletch(player: Player, addItem: String, addItemDef: Fletching, removeItem: S
         return
     }
 
-    if(!player.inventory.contains("knife") || !player.inventory.contains(removeItem)) {
+    if (!player.inventory.contains("knife") || !player.inventory.contains(removeItem)) {
         player.softTimers.stop("fletching")
         return
     }
@@ -53,23 +53,24 @@ fun fletch(player: Player, addItem: String, addItemDef: Fletching, removeItem: S
             add(addItem, addItemDef.makeAmount)
         }
 
-        if(!success) {
+        if (!success) {
             return@weakQueue
         }
 
         val itemCreated = getFletched(addItem)
-        player.message("You carefully cut the wood into a $itemCreated", ChatType.Game)
+        player.message("You carefully cut the wood into $itemCreated.", ChatType.Game)
         player.experience.add(Skill.Fletching, addItemDef.xp)
         player.setAnimation(addItemDef.animation)
-        fletch(player, addItem, addItemDef, removeItem, amount -1)
+        fletch(player, addItem, addItemDef, removeItem, amount - 1)
     }
 }
 
 fun getFletched(itemName: String): String {
     return when {
-        itemName.contains("shortbow", ignoreCase = true) -> "Shortbow."
-        itemName.contains("longbow", ignoreCase = true) -> "Longbow."
-        itemName.contains("stock", ignoreCase = true) -> "Stock."
-        else -> "Null"
+        itemName.contains("shortbow", ignoreCase = true) -> "a Shortbow"
+        itemName.contains("longbow", ignoreCase = true) -> "a Longbow"
+        itemName.contains("stock", ignoreCase = true) -> "a Stock"
+        itemName.contains("shaft", ignoreCase = true) -> "Shafts"
+        else -> "null"
     }
 }

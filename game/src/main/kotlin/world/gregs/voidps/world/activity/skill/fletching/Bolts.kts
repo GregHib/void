@@ -34,7 +34,7 @@ itemOnItem("feather", "*_bolts_unf") {
         add(createdBolt, actualAmount)
     }
 
-    if(!success) {
+    if (!success) {
         return@itemOnItem
     }
 

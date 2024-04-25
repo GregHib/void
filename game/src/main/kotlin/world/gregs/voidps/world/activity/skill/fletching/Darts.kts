@@ -34,7 +34,7 @@ itemOnItem("feather", "*_dart_tip") {
         add(createdDart, actualAmount)
     }
 
-    if(!success) {
+    if (!success) {
         return@itemOnItem
     }
 

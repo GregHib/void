@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 
 itemOnItem("feather", "arrow_shaft") {
-    if(fromItem.amount <= 15 || toItem.amount <= 15) {
+    if (fromItem.amount <= 15 || toItem.amount <= 15) {
         val amountToMake = minOf(fromItem.amount, toItem.amount)
         makeImmediately(it, "headless_arrow", amountToMake)
         return@itemOnItem
@@ -53,7 +53,7 @@ fun makeHeadlessArrows(player: Player, addItem: String, amount: Int) {
             remove("arrow_shaft", actualAmount)
             add(addItem, actualAmount)
         }
-        if(!success) {
+        if (!success) {
             return@weakQueue
         }
         val experiencePerArrow = 15.0 / 15
@@ -71,7 +71,7 @@ fun makeImmediately(player: Player, addItem: String, amount: Int) {
             remove("arrow_shaft", amount)
             add(addItem, amount)
         }
-        if(!success) {
+        if (!success) {
             return@weakQueue
         }
         val experiencePerArrow = 15.0 / 15
