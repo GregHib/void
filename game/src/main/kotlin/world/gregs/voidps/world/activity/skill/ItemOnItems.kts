@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.skill
 
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
@@ -172,7 +173,7 @@ fun Transaction.removeItems(def: ItemOnItemDefinition, success: Boolean): String
     for (item in def.remove) {
         remove(item.id, item.amount)
         if (failed) {
-            return "You don't have enough ${item.def.name.lowercase()} to ${def.type} this."
+            return "You don't have enough ${item.def.name.lowercase().plural(item.amount)} to ${def.type} this."
         }
     }
     var removedOne = def.one.isEmpty()
@@ -183,7 +184,8 @@ fun Transaction.removeItems(def: ItemOnItemDefinition, success: Boolean): String
         }
     }
     if (!removedOne || failed) {
-        return "You don't have enough ${def.one.first().def.name.lowercase()} to ${def.type} this."
+        val first = def.one.first()
+        return "You don't have enough ${first.def.name.lowercase().plural(first.amount)} to ${def.type} this."
     }
 
     for (add in if (success) def.add else def.fail) {
