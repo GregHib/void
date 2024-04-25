@@ -155,7 +155,7 @@ fun getMaximum(overlaps: List<ItemOnItemDefinition>, player: Player): Int {
         if (min > max) {
             max = min
         }
-        if (overlap.maximum < max) {
+        if (overlap.maximum in 1..<max) {
             max = overlap.maximum
         }
     }
