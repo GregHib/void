@@ -7954,6 +7954,7 @@ magic_logs:
   price: 1323
   limit: 25000
   weight: 2.0
+  fletchables: [ arrow_shaft, magic_shortbow_u, magic_longbow_u ]
   firemaking:
     level: 75
     xp: 303.8
@@ -58138,7 +58139,6 @@ jennicas_ring:
 cursed_magic_logs:
   id: 13567
   weight: 2.0
-  fletchables: [ arrow_shaft, magic_shortbow_u, magic_longbow_u ]
   firemaking:
     level: 82
     xp: 303.8
