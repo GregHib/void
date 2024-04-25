@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.type.choice
+import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 import kotlin.math.min
 
@@ -34,19 +35,13 @@ inventoryItem("Check*", "magical_blastbox*", "inventory") {
         option("I do not wish to change the box settings.", filter = { charges == 0 })
         option("Switch to ${if (blast) "Bolt" else "Blast"}.") {
             if (charges == 0 || emptyRunes(player, blast, dungeoneering, slot, charges)) {
-                player["magical_blastbox_mode$dungeoneering"] = !blast
-                player.message("This box is set to be charged with ${if (!blast) "Blast" else "Bolt"} spells.")
+                val blastMode = player.toggle("magical_blastbox_mode$dungeoneering")
+                player.message("This box is set to be charged with ${if (blastMode) "Blast" else "Bolt"} spells.")
             } else {
                 player.inventoryFull()
             }
         }
     }
-}
-
-inventoryItem("Check-charges", "magical_blastbox*", "worn_equipment") {
-    val blast = player["magical_blastbox_mode", false]
-    val charges = player.equipment.charges(player, EquipSlot.Shield.index)
-    player.message("The box is currently charged with $charges ${if (blast) "Blast" else "Bolt"} ${"spell".plural(charges)}.") // TODO proper message
 }
 
 fun emptyRunes(player: Player, blast: Boolean, dungeoneering: String, slot: Int, charges: Int): Boolean {
@@ -62,30 +57,51 @@ fun emptyRunes(player: Player, blast: Boolean, dungeoneering: String, slot: Int,
     }
 }
 
+inventoryItem("Check-charges", "magical_blastbox*", "worn_equipment") {
+    val blast = player["magical_blastbox_mode", false]
+    val charges = player.equipment.charges(player, EquipSlot.Shield.index)
+    player.message("The box is currently charged with $charges ${if (blast) "Blast" else "Bolt"} ${"spell".plural(charges)}.") // TODO proper message
+}
+
 playerSpawn { player ->
-    if (player.equipped(EquipSlot.Shield).id.startsWith("magical_blastbox")) {
-        updateCharges(player, EquipSlot.Shield.index)
+    val box = player.equipped(EquipSlot.Shield).id
+    if (box.startsWith("magical_blastbox")) {
+        updateCharges(player, EquipSlot.Shield.index, box != "magical_blastbox")
     } else {
-        setCharges(player, 0)
+        setCharges(player, 0, box != "magical_blastbox")
     }
 }
 
 itemAdded("magical_blastbox*", EquipSlot.Shield, "worn_equipment") { player ->
-    updateCharges(player, index)
+    updateCharges(player, index, item.id != "magical_blastbox")
 }
 
-fun updateCharges(player: Player, index: Int) {
+fun updateCharges(player: Player, index: Int, dungeoneering: Boolean) {
     val charges = player.equipment.charges(player, index)
-    setCharges(player, charges)
+    setCharges(player, charges, dungeoneering)
 }
 
-fun setCharges(player: Player, charges: Int) {
-    val type = if (player["magical_blastbox_mode", false]) "blast" else "bolt"
+fun setCharges(player: Player, charges: Int, dungeoneering: Boolean) {
+    val type = if (player["magical_blastbox_mode${if (dungeoneering) "_dungeoneering" else ""}", false]) "blast" else "bolt"
     player["magical_blastbox_$type"] = charges
 }
 
+combatAttack(spell = "*_bolt") { player ->
+    val box = player.equipped(EquipSlot.Shield).id
+    if (box.startsWith("magical_blastbox")) {
+        updateCharges(player, EquipSlot.Shield.index, box != "magical_blastbox")
+    }
+}
+
+combatAttack(spell = "*_blast") { player ->
+    val box = player.equipped(EquipSlot.Shield).id
+    if (box.startsWith("magical_blastbox")) {
+        updateCharges(player, EquipSlot.Shield.index, box != "magical_blastbox")
+    }
+}
+
 itemRemoved("magical_blastbox*", EquipSlot.Shield, "worn_equipment") { player ->
-    setCharges(player, 0)
+    setCharges(player, 0, fromItem.id != "magical_blastbox")
 }
 
 inventoryItem("Charge", "magical_blastbox*", "inventory") {

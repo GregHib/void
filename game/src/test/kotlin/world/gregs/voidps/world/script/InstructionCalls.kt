@@ -4,6 +4,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
+import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
@@ -108,9 +109,9 @@ fun Player.equipItem(
 }
 
 fun Player.dialogueOption(
-    id: String,
     component: String,
-    option: Int = -1
+    option: Int = -1,
+    id: String = dialogue!!
 ) {
     emit(ContinueDialogue(id, component, option))
 }
