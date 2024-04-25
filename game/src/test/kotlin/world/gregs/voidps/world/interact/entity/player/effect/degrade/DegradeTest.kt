@@ -49,7 +49,8 @@ class DegradeTest : WorldTest() {
         val slot = EquipSlot.Weapon.index
         val inventory = player.equipment
         assertFalse(inventory.discharge(player, slot))
-        player.equipment.set(slot, "nature_staff", 0)
+        player.equipment.set(slot, "nature_staff")
+        player["nature_staff_charges"] = 0
         assertEquals(0, inventory.charges(player, slot))
         assertFalse(inventory.discharge(player, slot))
         assertEquals(0, inventory.charges(player, slot))

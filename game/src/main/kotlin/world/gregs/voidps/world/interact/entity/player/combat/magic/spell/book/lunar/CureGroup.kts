@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 import world.gregs.voidps.world.interact.entity.player.toxin.curePoison
 import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
 
@@ -18,7 +18,7 @@ val players: Players by inject()
 
 interfaceOption(component = "cure_group", id = "lunar_spellbook") {
     val spell = component
-    if (!Spell.removeRequirements(player, spell)) {
+    if (!player.removeSpellItems(spell)) {
         return@interfaceOption
     }
     val definition = definitions.get(spell)

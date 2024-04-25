@@ -75,7 +75,7 @@ data class InterfaceComponentDefinitionFull(
     var anInt4761: Int = -1,// Unused
     var setting: InterfaceComponentSetting = InterfaceComponentSetting(0, -1),
     val params: HashMap<Long, Any>? = null,
-    var anObjectArray4758: Array<Any>? = null,
+    var information: Array<Any>? = null,
     var mouseEnterHandler: Array<Any>? = null,
     var mouseExitHandler: Array<Any>? = null,
     var anObjectArray4771: Array<Any>? = null,
@@ -197,10 +197,10 @@ data class InterfaceComponentDefinitionFull(
         if (anInt4761 != other.anInt4761) return false
         if (setting != other.setting) return false
         if (params != other.params) return false
-        if (anObjectArray4758 != null) {
-            if (other.anObjectArray4758 == null) return false
-            if (!anObjectArray4758.contentEquals(other.anObjectArray4758)) return false
-        } else if (other.anObjectArray4758 != null) return false
+        if (information != null) {
+            if (other.information == null) return false
+            if (!information.contentEquals(other.information)) return false
+        } else if (other.information != null) return false
         if (mouseEnterHandler != null) {
             if (other.mouseEnterHandler == null) return false
             if (!mouseEnterHandler.contentEquals(other.mouseEnterHandler)) return false
@@ -380,7 +380,7 @@ data class InterfaceComponentDefinitionFull(
         result = 31 * result + anInt4761
         result = 31 * result + setting.hashCode()
         result = 31 * result + (params?.hashCode() ?: 0)
-        result = 31 * result + (anObjectArray4758?.contentHashCode() ?: 0)
+        result = 31 * result + (information?.contentHashCode() ?: 0)
         result = 31 * result + (mouseEnterHandler?.contentHashCode() ?: 0)
         result = 31 * result + (mouseExitHandler?.contentHashCode() ?: 0)
         result = 31 * result + (anObjectArray4771?.contentHashCode() ?: 0)

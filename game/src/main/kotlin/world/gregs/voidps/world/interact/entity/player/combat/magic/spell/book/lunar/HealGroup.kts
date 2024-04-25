@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 
 val definitions: SpellDefinitions by inject()
 val players: Players by inject()
@@ -21,7 +21,7 @@ interfaceOption(component = "heal_group", id = "lunar_spellbook") {
         player.message("You don't have enough life points.")
         return@interfaceOption
     }
-    if (!Spell.removeRequirements(player, spell)) {
+    if (!player.removeSpellItems(spell)) {
         return@interfaceOption
     }
     val definition = definitions.get(spell)

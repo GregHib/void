@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
@@ -25,27 +24,32 @@ val objectDefinitions: ObjectDefinitions by inject()
 val omni = listOf("air", "mind", "water", "earth", "fire", "body", "cosmic", "law", "nature", "chaos", "death", "blood")
 
 playerSpawn { player ->
-    if (player.equipped(EquipSlot.Hat).id.endsWith("_tiara")) {
-        toggleAltar(player, player.equipped(EquipSlot.Hat), true)
+    if (player.equipped(EquipSlot.Hat).id.endsWith("_tiara") || player.equipped(EquipSlot.Weapon).id == "omni_staff") {
+        updateAltarVars(player)
     }
 }
 
 itemAdded("*_tiara", EquipSlot.Hat, "worn_equipment") { player ->
-    toggleAltar(player, item, true)
+    updateAltarVars(player)
 }
 
 itemRemoved("*_tiara", EquipSlot.Hat, "worn_equipment") { player ->
-    toggleAltar(player, fromItem, false)
+    updateAltarVars(player)
 }
 
-fun toggleAltar(player: Player, item: Item, unlocked: Boolean) {
-    val type = item.id.removeSuffix("_tiara")
-    if (type == "omni") {
-        for (t in omni) {
-            player["${t}_altar_ruins"] = unlocked
-        }
-    } else {
-        player["${type}_altar_ruins"] = unlocked
+itemAdded("omni_staff", EquipSlot.Weapon, "worn_equipment") { player ->
+    updateAltarVars(player)
+}
+
+itemRemoved("omni_staff", EquipSlot.Weapon, "worn_equipment") { player ->
+    updateAltarVars(player)
+}
+
+fun updateAltarVars(player: Player) {
+    val tiara = player.equipped(EquipSlot.Hat).id.removeSuffix("_tiara")
+    val staff = player.equipped(EquipSlot.Weapon).id
+    for (type in omni) {
+        player["${type}_altar_ruins"] = type == tiara || tiara == "omni" || staff == "omni_staff"
     }
 }
 

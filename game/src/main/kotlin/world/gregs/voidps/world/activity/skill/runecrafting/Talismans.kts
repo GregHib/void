@@ -14,6 +14,10 @@ val overworld = Rectangle(2048, 2496, 3903, 4159)
 val teleports: Teleports by inject()
 
 inventoryItem("Locate", "*_talisman") {
+    if (item.id == "elemental_talisman") {
+        player.message("You cannot tell which direction the talisman is pulling...")
+        return@inventoryItem
+    }
     val id = item.id.replace("_talisman", "_altar_portal")
     val teleport = teleports.get(id, "Enter").first()
     if (player.tile.region == teleport.tile.region) {

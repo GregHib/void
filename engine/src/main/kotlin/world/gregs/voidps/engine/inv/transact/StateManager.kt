@@ -40,6 +40,7 @@ class StateManager(
      */
     fun clear() {
         history = null
+        reverts.clear()
     }
 
     /**

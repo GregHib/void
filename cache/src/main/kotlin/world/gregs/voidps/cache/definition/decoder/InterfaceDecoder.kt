@@ -131,8 +131,8 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
         if (setting and 0x3fda8 shr 11 != 0) {
             buffer.skip(6)
         }
-        anObjectArray4758 = decodeScript(buffer)
-        if (anObjectArray4758 != null) {
+        information = decodeScript(buffer)
+        if (information != null) {
             empty = false
         }
         skipScript(buffer)

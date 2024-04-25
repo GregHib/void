@@ -195,7 +195,7 @@ class InterfaceDecoder718 {
 //                    this.aClass437_1279.method5817(string, i_24_.toLong())
             }
         }
-        anObjectArray4758 = decodeScript(reader)
+        information = decodeScript(reader)
         mouseEnterHandler = decodeScript(reader)
         mouseExitHandler = decodeScript(reader)
         anObjectArray4771 = decodeScript(reader)

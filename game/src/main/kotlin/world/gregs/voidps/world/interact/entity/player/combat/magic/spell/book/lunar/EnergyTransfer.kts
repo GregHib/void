@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
@@ -41,7 +41,7 @@ itemOnPlayerApproach(id = "lunar_spellbook", component = "energy_transfer") {
         player.message("This player is not in a multi-combat zone.")
         return@itemOnPlayerApproach
     }
-    if (!Spell.removeRequirements(player, spell)) {
+    if (!player.removeSpellItems(spell)) {
         return@itemOnPlayerApproach
     }
     val definition = definitions.get(spell)

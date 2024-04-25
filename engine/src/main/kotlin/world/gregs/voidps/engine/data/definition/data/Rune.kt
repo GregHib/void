@@ -11,7 +11,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 data class Rune(
     val xp: Double = 0.0,
     val pure: Boolean = false,
-    val levels: IntArray = intArrayOf()
+    val levels: IntArray = intArrayOf(),
+    val combinations: Map<String, List<Any>> = emptyMap()
 ) {
     fun multiplier(player: Player): Int {
         var multiplier = 1
@@ -49,6 +50,7 @@ data class Rune(
             xp = map["xp"] as? Double ?: EMPTY.xp,
             pure = map["pure"] as? Boolean ?: EMPTY.pure,
             levels = (map["levels"] as? List<Int>)?.toIntArray() ?: EMPTY.levels,
+            combinations = (map["combinations"] as? Map<String, List<Any>>) ?: EMPTY.combinations,
         )
 
         val EMPTY = Rune()

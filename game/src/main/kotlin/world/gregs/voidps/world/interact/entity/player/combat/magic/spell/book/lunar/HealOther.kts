@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 
 val definitions: SpellDefinitions by inject()
 
@@ -28,7 +28,7 @@ itemOnPlayerApproach(id = "lunar_spellbook", component = "heal_other") {
         player.message("You don't have enough life points.")
         return@itemOnPlayerApproach
     }
-    if (!Spell.removeRequirements(player, spell)) {
+    if (!player.removeSpellItems(spell)) {
         return@itemOnPlayerApproach
     }
     val definition = definitions.get(spell)

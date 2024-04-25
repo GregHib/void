@@ -12,6 +12,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.modern.teleBlock
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
@@ -30,7 +31,7 @@ characterCombatSwing(style = "magic") { source ->
 }
 
 fun castSpell(source: Character, target: Character): Boolean {
-    if (source.spell.isNotBlank() && source is Player && !Spell.removeRequirements(source, source.spell)) {
+    if (source.spell.isNotBlank() && source is Player && !source.removeSpellItems(source.spell)) {
         source.clear("autocast")
         return false
     }
