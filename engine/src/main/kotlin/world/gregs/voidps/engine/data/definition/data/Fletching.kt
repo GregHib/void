@@ -1,8 +1,11 @@
 package world.gregs.voidps.engine.data.definition.data
 
 /**
- * @param level required to make dart
- * @param xp experience per dart made
+ * @param level required to make item
+ * @param xp experience per item
+ * @param animation the animation the player will perform will fletching item
+ * @param makeAmount the amount of items fletched from a log
+ * @param tick the amount of ticks for fletching an item
  */
 data class Fletching(
     val level: Int = 1,
