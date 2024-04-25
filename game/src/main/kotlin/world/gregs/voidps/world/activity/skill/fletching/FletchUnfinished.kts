@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.activity.skill.fletching
 
-import com.github.michaelbull.logging.InlineLogger
 import org.slf4j.MDC.remove
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
@@ -18,16 +17,10 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 
 val itemDefinitions: ItemDefinitions by inject()
-val logger = InlineLogger()
 
 itemOnItem("knife", "*logs*") {
     val usedLog = if (isfletchableLog(toItem.id)) toItem else fromItem
-    val displayItems = getFletchItems(usedLog.id)
-
-    if(displayItems.isEmpty()) {
-        logger.warn { "${usedLog.id} doesn't have any selectable items for the make interface." }
-        return@itemOnItem
-    }
+    val displayItems = (toItem.def.extras as? MutableMap<String, Any>)?.remove("fletchables") as? List<String> ?: return@itemOnItem
 
     it.weakQueue("fletching_make_dialog") {
         val (selected, amount) = makeAmount(
@@ -70,20 +63,6 @@ fun fletch(player: Player, addItem: String, addItemDef: Fletching, removeItem: S
         player.experience.add(Skill.Fletching, addItemDef.xp)
         player.setAnimation(addItemDef.animation)
         fletch(player, addItem, addItemDef, removeItem, amount -1)
-    }
-}
-
-fun getFletchItems(log: String): List<String> {
-    return when (log) {
-        "logs" -> listOf("arrow_shaft", "shortbow_u", "longbow_u", "wooden_stock")
-        "oak_logs" -> listOf("arrow_shaft", "oak_shortbow_u", "oak_longbow_u", "oak_stock")
-        "willow_logs" -> listOf("arrow_shaft", "willow_shortbow_u", "willow_longbow_u", "willow_stock")
-        "maple_logs" -> listOf("arrow_shaft", "maple_shortbow_u", "maple_longbow_u", "maple_stock")
-        "teak_logs" -> listOf("arrow_shaft", "teak_stock")
-        "mahogany_logs" -> listOf("arrow_shaft", "mahogany_stock")
-        "yew_logs" -> listOf("arrow_shaft", "yew_shortbow_u", "yew_longbow_u", "yew_stock")
-        "magic_logs" -> listOf("arrow_shaft", "magic_shortbow_u", "magic_longbow_u")
-        else -> emptyList()
     }
 }
 

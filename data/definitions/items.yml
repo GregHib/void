@@ -7941,6 +7941,7 @@ logs:
   price: 30
   limit: 25000
   weight: 2.0
+  fletchables: [ arrow_shaft, shortbow_u, longbow_u, wooden_stock ]
   firemaking:
     level: 1
     xp: 40.0
@@ -7965,6 +7966,7 @@ yew_logs:
   price: 410
   limit: 25000
   weight: 2.0
+  fletchables: [ arrow_shaft, yew_shortbow_u, yew_longbow_u, yew_stock ]
   firemaking:
     level: 60
     xp: 202.5
@@ -7977,6 +7979,7 @@ maple_logs:
   price: 51
   limit: 25000
   weight: 2.0
+  fletchables: [ arrow_shaft, maple_shortbow_u, maple_longbow_u, maple_stock ]
   firemaking:
     level: 45
     xp: 135.0
@@ -7989,6 +7992,7 @@ willow_logs:
   price: 16
   limit: 25000
   weight: 2.0
+  fletchables: [ arrow_shaft, willow_shortbow_u, willow_ongbow_u, willow_stock ]
   firemaking:
     level: 30
     xp: 90.0
@@ -8001,6 +8005,7 @@ oak_logs:
   price: 29
   limit: 25000
   weight: 2.0
+  fletchables: [ arrow_shaft, oak_shortbow_u, oak_longbow_u, oak_stock ]
   firemaking:
     level: 15
     xp: 60.0
@@ -27643,6 +27648,7 @@ mahogany_logs:
   price: 512
   limit: 25000
   weight: 1.36
+  fletchables: [ arrow_shaft, mahogany_stock ]
   firemaking:
     level: 50
     xp: 157.5
@@ -27653,6 +27659,7 @@ teak_logs:
   price: 88
   limit: 25000
   weight: 1.36
+  fletchables: [ arrow_shaft, teak_stock ]
   firemaking:
     level: 35
     xp: 105.0
@@ -58131,6 +58138,7 @@ jennicas_ring:
 cursed_magic_logs:
   id: 13567
   weight: 2.0
+  fletchables: [ arrow_shaft, magic_shortbow_u, magic_longbow_u ]
   firemaking:
     level: 82
     xp: 303.8

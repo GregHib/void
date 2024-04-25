@@ -25,6 +25,7 @@ itemOnItem("feather", "*_dart_tip") {
     val actualAmount = minOf(currentFeathers, currentDartTips, 10)
 
     if (actualAmount < 1) {
+        it.message("You don't have enough materials to fletch bolts.", ChatType.Game)
         return@itemOnItem
     }
 

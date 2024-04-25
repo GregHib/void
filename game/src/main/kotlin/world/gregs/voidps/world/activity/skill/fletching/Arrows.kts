@@ -3,6 +3,7 @@ package world.gregs.voidps.world.activity.skill.fletching
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -42,6 +43,7 @@ fun makeHeadlessArrows(player: Player, addItem: String, amount: Int) {
     }
 
     if (actualAmount < 1) {
+        player.message("You don't have enough materials to fletch headless arrows.", ChatType.Game)
         return
     }
 
