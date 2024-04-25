@@ -5552,10 +5552,10 @@ dragonstone_runite_bolts:
   remove:
     - item: runite_bolts
       amount: 10
-    - item: dragonstone_bolt_tips
+    - item: dragon_bolt_tips
       amount: 10
   add:
-    - item: dragonstone_bolts
+    - item: dragon_bolts
       amount: 10
   message: "You fletch 10 bolts."
   question: "How many set of 10 would you like to tip?"
@@ -5628,7 +5628,7 @@ bronze_arrows:
     - item: bronze_arrowtips
       amount: 15
   add:
-    - item: bronze_arrows
+    - item: bronze_arrow
       amount: 15
   message: "You attach arrows heads to 15 arrow shafts"
   question: "How many set of 15 would you like to make"
@@ -5644,7 +5644,7 @@ iron_arrows:
     - item: iron_arrowtips
       amount: 15
   add:
-    - item: iron_arrows
+    - item: iron_arrow
       amount: 15
   message: "You attach arrows heads to 15 arrow shafts"
   question: "How many set of 15 would you like to make"
@@ -5660,7 +5660,7 @@ steel_arrows:
     - item: steel_arrowtips
       amount: 15
   add:
-    - item: steel_arrows
+    - item: steel_arrow
       amount: 15
   message: "You attach arrows heads to 15 arrow shafts"
   question: "How many set of 15 would you like to make"
@@ -5676,7 +5676,7 @@ mithril_arrows:
     - item: mithril_arrowtips
       amount: 15
   add:
-    - item: mithril_arrows
+    - item: mithril_arrow
       amount: 15
   message: "You attach arrows heads to 15 arrow shafts"
   question: "How many set of 15 would you like to make"
@@ -5692,7 +5692,7 @@ adamant_arrows:
     - item: adamant_arrowtips
       amount: 15
   add:
-    - item: adamant_arrows
+    - item: adamant_arrow
       amount: 15
   message: "You attach arrows heads to 15 arrow shafts"
   question: "How many set of 15 would you like to make"
@@ -5708,7 +5708,7 @@ rune_arrows:
     - item: rune_arrowtips
       amount: 15
   add:
-    - item: rune_arrows
+    - item: rune_arrow
       amount: 15
   message: "You attach arrows heads to 15 arrow shafts"
   question: "How many set of 15 would you like to make"
@@ -5724,7 +5724,7 @@ dragon_arrows:
     - item: dragon_arrowtips
       amount: 15
   add:
-    - item: dragon_arrows
+    - item: dragon_arrow
       amount: 15
   message: "You attach arrows heads to 15 arrow shafts"
   question: "How many set of 15 would you like to make"
@@ -6065,7 +6065,7 @@ blurite_crossbow_unfinished:
     - item: oak_stock
     - item: blurite_limbs
   add:
-    - item: bluerite_crossbow_u
+    - item: blurite_crossbow_u
   message: "You add a limbs to the stock."
 iron_crossbow_unfinished:
   skill: fletching
@@ -6073,10 +6073,10 @@ iron_crossbow_unfinished:
   xp: 32.0
   ticks: 2
   remove:
-    - item: oak_stock
-    - item: blurite_limbs
+    - item: willow_stock
+    - item: iron_limbs
   add:
-    - item: bluerite_crossbow_u
+    - item: iron_crossbow_u
   message: "You add a limbs to the stock."
 steel_crossbow_unfinished:
   skill: fletching
