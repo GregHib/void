@@ -28,7 +28,8 @@ val itemDefinitions: ItemDefinitions by inject()
 val logger = InlineLogger()
 
 itemOnObjectOperate("*_essence", "*_altar") {
-    bindRunes(player, item.id, item.def)
+    val id = target.id.replace("_altar", "_rune")
+    bindRunes(player, id, itemDefinitions.get(id))
 }
 
 objectOperate("Craft-rune", "*_altar") {
