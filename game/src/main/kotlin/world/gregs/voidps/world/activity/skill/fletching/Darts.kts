@@ -6,21 +6,19 @@ import world.gregs.voidps.engine.data.definition.data.FletchDarts
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 itemOnItem("feather", "*_dart_tip") {
-    val dartUsed = if (toItem.dartUnf) toItem else fromItem
-    val darts: FletchDarts = dartUsed.def.getOrNull("fletch_dart") ?: return@itemOnItem
+    val darts: FletchDarts = toItem.def.getOrNull("fletch_dart") ?: return@itemOnItem
 
     if (!it.has(Skill.Fletching, darts.level, true)) {
         return@itemOnItem
     }
 
     val currentFeathers = it.inventory.count("feather")
-    val currentDartTips = it.inventory.count(dartUsed.id)
+    val currentDartTips = it.inventory.count(toItem.id)
 
     val actualAmount = minOf(currentFeathers, currentDartTips, 10)
 
@@ -29,9 +27,9 @@ itemOnItem("feather", "*_dart_tip") {
         return@itemOnItem
     }
 
-    val createdDart: String = dartUsed.id.replace("_tip", "")
+    val createdDart: String = toItem.id.replace("_tip", "")
     val success = it.inventory.transaction {
-        remove(dartUsed.id, actualAmount)
+        remove(toItem.id, actualAmount)
         remove("feather", actualAmount)
         add(createdDart, actualAmount)
     }
@@ -44,6 +42,3 @@ itemOnItem("feather", "*_dart_tip") {
     it.experience.add(Skill.Fletching, totalExperience)
     it.message("You finish making $actualAmount darts.", ChatType.Game)
 }
-
-val Item.dartUnf: Boolean
-    get() = def.contains("fletch_dart")

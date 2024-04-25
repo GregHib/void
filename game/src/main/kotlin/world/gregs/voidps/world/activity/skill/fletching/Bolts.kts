@@ -6,21 +6,19 @@ import world.gregs.voidps.engine.data.definition.data.FletchBolts
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 itemOnItem("feather", "*_bolts_unf") {
-    val boltUsed = if (toItem.boltsUnf) toItem else fromItem
-    val bolts: FletchBolts = boltUsed.def.getOrNull("fletch_bolts") ?: return@itemOnItem
+    val bolts: FletchBolts = toItem.def.getOrNull("fletch_bolts") ?: return@itemOnItem
 
     if (!it.has(Skill.Fletching, bolts.level, true)) {
         return@itemOnItem
     }
 
     val currentFeathers = it.inventory.count("feather")
-    val currentBoltUnf = it.inventory.count(boltUsed.id)
+    val currentBoltUnf = it.inventory.count(toItem.id)
 
     val actualAmount = minOf(currentFeathers, currentBoltUnf, 10)
 
@@ -29,9 +27,9 @@ itemOnItem("feather", "*_bolts_unf") {
         return@itemOnItem
     }
 
-    val createdBolt: String = boltUsed.id.replace("_unf", "")
+    val createdBolt: String = toItem.id.replace("_unf", "")
     val success = it.inventory.transaction {
-        remove(boltUsed.id, actualAmount)
+        remove(toItem.id, actualAmount)
         remove("feather", actualAmount)
         add(createdBolt, actualAmount)
     }
@@ -44,6 +42,3 @@ itemOnItem("feather", "*_bolts_unf") {
     it.experience.add(Skill.Fletching, totalExperience)
     it.message("You fletch $actualAmount bolts.", ChatType.Game)
 }
-
-val Item.boltsUnf: Boolean
-    get() = def.contains("fletch_bolts")

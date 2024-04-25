@@ -18,10 +18,9 @@ import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 
 val itemDefinitions: ItemDefinitions by inject()
 
+@Suppress("UNCHECKED_CAST")
 itemOnItem("knife", "*logs*") {
-    val usedLog = if (isfletchableLog(toItem.id)) toItem else fromItem
-    val displayItems = (toItem.def.extras as? MutableMap<String, Any>)?.remove("fletchables") as? List<String> ?: return@itemOnItem
-
+    val displayItems = toItem.def.extras?.get("fletchables") as? List<String> ?: return@itemOnItem
     it.weakQueue("fletching_make_dialog") {
         val (selected, amount) = makeAmount(
             displayItems,
@@ -33,7 +32,7 @@ itemOnItem("knife", "*logs*") {
         if (!it.has(Skill.Fletching, itemToFletch.level, true)) {
             return@weakQueue
         }
-        fletch(it, selected, itemToFletch, usedLog.id, amount)
+        fletch(it, selected, itemToFletch, toItem.id, amount)
     }
 }
 
@@ -72,19 +71,5 @@ fun getFletched(itemName: String): String {
         itemName.contains("longbow", ignoreCase = true) -> "Longbow."
         itemName.contains("stock", ignoreCase = true) -> "Stock."
         else -> "Null"
-    }
-}
-
-fun isfletchableLog(id: String) : Boolean {
-    return when (id) {
-        "logs" -> true
-        "oak_logs" -> true
-        "willow_logs" -> true
-        "maple_logs" -> true
-        "teak_logs" -> true
-        "mahogany_logs" -> true
-        "yew_logs" -> true
-        "magic_logs" -> true
-        else -> false
     }
 }
