@@ -24,7 +24,7 @@ class InterfaceDefinitions(
 ) : DefinitionsDecoder<InterfaceDefinition> {
 
     override lateinit var ids: Map<String, Int>
-    private lateinit var componentIds: Map<String, Int>
+    lateinit var componentIds: Map<String, Int>
 
     fun getComponentId(id: String, component: String) = componentIds["${id}_$component"]
 

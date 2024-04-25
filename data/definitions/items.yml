@@ -2682,8 +2682,11 @@ fire_rune:
   runecrafting:
     xp: 7.0
     levels: [ 14, 35, 70 ]
+    combinations:
+      air: [ smoke, 8.5 ]
+      water: [ steam, 9.3 ]
+      earth: [ lava, 10.0 ]
   aka: [ fires, fire_runes ]
-  combination: [ "smoke_rune", "steam_rune", "lava_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 water_rune:
@@ -2693,8 +2696,11 @@ water_rune:
   runecrafting:
     xp: 6.0
     levels: [ 5, 19, 38, 57, 76, 95 ]
+    combinations:
+      air: [ mist, 8.0 ]
+      earth: [ mud, 9.5 ]
+      fire: [ steam, 10.0 ]
   aka: [ waters, water_runes ]
-  combination: [ "mist_rune", "mud_rune", "steam_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 air_rune:
@@ -2704,8 +2710,11 @@ air_rune:
   runecrafting:
     xp: 5.0
     levels: [ 1, 11, 22, 33, 44, 55, 66, 77, 88, 99 ]
+    combinations:
+      water: [ mist, 8.5 ]
+      earth: [ dust, 9.0 ]
+      fire: [ smoke, 9.5 ]
   aka: [ airs, air_runes ]
-  combination: [ "mist_rune", "dust_rune", "smoke_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 earth_rune:
@@ -2715,8 +2724,11 @@ earth_rune:
   runecrafting:
     xp: 6.5
     levels: [ 9, 26, 52, 78 ]
+    combinations:
+      air: [ dust, 8.3 ]
+      water: [ mud, 9.3 ]
+      fire: [ lava, 10.5 ]
   aka: [ earths, earth_runes ]
-  combination: [ "dust_rune", "mud_rune", "lava_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 mind_rune:
@@ -2727,7 +2739,6 @@ mind_rune:
     xp: 5.5
     levels: [ 2, 14, 28, 42, 56, 84, 98 ]
   aka: [ minds, mind_runes ]
-  combination: [ "catalytic_rune" ]
   examine: "Used for basic level missile spells."
   kept: "Wilderness"
 body_rune:
@@ -2738,7 +2749,6 @@ body_rune:
     xp: 7.5
     levels: [ 20, 46, 92 ]
   aka: [ bodies, bodys, body_runes ]
-  combination: [ "catalytic_rune" ]
   examine: "Used for Curse spells"
   kept: "Wilderness"
 death_rune:
@@ -2750,7 +2760,6 @@ death_rune:
     levels: [ 65 ]
     pure: true
   aka: [ deaths, death_runes ]
-  combination: [ "catalytic_rune" ]
   examine: "Used for medium level missile spells."
 nature_rune:
   id: 561
@@ -2761,7 +2770,6 @@ nature_rune:
     levels: [ 44, 91 ]
     pure: true
   aka: [ nat, nats, natures, nature_runes ]
-  combination: [ "catalytic_rune" ]
   examine: "Used for alchemy spells."
 chaos_rune:
   id: 562
@@ -2772,7 +2780,6 @@ chaos_rune:
     levels: [ 35, 74 ]
     pure: true
   aka: [ chaoss, chaoses, chaos_runes ]
-  combination: [ "catalytic_rune" ]
   examine: "Used for low level missile spells."
 law_rune:
   id: 563
@@ -2783,7 +2790,6 @@ law_rune:
     levels: [ 54 ]
     pure: true
   aka: [ laws, law_runes ]
-  combination: [ "catalytic_rune" ]
   examine: "Used for teleport spells."
 cosmic_rune:
   id: 564
@@ -2794,7 +2800,6 @@ cosmic_rune:
     levels: [ 27, 59 ]
     pure: true
   aka: [ cosmics, cosmic_runes ]
-  combination: [ "catalytic_rune" ]
   examine: "Used for enchant spells."
 blood_rune:
   id: 565
@@ -2805,7 +2810,6 @@ blood_rune:
     levels: [ 77 ]
     pure: true
   aka: [ bloods, blood_runes ]
-  combination: [ "catalytic_rune" ]
   examine: "Used for high level missile spells."
 soul_rune:
   id: 566
@@ -2816,7 +2820,6 @@ soul_rune:
     levels: [ 90 ]
     pure: true
   aka: [ souls, soul_runes ]
-  combination: [ "catalytic_rune" ]
   examine: "Used for high level curse spells."
 unpowered_orb:
   id: 567
@@ -7203,7 +7206,6 @@ staff_of_air:
   price: 790
   limit: 1000
   weight: 2.267
-  infinite: [ "air_rune" ]
   aka: [ "air_staff" ]
   category: "staff"
   slot: "Weapon"
@@ -7215,7 +7217,6 @@ staff_of_water:
   price: 861
   limit: 1000
   weight: 2.267
-  infinite: [ "water_rune" ]
   aka: [ "water_staff" ]
   category: "staff"
   slot: "Weapon"
@@ -7227,7 +7228,6 @@ staff_of_earth:
   price: 1030
   limit: 1000
   weight: 2.267
-  infinite: [ "earth_rune" ]
   aka: [ "earth_staff" ]
   category: "staff"
   slot: "Weapon"
@@ -7239,7 +7239,6 @@ staff_of_fire:
   price: 1009
   limit: 1000
   weight: 2.267
-  infinite: [ "fire_rune" ]
   aka: [ "fire_staff" ]
   category: "staff"
   slot: "Weapon"
@@ -7270,7 +7269,6 @@ fire_battlestaff:
   price: 9216
   limit: 1000
   weight: 2.267
-  infinite: [ "fire_rune" ]
   category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
@@ -7280,7 +7278,6 @@ water_battlestaff:
   price: 9033
   limit: 1000
   weight: 2.267
-  infinite: [ "water_rune" ]
   category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
@@ -7290,7 +7287,6 @@ air_battlestaff:
   price: 9005
   limit: 1000
   weight: 2.267
-  infinite: [ "air_rune" ]
   category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
@@ -7300,7 +7296,6 @@ earth_battlestaff:
   price: 9225
   limit: 1000
   weight: 2.267
-  infinite: [ "earth_rune" ]
   category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
@@ -7310,7 +7305,6 @@ mystic_fire_staff:
   price: 25600
   limit: 1000
   weight: 2.267
-  infinite: [ "fire_rune" ]
   category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
@@ -7320,7 +7314,6 @@ mystic_water_staff:
   price: 25300
   limit: 1000
   weight: 2.267
-  infinite: [ "water_rune" ]
   category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
@@ -7330,7 +7323,6 @@ mystic_air_staff:
   price: 25700
   limit: 1000
   weight: 2.267
-  infinite: [ "air_rune" ]
   category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
@@ -7340,7 +7332,6 @@ mystic_earth_staff:
   price: 25000
   limit: 1000
   weight: 2.267
-  infinite: [ "earth_rune" ]
   category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
@@ -14561,7 +14552,6 @@ lava_battlestaff:
   price: 10000
   limit: 1000
   weight: 2.267
-  infinite: [ "earth_rune", "fire_rune", "lava_rune" ]
   category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
@@ -14570,7 +14560,6 @@ mystic_lava_staff:
   price: 34200
   limit: 1000
   weight: 2.267
-  infinite: [ "earth_rune", "fire_rune", "lava_rune" ]
   category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
@@ -21088,36 +21077,54 @@ steam_rune:
   id: 4694
   price: 164
   limit: 25000
+  runecrafting:
+    xp: 0.0
+    levels: [ 19 ]
   examine: "A combined water and fire rune."
   kept: "Wilderness"
 mist_rune:
   id: 4695
   price: 251
   limit: 25000
+  runecrafting:
+    xp: 0.0
+    levels: [ 6 ]
   examine: "A combined air and water rune."
   kept: "Wilderness"
 dust_rune:
   id: 4696
   price: 5
   limit: 25000
+  runecrafting:
+    xp: 0.0
+    levels: [ 10 ]
   examine: "A combined air and earth rune."
   kept: "Wilderness"
 smoke_rune:
   id: 4697
   price: 152
   limit: 25000
+  runecrafting:
+    xp: 0.0
+    levels: [ 15 ]
   examine: "A combined air and fire rune."
   kept: "Wilderness"
 mud_rune:
   id: 4698
   price: 285
   limit: 25000
+  runecrafting:
+    xp: 0.0
+    levels: [ 13 ]
   examine: "A combined earth and water rune."
   kept: "Wilderness"
 lava_rune:
   id: 4699
   price: 23
   limit: 25000
+  runecrafting:
+    xp: 0.0
+    levels: [ 23 ]
   examine: "A combined earth and fire rune."
 sapphire_lantern_empty:
   id: 4700
@@ -28334,7 +28341,6 @@ mud_battlestaff:
   price: 758700
   limit: 10
   weight: 2.267
-  infinite: [ "water_rune", "earth_rune", "mud_rune" ]
   category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
@@ -28343,7 +28349,6 @@ mystic_mud_staff:
   price: 770700
   limit: 10
   weight: 2.267
-  infinite: [ "water_rune", "earth_rune", "mud_rune" ]
   category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
@@ -37677,6 +37682,8 @@ void_knight_gloves:
   slot: "Hands"
   examine: "Gloves as used by the order of the Void Knights."
   kept: "Reclaim"
+guthix_staff_dummy:
+  id: 8843
 bronze_defender:
   id: 8844
   tradeable: false
@@ -38748,7 +38755,6 @@ astral_rune:
     levels: [ 40, 82 ]
     pure: true
   aka: [ astral_runes, astral, astrals ]
-  combination: [ "catalytic_rune" ]
   examine: "Used for Lunar Spells"
 lunar_ore:
   id: 9076
@@ -49886,7 +49892,6 @@ steam_battlestaff:
   price: 230500
   limit: 10
   weight: 2.267
-  infinite: [ "water_rune", "fire_rune", "steam_rune" ]
   category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
@@ -49896,7 +49901,6 @@ mystic_steam_staff:
   price: 286600
   limit: 10
   weight: 2.267
-  infinite: [ "water_rune", "fire_rune", "steam_rune" ]
   category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
@@ -58154,42 +58158,55 @@ runecrafting_guild_teleport:
 air_altar_teleport:
   <<: *runecrafting_guild_teleport
   id: 13599
+  aka: [ air_teleport, air_tele, air_altar_tele, air_tab, air_altar_tab, air_tablet, air_altar_tablet, air_altar_tele_tab, air_altar_teleport_tab, air_altar_teleport_tablet ]
 mind_altar_teleport:
   <<: *runecrafting_guild_teleport
   id: 13600
+  aka: [ mind_teleport, mind_tele, mind_altar_tele, mind_tab, mind_altar_tab, mind_tablet, mind_altar_tablet, mind_altar_tele_tab, mind_altar_teleport_tab, mind_altar_teleport_tablet ]
 water_altar_teleport:
   <<: *runecrafting_guild_teleport
   id: 13601
+  aka: [ water_teleport, water_tele, water_altar_tele, water_tab, water_altar_tab, water_tablet, water_altar_tablet, water_altar_tele_tab, water_altar_teleport_tab, water_altar_teleport_tablet ]
 earth_altar_teleport:
   <<: *runecrafting_guild_teleport
   id: 13602
+  aka: [ earth_teleport, earth_tele, earth_altar_tele, earth_tab, earth_altar_tab, earth_tablet, earth_altar_tablet, earth_altar_tele_tab, earth_altar_teleport_tab, earth_altar_teleport_tablet ]
 fire_altar_teleport:
   <<: *runecrafting_guild_teleport
   id: 13603
+  aka: [ fire_teleport, fire_tele, fire_altar_tele, fire_tab, fire_altar_tab, fire_tablet, fire_altar_tablet, fire_altar_tele_tab, fire_altar_teleport_tab, fire_altar_teleport_tablet ]
 body_altar_teleport:
   <<: *runecrafting_guild_teleport
   id: 13604
+  aka: [ body_teleport, body_tele, body_altar_tele, body_tab, body_altar_tab, body_tablet, body_altar_tablet, body_altar_tele_tab, body_altar_teleport_tab, body_altar_teleport_tablet ]
 cosmic_altar_teleport:
   <<: *runecrafting_guild_teleport
   id: 13605
+  aka: [ cosmic_teleport, cosmic_tele, cosmic_altar_tele, cosmic_tab, cosmic_altar_tab, cosmic_tablet, cosmic_altar_tablet, cosmic_altar_tele_tab, cosmic_altar_teleport_tab, cosmic_altar_teleport_tablet ]
 chaos_altar_teleport:
   <<: *runecrafting_guild_teleport
   id: 13606
+  aka: [ chaos_teleport, chaos_tele, chaos_altar_tele, chaos_tab, chaos_altar_tab, chaos_tablet, chaos_altar_tablet, chaos_altar_tele_tab, chaos_altar_teleport_tab, chaos_altar_teleport_tablet ]
 nature_altar_teleport:
   <<: *runecrafting_guild_teleport
   id: 13607
+  aka: [ nature_teleport, nature_tele, nature_altar_tele, nature_tab, nature_altar_tab, nature_tablet, nature_altar_tablet, nature_altar_tele_tab, nature_altar_teleport_tab, nature_altar_teleport_tablet ]
 law_altar_teleport:
   <<: *runecrafting_guild_teleport
   id: 13608
+  aka: [ law_teleport, law_tele, law_altar_tele, law_tab, law_altar_tab, law_tablet, law_altar_tablet, law_altar_tele_tab, law_altar_teleport_tab, law_altar_teleport_tablet ]
 death_altar_teleport:
   <<: *runecrafting_guild_teleport
   id: 13609
+  aka: [ death_teleport, death_tele, death_altar_tele, death_tab, death_altar_tab, death_tablet, death_altar_tablet, death_altar_tele_tab, death_altar_teleport_tab, death_altar_teleport_tablet ]
 blood_altar_teleport:
   <<: *runecrafting_guild_teleport
   id: 13610
+  aka: [ blood_teleport, blood_tele, blood_altar_tele, blood_tab, blood_altar_tab, blood_tablet, blood_altar_tablet, blood_altar_tele_tab, blood_altar_teleport_tab, blood_altar_teleport_tablet ]
 astral_altar_teleport:
   <<: *runecrafting_guild_teleport
   id: 13611
+  aka: [ astral_teleport, astral_tele, astral_altar_tele, astral_tab, astral_altar_tab, astral_tablet, astral_altar_tablet, astral_altar_tele_tab, astral_altar_teleport_tab, astral_altar_teleport_tablet ]
 runecrafter_hat_the_great_orb_project_yellow:
   id: 13612
   tradeable: false
@@ -71027,7 +71044,6 @@ water_staff_dungeoneering_bound:
   id: 16163
   tradeable: false
   category: "staff"
-  infinite: [ "water_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of water."
   weight: 1.814
@@ -71035,7 +71051,6 @@ empowered_water_staff_bound:
   id: 16164
   tradeable: false
   category: "staff"
-  infinite: [ "water_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of water."
   weight: 1.814
@@ -71043,7 +71058,6 @@ earth_staff_dungeoneering_bound:
   id: 16165
   tradeable: false
   category: "staff"
-  infinite: [ "earth_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of earth."
   weight: 1.814
@@ -71051,7 +71065,6 @@ empowered_earth_staff_bound:
   id: 16166
   tradeable: false
   category: "staff"
-  infinite: [ "earth_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of earth."
   weight: 1.814
@@ -71059,7 +71072,6 @@ fire_staff_dungeoneering_bound:
   id: 16167
   tradeable: false
   category: "staff"
-  infinite: [ "fire_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of fire."
   weight: 1.814
@@ -71067,7 +71079,6 @@ empowered_fire_staff_bound:
   id: 16168
   tradeable: false
   category: "staff"
-  infinite: [ "fire_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of fire."
   weight: 1.814
@@ -71075,7 +71086,6 @@ air_staff_dungeoneering_bound:
   id: 16169
   tradeable: false
   category: "staff"
-  infinite: [ "air_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of air."
   weight: 1.814
@@ -71083,7 +71093,6 @@ empowered_air_staff_bound:
   id: 16170
   tradeable: false
   category: "staff"
-  infinite: [ "air_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of air."
   weight: 1.814
@@ -73822,7 +73831,6 @@ grave_creeper_staff_noted: 16996
 water_staff_dungeoneering:
   id: 16997
   category: "staff"
-  infinite: [ "water_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of water."
   weight: 1.814
@@ -73830,7 +73838,6 @@ water_staff_noted: 16998
 empowered_water_staff:
   id: 16999
   category: "staff"
-  infinite: [ "water_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of water."
   weight: 1.814
@@ -73838,7 +73845,6 @@ empowered_water_staff_noted: 17000
 earth_staff_dungeoneering:
   id: 17001
   category: "staff"
-  infinite: [ "earth_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of earth."
   weight: 1.814
@@ -73846,7 +73852,6 @@ earth_staff_noted: 17002
 empowered_earth_staff:
   id: 17003
   category: "staff"
-  infinite: [ "earth_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of earth."
   weight: 1.814
@@ -73854,7 +73859,6 @@ empowered_earth_staff_noted: 17004
 fire_staff_dungeoneering:
   id: 17005
   category: "staff"
-  infinite: [ "fire_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of fire."
   weight: 1.814
@@ -73862,7 +73866,6 @@ fire_staff_noted: 17006
 empowered_fire_staff:
   id: 17007
   category: "staff"
-  infinite: [ "fire_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of fire."
   weight: 1.814
@@ -73870,7 +73873,6 @@ empowered_fire_staff_noted: 17008
 air_staff_dungeoneering:
   id: 17009
   category: "staff"
-  infinite: [ "air_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of air."
   weight: 1.814
@@ -73878,7 +73880,6 @@ air_staff_noted: 17010
 empowered_air_staff:
   id: 17011
   category: "staff"
-  infinite: [ "air_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of air."
   weight: 1.814
@@ -76510,98 +76511,84 @@ rune_essence_dungeoneering:
 air_rune_dungeoneering:
   id: 17780
   limit: 25000
-  combinations: [ "air_rune_b" ]
   examine: "One of the four basic elemental runes."
   use: "Dungeoneering"
   kept: "Always"
 water_rune_dungeoneering:
   id: 17781
   limit: 25000
-  combinations: [ "water_rune_b" ]
   examine: "One of the four basic elemental runes."
   use: "Dungeoneering"
   kept: "Always"
 earth_rune_dungeoneering:
   id: 17782
   limit: 25000
-  combinations: [ "earth_rune_b" ]
   examine: "One of the four basic elemental runes."
   use: "Dungeoneering"
   kept: "Always"
 fire_rune_dungeoneering:
   id: 17783
   limit: 25000
-  combinations: [ "fire_rune_b" ]
   examine: "One of the four basic elemental runes."
   use: "Dungeoneering"
   kept: "Always"
 mind_rune_dungeoneering:
   id: 17784
   limit: 25000
-  combinations: [ "mind_rune_b" ]
   examine: "Used for basic level missile spells."
   use: "Dungeoneering"
   kept: "Always"
 chaos_rune_dungeoneering:
   id: 17785
   limit: 25000
-  combinations: [ "chaos_rune_b" ]
   examine: "Used for low level missile spells."
   use: "Dungeoneering"
   kept: "Always"
 death_rune_dungeoneering:
   id: 17786
   limit: 25000
-  combinations: [ "death_rune_b" ]
   examine: "Used for medium level missile spells."
   use: "Dungeoneering"
   kept: "Always"
 blood_rune_dungeoneering:
   id: 17787
   limit: 25000
-  combinations: [ "blood_rune_b" ]
   examine: "Used for high level missile spells."
   use: "Dungeoneering"
   kept: "Always"
 body_rune_dungeoneering:
   id: 17788
   limit: 25000
-  combinations: [ "body_rune_b" ]
   examine: "Used for Curse spells"
   use: "Dungeoneering"
   kept: "Always"
 cosmic_rune_dungeoneering:
   id: 17789
   limit: 25000
-  combinations: [ "cosmic_rune_b" ]
   examine: "Used for enchant spells."
   use: "Dungeoneering"
   kept: "Always"
 astral_rune_dungeoneering:
   id: 17790
   limit: 25000
-  combinations: [ "astral_rune_b" ]
   examine: "Used for Lunar Spells"
   use: "Dungeoneering"
   kept: "Always"
 nature_rune_dungeoneering:
   id: 17791
   limit: 25000
-  combinations: [ "nature_rune_b" ]
   examine: "Used for alchemy spells."
   use: "Dungeoneering"
   kept: "Always"
 law_rune_dungeoneering:
   id: 17792
   limit: 25000
-  combinations: [ "law_rune_b" ]
   examine: "Used for teleport spells."
   use: "Dungeoneering"
   kept: "Always"
 soul_rune_dungeoneering:
   id: 17793
   limit: 25000
-  combinations: [ "soul_rune_b" ]
   examine: "Used for high level curse spells."
   use: "Dungeoneering"
   kept: "Always"
@@ -78433,6 +78420,9 @@ nature_staff:
   tradeable: false
   bank_stacks: false
   weight: 2.267
+  charges_max: 1000
+  charges: 0
+  charge: nature_staff_charges
   category: "staff"
   slot: "Weapon"
   examine: "Buzzing with the essence of nature."
@@ -78442,6 +78432,9 @@ law_staff:
   tradeable: false
   bank_stacks: false
   weight: 2.267
+  charges_max: 1000
+  charges: 0
+  charge: law_staff_charges
   category: "staff"
   slot: "Weapon"
   examine: "A perfectly balanced staff."
@@ -78462,7 +78455,6 @@ tome_of_frost:
   id: 18346
   tradeable: false
   weight: 1.0
-  infinite: [ "water_rune" ]
   slot: "Shield"
   examine: "Like a snowflake, no page is the same as another."
   kept: "Wilderness"
@@ -82761,11 +82753,13 @@ scroll_of_efficiency:
   destroy: "If you destroy this item you will need to purchase another."
   examine: "Secrets of smithing lie within."
   kept: "Reclaim"
-magical_blastbox_reward:
+magical_blastbox:
   id: 19671
   tradeable: false
   bank_stacks: false
   weight: 0.025
+  charges_max: 715827882
+  charges: 0
   slot: "Shield"
   examine: "It's brimming with power."
   kept: "Reclaim"
@@ -83579,22 +83573,30 @@ strange_token:
 magical_blastbox_bound:
   id: 19865
   tradeable: false
+  charges_max: 715827882
+  charges: 0
   slot: "Shield"
   examine: "It's brimming with power."
   weight: 0.025
 celestial_surgebox_bound:
   id: 19866
   tradeable: false
+  charges_max: 306783378
+  charges: 0
   slot: "Shield"
   examine: "It could explode at any moment."
   weight: 0.025
-magical_blastbox:
+magical_blastbox_dungeoneering:
   id: 19867
+  charges_max: 715827882
+  charges: 0
   slot: "Shield"
   examine: "It's brimming with power."
   weight: 0.025
-celestial_surgebox:
+celestial_surgebox_dungeoneering:
   id: 19868
+  charges_max: 306783378
+  charges: 0
   slot: "Shield"
   examine: "It could explode at any moment."
   weight: 0.025
@@ -83660,11 +83662,13 @@ demon_horn_necklace:
   slot: "Amulet"
   examine: "Not everyone's first choice for a piece of jewellery."
   kept: "Reclaim"
-celestial_surgebox_reward:
+celestial_surgebox:
   id: 19889
   tradeable: false
   bank_stacks: false
   weight: 0.025
+  charges_max: 306783378
+  charges: 0
   slot: "Shield"
   examine: "It could explode at any moment."
   kept: "Reclaim"

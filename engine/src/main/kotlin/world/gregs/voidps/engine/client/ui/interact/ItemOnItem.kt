@@ -31,6 +31,19 @@ data class ItemOnItem(
         6 -> toComponent
         else -> null
     }
+
+    internal fun flip() = copy(
+        fromItem = toItem,
+        toItem = fromItem,
+        fromSlot = toSlot,
+        toSlot = fromSlot,
+        fromInterface = toInterface,
+        fromComponent = toComponent,
+        toInterface = fromInterface,
+        toComponent = fromComponent,
+        fromInventory = toInventory,
+        toInventory = fromInventory
+    )
 }
 
 fun itemOnItem(
@@ -46,6 +59,8 @@ fun itemOnItem(
 ) {
     Events.handle("item_on_item", fromItem, fromInterface, fromComponent, toItem, toInterface, toComponent, override = override, handler = handler)
     if (bidirectional) {
-        Events.handle("item_on_item", toItem, toInterface, toComponent, fromItem, fromInterface, fromComponent, override = override, handler = handler)
+        Events.handle<ItemOnItem>("item_on_item", toItem, toInterface, toComponent, fromItem, fromInterface, fromComponent, override = override) {
+            handler.invoke(flip(), it as Player)
+        }
     }
 }

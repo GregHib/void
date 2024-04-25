@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 import world.gregs.voidps.world.interact.entity.player.toxin.curePoison
 import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
 
@@ -25,7 +25,7 @@ itemOnPlayerApproach(id = "lunar_spellbook", component = "cure_other") {
         player.message("This player is not poisoned.")
         return@itemOnPlayerApproach
     }
-    if (!Spell.removeRequirements(player, spell)) {
+    if (!player.removeSpellItems(spell)) {
         return@itemOnPlayerApproach
     }
     val definition = definitions.get(spell)

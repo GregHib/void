@@ -200,7 +200,7 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
             }
         }
         this.setting = InterfaceComponentSetting(setting, settingData)
-        anObjectArray4758 = decodeScript(buffer)
+        information = decodeScript(buffer)
         mouseEnterHandler = decodeScript(buffer)
         mouseExitHandler = decodeScript(buffer)
         anObjectArray4771 = decodeScript(buffer)

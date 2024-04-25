@@ -163,7 +163,9 @@ adminCommand("item") {
                     break
                 }
                 set(index, Item(id, 1))
-                charge(player, index, charges)
+                if (charges > 0) {
+                    charge(player, index, charges)
+                }
             }
         } else {
             addToLimit(id, if (amount == "max") Int.MAX_VALUE else amount.toSILong().toInt())

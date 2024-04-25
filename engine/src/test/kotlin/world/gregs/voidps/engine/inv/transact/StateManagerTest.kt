@@ -66,4 +66,17 @@ internal class StateManagerTest {
         assertEquals("item", inventory.items[0].id)
         assertEquals(1, inventory.items[0].amount)
     }
+
+    @Test
+    fun `Reverts are cleared with rest of state`() {
+        inventory.data = arrayOf(Item("item", 1))
+        var reverted = false
+        state.onRevert {
+            reverted = true
+        }
+
+        state.clear()
+        assertFalse(state.revert())
+        assertFalse(reverted)
+    }
 }

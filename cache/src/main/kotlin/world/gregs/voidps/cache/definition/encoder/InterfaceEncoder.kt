@@ -185,7 +185,7 @@ class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinitionFull> {
             writeShort(definition.anInt4839)
         }
 
-        encodeScript(definition.anObjectArray4758)
+        encodeScript(definition.information)
         encodeScript(definition.mouseEnterHandler)
         encodeScript(definition.mouseExitHandler)
         encodeScript(definition.anObjectArray4771)

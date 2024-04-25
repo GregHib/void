@@ -57,11 +57,15 @@ fun Transaction.discharge(player: Player, index: Int, amount: Int) {
     val variable: String? = item.def.getOrNull("charge")
     if (variable != null) {
         val current = player[variable, 0]
-        state.onRevert {
-            player[variable] = current
+        if (current < amount) {
+            error = TransactionError.Deficient(current - amount)
+            return
         }
         val reduced = (current - amount).coerceAtLeast(0)
         player[variable] = reduced
+        state.onRevert {
+            player[variable] = current
+        }
         if (reduced <= 0) {
             degrade(item, index)
             player[variable] = item.def.getOrNull<Int>("charges") ?: 0

@@ -44,7 +44,7 @@ internal class InterfaceEncoderTest {
             setting = InterfaceComponentSetting(1234 or 0x3fda8, 567),
             anInt4698 = 8910,
             anInt4839 = 1112,
-            anObjectArray4758 = arrayOf(1, "two", 3, "four"),
+            information = arrayOf(1, "two", 3, "four"),
             clientVarc = intArrayOf(5, 4, 3, 2, 1),
             hasScript = true
         )
