@@ -39842,13 +39842,13 @@ adamant_crossbow_u:
   weight: 8.0
   examine: "An unstrung adamantite crossbow."
 adamant_cbow_u_noted: 9464
-runite_crossbow_u:
+rune_crossbow_u:
   id: 9465
   price: 9552
   limit: 500
   weight: 8.0
   examine: "An unstrung runite crossbow."
-runite_cbow_u_noted: 9466
+rune_crossbow_u_noted: 9466
 blurite_bar:
   id: 9467
   tradeable: false
