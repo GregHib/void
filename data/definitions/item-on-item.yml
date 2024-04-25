@@ -5630,8 +5630,8 @@ bronze_arrows:
   add:
     - item: bronze_arrow
       amount: 15
-  message: "You attach arrows heads to 15 arrow shafts"
-  question: "How many set of 15 would you like to make"
+  message: "You attach arrows heads to 15 arrow shafts."
+  question: "How many set of 15 would you like to make?"
   maximum: 10
 iron_arrows:
   skill: fletching
@@ -5646,8 +5646,8 @@ iron_arrows:
   add:
     - item: iron_arrow
       amount: 15
-  message: "You attach arrows heads to 15 arrow shafts"
-  question: "How many set of 15 would you like to make"
+  message: "You attach arrows heads to 15 arrow shafts."
+  question: "How many set of 15 would you like to make?"
   maximum: 10
 steel_arrows:
   skill: fletching
@@ -5662,8 +5662,8 @@ steel_arrows:
   add:
     - item: steel_arrow
       amount: 15
-  message: "You attach arrows heads to 15 arrow shafts"
-  question: "How many set of 15 would you like to make"
+  message: "You attach arrows heads to 15 arrow shafts."
+  question: "How many set of 15 would you like to make?"
   maximum: 10
 mithril_arrows:
   skill: fletching
@@ -5678,8 +5678,8 @@ mithril_arrows:
   add:
     - item: mithril_arrow
       amount: 15
-  message: "You attach arrows heads to 15 arrow shafts"
-  question: "How many set of 15 would you like to make"
+  message: "You attach arrows heads to 15 arrow shafts."
+  question: "How many set of 15 would you like to make?"
   maximum: 10
 adamant_arrows:
   skill: fletching
@@ -5694,8 +5694,8 @@ adamant_arrows:
   add:
     - item: adamant_arrow
       amount: 15
-  message: "You attach arrows heads to 15 arrow shafts"
-  question: "How many set of 15 would you like to make"
+  message: "You attach arrows heads to 15 arrow shafts."
+  question: "How many set of 15 would you like to make?"
   maximum: 10
 rune_arrows:
   skill: fletching
@@ -5710,8 +5710,8 @@ rune_arrows:
   add:
     - item: rune_arrow
       amount: 15
-  message: "You attach arrows heads to 15 arrow shafts"
-  question: "How many set of 15 would you like to make"
+  message: "You attach arrows heads to 15 arrow shafts."
+  question: "How many set of 15 would you like to make?"
   maximum: 10
 dragon_arrows:
   skill: fletching
@@ -5726,8 +5726,8 @@ dragon_arrows:
   add:
     - item: dragon_arrow
       amount: 15
-  message: "You attach arrows heads to 15 arrow shafts"
-  question: "How many set of 15 would you like to make"
+  message: "You attach arrows heads to 15 arrow shafts."
+  question: "How many set of 15 would you like to make?"
   maximum: 10
 #fletch tipping special arrows
 ogre_arrow:
@@ -5743,8 +5743,8 @@ ogre_arrow:
   add:
     - item: ogre_arrow
       amount: 6
-  message: "You attach arrows heads to 6 arrow shafts"
-  question: "How many set of 6 would you like to make"
+  message: "You attach arrows heads to 6 arrow shafts."
+  question: "How many set of 6 would you like to make?"
   maximum: 10
 bronze_ogre_arrow:
   skill: fletching
@@ -5759,8 +5759,8 @@ bronze_ogre_arrow:
   add:
     - item: bronze_brutal
       amount: 6
-  message: "You attach the nails to 6 arrow shafts"
-  question: "How many set of 6 would you like to make"
+  message: "You attach the nails to 6 arrow shafts."
+  question: "How many set of 6 would you like to make?"
   maximum: 10
 iron_ogre_arrow:
   skill: fletching
@@ -5775,8 +5775,8 @@ iron_ogre_arrow:
   add:
     - item: iron_brutal
       amount: 6
-  message: "You attach the nails to 6 arrow shafts"
-  question: "How many set of 6 would you like to make"
+  message: "You attach the nails to 6 arrow shafts."
+  question: "How many set of 6 would you like to make?"
   maximum: 10
 steel_ogre_arrow:
   skill: fletching
@@ -5791,8 +5791,8 @@ steel_ogre_arrow:
   add:
     - item: steel_brutal
       amount: 6
-  message: "You attach the nails to 6 arrow shafts"
-  question: "How many set of 6 would you like to make"
+  message: "You attach the nails to 6 arrow shafts."
+  question: "How many set of 6 would you like to make?"
   maximum: 10
 black_ogre_arrow:
   skill: fletching
@@ -5807,8 +5807,8 @@ black_ogre_arrow:
   add:
     - item: black_brutal
       amount: 6
-  message: "You attach the nails to 6 arrow shafts"
-  question: "How many set of 6 would you like to make"
+  message: "You attach the nails to 6 arrow shafts."
+  question: "How many set of 6 would you like to make?"
   maximum: 10
 mithril_ogre_arrow:
   skill: fletching
@@ -5823,8 +5823,8 @@ mithril_ogre_arrow:
   add:
     - item: mithril_brutal
       amount: 6
-  message: "You attach the nails to 6 arrow shafts"
-  question: "How many set of 6 would you like to make"
+  message: "You attach the nails to 6 arrow shafts."
+  question: "How many set of 6 would you like to make?"
   maximum: 10
 adamant_ogre_arrow:
   skill: fletching
@@ -5839,8 +5839,8 @@ adamant_ogre_arrow:
   add:
     - item: adamant_brutal
       amount: 6
-  message: "You attach the nails to 6 arrow shafts"
-  question: "How many set of 6 would you like to make"
+  message: "You attach the nails to 6 arrow shafts."
+  question: "How many set of 6 would you like to make?"
   maximum: 10
 rune_ogre_arrow:
   skill: fletching
@@ -5855,8 +5855,8 @@ rune_ogre_arrow:
   add:
     - item: rune_brutal
       amount: 6
-  message: "You attach the nails to 6 arrow shafts"
-  question: "How many set of 6 would you like to make"
+  message: "You attach the nails to 6 arrow shafts."
+  question: "How many set of 6 would you like to make?"
   maximum: 10
 broad_arrows:
   skill: fletching
@@ -5871,8 +5871,8 @@ broad_arrows:
   add:
     - item: broad_arrow
       amount: 15
-  message: "You attach arrows heads to 15 arrow shafts"
-  question: "How many set of 15 would you like to make"
+  message: "You attach arrows heads to 15 arrow shafts."
+  question: "How many set of 15 would you like to make?"
   maximum: 10
 unstrung_ogre_comp_bow:
   skill: fletching
