@@ -23,7 +23,7 @@ abstract class DungeoneeringBoxTest : WorldTest() {
     abstract val mode: Boolean
 
     @Test
-    fun `Charge first spell with runes in inventory`() {
+    fun `Charge with runes in inventory`() {
         val player = createPlayer("player", emptyTile)
         player["${box}_mode"] = mode
         player.inventory.set(0, box, 0)
@@ -45,9 +45,12 @@ abstract class DungeoneeringBoxTest : WorldTest() {
         player.inventory.add(runes)
 
         player.itemOnItem(1, 0)
+        println(player.inventory.items)
 
         for (rune in runes) {
-            assertFalse(player.inventory.contains(rune.id, rune.amount))
+            assertFalse("Expected no $rune in inventory, ${player.inventory.count(rune.id)} found.") {
+                player.inventory.contains(rune.id, rune.amount)
+            }
         }
         assertEquals(1, player.inventory.charges(player, 0))
     }
@@ -147,8 +150,9 @@ abstract class DungeoneeringBoxTest : WorldTest() {
         for (rune in runes) {
             player.inventory.add(rune.id, rune.amount * 10)
         }
+        player.inventory.add("fire_rune", 100)
 
-        player.interfaceOption("modern_spellbook", "wind_${spell}", option = "Autocast")
+        player.interfaceOption("modern_spellbook", "fire_${spell}", option = "Autocast")
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
 
@@ -158,6 +162,7 @@ abstract class DungeoneeringBoxTest : WorldTest() {
                 player.inventory.contains(rune.id, rune.amount * 10)
             }
         }
+        assertNotEquals(100, player.inventory.count("fire_rune"))
         assertNotEquals(10, player.equipment.charges(player, EquipSlot.Shield.index))
     }
 }
