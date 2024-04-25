@@ -9,18 +9,16 @@ import world.gregs.voidps.FakeRandom
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Rune
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import world.gregs.voidps.world.interact.entity.obj.Teleports
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.itemOnObject
-import world.gregs.voidps.world.script.objectOption
 
 internal class CombinationRunecraftingTest : WorldTest() {
 
