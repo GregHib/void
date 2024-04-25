@@ -30,7 +30,7 @@ itemOnItem("feather", "arrow_shaft") {
 
 fun makeHeadlessArrows(player: Player, addItem: String, amount: Int) {
     if (amount <= 0) {
-        player.softTimers.stop("feather_to_shaft_create")
+        player.queue.clear("feather_to_shaft_create")
         return
     }
 
