@@ -5417,3 +5417,793 @@ crushed_gem:
   add: [ crushed_gem ]
   animation: pestle_and_mortar
   message: "You crush the uncut opal."
+#fletching bolt tipping
+opal_bronze_bolts:
+  skill: fletching
+  level: 11
+  xp: 16.0
+  remove:
+    - item: bronze_bolts
+      amount: 10
+    - item: opal_bolt_tips
+      amount: 10
+  add:
+    - item: opal_bolts
+      amount: 10
+  message: "You fletch 10 bolts."
+  question: "How many set of 10 would you like to tip?"
+  maximum: 10
+jade_blurite_bolts:
+  skill: fletching
+  level: 11
+  xp: 24.0
+  remove:
+    - item: blurite_bolts
+      amount: 10
+    - item: jade_bolt_tips
+      amount: 10
+  add:
+    - item: jade_bolts
+      amount: 10
+  message: "You fletch 10 bolts."
+  question: "How many set of 10 would you like to tip?"
+  maximum: 10
+pearl_iron_bolts:
+  skill: fletching
+  level: 39
+  xp: 32.0
+  ticks: 2
+  remove:
+    - item: iron_bolts
+      amount: 10
+    - item: pearl_bolt_tips
+      amount: 10
+  add:
+    - item: pearl_bolts
+      amount: 10
+  message: "You fletch 10 bolts."
+  question: "How many set of 10 would you like to tip?"
+  maximum: 10
+red_topaz_steel_bolts:
+  skill: fletching
+  level: 48
+  xp: 39.0
+  ticks: 2
+  remove:
+    - item: steel_bolts
+      amount: 10
+    - item: topaz_bolt_tips
+      amount: 10
+  add:
+    - item: topaz_bolts
+      amount: 10
+  message: "You fletch 10 bolts."
+  question: "How many set of 10 would you like to tip?"
+  maximum: 10
+sapphire_mithril_bolts:
+  skill: fletching
+  level: 56
+  xp: 47.0
+  ticks: 0
+  remove:
+    - item: mithril_bolts
+      amount: 10
+    - item: sapphire_bolt_tips
+      amount: 10
+  add:
+    - item: sapphire_bolts
+      amount: 10
+  message: "You fletch 10 bolts."
+  question: "How many set of 10 would you like to tip?"
+  maximum: 10
+emerald_mithril_bolts:
+  skill: fletching
+  level: 58
+  xp: 55.0
+  ticks: 2
+  remove:
+    - item: mithril_bolts
+      amount: 10
+    - item: emerald_bolt_tips
+      amount: 10
+  add:
+    - item: emerald_bolts
+      amount: 10
+  message: "You fletch 10 bolts."
+  question: "How many set of 10 would you like to tip?"
+  maximum: 10
+ruby_adamant_bolts:
+  skill: fletching
+  level: 63
+  xp: 63.0
+  ticks: 2
+  remove:
+    - item: adamant_bolts
+      amount: 10
+    - item: ruby_bolt_tips
+      amount: 10
+  add:
+    - item: ruby_bolts
+      amount: 10
+  message: "You fletch 10 bolts."
+  question: "How many set of 10 would you like to tip?"
+  maximum: 10
+diamond_adamant_bolts:
+  skill: fletching
+  level: 65
+  xp: 70.0
+  ticks: 2
+  remove:
+    - item: adamant_bolts
+      amount: 10
+    - item: diamond_bolt_tips
+      amount: 10
+  add:
+    - item: diamond_bolts
+      amount: 10
+  message: "You fletch 10 bolts."
+  question: "How many set of 10 would you like to tip?"
+  maximum: 10
+dragonstone_runite_bolts:
+  skill: fletching
+  level: 71
+  xp: 82.0
+  ticks: 2
+  remove:
+    - item: runite_bolts
+      amount: 10
+    - item: dragon_bolt_tips
+      amount: 10
+  add:
+    - item: dragon_bolts
+      amount: 10
+  message: "You fletch 10 bolts."
+  question: "How many set of 10 would you like to tip?"
+  maximum: 10
+kebbit_bolts:
+  skill: fletching
+  level: 32
+  xp: 5.8
+  ticks: 3
+  requires: [ chisel ]
+  remove:
+    - item: kebbit_spike
+      amount: 1
+  add:
+    - item: kebbit_bolts
+      amount: 12
+  message: "You fletch 10 bolts."
+  question: "How many set of 10 would you like to tip?"
+  maximum: 10
+long_kebbit_bolts:
+  skill: fletching
+  level: 42
+  xp: 7.9
+  ticks: 3
+  requires: [ chisel ]
+  remove:
+    - item: long_kebbit_spike
+      amount: 1
+  add:
+    - item: long_kebbit_bolts
+      amount: 12
+  message: "You fletch 10 bolts."
+  question: "How many set of 10 would you like to tip?"
+  maximum: 10
+mithril_grapple_bolt_unf:
+  skill: fletching
+  level: 59
+  xp: 11.0
+  ticks: 2
+  remove:
+    - item: mithril_grapple_tip
+    - item: mithril_bolts
+  add:
+    - item: mithril_grapple_unf
+  message: "You fletch an unfinished mithril grapple."
+  question: "How many set of 10 would you like to tip?"
+  maximum: 10
+mithril_grapple_bolt_finished:
+  skill: fletching
+  level: 59
+  xp: 0.0
+  ticks: 1
+  remove:
+    - item: mithril_grapple_unf
+    - item: rope
+  add:
+    - item: mithril_grapple
+  message: "You fletch a mithril grapple."
+  question: "How many set of 10 would you like to tip?"
+  maximum: 10
+# tipping headless arrows
+bronze_arrows:
+  skill: fletching
+  level: 1
+  xp: 19.5
+  ticks: 2
+  remove:
+    - item: headless_arrow
+      amount: 15
+    - item: bronze_arrowtips
+      amount: 15
+  add:
+    - item: bronze_arrow
+      amount: 15
+  message: "You attach arrows heads to 15 arrow shafts."
+  question: "How many set of 15 would you like to make?"
+  maximum: 10
+iron_arrows:
+  skill: fletching
+  level: 15
+  xp: 37.5
+  ticks: 2
+  remove:
+    - item: headless_arrow
+      amount: 15
+    - item: iron_arrowtips
+      amount: 15
+  add:
+    - item: iron_arrow
+      amount: 15
+  message: "You attach arrows heads to 15 arrow shafts."
+  question: "How many set of 15 would you like to make?"
+  maximum: 10
+steel_arrows:
+  skill: fletching
+  level: 30
+  xp: 75.0
+  ticks: 2
+  remove:
+    - item: headless_arrow
+      amount: 15
+    - item: steel_arrowtips
+      amount: 15
+  add:
+    - item: steel_arrow
+      amount: 15
+  message: "You attach arrows heads to 15 arrow shafts."
+  question: "How many set of 15 would you like to make?"
+  maximum: 10
+mithril_arrows:
+  skill: fletching
+  level: 45
+  xp: 112.5
+  ticks: 2
+  remove:
+    - item: headless_arrow
+      amount: 15
+    - item: mithril_arrowtips
+      amount: 15
+  add:
+    - item: mithril_arrow
+      amount: 15
+  message: "You attach arrows heads to 15 arrow shafts."
+  question: "How many set of 15 would you like to make?"
+  maximum: 10
+adamant_arrows:
+  skill: fletching
+  level: 60
+  xp: 150
+  ticks: 2
+  remove:
+    - item: headless_arrow
+      amount: 15
+    - item: adamant_arrowtips
+      amount: 15
+  add:
+    - item: adamant_arrow
+      amount: 15
+  message: "You attach arrows heads to 15 arrow shafts."
+  question: "How many set of 15 would you like to make?"
+  maximum: 10
+rune_arrows:
+  skill: fletching
+  level: 75
+  xp: 187.5
+  ticks: 2
+  remove:
+    - item: headless_arrow
+      amount: 15
+    - item: rune_arrowtips
+      amount: 15
+  add:
+    - item: rune_arrow
+      amount: 15
+  message: "You attach arrows heads to 15 arrow shafts."
+  question: "How many set of 15 would you like to make?"
+  maximum: 10
+dragon_arrows:
+  skill: fletching
+  level: 90
+  xp: 225.0
+  ticks: 2
+  remove:
+    - item: headless_arrow
+      amount: 15
+    - item: dragon_arrowtips
+      amount: 15
+  add:
+    - item: dragon_arrow
+      amount: 15
+  message: "You attach arrows heads to 15 arrow shafts."
+  question: "How many set of 15 would you like to make?"
+  maximum: 10
+#fletch tipping special arrows
+ogre_arrow:
+  skill: fletching
+  level: 5
+  xp: 6.0
+  ticks: 2
+  remove:
+    - item: flighted_ogre_arrow
+      amount: 6
+    - item: wolfbone_arrowtips
+      amount: 6
+  add:
+    - item: ogre_arrow
+      amount: 6
+  message: "You attach arrows heads to 6 arrow shafts."
+  question: "How many set of 6 would you like to make?"
+  maximum: 10
+bronze_ogre_arrow:
+  skill: fletching
+  level: 7
+  xp: 8.4
+  ticks: 2
+  remove:
+    - item: flighted_ogre_arrow
+      amount: 6
+    - item: bronze_nails
+      amount: 6
+  add:
+    - item: bronze_brutal
+      amount: 6
+  message: "You attach the nails to 6 arrow shafts."
+  question: "How many set of 6 would you like to make?"
+  maximum: 10
+iron_ogre_arrow:
+  skill: fletching
+  level: 18
+  xp: 15.6
+  ticks: 2
+  remove:
+    - item: flighted_ogre_arrow
+      amount: 6
+    - item: iron_nails
+      amount: 6
+  add:
+    - item: iron_brutal
+      amount: 6
+  message: "You attach the nails to 6 arrow shafts."
+  question: "How many set of 6 would you like to make?"
+  maximum: 10
+steel_ogre_arrow:
+  skill: fletching
+  level: 33
+  xp: 30.6
+  ticks: 2
+  remove:
+    - item: flighted_ogre_arrow
+      amount: 6
+    - item: steel_nails
+      amount: 6
+  add:
+    - item: steel_brutal
+      amount: 6
+  message: "You attach the nails to 6 arrow shafts."
+  question: "How many set of 6 would you like to make?"
+  maximum: 10
+black_ogre_arrow:
+  skill: fletching
+  level: 38
+  xp: 39.0
+  ticks: 2
+  remove:
+    - item: flighted_ogre_arrow
+      amount: 6
+    - item: black_nails
+      amount: 6
+  add:
+    - item: black_brutal
+      amount: 6
+  message: "You attach the nails to 6 arrow shafts."
+  question: "How many set of 6 would you like to make?"
+  maximum: 10
+mithril_ogre_arrow:
+  skill: fletching
+  level: 49
+  xp: 45.0
+  ticks: 2
+  remove:
+    - item: flighted_ogre_arrow
+      amount: 6
+    - item: mithril_nails
+      amount: 6
+  add:
+    - item: mithril_brutal
+      amount: 6
+  message: "You attach the nails to 6 arrow shafts."
+  question: "How many set of 6 would you like to make?"
+  maximum: 10
+adamant_ogre_arrow:
+  skill: fletching
+  level: 62
+  xp: 61.2
+  ticks: 2
+  remove:
+    - item: flighted_ogre_arrow
+      amount: 6
+    - item: adamant_nails
+      amount: 6
+  add:
+    - item: adamant_brutal
+      amount: 6
+  message: "You attach the nails to 6 arrow shafts."
+  question: "How many set of 6 would you like to make?"
+  maximum: 10
+rune_ogre_arrow:
+  skill: fletching
+  level: 77
+  xp: 75.0
+  ticks: 2
+  remove:
+    - item: flighted_ogre_arrow
+      amount: 6
+    - item: rune_nails
+      amount: 6
+  add:
+    - item: rune_brutal
+      amount: 6
+  message: "You attach the nails to 6 arrow shafts."
+  question: "How many set of 6 would you like to make?"
+  maximum: 10
+broad_arrows:
+  skill: fletching
+  level: 52
+  xp: 150.0
+  ticks: 2
+  remove:
+    - item: headless_arrow
+      amount: 15
+    - item: broad_arrow_heads
+      amount: 15
+  add:
+    - item: broad_arrow
+      amount: 15
+  message: "You attach arrows heads to 15 arrow shafts."
+  question: "How many set of 15 would you like to make?"
+  maximum: 10
+unstrung_ogre_comp_bow:
+  skill: fletching
+  level: 30
+  xp: 45.0
+  ticks: 3
+  requires: [ knife ]
+  remove:
+    - item: achey_tree_logs
+    - item: wolf_bones
+  add:
+    - item: unstrung_comp_bow
+  message: "You carefully cut the wood and add the bones."
+  question: "What would you like to fletch?"
+  animation: fletching_bow_log
+# fletching finished bows
+shortbow_finished:
+  skill: fletching
+  level: 5
+  xp: 5.0
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: shortbow_u
+  add:
+    - item: shortbow
+  message: "You add a string to the bow."
+  animation: fletching_string_normal_shortbow
+longbow_finished:
+  skill: fletching
+  level: 10
+  xp: 10.0
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: longbow_u
+  add:
+    - item: longbow
+  message: "You add a string to the bow."
+  animation: fletching_string_normal_longbow
+oak_shortbow_finished:
+  skill: fletching
+  level: 20
+  xp: 16.5
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: oak_shortbow_u
+  add:
+    - item: oak_shortbow
+  message: "You add a string to the bow."
+  animation: fletching_string_oak_shortbow
+oak_longbow_finished:
+  skill: fletching
+  level: 25
+  xp: 25.0
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: oak_longbow_u
+  add:
+    - item: oak_longbow
+  message: "You add a string to the bow."
+  animation: fletching_string_oak_longbow
+ogre_comp_finished:
+  skill: fletching
+  level: 30
+  xp: 45.0
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: unstrung_comp_bow
+  add:
+    - item: comp_ogre_bow
+  message: "You add a string to the bow."
+willow_shortbow_finished:
+  skill: fletching
+  level: 35
+  xp: 33.2
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: willow_shortbow_u
+  add:
+    - item: willow_shortbow
+  message: "You add a string to the bow."
+  animation: fletching_string_willow_shortbow
+willow_longbow_finished:
+  skill: fletching
+  level: 40
+  xp: 41.5
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: willow_longbow_u
+  add:
+    - item: willow_longbow
+  message: "You add a string to the bow."
+  animation: fletching_string_willow_longbow
+maple_shortbow_finished:
+  skill: fletching
+  level: 50
+  xp: 50.0
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: maple_shortbow_u
+  add:
+    - item: maple_shortbow
+  message: "You add a string to the bow."
+  animation: fletching_string_maple_shortbow
+maple_longbow_finished:
+  skill: fletching
+  level: 55
+  xp: 58.2
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: maple_longbow_u
+  add:
+    - item: maple_longbow
+  message: "You add a string to the bow."
+  animation: fletching_string_maple_longbow
+yew_shortbow_finished:
+  skill: fletching
+  level: 65
+  xp: 67.4
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: yew_shortbow_u
+  add:
+    - item: yew_shortbow
+  message: "You add a string to the bow."
+  animation: fletching_string_yew_shortbow
+yew_longbow_finished:
+  skill: fletching
+  level: 70
+  xp: 75.0
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: yew_longbow_u
+  add:
+    - item: yew_longbow
+  message: "You add a string to the bow."
+  animation: fletching_string_yew_longbow
+magic_shortbow_finished:
+  skill: fletching
+  level: 80
+  xp: 83.2
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: magic_shortbow_u
+  add:
+    - item: magic_shortbow
+  message: "You add a string to the bow."
+  animation: fletching_string_magic_shortbow
+magic_longbow_finished:
+  skill: fletching
+  level: 85
+  xp: 91.5
+  ticks: 2
+  remove:
+    - item: bowstring
+    - item: magic_longbow_u
+  add:
+    - item: magic_longbow
+  message: "You add a string to the bow."
+  animation: fletching_string_magic_longbow
+#fletching crossbow unfinished
+bronze_crossbow_unfinished:
+  skill: fletching
+  level: 9
+  xp: 12.0
+  ticks: 2
+  remove:
+    - item: wooden_stock
+    - item: bronze_limbs
+  add:
+    - item: bronze_crossbow_u
+  message: "You add a limbs to the stock."
+blurite_crossbow_unfinished:
+  skill: fletching
+  level: 24
+  xp: 32.0
+  ticks: 2
+  remove:
+    - item: oak_stock
+    - item: blurite_limbs
+  add:
+    - item: blurite_crossbow_u
+  message: "You add a limbs to the stock."
+iron_crossbow_unfinished:
+  skill: fletching
+  level: 24
+  xp: 32.0
+  ticks: 2
+  remove:
+    - item: willow_stock
+    - item: iron_limbs
+  add:
+    - item: iron_crossbow_u
+  message: "You add a limbs to the stock."
+steel_crossbow_unfinished:
+  skill: fletching
+  level: 46
+  xp: 54.0
+  ticks: 2
+  remove:
+    - item: teak_stock
+    - item: steel_limbs
+  add:
+    - item: steel_crossbow_u
+  message: "You add a limbs to the stock."
+mithril_crossbow_unfinished:
+  skill: fletching
+  level: 54
+  xp: 64.0
+  ticks: 2
+  remove:
+    - item: maple_stock
+    - item: mithril_limbs
+  add:
+    - item: mithril_crossbow_u
+  message: "You add a limbs to the stock."
+adamant_crossbow_unfinished:
+  skill: fletching
+  level: 61
+  xp: 82.0
+  ticks: 2
+  remove:
+    - item: mahogany_stock
+    - item: adamant_limbs
+  add:
+    - item: adamant_crossbow_u
+  message: "You add a limbs to the stock."
+rune_crossbow_unfinished:
+  skill: fletching
+  level: 69
+  xp: 100.0
+  ticks: 2
+  remove:
+    - item: yew_stock
+    - item: rune_limbs
+  add:
+    - item: rune_crossbow_u
+  message: "You add a limbs to the stock."
+#fletching crossbow finished
+bronze_crossbow_finished:
+  skill: fletching
+  level: 9
+  xp: 6.0
+  ticks: 2
+  remove:
+    - item: bronze_crossbow_u
+    - item: crossbow_string
+  add:
+    - item: bronze_crossbow
+  message: "You add a string to the stock."
+  animation: fletching_string_bronze_crossbow
+blurite_crossbow_finished:
+  skill: fletching
+  level: 24
+  xp: 16.0
+  ticks: 2
+  remove:
+    - item: blurite_crossbow_u
+    - item: crossbow_string
+  add:
+    - item: blurite_crossbow
+  message: "You add a string to the stock."
+  animation: fletching_string_blurite_crossbow
+iron_crossbow_finished:
+  skill: fletching
+  level: 39
+  xp: 22.0
+  ticks: 2
+  remove:
+    - item: iron_crossbow_u
+    - item: crossbow_string
+  add:
+    - item: iron_crossbow
+  message: "You add a string to the stock."
+  animation: fletching_string_iron_crossbow
+steel_crossbow_finished:
+  skill: fletching
+  level: 46
+  xp: 27.0
+  ticks: 2
+  remove:
+    - item: steel_crossbow_u
+    - item: crossbow_string
+  add:
+    - item: steel_crossbow
+  message: "You add a string to the stock."
+  animation: fletching_string_steel_crossbow
+mithril_crossbow_finished:
+  skill: fletching
+  level: 54
+  xp: 32.0
+  ticks: 2
+  remove:
+    - item: mithril_crossbow_u
+    - item: crossbow_string
+  add:
+    - item: mithril_crossbow
+  message: "You add a string to the stock."
+  animation: fletching_string_mithril_crossbow
+adamant_crossbow_finished:
+  skill: fletching
+  level: 61
+  xp: 41.0
+  ticks: 2
+  remove:
+    - item: adamant_crossbow_u
+    - item: crossbow_string
+  add:
+    - item: adamant_crossbow
+  message: "You add a string to the stock."
+  animation: fletching_string_adamant_crossbow
+rune_crossbow_finished:
+  skill: fletching
+  level: 69
+  xp: 41.0
+  ticks: 2
+  remove:
+    - item: rune_crossbow_u
+    - item: crossbow_string
+  add:
+    - item: rune_crossbow
+  message: "You add a string to the stock."
+  animation: fletching_string_rune_crossbow

@@ -290,6 +290,12 @@ longbow_u:
   price: 10
   limit: 10000
   weight: 1.332
+  fletching_unf:
+    level: 10
+    xp: 10.0
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   examine: "An unstrung longbow; I need a bowstring for this."
   kept: "Wilderness"
 longbow_u_noted: 49
@@ -298,6 +304,12 @@ shortbow_u:
   price: 2
   limit: 10000
   weight: 0.992
+  fletching_unf:
+    level: 5
+    xp: 5.0
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   examine: "I need to find a string for this."
   kept: "Wilderness"
 shortbow_u_noted: 51
@@ -305,6 +317,12 @@ arrow_shaft:
   id: 52
   price: 4
   limit: 20000
+  fletching_unf:
+    level: 1
+    xp: 5.0
+    animation: "fletching_bow_log"
+    make_amount: 15
+    tick: 2
   examine: "A wooden arrow shaft."
   kept: "Wilderness"
 headless_arrow:
@@ -318,6 +336,12 @@ oak_shortbow_u:
   price: 6
   limit: 10000
   weight: 0.992
+  fletching_unf:
+    level: 20
+    xp: 16.5
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   examine: "An unstrung oak shortbow; I need a bowstring for this."
   kept: "Wilderness"
 oak_shortbow_u_noted: 55
@@ -326,6 +350,12 @@ oak_longbow_u:
   price: 13
   limit: 10000
   weight: 1.332
+  fletching_unf:
+    level: 25
+    xp: 25.0
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   examine: "An unstrung oak longbow; I need a bowstring for this."
 oak_longbow_u_noted: 57
 willow_longbow_u:
@@ -333,6 +363,12 @@ willow_longbow_u:
   price: 33
   limit: 10000
   weight: 1.332
+  fletching_unf:
+    level: 40
+    xp: 41.5
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   examine: "An unstrung willow longbow; I need a bowstring for this."
 willow_longbow_u_noted: 59
 willow_shortbow_u:
@@ -340,6 +376,12 @@ willow_shortbow_u:
   price: 13
   limit: 10000
   weight: 0.992
+  fletching_unf:
+    level: 35
+    xp: 33.3
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   examine: "An unstrung willow shortbow; I need a bowstring for this."
 willow_shortbow_u_noted: 61
 maple_longbow_u:
@@ -347,6 +389,12 @@ maple_longbow_u:
   price: 89
   limit: 10000
   weight: 1.332
+  fletching_unf:
+    level: 55
+    xp: 58.3
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   examine: "An unstrung maple bow; I need a bowstring for this."
 maple_longbow_u_noted: 63
 maple_shortbow_u:
@@ -354,6 +402,12 @@ maple_shortbow_u:
   price: 47
   limit: 10000
   weight: 0.992
+  fletching_unf:
+    level: 50
+    xp: 50.0
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   examine: "An unstrung maple shortbow; I need a bowstring for this."
 maple_shortbow_u_noted: 65
 yew_longbow_u:
@@ -361,6 +415,12 @@ yew_longbow_u:
   price: 410
   limit: 10000
   weight: 1.332
+  fletching_unf:
+    level: 70
+    xp: 75.0
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   examine: "An unstrung yew longbow; I need a bowstring for this."
 yew_longbow_u_noted: 67
 yew_shortbow_u:
@@ -368,6 +428,12 @@ yew_shortbow_u:
   price: 143
   limit: 10000
   weight: 0.992
+  fletching_unf:
+    level: 65
+    xp: 67.5
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   examine: "An unstrung yew shortbow; I need a bowstring for this."
 yew_shortbow_u_noted: 69
 magic_longbow_u:
@@ -375,6 +441,12 @@ magic_longbow_u:
   price: 1246
   limit: 10000
   weight: 1.332
+  fletching_unf:
+    level: 85
+    xp: 91.5
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   examine: "An unstrung magic longbow; I need a bowstring for this."
 magic_longbow_u_noted: 71
 magic_shortbow_u:
@@ -382,6 +454,12 @@ magic_shortbow_u:
   price: 673
   limit: 10000
   weight: 0.992
+  fletching_unf:
+    level: 80
+    xp: 83.3
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   examine: "An unstrung magic shortbow; I need a bowstring for this."
 magic_shortbow_u_noted: 73
 khazard_helmet:
@@ -4304,6 +4382,9 @@ bronze_dart_tip:
   smithing:
     level: 4
     xp: 12.5
+  fletch_dart:
+    level: 1
+    xp: 1.8
   examine: "A deadly looking dart tip made of bronze - needs feathers for flight."
 iron_dart_tip:
   id: 820
@@ -4312,6 +4393,9 @@ iron_dart_tip:
   smithing:
     level: 19
     xp: 25.0
+  fletch_dart:
+    level: 22
+    xp: 3.8
   examine: "A deadly looking dart tip made of iron - needs feathers for flight."
 steel_dart_tip:
   id: 821
@@ -4320,6 +4404,9 @@ steel_dart_tip:
   smithing:
     level: 34
     xp: 37.5
+  fletch_dart:
+    level: 37
+    xp: 7.5
   examine: "A deadly-looking dart tip made of steel - needs feathers for flight."
 mithril_dart_tip:
   id: 822
@@ -4328,6 +4415,9 @@ mithril_dart_tip:
   smithing:
     level: 54
     xp: 50.0
+  fletch_dart:
+    level: 52
+    xp: 11.2
   examine: "A deadly looking dart tip made of mithril - needs feathers for flight."
 adamant_dart_tip:
   id: 823
@@ -4336,6 +4426,9 @@ adamant_dart_tip:
   smithing:
     level: 74
     xp: 62.5
+  fletch_dart:
+    level: 67
+    xp: 15.0
   examine: "A deadly-looking dart tip made of adamant - needs feathers for flight."
 rune_dart_tip:
   id: 824
@@ -4344,6 +4437,9 @@ rune_dart_tip:
   smithing:
     level: 89
     xp: 75.0
+  fletch_dart:
+    level: 81
+    xp: 18.8
   examine: "A deadly-looking dart tip made of runite - needs feathers for flight."
 bronze_javelin:
   id: 825
@@ -7836,6 +7932,7 @@ logs:
   price: 30
   limit: 25000
   weight: 2.0
+  fletchables: [ arrow_shaft, shortbow_u, longbow_u, wooden_stock ]
   firemaking:
     level: 1
     xp: 40.0
@@ -7848,6 +7945,7 @@ magic_logs:
   price: 1323
   limit: 25000
   weight: 2.0
+  fletchables: [ arrow_shaft, magic_shortbow_u, magic_longbow_u ]
   firemaking:
     level: 75
     xp: 303.8
@@ -7860,6 +7958,7 @@ yew_logs:
   price: 410
   limit: 25000
   weight: 2.0
+  fletchables: [ arrow_shaft, yew_shortbow_u, yew_longbow_u, yew_stock ]
   firemaking:
     level: 60
     xp: 202.5
@@ -7872,6 +7971,7 @@ maple_logs:
   price: 51
   limit: 25000
   weight: 2.0
+  fletchables: [ arrow_shaft, maple_shortbow_u, maple_longbow_u, maple_stock ]
   firemaking:
     level: 45
     xp: 135.0
@@ -7884,6 +7984,7 @@ willow_logs:
   price: 16
   limit: 25000
   weight: 2.0
+  fletchables: [ arrow_shaft, willow_shortbow_u, willow_ongbow_u, willow_stock ]
   firemaking:
     level: 30
     xp: 90.0
@@ -7896,6 +7997,7 @@ oak_logs:
   price: 29
   limit: 25000
   weight: 2.0
+  fletchables: [ arrow_shaft, oak_shortbow_u, oak_longbow_u, oak_stock ]
   firemaking:
     level: 15
     xp: 60.0
@@ -27554,6 +27656,7 @@ mahogany_logs:
   price: 512
   limit: 25000
   weight: 1.36
+  fletchables: [ arrow_shaft, mahogany_stock ]
   firemaking:
     level: 50
     xp: 157.5
@@ -27564,6 +27667,7 @@ teak_logs:
   price: 88
   limit: 25000
   weight: 1.36
+  fletchables: [ arrow_shaft, teak_stock ]
   firemaking:
     level: 35
     xp: 105.0
@@ -39378,10 +39482,16 @@ bronze_bolts_unf:
   smithing:
     level: 3
     xp: 12.5
+  fletch_bolts:
+    level: 9
+    xp: 0.5
   examine: "Unfeathered bronze crossbow bolts."
 blurite_bolts_unf:
   id: 9376
   tradeable: false
+  fletch_bolts:
+    level: 24
+    xp: 1.0
   examine: "Unfeathered blurite crossbow bolts."
   kept: "Reclaim"
 iron_bolts_unf:
@@ -39391,6 +39501,9 @@ iron_bolts_unf:
   smithing:
     level: 18
     xp: 25.0
+  fletch_bolts:
+    level: 39
+    xp: 1.5
   examine: "Unfeathered iron crossbow bolts."
 steel_bolts_unf:
   id: 9378
@@ -39399,6 +39512,9 @@ steel_bolts_unf:
   smithing:
     level: 33
     xp: 37.5
+  fletch_bolts:
+    level: 46
+    xp: 3.5
   examine: "Unfeathered steel crossbow bolts."
 mithril_bolts_unf:
   id: 9379
@@ -39407,6 +39523,9 @@ mithril_bolts_unf:
   smithing:
     level: 53
     xp: 50.0
+  fletch_bolts:
+    level: 54
+    xp: 5.0
   examine: "Unfeathered mithril crossbow bolts."
 adamant_bolts_unf:
   id: 9380
@@ -39415,6 +39534,9 @@ adamant_bolts_unf:
   smithing:
     level: 73
     xp: 62.5
+  fletch_bolts:
+    level: 61
+    xp: 7.0
   examine: "Unfeathered adamantite crossbow bolts."
 rune_bolts_unf:
   id: 9381
@@ -39423,11 +39545,17 @@ rune_bolts_unf:
   smithing:
     level: 88
     xp: 75.0
+  fletch_bolts:
+    level: 69
+    xp: 10.0
   examine: "Unfeathered runite crossbow bolts."
 silver_bolts_unf:
   id: 9382
   price: 1
   limit: 10000
+  fletch_bolts:
+    level: 43
+    xp: 2.5
   examine: "Unfeathered silver crossbow bolts."
 grapple:
   id: 9415
@@ -39581,6 +39709,12 @@ wooden_stock:
   limit: 1000
   weight: 3.0
   slot: "Weapon"
+  fletching_unf:
+    level: 9
+    xp: 6.0
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   examine: "A wooden crossbow stock."
 wooden_stock_noted: 9441
 oak_stock:
@@ -39588,6 +39722,12 @@ oak_stock:
   price: 1
   limit: 1000
   weight: 3.0
+  fletching_unf:
+    level: 24
+    xp: 16.0
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   slot: "Weapon"
   examine: "An oak crossbow stock."
 oak_stock_noted: 9443
@@ -39596,6 +39736,12 @@ willow_stock:
   price: 2
   limit: 1000
   weight: 3.0
+  fletching_unf:
+    level: 39
+    xp: 22.0
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   slot: "Weapon"
   examine: "A willow crossbow stock."
 willow_stock_noted: 9445
@@ -39604,6 +39750,12 @@ teak_stock:
   price: 8
   limit: 1000
   weight: 3.0
+  fletching_unf:
+    level: 46
+    xp: 27.0
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   slot: "Weapon"
   examine: "A teak crossbow stock."
 teak_stock_noted: 9447
@@ -39612,6 +39764,12 @@ maple_stock:
   price: 12
   limit: 1000
   weight: 3.0
+  fletching_unf:
+    level: 54
+    xp: 32.0
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   slot: "Weapon"
   examine: "A maple crossbow stock."
 maple_stock_noted: 9449
@@ -39620,6 +39778,12 @@ mahogany_stock:
   price: 29
   limit: 1000
   weight: 3.0
+  fletching_unf:
+    level: 61
+    xp: 41.0
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   slot: "Weapon"
   examine: "A mahogany crossbow stock."
 mahogany_stock_noted: 9451
@@ -39628,6 +39792,12 @@ yew_stock:
   price: 36
   limit: 1000
   weight: 3.0
+  fletching_unf:
+    level: 69
+    xp: 50.0
+    animation: "fletching_bow_log"
+    make_amount: 1
+    tick: 3
   slot: "Weapon"
   examine: "A yew crossbow stock."
 yew_stock_noted: 9453
@@ -39672,13 +39842,13 @@ adamant_crossbow_u:
   weight: 8.0
   examine: "An unstrung adamantite crossbow."
 adamant_cbow_u_noted: 9464
-runite_crossbow_u:
+rune_crossbow_u:
   id: 9465
   price: 9552
   limit: 500
   weight: 8.0
   examine: "An unstrung runite crossbow."
-runite_cbow_u_noted: 9466
+rune_crossbow_u_noted: 9466
 blurite_bar:
   id: 9467
   tradeable: false
@@ -48233,6 +48403,9 @@ dragon_dart_tip:
   id: 11232
   price: 622
   limit: 1000
+  fletch_dart:
+    level: 95
+    xp: 25.0
   examine: "A deadly looking dragon dart tip - needs feathers for flight."
 dragon_dart_p+:
   id: 11233

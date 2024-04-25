@@ -43,7 +43,7 @@ suspend fun CharacterContext.makeAmountIndex(
     player["skill_creation_type"] = type
 
     setItemOptions(player, items, names)
-    setMax(player, maximum)
+    setMax(player, maximum.coerceAtLeast(1))
     val choice: Int = IntSuspension()
     player.close(INTERFACE_ID)
     player.close(INTERFACE_AMOUNT_ID)

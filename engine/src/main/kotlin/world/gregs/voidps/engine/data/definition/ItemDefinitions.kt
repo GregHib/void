@@ -113,6 +113,9 @@ class ItemDefinitions(
                     "runecrafting" -> Rune(value as Map<String, Any>)
                     "ammo" -> ObjectOpenHashSet(value as List<String>)
                     "cleaning" -> Cleaning(value as Map<String, Any>)
+                    "fletch_dart" -> FletchDarts(value as Map<String, Any>)
+                    "fletch_bolts" -> FletchBolts(value as Map<String, Any>)
+                    "fletching_unf" -> Fletching(value as Map<String, Any>)
                     "skill_req" -> (value as MutableMap<String, Any>).mapKeys { Skill.valueOf(it.key.toSentenceCase()) }
                     else -> value
                 }, indent, parentMap)
