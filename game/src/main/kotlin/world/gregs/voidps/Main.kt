@@ -64,16 +64,16 @@ object Main : CoroutineScope {
 
         // Game world
         val stages = getTickStages()
-        val engine = GameLoop(stages)
         World.start(properties)
-        engine.start()
+        val scope = CoroutineScope(Contexts.Game)
+        val engine = GameLoop(stages).start(scope)
         server.loginServer = loginServer
         logger.info { "$name loaded in ${System.currentTimeMillis() - startTime}ms" }
         runBlocking {
             try {
                 job.join()
             } finally {
-                engine.stop()
+                engine.cancel()
                 server.stop()
             }
         }
