@@ -3,9 +3,10 @@ package world.gregs.voidps.network
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ClosedReceiveChannelException
+import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
@@ -31,7 +32,7 @@ internal class LoginServerTest {
     private val protocol = Array<Decoder?>(10) { null }
     private lateinit var accounts: AccountLoader
     private lateinit var passwordManager: PasswordManager
-    private lateinit var instructions: MutableSharedFlow<Instruction>
+    private lateinit var instructions: Channel<Instruction>
     private var client: Client? = null
     private var password: String? = null
 
@@ -41,11 +42,11 @@ internal class LoginServerTest {
     fun setup() {
         client = null
         password = null
-        instructions = MutableSharedFlow(replay = 1)
+        instructions = Channel(capacity = 1)
         accounts = object : AccountLoader {
             override fun password(username: String) = password
 
-            override suspend fun load(client: Client, username: String, passwordHash: String, displayMode: Int): MutableSharedFlow<Instruction>? {
+            override suspend fun load(client: Client, username: String, passwordHash: String, displayMode: Int): SendChannel<Instruction> {
                 this@LoginServerTest.client = client
                 client.send(0) {
                     writeByte(Response.SUCCESS)
@@ -54,9 +55,9 @@ internal class LoginServerTest {
             }
         }
         protocol[0] = object : Decoder(4) {
-            override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
+            override suspend fun decode(packet: ByteReadPacket): Instruction {
                 val value = packet.readInt()
-                instructions.emit(TestInstruction(value))
+                return TestInstruction(value)
             }
         }
         passwordManager = PasswordManager(accounts)
@@ -74,9 +75,9 @@ internal class LoginServerTest {
                 val readChannel = ByteChannel(autoFlush = true)
                 val writeChannel = ByteChannel(autoFlush = true)
                 protocol[0] = object : Decoder(size) {
-                    override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
+                    override suspend fun decode(packet: ByteReadPacket): Instruction {
                         val value = packet.readInt()
-                        instructions.emit(TestInstruction(value))
+                        return TestInstruction(value)
                     }
                 }
 
@@ -89,7 +90,7 @@ internal class LoginServerTest {
                 assertEquals(118, writeChannel.readByte().toInt()) // packet 0
                 assertEquals(Response.SUCCESS, writeChannel.readByte().toInt())
                 writeTestPacket(readChannel, size)
-                val instruction = instructions.replayCache.first()
+                val instruction = instructions.tryReceive().getOrNull()
                 assertNotNull(instruction)
                 assertEquals(TestInstruction(42), instruction)
                 job.cancelAndJoin()
@@ -225,7 +226,7 @@ internal class LoginServerTest {
         accounts = object : AccountLoader {
             override fun password(username: String) = null
 
-            override suspend fun load(client: Client, username: String, passwordHash: String, displayMode: Int): MutableSharedFlow<Instruction>? {
+            override suspend fun load(client: Client, username: String, passwordHash: String, displayMode: Int): SendChannel<Instruction>? {
                 client.disconnect(Response.ACCOUNT_ONLINE)
                 return null
             }
@@ -273,7 +274,7 @@ internal class LoginServerTest {
         assertEquals(118, writeChannel.readByte().toInt()) // packet 0
         assertEquals(Response.SUCCESS, writeChannel.readByte().toInt())
         writeTestPacket(readChannel)
-        assertTrue(instructions.replayCache.isEmpty())
+        assertNull(instructions.tryReceive().getOrNull())
         assertTrue(writeChannel.isClosedForRead)
 
         job.cancelAndJoin()
@@ -349,9 +350,9 @@ internal class LoginServerTest {
         val readChannel = ByteChannel(autoFlush = true)
         val writeChannel = ByteChannel(autoFlush = true)
         protocol[0] = object : Decoder(4) {
-            override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
+            override suspend fun decode(packet: ByteReadPacket): Instruction {
                 val value = packet.readInt()
-                instructions.emit(TestInstruction(value))
+                return TestInstruction(value)
             }
         }
 
@@ -364,7 +365,7 @@ internal class LoginServerTest {
         assertEquals(118, writeChannel.readByte().toInt()) // packet 0
         assertEquals(Response.SUCCESS, writeChannel.readByte().toInt())
         writeTestPacket(readChannel)
-        val instruction = instructions.replayCache.first()
+        val instruction = instructions.tryReceive().getOrNull()
         assertNotNull(instruction)
         assertEquals(TestInstruction(42), instruction)
         job.cancelAndJoin()

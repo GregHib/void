@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.client
 
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.AccountStorage
@@ -40,7 +40,7 @@ class PlayerAccountLoader(
     /**
      * @return flow of instructions for the player to be controlled with
      */
-    override suspend fun load(client: Client, username: String, passwordHash: String, displayMode: Int): MutableSharedFlow<Instruction>? {
+    override suspend fun load(client: Client, username: String, passwordHash: String, displayMode: Int): SendChannel<Instruction>? {
         try {
             val saving = saveQueue.saving(username)
             if (saving) {

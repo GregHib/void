@@ -77,7 +77,7 @@ suspend fun Bot.light(map: AreaDefinition, lighter: Item, logs: Item) {
         if (logIndex == -1) {
             break
         }
-        player.instructions.emit(InteractInterfaceItem(lighter.def.id, logs.def.id, lighterIndex, logIndex, 149, 0, 149, 0))
+        player.instructions.send(InteractInterfaceItem(lighter.def.id, logs.def.id, lighterIndex, logIndex, 149, 0, 149, 0))
         await("firemaking")
     }
 }

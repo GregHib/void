@@ -1,7 +1,6 @@
 package world.gregs.voidps.network.login.protocol.decode
 
 import io.ktor.utils.io.core.*
-import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.InteractInterfaceFloorItem
@@ -12,7 +11,7 @@ import world.gregs.voidps.network.login.protocol.readUnsignedShortAdd
 
 class InterfaceOnFloorItemDecoder : Decoder(15) {
 
-    override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
+    override suspend fun decode(packet: ByteReadPacket): Instruction {
         val x = packet.readShortLittleEndian().toInt()
         val floorItem = packet.readUnsignedShortAdd()
         val itemSlot = packet.readShortLittleEndian().toInt()
@@ -20,7 +19,7 @@ class InterfaceOnFloorItemDecoder : Decoder(15) {
         val run = packet.readBoolean()
         val item = packet.readUnsignedShortAdd()
         val packed = packet.readUnsignedIntMiddle()
-        instructions.emit(InteractInterfaceFloorItem(
+        return InteractInterfaceFloorItem(
             floorItem,
             x,
             y,
@@ -28,7 +27,7 @@ class InterfaceOnFloorItemDecoder : Decoder(15) {
             InterfaceDefinition.componentId(packed),
             item,
             itemSlot
-        ))
+        )
     }
 
 }

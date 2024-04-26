@@ -39,7 +39,7 @@ internal class ClanTest : WorldTest() {
         createPlayer("player")
         val (joiner, client) = createClient("joiner")
 
-        joiner.instructions.emit(ClanChatJoin("player"))
+        joiner.instructions.send(ClanChatJoin("player"))
         tick()
 
         verify {
@@ -51,7 +51,7 @@ internal class ClanTest : WorldTest() {
     fun `Can't join non existent clan chat`() = runTest {
         val (player, client) = createClient("player")
 
-        player.instructions.emit(ClanChatJoin("non-existent"))
+        player.instructions.send(ClanChatJoin("non-existent"))
         tick()
 
         verify {
@@ -66,7 +66,7 @@ internal class ClanTest : WorldTest() {
         owner.ownClan?.joinRank = ClanRank.General
         val (joiner, client) = createClient("joiner")
 
-        joiner.instructions.emit(ClanChatJoin("player"))
+        joiner.instructions.send(ClanChatJoin("player"))
         tick()
 
         verify {
@@ -79,10 +79,10 @@ internal class ClanTest : WorldTest() {
         val (player, client) = createClient("player")
         val clan = player.ownClan!!
 
-        player.instructions.emit(ClanChatJoin("player"))
+        player.instructions.send(ClanChatJoin("player"))
         tick()
 
-        player.instructions.emit(ClanChatJoin("player"))
+        player.instructions.send(ClanChatJoin("player"))
         tick()
 
         assertEquals("player", clan.name)
@@ -97,7 +97,7 @@ internal class ClanTest : WorldTest() {
         val player = createPlayer("player")
         val clan = player.ownClan!!
         clan.name = "clan"
-        player.instructions.emit(ClanChatJoin("player"))
+        player.instructions.send(ClanChatJoin("player"))
         tick()
 
         player.interfaceOption("clan_chat", "settings", "Clan Setup")
@@ -116,7 +116,7 @@ internal class ClanTest : WorldTest() {
         owner.friends["joiner"] = ClanRank.Corporeal
         val (joiner, client) = createClient("joiner")
 
-        joiner.instructions.emit(ClanChatJoin("player"))
+        joiner.instructions.send(ClanChatJoin("player"))
         tick()
 
         verify {
@@ -129,10 +129,10 @@ internal class ClanTest : WorldTest() {
         val owner = createPlayer("player")
         owner.ownClan?.name = "clan"
         val (joiner, client) = createClient("joiner")
-        joiner.instructions.emit(ClanChatJoin("player"))
+        joiner.instructions.send(ClanChatJoin("player"))
         tick()
 
-        joiner.instructions.emit(ClanChatJoin(""))
+        joiner.instructions.send(ClanChatJoin(""))
         tick()
 
         verify {
@@ -147,7 +147,7 @@ internal class ClanTest : WorldTest() {
         owner.ownClan?.name = "clan"
         owner.friends["friend"] = ClanRank.Friend
 
-        owner.instructions.emit(ClanChatRank("friend", 2))
+        owner.instructions.send(ClanChatRank("friend", 2))
         tick()
 
         assertEquals(ClanRank.Corporeal, owner.friends["friend"])
@@ -160,10 +160,10 @@ internal class ClanTest : WorldTest() {
         owner.ownClan?.joinRank = ClanRank.Corporeal
         owner.friends["joiner"] = ClanRank.Corporeal
         val (joiner, client) = createClient("joiner")
-        joiner.instructions.emit(ClanChatJoin("player"))
+        joiner.instructions.send(ClanChatJoin("player"))
         tick()
 
-        owner.instructions.emit(FriendDelete("joiner"))
+        owner.instructions.send(FriendDelete("joiner"))
         tick()
 
         verify {
@@ -178,11 +178,11 @@ internal class ClanTest : WorldTest() {
         clan.name = "clan"
         owner.friends["joiner"] = ClanRank.Friend
         val (joiner, client) = createClient("joiner")
-        owner.instructions.emit(ClanChatJoin("player"))
-        joiner.instructions.emit(ClanChatJoin("player"))
+        owner.instructions.send(ClanChatJoin("player"))
+        joiner.instructions.send(ClanChatJoin("player"))
         tick()
 
-        owner.instructions.emit(ClanChatKick("joiner"))
+        owner.instructions.send(ClanChatKick("joiner"))
         tick()
 
         assertFalse(clan.members.contains(joiner))
@@ -198,10 +198,10 @@ internal class ClanTest : WorldTest() {
         clan.name = "clan"
         val admin = createPlayer("admin")
         admin.rights = PlayerRights.Admin
-        admin.instructions.emit(ClanChatJoin("player"))
+        admin.instructions.send(ClanChatJoin("player"))
         tick()
 
-        owner.instructions.emit(ClanChatKick("admin"))
+        owner.instructions.send(ClanChatKick("admin"))
         tick()
 
         assertTrue(clan.members.contains(admin))
@@ -217,7 +217,7 @@ internal class ClanTest : WorldTest() {
         clan.name = "clan"
         val admin = createPlayer("admin")
         admin.rights = PlayerRights.Admin
-        admin.instructions.emit(ClanChatJoin("player"))
+        admin.instructions.send(ClanChatJoin("player"))
         tick()
 
         owner.interfaceOption("clan_chat", "settings", "Clan Setup")
@@ -232,7 +232,7 @@ internal class ClanTest : WorldTest() {
         val clan = owner.ownClan!!
         clan.name = "clan"
         val (member, client) = createClient("member")
-        member.instructions.emit(ClanChatJoin("player"))
+        member.instructions.send(ClanChatJoin("player"))
         tick()
 
         member.interfaceOption("clan_chat", "settings", "Clan Setup")
@@ -251,10 +251,10 @@ internal class ClanTest : WorldTest() {
         clan.talkRank = ClanRank.Corporeal
         val (player, client) = createClient("player")
         owner.friends["player"] = ClanRank.Corporeal
-        player.instructions.emit(ClanChatJoin("owner"))
+        player.instructions.send(ClanChatJoin("owner"))
 
-        player.instructions.emit(ChatTypeChange(1))
-        player.instructions.emit(ChatPublic("Hi", 0))
+        player.instructions.send(ChatTypeChange(1))
+        player.instructions.send(ChatPublic("Hi", 0))
         tick()
 
         verify {
@@ -269,10 +269,10 @@ internal class ClanTest : WorldTest() {
         val (player, client) = createClient("player")
         clan.name = "clan"
         clan.talkRank = ClanRank.General
-        player.instructions.emit(ClanChatJoin("owner"))
+        player.instructions.send(ClanChatJoin("owner"))
 
-        player.instructions.emit(ChatTypeChange(1))
-        player.instructions.emit(ChatPublic("Hi", 0))
+        player.instructions.send(ChatTypeChange(1))
+        player.instructions.send(ChatPublic("Hi", 0))
         tick()
 
         verify {

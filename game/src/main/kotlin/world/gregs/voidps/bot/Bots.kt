@@ -68,7 +68,7 @@ fun Bot.equip(item: String) {
     }
     val index = player.inventory.indexOf(item)
     if (index != -1) {
-        player.instructions.tryEmit(InteractInterface(interfaceId = 149, componentId = 0, itemId = def.id, itemSlot = index, option = 1))
+        player.instructions.trySend(InteractInterface(interfaceId = 149, componentId = 0, itemId = def.id, itemSlot = index, option = 1))
     }
 }
 
@@ -76,23 +76,23 @@ fun Bot.inventoryOption(item: String, option: String) {
     val index = player.inventory.indexOf(item)
     if (index != -1) {
         val def = get<ItemDefinitions>().getOrNull(item) ?: return
-        player.instructions.tryEmit(InteractInterface(interfaceId = 149, componentId = 0, itemId = def.id, itemSlot = index, option = def.options.indexOf(option)))
+        player.instructions.trySend(InteractInterface(interfaceId = 149, componentId = 0, itemId = def.id, itemSlot = index, option = def.options.indexOf(option)))
     }
 }
 
 suspend fun Bot.npcOption(npc: NPC, option: String) {
-    player.instructions.emit(InteractNPC(npc.index, npc.def.options.indexOf(option) + 1))
+    player.instructions.send(InteractNPC(npc.index, npc.def.options.indexOf(option) + 1))
 }
 
 suspend fun Bot.objectOption(obj: GameObject, option: String) {
-    player.instructions.emit(InteractObject(obj.def.id, obj.tile.x, obj.tile.y, obj.def.optionsIndex(option) + 1))
+    player.instructions.send(InteractObject(obj.def.id, obj.tile.x, obj.tile.y, obj.def.optionsIndex(option) + 1))
 }
 
 suspend fun Bot.dialogueOption(option: String) {
     val current = player.dialogue!!
     val definitions = get<InterfaceDefinitions>()
     val def = definitions.get(current)
-    player.instructions.emit(InteractDialogue(def.id, definitions.getComponentId(current, option)!!, -1))
+    player.instructions.send(InteractDialogue(def.id, definitions.getComponentId(current, option)!!, -1))
     await("tick")
 }
 

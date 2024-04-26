@@ -32,7 +32,7 @@ suspend fun Bot.openShop(map: AreaDefinition): NPC {
 
 private suspend fun Bot.openShop(): NPC {
     val shop = get<NPCs>().first { it.tile.within(player.tile, Viewport.VIEW_RADIUS) && it.def.options.contains("Trade") }
-    player.instructions.emit(InteractNPC(npcIndex = shop.index, option = shop.def.options.indexOfFirst { it == "Trade" } + 1))
+    player.instructions.send(InteractNPC(npcIndex = shop.index, option = shop.def.options.indexOfFirst { it == "Trade" } + 1))
     await("shop")
     return shop
 }
@@ -55,7 +55,7 @@ suspend fun Bot.buy(item: String, amount: Int = 1) {
             remaining >= 5 -> 2
             else -> 1
         }
-        player.instructions.emit(InteractInterface(interfaceId = 620, componentId = 25, itemId = -1, itemSlot = slot, option = option))
+        player.instructions.send(InteractInterface(interfaceId = 620, componentId = 25, itemId = -1, itemSlot = slot, option = option))
         remaining -= when {
             remaining >= 500 -> 500
             remaining >= 50 -> 50

@@ -69,7 +69,7 @@ suspend fun Bot.mineRocks(map: AreaDefinition, type: String) {
             }
             continue
         }
-        player.instructions.emit(InteractObject(rock.def.id, rock.tile.x, rock.tile.y, 1))
+        player.instructions.send(InteractObject(rock.def.id, rock.tile.x, rock.tile.y, 1))
         await("mining")
     }
 }

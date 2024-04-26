@@ -83,7 +83,7 @@ suspend fun Bot.smelt(map: AreaDefinition, set: GearDefinition) {
                 break
             }
         }
-        player.instructions.emit(InteractDialogue(905, 14 + index, -1))
+        player.instructions.send(InteractDialogue(905, 14 + index, -1))
         await("smelting")
     }
 }

@@ -220,7 +220,7 @@ internal class CombatTest : WorldTest() {
 
         player.interfaceOption("combat_styles", "style3")
         runTest {
-            player.instructions.emit(InteractPlayer(target.index, 1))
+            player.instructions.send(InteractPlayer(target.index, 1))
         }
         tick(2)
 

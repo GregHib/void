@@ -3,7 +3,7 @@ package world.gregs.voidps.network
 import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.SendChannel
 import world.gregs.voidps.cache.secure.RSA
 import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.network.client.Client
@@ -140,7 +140,7 @@ class LoginServer(
         }
     }
 
-    private suspend fun readPackets(client: Client, instructions: MutableSharedFlow<Instruction>, read: ByteReadChannel) {
+    private suspend fun readPackets(client: Client, instructions: SendChannel<Instruction>, read: ByteReadChannel) {
         while (!client.disconnected) {
             val cipher = client.cipherIn.nextInt()
             val opcode = (read.readUByte() - cipher) and 0xff
@@ -155,7 +155,7 @@ class LoginServer(
                 else -> decoder.length
             }
             val packet = read.readPacket(size = size)
-            decoder.decode(instructions, packet)
+            instructions.send(decoder.decode(packet) ?: continue)
         }
     }
 

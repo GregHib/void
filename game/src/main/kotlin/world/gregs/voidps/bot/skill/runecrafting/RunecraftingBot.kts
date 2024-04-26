@@ -47,7 +47,7 @@ suspend fun Bot.craftRunes(map: AreaDefinition) {
     await("tick")
     val altar = getObjects { isAltar(map, it) }
         .first()
-    player.instructions.emit(InteractObject(altar.def.id, altar.tile.x, altar.tile.y, 1))
+    player.instructions.send(InteractObject(altar.def.id, altar.tile.x, altar.tile.y, 1))
     awaitInteract()
 }
 

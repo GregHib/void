@@ -1,7 +1,6 @@
 package world.gregs.voidps.network.login.protocol.decode
 
 import io.ktor.utils.io.core.*
-import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.network.login.protocol.Decoder
@@ -10,7 +9,7 @@ import world.gregs.voidps.network.login.protocol.readUnsignedShortAdd
 
 class WalkMiniMapDecoder : Decoder(18) {
 
-    override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
+    override suspend fun decode(packet: ByteReadPacket): Instruction {
         val y = packet.readShortLittleEndian().toInt()
         val running = packet.readBooleanAdd()
         val x = packet.readUnsignedShortAdd()
@@ -24,7 +23,7 @@ class WalkMiniMapDecoder : Decoder(18) {
         packet.readShort()//X in region?
         packet.readShort()//Y in region?
         packet.readByte()//63
-        instructions.emit(Walk(x, y))
+        return Walk(x, y)
     }
 
 }

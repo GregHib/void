@@ -30,7 +30,7 @@ internal class FriendTest : WorldTest() {
         val (_, client) = createClient("friend")
         player["private_status"] = "friends"
 
-        player.instructions.emit(FriendAdd("friend"))
+        player.instructions.send(FriendAdd("friend"))
 
         tick()
 
@@ -48,7 +48,7 @@ internal class FriendTest : WorldTest() {
             player.friends[it.toString()] = ClanRank.Friend
         }
 
-        player.instructions.emit(FriendAdd("friend"))
+        player.instructions.send(FriendAdd("friend"))
         tick()
 
         verify {
@@ -60,7 +60,7 @@ internal class FriendTest : WorldTest() {
     fun `Add non-existent friend`() = runTest {
         val player = createPlayer("player")
 
-        player.instructions.emit(FriendAdd("non-existent"))
+        player.instructions.send(FriendAdd("non-existent"))
         tick()
 
         verify {
@@ -74,7 +74,7 @@ internal class FriendTest : WorldTest() {
         createPlayer("friend")
         player.friends["friend"] = ClanRank.Friend
 
-        player.instructions.emit(FriendAdd("friend"))
+        player.instructions.send(FriendAdd("friend"))
         tick()
 
         verify {
@@ -88,7 +88,7 @@ internal class FriendTest : WorldTest() {
         createPlayer("friend")
         player.ignores.add("friend")
 
-        player.instructions.emit(FriendAdd("friend"))
+        player.instructions.send(FriendAdd("friend"))
         tick()
 
         verify {
@@ -103,7 +103,7 @@ internal class FriendTest : WorldTest() {
         val (_, client) = createClient("friend")
         player.friends["friend"] = ClanRank.Friend
 
-        player.instructions.emit(FriendDelete("friend"))
+        player.instructions.send(FriendDelete("friend"))
         tick()
 
         verify {

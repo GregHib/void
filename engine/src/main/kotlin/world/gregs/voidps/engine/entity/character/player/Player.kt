@@ -1,7 +1,8 @@
 package world.gregs.voidps.engine.entity.character.player
 
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
+import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.update.view.Viewport
@@ -53,7 +54,7 @@ class Player(
         }
 
     override lateinit var visuals: PlayerVisuals
-    val instructions = MutableSharedFlow<Instruction>(replay = 20)
+    val instructions = Channel<Instruction>(capacity = InstructionTask.MAX_INSTRUCTIONS)
     lateinit var options: PlayerOptions
     lateinit var interfaces: Interfaces
     lateinit var interfaceOptions: InterfaceOptions

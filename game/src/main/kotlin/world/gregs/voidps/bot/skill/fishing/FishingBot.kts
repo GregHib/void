@@ -82,7 +82,7 @@ suspend fun Bot.fish(map: AreaDefinition, option: String, bait: String, set: Gea
             }
             continue
         }
-        player.instructions.emit(InteractNPC(spot.index, spot.def.options.indexOf(option) + 1))
+        player.instructions.send(InteractNPC(spot.index, spot.def.options.indexOf(option) + 1))
         await("fishing")
     }
 }

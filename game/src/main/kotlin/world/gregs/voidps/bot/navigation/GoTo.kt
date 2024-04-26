@@ -85,12 +85,12 @@ private fun updateGraph(bot: Bot) {
 private suspend fun Bot.rest() {
     val musician = get<NPCs>().firstOrNull { it.tile.within(player.tile, VIEW_RADIUS) && it.def.options.contains("Listen-to") }
     if (musician != null && player.tile.distanceTo(musician) < 10) {
-        player.instructions.emit(InteractNPC(npcIndex = 49, option = musician.def.options.indexOfFirst { it == "Listen-to" } + 1))
+        player.instructions.send(InteractNPC(npcIndex = 49, option = musician.def.options.indexOfFirst { it == "Listen-to" } + 1))
         repeat(32) {
             await("tick")
         }
     } else {
-        player.instructions.emit(InteractInterface(interfaceId = 750, componentId = 1, itemId = -1, itemSlot = -1, option = 1))
+        player.instructions.send(InteractInterface(interfaceId = 750, componentId = 1, itemId = -1, itemSlot = -1, option = 1))
         repeat(50) {
             await("tick")
         }
@@ -98,7 +98,7 @@ private suspend fun Bot.rest() {
 }
 
 private suspend fun Bot.run() {
-    player.instructions.emit(InteractInterface(interfaceId = 750, componentId = 1, itemId = -1, itemSlot = -1, option = 0))
+    player.instructions.send(InteractInterface(interfaceId = 750, componentId = 1, itemId = -1, itemSlot = -1, option = 0))
 }
 
 private suspend fun Bot.navigate() {
@@ -112,7 +112,7 @@ private suspend fun Bot.navigate() {
                 run()
             }
             this.step = step
-            player.instructions.emit(step)
+            player.instructions.send(step)
             val timeout = withTimeoutOrNull(TICKS.toMillis(20)) {
                 if (step is InteractObject && get<GameObjects>()[player.tile.copy(step.x, step.y), step.objectId] == null) {
                     await("tick")
