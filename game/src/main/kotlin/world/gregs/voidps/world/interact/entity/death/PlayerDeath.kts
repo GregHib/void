@@ -1,5 +1,3 @@
-@file:Suppress("OPT_IN_USAGE")
-
 package world.gregs.voidps.world.interact.entity.death
 
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
