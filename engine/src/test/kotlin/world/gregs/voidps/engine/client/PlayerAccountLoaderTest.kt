@@ -2,7 +2,8 @@ package world.gregs.voidps.engine.client
 
 import io.mockk.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
@@ -56,7 +57,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
                 return playerSave
             }
         }
-        saveQueue = SaveQueue(storage, coroutineContext = TestCoroutineDispatcher())
+        saveQueue = SaveQueue(storage, scope = TestScope())
         definitions = AccountDefinitions(mutableMapOf("name" to AccountDefinition("name", "oldName", "", "hash")))
         accounts = mockk(relaxed = true)
         loader = PlayerAccountLoader(queue, storage, accounts, saveQueue, definitions, UnconfinedTestDispatcher())
