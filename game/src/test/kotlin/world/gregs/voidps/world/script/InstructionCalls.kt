@@ -134,11 +134,11 @@ private fun getOptionIndex(id: String, componentId: String, option: String): Int
 }
 
 fun Player.playerOption(player: Player, option: String) = runTest {
-    instructions.emit(InteractPlayer(player.index, options.indexOf(option)))
+    instructions.send(InteractPlayer(player.index, options.indexOf(option)))
 }
 
 fun Player.walk(toTile: Tile) = runTest {
-    instructions.emit(Walk(toTile.x, toTile.y))
+    instructions.send(Walk(toTile.x, toTile.y))
 }
 
 fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: String = "inventory", inventory: String = "inventory") {
@@ -171,16 +171,16 @@ fun Player.itemOnItem(
 }
 
 fun Player.npcOption(npc: NPC, option: String) = runTest {
-    instructions.emit(InteractNPC(npc.index, npc.def.options.indexOf(option) + 1))
+    instructions.send(InteractNPC(npc.index, npc.def.options.indexOf(option) + 1))
 }
 
 fun Player.objectOption(gameObject: GameObject, option: String, optionIndex: Int? = null) = runTest {
     val def = get<ObjectDefinitions>().get(gameObject.intId)
-    instructions.emit(InteractObject(gameObject.intId, gameObject.tile.x, gameObject.tile.y, (optionIndex ?: def.optionsIndex(option)) + 1))
+    instructions.send(InteractObject(gameObject.intId, gameObject.tile.x, gameObject.tile.y, (optionIndex ?: def.optionsIndex(option)) + 1))
 }
 
 fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {
-    instructions.emit(InteractFloorItem(floorItem.def.id, floorItem.tile.x, floorItem.tile.y, floorItem.def.floorOptions.indexOf(option)))
+    instructions.send(InteractFloorItem(floorItem.def.id, floorItem.tile.x, floorItem.tile.y, floorItem.def.floorOptions.indexOf(option)))
 }
 
 fun Inventory.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }

@@ -9,9 +9,7 @@ import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.map.collision.CollisionDecoder
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.GameObjectCollision
+import world.gregs.voidps.engine.map.collision.*
 import world.gregs.voidps.tools.cache.Xteas
 import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
 import world.gregs.voidps.tools.property
@@ -38,7 +36,7 @@ object WorldMapLinkIdentifier {
         val graph = MutableNavigationGraph()
         val linker = ObjectLinker(collisions)
         val clientScriptDecoder = ClientScriptDecoder().load(cache)
-        val objects = GameObjects(GameObjectCollision(collisions), ZoneBatchUpdates(), definitions)
+        val objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), definitions)
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
@@ -52,7 +50,7 @@ object WorldMapLinkIdentifier {
             })
         }
         val start = System.currentTimeMillis()
-        val objCollision = GameObjectCollision(collisions)
+        val objCollision = GameObjectCollisionAdd(collisions)
         val list = mutableListOf<GameObject>()
         for (region in regions) {
             val def = mapDecoder.getOrNull(region.id) ?: continue
@@ -61,7 +59,7 @@ object WorldMapLinkIdentifier {
                 val obj = GameObject(loc.id, tile, loc.shape, loc.rotation)
                 list.add(obj)
                 objects.add(obj)
-                objCollision.modify(obj, add = true)
+                objCollision.modify(obj)
             }
             collisionDecoder.decode(region, def)
         }

@@ -1,7 +1,7 @@
 package world.gregs.voidps.network.login.protocol
 
 import io.ktor.utils.io.core.*
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DynamicTest.dynamicTest
@@ -125,10 +125,10 @@ class DecoderTest {
                     Decoder.SHORT -> assertTrue(data.size <= Short.MAX_VALUE)
                     else -> assertEquals(decoder.length, data.size)
                 }
-                val instructions = MutableSharedFlow<Instruction>(replay = 1)
+                val instructions = Channel<Instruction>(capacity = 1)
                 val packet = ByteReadPacket(data)
-                decoder.decode(instructions, packet)
-                val instruction = instructions.replayCache.firstOrNull()
+                instructions.send(decoder.decode(packet) ?: return@runTest)
+                val instruction = instructions.tryReceive().getOrNull()
                 assertEquals(expected, instruction)
                 assertTrue(packet.isEmpty)
             }

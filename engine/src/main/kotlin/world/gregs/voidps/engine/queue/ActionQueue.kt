@@ -13,13 +13,15 @@ import world.gregs.voidps.engine.suspend.resumeSuspension
 import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.coroutines.resume
 
-class ActionQueue(private val character: Character) : CoroutineScope {
+class ActionQueue(
+    private val character: Character,
+    private val scope: CoroutineScope = CoroutineScope(Dispatchers.Unconfined)
+) {
     private val errorHandler = CoroutineExceptionHandler { _, throwable ->
         if (throwable !is CancellationException) {
             throwable.printStackTrace()
         }
     }
-    override val coroutineContext = Dispatchers.Unconfined + errorHandler
 
     private val pending = ConcurrentLinkedQueue<Action>()
     private val queue = ConcurrentLinkedQueue<Action>()
@@ -90,7 +92,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
             (character as? Player)?.closeMenu()
         }
         if (canProcess(action) && action.process()) {
-            launch(action)
+            scope.launch(action)
         }
         return action.removed
     }
@@ -101,7 +103,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
 
     private fun noInterrupt() = character is NPC || (character is Player && !character.hasMenuOpen() && character.dialogue == null)
 
-    private fun launch(action: Action) {
+    private fun CoroutineScope.launch(action: Action) {
         if (character.resumeSuspension() || (character is Player && character.dialogueSuspension != null)) {
             return
         }
@@ -111,7 +113,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
             suspension.resume(Unit)
             return
         }
-        launch {
+        launch(errorHandler) {
             try {
                 this@ActionQueue.action = action
                 action.action.invoke(action)
@@ -129,7 +131,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
         queuePending()
         queue.removeIf {
             if (it.behaviour == LogoutBehaviour.Accelerate) {
-                launch(it)
+                scope.launch(it)
                 while (character.delay != null) {
                     character.delay?.resume(Unit)
                     character.delay = null

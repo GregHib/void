@@ -43,7 +43,7 @@ class GameServer(
         val scope = CoroutineScope(dispatcher)
         job = scope.launch {
             try {
-            supervisorScope {
+                supervisorScope {
                     logger.info { "Listening for requests on port ${port}..." }
                     while (isActive) {
                         val socket = server.accept()
@@ -54,7 +54,7 @@ class GameServer(
                             connect(read, write, socket.remoteAddress.toJavaAddress().hostname)
                         }
                     }
-            }
+                }
             } finally {
                 stop()
             }

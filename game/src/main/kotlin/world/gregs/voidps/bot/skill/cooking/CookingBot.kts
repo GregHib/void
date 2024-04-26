@@ -63,18 +63,18 @@ suspend fun Bot.cook(map: AreaDefinition, rawItem: Item, set: GearDefinition) {
             return
         }
         // Use item on range
-        player.instructions.emit(InteractInterfaceObject(range.def.id, range.tile.x, range.tile.y, 149, 0, rawItem.def.id, player.inventory.indexOf(rawItem.id)))
+        player.instructions.send(InteractInterfaceObject(range.def.id, range.tile.x, range.tile.y, 149, 0, rawItem.def.id, player.inventory.indexOf(rawItem.id)))
         await("tick")
         await("tick")
         if (rawItem.id == "raw_beef") {
-            player.instructions.emit(InteractDialogue(228, 3, -1))
+            player.instructions.send(InteractDialogue(228, 3, -1))
             await("tick")
         }
         // Select all
         clickInterface(916, 8, 0)
         await("tick")
         // First option
-        player.instructions.emit(InteractDialogue(905, 14, -1))
+        player.instructions.send(InteractDialogue(905, 14, -1))
     }
     var count = 0
     while (player.inventory.contains(rawItem.id)) {

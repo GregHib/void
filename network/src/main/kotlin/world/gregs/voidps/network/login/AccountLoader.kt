@@ -1,6 +1,6 @@
 package world.gregs.voidps.network.login
 
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.SendChannel
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Instruction
 
@@ -10,5 +10,5 @@ import world.gregs.voidps.network.client.Instruction
 interface AccountLoader {
     fun password(username: String): String?
 
-    suspend fun load(client: Client, username: String, passwordHash: String, displayMode: Int): MutableSharedFlow<Instruction>?
+    suspend fun load(client: Client, username: String, passwordHash: String, displayMode: Int): SendChannel<Instruction>?
 }

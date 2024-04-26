@@ -8,7 +8,6 @@ import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
-import kotlin.coroutines.CoroutineContext
 
 /**
  * Events is a Trie used for efficient storage and retrieval of handlers based on an arbitrary list of parameters.
@@ -19,8 +18,9 @@ import kotlin.coroutines.CoroutineContext
  *   any characters, and the "#" wildcard which matches a single digit 0-9
  * - Default match; Always matches every input
  */
-class Events : CoroutineScope {
-    override val coroutineContext: CoroutineContext = Dispatchers.Unconfined + errorHandler
+class Events(
+    private val scope: CoroutineScope = CoroutineScope(Dispatchers.Unconfined)
+) {
     private val roots: MutableMap<Int, TrieNode> = Int2ObjectOpenHashMap(8)
     var all: ((Player, Event) -> Unit)? = null
     private val logger = InlineLogger()
@@ -84,7 +84,7 @@ class Events : CoroutineScope {
         if (dispatcher is Player && dispatcher.contains("bot")) {
             all?.invoke(dispatcher, event)
         }
-        launch {
+        scope.launch(errorHandler) {
             for (handler in handlers) {
                 if (event is CancellableEvent && event.cancelled) {
                     break

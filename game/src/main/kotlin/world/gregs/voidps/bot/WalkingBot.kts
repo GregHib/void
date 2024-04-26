@@ -13,7 +13,7 @@ worldSpawn {
         block = {
             while (true) {
                 val tile = tile.toCuboid(10).random()
-                instructions.emit(Walk(tile.x, tile.y))
+                instructions.send(Walk(tile.x, tile.y))
                 bot.await("tick")
             }
         },

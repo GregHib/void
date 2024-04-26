@@ -20,9 +20,7 @@ import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.GameObjectCollision
+import world.gregs.voidps.engine.map.collision.*
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.type.Tile
@@ -34,7 +32,7 @@ val engineModule = module {
     // Entities
     single { NPCs(get(), get(), get()) }
     single { Players() }
-    single { GameObjects(get(), get(), get(), getProperty<String>("loadUnusedObjects") == "true").apply { get<ZoneBatchUpdates>().register(this) } }
+    single { GameObjects(get(), get(), get(), get(), getProperty<String>("loadUnusedObjects") == "true").apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItems(get(), get()).apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItemTracking(get(), get(), get()) }
     single { Hunting(get(), get(), get(), get(), get(), get()) }
@@ -77,7 +75,8 @@ val engineModule = module {
     single {
         ConnectionQueue(getIntProperty("connectionPerTickCap", 1))
     }
-    single(createdAtStart = true) { GameObjectCollision(get()) }
+    single(createdAtStart = true) { GameObjectCollisionAdd(get()) }
+    single(createdAtStart = true) { GameObjectCollisionRemove(get()) }
     // Collision
     single { Collisions() }
     single { CollisionStrategyProvider() }

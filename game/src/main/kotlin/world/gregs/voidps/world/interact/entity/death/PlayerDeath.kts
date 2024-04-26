@@ -1,5 +1,3 @@
-@file:Suppress("OPT_IN_USAGE")
-
 package world.gregs.voidps.world.interact.entity.death
 
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
@@ -57,7 +55,9 @@ playerDeath { player ->
         player.steps.clear()
         val dealer = player.damageDealers.maxByOrNull { it.value }
         val killer = dealer?.key
-        player.instructions.resetReplayCache()
+        while (true) {
+            player.instructions.tryReceive().getOrNull() ?: break
+        }
         val tile = player.tile.copy()
         val wilderness = player.inWilderness
         retribution(player)
