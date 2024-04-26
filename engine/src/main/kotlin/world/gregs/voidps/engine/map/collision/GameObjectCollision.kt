@@ -79,7 +79,10 @@ class GameObjectCollision(
     }
 
     private fun modifyTile(x: Int, y: Int, level: Int, block: Int, direction: Int, add: Boolean) {
-        val flags = collisions.flags[Zone.tileIndex(x, y, level)] ?: return
+        var flags = collisions.flags[Zone.tileIndex(x, y, level)]
+        if (flags == null) {
+            flags = collisions.allocateIfAbsent(x, y, level)
+        }
         if (add) {
             flags[Tile.index(x, y)] = flags[Tile.index(x, y)] or CollisionFlags.blocked[direction or block]
         } else {
