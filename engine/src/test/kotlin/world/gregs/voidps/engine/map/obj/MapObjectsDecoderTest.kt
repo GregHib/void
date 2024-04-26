@@ -12,7 +12,8 @@ import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.GameObjectCollision
+import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
+import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
 import world.gregs.voidps.type.Tile
 
 class MapObjectsDecoderTest {
@@ -25,7 +26,8 @@ class MapObjectsDecoderTest {
     @BeforeEach
     fun setup() {
         definitions = ObjectDefinitions(Array(10_000) { ObjectDefinition.EMPTY })
-        objects = GameObjects(GameObjectCollision(Collisions()), ZoneBatchUpdates(), definitions, storeUnused = true)
+        val collisions = Collisions()
+        objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), definitions, storeUnused = true)
         decoder = MapObjectsDecoder(objects, definitions)
         tiles = LongArray(64 * 64 * 4)
     }

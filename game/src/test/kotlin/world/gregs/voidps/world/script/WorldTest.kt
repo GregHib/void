@@ -38,9 +38,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.inv.Inventory
-import world.gregs.voidps.engine.map.collision.CollisionDecoder
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.GameObjectCollision
+import world.gregs.voidps.engine.map.collision.*
 import world.gregs.voidps.gameModule
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.client.Client
@@ -158,7 +156,8 @@ abstract class WorldTest : KoinTest {
                 single { gameObjects }
                 single { mapDefinitions }
                 single { collisions }
-                single { objectCollision }
+                single { objectCollisionAdd }
+                single { objectCollisionRemove }
             })
         }
         loadScripts()
@@ -240,8 +239,9 @@ abstract class WorldTest : KoinTest {
         private val weaponAnimationDefinitions: WeaponAnimationDefinitions by lazy { WeaponAnimationDefinitions().load() }
         private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(cache), structDefinitions).load() }
         private val collisions: Collisions by lazy { Collisions() }
-        private val objectCollision: GameObjectCollision by lazy { GameObjectCollision(collisions) }
-        private val gameObjects: GameObjects by lazy { GameObjects(objectCollision, ZoneBatchUpdates(), objectDefinitions, storeUnused = true) }
+        private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd(collisions) }
+        private val objectCollisionRemove: GameObjectCollisionRemove by lazy { GameObjectCollisionRemove(collisions) }
+        private val gameObjects: GameObjects by lazy { GameObjects(objectCollisionAdd, objectCollisionRemove, ZoneBatchUpdates(), objectDefinitions, storeUnused = true) }
         private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder( collisions), objectDefinitions, gameObjects, cache).loadCache() }
         private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(cache)).load() }
         val emptyTile = Tile(2655, 4640)

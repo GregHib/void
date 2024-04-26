@@ -9,7 +9,8 @@ import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.collision.GameObjectCollision
+import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
+import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
 import world.gregs.voidps.network.login.protocol.encode.send
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAddition
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectRemoval
@@ -25,7 +26,8 @@ import world.gregs.voidps.type.Zone
  * @param storeUnused store non-interactive and objects without configs for debugging and content dev (uses ~240MB more ram).
  */
 class GameObjects(
-    private val collisions: GameObjectCollision,
+    private val collisionAdd: GameObjectCollisionAdd,
+    private val collisionRemove: GameObjectCollisionRemove,
     private val batches: ZoneBatchUpdates,
     private val definitions: ObjectDefinitions,
     private val storeUnused: Boolean = false
@@ -62,7 +64,7 @@ class GameObjects(
             map.remove(obj, REPLACED)
             batches.add(obj.tile.zone, ObjectAddition(obj.tile.id, obj.intId, obj.shape, obj.rotation))
             if (collision) {
-                collisions.modify(obj, add = true)
+                collisionAdd.modify(obj)
             }
             size++
         } else {
@@ -83,7 +85,7 @@ class GameObjects(
             replacements[obj.index] = obj.value(replaced = true)
             batches.add(obj.tile.zone, ObjectAddition(obj.tile.id, obj.intId, obj.shape, obj.rotation))
             if (collision) {
-                collisions.modify(obj, add = true)
+                collisionAdd.modify(obj)
             }
             size++
             obj.emit(Spawn)
@@ -94,7 +96,7 @@ class GameObjects(
         val gameObject = GameObject(id(objectValue), obj.x, obj.y, obj.level, shape(objectValue), rotation(objectValue))
         batches.add(obj.tile.zone, ObjectRemoval(obj.tile.id, gameObject.shape, gameObject.rotation))
         if (collision) {
-            collisions.modify(gameObject, add = false)
+            collisionRemove.modify(gameObject)
         }
         size--
         return gameObject
@@ -104,7 +106,7 @@ class GameObjects(
      * Sets the original placement of a game object
      */
     fun set(id: Int, x: Int, y: Int, level: Int, shape: Int, rotation: Int, definition: ObjectDefinition) {
-        collisions.modify(definition, x, y, level, shape, rotation, add = true)
+        collisionAdd.modify(definition, x, y, level, shape, rotation)
         if (interactive(definition)) {
             map[x, y, level, ObjectLayer.layer(shape)] = value(false, id, shape, rotation)
             size++
@@ -143,7 +145,7 @@ class GameObjects(
             replacements.remove(obj.index)
             batches.add(obj.tile.zone, ObjectRemoval(obj.tile.id, obj.shape, obj.rotation))
             if (collision) {
-                collisions.modify(obj, add = false)
+                collisionRemove.modify(obj)
             }
             size--
             obj.emit(Despawn)
@@ -153,7 +155,7 @@ class GameObjects(
                 val originalObj = GameObject(id(original), obj.x, obj.y, obj.level, shape(original), rotation(original))
                 batches.add(obj.tile.zone, ObjectAddition(obj.tile.id, originalObj.intId, originalObj.shape, originalObj.rotation))
                 if (collision) {
-                    collisions.modify(originalObj, add = true)
+                    collisionAdd.modify(originalObj)
                 }
                 size++
             }
@@ -162,7 +164,7 @@ class GameObjects(
             map.add(obj, REPLACED)
             batches.add(obj.tile.zone, ObjectRemoval(obj.tile.id, obj.shape, obj.rotation))
             if (collision) {
-                collisions.modify(obj, add = false)
+                collisionRemove.modify(obj)
             }
             size--
         }

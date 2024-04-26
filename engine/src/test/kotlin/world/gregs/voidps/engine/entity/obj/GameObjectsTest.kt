@@ -30,7 +30,7 @@ class GameObjectsTest {
         every { definitions.get("test") } returns ObjectDefinition(123)
         every { definitions.get("test2") } returns ObjectDefinition(456)
         updates = mockk(relaxed = true)
-        objects = GameObjects(mockk(relaxed = true), updates, definitions, storeUnused = true)
+        objects = GameObjects(mockk(relaxed = true), mockk(relaxed = true), updates, definitions, storeUnused = true)
         events = spyk(Events())
         Events.setEvents(events)
     }
