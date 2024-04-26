@@ -38,7 +38,10 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.inv.Inventory
-import world.gregs.voidps.engine.map.collision.*
+import world.gregs.voidps.engine.map.collision.CollisionDecoder
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
+import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
 import world.gregs.voidps.gameModule
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.client.Client
@@ -181,7 +184,7 @@ abstract class WorldTest : KoinTest {
                 get(),
                 handler,
                 sequential = true)
-            engine = GameLoop(tickStages, mockk(relaxed = true))
+            engine = GameLoop(tickStages)
             World.start(true)
         }
         players = get()

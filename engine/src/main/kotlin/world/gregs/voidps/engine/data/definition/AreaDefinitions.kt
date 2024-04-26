@@ -17,7 +17,6 @@ class AreaDefinitions(
     private var areas: Map<Int, Set<AreaDefinition>> = Int2ObjectOpenHashMap()
 ) {
 
-
     fun getOrNull(name: String): AreaDefinition? {
         return named[name]
     }
