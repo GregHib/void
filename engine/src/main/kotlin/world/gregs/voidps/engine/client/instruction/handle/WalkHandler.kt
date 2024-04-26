@@ -16,6 +16,8 @@ class WalkHandler : InstructionHandler<Walk>() {
         }
         player.closeInterfaces()
         player.clearWatch()
+        player.queue.clearWeak()
+        player.suspension = null
         player.walkTo(player.tile.copy(instruction.x, instruction.y))
     }
 

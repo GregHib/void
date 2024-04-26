@@ -22,6 +22,8 @@ class InterfaceOnInterfaceOptionHandler(
         val (toId, toComponent, toItem, toInventory) = handler.getInterfaceItem(player, toInterfaceId, toComponentId, toItemId, toSlot) ?: return
 
         player.closeInterfaces()
+        player.queue.clearWeak()
+        player.suspension = null
         player.emit(
             ItemOnItem(
                 fromItem,
