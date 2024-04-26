@@ -11,14 +11,14 @@ import kotlin.system.measureTimeMillis
 class SaveQueue(
     private val storage: AccountStorage,
     private val fallback: AccountStorage = storage,
-    override val coroutineContext: CoroutineContext = Dispatchers.IO
-) : Runnable, CoroutineScope {
+    private val scope: CoroutineScope = CoroutineScope(Dispatchers.IO)
+) : Runnable {
     private val pending = ConcurrentHashMap<String, PlayerSave>()
     private val logger = InlineLogger()
 
     private val handler = CoroutineExceptionHandler { _, exception ->
         logger.error(exception) { "Error saving players!" }
-        fallback(pending.values.toList())
+        scope.fallback(pending.values.toList())
     }
     private val fallbackHandler = CoroutineExceptionHandler { _, exception ->
         logger.error(exception) { "Fallback save failed!" }
@@ -28,23 +28,27 @@ class SaveQueue(
         if (pending.isEmpty()) {
             return
         }
-        save(pending.values.toList())
+        scope.save(pending.values.toList())
     }
 
     private fun CoroutineScope.save(accounts: List<PlayerSave>) = launch(handler) {
         val took = measureTimeMillis {
-            storage.save(accounts)
-            for (account in accounts) {
-                pending.remove(account.name)
+            withContext(NonCancellable) {
+                storage.save(accounts)
+                for (account in accounts) {
+                    pending.remove(account.name)
+                }
             }
         }
         logger.info { "Saved ${accounts.size} ${"account".plural(accounts.size)} in ${took}ms" }
     }
 
     private fun CoroutineScope.fallback(accounts: List<PlayerSave>) = launch(fallbackHandler) {
-        fallback.save(accounts)
-        for (account in accounts) {
-            pending.remove(account.name)
+        withContext(NonCancellable) {
+            fallback.save(accounts)
+            for (account in accounts) {
+                pending.remove(account.name)
+            }
         }
     }
 
