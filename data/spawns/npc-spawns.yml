@@ -1,5 +1,7 @@
 # 6743
 - { id: banker_fist_of_guthix, x: 1705, y: 5599 }
+# 6993
+- { id: giant_mole, x: 1762, y: 5185 }
 # 7243
 - { id: rat, x: 1816, y: 4836, level: 1, members: true }
 - { id: rat, x: 1815, y: 4832, members: true }

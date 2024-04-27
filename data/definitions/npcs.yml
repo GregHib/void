@@ -1830,3 +1830,14 @@ al_the_camel:
   large_head: true
   wander_radius: 4
   examine: "A camel who has the soul of a poet."
+giant_mole: # this is the wrong ID for giant mole still need to find the correct one | burrow anim id found | coming up from ground not found
+  id: 3340
+  hitpoints: 2000
+  att: 200
+  str: 200
+  def: 200
+  max_hit_melee: 210
+  style: crush
+  respawn_delay: 16
+  wander_radius: 5
+  examine: "Holy Mole-y!"

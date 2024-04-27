@@ -978,3 +978,8 @@ camulet_teleport:
     x: [ 3192, 3194 ]
     y: [ 2924, 2926 ]
   tags: [ teleport ]
+giant_mole_lair:
+  area:
+    x: [ 1730, 1791 ]
+    y: [ 5144, 5229 ]
+  tags: [ multi_combat ]
