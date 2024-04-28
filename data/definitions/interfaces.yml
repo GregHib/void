@@ -2531,3 +2531,6 @@ level_two_darkness:
 level_three_darkness:
   id: 96
   type: overlay
+dirt_on_screen:
+  id: 226
+  type: overlay

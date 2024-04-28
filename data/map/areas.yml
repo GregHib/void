@@ -980,6 +980,6 @@ camulet_teleport:
   tags: [ teleport ]
 giant_mole_lair:
   area:
-    x: [ 1730, 1791 ]
-    y: [ 5144, 5229 ]
-  tags: [ multi_combat ]
+    x: [ 1717, 1801 ]
+    y: [ 5123, 5252 ]
+  tags: [ boss ]

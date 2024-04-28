@@ -1838,6 +1838,7 @@ giant_mole: # this is the wrong ID for giant mole still need to find the correct
   def: 200
   max_hit_melee: 210
   style: crush
+  race: giant_mole
   respawn_delay: 16
   wander_radius: 5
   examine: "Holy Mole-y!"
