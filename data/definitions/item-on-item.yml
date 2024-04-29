@@ -6207,7 +6207,7 @@ rune_crossbow_finished:
     - item: rune_crossbow
   message: "You add a string to the stock."
   animation: fletching_string_rune_crossbow
-# Sacks
+# Vegetable Sacks
 potatoes_1:
   remove:
     - item: empty_sack
@@ -6418,3 +6418,179 @@ cabbages_10:
   add:
     - item: cabbages_10
   message: "You put a cabbage in the vegetable sack."
+# Fruit Baskets
+strawberries_1:
+  remove:
+    - item: basket
+    - item: strawberry
+  add:
+    - item: strawberries_1
+  message: "You put a strawberry in the fruit basket."
+strawberries_2:
+  remove:
+    - item: strawberries_1
+    - item: strawberry
+  add:
+    - item: strawberries_2
+  message: "You put a strawberry in the fruit basket."
+strawberries_3:
+  remove:
+    - item: strawberries_2
+    - item: strawberry
+  add:
+    - item: strawberries_3
+  message: "You put a strawberry in the fruit basket."
+strawberries_4:
+  remove:
+    - item: strawberries_3
+    - item: strawberry
+  add:
+    - item: strawberries_4
+  message: "You put a strawberry in the fruit basket."
+strawberries_5:
+  remove:
+    - item: strawberries_4
+    - item: strawberry
+  add:
+    - item: strawberries_5
+  message: "You put a strawberry in the fruit basket."
+oranges_1:
+  remove:
+    - item: basket
+    - item: orange
+  add:
+    - item: oranges_1
+  message: "You put an orange in the fruit basket."
+oranges_2:
+  remove:
+    - item: oranges_1
+    - item: orange
+  add:
+    - item: oranges_2
+  message: "You put an orange in the fruit basket."
+oranges_3:
+  remove:
+    - item: oranges_2
+    - item: orange
+  add:
+    - item: oranges_3
+  message: "You put an orange in the fruit basket."
+oranges_4:
+  remove:
+    - item: oranges_3
+    - item: orange
+  add:
+    - item: oranges_4
+  message: "You put an orange in the fruit basket."
+oranges_5:
+  remove:
+    - item: oranges_4
+    - item: orange
+  add:
+    - item: oranges_5
+  message: "You put an orange in the fruit basket."
+bananas_1:
+  remove:
+    - item: basket
+    - item: banana
+  add:
+    - item: bananas_1
+  message: "You put a banana in the fruit basket."
+bananas_2:
+  remove:
+    - item: bananas_1
+    - item: banana
+  add:
+    - item: bananas_2
+  message: "You put a banana in the fruit basket."
+bananas_3:
+  remove:
+    - item: bananas_2
+    - item: banana
+  add:
+    - item: bananas_3
+  message: "You put a banana in the fruit basket."
+bananas_4:
+  remove:
+    - item: bananas_3
+    - item: banana
+  add:
+    - item: bananas_4
+  message: "You put a banana in the fruit basket."
+bananas_5:
+  remove:
+    - item: bananas_4
+    - item: banana
+  add:
+    - item: bananas_5
+  message: "You put a banana in the fruit basket."
+apples_1:
+  remove:
+    - item: basket
+    - item: cooking_apple
+  add:
+    - item: apples_1
+  message: "You put an apple in the fruit basket."
+apples_2:
+  remove:
+    - item: apples_1
+    - item: cooking_apple
+  add:
+    - item: apples_2
+  message: "You put an apple in the fruit basket."
+apples_3:
+  remove:
+    - item: apples_2
+    - item: cooking_apple
+  add:
+    - item: apples_3
+  message: "You put an apple in the fruit basket."
+apples_4:
+  remove:
+    - item: apples_3
+    - item: cooking_apple
+  add:
+    - item: apples_4
+  message: "You put an apple in the fruit basket."
+apples_5:
+  remove:
+    - item: apples_4
+    - item: cooking_apple
+  add:
+    - item: apples_5
+  message: "You put an apple in the fruit basket."
+tomatoes_1:
+  remove:
+    - item: basket
+    - item: tomato
+  add:
+    - item: tomatoes_1
+  message: "You put a tomato in the fruit basket."
+tomatoes_2:
+  remove:
+    - item: tomatoes_1
+    - item: tomato
+  add:
+    - item: tomatoes_2
+  message: "You put a tomato in the fruit basket."
+tomatoes_3:
+  remove:
+    - item: tomatoes_2
+    - item: tomato
+  add:
+    - item: tomatoes_3
+  message: "You put a tomato in the fruit basket."
+tomatoes_4:
+  remove:
+    - item: tomatoes_3
+    - item: tomato
+  add:
+    - item: tomatoes_4
+  message: "You put a tomato in the fruit basket."
+tomatoes_5:
+  remove:
+    - item: tomatoes_4
+    - item: tomato
+  add:
+    - item: tomatoes_5
+  message: "You put a tomato in the fruit basket."
