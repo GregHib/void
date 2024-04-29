@@ -10,7 +10,7 @@ import world.gregs.voidps.world.script.itemOnItem
 import world.gregs.voidps.world.script.itemOption
 import kotlin.test.assertFalse
 
-internal class SacksTest : WorldTest() {
+internal class SackTest : WorldTest() {
 
     @Test
     fun `Fill empty sack with multiple vegetables`() {
