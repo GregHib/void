@@ -5,10 +5,13 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.facing
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -27,7 +30,7 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.entity.combat.*
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.npcCombatHit
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryOption
 import world.gregs.voidps.world.interact.entity.sound.areaSound
@@ -70,24 +73,24 @@ interfaceOption(component = "stayout", id = "warning_dark") {
     player.closeInterfaces()
 }
 
-combatAttack {
-    val npc = target as NPC
-    if(npc.id == "giant_mole") {
-        val currentHealth = npc.levels.get(Skill.Constitution)
-        var shouldBurrow = false
-        if (it.fightStyle == "magic" && damage != 0) {
-            shouldBurrow = shouldBurrowAway(currentHealth)
-        } else if (it.fightStyle != "magic") {
-            shouldBurrow = shouldBurrowAway(currentHealth)
-        }
-        if(shouldBurrow && !World.timers.contains("await_mole_burrowing")) {
-            giantMoleBurrow(npc)
-        }
+npcCombatHit("giant_mole") {
+    val currentHealth = it.levels.get(Skill.Constitution)
+    var shouldBurrow = false
+    if (it.fightStyle == "magic" && damage != 0) {
+        shouldBurrow = shouldBurrowAway(currentHealth)
+    } else if (it.fightStyle != "magic") {
+        shouldBurrow = shouldBurrowAway(currentHealth)
+    }
+    if (shouldBurrow && !it.hasClock("awaiting_mole_burrow_complete")) {
+        it.start("awaiting_mole_burrow_complete", 4)
+        giantMoleBurrow(it)
     }
 }
 
 fun giantMoleBurrow(mole: NPC) {
-    mole.attackers.clear()
+    for (attacker in mole.attackers) {
+        attacker.mode = EmptyMode
+    }
     var tileToDust = getTotalDirection(mole.facing, mole.tile)
     World.queue("await_mole_to_face", 1) {
         if (tileToDust == Tile.EMPTY) {
@@ -138,12 +141,11 @@ fun handleDirtOnScreen(moleTile: Tile) {
     }
     for (player in nearMole) {
         player.open("dirt_on_screen")
-        val playerInventory = player.inventory.items
-        for (item in playerInventory) {
-            if (item.id.contains("candle_lit")) {
-                val newItem = item.id.replace("_lit", "")
-                player.inventory.transaction {
-                    replace(item.id, newItem)
+        player.inventory.transaction {
+            for (index in inventory.indices) {
+                val item = inventory[index]
+                if (item.id.endsWith("candle_lit")) {
+                    replace(item.id, item.id.removeSuffix("_lit"))
                 }
             }
         }
@@ -201,7 +203,7 @@ fun hasLightSource(player: Player): Boolean {
     val playerItems = player.inventory.items
 
     for (item in playerItems) {
-        if (item.id.contains("lantern_lit") || item.id.contains("candle_lit")) {
+        if (item.id.endsWith("lantern_lit") || item.id.endsWith("candle_lit")) {
             return true
         }
     }
