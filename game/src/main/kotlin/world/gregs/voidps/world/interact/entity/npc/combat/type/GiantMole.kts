@@ -8,6 +8,8 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.facing
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -22,9 +24,11 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.engine.map.collision.random
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
+import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryOption
 import kotlin.random.Random
 
@@ -44,6 +48,7 @@ val acceptedTiles = listOf(
 )
 
 val giantMoleLair = areas["giant_mole_lair"]
+val gianMoleSpawns = areas["giant_mole_spawn_area"]
 val initialCaveTile: Tile = Tile(1752, 5237, 0)
 
 //temp
@@ -62,7 +67,7 @@ inventoryOption("Dig") {
     player.setAnimation("dig_with_spade")
     player.open("warning_dark")
 }
-// teleport player to random mole hill
+
 objectOperate("Climb", "giant_mole_lair_escape_rope") {
     player.setAnimation("climb_up")
     player.tele(acceptedTiles.random())
@@ -93,15 +98,38 @@ combatAttack {
 }
 
 fun giantMoleBurrow(mole: NPC) {
-    if(shouldThrowDirt()) {
-        handleDirtOnScreen(mole.tile)
+    mole.attackers.clear()
+    var tileToDust = getTotalDirection(mole.facing, mole.tile)
+    World.queue("await_mole_to_face", 1) {
+        if (tileToDust == Tile.EMPTY) {
+            logger.info { "failed to get facing tile for Giant Mole, using default tile." }
+            tileToDust = initialCaveTile
+        }
+        mole.face(tileToDust)
+        World.queue("display_burrow_dust", 1) {
+            if (shouldThrowDirt()) {
+                handleDirtOnScreen(mole.tile)
+            }
+            mole.setAnimation("giant_mole_burrow")
+            areaGraphic("burrow_dust", tileToDust)
+            World.queue("await_mole_burrowing", 1) {
+                val newLocation = gianMoleSpawns.random(mole)
+                commandLocation = newLocation!!
+                mole.tele(newLocation)
+            }
+        }
     }
-    mole.attackers.clear() //stop players attacking while mole is burrowing away. N: maybe a for loop getting all players attacking and setting their target to null is better?
-    mole.setAnimation("giant_mole_burrow")
-    World.queue("await_mole_burrowing", 2) {
-        val newLocation = giantMoleLair.random(mole)
-        commandLocation = newLocation!!
-        mole.tele(newLocation)
+}
+
+fun getTotalDirection(facing: Direction, moleTile: Tile): Tile {
+    return when (facing) {
+        Direction.NORTH -> Tile(moleTile.x, moleTile.y + 1)
+        Direction.SOUTH -> Tile(moleTile.x, moleTile.y - 1)
+        Direction.EAST -> Tile(moleTile.x + 1, moleTile.y)
+        Direction.WEST -> Tile(moleTile.x - 1, moleTile.y)
+        Direction.NORTH_EAST, Direction.SOUTH_EAST -> Tile(moleTile.x + 1, moleTile.y)
+        Direction.NORTH_WEST, Direction.SOUTH_WEST -> Tile(moleTile.x - 1, moleTile.y)
+        Direction.NONE -> Tile.EMPTY
     }
 }
 
@@ -143,7 +171,7 @@ fun shouldBurrowAway(health: Int): Boolean {
     val maxThreshold = maxHealth * 0.50
     if (health in minThreshold.toInt()..maxThreshold.toInt()) {
         val shouldBurrow = Random.nextInt(0, 100)
-        return shouldBurrow <= 25
+        return shouldBurrow <= 50
     }
     return false
 }

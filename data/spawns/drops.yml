@@ -890,3 +890,74 @@ human_drop_table:
     - type: all
       drops:
         - id: bones
+giant_mole:
+  type: all
+  drops:
+    - drops:
+        - id: big_bones
+        - id: mole_claw
+        - id: mole_skin
+          amount: 1-3
+    - roll: 6
+      drops:
+        - id: air_rune
+          amount: 105
+          chance: 1
+        - id: blood_rune
+          amount: 15
+          chance: 1
+    - roll: 11
+      drops:
+        - id: fire_rune
+          amount: 105
+          chance: 1
+    - roll: 12
+      drops:
+        - id: adamant_longsword
+          chance: 1
+        - id: iron_arrow
+          amount: 690
+          chance: 1
+        - id: yew_logs_noted
+          amount: 100
+          chance: 1
+    - roll: 14
+      drops:
+        - id: mithril_platebody
+          chance: 1
+    - roll: 18
+      drops:
+        - id: amulet_of_strength
+          chance: 1
+    - roll: 25
+      drops:
+        - id: law_rune
+          amount: 15
+          chance: 1
+    - roll: 32
+      drops:
+        - id: shark
+          amount: 4
+          chance: 1
+    - roll: 42
+      drops:
+        - id: mithril_bar
+          chance: 1
+        - id: death_rune
+          amount: 7
+          chance: 1
+    - roll: 64
+      drops:
+        - id: mithril_hatchet
+          chance: 1
+        - id: iron_ore_noted
+          amount: 100
+          chance: 1
+    - roll: 128
+      drops:
+        - id: mithril_battleaxe
+          chance: 1
+        - id: rune_med_helm
+          chance: 1
+        - id: oyster_pearls
+          chance: 1
