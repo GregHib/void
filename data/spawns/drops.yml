@@ -890,10 +890,11 @@ human_drop_table:
     - type: all
       drops:
         - id: bones
-giant_mole:
+giant_mole_drop_table:
   type: all
   drops:
-    - drops:
+    - type: all
+      drops:
         - id: big_bones
         - id: mole_claw
         - id: mole_skin
@@ -939,6 +940,10 @@ giant_mole:
         - id: shark
           amount: 4
           chance: 1
+    - roll: 34
+      drops:
+        - id: nothing
+          chance: 1
     - roll: 42
       drops:
         - id: mithril_bar
@@ -953,6 +958,10 @@ giant_mole:
         - id: iron_ore_noted
           amount: 100
           chance: 1
+    - roll: 77
+      drops:
+        - id: uncut_sapphire
+          chance: 1
     - roll: 128
       drops:
         - id: mithril_battleaxe
@@ -960,4 +969,91 @@ giant_mole:
         - id: rune_med_helm
           chance: 1
         - id: oyster_pearls
+          chance: 1
+    - roll: 154
+      drops:
+        - id: uncut_emerald
+          chance: 1
+    - roll: 189
+      drops:
+        - id: loop_half_of_a_key
+          chance: 1
+        - id: tooth_half_of_a_key
+          chance: 1
+    - roll: 195
+      drops:
+        - id: coins
+          amount: 3000
+          chance: 1
+    - roll: 309
+      drops:
+        - id: uncut_ruby
+          chance: 1
+    - roll: 819
+      drops:
+        - id: rune_bar
+          chance: 1
+    - roll: 824
+      drops:
+        - id: nature_talisman
+          chance: 1
+    - roll: 1237
+      drops:
+        - id: uncut_diamond
+          chance: 1
+    - roll: 1365
+      drops:
+        - id: nature_rune
+          amount: 67
+          chance: 1
+        - id: rune_2h_sword
+          chance: 1
+        - id: rune_battle_axe
+          chance: 1
+    - roll: 2048
+      drops:
+        - id: law_rune
+          amount: 45
+          chance: 1
+        - id: death_rune
+          amount: 45
+          chance: 1
+        - id: steel_arrow
+          amount: 150
+          chance: 1
+        - id: rune_arrow
+          amount: 42
+          chance: 1
+        - id: adamant_javelin
+          amount: 20
+          chance: 1
+        - id: rune_sq_shield
+          chance: 1
+        - id: dragonstone
+          chance: 1
+        - id: silver_ore_noted
+          amount: 100
+          chance: 1
+    - roll: 2473
+      drops:
+        - id: rune_javelin
+          amount: 5
+          chance: 1
+    - roll: 3935
+      drops:
+        - id: rune_spear
+          chance: 1
+    - roll: 4096
+      drops:
+        - id: rune_kiteshield
+          chance: 1
+        - id: dragon_med_helm
+          chance: 1
+    - roll: 7869
+      drops:
+        - id: shield_left_half
+          chance: 1
+    - roll: 10492
+      drops:
+        - id: dragon_spear
           chance: 1

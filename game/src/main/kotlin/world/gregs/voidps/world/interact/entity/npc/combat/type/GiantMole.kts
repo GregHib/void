@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.npc.combat.type
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -22,6 +21,7 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.type.Direction
@@ -30,16 +30,13 @@ import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryOption
+import world.gregs.voidps.world.interact.entity.sound.areaSound
 import kotlin.random.Random
 
 val logger = InlineLogger()
 val areas: AreaDefinitions by inject()
 val players: Players by inject()
 
-//TODO: Add drop table
-//TODO: inventory update: if the players light source get's turned off need to reapply darnkess overlay
-
-// list of tiles where the mole hills are located.
 val acceptedTiles = listOf(
     Tile(3005, 3376, 0),
     Tile(2999, 3375, 0),
@@ -50,14 +47,6 @@ val acceptedTiles = listOf(
 val giantMoleLair = areas["giant_mole_lair"]
 val gianMoleSpawns = areas["giant_mole_spawn_area"]
 val initialCaveTile: Tile = Tile(1752, 5237, 0)
-
-//temp
-var commandLocation: Tile = Tile.EMPTY
-
-adminCommand("tomole") {
-    player.tele(commandLocation)
-}
-//temp
 
 inventoryOption("Dig") {
     val playerTile: Tile = player.tile
@@ -111,11 +100,12 @@ fun giantMoleBurrow(mole: NPC) {
                 handleDirtOnScreen(mole.tile)
             }
             mole.setAnimation("giant_mole_burrow")
+            areaSound("giant_mole_burrow_down", mole.tile)
             areaGraphic("burrow_dust", tileToDust)
             World.queue("await_mole_burrowing", 1) {
                 val newLocation = gianMoleSpawns.random(mole)
-                commandLocation = newLocation!!
-                mole.tele(newLocation)
+                mole.tele(newLocation!!)
+                mole.setAnimation("mole_burrow_up")
             }
         }
     }
@@ -171,7 +161,7 @@ fun shouldBurrowAway(health: Int): Boolean {
     val maxThreshold = maxHealth * 0.50
     if (health in minThreshold.toInt()..maxThreshold.toInt()) {
         val shouldBurrow = Random.nextInt(0, 100)
-        return shouldBurrow <= 50
+        return shouldBurrow <= 25
     }
     return false
 }
@@ -196,7 +186,17 @@ playerSpawn { player ->
     }
 }
 
-// check player inventory to see if they have a lit light source.
+itemChange("inventory") { player: Player ->
+    if (giantMoleLair.contains(player.tile)) {
+        val hasLightSource = hasLightSource(player)
+        if (!hasLightSource && !player.interfaces.contains("level_three_darkness")) {
+            player.open("level_three_darkness")
+        } else if (hasLightSource && player.interfaces.contains("level_three_darkness")) {
+            player.close("level_three_darkness")
+        }
+    }
+}
+
 fun hasLightSource(player: Player): Boolean {
     val playerItems = player.inventory.items
 
