@@ -23,11 +23,11 @@ private val vegetables = mapOf(
 )
 
 inventoryItem("Fill", "empty_sack") {
-    var index = player.inventory.indexOf("cabbage")
-    if (index == -1) {
-        index = player.inventory.indexOf("onion")
-        if (index == -1) {
-            index = player.inventory.indexOf("raw_potato")
+    var index = -1
+    for (id in vegetables.keys) {
+        index = player.inventory.indexOf(id)
+        if (index != -1) {
+            break
         }
     }
 
@@ -81,7 +81,7 @@ for ((id, veg) in vegetables) {
         player.message("The ${veg.name} sack is already full.")
     }
 
-    inventoryItem("Remove-one", "${veg.plural}_#") {
+    inventoryItem("Remove-one", "${veg.plural}_*") {
         val current = item.id.removePrefix("${veg.plural}_").toInt()
 
         player.inventory.transaction {
@@ -109,8 +109,7 @@ for ((id, veg) in vegetables) {
 
         when (player.inventory.transaction.error) {
             is TransactionError.Full -> player.inventoryFull()
-            TransactionError.None -> {
-            }
+            TransactionError.None -> {}
             else -> logger.warn { "Error emptying ${veg.plural}." }
         }
     }

@@ -15,13 +15,15 @@ internal class SackTest : WorldTest() {
     @Test
     fun `Fill empty sack with multiple vegetables`() {
         val player = createPlayer("player", emptyTile)
+        player.inventory.add("onion")
         player.inventory.add("raw_potato", 5)
         player.inventory.add("empty_sack")
 
         player.itemOption("Fill", "empty_sack")
 
-        assertEquals("potatoes_5", player.inventory[5].id)
+        assertTrue(player.inventory.contains("potatoes_5"))
         assertFalse(player.inventory.contains("raw_potato"))
+        assertTrue(player.inventory.contains("onion"))
     }
 
     @Test
@@ -32,7 +34,7 @@ internal class SackTest : WorldTest() {
 
         player.itemOption("Fill", "onions_2")
 
-        assertEquals("onions_7", player.inventory[5].id)
+        assertTrue(player.inventory.contains("onions_7"))
         assertFalse(player.inventory.contains("onion"))
     }
 
@@ -44,7 +46,7 @@ internal class SackTest : WorldTest() {
 
         player.itemOption("Fill", "potatoes_7")
 
-        assertEquals("potatoes_10", player.inventory[5].id)
+        assertTrue(player.inventory.contains("potatoes_10"))
         assertEquals(2, player.inventory.count("raw_potato"))
     }
 
@@ -56,7 +58,7 @@ internal class SackTest : WorldTest() {
 
         player.itemOption("Fill", "cabbages_10")
 
-        assertEquals("cabbages_10", player.inventory[5].id)
+        assertTrue(player.inventory.contains("cabbages_10"))
         assertEquals(5, player.inventory.count("cabbage"))
     }
 
@@ -138,11 +140,11 @@ internal class SackTest : WorldTest() {
     @Test
     fun `Remove one vegetable from full sack`() {
         val player = createPlayer("player", emptyTile)
-        player.inventory.add("cabbages_6")
+        player.inventory.add("cabbages_10")
 
-        player.itemOption("Remove-one", "cabbages_6")
+        player.itemOption("Remove-one", "cabbages_10")
 
-        assertTrue(player.inventory.contains("cabbages_5"))
+        assertTrue(player.inventory.contains("cabbages_9"))
         assertEquals(1, player.inventory.count("cabbage"))
     }
 
