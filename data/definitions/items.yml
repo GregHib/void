@@ -46541,6 +46541,8 @@ tea_flask:
   tradeable: false
   bank_stacks: false
   weight: 0.1
+  charges: 0
+  charges_max: 5
   examine: "You can put nice, hot tea in it."
   kept: "Wilderness"
 tea_flask_2:
