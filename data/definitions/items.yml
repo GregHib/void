@@ -46652,6 +46652,8 @@ plain_satchel:
   tradeable: false
   bank_stacks: false
   weight: 0.15
+  charges: 0
+  charges_max: 7
   slot: "Shield"
   examine: "I can keep my grub in here!"
   kept: "Reclaim"
@@ -46660,6 +46662,8 @@ green_satchel:
   tradeable: false
   bank_stacks: false
   weight: 0.15
+  charges: 0
+  charges_max: 7
   aka: [ adamant_satchel ]
   slot: "Shield"
   examine: "I can keep my grub in here!"
@@ -46668,6 +46672,8 @@ red_satchel:
   id: 10879
   tradeable: false
   bank_stacks: false
+  charges: 0
+  charges_max: 7
   weight: 0.15
   slot: "Shield"
   examine: "I can keep my grub in here!"
@@ -46676,6 +46682,8 @@ black_satchel:
   id: 10880
   tradeable: false
   bank_stacks: false
+  charges: 0
+  charges_max: 7
   weight: 0.15
   slot: "Shield"
   examine: "I can keep my grub in here!"
@@ -46684,6 +46692,8 @@ gold_satchel:
   id: 10881
   tradeable: false
   bank_stacks: false
+  charges: 0
+  charges_max: 7
   weight: 0.15
   slot: "Shield"
   examine: "I can keep my grub in here!"
@@ -46692,6 +46702,8 @@ rune_satchel:
   id: 10882
   tradeable: false
   bank_stacks: false
+  charges: 0
+  charges_max: 7
   weight: 0.15
   slot: "Shield"
   examine: "I can keep my grub in here!"
