@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
 import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
@@ -33,17 +34,17 @@ inventoryItem("Empty", "*_satchel") {
         if (charges and cake != 0) {
             add("cake")
             charges = charges and cake.inv()
-            set(slot, item.copy(amount = charges))
+            setCharge(slot, charges)
         }
         if (!failed && charges and banana != 0 && inventory.spaces > 0) {
             add("banana")
             charges = charges and banana.inv()
-            set(slot, item.copy(amount = charges))
+            setCharge(slot, charges)
         }
         if (!failed && charges and sandwich != 0 && inventory.spaces > 0) {
             add("triangle_sandwich")
             charges = charges and sandwich.inv()
-            set(slot, item.copy(amount = charges))
+            setCharge(slot, charges)
         }
     }
 }
@@ -56,7 +57,7 @@ itemOnItem("cake", "*_satchel") { player ->
     }
     player.inventory.transaction {
         remove(fromSlot, "cake")
-        set(toSlot, toItem.copy(amount = charges + cake))
+        setCharge(toSlot, charges + cake)
     }
 }
 
@@ -68,7 +69,7 @@ itemOnItem("banana", "*_satchel") { player ->
     }
     player.inventory.transaction {
         remove(fromSlot, "banana")
-        set(toSlot, toItem.copy(amount = charges + banana))
+        setCharge(toSlot, charges + banana)
     }
 }
 
@@ -80,6 +81,6 @@ itemOnItem("triangle_sandwich", "*_satchel") { player ->
     }
     player.inventory.transaction {
         remove(fromSlot, "triangle_sandwich")
-        set(toSlot, toItem.copy(amount = charges + sandwich))
+        setCharge(toSlot, charges + sandwich)
     }
 }
