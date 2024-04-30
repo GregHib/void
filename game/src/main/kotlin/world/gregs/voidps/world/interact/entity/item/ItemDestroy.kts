@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 val logger = InlineLogger()
 
 inventoryOptions("Destroy", "Dismiss", "Release", inventory = "inventory") {
-    if (!item.isNotEmpty() || item.amount <= 0) {
+    if (item.isEmpty() || item.amount <= 0) {
         logger.info { "Error destroying item $item for $player" }
         return@inventoryOptions
     }

@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnItems
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.removeToLimit
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
+import world.gregs.voidps.world.interact.entity.item.canDestroy
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
 val bagCapacity = 100
@@ -75,5 +76,17 @@ itemOnItems(gems.toTypedArray(), arrayOf("gem_bag")) { player ->
     player.message("You add the gems to your bag.")
     if (total + removed == bagCapacity) {
         player.message("Your gem bag is now full.")
+    }
+}
+
+canDestroy("gem_bag") { player ->
+    val sapphires = player["gem_bag_sapphire", 0]
+    val emeralds = player["gem_bag_emerald", 0]
+    val rubies = player["gem_bag_ruby", 0]
+    val diamonds = player["gem_bag_diamond", 0]
+    val total = sapphires + emeralds + rubies + diamonds
+    if (total > 0) {
+        player.message("You can't destroy this item with gems in it.")
+        cancel()
     }
 }

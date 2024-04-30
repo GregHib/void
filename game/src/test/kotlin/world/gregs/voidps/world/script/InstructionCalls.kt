@@ -37,7 +37,7 @@ fun Player.itemOption(
     slot: Int = inventories.inventory(inventory).indexOf(item)
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    emit(InterfaceOption(this, id = id, component = component, optionIndex = optionIndex, option = option, item = Item(item), itemSlot = slot, inventory = inventory))
+    emit(InterfaceOption(this, id = id, component = component, optionIndex = optionIndex, option = option, item = inventories.inventory(inventory).getOrNull(slot) ?: Item(item), itemSlot = slot, inventory = inventory))
 }
 
 fun Player.interfaceOption(
