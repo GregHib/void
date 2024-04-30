@@ -24097,7 +24097,7 @@ medium_pouch:
   id: 5510
   examine: "A medium-sized pouch used for storing essence."
   weight: 1.0
-medium_pouch_2:
+medium_pouch_damaged:
   id: 5511
   examine: "A damaged medium-sized pouch used for storing essence."
   weight: 1.0
@@ -24105,7 +24105,7 @@ large_pouch:
   id: 5512
   examine: "A large pouch used for storing essence."
   weight: 1.0
-large_pouch_2:
+large_pouch_damaged:
   id: 5513
   examine: "A large damaged pouch used for storing essence."
   weight: 1.0
@@ -24113,7 +24113,7 @@ giant_pouch:
   id: 5514
   examine: "A giant-sized pouch used for storing essence."
   weight: 1.0
-giant_pouch_2:
+giant_pouch_damaged:
   id: 5515
   examine: "A damaged giant-sized pouch used for storing essence."
   weight: 1.0
