@@ -69,7 +69,7 @@ for ((id, fruit) in fruit) {
         }
 
         when (player.inventory.transaction.error) {
-            is TransactionError.Deficient -> player.message("You don't have enough ${fruit.plural}.") // TODO proper message
+            is TransactionError.Deficient -> {}
             TransactionError.None -> {}
             else -> logger.warn { "Error filling ${fruit.plural}." }
         }

@@ -1,14 +1,14 @@
 package world.gregs.voidps.world.activity.quest.toweroflife
 
+import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
-import world.gregs.voidps.world.interact.dialogue.type.statement
+import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
 val cake = 0x1
@@ -17,15 +17,10 @@ val sandwich = 0x4
 
 inventoryItem("Inspect", "*_satchel") {
     val charges = player.inventory.charges(player, slot)
-    val hasCake = charges and cake != 0
-    val hasBanana = charges and banana != 0
-    val hasSandwich = charges and sandwich != 0
-    // TODO proper messages
-    if (hasCake || hasBanana || hasSandwich) {
-        statement("The satchel contains ${hasCake.toInt()} cake, ${hasBanana.toInt()} banana and ${hasSandwich.toInt()} sandwich.")
-    } else {
-        player.message("The satchel is empty.")
-    }
+    val cake = if (charges and cake != 0) "one" else "no"
+    val banana = if (charges and banana != 0) "one" else "no"
+    val sandwich = if (charges and sandwich != 0) "one" else "no"
+    item(item.id, 400, "The ${item.id.toLowerSpaceCase()}!<br>(Containing: $sandwich sandwich, $cake cake, and $banana banana)")
 }
 
 inventoryItem("Empty", "*_satchel") {
@@ -52,7 +47,7 @@ inventoryItem("Empty", "*_satchel") {
 itemOnItem("cake", "*_satchel") { player ->
     val charges = player.inventory.charges(player, toSlot)
     if (charges and cake != 0) {
-        player.message("The satchel already contains cake.") // TODO proper message
+        player.message("You already have a cake in there.")
         return@itemOnItem
     }
     player.inventory.transaction {
@@ -64,7 +59,7 @@ itemOnItem("cake", "*_satchel") { player ->
 itemOnItem("banana", "*_satchel") { player ->
     val charges = player.inventory.charges(player, toSlot)
     if (charges and banana != 0) {
-        player.message("The satchel already contains a banana.") // TODO proper message
+        player.message("You already have a banana in there.")
         return@itemOnItem
     }
     player.inventory.transaction {
@@ -76,7 +71,7 @@ itemOnItem("banana", "*_satchel") { player ->
 itemOnItem("triangle_sandwich", "*_satchel") { player ->
     val charges = player.inventory.charges(player, toSlot)
     if (charges and sandwich != 0) {
-        player.message("The satchel already contains a sandwich.") // TODO proper message
+        player.message("You already have a sandwich in there.")
         return@itemOnItem
     }
     player.inventory.transaction {
