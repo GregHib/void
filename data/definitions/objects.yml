@@ -11706,3 +11706,8 @@ prayer_altar_warped_construction:
   examine: "A shrine for the faithful to worship at."
 giant_mole_lair_escape_rope:
   id: 12230
+dark_mage:
+  id: 2262
+  faces: false
+  race: human
+  examine: "An initiate of Zamorak."
