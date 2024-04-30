@@ -737,6 +737,11 @@ abyss_multi_area:
     x: [ 3008, 3071 ]
     y: [ 4800, 4863 ]
   tags: [ multi_combat ]
+abyss_center:
+  area:
+    x: [ 3039, 3052, 3057, 3053, 3042, 3033, 3025, 3021, 3022, 3029 ]
+    y: [ 4849, 4845, 4832, 4820, 4815, 4816, 4820, 4829, 4838, 4846 ]
+  tags: [ multi_combat ]
 jiggig_multi_area:
   area:
     x: [ 2456, 2495 ]

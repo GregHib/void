@@ -1482,3 +1482,7 @@ dragon_breath_shock:
 teleport_jewellery: 1684
 teleport_pharaohs_sceptre: 715
 burrow_dust: 571
+tele_other: 343
+tele_other_receive:
+  id: 342
+  height: 52

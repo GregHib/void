@@ -401,3 +401,8 @@ show_summoning_orb:
   values:
     true: -1
     false: 0
+enter_the_abyss:
+  id: 492
+  persist: true
+  format: list
+  values: [ unstarted, started, stage1, stage2, completed ]

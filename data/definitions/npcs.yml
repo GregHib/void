@@ -1851,3 +1851,22 @@ dark_mage:
   faces: false
   race: human
   examine: "An initiate of Zamorak."
+mage_of_zamorak_wilderness:
+  id: 2257
+  faces: false
+  race: human
+  examine: "A disciple of Zamorak."
+mage_of_zamorak_varrock:
+  id: 2260
+  faces: false
+  race: human
+  examine: "A disciple of Zamorak."
+abyssal_leech:
+  id: 2262
+  examine: "A blood-drinking denizen of the Abyss."
+abyssal_guardian:
+  id: 2262
+  examine: "It seems to have eyes in the back of its head..."
+abyssal_walker:
+  id: 2262
+  examine: "Apparently walks the Abyss."

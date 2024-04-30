@@ -1675,3 +1675,5 @@ giant_mole_hit: 3311
 giant_mole_death: 3310
 dirt_projectile: 570
 giant_mole_burrow_up: 1664
+tele_other: 1818
+lunar_teleport: 1816

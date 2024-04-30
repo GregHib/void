@@ -200,3 +200,5 @@ giant_mole_attack: 1642
 giant_mole_hit: 1646
 giant_mole_burrow: 1643
 giant_mole_death: 1645
+tele_other_cast: 199
+teleport_all: 200

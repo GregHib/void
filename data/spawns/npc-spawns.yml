@@ -1422,6 +1422,8 @@
 - { id: rat, x: 3128, y: 3485 }
 - { id: hari, x: 3133, y: 3509 }
 - { id: jeffery, x: 3108, y: 3500 }
+# 12343
+- { id: mage_of_zamorak_wilderness, x: 3107, y: 3555, members: true }
 # 12436
 - { id: combat_instructor, x: 3106, y: 9509 }
 - { id: mining_instructor, x: 3081, y: 9504 }
