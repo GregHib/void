@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.itemOnItem
@@ -73,10 +74,11 @@ internal class EssencePouchTest : WorldTest() {
     @Test
     fun `Empty essence from empty pouch`() {
         val player = createPlayer("player")
-        player.inventory.add("small_pouch")
+        player.inventory.set(0, "medium_pouch", 10)
 
-        player.itemOption("Empty", "small_pouch")
+        player.itemOption("Empty", "medium_pouch")
 
+        assertEquals(10, player.inventory.charges(player, 0))
         assertEquals(0, player.inventory.count("pure_essence"))
         assertEquals(0, player.inventory.count("rune_essence"))
         assertEquals(0, player["small_pouch_essence", 0])
@@ -85,11 +87,12 @@ internal class EssencePouchTest : WorldTest() {
     @Test
     fun `Empty essence from partially filled pouch`() {
         val player = createPlayer("player")
-        player.inventory.add("medium_pouch")
+        player.inventory.set(0, "medium_pouch", 10)
         player["medium_pouch_essence"] = 5
 
         player.itemOption("Empty", "medium_pouch")
 
+        assertEquals(9, player.inventory.charges(player, 0))
         assertEquals(5, player.inventory.count("rune_essence"))
         assertEquals(0, player["small_pouch_essence", 0])
     }
@@ -97,12 +100,13 @@ internal class EssencePouchTest : WorldTest() {
     @Test
     fun `Empty essence from full pouch`() {
         val player = createPlayer("player")
-        player.inventory.add("large_pouch")
+        player.inventory.set(0, "large_pouch", 10)
         player["large_pouch_essence"] = 9
         player["large_pouch_pure"] = true
 
         player.itemOption("Empty", "large_pouch")
 
+        assertEquals(9, player.inventory.charges(player, 0))
         assertEquals(9, player.inventory.count("pure_essence"))
         assertEquals(0, player.inventory.count("rune_essence"))
         assertEquals(0, player["large_pouch_essence", 0])
@@ -111,16 +115,34 @@ internal class EssencePouchTest : WorldTest() {
     @Test
     fun `Empty essence from full pouch into almost full inventory`() {
         val player = createPlayer("player")
-        player.inventory.add("giant_pouch")
+        player.inventory.set(0, "giant_pouch", 10)
         player["giant_pouch_essence"] = 12
         player["giant_pouch_pure"] = true
         player.inventory.add("shark", 22)
 
         player.itemOption("Empty", "giant_pouch")
 
+        assertEquals(9, player.inventory.charges(player, 0))
         assertEquals(5, player.inventory.count("pure_essence"))
         assertEquals(0, player.inventory.count("rune_essence"))
         assertEquals(7, player["giant_pouch_essence", 0])
+    }
+
+    @Test
+    fun `Empty essence damages pouch`() {
+        val player = createPlayer("player")
+        player.inventory.set(0, "medium_pouch", 1)
+        player["medium_pouch_essence"] = 6
+        player["medium_pouch_pure"] = false
+
+        player.itemOption("Empty", "medium_pouch")
+
+        assertFalse(player.inventory.contains("medium_pouch"))
+        assertTrue(player.inventory.contains("medium_pouch_damaged"))
+        assertEquals(20, player.inventory.charges(player, 0))
+        assertEquals(0, player.inventory.count("pure_essence"))
+        assertEquals(6, player.inventory.count("rune_essence"))
+        assertEquals(0, player["medium_pouch_essence", 0])
     }
 
     @Test

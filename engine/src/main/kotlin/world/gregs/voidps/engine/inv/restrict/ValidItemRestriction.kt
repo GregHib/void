@@ -12,7 +12,7 @@ class ValidItemRestriction(
 
     override fun replacement(id: String): Item? {
         val definition = definitions.getOrNull(id) ?: return null
-        val replacement = definition.getOrNull<String>("degrade") ?: return null
+        val replacement: String = definition.getOrNull("degrade") ?: return null
         if (replacement == "destroy") {
             return Item.EMPTY
         }

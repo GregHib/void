@@ -6,6 +6,8 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.charges
+import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
@@ -27,7 +29,7 @@ inventoryItem("Check", *pouches) {
 
 inventoryItem("Fill", *pouches) {
     val id = item.id.removeSuffix("_damaged")
-    val maximum = capacity(id)
+    val maximum = capacity(item.id, player.inventory.charges(player, slot))
     val essence = player["${id}_essence", 0]
     if (essence >= maximum) {
         player.message("You cannot add any more essence to the pouch.")
@@ -79,22 +81,24 @@ inventoryItem("Empty", *pouches) {
         player.inventoryFull()
         return@inventoryItem
     }
+    player.inventory.discharge(player, slot)
     player["${id}_essence"] = essence - added
 }
 
 itemOnItem("pure_essence", *pouches) { player ->
-    addSingle(player, fromSlot, fromItem, toItem)
+    addSingle(player, fromSlot, fromItem, toSlot, toItem)
 }
 
 itemOnItem("rune_essence", *pouches) { player ->
-    addSingle(player, fromSlot, fromItem, toItem)
+    addSingle(player, fromSlot, fromItem, toSlot, toItem)
 }
 
 fun addSingle(
     player: Player,
     fromSlot: Int,
     fromItem: Item,
-    toItem: Item,
+    toSlot: Int,
+    toItem: Item
 ) {
     val id = toItem.id.removeSuffix("_damaged")
     val desired = fromItem.id.startsWith("pure")
@@ -104,7 +108,7 @@ fun addSingle(
         player.message("This pouch contains $name essence, so you can only fill it with more $name essence.")
         return
     }
-    val maximum = capacity(id)
+    val maximum = capacity(toItem.id, player.inventory.charges(player, toSlot))
     val essence = player["${id}_essence", 0]
     if (essence >= maximum) {
         player.message("You cannot add any more essence to the pouch.")
@@ -122,10 +126,30 @@ fun addSingle(
     player["${id}_essence"] = essence + 1
 }
 
-private fun capacity(id: String) = when (id) {
+private fun capacity(id: String, charges: Int) = when (id) {
     "medium_pouch" -> 6
+    "medium_pouch_damaged" -> when {
+        // TODO proper values
+        charges < 10 -> 1
+        charges < 15 -> 2
+        else -> 3
+    }
     "large_pouch" -> 9
+    "large_pouch_damaged" -> when {
+        // TODO proper values
+        charges < 4 -> 3
+        charges < 6 -> 4
+        charges < 10 -> 5
+        else -> 7
+    }
     "giant_pouch" -> 12
+    "giant_pouch_damaged" -> when {
+        // TODO proper values
+        charges < 5 -> 3
+        charges < 10 -> 4
+        charges < 15 -> 8
+        else -> 9
+    }
     else -> 3
 }
 
