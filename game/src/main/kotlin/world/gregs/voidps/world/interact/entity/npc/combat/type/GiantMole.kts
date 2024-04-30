@@ -93,7 +93,7 @@ fun giantMoleBurrow(mole: NPC) {
         attacker.mode = EmptyMode
     }
     mole.attackers.clear()
-    var tileToDust = getTotalDirection(mole.facing, mole.tile)
+    var tileToDust = mole.tile.add(getRandomFacing(mole.facing).delta)
     mole.queue("await_mole_to_face", 1) {
         if (tileToDust == Tile.EMPTY) {
             logger.info { "failed to get facing tile for Giant Mole, using default tile." }
@@ -116,17 +116,14 @@ fun giantMoleBurrow(mole: NPC) {
     }
 }
 
-fun getTotalDirection(facing: Direction, moleTile: Tile): Tile {
-    return when (facing) {
-        Direction.NORTH -> Tile(moleTile.x, moleTile.y + 1)
-        Direction.SOUTH -> Tile(moleTile.x, moleTile.y - 1)
-        Direction.EAST -> Tile(moleTile.x + 1, moleTile.y)
-        Direction.WEST -> Tile(moleTile.x - 1, moleTile.y)
-        Direction.NORTH_EAST, Direction.SOUTH_EAST -> Tile(moleTile.x + 1, moleTile.y)
-        Direction.NORTH_WEST, Direction.SOUTH_WEST -> Tile(moleTile.x - 1, moleTile.y)
-        Direction.NONE -> Tile.EMPTY
-    }
+fun getRandomFacing(currentlyFacing: Direction): Direction {
+    var randomDirection: Direction
+    do {
+        randomDirection = Direction.entries.filter { it != Direction.NONE }.random()
+    } while (randomDirection == currentlyFacing)
+    return randomDirection
 }
+
 
 // 13% chance to throw dirt on players screen
 fun shouldThrowDirt(): Boolean {
