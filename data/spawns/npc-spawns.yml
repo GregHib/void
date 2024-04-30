@@ -1330,6 +1330,8 @@
 # 12089
 - { id: giant_rat, x: 3049, y: 3691 }
 - { id: giant_rat_dark_injured, x: 3049, y: 3695 }
+# 12107
+- { id: dark_mage, x: 3039, y: 4834, direction: SOUTH, members: true }
 # 12185
 - { id: rat, x: 3026, y: 9837, members: true }
 - { id: rat, x: 3033, y: 9827, members: true }
