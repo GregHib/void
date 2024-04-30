@@ -19,7 +19,7 @@ object SetCharge {
             return
         }
         val item = inventory[index]
-        if (item.isEmpty() || amount <= 0 || inventory.stackable(item.id)) {
+        if (item.isEmpty() || amount < 0 || inventory.stackable(item.id)) {
             error = TransactionError.Invalid
             return
         }
