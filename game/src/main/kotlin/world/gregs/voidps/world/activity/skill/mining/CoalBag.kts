@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.addToLimit
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.removeToLimit
+import world.gregs.voidps.world.interact.entity.item.canDestroy
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
 val bagCapacity = 81
@@ -62,4 +63,12 @@ itemOnItem("coal", "coal_bag") { player ->
     }
     player["coal_bag_coal"] = (coal + removed).coerceAtMost(bagCapacity)
     player.message("You add the coal to your bag.")
+}
+
+canDestroy("coal_bag") { player ->
+    val coal = player["coal_bag_coal", 0]
+    if (coal > 0) {
+        player.message("You can't destroy this item with coal in it.")
+        cancel()
+    }
 }

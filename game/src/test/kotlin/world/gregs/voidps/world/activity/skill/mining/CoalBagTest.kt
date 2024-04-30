@@ -1,10 +1,11 @@
 package world.gregs.voidps.world.activity.skill.mining
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.script.WorldTest
+import world.gregs.voidps.world.script.dialogueOption
 import world.gregs.voidps.world.script.itemOnItem
 import world.gregs.voidps.world.script.itemOption
 
@@ -123,6 +124,32 @@ internal class CoalBagTest : WorldTest() {
 
         assertEquals(0, player.inventory.count("coal"))
         assertEquals(10, player["coal_bag_coal", 0])
+    }
+
+    @Test
+    fun `Can't destroy filled gem bag`() {
+        val player = createPlayer("player")
+        player["coal_bag_coal"] = 25
+        player.inventory.add("coal_bag")
+
+        player.itemOption("Destroy", "coal_bag")
+        tick()
+        player.dialogueOption("confirm")
+
+        assertTrue(player.inventory.contains("coal_bag"))
+        assertEquals(25, player["coal_bag_coal", 0])
+    }
+
+    @Test
+    fun `Destroy empty gem bag`() {
+        val player = createPlayer("player")
+        player.inventory.add("coal_bag")
+
+        player.itemOption("Destroy", "coal_bag")
+        tick()
+        player.dialogueOption("confirm")
+
+        assertFalse(player.inventory.contains("coal_bag"))
     }
 
 }
