@@ -37,14 +37,14 @@ internal class SatchelTest : WorldTest() {
 
         player.itemOption("Empty", "plain_satchel")
 
-        assertEquals(6, player.inventory.charges(player, 0))
-        assertTrue(player.inventory.contains("cake"))
-        assertFalse(player.inventory.contains("banana"))
+        assertEquals(5, player.inventory.charges(player, 0))
+        assertTrue(player.inventory.contains("banana"))
+        assertFalse(player.inventory.contains("cake"))
         assertFalse(player.inventory.contains("triangle_sandwich"))
     }
 
     @ParameterizedTest
-    @ValueSource(strings = [ "cake", "banana", "triangle_sandwich" ])
+    @ValueSource(strings = ["cake", "banana", "triangle_sandwich"])
     fun `Add item to food satchel`(item: String) {
         val player = createPlayer("player")
         player.inventory.set(0, "plain_satchel", 0)
@@ -57,7 +57,7 @@ internal class SatchelTest : WorldTest() {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = [ "cake", "banana", "triangle_sandwich" ])
+    @ValueSource(strings = ["cake", "banana", "triangle_sandwich"])
     fun `Can't add item to full satchel`(item: String) {
         val player = createPlayer("player")
         player.inventory.set(0, "plain_satchel", 7)

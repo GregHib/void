@@ -3,6 +3,7 @@ package world.gregs.voidps.world.activity.quest.toweroflife
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -25,23 +26,24 @@ inventoryItem("Inspect", "*_satchel") {
 
 inventoryItem("Empty", "*_satchel") {
     var charges = player.inventory.charges(player, slot)
-    player.inventory.transaction {
-        if (charges and cake != 0) {
-            add("cake")
-            charges = charges and cake.inv()
-            setCharge(slot, charges)
+    charges = withdraw(player, slot, charges, "banana", banana)
+    charges = withdraw(player, slot, charges, "cake", cake)
+    withdraw(player, slot, charges, "triangle_sandwich", sandwich)
+}
+
+fun withdraw(player: Player, slot: Int, charges: Int, id: String, food: Int): Int {
+    if (charges and food != 0) {
+        val success = player.inventory.transaction {
+            add(id)
+            setCharge(slot, charges and food.inv())
         }
-        if (!failed && charges and banana != 0 && inventory.spaces > 0) {
-            add("banana")
-            charges = charges and banana.inv()
-            setCharge(slot, charges)
-        }
-        if (!failed && charges and sandwich != 0 && inventory.spaces > 0) {
-            add("triangle_sandwich")
-            charges = charges and sandwich.inv()
-            setCharge(slot, charges)
+        if (success) {
+            return charges and food.inv()
+        } else {
+            player.message("You don't have enough free space to empty your satchel.")
         }
     }
+    return charges
 }
 
 itemOnItem("cake", "*_satchel") { player ->
