@@ -2,7 +2,7 @@ package world.gregs.voidps.world.activity.skill.runecrafting
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.interact.itemOnItem
+import world.gregs.voidps.engine.client.ui.interact.itemOnItems
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.Item
@@ -85,11 +85,11 @@ inventoryItem("Empty", *pouches) {
     player["${id}_essence"] = essence - added
 }
 
-itemOnItem("pure_essence", *pouches) { player ->
+itemOnItems(arrayOf("pure_essence"), pouches) { player ->
     addSingle(player, fromSlot, fromItem, toSlot, toItem)
 }
 
-itemOnItem("rune_essence", *pouches) { player ->
+itemOnItems(arrayOf("rune_essence"), pouches) { player ->
     addSingle(player, fromSlot, fromItem, toSlot, toItem)
 }
 

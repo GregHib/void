@@ -65,9 +65,9 @@ fun itemOnItem(
     }
 }
 
-fun itemOnItem(
-    fromItem: String = "*",
-    vararg toItems: String = arrayOf("*"),
+fun itemOnItems(
+    fromItems: Array<String> = arrayOf("*"),
+    toItems: Array<String> = arrayOf("*"),
     fromInterface: String = "*",
     fromComponent: String = "*",
     toInterface: String = fromInterface,
@@ -79,10 +79,12 @@ fun itemOnItem(
     val bidirectionalHandler: suspend ItemOnItem.(EventDispatcher) -> Unit = {
         handler.invoke(flip(), it as Player)
     }
-    for (toItem in toItems) {
-        Events.handle("item_on_item", fromItem, fromInterface, fromComponent, toItem, toInterface, toComponent, override = override, handler = handler)
-        if (bidirectional) {
-            Events.handle("item_on_item", toItem, toInterface, toComponent, fromItem, fromInterface, fromComponent, override = override, handler = bidirectionalHandler)
+    for (fromItem in fromItems) {
+        for (toItem in toItems) {
+            Events.handle("item_on_item", fromItem, fromInterface, fromComponent, toItem, toInterface, toComponent, override = override, handler = handler)
+            if (bidirectional) {
+                Events.handle("item_on_item", toItem, toInterface, toComponent, fromItem, fromInterface, fromComponent, override = override, handler = bidirectionalHandler)
+            }
         }
     }
 }

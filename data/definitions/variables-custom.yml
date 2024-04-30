@@ -340,3 +340,15 @@ giant_pouch_pure:
 coal_bag_coal:
   format: int
   persist: true
+gem_bag_sapphire:
+  format: int
+  persist: true
+gem_bag_emerald:
+  format: int
+  persist: true
+gem_bag_ruby:
+  format: int
+  persist: true
+gem_bag_diamond:
+  format: int
+  persist: true
