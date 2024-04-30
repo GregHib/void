@@ -23,7 +23,7 @@ data class ObjectOption(
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "${character.key}_${if (approach) "approach" else "operate"}_object"
         1 -> option
-        2 -> target.id
+        2 -> def.stringId
         3 -> character.identifier
         else -> null
     }

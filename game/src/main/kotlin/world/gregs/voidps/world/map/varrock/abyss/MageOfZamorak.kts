@@ -42,7 +42,7 @@ npcOperate("Teleport", "mage_of_zamorak_wilderness") {
         player.setGraphic("tele_other_receive")
         player.playSound("teleport_all")
         pause(2)
-        player["abyss_obstacles"] = random.nextInt(0, 19)
+        player["abyss_obstacles"] = random.nextInt(0, 12)
         var tile = abyss.random(player)
         var count = 0
         while ((tile == null || tile in abyssCenter) && count++ < 100) {

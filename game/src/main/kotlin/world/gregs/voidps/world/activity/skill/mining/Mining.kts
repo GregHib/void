@@ -27,7 +27,6 @@ import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.approachRange
@@ -62,7 +61,7 @@ objectOperate("Mine") {
             break
         }
 
-        val pickaxe = getBestPickaxe(player)
+        val pickaxe = Pickaxe.best(player)
         if (!hasRequirements(player, pickaxe, true) || pickaxe == null) {
             break
         }
@@ -115,23 +114,6 @@ val gems = setOf(
     "uncut_ruby",
     "uncut_diamond"
 )
-
-val pickaxes = listOf(
-    Item("dragon_pickaxe"),
-    Item("volatile_clay_pickaxe"),
-    Item("sacred_clay_pickaxe"),
-    Item("inferno_adze"),
-    Item("rune_pickaxe"),
-    Item("adamant_pickaxe"),
-    Item("mithril_pickaxe"),
-    Item("steel_pickaxe"),
-    Item("iron_pickaxe"),
-    Item("bronze_pickaxe")
-)
-
-fun getBestPickaxe(player: Player): Item? {
-    return pickaxes.firstOrNull { pickaxe -> hasRequirements(player, pickaxe, false) && player.holdsItem(pickaxe.id) }
-}
 
 fun hasRequirements(player: Player, pickaxe: Item?, message: Boolean = false): Boolean {
     if (pickaxe == null) {

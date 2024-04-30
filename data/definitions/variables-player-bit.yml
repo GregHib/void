@@ -584,3 +584,6 @@ minigame_type:
     barbarian_assault: 1
     stealing_creation: 2
     fist_of_guthix: 3
+abyss_obstacles:
+  id: 625
+  format: int
