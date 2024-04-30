@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddCharge.charge
 import world.gregs.voidps.engine.inv.transact.operation.RemoveCharge.discharge
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.type.random
+import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
@@ -40,31 +41,45 @@ consume("nettle_tea") { player ->
 
 inventoryItem("Look-in", "tea_flask") {
     val charges = player.inventory.charges(player, slot)
-    player.message("This flask has $charges cups of tea inside.") // TODO proper message
+    item("tea_flask", 400, when (charges) {
+        0 -> "There's no tea in this flask."
+        1 -> "There is one serving of tea in this flask."
+        else -> "There is $charges servings of tea in this flask."
+    })
 }
 
 inventoryItem("Drink", "tea_flask") {
     if (!player.inventory.discharge(player, slot)) {
-        player.message("The flask is empty.") // TODO proper message
+        player.message("There's nothing left in the flask.")
         return@inventoryItem
     }
 
     player.forceChat = "Ahhh, tea is so refreshing!"
     player.levels.boost(Skill.Attack, 3)
     player.levels.restore(Skill.Constitution, 30)
-    player.message("You drink the cup of tea.")
+    player.message("You take a drink from the flask...")
 }
 
 itemOnItem("tea_flask", "empty_cup") { player ->
-    player.inventory.transaction {
+    val success = player.inventory.transaction {
         discharge(fromSlot, 1)
         replace(toSlot, toItem.id, "cup_of_tea")
+    }
+    if (success) {
+        player.message("You fill the cup with tea.")
+    } else {
+        player.message("There's nothing left in the flask.")
     }
 }
 
 itemOnItem("cup_of_tea", "tea_flask") { player ->
-    player.inventory.transaction {
+    val success = player.inventory.transaction {
         replace(fromSlot, fromItem.id, "empty_cup")
         charge(toSlot, 1)
+    }
+    if (success) {
+        player.message("You add the tea to the flask.")
+    } else {
+        player.message("The flask is full!")
     }
 }
