@@ -91,6 +91,7 @@ fun giantMoleBurrow(mole: NPC) {
     for (attacker in mole.attackers) {
         attacker.mode = EmptyMode
     }
+    mole.attackers.clear()
     var tileToDust = getTotalDirection(mole.facing, mole.tile)
     World.queue("await_mole_to_face", 1) {
         if (tileToDust == Tile.EMPTY) {
