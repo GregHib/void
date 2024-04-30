@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
+import world.gregs.voidps.world.interact.entity.item.dropped
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
 val pouches = arrayOf("small_pouch", "medium_pouch", "medium_pouch_damaged", "large_pouch", "large_pouch_damaged", "giant_pouch", "giant_pouch_damaged")
@@ -91,6 +92,13 @@ itemOnItems(arrayOf("pure_essence"), pouches) { player ->
 
 itemOnItems(arrayOf("rune_essence"), pouches) { player ->
     addSingle(player, fromSlot, fromItem, toSlot, toItem)
+}
+
+dropped(*pouches) { player ->
+    val id = item.id.removeSuffix("_damaged")
+    if (player.clear("${id}_essence") != null) {
+        player.message("The contents of the pouch fell out as you dropped it!")
+    }
 }
 
 fun addSingle(

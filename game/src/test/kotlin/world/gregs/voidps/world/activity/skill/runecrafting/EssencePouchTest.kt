@@ -194,4 +194,18 @@ internal class EssencePouchTest : WorldTest() {
         assertTrue(player["medium_pouch_pure", false])
     }
 
+    @Test
+    fun `Dropping a pouch removes the essence inside`() {
+        val player = createPlayer("player")
+        player.inventory.set(0, "medium_pouch", 10)
+        player["medium_pouch_essence"] = 2
+
+        player.itemOption("Drop", "medium_pouch")
+
+        assertFalse(player.inventory.contains("medium_pouch"))
+        assertEquals(0, player.inventory.count("pure_essence"))
+        assertEquals(0, player.inventory.count("rune_essence"))
+        assertEquals(0, player["medium_pouch_essence", 0])
+    }
+
 }
