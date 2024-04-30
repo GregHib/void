@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.engine.map.collision.random
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.entity.combat.*
@@ -51,12 +52,12 @@ val giantMoleLair = areas["giant_mole_lair"]
 val gianMoleSpawns = areas["giant_mole_spawn_area"]
 val initialCaveTile: Tile = Tile(1752, 5237, 0)
 
-inventoryOption("Dig") {
+inventoryOption("Dig", "Spade") {
     val playerTile: Tile = player.tile
+    player.setAnimation("dig_with_spade")
     if(!acceptedTiles.contains(playerTile)) {
         return@inventoryOption
     }
-    player.setAnimation("dig_with_spade")
     player.open("warning_dark")
 }
 
@@ -93,20 +94,20 @@ fun giantMoleBurrow(mole: NPC) {
     }
     mole.attackers.clear()
     var tileToDust = getTotalDirection(mole.facing, mole.tile)
-    World.queue("await_mole_to_face", 1) {
+    mole.queue("await_mole_to_face", 1) {
         if (tileToDust == Tile.EMPTY) {
             logger.info { "failed to get facing tile for Giant Mole, using default tile." }
             tileToDust = initialCaveTile
         }
         mole.face(tileToDust)
-        World.queue("display_burrow_dust", 1) {
+        mole.queue("display_burrow_dust", 1) {
             if (shouldThrowDirt()) {
                 handleDirtOnScreen(mole.tile)
             }
             mole.setAnimation("giant_mole_burrow")
             areaSound("giant_mole_burrow_down", mole.tile)
             areaGraphic("burrow_dust", tileToDust)
-            World.queue("await_mole_burrowing", 1) {
+            mole.queue("await_mole_burrowing", 1) {
                 val newLocation = gianMoleSpawns.random(mole)
                 mole.tele(newLocation!!)
                 mole.setAnimation("mole_burrow_up")
