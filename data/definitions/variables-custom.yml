@@ -337,3 +337,6 @@ giant_pouch_essence:
 giant_pouch_pure:
   format: boolean
   persist: true
+coal_bag_coal:
+  format: int
+  persist: true

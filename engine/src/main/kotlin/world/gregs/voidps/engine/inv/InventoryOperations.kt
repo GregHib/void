@@ -3,18 +3,19 @@ package world.gregs.voidps.engine.inv
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.transact.charge
-import world.gregs.voidps.engine.inv.transact.discharge
 import world.gregs.voidps.engine.inv.transact.clearCharges
-import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
-import world.gregs.voidps.engine.inv.transact.operation.SwapItem.swap
+import world.gregs.voidps.engine.inv.transact.discharge
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
+import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 import world.gregs.voidps.engine.inv.transact.operation.MoveItem.move
 import world.gregs.voidps.engine.inv.transact.operation.MoveItem.moveAll
-import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shift
-import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
+import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
+import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shift
+import world.gregs.voidps.engine.inv.transact.operation.SwapItem.swap
 
 fun Inventory.replace(id: String, with: String) = transaction { replace(id, with) }
 
@@ -54,6 +55,14 @@ fun Inventory.add(items: List<Item>) = transaction {
     for (item in items) {
         add(item.id, item.amount)
     }
+}
+
+fun Inventory.addToLimit(id: String, amount: Int = 1): Int {
+    var added = 0
+    transaction {
+        added = this.addToLimit(id, amount)
+    }
+    return added
 }
 
 fun Inventory.remove(id: String, amount: Int = 1) = transaction { remove(id, amount) }
