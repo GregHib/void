@@ -116,6 +116,7 @@ class ItemDefinitions(
                     "fletch_dart" -> FletchDarts(value as Map<String, Any>)
                     "fletch_bolts" -> FletchBolts(value as Map<String, Any>)
                     "fletching_unf" -> Fletching(value as Map<String, Any>)
+                    "light_source" -> LightSources(value as Map<String, Any>)
                     "skill_req" -> (value as MutableMap<String, Any>).mapKeys { Skill.valueOf(it.key.toSentenceCase()) }
                     else -> value
                 }, indent, parentMap)
