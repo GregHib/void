@@ -24,90 +24,10 @@ open class Polygon(
     override fun toZones(level: Int) = bounds.toZones(level)
 
     override fun contains(x: Int, y: Int, level: Int): Boolean {
-        val pointCount = xPoints.size
         if (xPoints.size <= 2 || !bounds.contains(x, y, level)) {
             return false
         }
-        var hits = 0
-
-        var lastx: Int = xPoints[pointCount - 1]
-        var lasty: Int = yPoints[pointCount - 1]
-        var curx: Int
-        var cury: Int
-
-        // Walk the edges of the polygon
-        var i = 0
-        while (i < pointCount) {
-            curx = xPoints[i]
-            cury = yPoints[i]
-            if (cury == lasty) {
-                lastx = curx
-                lasty = cury
-                i++
-                continue
-            }
-            var leftx: Int
-            if (curx < lastx) {
-                if (x >= lastx) {
-                    lastx = curx
-                    lasty = cury
-                    i++
-                    continue
-                }
-                leftx = curx
-            } else {
-                if (x >= curx) {
-                    lastx = curx
-                    lasty = cury
-                    i++
-                    continue
-                }
-                leftx = lastx
-            }
-            var test1: Int
-            var test2: Int
-            if (cury < lasty) {
-                if (y < cury || y >= lasty) {
-                    lastx = curx
-                    lasty = cury
-                    i++
-                    continue
-                }
-                if (x < leftx) {
-                    hits++
-                    lastx = curx
-                    lasty = cury
-                    i++
-                    continue
-                }
-                test1 = x - curx
-                test2 = y - cury
-            } else {
-                if (y < lasty || y >= cury) {
-                    lastx = curx
-                    lasty = cury
-                    i++
-                    continue
-                }
-                if (x < leftx) {
-                    hits++
-                    lastx = curx
-                    lasty = cury
-                    i++
-                    continue
-                }
-                test1 = x - lastx
-                test2 = y - lasty
-            }
-            if (test1 < test2 / (lasty - cury) * (lastx - curx)) {
-                hits++
-            }
-            lastx = curx
-            lasty = cury
-            i++
-        }
-
-        return hits and 1 != 0
+        return pointInPolygon(x, y, xPoints, yPoints)
     }
 
     override fun random(): Tile {
@@ -150,5 +70,27 @@ open class Polygon(
                 return next
             }
         }
+    }
+
+    companion object {
+        /**
+         * Return true if the given point is contained inside the boundary.
+         * See: https://wrfranklin.org/Research/Short_Notes/pnpoly.html
+         * @return true if the point is inside the boundary, false otherwise
+         */
+        internal fun pointInPolygon(x: Int, y: Int, xPoints: IntArray, yPoints: IntArray): Boolean {
+            var j: Int
+            var result = false
+            var i = 0
+            j = xPoints.size - 1
+            while (i < xPoints.size) {
+                if ((yPoints[i] > y) != (yPoints[j] > y) && (x < (xPoints[j] - xPoints[i]) * (y - yPoints[i]) / (yPoints[j] - yPoints[i]) + xPoints[i])) {
+                    result = !result
+                }
+                j = i++
+            }
+            return result
+        }
+
     }
 }
