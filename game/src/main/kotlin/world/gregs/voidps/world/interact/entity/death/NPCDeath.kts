@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -118,7 +119,7 @@ fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {
     } else {
         drops.forEach { item ->
             if (!item.id.contains("clue_scroll") && item.amount > 0) {
-                floorItems.add(tile, item.id, item.amount, revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = if (killer is Player) killer else null)
+                floorItems.add(tile, item.id, item.amount, charges = item.charges(), revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = if (killer is Player) killer else null)
             }
         }
     }
@@ -142,7 +143,7 @@ fun shareLoot(killer: Player, npc: NPC, tile: Tile, drops: List<Item>) {
         } else {
             val awardee = getAwardee(item, killer, members)
             notify(members, awardee, item)
-            floorItems.add(tile, item.id, item.amount, revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = awardee)
+            floorItems.add(tile, item.id, item.amount, charges = item.charges(), revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = awardee)
             awardee.message("<dark_green>You received: ${item.amount} ${item.def.name.plural(item.amount)}.", ChatType.ClanChat)
         }
     }

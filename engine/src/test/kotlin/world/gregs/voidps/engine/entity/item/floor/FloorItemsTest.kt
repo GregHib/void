@@ -2,11 +2,16 @@ package world.gregs.voidps.engine.entity.item.floor
 
 import io.mockk.mockk
 import io.mockk.verify
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
+import org.koin.dsl.module
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemAddition
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemRemoval
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemUpdate
@@ -22,6 +27,22 @@ class FloorItemsTest {
     fun setup() {
         batches = mockk(relaxed = true)
         items = FloorItems(batches, mockk(relaxed = true))
+        startKoin {
+            modules(module {
+                single {
+                    val definitions = arrayOf(
+                        ItemDefinition.EMPTY,
+                        ItemDefinition(1, cost = 10),
+                        ItemDefinition(2, stackable = 1),
+                        ItemDefinition(3, cost = 10),
+                        ItemDefinition(4, cost = 5)
+                    )
+                    ItemDefinitions(definitions).apply {
+                        ids = mapOf("item" to 1, "stackable" to 2, "equal_item" to 3, "cheap_item" to 4)
+                    }
+                }
+            })
+        }
     }
 
     @Test
@@ -35,8 +56,8 @@ class FloorItemsTest {
         assertEquals(items[Tile(10, 10, 1)].first(), second)
         assertTrue(items[Tile(100, 100)].isEmpty())
         verify {
-            batches.add(Zone.EMPTY, FloorItemAddition(tile = 0, id = -1, amount = 1, owner = null))
-            batches.add(Zone(1, 1, 1), FloorItemAddition(tile = 268599306, id = -1, amount = 1, owner = "player"))
+            batches.add(Zone.EMPTY, FloorItemAddition(tile = 0, id = 1, amount = 1, owner = null))
+            batches.add(Zone(1, 1, 1), FloorItemAddition(tile = 268599306, id = 1, amount = 1, owner = "player"))
         }
     }
 
@@ -54,23 +75,21 @@ class FloorItemsTest {
 
     @Test
     fun `Adding two private stackable items combines them`() {
-        val first = floorItem("item", Tile.EMPTY, owner = "player", disappear = 5, reveal = 5)
-        first.def = ItemDefinition(stackable = 1)
+        val first = floorItem("stackable", Tile.EMPTY, owner = "player", disappear = 5, reveal = 5)
         items.add(first)
-        val second = floorItem("item", Tile.EMPTY, owner = "player", disappear = 10, reveal = 10)
-        second.def = ItemDefinition(stackable = 1)
+        val second = floorItem("stackable", Tile.EMPTY, owner = "player", disappear = 10, reveal = 10)
         items.add(second)
 
-        val item = items[Tile.EMPTY].first()
-        assertEquals(item.id, "item")
-        assertEquals(item.amount, 2)
-        assertEquals(item.disappearTicks, 5)
-        assertEquals(item.revealTicks, 5)
-        assertEquals(item.owner, "player")
+        val floorItem = items[Tile.EMPTY].first()
+        assertEquals(floorItem.id, "stackable")
+        assertEquals(floorItem.amount, 2)
+        assertEquals(floorItem.disappearTicks, 5)
+        assertEquals(floorItem.revealTicks, 5)
+        assertEquals(floorItem.owner, "player")
         verify {
             batches.add(Zone.EMPTY, FloorItemUpdate(
                 tile = 0,
-                id = -1,
+                id = 2,
                 stack = 1,
                 combined = 2,
                 owner = "player"
@@ -132,13 +151,11 @@ class FloorItemsTest {
     @Test
     fun `Remove lowest value item when limit exceeded`() {
         repeat(128) {
-            val item = floorItem("item", Tile.EMPTY)
-            item.def = ItemDefinition(cost = if (it == 25) 5 else 10)
+            val item = floorItem(if (it == 25) "cheap_item" else "item", Tile.EMPTY)
             items.add(item)
         }
 
         val item = floorItem("item", Tile.EMPTY, owner = "player")
-        item.def = ItemDefinition(cost = 10)
         items.add(item)
 
         val items = items[Tile.EMPTY]
@@ -150,7 +167,6 @@ class FloorItemsTest {
     fun `Equal value items are unstacked when limit exceeded`() {
         repeat(128 * 2) {
             val item = floorItem(if (it >= 128) "equal_item" else "item", Tile.EMPTY)
-            item.def = ItemDefinition(cost = 10)
             items.add(item)
         }
 
@@ -168,13 +184,16 @@ class FloorItemsTest {
         val items = items[Tile.EMPTY]
         assertTrue(items.isEmpty())
         verify {
-            batches.add(Zone.EMPTY, FloorItemRemoval(tile = 0, id = -1, owner = null))
+            batches.add(Zone.EMPTY, FloorItemRemoval(tile = 0, id = 1, owner = null))
         }
     }
 
-    private fun floorItem(id: String, tile: Tile, amount: Int = 1, disappear: Int = -1, reveal: Int = -1, owner: String? = null): FloorItem {
-        val item = FloorItem(tile, id, amount, disappear, reveal, owner)
-        item.def = ItemDefinition.EMPTY
-        return item
+    private fun floorItem(id: String, tile: Tile, amount: Int = 1, disappear: Int = -1, reveal: Int = -1, charges: Int = 0, owner: String? = null): FloorItem {
+        return FloorItem(tile, id, amount, disappear, reveal, charges, owner)
+    }
+
+    @AfterEach
+    fun teardown() {
+        stopKoin()
     }
 }

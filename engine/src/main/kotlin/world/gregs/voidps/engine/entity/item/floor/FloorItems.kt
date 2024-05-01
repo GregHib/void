@@ -36,30 +36,28 @@ class FloorItems(
         override fun clearInstance(instance: MutableMap<Int, MutableList<FloorItem>>) = instance.apply { clear() }
     }
 
-    fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, owner: Player?) = add(tile, id, amount, revealTicks, disappearTicks, owner?.name)
+    fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, charges: Int = 0, owner: Player?) = add(tile, id, amount, revealTicks, disappearTicks, charges, owner?.name)
 
-    fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, owner: String? = null): FloorItem {
-        val definition = definitions.get(id)
-        if (definition.id == -1) {
+    fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, charges: Int = 0, owner: String? = null): FloorItem {
+        if (!definitions.contains(id)) {
             logger.warn { "Null floor item $id $tile" }
         }
-        val item = FloorItem(tile, id, amount, revealTicks, disappearTicks, if (revealTicks == 0) null else owner)
-        item.def = definition
+        val item = FloorItem(tile, id, amount, revealTicks, disappearTicks, charges, if (revealTicks == 0) null else owner)
         add(item)
         return item
     }
 
-    fun add(item: FloorItem) {
-        val list = data.getOrPut(item.tile.zone.id) { zonePool.borrow() }.getOrPut(item.tile.id) { tilePool.borrow() }
-        if (combined(list, item)) {
+    fun add(floorItem: FloorItem) {
+        val list = data.getOrPut(floorItem.tile.zone.id) { zonePool.borrow() }.getOrPut(floorItem.tile.id) { tilePool.borrow() }
+        if (combined(list, floorItem)) {
             return
         }
-        if (full(list, item)) {
+        if (full(list, floorItem)) {
             return
         }
-        if (list.add(item)) {
-            batches.add(item.tile.zone, FloorItemAddition(item.tile.id, item.def.id, item.amount, item.owner))
-            item.emit(Spawn)
+        if (list.add(floorItem)) {
+            batches.add(floorItem.tile.zone, FloorItemAddition(floorItem.tile.id, floorItem.def.id, floorItem.amount, floorItem.owner))
+            floorItem.emit(Spawn)
         }
     }
 
@@ -80,14 +78,14 @@ class FloorItems(
     /**
      * Combine the amount's of two [FloorItem]
      */
-    private fun combined(list: List<FloorItem>, item: FloorItem): Boolean {
-        if (item.owner == null) {
+    private fun combined(list: List<FloorItem>, floorItem: FloorItem): Boolean {
+        if (floorItem.owner == null) {
             return false
         }
-        val existing = list.firstOrNull { it.owner == item.owner && it.id == item.id } ?: return false
+        val existing = list.firstOrNull { it.owner == floorItem.owner && it.id == floorItem.id } ?: return false
         val original = existing.amount
-        if (existing.merge(item)) {
-            batches.add(item.tile.zone, FloorItemUpdate(item.tile.id, existing.def.id, original, existing.amount, existing.owner))
+        if (existing.merge(floorItem)) {
+            batches.add(floorItem.tile.zone, FloorItemUpdate(floorItem.tile.id, existing.def.id, original, existing.amount, existing.owner))
             return true
         }
         return false
@@ -101,18 +99,18 @@ class FloorItems(
         return data.get(zone.id)?.values ?: emptyList()
     }
 
-    fun remove(item: FloorItem): Boolean {
-        val zone = data.get(item.tile.zone.id) ?: return false
-        val list = zone[item.tile.id] ?: return false
-        if (list.remove(item)) {
-            batches.add(item.tile.zone, FloorItemRemoval(item.tile.id, item.def.id, item.owner))
-            if (list.isEmpty() && zone.remove(item.tile.id, list)) {
+    fun remove(floorItem: FloorItem): Boolean {
+        val zone = data.get(floorItem.tile.zone.id) ?: return false
+        val list = zone[floorItem.tile.id] ?: return false
+        if (list.remove(floorItem)) {
+            batches.add(floorItem.tile.zone, FloorItemRemoval(floorItem.tile.id, floorItem.def.id, floorItem.owner))
+            if (list.isEmpty() && zone.remove(floorItem.tile.id, list)) {
                 tilePool.recycle(list)
-                if (zone.isEmpty() && data.remove(item.tile.zone.id) != null) {
+                if (zone.isEmpty() && data.remove(floorItem.tile.zone.id) != null) {
                     zonePool.recycle(zone)
                 }
             }
-            item.emit(Despawn)
+            floorItem.emit(Despawn)
             return true
         }
         return false
@@ -121,9 +119,9 @@ class FloorItems(
     fun clear() {
         for ((_, zone) in data) {
             for ((_, items) in zone) {
-                for (item in items) {
-                    batches.add(item.tile.zone, FloorItemRemoval(item.tile.id, item.def.id, item.owner))
-                    item.emit(Despawn)
+                for (floorItem in items) {
+                    batches.add(floorItem.tile.zone, FloorItemRemoval(floorItem.tile.id, floorItem.def.id, floorItem.owner))
+                    floorItem.emit(Despawn)
                 }
                 tilePool.recycle(items)
             }
@@ -134,11 +132,11 @@ class FloorItems(
 
     override fun send(player: Player, zone: Zone) {
         for ((_, items) in data.get(zone.id) ?: return) {
-            for (item in items) {
-                if (item.owner != null && item.owner != player.name) {
+            for (floorItem in items) {
+                if (floorItem.owner != null && floorItem.owner != player.name) {
                     continue
                 }
-                player.client?.send(FloorItemAddition(item.tile.id, item.def.id, item.amount, item.owner))
+                player.client?.send(FloorItemAddition(floorItem.tile.id, floorItem.def.id, floorItem.amount, floorItem.owner))
             }
         }
     }
