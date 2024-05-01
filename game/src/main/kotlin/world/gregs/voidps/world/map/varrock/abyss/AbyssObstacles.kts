@@ -25,7 +25,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 // Object tile, opposite passage tile, teleport tile
 val positions = mapOf(
-    Tile(3038, 4835) to (Tile(3039, 4855) to Tile(3039, 4844)),
+    Tile(3038, 4853) to (Tile(3039, 4855) to Tile(3039, 4844)),
     Tile(3049, 4849) to (Tile(3050, 4851) to Tile(0, 0)),
     Tile(3058, 4839) to (Tile(3060, 4840) to Tile(0, 0)),
     Tile(3060, 4830) to (Tile(3062, 4831) to Tile(3052, 4831)),
@@ -85,8 +85,8 @@ objectOperate("Chop", "abyss_tendrils") {
     pause(4)
     val hatchet = Hatchet.best(player)
     if (hatchet == null) {
-        player.message("You need an axe to chop through the tendrils.")
-        player.message("You do not have an axe that you have the Woodcutting level to use.")
+        player.message("You need a hatchet to chop through the tendrils.")
+        player.message("You do not have a hatchet that you have the Woodcutting level to use.")
         return@objectOperate
     }
     player.setAnimation("${hatchet.id}_chop")

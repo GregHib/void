@@ -2,7 +2,6 @@ package world.gregs.voidps.world.activity.skill.woodcutting
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirementsToUse
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.holdsItem
@@ -27,9 +26,6 @@ object Hatchet {
     }
 
     fun hasRequirements(player: Player, hatchet: Item, message: Boolean = false): Boolean {
-        if (hatchet.id == "inferno_adze" && !player.has(Skill.Firemaking, hatchet.def["fm_level", 1], message)) {
-            return false
-        }
-        return player.hasRequirementsToUse(hatchet, message, setOf(Skill.Firemaking, Skill.Firemaking))
+        return player.hasRequirementsToUse(hatchet, message, setOf(Skill.Firemaking, Skill.Woodcutting))
     }
 }

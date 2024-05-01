@@ -11743,7 +11743,21 @@ law_rift:
   id: 7135
   examine: "A tear in the dimensional weave of the Abyss."
 abyss_obstacle:
+  id: 7142
+abyss_obstacle_2:
   id: 7143
+abyss_obstacle_3:
+  id: 7144
+abyss_obstacle_4:
+  id: 7145
+abyss_obstacle_5:
+  id: 7146
+abyss_obstacle_6:
+  id: 7147
+abyss_obstacle_7:
+  id: 7148
+abyss_obstacle_8:
+  id: 7153
 abyss_passage:
   id: 7154
   examine: "A tunnel through the Abyss."
