@@ -30,10 +30,11 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.attackers
+import world.gregs.voidps.world.interact.entity.combat.fightStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.npcCombatHit
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
-import world.gregs.voidps.world.interact.entity.player.equip.inventoryOption
+import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 import world.gregs.voidps.world.interact.entity.sound.areaSound
 import kotlin.random.Random
 
@@ -52,11 +53,11 @@ val giantMoleLair = areas["giant_mole_lair"]
 val gianMoleSpawns = areas["giant_mole_spawn_area"]
 val initialCaveTile: Tile = Tile(1752, 5237, 0)
 
-inventoryOption("Dig", "Spade") {
+inventoryItem("Dig", "spade") {
     val playerTile: Tile = player.tile
     player.setAnimation("dig_with_spade")
-    if(!acceptedTiles.contains(playerTile)) {
-        return@inventoryOption
+    if (!acceptedTiles.contains(playerTile)) {
+        return@inventoryItem
     }
     player.open("warning_dark")
 }
@@ -168,20 +169,20 @@ fun shouldBurrowAway(health: Int): Boolean {
 }
 
 enterArea("giant_mole_lair") {
-    if(!hasLightSource(player)) {
+    if (!hasLightSource(player)) {
         player.open("level_three_darkness")
     }
 }
 
 exitArea("giant_mole_lair") {
-    if(player.interfaces.contains("level_three_darkness")) {
+    if (player.interfaces.contains("level_three_darkness")) {
         player.close("level_three_darkness")
     }
 }
 
 playerSpawn { player ->
-    if(giantMoleLair.contains(player.tile)) {
-        if(!hasLightSource(player)) {
+    if (giantMoleLair.contains(player.tile)) {
+        if (!hasLightSource(player)) {
             player.open("level_three_darkness")
         }
     }
