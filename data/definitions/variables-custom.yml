@@ -289,18 +289,6 @@ shooting_star_bonus_ore:
 al_the_camel:
   format: boolean
   persist: true
-easy_clue:
-  format: boolean
-  persist: true
-medium_clue:
-  format: boolean
-  persist: true
-hard_clue:
-  format: boolean
-  persist: true
-elite_clue:
-  format: boolean
-  persist: true
 magical_blastbox_mode:
   format: boolean
   persist: true
