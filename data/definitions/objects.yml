@@ -11704,3 +11704,5 @@ prayer_altar_zaros:
 prayer_altar_warped_construction:
   id: 55667
   examine: "A shrine for the faithful to worship at."
+giant_mole_lair_escape_rope:
+  id: 12230

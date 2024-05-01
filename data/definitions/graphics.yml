@@ -1481,3 +1481,4 @@ dragon_breath_shock:
   flight_time: [ 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 ]
 teleport_jewellery: 1684
 teleport_pharaohs_sceptre: 715
+burrow_dust: 571

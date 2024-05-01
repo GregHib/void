@@ -1830,3 +1830,19 @@ al_the_camel:
   large_head: true
   wander_radius: 4
   examine: "A camel who has the soul of a poet."
+giant_mole:
+  id: 3340
+  hitpoints: 2000
+  att: 200
+  str: 200
+  def: 200
+  max_hit_melee: 210
+  style: crush
+  race: giant_mole
+  respawn_delay: 16
+  wander_radius: 8
+  examine: "Holy Mole-y!"
+baby_mole:
+  id: 3341
+  wander_radius: 6
+  examine: "I will call him, Mini Mole."

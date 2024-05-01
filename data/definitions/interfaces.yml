@@ -1756,7 +1756,12 @@ dialogue_multi2_mes:
   type: dialogue_box
 warning_spiders: 560
 warning_kalphite_queen: 561
-warning_dark: 562
+warning_dark:
+  id: 562
+  type: main_screen
+  components:
+    proceed: 17
+    stayout: 18
 warning_building_mode: 563
 warning_archers: 564
 warning_desert: 565
@@ -2516,4 +2521,16 @@ fade_in:
   type: overlay
 fade_out_smoke:
   id: 162
+  type: overlay
+level_one_darkness:
+  id: 97
+  type: overlay
+level_two_darkness:
+  id: 98
+  type: overlay
+level_three_darkness:
+  id: 96
+  type: overlay
+dirt_on_screen:
+  id: 226
   type: overlay

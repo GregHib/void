@@ -1,5 +1,37 @@
 # 6743
 - { id: banker_fist_of_guthix, x: 1705, y: 5599 }
+# 6993
+- { id: giant_mole, x: 1762, y: 5185 }
+- { id: baby_mole, x: 1763, y: 5163 }
+- { id: baby_mole, x: 1760, y: 5167 }
+- { id: baby_mole, x: 1759, y: 5161 }
+- { id: baby_mole, x: 1764, y: 5184 }
+- { id: baby_mole, x: 1759, y: 5193 }
+- { id: baby_mole, x: 1758, y: 5184 }
+- { id: baby_mole, x: 1756, y: 5179 }
+- { id: baby_mole, x: 1741, y: 5186 }
+- { id: baby_mole, x: 1754, y: 5197 }
+- { id: baby_mole, x: 1761, y: 5197 }
+- { id: baby_mole, x: 1774, y: 5204 }
+- { id: baby_mole, x: 1782, y: 5217 }
+- { id: baby_mole, x: 1781, y: 5232 }
+- { id: baby_mole, x: 1771, y: 5220 }
+- { id: baby_mole, x: 1763, y: 5215 }
+- { id: baby_mole, x: 1756, y: 5221 }
+- { id: baby_mole, x: 1741, y: 5220 }
+- { id: baby_mole, x: 1738, y: 5209 }
+- { id: baby_mole, x: 1744, y: 5205 }
+- { id: baby_mole, x: 1751, y: 5207 }
+- { id: baby_mole, x: 1755, y: 5199 }
+- { id: baby_mole, x: 1774, y: 5174 }
+- { id: baby_mole, x: 1777, y: 5188 }
+- { id: baby_mole, x: 1775, y: 5194 }
+- { id: baby_mole, x: 1775, y: 5166 }
+- { id: baby_mole, x: 1762, y: 5151 }
+- { id: baby_mole, x: 1778, y: 5149 }
+- { id: baby_mole, x: 1744, y: 5151 }
+- { id: baby_mole, x: 1737, y: 5157 }
+- { id: baby_mole, x: 1748, y: 5168 }
 # 7243
 - { id: rat, x: 1816, y: 4836, level: 1, members: true }
 - { id: rat, x: 1815, y: 4832, members: true }
