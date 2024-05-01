@@ -1057,3 +1057,160 @@ giant_mole_drop_table:
       drops:
         - id: dragon_spear
           chance: 1
+abyssal_walker_drop_table:
+  drop_table:
+    type: all
+    drops:
+      - type: all
+        drops:
+          - id: ashes
+      - roll: 256
+        drops:
+          - id: air_talisman
+            chance: 5
+          - id: water_talisman
+            chance: 5
+          - id: earth_talisman
+            chance: 5
+          - id: fire_talisman
+            chance: 5
+          - id: mind_talisman
+            chance: 5
+          - id: body_talisman
+            chance: 5
+          - id: cosmic_talisman
+            chance: 2
+          - id: chaos_talisman
+            chance: 2
+          - id: nature_talisman
+            chance: 2
+          - id: elemental_talisman
+          - id: drop
+          - id: medium_pouch
+          - id: large_pouch
+          - id: giant_pouch
+          - id: pure_essence_noted
+            chance: 36
+          - id: pure_essence
+            chance: 34
+          - id: pure_essence_noted
+            chance: 4
+            amount: 5
+          - id: pure_essence_noted
+            chance: 4
+            amount: 10
+          - id: pure_essence_noted
+            chance: 4
+            amount: 15
+          - id: binding_necklace
+            chance: 3
+      - roll: 256
+        drops:
+          - id: medium_clue_scroll
+            variable: medium_clue
+            equals: false
+            default: false
+abyssal_guardian_drop_table:
+  type: all
+  drops:
+    - type: all
+      drops:
+        - id: ashes
+    - roll: 256
+      drops:
+        - id: air_talisman
+          chance: 5
+        - id: water_talisman
+          chance: 5
+        - id: earth_talisman
+          chance: 5
+        - id: fire_talisman
+          chance: 5
+        - id: mind_talisman
+          chance: 5
+        - id: body_talisman
+          chance: 5
+        - id: cosmic_talisman
+          chance: 2
+        - id: chaos_talisman
+          chance: 2
+        - id: nature_talisman
+          chance: 2
+        - id: elemental_talisman
+        - id: drop
+        - id: medium_pouch
+        - id: large_pouch
+        - id: giant_pouch
+        - id: pure_essence_noted
+          chance: 36
+        - id: pure_essence
+          chance: 34
+        - id: pure_essence_noted
+          chance: 4
+          amount: 5
+        - id: pure_essence_noted
+          chance: 4
+          amount: 10
+        - id: pure_essence_noted
+          chance: 4
+          amount: 15
+        - id: binding_necklace
+          chance: 3
+    - roll: 256
+      drops:
+        - id: medium_clue_scroll
+          variable: medium_clue
+          equals: false
+          default: false
+abyssal_leech_drop_table:
+  type: all
+  drops:
+    - type: all
+      drops:
+        - id: ashes
+    - roll: 256
+      drops:
+        - id: air_talisman
+          chance: 5
+        - id: water_talisman
+          chance: 5
+        - id: earth_talisman
+          chance: 5
+        - id: fire_talisman
+          chance: 5
+        - id: mind_talisman
+          chance: 5
+        - id: body_talisman
+          chance: 5
+        - id: cosmic_talisman
+          chance: 2
+        - id: chaos_talisman
+          chance: 2
+        - id: nature_talisman
+          chance: 2
+        - id: elemental_talisman
+        - id: drop
+        - id: medium_pouch
+        - id: large_pouch
+        - id: giant_pouch
+        - id: pure_essence_noted
+          chance: 36
+        - id: pure_essence
+          chance: 34
+        - id: pure_essence_noted
+          chance: 4
+          amount: 5
+        - id: pure_essence_noted
+          chance: 4
+          amount: 10
+        - id: pure_essence_noted
+          chance: 4
+          amount: 15
+        - id: binding_necklace
+          chance: 3
+    - roll: 256
+      drops:
+        - id: medium_clue_scroll
+          variable: medium_clue
+          equals: false
+          default: false
