@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.npc.combat
 
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -11,7 +12,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.npcCombatSwing
 
 val definitions: WeaponStyleDefinitions by inject()
-val animationDefinitions: WeaponStyleDefinitions by inject()
+val animationDefinitions: AnimationDefinitions by inject()
 
 npcCombatSwing { npc ->
     if (npc.tile.distanceTo(target) > npc.def["attack_radius", 8]) {
