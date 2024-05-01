@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.messages
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -174,7 +175,7 @@ fun Player.npcOption(npc: NPC, option: String) = runTest {
     instructions.send(InteractNPC(npc.index, npc.def.options.indexOf(option) + 1))
 }
 
-fun Player.objectOption(gameObject: GameObject, option: String, optionIndex: Int? = null) = runTest {
+fun Player.objectOption(gameObject: GameObject, option: String = "", optionIndex: Int? = null) = runTest {
     val def = get<ObjectDefinitions>().get(gameObject.intId)
     instructions.send(InteractObject(gameObject.intId, gameObject.tile.x, gameObject.tile.y, (optionIndex ?: def.optionsIndex(option)) + 1))
 }
@@ -184,3 +185,5 @@ fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {
 }
 
 fun Inventory.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }
+
+fun Player.containsMessage(message: String) = messages.any { it.contains(message) }
