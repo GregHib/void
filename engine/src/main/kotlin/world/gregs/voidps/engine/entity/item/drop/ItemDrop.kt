@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.wildcardEquals
 
 data class ItemDrop(
     val id: String,
@@ -59,6 +60,10 @@ data class ItemDrop(
                     val default = map.getOrDefault("default", -1)
                     predicate = { it[variable, default] in range }
                 }
+            } else if (map.containsKey("owns") || map.containsKey("lacks")) {
+                val owns = map["owns"] as? String
+                val lacks = map["lacks"] as? String
+                predicate = { (owns == null || ownsItem(it, owns)) && (lacks == null || !ownsItem(it, lacks)) }
             }
             return ItemDrop(
                 id = id,
@@ -67,6 +72,18 @@ data class ItemDrop(
                 members = map["members"] as? Boolean ?: false,
                 predicate = predicate
             )
+        }
+
+        private val inventories = listOf("inventory", "worn_equipment", "bank")
+
+        private fun ownsItem(player: Player, item: String): Boolean {
+            for (inventory in inventories) {
+                val items = player.inventories.inventory(inventory).items
+                if (items.any { wildcardEquals(item, it.id) }) {
+                    return true
+                }
+            }
+            return false
         }
     }
 }

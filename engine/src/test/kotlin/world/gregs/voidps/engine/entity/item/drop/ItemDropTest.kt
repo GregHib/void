@@ -6,10 +6,14 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.client.variable.Variables
+import world.gregs.voidps.cache.config.data.InventoryDefinition
+import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.restrict.NoRestrictions
+import world.gregs.voidps.engine.inv.stack.ItemDependentStack
 
 class ItemDropTest {
 
@@ -27,9 +31,9 @@ class ItemDropTest {
 
             assertEquals("item", drop.id)
             assertEquals(10..20, drop.amount)
-            val variables = Variables(Player())
+            val variables = Player()
             assertFalse(drop.predicate!!.invoke(variables))
-            variables.set("test", equals)
+            variables["test"] = equals
             assertTrue(drop.predicate!!.invoke(variables))
         }
     }
@@ -49,9 +53,77 @@ class ItemDropTest {
 
             assertEquals("item", drop.id)
             assertEquals(10..20, drop.amount)
-            val variables = Variables(Player())
+            val variables = Player()
             assertTrue(drop.predicate!!.invoke(variables))
         }
+    }
+
+    @Test
+    fun `Item drop with owned item`() {
+        val player = Player()
+        val inventoryDefinitions = InventoryDefinitions(arrayOf(InventoryDefinition(length = 10)))
+        inventoryDefinitions.ids = mapOf("inventory" to 0)
+        player.inventories.definitions = inventoryDefinitions
+        val itemDefinitions = ItemDefinitions(emptyArray()).apply { ids = mapOf("test" to 0) }
+        player.inventories.normalStack = ItemDependentStack(itemDefinitions)
+        player.inventories.validItemRule = NoRestrictions
+        player.inventories.events = player
+        val map = mapOf(
+            "id" to "item",
+            "amount" to 10,
+            "owns" to "test"
+        )
+
+        val drop = ItemDrop(map)
+        assertFalse(drop.predicate!!.invoke(player))
+        assertTrue(player.inventory.add("test"))
+        assertTrue(drop.predicate!!.invoke(player))
+    }
+
+    @Test
+    fun `Item drop lacks item`() {
+        val player = Player()
+        val inventoryDefinitions = InventoryDefinitions(arrayOf(InventoryDefinition(length = 10)))
+        inventoryDefinitions.ids = mapOf("inventory" to 0)
+        player.inventories.definitions = inventoryDefinitions
+        val itemDefinitions = ItemDefinitions(emptyArray()).apply { ids = mapOf("test" to 0) }
+        player.inventories.normalStack = ItemDependentStack(itemDefinitions)
+        player.inventories.validItemRule = NoRestrictions
+        player.inventories.events = player
+        val map = mapOf(
+            "id" to "item",
+            "amount" to 10,
+            "lacks" to "test"
+        )
+
+        val drop = ItemDrop(map)
+        assertTrue(drop.predicate!!.invoke(player))
+        assertTrue(player.inventory.add("test"))
+        assertFalse(drop.predicate!!.invoke(player))
+    }
+
+    @Test
+    fun `Item drop owns and lacks items`() {
+        val player = Player()
+        val inventoryDefinitions = InventoryDefinitions(arrayOf(InventoryDefinition(length = 10)))
+        inventoryDefinitions.ids = mapOf("inventory" to 0)
+        player.inventories.definitions = inventoryDefinitions
+        val itemDefinitions = ItemDefinitions(emptyArray()).apply { ids = mapOf("test" to 0, "unknown" to 1) }
+        player.inventories.normalStack = ItemDependentStack(itemDefinitions)
+        player.inventories.validItemRule = NoRestrictions
+        player.inventories.events = player
+        val map = mapOf(
+            "id" to "item",
+            "amount" to 10,
+            "owns" to "test",
+            "lacks" to "unknown"
+        )
+        val drop = ItemDrop(map)
+        assertFalse(drop.predicate!!.invoke(player))
+        assertTrue(player.inventory.add("test"))
+        assertTrue(drop.predicate!!.invoke(player))
+        assertTrue(player.inventory.add("unknown"))
+        assertFalse(drop.predicate!!.invoke(player))
     }
 
     @Test
@@ -65,11 +137,11 @@ class ItemDropTest {
         )
 
         val drop = ItemDrop(map)
-        val variables = Variables(Player())
+        val variables = Player()
         assertTrue(drop.predicate!!.invoke(variables))
-        variables.set("test", 11)
+        variables["test"] = 11
         assertFalse(drop.predicate!!.invoke(variables))
-        variables.set("test", 10)
+        variables["test"] = 10
         assertTrue(drop.predicate!!.invoke(variables))
     }
 
