@@ -124,8 +124,8 @@ abstract class WorldTest : KoinTest {
         return objects.add(id, tile, shape, rotation)
     }
 
-    fun createFloorItem(id: String, tile: Tile = Tile.EMPTY, amount: Int = 1, revealTicks: Int = FloorItems.NEVER, disappearTicks: Int = FloorItems.NEVER, owner: Player? = null): FloorItem {
-        return floorItems.add(tile, id, amount, revealTicks, disappearTicks, owner)
+    fun createFloorItem(id: String, tile: Tile = Tile.EMPTY, amount: Int = 1, revealTicks: Int = FloorItems.NEVER, disappearTicks: Int = FloorItems.NEVER, charges: Int = 0, owner: Player? = null): FloorItem {
+        return floorItems.add(tile, id, amount, revealTicks, disappearTicks, charges, owner)
     }
 
     fun Inventory.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }
