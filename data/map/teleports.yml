@@ -2309,6 +2309,111 @@
     y: 3924
   delta:
     y: 6400
+######## 12107 ########
+- id: nature_rift
+  option: Exit-through
+  tile:
+    x: 3035
+    y: 4842
+  to:
+    x: 2400
+    y: 4844
+- id: cosmic_rift
+  option: Exit-through
+  tile:
+    x: 3028
+    y: 4837
+  to:
+    x: 2142
+    y: 4836
+- id: blood_rift
+  option: Exit-through
+  tile:
+    x: 3027
+    y: 4834
+  to:
+    x: 0
+    y: 0
+- id: fire_rift
+  option: Exit-through
+  tile:
+    x: 3029
+    y: 4830
+  to:
+    x: 0
+    y: 0
+- id: earth_rift
+  option: Exit-through
+  tile:
+    x: 3031
+    y: 4825
+  to:
+    x: 0
+    y: 0
+- id: body_rift
+  option: Exit-through
+  tile:
+    x: 3039
+    y: 4821
+  to:
+    x: 0
+    y: 0
+- id: mind_rift
+  option: Exit-through
+  tile:
+    x: 3044
+    y: 4822
+  to:
+    x: 2784
+    y: 4843
+- id: air_rift
+  option: Exit-through
+  tile:
+    x: 3047
+    y: 4825
+  to:
+    x: 0
+    y: 0
+- id: soul_rift
+  option: Exit-through
+  tile:
+    x: 3050
+    y: 4829
+  to:
+    x: 0
+    y: 0
+- id: water_rift
+  option: Exit-through
+  tile:
+    x: 3051
+    y: 4833
+  to:
+    x: 2714
+    y: 4838
+- id: death_rift
+  option: Exit-through
+  tile:
+    x: 3050
+    y: 4837
+  to:
+    x: 0
+    y: 0
+- id: law_rift
+  option: Exit-through
+  tile:
+    x: 3049
+    y: 4839
+  to:
+    x: 0
+    y: 0
+- id: chaos_rift
+  option: Exit-through
+  tile:
+    x: 3044
+    y: 4842
+  to:
+    x: 0
+    y: 0
 ######## 12181 ########
 - id: 32015
   option: Climb-up
