@@ -188,10 +188,11 @@ class Events(
     }
 
     private fun matches(key: Any?, param: Any?): Boolean {
-        return when (key) {
-            is String -> param is String && wildcardEquals(key, param)
-            is Set<*> -> key.contains(param)
-            is Area -> param is Tile && key.contains(param)
+        return when {
+            key is String && param is String -> wildcardEquals(key, param)
+            param is Set<*> -> param.contains(key)
+            key is Set<*> -> key.contains(param)
+            key is Area -> param is Tile && key.contains(param)
             else -> key == param
         }
     }

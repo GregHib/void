@@ -31,7 +31,7 @@ val Character.inWilderness: Boolean
     get() = get("in_wilderness", false)
 
 val Character.inMultiCombat: Boolean
-    get() = softTimers.contains("in_multi_combat")
+    get() = contains("in_multi_combat")
 
 val Character.inSingleCombat: Boolean
     get() = !inMultiCombat
