@@ -1682,3 +1682,12 @@ stomp_eyes: 794
 abyss_kneel: 1331
 abyss_stand: 1332
 crawling_cave: 844
+abyssal_leech_hit: 2182
+abyssal_leech_attack: 2181
+abyssal_leech_death: 2183
+abyssal_guardian_hit: 2188
+abyssal_guardian_attack: 2186
+abyssal_guardian_death: 2189
+abyssal_walker_hit: 2192
+abyssal_walker_attack: 2193
+abyssal_walker_death: 2194
