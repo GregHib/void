@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.consume
+package world.gregs.voidps.world.interact.entity.item
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -6,18 +6,19 @@ import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 
-data class Consume(val item: Item, val slot: Int) : CancellableEvent() {
+data class Destroyed(val item: Item) : CancellableEvent() {
+
     override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "consume"
+        0 -> "destroy"
         1 -> item.id
         else -> null
     }
 }
 
-fun consume(vararg items: String = arrayOf("*"), handler: Consume.(Player) -> Unit) {
+fun destroyed(vararg items: String = arrayOf("*"), handler: Destroyed.(Player) -> Unit) {
     for (item in items) {
-        Events.handle("consume", item, handler = handler)
+        Events.handle("destroy", item, handler = handler)
     }
 }

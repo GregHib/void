@@ -46,3 +46,12 @@ fun inventoryItem(option: String = "*", item: String = "*", inventory: String = 
         handler.invoke(this)
     }
 }
+
+fun inventoryItem(option: String = "*", vararg items: String = arrayOf("*"), inventory: String = "*", block: suspend InventoryOption.() -> Unit) {
+    val handler: suspend InventoryOption.(EventDispatcher) -> Unit = {
+        block.invoke(this)
+    }
+    for (item in items) {
+        Events.handle("inventory_option", option, item, inventory, handler = handler)
+    }
+}

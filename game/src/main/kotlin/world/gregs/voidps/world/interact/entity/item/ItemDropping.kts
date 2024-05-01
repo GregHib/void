@@ -13,12 +13,18 @@ val logger = InlineLogger()
 
 inventoryOption("Drop", "inventory") {
     player.queue.clearWeak()
+    val event = Droppable(item)
+    player.emit(event)
+    if (event.cancelled) {
+        return@inventoryOption
+    }
     if (player.inventory.remove(slot, item.id, item.amount)) {
         if (item.tradeable) {
             floorItems.add(player.tile, item.id, item.amount, revealTicks = 100, disappearTicks = 200, owner = player)
         } else {
             floorItems.add(player.tile, item.id, item.amount, revealTicks = FloorItems.NEVER, disappearTicks = 300, owner = player)
         }
+        player.emit(Dropped(item))
         player.playSound("drop_item")
     } else {
         logger.info { "Error dropping item $item for $player" }

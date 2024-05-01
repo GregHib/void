@@ -2,12 +2,11 @@ package world.gregs.voidps.world.activity.skill
 
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.ui.event.IntEntered
-import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.script.WorldTest
+import world.gregs.voidps.world.script.itemOnItem
 import kotlin.test.assertEquals
 
 class ItemOnItemsTest : WorldTest() {
@@ -19,18 +18,7 @@ class ItemOnItemsTest : WorldTest() {
         player.inventory.add("cake", 14)
         player.inventory.add("chocolate_dust", 14)
 
-        player.emit(ItemOnItem(
-            fromItem = Item("cake"),
-            toItem = Item("chocolate_dust"),
-            fromSlot = 12,
-            toSlot = 14,
-            fromInterface = "inventory",
-            fromComponent = "inventory",
-            toInterface = "inventory",
-            toComponent = "inventory",
-            fromInventory = "inventory",
-            toInventory = "inventory",
-        ))
+        player.itemOnItem(12, 14)
         val amount = 14
         tick(1)
         player["skill_creation_amount"] = amount
@@ -49,18 +37,8 @@ class ItemOnItemsTest : WorldTest() {
         player.inventory.add("cake", 14)
         player.inventory.add("chocolate_dust", 14)
 
-        player.emit(ItemOnItem(
-            fromItem = Item("cake"),
-            toItem = Item("chocolate_dust"),
-            fromSlot = 12,
-            toSlot = 14,
-            fromInterface = "inventory",
-            fromComponent = "inventory",
-            toInterface = "inventory",
-            toComponent = "inventory",
-            fromInventory = "inventory",
-            toInventory = "inventory",
-        ))
+        player.itemOnItem(12, 14)
+
         val amount = 5
         tick(1)
         player["skill_creation_amount"] = amount
@@ -79,18 +57,7 @@ class ItemOnItemsTest : WorldTest() {
         player.inventory.add("cake", 1)
         player.inventory.add("chocolate_dust", 2)
 
-        player.emit(ItemOnItem(
-            fromItem = Item("cake"),
-            toItem = Item("chocolate_dust"),
-            fromSlot = 0,
-            toSlot = 1,
-            fromInterface = "inventory",
-            fromComponent = "inventory",
-            toInterface = "inventory",
-            toComponent = "inventory",
-            fromInventory = "inventory",
-            toInventory = "inventory",
-        ))
+        player.itemOnItem(0, 1)
         val amount = 2
         tick(1)
         player["skill_creation_amount"] = amount
@@ -101,4 +68,22 @@ class ItemOnItemsTest : WorldTest() {
         assertEquals(1, player.inventory.count("chocolate_dust"))
         assertEquals(1, player.inventory.count("chocolate_cake"))
     }
+
+    @Test
+    fun `Stackable item on item creation with full inventory of items`() {
+        val player = createPlayer("player")
+        player.levels.set(Skill.Fletching, 50)
+        player.inventory.add("opal_bolt_tips", 10)
+        player.inventory.add("bronze_bolts", 10)
+        player.inventory.add("opal_bolts", 10)
+        player.inventory.add("shark", 25)
+
+        player.itemOnItem(0, 1)
+        tick(2)
+
+        assertEquals(0, player.inventory.count("opal_bolt_tips"))
+        assertEquals(0, player.inventory.count("bronze_bolts"))
+        assertEquals(20, player.inventory.count("opal_bolts"))
+    }
+
 }

@@ -10050,6 +10050,7 @@ raw_potato:
     cooked: baked_potato
     cooked_message: "You successfully bake a potato."
     burnt_message: "You accidentally burn the potato."
+  aka: [ potato ]
   examine: "This could be used to make a good stew."
   kept: "Wilderness"
 potato_noted: 1943
@@ -23781,184 +23782,154 @@ empty_sack_noted: 5419
 potatoes_1:
   id: 5420
   weight: 0.907
-  empty: empty_sack
   examine: "There is 1 potato in this sack."
 potatoes_1_noted: 5421
 potatoes_2:
   id: 5422
   weight: 1.36
-  empty: empty_sack
   examine: "There are 2 potatoes in this sack."
 potatoes_2_noted: 5423
 potatoes_3:
   id: 5424
   weight: 1.814
-  empty: empty_sack
   examine: "There are 3 potatoes in this sack."
 potatoes_3_noted: 5425
 potatoes_4:
   id: 5426
   weight: 2.267
-  empty: empty_sack
   examine: "There are 4 potatoes in this sack."
 potatoes_4_noted: 5427
 potatoes_5:
   id: 5428
   weight: 2.721
-  empty: empty_sack
   examine: "There are 5 potatoes in this sack."
 potatoes_5_noted: 5429
 potatoes_6:
   id: 5430
   weight: 3.175
-  empty: empty_sack
   examine: "There are 6 potatoes in this sack."
 potatoes_6_noted: 5431
 potatoes_7:
   id: 5432
   weight: 3.628
-  empty: empty_sack
   examine: "There are 7 potatoes in this sack."
 potatoes_7_noted: 5433
 potatoes_8:
   id: 5434
   weight: 4.082
-  empty: empty_sack
   examine: "There are 8 potatoes in this sack."
 potatoes_8_noted: 5435
 potatoes_9:
   id: 5436
   weight: 4.535
-  empty: empty_sack
   examine: "There are 9 potatoes in this sack."
 potatoes_9_noted: 5437
 potatoes_10:
   id: 5438
   price: 536
   weight: 4.989
-  empty: empty_sack
   examine: "There are 10 potatoes in this sack."
 potatoes_10_noted: 5439
 onions_1:
   id: 5440
   weight: 0.907
-  empty: empty_sack
   examine: "There is 1 onion in this sack."
 onions_1_noted: 5441
 onions_2:
   id: 5442
   weight: 1.36
-  empty: empty_sack
   examine: "There are 2 onions in this sack."
 onions_2_noted: 5443
 onions_3:
   id: 5444
   weight: 1.814
-  empty: empty_sack
   examine: "There are 3 onions in this sack."
 onions_3_noted: 5445
 onions_4:
   id: 5446
   weight: 2.267
-  empty: empty_sack
   examine: "There are 4 onions in this sack."
 onions_4_noted: 5447
 onions_5:
   id: 5448
   weight: 2.721
-  empty: empty_sack
   examine: "There are 5 onions in this sack."
 onions_5_noted: 5449
 onions_6:
   id: 5450
   weight: 3.175
-  empty: empty_sack
   examine: "There are 6 onions in this sack."
 onions_6_noted: 5451
 onions_7:
   id: 5452
   weight: 3.628
-  empty: empty_sack
   examine: "There are 7 onions in this sack."
 onions_7_noted: 5453
 onions_8:
   id: 5454
   weight: 4.082
-  empty: empty_sack
   examine: "There are 8 onions in this sack."
 onions_8_noted: 5455
 onions_9:
   id: 5456
   weight: 4.535
-  empty: empty_sack
   examine: "There are 9 onions in this sack."
 onions_9_noted: 5457
 onions_10:
   id: 5458
   price: 500
   weight: 4.989
-  empty: empty_sack
   examine: "There are 10 onions in this sack."
 onions_10_noted: 5459
-cabbages_sack_1:
+cabbages_1:
   id: 5460
   weight: 0.907
-  empty: empty_sack
   examine: "There is 1 cabbage in this sack."
 cabbages_1_noted: 5461
-cabbages_sack_2:
+cabbages_2:
   id: 5462
   weight: 1.36
-  empty: empty_sack
   examine: "There are 2 cabbages in this sack."
 cabbages_2_noted: 5463
-cabbages_sack_3:
+cabbages_3:
   id: 5464
   weight: 1.814
-  empty: empty_sack
   examine: "There are 3 cabbages in this sack."
 cabbages_3_noted: 5465
-cabbages_sack_4:
+cabbages_4:
   id: 5466
   weight: 2.267
-  empty: empty_sack
   examine: "There are 4 cabbages in this sack."
 cabbages_4_noted: 5467
-cabbages_sack_5:
+cabbages_5:
   id: 5468
   weight: 2.721
-  empty: empty_sack
   examine: "There are 5 cabbages in this sack."
 cabbages_5_noted: 5469
-cabbages_sack_6:
+cabbages_6:
   id: 5470
   weight: 3.175
-  empty: empty_sack
   examine: "There are 6 cabbages in this sack."
 cabbages_6_noted: 5471
-cabbages_sack_7:
+cabbages_7:
   id: 5472
   weight: 3.628
-  empty: empty_sack
   examine: "There are 7 cabbages in this sack."
 cabbages_7_noted: 5473
-cabbages_sack_8:
+cabbages_8:
   id: 5474
   weight: 4.082
-  empty: empty_sack
   examine: "There are 8 cabbages in this sack."
 cabbages_8_noted: 5475
-cabbages_sack_9:
+cabbages_9:
   id: 5476
   weight: 4.535
-  empty: empty_sack
   examine: "There are 9 cabbages in this sack."
 cabbages_9_noted: 5477
-cabbages_sack_10:
+cabbages_10:
   id: 5478
   price: 698
   weight: 4.989
-  empty: empty_sack
   examine: "There are 10 cabbages in this sack."
 cabbages_10_noted: 5479
 apple_seedling:
@@ -24120,32 +24091,44 @@ small_pouch:
   tradeable: false
   weight: 1.0
   destroy: "Your item will be destroyed permanently and it may not be reclaimable."
-  examine: "A small pouch used for storing essence."
   kept: "Vanish"
+  examine: "A small pouch used for storing essence."
 medium_pouch:
   id: 5510
+  charges: 45
+  degrade: medium_pouch_damaged
+  weight: 1.0
   examine: "A medium-sized pouch used for storing essence."
-  weight: 1.0
-medium_pouch_2:
+medium_pouch_damaged:
   id: 5511
-  examine: "A damaged medium-sized pouch used for storing essence."
+  charges: 20
+  degrade: destroy
   weight: 1.0
+  examine: "A damaged medium-sized pouch used for storing essence."
 large_pouch:
   id: 5512
+  charges: 29
+  degrade: large_pouch_damaged
+  weight: 1.0
   examine: "A large pouch used for storing essence."
-  weight: 1.0
-large_pouch_2:
+large_pouch_damaged:
   id: 5513
-  examine: "A large damaged pouch used for storing essence."
+  charges: 20
+  degrade: destroy
   weight: 1.0
+  examine: "A large damaged pouch used for storing essence."
 giant_pouch:
   id: 5514
+  charges: 10
+  degrade: giant_pouch_damaged
+  weight: 1.0
   examine: "A giant-sized pouch used for storing essence."
-  weight: 1.0
-giant_pouch_2:
+giant_pouch_damaged:
   id: 5515
-  examine: "A damaged giant-sized pouch used for storing essence."
+  charges: 20
+  degrade: destroy
   weight: 1.0
+  examine: "A damaged giant-sized pouch used for storing essence."
 elemental_talisman:
   id: 5516
   price: 22700
@@ -46570,6 +46553,8 @@ tea_flask:
   tradeable: false
   bank_stacks: false
   weight: 0.1
+  charges: 0
+  charges_max: 5
   examine: "You can put nice, hot tea in it."
   kept: "Wilderness"
 tea_flask_2:
@@ -46679,6 +46664,8 @@ plain_satchel:
   tradeable: false
   bank_stacks: false
   weight: 0.15
+  charges: 0
+  charges_max: 7
   slot: "Shield"
   examine: "I can keep my grub in here!"
   kept: "Reclaim"
@@ -46687,6 +46674,8 @@ green_satchel:
   tradeable: false
   bank_stacks: false
   weight: 0.15
+  charges: 0
+  charges_max: 7
   aka: [ adamant_satchel ]
   slot: "Shield"
   examine: "I can keep my grub in here!"
@@ -46695,6 +46684,8 @@ red_satchel:
   id: 10879
   tradeable: false
   bank_stacks: false
+  charges: 0
+  charges_max: 7
   weight: 0.15
   slot: "Shield"
   examine: "I can keep my grub in here!"
@@ -46703,6 +46694,8 @@ black_satchel:
   id: 10880
   tradeable: false
   bank_stacks: false
+  charges: 0
+  charges_max: 7
   weight: 0.15
   slot: "Shield"
   examine: "I can keep my grub in here!"
@@ -46711,6 +46704,8 @@ gold_satchel:
   id: 10881
   tradeable: false
   bank_stacks: false
+  charges: 0
+  charges_max: 7
   weight: 0.15
   slot: "Shield"
   examine: "I can keep my grub in here!"
@@ -46719,6 +46714,8 @@ rune_satchel:
   id: 10882
   tradeable: false
   bank_stacks: false
+  charges: 0
+  charges_max: 7
   weight: 0.15
   slot: "Shield"
   examine: "I can keep my grub in here!"
