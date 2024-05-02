@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.activity.skill.firemaking
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnItem
+import world.gregs.voidps.engine.client.ui.interact.itemOnItems
 import world.gregs.voidps.engine.data.definition.data.LightSources
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -10,12 +10,25 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
+val acceptedUnlitSource = arrayOf(
+    "oil_lamp_oil",
+    "candle_lantern_white",
+    "candle_lantern_black",
+    "oil_lantern_oil",
+    "bullseye_lantern_oil",
+    "sapphire_lantern_oil",
+    "mining_helmet",
+    "emerald_lantern",
+    "white_candle",
+    "black_candle",
+    "unlit_torch"
+)
 
-itemOnItem("tinderbox*") {
-    val needsFlame: LightSources = toItem.def.getOrNull("light_source") ?: return@itemOnItem
+itemOnItems(arrayOf("tinderbox*"), acceptedUnlitSource) {
+    val needsFlame: LightSources = toItem.def.getOrNull("light_source") ?: return@itemOnItems
 
     if (!it.has(Skill.Firemaking, needsFlame.level, true)) {
-        return@itemOnItem
+        return@itemOnItems
     }
 
     it.inventory.transaction {
@@ -29,6 +42,7 @@ itemOnItem("tinderbox*") {
 
 inventoryItem("Extinguish") {
     val toExtinguish: LightSources = item.def.getOrNull("light_source") ?: return@inventoryItem
+
     player.inventory.transaction {
         replace(item.id, toExtinguish.onceExtinguish)
     }
