@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
@@ -201,11 +202,19 @@ itemChange("inventory") { player: Player ->
 
 fun hasLightSource(player: Player): Boolean {
     val playerItems = player.inventory.items
+    val playerEquipment = player.equipment.items
 
     for (item in playerItems) {
-        if (item.id.endsWith("lantern_lit") || item.id.endsWith("candle_lit")) {
+        if (item.id.endsWith("lantern_lit") || item.id.endsWith("candle_lit") || item.id == "firemaking_cape_t" || item.id == "firemaking_cape") {
             return true
         }
     }
+
+    for (equipmentItem in playerEquipment) {
+        if (equipmentItem.id == "firemaking_cape" || equipmentItem.id == "firemaking_cape_t") {
+            return true
+        }
+    }
+
     return false
 }
