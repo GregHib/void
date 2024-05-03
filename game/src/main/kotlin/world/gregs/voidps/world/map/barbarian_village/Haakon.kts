@@ -16,7 +16,7 @@ npcOperate("Talk-to", "haakon_the_champion") {
 val validStages = setOf("tell_gudrun", "write_poem", "more_poem", "one_more_poem", "poem_done", "poem", "recital", "gunnars_ground")
 
 suspend fun TargetNPCContext.menu() {
-    npc<Furious>("I am Haakon, champion of this village. Do you seek to challenge me?")
+    npc<Angry>("I am Haakon, champion of this village. Do you seek to challenge me?")
     choice {
         option<Talking>("I challenge you!") {
             attack()
@@ -26,7 +26,7 @@ suspend fun TargetNPCContext.menu() {
                 npc<Frustrated>("There is no argument. I honour my father and my ancestors.")
                 choice {
                     option<Talking>("Don't you want to settle permanently?") {
-                        npc<Furious>("You test my patience by quuestioning my loyalty to my chieftain. Take up my challenge, outerlander, that I might honourably split your skull open..")
+                        npc<Angry>("You test my patience by quuestioning my loyalty to my chieftain. Take up my challenge, outerlander, that I might honourably split your skull open..")
                         choice {
                             option<Talking>("I'll take your challenge!") {
                                 attack()

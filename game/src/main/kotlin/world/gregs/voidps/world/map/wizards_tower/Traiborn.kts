@@ -65,7 +65,7 @@ suspend fun PlayerChoice.thingummywut(): Unit = option<Uncertain>("What's a thin
             npc<Uncertain>("Now you are my proof! There ARE thingummywuts in this tower. Now where can I find a cage big enough to keep you?")
             betterBeOffChoice()
         }
-        option<Furious>("Tell me what they look like and I'll mash 'em.") {
+        option<Angry>("Tell me what they look like and I'll mash 'em.") {
             npc<Uncertain>("Don't be ridiculous. No-one has ever seen one.")
             npc<Uncertain>("They're invisible, or a myth, or a figment of my imagination. Can't remember which right now.")
         }
@@ -80,7 +80,7 @@ suspend fun PlayerChoice.teachMe(): Unit = option<Talk>("Teach me to be a mighty
     npc<Uncertain>("Wizard eh? You don't want any truck with that sort. They're not to be trusted. That's what I've heard anyways.")
     choice {
         option<Unsure>("So aren't you a wizard?") {
-            npc<Furious>("How dare you? Of course I'm a wizard. Now don't be so cheeky or I'll turn you into a frog.")
+            npc<Angry>("How dare you? Of course I'm a wizard. Now don't be so cheeky or I'll turn you into a frog.")
         }
         option<Talk>("Oh I'd better stop talking to you then.") {
             npc<Talking>("Cheerio then. It was nice chatting to you.")

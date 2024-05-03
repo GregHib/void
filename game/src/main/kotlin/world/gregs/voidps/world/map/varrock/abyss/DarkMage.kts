@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.dialogue.type.*
 
 npcOperate("Talk-to", "dark_mage") {
     player<Talk>("Hello there.")
-    npc<Furious>("Quiet! You must not break my concentration!")
+    npc<Angry>("Quiet! You must not break my concentration!")
     choice {
         whyNot()
         whyAreYouHere()
@@ -31,9 +31,9 @@ npcOperate("Repair-pouches", "dark_mage") {
         }
     }
     if (success && repaired) {
-        npc<Furious>("There, I have repaired your pouches. Now leave me alone. I'm concentrating!")
+        npc<Angry>("There, I have repaired your pouches. Now leave me alone. I'm concentrating!")
     } else {
-        npc<Furious>("You don't seem to have any pouches in need of repair.<br>Leave me alone!")
+        npc<Angry>("You don't seem to have any pouches in need of repair.<br>Leave me alone!")
     }
 }
 
@@ -44,7 +44,7 @@ fun ChoiceBuilder<NPCOption>.whyNot() {
         npc<Talk>("If we are lucky, the heads of anyone within the Abyss will suddenly explode, including us.")
         player<Uncertain>("Err... And if we're unlucky?")
         npc<Talk>("If we are unlucky, then the entire universe will begin to fold in upon itself, and all reality as we know it will be annihilated in a single stroke.")
-        npc<Furious>("So leave me alone!")
+        npc<Angry>("So leave me alone!")
         choice {
             whyAreYouHere()
             needHelp()
@@ -59,7 +59,7 @@ fun ChoiceBuilder<NPCOption>.whyAreYouHere() {
         player<Uncertain>("Err... The first one.")
         player<Talk>("By remaining here and holding this rift open, I am providing a permanent link between normal space and this strange dimension.")
         npc<Talk>("As long as my spell remains in effect, we have the capability to teleport into the Abyss.")
-        npc<Furious>("Now leave me be! I can afford no distraction in my task!")
+        npc<Angry>("Now leave me be! I can afford no distraction in my task!")
         choice {
             whyNot()
             needHelp()
@@ -70,14 +70,14 @@ fun ChoiceBuilder<NPCOption>.whyAreYouHere() {
 
 fun ChoiceBuilder<NPCOption>.needHelp() {
     option<Talk>("I need your help with something.") {
-        npc<Furious>("What? Oh... very well. What did you want?")
+        npc<Angry>("What? Oh... very well. What did you want?")
         choice {
             option<Unsure>("Can I have another Abyssal book?") {
                 if (player.ownsItem("abyssal_book")) {
                     // TODO
                 } else {
                     if (player.inventory.isFull()) {
-                        npc<Furious>("Don't waste my time if you don't have enough free space to take it.")
+                        npc<Angry>("Don't waste my time if you don't have enough free space to take it.")
                     } else {
                         npc<Talk>("Here, take it. It is important to pool our research.")
                         item("abyssal_book", 400, "You have been given a book.")
@@ -92,7 +92,7 @@ fun ChoiceBuilder<NPCOption>.needHelp() {
             }
             askForPouch()
             option<Talk>("Actually, I don't need anything right now.") {
-                npc<Furious>("Then go away! Honestly, you have no idea of the pressure I am under. I can't afford any distractions!")
+                npc<Angry>("Then go away! Honestly, you have no idea of the pressure I am under. I can't afford any distractions!")
             }
         }
     }
@@ -100,14 +100,14 @@ fun ChoiceBuilder<NPCOption>.needHelp() {
 
 fun ChoiceBuilder<NPCOption>.illGo() {
     option<Upset>("Sorry, I'll go.") {
-        npc<Furious>("Good. I'm attempting to subdue the elemental mechanisms of the universe to my will. Inane chatter from random idiots is not helping me achieve this!")
+        npc<Angry>("Good. I'm attempting to subdue the elemental mechanisms of the universe to my will. Inane chatter from random idiots is not helping me achieve this!")
     }
 }
 
 fun ChoiceBuilder<NPCOption>.askForPouch() {
     option<Unsure>("Can I have a new essence pouch?") {
         if (player.ownsItem("small_pouch")) {
-            npc<Furious>("You already have a Pouch. Are you aware of the dimensional turmoil you can cause by using too many pouches at the same time?")
+            npc<Angry>("You already have a Pouch. Are you aware of the dimensional turmoil you can cause by using too many pouches at the same time?")
         } else {
             npc<Talk>("Here. Be more careful with your belongings in future.")
             item("small_pouch", 400, "You have been given a pouch.")

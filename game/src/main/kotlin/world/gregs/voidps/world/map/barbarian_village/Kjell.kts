@@ -4,8 +4,8 @@ import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.quest.quest
+import world.gregs.voidps.world.interact.dialogue.Angry
 import world.gregs.voidps.world.interact.dialogue.Frustrated
-import world.gregs.voidps.world.interact.dialogue.Furious
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Talking
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -32,10 +32,10 @@ suspend fun CharacterContext.completed() {
         7 -> "...when you gonna realise..."
         else -> "...fall for pretty strangers..."
     })
-    npc<Furious>("Blast!")
+    npc<Angry>("Blast!")
     choice {
         option<Talking>("Having trouble there?") {
-            npc<Furious>("I don't need the advice of an outerlander.")
+            npc<Angry>("I don't need the advice of an outerlander.")
             advice()
         }
         option<Talking>("I'll leave you in peace.") {
@@ -46,13 +46,13 @@ suspend fun CharacterContext.completed() {
 suspend fun CharacterContext.advice() {
     choice {
         option<Talking>("This music isn't very restful.") {
-            npc<Furious>("Get out of here!")
+            npc<Angry>("Get out of here!")
         }
         option<Talking>("Maybe you should take some lessons.") {
-            npc<Furious>("Get out of here!")
+            npc<Angry>("Get out of here!")
         }
         option<Talking>("I'll leave you in peace.") {
-            npc<Furious>("Get out of here!")
+            npc<Angry>("Get out of here!")
         }
     }
 }

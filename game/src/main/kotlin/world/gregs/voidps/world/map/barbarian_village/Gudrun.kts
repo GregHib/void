@@ -288,7 +288,7 @@ suspend fun CharacterContext.poem() {
 suspend fun CharacterContext.whatHeSay() {
     npc<Unsure>("What did he say?")
     player<Talk>("He mentioned someone called Gunnar, and that you should think about his feelings.")
-    npc<Furious>("By the eyeballs of Guthix! Always Gunnar!")
+    npc<Angry>("By the eyeballs of Guthix! Always Gunnar!")
     choice {
         option<Talking>("Who is Gunnar?") {
             npc<Frustrated>("He was my great-grandpapa! He founded this village a hundred years ago.")

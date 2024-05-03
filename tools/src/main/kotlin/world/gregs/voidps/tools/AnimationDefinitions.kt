@@ -33,7 +33,7 @@ object AnimationDefinitions {
             605, 606, 607, 608 -> "chuckle"
             609 -> "evil_laugh"
             610, 611, 612, 613 -> "upset"
-            614, 615, 616, 617 -> "furious"
+            614, 615, 616, 617 -> "angry"
             else -> id.toString()
         }
     }

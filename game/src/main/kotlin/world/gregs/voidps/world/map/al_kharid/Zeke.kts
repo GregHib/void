@@ -23,7 +23,7 @@ npcOperate("Talk-to", "zeke") {
         option<Unsure>("Could you sell me a dragon scimitar?") {
             npc<Frustrated>("A dragon scimitar? A DRAGON scimitar?")
             npc<Frustrated>("No way, man!")
-            npc<Furious>("The banana-brained nitwits who make them would never dream of selling any to me.")
+            npc<Angry>("The banana-brained nitwits who make them would never dream of selling any to me.")
             npc<Sad>("Seriously, you'll be a monkey's uncle before you'll ever hold a dragon scimitar.")
             if (player.quest("monkey_madness") == "completed") {
                 player<Uncertain>("Hmmm, funny you should say that...")

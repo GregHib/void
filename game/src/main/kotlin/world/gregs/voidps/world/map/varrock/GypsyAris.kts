@@ -237,7 +237,7 @@ suspend fun CharacterContext.cutscene() {
     player.turnCamera(Tile(3227, 3367).add(offset), height = 100, constantSpeed = 1, variableSpeed = 10)
     player.shakeCamera(type = 3, intensity = 0, movement = 0, speed = 0, cycle = 0)
     player.playSound("rumbling")
-    npc<Furious>("wally", "Die, foul demon!", clickToContinue = false)
+    npc<Angry>("wally", "Die, foul demon!", clickToContinue = false)
     player.tele(Tile(3225, 3363).add(offset), clearInterfaces = false)
 
     delay(2)
@@ -365,7 +365,7 @@ suspend fun PlayerChoice.incantationReminder(): Unit = option("What is the magic
     }
 }
 
-suspend fun PlayerChoice.stopCallingMeThat(): Unit = option<Furious>("Stop calling me that!") {
+suspend fun PlayerChoice.stopCallingMeThat(): Unit = option<Angry>("Stop calling me that!") {
     npc<Talk>("In the scheme of things you are very young.")
     choice {
         option<Talk>("Ok but how old are you?") {

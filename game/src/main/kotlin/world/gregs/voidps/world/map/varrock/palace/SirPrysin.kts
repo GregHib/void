@@ -35,9 +35,9 @@ npcOperate("Talk-to", "sir_prysin") {
             }
             player<Upset>("Not yet. And I, um, lost Silverlight.")
             if (player.inventory.add("silverlight")) {
-                npc<Furious>("Yes, I know, someone returned it to me. Take better care of it this time.")
+                npc<Angry>("Yes, I know, someone returned it to me. Take better care of it this time.")
             } else {
-                npc<Furious>("Yes, I know, someone returned it to me. I'll keep it until you have free inventory space.")
+                npc<Angry>("Yes, I know, someone returned it to me. I'll keep it until you have free inventory space.")
             }
         }
         "completed" -> {
@@ -101,7 +101,7 @@ suspend fun CharacterContext.problemIs() {
     npc<Talk>("Oh I do have it, but it is so powerful that the king made me put it in a special box which needs three different keys to open it. That way it won't fall into the wrong hands.")
     choice {
         option("So give me the keys!") {
-            player<Furious>("So give me the keys!")
+            player<Angry>("So give me the keys!")
             npc<Upset>("Um, well, it's not so easy.")
             theKeys()
         }

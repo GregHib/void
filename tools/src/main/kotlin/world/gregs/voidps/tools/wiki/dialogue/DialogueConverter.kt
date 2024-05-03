@@ -275,7 +275,7 @@ object DialogueConverter {
             605, 606, 607, 608 -> "Chuckle"
             609 -> "EvilLaugh"
             610, 611, 612, 613 -> "Upset"
-            614, 615, 616, 617 -> "Furious"
+            614, 615, 616, 617 -> "Angry"
             else -> animation.toString()
         }
     }

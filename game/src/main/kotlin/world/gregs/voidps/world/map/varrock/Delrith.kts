@@ -242,7 +242,7 @@ npcOperate("*", "delrith") {
         return@npcOperate
     }
     player.weakQueue("banish_delrith") {
-        player<Furious>("Now what was that incantation again?")
+        player<Angry>("Now what was that incantation again?")
         var correct = true
         repeat(5) { index ->
             val choice = choice(listOf("Carlem", "Aber", "Camerinthum", "Purchai", "Gabindo"))
