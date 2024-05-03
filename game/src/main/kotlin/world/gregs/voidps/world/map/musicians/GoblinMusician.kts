@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.world.interact.dialogue.CheerfulOld
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.NeutralOld
-import world.gregs.voidps.world.interact.dialogue.Unsure
+import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -16,7 +16,7 @@ npcOperate("Talk-to", "goblin_musician") {
 
 suspend fun CharacterContext.choice() {
     choice {
-        option<Unsure>("Who are you?") {
+        option<Quiz>("Who are you?") {
             npc<CheerfulOld>("Me? Thump-Thump. Me make thump-thumps with thump-thump drum. Other goblins listen.")
             choice()
         }
@@ -29,7 +29,7 @@ suspend fun CharacterContext.choice() {
 
 suspend fun CharacterContext.resting() {
     choice("Can I ask you some questions about resting?") {
-        option<Unsure>("How does resting work?") {
+        option<Quiz>("How does resting work?") {
             npc<NeutralOld>("You stoopid. Goblin sit down, goblin rest, goblin feel better.")
             resting()
         }
@@ -45,6 +45,6 @@ suspend fun CharacterContext.resting() {
     }
 }
 
-suspend fun PlayerChoice.exit(): Unit = option<Unsure>("That's all for now.") {
+suspend fun PlayerChoice.exit(): Unit = option<Quiz>("That's all for now.") {
     npc<CheerfulOld>("You listen to boom boom. Good!")
 }

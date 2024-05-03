@@ -50,7 +50,7 @@ suspend fun PlayerChoice.replacementSword() = option<Cheerful>(
     "Can you make that replacement sword now?",
     { !player.holdsItem("blurite_sword") }
 ) {
-    npc<UnsureOld>("How are you doing finding those sword materials?")
+    npc<QuizOld>("How are you doing finding those sword materials?")
     if (player.inventory.contains(items)) {
         player<Neutral>("I have them right here.")
         player.inventory.transaction {
@@ -103,7 +103,7 @@ suspend fun Interaction.menu() {
 suspend fun PlayerChoice.specialSword() = option<Cheerful>("Can you make a special sword for me?") {
     npc<NeutralOld>("Well, after bringing me my favorite food I guess I should give it a go. What sort of sword is it?")
     player<Neutral>("I need you to make a sword for one of Falador's knights. He had one which was passed down through five generations, but his squire has lost it.")
-    player<Unsure>("So we need an identical one to replace it.")
+    player<Quiz>("So we need an identical one to replace it.")
     npc<NeutralOld>("A knight's sword eh? Well, I'd need to know exactly how it looked before I could make a new one.")
     player["the_knights_sword"] = "picture"
     npc<NeutralOld>("All the Faladian knights used to have swords with unique designs according to their position. Could you bring me a picture or something?")
@@ -111,7 +111,7 @@ suspend fun PlayerChoice.specialSword() = option<Cheerful>("Can you make a speci
 }
 
 suspend fun PlayerChoice.aboutSword() = option<Cheerful>("About that sword...") {
-    npc<UnsureOld>("Have you got a picture of the sword for me yet?")
+    npc<QuizOld>("Have you got a picture of the sword for me yet?")
     if (!player.holdsItem("portrait")) {
         player<Sad>("Sorry, not yet.")
         npc<NeutralOld>("Well, come back when you do.")
@@ -137,7 +137,7 @@ suspend fun PlayerChoice.imcandoDwarf() = option<Cheerful>("Are you an Imcando d
     }
 }
 
-suspend fun PlayerChoice.redberryPie(): Unit = option<Unsure>(
+suspend fun PlayerChoice.redberryPie(): Unit = option<Quiz>(
     "Would you like a redberry pie?",
     { player.holdsItem("redberry_pie") }
 ) {
@@ -156,7 +156,7 @@ suspend fun PlayerChoice.whatCape() = option("What is that cape you're wearing?"
 }
 
 suspend fun CharacterContext.thatCape() {
-    player<Unsure>("What is that cape you're wearing?")
+    player<Quiz>("What is that cape you're wearing?")
     npc<CheerfulOld>("It's a Skillcape of Smithing. It shows that I'm a master blacksmith, but that's only to be expected - after all, my ancestors were the greatest blacksmiths in dwarven history.")
     npc<CheerfulOld>("If you ever achieve level 99 Smithing you'll be able to wear a cape like this, and receive more experience when smelting gold ore.")
 }

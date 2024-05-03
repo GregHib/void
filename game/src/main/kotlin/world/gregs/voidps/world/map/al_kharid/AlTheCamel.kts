@@ -117,7 +117,7 @@ suspend fun CharacterContext.desertsDay(interrupt: Boolean) {
 }
 
 suspend fun CharacterContext.whatDoesSheThink() {
-    player<Unsure>("What does she think of your poems?")
+    player<Quiz>("What does she think of your poems?")
     npc<Talk>("She's never heard them.")
     player<Talk>("Why not?")
     npc<Sad>("I suspect she loves another - Ollie, another camel who roams with her to the north.")
@@ -183,7 +183,7 @@ objectOperate("Pick-up", "dung") {
 
 itemOnObjectOperate(obj = "dung") {
     if (item.id != "bucket") {
-        player<Unsure>("Surely there's something better I could use to pick up the dung.")
+        player<Quiz>("Surely there's something better I could use to pick up the dung.")
         return@itemOnObjectOperate
     }
     scoopPoop()

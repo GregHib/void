@@ -263,7 +263,7 @@ object DialogueConverter {
 
     private fun getAnimName(animation: Int?): String {
         return when (animation) {
-            554, 555, 556, 557 -> "Unsure"
+            554, 555, 556, 557 -> "Quiz"
             562, 563, 564, 565 -> "RollEyes"
             567, 568, 569, 570 -> "Cheerful"
             571, 572, 573, 574 -> "Surprised"

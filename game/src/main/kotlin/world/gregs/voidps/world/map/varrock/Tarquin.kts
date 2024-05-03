@@ -16,10 +16,10 @@ npcOperate("Talk-To", "tarquin") {
         option<Neutral>("Who are you?") {
             npc<RollEyes>("My name is Tarquin Marjoribanks.")
             npc<Neutral>("I'd be surprised if you haven't already heard of me?")
-            player<Unsure>("Why would I have heard of you Mr. Marjoribanks?")
+            player<Quiz>("Why would I have heard of you Mr. Marjoribanks?")
             npc<Frustrated>("It's pronounced 'Marchbanks'!")
             npc<Neutral>("You should know of me because I am a member of the royal family of Misthalin!")
-            player<Unsure>("Are you related to King Roald?")
+            player<Quiz>("Are you related to King Roald?")
             npc<Cheerful>("Oh yes! Quite closely actually")
             npc<Neutral>("I'm his 4th cousin, once removed on his mothers side.")
             player<Uncertain>("Er... Okay. What are you doing here then?")
@@ -78,7 +78,7 @@ suspend fun CharacterContext.canoeing() {
             npc<Surprised>("Well ... erm. You seem to be able to make a Waka!")
             player<Cheerful>("Sounds fun, what's a Waka.")
             npc<Neutral>("I've only ever seen one man on the river who uses a Waka. A big, fearsome looking fellow up near Edgeville.")
-            npc<Unsure>("People say he was born in the Wilderness and that he is looking for a route back.")
+            npc<Quiz>("People say he was born in the Wilderness and that he is looking for a route back.")
             player<Surprised>("Is that true!")
             npc<RollEyes>("How should I know? I would not consort with such a base fellow!")
         }

@@ -19,7 +19,7 @@ npcOperate("Talk-to", "captain_rovin") {
     }
 }
 
-suspend fun PlayerChoice.palaceGuard(): Unit = option<Unsure>("I am one of the palace guards.") {
+suspend fun PlayerChoice.palaceGuard(): Unit = option<Quiz>("I am one of the palace guards.") {
     npc<Angry>("No, you're not! I know all the palace guards.")
     choice {
         newRecruit()
@@ -27,7 +27,7 @@ suspend fun PlayerChoice.palaceGuard(): Unit = option<Unsure>("I am one of the p
     }
 }
 
-suspend fun PlayerChoice.whatAboutKing(): Unit = option<Unsure>("What about the King? Surely you'd let him up here.") {
+suspend fun PlayerChoice.whatAboutKing(): Unit = option<Quiz>("What about the King? Surely you'd let him up here.") {
     npc<Talk>("Well, yes, I suppose we'd let him up. He doesn't generally want to come up here, but if he did want to, he could.")
     npc<Angry>("Anyway, you're not the King either. So get out of my sight.")
 }
@@ -87,7 +87,7 @@ suspend fun CharacterContext.haveYouNotKilledIt() {
 }
 
 suspend fun CharacterContext.isItPowerful() {
-    npc<Unsure>("Is it a powerful demon?")
+    npc<Quiz>("Is it a powerful demon?")
     choice {
         notReallyPowerful()
         yesVeryPowerful()
@@ -114,7 +114,7 @@ suspend fun PlayerChoice.palaceGuardsAreRubbish(): Unit = option<Chuckle>("Yeah,
 suspend fun PlayerChoice.illFightIt(): Unit = option<Talk>("It's not them who are going to fight the demon, it's me.") {
     npc<Surprised>("What, all by yourself? How are you going to do that?")
     player<Talk>("I'm going to use the powerful sword Silverlight, which I believe you have one of the keys for?")
-    npc<Unsure>("Yes, I do. But why should I give it to you?")
+    npc<Quiz>("Yes, I do. But why should I give it to you?")
     choice {
         arisSaidSo()
         demonWillDestroyCity()
@@ -148,9 +148,9 @@ suspend fun PlayerChoice.prysinSaidSo(): Unit = option<Talk>("Sir Prysin said yo
     }
 }
 
-suspend fun PlayerChoice.whyDidHeGiveKeyToYou(): Unit = option<Unsure>("Why did he give you one of the keys then?") {
+suspend fun PlayerChoice.whyDidHeGiveKeyToYou(): Unit = option<Quiz>("Why did he give you one of the keys then?") {
     npc<Angry>("Only because the king ordered him to! The king couldn't get Sir Prysin to part with his precious ancestral sword, but he made him lock it up so he couldn't lose it.")
-    npc<Unsure>("I got one key and I think some wizard got another. Now what happened to the third one?")
+    npc<Quiz>("I got one key and I think some wizard got another. Now what happened to the third one?")
     player<Chuckle>("Sir Prysin dropped it down a drain!")
     npc<Chuckle>("Ha ha ha! The idiot!")
     npc<Chuckle>("Okay, I'll give you the key, just so that it's you that kills the demon and not Sir Prysin!")

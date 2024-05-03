@@ -50,12 +50,12 @@ npcOperate("Talk-to", "makeover_mage*") {
     }
 }
 
-suspend fun PlayerChoice.more(): Unit = option<Unsure>("Tell me more about this 'makeover'.") {
+suspend fun PlayerChoice.more(): Unit = option<Quiz>("Tell me more about this 'makeover'.") {
     npc<Cheerful>("Why, of course! Basically, and I will explain this so that you understand it correctly,")
     npc<Cheerful>("I use my secret magical technique to melt your body down into a puddle of its elements.")
     npc<Cheerful>("When I have broken down all components of your body, I then rebuild it into the form I am thinking of.")
     npc<Uncertain>("Or, you know, something vaguely close enough, anyway.")
-    player<Unsure>("Uh... that doesn't sound particularly safe to me.")
+    player<Quiz>("Uh... that doesn't sound particularly safe to me.")
     npc<Cheerful>("It's as safe as houses! Why, I have only had thirty-six major accidents this month!")
     whatDoYouSay()
 }
@@ -95,7 +95,7 @@ suspend fun PlayerChoice.amulet(): Unit = option<Happy>("Cool amulet! Can I have
                 TransactionError.None -> item("yin_yang_amulet", 300, "You receive an amulet in exchange for $cost coins")
                 is TransactionError.Deficient -> player.notEnough("coins")
                 is TransactionError.Full -> {
-                    npc<Unsure>("Um...you don't seem to have room to take the amulet. Maybe you should buy it some other time.")
+                    npc<Quiz>("Um...you don't seem to have room to take the amulet. Maybe you should buy it some other time.")
                     player<Talk>("Oh yeah, that's true.")
                 }
                 else -> {}
@@ -162,7 +162,7 @@ interfaceOption(component = "confirm", id = "skin_colour") {
     val mage = npcs[player.tile.regionLevel].first { it.id.startsWith("makeover_mage") }
     player.talkWith(mage)
     if (!changed) {
-        npc<Unsure>("That is no different from what you already have. I guess I shouldn't charge you if I'm not changing anything.")
+        npc<Quiz>("That is no different from what you already have. I guess I shouldn't charge you if I'm not changing anything.")
         return@interfaceOption
     }
     when (random.nextInt(0, 4)) {
@@ -175,17 +175,17 @@ interfaceOption(component = "confirm", id = "skin_colour") {
             npc<Cheerful>("Nothing! It's all fine! You seem alive anyway.")
         }
         2 -> {
-            npc<Unsure>("Hmm, you didn't feel any unexpected growths on your head just then, did you?")
-            player<Unsure>("Er, no?")
+            npc<Quiz>("Hmm, you didn't feel any unexpected growths on your head just then, did you?")
+            player<Quiz>("Er, no?")
             npc<Cheerful>("Good, good! I was worried for a second there.")
         }
         3 -> {
             npc<Amazed>("Woah!")
-            player<Unsure>("What?")
+            player<Quiz>("What?")
             npc<Amazed>("You still look human!")
         }
     }
-    player<Unsure>("Uh, thanks, I guess.")
+    player<Quiz>("Uh, thanks, I guess.")
 }
 
 fun swapSex(player: Player, male: Boolean) {

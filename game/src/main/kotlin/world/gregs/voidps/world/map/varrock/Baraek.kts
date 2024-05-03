@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 npcOperate("Talk-to", "baraek") {
     if (player.holdsItem("bear_fur")) {
         choice {
-            option<Unsure>("Can you sell me some furs?") {
+            option<Quiz>("Can you sell me some furs?") {
                 sellFur()
             }
             option<Neutral>("Hello. I am in search of a quest.") {
@@ -27,7 +27,7 @@ npcOperate("Talk-to", "baraek") {
         }
     } else {
         choice {
-            option<Unsure>("Can you sell me some furs?") {
+            option<Quiz>("Can you sell me some furs?") {
                 sellFur()
             }
             option<Neutral>("Hello. I am in search of a quest.") {

@@ -15,10 +15,10 @@ npcOperate("Talk-To", "hari") {
     choice {
         option<Neutral>("Who are you?") {
             npc<Neutral>("My name is Hari.")
-            player<Unsure>("And what are you doing here Hari?")
+            player<Quiz>("And what are you doing here Hari?")
             npc<Neutral>("Like most people who come to Edgeville, I am here to seek adventure in the Wilderness.")
             npc<Neutral>("I found a secret underground river that will take me quite a long way north.")
-            player<Unsure>("Underground river? Where does it come out?")
+            player<Quiz>("Underground river? Where does it come out?")
             npc<Neutral>("It comes out in a pond located deep in the Wilderness.")
             npc<Neutral>("I had to find a very special type of canoe to get me up the river though, would you like to know more?")
             choice {
@@ -45,12 +45,12 @@ suspend fun CharacterContext.canoeing() {
     when (player.levels.get(Skill.Woodcutting)) {
         in 12..26 -> {
             npc<Neutral>("I can sense you're still a novice woodcutter, you will only be able to make a log canoe at present.")
-            player<Unsure>("Is that good?")
+            player<Quiz>("Is that good?")
             npc<Neutral>("A log will take you one stop along the river. But you won't be able to travel into the Wilderness on it.")
         }
         in 27..41 -> {
             npc<Neutral>("You are an average woodcutter. You should be able to make a Dugout canoe quite easily. It will take you 2 stops along the river.")
-            player<Unsure>("Can I take a dugout canoe to reach the Wilderness?")
+            player<Quiz>("Can I take a dugout canoe to reach the Wilderness?")
             npc<Chuckle>("You would never make it there alive.")
             player<Sad>("Best not to try then.")
         }
@@ -58,14 +58,14 @@ suspend fun CharacterContext.canoeing() {
             npc<Neutral>("You seem to be an accomplished woodcutter. You will easily be able to make a Stable Dugout")
             npc<Neutral>("They are reliable enough to get you anywhere on this river, except to the Wilderness of course.")
             npc<Neutral>("Only a Waka can take you there.")
-            player<Unsure>("A Waka? What's that?")
+            player<Quiz>("A Waka? What's that?")
             npc<Cheerful>("Come and ask me when you have improved your skills as a woodcutter.")
         }
         else -> {
             npc<Cheerful>("Your skills rival mine friend. You will certainly be able to build a Waka.")
-            player<Unsure>("A Waka? What's that?")
+            player<Quiz>("A Waka? What's that?")
             npc<Cheerful>("A Waka is an invention of my people, it's an incredible strong and fast canoe and will carry you safely to any destination on the river.")
-            player<Unsure>("Any destination?")
+            player<Quiz>("Any destination?")
             npc<Cheerful>("Yes, you can take a waka north through the underground portion of this river.")
             npc<Sad>("It will bring you out at a pond in the heart of the Wilderness. Be careful up there, many have lost more than their lives in that dark and twisted place.")
         }

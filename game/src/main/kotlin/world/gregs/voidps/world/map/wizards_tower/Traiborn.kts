@@ -79,7 +79,7 @@ suspend fun PlayerChoice.betterBeOff(): Unit = option<Talk>("Err I'd better be o
 suspend fun PlayerChoice.teachMe(): Unit = option<Talk>("Teach me to be a mighty and powerful wizard.") {
     npc<Uncertain>("Wizard eh? You don't want any truck with that sort. They're not to be trusted. That's what I've heard anyways.")
     choice {
-        option<Unsure>("So aren't you a wizard?") {
+        option<Quiz>("So aren't you a wizard?") {
             npc<Angry>("How dare you? Of course I'm a wizard. Now don't be so cheeky or I'll turn you into a frog.")
         }
         option<Talk>("Oh I'd better stop talking to you then.") {

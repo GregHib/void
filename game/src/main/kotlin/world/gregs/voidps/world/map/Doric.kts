@@ -29,7 +29,7 @@ val ores = listOf(
 npcOperate("Talk-to", "doric") {
     when (player.quest("dorics_quest")) {
         "started" -> {
-            npc<Unsure>("Have you got my materials yet, traveller?")
+            npc<Quiz>("Have you got my materials yet, traveller?")
             if (!player.inventory.contains(ores)) {
                 noOre()
                 return@npcOperate
@@ -51,7 +51,7 @@ suspend fun CharacterContext.noOre() {
     player<Sad>("Sorry, I don't have them all yet.")
     npc<Neutral>("Not to worry, stick at it. Remember, I need 6 clay, 4 copper ore, and 2 iron ore.")
     choice {
-        option<Unsure>("Where can I find those?") {
+        option<Quiz>("Where can I find those?") {
             npc<Cheerful>("You'll be able to find all those ores in the rocks just inside the Dwarven Mine. Head east from here and you'll find the entrance in the side of Ice Mountain.")
             if (player.levels.get(Skill.Mining) < 15) {
                 player<Sad>("But I'm not a good enough miner to get iron ore.")
@@ -63,7 +63,7 @@ suspend fun CharacterContext.noOre() {
 }
 
 suspend fun CharacterContext.unstarted() {
-    npc<Unsure>("Hello traveller, what brings you to my humble smithy?")
+    npc<Quiz>("Hello traveller, what brings you to my humble smithy?")
     choice {
         option<Neutral>("I wanted to use your anvils.") {
             npc<Neutral>("My anvils get enough work with my own use. I make pickaxes, and it takes a lot of hard work. If you could get me some more materials, then I could let you use<br>them.")
@@ -80,19 +80,19 @@ suspend fun CharacterContext.unstarted() {
             player<Neutral>("I was just checking out the landscape.")
             npc<Cheerful>("Hope you like it. I do enjoy the solitude of my little home. If you get time, please say hi to my friends in the Dwarven Mine.")
             choice {
-                option<Unsure>("Dwarven Mine?") {
+                option<Quiz>("Dwarven Mine?") {
                     npc<Cheerful>("Yep, the entrance is in the side of Ice Mountain just to the east of here. They're a friendly bunch. Stop in at Nurmof's store and buy one of my pickaxes!")
                 }
                 option<Cheerful>("Will do!")
             }
         }
         option("What do you make here?") {
-            player<Unsure>("What do you make here?")
+            player<Quiz>("What do you make here?")
             npc<Cheerful>("I make pickaxes. I am the best maker of pickaxes in the whole of Gielinor.")
-            player<Unsure>("Do you have any to sell?")
+            player<Quiz>("Do you have any to sell?")
             npc<Neutral>("Sorry, but I've got a running order with Nurmof.")
             choice {
-                option<Unsure>("Who's Nurmof?") {
+                option<Quiz>("Who's Nurmof?") {
                     npc<Cheerful>("Nurmof has a store over in the Dwarven Mine. You can find the entrance on the side of Ice Mountain to the east of here.")
                 }
                 option<Neutral>("Ah, fair enough.")
@@ -118,9 +118,9 @@ suspend fun CharacterContext.startQuest() {
             player.refreshQuestJournal()
             if (player.inventory.contains(ores)) {
                 player<Cheerful>("You know, it's funny you should require those exact things!")
-                npc<Unsure>("What do you mean?")
+                npc<Quiz>("What do you mean?")
                 player<Cheerful>("I can usually fit 28 things in my backpack and in a world full of quite literally limitless possibilities, a complete coincidence has occurred!")
-                npc<Unsure>("I don't quite understand what you're saying?")
+                npc<Quiz>("I don't quite understand what you're saying?")
                 player<Cheerful>("Well, out of pure coincidence, despite definitely not knowing what you were about to request, I just so happened to have carried those exact items!")
                 npc<Surprised>("Oh my, that is a coincidence! Pass them here, please. I can spare you some coins for your trouble, and please use my anvils any time you want.")
                 takeOre()

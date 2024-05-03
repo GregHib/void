@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Talk
-import world.gregs.voidps.world.interact.dialogue.Unsure
+import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.Upset
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -22,19 +22,19 @@ npcOperate("Talk-to", "bob") {
         option("Give me a quest!") {
             npc<Talk>("Sorry I don't have any quests for you at the moment.")
         }
-        option<Unsure>("I'd like to trade.") {
+        option<Quiz>("I'd like to trade.") {
             npc<Cheerful>("Great! I buy and sell pickaxes and hatchets. There are plenty to choose from, and I've some free samples too. Take your pick... or hatchet.")
             player.openShop("bobs_brilliant_axes")
         }
         option<Upset>("Can you repair my items for me?") {
-            npc<Unsure>("Of course I can, though the material may cost you. Just hand me the item and I'll have a look.")
+            npc<Quiz>("Of course I can, though the material may cost you. Just hand me the item and I'll have a look.")
         }
     }
 }
 
 itemOnNPCOperate("*", "bob") {
     if (!repairable(item.id)) {
-        npc<Unsure>("Sorry friend, but I can't do anything with that.")
+        npc<Quiz>("Sorry friend, but I can't do anything with that.")
         return@itemOnNPCOperate
     }
     val cost = repairCost(player, item)

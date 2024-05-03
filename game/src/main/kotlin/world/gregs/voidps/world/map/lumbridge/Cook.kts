@@ -141,7 +141,7 @@ suspend fun CharacterContext.startQuest() {
             player.refreshQuestJournal()
             npc<Cheerful>("Oh thank you, thank you. I must tell you that this is no ordinary cake, though - only the best ingredients will do! I need a super large egg, top-quality milk and some extra fine flour.")
             player.refreshQuestJournal()
-            player<Unsure>("Where can I find those, then?")
+            player<Quiz>("Where can I find those, then?")
             whereToFind()
         }
         option("No.") {
@@ -152,7 +152,7 @@ suspend fun CharacterContext.startQuest() {
 }
 
 suspend fun CharacterContext.whereToFind() {
-    npc<Unsure>("That's the problem: I don't exactly know. I usually send my assistant to get them for me but he quit.")
+    npc<Quiz>("That's the problem: I don't exactly know. I usually send my assistant to get them for me but he quit.")
     npc<Talk>("I've marked some places on your world map in red. You might want to consider investigating them.")
 }
 

@@ -38,9 +38,9 @@ npcOperate("Repair-pouches", "dark_mage") {
 }
 
 fun ChoiceBuilder<NPCOption>.whyNot() {
-    option<Unsure>("Why not?") {
+    option<Quiz>("Why not?") {
         npc<Talk>("Well, if my concentration is broken while keeping this rift open, the results won't be pretty.")
-        player<Unsure>("In what way?")
+        player<Quiz>("In what way?")
         npc<Talk>("If we are lucky, the heads of anyone within the Abyss will suddenly explode, including us.")
         player<Uncertain>("Err... And if we're unlucky?")
         npc<Talk>("If we are unlucky, then the entire universe will begin to fold in upon itself, and all reality as we know it will be annihilated in a single stroke.")
@@ -54,7 +54,7 @@ fun ChoiceBuilder<NPCOption>.whyNot() {
 }
 
 fun ChoiceBuilder<NPCOption>.whyAreYouHere() {
-    option<Unsure>("What are you doing here?") {
+    option<Quiz>("What are you doing here?") {
         npc<Talk>("Do you mean what am I doing here in the Abyss? Or are you asking me what I consider my ultimate role to be in this voyage that we call life?")
         player<Uncertain>("Err... The first one.")
         player<Talk>("By remaining here and holding this rift open, I am providing a permanent link between normal space and this strange dimension.")
@@ -72,7 +72,7 @@ fun ChoiceBuilder<NPCOption>.needHelp() {
     option<Talk>("I need your help with something.") {
         npc<Angry>("What? Oh... very well. What did you want?")
         choice {
-            option<Unsure>("Can I have another Abyssal book?") {
+            option<Quiz>("Can I have another Abyssal book?") {
                 if (player.ownsItem("abyssal_book")) {
                     // TODO
                 } else {
@@ -84,7 +84,7 @@ fun ChoiceBuilder<NPCOption>.needHelp() {
                         choice {
                             askForPouch()
                             option<Neutral>("Thanks.") {
-                                npc<Unsure>("Now can you leave me alone? I can't keep affording these distractions!")
+                                npc<Quiz>("Now can you leave me alone? I can't keep affording these distractions!")
                             }
                         }
                     }
@@ -105,7 +105,7 @@ fun ChoiceBuilder<NPCOption>.illGo() {
 }
 
 fun ChoiceBuilder<NPCOption>.askForPouch() {
-    option<Unsure>("Can I have a new essence pouch?") {
+    option<Quiz>("Can I have a new essence pouch?") {
         if (player.ownsItem("small_pouch")) {
             npc<Angry>("You already have a Pouch. Are you aware of the dimensional turmoil you can cause by using too many pouches at the same time?")
         } else {

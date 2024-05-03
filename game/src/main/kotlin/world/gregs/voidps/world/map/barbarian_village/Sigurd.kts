@@ -15,9 +15,9 @@ npcOperate("Talk-To", "sigurd") {
     choice {
         option<Neutral>("Who are you?") {
             npc<Drunk>("I'm Sigurd the Great and Brainy.")
-            player<Unsure>("Why do they call you the Great and Brainy?")
+            player<Quiz>("Why do they call you the Great and Brainy?")
             npc<Drunk>("Because I invented the Log Canoe!")
-            player<Unsure>("Log Canoe?")
+            player<Quiz>("Log Canoe?")
             npc<Drunk>("Yeash! Me and my cousins were having a great party by the river when we decided to have a game of 'Smack The Tree'")
             player<Uncertain>("Smack the Tree?")
             npc<Drunk>("It's a game were you take it in turnsh shmacking a tree. First one to uproot the tree winsh!")
@@ -62,7 +62,7 @@ suspend fun CharacterContext.canoeing() {
         }
         else -> {
             npc<Drunk>("You look like you know your way around a tree, you can make a Waka canoe.")
-            player<Unsure>("What's a Waka?")
+            player<Quiz>("What's a Waka?")
             npc<Drunk>("I've only ever seen Hari using them. People say he's found a way to canoe the river underground and into the Wilderness")
             npc<Drunk>("Hari hangs around up near Edgeville")
             npc<Drunk>("He's a nice bloke.")

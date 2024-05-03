@@ -55,7 +55,7 @@ npcOperate("Talk-to", "gudrun*") {
 }
 
 suspend fun CharacterContext.recital() {
-    npc<Unsure>("Are you ready for the recital?")
+    npc<Quiz>("Are you ready for the recital?")
     choice {
         option<Neutral>("Yes.") {
             cutscene()
@@ -267,9 +267,9 @@ suspend fun CharacterContext.endCutscene(instance: Region) {
 
 suspend fun CharacterContext.poem() {
     if (player.holdsItem("gunnars_ground")) {
-        npc<Unsure>("What have you got there?")
+        npc<Quiz>("What have you got there?")
         player<Happy>("Another gift from your mysterious suitor.")
-        npc<Unsure>("A scroll?")
+        npc<Quiz>("A scroll?")
         player<Talk>("It's a poem; a story to convince your father to settle down. You could recite it to him.")
         npc<Amazed>("Let me see that.")
         player.setAnimation("hand_over_item")
@@ -280,13 +280,13 @@ suspend fun CharacterContext.poem() {
         player["gunnars_ground"] = "recital"
         cutscene()
     } else {
-        npc<Unsure>("What is it?")
+        npc<Quiz>("What is it?")
         player<Upset>("I was meant to bring you a poem, but I seem to have mislaid it.")
     }
 }
 
 suspend fun CharacterContext.whatHeSay() {
-    npc<Unsure>("What did he say?")
+    npc<Quiz>("What did he say?")
     player<Talk>("He mentioned someone called Gunnar, and that you should think about his feelings.")
     npc<Angry>("By the eyeballs of Guthix! Always Gunnar!")
     choice {
@@ -339,8 +339,8 @@ suspend fun CharacterContext.showGudrun() {
     npc<Frustrated>("Just guard the hut like chieftain told you to!")
     npc<Frustrated>("kjell_sword", "Fine!")
     npc<Frustrated>("Stupid barbarian.")
-    npc<Unsure>("Sorry about that, stranger. Did you want something?.")
-    player<Unsure>("Are you Gudrun?")
+    npc<Quiz>("Sorry about that, stranger. Did you want something?.")
+    player<Quiz>("Are you Gudrun?")
     npc<Talk>("Yes.")
     if (player.holdsItem("dororans_engraved_ring")) {
         player<Happy>("This is for you.")
@@ -399,7 +399,7 @@ suspend fun CharacterContext.whoFrom() {
             outsideVillage()
         }
         option<Neutral>("A short suitor.") {
-            npc<Unsure>("What?")
+            npc<Quiz>("What?")
             player<Talk>("A petite paramour.")
             npc<Amazed>("What?")
             player<Talk>("A concise courter!")
@@ -409,16 +409,16 @@ suspend fun CharacterContext.whoFrom() {
 }
 
 suspend fun CharacterContext.outsideVillage() {
-    npc<Unsure>("This man, he is from outside the village?")
+    npc<Quiz>("This man, he is from outside the village?")
     player<Talk>("Yes.")
     npc<Happy>("I would love to leave the village and be romanced by exotic, handsome, outerlander men. There's a problem, though.")
-    player<Unsure>("What's that?")
+    player<Quiz>("What's that?")
     npc<Sad>("My papa, the chieftain. He would never let an outerlander pursue me.")
-    player<Unsure>("Why not?")
+    player<Quiz>("Why not?")
     npc<Talk>("He thinks all your people are our enemies.")
     choice {
         option<Neutral>("So, you want me to talk to your father?") {
-            npc<Unsure>("I suppose that might work.")
+            npc<Quiz>("I suppose that might work.")
             reasonWithHim()
         }
         option<Neutral>("So, you want me to kill your father?") {
@@ -515,7 +515,7 @@ npcOperate("Talk-to", "gudrun_after_quest") {
             npc<Cheerful>("Hello!")
             choice {
                 option<Neutral>("I want to ask you something.") {
-                    npc<Unsure>("Of course, what is it?")
+                    npc<Quiz>("Of course, what is it?")
                     menu()
                 }
                 option<Neutral>("Just passing through.") {
@@ -537,7 +537,7 @@ suspend fun CharacterContext.menu() {
                     elseGoodbye()
                 }
                 option<Neutral>("I want to ask about something else.") {
-                    npc<Unsure>("Of course, what is it?")
+                    npc<Quiz>("Of course, what is it?")
                     menu()
                 }
                 option<Neutral>("Goodbye.") {
@@ -562,7 +562,7 @@ suspend fun CharacterContext.theory() {
             elseGoodbye()
         }
         option<Neutral>("I want to ask about something else.") {
-            npc<Unsure>("Of course, what is it?")
+            npc<Quiz>("Of course, what is it?")
             menu()
         }
         option<Neutral>("Goodbye.") {
@@ -574,7 +574,7 @@ suspend fun CharacterContext.theory() {
 suspend fun CharacterContext.elseGoodbye() {
     choice {
         option<Neutral>("I want to ask about something else.") {
-            npc<Unsure>("Of course, what is it?")
+            npc<Quiz>("Of course, what is it?")
             menu()
         }
         option<Neutral>("Goodbye.") {

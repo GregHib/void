@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Uncertain
-import world.gregs.voidps.world.interact.dialogue.Unsure
+import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -47,7 +47,7 @@ itemOnNPCOperate("pharaohs_sceptre", "guardian_mummy") {
 
 suspend fun CharacterContext.notAnother() {
     npc<Talk>("*sigh* Not another one.")
-    player<Unsure>("Another what?")
+    player<Quiz>("Another what?")
     npc<Talk>("Another 'archaeologist'.")
     npc<Talk>("I'm not going to let you plunder my master's tomb you know.")
     player<Talk>("That's a shame, have you got anything else I could do while I'm here?")
@@ -120,8 +120,8 @@ suspend fun CharacterContext.sceptreDischarging() {
     if (count < 0) {
         player<Talk>("I want to charge my sceptre.")
         npc<Uncertain>("What sceptre?")
-        player<Unsure>("Er... I don't know.")
-        npc<Unsure>("Right...")
+        player<Quiz>("Er... I don't know.")
+        npc<Quiz>("Right...")
         return
     }
     if (count == 1) {

@@ -16,13 +16,13 @@ import world.gregs.voidps.world.interact.dialogue.type.*
 import java.util.concurrent.TimeUnit
 
 npcOperate("Talk-to", "nemarti") {
-    npc<Unsure>("Hey there adventurer, I am the Ranged combat tutor. Is there anything you would like to know?")
+    npc<Quiz>("Hey there adventurer, I am the Ranged combat tutor. Is there anything you would like to know?")
     menu()
 }
 
 suspend fun CharacterContext.menu(followUp: String = "") {
     if (followUp.isNotEmpty()) {
-        npc<Unsure>(followUp)
+        npc<Quiz>(followUp)
     }
     choice {
         rangedTraining()
@@ -51,7 +51,7 @@ suspend fun PlayerChoice.rangedTraining(): Unit = option<Neutral>("How can I tra
     menu("Is there anything else you want to know?")
 }
 
-suspend fun PlayerChoice.arrowMaking(): Unit = option<Unsure>("How do I create a bow and arrows?") {
+suspend fun PlayerChoice.arrowMaking(): Unit = option<Quiz>("How do I create a bow and arrows?") {
     npc<Cheerful>("Ahh the art of fletching. Fletching is used to create your own bow and arrows.")
     npc<Amazed>("It's quite simple really. You'll need an axe to cut some logs from trees and a knife. Knives can be found in and around the Lumbridge castle and in the Varrock General store upstairs.")
     npc<Cheerful>("Use your knife on the logs. This will bring up a menu listing items you can fletch.")

@@ -23,7 +23,7 @@ import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Sad
 import world.gregs.voidps.world.interact.dialogue.Talk
-import world.gregs.voidps.world.interact.dialogue.Unsure
+import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -56,7 +56,7 @@ npcOperate("Trade", "ellis", "tanner") {
 
 suspend fun NPCOption.leather() {
     choice("What would you like to say?") {
-        option<Unsure>("Can I buy some leather then?") {
+        option<Quiz>("Can I buy some leather then?") {
             npc<Talk>("I make leather from animal hides. Bring me some cowhides and one gold coin per hide, and I'll tan them into soft leather for you.")
         }
         option<Talk>("Leather is rather weak stuff.") {

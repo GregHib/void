@@ -95,7 +95,7 @@ suspend fun CharacterContext.howToDo() {
     }
 }
 
-suspend fun PlayerChoice.howWallyWon(): Unit = option<Unsure>("So, how did Wally kill Delrith?") {
+suspend fun PlayerChoice.howWallyWon(): Unit = option<Quiz>("So, how did Wally kill Delrith?") {
     player.playTrack("wally_the_hero")
     cutscene()
 }
@@ -184,7 +184,7 @@ suspend fun ChoiceBuilder<NPCOption>.hereYouGo(): Unit = option<Talk>("Okay, her
     target.softTimers.stop("demon_slayer_crystal_ball")
     player.playSound("demon_slayer_crystal_ball_end")
     npc<Afraid>("Aaargh!")
-    player<Unsure>("Are you all right?")
+    player<Quiz>("Are you all right?")
     npc<Afraid>("It's Delrith! Delrith is coming!")
     player<Afraid>("Who's Delrith?")
     npc<Upset>("Delrith...")
@@ -204,7 +204,7 @@ suspend fun ChoiceBuilder<NPCOption>.whoYouCallingYoung(): Unit = option<Frustra
         notBeliever()
         option("Ooh, how old are you then?") {
             npc<Neutral>("Count the number of legs on the stools in the Blue Moon inn, and multiply that number by seven.")
-            player<Unsure>("Er, yeah, whatever.")
+            player<Quiz>("Er, yeah, whatever.")
         }
     }
 }
@@ -254,7 +254,7 @@ suspend fun CharacterContext.cutscene() {
     player.shakeCamera(type = 1, intensity = 0, movement = 10, speed = 5, cycle = 0)
     player.shakeCamera(type = 3, intensity = 0, movement = 2, speed = 50, cycle = 0)
     player.playSound("rumbling")
-    npc<Unsure>("wally", "Now, what was that incantation again?")
+    npc<Quiz>("wally", "Now, what was that incantation again?")
     randomiseOrder(player)
     npc<Frustrated>("wally", "${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}... ${getWord(player, 4)}... ${getWord(player, 5)}!")
     player.open("fade_out")
@@ -298,7 +298,7 @@ suspend fun CharacterContext.endCutscene(instance: Region) {
     player.clearTransform()
 }
 
-suspend fun ChoiceBuilder<NPCOption>.withSilver(): Unit = option<Unsure>("With silver?") {
+suspend fun ChoiceBuilder<NPCOption>.withSilver(): Unit = option<Quiz>("With silver?") {
     npc<Neutral>("Oh, sorry, I forgot. With gold, I mean. They haven't used silver coins since before you were born! So, do you want your fortune told?")
     choice {
         hereYouGo()

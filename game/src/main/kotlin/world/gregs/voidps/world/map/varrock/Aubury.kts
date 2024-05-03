@@ -25,7 +25,7 @@ npcOperate("Talk-to", "aubury") {
         skillcapes()
         openShop()
         packageForYou()
-        option<Unsure>(
+        option<Quiz>(
             "Anything useful in that package I gave you?",
             { player.quest("rune_mysteries") == "package_delivered" }
         ) {
@@ -83,10 +83,10 @@ suspend fun CharacterContext.researchPackage() {
     item("research_package_rune_mysteries", 600, "Aubury goes through the package of research notes.")
     npc<Surprised>("This... this is incredible.")
     npc<Cheerful>("My gratitude to you adventurer for bringing me these research notes. Thanks to you, I think we finally have it.")
-    player<Unsure>("You mean the incantation?")
+    player<Quiz>("You mean the incantation?")
     npc<Cheerful>("Well when we combine my own research with this latest discovery, I think we might just...")
     npc<Neutral>("No, no, I'm getting ahead of myself. The signs are promising, but let's not jump to any conclusions just yet.")
-    npc<Unsure>("Here, take these notes back to Sedridor. They should hopefully give him everything he needs.")
+    npc<Quiz>("Here, take these notes back to Sedridor. They should hopefully give him everything he needs.")
     if (player.inventory.isFull()) {
         item("research_notes_rune_mysteries", 600, "Aubury tries to hand you some research notes, but you don't have enough room to take them.")
         return
@@ -97,11 +97,11 @@ suspend fun CharacterContext.researchPackage() {
 }
 
 suspend fun CharacterContext.checkNotes() {
-    npc<Unsure>("Hello. Did you take those notes back to Sedridor?")
+    npc<Quiz>("Hello. Did you take those notes back to Sedridor?")
     if (player.inventory.contains("research_notes_rune_mysteries")) {
         player<Neutral>("I'm still working on it.")
         npc<Neutral>("Don't take too long. He'll be eager to see if this is indeed the breakthrough we were hoping for.")
-        npc<Unsure>("Now, did you want to buy some runes?")
+        npc<Quiz>("Now, did you want to buy some runes?")
         choice {
             openShop()
             noThanks("No thank you.")

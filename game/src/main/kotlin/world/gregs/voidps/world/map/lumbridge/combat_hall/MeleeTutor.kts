@@ -15,13 +15,13 @@ import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.player.display.Tab
 
 npcOperate("Talk-to", "harlan") {
-    npc<Unsure>("Greetings adventurer, I am the Melee combat tutor. Is there anything I can do for you?")
+    npc<Quiz>("Greetings adventurer, I am the Melee combat tutor. Is there anything I can do for you?")
     menu()
 }
 
 suspend fun CharacterContext.menu(followUp: String = "") {
     if (followUp.isNotEmpty()) {
-        npc<Unsure>(followUp)
+        npc<Quiz>(followUp)
     }
     choice {
         meleeCombat()
@@ -32,7 +32,7 @@ suspend fun CharacterContext.menu(followUp: String = "") {
     }
 }
 
-suspend fun PlayerChoice.meleeCombat(): Unit = option<Unsure>("Tell me about melee combat.") {
+suspend fun PlayerChoice.meleeCombat(): Unit = option<Quiz>("Tell me about melee combat.") {
     npc<Neutral>("Well adventurer, the first thing you will need is a sword and a shield appropriate for your level.")
     // look down talking, look up eyebrow raised then quiet
     player["tab"] = Tab.WornEquipment.name
@@ -40,7 +40,7 @@ suspend fun PlayerChoice.meleeCombat(): Unit = option<Unsure>("Tell me about mel
     player["tab"] = Tab.CombatStyles.name
     npc<Neutral>("When you are wielding your sword you will then be able to see the correct options in the combat interface.")
     npc<Neutral>("There are four different melee styles. Accurate, aggressive, defensive and controlled. Not all weapons will have all four styles though.")
-    player<Unsure>("Interesting, what does each style do?")
+    player<Quiz>("Interesting, what does each style do?")
     npc<Neutral>("Well I am glad you asked. The accurate style will give you experience points in your Attack skill, you will also find you will deal damage more frequently as a result of being, well, more accurate.")
     npc<Neutral>("Next we have the aggressive style. This style will give you experience points in your Strength skill. When using this style you will notice that your attacks will hit a little harder.")
     npc<Neutral>("Now for the defensive style, this style will give you experience points in your Defensive skill. When using this style you will notice that you get hit less often.")
@@ -48,7 +48,7 @@ suspend fun PlayerChoice.meleeCombat(): Unit = option<Unsure>("Tell me about mel
     npc<Neutral>("If you were using the training sword for example, there are four different attack types. Stab, lunge, slash and block.")
     npc<Neutral>("Each type uses one of the attack styles. Stab uses accurate, lunge and slash use aggressive and block uses defensive.")
     npc<Neutral>("To find out which style an attack type uses, hover your mouse cursor over the style button.")
-    npc<Unsure>("Is there anything else you would like to know?")
+    npc<Quiz>("Is there anything else you would like to know?")
     choice {
         option("What if I wanted to fight something a bit more... human.") {
             player<Neutral>("What if I wanted to fight something a bit more... human.")
@@ -99,7 +99,7 @@ suspend fun PlayerChoice.skillcapes(): Unit = option<Neutral>("Tell me about ski
                     buySkillcape()
                 }
                 option("Hood") {
-                    player<Unsure>("May I have another hood for my cape, please?")
+                    player<Quiz>("May I have another hood for my cape, please?")
                     npc<Neutral>("Most certainly, and free of charge!")
                     item("defence_hood", 400, "The tutor hands you another hood for your skillcape.")
                     player.inventory.add("defence_hood")
@@ -110,10 +110,10 @@ suspend fun PlayerChoice.skillcapes(): Unit = option<Neutral>("Tell me about ski
 }
 
 suspend fun CharacterContext.buySkillcape() {
-    player<Unsure>("May I buy a Skillcape of Defence, please?")
+    player<Quiz>("May I buy a Skillcape of Defence, please?")
     npc<Neutral>("You wish to join the elite defenders of this world? I'm afraid such things do not come cheaply - in fact they cost 99000 coins, to be precise!")
     choice {
-        option<Unsure>("99000 coins? That's much too expensive.") {
+        option<Quiz>("99000 coins? That's much too expensive.") {
             npc<Neutral>("Not at all; there are many other adventurers who would love the opportunity to purchase such a prestigious item! You can find me here if you change your mind.")
         }
         option("I think I have the money right here, actually.") {
@@ -140,7 +140,7 @@ suspend fun CharacterContext.buySkillcape() {
 
 suspend fun PlayerChoice.training(): Unit = option<Neutral>("I'd like a training sword and shield.") {
     if (player.ownsItem("training_sword") || player.ownsItem("training_shield")) {
-        npc<Unsure>("You already have a training sword and shield. Save some for the other adventurers.")
+        npc<Quiz>("You already have a training sword and shield. Save some for the other adventurers.")
         menu("Is there anything else I can help you with?")
         return@option
     }

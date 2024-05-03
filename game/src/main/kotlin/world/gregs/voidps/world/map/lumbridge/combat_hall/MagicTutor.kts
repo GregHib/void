@@ -21,13 +21,13 @@ import world.gregs.voidps.world.interact.entity.player.display.Tab
 import java.util.concurrent.TimeUnit
 
 npcOperate("Talk-to", "mikasi") {
-    npc<Unsure>("Hello there adventurer, I am the Magic combat tutor. Would you like to learn about magic combat, or perhaps how to make runes?")
+    npc<Quiz>("Hello there adventurer, I am the Magic combat tutor. Would you like to learn about magic combat, or perhaps how to make runes?")
     menu()
 }
 
 suspend fun CharacterContext.menu(followUp: String = "") {
     if (followUp.isNotEmpty()) {
-        npc<Unsure>(followUp)
+        npc<Quiz>(followUp)
     }
     choice {
         magicCombat()
@@ -46,7 +46,7 @@ suspend fun PlayerChoice.magicCombat(): Unit = option<Neutral>("Tell me about ma
     menu("Is there anything else you would like to know?")
 }
 
-suspend fun PlayerChoice.runeMaking(): Unit = option<Unsure>("How do I make runes?") {
+suspend fun PlayerChoice.runeMaking(): Unit = option<Quiz>("How do I make runes?") {
     npc<Cheerful>("There are a couple of things you will need to make runes, rune essence and a talisman to enter the temple ruins.")
     if (player.experience.get(Skill.Runecrafting) > 0.0) {
         npc<Amazed>("To get rune essence you will need to gather them in the essence mine. You can get to the mine by talking to Aubury who owns the runes shop in south east Varrock.")

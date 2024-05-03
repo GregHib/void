@@ -16,7 +16,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 npcOperate("Talk-to", "jeffery") {
-    npc<Unsure>("Keep it quick. What do you want?")
+    npc<Quiz>("Keep it quick. What do you want?")
     choice {
         if (player.quest("gunnars_ground") != "unstarted" && player.quest("gunnars_ground") != "started" && player.quest("gunnars_ground") != "love_poem") {
             option<Talk>("Who was that love poem for?") {
@@ -30,10 +30,10 @@ npcOperate("Talk-to", "jeffery") {
         }
         if (player.quest("gunnars_ground") == "love_poem") {
             option<Talk>("I'm here about a gold ring.") {
-                npc<Unsure>("You want to buy a gold ring? You want to sell a gold ring? You want to ask pointless questions about gold rings?")
+                npc<Quiz>("You want to buy a gold ring? You want to sell a gold ring? You want to ask pointless questions about gold rings?")
                 choice {
                     option<Talk>("I was hoping you would trade me a gold ring.") {
-                        npc<Unsure>("Trade you? Trade you for what?")
+                        npc<Quiz>("Trade you? Trade you for what?")
                         if (player.holdsItem("love_poem")) {
                             choice {
                                 option<Talk>("This splendid love poem.") {
@@ -54,17 +54,17 @@ npcOperate("Talk-to", "jeffery") {
         option<Talk>("I want to use the furnace.") {
             if (!player.ownsItem("varrock_armour_4") && !player.ownsItem("varrock_armour_3") && !player.ownsItem("varrock_armour_2") && !player.ownsItem("varrock_armour_1")) {
                 npc<Talk>("You want to use my furnace? I only let exceptional people use my furnace. You don't look exceptional to me.")
-                player<Unsure>("How do I become exceptional?")
+                player<Quiz>("How do I become exceptional?")
                 npc<Cheerful>("Exceptional people have earned exceptional items; earning Varrock armour would impress me.")
                 player<Happy>("Alright!")
                 return@option
             }
             npc<Cheerful>("You seem exceptional enough. Go ahead.")
-            player<Unsure>("What can I make here, exactly?")
+            player<Quiz>("What can I make here, exactly?")
             npc<Cheerful>("Well, depending on your skill as a blacksmith, you can use this furnace to smelt ore into metal bars.")
             player<Cheerful>("Oh, I see. What's so special about this furnace, then?")
             npc<Cheerful>("If you smelt at this furnace while wearing your Varrock armour the enchantment on the armour will give you a small chance of smelting two bars instead of one.")
-            player<Unsure>("I see. So, which metal will I be able to obtain more of when smelting with the armour I'm wearing?")
+            player<Quiz>("I see. So, which metal will I be able to obtain more of when smelting with the armour I'm wearing?")
             if (player.equipment.contains("varrock_armour_4")) {
                 npc<Talk>("While wearing the Varrock armour, you will have a chance of smelting an extra bar of any metal up to, and including, rune.")
                 player<Cheerful>("Oh, that's useful. That should save me a fair bit of time. Thanks very much.")
@@ -92,7 +92,7 @@ npcOperate("Talk-to", "jeffery") {
 
 suspend fun TargetNPCContext.lovePoem() {
     npc<Surprised>("A love poem? What?")
-    npc<Unsure>("Wait...that dwarf put you up to this, didn't he?")
+    npc<Quiz>("Wait...that dwarf put you up to this, didn't he?")
     choice {
         option<Talk>("Yes, he did.") {
             cheekyLittle()

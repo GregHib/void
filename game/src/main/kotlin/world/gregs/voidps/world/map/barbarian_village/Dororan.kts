@@ -72,7 +72,7 @@ suspend fun CharacterContext.poem() {
         npc<Talk>("Try not to lose this one.")
         return
     }
-    npc<Unsure>("My poem is terrible, isn't it? The Chieftain will probably have me killed.")
+    npc<Quiz>("My poem is terrible, isn't it? The Chieftain will probably have me killed.")
     choice {
         option<Talk>("Everything will work out.")
         option<Talk>("I expect so.")
@@ -107,7 +107,7 @@ suspend fun CharacterContext.sweptToWar() {
 
 suspend fun CharacterContext.oneMore() {
     npc<Happy>("It's coming together. We're nearly done! One more to go!")
-    npc<Unsure>("This one is tricky, though. It's a phrase I need. Someone did something.")
+    npc<Quiz>("This one is tricky, though. It's a phrase I need. Someone did something.")
     phraseMenu()
 }
 
@@ -444,7 +444,7 @@ suspend fun CharacterContext.dangerPoemMenu2() {
 }
 
 suspend fun CharacterContext.aboutRing() {
-    npc<Unsure>("Did you give Gudrun the ring? What did she think? Did it capture her heart?")
+    npc<Quiz>("Did you give Gudrun the ring? What did she think? Did it capture her heart?")
     player<Talk>("There's a problem.")
     npc<Cry>("It's because I'm a dwarf, isn't it? Or because I'm a poet? I knew it! I'm completely worthless!")
     choice {
@@ -465,7 +465,7 @@ suspend fun CharacterContext.mostCruel() {
     player<Talk>("He's obsessed with the stories of his ancestors. He says his people are still at war.")
     npc<Upset>("This village has stood for a hundred years!")
     player<Talk>("I heard him arguing with one of the others. He says he honours his ancestors this way.")
-    npc<Unsure>("Really? Interesting.")
+    npc<Quiz>("Really? Interesting.")
     choice {
         option<Talk>("Do you know a lot about the village's history?") {
             npc<Talk>("Not really. I talked with Hunding, who guards this tower here.")
@@ -479,9 +479,9 @@ suspend fun CharacterContext.mostCruel() {
 
 suspend fun CharacterContext.anyIdea() {
     npc<Amazed>("An idea occurs to me, but it is hubris of the greatest magnitude.")
-    player<Unsure>("What is it?")
+    player<Quiz>("What is it?")
     npc<Talk>("What if I wrote a poem? Forged a sweeping, historical epic? Crafted a tale to touch the chieftain's soul?")
-    player<Unsure>("Will that work?")
+    player<Quiz>("Will that work?")
     npc<Happy>("To win the heart of my beloved from her father's iron grasp? It is worth it just to try!")
     player.open("fade_out")
     delay(5)
@@ -685,7 +685,7 @@ suspend fun CharacterContext.stray() {
 }
 
 suspend fun CharacterContext.meetChieftain() {
-    npc<Unsure>("Did you give Gudrun the ring? What did she think?")
+    npc<Quiz>("Did you give Gudrun the ring? What did she think?")
     player<Talk>("She liked it, but there's a problem. I'm dealing with it.")
     npc<Amazed>("Oh no!")
 }
@@ -797,7 +797,7 @@ suspend fun CharacterContext.started() {
     npc<Talk>("I need a ring of purest gold. Then we can engrave it with the words of my heart.")
     player.refreshQuestJournal()
     npc<Happy>("Oh! I know the perfect place to get a gold ring.")
-    npc<Unsure>("Edgeville's metalsmith, jeffery, labours like myself under the weight of unrequited love.")
+    npc<Quiz>("Edgeville's metalsmith, jeffery, labours like myself under the weight of unrequited love.")
     npc<Happy>("Perhaps, if you took one of my love poems to jeffery, he would trade it for a gold ring.")
     if (player.inventory.isFull()) {
         statement("You don't have room for the poem. Speak to Dororan again when you have room.")
@@ -857,7 +857,7 @@ suspend fun CharacterContext.lovePoem() {
     if (!player.ownsItem("ring_from_jeffery") && player.quest("gunnars_ground") == "jeffery_ring") {
         player<Cheerful>("I did get a ring from jeffery, but I seem to have lost it.")
         npc<Surprised>("How careless!")
-        npc<Unsure>("Is it this one? I found it on the ground.")
+        npc<Quiz>("Is it this one? I found it on the ground.")
         if (player.inventory.isFull()) {
             statement("You don't have room for the ring. Speak to Dororan again when you have room.")
             return
@@ -1045,7 +1045,7 @@ suspend fun CharacterContext.getToThePoint() {
 }
 
 suspend fun CharacterContext.helpMe() {
-    npc<Unsure>("If Gudrun could ever love a dwarf, surely she would need to see my artisanry.")
+    npc<Quiz>("If Gudrun could ever love a dwarf, surely she would need to see my artisanry.")
     npc<Talk>("Will you help me? I am no crafter of metal.")
     if (player.levels.get(Skill.Crafting) < 5) {
         statement("You need a Crafting level of at least 5 to start this quest.")

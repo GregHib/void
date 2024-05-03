@@ -17,7 +17,7 @@ import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Frustrated
 import world.gregs.voidps.world.interact.dialogue.Neutral
 import world.gregs.voidps.world.interact.dialogue.Uncertain
-import world.gregs.voidps.world.interact.dialogue.Unsure
+import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -67,10 +67,10 @@ npcOperate("Talk-to", "sir_vyvin") {
     player<Neutral>("Hello.")
     npc<Neutral>("Greetings traveller.")
     choice {
-        option<Unsure>("Do you have anything to trade?") {
+        option<Quiz>("Do you have anything to trade?") {
             npc<Neutral>("No, I'm sorry.")
         }
-        option<Unsure>("Why are there so many knights in this city?") {
+        option<Quiz>("Why are there so many knights in this city?") {
             npc<Neutral>("We are the White Knights of Falador. We are the most powerful order of knights in the land. We are helping the king Vallance rule the kingdom as he is getting old and tired.")
         }
         option("Can I just distract you for a minute?") {

@@ -49,7 +49,7 @@ suspend fun CharacterContext.startShoeShopping() {
         return
     }
     if (player.equipped(EquipSlot.Feet).isNotEmpty()) {
-        npc<Unsure>("You can't try on shoes with those on your feet.")
+        npc<Quiz>("You can't try on shoes with those on your feet.")
         return
     }
     openDressingRoom("yrsas_shoe_store")

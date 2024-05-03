@@ -15,7 +15,7 @@ npcOperate("Talk-to", "iffie") {
             npc<Cheerful>("Just buy one piece of the mine of zombie costumes and I'll show you the relevant moves.")
             player.openShop("iffies_random_costume_shop")
         }
-        option<Unsure>("Aren't you selling anything?") {
+        option<Quiz>("Aren't you selling anything?") {
             npc<Chuckle>("Oh, yes, but only costumes. Thessalia sells some other clothes and runs the makeover service.")
         }
         option<Talk>("I just came for a chat.") {

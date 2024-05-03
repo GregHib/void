@@ -21,7 +21,7 @@ object AnimationDefinitions {
 
     fun convertOsrs(id: Int): String {
         return when(id) {
-            554, 555, 556, 557 -> "unsure"
+            554, 555, 556, 557 -> "quiz"
             562, 563, 564, 565 -> "roll_eyes"
             567, 568, 569, 570 -> "cheerful"
             571, 572, 573, 574 -> "surprised"

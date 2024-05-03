@@ -19,7 +19,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Talk
-import world.gregs.voidps.world.interact.dialogue.Unsure
+import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -33,10 +33,10 @@ npcOperate("Talk-to", "thessalia") {
     npc<Cheerful>("Would you like to buy any fine clothes?")
     npc<Cheerful>("Or if you're more after fancy dress costumes or commemorative capes, talk to granny Iffie.")
     choice {
-        option<Unsure>("What do you have?") {
+        option<Quiz>("What do you have?") {
             npc<Cheerful>("Well, I have a number of fine pieces of clothing on sale or, if you prefer, I can offer you an exclusive, total clothing makeover?")
             choice {
-                option<Unsure>("Tell me more about this makeover.") {
+                option<Quiz>("Tell me more about this makeover.") {
                     npc<Cheerful>("Certainly!")
                     npc<Cheerful>("Here at Thessalia's Fine Clothing Boutique we offer a unique service, where we will totally revamp your outfit to your choosing. Tired of always wearing the same old outfit, day-in, day-out? Then this is the service for you!")
                     npc<Cheerful>("So, what do you say? Interested?")

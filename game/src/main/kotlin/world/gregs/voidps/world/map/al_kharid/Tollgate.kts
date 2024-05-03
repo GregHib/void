@@ -26,7 +26,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Uncertain
-import world.gregs.voidps.world.interact.dialogue.Unsure
+import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.Upset
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -57,10 +57,10 @@ suspend fun CharacterContext.dialogue(player: Player, npc: NPC? = getGuard(playe
         return
     }
     player.talkWith(npc)
-    player<Unsure>("Can I come through this gate?")
+    player<Quiz>("Can I come through this gate?")
     npc<Talk>("You must pay a toll of 10 gold coins to pass.")
     choice {
-        option<Unsure>("Okay, I'll pay.") {
+        option<Quiz>("Okay, I'll pay.") {
             if (!player.inventory.contains("coins", 10)) {
                 player<Upset>("Oh dear I don't actually seem to have enough money.")
             } else {
@@ -71,7 +71,7 @@ suspend fun CharacterContext.dialogue(player: Player, npc: NPC? = getGuard(playe
         option<Uncertain>("Who does my money go to?") {
             npc<Talk>("The money goes to the city of Al-Kharid.")
         }
-        option<Unsure>("No thank you, I'll walk around.") {
+        option<Quiz>("No thank you, I'll walk around.") {
             npc<Talk>("Ok suit yourself.")
         }
     }
