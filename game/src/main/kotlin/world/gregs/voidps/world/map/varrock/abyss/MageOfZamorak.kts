@@ -66,21 +66,33 @@ npcOperate("Talk-to", "mage_of_zamorak_varrock") {
         npc<Furious>("How dare you wear such disrespectful attire in this holy place? Remove those immediately if you wish to speak to me.")
         return@npcOperate
     }
-
-    if (player["13731", 0] == 0) {
+    if (!player.containsVarbit("enter_the_abyss_data", "where_runes")) {
         npc<Talk>("Ah, you again. The Wilderness is hardly the appropriate place for a conversation now, is it? What was it you wanted?")
         player<Uncertain>("Err... I didn't really want anything.")
         npc<Uncertain>("So why did you approach me?")
         player<Uncertain>("I was just wondering why you sell runes in the Wilderness?")
         npc<Furious>("Well I can't go doing it in the middle of Varrock, can I? In case you hadn't noticed, I'm a servant of Zamorak. The Saradominists have made sure that people like me are not welcome in these parts.")
-        player["13731"] = 1
+        player["enter_abyss_where_runes"] = true
         choice {
             option<Unsure>("Where do you get your runes from?") {
                 whereRunes()
             }
             option<Talk>("Interesting. Thanks for the information.")
         }
-    } else if (player["13731", 0] == 1) {
+    } else if (player["enter_abyss_has_orb", false]) {
+        npc<Unsure>("You again. Have you managed to use that scrying orb to obtain the information I need?")
+        if (!player.ownsItem("scrying_orb")) {
+            player<Upset>("I lost it. Could I have another?")
+            npc<Furious>("Fool! Take this, and don't lose it this time!")
+            item("scrying_orb", 400, "The Mage of Zamorak hands you an orb.")
+            player.inventory.add("scrying_orb")
+        } else {
+            player<Talk>("Not yet.")
+            npc<Talk>("You must carry it with you and teleport to the Rune Essence Mine from three different locations. Return to me once you have done so.")
+        }
+    } else if (player["enter_abyss_offer", false]) {
+        npc<Unsure>("You again. Have you considered my offer? If you help us access the Rune Essence Mine, we will share our runecrafting secrets with you in return.")
+    } else if (player["enter_abyss_where_runes", false]) {
         npc<Talk>("Ah, you again. Do you need something?")
         choice {
             option<Unsure>("Where do you get your runes from?") {
@@ -88,22 +100,8 @@ npcOperate("Talk-to", "mage_of_zamorak_varrock") {
             }
             option<Talk>("Just looking around.")
         }
-    } else if (player["13732", 0] == 1) {
-        npc<Unsure>("You again. Have you considered my offer? If you help us access the Rune Essence Mine, we will share our runecrafting secrets with you in return.")
-    } else if (player["13733", 0] == 1) {
-        npc<Unsure>("You again. Have you managed to use that scrying orb to obtain the information I need?")
-        if(!player.ownsItem("scrying_orb")) {
-            player<Upset>("I lost it. Could I have another?")
-            npc<Furious>("Fool! Take this, and don't lose it this time!")
-            item("scrying_orb", 400,  "The Mage of Zamorak hands you an orb.")
-            player.inventory.add("scrying_orb")
-        } else {
-            player<Talk>("Not yet.")
-            npc<Talk>("You must carry it with you and teleport to the Rune Essence Mine from three different locations. Return to me once you have done so.")
-        }
     }
 }
-
 /*
 
 varbit 13728 = 1 // knows locations of teleporters
@@ -120,9 +118,11 @@ Lumb guy
 
 Brimstail
 [7754] 2024-05-02 12:36:30 Varbit (varpId: 491, oldValue: 0)      Varbit(id = 2317, value = 1)
-[7754] 2024-05-02 12:36:30 Local                                  Message(type = GAMEMESSAGE, text = "Your scrying orb has absorbed enough teleportation information.")
 [7754] 2024-05-02 12:36:30 Varbit (varpId: 638, oldValue: 6)      Varbit(id = 2313, value = 1)
+[7754] 2024-05-02 12:36:30 Local                                  Message(type = GAMEMESSAGE, text = "Your scrying orb has absorbed enough teleportation information.")
+
  */
+
 
 suspend fun NPCOption.whereRunes() {
     npc<Uncertain>("Well we craft them of course.")
@@ -148,7 +148,7 @@ suspend fun NPCOption.whereRunes() {
                 option<Talk>("I did it so that I could then steal their secrets.") {
                     npc<Uncertain>("You did? Perhaps I underestimated you.")
                     npc<Uncertain>("Alright, if you help us access the Rune Essence Mine, we will share our runecrafting secrets with you in return.")
-                    player["13732"] = 1
+                    player["enter_abyss_offer"] = true
                     choice {
                         option<Talk>("Deal.") {
                             npc<Talk>("Good. Now, all I need from you is the spell that will teleport me to the Rune Essence Mine.")
@@ -164,7 +164,7 @@ suspend fun NPCOption.whereRunes() {
                             npc<Talk>("Well if not, I'm sure one of those fools in the Order of Wizards can tell you. Now, here's the orb.")
                             item("scrying_orb", 400, "The Mage of Zamorak hands you an orb.")
                             player["enter_the_abyss"] = "stage1"
-                            player["13733"] = "1"
+                            player["enter_abyss_has_orb"] = true
                             player.inventory.add("scrying_orb")
                             // TODO what if inv full
                         }
