@@ -2332,8 +2332,9 @@
     x: 3027
     y: 4834
   to:
-    x: 0
-    y: 0
+    x: 2464
+    y: 4892
+    level: 1
 - id: fire_rift
   option: Exit-through
   tile:
@@ -2388,16 +2389,16 @@
     x: 3050
     y: 4837
   to:
-    x: 0
-    y: 0
+    x: 2205
+    y: 4838
 - id: law_rift
   option: Exit-through
   tile:
     x: 3049
     y: 4839
   to:
-    x: 0
-    y: 0
+    x: 2464
+    y: 4826
 - id: chaos_rift
   option: Exit-through
   tile:
