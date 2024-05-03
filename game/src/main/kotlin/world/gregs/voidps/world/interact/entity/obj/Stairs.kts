@@ -40,8 +40,3 @@ fun String.isTrapDoor(): Boolean {
     val name = replace(" ", "")
     return name.equals("trapdoor", true) || name.equals("manhole", true)
 }
-
-fun hasClimbOption(options: Array<String?>?): Boolean {
-    val count = options?.count { it?.startsWith("Climb") == true } ?: return false
-    return count > 1
-}

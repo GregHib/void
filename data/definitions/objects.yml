@@ -11803,3 +11803,9 @@ abyss_eyes_looking:
 abyss_eyes_distracted:
   id: 7170
   examine: "I could probably distract these with thievery."
+chaos_altar_ladder_up:
+  id: 38221
+  examine: "I can climb this."
+chaos_altar_ladder_down:
+  id: 38222
+  examine: "I can climb down this."

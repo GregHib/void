@@ -2,7 +2,10 @@ package world.gregs.voidps.world.interact.entity.obj
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
@@ -21,13 +24,16 @@ class Teleports {
     private lateinit var teleports: Map<String, Map<Int, TeleportDefinition>>
 
     suspend fun teleport(objectOption: ObjectOption, option: String = objectOption.option): Boolean {
-        val id = objectOption.def.stringId.ifEmpty { objectOption.def.id.toString() }
-        val definition = teleports[option]?.get(objectOption.target.tile.id) ?: return false
+        return teleport(objectOption, objectOption.player, objectOption.def, objectOption.target.tile, option)
+    }
+
+    suspend fun teleport(context: CharacterContext, player: Player, def: ObjectDefinition, targetTile: Tile, option: String): Boolean {
+        val id = def.stringId.ifEmpty { def.id.toString() }
+        val definition = teleports[option]?.get(targetTile.id) ?: return false
         if (definition.id != id) {
             return false
         }
-        val player = objectOption.player
-        val teleport = Teleport(player, definition.id, definition.tile, objectOption.def, definition.option)
+        val teleport = Teleport(player, definition.id, definition.tile, def, definition.option)
         player.emit(teleport)
         if (teleport.cancelled) {
             return false
@@ -39,7 +45,7 @@ class Teleports {
         }
         val delay = teleport.delay
         if (delay != null) {
-            objectOption.delay(delay)
+            context.delay(delay)
         }
         player.tele(tile)
         teleport.land = true

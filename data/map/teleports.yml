@@ -238,6 +238,111 @@
   to:
     x: 3067
     y: 10254
+######## 9035 ########
+- id: chaos_altar_portal
+  option: Enter
+  tile:
+    x: 2276
+    y: 4847
+    level: 3
+  to:
+    x: 3060
+    y: 3585
+- id: chaos_altar_portal
+  option: Enter
+  tile:
+    x: 2273
+    y: 4856
+    level: 3
+  to:
+    x: 3060
+    y: 3585
+- id: chaos_altar_ladder_down
+  option: Climb-down
+  tile:
+    x: 2255
+    y: 4829
+    level: 3
+  delta:
+    level: -1
+- id: chaos_altar_ladder_up
+  option: Climb-up
+  tile:
+    x: 2255
+    y: 4829
+    level: 2
+  delta:
+    level: 1
+- id: chaos_altar_ladder_down
+  option: Climb-down
+  tile:
+    x: 2282
+    y: 4853
+    level: 2
+  delta:
+    level: -1
+- id: chaos_altar_ladder_up
+  option: Climb-up
+  tile:
+    x: 2282
+    y: 4853
+    level: 1
+  delta:
+    level: 1
+- id: chaos_altar_ladder_down
+  option: Climb-down
+  tile:
+    x: 2275
+    y: 4834
+    level: 2
+  delta:
+    level: -1
+- id: chaos_altar_ladder_up
+  option: Climb-up
+  tile:
+    x: 2275
+    y: 4834
+    level: 1
+  delta:
+    level: 1
+- id: chaos_altar_ladder_down
+  option: Climb-down
+  tile:
+    x: 2254
+    y: 4849
+    level: 1
+  delta:
+    level: -1
+- id: chaos_altar_ladder_up
+  option: Climb-up
+  tile:
+    x: 2254
+    y: 4849
+  delta:
+    level: 1
+- id: chaos_altar_ladder_down
+  option: Climb-down
+  tile:
+    x: 2259
+    y: 4845
+    level: 1
+  delta:
+    level: -1
+- id: chaos_altar_ladder_up
+  option: Climb-up
+  tile:
+    x: 2259
+    y: 4845
+  delta:
+    level: 1
+- id: chaos_altar_portal
+  option: Enter
+  tile:
+    x: 2282
+    y: 4837
+  to:
+    x: 3060
+    y: 3585
 ######## 9297 ########
 - id: 16049
   option: Climb-up
