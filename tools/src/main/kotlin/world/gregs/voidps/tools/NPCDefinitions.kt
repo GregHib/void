@@ -21,8 +21,11 @@ object NPCDefinitions {
         val decoder = NPCDefinitions(definitions).load(yaml, property("npcDefinitionsPath"))
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.name.contains("abyssal", ignoreCase = true)) {
-                println("$i ${def.name} ${def.extras}")
+            if (def.transforms?.contains(171) == true || def.transforms?.contains(4610) == true) {
+                println("$i ${def.name} ${def.transforms?.toList()}")
+            }
+            if (def.name.contains("brimstail", ignoreCase = true)) {
+                println("$i ${def.name} ${def.extras} ${def.varp} ${def.varbit}")
             }
         }
     }

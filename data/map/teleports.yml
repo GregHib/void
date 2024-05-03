@@ -5144,6 +5144,15 @@
   to:
     x: 3560
     y: 9779
+######## 9525 ########
+- id: brimstails_cave_entrance
+  option: Enter
+  tile:
+    x: 2403
+    y: 3418
+  to:
+    x: 2409
+    y: 9812
 ######## 11575 ########
 - id: games_room_stairs_up_2
   option: Climb-up

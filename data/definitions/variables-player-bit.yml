@@ -604,9 +604,16 @@ enter_abyss_has_orb:
   transmit: false
 last_npc_teleport_to_rune_essence_mine:
   id: 2313
-  format: int
+  format: map
   persist: true
   transmit: false
+  default: aubury
+  values:
+    aubury: 1
+    brimstail: 2
+    wizard_cromperty: 3
+    wizard_distentor: 4
+    sedridor: 6
 scrying_orb_sedridor:
   id: 2314
   format: boolean
@@ -617,7 +624,7 @@ scrying_orb_aubury:
   format: boolean
   persist: true
   transmit: false
-scrying_orb_cromperty:
+scrying_orb_wizard_cromperty:
   id: 2316
   format: boolean
   persist: true
@@ -627,7 +634,7 @@ scrying_orb_brimstail:
   format: boolean
   persist: true
   transmit: false
-scrying_orb_distentor:
+scrying_orb_wizard_distentor:
   id: 2318
   format: boolean
   persist: true
