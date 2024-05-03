@@ -217,7 +217,7 @@ suspend fun CharacterContext.cutscene() {
     denath.walkTo(Tile(3236, 3368).add(offset))
     player.clearCamera()
     player.moveCamera(Tile(3226, 3383).add(offset), 1000, 1, 1)
-    npc<Suspicious>("denath", "I've got to get out of here...")
+    npc<Shifty>("denath", "I've got to get out of here...")
     player.queue.clear("demon_slayer_delrith_cutscene_end")
     showTabs()
     player.clearCamera()

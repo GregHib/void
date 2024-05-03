@@ -269,7 +269,7 @@ object DialogueConverter {
             571, 572, 573, 574 -> "Surprised"
             575, 576, 577, 578 -> "Uncertain"
             588, 589, 590, 591 -> "Talk"
-            592, 593, 594, 595 -> "Suspicious"
+            592, 593, 594, 595 -> "shifty"
             596, 597, 598, 599 -> "Afraid"
             600, 601, 602, 603 -> "Drunk"
             605, 606, 607, 608 -> "Chuckle"

@@ -15,7 +15,7 @@ import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Neutral
-import world.gregs.voidps.world.interact.dialogue.Suspicious
+import world.gregs.voidps.world.interact.dialogue.Shifty
 import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -27,10 +27,10 @@ objectOperate("Search", "varrock_palace_drain") {
     if (player["demon_slayer_drain_dislodged", false] || player.ownsItem("silverlight_key_sir_prysin")) {
         player.message("Nothing interesting seems to have been dropped down here today.")
     } else if (player.quest("demon_slayer") == "unstarted") {
-        player<Suspicious>("This is the drainpipe running from the kitchen sink to the sewer. I can see a key just inside the drain.")
+        player<Shifty>("This is the drainpipe running from the kitchen sink to the sewer. I can see a key just inside the drain.")
     } else {
         player<Neutral>("That must be the key Sir Prysin dropped.")
-        player<Suspicious>("I don't seem to be able to reach it. I wonder if I can dislodge it somehow. That way it may go down into the sewers.")
+        player<Shifty>("I don't seem to be able to reach it. I wonder if I can dislodge it somehow. That way it may go down into the sewers.")
     }
 }
 
@@ -62,7 +62,7 @@ itemOnObjectOperate("*of_water", "varrock_palace_drain") {
         if (player.quest("demon_slayer") == "key_hunt") {
             player<Cheerful>("OK, I think I've washed the key down into the sewer. I'd better go down and get it!")
         } else {
-            player<Suspicious>("I think that dislodged something from the drain. It's probably gone down to the sewers below.")
+            player<Shifty>("I think that dislodged something from the drain. It's probably gone down to the sewers below.")
         }
     }
 }

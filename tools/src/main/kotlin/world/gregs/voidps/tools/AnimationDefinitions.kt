@@ -27,7 +27,7 @@ object AnimationDefinitions {
             571, 572, 573, 574 -> "surprised"
             575, 576, 577, 578 -> "uncertain"
             588, 589, 590, 591 -> "talk"
-            592, 593, 594, 595 -> "suspicious"
+            592, 593, 594, 595 -> "shifty"
             596, 597, 598, 599 -> "afraid"
             600, 601, 602, 603 -> "drunk"
             605, 606, 607, 608 -> "chuckle"

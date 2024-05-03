@@ -41,7 +41,7 @@ suspend fun PlayerChoice.magicCombat(): Unit = option<Neutral>("Tell me about ma
     npc<Cheerful>("Of course ${player.name}! As a rule of thumb, if you cast the highest spell of which you're capable, you'll get the best experience possible.")
     npc<Cheerful>("Wearing metal armour and ranged armour can seriously impair your magical abilities. Make sure you wear some robes to maximise your capabilities.")
     npc<Cheerful>("Superheat Item and the Alchemy spells are good ways to level magic if you are not interested in the combat aspect of magic.")
-    npc<Suspicious>("There's always the Magic Training Arena. You can find it north of the Duel Arena in Al Kharid. You will be able to earn some special rewards there by practicing your magic there.")
+    npc<Shifty>("There's always the Magic Training Arena. You can find it north of the Duel Arena in Al Kharid. You will be able to earn some special rewards there by practicing your magic there.")
     npc<Cheerful>("I see you already have access to the ancient magicks. Well done, these will aid you greatly.")
     menu("Is there anything else you would like to know?")
 }

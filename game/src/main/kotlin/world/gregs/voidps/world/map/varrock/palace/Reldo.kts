@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Chuckle
 import world.gregs.voidps.world.interact.dialogue.Neutral
-import world.gregs.voidps.world.interact.dialogue.Suspicious
+import world.gregs.voidps.world.interact.dialogue.Shifty
 import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -50,5 +50,5 @@ suspend fun PlayerChoice.aboutImcandoDwarves() = option<Unsure>(
     if (player.quest("the_knights_sword") == "started") {
         player["the_knights_sword"] = "find_thurgo"
     }
-    npc<Suspicious>("... you could try taking them some redberry pie. They REALLY like redberry pie. I believe I remember a couple living in Asgarnia near the cliffs on the Asgarnian southern peninsula.")
+    npc<Shifty>("... you could try taking them some redberry pie. They REALLY like redberry pie. I believe I remember a couple living in Asgarnia near the cliffs on the Asgarnian southern peninsula.")
 }

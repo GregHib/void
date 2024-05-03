@@ -88,5 +88,5 @@ suspend fun PlayerChoice.advice(): Unit = option<Unsure>("Do you have any advice
 }
 
 suspend fun PlayerChoice.exit(): Unit = option<RollEyes>("I'll be off.") {
-    npc<Suspicious>("See you in the arenas!")
+    npc<Shifty>("See you in the arenas!")
 }

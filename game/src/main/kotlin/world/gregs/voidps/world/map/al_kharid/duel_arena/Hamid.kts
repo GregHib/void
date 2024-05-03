@@ -15,7 +15,7 @@ npcOperate("Talk-to", "hamid") {
             npc<Cheerful>("They are so... nice... afterall!")
         }
         option<Uncertain>("What's a Monk doing in a place such as this?") {
-            npc<Suspicious>("Well don't tell anyone but I came here because of the nurses!")
+            npc<Shifty>("Well don't tell anyone but I came here because of the nurses!")
             player<Chuckle>("Really?")
             npc<Chuckle>("It beats being stuck in the monastery!")
         }

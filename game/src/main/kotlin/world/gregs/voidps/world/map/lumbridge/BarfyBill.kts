@@ -21,7 +21,7 @@ npcOperate("Talk-To", "barfy_bill") {
             npc<Sad>("Chronic sea sickness. My first, and only, voyage was spent dry heaving over the rails.")
             npc<Neutral>("If I had known about the sea sickness I could have saved myself a lot of money.")
             player<Uncertain>("What are you up to now then?")
-            npc<Suspicious>("Well my ship had a little fire related problem. Fortunately it was well insured.")
+            npc<Shifty>("Well my ship had a little fire related problem. Fortunately it was well insured.")
             npc<Neutral>("Anyway, I don't have to work anymore so I've taken to canoeing on the river.")
             npc<Cheerful>("I don't get river sick!")
             npc<Unsure>("Would you like to know how to make a canoe?")
