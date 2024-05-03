@@ -292,6 +292,11 @@ astral_altar_teleport:
     x: [ 2150, 2152 ]
     y: [ 3860, 3863 ]
   tags: [ teleport ]
+chaos_altar_teleport:
+  area:
+    x: [ 3057, 3058 ]
+    y: [ 3588, 3589 ]
+  tags: [ teleport ]
 trollheim_teleport:
   area:
     x: [ 2886, 2890 ]

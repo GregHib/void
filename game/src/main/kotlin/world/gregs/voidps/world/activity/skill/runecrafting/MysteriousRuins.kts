@@ -24,7 +24,7 @@ val objectDefinitions: ObjectDefinitions by inject()
 val omni = listOf("air", "mind", "water", "earth", "fire", "body", "cosmic", "law", "nature", "chaos", "death", "blood")
 
 playerSpawn { player ->
-    if (player.equipped(EquipSlot.Hat).id.endsWith("_tiara") || player.equipped(EquipSlot.Weapon).id == "omni_staff") {
+    if (player.equipped(EquipSlot.Hat).id.endsWith("_tiara") || player.equipped(EquipSlot.Weapon).id == "omni_talisman_staff") {
         updateAltarVars(player)
     }
 }
@@ -37,11 +37,11 @@ itemRemoved("*_tiara", EquipSlot.Hat, "worn_equipment") { player ->
     updateAltarVars(player)
 }
 
-itemAdded("omni_staff", EquipSlot.Weapon, "worn_equipment") { player ->
+itemAdded("omni_talisman_staff", EquipSlot.Weapon, "worn_equipment") { player ->
     updateAltarVars(player)
 }
 
-itemRemoved("omni_staff", EquipSlot.Weapon, "worn_equipment") { player ->
+itemRemoved("omni_talisman_staff", EquipSlot.Weapon, "worn_equipment") { player ->
     updateAltarVars(player)
 }
 
@@ -49,7 +49,7 @@ fun updateAltarVars(player: Player) {
     val tiara = player.equipped(EquipSlot.Hat).id.removeSuffix("_tiara")
     val staff = player.equipped(EquipSlot.Weapon).id
     for (type in omni) {
-        player["${type}_altar_ruins"] = type == tiara || tiara == "omni" || staff == "omni_staff"
+        player["${type}_altar_ruins"] = type == tiara || tiara == "omni" || staff == "omni_talisman_staff"
     }
 }
 
