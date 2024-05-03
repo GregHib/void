@@ -6,10 +6,10 @@ import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.chat.messages
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.encode.*
 import world.gregs.voidps.type.Tile
+import java.util.*
 
 /**
  * Helper functions to simplify common client calls
@@ -31,10 +31,18 @@ fun Character.message(
     if (this !is Player) {
         return
     }
-    messages.add(text)
+    getOrPut("messages") { FixedSizeQueue<String>(100) }.add(text)
     client?.message(Colours.replaceCustomTags(text), type.id, tile, name, name?.toSnakeCase())
 }
 
+private class FixedSizeQueue<E>(private val capacity: Int) : LinkedList<E>() {
+    override fun add(element: E): Boolean {
+        if (size >= capacity) {
+            removeFirst()
+        }
+        return super.add(element)
+    }
+}
 
 /**
  * Sends a list of items to display on an interface item group component

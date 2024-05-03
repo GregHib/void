@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.messages
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -38,7 +37,14 @@ fun Player.itemOption(
     slot: Int = inventories.inventory(inventory).indexOf(item)
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    emit(InterfaceOption(this, id = id, component = component, optionIndex = optionIndex, option = option, item = inventories.inventory(inventory).getOrNull(slot) ?: Item(item), itemSlot = slot, inventory = inventory))
+    emit(InterfaceOption(this,
+        id = id,
+        component = component,
+        optionIndex = optionIndex,
+        option = option,
+        item = inventories.inventory(inventory).getOrNull(slot) ?: Item(item),
+        itemSlot = slot,
+        inventory = inventory))
 }
 
 fun Player.interfaceOption(
@@ -186,4 +192,4 @@ fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {
 
 fun Inventory.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }
 
-fun Player.containsMessage(message: String) = messages.any { it.contains(message) }
+fun Player.containsMessage(message: String) = get<List<String>>("messages", emptyList()).any { it.contains(message) }
