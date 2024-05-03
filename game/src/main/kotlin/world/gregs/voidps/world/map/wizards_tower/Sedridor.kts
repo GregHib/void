@@ -93,7 +93,7 @@ suspend fun CharacterContext.okHere() {
                 npc<Cheerful>("The process of imbuing runes is called runecrafting. Legend has it that this was once a common art, but the secrets of how to do it were lost until just under two hundred years ago.")
                 npc<Cheerful>("The rediscovery of runecrafting had such a large impact on the world, that it marked the dawn of the Fifth Age. It also resulted in the birth of our order, and the construction of the first Wizards' Tower.")
                 player<Unsure>("If it was the first tower, I'm guessing it doesn't exist anymore? What happened?")
-                npc<Angry>("It was burnt down by traitorous members of our own order. They followed the evil god of chaos, Zamorak, and they wished to claim our magical discoveries in his name.")
+                npc<Frustrated>("It was burnt down by traitorous members of our own order. They followed the evil god of chaos, Zamorak, and they wished to claim our magical discoveries in his name.")
                 npc<Sad>("When the tower burnt down, much was lost, including an important incantation. A spell that could be used to teleport to a hidden essence mine.")
                 player<Unsure>("The essence mine you mentioned earlier, I assume?")
                 npc<Talking>("Precicely. Rune essence is the material used to make runes, but it is incredibly rare. That essence mine was the only place it could be found that our order knew of.")

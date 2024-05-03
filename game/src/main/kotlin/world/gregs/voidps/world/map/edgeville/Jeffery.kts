@@ -10,7 +10,10 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.*
+import world.gregs.voidps.world.interact.dialogue.type.choice
+import world.gregs.voidps.world.interact.dialogue.type.items
+import world.gregs.voidps.world.interact.dialogue.type.npc
+import world.gregs.voidps.world.interact.dialogue.type.player
 
 npcOperate("Talk-to", "jeffery") {
     npc<Unsure>("Keep it quick. What do you want?")
@@ -19,7 +22,7 @@ npcOperate("Talk-to", "jeffery") {
             option<Talk>("Who was that love poem for?") {
                 if (player.quest("gunnars_ground") == "completed") {
                     npc<Sad>("It, er, it didn't work out well.")
-                    npc<Angry>("I don't want to talk about it! Leave me alone!")
+                    npc<Frustrated>("I don't want to talk about it! Leave me alone!")
                 } else {
                     npc<Talk>("I haven't had a chance to do anything with it yet!")
                 }
@@ -95,15 +98,15 @@ suspend fun TargetNPCContext.lovePoem() {
             cheekyLittle()
         }
         option<Talk>("I don't know any dwarf.") {
-            npc<Angry>("I recognise his awful handwriting.")
+            npc<Frustrated>("I recognise his awful handwriting.")
             cheekyLittle()
         }
     }
 }
 
 suspend fun TargetNPCContext.cheekyLittle() {
-    npc<Angry>("That cheeky little...")
-    npc<Angry>("He just can't leave it alone, can he? Fine! I'll trade you for the poem. What is it you want?")
+    npc<Frustrated>("That cheeky little...")
+    npc<Frustrated>("He just can't leave it alone, can he? Fine! I'll trade you for the poem. What is it you want?")
     choice {
         option<Talk>("Just a plain, gold ring.") {
             goldRing()
@@ -122,5 +125,5 @@ suspend fun TargetNPCContext.goldRing() {
     player.setAnimation("hand_over_item")
     target.setAnimation("exchange_pocket")
     items("love_poem", "ring_from_jeffery", "Jeffery trades you a gold ring for the poem.")
-    npc<Angry>("Now, leave me in peace!")
+    npc<Frustrated>("Now, leave me in peace!")
 }

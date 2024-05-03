@@ -23,7 +23,7 @@ suspend fun TargetNPCContext.menu() {
         }
         if (validStages.contains(player.quest("gunnars_ground"))) {
             option<Talking>("You argued with Gunthor.") {
-                npc<Angry>("There is no argument. I honour my father and my ancestors.")
+                npc<Frustrated>("There is no argument. I honour my father and my ancestors.")
                 choice {
                     option<Talking>("Don't you want to settle permanently?") {
                         npc<Furious>("You test my patience by quuestioning my loyalty to my chieftain. Take up my challenge, outerlander, that I might honourably split your skull open..")

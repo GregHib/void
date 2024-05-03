@@ -196,7 +196,7 @@ suspend fun ChoiceBuilder<NPCOption>.hereYouGo(): Unit = option<Talk>("Okay, her
     whatToDo()
 }
 
-suspend fun ChoiceBuilder<NPCOption>.whoYouCallingYoung(): Unit = option<Angry>("Who are you called 'young one'?") {
+suspend fun ChoiceBuilder<NPCOption>.whoYouCallingYoung(): Unit = option<Frustrated>("Who are you called 'young one'?") {
     npc<Talk>("You have been on this world a relatively short time. At least compared to me.")
     npc<Talk>("So, do you want your fortune told or not?")
     choice {
@@ -256,7 +256,7 @@ suspend fun CharacterContext.cutscene() {
     player.playSound("rumbling")
     npc<Unsure>("wally", "Now, what was that incantation again?")
     randomiseOrder(player)
-    npc<Angry>("wally", "${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}... ${getWord(player, 4)}... ${getWord(player, 5)}!")
+    npc<Frustrated>("wally", "${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}... ${getWord(player, 4)}... ${getWord(player, 5)}!")
     player.open("fade_out")
     delay(4)
     player.close("fade_out")
@@ -326,7 +326,7 @@ suspend fun CharacterContext.delrithWillCome() {
 }
 
 suspend fun CharacterContext.whereSilverlight() {
-    player<Angry>("Where can I find Silverlight?")
+    player<Frustrated>("Where can I find Silverlight?")
     npc<Talk>("Silverlight has been passed down by Wally's descendants. I believe it is currently in the care of one of the king's knights called Sir Prysin.")
     npc<Happy>("He shouldn't be too hard to find. He lives in the royal palace in this city. Tell him Gypsy Aris sent you.")
 }

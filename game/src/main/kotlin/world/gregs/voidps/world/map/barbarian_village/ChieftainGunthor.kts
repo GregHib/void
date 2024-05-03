@@ -13,7 +13,7 @@ npcOperate("Talk-to", "chieftain_gunthor") {
         "completed" -> {
         }
         "tell_gudrun", "tell_dororan", "write_poem", "more_poem", "one_more_poem", "poem_done", "poem", "recital", "gunnars_ground" -> {
-            npc<Angry>("Run back to Gudrun and tell her to remember her forefathers!")
+            npc<Frustrated>("Run back to Gudrun and tell her to remember her forefathers!")
             npc<Furious>("Tell her to think of Gunnar and what he would think of this insult! Now go before I have Haakon dismember you.")
             seeHimTry()
         }
@@ -35,7 +35,7 @@ suspend fun CharacterContext.meetChieftain() {
 }
 
 suspend fun CharacterContext.makeItShort() {
-    npc<Angry>("Make it short.")
+    npc<Frustrated>("Make it short.")
     player<Talk>("Your daughter seeks permission to court an outerlander.")
     npc<Mad>("WHAT??")
     choice {
@@ -49,7 +49,7 @@ suspend fun CharacterContext.makeItShort() {
 }
 
 suspend fun CharacterContext.barbarians() {
-    npc<Angry>("Do you have ANY idea who we are?")
+    npc<Frustrated>("Do you have ANY idea who we are?")
     choice {
         option<Talking>("You're barbarians.") {
             waitAMoment()
@@ -73,23 +73,23 @@ suspend fun CharacterContext.waitAMoment() {
 }
 
 suspend fun CharacterContext.campOfWar() {
-    npc<Angry>("We are the freemen of the ice. You think this a settlement, but it is a camp of war!")
-    npc<Angry>("haakon_the_champion", "Chieftain! May I interrupt?")
-    npc<Angry>("What is it, Haakon?")
-    npc<Angry>("haakon_the_champion", "We have lived here since before the time of my father. Perhaps we are no longer a camp.")
+    npc<Frustrated>("We are the freemen of the ice. You think this a settlement, but it is a camp of war!")
+    npc<Frustrated>("haakon_the_champion", "Chieftain! May I interrupt?")
+    npc<Frustrated>("What is it, Haakon?")
+    npc<Frustrated>("haakon_the_champion", "We have lived here since before the time of my father. Perhaps we are no longer a camp.")
     npc<Unsure>("Your father? Do you honour him, Haakon?")
     npc<Furious>("haakon_the_champion", "Of course!")
     npc<Unsure>("And do you honour Warloard Gunnar?")
     npc<Furious>("haakon_the_champion", "Of course, Chieftain!")
-    npc<Angry>("Then why do you dishonour his name by abandoning what he fought for?")
+    npc<Frustrated>("Then why do you dishonour his name by abandoning what he fought for?")
     npc<Furious>("We will honour our fathers and we will honour Gunnar!")
-    npc<Angry>("haakon_the_champion", "Yes, Chieftain. You are wise. I am sorry.")
+    npc<Frustrated>("haakon_the_champion", "Yes, Chieftain. You are wise. I am sorry.")
     npc<Mad>("You! Outerlander!")
     player<Unsure>("What?")
     npc<Mad>("We are not friends, you and I! We are not allies!")
-    npc<Angry>("Run back to Gudrun and tell her to remember her forefathers!")
+    npc<Frustrated>("Run back to Gudrun and tell her to remember her forefathers!")
     player["gunnars_ground"] = "tell_gudrun"
-    npc<Angry>("Tell her to think of Gunnar and what he would think of this insult! Now go before I have Haakon dismember you.")
+    npc<Frustrated>("Tell her to think of Gunnar and what he would think of this insult! Now go before I have Haakon dismember you.")
     seeHimTry()
 }
 
@@ -107,5 +107,5 @@ suspend fun CharacterContext.seeHimTry() {
 }
 
 suspend fun CharacterContext.unstarted() {
-    npc<Angry>("Begone, outerlander! Your kind are not welcome here!")
+    npc<Frustrated>("Begone, outerlander! Your kind are not welcome here!")
 }

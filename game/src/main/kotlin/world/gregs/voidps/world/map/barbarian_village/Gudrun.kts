@@ -177,14 +177,14 @@ suspend fun CharacterContext.cutscenePart2(instance: Region) {
     player.open("fade_in")
     npc<Upset>("dororan_cutscene", "I hope they at least give me a decent burial.")
     gunthor.setAnimation("gunthor_announcement")
-    npc<Angry>("chieftain_gunthor_cutscene", "Freemen! Freemen! I have an announcement!")
-    npc<Angry>("kjell_cutscene", "Hear the chieftain speak! Hear him!")
-    npc<Angry>("chieftain_gunthor_cutscene", "We have always borne the legacy of our ancestors, and we have borne it with honour!")
+    npc<Frustrated>("chieftain_gunthor_cutscene", "Freemen! Freemen! I have an announcement!")
+    npc<Frustrated>("kjell_cutscene", "Hear the chieftain speak! Hear him!")
+    npc<Frustrated>("chieftain_gunthor_cutscene", "We have always borne the legacy of our ancestors, and we have borne it with honour!")
     npc<Mad>("kjell_cutscene", "FOR GUNNAR!")
-    npc<Angry>("chieftain_gunthor_cutscene", "And though we honour them still, the time of our ancestors is past. this is the time of Gunthor!")
+    npc<Frustrated>("chieftain_gunthor_cutscene", "And though we honour them still, the time of our ancestors is past. this is the time of Gunthor!")
     npc<Mad>("haakon_the_champion_cutscene", "FOR GUNNAR!")
-    npc<Angry>("chieftain_gunthor_cutscene", "Gunthor says: This is Gunnar's ground, bought with blood! Let it remain Gunnar's ground forever! Here we settle!")
-    npc<Angry>("chieftain_gunthor_cutscene", "GUNNAR'S GROUND!")
+    npc<Frustrated>("chieftain_gunthor_cutscene", "Gunthor says: This is Gunnar's ground, bought with blood! Let it remain Gunnar's ground forever! Here we settle!")
+    npc<Frustrated>("chieftain_gunthor_cutscene", "GUNNAR'S GROUND!")
     kjell.setAnimation("kjell_cheer")
     haakon.setAnimation("haakon_cheer")
     npc<Mad>("haakon_the_champion_cutscene", "GUNNAR'S GROUND!")
@@ -291,11 +291,11 @@ suspend fun CharacterContext.whatHeSay() {
     npc<Furious>("By the eyeballs of Guthix! Always Gunnar!")
     choice {
         option<Talking>("Who is Gunnar?") {
-            npc<Angry>("He was my great-grandpapa! He founded this village a hundred years ago.")
+            npc<Frustrated>("He was my great-grandpapa! He founded this village a hundred years ago.")
             fathersAttitude()
         }
         option<Talking>("What should we do now?") {
-            npc<Angry>("I don't know. Maybe your mystery man has some ideas.")
+            npc<Frustrated>("I don't know. Maybe your mystery man has some ideas.")
             player["gunnars_ground"] = "tell_dororan"
             player<Happy>("I'll ask him.")
         }
@@ -305,13 +305,13 @@ suspend fun CharacterContext.whatHeSay() {
 suspend fun CharacterContext.fathersAttitude() {
     choice {
         option<Talking>("You don't seem to share your father's attitude towards him.") {
-            npc<Angry>("I think there's a difference between respecting my ancestors and obsessing over them. Papa thinks whatever stupid war Gunnar fought is still going on.")
-            npc<Angry>("I don't know. Maybe your mystery man has some ideas.")
+            npc<Frustrated>("I think there's a difference between respecting my ancestors and obsessing over them. Papa thinks whatever stupid war Gunnar fought is still going on.")
+            npc<Frustrated>("I don't know. Maybe your mystery man has some ideas.")
             player["gunnars_ground"] = "tell_dororan"
             player<Happy>("I'll ask him.")
         }
         option<Talking>("What should we do now?") {
-            npc<Angry>("I don't know. Maybe your mystery man has some ideas.")
+            npc<Frustrated>("I don't know. Maybe your mystery man has some ideas.")
             player["gunnars_ground"] = "tell_dororan"
             player<Happy>("I'll ask him.")
         }
@@ -329,16 +329,16 @@ suspend fun CharacterContext.meetChieftain() {
 }
 
 suspend fun CharacterContext.showGudrun() {
-    npc<Angry>("kjell_sword", "Gudrun! You caught enough fish?")
-    npc<Angry>("Yes! I have plenty of fish!")
-    npc<Angry>("kjell_sword", "Your father needs many fish to feed the freemen!")
-    npc<Angry>("I know!")
-    npc<Angry>("kjell_sword", "Maybe you sneak off to the outerlander city again? Buy fish in market, instead of catching them?")
-    npc<Angry>("Shut up! I'm much better at fishing than you.")
-    npc<Angry>("kjell_sword", "You are not!")
-    npc<Angry>("Just guard the hut like chieftain told you to!")
-    npc<Angry>("kjell_sword", "Fine!")
-    npc<Angry>("Stupid barbarian.")
+    npc<Frustrated>("kjell_sword", "Gudrun! You caught enough fish?")
+    npc<Frustrated>("Yes! I have plenty of fish!")
+    npc<Frustrated>("kjell_sword", "Your father needs many fish to feed the freemen!")
+    npc<Frustrated>("I know!")
+    npc<Frustrated>("kjell_sword", "Maybe you sneak off to the outerlander city again? Buy fish in market, instead of catching them?")
+    npc<Frustrated>("Shut up! I'm much better at fishing than you.")
+    npc<Frustrated>("kjell_sword", "You are not!")
+    npc<Frustrated>("Just guard the hut like chieftain told you to!")
+    npc<Frustrated>("kjell_sword", "Fine!")
+    npc<Frustrated>("Stupid barbarian.")
     npc<Unsure>("Sorry about that, stranger. Did you want something?.")
     player<Unsure>("Are you Gudrun?")
     npc<Talk>("Yes.")
@@ -437,8 +437,8 @@ suspend fun CharacterContext.reasonWithHim() {
 
 suspend fun CharacterContext.unstarted() {
     npc<Happy>("Can I help you, stranger?")
-    npc<Angry>("kjell_sword", "Why are you talking to that outerlander?")
-    npc<Angry>("It's none of your business, Kjell! Just guard the hut!")
+    npc<Frustrated>("kjell_sword", "Why are you talking to that outerlander?")
+    npc<Frustrated>("It's none of your business, Kjell! Just guard the hut!")
     npc<Amazed>("Sorry about that. Did you want something?")
     choice {
         option<Talking>("What is this place?") {

@@ -171,7 +171,7 @@ suspend fun CharacterContext.niceHat() {
     player<Cheerful>("Still, suits you. The trousers are pretty special too. ")
     npc<Sad>("Its all standard cook's issue uniform...")
     player<Cheerful>("The whole hat, apron, stripey trousers ensemble - it works. It make you looks like a real cook.")
-    npc<Angry>("I am a real cook! I haven't got time to be chatting about Culinary Fashion. I am in desperate need of help!")
+    npc<Frustrated>("I am a real cook! I haven't got time to be chatting about Culinary Fashion. I am in desperate need of help!")
     startQuest()
 }
 

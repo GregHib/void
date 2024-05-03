@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.interact.dialogue.Angry
+import world.gregs.voidps.world.interact.dialogue.Frustrated
 import world.gregs.voidps.world.interact.dialogue.Talking
 import world.gregs.voidps.world.interact.dialogue.Uncertain
 import world.gregs.voidps.world.interact.dialogue.Unsure
@@ -45,7 +45,7 @@ objectOperate("Search", "cupboard_the_knights_sword_opened") {
             val sirVyvin = npcs[player.tile.regionLevel].firstOrNull { it.id == "sir_vyvin" }
             if (sirVyvin != null && lineValidator.hasLineOfSight(sirVyvin, player)) {
                 player.talkWith(sirVyvin)
-                npc<Angry>("HEY! Just WHAT do you THINK you are DOING??? STAY OUT of MY cupboard!")
+                npc<Frustrated>("HEY! Just WHAT do you THINK you are DOING??? STAY OUT of MY cupboard!")
                 return@objectOperate
             }
             if (player.holdsItem("portrait")) {

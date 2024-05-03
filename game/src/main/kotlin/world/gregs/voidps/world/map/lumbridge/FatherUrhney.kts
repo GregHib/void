@@ -2,30 +2,33 @@ package world.gregs.voidps.world.map.lumbridge
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.world.interact.dialogue.*
+import world.gregs.voidps.world.interact.dialogue.Frustrated
+import world.gregs.voidps.world.interact.dialogue.Sad
+import world.gregs.voidps.world.interact.dialogue.Surprised
+import world.gregs.voidps.world.interact.dialogue.Talking
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 npcOperate("Talk-to", "father_urhney") {
-    npc<Angry>("Go away! I'm meditating!")
+    npc<Frustrated>("Go away! I'm meditating!")
     choice {
         option<Talking>("Well, that's friendly.") {
-            npc<Angry>("I SAID go AWAY.")
+            npc<Frustrated>("I SAID go AWAY.")
             player<Talking>("Okay, okay... sheesh, what a grouch.")
         }
         option<Talking>("I've come to repossess your house.") {
             npc<Surprised>("Under what grounds???")
             choice {
                 option<Talking>("Repeated failure on mortgage repayments.") {
-                    npc<Angry>("What?")
-                    npc<Angry>("But... I don't have a mortgage! I built this house myself!")
+                    npc<Frustrated>("What?")
+                    npc<Frustrated>("But... I don't have a mortgage! I built this house myself!")
                     player<Talking>("Sorry. I must have got the wrong address. All the houses look the same around here.")
-                    npc<Angry>("What? What houses? What ARE you talking about???")
+                    npc<Frustrated>("What? What houses? What ARE you talking about???")
                     player<Talking>("Never mind.")
                 }
                 option<Sad>("I don't know. I just wanted this house...") {
-                    npc<Angry>("Oh... go away and stop wasting my time!")
+                    npc<Frustrated>("Oh... go away and stop wasting my time!")
                 }
             }
         }

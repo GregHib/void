@@ -54,7 +54,7 @@ npcOperate("Talk-to", "afrah", "dalal", "jadid", "jeed", "ima", "sabeil") {
         }
         9 -> npc<Cheerful>("Well. This beats doing the shopping!")
         10 -> {
-            npc<Angry>("Can't you see I'm watching the duels?")
+            npc<Frustrated>("Can't you see I'm watching the duels?")
             player<Surprised>("I'm sorry!")
         }
         11 -> npc<Cheerful>("Hi!")

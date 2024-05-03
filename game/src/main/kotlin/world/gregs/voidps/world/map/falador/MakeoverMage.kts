@@ -74,7 +74,7 @@ suspend fun PlayerChoice.start(): Unit = option<Talk>("Sure, do it.") {
 }
 
 suspend fun PlayerChoice.exit(): Unit = option("No, thanks.") {
-    player<Angry>("No, thanks. I'm happy as I am.")
+    player<Frustrated>("No, thanks. I'm happy as I am.")
     npc<Sad>("Ehhh..suit yourself.")
 }
 

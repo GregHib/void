@@ -80,7 +80,7 @@ suspend fun CharacterContext.bluriteSword() {
         player<Talking>("I got a replacement sword made.")
         npc<Cheerful>("Thank you! Can I have it?")
         player<Talking>("I've got it stored safely.")
-        npc<Angry>("Well could you go and get it for me then please? Quickly?")
+        npc<Frustrated>("Well could you go and get it for me then please? Quickly?")
         player<Talking>("Yeah, okay.")
         return
     }

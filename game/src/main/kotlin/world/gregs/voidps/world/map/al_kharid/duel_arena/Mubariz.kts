@@ -52,7 +52,7 @@ suspend fun CharacterContext.looksOld() {
     }
 }
 
-suspend fun PlayerChoice.challenge(): Unit = option<Angry>("I challenge you!") {
+suspend fun PlayerChoice.challenge(): Unit = option<Frustrated>("I challenge you!") {
     npc<Laugh>("Ho! Ho! Ho!")
     menu()
 }

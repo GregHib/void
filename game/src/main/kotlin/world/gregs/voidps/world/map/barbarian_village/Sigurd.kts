@@ -24,7 +24,7 @@ npcOperate("Talk-To", "sigurd") {
             npc<Drunk>("Anyway, I won the game with a flying tackle. The tree came loose and down the river bank I went, still holding the tree.")
             npc<Drunk>("I woke up a few hours later and found myself several miles down river. And thatsh how I invented the log canoe!")
             player<Chuckle>("So you invented the 'Log Canoe' by falling into a river hugging a tree?")
-            npc<Angry>("Well I refined the design from the original you know!")
+            npc<Frustrated>("Well I refined the design from the original you know!")
             npc<Drunk>("I cut all the branches off to make it more comfortable. I could tell you how to if you like?")
             choice {
                 option("Yes") {
@@ -57,7 +57,7 @@ suspend fun CharacterContext.canoeing() {
         }
         in 42..56 -> {
             npc<Drunk>("Well, you're pretty handy with an axe!")
-            npc<Angry>("You could make Stable Dugout canoes, like that snooty fella Tarquin.")
+            npc<Frustrated>("You could make Stable Dugout canoes, like that snooty fella Tarquin.")
             npc<Drunk>("He reckons his canoes are better than mine. He's never said it to my face though.")
         }
         else -> {

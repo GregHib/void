@@ -17,7 +17,7 @@ npcOperate("Talk-To", "tarquin") {
             npc<RollEyes>("My name is Tarquin Marjoribanks.")
             npc<Talking>("I'd be surprised if you haven't already heard of me?")
             player<Unsure>("Why would I have heard of you Mr. Marjoribanks?")
-            npc<Angry>("It's pronounced 'Marchbanks'!")
+            npc<Frustrated>("It's pronounced 'Marchbanks'!")
             npc<Talking>("You should know of me because I am a member of the royal family of Misthalin!")
             player<Unsure>("Are you related to King Roald?")
             npc<Cheerful>("Oh yes! Quite closely actually")
@@ -53,23 +53,23 @@ suspend fun CharacterContext.canoeing() {
             npc<Surprised>("Further up river, near the Barbarian Village, I saw some darned fool 'canoeing' on a log!")
             npc<RollEyes>("Unfortunately, you don't have the skill to create anything more than one of those logs. I dare say it will only get 1 stop down the river!")
             npc<RollEyes>("Still, I'm sure it will satisfy one such as yourself.")
-            player<Angry>("What's that supposed to mean?")
-            npc<Angry>("Do not profane the royal house of Varrock by engaging me in further discourse you knave!")
+            player<Frustrated>("What's that supposed to mean?")
+            npc<Frustrated>("Do not profane the royal house of Varrock by engaging me in further discourse you knave!")
             player<Surprised>("Pfft! I doubt he even knows the King!")
         }
         in 27..41 -> {
             npc<Cheerful>("You seem to be quite handy with an axe though!")
             npc<RollEyes>("I'm sure you can build a Dugout canoe. Not as fine as a Stable Dugout but it will carry you 2 stops on the river.")
             npc<RollEyes>("I should imagine it would suit your limited means.")
-            player<Angry>("What do you mean when you say 'limited means'?")
+            player<Frustrated>("What do you mean when you say 'limited means'?")
             npc<Surprised>("Well, you're just an itinerant adventurer!")
-            npc<Angry>("What possible reason would you have for cluttering up my river with your inferior water craft!")
+            npc<Frustrated>("What possible reason would you have for cluttering up my river with your inferior water craft!")
         }
         in 42..56 -> {
             npc<Cheerful>("Ah! Perfect! You can make a Stable Dugout canoe! One of those will carry you to any civilised place on the river.")
             npc<Talking>("If you were of good pedigree I'd let you join my boat club. You seem to be one of those vagabond adventurers though.")
-            player<Angry>("Charming!")
-            npc<Angry>("Be off with you rogue!")
+            player<Frustrated>("Charming!")
+            npc<Frustrated>("Be off with you rogue!")
         }
         else -> {
             npc<Cheerful>("My personal favourite is the Stable Dugout canoe. A finer craft you'll never see old bean!")

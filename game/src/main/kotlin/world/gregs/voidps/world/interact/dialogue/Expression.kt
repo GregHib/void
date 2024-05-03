@@ -5,7 +5,7 @@ sealed class Expression
 data object Admit : Expression()
 data object Afraid : Expression()
 data object Amazed : Expression()
-data object Angry : Expression()
+data object Frustrated : Expression()
 data object AngryFadeIn : Expression()
 data object Asleep : Expression()
 data object Blink : Expression()

@@ -73,8 +73,8 @@ suspend fun CharacterContext.unstarted() {
             npc<Talking>("The whetstone is for more advanced smithing, but I could let you use it as well as my anvils if you could get me some more materials.")
             startQuest()
         }
-        option<Angry>("Mind your own business, shortstuff!") {
-            npc<Angry>("How nice to meet someone with such pleasant manners. Do come again when you need to shout at someone smaller than you!")
+        option<Frustrated>("Mind your own business, shortstuff!") {
+            npc<Frustrated>("How nice to meet someone with such pleasant manners. Do come again when you need to shout at someone smaller than you!")
         }
         option("I was just checking out the landscape.") {
             player<Talking>("I was just checking out the landscape.")

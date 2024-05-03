@@ -65,7 +65,7 @@ suspend fun CharacterContext.sellFur() {
                 }
             }
         }
-        option<Angry>("20 gold coins? That's an outrage!") {
+        option<Frustrated>("20 gold coins? That's an outrage!") {
             npc<Sad>("Well, I can't go any cheaper than that mate. I have a family to feed.")
         }
     }
@@ -82,7 +82,7 @@ suspend fun CharacterContext.buyFur() {
             player.inventory.add("coins", 12)
             player<Cheerful>("Thanks!")
         }
-        option<Angry>("I think I'll keep hold of it actually!") {
+        option<Frustrated>("I think I'll keep hold of it actually!") {
             npc<Sad>("Oh ok. Didn't want it anyway!")
         }
     }

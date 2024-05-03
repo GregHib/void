@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.interact.dialogue.Angry
+import world.gregs.voidps.world.interact.dialogue.Frustrated
 import world.gregs.voidps.world.interact.dialogue.Furious
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Talking
@@ -58,16 +58,16 @@ suspend fun CharacterContext.advice() {
 }
 
 suspend fun CharacterContext.unstarted() {
-    npc<Angry>("Get out of here, outerlander!")
+    npc<Frustrated>("Get out of here, outerlander!")
     choice {
         option<Talking>("What is this place?") {
-            npc<Angry>("The barbarian village. Go away.")
+            npc<Frustrated>("The barbarian village. Go away.")
         }
         option<Talking>("Who are you?") {
-            npc<Angry>("My name is Kjell. Go away.")
+            npc<Frustrated>("My name is Kjell. Go away.")
         }
         option<Talking>("What's in this hut you're guarding?") {
-            npc<Angry>("Nothing yet. Once there is, no one will get in or out! Now, Go away!")
+            npc<Frustrated>("Nothing yet. Once there is, no one will get in or out! Now, Go away!")
         }
         option<Talking>("Goodbye then.") {
         }
