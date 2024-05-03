@@ -28,7 +28,7 @@ npcOperate("Talk-to", "sedridor") {
     when (player.quest("rune_mysteries")) {
         "unstarted" -> {
             npc<Cheerful>("Welcome adventurer, to the world renowned Wizards' Tower, home to the Order of Wizards. How may I help you?")
-            player<Talking>("I'm just looking around.")
+            player<Neutral>("I'm just looking around.")
             npc<Uncertain>("Well, take care adventurer. You stand on the ruins of the old destroyed Wizards' Tower. Strange and powerful magicks lurk here.")
         }
         "started" -> started()
@@ -47,8 +47,8 @@ suspend fun CharacterContext.started() {
     npc<Cheerful>("Welcome adventurer, to the world renowned Wizards' Tower, home to the Order of Wizards. We are the oldest and most prestigious group of wizards around. Now, how may I help you?")
     player<Unsure>("Are you Sedridor?")
     npc<Unsure>("Sedridor? What is it you want with him?")
-    player<Talking>("The Duke of Lumbridge sent me to find him. I have this talisman he found. He said Sedridor would be interested in it.")
-    npc<Talking>("Did he now? Well hand it over then, and we'll see what all the hubbub is about.")
+    player<Neutral>("The Duke of Lumbridge sent me to find him. I have this talisman he found. He said Sedridor would be interested in it.")
+    npc<Neutral>("Did he now? Well hand it over then, and we'll see what all the hubbub is about.")
     choice {
         option("Okay, here you are.") {
             okHere()
@@ -73,7 +73,7 @@ suspend fun CharacterContext.started() {
 }
 
 suspend fun CharacterContext.okHere() {
-    player<Talking>("Okay, here you are.")
+    player<Neutral>("Okay, here you are.")
     if (player.inventory.contains("air_talisman")) {
         player["rune_mysteries"] = "talisman_delivered"
         item("air_talisman", 600, "You hand the talisman to Sedridor.")
@@ -87,7 +87,7 @@ suspend fun CharacterContext.okHere() {
         player<Uncertain>("First tower? Forgotten essence mine? What are you on about?")
         npc<Cheerful>("Ah, my apologies, adventurer. Allow me to fill you in.")
         choice {
-            option<Talking>("Go ahead.") {
+            option<Neutral>("Go ahead.") {
                 npc<Cheerful>("As you are likely aware, when we cast spells, we do so using the power of runes.")
                 npc<Cheerful>("These runes are crafted from a highly unique material, and then imbued with magical power from various runic altars. Different altars create different runes with different magical effects.")
                 npc<Cheerful>("The process of imbuing runes is called runecrafting. Legend has it that this was once a common art, but the secrets of how to do it were lost until just under two hundred years ago.")
@@ -96,9 +96,9 @@ suspend fun CharacterContext.okHere() {
                 npc<Frustrated>("It was burnt down by traitorous members of our own order. They followed the evil god of chaos, Zamorak, and they wished to claim our magical discoveries in his name.")
                 npc<Sad>("When the tower burnt down, much was lost, including an important incantation. A spell that could be used to teleport to a hidden essence mine.")
                 player<Unsure>("The essence mine you mentioned earlier, I assume?")
-                npc<Talking>("Precicely. Rune essence is the material used to make runes, but it is incredibly rare. That essence mine was the only place it could be found that our order knew of.")
+                npc<Neutral>("Precicely. Rune essence is the material used to make runes, but it is incredibly rare. That essence mine was the only place it could be found that our order knew of.")
                 npc<Sad>("Since the incantation was lost, we have struggled to maintain our stocks of rune essence.")
-                npc<Talking>("There are seemingly those out there that still know where to find some, but while they have been willing to sell essence to us, they have refused to share knowledge on how to find it ourselves.")
+                npc<Neutral>("There are seemingly those out there that still know where to find some, but while they have been willing to sell essence to us, they have refused to share knowledge on how to find it ourselves.")
                 player<Unsure>("I'm starting to see why this is so important. So you think this talisman can help you rediscover that incantation?")
                 npc<Cheerful>("I do! All magic leaves traces, and from what I can tell, this talisman was used heavily during the time of the first tower.")
                 npc<Cheerful>("It would have been taken to the essence mine many times, and the magical energies there will have left an imprint on it. To think that it was hidden in Lumbridge all this time!")
@@ -106,9 +106,9 @@ suspend fun CharacterContext.okHere() {
                 npc<Cheerful>("It is critical I share this discovery with my associate, Aubury, as soon as possible. He's not much of a wizard, but he's an expert on runecrafting, and his insight will be essential.")
                 discovery()
             }
-            option<Talking>("Actually, I'm not interested.") {
+            option<Neutral>("Actually, I'm not interested.") {
                 npc<Sad>("Oh... Well I guess the short of it is that this talisman could be key to helping us rediscover an important teleportation incantation.")
-                npc<Talking>("With it, we'll be able to access a hidden essence mine, our lost source of rune essence.")
+                npc<Neutral>("With it, we'll be able to access a hidden essence mine, our lost source of rune essence.")
                 discovery()
             }
         }
@@ -141,11 +141,11 @@ suspend fun CharacterContext.visitAubury() {
 suspend fun CharacterContext.checkPackageDelivered() {
     npc<Unsure>("Hello again, adventurer. Did you take that package to Aubury?")
     if (player.ownsItem("research_package_rune_mysteries")) {
-        player<Talking>("Not yet.")
-        npc<Talking>("He runs a rune shop in the south east of Varrock. Please deliver it to him soon.")
+        player<Neutral>("Not yet.")
+        npc<Neutral>("He runs a rune shop in the south east of Varrock. Please deliver it to him soon.")
     } else {
         player<Sad>("I lost it. Could I have another?")
-        npc<Talking>("Well it's a good job I have copies of everything.")
+        npc<Neutral>("Well it's a good job I have copies of everything.")
         if (player.inventory.isFull()) {
             item("research_package_rune_mysteries", 600, "Sedridor tries to hand you a package, but you don't have enough room to take it.")
             return
@@ -160,8 +160,8 @@ suspend fun CharacterContext.checkPackageDelivered() {
 }
 
 suspend fun CharacterContext.checkResearchDelivered() {
-    npc<Talking>("Ah, ${player.name}. How goes your quest? Have you delivered my research to Aubury yet?")
-    player<Talking>("Yes, I have. He gave me some notes to give to you.")
+    npc<Neutral>("Ah, ${player.name}. How goes your quest? Have you delivered my research to Aubury yet?")
+    player<Neutral>("Yes, I have. He gave me some notes to give to you.")
     npc<Cheerful>("Wonderful! Let's have a look then.")
     if (player.holdsItem("research_notes_rune_mysteries")) {
         item("research_notes_rune_mysteries", 600, "You hand the notes to Sedridor.")
@@ -186,11 +186,11 @@ suspend fun CharacterContext.checkResearchDelivered() {
     }
 }
 
-suspend fun PlayerChoice.imBusy(): Unit = option<Talking>("No, I'm busy.") {
-    npc<Talking>("As you wish adventurer. I will continue to study this talisman you have brought me. Return here if you find yourself with some spare time to help me.")
+suspend fun PlayerChoice.imBusy(): Unit = option<Neutral>("No, I'm busy.") {
+    npc<Neutral>("As you wish adventurer. I will continue to study this talisman you have brought me. Return here if you find yourself with some spare time to help me.")
 }
 
-suspend fun PlayerChoice.yesCertainly(): Unit = option<Talking>("Yes, certainly.") {
+suspend fun PlayerChoice.yesCertainly(): Unit = option<Neutral>("Yes, certainly.") {
     player["rune_mysteries"] = "research_package"
     npc<Cheerful>("He runs a rune shop in the south east of Varrock. Please, take this package of research notes to him. If all goes well, the secrets of the essence mine may soon be ours once more!")
     if (player.inventory.isFull()) {
@@ -203,13 +203,13 @@ suspend fun PlayerChoice.yesCertainly(): Unit = option<Talking>("Yes, certainly.
 }
 
 suspend fun NPCOption.completed() {
-    player<Talking>("Hello there.")
+    player<Neutral>("Hello there.")
     npc<Cheerful>("Hello again, ${player.name}. What can I do for you?")
     choice {
         teleportEssenceMine()
         whoElseKnows()
         oldWizardsTower()
-        option<Talking>("Nothing thanks, I'm just looking around.") {
+        option<Neutral>("Nothing thanks, I'm just looking around.") {
             npc<Cheerful>("Well, take care. You stand on the ruins of the old destroyed Wizards' Tower. Strange and powerful magicks lurk here.")
         }
     }
@@ -240,8 +240,8 @@ suspend fun ChoiceBuilder<NPCOption>.oldWizardsTower(): Unit = option<Unsure>("C
     npc<Cheerful>("For years, the tower was a hub of magical research. Wizards of all races and religions were welcomed into our order.")
     npc<Sad>("Alas, that openness is what ultimately led to disaster. The wizards who served Zamorak, the evil god of chaos, tried to claim our magical discoveries in his name.")
     npc<Sad>("They failed, but in retaliation, they burnt the entire tower to the ground. Years of work was destroyed.")
-    npc<Talking>("The tower was soon rebuilt of course, but even now we are still trying to regain knowledge that was lost.")
-    npc<Talking>("That's why I spend my time down here, in fact. This basement is all that is left of the old tower, and I believe there are still some secrets to discover here.")
+    npc<Neutral>("The tower was soon rebuilt of course, but even now we are still trying to regain knowledge that was lost.")
+    npc<Neutral>("That's why I spend my time down here, in fact. This basement is all that is left of the old tower, and I believe there are still some secrets to discover here.")
     npc<Cheerful>("Of course, one secret I am no longer looking for is the teleportation incantation to the Rune Essence Mine. We have you to thank for that.")
     choice {
         teleportEssenceMine()

@@ -11,7 +11,7 @@ npcOperate("Talk-to", "afrah", "dalal", "jadid", "jeed", "ima", "sabeil") {
     when (random.nextInt(0, 14)) {
         0 -> {
             npc<Cheerful>("Knock knock!")
-            player<Talking>("Who's there?")
+            player<Neutral>("Who's there?")
             npc<Cheerful>("Boo.")
             player<Uncertain>("Boo who?")
             npc<Chuckle>("Don't cry, it's just me!")
@@ -39,9 +39,9 @@ npcOperate("Talk-to", "afrah", "dalal", "jadid", "jeed", "ima", "sabeil") {
             npc<Chuckle>("'Cause it didn't have the guts to fart!")
         }
         6 -> {
-            npc<Talking>("Did you know they think this place dates back to the second age?!")
-            player<Talking>("Really?")
-            npc<Talking>("Yeah. The guy at the information kiosk was telling me.")
+            npc<Neutral>("Did you know they think this place dates back to the second age?!")
+            player<Neutral>("Really?")
+            npc<Neutral>("Yeah. The guy at the information kiosk was telling me.")
         }
         7 -> {
             npc<Cheerful>("What did the skeleton say before it ate?")

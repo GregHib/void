@@ -10,10 +10,10 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.minimumCanoeLevel
 
 npcOperate("Talk-To", "sigurd") {
-    player<Talking>("Hello there.")
+    player<Neutral>("Hello there.")
     npc<Drunk>("Ha Ha! Hello!")
     choice {
-        option<Talking>("Who are you?") {
+        option<Neutral>("Who are you?") {
             npc<Drunk>("I'm Sigurd the Great and Brainy.")
             player<Unsure>("Why do they call you the Great and Brainy?")
             npc<Drunk>("Because I invented the Log Canoe!")
@@ -31,7 +31,7 @@ npcOperate("Talk-To", "sigurd") {
                     canoeing()
                 }
                 option("No") {
-                    player<Talking>("No thanks, not right now.")
+                    player<Neutral>("No thanks, not right now.")
                 }
             }
         }

@@ -57,10 +57,10 @@ npcOperate("Talk-to", "gudrun*") {
 suspend fun CharacterContext.recital() {
     npc<Unsure>("Are you ready for the recital?")
     choice {
-        option<Talking>("Yes.") {
+        option<Neutral>("Yes.") {
             cutscene()
         }
-        option<Talking>("Not right now.") {
+        option<Neutral>("Not right now.") {
         }
     }
 }
@@ -87,10 +87,10 @@ suspend fun CharacterContext.cutscene() {
     npc<Talk>("dororan_cutscene", "How long have they been in there?")
     player.setAnimation("player_calm_doroan")
     choice {
-        option<Talking>("They're just starting.") {
+        option<Neutral>("They're just starting.") {
             cutsceneMenu(instance)
         }
-        option<Talking>("You're late.") {
+        option<Neutral>("You're late.") {
             cutsceneMenu(instance)
         }
     }
@@ -99,11 +99,11 @@ suspend fun CharacterContext.cutscene() {
 suspend fun CharacterContext.cutsceneMenu(instance: Region) {
     npc<Sad>("dororan_cutscene", "This isn't going to work.")
     choice {
-        option<Talking>("Why's that?") {
+        option<Neutral>("Why's that?") {
             player.setAnimation("player_calm_doroan")
             cutsceneMenu2(instance)
         }
-        option<Talking>("You're so pessimistic.") {
+        option<Neutral>("You're so pessimistic.") {
             player.setAnimation("player_calm_doroan")
             cutsceneMenu2(instance)
         }
@@ -113,12 +113,12 @@ suspend fun CharacterContext.cutsceneMenu(instance: Region) {
 suspend fun CharacterContext.cutsceneMenu2(instance: Region) {
     npc<Cry>("dororan_cutscene", "What was I thinking? You should go in there and stop them before Gudrun makes a fool of herself.")
     choice {
-        option<Talking>("Okay, I will.") {
+        option<Neutral>("Okay, I will.") {
             player.setAnimation("player_calm_doroan")
             npc<Sad>("dororan_cutscene", "No! Wait, stay here, it's too late now. We'll just have to see how it turns out.")
             cutsceneMenu3(instance)
         }
-        option<Talking>("Don't be silly.") {
+        option<Neutral>("Don't be silly.") {
             player.setAnimation("player_calm_doroan")
             npc<Sad>("dororan_cutscene", "You're right, it's too late now. We'll just have to see how it turns out.")
             cutsceneMenu3(instance)
@@ -133,10 +133,10 @@ suspend fun CharacterContext.cutsceneMenu3(instance: Region) {
     npc<Upset>("dororan_cutscene", "He's probably considering the various tortures he has planned for me.")
     player.setAnimation("player_calm_doroan")
     choice {
-        option<Talking>("Why would he do that?") {
+        option<Neutral>("Why would he do that?") {
             cutsceneMenu4(instance)
         }
-        option<Talking>("Now you're just being ridiculous.") {
+        option<Neutral>("Now you're just being ridiculous.") {
             cutsceneMenu4(instance)
         }
     }
@@ -147,10 +147,10 @@ suspend fun CharacterContext.cutsceneMenu4(instance: Region) {
     npc<Sad>("dororan_cutscene", "He'll probably just find it insulting.")
     player.setAnimation("player_calm_doroan")
     choice {
-        option<Talking>("Now's your chance to find out.") {
+        option<Neutral>("Now's your chance to find out.") {
             cutscenePart2(instance)
         }
-        option<Talking>("You're doomed.") {
+        option<Neutral>("You're doomed.") {
             cutscenePart2(instance)
         }
     }
@@ -241,10 +241,10 @@ suspend fun CharacterContext.gunnarsGround() {
     npc<Cheerful>("We're going to the new house. You should come and visit!")
     npc<Cheerful>("dororan_after_cutscene2", "Yes, we'll see you there!")
     choice {
-        option<Talking>("I'll see you soon.") {
+        option<Neutral>("I'll see you soon.") {
             finishQuest()
         }
-        option<Talking>("I'll consider dropping in.") {
+        option<Neutral>("I'll consider dropping in.") {
             finishQuest()
         }
     }
@@ -290,11 +290,11 @@ suspend fun CharacterContext.whatHeSay() {
     player<Talk>("He mentioned someone called Gunnar, and that you should think about his feelings.")
     npc<Angry>("By the eyeballs of Guthix! Always Gunnar!")
     choice {
-        option<Talking>("Who is Gunnar?") {
+        option<Neutral>("Who is Gunnar?") {
             npc<Frustrated>("He was my great-grandpapa! He founded this village a hundred years ago.")
             fathersAttitude()
         }
-        option<Talking>("What should we do now?") {
+        option<Neutral>("What should we do now?") {
             npc<Frustrated>("I don't know. Maybe your mystery man has some ideas.")
             player["gunnars_ground"] = "tell_dororan"
             player<Happy>("I'll ask him.")
@@ -304,13 +304,13 @@ suspend fun CharacterContext.whatHeSay() {
 
 suspend fun CharacterContext.fathersAttitude() {
     choice {
-        option<Talking>("You don't seem to share your father's attitude towards him.") {
+        option<Neutral>("You don't seem to share your father's attitude towards him.") {
             npc<Frustrated>("I think there's a difference between respecting my ancestors and obsessing over them. Papa thinks whatever stupid war Gunnar fought is still going on.")
             npc<Frustrated>("I don't know. Maybe your mystery man has some ideas.")
             player["gunnars_ground"] = "tell_dororan"
             player<Happy>("I'll ask him.")
         }
-        option<Talking>("What should we do now?") {
+        option<Neutral>("What should we do now?") {
             npc<Frustrated>("I don't know. Maybe your mystery man has some ideas.")
             player["gunnars_ground"] = "tell_dororan"
             player<Happy>("I'll ask him.")
@@ -320,10 +320,10 @@ suspend fun CharacterContext.fathersAttitude() {
 
 suspend fun CharacterContext.meetChieftain() {
     choice {
-        option<Talking>("Where is he?") {
+        option<Neutral>("Where is he?") {
             npc<Talk>("In the longhouse at the north end of the village, drinking and shouting.")
         }
-        option<Talking>("I'll see what I can do.") {
+        option<Neutral>("I'll see what I can do.") {
         }
     }
 }
@@ -349,10 +349,10 @@ suspend fun CharacterContext.showGudrun() {
         npc<Cheerful>("It's lovely! There's something written on it:")
         npc<Happy>("'Gudrun the Fair, Gudrun the Fiery.' Is it about me?")
         choice {
-            option<Talking>("Yes.") {
+            option<Neutral>("Yes.") {
                 aboutRing()
             }
-            option<Talking>("Presumable.") {
+            option<Neutral>("Presumable.") {
                 aboutRing()
             }
         }
@@ -364,10 +364,10 @@ suspend fun CharacterContext.showGudrun() {
 suspend fun CharacterContext.aboutRing() {
     npc<Happy>("This is beautiful gift, stranger. Thank you.")
     choice {
-        option<Talking>("The ring isn't from me!") {
+        option<Neutral>("The ring isn't from me!") {
             whoFrom()
         }
-        option<Talking>("It should belong to someone just as beautiful.") {
+        option<Neutral>("It should belong to someone just as beautiful.") {
             npc<Happy>("That's very flattering! You look like an adventurer, though?")
             thatsRight()
         }
@@ -390,15 +390,15 @@ suspend fun CharacterContext.thatsRight() {
 suspend fun CharacterContext.whoFrom() {
     npc<Surprised>("Oh! Who is it from?")
     choice {
-        option<Talking>("A great poet.") {
+        option<Neutral>("A great poet.") {
             npc<Happy>("A tale-teller? A bard? My people have great respect from poets.")
             outsideVillage()
         }
-        option<Talking>("A secret admirer.") {
+        option<Neutral>("A secret admirer.") {
             npc<Happy>("Does that really happen? How exciting!")
             outsideVillage()
         }
-        option<Talking>("A short suitor.") {
+        option<Neutral>("A short suitor.") {
             npc<Unsure>("What?")
             player<Talk>("A petite paramour.")
             npc<Amazed>("What?")
@@ -417,11 +417,11 @@ suspend fun CharacterContext.outsideVillage() {
     player<Unsure>("Why not?")
     npc<Talk>("He thinks all your people are our enemies.")
     choice {
-        option<Talking>("So, you want me to talk to your father?") {
+        option<Neutral>("So, you want me to talk to your father?") {
             npc<Unsure>("I suppose that might work.")
             reasonWithHim()
         }
-        option<Talking>("So, you want me to kill your father?") {
+        option<Neutral>("So, you want me to kill your father?") {
             npc<Surprised>("What? no! Maybe...you could just try talking to him.")
             reasonWithHim()
         }
@@ -441,13 +441,13 @@ suspend fun CharacterContext.unstarted() {
     npc<Frustrated>("It's none of your business, Kjell! Just guard the hut!")
     npc<Amazed>("Sorry about that. Did you want something?")
     choice {
-        option<Talking>("What is this place?") {
+        option<Neutral>("What is this place?") {
             whatIsThisPlace()
         }
-        option<Talking>("Who are you?") {
+        option<Neutral>("Who are you?") {
             whoAreYou()
         }
-        option<Talking>("Actually, no. Goodbye") {
+        option<Neutral>("Actually, no. Goodbye") {
         }
     }
 }
@@ -467,7 +467,7 @@ suspend fun CharacterContext.whatIsThisPlace() {
     npc<Happy>("Outerlanders call this the barbarian village. It doesn't have a name because...it's complicated.")
     npc<Talk>("if you want to know more, you should talk to Hunding. He's up in the tower at the east entrance.")
     choice {
-        option<Talking>("Who are you?") {
+        option<Neutral>("Who are you?") {
             whoAreYou()
         }
         option<Happy>("Goodbye.") {
@@ -514,11 +514,11 @@ npcOperate("Talk-to", "gudrun_after_quest") {
         "completed" -> {
             npc<Cheerful>("Hello!")
             choice {
-                option<Talking>("I want to ask you something.") {
+                option<Neutral>("I want to ask you something.") {
                     npc<Unsure>("Of course, what is it?")
                     menu()
                 }
-                option<Talking>("Just passing through.") {
+                option<Neutral>("Just passing through.") {
                     npc<Cheerful>("Goodbye!")
                 }
             }
@@ -529,27 +529,27 @@ npcOperate("Talk-to", "gudrun_after_quest") {
 
 suspend fun CharacterContext.menu() {
     choice {
-        option<Talking>("How are things with Dororan?") {
+        option<Neutral>("How are things with Dororan?") {
             npc<Happy>("I really like him. he's funny, vulnerable and nothing like my people.")
             choice {
-                option<Talking>("You're going to stay together then?") {
+                option<Neutral>("You're going to stay together then?") {
                     npc<Cheerful>("Of course!")
                     elseGoodbye()
                 }
-                option<Talking>("I want to ask about something else.") {
+                option<Neutral>("I want to ask about something else.") {
                     npc<Unsure>("Of course, what is it?")
                     menu()
                 }
-                option<Talking>("Goodbye.") {
+                option<Neutral>("Goodbye.") {
                     npc<Cheerful>("Oh, Goodbye!")
                 }
             }
         }
-        option<Talking>("Where did this house come from?") {
-            npc<Talking>("I don't know. Papa said the previous owners left it to him. I don't know why they would do that.")
+        option<Neutral>("Where did this house come from?") {
+            npc<Neutral>("I don't know. Papa said the previous owners left it to him. I don't know why they would do that.")
             theory()
         }
-        option<Talking>("Goodbye.") {
+        option<Neutral>("Goodbye.") {
             npc<Cheerful>("Oh, Goodbye!")
         }
     }
@@ -557,15 +557,15 @@ suspend fun CharacterContext.menu() {
 
 suspend fun CharacterContext.theory() {
     choice {
-        option<Talking>("Do you have a theory?") {
+        option<Neutral>("Do you have a theory?") {
             npc<Amazed>("Gunnar always said 'A warrior does not barter; he simply takes!'. I think papa bought the house, but doesn't want anyone to know.")
             elseGoodbye()
         }
-        option<Talking>("I want to ask about something else.") {
+        option<Neutral>("I want to ask about something else.") {
             npc<Unsure>("Of course, what is it?")
             menu()
         }
-        option<Talking>("Goodbye.") {
+        option<Neutral>("Goodbye.") {
             npc<Cheerful>("Oh, Goodbye!")
         }
     }
@@ -573,11 +573,11 @@ suspend fun CharacterContext.theory() {
 
 suspend fun CharacterContext.elseGoodbye() {
     choice {
-        option<Talking>("I want to ask about something else.") {
+        option<Neutral>("I want to ask about something else.") {
             npc<Unsure>("Of course, what is it?")
             menu()
         }
-        option<Talking>("Goodbye.") {
+        option<Neutral>("Goodbye.") {
             npc<Cheerful>("Oh, Goodbye!")
         }
     }

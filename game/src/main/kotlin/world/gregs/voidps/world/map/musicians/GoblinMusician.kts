@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.world.interact.dialogue.CheerfulOld
 import world.gregs.voidps.world.interact.dialogue.Happy
-import world.gregs.voidps.world.interact.dialogue.TalkingOld
+import world.gregs.voidps.world.interact.dialogue.NeutralOld
 import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -30,15 +30,15 @@ suspend fun CharacterContext.choice() {
 suspend fun CharacterContext.resting() {
     choice("Can I ask you some questions about resting?") {
         option<Unsure>("How does resting work?") {
-            npc<TalkingOld>("You stoopid. Goblin sit down, goblin rest, goblin feel better.")
+            npc<NeutralOld>("You stoopid. Goblin sit down, goblin rest, goblin feel better.")
             resting()
         }
         option<Happy>("What's special about resting by a musician?") {
-            npc<TalkingOld>("Drumming good! Make you feel better, boom booms make you run longer!")
+            npc<NeutralOld>("Drumming good! Make you feel better, boom booms make you run longer!")
             resting()
         }
         option<Happy>("Can you summarise the effects for me?") {
-            npc<TalkingOld>("Wot? You sit down, you rest. Listen to Thump-Thump is better.")
+            npc<NeutralOld>("Wot? You sit down, you rest. Listen to Thump-Thump is better.")
             resting()
         }
         exit()

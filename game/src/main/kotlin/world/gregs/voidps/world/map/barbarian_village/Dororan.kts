@@ -40,7 +40,7 @@ npcOperate("Talk-to", "dororan") {
         "started" -> started()
         "love_poem", "jeffery_ring" -> lovePoem()
         "engrave" -> {
-            npc<Talking>("Is it done? Have you created a work of magnificent beauty?")
+            npc<Neutral>("Is it done? Have you created a work of magnificent beauty?")
             engraveMenu()
         }
         "engraved_ring" -> engravedRing()
@@ -709,7 +709,7 @@ suspend fun CharacterContext.showGudrun() {
 }
 
 suspend fun CharacterContext.engravedRing() {
-    npc<Talking>("Is it done? Have you created a work of magnificent beauty?")
+    npc<Neutral>("Is it done? Have you created a work of magnificent beauty?")
     if (!player.ownsItem("dororans_engraved_ring")) {
         player<Sad>("I did engrave it. but I seem to have lost it.")
         npc<Cheerful>("Is this it? I found it on the ground. You've done a great job on it.")
@@ -808,44 +808,44 @@ suspend fun CharacterContext.started() {
     player.setAnimation("pocket_item")
     item("love_poem", 600, "Dororan gives you a poem.")
     choice {
-        option<Talking>("I have some questions.") {
+        option<Neutral>("I have some questions.") {
             npc<Happy>("By all means.")
             lovePoemMenu()
         }
-        option<Talking>("I'll return with a ring from Jeffery.")
+        option<Neutral>("I'll return with a ring from Jeffery.")
     }
 }
 
 suspend fun CharacterContext.somethingElse() {
     choice {
-        option<Talking>("I want to ask about something else.") {
+        option<Neutral>("I want to ask about something else.") {
             npc<Happy>("By all means.")
             lovePoemMenu()
         }
-        option<Talking>("I'll return with a ring from Jeffery.")
+        option<Neutral>("I'll return with a ring from Jeffery.")
     }
 }
 
 suspend fun CharacterContext.lovePoemMenu() {
     choice {
-        option<Talking>("Does it have to be a ring from Jeffery?") {
+        option<Neutral>("Does it have to be a ring from Jeffery?") {
             npc<Talk>("Yes! Jeffery's rings are timeless works of incomparable romantic splendour.")
             somethingElse()
         }
-        option<Talking>("Where is Edgeville?") {
+        option<Neutral>("Where is Edgeville?") {
             npc<Sad>("North of here, beyond a ruined fortress. It used to be a bustling den of cutthroats but it's quite quiet these days.")
             somethingElse()
         }
-        option<Talking>("Why can't you go yourself?") {
+        option<Neutral>("Why can't you go yourself?") {
             npc<Sad>("Some time ago, Jeffery asked me for advice in acting on his affections. I gave him the best advice that I could.")
             npc<Talk>("Things didn't work out very well for him. One thing let to another and now he no longer wishes to speak to me.")
             somethingElse()
         }
-        option<Talking>("Why can't you give a poem directly to Gudrun?") {
+        option<Neutral>("Why can't you give a poem directly to Gudrun?") {
             npc<Talk>("These love poems are written in the Misthalinian style. A noble barbarian maiden would be insulted, not flattered.")
             somethingElse()
         }
-        option<Talking>("You want me to trick her into thinking you made the ring?") {
+        option<Neutral>("You want me to trick her into thinking you made the ring?") {
             npc<Talk>("Oh no, nothing like that! I have the words, I just need your help with the tools.")
             somethingElse()
         }
@@ -853,7 +853,7 @@ suspend fun CharacterContext.lovePoemMenu() {
 }
 
 suspend fun CharacterContext.lovePoem() {
-    npc<Talking>("'I await in eagerness for a loop of lustrous grandeur.' No, that just sounds ridiculous. Have you brought me a ring from Jeffery?'")
+    npc<Neutral>("'I await in eagerness for a loop of lustrous grandeur.' No, that just sounds ridiculous. Have you brought me a ring from Jeffery?'")
     if (!player.ownsItem("ring_from_jeffery") && player.quest("gunnars_ground") == "jeffery_ring") {
         player<Cheerful>("I did get a ring from jeffery, but I seem to have lost it.")
         npc<Surprised>("How careless!")
@@ -878,7 +878,7 @@ suspend fun CharacterContext.lovePoem() {
     }
     choice {
         if (!player.ownsItem("love_poem") && player.quest("gunnars_ground") == "love_poem") {
-            option<Talking>("I lost the poem I was supposed to take to Jeffer.") {
+            option<Neutral>("I lost the poem I was supposed to take to Jeffer.") {
                 npc<Upset>("I'll give you another one.")
                 if (player.inventory.isFull()) {
                     statement("You don't have room for the poem. Speak to Dororan again when you have room.")
@@ -891,28 +891,28 @@ suspend fun CharacterContext.lovePoem() {
                 return@option
             }
         }
-        option<Talking>("Where would I find one?") {
+        option<Neutral>("Where would I find one?") {
             npc<Talk>("Go north to Jeffery in Edgeville and trade the poem I gave you for a gold ring.")
             choice {
-                option<Talking>("I have some questions.") {
+                option<Neutral>("I have some questions.") {
                     npc<Happy>("By all means.")
                     lovePoemMenu()
                 }
-                option<Talking>("I'll return with a ring from Jeffery.") {
+                option<Neutral>("I'll return with a ring from Jeffery.") {
                 }
             }
         }
-        option<Talking>("I'll return with a ring from Jeffery.")
+        option<Neutral>("I'll return with a ring from Jeffery.")
     }
 }
 
 suspend fun CharacterContext.engrave() {
     npc<Talk>("Now, would you engrave something on it for me?")
     choice {
-        option<Talking>("What do you want me to engrave?") {
+        option<Neutral>("What do you want me to engrave?") {
             engraveSomething()
         }
-        option<Talking>("It had better be something impressive.") {
+        option<Neutral>("It had better be something impressive.") {
             engraveSomething()
         }
     }
@@ -922,12 +922,12 @@ suspend fun CharacterContext.engraveSomething() {
     npc<Happy>("I've given this some thought.")
     npc<Cheerful>("'Gudrun the Fair, Gudrun the Fiery.'")
     choice {
-        option<Talking>("How do I engrave that?") {
+        option<Neutral>("How do I engrave that?") {
             npc<Talk>("Just use a chisel on the gold ring.")
             player["gunnars_ground"] = "engrave"
             engraveMenu()
         }
-        option<Talking>("That sounds simple enough.") {
+        option<Neutral>("That sounds simple enough.") {
             npc<Talk>("Just use a chisel on the gold ring.")
             player["gunnars_ground"] = "engrave"
             engraveMenu()
@@ -937,10 +937,10 @@ suspend fun CharacterContext.engraveSomething() {
 
 suspend fun CharacterContext.engraveMenu() {
     choice {
-        option<Talking>("Do you have a chisel I can use?") {
+        option<Neutral>("Do you have a chisel I can use?") {
             haveChisel()
         }
-        option<Talking>("Isn't a chisel a bit clumsy for that?") {
+        option<Neutral>("Isn't a chisel a bit clumsy for that?") {
             chiselBitClumsy()
         }
         option<Talk>("Not yet.")
@@ -957,7 +957,7 @@ suspend fun CharacterContext.haveChisel() {
         item("chisel", 600, "Dororan gives you a chisel.")
     }
     choice {
-        option<Talking>("Isn't a chisel a bit clumsy for that?") {
+        option<Neutral>("Isn't a chisel a bit clumsy for that?") {
             chiselBitClumsy()
         }
         option<Talk>("Okay.")
@@ -967,7 +967,7 @@ suspend fun CharacterContext.haveChisel() {
 suspend fun CharacterContext.chiselBitClumsy() {
     npc<Cheerful>("I've seen jewelcrafters use them for all sorts of precise work.")
     choice {
-        option<Talking>("Do you have a chisel I can use?") {
+        option<Neutral>("Do you have a chisel I can use?") {
             haveChisel()
         }
         option<Talk>("Okay.")
@@ -995,13 +995,13 @@ suspend fun CharacterContext.poet() {
 suspend fun CharacterContext.identify() {
     npc<Cry>("My heart is stricken with that most audacious of maladies!")
     choice {
-        option<Talking>("Angina?") {
+        option<Neutral>("Angina?") {
             love()
         }
-        option<Talking>("Hypertension?") {
+        option<Neutral>("Hypertension?") {
             love()
         }
-        option<Talking>("Coclearabsidosis?") {
+        option<Neutral>("Coclearabsidosis?") {
             love()
         }
     }
@@ -1012,18 +1012,18 @@ suspend fun CharacterContext.love() {
     npc<Upset>("The walls of my heart are besieged by love's armies, and those walls begin to tumble!")
     npc<Upset>("In the barbarian village lives the fairest maiden I have witnessed in all my life.")
     choice {
-        option<Talking>("What's so special about her?") {
+        option<Neutral>("What's so special about her?") {
             npc<Happy>("I wouldn't know where to start! Her fiery spirit? Her proud bearing? Her winsome form?")
             choice {
-                option<Talking>("But why is this making you sad?") {
+                option<Neutral>("But why is this making you sad?") {
                     getToThePoint()
                 }
-                option<Talking>("What do you actually need?") {
+                option<Neutral>("What do you actually need?") {
                     getToThePoint()
                 }
             }
         }
-        option<Talking>("Get to the point.") {
+        option<Neutral>("Get to the point.") {
             getToThePoint()
         }
     }
@@ -1034,10 +1034,10 @@ suspend fun CharacterContext.getToThePoint() {
     npc<Upset>("My people are indomitable warriors, dripping with gold and precious gems, but not I.")
     npc<Sad>("I am not built for combat, and poetry has proven a life of poverty!")
     choice {
-        option<Talking>("There must be something you can do.") {
+        option<Neutral>("There must be something you can do.") {
             helpMe()
         }
-        option<Talking>("Not to mention low stature.") {
+        option<Neutral>("Not to mention low stature.") {
             npc<Cry>("You see!")
             helpMe()
         }
@@ -1078,10 +1078,10 @@ npcOperate("Talk-to", "dororan_after_quest") {
     if (player["dororan_ruby_bracelet", 0] != 1 || player["dororan_dragonstone_necklace", 0] != 1 || player["dororan_onyx_amulet", 0] != 1) {
         choice {
             if (player["dororan_ruby_bracelet", 0] != 1) {
-                option<Talking>("What is it?") {
+                option<Neutral>("What is it?") {
                     npc<Happy>("I have some more jewellery for Gudrun and I need your help to engrave them.")
                     choice {
-                        option<Talking>("What's the first piece?") {
+                        option<Neutral>("What's the first piece?") {
                             npc<Happy>("A magnificent ruby bracelet.")
                             npc<Cheerful>("'With beauty blessed.'")
                             choice {
@@ -1102,16 +1102,16 @@ npcOperate("Talk-to", "dororan_after_quest") {
                                 }
                             }
                         }
-                        option<Talking>("I want to talk about something else.") {
+                        option<Neutral>("I want to talk about something else.") {
                             npc<Happy>("What can I do for you?")
                             someThingElse()
                         }
-                        option<Talking>("I don't have time right now.") {
+                        option<Neutral>("I don't have time right now.") {
                         }
                     }
                 }
             } else if (player["dororan_dragonstone_necklace", 0] != 1) {
-                option<Talking>("What's this one?") {
+                option<Neutral>("What's this one?") {
                     npc<Happy>("A fine dragonstone necklace.")
                     npc<Cheerful>("There's not much room...how about just 'Gudrun'?")
                     choice {
@@ -1133,7 +1133,7 @@ npcOperate("Talk-to", "dororan_after_quest") {
                     }
                 }
             } else if (player["dororan_onyx_amulet", 0] != 1) {
-                option<Talking>("What is it?") {
+                option<Neutral>("What is it?") {
                     npc<Happy>("An onyx amulet!")
                     npc<Cheerful>("'The most beautiful girl in the room.'")
                     choice {
@@ -1155,11 +1155,11 @@ npcOperate("Talk-to", "dororan_after_quest") {
                     }
                 }
             }
-            option<Talking>("I want to talk about something else.") {
+            option<Neutral>("I want to talk about something else.") {
                 npc<Happy>("What can I do for you?")
                 someThingElse()
             }
-            option<Talking>("I don't have time right now.") {
+            option<Neutral>("I don't have time right now.") {
             }
         }
     } else {
@@ -1169,15 +1169,15 @@ npcOperate("Talk-to", "dororan_after_quest") {
 
 suspend fun CharacterContext.someThingElse() {
     choice {
-        option<Talking>("How are things?") {
+        option<Neutral>("How are things?") {
             npc<Happy>("Every morning I wake to sunshine and birdsong! Life is marvellous!")
             elseGoodbye()
         }
-        option<Talking>("This is a very large house.") {
+        option<Neutral>("This is a very large house.") {
             npc<Amazed>("I know! I don't know where Gunthor would have got such a thing. Maybe Gudrun has some idea.")
             elseGoodbye()
         }
-        option<Talking>("I'd like to see the poem you wrote for Gunthor.") {
+        option<Neutral>("I'd like to see the poem you wrote for Gunthor.") {
             if (player.inventory.isFull()) {
                 statement("You don't have room for the poem. Speak to Dororan again when you have room.")
                 return@option
@@ -1200,7 +1200,7 @@ suspend fun CharacterContext.someThingElse() {
                 npc<Cheerful>("Be more careful with these ones! I don't have an infinite supply.")
             }
         }
-        option<Talking>("Goodbye.") {
+        option<Neutral>("Goodbye.") {
             npc<Cheerful>("Goodbye!")
         }
     }
@@ -1219,11 +1219,11 @@ suspend fun CharacterContext.giveRing(): Boolean {
 
 suspend fun CharacterContext.elseGoodbye() {
     choice {
-        option<Talking>("I want to talk about something else.") {
+        option<Neutral>("I want to talk about something else.") {
             npc<Happy>("What can I do for you?")
             someThingElse()
         }
-        option<Talking>("Goodbye.") {
+        option<Neutral>("Goodbye.") {
             npc<Cheerful>("Goodbye!")
         }
     }

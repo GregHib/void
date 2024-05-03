@@ -161,7 +161,7 @@ suspend fun CharacterContext.cutscene() {
     for (wizard in wizards) {
         wizard.forceChat = "Arise, Delrith!"
     }
-    npc<Talking>("dark_wizard_water", "Arise, Delrith!", title = "Dark wizards")
+    npc<Neutral>("dark_wizard_water", "Arise, Delrith!", title = "Dark wizards")
 
     statement("The wizards cast an evil spell", clickToContinue = false)
     val regular = objects[Tile(3227, 3369).add(offset), "demon_slayer_stone_table"]!!

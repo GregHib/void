@@ -5,7 +5,10 @@ import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inv.*
+import world.gregs.voidps.engine.inv.contains
+import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.remove
 import world.gregs.voidps.world.activity.quest.quest
@@ -49,7 +52,7 @@ suspend fun PlayerChoice.replacementSword() = option<Cheerful>(
 ) {
     npc<UnsureOld>("How are you doing finding those sword materials?")
     if (player.inventory.contains(items)) {
-        player<Talking>("I have them right here.")
+        player<Neutral>("I have them right here.")
         player.inventory.transaction {
             remove(items)
             add("blurite_sword")
@@ -66,7 +69,7 @@ suspend fun PlayerChoice.replacementSword() = option<Cheerful>(
     }
     if (player.inventory.contains("iron_bar", 2)) {
         player<Sad>("I don't have any blurite ore yet.")
-        npc<TalkingOld>("Better go get some then, huh? The only place I know to get it is under this cliff here, but it is guarded by a very powerful ice giant.")
+        npc<NeutralOld>("Better go get some then, huh? The only place I know to get it is under this cliff here, but it is guarded by a very powerful ice giant.")
         return@option
     }
     player<Sad>("I don't have any of them yet.")
@@ -98,32 +101,32 @@ suspend fun Interaction.menu() {
 }
 
 suspend fun PlayerChoice.specialSword() = option<Cheerful>("Can you make a special sword for me?") {
-    npc<TalkingOld>("Well, after bringing me my favorite food I guess I should give it a go. What sort of sword is it?")
-    player<Talking>("I need you to make a sword for one of Falador's knights. He had one which was passed down through five generations, but his squire has lost it.")
+    npc<NeutralOld>("Well, after bringing me my favorite food I guess I should give it a go. What sort of sword is it?")
+    player<Neutral>("I need you to make a sword for one of Falador's knights. He had one which was passed down through five generations, but his squire has lost it.")
     player<Unsure>("So we need an identical one to replace it.")
-    npc<TalkingOld>("A knight's sword eh? Well, I'd need to know exactly how it looked before I could make a new one.")
+    npc<NeutralOld>("A knight's sword eh? Well, I'd need to know exactly how it looked before I could make a new one.")
     player["the_knights_sword"] = "picture"
-    npc<TalkingOld>("All the Faladian knights used to have swords with unique designs according to their position. Could you bring me a picture or something?")
-    player<Talking>("I'll go and ask his squire and see if I can find one.")
+    npc<NeutralOld>("All the Faladian knights used to have swords with unique designs according to their position. Could you bring me a picture or something?")
+    player<Neutral>("I'll go and ask his squire and see if I can find one.")
 }
 
 suspend fun PlayerChoice.aboutSword() = option<Cheerful>("About that sword...") {
     npc<UnsureOld>("Have you got a picture of the sword for me yet?")
     if (!player.holdsItem("portrait")) {
         player<Sad>("Sorry, not yet.")
-        npc<TalkingOld>("Well, come back when you do.")
+        npc<NeutralOld>("Well, come back when you do.")
         return@option
     }
-    player<Talking>("I have found a picture of the sword I would like you to make.")
+    player<Neutral>("I have found a picture of the sword I would like you to make.")
     item("portrait", 600, "You give the portrait to Thurgo. Thurgo studies the portrait.")
     player["the_knights_sword"] = "blurite_sword"
     player.inventory.remove("portrait")
-    npc<TalkingOld>("You'll need to get me some stuff to make this. I'll need two iron bars to make the sword, to start with. I'll also need an ore called blurite.")
-    npc<TalkingOld>("Blurite is useless for making actual weapons, except crossbows, but I'll need some as decoration for the hilt.")
-    npc<TalkingOld>("It is a fairly rare ore. The only place I know to get it is under this cliff here, but it is guarded by a very powerful ice giant.")
-    npc<TalkingOld>("Most of the rocks in that cliff are pretty useless, and don't contain much of anything, but there's DEFINITELY some blurite in there.")
-    npc<TalkingOld>("You'll need a little bit of mining experience to be able to find it.")
-    player<Talking>("Okay. I'll go and find them then.")
+    npc<NeutralOld>("You'll need to get me some stuff to make this. I'll need two iron bars to make the sword, to start with. I'll also need an ore called blurite.")
+    npc<NeutralOld>("Blurite is useless for making actual weapons, except crossbows, but I'll need some as decoration for the hilt.")
+    npc<NeutralOld>("It is a fairly rare ore. The only place I know to get it is under this cliff here, but it is guarded by a very powerful ice giant.")
+    npc<NeutralOld>("Most of the rocks in that cliff are pretty useless, and don't contain much of anything, but there's DEFINITELY some blurite in there.")
+    npc<NeutralOld>("You'll need a little bit of mining experience to be able to find it.")
+    player<Neutral>("Okay. I'll go and find them then.")
 }
 
 suspend fun PlayerChoice.imcandoDwarf() = option<Cheerful>("Are you an Imcando dwarf? I need a special sword.") {

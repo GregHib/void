@@ -37,7 +37,7 @@ suspend fun CharacterContext.menu(followUp: String = "") {
     }
 }
 
-suspend fun PlayerChoice.magicCombat(): Unit = option<Talking>("Tell me about magic combat please.") {
+suspend fun PlayerChoice.magicCombat(): Unit = option<Neutral>("Tell me about magic combat please.") {
     npc<Cheerful>("Of course ${player.name}! As a rule of thumb, if you cast the highest spell of which you're capable, you'll get the best experience possible.")
     npc<Cheerful>("Wearing metal armour and ranged armour can seriously impair your magical abilities. Make sure you wear some robes to maximise your capabilities.")
     npc<Cheerful>("Superheat Item and the Alchemy spells are good ways to level magic if you are not interested in the combat aspect of magic.")

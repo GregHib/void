@@ -46,7 +46,7 @@ suspend fun PlayerChoice.itsImportant(): Unit = option<Talk>(
 
 suspend fun PlayerChoice.newRecruit(): Unit = option<Talk>("I'm a new recruit.") {
     npc<Talk>("I interview all the new recruits. I'd know if you were one of them.")
-    player<Talking>("That blows that story out of the water then.")
+    player<Neutral>("That blows that story out of the water then.")
     npc<Angry>("Get out of my sight.")
 }
 
@@ -72,7 +72,7 @@ suspend fun PlayerChoice.forgot(): Unit = option<Upset>("Erm I forgot.") {
     npc<Angry>("Just go away.")
 }
 
-suspend fun PlayerChoice.aleDelivery(): Unit = option<Talking>("The castle has just received its ale delivery.") {
+suspend fun PlayerChoice.aleDelivery(): Unit = option<Neutral>("The castle has just received its ale delivery.") {
     npc<Talk>("Now that is important. However I'm the wrong person to speak to about it. Go talk to the kitchen staff.")
 }
 

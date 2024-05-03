@@ -6,8 +6,8 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Angry
 import world.gregs.voidps.world.interact.dialogue.Frustrated
+import world.gregs.voidps.world.interact.dialogue.Neutral
 import world.gregs.voidps.world.interact.dialogue.Talk
-import world.gregs.voidps.world.interact.dialogue.Talking
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 
@@ -34,24 +34,24 @@ suspend fun CharacterContext.completed() {
     })
     npc<Angry>("Blast!")
     choice {
-        option<Talking>("Having trouble there?") {
+        option<Neutral>("Having trouble there?") {
             npc<Angry>("I don't need the advice of an outerlander.")
             advice()
         }
-        option<Talking>("I'll leave you in peace.") {
+        option<Neutral>("I'll leave you in peace.") {
         }
     }
 }
 
 suspend fun CharacterContext.advice() {
     choice {
-        option<Talking>("This music isn't very restful.") {
+        option<Neutral>("This music isn't very restful.") {
             npc<Angry>("Get out of here!")
         }
-        option<Talking>("Maybe you should take some lessons.") {
+        option<Neutral>("Maybe you should take some lessons.") {
             npc<Angry>("Get out of here!")
         }
-        option<Talking>("I'll leave you in peace.") {
+        option<Neutral>("I'll leave you in peace.") {
             npc<Angry>("Get out of here!")
         }
     }
@@ -60,16 +60,16 @@ suspend fun CharacterContext.advice() {
 suspend fun CharacterContext.unstarted() {
     npc<Frustrated>("Get out of here, outerlander!")
     choice {
-        option<Talking>("What is this place?") {
+        option<Neutral>("What is this place?") {
             npc<Frustrated>("The barbarian village. Go away.")
         }
-        option<Talking>("Who are you?") {
+        option<Neutral>("Who are you?") {
             npc<Frustrated>("My name is Kjell. Go away.")
         }
-        option<Talking>("What's in this hut you're guarding?") {
+        option<Neutral>("What's in this hut you're guarding?") {
             npc<Frustrated>("Nothing yet. Once there is, no one will get in or out! Now, Go away!")
         }
-        option<Talking>("Goodbye then.") {
+        option<Neutral>("Goodbye then.") {
         }
     }
 }

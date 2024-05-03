@@ -29,7 +29,7 @@ npcOperate("Talk-to", "cook_lumbridge") {
                     npc<Sad>("*sniff* Don't talk to me about cakes...")
                     startQuest()
                 }
-                option<Talking>("You don't look very happy.") {
+                option<Neutral>("You don't look very happy.") {
                     dontLookHappy()
                 }
                 option<Cheerful>("Nice hat!") {
@@ -131,7 +131,7 @@ fun CharacterContext.questComplete() {
 }
 
 suspend fun CharacterContext.startQuest() {
-    player<Talking>("What's wrong?")
+    player<Neutral>("What's wrong?")
     npc<Afraid>("Oh dear, oh dear, oh dear, I'm in a terrible terrible mess! It's the Duke's birthday today, and I should be making him a lovely big birthday cake using special ingredients...")
     npc<Afraid>("...but I've forgotten to get the ingredients. I'll never get them in time now. He'll sack me! What will I do? I have four children and a goat to look after. Would you help me? Please?")
     choice("Start the Cook's Assistant quest?") {
@@ -145,7 +145,7 @@ suspend fun CharacterContext.startQuest() {
             whereToFind()
         }
         option("No.") {
-            player<Talking>("No, I don't feel like it. Maybe later.")
+            player<Neutral>("No, I don't feel like it. Maybe later.")
             npc<Sad>("Fine. I always knew you Adventurer types were callous beasts. Go on your merry way!")
         }
     }
@@ -198,13 +198,13 @@ suspend fun NPCOption.dontLookHappy() {
         option("What's wrong?") {
             startQuest()
         }
-        option<Talking>("I'd take the rest of the day off if I were you.") {
+        option<Neutral>("I'd take the rest of the day off if I were you.") {
             npc<Sad>("No, that's the worst thing I could do. I'd get in terrible trouble.")
-            player<Talking>("Well maybe you need to take a holiday...")
+            player<Neutral>("Well maybe you need to take a holiday...")
             npc<Sad>("That would be nice, but the Duke doesn't allow holidays for core staff.")
-            player<Talking>("Hmm, why not run away to the sea and start a new life as a Pirate?")
+            player<Neutral>("Hmm, why not run away to the sea and start a new life as a Pirate?")
             npc<Sad>("My wife gets sea sick, and I have an irrational fear of eyepatches. I don't see it working myself.")
-            player<Talking>("I'm afraid I've run out of ideas.")
+            player<Neutral>("I'm afraid I've run out of ideas.")
             npc<Sad>("I know I'm doomed.")
             startQuest()
         }

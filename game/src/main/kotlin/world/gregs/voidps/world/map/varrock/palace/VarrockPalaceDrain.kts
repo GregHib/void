@@ -14,8 +14,8 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Cheerful
+import world.gregs.voidps.world.interact.dialogue.Neutral
 import world.gregs.voidps.world.interact.dialogue.Suspicious
-import world.gregs.voidps.world.interact.dialogue.Talking
 import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -29,7 +29,7 @@ objectOperate("Search", "varrock_palace_drain") {
     } else if (player.quest("demon_slayer") == "unstarted") {
         player<Suspicious>("This is the drainpipe running from the kitchen sink to the sewer. I can see a key just inside the drain.")
     } else {
-        player<Talking>("That must be the key Sir Prysin dropped.")
+        player<Neutral>("That must be the key Sir Prysin dropped.")
         player<Suspicious>("I don't seem to be able to reach it. I wonder if I can dislodge it somehow. That way it may go down into the sewers.")
     }
 }

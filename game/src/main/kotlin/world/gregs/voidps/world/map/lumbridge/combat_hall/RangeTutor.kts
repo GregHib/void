@@ -34,7 +34,7 @@ suspend fun CharacterContext.menu(followUp: String = "") {
     }
 }
 
-suspend fun PlayerChoice.rangedTraining(): Unit = option<Talking>("How can I train my Ranged?") {
+suspend fun PlayerChoice.rangedTraining(): Unit = option<Neutral>("How can I train my Ranged?") {
     npc<Cheerful>("To start with you'll need a bow and arrows, you were given a Shortbow and some arrows when you arrived here from Tutorial island.")
     npc<Cheerful>("Alternatively, you can claim a training bow and some arrows from me.")
     npc<Cheerful>("Mikasi, the Magic Combat tutor and I both give out items every 30 minutes, however you must choose whether you want runes or ranged equipment.")
@@ -47,7 +47,7 @@ suspend fun PlayerChoice.rangedTraining(): Unit = option<Talking>("How can I tra
     npc<Cheerful>("Once you have your bow and arrows, equip them by selecting their Wield option in your inventory.")
     npc<Cheerful>("You can change the way you attack by going to the combat options tab. There are three attack styles for bows. Those styles are Accurate, Rapid and Longrange.")
     npc<Amazed>("Accurate increases your bows attack accuracy. Rapid will increase your attack speed with the bow. Longrange will let you attack your enemies from a greater distance.")
-    npc<Talking>("If you are ever in the market for a new bow or some arrows, you should head on over to Lowe's Archery Emporium in Varrock.")
+    npc<Neutral>("If you are ever in the market for a new bow or some arrows, you should head on over to Lowe's Archery Emporium in Varrock.")
     menu("Is there anything else you want to know?")
 }
 

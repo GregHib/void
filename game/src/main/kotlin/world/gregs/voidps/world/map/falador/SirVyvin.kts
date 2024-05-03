@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Frustrated
-import world.gregs.voidps.world.interact.dialogue.Talking
+import world.gregs.voidps.world.interact.dialogue.Neutral
 import world.gregs.voidps.world.interact.dialogue.Uncertain
 import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -64,24 +64,24 @@ objectOperate("Search", "cupboard_the_knights_sword_opened") {
 }
 
 npcOperate("Talk-to", "sir_vyvin") {
-    player<Talking>("Hello.")
-    npc<Talking>("Greetings traveller.")
+    player<Neutral>("Hello.")
+    npc<Neutral>("Greetings traveller.")
     choice {
         option<Unsure>("Do you have anything to trade?") {
-            npc<Talking>("No, I'm sorry.")
+            npc<Neutral>("No, I'm sorry.")
         }
         option<Unsure>("Why are there so many knights in this city?") {
-            npc<Talking>("We are the White Knights of Falador. We are the most powerful order of knights in the land. We are helping the king Vallance rule the kingdom as he is getting old and tired.")
+            npc<Neutral>("We are the White Knights of Falador. We are the most powerful order of knights in the land. We are helping the king Vallance rule the kingdom as he is getting old and tired.")
         }
         option("Can I just distract you for a minute?") {
-            player<Talking>("Can I just talk to you very slowly for a few minutes, while I distract you, so that my friend over there can do something while you're busy being distracted by me?")
+            player<Neutral>("Can I just talk to you very slowly for a few minutes, while I distract you, so that my friend over there can do something while you're busy being distracted by me?")
             npc<Uncertain>("... ...what?")
             npc<Uncertain>("I'm... not sure what you're asking me... you want to join the White Knights?")
-            player<Talking>("Nope. I'm just trying to distract you.")
+            player<Neutral>("Nope. I'm just trying to distract you.")
             npc<Uncertain>("... ...you are very odd.")
-            player<Talking>("So can I distract you some more?")
+            player<Neutral>("So can I distract you some more?")
             npc<Uncertain>("... ...I don't think I want to talk to you anymore.")
-            player<Talking>("Ok. My work here is done. 'Bye!")
+            player<Neutral>("Ok. My work here is done. 'Bye!")
         }
     }
 }

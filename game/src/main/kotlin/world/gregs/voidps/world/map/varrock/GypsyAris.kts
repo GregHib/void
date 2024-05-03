@@ -62,13 +62,13 @@ npcOperate("Talk-to", "gypsy_aris") {
         }
         "sir_prysin", "key_hunt" -> howGoesQuest()
         "completed" -> {
-            npc<Talking>("Greetings young one.")
+            npc<Neutral>("Greetings young one.")
             npc<Cheerful>("You're a hero now. That was a good bit of demon-slaying.")
             choice {
                 option<Uncertain>("How do you know I killed it?") {
                     npc<Talk>("You forget. I'm good at knowing things.")
                 }
-                option<Talking>("Thanks.")
+                option<Neutral>("Thanks.")
                 stopCallingMeThat()
             }
         }
@@ -153,8 +153,8 @@ suspend fun PlayerChoice.notVeryHeroicName(): Unit = option<Cheerful>("Wally doe
 suspend fun CharacterContext.incantation() {
     player<Talk>("What is the magical incantation?")
     npc<Talk>("Oh yes, let me think a second.")
-    npc<Talking>("Aright, I think I've got it now, it goes... ${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}.,. ${getWord(player, 4)}.,. ${getWord(player, 5)}. Have you got that?")
-    player<Talking>("I think so, yes.")
+    npc<Neutral>("Aright, I think I've got it now, it goes... ${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}.,. ${getWord(player, 4)}.,. ${getWord(player, 5)}. Have you got that?")
+    player<Neutral>("I think so, yes.")
 }
 
 suspend fun PlayerChoice.notBeliever(): Unit = option<Talk>("No, I don't believe in that stuff.") {
@@ -203,7 +203,7 @@ suspend fun ChoiceBuilder<NPCOption>.whoYouCallingYoung(): Unit = option<Frustra
         hereYouGo()
         notBeliever()
         option("Ooh, how old are you then?") {
-            npc<Talking>("Count the number of legs on the stools in the Blue Moon inn, and multiply that number by seven.")
+            npc<Neutral>("Count the number of legs on the stools in the Blue Moon inn, and multiply that number by seven.")
             player<Unsure>("Er, yeah, whatever.")
         }
     }
@@ -299,7 +299,7 @@ suspend fun CharacterContext.endCutscene(instance: Region) {
 }
 
 suspend fun ChoiceBuilder<NPCOption>.withSilver(): Unit = option<Unsure>("With silver?") {
-    npc<Talking>("Oh, sorry, I forgot. With gold, I mean. They haven't used silver coins since before you were born! So, do you want your fortune told?")
+    npc<Neutral>("Oh, sorry, I forgot. With gold, I mean. They haven't used silver coins since before you were born! So, do you want your fortune told?")
     choice {
         hereYouGo()
         notBeliever()

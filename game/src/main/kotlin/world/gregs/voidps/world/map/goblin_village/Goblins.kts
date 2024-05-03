@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 npcOperate("Talk-to", "goblin_*_red") {
     when (random.nextInt(0, 2)) {
         0 -> {
-            npc<Talking>("Red armour best!")
+            npc<Neutral>("Red armour best!")
             choice {
                 option<Uncertain>("Why is red best?") {
                     npc<Afraid>("Cos General Bentnoze says so, and he bigger than me.")
@@ -29,7 +29,7 @@ npcOperate("Talk-to", "goblin_*_red") {
 npcOperate("Talk-to", "goblin_*_green") {
     when (random.nextInt(0, 2)) {
         0 -> {
-            npc<Talking>("green armour best!")
+            npc<Neutral>("green armour best!")
             choice {
                 option<Uncertain>("Why is green best?") {
                     npc<Afraid>("Cos General Wartface says so, and he bigger than me.")

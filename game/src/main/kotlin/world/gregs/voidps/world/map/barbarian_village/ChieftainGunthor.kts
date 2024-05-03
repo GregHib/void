@@ -25,10 +25,10 @@ npcOperate("Talk-to", "chieftain_gunthor") {
 suspend fun CharacterContext.meetChieftain() {
     npc<Angry>("Begone, outerlander! Your kind are not welcome here!")
     choice {
-        option<Talking>("I need to speak with you, chieftain.") {
+        option<Neutral>("I need to speak with you, chieftain.") {
             makeItShort()
         }
-        option<Talking>("Be quiet and listen.") {
+        option<Neutral>("Be quiet and listen.") {
             makeItShort()
         }
     }
@@ -39,10 +39,10 @@ suspend fun CharacterContext.makeItShort() {
     player<Talk>("Your daughter seeks permission to court an outerlander.")
     npc<Mad>("WHAT??")
     choice {
-        option<Talking>("Your daughter seeks permission to court an outerlander.") {
+        option<Neutral>("Your daughter seeks permission to court an outerlander.") {
             barbarians()
         }
-        option<Talking>("Are you deaf?") {
+        option<Neutral>("Are you deaf?") {
             barbarians()
         }
     }
@@ -51,10 +51,10 @@ suspend fun CharacterContext.makeItShort() {
 suspend fun CharacterContext.barbarians() {
     npc<Frustrated>("Do you have ANY idea who we are?")
     choice {
-        option<Talking>("You're barbarians.") {
+        option<Neutral>("You're barbarians.") {
             waitAMoment()
         }
-        option<Talking>("You're a tribe of primitives.") {
+        option<Neutral>("You're a tribe of primitives.") {
             waitAMoment()
         }
     }
@@ -63,10 +63,10 @@ suspend fun CharacterContext.barbarians() {
 suspend fun CharacterContext.waitAMoment() {
     npc<Angry>("We are storm that sweeps from the mountains! We are the scourge of these soft lands!")
     choice {
-        option<Talking>("Please wait a moment.") {
+        option<Neutral>("Please wait a moment.") {
             campOfWar()
         }
-        option<Talking>("Are you finished?") {
+        option<Neutral>("Are you finished?") {
             campOfWar()
         }
     }

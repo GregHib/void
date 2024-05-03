@@ -41,10 +41,10 @@ npcOperate("Talk-to", "sir_prysin") {
             }
         }
         "completed" -> {
-            npc<Talking>("Hello. I've heard you stopped the demon, well done.")
-            player<Talking>("Yes, that's right.")
-            npc<Talking>("A good job well done then.")
-            player<Talking>("Thank you.")
+            npc<Neutral>("Hello. I've heard you stopped the demon, well done.")
+            player<Neutral>("Yes, that's right.")
+            npc<Neutral>("A good job well done then.")
+            player<Neutral>("Thank you.")
         }
         else -> {
             npc<Talk>("Hello, who are you?")
@@ -220,8 +220,8 @@ val objects: GameObjects by inject()
 val cupboardTile = Tile(3204, 3469)
 
 suspend fun NPCOption.giveSilverlight() {
-    player<Talking>("I've got all three keys!")
-    npc<Talking>("Excellent! Now I can give you Silverlight.")
+    player<Neutral>("I've got all three keys!")
+    npc<Neutral>("Excellent! Now I can give you Silverlight.")
     player.inventory.remove("silverlight_key_wizard_traiborn", "silverlight_key_captain_rovin", "silverlight_key_sir_prysin")
     val tile = Tile(3204, 3470)
     target.mode = PauseMode
@@ -268,5 +268,5 @@ suspend fun NPCOption.giveSilverlight() {
     target.face(Direction.NONE)
     delay()
     npc<Talk>("That sword belonged to my great-grandfather. Make sure you treat it with respect!")
-    npc<Talking>("Now go kill that demon!")
+    npc<Neutral>("Now go kill that demon!")
 }

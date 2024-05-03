@@ -14,7 +14,7 @@ npcOperate("Talk-to", "fadli") {
     player<Cheerful>("Hi.")
     npc<RollEyes>("What?")
     choice {
-        option<Talking>("What do you do?") {
+        option<Neutral>("What do you do?") {
             npc<RollEyes>("You can store your stuff here if you want. You can dump anything you don't want to carry whilst you're fighting duels and then pick it up again on the way out.")
             npc<RollEyes>("To be honest I'm wasted here.")
             npc<Frustrated>("I should be winning duels in an arena! I'm the best warrior in Al Kharid!")
@@ -22,9 +22,9 @@ npcOperate("Talk-to", "fadli") {
         }
         option<Uncertain>("What is this place?") {
             npc<Frustrated>("Isn't it obvious?")
-            npc<Talking>("This is the Duel Arena...duh!")
+            npc<Neutral>("This is the Duel Arena...duh!")
         }
-        option<Talking>("I'd like to access my bank, please.") {
+        option<Neutral>("I'd like to access my bank, please.") {
             npc<RollEyes>("Sure.")
             player.open("bank")
         }
@@ -32,8 +32,8 @@ npcOperate("Talk-to", "fadli") {
             npc<RollEyes>("Yeah, okay.")
             player.open("collection_box")
         }
-        option<Talking>("Do you watch any matches?") {
-            npc<Talking>("When I can.")
+        option<Neutral>("Do you watch any matches?") {
+            npc<Neutral>("When I can.")
             npc<Cheerful>("Most aren't any good so I throw rotten fruit at them!")
             player<Cheerful>("Heh. Can I buy some?")
             if (World.members) {

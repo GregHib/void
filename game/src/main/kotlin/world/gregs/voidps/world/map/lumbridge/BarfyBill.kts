@@ -10,19 +10,19 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.minimumCanoeLevel
 
 npcOperate("Talk-To", "barfy_bill") {
-    player<Talking>("Hello there.")
-    npc<Talking>("Oh! Hello there.")
+    player<Neutral>("Hello there.")
+    npc<Neutral>("Oh! Hello there.")
     choice {
-        option<Talking>("Who are you?") {
-            npc<Talking>("My name is Ex Sea Captain Barfy Bill.")
+        option<Neutral>("Who are you?") {
+            npc<Neutral>("My name is Ex Sea Captain Barfy Bill.")
             player<Unsure>("Ex sea captain?")
             npc<Sad>("Yeah, I bought a lovely ship and was planning to make a fortune running her as a merchant vessel.")
             player<Unsure>("Why are you not still sailing?")
             npc<Sad>("Chronic sea sickness. My first, and only, voyage was spent dry heaving over the rails.")
-            npc<Talking>("If I had known about the sea sickness I could have saved myself a lot of money.")
+            npc<Neutral>("If I had known about the sea sickness I could have saved myself a lot of money.")
             player<Uncertain>("What are you up to now then?")
             npc<Suspicious>("Well my ship had a little fire related problem. Fortunately it was well insured.")
-            npc<Talking>("Anyway, I don't have to work anymore so I've taken to canoeing on the river.")
+            npc<Neutral>("Anyway, I don't have to work anymore so I've taken to canoeing on the river.")
             npc<Cheerful>("I don't get river sick!")
             npc<Unsure>("Would you like to know how to make a canoe?")
             choice {
@@ -30,7 +30,7 @@ npcOperate("Talk-To", "barfy_bill") {
                     canoeing()
                 }
                 option("No") {
-                    player<Talking>("No thanks, not right now.")
+                    player<Neutral>("No thanks, not right now.")
                 }
             }
         }
@@ -44,11 +44,11 @@ suspend fun CharacterContext.canoeing() {
     if (minimumCanoeLevel()) {
         return
     }
-    npc<Talking>("It's really quite simple to make. Just walk down to that tree on the bank and chop it down.")
-    npc<Talking>("When you have done that you can shape the log further with your axe to make a canoe.")
+    npc<Neutral>("It's really quite simple to make. Just walk down to that tree on the bank and chop it down.")
+    npc<Neutral>("When you have done that you can shape the log further with your axe to make a canoe.")
     when (player.levels.get(Skill.Woodcutting)) {
         in 12..26 -> {
-            npc<Talking>("Hah! I can tell just by looking that you lack talent in woodcutting.")
+            npc<Neutral>("Hah! I can tell just by looking that you lack talent in woodcutting.")
             player<Unsure>("What do you mean?")
             npc<Cheerful>("No Callouses! No Splinters! No camp fires littering the trail behind you.")
             npc<Cheerful>("Anyway, the only 'canoe' you can make is a log. You'll be able to travel 1 stop along the river with a log canoe.")
@@ -67,9 +67,9 @@ suspend fun CharacterContext.canoeing() {
         }
         else -> {
             npc<Cheerful>("Hoo! You look like you know which end of an axe is which!")
-            npc<Talking>("You can easily build one of those Wakas. Be careful if you travel into the Wilderness though.")
+            npc<Neutral>("You can easily build one of those Wakas. Be careful if you travel into the Wilderness though.")
             npc<Afraid>("I've heard tell of great evil in that blasted wasteland.")
-            player<Talking>("Thanks for the warning Bill.")
+            player<Neutral>("Thanks for the warning Bill.")
         }
     }
 }

@@ -22,7 +22,7 @@ import world.gregs.voidps.world.interact.entity.sound.playJingle
 npcOperate("Talk-to", "squire_asrol") {
     when (player.quest("the_knights_sword")) {
         "unstarted" -> {
-            npc<Talking>("Hello. I am the squire to Sir Vyvin.")
+            npc<Neutral>("Hello. I am the squire to Sir Vyvin.")
             choice {
                 lifeAsASquire()
                 squireForMe()
@@ -47,7 +47,7 @@ suspend fun CharacterContext.askAboutPicture() {
     player<Cheerful>("I've found an Imcando dwarf but he needs a picture of the sword before he can make it.")
     npc<Uncertain>("A picture eh? Hmmm.... The only one I can think of is in a small portrait of Sir Vyvin's father... Sir Vyvin keeps it in a cupboard in his room I think.")
     player["the_knights_sword"] = "cupboard"
-    player<Talking>("Ok, I'll try and get that then.")
+    player<Neutral>("Ok, I'll try and get that then.")
     npc<Uncertain>("Please don't let him catch you! He MUSTN'T know what happened!")
 }
 
@@ -77,11 +77,11 @@ suspend fun CharacterContext.bluriteSword() {
         return
     }
     if (player.ownsItem("blurite_sword")) {
-        player<Talking>("I got a replacement sword made.")
+        player<Neutral>("I got a replacement sword made.")
         npc<Cheerful>("Thank you! Can I have it?")
-        player<Talking>("I've got it stored safely.")
+        player<Neutral>("I've got it stored safely.")
         npc<Frustrated>("Well could you go and get it for me then please? Quickly?")
-        player<Talking>("Yeah, okay.")
+        player<Neutral>("Yeah, okay.")
         return
     }
     npc<Unsure>("So how are you doing getting a sword?")
@@ -118,7 +118,7 @@ suspend fun PlayerChoice.vagueArea() = option<Unsure>("Well, do you know the VAG
     }
 }
 
-suspend fun PlayerChoice.abundantWithSwords() = option<Talking>("Well the kingdom is fairly abundant with swords...") {
+suspend fun PlayerChoice.abundantWithSwords() = option<Neutral>("Well the kingdom is fairly abundant with swords...") {
     npc<Sad>("Yes. You can get bronze swords anywhere. But THIS isn't any old sword.")
     heirloom()
 }
@@ -139,11 +139,11 @@ suspend fun PlayerChoice.anotherSword() = option<Unsure>("So would these dwarves
     startQuest()
 }
 
-suspend fun PlayerChoice.hopeYouFind() = option<Talking>("Well, I hope you find it soon.") {
+suspend fun PlayerChoice.hopeYouFind() = option<Neutral>("Well, I hope you find it soon.") {
     npc<Sad>("Yes, me too. I'm not looking forward to telling Vyvin I've lost it. He's going to want it for the parade next week as well.")
 }
 
-suspend fun PlayerChoice.newSword() = option<Talking>("I can make a new sword if you like...") {
+suspend fun PlayerChoice.newSword() = option<Neutral>("I can make a new sword if you like...") {
     npc<Sad>("Thanks for the offer. I'd be surprised if you could though.")
     heirloom()
 }
@@ -159,7 +159,7 @@ suspend fun PlayerChoice.heAngry() = option<Unsure>("Is he angry?") {
 }
 
 suspend fun PlayerChoice.squireForMe() = option<Unsure>("Wouldn't you prefer to be a squire for me?") {
-    npc<Talking>("No, sorry, I'm loyal to Sir Vyvin.")
+    npc<Neutral>("No, sorry, I'm loyal to Sir Vyvin.")
 }
 
 suspend fun CharacterContext.startQuest() {
@@ -173,7 +173,7 @@ suspend fun CharacterContext.startQuest() {
     choice("Start The Knight's Sword quest?") {
         option("Yes.") {
             player["the_knights_sword"] = "started"
-            player<Talking>("Ok, I'll give it a go.")
+            player<Neutral>("Ok, I'll give it a go.")
             npc<Cheerful>("Thank you very much! As I say, the best place to start should be with Reldo...")
         }
         option("No.") {

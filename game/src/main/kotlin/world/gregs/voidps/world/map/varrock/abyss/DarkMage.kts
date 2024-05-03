@@ -83,7 +83,7 @@ fun ChoiceBuilder<NPCOption>.needHelp() {
                         item("abyssal_book", 400, "You have been given a book.")
                         choice {
                             askForPouch()
-                            option<Talking>("Thanks.") {
+                            option<Neutral>("Thanks.") {
                                 npc<Unsure>("Now can you leave me alone? I can't keep affording these distractions!")
                             }
                         }

@@ -8,10 +8,10 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 
 npcOperate("Talk-to", "hamid") {
     player<Cheerful>("Hi!")
-    npc<Talking>("Hello traveller. How can I be of assistance?")
+    npc<Neutral>("Hello traveller. How can I be of assistance?")
     choice {
         option<Uncertain>("Can you heal me?") {
-            npc<Talking>("You'd be better off speaking to one of the nurses.")
+            npc<Neutral>("You'd be better off speaking to one of the nurses.")
             npc<Cheerful>("They are so... nice... afterall!")
         }
         option<Uncertain>("What's a Monk doing in a place such as this?") {
@@ -20,7 +20,7 @@ npcOperate("Talk-to", "hamid") {
             npc<Chuckle>("It beats being stuck in the monastery!")
         }
         option<Uncertain>("Which monastery do you come from?") {
-            npc<Talking>("I belong to the monastery north of Falador.")
+            npc<Neutral>("I belong to the monastery north of Falador.")
             player<Uncertain>("You're a long way from home?")
             npc<Sad>("Yeh. I miss the guys.")
         }

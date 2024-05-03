@@ -10,26 +10,26 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.minimumCanoeLevel
 
 npcOperate("Talk-To", "tarquin") {
-    player<Talking>("Hello there.")
+    player<Neutral>("Hello there.")
     npc<RollEyes>("Hello old bean. Is there something I can help you with?")
     choice {
-        option<Talking>("Who are you?") {
+        option<Neutral>("Who are you?") {
             npc<RollEyes>("My name is Tarquin Marjoribanks.")
-            npc<Talking>("I'd be surprised if you haven't already heard of me?")
+            npc<Neutral>("I'd be surprised if you haven't already heard of me?")
             player<Unsure>("Why would I have heard of you Mr. Marjoribanks?")
             npc<Frustrated>("It's pronounced 'Marchbanks'!")
-            npc<Talking>("You should know of me because I am a member of the royal family of Misthalin!")
+            npc<Neutral>("You should know of me because I am a member of the royal family of Misthalin!")
             player<Unsure>("Are you related to King Roald?")
             npc<Cheerful>("Oh yes! Quite closely actually")
-            npc<Talking>("I'm his 4th cousin, once removed on his mothers side.")
+            npc<Neutral>("I'm his 4th cousin, once removed on his mothers side.")
             player<Uncertain>("Er... Okay. What are you doing here then?")
-            npc<Talking>("I'm canoeing on the river! It's enormous fun! Would you like to know how?")
+            npc<Neutral>("I'm canoeing on the river! It's enormous fun! Would you like to know how?")
             choice {
                 option("Yes") {
                     canoeing()
                 }
                 option("No") {
-                    player<Talking>("No thanks, not right now.")
+                    player<Neutral>("No thanks, not right now.")
                 }
             }
         }
@@ -67,7 +67,7 @@ suspend fun CharacterContext.canoeing() {
         }
         in 42..56 -> {
             npc<Cheerful>("Ah! Perfect! You can make a Stable Dugout canoe! One of those will carry you to any civilised place on the river.")
-            npc<Talking>("If you were of good pedigree I'd let you join my boat club. You seem to be one of those vagabond adventurers though.")
+            npc<Neutral>("If you were of good pedigree I'd let you join my boat club. You seem to be one of those vagabond adventurers though.")
             player<Frustrated>("Charming!")
             npc<Frustrated>("Be off with you rogue!")
         }
@@ -77,7 +77,7 @@ suspend fun CharacterContext.canoeing() {
             npc<RollEyes>("Of course there are other canoes.")
             npc<Surprised>("Well ... erm. You seem to be able to make a Waka!")
             player<Cheerful>("Sounds fun, what's a Waka.")
-            npc<Talking>("I've only ever seen one man on the river who uses a Waka. A big, fearsome looking fellow up near Edgeville.")
+            npc<Neutral>("I've only ever seen one man on the river who uses a Waka. A big, fearsome looking fellow up near Edgeville.")
             npc<Unsure>("People say he was born in the Wilderness and that he is looking for a route back.")
             player<Surprised>("Is that true!")
             npc<RollEyes>("How should I know? I would not consort with such a base fellow!")
