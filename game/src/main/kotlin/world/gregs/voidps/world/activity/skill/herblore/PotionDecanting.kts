@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.activity.skill.herblore
 
-import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -8,7 +7,10 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
-import world.gregs.voidps.world.interact.dialogue.*
+import world.gregs.voidps.world.interact.dialogue.Happy
+import world.gregs.voidps.world.interact.dialogue.Neutral
+import world.gregs.voidps.world.interact.dialogue.Sad
+import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -23,24 +25,24 @@ val potions = setOf(
 
 npcOperate("Decant", "bob_barter_herbs") {
     if(decantPotions(player)) {
-        npc<Cheerful>("There you go, chum.")
+        npc<Happy>("There you go, chum.")
     } else {
         npc<Sad>("I wasn't able to decant your potions.")
     }
 }
 npcOperate("Talk-to", "bob_barter_herbs") {
-    npc<Cheerful>("Hello, chum, fancy buyin' some designer jewellry? They've come all the way from Ardougne! Most pukka!")
-    player<Talking>("Erm, no. I'm all set, thanks.")
-    npc<Cheerful>("Okay, chum, would you like to show you the very latest potion prices?")
+    npc<Happy>("Hello, chum, fancy buyin' some designer jewellry? They've come all the way from Ardougne! Most pukka!")
+    player<Neutral>("Erm, no. I'm all set, thanks.")
+    npc<Happy>("Okay, chum, would you like to show you the very latest potion prices?")
     choice {
         option<Talk>("Who are you?") {
-            npc<Cheerful>("Why, I'm Bob! Your friendly seller of smashin' goods!")
-            player<Talking>("So what do you have to sell?")
-            npc<Talking>("Oh, not much at the moment. Cuz, ya know, business being so well and cushie.")
-            player<Talking>("You don't really look like you're being so successful.")
-            npc<Talking>("You plonka! It's all a show, innit! If I let people knows I'm in good business they'll want a share of the moolah!")
-            player<Talking>("You conveniently have a response for everything.")
-            npc<Talking>("That's the Ardougne way, my son.")
+            npc<Happy>("Why, I'm Bob! Your friendly seller of smashin' goods!")
+            player<Neutral>("So what do you have to sell?")
+            npc<Neutral>("Oh, not much at the moment. Cuz, ya know, business being so well and cushie.")
+            player<Neutral>("You don't really look like you're being so successful.")
+            npc<Neutral>("You plonka! It's all a show, innit! If I let people knows I'm in good business they'll want a share of the moolah!")
+            player<Neutral>("You conveniently have a response for everything.")
+            npc<Neutral>("That's the Ardougne way, my son.")
         }
         option<Talk>("Can you show me the prices for potions?") {
             npc<Sad>("The Grand Exchange is still under construction, hopefully it won't take long, then i'll have those prices for yah")

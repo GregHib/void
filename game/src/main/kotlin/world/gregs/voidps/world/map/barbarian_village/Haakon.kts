@@ -16,28 +16,28 @@ npcOperate("Talk-to", "haakon_the_champion") {
 val validStages = setOf("tell_gudrun", "write_poem", "more_poem", "one_more_poem", "poem_done", "poem", "recital", "gunnars_ground")
 
 suspend fun TargetNPCContext.menu() {
-    npc<Furious>("I am Haakon, champion of this village. Do you seek to challenge me?")
+    npc<Angry>("I am Haakon, champion of this village. Do you seek to challenge me?")
     choice {
-        option<Talking>("I challenge you!") {
+        option<Neutral>("I challenge you!") {
             attack()
         }
         if (validStages.contains(player.quest("gunnars_ground"))) {
-            option<Talking>("You argued with Gunthor.") {
-                npc<Angry>("There is no argument. I honour my father and my ancestors.")
+            option<Neutral>("You argued with Gunthor.") {
+                npc<Frustrated>("There is no argument. I honour my father and my ancestors.")
                 choice {
-                    option<Talking>("Don't you want to settle permanently?") {
-                        npc<Furious>("You test my patience by quuestioning my loyalty to my chieftain. Take up my challenge, outerlander, that I might honourably split your skull open..")
+                    option<Neutral>("Don't you want to settle permanently?") {
+                        npc<Angry>("You test my patience by quuestioning my loyalty to my chieftain. Take up my challenge, outerlander, that I might honourably split your skull open..")
                         choice {
-                            option<Talking>("I'll take your challenge!") {
+                            option<Neutral>("I'll take your challenge!") {
                                 attack()
                             }
-                            option<Talking>("No thanks.")
+                            option<Neutral>("No thanks.")
                         }
                     }
-                    option<Talking>("How about that challenge?") {
+                    option<Neutral>("How about that challenge?") {
                         attack()
                     }
-                    option<Talking>("Goodbye then.")
+                    option<Neutral>("Goodbye then.")
                 }
             }
         }

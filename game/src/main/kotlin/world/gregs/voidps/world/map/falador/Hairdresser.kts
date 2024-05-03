@@ -23,10 +23,10 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 val enums: EnumDefinitions by inject()
 
 npcOperate("Talk-to", "hairdresser") {
-    npc<Happy>("Good afternoon ${if (player.male) "sir" else "madam"}. In need of a haircut${if (player.male) " or shave" else ""} are we?")
+    npc<Pleased>("Good afternoon ${if (player.male) "sir" else "madam"}. In need of a haircut${if (player.male) " or shave" else ""} are we?")
     choice {
         option<Talk>("Yes, please.") {
-            npc<Happy>("Please select the hairstyle you would like from this brochure. I'll even throw in a free recolour.")
+            npc<Pleased>("Please select the hairstyle you would like from this brochure. I'll even throw in a free recolour.")
             startHairdressing()
         }
         option<Talk>("No, thank you.") {
@@ -93,7 +93,7 @@ interfaceOption(component = "confirm", id = "hairdressers_salon") {
     player.body.setColour(BodyColour.Hair, player["makeover_colour_hair", 0])
     player.flagAppearance()
     player.closeMenu()
-    npc<Cheerful>("hairdresser", if (player.male) {
+    npc<Happy>("hairdresser", if (player.male) {
         listOf("An excellent choice, sir.", "Mmm... very distinguished!")
     } else {
         listOf("A marvellous choice. You look splendid!", "It really suits you!")

@@ -22,7 +22,7 @@ import world.gregs.voidps.world.interact.entity.sound.playJingle
 npcOperate("Talk-to", "squire_asrol") {
     when (player.quest("the_knights_sword")) {
         "unstarted" -> {
-            npc<Talking>("Hello. I am the squire to Sir Vyvin.")
+            npc<Neutral>("Hello. I am the squire to Sir Vyvin.")
             choice {
                 lifeAsASquire()
                 squireForMe()
@@ -37,24 +37,24 @@ npcOperate("Talk-to", "squire_asrol") {
 }
 
 suspend fun CharacterContext.started() {
-    npc<Unsure>("So how are you doing getting a sword?")
+    npc<Quiz>("So how are you doing getting a sword?")
     player<Sad>("I'm looking for Imcando dwarves to help me.")
     npc<Sad>("Please try and find them quickly... I am scared Sir Vyvin will find out!")
 }
 
 suspend fun CharacterContext.askAboutPicture() {
-    npc<Unsure>("So how are you doing getting a sword?")
-    player<Cheerful>("I've found an Imcando dwarf but he needs a picture of the sword before he can make it.")
+    npc<Quiz>("So how are you doing getting a sword?")
+    player<Happy>("I've found an Imcando dwarf but he needs a picture of the sword before he can make it.")
     npc<Uncertain>("A picture eh? Hmmm.... The only one I can think of is in a small portrait of Sir Vyvin's father... Sir Vyvin keeps it in a cupboard in his room I think.")
     player["the_knights_sword"] = "cupboard"
-    player<Talking>("Ok, I'll try and get that then.")
+    player<Neutral>("Ok, I'll try and get that then.")
     npc<Uncertain>("Please don't let him catch you! He MUSTN'T know what happened!")
 }
 
 suspend fun CharacterContext.checkPicture() {
-    npc<Unsure>("So how are you doing getting a sword?")
+    npc<Quiz>("So how are you doing getting a sword?")
     if (player.holdsItem("portrait")) {
-        player<Cheerful>("I have the picture. I'll just take it to the dwarf now!")
+        player<Happy>("I have the picture. I'll just take it to the dwarf now!")
         npc<Uncertain>("Please hurry!")
         return
     }
@@ -64,32 +64,32 @@ suspend fun CharacterContext.checkPicture() {
 
 suspend fun CharacterContext.bluriteSword() {
     if (player.equipment.contains("blurite_sword")) {
-        player<Cheerful>("I have retrieved your sword for you.")
+        player<Happy>("I have retrieved your sword for you.")
         npc<Uncertain>("So can you un-equip it and hand it over to me now please?")
         return
     }
     if (player.holdsItem("blurite_sword")) {
-        player<Cheerful>("I have retrieved your sword for you.")
-        npc<Cheerful>("Thank you, thank you, thank you! I was seriously worried I would have to own up to Sir Vyvin!")
+        player<Happy>("I have retrieved your sword for you.")
+        npc<Happy>("Thank you, thank you, thank you! I was seriously worried I would have to own up to Sir Vyvin!")
         statement("You give the sword to the squire.")
         player.inventory.remove("blurite_sword")
         questComplete()
         return
     }
     if (player.ownsItem("blurite_sword")) {
-        player<Talking>("I got a replacement sword made.")
-        npc<Cheerful>("Thank you! Can I have it?")
-        player<Talking>("I've got it stored safely.")
-        npc<Angry>("Well could you go and get it for me then please? Quickly?")
-        player<Talking>("Yeah, okay.")
+        player<Neutral>("I got a replacement sword made.")
+        npc<Happy>("Thank you! Can I have it?")
+        player<Neutral>("I've got it stored safely.")
+        npc<Frustrated>("Well could you go and get it for me then please? Quickly?")
+        player<Neutral>("Yeah, okay.")
         return
     }
-    npc<Unsure>("So how are you doing getting a sword?")
-    player<Cheerful>("I've found a dwarf who will make the sword. I've just got to find the materials for it now!")
+    npc<Quiz>("So how are you doing getting a sword?")
+    player<Happy>("I've found a dwarf who will make the sword. I've just got to find the materials for it now!")
     npc<Uncertain>("Please hurry!")
 }
 
-suspend fun PlayerChoice.lifeAsASquire() = option<Unsure>("And how is life as a squire?") {
+suspend fun PlayerChoice.lifeAsASquire() = option<Quiz>("And how is life as a squire?") {
     npc<Sad>("Well, Sir Vyvin is a good guy to work for, however, I'm in a spot of trouble today. I've gone and lost Sir Vyvin's sword!")
     choice {
         whereYouLostIt()
@@ -98,7 +98,7 @@ suspend fun PlayerChoice.lifeAsASquire() = option<Unsure>("And how is life as a 
     }
 }
 
-suspend fun PlayerChoice.whereYouLostIt() = option<Unsure>("Do you know where you lost it?") {
+suspend fun PlayerChoice.whereYouLostIt() = option<Quiz>("Do you know where you lost it?") {
     npc<Uncertain>("Well now, if I knew THAT it wouldn't be lost, now would it?")
     choice {
         vagueArea()
@@ -108,7 +108,7 @@ suspend fun PlayerChoice.whereYouLostIt() = option<Unsure>("Do you know where yo
     }
 }
 
-suspend fun PlayerChoice.vagueArea() = option<Unsure>("Well, do you know the VAGUE AREA you lost it in?") {
+suspend fun PlayerChoice.vagueArea() = option<Quiz>("Well, do you know the VAGUE AREA you lost it in?") {
     npc<Sad>("No. I was carrying it for him all the way from where he had it stored in Lumbridge. It must have slipped from my pack during the trip, and you know what people are like these days...")
     npc<Sad>("Someone will have just picked it up and kept it for themselves.")
     choice {
@@ -118,7 +118,7 @@ suspend fun PlayerChoice.vagueArea() = option<Unsure>("Well, do you know the VAG
     }
 }
 
-suspend fun PlayerChoice.abundantWithSwords() = option<Talking>("Well the kingdom is fairly abundant with swords...") {
+suspend fun PlayerChoice.abundantWithSwords() = option<Neutral>("Well the kingdom is fairly abundant with swords...") {
     npc<Sad>("Yes. You can get bronze swords anywhere. But THIS isn't any old sword.")
     heirloom()
 }
@@ -133,22 +133,22 @@ suspend fun CharacterContext.heirloom() {
     }
 }
 
-suspend fun PlayerChoice.anotherSword() = option<Unsure>("So would these dwarves make another one?") {
+suspend fun PlayerChoice.anotherSword() = option<Quiz>("So would these dwarves make another one?") {
     npc<Sad>("I'm not a hundred percent sure the Imcando tribe exists anymore. I should think Reldo, the palace librarian in Varrock, will know; he has done a lot of research on the races of Gielinor.")
-    npc<Unsure>("I don't suppose you could try and track down the Imcando dwarves for me? I've got so much work to do...")
+    npc<Quiz>("I don't suppose you could try and track down the Imcando dwarves for me? I've got so much work to do...")
     startQuest()
 }
 
-suspend fun PlayerChoice.hopeYouFind() = option<Talking>("Well, I hope you find it soon.") {
+suspend fun PlayerChoice.hopeYouFind() = option<Neutral>("Well, I hope you find it soon.") {
     npc<Sad>("Yes, me too. I'm not looking forward to telling Vyvin I've lost it. He's going to want it for the parade next week as well.")
 }
 
-suspend fun PlayerChoice.newSword() = option<Talking>("I can make a new sword if you like...") {
+suspend fun PlayerChoice.newSword() = option<Neutral>("I can make a new sword if you like...") {
     npc<Sad>("Thanks for the offer. I'd be surprised if you could though.")
     heirloom()
 }
 
-suspend fun PlayerChoice.heAngry() = option<Unsure>("Is he angry?") {
+suspend fun PlayerChoice.heAngry() = option<Quiz>("Is he angry?") {
     npc<Sad>("He doesn't know yet. I was hoping I could think of something to do before he does find out, But I find myself at a loss.")
     choice {
         vagueArea()
@@ -158,8 +158,8 @@ suspend fun PlayerChoice.heAngry() = option<Unsure>("Is he angry?") {
     }
 }
 
-suspend fun PlayerChoice.squireForMe() = option<Unsure>("Wouldn't you prefer to be a squire for me?") {
-    npc<Talking>("No, sorry, I'm loyal to Sir Vyvin.")
+suspend fun PlayerChoice.squireForMe() = option<Quiz>("Wouldn't you prefer to be a squire for me?") {
+    npc<Neutral>("No, sorry, I'm loyal to Sir Vyvin.")
 }
 
 suspend fun CharacterContext.startQuest() {
@@ -173,8 +173,8 @@ suspend fun CharacterContext.startQuest() {
     choice("Start The Knight's Sword quest?") {
         option("Yes.") {
             player["the_knights_sword"] = "started"
-            player<Talking>("Ok, I'll give it a go.")
-            npc<Cheerful>("Thank you very much! As I say, the best place to start should be with Reldo...")
+            player<Neutral>("Ok, I'll give it a go.")
+            npc<Happy>("Thank you very much! As I say, the best place to start should be with Reldo...")
         }
         option("No.") {
             npc<Sad>("Oh man... I'm in such trouble...")
@@ -183,8 +183,8 @@ suspend fun CharacterContext.startQuest() {
 }
 
 suspend fun CharacterContext.completed() {
-    npc<Cheerful>("Hello friend! Many thanks for all of your help! Vyvin never even realised it was a different sword, and I still have my job!")
-    player<Cheerful>("I'm glad the new sword worked out alright.")
+    npc<Happy>("Hello friend! Many thanks for all of your help! Vyvin never even realised it was a different sword, and I still have my job!")
+    player<Happy>("I'm glad the new sword worked out alright.")
 }
 
 fun CharacterContext.questComplete() {

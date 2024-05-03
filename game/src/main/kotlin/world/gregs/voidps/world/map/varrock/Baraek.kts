@@ -15,11 +15,11 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 npcOperate("Talk-to", "baraek") {
     if (player.holdsItem("bear_fur")) {
         choice {
-            option<Unsure>("Can you sell me some furs?") {
+            option<Quiz>("Can you sell me some furs?") {
                 sellFur()
             }
-            option<Talking>("Hello. I am in search of a quest.") {
-                npc<Talking>("Sorry kiddo, I'm a fur trader not a damsel in distress.")
+            option<Neutral>("Hello. I am in search of a quest.") {
+                npc<Neutral>("Sorry kiddo, I'm a fur trader not a damsel in distress.")
             }
             option<Sad>("Would you like to buy my fur?") {
                 buyFur()
@@ -27,11 +27,11 @@ npcOperate("Talk-to", "baraek") {
         }
     } else {
         choice {
-            option<Unsure>("Can you sell me some furs?") {
+            option<Quiz>("Can you sell me some furs?") {
                 sellFur()
             }
-            option<Talking>("Hello. I am in search of a quest.") {
-                npc<Talking>("Sorry kiddo, I'm a fur trader not a damsel in distress.")
+            option<Neutral>("Hello. I am in search of a quest.") {
+                npc<Neutral>("Sorry kiddo, I'm a fur trader not a damsel in distress.")
             }
         }
     }
@@ -39,17 +39,17 @@ npcOperate("Talk-to", "baraek") {
 
 
 suspend fun CharacterContext.sellFur() {
-    npc<Talking>("Yeah, sure. They're 20 gold coins each.")
+    npc<Neutral>("Yeah, sure. They're 20 gold coins each.")
     choice {
-        option<Talking>("Yeah, OK, here you go.") {
+        option<Neutral>("Yeah, OK, here you go.") {
             if (player.inventory.remove("coins", 20)) {
                 player.inventory.add("bear_fur")
                 item("bear_fur", 645, "Baraek sells you a fur.")
             } else {
                 player<Sad>("Oh dear, I don't have enough money!")
-                npc<Talking>("Well, my best price is 18 coins.")
+                npc<Neutral>("Well, my best price is 18 coins.")
                 choice {
-                    option<Talking>("OK, here you go.") {
+                    option<Neutral>("OK, here you go.") {
                         if (player.inventory.remove("coins", 18)) {
                             player.inventory.add("bear_fur")
                             item("bear_fur", 645, "Baraek sells you a fur.")
@@ -59,30 +59,30 @@ suspend fun CharacterContext.sellFur() {
                             player<Sad>("Oh well, never mind.")
                         }
                     }
-                    option<Talking>("No thanks, I'll leave it.") {
-                        npc<Talking>("It's your loss mate.")
+                    option<Neutral>("No thanks, I'll leave it.") {
+                        npc<Neutral>("It's your loss mate.")
                     }
                 }
             }
         }
-        option<Angry>("20 gold coins? That's an outrage!") {
+        option<Frustrated>("20 gold coins? That's an outrage!") {
             npc<Sad>("Well, I can't go any cheaper than that mate. I have a family to feed.")
         }
     }
 }
 
 suspend fun CharacterContext.buyFur() {
-    npc<Talking>("Let's have a look at it.")
+    npc<Neutral>("Let's have a look at it.")
     item("bear_fur", 645, "You hand Baraek your fur to look at.")
     //wait 4sec and cant move
-    npc<Talking>("It's not in the best condition. I guess I could give you 12 coins for it.")
+    npc<Neutral>("It's not in the best condition. I guess I could give you 12 coins for it.")
     choice {
-        option<Talking>("Yeah, that'll do.") {
+        option<Neutral>("Yeah, that'll do.") {
             player.inventory.remove("bear_fur", 1)
             player.inventory.add("coins", 12)
-            player<Cheerful>("Thanks!")
+            player<Happy>("Thanks!")
         }
-        option<Angry>("I think I'll keep hold of it actually!") {
+        option<Frustrated>("I think I'll keep hold of it actually!") {
             npc<Sad>("Oh ok. Didn't want it anyway!")
         }
     }

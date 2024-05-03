@@ -13,7 +13,7 @@ import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Chuckle
 import world.gregs.voidps.world.interact.dialogue.Talk
-import world.gregs.voidps.world.interact.dialogue.Unsure
+import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.dialogue.type.statement
@@ -53,7 +53,7 @@ objectOperate("Milk", "dairy_cow") {
         }
     } else {
         npc<Chuckle>("gillie_groats", "Tee hee! You've never milked a cow before, have you?")
-        player<Unsure>("Erm...no. How could you tell?")
+        player<Quiz>("Erm...no. How could you tell?")
         npc<Chuckle>("gillie_groats", "Because you're spilling milk all over the floor. What a waste! You need something to hold the milk.")
         player<Talk>("Ah, yes, I really should have guessed that one, shouldn't I?")
         npc<Chuckle>("gillie_groats", "You're from the city, aren't you? Try it again with an empty bucket.")

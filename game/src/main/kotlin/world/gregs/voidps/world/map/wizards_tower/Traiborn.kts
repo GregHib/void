@@ -43,7 +43,7 @@ npcOperate("Talk-to", "traiborn") {
             thingummywut()
             teachMe()
             option<Uncertain>("I'd better go.") {
-                npc<Talking>("Cheerrio then.")
+                npc<Neutral>("Cheerrio then.")
             }
         }
     }
@@ -60,12 +60,12 @@ suspend fun PlayerChoice.thingummywut(): Unit = option<Uncertain>("What's a thin
     npc<Uncertain>("A thingummywut? Where? Where?")
     npc<Uncertain>("Those pesky thingummywuts. They get everywhere. They leave a terrible mess too.")
     choice {
-        option<Talking>("Err you just called me thingummywut.") {
+        option<Neutral>("Err you just called me thingummywut.") {
             npc<Uncertain>("You're a thingummywut? I've never seen one up close before. They said I was mad!")
             npc<Uncertain>("Now you are my proof! There ARE thingummywuts in this tower. Now where can I find a cage big enough to keep you?")
             betterBeOffChoice()
         }
-        option<Furious>("Tell me what they look like and I'll mash 'em.") {
+        option<Angry>("Tell me what they look like and I'll mash 'em.") {
             npc<Uncertain>("Don't be ridiculous. No-one has ever seen one.")
             npc<Uncertain>("They're invisible, or a myth, or a figment of my imagination. Can't remember which right now.")
         }
@@ -79,11 +79,11 @@ suspend fun PlayerChoice.betterBeOff(): Unit = option<Talk>("Err I'd better be o
 suspend fun PlayerChoice.teachMe(): Unit = option<Talk>("Teach me to be a mighty and powerful wizard.") {
     npc<Uncertain>("Wizard eh? You don't want any truck with that sort. They're not to be trusted. That's what I've heard anyways.")
     choice {
-        option<Unsure>("So aren't you a wizard?") {
-            npc<Furious>("How dare you? Of course I'm a wizard. Now don't be so cheeky or I'll turn you into a frog.")
+        option<Quiz>("So aren't you a wizard?") {
+            npc<Angry>("How dare you? Of course I'm a wizard. Now don't be so cheeky or I'll turn you into a frog.")
         }
         option<Talk>("Oh I'd better stop talking to you then.") {
-            npc<Talking>("Cheerio then. It was nice chatting to you.")
+            npc<Neutral>("Cheerio then. It was nice chatting to you.")
         }
     }
 }
@@ -91,8 +91,8 @@ suspend fun PlayerChoice.teachMe(): Unit = option<Talk>("Teach me to be a mighty
 suspend fun PlayerChoice.youLookedAfterIt(): Unit = option<Talk>("He told me you were looking after it for him.") {
     npc<Uncertain>("That wasn't very clever of him. I'd lose my head if it wasn't screwed on. Go and tell him to find someone else to look after his valuables in future.")
     choice {
-        option<Talking>("Okay, I'll go and tell him that.") {
-            npc<Talking>("Oh that's great, if it wouldn't be too much trouble.")
+        option<Neutral>("Okay, I'll go and tell him that.") {
+            npc<Neutral>("Oh that's great, if it wouldn't be too much trouble.")
             choice {
                 betterBeOff()
                 anyKeys()
@@ -114,17 +114,17 @@ suspend fun PlayerChoice.needAKey(): Unit = option<Talk>("I need to get a key gi
 suspend fun CharacterContext.betterBeOffChoice() {
     choice {
         betterBeOff()
-        option<Talking>("They're right, you are mad.") {
+        option<Neutral>("They're right, you are mad.") {
             npc<Upset>("That's a pity. I thought maybe they were winding me up.")
         }
     }
 }
 
 suspend fun PlayerChoice.kingsKnight(): Unit = option<Talk>("He's one of the King's knights.") {
-    npc<Cheerful>("Say, I remember one of the King's knights. He had nice shoes...")
+    npc<Happy>("Say, I remember one of the King's knights. He had nice shoes...")
     npc<Upset>("...and didn't like my homemade spinach rolls. Would you like a spinach roll?")
     choice {
-        option<Talking>("Yes please.") {
+        option<Neutral>("Yes please.") {
             spinachRoll()
         }
         justTellMe()
@@ -137,7 +137,7 @@ suspend fun CharacterContext.spinachRoll() {
         floorItems.add(player.tile, "spinach_roll")
     }
     item("spinach_roll", 400, "Traiborn digs around in the pockets of his robes. After a few moments he triumphantly presents you with a spinach roll.")
-    player<Talking>("Thank you very much.")
+    player<Neutral>("Thank you very much.")
     betterBeOffChoice()
 }
 
@@ -153,7 +153,7 @@ suspend fun PlayerChoice.anyKeys(): Unit = option<Talk>("Well, have you got any 
         }
         option<Talk>("I'll help get the bones for you.") {
             player.bonesRequired = 25
-            npc<Talking>("Ooh that would be very good of you.")
+            npc<Neutral>("Ooh that would be very good of you.")
             player<Talk>("Okay, I'll speak to you when I've got some bones.")
         }
     }
@@ -183,7 +183,7 @@ suspend fun PlayerChoice.justTellMe(): Unit = option<Talk>("Just tell me if you 
 }
 
 suspend fun TargetNPCContext.startSpell() {
-    npc<Talking>("Hurrah! That's all 25 sets of bones.")
+    npc<Neutral>("Hurrah! That's all 25 sets of bones.")
     target.setAnimation("traiborn_bone_spell")
     target.setGraphic("traiborn_bone_spell")
     player.playSound("demon_slayer_bone_spell")
@@ -203,8 +203,8 @@ suspend fun TargetNPCContext.startSpell() {
     player.playSound("demon_slayer_cupboard_disappear")
     target.watch(player)
     item("silverlight_key_wizard_traiborn", 400, "Traiborn hands you a key.")
-    player<Talking>("Thank you very much.")
-    npc<Talking>("Not a problem for a friend of Sir What's-his-face.")
+    player<Neutral>("Thank you very much.")
+    npc<Neutral>("Not a problem for a friend of Sir What's-his-face.")
 }
 
 suspend fun CharacterContext.somewhereToBe() {

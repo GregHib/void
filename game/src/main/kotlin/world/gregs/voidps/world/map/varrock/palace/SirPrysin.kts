@@ -35,16 +35,16 @@ npcOperate("Talk-to", "sir_prysin") {
             }
             player<Upset>("Not yet. And I, um, lost Silverlight.")
             if (player.inventory.add("silverlight")) {
-                npc<Furious>("Yes, I know, someone returned it to me. Take better care of it this time.")
+                npc<Angry>("Yes, I know, someone returned it to me. Take better care of it this time.")
             } else {
-                npc<Furious>("Yes, I know, someone returned it to me. I'll keep it until you have free inventory space.")
+                npc<Angry>("Yes, I know, someone returned it to me. I'll keep it until you have free inventory space.")
             }
         }
         "completed" -> {
-            npc<Talking>("Hello. I've heard you stopped the demon, well done.")
-            player<Talking>("Yes, that's right.")
-            npc<Talking>("A good job well done then.")
-            player<Talking>("Thank you.")
+            npc<Neutral>("Hello. I've heard you stopped the demon, well done.")
+            player<Neutral>("Yes, that's right.")
+            npc<Neutral>("A good job well done then.")
+            player<Neutral>("Thank you.")
         }
         else -> {
             npc<Talk>("Hello, who are you?")
@@ -68,7 +68,7 @@ suspend fun PlayerChoice.arisWantsToTalk(): Unit = option(
             findSilverlight()
         }
         option("Yes, she is still alive.") {
-            player<Cheerful>("Yes she is still alive. She lives right outside the castle!")
+            player<Happy>("Yes she is still alive. She lives right outside the castle!")
             npc<Talk>("Oh, is that the same Aris? I would have thought she would have died by now. She was pretty old when I was a lad.")
             npc<Talk>("Anyway, what can I do for you?")
             findSilverlight()
@@ -101,7 +101,7 @@ suspend fun CharacterContext.problemIs() {
     npc<Talk>("Oh I do have it, but it is so powerful that the king made me put it in a special box which needs three different keys to open it. That way it won't fall into the wrong hands.")
     choice {
         option("So give me the keys!") {
-            player<Furious>("So give me the keys!")
+            player<Angry>("So give me the keys!")
             npc<Upset>("Um, well, it's not so easy.")
             theKeys()
         }
@@ -220,8 +220,8 @@ val objects: GameObjects by inject()
 val cupboardTile = Tile(3204, 3469)
 
 suspend fun NPCOption.giveSilverlight() {
-    player<Talking>("I've got all three keys!")
-    npc<Talking>("Excellent! Now I can give you Silverlight.")
+    player<Neutral>("I've got all three keys!")
+    npc<Neutral>("Excellent! Now I can give you Silverlight.")
     player.inventory.remove("silverlight_key_wizard_traiborn", "silverlight_key_captain_rovin", "silverlight_key_sir_prysin")
     val tile = Tile(3204, 3470)
     target.mode = PauseMode
@@ -268,5 +268,5 @@ suspend fun NPCOption.giveSilverlight() {
     target.face(Direction.NONE)
     delay()
     npc<Talk>("That sword belonged to my great-grandfather. Make sure you treat it with respect!")
-    npc<Talking>("Now go kill that demon!")
+    npc<Neutral>("Now go kill that demon!")
 }

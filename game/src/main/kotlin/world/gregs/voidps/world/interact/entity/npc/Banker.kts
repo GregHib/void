@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.community.trade.lend.Loan.getSecondsRemaining
 import world.gregs.voidps.world.interact.dialogue.Talk
-import world.gregs.voidps.world.interact.dialogue.Unsure
+import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 
@@ -21,7 +21,7 @@ val npcs: NPCs by inject()
 npcApproach("Talk-to", "banker*") {
     player.approachRange(2)
     pause()
-    npc<Unsure>("Good day. How may I help you?")
+    npc<Quiz>("Good day. How may I help you?")
     val loanReturned = getSecondsRemaining(player, "lend_timeout") < 0
     val collection = false
 

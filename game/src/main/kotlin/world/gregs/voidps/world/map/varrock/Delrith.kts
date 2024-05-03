@@ -157,11 +157,11 @@ suspend fun CharacterContext.cutscene() {
     player.moveCamera(Tile(3224, 3376).add(offset), 475, 232, 232)
     player.turnCamera(Tile(3227, 3369).add(offset), 300, 232, 232)
     player.moveCamera(Tile(3231, 3376).add(offset), 475, 1, 1)
-    npc<Cheerful>("denath", "Arise, O mighty Delrith! Bring destruction to this soft, weak city!")
+    npc<Happy>("denath", "Arise, O mighty Delrith! Bring destruction to this soft, weak city!")
     for (wizard in wizards) {
         wizard.forceChat = "Arise, Delrith!"
     }
-    npc<Talking>("dark_wizard_water", "Arise, Delrith!", title = "Dark wizards")
+    npc<Neutral>("dark_wizard_water", "Arise, Delrith!", title = "Dark wizards")
 
     statement("The wizards cast an evil spell", clickToContinue = false)
     val regular = objects[Tile(3227, 3369).add(offset), "demon_slayer_stone_table"]!!
@@ -217,7 +217,7 @@ suspend fun CharacterContext.cutscene() {
     denath.walkTo(Tile(3236, 3368).add(offset))
     player.clearCamera()
     player.moveCamera(Tile(3226, 3383).add(offset), 1000, 1, 1)
-    npc<Suspicious>("denath", "I've got to get out of here...")
+    npc<Shifty>("denath", "I've got to get out of here...")
     player.queue.clear("demon_slayer_delrith_cutscene_end")
     showTabs()
     player.clearCamera()
@@ -242,7 +242,7 @@ npcOperate("*", "delrith") {
         return@npcOperate
     }
     player.weakQueue("banish_delrith") {
-        player<Furious>("Now what was that incantation again?")
+        player<Angry>("Now what was that incantation again?")
         var correct = true
         repeat(5) { index ->
             val choice = choice(listOf("Carlem", "Aber", "Camerinthum", "Purchai", "Gabindo"))

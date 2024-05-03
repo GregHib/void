@@ -10,14 +10,14 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Uncertain
-import world.gregs.voidps.world.interact.dialogue.Unsure
+import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 npcOperate("Talk-to", "thakkrad_sigmundson") {
     npc<Talk>("Thank you for leading the Burgher's militia against the Troll King. Now that the trolls are leaderless I have repaired the bridge to the central isle for you as best I can.")
-    player<Unsure>("Thanks Thakkrad. Does that mean I have access to the runite ores on that island?")
+    player<Quiz>("Thanks Thakkrad. Does that mean I have access to the runite ores on that island?")
     npc<Talk>("Yes, you should be able to mine runite there if you wish.")
 }
 
@@ -49,7 +49,7 @@ suspend fun CharacterContext.cureHide() {
         option("Cure no hide.") {
             npc<Talk>("Bye.")
         }
-        option<Unsure>("Can you cure any type of leather?") {
+        option<Quiz>("Can you cure any type of leather?") {
             npc<Uncertain>("Other types of leather? Why would you need any other type of leather?")
             player<Talk>("I'll take that as a no then.")
         }

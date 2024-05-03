@@ -41,7 +41,7 @@ import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.cu
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.currentStarTile
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.startEvent
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.totalCollected
-import world.gregs.voidps.world.interact.dialogue.Cheerful
+import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Sad
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
@@ -206,7 +206,7 @@ objectApproach("Prospect", "crashed_star_tier_#") {
 }
 
 npcOperate("Talk-to", "star_sprite") {
-    npc<Cheerful>("Thank you for helping me out of here")
+    npc<Happy>("Thank you for helping me out of here")
     val starDustCount = player.inventory.count("stardust")
     if (player.inventory.isFull()) {
         player.message("Inventory full. To make more room, sell, drop or bank something.", ChatType.Game)
@@ -225,10 +225,10 @@ npcOperate("Talk-to", "star_sprite") {
             }
         }
         if(!ShootingStarHandler.rewardPlayerBonusOre(player)) {
-            npc<Cheerful>("I have rewarded you by making it so you can mine extra ore for the next 15 minutes, ${messageBuilder}.")
+            npc<Happy>("I have rewarded you by making it so you can mine extra ore for the next 15 minutes, ${messageBuilder}.")
             givePlayerBonusOreReward(player)
         } else {
-            npc<Cheerful>("You already have the ability to mine an extra ore, ${messageBuilder.replace(0, 4, "However")}.")
+            npc<Happy>("You already have the ability to mine an extra ore, ${messageBuilder.replace(0, 4, "However")}.")
         }
     }
 }

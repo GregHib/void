@@ -10,28 +10,28 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.minimumCanoeLevel
 
 npcOperate("Talk-To", "sigurd") {
-    player<Talking>("Hello there.")
+    player<Neutral>("Hello there.")
     npc<Drunk>("Ha Ha! Hello!")
     choice {
-        option<Talking>("Who are you?") {
+        option<Neutral>("Who are you?") {
             npc<Drunk>("I'm Sigurd the Great and Brainy.")
-            player<Unsure>("Why do they call you the Great and Brainy?")
+            player<Quiz>("Why do they call you the Great and Brainy?")
             npc<Drunk>("Because I invented the Log Canoe!")
-            player<Unsure>("Log Canoe?")
+            player<Quiz>("Log Canoe?")
             npc<Drunk>("Yeash! Me and my cousins were having a great party by the river when we decided to have a game of 'Smack The Tree'")
             player<Uncertain>("Smack the Tree?")
             npc<Drunk>("It's a game were you take it in turnsh shmacking a tree. First one to uproot the tree winsh!")
             npc<Drunk>("Anyway, I won the game with a flying tackle. The tree came loose and down the river bank I went, still holding the tree.")
             npc<Drunk>("I woke up a few hours later and found myself several miles down river. And thatsh how I invented the log canoe!")
             player<Chuckle>("So you invented the 'Log Canoe' by falling into a river hugging a tree?")
-            npc<Angry>("Well I refined the design from the original you know!")
+            npc<Frustrated>("Well I refined the design from the original you know!")
             npc<Drunk>("I cut all the branches off to make it more comfortable. I could tell you how to if you like?")
             choice {
                 option("Yes") {
                     canoeing()
                 }
                 option("No") {
-                    player<Talking>("No thanks, not right now.")
+                    player<Neutral>("No thanks, not right now.")
                 }
             }
         }
@@ -57,12 +57,12 @@ suspend fun CharacterContext.canoeing() {
         }
         in 42..56 -> {
             npc<Drunk>("Well, you're pretty handy with an axe!")
-            npc<Angry>("You could make Stable Dugout canoes, like that snooty fella Tarquin.")
+            npc<Frustrated>("You could make Stable Dugout canoes, like that snooty fella Tarquin.")
             npc<Drunk>("He reckons his canoes are better than mine. He's never said it to my face though.")
         }
         else -> {
             npc<Drunk>("You look like you know your way around a tree, you can make a Waka canoe.")
-            player<Unsure>("What's a Waka?")
+            player<Quiz>("What's a Waka?")
             npc<Drunk>("I've only ever seen Hari using them. People say he's found a way to canoe the river underground and into the Wilderness")
             npc<Drunk>("Hari hangs around up near Edgeville")
             npc<Drunk>("He's a nice bloke.")

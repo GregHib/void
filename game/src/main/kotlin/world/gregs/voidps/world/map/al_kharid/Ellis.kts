@@ -20,10 +20,10 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
-import world.gregs.voidps.world.interact.dialogue.Cheerful
+import world.gregs.voidps.world.interact.dialogue.Happy
+import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.Sad
 import world.gregs.voidps.world.interact.dialogue.Talk
-import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -56,13 +56,13 @@ npcOperate("Trade", "ellis", "tanner") {
 
 suspend fun NPCOption.leather() {
     choice("What would you like to say?") {
-        option<Unsure>("Can I buy some leather then?") {
+        option<Quiz>("Can I buy some leather then?") {
             npc<Talk>("I make leather from animal hides. Bring me some cowhides and one gold coin per hide, and I'll tan them into soft leather for you.")
         }
         option<Talk>("Leather is rather weak stuff.") {
             npc<Talk>("Normal leather may be quite weak, but it's very heap - I make it from cowhides for only 1 gp per hide - and it's so easy to craft that anyone can work with it.")
             npc<Talk>("Alternatively you could try hard leather. It's not so easy to craft, but I only charge 3 gp per cowhide to prepare it, and it makes much sturdier armour.")
-            npc<Cheerful>("I can also tan snake hides and dragonhides, suitable for crafting into the highest quality armour for rangers.")
+            npc<Happy>("I can also tan snake hides and dragonhides, suitable for crafting into the highest quality armour for rangers.")
             player<Talk>("Thanks, I'll bear it in mind.")
         }
     }

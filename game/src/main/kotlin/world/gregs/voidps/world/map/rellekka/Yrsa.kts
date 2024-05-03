@@ -24,12 +24,12 @@ import world.gregs.voidps.world.map.falador.openDressingRoom
 val enums: EnumDefinitions by inject()
 
 npcOperate("Talk-to", "yrsa") {
-    npc<Happy>("Hi. You wanted to buy some clothes? Or did you want to makeover your shoes?")
+    npc<Pleased>("Hi. You wanted to buy some clothes? Or did you want to makeover your shoes?")
     choice {
-        option<Happy>("I'd like to buy some clothes.") {
+        option<Pleased>("I'd like to buy some clothes.") {
             player.openShop("yrsas_shoe_store")
         }
-        option<Happy>("I'd like to change my shoes.") {
+        option<Pleased>("I'd like to change my shoes.") {
             startShoeShopping()
         }
         option<Talk>("Neither, thanks.") {
@@ -49,7 +49,7 @@ suspend fun CharacterContext.startShoeShopping() {
         return
     }
     if (player.equipped(EquipSlot.Feet).isNotEmpty()) {
-        npc<Unsure>("You can't try on shoes with those on your feet.")
+        npc<Quiz>("You can't try on shoes with those on your feet.")
         return
     }
     openDressingRoom("yrsas_shoe_store")
@@ -82,5 +82,5 @@ interfaceOption(component = "confirm", id = "yrsas_shoe_store") {
     player.body.setColour(BodyColour.Feet, player["makeover_colour_shoes", 0])
     player.flagAppearance()
     player.closeMenu()
-    npc<Cheerful>("yrsa", "Hey, They look great!")
+    npc<Happy>("yrsa", "Hey, They look great!")
 }

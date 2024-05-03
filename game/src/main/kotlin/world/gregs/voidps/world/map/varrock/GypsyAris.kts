@@ -62,13 +62,13 @@ npcOperate("Talk-to", "gypsy_aris") {
         }
         "sir_prysin", "key_hunt" -> howGoesQuest()
         "completed" -> {
-            npc<Talking>("Greetings young one.")
-            npc<Cheerful>("You're a hero now. That was a good bit of demon-slaying.")
+            npc<Neutral>("Greetings young one.")
+            npc<Happy>("You're a hero now. That was a good bit of demon-slaying.")
             choice {
                 option<Uncertain>("How do you know I killed it?") {
                     npc<Talk>("You forget. I'm good at knowing things.")
                 }
-                option<Talking>("Thanks.")
+                option<Neutral>("Thanks.")
                 stopCallingMeThat()
             }
         }
@@ -95,7 +95,7 @@ suspend fun CharacterContext.howToDo() {
     }
 }
 
-suspend fun PlayerChoice.howWallyWon(): Unit = option<Unsure>("So, how did Wally kill Delrith?") {
+suspend fun PlayerChoice.howWallyWon(): Unit = option<Quiz>("So, how did Wally kill Delrith?") {
     player.playTrack("wally_the_hero")
     cutscene()
 }
@@ -137,13 +137,13 @@ suspend fun PlayerChoice.cityDestroyer(end: suspend CharacterContext.() -> Unit)
     end.invoke(this)
 }
 
-suspend fun PlayerChoice.whereIsHe(): Unit = option<Cheerful>("Okay, where is he? I'll kill him for you.") {
+suspend fun PlayerChoice.whereIsHe(): Unit = option<Happy>("Okay, where is he? I'll kill him for you.") {
     npc<Chuckle>("Ah, the overconfidence of the young!")
     npc<Talk>("Delrith can't be harmed by ordinary weapons. You must face him using the same weapon that Wally used.")
     howToDo()
 }
 
-suspend fun PlayerChoice.notVeryHeroicName(): Unit = option<Cheerful>("Wally doesn't sound like a very heroic name.") {
+suspend fun PlayerChoice.notVeryHeroicName(): Unit = option<Happy>("Wally doesn't sound like a very heroic name.") {
     npc<Talk>("Yes, I know. Maybe that is why history doesn't remember him. However, he was a great hero.")
     npc<Talk>("Who knows how much pain and suffering Delrith would have brought forth without Wally to stop him!")
     npc<Talk>("It looks like you are needed to perform similar heroics.")
@@ -153,8 +153,8 @@ suspend fun PlayerChoice.notVeryHeroicName(): Unit = option<Cheerful>("Wally doe
 suspend fun CharacterContext.incantation() {
     player<Talk>("What is the magical incantation?")
     npc<Talk>("Oh yes, let me think a second.")
-    npc<Talking>("Aright, I think I've got it now, it goes... ${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}.,. ${getWord(player, 4)}.,. ${getWord(player, 5)}. Have you got that?")
-    player<Talking>("I think so, yes.")
+    npc<Neutral>("Aright, I think I've got it now, it goes... ${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}.,. ${getWord(player, 4)}.,. ${getWord(player, 5)}. Have you got that?")
+    player<Neutral>("I think so, yes.")
 }
 
 suspend fun PlayerChoice.notBeliever(): Unit = option<Talk>("No, I don't believe in that stuff.") {
@@ -175,7 +175,7 @@ npcTimerTick("demon_slayer_crystal_ball") { npc ->
 
 suspend fun ChoiceBuilder<NPCOption>.hereYouGo(): Unit = option<Talk>("Okay, here you go.") {
     player.inventory.remove("coins", 1)
-    npc<Cheerful>("Come closer and listen carefully to what the future holds, as I peer into the swirling mists o the crystal ball.")
+    npc<Happy>("Come closer and listen carefully to what the future holds, as I peer into the swirling mists o the crystal ball.")
     player.playSound("demon_slayer_crystal_ball_start")
     target.softTimers.start("demon_slayer_crystal_ball")
     npc<Talk>("I can see images forming. I can see you.")
@@ -184,7 +184,7 @@ suspend fun ChoiceBuilder<NPCOption>.hereYouGo(): Unit = option<Talk>("Okay, her
     target.softTimers.stop("demon_slayer_crystal_ball")
     player.playSound("demon_slayer_crystal_ball_end")
     npc<Afraid>("Aaargh!")
-    player<Unsure>("Are you all right?")
+    player<Quiz>("Are you all right?")
     npc<Afraid>("It's Delrith! Delrith is coming!")
     player<Afraid>("Who's Delrith?")
     npc<Upset>("Delrith...")
@@ -196,15 +196,15 @@ suspend fun ChoiceBuilder<NPCOption>.hereYouGo(): Unit = option<Talk>("Okay, her
     whatToDo()
 }
 
-suspend fun ChoiceBuilder<NPCOption>.whoYouCallingYoung(): Unit = option<Angry>("Who are you called 'young one'?") {
+suspend fun ChoiceBuilder<NPCOption>.whoYouCallingYoung(): Unit = option<Frustrated>("Who are you called 'young one'?") {
     npc<Talk>("You have been on this world a relatively short time. At least compared to me.")
     npc<Talk>("So, do you want your fortune told or not?")
     choice {
         hereYouGo()
         notBeliever()
         option("Ooh, how old are you then?") {
-            npc<Talking>("Count the number of legs on the stools in the Blue Moon inn, and multiply that number by seven.")
-            player<Unsure>("Er, yeah, whatever.")
+            npc<Neutral>("Count the number of legs on the stools in the Blue Moon inn, and multiply that number by seven.")
+            player<Quiz>("Er, yeah, whatever.")
         }
     }
 }
@@ -237,7 +237,7 @@ suspend fun CharacterContext.cutscene() {
     player.turnCamera(Tile(3227, 3367).add(offset), height = 100, constantSpeed = 1, variableSpeed = 10)
     player.shakeCamera(type = 3, intensity = 0, movement = 0, speed = 0, cycle = 0)
     player.playSound("rumbling")
-    npc<Furious>("wally", "Die, foul demon!", clickToContinue = false)
+    npc<Angry>("wally", "Die, foul demon!", clickToContinue = false)
     player.tele(Tile(3225, 3363).add(offset), clearInterfaces = false)
 
     delay(2)
@@ -254,9 +254,9 @@ suspend fun CharacterContext.cutscene() {
     player.shakeCamera(type = 1, intensity = 0, movement = 10, speed = 5, cycle = 0)
     player.shakeCamera(type = 3, intensity = 0, movement = 2, speed = 50, cycle = 0)
     player.playSound("rumbling")
-    npc<Unsure>("wally", "Now, what was that incantation again?")
+    npc<Quiz>("wally", "Now, what was that incantation again?")
     randomiseOrder(player)
-    npc<Angry>("wally", "${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}... ${getWord(player, 4)}... ${getWord(player, 5)}!")
+    npc<Frustrated>("wally", "${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}... ${getWord(player, 4)}... ${getWord(player, 5)}!")
     player.open("fade_out")
     delay(4)
     player.close("fade_out")
@@ -271,7 +271,7 @@ suspend fun CharacterContext.cutscene() {
     player.face(Direction.SOUTH_WEST)
     player.setAnimation("silverlight_showoff")
     player.setGraphic("silverlight_sparkle")
-    npc<Happy>("wally", "I am the greatest demon slayer EVER!")
+    npc<Pleased>("wally", "I am the greatest demon slayer EVER!")
 
     npc<Talk>("By reciting the correct magical incantation, and thrusting Silverlight into Delrith while he was newly summoned, Wally was able to imprison Delrith in the stone table at the centre of the circle.")
 
@@ -298,8 +298,8 @@ suspend fun CharacterContext.endCutscene(instance: Region) {
     player.clearTransform()
 }
 
-suspend fun ChoiceBuilder<NPCOption>.withSilver(): Unit = option<Unsure>("With silver?") {
-    npc<Talking>("Oh, sorry, I forgot. With gold, I mean. They haven't used silver coins since before you were born! So, do you want your fortune told?")
+suspend fun ChoiceBuilder<NPCOption>.withSilver(): Unit = option<Quiz>("With silver?") {
+    npc<Neutral>("Oh, sorry, I forgot. With gold, I mean. They haven't used silver coins since before you were born! So, do you want your fortune told?")
     choice {
         hereYouGo()
         notBeliever()
@@ -326,13 +326,13 @@ suspend fun CharacterContext.delrithWillCome() {
 }
 
 suspend fun CharacterContext.whereSilverlight() {
-    player<Angry>("Where can I find Silverlight?")
+    player<Frustrated>("Where can I find Silverlight?")
     npc<Talk>("Silverlight has been passed down by Wally's descendants. I believe it is currently in the care of one of the king's knights called Sir Prysin.")
-    npc<Happy>("He shouldn't be too hard to find. He lives in the royal palace in this city. Tell him Gypsy Aris sent you.")
+    npc<Pleased>("He shouldn't be too hard to find. He lives in the royal palace in this city. Tell him Gypsy Aris sent you.")
 }
 
 suspend fun NPCOption.howGoesQuest() {
-    npc<Cheerful>("Greetings. How goes thy quest?")
+    npc<Happy>("Greetings. How goes thy quest?")
     player<Talk>("I'm still working on it.")
     npc<Talk>("Well if you need any advice I'm always here, young one.")
     choice {
@@ -346,7 +346,7 @@ suspend fun NPCOption.howGoesQuest() {
 }
 
 suspend fun PlayerChoice.okThanks(): Unit = option<Talk>("Ok thanks. I'll do my best to stop the demon.") {
-    npc<Cheerful>("Good luck, and may Guthix be with you!")
+    npc<Happy>("Good luck, and may Guthix be with you!")
 }
 
 suspend fun PlayerChoice.silverlightReminder(): Unit = option("Where can I find Silverlight?") {
@@ -365,15 +365,15 @@ suspend fun PlayerChoice.incantationReminder(): Unit = option("What is the magic
     }
 }
 
-suspend fun PlayerChoice.stopCallingMeThat(): Unit = option<Furious>("Stop calling me that!") {
+suspend fun PlayerChoice.stopCallingMeThat(): Unit = option<Angry>("Stop calling me that!") {
     npc<Talk>("In the scheme of things you are very young.")
     choice {
         option<Talk>("Ok but how old are you?") {
             npc<Talk>("Count the number of legs on the stools in the Blue Moon inn, and multiply that number by seven.")
             player<Talk>("Er, yeah, whatever.")
         }
-        option<Cheerful>("Oh if it's in the scheme of things that's ok.") {
-            npc<Cheerful>("You show wisdom for one so young.")
+        option<Happy>("Oh if it's in the scheme of things that's ok.") {
+            npc<Happy>("You show wisdom for one so young.")
         }
     }
 }

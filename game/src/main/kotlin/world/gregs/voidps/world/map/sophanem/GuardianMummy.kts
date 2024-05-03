@@ -11,10 +11,10 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
-import world.gregs.voidps.world.interact.dialogue.Happy
+import world.gregs.voidps.world.interact.dialogue.Pleased
+import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Uncertain
-import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -33,7 +33,7 @@ npcOperate("Talk-to", "guardian_mummy") {
 }
 
 npcOperate("Start-activity", "guardian_mummy") {
-    player<Happy>("I know what I'm doing - let's get on with it.")
+    player<Pleased>("I know what I'm doing - let's get on with it.")
     iKnowWhatImDoing()
 }
 
@@ -47,7 +47,7 @@ itemOnNPCOperate("pharaohs_sceptre", "guardian_mummy") {
 
 suspend fun CharacterContext.notAnother() {
     npc<Talk>("*sigh* Not another one.")
-    player<Unsure>("Another what?")
+    player<Quiz>("Another what?")
     npc<Talk>("Another 'archaeologist'.")
     npc<Talk>("I'm not going to let you plunder my master's tomb you know.")
     player<Talk>("That's a shame, have you got anything else I could do while I'm here?")
@@ -64,7 +64,7 @@ suspend fun CharacterContext.playPyramidPlunder() {
         option<Talk>("Not right now") {
             npc<Talk>("Well, get out of here then.")
         }
-        option<Happy>("I know what I'm doing let's get on with it.") {
+        option<Pleased>("I know what I'm doing let's get on with it.") {
             iKnowWhatImDoing()
         }
         option("I want to charge or remove charges from my sceptre.") {
@@ -120,8 +120,8 @@ suspend fun CharacterContext.sceptreDischarging() {
     if (count < 0) {
         player<Talk>("I want to charge my sceptre.")
         npc<Uncertain>("What sceptre?")
-        player<Unsure>("Er... I don't know.")
-        npc<Unsure>("Right...")
+        player<Quiz>("Er... I don't know.")
+        npc<Quiz>("Right...")
         return
     }
     if (count == 1) {
