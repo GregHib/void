@@ -88,15 +88,15 @@ class Hunting(
         val targets = ObjectArrayList<FloorItem>()
         for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZonesReversed(npc.tile.level)) {
             for (items in floorItems[zone]) {
-                for (item in items) {
-                    if (definition.id != null && item.id != definition.id) {
+                for (floorItem in items) {
+                    if (definition.id != null && floorItem.id != definition.id) {
                         continue
                     }
-                    if (definition.filter != null && !definition.filter!!(item)) {
+                    if (definition.filter != null && !definition.filter!!(floorItem)) {
                         continue
                     }
-                    if (canSee(npc, item.tile, 1, 1, definition)) {
-                        targets.add(item)
+                    if (canSee(npc, floorItem.tile, 1, 1, definition)) {
+                        targets.add(floorItem)
                     }
                 }
             }

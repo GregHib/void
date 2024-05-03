@@ -238,6 +238,111 @@
   to:
     x: 3067
     y: 10254
+######## 9035 ########
+- id: chaos_altar_portal
+  option: Enter
+  tile:
+    x: 2276
+    y: 4847
+    level: 3
+  to:
+    x: 3060
+    y: 3585
+- id: chaos_altar_portal
+  option: Enter
+  tile:
+    x: 2273
+    y: 4856
+    level: 3
+  to:
+    x: 3060
+    y: 3585
+- id: chaos_altar_ladder_down
+  option: Climb-down
+  tile:
+    x: 2255
+    y: 4829
+    level: 3
+  delta:
+    level: -1
+- id: chaos_altar_ladder_up
+  option: Climb-up
+  tile:
+    x: 2255
+    y: 4829
+    level: 2
+  delta:
+    level: 1
+- id: chaos_altar_ladder_down
+  option: Climb-down
+  tile:
+    x: 2282
+    y: 4853
+    level: 2
+  delta:
+    level: -1
+- id: chaos_altar_ladder_up
+  option: Climb-up
+  tile:
+    x: 2282
+    y: 4853
+    level: 1
+  delta:
+    level: 1
+- id: chaos_altar_ladder_down
+  option: Climb-down
+  tile:
+    x: 2275
+    y: 4834
+    level: 2
+  delta:
+    level: -1
+- id: chaos_altar_ladder_up
+  option: Climb-up
+  tile:
+    x: 2275
+    y: 4834
+    level: 1
+  delta:
+    level: 1
+- id: chaos_altar_ladder_down
+  option: Climb-down
+  tile:
+    x: 2254
+    y: 4849
+    level: 1
+  delta:
+    level: -1
+- id: chaos_altar_ladder_up
+  option: Climb-up
+  tile:
+    x: 2254
+    y: 4849
+  delta:
+    level: 1
+- id: chaos_altar_ladder_down
+  option: Climb-down
+  tile:
+    x: 2259
+    y: 4845
+    level: 1
+  delta:
+    level: -1
+- id: chaos_altar_ladder_up
+  option: Climb-up
+  tile:
+    x: 2259
+    y: 4845
+  delta:
+    level: 1
+- id: chaos_altar_portal
+  option: Enter
+  tile:
+    x: 2282
+    y: 4837
+  to:
+    x: 3060
+    y: 3585
 ######## 9297 ########
 - id: 16049
   option: Climb-up
@@ -2102,7 +2207,16 @@
     level: 1
   delta:
     level: -1
-######## 12088 ######## 
+######## 12088 ########
+- id: chaos_altar_ruins_enter
+  option: Enter
+  tile:
+    x: 3059
+    y: 3590
+  to:
+    x: 2275
+    y: 4847
+    level: 3
 - id: 14745
   option: Climb-up
   tile:
@@ -2309,6 +2423,104 @@
     y: 3924
   delta:
     y: 6400
+######## 12107 ########
+- id: nature_rift
+  option: Exit-through
+  tile:
+    x: 3035
+    y: 4842
+  to:
+    x: 2400
+    y: 4844
+- id: cosmic_rift
+  option: Exit-through
+  tile:
+    x: 3028
+    y: 4837
+  to:
+    x: 2142
+    y: 4836
+- id: blood_rift
+  option: Exit-through
+  tile:
+    x: 3027
+    y: 4834
+  to:
+    x: 2464
+    y: 4892
+    level: 1
+- id: fire_rift
+  option: Exit-through
+  tile:
+    x: 3029
+    y: 4830
+  to:
+    x: 2587
+    y: 4836
+- id: earth_rift
+  option: Exit-through
+  tile:
+    x: 3031
+    y: 4825
+  to:
+    x: 2660
+    y: 4843
+- id: body_rift
+  option: Exit-through
+  tile:
+    x: 3039
+    y: 4821
+  to:
+    x: 2520
+    y: 4848
+- id: mind_rift
+  option: Exit-through
+  tile:
+    x: 3044
+    y: 4822
+  to:
+    x: 2784
+    y: 4843
+- id: air_rift
+  option: Exit-through
+  tile:
+    x: 3047
+    y: 4825
+  to:
+    x: 2846
+    y: 4836
+- id: water_rift
+  option: Exit-through
+  tile:
+    x: 3051
+    y: 4833
+  to:
+    x: 2714
+    y: 4838
+- id: death_rift
+  option: Exit-through
+  tile:
+    x: 3050
+    y: 4837
+  to:
+    x: 2205
+    y: 4838
+- id: law_rift
+  option: Exit-through
+  tile:
+    x: 3049
+    y: 4839
+  to:
+    x: 2464
+    y: 4826
+- id: chaos_rift
+  option: Exit-through
+  tile:
+    x: 3044
+    y: 4842
+  to:
+    x: 2269
+    y: 4840
 ######## 12181 ########
 - id: 32015
   option: Climb-up

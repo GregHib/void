@@ -2,17 +2,17 @@ package world.gregs.voidps.engine.entity.item.drop
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
-import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.event.wildcardEquals
 
 data class ItemDrop(
     val id: String,
     val amount: IntRange,
     override val chance: Int = 1,
     val members: Boolean = false,
-    val predicate: ((Variables) -> Boolean)? = null
+    val predicate: ((Player) -> Boolean)? = null
 ) : Drop {
 
     init {
@@ -36,17 +36,17 @@ data class ItemDrop(
                     logger.warn { "Invalid drop id $id" }
                 }
             }
-            var predicate: ((Variables) -> Boolean)? = null
+            var predicate: ((Player) -> Boolean)? = null
             if (map.containsKey("variable")) {
                 val variable = map["variable"] as String
                 if (map.containsKey("equals")) {
                     val value = map["equals"]
                     when (val default = map["default"]) {
-                        is Int -> predicate = { it.get(variable, default) == value }
-                        is String -> predicate = { it.get(variable, default) == value }
-                        is Double -> predicate = { it.get(variable, default) == value }
-                        is Long -> predicate = { it.get(variable, default) == value }
-                        is Boolean -> predicate = { it.get(variable, default) == value }
+                        is Int -> predicate = { it[variable, default] == value }
+                        is String -> predicate = { it[variable, default] == value }
+                        is Double -> predicate = { it[variable, default] == value }
+                        is Long -> predicate = { it[variable, default] == value }
+                        is Boolean -> predicate = { it[variable, default] == value }
                         else -> when (value) {
                             is Int -> predicate = { it.get<Int>(variable) == value }
                             is String -> predicate = { it.get<String>(variable) == value }
@@ -58,8 +58,12 @@ data class ItemDrop(
                 } else if (map.containsKey("within")) {
                     val range = (map["within"] as String).toIntRange(inclusive = true)
                     val default = map.getOrDefault("default", -1)
-                    predicate = { it.get(variable, default) in range }
+                    predicate = { it[variable, default] in range }
                 }
+            } else if (map.containsKey("owns") || map.containsKey("lacks")) {
+                val owns = map["owns"] as? String
+                val lacks = map["lacks"] as? String
+                predicate = { (owns == null || ownsItem(it, owns)) && (lacks == null || !ownsItem(it, lacks)) }
             }
             return ItemDrop(
                 id = id,
@@ -68,6 +72,18 @@ data class ItemDrop(
                 members = map["members"] as? Boolean ?: false,
                 predicate = predicate
             )
+        }
+
+        private val inventories = listOf("inventory", "worn_equipment", "bank")
+
+        private fun ownsItem(player: Player, item: String): Boolean {
+            for (inventory in inventories) {
+                val items = player.inventories.inventory(inventory).items
+                if (items.any { wildcardEquals(item, it.id) }) {
+                    return true
+                }
+            }
+            return false
         }
     }
 }

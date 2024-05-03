@@ -23,21 +23,21 @@ class FloorItemOptionHandler(
         }
         val (id, x, y, optionIndex) = instruction
         val tile = player.tile.copy(x, y)
-        val item = items[tile].firstOrNull { it.def.id == id }
-        if (item == null) {
+        val floorItem = items[tile].firstOrNull { it.def.id == id }
+        if (floorItem == null) {
             logger.warn { "Invalid floor item $id $tile" }
             return
         }
-        val options = item.def.floorOptions
+        val options = floorItem.def.floorOptions
         val selectedOption = options.getOrNull(optionIndex)
         if (selectedOption == null) {
             logger.warn { "Invalid floor item option $optionIndex ${options.contentToString()}" }
             return
         }
         if (selectedOption == "Examine") {
-            player.message(item.def.getOrNull("examine") ?: return, ChatType.ItemExamine)
+            player.message(floorItem.def.getOrNull("examine") ?: return, ChatType.ItemExamine)
             return
         }
-        player.mode = Interact(player, item, FloorItemOption(player, item, selectedOption), shape = -1)
+        player.mode = Interact(player, floorItem, FloorItemOption(player, floorItem, selectedOption), shape = -1)
     }
 }

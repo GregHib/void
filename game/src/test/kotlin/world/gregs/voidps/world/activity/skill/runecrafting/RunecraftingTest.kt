@@ -131,7 +131,7 @@ internal class RunecraftingTest : WorldTest() {
             Altar("cosmic", Tile(2407, 4376), Tile(2141, 4832), pure = true),
             Altar("law", Tile(2857, 3380), Tile(2463, 4831), pure = true),
             Altar("nature", Tile(2868, 3018), Tile(2399, 4840), pure = true),
-//        Altar("chaos", Tile(3059, 3590), Tile(2270, 4841), pure = true), TODO chaos altar has a maze
+            Altar("chaos", Tile(3059, 3590), Tile(2270, 4841), pure = true),
             Altar("death", Tile(1860, 4638), Tile(2204, 4835), pure = true),
             Altar("blood", Tile(3560, 9780), Tile(2461, 4894, 1), pure = true)
         )

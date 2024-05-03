@@ -17,13 +17,13 @@ class FloorItemTracking(
     override fun run() {
         for ((_, zone) in items.data) {
             for ((_, list) in zone) {
-                for (item in list) {
-                    if (item.reveal()) {
-                        val player = players.get(item.owner!!)
-                        batches.add(item.tile.zone, FloorItemReveal(item.tile.id, item.def.id, item.amount, player?.index ?: -1))
-                        item.owner = null
-                    } else if (item.remove()) {
-                        removal.add(item)
+                for (floorItem in list) {
+                    if (floorItem.reveal()) {
+                        val player = players.get(floorItem.owner!!)
+                        batches.add(floorItem.tile.zone, FloorItemReveal(floorItem.tile.id, floorItem.def.id, floorItem.amount, player?.index ?: -1))
+                        floorItem.owner = null
+                    } else if (floorItem.remove()) {
+                        removal.add(floorItem)
                     }
                 }
             }

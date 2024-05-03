@@ -10,9 +10,10 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.floorItemOperate
 import world.gregs.voidps.engine.entity.item.floor.npcOperateFloorItem
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -30,7 +31,14 @@ floorItemOperate("Take") {
         player.message("Too late - it's gone!")
         return@floorItemOperate
     }
-    player.inventory.add(target.id, target.amount)
+
+    player.inventory.transaction {
+        val freeIndex = inventory.freeIndex()
+        add(target.id, target.amount)
+        if (target.charges > 0) {
+            setCharge(freeIndex, target.charges)
+        }
+    }
     when (player.inventory.transaction.error) {
         TransactionError.None -> {
             if (player.tile != target.tile) {

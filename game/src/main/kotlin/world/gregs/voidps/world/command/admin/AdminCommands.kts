@@ -416,7 +416,12 @@ fun sendChances(player: Player, table: DropTable) {
         val drop = table.drops[index]
         if (drop is ItemDrop) {
             val (item, chance) = table.chance(index) ?: continue
-            player.message("${item.id} - 1/${chance.toInt()}")
+            val amount = when {
+                item.amount.first == item.amount.last && item.amount.first > 1 -> "(${item.amount.first})"
+                item.amount.first != item.amount.last && item.amount.first > 1 -> "(${item.amount.first}-${item.amount.last})"
+                else -> ""
+            }
+            player.message("${item.id} $amount - 1/${chance.toInt()}")
         } else if (drop is DropTable) {
             sendChances(player, drop)
         }
@@ -484,7 +489,7 @@ modCommand("sim") {
                         alchValue += alch(item)
                         exchangeValue += exchange(item)
                         val (drop, chance) = table.chance(item.id) ?: continue
-                        player.message("${item.id} 1/${count / (item.amount / drop.amount.first)} (1/${chance.toInt()} real)")
+                        player.message("${item.id} 1/${(count / (item.amount / drop.amount.first.toDouble())).toInt()} (1/${chance.toInt()} real)")
                     }
                 }
                 player.message("Alch price: ${alchValue.toDigitGroupString()}gp (${alchValue.toSIPrefix()})")

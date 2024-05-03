@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.item.drop
 
-import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.random
 
 /**
@@ -20,8 +20,8 @@ data class DropTable(
     override val chance: Int
 ) : Drop {
 
-    fun role(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf(), members: Boolean = false, variables: Variables? = null): MutableList<ItemDrop> {
-        collect(list, maximumRoll, members, variables, random(maximumRoll))
+    fun role(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf(), members: Boolean = false, player: Player? = null): MutableList<ItemDrop> {
+        collect(list, maximumRoll, members, player, random(maximumRoll))
         return list
     }
 
@@ -29,7 +29,7 @@ data class DropTable(
         return random.nextInt(0, if (roll <= 0 && maximum != -1) maximum else roll)
     }
 
-    fun collect(list: MutableList<ItemDrop>, value: Int, members: Boolean, variables: Variables?, roll: Int = random(value)): Boolean {
+    fun collect(list: MutableList<ItemDrop>, value: Int, members: Boolean, player: Player?, roll: Int = random(value)): Boolean {
         var count = 0
         for (drop in drops) {
             if (drop.chance == 0) {
@@ -42,7 +42,7 @@ data class DropTable(
                         continue
                     }
                 }
-                if (drop.collect(list, value, members, variables) && type == TableType.First) {
+                if (drop.collect(list, value, members, player) && type == TableType.First) {
                     return true
                 }
             } else if (drop is ItemDrop) {
@@ -50,7 +50,7 @@ data class DropTable(
                     continue
                 }
                 val predicate = drop.predicate
-                if (variables != null && predicate != null && !predicate(variables)) {
+                if (player != null && predicate != null && !predicate(player)) {
                     continue
                 }
                 if (type == TableType.All) {

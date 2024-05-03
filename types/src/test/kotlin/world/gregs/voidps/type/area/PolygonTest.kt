@@ -3,7 +3,7 @@ package world.gregs.voidps.type.area
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.area.Polygon
+import world.gregs.voidps.type.area.Polygon.Companion.pointInPolygon
 
 internal class PolygonTest {
 
@@ -40,5 +40,103 @@ internal class PolygonTest {
         val area = Polygon(intArrayOf(1, 6, 6, 1), intArrayOf(1, 1, 6, 6), 0, 4)
         assertTrue(area.contains(Tile(5, 5, 3)))
         assertTrue(area.contains(Tile(5, 5, 0)))
+    }
+
+    @Test
+    fun `Point inside square`() {
+        val xCoords = intArrayOf(2, 4, 4, 2)
+        val yCoords = intArrayOf(2, 2, 4, 4)
+        assertTrue(pointInPolygon(3, 3, xCoords, yCoords))
+    }
+
+    @Test
+    fun `Point outside square`() {
+        val xCoords = intArrayOf(2, 4, 4, 2)
+        val yCoords = intArrayOf(2, 2, 4, 4)
+        assertFalse(pointInPolygon(5, 3, xCoords, yCoords))
+    }
+
+    @Test
+    fun `Point on edge of square`() {
+        val xCoords = intArrayOf(2, 4, 4, 2)
+        val yCoords = intArrayOf(2, 2, 4, 4)
+        assertTrue(pointInPolygon(3, 2, xCoords, yCoords))
+    }
+
+    @Test
+    fun `Point inside triangle`() {
+        val xCoords = intArrayOf(0, 4, 2)
+        val yCoords = intArrayOf(0, 0, 4)
+        assertTrue(pointInPolygon(2, 2, xCoords, yCoords))
+    }
+
+    @Test
+    fun `Point outside triangle`() {
+        val xCoords = intArrayOf(0, 4, 2)
+        val yCoords = intArrayOf(0, 0, 4)
+        assertFalse(pointInPolygon(5, 2, xCoords, yCoords))
+    }
+
+    @Test
+    fun `Point on vertex of triangle`() {
+        val xCoords = intArrayOf(0, 4, 2)
+        val yCoords = intArrayOf(0, 0, 4)
+        assertTrue(pointInPolygon(0, 0, xCoords, yCoords))
+    }
+
+    @Test
+    fun `Point on edge of triangle`() {
+        val xCoords = intArrayOf(0, 4, 2)
+        val yCoords = intArrayOf(0, 0, 4)
+        assertTrue(pointInPolygon(2, 0, xCoords, yCoords))
+    }
+
+    @Test
+    fun `Point inside convex polygon`() {
+        val xCoords = intArrayOf(0, 4, 4, 0)
+        val yCoords = intArrayOf(0, 0, 4, 4)
+        assertTrue(pointInPolygon(2, 2, xCoords, yCoords))
+    }
+
+    @Test
+    fun `Point outside convex polygon`() {
+        val xCoords = intArrayOf(0, 4, 4, 0)
+        val yCoords = intArrayOf(0, 0, 4, 4)
+        assertFalse(pointInPolygon(5, 2, xCoords, yCoords))
+    }
+
+    @Test
+    fun `Point inside concave polygon`() {
+        val xCoords = intArrayOf(0, 4, 2, 0)
+        val yCoords = intArrayOf(0, 0, 4, 4)
+        assertTrue(pointInPolygon(2, 2, xCoords, yCoords))
+    }
+
+    @Test
+    fun `Point outside concave polygon`() {
+        val xCoords = intArrayOf(0, 4, 2, 0)
+        val yCoords = intArrayOf(0, 0, 4, 4)
+        assertFalse(pointInPolygon(5, 2, xCoords, yCoords))
+    }
+
+    @Test
+    fun `Point inside star shape`() {
+        val xCoords = intArrayOf(2, 4, 2, 0)
+        val yCoords = intArrayOf(0, 2, 4, 2)
+        assertTrue(pointInPolygon(2, 2, xCoords, yCoords))
+    }
+
+    @Test
+    fun `Point outside star shape`() {
+        val xCoords = intArrayOf(2, 4, 2, 0)
+        val yCoords = intArrayOf(0, 2, 4, 2)
+        assertFalse(pointInPolygon(5, 2, xCoords, yCoords))
+    }
+
+    @Test
+    fun `Point outside self intersecting polygon`() {
+        val xCoords = intArrayOf(0, 4, 2, 4, 2)
+        val yCoords = intArrayOf(0, 0, 4, 4, 0)
+        assertFalse(pointInPolygon(5, 2, xCoords, yCoords))
     }
 }

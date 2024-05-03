@@ -292,6 +292,11 @@ astral_altar_teleport:
     x: [ 2150, 2152 ]
     y: [ 3860, 3863 ]
   tags: [ teleport ]
+chaos_altar_teleport:
+  area:
+    x: [ 3057, 3058 ]
+    y: [ 3588, 3589 ]
+  tags: [ teleport ]
 trollheim_teleport:
   area:
     x: [ 2886, 2890 ]
@@ -737,6 +742,10 @@ abyss_multi_area:
     x: [ 3008, 3071 ]
     y: [ 4800, 4863 ]
   tags: [ multi_combat ]
+abyss_center:
+  area:
+    x: [ 3039, 3052, 3057, 3053, 3042, 3033, 3025, 3021, 3022, 3029 ]
+    y: [ 4849, 4845, 4832, 4820, 4815, 4816, 4820, 4829, 4838, 4846 ]
 jiggig_multi_area:
   area:
     x: [ 2456, 2495 ]

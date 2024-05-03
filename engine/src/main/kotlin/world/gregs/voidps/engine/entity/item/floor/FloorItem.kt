@@ -1,9 +1,11 @@
 package world.gregs.voidps.engine.entity.item.floor
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Tile
 
 /**
@@ -16,10 +18,12 @@ class FloorItem(
     var amount: Int = 1,
     var revealTicks: Int = -1,
     var disappearTicks: Int = -1,
+    val charges: Int = 0,
     var owner: String? = null
 ) : Entity, EventDispatcher {
 
-    lateinit var def: ItemDefinition
+    val def: ItemDefinition
+        get() = get<ItemDefinitions>().get(id)
 
     val value: Long
         get() = def.cost * amount.toLong()
@@ -52,6 +56,6 @@ class FloorItem(
     fun remove(): Boolean = revealTicks <= 0 && (disappearTicks == 0 || disappearTicks > 0 && --disappearTicks == 0)
 
     override fun toString(): String {
-        return "FloorItem(id='$id', tile=$tile, amount=$amount, disappear=$disappearTicks, reveal=$revealTicks, owner=$owner)"
+        return "FloorItem(id='${id}', tile=$tile, amount=${amount}, disappear=$disappearTicks, reveal=$revealTicks, charges=$charges, owner=$owner)"
     }
 }

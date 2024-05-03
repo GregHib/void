@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.npc.combat
 
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -11,6 +12,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.npcCombatSwing
 
 val definitions: WeaponStyleDefinitions by inject()
+val animationDefinitions: AnimationDefinitions by inject()
 
 npcCombatSwing { npc ->
     if (npc.tile.distanceTo(target) > npc.def["attack_radius", 8]) {
@@ -24,6 +26,7 @@ npcCombatSwing { npc ->
 }
 
 fun attackAnimation(npc: NPC): String {
+    var animation: String
     if (npc.def.contains("weapon_style")) {
         val id = npc.def["weapon_style", "unarmed"]
         val styleDefinition = definitions.get(id)
@@ -31,12 +34,29 @@ fun attackAnimation(npc: NPC): String {
         if (style == -1) {
             style = 0
         }
-        return "${styleDefinition.stringId}_${styleDefinition.attackTypes[style]}"
+
+        animation = "${styleDefinition.stringId}_${styleDefinition.attackTypes[style]}"
+        if (animationDefinitions.contains(animation)) {
+            return animation
+        }
+    }
+    animation = "${npc.id}_attack"
+    if (animationDefinitions.contains(animation)) {
+        return animation
+    }
+    if (npc.def.contains("attack_anim")) {
+        animation = npc.def["attack_anim", ""]
+        if (animationDefinitions.contains(animation)) {
+            return animation
+        }
     }
     if (npc.race.isNotEmpty()) {
-        return "${npc.race}_attack"
+        animation = "${npc.race}_attack"
+        if (animationDefinitions.contains(animation)) {
+            return animation
+        }
     }
-    return npc.def["attack_anim", ""]
+    return ""
 }
 
 fun attackSound(npc: NPC): String {

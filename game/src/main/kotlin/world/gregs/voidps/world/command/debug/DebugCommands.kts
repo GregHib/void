@@ -82,6 +82,10 @@ modCommand("timers") {
 modCommand("variables") {
     player.message("=== Variables ===", ChatType.Console)
     for ((variable, value) in (player.variables as PlayerVariables).temp) {
+        if (variable == "messages") {
+            player.message("$variable: ${(value as List<String>).first()}", ChatType.Console)
+            continue
+        }
         player.message("$variable: $value", ChatType.Console)
     }
     player.message("=== Persistent Variables ===", ChatType.Console)

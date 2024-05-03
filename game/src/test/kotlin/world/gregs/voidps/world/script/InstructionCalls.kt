@@ -37,7 +37,14 @@ fun Player.itemOption(
     slot: Int = inventories.inventory(inventory).indexOf(item)
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    emit(InterfaceOption(this, id = id, component = component, optionIndex = optionIndex, option = option, item = inventories.inventory(inventory).getOrNull(slot) ?: Item(item), itemSlot = slot, inventory = inventory))
+    emit(InterfaceOption(this,
+        id = id,
+        component = component,
+        optionIndex = optionIndex,
+        option = option,
+        item = inventories.inventory(inventory).getOrNull(slot) ?: Item(item),
+        itemSlot = slot,
+        inventory = inventory))
 }
 
 fun Player.interfaceOption(
@@ -174,7 +181,7 @@ fun Player.npcOption(npc: NPC, option: String) = runTest {
     instructions.send(InteractNPC(npc.index, npc.def.options.indexOf(option) + 1))
 }
 
-fun Player.objectOption(gameObject: GameObject, option: String, optionIndex: Int? = null) = runTest {
+fun Player.objectOption(gameObject: GameObject, option: String = "", optionIndex: Int? = null) = runTest {
     val def = get<ObjectDefinitions>().get(gameObject.intId)
     instructions.send(InteractObject(gameObject.intId, gameObject.tile.x, gameObject.tile.y, (optionIndex ?: def.optionsIndex(option)) + 1))
 }
@@ -184,3 +191,5 @@ fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {
 }
 
 fun Inventory.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }
+
+fun Player.containsMessage(message: String) = get<List<String>>("messages", emptyList()).any { it.contains(message) }

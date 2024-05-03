@@ -24145,36 +24145,42 @@ small_pouch:
   examine: "A small pouch used for storing essence."
 medium_pouch:
   id: 5510
+  tradeable: false
   charges: 45
   degrade: medium_pouch_damaged
   weight: 1.0
   examine: "A medium-sized pouch used for storing essence."
 medium_pouch_damaged:
   id: 5511
+  tradeable: false
   charges: 20
   degrade: destroy
   weight: 1.0
   examine: "A damaged medium-sized pouch used for storing essence."
 large_pouch:
   id: 5512
+  tradeable: false
   charges: 29
   degrade: large_pouch_damaged
   weight: 1.0
   examine: "A large pouch used for storing essence."
 large_pouch_damaged:
   id: 5513
+  tradeable: false
   charges: 20
   degrade: destroy
   weight: 1.0
   examine: "A large damaged pouch used for storing essence."
 giant_pouch:
   id: 5514
+  tradeable: false
   charges: 10
   degrade: giant_pouch_damaged
   weight: 1.0
   examine: "A giant-sized pouch used for storing essence."
 giant_pouch_damaged:
   id: 5515
+  tradeable: false
   charges: 20
   degrade: destroy
   weight: 1.0

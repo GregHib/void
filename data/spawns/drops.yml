@@ -465,9 +465,7 @@ cow_drop_table:
       drops:
         - id: clue_scroll_easy
           chance: 1
-          variable: easy_clue
-          equals: false
-          default: false
+          lacks: clue_scroll_easy*
 chicken_drop_table:
   type: all
   drops:
@@ -487,9 +485,7 @@ chicken_drop_table:
       drops:
         - id: clue_scroll_easy
           chance: 1
-          variable: easy_clue
-          equals: false
-          default: false
+          lacks: clue_scroll_easy*
 rat_drop_table:
   type: all
   drops:
@@ -648,15 +644,11 @@ king_black_dragon_drop_table:
           drops:
           - id: clue_scroll_elite
             chance: 4
-            variable: elite_clue
-            equals: false
-            default: false
+            lacks: clue_scroll_elite*
           - type: all
             drops:
             - id: clue_scroll_hard
-              variable: hard_clue
-              equals: false
-              default: false
+              lacks: clue_scroll_hard*
 haakon_the_champion_drop_table:
   type: all
   drops:
@@ -680,9 +672,7 @@ haakon_the_champion_drop_table:
           chance: 8
         - id: clue_scroll_easy
           chance: 2
-          variable: easy_clue
-          equals: false
-          default: false
+          lacks: clue_scroll_easy*
         - id: uncut_sapphire
           chance: 2
         - id: uncut_emerald
@@ -786,9 +776,7 @@ dark_wizard_water_drop_table:
     - roll: 50
       drops:
         - id: clue_scroll_easy
-          variable: easy_clue
-          equals: false
-          default: false
+          lacks: clue_scroll_easy*
 dark_wizard_earth_drop_table:
   type: all
   drops:
@@ -881,9 +869,7 @@ dark_wizard_earth_drop_table:
     - roll: 35
       drops:
         - id: clue_scroll_easy
-          variable: easy_clue
-          equals: false
-          default: false
+          lacks: clue_scroll_easy*
 human_drop_table:
   type: all
   drops:
@@ -1008,7 +994,7 @@ giant_mole_drop_table:
           chance: 1
         - id: rune_2h_sword
           chance: 1
-        - id: rune_battle_axe
+        - id: rune_battleaxe
           chance: 1
     - roll: 2048
       drops:
@@ -1057,3 +1043,195 @@ giant_mole_drop_table:
       drops:
         - id: dragon_spear
           chance: 1
+abyssal_walker_drop_table:
+  type: all
+  drops:
+    - type: all
+      drops:
+        - id: ashes
+    - roll: 256
+      drops:
+        - id: air_talisman
+          chance: 5
+        - id: water_talisman
+          chance: 5
+        - id: earth_talisman
+          chance: 5
+        - id: fire_talisman
+          chance: 5
+        - id: mind_talisman
+          chance: 5
+        - id: body_talisman
+          chance: 5
+        - id: cosmic_talisman
+          chance: 2
+        - id: chaos_talisman
+          chance: 2
+        - id: nature_talisman
+          chance: 2
+        - id: elemental_talisman
+        - id: small_pouch
+          chance: 6
+          lacks: small_pouch*
+        - id: medium_pouch
+          chance: 6
+          charges: 45
+          owns: small_pouch*
+          lacks: medium_pouch*
+        - id: large_pouch
+          chance: 6
+          charges: 29
+          owns: medium_pouch*
+          lacks: large_pouch*
+        - id: giant_pouch
+          chance: 6
+          charges: 10
+          owns: large_pouch*
+          lacks: giant_pouch*
+        - id: pure_essence_noted
+          chance: 36
+        - id: pure_essence
+          chance: 34
+        - id: pure_essence_noted
+          chance: 4
+          amount: 5
+        - id: pure_essence_noted
+          chance: 4
+          amount: 10
+        - id: pure_essence_noted
+          chance: 4
+          amount: 15
+        - id: binding_necklace
+          chance: 3
+    - roll: 256
+      drops:
+        - id: clue_scroll_medium
+          lacks: clue_scroll_medium*
+abyssal_guardian_drop_table:
+  type: all
+  drops:
+    - type: all
+      drops:
+        - id: ashes
+    - roll: 256
+      drops:
+        - id: air_talisman
+          chance: 5
+        - id: water_talisman
+          chance: 5
+        - id: earth_talisman
+          chance: 5
+        - id: fire_talisman
+          chance: 5
+        - id: mind_talisman
+          chance: 5
+        - id: body_talisman
+          chance: 5
+        - id: cosmic_talisman
+          chance: 2
+        - id: chaos_talisman
+          chance: 2
+        - id: nature_talisman
+          chance: 2
+        - id: elemental_talisman
+        - id: small_pouch
+          chance: 6
+          lacks: small_pouch*
+        - id: medium_pouch
+          chance: 6
+          charges: 45
+          owns: small_pouch*
+          lacks: medium_pouch*
+        - id: large_pouch
+          chance: 6
+          charges: 29
+          owns: medium_pouch*
+          lacks: large_pouch*
+        - id: giant_pouch
+          chance: 6
+          charges: 10
+          owns: large_pouch*
+          lacks: giant_pouch*
+        - id: pure_essence_noted
+          chance: 36
+        - id: pure_essence
+          chance: 34
+        - id: pure_essence_noted
+          chance: 4
+          amount: 5
+        - id: pure_essence_noted
+          chance: 4
+          amount: 10
+        - id: pure_essence_noted
+          chance: 4
+          amount: 15
+        - id: binding_necklace
+          chance: 3
+    - roll: 256
+      drops:
+        - id: clue_scroll_medium
+          lacks: clue_scroll_medium*
+abyssal_leech_drop_table:
+  type: all
+  drops:
+    - type: all
+      drops:
+        - id: ashes
+    - roll: 256
+      drops:
+        - id: air_talisman
+          chance: 5
+        - id: water_talisman
+          chance: 5
+        - id: earth_talisman
+          chance: 5
+        - id: fire_talisman
+          chance: 5
+        - id: mind_talisman
+          chance: 5
+        - id: body_talisman
+          chance: 5
+        - id: cosmic_talisman
+          chance: 2
+        - id: chaos_talisman
+          chance: 2
+        - id: nature_talisman
+          chance: 2
+        - id: elemental_talisman
+        - id: small_pouch
+          chance: 6
+          lacks: small_pouch*
+        - id: medium_pouch
+          chance: 6
+          charges: 45
+          owns: small_pouch*
+          lacks: medium_pouch*
+        - id: large_pouch
+          chance: 6
+          charges: 29
+          owns: medium_pouch*
+          lacks: large_pouch*
+        - id: giant_pouch
+          chance: 6
+          charges: 10
+          owns: large_pouch*
+          lacks: giant_pouch*
+        - id: pure_essence_noted
+          chance: 36
+        - id: pure_essence
+          chance: 34
+        - id: pure_essence_noted
+          chance: 4
+          amount: 5
+        - id: pure_essence_noted
+          chance: 4
+          amount: 10
+        - id: pure_essence_noted
+          chance: 4
+          amount: 15
+        - id: binding_necklace
+          chance: 3
+    - roll: 256
+      drops:
+        - id: clue_scroll_medium
+          lacks: clue_scroll_medium*

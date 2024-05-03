@@ -44,9 +44,29 @@ characterCombatAttack { character ->
             target.setAnimation(animation, delay)
         }
     } else if (target is NPC) {
-        val animation = if (target.race.isNotEmpty()) "${target.race}_hit" else target.def.getOrNull("hit_anim") ?: return@characterCombatAttack
+        val animation = hitAnimation(target)
         target.setAnimation(animation, delay)
     }
+}
+
+fun hitAnimation(npc: NPC): String {
+    var animation = "${npc.id}_hit"
+    if (animationDefinitions.contains(animation)) {
+        return animation
+    }
+    if (npc.def.contains("hit_anim")) {
+        animation = npc.def["hit_anim", ""]
+        if (animationDefinitions.contains(animation)) {
+            return animation
+        }
+    }
+    if (npc.race.isNotEmpty()) {
+        animation = "${npc.race}_hit"
+        if (animationDefinitions.contains(animation)) {
+            return animation
+        }
+    }
+    return ""
 }
 
 fun calculateHitSound(target: Character): String {

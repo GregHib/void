@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.death
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
@@ -22,6 +23,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -37,6 +39,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 val npcs: NPCs by inject()
 val floorItems: FloorItems by inject()
 val tables: DropTables by inject()
+val animationDefinitions: AnimationDefinitions by inject()
 
 npcDeath { npc ->
     npc.mode = PauseMode
@@ -76,10 +79,23 @@ npcDeath { npc ->
 }
 
 fun deathAnimation(npc: NPC): String {
-    if (npc.race.isNotEmpty()) {
-        return "${npc.race}_death"
+    var animation = "${npc.id}_death"
+    if (animationDefinitions.contains(animation)) {
+        return animation
     }
-    return npc.def.getOrNull("death_anim") ?: ""
+    if (npc.def.contains("death_anim")) {
+        animation = npc.def["death_anim", ""]
+        if (animationDefinitions.contains(animation)) {
+            return animation
+        }
+    }
+    if (npc.race.isNotEmpty()) {
+        animation = "${npc.race}_death"
+        if (animationDefinitions.contains(animation)) {
+            return animation
+        }
+    }
+    return ""
 }
 
 fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {
@@ -91,7 +107,7 @@ fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {
         }
     }
     val combatLevel = if (killer is Player) killer.combatLevel else if (killer is NPC) killer.def.combat else -1
-    val drops = table.role(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1, members = World.members, variables = killer?.variables)
+    val drops = table.role(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1, members = World.members, player = killer as? Player)
         .filterNot { it.id == "nothing" }
         .reversed()
         .map { it.toItem() }
@@ -103,7 +119,7 @@ fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {
     } else {
         drops.forEach { item ->
             if (!item.id.contains("clue_scroll") && item.amount > 0) {
-                floorItems.add(tile, item.id, item.amount, revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = if (killer is Player) killer else null)
+                floorItems.add(tile, item.id, item.amount, charges = item.charges(), revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = if (killer is Player) killer else null)
             }
         }
     }
@@ -127,7 +143,7 @@ fun shareLoot(killer: Player, npc: NPC, tile: Tile, drops: List<Item>) {
         } else {
             val awardee = getAwardee(item, killer, members)
             notify(members, awardee, item)
-            floorItems.add(tile, item.id, item.amount, revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = awardee)
+            floorItems.add(tile, item.id, item.amount, charges = item.charges(), revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = awardee)
             awardee.message("<dark_green>You received: ${item.amount} ${item.def.name.plural(item.amount)}.", ChatType.ClanChat)
         }
     }

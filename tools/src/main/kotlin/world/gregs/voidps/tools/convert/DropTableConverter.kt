@@ -30,6 +30,8 @@ object DropTableConverter {
         for (line in string.lines()) {
             if (line.startsWith("=")) {
                 val name = toIdentifier(line.replace("=", ""))
+            } else if (line.startsWith("{{DropsLineClue|")) {
+                process(builder, line.replace("Clue|type=", "|name=").replace("|rarity=", " clue scroll|quantity=1|rarity="))
             } else if (line.startsWith("{{DropsLine|")) {
                 process(builder, line)
             } else if (line.startsWith("{{DropsTableBottom")) {

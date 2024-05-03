@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity
 
+import com.github.michaelbull.logging.InlineLogger
 import org.koin.core.component.KoinComponent
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.Variable
@@ -18,6 +19,7 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
     override var tile = Tile.EMPTY
 
     override val variables = Variables(this)
+    private val logger = InlineLogger()
 
     var id = 0
         private set(value) {
@@ -59,7 +61,11 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
                 continue
             }
             iterator.remove()
-            block.invoke()
+            try {
+                block.invoke()
+            } catch (e: Exception) {
+                logger.error(e) { "Error in world action!" }
+            }
         }
     }
 

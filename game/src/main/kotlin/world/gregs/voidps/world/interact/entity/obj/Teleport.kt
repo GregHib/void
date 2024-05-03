@@ -22,6 +22,8 @@ data class Teleport(
 
     override val size = 5
 
+    override val notification: Boolean = true
+
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "${dispatcher.key}_teleport_${if (land) "land" else "takeoff"}"
         1 -> dispatcher.identifier

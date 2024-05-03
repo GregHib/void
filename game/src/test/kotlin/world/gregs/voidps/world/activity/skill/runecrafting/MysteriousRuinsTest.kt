@@ -7,13 +7,16 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import org.koin.test.get
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.itemOnObject
 import world.gregs.voidps.world.script.objectOption
+import kotlin.test.assertEquals
 
 internal class MysteriousRuinsTest : WorldTest() {
 
@@ -35,9 +38,7 @@ internal class MysteriousRuinsTest : WorldTest() {
             player.itemOnObject(ruins, 0, "${type}_talisman")
             tickIf { player.tile.region == tile.region }
 
-            val distance = player.tile.distanceTo(altarTile)
-            assertNotEquals(-1, distance)
-            assertTrue(distance < 25)
+            assertAtAltar(player, type, altarTile)
         }
     }
 
@@ -53,9 +54,7 @@ internal class MysteriousRuinsTest : WorldTest() {
             player.objectOption(ruins, "Enter", 0)
             tickIf { player.tile.region == tile.region }
 
-            val distance = player.tile.distanceTo(altarTile)
-            assertNotEquals(-1, distance)
-            assertTrue(distance < 25)
+            assertAtAltar(player, type, altarTile)
         }
     }
 
@@ -70,9 +69,7 @@ internal class MysteriousRuinsTest : WorldTest() {
             player.objectOption(ruins, "Enter", 0)
             tickIf { player.tile.region == tile.region }
 
-            val distance = player.tile.distanceTo(altarTile)
-            assertNotEquals(-1, distance)
-            assertTrue(distance < 25)
+            assertAtAltar(player, type, altarTile)
         }
     }
 
@@ -81,12 +78,21 @@ internal class MysteriousRuinsTest : WorldTest() {
         dynamicTest("Enter $type ruins with omni tiara") {
             val tile = areas["${type}_altar_teleport"].random()
             val player = createPlayer("player", tile)
-            player.equipment.set(EquipSlot.Weapon.index, "omni_staff")
+            player.equipment.set(EquipSlot.Weapon.index, "omni_talisman_staff")
 
             val ruins = objects[ruinsTile, "${type}_altar_ruins"]!!
             player.objectOption(ruins, "Enter", 0)
+            tick(5)
             tickIf { player.tile.region == tile.region }
 
+            assertAtAltar(player, type, altarTile)
+        }
+    }
+
+    private fun assertAtAltar(player: Player, type: String, altarTile: Tile) {
+        if (type == "chaos") {
+            assertEquals(9035, player.tile.region.id)
+        } else {
             val distance = player.tile.distanceTo(altarTile)
             assertNotEquals(-1, distance)
             assertTrue(distance < 25)
