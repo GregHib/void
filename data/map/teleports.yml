@@ -2102,7 +2102,16 @@
     level: 1
   delta:
     level: -1
-######## 12088 ######## 
+######## 12088 ########
+- id: chaos_altar_ruins_enter
+  option: Enter
+  tile:
+    x: 3059
+    y: 3590
+  to:
+    x: 2275
+    y: 4847
+    level: 3
 - id: 14745
   option: Climb-up
   tile:
