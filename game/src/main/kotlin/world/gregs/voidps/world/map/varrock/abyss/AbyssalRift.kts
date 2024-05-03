@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.map.varrock.abyss
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.world.activity.quest.questComplete
 import world.gregs.voidps.world.interact.entity.obj.teleportTakeOff
 
@@ -12,7 +13,8 @@ teleportTakeOff("Exit-through", "*_rift") {
             return@teleportTakeOff
         }
         obj.stringId == "law_rift" -> {
-            player.message("You need to have completed Troll Stronghold to use this rift.")
+            // TODO proper message
+            player.message("You cannot carry any weapons or armour through this rift.")
             cancel()
             return@teleportTakeOff
         }
@@ -27,9 +29,13 @@ teleportTakeOff("Exit-through", "*_rift") {
             return@teleportTakeOff
         }
         obj.stringId == "soul_rift" -> {
-            player.message("You have not yet unlocked this rift.")
             cancel()
             return@teleportTakeOff
         }
     }
+}
+
+objectOperate("Exit-through", "soul_rift") {
+    player.message("You have not yet unlocked this rift.")
+    cancel()
 }

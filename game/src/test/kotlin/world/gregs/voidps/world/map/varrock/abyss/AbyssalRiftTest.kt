@@ -15,8 +15,9 @@ internal class AbyssalRiftTest : WorldTest() {
     fun `Can't enter rifts without requirements`() = listOf(
         Tile(3028, 4837) to "Lost City",
         Tile(3049, 4839) to "armour",
-        Tile(3050, 4837) to "Mourning's End Part II",
+        Tile(3050, 4837) to "strange power",
         Tile(3027, 4834) to "Legacy of Seergaze",
+        Tile(3050, 4829) to "not yet unlocked",
     ).map { (tile, message) ->
         val obj = objects[tile].first { it.id.endsWith("rift") }
         dynamicTest("Can't enter ${obj.id}") {
