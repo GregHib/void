@@ -3,8 +3,8 @@ package world.gregs.voidps.world.map.musicians
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.world.interact.dialogue.CheerfulOld
-import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.NeutralOld
+import world.gregs.voidps.world.interact.dialogue.Pleased
 import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -33,11 +33,11 @@ suspend fun CharacterContext.resting() {
             npc<NeutralOld>("You stoopid. Goblin sit down, goblin rest, goblin feel better.")
             resting()
         }
-        option<Happy>("What's special about resting by a musician?") {
+        option<Pleased>("What's special about resting by a musician?") {
             npc<NeutralOld>("Drumming good! Make you feel better, boom booms make you run longer!")
             resting()
         }
-        option<Happy>("Can you summarise the effects for me?") {
+        option<Pleased>("Can you summarise the effects for me?") {
             npc<NeutralOld>("Wot? You sit down, you rest. Listen to Thump-Thump is better.")
             resting()
         }

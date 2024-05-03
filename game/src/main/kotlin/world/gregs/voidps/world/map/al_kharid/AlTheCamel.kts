@@ -134,7 +134,7 @@ suspend fun CharacterContext.whatDoesSheThink() {
 }
 
 suspend fun NPCOption.dung() {
-    player<Happy>("I'm sorry to bother you, but could you spare me a little dung?")
+    player<Pleased>("I'm sorry to bother you, but could you spare me a little dung?")
     npc<Talk>("Are you serious?")
     player<Neutral>("Oh yes. If you'd be so kind...")
     npc<Talk>("Well, just you close your eyes first. I'm not doing it while you're watching me!")
@@ -152,7 +152,7 @@ suspend fun NPCOption.dung() {
 suspend fun NPCOption.listenTo() {
     npc<Neutral>("Oh, it's you again. Have you come back to listen to my poems?")
     choice {
-        option<Happy>("I'd love to!") {
+        option<Pleased>("I'd love to!") {
             idLoveTo()
         }
         option<Talk>("No, thank you.") {

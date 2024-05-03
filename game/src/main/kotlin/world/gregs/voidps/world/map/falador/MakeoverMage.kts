@@ -39,8 +39,8 @@ val enums: EnumDefinitions by inject()
 val npcs: NPCs by inject()
 
 npcOperate("Talk-to", "makeover_mage*") {
-    npc<Happy>("Hello there! I am known as the Makeover Mage! I have spent many years researching magicks that can change your physical appearance.")
-    npc<Happy>("I call it a 'makeover'. Would you like me to perform my magicks on you?")
+    npc<Pleased>("Hello there! I am known as the Makeover Mage! I have spent many years researching magicks that can change your physical appearance.")
+    npc<Pleased>("I call it a 'makeover'. Would you like me to perform my magicks on you?")
     choice {
         more()
         start()
@@ -78,7 +78,7 @@ suspend fun PlayerChoice.exit(): Unit = option("No, thanks.") {
     npc<Sad>("Ehhh..suit yourself.")
 }
 
-suspend fun PlayerChoice.amulet(): Unit = option<Happy>("Cool amulet! Can I have one?") {
+suspend fun PlayerChoice.amulet(): Unit = option<Pleased>("Cool amulet! Can I have one?") {
     val cost = 100
     npc<Talk>("No problem, but please remember that the amulet I will sell you is only a copy of my own. It contains no magical powers and, as such, will only cost you $cost coins.")
     if (!player.holdsItem("coins", cost)) {
@@ -109,7 +109,7 @@ suspend fun PlayerChoice.amulet(): Unit = option<Happy>("Cool amulet! Can I have
 }
 
 suspend fun CharacterContext.explain() {
-    npc<Happy>("I can alter your physical form if you wish. Would you like me to perform my magicks on you?")
+    npc<Pleased>("I can alter your physical form if you wish. Would you like me to perform my magicks on you?")
     choice {
         more()
         start()
@@ -117,7 +117,7 @@ suspend fun CharacterContext.explain() {
     }
 }
 
-suspend fun PlayerChoice.colour(): Unit = option<Happy>("Can you make me a different colour?") {
+suspend fun PlayerChoice.colour(): Unit = option<Pleased>("Can you make me a different colour?") {
     npc<Cheerful>("Why, of course! I have a wide array of colours for you to choose from.")
     whatDoYouSay()
 }

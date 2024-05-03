@@ -271,7 +271,7 @@ suspend fun CharacterContext.cutscene() {
     player.face(Direction.SOUTH_WEST)
     player.setAnimation("silverlight_showoff")
     player.setGraphic("silverlight_sparkle")
-    npc<Happy>("wally", "I am the greatest demon slayer EVER!")
+    npc<Pleased>("wally", "I am the greatest demon slayer EVER!")
 
     npc<Talk>("By reciting the correct magical incantation, and thrusting Silverlight into Delrith while he was newly summoned, Wally was able to imprison Delrith in the stone table at the centre of the circle.")
 
@@ -328,7 +328,7 @@ suspend fun CharacterContext.delrithWillCome() {
 suspend fun CharacterContext.whereSilverlight() {
     player<Frustrated>("Where can I find Silverlight?")
     npc<Talk>("Silverlight has been passed down by Wally's descendants. I believe it is currently in the care of one of the king's knights called Sir Prysin.")
-    npc<Happy>("He shouldn't be too hard to find. He lives in the royal palace in this city. Tell him Gypsy Aris sent you.")
+    npc<Pleased>("He shouldn't be too hard to find. He lives in the royal palace in this city. Tell him Gypsy Aris sent you.")
 }
 
 suspend fun NPCOption.howGoesQuest() {

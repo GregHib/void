@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.dialogue.Happy
+import world.gregs.voidps.world.interact.dialogue.Pleased
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.interfaceOption
@@ -39,7 +39,7 @@ internal class WeakInteractionTest : WorldTest() {
             player.equipment.set(EquipSlot.Weapon.index, "bronze_sword")
             var cancelled = false
             player.weakQueue("dialogue", onCancel = { cancelled = true }) {
-                npc<Happy>("Bob", "Hello")
+                npc<Pleased>("Bob", "Hello")
             }
             tick()
             assertNotNull(player.dialogue)
@@ -71,7 +71,7 @@ internal class WeakInteractionTest : WorldTest() {
             val player = createPlayer("player")
             var cancelled = false
             player.weakQueue("dialogue", onCancel = { cancelled = true }) {
-                npc<Happy>("Bob", "Hello")
+                npc<Pleased>("Bob", "Hello")
             }
             tick()
             assertNotNull(player.dialogue)

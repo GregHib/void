@@ -3,9 +3,9 @@ package world.gregs.voidps.world.map.musicians
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.world.interact.dialogue.Cheerful
-import world.gregs.voidps.world.interact.dialogue.Happy
-import world.gregs.voidps.world.interact.dialogue.Talk
+import world.gregs.voidps.world.interact.dialogue.Pleased
 import world.gregs.voidps.world.interact.dialogue.Quiz
+import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -42,12 +42,12 @@ suspend fun CharacterContext.resting() {
             npc<Cheerful>("Well, you wouldn't be resting, now would you? Also, you should know that resting by a musician, has a similar effect but the benefits are greater.")
             resting()
         }
-        option<Happy>("What's special about resting by a musician?") {
+        option<Pleased>("What's special about resting by a musician?") {
             npc<Cheerful>("The effects of resting are enhanced by music. Your run energy will recharge many times the normal rate, and your life points three times as fast.")
             npc<Cheerful>("Simply sit down and rest as you would normally, nice and close to the musician. You'll turn to face the musician and hear the music. Like resting anywhere, if you do anything other than talk, you will stop resting.")
             resting()
         }
-        option<Happy>("Can you summarise the effects for me?") {
+        option<Pleased>("Can you summarise the effects for me?") {
             npc<Cheerful>("Certainly. You can rest anywhere, simply choose the Rest option on the run buttons.")
             npc<Cheerful>("Resting anywhere will replenish your run energy more quickly than normal, your life points will replenish twice as fast as well!")
             npc<Cheerful>("Resting by a musician will replenish your run energy many times faster than normal, and your life points will also replenish three times as fast.")

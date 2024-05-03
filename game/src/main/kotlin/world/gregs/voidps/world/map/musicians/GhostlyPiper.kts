@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 
 npcOperate("Talk-to", "ghostly_piper") {
     if (player.equipped(EquipSlot.Amulet).id != "ghostspeak_amulet") {
-        npc<Happy>("Woo, wooo. Woooo.")
+        npc<Pleased>("Woo, wooo. Woooo.")
         player.message("The ghost seems barely aware of your existence,")
         player.message("but you sense that resting here might recharge you for battle!")
         return@npcOperate

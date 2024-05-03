@@ -56,7 +56,7 @@ npcOperate("Talk-to", "jeffery") {
                 npc<Talk>("You want to use my furnace? I only let exceptional people use my furnace. You don't look exceptional to me.")
                 player<Quiz>("How do I become exceptional?")
                 npc<Cheerful>("Exceptional people have earned exceptional items; earning Varrock armour would impress me.")
-                player<Happy>("Alright!")
+                player<Pleased>("Alright!")
                 return@option
             }
             npc<Cheerful>("You seem exceptional enough. Go ahead.")
@@ -112,7 +112,7 @@ suspend fun TargetNPCContext.cheekyLittle() {
             goldRing()
         }
         option<Talk>("The most valuable diamond ring you have.") {
-            npc<Happy>("Well, all I have is this plain, gold ring.")
+            npc<Pleased>("Well, all I have is this plain, gold ring.")
             player<Upset>("That will have to do.")
             goldRing()
         }

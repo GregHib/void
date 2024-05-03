@@ -204,7 +204,7 @@ suspend fun CharacterContext.cutscenePart2(instance: Region) {
     player.open("fade_in")
     npc<Cheerful>("gudrun_cutscene", "That was brilliant! I must know who wrote that poem.")
     npc<Sad>("dororan_cutscene", "Um, that would be me. Hello")
-    npc<Happy>("gudrun_cutscene", "That line about beauty was for me, wasn't it?")
+    npc<Pleased>("gudrun_cutscene", "That line about beauty was for me, wasn't it?")
     npc<Upset>("dororan_cutscene", "Uh, Yes.")
     npc<Cheerful>("gudrun_cutscene", "You're the mystery poet who sent me the gold ring!")
     npc<Cry>("dororan_cutscene", "Sorry.")
@@ -231,10 +231,10 @@ suspend fun CharacterContext.cutscenePart2(instance: Region) {
 suspend fun CharacterContext.gunnarsGround() {
     npc<Cheerful>("Papa was so impressed by Dororan's poem, he's made him the village poet!")
     npc<Cheerful>("dororan_after_cutscene2", "I'm more then a little surprised! He even gave me a house to live in!")
-    npc<Happy>("Our people's tradition is that the tribe provides lodging for the poet.")
+    npc<Pleased>("Our people's tradition is that the tribe provides lodging for the poet.")
     npc<Chuckle>("dororan_after_cutscene2", "It's huge!")
     npc<Cheerful>("It's not in the village. It's east of here: across the river and north of the road on the way to Varrock. It's a big house with roses outside.")
-    npc<Happy>("dororan_after_cutscene2", "I think Gunthor wants to keep me close, but not too close. Oh, I found something there for you!")
+    npc<Pleased>("dororan_after_cutscene2", "I think Gunthor wants to keep me close, but not too close. Oh, I found something there for you!")
     npc<Cheerful>("dororan_after_cutscene2", "Whoever lived there before left a dozen pairs of boots in the attic.")
     npc<Talk>("dororan_after_cutscene2", "I picked out a pair for you to thank you for all your help.")
     npc<Cheerful>("dororan_after_cutscene2", "Underneath them all was this magic lamb. You should have it as well!")
@@ -268,14 +268,14 @@ suspend fun CharacterContext.endCutscene(instance: Region) {
 suspend fun CharacterContext.poem() {
     if (player.holdsItem("gunnars_ground")) {
         npc<Quiz>("What have you got there?")
-        player<Happy>("Another gift from your mysterious suitor.")
+        player<Pleased>("Another gift from your mysterious suitor.")
         npc<Quiz>("A scroll?")
         player<Talk>("It's a poem; a story to convince your father to settle down. You could recite it to him.")
         npc<Amazed>("Let me see that.")
         player.setAnimation("hand_over_item")
         item("gunnars_ground", 400, "You show Gudrun the poem")
         npc<Talk>("'Gunnar's Ground'")
-        npc<Happy>("Yes! I think this could work. I'll go to the longhouse right away!")
+        npc<Pleased>("Yes! I think this could work. I'll go to the longhouse right away!")
         player.inventory.remove("gunnars_ground")
         player["gunnars_ground"] = "recital"
         cutscene()
@@ -297,7 +297,7 @@ suspend fun CharacterContext.whatHeSay() {
         option<Neutral>("What should we do now?") {
             npc<Frustrated>("I don't know. Maybe your mystery man has some ideas.")
             player["gunnars_ground"] = "tell_dororan"
-            player<Happy>("I'll ask him.")
+            player<Pleased>("I'll ask him.")
         }
     }
 }
@@ -308,12 +308,12 @@ suspend fun CharacterContext.fathersAttitude() {
             npc<Frustrated>("I think there's a difference between respecting my ancestors and obsessing over them. Papa thinks whatever stupid war Gunnar fought is still going on.")
             npc<Frustrated>("I don't know. Maybe your mystery man has some ideas.")
             player["gunnars_ground"] = "tell_dororan"
-            player<Happy>("I'll ask him.")
+            player<Pleased>("I'll ask him.")
         }
         option<Neutral>("What should we do now?") {
             npc<Frustrated>("I don't know. Maybe your mystery man has some ideas.")
             player["gunnars_ground"] = "tell_dororan"
-            player<Happy>("I'll ask him.")
+            player<Pleased>("I'll ask him.")
         }
     }
 }
@@ -343,11 +343,11 @@ suspend fun CharacterContext.showGudrun() {
     player<Quiz>("Are you Gudrun?")
     npc<Talk>("Yes.")
     if (player.holdsItem("dororans_engraved_ring")) {
-        player<Happy>("This is for you.")
+        player<Pleased>("This is for you.")
         player.setAnimation("hand_over_item")
         item("dororans_engraved_ring", 400, "You show Gudrun the ring.")
         npc<Cheerful>("It's lovely! There's something written on it:")
-        npc<Happy>("'Gudrun the Fair, Gudrun the Fiery.' Is it about me?")
+        npc<Pleased>("'Gudrun the Fair, Gudrun the Fiery.' Is it about me?")
         choice {
             option<Neutral>("Yes.") {
                 aboutRing()
@@ -362,13 +362,13 @@ suspend fun CharacterContext.showGudrun() {
 }
 
 suspend fun CharacterContext.aboutRing() {
-    npc<Happy>("This is beautiful gift, stranger. Thank you.")
+    npc<Pleased>("This is beautiful gift, stranger. Thank you.")
     choice {
         option<Neutral>("The ring isn't from me!") {
             whoFrom()
         }
         option<Neutral>("It should belong to someone just as beautiful.") {
-            npc<Happy>("That's very flattering! You look like an adventurer, though?")
+            npc<Pleased>("That's very flattering! You look like an adventurer, though?")
             thatsRight()
         }
     }
@@ -376,7 +376,7 @@ suspend fun CharacterContext.aboutRing() {
 
 suspend fun CharacterContext.thatsRight() {
     choice {
-        option<Happy>("That's right.") {
+        option<Pleased>("That's right.") {
             npc<Sad>("I'm sorry, I could never get involved with an adventurer.")
             whoFrom()
         }
@@ -391,11 +391,11 @@ suspend fun CharacterContext.whoFrom() {
     npc<Surprised>("Oh! Who is it from?")
     choice {
         option<Neutral>("A great poet.") {
-            npc<Happy>("A tale-teller? A bard? My people have great respect from poets.")
+            npc<Pleased>("A tale-teller? A bard? My people have great respect from poets.")
             outsideVillage()
         }
         option<Neutral>("A secret admirer.") {
-            npc<Happy>("Does that really happen? How exciting!")
+            npc<Pleased>("Does that really happen? How exciting!")
             outsideVillage()
         }
         option<Neutral>("A short suitor.") {
@@ -411,7 +411,7 @@ suspend fun CharacterContext.whoFrom() {
 suspend fun CharacterContext.outsideVillage() {
     npc<Quiz>("This man, he is from outside the village?")
     player<Talk>("Yes.")
-    npc<Happy>("I would love to leave the village and be romanced by exotic, handsome, outerlander men. There's a problem, though.")
+    npc<Pleased>("I would love to leave the village and be romanced by exotic, handsome, outerlander men. There's a problem, though.")
     player<Quiz>("What's that?")
     npc<Sad>("My papa, the chieftain. He would never let an outerlander pursue me.")
     player<Quiz>("Why not?")
@@ -436,7 +436,7 @@ suspend fun CharacterContext.reasonWithHim() {
 }
 
 suspend fun CharacterContext.unstarted() {
-    npc<Happy>("Can I help you, stranger?")
+    npc<Pleased>("Can I help you, stranger?")
     npc<Frustrated>("kjell_sword", "Why are you talking to that outerlander?")
     npc<Frustrated>("It's none of your business, Kjell! Just guard the hut!")
     npc<Amazed>("Sorry about that. Did you want something?")
@@ -453,24 +453,24 @@ suspend fun CharacterContext.unstarted() {
 }
 
 suspend fun CharacterContext.whoAreYou() {
-    npc<Happy>("My name is Gudrun. My father, Gunthor, is chieftain of the village.")
+    npc<Pleased>("My name is Gudrun. My father, Gunthor, is chieftain of the village.")
     choice {
         option<Cheerful>("What is this place?") {
             whatIsThisPlace()
         }
-        option<Happy>("Goodbye.") {
+        option<Pleased>("Goodbye.") {
         }
     }
 }
 
 suspend fun CharacterContext.whatIsThisPlace() {
-    npc<Happy>("Outerlanders call this the barbarian village. It doesn't have a name because...it's complicated.")
+    npc<Pleased>("Outerlanders call this the barbarian village. It doesn't have a name because...it's complicated.")
     npc<Talk>("if you want to know more, you should talk to Hunding. He's up in the tower at the east entrance.")
     choice {
         option<Neutral>("Who are you?") {
             whoAreYou()
         }
-        option<Happy>("Goodbye.") {
+        option<Pleased>("Goodbye.") {
         }
     }
 }
@@ -530,7 +530,7 @@ npcOperate("Talk-to", "gudrun_after_quest") {
 suspend fun CharacterContext.menu() {
     choice {
         option<Neutral>("How are things with Dororan?") {
-            npc<Happy>("I really like him. he's funny, vulnerable and nothing like my people.")
+            npc<Pleased>("I really like him. he's funny, vulnerable and nothing like my people.")
             choice {
                 option<Neutral>("You're going to stay together then?") {
                     npc<Cheerful>("Of course!")

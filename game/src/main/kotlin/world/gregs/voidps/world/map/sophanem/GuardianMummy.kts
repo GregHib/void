@@ -11,10 +11,10 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
-import world.gregs.voidps.world.interact.dialogue.Happy
+import world.gregs.voidps.world.interact.dialogue.Pleased
+import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Uncertain
-import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -33,7 +33,7 @@ npcOperate("Talk-to", "guardian_mummy") {
 }
 
 npcOperate("Start-activity", "guardian_mummy") {
-    player<Happy>("I know what I'm doing - let's get on with it.")
+    player<Pleased>("I know what I'm doing - let's get on with it.")
     iKnowWhatImDoing()
 }
 
@@ -64,7 +64,7 @@ suspend fun CharacterContext.playPyramidPlunder() {
         option<Talk>("Not right now") {
             npc<Talk>("Well, get out of here then.")
         }
-        option<Happy>("I know what I'm doing let's get on with it.") {
+        option<Pleased>("I know what I'm doing let's get on with it.") {
             iKnowWhatImDoing()
         }
         option("I want to charge or remove charges from my sceptre.") {

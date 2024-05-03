@@ -3,9 +3,9 @@ package world.gregs.voidps.world.map.musicians
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.world.interact.dialogue.Drunk
-import world.gregs.voidps.world.interact.dialogue.Happy
-import world.gregs.voidps.world.interact.dialogue.RollEyes
+import world.gregs.voidps.world.interact.dialogue.Pleased
 import world.gregs.voidps.world.interact.dialogue.Quiz
+import world.gregs.voidps.world.interact.dialogue.RollEyes
 import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -42,11 +42,11 @@ suspend fun CharacterContext.resting() {
             player<Quiz>("Right; that's nice and clear. Thanks.")
             resting()
         }
-        option<Happy>("What's special about resting by a musician?") {
+        option<Pleased>("What's special about resting by a musician?") {
             npc<Drunk>("Moozik's great! My moozik is the bessht. Mush more relaxshing than those else.")
             resting()
         }
-        option<Happy>("Can you summarise the effects for me?") {
+        option<Pleased>("Can you summarise the effects for me?") {
             npc<Drunk>("Yeshh, 'course. 'f youze sit down you resht. Moozik make reshting better.")
             resting()
         }
