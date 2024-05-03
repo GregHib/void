@@ -80,7 +80,7 @@ suspend fun CharacterContext.buyFur() {
         option<Neutral>("Yeah, that'll do.") {
             player.inventory.remove("bear_fur", 1)
             player.inventory.add("coins", 12)
-            player<Cheerful>("Thanks!")
+            player<Happy>("Thanks!")
         }
         option<Frustrated>("I think I'll keep hold of it actually!") {
             npc<Sad>("Oh ok. Didn't want it anyway!")

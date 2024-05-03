@@ -82,5 +82,5 @@ interfaceOption(component = "confirm", id = "yrsas_shoe_store") {
     player.body.setColour(BodyColour.Feet, player["makeover_colour_shoes", 0])
     player.flagAppearance()
     player.closeMenu()
-    npc<Cheerful>("yrsa", "Hey, They look great!")
+    npc<Happy>("yrsa", "Hey, They look great!")
 }

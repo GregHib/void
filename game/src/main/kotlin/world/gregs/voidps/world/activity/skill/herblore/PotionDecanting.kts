@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
-import world.gregs.voidps.world.interact.dialogue.Cheerful
+import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Neutral
 import world.gregs.voidps.world.interact.dialogue.Sad
 import world.gregs.voidps.world.interact.dialogue.Talk
@@ -25,18 +25,18 @@ val potions = setOf(
 
 npcOperate("Decant", "bob_barter_herbs") {
     if(decantPotions(player)) {
-        npc<Cheerful>("There you go, chum.")
+        npc<Happy>("There you go, chum.")
     } else {
         npc<Sad>("I wasn't able to decant your potions.")
     }
 }
 npcOperate("Talk-to", "bob_barter_herbs") {
-    npc<Cheerful>("Hello, chum, fancy buyin' some designer jewellry? They've come all the way from Ardougne! Most pukka!")
+    npc<Happy>("Hello, chum, fancy buyin' some designer jewellry? They've come all the way from Ardougne! Most pukka!")
     player<Neutral>("Erm, no. I'm all set, thanks.")
-    npc<Cheerful>("Okay, chum, would you like to show you the very latest potion prices?")
+    npc<Happy>("Okay, chum, would you like to show you the very latest potion prices?")
     choice {
         option<Talk>("Who are you?") {
-            npc<Cheerful>("Why, I'm Bob! Your friendly seller of smashin' goods!")
+            npc<Happy>("Why, I'm Bob! Your friendly seller of smashin' goods!")
             player<Neutral>("So what do you have to sell?")
             npc<Neutral>("Oh, not much at the moment. Cuz, ya know, business being so well and cushie.")
             player<Neutral>("You don't really look like you're being so successful.")

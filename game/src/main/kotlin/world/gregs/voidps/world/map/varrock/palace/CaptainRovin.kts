@@ -95,7 +95,7 @@ suspend fun CharacterContext.isItPowerful() {
 }
 
 suspend fun PlayerChoice.notReallyPowerful(): Unit = option<Talk>("Not really.") {
-    npc<Cheerful>("Well, I'm sure the palace guards can deal with it, then. Thanks for the information.")
+    npc<Happy>("Well, I'm sure the palace guards can deal with it, then. Thanks for the information.")
 }
 
 suspend fun PlayerChoice.yesVeryPowerful(): Unit = option<Upset>("Yes, very.") {

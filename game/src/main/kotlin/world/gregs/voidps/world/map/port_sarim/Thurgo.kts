@@ -34,11 +34,11 @@ suspend fun Interaction.menuReplacementSword() {
     }
 }
 
-suspend fun PlayerChoice.madeSword() = option<Cheerful>(
+suspend fun PlayerChoice.madeSword() = option<Happy>(
     "Thanks for making that sword for me!",
     { player.holdsItem("blurite_sword") }
 ) {
-    npc<CheerfulOld>("You're welcome - thanks for the pie!")
+    npc<HappyOld>("You're welcome - thanks for the pie!")
 }
 
 val items = listOf(
@@ -46,7 +46,7 @@ val items = listOf(
     Item("iron_bar", 2)
 )
 
-suspend fun PlayerChoice.replacementSword() = option<Cheerful>(
+suspend fun PlayerChoice.replacementSword() = option<Happy>(
     "Can you make that replacement sword now?",
     { !player.holdsItem("blurite_sword") }
 ) {
@@ -58,13 +58,13 @@ suspend fun PlayerChoice.replacementSword() = option<Cheerful>(
             add("blurite_sword")
         }
         item("blurite_sword", 600, "You give the blurite ore and iron bars to Thurgo. Thurgo makes you a sword.")
-        player<Cheerful>("Thank you very much!")
-        npc<CheerfulOld>("Just remember to call in with more pie some time!")
+        player<Happy>("Thank you very much!")
+        npc<HappyOld>("Just remember to call in with more pie some time!")
         return@option
     }
     if (player.inventory.contains("blurite_ore")) {
         player<Sad>("I don't have two iron bars.")
-        npc<CheerfulOld>("Better go get some then, huh?")
+        npc<HappyOld>("Better go get some then, huh?")
         return@option
     }
     if (player.inventory.contains("iron_bar", 2)) {
@@ -73,7 +73,7 @@ suspend fun PlayerChoice.replacementSword() = option<Cheerful>(
         return@option
     }
     player<Sad>("I don't have any of them yet.")
-    npc<CheerfulOld>("Well, I need a blurite ore and two iron bars. The only place I know to get blurite is under this cliff here, but it is guarded by a very powerful ice giant.")
+    npc<HappyOld>("Well, I need a blurite ore and two iron bars. The only place I know to get blurite is under this cliff here, but it is guarded by a very powerful ice giant.")
 }
 
 suspend fun Interaction.menuAboutSword() {
@@ -100,7 +100,7 @@ suspend fun Interaction.menu() {
     }
 }
 
-suspend fun PlayerChoice.specialSword() = option<Cheerful>("Can you make a special sword for me?") {
+suspend fun PlayerChoice.specialSword() = option<Happy>("Can you make a special sword for me?") {
     npc<NeutralOld>("Well, after bringing me my favorite food I guess I should give it a go. What sort of sword is it?")
     player<Neutral>("I need you to make a sword for one of Falador's knights. He had one which was passed down through five generations, but his squire has lost it.")
     player<Quiz>("So we need an identical one to replace it.")
@@ -110,7 +110,7 @@ suspend fun PlayerChoice.specialSword() = option<Cheerful>("Can you make a speci
     player<Neutral>("I'll go and ask his squire and see if I can find one.")
 }
 
-suspend fun PlayerChoice.aboutSword() = option<Cheerful>("About that sword...") {
+suspend fun PlayerChoice.aboutSword() = option<Happy>("About that sword...") {
     npc<QuizOld>("Have you got a picture of the sword for me yet?")
     if (!player.holdsItem("portrait")) {
         player<Sad>("Sorry, not yet.")
@@ -129,7 +129,7 @@ suspend fun PlayerChoice.aboutSword() = option<Cheerful>("About that sword...") 
     player<Neutral>("Okay. I'll go and find them then.")
 }
 
-suspend fun PlayerChoice.imcandoDwarf() = option<Cheerful>("Are you an Imcando dwarf? I need a special sword.") {
+suspend fun PlayerChoice.imcandoDwarf() = option<Happy>("Are you an Imcando dwarf? I need a special sword.") {
     npc<AngryOld>("I don't talk about that sort of thing anymore. I'm getting old.")
     choice {
         redberryPie()
@@ -142,13 +142,13 @@ suspend fun PlayerChoice.redberryPie(): Unit = option<Quiz>(
     { player.holdsItem("redberry_pie") }
 ) {
     statement("You see Thurgo's eyes light up.")
-    npc<CheerfulOld>("I'd never say no to a redberry pie! We Imcando dwarves love them - they're GREAT!")
+    npc<HappyOld>("I'd never say no to a redberry pie! We Imcando dwarves love them - they're GREAT!")
     if (player.quest("the_knights_sword") == "find_thurgo") {
         player["the_knights_sword"] = "happy_thurgo"
     }
     player.inventory.remove("redberry_pie")
     statement("You hand over the pie Thurgo eats the pie. Thurgo pats his stomach.")
-    npc<CheerfulOld>("By Guthix! THAT was good pie! Anyone who makes pie like THAT has got to be alright!")
+    npc<HappyOld>("By Guthix! THAT was good pie! Anyone who makes pie like THAT has got to be alright!")
 }
 
 suspend fun PlayerChoice.whatCape() = option("What is that cape you're wearing?") {
@@ -157,8 +157,8 @@ suspend fun PlayerChoice.whatCape() = option("What is that cape you're wearing?"
 
 suspend fun CharacterContext.thatCape() {
     player<Quiz>("What is that cape you're wearing?")
-    npc<CheerfulOld>("It's a Skillcape of Smithing. It shows that I'm a master blacksmith, but that's only to be expected - after all, my ancestors were the greatest blacksmiths in dwarven history.")
-    npc<CheerfulOld>("If you ever achieve level 99 Smithing you'll be able to wear a cape like this, and receive more experience when smelting gold ore.")
+    npc<HappyOld>("It's a Skillcape of Smithing. It shows that I'm a master blacksmith, but that's only to be expected - after all, my ancestors were the greatest blacksmiths in dwarven history.")
+    npc<HappyOld>("If you ever achieve level 99 Smithing you'll be able to wear a cape like this, and receive more experience when smelting gold ore.")
 }
 
 itemOnNPCOperate("redberry_pie", "thurgo") {

@@ -7,7 +7,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 npcOperate("Talk-to", "jaraah") {
-    player<Cheerful>("Hi!")
+    player<Happy>("Hi!")
     npc<Frustrated>("What? Can't you see I'm busy?!")
     choice {
         option<Uncertain>("Can you heal me?") {

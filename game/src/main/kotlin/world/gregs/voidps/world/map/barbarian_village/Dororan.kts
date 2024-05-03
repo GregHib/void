@@ -100,7 +100,7 @@ suspend fun CharacterContext.poemDone() {
 
 suspend fun CharacterContext.sweptToWar() {
     npc<Pleased>("'Who then, in face of madness, <blue>swept to war.</col>'")
-    npc<Cheerful>("That's it! That's brilliant!")
+    npc<Happy>("That's it! That's brilliant!")
     player["gunnars_ground"] = "poem_done"
     poemDone()
 }
@@ -275,7 +275,7 @@ suspend fun CharacterContext.loreMenu2() {
 
 suspend fun CharacterContext.threat() {
     npc<Pleased>("'But long is gone the author of that <blue>threat.</col>'")
-    npc<Cheerful>("Perfect! Yes!")
+    npc<Happy>("Perfect! Yes!")
     player["gunnars_ground"] = "one_more_poem"
     oneMore()
 }
@@ -517,19 +517,19 @@ suspend fun CharacterContext.stuckOnWord() {
 
 suspend fun CharacterContext.poemMenu() {
     choice {
-        option<Cheerful>("Cucumber.") {
+        option<Happy>("Cucumber.") {
             npc<Talk>("That doesn't really fit. It needs to be one syllable long.")
             syllableMenu()
         }
-        option<Cheerful>("Monkey.") {
+        option<Happy>("Monkey.") {
             npc<Talk>("That doesn't really fit. It needs to mean something like 'wandering aimlessly'.")
             wordsMenu()
         }
-        option<Cheerful>("Saradomin.") {
+        option<Happy>("Saradomin.") {
             npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'day'.")
             rhymeMenu()
         }
-        option<Cheerful>("Barbarian.") {
+        option<Happy>("Barbarian.") {
             npc<Talk>("That doesn't really fit. It needs to be one syllable long.")
             syllableMenu()
         }
@@ -538,19 +538,19 @@ suspend fun CharacterContext.poemMenu() {
 
 suspend fun CharacterContext.syllableMenu() {
     choice {
-        option<Cheerful>("Ham.") {
+        option<Happy>("Ham.") {
             npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'day'.")
             rhymeMenu()
         }
-        option<Cheerful>("Fey.") {
+        option<Happy>("Fey.") {
             npc<Talk>("That doesn't really fit. It needs to mean something like 'wandering aimlessly'.")
             wordsMenu()
         }
-        option<Cheerful>("Jaunt.") {
+        option<Happy>("Jaunt.") {
             npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'day'.")
             rhymeMenu()
         }
-        option<Cheerful>("Grass.") {
+        option<Happy>("Grass.") {
             npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'day'.")
             rhymeMenu()
         }
@@ -562,18 +562,18 @@ suspend fun CharacterContext.syllableMenu() {
 
 suspend fun CharacterContext.syllableMenu2() {
     choice {
-        option<Cheerful>("Roam.") {
+        option<Happy>("Roam.") {
             npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'day'.")
             rhymeMenu()
         }
-        option<Cheerful>("Fish.") {
+        option<Happy>("Fish.") {
             npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'day'.")
             rhymeMenu()
         }
-        option<Cheerful>("Stray.") {
+        option<Happy>("Stray.") {
             stray()
         }
-        option<Cheerful>("Hay.") {
+        option<Happy>("Hay.") {
             npc<Talk>("That doesn't really fit. It needs to mean something like 'wandering aimlessly'.")
             wordsMenu()
         }
@@ -585,19 +585,19 @@ suspend fun CharacterContext.syllableMenu2() {
 
 suspend fun CharacterContext.wordsMenu() {
     choice {
-        option<Cheerful>("Deviate.") {
+        option<Happy>("Deviate.") {
             npc<Talk>("That doesn't really fit. It needs to be one syllable long.")
             syllableMenu()
         }
-        option<Cheerful>("Roam.") {
+        option<Happy>("Roam.") {
             npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'day'.")
             rhymeMenu()
         }
-        option<Cheerful>("Veer.") {
+        option<Happy>("Veer.") {
             npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'day'.")
             rhymeMenu()
         }
-        option<Cheerful>("Traipse.") {
+        option<Happy>("Traipse.") {
             npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'day'.")
             rhymeMenu()
         }
@@ -609,19 +609,19 @@ suspend fun CharacterContext.wordsMenu() {
 
 suspend fun CharacterContext.wordsMenu2() {
     choice {
-        option<Cheerful>("Meander.") {
+        option<Happy>("Meander.") {
             npc<Talk>("That doesn't really fit. It needs to be one syllable long.")
             syllableMenu()
         }
-        option<Cheerful>("Astray.") {
+        option<Happy>("Astray.") {
             npc<Talk>("That doesn't really fit. It needs to be one syllable long.")
             syllableMenu()
         }
-        option<Cheerful>("Jaunt.") {
+        option<Happy>("Jaunt.") {
             npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'day'.")
             rhymeMenu()
         }
-        option<Cheerful>("Stray.") {
+        option<Happy>("Stray.") {
             stray()
         }
         option("More words") {
@@ -632,19 +632,19 @@ suspend fun CharacterContext.wordsMenu2() {
 
 suspend fun CharacterContext.rhymeMenu() {
     choice {
-        option<Cheerful>("Lay.") {
+        option<Happy>("Lay.") {
             npc<Talk>("That doesn't really fit. It needs to mean something like 'wandering aimlessly'.")
             wordsMenu()
         }
-        option<Cheerful>("Beret.") {
+        option<Happy>("Beret.") {
             npc<Talk>("That doesn't really fit. It needs to be one syllable long.")
             syllableMenu()
         }
-        option<Cheerful>("May.") {
+        option<Happy>("May.") {
             npc<Talk>("That doesn't really fit. It needs to mean something like 'wandering aimlessly'.")
             wordsMenu()
         }
-        option<Cheerful>("Hay.") {
+        option<Happy>("Hay.") {
             npc<Talk>("That doesn't really fit. It needs to mean something like 'wandering aimlessly'.")
             wordsMenu()
         }
@@ -656,18 +656,18 @@ suspend fun CharacterContext.rhymeMenu() {
 
 suspend fun CharacterContext.rhymeMenu2() {
     choice {
-        option<Cheerful>("Stray.") {
+        option<Happy>("Stray.") {
             stray()
         }
-        option<Cheerful>("Dismay.") {
+        option<Happy>("Dismay.") {
             npc<Talk>("That doesn't really fit. It needs to be one syllable long.")
             syllableMenu()
         }
-        option<Cheerful>("Tray.") {
+        option<Happy>("Tray.") {
             npc<Talk>("That doesn't really fit. It needs to mean something like 'wandering aimlessly'.")
             wordsMenu()
         }
-        option<Cheerful>("Fey.") {
+        option<Happy>("Fey.") {
             npc<Talk>("That doesn't really fit. It needs to mean something like 'wandering aimlessly'.")
             wordsMenu()
         }
@@ -696,7 +696,7 @@ suspend fun CharacterContext.showGudrun() {
         if (!giveRing()) {
             return
         }
-        npc<Cheerful>("Please try not to lose it again. It's very precious.")
+        npc<Happy>("Please try not to lose it again. It's very precious.")
         return
     }
     npc<Talk>("Please take the ring to Gudrun for me.")
@@ -712,31 +712,31 @@ suspend fun CharacterContext.engravedRing() {
     npc<Neutral>("Is it done? Have you created a work of magnificent beauty?")
     if (!player.ownsItem("dororans_engraved_ring")) {
         player<Sad>("I did engrave it. but I seem to have lost it.")
-        npc<Cheerful>("Is this it? I found it on the ground. You've done a great job on it.")
+        npc<Happy>("Is this it? I found it on the ground. You've done a great job on it.")
         if (!giveRing()) {
             return
         }
-        npc<Cheerful>("Please try not to lose it again! Now, will you do one more thing for me?")
+        npc<Happy>("Please try not to lose it again! Now, will you do one more thing for me?")
         oneMoreThing()
         return
     }
     choice {
         option<Talk>("It's come out perfectly.") {
             item("dororans_engraved_ring", 400, "You show Dororan the engraved ring.")
-            npc<Cheerful>("You're right! It's perfect!")
-            npc<Cheerful>("Will you do one more thing for me?")
+            npc<Happy>("You're right! It's perfect!")
+            npc<Happy>("Will you do one more thing for me?")
             oneMoreThing()
         }
         option<Talk>("How does this look?") {
             item("dororans_engraved_ring", 400, "You show Dororan the engraved ring.")
-            npc<Cheerful>("Brilliant! That's perfect")
-            npc<Cheerful>("Will you do one more thing for me?")
+            npc<Happy>("Brilliant! That's perfect")
+            npc<Happy>("Will you do one more thing for me?")
             oneMoreThing()
         }
         option<Talk>("It's a complete disaster.") {
             item("dororans_engraved_ring", 400, "You show Dororan the engraved ring.")
-            npc<Cheerful>("I don't know what you mean: it's perfect!")
-            npc<Cheerful>("Will you do one more thing for me?")
+            npc<Happy>("I don't know what you mean: it's perfect!")
+            npc<Happy>("Will you do one more thing for me?")
             oneMoreThing()
         }
     }
@@ -781,13 +781,13 @@ suspend fun CharacterContext.unstarted() {
     npc<Upset>("'For never did I...'")
     npc<Upset>("Um...")
     choice {
-        option<Cheerful>("'...ever learn to fly?'") {
+        option<Happy>("'...ever learn to fly?'") {
             poet()
         }
-        option<Cheerful>("'...eat redberry pie?'") {
+        option<Happy>("'...eat redberry pie?'") {
             poet()
         }
-        option<Cheerful>("'...get the evil eye?'") {
+        option<Happy>("'...get the evil eye?'") {
             poet()
         }
     }
@@ -855,7 +855,7 @@ suspend fun CharacterContext.lovePoemMenu() {
 suspend fun CharacterContext.lovePoem() {
     npc<Neutral>("'I await in eagerness for a loop of lustrous grandeur.' No, that just sounds ridiculous. Have you brought me a ring from Jeffery?'")
     if (!player.ownsItem("ring_from_jeffery") && player.quest("gunnars_ground") == "jeffery_ring") {
-        player<Cheerful>("I did get a ring from jeffery, but I seem to have lost it.")
+        player<Happy>("I did get a ring from jeffery, but I seem to have lost it.")
         npc<Surprised>("How careless!")
         npc<Quiz>("Is it this one? I found it on the ground.")
         if (player.inventory.isFull()) {
@@ -870,9 +870,9 @@ suspend fun CharacterContext.lovePoem() {
         return
     }
     if (player.holdsItem("ring_from_jeffery")) {
-        player<Cheerful>("I have one right here.")
+        player<Happy>("I have one right here.")
         item("ring_from_jeffery", 600, "You show Dororan the ring from Jeffery.")
-        npc<Cheerful>("Thank you! That's exactly what I need!")
+        npc<Happy>("Thank you! That's exactly what I need!")
         engrave()
         return
     }
@@ -920,7 +920,7 @@ suspend fun CharacterContext.engrave() {
 
 suspend fun CharacterContext.engraveSomething() {
     npc<Pleased>("I've given this some thought.")
-    npc<Cheerful>("'Gudrun the Fair, Gudrun the Fiery.'")
+    npc<Happy>("'Gudrun the Fair, Gudrun the Fiery.'")
     choice {
         option<Neutral>("How do I engrave that?") {
             npc<Talk>("Just use a chisel on the gold ring.")
@@ -948,7 +948,7 @@ suspend fun CharacterContext.engraveMenu() {
 }
 
 suspend fun CharacterContext.haveChisel() {
-    npc<Cheerful>("Yes, here you go.")
+    npc<Happy>("Yes, here you go.")
     if (player.inventory.isFull()) {
         statement("You don't have room for the chisel. Speak to Dororan again when you have room.")
     } else {
@@ -965,7 +965,7 @@ suspend fun CharacterContext.haveChisel() {
 }
 
 suspend fun CharacterContext.chiselBitClumsy() {
-    npc<Cheerful>("I've seen jewelcrafters use them for all sorts of precise work.")
+    npc<Happy>("I've seen jewelcrafters use them for all sorts of precise work.")
     choice {
         option<Neutral>("Do you have a chisel I can use?") {
             haveChisel()
@@ -975,9 +975,9 @@ suspend fun CharacterContext.chiselBitClumsy() {
 }
 
 suspend fun CharacterContext.poet() {
-    npc<Cheerful>("You're a poet too?")
+    npc<Happy>("You're a poet too?")
     choice {
-        option<Cheerful>("Yes.") {
+        option<Happy>("Yes.") {
             npc<Upset>("Ah! Then I'm sure you can identify with the arduous state of my life.")
             identify()
         }
@@ -1066,7 +1066,7 @@ npcOperate("Talk-to", "dororan_after_quest") {
         return@npcOperate
     }
     if (player["dororan_ruby_bracelet", 0] != 1) {
-        npc<Cheerful>("Come in, my friend, come in! There is another matter I could use your assistance with.")
+        npc<Happy>("Come in, my friend, come in! There is another matter I could use your assistance with.")
     } else if (player["dororan_dragonstone_necklace", 0] != 1) {
         npc<Pleased>("I have another piece of jewellery to engrave.")
     } else if (player["dororan_onyx_amulet", 0] != 1) {
@@ -1083,7 +1083,7 @@ npcOperate("Talk-to", "dororan_after_quest") {
                     choice {
                         option<Neutral>("What's the first piece?") {
                             npc<Pleased>("A magnificent ruby bracelet.")
-                            npc<Cheerful>("'With beauty blessed.'")
+                            npc<Happy>("'With beauty blessed.'")
                             choice {
                                 option("Engrave the bracelet.") {
                                     if (player.levels.get(Skill.Crafting) < 72) {
@@ -1095,7 +1095,7 @@ npcOperate("Talk-to", "dororan_after_quest") {
                                     player.experience.add(Skill.Crafting, 2000.0)
                                     player["dororan_ruby_bracelet"] = 1
                                     items( "chisel","ruby_bracelet","You carefully engrave 'With beauty blessed' onto the ruby bracelet.")
-                                    npc<Cheerful>("Magnificent! Outstanding! I will give this to her immediately. Please, come back when you have time")
+                                    npc<Happy>("Magnificent! Outstanding! I will give this to her immediately. Please, come back when you have time")
                                 }
                                 option("Don't engrave the bracelet.") {
                                     npc<Sad>("That's a shame. Maybe you can try again another time.")
@@ -1113,7 +1113,7 @@ npcOperate("Talk-to", "dororan_after_quest") {
             } else if (player["dororan_dragonstone_necklace", 0] != 1) {
                 option<Neutral>("What's this one?") {
                     npc<Pleased>("A fine dragonstone necklace.")
-                    npc<Cheerful>("There's not much room...how about just 'Gudrun'?")
+                    npc<Happy>("There's not much room...how about just 'Gudrun'?")
                     choice {
                         option("Engrave the necklace.") {
                             if (player.levels.get(Skill.Crafting) < 42) {
@@ -1125,7 +1125,7 @@ npcOperate("Talk-to", "dororan_after_quest") {
                             player.experience.add(Skill.Crafting, 10000.0)
                             player["dororan_dragonstone_necklace"] = 1
                             items( "chisel","dragonstone_necklace","You skillfully engrave 'Gudrun' onto the dragonstone necklace.")
-                            npc<Cheerful>("Another astonishing piece of work! Please, come back later to see if I have other crafting tasks.")
+                            npc<Happy>("Another astonishing piece of work! Please, come back later to see if I have other crafting tasks.")
                         }
                         option("Don't engrave the necklace.") {
                             npc<Sad>("That's a shame. Maybe you can try again another time.")
@@ -1135,7 +1135,7 @@ npcOperate("Talk-to", "dororan_after_quest") {
             } else if (player["dororan_onyx_amulet", 0] != 1) {
                 option<Neutral>("What is it?") {
                     npc<Pleased>("An onyx amulet!")
-                    npc<Cheerful>("'The most beautiful girl in the room.'")
+                    npc<Happy>("'The most beautiful girl in the room.'")
                     choice {
                         option("Engrave the amulet.") {
                             if (player.levels.get(Skill.Crafting) < 90) {
@@ -1147,7 +1147,7 @@ npcOperate("Talk-to", "dororan_after_quest") {
                             player.experience.add(Skill.Crafting, 20000.0)
                             player["dororan_onyx_amulet"] = 1
                             items( "chisel","onyx_amulet","You expertly engrave 'The most beautiful girl in the room' onto the onyx amulet.")
-                            npc<Cheerful>("That's fantastic! Excellent work.")
+                            npc<Happy>("That's fantastic! Excellent work.")
                         }
                         option("Don't engrave the amulet.") {
                             npc<Sad>("That's a shame. Maybe you can try again another time.")
@@ -1189,7 +1189,7 @@ suspend fun CharacterContext.someThingElse() {
         }
         if (!player.ownsItem("swanky_boots")) {
             option<Surprised>("I seem to have mislaid my swanky boots.") {
-                npc<Cheerful>("Not to worry! There are some left. Here you go.")
+                npc<Happy>("Not to worry! There are some left. Here you go.")
                 if (player.inventory.isFull()) {
                     statement("you don't have room for the boots.")
                     return@option
@@ -1197,11 +1197,11 @@ suspend fun CharacterContext.someThingElse() {
                 player.setAnimation("pocket_item")
                 player.inventory.add("swanky_boots")
                 item("swanky_boots", 600, "Dororan gives you some more boots.")
-                npc<Cheerful>("Be more careful with these ones! I don't have an infinite supply.")
+                npc<Happy>("Be more careful with these ones! I don't have an infinite supply.")
             }
         }
         option<Neutral>("Goodbye.") {
-            npc<Cheerful>("Goodbye!")
+            npc<Happy>("Goodbye!")
         }
     }
 }
@@ -1224,7 +1224,7 @@ suspend fun CharacterContext.elseGoodbye() {
             someThingElse()
         }
         option<Neutral>("Goodbye.") {
-            npc<Cheerful>("Goodbye!")
+            npc<Happy>("Goodbye!")
         }
     }
 }

@@ -51,12 +51,12 @@ npcOperate("Talk-to", "makeover_mage*") {
 }
 
 suspend fun PlayerChoice.more(): Unit = option<Quiz>("Tell me more about this 'makeover'.") {
-    npc<Cheerful>("Why, of course! Basically, and I will explain this so that you understand it correctly,")
-    npc<Cheerful>("I use my secret magical technique to melt your body down into a puddle of its elements.")
-    npc<Cheerful>("When I have broken down all components of your body, I then rebuild it into the form I am thinking of.")
+    npc<Happy>("Why, of course! Basically, and I will explain this so that you understand it correctly,")
+    npc<Happy>("I use my secret magical technique to melt your body down into a puddle of its elements.")
+    npc<Happy>("When I have broken down all components of your body, I then rebuild it into the form I am thinking of.")
     npc<Uncertain>("Or, you know, something vaguely close enough, anyway.")
     player<Quiz>("Uh... that doesn't sound particularly safe to me.")
-    npc<Cheerful>("It's as safe as houses! Why, I have only had thirty-six major accidents this month!")
+    npc<Happy>("It's as safe as houses! Why, I have only had thirty-six major accidents this month!")
     whatDoYouSay()
 }
 
@@ -69,7 +69,7 @@ suspend fun CharacterContext.whatDoYouSay() {
 }
 
 suspend fun PlayerChoice.start(): Unit = option<Talk>("Sure, do it.") {
-    npc<Cheerful>("You, of course, agree that if by some accident you are turned into a frog you have no rights for compensation or refund.")
+    npc<Happy>("You, of course, agree that if by some accident you are turned into a frog you have no rights for compensation or refund.")
     openDressingRoom("skin_colour")
 }
 
@@ -86,7 +86,7 @@ suspend fun PlayerChoice.amulet(): Unit = option<Pleased>("Cool amulet! Can I ha
         return@option
     }
     choice {
-        option<Cheerful>("Sure, here you go.") {
+        option<Happy>("Sure, here you go.") {
             player.inventory.transaction {
                 remove("coins", cost)
                 add("yin_yang_amulet")
@@ -118,7 +118,7 @@ suspend fun CharacterContext.explain() {
 }
 
 suspend fun PlayerChoice.colour(): Unit = option<Pleased>("Can you make me a different colour?") {
-    npc<Cheerful>("Why, of course! I have a wide array of colours for you to choose from.")
+    npc<Happy>("Why, of course! I have a wide array of colours for you to choose from.")
     whatDoYouSay()
 }
 
@@ -167,17 +167,17 @@ interfaceOption(component = "confirm", id = "skin_colour") {
     }
     when (random.nextInt(0, 4)) {
         0 -> {
-            npc<Cheerful>("Two arms, two legs, one head; it seems that spell finally worked okay.")
+            npc<Happy>("Two arms, two legs, one head; it seems that spell finally worked okay.")
         }
         1 -> {
             npc<Amazed>("Whew! That was lucky.")
             player<Talk>("What was?")
-            npc<Cheerful>("Nothing! It's all fine! You seem alive anyway.")
+            npc<Happy>("Nothing! It's all fine! You seem alive anyway.")
         }
         2 -> {
             npc<Quiz>("Hmm, you didn't feel any unexpected growths on your head just then, did you?")
             player<Quiz>("Er, no?")
-            npc<Cheerful>("Good, good! I was worried for a second there.")
+            npc<Happy>("Good, good! I was worried for a second there.")
         }
         3 -> {
             npc<Amazed>("Woah!")

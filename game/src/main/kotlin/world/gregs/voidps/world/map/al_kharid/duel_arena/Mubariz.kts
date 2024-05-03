@@ -9,7 +9,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 npcOperate("Talk-to", "mubariz") {
-    npc<Cheerful>("""
+    npc<Happy>("""
         Welcome to the Duel Arena!
         What can I do for you?
     """)

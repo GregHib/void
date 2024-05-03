@@ -44,7 +44,7 @@ suspend fun CharacterContext.started() {
 
 suspend fun CharacterContext.askAboutPicture() {
     npc<Quiz>("So how are you doing getting a sword?")
-    player<Cheerful>("I've found an Imcando dwarf but he needs a picture of the sword before he can make it.")
+    player<Happy>("I've found an Imcando dwarf but he needs a picture of the sword before he can make it.")
     npc<Uncertain>("A picture eh? Hmmm.... The only one I can think of is in a small portrait of Sir Vyvin's father... Sir Vyvin keeps it in a cupboard in his room I think.")
     player["the_knights_sword"] = "cupboard"
     player<Neutral>("Ok, I'll try and get that then.")
@@ -54,7 +54,7 @@ suspend fun CharacterContext.askAboutPicture() {
 suspend fun CharacterContext.checkPicture() {
     npc<Quiz>("So how are you doing getting a sword?")
     if (player.holdsItem("portrait")) {
-        player<Cheerful>("I have the picture. I'll just take it to the dwarf now!")
+        player<Happy>("I have the picture. I'll just take it to the dwarf now!")
         npc<Uncertain>("Please hurry!")
         return
     }
@@ -64,13 +64,13 @@ suspend fun CharacterContext.checkPicture() {
 
 suspend fun CharacterContext.bluriteSword() {
     if (player.equipment.contains("blurite_sword")) {
-        player<Cheerful>("I have retrieved your sword for you.")
+        player<Happy>("I have retrieved your sword for you.")
         npc<Uncertain>("So can you un-equip it and hand it over to me now please?")
         return
     }
     if (player.holdsItem("blurite_sword")) {
-        player<Cheerful>("I have retrieved your sword for you.")
-        npc<Cheerful>("Thank you, thank you, thank you! I was seriously worried I would have to own up to Sir Vyvin!")
+        player<Happy>("I have retrieved your sword for you.")
+        npc<Happy>("Thank you, thank you, thank you! I was seriously worried I would have to own up to Sir Vyvin!")
         statement("You give the sword to the squire.")
         player.inventory.remove("blurite_sword")
         questComplete()
@@ -78,14 +78,14 @@ suspend fun CharacterContext.bluriteSword() {
     }
     if (player.ownsItem("blurite_sword")) {
         player<Neutral>("I got a replacement sword made.")
-        npc<Cheerful>("Thank you! Can I have it?")
+        npc<Happy>("Thank you! Can I have it?")
         player<Neutral>("I've got it stored safely.")
         npc<Frustrated>("Well could you go and get it for me then please? Quickly?")
         player<Neutral>("Yeah, okay.")
         return
     }
     npc<Quiz>("So how are you doing getting a sword?")
-    player<Cheerful>("I've found a dwarf who will make the sword. I've just got to find the materials for it now!")
+    player<Happy>("I've found a dwarf who will make the sword. I've just got to find the materials for it now!")
     npc<Uncertain>("Please hurry!")
 }
 
@@ -174,7 +174,7 @@ suspend fun CharacterContext.startQuest() {
         option("Yes.") {
             player["the_knights_sword"] = "started"
             player<Neutral>("Ok, I'll give it a go.")
-            npc<Cheerful>("Thank you very much! As I say, the best place to start should be with Reldo...")
+            npc<Happy>("Thank you very much! As I say, the best place to start should be with Reldo...")
         }
         option("No.") {
             npc<Sad>("Oh man... I'm in such trouble...")
@@ -183,8 +183,8 @@ suspend fun CharacterContext.startQuest() {
 }
 
 suspend fun CharacterContext.completed() {
-    npc<Cheerful>("Hello friend! Many thanks for all of your help! Vyvin never even realised it was a different sword, and I still have my job!")
-    player<Cheerful>("I'm glad the new sword worked out alright.")
+    npc<Happy>("Hello friend! Many thanks for all of your help! Vyvin never even realised it was a different sword, and I still have my job!")
+    player<Happy>("I'm glad the new sword worked out alright.")
 }
 
 fun CharacterContext.questComplete() {

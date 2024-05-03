@@ -59,14 +59,14 @@ suspend fun CharacterContext.canoeing() {
             npc<Neutral>("They are reliable enough to get you anywhere on this river, except to the Wilderness of course.")
             npc<Neutral>("Only a Waka can take you there.")
             player<Quiz>("A Waka? What's that?")
-            npc<Cheerful>("Come and ask me when you have improved your skills as a woodcutter.")
+            npc<Happy>("Come and ask me when you have improved your skills as a woodcutter.")
         }
         else -> {
-            npc<Cheerful>("Your skills rival mine friend. You will certainly be able to build a Waka.")
+            npc<Happy>("Your skills rival mine friend. You will certainly be able to build a Waka.")
             player<Quiz>("A Waka? What's that?")
-            npc<Cheerful>("A Waka is an invention of my people, it's an incredible strong and fast canoe and will carry you safely to any destination on the river.")
+            npc<Happy>("A Waka is an invention of my people, it's an incredible strong and fast canoe and will carry you safely to any destination on the river.")
             player<Quiz>("Any destination?")
-            npc<Cheerful>("Yes, you can take a waka north through the underground portion of this river.")
+            npc<Happy>("Yes, you can take a waka north through the underground portion of this river.")
             npc<Sad>("It will bring you out at a pond in the heart of the Wilderness. Be careful up there, many have lost more than their lives in that dark and twisted place.")
         }
     }

@@ -68,7 +68,7 @@ suspend fun PlayerChoice.arisWantsToTalk(): Unit = option(
             findSilverlight()
         }
         option("Yes, she is still alive.") {
-            player<Cheerful>("Yes she is still alive. She lives right outside the castle!")
+            player<Happy>("Yes she is still alive. She lives right outside the castle!")
             npc<Talk>("Oh, is that the same Aris? I would have thought she would have died by now. She was pretty old when I was a lad.")
             npc<Talk>("Anyway, what can I do for you?")
             findSilverlight()

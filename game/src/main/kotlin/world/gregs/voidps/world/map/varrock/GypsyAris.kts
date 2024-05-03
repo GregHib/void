@@ -63,7 +63,7 @@ npcOperate("Talk-to", "gypsy_aris") {
         "sir_prysin", "key_hunt" -> howGoesQuest()
         "completed" -> {
             npc<Neutral>("Greetings young one.")
-            npc<Cheerful>("You're a hero now. That was a good bit of demon-slaying.")
+            npc<Happy>("You're a hero now. That was a good bit of demon-slaying.")
             choice {
                 option<Uncertain>("How do you know I killed it?") {
                     npc<Talk>("You forget. I'm good at knowing things.")
@@ -137,13 +137,13 @@ suspend fun PlayerChoice.cityDestroyer(end: suspend CharacterContext.() -> Unit)
     end.invoke(this)
 }
 
-suspend fun PlayerChoice.whereIsHe(): Unit = option<Cheerful>("Okay, where is he? I'll kill him for you.") {
+suspend fun PlayerChoice.whereIsHe(): Unit = option<Happy>("Okay, where is he? I'll kill him for you.") {
     npc<Chuckle>("Ah, the overconfidence of the young!")
     npc<Talk>("Delrith can't be harmed by ordinary weapons. You must face him using the same weapon that Wally used.")
     howToDo()
 }
 
-suspend fun PlayerChoice.notVeryHeroicName(): Unit = option<Cheerful>("Wally doesn't sound like a very heroic name.") {
+suspend fun PlayerChoice.notVeryHeroicName(): Unit = option<Happy>("Wally doesn't sound like a very heroic name.") {
     npc<Talk>("Yes, I know. Maybe that is why history doesn't remember him. However, he was a great hero.")
     npc<Talk>("Who knows how much pain and suffering Delrith would have brought forth without Wally to stop him!")
     npc<Talk>("It looks like you are needed to perform similar heroics.")
@@ -175,7 +175,7 @@ npcTimerTick("demon_slayer_crystal_ball") { npc ->
 
 suspend fun ChoiceBuilder<NPCOption>.hereYouGo(): Unit = option<Talk>("Okay, here you go.") {
     player.inventory.remove("coins", 1)
-    npc<Cheerful>("Come closer and listen carefully to what the future holds, as I peer into the swirling mists o the crystal ball.")
+    npc<Happy>("Come closer and listen carefully to what the future holds, as I peer into the swirling mists o the crystal ball.")
     player.playSound("demon_slayer_crystal_ball_start")
     target.softTimers.start("demon_slayer_crystal_ball")
     npc<Talk>("I can see images forming. I can see you.")
@@ -332,7 +332,7 @@ suspend fun CharacterContext.whereSilverlight() {
 }
 
 suspend fun NPCOption.howGoesQuest() {
-    npc<Cheerful>("Greetings. How goes thy quest?")
+    npc<Happy>("Greetings. How goes thy quest?")
     player<Talk>("I'm still working on it.")
     npc<Talk>("Well if you need any advice I'm always here, young one.")
     choice {
@@ -346,7 +346,7 @@ suspend fun NPCOption.howGoesQuest() {
 }
 
 suspend fun PlayerChoice.okThanks(): Unit = option<Talk>("Ok thanks. I'll do my best to stop the demon.") {
-    npc<Cheerful>("Good luck, and may Guthix be with you!")
+    npc<Happy>("Good luck, and may Guthix be with you!")
 }
 
 suspend fun PlayerChoice.silverlightReminder(): Unit = option("Where can I find Silverlight?") {
@@ -372,8 +372,8 @@ suspend fun PlayerChoice.stopCallingMeThat(): Unit = option<Angry>("Stop calling
             npc<Talk>("Count the number of legs on the stools in the Blue Moon inn, and multiply that number by seven.")
             player<Talk>("Er, yeah, whatever.")
         }
-        option<Cheerful>("Oh if it's in the scheme of things that's ok.") {
-            npc<Cheerful>("You show wisdom for one so young.")
+        option<Happy>("Oh if it's in the scheme of things that's ok.") {
+            npc<Happy>("You show wisdom for one so young.")
         }
     }
 }

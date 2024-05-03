@@ -25,7 +25,7 @@ suspend fun CharacterContext.started() {
         option<Quiz>("What did you want me to do again?") {
             if (player.ownsItem("air_talisman")) {
                 npc<Neutral>("Take that talisman I gave you to Sedridor at the Wizards' Tower. You'll find it south west of here, across the bridge from Draynor Village.")
-                player<Cheerful>("Okay, will do.")
+                player<Happy>("Okay, will do.")
                 return@option
             }
             npc<Quiz>("Did you take that talisman to Sedridor?")
@@ -73,7 +73,7 @@ suspend fun PlayerChoice.findMoney() : Unit = option<Quiz>("Where can I find mon
 
 suspend fun CharacterContext.startQuest() {
     choice("Start the Rune Mysteries quest?") {
-        option<Cheerful>("Sure, no problem.") {
+        option<Happy>("Sure, no problem.") {
             if (player.inventory.isFull()) {
                 item("air_talisman", 600, "The Duke tries to hand you the talisman, but you don't have enough room to take it.")
                 return@option

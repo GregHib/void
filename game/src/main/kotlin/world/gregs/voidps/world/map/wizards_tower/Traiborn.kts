@@ -121,7 +121,7 @@ suspend fun CharacterContext.betterBeOffChoice() {
 }
 
 suspend fun PlayerChoice.kingsKnight(): Unit = option<Talk>("He's one of the King's knights.") {
-    npc<Cheerful>("Say, I remember one of the King's knights. He had nice shoes...")
+    npc<Happy>("Say, I remember one of the King's knights. He had nice shoes...")
     npc<Upset>("...and didn't like my homemade spinach rolls. Would you like a spinach roll?")
     choice {
         option<Neutral>("Yes please.") {

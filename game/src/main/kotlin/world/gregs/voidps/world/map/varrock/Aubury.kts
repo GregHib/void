@@ -20,7 +20,7 @@ npcOperate("Talk-to", "aubury") {
         checkNotes()
         return@npcOperate
     }
-    npc<Cheerful>("Do you want to buy some runes?")
+    npc<Happy>("Do you want to buy some runes?")
     choice {
         skillcapes()
         openShop()
@@ -29,7 +29,7 @@ npcOperate("Talk-to", "aubury") {
             "Anything useful in that package I gave you?",
             { player.quest("rune_mysteries") == "package_delivered" }
         ) {
-            npc<Cheerful>("Well, let's have a look...")
+            npc<Happy>("Well, let's have a look...")
             researchPackage()
         }
         noThanks()
@@ -44,12 +44,12 @@ npcOperate("Teleport", "aubury") {
     player.message("You step through the portal...")
 }
 
-fun PlayerChoice.openShop(): Unit = option<Cheerful>("Yes please!") {
+fun PlayerChoice.openShop(): Unit = option<Happy>("Yes please!") {
     player.emit(OpenShop("auburys_rune_shop"))
 }
 
 suspend fun PlayerChoice.noThanks(message: String = "Oh, it's a rune shop. No thank you, then."): Unit = option<Neutral>(message) {
-    npc<Cheerful>("Well, if you find someone who does want runes, please send them my way.")
+    npc<Happy>("Well, if you find someone who does want runes, please send them my way.")
 }
 
 fun PlayerChoice.teleport(): Unit = option(
@@ -70,7 +70,7 @@ suspend fun PlayerChoice.packageForYou(): Unit = option<Neutral>(
         player["rune_mysteries"] = "package_delivered"
         player.inventory.remove("research_package_rune_mysteries")
         item("research_package_rune_mysteries", 600, "You hand the package to Aubury.")
-        npc<Cheerful>("Now, let's have a look...")
+        npc<Happy>("Now, let's have a look...")
         researchPackage()
     } else {
         player<Uncertain>("Uh... yeah... about that... I kind of don't have it with me...")
@@ -82,9 +82,9 @@ suspend fun PlayerChoice.packageForYou(): Unit = option<Neutral>(
 suspend fun CharacterContext.researchPackage() {
     item("research_package_rune_mysteries", 600, "Aubury goes through the package of research notes.")
     npc<Surprised>("This... this is incredible.")
-    npc<Cheerful>("My gratitude to you adventurer for bringing me these research notes. Thanks to you, I think we finally have it.")
+    npc<Happy>("My gratitude to you adventurer for bringing me these research notes. Thanks to you, I think we finally have it.")
     player<Quiz>("You mean the incantation?")
-    npc<Cheerful>("Well when we combine my own research with this latest discovery, I think we might just...")
+    npc<Happy>("Well when we combine my own research with this latest discovery, I think we might just...")
     npc<Neutral>("No, no, I'm getting ahead of myself. The signs are promising, but let's not jump to any conclusions just yet.")
     npc<Quiz>("Here, take these notes back to Sedridor. They should hopefully give him everything he needs.")
     if (player.inventory.isFull()) {
@@ -122,10 +122,10 @@ suspend fun CharacterContext.checkNotes() {
 }
 
 suspend fun PlayerChoice.skillcapes(): Unit = option("Can you tell me about your cape?") {
-    npc<Cheerful>("Certainly! Skillcapes are a symbol of achievement. Only people who have mastered a skill and reached level 99 can get their hands on them and gain the benefits they carry.")
+    npc<Happy>("Certainly! Skillcapes are a symbol of achievement. Only people who have mastered a skill and reached level 99 can get their hands on them and gain the benefits they carry.")
     npc<Neutral>("The Cape of Runecrafting has been upgraded with each talisman, allowing you to access all Runecrafting altars. Is there anything else I can help you with?")
     choice {
-        option<Cheerful>("I'd like to view your store please.") {
+        option<Happy>("I'd like to view your store please.") {
             player.emit(OpenShop("runecrafting_skillcape"))
         }
         noThanks("No thank you.")

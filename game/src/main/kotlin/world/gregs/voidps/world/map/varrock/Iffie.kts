@@ -8,11 +8,11 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
 npcOperate("Talk-to", "iffie") {
-    npc<Cheerful>("Hello, dearie! Were you wanting to collect a random event costume, or is there something else I can do for you today?")
+    npc<Happy>("Hello, dearie! Were you wanting to collect a random event costume, or is there something else I can do for you today?")
     choice {
         option("I've come for a random event costume.") {
-            npc<Cheerful>("Some of these costumes even come with a free emote!")
-            npc<Cheerful>("Just buy one piece of the mine of zombie costumes and I'll show you the relevant moves.")
+            npc<Happy>("Some of these costumes even come with a free emote!")
+            npc<Happy>("Just buy one piece of the mine of zombie costumes and I'll show you the relevant moves.")
             player.openShop("iffies_random_costume_shop")
         }
         option<Quiz>("Aren't you selling anything?") {

@@ -265,7 +265,7 @@ object DialogueConverter {
         return when (animation) {
             554, 555, 556, 557 -> "Quiz"
             562, 563, 564, 565 -> "RollEyes"
-            567, 568, 569, 570 -> "Cheerful"
+            567, 568, 569, 570 -> "Happy"
             571, 572, 573, 574 -> "Surprised"
             575, 576, 577, 578 -> "Uncertain"
             588, 589, 590, 591 -> "Talk"

@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.interact.dialogue.Cheerful
+import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Neutral
 import world.gregs.voidps.world.interact.dialogue.Shifty
 import world.gregs.voidps.world.interact.dialogue.type.item
@@ -60,7 +60,7 @@ itemOnObjectOperate("*of_water", "varrock_palace_drain") {
     player.playSound("demon_slayer_key_fall")
     player.weakQueue("demon_slayer_dislodge_key") {
         if (player.quest("demon_slayer") == "key_hunt") {
-            player<Cheerful>("OK, I think I've washed the key down into the sewer. I'd better go down and get it!")
+            player<Happy>("OK, I think I've washed the key down into the sewer. I'd better go down and get it!")
         } else {
             player<Shifty>("I think that dislodged something from the drain. It's probably gone down to the sewers below.")
         }

@@ -14,7 +14,7 @@ npcOperate("Talk-to", "zeke") {
     npc<Talk>("A thousand greetings, ${if (player.male) "sir" else "madam"}.")
     choice {
         option("Do you want to trade?") {
-            npc<Cheerful>("Yes, certainly. I deal in scimitars.")
+            npc<Happy>("Yes, certainly. I deal in scimitars.")
             player.openShop("zekes_superior_scimitars")
         }
         option<Quiz>("Nice cloak.") {

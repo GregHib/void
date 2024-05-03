@@ -7,12 +7,12 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 npcOperate("Talk-to", "afrah", "dalal", "jadid", "jeed", "ima", "sabeil") {
-    player<Cheerful>("Hi!")
+    player<Happy>("Hi!")
     when (random.nextInt(0, 14)) {
         0 -> {
-            npc<Cheerful>("Knock knock!")
+            npc<Happy>("Knock knock!")
             player<Neutral>("Who's there?")
-            npc<Cheerful>("Boo.")
+            npc<Happy>("Boo.")
             player<Uncertain>("Boo who?")
             npc<Chuckle>("Don't cry, it's just me!")
         }
@@ -22,19 +22,19 @@ npcOperate("Talk-to", "afrah", "dalal", "jadid", "jeed", "ima", "sabeil") {
         }
         2 -> npc<Sad>("Hmph.")
         3 -> {
-            npc<Cheerful>("My son just won his first duel!")
-            player<Cheerful>("Congratulations!")
-            npc<Cheerful>("He ripped his opponent in half!")
+            npc<Happy>("My son just won his first duel!")
+            player<Happy>("Congratulations!")
+            npc<Happy>("He ripped his opponent in half!")
             player<Surprised>("That's gotta hurt!")
-            npc<Cheerful>("He's only 10 as well!")
-            player<Cheerful>("You gotta start 'em young!")
+            npc<Happy>("He's only 10 as well!")
+            player<Happy>("You gotta start 'em young!")
         }
         4 -> {
-            npc<Cheerful>("Hi! I'm here to watch the duels!")
-            player<Cheerful>("Me too!")
+            npc<Happy>("Hi! I'm here to watch the duels!")
+            player<Happy>("Me too!")
         }
         5 -> {
-            npc<Cheerful>("Why did the skeleton burp?")
+            npc<Happy>("Why did the skeleton burp?")
             player<Uncertain>("I don't know?")
             npc<Chuckle>("'Cause it didn't have the guts to fart!")
         }
@@ -44,26 +44,26 @@ npcOperate("Talk-to", "afrah", "dalal", "jadid", "jeed", "ima", "sabeil") {
             npc<Neutral>("Yeah. The guy at the information kiosk was telling me.")
         }
         7 -> {
-            npc<Cheerful>("What did the skeleton say before it ate?")
+            npc<Happy>("What did the skeleton say before it ate?")
             player<Uncertain>("I don't know?")
             npc<Chuckle>("Bone-appetit.")
         }
         8 -> {
-            npc<Cheerful>("Ooh. This is exciting!")
-            player<Cheerful>("Yup!")
+            npc<Happy>("Ooh. This is exciting!")
+            player<Happy>("Yup!")
         }
-        9 -> npc<Cheerful>("Well. This beats doing the shopping!")
+        9 -> npc<Happy>("Well. This beats doing the shopping!")
         10 -> {
             npc<Frustrated>("Can't you see I'm watching the duels?")
             player<Surprised>("I'm sorry!")
         }
-        11 -> npc<Cheerful>("Hi!")
+        11 -> npc<Happy>("Hi!")
         12 -> {
-            npc<Cheerful>("My favourite fighter is Mubariz!")
+            npc<Happy>("My favourite fighter is Mubariz!")
             player<Uncertain>("The guy at the information kiosk?")
-            npc<Cheerful>("Yeah! He rocks!")
+            npc<Happy>("Yeah! He rocks!")
             player<RollEyes>("Takes all sorts, I guess.")
         }
-        13 -> npc<Cheerful>("Waaaaassssssuuuuupp?!")
+        13 -> npc<Happy>("Waaaaassssssuuuuupp?!")
     }
 }

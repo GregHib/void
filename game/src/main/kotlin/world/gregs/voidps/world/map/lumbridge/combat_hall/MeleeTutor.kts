@@ -52,9 +52,9 @@ suspend fun PlayerChoice.meleeCombat(): Unit = option<Quiz>("Tell me about melee
     choice {
         option("What if I wanted to fight something a bit more... human.") {
             player<Neutral>("What if I wanted to fight something a bit more... human.")
-            npc<Cheerful>("Well adventurer, there are a few places you might be able to do this.")
+            npc<Happy>("Well adventurer, there are a few places you might be able to do this.")
             npc<Neutral>("You could try your luck at castle wars. Here, two teams fight each other to defend their respective flags. To win the game you will need to get the other team's flag and return it to your flag stand.")
-            player<Cheerful>("Capture the flag, sounds like a lot of fun.")
+            player<Happy>("Capture the flag, sounds like a lot of fun.")
             npc<Neutral>("If you are in a clan, you should gather some clan members and try out clan wars. There you can see which clan is better than the other by fighting each other in an arena.")
             npc<Neutral>("Both activities are safe minigame, which means if you die you will not loose any of your items. You can get to them by using the teleport option in your minigames tab.")
             npc<Shifty>("There is also the wilderness. The wilderness is north of Varrock and you can fight other players there. But bare in mind if you die to another player in the wilderness you will lose your stuff.")
@@ -72,8 +72,8 @@ suspend fun PlayerChoice.meleeCombat(): Unit = option<Quiz>("Tell me about melee
 }
 
 suspend fun PlayerChoice.weaponTypes(): Unit = option<Neutral>("Tell me about different weapon types I can use.") {
-    npc<Cheerful>("Well let me see now...There are stabbing type weapons such as daggers, then you have swords which are slashing, maces that have great crushing abilities, battle axes which are powerful.")
-    npc<Cheerful>("There are also spears. Spears can be good for Defence and many forms of Attack.")
+    npc<Happy>("Well let me see now...There are stabbing type weapons such as daggers, then you have swords which are slashing, maces that have great crushing abilities, battle axes which are powerful.")
+    npc<Happy>("There are also spears. Spears can be good for Defence and many forms of Attack.")
     npc<Neutral>("It depends a lot on how you want to fight. Experiment and find out what is best for you. Never be scared to try out a new weapon; you never know, you might like it!")
     npc<Neutral>("While I tried all of them for a while, I settled on this rather good sword.")
     npc<Neutral>("You might also find that different weapon types are more accurate against different monsters.")
@@ -117,7 +117,7 @@ suspend fun CharacterContext.buySkillcape() {
             npc<Neutral>("Not at all; there are many other adventurers who would love the opportunity to purchase such a prestigious item! You can find me here if you change your mind.")
         }
         option("I think I have the money right here, actually.") {
-            player<Cheerful>("I think I have the money right here, actually.")
+            player<Happy>("I think I have the money right here, actually.")
             player.inventory.transaction {
                 remove("coins", 99000)
                 add("defence_hood")
@@ -125,7 +125,7 @@ suspend fun CharacterContext.buySkillcape() {
                 add("defence_skillcape${if (trimmed) "_t" else ""}")
             }
             when (player.inventory.transaction.error) {
-                TransactionError.None -> npc<Cheerful>("Excellent! Wear that cape with pride my friend.")
+                TransactionError.None -> npc<Happy>("Excellent! Wear that cape with pride my friend.")
                 is TransactionError.Deficient -> {
                     player<Upset>("But, unfortunately, I was mistaken.")
                     npc<Neutral>("Well, come back and see me when you do.")

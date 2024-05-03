@@ -7,12 +7,12 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 npcOperate("Talk-to", "hamid") {
-    player<Cheerful>("Hi!")
+    player<Happy>("Hi!")
     npc<Neutral>("Hello traveller. How can I be of assistance?")
     choice {
         option<Uncertain>("Can you heal me?") {
             npc<Neutral>("You'd be better off speaking to one of the nurses.")
-            npc<Cheerful>("They are so... nice... afterall!")
+            npc<Happy>("They are so... nice... afterall!")
         }
         option<Uncertain>("What's a Monk doing in a place such as this?") {
             npc<Shifty>("Well don't tell anyone but I came here because of the nurses!")

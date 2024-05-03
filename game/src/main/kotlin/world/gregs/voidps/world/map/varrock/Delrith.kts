@@ -157,7 +157,7 @@ suspend fun CharacterContext.cutscene() {
     player.moveCamera(Tile(3224, 3376).add(offset), 475, 232, 232)
     player.turnCamera(Tile(3227, 3369).add(offset), 300, 232, 232)
     player.moveCamera(Tile(3231, 3376).add(offset), 475, 1, 1)
-    npc<Cheerful>("denath", "Arise, O mighty Delrith! Bring destruction to this soft, weak city!")
+    npc<Happy>("denath", "Arise, O mighty Delrith! Bring destruction to this soft, weak city!")
     for (wizard in wizards) {
         wizard.forceChat = "Arise, Delrith!"
     }

@@ -23,18 +23,18 @@ npcOperate("Talk-to", "ghostly_piper") {
 suspend fun CharacterContext.choice() {
     choice {
         option<Quiz>("Who are you?") {
-            npc<Cheerful>("I play the pipes, to rouse the brave warriors of Saradomin for the fight!")
+            npc<Happy>("I play the pipes, to rouse the brave warriors of Saradomin for the fight!")
             player<Quiz>("Which fight?")
-            npc<Cheerful>("Why, the great battles with the forces of Zamorak, of course!")
+            npc<Happy>("Why, the great battles with the forces of Zamorak, of course!")
             player<Quiz>("I see. How long have you been standing here then?")
-            npc<Cheerful>("Well, it is all a bit fuzzy. I remember standing at the front of the massed forces of Saradomin, and playing the Call to Arms, but after that I can't quite recall.")
+            npc<Happy>("Well, it is all a bit fuzzy. I remember standing at the front of the massed forces of Saradomin, and playing the Call to Arms, but after that I can't quite recall.")
 
             player<Talk>("I think you've been here for quite some time. You do know you're a gh-")
             player<Neutral>("No, never mind, you look happy enough here, and your music is quite rousing. I might rest here a while.")
             choice()
         }
         option<Quiz>("That's all for now") {
-            npc<Cheerful>("Be strong and fight the good fight, my friend!")
+            npc<Happy>("Be strong and fight the good fight, my friend!")
         }
     }
 }

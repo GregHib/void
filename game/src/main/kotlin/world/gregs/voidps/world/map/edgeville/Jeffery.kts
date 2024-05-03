@@ -55,32 +55,32 @@ npcOperate("Talk-to", "jeffery") {
             if (!player.ownsItem("varrock_armour_4") && !player.ownsItem("varrock_armour_3") && !player.ownsItem("varrock_armour_2") && !player.ownsItem("varrock_armour_1")) {
                 npc<Talk>("You want to use my furnace? I only let exceptional people use my furnace. You don't look exceptional to me.")
                 player<Quiz>("How do I become exceptional?")
-                npc<Cheerful>("Exceptional people have earned exceptional items; earning Varrock armour would impress me.")
+                npc<Happy>("Exceptional people have earned exceptional items; earning Varrock armour would impress me.")
                 player<Pleased>("Alright!")
                 return@option
             }
-            npc<Cheerful>("You seem exceptional enough. Go ahead.")
+            npc<Happy>("You seem exceptional enough. Go ahead.")
             player<Quiz>("What can I make here, exactly?")
-            npc<Cheerful>("Well, depending on your skill as a blacksmith, you can use this furnace to smelt ore into metal bars.")
-            player<Cheerful>("Oh, I see. What's so special about this furnace, then?")
-            npc<Cheerful>("If you smelt at this furnace while wearing your Varrock armour the enchantment on the armour will give you a small chance of smelting two bars instead of one.")
+            npc<Happy>("Well, depending on your skill as a blacksmith, you can use this furnace to smelt ore into metal bars.")
+            player<Happy>("Oh, I see. What's so special about this furnace, then?")
+            npc<Happy>("If you smelt at this furnace while wearing your Varrock armour the enchantment on the armour will give you a small chance of smelting two bars instead of one.")
             player<Quiz>("I see. So, which metal will I be able to obtain more of when smelting with the armour I'm wearing?")
             if (player.equipment.contains("varrock_armour_4")) {
                 npc<Talk>("While wearing the Varrock armour, you will have a chance of smelting an extra bar of any metal up to, and including, rune.")
-                player<Cheerful>("Oh, that's useful. That should save me a fair bit of time. Thanks very much.")
-                npc<Cheerful>("Stay exceptional!")
+                player<Happy>("Oh, that's useful. That should save me a fair bit of time. Thanks very much.")
+                npc<Happy>("Stay exceptional!")
             } else if (player.equipment.contains("varrock_armour_3")) {
                 npc<Talk>("While wearing the Varrock armour, you will have a chance of smelting an extra bar of any metal up to, and including, adamant.")
-                player<Cheerful>("Oh, that's useful. That should save me a fair bit of time. Thanks very much.")
-                npc<Cheerful>("Stay exceptional!")
+                player<Happy>("Oh, that's useful. That should save me a fair bit of time. Thanks very much.")
+                npc<Happy>("Stay exceptional!")
             } else if (player.equipment.contains("varrock_armour_2")) {
                 npc<Talk>("While wearing the Varrock armour, you will have a chance of smelting an extra bar of any metal up to, and including, mithril.")
-                player<Cheerful>("Oh, that's useful. That should save me a fair bit of time. Thanks very much.")
-                npc<Cheerful>("Stay exceptional!")
+                player<Happy>("Oh, that's useful. That should save me a fair bit of time. Thanks very much.")
+                npc<Happy>("Stay exceptional!")
             } else if (player.equipment.contains("varrock_armour_1")) {
                 npc<Talk>("While wearing the Varrock armour, you will have a chance of smelting an extra bar of any metal up to, and including, steel.")
-                player<Cheerful>("Oh, that's useful. That should save me a fair bit of time. Thanks very much.")
-                npc<Cheerful>("Stay exceptional!")
+                player<Happy>("Oh, that's useful. That should save me a fair bit of time. Thanks very much.")
+                npc<Happy>("Stay exceptional!")
             } else {
                 npc<Talk>("Try coming back when you're actually wearing your Varrock armour.")
                 player<Surprised>("Oh, right. Yes I see. Okay, thanks.")

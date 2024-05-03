@@ -25,14 +25,14 @@ npcOperate("Talk-to", "cook_lumbridge") {
                 option("What's wrong?") {
                     startQuest()
                 }
-                option<Cheerful>("Can you make me a cake?") {
+                option<Happy>("Can you make me a cake?") {
                     npc<Sad>("*sniff* Don't talk to me about cakes...")
                     startQuest()
                 }
                 option<Neutral>("You don't look very happy.") {
                     dontLookHappy()
                 }
-                option<Cheerful>("Nice hat!") {
+                option<Happy>("Nice hat!") {
                     niceHat()
                 }
             }
@@ -48,19 +48,19 @@ suspend fun CharacterContext.started() {
         item("top_quality_milk", 500, "You give the top-quality milk to the cook.")
         player.inventory.remove("top_quality_milk")
         player["cooks_assistant_milk"] = 1
-        player<Cheerful>("Here's some top-quality milk.")
+        player<Happy>("Here's some top-quality milk.")
     }
     if (player.holdsItem("extra_fine_flour")) {
         item("extra_fine_flour", 500, "You give the extra fine flour to the cook.")
         player.inventory.remove("extra_fine_flour")
         player["cooks_assistant_flour"] = 1
-        player<Cheerful>("Here's the extra fine flour.")
+        player<Happy>("Here's the extra fine flour.")
     }
     if (player.holdsItem("super_large_egg")) {
         item("super_large_egg", 500, "You give the super large egg to the cook.")
         player.inventory.remove("super_large_egg")
         player["cooks_assistant_egg"] = 1
-        player<Cheerful>("Here's a super large egg.")
+        player<Happy>("Here's a super large egg.")
     }
     if (player.holdsItem("egg") && (player["cooks_assistant_egg", 0] == 0)) {
         player<Talk>("I've this egg.")
@@ -75,8 +75,8 @@ suspend fun CharacterContext.started() {
         npc<Talk>("Not bad, but not good enough. There's a milk maid that looks after the cows to the north-east. She might have some advice.")
     }
     if ((player["cooks_assistant_egg", 0] == 1) && (player["cooks_assistant_flour", 0] == 1) && player["cooks_assistant_milk", 0] == 1) {
-        npc<Cheerful>("You've brought me everything I need I am saved! Thank you!")
-        player<Cheerful>("So, do I get to go to the Duke's party?")
+        npc<Happy>("You've brought me everything I need I am saved! Thank you!")
+        player<Happy>("So, do I get to go to the Duke's party?")
         npc<Upset>("I'm afraid not. Only the big cheeses get to dine with the Duke.")
         player<Talk>("Well, maybe one day, I'll be important enough to sit at the Duke's table.")
         npc<Talk>("Maybe, but I won't be holding my breath.")
@@ -96,14 +96,14 @@ suspend fun CharacterContext.started() {
 }
 
 suspend fun CharacterContext.completed() {
-    npc<Cheerful>("Hello, friend, how is the adventuring going?")
+    npc<Happy>("Hello, friend, how is the adventuring going?")
     choice {
         option("I'm getting strong and mighty.") {
-            player<Cheerful>("I'm getting strong and mighty. Grr.")
-            npc<Cheerful>("Glad to hear it.")
+            player<Happy>("I'm getting strong and mighty. Grr.")
+            npc<Happy>("Glad to hear it.")
         }
         option<Upset>("I keep on dying.") {
-            npc<Cheerful>("Ah, well, at least you keep coming back to life too!")
+            npc<Happy>("Ah, well, at least you keep coming back to life too!")
         }
         option<Talk>("Can I use your range?") {
             canIUseRange()
@@ -136,10 +136,10 @@ suspend fun CharacterContext.startQuest() {
     npc<Afraid>("...but I've forgotten to get the ingredients. I'll never get them in time now. He'll sack me! What will I do? I have four children and a goat to look after. Would you help me? Please?")
     choice("Start the Cook's Assistant quest?") {
         option("Yes.") {
-            player<Cheerful>("I'm always happy to help a cook in distress.")
+            player<Happy>("I'm always happy to help a cook in distress.")
             player["cooks_assistant"] = "started"
             player.refreshQuestJournal()
-            npc<Cheerful>("Oh thank you, thank you. I must tell you that this is no ordinary cake, though - only the best ingredients will do! I need a super large egg, top-quality milk and some extra fine flour.")
+            npc<Happy>("Oh thank you, thank you. I must tell you that this is no ordinary cake, though - only the best ingredients will do! I need a super large egg, top-quality milk and some extra fine flour.")
             player.refreshQuestJournal()
             player<Quiz>("Where can I find those, then?")
             whereToFind()
@@ -159,7 +159,7 @@ suspend fun CharacterContext.whereToFind() {
 suspend fun CharacterContext.stillNeed() {
     statement("You still need to get: ${if (player["cooks_assistant_milk", 0] == 0) "Some top-quality milk." else ""}${if (player["cooks_assistant_flour", 0] == 0) " Some extra fine flour." else ""}${if (player["cooks_assistant_egg", 0] == 0) " A super large egg." else ""}")
     choice {
-        option<Cheerful>("I'll get right on it.")
+        option<Happy>("I'll get right on it.")
         option("Where can I find the ingredients?") {
             whereToFind()
         }
@@ -168,24 +168,24 @@ suspend fun CharacterContext.stillNeed() {
 
 suspend fun CharacterContext.niceHat() {
     npc<Sad>("Err thank you. It's a pretty ordinary cooks hat really.")
-    player<Cheerful>("Still, suits you. The trousers are pretty special too. ")
+    player<Happy>("Still, suits you. The trousers are pretty special too. ")
     npc<Sad>("Its all standard cook's issue uniform...")
-    player<Cheerful>("The whole hat, apron, stripey trousers ensemble - it works. It make you looks like a real cook.")
+    player<Happy>("The whole hat, apron, stripey trousers ensemble - it works. It make you looks like a real cook.")
     npc<Frustrated>("I am a real cook! I haven't got time to be chatting about Culinary Fashion. I am in desperate need of help!")
     startQuest()
 }
 
 suspend fun CharacterContext.canIUseRange() {
-    npc<Cheerful>("Go ahead! It's very good range; it's better than most other ranges.")
-    npc<Cheerful>("It's called the Cook-o-Matic 25 and it uses a combination of state-of-the-art temperature regulation and magic.")
+    npc<Happy>("Go ahead! It's very good range; it's better than most other ranges.")
+    npc<Happy>("It's called the Cook-o-Matic 25 and it uses a combination of state-of-the-art temperature regulation and magic.")
     player<Talk>("Will it mean my food will burn less often?")
-    npc<Cheerful>("As long as the food is fairly easy to cook in the first place!")
+    npc<Happy>("As long as the food is fairly easy to cook in the first place!")
     if (player.holdsItem("cook_o_matic_manual")) {
-        npc<Cheerful>("The manual you have in your inventory should tell you more.")
+        npc<Happy>("The manual you have in your inventory should tell you more.")
     } else if (player.inventory.isFull()) {
         npc<Upset>("I'd give you the manual, but you don't have room to take it. Ask me again when you have some space.")
     } else {
-        npc<Cheerful>("Here, take this manual. It should tell you everything you need to know about this range.")
+        npc<Happy>("Here, take this manual. It should tell you everything you need to know about this range.")
         player.inventory.add("cook_o_matic_manual")
         item("cook_o_matic_manual", 500, "The cook hands you a manual.")
     }

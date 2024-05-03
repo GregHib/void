@@ -9,8 +9,8 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 npcOperate("Talk-to", "zahwa") {
     when (random.nextInt(0, 6)) {
         0 -> {
-            player<Cheerful>("Hi!")
-            player<Cheerful>("Hi!")
+            player<Happy>("Hi!")
+            player<Happy>("Hi!")
         }
         1 -> {
             player<Uncertain>("Are you alright?")
@@ -18,10 +18,10 @@ npcOperate("Talk-to", "zahwa") {
         }
         2 -> {
             player<Uncertain>("Are you alright?")
-            npc<Cheerful>("Yeh. The nurses here are...wonderful!")
+            npc<Happy>("Yeh. The nurses here are...wonderful!")
         }
         3 -> {
-            player<Cheerful>("Hi!")
+            player<Happy>("Hi!")
             npc<Frustrated>("I could've 'ad 'im!")
             player<Surprised>("Er...")
             npc<Frustrated>("I was robbed!")
@@ -46,7 +46,7 @@ npcOperate("Talk-to", "zahwa") {
             npc<Uncertain>("Oh. OK.")
         }
         7 -> {
-            player<Cheerful>("Hi!")
+            player<Happy>("Hi!")
             player<Sad>("Ughhhh....")
         }
     }

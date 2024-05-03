@@ -2,7 +2,7 @@ package world.gregs.voidps.world.map.musicians
 
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.world.interact.dialogue.CheerfulOld
+import world.gregs.voidps.world.interact.dialogue.HappyOld
 import world.gregs.voidps.world.interact.dialogue.NeutralOld
 import world.gregs.voidps.world.interact.dialogue.Pleased
 import world.gregs.voidps.world.interact.dialogue.Quiz
@@ -17,7 +17,7 @@ npcOperate("Talk-to", "goblin_musician") {
 suspend fun CharacterContext.choice() {
     choice {
         option<Quiz>("Who are you?") {
-            npc<CheerfulOld>("Me? Thump-Thump. Me make thump-thumps with thump-thump drum. Other goblins listen.")
+            npc<HappyOld>("Me? Thump-Thump. Me make thump-thumps with thump-thump drum. Other goblins listen.")
             choice()
         }
         option("Can I ask you some questions about resting?") {
@@ -46,5 +46,5 @@ suspend fun CharacterContext.resting() {
 }
 
 suspend fun PlayerChoice.exit(): Unit = option<Quiz>("That's all for now.") {
-    npc<CheerfulOld>("You listen to boom boom. Good!")
+    npc<HappyOld>("You listen to boom boom. Good!")
 }

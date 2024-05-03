@@ -23,7 +23,7 @@ object AnimationDefinitions {
         return when(id) {
             554, 555, 556, 557 -> "quiz"
             562, 563, 564, 565 -> "roll_eyes"
-            567, 568, 569, 570 -> "cheerful"
+            567, 568, 569, 570 -> "happy"
             571, 572, 573, 574 -> "surprised"
             575, 576, 577, 578 -> "uncertain"
             588, 589, 590, 591 -> "talk"

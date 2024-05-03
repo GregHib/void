@@ -93,7 +93,7 @@ interfaceOption(component = "confirm", id = "hairdressers_salon") {
     player.body.setColour(BodyColour.Hair, player["makeover_colour_hair", 0])
     player.flagAppearance()
     player.closeMenu()
-    npc<Cheerful>("hairdresser", if (player.male) {
+    npc<Happy>("hairdresser", if (player.male) {
         listOf("An excellent choice, sir.", "Mmm... very distinguished!")
     } else {
         listOf("A marvellous choice. You look splendid!", "It really suits you!")

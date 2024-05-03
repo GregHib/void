@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
 npcOperate("Talk-to", "fadli") {
-    player<Cheerful>("Hi.")
+    player<Happy>("Hi.")
     npc<RollEyes>("What?")
     choice {
         option<Neutral>("What do you do?") {
@@ -28,14 +28,14 @@ npcOperate("Talk-to", "fadli") {
             npc<RollEyes>("Sure.")
             player.open("bank")
         }
-        option<Cheerful>("I'd like to collect items.") {
+        option<Happy>("I'd like to collect items.") {
             npc<RollEyes>("Yeah, okay.")
             player.open("collection_box")
         }
         option<Neutral>("Do you watch any matches?") {
             npc<Neutral>("When I can.")
-            npc<Cheerful>("Most aren't any good so I throw rotten fruit at them!")
-            player<Cheerful>("Heh. Can I buy some?")
+            npc<Happy>("Most aren't any good so I throw rotten fruit at them!")
+            player<Happy>("Heh. Can I buy some?")
             if (World.members) {
                 npc<Chuckle>("Sure.")
                 player.openShop("shop_of_distaste")

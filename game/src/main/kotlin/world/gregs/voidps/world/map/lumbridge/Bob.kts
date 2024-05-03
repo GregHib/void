@@ -9,9 +9,9 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
-import world.gregs.voidps.world.interact.dialogue.Cheerful
-import world.gregs.voidps.world.interact.dialogue.Talk
+import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Quiz
+import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Upset
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -23,7 +23,7 @@ npcOperate("Talk-to", "bob") {
             npc<Talk>("Sorry I don't have any quests for you at the moment.")
         }
         option<Quiz>("I'd like to trade.") {
-            npc<Cheerful>("Great! I buy and sell pickaxes and hatchets. There are plenty to choose from, and I've some free samples too. Take your pick... or hatchet.")
+            npc<Happy>("Great! I buy and sell pickaxes and hatchets. There are plenty to choose from, and I've some free samples too. Take your pick... or hatchet.")
             player.openShop("bobs_brilliant_axes")
         }
         option<Upset>("Can you repair my items for me?") {
@@ -46,7 +46,7 @@ itemOnNPCOperate("*", "bob") {
                 replace(item.id, repaired(item.id))
             }
             if (repaired) {
-                npc<Cheerful>("There you go. It's a pleasure doing business with you!")
+                npc<Happy>("There you go. It's a pleasure doing business with you!")
             }
         }
         option("On second thoughts, no thanks.")
