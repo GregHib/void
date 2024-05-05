@@ -11,9 +11,8 @@ import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
+import world.gregs.voidps.world.interact.entity.combat.inWilderness
 import world.gregs.voidps.world.interact.entity.player.combat.consume.canConsume
-
-fun inWilderness() = false
 
 canConsume("overload*") { player ->
     if (player.timers.contains("overload")) {
@@ -36,6 +35,7 @@ timerStart("overload") { player ->
     if (restart) {
         return@timerStart
     }
+    applyBoost(player)
     player.queue(name = "overload_hits") {
         repeat(5) {
             player.directHit(100)
@@ -49,9 +49,17 @@ timerStart("overload") { player ->
 timerTick("overload") { player ->
     if (player.dec("overload_refreshes_remaining") <= 0) {
         cancel()
+        removeBoost(player)
         return@timerTick
     }
-    if (inWilderness()) {
+}
+
+timerStop("overload") { player ->
+    player.message("<dark_red>The effects of overload have worn off and you feel normal again.")
+}
+
+fun applyBoost(player: Player) {
+    if (player.inWilderness) {
         player.levels.boost(Skill.Attack, 5, 0.15)
         player.levels.boost(Skill.Strength, 5, 0.15)
         player.levels.boost(Skill.Defence, 5, 0.15)
@@ -66,15 +74,20 @@ timerTick("overload") { player ->
     }
 }
 
-timerStop("overload") { player ->
-    reset(player, Skill.Attack)
-    reset(player, Skill.Strength)
-    reset(player, Skill.Defence)
-    reset(player, Skill.Magic)
-    reset(player, Skill.Ranged)
+fun removeBoost(player: Player) {
+    val skillsToReset = listOf(
+        Skill.Attack,
+        Skill.Strength,
+        Skill.Defence,
+        Skill.Magic,
+        Skill.Ranged
+    )
+
+    for (skill in skillsToReset) {
+        reset(player, skill)
+    }
+
     player.levels.restore(Skill.Constitution, 500)
-    player.message("<dark_red>The effects of overload have worn off and you feel normal again.")
-    player["overload_refreshes_remaining"] = 0
 }
 
 fun reset(player: Player, skill: Skill) {
