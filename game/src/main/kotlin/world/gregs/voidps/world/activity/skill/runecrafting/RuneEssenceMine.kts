@@ -17,7 +17,7 @@ objectOperate("Enter", "rune_essence_exit_portal") {
     target.tile.shoot("curse", player.tile)
 
     player.softQueue("essence_mine_exit", 3) {
-        val npc = player["last_npc_teleport_to_rune_essence_mine", "sedridor"]
+        val npc = player["last_npc_teleport_to_rune_essence_mine", "aubury"]
         val tile = areas["${npc}_return"].random()
         player.tele(tile)
     }
