@@ -1,16 +1,15 @@
 package world.gregs.voidps.world.map.varrock
 
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.CharacterContext
-import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
+import world.gregs.voidps.world.activity.skill.runecrafting.EssenceMine
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
@@ -33,15 +32,12 @@ npcOperate("Talk-to", "aubury") {
             researchPackage()
         }
         noThanks()
-        teleport()
+        teleport(target)
     }
 }
 
 npcOperate("Teleport", "aubury") {
-    npc.forceChat = "Senventior Disthine Molenko!"
-    npc.setGraphic("curse_cast")
-    player.setGraphic("curse_hit")
-    player.message("You step through the portal...")
+    EssenceMine.teleport(target, player)
 }
 
 fun PlayerChoice.openShop(): Unit = option<Happy>("Yes please!") {
@@ -52,11 +48,12 @@ suspend fun PlayerChoice.noThanks(message: String = "Oh, it's a rune shop. No th
     npc<Happy>("Well, if you find someone who does want runes, please send them my way.")
 }
 
-fun PlayerChoice.teleport(): Unit = option(
+fun PlayerChoice.teleport(npc: NPC): Unit = option(
     "Can you teleport me to the Rune Essence?",
     { player.quest("rune_mysteries") == "completed" }
 ) {
     npc<Neutral>("Of course. By the way, if you end up making any runes from the essence you mine, I'll happily buy them from you.")
+    EssenceMine.teleport(npc, player)
 }
 
 suspend fun PlayerChoice.packageForYou(): Unit = option<Neutral>(

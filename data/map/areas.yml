@@ -997,3 +997,27 @@ giant_mole_spawn_area:
     x: [ 1733, 1788 ]
     y: [ 5150, 5223 ]
   tags: [ boss ]
+aubury_return:
+  area:
+    x: [ 3252, 3253 ]
+    y: [ 3401, 3402 ]
+brimstail_return:
+  area:
+    x: [ 2409, 2411 ]
+    y: [ 9814, 9815 ]
+wizard_cromperty_return:
+  area:
+    x: [ 2684, 2685 ]
+    y: [ 3321, 3321 ]
+wizard_distentor_return:
+  area:
+    x: [ 2592, 2593 ]
+    y: [ 3084, 3085 ]
+sedridor_return:
+  area:
+    x: [ 3105, 3106 ]
+    y: [ 9572, 9573 ]
+essence_mine:
+  area:
+    x: [ 2880, 2943 ]
+    y: [ 4800, 4863 ]
