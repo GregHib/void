@@ -1,9 +1,9 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee
 
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
-import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -73,11 +73,24 @@ fun hitAnimation(npc: NPC): String {
 
 fun calculateHitSound(target: Character): String {
     if (target is NPC) {
-        var sound = "${target.id}_hit"
+        var sound: String
+        if (target.def.contains("hit_sound")) {
+            sound = target.def["hit_sound"]
+            if (soundDefinitions.contains(sound)) {
+                return sound
+            }
+        }
+        sound = "${target.id}_hit"
         if (soundDefinitions.contains(sound)) {
             return sound
         }
-        return "${target.race}_hit"
+        if (target.race.isNotEmpty()) {
+            sound = "${target.race}_hit"
+            if (soundDefinitions.contains(sound)) {
+                return sound
+            }
+        }
+        return ""
     }
 
     if (target is Player) {

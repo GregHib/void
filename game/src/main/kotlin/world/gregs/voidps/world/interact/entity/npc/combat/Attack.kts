@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.npc.combat
 
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -15,6 +16,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val definitions: WeaponStyleDefinitions by inject()
 val animationDefinitions: AnimationDefinitions by inject()
+val soundDefinitions: SoundDefinitions by inject()
 
 npcCombatSwing { npc ->
     if (npc.tile.distanceTo(target) > npc.def["attack_radius", 8]) {
@@ -62,8 +64,22 @@ fun attackAnimation(npc: NPC): String {
 }
 
 fun attackSound(npc: NPC): String {
-    if (npc.race.isNotEmpty()) {
-        return "${npc.id}_attack"
+    var sound: String
+    if (npc.def.contains("attack_sound")) {
+        sound = npc.def["attack_sound"]
+        if (soundDefinitions.contains(sound)) {
+            return sound
+        }
     }
-    return npc.def.getOrNull("hit_sound") ?: ""
+    if (npc.race.isNotEmpty()) {
+        sound = "${npc.race}_attack"
+        if (soundDefinitions.contains(sound)) {
+            return sound
+        }
+    }
+    sound = "${npc.id}_attack"
+    if (soundDefinitions.contains(sound)) {
+        return sound
+    }
+    return ""
 }
