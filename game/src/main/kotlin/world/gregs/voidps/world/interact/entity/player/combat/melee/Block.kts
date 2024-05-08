@@ -71,6 +71,10 @@ fun hitAnimation(npc: NPC): String {
 
 fun calculateHitSound(target: Character): String {
     if (target is NPC) {
+        var animation = "${target.id}_hit"
+        if (animationDefinitions.contains(animation)) {
+            return animation
+        }
         return "${target.race}_hit"
     }
 
