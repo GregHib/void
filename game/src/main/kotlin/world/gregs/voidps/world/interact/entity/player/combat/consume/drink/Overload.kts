@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.consume.drink
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
+import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -34,11 +35,15 @@ canConsume("overload*") { player ->
     }
 }
 
-enterArea("wilderness*") {
+enterArea("wilderness") {
     if (player.timers.contains("overload")) {
-        player.timers.stop("overload")
-        player["overload_refreshes_remaining"] = 0
         removeBoost(player)
+    }
+}
+
+exitArea("wilderness") {
+    if (player.timers.contains("overload")) {
+        applyBoost(player)
     }
 }
 
