@@ -20,6 +20,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 val styleDefinitions: WeaponStyleDefinitions by inject()
 val weaponDefinitions: WeaponAnimationDefinitions by inject()
 val animationDefinitions: AnimationDefinitions by inject()
+val soundDefinitions: SoundDefinitions by inject()
 
 characterCombatAttack { character ->
     character.playSound(calculateHitSound(target), delay)
@@ -71,9 +72,9 @@ fun hitAnimation(npc: NPC): String {
 
 fun calculateHitSound(target: Character): String {
     if (target is NPC) {
-        var animation = "${target.id}_hit"
-        if (animationDefinitions.contains(animation)) {
-            return animation
+        var sound = "${target.id}_hit"
+        if (soundDefinitions.contains(sound)) {
+            return sound
         }
         return "${target.race}_hit"
     }
