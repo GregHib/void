@@ -602,6 +602,11 @@ enter_abyss_has_orb:
   format: boolean
   persist: true
   transmit: false
+enter_abyss_taken_orb:
+  id: 13734
+  format: boolean
+  persist: true
+  transmit: false
 last_npc_teleport_to_rune_essence_mine:
   id: 2313
   format: map
