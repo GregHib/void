@@ -1,12 +1,17 @@
 package world.gregs.voidps.tools.map.view.draw
 
+import org.rsmod.game.pathfinder.StepValidator
+import org.rsmod.game.pathfinder.collision.CollisionStrategies
+import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.bot.navigation.graph.NavigationGraph
-import world.gregs.voidps.type.Distance
-import world.gregs.voidps.type.Tile
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.tools.map.view.MapViewer.Companion.DISPLAY_COLLISIONS
 import world.gregs.voidps.tools.map.view.MapViewer.Companion.FILTER_VIEWPORT
 import world.gregs.voidps.tools.map.view.graph.Area
 import world.gregs.voidps.tools.map.view.graph.AreaSet
 import world.gregs.voidps.tools.map.view.graph.Link
+import world.gregs.voidps.type.Distance
+import world.gregs.voidps.type.Tile
 import java.awt.*
 import kotlin.math.sqrt
 
@@ -14,12 +19,16 @@ class GraphDrawer(
     private val view: MapView,
     private val nav: NavigationGraph?,
     private val area: AreaSet,
+    private val collisions: Collisions? = null
 ) {
 
+    private val steps: StepValidator? = collisions?.let { StepValidator(it) }
     private val linkColour = Color(0.0f, 0.0f, 1.0f, 0.5f)
     private val textColour = Color.WHITE
     private val indexFont = Font("serif", Font.BOLD, 16)
     private val areaColour = Color(1.0f, 0.0f, 1.0f, 0.2f)
+    private val walkableColour = Color(0.0f, 1.0f, 0.0f, 0.2f)
+    private val collisionColour = Color(1.0f, 0.0f, 0.0f, 0.2f)
     private val distances = nav?.nodes?.map { nav.get(it) }?.flatten()?.distinct()?.mapNotNull { edge ->
         val start = edge.start as? Tile ?: return@mapNotNull null
         val end = edge.end as? Tile ?: return@mapNotNull null
@@ -92,11 +101,59 @@ class GraphDrawer(
             }
             val width = view.mapToImageX(1) / 2
             val height = view.mapToImageY(1) / 2
+            var minX = Int.MAX_VALUE
+            var minY = Int.MAX_VALUE
+            var maxX = 0
+            var maxY = 0
             area.points.forEach { point ->
-                g.fillOval(view.mapToViewX(point.x) + width / 2, view.mapToViewY(view.flipMapY(point.y)) + height / 2, width, height)
+                val mapX = view.mapToViewX(point.x)
+                val mapY = view.mapToViewY(view.flipMapY(point.y))
+                if (point.x < minX) {
+                    minX = point.x
+                }
+                if (point.x > maxX) {
+                    maxX = point.x
+                }
+                if (point.y < minY) {
+                    minY = point.y
+                }
+                if (point.y > maxY) {
+                    maxY = point.y
+                }
+                if (!DISPLAY_COLLISIONS) {
+                    g.fillOval(mapX + width / 2, mapY + height / 2, width, height)
+                }
+            }
+            if (steps != null && collisions != null && collisions.isZoneAllocated(minX, minY, view.level)) {
+                val tileWidth = view.mapToImageX(1)
+                val tileHeight = view.mapToImageY(1)
+                for (x in minX..maxX) {
+                    for (y in minY..maxY) {
+                        val viewX = view.mapToViewX(x) - if (shape is Polygon) width else 0
+                        val viewY = view.mapToViewY(view.flipMapY(y)) - if (shape is Polygon) height else 0
+                        if (!shape.contains(viewX.toDouble(), viewY.toDouble())) {
+                            continue
+                        }
+                        if (canTravel(steps, x, y, view.level, CollisionStrategies.Normal)) {
+                            g.color = walkableColour
+                            g.fillRect(viewX, viewY, tileWidth, tileHeight)
+                        } else {
+                            g.color = collisionColour
+                            g.fillRect(viewX, viewY, tileWidth, tileHeight)
+                        }
+                    }
+                }
+                g.color = areaColour
             }
         }
     }
+
+    private fun canTravel(steps: StepValidator, x: Int, y: Int, level: Int, collision: CollisionStrategy) =
+        steps.canTravel(x = x, z = y - 1, level = level, size = 1, offsetX = 0, offsetZ = 1, extraFlag = 0, collision = collision) ||
+                steps.canTravel(x = x, z = y + 1, level = level, size = 1, offsetX = 0, offsetZ = -1, extraFlag = 0, collision = collision) ||
+                steps.canTravel(x = x - 1, z = y, level = level, size = 1, offsetX = 1, offsetZ = 0, extraFlag = 0, collision = collision) ||
+                steps.canTravel(x = x + 1, z = y, level = level, size = 1, offsetX = -1, offsetZ = 0, extraFlag = 0, collision = collision)
+
 
     /**
      * Draws an arrow of [length] at [offset] along the line [x1], [y1] -> [x2], [y2]
