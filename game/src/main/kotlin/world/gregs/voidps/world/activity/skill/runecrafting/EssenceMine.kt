@@ -31,7 +31,7 @@ object EssenceMine {
             val areas: AreaDefinitions = get()
             val tile = areas["essence_mine"].random(player)!!
             player.tele(tile)
-            if (player["into_the_abyss", "unstarted"] == "scrying") {
+            if (player["enter_the_abyss", "unstarted"] == "scrying") {
                 player["scrying_orb_${npc.id}"] = true
                 val count = player.variables.data.count { it.key.startsWith("scrying_orb_") }
                 if (count == 1) {

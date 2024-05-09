@@ -81,7 +81,9 @@ npcOperate("Talk-to", "mage_of_zamorak_varrock") {
         choice {
             aboutAbyss()
             aboutGroup()
-            option<Talk>("Nothing. I'm just looking around.")
+            option<Talk>("Nothing. I'm just looking around.") {
+                npc<Talk>("Very well.")
+            }
         }
         return@npcOperate
     }
@@ -123,6 +125,7 @@ npcOperate("Talk-to", "mage_of_zamorak_varrock") {
         }
     } else if (player["enter_abyss_offer", false]) {
         npc<Quiz>("You again. Have you considered my offer? If you help us access the Rune Essence Mine, we will share our runecrafting secrets with you in return.")
+        offer()
     } else if (player["enter_abyss_where_runes", false]) {
         npc<Talk>("Ah, you again. Do you need something?")
         choice {
@@ -238,45 +241,31 @@ suspend fun NPCOption.accessLostMine() {
     choice {
         option<Talk>("I did it so that I could then steal their secrets.") {
             npc<Uncertain>("You did? Perhaps I underestimated you.")
-            npc<Uncertain>("Alright, if you help us access the Rune Essence Mine, we will share our runecrafting secrets with you in return.")
-            player["enter_abyss_offer"] = true
-            choice {
-                option<Talk>("Deal.") {
-                    npc<Talk>("Good. Now, all I need from you is the spell that will teleport me to the Rune Essence Mine.")
-                    npc<Uncertain>("Err... I don't actually know the spell.")
-                    npc<Uncertain>("What? Then how do you get there.")
-                    player<Talk>("Oh, well the people who do know the spell just teleport me there directly.")
-                    npc<Talk>("Hmm... I see. That makes this slightly more complex, but no matter. You can still help us.")
-                    player<Quiz>("How?")
-                    npc<Talk>("I'll give you a scrying orb with a standard cypher spell cast upon it. The orb will absorb mystical energies that it is exposed to.")
-                    npc<Talk>("If you teleport to the Rune Essence Mine from three different locations, the orb will absorb the energies of the spell and allow us to reverse-engineer the magic behind it.")
-                    npc<Quiz>("Do you know of three different people who can teleport you there?")
-                    player<Uncertain>("Maybe?")
-                    npc<Talk>("Well if not, I'm sure one of those fools in the Order of Wizards can tell you. Now, here's the orb.")
-                    if (!player.inventory.add("scrying_orb")) {
-                        item("scrying_orb", 400, "The Mage of Zamorak tries to hand you an orb, but you don't have enough room to take it.")
-                    } else {
-                        item("scrying_orb", 400, "The Mage of Zamorak hands you an orb.")
-                        player["enter_the_abyss"] = "scrying"
-                        player["enter_abyss_has_orb"] = true
-                    }
-                }
-                option<Talk>("No deal.") {
-                    npc<Angry>("Fine. I will find another way.")
-                }
-                option<Talk>("I need to think about it.") {
-                    npc<Uncertain>("I will be here once you have decided.")
-                }
-            }
+            deal()
         }
         option<Happy>("Okay, fine. I don't really serve Zamorak.") {
-
+            npc<Angry>("Then give me one good reason why I shouldn't have you teleported into the depths of a volcano!")
+            choice {
+                option<Talk>("Because I can still help you.") {
+                    npc<Talk>("You would help both sides for your own gain? I suppose as a Zamorakian, I can respect that, even if I don't like it.")
+                    deal()
+                }
+                option<Talk>("Alright, I'll leave. Just don't go teleporting me anywhere.") {
+                    npc<Angry>("Be glad that I am merciful! Now go!")
+                }
+            }
         }
         option<Uncertain>("Sorry, I just remembered that I have to take my pet rat for a walk.") {
             npc<Uncertain>("What?")
             player<Neutral>("Yup! Got to go!")
         }
     }
+}
+
+suspend fun NPCOption.deal() {
+    npc<Uncertain>("Alright, if you help us access the Rune Essence Mine, we will share our runecrafting secrets with you in return.")
+    player["enter_abyss_offer"] = true
+    offer()
 }
 
 fun teleport(player: Player, target: NPC) {
@@ -303,5 +292,37 @@ fun teleport(player: Player, target: NPC) {
         }
         player.tele(tile!!)
         player.clearAnimation()
+    }
+}
+
+suspend fun NPCOption.offer() {
+    choice {
+        option<Talk>("Deal.") {
+            npc<Talk>("Good. Now, all I need from you is the spell that will teleport me to the Rune Essence Mine.")
+            player<Uncertain>("Err... I don't actually know the spell.")
+            npc<Uncertain>("What? Then how do you get there.")
+            player<Talk>("Oh, well the people who do know the spell just teleport me there directly.")
+            npc<Talk>("Hmm... I see. That makes this slightly more complex, but no matter. You can still help us.")
+            player<Quiz>("How?")
+            npc<Talk>("I'll give you a scrying orb with a standard cypher spell cast upon it. The orb will absorb mystical energies that it is exposed to.")
+            npc<Talk>("If you teleport to the Rune Essence Mine from three different locations, the orb will absorb the energies of the spell and allow us to reverse-engineer the magic behind it.")
+            npc<Quiz>("Do you know of three different people who can teleport you there?")
+            // TODO check if talking to sedridor beforehand changes this message
+            player<Uncertain>("Maybe?")
+            npc<Talk>("Well if not, I'm sure one of those fools in the Order of Wizards can tell you. Now, here's the orb.")
+            if (!player.inventory.add("scrying_orb")) {
+                item("scrying_orb", 400, "The Mage of Zamorak tries to hand you an orb, but you don't have enough room to take it.")
+            } else {
+                item("scrying_orb", 400, "The Mage of Zamorak hands you an orb.")
+                player["enter_the_abyss"] = "scrying"
+                player["enter_abyss_has_orb"] = true
+            }
+        }
+        option<Talk>("No deal.") {
+            npc<Angry>("Fine. I will find another way.")
+        }
+        option<Talk>("I need to think about it.") {
+            npc<Uncertain>("I will be here once you have decided.")
+        }
     }
 }

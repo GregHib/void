@@ -8,7 +8,9 @@ val quests = listOf(
     "dorics_quest",
 	"gunnars_ground",
     "rune_mysteries",
-    "the_knights_sword"
+    "the_knights_sword",
+    // mini-quests
+    "enter_the_abyss",
 )
 
 adminCommand("quests") {

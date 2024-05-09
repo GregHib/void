@@ -587,6 +587,11 @@ minigame_type:
 abyss_obstacles:
   id: 625
   format: int
+enter_abyss_knows_mages:
+  id: 13728
+  format: boolean
+  persist: true
+  transmit: false
 enter_abyss_where_runes:
   id: 13731
   format: boolean
