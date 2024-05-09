@@ -23,3 +23,7 @@ fun ObjectOption.pray() {
         player.message("You recharge your Prayer points.")
     }
 }
+
+objectOperate("Check", "prayer_altar_chaos_varrock") {
+    player.message("An altar to the evil god Zamorak.")
+}
