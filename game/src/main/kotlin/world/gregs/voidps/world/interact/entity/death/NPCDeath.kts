@@ -4,6 +4,7 @@ import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
@@ -40,6 +41,7 @@ val npcs: NPCs by inject()
 val floorItems: FloorItems by inject()
 val tables: DropTables by inject()
 val animationDefinitions: AnimationDefinitions by inject()
+val soundDefinitions: SoundDefinitions by inject()
 
 npcDeath { npc ->
     npc.mode = PauseMode
@@ -52,7 +54,7 @@ npcDeath { npc ->
         npc["death_tile"] = tile
         npc.setAnimation(deathAnimation(npc))
         val name = npc.def.name.toSnakeCase()
-        (killer as? Player)?.playSound("${name}_death", delay = 40)
+        (killer as? Player)?.playSound(deathSound(npc))
         pause(4)
         dropLoot(npc, killer, name, tile)
         npc.attackers.clear()
@@ -94,6 +96,22 @@ fun deathAnimation(npc: NPC): String {
         if (animationDefinitions.contains(animation)) {
             return animation
         }
+    }
+    return ""
+}
+
+
+fun deathSound(npc: NPC): String {
+    var sound: String
+    if (npc.race.isNotEmpty()) {
+        sound = "${npc.race}_death"
+        if (soundDefinitions.contains(sound)) {
+            return sound
+        }
+    }
+    sound = "${npc.id}_death"
+    if (soundDefinitions.contains(sound)) {
+        return sound
     }
     return ""
 }
