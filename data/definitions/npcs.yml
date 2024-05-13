@@ -1855,11 +1855,13 @@ mage_of_zamorak_wilderness:
   id: 2257
   faces: false
   race: human
+  wander_radius: 4
   examine: "A disciple of Zamorak."
 mage_of_zamorak_varrock:
   id: 2260
   faces: false
   race: human
+  wander_radius: 5
   examine: "A disciple of Zamorak."
 abyssal_leech:
   id: 2263

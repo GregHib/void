@@ -119,8 +119,14 @@ fun Player.dialogueOption(
     component: String,
     option: Int = -1,
     id: String = dialogue!!
-) {
+) = runTest {
     emit(ContinueDialogue(id, component, option))
+}
+
+fun Player.dialogueContinue(repeat: Int = 1) {
+    repeat(repeat) {
+        dialogueOption("continue")
+    }
 }
 
 private fun getItemOptionIndex(item: String, option: String): Int? {
@@ -177,8 +183,10 @@ fun Player.itemOnItem(
     ))
 }
 
-fun Player.npcOption(npc: NPC, option: String) = runTest {
-    instructions.send(InteractNPC(npc.index, npc.def.options.indexOf(option) + 1))
+fun Player.npcOption(npc: NPC, option: String) = npcOption(npc, npc.def.options.indexOf(option))
+
+fun Player.npcOption(npc: NPC, option: Int) = runTest {
+    instructions.send(InteractNPC(npc.index, option + 1))
 }
 
 fun Player.objectOption(gameObject: GameObject, option: String = "", optionIndex: Int? = null) = runTest {
