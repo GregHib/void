@@ -28,8 +28,8 @@ class GraphDrawer(
     private val textColour = Color.WHITE
     private val indexFont = Font("serif", Font.BOLD, 16)
     private val areaColour = Color(1.0f, 0.0f, 1.0f, 0.2f)
-    private val walkableColour = Color(0.0f, 1.0f, 0.0f, 0.2f)
-    private val collisionColour = Color(1.0f, 0.0f, 0.0f, 0.2f)
+    private val walkableColour = Color(0.0f, 1.0f, 0.0f, 0.3f)
+    private val collisionColour = Color(1.0f, 0.0f, 0.0f, 0.3f)
     private val distances = nav?.nodes?.map { nav.get(it) }?.flatten()?.distinct()?.mapNotNull { edge ->
         val start = edge.start as? Tile ?: return@mapNotNull null
         val end = edge.end as? Tile ?: return@mapNotNull null
