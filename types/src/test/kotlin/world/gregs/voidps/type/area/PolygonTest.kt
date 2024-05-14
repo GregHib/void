@@ -60,7 +60,8 @@ internal class PolygonTest {
     fun `Point on edge of square`() {
         val xCoords = intArrayOf(2, 4, 4, 2)
         val yCoords = intArrayOf(2, 2, 4, 4)
-        assertTrue(pointInPolygon(3, 2, xCoords, yCoords))
+        assertTrue(pointInPolygon(4, 2, xCoords, yCoords))
+        assertTrue(pointInPolygon(4, 4, xCoords, yCoords))
     }
 
     @Test
