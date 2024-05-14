@@ -79,9 +79,12 @@ modCommand("timers") {
     }
 }
 
-modCommand("variables") {
+modCommand("variables", "vars") {
     player.message("=== Variables ===", ChatType.Console)
     for ((variable, value) in (player.variables as PlayerVariables).temp) {
+        if (content.isNotBlank() && !variable.contains(content, ignoreCase = true)) {
+            continue
+        }
         if (variable == "messages") {
             player.message("$variable: ${(value as List<String>).first()}", ChatType.Console)
             continue
@@ -90,6 +93,9 @@ modCommand("variables") {
     }
     player.message("=== Persistent Variables ===", ChatType.Console)
     for ((variable, value) in player.variables.data) {
+        if (content.isNotBlank() && !variable.contains(content, ignoreCase = true)) {
+            continue
+        }
         player.message("$variable: $value", ChatType.Console)
     }
 }
