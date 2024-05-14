@@ -85,10 +85,6 @@ modCommand("variables", "vars") {
         if (content.isNotBlank() && !variable.contains(content, ignoreCase = true)) {
             continue
         }
-        if (variable == "messages") {
-            player.message("$variable: ${(value as List<String>).first()}", ChatType.Console)
-            continue
-        }
         player.message("$variable: $value", ChatType.Console)
     }
     player.message("=== Persistent Variables ===", ChatType.Console)
