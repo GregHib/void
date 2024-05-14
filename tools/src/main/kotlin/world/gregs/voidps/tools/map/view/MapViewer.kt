@@ -34,7 +34,7 @@ class MapViewer {
             val areas = AreaDefinitions().load(yaml, "./data/map/areas.yml")
             val nav = NavigationGraph(defs, areas).load(yaml, "./data/map/nav-graph.yml")
             val collisions = Collisions()
-            if (DISPLAY_COLLISIONS) {
+            if (DISPLAY_AREA_COLLISIONS || DISPLAY_ALL_COLLISIONS) {
                 val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache))
                     .load(Yaml(), property("objectDefinitionsPath"))
                 val objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), objectDefinitions)
@@ -50,7 +50,8 @@ class MapViewer {
     companion object {
         const val FILTER_VIEWPORT = true
         const val DISPLAY_ZONES = false
-        const val DISPLAY_COLLISIONS = true
+        const val DISPLAY_AREA_COLLISIONS = false
+        const val DISPLAY_ALL_COLLISIONS = false
 
         @JvmStatic
         fun main(args: Array<String>) {

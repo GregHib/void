@@ -5,7 +5,8 @@ import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.bot.navigation.graph.NavigationGraph
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.tools.map.view.MapViewer.Companion.DISPLAY_COLLISIONS
+import world.gregs.voidps.tools.map.view.MapViewer.Companion.DISPLAY_ALL_COLLISIONS
+import world.gregs.voidps.tools.map.view.MapViewer.Companion.DISPLAY_AREA_COLLISIONS
 import world.gregs.voidps.tools.map.view.MapViewer.Companion.FILTER_VIEWPORT
 import world.gregs.voidps.tools.map.view.graph.Area
 import world.gregs.voidps.tools.map.view.graph.AreaSet
@@ -95,9 +96,11 @@ class GraphDrawer(
                 return@forEach
             }
             val shape = area.getShape(view) ?: return@forEach
-            when (shape) {
-                is Polygon -> g.fillPolygon(shape)
-                is Rectangle -> g.fillRect(shape.x, shape.y, shape.width, shape.height)
+            if (!DISPLAY_AREA_COLLISIONS) {
+                when (shape) {
+                    is Polygon -> g.fillPolygon(shape)
+                    is Rectangle -> g.fillRect(shape.x, shape.y, shape.width, shape.height)
+                }
             }
             val width = view.mapToImageX(1) / 2
             val height = view.mapToImageY(1) / 2
@@ -106,8 +109,6 @@ class GraphDrawer(
             var maxX = 0
             var maxY = 0
             area.points.forEach { point ->
-                val mapX = view.mapToViewX(point.x)
-                val mapY = view.mapToViewY(view.flipMapY(point.y))
                 if (point.x < minX) {
                     minX = point.x
                 }
@@ -120,30 +121,60 @@ class GraphDrawer(
                 if (point.y > maxY) {
                     maxY = point.y
                 }
-                if (!DISPLAY_COLLISIONS) {
+                val mapX = view.mapToViewX(point.x)
+                val mapY = view.mapToViewY(view.flipMapY(point.y))
+                if (!DISPLAY_AREA_COLLISIONS && !DISPLAY_ALL_COLLISIONS) {
                     g.fillOval(mapX + width / 2, mapY + height / 2, width, height)
                 }
             }
-            if (steps != null && collisions != null && collisions.isZoneAllocated(minX, minY, view.level)) {
+            if (DISPLAY_AREA_COLLISIONS && steps != null && collisions != null && collisions.isZoneAllocated(minX, minY, view.level)) {
                 val tileWidth = view.mapToImageX(1)
                 val tileHeight = view.mapToImageY(1)
+                val xPoints = if (shape is Rectangle) intArrayOf(minX, minX, maxX, maxX) else area.points.map { it.x }.toIntArray()
+                val yPoints = if (shape is Rectangle) intArrayOf(minY, maxY, maxY, minY) else area.points.map { it.y }.toIntArray()
                 for (x in minX..maxX) {
                     for (y in minY..maxY) {
-                        val viewX = view.mapToViewX(x) - if (shape is Polygon) width else 0
-                        val viewY = view.mapToViewY(view.flipMapY(y)) - if (shape is Polygon) height else 0
-                        if (!shape.contains(viewX.toDouble(), viewY.toDouble())) {
+                        val viewX = view.mapToViewX(x)
+                        val viewY = view.mapToViewY(view.flipMapY(y))
+                        if (!world.gregs.voidps.type.area.Polygon.pointInPolygon(x, y, xPoints, yPoints)) {
                             continue
                         }
-                        if (canTravel(steps, x, y, view.level, CollisionStrategies.Normal)) {
-                            g.color = walkableColour
-                            g.fillRect(viewX, viewY, tileWidth, tileHeight)
+                        g.color = if (canTravel(steps, x, y, view.level, CollisionStrategies.Normal)) {
+                            walkableColour
                         } else {
-                            g.color = collisionColour
-                            g.fillRect(viewX, viewY, tileWidth, tileHeight)
+                            collisionColour
                         }
+                        g.fillRect(viewX, viewY, tileWidth, tileHeight)
                     }
                 }
                 g.color = areaColour
+            }
+        }
+        if (DISPLAY_ALL_COLLISIONS && collisions != null && steps != null) {
+            val tileWidth = view.mapToImageX(1)
+            val tileHeight = view.mapToImageY(1)
+            for (zoneX in 0 until 16384 step 8) {
+                for (zoneY in 0 until 16384 step 8) {
+                    val viewX = view.mapToViewX(zoneX)
+                    val viewY = view.mapToViewY(view.flipMapY(zoneY))
+                    val viewX2 = view.mapToViewX(zoneX + 8)
+                    val viewY2 = view.mapToViewY(view.flipMapY(zoneY - 8))
+                    if (!view.contains(viewX, viewY) && !view.contains(viewX2, viewY) && !view.contains(viewX, viewY2) && !view.contains(viewX2, viewY2)) {
+                        continue
+                    }
+                    if (collisions.isZoneAllocated(zoneX, zoneY, view.level)) {
+                        for(x in 0 until 8) {
+                            for(y in 0 until 8) {
+                                g.color = if (canTravel(steps, zoneX + x, zoneY + y, view.level, CollisionStrategies.Normal)) {
+                                    walkableColour
+                                } else {
+                                    collisionColour
+                                }
+                                g.fillRect(view.mapToViewX(zoneX + x), view.mapToViewY(view.flipMapY(zoneY + y)), tileWidth, tileHeight)
+                            }
+                        }
+                    }
+                }
             }
         }
     }
