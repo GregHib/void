@@ -417,6 +417,8 @@
 - { id: goblin_light_grey_bald_spear, x: 2397, y: 9655 }
 # 9623
 - { id: zombie, x: 2405, y: 9713, members: true }
+# 9625
+- { id: brimstail, x: 2409, y: 9816, members: true }
 # 9772
 - { id: giant_spider_2, x: 2459, y: 2864, members: true }
 - { id: giant_spider_2, x: 2479, y: 2866, members: true }
@@ -722,6 +724,7 @@
 - { id: cow, x: 2580, y: 3117, members: true }
 - { id: cow, x: 2588, y: 3119, members: true }
 - { id: cow, x: 2604, y: 3114, members: true }
+- { id: wizard_distentor, x: 2594, y: 3089, members: true }
 # 10292
 - { id: banker_3, x: 2614, y: 3330, direction: NORTH, members: true }
 - { id: banker_4, x: 2618, y: 3330, direction: NORTH, members: true }
@@ -940,6 +943,7 @@
 - { id: banker_3, x: 2657, y: 3286, direction: WEST, members: true }
 - { id: banker_3, x: 2657, y: 3283, direction: WEST, members: true }
 - { id: banker_4, x: 2657, y: 3280, direction: WEST, members: true }
+- { id: wizard_cromperty, x: 2681, y: 3325, members: true }
 # 10548
 - { id: sheep, x: 2656, y: 3378, members: true }
 - { id: sheep, x: 2650, y: 3375, members: true }
@@ -1999,6 +2003,7 @@
 - { id: dark_wizard_earth_2, x: 3224, y: 3370 }
 - { id: goblin_orange_hat_spear, x: 3259, y: 3338 }
 - { id: tarquin, x: 3203, y: 3344 }
+- { id: mage_of_zamorak_varrock, x: 3259, y: 3386, members: true }
 # 12853
 - { id: ash_cleaner, x: 3250, y: 3429 }
 - { id: iffie, x: 3204, y: 3419 }

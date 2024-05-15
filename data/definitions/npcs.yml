@@ -1855,11 +1855,13 @@ mage_of_zamorak_wilderness:
   id: 2257
   faces: false
   race: human
+  wander_radius: 4
   examine: "A disciple of Zamorak."
 mage_of_zamorak_varrock:
   id: 2260
   faces: false
   race: human
+  wander_radius: 5
   examine: "A disciple of Zamorak."
 abyssal_leech:
   id: 2263
@@ -1907,3 +1909,13 @@ abyssal_walker:
   attack_speed: 5
   respawn_delay: 5
   examine: "Apparently walks the Abyss."
+wizard_distentor:
+  id: 462
+  examine: "Head of the Magic Guild."
+wizard_cromperty:
+  id: 844
+  examine: "The hat is a dead give away."
+brimstail:
+  id: 171
+  old_model: true
+  examine: "Small but wise, he is."

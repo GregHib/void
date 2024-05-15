@@ -2,12 +2,9 @@ package world.gregs.voidps.world.map.wizards_tower
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.CharacterContext
-import world.gregs.voidps.engine.entity.character.forceChat
-import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -19,6 +16,7 @@ import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.activity.quest.sendQuestComplete
+import world.gregs.voidps.world.activity.skill.runecrafting.EssenceMine
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
@@ -40,7 +38,7 @@ npcOperate("Talk-to", "sedridor") {
 }
 
 npcOperate("Teleport", "sedridor") {
-    teleport()
+    EssenceMine.teleport(target, player)
 }
 
 suspend fun CharacterContext.started() {
@@ -216,18 +214,12 @@ suspend fun NPCOption.completed() {
 }
 
 fun ChoiceBuilder<NPCOption>.teleportEssenceMine(): Unit = option<Quiz>("Can you teleport me to the Rune Essence Mine?") {
-    teleport()
-}
-
-fun NPCOption.teleport() {
-    target.forceChat = "Seventior Disthine Molenko!"
-    player.tele(2910, 4830)
-    target.setGraphic("curse_cast")
-    player.setGraphic("curse_hit")
+    EssenceMine.teleport(target, player)
 }
 
 suspend fun ChoiceBuilder<NPCOption>.whoElseKnows(): Unit = option<Quiz>("Who else knows the teleport to the Rune Essence Mine?") {
     npc<Happy>("Apart from myself, there's also Aubury in Varrock, Wizard Cromperty in East Ardougne, Brimstail in the Tree Gnome Stronghold and Wizard Distentor in Yanille's Wizards' Guild.")
+    player["enter_abyss_knows_mages"] = true
     choice {
         teleportEssenceMine()
         oldWizardsTower()

@@ -1072,11 +1072,11 @@ abyssal_walker_drop_table:
         - id: elemental_talisman
         - id: small_pouch
           chance: 6
-          lacks: small_pouch*
+          lacks: small_pouch
         - id: medium_pouch
           chance: 6
           charges: 45
-          owns: small_pouch*
+          owns: small_pouch
           lacks: medium_pouch*
         - id: large_pouch
           chance: 6
@@ -1136,11 +1136,11 @@ abyssal_guardian_drop_table:
         - id: elemental_talisman
         - id: small_pouch
           chance: 6
-          lacks: small_pouch*
+          lacks: small_pouch
         - id: medium_pouch
           chance: 6
           charges: 45
-          owns: small_pouch*
+          owns: small_pouch
           lacks: medium_pouch*
         - id: large_pouch
           chance: 6
@@ -1200,11 +1200,11 @@ abyssal_leech_drop_table:
         - id: elemental_talisman
         - id: small_pouch
           chance: 6
-          lacks: small_pouch*
+          lacks: small_pouch
         - id: medium_pouch
           chance: 6
           charges: 45
-          owns: small_pouch*
+          owns: small_pouch
           lacks: medium_pouch*
         - id: large_pouch
           chance: 6
