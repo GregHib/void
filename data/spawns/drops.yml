@@ -1578,3 +1578,31 @@ zamorak_warrior_drop_table:
         - id: lobster
           chance: 2
           amount: 3
+zamorak_mage_drop_table:
+  type: all
+  drops:
+    - type: all
+      drops:
+        - id: bones
+    - roll: 50
+      drops:
+        - id: fire_rune
+          chance: 2
+          amount: 7
+        - id: water_rune
+          chance: 2
+          amount: 6
+        - id: air_rune
+          chance: 2
+          amount: 5
+        - id: nature_rune
+          chance: 2
+          amount: 2
+        - id: law_rune
+          amount: 2
+        - id: blood_rune
+    - roll: 50
+      drops:
+        - id: coins
+          chance: 40
+          amount: 100

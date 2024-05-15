@@ -1927,8 +1927,8 @@ eniola:
   id: 6362
   examine: "A roving banker."
 zamorak_warrior_kite:
-  id: 6363
   &zamorak_warrior
+  id: 6363
   hitpoints: 450
   att: 85
   str: 70
@@ -1940,8 +1940,29 @@ zamorak_warrior_kite:
   respawn_delay: 50
   hunt_mode: aggressive
   drop_table: zamorak_warrior
+  race: human
   examine: "A warrior of Zamorak."
 zamorak_warrior_square:
   <<: *zamorak_warrior
   id: 6364
   style: crush
+zamorak_mage_fancy: &zamorak_mage
+  id: 6367
+  hitpoints: 500
+  att: 75
+  str: 80
+  def: 80
+  mage: 85
+  spell: fire_bolt
+  max_hit_magic: 90
+  respawn_delay: 50
+  hunt_mode: aggressive
+  attack_range: 3
+  attack_radius: 10
+  wander_radius: 5
+  race: human
+  drop_table: zamorak_mage
+  examine: "A mage of Zamorak."
+zamorak_mage:
+  <<: *zamorak_mage
+  id: 6368
