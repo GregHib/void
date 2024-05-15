@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.npc
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.MAX_NPCS
@@ -9,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.CharacterMap
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Wander
+import world.gregs.voidps.engine.entity.character.mode.move.AreaEntered
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
@@ -21,7 +23,8 @@ import world.gregs.voidps.type.Zone
 data class NPCs(
     private val definitions: NPCDefinitions,
     private val collisions: Collisions,
-    private val collision: CollisionStrategyProvider
+    private val collision: CollisionStrategyProvider,
+    private val areaDefinitions: AreaDefinitions
 ) : CharacterList<NPC>() {
     override val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)
     private val logger = InlineLogger()
@@ -86,6 +89,11 @@ data class NPCs(
             npc["respawn_direction"] = direction
         }
         npc.emit(Spawn)
+        for (def in areaDefinitions.get(npc.tile.zone)) {
+            if (npc.tile in def.area) {
+                npc.emit(AreaEntered(npc, def.name, def.tags, def.area))
+            }
+        }
         return npc
     }
 

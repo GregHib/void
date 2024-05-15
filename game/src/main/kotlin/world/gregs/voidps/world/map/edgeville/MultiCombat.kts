@@ -1,15 +1,15 @@
 package world.gregs.voidps.world.map.edgeville
 
 import world.gregs.voidps.engine.client.variable.variableSet
-import world.gregs.voidps.engine.entity.character.mode.move.enterArea
-import world.gregs.voidps.engine.entity.character.mode.move.exitArea
+import world.gregs.voidps.engine.entity.character.mode.move.characterEnterArea
+import world.gregs.voidps.engine.entity.character.mode.move.characterExitArea
 
-enterArea(tag = "multi_combat") {
-    player["in_multi_combat"] = true
+characterEnterArea(tag = "multi_combat") {
+    character["in_multi_combat"] = true
 }
 
-exitArea(tag = "multi_combat") {
-    player.clear("in_multi_combat")
+characterExitArea(tag = "multi_combat") {
+    character.clear("in_multi_combat")
 }
 
 variableSet("in_multi_combat", to = true) { player ->
