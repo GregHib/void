@@ -1606,3 +1606,30 @@ zamorak_mage_drop_table:
         - id: coins
           chance: 40
           amount: 100
+zamorak_ranger_drop_table:
+  type: all
+  drops:
+    - type: all
+      drops:
+        - id: bones
+    - roll: 50
+      drops:
+        - id: willow_shortbow
+          chance: 2
+        - id: willow_longbow
+        - id: steel_arrow
+          chance: 2
+          amount: 10
+        - id: mithril_arrow
+          chance: 2
+          amount: 10
+        - id: mithril_arrow
+          amount: 20
+        - id: bow_string_noted
+          chance: 2
+          amount: 10
+    - roll: 50
+      drops:
+        - id: coins
+          chance: 40
+          amount: 100

@@ -1939,6 +1939,7 @@ zamorak_warrior_kite:
   attack_radius: 11
   respawn_delay: 50
   hunt_mode: aggressive
+  weapon_style: sword
   drop_table: zamorak_warrior
   race: human
   examine: "A warrior of Zamorak."
@@ -1966,3 +1967,26 @@ zamorak_mage_fancy: &zamorak_mage
 zamorak_mage:
   <<: *zamorak_mage
   id: 6368
+zamorak_ranger: &zamorak_ranger
+  id: 6365
+  hitpoints: 500
+  att: 75
+  str: 80
+  def: 80
+  range: 80
+  max_hit_range: 90
+  respawn_delay: 50
+  hunt_mode: aggressive
+  attack_range: 5
+  attack_radius: 10
+  wander_radius: 5
+  race: human
+  style: accurate
+  weapon_style: bow
+  ammo: mithril_arrow
+  drop_table: zamorak_ranger
+  height: 40
+  examine: "A ranger of Zamorak."
+zamorak_ranger_coat:
+  <<: *zamorak_ranger
+  id: 6366

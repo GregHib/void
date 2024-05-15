@@ -2117,13 +2117,16 @@
 # 13110
 - { id: man_3, x: 3283, y: 3501 }
 # 13131
-- { id: eniola, x: 3269, y: 4857, members: true }
-- { id: zamorak_warrior_square, x: 3015, y: 5583, members: true }
-- { id: zamorak_warrior_kite, x: 3015, y: 5606, members: true }
-- { id: zamorak_warrior_kite, x: 3028, y: 5574, members: true }
-- { id: zamorak_mage, x: 3012, y: 5578, members: true }
-- { id: zamorak_mage_fancy, x: 3017, y: 5577, members: true }
-- { id: zamorak_mage_fancy, x: 3035, y: 5581, members: true }
+- { id: eniola, x: 3269, y: 4857, direction: SOUTH, members: true }
+- { id: zamorak_warrior_square, x: 3271, y: 4815, members: true }
+- { id: zamorak_warrior_kite, x: 3271, y: 4838, members: true }
+- { id: zamorak_warrior_kite, x: 3284, y: 4806, members: true }
+- { id: zamorak_mage, x: 3268, y: 4810, members: true }
+- { id: zamorak_mage_fancy, x: 3273, y: 4809, members: true }
+- { id: zamorak_mage_fancy, x: 3291, y: 4813, members: true }
+- { id: zamorak_ranger, x: 3267, y: 4828, members: true }
+- { id: zamorak_ranger_coat, x: 3287, y: 4806, members: true }
+- { id: zamorak_ranger, x: 256, y: 4808, members: true }
 # 13210
 - { id: rat, x: 3269, y: 9869 }
 - { id: rat, x: 3274, y: 9873 }

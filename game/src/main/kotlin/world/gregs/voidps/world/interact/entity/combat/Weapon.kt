@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.combat
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -10,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
@@ -83,10 +85,12 @@ object Weapon {
         if (character.spell.isNotBlank()) {
             return "magic"
         }
-        return when (weapon.def["weapon_style", 0]) {
-            13, 16, 17, 18, 19, 24 -> "range"
-            20 -> if (character.attackType == "aim_and_fire") "range" else "melee"
-            21 -> when (character.attackType) {
+        val definitions = get<WeaponStyleDefinitions>()
+        val style = if (character is NPC) definitions.get(character.def["weapon_style", "unarmed"]) else definitions.get(weapon.def["weapon_style", 0])
+        return when (style.stringId) {
+            "pie", "bow", "crossbow", "thrown", "chinchompa", "sling" -> "range"
+            "fixed_device" -> if (character.attackType == "aim_and_fire") "range" else "melee"
+            "salamander" -> when (character.attackType) {
                 "blaze" -> "blaze"
                 "scorch" -> "scorch"
                 else -> "range"

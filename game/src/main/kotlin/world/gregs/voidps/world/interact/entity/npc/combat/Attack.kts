@@ -34,7 +34,8 @@ fun attackAnimation(npc: NPC): String {
     if (npc.def.contains("weapon_style")) {
         val id = npc.def["weapon_style", "unarmed"]
         val styleDefinition = definitions.get(id)
-        var style = styleDefinition.combatStyles.indexOf(npc.def["style"])
+        val styleName: String? = npc.def.getOrNull("style")
+        var style = styleName?.let { styleDefinition.combatStyles.indexOf(it) } ?: -1
         if (style == -1) {
             style = 0
         }
