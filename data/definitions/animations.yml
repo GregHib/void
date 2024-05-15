@@ -1691,3 +1691,6 @@ abyssal_guardian_death: 2189
 abyssal_walker_hit: 2192
 abyssal_walker_attack: 2193
 abyssal_walker_death: 2194
+gecko_hit: 7208
+gecko_attack: 7207
+gecko_death: 7205

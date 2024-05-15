@@ -1,3 +1,9 @@
+empty_drop_table:
+  type: all
+  drops:
+    - type: all
+      drops:
+        - id: bones
 allotment_seed_drop_table:
   roll: 128
   drops:
