@@ -59,8 +59,8 @@ internal class EnterTheAbyss : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(from: Int, until: Int): Int {
                 return when (from) {
-                    2880 -> 2911
-                    4800 -> 4832
+                    2884 -> 2911
+                    4807 -> 4832
                     else -> from
                 }
             }
