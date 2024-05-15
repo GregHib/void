@@ -79,17 +79,19 @@ modCommand("timers") {
     }
 }
 
-modCommand("variables") {
+modCommand("variables", "vars") {
     player.message("=== Variables ===", ChatType.Console)
     for ((variable, value) in (player.variables as PlayerVariables).temp) {
-        if (variable == "messages") {
-            player.message("$variable: ${(value as List<String>).first()}", ChatType.Console)
+        if (content.isNotBlank() && !variable.contains(content, ignoreCase = true)) {
             continue
         }
         player.message("$variable: $value", ChatType.Console)
     }
     player.message("=== Persistent Variables ===", ChatType.Console)
     for ((variable, value) in player.variables.data) {
+        if (content.isNotBlank() && !variable.contains(content, ignoreCase = true)) {
+            continue
+        }
         player.message("$variable: $value", ChatType.Console)
     }
 }
@@ -175,8 +177,7 @@ adminCommand("col") {
     println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.level] and CollisionFlag.BLOCK_NORTH == 0}")
     println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.level] and CollisionFlag.WALL_NORTH == 0}")
     println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.level] and CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER == 0}")
-    println(collisions[player.tile.x, player.tile.y - 1, player.tile.level])
-    println(collisions[3281, 3327, 0])
+    println(collisions[player.tile.x, player.tile.y, player.tile.level])
     println(player.tile.minus(y = 1))
 
     println(CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER)

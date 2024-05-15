@@ -23,7 +23,13 @@ import world.gregs.voidps.network.login.protocol.*
  */
 fun Client.message(text: String, type: Int, tile: Int = 0, name: String? = null, formatted: String? = null) {
     val mask = getMask(name, formatted)
-    send(GAME_MESSAGE, getLength(type, text, name, mask, formatted), BYTE) {
+    var length = getLength(type, text, name, mask, formatted)
+    var message = text
+    if (length > 255) {
+        message = message.take(message.length - (length - 255))
+        length = getLength(type, message, name, mask, formatted)
+    }
+    send(GAME_MESSAGE, length, BYTE) {
         writeSmart(type)
         writeInt(tile)
         writeByte(mask)
@@ -33,7 +39,7 @@ fun Client.message(text: String, type: Int, tile: Int = 0, name: String? = null,
                 writeString(formatted)
             }
         }
-        writeString(text)
+        writeString(message)
     }
 }
 

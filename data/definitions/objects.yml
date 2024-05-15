@@ -11809,3 +11809,15 @@ chaos_altar_ladder_up:
 chaos_altar_ladder_down:
   id: 38222
   examine: "I can climb down this."
+brimstails_cave_entrance:
+  id: 17209
+  examine: "A small door in a hillock."
+brimstails_cave_exit_left:
+  id: 17223
+  examine: "The way out!"
+brimstails_cave_exit_right:
+  id: 17222
+  examine: "The way out!"
+rune_essence_exit_portal:
+  id: 2492
+  examine: "A portal from this mystical place."

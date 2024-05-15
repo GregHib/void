@@ -2,6 +2,7 @@ package world.gregs.voidps.type.area
 
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
+import kotlin.math.abs
 
 open class Polygon(
     val xPoints: IntArray,
@@ -73,23 +74,38 @@ open class Polygon(
     }
 
     companion object {
+
         /**
-         * Return true if the given point is contained inside the boundary.
+         * Checks if a point [x], [y] is inside (inclusive) or on the edge of the polygon [xPoints], [yPoints]
          * See: https://wrfranklin.org/Research/Short_Notes/pnpoly.html
-         * @return true if the point is inside the boundary, false otherwise
+         * See: https://stackoverflow.com/a/11908158/2871826
          */
-        internal fun pointInPolygon(x: Int, y: Int, xPoints: IntArray, yPoints: IntArray): Boolean {
+        fun pointInPolygon(x: Int, y: Int, xPoints: IntArray, yPoints: IntArray): Boolean {
             var j: Int
-            var result = false
+            var inside = false
             var i = 0
             j = xPoints.size - 1
             while (i < xPoints.size) {
-                if ((yPoints[i] > y) != (yPoints[j] > y) && (x < (xPoints[j] - xPoints[i]) * (y - yPoints[i]) / (yPoints[j] - yPoints[i]) + xPoints[i])) {
-                    result = !result
+                val dxl = xPoints[j] - xPoints[i]
+                val dyl = yPoints[j] - yPoints[i]
+                // Check if inside polygon
+                if ((yPoints[i] > y) != (yPoints[j] > y) && (x < dxl * (y - yPoints[i]) / dyl + xPoints[i])) {
+                    inside = !inside
+                }
+                // Check if crosses edge
+                val cross = (x - xPoints[i]) * dyl - (y - yPoints[i]) * dxl
+                if (cross == 0) {
+                    if (abs(dxl) >= abs(dyl)) {
+                        if (x in xPoints[if (dxl > 0) i else j]..xPoints[if (dxl > 0) j else i]) {
+                            return true
+                        }
+                    } else if (y in yPoints[if (dyl > 0) i else j]..yPoints[if (dyl > 0) j else i]) {
+                        return true
+                    }
                 }
                 j = i++
             }
-            return result
+            return inside
         }
 
     }
