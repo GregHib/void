@@ -2004,5 +2004,6 @@ cave_lizard:
   attack_radius: 11
   wander_radius: 5
   max_hit_melee: 50
+  hunt_mode: aggressive
   drop_table: empty
   examine: "A cave dweller."
