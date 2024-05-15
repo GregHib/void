@@ -11827,3 +11827,9 @@ ourania_cave_ladder_down:
 ourania_cave_ladder_up:
   id: 26850
   examine: "Into the light!"
+ourania_crack_enter:
+  id: 26844
+  examine: "I might be able to squeeze through."
+ourania_crack_exit:
+  id: 26845
+  examine: "I might be able to squeeze through."
