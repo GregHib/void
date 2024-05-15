@@ -24148,6 +24148,7 @@ medium_pouch:
   tradeable: false
   charges: 45
   degrade: medium_pouch_damaged
+  degrade_message: "Your pouch has decayed through use."
   weight: 1.0
   examine: "A medium-sized pouch used for storing essence."
 medium_pouch_damaged:
@@ -24155,6 +24156,7 @@ medium_pouch_damaged:
   tradeable: false
   charges: 20
   degrade: destroy
+  degrade_message: "Your pouch has decayed through use."
   weight: 1.0
   examine: "A damaged medium-sized pouch used for storing essence."
 large_pouch:
@@ -24162,6 +24164,7 @@ large_pouch:
   tradeable: false
   charges: 29
   degrade: large_pouch_damaged
+  degrade_message: "Your pouch has decayed through use."
   weight: 1.0
   examine: "A large pouch used for storing essence."
 large_pouch_damaged:
@@ -24169,6 +24172,7 @@ large_pouch_damaged:
   tradeable: false
   charges: 20
   degrade: destroy
+  degrade_message: "Your pouch has decayed through use."
   weight: 1.0
   examine: "A large damaged pouch used for storing essence."
 giant_pouch:
