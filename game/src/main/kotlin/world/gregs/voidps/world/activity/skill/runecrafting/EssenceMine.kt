@@ -29,7 +29,7 @@ object EssenceMine {
         player.softQueue("essence_mine_teleport", 3) {
             player["last_npc_teleport_to_rune_essence_mine"] = npc.id
             val areas: AreaDefinitions = get()
-            val tile = areas["essence_mine"].random(player)!!
+            val tile = areas["essence_mine_teleport"].random(player)!!
             player.tele(tile)
             if (player["enter_the_abyss", "unstarted"] == "scrying") {
                 player["scrying_orb_${npc.id}"] = true
