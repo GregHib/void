@@ -1926,3 +1926,22 @@ mage_of_zamorak_ourania:
 eniola:
   id: 6362
   examine: "A roving banker."
+zamorak_warrior_kite:
+  id: 6363
+  &zamorak_warrior
+  hitpoints: 450
+  att: 85
+  str: 70
+  def: 90
+  style: slash
+  max_hit_melee: 80
+  wander_radius: 5
+  attack_radius: 11
+  respawn_delay: 50
+  hunt_mode: aggressive
+  drop_table: zamorak_warrior
+  examine: "A warrior of Zamorak."
+zamorak_warrior_square:
+  <<: *zamorak_warrior
+  id: 6364
+  style: crush

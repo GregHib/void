@@ -2118,6 +2118,9 @@
 - { id: man_3, x: 3283, y: 3501 }
 # 13131
 - { id: eniola, x: 3269, y: 4857, members: true }
+- { id: zamorak_warrior_kite, x: 3015, y: 5583, members: true }
+- { id: zamorak_warrior_square, x: 3015, y: 5606, members: true }
+- { id: zamorak_warrior_kite, x: 3028, y: 5574, members: true }
 # 13210
 - { id: rat, x: 3269, y: 9869 }
 - { id: rat, x: 3274, y: 9873 }

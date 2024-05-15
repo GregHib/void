@@ -1554,3 +1554,27 @@ ourania_rune_table_level_10:
       chance: 31
     - id: soul_rune
       chance: 26
+zamorak_warrior_drop_table:
+  type: all
+  drops:
+    - type: all
+      drops:
+        - id: bones
+    - roll: 50
+      drops:
+        - id: rune_dagger
+          chance: 2
+        - id: adamant_longsword
+        - id: steel_scimitar
+          chance: 2
+        - id: steel_dagger
+          chance: 2
+        - id: rune_scimitar
+    - roll: 50
+      drops:
+        - id: coins
+          chance: 40
+          amount: 100
+        - id: lobster
+          chance: 2
+          amount: 3
