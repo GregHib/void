@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
+import world.gregs.voidps.type.random
 import java.util.*
 import kotlin.math.ceil
 
@@ -45,7 +46,7 @@ class Hunting(
 
     override fun run() {
         for (npc in npcs) {
-            val mode: String = npc.def.getOrNull("hunt_mode") ?: continue
+            val mode: String = npc["hunt_mode"] ?: npc.def.getOrNull("hunt_mode") ?: continue
             if (npc.hasClock("delay") || npc.dec("hunt_count_down") >= 0) {
                 continue
             }
@@ -55,22 +56,22 @@ class Hunting(
             when (definition.type) {
                 "player" -> {
                     val targets = getCharacters(npc, players, range, definition)
-                    val target = targets.randomOrNull() ?: continue
+                    val target = targets.randomOrNull(random) ?: continue
                     npc.emit(HuntPlayer(mode, target))
                 }
                 "npc" -> {
                     val targets = getCharacters(npc, npcs, range, definition)
-                    val target = targets.randomOrNull() ?: continue
+                    val target = targets.randomOrNull(random) ?: continue
                     npc.emit(HuntNPC(mode, target))
                 }
                 "object" -> {
                     val targets = getObjects(npc, definition)
-                    val target = targets.randomOrNull() ?: continue
+                    val target = targets.randomOrNull(random) ?: continue
                     npc.emit(HuntObject(mode, target))
                 }
                 "floor_item" -> {
                     val targets = getItems(npc, range, definition)
-                    val target = targets.randomOrNull() ?: continue
+                    val target = targets.randomOrNull(random) ?: continue
                     npc.emit(HuntFloorItem(mode, target))
                 }
             }
@@ -184,34 +185,34 @@ class Hunting(
     }
 
     /**
-     * Checks if [character] meets all the [definition] requirements
+     * Checks if [target] meets all the [definition] requirements
      */
     private fun canHunt(
         npc: NPC,
-        character: Character,
+        target: Character,
         definition: HuntModeDefinition,
         range: Int
     ): Boolean {
         // Npc checks from south-west tile
-        if (character.tile.distanceTo(npc.tile) > range) {
+        if (target.tile.distanceTo(npc.tile) > range) {
             return false
         }
-        if (!canSee(npc, character.tile, character.size, character.size, definition)) {
+        if (!canSee(npc, target.tile, target.size, target.size, definition)) {
             return false
         }
-        if (definition.checkNotTooStrong && targetTooStrong(npc, character)) {
+        if (definition.checkNotTooStrong && targetTooStrong(npc, target)) {
             return false
         }
-        if (definition.checkNotCombat && character.hasClock("in_combat")) {
+        if (definition.checkNotCombat && target.hasClock("in_combat") && !target.contains("in_multi_combat")) {
             return false
         }
         if (definition.checkNotCombatSelf && npc.hasClock("in_combat")) {
             return false
         }
-        if (definition.checkTolerance && !character.hasClock("tolerance")) {
+        if (definition.checkAfk && !target.hasClock("tolerance")) {
             return false
         }
-        if (definition.checkNotBusy && (character.hasClock("delay") || character.hasMenuOpen())) {
+        if (definition.checkNotBusy && (target.hasClock("delay") || target.hasMenuOpen())) {
             return false
         }
         return true

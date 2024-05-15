@@ -10,13 +10,13 @@ import world.gregs.voidps.engine.entity.obj.ObjectLayer
  * @param checkNotCombat checks if target is already in combat
  * @param checkNotCombatSelf checks if npc is in combat
  * @param checkNotBusy checks target doesn't have menu open
- * @param checkAfk check if target is afk after 10 minutes (dark beasts don't check)
- * @param checkTolerance check if target has tolerance by being in the same area for a while (custom)
+ * @param checkAfk check if target is "afk" aka has tolerance by staying in the same area for 10 minutes (dark beasts don't check)
  * @param findKeepHunting unknown
  * @param pauseIfNobodyNear stop finding new target when no players are around
  * @param rate ticks between checking for new targets. Non-player targets have min 3 ticks.
  * @param id the id for object or floor item target
  * @param layer the [ObjectLayer] for object targets
+ * @param maxMultiAttackers maximum number of attackers the target can have (custom)
  */
 data class HuntModeDefinition(
     val type: String,
@@ -25,13 +25,13 @@ data class HuntModeDefinition(
     val checkNotCombat: Boolean = true,
     val checkNotCombatSelf: Boolean = true,
     val checkNotBusy: Boolean = true,
-    val checkAfk: Boolean = true,
-    val checkTolerance: Boolean = true,
+    val checkAfk: Boolean = type == "player",
     val findKeepHunting: Boolean = false,
     val pauseIfNobodyNear: Boolean = true,
     val rate: Int = if (type == "player") 1 else 3,
     val id: String? = null,
-    val layer: Int = -1
+    val layer: Int = -1,
+    val maxMultiAttackers: Int = 2,
 ) {
     var filter: ((Entity) -> Boolean)? = null
 
@@ -65,6 +65,7 @@ data class HuntModeDefinition(
             pauseIfNobodyNear = map["pause_if_nobody_near"] as? Boolean ?: EMPTY.pauseIfNobodyNear,
             id = map["id"] as? String ?: EMPTY.id,
             rate = map["rate"] as? Int ?: EMPTY.rate,
+            maxMultiAttackers = map["max_multi_attackers"] as? Int ?: EMPTY.maxMultiAttackers,
         )
     }
 }
