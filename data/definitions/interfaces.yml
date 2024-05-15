@@ -1804,6 +1804,39 @@ report_abuse_select: 594
 godwars_killcount: 598
 warning_wilderness2: 600
 unknown_side1: 602
+ourania_bank_charge:
+  id: 619
+  type: main_screen
+  components:
+    air_rune: 28
+    mind_rune: 29
+    water_rune: 30
+    earth_rune: 31
+    fire_rune: 32
+    body_rune: 33
+    cosmic_rune: 34
+    chaos_rune: 35
+    astral_rune: 36
+    law_rune: 37
+    death_rune: 38
+    blood_rune: 39
+    nature_rune: 40
+    soul_rune: 41
+    text: 44
+    mind_rune_hide: 45
+    air_rune_hide: 46
+    water_rune_hide: 47
+    earth_rune_hide: 48
+    fire_rune_hide: 49
+    body_rune_hide: 50
+    cosmic_rune_hide: 51
+    chaos_rune_hide: 52
+    astral_rune_hide: 53
+    law_rune_hide: 54
+    death_rune_hide: 55
+    blood_rune_hide: 56
+    nature_rune_hide: 57
+    soul_rune_hide: 58
 shop:
   id: 620
   type: main_screen

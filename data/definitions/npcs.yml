@@ -1919,3 +1919,10 @@ brimstail:
   id: 171
   old_model: true
   examine: "Small but wise, he is."
+mage_of_zamorak_ourania:
+  id: 6370
+  wander_radius: 4
+  examine: "A representative of the Z.M.I."
+eniola:
+  id: 6362
+  examine: "A roving banker."

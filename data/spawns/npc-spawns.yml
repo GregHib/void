@@ -447,6 +447,8 @@
 - { id: giant_spider, x: 2488, y: 2888, members: true }
 - { id: giant_spider, x: 2494, y: 2888, members: true }
 - { id: giant_spider, x: 2490, y: 2883, members: true }
+# 9778
+- { id: mage_of_zamorak_ourania, x: 2455, y: 3233, members: true }
 # 9779
 - { id: rat, x: 2468, y: 3326, members: true }
 - { id: rat, x: 2473, y: 3326, members: true }
@@ -2114,6 +2116,8 @@
 - { id: musician_lumber_yard, x: 3291, y: 3455, direction: WEST }
 # 13110
 - { id: man_3, x: 3283, y: 3501 }
+# 13131
+- { id: eniola, x: 3269, y: 4857, members: true }
 # 13210
 - { id: rat, x: 3269, y: 9869 }
 - { id: rat, x: 3274, y: 9873 }
