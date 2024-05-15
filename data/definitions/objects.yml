@@ -11833,3 +11833,6 @@ ourania_crack_enter:
 ourania_crack_exit:
   id: 26845
   examine: "I might be able to squeeze through."
+ourania_altar:
+  id: 26847
+  examine: "An altar upon which to craft runes."

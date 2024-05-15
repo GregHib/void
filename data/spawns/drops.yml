@@ -1235,3 +1235,322 @@ abyssal_leech_drop_table:
       drops:
         - id: clue_scroll_medium
           lacks: clue_scroll_medium*
+ourania_rune_table_level_0:
+  roll: 10000
+  drops:
+    - id: mind_rune
+      chance: 5000
+    - id: water_rune
+      chance: 2500
+    - id: earth_rune
+      chance: 1200
+    - id: fire_rune
+      chance: 600
+    - id: body_rune
+      chance: 300
+    - id: cosmic_rune
+      chance: 150
+    - id: chaos_rune
+      chance: 85
+    - id: astral_rune
+      chance: 60
+    - id: nature_rune
+      chance: 45
+    - id: law_rune
+      chance: 30
+    - id: death_rune
+      chance: 15
+    - id: blood_rune
+      chance: 8
+    - id: soul_rune
+      chance: 5
+ourania_rune_table_level_1:
+  roll: 10000
+  drops:
+    - id: mind_rune
+      chance: 1500
+    - id: water_rune
+      chance: 1800
+    - id: earth_rune
+      chance: 2100
+    - id: fire_rune
+      chance: 2400
+    - id: body_rune
+      chance: 1200
+    - id: cosmic_rune
+      chance: 600
+    - id: chaos_rune
+      chance: 175
+    - id: astral_rune
+      chance: 80
+    - id: nature_rune
+      chance: 60
+    - id: law_rune
+      chance: 40
+    - id: death_rune
+      chance: 24
+    - id: blood_rune
+      chance: 12
+    - id: soul_rune
+      chance: 6
+ourania_rune_table_level_2:
+  roll: 10000
+  drops:
+    - id: mind_rune
+      chance: 1200
+    - id: water_rune
+      chance: 1300
+    - id: earth_rune
+      chance: 1350
+    - id: fire_rune
+      chance: 1400
+    - id: body_rune
+      chance: 1500
+    - id: cosmic_rune
+      chance: 1600
+    - id: chaos_rune
+      chance: 800
+    - id: astral_rune
+      chance: 420
+    - id: nature_rune
+      chance: 210
+    - id: law_rune
+      chance: 110
+    - id: death_rune
+      chance: 55
+    - id: blood_rune
+      chance: 32
+    - id: soul_rune
+      chance: 15
+ourania_rune_table_level_3:
+  roll: 1000
+  drops:
+    - id: mind_rune
+      chance: 70
+    - id: water_rune
+      chance: 80
+    - id: earth_rune
+      chance: 90
+    - id: fire_rune
+      chance: 110
+    - id: body_rune
+      chance: 120
+    - id: cosmic_rune
+      chance: 130
+    - id: chaos_rune
+      chance: 200
+    - id: astral_rune
+      chance: 100
+    - id: nature_rune
+      chance: 50
+    - id: law_rune
+      chance: 25
+    - id: death_rune
+      chance: 13
+    - id: blood_rune
+      chance: 6
+    - id: soul_rune
+      chance: 4
+ourania_rune_table_level_4:
+  roll: 1000
+  drops:
+    - id: mind_rune
+      chance: 60
+    - id: water_rune
+      chance: 65
+    - id: earth_rune
+      chance: 70
+    - id: fire_rune
+      chance: 75
+    - id: body_rune
+      chance: 80
+    - id: cosmic_rune
+      chance: 100
+    - id: chaos_rune
+      chance: 150
+    - id: astral_rune
+      chance: 200
+    - id: nature_rune
+      chance: 100
+    - id: law_rune
+      chance: 50
+    - id: death_rune
+      chance: 26
+    - id: blood_rune
+      chance: 12
+    - id: soul_rune
+      chance: 8
+ourania_rune_table_level_5:
+  roll: 1000
+  drops:
+    - id: mind_rune
+      chance: 50
+    - id: water_rune
+      chance: 55
+    - id: earth_rune
+      chance: 60
+    - id: fire_rune
+      chance: 65
+    - id: body_rune
+      chance: 70
+    - id: cosmic_rune
+      chance: 75
+    - id: chaos_rune
+      chance: 100
+    - id: astral_rune
+      chance: 110
+    - id: nature_rune
+      chance: 150
+    - id: law_rune
+      chance: 135
+    - id: death_rune
+      chance: 70
+    - id: blood_rune
+      chance: 35
+    - id: soul_rune
+      chance: 17
+ourania_rune_table_level_6:
+  roll: 200
+  drops:
+    - id: mind_rune
+      chance: 9
+    - id: water_rune
+      chance: 10
+    - id: earth_rune
+      chance: 11
+    - id: fire_rune
+      chance: 12
+    - id: body_rune
+      chance: 14
+    - id: cosmic_rune
+      chance: 15
+    - id: chaos_rune
+      chance: 19
+    - id: astral_rune
+      chance: 21
+    - id: nature_rune
+      chance: 28
+    - id: law_rune
+      chance: 31
+    - id: death_rune
+      chance: 16
+    - id: blood_rune
+      chance: 8
+    - id: soul_rune
+      chance: 4
+ourania_rune_table_level_7:
+  roll: 100
+  drops:
+    - id: mind_rune
+      chance: 3
+    - id: water_rune
+      chance: 3
+    - id: earth_rune
+      chance: 3
+    - id: fire_rune
+      chance: 4
+    - id: body_rune
+      chance: 4
+    - id: cosmic_rune
+      chance: 5
+    - id: chaos_rune
+      chance: 7
+    - id: astral_rune
+      chance: 9
+    - id: nature_rune
+      chance: 12
+    - id: law_rune
+      chance: 15
+    - id: death_rune
+      chance: 18
+    - id: blood_rune
+      chance: 10
+    - id: soul_rune
+      chance: 5
+ourania_rune_table_level_8:
+  roll: 200
+  drops:
+    - id: mind_rune
+      chance: 4
+    - id: water_rune
+      chance: 4
+    - id: earth_rune
+      chance: 6
+    - id: fire_rune
+      chance: 8
+    - id: body_rune
+      chance: 10
+    - id: cosmic_rune
+      chance: 12
+    - id: chaos_rune
+      chance: 14
+    - id: astral_rune
+      chance: 16
+    - id: nature_rune
+      chance: 21
+    - id: law_rune
+      chance: 27
+    - id: death_rune
+      chance: 29
+    - id: blood_rune
+      chance: 29
+    - id: soul_rune
+      chance: 12
+ourania_rune_table_level_9:
+  roll: 200
+  drops:
+    - id: mind_rune
+      chance: 2
+    - id: water_rune
+      chance: 2
+    - id: earth_rune
+      chance: 4
+    - id: fire_rune
+      chance: 6
+    - id: body_rune
+      chance: 8
+    - id: cosmic_rune
+      chance: 10
+    - id: chaos_rune
+      chance: 12
+    - id: astral_rune
+      chance: 14
+    - id: nature_rune
+      chance: 20
+    - id: law_rune
+      chance: 27
+    - id: death_rune
+      chance: 29
+    - id: blood_rune
+      chance: 33
+    - id: soul_rune
+      chance: 20
+ourania_rune_table_level_10:
+  roll: 200
+  drops:
+    - id: mind_rune
+      chance: 2
+    - id: water_rune
+      chance: 2
+    - id: earth_rune
+      chance: 4
+    - id: fire_rune
+      chance: 6
+    - id: body_rune
+      chance: 6
+    - id: cosmic_rune
+      chance: 8
+    - id: chaos_rune
+      chance: 10
+    - id: astral_rune
+      chance: 12
+    - id: nature_rune
+      chance: 19
+    - id: law_rune
+      chance: 27
+    - id: death_rune
+      chance: 29
+    - id: blood_rune
+      chance: 31
+    - id: soul_rune
+      chance: 26
