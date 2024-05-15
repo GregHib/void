@@ -28,7 +28,7 @@ teleportTakeOff {
     if (remaining > 0) {
         delay = remaining
     } else if (remaining < 0) {
-        player.setAnimation(if (option == "Climb-down") "climb_down" else "climb_up")
+        player.setAnimation(if (option == "Climb-down" || obj.stringId.endsWith("_down")) "climb_down" else "climb_up")
         player.start("teleport_delay", 2)
         delay = 2
     }
