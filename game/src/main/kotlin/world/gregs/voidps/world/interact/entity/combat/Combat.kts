@@ -99,6 +99,7 @@ characterCombatStop { character ->
     } else {
         character.clearWatch()
     }
+    character.target?.attackers?.remove(character)
     character.target = null
 }
 
