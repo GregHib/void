@@ -65,7 +65,9 @@ class Follow(
     override fun onCompletion() {
     }
 
-    override fun stop() {
-        character.clearWatch()
+    override fun stop(replacement: Mode) {
+        if (replacement !is Follow) {
+            character.clearWatch()
+        }
     }
 }
