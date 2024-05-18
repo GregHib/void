@@ -11,6 +11,9 @@ import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.event.modCommand
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.PlayerVariables
+import world.gregs.voidps.engine.data.definition.PatrolDefinitions
+import world.gregs.voidps.engine.entity.character.mode.Patrol
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.rights
@@ -39,6 +42,12 @@ val npcs: NPCs by inject()
 
 modCommand("test") {
     println(player.rights)
+}
+
+modCommand("patrol") {
+    val patrol = get<PatrolDefinitions>().get(content)
+    player.tele(patrol.waypoints.first().first)
+    player.mode = Patrol(player, patrol.waypoints)
 }
 
 modCommand("reset_cam") {
