@@ -22,15 +22,12 @@ canConsume("overload*") { player ->
     if (player.inWilderness) {
         player.message("You cannot drink an overload potion while you're in the wilderness.", ChatType.Game)
         cancel()
-        return@canConsume
     } else if (player.timers.contains("overload")) {
         player.message("You may only use this potion every five minutes.")
         cancel()
-        return@canConsume
     } else if (player.levels.get(Skill.Constitution) < 500) {
         player.message("You need more than 500 life points to survive the power of overload.")
         cancel()
-        return@canConsume
     }
 }
 
