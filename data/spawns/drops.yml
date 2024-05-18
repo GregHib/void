@@ -1687,3 +1687,12 @@ zamorak_crafter_drop_table:
         - id: coins
           chance: 10
           amount: 50
+monk_of_zamorak_drop_table:
+  type: all
+  drops:
+    - drops:
+        - id: bones
+    - roll: 20
+      drops:
+        - id: zamorak_monk_bottom
+        - id: zamorak_monk_top
