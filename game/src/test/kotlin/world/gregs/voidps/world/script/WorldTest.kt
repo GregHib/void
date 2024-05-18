@@ -28,6 +28,7 @@ import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.Item
@@ -160,7 +161,11 @@ abstract class WorldTest : KoinTest {
                 single { mapDefinitions }
                 single { collisions }
                 single { objectCollisionAdd }
+                single { objectCollisionAdd }
                 single { objectCollisionRemove }
+                single { Hunting(get(), get(), get(), get(), get(), get(), object : FakeRandom() {
+                    override fun nextBits(bitCount: Int) = 0
+                }) }
             })
         }
         loadScripts()

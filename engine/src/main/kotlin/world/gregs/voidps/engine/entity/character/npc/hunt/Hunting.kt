@@ -26,6 +26,7 @@ import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.random
 import java.util.*
 import kotlin.math.ceil
+import kotlin.random.Random
 
 /**
  * Picks new target for an [NPC] based on it's [HuntModeDefinition]
@@ -41,7 +42,8 @@ class Hunting(
     private val objects: GameObjects,
     private val floorItems: FloorItems,
     private val huntModes: HuntModeDefinitions,
-    private val lineValidator: LineValidator
+    private val lineValidator: LineValidator,
+    private val seed: Random = random
 ) : Runnable {
 
     override fun run() {
@@ -56,22 +58,22 @@ class Hunting(
             when (definition.type) {
                 "player" -> {
                     val targets = getCharacters(npc, players, range, definition)
-                    val target = targets.randomOrNull(random) ?: continue
+                    val target = targets.randomOrNull(seed) ?: continue
                     npc.emit(HuntPlayer(mode, target))
                 }
                 "npc" -> {
                     val targets = getCharacters(npc, npcs, range, definition)
-                    val target = targets.randomOrNull(random) ?: continue
+                    val target = targets.randomOrNull(seed) ?: continue
                     npc.emit(HuntNPC(mode, target))
                 }
                 "object" -> {
                     val targets = getObjects(npc, definition)
-                    val target = targets.randomOrNull(random) ?: continue
+                    val target = targets.randomOrNull(seed) ?: continue
                     npc.emit(HuntObject(mode, target))
                 }
                 "floor_item" -> {
                     val targets = getItems(npc, range, definition)
-                    val target = targets.randomOrNull(random) ?: continue
+                    val target = targets.randomOrNull(seed) ?: continue
                     npc.emit(HuntFloorItem(mode, target))
                 }
             }

@@ -5,7 +5,7 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-npcOperate("Talk-to", "mage_of_zamorak_wilderness") {
+npcOperate("Talk-to", "mage_of_zamorak_ourania") {
     player<Quiz>("What's that ladder next to the altar for?")
     npc<Shifty>("An...archeological dig. Yeah, a dig.")
     npc<Angry>("Why?")
