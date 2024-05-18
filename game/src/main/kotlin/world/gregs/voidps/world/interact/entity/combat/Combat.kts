@@ -131,6 +131,12 @@ fun retaliate(character: Character, source: Character) {
     if (character.dead || character.levels.get(Skill.Constitution) <= 0 || !retaliates(character)) {
         return
     }
+    if (character is Player && character.mode != EmptyMode) {
+        return
+    }
+    if (character is NPC && character.mode is CombatMovement && character.hasClock("in_combat")) {
+        return
+    }
     character.mode = CombatMovement(character, source)
     character.target = source
     val delay = character.attackSpeed / 2
