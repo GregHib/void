@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.consume.drink
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
-import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -36,14 +35,16 @@ canConsume("overload*") { player ->
 }
 
 enterArea("wilderness") {
-    if (player.timers.contains("overload")) {
-        removeBoost(player)
+    if (!player.timers.contains("overload")) {
+        return@enterArea
     }
-}
-
-exitArea("wilderness") {
-    if (player.timers.contains("overload")) {
-        applyBoost(player)
+    for (skill in skills) {
+        val max = player.levels.get(skill)
+        val offset = player.levels.getOffset(skill)
+        val superBoost = (max * if (skill == Skill.Ranged) 0.1 else 0.15).toInt() + (if (skill == Skill.Ranged) 4 else 5)
+        if (offset > superBoost) {
+            player.levels.drain(skill, offset - superBoost)
+        }
     }
 }
 
@@ -72,7 +73,6 @@ timerStart("overload") { player ->
 timerTick("overload") { player ->
     if (player.dec("overload_refreshes_remaining") <= 0) {
         cancel()
-        removeBoost(player)
         return@timerTick
     }
     if (!player.inWilderness) {
@@ -81,6 +81,8 @@ timerTick("overload") { player ->
 }
 
 timerStop("overload") { player ->
+    removeBoost(player)
+    player.levels.restore(Skill.Constitution, 500)
     player.message("<dark_red>The effects of overload have worn off and you feel normal again.")
 }
 
@@ -92,20 +94,18 @@ fun applyBoost(player: Player) {
     player.levels.boost(Skill.Ranged, 4, 0.1923)
 }
 
-fun removeBoost(player: Player) {
-    val skillsToReset = listOf(
-        Skill.Attack,
-        Skill.Strength,
-        Skill.Defence,
-        Skill.Magic,
-        Skill.Ranged
-    )
+val skills = listOf(
+    Skill.Attack,
+    Skill.Strength,
+    Skill.Defence,
+    Skill.Magic,
+    Skill.Ranged
+)
 
-    for (skill in skillsToReset) {
+fun removeBoost(player: Player) {
+    for (skill in skills) {
         reset(player, skill)
     }
-
-    player.levels.restore(Skill.Constitution, 500)
 }
 
 fun reset(player: Player, skill: Skill) {
