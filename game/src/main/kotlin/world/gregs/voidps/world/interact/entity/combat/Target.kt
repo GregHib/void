@@ -49,7 +49,7 @@ object Target {
                 }
             }
         }
-        if (target.inSingleCombat && target.inCombat && !target.attackers.contains(source)) {
+        if (target.inSingleCombat && target.inCombat && !target.attackers.contains(source) && source.target != target) {
             if (target is NPC) {
                 (source as? Player)?.message("Someone else is fighting that.")
             } else {
@@ -57,7 +57,7 @@ object Target {
             }
             return false
         }
-        if (source.inSingleCombat && source.inCombat && !source.attackers.contains(target)) {
+        if (source.inSingleCombat && source.inCombat && !source.attackers.contains(target) && source.target != target) {
             (source as? Player)?.message("You are already in combat.")
             return false
         }
