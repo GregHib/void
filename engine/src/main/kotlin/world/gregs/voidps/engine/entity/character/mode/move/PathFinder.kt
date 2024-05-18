@@ -25,7 +25,7 @@ fun PathFinder.findPath(character: Character, strategy: TargetStrategy, shape: I
 )
 
 fun StepValidator.canTravel(character: Character, x: Int, y: Int): Boolean {
-    val flag = if (character is NPC) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
+    val flag = if (character is NPC && character.def["solid", true]) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
     return canTravel(
         level = character.tile.level,
         x = character.tile.x,
