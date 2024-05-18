@@ -13,18 +13,18 @@ import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.combat.inWilderness
 import world.gregs.voidps.world.interact.entity.player.combat.consume.canConsume
+import java.util.concurrent.TimeUnit
 
 canConsume("overload*") { player ->
     if (player.inWilderness) {
         player.message("You cannot drink an overload potion while you're in the wilderness.", ChatType.Game)
         cancel()
         return@canConsume
-    }
-
-    if (player.timers.contains("overload")) {
+    } else if (player.timers.contains("overload")) {
         player.message("You may only use this potion every five minutes.")
         cancel()
         return@canConsume
@@ -54,7 +54,7 @@ playerSpawn { player ->
 }
 
 timerStart("overload") { player ->
-    interval = 25
+    interval = TimeUnit.SECONDS.toTicks(15)
     if (restart) {
         return@timerStart
     }
