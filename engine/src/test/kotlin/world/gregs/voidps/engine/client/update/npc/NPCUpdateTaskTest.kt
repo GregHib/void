@@ -13,6 +13,7 @@ import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.update.view.Viewport
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -32,7 +33,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
     private lateinit var viewport: Viewport
     override val modules = listOf(
         module {
-            single { NPCs(get(), get(), get()) }
+            single { NPCs(get(), get(), get(), AreaDefinitions()) }
         }
     )
     private lateinit var encoder: VisualEncoder<NPCVisuals>

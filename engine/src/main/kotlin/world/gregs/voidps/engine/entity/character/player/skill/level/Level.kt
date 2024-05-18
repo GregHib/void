@@ -37,7 +37,6 @@ object Level {
         return interpolate(level.coerceIn(MIN_LEVEL, MAX_LEVEL), chances.first, chances.last, MIN_LEVEL, MAX_LEVEL)
     }
 
-
     fun experience(skill: Skill, level: Int) = experience(if (skill == Skill.Constitution) level / 10 else level)
 
     fun experience(level: Int): Double = (1 until level)

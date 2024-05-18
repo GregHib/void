@@ -2774,6 +2774,7 @@ fire_rune:
       air: [ smoke, 8.5 ]
       water: [ steam, 9.3 ]
       earth: [ lava, 10.0 ]
+    ourania_chance: 25.0
   aka: [ fires, fire_runes ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
@@ -2788,6 +2789,7 @@ water_rune:
       air: [ mist, 8.0 ]
       earth: [ mud, 9.5 ]
       fire: [ steam, 10.0 ]
+    ourania_chance: 25.0
   aka: [ waters, water_runes ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
@@ -2802,6 +2804,7 @@ air_rune:
       water: [ mist, 8.5 ]
       earth: [ dust, 9.0 ]
       fire: [ smoke, 9.5 ]
+    ourania_chance: 25.0
   aka: [ airs, air_runes ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
@@ -2816,6 +2819,7 @@ earth_rune:
       air: [ dust, 8.3 ]
       water: [ mud, 9.3 ]
       fire: [ lava, 10.5 ]
+    ourania_chance: 25.0
   aka: [ earths, earth_runes ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
@@ -2826,6 +2830,7 @@ mind_rune:
   runecrafting:
     xp: 5.5
     levels: [ 2, 14, 28, 42, 56, 84, 98 ]
+    ourania_chance: 25.0
   aka: [ minds, mind_runes ]
   examine: "Used for basic level missile spells."
   kept: "Wilderness"
@@ -2836,6 +2841,7 @@ body_rune:
   runecrafting:
     xp: 7.5
     levels: [ 20, 46, 92 ]
+    ourania_chance: 25.0
   aka: [ bodies, bodys, body_runes ]
   examine: "Used for Curse spells"
   kept: "Wilderness"
@@ -2847,6 +2853,7 @@ death_rune:
     xp: 10.0
     levels: [ 65 ]
     pure: true
+    ourania_chance: 17.5
   aka: [ deaths, death_runes ]
   examine: "Used for medium level missile spells."
 nature_rune:
@@ -2857,6 +2864,7 @@ nature_rune:
     xp: 9.0
     levels: [ 44, 91 ]
     pure: true
+    ourania_chance: 22.5
   aka: [ nat, nats, natures, nature_runes ]
   examine: "Used for alchemy spells."
 chaos_rune:
@@ -2867,6 +2875,7 @@ chaos_rune:
     xp: 8.5
     levels: [ 35, 74 ]
     pure: true
+    ourania_chance: 25.0
   aka: [ chaoss, chaoses, chaos_runes ]
   examine: "Used for low level missile spells."
 law_rune:
@@ -2877,6 +2886,7 @@ law_rune:
     xp: 9.5
     levels: [ 54 ]
     pure: true
+    ourania_chance: 20.0
   aka: [ laws, law_runes ]
   examine: "Used for teleport spells."
 cosmic_rune:
@@ -2887,6 +2897,7 @@ cosmic_rune:
     xp: 8.0
     levels: [ 27, 59 ]
     pure: true
+    ourania_chance: 25.0
   aka: [ cosmics, cosmic_runes ]
   examine: "Used for enchant spells."
 blood_rune:
@@ -2897,6 +2908,7 @@ blood_rune:
     xp: 10.5
     levels: [ 77 ]
     pure: true
+    ourania_chance: 15.0
   aka: [ bloods, blood_runes ]
   examine: "Used for high level missile spells."
 soul_rune:
@@ -2907,6 +2919,7 @@ soul_rune:
     xp: 29.7
     levels: [ 90 ]
     pure: true
+    ourania_chance: 10.0
   aka: [ souls, soul_runes ]
   examine: "Used for high level curse spells."
 unpowered_orb:
@@ -24148,6 +24161,7 @@ medium_pouch:
   tradeable: false
   charges: 45
   degrade: medium_pouch_damaged
+  degrade_message: "Your pouch has decayed through use."
   weight: 1.0
   examine: "A medium-sized pouch used for storing essence."
 medium_pouch_damaged:
@@ -24155,6 +24169,7 @@ medium_pouch_damaged:
   tradeable: false
   charges: 20
   degrade: destroy
+  degrade_message: "Your pouch has decayed through use."
   weight: 1.0
   examine: "A damaged medium-sized pouch used for storing essence."
 large_pouch:
@@ -24162,6 +24177,7 @@ large_pouch:
   tradeable: false
   charges: 29
   degrade: large_pouch_damaged
+  degrade_message: "Your pouch has decayed through use."
   weight: 1.0
   examine: "A large pouch used for storing essence."
 large_pouch_damaged:
@@ -24169,6 +24185,7 @@ large_pouch_damaged:
   tradeable: false
   charges: 20
   degrade: destroy
+  degrade_message: "Your pouch has decayed through use."
   weight: 1.0
   examine: "A large damaged pouch used for storing essence."
 giant_pouch:

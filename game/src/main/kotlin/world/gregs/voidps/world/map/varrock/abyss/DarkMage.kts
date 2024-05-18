@@ -2,6 +2,7 @@ package world.gregs.voidps.world.map.varrock.abyss
 
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.world.activity.bank.ownsItem
@@ -74,13 +75,17 @@ fun ChoiceBuilder<NPCOption>.needHelp() {
         choice {
             option<Quiz>("Can I have another Abyssal book?") {
                 if (player.ownsItem("abyssal_book")) {
-                    // TODO
+                    npc<Talk>("You already have one, don't waste my time.") // TODO proper message
                 } else {
                     if (player.inventory.isFull()) {
                         npc<Angry>("Don't waste my time if you don't have enough free space to take it.")
                     } else {
                         npc<Talk>("Here, take it. It is important to pool our research.")
-                        item("abyssal_book", 400, "You have been given a book.")
+                        if (player.inventory.add("abyssal_book")) {
+                            item("abyssal_book", 400, "You have been given a book.")
+                        } else {
+                            item("abyssal_book", 400, "The mage tries to hand you a book, but you don't have enough room to take it.") // TODO proper message
+                        }
                         choice {
                             askForPouch()
                             option<Neutral>("Thanks.") {

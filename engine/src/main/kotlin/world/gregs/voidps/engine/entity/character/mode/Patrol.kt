@@ -51,8 +51,11 @@ class Patrol(
         super.tick()
     }
 
-    override fun stop() {
-        super.stop()
+    override fun onCompletion() {
+    }
+
+    override fun stop(replacement: Mode) {
+        super.stop(replacement)
         character.clear("patrol_delay")
         character.clear("patrol_index")
     }

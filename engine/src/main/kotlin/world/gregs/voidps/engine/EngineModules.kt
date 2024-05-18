@@ -20,7 +20,10 @@ import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.map.collision.*
+import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
+import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.type.Tile
@@ -30,7 +33,7 @@ import java.io.File
 
 val engineModule = module {
     // Entities
-    single { NPCs(get(), get(), get()) }
+    single { NPCs(get(), get(), get(), get()) }
     single { Players() }
     single { GameObjects(get(), get(), get(), get(), getProperty<String>("loadUnusedObjects") == "true").apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItems(get(), get()).apply { get<ZoneBatchUpdates>().register(this) } }
@@ -93,6 +96,7 @@ val engineModule = module {
     single(createdAtStart = true) { VariableDefinitions().load() }
     single(createdAtStart = true) { JingleDefinitions().load() }
     single(createdAtStart = true) { SpellDefinitions().load() }
+    single(createdAtStart = true) { PatrolDefinitions().load() }
     single(createdAtStart = true) { PrayerDefinitions().load() }
     single(createdAtStart = true) { GearDefinitions().load() }
     single(createdAtStart = true) { ItemOnItemDefinitions().load() }

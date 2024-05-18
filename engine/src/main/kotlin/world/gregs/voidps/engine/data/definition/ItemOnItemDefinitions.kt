@@ -34,7 +34,7 @@ class ItemOnItemDefinitions {
                     super.add(list, if (value is Map<*, *>) {
                         val id = value["item"] as String
                         if (itemDefinitions != null && !itemDefinitions.contains(id)) {
-                            logger.warn { "Invalid item id: $id" }
+                            logger.warn { "Invalid item-on-item id: $id" }
                         }
                         Item(id, value["amount"] as? Int ?: 1)
                     } else {

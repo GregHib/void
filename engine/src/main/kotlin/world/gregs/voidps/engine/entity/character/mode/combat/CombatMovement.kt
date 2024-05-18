@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
@@ -108,7 +109,9 @@ class CombatMovement(
     override fun onCompletion() {
     }
 
-    override fun stop() {
-        character.emit(CombatStop(target))
+    override fun stop(replacement: Mode) {
+        if (replacement !is CombatMovement || replacement.target != target) {
+            character.emit(CombatStop(target))
+        }
     }
 }

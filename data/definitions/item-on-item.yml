@@ -6285,9 +6285,9 @@ sapphire_bullseye_lantern_make:
   ticks: 1
   remove:
     - item: bullseye_lantern_frame
-    - item: sapphire_lens
+    - item: sapphire
   add:
-    - item: sapphire_lantern
+    - item: sapphire_lantern_empty
   message: "You add the lens to the bullseye lantern frame."
 default_bullseye_lantern_oiled_make:
   skill: crafting

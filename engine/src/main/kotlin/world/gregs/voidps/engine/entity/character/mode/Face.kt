@@ -30,8 +30,8 @@ class Face(
         }
     }
 
-    override fun stop() {
-        super.stop()
+    override fun stop(replacement: Mode) {
+        super.stop(replacement)
         character.clearWatch()
     }
 }

@@ -11821,3 +11821,18 @@ brimstails_cave_exit_right:
 rune_essence_exit_portal:
   id: 2492
   examine: "A portal from this mystical place."
+ourania_cave_ladder_down:
+  id: 26849
+  examine: "Into the darkness..."
+ourania_cave_ladder_up:
+  id: 26850
+  examine: "Into the light!"
+ourania_crack_enter:
+  id: 26844
+  examine: "I might be able to squeeze through."
+ourania_crack_exit:
+  id: 26845
+  examine: "I might be able to squeeze through."
+ourania_altar:
+  id: 26847
+  examine: "An altar upon which to craft runes."

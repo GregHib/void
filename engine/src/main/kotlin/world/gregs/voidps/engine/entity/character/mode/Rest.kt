@@ -25,7 +25,7 @@ class Rest(
     override fun tick() {
     }
 
-    override fun stop() {
+    override fun stop(replacement: Mode) {
         val type = player["movement_temp", "walk"]
         player["movement"] = type
         player.start("movement_delay", if (type == "walk") 2 else 1)

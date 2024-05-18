@@ -366,6 +366,7 @@ adminCommand("reload") {
         "music", "music effects", "jingles" -> get<JingleDefinitions>().load()
         "interfaces" -> get<InterfaceDefinitions>().load()
         "spells" -> get<SpellDefinitions>().load()
+        "patrols", "paths" -> get<PatrolDefinitions>().load()
         "prayers" -> get<PrayerDefinitions>().load()
         "drops" -> get<DropTables>().load()
         "cs2", "cs2s", "client scripts" -> get<ClientScriptDefinitions>().load()

@@ -6,6 +6,9 @@ aggressive:
   check_not_combat: true
   check_not_combat_self: true
   check_not_busy: false
+aggressive_npcs:
+  <<: *aggressive
+  type: npc
 not_busy:
   <<: *aggressive
   check_not_busy: true

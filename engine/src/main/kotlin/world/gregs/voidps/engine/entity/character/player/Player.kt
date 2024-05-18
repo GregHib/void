@@ -48,7 +48,7 @@ class Player(
 
     override var mode: Mode = EmptyMode
         set(value) {
-            field.stop()
+            field.stop(value)
             field = value
             value.start()
         }
