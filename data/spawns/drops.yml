@@ -1639,3 +1639,51 @@ zamorak_ranger_drop_table:
         - id: coins
           chance: 40
           amount: 100
+zamorak_crafter_drop_table:
+  type: all
+  drops:
+    - type: all
+      drops:
+        - id: bones
+    - roll: 70
+      drops:
+        - id: air_rune
+          chance: 10
+          amount: 5
+        - id: body_rune
+          chance: 5
+          amount: 3
+        - id: blood_rune
+          chance: 2
+          amount: 4
+        - id: chaos_rune
+          chance: 5
+          amount: 4
+        - id: death_rune
+          chance: 2
+          amount: 3
+        - id: earth_rune
+          chance: 5
+          amount: 6
+        - id: water_rune
+          chance: 10
+          amount: 5
+        - id: soul_rune
+          chance: 2
+          amount: 3
+        - id: fire_rune
+          chance: 10
+          amount: 2
+        - id: law_rune
+          amount: 3
+        - id: nature_rune
+          chance: 2
+          amount: 2
+        - id: pure_essence
+          chance: 5
+          amount: 3
+        - id: pure_essence
+          amount: 10
+        - id: coins
+          chance: 10
+          amount: 50

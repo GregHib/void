@@ -2009,10 +2009,25 @@ cave_lizard:
   respawn_delay: 50
   examine: "A cave dweller."
 zamorak_crafter_start:
+  &zamorak_crafter
   id: 6371
   solid: false
+  hitpoints: 250
+  att: 15
+  str: 15
+  def: 12
+  mage: 20
+  race: human
+  style: crush
+  height: 40
+  hunt_range: 2
+  attack_range: 1
+  attack_radius: 11
+  wander_radius: 5
+  max_hit_melee: 20
+  drop_table: zamorak_crafter
+  respawn_delay: 50
   examine: "A Z.M.I. runecrafter."
 zamorak_crafter_end:
+  <<: *zamorak_crafter
   id: 6372
-  solid: false
-  examine: "A Z.M.I. runecrafter."
