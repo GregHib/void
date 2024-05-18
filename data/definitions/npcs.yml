@@ -2008,3 +2008,11 @@ cave_lizard:
   drop_table: empty
   respawn_delay: 50
   examine: "A cave dweller."
+zamorak_crafter_start:
+  id: 6371
+  solid: false
+  examine: "A Z.M.I. runecrafter."
+zamorak_crafter_end:
+  id: 6372
+  solid: false
+  examine: "A Z.M.I. runecrafter."

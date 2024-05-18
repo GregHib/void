@@ -2136,6 +2136,8 @@
 - { id: cave_lizard, x: 3288, y: 4802, members: true }
 - { id: cave_lizard, x: 3289, y: 4805, members: true }
 - { id: cave_lizard, x: 3301, y: 4811, members: true }
+- { id: zamorak_crafter_start, x: 3270, y: 4856, members: true }
+- { id: zamorak_crafter_end, x: 3314, y: 4811, members: true }
 # 13210
 - { id: rat, x: 3269, y: 9869 }
 - { id: rat, x: 3274, y: 9873 }
