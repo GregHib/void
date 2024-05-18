@@ -81,9 +81,13 @@ timerTick("overload") { player ->
 }
 
 timerStop("overload") { player ->
+    if (logout) {
+        return@timerStop
+    }
     removeBoost(player)
     player.levels.restore(Skill.Constitution, 500)
     player.message("<dark_red>The effects of overload have worn off and you feel normal again.")
+    player["overload_refreshes_remaining"] = 0
 }
 
 fun applyBoost(player: Player) {
