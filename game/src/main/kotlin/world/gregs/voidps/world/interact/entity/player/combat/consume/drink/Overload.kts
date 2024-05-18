@@ -75,6 +75,9 @@ timerTick("overload") { player ->
         removeBoost(player)
         return@timerTick
     }
+    if (!player.inWilderness) {
+        applyBoost(player)
+    }
 }
 
 timerStop("overload") { player ->
