@@ -14,14 +14,15 @@ object DumpSprites {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val decoder = SpriteDecoder().load(cache)
         println(decoder.lastIndex)
-        File("./sprites/").mkdir()
+        val directory = File("./temp/sprites/")
+        directory.mkdir()
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
             println("Sprite $i ${def.sprites?.size}")
             val sprites = def.sprites ?: continue
             for ((index, sprite) in sprites.withIndex()) {
                 if (sprite.width > 0 && sprite.height > 0) {
-                    ImageIO.write(sprite.toBufferedImage(), "png", File("./sprites/${i}_${index}.png"))
+                    ImageIO.write(sprite.toBufferedImage(), "png", directory.resolve("${i}_${index}.png"))
                 }
             }
         }
