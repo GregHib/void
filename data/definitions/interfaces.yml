@@ -2319,6 +2319,28 @@ skill_creation_amount:
 task_list:
   id: 917
   type: main_screen
+  components:
+    area_lumbridge_draynor: 119
+    area_varrock: 121
+    area_falador: 123
+    area_seers_village: 125
+    area_ardougne: 127
+    area_karamja: 129
+    area_fremennik: 131
+    area_dnd_activities: 147
+    filter_sets: 110
+    filter_done: 102
+    toggle_popups: 136
+    pin: 40
+    hint_1: 2
+    hint_2: 4
+    hint_3: 6
+    hint_4: 8
+    tasks:
+      id: 94
+      options:
+        Summary: 0
+        Pin: 1
 dialogue_make_amount:
   id: 944
   type: dialogue_box
@@ -2540,9 +2562,11 @@ task_system:
     task_5: 157
     task_6: 162
     task_list: 102
-    dont_show: 172
+    dont_show: 173
     close_hint: 174
     hints: 36
+    summary_overlay: 122
+    message_overlay: 171
 warriors_guild: 1057
 fade_out:
   id: 120
