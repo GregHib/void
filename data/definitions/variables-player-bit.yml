@@ -649,39 +649,36 @@ scrying_orb_wizard_distentor:
   format: boolean
   persist: true
   transmit: false
-task_pin_1:
+task_slot_1:
   id: 8587
   format: int
-  persist: true
-task_pin_2:
+task_slot_2:
   id: 8588
   format: int
-  persist: true
-task_pin_3:
+task_slot_3:
   id: 8589
   format: int
-  persist: true
-task_pin_4:
+task_slot_4:
   id: 8590
   format: int
-  persist: true
-task_pin_5:
+task_slot_5:
   id: 8591
   format: int
-  persist: true
-task_pin_6:
+task_slot_6:
   id: 8592
   format: int
+task_pinned:
+  id: 8576
+  format: int
   persist: true
-task_pins:
+task_pin_index:
   id: 8577
-  format: bitwise
+  format: int
   persist: true
-  values: [ 1, 2, 3, 4, 5, 6 ]
 task_area:
   id: 8575
   format: map
-  default: lumbridge_draynor
+  default: empty
   values:
     dnd_activities: 0
     lumbridge_draynor: 1
@@ -702,7 +699,7 @@ task_list_area:
   id: 8582
   format: map
   persist: true
-  default: dnd_activities
+  default: unstable_foundations
   values:
     dnd_activities: 0
     lumbridge_draynor: 1
@@ -712,15 +709,18 @@ task_list_area:
     ardougne: 5
     karamja: 6
     fremennik: 7
+    unstable_foundations: 60
+    empty: 61
+    elsewhere: 63
 task_hide_completed:
   id: 8579
   format: boolean
   persist: true
-unknown1:
-  id: 8576
-  format: int
-  persist: true
 task_filter_sets:
   id: 8580
   format: boolean
+  persist: true
+task_introducing_explorer_jack:
+  id: 6494
+  format: int
   persist: true

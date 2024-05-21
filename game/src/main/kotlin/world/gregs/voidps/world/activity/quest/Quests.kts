@@ -19,4 +19,5 @@ adminCommand("quests") {
     }
     player["quest_points"] = 7
     player.refreshQuestJournal()
+    player["task_introducing_explorer_jack"] = 3
 }

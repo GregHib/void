@@ -1,12 +1,13 @@
 package world.gregs.voidps.world.activity.achievement
 
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
+import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
 
@@ -25,12 +26,6 @@ interfaceOption("Select", "area_*", "task_list") {
     refresh(player)
 }
 
-/*
-    dnds=3002..3034
-    unstable foundations=3500..3522
-    varrock=256..345
-
- */
 interfaceOption("Summary", "tasks", "task_list") {
     player["selected_task"] = itemSlot / 4
 }
@@ -46,43 +41,27 @@ interfaceOption("Pin", "pin", "task_list") {
 val enumDefinitions: EnumDefinitions by inject()
 val structDefinitions: StructDefinitions by inject()
 
-fun pin(player: Player, id: Int) {
-    val areaId = areaId(player)
-    var start = enumDefinitions.get("task_area_start_indices").getInt(areaId)
+fun id(player: Player, index: Int, area: Int = areaId(player)): Int? {
+    var next = enumDefinitions.get("task_area_start_indices").getInt(area)
     var count = 0
-    var taskIndex = -1
-    while (start != -1) {
-        val struct = enumDefinitions.get("task_structs").getInt(start)
+    while (next != -1) {
+        val struct = enumDefinitions.get("task_structs").getInt(next)
         val definition = structDefinitions.getOrNull(struct) ?: break
-        start = definition["task_next_index", -1]
-        if (definition["task_members", 0] == 1 && !World.members) { // TODO test if members tasks are displayed for f2p or not
-            count++
-            continue
+        if (count++ == index) {
+            return next
         }
-        if (count++ == id) {
-            taskIndex = definition["task_index", -1]
-            break
-        }
+        next = definition["task_next_index", -1]
     }
-    if (taskIndex == -1) {
-        return // Task not found
-    }
-    var index = -1
-    for (i in 1..6) {
-        if (!player.containsVarbit("task_pins", i)) {
-            index = i
-            break
-        }
-        if (player["task_pin_${i}", -1] == taskIndex) {
-            return // Already pinned
-        }
-    }
+    return null
+}
 
-    if (index == -1) {
-        return // Too many pins
+fun index(player: Player, id: Int): Int {
+    for (i in 0 until 6) {
+        if (player["task_slot_${i}", -1] == id) {
+            return i
+        }
     }
-    player.addVarbit("task_pins", index)
-    player["task_pin_${index}"] = taskIndex
+    return 1
 }
 
 interfaceOption("Filter-sets", "filter_sets", "task_list") {
@@ -104,4 +83,19 @@ fun refresh(player: Player) {
     player.interfaceOptions.unlockAll("task_list", "tasks", 0..100)
 }
 
-fun areaId(player: Player) = variables.get("task_list_area")!!.values.toInt(player["task_list_area", "dnd_activities"])
+variableSet("task_pin_index") { player ->
+    player.close("task_list")
+}
+
+fun areaId(player: Player) = variables.get("task_list_area")!!.values.toInt(player["task_list_area", "unstable_foundations"])
+
+fun pin(player: Player, index: Int) {
+    val id = id(player, index) ?: return
+    if (player["task_pinned", -1] == id) {
+        player.clear("task_pinned")
+        player.clear("task_pin_index")
+    } else {
+        player["task_pinned"] = id
+        player["task_pin_index"] = index(player, id)
+    }
+}
