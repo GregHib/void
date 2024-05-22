@@ -406,3 +406,200 @@ enter_the_abyss:
   persist: true
   format: list
   values: [ unstarted, started, scrying, orb_inspect, completed ]
+plague_city:
+  id: 165
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 29
+biohazard:
+  id: 68
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 16
+gertrudes_cat:
+  id: 180
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 6
+monks_friend:
+  id: 30
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 80
+watchtower:
+  id: 212
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 14
+sea_slug:
+  id: 159
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 12
+legends_quest:
+  id: 139
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 75
+monkey_madness:
+  id: 365
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 9
+restless_ghost:
+  id: 107
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 5
+dragon_slayer:
+  id: 176
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    received_shield: 1
+    completed: 10
+fremennik_trials:
+  id: 347
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 10
+bar_crawl_miniquest:
+  id: 76
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 6
+shilo_village:
+  id: 116
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 15
+jungle_potion:
+  id: 175
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 12
+tai_bwo_wannai_trio:
+  id: 320
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 6
+grand_tree:
+  id: 150
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 160
+murder_mystery:
+  id: 192
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 2
+scorpion_catcher:
+  id: 76
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 6
+one_small_favour:
+  id: 416
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 280
+family_crest:
+  id: 148
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 11
+tree_gnome_village:
+  id: 111
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 9
+bork_defeated_day:
+  id: 1199
+  format: int
+  persist: true
+priest_in_peril:
+  id: 302
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 60
+shades_of_mortton:
+  id: 339
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 85
+prince_ali_rescue:
+  id: 273
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 110
