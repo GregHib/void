@@ -93,7 +93,7 @@ adminCommand("sendItems") {
 
 adminCommand("var") {
     val parts = content.split(" ")
-    player[parts.first()] = parts.last().toIntOrNull() ?: parts.last()
+    player[parts.first()] = parts.last().toBooleanStrictOrNull() ?: parts.last().toIntOrNull() ?: parts.last()
 }
 
 adminCommand("varp") {
