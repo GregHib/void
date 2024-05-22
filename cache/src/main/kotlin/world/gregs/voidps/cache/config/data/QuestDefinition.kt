@@ -114,4 +114,8 @@ data class QuestDefinition(
         result = 31 * result + (extras?.hashCode() ?: 0)
         return result
     }
+
+    companion object {
+        val EMPTY = QuestDefinition()
+    }
 }

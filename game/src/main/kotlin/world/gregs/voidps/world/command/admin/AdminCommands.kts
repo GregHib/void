@@ -361,6 +361,7 @@ adminCommand("reload") {
             get<ItemOnItemDefinitions>().load()
         }
         "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load()
+        "quest", "quests" -> get<QuestDefinitions>().load()
         "midi" -> get<MidiDefinitions>().load()
         "vars", "variables" -> get<VariableDefinitions>().load()
         "music", "music effects", "jingles" -> get<JingleDefinitions>().load()
