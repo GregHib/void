@@ -86,21 +86,24 @@ interfaceOption("Pin/Unpin Task", "task_*", "task_system") {
 }
 
 fun index(player: Player, index: Int, areaId: Int = areaId(player)): Int? {
-    var start = enumDefinitions.get("task_area_start_indices").getInt(areaId)
+    var next = enumDefinitions.get("task_area_start_indices").getInt(areaId)
     var count = 1
-    while (start != -1) {
-        val struct = enumDefinitions.get("task_structs").getInt(start)
+    while (next != -1) {
+        val struct = enumDefinitions.get("task_structs").getInt(next)
         val definition = structDefinitions.getOrNull(struct) ?: break
-        val current = start
-        start = definition["task_next_index", -1]
-        if (definition["task_members", 0] == 1 && !World.members) { // TODO test if members tasks are displayed for f2p or not
+        if (player["task_hide_completed", false] && isCompleted(player, definition.stringId) || definition["task_members", 0] == 1 && !World.members) {
             count++
             continue
         }
         if (count == index) {
-            return current
+            return next
+        }
+        if (player["task_pin_index", -1] == count) {
+            count++
+            continue
         }
         count++
+        next = definition["task_next_index", -1]
     }
     return null
 }
@@ -109,30 +112,29 @@ variableSet("task_pin_index", "task_area") { player ->
     refreshSlots(player)
 }
 
+variableSet("*_task", to = true) { player ->
+    refreshSlots(player)
+}
+
 fun refreshSlots(player: Player) {
     val areaId = areaId(player)
     var next = enumDefinitions.get("task_area_start_indices").getInt(areaId)
-    for (i in 1..6) {
-        if (pinned(player, i)) {
-            player["task_slot_${i}"] = player["task_pinned", 4091]
+    var i = 1
+    while (i < 7 && next != 4091) {
+        val struct = enumDefinitions.get("task_structs").getInt(next)
+        val definition = structDefinitions.getOrNull(struct) ?: break
+        val pinned = pinned(player, i)
+        if (player["task_pinned", -1] == next && !pinned || !Tasks.hasRequirements(player, definition) || isCompleted(player, definition.stringId)) {
+            next = definition["task_next_index", 4091]
             continue
         }
-        next = nextTask(player, i, next)
-        player["task_slot_${i}"] = next
+        if (pinned) {
+            player["task_slot_${i++}"] = player["task_pinned", 4091]
+        } else {
+            player["task_slot_${i++}"] = next
+            next = definition["task_next_index", 4091]
+        }
     }
-}
-
-fun nextTask(player: Player, index: Int, id: Int): Int {
-    if (id == 4091) {
-        return id
-    }
-    val struct = enumDefinitions.get("task_structs").getInt(id)
-    val definition = structDefinitions.getOrNull(struct) ?: return 4091
-    val next = definition["task_next_index", 4091]
-    if (!Tasks.hasRequirements(player, definition) || isCompleted(player, "${definition.stringId}_task") || player["task_pinned", -1] == if (index == 1) id else next) {
-        return nextTask(player, index, next)
-    }
-    return if (index == 1) id else next
 }
 
 fun pinned(player: Player, index: Int): Boolean {

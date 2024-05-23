@@ -41,12 +41,16 @@ interfaceOption("Pin", "pin", "task_list") {
 val enumDefinitions: EnumDefinitions by inject()
 val structDefinitions: StructDefinitions by inject()
 
-fun id(player: Player, index: Int, area: Int = areaId(player)): Int? {
+fun index(player: Player, index: Int, area: Int = areaId(player)): Int? {
     var next = enumDefinitions.get("task_area_start_indices").getInt(area)
     var count = 0
     while (next != -1) {
         val struct = enumDefinitions.get("task_structs").getInt(next)
         val definition = structDefinitions.getOrNull(struct) ?: break
+        if (player["task_hide_completed", false] && isCompleted(player, definition.stringId)) {
+            count++
+            continue
+        }
         if (count++ == index) {
             return next
         }
@@ -55,7 +59,9 @@ fun id(player: Player, index: Int, area: Int = areaId(player)): Int? {
     return null
 }
 
-fun index(player: Player, id: Int): Int {
+fun isCompleted(player: Player, id: String) = player.contains(id) && player[id, false]
+
+fun find(player: Player, id: Int): Int {
     for (i in 0 until 6) {
         if (player["task_slot_${i}", -1] == id) {
             return i
@@ -90,12 +96,12 @@ variableSet("task_pin_index") { player ->
 fun areaId(player: Player) = variables.get("task_list_area")!!.values.toInt(player["task_list_area", "unstable_foundations"])
 
 fun pin(player: Player, index: Int) {
-    val id = id(player, index) ?: return
+    val id = index(player, index) ?: return
     if (player["task_pinned", -1] == id) {
         player.clear("task_pinned")
         player.clear("task_pin_index")
     } else {
         player["task_pinned"] = id
-        player["task_pin_index"] = index(player, id)
+        player["task_pin_index"] = find(player, id)
     }
 }
