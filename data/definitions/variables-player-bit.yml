@@ -729,10 +729,881 @@ task_filter_sets:
   id: 8580
   format: boolean
   persist: true
-task_introducing_explorer_jack:
-  id: 6494
+tower_of_life:
+  id: 3337
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 18
+wolf_whistle:
+  id: 4302
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 110
+fairy_rings_unlocked:
+  id: 2328
+  format: boolean
+  persist: true
+kenniths_concerns:
+  id: 4505
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 100
+enlightened_journey:
+  id: 2866
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 200
+hand_in_the_sand:
+  id: 1527
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 160
+meeting_history:
+  id: 5075
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 20
+lunar_diplomacy:
+  id: 2448
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 190
+back_to_my_roots:
+  id: 4055
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 65
+catapult_construction:
+  id: 4396
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 60
+dragon_slayer_received_shield:
+  id: 3746
+  format: boolean
+  persist: true
+garden_of_tranquillity:
+  id: 961
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 60
+wanted:
+  id: 1051
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 10
+rat_catchers:
+  id: 1404
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 127
+recruitment_drive:
+  id: 657
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 2
+temple_at_senntisten:
+  id: 6775
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 90
+slug_menace:
+  id: 2610
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 14
+bar_crawl_started:
+  id: 3378
+  format: boolean
+  persist: true
+barbarian_training_fishing_unlocked:
+  id: 3757
+  format: boolean
+  persist: true
+barbarian_training_mix_unlocked:
+  id: 3761
+  format: boolean
+  persist: true
+barbarian_training_hasta_unlocked:
+  id: 3763
+  format: boolean
+  persist: true
+barbarian_training_pyre_unlocked:
+  id: 3764
+  format: boolean
+  persist: true
+royal_trouble:
+  id: 2140
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 30
+blood_runs_deep:
+  id: 6883
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 147
+while_guthix_sleeps:
+  id: 5491
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 910
+elemental_workshop_i:
+  id: 2067
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 1
+knights_waves:
+  id: 3909
   format: int
   persist: true
+what_lies_below:
+  id: 3523
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 150
+souls_bane:
+  id: 2011
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 13
+teleport_to_digsite_with_pendant:
+  id: 3639
+  format: boolean
+  persist: true
+desert_treasure:
+  id: 358
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 15
+nomads_requiem:
+  id: 6962
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 12
+all_fired_up:
+  id: 5133
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 90
+nurture_evil_tree_stage:
+  id: 1545
+  format: boolean
+  persist: true
+circus_magic:
+  id: 5251
+  format: boolean
+  persist: true
+circus_agility:
+  id: 5252
+  format: boolean
+  persist: true
+circus_ranged:
+  id: 5253
+  format: boolean
+  persist: true
+fur_n_seek:
+  id: 6307
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 12
+skeletal_horror_respawn_minute:
+  id: 6305
+  format: int
+  persist: true
+kings_ransom:
+  id: 3888
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 90
+# D&Ds / Activities None
+introducing_explorer_jack_task:
+  id: 6494
+  format: boolean
+  persist: true
+# Varrock Easy
+strike_a_pose_task:
+  id: 3986
+  format: boolean
+  persist: true
+essential_facilitator_task:
+  id: 3987
+  format: boolean
+  persist: true
+doing_the_ironing_task:
+  id: 3988
+  format: boolean
+  persist: true
+plank_you_very_much_task:
+  id: 3989
+  format: boolean
+  persist: true
+making_learning_fun_task:
+  id: 3990
+  format: boolean
+  persist: true
+jumping_off_point_task:
+  id: 3991
+  format: boolean
+  persist: true
+lumbering_around_task:
+  id: 3992
+  format: boolean
+  persist: true
+read_all_about_it_task:
+  id: 3993
+  format: boolean
+  persist: true
+dog_and_bone_task:
+  id: 3994
+  format: boolean
+  persist: true
+pot_stop_task:
+  id: 3995
+  format: boolean
+  persist: true
+on_the_ragged_edge_task:
+  id: 3996
+  format: boolean
+  persist: true
+relocation_relocation_relocation_task:
+  id: 3997
+  format: boolean
+  persist: true
+it_belongs_in_a_museum_task:
+  id: 3998
+  format: boolean
+  persist: true
+journey_to_the_centre_of_the_earth_altar_task:
+  id: 3999
+  format: boolean
+  persist: true
+jackanory_task:
+  id: 4000
+  format: boolean
+  persist: true
+limey_task:
+  id: 4001
+  format: boolean
+  persist: true
+sherpas_delight_task:
+  id: 4002
+  format: boolean
+  persist: true
+king_of_the_castle_task:
+  id: 4004
+  format: boolean
+  persist: true
+stick_the_knife_in_task:
+  id: 4005
+  format: boolean
+  persist: true
+# Varrock Medium
+double_strength_weaksauce_task:
+  id: 4003
+  format: boolean
+  persist: true
+champion_task:
+  id: 4007
+  format: boolean
+  persist: true
+what_lies_below_task:
+  id: 4008
+  format: boolean
+  persist: true
+with_a_ten_foot_pole_task:
+  id: 4009
+  format: boolean
+  persist: true
+cant_make_an_omelette_task:
+  id: 4010
+  format: boolean
+  persist: true
+point_of_en_tree_task:
+  id: 4011
+  format: boolean
+  persist: true
+unlocking_your_emotions_task:
+  id: 4012
+  format: boolean
+  persist: true
+a_lick_of_paint_task:
+  id: 4013
+  format: boolean
+  persist: true
+for_fast_transactions_task:
+  id: 4014
+  format: boolean
+  persist: true
+you_wouldnt_like_me_when_im_angry_task:
+  id: 4015
+  format: boolean
+  persist: true
+return_to_senntisten_task:
+  id: 4016
+  format: boolean
+  persist: true
+promised_the_earth_task:
+  id: 4017
+  format: boolean
+  persist: true
+royale_with_thieve_task:
+  id: 4018
+  format: boolean
+  persist: true
+like_a_varrocket_task:
+  id: 4019
+  format: boolean
+  persist: true
+challenge_vannaka_task:
+  id: 4020
+  format: boolean
+  persist: true
+flatpack_backpack_task:
+  id: 4021
+  format: boolean
+  persist: true
+master_scrumper_task:
+  id: 4022
+  format: boolean
+  persist: true
+engage_task:
+  id: 4023
+  format: boolean
+  persist: true
+faster_pussycat_kill_kill_task:
+  id: 4024
+  format: boolean
+  persist: true
+dial_v_for_varrock_task:
+  id: 4025
+  format: boolean
+  persist: true
+the_body_shop_task:
+  id: 4026
+  format: boolean
+  persist: true
+# Varrock Hard
+burning_bush_task:
+  id: 4027
+  format: boolean
+  persist: true
+but_it_wont_warp_you_anywhere_task:
+  id: 4028
+  format: boolean
+  persist: true
+lighten_up_task:
+  id: 4029
+  format: boolean
+  persist: true
+put_your_smithing_hat_on_task:
+  id: 4030
+  format: boolean
+  persist: true
+kudos_on_the_kudos_task:
+  id: 4031
+  format: boolean
+  persist: true
+who_ate_all_the_pie_task:
+  id: 4032
+  format: boolean
+  persist: true
+battle_of_the_elements_task:
+  id: 4033
+  format: boolean
+  persist: true
+changing_rooms_task:
+  id: 4035
+  format: boolean
+  persist: true
+keeping_tabs_on_varrock_task:
+  id: 4036
+  format: boolean
+  persist: true
+hand_me_downs_task:
+  id: 4037
+  format: boolean
+  persist: true
+waka_waka_waka_task:
+  id: 4038
+  format: boolean
+  persist: true
+living_on_the_edge_task:
+  id: 4039
+  format: boolean
+  persist: true
+intersceptre_task:
+  id: 4034
+  format: boolean
+  persist: true
+# Varrock Elite
+stick_a_bork_in_him_hes_done_task:
+  id: 8136
+  format: boolean
+  persist: true
+nomadness_task:
+  id: 8137
+  format: boolean
+  persist: true
+double_jointed_task:
+  id: 8138
+  format: boolean
+  persist: true
+it_all_adze_up_task:
+  id: 8139
+  format: boolean
+  persist: true
+mind_your_back_task:
+  id: 8140
+  format: boolean
+  persist: true
+red_red_pies_of_summer_task:
+  id: 8141
+  format: boolean
+  persist: true
+splitting_headache_task:
+  id: 8145
+  format: boolean
+  persist: true
+a_bolt_from_the_blue_task:
+  id: 8146
+  format: boolean
+  persist: true
+a_ton_of_earth_task:
+  id: 8148
+  format: boolean
+  persist: true
+# Karamja Easy
+five_a_day_task:
+  id: 3566
+  format: boolean
+  persist: true
+im_lichen_this_task:
+  id: 3567
+  format: boolean
+  persist: true
+golden_shores_task:
+  id: 3568
+  format: boolean
+  persist: true
+put_to_port_in_port_sarim_task:
+  id: 3569
+  format: boolean
+  persist: true
+avast_ardougne_task:
+  id: 3570
+  format: boolean
+  persist: true
+show_that_you_cairn_task:
+  id: 3571
+  format: boolean
+  persist: true
+fruity_catch_task:
+  id: 3572
+  format: boolean
+  persist: true
+beachcomber_task:
+  id: 3573
+  format: boolean
+  persist: true
+tzhaar_wars_task:
+  id: 3574
+  format: boolean
+  persist: true
+its_a_jungle_ogre_task:
+  id: 3575
+  format: boolean
+  persist: true
+# Karamja Medium
+just_the_ticket_task:
+  id: 3579
+  format: boolean
+  persist: true
+back_cran_door_task:
+  id: 3580
+  format: boolean
+  persist: true
+dungeons_and_dragons_task:
+  id: 3581
+  format: boolean
+  persist: true
+horseless_carriage_task:
+  id: 3582
+  format: boolean
+  persist: true
+they_like_me_they_really_like_me_task:
+  id: 3583
+  format: boolean
+  persist: true
+arachnophagia_task:
+  id: 3584
+  format: boolean
+  persist: true
+romancing_the_stone_task:
+  id: 3585
+  format: boolean
+  persist: true
+im_a_lumberjack_and_im_okay_task:
+  id: 3586
+  format: boolean
+  persist: true
+i_sleep_all_night_and_i_work_all_day_task:
+  id: 3587
+  format: boolean
+  persist: true
+to_catch_a_karambwan_task:
+  id: 3588
+  format: boolean
+  persist: true
+thats_not_a_knife_task:
+  id: 3589
+  format: boolean
+  persist: true
+falling_with_style_task:
+  id: 3590
+  format: boolean
+  persist: true
+scourge_of_scurvy_task:
+  id: 3591
+  format: boolean
+  persist: true
+hunters_of_the_horned_graahk_task:
+  id: 3592
+  format: boolean
+  persist: true
+the_roots_of_all_evil_task:
+  id: 3593
+  format: boolean
+  persist: true
+hotfooting_it_task:
+  id: 3594
+  format: boolean
+  persist: true
+stairway_to_haven_task:
+  id: 3595
+  format: boolean
+  persist: true
+thank_you_madam_task:
+  id: 3596
+  format: boolean
+  persist: true
+shipping_out_from_the_shipyard_task:
+  id: 3597
+  format: boolean
+  persist: true
+# Karamja Hard
+flawless_victory_task:
+  id: 3600
+  format: boolean
+  persist: true
+play_dead_doggy_task:
+  id: 3601
+  format: boolean
+  persist: true
+id_be_kharazi_to_eat_this_task:
+  id: 3602
+  format: boolean
+  persist: true
+at_one_with_nature_task:
+  id: 3603
+  format: boolean
+  persist: true
+drop_it_like_its_hot_task:
+  id: 3604
+  format: boolean
+  persist: true
+deadwing_task:
+  id: 3605
+  format: boolean
+  persist: true
+quick_as_a_shot_task:
+  id: 3606
+  format: boolean
+  persist: true
+a_palm_for_each_finger_task:
+  id: 3607
+  format: boolean
+  persist: true
+yes_my_master_task:
+  id: 3608
+  format: boolean
+  persist: true
+can_opener_task:
+  id: 3609
+  format: boolean
+  persist: true
+# Karamja Elite
+at_one_plus_fifty_five_with_nature_task:
+  id: 8121
+  format: boolean
+  persist: true
+the_power_of_lava_task:
+  id: 8122
+  format: boolean
+  persist: true
+boxing_clever_task:
+  id: 8123
+  format: boolean
+  persist: true
+its_a_snap_task:
+  id: 8124
+  format: boolean
+  persist: true
+crunchy_coating_task:
+  id: 8125
+  format: boolean
+  persist: true
+walkies_task:
+  id: 8126
+  format: boolean
+  persist: true
+tread_carefully_task:
+  id: 8127
+  format: boolean
+  persist: true
+ten_in_a_row_task:
+  id: 8128
+  format: boolean
+  persist: true
+# Seers' Village Easy
+reflax_actions_task:
+  id: 5782
+  format: boolean
+  persist: true
+why_task:
+  id: 5783
+  format: boolean
+  persist: true
+stir_galahad_task:
+  id: 5785
+  format: boolean
+  persist: true
+la_morte_darthur_task:
+  id: 5786
+  format: boolean
+  persist: true
+bunch_of_flours_task:
+  id: 5788
+  format: boolean
+  persist: true
+happy_hour_task:
+  id: 5789
+  format: boolean
+  persist: true
+jute_alors_task:
+  id: 5784
+  format: boolean
+  persist: true
+sinclair_swirling_task:
+  id: 5790
+  format: boolean
+  persist: true
+grand_candle_task:
+  id: 5791
+  format: boolean
+  persist: true
+a_seer_ing_light_task:
+  id: 5792
+  format: boolean
+  persist: true
+mack_rolled_task:
+  id: 5793
+  format: boolean
+  persist: true
+# Seers' Village Medium
+fleeing_the_scene_task:
+  id: 5794
+  format: boolean
+  persist: true
+its_a_slightly_magical_stick_task:
+  id: 5795
+  format: boolean
+  persist: true
+king_coal_task:
+  id: 5796
+  format: boolean
+  persist: true
+i_can_seer_my_house_from_here_task:
+  id: 5801
+  format: boolean
+  persist: true
+mastering_the_elements_task:
+  id: 5797
+  format: boolean
+  persist: true
+its_only_a_model_task:
+  id: 5798
+  format: boolean
+  persist: true
+sniper_training_task:
+  id: 5805
+  format: boolean
+  persist: true
+arch_archer_task:
+  id: 5799
+  format: boolean
+  persist: true
+what_no_cuddly_toy_task:
+  id: 5800
+  format: boolean
+  persist: true
+familiar_fire_familiarity_task:
+  id: 5802
+  format: boolean
+  persist: true
+at_least_it_doesnt_need_walking_task:
+  id: 5803
+  format: boolean
+  persist: true
+all_your_bass_task:
+  id: 5804
+  format: boolean
+  persist: true
+# Seers' Village Hard
+at_home_on_the_range_task:
+  id: 5806
+  format: boolean
+  persist: true
+see_yew_at_five_task:
+  id: 5807
+  format: boolean
+  persist: true
+the_short_of_it_task:
+  id: 5808
+  format: boolean
+  persist: true
+prayer_of_attorney_task:
+  id: 5809
+  format: boolean
+  persist: true
+beware_of_the_dog_task:
+  id: 5810
+  format: boolean
+  persist: true
+twisted_fire_starter_task:
+  id: 5811
+  format: boolean
+  persist: true
+alch_aholic_task:
+  id: 5812
+  format: boolean
+  persist: true
+gonna_need_a_bigger_boat_task:
+  id: 5814
+  format: boolean
+  persist: true
+gonna_need_a_bigger_range_task:
+  id: 5815
+  format: boolean
+  persist: true
+water_palaver_task:
+  id: 5816
+  format: boolean
+  persist: true
+island_hopper_task:
+  id: 5813
+  format: boolean
+  persist: true
+# Seers' Village Elite
+its_a_trap_no_wait_its_a_pie_task:
+  id: 8205
+  format: boolean
+  persist: true
+make_a_bolt_for_it_task:
+  id: 8212
+  format: boolean
+  persist: true
+the_long_of_it_task:
+  id: 8217
+  format: boolean
+  persist: true
+plentypotionentiary_task:
+  id: 8221
+  format: boolean
+  persist: true
+moon_raker_task:
+  id: 8224
+  format: boolean
+  persist: true
+# Elsewhere... None
+# Lumbridge/Draynor Beginner
 on_the_run_task:
   id: 8522
   format: boolean
@@ -1057,6 +1928,7 @@ passing_out_task:
   id: 4959
   format: boolean
   persist: true
+# Lumbridge/Draynor Easy
 what_is_this_place_task:
   id: 4985
   format: boolean
@@ -1133,6 +2005,7 @@ draaaaaiiiiiins_task:
   id: 4973
   format: boolean
   persist: true
+# Lumbridge/Draynor Medium
 steel_justice_task:
   id: 4997
   format: boolean
@@ -1181,6 +2054,7 @@ wheres_the_beef_task:
   id: 5998
   format: boolean
   persist: true
+# Lumbridge/Draynor Hard
 a_body_in_the_sewers_task:
   id: 8180
   format: boolean
@@ -1209,267 +2083,591 @@ are_yew_as_fired_up_as_i_am_task:
   id: 8194
   format: boolean
   persist: true
-tower_of_life:
-  id: 3337
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 18
-wolf_whistle:
-  id: 4302
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 110
-fairy_rings_unlocked:
-  id: 2328
+# Falador Easy
+amulet_of_weedspeak_task:
+  id: 5691
   format: boolean
   persist: true
-kenniths_concerns:
-  id: 4505
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 100
-enlightened_journey:
-  id: 2866
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 200
-hand_in_the_sand:
-  id: 1527
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 160
-meeting_history:
-  id: 5075
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 20
-lunar_diplomacy:
-  id: 2448
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 190
-back_to_my_roots:
-  id: 4055
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 65
-catapult_construction:
-  id: 4396
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 60
-dragon_slayer_received_shield:
-  id: 3746
+the_good_stuff_task:
+  id: 5692
   format: boolean
   persist: true
-garden_of_tranquillity:
-  id: 961
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 60
-wanted:
-  id: 1051
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 10
-rat_catchers:
-  id: 1404
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 127
-recruitment_drive:
-  id: 657
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 2
-temple_at_senntisten:
-  id: 6775
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 90
-slug_menace:
-  id: 2610
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 14
-bar_crawl_started:
-  id: 3378
+chain_store_task:
+  id: 5705
   format: boolean
   persist: true
-barbarian_training_fishing_unlocked:
-  id: 3757
+sir_mitt_task:
+  id: 5693
   format: boolean
   persist: true
-barbarian_training_mix_unlocked:
-  id: 3761
+family_values_task:
+  id: 5694
   format: boolean
   persist: true
-barbarian_training_hasta_unlocked:
-  id: 3763
+sniffing_out_the_mole_task:
+  id: 5695
   format: boolean
   persist: true
-barbarian_training_pyre_unlocked:
-  id: 3764
+chinchompa_powered_task:
+  id: 5696
   format: boolean
   persist: true
-royal_trouble:
-  id: 2140
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 30
-blood_runs_deep:
-  id: 6883
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 147
-while_guthix_sleeps:
-  id: 5491
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 910
-elemental_workshop_i:
-  id: 2067
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 1
-knights_waves:
-  id: 3909
-  format: int
-  persist: true
-what_lies_below:
-  id: 3523
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 150
-souls_bane:
-  id: 2011
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 13
-teleport_to_digsite_with_pendant:
-  id: 3639
+fill_yer_bucket_task:
+  id: 5697
   format: boolean
   persist: true
-desert_treasure:
-  id: 358
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 15
-nomads_requiem:
-  id: 6962
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 12
-all_fired_up:
-  id: 5133
-  format: map
-  persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 90
-nurture_evil_tree_stage:
-  id: 1545
+elementary_medicine_task:
+  id: 5698
   format: boolean
   persist: true
-circus_magic:
-  id: 5251
+its_not_wabbit_season_task:
+  id: 5699
   format: boolean
   persist: true
-circus_agility:
-  id: 5252
+stand_and_deliver_task:
+  id: 5700
   format: boolean
   persist: true
-circus_ranged:
-  id: 5253
+making_my_mind_up_task:
+  id: 5701
   format: boolean
   persist: true
-fur_n_seek:
-  id: 6307
-  format: map
+mudskip_the_light_fantastic_task:
+  id: 5703
+  format: boolean
   persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 12
-skeletal_horror_respawn_minute:
-  id: 6305
-  format: int
+disarm_and_embark_task:
+  id: 5704
+  format: boolean
   persist: true
-kings_ransom:
-  id: 3888
-  format: map
+going_along_with_the_fro_task:
+  id: 5702
+  format: boolean
   persist: true
-  default: unstarted
-  values:
-    unstarted: 0
-    completed: 90
+# Falador Medium
+fruit_of_the_loom_task:
+  id: 5706
+  format: boolean
+  persist: true
+is_it_so_hard_to_walk_round_task:
+  id: 5707
+  format: boolean
+  persist: true
+climbing_the_walls_task:
+  id: 5709
+  format: boolean
+  persist: true
+its_nothing_personal_task:
+  id: 5710
+  format: boolean
+  persist: true
+ice_the_icy_task:
+  id: 5711
+  format: boolean
+  persist: true
+blinded_with_science_task:
+  id: 5712
+  format: boolean
+  persist: true
+they_have_families_to_feed_task:
+  id: 5713
+  format: boolean
+  persist: true
+stoic_sweetcorn_guardian_task:
+  id: 5714
+  format: boolean
+  persist: true
+look_spiffy_for_tiffy_task:
+  id: 5717
+  format: boolean
+  persist: true
+do_they_come_in_other_colours_task:
+  id: 5715
+  format: boolean
+  persist: true
+these_arent_the_coins_youre_looking_for_task:
+  id: 5723
+  format: boolean
+  persist: true
+fun_for_the_whole_family_task:
+  id: 5716
+  format: boolean
+  persist: true
+# Falador Hard
+a_knight_in_the_darkness_task:
+  id: 5727
+  format: boolean
+  persist: true
+child_of_saradomin_task:
+  id: 5719
+  format: boolean
+  persist: true
+mass_production_task:
+  id: 5720
+  format: boolean
+  persist: true
+it_spoiled_my_view_task:
+  id: 5721
+  format: boolean
+  persist: true
+i_heard_you_like_mudskips_task:
+  id: 5708
+  format: boolean
+  persist: true
+it_matches_my_eyes_task:
+  id: 5718
+  format: boolean
+  persist: true
+the_stonemasons_task:
+  id: 5722
+  format: boolean
+  persist: true
+the_mogre_mash_task:
+  id: 5724
+  format: boolean
+  persist: true
+why_oh_wyvern_task:
+  id: 5725
+  format: boolean
+  persist: true
+banned_for_life_task:
+  id: 5726
+  format: boolean
+  persist: true
+# Falador Elite
+when_this_caverns_rockin_task:
+  id: 8114
+  format: boolean
+  persist: true
+youd_best_come_a_cookin_task:
+  id: 8115
+  format: boolean
+  persist: true
+concentration_is_key_task:
+  id: 8116
+  format: boolean
+  persist: true
+i_swear_i_heard_it_scream_task:
+  id: 8117
+  format: boolean
+  persist: true
+ive_changed_my_mind_task:
+  id: 8118
+  format: boolean
+  persist: true
+a_string_and_a_flare_task:
+  id: 8119
+  format: boolean
+  persist: true
+altar_ed_state_task:
+  id: 8120
+  format: boolean
+  persist: true
+# Fremennik Easy
+bring_the_antipoisons_task:
+  id: 5648
+  format: boolean
+  persist: true
+why_wont_you_die_task:
+  id: 5649
+  format: boolean
+  persist: true
+king_conifer_task:
+  id: 5650
+  format: boolean
+  persist: true
+assaulted_goodies_task:
+  id: 5651
+  format: boolean
+  persist: true
+oxymoron_incarnate_task:
+  id: 5652
+  format: boolean
+  persist: true
+why_did_the_lobster_blush_task:
+  id: 5653
+  format: boolean
+  persist: true
+hunting_the_hunter_task:
+  id: 5654
+  format: boolean
+  persist: true
+peer_off_the_pier_task:
+  id: 5655
+  format: boolean
+  persist: true
+a_familiar_feeling_task:
+  id: 5656
+  format: boolean
+  persist: true
+endangered_species_task:
+  id: 5657
+  format: boolean
+  persist: true
+# Fremennik Medium
+fremennik_history_101_task:
+  id: 5658
+  format: boolean
+  persist: true
+cool_story_bro_task:
+  id: 5659
+  format: boolean
+  persist: true
+whos_a_good_boy_task:
+  id: 5660
+  format: boolean
+  persist: true
+only_takes_a_little_vial_task:
+  id: 5661
+  format: boolean
+  persist: true
+you_know_you_want_it_task:
+  id: 5662
+  format: boolean
+  persist: true
+yak_attack_task:
+  id: 5666
+  format: boolean
+  persist: true
+fremmental_task:
+  id: 5667
+  format: boolean
+  persist: true
+fairy_mountaineering_task:
+  id: 5663
+  format: boolean
+  persist: true
+you_really_dont_need_any_more_shoes_task:
+  id: 5664
+  format: boolean
+  persist: true
+big_game_hunter_task:
+  id: 5665
+  format: boolean
+  persist: true
+grand_theft_fish_task:
+  id: 5668
+  format: boolean
+  persist: true
+# Fremennik Hard
+defeating_deadly_dagannoths_task:
+  id: 5669
+  format: boolean
+  persist: true
+dress_to_impress_task:
+  id: 5670
+  format: boolean
+  persist: true
+the_graceful_barbarian_task:
+  id: 5671
+  format: boolean
+  persist: true
+runes_on_the_moon_task:
+  id: 5672
+  format: boolean
+  persist: true
+pyre_at_will_task:
+  id: 5673
+  format: boolean
+  persist: true
+fish_fingers_task:
+  id: 5674
+  format: boolean
+  persist: true
+easy_as_pie_task:
+  id: 5675
+  format: boolean
+  persist: true
+how_to_maim_your_dragon_task:
+  id: 5676
+  format: boolean
+  persist: true
+a_periodic_table_task:
+  id: 5677
+  format: boolean
+  persist: true
+# Fremennik Elite
+jaws_breaker_task:
+  id: 8231
+  format: boolean
+  persist: true
+limber_lumber_jumper_task:
+  id: 8232
+  format: boolean
+  persist: true
+astronomical_task:
+  id: 8233
+  format: boolean
+  persist: true
+first_stryke_task:
+  id: 8234
+  format: boolean
+  persist: true
+leap_of_faith_task:
+  id: 8235
+  format: boolean
+  persist: true
+no_smoke_without_pyre_task:
+  id: 8236
+  format: boolean
+  persist: true
+this_hasta_work_task:
+  id: 8237
+  format: boolean
+  persist: true
+potting_with_otto_task:
+  id: 8238
+  format: boolean
+  persist: true
+axell_grease_task:
+  id: 8239
+  format: boolean
+  persist: true
+# Ardougne Easy
+the_essence_of_magic_task:
+  id: 6598
+  format: boolean
+  persist: true
+yoink_task:
+  id: 6599
+  format: boolean
+  persist: true
+silky_smooth_task:
+  id: 6600
+  format: boolean
+  persist: true
+preaching_to_the_infected_task:
+  id: 6601
+  format: boolean
+  persist: true
+playing_the_waiting_game_task:
+  id: 6602
+  format: boolean
+  persist: true
+gone_fishing_task:
+  id: 6603
+  format: boolean
+  persist: true
+boot_camp_task:
+  id: 6604
+  format: boolean
+  persist: true
+a_cat_is_for_life_task:
+  id: 6605
+  format: boolean
+  persist: true
+creator_and_destroyer_task:
+  id: 6606
+  format: boolean
+  persist: true
+red_revolution_task:
+  id: 6607
+  format: boolean
+  persist: true
+going_on_a_summer_holiday_task:
+  id: 6608
+  format: boolean
+  persist: true
+breaking_and_entering_task:
+  id: 6609
+  format: boolean
+  persist: true
+p_p_p_pick_up_some_prizes_task:
+  id: 1421
+  format: boolean
+  persist: true
+a_gift_from_khazard_task:
+  id: 6611
+  format: boolean
+  persist: true
+party_pooper_task:
+  id: 6612
+  format: boolean
+  persist: true
+vial_deeds_task:
+  id: 6613
+  format: boolean
+  persist: true
+star_seeker_task:
+  id: 6614
+  format: boolean
+  persist: true
+dukes_of_khazard_task:
+  id: 6615
+  format: boolean
+  persist: true
+dont_eat_the_pointy_bit_task:
+  id: 6616
+  format: boolean
+  persist: true
+bargain_hunter_task:
+  id: 6617
+  format: boolean
+  persist: true
+are_you_being_served_task:
+  id: 6618
+  format: boolean
+  persist: true
+no_time_to_lose_task:
+  id: 6619
+  format: boolean
+  persist: true
+theyre_long_and_pointy_task:
+  id: 6620
+  format: boolean
+  persist: true
+# Ardougne Medium
+a_visit_to_charlie_task:
+  id: 6622
+  format: boolean
+  persist: true
+i_wonder_what_this_does_task:
+  id: 6623
+  format: boolean
+  persist: true
+sandys_secret_getaway_task:
+  id: 6624
+  format: boolean
+  persist: true
+i_know_a_shortcut_task:
+  id: 6625
+  format: boolean
+  persist: true
+volatile_valuables_task:
+  id: 6626
+  format: boolean
+  persist: true
+what_a_melon_task:
+  id: 6627
+  format: boolean
+  persist: true
+ardougne_express_task:
+  id: 6650
+  format: boolean
+  persist: true
+arriving_in_style_task:
+  id: 6629
+  format: boolean
+  persist: true
+by_the_bucketload_task:
+  id: 6630
+  format: boolean
+  persist: true
+meeting_history_again_task:
+  id: 6631
+  format: boolean
+  persist: true
+fearless_fishing_task:
+  id: 6632
+  format: boolean
+  persist: true
+water_logged_task:
+  id: 6633
+  format: boolean
+  persist: true
+green_fingers_task:
+  id: 6634
+  format: boolean
+  persist: true
+a_natural_thief_task:
+  id: 6635
+  format: boolean
+  persist: true
+the_coal_train_task:
+  id: 6636
+  format: boolean
+  persist: true
+are_you_chicken_task:
+  id: 6637
+  format: boolean
+  persist: true
+# Ardougne Hard
+brace_yourself_task:
+  id: 6639
+  format: boolean
+  persist: true
+shadow_boxing_task:
+  id: 6640
+  format: boolean
+  persist: true
+just_like_that_task:
+  id: 6641
+  format: boolean
+  persist: true
+nice_view_task:
+  id: 6642
+  format: boolean
+  persist: true
+youre_the_dirty_rascal_task:
+  id: 6643
+  format: boolean
+  persist: true
+ourania_mania_task:
+  id: 6644
+  format: boolean
+  persist: true
+not_on_my_watch_task:
+  id: 6645
+  format: boolean
+  persist: true
+it_just_croaked_task:
+  id: 6646
+  format: boolean
+  persist: true
+get_your_stinking_hands_off_me_task:
+  id: 6647
+  format: boolean
+  persist: true
+vine_detta_task:
+  id: 6648
+  format: boolean
+  persist: true
+living_on_a_prayer_task:
+  id: 6649
+  format: boolean
+  persist: true
+who_wants_to_watch_the_watchtower_task:
+  id: 6628
+  format: boolean
+  persist: true
+monkey_business_task:
+  id: 6651
+  format: boolean
+  persist: true
+its_my_newt_task:
+  id: 6652
+  format: boolean
+  persist: true
+a_taste_of_the_exotic_task:
+  id: 6653
+  format: boolean
+  persist: true
+blood_bank_withdrawal_task:
+  id: 6654
+  format: boolean
+  persist: true
+artillery_strike_task:
+  id: 6655
+  format: boolean
+  persist: true
+# Ardougne Elite
+catching_some_rays_task:
+  id: 6658
+  format: boolean
+  persist: true
+abyssal_valet_task:
+  id: 6659
+  format: boolean
+  persist: true
+you_could_just_knock_task:
+  id: 6660
+  format: boolean
+  persist: true
+honestly_its_not_a_purse_task:
+  id: 6661
+  format: boolean
+  persist: true
+almost_made_in_ardougne_task:
+  id: 6662
+  format: boolean
+  persist: true
