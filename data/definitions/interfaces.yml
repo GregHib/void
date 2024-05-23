@@ -2567,6 +2567,7 @@ task_system:
     hints: 36
     summary_overlay: 122
     message_overlay: 171
+    ok: 130
 warriors_guild: 1057
 fade_out:
   id: 120

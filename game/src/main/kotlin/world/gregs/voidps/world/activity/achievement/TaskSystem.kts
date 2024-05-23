@@ -69,6 +69,11 @@ interfaceOption("Open", "task_list", "task_system") {
     player.open("task_list")
 }
 
+interfaceOption("OK", "ok", "task_system") {
+    player.interfaces.sendVisibility("task_system", "summary_overlay", false)
+    refreshSlots(player)
+}
+
 interfaceOption("Pin/Unpin Task", "task_*", "task_system") {
     val index = component.removePrefix("task_").toInt()
     if (player["task_pin_index", -1] == index) {
@@ -107,28 +112,34 @@ variableSet("task_pin_index", "task_area") { player ->
 fun refreshSlots(player: Player) {
     val areaId = areaId(player)
     var next = enumDefinitions.get("task_area_start_indices").getInt(areaId)
-    val pinSlot = player["task_pin_index", -1]
-    val pin = player["task_pinned", -1]
-    if (pinSlot != -1 && pin != -1) {
-        player["task_slot_${pinSlot}"] = pin
-    }
-    var count = 0
-    var slot = 1
-    while (next != -1 && slot < 7) {
-        val struct = enumDefinitions.get("task_structs").getInt(next)
-        val definition = structDefinitions.getOrNull(struct) ?: break
-        val current = next
-        next = definition["task_next_index", -1]
-        if (count++ == pinSlot - 1) {
-            slot++
+    for (i in 1..6) {
+        if (pinned(player, i)) {
+            player["task_slot_${i}"] = player["task_pinned", 4091]
             continue
         }
-        if (definition["task_members", 0] == 1 && !World.members) { // TODO test if members tasks are displayed for f2p or not
-            continue
-        }
-        player["task_slot_${slot++}"] = current
-        // IF not completed and has requirements
+        next = nextTask(player, i, next)
+        player["task_slot_${i}"] = next
     }
 }
 
+fun nextTask(player: Player, index: Int, id: Int): Int {
+    if (id == 4091) {
+        return id
+    }
+    val struct = enumDefinitions.get("task_structs").getInt(id)
+    val definition = structDefinitions.getOrNull(struct) ?: return 4091
+    val next = definition["task_next_index", 4091]
+    if (!Tasks.hasRequirements(player, definition) || isCompleted(player, "${definition.stringId}_task") || player["task_pinned", -1] == if (index == 1) id else next) {
+        return nextTask(player, index, next)
+    }
+    return if (index == 1) id else next
+}
+
+fun pinned(player: Player, index: Int): Boolean {
+    val pinIndex = player["task_pin_index", -1]
+    return pinIndex != -1 && index == pinIndex
+}
+
 fun areaId(player: Player) = variables.get("task_area")!!.values.toInt(player["task_area", "empty"])
+
+fun isCompleted(player: Player, id: String) = player[id, false]

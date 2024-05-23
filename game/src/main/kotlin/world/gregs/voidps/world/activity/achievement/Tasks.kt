@@ -1,5 +1,7 @@
 package world.gregs.voidps.world.activity.achievement
 
+import world.gregs.voidps.cache.config.data.StructDefinition
+import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
@@ -14,10 +16,63 @@ import java.util.Calendar.HOUR_OF_DAY
 import java.util.concurrent.TimeUnit
 
 object Tasks {
+
+    fun hasRequirements(player: Player, definition: StructDefinition): Boolean {
+        for (i in 1..10) {
+            val req = definition["task_skill_$i", -1]
+            val value = definition["task_level_$i", 1]
+            when (req) {
+                -1 -> break
+                63 -> return hasRequirements(player, definition.id)
+                62 -> {
+                    val quest = get<QuestDefinitions>().get(value)
+                    if (player.questComplete(quest.stringId)) {
+                        return false
+                    }
+                }
+                else -> {
+                    val skill = skills[req - 1]
+                    if (!player.hasMax(skill, value)) {
+                        return false
+                    }
+                }
+            }
+        }
+        return true
+    }
+
+    private val skills = listOf(
+        Skill.Attack,
+        Skill.Strength,
+        Skill.Ranged,
+        Skill.Magic,
+        Skill.Defence,
+        Skill.Constitution,
+        Skill.Prayer,
+        Skill.Agility,
+        Skill.Herblore,
+        Skill.Thieving,
+        Skill.Crafting,
+        Skill.Runecrafting,
+        Skill.Mining,
+        Skill.Smithing,
+        Skill.Fishing,
+        Skill.Cooking,
+        Skill.Firemaking,
+        Skill.Woodcutting,
+        Skill.Fletching,
+        Skill.Slayer,
+        Skill.Farming,
+        Skill.Construction,
+        Skill.Hunter,
+        Skill.Summoning,
+        Skill.Dungeoneering,
+    )
+
     // Missing quests: 199, 200, 229
     // Missing skills: 302, 305
     // Extra skills: 3005, 3012
-    fun hasRequirements(player: Player, id: Int): Boolean {
+    private fun hasRequirements(player: Player, id: Int): Boolean {
         return when (id) {
             12 -> player["penguin_hide_and_seek_explained", false]
             23 -> player["fairy_rings_unlocked", false]
