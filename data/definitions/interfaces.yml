@@ -2550,6 +2550,11 @@ character_creation:
         Select: 0
     choose_colour: 102
     confirm: 117
+task_popup:
+  id: 1055
+  type: task_overlay
+  components:
+    details: 2
 task_system:
   id: 1056
   type: task_system_tab

@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
-
+import world.gregs.voidps.world.interact.entity.player.display.Tab
 
 val variables: VariableDefinitions by inject()
 val enumDefinitions: EnumDefinitions by inject()
@@ -58,7 +58,6 @@ interfaceOption("Close", "close_hint", "task_system") {
 interfaceOption("Select Task", "task_*", "task_system") {
     val index = component.removePrefix("task_").toInt()
     player["selected_task"] = index
-    player["task_pins"] = index
 }
 
 interfaceOption("Toggle", "dont_show", "task_system") {
@@ -71,6 +70,11 @@ interfaceOption("Open", "task_list", "task_system") {
 
 interfaceOption("OK", "ok", "task_system") {
     player.interfaces.sendVisibility("task_system", "summary_overlay", false)
+    val selected = player["selected_task", -1]
+    if (selected != -1 && selected == player["task_pin_index", -1]) {
+        player.clear("task_pinned")
+        player.clear("task_pin_index")
+    }
     refreshSlots(player)
 }
 
@@ -112,29 +116,37 @@ variableSet("task_pin_index", "task_area") { player ->
     refreshSlots(player)
 }
 
-variableSet("*_task", to = true) { player ->
-    refreshSlots(player)
-}
-
 fun refreshSlots(player: Player) {
     val areaId = areaId(player)
     var next = enumDefinitions.get("task_area_start_indices").getInt(areaId)
     var i = 1
-    while (i < 7 && next != 4091) {
+    var completed = 0
+    var total = 0
+    while (next != 4091 && next != 450) {
         val struct = enumDefinitions.get("task_structs").getInt(next)
         val definition = structDefinitions.getOrNull(struct) ?: break
+        total++
         val pinned = pinned(player, i)
-        if (player["task_pinned", -1] == next && !pinned || !Tasks.hasRequirements(player, definition) || isCompleted(player, definition.stringId)) {
+        if (player["task_pinned", -1] == next && !pinned || !Tasks.hasRequirements(player, definition)) {
+            next = definition["task_next_index", 4091]
+            continue
+        }
+        if (isCompleted(player, definition.stringId)) {
+            completed++
             next = definition["task_next_index", 4091]
             continue
         }
         if (pinned) {
             player["task_slot_${i++}"] = player["task_pinned", 4091]
         } else {
-            player["task_slot_${i++}"] = next
+            if (i < 7) {
+                player["task_slot_${i++}"] = next
+            }
             next = definition["task_next_index", 4091]
         }
     }
+    player["task_progress_total"] = total
+    player["task_progress_current"] = completed
 }
 
 fun pinned(player: Player, index: Int): Boolean {
@@ -145,3 +157,24 @@ fun pinned(player: Player, index: Int): Boolean {
 fun areaId(player: Player) = variables.get("task_area")!!.values.toInt(player["task_area", "empty"])
 
 fun isCompleted(player: Player, id: String) = player[id, false]
+
+interfaceOption("Details", "details", "task_popup") {
+    player["task_popup_summary"] = true
+    player["tab"] = Tab.TaskSystem.name
+}
+
+variableSet("*_task", from = false, to = true) { player ->
+    completeTask(player, key)
+}
+
+variableSet("*_task", from = null, to = true) { player ->
+    completeTask(player, key)
+}
+
+fun completeTask(player: Player, id: String) {
+    val definition = structDefinitions.get(id)
+    val index = definition["task_index", -1]
+    player["task_popup"] = index
+    player.inc("task_progress_overall")
+    refreshSlots(player)
+}

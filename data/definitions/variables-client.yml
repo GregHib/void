@@ -380,19 +380,19 @@ task_dont_show_again:
   id: 1421
   format: boolean
   persist: true
+task_popup:
+  id: 1425
+  format: int
+task_previous_popup:
+  id: 1426
+  format: int
+task_fade_in_cycle:
+  id: 1427
+  format: int
+task_popup_summary:
+  id: 1428
+  format: boolean
 task_disable_popups:
   id: 1429
   format: boolean
-  persist: true
-task_unknown1:
-  id: 1428
-  format: int
-  persist: true
-task_unknown2:
-  id: 1416
-  format: int
-  persist: true
-task_unknown3:
-  id: 1425
-  format: int
   persist: true
