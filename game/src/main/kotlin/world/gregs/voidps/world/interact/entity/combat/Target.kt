@@ -130,6 +130,9 @@ var Character.damageDealers: MutableMap<Character, Int>
     get() = getOrPut("damage_dealers") { Object2IntOpenHashMap() }
     set(value) = set("damage_dealers", value)
 
+val Character.killer: Character?
+    get() = damageDealers.maxByOrNull { it.value }?.key
+
 var Character.dead: Boolean
     get() = get("dead", false)
     set(value) {

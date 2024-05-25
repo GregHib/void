@@ -74,12 +74,20 @@ fun itemRemoved(item: String = "*", index: Int? = null, inventory: String = "*",
     Events.handle("item_change", "*", index ?: "*", inventory, item, "*", "*", handler = handler)
 }
 
+fun itemReplaced(from: String = "*", to: String = "*", inventory: String = "*", handler: suspend ItemChanged.(Player) -> Unit) {
+    Events.handle("item_change", to, "*", inventory, from, "*", "*", handler = handler)
+}
+
 fun itemChange(inventory: String = "*", slot: EquipSlot, handler: suspend ItemChanged.(Player) -> Unit) {
     itemChange(inventory, slot.index, handler = handler)
 }
 
 fun itemChange(inventory: String = "*", index: Int? = null, fromInventory: String = "*", fromIndex: Int? = null, handler: suspend ItemChanged.(Player) -> Unit) {
     Events.handle("item_change", "*", index ?: "*", inventory, "*", fromIndex ?: "*", fromInventory, handler = handler)
+}
+
+fun itemChange(inventory: String = "*", index: Int? = null, fromInventory: String = "*", fromIndex: Int? = null, item: String = "*", handler: suspend ItemChanged.(Player) -> Unit) {
+    Events.handle("item_change", item, index ?: "*", inventory, "*", fromIndex ?: "*", fromInventory, handler = handler)
 }
 
 fun itemChange(vararg inventories: String = arrayOf("*"), handler: suspend ItemChanged.(Player) -> Unit) {

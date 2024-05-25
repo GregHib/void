@@ -87,6 +87,15 @@ suspend fun CharacterContext.unlocked(id: String, emote: String): Boolean {
         statement("This emote can be unlocked during the Lost Tribe quest.")
         return false
     }
+    if (emote == "Taskmaster") {
+        if (player["task_progress_overall", 0] < 417) {
+            statement("Complete the Task Master achievement to unlock this emote.")
+            return false
+        }
+        if (!areaClear(player)) {
+            return false
+        }
+    }
     if (!player["unlocked_emote_$id", false]) {
         when (emote) {
             "Glass Wall", "Glass Box", "Climb Rope", "Lean" -> statement("This emote can be unlocked during the mine random event.")
@@ -116,11 +125,7 @@ suspend fun CharacterContext.unlocked(id: String, emote: String): Boolean {
                 """)
             }
             "Faint" -> statement("This emote can be unlocked by completing the mime court case.")
-            "Taskmaster" -> statement("Complete the Task Master achievement to unlock this emote.")
         }
-        return false
-    }
-    if (emote == "Taskmaster" && !areaClear(player)) {
         return false
     }
     if (emote == "Skillcape" && player.equipped(EquipSlot.Cape).id == "dungeoneering_master_cape" && !areaClear(player)) {

@@ -58,6 +58,8 @@ consume { player ->
     val range: IntRange = item.def.getOrNull("heals") ?: return@consume
     val amount = range.random()
     if (amount > 0) {
-        player.levels.restore(Skill.Constitution, amount)
+        if (player.levels.restore(Skill.Constitution, amount) > 0) {
+            player["om_nom_nom_nom_task"] = true
+        }
     }
 }

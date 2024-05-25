@@ -50,6 +50,7 @@ fun Runecrafting.bindRunes(player: Player, id: String, itemDefinition: ItemDefin
     if (!player.has(Skill.Runecrafting, rune.levels.first(), message = true)) {
         return
     }
+    player.softTimers.start("runecrafting")
     val pure = rune.pure || !player.inventory.contains("rune_essence")
     val essenceId = if (pure) "pure_essence" else "rune_essence"
     val essence = player.inventory.count(essenceId)
@@ -72,6 +73,7 @@ fun Runecrafting.bindRunes(player: Player, id: String, itemDefinition: ItemDefin
         }
         else -> logger.warn { "Error binding runes $player $rune ${player.levels.get(Skill.Runecrafting)} $essence" }
     }
+    player.softTimers.stop("runecrafting")
 }
 
 itemOnObjectOperate("*_rune", "*_altar") {

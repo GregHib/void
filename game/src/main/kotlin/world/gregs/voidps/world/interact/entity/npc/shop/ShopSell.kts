@@ -72,6 +72,8 @@ fun sell(player: Player, item: Item, amount: Int) {
             }
         }
         TransactionError.Invalid -> player.message("You can't sell this item to this shop.")
-        else -> {}
+        else -> {
+            player["greasing_the_wheels_of_commerce_task"] = true
+        }
     }
 }

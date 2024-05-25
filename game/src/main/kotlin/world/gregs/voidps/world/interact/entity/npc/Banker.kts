@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.community.trade.lend.Loan.getSecondsRemaining
-import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Quiz
+import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 
@@ -47,6 +47,7 @@ suspend fun CharacterContext.menu() {
         option("I'd like to see my Returned Items box.", block = { player.open("returned_items") })
         option("What is this place?") {
             npc<Talk>("This is a branch of the Bank of $name. We have branches in many towns.")
+            player["you_can_bank_on_us_task"] = true
             choice {
                 option("And what do you do?") {
                     npc<Talk>("We will look after your items and money for you. Leave your valuables with us if you want to keep them safe.")

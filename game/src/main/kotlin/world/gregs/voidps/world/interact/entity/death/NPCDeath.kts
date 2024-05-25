@@ -30,10 +30,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.community.clan.clan
-import world.gregs.voidps.world.interact.entity.combat.attackers
-import world.gregs.voidps.world.interact.entity.combat.damageDealers
-import world.gregs.voidps.world.interact.entity.combat.dead
-import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
+import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.item.tradeable
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
@@ -48,8 +45,7 @@ npcDeath { npc ->
     npc.dead = true
     npc.steps.clear()
     npc.strongQueue(name = "death", 1) {
-        val dealer = npc.damageDealers.maxByOrNull { it.value }
-        val killer = dealer?.key
+        val killer = npc.killer
         val tile = npc.tile
         npc["death_tile"] = tile
         npc.setAnimation(deathAnimation(npc))

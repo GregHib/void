@@ -456,3 +456,21 @@ ardougne_elite_rewards:
   persist: true
   format: bitwise
   values: [ catching_some_rays, abyssal_valet, you_could_just_knock, honestly_its_not_a_purse, almost_made_in_ardougne ]
+giant_rat_aggressive:
+  persist: true
+  format: boolean
+giant_rat_defensive:
+  persist: true
+  format: boolean
+giant_rat_controlled:
+  persist: true
+  format: boolean
+equip_shortbow:
+  persist: true
+  format: boolean
+equip_longbow:
+  persist: true
+  format: boolean
+equip_crossbow:
+  persist: true
+  format: boolean

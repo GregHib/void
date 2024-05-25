@@ -3660,7 +3660,7 @@
     level: 1
   delta:
     level: -1
-- id: 36771
+- id: lumbridge_castle_ladder
   option: Climb-up
   tile:
     x: 3207

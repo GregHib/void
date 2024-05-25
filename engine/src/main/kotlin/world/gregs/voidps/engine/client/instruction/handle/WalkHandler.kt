@@ -18,6 +18,9 @@ class WalkHandler : InstructionHandler<Walk>() {
         player.clearWatch()
         player.queue.clearWeak()
         player.suspension = null
+        if (instruction.minimap && !player["a_world_in_microcosm_task", false]) {
+            player["a_world_in_microcosm_task"] = true
+        }
         player.walkTo(player.tile.copy(instruction.x, instruction.y))
     }
 

@@ -45,6 +45,7 @@ interfaceOption("Cast", "lumbridge_home_teleport", "modern_spellbook") {
         }
         withContext(NonCancellable) {
             player.tele(areas["lumbridge_teleport"].random())
+            player["click_your_heels_three_times_task"] = true
             player.start("home_teleport_timeout", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
         }
     }

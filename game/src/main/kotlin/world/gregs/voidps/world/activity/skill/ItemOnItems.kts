@@ -39,6 +39,7 @@ itemOnItem { player ->
     }
     player.closeInterfaces()
     player.weakQueue("item_on_item") {
+        player.softTimers.start("item_on_item")
         val maximum = getMaximum(overlaps, player)
         val (def, amount) = if (makeImmediately(player, overlaps, maximum, player.inventory)) {
             player.closeDialogue()
@@ -66,10 +67,12 @@ fun useItemOnItem(
     count: Int
 ) {
     if (count >= amount) {
+        player.softTimers.stop("item_on_item")
         return
     }
 
     if (skill != null && !player.has(skill, def.level, true)) {
+        player.softTimers.stop("item_on_item")
         return
     }
 
@@ -78,10 +81,12 @@ fun useItemOnItem(
     val message = transaction.removeItems(def, success = true)
     if (!transaction.revert()) {
         player.message(message)
+        player.softTimers.stop("item_on_item")
         return
     }
     if (transaction.failed) {
         player.message(message)
+        player.softTimers.stop("item_on_item")
         return
     }
     if (def.animation.isNotEmpty()) {
@@ -110,6 +115,7 @@ fun replaceItems(
     val message = transaction.removeItems(def, success)
     if (!transaction.commit()) {
         player.message(message)
+        player.softTimers.stop("item_on_item")
         return
     }
     if (success) {

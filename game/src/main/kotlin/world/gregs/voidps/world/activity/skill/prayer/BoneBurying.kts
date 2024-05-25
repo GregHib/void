@@ -33,6 +33,7 @@ inventoryOption("Bury", "inventory") {
     player.start("bone_delay", 1)
     player.setAnimation("bend_down")
     player.experience.add(Skill.Prayer, xp)
+    player["i_wonder_if_itll_sprout_task"] = true
     player.weakQueue("bury", 1, onCancel = null) {
         player.message("You bury the ${item.def.name.lowercase()}.", ChatType.Filter)
     }

@@ -2,11 +2,11 @@ package world.gregs.voidps.world.activity.achievement
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.entity.World.name
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -22,7 +22,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 
 npcOperate("Talk-to", "explorer_jack") {
     if (player["introducing_explorer_jack_task", "uncompleted"] == "uncompleted") {
-        npc<Talk>("Ah! Welcome to ${getProperty("name")}, lad. My name's Explorer jack. I'm an explorer by trade, and I'm one of the Taskmasters around these parts")
+        npc<Talk>("Ah! Welcome to ${name}, lad. My name's Explorer jack. I'm an explorer by trade, and I'm one of the Taskmasters around these parts")
         player<Quiz>("Taskmaster? What Tasks are you Master of?")
         whatIsTaskSystem()
     }
@@ -91,14 +91,18 @@ suspend fun NPCOption.whatIsTaskSystem() {
 suspend fun NPCOption.claim(inventoryId: String) {
     npc<Neutral>("I'll just fill your $inventoryId with what you need, then.")
     val inventory = player.inventories.inventory(inventoryId)
+    var coins = 1234
     inventory.transaction {
-        add("coins", 1234)
+        add("coins", coins)
     }
     when (inventory.transaction.error) {
         is TransactionError.Full -> player.inventoryFull()
         TransactionError.None -> {
-            player.message("You receive 12345 coins.")
+            player.message("You receive $coins coins.")
             npc<Happy>("There you go.")
+            if (coins > 100) {
+                player["must_be_funny_in_a_rich_mans_world_task"] = true
+            }
         }
         else -> {
         }

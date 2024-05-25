@@ -603,3 +603,6 @@ prince_ali_rescue:
   values:
     unstarted: 0
     completed: 110
+task_reward_items:
+  id: 1959
+  format: int

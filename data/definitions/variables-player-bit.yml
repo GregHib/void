@@ -365,14 +365,6 @@ unlocked_emote_seal_of_approval:
   id: 8688
   persist: true
   format: boolean
-unlocked_emote_taskmaster:
-  id: 8601
-  persist: true
-  format: map
-  default: false
-  values:
-    false: 0
-    true: 417
 equipment_banking:
   id: 4894
   format: boolean
