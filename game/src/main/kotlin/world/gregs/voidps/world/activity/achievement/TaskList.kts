@@ -31,7 +31,7 @@ interfaceOption("Select", "area_*", "task_list") {
 }
 
 interfaceOption("Summary", "tasks", "task_list") {
-    player["selected_task"] = itemSlot / 4
+    player["task_selected"] = itemSlot / 4
 }
 
 interfaceOption("Pin", "tasks", "task_list") {
@@ -39,22 +39,20 @@ interfaceOption("Pin", "tasks", "task_list") {
 }
 
 interfaceOption("Pin", "pin", "task_list") {
-    pin(player, player["selected_task", 0])
+    pin(player, player["task_selected", 0])
 }
 
 fun indexOfSlot(player: Player, slot: Int): Int? {
     var count = 0
     return Tasks.forEach(areaId(player)) {
         count++
-        val incomplete = !player["task_hide_completed", false] || !isCompleted(player, definition.stringId)
+        val incomplete = !player["task_hide_completed", false] || !Tasks.isCompleted(player, definition.stringId)
         if (incomplete && count - 1 == slot) {
             return@forEach index
         }
         null
     }
 }
-
-fun isCompleted(player: Player, id: String) = player.contains(id) && player[id, false]
 
 fun find(player: Player, id: Int): Int {
     for (i in 0 until 6) {
@@ -111,10 +109,12 @@ fun refreshCompletedCount(player: Player) {
     var total = 0
     var completed = 0
     Tasks.forEach(areaId(player)) {
-        if (isCompleted(player, definition.stringId)) {
+        if (Tasks.isCompleted(player, definition.stringId)) {
             completed++
+            player.sendVariable(definition.stringId)
         }
         total++
+        null
     }
     player["task_progress_current"] = completed
     player["task_progress_total"] = total

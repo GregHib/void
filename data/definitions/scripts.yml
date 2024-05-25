@@ -25,3 +25,6 @@ magic_rune_count: 19
 task_main_list_populate: 3983
 task_main_list_filter_done: 3985
 task_main_list_filter_set: 3986
+task_summary_accordion: 4000
+task_summary_close: 4001
+task_list_button_hide: 4101

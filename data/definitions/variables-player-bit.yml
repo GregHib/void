@@ -996,8 +996,12 @@ kings_ransom:
 # D&Ds / Activities None
 introducing_explorer_jack_task:
   id: 6494
-  format: boolean
+  format: map
   persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 3
 # Varrock Easy
 strike_a_pose_task:
   id: 3986

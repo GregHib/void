@@ -1,14 +1,17 @@
 package world.gregs.voidps.world.activity.achievement
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.world.activity.achievement.Tasks.isCompleted
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Neutral
 import world.gregs.voidps.world.interact.dialogue.Quiz
@@ -18,13 +21,12 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 npcOperate("Talk-to", "explorer_jack") {
-    if (!player["talk_to_explorer_jack_task", false]) {
-        npc<Talk>("Ah! Welcome to ${World.name}, lad. My name's Explorer jack. I'm an explorer by trade, and I'm one of the Taskmasters around these parts")
+    if (player["introducing_explorer_jack_task", "uncompleted"] == "uncompleted") {
+        npc<Talk>("Ah! Welcome to ${getProperty("name")}, lad. My name's Explorer jack. I'm an explorer by trade, and I'm one of the Taskmasters around these parts")
         player<Quiz>("Taskmaster? What Tasks are you Master of?")
         whatIsTaskSystem()
     }
-    val finished = false
-    if (finished) {
+    if (!player["unlocked_emote_explore", false] && completedAllBeginner(player)) {
         player<Happy>("I think I've finished all of the Beginner Tasks in the Lumbridge set.")
         npc<Happy>("You have? Oh, well done! We'll make an explorer of you yet.")
         player<Happy>("Thank you. Is there a reward?")
@@ -71,7 +73,7 @@ npcOperate("Talk-to", "explorer_jack") {
     player<Quiz>("What is the Achievement Diary?")
     npc<Neutral>("Ah, well it's a diary that helps you keep track of particular achievements in the world of ${World.name}. In Lumbridge and Draynor, it can help you discover some very useful things indeed.")
     npc<Talk>("Eventually, with enough exploration, you will be rewarded for your explorative efforts.")
-    npc<Talk>("You can find your Achievement Diary by clicking on the green star icon.")// FIXME
+    npc<Talk>("You can find your Achievement Diary by clicking on the green star icon.")
     npc<Talk>("You should see the icon flashing now. Go ahead and click on it to find your Achievement Diary. If you have any questions, feel free to speak to me again.") // TODO
 */
 }
@@ -80,7 +82,10 @@ suspend fun NPCOption.whatIsTaskSystem() {
     npc<Neutral>("Well, the Task System is a potent method of guiding yourself to useful things to do around the world.")
     npc<Talk>("You'll see up to six Tasks in your side bar if you click on the glowing Task List icon. You can click on one for more information about it, hints, waypoint arrows, that sort of thing.")
     npc<Talk>("Every Task you do will earn you something of value which you can claim from me. It'll be money, mostly, but the Rewards tab for a Task will tell you more.<br>Good luck!")
-    player["talk_to_explorer_jack_task"] = true
+    player["introducing_explorer_jack_task"] = "completed"
+    player["unstable_foundations"] = "completed"
+    player.sendScript("task_list_button_hide", 0)
+    player.interfaces.sendVisibility("task_system", "ok", true)
 }
 
 suspend fun NPCOption.claim(inventoryId: String) {
@@ -89,7 +94,7 @@ suspend fun NPCOption.claim(inventoryId: String) {
     inventory.transaction {
         add("coins", 1234)
     }
-    when(inventory.transaction.error) {
+    when (inventory.transaction.error) {
         is TransactionError.Full -> player.inventoryFull()
         TransactionError.None -> {
             player.message("You receive 12345 coins.")
@@ -98,4 +103,13 @@ suspend fun NPCOption.claim(inventoryId: String) {
         else -> {
         }
     }
+}
+
+fun completedAllBeginner(player: Player): Boolean {
+    return Tasks.forEach(1) {
+        if (definition["task_difficulty", 0] == 1 && !isCompleted(player, definition.stringId)) {
+            return@forEach false
+        }
+        null
+    } ?: false
 }

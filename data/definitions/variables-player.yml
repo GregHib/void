@@ -132,11 +132,11 @@ unstable_foundations:
   id: 281
   persist: true
   format: map
-  default: complete
+  default: completed
   values:
     unstarted: 0
     incomplete: 1
-    complete: 1000
+    completed: 1000
 skill_stat_flash:
   id: 1179
   persist: true

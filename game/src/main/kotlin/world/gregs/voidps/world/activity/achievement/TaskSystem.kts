@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.player.display.Tab
 
@@ -22,14 +21,22 @@ val enumDefinitions: EnumDefinitions by inject()
 val structDefinitions: StructDefinitions by inject()
 
 interfaceOpen("task_system") { player ->
-    player.sendVariable("task_introducing_explorer_jack")
     player.sendVariable("task_pin_index")
     player.sendVariable("task_pinned")
+    player.sendVariable("introducing_explorer_jack_task")
     refreshSlots(player)
     if (player.contains("task_dont_show_again")) {
         player.sendVariable("task_dont_show_again")
     }
-    player.sendVariable("task_progress_total")
+    if (player.contains("task_progress_overall")) {
+        player.sendVariable("task_progress_overall")
+    } else {
+        player["task_progress_overall"] = 0
+        player["task_pinned"] = 3520 // Talk to explorer jack
+        player["task_pin_index"] = 1
+        player["task_selected"] = 1
+        player["unstable_foundations"] = "incomplete"
+    }
 }
 
 enterArea("lumbridge") {
@@ -54,7 +61,7 @@ interfaceOption("Close", "close_hint", "task_system") {
 
 interfaceOption("Select Task", "task_*", "task_system") {
     val index = component.removePrefix("task_").toInt()
-    player["selected_task"] = index
+    player["task_selected"] = index
 }
 
 interfaceOption("Toggle", "dont_show", "task_system") {
@@ -67,10 +74,11 @@ interfaceOption("Open", "task_list", "task_system") {
 
 interfaceOption("OK", "ok", "task_system") {
     player.interfaces.sendVisibility("task_system", "summary_overlay", false)
-    val selected = player["selected_task", -1]
+    val selected = player["task_selected", -1]
     if (selected != -1 && selected == player["task_pin_index", -1]) {
         player.clear("task_pinned")
         player.clear("task_pin_index")
+        player.interfaces.sendVisibility("task_system", "ok", false)
     }
     refreshSlots(player)
 }
@@ -90,7 +98,7 @@ fun indexOfSlot(player: Player, slot: Int): Int? {
     var count = 1
     return Tasks.forEach(areaId(player)) {
         count++
-        val hideCompleted = player["task_hide_completed", false] && isCompleted(player, definition.stringId)
+        val hideCompleted = player["task_hide_completed", false] && Tasks.isCompleted(player, definition.stringId)
         val hideMembers = definition["task_members", 0] == 1 && !World.members
         if (hideCompleted || hideMembers) {
             return@forEach null
@@ -120,7 +128,7 @@ fun refreshSlots(player: Player) {
         if (player["task_pinned", -1] == index && !pinned || !Tasks.hasRequirements(player, definition)) {
             return@forEach null
         }
-        if (isCompleted(player, definition.stringId)) {
+        if (Tasks.isCompleted(player, definition.stringId)) {
             completed++
             return@forEach null
         }
@@ -143,32 +151,33 @@ fun pinned(player: Player, index: Int): Boolean {
 
 fun areaId(player: Player) = variables.get("task_area")!!.values.toInt(player["task_area", "empty"])
 
-fun isCompleted(player: Player, id: String) = player[id, false]
+/*
+    Task completion
+ */
 
 interfaceOption("Details", "details", "task_popup") {
     player["task_popup_summary"] = true
     player["tab"] = Tab.TaskSystem.name
 }
 
-variableSet("*_task", from = false, to = true) { player ->
-    completeTask(player, key)
-}
-
-variableSet("*_task", from = null, to = true) { player ->
-    completeTask(player, key)
+variableSet("*_task") { player ->
+    if (to == true || to == "completed") {
+        completeTask(player, key)
+    }
 }
 
 fun completeTask(player: Player, id: String) {
     val definition = structDefinitions.get(id)
     val index = definition["task_index", -1]
     player["task_popup"] = index
-    val totalLevel = Skill.all.sumOf { if (it == Skill.Constitution) player.levels.getMax(it) / 10 else player.levels.getMax(it) }
-    if (totalLevel < 10) {
-        player.message("You have completed the Task '${definition["task_name", ""]}'!")
-    } else {
-        val areaName = enumDefinitions.get("task_area_names").getString(definition["task_area", 0])
-        val difficultyName = enumDefinitions.get("task_difficulties").getString(definition["task_difficulty", 0])
+    val difficulty = definition["task_difficulty", 0]
+    val area = definition["task_area", 61]
+    val areaName = enumDefinitions.get("task_area_names").getString(area)
+    val difficultyName = enumDefinitions.get("task_difficulties").getString(difficulty)
+    if (areaName.isNotBlank() && difficultyName.isNotBlank()) {
         player.message("You have completed the Task '${definition["task_name", ""]}' in the $difficultyName $areaName set!")
+    } else {
+        player.message("You have completed the Task '${definition["task_name", ""]}'!")
     }
     val before = player["task_progress_current", 0]
     refreshSlots(player)
@@ -177,20 +186,11 @@ fun completeTask(player: Player, id: String) {
     val after = player["task_progress_current", 0]
     val maximum = player["task_progress_total", -1]
     if (before != after && after == maximum) {
-        val area = definition["task_area", 0]
-        val areaName = when (area) {
+        val prettyName = when (area) {
             1 -> "Lumbridge and Draynor"
-            2 -> "Varrock"
-            3 -> "Falador"
-            4 -> "Seers' Village"
-            5 -> "Ardougne"
-            6 -> "Karamja"
-            7 -> "Fremennik"
-            else -> "D&Ds and Activities"
+            else -> areaName
         }
-        val difficulty = definition["task_difficulty", 0]
-        val difficultyName = enumDefinitions.get("task_difficulties").getString(difficulty)
-        player.message("Congratulations! You have completed all of the $difficultyName Tasks in the $areaName")
+        player.message("Congratulations! You have completed all of the $difficultyName Tasks in the $prettyName")
         val npc = when {
             area == 1 && difficulty == 1 -> "Explorer Jack in Lumbridge"
             area == 1 && difficulty == 2 -> "Bob in Bob's Axes in Lumbridge"

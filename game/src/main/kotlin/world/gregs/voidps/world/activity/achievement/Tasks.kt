@@ -1,6 +1,8 @@
 package world.gregs.voidps.world.activity.achievement
 
 import world.gregs.voidps.cache.config.data.StructDefinition
+import world.gregs.voidps.engine.client.variable.BooleanValues
+import world.gregs.voidps.engine.client.variable.MapValues
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
@@ -18,6 +20,15 @@ import java.util.Calendar.HOUR_OF_DAY
 import java.util.concurrent.TimeUnit
 
 object Tasks {
+
+    fun isCompleted(player: Player, id: String): Boolean {
+        val variable = get<VariableDefinitions>().get(id)?.values ?: return false
+        return when (variable) {
+            is BooleanValues -> player[id, false]
+            is MapValues -> player[id, "unstarted"] == "completed"
+            else -> false
+        }
+    }
 
     class TaskIterator {
         lateinit var definition: StructDefinition
