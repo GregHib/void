@@ -703,7 +703,6 @@ task_area:
 task_progress_overall:
   id: 8601
   format: int
-  persist: true
 task_list_area:
   id: 8582
   format: map

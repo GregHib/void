@@ -132,7 +132,7 @@ unstable_foundations:
   id: 281
   persist: true
   format: map
-  default: completed
+  default: unstarted
   values:
     unstarted: 0
     incomplete: 1

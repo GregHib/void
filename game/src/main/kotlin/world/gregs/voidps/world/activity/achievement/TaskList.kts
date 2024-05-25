@@ -16,13 +16,17 @@ playerSpawn { player ->
     player.sendVariable("task_disable_popups")
     player["task_popup"] = 0
     player["task_previous_popup"] = 0
-    Tasks.forEach(areaId(player)) {
-        if (Tasks.isCompleted(player, definition.stringId)) {
-            player.sendVariable(definition.stringId)
+    var total = 0
+    for (area in 0 until 8) {
+        Tasks.forEach(area) {
+            if (Tasks.isCompleted(player, definition.stringId)) {
+                player.sendVariable(definition.stringId)
+                total++
+            }
+            null
         }
-        null
     }
-    player.sendVariable("task_progress_overall")
+    player["task_progress_overall"] = total
     player.sendVariable("task_hide_completed")
     player.sendVariable("task_filter_sets")
 }

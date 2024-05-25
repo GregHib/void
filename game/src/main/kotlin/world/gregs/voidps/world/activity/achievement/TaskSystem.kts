@@ -28,10 +28,7 @@ interfaceOpen("task_system") { player ->
     if (player.contains("task_dont_show_again")) {
         player.sendVariable("task_dont_show_again")
     }
-    if (player.contains("task_progress_overall")) {
-        player.sendVariable("task_progress_overall")
-    } else {
-        player["task_progress_overall"] = 0
+    if (player["unstable_foundations", "unstarted"] == "unstarted") {
         player["task_pinned"] = 3520 // Talk to explorer jack
         player["task_pin_index"] = 1
         player["task_selected"] = 1
