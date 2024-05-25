@@ -73,7 +73,7 @@ adminCommand("setting") {
 
 adminCommand("script") {
     val parts = content.split(" ")
-    val remainder = parts.subList(1, parts.size).map { it.toIntOrNull() ?: it }
+    val remainder = parts.subList(1, parts.size).map { if (it == "true") 1 else if (it == "false") 0 else it.toIntOrNull() ?: it }
     val id = parts[0].toIntOrNull()
     if (id == null) {
         player.sendScript(id = parts[0], *remainder.toTypedArray())
