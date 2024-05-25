@@ -1,7 +1,9 @@
 package world.gregs.voidps.world.activity.achievement
 
 import world.gregs.voidps.cache.config.data.StructDefinition
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
+import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
@@ -16,6 +18,34 @@ import java.util.Calendar.HOUR_OF_DAY
 import java.util.concurrent.TimeUnit
 
 object Tasks {
+
+    class TaskIterator {
+        lateinit var definition: StructDefinition
+        var index: Int = -1
+        var skip: Boolean = false
+    }
+
+    fun <R> forEach(areaId: Int, block: TaskIterator.() -> R?): R? {
+        val enumDefinitions: EnumDefinitions = get()
+        val structDefinitions: StructDefinitions = get()
+        var next = enumDefinitions.get("task_area_start_indices").getInt(areaId)
+        val structs = enumDefinitions.get("task_structs")
+        val iterator = TaskIterator()
+        while (next != 4091 && next != 450 && next != 4094) {
+            val struct = structs.getInt(next)
+            iterator.definition = structDefinitions.getOrNull(struct) ?: break
+            iterator.index = next
+            iterator.skip = false
+            val result = block.invoke(iterator)
+            if (result != null) {
+                return result
+            }
+            if (!iterator.skip) {
+                next = iterator.definition["task_next_index", 4091]
+            }
+        }
+        return null
+    }
 
     fun hasRequirements(player: Player, definition: StructDefinition): Boolean {
         for (i in 1..10) {

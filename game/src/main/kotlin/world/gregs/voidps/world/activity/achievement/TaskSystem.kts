@@ -29,17 +29,11 @@ interfaceOpen("task_system") { player ->
     if (player.contains("task_dont_show_again")) {
         player.sendVariable("task_dont_show_again")
     }
-    if (!player.contains("task_progress_total")) {
-        player["task_progress_total"] = 0
-    } else {
-        player.sendVariable("task_progress_total")
-    }
+    player.sendVariable("task_progress_total")
 }
 
 enterArea("lumbridge") {
     player["task_area"] = "lumbridge_draynor"
-    player["task_progress_current"] = 0
-    player["task_progress_total"] = 124
 }
 
 exitArea("lumbridge") {
@@ -87,32 +81,29 @@ interfaceOption("Pin/Unpin Task", "task_*", "task_system") {
         player.clear("task_pinned")
         player.clear("task_pin_index")
     } else {
-        player["task_pinned"] = index(player, index) ?: return@interfaceOption
+        player["task_pinned"] = indexOfSlot(player, index) ?: return@interfaceOption
         player["task_pin_index"] = index
     }
 }
 
-fun index(player: Player, index: Int, areaId: Int = areaId(player)): Int? {
-    var next = enumDefinitions.get("task_area_start_indices").getInt(areaId)
+fun indexOfSlot(player: Player, slot: Int): Int? {
     var count = 1
-    while (next != -1) {
-        val struct = enumDefinitions.get("task_structs").getInt(next)
-        val definition = structDefinitions.getOrNull(struct) ?: break
-        if (player["task_hide_completed", false] && isCompleted(player, definition.stringId) || definition["task_members", 0] == 1 && !World.members) {
-            count++
-            continue
-        }
-        if (count == index) {
-            return next
-        }
-        if (player["task_pin_index", -1] == count) {
-            count++
-            continue
-        }
+    return Tasks.forEach(areaId(player)) {
         count++
-        next = definition["task_next_index", -1]
+        val hideCompleted = player["task_hide_completed", false] && isCompleted(player, definition.stringId)
+        val hideMembers = definition["task_members", 0] == 1 && !World.members
+        if (hideCompleted || hideMembers) {
+            return@forEach null
+        }
+        if (count - 1 == slot) {
+            return@forEach this.index
+        }
+        val skipPinned = player["task_pin_index", -1] == count
+        if (skipPinned) {
+            skip = true
+        }
+        null
     }
-    return null
 }
 
 variableSet("task_pin_index", "task_area") { player ->
@@ -120,33 +111,26 @@ variableSet("task_pin_index", "task_area") { player ->
 }
 
 fun refreshSlots(player: Player) {
-    val areaId = areaId(player)
-    var next = enumDefinitions.get("task_area_start_indices").getInt(areaId)
-    var i = 1
+    var slot = 1
     var completed = 0
     var total = 0
-    while (next != 4091 && next != 450) {
-        val struct = enumDefinitions.get("task_structs").getInt(next)
-        val definition = structDefinitions.getOrNull(struct) ?: break
+    Tasks.forEach(areaId(player)) {
         total++
-        val pinned = pinned(player, i)
-        if (player["task_pinned", -1] == next && !pinned || !Tasks.hasRequirements(player, definition)) {
-            next = definition["task_next_index", 4091]
-            continue
+        val pinned = pinned(player, slot)
+        if (player["task_pinned", -1] == index && !pinned || !Tasks.hasRequirements(player, definition)) {
+            return@forEach null
         }
         if (isCompleted(player, definition.stringId)) {
             completed++
-            next = definition["task_next_index", 4091]
-            continue
+            return@forEach null
         }
         if (pinned) {
-            player["task_slot_${i++}"] = player["task_pinned", 4091]
-        } else {
-            if (i < 7) {
-                player["task_slot_${i++}"] = next
-            }
-            next = definition["task_next_index", 4091]
+            player["task_slot_${slot++}"] = player["task_pinned", 4091]
+            skip = true
+        } else if (slot < 7) {
+            player["task_slot_${slot++}"] = index
         }
+        null
     }
     player["task_progress_total"] = total
     player["task_progress_current"] = completed
@@ -194,7 +178,7 @@ fun completeTask(player: Player, id: String) {
     val maximum = player["task_progress_total", -1]
     if (before != after && after == maximum) {
         val area = definition["task_area", 0]
-        val areaName = when(area) {
+        val areaName = when (area) {
             1 -> "Lumbridge and Draynor"
             2 -> "Varrock"
             3 -> "Falador"
