@@ -16,13 +16,20 @@ playerSpawn { player ->
     player.sendVariable("task_disable_popups")
     player["task_popup"] = 0
     player["task_previous_popup"] = 0
-}
-
-interfaceOpen("task_list") { player ->
-    refresh(player)
+    Tasks.forEach(areaId(player)) {
+        if (Tasks.isCompleted(player, definition.stringId)) {
+            player.sendVariable(definition.stringId)
+        }
+        null
+    }
     player.sendVariable("task_progress_overall")
     player.sendVariable("task_hide_completed")
     player.sendVariable("task_filter_sets")
+}
+
+interfaceOpen("task_list") { player ->
+    player.interfaceOptions.unlockAll("task_list", "tasks", 0..492)
+    refresh(player)
 }
 
 interfaceOption("Select", "area_*", "task_list") {
@@ -88,7 +95,6 @@ fun refresh(player: Player) {
     player.sendVariable("task_list_area")
     val id = areaId(player)
     player.sendScript("task_main_list_populate", id, 999, 999)
-    player.interfaceOptions.unlockAll("task_list", "tasks", 0..100)
     refreshCompletedCount(player)
 }
 
