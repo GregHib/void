@@ -377,7 +377,7 @@ task_selectable_4: 1285
 task_selectable_5: 1286
 task_selectable_6: 1287
 task_members: 1290
-task_group: 1292
+task_set: 1292
 task_sprite_offset: 1293
 task_skill_1: 1294
 task_level_1: 1295

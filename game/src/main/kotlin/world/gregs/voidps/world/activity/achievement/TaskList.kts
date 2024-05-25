@@ -45,9 +45,13 @@ interfaceOption("Pin", "pin", "task_list") {
 fun indexOfSlot(player: Player, slot: Int): Int? {
     var count = 0
     return Tasks.forEach(areaId(player)) {
-        count++
-        val incomplete = !player["task_hide_completed", false] || !Tasks.isCompleted(player, definition.stringId)
-        if (incomplete && count - 1 == slot) {
+        if (player["task_hide_completed", false] && Tasks.isCompleted(player, definition.stringId)) {
+            return@forEach null
+        }
+        if (player["task_filter_sets", false] && !definition.contains("task_sprite_offset")) {
+            return@forEach null
+        }
+        if (count++ == slot) {
             return@forEach index
         }
         null
