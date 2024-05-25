@@ -1,5 +1,7 @@
 package world.gregs.voidps.world.activity.achievement
 
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
@@ -11,6 +13,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.player.display.Tab
 
@@ -175,6 +178,41 @@ fun completeTask(player: Player, id: String) {
     val definition = structDefinitions.get(id)
     val index = definition["task_index", -1]
     player["task_popup"] = index
-    player.inc("task_progress_overall")
+    val totalLevel = Skill.all.sumOf { if (it == Skill.Constitution) player.levels.getMax(it) / 10 else player.levels.getMax(it) }
+    if (totalLevel < 10) {
+        player.message("You have completed the Task '${definition["task_name", ""]}'!")
+    } else {
+        val areaName = enumDefinitions.get("task_area_names").getString(definition["task_area", 0])
+        val difficultyName = enumDefinitions.get("task_difficulties").getString(definition["task_difficulty", 0])
+        player.message("You have completed the Task '${definition["task_name", ""]}' in the $difficultyName $areaName set!")
+    }
+    val before = player["task_progress_current", 0]
     refreshSlots(player)
+    val total = player.inc("task_progress_overall")
+    player.message("You have now completed $total ${"Task".plural(total)} in total.")
+    val after = player["task_progress_current", 0]
+    val maximum = player["task_progress_total", -1]
+    if (before != after && after == maximum) {
+        val area = definition["task_area", 0]
+        val areaName = when(area) {
+            1 -> "Lumbridge and Draynor"
+            2 -> "Varrock"
+            3 -> "Falador"
+            4 -> "Seers' Village"
+            5 -> "Ardougne"
+            6 -> "Karamja"
+            7 -> "Fremennik"
+            else -> "D&Ds and Activities"
+        }
+        val difficulty = definition["task_difficulty", 0]
+        val difficultyName = enumDefinitions.get("task_difficulties").getString(difficulty)
+        player.message("Congratulations! You have completed all of the $difficultyName Tasks in the $areaName")
+        val npc = when {
+            area == 1 && difficulty == 1 -> "Explorer Jack in Lumbridge"
+            area == 1 && difficulty == 2 -> "Bob in Bob's Axes in Lumbridge"
+            area == 1 && difficulty == 3 -> "Ned in Draynor Village"
+            else -> "someone somewhere"
+        }
+        player.message("set. Speak to $npc to claim your reward.")
+    }
 }

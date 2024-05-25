@@ -1486,3 +1486,4 @@ tele_other: 343
 tele_other_receive:
   id: 342
   height: 52
+run_replenish: 1733
