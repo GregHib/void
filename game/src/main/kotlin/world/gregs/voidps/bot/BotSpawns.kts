@@ -83,7 +83,7 @@ adminCommand("bot") {
     } else {
         val bot = player.initBot()
         if (content.isNotBlank()) {
-            player["task"] = content
+            player["task_bot"] = content
         }
         bot.emit(StartBot)
     }
