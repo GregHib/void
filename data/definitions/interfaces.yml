@@ -187,7 +187,37 @@ dialogue_double_obj_box:
 dialogue_garden_quiz:
   id: 133
   type: dialogue_box
-skill_stat_advance: 134
+skill_stat_advance:
+  id: 134
+  type: main_screen
+  components:
+    confirm: 2
+    close: 29
+    attack: 30
+    strength: 31
+    defence: 32
+    ranged: 33
+    prayer: 34
+    constitution: 35
+    magic: 36
+    agility: 37
+    herblore: 38
+    thieving: 39
+    crafting: 40
+    fletching: 41
+    mining: 42
+    smithing: 43
+    fishing: 44
+    firemaking: 45
+    cooking: 46
+    woodcutting: 47
+    runecrafting: 48
+    slayer: 49
+    hunter: 50
+    farming: 51
+    construction: 52
+    summoning: 53
+    dungeoneering: 54
 dialogue_chat_both:
   id: 136
   type: dialogue_box
