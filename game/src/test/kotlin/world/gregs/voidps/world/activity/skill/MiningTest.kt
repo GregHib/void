@@ -31,5 +31,4 @@ internal class MiningTest : WorldTest() {
         assertNotEquals(rocks.id, objects.getLayer(tile, ObjectLayer.GROUND)?.id)
     }
 
-
 }
