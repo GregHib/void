@@ -13,6 +13,7 @@ consume("bandits_brew") { player ->
 consume("beer") { player ->
     player.levels.boost(Skill.Strength, 1, 0.02)
     player.levels.drain(Skill.Attack, 1, 0.06)
+    player["dishwater_task"] = true
 }
 
 consume("keg_of_beer*") { player ->

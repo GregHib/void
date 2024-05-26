@@ -24,9 +24,9 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
+import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Uncertain
-import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.Upset
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -61,6 +61,7 @@ suspend fun CharacterContext.dialogue(player: Player, npc: NPC? = getGuard(playe
     npc<Talk>("You must pay a toll of 10 gold coins to pass.")
     choice {
         option<Quiz>("Okay, I'll pay.") {
+            player["passing_out_task"] = true
             if (!player.inventory.contains("coins", 10)) {
                 player<Upset>("Oh dear I don't actually seem to have enough money.")
             } else {

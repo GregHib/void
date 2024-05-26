@@ -11839,3 +11839,9 @@ ourania_altar:
 lumbridge_castle_ladder:
   id: 36771
   examine: "I can climb up this."
+lumbridge_organ:
+  id: 36978
+  examine: "A church organ."
+lumbridge_church_bell:
+  id: 36976
+  examine: "I can ring this."

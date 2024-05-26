@@ -3,6 +3,7 @@ package world.gregs.voidps.world.activity.achievement
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
+import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.move.running
@@ -22,8 +23,10 @@ import world.gregs.voidps.world.interact.entity.combat.attackStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.killer
 import world.gregs.voidps.world.interact.entity.death.npcDeath
+import world.gregs.voidps.world.interact.entity.npc.shop.shopOpen
 import world.gregs.voidps.world.interact.entity.obj.teleportLand
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
+import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 
 move({ player.running && !player["on_the_run_task", false] }) {
     player["on_the_run_task"] = true
@@ -135,6 +138,9 @@ itemChange("worn_equipment") { player ->
                             player.clear("equip_crossbow")
                         }
                     }
+                    if (item.id == "oak_shortbow" || item.id == "oak_longbow") {
+                        player["heart_of_oak_task"] = true
+                    }
                 }
             }
         }
@@ -190,10 +196,12 @@ itemReplaced(to = "bread", inventory = "inventory") { player ->
 }
 
 maxLevelChange { player ->
-    if (!player["on_the_level_task", false]) {
+    if (!player["on_the_level_task", false] || !player["quarter_centurion_task", false]) {
         val total = Skill.all.sumOf { if (it == Skill.Constitution) player.levels.getMax(it) / 10 else player.levels.getMax(it) }
         if (total == 10) {
             player["on_the_level_task"] = true
+        } else if (total == 25) {
+            player["quarter_centurion_task"] = true
         }
     }
 }
@@ -303,6 +311,44 @@ itemReplaced("raw_herring", "herring", "inventory") { player ->
     }
 }
 
+itemReplaced("uncooked_berry_pie", "redberry_pie", "inventory") { player ->
+    if (player.softTimers.contains("cooking")) {
+        player["berry_tasty_task"] = true
+    }
+}
+
 combatAttack(spell = "confuse") { player ->
     player["not_so_confusing_after_all_task"] = true
+}
+
+combatAttack(type = "ranged") { player ->
+    if (player.ammo == "steel_arrow") {
+        player["get_the_point_task"] = true
+    }
+}
+
+variableSet("quest_points") { player ->
+    if (from != null && to != null && (from as Int) < 4 && to as Int >= 4) {
+        player["fledgeling_adventurer_task"] = true
+    }
+}
+
+shopOpen("lumbridge_general_store") { player ->
+    player["window_shopping_task"] = true
+}
+
+enterArea("freds_farmhouse") {
+    player["wait_thats_not_a_sheep_task"] = true
+}
+
+enterArea("draynor_manor_courtyard") {
+    player["in_the_countyard_task"] = true
+}
+
+enterArea("draynor_village_market") {
+    player["beware_of_pigzilla_task"] = true
+}
+
+enterArea("wizards_tower_top_floor") {
+    player["tower_power_task"] = true
 }

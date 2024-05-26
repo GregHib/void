@@ -47,13 +47,14 @@ suspend fun CharacterContext.menu() {
         option("I'd like to see my Returned Items box.", block = { player.open("returned_items") })
         option("What is this place?") {
             npc<Talk>("This is a branch of the Bank of $name. We have branches in many towns.")
-            player["you_can_bank_on_us_task"] = true
             choice {
                 option("And what do you do?") {
                     npc<Talk>("We will look after your items and money for you. Leave your valuables with us if you want to keep them safe.")
+                    player["you_can_bank_on_us_task"] = true
                 }
                 option("Didn't you used to be called the Bank of Varrock?") {
                     npc<Talk>("Yes we did, but people kept on coming into our branches outside of Varrock and telling us that our signs were wrong. They acted as if we didn't know what town we were in or something.")
+                    player["you_can_bank_on_us_task"] = true
                 }
             }
         }
