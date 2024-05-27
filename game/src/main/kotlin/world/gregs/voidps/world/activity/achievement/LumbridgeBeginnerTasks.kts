@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.move
-import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -19,6 +18,7 @@ import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.engine.inv.itemReplaced
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.entity.combat.attackStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.killer
@@ -50,7 +50,7 @@ itemAdded("logs", inventory = "inventory") { player ->
     }
 }
 
-itemAdded("crayfish", inventory = "inventory") { player ->
+itemAdded("raw_crayfish", inventory = "inventory") { player ->
     if (player.softTimers.contains("fishing")) {
         player["arent_they_supposed_to_be_twins_task"] = true
     }
@@ -59,15 +59,17 @@ itemAdded("crayfish", inventory = "inventory") { player ->
 val objects: GameObjects by inject()
 
 itemRemoved("logs", inventory = "inventory") { player ->
-    if (player.softTimers.contains("firemaking") && !player["log_a_rhythm_task", false]) {
+    if (!player["log_a_rhythm_task", false]) {
         player["burnt_regular_log"] = true
+        player["fire_tile"] = player.tile
     }
 }
 
 timerStop("firemaking") { player ->
     val regular: Boolean = player.remove("burnt_regular_log") ?: return@timerStop
+    val tile: Tile = player.remove("fire_tile") ?: return@timerStop
     if (regular) {
-        val fire = objects.getShape(player.previousTile, ObjectShape.CENTRE_PIECE_STRAIGHT)
+        val fire = objects.getShape(tile, ObjectShape.CENTRE_PIECE_STRAIGHT)
         if (fire != null && fire.id.startsWith("fire_")) {
             player["log_a_rhythm_task"] = true
         }
@@ -94,7 +96,7 @@ itemAdded("bronze_bar", inventory = "inventory") { player ->
 
 itemAdded("bronze_dagger", inventory = "inventory") { player ->
     if (player.softTimers.contains("smithing")) {
-        player["cutting_edge_technology"] = true
+        player["cutting_edge_technology_task"] = true
     }
 }
 
@@ -197,7 +199,7 @@ itemReplaced(to = "bread", inventory = "inventory") { player ->
 
 maxLevelChange { player ->
     if (!player["on_the_level_task", false] || !player["quarter_centurion_task", false]) {
-        val total = Skill.all.sumOf { if (it == Skill.Constitution) player.levels.getMax(it) / 10 else player.levels.getMax(it) }
+        val total = Skill.all.sumOf { (if (it == Skill.Constitution) player.levels.getMax(it) / 10 - 10 else player.levels.getMax(it) - 1) }
         if (total == 10) {
             player["on_the_level_task"] = true
         } else if (total == 25) {

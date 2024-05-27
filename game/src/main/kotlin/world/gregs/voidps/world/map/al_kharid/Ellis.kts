@@ -68,7 +68,7 @@ suspend fun NPCOption.leather() {
     }
 }
 
-interfaceOption(component = "Tan *", id = "tanner") {
+interfaceOption(option = "Tan *", id = "tanner") {
     val amount = when (option.lowercase()) {
         "tan ${Colours.ORANGE.toTag()}1" -> 1
         "tan ${Colours.ORANGE.toTag()}5" -> 5

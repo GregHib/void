@@ -11845,3 +11845,6 @@ lumbridge_organ:
 lumbridge_church_bell:
   id: 36976
   examine: "I can ring this."
+fire_barbarian_village:
+  id: 5499
+  examine: "Hot!"

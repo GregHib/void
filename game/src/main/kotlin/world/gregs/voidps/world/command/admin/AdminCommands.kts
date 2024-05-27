@@ -42,6 +42,7 @@ import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
+import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.charge
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.queue.softQueue
@@ -171,7 +172,9 @@ adminCommand("item") {
             addToLimit(id, if (amount == "max") Int.MAX_VALUE else amount.toSILong().toInt())
         }
     }
-    println(player.inventory.transaction.error)
+    if (player.inventory.transaction.error != TransactionError.None) {
+        player.message(player.inventory.transaction.error.toString())
+    }
 }
 
 adminCommand("give") {
