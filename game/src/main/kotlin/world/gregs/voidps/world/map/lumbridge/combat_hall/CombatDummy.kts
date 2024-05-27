@@ -28,7 +28,7 @@ npcApproach("Attack", "magic_dummy", "melee_dummy", override = false) {
 
 val itemOnHandler: suspend ItemOnNPC.() -> Unit = handler@{
     val type = target.id.removeSuffix("_dummy")
-    if (player.fightStyle == type) {
+    if (player.fightStyle == type || type == "magic" && id.endsWith("_spellbook")) {
         return@handler
     }
     player.message("You can only use ${type.toTitleCase()} against this dummy.")
@@ -38,7 +38,6 @@ val itemOnHandler: suspend ItemOnNPC.() -> Unit = handler@{
 }
 itemOnNPCApproach(npc = "melee_dummy", override = false, handler = itemOnHandler)
 itemOnNPCApproach(npc = "magic_dummy", override = false, handler = itemOnHandler)
-
 
 val levelHandler: suspend CurrentLevelChanged.(NPC) -> Unit = handler@{ npc ->
     if (to > 10) {
