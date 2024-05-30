@@ -94,18 +94,20 @@ interfaceOption("Pin/Unpin Task", "task_*", "task_system") {
 fun indexOfSlot(player: Player, slot: Int): Int? {
     var count = 1
     return Tasks.forEach(areaId(player)) {
-        count++
-        val hideCompleted = player["task_hide_completed", false] && Tasks.isCompleted(player, definition.stringId)
+        val hideCompleted = Tasks.isCompleted(player, definition.stringId)
         val hideMembers = definition["task_members", 0] == 1 && !World.members
         if (hideCompleted || hideMembers) {
             return@forEach null
         }
-        if (count - 1 == slot) {
-            return@forEach this.index
+        if (count == player["task_pin_index", -1]) {
+            val pinned = player["task_pinned", 4091]
+            if (count == slot) {
+                return@forEach pinned
+            }
+            skip = pinned != index
         }
-        val skipPinned = player["task_pin_index", -1] == count
-        if (skipPinned) {
-            skip = true
+        if (count++ == slot) {
+            return@forEach index
         }
         null
     }
@@ -196,4 +198,18 @@ fun completeTask(player: Player, id: String) {
         }
         player.message("set. Speak to $npc to claim your reward.")
     }
+}
+
+/*
+    Hints
+ */
+
+interfaceOption("Hint", "hint_*", "task_system") {
+    val selected = player["task_selected", 0]
+    val index = indexOfSlot(player, selected) ?: return@interfaceOption
+    val tile: Int = enumDefinitions.getStructOrNull("task_structs", index, component.replace("hint_", "task_hint_tile_")) ?: return@interfaceOption
+    // TODO I expect the functionality is actually minimap highlights not world map
+    player["world_map_marker_1"] = tile
+    player["world_map_marker_text_1"] = ""
+    player.open("world_map")
 }

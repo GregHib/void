@@ -22,6 +22,12 @@ class EnumDefinitions(
         return structs.get(struct)[param]
     }
 
+    fun <T : Any?> getStructOrNull(id: String, index: Int, param: String): T? {
+        val enum = get(id)
+        val struct = enum.getInt(index)
+        return structs.getOrNull(struct)?.getOrNull(param)
+    }
+
     fun <T : Any> getStruct(id: String, index: Int, param: String, default: T): T {
         val enum = get(id)
         val struct = enum.getInt(index)

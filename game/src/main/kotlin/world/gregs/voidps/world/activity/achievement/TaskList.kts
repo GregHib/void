@@ -4,7 +4,9 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.variableSet
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.playerSpawn
@@ -132,4 +134,20 @@ fun refreshCompletedCount(player: Player) {
     }
     player["task_progress_current"] = completed
     player["task_progress_total"] = total
+}
+
+/*
+    Hints
+ */
+
+val enumDefinitions: EnumDefinitions by inject()
+
+interfaceOption("Hint", "hint_*", "task_list") {
+    val selected = player["task_selected", 0]
+    val index = indexOfSlot(player, selected) ?: return@interfaceOption
+    val tile: Int = enumDefinitions.getStructOrNull("task_structs", index, component.replace("hint_", "task_hint_tile_")) ?: return@interfaceOption
+    // TODO I expect the functionality is actually minimap highlights not world map
+    player["world_map_marker_1"] = tile
+    player["world_map_marker_text_1"] = ""
+    player.open("world_map")
 }

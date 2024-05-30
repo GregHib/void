@@ -2372,6 +2372,7 @@ task_list:
     hint_2: 4
     hint_3: 6
     hint_4: 8
+    hint_5: 10
     tasks:
       id: 94
       options:
@@ -2609,6 +2610,9 @@ task_system:
     summary_overlay: 122
     message_overlay: 171
     ok: 130
+    hint_1: 77
+    hint_2: 79
+    hint_3: 81
 warriors_guild: 1057
 fade_out:
   id: 120
