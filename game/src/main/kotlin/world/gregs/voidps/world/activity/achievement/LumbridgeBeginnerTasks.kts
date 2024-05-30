@@ -162,7 +162,7 @@ itemChange("worn_equipment", EquipSlot.Weapon.index) { player ->
 }
 
 variableSet("task_progress_overall") { player ->
-    if (from is Int && to is Int && (from as Int) < 10 && (to as Int) >= 10) {
+    if ((from == null || from is Int && (from as Int) < 10) && to is Int && (to as Int) >= 10) {
         player["on_your_way_task"] = true
     }
 }
@@ -341,7 +341,7 @@ combatAttack(type = "range") { player ->
 }
 
 variableSet("quest_points") { player ->
-    if (from != null && to != null && (from as Int) < 4 && to as Int >= 4) {
+    if ((from == null || from is Int && (from as Int) < 4) && to != null && to is Int && to as Int >= 4) {
         player["fledgeling_adventurer_task"] = true
     }
 }
