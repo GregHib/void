@@ -107,11 +107,11 @@ class DecoderTest {
         null, // 84
         null, // 71
         Walk(1234, 4321), // 35
-        Walk(1234, 4321), // 82
+        Walk(1234, 4321, minimap = true), // 82
         null, // 49
         null, // 8
         null, // 52
-        null, // 58
+        WorldMapClick(tile = 12345), // 58
     ).mapIndexed { index, expected ->
         val (id, data) = packets[index]
         dynamicTest("Test ${if (expected != null) expected::class.simpleName else "Packet $id"} decoder") {
