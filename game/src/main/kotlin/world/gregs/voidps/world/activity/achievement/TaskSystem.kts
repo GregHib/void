@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.achievement
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
@@ -139,6 +140,11 @@ fun refreshSlots(player: Player) {
         }
         null
     }
+    if (slot < 7) {
+        for (i in slot..6) {
+            player["task_slot_${i}"] = 4091
+        }
+    }
     player["task_progress_total"] = total
     player["task_progress_current"] = completed
 }
@@ -212,4 +218,12 @@ interfaceOption("Hint", "hint_*", "task_system") {
     player["world_map_marker_1"] = tile
     player["world_map_marker_text_1"] = ""
     player.open("world_map")
+}
+
+adminCommand("tasks", "achievements") {
+    for (struct in structDefinitions.definitions) {
+        if (struct.stringId.endsWith("_task")) {
+            player[struct.stringId] = true
+        }
+    }
 }
