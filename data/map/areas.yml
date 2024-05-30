@@ -631,7 +631,7 @@ wizards_tower_top_floor:
   area:
     x: [ 3094, 3125 ]
     y: [ 3144, 3176 ]
-    level: 3
+    level: 2
   tags: [ multi_combat ]
 draynor_village_multi_area:
   area:
