@@ -166,7 +166,7 @@ object Tasks {
     }
 
     private fun Player.getInt(id: String, default: String): Int {
-        return get<VariableDefinitions>().get(id)!!.values.toInt(this.get(id, default))
+        return get<VariableDefinitions>().get(id)!!.values.toInt(this[id, default])
     }
 
 
