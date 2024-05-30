@@ -50,8 +50,9 @@ fun sell(player: Player, item: Item, amount: Int) {
         return
     }
     val shop = player.shopInventory(false)
+    var moved = 0
     player.inventory.transaction {
-        val moved = moveToLimit(item.id, amount, shop, notNoted.id)
+        moved = moveToLimit(item.id, amount, shop, notNoted.id)
         if (moved == 0) {
             this.error = TransactionError.Full(amount)
             return@transaction
@@ -72,8 +73,6 @@ fun sell(player: Player, item: Item, amount: Int) {
             }
         }
         TransactionError.Invalid -> player.message("You can't sell this item to this shop.")
-        else -> {
-            player["greasing_the_wheels_of_commerce_task"] = true
-        }
+        else -> player.emit(SoldItem(Item(item.id, moved), shop.id))
     }
 }
