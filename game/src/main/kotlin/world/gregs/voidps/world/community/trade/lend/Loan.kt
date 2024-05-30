@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.activity.bank.bank
@@ -17,7 +16,6 @@ import world.gregs.voidps.world.community.trade.returnedItems
 import java.util.concurrent.TimeUnit
 
 object Loan {
-    private val definitions: ItemDefinitions by inject()
     private val logger = InlineLogger()
 
     fun getSecondsRemaining(player: Player, timeKey: String): Int {
@@ -65,6 +63,7 @@ object Loan {
     }
 
     fun lendItem(borrower: Player, lender: Player, item: String, duration: Int) {
+        val definitions = get<ItemDefinitions>()
         val def = definitions.get(item)
         val lend = definitions.get(def.lendId).stringId
         if (!borrower.inventory.add(lend)) {
