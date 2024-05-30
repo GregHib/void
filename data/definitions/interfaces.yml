@@ -2186,6 +2186,12 @@ world_map:
   type: full_screen
   components:
     close: 44
+    order: 54
+    marker: 42
+    key_list:
+      id: 49
+      options:
+        Select: 0
 chat_model_text: 757
 canoe_travel: 
   id: 758

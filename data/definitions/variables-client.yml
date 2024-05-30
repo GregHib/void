@@ -213,12 +213,6 @@ tab:
   format: list
   default: Inventory
   values: [ CombatStyles, TaskSystem, Stats, QuestJournals, Inventory, WornEquipment, PrayerList, MagicSpellbook, FriendsList, FriendsChat, ClanChat, Options, Emotes, MusicPlayer, Notes ]
-world_map_centre:
-  id: 622
-  format: int
-world_map_player:
-  id: 674
-  format: int
 equipment_emote:
   id: 779
   default: 1426
@@ -396,3 +390,27 @@ task_disable_popups:
   id: 1429
   format: boolean
   persist: true
+world_map_zoom_level:
+  id: 172
+  format: int
+world_map_centre:
+  id: 622
+  format: int
+world_map_marker_player:
+  id: 674
+  format: int
+world_map_marker_1:
+  id: 623
+  format: int
+world_map_marker_2:
+  id: 625
+  format: int
+world_map_marker_3:
+  id: 627
+  format: int
+world_map_marker_4:
+  id: 629
+  format: int
+world_map_marker_5:
+  id: 940
+  format: int

@@ -504,3 +504,6 @@ honestly_its_not_a_purse_task: 1622
 almost_made_in_ardougne_task: 1623
 # Elsewhere... None
 no_task_available_task: 1642
+world_map_blue_marker: 972
+world_map_grave_marker: 0
+world_map_default_marker: 280

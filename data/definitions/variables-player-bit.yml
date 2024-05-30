@@ -2666,3 +2666,30 @@ almost_made_in_ardougne_task:
   id: 6662
   format: boolean
   persist: true
+world_map_hide_player_location:
+  id: 6174
+  format: boolean
+  persist: true
+world_map_hide_links:
+  id: 6175
+  format: boolean
+  persist: true
+world_map_hide_labels:
+  id: 6176
+  format: boolean
+  persist: true
+world_map_hide_tooltips:
+  id: 6177
+  format: boolean
+  persist: true
+world_map_list_order:
+  id: 5367
+  format: map
+  default: categorised
+  values:
+    categorised: 0
+    traditional: 1
+    alphabetical: 2
+show_daemonheim_map:
+  id: 6090
+  format: boolean

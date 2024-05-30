@@ -14,10 +14,10 @@ ammo_group: 21
 secondary_use_level: 23
 unbankable: 59
 quest_list_enum: 61
-world_sprite_1: 130
-world_sprite_2: 131
-world_sprite_3: 134
-world_sprite_4: 135
+world_map_marker_sprite_icon: 130
+world_map_marker_sprite: 131
+world_map_marker_sprite_horizontal: 134
+world_map_marker_sprite_diagonal: 135
 quest_list_interface: 152
 quest_list_scroll: 153
 construction_required_item_id_1: 211
