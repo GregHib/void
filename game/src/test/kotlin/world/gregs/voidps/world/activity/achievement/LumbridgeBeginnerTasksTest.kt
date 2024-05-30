@@ -6,6 +6,7 @@ import world.gregs.voidps.FakeRandom
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.entity.character.move.running
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.item.Item
@@ -97,7 +98,6 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     @Test
     fun `Aren't they supposed to be twins`() {
         val player = createPlayer("adventurer", Tile(3258, 3205))
-        player.levels.set(Skill.Fishing, 20)
         val fishingSpot = createNPC("fishing_spot_crayfish_lumbridge", Tile(3259, 3205))
         player.inventory.add("crayfish_cage")
 
@@ -122,9 +122,8 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     @Test
     fun `Shellfish Roasting on an Open Fire`() {
         val player = createPlayer("adventurer", Tile(3079, 3444))
-        player.levels.set(Skill.Cooking, 100)
         player.inventory.add("raw_crayfish")
-        val fire = createObject("fire_orange", Tile(3079, 3445))
+        val fire = objects[Tile(3079, 3445), "fire_orange"]!!
 
         player.itemOnObject(fire, 0, "")
         tick(4)
@@ -167,11 +166,10 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     @Test
     fun `Cutting Edge Technology`() {
         val player = createPlayer("adventurer", Tile(3228, 3254))
-        player.levels.set(Skill.Smithing, 100)
-        val furnace = objects[Tile(3229, 3254), "anvil_lumbridge"]!!
+        val anvil = objects[Tile(3229, 3254), "anvil_lumbridge"]!!
         player.inventory.add("bronze_bar", "hammer")
 
-        player.itemOnObject(furnace, 0, "")
+        player.itemOnObject(anvil, 0, "")
         tick()
         player.interfaceOption("smithing", "dagger_1")
         tick(3)
@@ -370,4 +368,437 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
         assertTrue(player["so_thats_what_ess_stands_for_task", false])
     }
+
+    @Test
+    fun `Air Craft`() {
+        val player = createPlayer("player", Tile(2844, 4832))
+        player.levels.set(Skill.Runecrafting, 99)
+        player.inventory.add("rune_essence")
+
+        val altar = objects[Tile(2843, 4833 ), "air_altar"]!!
+        player.objectOption(altar, "Craft-rune")
+        tick(2)
+
+        assertTrue(player["air_craft_task", false])
+    }
+
+    @Test
+    fun `Greasing the Wheels of Commerce`() {
+        val player = createPlayer("shopper", Tile(3214, 3242))
+        val npc = npcs[Tile(3214, 3243)].first { it.id == "shop_assistant_lumbridge"}
+        player.inventory.add("bronze_dagger", 1)
+
+        player.npcOption(npc, "Trade")
+        tick()
+        player.interfaceOption("shop_side", "inventory", "Sell 1", item = Item("bronze_dagger"), slot = 0)
+
+        assertTrue(player["greasing_the_wheels_of_commerce_task", false])
+    }
+
+    @Test
+    fun `I Wonder If It'll Sprout`() {
+        val player = createPlayer("adventurer")
+        player.inventory.add("bones")
+
+        player.interfaceOption("inventory", "inventory", "Bury", 0, Item("bones"), 0)
+
+        assertTrue(player["i_wonder_if_itll_sprout_task", false])
+    }
+
+    @Test
+    fun `Put Your Hands Together For`() {
+        val player = createPlayer("player")
+
+        player.interfaceOption("prayer_list", "regular_prayers", optionIndex = 0, slot = 0)
+
+        assertTrue(player["put_your_hands_together_for_task", false])
+    }
+
+    @Test
+    fun `Prayer Point Power`() {
+        val player = createPlayer("player", Tile(3244, 3207))
+        player.levels.drain(Skill.Prayer, 1)
+
+        val altar = objects[Tile(3243, 3206), "prayer_altar_lumbridge"]!!
+        player.objectOption(altar, "Pray")
+        tick()
+
+        assertTrue(player["prayer_point_power_task", false])
+    }
+
+    @Test
+    fun `Not What We Mean By Irony`() {
+        val player = createPlayer("adventurer")
+        player.inventory.add("iron_dagger")
+
+        player.interfaceOption("inventory", "inventory", "Wield", 1, Item("iron_dagger"), 0)
+
+        assertTrue(player["not_what_we_mean_by_irony_task", false])
+    }
+
+    @Test
+    fun `Alls Ferrous in Love and War`() {
+        val player = createPlayer("adventurer")
+        player.inventory.add("iron_boots")
+
+        player.interfaceOption("inventory", "inventory", "Wield", 1, Item("iron_boots"), 0)
+
+        assertTrue(player["alls_ferrous_in_love_and_war_task", false])
+    }
+
+    @Test
+    fun `First Blood`() {
+        val player = createPlayer("adventurer")
+
+        player.exp(Skill.Attack, 388.0)
+        player.exp(Skill.Defence, 388.0)
+
+        assertTrue(player["first_blood_task", false])
+    }
+
+    @Test
+    fun `Temper Temper`() {
+        val player = createPlayer("adventurer")
+        player.levels.set(Skill.Attack, 5)
+        player.inventory.add("steel_sword")
+
+        player.interfaceOption("inventory", "inventory", "Wield", 1, Item("steel_sword"), 0)
+
+        assertTrue(player["temper_temper_task", false])
+    }
+
+    @Test
+    fun `Steel Yourself For Combat`() {
+        val player = createPlayer("adventurer")
+        player.levels.set(Skill.Defence, 5)
+        player.inventory.add("steel_platebody")
+
+        player.interfaceOption("inventory", "inventory", "Wield", 1, Item("steel_platebody"), 0)
+
+        assertTrue(player["steel_yourself_for_combat_task", false])
+    }
+
+    @Test
+    fun `Ammo Ammo Ammo`() {
+        val player = createPlayer("adventurer")
+        player.inventory.add("iron_arrow")
+
+        player.interfaceOption("inventory", "inventory", "Wield", 1, Item("iron_arrow"), 0)
+
+        assertTrue(player["ammo_ammo_ammo_task", false])
+    }
+
+    @Test
+    fun `Take a Bow`() {
+        val player = createPlayer("adventurer")
+        player.inventory.add("shortbow")
+
+        player.interfaceOption("inventory", "inventory", "Wield", 1, Item("shortbow"), 0)
+
+        assertTrue(player["take_a_bow_task", false])
+    }
+
+    @Test
+    fun `Don't Bury This One`() {
+        val player = createPlayer("adventurer")
+
+        player.inventory.add("iron_hatchet")
+
+        assertTrue(player["dont_bury_this_one_task", false])
+    }
+
+    @Test
+    fun `Mace Invaders`() {
+        val player = createPlayer("adventurer", Tile(3228, 3254))
+        player.levels.set(Skill.Smithing, 2)
+        player.inventory.add("bronze_bar", "hammer")
+
+        val anvil = objects[Tile(3229, 3254), "anvil_lumbridge"]!!
+        player.itemOnObject(anvil, 0, "")
+        tick()
+        player.interfaceOption("smithing", "mace_1")
+        tick(3)
+
+
+        assertTrue(player["mace_invaders_task", false])
+    }
+
+    @Test
+    fun `Capital Protection, What?`() {
+        val player = createPlayer("adventurer", Tile(3228, 3254))
+        player.levels.set(Skill.Smithing, 7)
+        player.inventory.add("bronze_bar", "bronze_bar", "hammer")
+
+        val anvil = objects[Tile(3229, 3254), "anvil_lumbridge"]!!
+        player.itemOnObject(anvil, 0, "")
+        tick()
+        player.interfaceOption("smithing", "full_helm_1")
+        tick(3)
+
+
+        assertTrue(player["capital_protection_what_task", false])
+    }
+
+    @Test
+    fun `Hack and Smash`() {
+        val player = createPlayer("adventurer")
+
+        player.exp(Skill.Mining, 512.0)
+
+        assertTrue(player["hack_and_smash_task", false])
+    }
+
+    @Test
+    fun `Shrimpin' Ain't Easy`() {
+        val player = createPlayer("adventurer", Tile(3245, 3155))
+        player.levels.set(Skill.Fishing, 20)
+        val fishingSpot = createNPC("fishing_spot_small_net_bait_lumbridge", Tile(3246, 3155))
+        player.inventory.add("small_fishing_net")
+
+        player.npcOption(fishingSpot, "Net")
+        tick(7)
+
+        assertTrue(player["shrimpin_aint_easy_task", false])
+    }
+
+    @Test
+    fun `The Fruit of the Sea`() {
+        val player = createPlayer("shopper", Tile(3194, 3254))
+        val npc = npcs[Tile(3195, 3254)].first { it.id == "hank" }
+        player.inventory.add("raw_shrimps")
+
+        player.npcOption(npc, "Trade")
+        tick()
+        player.interfaceOption("shop_side", "inventory", "Sell 1", item = Item("raw_shrimps"), slot = 0)
+
+        assertTrue(player["the_fruit_of_the_sea_task", false])
+    }
+
+    @Test
+    fun `Made For Walking`() {
+        val player = createPlayer("adventurer", Tile(3208, 3220, 2))
+        player.levels.set(Skill.Crafting, 7)
+        player.inventory.add("leather", "needle", "thread")
+
+        player.itemOnItem(0, 1)
+        tick()
+        player.dialogueOption(id = "dialogue_skill_creation", component = "choice2")
+        tick(2)
+
+        assertTrue(player["made_for_walking_task", false])
+    }
+
+    @Test
+    fun `Did Anyone Bring Any Toast`() {
+        val player = createPlayer("adventurer", Tile(3086, 3230))
+        player.levels.set(Skill.Fishing, 5)
+        val fishingSpot = createNPC("fishing_spot_small_net_bait_draynor", Tile(3085, 3230))
+        player.inventory.add("fishing_rod", "fishing_bait")
+
+        player.npcOption(fishingSpot, "Bait")
+        tick(7)
+
+        assertTrue(player["did_anyone_bring_any_toast_task", false])
+    }
+
+    @Test
+    fun `It's Not a Red One`() {
+        val player = createPlayer("adventurer", Tile(3079, 3444))
+        player.levels.set(Skill.Cooking, 100)
+        player.inventory.add("raw_herring")
+        val fire = objects[Tile(3079, 3445), "fire_orange"]!!
+
+        player.itemOnObject(fire, 0, "")
+        tick(4)
+
+        assertTrue(player["its_not_a_red_one_task", false])
+    }
+
+    @Test
+    fun `Not So Confusing After All`() = runTest {
+        val player = createPlayer("adventurer", Tile(3211, 3253))
+        player.levels.set(Skill.Magic, 3)
+        player.inventory.add("water_rune", 3)
+        player.inventory.add("earth_rune", 2)
+        player.inventory.add("body_rune")
+
+        val npc = npcs[player.tile.zone].first { it.id == "magic_dummy" }
+
+        player.instructions.send(InteractInterfaceNPC(npc.index, 192, 26, -1, -1))
+        tick(1)
+
+        assertTrue(player["not_so_confusing_after_all_task", false])
+    }
+
+    @Test
+    fun `Heart of Oak`() {
+        val player = createPlayer("adventurer")
+        player.levels.set(Skill.Ranged, 5)
+        player.inventory.add("oak_longbow")
+
+        player.interfaceOption("inventory", "inventory", "Wield", 1, Item("oak_longbow"), 0)
+
+        assertTrue(player["heart_of_oak_task", false])
+    }
+
+    @Test
+    fun `Get the Point`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(from: Int, until: Int) = until / 2
+
+            override fun nextBits(bitCount: Int) = 100
+        })
+        val player = createPlayer("player", Tile(3206, 3205))
+        val npc = npcs[Tile(3206, 3204)].first { it.id == "rat" }
+
+        player.levels.set(Skill.Ranged, 50)
+        player.equipment.set(EquipSlot.Weapon.index, "magic_shortbow")
+        player.equipment.set(EquipSlot.Ammo.index, "steel_arrow", 100)
+
+        player.npcOption(npc, "Attack")
+        tick(20)
+
+        assertTrue(player["get_the_point_task", false])
+    }
+
+    @Test
+    fun `Berry Tasty`() {
+        val player = createPlayer("adventurer", Tile(3231, 3197))
+        player.levels.set(Skill.Cooking, 10)
+        player.inventory.add("uncooked_berry_pie")
+
+        val oven = objects[Tile(3230, 3196), "cooking_range_lumbridge"]!!
+        player.itemOnObject(oven, 0, "")
+        tick(4)
+
+        assertTrue(player["berry_tasty_task", false])
+    }
+
+    @Test
+    fun `Dish water`() {
+        val player = createPlayer("adventurer", Tile(3231, 3197))
+        player.inventory.add("beer")
+
+        player.itemOption("Drink", "beer")
+
+        assertTrue(player["dishwater_task", false])
+    }
+
+    @Test
+    fun `Quarter Centurion`() {
+        val player = createPlayer("adventurer")
+
+        player.exp(Skill.Attack, 8740.0)
+
+        assertTrue(player["quarter_centurion_task", false])
+    }
+
+    @Test
+    fun `Fledgeling Adventurer`() {
+        val player = createPlayer("adventurer")
+
+        player["quest_points"] = 5
+
+        assertTrue(player["fledgeling_adventurer_task", false])
+    }
+
+    @Test
+    fun `Hail to the Duke, Baby`() {
+        val player = createPlayer("adventurer", Tile(3211, 3220, 1))
+        val duke = npcs[Tile(3212, 3220, 1)].first { it.id == "duke_horacio" }
+
+        player.npcOption(duke, "Talk-to")
+        tick()
+
+        assertTrue(player["hail_to_the_duke_baby_task", false])
+    }
+
+    @Test
+    fun `Window Shopping`() {
+        val player = createPlayer("shopper", Tile(3215, 3243))
+        val npc = npcs[Tile(3214, 3243)].first { it.id == "shop_assistant_lumbridge" }
+
+        player.npcOption(npc, "Trade")
+        tick()
+
+        assertTrue(player["window_shopping_task", false])
+    }
+
+    @Test
+    fun `Wait, That's Not a Sheep`() {
+        val player = createPlayer("adventurer")
+
+        player.tele(3189, 3275)
+        tick()
+
+        assertTrue(player["wait_thats_not_a_sheep_task", false])
+    }
+
+    @Test
+    fun `In the Countyard`() {
+        val player = createPlayer("adventurer", Tile(3109, 3330))
+
+        player.walk(Tile(3109, 3331))
+        tick(2)
+
+        assertTrue(player["in_the_countyard_task", false])
+    }
+
+    @Test
+    fun `Beware of Pigzilla`() {
+        val player = createPlayer("adventurer", Tile(3081, 3258))
+
+        player.walk(Tile(3081, 3257))
+        tick(2)
+
+        assertTrue(player["beware_of_pigzilla_task", false])
+    }
+
+    @Test
+    fun `Tower Power`() {
+        val player = createPlayer("adventurer", Tile(3104, 3161, 1))
+
+        val stairs = objects[Tile(3103, 3159, 1), "wizards_tower_staircase"]!!
+        player.objectOption(stairs, "Climb-up")
+        tick(2)
+
+        assertTrue(player["tower_power_task", false])
+    }
+
+    @Test
+    fun `Tinkle the Ivories`() {
+        val player = createPlayer("adventurer", Tile(3243, 3213))
+
+        val stairs = objects[Tile(3243, 3214), "lumbridge_organ"]!!
+        player.objectOption(stairs, "Play")
+        tick()
+
+        assertTrue(player["tinkle_the_ivories_task", false])
+    }
+
+    @Test
+    fun `Passing Out`() {
+        val player = createPlayer("adventurer", Tile(3267, 3227))
+
+        val guard = npcs[Tile(3267, 3226)].first { it.id == "border_guard_al_kharid" }
+        player.npcOption(guard, "Talk-to")
+        tick()
+        player.dialogueContinue(2)
+        player.dialogueOption("line1")
+        player.dialogueContinue()
+
+        assertTrue(player["passing_out_task", false])
+    }
+
+    @Test
+    fun `What is This Place`() {
+        val player = createPlayer("adventurer", Tile(3104, 9571))
+
+        val guard = npcs[Tile(3103, 9571)].first { it.id == "sedridor" }
+        player.npcOption(guard, "Teleport")
+        tick(2)
+
+        assertTrue(player["what_is_this_place_task", false])
+    }
+
 }

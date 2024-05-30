@@ -23,6 +23,7 @@ import world.gregs.voidps.world.interact.entity.combat.attackStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.killer
 import world.gregs.voidps.world.interact.entity.death.npcDeath
+import world.gregs.voidps.world.interact.entity.npc.shop.itemSold
 import world.gregs.voidps.world.interact.entity.npc.shop.shopOpen
 import world.gregs.voidps.world.interact.entity.obj.teleportLand
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
@@ -107,13 +108,15 @@ itemChange("worn_equipment") { player ->
         EquipSlot.Feet.index, EquipSlot.Shield.index, EquipSlot.Legs.index, EquipSlot.Chest.index -> {
             if (item.id.contains("iron")) {
                 player["alls_ferrous_in_love_and_war_task"] = true
+            } else if (item.id.contains("steel")) {
+                player["steel_yourself_for_combat_task"] = true
             }
         }
         EquipSlot.Weapon.index -> {
             if (item.id.contains("iron")) {
                 player["not_what_we_mean_by_irony_task"] = true
             } else if (item.id.contains("steel")) {
-                player["steel_yourself_for_combat_task"] = true
+                player["temper_temper_task"] = true
             }
             val id = item.def["weapon_style", -1]
             when (val style = styleDefinitions.get(id).stringId) {
@@ -146,7 +149,7 @@ itemChange("worn_equipment") { player ->
                 }
             }
         }
-        EquipSlot.Ammo.index -> if (item.id == "steel_arrow") {
+        EquipSlot.Ammo.index -> if (item.id == "iron_arrow") {
             player["ammo_ammo_ammo_task"] = true
         }
     }
@@ -158,8 +161,10 @@ itemChange("worn_equipment", EquipSlot.Weapon.index) { player ->
     }
 }
 
-variableSet("task_progress_overall", from = 9, to = 10) { player ->
-    player["on_your_way_task"] = true
+variableSet("task_progress_overall") { player ->
+    if (from is Int && to is Int && (from as Int) < 10 && (to as Int) >= 10) {
+        player["on_your_way_task"] = true
+    }
 }
 
 itemAdded(inventory = "bank") { player ->
@@ -226,6 +231,10 @@ itemAdded("air_rune", inventory = "inventory") { player ->
     }
 }
 
+itemSold { player ->
+    player["greasing_the_wheels_of_commerce_task"] = true
+}
+
 prayerStart { player ->
     player["put_your_hands_together_for_task"] = true
 }
@@ -247,8 +256,8 @@ npcDeath("giant_rat*") { npc ->
     }
 }
 
-maxLevelChange(Skill.Attack, Skill.Defence, to = 5) { player ->
-    if (player.levels.getMax(Skill.Attack) == 5 && player.levels.getMax(Skill.Defence) == 5) {
+maxLevelChange(Skill.Attack, Skill.Defence) { player ->
+    if (from < 5 && to >= 5 && player.levels.getMax(Skill.Attack) >= 5 && player.levels.getMax(Skill.Defence) >= 5) {
         player["first_blood_task"] = true
     }
 }
@@ -281,8 +290,10 @@ itemAdded("empty_pot", inventory = "inventory") { player ->
     }
 }
 
-maxLevelChange(Skill.Mining, to = 5) { player ->
-    player["hack_and_smash_task"] = true
+maxLevelChange(Skill.Mining) { player ->
+    if (from < 5 && to >= 5) {
+        player["hack_and_smash_task"] = true
+    }
 }
 
 itemAdded("raw_shrimps", inventory = "inventory") { player ->
@@ -291,7 +302,7 @@ itemAdded("raw_shrimps", inventory = "inventory") { player ->
     }
 }
 
-itemAdded("raw_shrimps", inventory = "lumbridge_fishing_supplies") { player ->
+itemSold("raw_shrimps", "lumbridge_fishing_supplies") { player ->
     player["the_fruit_of_the_sea_task"] = true
 }
 
@@ -323,7 +334,7 @@ combatAttack(spell = "confuse") { player ->
     player["not_so_confusing_after_all_task"] = true
 }
 
-combatAttack(type = "ranged") { player ->
+combatAttack(type = "range") { player ->
     if (player.ammo == "steel_arrow") {
         player["get_the_point_task"] = true
     }

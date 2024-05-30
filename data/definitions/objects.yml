@@ -11848,3 +11848,6 @@ lumbridge_church_bell:
 fire_barbarian_village:
   id: 5499
   examine: "Hot!"
+wizards_tower_staircase:
+  id: 12537
+  examine: "I can climb these stairs."
