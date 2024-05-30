@@ -76,6 +76,8 @@ abstract class WorldTest : KoinTest {
 
     val extraProperties: MutableMap<String, Any> = mutableMapOf()
 
+    open var loadNpcs: Boolean = false
+
     fun tick(times: Int = 1) = runBlocking(Contexts.Game) {
         repeat(times) {
             GameLoop.tick++
@@ -128,7 +130,15 @@ abstract class WorldTest : KoinTest {
         return objects.add(id, tile, shape, rotation)
     }
 
-    fun createFloorItem(id: String, tile: Tile = Tile.EMPTY, amount: Int = 1, revealTicks: Int = FloorItems.NEVER, disappearTicks: Int = FloorItems.NEVER, charges: Int = 0, owner: Player? = null): FloorItem {
+    fun createFloorItem(
+        id: String,
+        tile: Tile = Tile.EMPTY,
+        amount: Int = 1,
+        revealTicks: Int = FloorItems.NEVER,
+        disappearTicks: Int = FloorItems.NEVER,
+        charges: Int = 0,
+        owner: Player? = null
+    ): FloorItem {
         return floorItems.add(tile, id, amount, revealTicks, disappearTicks, charges, owner)
     }
 
@@ -167,9 +177,11 @@ abstract class WorldTest : KoinTest {
                 single { objectCollisionAdd }
                 single { objectCollisionAdd }
                 single { objectCollisionRemove }
-                single { Hunting(get(), get(), get(), get(), get(), get(), object : FakeRandom() {
-                    override fun nextBits(bitCount: Int) = 0
-                }) }
+                single {
+                    Hunting(get(), get(), get(), get(), get(), get(), object : FakeRandom() {
+                        override fun nextBits(bitCount: Int) = 0
+                    })
+                }
             })
         }
         loadScripts()
@@ -213,7 +225,9 @@ abstract class WorldTest : KoinTest {
     @BeforeEach
     fun beforeEach() {
         loadItemSpawns(floorItems, get())
-        loadNpcSpawns(npcs)
+        if (loadNpcs) {
+            loadNpcSpawns(npcs)
+        }
         loadObjectSpawns(objects)
         setRandom(FakeRandom())
     }
@@ -256,7 +270,7 @@ abstract class WorldTest : KoinTest {
         private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd(collisions) }
         private val objectCollisionRemove: GameObjectCollisionRemove by lazy { GameObjectCollisionRemove(collisions) }
         private val gameObjects: GameObjects by lazy { GameObjects(objectCollisionAdd, objectCollisionRemove, ZoneBatchUpdates(), objectDefinitions, storeUnused = true) }
-        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder( collisions), objectDefinitions, gameObjects, cache).loadCache() }
+        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(collisions), objectDefinitions, gameObjects, cache).loadCache() }
         private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(cache)).load() }
         val emptyTile = Tile(2655, 4640)
     }

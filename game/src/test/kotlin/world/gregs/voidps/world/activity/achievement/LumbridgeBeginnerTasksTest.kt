@@ -23,6 +23,8 @@ import kotlin.test.assertTrue
 
 internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
+    override var loadNpcs = true
+
     @Test
     fun `On the Run`() = runTest {
         val player = createPlayer("adventurer", emptyTile)
