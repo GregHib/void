@@ -1,37 +1,37 @@
 # 6743
 - { id: banker_fist_of_guthix, x: 1705, y: 5599 }
 # 6993
-- { id: giant_mole, x: 1762, y: 5185 }
-- { id: baby_mole, x: 1763, y: 5163 }
-- { id: baby_mole, x: 1760, y: 5167 }
-- { id: baby_mole, x: 1759, y: 5161 }
-- { id: baby_mole, x: 1764, y: 5184 }
-- { id: baby_mole, x: 1759, y: 5193 }
-- { id: baby_mole, x: 1758, y: 5184 }
-- { id: baby_mole, x: 1756, y: 5179 }
-- { id: baby_mole, x: 1741, y: 5186 }
-- { id: baby_mole, x: 1754, y: 5197 }
-- { id: baby_mole, x: 1761, y: 5197 }
-- { id: baby_mole, x: 1774, y: 5204 }
-- { id: baby_mole, x: 1782, y: 5217 }
-- { id: baby_mole, x: 1781, y: 5232 }
-- { id: baby_mole, x: 1771, y: 5220 }
-- { id: baby_mole, x: 1763, y: 5215 }
-- { id: baby_mole, x: 1756, y: 5221 }
-- { id: baby_mole, x: 1741, y: 5220 }
-- { id: baby_mole, x: 1738, y: 5209 }
-- { id: baby_mole, x: 1744, y: 5205 }
-- { id: baby_mole, x: 1751, y: 5207 }
-- { id: baby_mole, x: 1755, y: 5199 }
-- { id: baby_mole, x: 1774, y: 5174 }
-- { id: baby_mole, x: 1777, y: 5188 }
-- { id: baby_mole, x: 1775, y: 5194 }
-- { id: baby_mole, x: 1775, y: 5166 }
-- { id: baby_mole, x: 1762, y: 5151 }
-- { id: baby_mole, x: 1778, y: 5149 }
-- { id: baby_mole, x: 1744, y: 5151 }
-- { id: baby_mole, x: 1737, y: 5157 }
-- { id: baby_mole, x: 1748, y: 5168 }
+- { id: giant_mole, x: 1759, y: 5189 }
+- { id: baby_mole, x: 1776, y: 5241 }
+- { id: baby_mole, x: 1736, y: 5227 }
+- { id: baby_mole, x: 1772, y: 5200 }
+- { id: baby_mole, x: 1741, y: 5188 }
+- { id: baby_mole, x: 1739, y: 5177 }
+- { id: baby_mole, x: 1765, y: 5178 }
+- { id: baby_mole, x: 1737, y: 5156 }
+- { id: baby_mole, x: 1756, y: 5164 }
+- { id: baby_mole, x: 1761, y: 5161 }
+- { id: baby_mole_2, x: 1746, y: 5221 }
+- { id: baby_mole_2, x: 1770, y: 5226 }
+- { id: baby_mole_2, x: 1734, y: 5202 }
+- { id: baby_mole_2, x: 1755, y: 5199 }
+- { id: baby_mole_2, x: 1783, y: 5191 }
+- { id: baby_mole_2, x: 1756, y: 5181 }
+- { id: baby_mole_2, x: 1780, y: 5180 }
+- { id: baby_mole_2, x: 1779, y: 5165 }
+- { id: baby_mole_2, x: 1760, y: 5152 }
+- { id: baby_mole_2, x: 1781, y: 5152 }
+- { id: baby_mole_3, x: 1778, y: 5232 }
+- { id: baby_mole_3, x: 1737, y: 5209 }
+- { id: baby_mole_3, x: 1760, y: 5215 }
+- { id: baby_mole_3, x: 1779, y: 5210 }
+- { id: baby_mole_3, x: 1763, y: 5196 }
+- { id: baby_mole_3, x: 1762, y: 5182 }
+- { id: baby_mole_3, x: 1746, y: 5171 }
+- { id: baby_mole_3, x: 1770, y: 5174 }
+- { id: baby_mole_3, x: 1742, y: 5163 }
+- { id: baby_mole_3, x: 1764, y: 5164 }
+- { id: baby_mole_3, x: 1746, y: 5152 }
 # 7243
 - { id: rat, x: 1816, y: 4836, level: 1, members: true }
 - { id: rat, x: 1815, y: 4832, members: true }
@@ -56,6 +56,22 @@
 - { id: butterfly_2, x: 1908, y: 5222 }
 - { id: butterfly_1, x: 1906, y: 5223 }
 - { id: butterfly_1, x: 1907, y: 5221 }
+- { id: wolf_stronghold_of_security, x: 1873, y: 5239 }
+- { id: wolf_stronghold_of_security, x: 1871, y: 5236 }
+- { id: wolf_stronghold_of_security, x: 1872, y: 5233 }
+- { id: wolf_stronghold_of_security, x: 1871, y: 5229 }
+- { id: wolf_stronghold_of_security, x: 1870, y: 5226 }
+- { id: wolf_stronghold_of_security_2, x: 1890, y: 5224 }
+- { id: wolf_stronghold_of_security_2, x: 1887, y: 5221 }
+- { id: wolf_stronghold_of_security_2, x: 1892, y: 5220 }
+- { id: wolf_stronghold_of_security_2, x: 1889, y: 5217 }
+- { id: wolf_stronghold_of_security_2, x: 1892, y: 5217 }
+- { id: wolf_stronghold_of_security_2, x: 1889, y: 5214 }
+- { id: wolf_stronghold_of_security_2, x: 1894, y: 5193 }
+- { id: wolf_stronghold_of_security_2, x: 1889, y: 5191 }
+- { id: wolf_stronghold_of_security_2, x: 1897, y: 5189 }
+- { id: wolf_stronghold_of_security_2, x: 1886, y: 5188 }
+- { id: wolf_stronghold_of_security_2, x: 1889, y: 5187 }
 # 7507
 - { id: general_wartface_rfd, x: 1862, y: 5351, direction: SOUTH, members: true }
 - { id: general_bentnoze_rfd, x: 1862, y: 5349, direction: NORTH, members: true }
@@ -350,6 +366,8 @@
 - { id: goblin_light_grey_bald_spear, x: 2387, y: 3345 }
 - { id: goblin_light_grey_bald_spear, x: 2385, y: 3339 }
 - { id: goblin_light_grey_bald_spear, x: 2387, y: 3337 }
+- { id: wolf, x: 2379, y: 3344, members: true }
+- { id: wolf, x: 2395, y: 3340, members: true }
 # 9525
 - { id: butterfly_2, x: 2393, y: 3442, members: true }
 - { id: butterfly_2, x: 2397, y: 3440, members: true }
@@ -426,6 +444,16 @@
 - { id: giant_spider, x: 2480, y: 2871, members: true }
 - { id: giant_spider, x: 2447, y: 2863, members: true }
 - { id: giant_spider, x: 2471, y: 2850, members: true }
+- { id: wolf, x: 2443, y: 2874, members: true }
+- { id: wolf, x: 2460, y: 2870, members: true }
+- { id: wolf, x: 2470, y: 2855, members: true }
+- { id: wolf, x: 2477, y: 2857, members: true }
+- { id: wolf, x: 2492, y: 2858, members: true }
+- { id: wolf, x: 2492, y: 2847, members: true }
+- { id: wolf, x: 2459, y: 2848, members: true }
+- { id: wolf, x: 2449, y: 2844, members: true }
+- { id: wolf, x: 2440, y: 2834, members: true }
+- { id: wolf, x: 2466, y: 2837, members: true }
 # 9773
 - { id: fishing_spot_big_net_harpoon_feldip_hills, x: 2435, y: 2895, members: true }
 - { id: fishing_spot_big_net_harpoon_feldip_hills, x: 2442, y: 2917, members: true }
@@ -447,6 +475,11 @@
 - { id: giant_spider, x: 2488, y: 2888, members: true }
 - { id: giant_spider, x: 2494, y: 2888, members: true }
 - { id: giant_spider, x: 2490, y: 2883, members: true }
+- { id: wolf, x: 2480, y: 2924, members: true }
+- { id: wolf, x: 2492, y: 2908, members: true }
+- { id: wolf, x: 2483, y: 2887, members: true }
+- { id: wolf, x: 2467, y: 2882, members: true }
+- { id: wolf, x: 2454, y: 2880, members: true }
 # 9778
 - { id: mage_of_zamorak_ourania, x: 2455, y: 3233, members: true }
 - { id: monk_of_zamorak_ourania, x: 2454, y: 3247, members: true }
@@ -511,11 +544,31 @@
 - { id: rat, x: 2488, y: 3305, members: true }
 - { id: rat, x: 2492, y: 3303, members: true }
 - { id: rat, x: 2489, y: 3302, members: true }
+- { id: wolf, x: 2447, y: 3287, members: true }
+- { id: wolf, x: 2450, y: 3284, members: true }
+- { id: wolf, x: 2454, y: 3280, members: true }
+- { id: wolf, x: 2458, y: 3274, members: true }
+- { id: wolf, x: 2462, y: 3274, members: true }
+- { id: wolf, x: 2465, y: 3275, members: true }
+- { id: wolf, x: 2465, y: 3273, members: true }
+- { id: wolf, x: 2470, y: 3272, members: true }
+- { id: wolf, x: 2472, y: 3274, members: true }
+- { id: wolf, x: 2477, y: 3275, members: true }
+- { id: wolf, x: 2478, y: 3272, members: true }
+- { id: wolf, x: 2480, y: 3274, members: true }
+- { id: wolf, x: 2483, y: 3273, members: true }
+- { id: wolf, x: 2485, y: 3269, members: true }
+- { id: wolf, x: 2489, y: 3269, members: true }
 # 9780
 - { id: butterfly_1, x: 2481, y: 3384, members: true }
 - { id: butterfly_1, x: 2479, y: 3381, members: true }
 - { id: butterfly_1, x: 2478, y: 3373, members: true }
 - { id: butterfly_1, x: 2490, y: 3371, members: true }
+- { id: wolf, x: 2437, y: 3336, members: true }
+- { id: wolf, x: 2439, y: 3335, members: true }
+- { id: wolf, x: 2440, y: 3335, members: true }
+- { id: wolf, x: 2439, y: 3333, members: true }
+- { id: wolf, x: 2440, y: 3333, members: true }
 # 9781
 - { id: butterfly_5, x: 2479, y: 3396, members: true }
 - { id: butterfly_2, x: 2446, y: 3396, members: true }
@@ -630,6 +683,11 @@
 - { id: rat, x: 2547, y: 2990, members: true }
 - { id: rat, x: 2527, y: 2986, members: true }
 - { id: rat, x: 2531, y: 2976, members: true }
+- { id: wolf, x: 2498, y: 2968, members: true }
+- { id: wolf, x: 2502, y: 2969, members: true }
+- { id: wolf, x: 2509, y: 2964, members: true }
+- { id: wolf, x: 2496, y: 2959, members: true }
+- { id: wolf, x: 2500, y: 2959, members: true }
 # 10032
 - { id: musician_yanille, x: 2526, y: 3096, direction: SOUTH, members: true }
 # 10033
@@ -652,6 +710,8 @@
 - { id: goblin_light_grey_bald_spear, x: 2523, y: 3155 }
 - { id: goblin_light_grey_bald_spear, x: 2542, y: 3155 }
 - { id: goblin_light_grey_bald_spear, x: 2519, y: 3145 }
+- { id: wolf, x: 2516, y: 3197, members: true }
+- { id: wolf, x: 2548, y: 3179, members: true }
 # 10036
 - { id: rat, x: 2506, y: 3331, members: true }
 - { id: rat, x: 2500, y: 3331, members: true }
@@ -725,6 +785,13 @@
 - { id: penelope_platypus_3, x: 2610, y: 2865, members: true }
 - { id: peter_platypus_3, x: 2611, y: 2862, members: true }
 - { id: peanut_platypus_3, x: 2611, y: 2864, members: true }
+# 10286
+- { id: wolf, x: 2607, y: 2967, members: true }
+- { id: wolf, x: 2610, y: 2965, members: true }
+- { id: wolf, x: 2605, y: 2963, members: true }
+- { id: wolf, x: 2610, y: 2961, members: true }
+- { id: wolf, x: 2610, y: 2958, members: true }
+- { id: wolf, x: 2602, y: 2955, members: true }
 # 10288
 - { id: man, x: 2596, y: 3104, members: true }
 - { id: man_3, x: 2596, y: 3106, members: true }
@@ -736,6 +803,9 @@
 - { id: cow, x: 2588, y: 3119, members: true }
 - { id: cow, x: 2604, y: 3114, members: true }
 - { id: wizard_distentor, x: 2594, y: 3089, members: true }
+# 10291
+- { id: wolf, x: 2616, y: 3283, members: true }
+- { id: wolf, x: 2620, y: 3283, members: true }
 # 10292
 - { id: banker_3, x: 2614, y: 3330, direction: NORTH, members: true }
 - { id: banker_4, x: 2618, y: 3330, direction: NORTH, members: true }
@@ -983,6 +1053,10 @@
 - { id: chicken, x: 2651, y: 3441, members: true }
 # 10551
 - { id: musician_rellekka, x: 2657, y: 3570, direction: EAST, members: true }
+# 10552
+- { id: wolf, x: 2647, y: 3584, members: true }
+- { id: wolf, x: 2682, y: 3592, members: true }
+- { id: wolf, x: 2680, y: 3585, members: true }
 # 10553
 - { id: yrsa, x: 2625, y: 3675, members: true }
 - { id: musician_rellekka, x: 2655, y: 3694, direction: SOUTH, members: true }
@@ -1058,6 +1132,8 @@
 - { id: rat, x: 2730, y: 3571, members: true }
 - { id: chicken, x: 2736, y: 3562, members: true }
 - { id: chicken, x: 2735, y: 3559, members: true }
+- { id: wolf, x: 2706, y: 3580, members: true }
+- { id: wolf, x: 2717, y: 3569, members: true }
 # 10831
 - { id: rat, x: 2693, y: 5111, members: true }
 - { id: rat, x: 2706, y: 5114, members: true }
@@ -1140,6 +1216,28 @@
 - { id: fishing_spot_big_net_harpoon_catherby, x: 2846, y: 3429, direction: SOUTH, members: true }
 - { id: fishing_spot_big_net_harpoon_catherby, x: 2855, y: 3423, direction: SOUTH, members: true }
 - { id: fishing_spot_big_net_harpoon_catherby, x: 2859, y: 3426, direction: SOUTH, members: true }
+- { id: white_wolf, x: 2842, y: 3450, members: true }
+- { id: white_wolf, x: 2864, y: 3453, members: true }
+- { id: white_wolf, x: 2872, y: 3445, members: true }
+- { id: white_wolf, x: 2870, y: 3438, members: true }
+# 11318
+- { id: wolf2, x: 2844, y: 3507, members: true }
+- { id: wolf2, x: 2839, y: 3506, members: true }
+- { id: wolf2, x: 2842, y: 3504, members: true }
+- { id: wolf2, x: 2839, y: 3502, members: true }
+- { id: wolf2, x: 2837, y: 3499, members: true }
+- { id: wolf2, x: 2836, y: 3495, members: true }
+- { id: big_wolf_2, x: 2840, y: 3497, members: true }
+- { id: white_wolf, x: 2866, y: 3498, members: true }
+- { id: white_wolf, x: 2860, y: 3492, members: true }
+- { id: white_wolf, x: 2866, y: 3498, members: true }
+- { id: white_wolf, x: 2846, y: 3477, members: true }
+- { id: white_wolf_2, x: 2831, y: 3515, members: true }
+- { id: white_wolf_2, x: 2833, y: 3513, members: true }
+- { id: white_wolf_2, x: 2854, y: 3509, members: true }
+- { id: white_wolf_2, x: 2856, y: 3508, members: true }
+- { id: white_wolf_2, x: 2848, y: 3487, members: true }
+- { id: white_wolf_2, x: 2850, y: 3484, members: true }
 # 11319
 - { id: chicken, x: 2816, y: 3561, members: true }
 - { id: chicken, x: 2819, y: 3561, members: true }
@@ -1182,6 +1280,7 @@
 - { id: master_crafter_3, x: 2937, y: 3290 }
 - { id: tanner, x: 2934, y: 3284, level: 1 }
 - { id: makeover_mage_female, x: 2916, y: 3323 }
+- { id: Lil_lamb, x: 2927, y: 3320 }
 - { id: sheep, x: 2923, y: 3325 }
 - { id: sheep, x: 2926, y: 3322 }
 - { id: sheep, x: 2921, y: 3319 }
@@ -1301,6 +1400,15 @@
 - { id: giant_rat_dark_injured, x: 2971, y: 3690 }
 # 11834
 - { id: drunken_musician, x: 3003, y: 3739, direction: SOUTH }
+# 11837
+- { id: white_wolf_2, x: 2991, y: 3924, members: true }
+- { id: white_wolf_2, x: 2988, y: 3921, members: true }
+- { id: white_wolf_2, x: 2994, y: 3921, members: true }
+- { id: white_wolf_2, x: 2992, y: 3917, members: true }
+- { id: white_wolf_2, x: 3005, y: 3926, members: true }
+- { id: white_wolf_2, x: 3002, y: 3924, members: true }
+- { id: white_wolf_2, x: 3006, y: 3921, members: true }
+- { id: white_wolf_2, x: 3004, y: 3917, members: true }
 # 11842
 - { id: rat, x: 2960, y: 4280, members: true }
 - { id: rat, x: 2963, y: 4279, members: true }
@@ -1840,6 +1948,7 @@
 - { id: magic_dummy, x: 3214, y: 3253, direction: SOUTH }
 - { id: magic_dummy, x: 3214, y: 3254, direction: SOUTH }
 - { id: cook_lumbridge, x: 3209, y: 3215 }
+- { id: Lil_lamb, x: 3207, y: 3262 }
 - { id: sheep, x: 3208, y: 3262 }
 - { id: sheep, x: 3203, y: 3262 }
 - { id: sheep_2, x: 3204, y: 3261 }
@@ -2051,6 +2160,11 @@
 - { id: rat, x: 3248, y: 3728 }
 # 12859
 - { id: ghostly_piper, x: 3244, y: 3821, direction: SOUTH }
+# 12861
+- { id: wolf, x: 3207, y: 3919, members: true }
+- { id: wolf, x: 3218, y: 3924, members: true }
+- { id: wolf, x: 3229, y: 3917, members: true }
+- { id: wolf, x: 3241, y: 3921, members: true }
 # 12870
 - { id: holding_pen_swept_away, x: 3231, y: 4523 }
 - { id: bat_pen_swept_away, x: 3222, y: 4513 }
@@ -2147,6 +2261,14 @@
 - { id: cave_lizard, x: 3301, y: 4811, members: true }
 - { id: zamorak_crafter_start, x: 3270, y: 4856, members: true }
 - { id: zamorak_crafter_end, x: 3314, y: 4811, members: true }
+# 13142
+- { id: big_wolf, x: 3288, y: 5529, members: true }
+- { id: big_wolf, x: 3297, y: 5518, members: true }
+- { id: big_wolf, x: 3304, y: 5509, members: true }
+- { id: big_wolf, x: 3322, y: 5517, members: true }
+- { id: big_wolf_2, x: 3285, y: 5512, members: true }
+- { id: big_wolf_2, x: 3312, y: 5509, members: true }
+- { id: big_wolf_2, x: 3324, y: 5513, members: true }
 # 13210
 - { id: rat, x: 3269, y: 9869 }
 - { id: rat, x: 3274, y: 9873 }

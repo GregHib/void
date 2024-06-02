@@ -204,3 +204,6 @@ tele_other_cast: 199
 teleport_all: 200
 boil_burst: 2711
 abyssal_squeezethrough: 2709
+wolves_hit: 912
+wolves_attack: 909
+wolves_death: 911
