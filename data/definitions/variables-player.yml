@@ -605,7 +605,9 @@ prince_ali_rescue:
     completed: 110
 task_reward_items:
   id: 1959
-  format: int
+  format: bitwise
+  persist: true
+  values: [ magic_staff, red_dye ]
 stat_advance_selected_skill:
   id: 261
   format: int

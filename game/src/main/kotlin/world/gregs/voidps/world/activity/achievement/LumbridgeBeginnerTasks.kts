@@ -168,7 +168,10 @@ variableSet("task_progress_overall") { player ->
 }
 
 itemAdded(inventory = "bank") { player ->
-    player["hang_on_to_something_task"] = true
+    if (!player["hang_on_to_something_task", false]) {
+        player["hang_on_to_something_task"] = true
+        player.addVarbit("task_reward_items", "magic_staff")
+    }
 }
 
 npcDeath("cow*") { cow ->

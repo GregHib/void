@@ -25,7 +25,7 @@ cooks_assistant_flour:
   persist: true
 cooks_assistant_talked_to_millie:
   format: boolean
-  persist: true  
+  persist: true
 bone_delay:
   format: int
 recover_special_delay:

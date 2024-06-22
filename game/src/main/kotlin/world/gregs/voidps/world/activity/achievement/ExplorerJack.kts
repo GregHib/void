@@ -2,11 +2,14 @@ package world.gregs.voidps.world.activity.achievement
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.variable.BitwiseValues
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.World.name
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -88,18 +91,41 @@ suspend fun NPCOption.whatIsTaskSystem() {
     player.interfaces.sendVisibility("task_system", "ok", true)
 }
 
+val variables: VariableDefinitions by inject()
+
 suspend fun NPCOption.claim(inventoryId: String) {
     npc<Neutral>("I'll just fill your $inventoryId with what you need, then.")
     val inventory = player.inventories.inventory(inventoryId)
-    var coins = 1234
+    val progress = player["task_progress_overall", 0]
+    val rewards = progress - player["task_progress_rewarded", 0]
+    var coins = 0
+    for (i in 0 until rewards) {
+        coins += when {
+            progress + i < 10 -> 10
+            progress + i < 25 -> 40
+            progress + i < 50 -> 160
+            progress + i < 75 -> 640
+            else -> 2560
+        }
+    }
+    val values = (variables.get("task_reward_items")!!.values as BitwiseValues).values
     inventory.transaction {
         add("coins", coins)
+        if (player.contains("task_reward_items")) {
+            for (value in values) {
+                if (player.containsVarbit("task_reward_items", value)) {
+                    add(value as String)
+                }
+            }
+        }
     }
     when (inventory.transaction.error) {
         is TransactionError.Full -> player.inventoryFull()
         TransactionError.None -> {
             player.message("You receive $coins coins.")
             npc<Happy>("There you go.")
+            player["task_progress_rewarded"] = player["task_progress_overall", 0]
+            player.clear("task_reward_items")
             if (coins > 100) {
                 player["must_be_funny_in_a_rich_mans_world_task"] = true
             }

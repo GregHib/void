@@ -50,11 +50,11 @@ suspend fun CharacterContext.menu() {
             choice {
                 option("And what do you do?") {
                     npc<Talk>("We will look after your items and money for you. Leave your valuables with us if you want to keep them safe.")
-                    player["you_can_bank_on_us_task"] = true
+                    achievement()
                 }
                 option("Didn't you used to be called the Bank of Varrock?") {
                     npc<Talk>("Yes we did, but people kept on coming into our branches outside of Varrock and telling us that our signs were wrong. They acted as if we didn't know what town we were in or something.")
-                    player["you_can_bank_on_us_task"] = true
+                    achievement()
                 }
             }
         }
@@ -71,4 +71,11 @@ npcApproach("Collect", "banker*") {
     player.approachRange(2)
     pause()
     player.open("collection_box")
+}
+
+fun CharacterContext.achievement() {
+    if (!player["you_can_bank_on_us_task", false]) {
+        player["you_can_bank_on_us_task"] = true
+        player.addVarbit("task_reward_items", "red_dye")
+    }
 }

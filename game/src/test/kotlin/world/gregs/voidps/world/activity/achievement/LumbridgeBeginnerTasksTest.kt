@@ -222,6 +222,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.dialogueContinue()
 
         assertTrue(player["you_can_bank_on_us_task", false])
+        assertTrue(player.containsVarbit("task_reward_items", "red_dye"))
     }
 
     @Test
@@ -235,6 +236,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.interfaceOption("bank_side", "inventory", "Deposit-10", item = Item("coins"), slot = 0)
 
         assertTrue(player["hang_on_to_something_task", false])
+        assertTrue(player.containsVarbit("task_reward_items", "magic_staff"))
     }
 
     @Test
