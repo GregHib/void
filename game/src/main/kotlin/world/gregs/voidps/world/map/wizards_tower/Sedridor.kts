@@ -38,6 +38,7 @@ npcOperate("Talk-to", "sedridor") {
 }
 
 npcOperate("Teleport", "sedridor") {
+    player["what_is_this_place_task"] = true
     EssenceMine.teleport(target, player)
 }
 
@@ -214,6 +215,7 @@ suspend fun NPCOption.completed() {
 }
 
 fun ChoiceBuilder<NPCOption>.teleportEssenceMine(): Unit = option<Quiz>("Can you teleport me to the Rune Essence Mine?") {
+    player["what_is_this_place_task"] = true
     EssenceMine.teleport(target, player)
 }
 

@@ -187,7 +187,37 @@ dialogue_double_obj_box:
 dialogue_garden_quiz:
   id: 133
   type: dialogue_box
-skill_stat_advance: 134
+skill_stat_advance:
+  id: 134
+  type: main_screen
+  components:
+    confirm: 2
+    close: 29
+    attack: 30
+    strength: 31
+    defence: 32
+    ranged: 33
+    prayer: 34
+    constitution: 35
+    magic: 36
+    agility: 37
+    herblore: 38
+    thieving: 39
+    crafting: 40
+    fletching: 41
+    mining: 42
+    smithing: 43
+    fishing: 44
+    firemaking: 45
+    cooking: 46
+    woodcutting: 47
+    runecrafting: 48
+    slayer: 49
+    hunter: 50
+    farming: 51
+    construction: 52
+    summoning: 53
+    dungeoneering: 54
 dialogue_chat_both:
   id: 136
   type: dialogue_box
@@ -2156,6 +2186,12 @@ world_map:
   type: full_screen
   components:
     close: 44
+    order: 54
+    marker: 42
+    key_list:
+      id: 49
+      options:
+        Select: 0
 chat_model_text: 757
 canoe_travel: 
   id: 758
@@ -2319,6 +2355,29 @@ skill_creation_amount:
 task_list:
   id: 917
   type: main_screen
+  components:
+    area_lumbridge_draynor: 119
+    area_varrock: 121
+    area_falador: 123
+    area_seers_village: 125
+    area_ardougne: 127
+    area_karamja: 129
+    area_fremennik: 131
+    area_dnd_activities: 147
+    filter_sets: 110
+    filter_done: 102
+    toggle_popups: 136
+    pin: 40
+    hint_1: 2
+    hint_2: 4
+    hint_3: 6
+    hint_4: 8
+    hint_5: 10
+    tasks:
+      id: 94
+      options:
+        Summary: 0
+        Pin: 1
 dialogue_make_amount:
   id: 944
   type: dialogue_box
@@ -2528,6 +2587,11 @@ character_creation:
         Select: 0
     choose_colour: 102
     confirm: 117
+task_popup:
+  id: 1055
+  type: task_overlay
+  components:
+    details: 2
 task_system:
   id: 1056
   type: task_system_tab
@@ -2540,9 +2604,15 @@ task_system:
     task_5: 157
     task_6: 162
     task_list: 102
-    dont_show: 172
+    dont_show: 173
     close_hint: 174
     hints: 36
+    summary_overlay: 122
+    message_overlay: 171
+    ok: 130
+    hint_1: 77
+    hint_2: 79
+    hint_3: 81
 warriors_guild: 1057
 fade_out:
   id: 120

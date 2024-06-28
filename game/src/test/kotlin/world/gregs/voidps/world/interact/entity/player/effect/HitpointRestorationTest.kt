@@ -51,11 +51,11 @@ internal class HitpointRestorationTest : WorldTest() {
     fun `Hitpoints shouldn't restore if dead`() {
         val player = createPlayer("player")
         player.experience.set(Skill.Constitution, Level.experience(Skill.Constitution, 990))
-        player.levels.set(Skill.Constitution, 990)
+        player.levels.set(Skill.Constitution, 980)
 
         val drained = player.levels.drain(Skill.Constitution, 990)
+        assertEquals(-980, drained)
         assertTrue(player.softTimers.contains("restore_hitpoints"))
-        assertEquals(-990, drained)
         assertEquals(0, player.levels.get(Skill.Constitution))
         tick(11)
         assertFalse(player.softTimers.contains("restore_hitpoints"))

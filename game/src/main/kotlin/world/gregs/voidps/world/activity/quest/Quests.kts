@@ -3,6 +3,7 @@ package world.gregs.voidps.world.activity.quest
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 
 val quests = listOf(
+    "unstable_foundations",
     "cooks_assistant",
     "demon_slayer",
     "dorics_quest",

@@ -3,6 +3,7 @@ package world.gregs.voidps.world.command.debug
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendInterfaceSettings
 import world.gregs.voidps.engine.client.sendInventoryItems
+import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -72,8 +73,13 @@ adminCommand("setting") {
 
 adminCommand("script") {
     val parts = content.split(" ")
-    val remainder = parts.subList(1, parts.size).map { it.toIntOrNull() ?: it }.toTypedArray()
-    player.client?.sendScript(parts[0].toInt(), remainder.toList())
+    val remainder = parts.subList(1, parts.size).map { if (it == "true") 1 else if (it == "false") 0 else it.toIntOrNull() ?: it }
+    val id = parts[0].toIntOrNull()
+    if (id == null) {
+        player.sendScript(id = parts[0], *remainder.toTypedArray())
+    } else {
+        player.sendScript(id, remainder)
+    }
 }
 
 adminCommand("sendItems") {
@@ -87,7 +93,7 @@ adminCommand("sendItems") {
 
 adminCommand("var") {
     val parts = content.split(" ")
-    player[parts.first()] = parts.last().toIntOrNull() ?: parts.last()
+    player[parts.first()] = parts.last().toBooleanStrictOrNull() ?: parts.last().toIntOrNull() ?: parts.last()
 }
 
 adminCommand("varp") {

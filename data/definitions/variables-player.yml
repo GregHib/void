@@ -104,7 +104,7 @@ cooks_assistant:
   values:
     unstarted: 0
     started: 1
-    completed: 2    
+    completed: 2
 dorics_quest:
   id: 31
   persist: true
@@ -127,16 +127,16 @@ rune_mysteries:
     research_package: 3
     package_delivered: 4
     research_notes: 5
-    completed: 6     
+    completed: 6
 unstable_foundations:
   id: 281
   persist: true
   format: map
-  default: complete
+  default: unstarted
   values:
     unstarted: 0
     incomplete: 1
-    complete: 1000
+    completed: 1000
 skill_stat_flash:
   id: 1179
   persist: true
@@ -177,152 +177,152 @@ unlocked_music_0:
   id: 20
   persist: true
   format: bitwise
-  values: [adventure, al_kharid, alone, ambient_jungle, arabian, arabian_2, arabian_3, arabique, army_of_darkness, arrival, attack_1, attack_2, attack_3, attack_4, attack_5, attack_6, attention, autumn_voyage, background, ballad_of_enchantment, baroque, beyond, big_chords, book_of_spells, camelot, cave_background, cavern, chain_of_command, crystal_cave, crystal_sword, dangerous, dark]
+  values: [ adventure, al_kharid, alone, ambient_jungle, arabian, arabian_2, arabian_3, arabique, army_of_darkness, arrival, attack_1, attack_2, attack_3, attack_4, attack_5, attack_6, attention, autumn_voyage, background, ballad_of_enchantment, baroque, beyond, big_chords, book_of_spells, camelot, cave_background, cavern, chain_of_command, crystal_cave, crystal_sword, dangerous, dark ]
 unlocked_music_1:
   id: 21
   persist: true
   format: bitwise
-  values: [deep_wildy, desert_voyage, doorways, dream, dunjun, egypt, emotion, emperor, expanse, expecting, expedition, faerie, fanfare, fanfare_3, fishing, flute_salad, forever, gaol, garden, gnome_king, dwarf_theme, gnome_village, gnome_village_2, goblin_village, gnomeball, greatness, harmony, high_seas, horizon, iban, in_the_manor, inspiration]
+  values: [ deep_wildy, desert_voyage, doorways, dream, dunjun, egypt, emotion, emperor, expanse, expecting, expedition, faerie, fanfare, fanfare_3, fishing, flute_salad, forever, gaol, garden, gnome_king, dwarf_theme, gnome_village, gnome_village_2, goblin_village, gnomeball, greatness, harmony, high_seas, horizon, iban, in_the_manor, inspiration ]
 unlocked_music_2:
   id: 22
   persist: true
   format: bitwise
-  values: [intrepid, jolly_r, jungle_island, jungly_1, jungly_2, jungly_3, knightly, lasting, legion, lightness, lightwalk, long_ago, long_way_home, lullaby, mage_arena, magic_dance, magical_journey, march, medieval, mellow, miles_away, miracle_dance, monarch_waltz, moody, neverland, newbie_melody, nightfall, oriental, overture, parade, quest, regal]
+  values: [ intrepid, jolly_r, jungle_island, jungly_1, jungly_2, jungly_3, knightly, lasting, legion, lightness, lightwalk, long_ago, long_way_home, lullaby, mage_arena, magic_dance, magical_journey, march, medieval, mellow, miles_away, miracle_dance, monarch_waltz, moody, neverland, newbie_melody, nightfall, oriental, overture, parade, quest, regal ]
 unlocked_music_3:
   id: 23
   persist: true
   format: bitwise
-  values: [reggae, reggae_2, riverside, royale, rune_essence, sad_meadow, scape_cave, scape_original, scape_sad, scape_wild, sea_shanty, sea_shanty_2, serenade, serene, shine, soundscape, spirit, splendour, spooky, spooky_jungle, starlight, start, still_night, talking_forest, the_desert, the_shadow, the_tower, theme, trawler, trawler_minor, tree_spirits, tribal_background]
+  values: [ reggae, reggae_2, riverside, royale, rune_essence, sad_meadow, scape_cave, scape_original, scape_sad, scape_wild, sea_shanty, sea_shanty_2, serenade, serene, shine, soundscape, spirit, splendour, spooky, spooky_jungle, starlight, start, still_night, talking_forest, the_desert, the_shadow, the_tower, theme, trawler, trawler_minor, tree_spirits, tribal_background ]
 unlocked_music_4:
   id: 24
   persist: true
   format: bitwise
-  values: [tribal, tribal_2, trinity, troubled, underground, unknown_land, underground_pass, upcoming, venture, vision, voodoo_cult, voyage, wander, waterfall, wilderness, wilderness_2, wilderness_3, witching, wonder, wonderous, workshop, lonesome, scape_main, ground_scape, scape_scared, scape_santa, land_of_snow, shaping_up, exam_conditions, roots_and_flutes, incarceration, scape_soft]
+  values: [ tribal, tribal_2, trinity, troubled, underground, unknown_land, underground_pass, upcoming, venture, vision, voodoo_cult, voyage, wander, waterfall, wilderness, wilderness_2, wilderness_3, witching, wonder, wonderous, workshop, lonesome, scape_main, ground_scape, scape_scared, scape_santa, land_of_snow, shaping_up, exam_conditions, roots_and_flutes, incarceration, scape_soft ]
 unlocked_music_5:
   id: 25
   persist: true
   format: bitwise
-  values: [shining, yesteryear, fanfare_2, tomorrow, duel_arena, ice_melody, wild_isle, harmony_2, venture_2, landlubber, undercurrent, nomad, zealot, cellar_song, heart_and_mind, close_quarters, escape, grumpy, chompy_hunt, twilight, morytania, dead_quiet, village, bone_dance, mausoleum, forbidden, cursed, understanding, principality, tremble, kingdom, hermit]
+  values: [ shining, yesteryear, fanfare_2, tomorrow, duel_arena, ice_melody, wild_isle, harmony_2, venture_2, landlubber, undercurrent, nomad, zealot, cellar_song, heart_and_mind, close_quarters, escape, grumpy, chompy_hunt, twilight, morytania, dead_quiet, village, bone_dance, mausoleum, forbidden, cursed, understanding, principality, tremble, kingdom, hermit ]
 unlocked_music_6:
   id: 298
   persist: true
   format: bitwise
-  values: [la_mort, stagnant, breeze, stratosphere, time_out, natural, grotto, waterlogged, artistry, aztec, elven_mist, forest, lost_soul, meridian, woodland, overpass, contest, sojourn, crystal_castle, marzipan, insect_queen, mad_eadgar, bandit_camp, sunburn, bone_dry, competition, spooky_2, everywhere, exposed, well_of_voyage, haunted_mine, righteousness]
+  values: [ la_mort, stagnant, breeze, stratosphere, time_out, natural, grotto, waterlogged, artistry, aztec, elven_mist, forest, lost_soul, meridian, woodland, overpass, contest, sojourn, crystal_castle, marzipan, insect_queen, mad_eadgar, bandit_camp, sunburn, bone_dry, competition, spooky_2, everywhere, exposed, well_of_voyage, haunted_mine, righteousness ]
 unlocked_music_7:
   id: 311
   persist: true
   format: bitwise
-  values: [deep_down, chamber, miscellania, etcetera, shadowland, lair, deadlands, rellekka, saga, borderland, stranded, legend, frostbite, warrior, technology, monkey_madness, anywhere, marooned, island_life, temple, suspicious, showdown, find_my_way, castle_wars, melodrama, ready_for_battle, stillness, lighthouse, goblin_game, out_of_the_deep, hell's_bells, the_navigator]
+  values: [ deep_down, chamber, miscellania, etcetera, shadowland, lair, deadlands, rellekka, saga, borderland, stranded, legend, frostbite, warrior, technology, monkey_madness, anywhere, marooned, island_life, temple, suspicious, showdown, find_my_way, castle_wars, melodrama, ready_for_battle, stillness, lighthouse, goblin_game, out_of_the_deep, hell's_bells, the_navigator ]
 unlocked_music_8:
   id: 346
   persist: true
   format: bitwise
-  values: [wildwood, barbarianism, complication, down_to_earth, courage, superstition, pirates_of_peril, dangerous_road, romancing_the_crone, faithless, tiptoe, the_terrible_tower, masquerade, the_slayer, body_parts, fenkenstrain's_refrain, monster_melee, fruits_de_mer, barking_mad, dynasty, shipwrecked, phasmatys, the_other_side, settlement, cave_of_beasts, dragontooth_island, scarab, sarcophagus, down_below, 7th_realm, karamja_jam, pathways]
+  values: [ wildwood, barbarianism, complication, down_to_earth, courage, superstition, pirates_of_peril, dangerous_road, romancing_the_crone, faithless, tiptoe, the_terrible_tower, masquerade, the_slayer, body_parts, fenkenstrain's_refrain, monster_melee, fruits_de_mer, barking_mad, dynasty, shipwrecked, phasmatys, the_other_side, settlement, cave_of_beasts, dragontooth_island, scarab, sarcophagus, down_below, 7th_realm, karamja_jam, pathways ]
 unlocked_music_9:
   id: 414
   persist: true
   format: bitwise
-  values: [eagle_peak, time_to_mine, in_between, claustrophobia, far_away, fight_or_flight, temple_of_light, the_golem, forgotten, throne_of_the_demon, dance_of_the_undead, dangerous_way, city_of_the_dead, hypnotized, sphinx, mirage, cave_of_the_goblins, bish_bash_bosh, zogre_dance, path_of_peril, wayward, tale_of_keldagrim, land_of_the_dwarves, tears_of_guthix, romper_chomper, the_rogues'_den, the_far_side, the_lost_melody, evil_bob's_island, into_the_abyss, the_quiz_master, the_power_of_tears]
+  values: [ eagle_peak, time_to_mine, in_between, claustrophobia, far_away, fight_or_flight, temple_of_light, the_golem, forgotten, throne_of_the_demon, dance_of_the_undead, dangerous_way, city_of_the_dead, hypnotized, sphinx, mirage, cave_of_the_goblins, bish_bash_bosh, zogre_dance, path_of_peril, wayward, tale_of_keldagrim, land_of_the_dwarves, tears_of_guthix, romper_chomper, the_rogues'_den, the_far_side, the_lost_melody, evil_bob's_island, into_the_abyss, the_quiz_master, the_power_of_tears ]
 unlocked_music_10:
   id: 464
   persist: true
   format: bitwise
-  values: [320, pheasant_peasant, the_lost_tribe, corporal_punishment, the_chosen, have_a_blast, forgettable_melody, right_on_track, over_to_nardah, the_monsters_below, the_desolate_isle, spirits_of_elid, the_genie, desert_heat, fire_and_brimstone, in_the_pits, frogland, strange_place, brew_hoo_hoo, tz_haar!, wild_side, dead_can_dance, the_cellar_dwellers, jungle_troubles, catch_me_if_you_can, rat_a_tat_tat, the_noble_rodent, bubble_and_squeak, sarim's_vermin, rat_hunt, homescape, aye_car_rum_ba]
+  values: [ 320, pheasant_peasant, the_lost_tribe, corporal_punishment, the_chosen, have_a_blast, forgettable_melody, right_on_track, over_to_nardah, the_monsters_below, the_desolate_isle, spirits_of_elid, the_genie, desert_heat, fire_and_brimstone, in_the_pits, frogland, strange_place, brew_hoo_hoo, tz_haar!, wild_side, dead_can_dance, the_cellar_dwellers, jungle_troubles, catch_me_if_you_can, rat_a_tat_tat, the_noble_rodent, bubble_and_squeak, sarim's_vermin, rat_hunt, homescape, aye_car_rum_ba ]
 unlocked_music_11:
   id: 598
   persist: true
   format: bitwise
-  values: [blistering_barnacles, distant_land, fangs_for_the_memory, pharaoh's_tomb, land_down_under, meddling_kids, corridors_of_power, slither_and_thither, in_the_clink, mudskipper_melody, subterranea, incantation, grip_of_the_talon, dagannoth_dawn, xenophobe, title_fight, victory_is_mine, woe_of_the_wyvern, in_the_brine, diango's_little_helpers, roll_the_bones, mind_over_matter, golden_touch, 375, the_enchanter, scape_hunter, making_waves, cabin_fever, last_stand, lament, poles_apart, scarabaeoidea]
+  values: [ blistering_barnacles, distant_land, fangs_for_the_memory, pharaoh's_tomb, land_down_under, meddling_kids, corridors_of_power, slither_and_thither, in_the_clink, mudskipper_melody, subterranea, incantation, grip_of_the_talon, dagannoth_dawn, xenophobe, title_fight, victory_is_mine, woe_of_the_wyvern, in_the_brine, diango's_little_helpers, roll_the_bones, mind_over_matter, golden_touch, 375, the_enchanter, scape_hunter, making_waves, cabin_fever, last_stand, lament, poles_apart, scarabaeoidea ]
 unlocked_music_12:
   id: 662
   persist: true
   format: bitwise
-  values: [jungle_hunt, home_sweet_home, joy_of_the_hunt, dogs_of_war, food_for_thought, malady, dance_of_death, wrath_and_ruin, storm_brew, the_mad_mole, davy_jones's_locker, chickened_out, hot_'n'_bothered, mastermindless, too_many_cooks, chef_surprize, null_and_void, pest_control, tomb_raider, no_way_out, method_of_madness, fear_and_loathing, funny_bunnies, assault_and_battery, the_depths, distillery_hilarity, trouble_brewing, head_to_head, pinball_wizard, beetle_juice, back_to_life, labyrinth]
+  values: [ jungle_hunt, home_sweet_home, joy_of_the_hunt, dogs_of_war, food_for_thought, malady, dance_of_death, wrath_and_ruin, storm_brew, the_mad_mole, davy_jones's_locker, chickened_out, hot_'n'_bothered, mastermindless, too_many_cooks, chef_surprize, null_and_void, pest_control, tomb_raider, no_way_out, method_of_madness, fear_and_loathing, funny_bunnies, assault_and_battery, the_depths, distillery_hilarity, trouble_brewing, head_to_head, pinball_wizard, beetle_juice, back_to_life, labyrinth ]
 unlocked_music_13:
   id: 721
   persist: true
   format: bitwise
-  values: [safety_in_numbers, everlasting_fire, waking_dream, dreamstate, the_lunar_isle, isle_of_everywhere, way_of_the_enchanter, warriors'_guild, life's_a_beach!, on_the_wing, little_cave_of_horrors, the_mollusc_menace, the_galleon, h_a_m__fisted, lament_of_meiyerditch, sigmund's_showdown, the_last_shanty, night_of_the_vampyre, we_are_the_fairies, dimension_x, all's_fairy_in_love_and_war, major_miner, jester_minute, norse_code, volcanic_vikings, island_of_the_trolls, pirates_of_penance, brimstail's_scales, my_arm's_journey, slug_a_bug_ball, prime_time, rising_damp]
+  values: [ safety_in_numbers, everlasting_fire, waking_dream, dreamstate, the_lunar_isle, isle_of_everywhere, way_of_the_enchanter, warriors'_guild, life's_a_beach!, on_the_wing, little_cave_of_horrors, the_mollusc_menace, the_galleon, h_a_m__fisted, lament_of_meiyerditch, sigmund's_showdown, the_last_shanty, night_of_the_vampyre, we_are_the_fairies, dimension_x, all's_fairy_in_love_and_war, major_miner, jester_minute, norse_code, volcanic_vikings, island_of_the_trolls, pirates_of_penance, brimstail's_scales, my_arm's_journey, slug_a_bug_ball, prime_time, rising_damp ]
 unlocked_music_14:
   id: 906
   persist: true
   format: bitwise
-  values: [where_eagles_lair, ogre_the_top, work_work_work, magic_magic_magic, mutant_medley, dorgeshuun_city, dorgeshuun_deep, floating_free, roc_and_roll, high_spirits, looking_back, jungle_island_xmas, sea_shanty_xmas, jungle_bells, garden_of_summer, garden_of_spring, garden_of_winter, garden_of_autumn, have_an_ice_day, zombiism, creature_cruelty, alternative_root, espionage, undead_dungeon, slice_of_station, barb_wire, impetuous, easter_jig, ham_attack, slice_of_silent_movie, ham_and_seek, venomous]
+  values: [ where_eagles_lair, ogre_the_top, work_work_work, magic_magic_magic, mutant_medley, dorgeshuun_city, dorgeshuun_deep, floating_free, roc_and_roll, high_spirits, looking_back, jungle_island_xmas, sea_shanty_xmas, jungle_bells, garden_of_summer, garden_of_spring, garden_of_winter, garden_of_autumn, have_an_ice_day, zombiism, creature_cruelty, alternative_root, espionage, undead_dungeon, slice_of_station, barb_wire, impetuous, easter_jig, ham_attack, slice_of_silent_movie, ham_and_seek, venomous ]
 unlocked_music_15:
   id: 1009
   persist: true
   format: bitwise
-  values: [mouse_trap, fe_fi_fo_fum, school's_out, inadequacy, illusive, everlasting, untouchable, down_and_out, on_the_up, melzar's_maze, zamorak_zoo, strength_of_saradomin, bandos_battalion, armadyl_alliance, armageddon, storeroom_shuffle, the_longramble_scramble, waste_defaced, knightmare, lore_and_order, terrorbird_tussle, altar_ego, bolrie's_diary, healin'_feelin', animal_apogee, temple_of_tribes, catacombs_and_tombs, zanik's_theme, dusk_in_yu'biusk, grimly_fiendish, tune_from_the_dune, spa_bizarre]
+  values: [ mouse_trap, fe_fi_fo_fum, school's_out, inadequacy, illusive, everlasting, untouchable, down_and_out, on_the_up, melzar's_maze, zamorak_zoo, strength_of_saradomin, bandos_battalion, armadyl_alliance, armageddon, storeroom_shuffle, the_longramble_scramble, waste_defaced, knightmare, lore_and_order, terrorbird_tussle, altar_ego, bolrie's_diary, healin'_feelin', animal_apogee, temple_of_tribes, catacombs_and_tombs, zanik's_theme, dusk_in_yu'biusk, grimly_fiendish, tune_from_the_dune, spa_bizarre ]
 unlocked_music_16:
   id: 1104
   persist: true
   format: bitwise
-  values: [copris_lunaris, narnode's_theme, tournament!, clan_wars, charmin'_farmin', bounty_hunter_level_1, bounty_hunter_level_2, bounty_hunter_level_3, the_adventurer, creepy, a_new_menace, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, brain_battle, 534, 535, surok's_theme, 537, 538, 539, 540, 541, 542, 543]
+  values: [ copris_lunaris, narnode's_theme, tournament!, clan_wars, charmin'_farmin', bounty_hunter_level_1, bounty_hunter_level_2, bounty_hunter_level_3, the_adventurer, creepy, a_new_menace, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, brain_battle, 534, 535, surok's_theme, 537, 538, 539, 540, 541, 542, 543 ]
 unlocked_music_17:
   id: 1136
   persist: true
   format: bitwise
-  values: [544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 554, the_trade_parade, jungle_community, 557, icy_trouble_ahead, icy_a_worried_gnome, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575]
+  values: [ 544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 554, the_trade_parade, jungle_community, 557, icy_trouble_ahead, icy_a_worried_gnome, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575 ]
 unlocked_music_18:
   id: 1180
   persist: true
   format: bitwise
-  values: [576, distant_land_2, castle_wars_2, pest_control_2, competition_2, poles_apart_2, far_away_2, hell's_bells_2, bloodbath, the_route_of_all_evil, the_route_of_the_problem, the_wrong_path, the_columbarium, the_terrible_tunnels, the_terrible_caverns, dillo_gence_is_key, arma_gonna_get_you, tok_tz_ket_ek_mack, jailbird, bittersweet_bunny, something_fishy, under_the_sand, desert_smoke, a_pirate's_life_for_me, conspiracy:_part_1, conspiracy:_part_2, scape_summon, guthix's_hunter, waiting_for_the_hunt, cool_for_ali_cats, second_vision, undead_army]
+  values: [ 576, distant_land_2, castle_wars_2, pest_control_2, competition_2, poles_apart_2, far_away_2, hell's_bells_2, bloodbath, the_route_of_all_evil, the_route_of_the_problem, the_wrong_path, the_columbarium, the_terrible_tunnels, the_terrible_caverns, dillo_gence_is_key, arma_gonna_get_you, tok_tz_ket_ek_mack, jailbird, bittersweet_bunny, something_fishy, under_the_sand, desert_smoke, a_pirate's_life_for_me, conspiracy:_part_1, conspiracy:_part_2, scape_summon, guthix's_hunter, waiting_for_the_hunt, cool_for_ali_cats, second_vision, undead_army ]
 unlocked_music_19:
   id: 1202
   persist: true
   format: bitwise
-  values: [zombie_invasion, the_ruins_of_camdozaal, dream_theatre, the_mentor, slain_to_waste, ardougne_ago, sarah's_lullaby, shining_spirit, troubled_spirit, bane_of_summer, the_vacant_abyss, historic_memories, stealing_creation, circus, dangerous_logic, black_of_knight, the_art_of_hocus_pocus, magic_and_mystery, the_sound_of_guthix, 627, temple_desecrated, command_centre, the_phoenix, mobilising_armies, the_evil_within, 633, the_dance_of_the_snow_queen, cavernous_mythology, winter_funfare, waiting_for_battle, lair_of_kang_admi, frost_fight]
+  values: [ zombie_invasion, the_ruins_of_camdozaal, dream_theatre, the_mentor, slain_to_waste, ardougne_ago, sarah's_lullaby, shining_spirit, troubled_spirit, bane_of_summer, the_vacant_abyss, historic_memories, stealing_creation, circus, dangerous_logic, black_of_knight, the_art_of_hocus_pocus, magic_and_mystery, the_sound_of_guthix, 627, temple_desecrated, command_centre, the_phoenix, mobilising_armies, the_evil_within, 633, the_dance_of_the_snow_queen, cavernous_mythology, winter_funfare, waiting_for_battle, lair_of_kang_admi, frost_fight ]
 unlocked_music_20:
   id: 1381
   persist: true
   format: bitwise
-  values: [glorious_recallation, glorious_recallation_2, glorious_recallation_2, the_adventurers_re_united!, the_plundered_tomb, ancestral_wisdom, nial's_widow, the_muspah's_tomb, lamistard's_labyrinth, the_heist, snack_attack, 651, soul_wars, the_waiting_game, rest_for_the_weary, trees_aren't_your_friends, the_throne_of_bandos, penguin_possible, don't_panic_zanik, demise_of_the_dorgeshuun, the_chosen_commander, the_pengmersible, desert_island_bear, 663, 664, ice_day_for_penguins, face_off, 667, 668, 669, 670, 671]
+  values: [ glorious_recallation, glorious_recallation_2, glorious_recallation_2, the_adventurers_re_united!, the_plundered_tomb, ancestral_wisdom, nial's_widow, the_muspah's_tomb, lamistard's_labyrinth, the_heist, snack_attack, 651, soul_wars, the_waiting_game, rest_for_the_weary, trees_aren't_your_friends, the_throne_of_bandos, penguin_possible, don't_panic_zanik, demise_of_the_dorgeshuun, the_chosen_commander, the_pengmersible, desert_island_bear, 663, 664, ice_day_for_penguins, face_off, 667, 668, 669, 670, 671 ]
 unlocked_music_21:
   id: 1394
   persist: true
   format: bitwise
-  values: [672, 673, 674, 675, 676, 677, 678, 679, 680, 681, 682, 683, 684, 685, 686, 687, 688, 689, 690, zaros_stirs, the_horn_of_chill, godslayer, but_we_can_fight, lazy_wabbit, hare_brained_machines, 697, 698, 699, 700, 701, 702, 703]
+  values: [ 672, 673, 674, 675, 676, 677, 678, 679, 680, 681, 682, 683, 684, 685, 686, 687, 688, 689, 690, zaros_stirs, the_horn_of_chill, godslayer, but_we_can_fight, lazy_wabbit, hare_brained_machines, 697, 698, 699, 700, 701, 702, 703 ]
 unlocked_music_22:
   id: 1434
   persist: true
   format: bitwise
-  values: [704, 705, 706, eruption, i'm_counting_on_you, kharidian_nights, living_rock, exhibit_'a', fight_of_the_dwarves, 713, 714, final_destination, elven_seed, scape_theme, honkytonky_newbie_melody, honkytonky_harmony, trick_or_treat, itsy_bitsy, poison_dreams, honkytonky_medieval, jaws_of_the_dagannoth, the_duke, the_fallen_hero, 727, honkytonky_sea_shanty, honkytonky_parade, maiasaura, 731, 732, root_canal, desolate_ruins, smorgasbord]
+  values: [ 704, 705, 706, eruption, i'm_counting_on_you, kharidian_nights, living_rock, exhibit_'a', fight_of_the_dwarves, 713, 714, final_destination, elven_seed, scape_theme, honkytonky_newbie_melody, honkytonky_harmony, trick_or_treat, itsy_bitsy, poison_dreams, honkytonky_medieval, jaws_of_the_dagannoth, the_duke, the_fallen_hero, 727, honkytonky_sea_shanty, honkytonky_parade, maiasaura, 731, 732, root_canal, desolate_ruins, smorgasbord ]
 unlocked_music_23:
   id: 1596
   persist: true
   format: bitwise
-  values: [silent_knight, ghost_of_christmas_presents, 738, battle_of_souls, these_stones, a_familiar_feeling, dead_and_buried, the_pact, freshwater, saltwater, stillwater, an_easter_united, 748, thieves'_guild_i, thieves'_guild_ii, thieves'_guild_iii, thieves'_guild_iv, body_talk, 754, love_lost, love_and_hate, love_bites, 758, castle_warz, 760, mindful, void_knights'_theme, lortnoc_tsep, 764, judge_and_jury, born_to_do_this, 767]
+  values: [ silent_knight, ghost_of_christmas_presents, 738, battle_of_souls, these_stones, a_familiar_feeling, dead_and_buried, the_pact, freshwater, saltwater, stillwater, an_easter_united, 748, thieves'_guild_i, thieves'_guild_ii, thieves'_guild_iii, thieves'_guild_iv, body_talk, 754, love_lost, love_and_hate, love_bites, 758, castle_warz, 760, mindful, void_knights'_theme, lortnoc_tsep, 764, judge_and_jury, born_to_do_this, 767 ]
 unlocked_music_24:
   id: 1618
   persist: true
   format: bitwise
-  values: [768, 769, 770, 771, 772, 773, 774, 775, 776, 777, 778, 779, 780, 781, 782, 783, glacialis_i, glacialis_ii, glacialis_iii, glacialis_iv, glacialis_v, glacialis_vi, glacialis_vii, glacialis_viii, glacialis_ix, glacialis_x, astea_frostweb, to'kash_the_bloodchiller, icy_bones, luminescent_icefiend, gluttonous_behemoth, plane_freezer_lakhrahnaz]
+  values: [ 768, 769, 770, 771, 772, 773, 774, 775, 776, 777, 778, 779, 780, 781, 782, 783, glacialis_i, glacialis_ii, glacialis_iii, glacialis_iv, glacialis_v, glacialis_vi, glacialis_vii, glacialis_viii, glacialis_ix, glacialis_x, astea_frostweb, to'kash_the_bloodchiller, icy_bones, luminescent_icefiend, gluttonous_behemoth, plane_freezer_lakhrahnaz ]
 unlocked_music_25:
   id: 1619
   persist: true
   format: bitwise
-  values: [800, 801, 802, 803, 804, 805, 806, 807, 808, 809, 810, 811, 812, 813, 814, 815, desolo_i, desolo_ii, desolo_iii, desolo_iv, desolo_v, desolo_vi, desolo_vii, desolo_viii, desolo_ix, desolo_x, bal'lak_the_pummeller, bulwark_beast, hobgoblin_geomancer, shadow_forger_ihlakhizan, unholy_cursebearer, divine_skinweaver]
+  values: [ 800, 801, 802, 803, 804, 805, 806, 807, 808, 809, 810, 811, 812, 813, 814, 815, desolo_i, desolo_ii, desolo_iii, desolo_iv, desolo_v, desolo_vi, desolo_vii, desolo_viii, desolo_ix, desolo_x, bal'lak_the_pummeller, bulwark_beast, hobgoblin_geomancer, shadow_forger_ihlakhizan, unholy_cursebearer, divine_skinweaver ]
 unlocked_music_26:
   id: 1620
   persist: true
   format: bitwise
-  values: [832, 833, 834, 835, 836, 837, 838, 839, 840, 841, 842, 843, 844, 845, 846, 847, adorno_i, adorno_ii, adorno_iii, adorno_iv, adorno_v, adorno_vi, adorno_vii, adorno_viii, adorno_ix, adorno_x, har'lakk_the_riftsplitter, lexicus_runewright, night_gazer_khighorahk, sagittare, rammernaut, stomp]
+  values: [ 832, 833, 834, 835, 836, 837, 838, 839, 840, 841, 842, 843, 844, 845, 846, 847, adorno_i, adorno_ii, adorno_iii, adorno_iv, adorno_v, adorno_vi, adorno_vii, adorno_viii, adorno_ix, adorno_x, har'lakk_the_riftsplitter, lexicus_runewright, night_gazer_khighorahk, sagittare, rammernaut, stomp ]
 unlocked_music_28:
   id: 1864
   persist: true
   format: bitwise
-  values: [occulo_i, occulo_ii, occulo_iii, occulo_iv, occulo_v, occulo_vi, occulo_vii, occulo_viii, occulo_ix, occulo_x, necrolord, gravecreeper, skeletal_trio, yk'lagor_the_thunderous, runed_behemoth, flesh_spoiler_haasghenahk, torqueo_i, torqueo_ii, torqueo_iii, torqueo_iv, torqueo_v, torqueo_vi, torqueo_vii, torqueo_viii, torqueo_ix, torqueo_x, blink, kal'ger_the_warmonger, hope_devourer, warped_gulega, dreadnaught, world_gorger_shukarhazh]
+  values: [ occulo_i, occulo_ii, occulo_iii, occulo_iv, occulo_v, occulo_vi, occulo_vii, occulo_viii, occulo_ix, occulo_x, necrolord, gravecreeper, skeletal_trio, yk'lagor_the_thunderous, runed_behemoth, flesh_spoiler_haasghenahk, torqueo_i, torqueo_ii, torqueo_iii, torqueo_iv, torqueo_v, torqueo_vi, torqueo_vii, torqueo_viii, torqueo_ix, torqueo_x, blink, kal'ger_the_warmonger, hope_devourer, warped_gulega, dreadnaught, world_gorger_shukarhazh ]
 unlocked_music_29:
   id: 1865
   persist: true
   format: bitwise
-  values: [out_of_control, chain_reaction, all_for_the_pest, destiny, unavoidable_conflict, right_of_conquest, 934, yk'lagor_the_thunderous_2, gunnarsgrunn, 937, 938, halloween_party, black_zabeth:_live!, black_zabeth, in_security, give_it_your_pest_shot, 944, the_void_stares_back, precarious_void, mystery_revealed, who_are_we_to_judge, 949, 950, 951, 952, christmas_caverns, seasonal_sports, the_task_at_hand, monkey_see_monkey_do, monkey_see_monkey_do_2, simian_scuffle, 959]
+  values: [ out_of_control, chain_reaction, all_for_the_pest, destiny, unavoidable_conflict, right_of_conquest, 934, yk'lagor_the_thunderous_2, gunnarsgrunn, 937, 938, halloween_party, black_zabeth:_live!, black_zabeth, in_security, give_it_your_pest_shot, 944, the_void_stares_back, precarious_void, mystery_revealed, who_are_we_to_judge, 949, 950, 951, 952, christmas_caverns, seasonal_sports, the_task_at_hand, monkey_see_monkey_do, monkey_see_monkey_do_2, simian_scuffle, 959 ]
 unlocked_music_30:
   id: 2019
   persist: true
   format: bitwise
-  values: [960, 961, monkey_see_monkey_do_2, rocky_rescue, go_with_the_flow, the_records_chamber, corporate_callousness, 967, 968, colonel_grimsson, only_a_king, 971, zaros_zeitgeist, 973, 974, 975, 976, 977, 978, 979, 980, 981, 982, 983, 984, 985, 986, 987, 988, 989, 990, 991]
+  values: [ 960, 961, monkey_see_monkey_do_2, rocky_rescue, go_with_the_flow, the_records_chamber, corporate_callousness, 967, 968, colonel_grimsson, only_a_king, 971, zaros_zeitgeist, 973, 974, 975, 976, 977, 978, 979, 980, 981, 982, 983, 984, 985, 986, 987, 988, 989, 990, 991 ]
 autocast:
   id: 108
   format: int
@@ -406,3 +406,213 @@ enter_the_abyss:
   persist: true
   format: list
   values: [ unstarted, started, scrying, orb_inspect, completed ]
+plague_city:
+  id: 165
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 29
+biohazard:
+  id: 68
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 16
+gertrudes_cat:
+  id: 180
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 6
+monks_friend:
+  id: 30
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 80
+watchtower:
+  id: 212
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 14
+sea_slug:
+  id: 159
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 12
+legends_quest:
+  id: 139
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 75
+monkey_madness:
+  id: 365
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 9
+restless_ghost:
+  id: 107
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 5
+dragon_slayer:
+  id: 176
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    received_shield: 1
+    completed: 10
+fremennik_trials:
+  id: 347
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 10
+bar_crawl_miniquest:
+  id: 76
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 6
+shilo_village:
+  id: 116
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 15
+jungle_potion:
+  id: 175
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 12
+tai_bwo_wannai_trio:
+  id: 320
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 6
+grand_tree:
+  id: 150
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 160
+murder_mystery:
+  id: 192
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 2
+scorpion_catcher:
+  id: 76
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 6
+one_small_favour:
+  id: 416
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 280
+family_crest:
+  id: 148
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 11
+tree_gnome_village:
+  id: 111
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 9
+bork_defeated_day:
+  id: 1199
+  format: int
+  persist: true
+priest_in_peril:
+  id: 302
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 60
+shades_of_mortton:
+  id: 339
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 85
+prince_ali_rescue:
+  id: 273
+  format: map
+  persist: true
+  default: unstarted
+  values:
+    unstarted: 0
+    completed: 110
+task_reward_items:
+  id: 1959
+  format: bitwise
+  persist: true
+  values: [ magic_staff, red_dye ]
+stat_advance_selected_skill:
+  id: 261
+  format: int
+world_map_marker_custom:
+  id: 1159
+  format: int
+  persist: true
+

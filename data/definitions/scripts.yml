@@ -6,8 +6,8 @@ interface_quest_complete: 2155
 quest_complete: 2193
 quest_progress: 2194
 activate_prayer: 2295
-achievement_has_requirements: 3224
-achievement_complete: 3994
+task_has_requirements: 3224
+task_complete: 3994
 clear_dialogues: 571
 primary_options: 150
 secondary_options: 695
@@ -22,3 +22,9 @@ items_kept_on_death: 118
 message_scroll_max: 677
 inv_total_available: 1
 magic_rune_count: 19
+task_main_list_populate: 3983
+task_main_list_filter_done: 3985
+task_main_list_filter_set: 3986
+task_summary_accordion: 4000
+task_summary_close: 4001
+task_list_button_hide: 4101

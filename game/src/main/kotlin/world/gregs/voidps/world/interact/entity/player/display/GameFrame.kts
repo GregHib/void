@@ -20,6 +20,7 @@ val list = listOf(
     "summoning_orb",
     "combat_styles",
     "task_system",
+    "task_popup",
     "stats",
     "quest_journals",
     "inventory",

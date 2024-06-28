@@ -1,9 +1,13 @@
 package world.gregs.voidps.engine.data.definition
 
 import world.gregs.voidps.cache.config.data.StructDefinition
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.getProperty
+import world.gregs.voidps.engine.timedLoad
+import world.gregs.yaml.Yaml
 
 /**
- * Also known as attribute maps in cs2
+ * Also known as AttributeMaps in cs2
  */
 class StructDefinitions(
     override var definitions: Array<StructDefinition>
@@ -13,7 +17,10 @@ class StructDefinitions(
 
     override fun empty() = StructDefinition.EMPTY
 
-    fun load(): StructDefinitions {
+    fun load(yaml: Yaml = get(), path: String = getProperty("structDefinitionsPath")): StructDefinitions {
+        timedLoad("struct extra") {
+            decode(yaml, path)
+        }
         return this
     }
 

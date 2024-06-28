@@ -1694,5 +1694,5 @@ monk_of_zamorak_drop_table:
         - id: bones
     - roll: 20
       drops:
-        - id: zamorak_monk_bottom
-        - id: zamorak_monk_top
+        - id: zamorak_robe_bottom
+        - id: zamorak_robe_top

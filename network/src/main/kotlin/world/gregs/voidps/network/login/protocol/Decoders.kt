@@ -78,7 +78,7 @@ fun decoders(huffman: Huffman): Array<Decoder?> {
     array[67] = HyperlinkDecoder()
     array[75] = LobbyOnlineStatusDecoder()
     array[30] = LobbyWorldListRefreshDecoder()
-    array[58] = WorldMapCloseDecoder()
+    array[58] = WorldMapClickDecoder()
     array[74] = ClanChatRankDecoder()
     array[77] = ReflectionResponseDecoder()
     array[76] = SecondaryTeleportDecoder()

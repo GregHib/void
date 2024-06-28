@@ -91,6 +91,7 @@ val engineModule = module {
     single(createdAtStart = true) { DropTables().load(itemDefinitions = get()) }
     // Definitions
     single(createdAtStart = true) { SoundDefinitions().load() }
+    single(createdAtStart = true) { QuestDefinitions().load() }
     single(createdAtStart = true) { RenderEmoteDefinitions().load() }
     single(createdAtStart = true) { MidiDefinitions().load() }
     single(createdAtStart = true) { VariableDefinitions().load() }

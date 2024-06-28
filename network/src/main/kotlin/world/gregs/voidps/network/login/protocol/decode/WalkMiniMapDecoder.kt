@@ -23,7 +23,7 @@ class WalkMiniMapDecoder : Decoder(18) {
         packet.readShort()//X in region?
         packet.readShort()//Y in region?
         packet.readByte()//63
-        return Walk(x, y)
+        return Walk(x, y, minimap = true)
     }
 
 }

@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.client
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
+import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -32,7 +33,10 @@ fun Character.message(
         return
     }
     getOrPut("messages") { FixedSizeQueue<String>(100) }.add(text)
-    client?.message(Colours.replaceCustomTags(text), type.id, tile, name, name?.toSnakeCase())
+    val font = get<FontDefinitions>().get("p12_full")
+    for (line in font.splitLines(Colours.replaceCustomTags(text), 484)) {
+        client?.message(line, type.id, tile, name, name?.toSnakeCase())
+    }
 }
 
 private class FixedSizeQueue<E>(private val capacity: Int) : LinkedList<E>() {

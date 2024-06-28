@@ -6,17 +6,19 @@ import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 import org.koin.test.KoinTest
+import world.gregs.voidps.cache.definition.data.FontDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces
+import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inv.*
+import world.gregs.voidps.engine.inv.Inventories
 import world.gregs.voidps.engine.inv.restrict.NoRestrictions
 import world.gregs.voidps.engine.inv.stack.ItemStackingRule
 
@@ -25,6 +27,7 @@ abstract class MagicSpellTest : KoinTest {
     private lateinit var itemDefinitions: ItemDefinitions
     private lateinit var inventoryDefinitions: InventoryDefinitions
     protected lateinit var interfaceDefinitions: InterfaceDefinitions
+    private lateinit var fontDefinitions: FontDefinitions
     private var information: Array<Any> = Array(16) { 0 }
     private val itemDefs = Array(100) { ItemDefinition.EMPTY }
     private val itemIds: MutableMap<String, Int> = mutableMapOf()
@@ -45,10 +48,12 @@ abstract class MagicSpellTest : KoinTest {
         inventoryDefinitions.ids = emptyMap()
         itemDefinitions = ItemDefinitions(itemDefs)
         itemDefinitions.ids = itemIds
+        fontDefinitions = FontDefinitions(arrayOf(FontDefinition(0, (0..200).map { 1.toByte() }.toByteArray()))).apply { ids = mapOf("p12_full" to 0) }
         startKoin {
             modules(module {
                 single { itemDefinitions }
                 single { interfaceDefinitions }
+                single { fontDefinitions }
             })
         }
     }
@@ -76,7 +81,7 @@ abstract class MagicSpellTest : KoinTest {
             val (item, def) = items[index]
             information[8 + index * 2] = itemId
             information[9 + index * 2] = item.amount
-            addItemDef(if(def == ItemDefinition.EMPTY) ItemDefinition(stringId = item.id) else def)
+            addItemDef(if (def == ItemDefinition.EMPTY) ItemDefinition(stringId = item.id) else def)
         }
     }
 

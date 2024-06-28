@@ -174,8 +174,9 @@ class Interfaces(
     }
 
     fun sendVisibility(id: String, component: String, visible: Boolean): Boolean {
-        val comp = definitions.getComponent(id, component) ?: return false
-        client?.interfaceVisibility(comp["parent", -1], comp.id, !visible)
+        val componentId = definitions.getComponentId(id, component) ?: return false
+        val comp = definitions.getComponent(id, componentId) ?: return false
+        client?.interfaceVisibility(comp["parent", -1], componentId, !visible)
         return true
     }
 

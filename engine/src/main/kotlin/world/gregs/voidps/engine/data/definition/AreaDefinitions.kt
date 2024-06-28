@@ -42,7 +42,7 @@ class AreaDefinitions(
                         super.set(map, key, ObjectOpenHashSet(value as List<Any>), indent, parentMap)
                     } else if (key == "area") {
                         value as Map<String, Any>
-                        val area = Area.fromMap(value, 0)
+                        val area = Area.fromMap(value, 3)
                         super.set(map, key, area, indent, parentMap)
                     } else if (indent == 0) {
                         val area = AreaDefinition.fromMap(key, value as MutableMap<String, Any>)

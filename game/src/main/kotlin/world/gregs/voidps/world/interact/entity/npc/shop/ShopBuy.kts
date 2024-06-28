@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.inventory
@@ -107,7 +108,10 @@ fun buy(player: Player, shop: Inventory, index: Int, amount: Int) {
         remove(currency, added * price)
     }
     when (player.inventory.transaction.error) {
-        TransactionError.None -> if (added < actualAmount) player.inventoryFull()
+        TransactionError.None -> {
+            if (added < actualAmount) player.inventoryFull()
+            player.emit(BoughtItem(Item(item.id, added), shop.id))
+        }
         is TransactionError.Full -> player.inventoryFull()
         TransactionError.Invalid -> logger.warn { "Error buying from shop ${shop.id} $item ${shop.transaction.error}" }
         else -> {}

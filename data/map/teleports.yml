@@ -2716,7 +2716,7 @@
     x: -1
     y: 1
     level: 1
-- id: 12537
+- id: wizards_tower_staircase
   option: Climb-down
   tile:
     x: 3103
@@ -2726,7 +2726,7 @@
     x: 1
     y: -1
     level: -1
-- id: 12537
+- id: wizards_tower_staircase
   option: Climb-up
   tile:
     x: 3103
@@ -3660,7 +3660,7 @@
     level: 1
   delta:
     level: -1
-- id: 36771
+- id: lumbridge_castle_ladder
   option: Climb-up
   tile:
     x: 3207

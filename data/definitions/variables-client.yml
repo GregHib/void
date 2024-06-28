@@ -213,12 +213,6 @@ tab:
   format: list
   default: Inventory
   values: [ CombatStyles, TaskSystem, Stats, QuestJournals, Inventory, WornEquipment, PrayerList, MagicSpellbook, FriendsList, FriendsChat, ClanChat, Options, Emotes, MusicPlayer, Notes ]
-world_map_centre:
-  id: 622
-  format: int
-world_map_player:
-  id: 674
-  format: int
 equipment_emote:
   id: 779
   default: 1426
@@ -369,4 +363,54 @@ celestial_surgebox_wave:
   format: int
 celestial_surgebox_surge:
   id: 1403
+  format: int
+task_progress_total:
+  id: 1423
+  format: int
+task_progress_current:
+  id: 1424
+  format: int
+task_dont_show_again:
+  id: 1421
+  format: boolean
+  persist: true
+task_popup:
+  id: 1425
+  format: int
+task_previous_popup:
+  id: 1426
+  format: int
+task_fade_in_cycle:
+  id: 1427
+  format: int
+task_popup_summary:
+  id: 1428
+  format: boolean
+task_disable_popups:
+  id: 1429
+  format: boolean
+  persist: true
+world_map_zoom_level:
+  id: 172
+  format: int
+world_map_centre:
+  id: 622
+  format: int
+world_map_marker_player:
+  id: 674
+  format: int
+world_map_marker_1:
+  id: 623
+  format: int
+world_map_marker_2:
+  id: 625
+  format: int
+world_map_marker_3:
+  id: 627
+  format: int
+world_map_marker_4:
+  id: 629
+  format: int
+world_map_marker_5:
+  id: 940
   format: int

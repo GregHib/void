@@ -52,27 +52,32 @@ suspend fun TargetObjectContext.make(animation: String, item: Item) {
     }
     val data = pottery.getValue(id)
     val actualAmount = if (current < amount) current else amount
+    player.softTimers.start("pottery")
     player.make(animation, target, item, id, data, actualAmount)
 }
 
 fun Player.make(animation: String, obj: GameObject, item: Item, id: String, data: Pottery.Ceramic, amount: Int) {
     if (amount <= 0) {
+        softTimers.stop("pottery")
         return
     }
     val current = inventory.count(item.id)
     if (current <= 0) {
         message("You need some ${item.id.toLowerSpaceCase()} in order to make a ${id.toLowerSpaceCase()}.")
+        softTimers.stop("pottery")
         return
     }
     face(obj)
     if (!has(Skill.Crafting, data.level)) {
 	    message("You need a Crafting level of ${data.level} to make a ${id.toLowerSpaceCase()}.")
+        softTimers.stop("pottery")
         return
     }
     setAnimation(animation)
     weakQueue("make_pottery", 3) {
         if (!inventory.replace(item.id, id)) {
             message("You need some ${item.id.toLowerSpaceCase()} in order to make a ${id.toLowerSpaceCase()}.")
+            softTimers.stop("pottery")
             return@weakQueue
         }
 		player.playSound("pottery")

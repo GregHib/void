@@ -12,6 +12,7 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 
 npcOperate("Talk-to", "duke_horacio") {
+    player["hail_to_the_duke_baby_task"] = true
     npc<Neutral>("Greetings. Welcome to my castle.")
     when (player.quest("rune_mysteries")) {
         "unstarted" -> unstarted()

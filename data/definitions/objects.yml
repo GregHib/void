@@ -11836,3 +11836,18 @@ ourania_crack_exit:
 ourania_altar:
   id: 26847
   examine: "An altar upon which to craft runes."
+lumbridge_castle_ladder:
+  id: 36771
+  examine: "I can climb up this."
+lumbridge_organ:
+  id: 36978
+  examine: "A church organ."
+lumbridge_church_bell:
+  id: 36976
+  examine: "I can ring this."
+fire_barbarian_village:
+  id: 5499
+  examine: "Hot!"
+wizards_tower_staircase:
+  id: 12537
+  examine: "I can climb these stairs."

@@ -2170,3 +2170,8 @@ monk_of_zamorak_ourania:
   drop_table: monk_of_zamorak
   respawn_delay: 50
   examine: "An evil human cleric."
+explorer_jack:
+  id: 13295
+  wander_radius: 5
+  race: human
+  examine: "He looks like a professional explorer."

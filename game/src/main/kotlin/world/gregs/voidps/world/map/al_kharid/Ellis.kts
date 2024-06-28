@@ -68,7 +68,7 @@ suspend fun NPCOption.leather() {
     }
 }
 
-interfaceOption(component = "Tan *", id = "tanner") {
+interfaceOption(option = "Tan *", id = "tanner") {
     val amount = when (option.lowercase()) {
         "tan ${Colours.ORANGE.toTag()}1" -> 1
         "tan ${Colours.ORANGE.toTag()}5" -> 5
@@ -92,6 +92,7 @@ fun tan(player: Player, type: String, amount: Int) {
         player.message("You don't have any ${item.toLowerSpaceCase()} to tan.")
         return
     }
+    player.softTimers.start("tanning")
     val tanning: Tanning = itemDefs.get(item)["tanning"]
     val (leather, cost) = tanning.prices[if (type.endsWith("_1")) 1 else 0]
     var tanned = 0
@@ -108,6 +109,7 @@ fun tan(player: Player, type: String, amount: Int) {
         }
         tanned++
     }
+    player.softTimers.stop("tanning")
     if (tanned == 1) {
         player.message("The tanner tans your ${item.toLowerSpaceCase()}.")
     } else if (tanned > 0) {

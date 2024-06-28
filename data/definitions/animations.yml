@@ -1697,3 +1697,5 @@ gecko_death: 7205
 wolves_hit: 6557
 wolves_attack: 6559
 wolves_death: 6558
+run_replenish: 9988
+play_organ: 3675
