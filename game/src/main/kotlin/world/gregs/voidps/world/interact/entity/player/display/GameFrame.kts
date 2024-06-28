@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.queue.weakQueue
 
 val list = listOf(
@@ -36,10 +35,6 @@ val list = listOf(
     "notes",
     "area_status_icon"
 )
-
-playerSpawn { player ->
-    player.open(player.interfaces.gameFrame)
-}
 
 Tab.entries.forEach { tab ->
     val name = tab.name.toSnakeCase()

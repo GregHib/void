@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.data
 
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.data.definition.*
@@ -86,6 +87,7 @@ class AccountManager(
             }
         }
         player.emit(RegionLoad)
+        player.open(player.interfaces.gameFrame)
         player.emit(Spawn)
         for (def in areaDefinitions.get(player.tile.zone)) {
             if (player.tile in def.area) {
