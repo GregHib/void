@@ -1948,7 +1948,7 @@
 - { id: magic_dummy, x: 3214, y: 3253, direction: SOUTH }
 - { id: magic_dummy, x: 3214, y: 3254, direction: SOUTH }
 - { id: cook_lumbridge, x: 3209, y: 3215 }
-- { id: Lil_lamb, x: 3207, y: 3262 }
+- { id: lil_lamb, x: 3207, y: 3262 }
 - { id: sheep, x: 3208, y: 3262 }
 - { id: sheep, x: 3203, y: 3262 }
 - { id: sheep_2, x: 3204, y: 3261 }
