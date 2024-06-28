@@ -28,6 +28,7 @@ import world.gregs.voidps.world.interact.entity.npc.shop.shopOpen
 import world.gregs.voidps.world.interact.entity.obj.teleportLand
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
+import java.util.concurrent.TimeUnit
 
 move({ player.running && !player["on_the_run_task", false] }) {
     player["on_the_run_task"] = true
@@ -168,7 +169,8 @@ variableSet("task_progress_overall") { player ->
 }
 
 itemAdded(inventory = "bank") { player ->
-    if (!player["hang_on_to_something_task", false]) {
+    val millis = System.currentTimeMillis() - player["creation", 0L]
+    if (millis > 1000 && !player["hang_on_to_something_task", false]) {
         player["hang_on_to_something_task"] = true
         player.addVarbit("task_reward_items", "magic_staff")
     }
