@@ -59,10 +59,6 @@ banker_2:
   interact_distance: 2
   race: human
   examine: "She can look after my money."
-bob_barter_herbs:
-  id: 6524
-  race: human
-  examine: "He's probably seen better days."
 duck_swim:
   &duck_swim
   id: 46
@@ -170,6 +166,64 @@ giant_rat:
   respawn_delay: 30
   examine: "Overgrown vermin."
   race: giant_rat
+wolf:
+  &wolf
+  id: 95
+  hitpoints: 690
+  att: 50
+  str: 55
+  def: 52
+  wander_radius: 4
+  slayer_xp: 69
+  max_hit_melee: 60
+  hunt_mode: aggressive
+  style: stab
+  respawn_delay: 90
+  race: wolves
+  examine: "Not man's best friend."
+white_wolf:
+  id: 96
+  hitpoints: 340
+  att: 20
+  str: 16
+  def: 22
+  mage: 1
+  range: 1
+  wander_radius: 4
+  slayer_xp: 34
+  max_hit_melee: 30
+  hunt_mode: aggressive
+  style: stab
+  respawn_delay: 90
+  race: wolves
+  examine: "A vicious mountain wolf."
+white_wolf_2:
+  id: 97
+  hitpoints: 440
+  att: 30
+  str: 31
+  def: 32
+  mage: 1
+  range: 1
+  wander_radius: 4
+  slayer_xp: 44
+  max_hit_melee: 40
+  hunt_mode: aggressive
+  style: stab
+  respawn_delay: 90
+  race: wolves
+  examine: "A vicious mountain wolf."
+big_wolf:
+  <<: *wolf
+  id: 141
+  hitpoints: 740
+  att: 60
+  str: 61
+  def: 62
+  mage: 1
+  range: 1
+  max_hit_melee: 70
+  examine: "Must be the pack leader."
 butterfly_1:
   id: 153
   race: butterfly
@@ -912,6 +966,33 @@ hari:
 barfy_bill:
   id: 3331
   examine: "Looks a little green around the gills."
+giant_mole:
+  id: 3340
+  hitpoints: 2000
+  att: 200
+  str: 200
+  def: 200
+  mage: 200
+  range: 1
+  max_hit_melee: 210
+  attack_speed: 4
+  style: crush
+  race: mole
+  respawn_delay: 16
+  wander_radius: 8
+  examine: "Holy Mole-y!"
+baby_mole:
+  id: 3341
+  wander_radius: 6
+  examine: "I will call him, Mini Mole."
+baby_mole_2:
+  id: 3342
+  wander_radius: 6
+  examine: "Mooooooooooooole."
+baby_mole_3:
+  id: 3343
+  wander_radius: 6
+  examine: "Moley, moley, moley!"
 grubfoot_brown:
   id: 4496
   large_head: true
@@ -1023,6 +1104,30 @@ giant_spider_3:
   race: giant_spider
   height: 10
   examine: "I think this spider has been genetically modified."
+wolf_stronghold_of_security:
+  <<: *wolf
+  id: 4413
+  hitpoints: 100
+  att: 10
+  str: 10
+  def: 10
+  mage: 1
+  range: 1
+  max_hit_melee: 20
+  slayer_xp: 10
+  hunt_mode: null
+wolf_stronghold_of_security_2:
+  <<: *wolf
+  id: 4414
+  hitpoints: 150
+  att: 10
+  str: 15
+  def: 10
+  mage: 1
+  range: 1
+  max_hit_melee: 30
+  slayer_xp: 15
+  hunt_mode: null
 magic_dummy:
   id: 4474
   hitpoints: 150
@@ -1127,6 +1232,10 @@ fishing_spot_small_net_bait_lumbridge:
           - raw_sardine
           - raw_herring
   examine: "It looks like there might be fish swimming in the water."
+lil_lamb:
+  <<: *sheep
+  id: 5146
+  examine: "How cute!"  
 sheep_light:
   <<: *sheep
   id: 5157
@@ -1197,6 +1306,29 @@ ash_cleaner:
   hunt_range: 4
   hunt_mode: ash_finder
   examine: Does what too many people aren't interested in doing.
+big_wolf_2:
+  <<: *wolf
+  id: 6046
+  hitpoints: 740
+  att: 60
+  str: 61
+  def: 62
+  mage: 1
+  range: 1
+  max_hit_melee: 70
+  examine: "Must be the pack leader."
+wolf_2:
+  <<: *wolf
+  id: 6047
+  hitpoints: 340
+  att: 20
+  str: 16
+  def: 22
+  mage: 1
+  range: 1
+  max_hit_melee: 30
+  slayer_xp: 34
+  examine: "A social killer."
 ducklings:
   id: 6112
   swim: true
@@ -1248,6 +1380,10 @@ jeffery2:
   wander_radius: 4
   race: human
   examine: "The man with the armour."
+bob_barter_herbs:
+  id: 6524
+  race: human
+  examine: "He's probably seen better days."  
 pikkupstix:
   id: 6970
   race: human
@@ -1829,23 +1965,7 @@ al_the_camel:
   race: camel
   large_head: true
   wander_radius: 4
-  examine: "A camel who has the soul of a poet."
-giant_mole:
-  id: 3340
-  hitpoints: 2000
-  att: 200
-  str: 200
-  def: 200
-  max_hit_melee: 210
-  style: crush
-  race: giant_mole
-  respawn_delay: 16
-  wander_radius: 8
-  examine: "Holy Mole-y!"
-baby_mole:
-  id: 3341
-  wander_radius: 6
-  examine: "I will call him, Mini Mole."
+  examine: "A camel who has the soul of a poet."  
 dark_mage:
   id: 2262
   faces: false

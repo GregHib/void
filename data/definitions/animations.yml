@@ -1694,3 +1694,6 @@ abyssal_walker_death: 2194
 gecko_hit: 7208
 gecko_attack: 7207
 gecko_death: 7205
+wolves_hit: 6557
+wolves_attack: 6559
+wolves_death: 6558
