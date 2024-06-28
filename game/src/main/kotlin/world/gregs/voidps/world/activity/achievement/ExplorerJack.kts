@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.variable.BitwiseValues
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
-import world.gregs.voidps.engine.entity.World.name
+import world.gregs.voidps.Main.name
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
