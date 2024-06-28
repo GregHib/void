@@ -1232,7 +1232,7 @@ fishing_spot_small_net_bait_lumbridge:
           - raw_sardine
           - raw_herring
   examine: "It looks like there might be fish swimming in the water."
-Lil_lamb:
+lil_lamb:
   <<: *sheep
   id: 5146
   examine: "How cute!"  
