@@ -291,6 +291,7 @@ fun teleport(player: Player, target: NPC) {
             tile = abyss.random(player)
         }
         player.tele(tile!!)
+        player.levels.drain(Skill.Prayer, player.levels.get(Skill.Prayer))
         player.clearAnimation()
     }
 }
