@@ -32,7 +32,7 @@ class AccountManagerTest : KoinMock() {
 
     override val modules = listOf(module {
         single { ItemDefinitions(emptyArray()) }
-        single { InterfaceDefinitions(emptyArray()) }
+        single { InterfaceDefinitions(emptyArray()).apply { ids = emptyMap() } }
         single { AreaDefinitions(areas = mapOf(0 to setOf(AreaDefinition("area", Rectangle(Tile(0), 1, 1), emptySet())))) }
     })
 
