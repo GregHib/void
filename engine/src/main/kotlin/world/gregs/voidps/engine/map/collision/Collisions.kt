@@ -91,7 +91,6 @@ private fun canFit(steps: StepValidator, tile: Tile, collision: CollisionStrateg
         }
         for (x in 0 until size) {
             for (y in 0 until size) {
-                // TODO check diagonals
                 if (x != size - 1 && !steps.canTravel(
                         tile.level,
                         tile.x + x,
@@ -108,6 +107,17 @@ private fun canFit(steps: StepValidator, tile: Tile, collision: CollisionStrateg
                         tile.x + x,
                         tile.y + y,
                         offsetX = 0,
+                        offsetZ = 1,
+                        collision = collision
+                    )
+                ) {
+                    return false
+                }
+                if (y != size - 1 && x != size - 1 && !steps.canTravel(
+                        tile.level,
+                        tile.x + x,
+                        tile.y + y,
+                        offsetX = 1,
                         offsetZ = 1,
                         collision = collision
                     )
