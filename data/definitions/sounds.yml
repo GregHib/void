@@ -72,6 +72,8 @@ activate_smite: 2686
 activate_augury: 2670
 activate_piety: 3825
 deactivate_prayer: 2663
+equip_halloween_pumpkin: 3227
+equip_halloween_spray: 3228
 equip_salamander: 732
 equip_sled: 1864
 equip_hatchet: 2229
