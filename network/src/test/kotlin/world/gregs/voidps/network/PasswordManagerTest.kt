@@ -51,10 +51,21 @@ class PasswordManagerTest {
     fun `New player with no password is successful`() {
         val username = "test"
         val password = "wrongPassword"
+        accountLoader.exists = false
 
         val result = passwordManager.validate(username, password)
 
         assertEquals(Response.SUCCESS, result)
+    }
+
+    @Test
+    fun `Existing player with no password is disabled`() {
+        val username = "test"
+        val password = "password"
+
+        val result = passwordManager.validate(username, password)
+
+        assertEquals(Response.ACCOUNT_DISABLED, result)
     }
 
     @Test
@@ -91,6 +102,11 @@ class PasswordManagerTest {
 
     private class TestAccountLoader : AccountLoader {
         val accountMap = mutableMapOf<String, String>()
+        var exists = true
+
+        override fun exists(username: String): Boolean {
+            return exists
+        }
 
         override fun password(username: String): String? {
             return accountMap[username]

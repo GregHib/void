@@ -14,7 +14,11 @@ class PasswordManager(private val loader: AccountLoader) {
         }
         val passwordHash = loader.password(username)
         try {
-            if (passwordHash != null && !BCrypt.checkpw(password, passwordHash)) {
+            if (loader.exists(username) && passwordHash == null) {
+                // Failed to find accounts password despite account existing
+                return Response.ACCOUNT_DISABLED
+            }
+            if (loader.exists(username) && !BCrypt.checkpw(password, passwordHash)) {
                 return Response.INVALID_CREDENTIALS
             }
         } catch (e: IllegalArgumentException) {
