@@ -6,29 +6,32 @@ import world.gregs.voidps.network.Response
 /**
  * Checks account credentials are valid
  */
-class PasswordManager(private val loader: AccountLoader) {
+class PasswordManager(private val account: AccountLoader) {
 
     fun validate(username: String, password: String): Int {
         if (username.length > 12) {
             return Response.LOGIN_SERVER_REJECTED_SESSION
         }
-        val passwordHash = loader.password(username)
+        if (!account.exists(username)) {
+            return Response.SUCCESS
+        }
+        val passwordHash = account.password(username)
         try {
-            if (loader.exists(username) && passwordHash == null) {
+            if (passwordHash == null) {
                 // Failed to find accounts password despite account existing
                 return Response.ACCOUNT_DISABLED
             }
-            if (loader.exists(username) && !BCrypt.checkpw(password, passwordHash)) {
-                return Response.INVALID_CREDENTIALS
+            if (BCrypt.checkpw(password, passwordHash)) {
+                return Response.SUCCESS
             }
         } catch (e: IllegalArgumentException) {
             return Response.COULD_NOT_COMPLETE_LOGIN
         }
-        return Response.SUCCESS
+        return Response.INVALID_CREDENTIALS
     }
 
     fun encrypt(username: String, password: String): String {
-        val passwordHash = loader.password(username)
+        val passwordHash = account.password(username)
         if (passwordHash != null) {
             return passwordHash
         }
