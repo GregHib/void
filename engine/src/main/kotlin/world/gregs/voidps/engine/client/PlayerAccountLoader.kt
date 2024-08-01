@@ -33,6 +33,10 @@ class PlayerAccountLoader(
 ) : AccountLoader {
     private val logger = InlineLogger()
 
+    override fun exists(username: String): Boolean {
+        return storage.exists(username)
+    }
+
     override fun password(username: String): String? {
         return accountDefinitions.get(username)?.passwordHash
     }
