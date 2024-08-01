@@ -12,13 +12,17 @@ class PasswordManager(private val account: AccountLoader) {
         if (username.length > 12) {
             return Response.LOGIN_SERVER_REJECTED_SESSION
         }
+        val passwordHash = account.password(username)
         if (!account.exists(username)) {
+            if (passwordHash != null) {
+                // Failed to find account file despite AccountDefinition exists in memory (aka existed on startup)
+                return Response.ACCOUNT_DISABLED
+            }
             return Response.SUCCESS
         }
-        val passwordHash = account.password(username)
         try {
             if (passwordHash == null) {
-                // Failed to find accounts password despite account existing
+                // Failed to find accounts password despite account file existing (created since startup)
                 return Response.ACCOUNT_DISABLED
             }
             if (BCrypt.checkpw(password, passwordHash)) {
