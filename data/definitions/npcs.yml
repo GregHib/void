@@ -437,11 +437,13 @@ shop_assistant_lumbridge:
 shopkeeper_varrock:
   id: 522
   race: human
+  shop: varrock_general_store
   wander_radius: 2
   examine: "Likes people spending money."
 shop_assistant_varrock:
   id: 523
   race: human
+  shop: varrock_general_store
   wander_radius: 2
   examine: "Likes helping sell stuff."
 shopkeeper_al_kharid:
