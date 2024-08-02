@@ -41,9 +41,11 @@ internal class LoginServerTest {
     @BeforeEach
     fun setup() {
         client = null
-        password = null
+        password = "\$2a\$10${"$"}iIdTrtrJ5ibgFcJToZW7ueGkymDed2Ws2FoE8JnrXPGiY2YNVa9y6"
         instructions = Channel(capacity = 1)
         accounts = object : AccountLoader {
+            override fun exists(username: String) = true
+
             override fun password(username: String) = password
 
             override suspend fun load(client: Client, username: String, passwordHash: String, displayMode: Int): SendChannel<Instruction> {
@@ -224,6 +226,9 @@ internal class LoginServerTest {
         val readChannel = ByteChannel(autoFlush = true)
         val writeChannel = ByteChannel(autoFlush = true)
         accounts = object : AccountLoader {
+
+            override fun exists(username: String) = false
+
             override fun password(username: String) = null
 
             override suspend fun load(client: Client, username: String, passwordHash: String, displayMode: Int): SendChannel<Instruction>? {
@@ -231,6 +236,7 @@ internal class LoginServerTest {
                 return null
             }
         }
+        passwordManager = PasswordManager(accounts)
         server = LoginServer(protocol, 123, 10, modulus, BigInteger("10001", 16), accounts, passwordManager)
         launch {
             server.connect(readChannel, writeChannel, "localhost")

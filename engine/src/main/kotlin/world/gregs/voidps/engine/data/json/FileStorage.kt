@@ -118,6 +118,6 @@ class FileStorage(
     }
 
     companion object {
-        private fun fileName(name: String) = "${name}.json"
+        private fun fileName(name: String) = "${name.lowercase()}.json"
     }
 }
