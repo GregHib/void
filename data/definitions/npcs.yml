@@ -425,11 +425,85 @@ bob:
 shopkeeper_lumbridge:
   id: 520
   race: human
+  shop: lumbridge_general_store
+  wander_radius: 2
   examine: "Sells stuff."
 shop_assistant_lumbridge:
   id: 521
   race: human
+  shop: lumbridge_general_store
+  wander_radius: 2
   examine: "Helps sell stuff."
+shopkeeper_varrock:
+  id: 522
+  race: human
+  wander_radius: 2
+  examine: "Likes people spending money."
+shop_assistant_varrock:
+  id: 523
+  race: human
+  wander_radius: 2
+  examine: "Likes helping sell stuff."
+shopkeeper_al_kharid:
+  id: 524
+  race: human
+  shop: al_kharid_general_store
+  wander_radius: 2
+  examine: "A product of a consumerist society."
+shop_assistant_al_kharid:
+  id: 525
+  race: human
+  shop: al_kharid_general_store
+  wander_radius: 2
+  examine: "Likes you more, the more you spend."
+shopkeeper_falador:
+  id: 526
+  race: human
+  shop: falador_general_store
+  wander_radius: 2
+  examine: "A product of a consumerist society."
+shop_assistant_falador:
+  id: 527
+  race: human
+  shop: falador_general_store
+  wander_radius: 2
+  examine: "Likes you more, the more you spend."
+shopkeeper_edgeville:
+  id: 528
+  race: human
+  shop: edgeville_general_store
+  wander_radius: 2
+  examine: "If he doesn't have it, he can't sell it."
+shop_assistant_edgeville:
+  id: 529
+  race: human
+  shop: edgeville_general_store
+  wander_radius: 2
+  examine: "She's here on work experience."
+shopkeeper_rimmington:
+  id: 530
+  race: human
+  shop: rimmington_general_store
+  wander_radius: 2
+  examine: "Has an interesting assortment of items for sale."
+shop_assistant_rimmington:
+  id: 531
+  race: human
+  shop: rimmington_general_store
+  wander_radius: 2
+  examine: "Works on commission."
+shopkeeper_musa_point:
+  id: 11674
+  race: human
+  shop: karamja_general_store
+  wander_radius: 2
+  examine: "Clearly takes pride in his appearance."
+shop_assistant_musa_point:
+  id: 11678
+  race: human
+  shop: karamja_general_store
+  wander_radius: 2
+  examine: "Needs a haircut."
 zeke:
   id: 541
   race: human
