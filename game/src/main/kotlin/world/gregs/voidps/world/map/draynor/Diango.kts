@@ -3,12 +3,15 @@ package world.gregs.voidps.world.map.draynor
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.interact.dialogue.Chuckle
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Neutral
 import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
+import world.gregs.voidps.world.interact.dialogue.type.stringEntry
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
 npcOperate("Talk-to", "diango") {
@@ -34,6 +37,11 @@ npcOperate("Holiday-items", "diango") {
 }
 
 npcOperate("Redeem-code", "diango") {
-   player.message("Your code has been succesfully processed.")
-   player.message("Your code was not valid. Please check it and try again.")
+    val code = stringEntry("Please enter your code.")
+    if (code == "flagstaff") {
+        player.inventory.add("flagstaff_of_festivities")
+        player.message("Your code has been succesfully processed.")
+    } else {
+        player.message("Your code was not valid. Please check it and try again.")
+    }
 }
