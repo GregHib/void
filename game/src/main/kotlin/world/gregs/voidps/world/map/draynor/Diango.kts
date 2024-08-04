@@ -2,9 +2,11 @@ package world.gregs.voidps.world.map.draynor
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.DiangoCodeDefinitions
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.world.interact.dialogue.Chuckle
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Neutral
@@ -36,12 +38,21 @@ npcOperate("Holiday-items", "diango") {
     player.open("diangos_item_retrieval")
 }
 
+val codeDefinitions: DiangoCodeDefinitions by inject()
+
 npcOperate("Redeem-code", "diango") {
     val code = stringEntry("Please enter your code.")
-    if (code == "flagstaff") {
-        player.inventory.add("flagstaff_of_festivities")
-        player.message("Your code has been succesfully processed.")
-    } else {
+    val definition = codeDefinitions.get(code)
+    if (definition.code.isBlank()) {
         player.message("Your code was not valid. Please check it and try again.")
+        return@npcOperate
+    }
+    val success = player.inventory.transaction {
+        for (item in definition.add) {
+            add(item.id, item.amount)
+        }
+    }
+    if (success) {
+        player.message("Your code has been successfully processed.")
     }
 }
