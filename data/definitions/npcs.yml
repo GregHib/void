@@ -512,6 +512,29 @@ zeke:
   shop: zekes_superior_scimitars
   wander_radius: 3
   examine: "Sells superior scimitars."
+louie_legs:
+  id: 542
+  wander_radius: 4
+  shop: louies_armoured_legs_bazaar
+  race: human
+  examine: "For the finest in armoured legware."
+karim:
+  id: 543
+  wander_radius: 4
+  race: human
+  examine: "Kebabs are full of meaty goodness."
+ranael:
+  id: 544
+  wander_radius: 4
+  shop: ranaels_super_skirt_store
+  race: human
+  examine: "She's an expert on armoured skirts!"
+dommik:
+  id: 545
+  wander_radius: 4
+  shop: dommiks_crafting_store
+  race: human
+  examine: "If Crafting's your thing, he's your man."
 baraek:
   id: 547
   race: human
@@ -743,6 +766,12 @@ jeed:
   race: human
   wander_radius: 3
   examine: "A citizen of Al Kharid."
+diango:
+  id: 970
+  wander_radius: 4
+  shop: diangos_toy_store
+  race: human
+  examine: "A toy-seller who looks after people's toys for them."  
 hamid:
   id: 1008
   race: human

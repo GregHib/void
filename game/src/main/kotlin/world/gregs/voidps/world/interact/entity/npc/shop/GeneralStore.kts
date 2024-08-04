@@ -14,12 +14,6 @@ npcOperate("Trade", "shopkeeper*", "shop_assistant*") {
 }
 
 npcOperate("Talk-to", "shopkeeper*") {
-    if (target.id.endsWith("musa_point")) {
-        npc<Happy>("Can I help you at all?")
-        //todo find right dialogue from A_Void_Dance quest?
-    } else {
-        npc<Happy>("Can I help you at all?")
-    }
     npc<Neutral>("Can I help you at all?")
     choice {
         option("Yes please. What are you selling?") {

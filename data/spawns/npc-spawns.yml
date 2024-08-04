@@ -1574,6 +1574,7 @@
 # 12337
 - { id: traiborn, x: 3112, y: 3162, level: 1 }
 # 12338
+- { id: diango, x: 3081, y: 3247 }
 - { id: musician_draynor_village, x: 3110, y: 3253, direction: SOUTH }
 - { id: banker_3, x: 3088, y: 3242 }
 - { id: banker_3, x: 3090, y: 3245, direction: EAST }
@@ -2223,6 +2224,10 @@
 # 13104
 - { id: musician_shantay_pass, x: 3309, y: 3126, direction: WEST }
 # 13105
+- { id: karim, x: 3272, y: 3182 }
+- { id: dommik, x: 3321, y: 3194 }
+- { id: louie_legs, x: 3316, y: 3175 }
+- { id: ranael, x: 3316, y: 3164 }
 - { id: shopkeeper_al_kharid, x: 3316, y: 3184 }
 - { id: shop_assistant_al_kharid, x: 3316, y: 3182 }
 - { id: zeke, x: 3288, y: 3190 }

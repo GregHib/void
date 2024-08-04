@@ -1704,6 +1704,9 @@ emotes:
     puppet_master: 50
     taskmaster: 51
     seal_of_approval: 52
+diangos_item_retrieval:
+  id: 468
+  type: main_screen    
 barbarian_assult_rewards: 473
 barbarian_assult_horn: 484
 barbarian_assult_attacker: 485

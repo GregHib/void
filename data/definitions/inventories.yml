@@ -166,6 +166,7 @@ zekes_superior_scimitars:
     - mithril_scimitar: 10
 louies_armoured_legs_bazaar:
   id: 12
+  shop: true
   defaults:
     - bronze_platelegs: 10
     - iron_platelegs: 10
@@ -213,6 +214,7 @@ cassies_shield_shop:
     - mithril_sq_shield: 10
 ranaels_super_skirt_store:
   id: 16
+  shop: true
   defaults:
     - bronze_plateskirt: 10
     - iron_plateskirt: 10
@@ -1366,8 +1368,9 @@ inventory_135:
   id: 135
   defaults:
     - rotten_tomato: 100
-inventory_137:
+diangos_toy_store:
   id: 137
+  shop: true
   defaults:
     - toy_horsey_brown: 10
     - toy_horsey_white: 10
@@ -1475,8 +1478,9 @@ canifis_general_store:
     - hammer: 10
     - sample_bottle: 10
     - knife: 10
-inventory_146:
+dommiks_crafting_store:
   id: 146
+  shop: true
   defaults:
     - chisel: 10
     - ring_mould: 10
