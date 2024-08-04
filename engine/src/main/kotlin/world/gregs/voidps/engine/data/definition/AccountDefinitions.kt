@@ -21,9 +21,9 @@ class AccountDefinitions(
 ) {
 
     fun add(player: Player) {
-        displayNames[player.accountName] = player.name
-        definitions[player.name] = AccountDefinition(player.accountName, player.name, player.previousName, player.passwordHash)
-        clans[player.name] = Clan(
+        displayNames[player.accountName.lowercase()] = player.name
+        definitions[player.name.lowercase()] = AccountDefinition(player.accountName, player.name, player.previousName, player.passwordHash)
+        clans[player.name.lowercase()] = Clan(
             owner = player.accountName,
             ownerDisplayName = player.name,
             name = player["clan_name", ""],
@@ -38,30 +38,34 @@ class AccountDefinitions(
     }
 
     fun update(accountName: String, newName: String, previousDisplayName: String) {
-        val definition = definitions.remove(previousDisplayName) ?: return
-        definitions[newName] = definition
+        val definition = definitions.remove(previousDisplayName.lowercase()) ?: return
+        definitions[newName.lowercase()] = definition
         definition.displayName = newName
         definition.previousName = previousDisplayName
-        displayNames[accountName] = newName
+        displayNames[accountName.lowercase()] = newName
     }
 
-    fun clan(displayName: String) = clans[displayName]
+    fun clan(displayName: String) = clans[displayName.lowercase()]
 
     fun getByAccount(account: String): AccountDefinition? {
-        return get(displayNames[account] ?: return null)
+        return get(displayNames[account.lowercase()] ?: return null)
     }
 
-    fun get(key: String) = definitions[key]
+    fun get(key: String) = definitions[key.lowercase()]
 
-    fun getValue(key: String) = definitions.getValue(key)
+    fun getValue(key: String) = definitions.getValue(key.lowercase())
 
     fun load(storage: AccountStorage = get()): AccountDefinitions {
         timedLoad("account") {
-            definitions.putAll(storage.names())
-            for (def in definitions.values) {
-                displayNames[def.accountName] = def.displayName
+            for ((name, definition) in storage.names()) {
+                definitions[name.lowercase()] = definition
             }
-            clans.putAll(storage.clans())
+            for (def in definitions.values) {
+                displayNames[def.accountName.lowercase()] = def.displayName
+            }
+            for ((name, definition) in storage.clans()) {
+                clans[name.lowercase()] = definition
+            }
             definitions.size
         }
         return this
