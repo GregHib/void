@@ -13,7 +13,9 @@ class DiangoCodeDefinitions {
 
     private lateinit var definitions: Map<String, DiangoCodeDefinition>
 
-    fun get(code: String) = definitions[code] ?: DiangoCodeDefinition.EMPTY
+    fun get(code: String) = getOrNull(code) ?: DiangoCodeDefinition.EMPTY
+
+    fun getOrNull(code: String) = definitions[code]
 
     @Suppress("UNCHECKED_CAST")
     fun load(yaml: Yaml = get(), path: String = getProperty("diangoCodeDefinitionsPath"), itemDefinitions: ItemDefinitions? = null): DiangoCodeDefinitions {

@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.interact.dialogue.Chuckle
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Neutral
@@ -20,8 +21,8 @@ npcOperate("Talk-to", "diango") {
     npc<Happy>("Howdy there partner! Want to see my spinning plates? Or did ya want a holiday item back?")
     choice {
         option<Quiz>("Spinning plates?") {
-            npc<Happy>(" That's right. There's a funny story behind them, their shipment was held up by thieves.")
-            npc<Chuckle>(" The crate was marked 'Dragon Plates'. Apparently they thought it was some kind of armour, when really it's just a plate with a dragon on it!")
+            npc<Happy>("That's right. There's a funny story behind them, their shipment was held up by thieves.")
+            npc<Chuckle>("The crate was marked 'Dragon Plates'. Apparently they thought it was some kind of armour, when really it's just a plate with a dragon on it!")
             player.openShop("diangos_toy_store")
         }
         option<Neutral>("I'd like to check holiday items please!") {
@@ -42,10 +43,16 @@ val codeDefinitions: DiangoCodeDefinitions by inject()
 
 npcOperate("Redeem-code", "diango") {
     val code = stringEntry("Please enter your code.")
-    val definition = codeDefinitions.get(code)
-    if (definition.code.isBlank()) {
+    val definition = codeDefinitions.getOrNull(code)
+    if (definition == null) {
         player.message("Your code was not valid. Please check it and try again.")
         return@npcOperate
+    }
+    for (item in definition.add) {
+        if (player.ownsItem(item.id)) {
+            player.message("You have already claimed this code.")
+            return@npcOperate
+        }
     }
     val success = player.inventory.transaction {
         for (item in definition.add) {
