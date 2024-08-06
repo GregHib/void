@@ -474,3 +474,6 @@ equip_longbow:
 equip_crossbow:
   persist: true
   format: boolean
+flagstaff:
+  persist: true
+  format: boolean
