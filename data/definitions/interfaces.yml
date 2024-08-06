@@ -1706,7 +1706,14 @@ emotes:
     seal_of_approval: 52
 diangos_item_retrieval:
   id: 468
-  type: main_screen    
+  type: main_screen
+  components:
+    items:
+      id: 2
+      inventory: diangos_item_retrieval
+      options:
+        Claim: 0
+        Examine: 9
 barbarian_assult_rewards: 473
 barbarian_assult_horn: 484
 barbarian_assult_attacker: 485
