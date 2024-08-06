@@ -39,7 +39,7 @@
 
 ## Quick setup
 
-1. Make sure you have java 19 or above installed. (`java --version` on command line)
+1. Make sure you have [java 19 or above installed](https://adoptium.net/temurin/releases/?package=jre). (`java --version` on command line)
 2. Extract the [latest void.zip released bundle](https://github.com/GregHib/void/releases) into a directory.
 3. Extract the [latest pre-modified game files cache.zip](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A) into `/void/data/cache/`.
 4. Run either the `run-server.bat` on Windows, or `run-server.sh` on Linux.
