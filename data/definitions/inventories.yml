@@ -29,6 +29,7 @@ horviks_armour_shop:
     - mithril_platebody: 10
 al_kharid_general_store:
   id: 3
+  shop: true
   defaults:
     - empty_pot: 30
     - jug: 10
@@ -41,8 +42,9 @@ al_kharid_general_store:
     - hammer: 10
     - newcomer_map: 10
     - security_book: 10
-inventory_4:
+edgeville_general_store:
   id: 4
+  shop: true
   defaults:
     - empty_pot: 30
     - jug: 10
@@ -164,6 +166,7 @@ zekes_superior_scimitars:
     - mithril_scimitar: 10
 louies_armoured_legs_bazaar:
   id: 12
+  shop: true
   defaults:
     - bronze_platelegs: 10
     - iron_platelegs: 10
@@ -171,8 +174,9 @@ louies_armoured_legs_bazaar:
     - black_platelegs: 10
     - mithril_platelegs: 10
     - adamant_platelegs: 10
-karamja_general_store:
+varrock_general_store:
   id: 13
+  shop: true
   defaults:
     - empty_pot: 30
     - jug: 10
@@ -210,6 +214,7 @@ cassies_shield_shop:
     - mithril_sq_shield: 10
 ranaels_super_skirt_store:
   id: 16
+  shop: true
   defaults:
     - bronze_plateskirt: 10
     - iron_plateskirt: 10
@@ -380,6 +385,7 @@ gerrants_fishy_business:
     - raw_swordfish: 0
 rimmington_general_store:
   id: 31
+  shop: true
   defaults:
     - empty_pot: 30
     - jug: 10
@@ -420,6 +426,7 @@ scavvos_rune_store:
     - studded_leather_coif: 10
 falador_general_store:
   id: 34
+  shop: true
   defaults:
     - empty_pot: 30
     - jug: 10
@@ -1361,8 +1368,9 @@ inventory_135:
   id: 135
   defaults:
     - rotten_tomato: 100
-inventory_137:
+diangos_toy_store:
   id: 137
+  shop: true
   defaults:
     - toy_horsey_brown: 10
     - toy_horsey_white: 10
@@ -1470,8 +1478,9 @@ canifis_general_store:
     - hammer: 10
     - sample_bottle: 10
     - knife: 10
-inventory_146:
+dommiks_crafting_store:
   id: 146
+  shop: true
   defaults:
     - chisel: 10
     - ring_mould: 10
@@ -3459,8 +3468,9 @@ void_knight_general_store:
     - hammer: 10
     - bronze_hatchet: 10
     - field_ration: 50
-inventory_391:
+karamja_general_store:
   id: 391
+  shop: true
   defaults:
     - empty_pot: 30
     - jug: 10
@@ -4457,40 +4467,69 @@ inventory_452:
     - hunter_cape_2: 1
     - quest_point_cape_2: 1
     - more: 1
-inventory_453:
+diangos_item_retrieval:
   id: 453
+  length: 58
   defaults:
-    - reindeer_hat_2: 1
-    - jack_lantern_mask_2: 1
-    - skeleton_boots_2: 1
-    - skeleton_gloves_2: 1
-    - skeleton_leggings_2: 1
-    - skeleton_shirt_2: 1
-    - skeleton_mask_2: 1
-    - easter_ring_2: 1
-    - bobble_hat_2: 1
-    - bobble_scarf_2: 1
-    - blue_marionette_2: 1
-    - zombie_head_2: 1
-    - rubber_chicken_2: 1
-    - yo_yo_2: 1
-    - bunny_ears_2: 1
-    - scythe_2: 1
-    - chicken_head_2: 1
-    - chicken_feet_2: 1
-    - chicken_wings_2: 1
-    - chicken_legs_2: 1
-    - grim_reaper_hood_2: 1
-    - snow_globe_2: 1
-    - chocatrice_cape_2: 1
-    - witch_top_2: 1
-    - witch_skirt_2: 1
-    - witch_cloak_2: 1
-    - cornucopia_2: 1
-    - santa_costume_top_3: 1
-    - ice_amulet_2: 1
-    - easter_carrot_2: 1
-    - more: 1
+    - bunny_ears: 1
+    - scythe: 1
+    - yo_yo: 1
+    - rubber_chicken: 1
+    - zombie_head: 1
+    - easter_ring: 1
+    - bobble_hat: 1
+    - bobble_scarf: 1
+    - jester_hat: 1
+    - jester_scarf: 1
+    - tri_jester_hat: 1
+    - tri_jester_scarf: 1
+    - woolly_hat: 1
+    - woolly_scarf: 1
+    - reindeer_hat: 1
+    - blue_marionette: 1
+    - jack_lantern_mask: 1
+    - skeleton_boots: 1
+    - skeleton_gloves: 1
+    - skeleton_leggings: 1
+    - skeleton_shirt: 1
+    - skeleton_mask: 1
+    - wintumber_tree: 1
+    - chicken_feet: 1
+    - chicken_legs: 1
+    - chicken_wings: 1
+    - chicken_head: 1
+    - grim_reaper_hood: 1
+    - snow_globe: 1
+    - chocatrice_cape: 1
+    - witch_top: 1
+    - witch_skirt: 1
+    - witch_cloak: 1
+    - santa_costume_top: 1
+    - santa_costume_legs: 1
+    - santa_costume_gloves: 1
+    - santa_costume_boots: 1
+    - ice_amulet: 1
+    - cornucopia: 1
+    - easter_carrot: 1
+    - eek: 1
+    - web_cloak: 1
+    - candy_cane: 1
+    - christmas_ghost_hood: 1
+    - christmas_ghost_top: 1
+    - christmas_ghost_bottoms: 1
+    - squirrel_ears: 1
+    - bone_brooch: 1
+    - flagstaff_of_festivities: 1
+    - magnifying_glass: 1
+    - investigators_hat: 1
+    - investigators_trousers: 1
+    - investigators_coat: 1
+    - mysterious_book: 1
+    - salty_claws_hat: 1
+    - heimland_games_souvenir: 1
+    - golden_cracker: 1
+    - tenth_anniversary_cake: 1
+    - hati_head: 1
 inventory_454:
   id: 454
   defaults:

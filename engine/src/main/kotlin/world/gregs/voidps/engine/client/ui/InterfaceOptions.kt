@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.ui
 
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.sendInterfaceSettings
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -26,7 +27,7 @@ class InterfaceOptions(
         val script = if (comp["primary", true]) "primary_options" else "secondary_options"
         val inventory = inventoryDefinitions.get(comp["inventory", ""])
         if (inventory.id != -1) {
-            val combined = (comp["parent", -1] shl 16) or comp.id
+            val combined = InterfaceDefinition.pack(comp["parent", -1], comp.id)
             val all = get(id, component)
             val options = all.copyOfRange(0, min(9, all.size))
             player.sendScript(script, combined, inventory.id, inventory["width", 0], inventory["height", 0], 0, -1, *options)

@@ -101,6 +101,7 @@ val engineModule = module {
     single(createdAtStart = true) { PrayerDefinitions().load() }
     single(createdAtStart = true) { GearDefinitions().load() }
     single(createdAtStart = true) { ItemOnItemDefinitions().load() }
+    single(createdAtStart = true) { DiangoCodeDefinitions().load() }
     single(createdAtStart = true) { AccountDefinitions().load() }
     single(createdAtStart = true) { HuntModeDefinitions().load() }
     single(createdAtStart = true) { CategoryDefinitions().load() }

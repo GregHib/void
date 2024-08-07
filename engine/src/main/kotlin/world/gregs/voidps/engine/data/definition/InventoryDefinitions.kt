@@ -29,6 +29,7 @@ class InventoryDefinitions(
                             return
                         }
                         val def = definitions[id]
+                        def.length = map["length"] as? Int ?: def.length
                         def.ids = IntArray(def.length) { itemDefs.get(value.getOrNull(it)?.keys?.first() ?: "").id }
                         def.amounts = IntArray(def.length) { value.getOrNull(it)?.values?.first() ?: 0 }
                     }
