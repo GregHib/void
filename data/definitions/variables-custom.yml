@@ -474,6 +474,6 @@ equip_longbow:
 equip_crossbow:
   persist: true
   format: boolean
-flagstaff:
+flagstaff_runefest:
   persist: true
   format: boolean

@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.playerDespawn
@@ -41,6 +42,7 @@ interfaceOption("Claim", "items", "diangos_item_retrieval") {
 }
 
 val inventoryDefinitions: InventoryDefinitions by inject()
+val itemDefinitions: ItemDefinitions by inject()
 
 fun refreshItems(player: Player) {
     val more: Boolean = player["retrieve_more", false]
@@ -58,7 +60,8 @@ fun refreshItems(player: Player) {
         for (index in 0 until inventory.size) {
             val map = defaults.getOrNull(index) ?: continue
             val id = map.keys.firstOrNull() ?: continue
-            if (!player.ownsItem(id)) {
+            val event: String? = itemDefinitions.get(id).getOrNull("event")
+            if ((event == null || player[event, false]) && !player.ownsItem(id)) {
                 // Add second screen if itemLimit is reached
                 if (!more && inventory.count >= itemLimit) {
                     displayMore = true
