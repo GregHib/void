@@ -16,6 +16,24 @@ var Player.slayerTask: String
         this["slayer_task"] = value
     }
 
+var Player.slayerTaskRemaining: Int
+    get() = this["slayer_task_amount_remaining", 0]
+    set(value) {
+        this["slayer_task_amount_remaining"] = value
+    }
+
+var Player.slayerStreak: Int
+    get() = this["slayer_task_amount_remaining", 0]
+    set(value) {
+        this["slayer_task_amount_remaining"] = value
+    }
+
+var Player.slayerTasks: Int
+    get() = this["slayer_tasks_given", 0]
+    set(value) {
+        this["slayer_tasks_given"] = value
+    }
+
 val NPC.race: String
     get() = this.def["race", ""]
 

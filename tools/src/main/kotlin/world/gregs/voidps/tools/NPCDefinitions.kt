@@ -24,8 +24,8 @@ object NPCDefinitions {
             if (def.transforms?.contains(171) == true || def.transforms?.contains(4610) == true) {
                 println("$i ${def.name} ${def.transforms?.toList()}")
             }
-            if (def.name.contains("brimstail", ignoreCase = true)) {
-                println("$i ${def.name} ${def.extras} ${def.varp} ${def.varbit}")
+            if (def.name.contains("turael", ignoreCase = true)) {
+                println("$i ${def.name} ${def.transforms?.toList()}")
             }
         }
     }

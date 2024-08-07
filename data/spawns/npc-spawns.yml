@@ -1306,6 +1306,8 @@
 - { id: pikkupstix_spawn_2, x: 2925, y: 3443 }
 # 11574
 - { id: nora_t_hagg, x: 2904, y: 3463 }
+# 11575
+- { id: turael, x: 2931, y: 3536 }
 # 11668
 - { id: rat, x: 2899, y: 9520, members: true }
 - { id: rat, x: 2938, y: 9496, members: true }

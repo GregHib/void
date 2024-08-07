@@ -2175,3 +2175,8 @@ explorer_jack:
   wander_radius: 5
   race: human
   examine: "He looks like a professional explorer."
+turael:
+  id: 8461
+  race: human
+  wander_radius: 3
+  examine: "He looks dangerous!"

@@ -474,3 +474,18 @@ equip_longbow:
 equip_crossbow:
   persist: true
   format: boolean
+slayer_points:
+  persist: true
+  format: int
+slayer_tasks_given:
+  persist: true
+  format: int
+slayer_task_streak:
+  persist: true
+  format: int
+slayer_task:
+  persist: true
+  format: string
+slayer_task_amount_remaining:
+  persist: true
+  format: int
