@@ -50,7 +50,7 @@ npcOperate("Redeem-code", "diango") {
         return@npcOperate
     }
     for (item in definition.add) {
-        if (player[code, false]) {
+        if (player[definition.variable, false]) {
             player.message("You have already claimed this code.")
             return@npcOperate
         }
@@ -61,7 +61,7 @@ npcOperate("Redeem-code", "diango") {
         }
     }
     if (success) {
-        player[code] = true
+        player[definition.variable] = true
         player.message("Your code has been successfully processed.")
     } else {
         player.inventoryFull()

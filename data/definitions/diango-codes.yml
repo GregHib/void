@@ -1,2 +1,3 @@
-flagstaff_runefest:
+flagstaff:
+  variable: flagstaff_runefest
   add: [ flagstaff_of_festivities ]
