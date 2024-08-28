@@ -1,3 +1,4 @@
+play_with_eek: 2178
 traiborn_bone_spell: 777
 demon_slayer_spell:
   id: 782
@@ -178,7 +179,23 @@ emote_dung_master_gravecreeper: 2778
 emote_dung_master_flesh_spoiler: 2779
 emote_dung_master_cursebearer: 2780
 emote_reindeer: 859
+emote_reindeer_2: 263
 emote_snow_globe_flurry: 1284
+emote_golden_hammer_spin: 2953
+emote_red_marionette_jump: 507
+emote_red_marionette_walk: 508
+emote_red_marionette_bow: 509
+emote_red_marionette_dance: 510
+emote_blue_marionette_jump: 511
+emote_blue_marionette_walk: 512
+emote_blue_marionette_bow: 513
+emote_blue_marionette_dance: 514
+emote_green_marionette_jump: 515
+emote_green_marionette_walk: 516
+emote_green_marionette_bow: 517
+emote_green_marionette_dance: 518
+emote_chocatrice_cape: 1566
+emote_squirrel_ears: 2145
 level_up: 199
 home_tele_1: 775
 home_tele_2: 800

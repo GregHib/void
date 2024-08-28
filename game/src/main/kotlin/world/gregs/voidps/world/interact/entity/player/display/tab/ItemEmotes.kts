@@ -36,6 +36,7 @@ inventoryItem("Emote", "reindeer_hat", "worn_equipment") {
         return@inventoryItem
     }
     player.setGraphic("emote_reindeer")
+	player.setGraphic("emote_reindeer_2")
     player.playAnimation("emote_reindeer")
 }
 
@@ -64,11 +65,22 @@ inventoryItem("Recite-prayer", "prayer_book", "inventory") {
     player.playAnimation("emote_recite_prayer")
 }
 
+playerOperate("Whack") {
+     if (player.weapon.id == "rubber_chicken") {
+         player.playSound("rubber_chicken_whack")
+         player.playAnimation("rubber_chicken_whack")
+    } else {
+        //todo player.playSound("")
+         player.playAnimation("easter_carrot_whack")
+    }
+}
+
 inventoryItem("Dance", "rubber_chicken") {
     if (player.hasClock("emote_delay")) {
         player.message("Please wait till you've finished performing your current emote.")
         return@inventoryItem
     }
+	player.playJingle("easter_scape_scrambled")
     player.playAnimation("emote_chicken_dance")
 }
 
@@ -114,4 +126,114 @@ inventoryOptions("Play", "Loop", "Walk", "Crazy", item = "yo_yo", inventory = "i
         return@inventoryOptions
     }
     player.playAnimation("emote_yoyo_${option.lowercase()}")
+}
+
+inventoryItem("Spin","candy_cane","worn_equipment") {
+    if (player.hasClock("emote_delay")) {
+        player.message("Please wait till you've finished performing your current emote.")
+        return@inventoryItem
+    }
+    player.playAnimation("emote_candy_cane_spin")
+}
+
+inventoryItem("Dance","salty_claws_hat","worn_equipment") {
+    if (player.hasClock("emote_delay")) {
+        player.message("Please wait till you've finished performing your current emote.")
+        return@inventoryItem
+    }
+    player.playAnimation("emote_salty_claws_hat_dance")
+}
+
+inventoryItem("Celebrate", "tenth_anniversary_cake") {
+    if (player.hasClock("emote_delay")) {
+        player.message("Please wait till you've finished performing your current emote.")
+        return@inventoryItem
+    }
+    player.setGraphic("10th_anniversary_cake")
+    player.playAnimation("emote_10th_anniversary_cake")
+}
+
+inventoryItem("Brandish (2009)","golden_hammer","worn_equipment") {
+    if (player.hasClock("emote_delay")) {
+        player.message("Please wait till you've finished performing your current emote.")
+        return@inventoryItem
+    }
+    player.playAnimation("emote_golden_hammer_brandish")
+}
+
+inventoryItem("Spin (2010)","golden_hammer","worn_equipment") {
+    if (player.hasClock("emote_delay")) {
+        player.message("Please wait till you've finished performing your current emote.")
+        return@inventoryItem
+    }
+    player.setGraphic("emote_golden_hammer_spin")
+    player.playAnimation("emote_golden_hammer_spin")
+}
+
+inventoryOptions("Jump", "Walk", "Bow", "Dance", item = "*_marionette"  , inventory = "inventory") {
+    if (player.hasClock("emote_delay")) {
+        player.message("Please wait till you've finished performing your current emote.")
+        return@inventoryOptions
+    }
+    player.setGraphic("emote_${item.id}_${option.lowercase()}")
+    player.playAnimation("emote_marionette_${option.lowercase()}")
+}
+
+inventoryItem("Sleuth","magnifying_glass","worn_equipment") {
+    if (player.hasClock("emote_delay")) {
+        player.message("Please wait till you've finished performing your current emote.")
+        return@inventoryItem
+    }
+    player.playAnimation("emote_magnifying_glass_sleuth")
+}
+
+inventoryItem("Emote","chocatrice_cape","worn_equipment") {
+    if (player.hasClock("emote_delay")) {
+        player.message("Please wait till you've finished performing your current emote.")
+        return@inventoryItem
+    }
+    player.setGraphic("emote_chocatrice_cape")
+    player.playAnimation("emote_chocatrice_cape")
+}
+
+inventoryItem("Juggle","squirrel_ears","worn_equipment") {
+    if (player.hasClock("emote_delay")) {
+        player.message("Please wait till you've finished performing your current emote.")
+        return@inventoryItem
+    }
+    player.setGraphic("emote_squirrel_ears")
+    player.playAnimation("emote_squirrel_ears")
+}
+
+inventoryItem("Play-with", "toy_horsey_*") {
+    if (player.hasClock("emote_delay")) {
+        player.message("Please wait till you've finished performing your current emote.")
+        return@inventoryItem
+    }
+  //  when (random.nextInt(0, 3)) {
+   //     0 -> {
+   //         player.forceChat = "Come on Dobbin, we can win the race!"
+   //     }
+    //    1 -> {
+    //        player.forceChat = "Hi-ho Silver, and away!"
+    //    }
+    //    2 -> {
+    //        player.forceChat = "Neaahhhyyy! Giddy-up horsey!"
+    //    }
+   // }
+    player.forceChat = "Just say neigh to gambling!"
+    player.playAnimation("emote_${item.id.lowercase()}")
+}
+
+inventoryOptions("Play-with", item = "eek") {
+    if (player.hasClock("emote_delay")) {
+        player.message("Please wait till you've finished performing your current emote.")
+        return@inventoryOptions
+    }
+    player.setGraphic("play_with_eek")
+    player.playAnimation("play_with_eek")
+}
+
+inventoryItem("Summon Minion","squirrel_ears","worn_equipment") {
+    //todo summon npc 9682 and 9681 if dismiss have to wait 30mins before able to summon again
 }

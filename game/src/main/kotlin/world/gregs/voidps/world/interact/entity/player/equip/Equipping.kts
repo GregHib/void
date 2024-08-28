@@ -27,7 +27,9 @@ inventoryOptions("Wield", "Wear", "Hold", "Equip", inventory = "inventory") {
         player.inventoryFull()
         return@inventoryOptions
     }
-
+	if (item.id == "rubber_chicken" || item.id == "easter_carrot") {
+        player.options.set(5, "Whack")
+    }
     if (replace2hWithShield(player, def) || replaceShieldWith2h(player, def)) {
         player.inventory.move(slot, player.equipment, item.slot.index)
         player.equipment.move(getOtherHandSlot(item.slot).index, player.inventory)
@@ -44,6 +46,9 @@ inventoryOptions("Wield", "Wear", "Hold", "Equip", inventory = "inventory") {
 }
 
 inventoryOption("Remove", "worn_equipment") {
+    if (item.id == "rubber_chicken" || item.id == "easter_carrot")  {
+        player.options.remove( "Whack")
+    }
     player.equipment.move(slot, player.inventory)
     when (player.equipment.transaction.error) {
         TransactionError.None -> playEquipSound(player, item.def)
@@ -58,6 +63,9 @@ itemChange("worn_equipment", EquipSlot.Weapon) { player ->
 
 playerSpawn { player ->
     updateWeaponEmote(player)
+	if (player.has(EquipSlot.Weapon) && player.weapon.id == "rubber_chicken" ||  player.weapon.id == "easter_carrot") {
+       player.options.set(5, "Whack")
+   }
 }
 
 fun replaceWeaponShieldWith2h(player: Player, item: ItemDefinition) =

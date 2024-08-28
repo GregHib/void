@@ -384,6 +384,11 @@ emote_flap:
   ticks: 3
   walk: false
   run: false
+emote_enhanced_flap:
+  id: 3859
+  ticks: 3
+  walk: false
+  run: false
 emote_slap_head:
   id: 4275
   ticks: 3
@@ -685,7 +690,7 @@ emote_recite_prayer:
   walk: false
   run: false
 emote_chicken_dance:
-  id: 6400
+  id: 1835
   ticks: 8
   walk: false
   run: false
@@ -732,6 +737,101 @@ emote_shake_snow_globe:
 emote_trample_snow:
   id: 7528
   ticks: 8
+  walk: false
+  run: false
+emote_candy_cane_spin:
+  id: 12664
+  ticks: 2
+  walk: false
+  run: false
+emote_salty_claws_hat_dance:
+  id: 329
+  ticks: 2
+  walk: false
+  run: false
+emote_golden_hammer_spin:
+  id: 15149
+  ticks: 7
+  walk: false
+  run: false
+emote_golden_hammer_brandish:
+  id: 15150
+  ticks: 4
+  walk: false
+  run: false
+emote_10th_anniversary_cake:
+  id: 6292
+  ticks: 8
+  walk: false
+  run: false
+emote_marionette_jump:
+  id: 3003
+  ticks: 8
+  walk: false
+  run: false
+emote_marionette_walk:
+  id: 3004
+  ticks: 10
+  walk: false
+  run: false
+emote_marionette_bow:
+  id: 3005
+  ticks: 4
+  walk: false
+  run: false
+emote_marionette_dance:
+  id: 3006
+  ticks: 10
+  walk: false
+  run: false
+emote_magnifying_glass_sleuth:
+  id: 2936
+  ticks: 8
+  walk: false
+  run: false
+emote_chocatrice_cape:
+  id: 8903
+  ticks: 6
+  walk: false
+  run: false
+emote_squirrel_ears:
+  id: 12265
+  ticks: 6
+  walk: false
+  run: false
+emote_toy_horsey_brown:
+  id: 918
+  ticks: 4
+  walk: false
+  run: false
+emote_toy_horsey_white:
+  id: 919
+  ticks: 4
+  walk: false
+  run: false
+emote_toy_horsey_black:
+  id: 920
+  ticks: 4
+  walk: false
+  run: false
+emote_toy_horsey_grey:
+  id: 921
+  ticks: 4
+  walk: false
+  run: false
+rubber_chicken_whack:
+  id: 1833
+  ticks: 2
+  walk: false
+  run: false 
+easter_carrot_whack:
+  id: 11547
+  ticks: 2
+  walk: false
+  run: false
+play_with_eek:
+  id: 12490
+  ticks: 6
   walk: false
   run: false
 rest_legs_out:
