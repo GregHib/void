@@ -2280,3 +2280,17 @@ explorer_jack:
   wander_radius: 5
   race: human
   examine: "He looks like a professional explorer."
+ring_of_stone:
+  id: 2626
+easter_egg_0:
+  id: 3689
+easter_egg_1:
+  id: 3690
+easter_egg_2:
+  id: 3691
+easter_egg_3:
+  id: 3692
+easter_egg_4:
+  id: 3693
+easter_egg_5:
+  id: 3694

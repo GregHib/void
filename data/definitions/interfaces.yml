@@ -1306,6 +1306,11 @@ trade_side:
 dialogue_tutorial_text:
   id: 372
   type: dialogue_box
+morph:
+  id: 375
+  type: overlay_tab
+  components:
+    unmorph: 3
 slayer_rewards_learn: 378
 wilderness_skull:
   id: 381
