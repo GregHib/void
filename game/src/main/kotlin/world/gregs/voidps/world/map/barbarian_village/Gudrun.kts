@@ -36,6 +36,8 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
+val objects: GameObjects by inject()
+
 npcOperate("Talk-to", "gudrun*") {
     when (player.quest("gunnars_ground")) {
         "gunnars_ground" -> gunnarsGround()
