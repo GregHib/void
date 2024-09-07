@@ -190,17 +190,14 @@ suspend fun CharacterContext.cutscenePart2(instance: Region) {
     npc<Mad>("haakon_the_champion_cutscene", "GUNNAR'S GROUND!")
     player.open("fade_out")
     delay(4)
-    dororan.tele(Tile(3082, 3426).add(offset))
-    dororan.face(Direction.WEST)
-    gudrun.tele(Tile(3081, 3426).add(offset))
-    gudrun.face(Direction.EAST)
-    val npc = listOf(kjell, gunthor, haakon)
+    val npc = listOf(kjell, gunthor, haakon, gudrun, dororan)
     for (remove in npc) {
         npcs.remove(remove)
         npcs.removeIndex(remove)
     }
     player.moveCamera(Tile(3084, 3421).add(offset), 350)
     player.turnCamera(Tile(3082, 3426).add(offset), 250)
+	val gudrunHugging = objects.add("gudrun_and_dororan", Tile(3082,3426), shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
     player.open("fade_in")
     npc<Happy>("gudrun_cutscene", "That was brilliant! I must know who wrote that poem.")
     npc<Sad>("dororan_cutscene", "Um, that would be me. Hello")
@@ -210,8 +207,8 @@ suspend fun CharacterContext.cutscenePart2(instance: Region) {
     npc<Cry>("dororan_cutscene", "Sorry.")
     npc<Happy>("gudrun_cutscene", "I had no idea dwarves could be so romantic! Come here! ")
     delay(2)
-    //anim 17513 - Gudrun Hugging Dororan (Gunnar’s Ground) ?
-    gudrun.setAnimation("17513")
+    gudrunHugging.animate("gudrun_hugging")
+    delay(4)
     player.queue.clear("gunnars_ground_cutscene_end")
     endCutscene(instance)
     player["gunnars_ground"] = "gunnars_ground"

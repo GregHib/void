@@ -2682,6 +2682,9 @@ chair_21:
 large_door_18_opened:
   id: 26207
   examine: "A sturdy wooden door."
+gudrun_and_dororan:
+  id: 5657
+  examine: "gudrun and dororan"  
 large_door_18_closed:
   id: 5667
   examine: "A sturdy wooden door."
