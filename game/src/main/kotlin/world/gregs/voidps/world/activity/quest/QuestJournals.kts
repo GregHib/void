@@ -14,8 +14,9 @@ val quests = arrayOf(
     "dorics_quest",
 	"gunnars_ground",
     "the_knights_sword",
-    "rune_mysteries"
+    "rune_mysteries",
     // members
+    "druidic_ritual"
 )
 
 interfaceOpen("quest_journals") { player ->

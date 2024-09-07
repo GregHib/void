@@ -1305,10 +1305,12 @@
 - { id: cow_calf, x: 2933, y: 3276 }
 - { id: iconis, x: 2930, y: 3326, direction: SOUTH }
 # 11573
+- { id: sanfew, x: 2897, y: 3426, level: 1, members: true }
 - { id: pikkupstix_spawn, x: 2925, y: 3443 }
 - { id: pikkupstix_spawn_2, x: 2925, y: 3443 }
 # 11574
 - { id: nora_t_hagg, x: 2904, y: 3463 }
+- { id: kaqemeex, x: 2925, y: 3486, members: true }
 # 11668
 - { id: rat, x: 2899, y: 9520, members: true }
 - { id: rat, x: 2938, y: 9496, members: true }
@@ -1948,6 +1950,9 @@
 - { id: giant_rat_dark_injured, x: 3202, y: 3161 }
 - { id: giant_rat_dark_injured, x: 3233, y: 3161 }
 # 12850
+- { id: woman, x: 3217, y: 3205 }
+- { id: woman, x: 3211, y: 3213, level: 1 }
+- { id: woman, x: 3235, y: 3206 }
 - { id: harlan, x: 3208, y: 3252 }
 - { id: nemarti, x: 3210, y: 3255 }
 - { id: mikasi, x: 3212, y: 3253 }
