@@ -180,7 +180,7 @@ fun CharacterContext.questComplete() {
     player.inc("quest_points",4)
     player.softQueue("quest_complete", 1) {
         player.sendQuestComplete("Druidic Ritual", listOf(
-            "4 Quest Point",
+            "4 Quest Points",
             "Access to the Herblore Skill",
             "250 Herblore XP",
         ), Item("clean_marrentill")
