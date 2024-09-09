@@ -32,7 +32,7 @@ interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 33) {
             "<navy>I should speak to <maroon>Kaqemeex <navy>again and claim my <maroon>reward"
         )
         else -> listOf(
-            "<navy>I cant start this quest by talking to <maroon>Kaqemeex <navy>at the<maroon> Taverley Stone Circle."
+            "<navy>I can start this quest by talking to <maroon>Kaqemeex <navy>at the<maroon> Taverley Stone Circle."
         )
     }
     player.sendQuestJournal("Druidic Ritual", lines)
