@@ -27,7 +27,6 @@ inventoryOptions("Wield", "Wear", "Hold", "Equip", inventory = "inventory") {
         player.inventoryFull()
         return@inventoryOptions
     }
-
     if (replace2hWithShield(player, def) || replaceShieldWith2h(player, def)) {
         player.inventory.move(slot, player.equipment, item.slot.index)
         player.equipment.move(getOtherHandSlot(item.slot).index, player.inventory)
@@ -44,6 +43,9 @@ inventoryOptions("Wield", "Wear", "Hold", "Equip", inventory = "inventory") {
 }
 
 inventoryOption("Remove", "worn_equipment") {
+    if (item.id == "rubber_chicken" || item.id == "easter_carrot") {
+        player.options.remove("Whack")
+    }
     player.equipment.move(slot, player.inventory)
     when (player.equipment.transaction.error) {
         TransactionError.None -> playEquipSound(player, item.def)
@@ -95,16 +97,18 @@ fun playEquipSound(player: Player, item: ItemDefinition) {
             name.contains("salamander") -> "equip_salamander"
             name.contains("banner") -> "equip_banner"
             name.contains("blunt") -> "equip_blunt"
-			name.contains("ghost buster 500") -> "equip_halloween_spray"
+            name.contains("ghost buster 500") -> "equip_halloween_spray"
             name == "sled" -> "equip_sled"
             name == "dark bow" -> "equip_darkbow"
             name == "silverlight" -> "equip_silverlight"
             else -> if (material == "metal") "equip_sword" else "equip_clothes"
         }
+
         EquipSlot.Hat -> when {
             name == "jack lantern mask" -> "equip_halloween_pumpkin"
             else -> if (material == "metal") "equip_helm" else "equip_clothes"
         }
+
         EquipSlot.Chest -> if (material == "metal") "equip_body" else "equip_clothes"
         EquipSlot.Shield -> if (material == "metal") "equip_shield" else "equip_clothes"
         EquipSlot.Legs -> if (material == "metal") "equip_legs" else "equip_clothes"

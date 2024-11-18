@@ -1306,6 +1306,11 @@ trade_side:
 dialogue_tutorial_text:
   id: 372
   type: dialogue_box
+morph:
+  id: 375
+  type: overlay_tab
+  components:
+    unmorph: 3
 slayer_rewards_learn: 378
 wilderness_skull:
   id: 381
@@ -1704,6 +1709,16 @@ emotes:
     puppet_master: 50
     taskmaster: 51
     seal_of_approval: 52
+diangos_item_retrieval:
+  id: 468
+  type: main_screen
+  components:
+    items:
+      id: 2
+      inventory: diangos_item_retrieval
+      options:
+        Claim: 0
+        Examine: 9
 barbarian_assult_rewards: 473
 barbarian_assult_horn: 484
 barbarian_assult_attacker: 485

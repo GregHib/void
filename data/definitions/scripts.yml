@@ -15,6 +15,7 @@ update_bank_slots: 1465
 quest_journal_refresh: 2165
 quest_journal_length: 1207
 trade_warning: 143
+close_entry: 101
 int_entry: 108
 string_entry: 109
 dialogue_item_zoom: 3449
@@ -28,3 +29,49 @@ task_main_list_filter_set: 3986
 task_summary_accordion: 4000
 task_summary_close: 4001
 task_list_button_hide: 4101
+set_scroll_height:
+  id: 1208
+  params:
+    - "scroll bar component"
+    - "interface container"
+    - "container height"
+    - "append"
+interface_inv_init:
+  id: 149
+  params:
+    - "interface container"
+    - "interface id"
+    - "width"
+    - "height"
+    - "drag mode"
+    - "drag start interface id"
+    - "option 1"
+    - "option 2"
+    - "option 3"
+    - "option 4"
+    - "option 5"
+interface_inv_update:
+  id: 152
+  params:
+    - "interface container"
+    - "interface id"
+    - "width"
+    - "height"
+    - "drag mode"
+    - "drag start interface id"
+    - "option 1"
+    - "option 2"
+    - "option 3"
+    - "option 4"
+    - "option 5"
+scrollbar_resize:
+  id: 72
+  params:
+    - "scroll bar interface id"
+    - "container interface id"
+    - "scroll bar height"
+scrollbar_vertical:
+  id: 30
+  params:
+    - "scroll bar interface id"
+    - "container interface id"

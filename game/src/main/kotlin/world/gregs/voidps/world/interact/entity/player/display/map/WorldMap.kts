@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.display.map
 
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.interfaceSlot
@@ -9,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.encode.updateInterface
+import world.gregs.voidps.world.interact.entity.effect.frozen
 
 val definitions: InterfaceDefinitions by inject()
 
@@ -56,7 +58,11 @@ interfaceOption("Clear marker", "marker", "world_map") {
 }
 
 interfaceOption(component = "world_map", id = "toplevel*") {
-    player.open("world_map")
+    if (player.frozen) {
+        player.message("You cannot do this at the moment.") // TODO proper message
+    } else {
+        player.open("world_map")
+    }
 }
 
 interfaceOption(component = "close", id = "world_map") {

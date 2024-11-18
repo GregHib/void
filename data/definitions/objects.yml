@@ -1845,6 +1845,12 @@ fire_orange:
   examine: "Hot!"
 city_gate_opened:
   id: 20091
+anvil_dorics:
+  id: 2782
+  examine: "It says 'Property of Doric the dwarf' on the side."
+anvil:
+  id: 2783
+  examine: "Used for fashioning metal items."
 city_gate_closed:
   id: 2786
   examine: "An entrance to Gu'Tanoth."
@@ -2886,6 +2892,9 @@ door_163_opened:
 door_163_closed:
   id: 6114
   examine: "The door is closed."
+anvil_keldagrim:
+  id: 6150
+  examine: "Useful for making weapons."
 crate_59:
   id: 6177
   examine: "Big mysterious crates. You wonder what could be inside."
@@ -5664,23 +5673,26 @@ depleted_rocks_ingneous_3:
 crate_152:
   id: 17033
   examine: "Big crate. Probably has crossbow bits inside."
-large_door_51_opened:
-  id: 17090
-  examine: "A sturdy wooden door."
+anvil_blast_Furnace:
+  id: 17073
+  examine: "Used for fashioning metal items."
 large_door_51_closed:
   id: 17089
   examine: "A sturdy wooden door."
-large_door_53_opened:
-  id: 17092
-  examine: "A large double door."
+large_door_51_opened:
+  id: 17090
+  examine: "A sturdy wooden door."
 large_door_53_closed:
   id: 17091
   examine: "A large double door."
-large_door_55_opened:
-  id: 17094
+large_door_53_opened:
+  id: 17092
   examine: "A large double door."
 large_door_55_closed:
   id: 17093
+  examine: "A large double door."  
+large_door_55_opened:
+  id: 17094
   examine: "A large double door."
 crate_153:
   id: 17100

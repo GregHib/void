@@ -425,17 +425,116 @@ bob:
 shopkeeper_lumbridge:
   id: 520
   race: human
+  shop: lumbridge_general_store
+  wander_radius: 2
   examine: "Sells stuff."
 shop_assistant_lumbridge:
   id: 521
   race: human
+  shop: lumbridge_general_store
+  wander_radius: 2
   examine: "Helps sell stuff."
+shopkeeper_varrock:
+  id: 522
+  race: human
+  shop: varrock_general_store
+  wander_radius: 2
+  examine: "Likes people spending money."
+shop_assistant_varrock:
+  id: 523
+  race: human
+  shop: varrock_general_store
+  wander_radius: 2
+  examine: "Likes helping sell stuff."
+shopkeeper_al_kharid:
+  id: 524
+  race: human
+  shop: al_kharid_general_store
+  wander_radius: 2
+  examine: "A product of a consumerist society."
+shop_assistant_al_kharid:
+  id: 525
+  race: human
+  shop: al_kharid_general_store
+  wander_radius: 2
+  examine: "Likes you more, the more you spend."
+shopkeeper_falador:
+  id: 526
+  race: human
+  shop: falador_general_store
+  wander_radius: 2
+  examine: "A product of a consumerist society."
+shop_assistant_falador:
+  id: 527
+  race: human
+  shop: falador_general_store
+  wander_radius: 2
+  examine: "Likes you more, the more you spend."
+shopkeeper_edgeville:
+  id: 528
+  race: human
+  shop: edgeville_general_store
+  wander_radius: 2
+  examine: "If he doesn't have it, he can't sell it."
+shop_assistant_edgeville:
+  id: 529
+  race: human
+  shop: edgeville_general_store
+  wander_radius: 2
+  examine: "She's here on work experience."
+shopkeeper_rimmington:
+  id: 530
+  race: human
+  shop: rimmington_general_store
+  wander_radius: 2
+  examine: "Has an interesting assortment of items for sale."
+shop_assistant_rimmington:
+  id: 531
+  race: human
+  shop: rimmington_general_store
+  wander_radius: 2
+  examine: "Works on commission."
+shopkeeper_musa_point:
+  id: 11674
+  race: human
+  shop: karamja_general_store
+  wander_radius: 2
+  examine: "Clearly takes pride in his appearance."
+shop_assistant_musa_point:
+  id: 11678
+  race: human
+  shop: karamja_general_store
+  wander_radius: 2
+  examine: "Needs a haircut."
 zeke:
   id: 541
   race: human
   shop: zekes_superior_scimitars
   wander_radius: 3
   examine: "Sells superior scimitars."
+louie_legs:
+  id: 542
+  wander_radius: 4
+  shop: louies_armoured_legs_bazaar
+  race: human
+  examine: "For the finest in armoured legware."
+karim:
+  id: 543
+  wander_radius: 4
+  race: human
+  examine: "Kebabs are full of meaty goodness."
+ranael:
+  id: 544
+  wander_radius: 4
+  shop: ranaels_super_skirt_store
+  race: human
+  examine: "She's an expert on armoured skirts!"
+dommik:
+  id: 545
+  wander_radius: 4
+  shop: dommiks_crafting_store
+  race: human
+  examine: "If Crafting's your thing, he's your man."
 baraek:
   id: 547
   race: human
@@ -667,6 +766,12 @@ jeed:
   race: human
   wander_radius: 3
   examine: "A citizen of Al Kharid."
+diango:
+  id: 970
+  wander_radius: 4
+  shop: diangos_toy_store
+  race: human
+  examine: "A toy-seller who looks after people's toys for them."  
 hamid:
   id: 1008
   race: human
@@ -2175,3 +2280,17 @@ explorer_jack:
   wander_radius: 5
   race: human
   examine: "He looks like a professional explorer."
+ring_of_stone:
+  id: 2626
+easter_egg_0:
+  id: 3689
+easter_egg_1:
+  id: 3690
+easter_egg_2:
+  id: 3691
+easter_egg_3:
+  id: 3692
+easter_egg_4:
+  id: 3693
+easter_egg_5:
+  id: 3694

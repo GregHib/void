@@ -66,7 +66,7 @@ itemOnObjectOperate("grain", "hopper") {
     }
 }
 
-objectOperate("Take-flour", "flour_bin_3") {
+objectOperate("Take-flour", "flour_bin") {
     if (!player.holdsItem("empty_pot")) {
         player.message("You need an empty pot to hold the flour in.")
         return@objectOperate

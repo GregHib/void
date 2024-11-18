@@ -1267,6 +1267,9 @@
 # 11423
 - { id: banker_keldagrim, x: 2836, y: 10205, direction: NORTH, members: true }
 - { id: banker_keldagrim_2, x: 2838, y: 10205, direction: NORTH, members: true }
+# 11569
+- { id: shopkeeper_musa_point, x: 2902, y: 3146 }
+- { id: shop_assistant_musa_point, x: 2902, y: 3150 }
 # 11570
 - { id: rat, x: 2923, y: 3251 }
 - { id: rat, x: 2939, y: 3242 }
@@ -1323,6 +1326,8 @@
 - { id: a_pile_of_broken_glass, x: 2981, y: 3190 }
 - { id: thurgo, x: 3001, y: 3144 }
 # 11826
+- { id: shopkeeper_rimmington, x: 2947, y: 3217 }
+- { id: shop_assistant_rimmington, x: 2948, y: 3217 }
 - { id: butterfly_1, x: 2954, y: 3227 }
 - { id: butterfly_1, x: 2958, y: 3213 }
 - { id: goblin_light_grey_bald, x: 2997, y: 3216 }
@@ -1334,6 +1339,8 @@
 - { id: goblin_light_brown_mohawk, x: 3002, y: 3210 }
 - { id: goblin_light_topless_spiked, x: 3002, y: 3206 }
 # 11828
+- { id: shopkeeper_falador, x: 2957, y: 3386 }
+- { id: shop_assistant_falador, x: 2955, y: 3389 }
 - { id: squire_asrol, x: 2975, y: 3343 }
 - { id: hairdresser, x: 2946, y: 3379 }
 - { id: banker_falador, x: 2945, y: 3366, direction: NORTH }
@@ -1567,6 +1574,7 @@
 # 12337
 - { id: traiborn, x: 3112, y: 3162, level: 1 }
 # 12338
+- { id: diango, x: 3081, y: 3247 }
 - { id: musician_draynor_village, x: 3110, y: 3253, direction: SOUTH }
 - { id: banker_3, x: 3088, y: 3242 }
 - { id: banker_3, x: 3090, y: 3245, direction: EAST }
@@ -1610,6 +1618,8 @@
 - { id: haakon_the_champion, x: 3081, y: 3444 }
 - { id: kjell, x: 3079, y: 3414, direction: NORTH_EAST }
 # 12342
+- { id: shopkeeper_edgeville, x: 3080, y: 3511 }
+- { id: shop_assistant_edgeville, x: 3081, y: 3511 }
 - { id: man, x: 3093, y: 3512 }
 - { id: man, x: 3097, y: 3512 }
 - { id: man, x: 3100, y: 3509 }
@@ -2126,6 +2136,8 @@
 - { id: tarquin, x: 3203, y: 3344 }
 - { id: mage_of_zamorak_varrock, x: 3259, y: 3386, members: true }
 # 12853
+- { id: shopkeeper_varrock, x: 3218, y: 3415 }
+- { id: shop_assistant_varrock, x: 3217, y: 3411 }
 - { id: ash_cleaner, x: 3250, y: 3429 }
 - { id: iffie, x: 3204, y: 3419 }
 - { id: aubury, x: 3253, y: 3402 }
@@ -2212,6 +2224,12 @@
 # 13104
 - { id: musician_shantay_pass, x: 3309, y: 3126, direction: WEST }
 # 13105
+- { id: karim, x: 3272, y: 3182 }
+- { id: dommik, x: 3321, y: 3194 }
+- { id: louie_legs, x: 3316, y: 3175 }
+- { id: ranael, x: 3316, y: 3164 }
+- { id: shopkeeper_al_kharid, x: 3316, y: 3184 }
+- { id: shop_assistant_al_kharid, x: 3316, y: 3182 }
 - { id: zeke, x: 3288, y: 3190 }
 - { id: banker_al_kharid, x: 3267, y: 3169, direction: EAST }
 - { id: banker_al_kharid, x: 3267, y: 3167, direction: EAST }

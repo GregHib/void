@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.ui
 
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.voidps.engine.client.playMusicTrack
+import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.event.CloseInterface
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
@@ -287,6 +288,7 @@ fun Player.closeInterfaces(): Boolean {
         closed = true
     }
     queue.clearWeak()
+    sendScript("close_entry")
     return closed
 }
 
