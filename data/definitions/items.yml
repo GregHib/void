@@ -30126,7 +30126,6 @@ bobble_hat:
   id: 6856
   weight: 2.0
   slot: "Hat"
-  type: "None"
   examine: "A box full of painted baubles. Give to a Pixie or use to decorate a tree."
 bobble_scarf:
   id: 6857
@@ -30142,7 +30141,6 @@ jester_hat:
   tradeable: false
   weight: 0.25
   slot: "Hat"
-  type: "None"
   destroy: "You can obtain another hat from Diango in the Draynor Market."
   examine: "A woolly jester hat."
   kept: "Wilderness"
@@ -30161,7 +30159,6 @@ tri_jester_hat:
   tradeable: false
   weight: 0.25
   slot: "Hat"
-  type: "None"
   destroy: "You can obtain another hat from Diango in the Draynor Market."
   examine: "A woolly triple bobble jester hat."
   kept: "Wilderness"
@@ -30180,7 +30177,6 @@ woolly_hat:
   tradeable: false
   weight: 0.25
   slot: "Hat"
-  type: "None"
   destroy: "You can obtain another hat from Diango in the Draynor Market."
   examine: "A woolly tobogganing hat."
   kept: "Wilderness"
@@ -30316,19 +30312,16 @@ peach:
 progress_hat:
   id: 6885
   slot: "Hat"
-  type: "None"
   destroy: "Yes"
   examine: "A magic training arena progress hat"
 progress_hat_2:
   id: 6886
   slot: "Hat"
-  type: "None"
   destroy: "Yes"
   examine: "A magic training arena progress hat"
 progress_hat_3:
   id: 6887
   slot: "Hat"
-  type: "None"
   destroy: "Yes"
   examine: "A magic training arena progress hat"
 guardian_statue:
@@ -52166,7 +52159,6 @@ feather_headdress_blue:
   limit: 100
   weight: 2.0
   slot: "Hat"
-  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
 feather_headdress_noted: 12211
 feather_headdress_charged_blue:
@@ -52175,7 +52167,6 @@ feather_headdress_charged_blue:
   bank_stacks: false
   weight: 2.0
   slot: "Hat"
-  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
   kept: "Reclaim"
 feather_headdress_yellow:
@@ -52184,7 +52175,6 @@ feather_headdress_yellow:
   limit: 100
   weight: 2.0
   slot: "Hat"
-  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
 feather_headdress_noted_2: 12214
 feather_headdress_charged_yellow:
@@ -52193,7 +52183,6 @@ feather_headdress_charged_yellow:
   bank_stacks: false
   weight: 2.0
   slot: "Hat"
-  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
   kept: "Reclaim"
 feather_headdress_red:
@@ -52202,7 +52191,6 @@ feather_headdress_red:
   limit: 100
   weight: 2.0
   slot: "Hat"
-  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
 feather_headdress_noted_3: 12217
 feather_headdress_charged_red:
@@ -52211,7 +52199,6 @@ feather_headdress_charged_red:
   bank_stacks: false
   weight: 2.0
   slot: "Hat"
-  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
   kept: "Reclaim"
 feather_headdress_stripy:
@@ -52220,7 +52207,6 @@ feather_headdress_stripy:
   limit: 100
   weight: 2.0
   slot: "Hat"
-  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
 feather_headdress_noted_4: 12220
 feather_headdress_charged_stripy:
@@ -52229,7 +52215,6 @@ feather_headdress_charged_stripy:
   bank_stacks: false
   weight: 2.0
   slot: "Hat"
-  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
   kept: "Reclaim"
 feather_headdress_orange:
@@ -52238,7 +52223,6 @@ feather_headdress_orange:
   limit: 100
   weight: 2.0
   slot: "Hat"
-  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
 feather_headdress_noted_5: 12223
 feather_headdress_charged_orange:
@@ -52247,7 +52231,6 @@ feather_headdress_charged_orange:
   bank_stacks: false
   weight: 2.0
   slot: "Hat"
-  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
   kept: "Reclaim"
 dreadfowl_pouchu:
