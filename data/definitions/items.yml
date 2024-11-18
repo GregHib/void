@@ -2972,7 +2972,6 @@ wizard_hat_blue:
   limit: 100
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "A silly pointed hat."
   kept: "Wilderness"
 wizard_hat_noted: 580
@@ -3350,7 +3349,6 @@ pink_hat:
   limit: 100
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "A silly, pink pointed hat."
 pink_hat_noted: 657
 green_hat:
@@ -3359,7 +3357,6 @@ green_hat:
   limit: 100
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "A silly, green pointed hat."
 green_hat_noted: 659
 blue_hat:
@@ -3368,7 +3365,6 @@ blue_hat:
   limit: 100
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "A silly, blue pointed hat."
 blue_hat_noted: 661
 cream_hat:
@@ -3377,7 +3373,6 @@ cream_hat:
   limit: 100
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "A silly, cream pointed hat."
 cream_hat_noted: 663
 turquoise_hat:
@@ -3386,7 +3381,6 @@ turquoise_hat:
   limit: 100
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "A silly, turquoise pointed hat."
 turquoise_hat_noted: 665
 portrait:
@@ -3886,7 +3880,6 @@ blue_hat_legends_quest:
   tradeable: false
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "A strange blue wizards hat."
   use: "Quest"
   kept: "Wilderness"
@@ -5222,7 +5215,6 @@ black_wizard_hat:
   limit: 100
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "A silly pointed hat."
 wizard_hat_noted_2: 1018
 cape_black:
@@ -21492,7 +21484,7 @@ karils_coif:
   deplete: combat
   slot: "Hat"
   material: "leather"
-  type: "Hair"
+  type: "FullFace"
   examine: "Karil the Tainted's coif."
   weight: 0.907
 karils_coif_noted: 4733
@@ -22356,7 +22348,7 @@ karils_coif_100:
   degrade: karils_coif_75
   deplete: combat
   slot: "Hat"
-  type: "Hair"
+  type: "FullFace"
   material: "leather"
   examine: "Karil the Tainted's coif."
 karils_coif_75:
@@ -22377,7 +22369,7 @@ karils_coif_broken:
   limit: 10
   weight: 0.907
   slot: "Hat"
-  type: "Hair"
+  type: "FullFace"
   material: "leather"
   examine: "Karil the Tainted's coif."
 karils_coif_broken_noted: 4933
@@ -22831,7 +22823,6 @@ mining_helmet:
   limit: 100
   weight: 0.907
   slot: "Hat"
-  type: "Hair"
   light_source:
     once_lit: "mining_helmet_lit"
     level: 65
@@ -24383,7 +24374,7 @@ rogue_mask:
   tradeable: false
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
+  type: "FullFace"
   examine: "Black banded leather armour, a rogue's dream!"
   kept: "Reclaim"
 rogue_trousers:
@@ -26980,7 +26971,7 @@ spined_helm:
   weight: 2.721
   slot: "Hat"
   material: "leather"
-  type: "Hair"
+  type: "FullFace"
   examine: "A helm fit for any Fremennik ranger."
 spined_helm_noted: 6132
 spined_body:
@@ -30135,7 +30126,7 @@ bobble_hat:
   id: 6856
   weight: 2.0
   slot: "Hat"
-  type: "Hair"
+  type: "None"
   examine: "A box full of painted baubles. Give to a Pixie or use to decorate a tree."
 bobble_scarf:
   id: 6857
@@ -30151,7 +30142,7 @@ jester_hat:
   tradeable: false
   weight: 0.25
   slot: "Hat"
-  type: "Hair"
+  type: "None"
   destroy: "You can obtain another hat from Diango in the Draynor Market."
   examine: "A woolly jester hat."
   kept: "Wilderness"
@@ -30170,7 +30161,7 @@ tri_jester_hat:
   tradeable: false
   weight: 0.25
   slot: "Hat"
-  type: "Hair"
+  type: "None"
   destroy: "You can obtain another hat from Diango in the Draynor Market."
   examine: "A woolly triple bobble jester hat."
   kept: "Wilderness"
@@ -30189,7 +30180,7 @@ woolly_hat:
   tradeable: false
   weight: 0.25
   slot: "Hat"
-  type: "Hair"
+  type: "None"
   destroy: "You can obtain another hat from Diango in the Draynor Market."
   examine: "A woolly tobogganing hat."
   kept: "Wilderness"
@@ -30325,19 +30316,19 @@ peach:
 progress_hat:
   id: 6885
   slot: "Hat"
-  type: "Hair"
+  type: "None"
   destroy: "Yes"
   examine: "A magic training arena progress hat"
 progress_hat_2:
   id: 6886
   slot: "Hat"
-  type: "Hair"
+  type: "None"
   destroy: "Yes"
   examine: "A magic training arena progress hat"
 progress_hat_3:
   id: 6887
   slot: "Hat"
-  type: "Hair"
+  type: "None"
   destroy: "Yes"
   examine: "A magic training arena progress hat"
 guardian_statue:
@@ -32344,7 +32335,6 @@ wizard_hat_g:
   limit: 2
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "A silly pointed hat, with colourful trim."
 wizard_hat_g_noted: 7395
 wizard_hat_t:
@@ -32353,7 +32343,6 @@ wizard_hat_t:
   limit: 2
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "A silly pointed hat, with colourful trim."
 wizard_hat_t_noted: 7397
 enchanted_robe:
@@ -38271,7 +38260,6 @@ pirate_hat:
   tradeable: false
   weight: 0.003
   slot: "Hat"
-  type: "Hair"
   destroy: "You cannot remove your team's hat."
   examine: "A red pirate hat."
   kept: "Vanish"
@@ -38334,7 +38322,6 @@ blue_tricorn_hat:
   tradeable: false
   weight: 0.003
   slot: "Hat"
-  type: "Hair"
   examine: "I could never look square in this."
   kept: "Reclaim"
 green_tricorn_hat:
@@ -38342,7 +38329,6 @@ green_tricorn_hat:
   tradeable: false
   weight: 0.003
   slot: "Hat"
-  type: "Hair"
   examine: "I could never look square in this."
   kept: "Reclaim"
 red_tricorn_hat:
@@ -38350,7 +38336,6 @@ red_tricorn_hat:
   tradeable: false
   weight: 0.003
   slot: "Hat"
-  type: "Hair"
   examine: "I could never look square in this."
   kept: "Reclaim"
 brown_tricorn_hat:
@@ -38358,7 +38343,6 @@ brown_tricorn_hat:
   tradeable: false
   weight: 0.003
   slot: "Hat"
-  type: "Hair"
   examine: "I could never look square in this."
   kept: "Reclaim"
 black_tricorn_hat:
@@ -38366,7 +38350,6 @@ black_tricorn_hat:
   tradeable: false
   weight: 0.003
   slot: "Hat"
-  type: "Hair"
   examine: "I could never look square in this."
   kept: "Reclaim"
 purple_tricorn_hat:
@@ -38374,7 +38357,6 @@ purple_tricorn_hat:
   tradeable: false
   weight: 0.003
   slot: "Hat"
-  type: "Hair"
   examine: "I could never look square in this."
   kept: "Reclaim"
 grey_tricorn_hat:
@@ -38382,7 +38364,6 @@ grey_tricorn_hat:
   tradeable: false
   weight: 0.003
   slot: "Hat"
-  type: "Hair"
   examine: "I could never look square in this."
   kept: "Reclaim"
 cutthroat_flag:
@@ -38866,7 +38847,6 @@ moonclan_helm:
   tradeable: false
   weight: 0.907
   slot: "Hat"
-  type: "Hair"
   examine: "Mystical headgear."
   kept: "Reclaim"
 moonclan_hat:
@@ -41740,8 +41720,6 @@ bobble_hat_2:
   id: 9815
   tradeable: false
   weight: 0.25
-  slot: "Hat"
-  type: "Hair"
   destroy: "You can obtain another hat from Diango in the Draynor Market."
   examine: "A woolly bobble hat."
   kept: "Wilderness"
@@ -45119,19 +45097,16 @@ mystic_hat:
   id: 10601
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "A magical hat."
 mystic_hat_2:
   id: 10602
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "A magical hat."
 mystic_hat_3:
   id: 10603
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "A magical hat."
 skeletal_helm_2:
   id: 10604
@@ -45152,7 +45127,6 @@ splitbark_helm_2:
   limit: 100
   weight: 0.907
   slot: "Hat"
-  type: "Hair"
   examine: "A wooden helmet."
 ghostly_boots_2:
   id: 10607
@@ -45197,7 +45171,7 @@ rogue_mask_2:
   tradeable: false
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
+  type: "FullFace"
   examine: "Black banded leather armour, a rogue's dream!"
   kept: "Reclaim"
 rock_shell_helm_2:
@@ -45214,7 +45188,7 @@ spined_helm_2:
   weight: 2.721
   slot: "Hat"
   material: "leather"
-  type: "Hair"
+  type: "FullFace"
   examine: "A helm fit for any Fremennik ranger."
 tribal_mask:
   id: 10615
@@ -46500,7 +46474,6 @@ silly_jester_hat:
   tradeable: false
   weight: 2.721
   slot: "Hat"
-  type: "Hair"
   destroy: "Are you sure? You can find another in King Sorvott's chest."
   examine: "A silly hat with bells."
   kept: "Vanish"
@@ -46654,7 +46627,6 @@ hard_hat:
   tradeable: false
   weight: 2.0
   slot: "Hat"
-  type: "Hair"
   destroy: "You'll have to find another within the Tower of Life!"
   examine: "Can't get any safer than this."
   kept: "Vanish"
@@ -46803,7 +46775,6 @@ hard_hat_2:
   tradeable: false
   weight: 2.0
   slot: "Hat"
-  type: "Hair"
   destroy: "You'll have to find another within the Tower of Life!"
   examine: "Can't get any safer than this."
   kept: "Vanish"
@@ -47484,8 +47455,6 @@ chicken_head_2:
   id: 11015
   tradeable: false
   weight: 0.25
-  slot: "Hat"
-  type: "Hair"
   destroy: "You will need to speak to Diango to get another chicken head."
   examine: "Cock-a-doodle-do!"
   kept: "Wilderness"
@@ -53671,7 +53640,6 @@ sailors_hat:
   tradeable: false
   weight: 0.2
   slot: "Hat"
-  type: "Hair"
   destroy: "You can always get another from the drunken sailor in Port Sarim."
   examine: "Taken from a drunken sailor in Port Sarim."
   kept: "Vanish"
@@ -56340,7 +56308,6 @@ pith_helmet:
   limit: 2
   weight: 0.5
   slot: "Hat"
-  type: "Hair"
   examine: "Official explorer headgear."
 pith_helmet_noted: 13104
 spiked_helmet:
@@ -56767,7 +56734,6 @@ pith_helmet_2:
   limit: 2
   weight: 0.5
   slot: "Hat"
-  type: "Hair"
   examine: "Official explorer headgear."
 spiked_helmet_2:
   id: 13168
@@ -56915,7 +56881,6 @@ blue_tricorn_hat_2:
   tradeable: false
   weight: 0.003
   slot: "Hat"
-  type: "Hair"
   examine: "I could never look square in this."
   kept: "Reclaim"
 green_tricorn_hat_2:
@@ -56923,7 +56888,6 @@ green_tricorn_hat_2:
   tradeable: false
   weight: 0.003
   slot: "Hat"
-  type: "Hair"
   examine: "I could never look square in this."
   kept: "Reclaim"
 red_tricorn_hat_2:
@@ -56931,7 +56895,6 @@ red_tricorn_hat_2:
   tradeable: false
   weight: 0.003
   slot: "Hat"
-  type: "Hair"
   examine: "I could never look square in this."
   kept: "Reclaim"
 brown_tricorn_hat_2:
@@ -56939,7 +56902,6 @@ brown_tricorn_hat_2:
   tradeable: false
   weight: 0.003
   slot: "Hat"
-  type: "Hair"
   examine: "I could never look square in this."
   kept: "Reclaim"
 black_tricorn_hat_2:
@@ -56947,7 +56909,6 @@ black_tricorn_hat_2:
   tradeable: false
   weight: 0.003
   slot: "Hat"
-  type: "Hair"
   examine: "I could never look square in this."
   kept: "Reclaim"
 purple_tricorn_hat_2:
@@ -56955,7 +56916,6 @@ purple_tricorn_hat_2:
   tradeable: false
   weight: 0.003
   slot: "Hat"
-  type: "Hair"
   examine: "I could never look square in this."
   kept: "Reclaim"
 grey_tricorn_hat_2:
@@ -56963,7 +56923,6 @@ grey_tricorn_hat_2:
   tradeable: false
   weight: 0.003
   slot: "Hat"
-  type: "Hair"
   examine: "I could never look square in this."
   kept: "Reclaim"
 mysterious_lamp:
@@ -57258,7 +57217,6 @@ customs_hat:
   tradeable: false
   weight: 0.2
   slot: "Hat"
-  type: "Hair"
   destroy: "If you drop this hat you will need to kill another Customs officer for a replacement."
   examine: "The hat of a Customs Officer's uniform."
   use: "Quest"
@@ -58459,8 +58417,6 @@ runecrafter_hat_the_great_orb_project_yellow:
   id: 13612
   tradeable: false
   weight: 0.453
-  slot: "Hat"
-  type: "Hair"
   examine: "Comes with goggles, for extra safety while Runecrafting."
   kept: "Vanish"
 runecrafter_hat_the_great_orb_project_green:
@@ -58468,7 +58424,6 @@ runecrafter_hat_the_great_orb_project_green:
   tradeable: false
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "Comes with goggles, for extra safety while Runecrafting."
   kept: "Vanish"
 runecrafter_robe_yellow:
@@ -58520,7 +58475,6 @@ runecrafter_hat_green_goggles_on:
   tradeable: false
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "Comes with goggles, for extra safety while Runecrafting."
   kept: "Reclaim"
 runecrafter_hat_green_goggles_off:
@@ -58528,7 +58482,6 @@ runecrafter_hat_green_goggles_off:
   tradeable: false
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "Comes with goggles, for extra safety while Runecrafting."
   kept: "Reclaim"
 runecrafter_skirt_green:
@@ -58557,7 +58510,6 @@ runecrafter_hat_blue_goggles_on:
   tradeable: false
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "Comes with goggles, for extra safety while Runecrafting."
   kept: "Reclaim"
 runecrafter_hat_blue_goggles_off:
@@ -58565,7 +58517,6 @@ runecrafter_hat_blue_goggles_off:
   tradeable: false
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "Comes with goggles, for extra safety while Runecrafting."
   kept: "Reclaim"
 runecrafter_skirt_blue:
@@ -58780,8 +58731,6 @@ runecrafter_hat:
   id: 13656
   tradeable: false
   weight: 0.453
-  slot: "Hat"
-  type: "Hair"
   examine: "Comes with goggles, for extra safety while Runecrafting."
   kept: "Reclaim"
 runecrafter_hat_2:
@@ -58797,7 +58746,6 @@ runecrafter_hat_3:
   tradeable: false
   weight: 0.453
   slot: "Hat"
-  type: "Hair"
   examine: "Comes with goggles, for extra safety while Runecrafting."
   kept: "Reclaim"
 ring_of_fire:
@@ -70538,7 +70486,7 @@ dromoleather_coif_bound:
   tradeable: false
   slot: "Hat"
   material: "leather"
-  type: "Hair"
+  type: "FullFace"
   examine: "Crafted out of thick lizard hides."
   weight: 0.9
 spinoleather_coif_bound:
@@ -70546,7 +70494,7 @@ spinoleather_coif_bound:
   tradeable: false
   slot: "Hat"
   material: "leather"
-  type: "Hair"
+  type: "FullFace"
   examine: "Crafted out of thick lizard hides."
   weight: 0.9
 gallileather_coif_bound:
@@ -70554,7 +70502,7 @@ gallileather_coif_bound:
   tradeable: false
   slot: "Hat"
   material: "leather"
-  type: "Hair"
+  type: "FullFace"
   examine: "Crafted out of thick lizard hides."
   weight: 0.9
 stegoleather_coif_bound:
@@ -70562,7 +70510,7 @@ stegoleather_coif_bound:
   tradeable: false
   slot: "Hat"
   material: "leather"
-  type: "Hair"
+  type: "FullFace"
   examine: "Crafted out of thick lizard hides."
   weight: 0.9
 megaleather_coif_bound:
@@ -74255,7 +74203,7 @@ dromoleather_coif:
   id: 17049
   slot: "Hat"
   material: "leather"
-  type: "Hair"
+  type: "FullFace"
   examine: "Crafted out of thick lizard hides."
   weight: 0.9
 dromoleather_coif_noted: 17050
@@ -74263,7 +74211,7 @@ spinoleather_coif:
   id: 17051
   slot: "Hat"
   material: "leather"
-  type: "Hair"
+  type: "FullFace"
   examine: "Crafted out of thick lizard hides."
   weight: 0.9
 spinoleather_coif_noted: 17052
@@ -74271,7 +74219,7 @@ gallileather_coif:
   id: 17053
   slot: "Hat"
   material: "leather"
-  type: "Hair"
+  type: "FullFace"
   examine: "Crafted out of thick lizard hides."
   weight: 0.9
 gallileather_coif_noted: 17054
@@ -74279,7 +74227,7 @@ stegoleather_coif:
   id: 17055
   slot: "Hat"
   material: "leather"
-  type: "Hair"
+  type: "FullFace"
   examine: "Crafted out of thick lizard hides."
   weight: 0.9
 stegoleather_coif_noted: 17056
