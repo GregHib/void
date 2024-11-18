@@ -16,7 +16,3 @@ npcOperate("Talk-to", "louie_legs") {
         option<Neutral>("No, thank you.")
     }
 }
-
-npcOperate("Trade", "louie_legs") {
-    player.openShop("louies_armoured_legs_bazaar")
-}

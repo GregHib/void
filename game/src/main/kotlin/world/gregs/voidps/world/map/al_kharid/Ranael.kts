@@ -15,7 +15,3 @@ npcOperate("Talk-to", "ranael") {
         option<Neutral>("No thank you, that's not my scene.")
     }
 }
-
-npcOperate("Trade", "ranael") {
-    player.openShop("ranaels_super_skirt_store")
-}

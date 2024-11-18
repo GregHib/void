@@ -7,7 +7,6 @@ import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
 npcOperate("Trade", "shopkeeper*", "shop_assistant*") {
     player.openShop(target.def.getOrNull<String>("shop") ?: return@npcOperate)
