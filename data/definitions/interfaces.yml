@@ -285,6 +285,56 @@ music_player:
         Cancel: 3
     currently_playing: 4
     playlist: 9
+quest_intro:
+  id: 178
+  type: main_screen
+  components:
+    rewards_rect1: 2
+    rewards_rect2: 3
+    scroll_layer_item: 4
+    items_rect3: 5
+    items_rect4: 6
+    items_rect1: 7
+    items_rect2: 8
+    start_point_help: 9
+    start_req_help: 10
+    req_items_help: 11
+    combat_help: 12
+    rewards_help: 13
+    quest_field: 14
+    start_point_title: 15
+    req_title: 16
+    rewards_title: 17
+    items_title: 19
+    items_layer: 22
+    req_layer: 23
+    start_point_layer: 25
+    quest_icon_layer: 26
+    start_option: 27
+    progress_status: 28
+    hidden_button_txt: 30
+    start_point_field: 52
+    req_rect1: 53
+    req_rect2: 54
+    req_field: 55
+    items_hide_show_layer: 56
+    items_hidden_button_txt: 57
+    items_text_details_layer: 58
+    items_field: 59
+    scroll_layer_rewards: 63
+    hide_show_layer: 64
+    text_details_layer: 65
+    rewards_field: 66
+    status_title: 67
+    status_field: 70
+    start_question: 72
+    startyes_layer: 73
+    startno_layer: 74
+    objective_set: 75
+    objective_text: 76
+    startno_text: 77
+    startyes_text: 78
+    quest_icon: 79
 dialogue_macro_mime_emotes:
   id: 188
   type: dialogue_box

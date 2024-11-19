@@ -41,7 +41,14 @@ val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 
 modCommand("test") {
-    println(player.rights)
+    player.open("quest_intro")
+    player.interfaces.sendText("quest_intro", "start_point_field", "Speak to Golrie in his cave beneath The Tree Gnome Village.")
+    val list = "The Path of Glouphrie<br>Roving Elves<br>Level 64 Thieving<br>Level 64 Agility<br>Level something"
+    player.interfaces.sendText("quest_intro", "req_field", list)
+    player.interfaces.sendText("quest_intro", "rewards_field", "Rewards")
+    player.sendScript(2827, listOf("One<br>two<br>three<br>four<br>five"))
+//    player.sendScript(2828, listOf("This is just a test2."))
+//    player.sendScript(4074, listOf("This is just a test3.")) /// scripts
 }
 
 modCommand("patrol") {
