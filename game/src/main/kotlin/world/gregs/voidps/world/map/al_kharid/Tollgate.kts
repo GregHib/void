@@ -2,7 +2,6 @@ package world.gregs.voidps.world.map.al_kharid
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -18,9 +17,6 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.suspend.approachRange
-import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
@@ -31,15 +27,18 @@ import world.gregs.voidps.world.interact.dialogue.Upset
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.obj.door.DoubleDoor
+import world.gregs.voidps.world.interact.entity.obj.door.Door
 
 val objects: GameObjects by inject()
-val southGate = Tile(3268, 3227)
 
 objectOperate("Pay-toll(10gp)", "toll_gate_al_kharid*") {
-    if (!payToll(player)) {
+    if (!player.inventory.remove("coins", 10)) {
+        player.notEnough("coins")
         dialogue(player)
+        return@objectOperate
     }
+    player.message("You pay the guard.")
+    Door.enter(player, target)
 }
 
 objectOperate("Open", "toll_gate_al_kharid*") {
@@ -78,33 +77,9 @@ suspend fun CharacterContext.dialogue(player: Player, npc: NPC? = getGuard(playe
     }
 }
 
+val gates = Rectangle(Tile(3268, 3227), 1, 2)
+
 fun getGate(player: Player): GameObject {
     val tile = gates.nearestTo(player.tile)
     return objects[tile].first { it.id.startsWith("toll_gate_al_kharid") }
-}
-
-val rect = Rectangle(Tile(3267, 3227), 2, 2)
-val gates = Rectangle(Tile(3268, 3227), 1, 2)
-
-suspend fun CharacterContext.payToll(player: Player): Boolean {
-    if (!player.inventory.remove("coins", 10)) {
-        player.notEnough("coins")
-        return false
-    }
-    player.message("You pay the guard.")
-    openGate()
-    val closest = rect.nearestTo(player.tile)
-    player.start("delay", 1)
-    val left = closest.x <= rect.minX
-    player.approachRange(10, true)
-    val target = closest.add(if (left) Direction.EAST else Direction.WEST)
-    player.steps.queueStep(target, noCollision = true, noRun = true)
-    pause(1)
-    return true
-}
-
-fun openGate() {
-    val obj = objects[southGate, "toll_gate_al_kharid"] ?: return
-    val double = objects[southGate.addY(1), "toll_gate_al_kharid_north"] ?: return
-    DoubleDoor.open(obj, obj.def, double, 3, false)
 }

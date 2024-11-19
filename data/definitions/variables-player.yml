@@ -1,3 +1,15 @@
+druidic_ritual:
+  id: 80
+  type: varp
+  persist: true
+  format: map
+  default: unstarted
+  values:
+    unstarted: 0
+    started: 1
+    cauldron: 2
+    kaqemeex: 3
+    completed: 4
 the_knights_sword:
   id: 122
   persist: true
@@ -95,7 +107,7 @@ quest_points_total:
   format: map
   default: total
   values:
-    total: 12
+    total: 16
 cooks_assistant:
   id: 29
   persist: true

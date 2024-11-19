@@ -29,10 +29,11 @@ object Door {
             return
         }
         val direction = door.tile.delta(player.tile).toDirection()
-        val target = if (direction == Direction.NONE) {
-            tile(door, 1)
-        } else {
+        val vertical = door.rotation == 0 || door.rotation == 2
+        val target = if (vertical && direction.isHorizontal() || !vertical && direction.isVertical()) {
             door.tile
+        } else {
+            tile(door, 1)
         }
         player.start("input_delay", ticks)
         player.walkTo(target, noCollision = true, noRun = true)
@@ -159,6 +160,6 @@ object Door {
 
     private fun rotate(rotation: Int, clockwise: Int) = (rotation + clockwise) and 0x3
 
-    fun ObjectDefinition.isDoor() = (name.contains("door", true) && !name.contains("trap", true)) || name.contains("gate", true)
+    fun ObjectDefinition.isDoor() = (name.contains("door", true) && !name.contains("trap", true)) || name.contains("gate", true) || this["door", false]
 }
 

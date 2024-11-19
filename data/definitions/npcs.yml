@@ -19,6 +19,15 @@ man_2:
 man_3:
   <<: *man
   id: 3
+woman:
+  id: 4
+  max_hit_melee: 10
+  hitpoints: 70
+  wander_radius: 4
+  respawn_delay: 25
+  style: crush
+  race: human
+  examine: "One of Gielinor's many citizens."
 musician_lumbridge:
   id: 29
   song: 702
@@ -378,6 +387,16 @@ cow_brown:
 frog_8_frogland:
   <<: *frog_frogland
   id: 403
+sanfew:
+  id: 454
+  wander_radius: 2
+  race: human
+  examine: "An old druid."
+kaqemeex:
+  id: 455
+  wander_radius: 4
+  race: human
+  examine: "A wise druid."
 father_urhney:
   id: 458
   wander_radius: 4
@@ -771,7 +790,7 @@ diango:
   wander_radius: 4
   shop: diangos_toy_store
   race: human
-  examine: "A toy-seller who looks after people's toys for them."  
+  examine: "A toy-seller who looks after people's toys for them."
 hamid:
   id: 1008
   race: human
@@ -2294,3 +2313,17 @@ easter_egg_4:
   id: 3693
 easter_egg_5:
   id: 3694
+suit_of_armour:
+  id: 453
+  hitpoints: 290
+  att: 16
+  str: 14
+  def: 9
+  style: slash
+  max_hit_melee: 30
+  wander_radius: 5
+  attack_radius: 8
+  hunt_mode: aggressive
+  weapon_style: sword
+  race: human
+  examine: "A dusty old suit of armour."
