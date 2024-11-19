@@ -3700,15 +3700,21 @@ trapdoor_44_opened:
 trapdoor_44_closed:
   id: 10558
   examine: "I wonder what's beneath it?"
-toll_gate_al_kharid_opened:
+toll_gate_al_kharid_south_opened:
   id: 35550
-toll_gate_al_kharid_closed:
+toll_gate_al_kharid_south_closed:
+  id: 35549
+  door: true
+toll_gate_al_kharid_south:
   id: 10565
   gate: false
   examine: "Marks the border between Al Kharid and the Kingdom of Misthalin."
 toll_gate_al_kharid_north_opened:
   id: 35552
 toll_gate_al_kharid_north_closed:
+  id: 35551
+  door: true
+toll_gate_al_kharid_north:
   id: 10566
   gate: false
   examine: "Marks the border between Al Kharid and the Kingdom of Misthalin."
@@ -8481,10 +8487,6 @@ cell_door_14_opened:
 cell_door_14_closed:
   id: 35540
   examine: "This looks sturdier than the rest of the building."
-toll_gate_al_kharid:
-  id: 35549
-toll_gate_al_kharid_north:
-  id: 35551
 door_593_opened:
   id: 35631
   examine: "An open door."
