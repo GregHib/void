@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 
 val floorItems: FloorItems by inject()
 
-npcOperate("Talk-to", "man","woman") {
+npcOperate("Talk-to", "man", "woman") {
     player<Happy>("Hello, how's it going?")
     when (random.nextInt(0, 23)) {
         0 -> {
@@ -56,7 +56,7 @@ npcOperate("Talk-to", "man","woman") {
             target.mode = Interact(target, player, PlayerOption(target, player, "Attack"))
         }
         11 -> npc<Neutral>("I'm busy right now.")
-        12 ->  npc<Happy>("Hello.")
+        12 -> npc<Happy>("Hello.")
         13 -> npc<Angry>("None of your business.")
         14 -> {
             player<Neutral>("Do you wish to trade?")
@@ -73,7 +73,7 @@ npcOperate("Talk-to", "man","woman") {
         17 -> npc<Uncertain>("No I don't have any spare change.")
         18 -> npc<Neutral>("I'm a little worried - I've heard there's lots of people going about, killing citizens at random.")
         19 -> npc<Angry>("No, I don't want to buy anything!")
-        20 ->  npc<Neutral>("That is classified information.")
+        20 -> npc<Neutral>("That is classified information.")
         21 -> {
             npc<Happy>("Have this flyer...")
             if (player.inventory.isFull()) {

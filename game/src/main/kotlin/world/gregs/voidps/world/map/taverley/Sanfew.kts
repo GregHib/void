@@ -13,12 +13,11 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.dialogue.type.statement
 
-
 val enchantedMeat = listOf(
-    Item("enchanted_beef",1),
-    Item("enchanted_rat_meat",1 ),
-    Item("enchanted_bear_meat",1),
-    Item("enchanted_chicken",1)
+    Item("enchanted_beef", 1),
+    Item("enchanted_rat_meat", 1),
+    Item("enchanted_bear_meat", 1),
+    Item("enchanted_chicken", 1)
 )
 
 npcOperate("Talk-to", "sanfew") {
@@ -27,8 +26,8 @@ npcOperate("Talk-to", "sanfew") {
             npc<Quiz>("What can I do for you young 'un?")
             choice {
                 option("I've heard you druids might be able to teach me herblore.") {
-                    player<Quiz>(" So... I've heard you druids might be able to teach me herblore...")
-                    npc<Neutral>(" Herblore eh? You're probably best off talking to Kaqemeex about that; he's the best herblore teacher we currently have. I believe at the moment he's at out stone circle just North of here.")
+                    player<Quiz>("So... I've heard you druids might be able to teach me herblore...")
+                    npc<Neutral>("Herblore eh? You're probably best off talking to Kaqemeex about that; he's the best herblore teacher we currently have. I believe at the moment he's at out stone circle just North of here.")
                     player<Happy>("Thanks.")
                 }
                 option<Uncertain>("Actually, I don't need to speak to you.") {

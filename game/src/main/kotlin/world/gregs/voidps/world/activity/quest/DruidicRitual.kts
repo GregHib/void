@@ -2,7 +2,6 @@ package world.gregs.voidps.world.activity.quest
 
 import world.gregs.voidps.engine.client.ui.interfaceSlot
 
-
 interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 33) {
     val lines = when (player.quest("druidic_ritual")) {
         "completed" -> listOf(
