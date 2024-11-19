@@ -96,6 +96,9 @@ data class BodyParts(
         }
     }
 
+    /**
+     * Don't show hair for EquipType.Hair, jaws for Mask's, and both for FullFace coverings.
+     */
     private fun showBodyPart(part: BodyPart, item: Item): Boolean {
         val type = item.type
         return part.index != -1 && looks[part.index] >= 0 && when (part) {
