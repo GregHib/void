@@ -20,7 +20,6 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
-
 npcOperate("Talk-to", "kaqemeex") {
     when (player.quest("druidic_ritual")) {
         "unstarted" -> {

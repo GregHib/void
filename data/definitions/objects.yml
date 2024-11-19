@@ -8077,14 +8077,14 @@ door_547_opened:
 door_547_closed:
   id: 31838
   examine: "A single door."
-door_549_opened:
+door_taverley_1_opened:
   id: 31840
-door_549_closed:
+door_taverley_1_closed:
   id: 31841
   examine: "Stops people getting out."
-door_550_opened:
-  id: 31840
-door_550_closed:
+door_taverley_2_opened:
+  id: 31843
+door_taverley_2_closed:
   id: 31844
   examine: "Stops people getting out."
 pillar_61:
@@ -11869,3 +11869,6 @@ wizards_tower_staircase:
 cauldron_of_thunder:
   id: 2142
   examine: "An eerie glow permeates the cauldron."
+suit_of_armour:
+  id: 32292
+  examine: "A dusty old suit of armour."
