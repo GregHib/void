@@ -11866,3 +11866,6 @@ fire_barbarian_village:
 wizards_tower_staircase:
   id: 12537
   examine: "I can climb these stairs."
+cauldron_of_thunder:
+  id: 2142
+  examine: "An eerie glow permeates the cauldron."
