@@ -22,4 +22,5 @@ class QuestDefinitions : DefinitionsDecoder<QuestDefinition> {
     }
 
     override fun empty() = QuestDefinition.EMPTY
+
 }
