@@ -14,7 +14,7 @@ data class QuestDefinition(
     var members: Boolean = false,
     var questPoints: Int = -1,
     var pathStart: IntArray? = null,
-    var otherPathStart: Int? = -1,
+    var otherPathStart: Int = -1,
     var questRequirements: IntArray? = null,
     var skillRequirements: Array<IntArray>? = null,
     var questPointRequirement: Int = 0,

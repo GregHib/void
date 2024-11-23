@@ -1,171 +1,4500 @@
-all_fired_up: 142
-animal_magnetism: 18
-another_slice_of_ham: 123
-as_a_first_resort: 132
-back_to_my_roots: 128
-between_a_rock: 19
-big_chompy_bird_hunting: 20
-biohazard: 21
-black_knights_fortress: 159
-cabin_fever: 22
-catapult_construction: 133
-clock_tower: 23
-cold_war: 117
-contact: 24
-cooks_assistant: 1
-creature_of_fenkenstrain: 26
-darkness_of_hallowvale: 27
-dealing_with_scabaras: 130
-death_plateau: 29
-death_to_the_dorgeshuun: 28
-defender_of_varrock: 144
-demon_slayer: 2
-desert_treasure: 30
-devious_minds: 31
-dig_site: 32
-dorics_quest: 3
-dragon_slayer: 4
-dream_mentor: 124
-druidic_ritual: 33
-dwarf_cannon: 34
-eadgars_ruse: 35
-eagles_peak: 36
-elemental_workshop_i: 37
-elemental_workshop_ii: 38
-enakhras_lament: 39
-enlightened_journey: 40
-ernest_the_chicken: 5
-eyes_of_glouphrie: 41
-fairy_tale_i: 42
-fairy_tale_ii: 43
-family_crest: 44
-the_feud: 45
-fight_arena: 46
-fishing_contest: 47
-forgettable_tale: 48
-fremennik_isles: 118
-fremennik_trials: 49
-garden_of_tranquillity: 51
-gertrudes_cat: 52
-ghosts_ahoy: 53
-the_giant_dwarf: 54
-goblin_diplomacy: 6
-the_golem: 55
-grand_tree: 56
-great_brain_robbery: 120
-grim_tales: 125
-hand_in_the_sand: 57
-haunted_mine: 58
-hazeel_cult: 59
-heroes_quest: 60
-holy_grail: 61
-horror_from_the_deep: 62
-icthlarins_little_helper: 63
-imp_catcher: 7
-in_aid_of_the_myreque: 64
-in_pyre_need: 146
-in_search_of_the_myreque: 65
-jungle_potion: 66
-kenniths_concerns: 134
-kings_ransom: 126
-knights_sword: 8
-land_of_the_goblins: 129
-legacy_of_seergaze: 135
-legends_quest: 67
-lost_city: 68
-lost_tribe: 69
-lunar_diplomacy: 70
-making_history: 71
-meeting_history: 141
-merlins_crystal: 72
-monks_friend: 74
-monkey_madness: 73
-mountain_daughter: 75
-mournings_ends_i: 76
-mournings_ends_ii: 77
-murder_mystery: 78
-my_arms_big_adventure: 79
-myths_of_the_white_lands: 148
-nature_spirit: 80
-observatory_quest: 81
-olafs_quest: 122
-one_small_favour: 82
-path_of_glouphrie: 127
-perils_of_ice_mountain: 136
-pirates_treasure: 9
-plague_city: 83
-priest_in_peril: 84
-prince_ali_rescue: 10
-rag_and_bone_man: 85
-rat_catchers: 86
-recipe_for_disaster: 87
-recruitment_drive: 88
-regicide: 89
-restless_ghost: 11
-rocking_out: 139
-roving_elves: 90
-royal_trouble: 91
-rum_deal: 92
-rune_mysteries: 13
-scorpion_catcher: 93
-sea_slug: 94
-shades_of_mortton: 96
-shadow_of_the_storm: 97
-sheep_herder: 98
-shield_of_arrav: 15
-shilo_village: 99
-slug_menace: 95
-smoking_kills: 138
-souls_bane: 100
-spirit_of_summer: 140
-spirits_of_the_elid: 101
-summers_end: 143
-swan_song: 102
-swept_away: 153
-tai_bwo_wannai_trio: 103
-tail_of_two_cats: 104
-tears_of_guthix: 105
-temple_of_ikov: 106
-throne_of_miscellania: 107
-toktz_ket_dill: 137
-the_tourist_trap: 108
-tower_of_life: 119
-tree_gnome_village: 110
-tribal_totem: 111
-troll_romance: 112
-troll_stronghold: 113
-underground_pass: 114
-vampire_slayer: 16
-wanted: 115
-watchtower: 116
-waterfall_quest: 50
-what_lies_below: 121
-while_guthix_sleeps: 145
-witchs_house: 109
-wolf_whistle: 131
-zogre_flesh_eaters: 25
-chosen_commander: 152
-glorious_memories: 149
-tale_of_the_muspah: 150
-missing_my_mummy: 155
-hunt_for_red_raktuber: 151
-curse_of_arrav: 156
-fur_n_seek: 154
-forgiveness_of_a_chaos_dwarf: 160
-within_the_light: 161
-temple_at_senntisten: 157
-blood_runs_deep: 163
-nomads_requiem: 162
-rune_mechanics: 165
-blood_pact: 170
-#egg_streme_management
-fairy_tale_iii: 158
-buyers_and_cellars: 167
-elemental_workshop_iii: 172
-quiet_before_the_swarm: 171
-love_story: 168
-void_dance: 173
-gunnars_ground: 17
-void_stares_back: 174
-do_no_evil: 179
-king_of_the_dwarves: 14
+all_fired_up:
+  id: 142
+  name: "All Fired Up"
+  difficulty: 1
+  length: 2
+  members: true
+  sprite: 9523
+  region: 8
+  start_point: "Talk to King Roald in Varrock palace."
+  start_path:
+    - [ 3221, 3472 ]
+  req_skills:
+    Firemaking: 43
+  req_quests:
+    - priest_in_peril
+  req_items: "45 logs."
+  req_combat: "None."
+  points: 1
+  achievement: 152
+  reward: "20,000 coins<br>Access to the All Fired Up beacon network minigame"
+  xp: "5,500 Firemaking XP"
+  varbits:
+    - [ 13518, 5, 90 ]
+animal_magnetism:
+  id: 18
+  name: "Animal Magnetism"
+  difficulty: 1
+  length: 3
+  members: true
+  sprite: 9572
+  region: 5
+  start_point: "Talk to Ava in Draynor Manor."
+  start_path:
+    - [ 3094, 3359 ]
+  req_skills:
+    Thieving: 15
+    Slayer: 18
+    Crafting: 19
+    Ranged: 30
+    Woodcutting: 35
+  req_quests:
+    - restless_ghost
+    - ernest_the_chicken
+  req_items: "Mithril hatchet, 5 (un-noted) iron bars, ghostspeak amulet, holy symbol, polished buttons, hard leather, 20 ecto-tokens."
+  req_combat: "None."
+  points: 1
+  achievement: 20
+  reward: "Blessed hatchet<br>Ava's accumulator/attractor.<br>(Req 50 ranged) Ava's accumulator ammunition pickup passive effect."
+  xp: "2,500 Woodcutting XP<br>1,000 Crafting XP<br>1,000 Fletching XP<br>1,000 Slayer XP"
+  varbits:
+    - [ 11411, 10, 240 ]
+another_slice_of_ham:
+  id: 123
+  name: "Another Slice of H.A.M."
+  difficulty: 1
+  length: 3
+  members: true
+  sprite: 17738
+  region: 47
+  start_point: "Talk to Ambassador Alvijar, who is in Ur-tag's house in Dorgesh-Kaan."
+  start_path:
+    - [ 2734, 5363, 1 ]
+    - [ 3209, 3216 ]
+    - [ 3317, 9601 ]
+    - [ 2721, 5359 ]
+  req_skills:
+    Prayer: 25
+    Attack: 15
+  req_quests:
+    - goblin_diplomacy
+    - death_to_the_dorgeshuun
+    - the_giant_dwarf
+  req_items: "Light source, rope."
+  req_combat: "Be able to defeat a level 70 foe, and defeat two level 30 foes using only Ranged or Magic."
+  points: 1
+  achievement: 133
+  reward: "The ancient goblin mace<br>Use of the Dorgesh-Kaan to Keldagrim train route<br>Ability to buy Goblin Village teleport spheres from Oldak"
+  xp: "3,000 Mining XP"
+  varbits:
+    - [ 13650, 1, 11 ]
+as_a_first_resort:
+  id: 132
+  name: "As a First Resort"
+  difficulty: 2
+  length: 5
+  members: true
+  sprite: 17188
+  region: 45
+  start_point: "Talk to Chief Tess in the centre of Oo'glog."
+  start_path:
+    - [ 2552, 2854 ]
+  req_skills:
+    Hunter: 48
+    Firemaking: 51
+    Woodcutting: 58
+  req_items: "Box trap, bird snare, teasing stick."
+  req_combat: "None, but beware of wolves outside Oo'glog."
+  points: 1
+  achievement: 142
+  reward: "Access to spa facilities and the Oo'glog Hunter area<br>Food shop and gift shop<br>Platypus Summoning pet<br>4 caskets or oysters<br>Ability to travel to Oo'glog using charter ships<br>Ability to create robust glass and crystal glass"
+  xp: "15,000 Firemaking XP<br>15,000 Hunter XP<br>15,000 Woodcutting XP"
+  varbits:
+    - [ 14041, 1, 200 ]
+back_to_my_roots:
+  id: 128
+  name: "Back to my Roots"
+  difficulty: 3
+  length: 3
+  members: true
+  region: 40
+  start_point: "Talk to Horacio outside Lord Handelmort's mansion, in East Ardougne."
+  start_path:
+    - [ 2635, 3312 ]
+  req_skills:
+    Woodcutting: 72
+    Slayer: 59
+    Agility: 55
+    Farming: 53
+  req_quests:
+    - hand_in_the_sand
+    - tribal_totem
+  req_items: "Plant pot with soil, soft clay, an empty pot. A rune hatchet or better (including inferno adze) is recommended."
+  req_combat: "You will need to defeat a wild jade vine (level 72)."
+  points: 1
+  achievement: 138
+  reward: "Vine farming patch in Ardougne<br>Jade vine seed<br>Access to the jade vine maze<br>Transportation between Eagle's Peak and Karamja using the Karamjan jungle eagle<br>Ability to slay the wild jade vine for extra Slayer and Farming XP once every 15 hours"
+  xp: "24,000 Farming XP<br>40,000 Woodcutting XP<br>23,000 Slayer XP<br>15,000 Agility XP"
+  varbits:
+    - [ 13194, 1, 65 ]
+bar_crawl_miniquest:
+  id: 279
+  name: "Bar Crawl (miniquest)"
+  difficulty: 1
+  length: 2
+  members: true
+  sprite: 4234
+  region: 39
+  start_point: "Talk to one of the barbarian guards at the outer entrance of the Barbarian Outpost Agility Course."
+  start_path:
+    - [ 2544, 3569 ]
+  achievement: 244
+  reward: "Access to the Barbarian Outpost agility course"
+  varbits:
+    - [ -21744, 1, 2 ]
+between_a_rock:
+  id: 19
+  name: "Between a Rock..."
+  difficulty: 2
+  length: 3
+  members: true
+  sprite: 8254
+  region: 46
+  start_point: "Talk to Dondakan in the Keldagrim south-west mine."
+  start_path:
+    - [ 2824, 10168 ]
+    - [ 2730, 3713 ]
+  req_skills:
+    Mining: 40
+    Smithing: 50
+  req_quests:
+    - dwarf_cannon
+    - fishing_contest
+  req_items: "4 gold bars, ammo mould, 50 coins."
+  req_combat: "You will need to defeat a few level 14 enemies and a level 50-56 enemy (depending on how much gold you mine)."
+  points: 2
+  achievement: 21
+  reward: "Adamant pickaxe +2<br>Gold helmet<br>Access to the Arzinian mine"
+  xp: "5,000 Mining XP lamp<br>5,000 Smithing XP lamp"
+  varbits:
+    - [ 12797, 10, 110 ]
+big_chompy_bird_hunting:
+  id: 20
+  name: "Big Chompy Bird Hunting"
+  difficulty: 1
+  length: 3
+  members: true
+  sprite: 9507
+  region: 45
+  start_point: "Talk to Rantz east of the Feldip Hills."
+  start_path:
+    - [ 2631, 2982 ]
+  req_skills:
+    Fletching: 5
+    Ranged: 30
+    Cooking: 30
+  req_items: "100+ feathers, 4-6 wolf bones."
+  req_combat: "You will need to defeat level 3 chompy birds."
+  points: 2
+  achievement: 22
+  reward: "Ogre bow<br>Ability to fletch ogre arrows<br>Ability to cook chompy birds and earn ogre hats"
+  xp: "262 Fletching XP<br>1,470 Cooking XP<br>735 Ranged XP"
+  varps:
+    - [ 2772, 5, 65 ]
+biohazard:
+  id: 21
+  name: "Biohazard"
+  difficulty: 0
+  length: 3
+  members: true
+  region: 40
+  start_point: "Talk to Elena in her house in East Ardougne."
+  start_path:
+    - [ 2591, 3335 ]
+  req_quests:
+    - plague_city
+  req_items: "Priest gown top and bottom."
+  req_combat: "You will need to defeat a level 33 mourner."
+  points: 3
+  achievement: 23
+  reward: "Ability to travel freely through the West Ardougne gate<br>Use of the Combat Training Camp north of Ardougne"
+  xp: "1,250 Thieving XP"
+  varps:
+    - [ 2535, 1, 16 ]
+black_knights_fortress:
+  id: 159
+  name: "Black Knights' Fortress"
+  varps:
+    - [ 2552, 1, 4 ]
+blood_pact:
+  id: 170
+  name: "The Blood Pact"
+  difficulty: 0
+  length: 1
+  sprite: 3176
+  item_sprite: 26115
+  region: 3
+  start_point: "Talk to Xenia in the graveyard of Lumbridge Church."
+  start_path:
+    - [ 3244, 3198 ]
+  req_items: "None."
+  req_combat: "Must be able to defeat three low-level enemies."
+  points: 1
+  achievement: 175
+  reward: "Reese's main-hand and off-hand sword<br>Kayle's chargebow (requires no arrows)<br>Caitlin's staff (requires no air runes)<br>Access to the Lumbridge Catacombs dungeon"
+  varbits:
+    - [ 10826, 10, 60 ]
+blood_runs_deep:
+  id: 163
+  name: "Blood Runs Deep"
+  difficulty: 3
+  length: 5
+  members: true
+  sprite: 8261
+  region: 33
+  start_point: "Talk to Baba Yaga on Lunar Isle."
+  start_path:
+    - [ 2088, 3928 ]
+  req_skills:
+    Strength: 75
+    Attack: 75
+    Slayer: 65
+  req_quests:
+    - horror_from_the_deep
+    - dream_mentor
+    - glorious_memories
+  req_items: "Rope, and you can obtain it during the quest."
+  req_combat: "You will need to defeat at least 50 level 77 enemies, two level 98 enemies, and a level 102 enemy."
+  points: 2
+  achievement: 171
+  reward: "Balmung<br>Access to Dagannoth guardians, Dagannoth Mother and her sentinels in the Dominion Tower<br>Talk to Chieftain Brundt to receive 3x 150,000 XP in combat skills"
+  varbits:
+    - [ 10871, 3, 147 ]
+buyers_and_cellars:
+  id: 167
+  name: "Buyers and Cellars"
+  difficulty: 0
+  length: 2
+  members: true
+  sprite: 3073
+  item_sprite: 26116
+  region: 3
+  start_point: "Talk to Darren Lightfinger in his cellar (accessed through a trapdoor north of the Lumbridge furnace)."
+  start_path:
+    - [ 4662, 5903 ]
+    - [ 3223, 3268 ]
+  req_skills:
+    Thieving: 5
+  req_items: "Some logs or the means to acquire them."
+  req_combat: "None."
+  points: 1
+  achievement: 173
+  reward: "Access to the thieves' guild<br>Thieves' guild literature<br>Ability to collect hanky points"
+  xp: "500 Thieving XP"
+  varbits:
+    - [ 9022, 5, 10 ]
+cabin_fever:
+  id: 22
+  name: "Cabin Fever"
+  difficulty: 2
+  length: 3
+  members: true
+  sprite: 9105
+  region: 27
+  start_point: "Talk to Bill Teach in Port Phasmatys."
+  start_path:
+    - [ 3676, 3495 ]
+  req_skills:
+    Agility: 42
+    Crafting: 45
+    Smithing: 50
+    Ranged: 40
+  req_quests:
+    - pirates_treasure
+    - rum_deal
+  req_items: "None."
+  req_combat: "None, but beware of level 26 pirates."
+  points: 2
+  achievement: 24
+  reward: "The Little Book o' Piracy<br>10,000 coins (talk to Bill Teach)<br>Access to Mos Le'Harmless and cave horrors<br>Charter ship prices are halved"
+  xp: "7,000 Smithing XP<br>7,000 Crafting XP<br>7,000 Agility XP"
+  varps:
+    - [ 2326, 10, 140 ]
+catapult_construction:
+  id: 133
+  name: "Catapult Construction"
+  difficulty: 3
+  length: 2
+  members: true
+  sprite: 9543
+  region: 50
+  start_point: "Talk to the Tyras Guard next to the catapult in the Isafdar Forest."
+  start_path:
+    - [ 2187, 3187 ]
+  req_skills:
+    Fletching: 42
+    Construction: 44
+  req_quests:
+    - regicide
+  req_items: "90 mithril nails (or better), 10 mahogany planks."
+  req_combat: "None."
+  points: 2
+  achievement: 143
+  reward: "30 teak planks<br>2,000 coins<br>An adamant halberd<br>Increased damage when using Castle Wars catapults<br>Sailor's hat"
+  xp: "15,000 Construction XP<br>5,000 Fletching XP"
+  varbits:
+    - [ 12210, 2, 60 ]
+chosen_commander:
+  id: 152
+  name: "The Chosen Commander"
+  difficulty: 2
+  length: 6
+  members: true
+  sprite: 17740
+  region: 47
+  start_point: "Talk to Captain Undak in Dorgesh-Kaan."
+  start_path:
+    - [ 2732, 5341 ]
+    - [ 3209, 3215 ]
+    - [ 3314, 9612 ]
+  req_skills:
+    Thieving: 46
+    Agility: 46
+    Strength: 46
+  req_quests:
+    - land_of_the_goblins
+  req_items: "Light source, tinderbox."
+  req_combat: "Be able to defeat several enemies up to level 77."
+  points: 3
+  achievement: 164
+  reward: "Zanik's crossbow<br>Ability to buy teleport spheres from Oldak to Bandos's throne room"
+  xp: "20,000 Agility XP<br>20,000 Strength XP<br>20,000 Thieving XP"
+  varbits:
+    - [ 9136, 10, 110 ]
+clock_tower:
+  id: 23
+  name: "Clock Tower"
+  difficulty: 0
+  length: 1
+  members: true
+  sprite: 4155
+  region: 43
+  start_point: "Talk to Brother Kojo in the Clock Tower south of Ardougne."
+  start_path:
+    - [ 2568, 3251 ]
+  req_items: "Bucket of water or ice gloves."
+  req_combat: "None."
+  points: 1
+  achievement: 25
+  reward: "500 coins"
+  varps:
+    - [ 2197, 1, 8 ]
+cold_war:
+  id: 117
+  name: "Cold War"
+  difficulty: 1
+  length: 5
+  members: true
+  sprite: 9106
+  region: 41
+  start_point: "Talk to Larry at Ardougne Zoo."
+  start_path:
+    - [ 2594, 3266 ]
+  req_skills:
+    Hunter: 10
+    Agility: 30
+    Crafting: 30
+    Construction: 34
+  req_items: "10 oak planks, 10 steel nails, a plank, spade, mahogany plank, silk, a clockwork mechanism (or a steel bar to craft one), swamp tar, 5 (non-coloured) feathers, leather, raw cod (or a ring of Charos). You will need access to a Player Owned House Crafting table 3 or 4"
+  req_combat: "You will need to defeat a few level 42 icelords."
+  points: 1
+  achievement: 127
+  reward: "Ability to build a penguin suit<br>Access to the penguin agility course<br>Ability to contact Larry through the NPC Contact spell"
+  xp: "2,000 Crafting XP<br>5,000 Agility XP<br>1,500 Construction XP"
+  varbits:
+    - [ 10430, 5, 135 ]
+contact:
+  id: 24
+  name: "Contact!"
+  difficulty: 3
+  length: 3
+  members: true
+  sprite: 8238
+  region: 23
+  start_point: "Talk to the High Priest of Icthlarin in the south temple of Sophanem."
+  start_path:
+    - [ 3309, 2725 ]
+  req_quests:
+    - icthlarins_little_helper
+  req_items: "Light source."
+  req_combat: "You will need to defeat a level 86 enemy."
+  points: 1
+  achievement: 26
+  reward: "Keris dagger<br>Access to Sophanem's bank"
+  xp: "7,000 Thieving XP<br>Two wishes each awarding 7,000 combat XP"
+  varbits:
+    - [ 10292, 10, 130 ]
+cooks_assistant:
+  id: 1
+  name: "Cook's Assistant"
+  difficulty: 0
+  length: 1
+  sprite: 2379
+  item_sprite: 26110
+  region: 3
+  start_point: "Talk to the cook in the kitchen of Lumbridge Castle."
+  start_path:
+    - [ 3209, 3215 ]
+  req_items: "Empty pot (can be found in flour mill). Empty bucket (can be found near dairy cow)."
+  req_combat: "None."
+  points: 1
+  achievement: 2
+  reward: "500 coins<br>20 sardines<br>Access to the cook's range"
+  xp: "300 Cooking XP"
+  varps:
+    - [ 2492, 1, 2 ]
+creature_of_fenkenstrain:
+  id: 26
+  name: "Creature of Fenkenstrain"
+  difficulty: 1
+  length: 3
+  members: true
+  sprite: 9508
+  region: 26
+  start_point: "Read the signpost in Canifis or talk to Dr Fenkenstrain to be hired as his butler."
+  start_path:
+    - [ 3488, 3483 ]
+  req_skills:
+    Thieving: 25
+    Crafting: 20
+  req_quests:
+    - restless_ghost
+  req_items: "Ghostspeak amulet (or cramulet), 50 coins (or runes for Telekinetic Grab), silver bar, 3 spools of bronze wire, needle, 5 spools of thread."
+  req_combat: "You will need to defeat a level 35 experiment."
+  points: 2
+  achievement: 28
+  reward: "Ring of Charos<br>Access to the experiment cave"
+  xp: "1,000 Thieving XP"
+  varps:
+    - [ 2615, 1, 8 ]
+curse_of_arrav:
+  id: 156
+  name: "The Curse of Arrav"
+  difficulty: 3
+  length: 4
+  members: true
+  sprite: 17750
+  region: 22
+  start_point: "Talk to Ali the Wise in his house in Nardah."
+  start_path:
+    - [ 3420, 2938 ]
+  req_skills:
+    Agility: 61
+    Thieving: 66
+    Strength: 64
+    Ranged: 64
+    Mining: 64
+    Summoning: 41
+    Slayer: 37
+  req_quests:
+    - tale_of_the_muspah
+    - missing_my_mummy
+    - defender_of_varrock
+    - temple_of_ikov
+  req_items: "Any crossbow, mithril grapple, climbing boots, 3 dwellberries, a ring of life, a macaw or ravenous locust pouch and insulated boots."
+  req_combat: "Be able to defeat a level 91 foe."
+  points: 1
+  achievement: 161
+  xp: "14,000 Thieving XP<br>9,000 Ranged XP<br>9,000 Strength XP<br>9,000 Agility XP<br>30,000 Mining XP<br>2,500 Slayer XP<br>4,000 Summoning XP"
+  varbits:
+    - [ 11151, 10, 240 ]
+curse_of_zaros_miniquest:
+  id: 283
+  name: "The Curse of Zaros (miniquest)"
+  difficulty: 1
+  length: 4
+  members: true
+  sprite: 31962
+  region: 39
+  start_point: "Talk to the mysterious ghost (Valdez) near Glarial's tombstone (north-west of the Fishing Guild), while wearing a ring of visibility and a way to speak with ghosts."
+  start_path:
+    - [ 2555, 3444 ]
+  req_quests:
+    - restless_ghost
+    - temple_of_ikov
+  req_items: "a way to speak to ghosts"
+  achievement: 268
+  reward: "Ghostly robes<br>10 kudos (and a 10,000 XP lamp) from the Varrock museum if you talk to Historian Minas"
+  varbits:
+    - [ -30152, 1, 63 ]
+darkness_of_hallowvale:
+  id: 27
+  name: "The Darkness of Hallowvale"
+  difficulty: 1
+  length: 7
+  members: true
+  sprite: 9552
+  region: 24
+  start_point: "Talk to Veliaf in Burgh de Rott."
+  start_path:
+    - [ 3491, 3232 ]
+  req_skills:
+    Construction: 5
+    Mining: 20
+    Thieving: 22
+    Agility: 26
+    Crafting: 32
+    Magic: 33
+    Strength: 40
+  req_quests:
+    - in_aid_of_the_myreque
+  req_items: "8 nails (any type), 2 planks, runes for Telekinetic Grab (can be obtained during quest)."
+  req_combat: "None."
+  points: 2
+  achievement: 29
+  reward: "Access to Meiyerditch<br>Shortcut key<br>Access to the Burgh de Rott Ramble minigame"
+  xp: "Tome of XP (three chapters, 2,000 XP each in a skill over level 30)<br>7,000 Agility XP<br>6,000 Thieving XP<br>2,000 Construction XP"
+  varbits:
+    - [ 10204, 10, 320 ]
+dealing_with_scabaras:
+  id: 130
+  name: "Dealing with Scabaras"
+  difficulty: 3
+  length: 5
+  members: true
+  sprite: 9556
+  region: 23
+  start_point: "Talk to the High Priest of Icthlarin in the south temple of Sophanem."
+  start_path:
+    - [ 3311, 2727 ]
+  req_skills:
+    Thieving: 60
+    Agility: 50
+    Strength: 60
+    Firemaking: 21
+  req_quests:
+    - contact
+  req_items: "Equipment and food to defeat several high-level monsters, ugthanki dung, 10 gold artefacts (seal, scarab and/or statuette) from Pyramid Plunder, pyramid top from the Agility Pyramid, up to 36 bronze bars or equipment."
+  req_combat: "You will need to defeat a level 98 giant scarab and various skeletons, dried zombies, scabarites and mummies."
+  points: 1
+  achievement: 140
+  reward: "Ability to craft an enchanted water tiara (protects against desert heat)"
+  xp: "7,000 Strength XP<br>7,000 Thieving XP<br>7,000 Agility XP"
+  varbits:
+    - [ 13430, 100, 700 ]
+death_plateau:
+  id: 29
+  name: "Death Plateau"
+  difficulty: 0
+  length: 1
+  sprite: 9570
+  item_sprite: 33641
+  region: 0
+  start_point: "Talk to Commander Denulth at the Burthorpe training camp."
+  start_path:
+    - [ 2918, 3561 ]
+  req_items: "None, but be sure to wield a weapon."
+  req_combat: "The ability to defeat a level 2 Troll."
+  points: 1
+  achievement: 31
+  reward: "Talk to Denulth for a repeatable delivery task"
+  xp: "3 reward lamps (100 XP each)"
+  varbits:
+    - [ 10848, 5, 65 ]
+death_to_the_dorgeshuun:
+  id: 28
+  name: "Death to the Dorgeshuun"
+  difficulty: 1
+  length: 3
+  members: true
+  sprite: 17737
+  region: 47
+  start_point: "Talk to Mistag in the Dorgeshuun Mines."
+  start_path:
+    - [ 3314, 9612 ]
+    - [ 3209, 3215 ]
+  req_skills:
+    Agility: 23
+    Thieving: 23
+  req_quests:
+    - lost_tribe
+  req_items: "Two complete sets of H.A.M. robes, pickaxe, light source."
+  req_combat: "Be able to defeat a level 42 foe."
+  points: 1
+  achievement: 30
+  reward: "Access to the H.A.M. storerooms<br>Access to Dorgesh-Kaan"
+  xp: "2,000 combat XP lamp<br>2,000 Thieving XP lamp"
+  varbits:
+    - [ 11533, 1, 13 ]
+defender_of_varrock:
+  id: 144
+  name: "Defender of Varrock"
+  difficulty: 2
+  length: 4
+  members: true
+  sprite: 17749
+  region: 8
+  start_point: "Talk to Captain Rovin in the north-west tower of Varrock Palace."
+  start_path:
+    - [ 3205, 3495, 2 ]
+    - [ 3203, 3496 ]
+  req_skills:
+    Agility: 51
+    Hunter: 51
+    Smithing: 54
+    Mining: 59
+  req_quests:
+    - shield_of_arrav
+    - knights_sword
+    - family_crest
+    - what_lies_below
+  req_items: "Light source, blurite ore, spade."
+  req_combat: "Be able to kill multiple level 104 foes and survive in the Wilderness."
+  points: 2
+  achievement: 154
+  xp: "15,000 Hunter XP lamp<br>10,000 Mining XP lamp<br>10,000 Smithing XP lamp<br>2,000 Agility XP lamp"
+  varbits:
+    - [ 12163, 10, 250 ]
+demon_slayer:
+  id: 2
+  name: "Demon Slayer"
+  difficulty: 0
+  length: 1
+  sprite: 25450
+  item_sprite: 25453
+  region: 7
+  start_point: "Talk to Gideon Bede at the Saradominist church in north-east Varrock."
+  start_path:
+    - [ 3250, 3483 ]
+  req_items: "None."
+  req_combat: "You must defeat several cultists, and a powerful demon!"
+  points: 3
+  achievement: 3
+  reward: "The holy sword, Silverlight<br>Avernic wand and book"
+  xp: "3 combat XP lamps worth 100 XP each"
+  varbits:
+    - [ 17841, 1, 9 ]
+desert_slayer_dungeon_miniquest:
+  id: 285
+  name: "Desert Slayer Dungeon (miniquest)"
+  difficulty: 3
+  length: 2
+  members: true
+  sprite: 9562
+  region: 22
+  start_point: "Enter a barrier on the lowest level of Pollnivneach Slayer Dungeon, and defeat the monstrous cave crawler, basilisk boss, mightiest turoth and kurask overlord."
+  start_path:
+    - [ 3277, 4371 ]
+    - [ 3359, 2973 ]
+    - [ 3373, 9427 ]
+  req_quests:
+    - smoking_kills
+  req_items: "(Full) slayer helmet, masked earmuffs or face mask, a weapon to attack turoths and kurask, mirror shield"
+  req_combat: "You will need to defeat four level 96 bosses. The fourth boss requires 70 Slayer to defeat."
+  achievement: 248
+  reward: "Access to cave crawler, basilisk, turoth and kurask rooms"
+  xp: "4,000 Slayer XP (1,000 XP from defeating each of the four bosses)"
+  varbits:
+    - [ -21743, 1, 15 ]
+desert_treasure:
+  id: 30
+  name: "Desert Treasure"
+  difficulty: 3
+  length: 7
+  members: true
+  sprite: 17746
+  region: 22
+  start_point: "Talk to the Archaeologist who is exploring the Bedabin Camp South West of the Shantay Pass."
+  start_path:
+    - [ 3176, 3041 ]
+  req_skills:
+    Slayer: 10
+    Firemaking: 50
+    Magic: 50
+    Thieving: 53
+  req_quests:
+    - dig_site
+    - troll_stronghold
+  req_items: "Waterskins, knife, 12 magic logs, 6 steel bars, 6 molten glass, charcoal, 1 ashes, 1 blood rune, 1 bones (regular), cake, silver bar, garlic, pestle and mortar, spiked boots, spice (not gnome), lockpicks, antipoison potions, tinderbox, face mask, stat restore potions."
+  req_combat: "Be able to defeat foes up to level 126."
+  points: 3
+  achievement: 32
+  reward: "Ancient magicks<br>Access to the Bandit Camp Home Teleport<br>Ability to buy and wield the ancient staff<br>Access to the Zarosian gravestone"
+  xp: "20,000 Magic XP"
+  varbits:
+    - [ 9482, 1, 15 ]
+devious_minds:
+  id: 31
+  name: "Devious Minds"
+  difficulty: 2
+  length: 3
+  members: true
+  region: 25
+  start_point: "Talk to the monk just outside Paterdomus (the temple on the Salve)."
+  start_path:
+    - [ 3401, 3492 ]
+  req_skills:
+    Smithing: 65
+    Fletching: 50
+    Runecrafting: 50
+  req_quests:
+    - recruitment_drive
+    - whats_mine_is_yours
+  req_items: "Mithril 2h sword, bowstring, fully repaired large pouch."
+  req_combat: "None."
+  points: 1
+  achievement: 33
+  xp: "5,000 Fletching XP<br>5,000 Runecrafting XP<br>6,500 Smithing XP"
+  varbits:
+    - [ 11914, 10, 80 ]
+# TODO prince ali rescue
+#diamond_in_the_rough:
+#  id: 177
+#  name: "Diamond in the Rough"
+#  difficulty: 0
+#  length: 4
+#  members: true
+#  sprite: 13615
+#  item_sprite: 27246
+#  region: 21
+#  start_point: "Talk to Spymaster Osman in Al Kharid's palace."
+#  start_path:
+#    - [ 3290, 3157 ]
+#  req_quests:
+#    - stolen_hearts
+#  req_items: "Food and combat gear."
+#  req_combat: "You will need to defeat six level 2 bandits, and two level 5 thugs."
+#  points: 1
+#  achievement: 10
+#  reward: "Access to the Kalphite Nursery (and a new weapon and shield)"
+#  xp: "250 combat XP lamp<br>250 Agility XP<br>250 Thieving XP"
+#  varbits:
+#    - [ 9429, 5, 120 ]
+dig_site:
+  id: 32
+  name: "The Dig Site"
+  difficulty: 1
+  length: 5
+  members: true
+  sprite: 9524
+  item_sprite: 10797
+  region: 9
+  start_point: "Talk to an examiner in the Exam Centre."
+  start_path:
+    - [ 3356, 3345 ]
+  req_skills:
+    Thieving: 25
+    Herblore: 10
+    Agility: 10
+  req_items: "Charcoal (can be obtained during quest), cup of tea, empty vial, two ropes, uncut or cut opal (can be obtained during quest)."
+  req_combat: "None."
+  points: 2
+  achievement: 34
+  reward: "Two gold bars<br>Ability to clean specimens for Varrock Museum for Kudos and a Dig Site pendant<br>Access to the Codex Ultimatus from archaeological expert Terry Balando (requires 75 Attack, Magic or Ranged, or 91 Constitution)"
+  xp: "15,300 Mining XP<br>2,000 Herblore XP"
+  varps:
+    - [ 2205, 1, 9 ]
+do_no_evil:
+  id: 179
+  name: "Do No Evil"
+  difficulty: 3
+  length: 7
+  members: true
+  sprite: 4435
+  item_sprite: 26121
+  region: 22
+  start_point: "Talk to Leela and Senliten in Senliten's tomb."
+  start_path:
+    - [ 3490, 3025 ]
+  req_skills:
+    Ranged: 50
+    Construction: 64
+    Crafting: 68
+    Magic: 70
+    Thieving: 70
+  req_quests:
+    - animal_magnetism
+    - shadow_of_the_storm
+    - desert_treasure
+    - smoking_kills
+    - missing_my_mummy
+    - dealing_with_scabaras
+    - recipe_for_disaster_freeing_king_awowogei
+  req_items: "Gorilla greegree, ring of Charos, Ava's accumulator, a cat, a desert shirt, a desert robe, a pair of desert boots, 3 full waterskins, 10 bananas, 6 teak planks, 10 bolts of cloth, a hammer, a saw, 3 cords of rope, 4 knives, monkeyspeak amulet, ghostspeak amulet, a monkeyspeak amulet mould, runes for ancient ice magic and at LEAST 1,000 coins."
+  req_combat: "Combat level of 100 or higher is recommended."
+  points: 1
+  achievement: 183
+  reward: "New magic carpet station at the monkey colony<br>Ability to make a cramulet"
+  xp: "50,000 Magic XP<br>50,000 Thieving XP<br>40,000 Crafting XP<br>30,000 Construction XP"
+  varbits:
+    - [ 9324, 10, 315 ]
+dragon_slayer:
+  id: 4
+  name: "Dragon Slayer"
+  difficulty: 2
+  length: 5
+  sprite: 4428
+  item_sprite: 33638
+  region: 9
+  start_point: "Talk to the Guildmaster inside the Champions' Guild, south of Varrock."
+  start_path:
+    - [ 3191, 3362 ]
+  req_quest_points: 33
+  req_items: "An unfired bowl, a wizard's mind bomb, a crayfish cage or lobster pot, a piece of silk, 2,000-12,000 coins (less if you bring Telekinetic Grab runes and a non-melee weapon), 3 regular planks and 90 steel nails."
+  req_combat: "You will need to defeat a level 63 dragon, a level 56 demon, a level 39 mage, and various lesser foes. 50+ in combat skills and 37+ Prayer are recommended."
+  points: 2
+  achievement: 17
+  reward: "A rune platebody<br>Anti-dragon shield<br>Access to Crandor, Melzar's Maze and the dragon crest on herald capes"
+  xp: "18,650 Strength XP lamp"
+  varps:
+    - [ 2268, 1, 10 ]
+dream_mentor:
+  id: 124
+  name: "Dream Mentor"
+  difficulty: 3
+  length: 2
+  members: true
+  sprite: 8234
+  region: 33
+  start_point: "Talk to the fallen man inside the small cave in the Lunar Isle Mine."
+  start_path:
+    - [ 2335, 10345, 2 ]
+    - [ 2141, 3944 ]
+  req_quests:
+    - lunar_diplomacy
+  req_items: "20 pieces of 3 kinds of food (eg 7 cabbages, 7 onions, 6 potatoes), astral rune."
+  req_combat: "You will need to defeat four level 88-98 enemies."
+  points: 2
+  achievement: 134
+  reward: "8 new lunar spells<br>Access to the 'Random' option on the NPC Contact spell"
+  xp: "15,000 combat XP lamp<br>10,000 Magic XP"
+  varbits:
+    - [ 9530, 2, 28 ]
+druidic_ritual:
+  id: 33
+  name: "Druidic Ritual"
+  difficulty: 0
+  length: 1
+  sprite: 4432
+  item_sprite: 33639
+  region: 0
+  start_point: "Talk to Kaqemeex at the stone circle north of Taverley."
+  start_path:
+    - [ 2924, 3484 ]
+  req_items: "Fishing rod, chisel, coins."
+  req_combat: "None."
+  points: 4
+  achievement: 18
+  reward: "15 noted guam<br>15 noted eye of newt"
+  xp: "250 Herblore XP"
+  varbits:
+    - [ 13366, 2, 8 ]
+dwarf_cannon:
+  id: 34
+  name: "Dwarf Cannon"
+  difficulty: 0
+  length: 3
+  members: true
+  region: 39
+  start_point: "Talk to Captain Lawgof, south of the coal truck mining site to the west of McGrubor's Wood."
+  start_path:
+    - [ 2568, 3460 ]
+  req_items: "None."
+  req_combat: "None."
+  points: 1
+  achievement: 35
+  reward: "Permission to purchase and use a dwarf multicannon<br>Ability to smith cannonballs<br>Ability to add the ammo mould to your tool belt"
+  xp: "750 Crafting XP"
+  varps:
+    - [ 2732, 1, 11 ]
+eadgars_ruse:
+  id: 35
+  name: "Eadgar's Ruse"
+  difficulty: 2
+  length: 5
+  members: true
+  sprite: 9544
+  region: 1
+  start_point: "Talk to Sanfew in Taverley."
+  start_path:
+    - [ 2918, 3438 ]
+  req_skills:
+    Herblore: 31
+  req_quests:
+    - druidic_ritual
+    - troll_stronghold
+  req_items: "(Rock) climbing boots (or a Trollheim teleport), bottle of vodka, pineapple chunks, 10 wheat, 5 raw chickens, 2 logs, unfinished ranarr potion."
+  req_combat: "None, but beware of level 77 thrower trolls."
+  points: 1
+  achievement: 36
+  reward: "Ability to grow and steal goutweed<br>Ability to use the Trollheim Teleport spell<br>Burnt meat"
+  xp: "11,000 Herblore XP"
+  varps:
+    - [ 2549, 10, 110 ]
+eagles_peak:
+  id: 36
+  name: "Eagles' Peak"
+  difficulty: 0
+  length: 3
+  members: true
+  sprite: 9108
+  region: 41
+  start_point: "Talk to Charlie the Zookeeper in Ardougne Zoo."
+  start_path:
+    - [ 2606, 3264 ]
+  req_skills:
+    Hunter: 27
+  req_items: "Yellow dye, swamp tar, 50 coins."
+  req_combat: "You will need to defeat a level 14 kebbit."
+  points: 2
+  achievement: 37
+  reward: "Ability to capture ferrets (using box traps) and use them to flush rabbits from rabbit holes<br>Ability to fly the eagles from Eagles' Peak<br>Eagle costume<br>Ferret in Ardougne zoo<br>Box trap"
+  xp: "2,500 Hunter XP"
+  varbits:
+    - [ 13931, 5, 40 ]
+elemental_workshop_i:
+  id: 37
+  name: "Elemental Workshop I"
+  difficulty: 0
+  length: 1
+  members: true
+  sprite: 9557
+  region: 30
+  start_point: "Search the shelves in a house in Seers' Village for an old book."
+  start_path:
+    - [ 2715, 3481 ]
+  req_skills:
+    Smithing: 20
+    Mining: 20
+    Crafting: 20
+  req_items: "1 thread, 4 coal."
+  req_combat: "You will need to defeat a level 44 earth elemental."
+  points: 1
+  achievement: 38
+  reward: "Access to the Elemental Workshop<br>Elemental shield and the ability to make them"
+  xp: "5,000 Crafting XP<br>5,000 Smithing XP"
+  varps:
+    - [ 2675, 1, 524288 ]
+elemental_workshop_ii:
+  id: 38
+  name: "Elemental Workshop II"
+  difficulty: 1
+  length: 3
+  members: true
+  sprite: 9558
+  region: 9
+  start_point: "Search the shelves in the Varrock Dig Site Exam Centre for an old book."
+  start_path:
+    - [ 3362, 3343 ]
+  req_skills:
+    Magic: 20
+    Smithing: 30
+  req_quests:
+    - elemental_workshop_i
+  req_items: "8 coal. (12 if you wish to also make a mind shield.)"
+  req_combat: "You will need to defeat 2-3 level 44 earth elementals."
+  points: 1
+  achievement: 39
+  reward: "Ability to make elemental helmets, mind shields and mind helmets"
+  xp: "7,500 Crafting XP<br>7,500 Smithing XP"
+  varbits:
+    - [ 13674, 1, 11 ]
+elemental_workshop_iii:
+  id: 172
+  name: "Elemental Workshop III"
+  difficulty: 1
+  length: 4
+  members: true
+  sprite: 3138
+  item_sprite: 26118
+  region: 30
+  start_point: "Search a bookcase in Seers' Village church."
+  start_path:
+    - [ 2702, 3465 ]
+  req_skills:
+    Smithing: 33
+    Defence: 33
+  req_quests:
+    - elemental_workshop_ii
+  req_items: "Any pickaxe, a hammer and some coal."
+  req_combat: "Level 44 earth elementals."
+  points: 1
+  achievement: 179
+  reward: "Ability to make and equip elemental body equipment<br>An elemental body<br>50 coal"
+  xp: "Book of knowledge granting 4,250 Defence XP and 3,250 Smithing XP (2 Defence charges, 2 Smithing charges)<br>2,000 Smithing XP"
+  varbits:
+    - [ 12504, 1, 5 ]
+enakhras_lament:
+  id: 39
+  name: "Enakhra's Lament"
+  difficulty: 2
+  length: 3
+  members: true
+  sprite: 17742
+  region: 22
+  start_point: "Talk to Lazim in the desert south of the Bandit Camp."
+  start_path:
+    - [ 3190, 2930 ]
+  req_skills:
+    Crafting: 50
+    Firemaking: 45
+    Magic: 13
+  req_items: "Chisel, runes to cast fire and air spells, a candle, coal, normal log, oak log, willow log, maple log, soft clay, waterskins, bread or cake."
+  req_combat: "None."
+  points: 2
+  achievement: 40
+  reward: "Camulet from Akthanakos<br>Camel mask"
+  xp: "7,000 Crafting XP<br>7,000 Firemaking XP<br>7,000 Mining XP<br>7,000 Magic XP"
+  varbits:
+    - [ 9740, 10, 70 ]
+enlightened_journey:
+  id: 40
+  name: "Enlightened Journey"
+  difficulty: 1
+  length: 3
+  members: true
+  sprite: 9526
+  region: 29
+  start_point: "Talk to Auguste on Entrana (bring neither weapons nor armour with you)."
+  start_path:
+    - [ 2812, 3355 ]
+  req_quest_points: 21
+  req_skills:
+    Crafting: 36
+    Farming: 30
+    Firemaking: 20
+  req_items: "At least 10 regular logs, 3 papyrus, 1 ball of wool, 1 full sack of potatoes, 1 unlit candle or black candle, 1 yellow dye, 1 red dye, 8 sacks, 10 silk, 1 bowl, 12 willow branches."
+  req_combat: "None."
+  points: 1
+  achievement: 41
+  reward: "Bomber jacket and bomber cap<br>Access to the balloon transport system<br>Ability to make origami balloons"
+  xp: "2,000 Crafting XP<br>3,000 Farming XP<br>1,500 Woodcutting XP<br>4,000 Firemaking XP"
+  varbits:
+    - [ 12529, 5, 200 ]
+enter_the_abyss_miniquest:
+  id: 278
+  name: "Enter the Abyss (miniquest)"
+  difficulty: 1
+  length: 1
+  members: true
+  sprite: 31962
+  region: 12
+  start_point: "Talk to the Mage of Zamorak at the end of the River Lum in the Wilderness (roams levels 4-7)."
+  start_path:
+    - [ 3106, 3558 ]
+  req_skills:
+    Runecrafting: 5
+  achievement: 249
+  reward: "Access to the Abyss"
+  xp: "1,000 Runecrafting XP"
+  varps:
+    - [ 3149, 1, 4 ]
+ernest_the_chicken:
+  id: 5
+  name: "Ernest the Chicken"
+  difficulty: 0
+  length: 3
+  sprite: 2382
+  item_sprite: 26112
+  region: 5
+  start_point: "Talk to Veronica outside Draynor Manor."
+  start_path:
+    - [ 3112, 3329 ]
+  req_items: "None."
+  req_combat: "None, but watch out for those trees in the manor grounds."
+  points: 4
+  achievement: 6
+  reward: "3,000 coins<br>10 eggs<br>300 feathers"
+  varps:
+    - [ 2183, 1, 3 ]
+eyes_of_glouphrie:
+  id: 41
+  name: "The Eyes of Glouphrie"
+  difficulty: 1
+  length: 3
+  members: true
+  sprite: 9576
+  region: 36
+  start_point: "Talk to Brimstail in his cave west of the Gnome Stronghold bank."
+  start_path:
+    - [ 2402, 3419 ]
+  req_skills:
+    Magic: 46
+    Construction: 5
+  req_quests:
+    - grand_tree
+  req_items: "1 mud rune, 1 maple log, 1 oak log, 1 bucket of sap (use an empty bucket on an evergreen tree)."
+  req_combat: "You will need to defeat 6 evil creatures (1 life point each)."
+  points: 2
+  achievement: 42
+  reward: "Mysterious small crystal seed<br>Ability to use crystal singing bowls"
+  xp: "12,000 Magic XP<br>2,500 Woodcutting XP<br>6,000 Runecrafting XP<br>250 Construction XP"
+  varbits:
+    - [ 12813, 1, 60 ]
+fairy_tale_i:
+  id: 42
+  name: "A Fairy Tale I - Growing Pains"
+  difficulty: 2
+  length: 3
+  members: true
+  sprite: 4424
+  region: 4
+  start_point: "Talk to Martin the Master Gardener in Draynor Village."
+  start_path:
+    - [ 3077, 3258 ]
+  req_quests:
+    - lost_city
+    - nature_spirit
+  req_items: "Dramen staff or lunar staff, secateurs."
+  req_combat: "You will need to defeat a level 68 enemy."
+  points: 2
+  achievement: 43
+  reward: "Magic secateurs"
+  xp: "3,500 Farming XP<br>2,000 Attack XP<br>1,000 Magic XP"
+  varbits:
+    - [ 13286, 10, 90 ]
+fairy_tale_ii:
+  id: 43
+  name: "A Fairy Tale II - Cure a Queen"
+  difficulty: 2
+  length: 3
+  members: true
+  sprite: 4424
+  region: 4
+  start_point: "Talk to Martin the Master Gardener in Draynor Village."
+  start_path:
+    - [ 3077, 3258 ]
+  req_skills:
+    Herblore: 57
+    Farming: 49
+    Thieving: 40
+  req_quests:
+    - fairy_tale_i
+  req_items: "Dramen staff or lunar staff, vial of water."
+  req_combat: "You will need to defeat (possibly multiple) level 74 enemies."
+  points: 2
+  achievement: 44
+  reward: "Access to the fairy ring network<br>Access to the fairy resistance hideout<br>Ability to make magic essence potions"
+  xp: "2,500 XP lamp (level 30 or above)<br>3,500 Herblore XP<br>2,500 Thieving XP"
+  varbits:
+    - [ 12056, 5, 90 ]
+fairy_tale_iii:
+  id: 158
+  name: "A Fairy Tale III - Battle at Ork's Rift"
+  difficulty: 2
+  length: 5
+  members: true
+  sprite: 3133
+  item_sprite: 26117
+  region: 44
+  start_point: "Talk to the Fairy Queen at Fairy Resistance HQ, reached by using the main fairy ring in Zanaris."
+  start_path:
+    - [ 1579, 4239 ]
+  req_skills:
+    Farming: 54
+    Thieving: 51
+    Crafting: 36
+  req_quests:
+    - fairy_tale_ii
+  req_items: "Fairy Nuff's certificate and dramen staff."
+  req_combat: "Must be able to survive a battle equivalent to fighting a level 85 foe."
+  points: 2
+  achievement: 167
+  reward: "You no longer need a dramen staff to use fairy rings<br>Free access to Zanaris market<br>Magic watering can"
+  xp: "11,000 Farming XP<br>11,000 Thieving XP<br>11,000 Magic XP<br>1,000 Summoning XP<br>1,000 Crafting XP"
+  varbits:
+    - [ 9928, 10, 180 ]
+family_crest:
+  id: 44
+  name: "Family Crest"
+  difficulty: 2
+  length: 3
+  members: true
+  sprite: 4423
+  region: 7
+  start_point: "Talk to Dimintheis in south-east Varrock."
+  start_path:
+    - [ 3280, 3404 ]
+    - [ 3263, 3405 ]
+  req_skills:
+    Mining: 40
+    Smithing: 40
+    Crafting: 40
+  req_items: "Cooked shrimp, cooked salmon, cooked tuna, cooked bass, cooked swordfish, 2 cut rubies, antipoison potion. You will likely need a magic weapon to cast Air Blast, Water Blast, Earth Blast, Fire Blast (59 Magic) from the normal spellbook."
+  req_combat: "You will need to defeat a level 84 demon."
+  points: 1
+  achievement: 45
+  reward: "Family gauntlets (chaos gauntlets, cooking gauntlets, smelting gauntlets)<br>Access to the hellhounds in Witchaven Dungeon"
+  varps:
+    - [ 2663, 1, 11 ]
+the_feud:
+  id: 45
+  name: "The Feud"
+  difficulty: 1
+  length: 3
+  members: true
+  sprite: 9577
+  region: 21
+  start_point: "Talk to Ali Morrisane in Al Kharid."
+  start_path:
+    - [ 3301, 3210 ]
+  req_skills:
+    Thieving: 30
+  req_items: "Desert disguise, at least 1,000 coins (less with a ring of Charos), leather gloves."
+  req_combat: "You will need to defeat a level 54 enemy."
+  points: 1
+  achievement: 46
+  reward: "Blackjack<br>Desert disguise<br>500 coins<br>Ability to do another part of Rogue Trader<br>Free beer"
+  xp: "15,000 Thieving XP"
+  varbits:
+    - [ 9712, 1, 28 ]
+fight_arena:
+  id: 46
+  name: "Fight Arena"
+  difficulty: 2
+  length: 3
+  members: true
+  sprite: 17743
+  region: 43
+  start_point: "Talk to Lady Servil, just north-west of the fight arena."
+  start_path:
+    - [ 2567, 3202 ]
+  req_items: "Combat gear."
+  req_combat: "Be able to defeat level 50, 64 and 77 foes."
+  points: 2
+  achievement: 47
+  reward: "1,000 coins"
+  xp: "12,175 Attack XP<br>2,175 Thieving XP"
+  varps:
+    - [ 2595, 1, 14 ]
+fishing_contest:
+  id: 47
+  name: "Fishing Contest"
+  difficulty: 0
+  length: 1
+  members: true
+  sprite: 9527
+  region: 2
+  start_point: "Talk to Vestri or Austri near White Wolf Mountain."
+  start_path:
+    - [ 2880, 3458 ]
+  alternate_path: [ 2791, 3470 ]
+  req_skills:
+    Fishing: 10
+  req_items: "5 coins, garlic."
+  req_combat: "None."
+  points: 1
+  achievement: 48
+  reward: "Access to the White Wolf Mountain shortcut"
+  xp: "2,437 Fishing XP"
+  varps:
+    - [ 2331, 1, 5 ]
+forgettable_tale:
+  id: 48
+  name: "Forgettable Tale of a Drunken Dwarf"
+  difficulty: 1
+  length: 5
+  members: true
+  sprite: 9528
+  region: 46
+  start_point: "Talk to Commander Veldaban in the Black Guard HQ in Keldagrim."
+  start_path:
+    - [ 2827, 10213 ]
+    - [ 2730, 3713 ]
+  req_skills:
+    Farming: 17
+    Cooking: 22
+  req_quests:
+    - the_giant_dwarf
+    - fishing_contest
+  req_items: "About 400 coins, 2 barley malt (use barley on a range), 2 buckets of water. 2 beer, beer glass, kebab (can be bought in Keldagrim)."
+  req_combat: "None."
+  points: 2
+  achievement: 49
+  reward: "2 mature dwarven stouts<br>2 marrentill seeds if you deliver Rind's letter"
+  xp: "5,000 Farming XP<br>5,000 Cooking XP"
+  varbits:
+    - [ 11917, 10, 140 ]
+forgiveness_of_a_chaos_dwarf:
+  id: 160
+  name: "Forgiveness of a Chaos Dwarf"
+  difficulty: 3
+  length: 4
+  members: true
+  region: 46
+  start_point: "Talk to Commander Veldaban in the Black Guard HQ on the western side of Keldagrim."
+  start_path:
+    - [ 2827, 10213 ]
+    - [ 2730, 3713 ]
+  req_skills:
+    Strength: 69
+    Hunter: 61
+    Firemaking: 61
+  req_quests:
+    - forgettable_tale
+    - between_a_rock
+  req_items: "At least 6 free inventory spaces."
+  req_combat: "You will need to defeat a level 70 chaos dwarf hand cannoneer."
+  points: 2
+  achievement: 168
+  reward: "Access to the chaos dwarf battlefield and the north Keldagrim mining area<br>Ability to wield the hand cannon"
+  xp: "30,000 Firemaking XP<br>30,000 Hunter XP<br>30,000 Strength XP"
+  varbits:
+    - [ 10544, 10, 80 ]
+fremennik_isles:
+  id: 118
+  name: "The Fremennik Isles"
+  difficulty: 2
+  length: 5
+  members: true
+  sprite: 9579
+  region: 32
+  start_point: "Talk to Mord Gunnars at the docks in Rellekka."
+  start_path:
+    - [ 2648, 3710 ]
+  req_skills:
+    Construction: 20
+    Agility: 40
+    Crafting: 46
+    Woodcutting: 56
+  req_quests:
+    - fremennik_trials
+  req_items: "Raw tuna, 8 ropes."
+  req_combat: "You will need to defeat 10 level 68 ice trolls and a level 91 ice troll king."
+  points: 1
+  achievement: 128
+  reward: "14,000 coins in assorted rewards during the quest<br>The Helm of Neitiznot<br>Access to arctic pines<br>Mining sites in Neitiznot and Jatizso<br>Ability to make yak hide armour<br>Access to the Contraband Yak Produce shop on Jatizso"
+  xp: "5,000 Construction XP<br>5,000 Crafting XP<br>10,000 Woodcutting XP<br>10,000 XP in 2 combat skills"
+  varbits:
+    - [ 13178, 5, 340 ]
+fremennik_trials:
+  id: 49
+  name: "The Fremennik Trials"
+  difficulty: 1
+  length: 5
+  members: true
+  sprite: 9580
+  region: 32
+  start_point: "Talk to Brundt the Chieftain in the longhall in Rellekka."
+  start_path:
+    - [ 2657, 3669 ]
+  req_skills:
+    Crafting: 40
+    Woodcutting: 40
+    Fletching: 25
+  req_items: "Raw shark, raw manta ray or raw sea turtle, 5,250 coins."
+  req_combat: "You will need to defeat the Draugen (level 96) and Koschei the Deathless. You may wish to defeat Borrokar (level 56)."
+  points: 3
+  achievement: 50
+  reward: "Fremennik name<br>Fremennik blade<br>Ability to wear Fremennik helms and armour and make an enchanted lyre<br>Access to Rellekka's facilities and the islands of Miscellania, Etceteria and Waterbirth Island<br>Ability to watch the Epic of Bukalla performance in the Rellekka longhall"
+  xp: "2,800 Agility XP lamp<br>2,800 Attack XP lamp<br>2,800 Crafting XP lamp<br>2,800 Fishing XP lamp<br>2,800 Fletching XP lamp<br>2,800 Strength XP lamp<br>2,800 Thieving XP lamp<br>2,800 Woodcutting XP lamp"
+  varps:
+    - [ 2262, 1, 10 ]
+from_tiny_acorns_miniquest:
+  id: 280
+  name: "From Tiny Acorns (miniquest)"
+  difficulty: 0
+  length: 1
+  members: true
+  sprite: 3073
+  item_sprite: 26116
+  region: 3
+  start_point: "Talk to Darren Lightfinger in his cellar (accessed through a trapdoor north of the Lumbridge furnace)."
+  start_path:
+    - [ 4662, 5903 ]
+    - [ 3223, 3268 ]
+  req_skills:
+    Thieving: 24
+  req_quests:
+    - buyers_and_cellars
+  achievement: 274
+  reward: "Ability to steal a craftsman's monocle<br>Ability to purchase crafting equipment from Urist Loric<br>Access to the advanced pickpocketing trainer and coshing volunteers in the Thieves' Guild<br>Access to the practice chest area in the Thieves' Guild"
+  xp: "1,000 Thieving XP"
+  varbits:
+    - [ 9022, 15, 20 ]
+fur_n_seek:
+  id: 154
+  name: "Fur 'n Seek"
+  difficulty: 0
+  length: 3
+  members: true
+  sprite: 9529
+  region: 10
+  start_point: "Talk to the Odd Old Man at the quarry west of Paterdomus."
+  start_path:
+    - [ 3361, 3505 ]
+  req_skills:
+    Slayer: 25
+  req_quests:
+    - rag_and_bone_man
+  req_items: "9 bags of salt, 8 logs, a mirror shield, armour and a weapon."
+  req_combat: "You will need to kill a variety of monsters to obtain their hides."
+  points: 2
+  achievement: 166
+  xp: "2,500 Constitution XP<br>2,500 Slayer XP<br>500 Crafting XP<br>500 Firemaking XP"
+  varbits:
+    - [ 9902, 1, 5 ]
+garden_of_tranquillity:
+  id: 51
+  name: "Garden of Tranquillity"
+  difficulty: 1
+  length: 5
+  members: true
+  sprite: 4426
+  region: 8
+  start_point: "Talk to Queen Ellamaria in the garden of Varrock Palace."
+  start_path:
+    - [ 3227, 3477 ]
+  req_skills:
+    Farming: 25
+  req_quests:
+    - creature_of_fenkenstrain
+  req_items: "Ring of Charos, (magic) watering can, 3-6 cabbage seeds, 3-6 onion seeds, 3 marigold seeds, 2 buckets of (super-)compost, rune essence or pure essence, 2 plant cures, fishing rod or fly fishing rod, filled plant pot."
+  req_combat: "None."
+  points: 2
+  achievement: 52
+  reward: "Activated ring of Charos<br>1 apple seed<br>1 acorn<br>5 guam seeds<br>4 doses of supercompost potion<br>Ability to pick fruit from the white tree"
+  xp: "5,000 Farming XP"
+  varbits:
+    - [ 13397, 10, 60 ]
+generals_shadow_miniquest:
+  id: 284
+  name: "The General's Shadow (miniquest)"
+  difficulty: 2
+  length: 1
+  members: true
+  sprite: 31962
+  region: 31
+  start_point: "Talk to the ghost of General Khazard wandering near the road south-east of Rellekka, while wearing a ring of visibility, ghostly robes and a way to speak with ghosts."
+  start_path:
+    - [ 2723, 3622 ]
+  req_quests:
+    - curse_of_zaros_miniquest
+    - fight_arena
+  req_items: "ghostly robes, a way to speak to ghosts"
+  req_combat: "You will need to defeat a level 91 ghost dog (weak to Magic)."
+  achievement: 269
+  xp: "2,000 Slayer XP"
+  varbits:
+    - [ 9683, 5, 30 ]
+gertrudes_cat:
+  id: 52
+  name: "Gertrude's Cat"
+  difficulty: 0
+  length: 3
+  sprite: 4167
+  region: 7
+  start_point: "Talk to Gertrude in her house west of Varrock."
+  start_path:
+    - [ 3151, 3411 ]
+  req_items: "Bucket of milk, raw sardine, doogle leaves (can be obtained from behind Gertrude's house), 100 coins."
+  req_combat: "None."
+  points: 1
+  achievement: 53
+  reward: "Chocolate cake<br>Bowl of stew<br>Kitten(!)<br>Ability to raise cats"
+  xp: "1,525 Cooking XP lamp"
+  varps:
+    - [ 2175, 1, 6 ]
+ghosts_ahoy:
+  id: 53
+  name: "Ghosts Ahoy"
+  difficulty: 1
+  length: 1
+  members: true
+  sprite: 9511
+  region: 27
+  start_point: "Talk to Velorina in Port Phasmatys."
+  start_path:
+    - [ 3679, 3509 ]
+  req_skills:
+    Agility: 25
+    Cooking: 20
+  req_quests:
+    - restless_ghost
+  req_items: "Approximately 1,000 coins, thread, silk, spade, oak shieldbow, nettle tea, bucket of milk, ghostspeak amulet, 3 colours of dye, ecto-tokens or charter ships to enter Port Phasmatys three times."
+  req_combat: "You will need to defeat a level 42 giant lobster."
+  points: 2
+  achievement: 54
+  reward: "Free passage into Port Phasmatys<br>The ectophial"
+  varbits:
+    - [ 13497, 1, 8 ]
+the_giant_dwarf:
+  id: 54
+  name: "The Giant Dwarf"
+  difficulty: 1
+  length: 4
+  members: true
+  sprite: 9568
+  region: 46
+  start_point: "Talk to Commander Veldaban in the Black Guard headquarters on the western side of Keldagrim. To enter Keldagrim, talk to the dwarf boatman in the dwarven mines east of Rellekka."
+  start_path:
+    - [ 2827, 10213 ]
+    - [ 2730, 3713 ]
+    - [ 2843, 10130 ]
+  req_skills:
+    Magic: 33
+    Firemaking: 16
+    Thieving: 14
+    Crafting: 12
+  req_items: "Approximately 10,000 coins, any burnable log, 1 coal, 1 iron bar, runes to cast Telekinetic Grab, 3 sapphires, 1 redberry pie (if you have not completed The Knight's Sword)."
+  req_combat: "None."
+  points: 2
+  achievement: 55
+  reward: "Ability to complete tasks for a dwarven mining company<br>Ability to use dwarven mine carts<br>Access to members' gravestones"
+  xp: "2,500 Crafting XP<br>2,500 Mining XP<br>2,500 Smithing XP<br>1,500 Firemaking XP<br>1,500 Magic XP<br>1,500 Thieving XP"
+  varbits:
+    - [ 13266, 10, 50 ]
+glorious_memories:
+  id: 149
+  name: "Glorious Memories"
+  difficulty: 3
+  length: 3
+  members: true
+  sprite: 9109
+  region: 32
+  start_point: "Talk to Manni the Reveller inside the longhall in Rellekka."
+  start_path:
+    - [ 2659, 3675 ]
+  req_skills:
+    Magic: 57
+    Agility: 50
+    Herblore: 43
+    Hunter: 41
+  req_quests:
+    - mountain_daughter
+    - fremennik_isles
+    - royal_trouble
+  req_items: "Clean irit, empty vial, 10 earth runes (or a magic weapon that provides free earth runes), cosmic rune."
+  req_combat: "You will need to defeat a level 89 enemy."
+  points: 1
+  achievement: 158
+  reward: "Unfinished astral rune that can be traded with Baba Yaga for extra rewards"
+  xp: "10,000 Magic XP<br>5,000 Herblore XP<br>The Tome of Glorious Deeds (3x 5,000 XP in Attack, Strength, Constitution, Defence or Ranged)"
+  varbits:
+    - [ 12906, 3, 45 ]
+goblin_diplomacy:
+  id: 6
+  name: "Goblin Diplomacy"
+  difficulty: 0
+  length: 1
+  sprite: 4429
+  item_sprite: 33636
+  region: 14
+  start_point: "Talk to General Bentnoze or General Wartface in the Goblin Village, north of Falador."
+  start_path:
+    - [ 2957, 3510 ]
+  req_items: "Blue dye (or 2 woad leaves and 5 coins), red dye (or 3 redberries and 5 coins), and yellow dye (or 2 onions and 5 coins)."
+  req_combat: "None."
+  points: 5
+  achievement: 15
+  reward: "Gold bar"
+  xp: "200 Crafting XP lamp"
+  varbits:
+    - [ 9363, 1, 6 ]
+the_golem:
+  id: 55
+  name: "The Golem"
+  difficulty: 1
+  length: 3
+  members: true
+  sprite: 9536
+  region: 22
+  start_point: "Talk to the clay golem in the ruins of Uzer."
+  start_path:
+    - [ 3490, 3089 ]
+  req_skills:
+    Crafting: 20
+    Thieving: 25
+  req_items: "Empty vial, 4 soft clay (or 6 jugs of water, but it may evaporate), papyrus."
+  req_combat: "None."
+  points: 1
+  achievement: 56
+  reward: "Ability to collect phoenix feathers<br>Magic carpet route to the ruins of Uzer<br>Ability to search Thammaron's throne to get 6 gems"
+  xp: "1,000 Thieving XP<br>1,000 Crafting XP"
+  varbits:
+    - [ 13639, 1, 10 ]
+grand_tree:
+  id: 56
+  name: "The Grand Tree"
+  difficulty: 2
+  length: 5
+  members: true
+  sprite: 9530
+  region: 36
+  start_point: "Talk to King Narnode Shareen at the Grand Tree in the Gnome Stronghold."
+  start_path:
+    - [ 2465, 3495 ]
+  req_skills:
+    Agility: 25
+  req_items: "Some combat gear and food would be helpful."
+  req_combat: "Must be able to defeat a level 98 enemy."
+  points: 5
+  achievement: 57
+  xp: "18,400 combat XP lamp<br>7,900 Agility XP lamp<br>2,150 Magic XP lamp"
+  varps:
+    - [ 2740, 5, 160 ]
+great_brain_robbery:
+  id: 120
+  name: "The Great Brain Robbery"
+  difficulty: 2
+  length: 4
+  members: true
+  sprite: 9566
+  region: 27
+  start_point: "Talk to Brother Tranquillity on the docks at Mos Le'Harmless."
+  start_path:
+    - [ 3682, 2962 ]
+  req_skills:
+    Prayer: 50
+    Crafting: 16
+    Construction: 30
+  req_quests:
+    - creature_of_fenkenstrain
+    - cabin_fever
+    - recipe_for_disaster_freeing_pirate_pete
+  req_items: "Fishbowl helmet and diving aparratus, 38+ nails (any material), 18 regular planks, 10 pieces of fur, a holy symbol, activated ring of Charos."
+  req_combat: "You will need to defeat five level 49 enemies and a level 93 enemy."
+  points: 2
+  achievement: 130
+  reward: "Barrelchest anchor<br>Prayer book<br>Access to Harmony Island"
+  xp: "Blessed lamp (5,000 XP in any skill above level 30)<br>3,000 Crafting XP<br>2,000 Construction XP"
+  varps:
+    - [ 2082, 10, 130 ]
+grim_tales:
+  id: 125
+  name: "Grim Tales"
+  difficulty: 3
+  length: 3
+  members: true
+  sprite: 9512
+  item_sprite: 31740
+  region: 2
+  start_point: "Talk to Sylas, south of Taverley."
+  start_path:
+    - [ 2912, 3379 ]
+  req_skills:
+    Farming: 45
+    Herblore: 52
+    Thieving: 58
+    Agility: 59
+    Woodcutting: 71
+  req_quests:
+    - witchs_house
+  req_items: "2 vials of water, 2 clean tarromin, leather gloves, watering can."
+  req_combat: "You will need to defeat a level 68 giant."
+  points: 1
+  achievement: 135
+  reward: "Rupert's dwarven helmet"
+  xp: "4,000 Farming XP<br>5,000 Herblore XP<br>14,000 Woodcutting XP<br>6,000 Agility XP<br>6,000 Thieving XP"
+  varbits:
+    - [ 13606, 1, 60 ]
+guild_of_our_own_miniquest:
+  id: 282
+  name: "A Guild of Our Own (miniquest)"
+  difficulty: 3
+  length: 2
+  members: true
+  sprite: 3073
+  item_sprite: 26116
+  region: 3
+  start_point: "Talk to Darren Lightfinger in his cellar (accessed through a trapdoor north of the Lumbridge furnace)."
+  start_path:
+    - [ 4662, 5903 ]
+    - [ 3223, 3268 ]
+  req_skills:
+    Thieving: 62
+    Herblore: 46
+    Agility: 40
+  req_quests:
+    - lost_her_marbles_miniquest
+  req_items: "Any blackjack (not including the rubber blackjack), lockpick (or hair clip), irit potion (unf) (or a clean irit and a vial of water), chopped onion (or bowl, onion)"
+  achievement: 276
+  reward: "Ability to mix vials of stench<br>Full access to the Thieves' Guild, including a bank"
+  xp: "30,000 Thieving XP<br>4,000 Herblore XP"
+  varbits:
+    - [ 9022, 35, 40 ]
+gunnars_ground:
+  id: 17
+  name: "Gunnar's Ground"
+  difficulty: 0
+  length: 2
+  sprite: 3797
+  item_sprite: 26126
+  region: 11
+  start_point: "Talk to Dororan outside the barbarian village."
+  start_path:
+    - [ 3099, 3422 ]
+  req_skills:
+    Crafting: 5
+  req_items: "None."
+  req_combat: "None."
+  points: 5
+  achievement: 181
+  reward: "Swanky boots<br>Talk to Dororan for more Crafting tasks"
+  xp: "300 Crafting XP<br>Antique lamp"
+  varbits:
+    - [ 9188, 5, 100 ]
+hand_in_the_sand:
+  id: 57
+  name: "The Hand in the Sand"
+  difficulty: 1
+  length: 3
+  members: true
+  sprite: 9545
+  region: 44
+  start_point: "Talk to Bert in Yanille."
+  start_path:
+    - [ 2552, 3100 ]
+  req_skills:
+    Thieving: 17
+    Crafting: 49
+  req_items: "Beer (or 2 coins), bucket (of sand), lantern lens, 5 earth runes, 1-2 empty vial, redberries, white berries."
+  req_combat: "None."
+  points: 1
+  achievement: 58
+  reward: "Ability to buy pink dye from Betty<br>Secret reward from Bert"
+  xp: "1,000 Thieving XP<br>9,000 Crafting XP"
+  varbits:
+    - [ 14030, 10, 160 ]
+haunted_mine:
+  id: 58
+  name: "Haunted Mine"
+  difficulty: 2
+  length: 5
+  members: true
+  sprite: 9110
+  region: 24
+  start_point: "Talk to the zealot at the entrance of the Abandoned Mine in south Morytania."
+  start_path:
+    - [ 3444, 3258 ]
+  req_skills:
+    Agility: 15
+    Crafting: 35
+  req_items: "Food and combat equipment."
+  req_combat: "You will need to defeat a level 63 enemy."
+  points: 2
+  achievement: 59
+  reward: "Crystal mine key<br>Ability to make salve amulets (bonus against undead)<br>Access to the Lair of Tarn Razorlor"
+  xp: "22,000 Strength XP lamp"
+  varps:
+    - [ 2201, 1, 11 ]
+hazeel_cult:
+  id: 59
+  name: "Hazeel Cult"
+  difficulty: 0
+  length: 1
+  members: true
+  sprite: 17744
+  region: 40
+  start_point: "Talk to Sir Ceril Carnillean in his mansion in south-west Ardougne."
+  start_path:
+    - [ 2567, 3268 ]
+  req_items: "A weapon and some food might be useful."
+  req_combat: "You may need to fight a level 9 cultist."
+  points: 1
+  achievement: 60
+  reward: "2,000 coins"
+  xp: "1,500 Thieving XP"
+  varps:
+    - [ 2592, 2, 9 ]
+heroes_quest:
+  id: 60
+  name: "Heroes' Quest"
+  difficulty: 2
+  length: 3
+  members: true
+  sprite: 9531
+  item_sprite: 33640
+  region: 0
+  start_point: "Talk to Achiettes at the entrance to the Heroes' Guild in Burthorpe."
+  start_path:
+    - [ 2918, 3514 ]
+  req_quest_points: 56
+  req_skills:
+    Herblore: 25
+    Mining: 50
+    Fishing: 53
+    Cooking: 53
+  req_quests:
+    - shield_of_arrav
+    - dragon_slayer
+  req_items: "If you are in the Black Arm Gang, you will need a black full helm, black platebody and black platelegs. You will either need a player partner in the Phoenix Gang or a lockpick.<br>If you are in the Phoenix Gang, you will need a Ranged or Magic weapon and a player partner in the Black Arm Gang. Otherwise, you will need a lockpick and either 1,000 coins or a ring of Charos.<br>Fishing rod (and possibly bait), harralander potion (unf).<br>Ice gloves."
+  req_combat: "You will need to defeat a level 77 enemy."
+  points: 1
+  achievement: 61
+  reward: "Access to the Heroes' Guild"
+  xp: "Total of 29,232 XP over twelve skill lamps"
+  varps:
+    - [ 2618, 1, 15 ]
+holy_grail:
+  id: 61
+  name: "Holy Grail"
+  difficulty: 1
+  length: 2
+  members: true
+  sprite: 9537
+  region: 30
+  start_point: "Talk to King Arthur in Camelot Castle."
+  start_path:
+    - [ 2764, 3515 ]
+  req_skills:
+    Attack: 30
+  req_quests:
+    - merlins_crystal
+  req_items: "Excalibur."
+  req_combat: "You will need to defeat a level 28 enemy."
+  points: 2
+  achievement: 62
+  reward: "Access to the Fisher Realm<br>Ability to use the King Arthur picture in your player-owned house"
+  varps:
+    - [ 2330, 2, 10 ]
+hopespears_will_miniquest:
+  id: 286
+  name: "Hopespear's Will (miniquest)"
+  difficulty: 2
+  length: 1
+  members: true
+  sprite: 17739
+  region: 39
+  start_point: "Talk to Hopespear in the crypt in the goblin temple (accessed from a cave east of the Fishing Guild entrance), while wearing a ring of visibility and a way to speak with ghosts."
+  start_path:
+    - [ 2784, 4267 ]
+    - [ 2627, 3391 ]
+    - [ 2581, 9851 ]
+  req_skills:
+    Prayer: 40
+  req_quests:
+    - land_of_the_goblins
+    - fairy_tale_i
+  req_items: "a way to speak to ghosts"
+  req_combat: "You will need to defeat five enemies up to level 36 without armour and weapons, magic attacks and familiars."
+  achievement: 252
+  xp: "13,750 Prayer XP"
+  varbits:
+    - [ -21746, 1, 63 ]
+horror_from_the_deep:
+  id: 62
+  name: "Horror from the Deep"
+  difficulty: 2
+  length: 3
+  members: true
+  sprite: 9513
+  region: 31
+  start_point: "Talk to Larrissa south of the Lighthouse."
+  start_path:
+    - [ 2508, 3633 ]
+  req_skills:
+    Agility: 35
+  req_quests:
+    - bar_crawl_miniquest
+  req_items: "60 steel nails, 2 planks, molten glass, swamp tar, tinderbox, fire rune, water rune, earth rune, air rune, a sword and an arrow you are willing to lose."
+  req_combat: "You will need to defeat a level 84 enemy."
+  points: 2
+  achievement: 63
+  reward: "God book of your choice<br>Dagannoth Mother in the Dominion Tower<br>Access to the lighthouse general store and dagannoth caves<br>Ability to request dagannoths as a Slayer task if you own a Mask of the Dagannoth"
+  xp: "4,662 Strength XP<br>4,662 Ranged XP<br>4,662 Magic XP"
+  varbits:
+    - [ 11413, 1, 10 ]
+hunt_for_red_raktuber:
+  id: 151
+  name: "Hunt for Red Raktuber"
+  difficulty: 1
+  length: 5
+  members: true
+  sprite: 9550
+  region: 41
+  start_point: "Talk to Larry in the Ardougne Zoo."
+  start_path:
+    - [ 2592, 3264 ]
+  req_skills:
+    Thieving: 38
+    Construction: 45
+    Hunter: 45
+  req_quests:
+    - cold_war
+    - sea_slug
+  req_items: "Clockwork suit, 8 silk, 4 planks, thread, 6 free inventory spaces, empty hand and cape slot."
+  req_combat: "None."
+  points: 1
+  achievement: 163
+  reward: "Access to the penguin hunting area<br>Polar bear to spot each week in Penguin Hide and Seek<br>4 aquatically-themed hats"
+  xp: "3,000 Construction XP<br>2,000 Thieving XP<br>1,500 Hunter XP"
+  varbits:
+    - [ 13734, 10, 140 ]
+hunt_for_surok_miniquest:
+  id: 287
+  name: "The Hunt for Surok (miniquest)"
+  difficulty: 2
+  length: 2
+  members: true
+  sprite: 9565
+  region: 9
+  start_point: "Talk to Surok by the statue of Saradomin, east of Varrock."
+  start_path:
+    - [ 3282, 3466 ]
+  req_skills:
+    Prayer: 43
+    Mining: 42
+  req_quests:
+    - what_lies_below
+  req_items: "Chaos talisman, chaos tiara, chaos talisman staff, omni-talisman, or a wicked hood with a chaos talisman stored inside."
+  req_combat: "You will need to defeat a level 107 enemy and survive multiple hits from different types of monsters."
+  achievement: 270
+  reward: "Ability to slay Bork daily (for 1,500 Slayer XP, Summoning charms, big bones and gems) in the Chaos Tunnels<br>Ability to wear Dagon'hai robes"
+  xp: "5,000 Slayer XP"
+  varbits:
+    - [ 15344, 1, 10 ]
+icthlarins_little_helper:
+  id: 63
+  name: "Icthlarin's Little Helper"
+  difficulty: 1
+  length: 5
+  members: true
+  region: 22
+  start_point: "Talk to the wanderer, south-east of the southern bridge over the River Elid, in the desert far south of Al Kharid."
+  start_path:
+    - [ 3318, 2846 ]
+  req_quests:
+    - gertrudes_cat
+    - diamond_in_the_rough
+  req_items: "A cat or kitten.<br>Later in the quest: 30 coins, willow log, bucket of sap (from an evergreen or acadia tree)."
+  req_combat: "You will need to defeat two level 56 enemies."
+  points: 2
+  achievement: 64
+  reward: "Amulet of catspeak<br>Access to the city of Sophanem"
+  xp: "4,500 Thieving XP<br>4,000 Agility XP<br>4,000 Woodcutting XP"
+  varbits:
+    - [ 10987, 1, 26 ]
+imp_catcher:
+  id: 7
+  name: "Imp Catcher"
+  difficulty: 0
+  length: 1
+  sprite: 4427
+  item_sprite: 33635
+  region: 6
+  start_point: "Talk to Wizard Mizgog on the first floor of the Wizards' Tower, south of Draynor."
+  start_path:
+    - [ 3109, 3148, 1 ]
+    - [ 3102, 3155 ]
+  req_items: "Bowl of hot water. (Fill an empty bowl from a water source, and heat it on a range or fire.)"
+  req_combat: "Must be able to defeat one level 5 imp."
+  points: 1
+  achievement: 8
+  reward: "An amulet of accuracy<br>Access to Mizgog's amulet shop"
+  xp: "875 Magic XP lamp"
+  varps:
+    - [ 2669, 1, 2 ]
+in_aid_of_the_myreque:
+  id: 64
+  name: "In Aid of the Myreque"
+  difficulty: 1
+  length: 5
+  members: true
+  sprite: 9514
+  region: 26
+  start_point: "Talk to Veliaf in the Myreque hideout, beneath the pub in Canifis."
+  start_path:
+    - [ 3506, 9837 ]
+    - [ 3496, 3466 ]
+  req_skills:
+    Mining: 15
+    Crafting: 25
+    Magic: 7
+  req_quests:
+    - in_search_of_the_myreque
+  req_items: "Food, 1-5 buckets, 11 planks, swamp paste, 44 nails, 10 bronze hatchets, 10 raw mackerel or snails, 3 tinderboxes, 2 steel bars, coal, soft clay, silver bar, mithril bar, cut sapphire, cosmic and water rune (or enchant sapphire tablet), rope."
+  req_combat: "You will need to defeat enemies ranging from level 58 to level 68."
+  points: 2
+  achievement: 65
+  reward: "Access to Burgh de Rott and the Temple Trekking minigame<br>Rod of Ivandis, Gadderhammer and Guthix balance potions<br>5 kudos from the Varrock museum if you talk to Historian Minas"
+  xp: "2,000 Attack XP<br>2,000 Strength XP<br>2,000 Crafting XP"
+  varbits:
+    - [ 11498, 20, 430 ]
+in_pyre_need:
+  id: 146
+  name: "In Pyre Need"
+  difficulty: 2
+  length: 2
+  members: true
+  region: 37
+  start_point: "Talk to the priest of Guthix outside a cave south-west of the Piscatoris Fishing Colony."
+  start_path:
+    - [ 2294, 3626 ]
+  req_skills:
+    Firemaking: 55
+    Fletching: 53
+    Crafting: 52
+  req_items: "5 free inventory spaces."
+  req_combat: "None."
+  points: 1
+  achievement: 156
+  reward: "Access to the Phoenix Lair once per day (5 phoenix quills, chance to receive phoenix eggling)"
+  xp: "14,400 Firemaking XP<br>12,500 Fletching XP<br>11,556 Crafting XP"
+  varbits:
+    - [ 10188, 10, 30 ]
+in_search_of_the_myreque:
+  id: 65
+  name: "In Search of the Myreque"
+  difficulty: 1
+  length: 1
+  members: true
+  sprite: 9111
+  region: 26
+  start_point: "Talk to Vanstrom Klause in the Hair of the Dog tavern in Canifis."
+  start_path:
+    - [ 3503, 3475 ]
+  req_skills:
+    Agility: 25
+  req_quests:
+    - nature_spirit
+  req_items: "Steel longsword, 2 steel short swords, steel mace, steel warhammer, steel dagger, 75 steel nails, druid pouch (at least 5 charges), blessed silver sickle, 6 planks."
+  req_combat: "You will need to defeat a level 44 enemy."
+  points: 2
+  achievement: 66
+  reward: "Access to the Hair of the Dog's cellar<br>Swamp boat shortcut from Mort'ton to The Hollows<br>Access to 2 uncut rubies and 4 big bones"
+  xp: "600 Attack XP lamp<br>600 Strength XP lamp<br>600 Crafting XP lamp"
+  varps:
+    - [ 2696, 5, 105 ]
+jungle_potion:
+  id: 66
+  name: "Jungle Potion"
+  difficulty: 0
+  length: 1
+  members: true
+  sprite: 9559
+  region: 28
+  start_point: "Talk to Trufitus in his hut north-east of Tai Bwo Wannai."
+  start_path:
+    - [ 2808, 3086 ]
+  req_skills:
+    Herblore: 3
+  req_items: "None."
+  req_combat: "None."
+  points: 1
+  achievement: 67
+  xp: "775 Herblore XP lamp"
+  varps:
+    - [ 2484, 1, 12 ]
+kenniths_concerns:
+  id: 134
+  name: "Kennith's Concerns"
+  difficulty: 1
+  length: 4
+  members: true
+  region: 42
+  start_point: "Talk to Kennith in Witchaven, east of Ardougne."
+  start_path:
+    - [ 2711, 3282 ]
+  req_skills:
+    Mining: 46
+  req_quests:
+    - slug_menace
+  req_items: "None."
+  req_combat: "None."
+  points: 1
+  achievement: 144
+  reward: "Access to the mines under Witchaven<br>Repeatable mini-task<br>Ability to mine and sell rubium and make super fishing explosive"
+  xp: "12,000 Mining XP<br>5,000 Agility XP"
+  varbits:
+    - [ 11334, 5, 100 ]
+king_of_the_dwarves:
+  id: 14
+  name: "King of the Dwarves"
+  difficulty: 3
+  length: 4
+  members: true
+  sprite: 3798
+  item_sprite: 26122
+  region: 46
+  start_point: "Talk to lava-flow miner Sven in Keldagrim East."
+  start_path:
+    - [ 2938, 10201 ]
+    - [ 2730, 3713 ]
+  req_skills:
+    Mining: 68
+    Smithing: 70
+    Strength: 77
+  req_quests:
+    - forgiveness_of_a_chaos_dwarf
+    - my_arms_big_adventure
+  req_items: "Pickaxe, six pieces of soft clay, six mithril bars."
+  req_combat: "Must be able to defeat a level 84 enemy."
+  points: 2
+  achievement: 180
+  reward: "New gravestone option"
+  xp: "45,000 Mining XP<br>50,000 Smithing XP<br>55,000 Strength XP"
+  varbits:
+    - [ 13904, 10, 90 ]
+kings_ransom:
+  id: 126
+  name: "King's Ransom"
+  difficulty: 2
+  length: 4
+  members: true
+  region: 30
+  start_point: "Talk to the gossip outside Sinclair Mansion."
+  start_path:
+    - [ 2742, 3552 ]
+  req_quests:
+    - holy_grail
+    - murder_mystery
+    - one_small_favour
+  req_items: "Granite (any size) or a ring of stone, runes to cast Telekinetic Grab, the animate rock scroll (from One Small Favour), an iron chainbody and bronze helm."
+  req_combat: "None."
+  points: 1
+  achievement: 136
+  reward: "Hair clip (more durable lockpick)<br>Ability to choose Camelot as a respawn location<br>Access to the Knight Waves Training Grounds miniquest (Chivalry, Piety, Augury and Rigour prayers)<br>Access to the Court Cases Distraction and Diversion"
+  xp: "5,000 Magic XP lamp (level 45+)<br>5,000 XP lamp (level 50+)"
+  varbits:
+    - [ 11298, 5, 90 ]
+knights_sword:
+  id: 8
+  name: "The Knight's Sword"
+  difficulty: 1
+  length: 1
+  sprite: 4434
+  region: 15
+  start_point: "Talk to Squire Asrol in the courtyard of the White Knights' Castle in Falador."
+  start_path:
+    - [ 2977, 3342 ]
+  req_skills:
+    Mining: 10
+  req_items: "Redberry pie, 2 iron bars."
+  req_combat: "You will need to defeat or evade level 54 enemies."
+  points: 1
+  achievement: 14
+  reward: "Ability to smith blurite (members)"
+  xp: "12,725 Smithing XP lamp"
+  varps:
+    - [ 2547, 1, 7 ]
+lair_of_tarn_razorlor_miniquest:
+  id: 296
+  name: "Lair of Tarn Razorlor (miniquest)"
+  difficulty: 2
+  length: 3
+  members: true
+  sprite: 9110
+  region: 24
+  start_point: "Recover the diary of Tarn Razorlor. The entrance to Tarn's lair is on the north wall of the ground floor of the Abandoned Mine, accessed via the surface cart tunnel. An easier way is to teleport with a ring of slaying."
+  start_path:
+    - [ 3424, 9661 ]
+    - [ 3440, 3232 ]
+  req_skills:
+    Slayer: 40
+  req_quests:
+    - haunted_mine
+  req_combat: "You will need to defeat Tarn Razorlor."
+  achievement: 255
+  reward: "Ability to enchant salve amulets (20% bonus accuracy and damage against undead)<br>Access to terror dogs in Tarn's lair"
+  xp: "5,000 Slayer XP"
+  varbits:
+    - [ 16282, 3, 3 ]
+land_of_the_goblins:
+  id: 129
+  name: "Land of the Goblins"
+  difficulty: 2
+  length: 5
+  members: true
+  sprite: 17739
+  region: 47
+  start_point: "Talk to Grubfoot, who is in the mines north of Dorgesh-Kaan."
+  start_path:
+    - [ 3314, 9612 ]
+    - [ 3209, 3215 ]
+  req_skills:
+    Prayer: 30
+    Agility: 36
+    Fishing: 36
+    Thieving: 36
+    Herblore: 37
+  req_quests:
+    - another_slice_of_ham
+    - fishing_contest
+  req_items: "Toadflax potion (unf), goblin mail, yellow dye, blue dye, orange dye, purple dye, black mushroom ink (obtainable during quest), whitefish (obtained during quest), five coins, raw slimy eel, a light source."
+  req_combat: "Be able to defeat a level 36 foe."
+  points: 1
+  achievement: 139
+  reward: "Ability to buy Plain of Mud teleport spheres<br>Ability to make goblin transformation potions<br>Ability to use the altar in the Goblin Temple"
+  xp: "3,000 Agility XP<br>3,000 Herblore XP<br>3,000 Thieving XP<br>3,000 Fishing XP<br>3,000 Strength XP"
+  varbits:
+    - [ 13322, 1, 18 ]
+legacy_of_seergaze:
+  id: 135
+  name: "Legacy of Seergaze"
+  difficulty: 2
+  length: 6
+  members: true
+  sprite: 9567
+  region: 25
+  start_point: "Talk to the mercenary adventurer east of Paterdomus in Morytania."
+  start_path:
+    - [ 3436, 3489 ]
+  req_skills:
+    Construction: 20
+    Agility: 29
+    Slayer: 31
+    Mining: 35
+    Firemaking: 40
+    Crafting: 47
+    Magic: 49
+  req_quests:
+    - darkness_of_hallowvale
+  req_items: "Teak (or higher) pyre logs, blessed silver sickle, two different combat styles."
+  req_combat: "You will need to defeat multiple enemies up to level 78."
+  points: 2
+  achievement: 145
+  reward: "Ivandis flail<br>Blood talisman<br>Ability to craft blood runes (77 Runecrafting)<br>Access to Meiyerditch dungeon and a shortcut between Canifis and Meiyerditch<br>Access to a furnace in Meiyerditch<br>Access to the columbarium beneath Paterdomus and the ability to cremate vyre corpses<br>Access to the vyrewatch event in Temple Trekking"
+  xp: "Tome of XP (three chapters, 2.5k XP each)<br>3,000 Magic XP<br>2,000 Agility XP<br>4,000 Crafting XP<br>2,000 Mining XP<br>1,000 Construction XP<br>2,000 Slayer XP"
+  varbits:
+    - [ 13978, 10, 500 ]
+legends_quest:
+  id: 67
+  name: "Legends' Quest"
+  difficulty: 3
+  length: 6
+  members: true
+  sprite: 24881
+  region: 39
+  start_point: "Talk to Radimus Erkle in the Legends' Guild, north-east of Ardougne."
+  start_path:
+    - [ 2729, 3349 ]
+  req_quest_points: 107
+  req_skills:
+    Agility: 50
+    Crafting: 50
+    Herblore: 45
+    Magic: 56
+    Mining: 52
+    Prayer: 42
+    Smithing: 50
+    Strength: 50
+    Thieving: 50
+    Woodcutting: 50
+  req_quests:
+    - heroes_quest
+    - jungle_potion
+  req_items: "Rune hatchet or better (tool belt works), at least 2 gold bars, lockpicks, rope, 1-2 unpowered orbs, a vial of water, runes for 2 casts of the charge orb spell, 3-5 pieces of papyrus and charcoal, cut gems, runes."
+  req_combat: "You will need to defeat several enemies up to level 84."
+  points: 4
+  achievement: 68
+  reward: "Access to the Legends' Guild and the Kharazi Jungle<br>Binding book and bull roarer<br>Ability to wield a dragon square shield and make holy water"
+  xp: "7,650 XP in four skills of your choice"
+  varps:
+    - [ 2265, 1, 75 ]
+lost_city:
+  id: 68
+  name: "Lost City"
+  difficulty: 2
+  length: 3
+  members: true
+  sprite: 4424
+  region: 3
+  start_point: "Talk to the warrior adventurer in Lumbridge Swamp."
+  start_path:
+    - [ 3186, 3145 ]
+  req_skills:
+    Crafting: 31
+    Woodcutting: 36
+  req_items: "None."
+  req_combat: "You will need to defeat a level 63 tree spirit."
+  points: 3
+  achievement: 19
+  reward: "Access to Zanaris<br>Ability to wield dragon longswords and dragon daggers<br>Ability to craft cosmic runes<br>Access to Chaeldar the Slayer master (requires level 75 combat)"
+  varps:
+    - [ 2551, 1, 6 ]
+lost_her_marbles_miniquest:
+  id: 281
+  name: "Lost Her Marbles (miniquest)"
+  difficulty: 1
+  length: 3
+  members: true
+  sprite: 3073
+  item_sprite: 26116
+  region: 3
+  start_point: "Talk to Darren Lightfinger in his cellar (accessed through a trapdoor north of the Lumbridge furnace)."
+  start_path:
+    - [ 4662, 5903 ]
+    - [ 3223, 3268 ]
+  req_skills:
+    Thieving: 41
+  req_quests:
+    - from_tiny_acorns_miniquest
+  achievement: 275
+  reward: "Improved loot from pickpocketing NPCs up to level 40 Thieving<br>Access to Dodgy Derek's Dirty Deals store<br>Access to wall safes<br>Thieves' guild expansion"
+  xp: "5,000 Thieving XP (plus 4,800 Thieving XP for turning in the flame fragments)"
+  varbits:
+    - [ 9022, 25, 30 ]
+lost_tribe:
+  id: 69
+  name: "The Lost Tribe"
+  difficulty: 1
+  length: 3
+  members: true
+  sprite: 17736
+  region: 3
+  start_point: "Talk to Sigmund in Lumbridge Castle."
+  start_path:
+    - [ 3211, 3220, 1 ]
+    - [ 3205, 3209 ]
+  req_skills:
+    Mining: 17
+    Agility: 13
+    Thieving: 13
+  req_items: "A light source, such as a lantern."
+  req_combat: "None."
+  points: 1
+  achievement: 69
+  reward: "Ring of life<br>Access to Dorgeshuun mining area<br>Two new emotes (Goblin Dance and Bow)"
+  xp: "3,000 Mining XP"
+  varbits:
+    - [ 13963, 1, 11 ]
+love_story:
+  id: 168
+  name: "Love Story"
+  difficulty: 3
+  length: 4
+  members: true
+  sprite: 3149
+  item_sprite: 26125
+  region: 5
+  start_point: "Talk to Mabel at the barn north-east of Draynor Village."
+  start_path:
+    - [ 3141, 3302 ]
+  req_skills:
+    Magic: 77
+    Construction: 68
+    Smithing: 68
+    Crafting: 67
+  req_quests:
+    - swan_song
+  req_items: "Chisel, steel bar, mithril bar, two oak planks and some combat equipment including an anti-dragon shield."
+  req_combat: "Must be able to defeat a level 95 mage."
+  points: 2
+  achievement: 174
+  reward: "30,000 coins<br>Ability to chip teleport to house tablets<br>Dark stone decorating style and ability to build dungeon pits in your player-owned house<br>Cost of servants reduced by 25%<br>Zenevivia in the Dominion Tower"
+  xp: "50,000 XP in Construction and Magic<br>40,000 XP in Smithing and Crafting"
+  varbits:
+    - [ 12598, 5, 150 ]
+lunar_diplomacy:
+  id: 70
+  name: "Lunar Diplomacy"
+  difficulty: 2
+  length: 5
+  members: true
+  sprite: 9117
+  region: 32
+  start_point: "Talk to Lokar Searunner on the west dock of Rellekka."
+  start_path:
+    - [ 2620, 3688 ]
+  req_skills:
+    Crafting: 61
+    Defence: 40
+    Firemaking: 49
+    Herblore: 5
+    Magic: 65
+    Mining: 60
+    Woodcutting: 55
+  req_quests:
+    - fremennik_trials
+    - lost_city
+  req_items: "About 1,000 coins, runes for fire and superheat spells, dramen staff, spade, needle, access to the elemental Runecrafting altars, clean guam, clean marrentill."
+  req_combat: "You will need to defeat enemies up to level 84."
+  points: 2
+  achievement: 70
+  reward: "Access to Lunar Isle and the astral altar<br>Access to the lunar spellbook<br>Set of lunar equipment<br>50 astral runes<br>Access to suqah Slayer tasks<br>Ability to unlock the Ourania Teleport spell<br>Seal of passage<br>Access to Livid Farm"
+  xp: "5,000 Magic XP<br>5,000 Runecrafting XP"
+  varbits:
+    - [ 10236, 10, 190 ]
+making_history:
+  id: 71
+  name: "Making History"
+  difficulty: 1
+  length: 3
+  members: true
+  region: 38
+  start_point: "Talk to Jorral in the outpost south of the Tree Gnome Stronghold, north-west of West Ardougne."
+  start_path:
+    - [ 2438, 3348 ]
+  req_quests:
+    - restless_ghost
+  req_items: "Spade (or the meerkats familiar), 2 ecto-tokens (or completion of Ghosts Ahoy), or 2,600gp (1,300gp after Cabin Fever) to charter ship to Port Phasmatys, an un-enchanted, strung sapphire amulet, a ghostspeak amulet or cramulet (if you haven't completed the Hard Morytania Achievements)."
+  req_combat: "None."
+  points: 3
+  achievement: 71
+  reward: "750 coins<br>Enchanted key to use all over Gielinor! Visit the silver trader for help<br>Access to the museum in the Ardougne outpost<br>5 kudos from the Varrock museum if you talk to Historian Minas"
+  xp: "1,000 Crafting XP"
+  varbits:
+    - [ 9664, 1, 4 ]
+meeting_history:
+  id: 141
+  name: "Meeting History"
+  difficulty: 1
+  length: 3
+  members: true
+  region: 38
+  start_point: "Talk to Jorral in the outpost south of the Tree Gnome Stronghold, north-west of West Ardougne."
+  start_path:
+    - [ 2438, 3348 ]
+  req_skills:
+    Herblore: 3
+  req_quests:
+    - making_history
+  req_items: "Enchanted key from Making History."
+  req_combat: "None."
+  points: 1
+  achievement: 151
+  reward: "Even more treasure hunting with the enchanted key<br>5 kudos from the Varrock museum if you talk to Historian Minas"
+  xp: "Tome containing 2,500 XP in 3 skills"
+  varbits:
+    - [ 13718, 5, 20 ]
+merlins_crystal:
+  id: 72
+  name: "Merlin's Crystal"
+  difficulty: 1
+  length: 3
+  members: true
+  region: 30
+  start_point: "Talk to King Arthur in Camelot Castle."
+  start_path:
+    - [ 2764, 3515 ]
+  req_items: "Bread, a bucket, insect repellent, bat bones."
+  req_combat: "You will need to defeat a level 23 knight. You might anger a level 70 demon."
+  points: 6
+  achievement: 72
+  reward: "Excalibur<br>5 kudos (and a 1,000 XP lamp) from the Varrock museum if you talk to Historian Minas"
+  varps:
+    - [ 2178, 1, 7 ]
+missing_my_mummy:
+  id: 155
+  name: "Missing My Mummy"
+  difficulty: 1
+  length: 4
+  members: true
+  sprite: 17748
+  region: 4
+  start_point: "Talk to Leela in Draynor Village."
+  start_path:
+    - [ 3122, 3259 ]
+  req_skills:
+    Magic: 35
+    Crafting: 35
+    Prayer: 35
+    Cooking: 35
+    Construction: 35
+  req_quests:
+    - icthlarins_little_helper
+    - the_golem
+    - diamond_in_the_rough
+  req_items: "Knife, willow log, 20 fire runes, jug of wine, spice, wheat, empty pot.<br>Required for total completion: sq'irk juice, ring of Charos (a) and an Al Kharid flyer."
+  req_combat: "Be able to defeat multiple foes of level 42 and greater."
+  points: 1
+  achievement: 160
+  reward: "5,000 coins"
+  xp: "7,000 Constitution XP lamp"
+  varbits:
+    - [ 11167, 10, 60 ]
+monks_friend:
+  id: 74
+  name: "Monk's Friend"
+  difficulty: 0
+  length: 1
+  members: true
+  sprite: 4170
+  region: 43
+  start_point: "Talk to Brother Omad at the monastery south of Ardougne."
+  start_path:
+    - [ 2606, 3210 ]
+  req_items: "Jug of water, logs (or a hatchet)."
+  req_combat: "You can choose to defeat two level 21 thieves and a level 25 head thief."
+  points: 1
+  achievement: 74
+  reward: "8 law runes"
+  xp: "2,000 Woodcutting XP"
+  varps:
+    - [ 2370, 10, 80 ]
+monkey_madness:
+  id: 73
+  name: "Monkey Madness"
+  difficulty: 3
+  length: 7
+  members: true
+  sprite: 17187
+  region: 36
+  start_point: "Talk to King Narnode Shareen within the Grand Tree in the Gnome Stronghold."
+  start_path:
+    - [ 2465, 3495 ]
+  req_quests:
+    - grand_tree
+    - tree_gnome_village
+  req_items: "Gold bar, ball of wool, monkey bones (or monkey corpse or monkey skull), 5 bananas."
+  req_combat: "You will need to defeat a level 70 jungle demon."
+  points: 3
+  achievement: 73
+  reward: "Access to 110,000 XP (Strength and Constitution, Attack and Defence)<br>10,000 coins<br>3 cut diamonds<br>Access to Ape Atoll and its agility course<br>Ability to wield the dragon scimitar and monkey greegees<br>Monkey in your backpack"
+  varps:
+    - [ 2762, 1, 9 ]
+mountain_daughter:
+  id: 75
+  name: "Mountain Daughter"
+  difficulty: 1
+  length: 4
+  members: true
+  sprite: 9578
+  region: 31
+  start_point: "Talk to Hamal the chieftain in the mountain camp east of Rellekka."
+  start_path:
+    - [ 2794, 3663 ]
+  req_skills:
+    Agility: 20
+  req_items: "Rope, gloves."
+  req_combat: "You will need to defeat a level 32 enemy."
+  points: 2
+  achievement: 75
+  reward: "Bear head<br>Access to the mountain camp"
+  xp: "1,000 Attack XP"
+  varbits:
+    - [ 13349, 10, 70 ]
+mournings_end_part_i:
+  id: 76
+  name: "Mourning's End Part I"
+  difficulty: 3
+  length: 6
+  members: true
+  region: 50
+  start_point: "Talk to Eluned, a roving elf somewhere in the elven forest of Isafdar in Tirannwn."
+  start_path:
+    - [ 2290, 3146 ]
+    - [ 2206, 3160 ]
+  req_skills:
+    Ranged: 60
+    Thieving: 50
+  req_quests:
+    - roving_elves
+    - sheep_herder
+    - big_chompy_bird_hunting
+  req_items: "2 silk, a bucket of water, a feather, a piece of leather, 2 or more toad crunchies, a magic log, the big book of bangs, 10-20 coal or a barrel of naphtha."
+  req_combat: "You will need to defeat mourners of up to level 86."
+  points: 2
+  achievement: 76
+  reward: "Access to the Death Guard headquarters and the village of Lletya<br>Crystal teleport seed<br>Full mourner gear"
+  xp: "25,000 Thieving XP lamp"
+  varps:
+    - [ 2777, 1, 8 ]
+mournings_end_part_ii:
+  id: 77
+  name: "Mourning's End Part II"
+  difficulty: 3
+  length: 7
+  members: true
+  region: 40
+  start_point: "Talk to the Head Mourner in the Mourner HQ beneath West Ardougne (after reporting your earlier findings back to Arianwyn in Lletya)."
+  start_path:
+    - [ 2544, 3327 ]
+  req_quests:
+    - mournings_end_part_i
+  req_items: "Full set of mourner gear, a rope, 50 assorted items from a list or some means of accessing the death altar."
+  req_combat: "None, although you must be able to handle attacks from numerous, aggressive level 95 shadows."
+  points: 2
+  achievement: 77
+  reward: "Crystal trinket allowing access to the Temple of Light<br>Access to the death altar<br>Access to dark beasts"
+  xp: "20,000 Agility XP"
+  varbits:
+    - [ 10560, 10, 60 ]
+murder_mystery:
+  id: 78
+  name: "Murder Mystery"
+  difficulty: 0
+  length: 3
+  members: true
+  region: 30
+  start_point: "Talk to the guard at the Sinclair Mansion north of Seers' Village."
+  start_path:
+    - [ 2742, 3565 ]
+  req_items: "Empty pot, and an empty space in your backpack."
+  req_combat: "None."
+  points: 3
+  achievement: 78
+  reward: "2,000 coins"
+  xp: "1,406 Crafting XP"
+  varps:
+    - [ 2364, 1, 2 ]
+my_arms_big_adventure:
+  id: 79
+  name: "My Arm's Big Adventure"
+  difficulty: 1
+  length: 4
+  members: true
+  sprite: 9516
+  region: 34
+  start_point: "Talk to Burntmeat in the kitchen of the Troll Stronghold."
+  start_path:
+    - [ 2845, 10058, 1 ]
+    - [ 2848, 3689 ]
+    - [ 2842, 10051, 2 ]
+  req_skills:
+    Woodcutting: 10
+    Farming: 29
+  req_quests:
+    - eadgars_ruse
+    - jungle_potion
+  req_items: "3 buckets of ugthanki (camel) dung, some coins, Trollheim Teleport or (rock) climbing boots, 7 supercompost, plant cure or supercompost."
+  req_combat: "You will need to defeat a level 56 enemy and a level 77 enemy."
+  points: 1
+  achievement: 79
+  reward: "Access to a disease-free herb patch on top of the Troll Stronghold<br>Giant roc in the Dominion Tower<br>Burnt meat"
+  xp: "10,000 Herblore XP<br>5,000 Farming XP"
+  varbits:
+    - [ 9987, 10, 320 ]
+myths_of_the_white_lands:
+  id: 148
+  name: "Myths of the White Lands"
+  difficulty: 0
+  length: 3
+  sprite: 3175
+  item_sprite: 26114
+  region: 3
+  start_point: "Talk to Explorer Jack in his house by the Lumbridge General Store."
+  start_path:
+    - [ 3206, 3243 ]
+  req_items: "None."
+  req_combat: "None."
+  points: 2
+  achievement: 157
+  reward: "The opportunity to discover hidden wisdom (requires 30 Crafting, 55 Agility, 80 Woodcutting)"
+  xp: "500 XP lamp"
+  varbits:
+    - [ 13876, 5, 60 ]
+nature_spirit:
+  id: 80
+  name: "Nature Spirit"
+  difficulty: 0
+  length: 2
+  members: true
+  region: 25
+  start_point: "Talk to Drezel in the catacombs beneath the temple on the River Salve."
+  start_path:
+    - [ 3438, 9895 ]
+    - [ 3405, 3505 ]
+  req_quests:
+    - priest_in_peril
+    - restless_ghost
+  req_items: "Silver bar and sickle mould or silver sickle, your ghostspeak amulet."
+  req_combat: "You will need to defeat three level 35 ghasts."
+  points: 2
+  achievement: 80
+  reward: "Access to Mort Myre swamp and the Altar of Nature<br>30 Prayer XP each time you kill a ghast"
+  xp: "3,000 Crafting XP lamp"
+  varps:
+    - [ 2355, 5, 110 ]
+nomads_requiem:
+  id: 162
+  name: "Nomad's Requiem"
+  difficulty: 4
+  length: 3
+  members: true
+  sprite: 26704
+  region: 11
+  start_point: "Talk to Zimberfizz in the Soul Wars camp."
+  start_path:
+    - [ 1888, 3178 ]
+  req_skills:
+    Magic: 75
+    Prayer: 70
+    Mining: 66
+    Hunter: 65
+    Construction: 60
+  req_quests:
+    - kings_ransom
+  req_items: "A magic weapon and runes to cast a fire spell."
+  req_combat: "You will need to defeat enemies up to level 699."
+  points: 3
+  achievement: 170
+  reward: "70 Soul Wars zeal points<br>Soul Wars cape<br>Soul Wars respawn point<br>Talk to Zimberfizz to choose a Soul Wars cape<br>Access to a bloodwood tree in the Soul Wars waiting area<br>Nomad and decaying avatar in the Dominion Tower"
+  varbits:
+    - [ 10095, 1, 12 ]
+observatory_quest:
+  id: 81
+  name: "Observatory Quest"
+  difficulty: 0
+  length: 3
+  members: true
+  sprite: 4188
+  region: 43
+  start_point: "Talk to Professor Gronigen in the observatory north of Castle Wars."
+  start_path:
+    - [ 2439, 3186 ]
+  req_items: "3 wooden planks, a bronze bar, molten glass."
+  req_combat: "You can choose to defeat a level 28 goblin guard."
+  points: 2
+  achievement: 81
+  reward: "Payment depending on which constellation you observe<br>5 kudos from the Varrock museum if you talk to Historian Minas"
+  xp: "2,250 Crafting XP lamp"
+  varps:
+    - [ 2796, 1, 7 ]
+olafs_quest:
+  id: 122
+  name: "Olaf's Quest"
+  difficulty: 1
+  length: 2
+  members: true
+  sprite: 9534
+  region: 31
+  start_point: "Talk to Olaf in his 'camp' north-east of Rellekka."
+  start_path:
+    - [ 2726, 3729 ]
+  req_skills:
+    Firemaking: 40
+    Woodcutting: 50
+  req_quests:
+    - fremennik_trials
+  req_items: "Spade."
+  req_combat: "You will need to defeat enemies up to level 49."
+  points: 1
+  achievement: 132
+  reward: "20,000 coins<br>4 cut rubies<br>Access to the brine rat cavern<br>Parchment telling you of other shipwrecks with more treasure<br>Shark and/or bread"
+  varbits:
+    - [ 11517, 10, 80 ]
+one_foot_in_the_grave_miniquest:
+  id: 293
+  name: "One Foot in the Grave (miniquest)"
+  difficulty: 3
+  length: 2
+  members: true
+  sprite: 9545
+  region: 44
+  start_point: "Talk to Zavistic Rarve at the Wizards' Guild, with Clarence's hand in your backpack."
+  start_path:
+    - [ 2598, 3085 ]
+  req_quests:
+    - hand_in_the_sand
+  req_combat: "You will need to defeat monsters in the jade vine maze (level 70 to level 120).<br>Magic armour, food, and runes to cast fire spells are recommended."
+  achievement: 260
+  xp: "10,000 Magic XP"
+  varbits:
+    - [ -21745, 1, 1020 ]
+one_small_favour:
+  id: 82
+  name: "One Small Favour"
+  difficulty: 2
+  length: 5
+  members: true
+  sprite: 9549
+  region: 28
+  start_point: "Talk to Yanni Salika in Shilo Village."
+  start_path:
+    - [ 2835, 2983 ]
+  req_skills:
+    Crafting: 25
+    Herblore: 18
+    Agility: 36
+    Smithing: 30
+  req_quests:
+    - shilo_village
+  req_items: "4 (un-noted) steel bars, bronze bar, iron bar, empty pot, 1,000-3,000 coins, clean marrentill, clean harralander, vial of water."
+  req_combat: "You will need to defeat three level 35 enemies and a level 63 enemy."
+  points: 2
+  achievement: 82
+  reward: "Key ring on your tool belt for storing keys<br>Ability to make Guthix rest potions<br>Access to the Feldip Hills gnome glider<br>Adamantite stone spirit, uncut ruby, uncut diamond<br>1,000 Smithing XP from repairing weather vane components"
+  xp: "2 antique lamps each giving 10,000 XP (in a level 30 skill)"
+  varps:
+    - [ 2671, 5, 280 ]
+path_of_glouphrie:
+  id: 127
+  name: "The Path of Glouphrie"
+  difficulty: 2
+  length: 5
+  members: true
+  sprite: 9112
+  region: 35
+  start_point: "Talk to King Bolren in the Tree Gnome Village."
+  start_path:
+    - [ 2543, 3167 ]
+  req_skills:
+    Agility: 45
+    Ranged: 47
+    Strength: 60
+    Slayer: 56
+    Thieving: 56
+  req_quests:
+    - eyes_of_glouphrie
+    - tree_gnome_village
+    - waterfall_quest
+  req_items: "Small crystal seed or crystal saw, crossbow and mithril grapple."
+  req_combat: "You will need to defeat 3 level 82 warped terrorbirds and an evil creature."
+  points: 1
+  achievement: 137
+  reward: "Access to the poison waste Slayer dungeon and its spirit tree"
+  xp: "30,000 Strength XP<br>20,000 Slayer XP<br>5,000 Thieving XP<br>5,000 Magic XP"
+  varbits:
+    - [ 10474, 1, 200 ]
+perils_of_ice_mountain:
+  id: 136
+  name: "Perils of Ice Mountain"
+  difficulty: 0
+  length: 3
+  sprite: 9114
+  region: 13
+  start_point: "Talk to Lakki, on the road south of Ice Mountain."
+  start_path:
+    - [ 3005, 3434 ]
+  req_skills:
+    Construction: 5
+    Farming: 5
+    Hunter: 5
+    Thieving: 5
+  req_items: "(Magic) watering can, bucket of compost (or supercompost), 2 planks and 2 nails (any type)."
+  req_combat: "None."
+  points: 1
+  achievement: 146
+  reward: "Permission to use the power station ladder (to access mine carts and Nurmof)<br>Brother Bordiss will attach sigils to blessed spirit shields for a price"
+  xp: "500 Farming XP lamp, 500 Hunter XP lamp, 500 Thieving XP lamp and 500 Construction XP lamp"
+  varbits:
+    - [ 11095, 10, 150 ]
+pirates_treasure:
+  id: 9
+  name: "Pirate's Treasure"
+  difficulty: 0
+  length: 1
+  sprite: 4430
+  item_sprite: 33637
+  region: 19
+  start_point: "Talk to Redbeard Frank just south of The Rusty Anchor pub in Port Sarim."
+  start_path:
+    - [ 3053, 3248 ]
+  req_items: "White apron, 60 coins (or an activated ring of Charos and 30 coins)."
+  req_combat: "Optionally defeat a level 4 gardener."
+  points: 2
+  achievement: 16
+  reward: "One-Eyed Hector's treasure casket (containing 450 coins, an emerald and a gold ring)<br>Ability to work as a menial labourer on a banana plantation (30 coins for each export crate you fill with 10 bananas)"
+  varps:
+    - [ 2227, 1, 4 ]
+plague_city:
+  id: 83
+  name: "Plague City"
+  difficulty: 0
+  length: 2
+  members: true
+  region: 40
+  start_point: "Talk to Edmond in East Ardougne. (North of the castle, next to the wall surrounding West Ardougne.)"
+  start_path:
+    - [ 2565, 3337 ]
+  req_items: "Dwellberries, rope, chocolate dust, snape grass, bucket of milk."
+  req_combat: "None."
+  points: 1
+  achievement: 83
+  reward: "Ardougne Teleport spell<br>Access to West Ardougne<br>Gas mask"
+  xp: "2,425 Mining XP"
+  varps:
+    - [ 2386, 1, 29 ]
+priest_in_peril:
+  id: 84
+  name: "Priest in Peril"
+  difficulty: 0
+  length: 3
+  sprite: 9573
+  region: 8
+  start_point: "Talk to King Roald in Varrock Palace."
+  start_path:
+    - [ 3221, 3472 ]
+  req_items: "Bucket, 50 rune essence or 25 pure essence (un-noted)."
+  req_combat: "You will need to defeat a level 33 enemy and level 23 enemy."
+  points: 1
+  achievement: 84
+  reward: "The blessed wolfbane dagger<br>5 kudos from Historian Minas at the Varrock Museum"
+  varps:
+    - [ 2171, 1, 60 ]
+purple_cat_miniquest:
+  id: 276
+  name: "Purple Cat (miniquest)"
+  difficulty: 1
+  length: 1
+  sprite: 3174
+  item_sprite: 26113
+  region: 5
+  start_point: "Talk to Wendy, west of the Draynor Village lodestone."
+  start_path:
+    - [ 3075, 3300 ]
+  req_quests:
+    - swept_away
+    - gertrudes_cat
+  achievement: 261
+  reward: "Ability to permanently dye cats purple"
+  varbits:
+    - [ -19676, 1, 2 ]
+quiet_before_the_swarm:
+  id: 171
+  name: "Quiet Before the Swarm"
+  difficulty: 1
+  length: 4
+  members: true
+  sprite: 3150
+  item_sprite: 26124
+  region: 16
+  start_point: "Talk to Sir Tiffy in Falador Park."
+  start_path:
+    - [ 2996, 3374 ]
+  req_skills:
+    Attack: 35
+    Strength: 42
+  req_quests:
+    - imp_catcher
+    - wanted
+  req_items: "None."
+  req_combat: "Must be able to defeat a level 55 pest."
+  points: 1
+  achievement: 176
+  reward: "Void Knight seal"
+  xp: "4,000 Attack XP<br>4,900 Strength XP"
+  varbits:
+    - [ 13034, 5, 90 ]
+rag_and_bone_man:
+  id: 85
+  name: "Rag and Bone Man"
+  difficulty: 0
+  length: 4
+  members: true
+  sprite: 4258
+  region: 10
+  start_point: "Talk to the Odd Old Man at the quarry west of Paterdomus."
+  start_path:
+    - [ 3361, 3505 ]
+  req_items: "About 40 coins, 8 empty pots, 8 logs, a light source, a rope (to enter the Lumbridge Swamp Cave)."
+  req_combat: "You will need to kill a variety of monsters to obtain their bones and defeat a level 52 monster."
+  points: 2
+  achievement: 85
+  xp: "500 Cooking XP"
+  varbits:
+    - [ 12837, 1, 4 ]
+rat_catchers:
+  id: 86
+  name: "Rat Catchers"
+  difficulty: 1
+  length: 5
+  members: true
+  region: 7
+  start_point: "Talk to Gertrude, in her house west of Varrock."
+  start_path:
+    - [ 3151, 3411 ]
+  req_quests:
+    - icthlarins_little_helper
+  req_items: "Cat or hellcat, rat poison, 4 cheese, unicorn horn dust, clean marrentill, bucket of milk, catspeak amulet, pot of weeds, about 10 raw fish or buckets of milk."
+  req_combat: "None."
+  points: 2
+  achievement: 86
+  reward: "Rat pole<br>Ability to train overgrown cats into wily and lazy cats, and to name your lazy or wily cat"
+  xp: "4,500 Thieving XP"
+  varbits:
+    - [ 11975, 5, 127 ]
+recipe_for_disaster:
+  id: 87
+  name: "Recipe for Disaster"
+  difficulty: 250
+  length: 8
+  members: true
+  sprite: 9113
+  region: 3
+  start_point: "Talk to the cook in Lumbridge Castle."
+  start_path:
+    - [ 3210, 3215 ]
+  req_skills:
+    Cooking: 10
+  req_quests:
+    - cooks_assistant
+  req_items: "Eye of newt, greenman's ale, rotten tomato, ashes, fruit blast (or cocktail shaker, cocktail glass, 2 lemons, pineapple, orange)."
+  req_combat: "Some of the sub-quests have no combat. In the conclusion to Recipe for Disaster, you will need to defeat several enemies up to level-98, without prayers or familiars."
+  achievement: 87
+  reward: "Access to the Culinaromancer's chest and much, much more!"
+  varbits:
+    - [ 12708, 1, 5 ]
+recipe_for_disaster_another_cooks_quest:
+  id: 236
+  name: "Recipe for Disaster: Another Cook's Quest"
+  difficulty: 0
+  length: 1
+  members: true
+  sub_quest: recipe_for_disaster
+  sprite: 9113
+  region: 3
+  start_point: "Talk to the cook in Lumbridge Castle."
+  start_path:
+    - [ 3210, 3215 ]
+  req_skills:
+    Cooking: 10
+  req_quests:
+    - cooks_assistant
+  req_items: "Eye of newt, greenman's ale, rotten tomato, ashes, fruit blast (or cocktail shaker, cocktail glass, 2 lemons, pineapple, orange)."
+  req_combat: "None."
+  points: 1
+  achievement: 88
+  reward: "An invitation to the most amazing feast you will ever see<br>Access to the Culinaromancer's chest"
+  varbits:
+    - [ 12708, 1, 2 ]
+recipe_for_disaster_defeating_the_culinaromancer:
+  id: 245
+  name: "Recipe for Disaster: Defeating the Culinaromancer"
+  difficulty: 2
+  length: 1
+  members: true
+  sub_quest: recipe_for_disaster
+  sprite: 9113
+  region: 3
+  start_point: "Enter the white portal in the banquet hall in Lumbridge castle."
+  req_quest_points: 176
+  req_skills:
+    Cooking: 10
+  req_quests:
+    - recipe_for_disaster_another_cooks_quest
+    - recipe_for_disaster_freeing_the_mountain_dwarf
+    - recipe_for_disaster_freeing_the_goblin_generals
+    - recipe_for_disaster_freeing_pirate_pete
+    - recipe_for_disaster_freeing_the_lumbridge_sage
+    - recipe_for_disaster_freeing_evil_dave
+    - recipe_for_disaster_freeing_skrach_uglogwee
+    - recipe_for_disaster_freeing_sir_amik_varze
+    - recipe_for_disaster_freeing_king_awowogei
+  req_items: "Ice gloves. Weapons, armour and food."
+  req_combat: "You will need to defeat six culinary bosses, up to level-98, without prayers or familiars. Level 80+ combat skills are recommended."
+  points: 1
+  achievement: 97
+  reward: "Full access to the Culinaromancer's chest"
+  xp: "20,000 XP lamp (any skill above level 50)"
+  varbits:
+    - [ 12708, 1, 5 ]
+recipe_for_disaster_freeing_evil_dave:
+  id: 241
+  name: "Recipe for Disaster: Freeing Evil Dave"
+  difficulty: 1
+  length: 4
+  members: true
+  sub_quest: recipe_for_disaster
+  sprite: 17185
+  region: 3
+  start_point: "Inspect Evil Dave in the banquet hall in Lumbridge castle."
+  req_skills:
+    Cooking: 25
+  req_quests:
+    - recipe_for_disaster_another_cooks_quest
+    - gertrudes_cat
+    - shadow_of_the_storm
+  req_items: "Wily cat, cat, kitten or lazy cat, up to 9 bowls of stew (can buy from the Forester's Arms for 20 coins), bucket of milk (if you wish to change your hellcat back to a normal cat)."
+  req_combat: "None."
+  points: 1
+  achievement: 93
+  reward: "Ability to make spicy stew<br>Ability to catch hellrats to get a hellcat<br>Ability to add coloured spices to stew by catching hellrats<br>Increased access to the Culinaromancer's chest"
+  xp: "7,000 Cooking XP"
+  varbits:
+    - [ 12736, 1, 5 ]
+recipe_for_disaster_freeing_king_awowogei:
+  id: 244
+  name: "Recipe for Disaster: Freeing King Awowogei"
+  difficulty: 2
+  length: 4
+  members: true
+  sub_quest: recipe_for_disaster
+  sprite: 17187
+  region: 3
+  start_point: "Inspect Awowogei in the banquet hall in Lumbridge castle."
+  req_skills:
+    Cooking: 70
+    Agility: 48
+  req_quests:
+    - recipe_for_disaster_another_cooks_quest
+    - monkey_madness
+  req_items: "Monkeyspeak amulet, greegree (gorilla, blue monkey, ninja, zombie or omni), banana, rope, 10 coins."
+  req_combat: "Level 64 big snake."
+  points: 1
+  achievement: 96
+  reward: "Teleport to Ape Atoll spell<br>Increased access to the Culinaromancer's chest"
+  xp: "10,000 Cooking XP<br>10,000 Agility XP"
+  varbits:
+    - [ 12772, 5, 50 ]
+recipe_for_disaster_freeing_pirate_pete:
+  id: 239
+  name: "Recipe for Disaster: Freeing Pirate Pete"
+  difficulty: 1
+  length: 1
+  members: true
+  sub_quest: recipe_for_disaster
+  sprite: 17189
+  region: 3
+  start_point: "Inspect Pirate Pete in the banquet hall in Lumbridge castle."
+  req_skills:
+    Cooking: 31
+  req_quests:
+    - recipe_for_disaster_another_cooks_quest
+  req_items: "Raw cod, bread, fishbowl, needle (tool belt will not work), 3 bronze wires."
+  req_combat: "5 level 33/35 mudskippers, a level 29/30 crab."
+  points: 1
+  achievement: 91
+  reward: "Ability to go diving and fight crabs (with diving apparatus) in the mogre camp<br>Ability to cook crab meat<br>Access to crab shells and claws, which can be made into a helmet and gloves<br>Ability to dive underwater and trade crunchy claw tokens for giant crab pets<br>Increased access to the Culinaromancer's chest"
+  xp: "1,000 Cooking XP<br>1,000 Fishing XP<br>1,000 Smithing XP<br>1,000 Crafting XP"
+  varbits:
+    - [ 12753, 10, 110 ]
+recipe_for_disaster_freeing_sir_amik_varze:
+  id: 243
+  name: "Recipe for Disaster: Freeing Sir Amik Varze"
+  difficulty: 2
+  length: 2
+  members: true
+  sub_quest: recipe_for_disaster
+  sprite: 17186
+  region: 3
+  start_point: "Inspect Skrach Uglogwee in the banquet hall in Lumbridge castle."
+  req_quests:
+    - recipe_for_disaster_another_cooks_quest
+    - lost_city
+  req_items: "Bucket of milk, pot of cream, sweetcorn, empty pot, Radimus notes (if you haven't completed Legends' Quest), dramen staff or lunar staff or completed Fairytale III, anti-dragon shield or super antifire, 2 raw chicken, ice gloves (recommended), dramen branch (or cinnamon, made from a Dramen branch)."
+  req_combat: "Approximately level 70 Evil Chicken, level 100 black dragon."
+  points: 1
+  achievement: 95
+  reward: "Access to the Evil Chicken's Lair containing black dragons<br>Increased access to the Culinaromancer's chest"
+  xp: "4,000 Cooking XP"
+  varbits:
+    - [ 12768, 5, 20 ]
+recipe_for_disaster_freeing_skrach_uglogwee:
+  id: 242
+  name: "Recipe for Disaster: Freeing Skrach Uglogwee"
+  difficulty: 1
+  length: 3
+  members: true
+  sub_quest: recipe_for_disaster
+  sprite: 17188
+  region: 3
+  start_point: "Inspect Skrach Uglogwee in the banquet hall in Lumbridge castle."
+  req_skills:
+    Cooking: 41
+    Firemaking: 20
+  req_quests:
+    - recipe_for_disaster_another_cooks_quest
+    - big_chompy_bird_hunting
+  req_items: "Any hatchet (apart from a blessed hatchet or sacred clay hatchet; tool belt does not work), A raw chompy (you might burn it), ball of wool, iron spit, logs, ogre bellows, ogre bow, ogre arrows."
+  req_combat: "None."
+  points: 1
+  achievement: 94
+  reward: "Ability to travel by boat between Karamja and Feldip Hills<br>Ability to hunt jubbly birds<br>Increased access to the Culinaromancer's chest"
+  xp: "1,500 Cooking XP<br>1,500 Woodcutting XP<br>1,500 Ranged XP<br>1,500 Crafting XP"
+  varbits:
+    - [ 12762, 10, 170 ]
+recipe_for_disaster_freeing_the_goblin_generals:
+  id: 238
+  name: "Recipe for Disaster: Freeing the Goblin Generals"
+  difficulty: 0
+  length: 1
+  members: true
+  sub_quest: recipe_for_disaster
+  sprite: 17190
+  region: 3
+  start_point: "Inspect General Wartface or General Bentnoze in the banquet hall in Lumbridge castle."
+  req_quests:
+    - recipe_for_disaster_another_cooks_quest
+    - goblin_diplomacy
+  req_items: "Charcoal, spice or gnome spice, 1 fishing bait, bucket of water or bowl of water or jug of water, bread, orange, any dye that is not red, yellow, orange or pink."
+  req_combat: "None."
+  points: 1
+  achievement: 90
+  reward: "Increased access to the Culinaromancer's chest"
+  xp: "1,000 Cooking XP<br>1,000 Crafting XP<br>1,000 Farming XP"
+  varbits:
+    - [ 12725, 5, 40 ]
+recipe_for_disaster_freeing_the_lumbridge_sage:
+  id: 240
+  name: "Recipe for Disaster: Freeing the Lumbridge Sage"
+  difficulty: 1
+  length: 1
+  members: true
+  sub_quest: recipe_for_disaster
+  sprite: 17184
+  region: 3
+  start_point: "Inspect the Lumbridge Sage in the banquet hall in Lumbridge castle."
+  req_skills:
+    Cooking: 40
+  req_quests:
+    - recipe_for_disaster_another_cooks_quest
+  req_items: "Bucket of milk, egg, pot of flour, cake tin."
+  req_combat: "None."
+  points: 1
+  achievement: 92
+  reward: "Increased access to the Culinaromancer's chest"
+  xp: "2,500 Cooking XP<br>2,500 Magic XP"
+  varbits:
+    - [ 12754, 1, 5 ]
+recipe_for_disaster_freeing_the_mountain_dwarf:
+  id: 237
+  name: "Recipe for Disaster: Freeing the Mountain Dwarf"
+  difficulty: 0
+  length: 1
+  members: true
+  sub_quest: recipe_for_disaster
+  sprite: 17181
+  region: 3
+  start_point: "Inspect Vestri the mountain dwarf in the banquet hall in Lumbridge castle."
+  req_quests:
+    - recipe_for_disaster_another_cooks_quest
+    - fishing_contest
+  req_items: "304 coins (plus up to 30 more to buy the ales), pot of flour, egg, bucket of milk, bowl of water, gloves (ice gloves are the best), 5 Asgarnian ale (2 more recommended)."
+  req_combat: "None."
+  points: 1
+  achievement: 89
+  reward: "Increased access to the Culinaromancer's chest"
+  xp: "1,000 Cooking XP<br>1,000 Slayer XP"
+  varbits:
+    - [ 12750, 10, 60 ]
+recruitment_drive:
+  id: 88
+  name: "Recruitment Drive"
+  difficulty: 0
+  length: 3
+  members: true
+  sprite: 17186
+  region: 15
+  start_point: "Talk to Sir Amik Varze on the second floor of the White Knights' Castle in Falador."
+  start_path:
+    - [ 2959, 3338, 2 ]
+    - [ 2955, 3337 ]
+  req_skills:
+    Herblore: 3
+  req_items: "None, but you will need to visit the Makeover Mage to change your gender if you are not already female."
+  req_combat: "You will need to defeat a level 7 enemy, and you must not wield weapons or armour."
+  points: 1
+  achievement: 98
+  reward: "Access to Temple Knight initiate armour and a free initiate helm<br>The Gaze of Saradomin"
+  xp: "1,000 Herblore XP lamp<br>1,000 Agility XP lamp"
+  varbits:
+    - [ 12355, 1, 2 ]
+regicide:
+  id: 89
+  name: "Regicide"
+  difficulty: 3
+  length: 5
+  members: true
+  region: 40
+  start_point: "Receive a message from King Lathas after completing Underground Pass."
+  req_skills:
+    Agility: 56
+  req_quests:
+    - underground_pass
+  req_items: "A bow and arrows and ropes (to get through the underground pass), limestone, at least 5-10 coal, a strip of cloth, a cooked rabbit."
+  req_combat: "You will need to defeat a level 54 enemy."
+  points: 3
+  achievement: 99
+  reward: "15,000 coins<br>Quick route to Isafdar via Arandar<br>Charter ship access to Port Tyras<br>Ability to wield and use a dragon halberd<br>Ability to have elves assigned as a Slayer task"
+  xp: "13,750 Agility XP"
+  varps:
+    - [ 2102, 1, 15 ]
+restless_ghost:
+  id: 11
+  name: "The Restless Ghost"
+  difficulty: 0
+  length: 1
+  sprite: 2381
+  item_sprite: 26111
+  region: 3
+  start_point: "Talk to Father Aereck in the church east of Lumbridge Castle."
+  start_path:
+    - [ 3246, 3205 ]
+  req_items: "Armour to survive a level 7 skeleton warlock attack."
+  req_combat: "Facing a level 7 skeleton warlock."
+  points: 1
+  achievement: 4
+  varps:
+    - [ 2324, 1, 5 ]
+rocking_out:
+  id: 139
+  name: "Rocking Out"
+  difficulty: 3
+  length: 6
+  members: true
+  region: 27
+  start_point: "Talk to Bill Teach in Mos Le'Harmless or Port Phasmatys."
+  start_path:
+    - [ 3667, 2980 ]
+    - [ 3709, 3496 ]
+  req_skills:
+    Agility: 60
+    Thieving: 63
+    Crafting: 66
+    Smithing: 69
+  req_quests:
+    - great_brain_robbery
+  req_items: "3 pieces of pirate clothing, fishbowl helmet, diving apparatus, ghostspeak amulet (or cramulet), 2 rolls of bronze wire, 20+ coins."
+  req_combat: "You will need to defeat two level 37 enemies, without any equipment or food."
+  points: 2
+  achievement: 149
+  reward: "Free access to the Brimhaven Agility Arena<br>Access to the Rock Island Prison (and customs evidence files)<br>Access to a bank deposit box in Rimmington<br>Ability to buy braindeath 'rum' from the Rusty Anchor Inn<br>Ability to understand Mos Le'Harmless pirates without the book o' piracy<br>Ability to catch pirate implings and steal from customs lockers<br>Ability to raise an ex-ex-parrot"
+  xp: "25,000 Thieving XP<br>25,000 Smithing XP<br>25,000 Agility XP<br>25,000 Crafting XP"
+  varbits:
+    - [ 12462, 10, 100 ]
+roving_elves:
+  id: 90
+  name: "Roving Elves"
+  difficulty: 3
+  length: 4
+  members: true
+  region: 50
+  start_point: "Talk to Islwyn, a roving elf somewhere in the elven forest of Isafdar in Tirannwn."
+  start_path:
+    - [ 2290, 3146 ]
+  alternate_path: [ 2206, 3160 ]
+  req_quests:
+    - regicide
+    - waterfall_quest
+  req_items: "Rope, key to the Waterfall Dungeon, Glarial's pebble."
+  req_combat: "You will need to defeat a level 61 moss giant. You may not use any weapons, runes, summoning familiars, armour or prayer."
+  points: 1
+  achievement: 100
+  reward: "Partially used crystal bow or ward"
+  xp: "10,000 Strength XP"
+  varps:
+    - [ 2286, 2, 6 ]
+royal_trouble:
+  id: 91
+  name: "Royal Trouble"
+  difficulty: 2
+  length: 4
+  members: true
+  sprite: 9548
+  region: 33
+  start_point: "Talk to Advisor Ghrim in the castle of Miscellania."
+  start_path:
+    - [ 2498, 3857, 1 ]
+    - [ 2505, 3850 ]
+  req_skills:
+    Agility: 40
+    Slayer: 40
+  req_quests:
+    - throne_of_miscellania
+  req_items: "None."
+  req_combat: "You will need to defeat a level 63 giant sea snake."
+  points: 1
+  achievement: 101
+  reward: "20,000 coins<br>Increased resources from Miscellania<br>Access to the dungeon connecting Miscellania and Etceteria"
+  xp: "5,000 Agility XP lamp<br>5,000 Slayer XP lamp"
+  varbits:
+    - [ 12425, 10, 30 ]
+rum_deal:
+  id: 92
+  name: "Rum Deal"
+  difficulty: 2
+  length: 3
+  members: true
+  sprite: 9517
+  region: 27
+  start_point: "Talk to Pirate Pete at the docks north of Port Phasmatys."
+  start_path:
+    - [ 3672, 3538 ]
+  req_skills:
+    Farming: 40
+    Fishing: 50
+    Prayer: 47
+    Crafting: 42
+    Slayer: 42
+  req_items: "Combat equipment and food, Slayer gloves."
+  req_combat: "You will need to defeat a level 56 melee enemy and a level 70 ranged enemy."
+  points: 2
+  achievement: 102
+  reward: "Holy wrench<br>Access to Braindeath Island<br>Tangled fishbowl and net"
+  xp: "7,000 Farming XP<br>7,000 Fishing XP"
+  varps:
+    - [ 2100, 1, 19 ]
+rune_mechanics:
+  id: 165
+  name: "Rune Mechanics"
+  difficulty: 0
+  length: 1
+  members: true
+  sprite: 9560
+  region: 21
+  start_point: "Talk to Apprentice Clerval in the basement of the Mage Training Arena."
+  start_path:
+    - [ 3625, 4816 ]
+    - [ 3358, 3305 ]
+  req_skills:
+    Magic: 27
+    Runecrafting: 20
+    Construction: 25
+  req_items: "5 steam runes, 5 mind runes, 5 body runes, 1 water rune (if at fire altar) or 1 fire rune (if at water altar), 2 emeralds, 21 (un-noted) pure essence."
+  req_combat: "None."
+  points: 1
+  achievement: 172
+  reward: "Rune guardian pet<br>Fire talisman or water talisman<br>Binding necklace"
+  xp: "900 Construction XP<br>2,300 Magic XP<br>1,850 Runecrafting XP"
+  varbits:
+    - [ 10919, 5, 35 ]
+# TODO rune_mysteries: 13
+#rune_memories:
+#  id: 195
+#  name: "Rune Memories"
+#  difficulty: 0
+#  length: 5
+#  members: true
+#  sprite: 15399
+#  item_sprite: 27247
+#  region: 6
+#  start_point: "Talk to Ariane in the ruins beneath the Wizards' Tower, south of Draynor Village."
+#  start_path:
+#    - [ 3133, 3168 ]
+#  req_quests:
+#    - rune_mysteries
+#  req_items: "14 free inventory spaces."
+#  req_combat: "None."
+#  points: 1
+#  achievement: 13
+#  reward: "First Tower robes<br>Access to Archmage Sedridor's personal rune essence chest"
+#  xp: "300 Magic XP<br>300 Runecrafting XP"
+#  varbits:
+#    - [ 16834, 1, 120 ]
+#rune_mysteries:
+#  id: 194
+#  name: "Rune Mysteries"
+#  difficulty: 0
+#  length: 4
+#  sprite: 15398
+#  item_sprite: 27247
+#  region: 6
+#  start_point: "Talk to Ariane in the lobby of the Wizards' Tower, south of Draynor Village."
+#  start_path:
+#    - [ 3101, 3170 ]
+#  req_items: "None."
+#  req_combat: "None."
+#  points: 1
+#  achievement: 12
+#  reward: "Wizards' Tower mindspike<br>First Tower hat<br>Air talisman<br>70 mind runes<br>4 wizard titles"
+#  xp: "250 Magic XP lamp<br>250 Runecrafting XP"
+#  varbits:
+#    - [ 16863, 1, 170 ]
+scorpion_catcher:
+  id: 93
+  name: "Scorpion Catcher"
+  difficulty: 1
+  length: 1
+  members: true
+  sprite: 9574
+  region: 30
+  start_point: "Talk to Thormac on the top floor of his tower south of the Seers' Village."
+  start_path:
+    - [ 2701, 3405, 3 ]
+    - [ 2701, 3407 ]
+  req_skills:
+    Prayer: 31
+  req_quests:
+    - bar_crawl_miniquest
+  req_items: "Dusty key (or 70 Agility)."
+  req_combat: "You will need to defeat a level 39 jailer."
+  points: 1
+  achievement: 103
+  reward: "Thormac will upgrade elemental battlestaves to mystic battlestaves for 40,000 coins"
+  xp: "6,625 Strength XP"
+  varps:
+    - [ 2747, 1, 6 ]
+sea_slug:
+  id: 94
+  name: "Sea Slug"
+  difficulty: 1
+  length: 2
+  members: true
+  sprite: 9561
+  region: 42
+  start_point: "Talk to Caroline in Witchaven, east of Ardougne."
+  start_path:
+    - [ 2718, 3300 ]
+  req_skills:
+    Firemaking: 30
+  req_items: "Swamp paste."
+  req_combat: "None."
+  points: 1
+  achievement: 104
+  reward: "Access to the fishing platform<br>Oyster pearls"
+  xp: "7,175 Fishing XP"
+  varps:
+    - [ 2700, 1, 12 ]
+shades_of_mortton:
+  id: 96
+  name: "Shades of Mort'ton"
+  difficulty: 1
+  length: 3
+  members: true
+  sprite: 9518
+  region: 24
+  start_point: "Read a diary found in a house in Mort'ton."
+  start_path:
+    - [ 3489, 3289 ]
+  req_skills:
+    Herblore: 15
+    Crafting: 20
+  req_items: "At least 1,000 coins."
+  req_combat: "You will need to defeat 5 level 58 loar shades."
+  points: 3
+  achievement: 106
+  reward: "About 400 coins if you cure Razmire and Ulsquire<br>Ability to create serum 207 and serum 208<br>Access to the Shades of Mort'ton minigame<br>335 Herblore XP if you give the apothecary in Varrock the diary of Herbi Flax"
+  xp: "2,000 Herblore XP<br>2,000 Crafting XP"
+  varps:
+    - [ 2620, 5, 85 ]
+shadow_of_the_storm:
+  id: 97
+  name: "Shadow of the Storm"
+  difficulty: 1
+  length: 3
+  members: true
+  sprite: 9547
+  region: 21
+  start_point: "Talk to Father Reen south of the bank in Al Kharid."
+  start_path:
+    - [ 3270, 3158 ]
+  req_skills:
+    Crafting: 30
+  req_quests:
+    - demon_slayer
+    - the_golem
+  req_items: "Silverlight, silver bar, empty vial, 3-piece black outfit."
+  req_combat: "You will need to defeat a level 84 demon."
+  points: 1
+  achievement: 107
+  reward: "Darklight sword<br>Demonic sigil and demonic tome"
+  xp: "10,000 combat XP lamp"
+  varbits:
+    - [ 10495, 10, 125 ]
+sheep_herder:
+  id: 98
+  name: "Sheep Herder"
+  difficulty: 0
+  length: 3
+  members: true
+  sprite: 8961
+  region: 40
+  start_point: "Talk to Councillor Halgrive outside of the East Ardougne church, north of the zoo."
+  start_path:
+    - [ 2616, 3300 ]
+  req_items: "100 coins."
+  req_combat: "None."
+  points: 4
+  achievement: 108
+  reward: "3,100 coins<br>Plague jacket and trousers<br>Cattle prod"
+  varps:
+    - [ 2274, 1, 3 ]
+sheep_shearer_miniquest:
+  id: 263
+  name: "Sheep Shearer (miniquest)"
+  difficulty: 0
+  length: 0
+  sprite: 2380
+  item_sprite: 26127
+  region: 3
+  start_point: "Talk to Fred the farmer in his farm, north of the Lumbridge market."
+  start_path:
+    - [ 3206, 3290 ]
+  req_combat: "None, but watch out for rams."
+  achievement: 263
+  xp: "150 Crafting XP"
+  varps:
+    - [ 2163, 1, 21 ]
+shield_of_arrav:
+  id: 15
+  name: "Shield of Arrav"
+  difficulty: 0
+  length: 3
+  sprite: 29382
+  item_sprite: 24929
+  region: 8
+  start_point: "Talk to Reldo in the Varrock palace library."
+  start_path:
+    - [ 3208, 3494 ]
+  req_items: "20 coins."
+  req_combat: "You will need to defeat a level 1 enemy."
+  points: 1
+  achievement: 5
+  reward: "1,200 coins"
+  varps:
+    - [ 2738, 1, 7 ]
+shilo_village:
+  id: 99
+  name: "Shilo Village"
+  difficulty: 2
+  length: 4
+  members: true
+  sprite: 9519
+  region: 28
+  start_point: "Talk to Mosol Rei at the edge of Shilo Village."
+  start_path:
+    - [ 2885, 2954 ]
+  req_skills:
+    Agility: 32
+    Crafting: 20
+  req_quests:
+    - jungle_potion
+  req_items: "Bronze wire (or bronze bar). A spade, rope, chisel and torch (or enough coins to buy them from the Tai Bwo Wannai general store)."
+  req_combat: "You will need to defeat a level 53 enemy."
+  points: 2
+  achievement: 109
+  reward: "Access to Shilo Village, gem rocks and cart travel between Shilo Village and Brimhaven<br>2,000 coins from Yanni Salika in Shilo Village if you sell him the quest's items"
+  xp: "3,875 Crafting XP"
+  varps:
+    - [ 2793, 1, 15 ]
+slug_menace:
+  id: 95
+  name: "The Slug Menace"
+  difficulty: 1
+  length: 4
+  members: true
+  sprite: 9546
+  region: 16
+  start_point: "Talk to Sir Tiffy Cashien in Falador Park."
+  start_path:
+    - [ 2997, 3374 ]
+  req_skills:
+    Crafting: 30
+    Runecrafting: 30
+    Slayer: 30
+    Thieving: 30
+  req_quests:
+    - sea_slug
+    - wanted
+  req_items: "Swamp paste, 5-15 essence, earth/water/fire/air/mind/omni talisman (or wicked hood charged with one) to access the Abyss."
+  req_combat: "You will need to defeat a prayer-draining level 51 enemy, immune to Ranged and Magic attacks."
+  points: 1
+  achievement: 105
+  reward: "Access to proselyte melee armour<br>Promotion from initiate to proselyte"
+  xp: "3,500 Crafting XP<br>3,500 Runecrafting XP<br>3,500 Thieving XP"
+  varbits:
+    - [ 12626, 1, 14 ]
+smoking_kills:
+  id: 138
+  name: "Smoking Kills"
+  difficulty: 1
+  length: 1
+  members: true
+  sprite: 9562
+  region: 22
+  start_point: "Talk to Sumona in her house in Pollnivneach."
+  start_path:
+    - [ 3359, 2993 ]
+  req_skills:
+    Slayer: 35
+    Crafting: 25
+  req_quests:
+    - restless_ghost
+    - icthlarins_little_helper
+  req_items: "Catspeak amulet, kitten or cat (including overgrown, wily, lazy or hellcat), ghostspeak amulet, earmuffs, face mask."
+  req_combat: "You will need to defeat several enemies up to level 93. Combat level of 60 or higher is recommended."
+  points: 1
+  achievement: 148
+  reward: "Increased Slayer points for completing Slayer tasks<br>Access to a new Slayer Master and dungeon in Pollnivneach and the Tomb of Catolax<br>Ability to construct combined Slayer items<br>Access to the Desert Slayer Dungeon miniquest"
+  xp: "5,000 Slayer XP"
+  varbits:
+    - [ 9054, 10, 250 ]
+souls_bane:
+  id: 100
+  name: "A Soul's Bane"
+  difficulty: 0
+  length: 2
+  sprite: 9522
+  region: 9
+  start_point: "Talk to Launa by the rift east of Varrock, just south-east of the earth altar."
+  start_path:
+    - [ 3308, 3453 ]
+  req_items: "None, but equip yourself for combat."
+  req_combat: "You will need to defeat level 50-58 enemies. Ranged or Magic is recommended."
+  points: 1
+  achievement: 110
+  reward: "500 coins<br>Anger weapon cosmetic overrides<br>Access to Tolna's Rift for combat training"
+  varbits:
+    - [ 12392, 1, 13 ]
+spirit_of_summer:
+  id: 140
+  name: "Spirit of Summer"
+  difficulty: 1
+  length: 5
+  members: true
+  sprite: 9115
+  region: 12
+  start_point: "Talk to the little ghost by the Wilderness wall north-east of Varrock."
+  start_path:
+    - [ 3257, 3519 ]
+  req_skills:
+    Construction: 40
+    Prayer: 35
+    Farming: 26
+    Summoning: 19
+  req_quests:
+    - restless_ghost
+  req_items: "Ghostspeak amulet or cramulet, 1-3 spirit wolf pouches, 1-3 desert wyrm pouches, 1-3 spirit scorpion pouches."
+  req_combat: "None."
+  points: 1
+  achievement: 150
+  reward: "Jennica's ring<br>Access to a new Spirit Realm to explore<br>The cursed magic tree<br>Level 42 ghostly warriors at the spirit realm magic axe hut<br>Access to a goth leprechaun and flower patch in level 26 Wilderness<br>15,000 Farming XP, 11,250 Attack XP, and 15,000 Prayer XP if you operate the ring near certain portals in the Wilderness (requires level 50 in that skill)"
+  xp: "7,500 Construction XP<br>2,000 Farming XP<br>1,000 Summoning XP"
+  varbits:
+    - [ 12013, 5, 75 ]
+spirits_of_the_elid:
+  id: 101
+  name: "Spirits of the Elid"
+  difficulty: 1
+  length: 3
+  members: true
+  sprite: 9116
+  region: 22
+  start_point: "Talk to Awusah the Mayor in Nardah."
+  start_path:
+    - [ 3441, 2910 ]
+  req_skills:
+    Magic: 33
+    Ranged: 37
+    Mining: 37
+    Thieving: 37
+  req_items: "Law and air rune to cast Telekinetic Grab, a weapon for each melee attack style (sword, mace and scimitar), a light source, rope, two spools of thread."
+  req_combat: "You will need to defeat three level 77 golems."
+  points: 2
+  achievement: 111
+  reward: "Access to Nardah's fountain and shrine<br>Robe of Elidinis"
+  xp: "1,000 Thieving XP<br>1,000 Magic XP"
+  varbits:
+    - [ 12609, 10, 60 ]
+# TODO prince ali rescue: 10
+#stolen_hearts:
+#  id: 175
+#  name: "Stolen Hearts"
+#  difficulty: 0
+#  length: 4
+#  sprite: 13614
+#  item_sprite: 22978
+#  region: 4
+#  start_point: "Talk to Ozan in Draynor Village."
+#  start_path:
+#    - [ 3094, 3275 ]
+#  req_items: "Food and combat gear."
+#  req_combat: "You will need to defeat three level 2 mercenaries."
+#  points: 3
+#  achievement: 9
+#  reward: "2,500 coins<br>Talk to Khnum in Draynor jail for 4 thief titles"
+#  xp: "250 combat XP lamp<br>250 Agility XP lamp from Osman (members)<br>250 Thieving XP lamp from Osman (members)"
+#  varbits:
+#    - [ 11870, 5, 105 ]
+summers_end:
+  id: 143
+  name: "Summer's End"
+  difficulty: 2
+  length: 4
+  members: true
+  sprite: 9563
+  region: 12
+  start_point: "Talk to Summer by the Wilderness wall north-east of Varrock."
+  start_path:
+    - [ 3257, 3519 ]
+  req_skills:
+    Summoning: 23
+    Woodcutting: 37
+    Hunter: 35
+    Mining: 45
+    Firemaking: 47
+    Prayer: 55
+  req_quests:
+    - spirit_of_summer
+  req_items: "Ghostspeak amulet (or cramulet), Jennica's ring, at least one Summoning pouch made with a blue charm."
+  req_combat: "None, but you will need to avoid attacks from a level 430 enemy."
+  points: 1
+  achievement: 153
+  reward: "Spirit shield and ability to wield spirit shields<br>Upgraded Jennica's ring (access to new spirit portals)<br>Ability to fight the corporeal beast and tormented wraith"
+  xp: "1,500 Summoning XP<br>5,000 Hunter XP<br>5,000 Mining XP<br>5,000 Woodcutting XP<br>15,000 Firemaking XP"
+  varbits:
+    - [ 11428, 5, 35 ]
+swan_song:
+  id: 102
+  name: "Swan Song"
+  difficulty: 3
+  length: 4
+  members: true
+  sprite: 9569
+  region: 37
+  start_point: "Talk to Herman Caranos at the Piscatoris Fishing Colony."
+  start_path:
+    - [ 2348, 3648 ]
+  req_skills:
+    Magic: 66
+    Cooking: 62
+    Fishing: 62
+    Smithing: 45
+    Firemaking: 42
+    Crafting: 40
+  req_items: "10 mist runes, 10 lava runes, 5 blood runes, empty pot, pot lid."
+  req_combat: "You will need to defeat 10 sea trolls (up to level 63) and a level 91 sea troll queen."
+  points: 2
+  achievement: 112
+  reward: "25,000 coins<br>Access to the Piscatoris Fishing Colony<br>Ability to transmute raw bass into raw monkfish"
+  xp: "15,000 Magic XP<br>10,000 Fishing XP"
+  varbits:
+    - [ 11269, 10, 200 ]
+swept_away:
+  id: 153
+  name: "Swept Away"
+  difficulty: 0
+  length: 2
+  sprite: 3174
+  item_sprite: 26113
+  region: 5
+  start_point: "Talk to Maggie at her caravan north of Draynor Village."
+  start_path:
+    - [ 3082, 3297 ]
+  req_items: "None."
+  req_combat: "None."
+  points: 2
+  achievement: 165
+  reward: "Broomstick"
+  xp: "Access to 10 portions of XP-giving goulash"
+  varbits:
+    - [ 9847, 5, 50 ]
+tai_bwo_wannai_trio:
+  id: 103
+  name: "Tai Bwo Wannai Trio"
+  difficulty: 1
+  length: 5
+  members: true
+  sprite: 9553
+  region: 28
+  start_point: "Talk to Timfraku in his house in Tai Bwo Wannai."
+  start_path:
+    - [ 2779, 3089, 1 ]
+    - [ 2782, 3088 ]
+  req_skills:
+    Agility: 15
+    Cooking: 30
+    Fishing: 5
+  req_quests:
+    - jungle_potion
+  req_items: "Agility potion (4), iron spear or better (that you are willing to lose), 2 raw karambwan (if you have less than 65 Fishing), karamjan rum, seaweed, sliced banana, jogre bones."
+  req_combat: "You will need to defeat a level 12 monkey and possibly a level 42 jogre."
+  points: 2
+  achievement: 113
+  reward: "2,000 coins<br>Ability to fight the shaikahan<br>Access to the Smithing section of Otto's barbarian training"
+  xp: "1,500 Fishing XP"
+  varps:
+    - [ 2523, 2, 6 ]
+tail_of_two_cats:
+  id: 104
+  name: "A Tail of Two Cats"
+  difficulty: 1
+  length: 5
+  members: true
+  sprite: 17741
+  region: 0
+  start_point: "Talk to Unferth in his house in Burthorpe."
+  start_path:
+    - [ 2929, 3539 ]
+  req_quests:
+    - icthlarins_little_helper
+  req_items: "Kitten or cat, amulet of catspeak, 5 death runes, chocolate cake, bucket of milk, logs, shears, 4 potato seeds, vial of water, desert robes."
+  req_combat: "None."
+  points: 2
+  achievement: 114
+  reward: "Mysterious present<br>Doctor's or nurse's hat"
+  varbits:
+    - [ 11085, 5, 70 ]
+tale_of_the_muspah:
+  id: 150
+  name: "The Tale of the Muspah"
+  difficulty: 0
+  length: 3
+  members: true
+  sprite: 17747
+  region: 31
+  start_point: "Talk to Erjolf at the cave entrance half way up the mountain north-east of Rellekka."
+  start_path:
+    - [ 2736, 3731 ]
+  req_skills:
+    Magic: 10
+    Woodcutting: 10
+    Mining: 8
+    Firemaking: 6
+  req_items: "4 cut Sapphires and runes to enchant level 1 jewellery 8 times."
+  req_combat: "None."
+  points: 1
+  achievement: 159
+  xp: "500 Firemaking XP<br>1,000 Magic XP<br>800 Mining XP<br>800 Woodcutting XP"
+  varbits:
+    - [ 11228, 5, 250 ]
+tears_of_guthix:
+  id: 105
+  name: "Tears of Guthix"
+  difficulty: 1
+  length: 1
+  members: true
+  sprite: 9520
+  region: 3
+  start_point: "Talk to Juna, inside the cave under Lumbridge Swamp."
+  start_path:
+    - [ 3251, 9517, 2 ]
+    - [ 3189, 3161 ]
+    - [ 3226, 9542 ]
+  req_quest_points: 44
+  req_skills:
+    Crafting: 20
+    Firemaking: 49
+    Mining: 20
+  req_items: "Oil-filled bullseye lantern, cut sapphire, another strong light source."
+  req_combat: "None."
+  points: 1
+  achievement: 115
+  reward: "Ability to collect Tears of Guthix once a week<br>Ability to make an ornate bowl for increased XP (requires 80 Mining and Crafting)<br>Juna teleport option on the games necklace"
+  xp: "1,000 Crafting XP"
+  varbits:
+    - [ 4909, 1, 2 ]
+temple_at_senntisten:
+  id: 157
+  name: "The Temple at Senntisten"
+  difficulty: 3
+  length: 4
+  members: true
+  sprite: 17755
+  region: 22
+  start_point: "Talk to Ali the Wise at his house in Nardah."
+  start_path:
+    - [ 3420, 2938 ]
+  req_skills:
+    Prayer: 50
+  req_quests:
+    - devious_minds
+    - desert_treasure
+    - curse_of_arrav
+  req_items: "Runes to cast Telekinetic Grab."
+  req_combat: "Be able to defeat level 150 foes."
+  points: 2
+  achievement: 162
+  reward: "Access to ancient curses<br>Access to the Senntisten altar"
+  xp: "2x 20,000 XP combat lamps<br>23,000 XP lamp"
+  varbits:
+    - [ 11105, 10, 90 ]
+temple_of_ikov:
+  id: 106
+  name: "Temple of Ikov"
+  difficulty: 2
+  length: 3
+  members: true
+  sprite: 17745
+  region: 40
+  start_point: "Talk to Lucien in the Flying Horse Inn, Ardougne."
+  start_path:
+    - [ 2576, 3320 ]
+  req_skills:
+    Ranged: 40
+    Thieving: 42
+  req_items: "Light source, 20 limpwurt roots."
+  req_combat: "Be able to defeat a level 77 foe."
+  points: 1
+  achievement: 116
+  reward: "Boots of lightness<br>Access to the Temple of Ikov"
+  xp: "10,500 Ranged XP<br>8,000 Fletching XP"
+  varps:
+    - [ 2148, 10, 80 ]
+throne_of_miscellania:
+  id: 107
+  name: "Throne of Miscellania"
+  difficulty: 2
+  length: 3
+  members: true
+  region: 33
+  start_point: "Talk to King Vargas in the castle on the island of Miscellania, accessed from a longboat on the north coast of Rellekka."
+  start_path:
+    - [ 2504, 3860, 1 ]
+    - [ 2505, 3850 ]
+  req_quests:
+    - fremennik_trials
+  req_items: "Iron bar, a log of any kind, a tradeable non-enchanted metal ring, flowers, cake (if you marry Prince Brand), bow (if you marry Princess Astrid)."
+  req_combat: "None."
+  points: 1
+  achievement: 117
+  reward: "Your Miscellanian subjects will collect resources for you<br>Ability to teleport to Miscellania with a ring of wealth<br>Ability to purchase Miscellania portait from Sir Renitee"
+  varps:
+    - [ 2236, 10, 100 ]
+toktz_ket_dill:
+  id: 137
+  name: "TokTz-Ket-Dill"
+  difficulty: 2
+  length: 6
+  members: true
+  sprite: 9539
+  region: 48
+  start_point: "Talk to any of the three TzHaar at the collapsed tunnel in the south-east corridor of TzHaar City."
+  start_path:
+    - [ 4752, 5115 ]
+    - [ 2511, 5180 ]
+  req_skills:
+    Construction: 50
+    Strength: 45
+    Crafting: 43
+    Mining: 40
+  req_items: "Adamant pickaxe or better (can be on tool belt), 14-16 oak planks, runes for water spells and a magic main-hand weapon, a bow or crossbow, a melee weapon. A bank is nearby."
+  req_combat: "You will need to defeat four level 53 enemies, and a level 100 enemy."
+  points: 1
+  achievement: 147
+  reward: "Access to the TzHaar mine and ability to mine stone slabs<br>Invitation to a production of the TokTz-Ket-Ek-Mack opera"
+  xp: "5,000 Attack XP<br>5,000 Strength XP<br>10,000 Crafting XP<br>15,000 Mining XP<br>20,000 Construction XP"
+  varbits:
+    - [ 11386, 5, 63 ]
+tourist_trap:
+  id: 108
+  name: "The Tourist Trap"
+  difficulty: 1
+  length: 4
+  members: true
+  sprite: 9554
+  region: 22
+  start_point: "Talk to Irena just south of Shantay Pass."
+  start_path:
+    - [ 3302, 3112 ]
+  req_skills:
+    Fletching: 10
+    Smithing: 20
+  req_items: "Desert shirt, desert robe, desert boots, 3-4 full waterskins or an enchanted water tiara, 30-50 feathers, at least 200 coins (100 with an activated ring of Charos), at least one bronze bar."
+  req_combat: "You will need to defeat a level 15 enemy."
+  points: 2
+  achievement: 118
+  reward: "Ability to smith throwing darts<br>Access to desert mining camp (mithril, adamantite and necrite rocks)<br>Full slave robes"
+  xp: "4,650 XP in two of Agility, Fletching, Smithing and Thieving"
+  varps:
+    - [ 2501, 1, 30 ]
+tower_of_life:
+  id: 119
+  name: "Tower of Life"
+  difficulty: 0
+  length: 4
+  members: true
+  sprite: 9565
+  region: 43
+  start_point: "Talk to Effigy outside the Tower of Life south of Ardougne."
+  start_path:
+    - [ 2640, 3215 ]
+  req_skills:
+    Construction: 10
+  req_items: "Beer (or 2 coins)."
+  req_combat: "None."
+  points: 2
+  achievement: 129
+  reward: "Builder's costume<br>Access to Creature Creation"
+  xp: "1,000 Construction XP<br>500 Crafting XP<br>500 Thieving XP"
+  varbits:
+    - [ 9803, 2, 18 ]
+tree_gnome_village:
+  id: 110
+  name: "Tree Gnome Village"
+  difficulty: 1
+  length: 3
+  members: true
+  region: 35
+  start_point: "Talk to King Bolren in the Tree Gnome Village."
+  start_path:
+    - [ 2543, 3167 ]
+  req_items: "6 normal logs."
+  req_combat: "You will need to defeat a level 53 enemy and might need to defeat two level 49 enemies."
+  points: 2
+  achievement: 120
+  reward: "Access to spirit tree teleportation<br>Gnome amulet of protection"
+  xp: "11,450 Attack XP"
+  varps:
+    - [ 2661, 1, 9 ]
+tribal_totem:
+  id: 111
+  name: "Tribal Totem"
+  difficulty: 1
+  length: 1
+  members: true
+  sprite: 9540
+  region: 28
+  start_point: "Talk to Kangai Mau in Brimhaven."
+  start_path:
+    - [ 2791, 3182 ]
+  req_skills:
+    Thieving: 21
+  req_items: "None."
+  req_combat: "None."
+  points: 1
+  achievement: 121
+  reward: "5 swordfish"
+  xp: "1,775 Thieving XP"
+  varps:
+    - [ 2783, 1, 5 ]
+troll_romance:
+  id: 112
+  name: "Troll Romance"
+  difficulty: 2
+  length: 3
+  members: true
+  sprite: 9538
+  region: 34
+  start_point: "Talk to Ug in the troll stronghold."
+  start_path:
+    - [ 2826, 10065, 1 ]
+    - [ 2848, 3689 ]
+    - [ 2842, 10051, 2 ]
+  req_skills:
+    Agility: 28
+  req_quests:
+    - troll_stronghold
+  req_items: "Iron bar, maple or yew logs, rope, cake tin, swamp tar, climbing boots (or Trollheim teleport), bucket of wax."
+  req_combat: "You will need to defeat a level 77 enemy."
+  points: 2
+  achievement: 122
+  reward: "1 uncut diamond<br>2 uncut rubies and 4 uncut emeralds<br>Sled<br>Access to the Trollweiss sledding route<br>New colour of wieldable flowers"
+  xp: "8,000 Agility XP<br>4,000 Strength XP"
+  varps:
+    - [ 2135, 1, 45 ]
+troll_stronghold:
+  id: 113
+  name: "Troll Stronghold"
+  difficulty: 2
+  length: 2
+  members: true
+  sprite: 9541
+  region: 0
+  start_point: "Talk to Commander Denulth at the Burthorpe training camp."
+  start_path:
+    - [ 2918, 3561 ]
+  req_skills:
+    Agility: 15
+    Thieving: 30
+  req_quests:
+    - death_plateau
+  req_items: "Climbing boots, rock climbing boots, or 12 coins to buy climbing boots."
+  req_combat: "You will need to defeat a level 91 enemy and a level 77 enemy. You might need to defeat two level 70 enemies."
+  points: 1
+  achievement: 123
+  reward: "Access to Trollheim and the troll stronghold<br>Access to God Wars Dungeon (with 60 Agility or 60 Strength)"
+  xp: "2 lamps each giving 10,000 XP (any level 30+ skill)"
+  varps:
+    - [ 2347, 10, 50 ]
+underground_pass:
+  id: 114
+  name: "Underground Pass"
+  difficulty: 2
+  length: 6
+  members: true
+  sprite: 9571
+  region: 40
+  start_point: "Talk to King Lathas in Ardougne Castle."
+  start_path:
+    - [ 2575, 3297, 1 ]
+    - [ 2572, 3287 ]
+  req_skills:
+    Ranged: 25
+  req_quests:
+    - biohazard
+  req_items: "A bow and arrows and at least 2 ropes."
+  req_combat: "You will need to defeat several enemies up to level 81."
+  points: 5
+  achievement: 124
+  reward: "Iban's staff<br>15 death runes<br>30 fire runes<br>Klank's gauntlets"
+  xp: "3,000 Agility XP<br>3,000 Attack XP"
+  varps:
+    - [ 2426, 1, 10 ]
+vampire_slayer:
+  id: 16
+  name: "Vampire Slayer"
+  difficulty: 0
+  length: 1
+  sprite: 8273
+  region: 4
+  start_point: "Talk to Morgan in Draynor Village."
+  start_path:
+    - [ 3097, 3268 ]
+  req_items: "Beer (or 2 coins to purchase a pint)."
+  req_combat: "You will need to defeat a level 28 enemy."
+  points: 3
+  achievement: 7
+  xp: "4,825 combat XP lamp"
+  varbits:
+    - [ 9655, 1, 3 ]
+void_dance:
+  id: 173
+  name: "A Void Dance"
+  difficulty: 2
+  length: 5
+  members: true
+  sprite: 3151
+  item_sprite: 26119
+  region: 19
+  start_point: "Talk to Commodore Tyr at the Void Knights' Outpost, accessible from the squire at Port Sarim docks."
+  start_path:
+    - [ 2676, 2667 ]
+  req_skills:
+    Construction: 47
+    Herblore: 49
+    Hunter: 46
+    Mining: 47
+    Summoning: 48
+    Thieving: 54
+    Woodcutting: 52
+  req_quests:
+    - quiet_before_the_swarm
+  req_items: "Pickaxe, five coins, spade, sextant, watch and chart"
+  req_combat: "Must be able to defeat a level 110 knight."
+  points: 1
+  achievement: 177
+  reward: "50 Commendations"
+  xp: "10,000 Hunter and Herblore XP<br>8,000 Summoning and Woodcutting XP<br>5,000 Thieving, Construction and Mining XP"
+  varbits:
+    - [ 13080, 3, 63 ]
+void_stares_back:
+  id: 174
+  name: "The Void Stares Back"
+  difficulty: 4
+  length: 5
+  members: true
+  sprite: 3802
+  item_sprite: 26120
+  region: 16
+  start_point: "Talk to Captain Korasi in Falador Park."
+  start_path:
+    - [ 2996, 3374 ]
+  req_skills:
+    Attack: 78
+    Construction: 70
+    Crafting: 70
+    Firemaking: 71
+    Magic: 80
+    Smithing: 70
+    Strength: 78
+    Summoning: 55
+    Defence: 25
+  req_quests:
+    - void_dance
+  req_items: "Hammer, tinderbox, hard leather, limestone brick, logs."
+  req_combat: "Combat level of 100 or higher is recommended."
+  points: 1
+  achievement: 178
+  reward: "Elite Void Knight torso<br>Ability to upgrade Void Knight armour<br>Korasi's sword"
+  xp: "2x Books of Equilibrium<br>20,000 XP in Construction, Crafting, Firemaking, Magic, Smithing and Summoning"
+  varbits:
+    - [ 13118, 2, 40 ]
+wanted:
+  id: 115
+  name: "Wanted!"
+  difficulty: 1
+  length: 4
+  members: true
+  sprite: 8275
+  region: 16
+  start_point: "Talk to Sir Tiffy Cashien in Falador Park."
+  start_path:
+    - [ 2997, 3374 ]
+  req_quests:
+    - recruitment_drive
+    - enter_the_abyss_miniquest
+  req_items: "10,000 coins (or an enchanted gem, molten glass and a law rune)."
+  req_combat: "You will need to defeat a mighty murder mage and level 30 black knights."
+  points: 1
+  achievement: 125
+  reward: "Access to the White Knight armoury"
+  xp: "5,000 Slayer XP"
+  varbits:
+    - [ 12923, 1, 11 ]
+watchtower:
+  id: 116
+  name: "Watchtower"
+  difficulty: 1
+  length: 5
+  members: true
+  sprite: 9510
+  region: 44
+  start_point: "Talk to the Watchtower Wizard, in the Watchtower north-west of Yanille."
+  start_path:
+    - [ 2547, 3113, 2 ]
+    - [ 2544, 3112 ]
+  req_skills:
+    Agility: 25
+    Herblore: 14
+    Magic: 14
+    Mining: 40
+    Thieving: 15
+  req_items: "20 coins, dragon bones, bat bones (or ground bat bones), vial of water, 2 ropes, clean guam, gold bar."
+  req_combat: "You will need to defeat a level 53 enemy."
+  points: 4
+  achievement: 126
+  reward: "5,000 coins<br>Watchtower Teleport spell<br>Access to Gu'Tanoth and the ogre enclave"
+  xp: "15,250 Magic XP"
+  varps:
+    - [ 2397, 1, 13 ]
+waterfall_quest:
+  id: 50
+  name: "Waterfall Quest"
+  difficulty: 1
+  length: 3
+  members: true
+  region: 39
+  start_point: "Talk to Almera in her house north-east of the Baxtorian Falls."
+  start_path:
+    - [ 2521, 3495 ]
+  req_items: "Rope, 6 air runes, 6 earth runes, 6 water runes."
+  req_combat: "None, but you must be able to survive some attacks from level 44 giant spiders and level 58 skeletons."
+  points: 1
+  achievement: 51
+  reward: "2 gold bars<br>2 diamonds<br>40 mithril seeds<br>Access to the Waterfall Dungeon"
+  xp: "13,750 Attack XP<br>13,750 Strength XP"
+  varps:
+    - [ 2353, 1, 10 ]
+what_lies_below:
+  id: 121
+  name: "What Lies Below"
+  difficulty: 1
+  length: 2
+  members: true
+  sprite: 9565
+  region: 9
+  start_point: "Talk to Rat Burgiss, south of Varrock."
+  start_path:
+    - [ 3267, 3334 ]
+  req_skills:
+    Runecrafting: 35
+  req_items: "Bowl, 15 chaos runes or 15 un-noted pure essence, access to the chaos altar."
+  req_combat: "You will need to defeat a level 47 enemy and 5 level 32 enemies."
+  points: 1
+  achievement: 131
+  reward: "Beacon ring<br>Access to the chaos tunnels<br>5 kudos from the Varrock museum if you give Historian Minas a dagon'hai history book"
+  xp: "8,000 Runecrafting XP lamp"
+  varbits:
+    - [ 10939, 5, 150 ]
+# TODO doric's quest
+#whats_mine_is_yours:
+#  id: 3
+#  name: "What's Mine is Yours"
+#  difficulty: 0
+#  length: 3
+#  sprite: 22956
+#  item_sprite: 22976
+#  region: 14
+#  start_point: "Talk to Doric who is just outside the gates of Taverley."
+#  start_path:
+#    - [ 2959, 3439 ]
+#  req_skills:
+#    Smithing: 5
+#  req_items: "Combat equipment is recommended, and some food might be useful."
+#  req_combat: "You will need to fight several level 3 enemies."
+#  points: 1
+#  achievement: 11
+#  reward: "180 coins<br>Gofannon amulet (which gives limited bonus Mining and Smithing XP)<br>Access to Doric and Boric tasks Gofannon amulet charges, Mining XP and Smithing XP (partially members)"
+#  xp: "1,000 Mining XP<br>400 Smithing XP"
+#  varbits:
+#    - [ 9998, 4, 55 ]
+while_guthix_sleeps:
+  id: 145
+  name: "While Guthix Sleeps"
+  difficulty: 4
+  length: 8
+  members: true
+  sprite: 17751
+  region: 39
+  start_point: "Talk to Radimus Erkle in the Legends' Guild, which is located in the north-east of Ardougne."
+  start_path:
+    - [ 2724, 3376 ]
+  req_skills:
+    Magic: 75
+    Herblore: 65
+    Farming: 65
+    Defence: 40
+    Thieving: 60
+    Hunter: 55
+    Agility: 25
+    Summoning: 23
+  req_quests:
+    - defender_of_varrock
+    - dream_mentor
+    - legends_quest
+    - path_of_glouphrie
+    - tears_of_guthix
+    - wanted
+    - hunt_for_surok_miniquest
+    - shilo_village
+    - temple_of_ikov
+  req_items: "Logs (you can chop some in the jungle north-west of Oo'glog), ring of Charos (a), at least one air, fire, water, mind rune. Snapdragon seed (you can buy it during the quest for 100 coins), pink dye or 20 coins, lantern lens. 7 air runes, 4 cosmic runes, 4 astral runes and lunar spellbook if you use NPC Contact. Unpowered orb, runes for charge orb spell (30 elemental runes or staff, 3 cosmic), elite black helm, platebody and platelegs. Dagon'hai robes (if you don't find them during the quest), law rune and death rune. Sapphire lantern."
+  req_combat: "Be able to defeat multiple foes up to level 119."
+  points: 5
+  achievement: 155
+  reward: "5,000 coins<br>Lump of dragon metal<br>Talk to Idria to receive 4x 100,000 XP in any skill over level 65<br>Opportunity to loot Movario's base<br>Opportunity to fight tormented demons and gain dragon metal drops"
+  varbits:
+    - [ 11858, 10, 910 ]
+witchs_house:
+  id: 109
+  name: "Witch's House"
+  difficulty: 1
+  length: 1
+  sprite: 31738
+  item_sprite: 31739
+  region: 2
+  start_point: "Talk to Harvey, the crying boy west of Falador."
+  start_path:
+    - [ 2924, 3355 ]
+  req_items: "Cheese or cheese wheel, leather gloves, some combat equipment and food."
+  req_combat: "You will need to defeat a shapeshifting enemy with forms up to level 49."
+  points: 4
+  achievement: 119
+  xp: "6,325 Constitution XP"
+  varps:
+    - [ 2276, 1, 7 ]
+witchs_potion_miniquest:
+  id: 264
+  name: "Witch's Potion (miniquest)"
+  difficulty: 0
+  length: 0
+  sprite: 3150
+  item_sprite: 26124
+  region: 18
+  start_point: "Talk to Hetty in Rimmington."
+  start_path:
+    - [ 2968, 3206 ]
+  req_combat: "You will need to defeat a rat (level 1).<br>You may have to best a cow in mortal combat."
+  achievement: 273
+  xp: "325 Magic XP"
+  varps:
+    - [ 2473, 1, 3 ]
+within_the_light:
+  id: 161
+  name: "Within the Light"
+  difficulty: 3
+  length: 5
+  members: true
+  region: 50
+  start_point: "Talk to Arianwyn in Lletya."
+  start_path:
+    - [ 2352, 3171 ]
+  req_skills:
+    Ranged: 75
+    Woodcutting: 75
+    Fletching: 70
+    Agility: 69
+  req_quests:
+    - mournings_end_part_ii
+  req_items: "Two sets of mourner gear, new key and tarnished key (from the head mourner in West Ardougne). A death- or omni-talisman to enter the death altar. Colour wheel, notes and crystal trinket (if you still have them)."
+  req_combat: "None, but beware of dangerous shadows."
+  points: 2
+  achievement: 169
+  reward: "Ability to choose a destination for crystal teleport seeds"
+  xp: "35,000 Agility XP<br>20,000 Fletching XP<br>20,000 Ranged XP<br>20,000 Woodcutting XP"
+  varbits:
+    - [ 10506, 1, 46 ]
+wolf_whistle:
+  id: 131
+  name: "Wolf Whistle"
+  difficulty: 0
+  length: 2
+  sprite: 9551
+  item_sprite: 33642
+  region: 1
+  start_point: "Talk to Pikkupstix in his house in Taverley."
+  start_path:
+    - [ 2930, 3448 ]
+  req_items: "None."
+  req_combat: "None."
+  points: 1
+  achievement: 141
+  reward: "275 gold charms"
+  xp: "276 Summoning XP lamp"
+  varbits:
+    - [ 12334, 5, 35 ]
+zogre_flesh_eaters:
+  id: 25
+  name: "Zogre Flesh Eaters"
+  difficulty: 1
+  length: 3
+  members: true
+  sprite: 17188
+  region: 45
+  start_point: "Talk to Grish, located west of Gu'Tanoth and south of Castle Wars."
+  start_path:
+    - [ 2444, 3050 ]
+  req_quests:
+    - big_chompy_bird_hunting
+  req_items: "None, but an ogre bow is recommended."
+  req_combat: "You will need to defeat a level 58 enemy and level 36 enemy."
+  points: 1
+  achievement: 27
+  reward: "3 ourg bones<br>2 zogre bones<br>Access to Jiggig<br>Ability to equip inoculation brace<br>Ability to fletch composite ogre bow and brutal arrows<br>Access to post-quest rewards from Zavistic Rarve or Yanni Salika, and Uglug Nar"
+  xp: "2,000 Fletching XP<br>2,000 Ranged XP<br>2,000 Herblore XP"
+  varbits:
+    - [ 10448, 1, 14 ]
