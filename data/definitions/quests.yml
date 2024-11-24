@@ -737,29 +737,6 @@ devious_minds:
   xp: "5,000 Fletching XP<br>5,000 Runecrafting XP<br>6,500 Smithing XP"
   varbits:
     - [ 11914, 10, 80 ]
-# TODO prince ali rescue
-#diamond_in_the_rough:
-#  id: 177
-#  name: "Diamond in the Rough"
-#  difficulty: 0
-#  length: 4
-#  members: true
-#  sprite: 13615
-#  item_sprite: 27246
-#  region: 21
-#  start_point: "Talk to Spymaster Osman in Al Kharid's palace."
-#  start_path:
-#    - [ 3290, 3157 ]
-#  req_quests:
-#    - stolen_hearts
-#  req_items: "Food and combat gear."
-#  req_combat: "You will need to defeat six level 2 bandits, and two level 5 thugs."
-#  points: 1
-#  achievement: 10
-#  reward: "Access to the Kalphite Nursery (and a new weapon and shield)"
-#  xp: "250 combat XP lamp<br>250 Agility XP<br>250 Thieving XP"
-#  varbits:
-#    - [ 9429, 5, 120 ]
 dig_site:
   id: 32
   name: "The Dig Site"
@@ -818,6 +795,22 @@ do_no_evil:
   xp: "50,000 Magic XP<br>50,000 Thieving XP<br>40,000 Crafting XP<br>30,000 Construction XP"
   varbits:
     - [ 9324, 10, 315 ]
+dorics_quest:
+  id: 3
+  name: "Doric's Quest"
+  difficulty: 0
+  length: 3
+  sprite: 4431
+  region: 14
+  start_point: "Talk to Doric who is just outside the gates of Taverley."
+  start_path:
+    - [ 2951, 3451 ]
+  req_items: "6 clay, 4 copper ore, 2 iron ore."
+  req_combat: "None."
+  points: 1
+  achievement: 11
+  reward: "180 coins<br>Access to Doric's anvils, Mining XP"
+  xp: "1,300 Mining XP"
 dragon_slayer:
   id: 4
   name: "Dragon Slayer"
@@ -2894,6 +2887,20 @@ priest_in_peril:
   reward: "The blessed wolfbane dagger<br>5 kudos from Historian Minas at the Varrock Museum"
   varps:
     - [ 2171, 1, 60 ]
+prince_ali_resuce:
+  id: 10
+  name: "Prince Ali Rescue"
+  difficulty: 0
+  length: 4
+  region: 4
+  sprite: 4433
+  start_point: "Talk to Hassan in Al Kharid's palace."
+  start_path:
+    - [ 3293, 3163 ]
+  req_items: "Soft clay, 3 balls of wool, yellow dye, redberries, ashes, bucket or jug of water (obtainable during quest), pot of flour, bronze bar, pink skirt, 3 beers, rope and at least 100 coins."
+  req_combat: "You will need to get past aggressive level 26 jail guards."
+  points: 3
+  reward: "700 coins<br>Free passage through the Lumbridge - Al Kharid toll gate"
 purple_cat_miniquest:
   id: 276
   name: "Purple Cat (miniquest)"
@@ -3411,48 +3418,21 @@ rune_mechanics:
   xp: "900 Construction XP<br>2,300 Magic XP<br>1,850 Runecrafting XP"
   varbits:
     - [ 10919, 5, 35 ]
-# TODO rune_mysteries: 13
-#rune_memories:
-#  id: 195
-#  name: "Rune Memories"
-#  difficulty: 0
-#  length: 5
-#  members: true
-#  sprite: 15399
-#  item_sprite: 27247
-#  region: 6
-#  start_point: "Talk to Ariane in the ruins beneath the Wizards' Tower, south of Draynor Village."
-#  start_path:
-#    - [ 3133, 3168 ]
-#  req_quests:
-#    - rune_mysteries
-#  req_items: "14 free inventory spaces."
-#  req_combat: "None."
-#  points: 1
-#  achievement: 13
-#  reward: "First Tower robes<br>Access to Archmage Sedridor's personal rune essence chest"
-#  xp: "300 Magic XP<br>300 Runecrafting XP"
-#  varbits:
-#    - [ 16834, 1, 120 ]
-#rune_mysteries:
-#  id: 194
-#  name: "Rune Mysteries"
-#  difficulty: 0
-#  length: 4
-#  sprite: 15398
-#  item_sprite: 27247
-#  region: 6
-#  start_point: "Talk to Ariane in the lobby of the Wizards' Tower, south of Draynor Village."
-#  start_path:
-#    - [ 3101, 3170 ]
-#  req_items: "None."
-#  req_combat: "None."
-#  points: 1
-#  achievement: 12
-#  reward: "Wizards' Tower mindspike<br>First Tower hat<br>Air talisman<br>70 mind runes<br>4 wizard titles"
-#  xp: "250 Magic XP lamp<br>250 Runecrafting XP"
-#  varbits:
-#    - [ 16863, 1, 170 ]
+rune_mysteries:
+  id: 13
+  name: "Rune Mysteries"
+  difficulty: 0
+  length: 4
+  sprite: 2378
+  region: 6
+  start_point: "Talk to Duke Horacio on the first floor of Lumbridge Castle."
+  start_path:
+    - [ 3209, 3222, 1 ]
+  req_items: "None."
+  req_combat: "None."
+  points: 1
+  achievement: 13
+  reward: "An Air Talisman<br>The ability to mine rune essence"
 scorpion_catcher:
   id: 93
   name: "Scorpion Catcher"
@@ -3739,26 +3719,6 @@ spirits_of_the_elid:
   xp: "1,000 Thieving XP<br>1,000 Magic XP"
   varbits:
     - [ 12609, 10, 60 ]
-# TODO prince ali rescue: 10
-#stolen_hearts:
-#  id: 175
-#  name: "Stolen Hearts"
-#  difficulty: 0
-#  length: 4
-#  sprite: 13614
-#  item_sprite: 22978
-#  region: 4
-#  start_point: "Talk to Ozan in Draynor Village."
-#  start_path:
-#    - [ 3094, 3275 ]
-#  req_items: "Food and combat gear."
-#  req_combat: "You will need to defeat three level 2 mercenaries."
-#  points: 3
-#  achievement: 9
-#  reward: "2,500 coins<br>Talk to Khnum in Draynor jail for 4 thief titles"
-#  xp: "250 combat XP lamp<br>250 Agility XP lamp from Osman (members)<br>250 Thieving XP lamp from Osman (members)"
-#  varbits:
-#    - [ 11870, 5, 105 ]
 summers_end:
   id: 143
   name: "Summer's End"
