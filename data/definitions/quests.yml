@@ -646,7 +646,7 @@ demon_slayer:
   name: "Demon Slayer"
   difficulty: 0
   length: 1
-  sprite: 25450
+  sprite: 4198
   region: 7
   start_point: "Talk to Gideon Bede at the Saradominist church in north-east Varrock."
   start_path:
@@ -657,8 +657,6 @@ demon_slayer:
   achievement: 3
   reward: "The holy sword, Silverlight<br>Avernic wand and book"
   xp: "3 combat XP lamps worth 100 XP each"
-  varbits:
-    - [ 17841, 1, 9 ]
 desert_slayer_dungeon_miniquest:
   id: 285
   name: "Desert Slayer Dungeon (miniquest)"
@@ -1050,7 +1048,6 @@ enter_the_abyss_miniquest:
   difficulty: 1
   length: 1
   members: true
-  sprite: 31962
   region: 12
   start_point: "Talk to the Mage of Zamorak at the end of the River Lum in the Wilderness (roams levels 4-7)."
   start_path:
@@ -1060,8 +1057,6 @@ enter_the_abyss_miniquest:
   achievement: 249
   reward: "Access to the Abyss"
   xp: "1,000 Runecrafting XP"
-  varps:
-    - [ 3149, 1, 4 ]
 ernest_the_chicken:
   id: 5
   name: "Ernest the Chicken"
@@ -1698,8 +1693,6 @@ gunnars_ground:
   achievement: 181
   reward: "Swanky boots<br>Talk to Dororan for more Crafting tasks"
   xp: "300 Crafting XP<br>Antique lamp"
-  varbits:
-    - [ 9188, 5, 100 ]
 hand_in_the_sand:
   id: 57
   name: "The Hand in the Sand"
@@ -2129,8 +2122,6 @@ knights_sword:
   achievement: 14
   reward: "Ability to smith blurite (members)"
   xp: "12,725 Smithing XP lamp"
-  varps:
-    - [ 2547, 1, 7 ]
 lair_of_tarn_razorlor_miniquest:
   id: 296
   name: "Lair of Tarn Razorlor (miniquest)"
@@ -3267,8 +3258,6 @@ restless_ghost:
   req_combat: "Facing a level 7 skeleton warlock."
   points: 1
   achievement: 4
-  varps:
-    - [ 2324, 1, 5 ]
 rocking_out:
   id: 139
   name: "Rocking Out"
