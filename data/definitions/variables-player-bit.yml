@@ -2693,3 +2693,7 @@ world_map_list_order:
 show_daemonheim_map:
   id: 6090
   format: boolean
+quest_intro_unmark_map:
+  id: 6924
+  persist: true
+  format: boolean

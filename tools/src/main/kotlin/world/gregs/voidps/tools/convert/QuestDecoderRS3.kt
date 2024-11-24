@@ -1,4 +1,4 @@
-package world.gregs.voidps.cache.config.decoder
+package world.gregs.voidps.tools.convert
 
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Config.QUESTS
@@ -6,7 +6,7 @@ import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.QuestDefinition
 import world.gregs.voidps.cache.definition.Parameters
 
-class QuestDecoder(
+class QuestDecoderRS3(
     private val parameters: Parameters = Parameters.EMPTY
 ) : ConfigDecoder<QuestDefinition>(QUESTS) {
 
@@ -27,8 +27,8 @@ class QuestDecoder(
             12 -> otherPathStart = buffer.readInt()
             13 -> questRequirements = IntArray(buffer.readUnsignedByte()) { buffer.readShort() }
             14 -> skillRequirements = Array(buffer.readUnsignedByte()) { IntArray(2) { buffer.readUnsignedByte() } }
-            15 -> buffer.readShort()
-            17 -> itemSprite = buffer.readShort()
+            15 -> questPointRequirement = buffer.readShort()
+            17 -> itemSprite = buffer.readBigSmart()
             249 -> readParameters(buffer, parameters)
         }
     }

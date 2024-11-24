@@ -75,3 +75,6 @@ scrollbar_vertical:
   params:
     - "scroll bar interface id"
     - "container interface id"
+quest_intro_req_text: 2827
+quest_intro_req_items_text: 2828
+quest_intro_rewards_text: 4074

@@ -14,7 +14,7 @@ object HashCodeChecker {
         val checkList = input.readLines()
             .map { it.split("\t").last() }
 
-        val file = File("./temp/hashes/hashes-modified.tsv")
+        val file = File("./temp/hashes/634-cache-hash-names.tsv")
         known = file.readLines()
             .associate {
                 val parts = it.split("\t")

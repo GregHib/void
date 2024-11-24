@@ -14,12 +14,13 @@ class QuestDefinitions : DefinitionsDecoder<QuestDefinition> {
 
     fun load(yaml: Yaml = get(), path: String = getProperty("questDefinitionsPath")): QuestDefinitions {
         timedLoad("quest definition") {
-            decode(yaml, path) { id, key, _ ->
-                QuestDefinition(id = id, stringId = key)
+            decode(yaml, path) { id, key, extras ->
+                QuestDefinition(id = id, stringId = key, extras = extras)
             }
         }
         return this
     }
 
     override fun empty() = QuestDefinition.EMPTY
+
 }

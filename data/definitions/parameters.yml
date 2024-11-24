@@ -107,7 +107,7 @@ weapon_style: 686
 special_attack: 687
 spellbook_spell_inv_interface: 688
 hand_cannon_warning: 690
-quest_param_691: 691
+quest_start_npc: 691
 quest_param_692: 693
 quest_journal_hints: 694
 quest_param_695: 695
@@ -235,10 +235,10 @@ npc_contact_while_guthix_sleeps_text: 941
 npc_contact_while_guthix_sleeps_model: 942
 npc_contact_while_guthix_sleeps_rotation: 943
 npc_contact_while_guthix_sleeps_animation: 944
-quest_journal_hint_text: 948
-quest_item_requirement_text: 949
-quest_level_requirement_text: 950
-quest_reward_text_0: 951
+quest_start_point_text: 948
+quest_required_items_text: 949
+quest_combat_text: 950
+quest_reward_text: 951
 task_quest_sprite: 952
 barbarian_assault_reward: 954
 barbarian_assault_ticket_wave: 955
