@@ -16,12 +16,12 @@ import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.timerTick
@@ -32,6 +32,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
+import world.gregs.voidps.world.interact.dialogue.type.startQuest
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
@@ -41,14 +42,10 @@ val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 
 modCommand("test") {
-    player.open("quest_intro")
-    player.interfaces.sendText("quest_intro", "start_point_field", "Speak to Golrie in his cave beneath The Tree Gnome Village.")
-    val list = "The Path of Glouphrie<br>Roving Elves<br>Level 64 Thieving<br>Level 64 Agility<br>Level something"
-    player.interfaces.sendText("quest_intro", "req_field", list)
-    player.interfaces.sendText("quest_intro", "rewards_field", "Rewards")
-    player.sendScript(2827, listOf("One<br>two<br>three<br>four<br>five"))
-//    player.sendScript(2828, listOf("This is just a test2."))
-//    player.sendScript(4074, listOf("This is just a test3.")) /// scripts
+    player.weakQueue(name = "level_up") {
+        val response = startQuest(content)
+        println(response)
+    }
 }
 
 modCommand("patrol") {

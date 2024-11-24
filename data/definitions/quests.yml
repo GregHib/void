@@ -1645,13 +1645,13 @@ imp_catcher:
   region: 6
   start_point: "Talk to Wizard Mizgog on the first floor of the Wizards' Tower, south of Draynor."
   start_path:
-    - [ 3109, 3148, 1 ]
-    - [ 3102, 3155 ]
-  req_items: "Bowl of hot water. (Fill an empty bowl from a water source, and heat it on a range or fire.)"
-  req_combat: "Must be able to defeat one level 5 imp."
+    - [ 3105, 3163, 2 ]
+    - [ 3112, 3169 ]
+  req_items: "Black bead<br>Red bead<br>White bead<br>Yellow bead"
+  req_combat: "Must be able to defeat multiple level 2 imps."
   points: 1
   reward: "An amulet of accuracy<br>Access to Mizgog's amulet shop"
-  xp: "875 Magic XP lamp"
+  xp: "875 Magic XP"
 in_aid_of_the_myreque:
   id: 64
   name: "In Aid of the Myreque"
