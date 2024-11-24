@@ -18,8 +18,6 @@ all_fired_up:
   points: 1
   reward: "20,000 coins<br>Access to the All Fired Up beacon network minigame"
   xp: "5,500 Firemaking XP"
-  varbits:
-    - [ 13518, 5, 90 ]
 animal_magnetism:
   id: 18
   name: "Animal Magnetism"
@@ -45,8 +43,6 @@ animal_magnetism:
   points: 1
   reward: "Blessed hatchet<br>Ava's accumulator/attractor.<br>(Req 50 ranged) Ava's accumulator ammunition pickup passive effect."
   xp: "2,500 Woodcutting XP<br>1,000 Crafting XP<br>1,000 Fletching XP<br>1,000 Slayer XP"
-  varbits:
-    - [ 11411, 10, 240 ]
 another_slice_of_ham:
   id: 123
   name: "Another Slice of H.A.M."
@@ -73,8 +69,6 @@ another_slice_of_ham:
   points: 1
   reward: "The ancient goblin mace<br>Use of the Dorgesh-Kaan to Keldagrim train route<br>Ability to buy Goblin Village teleport spheres from Oldak"
   xp: "3,000 Mining XP"
-  varbits:
-    - [ 13650, 1, 11 ]
 as_a_first_resort:
   id: 132
   name: "As a First Resort"
@@ -95,8 +89,6 @@ as_a_first_resort:
   points: 1
   reward: "Access to spa facilities and the Oo'glog Hunter area<br>Food shop and gift shop<br>Platypus Summoning pet<br>4 caskets or oysters<br>Ability to travel to Oo'glog using charter ships<br>Ability to create robust glass and crystal glass"
   xp: "15,000 Firemaking XP<br>15,000 Hunter XP<br>15,000 Woodcutting XP"
-  varbits:
-    - [ 14041, 1, 200 ]
 back_to_my_roots:
   id: 128
   name: "Back to my Roots"
@@ -120,8 +112,6 @@ back_to_my_roots:
   points: 1
   reward: "Vine farming patch in Ardougne<br>Jade vine seed<br>Access to the jade vine maze<br>Transportation between Eagle's Peak and Karamja using the Karamjan jungle eagle<br>Ability to slay the wild jade vine for extra Slayer and Farming XP once every 15 hours"
   xp: "24,000 Farming XP<br>40,000 Woodcutting XP<br>23,000 Slayer XP<br>15,000 Agility XP"
-  varbits:
-    - [ 13194, 1, 65 ]
 bar_crawl_miniquest:
   id: 279
   name: "Bar Crawl (miniquest)"
@@ -134,8 +124,6 @@ bar_crawl_miniquest:
   start_path:
     - [ 2544, 3569 ]
   reward: "Access to the Barbarian Outpost agility course"
-  varbits:
-    - [ -21744, 1, 2 ]
 between_a_rock:
   id: 19
   name: "Between a Rock..."
@@ -159,8 +147,6 @@ between_a_rock:
   points: 2
   reward: "Adamant pickaxe +2<br>Gold helmet<br>Access to the Arzinian mine"
   xp: "5,000 Mining XP lamp<br>5,000 Smithing XP lamp"
-  varbits:
-    - [ 12797, 10, 110 ]
 big_chompy_bird_hunting:
   id: 20
   name: "Big Chompy Bird Hunting"
@@ -221,8 +207,6 @@ blood_pact:
   req_combat: "Must be able to defeat three low-level enemies."
   points: 1
   reward: "Reese's main-hand and off-hand sword<br>Kayle's chargebow (requires no arrows)<br>Caitlin's staff (requires no air runes)<br>Access to the Lumbridge Catacombs dungeon"
-  varbits:
-    - [ 10826, 10, 60 ]
 blood_runs_deep:
   id: 163
   name: "Blood Runs Deep"
@@ -246,8 +230,6 @@ blood_runs_deep:
   req_combat: "You will need to defeat at least 50 level 77 enemies, two level 98 enemies, and a level 102 enemy."
   points: 2
   reward: "Balmung<br>Access to Dagannoth guardians, Dagannoth Mother and her sentinels in the Dominion Tower<br>Talk to Chieftain Brundt to receive 3x 150,000 XP in combat skills"
-  varbits:
-    - [ 10871, 3, 147 ]
 buyers_and_cellars:
   id: 167
   name: "Buyers and Cellars"
@@ -267,8 +249,6 @@ buyers_and_cellars:
   points: 1
   reward: "Access to the thieves' guild<br>Thieves' guild literature<br>Ability to collect hanky points"
   xp: "500 Thieving XP"
-  varbits:
-    - [ 9022, 5, 10 ]
 cabin_fever:
   id: 22
   name: "Cabin Fever"
@@ -316,8 +296,6 @@ catapult_construction:
   points: 2
   reward: "30 teak planks<br>2,000 coins<br>An adamant halberd<br>Increased damage when using Castle Wars catapults<br>Sailor's hat"
   xp: "15,000 Construction XP<br>5,000 Fletching XP"
-  varbits:
-    - [ 12210, 2, 60 ]
 chosen_commander:
   id: 152
   name: "The Chosen Commander"
@@ -342,8 +320,6 @@ chosen_commander:
   points: 3
   reward: "Zanik's crossbow<br>Ability to buy teleport spheres from Oldak to Bandos's throne room"
   xp: "20,000 Agility XP<br>20,000 Strength XP<br>20,000 Thieving XP"
-  varbits:
-    - [ 9136, 10, 110 ]
 clock_tower:
   id: 23
   name: "Clock Tower"
@@ -382,8 +358,6 @@ cold_war:
   points: 1
   reward: "Ability to build a penguin suit<br>Access to the penguin agility course<br>Ability to contact Larry through the NPC Contact spell"
   xp: "2,000 Crafting XP<br>5,000 Agility XP<br>1,500 Construction XP"
-  varbits:
-    - [ 10430, 5, 135 ]
 contact:
   id: 24
   name: "Contact!"
@@ -402,8 +376,6 @@ contact:
   points: 1
   reward: "Keris dagger<br>Access to Sophanem's bank"
   xp: "7,000 Thieving XP<br>Two wishes each awarding 7,000 combat XP"
-  varbits:
-    - [ 10292, 10, 130 ]
 cooks_assistant:
   id: 1
   name: "Cook's Assistant"
@@ -472,8 +444,6 @@ curse_of_arrav:
   req_combat: "Be able to defeat a level 91 foe."
   points: 1
   xp: "14,000 Thieving XP<br>9,000 Ranged XP<br>9,000 Strength XP<br>9,000 Agility XP<br>30,000 Mining XP<br>2,500 Slayer XP<br>4,000 Summoning XP"
-  varbits:
-    - [ 11151, 10, 240 ]
 curse_of_zaros_miniquest:
   id: 283
   name: "The Curse of Zaros (miniquest)"
@@ -490,8 +460,6 @@ curse_of_zaros_miniquest:
     - temple_of_ikov
   req_items: "a way to speak to ghosts"
   reward: "Ghostly robes<br>10 kudos (and a 10,000 XP lamp) from the Varrock museum if you talk to Historian Minas"
-  varbits:
-    - [ -30152, 1, 63 ]
 darkness_of_hallowvale:
   id: 27
   name: "The Darkness of Hallowvale"
@@ -518,8 +486,6 @@ darkness_of_hallowvale:
   points: 2
   reward: "Access to Meiyerditch<br>Shortcut key<br>Access to the Burgh de Rott Ramble minigame"
   xp: "Tome of XP (three chapters, 2,000 XP each in a skill over level 30)<br>7,000 Agility XP<br>6,000 Thieving XP<br>2,000 Construction XP"
-  varbits:
-    - [ 10204, 10, 320 ]
 dealing_with_scabaras:
   id: 130
   name: "Dealing with Scabaras"
@@ -543,8 +509,6 @@ dealing_with_scabaras:
   points: 1
   reward: "Ability to craft an enchanted water tiara (protects against desert heat)"
   xp: "7,000 Strength XP<br>7,000 Thieving XP<br>7,000 Agility XP"
-  varbits:
-    - [ 13430, 100, 700 ]
 death_plateau:
   id: 29
   name: "Death Plateau"
@@ -560,8 +524,6 @@ death_plateau:
   points: 1
   reward: "Talk to Denulth for a repeatable delivery task"
   xp: "3 reward lamps (100 XP each)"
-  varbits:
-    - [ 10848, 5, 65 ]
 death_to_the_dorgeshuun:
   id: 28
   name: "Death to the Dorgeshuun"
@@ -584,8 +546,6 @@ death_to_the_dorgeshuun:
   points: 1
   reward: "Access to the H.A.M. storerooms<br>Access to Dorgesh-Kaan"
   xp: "2,000 combat XP lamp<br>2,000 Thieving XP lamp"
-  varbits:
-    - [ 11533, 1, 13 ]
 defender_of_varrock:
   id: 144
   name: "Defender of Varrock"
@@ -612,8 +572,6 @@ defender_of_varrock:
   req_combat: "Be able to kill multiple level 104 foes and survive in the Wilderness."
   points: 2
   xp: "15,000 Hunter XP lamp<br>10,000 Mining XP lamp<br>10,000 Smithing XP lamp<br>2,000 Agility XP lamp"
-  varbits:
-    - [ 12163, 10, 250 ]
 demon_slayer:
   id: 2
   name: "Demon Slayer"
@@ -648,8 +606,6 @@ desert_slayer_dungeon_miniquest:
   req_combat: "You will need to defeat four level 96 bosses. The fourth boss requires 70 Slayer to defeat."
   reward: "Access to cave crawler, basilisk, turoth and kurask rooms"
   xp: "4,000 Slayer XP (1,000 XP from defeating each of the four bosses)"
-  varbits:
-    - [ -21743, 1, 15 ]
 desert_treasure:
   id: 30
   name: "Desert Treasure"
@@ -674,8 +630,6 @@ desert_treasure:
   points: 3
   reward: "Ancient magicks<br>Access to the Bandit Camp Home Teleport<br>Ability to buy and wield the ancient staff<br>Access to the Zarosian gravestone"
   xp: "20,000 Magic XP"
-  varbits:
-    - [ 9482, 1, 15 ]
 devious_minds:
   id: 31
   name: "Devious Minds"
@@ -697,8 +651,6 @@ devious_minds:
   req_combat: "None."
   points: 1
   xp: "5,000 Fletching XP<br>5,000 Runecrafting XP<br>6,500 Smithing XP"
-  varbits:
-    - [ 11914, 10, 80 ]
 dig_site:
   id: 32
   name: "The Dig Site"
@@ -751,8 +703,6 @@ do_no_evil:
   points: 1
   reward: "New magic carpet station at the monkey colony<br>Ability to make a cramulet"
   xp: "50,000 Magic XP<br>50,000 Thieving XP<br>40,000 Crafting XP<br>30,000 Construction XP"
-  varbits:
-    - [ 9324, 10, 315 ]
 dorics_quest:
   id: 3
   name: "Doric's Quest"
@@ -805,8 +755,6 @@ dream_mentor:
   points: 2
   reward: "8 new lunar spells<br>Access to the 'Random' option on the NPC Contact spell"
   xp: "15,000 combat XP lamp<br>10,000 Magic XP"
-  varbits:
-    - [ 9530, 2, 28 ]
 druidic_ritual:
   id: 33
   name: "Druidic Ritual"
@@ -822,8 +770,6 @@ druidic_ritual:
   points: 4
   reward: "15 noted guam<br>15 noted eye of newt"
   xp: "250 Herblore XP"
-  varbits:
-    - [ 13366, 2, 8 ]
 dwarf_cannon:
   id: 34
   name: "Dwarf Cannon"
@@ -882,8 +828,6 @@ eagles_peak:
   points: 2
   reward: "Ability to capture ferrets (using box traps) and use them to flush rabbits from rabbit holes<br>Ability to fly the eagles from Eagles' Peak<br>Eagle costume<br>Ferret in Ardougne zoo<br>Box trap"
   xp: "2,500 Hunter XP"
-  varbits:
-    - [ 13931, 5, 40 ]
 elemental_workshop_i:
   id: 37
   name: "Elemental Workshop I"
@@ -927,8 +871,6 @@ elemental_workshop_ii:
   points: 1
   reward: "Ability to make elemental helmets, mind shields and mind helmets"
   xp: "7,500 Crafting XP<br>7,500 Smithing XP"
-  varbits:
-    - [ 13674, 1, 11 ]
 elemental_workshop_iii:
   id: 172
   name: "Elemental Workshop III"
@@ -950,8 +892,6 @@ elemental_workshop_iii:
   points: 1
   reward: "Ability to make and equip elemental body equipment<br>An elemental body<br>50 coal"
   xp: "Book of knowledge granting 4,250 Defence XP and 3,250 Smithing XP (2 Defence charges, 2 Smithing charges)<br>2,000 Smithing XP"
-  varbits:
-    - [ 12504, 1, 5 ]
 enakhras_lament:
   id: 39
   name: "Enakhra's Lament"
@@ -972,8 +912,6 @@ enakhras_lament:
   points: 2
   reward: "Camulet from Akthanakos<br>Camel mask"
   xp: "7,000 Crafting XP<br>7,000 Firemaking XP<br>7,000 Mining XP<br>7,000 Magic XP"
-  varbits:
-    - [ 9740, 10, 70 ]
 enlightened_journey:
   id: 40
   name: "Enlightened Journey"
@@ -995,8 +933,6 @@ enlightened_journey:
   points: 1
   reward: "Bomber jacket and bomber cap<br>Access to the balloon transport system<br>Ability to make origami balloons"
   xp: "2,000 Crafting XP<br>3,000 Farming XP<br>1,500 Woodcutting XP<br>4,000 Firemaking XP"
-  varbits:
-    - [ 12529, 5, 200 ]
 enter_the_abyss_miniquest:
   id: 278
   name: "Enter the Abyss (miniquest)"
@@ -1048,8 +984,6 @@ eyes_of_glouphrie:
   points: 2
   reward: "Mysterious small crystal seed<br>Ability to use crystal singing bowls"
   xp: "12,000 Magic XP<br>2,500 Woodcutting XP<br>6,000 Runecrafting XP<br>250 Construction XP"
-  varbits:
-    - [ 12813, 1, 60 ]
 fairy_tale_i:
   id: 42
   name: "A Fairy Tale I - Growing Pains"
@@ -1069,8 +1003,6 @@ fairy_tale_i:
   points: 2
   reward: "Magic secateurs"
   xp: "3,500 Farming XP<br>2,000 Attack XP<br>1,000 Magic XP"
-  varbits:
-    - [ 13286, 10, 90 ]
 fairy_tale_ii:
   id: 43
   name: "A Fairy Tale II - Cure a Queen"
@@ -1093,8 +1025,6 @@ fairy_tale_ii:
   points: 2
   reward: "Access to the fairy ring network<br>Access to the fairy resistance hideout<br>Ability to make magic essence potions"
   xp: "2,500 XP lamp (level 30 or above)<br>3,500 Herblore XP<br>2,500 Thieving XP"
-  varbits:
-    - [ 12056, 5, 90 ]
 fairy_tale_iii:
   id: 158
   name: "A Fairy Tale III - Battle at Ork's Rift"
@@ -1117,8 +1047,6 @@ fairy_tale_iii:
   points: 2
   reward: "You no longer need a dramen staff to use fairy rings<br>Free access to Zanaris market<br>Magic watering can"
   xp: "11,000 Farming XP<br>11,000 Thieving XP<br>11,000 Magic XP<br>1,000 Summoning XP<br>1,000 Crafting XP"
-  varbits:
-    - [ 9928, 10, 180 ]
 family_crest:
   id: 44
   name: "Family Crest"
@@ -1159,8 +1087,6 @@ the_feud:
   points: 1
   reward: "Blackjack<br>Desert disguise<br>500 coins<br>Ability to do another part of Rogue Trader<br>Free beer"
   xp: "15,000 Thieving XP"
-  varbits:
-    - [ 9712, 1, 28 ]
 fight_arena:
   id: 46
   name: "Fight Arena"
@@ -1223,8 +1149,6 @@ forgettable_tale:
   points: 2
   reward: "2 mature dwarven stouts<br>2 marrentill seeds if you deliver Rind's letter"
   xp: "5,000 Farming XP<br>5,000 Cooking XP"
-  varbits:
-    - [ 11917, 10, 140 ]
 forgiveness_of_a_chaos_dwarf:
   id: 160
   name: "Forgiveness of a Chaos Dwarf"
@@ -1248,8 +1172,6 @@ forgiveness_of_a_chaos_dwarf:
   points: 2
   reward: "Access to the chaos dwarf battlefield and the north Keldagrim mining area<br>Ability to wield the hand cannon"
   xp: "30,000 Firemaking XP<br>30,000 Hunter XP<br>30,000 Strength XP"
-  varbits:
-    - [ 10544, 10, 80 ]
 fremennik_isles:
   id: 118
   name: "The Fremennik Isles"
@@ -1273,8 +1195,6 @@ fremennik_isles:
   points: 1
   reward: "14,000 coins in assorted rewards during the quest<br>The Helm of Neitiznot<br>Access to arctic pines<br>Mining sites in Neitiznot and Jatizso<br>Ability to make yak hide armour<br>Access to the Contraband Yak Produce shop on Jatizso"
   xp: "5,000 Construction XP<br>5,000 Crafting XP<br>10,000 Woodcutting XP<br>10,000 XP in 2 combat skills"
-  varbits:
-    - [ 13178, 5, 340 ]
 fremennik_trials:
   id: 49
   name: "The Fremennik Trials"
@@ -1315,8 +1235,6 @@ from_tiny_acorns_miniquest:
     - buyers_and_cellars
   reward: "Ability to steal a craftsman's monocle<br>Ability to purchase crafting equipment from Urist Loric<br>Access to the advanced pickpocketing trainer and coshing volunteers in the Thieves' Guild<br>Access to the practice chest area in the Thieves' Guild"
   xp: "1,000 Thieving XP"
-  varbits:
-    - [ 9022, 15, 20 ]
 fur_n_seek:
   id: 154
   name: "Fur 'n Seek"
@@ -1336,8 +1254,6 @@ fur_n_seek:
   req_combat: "You will need to kill a variety of monsters to obtain their hides."
   points: 2
   xp: "2,500 Constitution XP<br>2,500 Slayer XP<br>500 Crafting XP<br>500 Firemaking XP"
-  varbits:
-    - [ 9902, 1, 5 ]
 garden_of_tranquillity:
   id: 51
   name: "Garden of Tranquillity"
@@ -1358,8 +1274,6 @@ garden_of_tranquillity:
   points: 2
   reward: "Activated ring of Charos<br>1 apple seed<br>1 acorn<br>5 guam seeds<br>4 doses of supercompost potion<br>Ability to pick fruit from the white tree"
   xp: "5,000 Farming XP"
-  varbits:
-    - [ 13397, 10, 60 ]
 generals_shadow_miniquest:
   id: 284
   name: "The General's Shadow (miniquest)"
@@ -1377,8 +1291,6 @@ generals_shadow_miniquest:
   req_items: "ghostly robes, a way to speak to ghosts"
   req_combat: "You will need to defeat a level 91 ghost dog (weak to Magic)."
   xp: "2,000 Slayer XP"
-  varbits:
-    - [ 9683, 5, 30 ]
 gertrudes_cat:
   id: 52
   name: "Gertrude's Cat"
@@ -1416,8 +1328,6 @@ ghosts_ahoy:
   req_combat: "You will need to defeat a level 42 giant lobster."
   points: 2
   reward: "Free passage into Port Phasmatys<br>The ectophial"
-  varbits:
-    - [ 13497, 1, 8 ]
 the_giant_dwarf:
   id: 54
   name: "The Giant Dwarf"
@@ -1441,8 +1351,6 @@ the_giant_dwarf:
   points: 2
   reward: "Ability to complete tasks for a dwarven mining company<br>Ability to use dwarven mine carts<br>Access to members' gravestones"
   xp: "2,500 Crafting XP<br>2,500 Mining XP<br>2,500 Smithing XP<br>1,500 Firemaking XP<br>1,500 Magic XP<br>1,500 Thieving XP"
-  varbits:
-    - [ 13266, 10, 50 ]
 glorious_memories:
   id: 149
   name: "Glorious Memories"
@@ -1468,8 +1376,6 @@ glorious_memories:
   points: 1
   reward: "Unfinished astral rune that can be traded with Baba Yaga for extra rewards"
   xp: "10,000 Magic XP<br>5,000 Herblore XP<br>The Tome of Glorious Deeds (3x 5,000 XP in Attack, Strength, Constitution, Defence or Ranged)"
-  varbits:
-    - [ 12906, 3, 45 ]
 goblin_diplomacy:
   id: 6
   name: "Goblin Diplomacy"
@@ -1485,8 +1391,6 @@ goblin_diplomacy:
   points: 5
   reward: "Gold bar"
   xp: "200 Crafting XP lamp"
-  varbits:
-    - [ 9363, 1, 6 ]
 the_golem:
   id: 55
   name: "The Golem"
@@ -1506,8 +1410,6 @@ the_golem:
   points: 1
   reward: "Ability to collect phoenix feathers<br>Magic carpet route to the ruins of Uzer<br>Ability to search Thammaron's throne to get 6 gems"
   xp: "1,000 Thieving XP<br>1,000 Crafting XP"
-  varbits:
-    - [ 13639, 1, 10 ]
 grand_tree:
   id: 56
   name: "The Grand Tree"
@@ -1577,8 +1479,6 @@ grim_tales:
   points: 1
   reward: "Rupert's dwarven helmet"
   xp: "4,000 Farming XP<br>5,000 Herblore XP<br>14,000 Woodcutting XP<br>6,000 Agility XP<br>6,000 Thieving XP"
-  varbits:
-    - [ 13606, 1, 60 ]
 guild_of_our_own_miniquest:
   id: 282
   name: "A Guild of Our Own (miniquest)"
@@ -1600,8 +1500,6 @@ guild_of_our_own_miniquest:
   req_items: "Any blackjack (not including the rubber blackjack), lockpick (or hair clip), irit potion (unf) (or a clean irit and a vial of water), chopped onion (or bowl, onion)"
   reward: "Ability to mix vials of stench<br>Full access to the Thieves' Guild, including a bank"
   xp: "30,000 Thieving XP<br>4,000 Herblore XP"
-  varbits:
-    - [ 9022, 35, 40 ]
 gunnars_ground:
   id: 17
   name: "Gunnar's Ground"
@@ -1638,8 +1536,6 @@ hand_in_the_sand:
   points: 1
   reward: "Ability to buy pink dye from Betty<br>Secret reward from Bert"
   xp: "1,000 Thieving XP<br>9,000 Crafting XP"
-  varbits:
-    - [ 14030, 10, 160 ]
 haunted_mine:
   id: 58
   name: "Haunted Mine"
@@ -1748,8 +1644,6 @@ hopespears_will_miniquest:
   req_items: "a way to speak to ghosts"
   req_combat: "You will need to defeat five enemies up to level 36 without armour and weapons, magic attacks and familiars."
   xp: "13,750 Prayer XP"
-  varbits:
-    - [ -21746, 1, 63 ]
 horror_from_the_deep:
   id: 62
   name: "Horror from the Deep"
@@ -1770,8 +1664,6 @@ horror_from_the_deep:
   points: 2
   reward: "God book of your choice<br>Dagannoth Mother in the Dominion Tower<br>Access to the lighthouse general store and dagannoth caves<br>Ability to request dagannoths as a Slayer task if you own a Mask of the Dagannoth"
   xp: "4,662 Strength XP<br>4,662 Ranged XP<br>4,662 Magic XP"
-  varbits:
-    - [ 11413, 1, 10 ]
 hunt_for_red_raktuber:
   id: 151
   name: "Hunt for Red Raktuber"
@@ -1795,8 +1687,6 @@ hunt_for_red_raktuber:
   points: 1
   reward: "Access to the penguin hunting area<br>Polar bear to spot each week in Penguin Hide and Seek<br>4 aquatically-themed hats"
   xp: "3,000 Construction XP<br>2,000 Thieving XP<br>1,500 Hunter XP"
-  varbits:
-    - [ 13734, 10, 140 ]
 hunt_for_surok_miniquest:
   id: 287
   name: "The Hunt for Surok (miniquest)"
@@ -1817,8 +1707,6 @@ hunt_for_surok_miniquest:
   req_combat: "You will need to defeat a level 107 enemy and survive multiple hits from different types of monsters."
   reward: "Ability to slay Bork daily (for 1,500 Slayer XP, Summoning charms, big bones and gems) in the Chaos Tunnels<br>Ability to wear Dagon'hai robes"
   xp: "5,000 Slayer XP"
-  varbits:
-    - [ 15344, 1, 10 ]
 icthlarins_little_helper:
   id: 63
   name: "Icthlarin's Little Helper"
@@ -1837,8 +1725,6 @@ icthlarins_little_helper:
   points: 2
   reward: "Amulet of catspeak<br>Access to the city of Sophanem"
   xp: "4,500 Thieving XP<br>4,000 Agility XP<br>4,000 Woodcutting XP"
-  varbits:
-    - [ 10987, 1, 26 ]
 imp_catcher:
   id: 7
   name: "Imp Catcher"
@@ -1880,8 +1766,6 @@ in_aid_of_the_myreque:
   points: 2
   reward: "Access to Burgh de Rott and the Temple Trekking minigame<br>Rod of Ivandis, Gadderhammer and Guthix balance potions<br>5 kudos from the Varrock museum if you talk to Historian Minas"
   xp: "2,000 Attack XP<br>2,000 Strength XP<br>2,000 Crafting XP"
-  varbits:
-    - [ 11498, 20, 430 ]
 in_pyre_need:
   id: 146
   name: "In Pyre Need"
@@ -1901,8 +1785,6 @@ in_pyre_need:
   points: 1
   reward: "Access to the Phoenix Lair once per day (5 phoenix quills, chance to receive phoenix eggling)"
   xp: "14,400 Firemaking XP<br>12,500 Fletching XP<br>11,556 Crafting XP"
-  varbits:
-    - [ 10188, 10, 30 ]
 in_search_of_the_myreque:
   id: 65
   name: "In Search of the Myreque"
@@ -1963,8 +1845,6 @@ kenniths_concerns:
   points: 1
   reward: "Access to the mines under Witchaven<br>Repeatable mini-task<br>Ability to mine and sell rubium and make super fishing explosive"
   xp: "12,000 Mining XP<br>5,000 Agility XP"
-  varbits:
-    - [ 11334, 5, 100 ]
 king_of_the_dwarves:
   id: 14
   name: "King of the Dwarves"
@@ -1989,8 +1869,6 @@ king_of_the_dwarves:
   points: 2
   reward: "New gravestone option"
   xp: "45,000 Mining XP<br>50,000 Smithing XP<br>55,000 Strength XP"
-  varbits:
-    - [ 13904, 10, 90 ]
 kings_ransom:
   id: 126
   name: "King's Ransom"
@@ -2010,8 +1888,6 @@ kings_ransom:
   points: 1
   reward: "Hair clip (more durable lockpick)<br>Ability to choose Camelot as a respawn location<br>Access to the Knight Waves Training Grounds miniquest (Chivalry, Piety, Augury and Rigour prayers)<br>Access to the Court Cases Distraction and Diversion"
   xp: "5,000 Magic XP lamp (level 45+)<br>5,000 XP lamp (level 50+)"
-  varbits:
-    - [ 11298, 5, 90 ]
 knights_sword:
   id: 8
   name: "The Knight's Sword"
@@ -2048,8 +1924,6 @@ lair_of_tarn_razorlor_miniquest:
   req_combat: "You will need to defeat Tarn Razorlor."
   reward: "Ability to enchant salve amulets (20% bonus accuracy and damage against undead)<br>Access to terror dogs in Tarn's lair"
   xp: "5,000 Slayer XP"
-  varbits:
-    - [ 16282, 3, 3 ]
 land_of_the_goblins:
   id: 129
   name: "Land of the Goblins"
@@ -2076,8 +1950,6 @@ land_of_the_goblins:
   points: 1
   reward: "Ability to buy Plain of Mud teleport spheres<br>Ability to make goblin transformation potions<br>Ability to use the altar in the Goblin Temple"
   xp: "3,000 Agility XP<br>3,000 Herblore XP<br>3,000 Thieving XP<br>3,000 Fishing XP<br>3,000 Strength XP"
-  varbits:
-    - [ 13322, 1, 18 ]
 legacy_of_seergaze:
   id: 135
   name: "Legacy of Seergaze"
@@ -2104,8 +1976,6 @@ legacy_of_seergaze:
   points: 2
   reward: "Ivandis flail<br>Blood talisman<br>Ability to craft blood runes (77 Runecrafting)<br>Access to Meiyerditch dungeon and a shortcut between Canifis and Meiyerditch<br>Access to a furnace in Meiyerditch<br>Access to the columbarium beneath Paterdomus and the ability to cremate vyre corpses<br>Access to the vyrewatch event in Temple Trekking"
   xp: "Tome of XP (three chapters, 2.5k XP each)<br>3,000 Magic XP<br>2,000 Agility XP<br>4,000 Crafting XP<br>2,000 Mining XP<br>1,000 Construction XP<br>2,000 Slayer XP"
-  varbits:
-    - [ 13978, 10, 500 ]
 legends_quest:
   id: 67
   name: "Legends' Quest"
@@ -2177,8 +2047,6 @@ lost_her_marbles_miniquest:
     - from_tiny_acorns_miniquest
   reward: "Improved loot from pickpocketing NPCs up to level 40 Thieving<br>Access to Dodgy Derek's Dirty Deals store<br>Access to wall safes<br>Thieves' guild expansion"
   xp: "5,000 Thieving XP (plus 4,800 Thieving XP for turning in the flame fragments)"
-  varbits:
-    - [ 9022, 25, 30 ]
 lost_tribe:
   id: 69
   name: "The Lost Tribe"
@@ -2200,8 +2068,6 @@ lost_tribe:
   points: 1
   reward: "Ring of life<br>Access to Dorgeshuun mining area<br>Two new emotes (Goblin Dance and Bow)"
   xp: "3,000 Mining XP"
-  varbits:
-    - [ 13963, 1, 11 ]
 love_story:
   id: 168
   name: "Love Story"
@@ -2225,8 +2091,6 @@ love_story:
   points: 2
   reward: "30,000 coins<br>Ability to chip teleport to house tablets<br>Dark stone decorating style and ability to build dungeon pits in your player-owned house<br>Cost of servants reduced by 25%<br>Zenevivia in the Dominion Tower"
   xp: "50,000 XP in Construction and Magic<br>40,000 XP in Smithing and Crafting"
-  varbits:
-    - [ 12598, 5, 150 ]
 lunar_diplomacy:
   id: 70
   name: "Lunar Diplomacy"
@@ -2254,8 +2118,6 @@ lunar_diplomacy:
   points: 2
   reward: "Access to Lunar Isle and the astral altar<br>Access to the lunar spellbook<br>Set of lunar equipment<br>50 astral runes<br>Access to suqah Slayer tasks<br>Ability to unlock the Ourania Teleport spell<br>Seal of passage<br>Access to Livid Farm"
   xp: "5,000 Magic XP<br>5,000 Runecrafting XP"
-  varbits:
-    - [ 10236, 10, 190 ]
 making_history:
   id: 71
   name: "Making History"
@@ -2273,8 +2135,6 @@ making_history:
   points: 3
   reward: "750 coins<br>Enchanted key to use all over Gielinor! Visit the silver trader for help<br>Access to the museum in the Ardougne outpost<br>5 kudos from the Varrock museum if you talk to Historian Minas"
   xp: "1,000 Crafting XP"
-  varbits:
-    - [ 9664, 1, 4 ]
 meeting_history:
   id: 141
   name: "Meeting History"
@@ -2294,8 +2154,6 @@ meeting_history:
   points: 1
   reward: "Even more treasure hunting with the enchanted key<br>5 kudos from the Varrock museum if you talk to Historian Minas"
   xp: "Tome containing 2,500 XP in 3 skills"
-  varbits:
-    - [ 13718, 5, 20 ]
 merlins_crystal:
   id: 72
   name: "Merlin's Crystal"
@@ -2338,8 +2196,6 @@ missing_my_mummy:
   points: 1
   reward: "5,000 coins"
   xp: "7,000 Constitution XP lamp"
-  varbits:
-    - [ 11167, 10, 60 ]
 monks_friend:
   id: 74
   name: "Monk's Friend"
@@ -2396,8 +2252,6 @@ mountain_daughter:
   points: 2
   reward: "Bear head<br>Access to the mountain camp"
   xp: "1,000 Attack XP"
-  varbits:
-    - [ 13349, 10, 70 ]
 mournings_end_part_i:
   id: 76
   name: "Mourning's End Part I"
@@ -2440,8 +2294,6 @@ mournings_end_part_ii:
   points: 2
   reward: "Crystal trinket allowing access to the Temple of Light<br>Access to the death altar<br>Access to dark beasts"
   xp: "20,000 Agility XP"
-  varbits:
-    - [ 10560, 10, 60 ]
 murder_mystery:
   id: 78
   name: "Murder Mystery"
@@ -2483,8 +2335,6 @@ my_arms_big_adventure:
   points: 1
   reward: "Access to a disease-free herb patch on top of the Troll Stronghold<br>Giant roc in the Dominion Tower<br>Burnt meat"
   xp: "10,000 Herblore XP<br>5,000 Farming XP"
-  varbits:
-    - [ 9987, 10, 320 ]
 myths_of_the_white_lands:
   id: 148
   name: "Myths of the White Lands"
@@ -2500,8 +2350,6 @@ myths_of_the_white_lands:
   points: 2
   reward: "The opportunity to discover hidden wisdom (requires 30 Crafting, 55 Agility, 80 Woodcutting)"
   xp: "500 XP lamp"
-  varbits:
-    - [ 13876, 5, 60 ]
 nature_spirit:
   id: 80
   name: "Nature Spirit"
@@ -2546,8 +2394,6 @@ nomads_requiem:
   req_combat: "You will need to defeat enemies up to level 699."
   points: 3
   reward: "70 Soul Wars zeal points<br>Soul Wars cape<br>Soul Wars respawn point<br>Talk to Zimberfizz to choose a Soul Wars cape<br>Access to a bloodwood tree in the Soul Wars waiting area<br>Nomad and decaying avatar in the Dominion Tower"
-  varbits:
-    - [ 10095, 1, 12 ]
 observatory_quest:
   id: 81
   name: "Observatory Quest"
@@ -2586,8 +2432,6 @@ olafs_quest:
   req_combat: "You will need to defeat enemies up to level 49."
   points: 1
   reward: "20,000 coins<br>4 cut rubies<br>Access to the brine rat cavern<br>Parchment telling you of other shipwrecks with more treasure<br>Shark and/or bread"
-  varbits:
-    - [ 11517, 10, 80 ]
 one_foot_in_the_grave_miniquest:
   id: 293
   name: "One Foot in the Grave (miniquest)"
@@ -2603,8 +2447,6 @@ one_foot_in_the_grave_miniquest:
     - hand_in_the_sand
   req_combat: "You will need to defeat monsters in the jade vine maze (level 70 to level 120).<br>Magic armour, food, and runes to cast fire spells are recommended."
   xp: "10,000 Magic XP"
-  varbits:
-    - [ -21745, 1, 1020 ]
 one_small_favour:
   id: 82
   name: "One Small Favour"
@@ -2656,8 +2498,6 @@ path_of_glouphrie:
   points: 1
   reward: "Access to the poison waste Slayer dungeon and its spirit tree"
   xp: "30,000 Strength XP<br>20,000 Slayer XP<br>5,000 Thieving XP<br>5,000 Magic XP"
-  varbits:
-    - [ 10474, 1, 200 ]
 perils_of_ice_mountain:
   id: 136
   name: "Perils of Ice Mountain"
@@ -2678,8 +2518,6 @@ perils_of_ice_mountain:
   points: 1
   reward: "Permission to use the power station ladder (to access mine carts and Nurmof)<br>Brother Bordiss will attach sigils to blessed spirit shields for a price"
   xp: "500 Farming XP lamp, 500 Hunter XP lamp, 500 Thieving XP lamp and 500 Construction XP lamp"
-  varbits:
-    - [ 11095, 10, 150 ]
 pirates_treasure:
   id: 9
   name: "Pirate's Treasure"
@@ -2757,8 +2595,6 @@ purple_cat_miniquest:
     - swept_away
     - gertrudes_cat
   reward: "Ability to permanently dye cats purple"
-  varbits:
-    - [ -19676, 1, 2 ]
 quiet_before_the_swarm:
   id: 171
   name: "Quiet Before the Swarm"
@@ -2781,8 +2617,6 @@ quiet_before_the_swarm:
   points: 1
   reward: "Void Knight seal"
   xp: "4,000 Attack XP<br>4,900 Strength XP"
-  varbits:
-    - [ 13034, 5, 90 ]
 rag_and_bone_man:
   id: 85
   name: "Rag and Bone Man"
@@ -2798,8 +2632,6 @@ rag_and_bone_man:
   req_combat: "You will need to kill a variety of monsters to obtain their bones and defeat a level 52 monster."
   points: 2
   xp: "500 Cooking XP"
-  varbits:
-    - [ 12837, 1, 4 ]
 rat_catchers:
   id: 86
   name: "Rat Catchers"
@@ -2817,8 +2649,6 @@ rat_catchers:
   points: 2
   reward: "Rat pole<br>Ability to train overgrown cats into wily and lazy cats, and to name your lazy or wily cat"
   xp: "4,500 Thieving XP"
-  varbits:
-    - [ 11975, 5, 127 ]
 recipe_for_disaster:
   id: 87
   name: "Recipe for Disaster"
@@ -2837,8 +2667,6 @@ recipe_for_disaster:
   req_items: "Eye of newt, greenman's ale, rotten tomato, ashes, fruit blast (or cocktail shaker, cocktail glass, 2 lemons, pineapple, orange)."
   req_combat: "Some of the sub-quests have no combat. In the conclusion to Recipe for Disaster, you will need to defeat several enemies up to level-98, without prayers or familiars."
   reward: "Access to the Culinaromancer's chest and much, much more!"
-  varbits:
-    - [ 12708, 1, 5 ]
 recipe_for_disaster_another_cooks_quest:
   id: 236
   name: "Recipe for Disaster: Another Cook's Quest"
@@ -2859,8 +2687,6 @@ recipe_for_disaster_another_cooks_quest:
   req_combat: "None."
   points: 1
   reward: "An invitation to the most amazing feast you will ever see<br>Access to the Culinaromancer's chest"
-  varbits:
-    - [ 12708, 1, 2 ]
 recipe_for_disaster_defeating_the_culinaromancer:
   id: 245
   name: "Recipe for Disaster: Defeating the Culinaromancer"
@@ -2889,8 +2715,6 @@ recipe_for_disaster_defeating_the_culinaromancer:
   points: 1
   reward: "Full access to the Culinaromancer's chest"
   xp: "20,000 XP lamp (any skill above level 50)"
-  varbits:
-    - [ 12708, 1, 5 ]
 recipe_for_disaster_freeing_evil_dave:
   id: 241
   name: "Recipe for Disaster: Freeing Evil Dave"
@@ -2912,8 +2736,6 @@ recipe_for_disaster_freeing_evil_dave:
   points: 1
   reward: "Ability to make spicy stew<br>Ability to catch hellrats to get a hellcat<br>Ability to add coloured spices to stew by catching hellrats<br>Increased access to the Culinaromancer's chest"
   xp: "7,000 Cooking XP"
-  varbits:
-    - [ 12736, 1, 5 ]
 recipe_for_disaster_freeing_king_awowogei:
   id: 244
   name: "Recipe for Disaster: Freeing King Awowogei"
@@ -2935,8 +2757,6 @@ recipe_for_disaster_freeing_king_awowogei:
   points: 1
   reward: "Teleport to Ape Atoll spell<br>Increased access to the Culinaromancer's chest"
   xp: "10,000 Cooking XP<br>10,000 Agility XP"
-  varbits:
-    - [ 12772, 5, 50 ]
 recipe_for_disaster_freeing_pirate_pete:
   id: 239
   name: "Recipe for Disaster: Freeing Pirate Pete"
@@ -2956,8 +2776,6 @@ recipe_for_disaster_freeing_pirate_pete:
   points: 1
   reward: "Ability to go diving and fight crabs (with diving apparatus) in the mogre camp<br>Ability to cook crab meat<br>Access to crab shells and claws, which can be made into a helmet and gloves<br>Ability to dive underwater and trade crunchy claw tokens for giant crab pets<br>Increased access to the Culinaromancer's chest"
   xp: "1,000 Cooking XP<br>1,000 Fishing XP<br>1,000 Smithing XP<br>1,000 Crafting XP"
-  varbits:
-    - [ 12753, 10, 110 ]
 recipe_for_disaster_freeing_sir_amik_varze:
   id: 243
   name: "Recipe for Disaster: Freeing Sir Amik Varze"
@@ -2976,8 +2794,6 @@ recipe_for_disaster_freeing_sir_amik_varze:
   points: 1
   reward: "Access to the Evil Chicken's Lair containing black dragons<br>Increased access to the Culinaromancer's chest"
   xp: "4,000 Cooking XP"
-  varbits:
-    - [ 12768, 5, 20 ]
 recipe_for_disaster_freeing_skrach_uglogwee:
   id: 242
   name: "Recipe for Disaster: Freeing Skrach Uglogwee"
@@ -2999,8 +2815,6 @@ recipe_for_disaster_freeing_skrach_uglogwee:
   points: 1
   reward: "Ability to travel by boat between Karamja and Feldip Hills<br>Ability to hunt jubbly birds<br>Increased access to the Culinaromancer's chest"
   xp: "1,500 Cooking XP<br>1,500 Woodcutting XP<br>1,500 Ranged XP<br>1,500 Crafting XP"
-  varbits:
-    - [ 12762, 10, 170 ]
 recipe_for_disaster_freeing_the_goblin_generals:
   id: 238
   name: "Recipe for Disaster: Freeing the Goblin Generals"
@@ -3019,8 +2833,6 @@ recipe_for_disaster_freeing_the_goblin_generals:
   points: 1
   reward: "Increased access to the Culinaromancer's chest"
   xp: "1,000 Cooking XP<br>1,000 Crafting XP<br>1,000 Farming XP"
-  varbits:
-    - [ 12725, 5, 40 ]
 recipe_for_disaster_freeing_the_lumbridge_sage:
   id: 240
   name: "Recipe for Disaster: Freeing the Lumbridge Sage"
@@ -3040,8 +2852,6 @@ recipe_for_disaster_freeing_the_lumbridge_sage:
   points: 1
   reward: "Increased access to the Culinaromancer's chest"
   xp: "2,500 Cooking XP<br>2,500 Magic XP"
-  varbits:
-    - [ 12754, 1, 5 ]
 recipe_for_disaster_freeing_the_mountain_dwarf:
   id: 237
   name: "Recipe for Disaster: Freeing the Mountain Dwarf"
@@ -3060,8 +2870,6 @@ recipe_for_disaster_freeing_the_mountain_dwarf:
   points: 1
   reward: "Increased access to the Culinaromancer's chest"
   xp: "1,000 Cooking XP<br>1,000 Slayer XP"
-  varbits:
-    - [ 12750, 10, 60 ]
 recruitment_drive:
   id: 88
   name: "Recruitment Drive"
@@ -3081,8 +2889,6 @@ recruitment_drive:
   points: 1
   reward: "Access to Temple Knight initiate armour and a free initiate helm<br>The Gaze of Saradomin"
   xp: "1,000 Herblore XP lamp<br>1,000 Agility XP lamp"
-  varbits:
-    - [ 12355, 1, 2 ]
 regicide:
   id: 89
   name: "Regicide"
@@ -3138,8 +2944,6 @@ rocking_out:
   points: 2
   reward: "Free access to the Brimhaven Agility Arena<br>Access to the Rock Island Prison (and customs evidence files)<br>Access to a bank deposit box in Rimmington<br>Ability to buy braindeath 'rum' from the Rusty Anchor Inn<br>Ability to understand Mos Le'Harmless pirates without the book o' piracy<br>Ability to catch pirate implings and steal from customs lockers<br>Ability to raise an ex-ex-parrot"
   xp: "25,000 Thieving XP<br>25,000 Smithing XP<br>25,000 Agility XP<br>25,000 Crafting XP"
-  varbits:
-    - [ 12462, 10, 100 ]
 roving_elves:
   id: 90
   name: "Roving Elves"
@@ -3183,8 +2987,6 @@ royal_trouble:
   points: 1
   reward: "20,000 coins<br>Increased resources from Miscellania<br>Access to the dungeon connecting Miscellania and Etceteria"
   xp: "5,000 Agility XP lamp<br>5,000 Slayer XP lamp"
-  varbits:
-    - [ 12425, 10, 30 ]
 rum_deal:
   id: 92
   name: "Rum Deal"
@@ -3230,8 +3032,6 @@ rune_mechanics:
   points: 1
   reward: "Rune guardian pet<br>Fire talisman or water talisman<br>Binding necklace"
   xp: "900 Construction XP<br>2,300 Magic XP<br>1,850 Runecrafting XP"
-  varbits:
-    - [ 10919, 5, 35 ]
 rune_mysteries:
   id: 13
   name: "Rune Mysteries"
@@ -3331,8 +3131,6 @@ shadow_of_the_storm:
   points: 1
   reward: "Darklight sword<br>Demonic sigil and demonic tome"
   xp: "10,000 combat XP lamp"
-  varbits:
-    - [ 10495, 10, 125 ]
 sheep_herder:
   id: 98
   name: "Sheep Herder"
@@ -3427,8 +3225,6 @@ slug_menace:
   points: 1
   reward: "Access to proselyte melee armour<br>Promotion from initiate to proselyte"
   xp: "3,500 Crafting XP<br>3,500 Runecrafting XP<br>3,500 Thieving XP"
-  varbits:
-    - [ 12626, 1, 14 ]
 smoking_kills:
   id: 138
   name: "Smoking Kills"
@@ -3451,8 +3247,6 @@ smoking_kills:
   points: 1
   reward: "Increased Slayer points for completing Slayer tasks<br>Access to a new Slayer Master and dungeon in Pollnivneach and the Tomb of Catolax<br>Ability to construct combined Slayer items<br>Access to the Desert Slayer Dungeon miniquest"
   xp: "5,000 Slayer XP"
-  varbits:
-    - [ 9054, 10, 250 ]
 souls_bane:
   id: 100
   name: "A Soul's Bane"
@@ -3467,8 +3261,6 @@ souls_bane:
   req_combat: "You will need to defeat level 50-58 enemies. Ranged or Magic is recommended."
   points: 1
   reward: "500 coins<br>Anger weapon cosmetic overrides<br>Access to Tolna's Rift for combat training"
-  varbits:
-    - [ 12392, 1, 13 ]
 spirit_of_summer:
   id: 140
   name: "Spirit of Summer"
@@ -3492,8 +3284,6 @@ spirit_of_summer:
   points: 1
   reward: "Jennica's ring<br>Access to a new Spirit Realm to explore<br>The cursed magic tree<br>Level 42 ghostly warriors at the spirit realm magic axe hut<br>Access to a goth leprechaun and flower patch in level 26 Wilderness<br>15,000 Farming XP, 11,250 Attack XP, and 15,000 Prayer XP if you operate the ring near certain portals in the Wilderness (requires level 50 in that skill)"
   xp: "7,500 Construction XP<br>2,000 Farming XP<br>1,000 Summoning XP"
-  varbits:
-    - [ 12013, 5, 75 ]
 spirits_of_the_elid:
   id: 101
   name: "Spirits of the Elid"
@@ -3515,8 +3305,6 @@ spirits_of_the_elid:
   points: 2
   reward: "Access to Nardah's fountain and shrine<br>Robe of Elidinis"
   xp: "1,000 Thieving XP<br>1,000 Magic XP"
-  varbits:
-    - [ 12609, 10, 60 ]
 summers_end:
   id: 143
   name: "Summer's End"
@@ -3542,8 +3330,6 @@ summers_end:
   points: 1
   reward: "Spirit shield and ability to wield spirit shields<br>Upgraded Jennica's ring (access to new spirit portals)<br>Ability to fight the corporeal beast and tormented wraith"
   xp: "1,500 Summoning XP<br>5,000 Hunter XP<br>5,000 Mining XP<br>5,000 Woodcutting XP<br>15,000 Firemaking XP"
-  varbits:
-    - [ 11428, 5, 35 ]
 swan_song:
   id: 102
   name: "Swan Song"
@@ -3567,8 +3353,6 @@ swan_song:
   points: 2
   reward: "25,000 coins<br>Access to the Piscatoris Fishing Colony<br>Ability to transmute raw bass into raw monkfish"
   xp: "15,000 Magic XP<br>10,000 Fishing XP"
-  varbits:
-    - [ 11269, 10, 200 ]
 swept_away:
   id: 153
   name: "Swept Away"
@@ -3584,8 +3368,6 @@ swept_away:
   points: 2
   reward: "Broomstick"
   xp: "Access to 10 portions of XP-giving goulash"
-  varbits:
-    - [ 9847, 5, 50 ]
 tai_bwo_wannai_trio:
   id: 103
   name: "Tai Bwo Wannai Trio"
@@ -3628,8 +3410,6 @@ tail_of_two_cats:
   req_combat: "None."
   points: 2
   reward: "Mysterious present<br>Doctor's or nurse's hat"
-  varbits:
-    - [ 11085, 5, 70 ]
 tale_of_the_muspah:
   id: 150
   name: "The Tale of the Muspah"
@@ -3650,8 +3430,6 @@ tale_of_the_muspah:
   req_combat: "None."
   points: 1
   xp: "500 Firemaking XP<br>1,000 Magic XP<br>800 Mining XP<br>800 Woodcutting XP"
-  varbits:
-    - [ 11228, 5, 250 ]
 tears_of_guthix:
   id: 105
   name: "Tears of Guthix"
@@ -3675,8 +3453,6 @@ tears_of_guthix:
   points: 1
   reward: "Ability to collect Tears of Guthix once a week<br>Ability to make an ornate bowl for increased XP (requires 80 Mining and Crafting)<br>Juna teleport option on the games necklace"
   xp: "1,000 Crafting XP"
-  varbits:
-    - [ 4909, 1, 2 ]
 temple_at_senntisten:
   id: 157
   name: "The Temple at Senntisten"
@@ -3699,8 +3475,6 @@ temple_at_senntisten:
   points: 2
   reward: "Access to ancient curses<br>Access to the Senntisten altar"
   xp: "2x 20,000 XP combat lamps<br>23,000 XP lamp"
-  varbits:
-    - [ 11105, 10, 90 ]
 temple_of_ikov:
   id: 106
   name: "Temple of Ikov"
@@ -3763,8 +3537,6 @@ toktz_ket_dill:
   points: 1
   reward: "Access to the TzHaar mine and ability to mine stone slabs<br>Invitation to a production of the TokTz-Ket-Ek-Mack opera"
   xp: "5,000 Attack XP<br>5,000 Strength XP<br>10,000 Crafting XP<br>15,000 Mining XP<br>20,000 Construction XP"
-  varbits:
-    - [ 11386, 5, 63 ]
 tourist_trap:
   id: 108
   name: "The Tourist Trap"
@@ -3804,8 +3576,6 @@ tower_of_life:
   points: 2
   reward: "Builder's costume<br>Access to Creature Creation"
   xp: "1,000 Construction XP<br>500 Crafting XP<br>500 Thieving XP"
-  varbits:
-    - [ 9803, 2, 18 ]
 tree_gnome_village:
   id: 110
   name: "Tree Gnome Village"
@@ -3927,8 +3697,6 @@ vampire_slayer:
   req_combat: "You will need to defeat a level 28 enemy."
   points: 3
   xp: "4,825 combat XP lamp"
-  varbits:
-    - [ 9655, 1, 3 ]
 void_dance:
   id: 173
   name: "A Void Dance"
@@ -3955,8 +3723,6 @@ void_dance:
   points: 1
   reward: "50 Commendations"
   xp: "10,000 Hunter and Herblore XP<br>8,000 Summoning and Woodcutting XP<br>5,000 Thieving, Construction and Mining XP"
-  varbits:
-    - [ 13080, 3, 63 ]
 void_stares_back:
   id: 174
   name: "The Void Stares Back"
@@ -3985,8 +3751,6 @@ void_stares_back:
   points: 1
   reward: "Elite Void Knight torso<br>Ability to upgrade Void Knight armour<br>Korasi's sword"
   xp: "2x Books of Equilibrium<br>20,000 XP in Construction, Crafting, Firemaking, Magic, Smithing and Summoning"
-  varbits:
-    - [ 13118, 2, 40 ]
 wanted:
   id: 115
   name: "Wanted!"
@@ -4006,8 +3770,6 @@ wanted:
   points: 1
   reward: "Access to the White Knight armoury"
   xp: "5,000 Slayer XP"
-  varbits:
-    - [ 12923, 1, 11 ]
 watchtower:
   id: 116
   name: "Watchtower"
@@ -4068,8 +3830,6 @@ what_lies_below:
   points: 1
   reward: "Beacon ring<br>Access to the chaos tunnels<br>5 kudos from the Varrock museum if you give Historian Minas a dagon'hai history book"
   xp: "8,000 Runecrafting XP lamp"
-  varbits:
-    - [ 10939, 5, 150 ]
 while_guthix_sleeps:
   id: 145
   name: "While Guthix Sleeps"
@@ -4104,8 +3864,6 @@ while_guthix_sleeps:
   req_combat: "Be able to defeat multiple foes up to level 119."
   points: 5
   reward: "5,000 coins<br>Lump of dragon metal<br>Talk to Idria to receive 4x 100,000 XP in any skill over level 65<br>Opportunity to loot Movario's base<br>Opportunity to fight tormented demons and gain dragon metal drops"
-  varbits:
-    - [ 11858, 10, 910 ]
 witchs_house:
   id: 109
   name: "Witch's House"
@@ -4158,8 +3916,6 @@ within_the_light:
   points: 2
   reward: "Ability to choose a destination for crystal teleport seeds"
   xp: "35,000 Agility XP<br>20,000 Fletching XP<br>20,000 Ranged XP<br>20,000 Woodcutting XP"
-  varbits:
-    - [ 10506, 1, 46 ]
 wolf_whistle:
   id: 131
   name: "Wolf Whistle"
@@ -4175,8 +3931,6 @@ wolf_whistle:
   points: 1
   reward: "275 gold charms"
   xp: "276 Summoning XP lamp"
-  varbits:
-    - [ 12334, 5, 35 ]
 zogre_flesh_eaters:
   id: 25
   name: "Zogre Flesh Eaters"
@@ -4195,5 +3949,3 @@ zogre_flesh_eaters:
   points: 1
   reward: "3 ourg bones<br>2 zogre bones<br>Access to Jiggig<br>Ability to equip inoculation brace<br>Ability to fletch composite ogre bow and brutal arrows<br>Access to post-quest rewards from Zavistic Rarve or Yanni Salika, and Uglug Nar"
   xp: "2,000 Fletching XP<br>2,000 Ranged XP<br>2,000 Herblore XP"
-  varbits:
-    - [ 10448, 1, 14 ]
