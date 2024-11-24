@@ -16,9 +16,10 @@ import world.gregs.voidps.world.activity.quest.questComplete
 private const val QUEST_START_ID = "quest_intro"
 
 suspend fun CharacterContext.startQuest(questId: String): Boolean {
-    val questDefinitions: QuestDefinitions = get()
     check(player.open(QUEST_START_ID)) { "Unable to open destroy dialogue for $questId $player" }
-
+    val questDefinitions: QuestDefinitions = get()
+    val quest = questDefinitions.getOrNull(questId)
+    check(quest != null) { "Unable to find quest with id $questId $player" }
     val completed = player.questComplete(questId)
     player.interfaces.sendVisibility("quest_intro", "start_choice_layer", !completed)
     player.interfaces.sendVisibility("quest_intro", "progress_status_layer", completed)
@@ -29,7 +30,6 @@ suspend fun CharacterContext.startQuest(questId: String): Boolean {
     }
     player.interfaces.sendText("quest_intro", "status_field", status)
     player.sendVariable("quest_intro_mark_map")
-    val quest = questDefinitions.get(questId)
     player.interfaces.sendText("quest_intro", "quest_field", quest["name", ""])
     var requirements = buildString {
         for (q in quest["req_quests", emptyList<String>()]) {
