@@ -167,8 +167,6 @@ big_chompy_bird_hunting:
   points: 2
   reward: "Ogre bow<br>Ability to fletch ogre arrows<br>Ability to cook chompy birds and earn ogre hats"
   xp: "262 Fletching XP<br>1,470 Cooking XP<br>735 Ranged XP"
-  varps:
-    - [ 2772, 5, 65 ]
 biohazard:
   id: 21
   name: "Biohazard"
@@ -186,13 +184,20 @@ biohazard:
   points: 3
   reward: "Ability to travel freely through the West Ardougne gate<br>Use of the Combat Training Camp north of Ardougne"
   xp: "1,250 Thieving XP"
-  varps:
-    - [ 2535, 1, 16 ]
 black_knights_fortress:
   id: 159
   name: "Black Knights' Fortress"
-  varps:
-    - [ 2552, 1, 4 ]
+  sprite: 4425
+  difficulty: 1
+  length: 3
+  start_point: "Talk to Sir Amik Varze on the 2nd floor of the White Knights' Castle's western tower in Falador."
+  start_path:
+    - [ 2959, 3339, 2 ]
+  req_quest_points: 12
+  req_items: "Cabbage (can be obtained from Edgeville Monastery), iron chainbody, bronze med helm and some food might be useful."
+  req_combat: "Must be able to evade level 33 Black Knights."
+  points: 3
+  reward: "2,500 coins"
 blood_pact:
   id: 170
   name: "The Blood Pact"
@@ -273,8 +278,6 @@ cabin_fever:
   points: 2
   reward: "The Little Book o' Piracy<br>10,000 coins (talk to Bill Teach)<br>Access to Mos Le'Harmless and cave horrors<br>Charter ship prices are halved"
   xp: "7,000 Smithing XP<br>7,000 Crafting XP<br>7,000 Agility XP"
-  varps:
-    - [ 2326, 10, 140 ]
 catapult_construction:
   id: 133
   name: "Catapult Construction"
@@ -335,8 +338,6 @@ clock_tower:
   req_combat: "None."
   points: 1
   reward: "500 coins"
-  varps:
-    - [ 2197, 1, 8 ]
 cold_war:
   id: 117
   name: "Cold War"
@@ -391,8 +392,6 @@ cooks_assistant:
   points: 1
   reward: "500 coins<br>20 sardines<br>Access to the cook's range"
   xp: "300 Cooking XP"
-  varps:
-    - [ 2492, 1, 2 ]
 creature_of_fenkenstrain:
   id: 26
   name: "Creature of Fenkenstrain"
@@ -414,8 +413,6 @@ creature_of_fenkenstrain:
   points: 2
   reward: "Ring of Charos<br>Access to the experiment cave"
   xp: "1,000 Thieving XP"
-  varps:
-    - [ 2615, 1, 8 ]
 curse_of_arrav:
   id: 156
   name: "The Curse of Arrav"
@@ -671,8 +668,6 @@ dig_site:
   points: 2
   reward: "Two gold bars<br>Ability to clean specimens for Varrock Museum for Kudos and a Dig Site pendant<br>Access to the Codex Ultimatus from archaeological expert Terry Balando (requires 75 Attack, Magic or Ranged, or 91 Constitution)"
   xp: "15,300 Mining XP<br>2,000 Herblore XP"
-  varps:
-    - [ 2205, 1, 9 ]
 do_no_evil:
   id: 179
   name: "Do No Evil"
@@ -697,7 +692,7 @@ do_no_evil:
     - smoking_kills
     - missing_my_mummy
     - dealing_with_scabaras
-    - recipe_for_disaster_freeing_king_awowogei
+    - rfd_freeing_king_awowogei
   req_items: "Gorilla greegree, ring of Charos, Ava's accumulator, a cat, a desert shirt, a desert robe, a pair of desert boots, 3 full waterskins, 10 bananas, 6 teak planks, 10 bolts of cloth, a hammer, a saw, 3 cords of rope, 4 knives, monkeyspeak amulet, ghostspeak amulet, a monkeyspeak amulet mould, runes for ancient ice magic and at LEAST 1,000 coins."
   req_combat: "Combat level of 100 or higher is recommended."
   points: 1
@@ -734,8 +729,6 @@ dragon_slayer:
   points: 2
   reward: "A rune platebody<br>Anti-dragon shield<br>Access to Crandor, Melzar's Maze and the dragon crest on herald capes"
   xp: "18,650 Strength XP lamp"
-  varps:
-    - [ 2268, 1, 10 ]
 dream_mentor:
   id: 124
   name: "Dream Mentor"
@@ -785,8 +778,6 @@ dwarf_cannon:
   points: 1
   reward: "Permission to purchase and use a dwarf multicannon<br>Ability to smith cannonballs<br>Ability to add the ammo mould to your tool belt"
   xp: "750 Crafting XP"
-  varps:
-    - [ 2732, 1, 11 ]
 eadgars_ruse:
   id: 35
   name: "Eadgar's Ruse"
@@ -808,8 +799,6 @@ eadgars_ruse:
   points: 1
   reward: "Ability to grow and steal goutweed<br>Ability to use the Trollheim Teleport spell<br>Burnt meat"
   xp: "11,000 Herblore XP"
-  varps:
-    - [ 2549, 10, 110 ]
 eagles_peak:
   id: 36
   name: "Eagles' Peak"
@@ -848,8 +837,6 @@ elemental_workshop_i:
   points: 1
   reward: "Access to the Elemental Workshop<br>Elemental shield and the ability to make them"
   xp: "5,000 Crafting XP<br>5,000 Smithing XP"
-  varps:
-    - [ 2675, 1, 524288 ]
 elemental_workshop_ii:
   id: 38
   name: "Elemental Workshop II"
@@ -961,8 +948,6 @@ ernest_the_chicken:
   req_combat: "None, but watch out for those trees in the manor grounds."
   points: 4
   reward: "3,000 coins<br>10 eggs<br>300 feathers"
-  varps:
-    - [ 2183, 1, 3 ]
 eyes_of_glouphrie:
   id: 41
   name: "The Eyes of Glouphrie"
@@ -1067,8 +1052,6 @@ family_crest:
   req_combat: "You will need to defeat a level 84 demon."
   points: 1
   reward: "Family gauntlets (chaos gauntlets, cooking gauntlets, smelting gauntlets)<br>Access to the hellhounds in Witchaven Dungeon"
-  varps:
-    - [ 2663, 1, 11 ]
 the_feud:
   id: 45
   name: "The Feud"
@@ -1103,8 +1086,6 @@ fight_arena:
   points: 2
   reward: "1,000 coins"
   xp: "12,175 Attack XP<br>2,175 Thieving XP"
-  varps:
-    - [ 2595, 1, 14 ]
 fishing_contest:
   id: 47
   name: "Fishing Contest"
@@ -1124,8 +1105,6 @@ fishing_contest:
   points: 1
   reward: "Access to the White Wolf Mountain shortcut"
   xp: "2,437 Fishing XP"
-  varps:
-    - [ 2331, 1, 5 ]
 forgettable_tale:
   id: 48
   name: "Forgettable Tale of a Drunken Dwarf"
@@ -1215,8 +1194,6 @@ fremennik_trials:
   points: 3
   reward: "Fremennik name<br>Fremennik blade<br>Ability to wear Fremennik helms and armour and make an enchanted lyre<br>Access to Rellekka's facilities and the islands of Miscellania, Etceteria and Waterbirth Island<br>Ability to watch the Epic of Bukalla performance in the Rellekka longhall"
   xp: "2,800 Agility XP lamp<br>2,800 Attack XP lamp<br>2,800 Crafting XP lamp<br>2,800 Fishing XP lamp<br>2,800 Fletching XP lamp<br>2,800 Strength XP lamp<br>2,800 Thieving XP lamp<br>2,800 Woodcutting XP lamp"
-  varps:
-    - [ 2262, 1, 10 ]
 from_tiny_acorns_miniquest:
   id: 280
   name: "From Tiny Acorns (miniquest)"
@@ -1306,8 +1283,6 @@ gertrudes_cat:
   points: 1
   reward: "Chocolate cake<br>Bowl of stew<br>Kitten(!)<br>Ability to raise cats"
   xp: "1,525 Cooking XP lamp"
-  varps:
-    - [ 2175, 1, 6 ]
 ghosts_ahoy:
   id: 53
   name: "Ghosts Ahoy"
@@ -1427,8 +1402,6 @@ grand_tree:
   req_combat: "Must be able to defeat a level 98 enemy."
   points: 5
   xp: "18,400 combat XP lamp<br>7,900 Agility XP lamp<br>2,150 Magic XP lamp"
-  varps:
-    - [ 2740, 5, 160 ]
 great_brain_robbery:
   id: 120
   name: "The Great Brain Robbery"
@@ -1447,14 +1420,12 @@ great_brain_robbery:
   req_quests:
     - creature_of_fenkenstrain
     - cabin_fever
-    - recipe_for_disaster_freeing_pirate_pete
+    - rfd_freeing_pirate_pete
   req_items: "Fishbowl helmet and diving aparratus, 38+ nails (any material), 18 regular planks, 10 pieces of fur, a holy symbol, activated ring of Charos."
   req_combat: "You will need to defeat five level 49 enemies and a level 93 enemy."
   points: 2
   reward: "Barrelchest anchor<br>Prayer book<br>Access to Harmony Island"
   xp: "Blessed lamp (5,000 XP in any skill above level 30)<br>3,000 Crafting XP<br>2,000 Construction XP"
-  varps:
-    - [ 2082, 10, 130 ]
 grim_tales:
   id: 125
   name: "Grim Tales"
@@ -1555,8 +1526,6 @@ haunted_mine:
   points: 2
   reward: "Crystal mine key<br>Ability to make salve amulets (bonus against undead)<br>Access to the Lair of Tarn Razorlor"
   xp: "22,000 Strength XP lamp"
-  varps:
-    - [ 2201, 1, 11 ]
 hazeel_cult:
   id: 59
   name: "Hazeel Cult"
@@ -1573,8 +1542,6 @@ hazeel_cult:
   points: 1
   reward: "2,000 coins"
   xp: "1,500 Thieving XP"
-  varps:
-    - [ 2592, 2, 9 ]
 heroes_quest:
   id: 60
   name: "Heroes' Quest"
@@ -1600,8 +1567,6 @@ heroes_quest:
   points: 1
   reward: "Access to the Heroes' Guild"
   xp: "Total of 29,232 XP over twelve skill lamps"
-  varps:
-    - [ 2618, 1, 15 ]
 holy_grail:
   id: 61
   name: "Holy Grail"
@@ -1621,8 +1586,6 @@ holy_grail:
   req_combat: "You will need to defeat a level 28 enemy."
   points: 2
   reward: "Access to the Fisher Realm<br>Ability to use the King Arthur picture in your player-owned house"
-  varps:
-    - [ 2330, 2, 10 ]
 hopespears_will_miniquest:
   id: 286
   name: "Hopespear's Will (miniquest)"
@@ -1741,8 +1704,6 @@ imp_catcher:
   points: 1
   reward: "An amulet of accuracy<br>Access to Mizgog's amulet shop"
   xp: "875 Magic XP lamp"
-  varps:
-    - [ 2669, 1, 2 ]
 in_aid_of_the_myreque:
   id: 64
   name: "In Aid of the Myreque"
@@ -1805,8 +1766,6 @@ in_search_of_the_myreque:
   points: 2
   reward: "Access to the Hair of the Dog's cellar<br>Swamp boat shortcut from Mort'ton to The Hollows<br>Access to 2 uncut rubies and 4 big bones"
   xp: "600 Attack XP lamp<br>600 Strength XP lamp<br>600 Crafting XP lamp"
-  varps:
-    - [ 2696, 5, 105 ]
 jungle_potion:
   id: 66
   name: "Jungle Potion"
@@ -1824,8 +1783,6 @@ jungle_potion:
   req_combat: "None."
   points: 1
   xp: "775 Herblore XP lamp"
-  varps:
-    - [ 2484, 1, 12 ]
 kenniths_concerns:
   id: 134
   name: "Kennith's Concerns"
@@ -2007,8 +1964,6 @@ legends_quest:
   points: 4
   reward: "Access to the Legends' Guild and the Kharazi Jungle<br>Binding book and bull roarer<br>Ability to wield a dragon square shield and make holy water"
   xp: "7,650 XP in four skills of your choice"
-  varps:
-    - [ 2265, 1, 75 ]
 lost_city:
   id: 68
   name: "Lost City"
@@ -2027,8 +1982,6 @@ lost_city:
   req_combat: "You will need to defeat a level 63 tree spirit."
   points: 3
   reward: "Access to Zanaris<br>Ability to wield dragon longswords and dragon daggers<br>Ability to craft cosmic runes<br>Access to Chaeldar the Slayer master (requires level 75 combat)"
-  varps:
-    - [ 2551, 1, 6 ]
 lost_her_marbles_miniquest:
   id: 281
   name: "Lost Her Marbles (miniquest)"
@@ -2168,8 +2121,6 @@ merlins_crystal:
   req_combat: "You will need to defeat a level 23 knight. You might anger a level 70 demon."
   points: 6
   reward: "Excalibur<br>5 kudos (and a 1,000 XP lamp) from the Varrock museum if you talk to Historian Minas"
-  varps:
-    - [ 2178, 1, 7 ]
 missing_my_mummy:
   id: 155
   name: "Missing My Mummy"
@@ -2212,8 +2163,6 @@ monks_friend:
   points: 1
   reward: "8 law runes"
   xp: "2,000 Woodcutting XP"
-  varps:
-    - [ 2370, 10, 80 ]
 monkey_madness:
   id: 73
   name: "Monkey Madness"
@@ -2232,8 +2181,6 @@ monkey_madness:
   req_combat: "You will need to defeat a level 70 jungle demon."
   points: 3
   reward: "Access to 110,000 XP (Strength and Constitution, Attack and Defence)<br>10,000 coins<br>3 cut diamonds<br>Access to Ape Atoll and its agility course<br>Ability to wield the dragon scimitar and monkey greegees<br>Monkey in your backpack"
-  varps:
-    - [ 2762, 1, 9 ]
 mountain_daughter:
   id: 75
   name: "Mountain Daughter"
@@ -2275,8 +2222,6 @@ mournings_end_part_i:
   points: 2
   reward: "Access to the Death Guard headquarters and the village of Lletya<br>Crystal teleport seed<br>Full mourner gear"
   xp: "25,000 Thieving XP lamp"
-  varps:
-    - [ 2777, 1, 8 ]
 mournings_end_part_ii:
   id: 77
   name: "Mourning's End Part II"
@@ -2309,8 +2254,6 @@ murder_mystery:
   points: 3
   reward: "2,000 coins"
   xp: "1,406 Crafting XP"
-  varps:
-    - [ 2364, 1, 2 ]
 my_arms_big_adventure:
   id: 79
   name: "My Arm's Big Adventure"
@@ -2369,8 +2312,6 @@ nature_spirit:
   points: 2
   reward: "Access to Mort Myre swamp and the Altar of Nature<br>30 Prayer XP each time you kill a ghast"
   xp: "3,000 Crafting XP lamp"
-  varps:
-    - [ 2355, 5, 110 ]
 nomads_requiem:
   id: 162
   name: "Nomad's Requiem"
@@ -2410,8 +2351,6 @@ observatory_quest:
   points: 2
   reward: "Payment depending on which constellation you observe<br>5 kudos from the Varrock museum if you talk to Historian Minas"
   xp: "2,250 Crafting XP lamp"
-  varps:
-    - [ 2796, 1, 7 ]
 olafs_quest:
   id: 122
   name: "Olaf's Quest"
@@ -2470,8 +2409,6 @@ one_small_favour:
   points: 2
   reward: "Key ring on your tool belt for storing keys<br>Ability to make Guthix rest potions<br>Access to the Feldip Hills gnome glider<br>Adamantite stone spirit, uncut ruby, uncut diamond<br>1,000 Smithing XP from repairing weather vane components"
   xp: "2 antique lamps each giving 10,000 XP (in a level 30 skill)"
-  varps:
-    - [ 2671, 5, 280 ]
 path_of_glouphrie:
   id: 127
   name: "The Path of Glouphrie"
@@ -2532,8 +2469,6 @@ pirates_treasure:
   req_combat: "Optionally defeat a level 4 gardener."
   points: 2
   reward: "One-Eyed Hector's treasure casket (containing 450 coins, an emerald and a gold ring)<br>Ability to work as a menial labourer on a banana plantation (30 coins for each export crate you fill with 10 bananas)"
-  varps:
-    - [ 2227, 1, 4 ]
 plague_city:
   id: 83
   name: "Plague City"
@@ -2549,8 +2484,6 @@ plague_city:
   points: 1
   reward: "Ardougne Teleport spell<br>Access to West Ardougne<br>Gas mask"
   xp: "2,425 Mining XP"
-  varps:
-    - [ 2386, 1, 29 ]
 priest_in_peril:
   id: 84
   name: "Priest in Peril"
@@ -2565,8 +2498,6 @@ priest_in_peril:
   req_combat: "You will need to defeat a level 33 enemy and level 23 enemy."
   points: 1
   reward: "The blessed wolfbane dagger<br>5 kudos from Historian Minas at the Varrock Museum"
-  varps:
-    - [ 2171, 1, 60 ]
 prince_ali_resuce:
   id: 10
   name: "Prince Ali Rescue"
@@ -2667,7 +2598,7 @@ recipe_for_disaster:
   req_items: "Eye of newt, greenman's ale, rotten tomato, ashes, fruit blast (or cocktail shaker, cocktail glass, 2 lemons, pineapple, orange)."
   req_combat: "Some of the sub-quests have no combat. In the conclusion to Recipe for Disaster, you will need to defeat several enemies up to level-98, without prayers or familiars."
   reward: "Access to the Culinaromancer's chest and much, much more!"
-recipe_for_disaster_another_cooks_quest:
+rfd_another_cooks_quest:
   id: 236
   name: "Recipe for Disaster: Another Cook's Quest"
   difficulty: 0
@@ -2687,7 +2618,7 @@ recipe_for_disaster_another_cooks_quest:
   req_combat: "None."
   points: 1
   reward: "An invitation to the most amazing feast you will ever see<br>Access to the Culinaromancer's chest"
-recipe_for_disaster_defeating_the_culinaromancer:
+rfd_defeating_the_culinaromancer:
   id: 245
   name: "Recipe for Disaster: Defeating the Culinaromancer"
   difficulty: 2
@@ -2701,21 +2632,21 @@ recipe_for_disaster_defeating_the_culinaromancer:
   req_skills:
     Cooking: 10
   req_quests:
-    - recipe_for_disaster_another_cooks_quest
-    - recipe_for_disaster_freeing_the_mountain_dwarf
-    - recipe_for_disaster_freeing_the_goblin_generals
-    - recipe_for_disaster_freeing_pirate_pete
-    - recipe_for_disaster_freeing_the_lumbridge_sage
-    - recipe_for_disaster_freeing_evil_dave
-    - recipe_for_disaster_freeing_skrach_uglogwee
-    - recipe_for_disaster_freeing_sir_amik_varze
-    - recipe_for_disaster_freeing_king_awowogei
+    - rfd_another_cooks_quest
+    - rfd_freeing_the_mountain_dwarf
+    - rfd_freeing_the_goblin_generals
+    - rfd_freeing_pirate_pete
+    - rfd_freeing_the_lumbridge_sage
+    - rfd_freeing_evil_dave
+    - rfd_freeing_skrach_uglogwee
+    - rfd_freeing_sir_amik_varze
+    - rfd_freeing_king_awowogei
   req_items: "Ice gloves. Weapons, armour and food."
   req_combat: "You will need to defeat six culinary bosses, up to level-98, without prayers or familiars. Level 80+ combat skills are recommended."
   points: 1
   reward: "Full access to the Culinaromancer's chest"
   xp: "20,000 XP lamp (any skill above level 50)"
-recipe_for_disaster_freeing_evil_dave:
+rfd_freeing_evil_dave:
   id: 241
   name: "Recipe for Disaster: Freeing Evil Dave"
   difficulty: 1
@@ -2728,7 +2659,7 @@ recipe_for_disaster_freeing_evil_dave:
   req_skills:
     Cooking: 25
   req_quests:
-    - recipe_for_disaster_another_cooks_quest
+    - rfd_another_cooks_quest
     - gertrudes_cat
     - shadow_of_the_storm
   req_items: "Wily cat, cat, kitten or lazy cat, up to 9 bowls of stew (can buy from the Forester's Arms for 20 coins), bucket of milk (if you wish to change your hellcat back to a normal cat)."
@@ -2736,7 +2667,7 @@ recipe_for_disaster_freeing_evil_dave:
   points: 1
   reward: "Ability to make spicy stew<br>Ability to catch hellrats to get a hellcat<br>Ability to add coloured spices to stew by catching hellrats<br>Increased access to the Culinaromancer's chest"
   xp: "7,000 Cooking XP"
-recipe_for_disaster_freeing_king_awowogei:
+rfd_freeing_king_awowogei:
   id: 244
   name: "Recipe for Disaster: Freeing King Awowogei"
   difficulty: 2
@@ -2750,14 +2681,14 @@ recipe_for_disaster_freeing_king_awowogei:
     Cooking: 70
     Agility: 48
   req_quests:
-    - recipe_for_disaster_another_cooks_quest
+    - rfd_another_cooks_quest
     - monkey_madness
   req_items: "Monkeyspeak amulet, greegree (gorilla, blue monkey, ninja, zombie or omni), banana, rope, 10 coins."
   req_combat: "Level 64 big snake."
   points: 1
   reward: "Teleport to Ape Atoll spell<br>Increased access to the Culinaromancer's chest"
   xp: "10,000 Cooking XP<br>10,000 Agility XP"
-recipe_for_disaster_freeing_pirate_pete:
+rfd_freeing_pirate_pete:
   id: 239
   name: "Recipe for Disaster: Freeing Pirate Pete"
   difficulty: 1
@@ -2770,13 +2701,13 @@ recipe_for_disaster_freeing_pirate_pete:
   req_skills:
     Cooking: 31
   req_quests:
-    - recipe_for_disaster_another_cooks_quest
+    - rfd_another_cooks_quest
   req_items: "Raw cod, bread, fishbowl, needle (tool belt will not work), 3 bronze wires."
   req_combat: "5 level 33/35 mudskippers, a level 29/30 crab."
   points: 1
   reward: "Ability to go diving and fight crabs (with diving apparatus) in the mogre camp<br>Ability to cook crab meat<br>Access to crab shells and claws, which can be made into a helmet and gloves<br>Ability to dive underwater and trade crunchy claw tokens for giant crab pets<br>Increased access to the Culinaromancer's chest"
   xp: "1,000 Cooking XP<br>1,000 Fishing XP<br>1,000 Smithing XP<br>1,000 Crafting XP"
-recipe_for_disaster_freeing_sir_amik_varze:
+rfd_freeing_sir_amik_varze:
   id: 243
   name: "Recipe for Disaster: Freeing Sir Amik Varze"
   difficulty: 2
@@ -2787,14 +2718,14 @@ recipe_for_disaster_freeing_sir_amik_varze:
   region: 3
   start_point: "Inspect Skrach Uglogwee in the banquet hall in Lumbridge castle."
   req_quests:
-    - recipe_for_disaster_another_cooks_quest
+    - rfd_another_cooks_quest
     - lost_city
   req_items: "Bucket of milk, pot of cream, sweetcorn, empty pot, Radimus notes (if you haven't completed Legends' Quest), dramen staff or lunar staff or completed Fairytale III, anti-dragon shield or super antifire, 2 raw chicken, ice gloves (recommended), dramen branch (or cinnamon, made from a Dramen branch)."
   req_combat: "Approximately level 70 Evil Chicken, level 100 black dragon."
   points: 1
   reward: "Access to the Evil Chicken's Lair containing black dragons<br>Increased access to the Culinaromancer's chest"
   xp: "4,000 Cooking XP"
-recipe_for_disaster_freeing_skrach_uglogwee:
+rfd_freeing_skrach_uglogwee:
   id: 242
   name: "Recipe for Disaster: Freeing Skrach Uglogwee"
   difficulty: 1
@@ -2808,14 +2739,14 @@ recipe_for_disaster_freeing_skrach_uglogwee:
     Cooking: 41
     Firemaking: 20
   req_quests:
-    - recipe_for_disaster_another_cooks_quest
+    - rfd_another_cooks_quest
     - big_chompy_bird_hunting
   req_items: "Any hatchet (apart from a blessed hatchet or sacred clay hatchet; tool belt does not work), A raw chompy (you might burn it), ball of wool, iron spit, logs, ogre bellows, ogre bow, ogre arrows."
   req_combat: "None."
   points: 1
   reward: "Ability to travel by boat between Karamja and Feldip Hills<br>Ability to hunt jubbly birds<br>Increased access to the Culinaromancer's chest"
   xp: "1,500 Cooking XP<br>1,500 Woodcutting XP<br>1,500 Ranged XP<br>1,500 Crafting XP"
-recipe_for_disaster_freeing_the_goblin_generals:
+rfd_freeing_the_goblin_generals:
   id: 238
   name: "Recipe for Disaster: Freeing the Goblin Generals"
   difficulty: 0
@@ -2826,14 +2757,14 @@ recipe_for_disaster_freeing_the_goblin_generals:
   region: 3
   start_point: "Inspect General Wartface or General Bentnoze in the banquet hall in Lumbridge castle."
   req_quests:
-    - recipe_for_disaster_another_cooks_quest
+    - rfd_another_cooks_quest
     - goblin_diplomacy
   req_items: "Charcoal, spice or gnome spice, 1 fishing bait, bucket of water or bowl of water or jug of water, bread, orange, any dye that is not red, yellow, orange or pink."
   req_combat: "None."
   points: 1
   reward: "Increased access to the Culinaromancer's chest"
   xp: "1,000 Cooking XP<br>1,000 Crafting XP<br>1,000 Farming XP"
-recipe_for_disaster_freeing_the_lumbridge_sage:
+rfd_freeing_the_lumbridge_sage:
   id: 240
   name: "Recipe for Disaster: Freeing the Lumbridge Sage"
   difficulty: 1
@@ -2846,13 +2777,13 @@ recipe_for_disaster_freeing_the_lumbridge_sage:
   req_skills:
     Cooking: 40
   req_quests:
-    - recipe_for_disaster_another_cooks_quest
+    - rfd_another_cooks_quest
   req_items: "Bucket of milk, egg, pot of flour, cake tin."
   req_combat: "None."
   points: 1
   reward: "Increased access to the Culinaromancer's chest"
   xp: "2,500 Cooking XP<br>2,500 Magic XP"
-recipe_for_disaster_freeing_the_mountain_dwarf:
+rfd_freeing_the_mountain_dwarf:
   id: 237
   name: "Recipe for Disaster: Freeing the Mountain Dwarf"
   difficulty: 0
@@ -2863,7 +2794,7 @@ recipe_for_disaster_freeing_the_mountain_dwarf:
   region: 3
   start_point: "Inspect Vestri the mountain dwarf in the banquet hall in Lumbridge castle."
   req_quests:
-    - recipe_for_disaster_another_cooks_quest
+    - rfd_another_cooks_quest
     - fishing_contest
   req_items: "304 coins (plus up to 30 more to buy the ales), pot of flour, egg, bucket of milk, bowl of water, gloves (ice gloves are the best), 5 Asgarnian ale (2 more recommended)."
   req_combat: "None."
@@ -2906,8 +2837,6 @@ regicide:
   points: 3
   reward: "15,000 coins<br>Quick route to Isafdar via Arandar<br>Charter ship access to Port Tyras<br>Ability to wield and use a dragon halberd<br>Ability to have elves assigned as a Slayer task"
   xp: "13,750 Agility XP"
-  varps:
-    - [ 2102, 1, 15 ]
 restless_ghost:
   id: 11
   name: "The Restless Ghost"
@@ -2963,8 +2892,6 @@ roving_elves:
   points: 1
   reward: "Partially used crystal bow or ward"
   xp: "10,000 Strength XP"
-  varps:
-    - [ 2286, 2, 6 ]
 royal_trouble:
   id: 91
   name: "Royal Trouble"
@@ -3009,8 +2936,6 @@ rum_deal:
   points: 2
   reward: "Holy wrench<br>Access to Braindeath Island<br>Tangled fishbowl and net"
   xp: "7,000 Farming XP<br>7,000 Fishing XP"
-  varps:
-    - [ 2100, 1, 19 ]
 rune_mechanics:
   id: 165
   name: "Rune Mechanics"
@@ -3067,8 +2992,6 @@ scorpion_catcher:
   points: 1
   reward: "Thormac will upgrade elemental battlestaves to mystic battlestaves for 40,000 coins"
   xp: "6,625 Strength XP"
-  varps:
-    - [ 2747, 1, 6 ]
 sea_slug:
   id: 94
   name: "Sea Slug"
@@ -3087,8 +3010,6 @@ sea_slug:
   points: 1
   reward: "Access to the fishing platform<br>Oyster pearls"
   xp: "7,175 Fishing XP"
-  varps:
-    - [ 2700, 1, 12 ]
 shades_of_mortton:
   id: 96
   name: "Shades of Mort'ton"
@@ -3108,8 +3029,6 @@ shades_of_mortton:
   points: 3
   reward: "About 400 coins if you cure Razmire and Ulsquire<br>Ability to create serum 207 and serum 208<br>Access to the Shades of Mort'ton minigame<br>335 Herblore XP if you give the apothecary in Varrock the diary of Herbi Flax"
   xp: "2,000 Herblore XP<br>2,000 Crafting XP"
-  varps:
-    - [ 2620, 5, 85 ]
 shadow_of_the_storm:
   id: 97
   name: "Shadow of the Storm"
@@ -3146,8 +3065,6 @@ sheep_herder:
   req_combat: "None."
   points: 4
   reward: "3,100 coins<br>Plague jacket and trousers<br>Cattle prod"
-  varps:
-    - [ 2274, 1, 3 ]
 sheep_shearer_miniquest:
   id: 263
   name: "Sheep Shearer (miniquest)"
@@ -3160,8 +3077,6 @@ sheep_shearer_miniquest:
     - [ 3206, 3290 ]
   req_combat: "None, but watch out for rams."
   xp: "150 Crafting XP"
-  varps:
-    - [ 2163, 1, 21 ]
 shield_of_arrav:
   id: 15
   name: "Shield of Arrav"
@@ -3176,8 +3091,6 @@ shield_of_arrav:
   req_combat: "You will need to defeat a level 1 enemy."
   points: 1
   reward: "1,200 coins"
-  varps:
-    - [ 2738, 1, 7 ]
 shilo_village:
   id: 99
   name: "Shilo Village"
@@ -3199,8 +3112,6 @@ shilo_village:
   points: 2
   reward: "Access to Shilo Village, gem rocks and cart travel between Shilo Village and Brimhaven<br>2,000 coins from Yanni Salika in Shilo Village if you sell him the quest's items"
   xp: "3,875 Crafting XP"
-  varps:
-    - [ 2793, 1, 15 ]
 slug_menace:
   id: 95
   name: "The Slug Menace"
@@ -3391,8 +3302,6 @@ tai_bwo_wannai_trio:
   points: 2
   reward: "2,000 coins<br>Ability to fight the shaikahan<br>Access to the Smithing section of Otto's barbarian training"
   xp: "1,500 Fishing XP"
-  varps:
-    - [ 2523, 2, 6 ]
 tail_of_two_cats:
   id: 104
   name: "A Tail of Two Cats"
@@ -3494,8 +3403,6 @@ temple_of_ikov:
   points: 1
   reward: "Boots of lightness<br>Access to the Temple of Ikov"
   xp: "10,500 Ranged XP<br>8,000 Fletching XP"
-  varps:
-    - [ 2148, 10, 80 ]
 throne_of_miscellania:
   id: 107
   name: "Throne of Miscellania"
@@ -3513,8 +3420,6 @@ throne_of_miscellania:
   req_combat: "None."
   points: 1
   reward: "Your Miscellanian subjects will collect resources for you<br>Ability to teleport to Miscellania with a ring of wealth<br>Ability to purchase Miscellania portait from Sir Renitee"
-  varps:
-    - [ 2236, 10, 100 ]
 toktz_ket_dill:
   id: 137
   name: "TokTz-Ket-Dill"
@@ -3556,8 +3461,6 @@ tourist_trap:
   points: 2
   reward: "Ability to smith throwing darts<br>Access to desert mining camp (mithril, adamantite and necrite rocks)<br>Full slave robes"
   xp: "4,650 XP in two of Agility, Fletching, Smithing and Thieving"
-  varps:
-    - [ 2501, 1, 30 ]
 tower_of_life:
   id: 119
   name: "Tower of Life"
@@ -3591,8 +3494,6 @@ tree_gnome_village:
   points: 2
   reward: "Access to spirit tree teleportation<br>Gnome amulet of protection"
   xp: "11,450 Attack XP"
-  varps:
-    - [ 2661, 1, 9 ]
 tribal_totem:
   id: 111
   name: "Tribal Totem"
@@ -3611,8 +3512,6 @@ tribal_totem:
   points: 1
   reward: "5 swordfish"
   xp: "1,775 Thieving XP"
-  varps:
-    - [ 2783, 1, 5 ]
 troll_romance:
   id: 112
   name: "Troll Romance"
@@ -3635,8 +3534,6 @@ troll_romance:
   points: 2
   reward: "1 uncut diamond<br>2 uncut rubies and 4 uncut emeralds<br>Sled<br>Access to the Trollweiss sledding route<br>New colour of wieldable flowers"
   xp: "8,000 Agility XP<br>4,000 Strength XP"
-  varps:
-    - [ 2135, 1, 45 ]
 troll_stronghold:
   id: 113
   name: "Troll Stronghold"
@@ -3658,8 +3555,6 @@ troll_stronghold:
   points: 1
   reward: "Access to Trollheim and the troll stronghold<br>Access to God Wars Dungeon (with 60 Agility or 60 Strength)"
   xp: "2 lamps each giving 10,000 XP (any level 30+ skill)"
-  varps:
-    - [ 2347, 10, 50 ]
 underground_pass:
   id: 114
   name: "Underground Pass"
@@ -3681,8 +3576,6 @@ underground_pass:
   points: 5
   reward: "Iban's staff<br>15 death runes<br>30 fire runes<br>Klank's gauntlets"
   xp: "3,000 Agility XP<br>3,000 Attack XP"
-  varps:
-    - [ 2426, 1, 10 ]
 vampire_slayer:
   id: 16
   name: "Vampire Slayer"
@@ -3793,8 +3686,6 @@ watchtower:
   points: 4
   reward: "5,000 coins<br>Watchtower Teleport spell<br>Access to Gu'Tanoth and the ogre enclave"
   xp: "15,250 Magic XP"
-  varps:
-    - [ 2397, 1, 13 ]
 waterfall_quest:
   id: 50
   name: "Waterfall Quest"
@@ -3810,8 +3701,6 @@ waterfall_quest:
   points: 1
   reward: "2 gold bars<br>2 diamonds<br>40 mithril seeds<br>Access to the Waterfall Dungeon"
   xp: "13,750 Attack XP<br>13,750 Strength XP"
-  varps:
-    - [ 2353, 1, 10 ]
 what_lies_below:
   id: 121
   name: "What Lies Below"
@@ -3878,8 +3767,6 @@ witchs_house:
   req_combat: "You will need to defeat a shapeshifting enemy with forms up to level 49."
   points: 4
   xp: "6,325 Constitution XP"
-  varps:
-    - [ 2276, 1, 7 ]
 witchs_potion_miniquest:
   id: 264
   name: "Witch's Potion (miniquest)"
@@ -3892,8 +3779,6 @@ witchs_potion_miniquest:
     - [ 2968, 3206 ]
   req_combat: "You will need to defeat a rat (level 1).<br>You may have to best a cow in mortal combat."
   xp: "325 Magic XP"
-  varps:
-    - [ 2473, 1, 3 ]
 within_the_light:
   id: 161
   name: "Within the Light"
