@@ -309,6 +309,7 @@ quest_intro:
     startyes_layer: 73
     startno_layer: 74
     objective_set: 75
+    objective_text: 76
     quest_icon: 79
 dialogue_macro_mime_emotes:
   id: 188

@@ -711,7 +711,7 @@ dorics_quest:
   req_items: "6 clay, 4 copper ore, 2 iron ore."
   req_combat: "None."
   points: 1
-  reward: "180 coins<br>Access to Doric's anvils, Mining XP"
+  reward: "180 coins<br>Access to Doric's anvils"
   xp: "1,300 Mining XP"
 dragon_slayer:
   id: 4
