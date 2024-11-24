@@ -1,10 +1,10 @@
+# These were dumped from RS3 so will need updating to match the current revision
 all_fired_up:
   id: 142
   name: "All Fired Up"
   difficulty: 1
   length: 2
   members: true
-  sprite: 9523
   region: 8
   start_point: "Talk to King Roald in Varrock palace."
   start_path:
@@ -24,7 +24,6 @@ animal_magnetism:
   difficulty: 1
   length: 3
   members: true
-  sprite: 9572
   region: 5
   start_point: "Talk to Ava in Draynor Manor."
   start_path:
@@ -49,7 +48,6 @@ another_slice_of_ham:
   difficulty: 1
   length: 3
   members: true
-  sprite: 17738
   region: 47
   start_point: "Talk to Ambassador Alvijar, who is in Ur-tag's house in Dorgesh-Kaan."
   start_path:
@@ -75,7 +73,6 @@ as_a_first_resort:
   difficulty: 2
   length: 5
   members: true
-  sprite: 17188
   region: 45
   start_point: "Talk to Chief Tess in the centre of Oo'glog."
   start_path:
@@ -130,7 +127,6 @@ between_a_rock:
   difficulty: 2
   length: 3
   members: true
-  sprite: 8254
   region: 46
   start_point: "Talk to Dondakan in the Keldagrim south-west mine."
   start_path:
@@ -153,7 +149,6 @@ big_chompy_bird_hunting:
   difficulty: 1
   length: 3
   members: true
-  sprite: 9507
   region: 45
   start_point: "Talk to Rantz east of the Feldip Hills."
   start_path:
@@ -218,7 +213,6 @@ blood_runs_deep:
   difficulty: 3
   length: 5
   members: true
-  sprite: 8261
   region: 33
   start_point: "Talk to Baba Yaga on Lunar Isle."
   start_path:
@@ -260,7 +254,6 @@ cabin_fever:
   difficulty: 2
   length: 3
   members: true
-  sprite: 9105
   region: 27
   start_point: "Talk to Bill Teach in Port Phasmatys."
   start_path:
@@ -284,7 +277,6 @@ catapult_construction:
   difficulty: 3
   length: 2
   members: true
-  sprite: 9543
   region: 50
   start_point: "Talk to the Tyras Guard next to the catapult in the Isafdar Forest."
   start_path:
@@ -305,7 +297,6 @@ chosen_commander:
   difficulty: 2
   length: 6
   members: true
-  sprite: 17740
   region: 47
   start_point: "Talk to Captain Undak in Dorgesh-Kaan."
   start_path:
@@ -344,7 +335,6 @@ cold_war:
   difficulty: 1
   length: 5
   members: true
-  sprite: 9106
   region: 41
   start_point: "Talk to Larry at Ardougne Zoo."
   start_path:
@@ -365,7 +355,6 @@ contact:
   difficulty: 3
   length: 3
   members: true
-  sprite: 8238
   region: 23
   start_point: "Talk to the High Priest of Icthlarin in the south temple of Sophanem."
   start_path:
@@ -398,7 +387,6 @@ creature_of_fenkenstrain:
   difficulty: 1
   length: 3
   members: true
-  sprite: 9508
   region: 26
   start_point: "Read the signpost in Canifis or talk to Dr Fenkenstrain to be hired as his butler."
   start_path:
@@ -419,7 +407,6 @@ curse_of_arrav:
   difficulty: 3
   length: 4
   members: true
-  sprite: 17750
   region: 22
   start_point: "Talk to Ali the Wise in his house in Nardah."
   start_path:
@@ -447,7 +434,6 @@ curse_of_zaros_miniquest:
   difficulty: 1
   length: 4
   members: true
-  sprite: 31962
   region: 39
   start_point: "Talk to the mysterious ghost (Valdez) near Glarial's tombstone (north-west of the Fishing Guild), while wearing a ring of visibility and a way to speak with ghosts."
   start_path:
@@ -463,7 +449,6 @@ darkness_of_hallowvale:
   difficulty: 1
   length: 7
   members: true
-  sprite: 9552
   region: 24
   start_point: "Talk to Veliaf in Burgh de Rott."
   start_path:
@@ -489,7 +474,6 @@ dealing_with_scabaras:
   difficulty: 3
   length: 5
   members: true
-  sprite: 9556
   region: 23
   start_point: "Talk to the High Priest of Icthlarin in the south temple of Sophanem."
   start_path:
@@ -511,7 +495,6 @@ death_plateau:
   name: "Death Plateau"
   difficulty: 0
   length: 1
-  sprite: 9570
   region: 0
   start_point: "Talk to Commander Denulth at the Burthorpe training camp."
   start_path:
@@ -527,7 +510,6 @@ death_to_the_dorgeshuun:
   difficulty: 1
   length: 3
   members: true
-  sprite: 17737
   region: 47
   start_point: "Talk to Mistag in the Dorgeshuun Mines."
   start_path:
@@ -549,7 +531,6 @@ defender_of_varrock:
   difficulty: 2
   length: 4
   members: true
-  sprite: 17749
   region: 8
   start_point: "Talk to Captain Rovin in the north-west tower of Varrock Palace."
   start_path:
@@ -562,7 +543,7 @@ defender_of_varrock:
     Mining: 59
   req_quests:
     - shield_of_arrav
-    - knights_sword
+    - the_knights_sword
     - family_crest
     - what_lies_below
   req_items: "Light source, blurite ore, spade."
@@ -590,7 +571,6 @@ desert_slayer_dungeon_miniquest:
   difficulty: 3
   length: 2
   members: true
-  sprite: 9562
   region: 22
   start_point: "Enter a barrier on the lowest level of Pollnivneach Slayer Dungeon, and defeat the monstrous cave crawler, basilisk boss, mightiest turoth and kurask overlord."
   start_path:
@@ -609,7 +589,6 @@ desert_treasure:
   difficulty: 3
   length: 7
   members: true
-  sprite: 17746
   region: 22
   start_point: "Talk to the Archaeologist who is exploring the Bedabin Camp South West of the Shantay Pass."
   start_path:
@@ -654,7 +633,6 @@ dig_site:
   difficulty: 1
   length: 5
   members: true
-  sprite: 9524
   region: 9
   start_point: "Talk to an examiner in the Exam Centre."
   start_path:
@@ -735,7 +713,6 @@ dream_mentor:
   difficulty: 3
   length: 2
   members: true
-  sprite: 8234
   region: 33
   start_point: "Talk to the fallen man inside the small cave in the Lunar Isle Mine."
   start_path:
@@ -784,7 +761,6 @@ eadgars_ruse:
   difficulty: 2
   length: 5
   members: true
-  sprite: 9544
   region: 1
   start_point: "Talk to Sanfew in Taverley."
   start_path:
@@ -805,7 +781,6 @@ eagles_peak:
   difficulty: 0
   length: 3
   members: true
-  sprite: 9108
   region: 41
   start_point: "Talk to Charlie the Zookeeper in Ardougne Zoo."
   start_path:
@@ -823,7 +798,7 @@ elemental_workshop_i:
   difficulty: 0
   length: 1
   members: true
-  sprite: 9557
+  sprite: 3137
   region: 30
   start_point: "Search the shelves in a house in Seers' Village for an old book."
   start_path:
@@ -843,7 +818,7 @@ elemental_workshop_ii:
   difficulty: 1
   length: 3
   members: true
-  sprite: 9558
+  sprite: 3136
   region: 9
   start_point: "Search the shelves in the Varrock Dig Site Exam Centre for an old book."
   start_path:
@@ -885,7 +860,6 @@ enakhras_lament:
   difficulty: 2
   length: 3
   members: true
-  sprite: 17742
   region: 22
   start_point: "Talk to Lazim in the desert south of the Bandit Camp."
   start_path:
@@ -905,7 +879,6 @@ enlightened_journey:
   difficulty: 1
   length: 3
   members: true
-  sprite: 9526
   region: 29
   start_point: "Talk to Auguste on Entrana (bring neither weapons nor armour with you)."
   start_path:
@@ -920,7 +893,7 @@ enlightened_journey:
   points: 1
   reward: "Bomber jacket and bomber cap<br>Access to the balloon transport system<br>Ability to make origami balloons"
   xp: "2,000 Crafting XP<br>3,000 Farming XP<br>1,500 Woodcutting XP<br>4,000 Firemaking XP"
-enter_the_abyss_miniquest:
+enter_the_abyss:
   id: 278
   name: "Enter the Abyss (miniquest)"
   difficulty: 1
@@ -954,7 +927,6 @@ eyes_of_glouphrie:
   difficulty: 1
   length: 3
   members: true
-  sprite: 9576
   region: 36
   start_point: "Talk to Brimstail in his cave west of the Gnome Stronghold bank."
   start_path:
@@ -1058,7 +1030,6 @@ the_feud:
   difficulty: 1
   length: 3
   members: true
-  sprite: 9577
   region: 21
   start_point: "Talk to Ali Morrisane in Al Kharid."
   start_path:
@@ -1076,7 +1047,6 @@ fight_arena:
   difficulty: 2
   length: 3
   members: true
-  sprite: 17743
   region: 43
   start_point: "Talk to Lady Servil, just north-west of the fight arena."
   start_path:
@@ -1092,7 +1062,6 @@ fishing_contest:
   difficulty: 0
   length: 1
   members: true
-  sprite: 9527
   region: 2
   start_point: "Talk to Vestri or Austri near White Wolf Mountain."
   start_path:
@@ -1111,7 +1080,6 @@ forgettable_tale:
   difficulty: 1
   length: 5
   members: true
-  sprite: 9528
   region: 46
   start_point: "Talk to Commander Veldaban in the Black Guard HQ in Keldagrim."
   start_path:
@@ -1157,7 +1125,6 @@ fremennik_isles:
   difficulty: 2
   length: 5
   members: true
-  sprite: 9579
   region: 32
   start_point: "Talk to Mord Gunnars at the docks in Rellekka."
   start_path:
@@ -1180,7 +1147,6 @@ fremennik_trials:
   difficulty: 1
   length: 5
   members: true
-  sprite: 9580
   region: 32
   start_point: "Talk to Brundt the Chieftain in the longhall in Rellekka."
   start_path:
@@ -1218,7 +1184,6 @@ fur_n_seek:
   difficulty: 0
   length: 3
   members: true
-  sprite: 9529
   region: 10
   start_point: "Talk to the Odd Old Man at the quarry west of Paterdomus."
   start_path:
@@ -1257,7 +1222,6 @@ generals_shadow_miniquest:
   difficulty: 2
   length: 1
   members: true
-  sprite: 31962
   region: 31
   start_point: "Talk to the ghost of General Khazard wandering near the road south-east of Rellekka, while wearing a ring of visibility, ghostly robes and a way to speak with ghosts."
   start_path:
@@ -1289,7 +1253,6 @@ ghosts_ahoy:
   difficulty: 1
   length: 1
   members: true
-  sprite: 9511
   region: 27
   start_point: "Talk to Velorina in Port Phasmatys."
   start_path:
@@ -1309,7 +1272,6 @@ the_giant_dwarf:
   difficulty: 1
   length: 4
   members: true
-  sprite: 9568
   region: 46
   start_point: "Talk to Commander Veldaban in the Black Guard headquarters on the western side of Keldagrim. To enter Keldagrim, talk to the dwarf boatman in the dwarven mines east of Rellekka."
   start_path:
@@ -1332,7 +1294,6 @@ glorious_memories:
   difficulty: 3
   length: 3
   members: true
-  sprite: 9109
   region: 32
   start_point: "Talk to Manni the Reveller inside the longhall in Rellekka."
   start_path:
@@ -1372,7 +1333,6 @@ the_golem:
   difficulty: 1
   length: 3
   members: true
-  sprite: 9536
   region: 22
   start_point: "Talk to the clay golem in the ruins of Uzer."
   start_path:
@@ -1391,7 +1351,6 @@ grand_tree:
   difficulty: 2
   length: 5
   members: true
-  sprite: 9530
   region: 36
   start_point: "Talk to King Narnode Shareen at the Grand Tree in the Gnome Stronghold."
   start_path:
@@ -1408,7 +1367,6 @@ great_brain_robbery:
   difficulty: 2
   length: 4
   members: true
-  sprite: 9566
   region: 27
   start_point: "Talk to Brother Tranquillity on the docks at Mos Le'Harmless."
   start_path:
@@ -1432,7 +1390,6 @@ grim_tales:
   difficulty: 3
   length: 3
   members: true
-  sprite: 9512
   region: 2
   start_point: "Talk to Sylas, south of Taverley."
   start_path:
@@ -1494,7 +1451,6 @@ hand_in_the_sand:
   difficulty: 1
   length: 3
   members: true
-  sprite: 9545
   region: 44
   start_point: "Talk to Bert in Yanille."
   start_path:
@@ -1513,7 +1469,6 @@ haunted_mine:
   difficulty: 2
   length: 5
   members: true
-  sprite: 9110
   region: 24
   start_point: "Talk to the zealot at the entrance of the Abandoned Mine in south Morytania."
   start_path:
@@ -1532,7 +1487,6 @@ hazeel_cult:
   difficulty: 0
   length: 1
   members: true
-  sprite: 17744
   region: 40
   start_point: "Talk to Sir Ceril Carnillean in his mansion in south-west Ardougne."
   start_path:
@@ -1548,7 +1502,6 @@ heroes_quest:
   difficulty: 2
   length: 3
   members: true
-  sprite: 9531
   region: 0
   start_point: "Talk to Achiettes at the entrance to the Heroes' Guild in Burthorpe."
   start_path:
@@ -1573,7 +1526,6 @@ holy_grail:
   difficulty: 1
   length: 2
   members: true
-  sprite: 9537
   region: 30
   start_point: "Talk to King Arthur in Camelot Castle."
   start_path:
@@ -1592,7 +1544,6 @@ hopespears_will_miniquest:
   difficulty: 2
   length: 1
   members: true
-  sprite: 17739
   region: 39
   start_point: "Talk to Hopespear in the crypt in the goblin temple (accessed from a cave east of the Fishing Guild entrance), while wearing a ring of visibility and a way to speak with ghosts."
   start_path:
@@ -1613,7 +1564,6 @@ horror_from_the_deep:
   difficulty: 2
   length: 3
   members: true
-  sprite: 9513
   region: 31
   start_point: "Talk to Larrissa south of the Lighthouse."
   start_path:
@@ -1633,7 +1583,6 @@ hunt_for_red_raktuber:
   difficulty: 1
   length: 5
   members: true
-  sprite: 9550
   region: 41
   start_point: "Talk to Larry in the Ardougne Zoo."
   start_path:
@@ -1656,7 +1605,6 @@ hunt_for_surok_miniquest:
   difficulty: 2
   length: 2
   members: true
-  sprite: 9565
   region: 9
   start_point: "Talk to Surok by the statue of Saradomin, east of Varrock."
   start_path:
@@ -1710,7 +1658,6 @@ in_aid_of_the_myreque:
   difficulty: 1
   length: 5
   members: true
-  sprite: 9514
   region: 26
   start_point: "Talk to Veliaf in the Myreque hideout, beneath the pub in Canifis."
   start_path:
@@ -1752,7 +1699,6 @@ in_search_of_the_myreque:
   difficulty: 1
   length: 1
   members: true
-  sprite: 9111
   region: 26
   start_point: "Talk to Vanstrom Klause in the Hair of the Dog tavern in Canifis."
   start_path:
@@ -1772,7 +1718,6 @@ jungle_potion:
   difficulty: 0
   length: 1
   members: true
-  sprite: 9559
   region: 28
   start_point: "Talk to Trufitus in his hut north-east of Tai Bwo Wannai."
   start_path:
@@ -1845,7 +1790,7 @@ kings_ransom:
   points: 1
   reward: "Hair clip (more durable lockpick)<br>Ability to choose Camelot as a respawn location<br>Access to the Knight Waves Training Grounds miniquest (Chivalry, Piety, Augury and Rigour prayers)<br>Access to the Court Cases Distraction and Diversion"
   xp: "5,000 Magic XP lamp (level 45+)<br>5,000 XP lamp (level 50+)"
-knights_sword:
+the_knights_sword:
   id: 8
   name: "The Knight's Sword"
   difficulty: 1
@@ -1868,7 +1813,6 @@ lair_of_tarn_razorlor_miniquest:
   difficulty: 2
   length: 3
   members: true
-  sprite: 9110
   region: 24
   start_point: "Recover the diary of Tarn Razorlor. The entrance to Tarn's lair is on the north wall of the ground floor of the Abandoned Mine, accessed via the surface cart tunnel. An easier way is to teleport with a ring of slaying."
   start_path:
@@ -1887,7 +1831,6 @@ land_of_the_goblins:
   difficulty: 2
   length: 5
   members: true
-  sprite: 17739
   region: 47
   start_point: "Talk to Grubfoot, who is in the mines north of Dorgesh-Kaan."
   start_path:
@@ -1913,7 +1856,6 @@ legacy_of_seergaze:
   difficulty: 2
   length: 6
   members: true
-  sprite: 9567
   region: 25
   start_point: "Talk to the mercenary adventurer east of Paterdomus in Morytania."
   start_path:
@@ -1939,7 +1881,6 @@ legends_quest:
   difficulty: 3
   length: 6
   members: true
-  sprite: 24881
   region: 39
   start_point: "Talk to Radimus Erkle in the Legends' Guild, north-east of Ardougne."
   start_path:
@@ -2006,7 +1947,6 @@ lost_tribe:
   difficulty: 1
   length: 3
   members: true
-  sprite: 17736
   region: 3
   start_point: "Talk to Sigmund in Lumbridge Castle."
   start_path:
@@ -2050,7 +1990,6 @@ lunar_diplomacy:
   difficulty: 2
   length: 5
   members: true
-  sprite: 9117
   region: 32
   start_point: "Talk to Lokar Searunner on the west dock of Rellekka."
   start_path:
@@ -2127,7 +2066,6 @@ missing_my_mummy:
   difficulty: 1
   length: 4
   members: true
-  sprite: 17748
   region: 4
   start_point: "Talk to Leela in Draynor Village."
   start_path:
@@ -2169,7 +2107,6 @@ monkey_madness:
   difficulty: 3
   length: 7
   members: true
-  sprite: 17187
   region: 36
   start_point: "Talk to King Narnode Shareen within the Grand Tree in the Gnome Stronghold."
   start_path:
@@ -2187,7 +2124,6 @@ mountain_daughter:
   difficulty: 1
   length: 4
   members: true
-  sprite: 9578
   region: 31
   start_point: "Talk to Hamal the chieftain in the mountain camp east of Rellekka."
   start_path:
@@ -2260,7 +2196,6 @@ my_arms_big_adventure:
   difficulty: 1
   length: 4
   members: true
-  sprite: 9516
   region: 34
   start_point: "Talk to Burntmeat in the kitchen of the Troll Stronghold."
   start_path:
@@ -2318,7 +2253,6 @@ nomads_requiem:
   difficulty: 4
   length: 3
   members: true
-  sprite: 26704
   region: 11
   start_point: "Talk to Zimberfizz in the Soul Wars camp."
   start_path:
@@ -2357,7 +2291,6 @@ olafs_quest:
   difficulty: 1
   length: 2
   members: true
-  sprite: 9534
   region: 31
   start_point: "Talk to Olaf in his 'camp' north-east of Rellekka."
   start_path:
@@ -2377,7 +2310,6 @@ one_foot_in_the_grave_miniquest:
   difficulty: 3
   length: 2
   members: true
-  sprite: 9545
   region: 44
   start_point: "Talk to Zavistic Rarve at the Wizards' Guild, with Clarence's hand in your backpack."
   start_path:
@@ -2392,7 +2324,6 @@ one_small_favour:
   difficulty: 2
   length: 5
   members: true
-  sprite: 9549
   region: 28
   start_point: "Talk to Yanni Salika in Shilo Village."
   start_path:
@@ -2415,7 +2346,6 @@ path_of_glouphrie:
   difficulty: 2
   length: 5
   members: true
-  sprite: 9112
   region: 35
   start_point: "Talk to King Bolren in the Tree Gnome Village."
   start_path:
@@ -2440,7 +2370,6 @@ perils_of_ice_mountain:
   name: "Perils of Ice Mountain"
   difficulty: 0
   length: 3
-  sprite: 9114
   region: 13
   start_point: "Talk to Lakki, on the road south of Ice Mountain."
   start_path:
@@ -2489,7 +2418,6 @@ priest_in_peril:
   name: "Priest in Peril"
   difficulty: 0
   length: 3
-  sprite: 9573
   region: 8
   start_point: "Talk to King Roald in Varrock Palace."
   start_path:
@@ -2586,7 +2514,6 @@ recipe_for_disaster:
   difficulty: 250
   length: 8
   members: true
-  sprite: 9113
   region: 3
   start_point: "Talk to the cook in Lumbridge Castle."
   start_path:
@@ -2605,7 +2532,6 @@ rfd_another_cooks_quest:
   length: 1
   members: true
   sub_quest: recipe_for_disaster
-  sprite: 9113
   region: 3
   start_point: "Talk to the cook in Lumbridge Castle."
   start_path:
@@ -2625,7 +2551,6 @@ rfd_defeating_the_culinaromancer:
   length: 1
   members: true
   sub_quest: recipe_for_disaster
-  sprite: 9113
   region: 3
   start_point: "Enter the white portal in the banquet hall in Lumbridge castle."
   req_quest_points: 176
@@ -2653,7 +2578,6 @@ rfd_freeing_evil_dave:
   length: 4
   members: true
   sub_quest: recipe_for_disaster
-  sprite: 17185
   region: 3
   start_point: "Inspect Evil Dave in the banquet hall in Lumbridge castle."
   req_skills:
@@ -2674,7 +2598,6 @@ rfd_freeing_king_awowogei:
   length: 4
   members: true
   sub_quest: recipe_for_disaster
-  sprite: 17187
   region: 3
   start_point: "Inspect Awowogei in the banquet hall in Lumbridge castle."
   req_skills:
@@ -2695,7 +2618,6 @@ rfd_freeing_pirate_pete:
   length: 1
   members: true
   sub_quest: recipe_for_disaster
-  sprite: 17189
   region: 3
   start_point: "Inspect Pirate Pete in the banquet hall in Lumbridge castle."
   req_skills:
@@ -2714,7 +2636,6 @@ rfd_freeing_sir_amik_varze:
   length: 2
   members: true
   sub_quest: recipe_for_disaster
-  sprite: 17186
   region: 3
   start_point: "Inspect Skrach Uglogwee in the banquet hall in Lumbridge castle."
   req_quests:
@@ -2732,7 +2653,6 @@ rfd_freeing_skrach_uglogwee:
   length: 3
   members: true
   sub_quest: recipe_for_disaster
-  sprite: 17188
   region: 3
   start_point: "Inspect Skrach Uglogwee in the banquet hall in Lumbridge castle."
   req_skills:
@@ -2753,7 +2673,6 @@ rfd_freeing_the_goblin_generals:
   length: 1
   members: true
   sub_quest: recipe_for_disaster
-  sprite: 17190
   region: 3
   start_point: "Inspect General Wartface or General Bentnoze in the banquet hall in Lumbridge castle."
   req_quests:
@@ -2771,7 +2690,6 @@ rfd_freeing_the_lumbridge_sage:
   length: 1
   members: true
   sub_quest: recipe_for_disaster
-  sprite: 17184
   region: 3
   start_point: "Inspect the Lumbridge Sage in the banquet hall in Lumbridge castle."
   req_skills:
@@ -2790,7 +2708,6 @@ rfd_freeing_the_mountain_dwarf:
   length: 1
   members: true
   sub_quest: recipe_for_disaster
-  sprite: 17181
   region: 3
   start_point: "Inspect Vestri the mountain dwarf in the banquet hall in Lumbridge castle."
   req_quests:
@@ -2807,7 +2724,6 @@ recruitment_drive:
   difficulty: 0
   length: 3
   members: true
-  sprite: 17186
   region: 15
   start_point: "Talk to Sir Amik Varze on the second floor of the White Knights' Castle in Falador."
   start_path:
@@ -2898,7 +2814,6 @@ royal_trouble:
   difficulty: 2
   length: 4
   members: true
-  sprite: 9548
   region: 33
   start_point: "Talk to Advisor Ghrim in the castle of Miscellania."
   start_path:
@@ -2920,7 +2835,6 @@ rum_deal:
   difficulty: 2
   length: 3
   members: true
-  sprite: 9517
   region: 27
   start_point: "Talk to Pirate Pete at the docks north of Port Phasmatys."
   start_path:
@@ -2942,7 +2856,6 @@ rune_mechanics:
   difficulty: 0
   length: 1
   members: true
-  sprite: 9560
   region: 21
   start_point: "Talk to Apprentice Clerval in the basement of the Mage Training Arena."
   start_path:
@@ -2977,7 +2890,6 @@ scorpion_catcher:
   difficulty: 1
   length: 1
   members: true
-  sprite: 9574
   region: 30
   start_point: "Talk to Thormac on the top floor of his tower south of the Seers' Village."
   start_path:
@@ -2998,7 +2910,6 @@ sea_slug:
   difficulty: 1
   length: 2
   members: true
-  sprite: 9561
   region: 42
   start_point: "Talk to Caroline in Witchaven, east of Ardougne."
   start_path:
@@ -3016,7 +2927,6 @@ shades_of_mortton:
   difficulty: 1
   length: 3
   members: true
-  sprite: 9518
   region: 24
   start_point: "Read a diary found in a house in Mort'ton."
   start_path:
@@ -3035,7 +2945,6 @@ shadow_of_the_storm:
   difficulty: 1
   length: 3
   members: true
-  sprite: 9547
   region: 21
   start_point: "Talk to Father Reen south of the bank in Al Kharid."
   start_path:
@@ -3056,7 +2965,6 @@ sheep_herder:
   difficulty: 0
   length: 3
   members: true
-  sprite: 8961
   region: 40
   start_point: "Talk to Councillor Halgrive outside of the East Ardougne church, north of the zoo."
   start_path:
@@ -3082,7 +2990,6 @@ shield_of_arrav:
   name: "Shield of Arrav"
   difficulty: 0
   length: 3
-  sprite: 29382
   region: 8
   start_point: "Talk to Reldo in the Varrock palace library."
   start_path:
@@ -3097,7 +3004,6 @@ shilo_village:
   difficulty: 2
   length: 4
   members: true
-  sprite: 9519
   region: 28
   start_point: "Talk to Mosol Rei at the edge of Shilo Village."
   start_path:
@@ -3118,7 +3024,6 @@ slug_menace:
   difficulty: 1
   length: 4
   members: true
-  sprite: 9546
   region: 16
   start_point: "Talk to Sir Tiffy Cashien in Falador Park."
   start_path:
@@ -3142,7 +3047,6 @@ smoking_kills:
   difficulty: 1
   length: 1
   members: true
-  sprite: 9562
   region: 22
   start_point: "Talk to Sumona in her house in Pollnivneach."
   start_path:
@@ -3163,7 +3067,6 @@ souls_bane:
   name: "A Soul's Bane"
   difficulty: 0
   length: 2
-  sprite: 9522
   region: 9
   start_point: "Talk to Launa by the rift east of Varrock, just south-east of the earth altar."
   start_path:
@@ -3178,7 +3081,6 @@ spirit_of_summer:
   difficulty: 1
   length: 5
   members: true
-  sprite: 9115
   region: 12
   start_point: "Talk to the little ghost by the Wilderness wall north-east of Varrock."
   start_path:
@@ -3201,7 +3103,6 @@ spirits_of_the_elid:
   difficulty: 1
   length: 3
   members: true
-  sprite: 9116
   region: 22
   start_point: "Talk to Awusah the Mayor in Nardah."
   start_path:
@@ -3222,7 +3123,6 @@ summers_end:
   difficulty: 2
   length: 4
   members: true
-  sprite: 9563
   region: 12
   start_point: "Talk to Summer by the Wilderness wall north-east of Varrock."
   start_path:
@@ -3247,7 +3147,6 @@ swan_song:
   difficulty: 3
   length: 4
   members: true
-  sprite: 9569
   region: 37
   start_point: "Talk to Herman Caranos at the Piscatoris Fishing Colony."
   start_path:
@@ -3285,7 +3184,6 @@ tai_bwo_wannai_trio:
   difficulty: 1
   length: 5
   members: true
-  sprite: 9553
   region: 28
   start_point: "Talk to Timfraku in his house in Tai Bwo Wannai."
   start_path:
@@ -3308,7 +3206,6 @@ tail_of_two_cats:
   difficulty: 1
   length: 5
   members: true
-  sprite: 17741
   region: 0
   start_point: "Talk to Unferth in his house in Burthorpe."
   start_path:
@@ -3325,7 +3222,6 @@ tale_of_the_muspah:
   difficulty: 0
   length: 3
   members: true
-  sprite: 17747
   region: 31
   start_point: "Talk to Erjolf at the cave entrance half way up the mountain north-east of Rellekka."
   start_path:
@@ -3345,7 +3241,6 @@ tears_of_guthix:
   difficulty: 1
   length: 1
   members: true
-  sprite: 9520
   region: 3
   start_point: "Talk to Juna, inside the cave under Lumbridge Swamp."
   start_path:
@@ -3368,7 +3263,6 @@ temple_at_senntisten:
   difficulty: 3
   length: 4
   members: true
-  sprite: 17755
   region: 22
   start_point: "Talk to Ali the Wise at his house in Nardah."
   start_path:
@@ -3390,7 +3284,6 @@ temple_of_ikov:
   difficulty: 2
   length: 3
   members: true
-  sprite: 17745
   region: 40
   start_point: "Talk to Lucien in the Flying Horse Inn, Ardougne."
   start_path:
@@ -3426,7 +3319,6 @@ toktz_ket_dill:
   difficulty: 2
   length: 6
   members: true
-  sprite: 9539
   region: 48
   start_point: "Talk to any of the three TzHaar at the collapsed tunnel in the south-east corridor of TzHaar City."
   start_path:
@@ -3448,7 +3340,6 @@ tourist_trap:
   difficulty: 1
   length: 4
   members: true
-  sprite: 9554
   region: 22
   start_point: "Talk to Irena just south of Shantay Pass."
   start_path:
@@ -3467,7 +3358,6 @@ tower_of_life:
   difficulty: 0
   length: 4
   members: true
-  sprite: 9565
   region: 43
   start_point: "Talk to Effigy outside the Tower of Life south of Ardougne."
   start_path:
@@ -3500,7 +3390,6 @@ tribal_totem:
   difficulty: 1
   length: 1
   members: true
-  sprite: 9540
   region: 28
   start_point: "Talk to Kangai Mau in Brimhaven."
   start_path:
@@ -3518,7 +3407,6 @@ troll_romance:
   difficulty: 2
   length: 3
   members: true
-  sprite: 9538
   region: 34
   start_point: "Talk to Ug in the troll stronghold."
   start_path:
@@ -3540,7 +3428,6 @@ troll_stronghold:
   difficulty: 2
   length: 2
   members: true
-  sprite: 9541
   region: 0
   start_point: "Talk to Commander Denulth at the Burthorpe training camp."
   start_path:
@@ -3561,7 +3448,6 @@ underground_pass:
   difficulty: 2
   length: 6
   members: true
-  sprite: 9571
   region: 40
   start_point: "Talk to King Lathas in Ardougne Castle."
   start_path:
@@ -3581,7 +3467,6 @@ vampire_slayer:
   name: "Vampire Slayer"
   difficulty: 0
   length: 1
-  sprite: 8273
   region: 4
   start_point: "Talk to Morgan in Draynor Village."
   start_path:
@@ -3650,14 +3535,13 @@ wanted:
   difficulty: 1
   length: 4
   members: true
-  sprite: 8275
   region: 16
   start_point: "Talk to Sir Tiffy Cashien in Falador Park."
   start_path:
     - [ 2997, 3374 ]
   req_quests:
     - recruitment_drive
-    - enter_the_abyss_miniquest
+    - enter_the_abyss
   req_items: "10,000 coins (or an enchanted gem, molten glass and a law rune)."
   req_combat: "You will need to defeat a mighty murder mage and level 30 black knights."
   points: 1
@@ -3669,7 +3553,6 @@ watchtower:
   difficulty: 1
   length: 5
   members: true
-  sprite: 9510
   region: 44
   start_point: "Talk to the Watchtower Wizard, in the Watchtower north-west of Yanille."
   start_path:
@@ -3707,7 +3590,6 @@ what_lies_below:
   difficulty: 1
   length: 2
   members: true
-  sprite: 9565
   region: 9
   start_point: "Talk to Rat Burgiss, south of Varrock."
   start_path:
@@ -3725,7 +3607,6 @@ while_guthix_sleeps:
   difficulty: 4
   length: 8
   members: true
-  sprite: 17751
   region: 39
   start_point: "Talk to Radimus Erkle in the Legends' Guild, which is located in the north-east of Ardougne."
   start_path:
@@ -3758,7 +3639,6 @@ witchs_house:
   name: "Witch's House"
   difficulty: 1
   length: 1
-  sprite: 31738
   region: 2
   start_point: "Talk to Harvey, the crying boy west of Falador."
   start_path:
@@ -3806,7 +3686,6 @@ wolf_whistle:
   name: "Wolf Whistle"
   difficulty: 0
   length: 2
-  sprite: 9551
   region: 1
   start_point: "Talk to Pikkupstix in his house in Taverley."
   start_path:
@@ -3822,7 +3701,6 @@ zogre_flesh_eaters:
   difficulty: 1
   length: 3
   members: true
-  sprite: 17188
   region: 45
   start_point: "Talk to Grish, located west of Gu'Tanoth and south of Castle Wars."
   start_path:

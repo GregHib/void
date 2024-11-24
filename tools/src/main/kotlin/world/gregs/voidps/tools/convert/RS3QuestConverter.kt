@@ -68,7 +68,9 @@ object RS3QuestConverter {
                 println("  sub_quest: ${identifier(decoder[def.subQuest])}")
             }
             if (extras.containsKey("7829")) {
-                println("  sprite: ${extras["7829"]}")
+                if ((extras["7829"] as Int) < 4545) {
+                    println("  sprite: ${extras["7829"]}")
+                }
             }
             if (def.itemSprite != -1) {
                 println("  item_sprite: ${def.itemSprite}")
