@@ -222,7 +222,6 @@ blood_pact:
   difficulty: 0
   length: 1
   sprite: 3176
-  item_sprite: 26115
   region: 3
   start_point: "Talk to Xenia in the graveyard of Lumbridge Church."
   start_path:
@@ -267,7 +266,6 @@ buyers_and_cellars:
   length: 2
   members: true
   sprite: 3073
-  item_sprite: 26116
   region: 3
   start_point: "Talk to Darren Lightfinger in his cellar (accessed through a trapdoor north of the Lumbridge furnace)."
   start_path:
@@ -430,7 +428,6 @@ cooks_assistant:
   difficulty: 0
   length: 1
   sprite: 2379
-  item_sprite: 26110
   region: 3
   start_point: "Talk to the cook in the kitchen of Lumbridge Castle."
   start_path:
@@ -578,7 +575,6 @@ death_plateau:
   difficulty: 0
   length: 1
   sprite: 9570
-  item_sprite: 33641
   region: 0
   start_point: "Talk to Commander Denulth at the Burthorpe training camp."
   start_path:
@@ -651,7 +647,6 @@ demon_slayer:
   difficulty: 0
   length: 1
   sprite: 25450
-  item_sprite: 25453
   region: 7
   start_point: "Talk to Gideon Bede at the Saradominist church in north-east Varrock."
   start_path:
@@ -744,7 +739,6 @@ dig_site:
   length: 5
   members: true
   sprite: 9524
-  item_sprite: 10797
   region: 9
   start_point: "Talk to an examiner in the Exam Centre."
   start_path:
@@ -768,7 +762,6 @@ do_no_evil:
   length: 7
   members: true
   sprite: 4435
-  item_sprite: 26121
   region: 22
   start_point: "Talk to Leela and Senliten in Senliten's tomb."
   start_path:
@@ -817,7 +810,6 @@ dragon_slayer:
   difficulty: 2
   length: 5
   sprite: 4428
-  item_sprite: 33638
   region: 9
   start_point: "Talk to the Guildmaster inside the Champions' Guild, south of Varrock."
   start_path:
@@ -859,7 +851,6 @@ druidic_ritual:
   difficulty: 0
   length: 1
   sprite: 4432
-  item_sprite: 33639
   region: 0
   start_point: "Talk to Kaqemeex at the stone circle north of Taverley."
   start_path:
@@ -989,7 +980,6 @@ elemental_workshop_iii:
   length: 4
   members: true
   sprite: 3138
-  item_sprite: 26118
   region: 30
   start_point: "Search a bookcase in Seers' Village church."
   start_path:
@@ -1078,7 +1068,6 @@ ernest_the_chicken:
   difficulty: 0
   length: 3
   sprite: 2382
-  item_sprite: 26112
   region: 5
   start_point: "Talk to Veronica outside Draynor Manor."
   start_path:
@@ -1168,7 +1157,6 @@ fairy_tale_iii:
   length: 5
   members: true
   sprite: 3133
-  item_sprite: 26117
   region: 44
   start_point: "Talk to the Fairy Queen at Fairy Resistance HQ, reached by using the main fairy ring in Zanaris."
   start_path:
@@ -1380,7 +1368,6 @@ from_tiny_acorns_miniquest:
   length: 1
   members: true
   sprite: 3073
-  item_sprite: 26116
   region: 3
   start_point: "Talk to Darren Lightfinger in his cellar (accessed through a trapdoor north of the Lumbridge furnace)."
   start_path:
@@ -1561,7 +1548,6 @@ goblin_diplomacy:
   difficulty: 0
   length: 1
   sprite: 4429
-  item_sprite: 33636
   region: 14
   start_point: "Talk to General Bentnoze or General Wartface in the Goblin Village, north of Falador."
   start_path:
@@ -1650,7 +1636,6 @@ grim_tales:
   length: 3
   members: true
   sprite: 9512
-  item_sprite: 31740
   region: 2
   start_point: "Talk to Sylas, south of Taverley."
   start_path:
@@ -1678,7 +1663,6 @@ guild_of_our_own_miniquest:
   length: 2
   members: true
   sprite: 3073
-  item_sprite: 26116
   region: 3
   start_point: "Talk to Darren Lightfinger in his cellar (accessed through a trapdoor north of the Lumbridge furnace)."
   start_path:
@@ -1702,7 +1686,6 @@ gunnars_ground:
   difficulty: 0
   length: 2
   sprite: 3797
-  item_sprite: 26126
   region: 11
   start_point: "Talk to Dororan outside the barbarian village."
   start_path:
@@ -1787,7 +1770,6 @@ heroes_quest:
   length: 3
   members: true
   sprite: 9531
-  item_sprite: 33640
   region: 0
   start_point: "Talk to Achiettes at the entrance to the Heroes' Guild in Burthorpe."
   start_path:
@@ -1954,7 +1936,6 @@ imp_catcher:
   difficulty: 0
   length: 1
   sprite: 4427
-  item_sprite: 33635
   region: 6
   start_point: "Talk to Wizard Mizgog on the first floor of the Wizards' Tower, south of Draynor."
   start_path:
@@ -2088,7 +2069,6 @@ king_of_the_dwarves:
   length: 4
   members: true
   sprite: 3798
-  item_sprite: 26122
   region: 46
   start_point: "Talk to lava-flow miner Sven in Keldagrim East."
   start_path:
@@ -2293,7 +2273,6 @@ lost_her_marbles_miniquest:
   length: 3
   members: true
   sprite: 3073
-  item_sprite: 26116
   region: 3
   start_point: "Talk to Darren Lightfinger in his cellar (accessed through a trapdoor north of the Lumbridge furnace)."
   start_path:
@@ -2339,7 +2318,6 @@ love_story:
   length: 4
   members: true
   sprite: 3149
-  item_sprite: 26125
   region: 5
   start_point: "Talk to Mabel at the barn north-east of Draynor Village."
   start_path:
@@ -2635,7 +2613,6 @@ myths_of_the_white_lands:
   difficulty: 0
   length: 3
   sprite: 3175
-  item_sprite: 26114
   region: 3
   start_point: "Talk to Explorer Jack in his house by the Lumbridge General Store."
   start_path:
@@ -2840,7 +2817,6 @@ pirates_treasure:
   difficulty: 0
   length: 1
   sprite: 4430
-  item_sprite: 33637
   region: 19
   start_point: "Talk to Redbeard Frank just south of The Rusty Anchor pub in Port Sarim."
   start_path:
@@ -2907,7 +2883,6 @@ purple_cat_miniquest:
   difficulty: 1
   length: 1
   sprite: 3174
-  item_sprite: 26113
   region: 5
   start_point: "Talk to Wendy, west of the Draynor Village lodestone."
   start_path:
@@ -2926,7 +2901,6 @@ quiet_before_the_swarm:
   length: 4
   members: true
   sprite: 3150
-  item_sprite: 26124
   region: 16
   start_point: "Talk to Sir Tiffy in Falador Park."
   start_path:
@@ -3285,7 +3259,6 @@ restless_ghost:
   difficulty: 0
   length: 1
   sprite: 2381
-  item_sprite: 26111
   region: 3
   start_point: "Talk to Father Aereck in the church east of Lumbridge Castle."
   start_path:
@@ -3548,7 +3521,6 @@ sheep_shearer_miniquest:
   difficulty: 0
   length: 0
   sprite: 2380
-  item_sprite: 26127
   region: 3
   start_point: "Talk to Fred the farmer in his farm, north of the Lumbridge market."
   start_path:
@@ -3564,7 +3536,6 @@ shield_of_arrav:
   difficulty: 0
   length: 3
   sprite: 29382
-  item_sprite: 24929
   region: 8
   start_point: "Talk to Reldo in the Varrock palace library."
   start_path:
@@ -3779,7 +3750,6 @@ swept_away:
   difficulty: 0
   length: 2
   sprite: 3174
-  item_sprite: 26113
   region: 5
   start_point: "Talk to Maggie at her caravan north of Draynor Village."
   start_path:
@@ -4158,7 +4128,6 @@ void_dance:
   length: 5
   members: true
   sprite: 3151
-  item_sprite: 26119
   region: 19
   start_point: "Talk to Commodore Tyr at the Void Knights' Outpost, accessible from the squire at Port Sarim docks."
   start_path:
@@ -4188,7 +4157,6 @@ void_stares_back:
   length: 5
   members: true
   sprite: 3802
-  item_sprite: 26120
   region: 16
   start_point: "Talk to Captain Korasi in Falador Park."
   start_path:
@@ -4300,28 +4268,6 @@ what_lies_below:
   xp: "8,000 Runecrafting XP lamp"
   varbits:
     - [ 10939, 5, 150 ]
-# TODO doric's quest
-#whats_mine_is_yours:
-#  id: 3
-#  name: "What's Mine is Yours"
-#  difficulty: 0
-#  length: 3
-#  sprite: 22956
-#  item_sprite: 22976
-#  region: 14
-#  start_point: "Talk to Doric who is just outside the gates of Taverley."
-#  start_path:
-#    - [ 2959, 3439 ]
-#  req_skills:
-#    Smithing: 5
-#  req_items: "Combat equipment is recommended, and some food might be useful."
-#  req_combat: "You will need to fight several level 3 enemies."
-#  points: 1
-#  achievement: 11
-#  reward: "180 coins<br>Gofannon amulet (which gives limited bonus Mining and Smithing XP)<br>Access to Doric and Boric tasks Gofannon amulet charges, Mining XP and Smithing XP (partially members)"
-#  xp: "1,000 Mining XP<br>400 Smithing XP"
-#  varbits:
-#    - [ 9998, 4, 55 ]
 while_guthix_sleeps:
   id: 145
   name: "While Guthix Sleeps"
@@ -4365,7 +4311,6 @@ witchs_house:
   difficulty: 1
   length: 1
   sprite: 31738
-  item_sprite: 31739
   region: 2
   start_point: "Talk to Harvey, the crying boy west of Falador."
   start_path:
@@ -4383,7 +4328,6 @@ witchs_potion_miniquest:
   difficulty: 0
   length: 0
   sprite: 3150
-  item_sprite: 26124
   region: 18
   start_point: "Talk to Hetty in Rimmington."
   start_path:
@@ -4424,7 +4368,6 @@ wolf_whistle:
   difficulty: 0
   length: 2
   sprite: 9551
-  item_sprite: 33642
   region: 1
   start_point: "Talk to Pikkupstix in his house in Taverley."
   start_path:
