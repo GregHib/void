@@ -285,6 +285,32 @@ music_player:
         Cancel: 3
     currently_playing: 4
     playlist: 9
+quest_intro:
+  id: 178
+  type: main_screen
+  components:
+    start_point_field: 52
+    req_field: 55
+    items_field: 59
+    combat_field: 62
+    rewards_field: 66
+    start_choice_layer: 27
+    progress_status_layer: 28
+    status_field: 70
+    quest_field: 14
+    hidden_button_txt: 30
+    hide_show_layer: 64
+    text_details_layer: 65
+    items_hidden_button_txt: 57
+    items_hide_show_layer: 56
+    items_text_details_layer: 58
+    scroll_layer_rewards: 63
+    scroll_layer_item: 4
+    startyes_layer: 73
+    startno_layer: 74
+    objective_set: 75
+    objective_text: 76
+    quest_icon: 79
 dialogue_macro_mime_emotes:
   id: 188
   type: dialogue_box

@@ -16,12 +16,12 @@ import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.timerTick
@@ -32,6 +32,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
+import world.gregs.voidps.world.interact.dialogue.type.startQuest
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
@@ -41,7 +42,10 @@ val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 
 modCommand("test") {
-    println(player.rights)
+    player.weakQueue(name = "level_up") {
+        val response = startQuest(content)
+        println(response)
+    }
 }
 
 modCommand("patrol") {
