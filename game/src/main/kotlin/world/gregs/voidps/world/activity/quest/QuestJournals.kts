@@ -14,6 +14,7 @@ val quests = arrayOf(
     "dorics_quest",
 	"gunnars_ground",
     "the_knights_sword",
+    "the_restless_ghost",
     "rune_mysteries",
     // members
     "druidic_ritual"
