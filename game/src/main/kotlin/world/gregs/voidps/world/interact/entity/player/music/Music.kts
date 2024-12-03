@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.playTrack
+import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -67,7 +68,10 @@ interfaceOption("Play", "tracks", "music_player") {
     }
 }
 
-fun Player.hasUnlocked(musicIndex: Int) = containsVarbit("unlocked_music_${musicIndex / 32}", musicIndex)
+fun Player.hasUnlocked(musicIndex: Int): Boolean {
+    val name = enums.get("music_track_names").getString(musicIndex)
+    return containsVarbit("unlocked_music_${musicIndex / 32}", toIdentifier(name))
+}
 
 fun autoPlay(player: Player, track: MusicTracks.Track) {
     val index = track.index
