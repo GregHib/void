@@ -2696,6 +2696,9 @@ large_door_38_closed:
 crate_56:
   id: 5700
   examine: "A wooden crate."
+coffin_restless_ghost:
+  id: 5726
+  examine: "Ooooh! Spooky!"  
 coffin_13:
   id: 5727
   examine: "Ooooh! Spooky!"
@@ -11874,3 +11877,15 @@ cauldron_of_thunder:
 suit_of_armour:
   id: 32292
   examine: "A dusty old suit of armour."
+rocks_skull_restless_ghost_quest:
+  id: 47714
+  examine: "A haven for all manner of creepy crawlies, no doubt."
+rocks_no_skull_restless_ghost_quest:
+  id: 47715
+  examine: "A haven for all manner of creepy crawlies, no doubt."
+coffin_restless_ghost_2:
+  id: 15061
+  examine: "Ooooh! Spooky!"
+railing_wizards_tower:
+  id: 37668
+  examine: "A sturdy metal railing."

@@ -107,7 +107,7 @@ quest_points_total:
   format: map
   default: total
   values:
-    total: 16
+    total: 17
 cooks_assistant:
   id: 29
   persist: true
@@ -627,4 +627,16 @@ world_map_marker_custom:
   id: 1159
   format: int
   persist: true
-
+the_restless_ghost:
+  id: 107
+  type: varp
+  persist: true
+  format: map
+  default: unstarted
+  values:
+    unstarted: 0
+    started: 1
+    ghost: 2
+    mining_spot: 3
+    found_skull: 4
+    completed: 5

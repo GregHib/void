@@ -1950,6 +1950,7 @@
 - { id: giant_rat_dark_injured, x: 3202, y: 3161 }
 - { id: giant_rat_dark_injured, x: 3233, y: 3161 }
 # 12850
+- { id: father_aereck, x: 3246, y: 3205 }
 - { id: woman, x: 3217, y: 3205 }
 - { id: woman, x: 3211, y: 3213, level: 1 }
 - { id: woman, x: 3235, y: 3206 }
