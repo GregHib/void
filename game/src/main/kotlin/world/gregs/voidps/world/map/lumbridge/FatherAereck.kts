@@ -111,5 +111,7 @@ suspend fun CharacterContext.foundSkull() {
 }
 
 suspend fun CharacterContext.completed() {
-
+    npc<Happy>("Thank you for getting rid of that awful ghost for me! May Saradomin always smile upon you!")
+    player<Happy>("I'm looking for a new quest.")
+    npc<Happy>("Sorry, I only had the one quest.")
 }
