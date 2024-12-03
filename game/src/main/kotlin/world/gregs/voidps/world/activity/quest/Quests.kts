@@ -7,7 +7,8 @@ val quests = listOf(
     "cooks_assistant",
     "demon_slayer",
     "dorics_quest",
-	"gunnars_ground",
+    "gunnars_ground",
+    "the_restless_ghost",
     "rune_mysteries",
     "the_knights_sword",
     // mini-quests
