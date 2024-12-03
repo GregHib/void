@@ -80,6 +80,7 @@ suspend fun CharacterContext.returnSkull() {
     val offset = instance.offset(region)
     player["restless_ghost_instance"] = instance
     player["restless_ghost_offset"] = offset
+    player.inventory.remove("muddy_skull")
     val ghost = npcs.get(Tile(3250, 3195)).firstOrNull { it.id == "restless_ghost" }
     if (ghost != null) {
         npcs.removeIndex(ghost)
