@@ -195,7 +195,7 @@ suspend fun TargetNPCContext.startSpell() {
     target.clearWatch()
     target.face(obj)
     delay(1)
-    target.setAnimation("unlock_chest")
+    target.setAnimation("open_chest")
     player.playSound("chest_open")
     delay(1)
     player.inventory.add("silverlight_key_wizard_traiborn")
