@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.combat.hit
 
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
@@ -42,7 +43,7 @@ fun combatAttack(weapon: String = "*", type: String = "*", spell: String = "*", 
     Events.handle("player_combat_attack", "player", weapon, type, spell, handler = handler)
 }
 
-fun npcCombatAttack(npc: String = "*", weapon: String = "*", type: String = "*", spell: String = "*", handler: suspend CombatAttack.(Player) -> Unit) {
+fun npcCombatAttack(npc: String = "*", weapon: String = "*", type: String = "*", spell: String = "*", handler: suspend CombatAttack.(NPC) -> Unit) {
     Events.handle("npc_combat_attack", npc, weapon, type, spell, handler = handler)
 }
 
