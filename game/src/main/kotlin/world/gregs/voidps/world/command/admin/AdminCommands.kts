@@ -235,7 +235,7 @@ adminCommand("setlevel") {
         target.experience.set(skill, Level.experience(skill, level))
         player.levels.set(skill, level)
         player.softQueue("", 1) {
-            target.removeVarbit("skill_stat_flash", skill.name.toSnakeCase())
+            target.removeVarbit("skill_stat_flash", skill.name.lowercase())
         }
     }
 }
