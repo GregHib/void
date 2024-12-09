@@ -45,25 +45,21 @@ npcOperate("Talk-to", "father_aereck") {
                 }
                 option<Happy>("I'm looking for a quest.") {
                     npc<Happy>("That's lucky, I need someone to do a quest for me.")
-                    choice("Start the Restless Ghost quest?") {
-                        option("Yes.") {
-                            player["the_restless_ghost"] = "started"
-                            player.refreshQuestJournal()
-                            player<Happy>("Okay, let me help then.")
-                            player.refreshQuestJournal()
-                            npc<Happy>("Thank you. The problem is, there is a ghost in the church graveyard. I would like you to get rid of it.")
-                            npc<Happy>("If you need any help, my friend Father Urhney is an expert on ghosts.")
-                            npc<Happy>("I believe he is currently living as a hermit in Lumbridge swamp. He has a little shack in the far west of the swamps.")
-                            npc<Neutral>("Exit the graveyard through the south gate to reach the swamp. I'm sure if you told him that I sent you he'd be willing to help.")
-                            npc<Happy>("My name is Father Aereck by the way. Pleased to meet you.")
-                            player<Happy>("Likewise.")
-                            npc<Neutral>("Take care travelling through the swamps, I have heard they can be quite dangerous.")
-                            player<Happy>("I will, thanks.")
-                        }
-                        option("No.") {
-                            player<Neutral>("Actually, I don't have time right now.")
-                            npc<Sad>("Oh well. If you do have some spare time on your hands, come back and talk to me.")
-                        }
+                    if (startQuest("the_restless_ghost")) {
+                        player["the_restless_ghost"] = "started"
+                        player.refreshQuestJournal()
+                        player<Happy>("Okay, let me help then.")
+                        npc<Happy>("Thank you. The problem is, there is a ghost in the church graveyard. I would like you to get rid of it.")
+                        npc<Happy>("If you need any help, my friend Father Urhney is an expert on ghosts.")
+                        npc<Happy>("I believe he is currently living as a hermit in Lumbridge swamp. He has a little shack in the far west of the swamps.")
+                        npc<Neutral>("Exit the graveyard through the south gate to reach the swamp. I'm sure if you told him that I sent you he'd be willing to help.")
+                        npc<Happy>("My name is Father Aereck by the way. Pleased to meet you.")
+                        player<Happy>("Likewise.")
+                        npc<Neutral>("Take care travelling through the swamps, I have heard they can be quite dangerous.")
+                        player<Happy>("I will, thanks.")
+                    } else {
+                        player<Neutral>("Actually, I don't have time right now.")
+                        npc<Sad>("Oh well. If you do have some spare time on your hands, come back and talk to me.")
                     }
                 }
             }
