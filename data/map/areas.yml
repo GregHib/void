@@ -67,7 +67,7 @@ lumbridge_castle_portcullis:
     y: [ 3212, 3225 ]
     level: 2
   tags: [ high ]
-drayor_willow_trees:
+draynor_willow_trees:
   area:
     x: [ 3083, 3090 ]
     y: [ 3227, 3238 ]
@@ -75,28 +75,28 @@ drayor_willow_trees:
   trees: [ willow ]
   levels: 30-45
   spaces: 6
-drayor_oak_trees:
+draynor_oak_trees:
   area:
     x: [ 3098, 3103 ]
     y: [ 3241, 3253 ]
   tags: [ trees ]
   trees: [ tree, oak ]
   levels: 0-30
-drayor_west_oak_trees:
+draynor_west_oak_trees:
   area:
     x: [ 3068, 3072 ]
     y: [ 3248, 3260 ]
   tags: [ trees ]
   trees: [ tree, oak ]
   levels: 0-30
-drayor_north_trees:
+draynor_north_trees:
   area:
     x: [ 3075, 3085 ]
     y: [ 3265, 3274 ]
   tags: [ trees ]
   trees: [ tree, oak ]
   levels: 0-30
-drayor_bank:
+draynor_bank:
   area:
     x: [ 3088, 3097 ]
     y: [ 3240, 3246 ]
@@ -1047,3 +1047,11 @@ draynor_village_market:
   area:
     x: [ 3074, 3074, 3082, 3082, 3086, 3086 ]
     y: [ 3246, 3257, 3257, 3255, 3255, 3246 ]
+al_kharid_prison:
+  area:
+    x: [ 3297, 3299 ]
+    y: [ 3121, 3125 ]
+al_kharid_mine:
+  area:
+    x: [ 3291, 3308 ]
+    y: [ 3281, 3320 ]

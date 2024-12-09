@@ -27,11 +27,11 @@ interfaceOption("View", id = "stats") {
     val skill = valueOf(component.toSentenceCase())
     val menuIndex = menu.indexOf(skill) + 1
     player.closeInterfaces()
-    if (player.containsVarbit("skill_stat_flash", skill.name.toSnakeCase())) {
+    if (player.containsVarbit("skill_stat_flash", skill.name.lowercase())) {
         val extra = 0//0 - normal, 2 - combat milestone, 4 - total milestone
         player["level_up_details"] = menuIndex * 8 + extra
         player.open("skill_level_details")
-        player.removeVarbit("skill_stat_flash", skill.name.toSnakeCase())
+        player.removeVarbit("skill_stat_flash", skill.name.lowercase())
     } else {
         player["skill_guide"] = menuIndex
         player["active_skill_guide"] = menuIndex

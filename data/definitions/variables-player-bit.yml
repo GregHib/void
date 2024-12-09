@@ -2697,3 +2697,15 @@ quest_intro_unmark_map:
   id: 6924
   persist: true
   format: boolean
+restless_ghost_coffin:
+  id: 2129
+  persist: true
+  format: list
+  default: no_skull
+  values: [ no_skull, skull ]
+rocks_restless_ghost:
+  id: 2130
+  persist: true
+  format: list
+  default: skull
+  values: [ skull, no_skull ]

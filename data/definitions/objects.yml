@@ -1370,7 +1370,7 @@ unlocked_door_2_opened:
 unlocked_door_2_closed:
   id: 2141
   examine: "Freedom awaits."
-coffin_9:
+restless_ghost_coffin_closed:
   id: 2145
   examine: "Ooooh! Spooky!"
 door_39_opened:
@@ -2696,13 +2696,16 @@ large_door_38_closed:
 crate_56:
   id: 5700
   examine: "A wooden crate."
+coffin_restless_ghost:
+  id: 5726
+  examine: "Ooooh! Spooky!"  
 coffin_13:
   id: 5727
   examine: "Ooooh! Spooky!"
-coffin_14:
+restless_ghost_coffin_headless:
   id: 5728
   examine: "Ooooh! Spooky!"
-coffin_15:
+restless_ghost_coffin:
   id: 5729
   examine: "Ooooh! Spooky!"
 sturdy_door_3_opened:
@@ -11874,3 +11877,15 @@ cauldron_of_thunder:
 suit_of_armour:
   id: 32292
   examine: "A dusty old suit of armour."
+rocks_skull_restless_ghost_quest:
+  id: 47714
+  examine: "A haven for all manner of creepy crawlies, no doubt."
+rocks_no_skull_restless_ghost_quest:
+  id: 47715
+  examine: "A haven for all manner of creepy crawlies, no doubt."
+coffin_restless_ghost_2:
+  id: 15061
+  examine: "Ooooh! Spooky!"
+railing_wizards_tower:
+  id: 37668
+  examine: "A sturdy metal railing."

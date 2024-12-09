@@ -397,11 +397,32 @@ kaqemeex:
   wander_radius: 4
   race: human
   examine: "A wise druid."
+father_aereck:
+  id: 456
+  wander_radius: 4
+  race: human
+  examine: "He seems to be very devout."
+restless_ghost:
+  id: 457
+  race: human
+  examine: "Eek! A ghost!"
 father_urhney:
   id: 458
   wander_radius: 4
   race: human
   examine: "Very holy."
+skeleton_warlock:
+  id: 459
+  hitpoints: 180
+  mage: 10
+  def: 7
+  spell: earth_strike
+  attack_range: 5
+  attack_radius: 11
+  style: magic
+  max_hit_magic: 30
+  race: skeleton
+  examine: "It rattles when it moves."
 giant_surprise_exam:
   id: 487
   examine: "I guess he wants to be more than just the muscle."

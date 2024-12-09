@@ -87,17 +87,21 @@ fun dropItems(player: Player, killer: Character?, tile: Tile, inWilderness: Bool
     val items = ItemsKeptOnDeath.getAllOrdered(player)
     val kept = ItemsKeptOnDeath.kept(player, items, enums)
 
+    // Remove kept so they aren't dropped
     for (item in kept) {
         if (player.inventory.remove(item.id, item.amount) || player.equipment.remove(item.id, item.amount)) {
             continue
         }
     }
+    // Drop everything
     drop(player, Item("bones", 1), tile, inWilderness, killer)
     drop(player, player.inventory, tile, inWilderness, killer)
     drop(player, player.equipment, tile, inWilderness, killer)
+    // Clear everything
     player.inventory.clear()
     player.equipment.clear()
 
+    // Return kept items
     for (item in kept) {
         player.inventory.add(item.id, item.amount)
     }

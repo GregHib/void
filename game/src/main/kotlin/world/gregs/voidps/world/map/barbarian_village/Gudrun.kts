@@ -201,7 +201,7 @@ suspend fun CharacterContext.cutscenePart2(instance: Region) {
     }
     player.moveCamera(Tile(3084, 3421).add(offset), 350)
     player.turnCamera(Tile(3082, 3426).add(offset), 250)
-	val gudrunHugging = objects.add("gudrun_and_dororan", Tile(3082,3426), shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+	val gudrunHugging = objects.add("gudrun_and_dororan", Tile(3082,3426).add(offset), shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
     player.open("fade_in")
     npc<Happy>("gudrun_cutscene", "That was brilliant! I must know who wrote that poem.")
     npc<Sad>("dororan_cutscene", "Um, that would be me. Hello")
