@@ -93,7 +93,6 @@ suspend fun CharacterContext.returnSkull() {
     }
     npcs.remove(ghost)
     val restlessGhost = npcs.add("restless_ghost", Tile(3248, 3193).add(offset), Direction.SOUTH) ?: return
-    npcs.index(restlessGhost)
     player.tele(Tile(3248, 3192).add(offset), clearInterfaces = false)
     npc<Happy>("restless_ghost", "Release! Thank you stranger.", clickToContinue = false)
     player.moveCamera(Tile(3251, 3193).add(offset), 320)
