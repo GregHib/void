@@ -75,6 +75,8 @@ itemOnObjectOperate("muddy_skull", "coffin_restless_ghost_2") {
     returnSkull()
 }
 
+val ghostSpawn = Tile(3250, 3195)
+
 suspend fun CharacterContext.returnSkull() {
     player.message("You put the skull in the coffin.")
     val region = Region(12849)
@@ -83,7 +85,7 @@ suspend fun CharacterContext.returnSkull() {
     player["restless_ghost_instance"] = instance
     player["restless_ghost_offset"] = offset
     player.inventory.remove("muddy_skull")
-    val ghost = npcs[Tile(3250, 3195)].firstOrNull { it.id == "restless_ghost" }
+    val ghost = npcs[ghostSpawn].firstOrNull { it.id == "restless_ghost" }
     if (ghost != null) {
         npcs.removeIndex(ghost)
     }
@@ -162,27 +164,25 @@ objectOperate("Search", "restless_ghost_coffin_closed") {
 }
 
 suspend fun CharacterContext.spawnGhost() {
-    if (!player["restless_ghost_summoned", false]) {
-        player["restless_ghost_summoned"] = true
+    val ghostExists = npcs[ghostSpawn.zone].any { it.id == "restless_ghost" }
+    if (!ghostExists) {
         player.playSound("coffin_open")
         player.playSound("rg_ghost_approach")
-        player.shoot("restless_ghost", Tile(3250, 3195), height = 30, endHeight = 0, flightTime = 50)
+        player.shoot("restless_ghost", ghostSpawn, height = 30, endHeight = 0, flightTime = 50)
         delay(1)
         player.playSound("bigghost_appear")
         delay(1)
-        val ghost = npcs.add("restless_ghost", Tile(3250, 3195), Direction.SOUTH) ?: return
+        val ghost = npcs.add("restless_ghost", ghostSpawn, Direction.SOUTH) ?: return
         ghost.playAnimation("restless_ghost_awakens")
-        World.queue("ghost", TimeUnit.SECONDS.toTicks(60)) {
+        ghost.softQueue("despawn", TimeUnit.SECONDS.toTicks(60)) {
             npcs.removeIndex(ghost)
-            player["restless_ghost_summoned"] = false
         }
+    } else {
+        player.message("There's a skeleton without a skull in here. There's no point in disturbing it.")
     }
 }
 
 playerSpawn { player ->
-    if (!player.questComplete("the_restless_ghost")) {
-        player["restless_ghost_summoned"] = false
-    }
     player.sendVariable("rocks_restless_ghost")
     player.sendVariable("restless_ghost_coffin")
 }

@@ -477,7 +477,3 @@ equip_crossbow:
 flagstaff_runefest:
   persist: true
   format: boolean
-restless_ghost_summoned:
-  format: boolean
-  persist: true
-  default: false
