@@ -65,6 +65,12 @@ objectOperate("Search", "rocks_no_skull_restless_ghost_quest") {
     }
 }
 
-canDestroy("muddy_skull") { player ->
+playerDeath { player ->
+    if (!player.ownsItem("muddy_skull")) {
+        player["rocks_restless_ghost"] = "skull"
+    }
+}
+
+destroyed("muddy_skull") { player ->
     player["rocks_restless_ghost"] = "skull"
 }
