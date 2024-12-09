@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-objectOperate("*", "trapdoor_*_closed") {
+objectOperate("Open", "trapdoor_*_closed") {
     player.setAnimation("open_chest")
     target.replace(target.id.replace("_closed", "_opened"), ticks = TimeUnit.MINUTES.toTicks(3))
 }
