@@ -5,22 +5,23 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
-import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.*
+import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.map.instance.Instances
+import world.gregs.voidps.engine.queue.LogoutBehaviour
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.engine.timer.toTicks
@@ -82,6 +83,7 @@ suspend fun CharacterContext.returnSkull() {
     val region = Region(12849)
     val instance = startCutscene(region)
     val offset = instance.offset(region)
+    setCutsceneEnd(instance)
     player["restless_ghost_instance"] = instance
     player["restless_ghost_offset"] = offset
     player.inventory.remove("muddy_skull")
@@ -111,13 +113,7 @@ suspend fun CharacterContext.returnSkull() {
     player.turnCamera(Tile(3254, 3180).add(offset), 900, 3, 3)
     Tile(3244, 3190).add(offset).shoot("restless_ghost", Tile(3255, 3179).add(offset), height = 50, endHeight = 0, flightTime = 100)
     delay(5)
-    Instances.free(instance)
-    val regionLevel = instance.toLevel(0)
-    npcs.clear(regionLevel)
-    npcs.removeIndex(restlessGhost)
-    player.clearCamera()
-    player.tele(3247, 3193)
-    stopCutscene(instance)
+    endCutscene(instance)
     questComplete()
 }
 
@@ -185,4 +181,17 @@ suspend fun CharacterContext.spawnGhost() {
 playerSpawn { player ->
     player.sendVariable("rocks_restless_ghost")
     player.sendVariable("restless_ghost_coffin")
+}
+
+fun CharacterContext.setCutsceneEnd(instance: Region) {
+    player.queue("restless_ghost_cutscene_end", 1, LogoutBehaviour.Accelerate) {
+        endCutscene(instance)
+    }
+}
+
+fun CharacterContext.endCutscene(instance: Region) {
+    npcs.clear(instance.toLevel(0))
+    player.clearCamera()
+    player.tele(3247, 3193)
+    stopCutscene(instance)
 }
