@@ -3,7 +3,6 @@ package world.gregs.voidps.world.activity.quest
 import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.world.activity.bank.ownsItem
 
-
 interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 11) {
     val lines = when (player.quest("the_restless_ghost")) {
         "completed" -> listOf(
@@ -37,18 +36,18 @@ interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 11) {
         )
         "ghost" -> {
             val list = mutableListOf(
-            "<str>I've not started this quest yet.",
-            "<str>I can start this quest by speaking to Father Aereck in the",
-            "<str>church east of Lumbridge Castle in the centre of",
-            "<str>Lumbridge",
-            "<str>I should find Father Urhney, who is an expert on ghosts.",
-            "<str>He lives in a shack in the south of Lumbridge Swamp, near",
-            "<str>the coastline.",
-            "",
-            "<navy>I should talk to the <maroon>ghost <navy>in the crypt south of Lumbridge",
-            "<navy>church to find out why it is haunting the <maroon>graveyard <navy>I must",
-            "<navy>make sure to wear my ghostspeak amulet when doing so.",
-            ""
+                "<str>I've not started this quest yet.",
+                "<str>I can start this quest by speaking to Father Aereck in the",
+                "<str>church east of Lumbridge Castle in the centre of",
+                "<str>Lumbridge",
+                "<str>I should find Father Urhney, who is an expert on ghosts.",
+                "<str>He lives in a shack in the south of Lumbridge Swamp, near",
+                "<str>the coastline.",
+                "",
+                "<navy>I should talk to the <maroon>ghost <navy>in the crypt south of Lumbridge",
+                "<navy>church to find out why it is haunting the <maroon>graveyard <navy>I must",
+                "<navy>make sure to wear my ghostspeak amulet when doing so.",
+                ""
             )
             if (!player.ownsItem("ghostspeak_amulet")) {
                 list.add("<navy>I seem to have loast my <maroon>Amulet of Ghost speak. <navy>I should talk to")
