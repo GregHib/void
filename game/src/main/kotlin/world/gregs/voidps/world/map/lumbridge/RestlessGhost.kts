@@ -9,18 +9,15 @@ import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 
-
 npcOperate("Talk-to", "restless_ghost") {
     when (player.quest("the_restless_ghost")) {
         "unstarted" -> {
             npc<Neutral>("Wooooo! Ooooooh!")
             player<Uncertain>("I can't understand a word you are saying. Maybe Father Aereck will be able to help.")
         }
-        "started","ghost" -> ghost()
+        "started", "ghost" -> ghost()
         "mining_spot", "found_skull" -> miningSpot()
-        else -> {
-            player.message("The ghost doesn't appear to be interested in talking.")
-        }
+        else -> player.message("The ghost doesn't appear to be interested in talking.")
     }
 }
 
@@ -160,7 +157,7 @@ suspend fun CharacterContext.task() {
 
 suspend fun CharacterContext.helpMe() {
     choice {
-        option<Happy>("Yes, ok. Do you know WHY you're a ghost?"){
+        option<Happy>("Yes, ok. Do you know WHY you're a ghost?") {
             task()
         }
         option<Neutral>("No, you're scary!") {

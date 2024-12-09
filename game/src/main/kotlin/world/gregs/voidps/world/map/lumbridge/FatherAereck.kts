@@ -28,7 +28,7 @@ npcOperate("Talk-to", "father_aereck") {
                             npc<Neutral>("That's... strange.")
                             npc<Neutral>("I thought things not from this world were all... You know. Slime and tentacles.")
                             choice {
-                                option<Neutral>("You don't understand. This is an online game!"){
+                                option<Neutral>("You don't understand. This is an online game!") {
                                     npc<Uncertain>("I... beg your pardon?")
                                     player<Neutral>("Never mind.")
                                 }
@@ -98,6 +98,7 @@ suspend fun CharacterContext.miningSpot() {
     npc<Angry>("I hate warlocks.")
     npc<Happy>("Ah well, good luck!")
 }
+
 suspend fun CharacterContext.foundSkull() {
     if (player.holdsItem("ghostspeak_amulet")) {
         npc<Neutral>("Have you got rid of the ghost yet?")

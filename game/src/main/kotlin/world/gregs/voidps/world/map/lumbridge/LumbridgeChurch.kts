@@ -17,8 +17,10 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.engine.timer.toTicks
@@ -44,19 +46,19 @@ objectOperate("Play", "lumbridge_organ") {
     player["tinkle_the_ivories_task"] = true
 }
 
-objectApproach("Ring", "lumbridge_church_bell") {
+objectOperate("Ring", "lumbridge_church_bell") {
     // TODO obj anim and sound
     player["ring_my_bell_task"] = true
 }
 
-objectOperate("Close", "coffin_14", "coffin_15") {
-    target.replace("coffin_9")
+objectOperate("Close", "restless_ghost_coffin_headless", "restless_ghost_coffin") {
+    target.replace("restless_ghost_coffin_closed")
     player.playAnimation("close_chest")
     player.message("You close the coffin.")
     player.playSound("coffin_close")
 }
 
-objectOperate("Search", "coffin_14", "coffin_15") {
+objectOperate("Search", "restless_ghost_coffin_headless", "restless_ghost_coffin") {
     if (player.quest("the_restless_ghost") == "completed") {
         statement("There's a nice and complete skeleton in here!")
         return@objectOperate
@@ -81,7 +83,7 @@ suspend fun CharacterContext.returnSkull() {
     player["restless_ghost_instance"] = instance
     player["restless_ghost_offset"] = offset
     player.inventory.remove("muddy_skull")
-    val ghost = npcs.get(Tile(3250, 3195)).firstOrNull { it.id == "restless_ghost" }
+    val ghost = npcs[Tile(3250, 3195)].firstOrNull { it.id == "restless_ghost" }
     if (ghost != null) {
         npcs.removeIndex(ghost)
     }
@@ -89,7 +91,7 @@ suspend fun CharacterContext.returnSkull() {
     val restlessGhost = npcs.add("restless_ghost", Tile(3248, 3193).add(offset), Direction.SOUTH) ?: return
     npcs.index(restlessGhost)
     player.tele(Tile(3248, 3192).add(offset), clearInterfaces = false)
-    npc<Happy>("restless_ghost","Release! Thank you stranger.", clickToContinue = false)
+    npc<Happy>("restless_ghost", "Release! Thank you stranger.", clickToContinue = false)
     player.moveCamera(Tile(3251, 3193).add(offset), 320)
     player.turnCamera(Tile(3248, 3193).add(offset), 320)
     delay(2)
@@ -98,14 +100,14 @@ suspend fun CharacterContext.returnSkull() {
     delay(4)
     restlessGhost.forceChat = "stranger."
     restlessGhost.playAnimation("restless_ghost_ascends")
-    restlessGhost.shoot("restless_ghost", Tile(3243,3193).add(offset), height = 20, endHeight = 0, flightTime = 50)
+    restlessGhost.shoot("restless_ghost", Tile(3243, 3193).add(offset), height = 20, endHeight = 0, flightTime = 50)
     delay(2)
     player.moveCamera(Tile(3241, 3193).add(offset), 900)
     player.turnCamera(Tile(3244, 3191).add(offset), 900)
-    Tile(3244,3194).add(offset).shoot("restless_ghost", Tile(3244,3190).add(offset), height = 30, endHeight = 0, flightTime = 60)
+    Tile(3244, 3194).add(offset).shoot("restless_ghost", Tile(3244, 3190).add(offset), height = 30, endHeight = 0, flightTime = 60)
     delay(2)
-    player.turnCamera(Tile(3254,3180).add(offset), 900,3, 3)
-    Tile(3244,3190).add(offset).shoot("restless_ghost", Tile(3255,3179).add(offset), height = 50, endHeight = 0, flightTime = 100)
+    player.turnCamera(Tile(3254, 3180).add(offset), 900, 3, 3)
+    Tile(3244, 3190).add(offset).shoot("restless_ghost", Tile(3255, 3179).add(offset), height = 50, endHeight = 0, flightTime = 100)
     delay(5)
     Instances.free(instance)
     val regionLevel = instance.toLevel(0)
@@ -135,26 +137,26 @@ fun CharacterContext.questComplete() {
     }
 }
 
-itemOnObjectOperate("muddy_skull", "coffin_9") {
+itemOnObjectOperate("muddy_skull", "restless_ghost_coffin_closed") {
     statement("Maybe I should open it first.")
 }
 
-objectOperate("Open", "coffin_9") {
+objectOperate("Open", "restless_ghost_coffin_closed") {
     player.message("You open the coffin.")
     player.playAnimation("open_chest")
     player.playSound("coffin_open")
     target.replace("coffin_restless_ghost_2", ticks = TimeUnit.MINUTES.toTicks(3))
-    if (player.quest("the_restless_ghost") != "completed") {
+    if (!player.questComplete("the_restless_ghost")) {
         spawnGhost()
     }
 }
 
-objectOperate("Search", "coffin_9") {
+objectOperate("Search", "restless_ghost_coffin_closed") {
     player.message("You open the coffin.")
     player.playAnimation("open_chest")
     player.playSound("coffin_open")
     target.replace("coffin_restless_ghost_2", ticks = TimeUnit.MINUTES.toTicks(3))
-    if (player.quest("the_restless_ghost") != "completed") {
+    if (!player.questComplete("the_restless_ghost")) {
         spawnGhost()
     }
 }
@@ -164,7 +166,7 @@ suspend fun CharacterContext.spawnGhost() {
         player["restless_ghost_summoned"] = true
         player.playSound("coffin_open")
         player.playSound("rg_ghost_approach")
-        player.shoot("restless_ghost", Tile(3250,3195), height = 30, endHeight = 0, flightTime = 50)
+        player.shoot("restless_ghost", Tile(3250, 3195), height = 30, endHeight = 0, flightTime = 50)
         delay(1)
         player.playSound("bigghost_appear")
         delay(1)
@@ -178,7 +180,7 @@ suspend fun CharacterContext.spawnGhost() {
 }
 
 playerSpawn { player ->
-    if (player.quest("the_restless_ghost") != "completed") {
+    if (!player.questComplete("the_restless_ghost")) {
         player["restless_ghost_summoned"] = false
     }
     player.sendVariable("rocks_restless_ghost")
