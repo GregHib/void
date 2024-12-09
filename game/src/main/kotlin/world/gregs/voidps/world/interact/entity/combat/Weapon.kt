@@ -47,7 +47,13 @@ object Weapon {
     }
 
     fun invalidateChance(source: Character, target: Character, type: String, weapon: Item, special: Boolean): Boolean {
-        return type == "melee" && target.hasClock("spear_wall")
+        if (type == "melee" && target.hasClock("spear_wall")) {
+            return true
+        }
+        if (target is NPC && target.id == "skeleton_warlock" && source is Player && source["restless_ghost_warlock", -1] != target.index) {
+            return true
+        }
+        return false
     }
 
     fun chinchompaChance(source: Character, target: Character, type: String, weapon: Item, chance: Double): Double {

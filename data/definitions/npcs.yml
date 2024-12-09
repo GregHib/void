@@ -414,12 +414,13 @@ father_urhney:
 skeleton_warlock:
   id: 459
   hitpoints: 180
-  attack_bonus: 10
-  att: 10
-  str: 11
+  mage: 10
   def: 7
-  style: crush
-  max_hit_melee: 2
+  spell: earth_strike
+  attack_range: 5
+  attack_radius: 11
+  style: magic
+  max_hit_magic: 30
   race: skeleton
   examine: "It rattles when it moves."
 giant_surprise_exam:

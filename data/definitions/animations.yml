@@ -1478,10 +1478,6 @@ disrupt_special: 14788
 weaken_special: 2890
 impale_special: 923
 spear_wall_special: 10499
-easter_carrot_whack:
-  id: 11547
-  walk: false
-  run: false
 banner_attack: 1428
 banner_hit: 1429
 mouse_toy_attack: 1658
@@ -1802,3 +1798,4 @@ play_organ: 3675
 gudrun_hugging: 14733
 restless_ghost_ascends: 4018
 restless_ghost_awakens: 4019
+restless_ghost_warlock_spawn: 1552
