@@ -8,7 +8,8 @@ import world.gregs.voidps.engine.event.Events
 
 data class HuntPlayer(
     val mode: String,
-    val target: Player
+    val targets: List<Player>,
+    val target: Player = targets.random()
 ) : Event {
 
     override val size = 3

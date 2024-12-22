@@ -58,22 +58,22 @@ class Hunting(
                 "player" -> {
                     val targets = getCharacters(npc, players, range, definition)
                     val target = targets.randomOrNull(seed) ?: continue
-                    npc.emit(HuntPlayer(mode, target))
+                    npc.emit(HuntPlayer(mode, targets, target))
                 }
                 "npc" -> {
                     val targets = getCharacters(npc, npcs, range, definition)
                     val target = targets.randomOrNull(seed) ?: continue
-                    npc.emit(HuntNPC(mode, target))
+                    npc.emit(HuntNPC(mode, targets, target))
                 }
                 "object" -> {
                     val targets = getObjects(npc, definition)
                     val target = targets.randomOrNull(seed) ?: continue
-                    npc.emit(HuntObject(mode, target))
+                    npc.emit(HuntObject(mode, targets, target))
                 }
                 "floor_item" -> {
                     val targets = getItems(npc, range, definition)
                     val target = targets.randomOrNull(seed) ?: continue
-                    npc.emit(HuntFloorItem(mode, target))
+                    npc.emit(HuntFloorItem(mode, targets, target))
                 }
             }
         }

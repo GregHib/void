@@ -8,7 +8,8 @@ import world.gregs.voidps.engine.event.Events
 
 data class HuntFloorItem(
     val mode: String,
-    val target: FloorItem
+    val targets: List<FloorItem>,
+    val target: FloorItem = targets.random()
 ) : Event {
 
     override val size = 4
