@@ -30,7 +30,6 @@ npcCombatSwing { npc ->
 }
 
 fun attackAnimation(npc: NPC): String {
-    var animation: String
     if (npc.def.contains("weapon_style")) {
         val id = npc.def["weapon_style", "unarmed"]
         val styleDefinition = definitions.get(id)
@@ -40,28 +39,12 @@ fun attackAnimation(npc: NPC): String {
             style = 0
         }
 
-        animation = "${styleDefinition.stringId}_${styleDefinition.attackTypes[style]}"
+        val animation = "${styleDefinition.stringId}_${styleDefinition.attackTypes[style]}"
         if (animationDefinitions.contains(animation)) {
             return animation
         }
     }
-    animation = "${npc.id}_attack"
-    if (animationDefinitions.contains(animation)) {
-        return animation
-    }
-    if (npc.def.contains("attack_anim")) {
-        animation = npc.def["attack_anim", ""]
-        if (animationDefinitions.contains(animation)) {
-            return animation
-        }
-    }
-    if (npc.race.isNotEmpty()) {
-        animation = "${npc.race}_attack"
-        if (animationDefinitions.contains(animation)) {
-            return animation
-        }
-    }
-    return ""
+    return NPCAttack.animation(npc, animationDefinitions)
 }
 
 fun attackSound(npc: NPC): String {
