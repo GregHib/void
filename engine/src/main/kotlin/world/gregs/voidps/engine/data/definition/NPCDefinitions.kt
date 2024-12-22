@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
+import world.gregs.yaml.read.YamlReader
 
 class NPCDefinitions(
     override var definitions: Array<NPCDefinition>
@@ -25,6 +26,14 @@ class NPCDefinitions(
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids
             val config = object : DefinitionConfig<NPCDefinition>(ids, definitions) {
+                override fun setMapValue(reader: YamlReader, map: MutableMap<String, Any>, key: String, indent: Int, indentOffset: Int, withinMap: String?, parentMap: String?) {
+                    if (indent == 2 && key == "chance") {
+                        set(map, key, reader.readIntRange(), indent, parentMap)
+                    } else {
+                        super.setMapValue(reader, map, key, indent, indentOffset, withinMap, parentMap)
+                    }
+                }
+
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                     if (key == "<<") {
                         map.putAll(value as Map<String, Any>)

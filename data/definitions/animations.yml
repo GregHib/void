@@ -1542,7 +1542,7 @@ close_chest: 535
 open_chest: 536
 pick_pocket:
   id: 881
-  ticks: 2
+  ticks: 4
 cut_opal: 890
 cut_jade: 891
 cut_red_topaz: 892

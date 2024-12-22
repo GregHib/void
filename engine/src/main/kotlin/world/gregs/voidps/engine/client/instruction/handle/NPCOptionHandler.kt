@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.network.client.instruction.InteractNPC
 
@@ -42,6 +43,10 @@ class NPCOptionHandler(
         }
         if (selectedOption == "Listen-to" && player["movement", "walk"] == "music") {
             player.message("You are already resting.")
+            return
+        }
+        if (player.hasClock("stunned")) {
+            player.message("You're stunned!", ChatType.Filter)
             return
         }
         player.talkWith(npc, definition)

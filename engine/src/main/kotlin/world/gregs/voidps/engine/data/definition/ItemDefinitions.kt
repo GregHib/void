@@ -132,33 +132,5 @@ class ItemDefinitions(
             }
             return value
         }
-
-        private fun YamlReader.readIntRange(): IntRange {
-            val start = reader.index
-            val number = number(start)
-            return if (reader.char == '-') {
-                val int = (number ?: reader.number(false, start, reader.index)) as Int
-                reader.skip()
-                val second = number(reader.index)
-                if (second != null) {
-                    int until second as Int
-                } else {
-                    int until int
-                }
-            } else if (reader.char == '.') {
-                val int = (number ?: reader.number(false, start, reader.index - 1)) as Int
-                reader.skip()
-                val second = number(reader.index)
-                if (second != null) {
-                    int..second as Int
-                } else {
-                    int..int
-                }
-            } else if (number != null) {
-                number as Int..number
-            } else {
-                throw IllegalArgumentException("Unexpected value ${reader.exception}")
-            }
-        }
     }
 }
