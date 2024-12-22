@@ -48,4 +48,18 @@ internal class PickpocketTest : WorldTest() {
         assertTrue(player.stunned)
     }
 
+    @Test
+    fun `Can't pickpocket with full inventory`() {
+        val player = createPlayer("thief", emptyTile)
+        player.inventory.add("cheese", 28)
+        val man = createNPC("man", emptyTile.addY(1))
+
+        player.npcOption(man, "Pickpocket")
+        tick(4)
+
+        assertEquals(player.inventory.count("coins"), 0)
+        assertEquals(player.experience.get(Skill.Thieving), 0.0)
+        assertFalse(player.stunned)
+    }
+
 }
