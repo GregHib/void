@@ -1696,3 +1696,8 @@ monk_of_zamorak_drop_table:
       drops:
         - id: zamorak_robe_bottom
         - id: zamorak_robe_top
+human_pickpocket:
+  type: all
+  drops:
+    - id: coins
+      amount: 3

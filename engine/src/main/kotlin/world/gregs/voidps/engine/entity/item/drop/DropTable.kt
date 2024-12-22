@@ -20,6 +20,13 @@ data class DropTable(
     override val chance: Int
 ) : Drop {
 
+    /**
+     * Roll a drop from the table
+     * @param maximumRoll overridable maximum roll for dynamic chances
+     * @param list optional list to add the drop to
+     * @param members whether members drops should be allowed or not
+     * @param player the player for [ItemDrop.predicate]'s
+     */
     fun role(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf(), members: Boolean = false, player: Player? = null): MutableList<ItemDrop> {
         collect(list, maximumRoll, members, player, random(maximumRoll))
         return list

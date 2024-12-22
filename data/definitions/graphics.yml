@@ -1307,6 +1307,9 @@ stun:
 stun_hit:
   id: 348
   height: 60
+stun_long:
+  id: 245
+  height: 60
 teleport_block_cast: 1841
 teleport_block:
   id: 1842
