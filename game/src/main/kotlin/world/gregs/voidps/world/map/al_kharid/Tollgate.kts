@@ -60,12 +60,12 @@ suspend fun CharacterContext.dialogue(player: Player, npc: NPC? = getGuard(playe
     npc<Talk>("You must pay a toll of 10 gold coins to pass.")
     choice {
         option<Quiz>("Okay, I'll pay.") {
-            player["passing_out_task"] = true
             if (!player.inventory.contains("coins", 10)) {
                 player<Upset>("Oh dear I don't actually seem to have enough money.")
             } else {
                 val gate = getGate(player)
                 player.mode = Interact(player, gate, ObjectOption(player, gate, gate.def, "Pay-toll(10gp)"))
+                player["passing_out_task"] = true
             }
         }
         option<Uncertain>("Who does my money go to?") {
