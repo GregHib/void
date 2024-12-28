@@ -54,8 +54,8 @@ adminCommand("anim") {
 
 adminCommand("emote") {
     when (content) {
-        "-1", "" -> player.emote = "human_stand"
-        else -> player.emote = content
+        "-1", "" -> player.renderEmote = "human_stand"
+        else -> player.renderEmote = content
     }
 }
 
