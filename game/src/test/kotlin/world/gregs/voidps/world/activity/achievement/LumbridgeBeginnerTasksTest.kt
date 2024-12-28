@@ -529,7 +529,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     }
 
     @Test
-    fun `Capital Protection, What?`() {
+    fun `Capital Protection, What`() {
         val player = createPlayer("adventurer", Tile(3228, 3254))
         player.levels.set(Skill.Smithing, 7)
         player.inventory.add("bronze_bar", "bronze_bar", "hammer")
