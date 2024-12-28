@@ -5,6 +5,8 @@ on:
       - 'main'
       - 'release/**'
   pull_request:
+    branches:
+      - 'main'
 env:
   CACHE_VERSION: 1.2.0
 jobs:
