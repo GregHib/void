@@ -19,6 +19,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import world.gregs.voidps.world.script.*
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 internal class LumbridgeBeginnerTasksTest : WorldTest() {
@@ -528,7 +529,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     }
 
     @Test
-    fun `Capital Protection, What?`() {
+    fun `Capital Protection, What`() {
         val player = createPlayer("adventurer", Tile(3228, 3254))
         player.levels.set(Skill.Smithing, 7)
         player.inventory.add("bronze_bar", "bronze_bar", "hammer")
@@ -781,8 +782,9 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     }
 
     @Test
-    fun `Passing Out`() {
+    fun `Passing Out with money`() {
         val player = createPlayer("adventurer", Tile(3267, 3227))
+        player.inventory.add("coins", 10)
 
         val guard = npcs[Tile(3267, 3226)].first { it.id == "border_guard_al_kharid" }
         player.npcOption(guard, "Talk-to")
@@ -792,6 +794,21 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.dialogueContinue()
 
         assertTrue(player["passing_out_task", false])
+    }
+
+    @Test
+    fun `Passing Out without money`() {
+        val player = createPlayer("adventurer", Tile(3267, 3227))
+        player.inventory.add("coins", 9)
+
+        val guard = npcs[Tile(3267, 3226)].first { it.id == "border_guard_al_kharid" }
+        player.npcOption(guard, "Talk-to")
+        tick()
+        player.dialogueContinue(2)
+        player.dialogueOption("line1")
+        player.dialogueContinue()
+
+        assertFalse(player["passing_out_task", false])
     }
 
     @Test
