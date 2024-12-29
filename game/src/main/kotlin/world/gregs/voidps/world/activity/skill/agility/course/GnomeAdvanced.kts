@@ -5,13 +5,16 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.exactMove
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
+import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
@@ -61,21 +64,25 @@ objectApproach("Run-across", "gnome_sign_post_advanced") {
 }
 
 objectApproach("Swing-to", "gnome_pole_advanced") {
+    var tile = player.tile
+    if (player.tile.x == 2484) {
+        tile = Tile(2485, 3418, 3)
+    }
     player.steps.clear()
     player.face(Direction.NORTH)
     player.start("input_delay", 14)
     player.strongQueue("run-up", 1) {
         player.setAnimation("gnome_run_up")
-        player.exactMove(player.tile.copy(y = 3421), 60, Direction.NORTH)
+        player.exactMove(tile.copy(y = 3421), 60, Direction.NORTH)
         pause(2)
         player.setAnimation("gnome_jump")
-        player.exactMove(player.tile.copy(y = 3425), 30, Direction.NORTH)
+        player.exactMove(tile.copy(y = 3425), 30, Direction.NORTH)
         pause(1)
         player.setAnimation("gnome_swing")
         pause(4)
-        player.exactMove(player.tile.copy(y = 3429), 30, Direction.NORTH)
+        player.exactMove(tile.copy(y = 3429), 30, Direction.NORTH)
         pause(5)
-        player.exactMove(player.tile.copy(y = 3432), 30, Direction.NORTH)
+        player.exactMove(tile.copy(y = 3432), 30, Direction.NORTH)
         delay(2)
         player.gnomeStage(6)
         player.exp(Skill.Agility, 25.0)

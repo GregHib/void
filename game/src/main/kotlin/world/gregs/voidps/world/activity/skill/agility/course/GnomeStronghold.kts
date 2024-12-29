@@ -57,7 +57,7 @@ objectOperate("Climb", "gnome_tree_branch_up") {
     player.strongQueue("branch", 2) {
         player.message("... to the platform above.", ChatType.Filter)
         player.gnomeStage(3)
-        player.tele(player.tile.add(y = -3, level = 1))
+        player.tele(2473, 3420, 2)
         player.exp(Skill.Agility, 5.0)
     }
 }
@@ -92,7 +92,7 @@ objectOperate("Climb-down", "gnome_tree_branch_down") {
     player.start("input_delay", 2)
     player.strongQueue("branch", 2) {
         player.gnomeStage(5)
-        player.tele(player.tile.add(x = 1, y = 1, level = -2))
+        player.tele(2486, 3420, 0)
         player.exp(Skill.Agility, 5.0)
     }
 }
@@ -111,26 +111,23 @@ objectOperate("Climb-over", "gnome_obstacle_net_free_standing") {
 
 objectOperate("Squeeze-through", "gnome_obstacle_pipe_*") {
     player.strongQueue("obstacle_pipe", 1) {
+        player.start("input_delay", 8)
         player.face(Direction.NORTH)
         player.message("You pull yourself through the pipes..", ChatType.Filter)
-        player.start("input_delay", 8)
-        player.strongQueue("obstacle_pipe", 1) {
-            player.setAnimation("climb_through_pipe")
-            player.exactMove(target.tile.addY(2))
-            player.strongQueue("obstacle_pipe", 4) {
-                player.face(Direction.NORTH)
-                player.tele(target.tile.addY(3))
-                player.setAnimation("climb_through_pipe", delay = 1)
-                player.exactMove(target.tile.addY(6))
-                player.softQueue("reward", 4) {
-                    if (player.gnomeStage == 6) {
-                        player.gnomeStage = 0
-                        player.inc("gnome_course_laps")
-                        player.exp(Skill.Agility, 39.0)
-                    }
-                    player.exp(Skill.Agility, 7.5)
-                }
-            }
+        pause()
+        player.setAnimation("climb_through_pipe")
+        player.exactMove(target.tile.addY(2))
+        pause(4)
+        player.face(Direction.NORTH)
+        player.tele(target.tile.addY(3))
+        player.setAnimation("climb_through_pipe", delay = 1)
+        player.exactMove(target.tile.addY(6))
+        pause(2)
+        if (player.gnomeStage == 6) {
+            player.gnomeStage = 0
+            player.inc("gnome_course_laps")
+            player.exp(Skill.Agility, 39.0)
         }
+        player.exp(Skill.Agility, 7.5)
     }
 }
