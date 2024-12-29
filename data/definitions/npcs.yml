@@ -2347,3 +2347,9 @@ suit_of_armour:
   weapon_style: sword
   race: human
   examine: "A dusty old suit of armour."
+gnome_trainer:
+  id: 162
+  race: gnome
+  large_head: true
+  wander_radius: 4
+  examine: "He can advise on training."

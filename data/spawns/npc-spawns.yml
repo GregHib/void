@@ -576,6 +576,18 @@
 - { id: butterfly_1, x: 2437, y: 3425, members: true }
 - { id: butterfly_1, x: 2438, y: 3422, members: true }
 - { id: butterfly_1, x: 2450, y: 3419, members: true }
+- { id: gnome_trainer, x: 2469, y: 3423, members: true }
+- { id: gnome_trainer, x: 2469, y: 3434, members: true }
+- { id: gnome_trainer, x: 2470, y: 3426, members: true }
+- { id: gnome_trainer, x: 2477, y: 3426, members: true }
+- { id: gnome_trainer, x: 2479, y: 3427, members: true }
+- { id: gnome_trainer, x: 2482, y: 3422, members: true }
+- { id: gnome_trainer, x: 2489, y: 3423, members: true }
+- { id: gnome_trainer, x: 2489, y: 3427, members: true }
+- { id: gnome_trainer, x: 2490, y: 3435, members: true }
+- { id: gnome_trainer, x: 2475, y: 3422, level: 1, members: true }
+- { id: gnome_trainer, x: 2475, y: 3421, level: 2, members: true }
+- { id: gnome_trainer, x: 2474, y: 3419, level: 3, members: true }
 # 9782
 - { id: butterfly_5, x: 2448, y: 3469, members: true }
 - { id: butterfly_5, x: 2447, y: 3467, members: true }
