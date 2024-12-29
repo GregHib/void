@@ -46,6 +46,7 @@ interface TargetStrategy {
             is Tile -> TileTargetStrategy(entity)
             is GameObject -> when (entity.id) {
                 "archery_target" -> TileTargetStrategy(entity.tile.addX(5))
+                "gnome_obstacle_pipe_east", "gnome_obstacle_pipe_west" -> TileTargetStrategy(entity.tile.addY(-1))
                 "lumbridge_church_bell" -> TileTargetStrategy(entity.tile.addY(-1))
                 else -> ObjectTargetStrategy(entity)
             }

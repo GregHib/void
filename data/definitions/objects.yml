@@ -11889,3 +11889,42 @@ coffin_restless_ghost_2:
 railing_wizards_tower:
   id: 37668
   examine: "A sturdy metal railing."
+gnome_log_balance:
+  id: 2295
+  examine: "A slippery log I can walk across."
+gnome_obstacle_net:
+  id: 2285
+  examine: "This must be climbed over."
+gnome_tree_branch_up:
+  id: 35970
+  examine: "I can climb up this."
+gnome_tree_branch_down:
+  id: 2314
+  examine: "I can climb down this."
+gnome_balancing_rope:
+  id: 2312
+  examine: "I can balance on this rope."
+gnome_balancing_rope_end:
+  id: 4059
+  examine: "I can balance on this rope."
+gnome_obstacle_net_free_standing:
+  id: 2286
+  examine: "This must be climbed over."
+gnome_obstacle_pipe_east:
+  id: 43543
+  examine: "A pipe I can squeeze through."
+gnome_obstacle_pipe_west:
+  id: 43544
+  examine: "A pipe I can squeeze through."
+gnome_tree_branch_advanced:
+  id: 43528
+  examine: "I can climb up this."
+gnome_sign_post_advanced:
+  id: 43581
+  examine: "It doesn't look finished, but the material is tough enough to grip hold of."
+gnome_pole_advanced:
+  id: 43529
+  examine: "A long metal pole."
+gnome_barrier_advanced:
+  id: 43539
+  examine: "It might be possible to vault over it."

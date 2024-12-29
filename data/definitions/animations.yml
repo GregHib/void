@@ -1801,3 +1801,10 @@ gudrun_hugging: 14733
 restless_ghost_ascends: 4018
 restless_ghost_awakens: 4019
 restless_ghost_warlock_spawn: 1552
+climb_through_pipe: 10580
+gnome_wall_run: 2922
+gnome_run_up: 11784
+gnome_jump: 11785
+gnome_swing: 11789
+gnome_jump_barrier: 2923
+gnome_pipe_land: 2924

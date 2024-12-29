@@ -477,3 +477,15 @@ equip_crossbow:
 flagstaff_runefest:
   persist: true
   format: boolean
+gnome_course_stage:
+  persist: true
+  format: int
+gnome_course_laps:
+  persist: true
+  format: int
+gnome_course_advanced_laps:
+  persist: true
+  format: int
+gnome_course_reward_claimed:
+  persist: true
+  format: boolean
