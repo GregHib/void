@@ -5,16 +5,13 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.exactMove
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
@@ -51,15 +48,14 @@ objectApproach("Run-across", "gnome_sign_post_advanced") {
     // arriveDelay() wouldn't work as objectApproach is called before Movement.tick where "last_movement" is set
     pause(2)
     player.face(Direction.EAST)
-    player.setAnimation("gnome_wall_run", override = true)
+    player.setAnimation("gnome_wall_run")
     player.start("input_delay", 4)
     player.strongQueue("wall-run", 1) {
         player.exactMove(Tile(2484, 3418, 3), 60, Direction.EAST)
-        player.strongQueue("land", 2) {
-            player.gnomeStage(5)
-            player.exp(Skill.Agility, 25.0)
-            player.clearAnimation()
-        }
+        pause(2)
+        player.gnomeStage(5)
+        player.exp(Skill.Agility, 25.0)
+        player.clearAnimation()
     }
 }
 
@@ -72,6 +68,9 @@ objectApproach("Swing-to", "gnome_pole_advanced") {
     player.face(Direction.NORTH)
     player.start("input_delay", 14)
     player.strongQueue("run-up", 1) {
+        onCancel = {
+            player.tele(Tile(2486, 3418, 3))
+        }
         player.setAnimation("gnome_run_up")
         player.exactMove(tile.copy(y = 3421), 60, Direction.NORTH)
         pause(2)

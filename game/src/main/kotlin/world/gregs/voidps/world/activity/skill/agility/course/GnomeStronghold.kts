@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -24,12 +23,16 @@ import world.gregs.voidps.type.Zone
 val npcs: NPCs by inject()
 
 objectOperate("Walk-across", "gnome_log_balance") {
-    npcs.gnomeTrainer("Okay get over that log, quick quick!", listOf(Zone(878901), Zone(878900), Zone(876852)))
-    player.renderEmote = "rope_balance"
-    player.walkTo(Tile(2474, 3429), noCollision = true, noRun = true)
-    player.message("You walk carefully across the slippery log...", ChatType.Filter)
     player.start("input_delay", 8)
-    player.strongQueue("log-balance", 8) {
+    player.strongQueue("log-balance") {
+        onCancel = {
+            player.tele(2474, 3436)
+        }
+        npcs.gnomeTrainer("Okay get over that log, quick quick!", listOf(Zone(878901), Zone(878900), Zone(876852)))
+        player.renderEmote = "rope_balance"
+        player.walkTo(Tile(2474, 3429), noCollision = true, noRun = true)
+        player.message("You walk carefully across the slippery log...", ChatType.Filter)
+        pause(8)
         player.clearRenderEmote()
         player.gnomeStage(1)
         player.exp(Skill.Agility, 7.5)
@@ -111,6 +114,9 @@ objectOperate("Climb-over", "gnome_obstacle_net_free_standing") {
 
 objectOperate("Squeeze-through", "gnome_obstacle_pipe_*") {
     player.strongQueue("obstacle_pipe", 1) {
+        onCancel = {
+            player.tele(target.tile.addY(-1))
+        }
         player.start("input_delay", 8)
         player.face(Direction.NORTH)
         player.message("You pull yourself through the pipes..", ChatType.Filter)
