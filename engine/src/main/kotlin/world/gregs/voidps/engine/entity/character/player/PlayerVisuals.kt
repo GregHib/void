@@ -61,11 +61,11 @@ var Player.headIcon: Int
 var Player.renderEmote: String
     get() = get<RenderEmoteDefinitions>().get(appearance.emote).stringId
     set(value) = flag {
-        appearance.emote = get<RenderEmoteDefinitions>().get(value).id
+        emote = get<RenderEmoteDefinitions>().get(value).id
     }
 
-fun Player.clearRenderEmote() {
-    appearance.emote = 1426
+fun Player.clearRenderEmote() = flag {
+    emote = 1426
 }
 
 var Player.name: String
