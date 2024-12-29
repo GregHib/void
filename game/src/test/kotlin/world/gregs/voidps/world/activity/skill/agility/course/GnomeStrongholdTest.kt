@@ -14,7 +14,7 @@ internal class GnomeStrongholdTest : WorldTest() {
         val log = objects[Tile(2474, 3435), "gnome_log_balance"]!!
 
         player.objectOption(log, "Walk-across")
-        tick(9)
+        tick(10)
 
         assertEquals(Tile(2474, 3429), player.tile)
         assertEquals(7.5, player.experience.get(Skill.Agility))
