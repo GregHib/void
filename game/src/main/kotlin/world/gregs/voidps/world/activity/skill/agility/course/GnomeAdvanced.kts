@@ -22,11 +22,14 @@ import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
+import world.gregs.voidps.world.interact.dialogue.Happy
+import world.gregs.voidps.world.interact.dialogue.type.npc
 
 val npcs: NPCs by inject()
 
 objectOperate("Climb-up", "gnome_tree_branch_advanced") {
-    if (!player.has(Skill.Agility, 85)) {
+    if (!player.has(Skill.Agility, 85, message = true)) {
+        npc<Happy>("gnome_trainer","Sorry mate, you're not experienced enough to try that route. I suggest you carry on over the balancing rope instead.")
         return@objectOperate
     }
     npcs.gnomeTrainer("Terrorbirds could climb faster than that!", Zone(9263413))
