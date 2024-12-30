@@ -2,18 +2,17 @@ package world.gregs.voidps.world.activity.skill.agility.course
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.character.clearAnimation
-import world.gregs.voidps.engine.entity.character.exactMove
-import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.getPropertyOrNull
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.approachRange
@@ -24,12 +23,13 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.type.npc
+import world.gregs.voidps.world.interact.entity.combat.hit.damage
 
 val npcs: NPCs by inject()
 
 objectOperate("Climb-up", "gnome_tree_branch_advanced") {
     if (!player.has(Skill.Agility, 85, message = true)) {
-        npc<Happy>("gnome_trainer","Sorry mate, you're not experienced enough to try that route. I suggest you carry on over the balancing rope instead.")
+        npc<Happy>("gnome_trainer", "Sorry mate, you're not experienced enough to try that route. I suggest you carry on over the balancing rope instead.")
         return@objectOperate
     }
     npcs.gnomeTrainer("Terrorbirds could climb faster than that!", Zone(9263413))
@@ -50,14 +50,34 @@ objectApproach("Run-across", "gnome_sign_post_advanced") {
     // Pausing for 2 ticks to ensure we're in the correct spot.
     // arriveDelay() wouldn't work as objectApproach is called before Movement.tick where "last_movement" is set
     pause(2)
+    val disable = getPropertyOrNull("disableGnomeAdvancedCourseFailure").toBoolean()
+    val success = disable || Level.success(player.levels.get(Skill.Agility), 244..285) // 4.6% chance of failure
     player.face(Direction.EAST)
-    player.setAnimation("gnome_wall_run")
-    player.start("input_delay", 4)
+    player.setAnimation("gnome_wall_${if (success) "run" else "fail"}")
+    player.start("input_delay", if (success) 4 else 20)
     player.strongQueue("wall-run", 1) {
-        player.exactMove(Tile(2484, 3418, 3), 60, Direction.EAST)
-        pause(2)
-        player.gnomeStage(5)
-        player.exp(Skill.Agility, 25.0)
+        if (!success) {
+            onCancel = {
+                player.tele(2484, 3418, 3)
+            }
+            player.exactMove(Tile(2480, 3418, 3), 30, Direction.EAST)
+            pause(6)
+        }
+        player.exactMove(Tile(2484, 3418, 3), if (success) 60 else 210, Direction.EAST)
+        if (success) {
+            pause(2)
+            player.exp(Skill.Agility, 25.0)
+            player.gnomeStage(5)
+        } else {
+            pause(10)
+            player.setAnimation("gnome_wall_stand")
+            pause(1)
+            player.damage((player.levels.get(Skill.Constitution) - 1).coerceAtMost(65))
+            // Skip stage so lap doesn't count at end
+            if (getPropertyOrNull("disableGnomeAdvancedCourseFailLapSkip").toBoolean()) {
+                player.gnomeStage(5)
+            }
+        }
         player.clearAnimation()
     }
 }
