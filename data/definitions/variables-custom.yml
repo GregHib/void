@@ -489,3 +489,10 @@ gnome_course_advanced_laps:
 gnome_course_reward_claimed:
   persist: true
   format: boolean
+agility_course:
+  format: list
+  persist: true
+  values: [ gnome, barbarian ]
+barbarian_course_stage:
+  persist: true
+  format: int
