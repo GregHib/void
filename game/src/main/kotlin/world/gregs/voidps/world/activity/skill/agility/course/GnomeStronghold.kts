@@ -47,7 +47,7 @@ objectOperate("Climb-over", "gnome_obstacle_net") {
     player.start("input_delay", 2)
     player.strongQueue("netting", 2) {
         player.gnomeStage(2)
-        player.tele(player.tile.add(y = -2, level = 1))
+        player.tele(player.tile.x.coerceIn(2471, 2476), 3424, 1)
         player.exp(Skill.Agility, 7.5)
     }
 }
