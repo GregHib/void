@@ -356,6 +356,7 @@ adminCommand("reload") {
         }
         "areas" -> get<AreaDefinitions>().load()
         "object defs" -> get<ObjectDefinitions>().load()
+        "emotes", "render anims", "render emotes" -> get<RenderEmoteDefinitions>().load()
         "anim defs", "anims" -> get<AnimationDefinitions>().load()
         "container defs", "containers", "inventory defs", "inventories", "inv defs", "invs" -> get<InventoryDefinitions>().load()
         "graphic defs", "graphics", "gfx" -> get<GraphicDefinitions>().load()

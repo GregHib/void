@@ -1067,11 +1067,6 @@ gate_34_opened:
 gate_34_closed:
   id: 2039
   examine: "It's closed."
-gate_40_opened:
-  id: 2040
-gate_40_closed:
-  id: 2115
-  examine: "The left hand side of the gate."
 kitchen_gate_2_opened:
   id: 2040
 kitchen_gate_2_closed:
@@ -1116,10 +1111,17 @@ gate_54_opened:
 gate_54_closed:
   id: 2433
   examine: "This gate is closed."
-gate_41_opened:
+barbarian_outpost_gate_left_opened:
+  id: 2040
+barbarian_outpost_gate_left_closed:
+  id: 2115
+  gate: false
+  examine: "The left hand side of the gate."
+barbarian_outpost_gate_right_opened:
   id: 2042
-gate_41_closed:
+barbarian_outpost_gate_right_closed:
   id: 2116
+  gate: false
   examine: "The right hand side of the gate."
 kitchen_gate_opened:
   id: 2042
@@ -11928,3 +11930,36 @@ gnome_pole_advanced:
 gnome_barrier_advanced:
   id: 43539
   examine: "It might be possible to vault over it."
+barbarian_outpost_entrance:
+  id: 20210
+  examine: "A pipe I can squeeze through."
+barbarian_outpost_rope_swing:
+  id: 43526
+  examine: "I can use this to swing over crevices."
+barbarian_outpost_log_balance:
+  id: 43595
+  examine: "A slippery log I can walk across."
+barbarian_outpost_obstacle_net:
+  id: 20211
+  examine: "This must be climbed over."
+barbarian_outpost_balancing_ledge:
+  id: 2302
+  examine: "Tread carefully!"
+barbarian_outpost_crumbling_wall:
+  id: 1948
+  examine: "It looks like I might be able to climb over this piece of the wall..."
+barbarian_outpost_run_wall:
+  id: 43533
+  examine: "It looks pretty well built."
+barbarian_outpost_climb_wall:
+  id: 43597
+  examine: "It looks sturdy enough to climb up."
+barbarian_outpost_spring:
+  id: 43587
+  examine: "Small, but powerful-looking."
+barbarian_outpost_balance_beam:
+  id: 43527
+  examine: "A strong-looking beam. It could hold a person's weight."
+barbarian_outpost_roof:
+  id: 43532
+  examine: "A slanted roof."

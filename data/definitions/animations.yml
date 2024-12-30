@@ -1810,3 +1810,8 @@ gnome_jump: 11785
 gnome_swing: 11789
 gnome_jump_barrier: 2923
 gnome_pipe_land: 2924
+rope_swing: 751
+swing_rope: 497
+ledge_stand_right: 753
+ledge_stand_away_right: 759
+climb_over_wall: 4853
