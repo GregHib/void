@@ -81,6 +81,18 @@ internal class GnomeStrongholdTest : WorldTest() {
     }
 
     @Test
+    fun `Climb over netting backwards`() {
+        val player = createPlayer("agile", Tile(2484, 3427))
+        val net = objects[Tile(2483, 3426), "gnome_obstacle_net_free_standing"]!!
+
+        player.objectOption(net, "Climb-over")
+        tick(3)
+
+        assertEquals(Tile(2484, 3425), player.tile)
+        assertEquals(7.5, player.experience.get(Skill.Agility))
+    }
+
+    @Test
     fun `Climb through pipe`() {
         val player = createPlayer("agile", Tile(2488, 3431))
         val pipe = objects[Tile(2487, 3431), "gnome_obstacle_pipe_east"]!!

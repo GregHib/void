@@ -1803,6 +1803,8 @@ restless_ghost_awakens: 4019
 restless_ghost_warlock_spawn: 1552
 climb_through_pipe: 10580
 gnome_wall_run: 2922
+gnome_wall_fail: 11793
+gnome_wall_stand: 11794
 gnome_run_up: 11784
 gnome_jump: 11785
 gnome_swing: 11789

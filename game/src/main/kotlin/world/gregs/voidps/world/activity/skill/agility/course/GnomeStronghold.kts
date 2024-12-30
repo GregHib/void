@@ -47,7 +47,7 @@ objectOperate("Climb-over", "gnome_obstacle_net") {
     player.start("input_delay", 2)
     player.strongQueue("netting", 2) {
         player.gnomeStage(2)
-        player.tele(player.tile.add(y = -2, level = 1))
+        player.tele(player.tile.x.coerceIn(2471, 2476), 3424, 1)
         player.exp(Skill.Agility, 7.5)
     }
 }
@@ -107,7 +107,8 @@ objectOperate("Climb-over", "gnome_obstacle_net_free_standing") {
     player.start("input_delay", 2)
     player.strongQueue("netting", 2) {
         player.gnomeStage(6)
-        player.tele(player.tile.add(y = 2))
+        val direction = target.tile.delta(player.tile).toDirection().vertical()
+        player.tele(player.tile.add(direction.delta).add(direction.delta))
         player.exp(Skill.Agility, 7.5)
     }
 }
