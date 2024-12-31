@@ -18,6 +18,8 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
+import world.gregs.voidps.type.random
+import world.gregs.voidps.world.interact.entity.combat.hit.damage
 
 // TODO failing
 
@@ -46,6 +48,7 @@ objectOperate("Swing-on", "barbarian_outpost_rope_swing") {
     player.clear("face_entity")
     player.face(Direction.SOUTH)
     player.start("input_delay", 5)
+//  player.message("The rope swing is being used at the moment.", ChatType.Filter)
     player.strongQueue("agility_rope_swing", 2) {
         player.setAnimation("rope_swing")
         target.animate("swing_rope")
@@ -54,25 +57,45 @@ objectOperate("Swing-on", "barbarian_outpost_rope_swing") {
         pause(1)
         player.agilityStage(0)
         player.exp(Skill.Agility, 22.0)
+        player.message("You skillfully swing across.", ChatType.Filter)
     }
 }
 
 objectOperate("Walk-across", "barbarian_outpost_log_balance") {
     player.start("input_delay", 12)
+    val fail = true
     player.strongQueue("agility_log_balance") {
         onCancel = {
             player.tele(2551, 3546)
         }
-        player.renderEmote = "rope_balance"
         player.message("You walk carefully across the slippery log...", ChatType.Filter)
+        player.renderEmote = "rope_balance"
         player.walkTo(Tile(2550, 3546), noCollision = true, noRun = true)
         pause(1)
-        player.walkTo(Tile(2541, 3546), noCollision = true, noRun = true)
-        pause(9)
-        player.clearRenderEmote()
-        player.agilityStage(1)
-        player.exp(Skill.Agility, 13.7)
-        player.message("... and make it safely to the other side.", ChatType.Filter)
+        if (fail) {
+            player.clear("face_entity")
+            player.face(Direction.WEST)
+            player.walkTo(Tile(2545, 3546), noCollision = true, noRun = true)
+            pause(7)
+            player.setAnimation("fall_off_log_left")
+            pause(1)
+            player.message("... but you lose your footing and fall into the water.", ChatType.Filter)
+            player.tele(2545, 3545)
+            player.renderEmote = "tread_water"
+            pause(1)
+            player.walkTo(Tile(2545, 3543), noCollision = true, noRun = true)
+            pause(2)
+            player.message("Something in the water bites you.", ChatType.Filter)
+            player.clearRenderEmote()
+            player.damage(random.nextInt(30, 52))
+        } else {
+            player.walkTo(Tile(2541, 3546), noCollision = true, noRun = true)
+            pause(9)
+            player.clearRenderEmote()
+            player.agilityStage(1)
+            player.exp(Skill.Agility, 13.7)
+            player.message("... and make it safely to the other side.", ChatType.Filter)
+        }
     }
 }
 
@@ -95,7 +118,7 @@ objectOperate("Walk-across", "barbarian_outpost_balancing_ledge") {
             player.tele(2536, 3547, 1)
         }
         player.renderEmote = "ledge_balance"
-        player.message("You walk carefully across the slippery ledge...", ChatType.Filter)
+        player.message("You put your foot on teh ledge and try to edge across...", ChatType.Filter)
         player.walkTo(Tile(2532, 3547, 1), noCollision = true, noRun = true)
         pause(5)
         player.face(Direction.WEST)
@@ -103,7 +126,7 @@ objectOperate("Walk-across", "barbarian_outpost_balancing_ledge") {
         player.clearRenderEmote()
         player.agilityStage(3)
         player.exp(Skill.Agility, 22.0)
-        player.message("... and make it safely to the other side.", ChatType.Filter)
+        player.message(".You skillfully edge across the gap.", ChatType.Filter)
     }
 }
 

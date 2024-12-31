@@ -1829,3 +1829,9 @@ barbarian_jump_land: 2588
 barbarian_slide_start: 11792
 barbarian_slide: 11790
 barbarian_slide_jump: 11791
+fall_right: 760
+rope_walk_fall_down: 764
+rope_walk_fall_left: 770
+rope_walk_fall_right: 771
+fall_off_log_left: 2581
+fall_off_log_right: 2582
