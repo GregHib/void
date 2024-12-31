@@ -1815,3 +1815,17 @@ swing_rope: 497
 ledge_stand_right: 753
 ledge_stand_away_right: 759
 climb_over_wall: 4853
+barbarian_wall_jump_climb: 10492
+barbarian_wall_jump: 10493
+barbarian_wall_climb: 10023
+barbarian_wall_stand_up: 11794
+barbarian_spring_shoot: 4189
+barbarian_spring_fire: 11819
+barbarian_spring_reset: 11820
+barbarian_beam_walk: 16079
+circus_cartwheel: 10295
+barbarian_gap_jump: 2586
+barbarian_jump_land: 2588
+barbarian_slide_start: 11792
+barbarian_slide: 11790
+barbarian_slide_jump: 11791

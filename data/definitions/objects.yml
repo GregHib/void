@@ -11960,6 +11960,9 @@ barbarian_outpost_spring:
 barbarian_outpost_balance_beam:
   id: 43527
   examine: "A strong-looking beam. It could hold a person's weight."
+barbarian_outpost_gap:
+  id: 43531
+  examine: "That's a massive gap!"
 barbarian_outpost_roof:
   id: 43532
   examine: "A slanted roof."
