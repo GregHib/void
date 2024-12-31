@@ -744,6 +744,7 @@
 - { id: butterfly_1, x: 2556, y: 3444, members: true }
 # 10039
 - { id: chicken, x: 2554, y: 3563, members: true }
+- { id: gunnjorn, x: 2540, y: 3548, members: true }
 # 10044
 - { id: musician_miscellania, x: 2536, y: 3861, direction: NORTH, members: true }
 # 10067

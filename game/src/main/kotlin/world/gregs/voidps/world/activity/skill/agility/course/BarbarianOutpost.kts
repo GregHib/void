@@ -14,12 +14,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.Zone
+import world.gregs.voidps.type.equals
 
 // TODO failing
 
@@ -124,7 +122,15 @@ objectOperate("Climb-over", "barbarian_outpost_crumbling_wall") {
         player.setAnimation("climb_over_wall")
         player.exactMove(target.tile.addX(1), 60, Direction.EAST)
         pause(1)
-        player.agilityStage(4)
+        if (target.tile.equals(2542, 3553)) {
+            if (player.agilityStage == 4) {
+                player.agilityStage = 0
+                player.exp(Skill.Agility, 46.3)
+                player.inc("barbarian_course_laps")
+            }
+        } else {
+            player.agilityStage(4)
+        }
         player.exp(Skill.Agility, 13.7)
     }
 }

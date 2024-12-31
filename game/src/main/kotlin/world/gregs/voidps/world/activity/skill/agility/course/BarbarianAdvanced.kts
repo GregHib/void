@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.exactMove
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -31,6 +30,7 @@ objectOperate("Run-up", "barbarian_outpost_run_wall") {
         player.setAnimation("barbarian_wall_jump")
         pause(2)
         player.exp(Skill.Agility, 15.0)
+        player.agilityStage(3)
     }
 }
 
@@ -42,6 +42,7 @@ objectOperate("Climb-up", "barbarian_outpost_climb_wall") {
         player.setAnimation("barbarian_wall_stand_up")
         pause(1)
         player.exp(Skill.Agility, 15.0)
+        player.agilityStage(4)
     }
 }
 
@@ -59,6 +60,7 @@ objectOperate("Fire", "barbarian_outpost_spring") {
         target.animate("barbarian_spring_reset")
         pause(3)
         player.exp(Skill.Agility, 15.0)
+        player.agilityStage(5)
     }
 }
 
@@ -77,6 +79,7 @@ objectOperate("Cross", "barbarian_outpost_balance_beam") {
         player.renderEmote = "beam_balance"
         pause()
         player.exp(Skill.Agility, 15.0)
+        player.agilityStage(6)
     }
 }
 
@@ -89,6 +92,7 @@ objectOperate("Jump-over", "barbarian_outpost_gap") {
         player.setAnimation("barbarian_jump_land")
         pause()
         player.exp(Skill.Agility, 15.0)
+        player.agilityStage(7)
     }
 }
 
@@ -111,5 +115,10 @@ objectOperate("Slide-down", "barbarian_outpost_roof") {
         player.tele(2544, player.tile.y, 0)
         player.setAnimation("barbarian_jump_land")
         player.exp(Skill.Agility, 15.0)
+        if (player.agilityStage == 7) {
+            player.agilityStage = 0
+            player.inc("barbarian_course_advanced_laps")
+            player.exp(Skill.Agility, 615.0)
+        }
     }
 }

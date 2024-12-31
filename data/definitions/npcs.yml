@@ -2353,3 +2353,8 @@ gnome_trainer:
   large_head: true
   wander_radius: 4
   examine: "He can advise on training."
+gunnjorn:
+  id: 607
+  race: human
+  wander_radius: 4
+  examine: "He maintains this agility course."

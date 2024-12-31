@@ -40,7 +40,7 @@ npcOperate("Talk-to", "gnome_trainer") {
             }
         }
         option<Quiz>("Can I talk about rewards?", filter = { player["gnome_course_advanced_laps", 0] > 0 }) {
-            if (player["gnome_course_reward_claimed", false]) {
+            if (player.containsVarbit("agility_course_rewards_claimed", "agile_legs")) {
                 npc<Quiz>("Of course. How can I help?")
                 player<Quiz>("Any chance of some more Agile legs?")
                 if (player.inventory.add("agile_legs")) {
@@ -51,7 +51,7 @@ npcOperate("Talk-to", "gnome_trainer") {
             } else if (player["gnome_course_advanced_laps", 0] >= 250) {
                 npc<Happy>("Well, it looks like you've completed our challenge! Take this as a reward: some Agile legs. You'll find yourself much lighter than usual while wearing them. They are made from the toughest material we gnomes could find, so it might even protect you in combat.")
                 if (player.inventory.add("agile_legs")) {
-                    player["gnome_course_reward_claimed"] = true
+                    player.addVarbit("agility_course_rewards_claimed", "agile_legs")
                     npc<Happy>("There you go. Enjoy!")
                 } else {
                     player.inventoryFull() // TODO correct message
