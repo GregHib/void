@@ -50,7 +50,7 @@ objectApproach("Run-across", "gnome_sign_post_advanced") {
     // Pausing for 2 ticks to ensure we're in the correct spot.
     // arriveDelay() wouldn't work as objectApproach is called before Movement.tick where "last_movement" is set
     pause(2)
-    val disable = getPropertyOrNull("disableGnomeAdvancedCourseFailure").toBoolean()
+    val disable = getPropertyOrNull("disableAdvancedAgilityCourseFailure").toBoolean()
     val success = disable || Level.success(player.levels.get(Skill.Agility), -8..286) // failure rate 4.68-1.17% from 85-88
     player.face(Direction.EAST)
     player.setAnimation("gnome_wall_${if (success) "run" else "fail"}")
@@ -67,16 +67,15 @@ objectApproach("Run-across", "gnome_sign_post_advanced") {
         if (success) {
             pause(2)
             player.exp(Skill.Agility, 25.0)
-            player.agilityStage(5)
         } else {
             pause(10)
             player.setAnimation("gnome_wall_stand")
             pause(1)
-            player.damage((player.levels.get(Skill.Constitution) - 1).coerceAtMost(65))
-            // Skip stage so lap doesn't count at end
-            if (getPropertyOrNull("disableGnomeAdvancedCourseFailLapSkip").toBoolean()) {
-                player.agilityStage(5)
-            }
+            player.damage((player.levels.get(Skill.Constitution) - 10).coerceAtMost(65))
+        }
+        // Skip stage so lap doesn't count at end
+        if (success || getPropertyOrNull("disableAdvancedAgilityCourseFailLapSkip").toBoolean()) {
+            player.agilityStage(5)
         }
         player.clearAnimation()
     }

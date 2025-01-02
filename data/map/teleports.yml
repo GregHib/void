@@ -453,6 +453,20 @@
     y: 3545
   delta:
     level: 1
+- id: 20987
+  option: Climb-down
+  tile:
+    x: 2547
+    y: 3551
+  delta:
+    y: 6400
+- id: 32015
+  option: Climb-up
+  tile:
+    x: 2547
+    y: 9951
+  delta:
+    y: -6400
 ######## 11316 ########
 - id: law_altar_ruins_enter
   option: Enter

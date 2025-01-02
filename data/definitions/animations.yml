@@ -1835,3 +1835,5 @@ rope_walk_fall_left: 770
 rope_walk_fall_right: 771
 fall_off_log_left: 2581
 fall_off_log_right: 2582
+fall_on_floor: 767
+stepping_stone: 769
