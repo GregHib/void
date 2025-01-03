@@ -503,3 +503,11 @@ barbarian_course_laps:
 barbarian_course_advanced_laps:
   persist: true
   format: int
+alfred_grimhands_barcrawl:
+  persist: true
+  format: list
+  values: [ unstarted, signatures, completed ]
+barcrawl_signatures:
+  persist: true
+  format: bitwise
+  values: [ uncle_humphreys_gutrot ]

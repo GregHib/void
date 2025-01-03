@@ -2358,3 +2358,13 @@ gunnjorn:
   race: human
   wander_radius: 4
   examine: "He maintains this agility course."
+barbarian_guard:
+  id: 384
+  race: human
+  wander_radius: 4
+  examine: "Not very civilised looking."
+bartender_blue_moon_inn:
+  id: 733
+  race: human
+  wander_radius: 4
+  examine: "I could get a beer from him."
