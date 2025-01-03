@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.exactMove
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -15,6 +16,7 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.equals
 
 objectOperate("Run-up", "barbarian_outpost_run_wall") {
     if (!player.has(Skill.Agility, 90, message = true)) {
@@ -35,12 +37,20 @@ objectOperate("Run-up", "barbarian_outpost_run_wall") {
 }
 
 objectOperate("Climb-up", "barbarian_outpost_climb_wall") {
-    player.setAnimation("barbarian_wall_climb")
-    player.start("input_delay", 3)
-    player.strongQueue("agility_wall", 2) {
+    player.clear("face_entity")
+    val move = !player.tile.equals(2537, 3546, 2)
+    if (move) {
+        player.walkTo(Tile(2537, 3546, 2))
+    }
+    player.start("input_delay", if (move) 5 else 4)
+    player.strongQueue("agility_wall", if (move) 2 else 1) {
+        player.face(Direction.WEST)
+        pause()
+        player.setAnimation("barbarian_wall_climb")
+        pause()
         player.tele(2536, 3546, 3)
         player.setAnimation("barbarian_wall_stand_up")
-        pause(1)
+        pause()
         player.exp(Skill.Agility, 15.0)
         player.agilityStage(4)
     }

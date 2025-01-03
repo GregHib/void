@@ -131,7 +131,6 @@ internal class BarbarianOutpostTest : WorldTest() {
         assertTrue(player.levels.get(Skill.Constitution) < 100)
     }
 
-
     @Test
     fun `Climb wall`() {
         val player = createPlayer("barbarian", Tile(2537, 3554))
@@ -145,7 +144,7 @@ internal class BarbarianOutpostTest : WorldTest() {
     }
 
     @Test
-    fun `Finish course`() {
+    fun `Finish course lap`() {
         val player = createPlayer("barbarian", Tile(2541, 3553))
         val wall = objects[Tile(2542, 3553), "barbarian_outpost_crumbling_wall"]!!
 
