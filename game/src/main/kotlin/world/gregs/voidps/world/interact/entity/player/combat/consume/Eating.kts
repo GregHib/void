@@ -39,19 +39,24 @@ inventoryOptions("Eat", "Drink", "Heal") {
     }
     val replacement = item.def["excess", ""]
     val message = item.def["eat_message", ""]
-    if (replacement.isNotEmpty()) {
-        player.inventory.replace(slot, item.id, replacement)
-    } else {
+    val smash = player["vial_smashing", false] && replacement == "vial"
+    if (replacement.isEmpty() || smash) {
         player.inventory.remove(slot, item.id)
+    } else {
+        player.inventory.replace(slot, item.id, replacement)
     }
     player.setAnimation("eat_drink")
     if (message.isNotEmpty()) {
         player.message(message, ChatType.Filter)
     } else {
-        player.message("You ${if (drink) "drink" else "eat"} the ${item.def.name.lowercase()}.")
+        player.message("You ${if (drink) "drink" else "eat"} the ${item.def.name.lowercase()}.", ChatType.Filter)
+
     }
     player.playSound(if (drink) "pour_tea" else "eat")
     player.emit(Consume(item, slot))
+    if (smash) {
+        player.message("You quickly smash the empty vial using the trick a Barbarian taught you.", ChatType.Filter)
+    }
 }
 
 consume { player ->
