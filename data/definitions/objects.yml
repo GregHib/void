@@ -11966,3 +11966,27 @@ barbarian_outpost_gap:
 barbarian_outpost_roof:
   id: 43532
   examine: "A slanted roof."
+tree_gnome_door_east_closed:
+  id: 1968
+  examine: "A grand door for a grand tree."
+tree_gnome_door_east_opened:
+  id: 1970
+  examine: "A grand door for a grand tree."
+tree_gnome_door_west_closed:
+  id: 1967
+  examine: "A grand door for a grand tree."
+tree_gnome_door_west_opened:
+  id: 1969
+  examine: "A grand door for a grand tree."
+basic_ladder_bottom:
+  id: 1747
+  examine: "I can climb this."
+basic_ladder_first:
+  id: 1748
+  examine: "I can climb this."
+basic_ladder_second:
+  id: 2884
+  examine: "I can climb this."
+basic_ladder_top:
+  id: 1746
+  examine: "I can climb down this."

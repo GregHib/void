@@ -4,17 +4,12 @@ import world.gregs.voidps.Main
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
-import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.world.activity.quest.questComplete
 import world.gregs.voidps.world.interact.dialogue.Angry
 import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.Sad
@@ -22,23 +17,20 @@ import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.obj.door.Door
+import world.gregs.voidps.world.interact.entity.npc.shop.buy
+import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
+import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
+import world.gregs.voidps.world.interact.entity.combat.hit.damage
 
 npcApproach("Talk-to", "bartender_blue_moon_inn") {
-    player.approachRange(2)
+    player.approachRange(4)
     pause()
     npc<Quiz>("What can I do yer for?")
     choice {
         option<Talk>("A glass of your finest ale please.") {
             npc<Talk>("No problemo. That'll be 2 coins.")
-            player.inventory.transaction {
-                remove("coins", 2)
-                add("beer")
-            }
-            when (player.inventory.transaction.error) {
-                is TransactionError.Full -> player.inventoryFull()
-                TransactionError.None -> player.message("You buy a pint of beer.")
-                else -> player<Sad>("Oh dear. I don't seem to have enough money.")
+            if (buy("beer", 2)) {
+                player.message("You buy a pint of beer.")
             }
         }
         option<Quiz>("Can you recommend where an adventurer might make his fortune?") {
@@ -59,24 +51,31 @@ npcApproach("Talk-to", "bartender_blue_moon_inn") {
                 }
             }
         }
+        option("I'm doing Alfred Grimhand's barcrawl.", filter = barCrawlFilter) {
+            barCrawl()
+        }
     }
 }
 
 itemOnNPCApproach("barcrawl_card", "bartender_blue_moon_inn") {
-    player<Talk>("I'm doing Alfred Grimhand's Barcrawl.")
-    npc<Sad>("Oh no not another of you guys. These barbarian barcrawls cause too much damage to my bar.")
-    npc<Talk>("You're going to have to pay 50 gold for the Uncle Humphrey's Gutrot.")
-    if (!player.inventory.remove("coins", 50)) {
-        player<Sad>("Oh dear. I don't seem to have enough money.")
+    if (player.containsVarbit("barcrawl_signatures", "uncle_humphreys_gutrot")) {
+        player.noInterest()// TODO proper message
         return@itemOnNPCApproach
     }
-    player.message("You buy some Uncle Humphrey's Gutrot.")
-    pause(2)
-    player.message("You drink the Uncle Humphrey's Gutrot.")
-    pause()
-    player.message("Your insides feel terrible.")
-    pause()
-    player.forceChat = "Blearrgh!"
-    player.message("The bartender signs your card.")
-    player.addVarbit("barcrawl_signatures", "uncle_humphreys_gutrot")
+    barCrawl()
 }
+
+suspend fun TargetNPCContext.barCrawl() = barCrawlDrink(
+    start = {
+        npc<Sad>("Oh no not another of you guys. These barbarian barcrawls cause too much damage to my bar.")
+        npc<Talk>("You're going to have to pay 50 gold for the Uncle Humphrey's Gutrot.")
+    },
+    effects = {
+        player.levels.drain(Skill.Attack, 6)
+        player.levels.drain(Skill.Defence, 6)
+        player.levels.drain(Skill.Strength, 6)
+        player.levels.drain(Skill.Smithing, 6)
+        player.damage(0)
+        player.forceChat = "Blearrgh!"
+    }
+)

@@ -39,14 +39,34 @@ fun Player.sendQuestComplete(name: String, lines: List<String>, item: Item = Ite
     }
 }
 
-fun Player.sendScroll(name: String, lines: List<String>) {
-    if (!interfaces.open("message_scroll")) {
+fun Player.sendLetterScroll(name: String, lines: List<String>) {
+    if (!interfaces.open("letter_scroll")) {
         return
     }
     sendScript("message_scroll_max", lines.size + 1)
-    interfaces.sendText("message_scroll", "title", name)
-    interfaces.sendText("message_scroll", "line0", "")
+    interfaces.sendText("letter_scroll", "title", name)
+    interfaces.sendText("letter_scroll", "line0", "")
     for (i in 0..87) {
-        interfaces.sendText("message_scroll", "line${i + 1}", lines.getOrNull(i) ?: "")
+        interfaces.sendText("letter_scroll", "line${i + 1}", lines.getOrNull(i) ?: "")
+    }
+}
+
+fun Player.sendWomScroll(name: String, lines: List<String>) {
+    if (!interfaces.open("wise_old_man_scroll")) {
+        return
+    }
+    interfaces.sendText("wise_old_man_scroll", "title", name)
+    for (i in 0..16) {
+        interfaces.sendText("wise_old_man_scroll", "line${i + 1}", lines.getOrNull(i) ?: "")
+    }
+}
+
+fun Player.sendMessageScroll(lines: List<String>, handwriting: Boolean = false) {
+    val id = "message_scroll${if (handwriting) "_handwriting" else ""}"
+    if (!interfaces.open(id)) {
+        return
+    }
+    for (i in 0..if (handwriting) 10 else 14) {
+        interfaces.sendText(id, "line${i}", lines.getOrNull(i) ?: "")
     }
 }

@@ -15,24 +15,28 @@ import world.gregs.voidps.world.interact.dialogue.type.*
 npcOperate("Talk-to", "barbarian_guard") {
     when (player.quest("alfred_grimhands_barcrawl")) {
         "unstarted" -> startBarCrawl()
-        "finished" -> questComplete()
         "completed" -> toggleVialSmashing()
-        else -> checkProcess()
+        else -> if (player["barcrawl_signatures", emptyList<String>()].size == 10) {
+            questComplete()
+        } else {
+            checkProcess()
+        }
     }
 }
 
 suspend fun NPCOption.startBarCrawl() {
     npc<Quiz>("Oi, whaddya want?")
     choice {
-        option<Talk>("I want to come through this gate.")
-        option<Quiz>("Barbarians only. Are you a barbarian? You don't look like one.") {
+        option<Talk>("I want to come through this gate.") {
+            npc<Quiz>("Barbarians only. Are you a barbarian? You don't look like one.")
             choice {
                 option<Talk>("Hmm, yep you've got me there.")
-                option<Talk>("Looks can be deceiving, I am in fact a barbarian.") iAm@ {
+                option<Talk>("Looks can be deceiving, I am in fact a barbarian.") iAm@{
                     npc<Talk>("If you're a barbarian you need to be able to drink like one. We barbarians like a good drink.")
                     npc<Happy>("I have the perfect challenge for you... The Alfred Grimhand Barcrawl! First completed by Alfred Grimhand.")
                     if (player.inventory.add("barcrawl_card")) {
-                        item("barcrawl_card", 600, "The guard hands you a Barcrawl card.")
+                        player["alfred_grimhands_barcrawl"] = "signatures"
+                        item("barcrawl_card", 400, "The guard hands you a Barcrawl card.")
                     } else {
                         player.inventoryFull() // TODO proper message
                         return@iAm
@@ -79,8 +83,9 @@ suspend fun NPCOption.questComplete() {
     npc<Quiz>("So, how's the Barcrawl coming along?")
     player<Drunk>("I tink I jusht 'bout done dem all... but I losht count...")
     if (player.inventory.remove("barcrawl_card")) {
-        player.message("You give the card to the barbarian.")
+        item("barcrawl_card", 400, "You give the card to the barbarian.")
         player["alfred_grimhands_barcrawl"] = "completed"
+        player.clear("barcrawl_signatures")
     }
     npc<Talk>("Yep that seems fine, you can come in now. I never learned to read, but you look like you’ve drunk plenty. Also, one more thing...")
     npc<Talk>("Since you drink like a barbarian, I can show you how to smash your vials when you finish them. Do you want to do that?")
@@ -96,15 +101,16 @@ suspend fun NPCOption.questComplete() {
 suspend fun NPCOption.checkProcess() {
     npc<Quiz>("So, how's the Barcrawl coming along?")
     if (player.ownsItem("barcrawl_card")) {
-        player<Sad>("I've lost my barcrawl card...")
-        npc<Quiz>("What are you like? You're gonna have to start all over now.")
-        if (player.inventory.add("barcrawl_card")) {
-            item("barcrawl_card", 600, "The guard hands you a Barcrawl card.")
-        } else {
-            player.inventoryFull() // TODO proper message
-        }
-    } else {
         player<Sad>("I haven't finished it yet.")
         npc<Talk>("Well come back when you have, you lightweight.")
+        return
+    }
+    player<Sad>("I've lost my barcrawl card...")
+    npc<Quiz>("What are you like? You're gonna have to start all over now.")
+    if (player.inventory.add("barcrawl_card")) {
+        player.clear("barcrawl_signatures")
+        item("barcrawl_card", 400, "The guard hands you a Barcrawl card.")
+    } else {
+        player.inventoryFull() // TODO proper message
     }
 }

@@ -356,8 +356,9 @@ grums_gold_exchange:
     - ruby_bracelet: 0
     - sapphire_bracelet: 0
     - diamond_bracelet: 0
-karamja_wines_skillcape:
+karamja_wines_spirits_and_beers:
   id: 29
+  shop: true
   defaults:
     - beer: 10
     - karamjan_rum: 10

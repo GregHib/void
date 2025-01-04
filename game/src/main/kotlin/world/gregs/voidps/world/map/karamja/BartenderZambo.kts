@@ -1,0 +1,41 @@
+package world.gregs.voidps.world.map.karamja
+
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
+import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
+import world.gregs.voidps.world.interact.dialogue.Talk
+import world.gregs.voidps.world.interact.dialogue.type.choice
+import world.gregs.voidps.world.interact.dialogue.type.npc
+import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
+import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
+import world.gregs.voidps.world.interact.entity.npc.shop.openShop
+
+npcOperate("Talk-to", "bartender_zambo") {
+    npc<Talk>("Hey, are you wanting to try some of my fine wines and spirits? All brewed locally on Karamja.")
+    choice {
+        option("Yes, please.") {
+            player.openShop("karamja_wines_spirits_and_beers")
+        }
+        option<Talk>("No, thank you.")
+        option("I'm doing Alfred Grimhand's barcrawl.", filter = barCrawlFilter) {
+            barCrawl()
+        }
+    }
+}
+
+itemOnNPCOperate("barcrawl_card", "bartender_zambo") {
+    if (player.containsVarbit("barcrawl_signatures", "ape_bite_liqueur")) {
+        player.noInterest() // TODO proper message
+        return@itemOnNPCOperate
+    }
+    barCrawl()
+}
+
+suspend fun TargetNPCContext.barCrawl() = barCrawlDrink(
+    effects = {
+        player.forceChat = "Mmmmm, dat was luverly..."
+    }
+)
