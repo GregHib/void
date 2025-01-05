@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.map.karamja
 
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
