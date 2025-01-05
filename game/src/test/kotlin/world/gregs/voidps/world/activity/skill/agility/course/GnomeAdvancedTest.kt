@@ -38,6 +38,9 @@ internal class GnomeAdvancedTest : WorldTest() {
 
     @Test
     fun `Run across sign post`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = if (until == 256) -10 else 0
+        })
         val player = createPlayer("agile", Tile(2475, 3418, 3))
         val sign = objects[Tile(2478, 3417, 3), "gnome_sign_post_advanced"]!!
 

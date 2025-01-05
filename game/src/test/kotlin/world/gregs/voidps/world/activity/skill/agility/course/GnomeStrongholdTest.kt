@@ -104,12 +104,12 @@ internal class GnomeStrongholdTest : WorldTest() {
         assertEquals(7.5, player.experience.get(Skill.Agility))
     }
 
-
     @Test
     fun `Climb through pipe with bonus reward`() {
         val player = createPlayer("agile", Tile(2483, 3430))
         val pipe = objects[Tile(2483, 3431), "gnome_obstacle_pipe_west"]!!
-        player["gnome_course_stage"] = 6
+        player.agilityCourse("gnome")
+        player.agilityStage = 6
 
         player.objectOption(pipe, "Squeeze-through")
         tick(10)
