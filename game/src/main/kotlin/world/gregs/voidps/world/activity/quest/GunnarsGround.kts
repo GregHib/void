@@ -19,7 +19,7 @@ playerSpawn { player ->
 }
 
 inventoryItem("Read", "gunnars_ground", "inventory") {
-    player.sendScroll("Gunnar's Ground", listOf(
+    player.sendLetterScroll("Gunnar's Ground", listOf(
         "Our people dwelt on mountains steeped in lore,",
         "A mighty tribe as harsh as any beast",
         "Who then, in face of madness swept to war,",

@@ -256,7 +256,7 @@ inventory:
         Option12: 17
         Drag: 20
         Option13: 21
-message_scroll:
+letter_scroll:
   id: 156
   type: wide_screen
   components:  
@@ -640,6 +640,18 @@ dialogue_message_np5:
     line3: 3
     line4: 4
     line5: 5
+message_scroll:
+  id: 220
+  type: wide_screen
+  components:
+    line0: 1-15
+    close: 16
+message_scroll_handwriting:
+  id: 222
+  type: wide_screen
+  components:
+    line0: 1-11
+    close: 12
 items_needed_list: 227
 # Choice
 dialogue_multi2:
@@ -2663,6 +2675,12 @@ fade_out:
 fade_in:
   id: 170
   type: overlay
+wise_old_man_scroll:
+  id: 174
+  type: main_screen
+  components:
+    close: 17
+    line0: 1-16
 fade_out_smoke:
   id: 162
   type: overlay

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.treegnomestronghold
+package world.gregs.voidps.world.map.tree_gnome_stronghold
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate

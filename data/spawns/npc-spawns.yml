@@ -593,6 +593,7 @@
 - { id: butterfly_5, x: 2447, y: 3467, members: true }
 - { id: butterfly_3, x: 2434, y: 3516, members: true }
 - { id: butterfly_3, x: 2479, y: 3501, members: true }
+- { id: blurberry, x: 2480, y: 3490, level: 1, members: true }
 # 9797
 - { id: butterfly_2, x: 2488, y: 4465, members: true }
 - { id: butterfly_2, x: 2475, y: 4459, members: true }
@@ -702,6 +703,7 @@
 - { id: wolf, x: 2500, y: 2959, members: true }
 # 10032
 - { id: musician_yanille, x: 2526, y: 3096, direction: SOUTH, members: true }
+- { id: bartender_dragon_inn, x: 2556, y: 3078, members: true }
 # 10033
 - { id: butterfly_5, x: 2540, y: 3167, members: true }
 - { id: butterfly_1, x: 2549, y: 3139, members: true }
@@ -744,6 +746,9 @@
 - { id: butterfly_1, x: 2556, y: 3444, members: true }
 # 10039
 - { id: chicken, x: 2554, y: 3563, members: true }
+- { id: gunnjorn, x: 2540, y: 3548, members: true }
+- { id: barbarian_guard, x: 2544, y: 3567, members: true }
+- { id: barbarian_guard, x: 2544, y: 3571, members: true }
 # 10044
 - { id: musician_miscellania, x: 2536, y: 3861, direction: NORTH, members: true }
 # 10067
@@ -818,6 +823,7 @@
 # 10291
 - { id: wolf, x: 2616, y: 3283, members: true }
 - { id: wolf, x: 2620, y: 3283, members: true }
+- { id: bartender_flying_horse_inn, x: 2574, y: 3319, members: true }
 # 10292
 - { id: banker_3, x: 2614, y: 3330, direction: NORTH, members: true }
 - { id: banker_4, x: 2618, y: 3330, direction: NORTH, members: true }
@@ -1135,6 +1141,7 @@
 - { id: banker_4, x: 2722, y: 3495, direction: SOUTH, members: true }
 - { id: banker_4, x: 2727, y: 3495, direction: SOUTH, members: true }
 - { id: banker_4, x: 2728, y: 3495, direction: SOUTH, members: true }
+- { id: bartender_foresters_arms, x: 2690, y: 3493, members: true }
 # 10807
 - { id: cow, x: 2733, y: 3561, members: true }
 - { id: rat, x: 2720, y: 3583, members: true }
@@ -1174,6 +1181,7 @@
 # 11057
 - { id: rat, x: 2810, y: 3170, members: true }
 - { id: rat, x: 2807, y: 3167, members: true }
+- { id: bartender_dead_mans_chest, x: 2797, y: 3155, members: true }
 # 11061
 - { id: man, x: 2803, y: 3431, members: true }
 - { id: man, x: 2805, y: 3428, members: true }
@@ -1282,6 +1290,7 @@
 # 11569
 - { id: shopkeeper_musa_point, x: 2902, y: 3146 }
 - { id: shop_assistant_musa_point, x: 2902, y: 3150 }
+- { id: bartender_zambo, x: 2926, y: 3145 }
 # 11570
 - { id: rat, x: 2923, y: 3251 }
 - { id: rat, x: 2939, y: 3242 }
@@ -1373,6 +1382,9 @@
 - { id: duck_grey_swim, x: 3982, y: 3357 }
 - { id: chicken, x: 2966, y: 3346 }
 - { id: sir_vyvin, x: 2983, y: 3335, level: 2 }
+- { id: barmaid_emily, x: 2954, y: 3373 }
+- { id: barmaid_kaylee, x: 2957, y: 3370 }
+- { id: barmaid_tina, x: 2956, y: 3373, level: 1 }
 # 11829
 - { id: doric, x: 2952, y: 3451 }
 - { id: musician_falador, x: 2967, y: 3412, direction: SOUTH }
@@ -1446,6 +1458,7 @@
 - { id: rat, x: 3015, y: 3182 }
 # 12082
 - { id: man, x: 3017, y: 3238 }
+- { id: bartender_rusty_anchor, x: 3045, y: 3257 }
 # 12083
 - { id: cow_calf, x: 3031, y: 3312 }
 - { id: cow_calf, x: 3042, y: 3312 }
@@ -2168,6 +2181,7 @@
 - { id: banker_2, x: 3254, y: 3418, direction: NORTH }
 - { id: banker_2, x: 3255, y: 3418, direction: NORTH }
 - { id: banker_2, x: 3256, y: 3418, direction: NORTH }
+- { id: bartender_blue_moon_inn, x: 3226, y: 3399 }
 # 12854
 - { id: sir_prysin, x: 3204, y: 3471 }
 - { id: captain_rovin, x: 3204, y: 3496, level: 2 }
@@ -2276,6 +2290,7 @@
 - { id: musician_lumber_yard, x: 3291, y: 3455, direction: WEST }
 # 13110
 - { id: man_3, x: 3283, y: 3501 }
+- { id: bartender_jolly_boar_inn, x: 3277, y: 3488 }
 # 13131
 - { id: eniola, x: 3269, y: 4857, direction: SOUTH, members: true }
 - { id: zamorak_warrior_square, x: 3271, y: 4815, members: true }

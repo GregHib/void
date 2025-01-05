@@ -40,9 +40,10 @@ object ObjectDefinitions {
 
     fun Array<ObjectDefinitionFull>.findMatchingModels(id: Int) {
         val original = getOrNull(id)!!
+        val models = original.modelIds!!.map { it.toSet() }.flatten().toSet()
         for (i in indices) {
             val def = getOrNull(i) ?: continue
-            if (def.modelIds != null && def.modelIds!!.contentDeepEquals(original.modelIds!!) && original.modifiedColours != null && def.modifiedColours.contentEquals(original.modifiedColours!!)) {
+            if (def.modelIds != null && def.modelIds!!.any { arr -> arr.any { models.contains(it) } }) {
                 println("Found $i ${def.options?.get(0)}")
             }
         }

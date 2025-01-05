@@ -76,21 +76,19 @@ fun ChoiceBuilder<NPCOption>.needHelp() {
             option<Quiz>("Can I have another Abyssal book?") {
                 if (player.ownsItem("abyssal_book")) {
                     npc<Talk>("You already have one, don't waste my time.") // TODO proper message
+                } else if (player.inventory.isFull()) {
+                    npc<Angry>("Don't waste my time if you don't have enough free space to take it.")
                 } else {
-                    if (player.inventory.isFull()) {
-                        npc<Angry>("Don't waste my time if you don't have enough free space to take it.")
+                    npc<Talk>("Here, take it. It is important to pool our research.")
+                    if (player.inventory.add("abyssal_book")) {
+                        item("abyssal_book", 400, "You have been given a book.")
                     } else {
-                        npc<Talk>("Here, take it. It is important to pool our research.")
-                        if (player.inventory.add("abyssal_book")) {
-                            item("abyssal_book", 400, "You have been given a book.")
-                        } else {
-                            item("abyssal_book", 400, "The mage tries to hand you a book, but you don't have enough room to take it.") // TODO proper message
-                        }
-                        choice {
-                            askForPouch()
-                            option<Neutral>("Thanks.") {
-                                npc<Quiz>("Now can you leave me alone? I can't keep affording these distractions!")
-                            }
+                        item("abyssal_book", 400, "The mage tries to hand you a book, but you don't have enough room to take it.") // TODO proper message
+                    }
+                    choice {
+                        askForPouch()
+                        option<Neutral>("Thanks.") {
+                            npc<Quiz>("Now can you leave me alone? I can't keep affording these distractions!")
                         }
                     }
                 }

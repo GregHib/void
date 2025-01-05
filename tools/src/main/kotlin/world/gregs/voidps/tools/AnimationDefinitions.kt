@@ -9,7 +9,7 @@ object AnimationDefinitions {
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val decoder = AnimationDecoderFull().load(cache)
-        val match = decoder[12185].frames
+        val match = decoder[10289].frames
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
             if (def.frames.contentEquals(match)) {

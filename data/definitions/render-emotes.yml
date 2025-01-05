@@ -1,3 +1,11 @@
 human_stand: 1426
 dororan_stand: 1880
 rope_balance: 155
+beam_balance: 330
+ledge_balance: 1026
+ledge_balance_2: 1427
+tread_water: 152
+drowning: 163
+swim: 164
+tread_water_2: 188
+falling: 189

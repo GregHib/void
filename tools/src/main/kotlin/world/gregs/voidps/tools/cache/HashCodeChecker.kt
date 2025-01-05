@@ -7,7 +7,7 @@ object HashCodeChecker {
     private val matches = mutableMapOf<Int, String>()
     private lateinit var known: Map<Int, String?>
     private val input = File("./temp/hashes/check.tsv")
-    private const val WRITE_CHANGES = true
+    private const val WRITE_CHANGES = false
 
     @JvmStatic
     fun main(args: Array<String>) {

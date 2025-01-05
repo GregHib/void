@@ -31,10 +31,23 @@ object Level {
     }
 
     /**
+     * Calculates random chance of being successful
+     * @param level The players current level
+     * @param maxLevel The maximum level to fail at
+     * @param minChance The chance rate (out of [MAX_CHANCE]) at level 1
+     * @return success
+     */
+    fun success(level: Int, maxLevel: Int, minChance: Int = 1): Boolean {
+        val chance = chance(level, minChance..MAX_CHANCE, maxLevel)
+        val random = random.nextInt(MAX_CHANCE)
+        return chance > random
+    }
+
+    /**
      * The chance of being successful (out of [MAX_CHANCE])
      */
-    private fun chance(level: Int, chances: IntRange): Int {
-        return interpolate(level.coerceIn(MIN_LEVEL, MAX_LEVEL), chances.first, chances.last, MIN_LEVEL, MAX_LEVEL)
+    private fun chance(level: Int, chances: IntRange, maxLevel: Int = MAX_LEVEL): Int {
+        return interpolate(level.coerceIn(MIN_LEVEL, MAX_LEVEL), chances.first, chances.last, MIN_LEVEL, maxLevel)
     }
 
     fun experience(skill: Skill, level: Int) = experience(if (skill == Skill.Constitution) level / 10 else level)

@@ -2350,6 +2350,157 @@ suit_of_armour:
 gnome_trainer:
   id: 162
   race: gnome
-  large_head: true
   wander_radius: 4
   examine: "He can advise on training."
+gunnjorn:
+  id: 607
+  race: human
+  wander_radius: 4
+  examine: "He maintains this agility course."
+barbarian_guard:
+  id: 384
+  race: human
+  wander_radius: 4
+  examine: "Not very civilised looking."
+bartender_blue_moon_inn:
+  id: 733
+  bar_crawl:
+    id: "uncle_humphreys_gutrot"
+    price: 50
+    insufficient: "Oh dear. I don't seem to have enough money."
+    give: "You buy some Uncle Humphrey's Gutrot."
+    drink: "You drink the Uncle Humphrey's Gutrot."
+    effect: "Your insides feel terrible."
+    sign: "The bartender signs your card."
+  race: human
+  wander_radius: 4
+  examine: "I could get a beer from him."
+bartender_rusty_anchor:
+  id: 11707
+  bar_crawl:
+    id: "black_skull_ale"
+    price: 8
+    insufficient: "I don't have 8 coins with me."
+    give: "You buy a Black Skull Ale."
+    drink: "You drink your Black Skull Ale..."
+    effect: "Your vision blurs."
+    sign: "The bartender signs your card."
+  race: human
+  wander_radius: 4
+  examine: "I could get a beer from him."
+barmaid_emily:
+  &barmaid
+  id: 736
+  bar_crawl:
+    id: "hand_of_death_cocktail"
+    price: 70
+    insufficient: "I don't have that much money on me."
+    give: "You buy a Hand of Death cocktail."
+    drink: "You drink the cocktail."
+    effect: "You stumble around the room."
+    sign: "The barmaid giggles and signs your card."
+  race: human
+  wander_radius: 3
+  examine: "Works in the Rising Sun."
+barmaid_kaylee:
+  <<: *barmaid
+  id: 3217
+barmaid_tina:
+  <<: *barmaid
+  id: 3218
+bartender_zambo:
+  id: 568
+  shop: karamja_wines_spirits_and_beers
+  bar_crawl:
+    id: "ape_bite_liqueur"
+    price: 7
+    start: "Ah, you'll be wanting some Ape Bite Liqueur, then. It's got a lovely banana taste and it'll only cost you 7 coins."
+    insufficient: "I don't have 7 coins with me."
+    give: "You buy some Ape Bite Liqueur."
+    drink: "You swirl it around and swallow it."
+    effect: "Zambo signs your card."
+  race: human
+  wander_radius: 3
+  examine: "Appears slightly drunk."
+bartender_flying_horse_inn:
+  id: 738
+  bar_crawl:
+    id: "heart_stopper"
+    price: 8
+    start: "Fancy a bit of Heart Stopper then do you? It'll only be 8 coins."
+    insufficient: "Sorry, I don't have 8 coins."
+    give: "The bartender hands you a shot of Heart Stopper."
+    drink: "You grimace and drink it."
+    effect: "You clutch your chest."
+    sign: "Through your tears you see the bartender..."
+  race: human
+  wander_radius: 3
+  examine: "I could get a beer from him."
+blurberry:
+  id: 848
+  bar_crawl:
+    id: "fire_toad_blast"
+    price: 10
+    insufficient: "I don't have 10 coins right now."
+    give: "You buy a Fire Toad Blast."
+    drink: "Your mouth and throat burn as you gulp it down."
+    effect: "Blurberry signs your card."
+  race: gnome
+  wander_radius: 3
+  examine: "He seems to run the cocktail bar."
+bartender_dragon_inn:
+  id: 739
+  bar_crawl:
+    id: "fire_brandy"
+    price: 12
+    start: "I suppose you'll be wanting some Fire Brandy. That'll cost you 12 coins."
+    insufficient: "Sorry I don't have 12 coins."
+    give: "The bartender hands you a small glass and sets light to the contents."
+    drink: "You blow out the flame and drink it."
+    effect: "Your vision blurs and you stagger slightly."
+    sign: "You can just about make out the bartender signing your barcrawl card."
+  race: human
+  wander_radius: 5
+  examine: "I could get a beer from him."
+bartender_jolly_boar_inn:
+  id: 731
+  bar_crawl:
+    id: "olde_suspiciouse"
+    price: 10
+    start: "Ah, there seems to be a fair few doing that one these days. My supply of Olde Suspiciouse is starting to run low, it'll cost you 10 coins."
+    insufficient: "I don't have 10 coins right now."
+    give: "You buy a pint of Olde Suspiciouse."
+    drink: "You gulp it down."
+    effect: "Your head is spinning."
+    sign: "The bartender signs your card."
+  race: human
+  wander_radius: 5
+  examine: "I could get a beer from him."
+bartender_dead_mans_chest:
+  id: 735
+  bar_crawl:
+    id: "supergrog"
+    price: 15
+    start: "Fancy a bit of Heart Stopper then do you? It'll only be 8 coins."
+    insufficient: "Sorry I don't have 15 coins."
+    give: "The bartender serves you a glass of strange thick dark liquid."
+    drink: "You wince and drink it."
+    effect: "You stagger backwards."
+    sign: "You think you see 2 bartenders signing 2 barcrawl cards."
+  race: human
+  wander_radius: 5
+  examine: "I could get a beer from him."
+bartender_foresters_arms:
+  id: 737
+  bar_crawl:
+    id: "liverbane_ale"
+    price: 18
+    start: "Oh you're a barbarian then. Now which of these barrels contained the Liverbane Ale? That'll be 18 coins please."
+    insufficient: "Sorry, I don't have 18 coins."
+    give: "The bartender gives you a glass of Liverbane Ale."
+    drink: "You gulp it down."
+    effect: "The room seems to be swaying."
+    sign: "The bartender scrawls his signature on your card."
+  race: human
+  wander_radius: 5
+  examine: "I could get a beer from him."
