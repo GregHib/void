@@ -14,12 +14,13 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.buy
 import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
 import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
+import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
 
 npcOperate("Talk-to", "bartender_flying_horse_inn") {
     npc<Quiz>("Would you like to buy a drink?")
     player<Quiz>("What do you serve?")
-    npc<Talk>("Beer!")
+    npc<Happy>("Beer!")
     choice {
         option<Talk>("I'll have a beer then.") {
             npc<Talk>("Ok, that'll be two coins.")

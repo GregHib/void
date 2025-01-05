@@ -53,8 +53,8 @@ suspend fun NPCOption.startBarCrawl() {
 }
 
 suspend fun NPCOption.toggleVialSmashing() {
-    npc<Quiz>("'Ello friend. I see you're drinking like a barbarian - do you want to stop smashing your vials when you finish them?")
     if (player["vial_smashing", false]) {
+        npc<Quiz>("'Ello friend. I see you're drinking like a barbarian - do you want to stop smashing your vials when you finish them?")
         choice {
             option<Talk>("Yes please, I want to stop smashing my vials.") {
                 player["vial_smashing"] = false
@@ -87,14 +87,14 @@ suspend fun NPCOption.questComplete() {
         player["alfred_grimhands_barcrawl"] = "completed"
         player.clear("barcrawl_signatures")
     }
-    npc<Talk>("Yep that seems fine, you can come in now. I never learned to read, but you look like you’ve drunk plenty. Also, one more thing...")
+    npc<Talk>("Yep that seems fine, you can come in now. I never learned to read, but you look like you've drunk plenty. Also, one more thing...")
     npc<Talk>("Since you drink like a barbarian, I can show you how to smash your vials when you finish them. Do you want to do that?")
     choice {
         option<Talk>("Yes please, I want to smash my vials.") {
-            npc<Talk>("It’s all part of drinking like a barbarian! Okay, you will now smash your vials as you drink your potions.")
+            npc<Talk>("It's all part of drinking like a barbarian! Okay, you will now smash your vials as you drink your potions.")
             player.message("Vial smashing is now turned on.")
         }
-        option<Talk>("No thank you, I’d rather keep my vials.")
+        option<Talk>("No thank you, I'd rather keep my vials.")
     }
 }
 

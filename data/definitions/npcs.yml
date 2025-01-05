@@ -2393,7 +2393,7 @@ barmaid_emily:
   id: 736
   bar_crawl:
     id: "hand_of_death_cocktail"
-    price: 15
+    price: 70
     insufficient: "I don't have that much money on me."
     give: "You buy a Hand of Death cocktail."
     drink: "You drink the cocktail."

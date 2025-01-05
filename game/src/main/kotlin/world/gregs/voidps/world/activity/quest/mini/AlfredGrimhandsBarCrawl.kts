@@ -8,7 +8,7 @@ import world.gregs.voidps.world.activity.quest.sendMessageScroll
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
 inventoryItem("Read", "barcrawl_card") {
-    val signatures: List<String> = player["barcrawl_signatures", emptyList<String>()]
+    val signatures: List<String> = player["barcrawl_signatures", emptyList()]
     if (signatures.size == 10) {
         player.message("You are too drunk to be able to read the barcrawl card.")
         return@inventoryItem

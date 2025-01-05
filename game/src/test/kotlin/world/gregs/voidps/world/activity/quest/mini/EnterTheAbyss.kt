@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.quest
+package world.gregs.voidps.world.activity.quest.mini
 
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.FakeRandom

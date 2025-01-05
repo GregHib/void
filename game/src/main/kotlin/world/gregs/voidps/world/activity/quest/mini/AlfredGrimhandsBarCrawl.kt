@@ -30,8 +30,8 @@ suspend fun TargetNPCContext.barCrawlDrink(
         player.message(info["effect"] as String)
         pause(4)
         (info["sign"] as? String)?.let { player.message(it) }
-        effects()
         player.addVarbit("barcrawl_signatures", id)
+        effects()
     }
 }
 
