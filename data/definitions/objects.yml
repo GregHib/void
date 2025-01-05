@@ -11990,3 +11990,12 @@ basic_ladder_second:
 basic_ladder_top:
   id: 1746
   examine: "I can climb down this."
+pyramid_climbing_rocks_top:
+  id: 16535
+  examine: "I can climb down this."
+pyramid_climbing_rocks_bottom:
+  id: 16535
+  examine: "I can climb down this."
+agility_pyramid_stairs_start:
+  id: 10857
+  examine: "I can climb down this."
