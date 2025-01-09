@@ -4,9 +4,12 @@ import kotlinx.coroutines.*
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.ui.event.adminCommand
+import world.gregs.voidps.engine.data.AccountManager
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
+import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -15,7 +18,7 @@ import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.getIntProperty
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -32,7 +35,7 @@ import kotlin.reflect.KClass
 
 val areas: AreaDefinitions by inject()
 val lumbridge = areas["lumbridge_teleport"]
-val botCount = getIntProperty("bots", 0)
+val botCount = Settings["bots", 0]
 
 val bots = mutableListOf<Player>()
 val enums: EnumDefinitions by inject()
@@ -73,6 +76,16 @@ adminCommand("bots") {
                 }
             }
             spawn()
+        }
+    }
+}
+
+adminCommand("clear_bots") {
+    val count = content.toIntOrNull() ?: MAX_PLAYERS
+    World.queue("bot_${counter}") {
+        val manager = get<AccountManager>()
+        for (bot in bots.take(count)) {
+            manager.logout(bot, false)
         }
     }
 }

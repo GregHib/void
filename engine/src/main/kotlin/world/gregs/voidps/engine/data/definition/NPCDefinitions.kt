@@ -3,11 +3,11 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.data.Pocket
 import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.data.yaml.DefinitionConfig
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReader
@@ -21,7 +21,7 @@ class NPCDefinitions(
     override fun empty() = NPCDefinition.EMPTY
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = getProperty("npcDefinitionsPath")): NPCDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["npcDefinitionsPath"]): NPCDefinitions {
         timedLoad("npc extra") {
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids

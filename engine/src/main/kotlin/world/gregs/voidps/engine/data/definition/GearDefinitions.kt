@@ -3,10 +3,10 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.GearDefinition
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.yaml.Yaml
@@ -19,7 +19,7 @@ class GearDefinitions {
     fun get(style: String): List<GearDefinition> = definitions[style] ?: emptyList()
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = getProperty("gearDefinitionsPath"), itemDefinitions: ItemDefinitions = get()): GearDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["gearDefinitionsPath"]): GearDefinitions {
         timedLoad("gear definition") {
             var count = 0
             val config = object : YamlReaderConfiguration() {

@@ -5,13 +5,13 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.data.*
 import world.gregs.voidps.engine.data.yaml.DefinitionConfig
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.yaml.Yaml
@@ -27,7 +27,7 @@ class ItemDefinitions(
 
     override fun empty() = ItemDefinition.EMPTY
 
-    fun load(yaml: Yaml = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["itemDefinitionsPath"]): ItemDefinitions {
         timedLoad("item extra") {
             val equipment = IntArray(definitions.size) { -1 }
             var index = 0

@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.data
 
+import com.github.michaelbull.logging.InlineLogger
+import java.io.File
 import java.io.InputStream
 import java.util.*
 
@@ -20,6 +22,8 @@ open class Settings {
         return properties
     }
 
+    fun getOrNull(name: String): String? = properties.getProperty(name)
+
     operator fun get(name: String): String = properties.getProperty(name)
 
     operator fun get(name: String, default: String): String = properties.getProperty(name, default)
@@ -34,5 +38,18 @@ open class Settings {
         properties.clear()
     }
 
-    companion object : Settings()
+    companion object : Settings() {
+        private const val PROPERTY_FILE_NAME = "game.properties"
+        private val logger = InlineLogger()
+
+        fun load(): Properties {
+            val file = File("./$PROPERTY_FILE_NAME")
+            return if (file.exists()) {
+                Settings.load(file.inputStream())
+            } else {
+                logger.debug { "Property file not found; defaulting to internal." }
+                Settings.load(Settings::class.java.getResourceAsStream("/$PROPERTY_FILE_NAME")!!)
+            }
+        }
+    }
 }

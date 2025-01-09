@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity
 
 import org.rsmod.game.pathfinder.flag.CollisionFlag
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.mode.move.npcMove
@@ -11,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.entity.characterDespawn
 import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.type.Tile
@@ -21,16 +21,15 @@ import world.gregs.voidps.world.interact.entity.death.npcDeath
 val collisions: Collisions by inject()
 val npcs: NPCs by inject()
 val players: Players by inject()
-val active = getProperty("characterCollision") == "true"
 
 playerSpawn { player ->
-    if (players.add(player) && active) {
+    if (players.add(player) && Settings["characterCollision", false]) {
         add(player)
     }
 }
 
 npcSpawn { npc ->
-    if (active) {
+    if (Settings["characterCollision", false]) {
         add(npc)
     }
 }
@@ -40,19 +39,19 @@ npcDeath { npc ->
 }
 
 characterDespawn { character ->
-    if (active) {
+    if (Settings["characterCollision", false]) {
         remove(character)
     }
 }
 
 move {
-    if (active) {
+    if (Settings["characterCollision", false]) {
         move(character, from, to)
     }
 }
 
 npcMove {
-    if (active && !character.dead) {
+    if (Settings["characterCollision", false] && !character.dead) {
         move(character, from, to)
     }
     npcs.update(from, to, npc)

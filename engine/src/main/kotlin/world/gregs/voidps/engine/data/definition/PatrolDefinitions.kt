@@ -1,9 +1,9 @@
 package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.PatrolDefinition
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
@@ -15,7 +15,7 @@ class PatrolDefinitions {
     fun get(key: String) = definitions[key] ?: PatrolDefinition()
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = getProperty("patrolDefinitionsPath")): PatrolDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["patrolDefinitionsPath"]): PatrolDefinitions {
         timedLoad("patrol definition") {
             val definitions = Object2ObjectOpenHashMap<String, PatrolDefinition>()
             val config = object : YamlReaderConfiguration() {

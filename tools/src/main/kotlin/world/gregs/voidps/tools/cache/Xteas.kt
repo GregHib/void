@@ -2,8 +2,7 @@ package world.gregs.voidps.tools.cache
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
-import world.gregs.voidps.engine.getProperty
-import world.gregs.voidps.engine.getPropertyOrNull
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Region
 import world.gregs.yaml.Yaml
@@ -18,9 +17,9 @@ data class Xteas(
     }
 
     fun load(
-        path: String = getProperty("xteaPath"),
-        key: String = getPropertyOrNull("xteaJsonKey") ?: DEFAULT_KEY,
-        value: String = getPropertyOrNull("xteaJsonValue") ?: DEFAULT_VALUE
+        path: String = Settings["xteaPath"],
+        key: String = Settings["xteaJsonKey", DEFAULT_KEY],
+        value: String = Settings["xteaJsonValue", DEFAULT_VALUE]
     ): Xteas {
         timedLoad("xtea") {
             val file = File(path)

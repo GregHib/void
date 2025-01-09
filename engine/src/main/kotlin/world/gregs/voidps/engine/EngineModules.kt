@@ -42,9 +42,9 @@ val engineModule = module {
     }
     single {
         val homeTile = Tile(
-            x = getIntProperty("homeX", 0),
-            y = getIntProperty("homeY", 0),
-            level = getIntProperty("homeLevel", 0)
+            x = Settings["homeX", 0],
+            y = Settings["homeY", 0],
+            level = Settings["homeLevel", 0]
         )
         AccountManager(get(), get(), get(), get(), get(), get(), homeTile, get(), get(), get(), get(), getProperty("experienceRate", "1.0").toDouble())
     }
@@ -74,7 +74,7 @@ val engineModule = module {
     single(createdAtStart = true) { AreaDefinitions().load() }
     // Network
     single {
-        ConnectionQueue(getIntProperty("connectionPerTickCap", 1))
+        ConnectionQueue(Settings["connectionPerTickCap", 1])
     }
     single(createdAtStart = true) { GameObjectCollisionAdd(get()) }
     single(createdAtStart = true) { GameObjectCollisionRemove(get()) }

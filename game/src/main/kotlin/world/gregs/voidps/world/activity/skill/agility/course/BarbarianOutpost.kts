@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.skill.agility.course
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.exactMove
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -15,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.getPropertyOrNull
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -48,7 +48,7 @@ objectOperate("Swing-on", "barbarian_outpost_rope_swing") {
     player.walkTo(player.tile.copy(y = 3554))
     player.clear("face_entity")
     player.face(Direction.SOUTH)
-    val disable = getPropertyOrNull("disableAdvancedAgilityCourseFailure").toBoolean()
+    val disable = Settings["disableAdvancedAgilityCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), 70) // 50% success at 35
 //  player.message("The rope swing is being used at the moment.", ChatType.Filter)
     player.start("input_delay", if (success) 5 else 8)
@@ -70,7 +70,7 @@ objectOperate("Swing-on", "barbarian_outpost_rope_swing") {
             player.walkTo(player.tile.copy(y = 9949), noCollision = true, noRun = true)
 //            player.message("", ChatType.Filter) TODO
         }
-        if (success || getPropertyOrNull("disableAdvancedAgilityCourseFailLapSkip").toBoolean()) {
+        if (success || Settings["disableAdvancedAgilityCourseFailLapSkip", false]) {
             player.agilityStage(1)
         }
     }
@@ -78,7 +78,7 @@ objectOperate("Swing-on", "barbarian_outpost_rope_swing") {
 
 objectOperate("Walk-across", "barbarian_outpost_log_balance") {
     player.start("input_delay", 12)
-    val disable = getPropertyOrNull("disableAdvancedAgilityCourseFailure").toBoolean()
+    val disable = Settings["disableAdvancedAgilityCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), 93) // 62.1% success rate at 35
     player.strongQueue("agility_log_balance") {
         onCancel = {
@@ -111,7 +111,7 @@ objectOperate("Walk-across", "barbarian_outpost_log_balance") {
             player.clearRenderEmote()
             player.damage(random.nextInt(30, 52))
         }
-        if (success || getPropertyOrNull("disableAdvancedAgilityCourseFailLapSkip").toBoolean()) {
+        if (success || Settings["disableAdvancedAgilityCourseFailLapSkip", false]) {
             player.agilityStage(2)
         }
     }
@@ -131,7 +131,7 @@ objectOperate("Climb-over", "barbarian_outpost_obstacle_net") {
 objectOperate("Walk-across", "barbarian_outpost_balancing_ledge") {
     player.start("input_delay", 6)
     player.setAnimation("ledge_stand_right")
-    val disable = getPropertyOrNull("disableAdvancedAgilityCourseFailure").toBoolean()
+    val disable = Settings["disableAdvancedAgilityCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), 93) // 62.1% success rate
     player.strongQueue("agility_ledge_balance", 1) {
         onCancel = {
@@ -166,7 +166,7 @@ objectOperate("Walk-across", "barbarian_outpost_balancing_ledge") {
     //            player.message("", ChatType.Filter) // TODO
             // Skip stage so lap doesn't count at end
         }
-        if (success || getPropertyOrNull("disableAdvancedAgilityCourseFailLapSkip").toBoolean()) {
+        if (success || Settings["disableAdvancedAgilityCourseFailLapSkip", false]) {
             player.agilityStage(4)
         }
     }

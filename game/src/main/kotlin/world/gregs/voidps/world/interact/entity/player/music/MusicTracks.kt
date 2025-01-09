@@ -3,8 +3,8 @@ package world.gregs.voidps.world.interact.entity.player.music
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Region
@@ -24,7 +24,7 @@ class MusicTracks {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = getProperty("musicPath")): MusicTracks {
+    fun load(yaml: Yaml = get(), path: String = Settings["musicPath"]): MusicTracks {
         timedLoad("music track") {
             var count = 0
             val tracks = Int2ObjectOpenHashMap<MutableList<Track>>()

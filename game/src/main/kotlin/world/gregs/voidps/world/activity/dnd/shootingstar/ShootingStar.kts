@@ -4,7 +4,9 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.data.Rock
+import world.gregs.voidps.engine.data.settingsReload
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.exactMove
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
@@ -21,7 +23,6 @@ import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.entity.objectDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.entity.worldSpawn
-import world.gregs.voidps.engine.getPropertyOrNull
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -53,11 +54,18 @@ val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 val players: Players by inject()
 val logger = InlineLogger()
-val active = getPropertyOrNull("shootingStars") == "true"
 
 worldSpawn {
-    if (active) {
+    if (Settings["shootingStars", false]) {
         eventUpdate()
+    }
+}
+
+settingsReload {
+    if (Settings["shootingStars", false] && !World.contains("shooting_star_event_timer")) {
+        eventUpdate()
+    } else if (!Settings["shootingStars", false] && World.contains("shooting_star_event_timer")) {
+        World.clearQueue("shooting_star_event_timer")
     }
 }
 
@@ -224,7 +232,7 @@ npcOperate("Talk-to", "star_sprite") {
                 messageBuilder.append(", $amount ${reward.replace("_", " ").replace("noted", "").plural(amount)}")
             }
         }
-        if(!ShootingStarHandler.rewardPlayerBonusOre(player)) {
+        if (!ShootingStarHandler.rewardPlayerBonusOre(player)) {
             npc<Happy>("I have rewarded you by making it so you can mine extra ore for the next 15 minutes, ${messageBuilder}.")
             givePlayerBonusOreReward(player)
         } else {

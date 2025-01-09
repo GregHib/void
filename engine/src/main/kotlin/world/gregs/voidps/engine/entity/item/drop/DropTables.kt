@@ -1,9 +1,9 @@
 package world.gregs.voidps.engine.entity.item.drop
 
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
@@ -17,7 +17,7 @@ class DropTables {
 
     fun getValue(key: String) = tables.getValue(key)
 
-    fun load(yaml: Yaml = get(), path: String = getProperty("dropsPath"), itemDefinitions: ItemDefinitions? = null): DropTables {
+    fun load(yaml: Yaml = get(), path: String = Settings["dropsPath"], itemDefinitions: ItemDefinitions? = null): DropTables {
         timedLoad("drop table") {
             val config = object : YamlReaderConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {

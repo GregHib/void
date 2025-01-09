@@ -23,6 +23,8 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.SaveQueue
+import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.SettingsReload
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -114,12 +116,14 @@ adminCommand("npc") {
         return@adminCommand
     }
     val npcs: NPCs = get()
-    println("""
+    println(
+        """
         - name: $content
           x: ${player.tile.x}
           y: ${player.tile.y}
           level: ${player.tile.level}
-    """.trimIndent())
+    """.trimIndent()
+    )
     val npc = npcs.add(definition.stringId, player.tile, Direction.NORTH)
     npc?.start("movement_delay", -1)
 }
@@ -375,6 +379,10 @@ adminCommand("reload") {
         "prayers" -> get<PrayerDefinitions>().load()
         "drops" -> get<DropTables>().load()
         "cs2", "cs2s", "client scripts" -> get<ClientScriptDefinitions>().load()
+        "settings", "setting", "game setting", "game settings", "games settings", "properties", "props" -> {
+            Settings.load()
+            World.emit(SettingsReload)
+        }
     }
 }
 

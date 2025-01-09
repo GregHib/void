@@ -5,12 +5,12 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.data.yaml.DefinitionIdsConfig
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 
@@ -25,7 +25,7 @@ class ItemOnItemDefinitions {
     fun contains(one: Item, two: Item) = definitions.containsKey(id(one, two)) || definitions.containsKey(id(two, one))
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = getProperty("itemOnItemDefinitionsPath"), itemDefinitions: ItemDefinitions = get()): ItemOnItemDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["itemOnItemDefinitionsPath"], itemDefinitions: ItemDefinitions = get()): ItemOnItemDefinitions {
         timedLoad("item on item definition") {
             val definitions = Object2ObjectOpenHashMap<String, MutableList<ItemOnItemDefinition>>()
             var count = 0
@@ -33,7 +33,7 @@ class ItemOnItemDefinitions {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
                     super.add(list, if (value is Map<*, *>) {
                         val id = value["item"] as String
-                        if (itemDefinitions != null && !itemDefinitions.contains(id)) {
+                        if (!itemDefinitions.contains(id)) {
                             logger.warn { "Invalid item-on-item id: $id" }
                         }
                         Item(id, value["amount"] as? Int ?: 1)

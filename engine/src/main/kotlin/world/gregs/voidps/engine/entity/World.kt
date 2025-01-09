@@ -58,6 +58,10 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
         }
     }
 
+    fun clearQueue(name: String) {
+        actions.remove(name)
+    }
+
     fun clear() {
         timers.clearAll()
         for ((_, block) in actions.values) {

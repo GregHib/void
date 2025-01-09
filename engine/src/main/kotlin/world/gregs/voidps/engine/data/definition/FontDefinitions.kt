@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.data.definition
 
 import world.gregs.voidps.cache.definition.data.FontDefinition
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 
@@ -14,7 +14,7 @@ class FontDefinitions(
 
     override fun empty() = FontDefinition.EMPTY
 
-    fun load(yaml: Yaml = get(), path: String = getProperty("fontDefinitionsPath")): FontDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["fontDefinitionsPath"]): FontDefinitions {
         timedLoad("font extra") {
             decode(yaml, path)
         }

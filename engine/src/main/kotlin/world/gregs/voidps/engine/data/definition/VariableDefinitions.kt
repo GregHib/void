@@ -2,10 +2,10 @@ package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.yaml.DefinitionIdsConfig
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 import java.io.File
@@ -24,7 +24,7 @@ class VariableDefinitions {
     fun getVarp(id: Int) = varpIds[id]
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = getProperty("definitionsPath")): VariableDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitionsPath"]): VariableDefinitions {
         timedLoad("variable definition") {
             val definitions = Object2ObjectOpenHashMap<String, VariableDefinition>()
             val files = File(path).listFiles()?.filter { it.name.startsWith("variables-") } ?: emptyList()

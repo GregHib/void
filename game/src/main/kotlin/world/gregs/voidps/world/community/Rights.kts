@@ -3,18 +3,16 @@ package world.gregs.voidps.world.community
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.adminCommand
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.PlayerRights
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getPropertyOrNull
-
-val adminName = getPropertyOrNull("admin")
 
 playerSpawn { player ->
-    if (player.name == adminName && player.rights != PlayerRights.Admin) {
+    if (player.name == Settings.getOrNull("admin") && player.rights != PlayerRights.Admin) {
         player.rights = PlayerRights.Admin
         player.message("Rights set to Admin. Please re-log to activate.")
     }

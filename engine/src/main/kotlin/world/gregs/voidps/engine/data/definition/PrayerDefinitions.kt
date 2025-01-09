@@ -3,9 +3,9 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.PrayerDefinition
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
@@ -28,7 +28,7 @@ class PrayerDefinitions {
     fun getGroup(group: Int) = groups[group]
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = getProperty("prayerDefinitionsPath")): PrayerDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["prayerDefinitionsPath"]): PrayerDefinitions {
         timedLoad("prayer definition") {
             val definitions = Object2ObjectOpenHashMap<String, PrayerDefinition>()
             val prayers = Int2ObjectArrayMap<PrayerDefinition>()

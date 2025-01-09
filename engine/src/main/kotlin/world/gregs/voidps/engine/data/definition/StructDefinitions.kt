@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.data.definition
 
 import world.gregs.voidps.cache.config.data.StructDefinition
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 
@@ -17,7 +17,7 @@ class StructDefinitions(
 
     override fun empty() = StructDefinition.EMPTY
 
-    fun load(yaml: Yaml = get(), path: String = getProperty("structDefinitionsPath")): StructDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["structDefinitionsPath"]): StructDefinitions {
         timedLoad("struct extra") {
             decode(yaml, path)
         }

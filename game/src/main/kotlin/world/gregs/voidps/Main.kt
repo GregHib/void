@@ -36,7 +36,6 @@ object Main : CoroutineScope {
     override val coroutineContext: CoroutineContext = Contexts.Game
     lateinit var name: String
     private val logger = InlineLogger()
-    private const val PROPERTY_FILE_NAME = "game.properties"
 
     @OptIn(ExperimentalUnsignedTypes::class)
     @JvmStatic
@@ -81,13 +80,7 @@ object Main : CoroutineScope {
     }
 
     private fun settings(): Properties = timed("properties") {
-        val file = File("./$PROPERTY_FILE_NAME")
-        val properties = if (file.exists()) {
-            Settings.load(file.inputStream())
-        } else {
-            logger.debug { "Property file not found; defaulting to internal." }
-            Settings.load(Main::class.java.getResourceAsStream("/$PROPERTY_FILE_NAME")!!)
-        }
+        val properties = Settings.load()
         properties.putAll(System.getenv())
         return@timed properties
     }

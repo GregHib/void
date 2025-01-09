@@ -4,12 +4,12 @@ import com.github.michaelbull.logging.InlineLogger
 import io.github.classgraph.ClassGraph
 import world.gregs.voidps.Main
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.getProperty
+import world.gregs.voidps.engine.data.Settings
 import kotlin.system.measureTimeMillis
 
 private val logger = InlineLogger("ScriptLoader")
 
-fun loadScripts(scriptPackage: String = getProperty("scriptPackage"), botScriptPackage: String = getProperty("botScriptPackage")) {
+fun loadScripts(scriptPackage: String = Settings["scriptPackage"], botScriptPackage: String = Settings["botScriptPackage"]) {
     var scriptCount = 0
     val found = mutableSetOf<String>()
     val isJar = Main::class.java.getResource("${Main::class.simpleName}.class")?.protocol == "jar"

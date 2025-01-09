@@ -3,12 +3,12 @@ package world.gregs.voidps.world.interact.entity.obj
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Delta
@@ -71,7 +71,7 @@ class Teleports {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = getProperty("teleportsPath")): Teleports {
+    fun load(yaml: Yaml = get(), path: String = Settings["teleportsPath"]): Teleports {
         timedLoad("object teleport") {
             val config = object : YamlReaderConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {

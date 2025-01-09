@@ -3,6 +3,7 @@ package world.gregs.voidps.tools
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
+import world.gregs.voidps.engine.data.Settings
 
 object EnumDefinitions {
 

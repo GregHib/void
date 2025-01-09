@@ -1,9 +1,9 @@
 package world.gregs.voidps.world.interact.entity.combat.hit
 
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.hit
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.getPropertyOrNull
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.Hitsplat
 import world.gregs.voidps.world.interact.entity.combat.damageDealers
@@ -12,21 +12,18 @@ import kotlin.math.floor
 
 val definitions: SpellDefinitions by inject()
 
-val showSoak = getPropertyOrNull("showSoak") == "true"
-val damageSoak = getPropertyOrNull("damageSoak") == "true"
-
 characterCombatHit { character ->
     if (damage < 0 || type == "magic" && definitions.get(spell).maxHit == -1 || type == "healed") {
         return@characterCombatHit
     }
     var damage = damage
     var soak = 0
-    if (damageSoak && damage > 200) {
+    if (Settings["damageSoak", true] && damage > 200) {
         val percent = character["absorb_$type", 10] / 100.0
         soak = floor((damage - 200) * percent).toInt()
         damage -= soak
     }
-    if (showSoak || soak <= 0) {
+    if (Settings["showSoak", true] || soak <= 0) {
         soak = -1
     }
     val dealers = character.damageDealers
