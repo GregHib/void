@@ -5,7 +5,6 @@ import com.zaxxer.hikari.HikariDataSource
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.inList
 import org.jetbrains.exposed.sql.transactions.transaction
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.AccountStorage
 import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.data.config.AccountDefinition
@@ -15,9 +14,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.Tile
 
-class DatabaseStorage(
-    private val definitions: (String) -> ItemDefinition = { ItemDefinition.EMPTY }
-) : AccountStorage {
+class DatabaseStorage : AccountStorage {
 
     override fun names(): Map<String, AccountDefinition> = transaction {
         val display = VariablesTable.alias("display_name")

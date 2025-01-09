@@ -151,7 +151,7 @@ abstract class WorldTest : KoinTest {
         Main.name = "test"
         properties = Properties()
         properties.load(WorldTest::class.java.getResourceAsStream("/test.properties")!!)
-        Settings.load(properties)
+        settings = Settings.load(properties)
         stopKoin()
         startKoin {
             printLogger(Level.ERROR)

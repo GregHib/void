@@ -58,8 +58,7 @@ val engineModule = module {
             Settings["database_jdbc_url"],
             Settings["database_pool", 2],
         )
-        val definitions: ItemDefinitions = get()
-        DatabaseStorage { definitions.get(it) }
+        DatabaseStorage()
     } else {
         val saves = File(Settings["savePath"])
         if (!saves.exists()) {

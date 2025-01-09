@@ -33,11 +33,11 @@ open class Settings {
 
     operator fun get(name: String, default: String): String = properties.getProperty(name, default)
 
-    operator fun get(name: String, default: Int): Int = (properties[name] as? String)?.toIntOrNull() ?: default
+    operator fun get(name: String, default: Int): Int = getOrNull(name)?.toIntOrNull() ?: default
 
-    operator fun get(name: String, default: Double): Double = (properties[name] as? String)?.toDoubleOrNull() ?: default
+    operator fun get(name: String, default: Double): Double = getOrNull(name)?.toDoubleOrNull() ?: default
 
-    operator fun get(name: String, default: Boolean): Boolean = (properties[name] as? String)?.toBooleanStrictOrNull() ?: default
+    operator fun get(name: String, default: Boolean): Boolean = getOrNull(name)?.toBooleanStrictOrNull() ?: default
 
     fun clear() {
         properties.clear()
@@ -47,13 +47,13 @@ open class Settings {
         private const val PROPERTY_FILE_NAME = "game.properties"
         private val logger = InlineLogger()
 
-        fun load(): Properties {
-            val file = File("./$PROPERTY_FILE_NAME")
+        fun load(fileName: String = PROPERTY_FILE_NAME): Properties {
+            val file = File("./$fileName")
             return if (file.exists()) {
                 Settings.load(file.inputStream())
             } else {
                 logger.debug { "Property file not found; defaulting to internal." }
-                Settings.load(Settings::class.java.getResourceAsStream("/$PROPERTY_FILE_NAME")!!)
+                Settings.load(Settings::class.java.getResourceAsStream("/$fileName")!!)
             }
         }
     }

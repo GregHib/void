@@ -1,8 +1,7 @@
 package world.gregs.voidps.engine.entity.obj
 
 import io.mockk.*
-import kotlinx.coroutines.test.TestScope
-import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
@@ -14,7 +13,6 @@ import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAddition
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectRemoval
 import world.gregs.voidps.type.Tile
-import kotlin.coroutines.EmptyCoroutineContext
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
@@ -34,7 +32,7 @@ class GameObjectsTest {
         every { definitions.get("test2") } returns ObjectDefinition(456)
         updates = mockk(relaxed = true)
         objects = GameObjects(mockk(relaxed = true), mockk(relaxed = true), updates, definitions, storeUnused = true)
-        events = spyk(Events(TestScope()))
+        events = spyk(Events())
         Events.setEvents(events)
     }
 
@@ -239,6 +237,14 @@ class GameObjectsTest {
         verifyOrder {
             events.emit(replacement, Spawn)
             events.emit(replacement, Despawn)
+        }
+    }
+
+    companion object {
+        @JvmStatic
+        @AfterAll
+        fun tearDown() {
+            Events.setEvents(Events())
         }
     }
 }

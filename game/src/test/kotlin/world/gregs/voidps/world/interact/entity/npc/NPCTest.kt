@@ -7,12 +7,9 @@ import world.gregs.voidps.world.script.WorldTest
 
 internal class NPCTest : WorldTest() {
 
-    init {
-        extraProperties["randomWalk"] = "true"
-    }
-
     @Test
     fun `Man randomly walks around`() {
+        settings["randomWalk"] = "true"
         val spawn = emptyTile
         val npc = createNPC("chicken", spawn) { npc ->
             npc["area"] = Rectangle(spawn.minus(25, 25), 50, 50)
