@@ -48,7 +48,7 @@ val engineModule = module {
             y = getIntProperty("homeY", 0),
             level = getIntProperty("homeLevel", 0)
         )
-        AccountManager(get(), get(), get(), get(), get(), get(), homeTile, get(), get(), get(), get())
+        AccountManager(get(), get(), get(), get(), get(), get(), homeTile, get(), get(), get(), get(), getProperty("experienceRate", "1.0").toDouble())
     }
     // IO
     single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }
@@ -69,7 +69,7 @@ val engineModule = module {
         }
         FileStorage(get(), saves, get(), getProperty("experienceRate", "1.0").toDouble())
     } }
-    single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
+    single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game, getProperty("experienceRate", "1.0").toDouble()) }
     // Map
     single { ZoneBatchUpdates() }
     single { DynamicZones(get(), get(), get()) }
