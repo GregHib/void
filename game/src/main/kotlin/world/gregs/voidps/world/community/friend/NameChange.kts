@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.event.modCommand
 import world.gregs.voidps.engine.client.updateFriend
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.name
@@ -40,7 +40,7 @@ modCommand("rename") {
             players
                 .filter { it.friend(player) }
                 .forEach { friend ->
-                    friend.updateFriend(Friend(toName, previous, renamed = true, world = World.id, worldName = World.name))
+                    friend.updateFriend(Friend(toName, previous, renamed = true, world = Settings.world, worldName = Settings.worldName))
                 }
             player.message("Your name has been successfully changed to '$toName'.")
             player.message("You can change your name again in 30 days.")

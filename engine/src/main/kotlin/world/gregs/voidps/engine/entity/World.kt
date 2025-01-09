@@ -21,10 +21,6 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
     override val variables = Variables(this)
     private val logger = InlineLogger()
 
-    val id: Int
-        get() = Settings["world", 16]
-    val name: String
-        get() = "World $id"
     val members: Boolean
         get() = Settings["members", false]
 
