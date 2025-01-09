@@ -42,15 +42,15 @@ val engineModule = module {
     }
     single {
         val homeTile = Tile(
-            x = Settings["homeX", 0],
-            y = Settings["homeY", 0],
-            level = Settings["homeLevel", 0]
+            x = Settings["home.x", 0],
+            y = Settings["home.y", 0],
+            level = Settings["home.level", 0]
         )
-        AccountManager(get(), get(), get(), get(), get(), get(), homeTile, get(), get(), get(), get(), getProperty("experienceRate", "1.0").toDouble())
+        AccountManager(get(), get(), get(), get(), get(), get(), homeTile, get(), get(), get(), get(), Settings["experienceRate", 1.0])
     }
     // IO
     single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }
-    single { if (getProperty("storage", "") == "database") {
+    single { if (Settings["storage", ""] == "database") {
         DatabaseStorage.connect(
             Settings["database_username"],
             Settings["database_password"],
@@ -64,9 +64,9 @@ val engineModule = module {
         if (!saves.exists()) {
             saves.mkdir()
         }
-        FileStorage(get(), saves, get(), getProperty("experienceRate", "1.0").toDouble())
+        FileStorage(get(), saves, get(), Settings["experienceRate", 1.0])
     } }
-    single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game, getProperty("experienceRate", "1.0").toDouble()) }
+    single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game, Settings["experienceRate", 1.0]) }
     // Map
     single { ZoneBatchUpdates() }
     single { DynamicZones(get(), get(), get()) }
