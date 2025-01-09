@@ -64,7 +64,8 @@ class AccountManagerTest : KoinMock() {
             saveQueue = SaveQueue(storage),
             connectionQueue = connectionQueue,
             areaDefinitions = get(),
-            players = Players()
+            players = Players(),
+            experienceRate = 1.0
         )
     }
 
