@@ -26,7 +26,7 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
     val name: String
         get() = "World $id"
     val members: Boolean
-        get() = Settings["members", false]
+        get() = Settings["members", true]
 
     fun start() {
         emit(Spawn)

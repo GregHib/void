@@ -22,6 +22,11 @@ open class Settings {
         return properties
     }
 
+    fun load(properties: Properties): Properties {
+        this.properties.putAll(properties)
+        return this.properties
+    }
+
     fun getOrNull(name: String): String? = properties.getProperty(name)
 
     operator fun get(name: String): String = properties.getProperty(name)

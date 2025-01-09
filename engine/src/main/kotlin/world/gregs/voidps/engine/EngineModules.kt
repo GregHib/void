@@ -33,12 +33,12 @@ val engineModule = module {
     // Entities
     single { NPCs(get(), get(), get(), get()) }
     single { Players() }
-    single { GameObjects(get(), get(), get(), get(), getProperty<String>("loadUnusedObjects") == "true").apply { get<ZoneBatchUpdates>().register(this) } }
+    single { GameObjects(get(), get(), get(), get(), Settings["loadUnusedObjects", false]).apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItems(get(), get()).apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItemTracking(get(), get(), get()) }
     single { Hunting(get(), get(), get(), get(), get(), get()) }
     single {
-        SaveQueue(get(), SafeStorage(File(getProperty<String>("storageFailDirectory"))))
+        SaveQueue(get(), SafeStorage(File(Settings["storageFailDirectory"])))
     }
     single {
         val homeTile = Tile(
@@ -61,7 +61,7 @@ val engineModule = module {
         val definitions: ItemDefinitions = get()
         DatabaseStorage { definitions.get(it) }
     } else {
-        val saves = File(getProperty<String>("savePath"))
+        val saves = File(Settings["savePath"])
         if (!saves.exists()) {
             saves.mkdir()
         }

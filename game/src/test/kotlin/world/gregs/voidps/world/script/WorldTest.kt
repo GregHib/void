@@ -56,6 +56,7 @@ import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
 import world.gregs.voidps.world.interact.world.spawn.loadNpcSpawns
 import world.gregs.voidps.world.interact.world.spawn.loadObjectSpawns
 import java.io.File
+import java.util.Properties
 import kotlin.system.measureTimeMillis
 
 /**
@@ -74,8 +75,8 @@ abstract class WorldTest : KoinTest {
     private lateinit var accountDefs: AccountDefinitions
     private lateinit var accounts: AccountManager
     private var saves: File? = null
-
-    val extraProperties: MutableMap<String, Any> = mutableMapOf()
+    private lateinit var properties: Properties
+    lateinit var settings: Properties
 
     open var loadNpcs: Boolean = false
 
@@ -148,11 +149,12 @@ abstract class WorldTest : KoinTest {
     @BeforeAll
     fun beforeAll() {
         Main.name = "test"
-        Settings.load(WorldTest::class.java.getResourceAsStream("/test.properties")!!)
+        properties = Properties()
+        properties.load(WorldTest::class.java.getResourceAsStream("/test.properties")!!)
+        Settings.load(properties)
         stopKoin()
         startKoin {
             printLogger(Level.ERROR)
-            properties(extraProperties)
             allowOverride(true)
             modules(engineModule, gameModule, module {
                 single(createdAtStart = true) { cache }
@@ -226,6 +228,7 @@ abstract class WorldTest : KoinTest {
 
     @BeforeEach
     fun beforeEach() {
+        settings = Settings.load(properties)
         loadItemSpawns(floorItems, get())
         if (loadNpcs) {
             loadNpcSpawns(npcs)
@@ -241,6 +244,7 @@ abstract class WorldTest : KoinTest {
         floorItems.clear()
         objects.reset()
         World.clear()
+        Settings.clear()
     }
 
     @AfterAll

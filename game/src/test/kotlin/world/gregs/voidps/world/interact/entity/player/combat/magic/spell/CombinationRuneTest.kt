@@ -22,7 +22,6 @@ class CombinationRuneTest : MagicSpellTest() {
         Triple("lava_rune", "earth_rune", "fire_rune")
     ).map { (combo, element1, element2) ->
         dynamicTest("Remove ${combo.replace("_", " ")}s") {
-            Settings.load(mapOf("members" to "true"))
             World.start()
             val player = player()
             setItems(Item(element1, 2), Item(element2, 1), Item("chaos_rune", 1))
@@ -52,7 +51,6 @@ class CombinationRuneTest : MagicSpellTest() {
         "lava_rune" to "fire_rune"
     ).map { (combo, element) ->
         dynamicTest("Use ${element.replace("_", " ")}s when out of ${combo.replace("_", " ")}s") {
-            Settings.load(mapOf("members" to "true"))
             World.start()
             val player = player()
             setItems(Item(element, 2))

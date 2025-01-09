@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -45,13 +46,16 @@ class SpellTest : MagicSpellTest() {
 
     @Test
     fun `Members spell`() {
+        Settings.load(mapOf("members" to "false"))
         World.start()
+
         val player = player()
         setItems(Item("blood_rune", 1) to ItemDefinition(stringId = "blood_rune", members = true))
         player.inventory.add("blood_rune", 10)
 
         assertFalse(player.hasSpellItems("spell", message = false))
         assertFalse(player.removeSpellItems("spell"))
+        Settings.clear()
     }
 
     @Test
