@@ -3,16 +3,14 @@ package world.gregs.voidps.world.interact.entity.npc.shop
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import kotlin.math.max
 import kotlin.math.min
 
 object Price {
-    private val itemDefs: ItemDefinitions by inject()
-    private val enums: EnumDefinitions by inject()
-
     private fun getRealItem(item: String): Int {
-        val def = itemDefs.get(item)
+        val def = get<ItemDefinitions>().get(item)
         if (def.noted) {
             return def.noteId
         }
@@ -21,6 +19,7 @@ object Price {
 
     fun getPrice(player: Player, item: String, index: Int, amount: Int): Int {
         val itemId = getRealItem(item)
+        val enums = get<EnumDefinitions>()
         var price = enums.get("price_runes").getInt(itemId)
         if (player["shop_currency", "coins"] == "tokkul" && price != -1 && price > 0) {
             return price
@@ -29,7 +28,7 @@ object Price {
         if (price != -1 && price > 0) {
             return price
         }
-        val def = itemDefs.get(itemId)
+        val def = get<ItemDefinitions>().get(itemId)
         if (def.contains("skill_cape") || def.contains("skill_cape_t")) {
             return 99000
         }

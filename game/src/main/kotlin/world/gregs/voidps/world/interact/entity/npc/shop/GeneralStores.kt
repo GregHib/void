@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.remove.ItemIndexAmountBounds
 import world.gregs.voidps.engine.inv.sendInventory
@@ -12,13 +12,10 @@ import world.gregs.voidps.engine.inv.stack.AlwaysStack
 
 object GeneralStores {
 
-    private val inventoryDefinitions: InventoryDefinitions by inject()
-    private val itemDefs: ItemDefinitions by inject()
-
     val stores: MutableMap<String, Inventory> = mutableMapOf()
 
     fun get(key: String) = stores.getOrPut(key) {
-        val definition = inventoryDefinitions.get(key)
+        val definition = get<InventoryDefinitions>().get(key)
         val minimumQuantities = IntArray(definition.length) {
             if (definition.getOrNull<List<Map<String, Int>>>("defaults")?.getOrNull(it) != null) -1 else 0
         }
@@ -32,7 +29,7 @@ object GeneralStores {
                 )
             },
             id = key,
-            itemRule = GeneralStoreRestrictions(itemDefs),
+            itemRule = GeneralStoreRestrictions(get<ItemDefinitions>()),
             stackRule = AlwaysStack,
             amountBounds = checker
         )
