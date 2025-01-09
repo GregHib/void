@@ -25,6 +25,7 @@ import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.AccountManager
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -147,10 +148,10 @@ abstract class WorldTest : KoinTest {
     @BeforeAll
     fun beforeAll() {
         Main.name = "test"
+        Settings.load(WorldTest::class.java.getResourceAsStream("/test.properties")!!)
         stopKoin()
         startKoin {
             printLogger(Level.ERROR)
-            fileProperties("/test.properties")
             properties(extraProperties)
             allowOverride(true)
             modules(engineModule, gameModule, module {
@@ -206,7 +207,8 @@ abstract class WorldTest : KoinTest {
                 handler,
                 sequential = true)
             engine = GameLoop(tickStages)
-            World.start(true)
+
+            World.start()
         }
         players = get()
         npcs = get()

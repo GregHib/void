@@ -7,9 +7,7 @@ import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
-import world.gregs.voidps.engine.data.AccountManager
-import world.gregs.voidps.engine.data.SafeStorage
-import world.gregs.voidps.engine.data.SaveQueue
+import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.data.json.FileStorage
 import world.gregs.voidps.engine.data.sql.DatabaseStorage
@@ -54,11 +52,11 @@ val engineModule = module {
     single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }
     single { if (getProperty("storage", "") == "database") {
         DatabaseStorage.connect(
-            getProperty("database_username"),
-            getProperty("database_password"),
-            getProperty("database_driver"),
-            getProperty("database_jdbc_url"),
-            getProperty("database_pool", "2").toInt(),
+            Settings["database_username"],
+            Settings["database_password"],
+            Settings["database_driver"],
+            Settings["database_jdbc_url"],
+            Settings["database_pool", 2],
         )
         val definitions: ItemDefinitions = get()
         DatabaseStorage { definitions.get(it) }

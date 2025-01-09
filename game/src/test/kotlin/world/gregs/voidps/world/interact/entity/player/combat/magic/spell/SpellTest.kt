@@ -45,7 +45,7 @@ class SpellTest : MagicSpellTest() {
 
     @Test
     fun `Members spell`() {
-        World.start(members = false)
+        World.start()
         val player = player()
         setItems(Item("blood_rune", 1) to ItemDefinition(stringId = "blood_rune", members = true))
         player.inventory.add("blood_rune", 10)

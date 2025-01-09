@@ -5,11 +5,11 @@ import org.koin.core.component.KoinComponent
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.Variables
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.type.Tile
-import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
 const val MAX_PLAYERS = 0x800 // 2048
@@ -21,25 +21,14 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
     override val variables = Variables(this)
     private val logger = InlineLogger()
 
-    var id = 0
-        private set(value) {
-            field = value
-            name = "World $value"
-        }
-    var name: String = "World"
-        private set
-    var members: Boolean = false
-        private set
+    val id: Int
+        get() = Settings["world", 16]
+    val name: String
+        get() = "World $id"
+    val members: Boolean
+        get() = Settings["members", false]
 
-    fun start(properties: Properties) {
-        val members = properties.getProperty("members").toBoolean()
-        val id = properties.getProperty("world").toInt()
-        start(members, id)
-    }
-
-    fun start(members: Boolean = true, id: Int = 16) {
-        this.members = members
-        this.id = id
+    fun start() {
         emit(Spawn)
     }
 

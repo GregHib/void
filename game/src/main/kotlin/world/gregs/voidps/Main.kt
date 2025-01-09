@@ -15,6 +15,7 @@ import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.PlayerAccountLoader
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
@@ -41,17 +42,17 @@ object Main : CoroutineScope {
     @JvmStatic
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
-        val properties = properties()
-        name = properties.getProperty("name")
+        val properties = settings()
+        name = Settings["name"]
 
         // File server
         val cache = timed("cache") { Cache.load(properties) }
         val server = GameServer.load(cache, properties)
-        val job = server.start(properties.getProperty("port").toInt())
+        val job = server.start(Settings["port"].toInt())
 
         // Content
         try {
-            preload(cache, properties)
+            preload(cache)
         } catch (ex: Exception) {
             logger.error(ex) { "Error loading files." }
             server.stop()
@@ -64,7 +65,7 @@ object Main : CoroutineScope {
 
         // Game world
         val stages = getTickStages()
-        World.start(properties)
+        World.start()
         val scope = CoroutineScope(Contexts.Game)
         val engine = GameLoop(stages).start(scope)
         server.loginServer = loginServer
@@ -79,32 +80,29 @@ object Main : CoroutineScope {
         }
     }
 
-    private fun properties(): Properties = timed("properties") {
-        val properties = Properties()
+    private fun settings(): Properties = timed("properties") {
         val file = File("./$PROPERTY_FILE_NAME")
-        if (file.exists()) {
-            properties.load(file.inputStream())
+        val properties = if (file.exists()) {
+            Settings.load(file.inputStream())
         } else {
             logger.debug { "Property file not found; defaulting to internal." }
-            properties.load(Main::class.java.getResourceAsStream("/$PROPERTY_FILE_NAME"))
+            Settings.load(Main::class.java.getResourceAsStream("/$PROPERTY_FILE_NAME")!!)
         }
         properties.putAll(System.getenv())
         return@timed properties
     }
 
-    @Suppress("UNCHECKED_CAST")
-    private fun preload(cache: Cache, properties: Properties) {
-        val module = cache(cache, properties)
+    private fun preload(cache: Cache) {
+        val module = cache(cache)
         startKoin {
             slf4jLogger(level = Level.ERROR)
-            properties(properties.toMap() as Map<String, Any>)
             modules(engineModule, gameModule, module)
         }
         loadScripts()
     }
 
-    private fun cache(cache: Cache, properties: Properties) = module {
-        val members = properties.getProperty("members").toBoolean()
+    private fun cache(cache: Cache) = module {
+        val members = Settings["members", false]
         single(createdAtStart = true) { MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache() }
         single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
         single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load() }
