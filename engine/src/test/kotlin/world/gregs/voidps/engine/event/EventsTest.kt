@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.event
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
 import kotlin.test.Test
+import org.junit.jupiter.api.Assertions.assertTrue
 
 class EventsTest {
 
@@ -17,6 +18,19 @@ class EventsTest {
         val result = trie.search(entity, event("param1", "param2"))
 
         assertEquals(setOf(handler), result)
+    }
+
+    @Test
+    fun `Exceptions thrown in handlers are handled`() {
+        val trie = Events()
+        val handler: suspend Event.(EventDispatcher) -> Unit = {
+            throw IllegalStateException("tantrum")
+        }
+        trie.insert(arrayOf("param1"), handler)
+
+        val result = trie.emit(entity, event("param1"))
+
+        assertTrue(result)
     }
 
     @Test

@@ -61,31 +61,5 @@ class InstructionTask(
 
     companion object {
         const val MAX_INSTRUCTIONS = 20
-
-        fun Flow<Int>.test() {
-
-            flow<List<Int>> {
-                coroutineScope {
-                    val upstreamChannel = buffer(10).produceIn(this)
-                    upstreamChannel.tryReceive().getOrNull()
-                }
-            }
-        }
-
-        @JvmStatic
-        fun main(args: Array<String>): Unit = runBlocking {
-
-            val channel = Channel<Int>(5)
-
-            for (i in 0 until 4) {
-                channel.send(i)
-            }
-            launch {
-                for (i in 0 until 5) {
-                    val it = channel.tryReceive().getOrNull() ?: break
-                    println(it)
-                }
-            }
-        }
     }
 }
