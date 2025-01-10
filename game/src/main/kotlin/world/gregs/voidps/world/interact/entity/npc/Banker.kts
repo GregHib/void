@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.interact.entity.npc
 
-import world.gregs.voidps.Main.name
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
@@ -46,7 +46,7 @@ suspend fun CharacterContext.menu() {
         option("I'd like to see my collection box.", block = { player.open("collection_box") })
         option("I'd like to see my Returned Items box.", block = { player.open("returned_items") })
         option("What is this place?") {
-            npc<Talk>("This is a branch of the Bank of $name. We have branches in many towns.")
+            npc<Talk>("This is a branch of the Bank of ${Settings["server.name"]}. We have branches in many towns.")
             choice {
                 option("And what do you do?") {
                     npc<Talk>("We will look after your items and money for you. Leave your valuables with us if you want to keep them safe.")

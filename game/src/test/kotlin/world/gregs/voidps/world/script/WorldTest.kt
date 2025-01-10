@@ -148,7 +148,6 @@ abstract class WorldTest : KoinTest {
 
     @BeforeAll
     fun beforeAll() {
-        Main.name = "test"
         properties = Properties()
         properties.load(WorldTest::class.java.getResourceAsStream("/test.properties")!!)
         settings = Settings.load(properties)

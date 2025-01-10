@@ -3,6 +3,7 @@ package world.gregs.voidps.world.map.varrock
 import world.gregs.voidps.Main
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
@@ -38,7 +39,7 @@ npcApproach("Talk-to", "bartender_blue_moon_inn") {
             choice {
                 option<Talk>("Oh ah well...")
                 option<Quiz>("Game? What are you talking about?") {
-                    npc<Angry>("This world around us... is an online game... called ${Main.name}.")
+                    npc<Angry>("This world around us... is an online game... called ${Settings["server.name"]}.")
                     player<Quiz>("Nope, still don't understand what you are talking about. What does 'online' mean?")
                     npc<Angry>("It's a sort of connection between magic boxes across the world, big boxes on people's desktops and little ones people can carry. They can talk to each other to play games.")
                     player<Angry>("I give up. You're obviously completely mad!")

@@ -23,7 +23,6 @@ import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
 import world.gregs.voidps.network.login.protocol.decoders
 import world.gregs.voidps.script.loadScripts
-import java.io.File
 import java.util.*
 import kotlin.coroutines.CoroutineContext
 
@@ -34,19 +33,17 @@ import kotlin.coroutines.CoroutineContext
 object Main : CoroutineScope {
 
     override val coroutineContext: CoroutineContext = Contexts.Game
-    lateinit var name: String
     private val logger = InlineLogger()
 
     @OptIn(ExperimentalUnsignedTypes::class)
     @JvmStatic
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
-        val properties = settings()
-        name = Settings["server.name"]
+        val settings = settings()
 
         // File server
-        val cache = timed("cache") { Cache.load(properties) }
-        val server = GameServer.load(cache, properties)
+        val cache = timed("cache") { Cache.load(settings) }
+        val server = GameServer.load(cache, settings)
         val job = server.start(Settings["network.port"].toInt())
 
         // Content
@@ -60,7 +57,7 @@ object Main : CoroutineScope {
         // Login server
         val decoders = decoders(get<Huffman>())
         val accountLoader: PlayerAccountLoader = get()
-        val loginServer = LoginServer.load(properties, decoders, accountLoader)
+        val loginServer = LoginServer.load(settings, decoders, accountLoader)
 
         // Game world
         val stages = getTickStages()
@@ -68,7 +65,7 @@ object Main : CoroutineScope {
         val scope = CoroutineScope(Contexts.Game)
         val engine = GameLoop(stages).start(scope)
         server.loginServer = loginServer
-        logger.info { "$name loaded in ${System.currentTimeMillis() - startTime}ms" }
+        logger.info { "${Settings["server.name"]} loaded in ${System.currentTimeMillis() - startTime}ms" }
         runBlocking {
             try {
                 job.join()
