@@ -54,6 +54,8 @@ import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.world.activity.quest.Books
+import world.gregs.voidps.world.activity.quest.quests
+import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import world.gregs.voidps.world.interact.entity.obj.Teleports
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
@@ -65,6 +67,7 @@ import world.gregs.voidps.world.interact.entity.player.effect.skull
 import world.gregs.voidps.world.interact.entity.player.effect.unskull
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
+import world.gregs.voidps.world.interact.entity.player.music.MusicUnlock
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playMidi
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -154,7 +157,7 @@ adminCommand("items (item-id) [item-id] [item-id]...", "spawn multiple items at 
     }
 }
 
-adminCommand("item (item-id) [item-amount]", "spawn an item by int or string id e.g. ::item pure_ess 2") {
+adminCommand("item (item-id) [item-amount]", "spawn an item by int or string id e.g. 'item pure_ess 2'") {
     val parts = content.split(" ")
     val definition = definitions.get(alternativeNames.getOrDefault(parts[0], parts[0]))
     val id = definition.stringId
@@ -220,6 +223,44 @@ adminCommand("master", "set all skills to 99") {
     }
     player.softQueue("", 1) {
         player.clear("skill_stat_flash")
+    }
+}
+
+adminCommand("unlock [activity-type]", "unlock everything or of a type (music, tasks, emotes, quests)") {
+    val type = content
+    if (type == "" || type == "music" || type == "songs" || type == "music tracks" || type == "music_tracks") {
+        get<EnumDefinitions>().get("music_track_names").map?.keys?.forEach { key ->
+            MusicUnlock.unlockTrack(player, key)
+        }
+        player.message("All songs unlocked.")
+    }
+    if (type == "" || type == "tasks" || type == "achievements") {
+        for (struct in get<StructDefinitions>().definitions) {
+            if (struct.stringId.endsWith("_task")) {
+                player[struct.stringId] = true
+            }
+        }
+        player.message("All tasks completed.")
+    }
+    if (type == "" || type == "emotes") {
+        val defs = get<InterfaceDefinitions>()
+        for (compId in 26..52) {
+            if (compId == 39) {
+                continue
+            }
+            val component = defs.getComponent("emotes", compId) ?: continue
+            player["unlocked_emote_${component.stringId}"] = true
+        }
+        player["unlocked_emote_lost_tribe"] = true
+        player.message("All emotes unlocked.")
+    }
+    if (type == "" || type == "quests") {
+        for (quest in quests) {
+            player[quest] = "completed"
+        }
+        player["quest_points"] = player["quest_points_total", 1]
+        player.refreshQuestJournal()
+        player.message("All quests unlocked.")
     }
 }
 

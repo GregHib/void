@@ -64,7 +64,7 @@ adminCommand("sendText (interface) (interface-component) (text...)", "send any t
     player.interfaces.sendText(parts[0], parts[1], content.removePrefix("${parts[0]} ${parts[1]} "))
 }
 
-adminCommand("setting (interface-id) (interface-component-id) (from-slot) (to-slot) (settings...)", "send settings to an interface component") {
+adminCommand("setting (interface) (component-id) (from-slot) (to-slot) (settings...)", "send settings to an interface component") {
     val parts = content.split(" ")
     val remainder = parts.subList(4, parts.size).map { it.toIntOrNull() }.requireNoNulls().toIntArray()
     player.message("Settings sent ${remainder.toList()}", ChatType.Console)
