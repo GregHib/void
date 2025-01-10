@@ -83,7 +83,7 @@ val players: Players by inject()
 Command.adminCommands.add("${Colours.PURPLE.toTag()}====== Admin Commands ======</col>")
 Command.adminCommands.add("")
 
-adminCommand("tele (x) (y) [level]", "teleport to given coordinates", listOf("tp")) {
+adminCommand("tele (x) (y) [level]", "teleport to given coordinates or area name", listOf("tp")) {
     if (content.contains(",")) {
         val params = content.split(",")
         val level = params[0].toInt()
@@ -94,7 +94,12 @@ adminCommand("tele (x) (y) [level]", "teleport to given coordinates", listOf("tp
         val parts = content.split(" ")
         val int = parts[0].toIntOrNull()
         when {
-            int == null -> player.tele(areas[content])
+            int == null -> when (content.lowercase()) {
+                "draynor" -> player.tele(3086, 3248)
+                "varrock" -> player.tele(3212, 3429)
+                "lumbridge" -> player.tele(3222, 3219)
+                else -> player.tele(areas[content])
+            }
             parts.size == 1 -> player.tele(Region(int).tile.add(32, 32))
             else -> player.tele(int, parts[1].toInt(), if (parts.size > 2) parts[2].toInt() else 0)
         }
@@ -200,28 +205,28 @@ adminCommand("give (item-id) [amount] (player-name)", "spawn item in another pla
     }
 }
 
-modCommand("find (item name)", "find the id of an item") {
+modCommand("find (item name)", "search the id of an item", aliases = listOf("search")) {
     val search = content.lowercase()
-    var found = false
+    var found = 0
     player.message("===== Items =====", ChatType.Console)
-    found = found || search(player, get<ItemDefinitions>(), search) { it.name }
+    found += search(player, get<ItemDefinitions>(), search) { it.name }
     player.message("===== Objects =====", ChatType.Console)
-    found = found || search(player, get<ObjectDefinitions>(), search) { it.name }
+    found += search(player, get<ObjectDefinitions>(), search) { it.name }
     player.message("===== NPCs =====", ChatType.Console)
-    found = found || search(player, get<NPCDefinitions>(), search) { it.name }
-    if (!found) {
-        player.message("No results found for '$search'", ChatType.Console)
-    }
+    found += search(player, get<NPCDefinitions>(), search) { it.name }
+    player.message("$found results found for '$search'", ChatType.Console)
 }
 
-fun <T> search(player: Player, definitions: DefinitionsDecoder<T>, search: String, getName: (T) -> String): Boolean where T : Definition, T : Extra {
-    var found = false
+val utf8Regex = "[^\\x20-\\x7e]".toRegex()
+
+fun <T> search(player: Player, definitions: DefinitionsDecoder<T>, search: String, getName: (T) -> String): Int where T : Definition, T : Extra {
+    var found = 0
     for (id in definitions.definitions.indices) {
         val def = definitions.getOrNull(id) ?: continue
         val name = getName(def)
         if (name.lowercase().contains(search)) {
-            player.message("[${name.lowercase()}] - id: $id", ChatType.Console)
-            found = true
+            player.message("[${name.lowercase().replace(utf8Regex, "")}] - id: $id${if (def.stringId.isNotBlank()) " (${def.stringId})" else ""}", ChatType.Console)
+            found++
         }
     }
     return found
