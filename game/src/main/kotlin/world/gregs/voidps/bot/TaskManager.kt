@@ -6,6 +6,15 @@ import java.util.*
 
 class TaskManager {
     private val queue = LinkedList<Task>()
+    private var idle = Task(
+        name = "do nothing",
+        block = {
+            repeat(random.nextInt(10, 100)) {
+                bot.await("tick")
+            }
+        },
+        spaces = Int.MAX_VALUE
+    )
 
     fun register(task: Task, test: Boolean = false) {
         if (DEBUG && !(DEBUG && test)) {
@@ -24,16 +33,11 @@ class TaskManager {
             .minByOrNull { it.distanceTo(bot.tile) } ?: idle
     }
 
+    fun idle(task: Task) {
+        idle = task
+    }
+
     companion object {
-        val idle = Task(
-            name = "do nothing",
-            block = {
-                repeat(random.nextInt(10, 100)) {
-                    bot.await("tick")
-                }
-            },
-            spaces = Int.MAX_VALUE
-        )
         const val DEBUG = false
     }
 }

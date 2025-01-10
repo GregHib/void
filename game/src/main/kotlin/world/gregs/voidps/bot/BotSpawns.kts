@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
+import world.gregs.voidps.engine.data.settingsReload
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.running
@@ -51,6 +52,12 @@ worldSpawn {
     }
 }
 
+settingsReload {
+    if (Settings["world.bots", 0] > bots.size) {
+        World.timers.start("bot_spawn")
+    }
+}
+
 worldTimerStart("bot_spawn") {
     interval = TimeUnit.MINUTES.toTicks(1)
 }
@@ -67,7 +74,7 @@ adminCommand("bots") {
     val count = content.toIntOrNull() ?: 1
     GlobalScope.launch {
         repeat(count) {
-            if (it % 25 == 0) {
+            if (it % Settings["network.maxLoginsPerTick", 25] == 0) {
                 suspendCancellableCoroutine { cont ->
                     World.queue("bot_${counter}") {
                         cont.resume(Unit)
