@@ -86,7 +86,7 @@ fun autoPlay(player: Player, track: MusicTracks.Track) {
 /**
  * Unlocks all music tracks
  */
-adminCommand("unlock") {
+adminCommand("unlock", "unlock all music tracks") {
     enums.get("music_track_names").map?.keys?.forEach { key ->
         MusicUnlock.unlockTrack(player, key)
     }

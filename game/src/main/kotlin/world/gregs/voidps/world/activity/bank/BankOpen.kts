@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.world.activity.bank.Bank.tabs
 
-adminCommand("bank") {
+adminCommand("bank", "open your bank anywhere") {
     player.open("bank")
 }
 

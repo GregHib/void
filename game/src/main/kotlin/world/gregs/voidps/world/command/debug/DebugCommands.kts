@@ -7,6 +7,7 @@ import world.gregs.voidps.bot.path.EdgeTraversal
 import world.gregs.voidps.bot.path.NodeTargetStrategy
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.*
+import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.event.modCommand
 import world.gregs.voidps.engine.client.ui.open
@@ -15,7 +16,9 @@ import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
@@ -30,6 +33,7 @@ import world.gregs.voidps.network.login.protocol.encode.npcDialogueHead
 import world.gregs.voidps.network.login.protocol.encode.playerDialogueHead
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
+import world.gregs.voidps.world.activity.quest.*
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.startQuest
@@ -48,17 +52,21 @@ modCommand("test") {
     }
 }
 
-modCommand("patrol") {
+adminCommand("commands", aliases = listOf("help")) {
+    player.sendQuestJournal("Commands List", Command.adminCommands)
+}
+
+adminCommand("patrol (patrol-id)", "walk along a patrol route") {
     val patrol = get<PatrolDefinitions>().get(content)
     player.tele(patrol.waypoints.first().first)
     player.mode = Patrol(player, patrol.waypoints)
 }
 
-modCommand("reset_cam") {
+modCommand("reset_cam", "reset camera to normal") {
     player.client?.clearCamera()
 }
 
-adminCommand("move_to") {
+adminCommand("move_to (x) (y) (height) (c-speed) (v-speed)", "move camera to look at coordinates") {
     val test = content.split(" ")
     val viewport = player.viewport!!
     val result = viewport.lastLoadZone.safeMinus(viewport.zoneRadius, viewport.zoneRadius)
@@ -67,7 +75,7 @@ adminCommand("move_to") {
     player.moveCamera(local, test[2].toInt(), test[3].toInt(), test[4].toInt())
 }
 
-adminCommand("look_at") {
+adminCommand("look_at (x) (y) (height) (c-speed) (v-speed)", "turn camera to look at coordinates") {
     val test = content.split(" ")
     val viewport = player.viewport!!
     val result = viewport.lastLoadZone.safeMinus(viewport.zoneRadius, viewport.zoneRadius)
@@ -76,12 +84,12 @@ adminCommand("look_at") {
     player.turnCamera(local, test[2].toInt(), test[3].toInt(), test[4].toInt())
 }
 
-adminCommand("shake") {
+adminCommand("shake (intensity) (type) (cycle) (movement) (speed)", "shake camera") {
     val test = content.split(" ")
     player.shakeCamera(test[0].toInt(), test[1].toInt(), test[2].toInt(), test[3].toInt(), test[4].toInt())
 }
 
-modCommand("timers") {
+modCommand("timers", "list all players active timers") {
     player.message("=== Timers ===", ChatType.Console)
     for (timer in player.timers.queue) {
         player.message("${timer.name}: ${timer.nextTick - GameLoop.tick}", ChatType.Console)
@@ -92,7 +100,7 @@ modCommand("timers") {
     }
 }
 
-modCommand("variables", "vars") {
+modCommand("variables", "list all players variables", listOf("vars")) {
     player.message("=== Variables ===", ChatType.Console)
     for ((variable, value) in (player.variables as PlayerVariables).temp) {
         if (content.isNotBlank() && !variable.contains(content, ignoreCase = true)) {
@@ -143,7 +151,7 @@ adminCommand("pf_bench") {
     println("Invalid path: ${timeInvalid}ms")
 }
 
-adminCommand("expr") {
+adminCommand("expr (animation-id)", "display dialogue head with an animation expression by id") {
     val id = content.toIntOrNull()
     if (id != null) {
         val npc = id < 1000
@@ -162,7 +170,7 @@ adminCommand("expr") {
     }
 }
 
-adminCommand("showcol") {
+adminCommand("showcol", "show nearby collision") {
     val area = player.tile.toCuboid(10)
     val collisions: Collisions = get()
     for (tile in area) {
@@ -172,7 +180,7 @@ adminCommand("showcol") {
     }
 }
 
-adminCommand("path") {
+adminCommand("path", "show calculated walk paths") {
     player.softTimers.toggle("show_path")
 }
 
@@ -253,7 +261,7 @@ adminCommand("sendItems") {
     player.sendInventoryItems(90, 28, ags, true)
 }
 
-adminCommand("obj") {
+adminCommand("obj (object-id) [object-type] [object-rotation]", "spawn an object") {
     if (content.isNotBlank()) {
         val parts = content.split(" ")
         val id = parts.getOrNull(0)
@@ -267,6 +275,47 @@ adminCommand("obj") {
         val objs = get<GameObjects>()
         objs[player.tile].forEach {
             println(it.intId)
+        }
+    }
+}
+
+
+adminCommand("under [type]", "display entity types underneath the player") {
+    val type = content
+    if (type == "" || type == "obj" || type == "objs" || type == "objects") {
+        val objs = get<GameObjects>()[player.tile]
+        if (objs.isNotEmpty()) {
+            player.message("--- Objects ---", ChatType.Console)
+            for (obj in objs) {
+                player.message(obj.toString(), ChatType.Console)
+            }
+        }
+    }
+    if (type == "" || type == "players") {
+        val players = get<Players>()[player.tile].filterNot { it == player }
+        if (players.isNotEmpty()) {
+            player.message("--- Players ---", ChatType.Console)
+            for (other in players) {
+                player.message(other.toString(), ChatType.Console)
+            }
+        }
+    }
+    if (type == "" || type == "npcs") {
+        val npcs = get<NPCs>()[player.tile]
+        if (npcs.isNotEmpty()) {
+            player.message("--- NPCs ---", ChatType.Console)
+            for (npc in npcs) {
+                player.message(npc.toString(), ChatType.Console)
+            }
+        }
+    }
+    if (type == "" || type == "items" || type == "floor items" || type == "floor_items") {
+        val items = get<FloorItems>()[player.tile]
+        if (items.isNotEmpty()) {
+            player.message("--- Floor Items ---", ChatType.Console)
+            for (item in items) {
+                player.message(item.toString(), ChatType.Console)
+            }
         }
     }
 }

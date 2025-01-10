@@ -220,7 +220,7 @@ interfaceOption("Hint", "hint_*", "task_system") {
     player.open("world_map")
 }
 
-adminCommand("tasks", "achievements") {
+adminCommand("tasks", "auto complete all available tasks", listOf("achievements")) {
     for (struct in structDefinitions.definitions) {
         if (struct.stringId.endsWith("_task")) {
             player[struct.stringId] = true

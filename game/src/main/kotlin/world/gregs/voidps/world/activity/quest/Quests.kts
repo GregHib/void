@@ -15,7 +15,7 @@ val quests = listOf(
     "enter_the_abyss",
 )
 
-adminCommand("quests") {
+adminCommand("quests", "auto complete all quests available") {
     for (quest in quests) {
         player[quest] = "completed"
     }

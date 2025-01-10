@@ -12,13 +12,13 @@ import world.gregs.voidps.world.interact.entity.effect.transform
 
 val npcs: NPCs by inject()
 
-adminCommand("npckill") {
+adminCommand("npckill", "kill all npcs") {
     npcs.forEach { npc ->
         npcs.remove(npc)
     }
 }
 
-modCommand("npcs") {
+modCommand("npcs", "get total npc count") {
     player.message("NPCs: ${npcs.size}")
 }
 

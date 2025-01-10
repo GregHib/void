@@ -234,7 +234,7 @@ suspend fun CharacterContext.playDungeoneeringMasterCapeEmote(player: Player) {
     player.transform("")
 }
 
-adminCommand("emotes") {
+adminCommand("emotes", "unlock all available emotes") {
     for (compId in unlockableRange) {
         if (compId == 39) {
             continue

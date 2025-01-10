@@ -87,10 +87,11 @@ characterCombatAttack { source ->
     }
 }
 
-adminCommand("poison") {
-    if (player.poisoned) {
+adminCommand("poison [damage]", "toggle hitting player with poison") {
+    val damage = content.toIntOrNull() ?: 100
+    if (player.poisoned || damage < 0) {
         player.curePoison()
     } else {
-        player.poison(player, content.toIntOrNull() ?: 100)
+        player.poison(player, damage)
     }
 }

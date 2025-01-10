@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
 
 val players: Players by inject()
 
-modCommand("rename") {
+modCommand("rename", "rename your accounts display name (login stays the same)") {
     val remaining = player.remaining("rename_delay", epochSeconds()).toLong()
     if (remaining > 0 && !player.isAdmin()) {
         player.message("You've already changed your name this month.")

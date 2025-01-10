@@ -77,7 +77,7 @@ import kotlin.system.measureTimeMillis
 val areas: AreaDefinitions by inject()
 val players: Players by inject()
 
-adminCommand("tele", "tp") {
+adminCommand("tele (x) (y) [level]", "teleport to given coordinates", listOf("tp")) {
     if (content.contains(",")) {
         val params = content.split(",")
         val level = params[0].toInt()
@@ -95,19 +95,19 @@ adminCommand("tele", "tp") {
     }
 }
 
-adminCommand("teleto") {
+adminCommand("teleto (player-name)", "teleport to another player") {
     val target = players.firstOrNull { it.name.equals(content, true) }
     if (target != null) {
         player.tele(target.tile)
     }
 }
 
-adminCommand("teletome") {
+adminCommand("teletome (player-name)", "teleport another player to you") {
     val other = players.get(content) ?: return@adminCommand
     other.tele(player.tile)
 }
 
-adminCommand("npc") {
+adminCommand("npc (npc-id)", "spawn an npc") {
     val id = content.toIntOrNull()
     val defs: NPCDefinitions = get()
     val definition = if (id != null) defs.getOrNull(id) else defs.getOrNull(content)
@@ -128,7 +128,7 @@ adminCommand("npc") {
     npc?.start("movement_delay", -1)
 }
 
-modCommand("save") {
+modCommand("save", "save all players") {
     val account: SaveQueue = get()
     players.forEach(account::save)
 }
@@ -146,7 +146,7 @@ worldSpawn {
     }
 }
 
-adminCommand("items") {
+adminCommand("items (item-id) [item-id] [item-id]...", "spawn multiple items at once") {
     val parts = content.split(" ")
     for (i in parts.indices) {
         val id = definitions.get(alternativeNames.getOrDefault(parts[i], parts[i])).stringId
@@ -154,7 +154,7 @@ adminCommand("items") {
     }
 }
 
-adminCommand("item") {
+adminCommand("item (item-id) [item-amount]", "spawn an item by int or string id e.g. ::item pure_ess 2") {
     val parts = content.split(" ")
     val definition = definitions.get(alternativeNames.getOrDefault(parts[0], parts[0]))
     val id = definition.stringId
@@ -181,7 +181,7 @@ adminCommand("item") {
     }
 }
 
-adminCommand("give") {
+adminCommand("give (item-id) [amount] (player-name)", "spawn item in another players inventory") {
     val parts = content.split(" ")
     val id = definitions.get(parts.first()).stringId
     val amount = parts[1]
@@ -194,7 +194,7 @@ adminCommand("give") {
     }
 }
 
-modCommand("find") {
+modCommand("find (item name)", "find the id of an item") {
     val search = content.lowercase()
     var found = false
     repeat(definitions.size) { id ->
@@ -209,11 +209,11 @@ modCommand("find") {
     }
 }
 
-modCommand("clear") {
+modCommand("clear", "delete all items in the players inventory") {
     player.inventory.clear()
 }
 
-adminCommand("master") {
+adminCommand("master", "set all skills to 99") {
     for (skill in Skill.all) {
         player.experience.set(skill, 14000000.0)
         player.levels.restore(skill, 1000)
@@ -223,7 +223,7 @@ adminCommand("master") {
     }
 }
 
-adminCommand("setlevel") {
+adminCommand("setlevel (skill-name) (level)", "set any skill to a specific level") {
     val split = content.split(" ")
     val skill = Skill.valueOf(split[0].toSentenceCase())
     val level = split[1].toInt()
@@ -244,7 +244,7 @@ adminCommand("setlevel") {
     }
 }
 
-adminCommand("reset") {
+adminCommand("reset", "rest all skills to level 1") {
     for ((index, skill) in Skill.all.withIndex()) {
         player.experience.set(skill, Experience.defaultExperience[index])
         player.levels.set(skill, Levels.defaultLevels[index])
@@ -254,58 +254,58 @@ adminCommand("reset") {
     player.clearCamera()
 }
 
-modCommand("hide") {
+modCommand("hide", "toggle invisibility to other players") {
     player.appearance.hidden = !player.appearance.hidden
     player.flagAppearance()
 }
 
-adminCommand("skull") {
+adminCommand("skull", "apply a skull to the player") {
     player.skull()
 }
 
-adminCommand("unskull") {
+adminCommand("unskull", "remove a skull") {
     player.unskull()
 }
 
-adminCommand("rest") {
+adminCommand("rest", "set run energy to full") {
     player["energy"] = MAX_RUN_ENERGY
 }
 
-adminCommand("spec") {
+adminCommand("spec", "set special attack energy to full") {
     player.specialAttackEnergy = MAX_SPECIAL_ATTACK
 }
 
-adminCommand("curse", "curses") {
+adminCommand("curse", "toggle curse prayers", listOf("curses")) {
     player[PRAYERS] = if (player.isCurses()) "normal" else "curses"
 }
 
-adminCommand("ancient", "ancients") {
+adminCommand("ancient", "toggle ancient spellbook", listOf("ancients")) {
     player.open("ancient_spellbook")
 }
 
-adminCommand("lunar", "lunars") {
+adminCommand("lunar", "toggle lunar spellbook", listOf("lunars")) {
     player.open("lunar_spellbook")
 }
 
-adminCommand("regular", "regulars", "modern", "moderns") {
+adminCommand("regular", "toggle modern spellbook", listOf("regulars", "modern", "moderns")) {
     player.open("modern_spellbook")
 }
 
-adminCommand("dung", "dungs", "dungeoneering", "dungeoneerings") {
+adminCommand("dung", "toggle dungeoneering spellbook", listOf("dungs", "dungeoneering", "dungeoneerings")) {
     player.open("dungeoneering_spellbook")
 }
 
-adminCommand("pray") {
+adminCommand("pray", "restore full prayer points") {
     player.levels.clear(Skill.Prayer)
 }
 
-adminCommand("restore") {
+adminCommand("restore", "restore all skills") {
     Skill.entries.forEach {
         player.levels.clear(it)
     }
 }
 
-adminCommand("sound") {
+adminCommand("sound (sound-id)", "play a sound by int or string id") {
     val id = content.toIntOrNull()
     if (id == null) {
         player.playSound(content.toSnakeCase())
@@ -314,7 +314,7 @@ adminCommand("sound") {
     }
 }
 
-adminCommand("midi") {
+adminCommand("midi (midi-id)", "play a midi effect by int or string id") {
     val id = content.toIntOrNull()
     if (id == null) {
         player.playMidi(content.toSnakeCase())
@@ -323,7 +323,7 @@ adminCommand("midi") {
     }
 }
 
-adminCommand("jingle") {
+adminCommand("jingle (jingle-id)", "play a jingle sound by int or string id") {
     val id = content.toIntOrNull()
     if (id == null) {
         player.playJingle(content.toSnakeCase())
@@ -332,16 +332,35 @@ adminCommand("jingle") {
     }
 }
 
-adminCommand("song", "track") {
-    player.playTrack(content.toInt())
+val enums: EnumDefinitions by inject()
+
+adminCommand("song (song-id)", "play a song by int id", listOf("track")) {
+    val names = enums.get("music_track_names").map!!
+    var id = content.toIntOrNull()
+    if (id == null) {
+        val search = content.replace(" ", "_")
+        for ((key, value) in names) {
+            if ((value as String).toSnakeCase() == search) {
+                id = key
+                break
+            }
+        }
+        if (id != null) {
+            player.playTrack(id)
+        } else {
+            player.message("Song not found with id '${search}'.")
+        }
+    } else {
+        player.playTrack(content.toInt())
+    }
 }
 
-modCommand("pos", "mypos") {
+modCommand("pos", "print out players current coordinates", listOf("mypos")) {
     player.message("${player.tile} Zone(${player.tile.zone.id}) ${player.tile.region}")
     println(player.tile)
 }
 
-adminCommand("reload") {
+adminCommand("reload (config-name)", "reload any type of content or file e.g. npcs, object defs, or settings") {
     when (content) {
         "book", "books" -> get<Books>().load()
         "stairs", "tele", "teles", "teleports" -> get<Teleports>().load()
@@ -386,11 +405,11 @@ adminCommand("reload") {
     }
 }
 
-adminCommand("shop") {
+adminCommand("shop (shop-id)", "open a shop by id") {
     player.emit(OpenShop(content))
 }
 
-adminCommand("debug") {
+adminCommand("debug", "toggle debug mode and printing logs") {
     val target = if (content.isNotEmpty()) {
         players.get(content)
     } else {
@@ -416,7 +435,7 @@ class InventoryDelegate(
     }
 }
 
-modCommand("chance") {
+modCommand("chance (drop-table-id)", "get the chances for all items of a drop table") {
     val table = tables.get(content) ?: tables.get("${content}_drop_table")
     if (table == null) {
         player.message("No drop table found for '$content'")
@@ -442,7 +461,7 @@ fun sendChances(player: Player, table: DropTable) {
     }
 }
 
-modCommand("sim") {
+modCommand("sim (drop-table-name) (drop-count)", "simulate any amount of drops from a drop-table/boss") {
     val parts = content.split(" ")
     val name = parts.first()
     val count = parts.last().toSIInt()

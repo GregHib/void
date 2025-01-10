@@ -16,7 +16,7 @@ import world.gregs.voidps.network.login.protocol.encode.*
 
 val definitions: InterfaceDefinitions by inject()
 
-adminCommand("inter") {
+adminCommand("inter (interface-id)", "open an interface with int or string id") {
     val id = content.toIntOrNull()
     if (id == null) {
         val name = content
@@ -44,34 +44,34 @@ fun closeInterface(player: Player): Boolean {
     return player.interfaces.close(id)
 }
 
-adminCommand("show") {
+adminCommand("show (interface-id) (interface-component-id) (visibility)", "set the visibility of an interface component") {
     val parts = content.split(" ")
     player.client?.interfaceVisibility(parts[0].toInt(), parts[1].toInt(), !parts[2].toBoolean())
 }
 
-adminCommand("colour") {
+adminCommand("colour (interface-id) (interface-component-id) (red) (green) (blue)", "set colour of interface component") {
     val parts = content.split(" ")
     player.client?.colourInterface(parts[0].toInt(), parts[1].toInt(), parts[2].toInt(), parts[3].toInt(), parts[4].toInt())
 }
 
-adminCommand("sendItem") {
+adminCommand("sendItem (interface) (interface-component) (item-id) [item-amount]", "send an item to an interface component") {
     val parts = content.split(" ")
     player.interfaces.sendItem(parts[0], parts[1], parts[2].toInt(), parts.getOrNull(3)?.toInt() ?: 1)
 }
 
-adminCommand("sendText") {
+adminCommand("sendText (interface) (interface-component) (text...)", "send any text to an interface component") {
     val parts = content.split(" ")
     player.interfaces.sendText(parts[0], parts[1], content.removePrefix("${parts[0]} ${parts[1]} "))
 }
 
-adminCommand("setting") {
+adminCommand("setting (interface-id) (interface-component-id) (from-slot) (to-slot) (settings...)", "send settings to an interface component") {
     val parts = content.split(" ")
     val remainder = parts.subList(4, parts.size).map { it.toIntOrNull() }.requireNoNulls().toIntArray()
     player.message("Settings sent ${remainder.toList()}", ChatType.Console)
     player.sendInterfaceSettings(parts[0].toInt(), parts[1].toInt(), parts[2].toInt(), parts[3].toInt(), getHash(*remainder))
 }
 
-adminCommand("script") {
+adminCommand("script (script-id) [params...]", "run a client script with any number of parameters") {
     val parts = content.split(" ")
     val remainder = parts.subList(1, parts.size).map { if (it == "true") 1 else if (it == "false") 0 else it.toIntOrNull() ?: it }
     val id = parts[0].toIntOrNull()
@@ -91,12 +91,12 @@ adminCommand("sendItems") {
     }
 }
 
-adminCommand("var") {
+adminCommand("var (variable-name) (variable-value)", "set a variable") {
     val parts = content.split(" ")
     player[parts.first()] = parts.last().toBooleanStrictOrNull() ?: parts.last().toIntOrNull() ?: parts.last()
 }
 
-adminCommand("varp") {
+adminCommand("varp (varp-id) (int-value)", "send a player-variable value to the client by string or int id") {
     val parts = content.split(" ")
     val intId = parts.first().toIntOrNull()
     if (intId == null) {
@@ -112,7 +112,7 @@ adminCommand("varp") {
     }
 }
 
-adminCommand("varbit") {
+adminCommand("varbit (varbit-id) (int-value)", "send a variable-bit value to the client by string or int id") {
     val parts = content.split(" ")
     val intId = parts.first().toIntOrNull()
     if (intId == null) {
@@ -128,7 +128,7 @@ adminCommand("varbit") {
     }
 }
 
-adminCommand("varc") {
+adminCommand("varc (varc-id) (int-value)", "send a client-variable value to the client by string or int id") {
     val parts = content.split(" ")
     val intId = parts.first().toIntOrNull()
     if (intId == null) {
@@ -138,7 +138,7 @@ adminCommand("varc") {
     }
 }
 
-adminCommand("varcstr") {
+adminCommand("varcstr (varcstr-id) (string-value)", "send a variable-client-string value to the client") {
     val parts = content.split(" ")
     val intId = parts.first().toIntOrNull()
     val string = content.removePrefix("${parts.first()} ")

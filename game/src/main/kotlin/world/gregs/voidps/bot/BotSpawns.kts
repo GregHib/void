@@ -3,6 +3,7 @@ package world.gregs.voidps.bot
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.PlayerAccountLoader
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
@@ -70,7 +71,7 @@ worldTimerTick("bot_spawn") {
     spawn()
 }
 
-adminCommand("bots") {
+adminCommand("bots (count)", "spawn (count) number of bots") {
     val count = content.toIntOrNull() ?: 1
     GlobalScope.launch {
         repeat(count) {
@@ -86,7 +87,7 @@ adminCommand("bots") {
     }
 }
 
-adminCommand("clear_bots") {
+adminCommand("clear_bots [count]", "clear all or some amount of bots") {
     val count = content.toIntOrNull() ?: MAX_PLAYERS
     World.queue("bot_${counter}") {
         val manager = get<AccountManager>()
@@ -96,15 +97,17 @@ adminCommand("clear_bots") {
     }
 }
 
-adminCommand("bot") {
+adminCommand("bot", "toggle yourself on/off as a bot player") {
     if (player.isBot) {
         player.clear("bot")
+        player.message("Bot disabled.")
     } else {
         val bot = player.initBot()
         if (content.isNotBlank()) {
             player["task_bot"] = content
         }
         bot.emit(StartBot)
+        player.message("Bot enabled.")
     }
 }
 

@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.activity.quest
 
+import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
@@ -44,17 +45,20 @@ continueDialogue("book_long", "turn_page_left") { player ->
 
 fun refreshBook(player: Player, book: String) {
     val name: String = player["book"] ?: return
-    val pageNumber: Int = player["book_page"] ?: return
-    player.interfaces.apply {
-        sendText(book, "title", books.title(name))
-        sendText(book, "page_number_left", (pageNumber + 1).toString())
-        sendText(book, "page_number_right", (pageNumber + 2).toString())
-        val pages = books.get(name)
-        sendVisibility(book, "turn_page_left", pageNumber > 0)
-        sendVisibility(book, "turn_page_right", pageNumber < pages.lastIndex)
-        val page = pages.getOrNull(pageNumber)?.lines()
-        for (i in 0 until if (book == "book_long") 30 else 21) {
-            sendText(book, "line${i + 1}", page?.getOrNull(i) ?: "")
-        }
+    val page: Int = player["book_page"] ?: return
+    val pages = books.get(name)
+    player.interfaces.display(book, books.title(book), page, pages)
+}
+
+fun Interfaces.display(book: String, title: String, pageNumber: Int, pages: List<String>) {
+    sendText(book, "title", title)
+    sendText(book, "page_number_left", (pageNumber + 1).toString())
+    sendText(book, "page_number_right", (pageNumber + 2).toString())
+    sendVisibility(book, "turn_page_left", pageNumber > 0)
+    sendVisibility(book, "turn_page_right", pageNumber < pages.lastIndex)
+    val lines = pages.getOrNull(pageNumber)?.lines()
+    for (i in 0 until if (book == "book_long") 30 else 21) {
+        println("Send line${i + 1} ${lines?.getOrNull(i)}")
+        sendText(book, "line${i + 1}", lines?.getOrNull(i) ?: "")
     }
 }
