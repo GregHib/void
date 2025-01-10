@@ -157,6 +157,7 @@ internal class GameServerTest {
         val properties = Properties()
         properties.setProperty("network.maxClientPerIP", "0")
         properties.setProperty("storage.cache.server", "false")
+        properties.setProperty("server.revision", "634")
         server = GameServer.load(mockk(relaxed = true), properties)
 
         launch {
