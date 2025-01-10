@@ -22,7 +22,7 @@ worldSpawn {
         spaces = Int.MAX_VALUE,
         requirements = emptyList()
     )
-    if (Settings["world.bots.randomWalk", false]) {
+    if (Settings["bots.randomWalk", false]) {
         tasks.idle(task)
     }
 }

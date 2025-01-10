@@ -117,7 +117,7 @@ class FileServer(
                 return offlineFileServer()
             }
             val fileProvider: FileProvider = FileProvider.load(cache, properties)
-            val revision = properties.getProperty("game.revision").toInt()
+            val revision = properties.getProperty("server.revision").toInt()
             val prefetchKeys = prefetchKeys(cache, properties)
             return FileServer(revision, prefetchKeys, fileProvider)
         }

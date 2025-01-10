@@ -44,7 +44,7 @@ val structs: StructDefinitions by inject()
 var counter = 0
 
 worldSpawn {
-    if (Settings["world.bots", 0] > 0) {
+    if (Settings["bots.count", 0] > 0) {
         World.timers.start("bot_spawn")
     }
     Events.events.all = { player, event ->
@@ -53,7 +53,7 @@ worldSpawn {
 }
 
 settingsReload {
-    if (Settings["world.bots", 0] > bots.size) {
+    if (Settings["bots.count", 0] > bots.size) {
         World.timers.start("bot_spawn")
     }
 }
@@ -63,7 +63,7 @@ worldTimerStart("bot_spawn") {
 }
 
 worldTimerTick("bot_spawn") {
-    if (counter > Settings["world.bots", 0]) {
+    if (counter > Settings["bots.count", 0]) {
         cancel()
         return@worldTimerTick
     }

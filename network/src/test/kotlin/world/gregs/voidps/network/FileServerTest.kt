@@ -231,7 +231,7 @@ class FileServerTest {
         val writeChannel = ByteChannel(autoFlush = true)
         val properties = Properties()
         properties.setProperty("storage.cache.server", "internal")
-        properties.setProperty("game.revision", "123")
+        properties.setProperty("server.revision", "123")
         val prefetchKeys = listOf(1, 2, 3, 4)
         properties.setProperty("prefetch.keys", prefetchKeys.joinToString(","))
         val server = FileServer.load(mockk(relaxed = true), properties)

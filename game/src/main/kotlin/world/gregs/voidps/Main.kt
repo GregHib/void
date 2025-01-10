@@ -42,12 +42,12 @@ object Main : CoroutineScope {
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
         val properties = settings()
-        name = Settings["game.name"]
+        name = Settings["server.name"]
 
         // File server
         val cache = timed("cache") { Cache.load(properties) }
         val server = GameServer.load(cache, properties)
-        val job = server.start(Settings["game.port"].toInt())
+        val job = server.start(Settings["network.port"].toInt())
 
         // Content
         try {
