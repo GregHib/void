@@ -3,6 +3,7 @@ package world.gregs.voidps.world.activity.dnd.shootingstar
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.data.Rock
@@ -23,6 +24,7 @@ import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.entity.objectDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.entity.worldSpawn
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -40,7 +42,6 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.currentActiveObject
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.currentStarTile
-import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.startEvent
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.totalCollected
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Sad
@@ -69,8 +70,26 @@ settingsReload {
     }
 }
 
+adminCommand("star") {
+    cleanseEvent(true)
+    val minutes = content.toIntOrNull()
+    if (minutes != null) {
+        World.clearQueue("shooting_star_event_timer")
+        eventUpdate(minutes)
+    } else if (minutes == -1) {
+        World.clearQueue("shooting_star_event_timer")
+    } else {
+        startCrashedStarEvent()
+    }
+}
+
 fun eventUpdate() {
-    World.queue("shooting_star_event_timer", startEvent) {
+    val minutes = Settings["events.shootingStars.minRespawnTimeMinutes", 60]..Settings["events.shootingStars.maxRespawnTimeMinutes", 60]
+    eventUpdate(minutes.random(random))
+}
+
+fun eventUpdate(minutes: Int) {
+    World.queue("shooting_star_event_timer", TimeUnit.MINUTES.toTicks(minutes)) {
         if (currentStarTile != Tile.EMPTY) {
             cleanseEvent(true)
             logger.info { "There was already an active star, deleted it and started a new event" }
@@ -160,7 +179,7 @@ playerSpawn { player ->
     }
 }
 
-timerStart("shooting_star_bonus_ore_timer") { player ->
+timerStart("shooting_star_bonus_ore_timer") {
     interval = TimeUnit.SECONDS.toTicks(1)
 }
 
