@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.energy
 
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -35,7 +36,7 @@ fun getRestoreAmount(player: Player): Int {
 }
 
 move({ it.visuals.runStep != -1 }) { player ->
-    if (player["last_energy_drain", -1] == GameLoop.tick) {
+    if (player["last_energy_drain", -1] == GameLoop.tick || !Settings["players.energy.drain", true]) {
         return@move
     }
     player["last_energy_drain"] = GameLoop.tick
