@@ -34,10 +34,10 @@ object WorldMapDumper {
             fileProperties("/tool.properties")
             modules(
             module {
-                single { MemoryCache(Settings["cachePath"]) as Cache }
+                single { MemoryCache(Settings["storage.cache.path"]) as Cache }
                 single { MapDecoder(get<Xteas>()) }
                 single(createdAtStart = true) {
-                    Xteas()//.load(Settings["xteaPath"], Settings["xteaJsonKey", Xteas.DEFAULT_KEY], Settings["xteaJsonValue", Xteas.DEFAULT_VALUE])
+                    Xteas()//.load(Settings["storage.xteas"], Settings["xteaJsonKey", Xteas.DEFAULT_KEY], Settings["xteaJsonValue", Xteas.DEFAULT_VALUE])
                 }
             })
         }.koin

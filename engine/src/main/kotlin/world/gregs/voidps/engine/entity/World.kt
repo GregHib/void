@@ -22,7 +22,7 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
     private val logger = InlineLogger()
 
     val members: Boolean
-        get() = Settings["members", false]
+        get() = Settings["world.members", false]
 
     fun start() {
         emit(Spawn)

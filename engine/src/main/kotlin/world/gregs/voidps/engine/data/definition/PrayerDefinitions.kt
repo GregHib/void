@@ -28,7 +28,7 @@ class PrayerDefinitions {
     fun getGroup(group: Int) = groups[group]
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["prayerDefinitionsPath"]): PrayerDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.prayers"]): PrayerDefinitions {
         timedLoad("prayer definition") {
             val definitions = Object2ObjectOpenHashMap<String, PrayerDefinition>()
             val prayers = Int2ObjectArrayMap<PrayerDefinition>()

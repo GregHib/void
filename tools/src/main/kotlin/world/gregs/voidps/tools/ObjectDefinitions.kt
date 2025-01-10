@@ -11,7 +11,7 @@ object ObjectDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache = CacheDelegate("./data/cache")
-        val definitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(Yaml(), property("objectDefinitionsPath"))
+        val definitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(Yaml(), property("definitions.objects"))
         for (def in definitions.definitions) {
             println("${def.id} ${def.name}")
         }

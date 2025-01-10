@@ -56,15 +56,15 @@ val players: Players by inject()
 val logger = InlineLogger()
 
 worldSpawn {
-    if (Settings["shootingStars", false]) {
+    if (Settings["events.shootingStars.enabled", false]) {
         eventUpdate()
     }
 }
 
 settingsReload {
-    if (Settings["shootingStars", false] && !World.contains("shooting_star_event_timer")) {
+    if (Settings["events.shootingStars.enabled", false] && !World.contains("shooting_star_event_timer")) {
         eventUpdate()
-    } else if (!Settings["shootingStars", false] && World.contains("shooting_star_event_timer")) {
+    } else if (!Settings["events.shootingStars.enabled", false] && World.contains("shooting_star_event_timer")) {
         World.clearQueue("shooting_star_event_timer")
     }
 }

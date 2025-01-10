@@ -14,7 +14,7 @@ import world.gregs.yaml.read.YamlReaderConfiguration
 fun loadNpcSpawns(
     npcs: NPCs,
     yaml: Yaml = get(),
-    path: String = Settings["npcSpawnsPath"]
+    path: String = Settings["spawns.npcs"]
 ) {
     timedLoad("npc spawn") {
         npcs.clear()

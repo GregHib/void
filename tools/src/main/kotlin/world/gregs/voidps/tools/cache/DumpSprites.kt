@@ -11,7 +11,7 @@ object DumpSprites {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("cachePath"))
+        val cache: Cache = CacheDelegate(property("storage.cache.path"))
         val decoder = SpriteDecoder().load(cache)
         println(decoder.lastIndex)
         val directory = File("./temp/sprites/")

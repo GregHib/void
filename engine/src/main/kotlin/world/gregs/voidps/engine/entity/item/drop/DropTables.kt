@@ -17,7 +17,7 @@ class DropTables {
 
     fun getValue(key: String) = tables.getValue(key)
 
-    fun load(yaml: Yaml = get(), path: String = Settings["dropsPath"], itemDefinitions: ItemDefinitions? = null): DropTables {
+    fun load(yaml: Yaml = get(), path: String = Settings["spawns.drops"], itemDefinitions: ItemDefinitions? = null): DropTables {
         timedLoad("drop table") {
             val config = object : YamlReaderConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {

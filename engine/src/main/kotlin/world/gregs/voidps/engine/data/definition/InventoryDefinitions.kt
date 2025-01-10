@@ -17,7 +17,7 @@ class InventoryDefinitions(
     override fun empty() = InventoryDefinition.EMPTY
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["inventoryDefinitionsPath"], itemDefs: ItemDefinitions = get()): InventoryDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.inventories"], itemDefs: ItemDefinitions = get()): InventoryDefinitions {
         timedLoad("inventory extra") {
             val ids = Object2IntOpenHashMap<String>()
             val config = object : DefinitionConfig<InventoryDefinition>(ids, definitions) {

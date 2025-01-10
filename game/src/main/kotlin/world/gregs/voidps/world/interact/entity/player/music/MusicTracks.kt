@@ -24,7 +24,7 @@ class MusicTracks {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["musicPath"]): MusicTracks {
+    fun load(yaml: Yaml = get(), path: String = Settings["map.music"]): MusicTracks {
         timedLoad("music track") {
             var count = 0
             val tracks = Int2ObjectOpenHashMap<MutableList<Track>>()

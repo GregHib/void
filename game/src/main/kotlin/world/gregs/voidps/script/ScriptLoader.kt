@@ -9,7 +9,7 @@ import kotlin.system.measureTimeMillis
 
 private val logger = InlineLogger("ScriptLoader")
 
-fun loadScripts(scriptPackage: String = Settings["scriptPackage"], botScriptPackage: String = Settings["botScriptPackage"]) {
+fun loadScripts(scriptPackage: String = Settings["storage.scripts.package"], botScriptPackage: String = Settings["storage.scripts.bots.package"]) {
     var scriptCount = 0
     val found = mutableSetOf<String>()
     val isJar = Main::class.java.getResource("${Main::class.simpleName}.class")?.protocol == "jar"

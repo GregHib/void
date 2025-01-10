@@ -46,6 +46,6 @@ class Wander(
     }
 
     companion object {
-        fun wanders(npc: NPC) = Settings["randomWalk", false] && npc.def.walkMask.toInt() and 0x1 != 0 && npc.def.walkMask.toInt() and 0x2 != 0 && npc.def.contains("wander_radius")
+        fun wanders(npc: NPC) = Settings["world.npcs.randomWalk", false] && npc.def.walkMask.toInt() and 0x1 != 0 && npc.def.walkMask.toInt() and 0x2 != 0 && npc.def.contains("wander_radius")
     }
 }

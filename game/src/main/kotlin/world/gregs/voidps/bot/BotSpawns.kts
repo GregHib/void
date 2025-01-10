@@ -35,7 +35,6 @@ import kotlin.reflect.KClass
 
 val areas: AreaDefinitions by inject()
 val lumbridge = areas["lumbridge_teleport"]
-val botCount = Settings["bots", 0]
 
 val bots = mutableListOf<Player>()
 val enums: EnumDefinitions by inject()
@@ -44,7 +43,7 @@ val structs: StructDefinitions by inject()
 var counter = 0
 
 worldSpawn {
-    if (botCount > 0) {
+    if (Settings["world.bots", 0] > 0) {
         World.timers.start("bot_spawn")
     }
     Events.events.all = { player, event ->
@@ -57,7 +56,7 @@ worldTimerStart("bot_spawn") {
 }
 
 worldTimerTick("bot_spawn") {
-    if (counter > botCount) {
+    if (counter > Settings["world.bots", 0]) {
         cancel()
         return@worldTimerTick
     }

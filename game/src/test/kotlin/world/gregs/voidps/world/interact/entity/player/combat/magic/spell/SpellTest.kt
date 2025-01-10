@@ -46,7 +46,7 @@ class SpellTest : MagicSpellTest() {
 
     @Test
     fun `Members spell`() {
-        Settings.load(mapOf("members" to "false"))
+        Settings.load(mapOf("world.members" to "false"))
         World.start()
 
         val player = player()

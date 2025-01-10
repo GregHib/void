@@ -33,47 +33,47 @@ val engineModule = module {
     // Entities
     single { NPCs(get(), get(), get(), get()) }
     single { Players() }
-    single { GameObjects(get(), get(), get(), get(), Settings["loadUnusedObjects", false]).apply { get<ZoneBatchUpdates>().register(this) } }
+    single { GameObjects(get(), get(), get(), get(), Settings["development.loadAllObjects", false]).apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItems(get(), get()).apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItemTracking(get(), get(), get()) }
     single { Hunting(get(), get(), get(), get(), get(), get()) }
     single {
-        SaveQueue(get(), SafeStorage(File(Settings["storageFailDirectory"])))
+        SaveQueue(get(), SafeStorage(File(Settings["storage.players.errors"])))
     }
     single {
         val homeTile = Tile(
-            x = Settings["home.x", 0],
-            y = Settings["home.y", 0],
-            level = Settings["home.level", 0]
+            x = Settings["world.home.x", 0],
+            y = Settings["world.home.y", 0],
+            level = Settings["world.home.level", 0]
         )
-        AccountManager(get(), get(), get(), get(), get(), get(), homeTile, get(), get(), get(), get(), Settings["experienceRate", 1.0])
+        AccountManager(get(), get(), get(), get(), get(), get(), homeTile, get(), get(), get(), get(), Settings["world.experienceRate", 1.0])
     }
     // IO
     single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }
-    single { if (Settings["storage", ""] == "database") {
+    single { if (Settings["storage.type", "files"] == "database") {
         DatabaseStorage.connect(
-            Settings["database_username"],
-            Settings["database_password"],
-            Settings["database_driver"],
-            Settings["database_jdbc_url"],
-            Settings["database_pool", 2],
+            Settings["storage.database.username"],
+            Settings["storage.database.password"],
+            Settings["storage.database.driver"],
+            Settings["storage.database.jdbcUrl"],
+            Settings["storage.database.poolSize", 2],
         )
         DatabaseStorage()
     } else {
-        val saves = File(Settings["savePath"])
+        val saves = File(Settings["storage.players.path"])
         if (!saves.exists()) {
             saves.mkdir()
         }
-        FileStorage(get(), saves, get(), Settings["experienceRate", 1.0])
+        FileStorage(get(), saves, get(), Settings["world.experienceRate", 1.0])
     } }
-    single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game, Settings["experienceRate", 1.0]) }
+    single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game, Settings["world.experienceRate", 1.0]) }
     // Map
     single { ZoneBatchUpdates() }
     single { DynamicZones(get(), get(), get()) }
     single(createdAtStart = true) { AreaDefinitions().load() }
     // Network
     single {
-        ConnectionQueue(Settings["connectionPerTickCap", 1])
+        ConnectionQueue(Settings["network.maxLoginsPerTick", 1])
     }
     single(createdAtStart = true) { GameObjectCollisionAdd(get()) }
     single(createdAtStart = true) { GameObjectCollisionRemove(get()) }

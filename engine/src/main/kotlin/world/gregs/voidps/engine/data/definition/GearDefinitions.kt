@@ -19,7 +19,7 @@ class GearDefinitions {
     fun get(style: String): List<GearDefinition> = definitions[style] ?: emptyList()
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["gearDefinitionsPath"]): GearDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.gearSets"]): GearDefinitions {
         timedLoad("gear definition") {
             var count = 0
             val config = object : YamlReaderConfiguration() {

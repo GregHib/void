@@ -15,7 +15,7 @@ import world.gregs.yaml.read.YamlReaderConfiguration
 fun loadObjectSpawns(
     objects: GameObjects,
     yaml: Yaml = get(),
-    path: String = Settings["objectsPath"],
+    path: String = Settings["spawns.objects"],
     definitions: ObjectDefinitions = get(),
 ) = timedLoad("object spawn") {
     objects.reset()

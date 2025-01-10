@@ -16,7 +16,7 @@ class HuntModeDefinitions {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["huntPath"]): HuntModeDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.huntModes"]): HuntModeDefinitions {
         timedLoad("hunt mode") {
             val config = object : YamlReaderConfiguration(2, 2) {
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {

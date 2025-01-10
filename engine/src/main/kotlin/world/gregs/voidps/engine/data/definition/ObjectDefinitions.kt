@@ -25,7 +25,7 @@ class ObjectDefinitions(
     override fun empty() = ObjectDefinition.EMPTY
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["objectDefinitionsPath"]): ObjectDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.objects"]): ObjectDefinitions {
         timedLoad("object extra") {
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids

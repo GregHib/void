@@ -17,7 +17,7 @@ data class Xteas(
     }
 
     fun load(
-        path: String = Settings["xteaPath"],
+        path: String = Settings["storage.xteas"],
         key: String = Settings["xteaJsonKey", DEFAULT_KEY],
         value: String = Settings["xteaJsonValue", DEFAULT_VALUE]
     ): Xteas {

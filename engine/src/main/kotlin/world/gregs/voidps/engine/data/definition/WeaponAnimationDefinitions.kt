@@ -16,7 +16,7 @@ class WeaponAnimationDefinitions {
 
     fun getOrNull(key: String) = definitions[key]
 
-    fun load(yaml: Yaml = get(), path: String = Settings["weaponAnimationDefinitionsPath"]): WeaponAnimationDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.weapons.animations"]): WeaponAnimationDefinitions {
         timedLoad("weapon animation definition") {
             val definitions = Object2ObjectOpenHashMap<String, WeaponAnimationDefinition>()
             val config = object : YamlReaderConfiguration() {

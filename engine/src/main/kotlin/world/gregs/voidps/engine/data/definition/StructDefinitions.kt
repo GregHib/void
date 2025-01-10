@@ -17,7 +17,7 @@ class StructDefinitions(
 
     override fun empty() = StructDefinition.EMPTY
 
-    fun load(yaml: Yaml = get(), path: String = Settings["structDefinitionsPath"]): StructDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.structs"]): StructDefinitions {
         timedLoad("struct extra") {
             decode(yaml, path)
         }

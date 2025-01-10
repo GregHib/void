@@ -15,19 +15,19 @@ class SettingsTest {
     }
 
     private val example = """
-        name=Void
-        port=43594
-        experienceRate=10.0
-        active=true
+        game.name=Void
+        game.port=43594
+        world.experienceRate=10.0
+        game.live=true
     """.trimIndent()
 
     @Test
     fun `Load settings`() {
         settings.load(example)
-        assertEquals("Void", settings["name"])
-        assertEquals(43594, settings["port", -1])
-        assertEquals(10.0, settings["experienceRate", -10.0])
-        assertEquals(true, settings["active", false])
+        assertEquals("Void", settings["game.name"])
+        assertEquals(43594, settings["game.port", -1])
+        assertEquals(10.0, settings["world.experienceRate", -10.0])
+        assertEquals(true, settings["game.live", false])
     }
 
     @Test
@@ -46,16 +46,16 @@ class SettingsTest {
     @Test
     fun `Get an incorrect format setting returns default`() {
         settings.load(example)
-        assertEquals(1234, settings["name", 1234])
+        assertEquals(1234, settings["game.name", 1234])
     }
 
     @Test
     fun `Override settings`() {
         settings.load(example)
-        settings.load("name=Void 2")
+        settings.load("game.name=Void 2")
 
-        assertEquals("Void 2", settings["name"])
-        assertEquals(43594, settings["port", -1])
+        assertEquals("Void 2", settings["game.name"])
+        assertEquals(43594, settings["game.port", -1])
     }
 
     private fun Settings.load(string: String) = load(string.byteInputStream(Charsets.UTF_8))

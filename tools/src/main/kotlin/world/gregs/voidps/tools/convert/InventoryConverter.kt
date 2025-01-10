@@ -28,9 +28,9 @@ object InventoryConverter {
         val yaml = Yaml()
         val otherDecoder = InventoryDecoder().load(otherCache)
         val targetDecoder = InventoryDecoder().load(targetCache)
-        val itemDefinitions = ItemDefinitions(ItemDecoder().load(targetCache)).load(yaml, property("itemDefinitionsPath"))
+        val itemDefinitions = ItemDefinitions(ItemDecoder().load(targetCache)).load(yaml, property("definitions.items"))
         val encoder = InventoryEncoder()
-        val data: MutableMap<String, Any> = yaml.load<Map<String, Any>>(property("inventoryDefinitionsPath")).toMutableMap()
+        val data: MutableMap<String, Any> = yaml.load<Map<String, Any>>(property("definitions.inventories")).toMutableMap()
 
         var counter = 0
         for (index in targetDecoder.indices) {

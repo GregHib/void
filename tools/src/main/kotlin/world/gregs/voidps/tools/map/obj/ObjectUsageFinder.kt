@@ -14,7 +14,7 @@ object ObjectUsageFinder {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("cachePath"))
+        val cache: Cache = CacheDelegate(property("storage.cache.path"))
         val xteas = Xteas()
         val decoder = ObjectDecoderFull(members = false, lowDetail = false).load(cache)
         val maps = MapDecoder(xteas).load(cache)

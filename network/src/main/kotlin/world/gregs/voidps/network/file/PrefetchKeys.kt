@@ -5,7 +5,7 @@ import world.gregs.voidps.cache.Index
 import java.util.*
 
 fun prefetchKeys(cache: Cache, properties: Properties): IntArray {
-    val existing = properties["prefetchKeys"] as? String
+    val existing = properties["prefetch.keys"] as? String
     return existing?.split(",")?.map { it.toInt() }?.toIntArray() ?: generatePrefetchKeys(cache)
 }
 

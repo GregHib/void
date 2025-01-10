@@ -14,7 +14,7 @@ class AnimationDefinitions(
 
     override fun empty() = AnimationDefinition.EMPTY
 
-    fun load(yaml: Yaml = get(), path: String = Settings["animationDefinitionsPath"]): AnimationDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.animations"]): AnimationDefinitions {
         timedLoad("animation extra") {
             decode(yaml, path)
         }

@@ -12,7 +12,7 @@ class MidiDefinitions : DefinitionsDecoder<MidiDefinition> {
     override lateinit var definitions: Array<MidiDefinition>
     override lateinit var ids: Map<String, Int>
 
-    fun load(yaml: Yaml = get(), path: String = Settings["midiDefinitionsPath"]): MidiDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.midis"]): MidiDefinitions {
         timedLoad("midi definition") {
             decode(yaml, path) { id, key, _ ->
                 MidiDefinition(id = id, stringId = key)

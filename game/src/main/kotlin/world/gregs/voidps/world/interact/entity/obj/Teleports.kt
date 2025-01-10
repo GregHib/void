@@ -71,7 +71,7 @@ class Teleports {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["teleportsPath"]): Teleports {
+    fun load(yaml: Yaml = get(), path: String = Settings["map.teleports"]): Teleports {
         timedLoad("object teleport") {
             val config = object : YamlReaderConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {

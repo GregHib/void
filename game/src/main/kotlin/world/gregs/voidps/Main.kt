@@ -42,12 +42,12 @@ object Main : CoroutineScope {
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
         val properties = settings()
-        name = Settings["name"]
+        name = Settings["game.name"]
 
         // File server
         val cache = timed("cache") { Cache.load(properties) }
         val server = GameServer.load(cache, properties)
-        val job = server.start(Settings["port"].toInt())
+        val job = server.start(Settings["game.port"].toInt())
 
         // Content
         try {
@@ -95,7 +95,7 @@ object Main : CoroutineScope {
     }
 
     private fun cache(cache: Cache) = module {
-        val members = Settings["members", false]
+        val members = Settings["world.members", false]
         single(createdAtStart = true) { MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache() }
         single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
         single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load() }

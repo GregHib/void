@@ -34,7 +34,7 @@ class EnumDefinitions(
         return structs.get(struct)[param, default]
     }
 
-    fun load(yaml: Yaml = get(), path: String = Settings["enumDefinitionsPath"]): EnumDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.enums"]): EnumDefinitions {
         timedLoad("enum extra") {
             decode(yaml, path)
         }

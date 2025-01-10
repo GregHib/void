@@ -25,7 +25,7 @@ class ParameterDefinitions(
     override lateinit var parameters: Map<Int, String>
     private val logger = InlineLogger()
 
-    fun load(yaml: Yaml = get(), path: String = Settings["parameterDefinitionsPath"]): ParameterDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.parameters"]): ParameterDefinitions {
         timedLoad("parameter definition") {
             val size = decode(yaml, path) { id, key, _ ->
                 ParameterDefinition(id = id, stringId = key)

@@ -12,7 +12,7 @@ class ClientScriptDefinitions : DefinitionsDecoder<ClientScriptDefinition> {
     override lateinit var definitions: Array<ClientScriptDefinition>
     override lateinit var ids: Map<String, Int>
 
-    fun load(yaml: Yaml = get(), path: String = Settings["clientScriptDefinitionsPath"]): ClientScriptDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.clientScripts"]): ClientScriptDefinitions {
         timedLoad("client script definition") {
             decode(yaml, path) { id, key, _ ->
                 ClientScriptDefinition(id = id, stringId = key)

@@ -12,7 +12,7 @@ class JingleDefinitions : DefinitionsDecoder<JingleDefinition> {
     override lateinit var definitions: Array<JingleDefinition>
     override lateinit var ids: Map<String, Int>
 
-    fun load(yaml: Yaml = get(), path: String = Settings["jingleDefinitionsPath"]): JingleDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.jingles"]): JingleDefinitions {
         timedLoad("jingle definition") {
             decode(yaml, path) { id, key, _ ->
                 JingleDefinition(id = id, stringId = key)

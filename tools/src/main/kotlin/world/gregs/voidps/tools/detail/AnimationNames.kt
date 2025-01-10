@@ -20,7 +20,7 @@ object AnimationNames {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("cachePath"))
+        val cache: Cache = CacheDelegate(property("storage.cache.path"))
         val yaml = Yaml()
         val decoder = AnimationDecoderFull().load(cache)
         val itemDecoder = ItemDecoderFull().load(cache)

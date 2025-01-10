@@ -21,7 +21,7 @@ class Books {
     fun title(name: String) = titles.getOrDefault(name, "")
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["bookPath"]): Books {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.books"]): Books {
         timedLoad("book") {
             val config = object : YamlReaderConfiguration(2, 2) {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {

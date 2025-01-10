@@ -21,7 +21,7 @@ class NPCDefinitions(
     override fun empty() = NPCDefinition.EMPTY
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["npcDefinitionsPath"]): NPCDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.npcs"]): NPCDefinitions {
         timedLoad("npc extra") {
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids

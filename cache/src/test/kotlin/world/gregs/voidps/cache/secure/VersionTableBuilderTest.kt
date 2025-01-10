@@ -72,8 +72,8 @@ class VersionTableBuilderTest {
 
         val properties = Properties()
         properties.load(FileInputStream("../game/src/main/resources/private.properties"))
-        val exponent = BigInteger(properties.getProperty("gamePrivate"), 16)
-        val modulus = BigInteger(properties.getProperty("gameModulus"), 16)
+        val exponent = BigInteger(properties.getProperty("security.game.private"), 16)
+        val modulus = BigInteger(properties.getProperty("security.game.modulus"), 16)
         val table = VersionTableBuilder(exponent, modulus, indexCount)
         for (i in 0 until indexCount) {
             val index = library.index(i)

@@ -12,7 +12,7 @@ class WeaponStyleDefinitions : DefinitionsDecoder<WeaponStyleDefinition> {
     override lateinit var definitions: Array<WeaponStyleDefinition>
     override lateinit var ids: Map<String, Int>
 
-    fun load(yaml: Yaml = get(), path: String = Settings["weaponStyleDefinitionsPath"]): WeaponStyleDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.weapons.styles"]): WeaponStyleDefinitions {
         timedLoad("weapon style definition") {
             decode(yaml, path) { id, key, extras ->
                 WeaponStyleDefinition.fromMap(id, key, extras!!)

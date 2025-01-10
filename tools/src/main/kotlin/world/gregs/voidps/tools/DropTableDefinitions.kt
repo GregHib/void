@@ -21,7 +21,7 @@ object DropTableDefinitions {
             fileProperties("/tool.properties")
             modules(module {
                 @Suppress("USELESS_CAST")
-                single { CacheDelegate(Settings["cachePath"]) as Cache }
+                single { CacheDelegate(Settings["storage.cache.path"]) as Cache }
                 single { ItemDefinitions(ItemDecoder().load(get())).load(Yaml()) }
             })
         }

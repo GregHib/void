@@ -34,7 +34,7 @@ class AreaDefinitions(
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["areaPath"]): AreaDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["map.areas"]): AreaDefinitions {
         timedLoad("map area") {
             val config = object : YamlReaderConfiguration(2, 2) {
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {

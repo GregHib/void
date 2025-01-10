@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.get
 
 playerSpawn { player ->
-    if (player.name == Settings.getOrNull("admin") && player.rights != PlayerRights.Admin) {
+    if (player.name == Settings.getOrNull("admin.name") && player.rights != PlayerRights.Admin) {
         player.rights = PlayerRights.Admin
         player.message("Rights set to Admin. Please re-log to activate.")
     }

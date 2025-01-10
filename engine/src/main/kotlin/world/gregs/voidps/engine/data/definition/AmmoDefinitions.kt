@@ -18,7 +18,7 @@ class AmmoDefinitions : DefinitionsDecoder<AmmoDefinition> {
     override lateinit var ids: Map<String, Int>
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["ammoDefinitionsPath"]): AmmoDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.ammoGroups"]): AmmoDefinitions {
         timedLoad("ammo definition") {
             decode(yaml, path) { id, key, extras ->
                 val items = extras?.get("items") as? List<String>

@@ -25,11 +25,11 @@ object WorldMapLinkIdentifier {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("cachePath"))
-        val xteas: Xteas = Xteas().load(property("xteaPath"), propertyOrNull("xteaJsonKey") ?: Xteas.DEFAULT_KEY, propertyOrNull("xteaJsonValue") ?: Xteas.DEFAULT_VALUE)
+        val cache: Cache = CacheDelegate(property("storage.cache.path"))
+        val xteas: Xteas = Xteas().load(property("storage.xteas"), propertyOrNull("xteaJsonKey") ?: Xteas.DEFAULT_KEY, propertyOrNull("xteaJsonValue") ?: Xteas.DEFAULT_VALUE)
         val worldMapDetailsDecoder = WorldMapDetailsDecoder().load(cache)
         val worldMapIconDecoder = WorldMapIconDecoder().load(cache)
-        val definitions: ObjectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(Yaml(), property("objectDefinitionsPath"))
+        val definitions: ObjectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(Yaml(), property("definitions.objects"))
         val mapDecoder = MapDecoder(xteas).load(cache)
         val collisions = Collisions()
         val collisionDecoder = CollisionDecoder(collisions)

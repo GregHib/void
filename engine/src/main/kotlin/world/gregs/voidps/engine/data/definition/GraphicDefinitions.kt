@@ -14,7 +14,7 @@ class GraphicDefinitions(
 
     override fun empty() = GraphicDefinition.EMPTY
 
-    fun load(yaml: Yaml = get(), path: String = Settings["graphicDefinitionsPath"]): GraphicDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.graphics"]): GraphicDefinitions {
         timedLoad("graphic extra") {
             decode(yaml, path)
         }

@@ -47,7 +47,7 @@ class NavigationGraph(
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["navGraphPath"]): NavigationGraph {
+    fun load(yaml: Yaml = get(), path: String = Settings["map.navGraph"]): NavigationGraph {
         timedLoad("ai nav graph edge") {
             val config = object : YamlReaderConfiguration(2, 2) {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {

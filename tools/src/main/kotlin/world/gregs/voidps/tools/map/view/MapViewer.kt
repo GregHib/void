@@ -36,7 +36,7 @@ class MapViewer {
             val collisions = Collisions()
             if (DISPLAY_AREA_COLLISIONS || DISPLAY_ALL_COLLISIONS) {
                 val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache))
-                    .load(Yaml(), property("objectDefinitionsPath"))
+                    .load(Yaml(), property("definitions.objects"))
                 val objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), objectDefinitions)
                 MapDefinitions(CollisionDecoder(collisions), objectDefinitions, objects, cache).loadCache()
             }

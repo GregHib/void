@@ -54,7 +54,7 @@ object ItemDefinitionPipeline {
         val revisionDate = LocalDate.of(2011, Month.JANUARY, 31)// 634
 
         val start = System.currentTimeMillis()
-        val cache: Cache = CacheDelegate(property("cachePath"))
+        val cache: Cache = CacheDelegate(property("storage.cache.path"))
         val decoder = ItemDecoder().load(cache)
 
         val pages = getPages(decoder, rs2Wiki)

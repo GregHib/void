@@ -18,12 +18,12 @@ characterCombatHit { character ->
     }
     var damage = damage
     var soak = 0
-    if (Settings["damageSoak", true] && damage > 200) {
+    if (Settings["combat.damageSoak", true] && damage > 200) {
         val percent = character["absorb_$type", 10] / 100.0
         soak = floor((damage - 200) * percent).toInt()
         damage -= soak
     }
-    if (Settings["showSoak", true] || soak <= 0) {
+    if (Settings["combat.showSoak", true] || soak <= 0) {
         soak = -1
     }
     val dealers = character.damageDealers

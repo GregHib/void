@@ -163,10 +163,10 @@ class LoginServer(
         private val logger = InlineLogger()
 
         fun load(properties: Properties, protocol: Array<Decoder?>, loader: AccountLoader): LoginServer {
-            val gameModulus = BigInteger(properties.getProperty("gameModulus"), 16)
-            val gamePrivate = BigInteger(properties.getProperty("gamePrivate"), 16)
-            val revision = properties.getProperty("revision").toInt()
-            val maxPlayers = properties.getProperty("maxPlayers").toInt()
+            val gameModulus = BigInteger(properties.getProperty("security.game.modulus"), 16)
+            val gamePrivate = BigInteger(properties.getProperty("security.game.private"), 16)
+            val revision = properties.getProperty("game.revision").toInt()
+            val maxPlayers = properties.getProperty("world.players.max").toInt()
             return LoginServer(protocol, revision, maxPlayers, gameModulus, gamePrivate, loader)
         }
     }

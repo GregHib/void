@@ -15,7 +15,7 @@ private class NPCNames(val decoder: Array<NPCDefinition>) : NameDumper() {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val cache: Cache = CacheDelegate(property("cachePath"))
+            val cache: Cache = CacheDelegate(property("storage.cache.path"))
             val decoder = NPCDecoder(member = true).load(cache)
             val yaml= Yaml()
             val names = NPCNames(decoder)

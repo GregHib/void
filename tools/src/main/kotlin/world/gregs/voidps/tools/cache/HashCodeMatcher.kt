@@ -212,7 +212,7 @@ object HashCodeMatcher {
     }
 
     private fun dumpHashes() {
-        val lib = CacheLibrary.create(property("cachePath"))
+        val lib = CacheLibrary.create(property("storage.cache.path"))
         val hashes = File("./temp/hashes/hashes.txt")
         hashes.delete()
         for (index in lib.indices()) {

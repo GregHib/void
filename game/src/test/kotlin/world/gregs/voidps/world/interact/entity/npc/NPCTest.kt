@@ -9,7 +9,7 @@ internal class NPCTest : WorldTest() {
 
     @Test
     fun `Man randomly walks around`() {
-        settings["randomWalk"] = "true"
+        settings["world.npcs.randomWalk"] = "true"
         val spawn = emptyTile
         val npc = createNPC("chicken", spawn) { npc ->
             npc["area"] = Rectangle(spawn.minus(25, 25), 50, 50)

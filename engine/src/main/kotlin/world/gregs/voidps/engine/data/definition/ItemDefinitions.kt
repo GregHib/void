@@ -27,7 +27,7 @@ class ItemDefinitions(
 
     override fun empty() = ItemDefinition.EMPTY
 
-    fun load(yaml: Yaml = get(), path: String = Settings["itemDefinitionsPath"]): ItemDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.items"]): ItemDefinitions {
         timedLoad("item extra") {
             val equipment = IntArray(definitions.size) { -1 }
             var index = 0

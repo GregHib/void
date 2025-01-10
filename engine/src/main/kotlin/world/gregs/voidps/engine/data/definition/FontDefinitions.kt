@@ -14,7 +14,7 @@ class FontDefinitions(
 
     override fun empty() = FontDefinition.EMPTY
 
-    fun load(yaml: Yaml = get(), path: String = Settings["fontDefinitionsPath"]): FontDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.fonts"]): FontDefinitions {
         timedLoad("font extra") {
             decode(yaml, path)
         }

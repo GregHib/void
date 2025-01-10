@@ -15,7 +15,7 @@ class PatrolDefinitions {
     fun get(key: String) = definitions[key] ?: PatrolDefinition()
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["patrolDefinitionsPath"]): PatrolDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.patrols"]): PatrolDefinitions {
         timedLoad("patrol definition") {
             val definitions = Object2ObjectOpenHashMap<String, PatrolDefinition>()
             val config = object : YamlReaderConfiguration() {

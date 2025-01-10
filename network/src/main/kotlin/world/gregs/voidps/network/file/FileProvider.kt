@@ -40,7 +40,7 @@ interface FileProvider {
 
         fun load(cache: Cache, properties: Properties): FileProvider {
             val start = System.currentTimeMillis()
-            val live = properties.getProperty("live").toBoolean()
+            val live = properties.getProperty("game.live").toBoolean()
             val provider = if (live) MemoryFileProvider(cache) else CacheFileProvider(cache)
             logger.info { "Loaded file provider in ${System.currentTimeMillis() - start}ms" }
             return provider

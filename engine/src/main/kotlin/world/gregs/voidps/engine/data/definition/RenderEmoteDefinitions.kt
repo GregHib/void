@@ -12,7 +12,7 @@ class RenderEmoteDefinitions : DefinitionsDecoder<RenderEmoteDefinition> {
     override lateinit var definitions: Array<RenderEmoteDefinition>
     override lateinit var ids: Map<String, Int>
 
-    fun load(yaml: Yaml = get(), path: String = Settings["renderEmoteDefinitionsPath"]): RenderEmoteDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.renderEmotes"]): RenderEmoteDefinitions {
         timedLoad("render emote definition") {
             decode<RenderEmoteDefinition>(yaml, path) { id, key, _ ->
                 RenderEmoteDefinition(id = id, stringId = key)

@@ -40,8 +40,8 @@ class InterfaceDefinitions(
 
     fun load(
         yaml: Yaml = get(),
-        path: String = Settings["interfacesPath"],
-        typePath: String = Settings["interfaceTypesPath"]
+        path: String = Settings["definitions.interfaces"],
+        typePath: String = Settings["definitions.interfaces.types"]
     ): InterfaceDefinitions {
         timedLoad("interface extra") {
             val ids = Object2IntOpenHashMap<String>()

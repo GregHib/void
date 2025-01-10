@@ -10,9 +10,9 @@ import java.util.*
 interface CacheLoader {
 
     fun load(properties: Properties, xteas: Map<Int, IntArray>? = null): Cache {
-        val fileModulus = BigInteger(properties.getProperty("fileModulus"), 16)
-        val filePrivate = BigInteger(properties.getProperty("filePrivate"), 16)
-        val cachePath = properties.getProperty("cachePath")
+        val fileModulus = BigInteger(properties.getProperty("security.file.modulus"), 16)
+        val filePrivate = BigInteger(properties.getProperty("security.file.private"), 16)
+        val cachePath = properties.getProperty("storage.cache.path")
         val threadUsage = properties.getProperty("threadUsage", "1.0").toDouble()
         return load(cachePath, filePrivate, fileModulus, threadUsage = threadUsage)
     }

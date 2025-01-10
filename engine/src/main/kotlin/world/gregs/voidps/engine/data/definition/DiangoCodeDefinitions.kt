@@ -18,7 +18,7 @@ class DiangoCodeDefinitions {
     fun getOrNull(code: String) = definitions[code]
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["diangoCodeDefinitionsPath"], itemDefinitions: ItemDefinitions? = null): DiangoCodeDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.diangoCodes"], itemDefinitions: ItemDefinitions? = null): DiangoCodeDefinitions {
         timedLoad("diango code definition") {
             val config = object : YamlReaderConfiguration(2, 2) {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {

@@ -189,7 +189,7 @@ abstract class WorldTest : KoinTest {
         }
         loadScripts()
         MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache()
-        saves = File(Settings["savePath"])
+        saves = File(Settings["storage.players.path"])
         saves?.mkdirs()
         val millis = measureTimeMillis {
             val handler = InterfaceHandler(get(), get(), get())
@@ -256,7 +256,7 @@ abstract class WorldTest : KoinTest {
     }
 
     companion object {
-        private val cache: Cache by lazy { MemoryCache(Settings["cachePath"]) }
+        private val cache: Cache by lazy { MemoryCache(Settings["storage.cache.path"]) }
         private val huffman: Huffman by lazy { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
         private val ammoDefinitions: AmmoDefinitions by lazy { AmmoDefinitions().load() }
         private val parameterDefinitions: ParameterDefinitions by lazy { ParameterDefinitions(CategoryDefinitions().load(), ammoDefinitions).load() }

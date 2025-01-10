@@ -15,7 +15,7 @@ class CategoryDefinitions : DefinitionsDecoder<CategoryDefinition> {
     override lateinit var definitions: Array<CategoryDefinition>
     override lateinit var ids: Map<String, Int>
 
-    fun load(yaml: Yaml = get(), path: String = Settings["categoryDefinitionsPath"]): CategoryDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.categories"]): CategoryDefinitions {
         timedLoad("category definition") {
             decode(yaml, path) { id, key, _ ->
                 CategoryDefinition(id = id, stringId = key)

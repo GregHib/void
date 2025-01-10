@@ -32,7 +32,7 @@ fun loadItemSpawns(
     items: FloorItems,
     spawns: ItemSpawns,
     yaml: Yaml = get(),
-    path: String = Settings["itemSpawnsPath"]
+    path: String = Settings["spawns.items"]
 ) {
     timedLoad("item spawn") {
         spawns.clear()

@@ -20,7 +20,7 @@ object GraphicNames {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("cachePath"))
+        val cache: Cache = CacheDelegate(property("storage.cache.path"))
         val models = mutableMapOf<Int, MutableList<String>>()
         addItemModels(cache, models)
         addNPCModels(cache, models)
