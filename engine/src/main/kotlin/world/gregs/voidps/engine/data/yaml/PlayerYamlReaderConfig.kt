@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.data.yaml
 
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
@@ -9,10 +9,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.Tile
 import world.gregs.yaml.read.YamlReaderConfiguration
 
-internal class PlayerYamlReaderConfig(
-    private val itemDefinitions: ItemDefinitions,
-    private val experienceRate: Double
-) : YamlReaderConfiguration() {
+internal class PlayerYamlReaderConfig : YamlReaderConfiguration() {
     override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
         if (value is Map<*, *> && value.containsKey("id")) {
             val id = value["id"] as String
@@ -37,7 +34,7 @@ internal class PlayerYamlReaderConfig(
             val exp = Experience(
                 experience = (value["experience"] as List<Double>).toDoubleArray(),
                 blocked = (value["blocked"] as List<Skill>).toMutableSet(),
-                rate = experienceRate
+                rate = Settings["world.experienceRate", 1.0]
             )
             super.set(map, key, exp, indent, parentMap)
         } else if (key == "levels") {

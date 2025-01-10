@@ -19,24 +19,20 @@ class FileStorageTest : AccountStorageTest() {
 
     override lateinit var storage: AccountStorage
 
-    private val itemDefinitions = ItemDefinitions(Array(30000) { ItemDefinition.EMPTY }).apply {
-        ids = emptyMap()
-    }
-
     @BeforeEach
     fun setup() {
-        storage = FileStorage(Yaml(), directory, itemDefinitions, 1.0)
+        storage = FileStorage(Yaml(), directory)
     }
 
     @Test
     fun `Invalid directory returns no names`() {
-        val storage = FileStorage(Yaml(), directory.resolve("invalid"), itemDefinitions, 1.0)
+        val storage = FileStorage(Yaml(), directory.resolve("invalid"))
         assertTrue(storage.names().isEmpty())
     }
 
     @Test
     fun `Invalid directory returns no clans`() {
-        val storage = FileStorage(Yaml(), directory.resolve("invalid"), itemDefinitions, 1.0)
+        val storage = FileStorage(Yaml(), directory.resolve("invalid"))
         assertTrue(storage.clans().isEmpty())
     }
 

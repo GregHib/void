@@ -40,33 +40,28 @@ val engineModule = module {
     single {
         SaveQueue(get(), SafeStorage(File(Settings["storage.players.errors"])))
     }
-    single {
-        val homeTile = Tile(
-            x = Settings["world.home.x", 0],
-            y = Settings["world.home.y", 0],
-            level = Settings["world.home.level", 0]
-        )
-        AccountManager(get(), get(), get(), get(), get(), get(), homeTile, get(), get(), get(), get(), Settings["world.experienceRate", 1.0])
-    }
+    single { AccountManager(get(), get(), get(), get(), get(), get(), get(), get(), get(), get()) }
     // IO
     single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }
-    single { if (Settings["storage.type", "files"] == "database") {
-        DatabaseStorage.connect(
-            Settings["storage.database.username"],
-            Settings["storage.database.password"],
-            Settings["storage.database.driver"],
-            Settings["storage.database.jdbcUrl"],
-            Settings["storage.database.poolSize", 2],
-        )
-        DatabaseStorage()
-    } else {
-        val saves = File(Settings["storage.players.path"])
-        if (!saves.exists()) {
-            saves.mkdir()
+    single {
+        if (Settings["storage.type", "files"] == "database") {
+            DatabaseStorage.connect(
+                Settings["storage.database.username"],
+                Settings["storage.database.password"],
+                Settings["storage.database.driver"],
+                Settings["storage.database.jdbcUrl"],
+                Settings["storage.database.poolSize", 2],
+            )
+            DatabaseStorage()
+        } else {
+            val saves = File(Settings["storage.players.path"])
+            if (!saves.exists()) {
+                saves.mkdir()
+            }
+            FileStorage(get(), saves)
         }
-        FileStorage(get(), saves, get(), Settings["world.experienceRate", 1.0])
-    } }
-    single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game, Settings["world.experienceRate", 1.0]) }
+    }
+    single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
     // Map
     single { ZoneBatchUpdates() }
     single { DynamicZones(get(), get(), get()) }

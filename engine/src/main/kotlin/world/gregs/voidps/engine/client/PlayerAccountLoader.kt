@@ -7,6 +7,7 @@ import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.AccountStorage
 import world.gregs.voidps.engine.data.SaveQueue
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -29,8 +30,7 @@ class PlayerAccountLoader(
     private val accounts: AccountManager,
     private val saveQueue: SaveQueue,
     private val accountDefinitions: AccountDefinitions,
-    private val gameContext: CoroutineDispatcher,
-    private val experienceRate: Double
+    private val gameContext: CoroutineDispatcher
 ) : AccountLoader {
     private val logger = InlineLogger()
 
@@ -52,7 +52,7 @@ class PlayerAccountLoader(
                 client.disconnect(Response.ACCOUNT_ONLINE)
                 return null
             }
-            val player = storage.load(username)?.toPlayer(experienceRate) ?: accounts.create(username, passwordHash)
+            val player = storage.load(username)?.toPlayer(Settings["world.experienceRate", 1.0]) ?: accounts.create(username, passwordHash)
             logger.info { "Player $username loaded and queued for login." }
             connect(player, client, displayMode)
             return player.instructions

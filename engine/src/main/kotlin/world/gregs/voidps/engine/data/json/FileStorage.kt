@@ -4,7 +4,6 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.data.AccountStorage
 import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.data.config.AccountDefinition
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.yaml.PlayerYamlReaderConfig
 import world.gregs.voidps.engine.data.yaml.PlayerYamlWriterConfig
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
@@ -20,9 +19,7 @@ import java.io.File
 @Suppress("UNCHECKED_CAST")
 class FileStorage(
     private val yaml: Yaml,
-    private val directory: File,
-    itemDefinitions: ItemDefinitions,
-    experienceRate: Double
+    private val directory: File
 ) : AccountStorage {
     private val config = object : YamlReaderConfiguration() {
         override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
@@ -82,7 +79,7 @@ class FileStorage(
     }
 
     private val writeConfig = PlayerYamlWriterConfig()
-    private val readerConfig = PlayerYamlReaderConfig(itemDefinitions, experienceRate)
+    private val readerConfig = PlayerYamlReaderConfig()
 
     override fun save(accounts: List<PlayerSave>) {
         for (account in accounts) {

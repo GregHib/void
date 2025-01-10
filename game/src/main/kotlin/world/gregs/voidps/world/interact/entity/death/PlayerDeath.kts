@@ -46,7 +46,7 @@ val Character.damageDealers: MutableMap<Character, Int>
     get() = getOrPut("damage_dealers") { mutableMapOf() }
 
 val respawnTile: Tile
-    get() =  Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
+    get() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
 
 playerDeath { player ->
     player.dead = true

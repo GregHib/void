@@ -35,17 +35,17 @@ class AccountManager(
     private val accountDefinitions: AccountDefinitions,
     private val collisionStrategyProvider: CollisionStrategyProvider,
     private val variableDefinitions: VariableDefinitions,
-    private val homeTile: Tile,
     private val saveQueue: SaveQueue,
     private val connectionQueue: ConnectionQueue,
     private val players: Players,
-    private val areaDefinitions: AreaDefinitions,
-    private val experienceRate: Double
+    private val areaDefinitions: AreaDefinitions
 ) {
     private val validItems = ValidItemRestriction(itemDefinitions)
+    private val homeTile: Tile
+        get() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
 
     fun create(name: String, passwordHash: String): Player {
-        return Player(tile = homeTile, accountName = name, passwordHash = passwordHash, experience = Experience(rate = experienceRate)).apply {
+        return Player(tile = homeTile, accountName = name, passwordHash = passwordHash, experience = Experience(rate = Settings["world.experienceRate", 1.0])).apply {
             this["creation"] = System.currentTimeMillis()
             this["new_player"] = true
         }
