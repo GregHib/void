@@ -7,6 +7,8 @@ import world.gregs.voidps.bot.path.EdgeTraversal
 import world.gregs.voidps.bot.path.NodeTargetStrategy
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.*
+import world.gregs.voidps.engine.client.ui.chat.Colours
+import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.event.modCommand
@@ -18,6 +20,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
@@ -52,9 +55,19 @@ modCommand("test") {
     }
 }
 
-adminCommand("commands", aliases = listOf("help")) {
-    player.sendQuestJournal("Commands List", Command.adminCommands)
+modCommand("commands", aliases = listOf("help")) {
+    val commands = if (player.isAdmin()) Command.adminCommands else Command.modCommands
+    val list = listOf(
+        "Commands list with descriptions and usage instructions in the format:",
+        "${Colours.BLUE.toTag()}command_name (required-variable) [optional-variable]</col>",
+        "command description",
+        ""
+    )
+    player.sendQuestJournal("Commands List", list + commands)
 }
+
+Command.adminCommands.add("${Colours.PURPLE.toTag()}====== Testing Commands ======</col>")
+Command.adminCommands.add("")
 
 adminCommand("patrol (patrol-id)", "walk along a patrol route") {
     val patrol = get<PatrolDefinitions>().get(content)

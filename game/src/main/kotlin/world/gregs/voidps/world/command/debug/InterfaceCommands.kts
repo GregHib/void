@@ -4,6 +4,9 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendInterfaceSettings
 import world.gregs.voidps.engine.client.sendInventoryItems
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.ui.chat.Colours
+import world.gregs.voidps.engine.client.ui.chat.toTag
+import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -15,6 +18,9 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.encode.*
 
 val definitions: InterfaceDefinitions by inject()
+
+Command.adminCommands.add("${Colours.PURPLE.toTag()}====== Interface Commands ======</col>")
+Command.adminCommands.add("")
 
 adminCommand("inter (interface-id)", "open an interface with int or string id") {
     val id = content.toIntOrNull()

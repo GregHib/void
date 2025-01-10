@@ -26,12 +26,7 @@ data class Command(
 
     companion object {
         var count = 0
-        val adminCommands = mutableListOf(
-            "Commands list with descriptions and usage instructions in the format:",
-            "${Colours.BLUE.toTag()}command_name (required-variable) [optional-variable]</col>",
-            "command description",
-            ""
-        )
+        val adminCommands = mutableListOf<String>()
         val modCommands = mutableListOf<String>()
     }
 }

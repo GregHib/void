@@ -10,13 +10,13 @@ import kotlinx.coroutines.launch
 import net.pearx.kasechange.toSentenceCase
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.bot.navigation.graph.NavigationGraph
+import world.gregs.voidps.cache.Definition
+import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
-import world.gregs.voidps.engine.client.ui.chat.toSIInt
-import world.gregs.voidps.engine.client.ui.chat.toSILong
-import world.gregs.voidps.engine.client.ui.chat.toSIPrefix
+import world.gregs.voidps.engine.client.ui.chat.*
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.event.modCommand
 import world.gregs.voidps.engine.client.ui.open
@@ -79,6 +79,9 @@ import kotlin.system.measureTimeMillis
 
 val areas: AreaDefinitions by inject()
 val players: Players by inject()
+
+Command.adminCommands.add("${Colours.PURPLE.toTag()}====== Admin Commands ======</col>")
+Command.adminCommands.add("")
 
 adminCommand("tele (x) (y) [level]", "teleport to given coordinates", listOf("tp")) {
     if (content.contains(",")) {
@@ -200,16 +203,28 @@ adminCommand("give (item-id) [amount] (player-name)", "spawn item in another pla
 modCommand("find (item name)", "find the id of an item") {
     val search = content.lowercase()
     var found = false
-    repeat(definitions.size) { id ->
-        val def = definitions.getOrNull(id) ?: return@repeat
-        if (def.name.lowercase().contains(search)) {
-            player.message("[${def.name.lowercase()}] - id: $id", ChatType.Console)
-            found = true
-        }
-    }
+    player.message("===== Items =====", ChatType.Console)
+    found = found || search(player, get<ItemDefinitions>(), search) { it.name }
+    player.message("===== Objects =====", ChatType.Console)
+    found = found || search(player, get<ObjectDefinitions>(), search) { it.name }
+    player.message("===== NPCs =====", ChatType.Console)
+    found = found || search(player, get<NPCDefinitions>(), search) { it.name }
     if (!found) {
         player.message("No results found for '$search'", ChatType.Console)
     }
+}
+
+fun <T> search(player: Player, definitions: DefinitionsDecoder<T>, search: String, getName: (T) -> String): Boolean where T : Definition, T : Extra {
+    var found = false
+    for (id in definitions.definitions.indices) {
+        val def = definitions.getOrNull(id) ?: continue
+        val name = getName(def)
+        if (name.lowercase().contains(search)) {
+            player.message("[${name.lowercase()}] - id: $id", ChatType.Console)
+            found = true
+        }
+    }
+    return found
 }
 
 modCommand("clear", "delete all items in the players inventory") {
