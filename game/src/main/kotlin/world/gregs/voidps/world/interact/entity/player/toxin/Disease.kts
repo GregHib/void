@@ -69,10 +69,11 @@ fun damage(character: Character) {
     character.directHit(source, damage, "disease")
 }
 
-adminCommand("disease") {
-    if (player.diseased) {
+adminCommand("disease [damage]", "toggle hitting player with disease") {
+    val damage = content.toIntOrNull() ?: 100
+    if (player.diseased || damage < 0) {
         player.cureDisease()
     } else {
-        player.disease(player, content.toIntOrNull() ?: 100)
+        player.disease(player, damage)
     }
 }

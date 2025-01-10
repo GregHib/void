@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.display.tab
 
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -232,15 +231,4 @@ suspend fun CharacterContext.playDungeoneeringMasterCapeEmote(player: Player) {
     player.playAnimation("emote_dung_master_sword")
 
     player.transform("")
-}
-
-adminCommand("emotes") {
-    for (compId in unlockableRange) {
-        if (compId == 39) {
-            continue
-        }
-        val component = definitions.getComponent("emotes", compId) ?: continue
-        player["unlocked_emote_${component.stringId}"] = true
-    }
-    player["unlocked_emote_lost_tribe"] = true
 }

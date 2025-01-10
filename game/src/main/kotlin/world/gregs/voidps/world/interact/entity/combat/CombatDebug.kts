@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 
 val npcDefinitions: NPCDefinitions by inject()
 
-modCommand("maxhit") {
+modCommand("maxhit [npc-id] [spell-id]", "calculate your max hit against an npc") {
     val debug = player["debug", false]
     player["debug"] = false
     val parts = content.split(" ")

@@ -5,6 +5,19 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 
+val quests = listOf(
+    "unstable_foundations",
+    "cooks_assistant",
+    "demon_slayer",
+    "dorics_quest",
+    "gunnars_ground",
+    "the_restless_ghost",
+    "rune_mysteries",
+    "the_knights_sword",
+    // mini-quests
+    "enter_the_abyss",
+)
+
 fun Player.quest(name: String): String = this[name, "unstarted"]
 
 fun Player.questComplete(name: String): Boolean = quest(name) == "completed"

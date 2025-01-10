@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.music
 
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
@@ -80,14 +79,5 @@ fun autoPlay(player: Player, track: MusicTracks.Track) {
     }
     if (!player["playing_song", false]) {
         player.playTrack(index)
-    }
-}
-
-/**
- * Unlocks all music tracks
- */
-adminCommand("unlock") {
-    enums.get("music_track_names").map?.keys?.forEach { key ->
-        MusicUnlock.unlockTrack(player, key)
     }
 }

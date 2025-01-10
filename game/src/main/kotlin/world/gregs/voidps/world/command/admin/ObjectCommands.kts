@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.inject
 
 val objects: GameObjects by inject()
 
-adminCommand("get") {
+adminCommand("get", "get all objects under the player") {
     objects[player.tile].forEach {
         println(it)
     }

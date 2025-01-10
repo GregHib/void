@@ -18,7 +18,7 @@ playerSpawn { player ->
     }
 }
 
-adminCommand("rights") {
+adminCommand("rights (player-name) (rights-name)", "set the rights for another player ${PlayerRights.entries.joinToString(",", "(", ")")}") {
     val right = content.split(" ").last()
     val rights: PlayerRights
     try {

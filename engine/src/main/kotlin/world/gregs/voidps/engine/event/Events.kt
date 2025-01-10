@@ -65,12 +65,7 @@ class Events(
             }
         }
         runBlocking {
-            for (handler in handlers) {
-                if (event is CancellableEvent && event.cancelled) {
-                    break
-                }
-                handler.invoke(event, dispatcher)
-            }
+            handleEvent(handlers, event, dispatcher)
         }
         return true
     }
@@ -85,14 +80,22 @@ class Events(
             all?.invoke(dispatcher, event)
         }
         scope.launch(errorHandler) {
-            for (handler in handlers) {
-                if (event is CancellableEvent && event.cancelled) {
-                    break
-                }
-                handler.invoke(event, dispatcher)
-            }
+            handleEvent(handlers, event, dispatcher)
         }
         return true
+    }
+
+    private suspend fun handleEvent(handlers: Set<suspend Event.(EventDispatcher) -> Unit>, event: Event, dispatcher: EventDispatcher) {
+        for (handler in handlers) {
+            if (event is CancellableEvent && event.cancelled) {
+                break
+            }
+            try {
+                handler.invoke(event, dispatcher)
+            } catch (e: Exception) {
+                logger.warn(e) { "Error in event handler $dispatcher $event $handler" }
+            }
+        }
     }
 
     fun contains(dispatcher: EventDispatcher, event: Event): Boolean {

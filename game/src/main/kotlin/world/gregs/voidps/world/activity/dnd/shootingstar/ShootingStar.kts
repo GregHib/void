@@ -71,7 +71,7 @@ settingsReload {
     }
 }
 
-adminCommand("star") {
+adminCommand("star [minutes]", "start a new shooting star event in [minutes]") {
     cleanseEvent(true)
     val minutes = content.toIntOrNull()
     if (minutes != null) {
