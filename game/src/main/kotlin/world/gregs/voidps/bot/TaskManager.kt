@@ -16,10 +16,7 @@ class TaskManager {
         spaces = Int.MAX_VALUE
     )
 
-    fun register(task: Task, test: Boolean = false) {
-        if (DEBUG && !(DEBUG && test)) {
-            return
-        }
+    fun register(task: Task) {
         queue.add(task)
     }
 
@@ -35,9 +32,5 @@ class TaskManager {
 
     fun idle(task: Task) {
         idle = task
-    }
-
-    companion object {
-        const val DEBUG = false
     }
 }

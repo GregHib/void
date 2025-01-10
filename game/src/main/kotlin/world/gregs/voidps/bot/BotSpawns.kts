@@ -115,7 +115,7 @@ fun spawn() {
         val name = "Bot ${++counter}"
         val bot = Player(tile = lumbridge.random(), accountName = name)
         bot.initBot()
-        loader.connect(bot, if (TaskManager.DEBUG) DummyClient() else null)
+        loader.connect(bot, if (Settings["development.bots.live", false]) DummyClient() else null)
         setAppearance(bot)
         if (bot.inventory.isEmpty()) {
             bot.inventory.add("coins", 10000)
