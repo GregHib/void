@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -19,14 +20,18 @@ import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.interact.dialogue.type.statement
 
 playerSpawn(priority = true) { player ->
-    player.message("Welcome to Void.", ChatType.Welcome)
-    if (!player.contains("creation")) {
-        if (!player.isBot) {
-            player.start("delay", -1)
-            World.queue("welcome_${player.name}", 1) {
-                player.open("character_creation")
-            }
+    player.message("Welcome to ${Settings["server.name"]}.", ChatType.Welcome)
+    if (player.contains("creation")) {
+        return@playerSpawn
+    }
+    if (Settings["world.start.creation", true] && !player.isBot) {
+        player.start("delay", -1)
+        World.queue("welcome_${player.name}", 1) {
+            player.open("character_creation")
         }
+    } else {
+        player.flagAppearance()
+        setup(player)
     }
 }
 
@@ -41,6 +46,10 @@ fun setup(player: Player) {
     }
     player.stop("delay")
     player["creation"] = System.currentTimeMillis()
+
+    if (!Settings["world.setup.gear", true]) {
+        return
+    }
     player.bank.add("coins", 25)
     player.inventory.apply {
         add("bronze_hatchet")

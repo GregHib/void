@@ -105,7 +105,7 @@ fun startCrashedStarEvent() {
     val location = StarLocationData.entries.random()
     currentStarTile = location.tile
     val tier = random.nextInt(1, 9)
-    if (Settings["events.messages", false]) {
+    if (Settings["world.messages", false]) {
         for (player in players) {
             player.message("${Colours.DARK_RED.toTag()}A star has crashed at ${location.description}.")
         }
