@@ -2,7 +2,9 @@ package world.gregs.voidps.world.activity.dnd.shootingstar
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
@@ -103,6 +105,11 @@ fun startCrashedStarEvent() {
     val location = StarLocationData.entries.random()
     currentStarTile = location.tile
     val tier = random.nextInt(1, 9)
+    if (Settings["events.messages", false]) {
+        for (player in players) {
+            player.message("${Colours.DARK_RED.toTag()}A star has crashed at ${location.description}.")
+        }
+    }
     logger.info { "Crashed star event has started at: $location (${currentStarTile.x}, ${currentStarTile.y}) tier ${tier}." }
     val shootingStarShadow: NPC? = npcs.add("shooting_star_shadow", Tile(currentStarTile.x, currentStarTile.y + 6), Direction.NONE)
     shootingStarShadow?.walkTo(currentStarTile, noCollision = true, noRun = true)
