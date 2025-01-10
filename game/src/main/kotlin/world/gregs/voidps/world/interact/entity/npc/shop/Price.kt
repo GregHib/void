@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.inject
 import kotlin.math.max
 import kotlin.math.min
 

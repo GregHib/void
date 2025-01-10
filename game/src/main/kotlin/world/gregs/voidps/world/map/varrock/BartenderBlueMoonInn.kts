@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.map.varrock
 
-import world.gregs.voidps.Main
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.data.Settings

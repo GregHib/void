@@ -26,7 +26,6 @@ import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.entity.objectDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.entity.worldSpawn
-import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
