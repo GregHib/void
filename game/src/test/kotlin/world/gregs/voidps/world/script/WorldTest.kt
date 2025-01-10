@@ -25,6 +25,7 @@ import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.AccountManager
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -55,6 +56,7 @@ import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
 import world.gregs.voidps.world.interact.world.spawn.loadNpcSpawns
 import world.gregs.voidps.world.interact.world.spawn.loadObjectSpawns
 import java.io.File
+import java.util.Properties
 import kotlin.system.measureTimeMillis
 
 /**
@@ -73,8 +75,8 @@ abstract class WorldTest : KoinTest {
     private lateinit var accountDefs: AccountDefinitions
     private lateinit var accounts: AccountManager
     private var saves: File? = null
-
-    val extraProperties: MutableMap<String, Any> = mutableMapOf()
+    private lateinit var properties: Properties
+    lateinit var settings: Properties
 
     open var loadNpcs: Boolean = false
 
@@ -146,12 +148,12 @@ abstract class WorldTest : KoinTest {
 
     @BeforeAll
     fun beforeAll() {
-        Main.name = "test"
+        properties = Properties()
+        properties.load(WorldTest::class.java.getResourceAsStream("/test.properties")!!)
+        settings = Settings.load(properties)
         stopKoin()
         startKoin {
             printLogger(Level.ERROR)
-            fileProperties("/test.properties")
-            properties(extraProperties)
             allowOverride(true)
             modules(engineModule, gameModule, module {
                 single(createdAtStart = true) { cache }
@@ -186,7 +188,7 @@ abstract class WorldTest : KoinTest {
         }
         loadScripts()
         MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache()
-        saves = File(getProperty("savePath"))
+        saves = File(Settings["storage.players.path"])
         saves?.mkdirs()
         val millis = measureTimeMillis {
             val handler = InterfaceHandler(get(), get(), get())
@@ -206,7 +208,8 @@ abstract class WorldTest : KoinTest {
                 handler,
                 sequential = true)
             engine = GameLoop(tickStages)
-            World.start(true)
+
+            World.start()
         }
         players = get()
         npcs = get()
@@ -224,6 +227,7 @@ abstract class WorldTest : KoinTest {
 
     @BeforeEach
     fun beforeEach() {
+        settings = Settings.load(properties)
         loadItemSpawns(floorItems, get())
         if (loadNpcs) {
             loadNpcSpawns(npcs)
@@ -239,6 +243,7 @@ abstract class WorldTest : KoinTest {
         floorItems.clear()
         objects.reset()
         World.clear()
+        Settings.clear()
     }
 
     @AfterAll
@@ -250,7 +255,7 @@ abstract class WorldTest : KoinTest {
     }
 
     companion object {
-        private val cache: Cache by lazy { MemoryCache(getProperty("cachePath")) }
+        private val cache: Cache by lazy { MemoryCache(Settings["storage.cache.path"]) }
         private val huffman: Huffman by lazy { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
         private val ammoDefinitions: AmmoDefinitions by lazy { AmmoDefinitions().load() }
         private val parameterDefinitions: ParameterDefinitions by lazy { ParameterDefinitions(CategoryDefinitions().load(), ammoDefinitions).load() }

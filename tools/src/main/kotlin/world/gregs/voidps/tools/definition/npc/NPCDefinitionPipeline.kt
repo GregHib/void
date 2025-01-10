@@ -31,7 +31,7 @@ object NPCDefinitionPipeline {
     fun main(args: Array<String>) {
         val rs2Wiki = Wiki.load("${System.getProperty("user.home")}\\Downloads\\runescape_pages_full\\runescapewiki-latest-pages-articles-2011-01-31.xml")
         val start = System.currentTimeMillis()
-        val cache: Cache = CacheDelegate(property("cachePath"))
+        val cache: Cache = CacheDelegate(property("storage.cache.path"))
         val decoder = NPCDecoder(true).load(cache)
         val pages = getPages(decoder, rs2Wiki)
         val output = buildNPCExtras(decoder, pages)

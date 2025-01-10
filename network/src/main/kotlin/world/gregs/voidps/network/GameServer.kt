@@ -93,7 +93,7 @@ class GameServer(
 
         @ExperimentalUnsignedTypes
         fun load(cache: Cache, properties: Properties): GameServer {
-            val limit = properties.getProperty("loginLimit").toInt()
+            val limit = properties.getProperty("network.maxClientPerIP").toInt()
             val fileServer = FileServer.load(cache, properties)
             return GameServer(fileServer, ConnectionTracker(limit))
         }

@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.data.definition
 
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.HuntModeDefinition
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
@@ -16,7 +16,7 @@ class HuntModeDefinitions {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = getProperty("huntPath")): HuntModeDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.huntModes"]): HuntModeDefinitions {
         timedLoad("hunt mode") {
             val config = object : YamlReaderConfiguration(2, 2) {
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {

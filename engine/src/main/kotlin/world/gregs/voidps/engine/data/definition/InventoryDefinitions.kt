@@ -2,9 +2,9 @@ package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.voidps.cache.config.data.InventoryDefinition
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.yaml.DefinitionConfig
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 
@@ -17,7 +17,7 @@ class InventoryDefinitions(
     override fun empty() = InventoryDefinition.EMPTY
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = getProperty("inventoryDefinitionsPath"), itemDefs: ItemDefinitions = get()): InventoryDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.inventories"], itemDefs: ItemDefinitions = get()): InventoryDefinitions {
         timedLoad("inventory extra") {
             val ids = Object2IntOpenHashMap<String>()
             val config = object : DefinitionConfig<InventoryDefinition>(ids, definitions) {

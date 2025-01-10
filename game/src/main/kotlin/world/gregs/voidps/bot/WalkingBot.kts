@@ -1,6 +1,7 @@
 package world.gregs.voidps.bot
 
 import world.gregs.voidps.bot.navigation.await
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.Walk
@@ -21,7 +22,7 @@ worldSpawn {
         spaces = Int.MAX_VALUE,
         requirements = emptyList()
     )
-    if (TaskManager.DEBUG) {
-        tasks.register(task, true)
+    if (Settings["bots.idle", "nothing"] == "randomWalk") {
+        tasks.idle(task)
     }
 }

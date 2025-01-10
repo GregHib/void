@@ -1,10 +1,10 @@
 package world.gregs.voidps.engine.data.definition
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.DiangoCodeDefinition
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
@@ -18,7 +18,7 @@ class DiangoCodeDefinitions {
     fun getOrNull(code: String) = definitions[code]
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = getProperty("diangoCodeDefinitionsPath"), itemDefinitions: ItemDefinitions? = null): DiangoCodeDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.diangoCodes"], itemDefinitions: ItemDefinitions? = null): DiangoCodeDefinitions {
         timedLoad("diango code definition") {
             val config = object : YamlReaderConfiguration(2, 2) {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {

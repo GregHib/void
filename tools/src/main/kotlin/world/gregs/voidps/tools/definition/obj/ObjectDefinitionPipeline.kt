@@ -50,7 +50,7 @@ private object ObjectDefinitionPipeline {
     @JvmStatic
     fun main(args: Array<String>) {
         val start = System.currentTimeMillis()
-        val cache: Cache = CacheDelegate(property("cachePath"))
+        val cache: Cache = CacheDelegate(property("storage.cache.path"))
         val decoder = ObjectDecoderFull(members = true, lowDetail = false).load(cache)
         val pages = decoder.indices.mapNotNull {
             val def = decoder.getOrNull(it)

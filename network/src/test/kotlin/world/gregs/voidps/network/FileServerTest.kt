@@ -211,7 +211,7 @@ class FileServerTest {
         val readChannel = ByteChannel(autoFlush = true)
         val writeChannel = ByteChannel(autoFlush = true)
         val properties = Properties()
-        properties.setProperty("fileServer", "false")
+        properties.setProperty("storage.cache.server", "external")
 
         val server = FileServer.load(mockk(relaxed = true), properties)
 
@@ -230,10 +230,10 @@ class FileServerTest {
         val readChannel = ByteChannel(autoFlush = true)
         val writeChannel = ByteChannel(autoFlush = true)
         val properties = Properties()
-        properties.setProperty("fileServer", "true")
-        properties.setProperty("revision", "123")
+        properties.setProperty("storage.cache.server", "internal")
+        properties.setProperty("server.revision", "123")
         val prefetchKeys = listOf(1, 2, 3, 4)
-        properties.setProperty("prefetchKeys", prefetchKeys.joinToString(","))
+        properties.setProperty("prefetch.keys", prefetchKeys.joinToString(","))
         val server = FileServer.load(mockk(relaxed = true), properties)
 
         val job = launch {

@@ -1,18 +1,18 @@
 package world.gregs.voidps.tools
 
-import java.io.File
+import java.io.FileInputStream
+import java.util.Properties
 
+private val properties: Properties by lazy {
+    Properties().apply {
+        load(FileInputStream("./game/src/test/resources/test.properties"))
+    }
+}
 
 fun property(name: String): String {
-    return File("./game/src/test/resources/test.properties")
-        .readLines()
-        .first { it.startsWith(name) }
-        .split("=")[1].replace("../", "./")
+    return properties.getProperty(name).replace("../", "./")
 }
 
 fun propertyOrNull(name: String): String? {
-    return (File("./game/src/test/resources/test.properties")
-        .readLines()
-        .firstOrNull { it.startsWith(name) } ?: return null)
-        .split("=")[1].replace("../", "./")
+    return properties.getProperty(name)?.replace("../", "./")
 }

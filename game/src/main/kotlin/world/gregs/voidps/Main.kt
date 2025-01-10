@@ -15,6 +15,7 @@ import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.PlayerAccountLoader
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
@@ -22,7 +23,6 @@ import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
 import world.gregs.voidps.network.login.protocol.decoders
 import world.gregs.voidps.script.loadScripts
-import java.io.File
 import java.util.*
 import kotlin.coroutines.CoroutineContext
 
@@ -33,25 +33,22 @@ import kotlin.coroutines.CoroutineContext
 object Main : CoroutineScope {
 
     override val coroutineContext: CoroutineContext = Contexts.Game
-    lateinit var name: String
     private val logger = InlineLogger()
-    private const val PROPERTY_FILE_NAME = "game.properties"
 
     @OptIn(ExperimentalUnsignedTypes::class)
     @JvmStatic
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
-        val properties = properties()
-        name = properties.getProperty("name")
+        val settings = settings()
 
         // File server
-        val cache = timed("cache") { Cache.load(properties) }
-        val server = GameServer.load(cache, properties)
-        val job = server.start(properties.getProperty("port").toInt())
+        val cache = timed("cache") { Cache.load(settings) }
+        val server = GameServer.load(cache, settings)
+        val job = server.start(Settings["network.port"].toInt())
 
         // Content
         try {
-            preload(cache, properties)
+            preload(cache)
         } catch (ex: Exception) {
             logger.error(ex) { "Error loading files." }
             server.stop()
@@ -60,15 +57,15 @@ object Main : CoroutineScope {
         // Login server
         val decoders = decoders(get<Huffman>())
         val accountLoader: PlayerAccountLoader = get()
-        val loginServer = LoginServer.load(properties, decoders, accountLoader)
+        val loginServer = LoginServer.load(settings, decoders, accountLoader)
 
         // Game world
         val stages = getTickStages()
-        World.start(properties)
+        World.start()
         val scope = CoroutineScope(Contexts.Game)
         val engine = GameLoop(stages).start(scope)
         server.loginServer = loginServer
-        logger.info { "$name loaded in ${System.currentTimeMillis() - startTime}ms" }
+        logger.info { "${Settings["server.name"]} loaded in ${System.currentTimeMillis() - startTime}ms" }
         runBlocking {
             try {
                 job.join()
@@ -79,32 +76,23 @@ object Main : CoroutineScope {
         }
     }
 
-    private fun properties(): Properties = timed("properties") {
-        val properties = Properties()
-        val file = File("./$PROPERTY_FILE_NAME")
-        if (file.exists()) {
-            properties.load(file.inputStream())
-        } else {
-            logger.debug { "Property file not found; defaulting to internal." }
-            properties.load(Main::class.java.getResourceAsStream("/$PROPERTY_FILE_NAME"))
-        }
+    private fun settings(): Properties = timed("properties") {
+        val properties = Settings.load()
         properties.putAll(System.getenv())
         return@timed properties
     }
 
-    @Suppress("UNCHECKED_CAST")
-    private fun preload(cache: Cache, properties: Properties) {
-        val module = cache(cache, properties)
+    private fun preload(cache: Cache) {
+        val module = cache(cache)
         startKoin {
             slf4jLogger(level = Level.ERROR)
-            properties(properties.toMap() as Map<String, Any>)
             modules(engineModule, gameModule, module)
         }
         loadScripts()
     }
 
-    private fun cache(cache: Cache, properties: Properties) = module {
-        val members = properties.getProperty("members").toBoolean()
+    private fun cache(cache: Cache) = module {
+        val members = Settings["world.members", false]
         single(createdAtStart = true) { MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache() }
         single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
         single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load() }

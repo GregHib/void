@@ -111,7 +111,7 @@ internal class IgnoreTest : WorldTest() {
         tick()
 
         verify {
-            client.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
+            client.sendFriendsList(listOf(Friend("player", "", world = 16, worldName = "World 16")))
         }
         assertTrue(player.ignores.isEmpty())
     }

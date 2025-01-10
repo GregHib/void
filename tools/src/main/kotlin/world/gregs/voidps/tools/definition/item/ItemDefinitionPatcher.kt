@@ -10,10 +10,10 @@ import world.gregs.yaml.Yaml
 object ItemDefinitionPatcher {
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("cachePath"))
+        val cache: Cache = CacheDelegate(property("storage.cache.path"))
         val decoder = ItemDecoder().load(cache)
         val yaml = Yaml()
-        val current = ItemDefinitions(ItemDecoder().load(cache)).load(yaml, property("itemDefinitionsPath"))
+        val current = ItemDefinitions(ItemDecoder().load(cache)).load(yaml, property("definitions.items"))
         val newer = ItemDefinitions(ItemDecoder().load(cache)).load(yaml, "./items.yml")
         val map = mutableMapOf<Int, Double>()
         for (id in decoder.indices) {

@@ -155,8 +155,9 @@ internal class GameServerTest {
         val readChannel = ByteChannel(autoFlush = true)
         val writeChannel = ByteChannel(autoFlush = true)
         val properties = Properties()
-        properties.setProperty("loginLimit", "0")
-        properties.setProperty("fileServer", "false")
+        properties.setProperty("network.maxClientPerIP", "0")
+        properties.setProperty("storage.cache.server", "false")
+        properties.setProperty("server.revision", "634")
         server = GameServer.load(mockk(relaxed = true), properties)
 
         launch {

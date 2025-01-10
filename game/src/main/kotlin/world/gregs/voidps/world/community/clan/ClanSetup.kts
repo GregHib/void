@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
@@ -16,6 +16,8 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.network.login.protocol.encode.Member
 import world.gregs.voidps.network.login.protocol.encode.leaveClanChat
 import world.gregs.voidps.network.login.protocol.encode.updateClanChat
+import world.gregs.voidps.world.community.friend.world
+import world.gregs.voidps.world.community.friend.worldName
 import world.gregs.voidps.world.interact.dialogue.type.stringEntry
 
 interfaceOption("Clan Setup", "settings", "clan_chat") {
@@ -161,7 +163,7 @@ interfaceOption("Disable", "name", "clan_chat_setup") {
 }
 
 fun updateUI(clan: Clan) {
-    val membersList = clan.members.map { Member(it.name, World.id, clan.getRank(it).value, World.name) }
+    val membersList = clan.members.map { Member(it.name, Settings.world, clan.getRank(it).value, Settings.worldName) }
     for (member in clan.members) {
         member.client?.updateClanChat(clan.ownerDisplayName, clan.name, clan.kickRank.value, membersList)
     }

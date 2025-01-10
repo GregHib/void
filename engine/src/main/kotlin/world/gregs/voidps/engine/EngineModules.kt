@@ -7,9 +7,7 @@ import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
-import world.gregs.voidps.engine.data.AccountManager
-import world.gregs.voidps.engine.data.SafeStorage
-import world.gregs.voidps.engine.data.SaveQueue
+import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.data.json.FileStorage
 import world.gregs.voidps.engine.data.sql.DatabaseStorage
@@ -35,40 +33,34 @@ val engineModule = module {
     // Entities
     single { NPCs(get(), get(), get(), get()) }
     single { Players() }
-    single { GameObjects(get(), get(), get(), get(), getProperty<String>("loadUnusedObjects") == "true").apply { get<ZoneBatchUpdates>().register(this) } }
+    single { GameObjects(get(), get(), get(), get(), Settings["development.loadAllObjects", false]).apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItems(get(), get()).apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItemTracking(get(), get(), get()) }
     single { Hunting(get(), get(), get(), get(), get(), get()) }
     single {
-        SaveQueue(get(), SafeStorage(File(getProperty<String>("storageFailDirectory"))))
+        SaveQueue(get(), SafeStorage(File(Settings["storage.players.errors"])))
     }
-    single {
-        val homeTile = Tile(
-            x = getIntProperty("homeX", 0),
-            y = getIntProperty("homeY", 0),
-            level = getIntProperty("homeLevel", 0)
-        )
-        AccountManager(get(), get(), get(), get(), get(), get(), homeTile, get(), get(), get(), get())
-    }
+    single { AccountManager(get(), get(), get(), get(), get(), get(), get(), get(), get(), get()) }
     // IO
     single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }
-    single { if (getProperty("storage", "") == "database") {
-        DatabaseStorage.connect(
-            getProperty("database_username"),
-            getProperty("database_password"),
-            getProperty("database_driver"),
-            getProperty("database_jdbc_url"),
-            getProperty("database_pool", "2").toInt(),
-        )
-        val definitions: ItemDefinitions = get()
-        DatabaseStorage { definitions.get(it) }
-    } else {
-        val saves = File(getProperty<String>("savePath"))
-        if (!saves.exists()) {
-            saves.mkdir()
+    single {
+        if (Settings["storage.type", "files"] == "database") {
+            DatabaseStorage.connect(
+                Settings["storage.database.username"],
+                Settings["storage.database.password"],
+                Settings["storage.database.driver"],
+                Settings["storage.database.jdbcUrl"],
+                Settings["storage.database.poolSize", 2],
+            )
+            DatabaseStorage()
+        } else {
+            val saves = File(Settings["storage.players.path"])
+            if (!saves.exists()) {
+                saves.mkdir()
+            }
+            FileStorage(get(), saves)
         }
-        FileStorage(get(), saves, get(), getProperty("experienceRate", "1.0").toDouble())
-    } }
+    }
     single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
     // Map
     single { ZoneBatchUpdates() }
@@ -76,7 +68,7 @@ val engineModule = module {
     single(createdAtStart = true) { AreaDefinitions().load() }
     // Network
     single {
-        ConnectionQueue(getIntProperty("connectionPerTickCap", 1))
+        ConnectionQueue(Settings["network.maxLoginsPerTick", 1])
     }
     single(createdAtStart = true) { GameObjectCollisionAdd(get()) }
     single(createdAtStart = true) { GameObjectCollisionRemove(get()) }

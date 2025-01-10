@@ -17,10 +17,10 @@ object MapGraphLoader {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("cachePath"))
+        val cache: Cache = CacheDelegate(property("storage.cache.path"))
         val collisions: Collisions = Collisions()
         val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache))
-            .load(Yaml(), property("objectDefinitionsPath"))
+            .load(Yaml(), property("definitions.objects"))
         val objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), objectDefinitions)
         val xteas: Xteas = Xteas().load()
         val graph = MapGraph(objects, xteas, cache, collisions)

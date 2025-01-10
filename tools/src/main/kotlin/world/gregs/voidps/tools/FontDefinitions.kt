@@ -9,7 +9,7 @@ object FontDefinitions {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("cachePath"))
+        val cache: Cache = CacheDelegate(property("storage.cache.path"))
         val definitions = FontDecoder().load(cache)
         val font = definitions[cache.archiveId(FONT_METRICS, "q8_full")]
         println(font.textWidth("This is a string"))

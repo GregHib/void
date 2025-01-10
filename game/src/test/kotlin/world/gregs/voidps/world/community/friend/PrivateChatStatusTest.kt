@@ -52,8 +52,8 @@ internal class PrivateChatStatusTest : WorldTest() {
         }
 
         verify {
-            player.client?.sendFriendsList(listOf(Friend("friend", "", world = World.id, worldName = World.name)))
-            admin.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
+            player.client?.sendFriendsList(listOf(Friend("friend", "", world = 16, worldName = "World 16")))
+            admin.client?.sendFriendsList(listOf(Friend("player", "", world = 16, worldName = "World 16")))
         }
         verify(exactly = 0) {
             friend.client?.sendFriendsList(any())
@@ -71,9 +71,9 @@ internal class PrivateChatStatusTest : WorldTest() {
         }
 
         verify {
-            player.client?.sendFriendsList(listOf(Friend("friend", "", world = World.id, worldName = World.name)))
-            friend.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
-            admin.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
+            player.client?.sendFriendsList(listOf(Friend("friend", "", world = 16, worldName = "World 16")))
+            friend.client?.sendFriendsList(listOf(Friend("player", "", world = 16, worldName = "World 16")))
+            admin.client?.sendFriendsList(listOf(Friend("player", "", world = 16, worldName = "World 16")))
         }
         verify(exactly = 0) {
             befriend.client?.sendFriendsList(any())
@@ -90,10 +90,10 @@ internal class PrivateChatStatusTest : WorldTest() {
         }
 
         verify {
-            player.client?.sendFriendsList(listOf(Friend("friend", "", world = World.id, worldName = World.name)))
-            friend.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
-            admin.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
-            befriend.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
+            player.client?.sendFriendsList(listOf(Friend("friend", "", world = 16, worldName = "World 16")))
+            friend.client?.sendFriendsList(listOf(Friend("player", "", world = 16, worldName = "World 16")))
+            admin.client?.sendFriendsList(listOf(Friend("player", "", world = 16, worldName = "World 16")))
+            befriend.client?.sendFriendsList(listOf(Friend("player", "", world = 16, worldName = "World 16")))
         }
         verify(exactly = 0) {
             stranger.client?.sendFriendsList(any())
@@ -108,7 +108,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         tick()
 
         verify {
-            befriend.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
+            befriend.client?.sendFriendsList(listOf(Friend("player", "", world = 16, worldName = "World 16")))
         }
         verify(exactly = 0) {
             stranger.client?.sendFriendsList(any())
@@ -130,7 +130,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         tick()
 
         verify {
-            friend.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
+            friend.client?.sendFriendsList(listOf(Friend("player", "", world = 16, worldName = "World 16")))
         }
         verify(exactly = 0) {
             admin.client?.sendFriendsList(any())
@@ -147,7 +147,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         tick()
 
         verify {
-            befriend.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
+            befriend.client?.sendFriendsList(listOf(Friend("player", "", world = 16, worldName = "World 16")))
         }
         verify(exactly = 0) {
             admin.client?.sendFriendsList(any())
@@ -164,7 +164,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         tick()
 
         verify {
-            friend.client?.sendFriendsList(listOf(Friend("player", "", world = 0, worldName = World.name)))
+            friend.client?.sendFriendsList(listOf(Friend("player", "", world = 0, worldName = "World 16")))
         }
         verify(exactly = 0) {
             admin.client?.sendFriendsList(any())
@@ -181,8 +181,8 @@ internal class PrivateChatStatusTest : WorldTest() {
         tick()
 
         verify {
-            befriend.client?.sendFriendsList(listOf(Friend("player", "", world = 0, worldName = World.name)))
-            friend.client?.sendFriendsList(listOf(Friend("player", "", world = 0, worldName = World.name)))
+            befriend.client?.sendFriendsList(listOf(Friend("player", "", world = 0, worldName = "World 16")))
+            friend.client?.sendFriendsList(listOf(Friend("player", "", world = 0, worldName = "World 16")))
         }
         verify(exactly = 0) {
             admin.client?.sendFriendsList(any())
@@ -198,7 +198,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         tick()
 
         verify {
-            befriend.client?.sendFriendsList(listOf(Friend("player", "", world = 0, worldName = World.name)))
+            befriend.client?.sendFriendsList(listOf(Friend("player", "", world = 0, worldName = "World 16")))
         }
         verify(exactly = 0) {
             friend.client?.sendFriendsList(any())

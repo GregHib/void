@@ -66,6 +66,7 @@ internal class InteractTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
+        Events.setEvents(Events())
         mockkStatic("world.gregs.voidps.engine.client.ui.InterfacesKt")
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         approached = false

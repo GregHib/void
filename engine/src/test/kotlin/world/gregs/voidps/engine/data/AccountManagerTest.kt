@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.data
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.verify
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -53,6 +54,7 @@ class AccountManagerTest : KoinMock() {
 
             override fun load(accountName: String): PlayerSave? = null
         }
+        Settings.load(mapOf("world.home.x" to "1234", "world.home.y" to "5432", "world.experienceRate" to "1.0"))
         manager = AccountManager(
             interfaceDefinitions = get(),
             inventoryDefinitions = inventoryDefinitions,
@@ -60,7 +62,6 @@ class AccountManagerTest : KoinMock() {
             accountDefinitions = AccountDefinitions(),
             collisionStrategyProvider = CollisionStrategyProvider(),
             variableDefinitions = VariableDefinitions(),
-            homeTile = Tile(1234, 5432),
             saveQueue = SaveQueue(storage),
             connectionQueue = connectionQueue,
             areaDefinitions = get(),
@@ -118,5 +119,10 @@ class AccountManagerTest : KoinMock() {
             client.logout()
             client.disconnect()
         }
+    }
+
+    @AfterEach
+    fun teardown() {
+        Settings.clear()
     }
 }

@@ -3,8 +3,8 @@ package world.gregs.voidps.world.activity.achievement
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.variable.BitwiseValues
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
-import world.gregs.voidps.Main.name
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -25,7 +25,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 
 npcOperate("Talk-to", "explorer_jack") {
     if (player["introducing_explorer_jack_task", "uncompleted"] == "uncompleted") {
-        npc<Talk>("Ah! Welcome to ${name}, lad. My name's Explorer jack. I'm an explorer by trade, and I'm one of the Taskmasters around these parts")
+        npc<Talk>("Ah! Welcome to ${Settings["server.name"]}, lad. My name's Explorer jack. I'm an explorer by trade, and I'm one of the Taskmasters around these parts")
         player<Quiz>("Taskmaster? What Tasks are you Master of?")
         whatIsTaskSystem()
     }

@@ -35,7 +35,7 @@ internal class FriendTest : WorldTest() {
         tick()
 
         verify {
-            client.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
+            client.sendFriendsList(listOf(Friend("player", "", world = 16, worldName = "World 16")))
         }
         assertContains(player.friends, "friend")
     }
@@ -107,7 +107,7 @@ internal class FriendTest : WorldTest() {
         tick()
 
         verify {
-            client.sendFriendsList(listOf(Friend("player", "", world = 0, worldName = World.name)))
+            client.sendFriendsList(listOf(Friend("player", "", world = 0, worldName = "World 16")))
         }
         assertTrue(player.friends.isEmpty())
     }

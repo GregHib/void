@@ -4,9 +4,13 @@ import kotlinx.coroutines.*
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.ui.event.adminCommand
+import world.gregs.voidps.engine.data.AccountManager
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
+import world.gregs.voidps.engine.data.settingsReload
+import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -15,7 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.getIntProperty
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -32,7 +36,6 @@ import kotlin.reflect.KClass
 
 val areas: AreaDefinitions by inject()
 val lumbridge = areas["lumbridge_teleport"]
-val botCount = getIntProperty("bots", 0)
 
 val bots = mutableListOf<Player>()
 val enums: EnumDefinitions by inject()
@@ -41,11 +44,17 @@ val structs: StructDefinitions by inject()
 var counter = 0
 
 worldSpawn {
-    if (botCount > 0) {
+    if (Settings["bots.count", 0] > 0) {
         World.timers.start("bot_spawn")
     }
     Events.events.all = { player, event ->
         handleSuspensions(player, event)
+    }
+}
+
+settingsReload {
+    if (Settings["bots.count", 0] > bots.size) {
+        World.timers.start("bot_spawn")
     }
 }
 
@@ -54,7 +63,7 @@ worldTimerStart("bot_spawn") {
 }
 
 worldTimerTick("bot_spawn") {
-    if (counter > botCount) {
+    if (counter > Settings["bots.count", 0]) {
         cancel()
         return@worldTimerTick
     }
@@ -65,7 +74,7 @@ adminCommand("bots") {
     val count = content.toIntOrNull() ?: 1
     GlobalScope.launch {
         repeat(count) {
-            if (it % 25 == 0) {
+            if (it % Settings["network.maxLoginsPerTick", 25] == 0) {
                 suspendCancellableCoroutine { cont ->
                     World.queue("bot_${counter}") {
                         cont.resume(Unit)
@@ -73,6 +82,16 @@ adminCommand("bots") {
                 }
             }
             spawn()
+        }
+    }
+}
+
+adminCommand("clear_bots") {
+    val count = content.toIntOrNull() ?: MAX_PLAYERS
+    World.queue("bot_${counter}") {
+        val manager = get<AccountManager>()
+        for (bot in bots.take(count)) {
+            manager.logout(bot, false)
         }
     }
 }
@@ -96,7 +115,7 @@ fun spawn() {
         val name = "Bot ${++counter}"
         val bot = Player(tile = lumbridge.random(), accountName = name)
         bot.initBot()
-        loader.connect(bot, if (TaskManager.DEBUG) DummyClient() else null)
+        loader.connect(bot, if (Settings["development.bots.live", false]) DummyClient() else null)
         setAppearance(bot)
         if (bot.inventory.isEmpty()) {
             bot.inventory.add("coins", 10000)

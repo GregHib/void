@@ -4,8 +4,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -24,6 +24,8 @@ import world.gregs.voidps.network.login.protocol.encode.Member
 import world.gregs.voidps.network.login.protocol.encode.appendClanChat
 import world.gregs.voidps.network.login.protocol.encode.leaveClanChat
 import world.gregs.voidps.network.login.protocol.encode.updateClanChat
+import world.gregs.voidps.world.community.friend.world
+import world.gregs.voidps.world.community.friend.worldName
 import java.util.concurrent.TimeUnit
 
 val accounts: AccountDefinitions by inject()
@@ -179,9 +181,9 @@ fun updateMembers(player: Player, clan: Clan, rank: ClanRank = clan.getRank(play
 
 fun toMember(player: Player, rank: ClanRank) = Member(
     player.name,
-    World.id,
+    Settings.world,
     rank.value,
-    World.name
+    Settings.worldName
 )
 
 val list = listOf(ClanRank.None, ClanRank.Recruit, ClanRank.Corporeal, ClanRank.Sergeant, ClanRank.Lieutenant, ClanRank.Captain, ClanRank.General)

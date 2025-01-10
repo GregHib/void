@@ -7,8 +7,8 @@ import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
@@ -40,8 +40,8 @@ class InterfaceDefinitions(
 
     fun load(
         yaml: Yaml = get(),
-        path: String = getProperty("interfacesPath"),
-        typePath: String = getProperty("interfaceTypesPath")
+        path: String = Settings["definitions.interfaces"],
+        typePath: String = Settings["definitions.interfaces.types"]
     ): InterfaceDefinitions {
         timedLoad("interface extra") {
             val ids = Object2IntOpenHashMap<String>()

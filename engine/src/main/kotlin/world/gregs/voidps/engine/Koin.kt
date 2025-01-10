@@ -9,16 +9,6 @@ inline fun <reified T : Any> get(
     noinline parameters: ParametersDefinition? = null
 ): T = getKoin().get(qualifier, parameters)
 
-fun getIntProperty(key: String): Int = getKoin().getProperty<String>(key)!!.toInt()
-
-fun getProperty(key: String): String = getKoin().getProperty(key)!!
-
-fun getPropertyOrNull(key: String): String? = getKoin().getProperty(key)
-
-fun getFloatProperty(key: String): Float = getKoin().getProperty(key)!!
-
-fun getIntProperty(key: String, defaultValue: Int): Int = getKoin().getProperty<String>(key)?.toIntOrNull() ?: defaultValue
-
 inline fun <reified T : Any> inject(
     qualifier: Qualifier? = null,
     noinline parameters: ParametersDefinition? = null

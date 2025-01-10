@@ -112,12 +112,12 @@ class FileServer(
         private const val ACKNOWLEDGE_ID = 3
 
         fun load(cache: Cache, properties: Properties): Server {
-            val fileServer = properties.getProperty("fileServer").toBoolean()
-            if (!fileServer) {
+            val fileServer = properties.getProperty("storage.cache.server")
+            if (fileServer == "external") {
                 return offlineFileServer()
             }
             val fileProvider: FileProvider = FileProvider.load(cache, properties)
-            val revision = properties.getProperty("revision").toInt()
+            val revision = properties.getProperty("server.revision").toInt()
             val prefetchKeys = prefetchKeys(cache, properties)
             return FileServer(revision, prefetchKeys, fileProvider)
         }

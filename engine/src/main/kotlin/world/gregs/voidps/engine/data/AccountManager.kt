@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.mode.move.AreaEntered
 import world.gregs.voidps.engine.entity.character.mode.move.AreaExited
 import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.player.*
+import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.restrict.ValidItemRestriction
@@ -34,16 +35,17 @@ class AccountManager(
     private val accountDefinitions: AccountDefinitions,
     private val collisionStrategyProvider: CollisionStrategyProvider,
     private val variableDefinitions: VariableDefinitions,
-    private val homeTile: Tile,
     private val saveQueue: SaveQueue,
     private val connectionQueue: ConnectionQueue,
     private val players: Players,
     private val areaDefinitions: AreaDefinitions
 ) {
     private val validItems = ValidItemRestriction(itemDefinitions)
+    private val homeTile: Tile
+        get() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
 
     fun create(name: String, passwordHash: String): Player {
-        return Player(tile = homeTile, accountName = name, passwordHash = passwordHash).apply {
+        return Player(tile = homeTile, accountName = name, passwordHash = passwordHash, experience = Experience(rate = Settings["world.experienceRate", 1.0])).apply {
             this["creation"] = System.currentTimeMillis()
             this["new_player"] = true
         }

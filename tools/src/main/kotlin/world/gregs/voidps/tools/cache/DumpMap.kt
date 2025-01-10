@@ -10,7 +10,7 @@ import java.io.File
 object DumpMap {
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("cachePath"))
+        val cache: Cache = CacheDelegate(property("storage.cache.path"))
         val xteas: Xteas = Xteas().load()
         val region = Region(12341)
         val tiles = cache.data(Index.MAPS, "m${region.x}_${region.y}")!!

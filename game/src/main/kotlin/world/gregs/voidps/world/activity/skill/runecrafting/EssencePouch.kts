@@ -3,6 +3,7 @@ package world.gregs.voidps.world.activity.skill.runecrafting
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.itemOnItems
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.Item
@@ -82,7 +83,9 @@ inventoryItem("Empty", *pouches) {
         player.inventoryFull()
         return@inventoryItem
     }
-    player.inventory.discharge(player, slot)
+    if (Settings["runecrafting.pouch.degrade", true]) {
+        player.inventory.discharge(player, slot)
+    }
     player["${id}_essence"] = essence - added
 }
 

@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.skill.agility.course
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -12,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.getPropertyOrNull
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.approachRange
@@ -50,7 +50,7 @@ objectApproach("Run-across", "gnome_sign_post_advanced") {
     // Pausing for 2 ticks to ensure we're in the correct spot.
     // arriveDelay() wouldn't work as objectApproach is called before Movement.tick where "last_movement" is set
     pause(2)
-    val disable = getPropertyOrNull("disableAdvancedAgilityCourseFailure").toBoolean()
+    val disable = Settings["agility.disableCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), -8..286) // failure rate 4.68-1.17% from 85-88
     player.face(Direction.EAST)
     player.setAnimation("gnome_wall_${if (success) "run" else "fail"}")
@@ -74,7 +74,7 @@ objectApproach("Run-across", "gnome_sign_post_advanced") {
             player.damage((player.levels.get(Skill.Constitution) - 10).coerceAtMost(65))
         }
         // Skip stage so lap doesn't count at end
-        if (success || getPropertyOrNull("disableAdvancedAgilityCourseFailLapSkip").toBoolean()) {
+        if (success || Settings["agility.disableFailLapSkip", false]) {
             player.agilityStage(5)
         }
         player.clearAnimation()

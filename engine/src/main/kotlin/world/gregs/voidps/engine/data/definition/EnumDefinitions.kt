@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.data.definition
 
 import world.gregs.voidps.cache.definition.data.EnumDefinition
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 
@@ -34,7 +34,7 @@ class EnumDefinitions(
         return structs.get(struct)[param, default]
     }
 
-    fun load(yaml: Yaml = get(), path: String = getProperty("enumDefinitionsPath")): EnumDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.enums"]): EnumDefinitions {
         timedLoad("enum extra") {
             decode(yaml, path)
         }

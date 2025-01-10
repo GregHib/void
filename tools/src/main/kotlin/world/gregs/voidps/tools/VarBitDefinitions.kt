@@ -8,7 +8,7 @@ import world.gregs.voidps.cache.definition.decoder.VarBitDecoder
 object VarBitDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("cachePath"))
+        val cache: Cache = CacheDelegate(property("storage.cache.path"))
         val decoder = VarBitDecoder().load(cache)
         val varpDecoder = PlayerVariableParameterDecoder().load(cache)
         for (i in decoder.indices) {

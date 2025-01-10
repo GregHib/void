@@ -21,7 +21,7 @@ internal object RunescapeWikiModifier {
     @Suppress("UNCHECKED_CAST")
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("cachePath"))
+        val cache: Cache = CacheDelegate(property("storage.cache.path"))
         val decoder = ItemDecoder().load(cache)
 
         val file = File("./data/dump/ItemsPretty.json")

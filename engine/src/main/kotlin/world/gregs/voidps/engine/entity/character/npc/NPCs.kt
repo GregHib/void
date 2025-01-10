@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.mode.move.AreaEntered
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.type.Direction
@@ -29,10 +28,6 @@ data class NPCs(
     override val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)
     private val logger = InlineLogger()
     private val map: CharacterMap = CharacterMap()
-
-    init {
-        Wander.active = getProperty("randomWalk") == "true"
-    }
 
     override operator fun get(tile: Tile): List<NPC> {
         return get(tile.regionLevel).filter { it.tile == tile }

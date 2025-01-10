@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.definition.decoder.AnimationDecoderFull
 object AnimationDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("cachePath"))
+        val cache: Cache = CacheDelegate(property("storage.cache.path"))
         val decoder = AnimationDecoderFull().load(cache)
         val match = decoder[10289].frames
         for (i in decoder.indices) {

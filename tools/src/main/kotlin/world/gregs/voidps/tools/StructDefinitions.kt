@@ -9,7 +9,7 @@ object StructDefinitions {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("cachePath"))
+        val cache: Cache = CacheDelegate(property("storage.cache.path"))
         val decoder = StructDecoder().load(cache)
         val set = mutableSetOf<Long>()
         for (i in decoder.indices) {

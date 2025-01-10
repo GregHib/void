@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.npc.combat
 
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
@@ -11,6 +12,9 @@ import world.gregs.voidps.engine.entity.character.player.PlayerOption
 
 huntPlayer(mode = "aggressive") { npc ->
    if (attacking(npc, target)) {
+      return@huntPlayer
+   }
+   if (Settings["world.npcs.safeZone", false] && npc.tile.region.id == 12850) {
       return@huntPlayer
    }
    npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))

@@ -6,10 +6,10 @@ services:
       - ./data/saves/:/app/data/saves
     environment:
       storage: database
-      database_username: postgres
-      database_password: password
-      database_driver: org.postgresql.Driver
-      database_jdbc_url: jdbc:postgresql://db:5432/game?reWriteBatchedInserts=true
+      storage.database.username: postgres
+      storage.database.password: password
+      storage.database.driver: org.postgresql.Driver
+      storage.database.jdbcUrl: jdbc:postgresql://db:5432/game?reWriteBatchedInserts=true
     ports:
       - "43594:43594"
     depends_on:

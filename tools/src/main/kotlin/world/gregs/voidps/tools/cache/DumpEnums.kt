@@ -9,7 +9,7 @@ import java.io.File
 object DumpEnums {
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("cachePath"))
+        val cache: Cache = CacheDelegate(property("storage.cache.path"))
         val decoder = EnumDecoder().load(cache)
         val builder = StringBuilder()
         for (i in decoder.indices) {

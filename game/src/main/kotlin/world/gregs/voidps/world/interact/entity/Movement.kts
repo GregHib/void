@@ -1,6 +1,8 @@
 package world.gregs.voidps.world.interact.entity
 
 import org.rsmod.game.pathfinder.flag.CollisionFlag
+import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.mode.move.npcMove
@@ -8,10 +10,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.size
-import world.gregs.voidps.engine.entity.characterDespawn
-import world.gregs.voidps.engine.entity.npcSpawn
-import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.type.Tile
@@ -21,41 +19,46 @@ import world.gregs.voidps.world.interact.entity.death.npcDeath
 val collisions: Collisions by inject()
 val npcs: NPCs by inject()
 val players: Players by inject()
-val active = getProperty("characterCollision") == "true"
 
 playerSpawn { player ->
-    if (players.add(player) && active) {
+    if (players.add(player) && Settings["world.players.collision", false]) {
         add(player)
     }
 }
 
+move {
+    if (Settings["world.players.collision", false]) {
+        move(character, from, to)
+    }
+}
+
+playerDespawn { player ->
+    if (Settings["world.players.collision", false]) {
+        remove(player)
+    }
+}
+
 npcSpawn { npc ->
-    if (active) {
+    if (Settings["world.npcs.collision", false]) {
         add(npc)
     }
+}
+
+npcMove {
+    if (Settings["world.npcs.collision", false] && !character.dead) {
+        move(character, from, to)
+    }
+    npcs.update(from, to, npc)
 }
 
 npcDeath { npc ->
     remove(npc)
 }
 
-characterDespawn { character ->
-    if (active) {
-        remove(character)
+npcDespawn { npc ->
+    if (Settings["world.npcs.collision", false]) {
+        remove(npc)
     }
-}
-
-move {
-    if (active) {
-        move(character, from, to)
-    }
-}
-
-npcMove {
-    if (active && !character.dead) {
-        move(character, from, to)
-    }
-    npcs.update(from, to, npc)
 }
 
 fun add(char: Character) {

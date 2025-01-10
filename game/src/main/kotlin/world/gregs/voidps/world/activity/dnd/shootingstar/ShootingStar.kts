@@ -2,9 +2,14 @@ package world.gregs.voidps.world.activity.dnd.shootingstar
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.ui.chat.toTag
+import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.data.Rock
+import world.gregs.voidps.engine.data.settingsReload
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.exactMove
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
@@ -21,7 +26,6 @@ import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.entity.objectDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.entity.worldSpawn
-import world.gregs.voidps.engine.getPropertyOrNull
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -39,7 +43,6 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.currentActiveObject
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.currentStarTile
-import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.startEvent
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.totalCollected
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Sad
@@ -53,16 +56,41 @@ val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 val players: Players by inject()
 val logger = InlineLogger()
-val active = getPropertyOrNull("shootingStars") == "true"
 
 worldSpawn {
-    if (active) {
+    if (Settings["events.shootingStars.enabled", false]) {
         eventUpdate()
     }
 }
 
+settingsReload {
+    if (Settings["events.shootingStars.enabled", false] && !World.contains("shooting_star_event_timer")) {
+        eventUpdate()
+    } else if (!Settings["events.shootingStars.enabled", false] && World.contains("shooting_star_event_timer")) {
+        World.clearQueue("shooting_star_event_timer")
+    }
+}
+
+adminCommand("star") {
+    cleanseEvent(true)
+    val minutes = content.toIntOrNull()
+    if (minutes != null) {
+        World.clearQueue("shooting_star_event_timer")
+        eventUpdate(minutes)
+    } else if (minutes == -1) {
+        World.clearQueue("shooting_star_event_timer")
+    } else {
+        startCrashedStarEvent()
+    }
+}
+
 fun eventUpdate() {
-    World.queue("shooting_star_event_timer", startEvent) {
+    val minutes = Settings["events.shootingStars.minRespawnTimeMinutes", 60]..Settings["events.shootingStars.maxRespawnTimeMinutes", 60]
+    eventUpdate(minutes.random(random))
+}
+
+fun eventUpdate(minutes: Int) {
+    World.queue("shooting_star_event_timer", TimeUnit.MINUTES.toTicks(minutes)) {
         if (currentStarTile != Tile.EMPTY) {
             cleanseEvent(true)
             logger.info { "There was already an active star, deleted it and started a new event" }
@@ -76,6 +104,11 @@ fun startCrashedStarEvent() {
     val location = StarLocationData.entries.random()
     currentStarTile = location.tile
     val tier = random.nextInt(1, 9)
+    if (Settings["world.messages", false]) {
+        for (player in players) {
+            player.message("${Colours.DARK_RED.toTag()}A star has crashed at ${location.description}.")
+        }
+    }
     logger.info { "Crashed star event has started at: $location (${currentStarTile.x}, ${currentStarTile.y}) tier ${tier}." }
     val shootingStarShadow: NPC? = npcs.add("shooting_star_shadow", Tile(currentStarTile.x, currentStarTile.y + 6), Direction.NONE)
     shootingStarShadow?.walkTo(currentStarTile, noCollision = true, noRun = true)
@@ -152,7 +185,7 @@ playerSpawn { player ->
     }
 }
 
-timerStart("shooting_star_bonus_ore_timer") { player ->
+timerStart("shooting_star_bonus_ore_timer") {
     interval = TimeUnit.SECONDS.toTicks(1)
 }
 
@@ -224,7 +257,7 @@ npcOperate("Talk-to", "star_sprite") {
                 messageBuilder.append(", $amount ${reward.replace("_", " ").replace("noted", "").plural(amount)}")
             }
         }
-        if(!ShootingStarHandler.rewardPlayerBonusOre(player)) {
+        if (!ShootingStarHandler.rewardPlayerBonusOre(player)) {
             npc<Happy>("I have rewarded you by making it so you can mine extra ore for the next 15 minutes, ${messageBuilder}.")
             givePlayerBonusOreReward(player)
         } else {

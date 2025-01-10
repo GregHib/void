@@ -348,10 +348,10 @@ internal class LoginServerTest {
     @Test
     fun `Load from properties`() = runTest {
         val properties = Properties()
-        properties.setProperty("gameModulus", modulus.toString(16))
-        properties.setProperty("gamePrivate", "10001")
-        properties.setProperty("revision", "123")
-        properties.setProperty("maxPlayers", "10")
+        properties.setProperty("security.game.modulus", modulus.toString(16))
+        properties.setProperty("security.game.private", "10001")
+        properties.setProperty("server.revision", "123")
+        properties.setProperty("world.players.max", "10")
         server = LoginServer.load(properties, protocol, accounts)
         val readChannel = ByteChannel(autoFlush = true)
         val writeChannel = ByteChannel(autoFlush = true)

@@ -4,11 +4,11 @@ import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.voidps.cache.definition.Parameters
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.ParameterDefinition
 import world.gregs.voidps.engine.data.yaml.decode
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 
@@ -25,7 +25,7 @@ class ParameterDefinitions(
     override lateinit var parameters: Map<Int, String>
     private val logger = InlineLogger()
 
-    fun load(yaml: Yaml = get(), path: String = getProperty("parameterDefinitionsPath")): ParameterDefinitions {
+    fun load(yaml: Yaml = get(), path: String = Settings["definitions.parameters"]): ParameterDefinitions {
         timedLoad("parameter definition") {
             val size = decode(yaml, path) { id, key, _ ->
                 ParameterDefinition(id = id, stringId = key)

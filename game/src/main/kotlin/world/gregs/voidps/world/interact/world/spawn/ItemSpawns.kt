@@ -1,10 +1,10 @@
 package world.gregs.voidps.world.interact.world.spawn
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
@@ -32,7 +32,7 @@ fun loadItemSpawns(
     items: FloorItems,
     spawns: ItemSpawns,
     yaml: Yaml = get(),
-    path: String = getProperty("itemSpawnsPath")
+    path: String = Settings["spawns.items"]
 ) {
     timedLoad("item spawn") {
         spawns.clear()
