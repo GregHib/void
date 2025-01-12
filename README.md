@@ -60,15 +60,29 @@ It is recommended to use IntelliJ IDEA to develop with Void.
 The community edition can be downloaded for free from the [jetbrains website.](https://www.jetbrains.com/idea/download/)
 See [the installation guide](https://www.jetbrains.com/help/idea/installation-guide.html) for more instructions.
 
-Once inside the IDE, you can create a new project by going to `File | New | Project from version control... |`
+Once opened the IDE click the `Clone Repository` button or `File | New | Project from version control... |` if in the full application.
 
-Selecting `git` version control and entering the void project URL `git@github.com:GregHib/void.git` found under the `<> Code` button on the [GitHub page](https://github.com/GregHib/void).
+Selecting `git` version control and entering the void project URL Found under the `<> Code` button on the [GitHub page](https://github.com/GregHib/void).
+- `git@github.com:GregHib/void.git` if you have [GitHub authentication setup](https://docs.github.com/en/authentication).
+- `https://github.com/GregHib/void.git` if you don't have SSH authentication.
 
-Press clone and after a little while the project will be opened for you, the JDK indexed and gradle setup.
+> [!NOTE]
+> When git is not installed it will display an error and the option to "Download and install", click this and retry the previous step. 
+> Click "Trust Project" if also asked.
+
+Press "clone" and after the download is complete the project will be opened for you.
+
+Under `Project Structure... | Project` settings set `SDK` to JDk 19+ (download as needed) and let it index.
+
+Run the following command in the terminal to set up Gradle or close and re-open the project to trigger IntelliJ's `Open as Gradle Project` popup.
+
+```bash
+./gradlew build -x test
+```
 
 Extract the [cache files](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A) into a new directory called `/cache/` inside of the `/data/` directory.
 
-From here you can navigate in the left panel to `/game/src/main/kotlin/world/gregs/voidps/` where you will find [Main.kt](./game/src/main/kotlin/world/gregs/voidps/Main.kt) which you should be able to right-click and run.
+From here you can navigate in the left panel to `/game/src/main/kotlin/world/gregs/voidps/` (Or Ctrl/Cmd + N for class search) where you will find [Main.kt](./game/src/main/kotlin/world/gregs/voidps/Main.kt) which you should be able to right-click and run.
 
 You can also run in the command line using the gradle wrapper.
 
@@ -76,7 +90,7 @@ You can also run in the command line using the gradle wrapper.
 ./gradlew run
 ```
 
-Once the server is up and running; setup the [void-client repository](https://github.com/GregHib/void-client/) or download one of the [prebuilt client.jars](https://github.com/GregHib/void-client/releases) and run to log into the game.
+Once the server is up and running; download one of the [prebuilt client.jars](https://github.com/GregHib/void-client/releases) or set up the [void-client repository](https://github.com/GregHib/void-client/) and run to log into the game.
 
 Don't forget to check out our [Contributing guidelines](./CONTRIBUTING.md) before submitting your first pull request!
 
