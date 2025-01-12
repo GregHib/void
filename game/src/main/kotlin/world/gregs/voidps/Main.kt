@@ -24,15 +24,13 @@ import world.gregs.voidps.network.LoginServer
 import world.gregs.voidps.network.login.protocol.decoders
 import world.gregs.voidps.script.loadScripts
 import java.util.*
-import kotlin.coroutines.CoroutineContext
 
 /**
  * @author GregHib <greg@gregs.world>
  * @since April 18, 2020
  */
-object Main : CoroutineScope {
+object Main {
 
-    override val coroutineContext: CoroutineContext = Contexts.Game
     private val logger = InlineLogger()
 
     @OptIn(ExperimentalUnsignedTypes::class)
