@@ -34,7 +34,6 @@ internal class PlayerYamlReaderConfig : YamlReaderConfiguration() {
             val exp = Experience(
                 experience = (value["experience"] as List<Double>).toDoubleArray(),
                 blocked = (value["blocked"] as List<Skill>).toMutableSet(),
-                rate = Settings["world.experienceRate", 1.0]
             )
             super.set(map, key, exp, indent, parentMap)
         } else if (key == "levels") {

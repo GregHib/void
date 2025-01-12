@@ -26,12 +26,12 @@ data class PlayerSave(
     val ignores: List<String>
 ) {
 
-    fun toPlayer(rate: Double): Player {
+    fun toPlayer(): Player {
         return Player(
             accountName = name,
             passwordHash = password,
             tile = tile,
-            experience = Experience(experience, blocked.toMutableSet(), rate = rate),
+            experience = Experience(experience, blocked.toMutableSet()),
             levels = Levels(levels),
             body = BodyParts(male, looks, colours),
             variables = variables.toMutableMap(),

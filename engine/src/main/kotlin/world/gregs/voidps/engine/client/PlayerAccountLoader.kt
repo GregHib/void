@@ -52,7 +52,7 @@ class PlayerAccountLoader(
                 client.disconnect(Response.ACCOUNT_ONLINE)
                 return null
             }
-            val player = storage.load(username)?.toPlayer(Settings["world.experienceRate", 1.0]) ?: accounts.create(username, passwordHash)
+            val player = storage.load(username)?.toPlayer() ?: accounts.create(username, passwordHash)
             logger.info { "Player $username loaded and queued for login." }
             connect(player, client, displayMode)
             return player.instructions

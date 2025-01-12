@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 
 huntPlayer(mode = "aggressive") { npc ->
-   if (attacking(npc, target)) {
+   if (!Settings["world.npcs.aggression", true] || attacking(npc, target)) {
       return@huntPlayer
    }
    if (Settings["world.npcs.safeZone", false] && npc.tile.region.id == 12850) {
@@ -21,7 +21,7 @@ huntPlayer(mode = "aggressive") { npc ->
 }
 
 huntPlayer(mode = "cowardly") { npc ->
-   if (attacking(npc, target)) {
+   if (!Settings["world.npcs.aggression", true] || attacking(npc, target)) {
       return@huntPlayer
    }
    npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))

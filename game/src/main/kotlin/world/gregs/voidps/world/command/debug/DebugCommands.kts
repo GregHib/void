@@ -274,22 +274,12 @@ adminCommand("sendItems") {
     player.sendInventoryItems(90, 28, ags, true)
 }
 
-adminCommand("obj (object-id) [object-type] [object-rotation]", "spawn an object") {
-    if (content.isNotBlank()) {
-        val parts = content.split(" ")
-        val id = parts.getOrNull(0)
-        if (id != null) {
-            val rotation = parts.getOrNull(1)?.toIntOrNull() ?: 0
-            objects.add(id, player.tile.addY(1), 0, rotation, 10)
-            objects.add(id, player.tile.addY(1), 10, rotation, 10)
-            objects.add(id, player.tile.addY(1), 22, rotation, 10)
-        }
-    } else {
-        val objs = get<GameObjects>()
-        objs[player.tile].forEach {
-            println(it.intId)
-        }
-    }
+adminCommand("obj (object-id) [object-shape] [object-rotation]", "spawn an object") {
+    val parts = content.split(" ")
+    val id = parts[0]
+    val shape = parts.getOrNull(1)?.toIntOrNull() ?: 10
+    val rotation = parts.getOrNull(2)?.toIntOrNull() ?: 0
+    objects.add(id, player.tile, shape, rotation)
 }
 
 
