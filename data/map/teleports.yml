@@ -508,7 +508,7 @@
     y: 3551
   delta:
     y: 6400
-- id: 32015
+- id: basic_ladder_up
   option: Climb-up
   tile:
     x: 2547
@@ -1015,7 +1015,7 @@
     x: 2901
     y: 9867
 ######## 11599 ########
-- id: 32015
+- id: basic_ladder_up
   option: Climb-up
   tile:
     x: 2895
@@ -1024,14 +1024,14 @@
     x: 3268
     y: 3400
 ######## 11670 ########
-- id: 32015
+- id: basic_ladder_up
   option: Climb-up
   tile:
     x: 2924
     y: 9650
   delta:
     y: -6400
-- id: 32015
+- id: basic_ladder_up
   option: Climb-up
   tile:
     x: 2939
@@ -1046,7 +1046,7 @@
   delta:
     y: -6400
 ######## 11673 ########
-- id: 32015
+- id: basic_ladder_up
   option: Climb-up
   tile:
     x: 2884
@@ -1536,7 +1536,7 @@
     x: 2955
     y: 3497
 ######## 11837 ######## 
-- id: 14758
+- id: wilderness_agility_ladder_down
   option: Climb-down
   tile:
     x: 3005
@@ -1544,7 +1544,7 @@
   delta:
     y: 6400
 ######## 11926 ########
-- id: 32015
+- id: basic_ladder_up
   option: Climb-up
   tile:
     x: 2962
@@ -1562,7 +1562,7 @@
     y: -6393
     x: 2
 ######## 11937 ######## 
-- id: 32015
+- id: basic_ladder_up
   option: Climb-up
   tile:
     x: 3005
@@ -2600,7 +2600,7 @@
     x: 2269
     y: 4840
 ######## 12181 ########
-- id: 32015
+- id: basic_ladder_up
   option: Climb-up
   tile:
     x: 3008
@@ -2661,7 +2661,7 @@
   to:
     x: 2271
     y: 4680
-- id: 32015
+- id: basic_ladder_up
   option: Climb-up
   tile:
     x: 3017
@@ -2669,7 +2669,7 @@
   delta:
     x: 52
     y: -6392
-- id: 32015
+- id: basic_ladder_up
   option: Climb-up
   tile:
     x: 3069
@@ -3108,7 +3108,7 @@
   delta:
     y: -6400
 ######## 12437 ########
-- id: 32015
+- id: basic_ladder_up
   option: Climb-up
   tile:
     x: 3103
@@ -3124,7 +3124,7 @@
   delta:
     y: -6400
 ######## 12439 ########
-- id: 32015
+- id: basic_ladder_up
   option: Climb-up
   tile:
     x: 3084
@@ -3140,7 +3140,7 @@
   delta:
     x: 35
     y: -6421
-- id: 32015
+- id: basic_ladder_up
   option: Climb-up
   tile:
     x: 3117

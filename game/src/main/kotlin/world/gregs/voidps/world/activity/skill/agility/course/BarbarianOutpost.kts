@@ -68,7 +68,7 @@ objectOperate("Swing-on", "barbarian_outpost_rope_swing") {
             player.damage(50)
             pause(3)
             player.walkTo(player.tile.copy(y = 9949), noCollision = true, noRun = true)
-//            player.message("", ChatType.Filter) TODO
+            player.message("You slip and fall to the pit below.", ChatType.Filter)
         }
         if (success || Settings["agility.disableFailLapSkip", false]) {
             player.agilityStage(1)
