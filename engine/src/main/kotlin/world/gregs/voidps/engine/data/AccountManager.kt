@@ -45,7 +45,7 @@ class AccountManager(
         get() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
 
     fun create(name: String, passwordHash: String): Player {
-        return Player(tile = homeTile, accountName = name, passwordHash = passwordHash, experience = Experience(rate = Settings["world.experienceRate", 1.0])).apply {
+        return Player(tile = homeTile, accountName = name, passwordHash = passwordHash).apply {
             this["creation"] = System.currentTimeMillis()
             this["new_player"] = true
         }
