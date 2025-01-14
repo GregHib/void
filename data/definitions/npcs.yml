@@ -824,7 +824,7 @@ banker_canifis:
 dororan:
   id: 1168
   race: dwarf
-  examine: "A dwarf in anguish."  
+  examine: "A dwarf in anguish."
 yrsa:
   id: 1301
   race: human
@@ -963,7 +963,7 @@ ellis:
   examine: "Manufacturer of fine leathers."
 dororan_cutscene:
   id: 2863
-  examine: "A dwarf in suspense."  
+  examine: "A dwarf in suspense."
 gudrun:
   &gudrun
   id: 2864
@@ -978,7 +978,7 @@ gudrun_after_cutscene:
   id: 2866
 gudrun_after_cutscene2:
   <<: *gudrun
-  id: 2867  
+  id: 2867
 gudrun_after_quest:
   <<: *gudrun
   id: 2869
@@ -1379,7 +1379,7 @@ fishing_spot_small_net_bait_lumbridge:
 lil_lamb:
   <<: *sheep
   id: 5146
-  examine: "How cute!"  
+  examine: "How cute!"
 sheep_light:
   <<: *sheep
   id: 5157
@@ -1527,7 +1527,7 @@ jeffery2:
 bob_barter_herbs:
   id: 6524
   race: human
-  examine: "He's probably seen better days."  
+  examine: "He's probably seen better days."
 pikkupstix:
   id: 6970
   race: human
@@ -2042,7 +2042,7 @@ leela:
   id: 13172
   race: human
   wander_radius: 4
-  examine: "She comes from Al Kharid."  
+  examine: "She comes from Al Kharid."
 seal:
   id: 13255
   wander_radius: 2
@@ -2109,7 +2109,7 @@ al_the_camel:
   race: camel
   large_head: true
   wander_radius: 4
-  examine: "A camel who has the soul of a poet."  
+  examine: "A camel who has the soul of a poet."
 dark_mage:
   id: 2262
   faces: false
@@ -2211,7 +2211,8 @@ zamorak_warrior_square:
   <<: *zamorak_warrior
   id: 6364
   style: crush
-zamorak_mage_fancy: &zamorak_mage
+zamorak_mage_fancy:
+  &zamorak_mage
   id: 6367
   hitpoints: 500
   att: 75
@@ -2231,7 +2232,8 @@ zamorak_mage_fancy: &zamorak_mage
 zamorak_mage:
   <<: *zamorak_mage
   id: 6368
-zamorak_ranger: &zamorak_ranger
+zamorak_ranger:
+  &zamorak_ranger
   id: 6365
   hitpoints: 500
   att: 75
