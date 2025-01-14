@@ -39,8 +39,9 @@ objectOperate("Open", "wilderness_agility_door_closed") {
         Door.enter(player, target)
         return@objectOperate
     }
-    val disable = Settings["agility.disableCourseFailure", false]
-    val success = disable || Level.success(player.levels.get(Skill.Agility), 200..250)
+    // Not sure if you can fail going up
+//    val disable = Settings["agility.disableCourseFailure", false]
+    val success = true//disable || Level.success(player.levels.get(Skill.Agility), 200..250)
     player.strongQueue("course_enter") {
         onCancel = {
             player.tele(target.tile.addY(-1))
@@ -50,10 +51,10 @@ objectOperate("Open", "wilderness_agility_door_closed") {
         Door.enter(player, target)
         pause()
         player.renderEmote = "beam_balance"
-        if (!success) {
-            fallIntoPit()
-            return@strongQueue
-        }
+//        if (!success) {
+//            fallIntoPit()
+//            return@strongQueue
+//        }
         player.walkTo(Tile(2998, 3930), noCollision = true, noRun = true)
         pause(13)
         player.clearRenderEmote()
@@ -75,17 +76,18 @@ objectOperate("Open", "wilderness_agility_gate_east_closed", "wilderness_agility
         Door.enter(player, target)
         return@objectOperate
     }
-    val fail = true
+    val disable = Settings["agility.disableCourseFailure", false]
+    val success = disable || Level.success(player.levels.get(Skill.Agility), 200..250)
     player.strongQueue("course_exit") {
         onCancel = {
             player.tele(target.tile.addY(1))
         }
-        player.start("input_delay", if (fail) 8 else 16)
+        player.start("input_delay", if (success) 16 else 10)
         player.message("You go through the gate and try to edge over the ridge...", ChatType.Filter)
         Door.enter(player, target)
         pause(if (target.id.endsWith("west_closed")) 2 else 1)
         player.renderEmote = "beam_balance"
-        if (fail) {
+        if (!success) {
             fallIntoPit()
             return@strongQueue
         }
@@ -107,7 +109,7 @@ suspend fun Action.fallIntoPit() {
     player.walkTo(Tile(2998, 3924), noCollision = true, noRun = true)
     pause(7)
     player.clearRenderEmote()
-    player.turn(-3, -4)
+    player.face(Direction.NORTH)
     player.setAnimation("rope_walk_fall_down")
     player.message("You lose your footing and fall into the wolf pit.", ChatType.Filter)
     pause()
@@ -162,7 +164,7 @@ objectOperate("Swing-on", "wilderness_rope_swing") {
             player.exactMove(player.tile.copy(y = 3957), 50, Direction.NORTH)
             pause(2)
             player.tele(3004, 10357)
-            player.damage((player.levels.get(Skill.Constitution) * 0.15).toInt() + 1)
+            player.damage((player.levels.get(Skill.Constitution) * 0.15).toInt() + 10)
             player.message("You slip and fall to the pit below.", ChatType.Filter)
         }
         if (success || Settings["agility.disableFailLapSkip", false]) {
@@ -190,7 +192,7 @@ objectOperate("Cross", "wilderness_stepping_stone") {
                 player.clearRenderEmote()
                 player.message("...You lose your footing and fall into the lava.", ChatType.Filter)
                 pause(2)
-                player.damage(player.levels.get(Skill.Constitution) / 5 + 1)
+                player.damage(player.levels.get(Skill.Constitution) / 5 + 10)
                 player.tele(3002, 3963)
                 if (Settings["agility.disableFailLapSkip", false]) {
                     player.agilityStage(3)
@@ -241,7 +243,7 @@ objectOperate("Walk-across", "wilderness_log_balance") {
             pause()
             player.walkTo(Tile(2998, 10345))
             pause()
-            player.damage(9)
+            player.damage((player.levels.get(Skill.Constitution) * 0.15).toInt() + 10)
             player.playSound("male_hit_1", delay = 20)
         }
         if (success || Settings["agility.disableFailLapSkip", false]) {
