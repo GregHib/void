@@ -12010,6 +12010,6 @@ wilderness_stepping_stone:
 wilderness_log_balance:
   id: 2297
   examine: "A slippery log I can walk across."
-wilderness_rocks:
+wilderness_agility_rocks:
   id: 2328
   examine: "A rocky outcrop."
