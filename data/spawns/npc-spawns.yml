@@ -1455,6 +1455,15 @@
 - { id: rat, x: 2961, y: 9647, members: true }
 - { id: rat, x: 2976, y: 9634, members: true }
 - { id: rat, x: 2989, y: 9653, members: true }
+# 11937
+- { id: skeleton_axe_shield, x: 2994, y: 10346 }
+- { id: skeleton_mace_shield, x: 2998, y: 10342 }
+- { id: skeleton_longsword, x: 2998, y: 10350 }
+- { id: skeleton_mace_shield, x: 3002, y: 10356 }
+- { id: skeleton_sword_shield, x: 3003, y: 10347 }
+- { id: skeleton_sword_shield, x: 3004, y: 10362 }
+- { id: skeleton_flail, x: 3005, y: 10352 }
+- { id: skeleton_axe_shield, x: 3006, y: 10357 }
 # 12081
 - { id: rat, x: 3013, y: 3194 }
 - { id: rat, x: 3013, y: 3190 }
