@@ -2506,3 +2506,81 @@ bartender_foresters_arms:
   race: human
   wander_radius: 5
   examine: "I could get a beer from him."
+skeleton_mace_shield:
+  &skeleton_25
+  id: 92
+  hitpoints: 170
+  att: 24
+  str: 24
+  def: 24
+  wander_radius: 8
+  attack_radius: 4
+  max_hit_melee: 40
+  hunt_mode: aggressive
+  style: slash
+  height: 30
+  respawn_delay: 60
+  race: skeleton
+  examine: "Could do with gaining a few pounds."
+skeleton_flail:
+  <<: *skeleton_25
+  id: 5340
+skeleton_sword_shield:
+  <<: *skeleton_25
+  id: 5338
+skeleton_helmet:
+  <<: *skeleton_25
+  id: 5332
+skeleton_unarmed:
+  &skeleton_22
+  id: 5333
+  hitpoints: 290
+  att: 15
+  str: 18
+  def: 17
+  wander_radius: 8
+  attack_radius: 4
+  max_hit_melee: 30
+  hunt_mode: aggressive
+  style: crush
+  height: 30
+  respawn_delay: 70
+  race: skeleton
+  examine: "Could do with gaining a few pounds."
+skeleton_shield_helmet:
+  <<: *skeleton_22
+  id: 90
+skeleton_shield:
+  <<: *skeleton_22
+  id: 5334
+skeleton_builder:
+  <<: *skeleton_22
+  id: 3291
+skeleton_axe_shield:
+  <<: *skeleton_25
+  id: 5337
+skeleton_longsword:
+  <<: *skeleton_25
+  id: 5339
+skeleton_axe_shield_85:
+  &skeleton_85
+  id: 5367
+  hitpoints: 590
+  att: 32
+  str: 35
+  def: 36
+  wander_radius: 8
+  attack_radius: 4
+  max_hit_melee: 50
+  hunt_mode: aggressive
+  style: slash
+  height: 30
+  respawn_delay: 60
+  race: skeleton
+  examine: "Could do with gaining a few pounds."
+skeleton_sword_shield_85:
+  <<: *skeleton_85
+  id: 5368
+skeleton_hammer_shield:
+  <<: *skeleton_85
+  id: 4386

@@ -1433,6 +1433,8 @@
 - { id: giant_rat_dark_injured, x: 2971, y: 3690 }
 # 11834
 - { id: drunken_musician, x: 3003, y: 3739, direction: SOUTH }
+- { id: skeleton_mace_shield, x: 2977, y: 3753 }
+- { id: skeleton_mace_shield, x: 2980, y: 3763 }
 # 11837
 - { id: white_wolf_2, x: 2991, y: 3924, members: true }
 - { id: white_wolf_2, x: 2988, y: 3921, members: true }
@@ -1442,6 +1444,9 @@
 - { id: white_wolf_2, x: 3002, y: 3924, members: true }
 - { id: white_wolf_2, x: 3006, y: 3921, members: true }
 - { id: white_wolf_2, x: 3004, y: 3917, members: true }
+- { id: skeleton_flail, x: 2982, y: 3947 }
+- { id: skeleton_sword_shield, x: 2989, y: 3944 }
+- { id: skeleton_mace_shield, x: 2992, y: 3942 }
 # 11842
 - { id: rat, x: 2960, y: 4280, members: true }
 - { id: rat, x: 2963, y: 4279, members: true }
@@ -1484,6 +1489,19 @@
 - { id: banker_falador, x: 3015, y: 3353, direction: NORTH }
 # 12086
 - { id: musician_edgeville, x: 3057, y: 3472, direction: SOUTH }
+# 12088
+- { id: skeleton_helmet, x: 3008, y: 3595 }
+- { id: skeleton_unarmed, x: 3010, y: 3597 }
+- { id: skeleton_shield_helmet, x: 3011, y: 3590 }
+- { id: skeleton_shield, x: 3012, y: 3592 }
+- { id: skeleton_shield, x: 3012, y: 3597 }
+- { id: skeleton_unarmed, x: 3013, y: 3602 }
+- { id: skeleton_helmet, x: 3016, y: 3589 }
+- { id: skeleton_shield_helmet, x: 3016, y: 3596 }
+- { id: skeleton_shield, x: 3018, y: 3592 }
+- { id: skeleton_shield, x: 3018, y: 3599 }
+- { id: skeleton_helmet, x: 3019, y: 3590 }
+- { id: skeleton_shield_helmet, x: 3021, y: 3593 }
 # 12089
 - { id: giant_rat, x: 3049, y: 3691 }
 - { id: giant_rat_dark_injured, x: 3049, y: 3695 }
@@ -1633,6 +1651,7 @@
 - { id: giant_spider, x: 3135, y: 3340 }
 - { id: rat, x: 3099, y: 3366 }
 - { id: rat, x: 3102, y: 3355 }
+- { id: skeleton_builder, x: 3110, y: 3367 }
 # 12341
 - { id: goblin_orange_hat_spear, x: 3126, y: 3450 }
 - { id: goblin_orange_hat_spear, x: 3121, y: 3422 }
@@ -1667,6 +1686,31 @@
 - { id: jeffery, x: 3108, y: 3500 }
 # 12343
 - { id: mage_of_zamorak_wilderness, x: 3107, y: 3555, members: true }
+- { id: skeleton_shield_helmet, x: 3072, y: 3531 }
+- { id: skeleton_shield, x: 3074, y: 3532 }
+- { id: skeleton_mace_shield, x: 3081, y: 3551 }
+- { id: skeleton_helmet, x: 3096, y: 3559 }
+- { id: skeleton_axe_shield, x: 3102, y: 3569 }
+- { id: skeleton_sword_shield, x: 3103, y: 3567 }
+- { id: skeleton_longsword, x: 3104, y: 3566 }
+- { id: skeleton_unarmed, x: 3106, y: 3548 }
+- { id: skeleton_flail, x: 3106, y: 3567 }
+- { id: skeleton_mace_shield, x: 3106, y: 3570 }
+- { id: skeleton_shield, x: 3107, y: 3528 }
+- { id: skeleton_shield_helmet, x: 3112, y: 3538 }
+- { id: skeleton_unarmed, x: 3116, y: 3524 }
+- { id: skeleton_helmet, x: 3117, y: 3532 }
+# 12346
+- { id: skeleton_axe_shield_85, x: 3092, y: 3717 }
+- { id: skeleton_sword_shield_85, x: 3096, y: 3738 }
+- { id: skeleton_hammer_shield, x: 3097, y: 3728 }
+- { id: skeleton_sword_shield_85, x: 3102, y: 3716 }
+- { id: skeleton_axe_shield_85, x: 3105, y: 3721 }
+- { id: skeleton_axe_shield_85, x: 3113, y: 3740 }
+- { id: skeleton_sword_shield_85, x: 3118, y: 3733 }
+- { id: skeleton_hammer_shield, x: 3128, y: 3719 }
+- { id: skeleton_sword_shield_85, x: 3128, y: 3741 }
+- { id: skeleton_hammer_shield, x: 3130, y: 3754 }
 # 12436
 - { id: combat_instructor, x: 3106, y: 9509 }
 - { id: mining_instructor, x: 3081, y: 9504 }
@@ -1941,6 +1985,10 @@
 - { id: rat, x: 3160, y: 3639 }
 - { id: rat, x: 3156, y: 3634 }
 - { id: rat, x: 3159, y: 3635 }
+# 12603
+- { id: skeleton_mace_shield, x: 3143, y: 3802 }
+- { id: skeleton_mace_shield, x: 3145, y: 3779 }
+- { id: skeleton_axe_shield, x: 3179, y: 3786 }
 # 12604
 - { id: giant_spider_2, x: 3165, y: 3895 }
 - { id: giant_spider_2, x: 3171, y: 3894 }
