@@ -1710,29 +1710,29 @@ bat_swept_away:
 rat_swept_away:
   id: 8209
   examine: "Cheese-eater."
-Lizard_swept_away:
+lizard_swept_away:
   id: 8210
   examine: "Desert-dweller."
-Blackbird_swept_away:
+blackbird_swept_away:
   id: 8211
   examine: "Bleak and beaky."
-Spider_swept_away:
+spider_swept_away:
   id: 8212
   examine: "Isn't eight legs rather excessive?"
-Snail_swept_away:
+snail_swept_away:
   id: 8213
   examine: "Rather quick, considering."
 holding_pen_swept_away:
   id: 8219
 bat_pen_swept_away:
   id: 8220
-Blackbird_pen_swept_away:
+blackbird_pen_swept_away:
   id: 8221
 rat_pen_swept_away:
   id: 8222
-Snail_pen_swept_away:
+snail_pen_swept_away:
   id: 8223
-Spider_pen_swept_away:
+spider_pen_swept_away:
   id: 8224
 reptile_pen_swept_away:
   id: 8225
