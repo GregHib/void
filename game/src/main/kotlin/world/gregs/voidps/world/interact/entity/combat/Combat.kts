@@ -88,6 +88,7 @@ characterDespawn { character ->
 characterCombatStart { character ->
     if (target.inSingleCombat) {
         target.attackers.clear()
+        target.attacker = character
     }
     target.attackers.add(character)
     retaliate(target, character)
