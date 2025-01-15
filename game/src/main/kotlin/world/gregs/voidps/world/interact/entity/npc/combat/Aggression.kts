@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inject
 
 val areas: AreaDefinitions by inject()
 
-huntPlayer(mode = "aggressive") { npc ->
+huntPlayer(mode = "aggressive*") { npc ->
     if (!Settings["world.npcs.aggression", true] || attacking(npc, target)) {
         return@huntPlayer
     }
@@ -34,7 +34,7 @@ huntPlayer(mode = "cowardly") { npc ->
     npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
 }
 
-huntNPC(mode = "aggressive") { npc ->
+huntNPC(mode = "aggressive*") { npc ->
     if (attacking(npc, target)) {
         return@huntNPC
     }

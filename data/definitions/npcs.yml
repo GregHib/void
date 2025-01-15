@@ -2516,7 +2516,7 @@ skeleton_mace_shield:
   wander_radius: 8
   attack_radius: 4
   max_hit_melee: 40
-  hunt_mode: aggressive
+  hunt_mode: aggressive_intolerant
   style: slash
   height: 30
   respawn_delay: 60
