@@ -17,6 +17,10 @@ object NPCAttack {
             }
         }
         if (npc.race.isNotEmpty()) {
+            animation = "${npc.race}_${npc.def["style", "unarmed"]}"
+            if (animationDefinitions.contains(animation)) {
+                return animation
+            }
             animation = "${npc.race}_attack"
             if (animationDefinitions.contains(animation)) {
                 return animation

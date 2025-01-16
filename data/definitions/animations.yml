@@ -1836,4 +1836,9 @@ rope_walk_fall_right: 771
 fall_off_log_left: 2581
 fall_off_log_right: 2582
 fall_on_floor: 767
-stepping_stone: 769
+stepping_stone_step: 769
+stepping_stone_jump: 741
+skeleton_hit: 5489
+skeleton_death: 5491
+skeleton_crush: 5485
+skeleton_slash: 5487

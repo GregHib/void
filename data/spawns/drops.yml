@@ -1701,3 +1701,7 @@ human_pickpocket:
   drops:
     - id: coins
       amount: 3
+skeleton_drop_table:
+  type: all
+  drops:
+    - id: bones

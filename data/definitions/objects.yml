@@ -851,10 +851,10 @@ gate_33_opened:
 gate_33_closed:
   id: 1991
   examine: "Solid bars of iron."
-door_44_opened:
+wilderness_agility_door_opened:
   id: 1543
   examine: "Solid bars of iron."
-door_44_closed:
+wilderness_agility_door_closed:
   id: 2309
 door_68_opened:
   id: 1543
@@ -1077,10 +1077,11 @@ metal_gate_opened:
 metal_gate_closed:
   id: 2259
   examine: "The gate is closed."
-gate_45_opened:
+wilderness_agility_gate_east_opened:
   id: 2040
-gate_45_closed:
+wilderness_agility_gate_east_closed:
   id: 2307
+  gate: false
 gate_53_opened:
   id: 2040
 gate_53_closed:
@@ -1133,10 +1134,11 @@ metal_gate_2_opened:
 metal_gate_2_closed:
   id: 2260
   examine: "The gate is closed."
-gate_46_opened:
+wilderness_agility_gate_west_opened:
   id: 2042
-gate_46_closed:
+wilderness_agility_gate_west_closed:
   id: 2308
+  gate: false
 gate_65_opened:
   id: 2042
 gate_65_closed:
@@ -11990,3 +11992,24 @@ basic_ladder_second:
 basic_ladder_top:
   id: 1746
   examine: "I can climb down this."
+basic_ladder_up:
+  id: 32015
+  examine: "I can climb this."
+wilderness_obstacle_pipe:
+  id: 2288
+  examine: "A pipe I can squeeze through."
+wilderness_rope_swing:
+  id: 2283
+  examine: "Use this to swing over crevices."
+wilderness_agility_ladder_down:
+  id: 14758
+  examine: "I can climb down this."
+wilderness_stepping_stone:
+  id: 37704
+  examine: "Hop, hop, hoppity hop, and then you fall in molten lava."
+wilderness_log_balance:
+  id: 2297
+  examine: "A slippery log I can walk across."
+wilderness_agility_rocks:
+  id: 2328
+  examine: "A rocky outcrop."

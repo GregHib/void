@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectShape
@@ -15,6 +16,7 @@ import world.gregs.voidps.network.login.protocol.visual.VisualMask
 import world.gregs.voidps.network.login.protocol.visual.Visuals
 import world.gregs.voidps.network.login.protocol.visual.update.Hitsplat
 import world.gregs.voidps.network.login.protocol.visual.update.Turn
+import world.gregs.voidps.network.login.protocol.visual.update.player.MoveType
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance
@@ -194,10 +196,13 @@ fun Character.exactMove(delta: Delta, delay: Int = tile.distanceTo(tile.add(delt
     setExactMovement(Delta.EMPTY, delay, start.delta(tile), direction = direction)
 }
 
-fun Character.exactMove(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE) {
+fun Character.exactMove(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE, startDelay: Int = 0) {
     val start = tile
     tele(target)
-    setExactMovement(Delta.EMPTY, delay, start.delta(tile), direction = direction)
+    if (this is Player) {
+        movementType = MoveType.Walk
+    }
+    setExactMovement(Delta.EMPTY, delay, start.delta(tile), startDelay, direction = direction)
 }
 
 val Character.turn: Delta

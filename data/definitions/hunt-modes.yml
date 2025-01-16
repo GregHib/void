@@ -9,6 +9,9 @@ aggressive:
 aggressive_npcs:
   <<: *aggressive
   type: npc
+aggressive_intolerant:
+  <<: *aggressive
+  check_afk: false
 not_busy:
   <<: *aggressive
   check_not_busy: true

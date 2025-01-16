@@ -49,7 +49,8 @@ object Target {
                 }
             }
         }
-        if (target.inSingleCombat && target.inCombat && !target.attackers.contains(source) && source.target != target) {
+        // If the target I'm trying to attack is already in combat and I am not the attacker
+        if (target.inSingleCombat && target.inCombat && target.attacker != source) {
             if (target is NPC) {
                 (source as? Player)?.message("Someone else is fighting that.")
             } else {
@@ -57,7 +58,8 @@ object Target {
             }
             return false
         }
-        if (source.inSingleCombat && source.inCombat && !source.attackers.contains(target) && source.target != target) {
+        // If I am already in combat and my attempted target is not my attacker
+        if (source.inSingleCombat && source.inCombat && source.attacker != target) {
             (source as? Player)?.message("You are already in combat.")
             return false
         }
@@ -121,6 +123,16 @@ internal var Character.target: Character?
 
 val Character.inCombat: Boolean
     get() = hasClock("in_combat")
+
+var Character.attacker: Character?
+    get() = get("attacker")
+    set(value) {
+        if (value == null) {
+            clear("attacker")
+        } else {
+            set("attacker", value)
+        }
+    }
 
 var Character.attackers: MutableList<Character>
     get() = getOrPut("attackers") { ObjectArrayList() }

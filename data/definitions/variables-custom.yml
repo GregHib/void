@@ -493,7 +493,7 @@ agility_course_rewards_claimed:
 agility_course:
   format: list
   persist: true
-  values: [ gnome, barbarian ]
+  values: [ gnome, barbarian, wilderness ]
 barbarian_course_stage:
   persist: true
   format: int
@@ -507,6 +507,12 @@ alfred_grimhands_barcrawl:
   persist: true
   format: list
   values: [ unstarted, signatures, completed ]
+wilderness_course_stage:
+  persist: true
+  format: int
+wilderness_course_laps:
+  persist: true
+  format: int
 barcrawl_signatures:
   persist: true
   format: bitwise
