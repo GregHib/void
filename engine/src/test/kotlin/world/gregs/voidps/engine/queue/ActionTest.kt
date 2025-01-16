@@ -4,6 +4,7 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.entity.character.player.Player
 
 internal class ActionTest {
 
@@ -32,7 +33,7 @@ internal class ActionTest {
         assertTrue(action.removed)
     }
 
-    private fun action(priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, action: suspend Action.() -> Unit = {}): Action {
-        return Action(mockk(relaxed = true), "action", priority, delay, behaviour, null, action)
+    private fun action(priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, action: suspend Action<Player>.() -> Unit = {}): Action<Player> {
+        return Action(mockk(relaxed = true), "action", priority, delay, behaviour, null, action as suspend Action<*>.() -> Unit)
     }
 }
