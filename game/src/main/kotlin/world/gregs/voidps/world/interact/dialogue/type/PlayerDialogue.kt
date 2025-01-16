@@ -14,12 +14,12 @@ import world.gregs.voidps.network.login.protocol.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.Expression
 import world.gregs.voidps.world.interact.dialogue.sendChat
 
-suspend inline fun <reified E : Expression> CharacterContext.player(text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+suspend inline fun <reified E : Expression> CharacterContext<Player>.player(text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val expression = E::class.simpleName!!.toSnakeCase()
     player(expression, text, largeHead, clickToContinue, title)
 }
 
-suspend fun CharacterContext.player(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+suspend fun CharacterContext<Player>.player(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("q8_full").splitLines(text, 380)
     check(lines.size <= 4) { "Maximum player chat lines exceeded ${lines.size} for $player" }
     val id = getInterfaceId(lines.size, clickToContinue)

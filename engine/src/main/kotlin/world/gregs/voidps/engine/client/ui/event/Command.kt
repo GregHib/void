@@ -9,10 +9,12 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 
 data class Command(
-    override val character: Character,
+    val player: Player,
     val prefix: String,
     val content: String
-) : Interaction() {
+) : Interaction<Player>() {
+    override val character = player
+
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 
     override val size = 3

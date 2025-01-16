@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.suspend.InfiniteSuspension.cancel
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.statement
@@ -36,7 +37,7 @@ objectOperate("Pull", "lever_*", override = false) {
     pullLever(player)
 }
 
-suspend fun CharacterContext.pullLever(player: Player) {
+suspend fun CharacterContext<Player>.pullLever(player: Player) {
     player.message("You pull the lever...", ChatType.Filter)
     player.setAnimation("pull_lever")
     player.start("movement_delay", 3)

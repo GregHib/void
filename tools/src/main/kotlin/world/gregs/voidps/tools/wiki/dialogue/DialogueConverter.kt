@@ -214,7 +214,7 @@ object DialogueConverter {
         if (parent != previousParent) {
             val function = branchToFunction[parent]
             if (function != null) {
-                builder.append("suspend fun CharacterContext.").append(function).append("() {\n")
+                builder.append("suspend fun CharacterContext<Player>.").append(function).append("() {\n")
             }
         }
         if (front.isNPCDialogue) {
@@ -249,7 +249,7 @@ object DialogueConverter {
         } else {
             val function = branchToFunction[parent]
             if (function != null) {
-                builder.append("suspend fun CharacterContext.").append(function).append("() {\n")
+                builder.append("suspend fun CharacterContext<Player>.").append(function).append("() {\n")
             }
             return
         }

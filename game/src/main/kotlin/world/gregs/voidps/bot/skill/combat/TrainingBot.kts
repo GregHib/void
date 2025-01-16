@@ -88,7 +88,7 @@ suspend fun Bot.train(map: AreaDefinition, skill: Skill, range: IntRange) {
     while (player.levels.getMax(skill) < range.last + 1 && hasAmmo(skill)) {
         if (target is GameObject) {
             objectOption(target, "Shoot-at")
-            await<Player, ObjectOption>()
+            await<Player, ObjectOption<Player>>()
             await("tick")
         } else if (target is NPC) {
             npcOption(target, "Attack")

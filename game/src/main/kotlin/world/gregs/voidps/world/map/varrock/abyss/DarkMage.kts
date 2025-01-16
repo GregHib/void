@@ -2,6 +2,7 @@ package world.gregs.voidps.world.map.varrock.abyss
 
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
@@ -38,7 +39,7 @@ npcOperate("Repair-pouches", "dark_mage") {
     }
 }
 
-fun ChoiceBuilder<NPCOption>.whyNot() {
+fun ChoiceBuilder<NPCOption<Player>>.whyNot() {
     option<Quiz>("Why not?") {
         npc<Talk>("Well, if my concentration is broken while keeping this rift open, the results won't be pretty.")
         player<Quiz>("In what way?")
@@ -54,7 +55,7 @@ fun ChoiceBuilder<NPCOption>.whyNot() {
     }
 }
 
-fun ChoiceBuilder<NPCOption>.whyAreYouHere() {
+fun ChoiceBuilder<NPCOption<Player>>.whyAreYouHere() {
     option<Quiz>("What are you doing here?") {
         npc<Talk>("Do you mean what am I doing here in the Abyss? Or are you asking me what I consider my ultimate role to be in this voyage that we call life?")
         player<Uncertain>("Err... The first one.")
@@ -69,7 +70,7 @@ fun ChoiceBuilder<NPCOption>.whyAreYouHere() {
     }
 }
 
-fun ChoiceBuilder<NPCOption>.needHelp() {
+fun ChoiceBuilder<NPCOption<Player>>.needHelp() {
     option<Talk>("I need your help with something.") {
         npc<Angry>("What? Oh... very well. What did you want?")
         choice {
@@ -101,13 +102,13 @@ fun ChoiceBuilder<NPCOption>.needHelp() {
     }
 }
 
-fun ChoiceBuilder<NPCOption>.illGo() {
+fun ChoiceBuilder<NPCOption<Player>>.illGo() {
     option<Upset>("Sorry, I'll go.") {
         npc<Angry>("Good. I'm attempting to subdue the elemental mechanisms of the universe to my will. Inane chatter from random idiots is not helping me achieve this!")
     }
 }
 
-fun ChoiceBuilder<NPCOption>.askForPouch() {
+fun ChoiceBuilder<NPCOption<Player>>.askForPouch() {
     option<Quiz>("Can I have a new essence pouch?") {
         if (player.ownsItem("small_pouch")) {
             npc<Angry>("You already have a Pouch. Are you aware of the dimensional turmoil you can cause by using too many pouches at the same time?")

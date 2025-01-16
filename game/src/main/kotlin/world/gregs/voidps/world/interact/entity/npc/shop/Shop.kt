@@ -25,7 +25,7 @@ fun Player.shopInventory(sample: Boolean = hasShopSample()): Inventory {
     }
 }
 
-suspend fun TargetNPCContext.buy(item: String, cost: Int, message: String = "Oh dear. I don't seem to have enough money."): Boolean {
+suspend fun TargetNPCContext<Player>.buy(item: String, cost: Int, message: String = "Oh dear. I don't seem to have enough money."): Boolean {
     player.inventory.transaction {
         remove("coins", cost)
         add(item)

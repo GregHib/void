@@ -9,12 +9,12 @@ import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.type.Area
 
-data class AreaExited(
-    override val character: Character,
+data class AreaExited<C: Character>(
+    override val character: C,
     val name: String,
     val tags: Set<String>,
     val area: Area
-) : SuspendableEvent, CharacterContext {
+) : SuspendableEvent, CharacterContext<C> {
     override var onCancel: (() -> Unit)? = null
 
     override val size = 5
@@ -29,20 +29,20 @@ data class AreaExited(
     }
 }
 
-fun exitArea(area: String = "*", tag: String = "*", handler: suspend AreaExited.() -> Unit) {
-    Events.handle<Player, AreaExited>("player_exit", area, "player", tag, "*") {
+fun exitArea(area: String = "*", tag: String = "*", handler: suspend AreaExited<Player>.() -> Unit) {
+    Events.handle<Player, AreaExited<Player>>("player_exit", area, "player", tag, "*") {
         handler.invoke(this)
     }
 }
 
-fun npcExitArea(npc: String = "*", area: String = "*", tag: String = "*", handler: suspend AreaExited.() -> Unit) {
-    Events.handle<NPC, AreaExited>("npc_exit", area, npc, tag, "*") {
+fun npcExitArea(npc: String = "*", area: String = "*", tag: String = "*", handler: suspend AreaExited<NPC>.() -> Unit) {
+    Events.handle<NPC, AreaExited<NPC>>("npc_exit", area, npc, tag, "*") {
         handler.invoke(this)
     }
 }
 
-fun characterExitArea(area: String = "*", tag: String = "*", handler: suspend AreaExited.() -> Unit) {
-    val block: suspend AreaExited.(EventDispatcher) -> Unit = {
+fun characterExitArea(area: String = "*", tag: String = "*", handler: suspend AreaExited<Character>.() -> Unit) {
+    val block: suspend AreaExited<Character>.(EventDispatcher) -> Unit = {
         handler.invoke(this)
     }
     Events.handle("player_exit", area, "player", tag, "*", handler = block)

@@ -111,7 +111,7 @@ suspend fun PlayerChoice.needAKey(): Unit = option<Talk>("I need to get a key gi
     }
 }
 
-suspend fun CharacterContext.betterBeOffChoice() {
+suspend fun CharacterContext<Player>.betterBeOffChoice() {
     choice {
         betterBeOff()
         option<Neutral>("They're right, you are mad.") {
@@ -131,7 +131,7 @@ suspend fun PlayerChoice.kingsKnight(): Unit = option<Talk>("He's one of the Kin
     }
 }
 
-suspend fun CharacterContext.spinachRoll() {
+suspend fun CharacterContext<Player>.spinachRoll() {
     player.inventory.add("spinach_roll")
     if (player.inventory.transaction.error != TransactionError.None) {
         floorItems.add(player.tile, "spinach_roll")
@@ -182,7 +182,7 @@ suspend fun PlayerChoice.justTellMe(): Unit = option<Talk>("Just tell me if you 
     }
 }
 
-suspend fun TargetNPCContext.startSpell() {
+suspend fun TargetNPCContext<Player>.startSpell() {
     npc<Neutral>("Hurrah! That's all 25 sets of bones.")
     target.setAnimation("traiborn_bone_spell")
     target.setGraphic("traiborn_bone_spell")
@@ -207,12 +207,12 @@ suspend fun TargetNPCContext.startSpell() {
     npc<Neutral>("Not a problem for a friend of Sir What's-his-face.")
 }
 
-suspend fun CharacterContext.somewhereToBe() {
+suspend fun CharacterContext<Player>.somewhereToBe() {
     npc<Uncertain>("Don't you have somewhere to be, young thingummywut? You still have that key you asked me for.")
     player<Talk>("You're right. I've got a demon to slay.")
 }
 
-suspend fun NPCOption.bonesCheck() {
+suspend fun NPCOption<Player>.bonesCheck() {
     when (player.bonesRequired) {
         0 -> lostKey()
         -1 -> choice {
@@ -235,13 +235,13 @@ suspend fun NPCOption.bonesCheck() {
     }
 }
 
-suspend fun CharacterContext.lostKey() {
+suspend fun CharacterContext<Player>.lostKey() {
     player<Upset>("I've lost the key you gave to me.")
     npc<Uncertain>("Yes I know, it was returned to me. If you want it back you're going to have to collect another 25 sets of bones.")
     player.bonesRequired = 25
 }
 
-suspend fun TargetNPCContext.giveBones() {
+suspend fun TargetNPCContext<Player>.giveBones() {
     val removed = player.inventory.removeToLimit("bones", player.bonesRequired)
     statement("You give Traiborn $removed ${"set".plural(removed)} of bones.")
     player.bonesRequired -= removed

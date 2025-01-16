@@ -3,6 +3,7 @@ package world.gregs.voidps.world.map.lumbridge
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.activity.quest.quest
@@ -21,7 +22,7 @@ npcOperate("Talk-to", "restless_ghost") {
     }
 }
 
-suspend fun CharacterContext.ghost() {
+suspend fun CharacterContext<Player>.ghost() {
     if (player.equipment.contains("ghostspeak_amulet")) {
         player<Neutral>("Hello ghost, how are you?")
         npc<Neutral>("Not very good actually.")
@@ -64,7 +65,7 @@ suspend fun CharacterContext.ghost() {
     }
 }
 
-suspend fun CharacterContext.noGhostAmulet() {
+suspend fun CharacterContext<Player>.noGhostAmulet() {
     player<Neutral>("Hello ghost, how are you?")
     npc<Neutral>("Wooo wooo wooooo!")
     choice {
@@ -130,14 +131,14 @@ suspend fun CharacterContext.noGhostAmulet() {
 }
 
 
-suspend fun CharacterContext.dontSpeakGhost() {
+suspend fun CharacterContext<Player>.dontSpeakGhost() {
     npc<Neutral>("Woo woo?")
     player<Neutral>("Nope, still don't understand you.")
     npc<Neutral>("WOOOOOOOOO!")
     player<Neutral>("Never mind.")
 }
 
-suspend fun CharacterContext.notSoSure() {
+suspend fun CharacterContext<Player>.notSoSure() {
     npc<Neutral>("Wooo woo?")
     player<Angry>("Well, if you INSIST.")
     npc<Neutral>("Wooooooooo!")
@@ -146,7 +147,7 @@ suspend fun CharacterContext.notSoSure() {
     player<Neutral>("Bye.")
 }
 
-suspend fun CharacterContext.task() {
+suspend fun CharacterContext<Player>.task() {
     npc<Neutral>("I should think it's because I've lost my head.")
     player<Neutral>("What? I can see your head perfectly fine well, see through it at least.")
     npc<Neutral>("No, no, I mean from my REAL body. If you look in my coffin you'll see my corpse is without its skull. Last thing I remember was being attacked by a warlock while I was mining. It was at the mine just south of this")
@@ -155,7 +156,7 @@ suspend fun CharacterContext.task() {
     player["the_restless_ghost"] = "mining_spot"
 }
 
-suspend fun CharacterContext.helpMe() {
+suspend fun CharacterContext<Player>.helpMe() {
     choice {
         option<Happy>("Yes, ok. Do you know WHY you're a ghost?") {
             task()
@@ -168,7 +169,7 @@ suspend fun CharacterContext.helpMe() {
     }
 }
 
-suspend fun CharacterContext.miningSpot() {
+suspend fun CharacterContext<Player>.miningSpot() {
     if (player.equipment.contains("ghostspeak_amulet")) {
         if (player.inventory.contains("muddy_skull")) {
             player<Neutral>("Hello ghost, how are you?")

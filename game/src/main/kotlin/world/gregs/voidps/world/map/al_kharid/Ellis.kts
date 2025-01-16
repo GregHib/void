@@ -54,7 +54,7 @@ npcOperate("Trade", "ellis", "tanner") {
     player.open("tanner")
 }
 
-suspend fun NPCOption.leather() {
+suspend fun NPCOption<Player>.leather() {
     choice("What would you like to say?") {
         option<Quiz>("Can I buy some leather then?") {
             npc<Talk>("I make leather from animal hides. Bring me some cowhides and one gold coin per hide, and I'll tan them into soft leather for you.")

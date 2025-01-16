@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.get
@@ -15,7 +16,7 @@ import world.gregs.voidps.world.activity.quest.questComplete
 
 private const val QUEST_START_ID = "quest_intro"
 
-suspend fun CharacterContext.startQuest(questId: String): Boolean {
+suspend fun CharacterContext<Player>.startQuest(questId: String): Boolean {
     check(player.open(QUEST_START_ID)) { "Unable to open destroy dialogue for $questId $player" }
     val questDefinitions: QuestDefinitions = get()
     val quest = questDefinitions.getOrNull(questId)

@@ -4,12 +4,13 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
 
 private const val DESTROY_INTERFACE_ID = "dialogue_confirm_destroy"
 
-suspend fun CharacterContext.destroy(item: String, text: String): Boolean {
+suspend fun CharacterContext<Player>.destroy(item: String, text: String): Boolean {
     val itemDecoder: ItemDefinitions = get()
     check(player.open(DESTROY_INTERFACE_ID)) { "Unable to open destroy dialogue for $item $player" }
     player.interfaces.sendText(DESTROY_INTERFACE_ID, "line1", text.trimIndent().replace("\n", "<br>"))

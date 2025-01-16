@@ -51,7 +51,7 @@ npcOperate("Talk-to", "border_guard_al_kharid*") {
 
 fun getGuard(player: Player) = get<NPCs>()[player.tile.regionLevel].firstOrNull { it.id.startsWith("border_guard_al_kharid") }
 
-suspend fun CharacterContext.dialogue(player: Player, npc: NPC? = getGuard(player)) {
+suspend fun CharacterContext<Player>.dialogue(player: Player, npc: NPC? = getGuard(player)) {
     if (npc == null) {
         return
     }

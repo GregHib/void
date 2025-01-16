@@ -135,7 +135,7 @@ npcOperate("Talk-to", "mage_of_zamorak_varrock") {
     }
 }
 
-fun ChoiceBuilder<NPCOption>.aboutGroup() {
+fun ChoiceBuilder<NPCOption<Player>>.aboutGroup() {
     option<Quiz>("Can you tell me more about your group?") {
         npc<Neutral>("I suppose you have proven yourself trustworthy. We are a group of mages in service to Zamorak. Our group is called the Zamorak Magical Institute, or Z.M.I. for short.")
         npc<Angry>("Few actually know of us. Saradominist groups like the Order of Wizards hold sway over these lands, so we are forced to work in the shadows. However, make no mistake, our power far exceeds theirs.")
@@ -158,7 +158,7 @@ fun ChoiceBuilder<NPCOption>.aboutGroup() {
     }
 }
 
-fun ChoiceBuilder<NPCOption>.aboutAbyss() {
+fun ChoiceBuilder<NPCOption<Player>>.aboutAbyss() {
     option<Quiz>("Can you tell me more about the Abyss?") {
         npc<Talk>("It is a hard place to describe. We often refer to it as another plane, but that isn't quite accurate. If anything, it is more like a plane that sits between all other planes.")
         player<Quiz>("Right... And what does it have to do with runecrafting?")
@@ -182,7 +182,7 @@ fun ChoiceBuilder<NPCOption>.aboutAbyss() {
     }
 }
 
-suspend fun NPCOption.takenOrb() {
+suspend fun NPCOption<Player>.takenOrb() {
     npc<Happy>("You have done well. Now, time for us to uphold our end of the bargin.")
     npc<Neutral>("The reason we are able to craft so many runes is because we do not visit the runic altars in the traditional way. Instead, we have found a way to teleport to them directly.")
     player<Quiz>("How?")
@@ -204,7 +204,7 @@ suspend fun NPCOption.takenOrb() {
     player.exp(Skill.Runecrafting, 1000.0)
 }
 
-fun ChoiceBuilder<NPCOption>.whereRunes() {
+fun ChoiceBuilder<NPCOption<Player>>.whereRunes() {
     option<Quiz>("Where do you get your runes from?") {
         npc<Uncertain>("Well we craft them of course.")
         player<Uncertain>("We?")
@@ -232,7 +232,7 @@ fun ChoiceBuilder<NPCOption>.whereRunes() {
     }
 }
 
-suspend fun NPCOption.accessLostMine() {
+suspend fun NPCOption<Player>.accessLostMine() {
     npc<Angry>("Until recently, our runecrafting secrets allowed us to produce runes at a far superior rate compared to the inept Order of Wizards, but something has changed.")
     npc<Angry>("From what we can gather, they've somehow rediscovered how to access the lost Rune Essence Mine.")
     player<Happy>("Ah, well I know all about that. I was actually the one to help them do it!")
@@ -262,7 +262,7 @@ suspend fun NPCOption.accessLostMine() {
     }
 }
 
-suspend fun NPCOption.deal() {
+suspend fun NPCOption<Player>.deal() {
     npc<Uncertain>("Alright, if you help us access the Rune Essence Mine, we will share our runecrafting secrets with you in return.")
     player["enter_abyss_offer"] = true
     offer()
@@ -296,7 +296,7 @@ fun teleport(player: Player, target: NPC) {
     }
 }
 
-suspend fun NPCOption.offer() {
+suspend fun NPCOption<Player>.offer() {
     choice {
         option<Talk>("Deal.") {
             npc<Talk>("Good. Now, all I need from you is the spell that will teleport me to the Rune Essence Mine.")

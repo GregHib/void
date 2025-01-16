@@ -2,6 +2,7 @@ package world.gregs.voidps.world.map.al_kharid.duel_arena
 
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Neutral
 import world.gregs.voidps.world.interact.dialogue.Quiz
@@ -20,7 +21,7 @@ npcOperate("Heal", "surgeon_general_tafani") {
     heal()
 }
 
-suspend fun NPCOption.menu() {
+suspend fun NPCOption<Player>.menu() {
     choice {
         option<Uncertain>("Can you heal me?") {
             heal()

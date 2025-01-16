@@ -2,9 +2,11 @@ package world.gregs.voidps.world.map.ardougne
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.world.activity.quest.questComplete
@@ -45,7 +47,7 @@ npcOperate("Teleport", "wizard_cromperty") {
     }
 }
 
-fun ChoiceBuilder<NPCOption>.whatHaveYouInvented() {
+fun ChoiceBuilder<NPCOption<Player>>.whatHaveYouInvented() {
     option<Quiz>("So what have you invented?") {
         npc<Happy>("Ah! My latest invention is my patent pending teleportation block! It emits a low level magical signal, that will allow me to locate it anywhere in the world, and teleport anything")
         npc<Happy>("directly to it! I hope to revolutionise the entire teleportation system! Don't you think I'm great? Uh, I mean it's great?")
@@ -68,16 +70,16 @@ fun ChoiceBuilder<NPCOption>.whatHaveYouInvented() {
     }
 }
 
-fun ChoiceBuilder<NPCOption>.teleportMe() {
+fun ChoiceBuilder<NPCOption<Player>>.teleportMe() {
     option<Quiz>("Can I be teleported please?") {
         npc<Happy>("By all means! I'm afraid I can't give you any specifics as to where you will come out however. Presumably wherever the other block is located.")
         choice {
             option<Talk>("Yes, that sounds good. Teleport me!") {
                 npc<Happy>("Okey dokey! Ready?")
                 player.setGraphic("curse_hit")
-                npc.setGraphic("curse_cast")
-                npc.forceChat = "Dipsolum sententa sententi!"
-                npc.shoot("curse", player.tile, offset = 64)
+                target.setGraphic("curse_cast")
+                target.forceChat = "Dipsolum sententa sententi!"
+                target.shoot("curse", player.tile, offset = 64)
                 player.softQueue("cromperty_teleport", 2) {
                     player.tele(2649, 3271)
                 }

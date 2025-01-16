@@ -56,7 +56,7 @@ itemOnObjectOperate(obj = "loom_*", itemDef = "weaving", arrive = false) {
     weave(target, item, amount)
 }
 
-fun CharacterContext.weave(obj: GameObject, item: Item, amount: Int) {
+fun CharacterContext<Player>.weave(obj: GameObject, item: Item, amount: Int) {
     val data = item.weaving
     val current = player.inventory.count(item.id)
     if (current < data.amount) {

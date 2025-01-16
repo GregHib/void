@@ -74,7 +74,7 @@ interfaceClose("make_mould*") { player ->
     player.sendScript("clear_dialogues")
 }
 
-fun CharacterContext.make(component: String, amount: Int) {
+fun CharacterContext<Player>.make(component: String, amount: Int) {
     val type = component.split("options_").first().removePrefix("make_").removeSuffix("_")
     val index = component.split("_").last().toInt()
     val gem = gems[index]

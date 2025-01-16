@@ -2,6 +2,7 @@ package world.gregs.voidps.world.map.musicians
 
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.interact.dialogue.Drunk
 import world.gregs.voidps.world.interact.dialogue.Pleased
 import world.gregs.voidps.world.interact.dialogue.Quiz
@@ -15,7 +16,7 @@ npcOperate("Talk-to", "drunken_musician") {
     choice()
 }
 
-suspend fun CharacterContext.choice() {
+suspend fun CharacterContext<Player>.choice() {
     choice {
         option<Quiz>("Who are you?") {
             npc<Drunk>("Me? I'sh mooshian! Lemme her help youse relaxsh: sit down, reshst your weery limz an' stuff. You'll feel mush better. Like me, I ffeel great!")
@@ -33,7 +34,7 @@ suspend fun CharacterContext.choice() {
     }
 }
 
-suspend fun CharacterContext.resting() {
+suspend fun CharacterContext<Player>.resting() {
     choice("Can I ask you some questions about resting?") {
         option("How does resting work?") {
             player<Quiz>("So how does resting work?")

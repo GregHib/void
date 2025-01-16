@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
@@ -78,31 +79,31 @@ npcOperate("Collect", "eniola") {
     openCollection()
 }
 
-fun ChoiceBuilder<NPCOption>.accessBank() {
+fun ChoiceBuilder<NPCOption<Player>>.accessBank() {
     option("I'd like to access my bank account, please.") {
         openBank()
     }
 }
 
-fun ChoiceBuilder<NPCOption>.collectionBox() {
+fun ChoiceBuilder<NPCOption<Player>>.collectionBox() {
     option("I'd like to see my collection box.") {
         openCollection()
     }
 }
 
-fun ChoiceBuilder<NPCOption>.pinSettings() {
+fun ChoiceBuilder<NPCOption<Player>>.pinSettings() {
     option("I'd like to check my PIN settings.") {
     }
 }
 
-suspend fun NPCOption.openCollection() {
+suspend fun NPCOption<Player>.openCollection() {
     if (runePayment()) {
         player.open("collection_box")
     }
 }
 
 
-suspend fun NPCOption.openBank() {
+suspend fun NPCOption<Player>.openBank() {
     if (runePayment()) {
         player.open("bank")
     }
@@ -124,7 +125,7 @@ val runes = listOf("air_rune",
     "soul_rune"
 )
 
-suspend fun CharacterContext.runePayment(): Boolean {
+suspend fun CharacterContext<Player>.runePayment(): Boolean {
     player.open("ourania_bank_charge")
     val rune = StringSuspension()
     player.close("ourania_bank_charge")

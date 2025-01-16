@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -45,7 +46,7 @@ itemOnNPCOperate("pharaohs_sceptre", "guardian_mummy") {
     sceptreRecharging()
 }
 
-suspend fun CharacterContext.notAnother() {
+suspend fun CharacterContext<Player>.notAnother() {
     npc<Talk>("*sigh* Not another one.")
     player<Quiz>("Another what?")
     npc<Talk>("Another 'archaeologist'.")
@@ -56,7 +57,7 @@ suspend fun CharacterContext.notAnother() {
     playPyramidPlunder()
 }
 
-suspend fun CharacterContext.playPyramidPlunder() {
+suspend fun CharacterContext<Player>.playPyramidPlunder() {
     choice("Play the 'Pyramid Plunder' minigame?") {
         option<Talk>("That sounds like fun, what do I do?") {
             soundsLikeFun()
@@ -77,12 +78,12 @@ suspend fun CharacterContext.playPyramidPlunder() {
     }
 }
 
-suspend fun CharacterContext.itIsDone() {
+suspend fun CharacterContext<Player>.itIsDone() {
     npc<Talk>("It is done.")
     playPyramidPlunder()
 }
 
-suspend fun CharacterContext.sceptreRecharging() {
+suspend fun CharacterContext<Player>.sceptreRecharging() {
     player<Talk>("This sceptre seems to have run out of charges.")
     npc<Talk>("You shouldn't have that thing in the first place, thief!")
     player<Talk>("If I gave you back some of the artefacts I've taken from the tomb, would you recharge the sceptre for me.")
@@ -115,7 +116,7 @@ suspend fun CharacterContext.sceptreRecharging() {
     }
 }
 
-suspend fun CharacterContext.sceptreDischarging() {
+suspend fun CharacterContext<Player>.sceptreDischarging() {
     val count = player.inventory.items.count { it.id.startsWith("pharaohs_sceptre_") }
     if (count < 0) {
         player<Talk>("I want to charge my sceptre.")
@@ -166,7 +167,7 @@ itemOnNPCOperate("*", "guardian_mummy") {
     player.message("The Mummy is not interested in this")
 }
 
-suspend fun CharacterContext.soundsLikeFun() {
+suspend fun CharacterContext<Player>.soundsLikeFun() {
     npc<Talk>("You have five minutes to explore the treasure rooms and collect as many artefacts as you can.")
     npc<Talk>("The artefacts are in the urns, chests and sarcophagi found in each room.")
     npc<Talk>("There are eight treasure rooms, each subsequent room requires higher thieving skills to both enter the room and thieve from the urns and other containers.")
@@ -178,7 +179,7 @@ suspend fun CharacterContext.soundsLikeFun() {
     anymoreQuestions("How do I get the artefacts?")
 }
 
-suspend fun CharacterContext.anymoreQuestions(option: String) {
+suspend fun CharacterContext<Player>.anymoreQuestions(option: String) {
     choice("Do you have any more questions?") {
         option<Talk>("How do I leave the game?") {
             howDoILeave()
@@ -195,18 +196,18 @@ suspend fun CharacterContext.anymoreQuestions(option: String) {
     }
 }
 
-suspend fun CharacterContext.iKnowWhatImDoing() {
+suspend fun CharacterContext<Player>.iKnowWhatImDoing() {
     statement("Pyramid Plunder is not currently implemented.")
 //    npc<Talk>("Fine, I'll take you to the first room now...")
 }
 
-suspend fun CharacterContext.howDoILeave() {
+suspend fun CharacterContext<Player>.howDoILeave() {
     npc<Talk>("If at any point you decide you need to leave just use a glowing door.")
     npc<Talk>("The game will end and you will be taken out of the pyramid.")
     anymoreQuestions("What about the chests and sarcophagi?")
 }
 
-suspend fun CharacterContext.howToGetArtefacts() {
+suspend fun CharacterContext<Player>.howToGetArtefacts() {
     npc<Talk>("The artefacts are in the urns, chests and sarcophagi.")
     npc<Talk>("Urns contain snakes that guard them.")
     npc<Talk>("The sarcophagi take some strength to open. They take a while to open.")
@@ -215,7 +216,7 @@ suspend fun CharacterContext.howToGetArtefacts() {
     anymoreQuestions("What about the chests and sarcophagi?")
 }
 
-suspend fun CharacterContext.whatToDoWithArtefacts() {
+suspend fun CharacterContext<Player>.whatToDoWithArtefacts() {
     npc<Talk>("There are a number of different artefacts, of three main types. The least valuable are the pottery statuettes and scarabs, and the ivory combs.")
     npc<Talk>("Next are the stone scarabs, statuettes and seals, and finally the gold versions of those artefacts.")
     npc<Talk>("They are not old, but are well made.")
@@ -227,7 +228,7 @@ suspend fun CharacterContext.whatToDoWithArtefacts() {
     anymoreQuestionsSceptre()
 }
 
-suspend fun CharacterContext.anymoreQuestionsSceptre() {
+suspend fun CharacterContext<Player>.anymoreQuestionsSceptre() {
     choice("Do you have any more questions?") {
         option<Talk>("How do I leave the game?") {
             howDoILeave()
@@ -244,14 +245,14 @@ suspend fun CharacterContext.anymoreQuestionsSceptre() {
     }
 }
 
-suspend fun CharacterContext.leaveTheTomb() {
+suspend fun CharacterContext<Player>.leaveTheTomb() {
     choice("Leave the Tomb?") {
         option("Yes, I'm out of here.")
         option("Ah, I think I'll stay a little longer.")
     }
 }
 
-suspend fun CharacterContext.whereDidYouHearAboutThat() {
+suspend fun CharacterContext<Player>.whereDidYouHearAboutThat() {
     npc<Talk>("Where did you hear about that?")
     player<Talk>("I couldn't possibly say.")
     npc<Talk>("It's the only genuinely valuable artefact in this place.")
@@ -261,7 +262,7 @@ suspend fun CharacterContext.whereDidYouHearAboutThat() {
     anymoreQuestions("What about the chests and sarcophagi?")
 }
 
-suspend fun CharacterContext.discharge(index: Int) {
+suspend fun CharacterContext<Player>.discharge(index: Int) {
     if (player.inventory.replace(index, player.inventory[index].id, "pharaohs_sceptre")) {
         itIsDone()
     }

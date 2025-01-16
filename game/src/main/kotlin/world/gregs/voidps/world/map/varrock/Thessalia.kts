@@ -60,7 +60,7 @@ fun PlayerChoice.openShop(): Unit = option("I'd just like to buy some clothes.")
     player.openShop("thessalias_fine_clothes")
 }
 
-suspend fun CharacterContext.startMakeover() {
+suspend fun CharacterContext<Player>.startMakeover() {
     player.closeDialogue()
     if (!player.equipment.isEmpty()) {
         npc<Talk>("You're not able to try on my clothes with all that armour. Take it off and then speak to me again.")

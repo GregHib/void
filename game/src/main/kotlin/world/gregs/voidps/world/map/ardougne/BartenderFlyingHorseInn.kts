@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.world.interact.dialogue.Quiz
@@ -43,7 +44,7 @@ itemOnNPCOperate("barcrawl_card", "bartender_flying_horse_inn") {
     barCrawl()
 }
 
-suspend fun TargetNPCContext.barCrawl() = barCrawlDrink(
+suspend fun TargetNPCContext<Player>.barCrawl() = barCrawlDrink(
     effects = {
         player.message("signing your barcrawl card")
         player.damage(player.levels.get(Skill.Constitution) / 4)

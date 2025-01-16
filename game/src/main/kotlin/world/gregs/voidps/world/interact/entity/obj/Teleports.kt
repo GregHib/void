@@ -23,11 +23,11 @@ class Teleports {
 
     private lateinit var teleports: Map<String, Map<Int, TeleportDefinition>>
 
-    suspend fun teleport(objectOption: ObjectOption, option: String = objectOption.option): Boolean {
-        return teleport(objectOption, objectOption.player, objectOption.def, objectOption.target.tile, option)
+    suspend fun teleport(objectOption: ObjectOption<Player>, option: String = objectOption.option): Boolean {
+        return teleport(objectOption, objectOption.character, objectOption.def, objectOption.target.tile, option)
     }
 
-    suspend fun teleport(context: CharacterContext, player: Player, def: ObjectDefinition, targetTile: Tile, option: String): Boolean {
+    suspend fun teleport(context: CharacterContext<Player>, player: Player, def: ObjectDefinition, targetTile: Tile, option: String): Boolean {
         val id = def.stringId.ifEmpty { def.id.toString() }
         val definition = teleports[option]?.get(targetTile.id) ?: return false
         if (definition.id != id) {
