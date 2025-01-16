@@ -130,7 +130,7 @@ interfaceClose("smithing") { player ->
     player.sendScript("clear_dialogues")
 }
 
-suspend fun CharacterContext.smith(player: Player, metal: String, type: String, amount: Int) {
+suspend fun CharacterContext<Player>.smith(player: Player, metal: String, type: String, amount: Int) {
     val item = if (metal == "steel" && type == "lantern") {
         "bullseye_lantern_frame"
     } else if (metal == "mithril" && type == "grapple") {
@@ -155,7 +155,7 @@ suspend fun CharacterContext.smith(player: Player, metal: String, type: String, 
     smith(smithing, metal, bars, quantity, type, item, actualAmount, true)
 }
 
-suspend fun CharacterContext.smith(
+suspend fun CharacterContext<Player>.smith(
     smithing: Smithing,
     metal: String,
     bars: Int,

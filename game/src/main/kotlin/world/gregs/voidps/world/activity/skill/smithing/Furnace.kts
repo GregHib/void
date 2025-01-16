@@ -56,7 +56,7 @@ itemOnObjectOperate("*_ore", "furnace*", arrive = false) {
     smeltingOptions(player, target, list)
 }
 
-suspend fun CharacterContext.smeltingOptions(
+suspend fun CharacterContext<Player>.smeltingOptions(
     player: Player,
     gameObject: GameObject,
     bars: List<String>

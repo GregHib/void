@@ -7,15 +7,15 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.clearAnimation
 
-class Action(
-    override val character: Character,
+class Action<C : Character>(
+    override val character: C,
     val name: String,
     val priority: ActionPriority,
     delay: Int = 0,
     val behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
     override var onCancel: (() -> Unit)? = { character.clearAnimation() },
-    var action: suspend Action.() -> Unit = {}
-) : CharacterContext {
+    var action: suspend Action<*>.() -> Unit = {}
+) : CharacterContext<C> {
     var suspension: CancellableContinuation<Unit>? = null
     var remaining: Int = delay
         private set

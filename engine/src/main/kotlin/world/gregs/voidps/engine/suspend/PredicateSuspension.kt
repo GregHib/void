@@ -23,7 +23,7 @@ class PredicateSuspension(
     }
 
     companion object {
-        context(CharacterContext) suspend operator fun invoke(predicate: () -> Boolean) {
+        context(CharacterContext<*>) suspend operator fun invoke(predicate: () -> Boolean) {
             if (predicate.invoke()) {
                 return
             }

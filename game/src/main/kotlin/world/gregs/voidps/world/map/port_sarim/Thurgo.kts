@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.holdsItem
@@ -25,7 +26,7 @@ npcOperate("Talk-to", "thurgo") {
     }
 }
 
-suspend fun Interaction.menuReplacementSword() {
+suspend fun Interaction<Player>.menuReplacementSword() {
     choice {
         madeSword()
         replacementSword()
@@ -76,7 +77,7 @@ suspend fun PlayerChoice.replacementSword() = option<Happy>(
     npc<HappyOld>("Well, I need a blurite ore and two iron bars. The only place I know to get blurite is under this cliff here, but it is guarded by a very powerful ice giant.")
 }
 
-suspend fun Interaction.menuAboutSword() {
+suspend fun Interaction<Player>.menuAboutSword() {
     choice {
         aboutSword()
         redberryPie()
@@ -84,7 +85,7 @@ suspend fun Interaction.menuAboutSword() {
     }
 }
 
-suspend fun Interaction.menuSword() {
+suspend fun Interaction<Player>.menuSword() {
     choice {
         specialSword()
         redberryPie()
@@ -92,7 +93,7 @@ suspend fun Interaction.menuSword() {
     }
 }
 
-suspend fun Interaction.menu() {
+suspend fun Interaction<Player>.menu() {
     choice {
         imcandoDwarf()
         redberryPie()
@@ -155,7 +156,7 @@ suspend fun PlayerChoice.whatCape() = option("What is that cape you're wearing?"
     thatCape()
 }
 
-suspend fun CharacterContext.thatCape() {
+suspend fun CharacterContext<Player>.thatCape() {
     player<Quiz>("What is that cape you're wearing?")
     npc<HappyOld>("It's a Skillcape of Smithing. It shows that I'm a master blacksmith, but that's only to be expected - after all, my ancestors were the greatest blacksmiths in dwarven history.")
     npc<HappyOld>("If you ever achieve level 99 Smithing you'll be able to wear a cape like this, and receive more experience when smelting gold ore.")

@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.suspend.approachRange
@@ -65,7 +66,7 @@ itemOnNPCApproach("barcrawl_card", "bartender_blue_moon_inn") {
     barCrawl()
 }
 
-suspend fun TargetNPCContext.barCrawl() = barCrawlDrink(
+suspend fun TargetNPCContext<Player>.barCrawl() = barCrawlDrink(
     start = {
         npc<Sad>("Oh no not another of you guys. These barbarian barcrawls cause too much damage to my bar.")
         npc<Talk>("You're going to have to pay 50 gold for the Uncle Humphrey's Gutrot.")

@@ -69,13 +69,13 @@ enterArea("demon_slayer_stone_circle") {
     }
 }
 
-fun CharacterContext.setCutsceneEnd(instance: Region) {
+fun CharacterContext<Player>.setCutsceneEnd(instance: Region) {
     player.queue("demon_slayer_delrith_cutscene_end", 1, LogoutBehaviour.Accelerate) {
         endCutscene(instance, defaultTile)
     }
 }
 
-fun CharacterContext.endCutscene(instance: Region, tile: Tile? = null) {
+fun CharacterContext<Player>.endCutscene(instance: Region, tile: Tile? = null) {
     val offset: Delta = player["demon_slayer_offset"] ?: return
     player.tele(tile ?: player.tile.minus(offset))
     stopCutscene(instance)
@@ -114,7 +114,7 @@ fun destroyInstance(player: Player) {
     }
 }
 
-suspend fun CharacterContext.cutscene() {
+suspend fun CharacterContext<Player>.cutscene() {
     val region = Region(12852)
     val instance = startCutscene(region)
     val offset = instance.offset(region)
@@ -289,7 +289,7 @@ npcLevelChange("delrith", Skill.Constitution) { npc ->
     npc.mode = PauseMode
 }
 
-fun CharacterContext.questComplete() {
+fun CharacterContext<Player>.questComplete() {
     player.setAnimation("silverlight_showoff")
     player.setGraphic("silverlight_sparkle")
     player.playSound("equip_silverlight")

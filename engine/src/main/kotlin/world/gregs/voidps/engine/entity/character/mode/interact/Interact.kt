@@ -28,18 +28,18 @@ import world.gregs.voidps.engine.suspend.resumeSuspension
 class Interact(
     character: Character,
     val target: Entity,
-    interaction: Interaction,
+    interaction: Interaction<*>,
     strategy: TargetStrategy = TargetStrategy(target),
     private var approachRange: Int? = null,
     private val faceTarget: Boolean = true,
     shape: Int? = null
 ) : Movement(character, strategy, shape) {
 
-    private var approach: Interaction = interaction.copy(true)
-    private var operate: Interaction = interaction.copy(false)
+    private var approach: Interaction<*> = interaction.copy(true)
+    private var operate: Interaction<*> = interaction.copy(false)
     private var clearInteracted = false
 
-    fun updateInteraction(interaction: Interaction) {
+    fun updateInteraction(interaction: Interaction<*>) {
         approach = interaction.copy(true)
         operate = interaction.copy(false)
         clearInteracted = true
@@ -151,7 +151,7 @@ class Interact(
     /**
      * Continue any suspended, clear any finished or start a new interaction
      */
-    private fun launch(event: Interaction): Boolean {
+    private fun launch(event: Interaction<*>): Boolean {
         if (character.suspension != null) {
             character.resumeSuspension()
             return true

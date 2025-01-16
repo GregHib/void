@@ -24,7 +24,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
  * to allow movement & [Interact] to complete and start [combat] on the same tick
  * After [Interact] is complete switch to using [CombatMovement]
  */
-onEvent<CombatInteraction> {
+onEvent<CombatInteraction<*>> {
     combat(character, target)
 }
 

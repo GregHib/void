@@ -60,7 +60,7 @@ suspend fun PlayerChoice.more(): Unit = option<Quiz>("Tell me more about this 'm
     whatDoYouSay()
 }
 
-suspend fun CharacterContext.whatDoYouSay() {
+suspend fun CharacterContext<Player>.whatDoYouSay() {
     npc<Uncertain>("So, what do you say? Feel like a change?")
     choice {
         start()
@@ -108,7 +108,7 @@ suspend fun PlayerChoice.amulet(): Unit = option<Pleased>("Cool amulet! Can I ha
     }
 }
 
-suspend fun CharacterContext.explain() {
+suspend fun CharacterContext<Player>.explain() {
     npc<Pleased>("I can alter your physical form if you wish. Would you like me to perform my magicks on you?")
     choice {
         more()

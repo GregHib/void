@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.approachRange
@@ -39,7 +40,7 @@ objectOperate("Use", "bank_*", arrive = false) {
     menu()
 }
 
-suspend fun CharacterContext.menu() {
+suspend fun CharacterContext<Player>.menu() {
     choice {
         option("I'd like to access my bank account, please.", block = { player.open("bank") })
         option("I'd like to check my PIN settings.", block = { player.open("bank_pin") })
@@ -73,7 +74,7 @@ npcApproach("Collect", "banker*") {
     player.open("collection_box")
 }
 
-fun CharacterContext.achievement() {
+fun CharacterContext<Player>.achievement() {
     if (!player["you_can_bank_on_us_task", false]) {
         player["you_can_bank_on_us_task"] = true
         player.addVarbit("task_reward_items", "red_dye")

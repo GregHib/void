@@ -56,7 +56,7 @@ floorItemOperate("Light") {
     lightFire(player, target)
 }
 
-suspend fun CharacterContext.lightFire(
+suspend fun CharacterContext<Player>.lightFire(
     player: Player,
     floorItem: FloorItem
 ) {

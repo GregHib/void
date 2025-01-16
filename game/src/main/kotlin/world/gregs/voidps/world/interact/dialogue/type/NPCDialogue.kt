@@ -17,18 +17,18 @@ import world.gregs.voidps.network.login.protocol.encode.npcDialogueHead
 import world.gregs.voidps.world.interact.dialogue.Expression
 import world.gregs.voidps.world.interact.dialogue.sendChat
 
-suspend inline fun <reified E : Expression> CharacterContext.npc(text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
+suspend inline fun <reified E : Expression> CharacterContext<Player>.npc(text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
     val expression = E::class.simpleName!!.toSnakeCase()
     npc(expression, text, largeHead, clickToContinue, title)
 }
 
-suspend inline fun <reified E : Expression> CharacterContext.npc(npcId: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
+suspend inline fun <reified E : Expression> CharacterContext<Player>.npc(npcId: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
     val expression = E::class.simpleName!!.toSnakeCase()
     npc(npcId, expression, text, largeHead, clickToContinue, title)
 }
 
 @JvmName("npcExpression")
-suspend fun CharacterContext.npc(expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
+suspend fun CharacterContext<Player>.npc(expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
     val target: NPC = player["dialogue_target"] ?: throw IllegalArgumentException("No npc specified for dialogue. Please use player.talkWith(npc) or npc(npcId, text).")
     val id = target["transform_id", player.get<NPCDefinition>("dialogue_def")?.stringId ?: target.id]
     if (target["faces", true]) {
@@ -37,7 +37,7 @@ suspend fun CharacterContext.npc(expression: String, text: String, largeHead: Bo
     npc(id, expression, text, largeHead, clickToContinue, title)
 }
 
-suspend fun CharacterContext.npc(npcId: String, expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
+suspend fun CharacterContext<Player>.npc(npcId: String, expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
     val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("q8_full").splitLines(text, 380)
     check(lines.size <= 4) { "Maximum npc chat lines exceeded ${lines.size} for $player" }
     val id = getInterfaceId(lines.size, clickToContinue)

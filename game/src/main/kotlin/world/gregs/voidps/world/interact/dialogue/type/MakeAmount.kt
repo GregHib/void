@@ -12,7 +12,7 @@ private const val INTERFACE_ID = "dialogue_skill_creation"
 private const val INTERFACE_AMOUNT_ID = "skill_creation_amount"
 private const val DEFAULT_TEXT = "Choose how many you wish to make, then<br>click on the chosen item to begin."
 
-suspend fun CharacterContext.makeAmount(
+suspend fun CharacterContext<Player>.makeAmount(
     items: List<String>,
     type: String,
     maximum: Int,
@@ -25,7 +25,7 @@ suspend fun CharacterContext.makeAmount(
     return id to result.second
 }
 
-suspend fun CharacterContext.makeAmountIndex(
+suspend fun CharacterContext<Player>.makeAmountIndex(
     items: List<String>,
     type: String,
     maximum: Int,

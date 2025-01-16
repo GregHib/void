@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -53,23 +54,23 @@ npcOperate("Talk-to", "*camel") {
     }
 }
 
-suspend fun CharacterContext.bestOfLuck() {
+suspend fun CharacterContext<Player>.bestOfLuck() {
     player<Talk>("Well, best of luck with that.")
     npc<Talk>("If you want to hear my poems once more, please come back again.")
 }
 
-suspend fun CharacterContext.noThankYou() {
+suspend fun CharacterContext<Player>.noThankYou() {
     npc<Talk>("Ah, well. I shall return to writing poems to Elly's beauty.")
     whatDoesSheThink()
 }
 
-suspend fun CharacterContext.idLoveTo() {
+suspend fun CharacterContext<Player>.idLoveTo() {
     npc<Talk>("That's so kind of you. Which one would you like to hear?")
     npc<Talk>("'Shall I compare thee to a desert's day' is my finest yet, but I've also composed others.")
     poems()
 }
 
-suspend fun CharacterContext.poems() {
+suspend fun CharacterContext<Player>.poems() {
     choice("Select an Option") {
         option("Listen to 'Shall I compare thee to a desert's day'.") {
             desertsDay(interrupt = false)
@@ -80,7 +81,7 @@ suspend fun CharacterContext.poems() {
     }
 }
 
-suspend fun CharacterContext.justToSay() {
+suspend fun CharacterContext<Player>.justToSay() {
     npc<Upset>("I wrote this poem when I went to the oasis to nibble at a tree, then discovered I'd left nothing for Elly to nibble. I was distraught.")
     npc<Neutral>("This Is Just To Say")
     npc<Neutral>("I have nibbled the cacti that were by the oasis,")
@@ -90,7 +91,7 @@ suspend fun CharacterContext.justToSay() {
     whatDoesSheThink()
 }
 
-suspend fun CharacterContext.desertsDay(interrupt: Boolean) {
+suspend fun CharacterContext<Player>.desertsDay(interrupt: Boolean) {
     if (!interrupt) {
         npc<Talk>("That's my favourite poem. Ahem...")
     }
@@ -116,7 +117,7 @@ suspend fun CharacterContext.desertsDay(interrupt: Boolean) {
     }
 }
 
-suspend fun CharacterContext.whatDoesSheThink() {
+suspend fun CharacterContext<Player>.whatDoesSheThink() {
     player<Quiz>("What does she think of your poems?")
     npc<Talk>("She's never heard them.")
     player<Talk>("Why not?")
@@ -133,7 +134,7 @@ suspend fun CharacterContext.whatDoesSheThink() {
     }
 }
 
-suspend fun NPCOption.dung() {
+suspend fun NPCOption<Player>.dung() {
     player<Pleased>("I'm sorry to bother you, but could you spare me a little dung?")
     npc<Talk>("Are you serious?")
     player<Neutral>("Oh yes. If you'd be so kind...")
@@ -149,7 +150,7 @@ suspend fun NPCOption.dung() {
     player<Talk>("Ohhh yes. Lovely.")
 }
 
-suspend fun NPCOption.listenTo() {
+suspend fun NPCOption<Player>.listenTo() {
     npc<Neutral>("Oh, it's you again. Have you come back to listen to my poems?")
     choice {
         option<Pleased>("I'd love to!") {
@@ -161,7 +162,7 @@ suspend fun NPCOption.listenTo() {
     }
 }
 
-suspend fun NPCOption.talkingToMe() {
+suspend fun NPCOption<Player>.talkingToMe() {
     npc<Talk>("Sorry, were you saying something to me?")
     player<Talk>("No, er, nothing important.")
     npc<Sad>("Never mind, it is unimportant when I have such important matters weighing on my soul.")
@@ -189,7 +190,7 @@ itemOnObjectOperate(obj = "dung") {
     scoopPoop()
 }
 
-suspend fun NPCOption.insult() {
+suspend fun NPCOption<Player>.insult() {
     player<Talk>(when (random.nextInt(3)) {
         0 -> "Mmm... looks like that camel would make a nice kebab."
         1 -> "I wonder if that camel has fleas..."
@@ -197,7 +198,7 @@ suspend fun NPCOption.insult() {
     })
 }
 
-suspend fun CharacterContext.scoopPoop() {
+suspend fun CharacterContext<Player>.scoopPoop() {
     if (!player.inventory.replace("bucket", "ugthanki_dung")) {
         return
     }

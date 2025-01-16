@@ -34,13 +34,13 @@ itemOnObjectOperate("skills_necklace", "legends_guild_totem_pole") {
     }
 }
 
-suspend fun CharacterContext.combatBracelet(player: Player) {
+suspend fun CharacterContext<Player>.combatBracelet(player: Player) {
     player.message("You touch the jewellery against the totem pole...")
     player.setAnimation("bend_down")
     item("combat_bracelet", 300, "You feel a power emanating from the totem pole as it recharges your bracelet. You can now rub the bracelet to teleport and wear it to get information while on a Slayer assignment.")
 }
 
-suspend fun CharacterContext.skillsNecklace(player: Player) {
+suspend fun CharacterContext<Player>.skillsNecklace(player: Player) {
     player.message("You touch the jewellery against the totem pole...")
     player.setAnimation("bend_down")
     item("skills_necklace", 200, "You feel a power emanating from the totem pole as it recharges your necklace. You can now rub the necklace to teleport and wear it to get more caskets while big net Fishing.")

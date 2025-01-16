@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.Talk
@@ -40,7 +41,7 @@ itemOnNPCOperate("barcrawl_card", "bartender_rusty_anchor") {
     barCrawl()
 }
 
-suspend fun TargetNPCContext.barCrawl() = barCrawlDrink(
+suspend fun TargetNPCContext<Player>.barCrawl() = barCrawlDrink(
     start = {
         npc<Quiz>("Are you sure? You look a bit skinny for that.")
         player<Talk>("Just give me whatever I need to drink here.")

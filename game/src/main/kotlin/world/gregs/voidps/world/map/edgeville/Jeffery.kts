@@ -2,6 +2,7 @@ package world.gregs.voidps.world.map.edgeville
 
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.holdsItem
@@ -90,7 +91,7 @@ npcOperate("Talk-to", "jeffery") {
     }
 }
 
-suspend fun TargetNPCContext.lovePoem() {
+suspend fun TargetNPCContext<Player>.lovePoem() {
     npc<Surprised>("A love poem? What?")
     npc<Quiz>("Wait...that dwarf put you up to this, didn't he?")
     choice {
@@ -104,7 +105,7 @@ suspend fun TargetNPCContext.lovePoem() {
     }
 }
 
-suspend fun TargetNPCContext.cheekyLittle() {
+suspend fun TargetNPCContext<Player>.cheekyLittle() {
     npc<Frustrated>("That cheeky little...")
     npc<Frustrated>("He just can't leave it alone, can he? Fine! I'll trade you for the poem. What is it you want?")
     choice {
@@ -119,7 +120,7 @@ suspend fun TargetNPCContext.cheekyLittle() {
     }
 }
 
-suspend fun TargetNPCContext.goldRing() {
+suspend fun TargetNPCContext<Player>.goldRing() {
     player.inventory.replace("love_poem", "ring_from_jeffery")
     player["gunnars_ground"] = "jeffery_ring"
     player.setAnimation("hand_over_item")

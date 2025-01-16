@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -73,7 +74,7 @@ itemOnNPCApproach("beer_glass", "barmaid_emily", handler = emptyGlass)
 itemOnNPCApproach("beer_glass", "barmaid_kaylee", handler = emptyGlass)
 itemOnNPCApproach("beer_glass", "barmaid_tina", handler = emptyGlass)
 
-suspend fun NPCOption.menu() {
+suspend fun NPCOption<Player>.menu() {
     npc<Quiz>("Heya! What can I get you?")
     choice {
         option<Quiz>("What ales are you serving?") {
@@ -107,7 +108,7 @@ suspend fun NPCOption.menu() {
 
 val itemDefinitions: ItemDefinitions by inject()
 
-suspend fun NPCOption.buyBeer(beer: String) {
+suspend fun NPCOption<Player>.buyBeer(beer: String) {
     player.inventory.transaction {
         remove("coin", 3)
         add(beer)
@@ -126,7 +127,7 @@ suspend fun NPCOption.buyBeer(beer: String) {
     }
 }
 
-suspend fun NPCOption.buyEmptyGlasses() {
+suspend fun NPCOption<Player>.buyEmptyGlasses() {
     choice {
         option<Talk>("Okay, sure.") {
             player.inventory.transaction {
@@ -140,7 +141,7 @@ suspend fun NPCOption.buyEmptyGlasses() {
     }
 }
 
-suspend fun TargetNPCContext.barCrawl() = barCrawlDrink(
+suspend fun TargetNPCContext<Player>.barCrawl() = barCrawlDrink(
     start = {
         npc<Laugh>("Heehee, this'll be fun!")
         npc<Angry>("You'll be after our Hand of Death cocktail, then. Lots of expensive parts to the cocktail, though, so it will cost you 70 coins.")

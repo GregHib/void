@@ -22,7 +22,7 @@ data class TickSuspension(
     }
 
     companion object {
-        context(CharacterContext) suspend operator fun invoke(ticks: Int) {
+        context(CharacterContext<*>) suspend operator fun invoke(ticks: Int) {
             if (ticks <= 0) {
                 return
             }

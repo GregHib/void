@@ -31,19 +31,19 @@ abstract class DialogueTest : KoinMock() {
 
     lateinit var interfaces: Interfaces
     lateinit var player: Player
-    lateinit var context: CharacterContext
+    lateinit var context: CharacterContext<Player>
     lateinit var continuation: Continuation<Any>
     lateinit var interfaceDefinitions: InterfaceDefinitions
     lateinit var fontDefinitions: FontDefinitions
     lateinit var clientScriptDefinitions: ClientScriptDefinitions
 
-    fun dialogueBlocking(block: suspend CharacterContext.() -> Unit) {
+    fun dialogueBlocking(block: suspend CharacterContext<Player>.() -> Unit) {
         runTest {
             block.invoke(context)
         }
     }
 
-    fun dialogue(block: suspend CharacterContext.() -> Unit) {
+    fun dialogue(block: suspend CharacterContext<Player>.() -> Unit) {
         GlobalScope.launch(Dispatchers.Unconfined) {
             block.invoke(context)
         }
@@ -65,8 +65,8 @@ abstract class DialogueTest : KoinMock() {
             override fun resumeWith(result: Result<Any>) {
             }
         }
-        context = spyk(object : CharacterContext {
-            override val character: Character = this@DialogueTest.player
+        context = spyk(object : CharacterContext<Player> {
+            override val character = this@DialogueTest.player
             override var onCancel: (() -> Unit)? = null
         })
         every { clientScriptDefinitions.get("string_entry") } returns ClientScriptDefinition(id = 109)

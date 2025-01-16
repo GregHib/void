@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.activity.skill.prayer
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.ObjectOption
@@ -14,7 +15,7 @@ objectOperate("Pray-at", "prayer_altar_*") {
     pray()
 }
 
-fun ObjectOption.pray() {
+fun ObjectOption<Player>.pray() {
     if (player.levels.getOffset(Skill.Prayer) >= 0) {
         player.message("You already have full Prayer points.")
     } else {

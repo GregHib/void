@@ -2,6 +2,7 @@ package world.gregs.voidps.world.map.varrock
 
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -39,7 +40,7 @@ npcOperate("Talk-To", "tarquin") {
     }
 }
 
-suspend fun CharacterContext.canoeing() {
+suspend fun CharacterContext<Player>.canoeing() {
     if (minimumCanoeLevel()) {
         return
     }

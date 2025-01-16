@@ -38,7 +38,7 @@ objectOperate("Fire", "pottery_oven*", arrive = false) {
     make("cook_range", item)
 }
 
-suspend fun TargetObjectContext.make(animation: String, item: Item) {
+suspend fun TargetObjectContext<Player>.make(animation: String, item: Item) {
     val pottery = item.pottery.map
     val (id, amount) = makeAmount(
         items = pottery.keys.toList(),

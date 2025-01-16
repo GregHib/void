@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
@@ -78,7 +79,7 @@ itemOnObjectOperate("muddy_skull", "coffin_restless_ghost_2") {
 
 val ghostSpawn = Tile(3250, 3195)
 
-suspend fun CharacterContext.returnSkull() {
+suspend fun CharacterContext<Player>.returnSkull() {
     player.message("You put the skull in the coffin.")
     val region = Region(12849)
     val instance = startCutscene(region)
@@ -116,7 +117,7 @@ suspend fun CharacterContext.returnSkull() {
     questComplete()
 }
 
-fun CharacterContext.questComplete() {
+fun CharacterContext<Player>.questComplete() {
     player["restless_ghost_coffin"] = "skull"
     player["the_restless_ghost"] = "completed"
     player.playJingle("quest_complete_1")
@@ -158,7 +159,7 @@ objectOperate("Search", "restless_ghost_coffin_closed") {
     }
 }
 
-suspend fun CharacterContext.spawnGhost() {
+suspend fun CharacterContext<Player>.spawnGhost() {
     val ghostExists = npcs[ghostSpawn.zone].any { it.id == "restless_ghost" }
     if (!ghostExists) {
         player.playSound("coffin_open")
@@ -182,13 +183,13 @@ playerSpawn { player ->
     player.sendVariable("restless_ghost_coffin")
 }
 
-fun CharacterContext.setCutsceneEnd(instance: Region) {
+fun CharacterContext<Player>.setCutsceneEnd(instance: Region) {
     player.queue("restless_ghost_cutscene_end", 1, LogoutBehaviour.Accelerate) {
         endCutscene(instance)
     }
 }
 
-fun CharacterContext.endCutscene(instance: Region) {
+fun CharacterContext<Player>.endCutscene(instance: Region) {
     npcs.clear(instance.toLevel(0))
     player.clearCamera()
     player.tele(3247, 3193)

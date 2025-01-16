@@ -10,7 +10,7 @@ object InfiniteSuspension : Suspension() {
         return false
     }
 
-    context(CharacterContext) suspend operator fun invoke() {
+    context(CharacterContext<*>) suspend operator fun invoke() {
         suspendCancellableCoroutine<Unit> {
             character.suspension = InfiniteSuspension
         }

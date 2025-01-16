@@ -10,12 +10,13 @@ import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.type.Tile
 
 data class Teleport(
-    override val character: Character,
+    val player: Player,
     val id: String,
     val tile: Tile,
     val obj: ObjectDefinition,
     val option: String
-) : CancellableEvent(), CharacterContext {
+) : CancellableEvent(), CharacterContext<Player> {
+    override val character = player
     var delay: Int? = null
     override var onCancel: (() -> Unit)? = null
     var land: Boolean = false
