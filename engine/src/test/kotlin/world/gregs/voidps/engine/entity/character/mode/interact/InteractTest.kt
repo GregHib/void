@@ -43,7 +43,7 @@ internal class InteractTest : KoinMock() {
     private lateinit var player: Player
     private lateinit var target: NPC
     private lateinit var interact: Interact
-    private lateinit var interaction: Interaction
+    private lateinit var interaction: Interaction<Player>
     private var approached = false
     private var operated = false
 
@@ -94,7 +94,7 @@ internal class InteractTest : KoinMock() {
         player.mode = interact
         Events.events.clear()
         if (operate) {
-            Events.handle<Player, NPCOption>("player_operate_npc", "*", "*") {
+            Events.handle<Player, NPCOption<Player>>("player_operate_npc", "*", "*") {
                 if (suspend) {
                     TickSuspension(2)
                 }
@@ -102,7 +102,7 @@ internal class InteractTest : KoinMock() {
             }
         }
         if (approach) {
-            Events.handle<Player, NPCOption>("player_approach_npc", "*", "*") {
+            Events.handle<Player, NPCOption<Player>>("player_approach_npc", "*", "*") {
                 if (suspend) {
                     TickSuspension(2)
                 }
