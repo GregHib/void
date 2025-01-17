@@ -95,7 +95,7 @@ internal class StatementTest : DialogueTest() {
             statement("text")
             resumed = true
         }
-        (player.dialogueSuspension as ContinueSuspension).resume()
+        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
         coVerify {
             player.open("dialogue_message1")
             interfaces.sendText("dialogue_message1", "line1", "text")

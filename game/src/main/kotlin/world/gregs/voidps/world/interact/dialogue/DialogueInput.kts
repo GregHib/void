@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
 import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
-import world.gregs.voidps.engine.suspend.resumeDialogueSuspension
 
 continueDialogue("dialogue_npc_chat*", "continue") { player ->
     player.continueDialogue()
@@ -35,32 +34,22 @@ continueDialogue("dialogue_double_obj_box", "continue") { player ->
 
 continueDialogue("dialogue_multi*", "line*") { player ->
     val choice = component.substringAfter("line").toIntOrNull() ?: -1
-    val suspension = player.dialogueSuspension as? IntSuspension ?: return@continueDialogue
-    suspension.int = choice
-    player.resumeDialogueSuspension()
+    (player.dialogueSuspension as? IntSuspension)?.resume(choice)
 }
 
 onEvent<Player, IntEntered> { player ->
-    val suspension = player.dialogueSuspension as? IntSuspension ?: return@onEvent
-    suspension.int = value
-    player.resumeDialogueSuspension()
+    (player.dialogueSuspension as? IntSuspension)?.resume(value)
 }
 
 onEvent<Player, StringEntered> { player ->
-    val suspension = player.dialogueSuspension as? StringSuspension ?: return@onEvent
-    suspension.string = value
-    player.resumeDialogueSuspension()
+    (player.dialogueSuspension as? StringSuspension)?.resume(value)
 }
 
 continueDialogue("dialogue_confirm_destroy") { player ->
-    val suspension = player.dialogueSuspension as? StringSuspension ?: return@continueDialogue
-    suspension.string = component
-    player.resumeDialogueSuspension()
+    (player.dialogueSuspension as? StringSuspension)?.resume(component)
 }
 
 continueDialogue("dialogue_skill_creation", "choice*") { player ->
     val choice = component.substringAfter("choice").toIntOrNull() ?: 0
-    val suspension = player.dialogueSuspension as? IntSuspension ?: return@continueDialogue
-    suspension.int = choice - 1
-    player.resumeDialogueSuspension()
+    (player.dialogueSuspension as? IntSuspension)?.resume(choice - 1)
 }

@@ -22,6 +22,8 @@ import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.suspend.SuspendableContext
+import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.world.script.KoinMock
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.CoroutineContext
@@ -30,19 +32,19 @@ abstract class DialogueTest : KoinMock() {
 
     lateinit var interfaces: Interfaces
     lateinit var player: Player
-    lateinit var context: Context<Player>
+    lateinit var context: SuspendableContext<Player>
     lateinit var continuation: Continuation<Any>
     lateinit var interfaceDefinitions: InterfaceDefinitions
     lateinit var fontDefinitions: FontDefinitions
     lateinit var clientScriptDefinitions: ClientScriptDefinitions
 
-    fun dialogueBlocking(block: suspend Context<Player>.() -> Unit) {
+    fun dialogueBlocking(block: suspend SuspendableContext<Player>.() -> Unit) {
         runTest {
             block.invoke(context)
         }
     }
 
-    fun dialogue(block: suspend Context<Player>.() -> Unit) {
+    fun dialogue(block: suspend SuspendableContext<Player>.() -> Unit) {
         GlobalScope.launch(Dispatchers.Unconfined) {
             block.invoke(context)
         }
@@ -64,9 +66,11 @@ abstract class DialogueTest : KoinMock() {
             override fun resumeWith(result: Result<Any>) {
             }
         }
-        context = spyk(object : Context<Player> {
+        context = spyk(object : SuspendableContext<Player> {
             override val character = this@DialogueTest.player
             override var onCancel: (() -> Unit)? = null
+            override suspend fun pause(ticks: Int) {
+            }
         })
         every { clientScriptDefinitions.get("string_entry") } returns ClientScriptDefinition(id = 109)
         every { player.open(any()) } returns true

@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
-import world.gregs.voidps.engine.suspend.resumeDialogueSuspension
 import world.gregs.voidps.world.community.trade.lend.Loan.getSecondsRemaining
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.ChoiceBuilder
@@ -127,7 +126,7 @@ val runes = listOf("air_rune",
 
 suspend fun SuspendableContext<Player>.runePayment(): Boolean {
     player.open("ourania_bank_charge")
-    val rune = StringSuspension()
+    val rune = StringSuspension.get(player)
     player.close("ourania_bank_charge")
 
     if (!player.inventory.remove(rune, 20)) {
@@ -145,9 +144,7 @@ interfaceOpen("ourania_bank_charge") { player ->
 }
 
 continueDialogue("ourania_bank_charge", "*_rune") { player ->
-    val suspension = player.dialogueSuspension as? StringSuspension ?: return@continueDialogue
-    suspension.string = component
-    player.resumeDialogueSuspension()
+    (player.dialogueSuspension as? StringSuspension)?.resume(component)
 }
 
 interfaceOption("* Runes", "*_rune", "ourania_bank_charge") {

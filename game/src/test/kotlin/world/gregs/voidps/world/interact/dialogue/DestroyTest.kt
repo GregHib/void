@@ -61,8 +61,7 @@ internal class DestroyTest : DialogueTest() {
             destroyed = destroy("1234", "question")
         }
         val suspend = player.dialogueSuspension as StringSuspension
-        suspend.string = "confirm"
-        suspend.resume()
+        suspend.resume("confirm")
         assertTrue(destroyed)
     }
 }

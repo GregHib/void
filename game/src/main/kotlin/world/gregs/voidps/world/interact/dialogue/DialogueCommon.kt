@@ -27,7 +27,5 @@ fun Interfaces.sendChat(
 }
 
 fun Player.continueDialogue() {
-    val suspension = dialogueSuspension as? ContinueSuspension ?: return
-    this.dialogueSuspension = null
-    suspension.resume()
+    (dialogueSuspension as? ContinueSuspension)?.resume(Unit)
 }

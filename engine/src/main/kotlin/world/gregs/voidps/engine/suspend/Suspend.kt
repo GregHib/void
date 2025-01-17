@@ -23,15 +23,6 @@ fun Character.resumeSuspension(): Boolean {
     return true
 }
 
-fun Player.resumeDialogueSuspension(): Boolean {
-    val suspend = dialogueSuspension ?: return false
-    if (suspend.ready()) {
-        dialogueSuspension = null
-        suspend.resume()
-    }
-    return true
-}
-
 suspend fun SuspendableContext<Player>.awaitDialogues(): Boolean {
     PredicateSuspension { player.dialogue == null }
     return true

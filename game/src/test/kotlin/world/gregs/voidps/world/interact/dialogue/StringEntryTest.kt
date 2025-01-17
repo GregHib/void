@@ -28,8 +28,7 @@ internal class StringEntryTest : DialogueTest() {
             result = stringEntry("text")
         }
         val suspend = player.dialogueSuspension as StringSuspension
-        suspend.string = "a string"
-        suspend.resume()
+        suspend.resume("a string")
         assertEquals("a string", result)
     }
 

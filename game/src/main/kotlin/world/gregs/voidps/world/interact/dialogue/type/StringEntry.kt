@@ -7,5 +7,5 @@ import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
 
 suspend fun Context<Player>.stringEntry(text: String): String {
     player.sendScript("string_entry", text)
-    return StringSuspension()
+    return StringSuspension.get(player)
 }

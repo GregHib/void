@@ -32,8 +32,7 @@ internal class IntEntryTest : DialogueTest() {
             result = intEntry("text")
         }
         val suspend = player.dialogueSuspension as IntSuspension
-        suspend.int = 123
-        suspend.resume()
+        suspend.resume(123)
         assertEquals(123, result)
     }
 

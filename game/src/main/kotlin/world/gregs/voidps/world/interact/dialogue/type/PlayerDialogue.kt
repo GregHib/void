@@ -28,7 +28,7 @@ suspend fun SuspendableContext<Player>.player(expression: String, text: String, 
     sendPlayerHead(player, id, head)
     player.interfaces.sendChat(id, head, expression, title ?: player.name, lines)
     if (clickToContinue) {
-        ContinueSuspension()
+        ContinueSuspension.get(player)
         player.close(id)
     }
 }

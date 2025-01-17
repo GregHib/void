@@ -21,7 +21,7 @@ suspend fun SuspendableContext<Player>.item(item: String, zoom: Int, text: Strin
     }
     val lines = if (text.contains("\n")) text.trimIndent().replace("\n", "<br>") else get<FontDefinitions>().get("q8_full").splitLines(text, 380).joinToString("<br>")
     player.interfaces.sendText(ITEM_INTERFACE_ID, "line1", lines)
-    ContinueSuspension()
+    ContinueSuspension.get(player)
     player.close(ITEM_INTERFACE_ID)
 }
 
@@ -31,6 +31,6 @@ suspend fun SuspendableContext<Player>.items(item1: String, item2: String, text:
     player.interfaces.sendItem(DOUBLE_ITEM_INTERFACE_ID, "model2", get<ItemDefinitions>().get(item2).id)
     val lines = if (text.contains("\n")) text.trimIndent().replace("\n", "<br>") else get<FontDefinitions>().get("q8_full").splitLines(text, 380).joinToString("<br>")
     player.interfaces.sendText(DOUBLE_ITEM_INTERFACE_ID, "line1", lines)
-    ContinueSuspension()
+    ContinueSuspension.get(player)
     player.close(DOUBLE_ITEM_INTERFACE_ID)
 }
