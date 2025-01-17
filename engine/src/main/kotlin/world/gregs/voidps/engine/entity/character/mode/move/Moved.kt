@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.suspend.TickSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.type.Tile
 
 /**
@@ -24,7 +24,7 @@ data class Moved<C : Character>(
     override val size = 4
 
     override suspend fun pause(ticks: Int) {
-        TickSuspension.start(character, ticks)
+        Suspension.start(character, ticks)
     }
 
     override fun parameter(dispatcher: EventDispatcher, index: Int): Any? = when (index) {

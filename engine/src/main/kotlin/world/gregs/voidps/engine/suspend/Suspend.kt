@@ -24,12 +24,12 @@ fun Character.resumeSuspension(): Boolean {
 }
 
 suspend fun SuspendableContext<Player>.awaitDialogues(): Boolean {
-    PredicateSuspension.start(character) { player.dialogue == null }
+    Suspension.start(character) { player.dialogue == null }
     return true
 }
 
 suspend fun SuspendableContext<Player>.awaitInterfaces(): Boolean {
-    PredicateSuspension.start(character) { player.menu == null }
+    Suspension.start(character) { player.menu == null }
     return true
 }
 
