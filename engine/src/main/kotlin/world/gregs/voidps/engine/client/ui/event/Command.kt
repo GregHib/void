@@ -2,18 +2,16 @@ package world.gregs.voidps.engine.client.ui.event
 
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 
 data class Command(
-    val player: Player,
+    override val character: Player,
     val prefix: String,
     val content: String
 ) : Interaction<Player>() {
-    override val character = player
 
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 

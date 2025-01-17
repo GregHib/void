@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.suspend.arriveDelay
 
 data class ItemOnObject(
-    val player: Player,
+    override val character: Player,
     override val target: GameObject,
     val id: String,
     val component: String,
@@ -18,7 +18,6 @@ data class ItemOnObject(
     val itemSlot: Int,
     val inventory: String
 ) : Interaction<Player>(), TargetContext<Player, GameObject> {
-    override val character = player
 
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 

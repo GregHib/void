@@ -7,14 +7,12 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 
 data class InventoryOption(
-    val player: Player,
+    override val character: Player,
     val inventory: String,
     val item: Item,
     val slot: Int,
     val option: String
 ) : Interaction<Player>() {
-
-    override val character = player
 
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 
