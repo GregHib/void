@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
+import world.gregs.voidps.engine.suspend.IntSuspension
 import world.gregs.voidps.world.interact.dialogue.sendLines
 
 private val CHOICE_LINE_RANGE = 2..5

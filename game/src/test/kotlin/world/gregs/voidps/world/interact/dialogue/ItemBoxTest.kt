@@ -7,7 +7,7 @@ import org.koin.test.mock.declareMock
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
+import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.dialogue.type.items
 import kotlin.test.assertTrue

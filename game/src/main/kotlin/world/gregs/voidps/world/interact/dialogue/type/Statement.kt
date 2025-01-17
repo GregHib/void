@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
+import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.world.interact.dialogue.sendLines
 
 private const val MAXIMUM_STATEMENT_SIZE = 5

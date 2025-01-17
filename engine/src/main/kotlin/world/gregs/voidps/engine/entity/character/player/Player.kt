@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.inv.Inventories
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.Suspension
-import world.gregs.voidps.engine.suspend.dialogue.DialogueSuspension
+import world.gregs.voidps.engine.suspend.DialogueSuspension
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.network.client.Client

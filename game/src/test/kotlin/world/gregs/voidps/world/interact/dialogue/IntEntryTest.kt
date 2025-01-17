@@ -4,7 +4,7 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
+import world.gregs.voidps.engine.suspend.IntSuspension
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 import kotlin.test.assertTrue
 

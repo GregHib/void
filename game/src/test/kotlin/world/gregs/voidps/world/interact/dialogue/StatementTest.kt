@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
+import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.world.interact.dialogue.type.statement
 import kotlin.test.assertTrue
 

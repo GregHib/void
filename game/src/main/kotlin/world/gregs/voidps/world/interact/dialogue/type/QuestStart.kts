@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.dialogue.type
 
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
+import world.gregs.voidps.engine.suspend.StringSuspension
 
 interfaceOption("Show required items", "items_hidden_button_txt", "quest_intro") {
     player.interfaces.sendVisibility(id, "items_hide_show_layer", false)
