@@ -25,6 +25,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.npcLevelCha
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.playerDespawn
+import world.gregs.voidps.engine.event.CharacterContext
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.clear

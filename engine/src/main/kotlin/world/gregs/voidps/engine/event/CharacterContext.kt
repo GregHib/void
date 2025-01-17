@@ -1,10 +1,11 @@
-package world.gregs.voidps.engine.entity.character
+package world.gregs.voidps.engine.event
 
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 
 /**
- * Context of a queue or interaction action to access a [character] as either [player] or [npc]
+ * Context of an event, queue or action to access a [character] as either [player] or [npc]
  */
 interface CharacterContext<C : Character> {
     val character: C

@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.CharacterContext
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.interact.dialogue.Expression
 

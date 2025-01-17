@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.quest.mini
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.CharacterContext
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.activity.quest.sendMessageScroll
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem

@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.suspend
 
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.CharacterContext
 import kotlin.coroutines.resume
 
 class PredicateSuspension(

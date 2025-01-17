@@ -2,13 +2,12 @@ package world.gregs.voidps.world.map.wilderness
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.CharacterContext
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.suspend.InfiniteSuspension.cancel
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.statement
