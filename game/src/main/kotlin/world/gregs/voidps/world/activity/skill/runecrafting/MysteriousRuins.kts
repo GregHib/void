@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.equals
 import world.gregs.voidps.world.interact.dialogue.type.choice

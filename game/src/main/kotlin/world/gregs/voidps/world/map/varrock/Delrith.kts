@@ -32,7 +32,6 @@ import world.gregs.voidps.engine.map.collision.clear
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.queue.*
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region

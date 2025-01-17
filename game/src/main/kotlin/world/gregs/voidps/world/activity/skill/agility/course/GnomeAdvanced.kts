@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.approachRange
-import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
