@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.client.ui.interact
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetContext
+import world.gregs.voidps.engine.event.TargetContext
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.EventDispatcher
