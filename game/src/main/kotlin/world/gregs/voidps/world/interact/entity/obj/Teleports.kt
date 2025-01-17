@@ -4,11 +4,11 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Delta
@@ -27,7 +27,7 @@ class Teleports {
         return teleport(objectOption, objectOption.character, objectOption.def, objectOption.target.tile, option)
     }
 
-    suspend fun teleport(context: Context<Player>, player: Player, def: ObjectDefinition, targetTile: Tile, option: String): Boolean {
+    suspend fun teleport(context: SuspendableContext<Player>, player: Player, def: ObjectDefinition, targetTile: Tile, option: String): Boolean {
         val id = def.stringId.ifEmpty { def.id.toString() }
         val definition = teleports[option]?.get(targetTile.id) ?: return false
         if (definition.id != id) {

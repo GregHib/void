@@ -259,7 +259,7 @@ fun Context<Player>.setCutsceneEnd(instance: Region) {
     }
 }
 
-suspend fun Context<Player>.endCutscene(instance: Region) {
+suspend fun SuspendableContext<Player>.endCutscene(instance: Region) {
     player.open("fade_out")
     delay(3)
     player.tele(3081, 3416)
