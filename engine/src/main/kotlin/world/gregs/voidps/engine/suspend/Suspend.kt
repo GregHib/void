@@ -35,7 +35,7 @@ fun Player.resumeDialogueSuspension(): Boolean {
 /**
  * Prevents non-interface player input and most processing
  */
-suspend fun Context<*>.delay(ticks: Int = 1) {
+suspend fun SuspendableContext<*>.delay(ticks: Int = 1) {
     if (ticks <= 0) {
         return
     }
@@ -62,7 +62,7 @@ suspend fun SuspendableContext<*>.pauseForever() {
 /**
  * Movement delay, typically used by interactions that perform animations or exact movements
  */
-suspend fun Context<*>.arriveDelay() {
+suspend fun SuspendableContext<*>.arriveDelay() {
     val delay = character.remaining("last_movement")
     if (delay == -1) {
         return
@@ -78,20 +78,6 @@ context(Context<*>) fun Character.approachRange(range: Int?, update: Boolean = t
 private val logger = InlineLogger()
 
 context(SuspendableContext<*>) suspend fun Character.playAnimation(id: String, override: Boolean = false, canInterrupt: Boolean = true) {
-    val ticks = setAnimation(id, override = override)
-    if (ticks == -1) {
-        logger.warn { "No animation delay $id" }
-    } else {
-        character.start("movement_delay", ticks)
-        if (canInterrupt) {
-            pause(ticks)
-        } else {
-            delay(ticks)
-        }
-    }
-}
-
-context(Action<*>) suspend fun Character.playAnimation(id: String, override: Boolean = false, canInterrupt: Boolean = true) {
     val ticks = setAnimation(id, override = override)
     if (ticks == -1) {
         logger.warn { "No animation delay $id" }
