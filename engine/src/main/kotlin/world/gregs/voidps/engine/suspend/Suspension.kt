@@ -1,14 +1,14 @@
 package world.gregs.voidps.engine.suspend
 
+import kotlinx.coroutines.CancellableContinuation
+import kotlin.coroutines.resume
+
 abstract class Suspension {
-    protected abstract val onCancel: (() -> Unit)?
+    lateinit var continuation: CancellableContinuation<Unit>
 
     abstract fun ready(): Boolean
 
     open fun resume() {
-    }
-
-    open fun cancel() {
-        onCancel?.invoke()
+        continuation.resume(Unit)
     }
 }

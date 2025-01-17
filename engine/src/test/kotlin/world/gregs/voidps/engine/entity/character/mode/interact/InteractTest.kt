@@ -96,7 +96,7 @@ internal class InteractTest : KoinMock() {
         if (operate) {
             Events.handle<Player, NPCOption<Player>>("player_operate_npc", "*", "*") {
                 if (suspend) {
-                    TickSuspension(2)
+                    TickSuspension.start(character, 2)
                 }
                 operated = true
             }
@@ -104,7 +104,7 @@ internal class InteractTest : KoinMock() {
         if (approach) {
             Events.handle<Player, NPCOption<Player>>("player_approach_npc", "*", "*") {
                 if (suspend) {
-                    TickSuspension(2)
+                    TickSuspension.start(character, 2)
                 }
                 approached = true
             }

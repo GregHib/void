@@ -65,10 +65,6 @@ class Player(
         get() = client != null && viewport != null
 
     override var suspension: Suspension? = null
-        set(value) {
-            field?.cancel()
-            field = value
-        }
 
     override var delay: Continuation<Unit>? = null
 
