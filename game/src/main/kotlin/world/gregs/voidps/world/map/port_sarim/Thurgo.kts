@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.map.port_sarim
 
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.CharacterContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player

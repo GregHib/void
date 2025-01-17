@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.clearMinimap
 import world.gregs.voidps.engine.client.minimap
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.CharacterContext
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.instance.Instances

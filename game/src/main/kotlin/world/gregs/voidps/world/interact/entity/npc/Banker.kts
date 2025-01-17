@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.npc
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player

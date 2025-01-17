@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.suspend.dialogue
 
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.CharacterContext
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.Suspension
 import kotlin.coroutines.resume

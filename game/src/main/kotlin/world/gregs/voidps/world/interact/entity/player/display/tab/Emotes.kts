@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.CharacterContext
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.facing
 import world.gregs.voidps.engine.entity.character.player.Player

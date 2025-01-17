@@ -183,7 +183,7 @@ object DialogueConverter {
         file.appendText("""
             package world.gregs.voidps.world.map
 
-            import world.gregs.voidps.engine.entity.character.CharacterContext
+            import world.gregs.voidps.engine.event.CharacterContext
             import world.gregs.voidps.engine.entity.character.npc.NPCOption
             import world.gregs.voidps.engine.entity.character.player.Player
             import world.gregs.voidps.engine.event.on

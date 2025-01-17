@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.suspend
 
 import kotlinx.coroutines.suspendCancellableCoroutine
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.CharacterContext
 
 object InfiniteSuspension : Suspension() {
     override val onCancel: (() -> Unit)? = null

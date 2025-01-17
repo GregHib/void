@@ -2,7 +2,7 @@ package world.gregs.voidps.world.map.falador
 
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.CharacterContext
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.suspend.pause

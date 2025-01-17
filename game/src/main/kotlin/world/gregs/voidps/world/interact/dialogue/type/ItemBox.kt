@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.CharacterContext
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
