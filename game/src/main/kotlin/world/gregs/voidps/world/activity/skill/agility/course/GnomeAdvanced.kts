@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
@@ -47,7 +46,7 @@ objectOperate("Climb-up", "gnome_tree_branch_advanced") {
 
 objectApproach("Run-across", "gnome_sign_post_advanced") {
     npcs.gnomeTrainer("Come on! I'd be over there by now.", Zone(13457717))
-    player.approachRange(1)
+    approachRange(1)
     // Pausing for 2 ticks to ensure we're in the correct spot.
     // arriveDelay() wouldn't work as objectApproach is called before Movement.tick where "last_movement" is set
     pause(2)

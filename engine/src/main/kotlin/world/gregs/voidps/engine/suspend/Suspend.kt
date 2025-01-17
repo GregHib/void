@@ -46,11 +46,6 @@ suspend fun SuspendableContext<*>.pauseForever() {
     InfiniteSuspension()
 }
 
-context(Context<*>) fun Character.approachRange(range: Int?, update: Boolean = true) {
-    val interact = mode as? Interact ?: return
-    interact.updateRange(range, update)
-}
-
 private val logger = InlineLogger()
 
 context(SuspendableContext<*>) suspend fun Character.playAnimation(id: String, override: Boolean = false, canInterrupt: Boolean = true) {

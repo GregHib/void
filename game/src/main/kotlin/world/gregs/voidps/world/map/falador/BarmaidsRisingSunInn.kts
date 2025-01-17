@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
-import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
 import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
 import world.gregs.voidps.world.interact.dialogue.*
@@ -34,7 +33,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.damage
 // Dialogue
 
 npcApproach("Talk-to", "barmaid_emily") {
-    player.approachRange(3)
+    approachRange(3)
     pause()
     menu()
 }
