@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteractio
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.suspend.arriveDelay
 
 data class NPCOption<C : Character>(
     override val character: C,

@@ -46,17 +46,6 @@ suspend fun SuspendableContext<*>.pauseForever() {
     InfiniteSuspension()
 }
 
-/**
- * Movement delay, typically used by interactions that perform animations or exact movements
- */
-suspend fun SuspendableContext<*>.arriveDelay() {
-    val delay = character.remaining("last_movement")
-    if (delay == -1) {
-        return
-    }
-    delay(delay)
-}
-
 context(Context<*>) fun Character.approachRange(range: Int?, update: Boolean = true) {
     val interact = mode as? Interact ?: return
     interact.updateRange(range, update)
