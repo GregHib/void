@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
+import world.gregs.voidps.engine.suspend.ContinueSuspension
 
 private const val ITEM_INTERFACE_ID = "dialogue_obj_box"
 private const val DOUBLE_ITEM_INTERFACE_ID = "dialogue_double_obj_box"

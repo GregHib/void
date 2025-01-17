@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
+import world.gregs.voidps.engine.suspend.ContinueSuspension
 
 private const val LEVEL_UP_INTERFACE_ID = "dialogue_level_up"
 

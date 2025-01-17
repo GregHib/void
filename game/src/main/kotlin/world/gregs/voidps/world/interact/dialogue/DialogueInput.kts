@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.client.ui.event.IntEntered
 import world.gregs.voidps.engine.client.ui.event.StringEntered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.onEvent
-import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
-import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
+import world.gregs.voidps.engine.suspend.IntSuspension
+import world.gregs.voidps.engine.suspend.StringSuspension
 
 continueDialogue("dialogue_npc_chat*", "continue") { player ->
     player.continueDialogue()

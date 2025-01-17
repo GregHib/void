@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
+import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.questComplete
 

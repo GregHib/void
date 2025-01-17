@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.suspend.dialogue
+package world.gregs.voidps.engine.suspend
 
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine

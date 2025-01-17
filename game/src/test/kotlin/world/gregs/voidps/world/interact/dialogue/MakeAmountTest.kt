@@ -12,7 +12,7 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
+import world.gregs.voidps.engine.suspend.IntSuspension
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull

@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
+import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.network.login.protocol.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.Expression
 import world.gregs.voidps.world.interact.dialogue.sendChat
