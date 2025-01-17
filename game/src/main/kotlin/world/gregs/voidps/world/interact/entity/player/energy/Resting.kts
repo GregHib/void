@@ -13,7 +13,8 @@ interfaceOption("Rest", id = "energy_orb") {
     }
 }
 
-npcOperate("Listen-to", arrive = true) {
+npcOperate("Listen-to") {
+    arriveDelay()
     if (def["song", -1] != -1) {
         player.mode = Rest(player, def["song"])
     }

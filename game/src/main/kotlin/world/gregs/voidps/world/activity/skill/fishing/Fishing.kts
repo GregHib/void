@@ -41,7 +41,8 @@ npcMove({ it.contains("fishers") && it.def.contains("fishing") }) { npc ->
     }
 }
 
-npcOperate("*", "fishing_spot_*", arrive = true) {
+npcOperate("*", "fishing_spot_*") {
+    arriveDelay()
     if (!def.contains("fishing")) {
         return@npcOperate
     }
