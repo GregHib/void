@@ -9,10 +9,8 @@ import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.core.logger.Level
 import org.koin.dsl.module
-import org.koin.fileProperties
 import org.koin.test.KoinTest
 import world.gregs.voidps.FakeRandom
-import world.gregs.voidps.Main
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.MemoryCache
@@ -20,13 +18,15 @@ import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
-import world.gregs.voidps.engine.*
+import world.gregs.voidps.engine.Contexts
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.*
+import world.gregs.voidps.engine.engineModule
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -40,6 +40,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -56,7 +57,7 @@ import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
 import world.gregs.voidps.world.interact.world.spawn.loadNpcSpawns
 import world.gregs.voidps.world.interact.world.spawn.loadObjectSpawns
 import java.io.File
-import java.util.Properties
+import java.util.*
 import kotlin.system.measureTimeMillis
 
 /**

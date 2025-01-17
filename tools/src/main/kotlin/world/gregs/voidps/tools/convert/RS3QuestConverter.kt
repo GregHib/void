@@ -1,12 +1,10 @@
 package world.gregs.voidps.tools.convert
 
-import world.gregs.voidps.cache.*
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.config.data.QuestDefinition
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
-import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.Tile
-import world.gregs.yaml.Yaml
 import java.io.File
 
 /**

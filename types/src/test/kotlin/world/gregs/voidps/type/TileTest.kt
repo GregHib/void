@@ -2,7 +2,6 @@ package world.gregs.voidps.type
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.type.Tile
 
 internal class TileTest {
 

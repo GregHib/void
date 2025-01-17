@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
-import world.gregs.voidps.world.interact.dialogue.type.destroy
 import world.gregs.voidps.world.interact.dialogue.type.startQuest
 
 internal class QuestStartTest : DialogueTest() {
