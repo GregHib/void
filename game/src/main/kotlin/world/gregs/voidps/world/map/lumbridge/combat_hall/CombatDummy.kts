@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.CurrentLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.level.npcLevelChange
-import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.combatPrepare
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
@@ -21,7 +20,7 @@ npcApproach("Attack", "magic_dummy", "melee_dummy", override = false) {
         return@npcApproach
     }
     player.message("You can only use ${type.toTitleCase()} against this dummy.")
-    player.approachRange(10, false)
+    approachRange(10, false)
     player.mode = EmptyMode
     cancel()
 }
@@ -32,7 +31,7 @@ val itemOnHandler: suspend ItemOnNPC.() -> Unit = handler@{
         return@handler
     }
     player.message("You can only use ${type.toTitleCase()} against this dummy.")
-    player.approachRange(10, false)
+    approachRange(10, false)
     player.mode = EmptyMode
     cancel()
 }

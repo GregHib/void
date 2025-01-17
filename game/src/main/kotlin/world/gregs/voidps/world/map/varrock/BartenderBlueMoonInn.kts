@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
 import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
 import world.gregs.voidps.world.interact.dialogue.Angry
@@ -24,7 +23,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.npc.shop.buy
 
 npcApproach("Talk-to", "bartender_blue_moon_inn") {
-    player.approachRange(4)
+    approachRange(4)
     pause()
     npc<Quiz>("What can I do yer for?")
     choice {

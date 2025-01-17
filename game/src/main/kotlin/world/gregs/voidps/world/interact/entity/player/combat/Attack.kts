@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.characterApproachNPC
 import world.gregs.voidps.engine.entity.character.player.characterApproachPlayer
-import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.world.interact.entity.combat.CombatInteraction
 import world.gregs.voidps.world.interact.entity.combat.attackRange
 import world.gregs.voidps.world.interact.entity.combat.combatPrepare
@@ -15,24 +14,24 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 
 characterApproachNPC("Attack") {
     if (character.attackRange != 1) {
-        character.approachRange(character.attackRange, update = false)
+        approachRange(character.attackRange, update = false)
     } else {
-        character.approachRange(null, update = true)
+        approachRange(null, update = true)
     }
     combatInteraction(character, target)
 }
 
 characterApproachPlayer("Attack") {
     if (character.attackRange != 1) {
-        character.approachRange(character.attackRange, update = false)
+        approachRange(character.attackRange, update = false)
     } else {
-        character.approachRange(null, update = true)
+        approachRange(null, update = true)
     }
     combatInteraction(character, target)
 }
 
 itemOnNPCApproach(id = "*_spellbook") {
-    player.approachRange(8, update = false)
+    approachRange(8, update = false)
     player.spell = component
     player["attack_speed"] = 5
     player["one_time"] = true
