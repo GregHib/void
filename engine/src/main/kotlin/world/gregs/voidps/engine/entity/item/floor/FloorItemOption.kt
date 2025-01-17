@@ -2,18 +2,18 @@ package world.gregs.voidps.engine.entity.item.floor
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetFloorItemContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetContext
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.suspend.arriveDelay
 
-data class FloorItemOption<C: Character>(
+data class FloorItemOption<C : Character>(
     override val character: C,
     override val target: FloorItem,
     val option: String
-) : Interaction<C>(), TargetFloorItemContext<C> {
+) : Interaction<C>(), TargetContext<C, FloorItem> {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 
     override val size = 4

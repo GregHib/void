@@ -143,11 +143,11 @@ class ActionQueue(
     }
 }
 
-fun <C: Character> C.queue(name: String, initialDelay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, onCancel: (() -> Unit)? = { clearAnimation() }, block: suspend Action<C>.() -> Unit) {
+fun <C : Character> C.queue(name: String, initialDelay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, onCancel: (() -> Unit)? = { clearAnimation() }, block: suspend Action<C>.() -> Unit) {
     queue.add(Action(this, name, ActionPriority.Normal, initialDelay, behaviour, onCancel = onCancel, action = block as suspend Action<*>.() -> Unit))
 }
 
-fun <C: Character> C.softQueue(
+fun <C : Character> C.softQueue(
     name: String,
     initialDelay: Int = 0,
     behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
@@ -157,7 +157,7 @@ fun <C: Character> C.softQueue(
     queue.add(Action(this, name, ActionPriority.Soft, initialDelay, behaviour, onCancel = onCancel, action = block as suspend Action<*>.() -> Unit))
 }
 
-fun <C: Character> C.weakQueue(
+fun <C : Character> C.weakQueue(
     name: String,
     initialDelay: Int = 0,
     behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
@@ -167,7 +167,7 @@ fun <C: Character> C.weakQueue(
     queue.add(Action(this, name, ActionPriority.Weak, initialDelay, behaviour, onCancel = onCancel, action = block as suspend Action<*>.() -> Unit))
 }
 
-fun <C: Character> C.strongQueue(
+fun <C : Character> C.strongQueue(
     name: String,
     initialDelay: Int = 0,
     behaviour: LogoutBehaviour = LogoutBehaviour.Discard,

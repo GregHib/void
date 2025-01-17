@@ -2,7 +2,6 @@ package world.gregs.voidps.world.map.ardougne
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.forceChat
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate

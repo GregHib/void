@@ -2,14 +2,14 @@ package world.gregs.voidps.engine.client.ui.interact
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetPlayerContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetContext
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.suspend.arriveDelay
 
-data class ItemOnPlayer<C: Character>(
+data class ItemOnPlayer<C : Character>(
     override val character: C,
     override val target: Player,
     val id: String,
@@ -17,7 +17,7 @@ data class ItemOnPlayer<C: Character>(
     val item: Item,
     val itemSlot: Int,
     val inventory: String
-) : Interaction<C>(), TargetPlayerContext<C> {
+) : Interaction<C>(), TargetContext<C, Player> {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 
     override val size = 4

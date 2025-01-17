@@ -3,7 +3,8 @@ package world.gregs.voidps.world.map.port_sarim
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.forceChat
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetContext
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
@@ -41,7 +42,7 @@ itemOnNPCOperate("barcrawl_card", "bartender_rusty_anchor") {
     barCrawl()
 }
 
-suspend fun TargetNPCContext<Player>.barCrawl() = barCrawlDrink(
+suspend fun TargetContext<Player, NPC>.barCrawl() = barCrawlDrink(
     start = {
         npc<Quiz>("Are you sure? You look a bit skinny for that.")
         player<Talk>("Just give me whatever I need to drink here.")

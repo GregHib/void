@@ -13,7 +13,7 @@ import world.gregs.voidps.type.Tile
 /**
  * Entity moved between [from] and [to] tiles
  */
-data class Moved<C: Character>(
+data class Moved<C : Character>(
     override val character: C,
     val from: Tile,
     val to: Tile

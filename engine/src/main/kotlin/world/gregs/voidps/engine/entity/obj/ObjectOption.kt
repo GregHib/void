@@ -3,19 +3,19 @@ package world.gregs.voidps.engine.entity.obj
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetObjectContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetContext
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.suspend.arriveDelay
 
-data class ObjectOption<C: Character>(
+data class ObjectOption<C : Character>(
     override val character: C,
     override val target: GameObject,
     val def: ObjectDefinition,
     val option: String
-) : Interaction<C>(), TargetObjectContext<C> {
+) : Interaction<C>(), TargetContext<C, GameObject> {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 
     override val size = 4

@@ -1,7 +1,8 @@
 package world.gregs.voidps.world.map.tree_gnome_stronghold
 
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetContext
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
@@ -35,7 +36,7 @@ itemOnNPCOperate("barcrawl_card", "blurberry") {
     barCrawl()
 }
 
-suspend fun TargetNPCContext<Player>.barCrawl() = barCrawlDrink(
+suspend fun TargetContext<Player, NPC>.barCrawl() = barCrawlDrink(
     start = { npc<HappyOld>("Ah, you've come to the best stop on your list! I'll give you my famous Fire Toad Blast! It'll cost you 10 coins.") },
     effects = { player.damage(10) }
 )
