@@ -8,9 +8,11 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.queue.Action
 
 fun Character.resumeSuspension(): Boolean {
     val suspend = suspension ?: return false
@@ -41,15 +43,6 @@ suspend fun Context<*>.delay(ticks: Int = 1) {
     suspendCancellableCoroutine {
         character.delay = it
     }
-}
-
-/**
- * Interrupt-able pausing
- * Note: can't be used after a dialogue suspension in an interaction as the
- * interaction will have finished and there will be nothing to resume the suspension
- */
-suspend fun SuspendableContext<*>.pause(ticks: Int = 1) {
-    TickSuspension(ticks)
 }
 
 suspend fun SuspendableContext<Player>.awaitDialogues(): Boolean {
@@ -85,6 +78,20 @@ context(Context<*>) fun Character.approachRange(range: Int?, update: Boolean = t
 private val logger = InlineLogger()
 
 context(SuspendableContext<*>) suspend fun Character.playAnimation(id: String, override: Boolean = false, canInterrupt: Boolean = true) {
+    val ticks = setAnimation(id, override = override)
+    if (ticks == -1) {
+        logger.warn { "No animation delay $id" }
+    } else {
+        character.start("movement_delay", ticks)
+        if (canInterrupt) {
+            pause(ticks)
+        } else {
+            delay(ticks)
+        }
+    }
+}
+
+context(Action<*>) suspend fun Character.playAnimation(id: String, override: Boolean = false, canInterrupt: Boolean = true) {
     val ticks = setAnimation(id, override = override)
     if (ticks == -1) {
         logger.warn { "No animation delay $id" }

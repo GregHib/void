@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.suspend.SuspendableContext
+import world.gregs.voidps.engine.suspend.TickSuspension
 import world.gregs.voidps.type.Area
 
 data class AreaEntered<C : Character>(
@@ -15,9 +16,14 @@ data class AreaEntered<C : Character>(
     val tags: Set<String>,
     val area: Area
 ) : SuspendableEvent, SuspendableContext<C> {
+
     override var onCancel: (() -> Unit)? = null
 
     override val size = 5
+
+    override suspend fun pause(ticks: Int) {
+        TickSuspension(ticks)
+    }
 
     override fun parameter(dispatcher: EventDispatcher, index: Int): Any? = when (index) {
         0 -> "${dispatcher.key}_enter"

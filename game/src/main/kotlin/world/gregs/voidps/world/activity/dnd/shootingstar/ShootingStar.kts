@@ -33,7 +33,6 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.approachRange
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick

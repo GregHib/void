@@ -34,7 +34,7 @@ class Action<C : Character>(
         return !removed && this.remaining != -1 && --this.remaining <= 0
     }
 
-    suspend fun pause(ticks: Int = 1) {
+    override suspend fun pause(ticks: Int) {
         suspendCancellableCoroutine {
             remaining = ticks
             removed = false
