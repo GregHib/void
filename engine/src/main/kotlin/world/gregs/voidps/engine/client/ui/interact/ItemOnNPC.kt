@@ -31,11 +31,8 @@ data class ItemOnNPC(
     }
 }
 
-fun itemOnNPCOperate(item: String = "*", npc: String = "*", id: String = "*", component: String = "*", arrive: Boolean = false, override: Boolean = true, handler: suspend ItemOnNPC.() -> Unit) {
+fun itemOnNPCOperate(item: String = "*", npc: String = "*", id: String = "*", component: String = "*", override: Boolean = true, handler: suspend ItemOnNPC.() -> Unit) {
     Events.handle<ItemOnNPC>("item_on_operate_npc", item, npc, id, component, override = override) {
-        if (arrive) {
-            arriveDelay()
-        }
         handler.invoke(this)
     }
 }

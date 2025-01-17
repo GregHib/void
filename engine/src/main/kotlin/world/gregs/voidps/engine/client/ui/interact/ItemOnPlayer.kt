@@ -29,11 +29,8 @@ data class ItemOnPlayer<C : Character>(
     }
 }
 
-fun itemOnPlayerOperate(item: String = "*", id: String = "*", component: String = "*", arrive: Boolean = true, override: Boolean = true, handler: suspend ItemOnPlayer<Player>.() -> Unit) {
+fun itemOnPlayerOperate(item: String = "*", id: String = "*", component: String = "*", override: Boolean = true, handler: suspend ItemOnPlayer<Player>.() -> Unit) {
     Events.handle<ItemOnPlayer<Player>>("item_on_operate_player", item, id, component, override = override) {
-        if (arrive) {
-            arriveDelay()
-        }
         handler.invoke(this)
     }
 }

@@ -26,7 +26,7 @@ abstract class Interaction<C : Character> : CancellableEvent(), SuspendableEvent
     }
 
     /**
-     * Movement delay, typically used by interactions that perform animations or exact movements
+     * Movement delay, typically operating/interacting with an object or floor item that performs an animation or exact movement
      */
     suspend fun arriveDelay() {
         val delay = character.remaining("last_movement")

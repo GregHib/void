@@ -23,11 +23,8 @@ data class PlayerOption<C : Character>(
     }
 }
 
-fun playerOperate(option: String, arrive: Boolean = false, override: Boolean = true, handler: suspend PlayerOption<Player>.() -> Unit) {
+fun playerOperate(option: String, override: Boolean = true, handler: suspend PlayerOption<Player>.() -> Unit) {
     Events.handle<PlayerOption<Player>>("player_operate_player", option, "player", override = override) {
-        if (arrive) {
-            arriveDelay()
-        }
         handler.invoke(this)
     }
 }
@@ -38,11 +35,8 @@ fun playerApproach(option: String, override: Boolean = true, handler: suspend Pl
     }
 }
 
-fun npcOperatePlayer(option: String, npc: String = "*", arrive: Boolean = false, override: Boolean = true, handler: suspend PlayerOption<NPC>.() -> Unit) {
+fun npcOperatePlayer(option: String, npc: String = "*", override: Boolean = true, handler: suspend PlayerOption<NPC>.() -> Unit) {
     Events.handle<PlayerOption<NPC>>("npc_operate_player", option, npc, override = override) {
-        if (arrive) {
-            arriveDelay()
-        }
         handler.invoke(this)
     }
 }
@@ -53,11 +47,8 @@ fun npcApproachPlayer(option: String, npc: String = "*", override: Boolean = tru
     }
 }
 
-fun characterOperatePlayer(option: String, arrive: Boolean = false, override: Boolean = true, block: suspend PlayerOption<Character>.() -> Unit) {
+fun characterOperatePlayer(option: String, override: Boolean = true, block: suspend PlayerOption<Character>.() -> Unit) {
     val handler: suspend PlayerOption<Character>.(EventDispatcher) -> Unit = {
-        if (arrive) {
-            arriveDelay()
-        }
         block.invoke(this)
     }
     Events.handle("player_operate_player", option, "player", override = override, handler = handler)
