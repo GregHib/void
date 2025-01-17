@@ -20,7 +20,7 @@ internal class LevelUpTest : DialogueTest() {
             levelUp(Skill.Runecrafting, "Congrats\nLevel")
             resumed = true
         }
-        (player.dialogueSuspension as ContinueSuspension).resume()
+        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
         verify {
             player.open("dialogue_level_up")
             interfaces.sendText("dialogue_level_up", "line1", "Congrats")

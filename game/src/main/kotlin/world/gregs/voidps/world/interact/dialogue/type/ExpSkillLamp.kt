@@ -12,7 +12,7 @@ private const val EXPERIENCE_SKILL_LAMP = "skill_stat_advance"
 
 suspend fun Context<Player>.skillLamp(): Skill {
     check(player.open(EXPERIENCE_SKILL_LAMP)) { "Unable to open skill lamp dialogue for $player" }
-    val result = StringSuspension()
+    val result = StringSuspension.get(player)
     player.close(EXPERIENCE_SKILL_LAMP)
     return Skill.valueOf(result.toPascalCase())
 }

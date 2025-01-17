@@ -17,7 +17,7 @@ suspend fun Context<Player>.destroy(item: String, text: String): Boolean {
     val def = itemDecoder.get(item)
     player.interfaces.sendText(DESTROY_INTERFACE_ID, "item_name", def.name)
     player.interfaces.sendItem(DESTROY_INTERFACE_ID, "item_slot", def.id, 1)
-    val result = StringSuspension() == "confirm"
+    val result = StringSuspension.get(player) == "confirm"
     player.close(DESTROY_INTERFACE_ID)
     return result
 }

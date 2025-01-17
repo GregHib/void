@@ -88,8 +88,7 @@ internal class QuestStartTest : DialogueTest() {
             start = startQuest( "test_quest")
         }
         val suspend = player.dialogueSuspension as StringSuspension
-        suspend.string = "yes"
-        suspend.resume()
+        suspend.resume("yes")
         assertTrue(start)
     }
 }

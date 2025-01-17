@@ -45,8 +45,7 @@ internal class MakeAmountTest : DialogueTest() {
             result = makeAmount(listOf("1", "2", "3"), "ants", 25)
         }
         val suspend = player.dialogueSuspension as IntSuspension
-        suspend.int = 1
-        suspend.resume()
+        suspend.resume(1)
 
         assertNotNull(result)
         assertEquals("2", result!!.first)

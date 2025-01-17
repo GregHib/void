@@ -56,7 +56,7 @@ suspend fun SuspendableContext<Player>.choice(lines: List<String>, title: String
         player.interfaces.sendText(id, "title", question)
     }
     player.interfaces.sendLines(id, lines)
-    val result = IntSuspension()
+    val result = IntSuspension.get(player)
     player.close(id)
     return result
 }

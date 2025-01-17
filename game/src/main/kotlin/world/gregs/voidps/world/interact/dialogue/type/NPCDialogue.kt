@@ -47,7 +47,7 @@ suspend fun SuspendableContext<Player>.npc(npcId: String, expression: String, te
     sendNPCHead(player, id, head, npcDef.id)
     player.interfaces.sendChat(id, head, if (npcDef["old_model", false]) "${expression}_old" else expression, title ?: npcDef.name, lines)
     if (clickToContinue) {
-        ContinueSuspension()
+        ContinueSuspension.get(player)
         player.close(id)
     }
 }

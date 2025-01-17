@@ -82,7 +82,7 @@ suspend fun SuspendableContext<Player>.startQuest(questId: String): Boolean {
     if (quest.contains("sprite")) {
         player.interfaces.sendSprite("quest_intro", "quest_icon", quest["sprite", -1])
     }
-    val result = StringSuspension() == "yes"
+    val result = StringSuspension.get(player) == "yes"
     player.close(QUEST_START_ID)
     return result
 }

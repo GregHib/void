@@ -18,7 +18,7 @@ suspend fun SuspendableContext<Player>.statement(text: String, clickToContinue: 
     check(player.open(id)) { "Unable to open statement dialogue $id for $player" }
     player.interfaces.sendLines(id, lines)
     if (clickToContinue) {
-        ContinueSuspension()
+        ContinueSuspension.get(player)
         player.close(id)
     }
 }

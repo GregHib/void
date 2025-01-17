@@ -16,6 +16,6 @@ suspend fun SuspendableContext<Player>.levelUp(skill: Skill, text: String) {
         player.interfaces.sendText(LEVEL_UP_INTERFACE_ID, "line${index + 1}", line)
     }
     player["level_up_icon"] = skill.name
-    ContinueSuspension()
+    ContinueSuspension.get(player)
     player.close(LEVEL_UP_INTERFACE_ID)
 }

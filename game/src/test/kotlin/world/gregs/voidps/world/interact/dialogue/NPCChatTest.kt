@@ -157,7 +157,7 @@ internal class NPCChatTest : DialogueTest() {
             npc<Laugh>(text = "text", largeHead = true)
             resumed = true
         }
-        (player.dialogueSuspension as ContinueSuspension).resume()
+        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
         coVerify {
             interfaces.sendText("dialogue_npc_chat1", "title", "Jim")
             interfaces.sendAnimation("dialogue_npc_chat1", "head_large", 9840)

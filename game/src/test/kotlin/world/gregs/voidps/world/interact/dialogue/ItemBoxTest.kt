@@ -29,7 +29,7 @@ internal class ItemBoxTest : DialogueTest() {
             """, 10)
             resumed = true
         }
-        (player.dialogueSuspension as ContinueSuspension).resume()
+        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
         verify {
             player.open("dialogue_obj_box")
             player.sendScript("dialogue_item_zoom", 9009, 650)
@@ -51,7 +51,7 @@ internal class ItemBoxTest : DialogueTest() {
             items("item_name", "item2_name", "Item descriptions")
             resumed = true
         }
-        (player.dialogueSuspension as ContinueSuspension).resume()
+        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
         verify {
             player.open("dialogue_double_obj_box")
             interfaces.sendItem("dialogue_double_obj_box", "model1", 9009)
