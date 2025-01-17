@@ -2,7 +2,6 @@ package world.gregs.voidps.type
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.type.Delta
 
 internal class DeltaTest {
 

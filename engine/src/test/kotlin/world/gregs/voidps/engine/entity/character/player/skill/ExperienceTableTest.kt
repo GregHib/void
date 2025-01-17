@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.exp.BlockedExperience
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
-import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience.Companion.DEFAULT_EXPERIENCE_RATE
 import world.gregs.voidps.engine.entity.character.player.skill.exp.GrantExp
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.event.EventDispatcher

@@ -6,7 +6,6 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.network.client.instruction.*

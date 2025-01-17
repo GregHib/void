@@ -10,7 +10,6 @@ import world.gregs.voidps.type.setRandom
 import world.gregs.voidps.world.interact.entity.effect.stunned
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.npcOption
-import kotlin.random.Random
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 

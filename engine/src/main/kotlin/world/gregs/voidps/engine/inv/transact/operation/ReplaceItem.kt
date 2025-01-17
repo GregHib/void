@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.inv.transact.operation
 
 import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.entity.item.Item
 
 /**
  * Transaction operation for replacing items in an inventory.
