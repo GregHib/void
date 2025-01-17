@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -80,7 +81,7 @@ itemOnObjectOperate("muddy_skull", "coffin_restless_ghost_2") {
 
 val ghostSpawn = Tile(3250, 3195)
 
-suspend fun SuspendableContext<Player>.returnSkull() {
+suspend fun Interaction<Player>.returnSkull() {
     player.message("You put the skull in the coffin.")
     val region = Region(12849)
     val instance = startCutscene(region)
@@ -160,7 +161,7 @@ objectOperate("Search", "restless_ghost_coffin_closed") {
     }
 }
 
-suspend fun SuspendableContext<Player>.spawnGhost() {
+suspend fun Interaction<Player>.spawnGhost() {
     val ghostExists = npcs[ghostSpawn.zone].any { it.id == "restless_ghost" }
     if (!ghostExists) {
         player.playSound("coffin_open")

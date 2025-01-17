@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.approachRange
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat

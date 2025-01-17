@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import world.gregs.voidps.engine.suspend.approachRange
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
 import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
 import world.gregs.voidps.world.interact.dialogue.*

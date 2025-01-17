@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic

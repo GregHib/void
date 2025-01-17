@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.approachRange
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.community.trade.lend.Loan.getSecondsRemaining
 import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.Talk

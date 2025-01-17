@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.suspend.SuspendableContext
+import world.gregs.voidps.engine.suspend.TickSuspension
 
 abstract class Interaction<C : Character> : CancellableEvent(), SuspendableEvent, SuspendableContext<C> {
     var approach = false
@@ -13,4 +14,13 @@ abstract class Interaction<C : Character> : CancellableEvent(), SuspendableEvent
     var launched = false
 
     abstract fun copy(approach: Boolean): Interaction<C>
+
+    /**
+     * Interrupt-able pausing
+     * Note: can't be used after a dialogue suspension in an interaction as the
+     * interaction will have finished and there will be nothing to resume the suspension
+     */
+    override suspend fun pause(ticks: Int) {
+        TickSuspension(ticks)
+    }
 }

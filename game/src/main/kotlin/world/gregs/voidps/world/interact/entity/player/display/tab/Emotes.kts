@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.facing
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -148,16 +149,16 @@ itemChange("worn_equipment", EquipSlot.Cape) { player ->
     player["unlocked_emote_skillcape"] = item.def.contains("skill_cape") || item.def.contains("skill_cape_t") || item.id == "quest_point_cape"
 }
 
-suspend fun SuspendableContext<Player>.playEnhancedEmote(player: Player, type: String) {
+suspend fun Interaction<Player>.playEnhancedEmote(player: Player, type: String) {
     player.playAnimation("emote_enhanced_$type")
 }
 
-suspend fun SuspendableContext<Player>.playEnhancedYawnEmote(player: Player) {
+suspend fun Interaction<Player>.playEnhancedYawnEmote(player: Player) {
     player.setGraphic("emote_enhanced_yawn")
     player.playAnimation("emote_enhanced_yawn")
 }
 
-suspend fun SuspendableContext<Player>.playGiveThanksEmote(player: Player) {
+suspend fun Interaction<Player>.playGiveThanksEmote(player: Player) {
     player.setGraphic("emote_give_thanks")
     player.playAnimation("emote_turkey_transform")
     player.transform("turkey")
@@ -167,7 +168,7 @@ suspend fun SuspendableContext<Player>.playGiveThanksEmote(player: Player) {
     player.playAnimation("emote_turkey_return")
 }
 
-suspend fun SuspendableContext<Player>.playSealOfApprovalEmote(player: Player) {
+suspend fun Interaction<Player>.playSealOfApprovalEmote(player: Player) {
     player.setGraphic("emote_seal_of_approval")
     player.playAnimation("emote_seal_of_approval")
     player.transform("seal")
@@ -178,12 +179,12 @@ suspend fun SuspendableContext<Player>.playSealOfApprovalEmote(player: Player) {
     player.playAnimation("emote_seal_stand")
 }
 
-suspend fun SuspendableContext<Player>.playSkillCapeEmote(player: Player, skill: String) {
+suspend fun Interaction<Player>.playSkillCapeEmote(player: Player, skill: String) {
     player.setGraphic("emote_$skill")
     player.playAnimation("emote_$skill")
 }
 
-suspend fun SuspendableContext<Player>.playDungeoneeringCapeEmote(player: Player) {
+suspend fun Interaction<Player>.playDungeoneeringCapeEmote(player: Player) {
     player.setGraphic("emote_dungeoneering_start")
     player.playAnimation("emote_dungeoneering_start")
     when (random.nextInt(3)) {
@@ -203,7 +204,7 @@ suspend fun SuspendableContext<Player>.playDungeoneeringCapeEmote(player: Player
     player.transform("")
 }
 
-suspend fun SuspendableContext<Player>.playDungeoneeringMasterCapeEmote(player: Player) {
+suspend fun Interaction<Player>.playDungeoneeringMasterCapeEmote(player: Player) {
     val direction = player.facing
 
     player.transform("sagittarian_ranger")

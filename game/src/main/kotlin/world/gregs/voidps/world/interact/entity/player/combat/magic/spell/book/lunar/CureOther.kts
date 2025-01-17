@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.approachRange
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 import world.gregs.voidps.world.interact.entity.player.toxin.curePoison
 import world.gregs.voidps.world.interact.entity.player.toxin.poisoned

@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.suspend.approachRange
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
 import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
 import world.gregs.voidps.world.interact.dialogue.Angry
