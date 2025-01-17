@@ -7,11 +7,10 @@ import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.queue.Action
+import world.gregs.voidps.engine.event.Context
 
 fun Character.resumeSuspension(): Boolean {
     val suspend = suspension ?: return false
@@ -49,21 +48,21 @@ suspend fun Context<*>.delay(ticks: Int = 1) {
  * Note: can't be used after a dialogue suspension in an interaction as the
  * interaction will have finished and there will be nothing to resume the suspension
  */
-suspend fun Context<*>.pause(ticks: Int = 1) {
+suspend fun SuspendableContext<*>.pause(ticks: Int = 1) {
     TickSuspension(ticks)
 }
 
-suspend fun Context<Player>.awaitDialogues(): Boolean {
+suspend fun SuspendableContext<Player>.awaitDialogues(): Boolean {
     PredicateSuspension { player.dialogue == null }
     return true
 }
 
-suspend fun Context<Player>.awaitInterfaces(): Boolean {
+suspend fun SuspendableContext<Player>.awaitInterfaces(): Boolean {
     PredicateSuspension { player.menu == null }
     return true
 }
 
-suspend fun Context<*>.pauseForever() {
+suspend fun SuspendableContext<*>.pauseForever() {
     InfiniteSuspension()
 }
 
@@ -85,20 +84,7 @@ context(Context<*>) fun Character.approachRange(range: Int?, update: Boolean = t
 
 private val logger = InlineLogger()
 
-context(Context<*>) suspend fun Character.playAnimation(id: String, override: Boolean = false, canInterrupt: Boolean = true) {
-    val ticks = setAnimation(id, override = override)
-    if (ticks == -1) {
-        logger.warn { "No animation delay $id" }
-    } else {
-        character.start("movement_delay", ticks)
-        if (canInterrupt) {
-            pause(ticks)
-        } else {
-            delay(ticks)
-        }
-    }
-}
-context(Action<*>) suspend fun Character.playAnimation(id: String, override: Boolean = false, canInterrupt: Boolean = true) {
+context(SuspendableContext<*>) suspend fun Character.playAnimation(id: String, override: Boolean = false, canInterrupt: Boolean = true) {
     val ticks = setAnimation(id, override = override)
     if (ticks == -1) {
         logger.warn { "No animation delay $id" }

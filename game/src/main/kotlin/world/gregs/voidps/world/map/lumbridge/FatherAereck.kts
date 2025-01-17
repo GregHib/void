@@ -1,13 +1,16 @@
 package world.gregs.voidps.world.map.lumbridge
 
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.*
+import world.gregs.voidps.world.interact.dialogue.type.choice
+import world.gregs.voidps.world.interact.dialogue.type.npc
+import world.gregs.voidps.world.interact.dialogue.type.player
+import world.gregs.voidps.world.interact.dialogue.type.startQuest
 
 npcOperate("Talk-to", "father_aereck") {
     when (player.quest("the_restless_ghost")) {
@@ -73,20 +76,20 @@ npcOperate("Talk-to", "father_aereck") {
     }
 }
 
-suspend fun Context<Player>.started() {
+suspend fun SuspendableContext<Player>.started() {
     npc<Neutral>("Have you got rid of the ghost yet?")
     player<Sad>("I can't find Father Urhney at the moment.")
     npc<Happy>("Well, you can get to the swamp he lives in by going south through the cemetery.")
     npc<Happy>("You'll have to go right into the far western depths of the swamp, near the coastline. That is where his house is.")
 }
 
-suspend fun Context<Player>.ghost() {
+suspend fun SuspendableContext<Player>.ghost() {
     npc<Neutral>("Have you got rid of the ghost yet?")
     player<Neutral>("I had a talk with Father Urhney. He has given me this funny amulet to talk to the ghost with.")
     npc<Uncertain>("I always wondered what that amulet was... Well, I hope it's useful. Tell me when you get rid of the ghost!")
 }
 
-suspend fun Context<Player>.miningSpot() {
+suspend fun SuspendableContext<Player>.miningSpot() {
     npc<Neutral>("Have you got rid of the ghost yet?")
     player<Neutral>("I've found out that the ghost's corpse has lost its skull. If I can find the skull, the ghost should leave.")
     npc<Neutral>("That WOULD explain it.")
@@ -96,7 +99,7 @@ suspend fun Context<Player>.miningSpot() {
     npc<Happy>("Ah well, good luck!")
 }
 
-suspend fun Context<Player>.foundSkull() {
+suspend fun SuspendableContext<Player>.foundSkull() {
     if (player.holdsItem("ghostspeak_amulet")) {
         npc<Neutral>("Have you got rid of the ghost yet?")
         player<Happy>("I've finally found the ghost's skull!")
@@ -108,7 +111,7 @@ suspend fun Context<Player>.foundSkull() {
     }
 }
 
-suspend fun Context<Player>.completed() {
+suspend fun SuspendableContext<Player>.completed() {
     npc<Happy>("Thank you for getting rid of that awful ghost for me! May Saradomin always smile upon you!")
     player<Happy>("I'm looking for a new quest.")
     npc<Happy>("Sorry, I only had the one quest.")

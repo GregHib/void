@@ -2,8 +2,7 @@ package world.gregs.voidps.engine.entity.character.npc
 
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.event.TargetContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
@@ -14,7 +13,7 @@ data class NPCOption<C : Character>(
     override val target: NPC,
     val def: NPCDefinition,
     val option: String
-) : Interaction<C>(), TargetContext<C, NPC> {
+) : TargetInteraction<C, NPC>() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 
     override val size = 3

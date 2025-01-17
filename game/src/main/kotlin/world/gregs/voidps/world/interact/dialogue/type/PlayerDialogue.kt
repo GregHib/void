@@ -5,21 +5,21 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
 import world.gregs.voidps.network.login.protocol.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.Expression
 import world.gregs.voidps.world.interact.dialogue.sendChat
 
-suspend inline fun <reified E : Expression> Context<Player>.player(text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+suspend inline fun <reified E : Expression> SuspendableContext<Player>.player(text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val expression = E::class.simpleName!!.toSnakeCase()
     player(expression, text, largeHead, clickToContinue, title)
 }
 
-suspend fun Context<Player>.player(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+suspend fun SuspendableContext<Player>.player(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("q8_full").splitLines(text, 380)
     check(lines.size <= 4) { "Maximum player chat lines exceeded ${lines.size} for $player" }
     val id = getInterfaceId(lines.size, clickToContinue)

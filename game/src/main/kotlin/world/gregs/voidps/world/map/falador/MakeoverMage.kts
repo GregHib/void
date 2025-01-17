@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
@@ -24,6 +23,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.timer.npcTimerStart
 import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.engine.timer.toTicks
@@ -60,7 +60,7 @@ suspend fun PlayerChoice.more(): Unit = option<Quiz>("Tell me more about this 'm
     whatDoYouSay()
 }
 
-suspend fun Context<Player>.whatDoYouSay() {
+suspend fun SuspendableContext<Player>.whatDoYouSay() {
     npc<Uncertain>("So, what do you say? Feel like a change?")
     choice {
         start()
@@ -108,7 +108,7 @@ suspend fun PlayerChoice.amulet(): Unit = option<Pleased>("Cool amulet! Can I ha
     }
 }
 
-suspend fun Context<Player>.explain() {
+suspend fun SuspendableContext<Player>.explain() {
     npc<Pleased>("I can alter your physical form if you wish. Would you like me to perform my magicks on you?")
     choice {
         more()

@@ -1,8 +1,7 @@
 package world.gregs.voidps.world.map.barbarian_village
 
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.event.TargetContext
-import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
@@ -17,7 +16,7 @@ npcOperate("Talk-to", "haakon_the_champion") {
 
 val validStages = setOf("tell_gudrun", "write_poem", "more_poem", "one_more_poem", "poem_done", "poem", "recital", "gunnars_ground")
 
-suspend fun TargetContext<Player, NPC>.menu() {
+suspend fun NPCOption<Player>.menu() {
     npc<Angry>("I am Haakon, champion of this village. Do you seek to challenge me?")
     choice {
         option<Neutral>("I challenge you!") {
@@ -47,7 +46,7 @@ suspend fun TargetContext<Player, NPC>.menu() {
     }
 }
 
-suspend fun TargetContext<Player, NPC>.attack() {
+suspend fun NPCOption<Player>.attack() {
     npc<Mad>("Make peace with your god, outerlander!")
     target.mode = Interact(target, player, PlayerOption(target, player, "Attack"))
 }

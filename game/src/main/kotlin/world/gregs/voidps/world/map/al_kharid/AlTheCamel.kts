@@ -3,7 +3,6 @@ package world.gregs.voidps.world.map.al_kharid
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
@@ -15,6 +14,7 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
@@ -54,23 +54,23 @@ npcOperate("Talk-to", "*camel") {
     }
 }
 
-suspend fun Context<Player>.bestOfLuck() {
+suspend fun SuspendableContext<Player>.bestOfLuck() {
     player<Talk>("Well, best of luck with that.")
     npc<Talk>("If you want to hear my poems once more, please come back again.")
 }
 
-suspend fun Context<Player>.noThankYou() {
+suspend fun SuspendableContext<Player>.noThankYou() {
     npc<Talk>("Ah, well. I shall return to writing poems to Elly's beauty.")
     whatDoesSheThink()
 }
 
-suspend fun Context<Player>.idLoveTo() {
+suspend fun SuspendableContext<Player>.idLoveTo() {
     npc<Talk>("That's so kind of you. Which one would you like to hear?")
     npc<Talk>("'Shall I compare thee to a desert's day' is my finest yet, but I've also composed others.")
     poems()
 }
 
-suspend fun Context<Player>.poems() {
+suspend fun SuspendableContext<Player>.poems() {
     choice("Select an Option") {
         option("Listen to 'Shall I compare thee to a desert's day'.") {
             desertsDay(interrupt = false)
@@ -81,7 +81,7 @@ suspend fun Context<Player>.poems() {
     }
 }
 
-suspend fun Context<Player>.justToSay() {
+suspend fun SuspendableContext<Player>.justToSay() {
     npc<Upset>("I wrote this poem when I went to the oasis to nibble at a tree, then discovered I'd left nothing for Elly to nibble. I was distraught.")
     npc<Neutral>("This Is Just To Say")
     npc<Neutral>("I have nibbled the cacti that were by the oasis,")
@@ -91,7 +91,7 @@ suspend fun Context<Player>.justToSay() {
     whatDoesSheThink()
 }
 
-suspend fun Context<Player>.desertsDay(interrupt: Boolean) {
+suspend fun SuspendableContext<Player>.desertsDay(interrupt: Boolean) {
     if (!interrupt) {
         npc<Talk>("That's my favourite poem. Ahem...")
     }
@@ -117,7 +117,7 @@ suspend fun Context<Player>.desertsDay(interrupt: Boolean) {
     }
 }
 
-suspend fun Context<Player>.whatDoesSheThink() {
+suspend fun SuspendableContext<Player>.whatDoesSheThink() {
     player<Quiz>("What does she think of your poems?")
     npc<Talk>("She's never heard them.")
     player<Talk>("Why not?")
@@ -198,7 +198,7 @@ suspend fun NPCOption<Player>.insult() {
     })
 }
 
-suspend fun Context<Player>.scoopPoop() {
+suspend fun SuspendableContext<Player>.scoopPoop() {
     if (!player.inventory.replace("bucket", "ugthanki_dung")) {
         return
     }

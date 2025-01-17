@@ -31,6 +31,7 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.clear
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.queue.*
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
@@ -115,7 +116,7 @@ fun destroyInstance(player: Player) {
     }
 }
 
-suspend fun Context<Player>.cutscene() {
+suspend fun SuspendableContext<Player>.cutscene() {
     val region = Region(12852)
     val instance = startCutscene(region)
     val offset = instance.offset(region)

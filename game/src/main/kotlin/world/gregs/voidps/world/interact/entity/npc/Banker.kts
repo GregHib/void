@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.community.trade.lend.Loan.getSecondsRemaining
@@ -40,7 +41,7 @@ objectOperate("Use", "bank_*", arrive = false) {
     menu()
 }
 
-suspend fun Context<Player>.menu() {
+suspend fun SuspendableContext<Player>.menu() {
     choice {
         option("I'd like to access my bank account, please.", block = { player.open("bank") })
         option("I'd like to check my PIN settings.", block = { player.open("bank_pin") })

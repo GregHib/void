@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.map.neitiznot
 
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
@@ -9,9 +8,10 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
+import world.gregs.voidps.engine.suspend.SuspendableContext
+import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Uncertain
-import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -37,7 +37,7 @@ itemOnNPCOperate("yak_hide", "thakkrad_sigmundson") {
     cureHide()
 }
 
-suspend fun Context<Player>.cureHide() {
+suspend fun SuspendableContext<Player>.cureHide() {
     player<Talk>("Cure my yak hide please.")
     npc<Talk>("I will cure yak-hide for a fee of 5 gp per hide.")
     choice("How many hides do you want cured?") {
@@ -57,7 +57,7 @@ suspend fun Context<Player>.cureHide() {
     }
 }
 
-suspend fun Context<Player>.cure(amount: Int) {
+suspend fun SuspendableContext<Player>.cure(amount: Int) {
     if (!player.inventory.contains("yak_hide")) {
         npc<Talk>("You have no yak-hide to cure.")
         return

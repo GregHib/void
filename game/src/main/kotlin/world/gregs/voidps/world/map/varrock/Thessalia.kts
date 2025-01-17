@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
@@ -15,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.world.interact.dialogue.Happy
@@ -60,7 +60,7 @@ fun PlayerChoice.openShop(): Unit = option("I'd just like to buy some clothes.")
     player.openShop("thessalias_fine_clothes")
 }
 
-suspend fun Context<Player>.startMakeover() {
+suspend fun SuspendableContext<Player>.startMakeover() {
     player.closeDialogue()
     if (!player.equipment.isEmpty()) {
         npc<Talk>("You're not able to try on my clothes with all that armour. Take it off and then speak to me again.")

@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.suspend
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.event.Context
 import kotlin.coroutines.resume
 
 data class TickSuspension(
@@ -22,7 +21,7 @@ data class TickSuspension(
     }
 
     companion object {
-        context(Context<*>) suspend operator fun invoke(ticks: Int) {
+        context(SuspendableContext<*>) suspend operator fun invoke(ticks: Int) {
             if (ticks <= 0) {
                 return
             }

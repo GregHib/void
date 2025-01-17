@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
@@ -43,7 +44,7 @@ npcOperate("Teleport", "sedridor") {
     EssenceMine.teleport(target, player)
 }
 
-suspend fun Context<Player>.started() {
+suspend fun SuspendableContext<Player>.started() {
     npc<Happy>("Welcome adventurer, to the world renowned Wizards' Tower, home to the Order of Wizards. We are the oldest and most prestigious group of wizards around. Now, how may I help you?")
     player<Quiz>("Are you Sedridor?")
     npc<Quiz>("Sedridor? What is it you want with him?")
@@ -72,7 +73,7 @@ suspend fun Context<Player>.started() {
     }
 }
 
-suspend fun Context<Player>.okHere() {
+suspend fun SuspendableContext<Player>.okHere() {
     player<Neutral>("Okay, here you are.")
     if (player.inventory.contains("air_talisman")) {
         player["rune_mysteries"] = "talisman_delivered"
@@ -121,7 +122,7 @@ suspend fun Context<Player>.okHere() {
     }
 }
 
-suspend fun Context<Player>.discovery() {
+suspend fun SuspendableContext<Player>.discovery() {
     npc<Happy>("It is critical I share this discovery with my associate, Aubury, as soon as possible. He's not much of a wizard, but he's an expert on runecrafting, and his insight will be essential.")
     npc<Quiz>("Would you be willing to visit him for me? I would go myself, but I wish to study this talisman some more.")
     choice {
@@ -130,7 +131,7 @@ suspend fun Context<Player>.discovery() {
     }
 }
 
-suspend fun Context<Player>.visitAubury() {
+suspend fun SuspendableContext<Player>.visitAubury() {
     npc<Quiz>("Hello again, adventurer. You have already done so much, but I would really appreciate it if you were to visit my associate, Aubury. Would you be willing to?")
     choice {
         yesCertainly()
@@ -138,7 +139,7 @@ suspend fun Context<Player>.visitAubury() {
     }
 }
 
-suspend fun Context<Player>.checkPackageDelivered() {
+suspend fun SuspendableContext<Player>.checkPackageDelivered() {
     npc<Quiz>("Hello again, adventurer. Did you take that package to Aubury?")
     if (player.ownsItem("research_package_rune_mysteries")) {
         player<Neutral>("Not yet.")
@@ -159,7 +160,7 @@ suspend fun Context<Player>.checkPackageDelivered() {
     }
 }
 
-suspend fun Context<Player>.checkResearchDelivered() {
+suspend fun SuspendableContext<Player>.checkResearchDelivered() {
     npc<Neutral>("Ah, ${player.name}. How goes your quest? Have you delivered my research to Aubury yet?")
     player<Neutral>("Yes, I have. He gave me some notes to give to you.")
     npc<Happy>("Wonderful! Let's have a look then.")
