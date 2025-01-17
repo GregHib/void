@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.facing
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -79,7 +79,7 @@ interfaceOption(id = "emotes") {
     }
 }
 
-suspend fun CharacterContext<Player>.unlocked(id: String, emote: String): Boolean {
+suspend fun Context<Player>.unlocked(id: String, emote: String): Boolean {
     if (emote.startsWith("Goblin")) {
         if (player["unlocked_emote_lost_tribe", false]) {
             return true
@@ -148,16 +148,16 @@ itemChange("worn_equipment", EquipSlot.Cape) { player ->
     player["unlocked_emote_skillcape"] = item.def.contains("skill_cape") || item.def.contains("skill_cape_t") || item.id == "quest_point_cape"
 }
 
-suspend fun CharacterContext<Player>.playEnhancedEmote(player: Player, type: String) {
+suspend fun Context<Player>.playEnhancedEmote(player: Player, type: String) {
     player.playAnimation("emote_enhanced_$type")
 }
 
-suspend fun CharacterContext<Player>.playEnhancedYawnEmote(player: Player) {
+suspend fun Context<Player>.playEnhancedYawnEmote(player: Player) {
     player.setGraphic("emote_enhanced_yawn")
     player.playAnimation("emote_enhanced_yawn")
 }
 
-suspend fun CharacterContext<Player>.playGiveThanksEmote(player: Player) {
+suspend fun Context<Player>.playGiveThanksEmote(player: Player) {
     player.setGraphic("emote_give_thanks")
     player.playAnimation("emote_turkey_transform")
     player.transform("turkey")
@@ -167,7 +167,7 @@ suspend fun CharacterContext<Player>.playGiveThanksEmote(player: Player) {
     player.playAnimation("emote_turkey_return")
 }
 
-suspend fun CharacterContext<Player>.playSealOfApprovalEmote(player: Player) {
+suspend fun Context<Player>.playSealOfApprovalEmote(player: Player) {
     player.setGraphic("emote_seal_of_approval")
     player.playAnimation("emote_seal_of_approval")
     player.transform("seal")
@@ -178,12 +178,12 @@ suspend fun CharacterContext<Player>.playSealOfApprovalEmote(player: Player) {
     player.playAnimation("emote_seal_stand")
 }
 
-suspend fun CharacterContext<Player>.playSkillCapeEmote(player: Player, skill: String) {
+suspend fun Context<Player>.playSkillCapeEmote(player: Player, skill: String) {
     player.setGraphic("emote_$skill")
     player.playAnimation("emote_$skill")
 }
 
-suspend fun CharacterContext<Player>.playDungeoneeringCapeEmote(player: Player) {
+suspend fun Context<Player>.playDungeoneeringCapeEmote(player: Player) {
     player.setGraphic("emote_dungeoneering_start")
     player.playAnimation("emote_dungeoneering_start")
     when (random.nextInt(3)) {
@@ -203,7 +203,7 @@ suspend fun CharacterContext<Player>.playDungeoneeringCapeEmote(player: Player) 
     player.transform("")
 }
 
-suspend fun CharacterContext<Player>.playDungeoneeringMasterCapeEmote(player: Player) {
+suspend fun Context<Player>.playDungeoneeringMasterCapeEmote(player: Player) {
     val direction = player.facing
 
     player.transform("sagittarian_ranger")

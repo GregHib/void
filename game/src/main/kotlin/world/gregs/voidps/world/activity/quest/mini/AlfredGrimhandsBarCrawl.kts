@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.quest.mini
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.activity.quest.sendMessageScroll
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
@@ -32,7 +32,7 @@ inventoryItem("Read", "barcrawl_card") {
     )
 }
 
-fun CharacterContext<Player>.line(name: String, id: String): String {
+fun Context<Player>.line(name: String, id: String): String {
     val complete = player.containsVarbit("barcrawl_signatures", id)
     return "<${Colours.bool(complete)}>$name - ${if (complete) "Completed!" else "Not Completed"}"
 }

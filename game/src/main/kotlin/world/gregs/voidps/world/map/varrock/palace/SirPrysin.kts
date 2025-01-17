@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -78,7 +78,7 @@ suspend fun PlayerChoice.arisWantsToTalk(): Unit = option(
     }
 }
 
-suspend fun CharacterContext<Player>.findSilverlight() {
+suspend fun Context<Player>.findSilverlight() {
     player<Talk>("I need to find Silverlight.")
     npc<Talk>("What do you need to find that for?")
     player<Talk>("I need it to fight Delrith.")
@@ -97,7 +97,7 @@ suspend fun CharacterContext<Player>.findSilverlight() {
     }
 }
 
-suspend fun CharacterContext<Player>.problemIs() {
+suspend fun Context<Player>.problemIs() {
     npc<Talk>("The problem is getting Silverlight.")
     player<Upset>("You mean you don't have it?")
     npc<Talk>("Oh I do have it, but it is so powerful that the king made me put it in a special box which needs three different keys to open it. That way it won't fall into the wrong hands.")
@@ -114,7 +114,7 @@ suspend fun CharacterContext<Player>.problemIs() {
     }
 }
 
-suspend fun CharacterContext<Player>.theKeys() {
+suspend fun Context<Player>.theKeys() {
     npc<Talk>("I kept one of the keys. I gave the other two to other people for safe keeping.")
     npc<Talk>("One I gave to Rovin, the captain of the palace guard.")
     npc<Talk>("I gave the other to the wizard Traiborn.")

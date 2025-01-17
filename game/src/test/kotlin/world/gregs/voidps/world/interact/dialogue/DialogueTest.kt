@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
 import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.script.KoinMock
 import kotlin.coroutines.Continuation
@@ -30,19 +30,19 @@ abstract class DialogueTest : KoinMock() {
 
     lateinit var interfaces: Interfaces
     lateinit var player: Player
-    lateinit var context: CharacterContext<Player>
+    lateinit var context: Context<Player>
     lateinit var continuation: Continuation<Any>
     lateinit var interfaceDefinitions: InterfaceDefinitions
     lateinit var fontDefinitions: FontDefinitions
     lateinit var clientScriptDefinitions: ClientScriptDefinitions
 
-    fun dialogueBlocking(block: suspend CharacterContext<Player>.() -> Unit) {
+    fun dialogueBlocking(block: suspend Context<Player>.() -> Unit) {
         runTest {
             block.invoke(context)
         }
     }
 
-    fun dialogue(block: suspend CharacterContext<Player>.() -> Unit) {
+    fun dialogue(block: suspend Context<Player>.() -> Unit) {
         GlobalScope.launch(Dispatchers.Unconfined) {
             block.invoke(context)
         }
@@ -64,7 +64,7 @@ abstract class DialogueTest : KoinMock() {
             override fun resumeWith(result: Result<Any>) {
             }
         }
-        context = spyk(object : CharacterContext<Player> {
+        context = spyk(object : Context<Player> {
             override val character = this@DialogueTest.player
             override var onCancel: (() -> Unit)? = null
         })

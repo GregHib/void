@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.npc
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -40,7 +40,7 @@ objectOperate("Use", "bank_*", arrive = false) {
     menu()
 }
 
-suspend fun CharacterContext<Player>.menu() {
+suspend fun Context<Player>.menu() {
     choice {
         option("I'd like to access my bank account, please.", block = { player.open("bank") })
         option("I'd like to check my PIN settings.", block = { player.open("bank_pin") })
@@ -74,7 +74,7 @@ npcApproach("Collect", "banker*") {
     player.open("collection_box")
 }
 
-fun CharacterContext<Player>.achievement() {
+fun Context<Player>.achievement() {
     if (!player["you_can_bank_on_us_task", false]) {
         player["you_can_bank_on_us_task"] = true
         player.addVarbit("task_reward_items", "red_dye")

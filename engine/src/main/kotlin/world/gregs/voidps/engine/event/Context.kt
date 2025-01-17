@@ -7,11 +7,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 /**
  * Context of an event, queue or action to access a [character] as either [player] or [npc]
  */
-interface CharacterContext<C : Character> {
+interface Context<C : Character> {
     val character: C
     var onCancel: (() -> Unit)?
-    val CharacterContext<Player>.player: Player
+    val Context<Player>.player: Player
         get() = character
-    val CharacterContext<NPC>.npc: NPC
+    val Context<NPC>.npc: NPC
         get() = character
 }

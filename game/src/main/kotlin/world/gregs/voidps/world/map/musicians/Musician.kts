@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.map.musicians
 
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.interact.dialogue.Happy
@@ -16,7 +16,7 @@ npcOperate("Talk-to", "musician*") {
     choice()
 }
 
-suspend fun CharacterContext<Player>.choice() {
+suspend fun Context<Player>.choice() {
     choice {
         option<Quiz>("Who are you?") {
             npc<Happy>("Me? I'm a musician Let me help you relax: sit down, rest your weary limbs and allow me to wash away the troubles of the day.")
@@ -30,7 +30,7 @@ suspend fun CharacterContext<Player>.choice() {
     }
 }
 
-suspend fun CharacterContext<Player>.resting() {
+suspend fun Context<Player>.resting() {
     choice("Can I ask you some questions about resting?") {
         option("How does resting work?") {
             player<Quiz>("So how does resting work?")

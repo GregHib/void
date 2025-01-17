@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smithing
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -130,7 +130,7 @@ interfaceClose("smithing") { player ->
     player.sendScript("clear_dialogues")
 }
 
-suspend fun CharacterContext<Player>.smith(player: Player, metal: String, type: String, amount: Int) {
+suspend fun Context<Player>.smith(player: Player, metal: String, type: String, amount: Int) {
     val item = if (metal == "steel" && type == "lantern") {
         "bullseye_lantern_frame"
     } else if (metal == "mithril" && type == "grapple") {
@@ -155,7 +155,7 @@ suspend fun CharacterContext<Player>.smith(player: Player, metal: String, type: 
     smith(smithing, metal, bars, quantity, type, item, actualAmount, true)
 }
 
-suspend fun CharacterContext<Player>.smith(
+suspend fun Context<Player>.smith(
     smithing: Smithing,
     metal: String,
     bars: Int,

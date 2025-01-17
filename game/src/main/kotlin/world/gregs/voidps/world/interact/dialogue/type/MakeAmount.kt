@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.dialogue.type
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
@@ -12,7 +12,7 @@ private const val INTERFACE_ID = "dialogue_skill_creation"
 private const val INTERFACE_AMOUNT_ID = "skill_creation_amount"
 private const val DEFAULT_TEXT = "Choose how many you wish to make, then<br>click on the chosen item to begin."
 
-suspend fun CharacterContext<Player>.makeAmount(
+suspend fun Context<Player>.makeAmount(
     items: List<String>,
     type: String,
     maximum: Int,
@@ -25,7 +25,7 @@ suspend fun CharacterContext<Player>.makeAmount(
     return id to result.second
 }
 
-suspend fun CharacterContext<Player>.makeAmountIndex(
+suspend fun Context<Player>.makeAmountIndex(
     items: List<String>,
     type: String,
     maximum: Int,

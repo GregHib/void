@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.map.neitiznot
 
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
@@ -37,7 +37,7 @@ itemOnNPCOperate("yak_hide", "thakkrad_sigmundson") {
     cureHide()
 }
 
-suspend fun CharacterContext<Player>.cureHide() {
+suspend fun Context<Player>.cureHide() {
     player<Talk>("Cure my yak hide please.")
     npc<Talk>("I will cure yak-hide for a fee of 5 gp per hide.")
     choice("How many hides do you want cured?") {
@@ -57,7 +57,7 @@ suspend fun CharacterContext<Player>.cureHide() {
     }
 }
 
-suspend fun CharacterContext<Player>.cure(amount: Int) {
+suspend fun Context<Player>.cure(amount: Int) {
     if (!player.inventory.contains("yak_hide")) {
         npc<Talk>("You have no yak-hide to cure.")
         return

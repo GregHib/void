@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.map.lumbridge
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -79,7 +79,7 @@ npcOperate("Talk-to", "father_urhney") {
 
 val floorItems: FloorItems by inject()
 
-suspend fun CharacterContext<Player>.ghost() {
+suspend fun Context<Player>.ghost() {
     npc<Angry>("Oh, the silly fool.")
     npc<Angry>("I leave town for just five months, and ALREADY he can't manage.")
     npc<Sad>("(sigh)")

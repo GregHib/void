@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.map.lumbridge
 
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.holdsItem
@@ -73,20 +73,20 @@ npcOperate("Talk-to", "father_aereck") {
     }
 }
 
-suspend fun CharacterContext<Player>.started() {
+suspend fun Context<Player>.started() {
     npc<Neutral>("Have you got rid of the ghost yet?")
     player<Sad>("I can't find Father Urhney at the moment.")
     npc<Happy>("Well, you can get to the swamp he lives in by going south through the cemetery.")
     npc<Happy>("You'll have to go right into the far western depths of the swamp, near the coastline. That is where his house is.")
 }
 
-suspend fun CharacterContext<Player>.ghost() {
+suspend fun Context<Player>.ghost() {
     npc<Neutral>("Have you got rid of the ghost yet?")
     player<Neutral>("I had a talk with Father Urhney. He has given me this funny amulet to talk to the ghost with.")
     npc<Uncertain>("I always wondered what that amulet was... Well, I hope it's useful. Tell me when you get rid of the ghost!")
 }
 
-suspend fun CharacterContext<Player>.miningSpot() {
+suspend fun Context<Player>.miningSpot() {
     npc<Neutral>("Have you got rid of the ghost yet?")
     player<Neutral>("I've found out that the ghost's corpse has lost its skull. If I can find the skull, the ghost should leave.")
     npc<Neutral>("That WOULD explain it.")
@@ -96,7 +96,7 @@ suspend fun CharacterContext<Player>.miningSpot() {
     npc<Happy>("Ah well, good luck!")
 }
 
-suspend fun CharacterContext<Player>.foundSkull() {
+suspend fun Context<Player>.foundSkull() {
     if (player.holdsItem("ghostspeak_amulet")) {
         npc<Neutral>("Have you got rid of the ghost yet?")
         player<Happy>("I've finally found the ghost's skull!")
@@ -108,7 +108,7 @@ suspend fun CharacterContext<Player>.foundSkull() {
     }
 }
 
-suspend fun CharacterContext<Player>.completed() {
+suspend fun Context<Player>.completed() {
     npc<Happy>("Thank you for getting rid of that awful ghost for me! May Saradomin always smile upon you!")
     player<Happy>("I'm looking for a new quest.")
     npc<Happy>("Sorry, I only had the one quest.")

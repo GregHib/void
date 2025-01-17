@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.map.lumbridge
 
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -41,7 +41,7 @@ npcOperate("Talk-To", "barfy_bill") {
     }
 }
 
-suspend fun CharacterContext<Player>.canoeing() {
+suspend fun Context<Player>.canoeing() {
     if (minimumCanoeLevel()) {
         return
     }

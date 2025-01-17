@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.dialogue.type
 
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
 import world.gregs.voidps.world.interact.dialogue.sendLines
@@ -22,7 +22,7 @@ private const val APPROXIMATE_WIDE_TITLE_LENGTH = 30
  *      }
  *  }
  */
-suspend fun <T : CharacterContext<Player>> T.choice(title: String? = null, block: suspend ChoiceBuilder<T>.() -> Unit) {
+suspend fun <T : Context<Player>> T.choice(title: String? = null, block: suspend ChoiceBuilder<T>.() -> Unit) {
     val builder = ChoiceBuilder<T>()
     block.invoke(builder)
     val lines = builder.build(this)
@@ -41,7 +41,7 @@ suspend fun <T : CharacterContext<Player>> T.choice(title: String? = null, block
  *     // ...
  *  }
  */
-suspend fun CharacterContext<Player>.choice(lines: List<String>, title: String? = null): Int {
+suspend fun Context<Player>.choice(lines: List<String>, title: String? = null): Int {
     check(lines.size in CHOICE_LINE_RANGE) { "Invalid choice line count ${lines.size} for $player" }
     val question = title?.trimIndent()?.replace("\n", "<br>")
     val multilineTitle = question?.contains("<br>") ?: false

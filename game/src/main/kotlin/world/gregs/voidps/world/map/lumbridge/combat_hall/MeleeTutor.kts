@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.map.lumbridge.combat_hall
 
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -20,7 +20,7 @@ npcOperate("Talk-to", "harlan") {
     menu()
 }
 
-suspend fun CharacterContext<Player>.menu(followUp: String = "") {
+suspend fun Context<Player>.menu(followUp: String = "") {
     if (followUp.isNotEmpty()) {
         npc<Quiz>(followUp)
     }
@@ -110,7 +110,7 @@ suspend fun PlayerChoice.skillcapes(): Unit = option<Neutral>("Tell me about ski
     }
 }
 
-suspend fun CharacterContext<Player>.buySkillcape() {
+suspend fun Context<Player>.buySkillcape() {
     player<Quiz>("May I buy a Skillcape of Defence, please?")
     npc<Neutral>("You wish to join the elite defenders of this world? I'm afraid such things do not come cheaply - in fact they cost 99000 coins, to be precise!")
     choice {

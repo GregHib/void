@@ -2,7 +2,7 @@ package world.gregs.voidps.world.map.wilderness
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -36,7 +36,7 @@ objectOperate("Pull", "lever_*", override = false) {
     pullLever(player)
 }
 
-suspend fun CharacterContext<Player>.pullLever(player: Player) {
+suspend fun Context<Player>.pullLever(player: Player) {
     player.message("You pull the lever...", ChatType.Filter)
     player.setAnimation("pull_lever")
     player.start("movement_delay", 3)

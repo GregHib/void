@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.map.lumbridge
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.equipment
@@ -22,7 +22,7 @@ npcOperate("Talk-to", "restless_ghost") {
     }
 }
 
-suspend fun CharacterContext<Player>.ghost() {
+suspend fun Context<Player>.ghost() {
     if (player.equipment.contains("ghostspeak_amulet")) {
         player<Neutral>("Hello ghost, how are you?")
         npc<Neutral>("Not very good actually.")
@@ -65,7 +65,7 @@ suspend fun CharacterContext<Player>.ghost() {
     }
 }
 
-suspend fun CharacterContext<Player>.noGhostAmulet() {
+suspend fun Context<Player>.noGhostAmulet() {
     player<Neutral>("Hello ghost, how are you?")
     npc<Neutral>("Wooo wooo wooooo!")
     choice {
@@ -131,14 +131,14 @@ suspend fun CharacterContext<Player>.noGhostAmulet() {
 }
 
 
-suspend fun CharacterContext<Player>.dontSpeakGhost() {
+suspend fun Context<Player>.dontSpeakGhost() {
     npc<Neutral>("Woo woo?")
     player<Neutral>("Nope, still don't understand you.")
     npc<Neutral>("WOOOOOOOOO!")
     player<Neutral>("Never mind.")
 }
 
-suspend fun CharacterContext<Player>.notSoSure() {
+suspend fun Context<Player>.notSoSure() {
     npc<Neutral>("Wooo woo?")
     player<Angry>("Well, if you INSIST.")
     npc<Neutral>("Wooooooooo!")
@@ -147,7 +147,7 @@ suspend fun CharacterContext<Player>.notSoSure() {
     player<Neutral>("Bye.")
 }
 
-suspend fun CharacterContext<Player>.task() {
+suspend fun Context<Player>.task() {
     npc<Neutral>("I should think it's because I've lost my head.")
     player<Neutral>("What? I can see your head perfectly fine well, see through it at least.")
     npc<Neutral>("No, no, I mean from my REAL body. If you look in my coffin you'll see my corpse is without its skull. Last thing I remember was being attacked by a warlock while I was mining. It was at the mine just south of this")
@@ -156,7 +156,7 @@ suspend fun CharacterContext<Player>.task() {
     player["the_restless_ghost"] = "mining_spot"
 }
 
-suspend fun CharacterContext<Player>.helpMe() {
+suspend fun Context<Player>.helpMe() {
     choice {
         option<Happy>("Yes, ok. Do you know WHY you're a ghost?") {
             task()
@@ -169,7 +169,7 @@ suspend fun CharacterContext<Player>.helpMe() {
     }
 }
 
-suspend fun CharacterContext<Player>.miningSpot() {
+suspend fun Context<Player>.miningSpot() {
     if (player.equipment.contains("ghostspeak_amulet")) {
         if (player.inventory.contains("muddy_skull")) {
             player<Neutral>("Hello ghost, how are you?")

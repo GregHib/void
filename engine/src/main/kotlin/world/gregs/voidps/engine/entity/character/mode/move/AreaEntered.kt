@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.character.mode.move
 
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventDispatcher
@@ -14,7 +14,7 @@ data class AreaEntered<C : Character>(
     val name: String,
     val tags: Set<String>,
     val area: Area
-) : SuspendableEvent, CharacterContext<C> {
+) : SuspendableEvent, Context<C> {
     override var onCancel: (() -> Unit)? = null
 
     override val size = 5

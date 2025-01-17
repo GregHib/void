@@ -2,7 +2,7 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -26,7 +26,7 @@ npcOperate("Talk-to", "mikasi") {
     menu()
 }
 
-suspend fun CharacterContext<Player>.menu(followUp: String = "") {
+suspend fun Context<Player>.menu(followUp: String = "") {
     if (followUp.isNotEmpty()) {
         npc<Quiz>(followUp)
     }
@@ -93,7 +93,7 @@ suspend fun PlayerChoice.claimRunes(): Unit = option("I'd like some air and mind
     player.inventory.add("mind_rune", 30)
 }
 
-suspend fun CharacterContext<Player>.hasRunes() {
+suspend fun Context<Player>.hasRunes() {
     var banked = false
     if (player.bank.contains("mind_rune")) {
         npc<Happy>("You have some mind runes in your bank.")

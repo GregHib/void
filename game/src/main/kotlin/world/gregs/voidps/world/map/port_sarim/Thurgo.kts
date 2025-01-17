@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.map.port_sarim
 
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -156,7 +156,7 @@ suspend fun PlayerChoice.whatCape() = option("What is that cape you're wearing?"
     thatCape()
 }
 
-suspend fun CharacterContext<Player>.thatCape() {
+suspend fun Context<Player>.thatCape() {
     player<Quiz>("What is that cape you're wearing?")
     npc<HappyOld>("It's a Skillcape of Smithing. It shows that I'm a master blacksmith, but that's only to be expected - after all, my ancestors were the greatest blacksmiths in dwarven history.")
     npc<HappyOld>("If you ever achieve level 99 Smithing you'll be able to wear a cape like this, and receive more experience when smelting gold ore.")
