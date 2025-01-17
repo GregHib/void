@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smelting
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -56,7 +56,7 @@ itemOnObjectOperate("*_ore", "furnace*", arrive = false) {
     smeltingOptions(player, target, list)
 }
 
-suspend fun CharacterContext<Player>.smeltingOptions(
+suspend fun Context<Player>.smeltingOptions(
     player: Player,
     gameObject: GameObject,
     bars: List<String>

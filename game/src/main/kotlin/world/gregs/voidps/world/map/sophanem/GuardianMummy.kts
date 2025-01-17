@@ -2,7 +2,7 @@ package world.gregs.voidps.world.map.sophanem
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.Inventory
@@ -46,7 +46,7 @@ itemOnNPCOperate("pharaohs_sceptre", "guardian_mummy") {
     sceptreRecharging()
 }
 
-suspend fun CharacterContext<Player>.notAnother() {
+suspend fun Context<Player>.notAnother() {
     npc<Talk>("*sigh* Not another one.")
     player<Quiz>("Another what?")
     npc<Talk>("Another 'archaeologist'.")
@@ -57,7 +57,7 @@ suspend fun CharacterContext<Player>.notAnother() {
     playPyramidPlunder()
 }
 
-suspend fun CharacterContext<Player>.playPyramidPlunder() {
+suspend fun Context<Player>.playPyramidPlunder() {
     choice("Play the 'Pyramid Plunder' minigame?") {
         option<Talk>("That sounds like fun, what do I do?") {
             soundsLikeFun()
@@ -78,12 +78,12 @@ suspend fun CharacterContext<Player>.playPyramidPlunder() {
     }
 }
 
-suspend fun CharacterContext<Player>.itIsDone() {
+suspend fun Context<Player>.itIsDone() {
     npc<Talk>("It is done.")
     playPyramidPlunder()
 }
 
-suspend fun CharacterContext<Player>.sceptreRecharging() {
+suspend fun Context<Player>.sceptreRecharging() {
     player<Talk>("This sceptre seems to have run out of charges.")
     npc<Talk>("You shouldn't have that thing in the first place, thief!")
     player<Talk>("If I gave you back some of the artefacts I've taken from the tomb, would you recharge the sceptre for me.")
@@ -116,7 +116,7 @@ suspend fun CharacterContext<Player>.sceptreRecharging() {
     }
 }
 
-suspend fun CharacterContext<Player>.sceptreDischarging() {
+suspend fun Context<Player>.sceptreDischarging() {
     val count = player.inventory.items.count { it.id.startsWith("pharaohs_sceptre_") }
     if (count < 0) {
         player<Talk>("I want to charge my sceptre.")
@@ -167,7 +167,7 @@ itemOnNPCOperate("*", "guardian_mummy") {
     player.message("The Mummy is not interested in this")
 }
 
-suspend fun CharacterContext<Player>.soundsLikeFun() {
+suspend fun Context<Player>.soundsLikeFun() {
     npc<Talk>("You have five minutes to explore the treasure rooms and collect as many artefacts as you can.")
     npc<Talk>("The artefacts are in the urns, chests and sarcophagi found in each room.")
     npc<Talk>("There are eight treasure rooms, each subsequent room requires higher thieving skills to both enter the room and thieve from the urns and other containers.")
@@ -179,7 +179,7 @@ suspend fun CharacterContext<Player>.soundsLikeFun() {
     anymoreQuestions("How do I get the artefacts?")
 }
 
-suspend fun CharacterContext<Player>.anymoreQuestions(option: String) {
+suspend fun Context<Player>.anymoreQuestions(option: String) {
     choice("Do you have any more questions?") {
         option<Talk>("How do I leave the game?") {
             howDoILeave()
@@ -196,18 +196,18 @@ suspend fun CharacterContext<Player>.anymoreQuestions(option: String) {
     }
 }
 
-suspend fun CharacterContext<Player>.iKnowWhatImDoing() {
+suspend fun Context<Player>.iKnowWhatImDoing() {
     statement("Pyramid Plunder is not currently implemented.")
 //    npc<Talk>("Fine, I'll take you to the first room now...")
 }
 
-suspend fun CharacterContext<Player>.howDoILeave() {
+suspend fun Context<Player>.howDoILeave() {
     npc<Talk>("If at any point you decide you need to leave just use a glowing door.")
     npc<Talk>("The game will end and you will be taken out of the pyramid.")
     anymoreQuestions("What about the chests and sarcophagi?")
 }
 
-suspend fun CharacterContext<Player>.howToGetArtefacts() {
+suspend fun Context<Player>.howToGetArtefacts() {
     npc<Talk>("The artefacts are in the urns, chests and sarcophagi.")
     npc<Talk>("Urns contain snakes that guard them.")
     npc<Talk>("The sarcophagi take some strength to open. They take a while to open.")
@@ -216,7 +216,7 @@ suspend fun CharacterContext<Player>.howToGetArtefacts() {
     anymoreQuestions("What about the chests and sarcophagi?")
 }
 
-suspend fun CharacterContext<Player>.whatToDoWithArtefacts() {
+suspend fun Context<Player>.whatToDoWithArtefacts() {
     npc<Talk>("There are a number of different artefacts, of three main types. The least valuable are the pottery statuettes and scarabs, and the ivory combs.")
     npc<Talk>("Next are the stone scarabs, statuettes and seals, and finally the gold versions of those artefacts.")
     npc<Talk>("They are not old, but are well made.")
@@ -228,7 +228,7 @@ suspend fun CharacterContext<Player>.whatToDoWithArtefacts() {
     anymoreQuestionsSceptre()
 }
 
-suspend fun CharacterContext<Player>.anymoreQuestionsSceptre() {
+suspend fun Context<Player>.anymoreQuestionsSceptre() {
     choice("Do you have any more questions?") {
         option<Talk>("How do I leave the game?") {
             howDoILeave()
@@ -245,14 +245,14 @@ suspend fun CharacterContext<Player>.anymoreQuestionsSceptre() {
     }
 }
 
-suspend fun CharacterContext<Player>.leaveTheTomb() {
+suspend fun Context<Player>.leaveTheTomb() {
     choice("Leave the Tomb?") {
         option("Yes, I'm out of here.")
         option("Ah, I think I'll stay a little longer.")
     }
 }
 
-suspend fun CharacterContext<Player>.whereDidYouHearAboutThat() {
+suspend fun Context<Player>.whereDidYouHearAboutThat() {
     npc<Talk>("Where did you hear about that?")
     player<Talk>("I couldn't possibly say.")
     npc<Talk>("It's the only genuinely valuable artefact in this place.")
@@ -262,7 +262,7 @@ suspend fun CharacterContext<Player>.whereDidYouHearAboutThat() {
     anymoreQuestions("What about the chests and sarcophagi?")
 }
 
-suspend fun CharacterContext<Player>.discharge(index: Int) {
+suspend fun Context<Player>.discharge(index: Int) {
     if (player.inventory.replace(index, player.inventory[index].id, "pharaohs_sceptre")) {
         itIsDone()
     }

@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.map.al_kharid
 
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
@@ -45,7 +45,7 @@ npcOperate("Talk-to", "zeke") {
     }
 }
 
-suspend fun CharacterContext<Player>.takeALook() {
+suspend fun Context<Player>.takeALook() {
     choice {
         option("Yes please, Zeke.", block = { player.openShop("zekes_superior_scimitars") })
         option<Quiz>("Not today, thank you.")

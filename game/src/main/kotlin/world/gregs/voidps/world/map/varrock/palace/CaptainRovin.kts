@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.map.varrock.palace
 
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
@@ -77,7 +77,7 @@ suspend fun PlayerChoice.aleDelivery(): Unit = option<Neutral>("The castle has j
     npc<Talk>("Now that is important. However I'm the wrong person to speak to about it. Go talk to the kitchen staff.")
 }
 
-suspend fun CharacterContext<Player>.haveYouNotKilledIt() {
+suspend fun Context<Player>.haveYouNotKilledIt() {
     npc<Talk>("Yes, you said before, haven't you killed it yet?")
     player<Talk>("I'm going to use the powerful sword Silverlight, which I believe you have one of the keys for?")
     if (player.holdsItem("silverlight_key_captain_rovin")) {
@@ -87,7 +87,7 @@ suspend fun CharacterContext<Player>.haveYouNotKilledIt() {
     }
 }
 
-suspend fun CharacterContext<Player>.isItPowerful() {
+suspend fun Context<Player>.isItPowerful() {
     npc<Quiz>("Is it a powerful demon?")
     choice {
         notReallyPowerful()

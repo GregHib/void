@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.map.barbarian_village
 
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.activity.quest.quest
@@ -23,7 +23,7 @@ npcOperate("Talk-to", "chieftain_gunthor") {
     }
 }
 
-suspend fun CharacterContext<Player>.meetChieftain() {
+suspend fun Context<Player>.meetChieftain() {
     npc<Angry>("Begone, outerlander! Your kind are not welcome here!")
     choice {
         option<Neutral>("I need to speak with you, chieftain.") {
@@ -35,7 +35,7 @@ suspend fun CharacterContext<Player>.meetChieftain() {
     }
 }
 
-suspend fun CharacterContext<Player>.makeItShort() {
+suspend fun Context<Player>.makeItShort() {
     npc<Frustrated>("Make it short.")
     player<Talk>("Your daughter seeks permission to court an outerlander.")
     npc<Mad>("WHAT??")
@@ -49,7 +49,7 @@ suspend fun CharacterContext<Player>.makeItShort() {
     }
 }
 
-suspend fun CharacterContext<Player>.barbarians() {
+suspend fun Context<Player>.barbarians() {
     npc<Frustrated>("Do you have ANY idea who we are?")
     choice {
         option<Neutral>("You're barbarians.") {
@@ -61,7 +61,7 @@ suspend fun CharacterContext<Player>.barbarians() {
     }
 }
 
-suspend fun CharacterContext<Player>.waitAMoment() {
+suspend fun Context<Player>.waitAMoment() {
     npc<Angry>("We are storm that sweeps from the mountains! We are the scourge of these soft lands!")
     choice {
         option<Neutral>("Please wait a moment.") {
@@ -73,7 +73,7 @@ suspend fun CharacterContext<Player>.waitAMoment() {
     }
 }
 
-suspend fun CharacterContext<Player>.campOfWar() {
+suspend fun Context<Player>.campOfWar() {
     npc<Frustrated>("We are the freemen of the ice. You think this a settlement, but it is a camp of war!")
     npc<Frustrated>("haakon_the_champion", "Chieftain! May I interrupt?")
     npc<Frustrated>("What is it, Haakon?")
@@ -94,7 +94,7 @@ suspend fun CharacterContext<Player>.campOfWar() {
     seeHimTry()
 }
 
-suspend fun CharacterContext<Player>.seeHimTry() {
+suspend fun Context<Player>.seeHimTry() {
     choice {
         option<Talk>("I'm going!") {
         }
@@ -107,6 +107,6 @@ suspend fun CharacterContext<Player>.seeHimTry() {
     }
 }
 
-suspend fun CharacterContext<Player>.unstarted() {
+suspend fun Context<Player>.unstarted() {
     npc<Frustrated>("Begone, outerlander! Your kind are not welcome here!")
 }

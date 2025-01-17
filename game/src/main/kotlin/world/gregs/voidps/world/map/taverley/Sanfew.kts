@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.map.taverley
 
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -42,7 +42,7 @@ npcOperate("Talk-to", "sanfew") {
     }
 }
 
-suspend fun CharacterContext<Player>.started() {
+suspend fun Context<Player>.started() {
     npc<Quiz>("What can I do for you young 'un?")
     choice {
         option("I've been sent to help purify the Varrock stone circle.") {
@@ -65,7 +65,7 @@ suspend fun CharacterContext<Player>.started() {
     }
 }
 
-suspend fun CharacterContext<Player>.cauldron() {
+suspend fun Context<Player>.cauldron() {
     npc<Quiz>("Did you bring me the required ingredients for the potion?")
     if (!player.inventory.contains(enchantedMeat)) {
         noMeat()
@@ -79,7 +79,7 @@ suspend fun CharacterContext<Player>.cauldron() {
     npc<Neutral>("Now go and talk to Kaqemeex and he will introduce you to the wonderful world of herblore and potion making!")
 }
 
-suspend fun CharacterContext<Player>.noMeat() {
+suspend fun Context<Player>.noMeat() {
     player<Sad>("No, not yet...")
     npc<Neutral>("Well let me know when you do young 'un.")
     choice {
@@ -101,7 +101,7 @@ suspend fun CharacterContext<Player>.noMeat() {
     }
 }
 
-suspend fun CharacterContext<Player>.eadgarsRuse() {
+suspend fun Context<Player>.eadgarsRuse() {
     npc<Quiz>("What can I do for you young 'un?")
     choice {
         option<Neutral>("Have you any more work for me, to help reclaim the circle?") {

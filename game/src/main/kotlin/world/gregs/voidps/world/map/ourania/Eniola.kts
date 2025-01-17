@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -125,7 +125,7 @@ val runes = listOf("air_rune",
     "soul_rune"
 )
 
-suspend fun CharacterContext<Player>.runePayment(): Boolean {
+suspend fun Context<Player>.runePayment(): Boolean {
     player.open("ourania_bank_charge")
     val rune = StringSuspension()
     player.close("ourania_bank_charge")

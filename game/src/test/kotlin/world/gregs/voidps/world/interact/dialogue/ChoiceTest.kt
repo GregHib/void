@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -183,7 +183,7 @@ internal class ChoiceTest : DialogueTest() {
         }
     }
 
-    private suspend fun CharacterContext<Player>.choice(text: String, title: String? = null): Int {
+    private suspend fun Context<Player>.choice(text: String, title: String? = null): Int {
         val lines = text.trimIndent().lines()
         return choice(lines, title)
     }

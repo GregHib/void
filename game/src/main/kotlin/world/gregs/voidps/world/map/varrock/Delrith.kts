@@ -25,7 +25,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.npcLevelCha
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.playerDespawn
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.clear
@@ -70,13 +70,13 @@ enterArea("demon_slayer_stone_circle") {
     }
 }
 
-fun CharacterContext<Player>.setCutsceneEnd(instance: Region) {
+fun Context<Player>.setCutsceneEnd(instance: Region) {
     player.queue("demon_slayer_delrith_cutscene_end", 1, LogoutBehaviour.Accelerate) {
         endCutscene(instance, defaultTile)
     }
 }
 
-fun CharacterContext<Player>.endCutscene(instance: Region, tile: Tile? = null) {
+fun Context<Player>.endCutscene(instance: Region, tile: Tile? = null) {
     val offset: Delta = player["demon_slayer_offset"] ?: return
     player.tele(tile ?: player.tile.minus(offset))
     stopCutscene(instance)
@@ -115,7 +115,7 @@ fun destroyInstance(player: Player) {
     }
 }
 
-suspend fun CharacterContext<Player>.cutscene() {
+suspend fun Context<Player>.cutscene() {
     val region = Region(12852)
     val instance = startCutscene(region)
     val offset = instance.offset(region)
@@ -290,7 +290,7 @@ npcLevelChange("delrith", Skill.Constitution) { npc ->
     npc.mode = PauseMode
 }
 
-fun CharacterContext<Player>.questComplete() {
+fun Context<Player>.questComplete() {
     player.setAnimation("silverlight_showoff")
     player.setGraphic("silverlight_sparkle")
     player.playSound("equip_silverlight")

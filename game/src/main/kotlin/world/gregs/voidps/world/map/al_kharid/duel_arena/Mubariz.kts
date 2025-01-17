@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.map.al_kharid.duel_arena
 
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.interact.dialogue.*
@@ -17,7 +17,7 @@ npcOperate("Talk-to", "mubariz") {
     menu()
 }
 
-suspend fun CharacterContext<Player>.menu() {
+suspend fun Context<Player>.menu() {
     choice {
         place()
         duelling()
@@ -40,7 +40,7 @@ suspend fun PlayerChoice.place(): Unit = option<Uncertain>("What is this place?"
     }
 }
 
-suspend fun CharacterContext<Player>.looksOld() {
+suspend fun Context<Player>.looksOld() {
     player<Uncertain>("It looks really old. Where did it come from?")
     npc<Neutral>("The archaeologists that are excavating the area east of Varrock have been working on this site as well. From these cliffs they uncovered this huge building. The experts think it may date back to the second age!")
     npc<Neutral>("Now that the archaeologists have moved out, a group of warriors, headed by myself, have bought the land and converted it to a set of arenas for duels. The best fighters from around the world come here to fight!")
@@ -58,7 +58,7 @@ suspend fun PlayerChoice.challenge(): Unit = option<Frustrated>("I challenge you
     menu()
 }
 
-suspend fun CharacterContext<Player>.duelling() {
+suspend fun Context<Player>.duelling() {
     player<Uncertain>("How do I challenge someone to a duel?")
     npc<Neutral>("When you go to the arena you'll go up an access ramp to the walkways that overlook the arenas. From the walkways you can watch the duels and challenge other players.")
     npc<Neutral>("You'll know you're in the right place as you'll have a Duel-with option when you right-click a player.")

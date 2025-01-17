@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.obj
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.EventDispatcher
@@ -14,7 +14,7 @@ data class Teleport(
     val tile: Tile,
     val obj: ObjectDefinition,
     val option: String
-) : CancellableEvent(), CharacterContext<Player> {
+) : CancellableEvent(), Context<Player> {
     var delay: Int? = null
     override var onCancel: (() -> Unit)? = null
     var land: Boolean = false

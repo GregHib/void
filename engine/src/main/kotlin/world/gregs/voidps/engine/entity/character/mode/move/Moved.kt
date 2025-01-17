@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.character.mode.move
 
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.CancellableEvent
@@ -17,7 +17,7 @@ data class Moved<C : Character>(
     override val character: C,
     val from: Tile,
     val to: Tile
-) : CancellableEvent(), CharacterContext<C>, SuspendableEvent {
+) : CancellableEvent(), Context<C>, SuspendableEvent {
     override var onCancel: (() -> Unit)? = null
 
     override val size = 4

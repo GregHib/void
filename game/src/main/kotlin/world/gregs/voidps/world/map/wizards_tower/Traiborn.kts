@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -112,7 +112,7 @@ suspend fun PlayerChoice.needAKey(): Unit = option<Talk>("I need to get a key gi
     }
 }
 
-suspend fun CharacterContext<Player>.betterBeOffChoice() {
+suspend fun Context<Player>.betterBeOffChoice() {
     choice {
         betterBeOff()
         option<Neutral>("They're right, you are mad.") {
@@ -132,7 +132,7 @@ suspend fun PlayerChoice.kingsKnight(): Unit = option<Talk>("He's one of the Kin
     }
 }
 
-suspend fun CharacterContext<Player>.spinachRoll() {
+suspend fun Context<Player>.spinachRoll() {
     player.inventory.add("spinach_roll")
     if (player.inventory.transaction.error != TransactionError.None) {
         floorItems.add(player.tile, "spinach_roll")
@@ -208,7 +208,7 @@ suspend fun TargetContext<Player, NPC>.startSpell() {
     npc<Neutral>("Not a problem for a friend of Sir What's-his-face.")
 }
 
-suspend fun CharacterContext<Player>.somewhereToBe() {
+suspend fun Context<Player>.somewhereToBe() {
     npc<Uncertain>("Don't you have somewhere to be, young thingummywut? You still have that key you asked me for.")
     player<Talk>("You're right. I've got a demon to slay.")
 }
@@ -236,7 +236,7 @@ suspend fun TargetContext<Player, NPC>.bonesCheck() {
     }
 }
 
-suspend fun CharacterContext<Player>.lostKey() {
+suspend fun Context<Player>.lostKey() {
     player<Upset>("I've lost the key you gave to me.")
     npc<Uncertain>("Yes I know, it was returned to me. If you want it back you're going to have to collect another 25 sets of bones.")
     player.bonesRequired = 25

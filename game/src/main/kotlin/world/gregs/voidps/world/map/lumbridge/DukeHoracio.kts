@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.map.lumbridge
 
 
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
@@ -22,7 +22,7 @@ npcOperate("Talk-to", "duke_horacio") {
     }
 }
 
-suspend fun CharacterContext<Player>.started() {
+suspend fun Context<Player>.started() {
     choice {
         option<Quiz>("What did you want me to do again?") {
             if (player.ownsItem("air_talisman")) {
@@ -45,7 +45,7 @@ suspend fun CharacterContext<Player>.started() {
     }
 }
 
-suspend fun CharacterContext<Player>.unstarted() {
+suspend fun Context<Player>.unstarted() {
     choice {
         option<Quiz>("Have you any quests for me?") {
             npc<Uncertain>("Well, I wouldn't describe it as a quest, but there is something I could use some help with.")
@@ -60,7 +60,7 @@ suspend fun CharacterContext<Player>.unstarted() {
     }
 }
 
-suspend fun CharacterContext<Player>.completed() {
+suspend fun Context<Player>.completed() {
     choice {
         option<Quiz>("Have you any quests for me?") {
             npc<Neutral>("The only job I had was the delivery of that talisman, so I'm afraid not.")
@@ -73,7 +73,7 @@ suspend fun PlayerChoice.findMoney() : Unit = option<Quiz>("Where can I find mon
     npc<Neutral>("I've heard that the blacksmiths are prosperous amongst the peasantry. Maybe you could try your hand at that?")
 }
 
-suspend fun CharacterContext<Player>.startQuest() {
+suspend fun Context<Player>.startQuest() {
     choice("Start the Rune Mysteries quest?") {
         option<Happy>("Sure, no problem.") {
             if (player.inventory.isFull()) {

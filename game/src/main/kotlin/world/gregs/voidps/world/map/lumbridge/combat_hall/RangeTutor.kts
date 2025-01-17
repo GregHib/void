@@ -2,7 +2,7 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -21,7 +21,7 @@ npcOperate("Talk-to", "nemarti") {
     menu()
 }
 
-suspend fun CharacterContext<Player>.menu(followUp: String = "") {
+suspend fun Context<Player>.menu(followUp: String = "") {
     if (followUp.isNotEmpty()) {
         npc<Quiz>(followUp)
     }
@@ -67,7 +67,7 @@ suspend fun PlayerChoice.arrowMaking(): Unit = option<Quiz>("How do I create a b
     menu("Is there anything else you want to know?")
 }
 
-suspend fun CharacterContext<Player>.claimBow() {
+suspend fun Context<Player>.claimBow() {
     if (player.remaining("claimed_tutor_consumables", epochSeconds()) > 0) {
         npc<Amazed>("I work with the Magic tutor to give out consumable items that you may need for combat such as arrows and runes. However we have had some cheeky people try to take both!")
         npc<Happy>("So, every half an hour, you may come back and claim either arrows OR runes, but not both. Come back in a while for arrows, or simply make your own.")
@@ -100,7 +100,7 @@ suspend fun CharacterContext<Player>.claimBow() {
     player.start("claimed_tutor_consumables", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
 }
 
-suspend fun CharacterContext<Player>.hasEquipment() {
+suspend fun Context<Player>.hasEquipment() {
     var banked = false
     if (player.bank.contains("training_arrows")) {
         npc<Happy>("You have some training arrows in your bank.")

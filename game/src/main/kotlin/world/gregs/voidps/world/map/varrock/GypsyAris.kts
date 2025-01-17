@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.event.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.move.running
@@ -76,7 +76,7 @@ npcOperate("Talk-to", "gypsy_aris") {
     }
 }
 
-suspend fun CharacterContext<Player>.whatToDo() {
+suspend fun Context<Player>.whatToDo() {
     choice {
         cityDestroyer {
             wallyQuestions()
@@ -86,7 +86,7 @@ suspend fun CharacterContext<Player>.whatToDo() {
     }
 }
 
-suspend fun CharacterContext<Player>.howToDo() {
+suspend fun Context<Player>.howToDo() {
     choice {
         cityDestroyer {
             wallyQuestions()
@@ -101,7 +101,7 @@ suspend fun PlayerChoice.howWallyWon(): Unit = option<Quiz>("So, how did Wally k
     cutscene()
 }
 
-suspend fun CharacterContext<Player>.finalQuestions() {
+suspend fun Context<Player>.finalQuestions() {
     choice {
         cityDestroyer {
             otherQuestions()
@@ -116,7 +116,7 @@ suspend fun CharacterContext<Player>.finalQuestions() {
     }
 }
 
-suspend fun CharacterContext<Player>.otherQuestions() {
+suspend fun Context<Player>.otherQuestions() {
     choice {
         whereIsHe()
         notVeryHeroicName()
@@ -132,7 +132,7 @@ suspend fun CharacterContext<Player>.otherQuestions() {
     }
 }
 
-suspend fun PlayerChoice.cityDestroyer(end: suspend CharacterContext<Player>.() -> Unit): Unit = option<Afraid>("How am I meant to fight a demon who can destroy cities?") {
+suspend fun PlayerChoice.cityDestroyer(end: suspend Context<Player>.() -> Unit): Unit = option<Afraid>("How am I meant to fight a demon who can destroy cities?") {
     npc<Talk>("If you face Delrith while he is still weak from being summoned, and use the correct weapon, you will not find the task too arduous.")
     npc<Talk>("Do not fear. If you follow the path of the great hero Wally, then you are sure to defeat the demon.")
     end.invoke(this)
@@ -151,7 +151,7 @@ suspend fun PlayerChoice.notVeryHeroicName(): Unit = option<Happy>("Wally doesn'
     howToDo()
 }
 
-suspend fun CharacterContext<Player>.incantation() {
+suspend fun Context<Player>.incantation() {
     player<Talk>("What is the magical incantation?")
     npc<Talk>("Oh yes, let me think a second.")
     npc<Neutral>("Aright, I think I've got it now, it goes... ${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}.,. ${getWord(player, 4)}.,. ${getWord(player, 5)}. Have you got that?")
@@ -210,7 +210,7 @@ suspend fun ChoiceBuilder<NPCOption<Player>>.whoYouCallingYoung(): Unit = option
     }
 }
 
-suspend fun CharacterContext<Player>.cutscene() {
+suspend fun Context<Player>.cutscene() {
     val region = Region(12852)
     player.open("fade_out")
     statement("", clickToContinue = false)
@@ -283,13 +283,13 @@ suspend fun CharacterContext<Player>.cutscene() {
     delrithWillCome()
 }
 
-fun CharacterContext<Player>.setCutsceneEnd(instance: Region) {
+fun Context<Player>.setCutsceneEnd(instance: Region) {
     player.queue("demon_slayer_wally_cutscene_end", 1, LogoutBehaviour.Accelerate) {
         endCutscene(instance)
     }
 }
 
-suspend fun CharacterContext<Player>.endCutscene(instance: Region) {
+suspend fun Context<Player>.endCutscene(instance: Region) {
     player.open("fade_out")
     delay(3)
     player.tele(3203, 3424)
@@ -307,7 +307,7 @@ suspend fun ChoiceBuilder<NPCOption<Player>>.withSilver(): Unit = option<Quiz>("
     }
 }
 
-suspend fun CharacterContext<Player>.delrithWillCome() {
+suspend fun Context<Player>.delrithWillCome() {
     npc<Upset>("Delrith will come forth from the stone circle again.")
     npc<Upset>("I would imagine an evil sorcerer is already beginning the rituals to summon Delrith as we speak.")
     choice {
@@ -326,7 +326,7 @@ suspend fun CharacterContext<Player>.delrithWillCome() {
     }
 }
 
-suspend fun CharacterContext<Player>.whereSilverlight() {
+suspend fun Context<Player>.whereSilverlight() {
     player<Frustrated>("Where can I find Silverlight?")
     npc<Talk>("Silverlight has been passed down by Wally's descendants. I believe it is currently in the care of one of the king's knights called Sir Prysin.")
     npc<Pleased>("He shouldn't be too hard to find. He lives in the royal palace in this city. Tell him Gypsy Aris sent you.")
@@ -379,7 +379,7 @@ suspend fun PlayerChoice.stopCallingMeThat(): Unit = option<Angry>("Stop calling
     }
 }
 
-suspend fun CharacterContext<Player>.wallyQuestions() {
+suspend fun Context<Player>.wallyQuestions() {
     choice {
         whereIsHe()
         notVeryHeroicName()
