@@ -24,17 +24,13 @@ fun Character.resumeSuspension(): Boolean {
 }
 
 suspend fun SuspendableContext<Player>.awaitDialogues(): Boolean {
-    PredicateSuspension { player.dialogue == null }
+    PredicateSuspension.start(character) { player.dialogue == null }
     return true
 }
 
 suspend fun SuspendableContext<Player>.awaitInterfaces(): Boolean {
-    PredicateSuspension { player.menu == null }
+    PredicateSuspension.start(character) { player.menu == null }
     return true
-}
-
-suspend fun SuspendableContext<*>.pauseForever() {
-    InfiniteSuspension()
 }
 
 private val logger = InlineLogger()

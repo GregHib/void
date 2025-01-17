@@ -1,32 +1,26 @@
 package world.gregs.voidps.engine.suspend
 
-import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.GameLoop
-import kotlin.coroutines.resume
+import world.gregs.voidps.engine.entity.character.Character
 
 data class TickSuspension(
-    val tick: Int,
-    override val onCancel: (() -> Unit)?,
-    private val continuation: CancellableContinuation<Unit>
+    private val tick: Int,
 ) : Suspension() {
 
     override fun ready(): Boolean {
         return GameLoop.tick >= tick
     }
 
-    override fun resume() {
-        super.resume()
-        continuation.resume(Unit)
-    }
-
     companion object {
-        context(SuspendableContext<*>) suspend operator fun invoke(ticks: Int) {
+        suspend fun start(character: Character, ticks: Int) {
             if (ticks <= 0) {
                 return
             }
+            val suspension = TickSuspension(GameLoop.tick + ticks)
             suspendCancellableCoroutine {
-                character.suspension = TickSuspension(GameLoop.tick + ticks, onCancel, it)
+                suspension.continuation = it
+                character.suspension = suspension
             }
             character.suspension = null
         }

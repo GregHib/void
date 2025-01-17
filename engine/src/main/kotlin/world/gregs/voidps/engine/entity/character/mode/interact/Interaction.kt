@@ -22,7 +22,7 @@ abstract class Interaction<C : Character> : CancellableEvent(), SuspendableEvent
      * interaction will have finished and there will be nothing to resume the suspension
      */
     override suspend fun pause(ticks: Int) {
-        TickSuspension(ticks)
+        TickSuspension.start(character, ticks)
     }
 
     /**

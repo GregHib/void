@@ -152,8 +152,7 @@ class Interact(
      * Continue any suspended, clear any finished or start a new interaction
      */
     private fun launch(event: Interaction<*>): Boolean {
-        if (character.suspension != null) {
-            character.resumeSuspension()
+        if (character.resumeSuspension()) {
             return true
         }
         if (!event.launched && character.emit(event)) {

@@ -24,7 +24,7 @@ data class Moved<C : Character>(
     override val size = 4
 
     override suspend fun pause(ticks: Int) {
-        TickSuspension(ticks)
+        TickSuspension.start(character, ticks)
     }
 
     override fun parameter(dispatcher: EventDispatcher, index: Int): Any? = when (index) {

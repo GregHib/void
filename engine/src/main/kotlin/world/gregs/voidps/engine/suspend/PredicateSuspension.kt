@@ -1,33 +1,22 @@
 package world.gregs.voidps.engine.suspend
 
-import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlin.coroutines.resume
+import world.gregs.voidps.engine.entity.character.Character
 
 class PredicateSuspension(
     private val predicate: () -> Boolean,
-    override val onCancel: (() -> Unit)?,
-    private val continuation: CancellableContinuation<Unit>
 ) : Suspension() {
-
-    var boolean: Boolean? = null
 
     override fun ready(): Boolean {
         return predicate.invoke()
     }
 
-    override fun resume() {
-        super.resume()
-        continuation.resume(Unit)
-    }
-
     companion object {
-        context(SuspendableContext<*>) suspend operator fun invoke(predicate: () -> Boolean) {
-            if (predicate.invoke()) {
-                return
-            }
+        suspend fun start(character: Character, predicate: () -> Boolean) {
+            val suspension = PredicateSuspension(predicate)
             suspendCancellableCoroutine {
-                character.suspension = PredicateSuspension(predicate, onCancel, it)
+                suspension.continuation = it
+                character.suspension = suspension
             }
             character.suspension = null
         }
