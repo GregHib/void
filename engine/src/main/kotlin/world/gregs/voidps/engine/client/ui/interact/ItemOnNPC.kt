@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.client.ui.interact
 
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetContext
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -17,7 +17,7 @@ data class ItemOnNPC(
     val item: Item,
     val itemSlot: Int,
     val inventory: String
-) : Interaction<Player>(), TargetNPCContext<Player> {
+) : Interaction<Player>(), TargetContext<Player, NPC> {
 
     override val character = player
 

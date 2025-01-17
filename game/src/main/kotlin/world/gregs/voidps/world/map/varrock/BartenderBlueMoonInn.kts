@@ -4,7 +4,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.forceChat
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetContext
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
@@ -66,7 +67,7 @@ itemOnNPCApproach("barcrawl_card", "bartender_blue_moon_inn") {
     barCrawl()
 }
 
-suspend fun TargetNPCContext<Player>.barCrawl() = barCrawlDrink(
+suspend fun TargetContext<Player, NPC>.barCrawl() = barCrawlDrink(
     start = {
         npc<Sad>("Oh no not another of you guys. These barbarian barcrawls cause too much damage to my bar.")
         npc<Talk>("You're going to have to pay 50 gold for the Uncle Humphrey's Gutrot.")

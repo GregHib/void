@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.SuspendableEvent
 
-abstract class Interaction<C: Character> : CancellableEvent(), SuspendableEvent, CharacterContext<C> {
+abstract class Interaction<C : Character> : CancellableEvent(), SuspendableEvent, CharacterContext<C> {
     var approach = false
     val operate: Boolean
         get() = !approach

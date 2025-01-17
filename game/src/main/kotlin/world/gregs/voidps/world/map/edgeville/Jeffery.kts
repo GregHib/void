@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.map.edgeville
 
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetContext
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -91,7 +92,7 @@ npcOperate("Talk-to", "jeffery") {
     }
 }
 
-suspend fun TargetNPCContext<Player>.lovePoem() {
+suspend fun TargetContext<Player, NPC>.lovePoem() {
     npc<Surprised>("A love poem? What?")
     npc<Quiz>("Wait...that dwarf put you up to this, didn't he?")
     choice {
@@ -105,7 +106,7 @@ suspend fun TargetNPCContext<Player>.lovePoem() {
     }
 }
 
-suspend fun TargetNPCContext<Player>.cheekyLittle() {
+suspend fun TargetContext<Player, NPC>.cheekyLittle() {
     npc<Frustrated>("That cheeky little...")
     npc<Frustrated>("He just can't leave it alone, can he? Fine! I'll trade you for the poem. What is it you want?")
     choice {
@@ -120,7 +121,7 @@ suspend fun TargetNPCContext<Player>.cheekyLittle() {
     }
 }
 
-suspend fun TargetNPCContext<Player>.goldRing() {
+suspend fun TargetContext<Player, NPC>.goldRing() {
     player.inventory.replace("love_poem", "ring_from_jeffery")
     player["gunnars_ground"] = "jeffery_ring"
     player.setAnimation("hand_over_item")

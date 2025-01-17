@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.type.Area
 
-data class AreaEntered<C: Character>(
+data class AreaEntered<C : Character>(
     override val character: C,
     val name: String,
     val tags: Set<String>,

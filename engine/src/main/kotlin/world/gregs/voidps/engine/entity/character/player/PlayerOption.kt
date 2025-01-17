@@ -2,17 +2,17 @@ package world.gregs.voidps.engine.entity.character.player
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetPlayerContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetContext
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.suspend.arriveDelay
 
-data class PlayerOption<C: Character>(
+data class PlayerOption<C : Character>(
     override val character: C,
     override val target: Player,
     val option: String
-) : Interaction<C>(), TargetPlayerContext<C> {
+) : Interaction<C>(), TargetContext<C, Player> {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 
     override val size = 3

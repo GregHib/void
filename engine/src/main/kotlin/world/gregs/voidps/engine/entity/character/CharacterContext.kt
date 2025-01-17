@@ -4,9 +4,9 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 
 /**
- * Context of a queue or interaction action to access a [character] as either [player] or [npc] but which is only known implicitly
+ * Context of a queue or interaction action to access a [character] as either [player] or [npc]
  */
-interface CharacterContext<C: Character> {
+interface CharacterContext<C : Character> {
     val character: C
     var onCancel: (() -> Unit)?
     val CharacterContext<Player>.player: Player

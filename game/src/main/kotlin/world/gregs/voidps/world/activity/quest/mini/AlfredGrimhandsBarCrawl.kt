@@ -1,7 +1,8 @@
 package world.gregs.voidps.world.activity.quest.mini
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetContext
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -12,9 +13,9 @@ import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-suspend fun TargetNPCContext<Player>.barCrawlDrink(
-    start: (suspend TargetNPCContext<Player>.() -> Unit)? = null,
-    effects: suspend TargetNPCContext<Player>.() -> Unit = {},
+suspend fun TargetContext<Player, NPC>.barCrawlDrink(
+    start: (suspend TargetContext<Player, NPC>.() -> Unit)? = null,
+    effects: suspend TargetContext<Player, NPC>.() -> Unit = {},
 ) {
     player<Talk>("I'm doing Alfred Grimhand's Barcrawl.")
     val info: Map<String, Any> = target.def.getOrNull("bar_crawl") ?: return
@@ -36,7 +37,7 @@ suspend fun TargetNPCContext<Player>.barCrawlDrink(
     }
 }
 
-val barCrawlFilter: TargetNPCContext<Player>.() -> Boolean = filter@{
+val barCrawlFilter: TargetContext<Player, NPC>.() -> Boolean = filter@{
     val info: Map<String, Any> = target.def.getOrNull("bar_crawl") ?: return@filter false
     val id = info["id"] as String
     player.quest("alfred_grimhands_barcrawl") == "signatures" && !player.containsVarbit("barcrawl_signatures", id)

@@ -6,7 +6,8 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetContext
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
@@ -141,7 +142,7 @@ suspend fun NPCOption<Player>.buyEmptyGlasses() {
     }
 }
 
-suspend fun TargetNPCContext<Player>.barCrawl() = barCrawlDrink(
+suspend fun TargetContext<Player, NPC>.barCrawl() = barCrawlDrink(
     start = {
         npc<Laugh>("Heehee, this'll be fun!")
         npc<Angry>("You'll be after our Hand of Death cocktail, then. Lots of expensive parts to the cocktail, though, so it will cost you 70 coins.")
