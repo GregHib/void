@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.suspend
 
 import kotlinx.coroutines.suspendCancellableCoroutine
-import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.Context
@@ -26,16 +25,5 @@ interface SuspendableContext<C : Character> : Context<C> {
         suspendCancellableCoroutine {
             character.delay = it
         }
-    }
-
-    /**
-     * Movement delay, typically used by interactions that perform animations or exact movements
-     */
-    suspend fun arriveDelay() {
-        val delay = character.remaining("last_movement")
-        if (delay == -1) {
-            return
-        }
-        delay(delay)
     }
 }

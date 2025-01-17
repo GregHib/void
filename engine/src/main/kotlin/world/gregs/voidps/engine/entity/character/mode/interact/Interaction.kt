@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
+import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.SuspendableEvent
@@ -22,5 +23,16 @@ abstract class Interaction<C : Character> : CancellableEvent(), SuspendableEvent
      */
     override suspend fun pause(ticks: Int) {
         TickSuspension(ticks)
+    }
+
+    /**
+     * Movement delay, typically used by interactions that perform animations or exact movements
+     */
+    suspend fun arriveDelay() {
+        val delay = character.remaining("last_movement")
+        if (delay == -1) {
+            return
+        }
+        delay(delay)
     }
 }
