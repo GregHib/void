@@ -24,8 +24,6 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.LogoutBehaviour
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction

@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Tile

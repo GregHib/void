@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
 import world.gregs.voidps.engine.suspend.approachRange
-import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val floorItems: FloorItems by inject()

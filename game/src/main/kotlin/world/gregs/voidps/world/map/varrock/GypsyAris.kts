@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.LogoutBehaviour
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.engine.timer.npcTimerStart
 import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.type.Direction

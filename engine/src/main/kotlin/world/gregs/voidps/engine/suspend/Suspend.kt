@@ -32,19 +32,6 @@ fun Player.resumeDialogueSuspension(): Boolean {
     return true
 }
 
-/**
- * Prevents non-interface player input and most processing
- */
-suspend fun SuspendableContext<*>.delay(ticks: Int = 1) {
-    if (ticks <= 0) {
-        return
-    }
-    character.start("delay", ticks)
-    suspendCancellableCoroutine {
-        character.delay = it
-    }
-}
-
 suspend fun SuspendableContext<Player>.awaitDialogues(): Boolean {
     PredicateSuspension { player.dialogue == null }
     return true
