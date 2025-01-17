@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.suspend.TickSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 
 abstract class Interaction<C : Character> : CancellableEvent(), SuspendableEvent, SuspendableContext<C> {
     var approach = false
@@ -22,7 +22,7 @@ abstract class Interaction<C : Character> : CancellableEvent(), SuspendableEvent
      * interaction will have finished and there will be nothing to resume the suspension
      */
     override suspend fun pause(ticks: Int) {
-        TickSuspension.start(character, ticks)
+        Suspension.start(character, ticks)
     }
 
     /**
