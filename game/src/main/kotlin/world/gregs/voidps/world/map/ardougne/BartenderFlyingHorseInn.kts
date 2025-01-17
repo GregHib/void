@@ -2,22 +2,22 @@ package world.gregs.voidps.world.map.ardougne
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.event.TargetContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
+import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
+import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.npc.shop.buy
-import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
-import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
-import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
+import world.gregs.voidps.world.interact.entity.npc.shop.buy
 
 npcOperate("Talk-to", "bartender_flying_horse_inn") {
     npc<Quiz>("Would you like to buy a drink?")
@@ -45,7 +45,7 @@ itemOnNPCOperate("barcrawl_card", "bartender_flying_horse_inn") {
     barCrawl()
 }
 
-suspend fun TargetContext<Player, NPC>.barCrawl() = barCrawlDrink(
+suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
     effects = {
         player.message("signing your barcrawl card")
         player.damage(player.levels.get(Skill.Constitution) / 4)

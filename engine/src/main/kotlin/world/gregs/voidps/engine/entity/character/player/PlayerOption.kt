@@ -1,8 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player
 
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.event.TargetContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
@@ -12,7 +11,7 @@ data class PlayerOption<C : Character>(
     override val character: C,
     override val target: Player,
     val option: String
-) : Interaction<C>(), TargetContext<C, Player> {
+) : TargetInteraction<C, Player>() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 
     override val size = 3

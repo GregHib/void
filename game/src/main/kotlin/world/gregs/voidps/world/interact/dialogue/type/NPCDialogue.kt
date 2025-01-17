@@ -7,28 +7,28 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
 import world.gregs.voidps.network.login.protocol.encode.npcDialogueHead
 import world.gregs.voidps.world.interact.dialogue.Expression
 import world.gregs.voidps.world.interact.dialogue.sendChat
 
-suspend inline fun <reified E : Expression> Context<Player>.npc(text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
+suspend inline fun <reified E : Expression> SuspendableContext<Player>.npc(text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
     val expression = E::class.simpleName!!.toSnakeCase()
     npc(expression, text, largeHead, clickToContinue, title)
 }
 
-suspend inline fun <reified E : Expression> Context<Player>.npc(npcId: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
+suspend inline fun <reified E : Expression> SuspendableContext<Player>.npc(npcId: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
     val expression = E::class.simpleName!!.toSnakeCase()
     npc(npcId, expression, text, largeHead, clickToContinue, title)
 }
 
 @JvmName("npcExpression")
-suspend fun Context<Player>.npc(expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
+suspend fun SuspendableContext<Player>.npc(expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
     val target: NPC = player["dialogue_target"] ?: throw IllegalArgumentException("No npc specified for dialogue. Please use player.talkWith(npc) or npc(npcId, text).")
     val id = target["transform_id", player.get<NPCDefinition>("dialogue_def")?.stringId ?: target.id]
     if (target["faces", true]) {
@@ -37,7 +37,7 @@ suspend fun Context<Player>.npc(expression: String, text: String, largeHead: Boo
     npc(id, expression, text, largeHead, clickToContinue, title)
 }
 
-suspend fun Context<Player>.npc(npcId: String, expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
+suspend fun SuspendableContext<Player>.npc(npcId: String, expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
     val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("q8_full").splitLines(text, 380)
     check(lines.size <= 4) { "Maximum npc chat lines exceeded ${lines.size} for $player" }
     val id = getInterfaceId(lines.size, clickToContinue)

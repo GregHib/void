@@ -2,12 +2,12 @@ package world.gregs.voidps.world.map.ardougne
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.dialogue.type.statement
 
@@ -34,13 +34,13 @@ itemOnObjectOperate("skills_necklace", "legends_guild_totem_pole") {
     }
 }
 
-suspend fun Context<Player>.combatBracelet(player: Player) {
+suspend fun SuspendableContext<Player>.combatBracelet(player: Player) {
     player.message("You touch the jewellery against the totem pole...")
     player.setAnimation("bend_down")
     item("combat_bracelet", 300, "You feel a power emanating from the totem pole as it recharges your bracelet. You can now rub the bracelet to teleport and wear it to get information while on a Slayer assignment.")
 }
 
-suspend fun Context<Player>.skillsNecklace(player: Player) {
+suspend fun SuspendableContext<Player>.skillsNecklace(player: Player) {
     player.message("You touch the jewellery against the totem pole...")
     player.setAnimation("bend_down")
     item("skills_necklace", 200, "You feel a power emanating from the totem pole as it recharges your necklace. You can now rub the necklace to teleport and wear it to get more caskets while big net Fishing.")

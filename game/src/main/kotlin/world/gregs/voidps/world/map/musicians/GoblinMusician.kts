@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.map.musicians
 
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.interact.dialogue.HappyOld
 import world.gregs.voidps.world.interact.dialogue.NeutralOld
 import world.gregs.voidps.world.interact.dialogue.Pleased
@@ -15,7 +15,7 @@ npcOperate("Talk-to", "goblin_musician") {
     choice()
 }
 
-suspend fun Context<Player>.choice() {
+suspend fun SuspendableContext<Player>.choice() {
     choice {
         option<Quiz>("Who are you?") {
             npc<HappyOld>("Me? Thump-Thump. Me make thump-thumps with thump-thump drum. Other goblins listen.")
@@ -28,7 +28,7 @@ suspend fun Context<Player>.choice() {
     }
 }
 
-suspend fun Context<Player>.resting() {
+suspend fun SuspendableContext<Player>.resting() {
     choice("Can I ask you some questions about resting?") {
         option<Quiz>("How does resting work?") {
             npc<NeutralOld>("You stoopid. Goblin sit down, goblin rest, goblin feel better.")

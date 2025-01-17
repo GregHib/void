@@ -2,20 +2,20 @@ package world.gregs.voidps.world.map.karamja
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.event.TargetContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
+import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
 import world.gregs.voidps.world.interact.dialogue.Chuckle
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.npc.shop.buy
-import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
-import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
 
 npcOperate("Talk-to", "bartender_dead_mans_chest") {
     npc<Chuckle>("Yohoho me hearty what would you like to drink?")
@@ -47,7 +47,7 @@ itemOnNPCOperate("barcrawl_card", "bartender_dead_mans_chest") {
     barCrawl()
 }
 
-suspend fun TargetContext<Player, NPC>.barCrawl() = barCrawlDrink(
+suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
     start = { npc<Happy>("Haha time to be breaking out the old Supergrog. That'll be 15 coins please.") },
     effects = {
         player.levels.drain(Skill.Attack, 7)

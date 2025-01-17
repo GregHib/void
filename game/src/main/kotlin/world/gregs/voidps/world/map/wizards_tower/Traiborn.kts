@@ -4,19 +4,20 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.*
-import world.gregs.voidps.engine.event.TargetContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.removeToLimit
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.map.collision.blocked
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.world.activity.quest.quest
@@ -112,7 +113,7 @@ suspend fun PlayerChoice.needAKey(): Unit = option<Talk>("I need to get a key gi
     }
 }
 
-suspend fun Context<Player>.betterBeOffChoice() {
+suspend fun SuspendableContext<Player>.betterBeOffChoice() {
     choice {
         betterBeOff()
         option<Neutral>("They're right, you are mad.") {
@@ -132,7 +133,7 @@ suspend fun PlayerChoice.kingsKnight(): Unit = option<Talk>("He's one of the Kin
     }
 }
 
-suspend fun Context<Player>.spinachRoll() {
+suspend fun SuspendableContext<Player>.spinachRoll() {
     player.inventory.add("spinach_roll")
     if (player.inventory.transaction.error != TransactionError.None) {
         floorItems.add(player.tile, "spinach_roll")
@@ -183,7 +184,7 @@ suspend fun PlayerChoice.justTellMe(): Unit = option<Talk>("Just tell me if you 
     }
 }
 
-suspend fun TargetContext<Player, NPC>.startSpell() {
+suspend fun TargetInteraction<Player, NPC>.startSpell() {
     npc<Neutral>("Hurrah! That's all 25 sets of bones.")
     target.setAnimation("traiborn_bone_spell")
     target.setGraphic("traiborn_bone_spell")
@@ -208,12 +209,12 @@ suspend fun TargetContext<Player, NPC>.startSpell() {
     npc<Neutral>("Not a problem for a friend of Sir What's-his-face.")
 }
 
-suspend fun Context<Player>.somewhereToBe() {
+suspend fun SuspendableContext<Player>.somewhereToBe() {
     npc<Uncertain>("Don't you have somewhere to be, young thingummywut? You still have that key you asked me for.")
     player<Talk>("You're right. I've got a demon to slay.")
 }
 
-suspend fun TargetContext<Player, NPC>.bonesCheck() {
+suspend fun NPCOption<Player>.bonesCheck() {
     when (player.bonesRequired) {
         0 -> lostKey()
         -1 -> choice {
@@ -236,13 +237,13 @@ suspend fun TargetContext<Player, NPC>.bonesCheck() {
     }
 }
 
-suspend fun Context<Player>.lostKey() {
+suspend fun SuspendableContext<Player>.lostKey() {
     player<Upset>("I've lost the key you gave to me.")
     npc<Uncertain>("Yes I know, it was returned to me. If you want it back you're going to have to collect another 25 sets of bones.")
     player.bonesRequired = 25
 }
 
-suspend fun TargetContext<Player, NPC>.giveBones() {
+suspend fun TargetInteraction<Player, NPC>.giveBones() {
     val removed = player.inventory.removeToLimit("bones", player.bonesRequired)
     statement("You give Traiborn $removed ${"set".plural(removed)} of bones.")
     player.bonesRequired -= removed

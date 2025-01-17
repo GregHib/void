@@ -2,13 +2,13 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.ownsItem
@@ -21,7 +21,7 @@ npcOperate("Talk-to", "nemarti") {
     menu()
 }
 
-suspend fun Context<Player>.menu(followUp: String = "") {
+suspend fun SuspendableContext<Player>.menu(followUp: String = "") {
     if (followUp.isNotEmpty()) {
         npc<Quiz>(followUp)
     }
@@ -67,7 +67,7 @@ suspend fun PlayerChoice.arrowMaking(): Unit = option<Quiz>("How do I create a b
     menu("Is there anything else you want to know?")
 }
 
-suspend fun Context<Player>.claimBow() {
+suspend fun SuspendableContext<Player>.claimBow() {
     if (player.remaining("claimed_tutor_consumables", epochSeconds()) > 0) {
         npc<Amazed>("I work with the Magic tutor to give out consumable items that you may need for combat such as arrows and runes. However we have had some cheeky people try to take both!")
         npc<Happy>("So, every half an hour, you may come back and claim either arrows OR runes, but not both. Come back in a while for arrows, or simply make your own.")
@@ -100,7 +100,7 @@ suspend fun Context<Player>.claimBow() {
     player.start("claimed_tutor_consumables", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
 }
 
-suspend fun Context<Player>.hasEquipment() {
+suspend fun SuspendableContext<Player>.hasEquipment() {
     var banked = false
     if (player.bank.contains("training_arrows")) {
         npc<Happy>("You have some training arrows in your bank.")

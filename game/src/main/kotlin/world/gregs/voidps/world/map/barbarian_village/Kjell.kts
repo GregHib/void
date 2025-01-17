@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.map.barbarian_village
 
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Angry
@@ -21,7 +21,7 @@ npcOperate("Talk-to", "kjell") {
     }
 }
 
-suspend fun Context<Player>.completed() {
+suspend fun SuspendableContext<Player>.completed() {
     npc<Talk>(when (random.nextInt(0, 9)) {
         0 -> "...there's a place for us..."
         1 -> "...but I'd do anything for you..."
@@ -44,7 +44,7 @@ suspend fun Context<Player>.completed() {
     }
 }
 
-suspend fun Context<Player>.advice() {
+suspend fun SuspendableContext<Player>.advice() {
     choice {
         option<Neutral>("This music isn't very restful.") {
             npc<Angry>("Get out of here!")
@@ -58,7 +58,7 @@ suspend fun Context<Player>.advice() {
     }
 }
 
-suspend fun Context<Player>.unstarted() {
+suspend fun SuspendableContext<Player>.unstarted() {
     npc<Frustrated>("Get out of here, outerlander!")
     choice {
         option<Neutral>("What is this place?") {

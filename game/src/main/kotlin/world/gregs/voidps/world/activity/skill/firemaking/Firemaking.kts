@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.type.Direction
@@ -56,7 +57,7 @@ floorItemOperate("Light") {
     lightFire(player, target)
 }
 
-suspend fun Context<Player>.lightFire(
+suspend fun SuspendableContext<Player>.lightFire(
     player: Player,
     floorItem: FloorItem
 ) {

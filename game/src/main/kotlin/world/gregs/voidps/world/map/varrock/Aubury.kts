@@ -1,12 +1,12 @@
 package world.gregs.voidps.world.map.varrock
 
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
@@ -77,7 +77,7 @@ suspend fun PlayerChoice.packageForYou(): Unit = option<Neutral>(
     }
 }
 
-suspend fun Context<Player>.researchPackage() {
+suspend fun SuspendableContext<Player>.researchPackage() {
     item("research_package_rune_mysteries", 600, "Aubury goes through the package of research notes.")
     npc<Surprised>("This... this is incredible.")
     npc<Happy>("My gratitude to you adventurer for bringing me these research notes. Thanks to you, I think we finally have it.")
@@ -94,7 +94,7 @@ suspend fun Context<Player>.researchPackage() {
     item("research_notes_rune_mysteries", 600, "Aubury hands you some research notes.")
 }
 
-suspend fun Context<Player>.checkNotes() {
+suspend fun SuspendableContext<Player>.checkNotes() {
     npc<Quiz>("Hello. Did you take those notes back to Sedridor?")
     if (player.inventory.contains("research_notes_rune_mysteries")) {
         player<Neutral>("I'm still working on it.")

@@ -1,12 +1,12 @@
 package world.gregs.voidps.world.map.varrock
 
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.item
@@ -39,7 +39,7 @@ npcOperate("Talk-to", "baraek") {
 }
 
 
-suspend fun Context<Player>.sellFur() {
+suspend fun SuspendableContext<Player>.sellFur() {
     npc<Neutral>("Yeah, sure. They're 20 gold coins each.")
     choice {
         option<Neutral>("Yeah, OK, here you go.") {
@@ -72,7 +72,7 @@ suspend fun Context<Player>.sellFur() {
     }
 }
 
-suspend fun Context<Player>.buyFur() {
+suspend fun SuspendableContext<Player>.buyFur() {
     npc<Neutral>("Let's have a look at it.")
     item("bear_fur", 645, "You hand Baraek your fur to look at.")
     //wait 4sec and cant move

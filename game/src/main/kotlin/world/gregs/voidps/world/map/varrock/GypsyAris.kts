@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.LogoutBehaviour
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.engine.timer.npcTimerStart
 import world.gregs.voidps.engine.timer.npcTimerTick
@@ -76,7 +77,7 @@ npcOperate("Talk-to", "gypsy_aris") {
     }
 }
 
-suspend fun Context<Player>.whatToDo() {
+suspend fun SuspendableContext<Player>.whatToDo() {
     choice {
         cityDestroyer {
             wallyQuestions()
@@ -86,7 +87,7 @@ suspend fun Context<Player>.whatToDo() {
     }
 }
 
-suspend fun Context<Player>.howToDo() {
+suspend fun SuspendableContext<Player>.howToDo() {
     choice {
         cityDestroyer {
             wallyQuestions()
@@ -101,7 +102,7 @@ suspend fun PlayerChoice.howWallyWon(): Unit = option<Quiz>("So, how did Wally k
     cutscene()
 }
 
-suspend fun Context<Player>.finalQuestions() {
+suspend fun SuspendableContext<Player>.finalQuestions() {
     choice {
         cityDestroyer {
             otherQuestions()
@@ -116,7 +117,7 @@ suspend fun Context<Player>.finalQuestions() {
     }
 }
 
-suspend fun Context<Player>.otherQuestions() {
+suspend fun SuspendableContext<Player>.otherQuestions() {
     choice {
         whereIsHe()
         notVeryHeroicName()
@@ -151,7 +152,7 @@ suspend fun PlayerChoice.notVeryHeroicName(): Unit = option<Happy>("Wally doesn'
     howToDo()
 }
 
-suspend fun Context<Player>.incantation() {
+suspend fun SuspendableContext<Player>.incantation() {
     player<Talk>("What is the magical incantation?")
     npc<Talk>("Oh yes, let me think a second.")
     npc<Neutral>("Aright, I think I've got it now, it goes... ${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}.,. ${getWord(player, 4)}.,. ${getWord(player, 5)}. Have you got that?")
@@ -210,7 +211,7 @@ suspend fun ChoiceBuilder<NPCOption<Player>>.whoYouCallingYoung(): Unit = option
     }
 }
 
-suspend fun Context<Player>.cutscene() {
+suspend fun SuspendableContext<Player>.cutscene() {
     val region = Region(12852)
     player.open("fade_out")
     statement("", clickToContinue = false)
@@ -307,7 +308,7 @@ suspend fun ChoiceBuilder<NPCOption<Player>>.withSilver(): Unit = option<Quiz>("
     }
 }
 
-suspend fun Context<Player>.delrithWillCome() {
+suspend fun SuspendableContext<Player>.delrithWillCome() {
     npc<Upset>("Delrith will come forth from the stone circle again.")
     npc<Upset>("I would imagine an evil sorcerer is already beginning the rituals to summon Delrith as we speak.")
     choice {
@@ -326,7 +327,7 @@ suspend fun Context<Player>.delrithWillCome() {
     }
 }
 
-suspend fun Context<Player>.whereSilverlight() {
+suspend fun SuspendableContext<Player>.whereSilverlight() {
     player<Frustrated>("Where can I find Silverlight?")
     npc<Talk>("Silverlight has been passed down by Wally's descendants. I believe it is currently in the care of one of the king's knights called Sir Prysin.")
     npc<Pleased>("He shouldn't be too hard to find. He lives in the royal palace in this city. Tell him Gypsy Aris sent you.")
@@ -379,7 +380,7 @@ suspend fun PlayerChoice.stopCallingMeThat(): Unit = option<Angry>("Stop calling
     }
 }
 
-suspend fun Context<Player>.wallyQuestions() {
+suspend fun SuspendableContext<Player>.wallyQuestions() {
     choice {
         whereIsHe()
         notVeryHeroicName()
