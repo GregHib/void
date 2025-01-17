@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.suspend.arriveDelay
 
 data class ItemOnObject(
     override val character: Player,
