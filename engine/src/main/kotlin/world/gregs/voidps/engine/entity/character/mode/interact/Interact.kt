@@ -120,7 +120,8 @@ class Interact(
             super.tick()
         }
         if (!interacted || updateRange) {
-            interacted = interacted or interact(afterMovement = true)
+            val interact = interact(afterMovement = true)
+            interacted = interacted or interact
             if (clearInteracted) {
                 interacted = false
                 clearInteracted = false

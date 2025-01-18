@@ -47,38 +47,51 @@ objectOperate("Climb-up", "gnome_tree_branch_advanced") {
 objectApproach("Run-across", "gnome_sign_post_advanced") {
     npcs.gnomeTrainer("Come on! I'd be over there by now.", Zone(13457717))
     approachRange(1)
-    // Pausing for 2 ticks to ensure we're in the correct spot.
-    // arriveDelay() wouldn't work as objectApproach is called before Movement.tick where "last_movement" is set
-    pause(2)
+    arriveDelay()
     val disable = Settings["agility.disableCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), -8..286) // failure rate 4.68-1.17% from 85-88
     player.face(Direction.EAST)
     player.setAnimation("gnome_wall_${if (success) "run" else "fail"}")
-    player.start("input_delay", if (success) 4 else 20)
-    player.strongQueue("agility_wall_run", 1) {
-        if (!success) {
-            onCancel = {
-                player.tele(2484, 3418, 3)
-            }
-            player.exactMove(Tile(2480, 3418, 3), 30, Direction.EAST)
-            pause(6)
+    /*
+        TODO fix delay not ignoring inputs because clocks check for exact tick and as
+                packets are processed first in a tick they will check as delay being false before
+                the player tick starts and gets a chance to set the next delay
+        TODO does soft action/queue need to be processed before resuming delay? as described https://media.z-kris.com/2022/12/firefox_29d-18h-21m-27s-573ms.png
+        TODO convert all content from using queues to using interactions properly
+        TODO area queue instead of Moved firing during movement? (gives 1 tick delay)
+        TODO after all converted remove pause(), Suspension and "input_delay"
+        TODO make exact move suspending
+        TODO better way of handling on logout? longqueues with accelerate?
+
+        Kris questions:
+            1. delay ignoring inputs because of client input processed before p_delay
+            2. how to handle logout on multi-step agility
+     */
+//    player.start("input_delay", if (success) 4 else 20)
+    delay(1)
+    if (!success) {
+        onCancel = {
+            player.tele(2484, 3418, 3)
         }
-        player.exactMove(Tile(2484, 3418, 3), if (success) 60 else 210, Direction.EAST)
-        if (success) {
-            pause(2)
-            player.exp(Skill.Agility, 25.0)
-        } else {
-            pause(10)
-            player.setAnimation("gnome_wall_stand")
-            pause(1)
-            player.damage((player.levels.get(Skill.Constitution) - 10).coerceAtMost(65))
-        }
-        // Skip stage so lap doesn't count at end
-        if (success || Settings["agility.disableFailLapSkip", false]) {
-            player.agilityStage(5)
-        }
-        player.clearAnimation()
+        player.exactMove(Tile(2480, 3418, 3), 30, Direction.EAST)
+        delay(6)
     }
+    player.exactMove(Tile(2484, 3418, 3), if (success) 60 else 210, Direction.EAST)
+    if (success) {
+        delay(2)
+        player.exp(Skill.Agility, 25.0)
+    } else {
+        delay(10)
+        player.setAnimation("gnome_wall_stand")
+        delay(1)
+        player.damage((player.levels.get(Skill.Constitution) - 10).coerceAtMost(65))
+    }
+    // Skip stage so lap doesn't count at end
+    if (success || Settings["agility.disableFailLapSkip", false]) {
+        player.agilityStage(5)
+    }
+    delay(5) // FIXME
+    player.clearAnimation()
 }
 
 objectApproach("Swing-to", "gnome_pole_advanced") {

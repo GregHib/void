@@ -39,8 +39,13 @@ abstract class Interaction<C : Character> : CancellableEvent(), SuspendableEvent
     /**
      * Set the range a player can interact with their target from
      */
-    fun approachRange(range: Int?, update: Boolean = true) {
+    suspend fun approachRange(range: Int?, update: Boolean = true) {
         val interact = character.mode as? Interact ?: return
         interact.updateRange(range, update)
+        if (range != null) {
+            while (!interact.arrived(range)) {
+                delay(1)
+            }
+        }
     }
 }

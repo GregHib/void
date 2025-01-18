@@ -27,6 +27,8 @@ class ActionQueue(
     private val queue = ConcurrentLinkedQueue<Action<*>>()
     private var action: Action<*>? = null
 
+    fun isEmpty() = queue.isEmpty() && pending.isEmpty()
+
     fun add(action: Action<*>): Boolean {
         return pending.add(action)
     }
