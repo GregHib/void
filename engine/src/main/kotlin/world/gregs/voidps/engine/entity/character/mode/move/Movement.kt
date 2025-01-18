@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.character.mode.move
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
+import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -61,7 +62,7 @@ open class Movement(
             }
             return
         }
-        if (hasDelay() && !character.steps.destination.noCollision) {
+        if (hasDelay() && !canMove() && !character.steps.destination.noCollision) {
             return
         }
         calculate()
@@ -72,6 +73,16 @@ open class Movement(
                 setMovementType(run = false, end = true)
             }
         }
+    }
+
+    private fun canMove(): Boolean {
+        if (!hasDelay() && (character as? Player)?.menu == null) {
+            return true
+        }
+        if (character.queue.isEmpty()) {
+            return true
+        }
+        return character.delay != null
     }
 
     private fun hasDelay() = character.hasClock("movement_delay") || character.hasClock("delay")
