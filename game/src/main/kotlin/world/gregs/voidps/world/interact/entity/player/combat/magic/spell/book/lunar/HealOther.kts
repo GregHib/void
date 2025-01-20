@@ -16,7 +16,6 @@ val definitions: SpellDefinitions by inject()
 
 itemOnPlayerApproach(id = "lunar_spellbook", component = "heal_other") {
     approachRange(2)
-    pause()
     val spell = component
     if (target.levels.getOffset(Skill.Constitution) >= 0) {
         player.message("This player does not need healing.")

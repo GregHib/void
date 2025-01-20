@@ -221,7 +221,7 @@ objectApproach("Prospect", "crashed_star_tier_#") {
         return@objectApproach
     }
     approachRange(1)
-    pause()
+    arriveDelay()
     val starPayout = target.def["collect_for_next_layer", -1]
     player.message("You examine the crashed star...")
     player.start("movement_delay", 4)

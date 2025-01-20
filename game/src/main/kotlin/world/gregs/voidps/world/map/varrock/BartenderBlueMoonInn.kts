@@ -24,7 +24,6 @@ import world.gregs.voidps.world.interact.entity.npc.shop.buy
 
 npcApproach("Talk-to", "bartender_blue_moon_inn") {
     approachRange(4)
-    pause()
     npc<Quiz>("What can I do yer for?")
     choice {
         option<Talk>("A glass of your finest ale please.") {
