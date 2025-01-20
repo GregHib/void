@@ -5,8 +5,10 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.exactMove
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.move.walkTo
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.renderEmote
@@ -104,7 +106,7 @@ objectOperate("Open", "wilderness_agility_gate_east_closed", "wilderness_agility
     }
 }
 
-suspend fun Action.fallIntoPit() {
+suspend fun Interaction<Player>.fallIntoPit() {
     player.walkTo(Tile(2998, 3924), noCollision = true, noRun = true)
     pause(7)
     player.clearRenderEmote()
