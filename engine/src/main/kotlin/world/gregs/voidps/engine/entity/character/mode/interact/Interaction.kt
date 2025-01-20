@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.character.mode.interact
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setExactMovement
 import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.SuspendableEvent
@@ -59,5 +60,10 @@ abstract class Interaction<C : Character> : CancellableEvent(), SuspendableEvent
         tele(target)
         setExactMovement(Delta.EMPTY, delay, start.delta(tile), direction = direction)
         delay(delay / 30)
+    }
+
+    suspend fun Character.playAnimation(id: String, override: Boolean = false) {
+        val ticks = setAnimation(id, override = override)
+        delay(ticks)
     }
 }
