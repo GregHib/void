@@ -52,28 +52,31 @@ objectApproach("Run-across", "gnome_sign_post_advanced") {
     val success = disable || Level.success(player.levels.get(Skill.Agility), -8..286) // failure rate 4.68-1.17% from 85-88
     player.face(Direction.EAST)
     player.setAnimation("gnome_wall_${if (success) "run" else "fail"}")
-    delay(1)
-    if (!success) {
-        onCancel = {
-            player.tele(2484, 3418, 3)
+    player.start("input_delay", if (success) 4 else 20)
+    player.strongQueue("agility_wall_run", 1) {
+        if (!success) {
+            onCancel = {
+                player.tele(2484, 3418, 3)
+            }
+            player.exactMove(Tile(2480, 3418, 3), 30, Direction.EAST)
+            pause(6)
         }
-        player.exactMove(Tile(2480, 3418, 3), 30, Direction.EAST)
-        delay(5)
+        player.exactMove(Tile(2484, 3418, 3), if (success) 60 else 210, Direction.EAST)
+        if (success) {
+            pause(2)
+            player.exp(Skill.Agility, 25.0)
+        } else {
+            pause(10)
+            player.setAnimation("gnome_wall_stand")
+            pause(1)
+            player.damage((player.levels.get(Skill.Constitution) - 10).coerceAtMost(65))
+        }
+        // Skip stage so lap doesn't count at end
+        if (success || Settings["agility.disableFailLapSkip", false]) {
+            player.agilityStage(5)
+        }
+        player.clearAnimation()
     }
-    player.exactMove(Tile(2484, 3418, 3), if (success) 60 else 210, Direction.EAST)
-    if (success) {
-        player.exp(Skill.Agility, 25.0)
-    } else {
-        delay(3)
-        player.setAnimation("gnome_wall_stand")
-        delay(1)
-        player.damage((player.levels.get(Skill.Constitution) - 10).coerceAtMost(65))
-    }
-    // Skip stage so lap doesn't count at end
-    if (success || Settings["agility.disableFailLapSkip", false]) {
-        player.agilityStage(5)
-    }
-    player.clearAnimation()
 }
 
 objectApproach("Swing-to", "gnome_pole_advanced") {
