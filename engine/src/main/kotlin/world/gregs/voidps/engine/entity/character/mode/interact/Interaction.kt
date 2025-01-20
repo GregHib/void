@@ -2,16 +2,10 @@ package world.gregs.voidps.engine.entity.character.mode.interact
 
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setExactMovement
 import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.Suspension
-import world.gregs.voidps.type.Delta
-import world.gregs.voidps.type.Direction
-import world.gregs.voidps.type.Tile
 
 abstract class Interaction<C : Character> : CancellableEvent(), SuspendableEvent, SuspendableContext<C> {
     var approach = false
@@ -53,17 +47,5 @@ abstract class Interaction<C : Character> : CancellableEvent(), SuspendableEvent
                 delay(1)
             }
         }
-    }
-
-    suspend fun Character.exactMove(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE) {
-        val start = tile
-        tele(target)
-        setExactMovement(Delta.EMPTY, delay, start.delta(tile), direction = direction)
-        delay(delay / 30)
-    }
-
-    suspend fun Character.playAnimation(id: String, override: Boolean = false) {
-        val ticks = setAnimation(id, override = override)
-        delay(ticks)
     }
 }
