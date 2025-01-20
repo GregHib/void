@@ -14,11 +14,7 @@ class NPCTask(
 ) : CharacterTask<NPC>(iterator) {
 
     override fun run(character: NPC) {
-        val delay = character.delay
-        if (!character.contains("delay") && delay != null) {
-            character.delay = null
-            delay.resume(Unit)
-        }
+        checkDelay(character)
         if (character.mode == EmptyMode && wanders(character)) {
             character.mode = Wander(character)
         }
