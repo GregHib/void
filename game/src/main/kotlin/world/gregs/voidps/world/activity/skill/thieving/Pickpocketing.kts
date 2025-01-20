@@ -48,7 +48,7 @@ npcOperate("Pickpocket") {
     if (success && !canLoot(player, drops)) {
         return@npcOperate
     }
-    player.start("delay", 3)
+    player["delay"] = 3
     player.start("movement_delay", 3)
     val name = target.def.name
     player.message("You attempt to pick the ${name}'s pocket.", ChatType.Filter)

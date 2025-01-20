@@ -85,7 +85,7 @@ open class Movement(
         return character.delay != null
     }
 
-    private fun hasDelay() = character.hasClock("movement_delay") || character.hasClock("delay")
+    private fun hasDelay() = character.hasClock("movement_delay") || character.contains("delay")
 
     /**
      * Applies one step

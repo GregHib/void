@@ -36,7 +36,7 @@ specialAttack("shove") { player ->
     val duration = TimeUnit.SECONDS.toTicks(3)
     target.setGraphic("shove_hit")
     target.freeze(duration)
-    player.start("delay", duration)
+    player["delay"] = duration
     player.hit(target, damage = -1) // Hit with no damage so target can auto-retaliate
     val actual = player.tile
     val direction = target.tile.delta(actual).toDirection()

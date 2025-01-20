@@ -77,7 +77,7 @@ internal class MovementTest : KoinMock() {
 
     @Test
     fun `Delayed player processes forced movement`() {
-        player.start("delay", -1)
+        player["delay"] = -1
         val movement = Movement(player)
         player.steps.queueStep(Tile(10, 10), noCollision = true)
         movement.tick()
@@ -94,7 +94,7 @@ internal class MovementTest : KoinMock() {
             when (type) {
                 "unloaded" -> player.viewport = Viewport()
                 "frozen" -> player.start("movement_delay", -1)
-                "delayed" -> player.start("delay", -1)
+                "delayed" -> player["delay"] = -1
             }
             movement.tick()
             assertFalse(player.visuals.moved)
