@@ -20,7 +20,6 @@ val npcs: NPCs by inject()
 
 npcApproach("Talk-to", "banker*") {
     approachRange(2)
-    pause()
     npc<Quiz>("Good day. How may I help you?")
     val loanReturned = getSecondsRemaining(player, "lend_timeout") < 0
     val collection = false
@@ -63,13 +62,11 @@ suspend fun SuspendableContext<Player>.menu() {
 
 npcApproach("Bank", "banker*") {
     approachRange(2)
-    pause()
     player.open("bank")
 }
 
 npcApproach("Collect", "banker*") {
     approachRange(2)
-    pause()
     player.open("collection_box")
 }
 

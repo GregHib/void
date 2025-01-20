@@ -21,7 +21,6 @@ val definitions: SpellDefinitions by inject()
 
 itemOnPlayerApproach(id = "lunar_spellbook", component = "energy_transfer") {
     approachRange(2)
-    pause()
     val spell = component
     if (target.specialAttackEnergy == MAX_SPECIAL_ATTACK) {
         player.message("This player has full special attack.")
