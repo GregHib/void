@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.client.update
 
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
-import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Wander
@@ -16,7 +15,7 @@ class NPCTask(
 
     override fun run(character: NPC) {
         val delay = character.delay
-        if (!character.hasClock("delay") && delay != null) {
+        if (!character.contains("delay") && delay != null) {
             character.delay = null
             delay.resume(Unit)
         }

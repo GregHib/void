@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.suspend
 
 import kotlinx.coroutines.suspendCancellableCoroutine
-import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.Context
 
@@ -21,7 +20,7 @@ interface SuspendableContext<C : Character> : Context<C> {
         if (ticks <= 0) {
             return
         }
-        character.start("delay", ticks)
+        character["delay"] = ticks
         suspendCancellableCoroutine {
             character.delay = it
         }

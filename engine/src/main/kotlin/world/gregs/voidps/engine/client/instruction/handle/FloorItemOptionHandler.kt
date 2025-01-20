@@ -18,7 +18,7 @@ class FloorItemOptionHandler(
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractFloorItem) {
-        if (player.hasClock("delay") || player.hasClock("input_delay")) {
+        if (player.contains("delay") || player.hasClock("input_delay")) {
             return
         }
         val (id, x, y, optionIndex) = instruction
