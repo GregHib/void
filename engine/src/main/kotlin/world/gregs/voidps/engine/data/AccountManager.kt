@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data
 
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.open
@@ -99,6 +100,10 @@ class AccountManager(
 
     fun logout(player: Player, safely: Boolean) {
         if (player["logged_out", false]) {
+            return
+        }
+        if (player.contains("delay")) {
+            player.message("You need to wait a few moments before you can log out.")
             return
         }
         player["logged_out"] = true
