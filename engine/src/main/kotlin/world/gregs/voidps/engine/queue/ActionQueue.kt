@@ -27,6 +27,8 @@ class ActionQueue(
     private val queue = ConcurrentLinkedQueue<Action<*>>()
     private var action: Action<*>? = null
 
+    fun isEmpty() = queue.isEmpty() && pending.isEmpty()
+
     fun add(action: Action<*>): Boolean {
         return pending.add(action)
     }
@@ -99,7 +101,7 @@ class ActionQueue(
 
     private fun canProcess(action: Action<*>) = action.priority == ActionPriority.Soft || (noDelay() && noInterrupt())
 
-    private fun noDelay() = !character.hasClock("delay")
+    private fun noDelay() = !character.contains("delay")
 
     private fun noInterrupt() = character is NPC || (character is Player && !character.hasMenuOpen() && character.dialogue == null)
 

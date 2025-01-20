@@ -73,7 +73,7 @@ class Interact(
         if (!validTarget()) {
             return
         }
-        if (character.hasClock("delay") || character.hasMenuOpen()) {
+        if (character.contains("delay") || character.hasMenuOpen()) {
             super.tick()
             return
         }
@@ -120,7 +120,8 @@ class Interact(
             super.tick()
         }
         if (!interacted || updateRange) {
-            interacted = interacted or interact(afterMovement = true)
+            val interact = interact(afterMovement = true)
+            interacted = interacted or interact
             if (clearInteracted) {
                 interacted = false
                 clearInteracted = false
@@ -162,7 +163,7 @@ class Interact(
         return false
     }
 
-    private fun interactionFinished() = character.suspension == null && !character.hasClock("delay")
+    private fun interactionFinished() = character.suspension == null && !character.contains("delay")
 
     private fun clear() {
         if (character.suspension != null) {

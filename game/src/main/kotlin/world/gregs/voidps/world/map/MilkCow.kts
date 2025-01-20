@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.add
@@ -33,7 +32,7 @@ objectOperate("Milk", "prized_dairy_cow") {
     }
     player.setAnimation("milk_cow")
     player.playSound("milk_cow")
-    player.start("delay", 5)
+    player["delay"] = 5
     player.softQueue("milk", 5) {
         player.inventory.remove("bucket")
         player.inventory.add("top_quality_milk")
@@ -45,7 +44,7 @@ objectOperate("Milk", "dairy_cow") {
     if (player.holdsItem("bucket")) {
         player.setAnimation("milk_cow")
         player.playSound("milk_cow")
-        player.start("delay", 5)
+        player["delay"] = 5
         player.softQueue("milk", 5) {
             player.inventory.remove("bucket")
             player.inventory.add("bucket_of_milk")

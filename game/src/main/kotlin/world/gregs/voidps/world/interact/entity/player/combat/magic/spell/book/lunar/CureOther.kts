@@ -17,7 +17,6 @@ val definitions: SpellDefinitions by inject()
 
 itemOnPlayerApproach(id = "lunar_spellbook", component = "cure_other") {
     approachRange(2)
-    pause()
     val spell = component
     if (!target.poisoned) {
         player.message("This player is not poisoned.")
