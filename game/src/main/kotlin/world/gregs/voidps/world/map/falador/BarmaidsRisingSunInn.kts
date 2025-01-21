@@ -34,7 +34,6 @@ import world.gregs.voidps.world.interact.entity.combat.hit.damage
 
 npcApproach("Talk-to", "barmaid_emily") {
     approachRange(3)
-    pause()
     menu()
 }
 

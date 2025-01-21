@@ -35,21 +35,17 @@ objectOperate("Climb-up", "gnome_tree_branch_advanced") {
     npcs.gnomeTrainer("Terrorbirds could climb faster than that!", Zone(9263413))
     player.message("You climb the tree...", ChatType.Filter)
     player.setAnimation("climb_up")
-    player.start("input_delay", 2)
-    player.strongQueue("agility_branch", 2) {
-        player.message("... to an even higher platform.", ChatType.Filter)
-        player.agilityStage(4)
-        player.tele(player.tile.add(y = -1, level = 1))
-        player.exp(Skill.Agility, 25.0)
-    }
+    delay(2)
+    player.message("... to an even higher platform.", ChatType.Filter)
+    player.agilityStage(4)
+    player.tele(player.tile.add(y = -1, level = 1))
+    player.exp(Skill.Agility, 25.0)
 }
 
 objectApproach("Run-across", "gnome_sign_post_advanced") {
     npcs.gnomeTrainer("Come on! I'd be over there by now.", Zone(13457717))
     approachRange(1)
-    // Pausing for 2 ticks to ensure we're in the correct spot.
-    // arriveDelay() wouldn't work as objectApproach is called before Movement.tick where "last_movement" is set
-    pause(2)
+    arriveDelay()
     val disable = Settings["agility.disableCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), -8..286) // failure rate 4.68-1.17% from 85-88
     player.face(Direction.EAST)

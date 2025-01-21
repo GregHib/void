@@ -16,7 +16,6 @@ val definitions: SpellDefinitions by inject()
 
 itemOnPlayerApproach(id = "lunar_spellbook", component = "vengeance_other") {
     approachRange(2)
-    pause()
     val spell = component
     if (target.contains("vengeance")) {
         player.message("This player already has vengeance cast.")

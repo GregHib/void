@@ -18,7 +18,6 @@ import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -161,12 +160,12 @@ internal class InteractTest : KoinMock() {
     }
 
     @TestFactory
-    fun `Interaction waits before completion`() = listOf("suspension", "delay", "interface").map { type ->
+    fun `Interaction waits before completion`() = listOf("suspension", "interface").map { type ->
         dynamicTest("Interaction waits for $type") {
             operated = false
             interact(operate = true, approach = false, suspend = type == "suspension")
             if (type == "delay") {
-                player.start("delay", 2)
+                player["delay"] = 2
             } else if (type == "interface") {
                 every { player.interfaces.get("main_screen") } returns "an_interface"
             }

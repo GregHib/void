@@ -4,7 +4,6 @@ import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.World
@@ -25,7 +24,7 @@ playerSpawn(priority = true) { player ->
         return@playerSpawn
     }
     if (Settings["world.start.creation", true] && !player.isBot) {
-        player.start("delay", -1)
+        player["delay"] = -1
         World.queue("welcome_${player.name}", 1) {
             player.open("character_creation")
         }
