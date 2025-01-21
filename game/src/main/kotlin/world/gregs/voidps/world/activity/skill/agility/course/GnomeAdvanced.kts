@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.activity.skill.agility.course
 
-import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
@@ -19,7 +18,6 @@ import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
