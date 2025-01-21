@@ -7,9 +7,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.world.activity.quest.questComplete
-import world.gregs.voidps.world.interact.entity.obj.door.Door
 import world.gregs.voidps.world.interact.entity.obj.door.enterDoor
 
 val npcs: NPCs by inject()
