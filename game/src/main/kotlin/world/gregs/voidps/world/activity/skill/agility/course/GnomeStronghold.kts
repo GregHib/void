@@ -36,6 +36,7 @@ objectOperate("Walk-across", "gnome_log_balance") {
 }
 
 objectOperate("Climb-over", "gnome_obstacle_net") {
+    arriveDelay()
     player.agilityCourse("gnome")
     npcs.gnomeTrainer("Move it, move it, move it!", listOf(Zone(8768252), Zone(876853)))
     player.message("You climb the netting...", ChatType.Filter)
@@ -62,36 +63,30 @@ objectOperate("Climb", "gnome_tree_branch_up") {
 objectOperate("Walk-on", "gnome_balancing_rope") {
     npcs.gnomeTrainer("Come on scaredy cat, get across that rope!", Zone(9263413))
     player.walkTo(Tile(2483, 3420, 2), noCollision = true, noRun = true)
-    player.start("input_delay", 7)
     player.renderEmote = "rope_balance"
-    player.strongQueue("agility_rope_balance", 7) {
-        player.agilityStage(4)
-        player.clearRenderEmote()
-        player.exp(Skill.Agility, 7.5)
-        player.message("You passed the obstacle successfully.", ChatType.Filter)
-    }
+    delay(7)
+    player.agilityStage(4)
+    player.clearRenderEmote()
+    player.exp(Skill.Agility, 7.5)
+    player.message("You passed the obstacle successfully.", ChatType.Filter)
 }
 
 objectOperate("Walk-on", "gnome_balancing_rope_end") {
     player.walkTo(Tile(2477, 3420, 2), noCollision = true, noRun = true)
-    player.start("input_delay", 7)
     player.renderEmote = "rope_balance"
-    player.strongQueue("agility_rope_balance", 7) {
-        player.clearRenderEmote()
-        player.exp(Skill.Agility, 7.5)
-        player.message("You passed the obstacle successfully.", ChatType.Filter)
-    }
+    delay(7)
+    player.clearRenderEmote()
+    player.exp(Skill.Agility, 7.5)
+    player.message("You passed the obstacle successfully.", ChatType.Filter)
 }
 
 objectOperate("Climb-down", "gnome_tree_branch_down") {
     player.message("You climb the tree...", ChatType.Filter)
     player.setAnimation("climb_down")
-    player.start("input_delay", 2)
-    player.strongQueue("branch", 2) {
-        player.agilityStage(5)
-        player.tele(2486, 3420, 0)
-        player.exp(Skill.Agility, 5.0)
-    }
+    delay(2)
+    player.agilityStage(5)
+    player.tele(2486, 3420, 0)
+    player.exp(Skill.Agility, 5.0)
 }
 
 objectOperate("Climb-over", "gnome_obstacle_net_free_standing") {
@@ -99,13 +94,11 @@ objectOperate("Climb-over", "gnome_obstacle_net_free_standing") {
     npcs.gnomeTrainer("My Granny can move faster than you.", Zone(876854))
     player.message("You climb the netting.", ChatType.Filter)
     player.setAnimation("climb_up")
-    player.start("input_delay", 2)
-    player.strongQueue("agility_netting", 2) {
-        player.agilityStage(6)
-        val direction = target.tile.delta(player.tile).toDirection().vertical()
-        player.tele(player.tile.add(direction.delta).add(direction.delta))
-        player.exp(Skill.Agility, 7.5)
-    }
+    delay(2)
+    player.agilityStage(6)
+    val direction = target.tile.delta(player.tile).toDirection().vertical()
+    player.tele(player.tile.add(direction.delta).add(direction.delta))
+    player.exp(Skill.Agility, 7.5)
 }
 
 objectOperate("Squeeze-through", "gnome_obstacle_pipe_*") {
