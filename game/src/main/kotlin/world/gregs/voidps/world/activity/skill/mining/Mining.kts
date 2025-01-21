@@ -28,7 +28,6 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.bank.bank
@@ -134,7 +133,8 @@ fun addOre(player: Player, ore: String): Boolean {
         }
     }
     val added = player.inventory.add(ore)
-    if (added) { player.message("You manage to mine some ${ore.toLowerSpaceCase()}.")
+    if (added) {
+        player.message("You manage to mine some ${ore.toLowerSpaceCase()}.")
     } else {
         player.inventoryFull()
     }
@@ -155,7 +155,7 @@ fun deplete(rock: Rock, obj: GameObject): Boolean {
 
 objectApproach("Prospect") {
     approachRange(1)
-    pause()
+    arriveDelay()
     if (target.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
         return@objectApproach
@@ -164,13 +164,11 @@ objectApproach("Prospect") {
         return@objectApproach
     }
     player.message("You examine the rock for ores...")
-    player.start("movement_delay", 4)
-    player.softQueue("prospect", 4) {
-        val ore = def.getOrNull<Rock>("mining")?.ores?.firstOrNull()
-        if (ore == null) {
-            player.message("This rock contains no ore.")
-        } else {
-            player.message("This rock contains ${ore.toLowerSpaceCase()}.")
-        }
+    delay(4)
+    val ore = def.getOrNull<Rock>("mining")?.ores?.firstOrNull()
+    if (ore == null) {
+        player.message("This rock contains no ore.")
+    } else {
+        player.message("This rock contains ${ore.toLowerSpaceCase()}.")
     }
 }

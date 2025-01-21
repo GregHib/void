@@ -98,23 +98,21 @@ fun giantMoleBurrow(mole: NPC) {
     var tileToDust = mole.tile.add(getRandomFacing(mole.facing).delta)
     mole.queue("await_mole_to_face", 1) {
         if (tileToDust == Tile.EMPTY) {
-            logger.info { "failed to get facing tile for Giant Mole, using default tile." }
+            logger.warn { "failed to get facing tile for Giant Mole, using default tile." }
             tileToDust = initialCaveTile
         }
         mole.face(tileToDust)
-        mole.queue("display_burrow_dust", 1) {
-            if (shouldThrowDirt()) {
-                handleDirtOnScreen(mole.tile)
-            }
-            mole.setAnimation("giant_mole_burrow")
-            areaSound("giant_mole_burrow_down", mole.tile)
-            areaGraphic("burrow_dust", tileToDust)
-            mole.queue("await_mole_burrowing", 1) {
-                val newLocation = gianMoleSpawns.random(mole)
-                mole.tele(newLocation!!)
-                mole.setAnimation("mole_burrow_up")
-            }
+        pause(1)
+        if (shouldThrowDirt()) {
+            handleDirtOnScreen(mole.tile)
         }
+        mole.setAnimation("giant_mole_burrow")
+        areaSound("giant_mole_burrow_down", mole.tile)
+        areaGraphic("burrow_dust", tileToDust)
+        pause(1)
+        val newLocation = gianMoleSpawns.random(mole)
+        mole.tele(newLocation!!)
+        mole.setAnimation("mole_burrow_up")
     }
 }
 

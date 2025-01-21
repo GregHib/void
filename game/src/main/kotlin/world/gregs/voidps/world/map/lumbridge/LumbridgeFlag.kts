@@ -6,12 +6,10 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.playAnimation
 
 objectOperate("Raise", "lumbridge_flag") {
-    player.strongQueue("lumbridge_flag") {
-        target.animate("lumbridge_flag")
-        player.playAnimation("lumbridge_flag_raise")
-        player.playAnimation("lumbridge_flag_stop_raise")
-        player.forceChat = "All Hail the Duke!"
-        player.playAnimation("emote_salute")
-        player["raise_the_roof_task"] = true
-    }
+    target.animate("lumbridge_flag")
+    player.playAnimation("lumbridge_flag_raise")
+    player.playAnimation("lumbridge_flag_stop_raise")
+    player.forceChat = "All Hail the Duke!"
+    player.playAnimation("emote_salute")
+    player["raise_the_roof_task"] = true
 }

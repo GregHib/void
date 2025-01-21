@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -26,7 +27,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.effect.stun
 import world.gregs.voidps.world.interact.entity.npc.combat.NPCAttack
@@ -35,39 +35,37 @@ val animationDefinitions: AnimationDefinitions by inject()
 val dropTables: DropTables by inject()
 val logger = InlineLogger()
 
-npcOperate("Pickpocket") {
+npcApproach("Pickpocket") {
+    approachRange(2)
     if (player.hasClock("food_delay") || player.hasClock("action_delay")) { // Should action_delay and food_delay be the same??
-        return@npcOperate
+        return@npcApproach
     }
-    val pocket: Pocket = target.def.getOrNull("pickpocket") ?: return@npcOperate
+    val pocket: Pocket = target.def.getOrNull("pickpocket") ?: return@npcApproach
     if (!player.has(Skill.Thieving, pocket.level)) {
-        return@npcOperate
+        return@npcApproach
     }
     val success = success(player.levels.get(Skill.Thieving), pocket.chance)
     val drops = getLoot(target) ?: emptyList()
     if (success && !canLoot(player, drops)) {
-        return@npcOperate
+        return@npcApproach
     }
-    player["delay"] = 3
-    player.start("movement_delay", 3)
     val name = target.def.name
     player.message("You attempt to pick the ${name}'s pocket.", ChatType.Filter)
-    target.start("movement_delay", 1)
-    player.softQueue("pick-pocket", 2) {
-        if (success) {
-            player.inventory.transaction {
-                addLoot(drops)
-            }
-            player.setAnimation("pick_pocket")
-            player.message("You pick the ${name}'s pocket.", ChatType.Filter)
-            player.exp(Skill.Thieving, pocket.xp)
-        } else {
-            target.face(player)
-            target.forceChat = pocket.caughtMessage
-            target.setAnimation(NPCAttack.animation(target, animationDefinitions))
-            player.message("You fail to pick the ${name}'s pocket.", ChatType.Filter)
-            target.stun(player, pocket.stunTicks, pocket.stunHit)
+    player.setAnimation("pick_pocket")
+    delay(2)
+    if (success) {
+        player.inventory.transaction {
+            addLoot(drops)
         }
+        player.message("You pick the ${name}'s pocket.", ChatType.Filter)
+        player.exp(Skill.Thieving, pocket.xp)
+    } else {
+        target.face(player)
+        target.forceChat = pocket.caughtMessage
+        target.setAnimation(NPCAttack.animation(target, animationDefinitions))
+        player.message("You fail to pick the ${name}'s pocket.", ChatType.Filter)
+        target.stun(player, pocket.stunTicks, pocket.stunHit)
+        delay(2)
     }
 }
 

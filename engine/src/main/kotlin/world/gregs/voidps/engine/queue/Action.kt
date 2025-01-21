@@ -52,6 +52,30 @@ class Action<C : Character>(
         }
     }
 
+    /**
+     * Queue calls shouldn't be nested and should be replaced with suspensions
+     */
+
+    @Suppress("UNUSED_PARAMETER", "UnusedReceiverParameter")
+    @Deprecated("Replace nested queues with pause", ReplaceWith("pause(initialDelay)"))
+    fun Character.queue(name: String, initialDelay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, onCancel: (() -> Unit)? = null, block: (suspend Action<C>.() -> Unit)?) {
+    }
+
+    @Suppress("UNUSED_PARAMETER", "UnusedReceiverParameter")
+    @Deprecated("Replace nested queues with pause", ReplaceWith("pause(initialDelay)"))
+    fun Character.softQueue(name: String, initialDelay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, onCancel: (() -> Unit)? = null, block: (suspend Action<C>.() -> Unit)?) {
+    }
+
+    @Suppress("UNUSED_PARAMETER", "UnusedReceiverParameter")
+    @Deprecated("Replace nested queues with pause", ReplaceWith("pause(initialDelay)"))
+    fun Character.weakQueue(name: String, initialDelay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, onCancel: (() -> Unit)? = null, block: (suspend Action<C>.() -> Unit)?) {
+    }
+
+    @Suppress("UNUSED_PARAMETER", "UnusedReceiverParameter")
+    @Deprecated("Replace nested queues with pause", ReplaceWith("pause(initialDelay)"))
+    fun Character.strongQueue(name: String, initialDelay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, onCancel: (() -> Unit)? = null, block: (suspend Action<C>.() -> Unit)?) {
+    }
+
     override fun toString(): String {
         return "${name}_${count}_${priority.name.toSnakeCase()}_${behaviour.name.toSnakeCase()}"
     }
