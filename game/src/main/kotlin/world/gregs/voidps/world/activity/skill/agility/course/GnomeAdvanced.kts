@@ -50,9 +50,6 @@ objectApproach("Run-across", "gnome_sign_post_advanced") {
     player.setAnimation("gnome_wall_${if (success) "run" else "fail"}")
     delay(1)
     if (!success) {
-        onCancel = {
-            player.tele(2484, 3418, 3)
-        }
         player.exactMove(Tile(2480, 3418, 3), 30, Direction.EAST)
         delay(6)
     }
