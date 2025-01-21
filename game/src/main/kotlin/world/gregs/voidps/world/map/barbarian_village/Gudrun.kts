@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
@@ -26,7 +27,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.LogoutBehaviour
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.suspend.delay
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
@@ -58,7 +59,7 @@ npcOperate("Talk-to", "gudrun*") {
     }
 }
 
-suspend fun CharacterContext.recital() {
+suspend fun SuspendableContext<Player>.recital() {
     npc<Quiz>("Are you ready for the recital?")
     choice {
         option<Neutral>("Yes.") {
@@ -72,7 +73,7 @@ suspend fun CharacterContext.recital() {
 val npcs: NPCs by inject()
 val region = Region(12341)
 
-suspend fun CharacterContext.cutscene() {
+suspend fun SuspendableContext<Player>.cutscene() {
     player.open("fade_out")
     val instance = startCutscene(region)
     val offset = instance.offset(region)
@@ -100,7 +101,7 @@ suspend fun CharacterContext.cutscene() {
     }
 }
 
-suspend fun CharacterContext.cutsceneMenu(instance: Region) {
+suspend fun SuspendableContext<Player>.cutsceneMenu(instance: Region) {
     npc<Sad>("dororan_cutscene", "This isn't going to work.")
     choice {
         option<Neutral>("Why's that?") {
@@ -114,7 +115,7 @@ suspend fun CharacterContext.cutsceneMenu(instance: Region) {
     }
 }
 
-suspend fun CharacterContext.cutsceneMenu2(instance: Region) {
+suspend fun SuspendableContext<Player>.cutsceneMenu2(instance: Region) {
     npc<Cry>("dororan_cutscene", "What was I thinking? You should go in there and stop them before Gudrun makes a fool of herself.")
     choice {
         option<Neutral>("Okay, I will.") {
@@ -130,7 +131,7 @@ suspend fun CharacterContext.cutsceneMenu2(instance: Region) {
     }
 }
 
-suspend fun CharacterContext.cutsceneMenu3(instance: Region) {
+suspend fun SuspendableContext<Player>.cutsceneMenu3(instance: Region) {
     npc<Sad>("dororan_cutscene", "I can't hear what's happening. Can you hear what's happening?")
     player.setAnimation("player_calm_doroan")
     player<Talk>("Gunthor is laughing at something.")
@@ -146,7 +147,7 @@ suspend fun CharacterContext.cutsceneMenu3(instance: Region) {
     }
 }
 
-suspend fun CharacterContext.cutsceneMenu4(instance: Region) {
+suspend fun SuspendableContext<Player>.cutsceneMenu4(instance: Region) {
     npc<Talk>("dororan_cutscene", "The poem says you can honour your ancestors by settling peacefully on the land they conquered.")
     npc<Sad>("dororan_cutscene", "He'll probably just find it insulting.")
     player.setAnimation("player_calm_doroan")
@@ -160,7 +161,7 @@ suspend fun CharacterContext.cutsceneMenu4(instance: Region) {
     }
 }
 
-suspend fun CharacterContext.cutscenePart2(instance: Region) {
+suspend fun SuspendableContext<Player>.cutscenePart2(instance: Region) {
     player.open("fade_out")
     delay(3)
     npcs.clear(instance.toLevel(0))
@@ -229,7 +230,7 @@ suspend fun CharacterContext.cutscenePart2(instance: Region) {
     }
 }
 
-suspend fun CharacterContext.gunnarsGround() {
+suspend fun SuspendableContext<Player>.gunnarsGround() {
     npc<Happy>("Papa was so impressed by Dororan's poem, he's made him the village poet!")
     npc<Happy>("dororan_after_cutscene2", "I'm more then a little surprised! He even gave me a house to live in!")
     npc<Pleased>("Our people's tradition is that the tribe provides lodging for the poet.")
@@ -251,13 +252,13 @@ suspend fun CharacterContext.gunnarsGround() {
     }
 }
 
-fun CharacterContext.setCutsceneEnd(instance: Region) {
+fun Context<Player>.setCutsceneEnd(instance: Region) {
     player.queue("gunnars_ground_cutscene_end", 1, LogoutBehaviour.Accelerate) {
         endCutscene(instance)
     }
 }
 
-suspend fun CharacterContext.endCutscene(instance: Region) {
+suspend fun SuspendableContext<Player>.endCutscene(instance: Region) {
     player.open("fade_out")
     delay(3)
     player.tele(3081, 3416)
@@ -266,7 +267,7 @@ suspend fun CharacterContext.endCutscene(instance: Region) {
     player.clearAnimation()
 }
 
-suspend fun CharacterContext.poem() {
+suspend fun SuspendableContext<Player>.poem() {
     if (player.holdsItem("gunnars_ground")) {
         npc<Quiz>("What have you got there?")
         player<Pleased>("Another gift from your mysterious suitor.")
@@ -286,7 +287,7 @@ suspend fun CharacterContext.poem() {
     }
 }
 
-suspend fun CharacterContext.whatHeSay() {
+suspend fun SuspendableContext<Player>.whatHeSay() {
     npc<Quiz>("What did he say?")
     player<Talk>("He mentioned someone called Gunnar, and that you should think about his feelings.")
     npc<Angry>("By the eyeballs of Guthix! Always Gunnar!")
@@ -303,7 +304,7 @@ suspend fun CharacterContext.whatHeSay() {
     }
 }
 
-suspend fun CharacterContext.fathersAttitude() {
+suspend fun SuspendableContext<Player>.fathersAttitude() {
     choice {
         option<Neutral>("You don't seem to share your father's attitude towards him.") {
             npc<Frustrated>("I think there's a difference between respecting my ancestors and obsessing over them. Papa thinks whatever stupid war Gunnar fought is still going on.")
@@ -319,7 +320,7 @@ suspend fun CharacterContext.fathersAttitude() {
     }
 }
 
-suspend fun CharacterContext.meetChieftain() {
+suspend fun SuspendableContext<Player>.meetChieftain() {
     choice {
         option<Neutral>("Where is he?") {
             npc<Talk>("In the longhouse at the north end of the village, drinking and shouting.")
@@ -329,7 +330,7 @@ suspend fun CharacterContext.meetChieftain() {
     }
 }
 
-suspend fun CharacterContext.showGudrun() {
+suspend fun SuspendableContext<Player>.showGudrun() {
     npc<Frustrated>("kjell_sword", "Gudrun! You caught enough fish?")
     npc<Frustrated>("Yes! I have plenty of fish!")
     npc<Frustrated>("kjell_sword", "Your father needs many fish to feed the freemen!")
@@ -362,7 +363,7 @@ suspend fun CharacterContext.showGudrun() {
     }
 }
 
-suspend fun CharacterContext.aboutRing() {
+suspend fun SuspendableContext<Player>.aboutRing() {
     npc<Pleased>("This is beautiful gift, stranger. Thank you.")
     choice {
         option<Neutral>("The ring isn't from me!") {
@@ -375,7 +376,7 @@ suspend fun CharacterContext.aboutRing() {
     }
 }
 
-suspend fun CharacterContext.thatsRight() {
+suspend fun SuspendableContext<Player>.thatsRight() {
     choice {
         option<Pleased>("That's right.") {
             npc<Sad>("I'm sorry, I could never get involved with an adventurer.")
@@ -388,7 +389,7 @@ suspend fun CharacterContext.thatsRight() {
     }
 }
 
-suspend fun CharacterContext.whoFrom() {
+suspend fun SuspendableContext<Player>.whoFrom() {
     npc<Surprised>("Oh! Who is it from?")
     choice {
         option<Neutral>("A great poet.") {
@@ -409,7 +410,7 @@ suspend fun CharacterContext.whoFrom() {
     }
 }
 
-suspend fun CharacterContext.outsideVillage() {
+suspend fun SuspendableContext<Player>.outsideVillage() {
     npc<Quiz>("This man, he is from outside the village?")
     player<Talk>("Yes.")
     npc<Pleased>("I would love to leave the village and be romanced by exotic, handsome, outerlander men. There's a problem, though.")
@@ -429,14 +430,14 @@ suspend fun CharacterContext.outsideVillage() {
     }
 }
 
-suspend fun CharacterContext.reasonWithHim() {
+suspend fun SuspendableContext<Player>.reasonWithHim() {
     npc<Sad>("I've tried to reason with him, but he's impossible! Maybe he'll listen to you. I know some of the others feel the same, but they're loyal to papa.")
     player["gunnars_ground"] = "meet_chieftain"
     player.inventory.remove("dororans_engraved_ring")
     meetChieftain()
 }
 
-suspend fun CharacterContext.unstarted() {
+suspend fun SuspendableContext<Player>.unstarted() {
     npc<Pleased>("Can I help you, stranger?")
     npc<Frustrated>("kjell_sword", "Why are you talking to that outerlander?")
     npc<Frustrated>("It's none of your business, Kjell! Just guard the hut!")
@@ -453,7 +454,7 @@ suspend fun CharacterContext.unstarted() {
     }
 }
 
-suspend fun CharacterContext.whoAreYou() {
+suspend fun SuspendableContext<Player>.whoAreYou() {
     npc<Pleased>("My name is Gudrun. My father, Gunthor, is chieftain of the village.")
     choice {
         option<Happy>("What is this place?") {
@@ -464,7 +465,7 @@ suspend fun CharacterContext.whoAreYou() {
     }
 }
 
-suspend fun CharacterContext.whatIsThisPlace() {
+suspend fun SuspendableContext<Player>.whatIsThisPlace() {
     npc<Pleased>("Outerlanders call this the barbarian village. It doesn't have a name because...it's complicated.")
     npc<Talk>("if you want to know more, you should talk to Hunding. He's up in the tower at the east entrance.")
     choice {
@@ -476,7 +477,7 @@ suspend fun CharacterContext.whatIsThisPlace() {
     }
 }
 
-suspend fun CharacterContext.finishQuest() {
+suspend fun SuspendableContext<Player>.finishQuest() {
     npc<Happy>("dororan_after_cutscene2", "Goodbye!")
     npc<Happy>("Goodbye!")
     if (player.inventory.spaces < 2) {
@@ -493,7 +494,7 @@ suspend fun CharacterContext.finishQuest() {
     questComplete()
 }
 
-fun CharacterContext.questComplete() {
+fun Context<Player>.questComplete() {
     player.playJingle("quest_complete_3")
     player["gunnars_ground"] = "completed"
     player.inc("quest_points", 5)
@@ -528,7 +529,7 @@ npcOperate("Talk-to", "gudrun_after_quest") {
     }
 }
 
-suspend fun CharacterContext.menu() {
+suspend fun SuspendableContext<Player>.menu() {
     choice {
         option<Neutral>("How are things with Dororan?") {
             npc<Pleased>("I really like him. he's funny, vulnerable and nothing like my people.")
@@ -556,7 +557,7 @@ suspend fun CharacterContext.menu() {
     }
 }
 
-suspend fun CharacterContext.theory() {
+suspend fun SuspendableContext<Player>.theory() {
     choice {
         option<Neutral>("Do you have a theory?") {
             npc<Amazed>("Gunnar always said 'A warrior does not barter; he simply takes!'. I think papa bought the house, but doesn't want anyone to know.")
@@ -572,7 +573,7 @@ suspend fun CharacterContext.theory() {
     }
 }
 
-suspend fun CharacterContext.elseGoodbye() {
+suspend fun SuspendableContext<Player>.elseGoodbye() {
     choice {
         option<Neutral>("I want to ask about something else.") {
             npc<Quiz>("Of course, what is it?")

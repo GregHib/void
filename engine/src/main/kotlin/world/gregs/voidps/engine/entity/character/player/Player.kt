@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.inv.Inventories
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.Suspension
+import world.gregs.voidps.engine.suspend.DialogueSuspension
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.network.client.Client
@@ -64,18 +65,10 @@ class Player(
         get() = client != null && viewport != null
 
     override var suspension: Suspension? = null
-        set(value) {
-            field?.cancel()
-            field = value
-        }
 
     override var delay: Continuation<Unit>? = null
 
-    var dialogueSuspension: Suspension? = null
-        set(value) {
-            field?.cancel()
-            field = value
-        }
+    var dialogueSuspension: DialogueSuspension<*>? = null
 
     override var queue = ActionQueue(this)
 

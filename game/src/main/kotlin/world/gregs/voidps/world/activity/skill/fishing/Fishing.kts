@@ -29,7 +29,6 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.type.random
 
 val logger = InlineLogger()
@@ -42,7 +41,8 @@ npcMove({ it.contains("fishers") && it.def.contains("fishing") }) { npc ->
     }
 }
 
-npcOperate("*", "fishing_spot_*", arrive = true) {
+npcOperate("*", "fishing_spot_*") {
+    arriveDelay()
     if (!def.contains("fishing")) {
         return@npcOperate
     }

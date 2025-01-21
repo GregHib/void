@@ -2,20 +2,18 @@ package world.gregs.voidps.engine.entity.obj
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetObjectContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.suspend.arriveDelay
 
-data class ObjectOption(
-    override val character: Character,
+data class ObjectOption<C : Character>(
+    override val character: C,
     override val target: GameObject,
     val def: ObjectDefinition,
     val option: String
-) : Interaction(), TargetObjectContext {
+) : TargetInteraction<C, GameObject>() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 
     override val size = 4
@@ -29,8 +27,8 @@ data class ObjectOption(
     }
 }
 
-fun objectOperate(option: String, vararg objects: String = arrayOf("*"), arrive: Boolean = true, override: Boolean = true, block: suspend ObjectOption.() -> Unit) {
-    val handler: suspend ObjectOption.(Player) -> Unit = {
+fun objectOperate(option: String, vararg objects: String = arrayOf("*"), arrive: Boolean = true, override: Boolean = true, block: suspend ObjectOption<Player>.() -> Unit) {
+    val handler: suspend ObjectOption<Player>.(Player) -> Unit = {
         if (arrive) {
             arriveDelay()
         }
@@ -41,8 +39,8 @@ fun objectOperate(option: String, vararg objects: String = arrayOf("*"), arrive:
     }
 }
 
-fun objectApproach(option: String, vararg objects: String = arrayOf("*"), override: Boolean = true, block: suspend ObjectOption.() -> Unit) {
-    val handler: suspend ObjectOption.(Player) -> Unit = {
+fun objectApproach(option: String, vararg objects: String = arrayOf("*"), override: Boolean = true, block: suspend ObjectOption<Player>.() -> Unit) {
+    val handler: suspend ObjectOption<Player>.(Player) -> Unit = {
         block.invoke(this)
     }
     for (id in objects) {
@@ -50,8 +48,8 @@ fun objectApproach(option: String, vararg objects: String = arrayOf("*"), overri
     }
 }
 
-fun npcOperateObject(option: String, vararg objects: String = arrayOf("*"), npc: String = "*", arrive: Boolean = true, override: Boolean = true, block: suspend ObjectOption.() -> Unit) {
-    val handler: suspend ObjectOption.(NPC) -> Unit = {
+fun npcOperateObject(option: String, vararg objects: String = arrayOf("*"), npc: String = "*", arrive: Boolean = true, override: Boolean = true, block: suspend ObjectOption<NPC>.() -> Unit) {
+    val handler: suspend ObjectOption<NPC>.(NPC) -> Unit = {
         if (arrive) {
             arriveDelay()
         }
@@ -62,8 +60,8 @@ fun npcOperateObject(option: String, vararg objects: String = arrayOf("*"), npc:
     }
 }
 
-fun npcApproachObject(option: String, vararg objects: String = arrayOf("*"), npc: String = "*", override: Boolean = true, block: suspend ObjectOption.() -> Unit) {
-    val handler: suspend ObjectOption.(NPC) -> Unit = {
+fun npcApproachObject(option: String, vararg objects: String = arrayOf("*"), npc: String = "*", override: Boolean = true, block: suspend ObjectOption<NPC>.() -> Unit) {
+    val handler: suspend ObjectOption<NPC>.(NPC) -> Unit = {
         block.invoke(this)
     }
     for (id in objects) {
@@ -71,8 +69,8 @@ fun npcApproachObject(option: String, vararg objects: String = arrayOf("*"), npc
     }
 }
 
-fun characterOperateObject(option: String, vararg objects: String = arrayOf("*"), arrive: Boolean = true, override: Boolean = true, block: suspend ObjectOption.() -> Unit) {
-    val handler: suspend ObjectOption.(Character) -> Unit = {
+fun characterOperateObject(option: String, vararg objects: String = arrayOf("*"), arrive: Boolean = true, override: Boolean = true, block: suspend ObjectOption<Character>.() -> Unit) {
+    val handler: suspend ObjectOption<Character>.(Character) -> Unit = {
         if (arrive) {
             arriveDelay()
         }
@@ -84,8 +82,8 @@ fun characterOperateObject(option: String, vararg objects: String = arrayOf("*")
     }
 }
 
-fun characterApproachObject(option: String, vararg objects: String = arrayOf("*"), override: Boolean = true, block: suspend ObjectOption.() -> Unit) {
-    val handler: suspend ObjectOption.(Character) -> Unit = {
+fun characterApproachObject(option: String, vararg objects: String = arrayOf("*"), override: Boolean = true, block: suspend ObjectOption<Character>.() -> Unit) {
+    val handler: suspend ObjectOption<Character>.(Character) -> Unit = {
         block.invoke(this)
     }
     for (id in objects) {

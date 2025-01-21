@@ -4,12 +4,14 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.forceChat
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.suspend.approachRange
-import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
+import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
 import world.gregs.voidps.world.interact.dialogue.Angry
 import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.Sad
@@ -17,13 +19,11 @@ import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.npc.shop.buy
-import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
-import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
+import world.gregs.voidps.world.interact.entity.npc.shop.buy
 
 npcApproach("Talk-to", "bartender_blue_moon_inn") {
-    player.approachRange(4)
+    approachRange(4)
     pause()
     npc<Quiz>("What can I do yer for?")
     choice {
@@ -65,7 +65,7 @@ itemOnNPCApproach("barcrawl_card", "bartender_blue_moon_inn") {
     barCrawl()
 }
 
-suspend fun TargetNPCContext.barCrawl() = barCrawlDrink(
+suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
     start = {
         npc<Sad>("Oh no not another of you guys. These barbarian barcrawls cause too much damage to my bar.")
         npc<Talk>("You're going to have to pay 50 gold for the Uncle Humphrey's Gutrot.")

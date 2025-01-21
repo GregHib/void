@@ -3,6 +3,7 @@ package world.gregs.voidps.world.map.barbarian_outpost
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -24,7 +25,7 @@ npcOperate("Talk-to", "barbarian_guard") {
     }
 }
 
-suspend fun NPCOption.startBarCrawl() {
+suspend fun NPCOption<Player>.startBarCrawl() {
     npc<Quiz>("Oi, whaddya want?")
     choice {
         option<Talk>("I want to come through this gate.") {
@@ -52,7 +53,7 @@ suspend fun NPCOption.startBarCrawl() {
     }
 }
 
-suspend fun NPCOption.toggleVialSmashing() {
+suspend fun NPCOption<Player>.toggleVialSmashing() {
     if (player["vial_smashing", false]) {
         npc<Quiz>("'Ello friend. I see you're drinking like a barbarian - do you want to stop smashing your vials when you finish them?")
         choice {
@@ -79,7 +80,7 @@ suspend fun NPCOption.toggleVialSmashing() {
     }
 }
 
-suspend fun NPCOption.questComplete() {
+suspend fun NPCOption<Player>.questComplete() {
     npc<Quiz>("So, how's the Barcrawl coming along?")
     player<Drunk>("I tink I jusht 'bout done dem all... but I losht count...")
     if (player.inventory.remove("barcrawl_card")) {
@@ -98,7 +99,7 @@ suspend fun NPCOption.questComplete() {
     }
 }
 
-suspend fun NPCOption.checkProcess() {
+suspend fun NPCOption<Player>.checkProcess() {
     npc<Quiz>("So, how's the Barcrawl coming along?")
     if (player.ownsItem("barcrawl_card")) {
         player<Sad>("I haven't finished it yet.")

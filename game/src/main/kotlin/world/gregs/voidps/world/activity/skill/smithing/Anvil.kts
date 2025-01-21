@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smithing
-import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -26,6 +25,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 import world.gregs.voidps.world.interact.dialogue.type.statement
@@ -130,7 +130,7 @@ interfaceClose("smithing") { player ->
     player.sendScript("clear_dialogues")
 }
 
-suspend fun CharacterContext.smith(player: Player, metal: String, type: String, amount: Int) {
+suspend fun SuspendableContext<Player>.smith(player: Player, metal: String, type: String, amount: Int) {
     val item = if (metal == "steel" && type == "lantern") {
         "bullseye_lantern_frame"
     } else if (metal == "mithril" && type == "grapple") {
@@ -155,7 +155,7 @@ suspend fun CharacterContext.smith(player: Player, metal: String, type: String, 
     smith(smithing, metal, bars, quantity, type, item, actualAmount, true)
 }
 
-suspend fun CharacterContext.smith(
+suspend fun SuspendableContext<Player>.smith(
     smithing: Smithing,
     metal: String,
     bars: Int,

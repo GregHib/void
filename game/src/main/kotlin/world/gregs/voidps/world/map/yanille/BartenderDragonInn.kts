@@ -2,8 +2,10 @@ package world.gregs.voidps.world.map.yanille
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
@@ -58,7 +60,7 @@ itemOnNPCOperate("barcrawl_card", "bartender_dragon_inn") {
     barCrawl()
 }
 
-suspend fun TargetNPCContext.barCrawl() = barCrawlDrink(
+suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
     effects = {
         player.levels.drain(Skill.Attack, 6)
         player.levels.drain(Skill.Defence, 6)

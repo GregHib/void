@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
+import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.npcDialogueHead
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -157,7 +157,7 @@ internal class NPCChatTest : DialogueTest() {
             npc<Laugh>(text = "text", largeHead = true)
             resumed = true
         }
-        (player.dialogueSuspension as ContinueSuspension).resume()
+        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
         coVerify {
             interfaces.sendText("dialogue_npc_chat1", "title", "Jim")
             interfaces.sendAnimation("dialogue_npc_chat1", "head_large", 9840)

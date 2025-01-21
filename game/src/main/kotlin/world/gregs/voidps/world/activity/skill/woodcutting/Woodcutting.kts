@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.awaitDialogues
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.sound.areaSound
 

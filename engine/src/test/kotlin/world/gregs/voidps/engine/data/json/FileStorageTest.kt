@@ -4,10 +4,8 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.AccountStorage
 import world.gregs.voidps.engine.data.AccountStorageTest
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.yaml.Yaml
 import java.io.File
 import kotlin.test.assertTrue

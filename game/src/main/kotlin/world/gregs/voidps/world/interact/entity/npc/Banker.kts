@@ -3,13 +3,13 @@ package world.gregs.voidps.world.interact.entity.npc
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.suspend.approachRange
-import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.community.trade.lend.Loan.getSecondsRemaining
 import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.Talk
@@ -19,7 +19,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 val npcs: NPCs by inject()
 
 npcApproach("Talk-to", "banker*") {
-    player.approachRange(2)
+    approachRange(2)
     pause()
     npc<Quiz>("Good day. How may I help you?")
     val loanReturned = getSecondsRemaining(player, "lend_timeout") < 0
@@ -39,7 +39,7 @@ objectOperate("Use", "bank_*", arrive = false) {
     menu()
 }
 
-suspend fun CharacterContext.menu() {
+suspend fun SuspendableContext<Player>.menu() {
     choice {
         option("I'd like to access my bank account, please.", block = { player.open("bank") })
         option("I'd like to check my PIN settings.", block = { player.open("bank_pin") })
@@ -62,18 +62,18 @@ suspend fun CharacterContext.menu() {
 }
 
 npcApproach("Bank", "banker*") {
-    player.approachRange(2)
+    approachRange(2)
     pause()
     player.open("bank")
 }
 
 npcApproach("Collect", "banker*") {
-    player.approachRange(2)
+    approachRange(2)
     pause()
     player.open("collection_box")
 }
 
-fun CharacterContext.achievement() {
+fun Context<Player>.achievement() {
     if (!player["you_can_bank_on_us_task", false]) {
         player["you_can_bank_on_us_task"] = true
         player.addVarbit("task_reward_items", "red_dye")

@@ -2,8 +2,7 @@ package world.gregs.voidps.world.interact.dialogue.type
 
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
-import world.gregs.voidps.engine.suspend.resumeDialogueSuspension
+import world.gregs.voidps.engine.suspend.StringSuspension
 
 interfaceOption("Show required items", "items_hidden_button_txt", "quest_intro") {
     player.interfaces.sendVisibility(id, "items_hide_show_layer", false)
@@ -26,19 +25,13 @@ interfaceOption("Mark", "objective_text", "quest_intro") {
 }
 
 interfaceOption("No", "startno_layer", "quest_intro") {
-    val suspension = player.dialogueSuspension as? StringSuspension ?: return@interfaceOption
-    suspension.string = "no"
-    player.resumeDialogueSuspension()
+    (player.dialogueSuspension as? StringSuspension)?.resume("no")
 }
 
 interfaceOption("Yes", "startyes_layer", "quest_intro") {
-    val suspension = player.dialogueSuspension as? StringSuspension ?: return@interfaceOption
-    suspension.string = "yes"
-    player.resumeDialogueSuspension()
+    (player.dialogueSuspension as? StringSuspension)?.resume("yes")
 }
 
 interfaceClose("quest_intro") { player ->
-    val suspension = player.dialogueSuspension as? StringSuspension ?: return@interfaceClose
-    suspension.string = "no"
-    player.resumeDialogueSuspension()
+    (player.dialogueSuspension as? StringSuspension)?.resume("no")
 }

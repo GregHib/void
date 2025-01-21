@@ -1,15 +1,16 @@
 package world.gregs.voidps.world.map.taverley
 
-import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
+import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.dialogue.type.statement
 
@@ -41,7 +42,7 @@ npcOperate("Talk-to", "sanfew") {
     }
 }
 
-suspend fun CharacterContext.started() {
+suspend fun SuspendableContext<Player>.started() {
     npc<Quiz>("What can I do for you young 'un?")
     choice {
         option("I've been sent to help purify the Varrock stone circle.") {
@@ -64,7 +65,7 @@ suspend fun CharacterContext.started() {
     }
 }
 
-suspend fun CharacterContext.cauldron() {
+suspend fun SuspendableContext<Player>.cauldron() {
     npc<Quiz>("Did you bring me the required ingredients for the potion?")
     if (!player.inventory.contains(enchantedMeat)) {
         noMeat()
@@ -78,7 +79,7 @@ suspend fun CharacterContext.cauldron() {
     npc<Neutral>("Now go and talk to Kaqemeex and he will introduce you to the wonderful world of herblore and potion making!")
 }
 
-suspend fun CharacterContext.noMeat() {
+suspend fun SuspendableContext<Player>.noMeat() {
     player<Sad>("No, not yet...")
     npc<Neutral>("Well let me know when you do young 'un.")
     choice {
@@ -100,7 +101,7 @@ suspend fun CharacterContext.noMeat() {
     }
 }
 
-suspend fun CharacterContext.eadgarsRuse() {
+suspend fun SuspendableContext<Player>.eadgarsRuse() {
     npc<Quiz>("What can I do for you young 'un?")
     choice {
         option<Neutral>("Have you any more work for me, to help reclaim the circle?") {

@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.data.Jewellery
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -74,7 +74,7 @@ interfaceClose("make_mould*") { player ->
     player.sendScript("clear_dialogues")
 }
 
-fun CharacterContext.make(component: String, amount: Int) {
+fun Context<Player>.make(component: String, amount: Int) {
     val type = component.split("options_").first().removePrefix("make_").removeSuffix("_")
     val index = component.split("_").last().toInt()
     val gem = gems[index]

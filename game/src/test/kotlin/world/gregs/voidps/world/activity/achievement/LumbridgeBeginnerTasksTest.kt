@@ -93,7 +93,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.inventory.add("bronze_hatchet")
 
         player.objectOption(tree, "Chop down")
-        tick(4)
+        tick(5)
 
         assertTrue(player["adventurers_log_task", false])
     }
@@ -117,7 +117,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.inventory.add("tinderbox", "logs")
 
         player.itemOnItem(0, 1)
-        tick(5)
+        tick(6)
 
         assertTrue(player["log_a_rhythm_task", false])
     }

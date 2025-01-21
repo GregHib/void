@@ -11,10 +11,10 @@ import world.gregs.voidps.engine.event.EventDispatcher
  * allow the first [CombatSwing] to occur on the same tick.
  * After [Interact] is complete it is switched to [CombatMovement]
  */
-data class CombatInteraction(
-    override val character: Character,
+data class CombatInteraction<C : Character>(
+    override val character: C,
     val target: Character
-) : Interaction() {
+) : Interaction<C>() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 
     override val size = 1

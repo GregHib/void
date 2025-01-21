@@ -32,8 +32,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.suspend.approachRange
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
@@ -222,7 +220,7 @@ objectApproach("Prospect", "crashed_star_tier_#") {
     if (player.queue.contains("prospect")) {
         return@objectApproach
     }
-    player.approachRange(1)
+    approachRange(1)
     pause()
     val starPayout = target.def["collect_for_next_layer", -1]
     player.message("You examine the crashed star...")

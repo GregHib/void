@@ -15,7 +15,7 @@ import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
-import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
+import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -150,7 +150,7 @@ internal class PlayerChatTest : DialogueTest() {
             player<Laugh>(text = "text", largeHead = true)
             resumed = true
         }
-        (player.dialogueSuspension as ContinueSuspension).resume()
+        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
         coVerify {
             interfaces.sendText("dialogue_chat1", "title", "Jim")
             interfaces.sendAnimation("dialogue_chat1", "head_large", 9840)

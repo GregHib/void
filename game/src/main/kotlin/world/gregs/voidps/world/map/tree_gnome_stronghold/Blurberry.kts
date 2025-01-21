@@ -1,9 +1,13 @@
 package world.gregs.voidps.world.map.tree_gnome_stronghold
 
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
+import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
+import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
 import world.gregs.voidps.world.interact.dialogue.HappyOld
 import world.gregs.voidps.world.interact.dialogue.NeutralOld
 import world.gregs.voidps.world.interact.dialogue.Talk
@@ -11,8 +15,6 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
-import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
-import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
 
 npcOperate("Talk-to", "blurberry") {
     player<Talk>("Hello.")
@@ -34,7 +36,7 @@ itemOnNPCOperate("barcrawl_card", "blurberry") {
     barCrawl()
 }
 
-suspend fun TargetNPCContext.barCrawl() = barCrawlDrink(
+suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
     start = { npc<HappyOld>("Ah, you've come to the best stop on your list! I'll give you my famous Fire Toad Blast! It'll cost you 10 coins.") },
     effects = { player.damage(10) }
 )

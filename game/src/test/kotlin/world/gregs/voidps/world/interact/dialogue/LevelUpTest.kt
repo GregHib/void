@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
+import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.world.interact.dialogue.type.levelUp
 import kotlin.test.assertTrue
 
@@ -20,7 +20,7 @@ internal class LevelUpTest : DialogueTest() {
             levelUp(Skill.Runecrafting, "Congrats\nLevel")
             resumed = true
         }
-        (player.dialogueSuspension as ContinueSuspension).resume()
+        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
         verify {
             player.open("dialogue_level_up")
             interfaces.sendText("dialogue_level_up", "line1", "Congrats")

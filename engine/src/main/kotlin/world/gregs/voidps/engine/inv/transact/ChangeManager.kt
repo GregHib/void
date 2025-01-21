@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.inv.transact
 
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.InventoryUpdate

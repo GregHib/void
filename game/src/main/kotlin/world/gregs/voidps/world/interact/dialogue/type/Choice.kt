@@ -2,8 +2,9 @@ package world.gregs.voidps.world.interact.dialogue.type
 
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.CharacterContext
-import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.suspend.SuspendableContext
+import world.gregs.voidps.engine.suspend.IntSuspension
 import world.gregs.voidps.world.interact.dialogue.sendLines
 
 private val CHOICE_LINE_RANGE = 2..5
@@ -21,7 +22,7 @@ private const val APPROXIMATE_WIDE_TITLE_LENGTH = 30
  *      }
  *  }
  */
-suspend fun <T : CharacterContext> T.choice(title: String? = null, block: suspend ChoiceBuilder<T>.() -> Unit) {
+suspend fun <T : SuspendableContext<Player>> T.choice(title: String? = null, block: suspend ChoiceBuilder<T>.() -> Unit) {
     val builder = ChoiceBuilder<T>()
     block.invoke(builder)
     val lines = builder.build(this)
@@ -40,7 +41,7 @@ suspend fun <T : CharacterContext> T.choice(title: String? = null, block: suspen
  *     // ...
  *  }
  */
-suspend fun CharacterContext.choice(lines: List<String>, title: String? = null): Int {
+suspend fun SuspendableContext<Player>.choice(lines: List<String>, title: String? = null): Int {
     check(lines.size in CHOICE_LINE_RANGE) { "Invalid choice line count ${lines.size} for $player" }
     val question = title?.trimIndent()?.replace("\n", "<br>")
     val multilineTitle = question?.contains("<br>") ?: false
@@ -55,7 +56,7 @@ suspend fun CharacterContext.choice(lines: List<String>, title: String? = null):
         player.interfaces.sendText(id, "title", question)
     }
     player.interfaces.sendLines(id, lines)
-    val result = IntSuspension()
+    val result = IntSuspension.get(player)
     player.close(id)
     return result
 }

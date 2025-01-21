@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.male
@@ -39,7 +40,7 @@ npcOperate("Hair-cut", "hairdresser") {
     startHairdressing()
 }
 
-suspend fun NPCOption.startHairdressing() {
+suspend fun NPCOption<Player>.startHairdressing() {
     player.closeDialogue()
     if (player.equipped(EquipSlot.Weapon).isNotEmpty() || player.equipped(EquipSlot.Shield).isNotEmpty()) {
         npc<Afraid>("I don't feel comfortable cutting hair when you are wielding something. Please remove what you are holding first.")

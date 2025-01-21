@@ -5,14 +5,14 @@ import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
-import world.gregs.voidps.engine.suspend.resumeDialogueSuspension
+import world.gregs.voidps.engine.suspend.SuspendableContext
+import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.world.community.trade.lend.Loan.getSecondsRemaining
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.ChoiceBuilder
@@ -78,31 +78,31 @@ npcOperate("Collect", "eniola") {
     openCollection()
 }
 
-fun ChoiceBuilder<NPCOption>.accessBank() {
+fun ChoiceBuilder<NPCOption<Player>>.accessBank() {
     option("I'd like to access my bank account, please.") {
         openBank()
     }
 }
 
-fun ChoiceBuilder<NPCOption>.collectionBox() {
+fun ChoiceBuilder<NPCOption<Player>>.collectionBox() {
     option("I'd like to see my collection box.") {
         openCollection()
     }
 }
 
-fun ChoiceBuilder<NPCOption>.pinSettings() {
+fun ChoiceBuilder<NPCOption<Player>>.pinSettings() {
     option("I'd like to check my PIN settings.") {
     }
 }
 
-suspend fun NPCOption.openCollection() {
+suspend fun NPCOption<Player>.openCollection() {
     if (runePayment()) {
         player.open("collection_box")
     }
 }
 
 
-suspend fun NPCOption.openBank() {
+suspend fun NPCOption<Player>.openBank() {
     if (runePayment()) {
         player.open("bank")
     }
@@ -124,9 +124,9 @@ val runes = listOf("air_rune",
     "soul_rune"
 )
 
-suspend fun CharacterContext.runePayment(): Boolean {
+suspend fun SuspendableContext<Player>.runePayment(): Boolean {
     player.open("ourania_bank_charge")
-    val rune = StringSuspension()
+    val rune = StringSuspension.get(player)
     player.close("ourania_bank_charge")
 
     if (!player.inventory.remove(rune, 20)) {
@@ -144,9 +144,7 @@ interfaceOpen("ourania_bank_charge") { player ->
 }
 
 continueDialogue("ourania_bank_charge", "*_rune") { player ->
-    val suspension = player.dialogueSuspension as? StringSuspension ?: return@continueDialogue
-    suspension.string = component
-    player.resumeDialogueSuspension()
+    (player.dialogueSuspension as? StringSuspension)?.resume(component)
 }
 
 interfaceOption("* Runes", "*_rune", "ourania_bank_charge") {

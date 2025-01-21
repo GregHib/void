@@ -7,10 +7,11 @@ import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.queue.Action
 
 fun Character.resumeSuspension(): Boolean {
@@ -22,89 +23,19 @@ fun Character.resumeSuspension(): Boolean {
     return true
 }
 
-fun Player.resumeDialogueSuspension(): Boolean {
-    val suspend = dialogueSuspension ?: return false
-    if (suspend.ready()) {
-        dialogueSuspension = null
-        suspend.resume()
-    }
+suspend fun SuspendableContext<Player>.awaitDialogues(): Boolean {
+    Suspension.start(character) { player.dialogue == null }
     return true
 }
 
-/**
- * Prevents non-interface player input and most processing
- */
-suspend fun CharacterContext.delay(ticks: Int = 1) {
-    if (ticks <= 0) {
-        return
-    }
-    character.start("delay", ticks)
-    suspendCancellableCoroutine {
-        character.delay = it
-    }
-}
-
-/**
- * Interrupt-able pausing
- * Note: can't be used after a dialogue suspension in an interaction as the
- * interaction will have finished and there will be nothing to resume the suspension
- */
-suspend fun CharacterContext.pause(ticks: Int = 1) {
-    TickSuspension(ticks)
-}
-
-suspend fun CharacterContext.awaitDialogues(): Boolean {
-    if (character !is Player) {
-        return false
-    }
-    PredicateSuspension { player.dialogue == null }
+suspend fun SuspendableContext<Player>.awaitInterfaces(): Boolean {
+    Suspension.start(character) { player.menu == null }
     return true
-}
-
-suspend fun CharacterContext.awaitInterfaces(): Boolean {
-    if (character !is Player) {
-        return false
-    }
-    PredicateSuspension { player.menu == null }
-    return true
-}
-
-suspend fun CharacterContext.pauseForever() {
-    InfiniteSuspension()
-}
-
-/**
- * Movement delay, typically used by interactions that perform animations or exact movements
- */
-suspend fun CharacterContext.arriveDelay() {
-    val delay = character.remaining("last_movement")
-    if (delay == -1) {
-        return
-    }
-    delay(delay)
-}
-
-context(CharacterContext) fun Character.approachRange(range: Int?, update: Boolean = true) {
-    val interact = mode as? Interact ?: return
-    interact.updateRange(range, update)
 }
 
 private val logger = InlineLogger()
 
-context(CharacterContext) suspend fun Character.playAnimation(id: String, override: Boolean = false, canInterrupt: Boolean = true) {
-    val ticks = setAnimation(id, override = override)
-    if (ticks == -1) {
-        logger.warn { "No animation delay $id" }
-    } else {
-        character.start("movement_delay", ticks)
-        if (canInterrupt) {
-            pause(ticks)
-        } else {
-            delay(ticks)
-        }
-    }
-}
-context(Action) suspend fun Character.playAnimation(id: String, override: Boolean = false, canInterrupt: Boolean = true) {
+context(SuspendableContext<*>) suspend fun Character.playAnimation(id: String, override: Boolean = false, canInterrupt: Boolean = true) {
     val ticks = setAnimation(id, override = override)
     if (ticks == -1) {
         logger.warn { "No animation delay $id" }

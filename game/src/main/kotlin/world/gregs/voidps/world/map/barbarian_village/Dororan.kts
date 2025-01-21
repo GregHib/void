@@ -3,7 +3,6 @@ package world.gregs.voidps.world.map.barbarian_village
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -13,7 +12,7 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.suspend.delay
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.questComplete
@@ -58,7 +57,7 @@ npcOperate("Talk-to", "dororan") {
     }
 }
 
-suspend fun CharacterContext.poem() {
+suspend fun SuspendableContext<Player>.poem() {
     if (!player.ownsItem("gunnars_ground")) {
         player<Sad>("Er, I lost the poem.")
         npc<Talk>("Luckily for you, I wrote a second draft.")
@@ -79,7 +78,7 @@ suspend fun CharacterContext.poem() {
     }
 }
 
-suspend fun CharacterContext.poemDone() {
+suspend fun SuspendableContext<Player>.poemDone() {
     npc<Laugh>("At last! It's done! It's finished! My finest work! Thank you so much for your help!")
     player<Pleased>("Are you ready to present it to Chieftain?!")
     npc<Surprised>("What? No! I'm a writer, not a performer.")
@@ -98,20 +97,20 @@ suspend fun CharacterContext.poemDone() {
     }
 }
 
-suspend fun CharacterContext.sweptToWar() {
+suspend fun SuspendableContext<Player>.sweptToWar() {
     npc<Pleased>("'Who then, in face of madness, <blue>swept to war.</col>'")
     npc<Happy>("That's it! That's brilliant!")
     player["gunnars_ground"] = "poem_done"
     poemDone()
 }
 
-suspend fun CharacterContext.oneMore() {
+suspend fun SuspendableContext<Player>.oneMore() {
     npc<Pleased>("It's coming together. We're nearly done! One more to go!")
     npc<Quiz>("This one is tricky, though. It's a phrase I need. Someone did something.")
     phraseMenu()
 }
 
-suspend fun CharacterContext.phraseMenu() {
+suspend fun SuspendableContext<Player>.phraseMenu() {
     choice {
         option<Talk>("Threw the ball.") {
             npc<Talk>("That doesn't really fit. It needs tp rhyme with the word 'lore'.")
@@ -132,7 +131,7 @@ suspend fun CharacterContext.phraseMenu() {
     }
 }
 
-suspend fun CharacterContext.threeSyllablesMenu() {
+suspend fun SuspendableContext<Player>.threeSyllablesMenu() {
     choice {
         option<Talk>("Picked a rose.") {
             npc<Talk>("That doesn't really fit. It needs tp rhyme with the word 'lore'.")
@@ -156,7 +155,7 @@ suspend fun CharacterContext.threeSyllablesMenu() {
     }
 }
 
-suspend fun CharacterContext.threeSyllablesMenu2() {
+suspend fun SuspendableContext<Player>.threeSyllablesMenu2() {
     choice {
         option<Talk>("Heard a song.") {
             npc<Talk>("that doesn't really fit. It needs to imply some aggressive action, like 'started a fight'.")
@@ -179,7 +178,7 @@ suspend fun CharacterContext.threeSyllablesMenu2() {
     }
 }
 
-suspend fun CharacterContext.fightMenu() {
+suspend fun SuspendableContext<Player>.fightMenu() {
     choice {
         option<Talk>("Picked a fight.") {
             npc<Talk>("That doesn't really fit. It needs tp rhyme with the word 'lore'.")
@@ -203,7 +202,7 @@ suspend fun CharacterContext.fightMenu() {
     }
 }
 
-suspend fun CharacterContext.fightMenu2() {
+suspend fun SuspendableContext<Player>.fightMenu2() {
     choice {
         option<Talk>("Swept to war.") {
             sweptToWar()
@@ -226,7 +225,7 @@ suspend fun CharacterContext.fightMenu2() {
     }
 }
 
-suspend fun CharacterContext.loreMenu() {
+suspend fun SuspendableContext<Player>.loreMenu() {
     choice {
         option<Talk>("Started a war.") {
             npc<Pleased>("that doesn't really fit. It needs to be three syllables long.")
@@ -250,7 +249,7 @@ suspend fun CharacterContext.loreMenu() {
     }
 }
 
-suspend fun CharacterContext.loreMenu2() {
+suspend fun SuspendableContext<Player>.loreMenu2() {
     choice {
         option<Talk>("Learned to soar") {
             npc<Talk>("that doesn't really fit. It needs to imply some aggressive action, like 'started a fight'.")
@@ -273,14 +272,14 @@ suspend fun CharacterContext.loreMenu2() {
     }
 }
 
-suspend fun CharacterContext.threat() {
+suspend fun SuspendableContext<Player>.threat() {
     npc<Pleased>("'But long is gone the author of that <blue>threat.</col>'")
     npc<Happy>("Perfect! Yes!")
     player["gunnars_ground"] = "one_more_poem"
     oneMore()
 }
 
-suspend fun CharacterContext.morePoem() {
+suspend fun SuspendableContext<Player>.morePoem() {
     npc<Sad>("The poem still isn't finished, though. I have another missing word. Give me another one; anything, to get me started.")
     choice {
         option<Talk>("Stockade.") {
@@ -302,7 +301,7 @@ suspend fun CharacterContext.morePoem() {
     }
 }
 
-suspend fun CharacterContext.syllablePoemMenu() {
+suspend fun SuspendableContext<Player>.syllablePoemMenu() {
     choice {
         option<Talk>("Storm.") {
             npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'yet'.")
@@ -326,7 +325,7 @@ suspend fun CharacterContext.syllablePoemMenu() {
     }
 }
 
-suspend fun CharacterContext.syllablePoemMenu2() {
+suspend fun SuspendableContext<Player>.syllablePoemMenu2() {
     choice {
         option<Talk>("Debt.") {
             npc<Talk>("That doesn't really fit. It needs to mean something like 'danger'.")
@@ -349,7 +348,7 @@ suspend fun CharacterContext.syllablePoemMenu2() {
     }
 }
 
-suspend fun CharacterContext.rhymePoemMenu() {
+suspend fun SuspendableContext<Player>.rhymePoemMenu() {
     choice {
         option<Talk>("Debt.") {
             npc<Talk>("That doesn't really fit. It needs to mean something like 'danger'.")
@@ -373,7 +372,7 @@ suspend fun CharacterContext.rhymePoemMenu() {
     }
 }
 
-suspend fun CharacterContext.rhymePoemMenu2() {
+suspend fun SuspendableContext<Player>.rhymePoemMenu2() {
     choice {
         option<Talk>("Threat.") {
             threat()
@@ -396,7 +395,7 @@ suspend fun CharacterContext.rhymePoemMenu2() {
     }
 }
 
-suspend fun CharacterContext.dangerPoemMenu() {
+suspend fun SuspendableContext<Player>.dangerPoemMenu() {
     choice {
         option<Talk>("Risk.") {
             npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'yet'.")
@@ -420,7 +419,7 @@ suspend fun CharacterContext.dangerPoemMenu() {
     }
 }
 
-suspend fun CharacterContext.dangerPoemMenu2() {
+suspend fun SuspendableContext<Player>.dangerPoemMenu2() {
     choice {
         option<Talk>("Upset.") {
             npc<Talk>("That doesn't really fit. It needs to be one syllable long.")
@@ -443,7 +442,7 @@ suspend fun CharacterContext.dangerPoemMenu2() {
     }
 }
 
-suspend fun CharacterContext.aboutRing() {
+suspend fun SuspendableContext<Player>.aboutRing() {
     npc<Quiz>("Did you give Gudrun the ring? What did she think? Did it capture her heart?")
     player<Talk>("There's a problem.")
     npc<Cry>("It's because I'm a dwarf, isn't it? Or because I'm a poet? I knew it! I'm completely worthless!")
@@ -459,7 +458,7 @@ suspend fun CharacterContext.aboutRing() {
     }
 }
 
-suspend fun CharacterContext.mostCruel() {
+suspend fun SuspendableContext<Player>.mostCruel() {
     player<Talk>("Gudrun's father won't let her be with someone from outside the village.")
     npc<Amazed>("Most cruel is fate! Most cruel! Why not?")
     player<Talk>("He's obsessed with the stories of his ancestors. He says his people are still at war.")
@@ -477,7 +476,7 @@ suspend fun CharacterContext.mostCruel() {
     }
 }
 
-suspend fun CharacterContext.anyIdea() {
+suspend fun SuspendableContext<Player>.anyIdea() {
     npc<Amazed>("An idea occurs to me, but it is hubris of the greatest magnitude.")
     player<Quiz>("What is it?")
     npc<Talk>("What if I wrote a poem? Forged a sweeping, historical epic? Crafted a tale to touch the chieftain's soul?")
@@ -491,7 +490,7 @@ suspend fun CharacterContext.anyIdea() {
     writePoem()
 }
 
-suspend fun CharacterContext.writePoem() {
+suspend fun SuspendableContext<Player>.writePoem() {
     npc<Talk>("'Even the bloodiest rose must settle.' Mixed metaphor. Whats settles? Detritus. That's hardly flattering.")
     npc<Talk>("'Even the rolliest boulder...'")
     player<Talk>("How is the poem going?")
@@ -506,7 +505,7 @@ suspend fun CharacterContext.writePoem() {
     }
 }
 
-suspend fun CharacterContext.stuckOnWord() {
+suspend fun SuspendableContext<Player>.stuckOnWord() {
     npc<Cry>("I'm stuck on a word. By the colossus of King Alvis! I can't find the words!")
     player<Talk>("Maybe I can help. What sort of word?")
     npc<Upset>("I don't know! I'm not some kind of word scientist. I just feel it out as I go.")
@@ -515,7 +514,7 @@ suspend fun CharacterContext.stuckOnWord() {
     poemMenu()
 }
 
-suspend fun CharacterContext.poemMenu() {
+suspend fun SuspendableContext<Player>.poemMenu() {
     choice {
         option<Happy>("Cucumber.") {
             npc<Talk>("That doesn't really fit. It needs to be one syllable long.")
@@ -536,7 +535,7 @@ suspend fun CharacterContext.poemMenu() {
     }
 }
 
-suspend fun CharacterContext.syllableMenu() {
+suspend fun SuspendableContext<Player>.syllableMenu() {
     choice {
         option<Happy>("Ham.") {
             npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'day'.")
@@ -560,7 +559,7 @@ suspend fun CharacterContext.syllableMenu() {
     }
 }
 
-suspend fun CharacterContext.syllableMenu2() {
+suspend fun SuspendableContext<Player>.syllableMenu2() {
     choice {
         option<Happy>("Roam.") {
             npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'day'.")
@@ -583,7 +582,7 @@ suspend fun CharacterContext.syllableMenu2() {
     }
 }
 
-suspend fun CharacterContext.wordsMenu() {
+suspend fun SuspendableContext<Player>.wordsMenu() {
     choice {
         option<Happy>("Deviate.") {
             npc<Talk>("That doesn't really fit. It needs to be one syllable long.")
@@ -607,7 +606,7 @@ suspend fun CharacterContext.wordsMenu() {
     }
 }
 
-suspend fun CharacterContext.wordsMenu2() {
+suspend fun SuspendableContext<Player>.wordsMenu2() {
     choice {
         option<Happy>("Meander.") {
             npc<Talk>("That doesn't really fit. It needs to be one syllable long.")
@@ -630,7 +629,7 @@ suspend fun CharacterContext.wordsMenu2() {
     }
 }
 
-suspend fun CharacterContext.rhymeMenu() {
+suspend fun SuspendableContext<Player>.rhymeMenu() {
     choice {
         option<Happy>("Lay.") {
             npc<Talk>("That doesn't really fit. It needs to mean something like 'wandering aimlessly'.")
@@ -654,7 +653,7 @@ suspend fun CharacterContext.rhymeMenu() {
     }
 }
 
-suspend fun CharacterContext.rhymeMenu2() {
+suspend fun SuspendableContext<Player>.rhymeMenu2() {
     choice {
         option<Happy>("Stray.") {
             stray()
@@ -677,20 +676,20 @@ suspend fun CharacterContext.rhymeMenu2() {
     }
 }
 
-suspend fun CharacterContext.stray() {
+suspend fun SuspendableContext<Player>.stray() {
     npc<Talk>("'And from his righteous purpose never <blue>stray.</col>'")
     npc<Pleased>("That fits! It fits perfectly. Right meaning, right length, right rhyme. Well done!")
     player["gunnars_ground"] = "more_poem"
     morePoem()
 }
 
-suspend fun CharacterContext.meetChieftain() {
+suspend fun SuspendableContext<Player>.meetChieftain() {
     npc<Quiz>("Did you give Gudrun the ring? What did she think?")
     player<Talk>("She liked it, but there's a problem. I'm dealing with it.")
     npc<Amazed>("Oh no!")
 }
 
-suspend fun CharacterContext.showGudrun() {
+suspend fun SuspendableContext<Player>.showGudrun() {
     if (!player.ownsItem("dororans_engraved_ring")) {
         npc<Surprised>("I know. I found it on the ground.")
         if (!giveRing()) {
@@ -708,7 +707,7 @@ suspend fun CharacterContext.showGudrun() {
     }
 }
 
-suspend fun CharacterContext.engravedRing() {
+suspend fun SuspendableContext<Player>.engravedRing() {
     npc<Neutral>("Is it done? Have you created a work of magnificent beauty?")
     if (!player.ownsItem("dororans_engraved_ring")) {
         player<Sad>("I did engrave it. but I seem to have lost it.")
@@ -742,7 +741,7 @@ suspend fun CharacterContext.engravedRing() {
     }
 }
 
-suspend fun CharacterContext.oneMoreThing() {
+suspend fun SuspendableContext<Player>.oneMoreThing() {
     choice {
         option<Talk>("Of course.") {
             veryWell()
@@ -753,7 +752,7 @@ suspend fun CharacterContext.oneMoreThing() {
     }
 }
 
-suspend fun CharacterContext.veryWell() {
+suspend fun SuspendableContext<Player>.veryWell() {
     npc<Sad>("I fear she will only judge this poor book by its cover. Would you take the ring to Gudrun for me?")
     choice {
         option<Talk>("Very well.") {
@@ -765,7 +764,7 @@ suspend fun CharacterContext.veryWell() {
     }
 }
 
-suspend fun CharacterContext.whereIsShe() {
+suspend fun SuspendableContext<Player>.whereIsShe() {
     npc<Talk>("Please don't tell her I'm a dwarf just yet.")
     player["gunnars_ground"] = "show_gudrun"
     choice {
@@ -776,7 +775,7 @@ suspend fun CharacterContext.whereIsShe() {
     }
 }
 
-suspend fun CharacterContext.unstarted() {
+suspend fun SuspendableContext<Player>.unstarted() {
     npc<Upset>("'My heart with burdens heavy does it lie.'")
     npc<Upset>("'For never did I...'")
     npc<Upset>("Um...")
@@ -793,7 +792,7 @@ suspend fun CharacterContext.unstarted() {
     }
 }
 
-suspend fun CharacterContext.started() {
+suspend fun SuspendableContext<Player>.started() {
     npc<Talk>("I need a ring of purest gold. Then we can engrave it with the words of my heart.")
     player.refreshQuestJournal()
     npc<Pleased>("Oh! I know the perfect place to get a gold ring.")
@@ -816,7 +815,7 @@ suspend fun CharacterContext.started() {
     }
 }
 
-suspend fun CharacterContext.somethingElse() {
+suspend fun SuspendableContext<Player>.somethingElse() {
     choice {
         option<Neutral>("I want to ask about something else.") {
             npc<Pleased>("By all means.")
@@ -826,7 +825,7 @@ suspend fun CharacterContext.somethingElse() {
     }
 }
 
-suspend fun CharacterContext.lovePoemMenu() {
+suspend fun SuspendableContext<Player>.lovePoemMenu() {
     choice {
         option<Neutral>("Does it have to be a ring from Jeffery?") {
             npc<Talk>("Yes! Jeffery's rings are timeless works of incomparable romantic splendour.")
@@ -852,7 +851,7 @@ suspend fun CharacterContext.lovePoemMenu() {
     }
 }
 
-suspend fun CharacterContext.lovePoem() {
+suspend fun SuspendableContext<Player>.lovePoem() {
     npc<Neutral>("'I await in eagerness for a loop of lustrous grandeur.' No, that just sounds ridiculous. Have you brought me a ring from Jeffery?'")
     if (!player.ownsItem("ring_from_jeffery") && player.quest("gunnars_ground") == "jeffery_ring") {
         player<Happy>("I did get a ring from jeffery, but I seem to have lost it.")
@@ -906,7 +905,7 @@ suspend fun CharacterContext.lovePoem() {
     }
 }
 
-suspend fun CharacterContext.engrave() {
+suspend fun SuspendableContext<Player>.engrave() {
     npc<Talk>("Now, would you engrave something on it for me?")
     choice {
         option<Neutral>("What do you want me to engrave?") {
@@ -918,7 +917,7 @@ suspend fun CharacterContext.engrave() {
     }
 }
 
-suspend fun CharacterContext.engraveSomething() {
+suspend fun SuspendableContext<Player>.engraveSomething() {
     npc<Pleased>("I've given this some thought.")
     npc<Happy>("'Gudrun the Fair, Gudrun the Fiery.'")
     choice {
@@ -935,7 +934,7 @@ suspend fun CharacterContext.engraveSomething() {
     }
 }
 
-suspend fun CharacterContext.engraveMenu() {
+suspend fun SuspendableContext<Player>.engraveMenu() {
     choice {
         option<Neutral>("Do you have a chisel I can use?") {
             haveChisel()
@@ -947,7 +946,7 @@ suspend fun CharacterContext.engraveMenu() {
     }
 }
 
-suspend fun CharacterContext.haveChisel() {
+suspend fun SuspendableContext<Player>.haveChisel() {
     npc<Happy>("Yes, here you go.")
     if (player.inventory.isFull()) {
         statement("You don't have room for the chisel. Speak to Dororan again when you have room.")
@@ -964,7 +963,7 @@ suspend fun CharacterContext.haveChisel() {
     }
 }
 
-suspend fun CharacterContext.chiselBitClumsy() {
+suspend fun SuspendableContext<Player>.chiselBitClumsy() {
     npc<Happy>("I've seen jewelcrafters use them for all sorts of precise work.")
     choice {
         option<Neutral>("Do you have a chisel I can use?") {
@@ -974,7 +973,7 @@ suspend fun CharacterContext.chiselBitClumsy() {
     }
 }
 
-suspend fun CharacterContext.poet() {
+suspend fun SuspendableContext<Player>.poet() {
     npc<Happy>("You're a poet too?")
     choice {
         option<Happy>("Yes.") {
@@ -992,7 +991,7 @@ suspend fun CharacterContext.poet() {
     }
 }
 
-suspend fun CharacterContext.identify() {
+suspend fun SuspendableContext<Player>.identify() {
     npc<Cry>("My heart is stricken with that most audacious of maladies!")
     choice {
         option<Neutral>("Angina?") {
@@ -1007,7 +1006,7 @@ suspend fun CharacterContext.identify() {
     }
 }
 
-suspend fun CharacterContext.love() {
+suspend fun SuspendableContext<Player>.love() {
     npc<Amazed>("Love!")
     npc<Upset>("The walls of my heart are besieged by love's armies, and those walls begin to tumble!")
     npc<Upset>("In the barbarian village lives the fairest maiden I have witnessed in all my life.")
@@ -1029,7 +1028,7 @@ suspend fun CharacterContext.love() {
     }
 }
 
-suspend fun CharacterContext.getToThePoint() {
+suspend fun SuspendableContext<Player>.getToThePoint() {
     npc<Sad>("The people of this village value strength, stature and riches. I have none of these things.")
     npc<Upset>("My people are indomitable warriors, dripping with gold and precious gems, but not I.")
     npc<Sad>("I am not built for combat, and poetry has proven a life of poverty!")
@@ -1044,7 +1043,7 @@ suspend fun CharacterContext.getToThePoint() {
     }
 }
 
-suspend fun CharacterContext.helpMe() {
+suspend fun SuspendableContext<Player>.helpMe() {
     npc<Quiz>("If Gudrun could ever love a dwarf, surely she would need to see my artisanry.")
     npc<Talk>("Will you help me? I am no crafter of metal.")
     if (player.levels.get(Skill.Crafting) < 5) {
@@ -1167,7 +1166,7 @@ npcOperate("Talk-to", "dororan_after_quest") {
     }
 }
 
-suspend fun CharacterContext.someThingElse() {
+suspend fun SuspendableContext<Player>.someThingElse() {
     choice {
         option<Neutral>("How are things?") {
             npc<Pleased>("Every morning I wake to sunshine and birdsong! Life is marvellous!")
@@ -1206,7 +1205,7 @@ suspend fun CharacterContext.someThingElse() {
     }
 }
 
-suspend fun CharacterContext.giveRing(): Boolean {
+suspend fun SuspendableContext<Player>.giveRing(): Boolean {
     if (player.inventory.isFull()) {
         statement("You don't have room for the ring. Speak to Dororan again when you have room.")
         return false
@@ -1217,7 +1216,7 @@ suspend fun CharacterContext.giveRing(): Boolean {
     return true
 }
 
-suspend fun CharacterContext.elseGoodbye() {
+suspend fun SuspendableContext<Player>.elseGoodbye() {
     choice {
         option<Neutral>("I want to talk about something else.") {
             npc<Pleased>("What can I do for you?")

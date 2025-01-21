@@ -3,8 +3,6 @@ package world.gregs.voidps.engine.queue
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import kotlinx.coroutines.test.TestScope
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.variable.start
@@ -127,7 +125,7 @@ internal class ActionQueueTest {
         queue.tick()
     }
 
-    private fun action(priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, action: suspend Action.() -> Unit = {}): Action {
-        return Action(player, "action", priority, delay, behaviour, null, action)
+    private fun action(priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, action: suspend Action<Player>.() -> Unit = {}): Action<Player> {
+        return Action(player, "action", priority, delay, behaviour, null, action as suspend Action<*>.() -> Unit)
     }
 }

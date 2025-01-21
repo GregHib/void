@@ -1,8 +1,9 @@
 package world.gregs.voidps.world.map.lumbridge
 
-import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Quiz
@@ -17,7 +18,7 @@ npcOperate("Talk-to", "millie_miller") {
     menu()
 }
 
-suspend fun CharacterContext.menu() {
+suspend fun SuspendableContext<Player>.menu() {
     choice {
         option("I'm looking for extra fine flour.", { player.quest("cooks_assistant") == "started" && !player.holdsItem("extra_fine_flour") }) {
             npc<Quiz>("What's wrong with ordinary flour?")

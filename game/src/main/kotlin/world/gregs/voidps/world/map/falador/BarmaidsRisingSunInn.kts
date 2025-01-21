@@ -6,10 +6,12 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -20,8 +22,6 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
-import world.gregs.voidps.engine.suspend.approachRange
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
 import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
 import world.gregs.voidps.world.interact.dialogue.*
@@ -33,7 +33,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.damage
 // Dialogue
 
 npcApproach("Talk-to", "barmaid_emily") {
-    player.approachRange(3)
+    approachRange(3)
     pause()
     menu()
 }
@@ -73,7 +73,7 @@ itemOnNPCApproach("beer_glass", "barmaid_emily", handler = emptyGlass)
 itemOnNPCApproach("beer_glass", "barmaid_kaylee", handler = emptyGlass)
 itemOnNPCApproach("beer_glass", "barmaid_tina", handler = emptyGlass)
 
-suspend fun NPCOption.menu() {
+suspend fun NPCOption<Player>.menu() {
     npc<Quiz>("Heya! What can I get you?")
     choice {
         option<Quiz>("What ales are you serving?") {
@@ -107,7 +107,7 @@ suspend fun NPCOption.menu() {
 
 val itemDefinitions: ItemDefinitions by inject()
 
-suspend fun NPCOption.buyBeer(beer: String) {
+suspend fun NPCOption<Player>.buyBeer(beer: String) {
     player.inventory.transaction {
         remove("coin", 3)
         add(beer)
@@ -126,7 +126,7 @@ suspend fun NPCOption.buyBeer(beer: String) {
     }
 }
 
-suspend fun NPCOption.buyEmptyGlasses() {
+suspend fun NPCOption<Player>.buyEmptyGlasses() {
     choice {
         option<Talk>("Okay, sure.") {
             player.inventory.transaction {
@@ -140,7 +140,7 @@ suspend fun NPCOption.buyEmptyGlasses() {
     }
 }
 
-suspend fun TargetNPCContext.barCrawl() = barCrawlDrink(
+suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
     start = {
         npc<Laugh>("Heehee, this'll be fun!")
         npc<Angry>("You'll be after our Hand of Death cocktail, then. Lots of expensive parts to the cocktail, though, so it will cost you 70 coins.")

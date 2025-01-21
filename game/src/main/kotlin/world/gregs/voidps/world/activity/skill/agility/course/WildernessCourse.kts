@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.exactMove
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.move.walkTo
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.renderEmote
@@ -18,8 +19,8 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.queue.Action
 import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
@@ -36,6 +37,7 @@ objectOperate("Open", "wilderness_agility_door_closed") {
     }
     if (player.tile.y > 3916) {
         Door.enter(player, target)
+        player.clearRenderEmote()
         return@objectOperate
     }
     // Not sure if you can fail going up
@@ -73,6 +75,7 @@ objectOperate("Open", "wilderness_agility_door_closed") {
 objectOperate("Open", "wilderness_agility_gate_east_closed", "wilderness_agility_gate_west_closed") {
     if (player.tile.y < 3931) {
         Door.enter(player, target)
+        player.clearRenderEmote()
         return@objectOperate
     }
     val disable = Settings["agility.disableCourseFailure", false]
@@ -104,7 +107,7 @@ objectOperate("Open", "wilderness_agility_gate_east_closed", "wilderness_agility
     }
 }
 
-suspend fun Action.fallIntoPit() {
+suspend fun SuspendableContext<Player>.fallIntoPit() {
     player.walkTo(Tile(2998, 3924), noCollision = true, noRun = true)
     pause(7)
     player.clearRenderEmote()

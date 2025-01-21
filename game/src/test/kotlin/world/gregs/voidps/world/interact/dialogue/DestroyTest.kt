@@ -11,7 +11,7 @@ import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
+import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.world.interact.dialogue.type.destroy
 
 internal class DestroyTest : DialogueTest() {
@@ -61,8 +61,7 @@ internal class DestroyTest : DialogueTest() {
             destroyed = destroy("1234", "question")
         }
         val suspend = player.dialogueSuspension as StringSuspension
-        suspend.string = "confirm"
-        suspend.resume()
+        suspend.resume("confirm")
         assertTrue(destroyed)
     }
 }

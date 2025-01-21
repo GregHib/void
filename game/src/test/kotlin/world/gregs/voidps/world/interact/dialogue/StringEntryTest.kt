@@ -4,7 +4,7 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
+import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.world.interact.dialogue.type.stringEntry
 
 internal class StringEntryTest : DialogueTest() {
@@ -28,8 +28,7 @@ internal class StringEntryTest : DialogueTest() {
             result = stringEntry("text")
         }
         val suspend = player.dialogueSuspension as StringSuspension
-        suspend.string = "a string"
-        suspend.resume()
+        suspend.resume("a string")
         assertEquals("a string", result)
     }
 

@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.data.definition.data.Weaving
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -56,7 +56,7 @@ itemOnObjectOperate(obj = "loom_*", itemDef = "weaving", arrive = false) {
     weave(target, item, amount)
 }
 
-fun CharacterContext.weave(obj: GameObject, item: Item, amount: Int) {
+fun Context<Player>.weave(obj: GameObject, item: Item, amount: Int) {
     val data = item.weaving
     val current = player.inventory.count(item.id)
     if (current < data.amount) {

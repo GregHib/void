@@ -183,7 +183,7 @@ object DialogueConverter {
         file.appendText("""
             package world.gregs.voidps.world.map
 
-            import world.gregs.voidps.engine.entity.character.CharacterContext
+            import world.gregs.voidps.engine.event.CharacterContext
             import world.gregs.voidps.engine.entity.character.npc.NPCOption
             import world.gregs.voidps.engine.entity.character.player.Player
             import world.gregs.voidps.engine.event.on
@@ -214,7 +214,7 @@ object DialogueConverter {
         if (parent != previousParent) {
             val function = branchToFunction[parent]
             if (function != null) {
-                builder.append("suspend fun CharacterContext.").append(function).append("() {\n")
+                builder.append("suspend fun CharacterContext<Player>.").append(function).append("() {\n")
             }
         }
         if (front.isNPCDialogue) {
@@ -249,7 +249,7 @@ object DialogueConverter {
         } else {
             val function = branchToFunction[parent]
             if (function != null) {
-                builder.append("suspend fun CharacterContext.").append(function).append("() {\n")
+                builder.append("suspend fun CharacterContext<Player>.").append(function).append("() {\n")
             }
             return
         }

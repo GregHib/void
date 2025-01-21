@@ -29,7 +29,7 @@ import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.engine.suspend.TickSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.network.login.protocol.visual.NPCVisuals
 import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
 import world.gregs.voidps.type.Tile
@@ -43,7 +43,7 @@ internal class InteractTest : KoinMock() {
     private lateinit var player: Player
     private lateinit var target: NPC
     private lateinit var interact: Interact
-    private lateinit var interaction: Interaction
+    private lateinit var interaction: Interaction<Player>
     private var approached = false
     private var operated = false
 
@@ -94,17 +94,17 @@ internal class InteractTest : KoinMock() {
         player.mode = interact
         Events.events.clear()
         if (operate) {
-            Events.handle<Player, NPCOption>("player_operate_npc", "*", "*") {
+            Events.handle<Player, NPCOption<Player>>("player_operate_npc", "*", "*") {
                 if (suspend) {
-                    TickSuspension(2)
+                    Suspension.start(character, 2)
                 }
                 operated = true
             }
         }
         if (approach) {
-            Events.handle<Player, NPCOption>("player_approach_npc", "*", "*") {
+            Events.handle<Player, NPCOption<Player>>("player_approach_npc", "*", "*") {
                 if (suspend) {
-                    TickSuspension(2)
+                    Suspension.start(character, 2)
                 }
                 approached = true
             }

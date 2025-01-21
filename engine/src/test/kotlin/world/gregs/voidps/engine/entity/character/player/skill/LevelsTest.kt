@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.character.player.skill
 
 import io.mockk.mockk
-import io.mockk.spyk
 import io.mockk.verify
 import io.mockk.verifyOrder
 import org.junit.jupiter.api.Assertions.assertEquals

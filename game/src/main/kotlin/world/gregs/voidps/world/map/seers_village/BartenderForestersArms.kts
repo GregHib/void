@@ -2,17 +2,19 @@ package world.gregs.voidps.world.map.seers_village
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
+import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
 import world.gregs.voidps.world.interact.dialogue.Quiz
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.npc.shop.buy
-import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
-import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
 
 npcOperate("Talk-to", "bartender_foresters_arms") {
     npc<Quiz>("Good morning, what would you like?")
@@ -62,7 +64,7 @@ itemOnNPCOperate("barcrawl_card", "bartender_foresters_arms") {
     barCrawl()
 }
 
-suspend fun TargetNPCContext.barCrawl() = barCrawlDrink(
+suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
     effects = {
         player.levels.drain(Skill.Attack, 6)
         player.levels.drain(Skill.Defence, 6)

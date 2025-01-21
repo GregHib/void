@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.map.lumbridge.combat_hall
 
-import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.inv.add
@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
@@ -19,7 +20,7 @@ npcOperate("Talk-to", "harlan") {
     menu()
 }
 
-suspend fun CharacterContext.menu(followUp: String = "") {
+suspend fun SuspendableContext<Player>.menu(followUp: String = "") {
     if (followUp.isNotEmpty()) {
         npc<Quiz>(followUp)
     }
@@ -109,7 +110,7 @@ suspend fun PlayerChoice.skillcapes(): Unit = option<Neutral>("Tell me about ski
     }
 }
 
-suspend fun CharacterContext.buySkillcape() {
+suspend fun SuspendableContext<Player>.buySkillcape() {
     player<Quiz>("May I buy a Skillcape of Defence, please?")
     npc<Neutral>("You wish to join the elite defenders of this world? I'm afraid such things do not come cheaply - in fact they cost 99000 coins, to be precise!")
     choice {

@@ -81,7 +81,7 @@ npcOperate("Talk-to", "explorer_jack") {
 */
 }
 
-suspend fun NPCOption.whatIsTaskSystem() {
+suspend fun NPCOption<Player>.whatIsTaskSystem() {
     npc<Neutral>("Well, the Task System is a potent method of guiding yourself to useful things to do around the world.")
     npc<Talk>("You'll see up to six Tasks in your side bar if you click on the glowing Task List icon. You can click on one for more information about it, hints, waypoint arrows, that sort of thing.")
     npc<Talk>("Every Task you do will earn you something of value which you can claim from me. It'll be money, mostly, but the Rewards tab for a Task will tell you more.<br>Good luck!")
@@ -93,7 +93,7 @@ suspend fun NPCOption.whatIsTaskSystem() {
 
 val variables: VariableDefinitions by inject()
 
-suspend fun NPCOption.claim(inventoryId: String) {
+suspend fun NPCOption<Player>.claim(inventoryId: String) {
     npc<Neutral>("I'll just fill your $inventoryId with what you need, then.")
     val inventory = player.inventories.inventory(inventoryId)
     val progress = player["task_progress_overall", 0]

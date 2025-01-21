@@ -6,8 +6,9 @@ import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -24,6 +25,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.timer.npcTimerStart
 import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.engine.timer.toTicks
@@ -50,7 +52,7 @@ npcOperate("Talk-to", "makeover_mage*") {
     }
 }
 
-suspend fun PlayerChoice.more(): Unit = option<Quiz>("Tell me more about this 'makeover'.") {
+suspend fun ChoiceBuilder<NPCOption<Player>>.more(): Unit = option<Quiz>("Tell me more about this 'makeover'.") {
     npc<Happy>("Why, of course! Basically, and I will explain this so that you understand it correctly,")
     npc<Happy>("I use my secret magical technique to melt your body down into a puddle of its elements.")
     npc<Happy>("When I have broken down all components of your body, I then rebuild it into the form I am thinking of.")
@@ -60,7 +62,7 @@ suspend fun PlayerChoice.more(): Unit = option<Quiz>("Tell me more about this 'm
     whatDoYouSay()
 }
 
-suspend fun CharacterContext.whatDoYouSay() {
+suspend fun NPCOption<Player>.whatDoYouSay() {
     npc<Uncertain>("So, what do you say? Feel like a change?")
     choice {
         start()
@@ -68,17 +70,17 @@ suspend fun CharacterContext.whatDoYouSay() {
     }
 }
 
-suspend fun PlayerChoice.start(): Unit = option<Talk>("Sure, do it.") {
+suspend fun ChoiceBuilder<NPCOption<Player>>.start(): Unit = option<Talk>("Sure, do it.") {
     npc<Happy>("You, of course, agree that if by some accident you are turned into a frog you have no rights for compensation or refund.")
     openDressingRoom("skin_colour")
 }
 
-suspend fun PlayerChoice.exit(): Unit = option("No, thanks.") {
+suspend fun ChoiceBuilder<NPCOption<Player>>.exit(): Unit = option("No, thanks.") {
     player<Frustrated>("No, thanks. I'm happy as I am.")
     npc<Sad>("Ehhh..suit yourself.")
 }
 
-suspend fun PlayerChoice.amulet(): Unit = option<Pleased>("Cool amulet! Can I have one?") {
+suspend fun ChoiceBuilder<NPCOption<Player>>.amulet(): Unit = option<Pleased>("Cool amulet! Can I have one?") {
     val cost = 100
     npc<Talk>("No problem, but please remember that the amulet I will sell you is only a copy of my own. It contains no magical powers and, as such, will only cost you $cost coins.")
     if (!player.holdsItem("coins", cost)) {
@@ -108,7 +110,7 @@ suspend fun PlayerChoice.amulet(): Unit = option<Pleased>("Cool amulet! Can I ha
     }
 }
 
-suspend fun CharacterContext.explain() {
+suspend fun NPCOption<Player>.explain() {
     npc<Pleased>("I can alter your physical form if you wish. Would you like me to perform my magicks on you?")
     choice {
         more()
@@ -117,7 +119,7 @@ suspend fun CharacterContext.explain() {
     }
 }
 
-suspend fun PlayerChoice.colour(): Unit = option<Pleased>("Can you make me a different colour?") {
+suspend fun ChoiceBuilder<NPCOption<Player>>.colour(): Unit = option<Pleased>("Can you make me a different colour?") {
     npc<Happy>("Why, of course! I have a wide array of colours for you to choose from.")
     whatDoYouSay()
 }

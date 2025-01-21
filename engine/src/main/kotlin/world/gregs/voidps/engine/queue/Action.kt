@@ -4,18 +4,18 @@ import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.clearAnimation
+import world.gregs.voidps.engine.suspend.SuspendableContext
 
-class Action(
-    override val character: Character,
+class Action<C : Character>(
+    override val character: C,
     val name: String,
     val priority: ActionPriority,
     delay: Int = 0,
     val behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
     override var onCancel: (() -> Unit)? = { character.clearAnimation() },
-    var action: suspend Action.() -> Unit = {}
-) : CharacterContext {
+    var action: suspend Action<*>.() -> Unit = {}
+) : SuspendableContext<C> {
     var suspension: CancellableContinuation<Unit>? = null
     var remaining: Int = delay
         private set
@@ -34,7 +34,7 @@ class Action(
         return !removed && this.remaining != -1 && --this.remaining <= 0
     }
 
-    suspend fun pause(ticks: Int = 1) {
+    override suspend fun pause(ticks: Int) {
         suspendCancellableCoroutine {
             remaining = ticks
             removed = false

@@ -7,8 +7,9 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.data.Fire
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -28,7 +29,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.awaitDialogues
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
@@ -56,7 +56,7 @@ floorItemOperate("Light") {
     lightFire(player, target)
 }
 
-suspend fun CharacterContext.lightFire(
+suspend fun Interaction<Player>.lightFire(
     player: Player,
     floorItem: FloorItem
 ) {

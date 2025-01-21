@@ -5,17 +5,18 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
+import world.gregs.voidps.engine.suspend.SuspendableContext
+import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.questComplete
 
 private const val QUEST_START_ID = "quest_intro"
 
-suspend fun CharacterContext.startQuest(questId: String): Boolean {
+suspend fun SuspendableContext<Player>.startQuest(questId: String): Boolean {
     check(player.open(QUEST_START_ID)) { "Unable to open destroy dialogue for $questId $player" }
     val questDefinitions: QuestDefinitions = get()
     val quest = questDefinitions.getOrNull(questId)
@@ -81,7 +82,7 @@ suspend fun CharacterContext.startQuest(questId: String): Boolean {
     if (quest.contains("sprite")) {
         player.interfaces.sendSprite("quest_intro", "quest_icon", quest["sprite", -1])
     }
-    val result = StringSuspension() == "yes"
+    val result = StringSuspension.get(player) == "yes"
     player.close(QUEST_START_ID)
     return result
 }

@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.move.running
@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -21,7 +22,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.LogoutBehaviour
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.suspend.delay
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.timer.npcTimerStart
 import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.type.Direction
@@ -75,7 +76,7 @@ npcOperate("Talk-to", "gypsy_aris") {
     }
 }
 
-suspend fun NPCOption.whatToDo() {
+suspend fun SuspendableContext<Player>.whatToDo() {
     choice {
         cityDestroyer {
             wallyQuestions()
@@ -85,7 +86,7 @@ suspend fun NPCOption.whatToDo() {
     }
 }
 
-suspend fun CharacterContext.howToDo() {
+suspend fun SuspendableContext<Player>.howToDo() {
     choice {
         cityDestroyer {
             wallyQuestions()
@@ -100,7 +101,7 @@ suspend fun PlayerChoice.howWallyWon(): Unit = option<Quiz>("So, how did Wally k
     cutscene()
 }
 
-suspend fun CharacterContext.finalQuestions() {
+suspend fun SuspendableContext<Player>.finalQuestions() {
     choice {
         cityDestroyer {
             otherQuestions()
@@ -115,7 +116,7 @@ suspend fun CharacterContext.finalQuestions() {
     }
 }
 
-suspend fun CharacterContext.otherQuestions() {
+suspend fun SuspendableContext<Player>.otherQuestions() {
     choice {
         whereIsHe()
         notVeryHeroicName()
@@ -131,7 +132,7 @@ suspend fun CharacterContext.otherQuestions() {
     }
 }
 
-suspend fun PlayerChoice.cityDestroyer(end: suspend CharacterContext.() -> Unit): Unit = option<Afraid>("How am I meant to fight a demon who can destroy cities?") {
+suspend fun PlayerChoice.cityDestroyer(end: suspend Context<Player>.() -> Unit): Unit = option<Afraid>("How am I meant to fight a demon who can destroy cities?") {
     npc<Talk>("If you face Delrith while he is still weak from being summoned, and use the correct weapon, you will not find the task too arduous.")
     npc<Talk>("Do not fear. If you follow the path of the great hero Wally, then you are sure to defeat the demon.")
     end.invoke(this)
@@ -150,7 +151,7 @@ suspend fun PlayerChoice.notVeryHeroicName(): Unit = option<Happy>("Wally doesn'
     howToDo()
 }
 
-suspend fun CharacterContext.incantation() {
+suspend fun SuspendableContext<Player>.incantation() {
     player<Talk>("What is the magical incantation?")
     npc<Talk>("Oh yes, let me think a second.")
     npc<Neutral>("Aright, I think I've got it now, it goes... ${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}.,. ${getWord(player, 4)}.,. ${getWord(player, 5)}. Have you got that?")
@@ -173,7 +174,7 @@ npcTimerTick("demon_slayer_crystal_ball") { npc ->
     areaSound("demon_slayer_crystal_ball_anim", npc.tile)
 }
 
-suspend fun ChoiceBuilder<NPCOption>.hereYouGo(): Unit = option<Talk>("Okay, here you go.") {
+suspend fun ChoiceBuilder<NPCOption<Player>>.hereYouGo(): Unit = option<Talk>("Okay, here you go.") {
     player.inventory.remove("coins", 1)
     npc<Happy>("Come closer and listen carefully to what the future holds, as I peer into the swirling mists o the crystal ball.")
     player.playSound("demon_slayer_crystal_ball_start")
@@ -196,7 +197,7 @@ suspend fun ChoiceBuilder<NPCOption>.hereYouGo(): Unit = option<Talk>("Okay, her
     whatToDo()
 }
 
-suspend fun ChoiceBuilder<NPCOption>.whoYouCallingYoung(): Unit = option<Frustrated>("Who are you called 'young one'?") {
+suspend fun ChoiceBuilder<NPCOption<Player>>.whoYouCallingYoung(): Unit = option<Frustrated>("Who are you called 'young one'?") {
     npc<Talk>("You have been on this world a relatively short time. At least compared to me.")
     npc<Talk>("So, do you want your fortune told or not?")
     choice {
@@ -209,7 +210,7 @@ suspend fun ChoiceBuilder<NPCOption>.whoYouCallingYoung(): Unit = option<Frustra
     }
 }
 
-suspend fun CharacterContext.cutscene() {
+suspend fun SuspendableContext<Player>.cutscene() {
     val region = Region(12852)
     player.open("fade_out")
     statement("", clickToContinue = false)
@@ -282,13 +283,13 @@ suspend fun CharacterContext.cutscene() {
     delrithWillCome()
 }
 
-fun CharacterContext.setCutsceneEnd(instance: Region) {
+fun Context<Player>.setCutsceneEnd(instance: Region) {
     player.queue("demon_slayer_wally_cutscene_end", 1, LogoutBehaviour.Accelerate) {
         endCutscene(instance)
     }
 }
 
-suspend fun CharacterContext.endCutscene(instance: Region) {
+suspend fun SuspendableContext<Player>.endCutscene(instance: Region) {
     player.open("fade_out")
     delay(3)
     player.tele(3203, 3424)
@@ -298,7 +299,7 @@ suspend fun CharacterContext.endCutscene(instance: Region) {
     player.clearTransform()
 }
 
-suspend fun ChoiceBuilder<NPCOption>.withSilver(): Unit = option<Quiz>("With silver?") {
+suspend fun ChoiceBuilder<NPCOption<Player>>.withSilver(): Unit = option<Quiz>("With silver?") {
     npc<Neutral>("Oh, sorry, I forgot. With gold, I mean. They haven't used silver coins since before you were born! So, do you want your fortune told?")
     choice {
         hereYouGo()
@@ -306,7 +307,7 @@ suspend fun ChoiceBuilder<NPCOption>.withSilver(): Unit = option<Quiz>("With sil
     }
 }
 
-suspend fun CharacterContext.delrithWillCome() {
+suspend fun SuspendableContext<Player>.delrithWillCome() {
     npc<Upset>("Delrith will come forth from the stone circle again.")
     npc<Upset>("I would imagine an evil sorcerer is already beginning the rituals to summon Delrith as we speak.")
     choice {
@@ -325,13 +326,13 @@ suspend fun CharacterContext.delrithWillCome() {
     }
 }
 
-suspend fun CharacterContext.whereSilverlight() {
+suspend fun SuspendableContext<Player>.whereSilverlight() {
     player<Frustrated>("Where can I find Silverlight?")
     npc<Talk>("Silverlight has been passed down by Wally's descendants. I believe it is currently in the care of one of the king's knights called Sir Prysin.")
     npc<Pleased>("He shouldn't be too hard to find. He lives in the royal palace in this city. Tell him Gypsy Aris sent you.")
 }
 
-suspend fun NPCOption.howGoesQuest() {
+suspend fun NPCOption<Player>.howGoesQuest() {
     npc<Happy>("Greetings. How goes thy quest?")
     player<Talk>("I'm still working on it.")
     npc<Talk>("Well if you need any advice I'm always here, young one.")
@@ -378,7 +379,7 @@ suspend fun PlayerChoice.stopCallingMeThat(): Unit = option<Angry>("Stop calling
     }
 }
 
-suspend fun CharacterContext.wallyQuestions() {
+suspend fun SuspendableContext<Player>.wallyQuestions() {
     choice {
         whereIsHe()
         notVeryHeroicName()

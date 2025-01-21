@@ -2,7 +2,6 @@ package world.gregs.voidps.world.map.al_kharid
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -17,6 +16,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
@@ -51,7 +51,7 @@ npcOperate("Talk-to", "border_guard_al_kharid*") {
 
 fun getGuard(player: Player) = get<NPCs>()[player.tile.regionLevel].firstOrNull { it.id.startsWith("border_guard_al_kharid") }
 
-suspend fun CharacterContext.dialogue(player: Player, npc: NPC? = getGuard(player)) {
+suspend fun SuspendableContext<Player>.dialogue(player: Player, npc: NPC? = getGuard(player)) {
     if (npc == null) {
         return
     }

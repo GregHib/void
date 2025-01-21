@@ -3,7 +3,6 @@ package world.gregs.voidps.world.map.ourania
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.suspend.delay
 
 objectOperate("Squeeze-through", "ourania_crack_enter") {
     player.open("fade_out")

@@ -9,15 +9,13 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.suspend.approachRange
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 
 val definitions: SpellDefinitions by inject()
 
 itemOnPlayerApproach(id = "lunar_spellbook", component = "vengeance_other") {
-    player.approachRange(2)
+    approachRange(2)
     pause()
     val spell = component
     if (target.contains("vengeance")) {
