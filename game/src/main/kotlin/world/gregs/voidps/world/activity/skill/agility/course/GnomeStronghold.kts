@@ -24,21 +24,15 @@ val npcs: NPCs by inject()
 
 objectOperate("Walk-across", "gnome_log_balance") {
     player.agilityCourse("gnome")
-    player.start("input_delay", 8)
-    player.strongQueue("agility_log_balance") {
-        onCancel = {
-            player.tele(2474, 3436)
-        }
-        npcs.gnomeTrainer("Okay get over that log, quick quick!", listOf(Zone(878901), Zone(878900), Zone(876852)))
-        player.renderEmote = "rope_balance"
-        player.walkTo(Tile(2474, 3429), noCollision = true, noRun = true)
-        player.message("You walk carefully across the slippery log...", ChatType.Filter)
-        pause(8)
-        player.clearRenderEmote()
-        player.agilityStage(1)
-        player.exp(Skill.Agility, 7.5)
-        player.message("... and make it safely to the other side.", ChatType.Filter)
-    }
+    npcs.gnomeTrainer("Okay get over that log, quick quick!", listOf(Zone(878901), Zone(878900), Zone(876852)))
+    player.renderEmote = "rope_balance"
+    player.walkTo(Tile(2474, 3429), noCollision = true, noRun = true)
+    player.message("You walk carefully across the slippery log...", ChatType.Filter)
+    delay(8)
+    player.clearRenderEmote()
+    player.agilityStage(1)
+    player.exp(Skill.Agility, 7.5)
+    player.message("... and make it safely to the other side.", ChatType.Filter)
 }
 
 objectOperate("Climb-over", "gnome_obstacle_net") {
@@ -46,12 +40,10 @@ objectOperate("Climb-over", "gnome_obstacle_net") {
     npcs.gnomeTrainer("Move it, move it, move it!", listOf(Zone(8768252), Zone(876853)))
     player.message("You climb the netting...", ChatType.Filter)
     player.setAnimation("climb_up")
-    player.start("input_delay", 2)
-    player.strongQueue("agility_netting", 2) {
-        player.agilityStage(2)
-        player.tele(player.tile.x.coerceIn(2471, 2476), 3424, 1)
-        player.exp(Skill.Agility, 7.5)
-    }
+    delay(2)
+    player.agilityStage(2)
+    player.tele(player.tile.x.coerceIn(2471, 2476), 3424, 1)
+    player.exp(Skill.Agility, 7.5)
 }
 
 objectOperate("Climb", "gnome_tree_branch_up") {
@@ -118,27 +110,22 @@ objectOperate("Climb-over", "gnome_obstacle_net_free_standing") {
 
 objectOperate("Squeeze-through", "gnome_obstacle_pipe_*") {
     player.agilityCourse("gnome")
-    player.strongQueue("agility_obstacle_pipe", 1) {
-        onCancel = {
-            player.tele(target.tile.addY(-1))
-        }
-        player.start("input_delay", 8)
-        player.face(Direction.NORTH)
-        player.message("You pull yourself through the pipes..", ChatType.Filter)
-        pause()
-        player.setAnimation("climb_through_pipe")
-        player.exactMove(target.tile.addY(2))
-        pause(4)
-        player.face(Direction.NORTH)
-        player.tele(target.tile.addY(3))
-        player.setAnimation("climb_through_pipe", delay = 1)
-        player.exactMove(target.tile.addY(6))
-        pause(2)
-        if (player.agilityStage == 6) {
-            player.agilityStage = 0
-            player.inc("gnome_course_laps")
-            player.exp(Skill.Agility, 39.0)
-        }
-        player.exp(Skill.Agility, 7.5)
+    delay()
+    player.face(Direction.NORTH)
+    player.message("You pull yourself through the pipes..", ChatType.Filter)
+    delay()
+    player.setAnimation("climb_through_pipe")
+    player.exactMove(target.tile.addY(2))
+    delay(4)
+    player.face(Direction.NORTH)
+    player.tele(target.tile.addY(3))
+    player.setAnimation("climb_through_pipe", delay = 1)
+    player.exactMove(target.tile.addY(6))
+    delay(2)
+    if (player.agilityStage == 6) {
+        player.agilityStage = 0
+        player.inc("gnome_course_laps")
+        player.exp(Skill.Agility, 39.0)
     }
+    player.exp(Skill.Agility, 7.5)
 }

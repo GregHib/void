@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.activity.quest.mini
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.event.TargetContext
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -14,10 +15,10 @@ import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-suspend fun <T> T.barCrawlDrink(
+suspend fun <T : TargetInteraction<Player, NPC>> T.barCrawlDrink(
     start: (suspend T.() -> Unit)? = null,
     effects: suspend T.() -> Unit = {},
-) where T : TargetContext<Player, NPC>, T : SuspendableContext<Player> {
+) {
     player<Talk>("I'm doing Alfred Grimhand's Barcrawl.")
     val info: Map<String, Any> = target.def.getOrNull("bar_crawl") ?: return
     start?.invoke(this) ?: npc<Talk>(info["start"] as String)
@@ -27,15 +28,14 @@ suspend fun <T> T.barCrawlDrink(
         return
     }
     player.message(info["give"] as String)
-    player.queue("barcrawl_$id", 4) {
-        player.message(info["drink"] as String)
-        pause(4)
-        player.message(info["effect"] as String)
-        pause(4)
-        (info["sign"] as? String)?.let { player.message(it) }
-        player.addVarbit("barcrawl_signatures", id)
-        effects()
-    }
+    delay(4)
+    player.message(info["drink"] as String)
+    delay(4)
+    player.message(info["effect"] as String)
+    delay(4)
+    (info["sign"] as? String)?.let { player.message(it) }
+    player.addVarbit("barcrawl_signatures", id)
+    effects()
 }
 
 val barCrawlFilter: TargetContext<Player, NPC>.() -> Boolean = filter@{
