@@ -17,8 +17,6 @@ data class AreaEntered<C : Character>(
     val area: Area
 ) : SuspendableEvent, SuspendableContext<C> {
 
-    override var onCancel: (() -> Unit)? = null
-
     override val size = 5
 
     override suspend fun pause(ticks: Int) {

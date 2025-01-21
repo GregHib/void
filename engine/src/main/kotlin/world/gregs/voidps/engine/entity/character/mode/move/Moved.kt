@@ -19,7 +19,6 @@ data class Moved<C : Character>(
     val from: Tile,
     val to: Tile
 ) : CancellableEvent(), SuspendableContext<C>, SuspendableEvent {
-    override var onCancel: (() -> Unit)? = null
 
     override val size = 4
 

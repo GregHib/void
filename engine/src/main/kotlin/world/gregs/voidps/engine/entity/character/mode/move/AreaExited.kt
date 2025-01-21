@@ -16,7 +16,6 @@ data class AreaExited<C : Character>(
     val tags: Set<String>,
     val area: Area
 ) : SuspendableEvent, SuspendableContext<C> {
-    override var onCancel: (() -> Unit)? = null
 
     override val size = 5
 
