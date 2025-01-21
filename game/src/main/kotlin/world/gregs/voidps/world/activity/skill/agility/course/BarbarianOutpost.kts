@@ -115,7 +115,6 @@ objectOperate("Climb-over", "barbarian_outpost_obstacle_net") {
 }
 
 objectOperate("Walk-across", "barbarian_outpost_balancing_ledge") {
-    player.start("input_delay", 6)
     player.setAnimation("ledge_stand_right")
     val disable = Settings["agility.disableCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), 93) // 62.1% success rate

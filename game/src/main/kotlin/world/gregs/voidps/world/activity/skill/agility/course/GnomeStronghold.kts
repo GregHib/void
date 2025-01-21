@@ -51,13 +51,11 @@ objectOperate("Climb", "gnome_tree_branch_up") {
     npcs.gnomeTrainer("That's it - straight up", listOf(Zone(5069109), Zone(5071157)))
     player.message("You climb the tree...", ChatType.Filter)
     player.setAnimation("climb_up")
-    player.start("input_delay", 2)
-    player.strongQueue("agility_branch", 2) {
-        player.message("... to the platform above.", ChatType.Filter)
-        player.agilityStage(3)
-        player.tele(2473, 3420, 2)
-        player.exp(Skill.Agility, 5.0)
-    }
+    delay(2)
+    player.message("... to the platform above.", ChatType.Filter)
+    player.agilityStage(3)
+    player.tele(2473, 3420, 2)
+    player.exp(Skill.Agility, 5.0)
 }
 
 objectOperate("Walk-on", "gnome_balancing_rope") {

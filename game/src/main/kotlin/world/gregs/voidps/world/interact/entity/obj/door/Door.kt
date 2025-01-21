@@ -35,7 +35,6 @@ object Door {
         } else {
             tile(door, 1)
         }
-        player.start("input_delay", ticks)
         player.walkTo(target, noCollision = true, noRun = true)
         openDoor(player, door, def, ticks, collision = false)
     }
