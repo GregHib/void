@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.activity.skill.agility.course
 
 import world.gregs.voidps.engine.entity.character.exactMove
+import world.gregs.voidps.engine.entity.character.setExactMove
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.move.walkTo
@@ -23,9 +24,9 @@ objectOperate("Run-up", "barbarian_outpost_run_wall") {
     player.face(Direction.NORTH)
     player.setAnimation("barbarian_wall_jump_climb")
     delay(7)
-    player.exactMove(Tile(2538, 3545, 2), 30, Direction.NORTH)
     player.setAnimation("barbarian_wall_jump")
-    delay(2)
+    player.exactMove(Tile(2538, 3545, 2), 30, Direction.NORTH)
+    delay(1)
     player.exp(Skill.Agility, 15.0)
     player.agilityStage(3)
 }
@@ -51,11 +52,10 @@ objectOperate("Fire", "barbarian_outpost_spring") {
     target.animate("barbarian_spring_fire")
     delay(1)
     player.tele(2533, 3547, 3)
-    player.exactMove(Tile(2532, 3553, 3), 60, Direction.NORTH)
     player.setAnimation("barbarian_spring_shoot")
-    delay(1)
+    player.exactMove(Tile(2532, 3553, 3), 60, Direction.NORTH)
     target.animate("barbarian_spring_reset")
-    delay(3)
+    delay(2)
     player.exp(Skill.Agility, 15.0)
     player.agilityStage(5)
 }
@@ -66,7 +66,6 @@ objectOperate("Cross", "barbarian_outpost_balance_beam") {
     player.setAnimation("circus_cartwheel")
     delay()
     player.exactMove(Tile(2536, 3553, 3), 45, Direction.EAST)
-    delay()
     player.renderEmote = "beam_balance"
     delay()
     player.exp(Skill.Agility, 15.0)
@@ -85,11 +84,10 @@ objectOperate("Jump-over", "barbarian_outpost_gap") {
 }
 
 objectOperate("Slide-down", "barbarian_outpost_roof") {
-    player.exactMove(player.tile.copy(x = 2540), 30, Direction.EAST)
     player.setAnimation("barbarian_slide_start")
-    delay()
+    player.exactMove(player.tile.copy(x = 2540), 30, Direction.EAST)
     player.setAnimation("barbarian_slide")
-    player.exactMove(player.tile.copy(x = 2543, level = 1), 90, Direction.EAST)
+    player.setExactMove(player.tile.copy(x = 2543, level = 1), 90, Direction.EAST)
     delay()
     player.setAnimation("barbarian_slide")
     delay()

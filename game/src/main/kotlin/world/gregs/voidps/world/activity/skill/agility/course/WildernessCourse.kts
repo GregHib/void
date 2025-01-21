@@ -111,12 +111,10 @@ objectOperate("Squeeze-through", "wilderness_obstacle_pipe") {
     }
     player.setAnimation("climb_through_pipe", delay = 30)
     player.exactMove(Tile(3004, 3940), startDelay = 30, delay = 96, direction = Direction.NORTH)
-    delay(4)
     player.tele(3004, 3947)
     delay()
     player.setAnimation("climb_through_pipe", delay = 30)
     player.exactMove(Tile(3004, 3950), startDelay = 30, delay = 96, direction = Direction.NORTH)
-    delay(3)
     player.exp(Skill.Agility, 12.5)
     player.agilityStage(1)
 }
@@ -132,12 +130,11 @@ objectOperate("Swing-on", "wilderness_rope_swing") {
     delay()
     if (success) {
         player.exactMove(player.tile.copy(y = 3958), 60, Direction.NORTH)
-        delay()
         player.exp(Skill.Agility, 20.0)
         player.message("You skillfully swing across.", ChatType.Filter)
     } else {
         player.exactMove(player.tile.copy(y = 3957), 50, Direction.NORTH)
-        delay(2)
+        delay(1)
         player.tele(3004, 10357)
         player.damage((player.levels.get(Skill.Constitution) * 0.15).toInt() + 10)
         player.message("You slip and fall to the pit below.", ChatType.Filter)
@@ -153,7 +150,7 @@ objectOperate("Cross", "wilderness_stepping_stone") {
         player.setAnimation("stepping_stone_jump")
         player.playSound("jump")
         player.exactMove(target.tile.addX(-i), delay = 30, direction = Direction.WEST, startDelay = 15)
-        delay(2)
+        delay(1)
         if (i == 2 && !Settings["agility.disableCourseFailure", false] && !Level.success(player.levels.get(Skill.Agility), 180..250)) {
             player.setAnimation("rope_walk_fall_down")
             player.face(Direction.WEST)

@@ -2,9 +2,7 @@ package world.gregs.voidps.world.activity.skill.agility.course
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.clearAnimation
-import world.gregs.voidps.engine.entity.character.exactMove
-import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -12,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
@@ -51,14 +48,13 @@ objectApproach("Run-across", "gnome_sign_post_advanced") {
     delay(1)
     if (!success) {
         player.exactMove(Tile(2480, 3418, 3), 30, Direction.EAST)
-        delay(6)
+        delay(5)
     }
     player.exactMove(Tile(2484, 3418, 3), if (success) 60 else 210, Direction.EAST)
     if (success) {
-        delay(2)
         player.exp(Skill.Agility, 25.0)
     } else {
-        delay(10)
+        delay(3)
         player.setAnimation("gnome_wall_stand")
         delay()
         player.damage((player.levels.get(Skill.Constitution) - 10).coerceAtMost(65))
@@ -80,16 +76,14 @@ objectApproach("Swing-to", "gnome_pole_advanced") {
     delay()
     player.setAnimation("gnome_run_up")
     player.exactMove(tile.copy(y = 3421), 60, Direction.NORTH)
-    delay(2)
     player.setAnimation("gnome_jump")
     player.exactMove(tile.copy(y = 3425), 30, Direction.NORTH)
-    delay(1)
     player.setAnimation("gnome_swing")
     delay(4)
     player.exactMove(tile.copy(y = 3429), 30, Direction.NORTH)
-    delay(5)
+    delay(4)
     player.exactMove(tile.copy(y = 3432), 30, Direction.NORTH)
-    delay(2)
+    delay(1)
     player.agilityStage(6)
     player.exp(Skill.Agility, 25.0)
 }
@@ -98,7 +92,7 @@ objectOperate("Jump-over", "gnome_barrier_advanced") {
     player.setAnimation("gnome_jump_barrier")
     delay()
     player.exactMove(Tile(2485, 3434, 3), 30, Direction.NORTH)
-    delay(2)
+    delay(1)
     player.tele(2485, 3436, 0)
     player.setAnimation("gnome_pipe_land")
     if (player.agilityStage == 6) {

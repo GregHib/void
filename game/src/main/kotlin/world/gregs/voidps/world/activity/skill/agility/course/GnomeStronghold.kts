@@ -102,12 +102,10 @@ objectOperate("Squeeze-through", "gnome_obstacle_pipe_*") {
     delay()
     player.setAnimation("climb_through_pipe")
     player.exactMove(target.tile.addY(2))
-    delay(4)
     player.face(Direction.NORTH)
     player.tele(target.tile.addY(3))
     player.setAnimation("climb_through_pipe", delay = 1)
     player.exactMove(target.tile.addY(6))
-    delay(2)
     if (player.agilityStage == 6) {
         player.agilityStage = 0
         player.inc("gnome_course_laps")
