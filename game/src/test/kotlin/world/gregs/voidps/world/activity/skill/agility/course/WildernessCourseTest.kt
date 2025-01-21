@@ -17,7 +17,7 @@ internal class WildernessCourseTest : WorldTest() {
         val door = objects[Tile(2998, 3917), "wilderness_agility_door_closed"]!!
 
         player.objectOption(door, "Open")
-        tick(16)
+        tick(17)
 
         assertEquals(Tile(2998, 3931), player.tile)
         assertEquals(15.0, player.experience.get(Skill.Agility))
