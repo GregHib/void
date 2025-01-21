@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -25,10 +26,10 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 val logger = InlineLogger()
 
 itemOnObjectOperate("steel_bar", "furnace*") {
-//    if (player.quest("dwarf_cannon") != "completed") {
-//        player.noInterest()
-//        return@itemOnObjectOperate
-//    }
+    if (player.quest("dwarf_cannon") != "completed") {
+        player.noInterest()
+        return@itemOnObjectOperate
+    }
     if (!player.inventory.contains("ammo_mould")) {
         statement("You need a mould to make cannonballs with.")
         return@itemOnObjectOperate
