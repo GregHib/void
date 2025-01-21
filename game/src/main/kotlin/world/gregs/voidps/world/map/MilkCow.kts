@@ -3,11 +3,7 @@ package world.gregs.voidps.world.map
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Chuckle
@@ -32,24 +28,18 @@ objectOperate("Milk", "prized_dairy_cow") {
     }
     player.setAnimation("milk_cow")
     player.playSound("milk_cow")
-    player["delay"] = 5
-    player.softQueue("milk", 5) {
-        player.inventory.remove("bucket")
-        player.inventory.add("top_quality_milk")
-        player.message("You milk the cow for top-quality milk.")
-    }
+    delay(5)
+    player.inventory.replace("bucket", "top_quality_milk")
+    player.message("You milk the cow for top-quality milk.")
 }
 
 objectOperate("Milk", "dairy_cow") {
     if (player.holdsItem("bucket")) {
         player.setAnimation("milk_cow")
         player.playSound("milk_cow")
-        player["delay"] = 5
-        player.softQueue("milk", 5) {
-            player.inventory.remove("bucket")
-            player.inventory.add("bucket_of_milk")
-            player.message("You milk the cow.")
-        }
+        delay(5)
+        player.inventory.replace("bucket", "bucket_of_milk")
+        player.message("You milk the cow.")
     } else {
         npc<Chuckle>("gillie_groats", "Tee hee! You've never milked a cow before, have you?")
         player<Quiz>("Erm...no. How could you tell?")

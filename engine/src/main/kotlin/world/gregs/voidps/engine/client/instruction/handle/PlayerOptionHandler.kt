@@ -18,7 +18,7 @@ class PlayerOptionHandler(
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractPlayer) {
-        if (player.contains("delay") || player.hasClock("input_delay")) {
+        if (player.contains("delay")) {
             return
         }
         val target = players.indexed(instruction.playerIndex) ?: return

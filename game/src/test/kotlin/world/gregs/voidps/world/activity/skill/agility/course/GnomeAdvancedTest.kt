@@ -85,7 +85,7 @@ internal class GnomeAdvancedTest : WorldTest() {
         val barrier = objects[Tile(2485, 3433, 3), "gnome_barrier_advanced"]!!
 
         player.objectOption(barrier, "Jump-over")
-        tick(4)
+        tick(5)
 
         assertEquals(Tile(2485, 3436), player.tile)
         assertEquals(25.0, player.experience.get(Skill.Agility))
@@ -98,7 +98,7 @@ internal class GnomeAdvancedTest : WorldTest() {
         player.agilityCourse("gnome")
         player.agilityStage = 6
         player.objectOption(barrier, "Jump-over")
-        tick(4)
+        tick(5)
 
         assertEquals(Tile(2485, 3436), player.tile)
         assertEquals(630.0, player.experience.get(Skill.Agility))

@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
  */
 interface Context<C : Character> {
     val character: C
-    var onCancel: (() -> Unit)?
     val Context<Player>.player: Player
         get() = character
     val Context<NPC>.npc: NPC

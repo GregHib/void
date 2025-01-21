@@ -121,9 +121,8 @@ fun smelt(player: Player, target: GameObject, id: String, amount: Int) {
                 } else {
                     player.message("The ore is too impure and you fail to refine it.", ChatType.Filter)
                 }
-                player.weakQueue("smelting", 1) {
-                    smelt(player, target, id, amount - removed)
-                }
+                pause(1)
+                smelt(player, target, id, amount - removed)
             }
             else -> logger.warn { "Smelting transaction error $player $id $amount ${player.inventory.transaction.error}" }
         }

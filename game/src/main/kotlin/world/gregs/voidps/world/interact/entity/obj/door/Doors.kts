@@ -30,7 +30,7 @@ objectOperate("Open") {
         return@objectOperate
     }
     if (openDoor(player, target, def)) {
-        pause(1)
+        delay(0)
         player.emit(DoorOpened)
     }
 }

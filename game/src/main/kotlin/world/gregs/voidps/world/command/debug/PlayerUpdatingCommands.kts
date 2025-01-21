@@ -1,9 +1,7 @@
 package world.gregs.voidps.world.command.debug
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import net.pearx.kasechange.toScreamingSnakeCase
+import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.event.modCommand
@@ -21,17 +19,11 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 val players: Players by inject()
 
 adminCommand("kill", "remove all bots") {
-    players.forEach { bot ->
-        if (bot.name.startsWith("Bot")) {
-            players.remove(bot)
-        }
-    }
-    GlobalScope.launch {
-        delay(600)
-        players.forEach { bot ->
-            if (bot.name.startsWith("Bot")) {
-                players.remove(bot)
-            }
+    val it = players.iterator()
+    while (it.hasNext()) {
+        val p = it.next()
+        if (p.isBot) {
+            it.remove()
         }
     }
 }

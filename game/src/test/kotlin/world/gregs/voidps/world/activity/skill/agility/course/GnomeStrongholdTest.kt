@@ -50,7 +50,7 @@ internal class GnomeStrongholdTest : WorldTest() {
         val rope = objects[Tile(2478, 3420, 2), "gnome_balancing_rope"]!!
 
         player.objectOption(rope, "Walk-on")
-        tick(8)
+        tick(9)
 
         assertEquals(Tile(2483, 3420, 2), player.tile)
         assertEquals(7.5, player.experience.get(Skill.Agility))
@@ -74,7 +74,7 @@ internal class GnomeStrongholdTest : WorldTest() {
         val net = objects[Tile(2487, 3426), "gnome_obstacle_net_free_standing"]!!
 
         player.objectOption(net, "Climb-over")
-        tick(3)
+        tick(4)
 
         assertEquals(Tile(2487, 3427), player.tile)
         assertEquals(7.5, player.experience.get(Skill.Agility))
@@ -98,7 +98,7 @@ internal class GnomeStrongholdTest : WorldTest() {
         val pipe = objects[Tile(2487, 3431), "gnome_obstacle_pipe_east"]!!
 
         player.objectOption(pipe, "Squeeze-through")
-        tick(10)
+        tick(11)
 
         assertEquals(Tile(2487, 3437), player.tile)
         assertEquals(7.5, player.experience.get(Skill.Agility))

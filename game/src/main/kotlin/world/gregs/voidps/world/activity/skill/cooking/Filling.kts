@@ -11,7 +11,7 @@ itemOnObjectOperate(objects = setOf("sink*", "fountain*", "well*", "water_trough
     while (player.inventory.contains(item.id)) {
         player.setAnimation("take")
         player.inventory.replace(item.id, item.def["full"])
-        pause(if (item.id == "vase") 3 else 1)
+        delay(if (item.id == "vase") 3 else 1)
         player.message("You fill the ${item.def.name.substringBefore(" (").lowercase()} from the ${target.def.name.lowercase()}", ChatType.Filter)
     }
 }

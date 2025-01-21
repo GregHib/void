@@ -13,7 +13,7 @@ class Action<C : Character>(
     val priority: ActionPriority,
     delay: Int = 0,
     val behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
-    override var onCancel: (() -> Unit)? = { character.clearAnimation() },
+    var onCancel: (() -> Unit)? = { character.clearAnimation() },
     var action: suspend Action<*>.() -> Unit = {}
 ) : SuspendableContext<C> {
     var suspension: CancellableContinuation<Unit>? = null
@@ -50,6 +50,30 @@ class Action<C : Character>(
             onCancel?.invoke()
             onCancel = null
         }
+    }
+
+    /**
+     * Queue calls shouldn't be nested and should be replaced with suspensions
+     */
+
+    @Suppress("UNUSED_PARAMETER", "UnusedReceiverParameter")
+    @Deprecated("Replace nested queues with pause", ReplaceWith("pause(initialDelay)"))
+    fun Character.queue(name: String, initialDelay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, onCancel: (() -> Unit)? = null, block: (suspend Action<C>.() -> Unit)?) {
+    }
+
+    @Suppress("UNUSED_PARAMETER", "UnusedReceiverParameter")
+    @Deprecated("Replace nested queues with pause", ReplaceWith("pause(initialDelay)"))
+    fun Character.softQueue(name: String, initialDelay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, onCancel: (() -> Unit)? = null, block: (suspend Action<C>.() -> Unit)?) {
+    }
+
+    @Suppress("UNUSED_PARAMETER", "UnusedReceiverParameter")
+    @Deprecated("Replace nested queues with pause", ReplaceWith("pause(initialDelay)"))
+    fun Character.weakQueue(name: String, initialDelay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, onCancel: (() -> Unit)? = null, block: (suspend Action<C>.() -> Unit)?) {
+    }
+
+    @Suppress("UNUSED_PARAMETER", "UnusedReceiverParameter")
+    @Deprecated("Replace nested queues with pause", ReplaceWith("pause(initialDelay)"))
+    fun Character.strongQueue(name: String, initialDelay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, onCancel: (() -> Unit)? = null, block: (suspend Action<C>.() -> Unit)?) {
     }
 
     override fun toString(): String {

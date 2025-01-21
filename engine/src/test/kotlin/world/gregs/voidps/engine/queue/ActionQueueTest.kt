@@ -94,7 +94,7 @@ internal class ActionQueueTest {
     }
 
     @Test
-    fun `Queues can be suspended and resume`() {
+    fun `Queues can be suspended and resumed`() {
         var resumed = false
         val action = action {
             pause(4)

@@ -11,7 +11,6 @@ abstract class Interaction<C : Character> : CancellableEvent(), SuspendableEvent
     var approach = false
     val operate: Boolean
         get() = !approach
-    override var onCancel: (() -> Unit)? = null
     var launched = false
 
     abstract fun copy(approach: Boolean): Interaction<C>

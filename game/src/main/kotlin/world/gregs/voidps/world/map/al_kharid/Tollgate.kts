@@ -27,7 +27,7 @@ import world.gregs.voidps.world.interact.dialogue.Upset
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.obj.door.Door
+import world.gregs.voidps.world.interact.entity.obj.door.enterDoor
 
 val objects: GameObjects by inject()
 
@@ -38,7 +38,7 @@ objectOperate("Pay-toll(10gp)", "toll_gate_al_kharid*") {
         return@objectOperate
     }
     player.message("You pay the guard.")
-    Door.enter(player, target)
+    enterDoor(target, delay = 2)
 }
 
 objectOperate("Open", "toll_gate_al_kharid*") {

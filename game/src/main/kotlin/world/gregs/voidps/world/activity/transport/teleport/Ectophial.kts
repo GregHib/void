@@ -27,11 +27,11 @@ inventoryItem("Empty", "ectophial", "inventory") {
         player.setGraphic("empty_ectophial")
         player.message("You empty the ectoplasm onto the ground around your feet...", ChatType.Filter)
         player.start("movement_delay", 4)
-        pause(4)
+        delay(4)
         itemTeleport(player, inventory, slot, areas["ectophial_teleport"], "ectophial")
-        pause(2)
+        delay(2)
         player.message("... and the world changes around you.", ChatType.Filter)
-        pause(4)
+        delay(4)
         val ectofuntus = objects[Tile(3658, 3518), "ectofuntus"] ?: return@strongQueue
         player.mode = Interact(player, ectofuntus, ItemOnObject(player, ectofuntus, inventory, inventory, Item("ectophial_empty"), slot, inventory))
     }

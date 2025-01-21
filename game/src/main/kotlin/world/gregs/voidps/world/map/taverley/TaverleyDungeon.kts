@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.interact.entity.obj.door.Door
+import world.gregs.voidps.world.interact.entity.obj.door.enterDoor
 import java.util.concurrent.TimeUnit
 
 val npcs: NPCs by inject()
@@ -29,7 +29,7 @@ val rightSpawn = Tile(2887, 9829)
 
 objectOperate("Open", "door_taverley_1_closed", "door_taverley_2_closed") {
     if (player.tile.x >= 2889 || !spawn(player, leftSpawn) && !spawn(player, rightSpawn)) {
-        Door.enter(player, target)
+        enterDoor(target)
     }
 }
 

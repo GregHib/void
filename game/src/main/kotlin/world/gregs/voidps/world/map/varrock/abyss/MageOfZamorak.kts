@@ -279,11 +279,11 @@ fun teleport(player: Player, target: NPC) {
         target.setAnimation("tele_other")
         player.playSound("tele_other_cast")
         target.forceChat = "Veniens! Sallakar! Rinnesset!"
-        pause(2)
+        delay(2)
         player.setAnimation("lunar_teleport")
         player.setGraphic("tele_other_receive")
         player.playSound("teleport_all")
-        pause(2)
+        delay(2)
         player["abyss_obstacles"] = random.nextInt(0, 12)
         var tile = abyss.random(player)
         var count = 0

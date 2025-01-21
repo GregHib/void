@@ -7,9 +7,8 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.world.activity.quest.questComplete
-import world.gregs.voidps.world.interact.entity.obj.door.Door
+import world.gregs.voidps.world.interact.entity.obj.door.enterDoor
 
 val npcs: NPCs by inject()
 
@@ -20,11 +19,9 @@ objectOperate("Open", "barbarian_outpost_gate_left_closed", "barbarian_outpost_g
         player.mode = Interact(player, guard, NPCOption(player, guard, guard.def, "Talk-to"))
         return@objectOperate
     }
-    player.strongQueue("enter") {
-        if (player.tile.y !in 2569..3570) {
-            player.walkTo(player.tile.copy(y = player.tile.y.coerceIn(2569, 3570)))
-            pause()
-        }
-        Door.enter(player, target)
+    if (player.tile.y !in 2569..3570) {
+        player.walkTo(player.tile.copy(y = player.tile.y.coerceIn(2569, 3570)))
+        delay()
     }
+    enterDoor(target, delay = 2)
 }

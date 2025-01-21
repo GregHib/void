@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.ui.event.adminCommand
-import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.data.settingsReload
@@ -31,7 +30,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.blocked
-import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
@@ -224,15 +222,13 @@ objectApproach("Prospect", "crashed_star_tier_#") {
     arriveDelay()
     val starPayout = target.def["collect_for_next_layer", -1]
     player.message("You examine the crashed star...")
-    player.start("movement_delay", 4)
-    player.softQueue("prospect", 4) {
-        val star = def.getOrNull<Rock>("mining")?.ores?.firstOrNull()
-        if (star == null) {
-            player.message("Star has been mined...")
-        } else if (starPayout != -1) {
-            val percentageCollected = getLayerPercentage(totalCollected, starPayout)
-            player.message("There is $percentageCollected% left of this layer.")
-        }
+    delay(4)
+    val star = def.getOrNull<Rock>("mining")?.ores?.firstOrNull()
+    if (star == null) {
+        player.message("Star has been mined...")
+    } else if (starPayout != -1) {
+        val percentageCollected = getLayerPercentage(totalCollected, starPayout)
+        player.message("There is $percentageCollected% left of this layer.")
     }
 }
 

@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.suspend
 
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.event.Context
 
 interface SuspendableContext<C : Character> : Context<C> {
