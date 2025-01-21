@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.activity.skill.agility.course
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.exactMove
 import world.gregs.voidps.engine.entity.character.face
@@ -19,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -43,33 +41,27 @@ objectOperate("Open", "wilderness_agility_door_closed") {
     // Not sure if you can fail going up
 //    val disable = Settings["agility.disableCourseFailure", false]
     val success = true//disable || Level.success(player.levels.get(Skill.Agility), 200..250)
-    player.strongQueue("course_enter") {
-        onCancel = {
-            player.tele(target.tile.addY(-1))
-        }
-        player.start("input_delay", if (success) 16 else 8)
-        player.message("You go through the gate and try to edge over the ridge...", ChatType.Filter)
-        Door.enter(player, target)
-        pause()
-        player.renderEmote = "beam_balance"
-//        if (!success) {
-//            fallIntoPit()
-//            return@strongQueue
-//        }
-        player.walkTo(Tile(2998, 3930), noCollision = true, noRun = true)
-        pause(13)
-        player.clearRenderEmote()
-        val gateTile = Tile(2998, 3931)
-        val gate = objects[gateTile, "wilderness_agility_gate_east_closed"]
-        if (gate != null) {
-            Door.enter(player, gate)
-        } else {
-            player.walkTo(gateTile, noCollision = true, noRun = true)
-        }
-        player.message("You skillfully balance across the ridge...", ChatType.Filter)
-        player.exp(Skill.Agility, 15.0)
-        player.agilityCourse("wilderness")
+    player.message("You go through the gate and try to edge over the ridge...", ChatType.Filter)
+    Door.enter(player, target)
+    delay()
+    player.renderEmote = "beam_balance"
+//    if (!success) {
+//        fallIntoPit()
+//        return@strongQueue
+//    }
+    player.walkTo(Tile(2998, 3930), noCollision = true, noRun = true)
+    delay(13)
+    player.clearRenderEmote()
+    val gateTile = Tile(2998, 3931)
+    val gate = objects[gateTile, "wilderness_agility_gate_east_closed"]
+    if (gate != null) {
+        Door.enter(player, gate)
+    } else {
+        player.walkTo(gateTile, noCollision = true, noRun = true)
     }
+    player.message("You skillfully balance across the ridge...", ChatType.Filter)
+    player.exp(Skill.Agility, 15.0)
+    player.agilityCourse("wilderness")
 }
 
 objectOperate("Open", "wilderness_agility_gate_east_closed", "wilderness_agility_gate_west_closed") {
@@ -89,7 +81,7 @@ objectOperate("Open", "wilderness_agility_gate_east_closed", "wilderness_agility
         return@objectOperate
     }
     player.walkTo(Tile(2998, 3917), noCollision = true, noRun = true)
-    delay(13)
+    delay(14)
     player.clearRenderEmote()
     val door = objects[Tile(2998, 3917), "wilderness_agility_door_closed"]
     if (door != null) {
@@ -118,7 +110,6 @@ objectOperate("Squeeze-through", "wilderness_obstacle_pipe") {
         return@objectOperate
     }
     if (player.tile.y == 3938) {
-        player.start("input_delay", 2)
         player.walkTo(target.tile.addY(-1))
         delay(2)
     }
@@ -181,10 +172,10 @@ objectOperate("Cross", "wilderness_stepping_stone") {
             }
             return@objectOperate
         }
-        player.message("...You safely cross to the other side.", ChatType.Filter)
-        player.exp(Skill.Agility, 20.0)
-        player.agilityStage(3)
     }
+    player.message("...You safely cross to the other side.", ChatType.Filter)
+    player.exp(Skill.Agility, 20.0)
+    player.agilityStage(3)
 }
 
 objectOperate("Walk-across", "wilderness_log_balance") {
