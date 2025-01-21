@@ -16,12 +16,13 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.obj.door.Door
+import world.gregs.voidps.world.interact.entity.obj.door.enterDoor
 
 val logger = InlineLogger()
 
 objectOperate("Open", "guild_door_2_closed") {
     if (player.tile.y == 3288) {
-        Door.enter(player, target)
+        enterDoor(target, delay = 2)
         return@objectOperate
     }
     if (!player.has(Skill.Crafting, 40)) {
@@ -32,7 +33,7 @@ objectOperate("Open", "guild_door_2_closed") {
         npc<Neutral>("master_crafter", "Where's your brown apron? You can't come in here unless you're wearing one.")
         return@objectOperate
     }
-    Door.enter(player, target)
+    enterDoor(target, delay = 2)
     npc<Happy>("master_crafter", "Welcome to the Guild of Master Craftsmen.")
 }
 

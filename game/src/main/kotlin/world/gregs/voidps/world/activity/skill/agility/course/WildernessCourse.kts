@@ -24,6 +24,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.obj.door.Door
+import world.gregs.voidps.world.interact.entity.obj.door.enterDoor
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val objects: GameObjects by inject()
@@ -34,7 +35,7 @@ objectOperate("Open", "wilderness_agility_door_closed") {
         return@objectOperate
     }
     if (player.tile.y > 3916) {
-        Door.enter(player, target)
+        enterDoor(target, delay = 2)
         player.clearRenderEmote()
         return@objectOperate
     }
@@ -42,8 +43,7 @@ objectOperate("Open", "wilderness_agility_door_closed") {
 //    val disable = Settings["agility.disableCourseFailure", false]
     val success = true//disable || Level.success(player.levels.get(Skill.Agility), 200..250)
     player.message("You go through the gate and try to edge over the ridge...", ChatType.Filter)
-    Door.enter(player, target)
-    delay()
+    enterDoor(target, delay = 1)
     player.renderEmote = "beam_balance"
 //    if (!success) {
 //        fallIntoPit()
@@ -55,7 +55,7 @@ objectOperate("Open", "wilderness_agility_door_closed") {
     val gateTile = Tile(2998, 3931)
     val gate = objects[gateTile, "wilderness_agility_gate_east_closed"]
     if (gate != null) {
-        Door.enter(player, gate)
+        enterDoor(gate, delay = 1)
     } else {
         player.walkTo(gateTile, noCollision = true, noRun = true)
     }
@@ -66,15 +66,14 @@ objectOperate("Open", "wilderness_agility_door_closed") {
 
 objectOperate("Open", "wilderness_agility_gate_east_closed", "wilderness_agility_gate_west_closed") {
     if (player.tile.y < 3931) {
-        Door.enter(player, target)
+        enterDoor(target, delay = 2)
         player.clearRenderEmote()
         return@objectOperate
     }
     val disable = Settings["agility.disableCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), 200..250)
     player.message("You go through the gate and try to edge over the ridge...", ChatType.Filter)
-    Door.enter(player, target)
-    delay(if (target.id.endsWith("west_closed")) 2 else 1)
+    enterDoor(target, delay = if (target.id.endsWith("west_closed")) 2 else 1)
     player.renderEmote = "beam_balance"
     if (!success) {
         fallIntoPit()
@@ -85,7 +84,7 @@ objectOperate("Open", "wilderness_agility_gate_east_closed", "wilderness_agility
     player.clearRenderEmote()
     val door = objects[Tile(2998, 3917), "wilderness_agility_door_closed"]
     if (door != null) {
-        Door.enter(player, door)
+        enterDoor(door, delay = 1)
     } else {
         player.walkTo(Tile(2998, 3916), noCollision = true, noRun = true)
     }

@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.world.activity.quest.questComplete
 import world.gregs.voidps.world.interact.entity.obj.door.Door
+import world.gregs.voidps.world.interact.entity.obj.door.enterDoor
 
 val npcs: NPCs by inject()
 
@@ -24,5 +25,5 @@ objectOperate("Open", "barbarian_outpost_gate_left_closed", "barbarian_outpost_g
         player.walkTo(player.tile.copy(y = player.tile.y.coerceIn(2569, 3570)))
         delay()
     }
-    Door.enter(player, target)
+    enterDoor(target, delay = 2)
 }

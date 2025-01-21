@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.obj.door
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -162,3 +163,11 @@ object Door {
     fun ObjectDefinition.isDoor() = (name.contains("door", true) && !name.contains("trap", true)) || name.contains("gate", true) || this["door", false]
 }
 
+
+/**
+ * Enter through a door
+ */
+suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3, delay: Int = ticks) {
+    Door.enter(player, door, def, ticks)
+    delay(delay)
+}
