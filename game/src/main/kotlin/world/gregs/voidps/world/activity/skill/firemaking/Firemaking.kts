@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.data.Fire
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player

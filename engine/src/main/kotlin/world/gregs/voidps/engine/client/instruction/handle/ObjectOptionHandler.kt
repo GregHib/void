@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.client.instruction.handle
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.Transforms
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
-import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions

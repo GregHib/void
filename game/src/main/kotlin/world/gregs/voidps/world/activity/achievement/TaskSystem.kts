@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.entity.player.display.Tab
 
 val variables: VariableDefinitions by inject()

@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
-import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.dialogue

@@ -1,18 +1,12 @@
 package world.gregs.voidps.engine.suspend
 
 import com.github.michaelbull.logging.InlineLogger
-import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
-import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.event.Context
-import world.gregs.voidps.engine.queue.Action
 
 fun Character.resumeSuspension(): Boolean {
     val suspend = suspension ?: return false
