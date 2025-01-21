@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.move.running
+import world.gregs.voidps.engine.entity.character.move.stepOver
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -242,9 +242,8 @@ suspend fun SuspendableContext<Player>.cutscene() {
     player.tele(Tile(3225, 3363).add(offset), clearInterfaces = false)
 
     delay(2)
-    player.walkTo(Tile(3227, 3367).add(offset), noCollision = true)
     player.running = true
-    delay(3)
+    player.stepOver(Tile(3227, 3367).add(offset))
     player.face(Direction.NORTH)
     player.setAnimation("wally_demon_slay")
     player.playSound("demon_slayer_wally_sword", delay = 10)

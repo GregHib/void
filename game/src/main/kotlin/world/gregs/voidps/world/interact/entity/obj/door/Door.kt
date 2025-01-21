@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.obj.door
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.move.walkOver
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -12,6 +13,8 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.world.interact.entity.obj.door.Door.openDoor
+import world.gregs.voidps.world.interact.entity.obj.door.Door.tile
 import world.gregs.voidps.world.interact.entity.obj.door.Gate.isGate
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
@@ -166,7 +169,29 @@ object Door {
 /**
  * Enter through a door
  */
-suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3, delay: Int = ticks) {
+suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3, delay: Int) {
     Door.enter(player, door, def, ticks)
+    if (door.id.endsWith("_opened")) {
+        return
+    }
     delay(delay)
+}
+
+
+/**
+ * Enter through a door
+ */
+suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3) {
+    if (door.id.endsWith("_opened")) {
+        return
+    }
+    val direction = door.tile.delta(player.tile).toDirection()
+    val vertical = door.rotation == 0 || door.rotation == 2
+    val target = if (vertical && direction.isHorizontal() || !vertical && direction.isVertical()) {
+        door.tile
+    } else {
+        tile(door, 1)
+    }
+    openDoor(player, door, def, ticks, collision = false)
+    player.walkOver(target)
 }

@@ -65,7 +65,6 @@ objectOperate("Mine", "abyss_rock") {
     player["abyss_obstacles"] = 13
     val (walkTile, teleTile) = positions[target.tile]!!
     player.walkTo(walkTile)
-    delay(2)
     player.message("...and manage to break through the rock.", ChatType.Filter)
     player.clearAnimation()
     player.tele(teleTile)
@@ -103,7 +102,6 @@ objectOperate("Chop", "abyss_tendrils") {
     player["abyss_obstacles"] = 15
     val (walkTile, teleTile) = positions[target.tile]!!
     player.walkTo(walkTile)
-    delay(2)
     player.message("...and manage to cut a way through the tendrils.", ChatType.Filter)
     delay(1)
     player.tele(teleTile)
@@ -136,10 +134,9 @@ objectOperate("Burn-down", "abyss_boil") {
     delay(6)
     player["abyss_obstacles"] = 17
     val (walkTile, teleTile) = positions[target.tile]!!
-    player.walkTo(walkTile)
     areaGraphic("fire_wave_hit", target.tile, height = 128)
     player.playSound("boil_burst")
-    delay(2)
+    player.walkTo(walkTile)
     player.message("...and manage to burn it down and get past.", ChatType.Filter)
     delay()
     player.tele(teleTile)
@@ -170,7 +167,6 @@ objectOperate("Distract", "abyss_eyes") {
     player["abyss_obstacles"] = 19
     val (walkTile, teleTile) = positions[target.tile]!!
     player.walkTo(walkTile)
-    delay(2)
     player.message("...and sneak past while they're not looking.", ChatType.Filter)
     delay(1)
     player.tele(teleTile)

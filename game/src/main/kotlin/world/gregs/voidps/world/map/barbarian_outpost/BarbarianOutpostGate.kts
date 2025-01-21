@@ -19,9 +19,6 @@ objectOperate("Open", "barbarian_outpost_gate_left_closed", "barbarian_outpost_g
         player.mode = Interact(player, guard, NPCOption(player, guard, guard.def, "Talk-to"))
         return@objectOperate
     }
-    if (player.tile.y !in 2569..3570) {
-        player.walkTo(player.tile.copy(y = player.tile.y.coerceIn(2569, 3570)))
-        delay()
-    }
+    player.walkTo(player.tile.copy(y = player.tile.y.coerceIn(2569, 3570)))
     enterDoor(target, delay = 2)
 }

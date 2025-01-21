@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.equals
 
 objectOperate("Run-up", "barbarian_outpost_run_wall") {
     if (!player.has(Skill.Agility, 90, message = true)) {
@@ -33,11 +32,7 @@ objectOperate("Run-up", "barbarian_outpost_run_wall") {
 
 objectOperate("Climb-up", "barbarian_outpost_climb_wall") {
     player.clear("face_entity")
-    val move = !player.tile.equals(2537, 3546, 2)
-    if (move) {
-        player.walkTo(Tile(2537, 3546, 2))
-    }
-    delay(if (move) 2 else 1)
+    player.walkTo(Tile(2537, 3546, 2))
     player.face(Direction.WEST)
     delay()
     player.setAnimation("barbarian_wall_climb")
