@@ -46,12 +46,12 @@ interfaceOption("Cast", "*_teleport", "*_spellbook") {
         player.start("movement_delay", 2)
         player.playAnimation("teleport_$book", canInterrupt = false)
         player.tele(areas[component].random(player)!!)
-        pause(1)
+        delay(1)
         player.playSound("teleport_land")
         player.setGraphic("teleport_land_$book")
         player.playAnimation("teleport_land_$book", canInterrupt = false)
         if (book == "ancient") {
-            pause(1)
+            delay(1)
             player.clearAnimation()
         }
     }
@@ -72,7 +72,7 @@ inventoryItem("*", "*_teleport") {
             player.setGraphic("teleport_$type")
             player.start("movement_delay", 2)
             player.setAnimation("teleport_$type")
-            pause(3)
+            delay(3)
             player.tele(map.random(player)!!)
             player.playAnimation("teleport_land", canInterrupt = false)
         }

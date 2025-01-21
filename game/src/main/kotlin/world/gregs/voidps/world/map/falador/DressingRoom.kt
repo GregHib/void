@@ -8,9 +8,9 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 
 internal suspend fun Interaction<Player>.openDressingRoom(id: String) {
     player.closeDialogue()
-    pause(1)
+    delay(1)
     player.setGraphic("dressing_room_start")
-    pause(1)
+    delay(1)
     player.open(id)
     player.softTimers.start("dressing_room")
 }

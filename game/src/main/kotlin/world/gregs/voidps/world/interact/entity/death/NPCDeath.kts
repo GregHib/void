@@ -51,7 +51,7 @@ npcDeath { npc ->
         npc.setAnimation(deathAnimation(npc))
         val name = npc.def.name.toSnakeCase()
         (killer as? Player)?.playSound(deathSound(npc))
-        pause(4)
+        delay(4)
         dropLoot(npc, killer, name, tile)
         npc.attackers.clear()
         npc.softTimers.stopAll()
@@ -59,7 +59,7 @@ npcDeath { npc ->
         val respawn = npc.get<Tile>("respawn_tile")
         if (respawn != null) {
             npc.tele(respawn)
-            pause(npc["respawn_delay", 60])
+            delay(npc["respawn_delay", 60])
             npc.damageDealers.clear()
             npc.levels.clear()
             npc.face(npc["respawn_direction", Direction.NORTH], update = false)
