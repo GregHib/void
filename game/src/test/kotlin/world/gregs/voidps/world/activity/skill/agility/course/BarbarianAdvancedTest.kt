@@ -52,7 +52,7 @@ internal class BarbarianAdvancedTest : WorldTest() {
         val pipe = objects[Tile(2532, 3544, 3), "barbarian_outpost_spring"]!!
 
         player.objectOption(pipe, "Fire")
-        tick(9)
+        tick(10)
 
         assertEquals(Tile(2532, 3553, 3), player.tile)
         assertEquals(15.0, player.experience.get(Skill.Agility))

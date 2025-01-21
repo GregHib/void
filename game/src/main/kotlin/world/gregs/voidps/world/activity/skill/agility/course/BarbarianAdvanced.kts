@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.activity.skill.agility.course
 
-import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.exactMove
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -12,9 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.queue.LogoutBehaviour
-import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
@@ -76,11 +72,6 @@ objectOperate("Cross", "barbarian_outpost_balance_beam") {
     delay()
     player.exactMove(Tile(2536, 3553, 3), 45, Direction.EAST)
     delay()
-    player.strongQueue("agility_beam", behaviour = LogoutBehaviour.Accelerate) {
-        delay(Int.MAX_VALUE)
-        player.tele(2533, 3553, 3)
-        player.clearRenderEmote()
-    }
     player.renderEmote = "beam_balance"
     delay()
     player.exp(Skill.Agility, 15.0)
@@ -111,6 +102,7 @@ objectOperate("Slide-down", "barbarian_outpost_roof") {
     delay()
     player.tele(2544, player.tile.y, 0)
     player.setAnimation("barbarian_jump_land")
+    delay()
     player.exp(Skill.Agility, 15.0)
     if (player.agilityStage == 7) {
         player.agilityStage = 0

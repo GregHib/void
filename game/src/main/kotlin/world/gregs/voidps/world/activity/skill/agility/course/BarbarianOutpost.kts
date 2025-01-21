@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
@@ -37,7 +36,7 @@ objectOperate("Squeeze-through", "barbarian_outpost_entrance") {
     }
     player.setAnimation("climb_through_pipe")
     val end = if (player.tile.y >= 3560) 3558 else 3561
-    player.exactMove(Tile(2552, end), 60)
+    player.exactMove(Tile(2552, end), 60, direction = if (player.tile.y >= 3560) Direction.SOUTH else Direction.NORTH)
     delay(2)
 }
 
