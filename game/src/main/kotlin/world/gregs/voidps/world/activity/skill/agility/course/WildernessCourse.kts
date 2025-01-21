@@ -23,7 +23,6 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
-import world.gregs.voidps.world.interact.entity.obj.door.Door
 import world.gregs.voidps.world.interact.entity.obj.door.enterDoor
 import world.gregs.voidps.world.interact.entity.sound.playSound
 

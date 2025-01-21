@@ -15,7 +15,6 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.obj.door.Door
 import world.gregs.voidps.world.interact.entity.obj.door.enterDoor
 
 val logger = InlineLogger()
