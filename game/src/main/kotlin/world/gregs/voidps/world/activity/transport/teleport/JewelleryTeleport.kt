@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.transport.teleport
 
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.character.animate
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -27,8 +28,7 @@ fun itemTeleport(player: Player, inventory: String, slot: Int, area: Area, type:
     player.queue("teleport_$type", onCancel = null) {
         player.playSound("teleport")
         player.setGraphic("teleport_$type")
-        player.start("movement_delay", 2)
-        player.playAnimation("teleport_$type", canInterrupt = false)
+        player.animate("teleport_$type")
         player.tele(area.random(player)!!)
         val int = player.setAnimation("teleport_land_$type")
         if (int == -1) {

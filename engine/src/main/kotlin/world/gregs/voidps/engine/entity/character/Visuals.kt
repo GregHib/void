@@ -70,6 +70,11 @@ fun Character.setAnimation(id: String, delay: Int? = null, override: Boolean = f
     return definition["ticks", 0]
 }
 
+context(SuspendableContext<*>) suspend fun Character.animate(id: String, override: Boolean = false) {
+    val ticks = setAnimation(id, override = override)
+    delay(ticks)
+}
+
 fun Character.clearAnimation() {
     visuals.animation.reset()
     flagAnimation()

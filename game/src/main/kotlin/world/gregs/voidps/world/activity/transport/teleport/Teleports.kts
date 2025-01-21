@@ -2,9 +2,9 @@ package world.gregs.voidps.world.activity.transport.teleport
 
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.entity.character.animate
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -43,13 +42,12 @@ interfaceOption("Cast", "*_teleport", "*_spellbook") {
         val book = id.removeSuffix("_spellbook")
         player.playSound("teleport")
         player.setGraphic("teleport_$book")
-        player.start("movement_delay", 2)
-        player.playAnimation("teleport_$book", canInterrupt = false)
+        player.animate("teleport_$book")
         player.tele(areas[component].random(player)!!)
         delay(1)
         player.playSound("teleport_land")
         player.setGraphic("teleport_land_$book")
-        player.playAnimation("teleport_land_$book", canInterrupt = false)
+        player.animate("teleport_land_$book")
         if (book == "ancient") {
             delay(1)
             player.clearAnimation()
@@ -70,11 +68,10 @@ inventoryItem("*", "*_teleport") {
         if (player.inventory.remove(item.id)) {
             player.playSound("teleport_$type")
             player.setGraphic("teleport_$type")
-            player.start("movement_delay", 2)
             player.setAnimation("teleport_$type")
             delay(3)
             player.tele(map.random(player)!!)
-            player.playAnimation("teleport_land", canInterrupt = false)
+            player.animate("teleport_land")
         }
     }
 }

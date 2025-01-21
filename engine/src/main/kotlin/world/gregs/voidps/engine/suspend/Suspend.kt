@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.suspend
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.dialogue
-import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -19,11 +18,6 @@ fun Character.resumeSuspension(): Boolean {
 
 suspend fun SuspendableContext<Player>.awaitDialogues(): Boolean {
     Suspension.start(character) { player.dialogue == null }
-    return true
-}
-
-suspend fun SuspendableContext<Player>.awaitInterfaces(): Boolean {
-    Suspension.start(character) { player.menu == null }
     return true
 }
 
