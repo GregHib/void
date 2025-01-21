@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.activity.transport.teleport
 
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.animate
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -12,7 +11,6 @@ import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
