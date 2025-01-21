@@ -68,7 +68,6 @@ abstract class DialogueTest : KoinMock() {
         }
         context = spyk(object : SuspendableContext<Player> {
             override val character = this@DialogueTest.player
-            override var onCancel: (() -> Unit)? = null
             override suspend fun pause(ticks: Int) {
             }
         })

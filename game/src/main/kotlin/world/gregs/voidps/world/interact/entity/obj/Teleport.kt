@@ -16,7 +16,6 @@ data class Teleport(
     val option: String
 ) : CancellableEvent(), Context<Player> {
     var delay: Int? = null
-    override var onCancel: (() -> Unit)? = null
     var land: Boolean = false
 
     override val size = 5
