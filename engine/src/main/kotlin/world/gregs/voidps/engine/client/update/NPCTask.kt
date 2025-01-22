@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.mode.Wander.Companion.wanders
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import kotlin.coroutines.resume
 
 class NPCTask(
     iterator: TaskIterator<NPC>,

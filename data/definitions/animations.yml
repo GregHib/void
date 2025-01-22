@@ -736,7 +736,7 @@ emote_shake_snow_globe:
   run: false
 emote_trample_snow:
   id: 7528
-  ticks: 8
+  ticks: 4
   walk: false
   run: false
 emote_candy_cane_spin:
@@ -801,22 +801,22 @@ emote_squirrel_ears:
   run: false
 emote_toy_horsey_brown:
   id: 918
-  ticks: 4
+  ticks: 3
   walk: false
   run: false
 emote_toy_horsey_white:
   id: 919
-  ticks: 4
+  ticks: 3
   walk: false
   run: false
 emote_toy_horsey_black:
   id: 920
-  ticks: 4
+  ticks: 3
   walk: false
   run: false
 emote_toy_horsey_grey:
   id: 921
-  ticks: 4
+  ticks: 3
   walk: false
   run: false
 rubber_chicken_whack:

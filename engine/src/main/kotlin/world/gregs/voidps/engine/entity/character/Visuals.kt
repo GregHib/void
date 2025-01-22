@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.network.login.protocol.visual.VisualMask
 import world.gregs.voidps.network.login.protocol.visual.Visuals
 import world.gregs.voidps.network.login.protocol.visual.update.Hitsplat
@@ -67,6 +68,11 @@ fun Character.setAnimation(id: String, delay: Int? = null, override: Boolean = f
     }
     flagAnimation()
     return definition["ticks", 0]
+}
+
+context(SuspendableContext<*>) suspend fun Character.animate(id: String, override: Boolean = false) {
+    val ticks = setAnimation(id, override = override)
+    delay(ticks)
 }
 
 fun Character.clearAnimation() {
@@ -190,19 +196,32 @@ fun Character.setExactMovement(
     flagExactMovement()
 }
 
-fun Character.exactMove(delta: Delta, delay: Int = tile.distanceTo(tile.add(delta)) * 30, direction: Direction = Direction.NONE) {
+fun Character.setExactMove(delta: Delta, delay: Int = tile.distanceTo(tile.add(delta)) * 30, direction: Direction = Direction.NONE) {
     val start = tile
     tele(delta)
+    if (this is Player) {
+        movementType = MoveType.Walk
+    }
     setExactMovement(Delta.EMPTY, delay, start.delta(tile), direction = direction)
 }
 
-fun Character.exactMove(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE, startDelay: Int = 0) {
+context(SuspendableContext<*>) suspend fun Character.exactMove(delta: Delta, delay: Int = tile.distanceTo(tile.add(delta)) * 30, direction: Direction = Direction.NONE) {
+    character.setExactMove(delta, delay, direction)
+    delay(delay / 30)
+}
+
+fun Character.setExactMove(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE, startDelay: Int = 0) {
     val start = tile
     tele(target)
     if (this is Player) {
         movementType = MoveType.Walk
     }
     setExactMovement(Delta.EMPTY, delay, start.delta(tile), startDelay, direction = direction)
+}
+
+context(SuspendableContext<*>) suspend fun Character.exactMove(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE, startDelay: Int = 0) {
+    character.setExactMove(target, delay, direction, startDelay)
+    delay((startDelay + delay) / 30)
 }
 
 val Character.turn: Delta
