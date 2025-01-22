@@ -27,7 +27,7 @@ fun Character.flagAnimation() = visuals.flag(if (this is Player) VisualMask.PLAY
 
 fun Character.flagColourOverlay() = visuals.flag(if (this is Player) VisualMask.PLAYER_COLOUR_OVERLAY_MASK else VisualMask.NPC_COLOUR_OVERLAY_MASK)
 
-fun Character.flagForceChat() = visuals.flag(if (this is Player) VisualMask.PLAYER_FORCE_CHAT_MASK else VisualMask.NPC_FORCE_CHAT_MASK)
+fun Character.flagForceChat() = visuals.flag(if (this is Player) VisualMask.PLAYER_SAY_MASK else VisualMask.NPC_SAY_MASK)
 
 fun Character.flagHits() = visuals.flag(if (this is Player) VisualMask.PLAYER_HITS_MASK else VisualMask.NPC_HITS_MASK)
 
@@ -90,11 +90,16 @@ fun Character.colourOverlay(colour: Int, delay: Int, duration: Int) {
 }
 
 var Character.forceChat: String
-    get() = visuals.forceChat.text
+    get() = visuals.say.text
     set(value) {
-        visuals.forceChat.text = value
+        visuals.say.text = value
         flagForceChat()
     }
+
+fun Character.say(message: String) {
+    visuals.say.text = message
+    flagForceChat()
+}
 
 private fun getPlayerMask(index: Int) = when (index) {
     1 -> VisualMask.PLAYER_GRAPHIC_2_MASK

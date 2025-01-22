@@ -19,7 +19,7 @@ abstract class Visuals(index: Int) {
     val timeBar = TimeBar()
     val turn = Turn()
     val watch = Watch()
-    val forceChat = ForceChat()
+    val say = Say()
     val hits = Hits(self = index)
 
     fun flag(mask: Int) {
@@ -42,7 +42,7 @@ abstract class Visuals(index: Int) {
         hits.clear()
         turn.clear()
         watch.clear()
-        forceChat.clear()
+        say.clear()
         timeBar.clear()
         secondaryGraphic.clear()
     }
