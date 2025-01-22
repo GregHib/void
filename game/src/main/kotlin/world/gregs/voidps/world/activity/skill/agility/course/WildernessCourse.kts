@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
-import world.gregs.voidps.engine.entity.character.player.renderEmote
+import world.gregs.voidps.engine.entity.character.player.setRenderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
@@ -44,7 +44,7 @@ objectOperate("Open", "wilderness_agility_door_closed") {
     val success = true//disable || Level.success(player.levels.get(Skill.Agility), 200..250)
     player.message("You go through the gate and try to edge over the ridge...", ChatType.Filter)
     enterDoor(target, delay = 1)
-    player.renderEmote = "beam_balance"
+    player.setRenderEmote("beam_balance")
 //    if (!success) {
 //        fallIntoPit()
 //        return@strongQueue
@@ -74,7 +74,7 @@ objectOperate("Open", "wilderness_agility_gate_east_closed", "wilderness_agility
     player.message("You go through the gate and try to edge over the ridge...", ChatType.Filter)
     player.walkTo(player.tile.copy(x = player.tile.x.coerceIn(2997, 2998)))
     enterDoor(target)
-    player.renderEmote = "beam_balance"
+    player.setRenderEmote("beam_balance")
     if (!success) {
         fallIntoPit()
         return@objectOperate
@@ -176,7 +176,7 @@ objectOperate("Walk-across", "wilderness_log_balance") {
     val success = disable || Level.success(player.levels.get(Skill.Agility), 200..250)
     if (success) {
         player.walkOver(target.tile)
-        player.renderEmote = "beam_balance"
+        player.setRenderEmote("beam_balance")
         player.walkOver(Tile(2994, 3945))
         player.message("You skillfully edge across the gap.", type = ChatType.Filter)
         player.clearRenderEmote()
@@ -185,7 +185,7 @@ objectOperate("Walk-across", "wilderness_log_balance") {
         player.agilityStage(4)
     } else {
         player.walkOver(target.tile)
-        player.renderEmote = "beam_balance"
+        player.setRenderEmote("beam_balance")
         player.walkOver(Tile(2998, 3945))
         player.message("You slip and fall onto the spikes below.", type = ChatType.Filter)
         player.setAnimation("rope_walk_fall_down")
@@ -206,7 +206,7 @@ objectOperate("Walk-across", "wilderness_log_balance") {
 
 objectOperate("Climb", "wilderness_agility_rocks") {
     player.message("You walk carefully across the slippery log...", ChatType.Filter)
-    player.renderEmote = "climbing"
+    player.setRenderEmote("climbing")
     player.walkOver(player.tile.copy(y = 3933))
     player.clearRenderEmote()
     player.message("You reach the top.", type = ChatType.Filter)

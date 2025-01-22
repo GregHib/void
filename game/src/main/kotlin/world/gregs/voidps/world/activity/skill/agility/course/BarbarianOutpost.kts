@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.move.walkOver
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
-import world.gregs.voidps.engine.entity.character.player.renderEmote
+import world.gregs.voidps.engine.entity.character.player.setRenderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
@@ -74,7 +74,7 @@ objectOperate("Walk-across", "barbarian_outpost_log_balance") {
     val disable = Settings["agility.disableCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), 93) // 62.1% success rate at 35
     player.message("You walk carefully across the slippery log...", ChatType.Filter)
-    player.renderEmote = "rope_balance"
+    player.setRenderEmote("rope_balance")
     if (success) {
         player.walkOver(Tile(2541, 3546))
         player.clearRenderEmote()
@@ -88,7 +88,7 @@ objectOperate("Walk-across", "barbarian_outpost_log_balance") {
         delay()
         player.message("... but you lose your footing and fall into the water.", ChatType.Filter)
         player.tele(2545, 3545)
-        player.renderEmote = "tread_water"
+        player.setRenderEmote("tread_water")
         delay()
         player.walkOver(Tile(2545, 3543))
         player.message("Something in the water bites you.", ChatType.Filter)
@@ -114,7 +114,7 @@ objectOperate("Walk-across", "barbarian_outpost_balancing_ledge") {
     val disable = Settings["agility.disableCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), 93) // 62.1% success rate
     delay()
-    player.renderEmote = "ledge_balance"
+    player.setRenderEmote("ledge_balance")
     player.message("You put your foot on the ledge and try to edge across...", ChatType.Filter)
     if (success) {
         player.walkOver(Tile(2532, 3547, 1))
@@ -131,7 +131,7 @@ objectOperate("Walk-across", "barbarian_outpost_balancing_ledge") {
         delay()
         player.tele(2534, 3546, 1)
         player.face(Direction.SOUTH)
-        player.renderEmote = "falling"
+        player.setRenderEmote("falling")
         delay()
         player.tele(2534, 3546, 0)
         player.clearRenderEmote()
