@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.data.Pocket
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.say
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -59,7 +59,7 @@ npcApproach("Pickpocket") {
         player.exp(Skill.Thieving, pocket.xp)
     } else {
         target.face(player)
-        target.forceChat = pocket.caughtMessage
+        target.say(pocket.caughtMessage)
         target.setAnimation(NPCAttack.animation(target, animationDefinitions))
         player.message("You fail to pick the ${name}'s pocket.", ChatType.Filter)
         target.stun(player, pocket.stunTicks, pocket.stunHit)

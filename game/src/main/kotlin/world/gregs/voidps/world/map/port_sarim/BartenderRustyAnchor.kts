@@ -2,7 +2,7 @@ package world.gregs.voidps.world.map.port_sarim
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.say
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
@@ -49,6 +49,6 @@ suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
         npc<Talk>("Ok one Black Skull Ale coming up, 8 coins please.")
     },
     effects = {
-        player.forceChat = "Hiccup!"
+        player.say("Hiccup!")
     }
 )

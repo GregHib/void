@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.map.karamja
 
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.say
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
@@ -37,6 +37,6 @@ itemOnNPCOperate("barcrawl_card", "bartender_zambo") {
 
 suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
     effects = {
-        player.forceChat = "Mmmmm, dat was luverly..."
+        player.say("Mmmmm, dat was luverly...")
     }
 )

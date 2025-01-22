@@ -66,7 +66,7 @@ adminCommand("overlay") {
 }
 
 adminCommand("chat (message)", "force a chat message over players head") {
-    player.forceChat = content
+    player.say(content)
 }
 
 adminCommand("move") {

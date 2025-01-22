@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.npc
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.say
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.npcSpawn
@@ -21,7 +21,7 @@ npcTimerStart("eat_grass") { npc ->
 
 npcTimerTick("eat_grass") { npc ->
     if (npc.mode == EmptyMode) {
-        npc.forceChat = "Moo"
+        npc.say("Moo")
         npc.setAnimation("cow_eat_grass")
     }
 }

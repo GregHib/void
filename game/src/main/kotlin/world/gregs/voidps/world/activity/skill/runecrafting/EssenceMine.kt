@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.skill.runecrafting
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.say
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 object EssenceMine {
     fun teleport(npc: NPC, player: Player) {
-        npc.forceChat = "Senventior Disthine Molenko!"
+        npc.say("Senventior Disthine Molenko!")
         npc.setGraphic("curse_cast")
         npc.face(player)
         if (!npc.contains("old_model")) {

@@ -278,7 +278,7 @@ fun teleport(player: Player, target: NPC) {
         target.setGraphic("tele_other")
         target.setAnimation("tele_other")
         player.playSound("tele_other_cast")
-        target.forceChat = "Veniens! Sallakar! Rinnesset!"
+        target.say("Veniens! Sallakar! Rinnesset!")
         delay(2)
         player.setAnimation("lunar_teleport")
         player.setGraphic("tele_other_receive")

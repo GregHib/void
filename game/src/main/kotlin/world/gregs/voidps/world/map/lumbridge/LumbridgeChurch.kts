@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.character.animate
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.say
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -100,9 +100,9 @@ suspend fun Interaction<Player>.returnSkull() {
     player.turnCamera(Tile(3248, 3193).add(offset), 320)
     delay(2)
     player.face(Direction.NORTH)
-    restlessGhost.forceChat = "Release! Thank you"
+    restlessGhost.say("Release! Thank you")
     delay(4)
-    restlessGhost.forceChat = "stranger."
+    restlessGhost.say("stranger.")
     restlessGhost.animate("restless_ghost_ascends")
     restlessGhost.shoot("restless_ghost", Tile(3243, 3193).add(offset), height = 20, endHeight = 0, flightTime = 50)
     delay(2)

@@ -45,7 +45,7 @@ adminCommand("npcoverlay") {
 
 adminCommand("npcchat") {
     val npc = npcs[player.tile.addY(1)].first()
-    npc.forceChat = "Testing"
+    npc.say("Testing")
 }
 
 adminCommand("npcgfx") {

@@ -214,12 +214,12 @@ inventoryItem("Play-with", "toy_horsey_*") {
         player.message("Please wait till you've finished performing your current emote.")
         return@inventoryItem
     }
-    player.forceChat = when (random.nextInt(0, 3)) {
+    player.say(when (random.nextInt(0, 3)) {
         0 -> "Come on Dobbin, we can win the race!"
         1 -> "Hi-ho Silver, and away!"
         else -> "Neaahhhyyy! Giddy-up horsey!"
-    }
-//    player.forceChat = "Just say neigh to gambling!"
+    })
+//    player.say("Just say neigh to gambling!")
     player.animate("emote_${item.id}")
 }
 

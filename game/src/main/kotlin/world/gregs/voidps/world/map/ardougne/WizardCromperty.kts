@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.map.ardougne
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.say
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
@@ -77,7 +77,7 @@ fun ChoiceBuilder<NPCOption<Player>>.teleportMe() {
                 npc<Happy>("Okey dokey! Ready?")
                 player.setGraphic("curse_hit")
                 target.setGraphic("curse_cast")
-                target.forceChat = "Dipsolum sententa sententi!"
+                target.say("Dipsolum sententa sententi!")
                 target.shoot("curse", player.tile, offset = 64)
                 player.softQueue("cromperty_teleport", 2) {
                     player.tele(2649, 3271)
