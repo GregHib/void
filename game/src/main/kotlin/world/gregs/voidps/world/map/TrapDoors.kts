@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.map
 
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.timer.toTicks

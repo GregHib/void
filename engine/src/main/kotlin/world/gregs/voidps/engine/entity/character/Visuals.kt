@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.character
 
-import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -8,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.network.login.protocol.visual.VisualMask
 import world.gregs.voidps.network.login.protocol.visual.update.Hitsplat
@@ -34,45 +32,9 @@ fun Character.flagTimeBar() = visuals.flag(if (this is Player) VisualMask.PLAYER
 
 fun Character.flagWatch() = visuals.flag(if (this is Player) VisualMask.PLAYER_WATCH_MASK else VisualMask.NPC_WATCH_MASK)
 
-fun Character.setAnimation(id: String, delay: Int? = null, override: Boolean = false): Int {
-    val definition = get<AnimationDefinitions>().getOrNull(id) ?: return -1
-    val anim = visuals.animation
-    if (!override && definition.priority < anim.priority) {
-        return -1
-    }
-    val stand = definition["stand", true]
-    if (stand) {
-        anim.stand = definition.id
-    }
-    val force = definition["force", true]
-    if (force) {
-        anim.force = definition.id
-    }
-    val walk = definition["walk", true]
-    if (walk) {
-        anim.walk = definition.id
-    }
-    val run = definition["run", true]
-    if (run) {
-        anim.run = definition.id
-    }
-    anim.infinite = definition["infinite", false]
-    if (stand || force || walk || run) {
-        anim.delay = delay ?: definition["delay", 0]
-        anim.priority = definition.priority
-    }
-    flagAnimation()
-    return definition["ticks", 0]
-}
-
 context(SuspendableContext<*>) suspend fun Character.animDelay(id: String, override: Boolean = false) {
     val ticks = setAnimation(id, override = override)
     delay(ticks)
-}
-
-fun Character.clearAnimation() {
-    visuals.animation.reset()
-    flagAnimation()
 }
 
 fun Character.colourOverlay(colour: Int, delay: Int, duration: Int) {

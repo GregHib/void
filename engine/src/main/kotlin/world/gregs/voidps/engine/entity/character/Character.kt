@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.character
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.Variables
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.mode.Mode
@@ -109,6 +110,41 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
         visuals.secondaryGraphic.reset()
         flagSecondaryGraphic()
     }
+
+
+    /**
+     * Set the animation (aka sequence) of the character model
+     */
+    fun setAnimation(id: String, delay: Int? = null, override: Boolean = false): Int {
+        val definition = get<AnimationDefinitions>().getOrNull(id) ?: return -1
+        val anim = visuals.animation
+        if (!override && definition.priority < anim.priority) {
+            return -1
+        }
+        val stand = definition["stand", true]
+        if (stand) {
+            anim.stand = definition.id
+        }
+        val force = definition["force", true]
+        if (force) {
+            anim.force = definition.id
+        }
+        val walk = definition["walk", true]
+        if (walk) {
+            anim.walk = definition.id
+        }
+        val run = definition["run", true]
+        if (run) {
+            anim.run = definition.id
+        }
+        anim.infinite = definition["infinite", false]
+        if (stand || force || walk || run) {
+            anim.delay = delay ?: definition["delay", 0]
+            anim.priority = definition.priority
+        }
+        flagAnimation()
+        return definition["ticks", 0]
+    }
 }
 
 val Entity.size: Int
@@ -117,3 +153,8 @@ val Entity.size: Int
         is Player -> appearance.size
         else -> 1
     }
+
+fun Character.clearAnimation() {
+    visuals.animation.reset()
+    flagAnimation()
+}

@@ -2,7 +2,6 @@ package world.gregs.voidps.world.map.burthorpe
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.world.interact.dialogue.type.item

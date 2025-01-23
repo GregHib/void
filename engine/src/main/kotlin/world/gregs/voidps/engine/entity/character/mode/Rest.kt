@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.character.mode
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.setAnimation
 
 class Rest(
     private val player: Player,

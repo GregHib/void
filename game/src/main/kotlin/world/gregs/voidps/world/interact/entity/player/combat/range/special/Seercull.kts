@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.characterLevelChange
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
