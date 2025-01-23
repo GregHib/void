@@ -45,6 +45,7 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
     var delay: Continuation<Unit>?
     override var variables: Variables
     val steps: Steps
+    val size: Int
 
     override fun compareTo(other: Character): Int {
         return index.compareTo(other.index)

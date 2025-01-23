@@ -47,6 +47,9 @@ class Player(
     val body: BodyParts = BodyParts()
 ) : Character {
 
+    override val size: Int
+        get() = appearance.size
+
     override var mode: Mode = EmptyMode
         set(value) {
             field.stop(value)

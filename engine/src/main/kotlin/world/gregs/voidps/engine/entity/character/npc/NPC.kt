@@ -25,7 +25,7 @@ data class NPC(
     val def: NPCDefinition = NPCDefinition.EMPTY,
     override val levels: Levels = Levels(),
 ) : Character {
-
+    override val size = def.size
     override var mode: Mode = EmptyMode
         set(value) {
             field.stop(value)
