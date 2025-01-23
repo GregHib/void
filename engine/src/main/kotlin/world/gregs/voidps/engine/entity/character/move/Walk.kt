@@ -13,20 +13,10 @@ import world.gregs.voidps.type.Tile
  * [noRun] to force walking even if the player has running active
  */
 fun Character.walkTo(target: Tile, noCollision: Boolean = false, noRun: Boolean = false) {
-    mode = Movement(this, TileTargetStrategy(target, noCollision, noRun))
-}
-
-/**
- * Forces the character to walk to a tile
- */
-context(SuspendableContext<*>) suspend fun Character.walkToDelay(tile: Tile) {
-    if (this.tile == tile) {
+    if (tile == target) {
         return
     }
-    walkTo(tile, noCollision = false, noRun = false)
-    while (this.tile != tile) {
-        delay()
-    }
+    mode = Movement(this, TileTargetStrategy(target, noCollision, noRun))
 }
 
 /**
