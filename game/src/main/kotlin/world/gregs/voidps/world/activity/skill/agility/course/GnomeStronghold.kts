@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.move.walkOver
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
-import world.gregs.voidps.engine.entity.character.player.setRenderEmote
+import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -23,7 +23,7 @@ val npcs: NPCs by inject()
 objectOperate("Walk-across", "gnome_log_balance") {
     player.agilityCourse("gnome")
     npcs.gnomeTrainer("Okay get over that log, quick quick!", listOf(Zone(878901), Zone(878900), Zone(876852)))
-    player.setRenderEmote("rope_balance")
+    player.renderEmote("rope_balance")
     player.message("You walk carefully across the slippery log...", ChatType.Filter)
     player.walkOver(Tile(2474, 3429))
     player.clearRenderEmote()
@@ -57,7 +57,7 @@ objectOperate("Climb", "gnome_tree_branch_up") {
 
 objectOperate("Walk-on", "gnome_balancing_rope") {
     npcs.gnomeTrainer("Come on scaredy cat, get across that rope!", Zone(9263413))
-    player.setRenderEmote("rope_balance")
+    player.renderEmote("rope_balance")
     player.walkOver(Tile(2483, 3420, 2))
     player.agilityStage(4)
     player.clearRenderEmote()
@@ -66,7 +66,7 @@ objectOperate("Walk-on", "gnome_balancing_rope") {
 }
 
 objectOperate("Walk-on", "gnome_balancing_rope_end") {
-    player.setRenderEmote("rope_balance")
+    player.renderEmote("rope_balance")
     player.walkOver(Tile(2477, 3420, 2))
     player.clearRenderEmote()
     player.exp(Skill.Agility, 7.5)

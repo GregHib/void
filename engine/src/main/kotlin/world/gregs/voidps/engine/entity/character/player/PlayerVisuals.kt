@@ -58,7 +58,7 @@ var Player.headIcon: Int
         headIcon = value
     }
 
-fun Player.setRenderEmote(id: String) = flag {
+fun Player.renderEmote(id: String) = flag {
     val definition = get<RenderEmoteDefinitions>().get(id)
     appearance.emote = definition.id
 }

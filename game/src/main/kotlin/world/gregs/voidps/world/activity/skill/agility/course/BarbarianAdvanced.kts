@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
-import world.gregs.voidps.engine.entity.character.player.setRenderEmote
+import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -66,7 +66,7 @@ objectOperate("Cross", "barbarian_outpost_balance_beam") {
     player.setAnimation("circus_cartwheel")
     delay()
     player.exactMove(Tile(2536, 3553, 3), 45, Direction.EAST)
-    player.setRenderEmote("beam_balance")
+    player.renderEmote("beam_balance")
     delay()
     player.exp(Skill.Agility, 15.0)
     player.agilityStage(6)
