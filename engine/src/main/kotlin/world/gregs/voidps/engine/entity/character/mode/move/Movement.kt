@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
-import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.region.RegionRetry

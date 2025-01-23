@@ -273,12 +273,4 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
         flagWatch()
     }
 
-
 }
-
-val Entity.size: Int
-    get() = when (this) {
-        is NPC -> def.size
-        is Player -> appearance.size
-        else -> 1
-    }
