@@ -90,15 +90,6 @@ fun Character.flagPrimaryGraphic() = visuals.flag(if (this is Player) VisualMask
 
 fun Character.flagSecondaryGraphic() = visuals.flag(if (this is Player) VisualMask.PLAYER_GRAPHIC_2_MASK else VisualMask.NPC_GRAPHIC_2_MASK)
 
-fun Character.clearGraphic() {
-    if (primaryGfxFlagged(this)) {
-        visuals.primaryGraphic.reset()
-        flagPrimaryGraphic()
-    } else {
-        visuals.secondaryGraphic.reset()
-        flagSecondaryGraphic()
-    }
-}
 
 fun Character.hit(source: Character, amount: Int, mark: Hitsplat.Mark, delay: Int = 0, critical: Boolean = false, soak: Int = -1) {
     val after = (levels.get(Skill.Constitution) - amount).coerceAtLeast(0)

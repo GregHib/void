@@ -92,6 +92,13 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
             flagSecondaryGraphic()
         }
     }
+
+    fun clearGraphic() {
+        visuals.primaryGraphic.reset()
+        flagPrimaryGraphic()
+        visuals.secondaryGraphic.reset()
+        flagSecondaryGraphic()
+    }
 }
 
 val Entity.size: Int
