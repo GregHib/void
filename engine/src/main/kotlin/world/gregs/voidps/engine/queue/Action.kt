@@ -4,7 +4,6 @@ import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class Action<C : Character>(

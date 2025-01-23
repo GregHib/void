@@ -145,6 +145,14 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
         flagAnimation()
         return definition["ticks", 0]
     }
+
+    /**
+     * Clear the characters current animation
+     */
+    fun clearAnimation() {
+        visuals.animation.reset()
+        flagAnimation()
+    }
 }
 
 val Entity.size: Int
@@ -153,8 +161,3 @@ val Entity.size: Int
         is Player -> appearance.size
         else -> 1
     }
-
-fun Character.clearAnimation() {
-    visuals.animation.reset()
-    flagAnimation()
-}

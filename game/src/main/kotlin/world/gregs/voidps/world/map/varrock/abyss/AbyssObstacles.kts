@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
-import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType

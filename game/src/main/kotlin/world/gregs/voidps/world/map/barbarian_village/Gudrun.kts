@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.event.Context
-import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.move.tele
