@@ -43,25 +43,29 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
     /**
      * Gradually move the characters appeared location to [delta] over [delay] time
      */
-    fun exactMove(delta: Delta, delay: Int = tile.distanceTo(tile.add(delta)) * 30, direction: Direction = Direction.NONE) {
-        val start = tile
+    fun exactMove(delta: Delta, delay: Int = tile.distanceTo(tile.add(delta)) * 30, direction: Direction = Direction.NONE, startDelay: Int = 0) {
         tele(delta)
         if (this is Player) {
             movementType = MoveType.Walk
         }
-        setExactMovement(Delta.EMPTY, delay, start.delta(tile), direction = direction)
+        val startDelta = delta.invert()
+        visuals.exactMovement.apply {
+            startX = startDelta.x
+            startY = startDelta.y
+            this.startDelay = startDelay
+            endX = 0
+            endY = 0
+            endDelay = delay
+            this.direction = direction.ordinal
+        }
+        flagExactMovement()
     }
 
     /**
      * Gradually move the characters appeared location to [target] over [delay] time
      */
     fun exactMove(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE, startDelay: Int = 0) {
-        val start = tile
-        tele(target)
-        if (this is Player) {
-            movementType = MoveType.Walk
-        }
-        setExactMovement(Delta.EMPTY, delay, start.delta(tile), startDelay, direction = direction)
+        exactMove(target.delta(tile), delay, direction, startDelay)
     }
 
     fun say(message: String) {

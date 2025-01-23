@@ -70,7 +70,15 @@ adminCommand("chat (message)", "force a chat message over players head") {
 }
 
 adminCommand("move") {
-    player.setExactMovement(Delta(0, -2), 120, startDelay = 60, direction = Direction.SOUTH)
+    val move = player.visuals.exactMovement
+    move.startX = 0
+    move.startY = 0
+    move.startDelay = 60
+    move.endX = 0
+    move.endY = -2
+    move.endDelay = 120
+    move.direction = Direction.SOUTH.ordinal
+    player.flagExactMovement()
 }
 
 adminCommand("hit [amount]", "damage player by an amount") {

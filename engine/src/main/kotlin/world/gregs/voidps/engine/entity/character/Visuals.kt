@@ -151,32 +151,6 @@ fun Character.clearWatch() {
 
 private fun watchIndex(character: Character) = if (character is Player) character.index or 0x8000 else character.index
 
-/**
- * @param endDelta The delta position to move towards
- * @param endDelay Number of client ticks to take moving
- * @param startDelta The delta position to start at
- * @param startDelay Client ticks until starting the movement
- * @param direction The cardinal direction to face during movement
- */
-fun Character.setExactMovement(
-    endDelta: Delta = Delta.EMPTY,
-    endDelay: Int = 0,
-    startDelta: Delta = Delta.EMPTY,
-    startDelay: Int = 0,
-    direction: Direction = Direction.NONE
-) {
-    val move = visuals.exactMovement
-    check(endDelay > startDelay) { "End delay ($endDelay) must be after start delay ($startDelay)." }
-    move.startX = startDelta.x
-    move.startY = startDelta.y
-    move.startDelay = startDelay
-    move.endX = endDelta.x
-    move.endY = endDelta.y
-    move.endDelay = endDelay
-    move.direction = direction.ordinal
-    flagExactMovement()
-}
-
 val Character.turn: Delta
     get() = Tile(visuals.turn.targetX, visuals.turn.targetY, tile.level).delta(tile)
 
