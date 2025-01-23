@@ -13,7 +13,6 @@ import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.direction
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.mode.move.target.TileTargetStrategy
 import world.gregs.voidps.engine.entity.character.move.previousTile

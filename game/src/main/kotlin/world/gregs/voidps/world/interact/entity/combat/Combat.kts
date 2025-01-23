@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.*
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact

@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrateg
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
-import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.suspend.resumeSuspension
 

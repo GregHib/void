@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.network.login.protocol.visual.VisualMask
 import world.gregs.voidps.network.login.protocol.visual.update.Hitsplat
-import world.gregs.voidps.type.Direction
 
 fun Character.flagAnimation() = visuals.flag(if (this is Player) VisualMask.PLAYER_ANIMATION_MASK else VisualMask.NPC_ANIMATION_MASK)
 
@@ -51,29 +50,3 @@ fun Character.setTimeBar(full: Boolean = false, exponentialDelay: Int = 0, delay
     bar.increment = increment
     flagTimeBar()
 }
-
-fun Character.watch(character: Character) {
-    if (character is Player) {
-        visuals.watch.index = character.index or 0x8000
-    } else {
-        visuals.watch.index = character.index
-    }
-    visuals.face.clear()
-    flagWatch()
-}
-
-fun Character.watching(character: Character): Boolean {
-    return if (character is Player) {
-        visuals.watch.index == character.index or 0x8000
-    } else {
-        visuals.watch.index == character.index
-    }
-}
-
-fun Character.clearWatch() {
-    visuals.watch.index = -1
-    flagWatch()
-}
-
-val Character.direction: Direction
-    get() = Direction.of(visuals.face.targetX - tile.x, visuals.face.targetY - tile.y)

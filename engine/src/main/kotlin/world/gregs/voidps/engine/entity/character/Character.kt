@@ -173,6 +173,12 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
     }
 
     /**
+     * The direction the character is currently facing
+     */
+    val direction: Direction
+        get() = Direction.of(visuals.face.targetX - tile.x, visuals.face.targetY - tile.y)
+
+    /**
      * Turn to face a [direction]
      */
     fun face(direction: Direction, update: Boolean = true) = face(direction.delta, update)
@@ -234,6 +240,40 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
             else -> entity.tile
         }
     }
+
+    /**
+     * Track facing a [character] until otherwise specified
+     */
+    fun watch(character: Character) {
+        if (character is Player) {
+            visuals.watch.index = character.index or 0x8000
+        } else {
+            visuals.watch.index = character.index
+        }
+        visuals.face.clear()
+        flagWatch()
+    }
+
+    /**
+     * Check if character is currently watching [character]
+     */
+    fun watching(character: Character): Boolean {
+        return if (character is Player) {
+            visuals.watch.index == character.index or 0x8000
+        } else {
+            visuals.watch.index == character.index
+        }
+    }
+
+    /**
+     * Stop watching the targeted entity
+     */
+    fun clearWatch() {
+        visuals.watch.index = -1
+        flagWatch()
+    }
+
+
 }
 
 val Entity.size: Int
