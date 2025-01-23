@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.character.animate
+import world.gregs.voidps.engine.entity.character.animDelay
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -41,12 +41,12 @@ interfaceOption("Cast", "*_teleport", "*_spellbook") {
         val book = id.removeSuffix("_spellbook")
         player.playSound("teleport")
         player.gfx("teleport_$book")
-        player.animate("teleport_$book")
+        player.animDelay("teleport_$book")
         player.tele(areas[component].random(player)!!)
         delay(1)
         player.playSound("teleport_land")
         player.gfx("teleport_land_$book")
-        player.animate("teleport_land_$book")
+        player.animDelay("teleport_land_$book")
         if (book == "ancient") {
             delay(1)
             player.clearAnimation()
@@ -70,7 +70,7 @@ inventoryItem("*", "*_teleport") {
             player.setAnimation("teleport_$type")
             delay(3)
             player.tele(map.random(player)!!)
-            player.animate("teleport_land")
+            player.animDelay("teleport_land")
         }
     }
 }

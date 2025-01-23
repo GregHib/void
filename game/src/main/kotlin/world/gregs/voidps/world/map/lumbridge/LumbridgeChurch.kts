@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
-import world.gregs.voidps.engine.entity.character.animate
+import world.gregs.voidps.engine.entity.character.animDelay
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
@@ -54,7 +54,7 @@ objectOperate("Ring", "lumbridge_church_bell") {
 
 objectOperate("Close", "restless_ghost_coffin_headless", "restless_ghost_coffin") {
     target.replace("restless_ghost_coffin_closed")
-    player.animate("close_chest")
+    player.animDelay("close_chest")
     player.message("You close the coffin.")
     player.playSound("coffin_close")
 }
@@ -102,7 +102,7 @@ suspend fun Interaction<Player>.returnSkull() {
     restlessGhost.say("Release! Thank you")
     delay(4)
     restlessGhost.say("stranger.")
-    restlessGhost.animate("restless_ghost_ascends")
+    restlessGhost.animDelay("restless_ghost_ascends")
     restlessGhost.shoot("restless_ghost", Tile(3243, 3193).add(offset), height = 20, endHeight = 0, flightTime = 50)
     delay(2)
     player.moveCamera(Tile(3241, 3193).add(offset), 900)
@@ -140,7 +140,7 @@ itemOnObjectOperate("muddy_skull", "restless_ghost_coffin_closed") {
 
 objectOperate("Open", "restless_ghost_coffin_closed") {
     player.message("You open the coffin.")
-    player.animate("open_chest")
+    player.animDelay("open_chest")
     player.playSound("coffin_open")
     target.replace("coffin_restless_ghost_2", ticks = TimeUnit.MINUTES.toTicks(3))
     if (!player.questComplete("the_restless_ghost")) {
@@ -150,7 +150,7 @@ objectOperate("Open", "restless_ghost_coffin_closed") {
 
 objectOperate("Search", "restless_ghost_coffin_closed") {
     player.message("You open the coffin.")
-    player.animate("open_chest")
+    player.animDelay("open_chest")
     player.playSound("coffin_open")
     target.replace("coffin_restless_ghost_2", ticks = TimeUnit.MINUTES.toTicks(3))
     if (!player.questComplete("the_restless_ghost")) {
@@ -168,7 +168,7 @@ suspend fun Interaction<Player>.spawnGhost() {
         player.playSound("bigghost_appear")
         delay(1)
         val ghost = npcs.add("restless_ghost", ghostSpawn, Direction.SOUTH) ?: return
-        ghost.animate("restless_ghost_awakens")
+        ghost.animDelay("restless_ghost_awakens")
         ghost.softQueue("despawn", TimeUnit.SECONDS.toTicks(60)) {
             npcs.removeIndex(ghost)
         }

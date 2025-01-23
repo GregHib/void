@@ -156,55 +156,55 @@ itemChange("worn_equipment", EquipSlot.Cape) { player ->
 }
 
 suspend fun Interaction<Player>.playEnhancedEmote(player: Player, type: String) {
-    player.animate("emote_enhanced_$type")
+    player.animDelay("emote_enhanced_$type")
 }
 
 suspend fun Interaction<Player>.playEnhancedYawnEmote(player: Player) {
     player.gfx("emote_enhanced_yawn")
-    player.animate("emote_enhanced_yawn")
+    player.animDelay("emote_enhanced_yawn")
 }
 
 suspend fun Interaction<Player>.playGiveThanksEmote(player: Player) {
     player.gfx("emote_give_thanks")
-    player.animate("emote_turkey_transform")
+    player.animDelay("emote_turkey_transform")
     player.transform("turkey")
-    player.animate("emote_turkey_dance")
+    player.animDelay("emote_turkey_dance")
     player.gfx("emote_give_thanks")
     player.clearTransform()
-    player.animate("emote_turkey_return")
+    player.animDelay("emote_turkey_return")
 }
 
 suspend fun Interaction<Player>.playSealOfApprovalEmote(player: Player) {
     player.gfx("emote_seal_of_approval")
-    player.animate("emote_seal_of_approval")
+    player.animDelay("emote_seal_of_approval")
     player.transform("seal")
-    player.animate("emote_seal_clap")
-    player.animate("emote_seal_return")
+    player.animDelay("emote_seal_clap")
+    player.animDelay("emote_seal_return")
     player.gfx("emote_seal_of_approval")
     player.clearTransform()
-    player.animate("emote_seal_stand")
+    player.animDelay("emote_seal_stand")
 }
 
 suspend fun Interaction<Player>.playSkillCapeEmote(player: Player, skill: String) {
     player.gfx("emote_$skill")
-    player.animate("emote_$skill")
+    player.animDelay("emote_$skill")
 }
 
 suspend fun Interaction<Player>.playDungeoneeringCapeEmote(player: Player) {
     player.gfx("emote_dungeoneering_start")
-    player.animate("emote_dungeoneering_start")
+    player.animDelay("emote_dungeoneering_start")
     when (random.nextInt(3)) {
         0 -> {
             player.transform("primal_warrior")
-            player.animate("emote_dungeoneering_melee")
+            player.animDelay("emote_dungeoneering_melee")
         }
         1 -> {
             player.transform("celestial_mage")
-            player.animate("emote_dungeoneering_mage")
+            player.animDelay("emote_dungeoneering_mage")
         }
         2 -> {
             player.transform("sagittarian_ranger")
-            player.animate("emote_dungeoneering_range")
+            player.animDelay("emote_dungeoneering_range")
         }
     }
     player.clearTransform()
@@ -218,14 +218,14 @@ suspend fun Interaction<Player>.playDungeoneeringMasterCapeEmote(player: Player)
     var tile = player.tile.add(direction.rotate(1))
     var rotation = tile.delta(player.tile).toDirection().rotate(2)
     areaGraphic("emote_dung_master_hobgoblin", tile, rotation = rotation)
-    player.animate("emote_dung_master_bow")
+    player.animDelay("emote_dung_master_bow")
 
     player.transform("celestial_mage")
     player.gfx("emote_dung_master_spell")
     tile = player.tile.add(direction.rotate(7))
     rotation = tile.delta(player.tile).toDirection().rotate(4)
     areaGraphic("emote_dung_master_gravecreeper", tile, rotation = rotation)
-    player.animate("emote_dung_master_spell")
+    player.animDelay("emote_dung_master_spell")
 
     player.transform("primal_warrior")
     player.gfx("emote_dung_master_return")
@@ -235,7 +235,7 @@ suspend fun Interaction<Player>.playDungeoneeringMasterCapeEmote(player: Player)
     tile = player.tile.add(direction.inverse())
     rotation = direction.rotate(3)
     areaGraphic("emote_dung_master_cursebearer", tile, rotation = rotation)
-    player.animate("emote_dung_master_sword")
+    player.animDelay("emote_dung_master_sword")
 
     player.clearTransform()
 }

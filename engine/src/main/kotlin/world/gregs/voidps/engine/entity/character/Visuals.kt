@@ -65,7 +65,7 @@ fun Character.setAnimation(id: String, delay: Int? = null, override: Boolean = f
     return definition["ticks", 0]
 }
 
-context(SuspendableContext<*>) suspend fun Character.animate(id: String, override: Boolean = false) {
+context(SuspendableContext<*>) suspend fun Character.animDelay(id: String, override: Boolean = false) {
     val ticks = setAnimation(id, override = override)
     delay(ticks)
 }

@@ -27,7 +27,7 @@ inventoryItem("Fly", "toy_kite") {
         player.message("Please wait till you've finished performing your current emote.")
         return@inventoryItem
     }
-    player.animate("emote_fly_kite")
+    player.animDelay("emote_fly_kite")
 }
 
 inventoryItem("Emote", "reindeer_hat", "worn_equipment") {
@@ -37,7 +37,7 @@ inventoryItem("Emote", "reindeer_hat", "worn_equipment") {
     }
     player.gfx("emote_reindeer")
     player.gfx("emote_reindeer_2")
-    player.animate("emote_reindeer")
+    player.animDelay("emote_reindeer")
 }
 
 inventoryItem("Recite-prayer", "prayer_book", "inventory") {
@@ -62,16 +62,16 @@ inventoryItem("Recite-prayer", "prayer_book", "inventory") {
             }
         }
     }
-    player.animate("emote_recite_prayer")
+    player.animDelay("emote_recite_prayer")
 }
 
 playerOperate("Whack") {
     if (player.weapon.id == "rubber_chicken") {
         player.playSound("rubber_chicken_whack")
-        player.animate("rubber_chicken_whack")
+        player.animDelay("rubber_chicken_whack")
     } else {
         //todo player.playSound("")
-        player.animate("easter_carrot_whack")
+        player.animDelay("easter_carrot_whack")
     }
 }
 
@@ -81,7 +81,7 @@ inventoryItem("Dance", "rubber_chicken") {
         return@inventoryItem
     }
     player.playJingle("easter_scape_scrambled")
-    player.animate("emote_chicken_dance")
+    player.animDelay("emote_chicken_dance")
 }
 
 inventoryItem("Spin", "spinning_plate", "inventory") {
@@ -90,9 +90,9 @@ inventoryItem("Spin", "spinning_plate", "inventory") {
         return@inventoryItem
     }
     val drop = random.nextBoolean()
-    player.animate("emote_spinning_plate")
-    player.animate("emote_spinning_plate_${if (drop) "drop" else "take"}")
-    player.animate("emote_${if (drop) "cry" else "cheer"}")
+    player.animDelay("emote_spinning_plate")
+    player.animDelay("emote_spinning_plate_${if (drop) "drop" else "take"}")
+    player.animDelay("emote_${if (drop) "cry" else "cheer"}")
 }
 
 continueDialogue("snow_globe", "continue") { player ->
@@ -118,7 +118,7 @@ inventoryItem("Shake", "snow_globe", "inventory") {
     }
     player.queue("snow_globe") {
         player.message("You shake the snow globe.")
-        player.animate("emote_shake_snow_globe")
+        player.animDelay("emote_shake_snow_globe")
         player.playJingle("harmony_snow_globe")
         player.open("snow_globe")
     }
@@ -129,7 +129,7 @@ inventoryOptions("Play", "Loop", "Walk", "Crazy", item = "yo_yo", inventory = "i
         player.message("Please wait till you've finished performing your current emote.")
         return@inventoryOptions
     }
-    player.animate("emote_yoyo_${option.lowercase()}")
+    player.animDelay("emote_yoyo_${option.lowercase()}")
 }
 
 inventoryItem("Spin", "candy_cane", "worn_equipment") {
@@ -137,7 +137,7 @@ inventoryItem("Spin", "candy_cane", "worn_equipment") {
         player.message("Please wait till you've finished performing your current emote.")
         return@inventoryItem
     }
-    player.animate("emote_candy_cane_spin")
+    player.animDelay("emote_candy_cane_spin")
 }
 
 inventoryItem("Dance", "salty_claws_hat", "worn_equipment") {
@@ -145,7 +145,7 @@ inventoryItem("Dance", "salty_claws_hat", "worn_equipment") {
         player.message("Please wait till you've finished performing your current emote.")
         return@inventoryItem
     }
-    player.animate("emote_salty_claws_hat_dance")
+    player.animDelay("emote_salty_claws_hat_dance")
 }
 
 inventoryItem("Celebrate", "tenth_anniversary_cake") {
@@ -154,7 +154,7 @@ inventoryItem("Celebrate", "tenth_anniversary_cake") {
         return@inventoryItem
     }
     player.gfx("10th_anniversary_cake")
-    player.animate("emote_10th_anniversary_cake")
+    player.animDelay("emote_10th_anniversary_cake")
 }
 
 inventoryItem("Brandish (2009)", "golden_hammer", "worn_equipment") {
@@ -162,7 +162,7 @@ inventoryItem("Brandish (2009)", "golden_hammer", "worn_equipment") {
         player.message("Please wait till you've finished performing your current emote.")
         return@inventoryItem
     }
-    player.animate("emote_golden_hammer_brandish")
+    player.animDelay("emote_golden_hammer_brandish")
 }
 
 inventoryItem("Spin (2010)", "golden_hammer", "worn_equipment") {
@@ -171,7 +171,7 @@ inventoryItem("Spin (2010)", "golden_hammer", "worn_equipment") {
         return@inventoryItem
     }
     player.gfx("emote_golden_hammer_spin")
-    player.animate("emote_golden_hammer_spin")
+    player.animDelay("emote_golden_hammer_spin")
 }
 
 inventoryOptions("Jump", "Walk", "Bow", "Dance", item = "*_marionette", inventory = "inventory") {
@@ -180,7 +180,7 @@ inventoryOptions("Jump", "Walk", "Bow", "Dance", item = "*_marionette", inventor
         return@inventoryOptions
     }
     player.gfx("emote_${item.id}_${option.lowercase()}")
-    player.animate("emote_marionette_${option.lowercase()}")
+    player.animDelay("emote_marionette_${option.lowercase()}")
 }
 
 inventoryItem("Sleuth", "magnifying_glass", "worn_equipment") {
@@ -188,7 +188,7 @@ inventoryItem("Sleuth", "magnifying_glass", "worn_equipment") {
         player.message("Please wait till you've finished performing your current emote.")
         return@inventoryItem
     }
-    player.animate("emote_magnifying_glass_sleuth")
+    player.animDelay("emote_magnifying_glass_sleuth")
 }
 
 inventoryItem("Emote", "chocatrice_cape", "worn_equipment") {
@@ -197,7 +197,7 @@ inventoryItem("Emote", "chocatrice_cape", "worn_equipment") {
         return@inventoryItem
     }
     player.gfx("emote_chocatrice_cape")
-    player.animate("emote_chocatrice_cape")
+    player.animDelay("emote_chocatrice_cape")
 }
 
 inventoryItem("Juggle", "squirrel_ears", "worn_equipment") {
@@ -206,7 +206,7 @@ inventoryItem("Juggle", "squirrel_ears", "worn_equipment") {
         return@inventoryItem
     }
     player.gfx("emote_squirrel_ears")
-    player.animate("emote_squirrel_ears")
+    player.animDelay("emote_squirrel_ears")
 }
 
 inventoryItem("Play-with", "toy_horsey_*") {
@@ -220,7 +220,7 @@ inventoryItem("Play-with", "toy_horsey_*") {
         else -> "Neaahhhyyy! Giddy-up horsey!"
     })
 //    player.say("Just say neigh to gambling!")
-    player.animate("emote_${item.id}")
+    player.animDelay("emote_${item.id}")
 }
 
 inventoryOptions("Play-with", item = "eek") {
@@ -229,7 +229,7 @@ inventoryOptions("Play-with", item = "eek") {
         return@inventoryOptions
     }
     player.gfx("play_with_eek")
-    player.animate("play_with_eek")
+    player.animDelay("play_with_eek")
 }
 
 inventoryItem("Summon Minion", "squirrel_ears", "worn_equipment") {
