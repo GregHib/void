@@ -211,7 +211,7 @@ suspend fun Interaction<Player>.playDungeoneeringCapeEmote(player: Player) {
 }
 
 suspend fun Interaction<Player>.playDungeoneeringMasterCapeEmote(player: Player) {
-    val direction = player.facing
+    val direction = player.direction
 
     player.transform("sagittarian_ranger")
     player.gfx("emote_dung_master_bow")

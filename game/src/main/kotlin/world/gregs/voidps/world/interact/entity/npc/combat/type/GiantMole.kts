@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.facing
+import world.gregs.voidps.engine.entity.character.direction
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
@@ -94,7 +94,7 @@ fun giantMoleBurrow(mole: NPC) {
         attacker.mode = EmptyMode
     }
     mole.attackers.clear()
-    var tileToDust = mole.tile.add(getRandomFacing(mole.facing).delta)
+    var tileToDust = mole.tile.add(getRandomFacing(mole.direction).delta)
     mole.queue("await_mole_to_face", 1) {
         if (tileToDust == Tile.EMPTY) {
             logger.warn { "failed to get facing tile for Giant Mole, using default tile." }

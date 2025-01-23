@@ -10,10 +10,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.network.login.protocol.visual.VisualMask
 import world.gregs.voidps.network.login.protocol.visual.update.Hitsplat
 import world.gregs.voidps.network.login.protocol.visual.update.Face
-import world.gregs.voidps.type.Delta
-import world.gregs.voidps.type.Direction
-import world.gregs.voidps.type.Distance
-import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.*
 
 fun Character.flagAnimation() = visuals.flag(if (this is Player) VisualMask.PLAYER_ANIMATION_MASK else VisualMask.NPC_ANIMATION_MASK)
 
@@ -78,14 +75,14 @@ private fun watchIndex(character: Character) = if (character is Player) characte
 
 fun Character.face(delta: Delta, update: Boolean = true): Boolean {
     if (delta == Delta.EMPTY) {
-        clearTurn()
+        clearFace()
         return false
     }
     face(delta.x, delta.y, update)
     return true
 }
 
-fun Character.clearTurn(): Boolean {
+fun Character.clearFace(): Boolean {
     visuals.face.reset()
     return true
 }
@@ -99,17 +96,13 @@ fun Character.face(deltaX: Int = 0, deltaY: Int = -1, update: Boolean = true) {
         flagTurn()
     }
 }
-val Character.turn: Delta
-    get() = Tile(visuals.face.targetX, visuals.face.targetY, tile.level).delta(tile)
 
-val Character.facing: Direction
-    get() = turn.toDirection()
+val Character.direction: Direction
+    get() = Direction.of(visuals.face.targetX - tile.x, visuals.face.targetY - tile.y)
 
-fun Character.face(direction: Direction, update: Boolean = true) = face(direction.delta.x, direction.delta.y, update)
+fun Character.face(direction: Direction, update: Boolean = true) = face(direction.delta, update)
 
 fun Character.face(tile: Tile, update: Boolean = true) = face(tile.delta(this.tile), update)
-
-fun Character.facing(tile: Tile) = turn == tile.delta(this.tile)
 
 fun Character.face(entity: Entity, update: Boolean = true) {
     val tile = nearestTile(entity)
@@ -125,9 +118,7 @@ fun Character.face(entity: Entity, update: Boolean = true) {
     }
 }
 
-fun Character.facing(entity: Entity) = turn == nearestTile(entity).delta(tile)
-
-fun Character.nearestTile(entity: Entity): Tile {
+private fun Character.nearestTile(entity: Entity): Tile {
     return when (entity) {
         is GameObject -> Distance.getNearest(entity.tile, entity.width, entity.height, this.tile)
         is NPC -> Distance.getNearest(entity.tile, entity.def.size, entity.def.size, this.tile)
