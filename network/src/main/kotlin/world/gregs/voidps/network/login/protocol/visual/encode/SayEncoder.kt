@@ -4,10 +4,10 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
 import world.gregs.voidps.network.login.protocol.visual.Visuals
 
-class ForceChatEncoder(mask: Int) : VisualEncoder<Visuals>(mask) {
+class SayEncoder(mask: Int) : VisualEncoder<Visuals>(mask) {
 
     override fun encode(writer: Writer, visuals: Visuals) {
-        writer.writeString(visuals.forceChat.text)
+        writer.writeString(visuals.say.text)
     }
 
 }

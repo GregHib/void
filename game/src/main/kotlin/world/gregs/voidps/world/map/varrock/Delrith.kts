@@ -160,7 +160,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     player.moveCamera(Tile(3231, 3376).add(offset), 475, 1, 1)
     npc<Happy>("denath", "Arise, O mighty Delrith! Bring destruction to this soft, weak city!")
     for (wizard in wizards) {
-        wizard.forceChat = "Arise, Delrith!"
+        wizard.say("Arise, Delrith!")
     }
     npc<Neutral>("dark_wizard_water", "Arise, Delrith!", title = "Dark wizards")
 
@@ -250,7 +250,7 @@ npcOperate("*", "delrith") {
             val selected = words[choice - 1]
             val suffix = if (index == 4) "!" else "..."
             val text = "$selected$suffix"
-            player.forceChat = text
+            player.say(text)
             player<Talk>(text, largeHead = true, clickToContinue = false)
             val expected = DemonSlayerSpell.getWord(player, index + 1)
             if (selected != expected) {

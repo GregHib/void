@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.npc.move
 
-import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.Wander
@@ -25,7 +24,7 @@ fun isDuck(it: NPC) = it.id.startsWith("duck") && it.id.endsWith("swim")
 
 npcDeath("duck*swim") { npc ->
     val ducklings: NPC = npc["ducklings"] ?: return@npcDeath
-    ducklings.forceChat = "Eek!"
+    ducklings.say("Eek!")
     followParent(ducklings)
 }
 
@@ -41,9 +40,9 @@ npcTimerTick("follow_parent") { npc ->
     npc.mode = Follow(npc, parent)
     parent["ducklings"] = npc
     if (random.nextInt(300) < 1) {
-        parent.forceChat = "Quack?"
+        parent.say("Quack?")
         npc.softQueue("quack", 1) {
-            npc.forceChat = if (random.nextBoolean()) "Cheep Cheep!" else "Eep!"
+            npc.say(if (random.nextBoolean()) "Cheep Cheep!" else "Eep!")
         }
     }
     cancel()

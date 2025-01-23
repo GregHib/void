@@ -41,8 +41,8 @@ adminCommand("anim (anim-id)", "perform animation by int or string id (-1 to cle
 
 adminCommand("emote (emote-id)", "perform render emote by int or string id (-1 to clear)") {
     when (content) {
-        "-1", "" -> player.renderEmote = "human_stand"
-        else -> player.renderEmote = content
+        "-1", "" -> player.renderEmote("human_stand")
+        else -> player.renderEmote(content)
     }
 }
 
@@ -66,7 +66,7 @@ adminCommand("overlay") {
 }
 
 adminCommand("chat (message)", "force a chat message over players head") {
-    player.forceChat = content
+    player.say(content)
 }
 
 adminCommand("move") {

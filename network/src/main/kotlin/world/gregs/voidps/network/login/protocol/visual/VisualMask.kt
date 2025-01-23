@@ -4,7 +4,7 @@ object VisualMask {
     // Players
     const val PLAYER_WATCH_MASK = 0x1
     const val PLAYER_TIME_BAR_MASK = 0x400
-    const val PLAYER_FORCE_CHAT_MASK = 0x1000
+    const val PLAYER_SAY_MASK = 0x1000
     const val PLAYER_HITS_MASK = 0x4
     const val PLAYER_TURN_MASK = 0x2
     const val PLAYER_EXACT_MOVEMENT_MASK = 0x2000
@@ -25,7 +25,7 @@ object VisualMask {
     const val NPC_COLOUR_OVERLAY_MASK = 0x2000
     const val NPC_HITS_MASK = 0x40
     const val NPC_WATCH_MASK = 0x80
-    const val NPC_FORCE_CHAT_MASK = 0x1
+    const val NPC_SAY_MASK = 0x1
     const val NPC_TIME_BAR_MASK = 0x800
     const val NPC_GRAPHIC_2_MASK = 0x400
 }

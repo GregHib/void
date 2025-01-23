@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
@@ -222,6 +221,6 @@ npcTimerTick("makeover") { npc ->
     npc.setGraphic("curse_hit", delay = 15)
     npc.setAnimation("bind_staff")
     npc.softQueue("transform", 1) {
-        npc.forceChat = if (toFemale) "Ooh!" else "Aha!"
+        npc.say(if (toFemale) "Ooh!" else "Aha!")
     }
 }

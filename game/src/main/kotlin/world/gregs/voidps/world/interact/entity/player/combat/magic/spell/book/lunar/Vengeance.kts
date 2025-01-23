@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -43,7 +42,7 @@ combatHit { player ->
     if (!player.contains("vengeance") || type == "damage" || damage < 4) {
         return@combatHit
     }
-    player.forceChat = "Taste vengeance!"
+    player.say("Taste vengeance!")
     player.hit(target = source, type = "damage", delay = 0, damage = (damage * 0.75).toInt())
     player.stop("vengeance")
 }

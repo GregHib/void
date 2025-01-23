@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.activity.skill.agility.course
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.exactMove
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.move.walkOver
@@ -23,7 +22,7 @@ val npcs: NPCs by inject()
 objectOperate("Walk-across", "gnome_log_balance") {
     player.agilityCourse("gnome")
     npcs.gnomeTrainer("Okay get over that log, quick quick!", listOf(Zone(878901), Zone(878900), Zone(876852)))
-    player.renderEmote = "rope_balance"
+    player.renderEmote("rope_balance")
     player.message("You walk carefully across the slippery log...", ChatType.Filter)
     player.walkOver(Tile(2474, 3429))
     player.clearRenderEmote()
@@ -57,7 +56,7 @@ objectOperate("Climb", "gnome_tree_branch_up") {
 
 objectOperate("Walk-on", "gnome_balancing_rope") {
     npcs.gnomeTrainer("Come on scaredy cat, get across that rope!", Zone(9263413))
-    player.renderEmote = "rope_balance"
+    player.renderEmote("rope_balance")
     player.walkOver(Tile(2483, 3420, 2))
     player.agilityStage(4)
     player.clearRenderEmote()
@@ -66,7 +65,7 @@ objectOperate("Walk-on", "gnome_balancing_rope") {
 }
 
 objectOperate("Walk-on", "gnome_balancing_rope_end") {
-    player.renderEmote = "rope_balance"
+    player.renderEmote("rope_balance")
     player.walkOver(Tile(2477, 3420, 2))
     player.clearRenderEmote()
     player.exp(Skill.Agility, 7.5)
@@ -101,11 +100,11 @@ objectOperate("Squeeze-through", "gnome_obstacle_pipe_*") {
     player.message("You pull yourself through the pipes..", ChatType.Filter)
     delay()
     player.setAnimation("climb_through_pipe")
-    player.exactMove(target.tile.addY(2))
+    player.exactMoveDelay(target.tile.addY(2))
     player.face(Direction.NORTH)
     player.tele(target.tile.addY(3))
     player.setAnimation("climb_through_pipe", delay = 1)
-    player.exactMove(target.tile.addY(6))
+    player.exactMoveDelay(target.tile.addY(6))
     if (player.agilityStage == 6) {
         player.agilityStage = 0
         player.inc("gnome_course_laps")

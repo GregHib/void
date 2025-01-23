@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
-import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -25,7 +24,7 @@ specialAttackPrepare("sanctuary") { player ->
     player.setAnimation("${id}_special")
     player.setGraphic("${id}_special")
     player.playSound("${id}_special")
-    player.forceChat = "For Camelot!"
+    player.say("For Camelot!")
     if (player.weapon.id.startsWith("enhanced")) {
         player.levels.boost(Skill.Defence, multiplier = 0.15)
         player[id] = TimeUnit.SECONDS.toTicks(if (seersVillageEliteTasks(player)) 24 else 12) / 4

@@ -3,7 +3,6 @@ package world.gregs.voidps.world.map.varrock
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
@@ -75,6 +74,6 @@ suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
         player.levels.drain(Skill.Strength, 6)
         player.levels.drain(Skill.Smithing, 6)
         player.damage(0)
-        player.forceChat = "Blearrgh!"
+        player.say("Blearrgh!")
     }
 )

@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
-import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -16,7 +15,7 @@ specialAttackPrepare("rampage") { player ->
     player.setAnimation("${id}_special")
     player.setGraphic("${id}_special")
     player.playSound("${id}_special")
-    player.forceChat = "Raarrrrrgggggghhhhhhh!"
+    player.say("Raarrrrrgggggghhhhhhh!")
     player.levels.drain(Skill.Attack, multiplier = 0.10)
     player.levels.drain(Skill.Defence, multiplier = 0.10)
     player.levels.drain(Skill.Magic, multiplier = 0.10)
