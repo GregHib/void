@@ -4,9 +4,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.hit
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.login.protocol.visual.update.Hitsplat
+import world.gregs.voidps.world.interact.entity.combat.hit.damage
 
 val Character.stunned: Boolean get() = hasClock("stunned")
 
@@ -21,7 +20,7 @@ fun Character.stun(target: Character, ticks: Int, hit: Int = -1): Boolean {
         return false
     }
     if (hit != -1) {
-        target.hit(this, hit, Hitsplat.Mark.Regular)
+        target.damage(hit)
     }
     target.gfx("stun_long")
     target.message("You've been stunned!")

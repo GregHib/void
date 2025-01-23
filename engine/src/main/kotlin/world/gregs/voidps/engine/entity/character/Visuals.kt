@@ -1,10 +1,7 @@
 package world.gregs.voidps.engine.entity.character
 
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.network.login.protocol.visual.VisualMask
-import world.gregs.voidps.network.login.protocol.visual.update.Hitsplat
 
 fun Character.flagAnimation() = visuals.flag(if (this is Player) VisualMask.PLAYER_ANIMATION_MASK else VisualMask.NPC_ANIMATION_MASK)
 
@@ -33,13 +30,6 @@ fun Character.colourOverlay(colour: Int, delay: Int, duration: Int) {
     overlay.duration = duration
     flagColourOverlay()
     softTimers.start("colour_overlay")
-}
-
-fun Character.hit(source: Character, amount: Int, mark: Hitsplat.Mark, delay: Int = 0, critical: Boolean = false, soak: Int = -1) {
-    val after = (levels.get(Skill.Constitution) - amount).coerceAtLeast(0)
-    val percentage = levels.getPercent(Skill.Constitution, after, 255.0).toInt()
-    visuals.hits.hits.add(Hitsplat(amount, mark, percentage, delay, critical, if (source is NPC) -source.index else source.index, soak))
-    flagHits()
 }
 
 fun Character.setTimeBar(full: Boolean = false, exponentialDelay: Int = 0, delay: Int = 0, increment: Int = 0) {

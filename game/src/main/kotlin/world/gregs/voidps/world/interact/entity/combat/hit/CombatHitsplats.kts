@@ -2,7 +2,9 @@ package world.gregs.voidps.world.interact.entity.combat.hit
 
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.character.hit
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.flagHits
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.Hitsplat
@@ -66,4 +68,11 @@ characterCombatHit { character ->
         )
         character.levels.restore(Skill.Constitution, damage)
     }
+}
+
+fun Character.hit(source: Character, amount: Int, mark: Hitsplat.Mark, delay: Int = 0, critical: Boolean = false, soak: Int = -1) {
+    val after = (levels.get(Skill.Constitution) - amount).coerceAtLeast(0)
+    val percentage = levels.getPercent(Skill.Constitution, after, 255.0).toInt()
+    visuals.hits.hits.add(Hitsplat(amount, mark, percentage, delay, critical, if (source is NPC) -source.index else source.index, soak))
+    flagHits()
 }
