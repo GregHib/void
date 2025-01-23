@@ -63,7 +63,7 @@ playerDeath { player ->
         player.message("Oh dear, you are dead!")
         player.anim("human_death")
         delay(5)
-        player.clearAnimation()
+        player.clearAnim()
         player.attackers.clear()
         player.damageDealers.clear()
         player.playJingle("death")

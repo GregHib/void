@@ -63,7 +63,7 @@ objectApproach("Run-across", "gnome_sign_post_advanced") {
     if (success || Settings["agility.disableFailLapSkip", false]) {
         player.agilityStage(5)
     }
-    player.clearAnimation()
+    player.clearAnim()
 }
 
 objectApproach("Swing-to", "gnome_pole_advanced") {

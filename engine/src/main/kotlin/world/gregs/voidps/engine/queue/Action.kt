@@ -12,7 +12,7 @@ class Action<C : Character>(
     val priority: ActionPriority,
     delay: Int = 0,
     val behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
-    var onCancel: (() -> Unit)? = { character.clearAnimation() },
+    var onCancel: (() -> Unit)? = { character.clearAnim() },
     var action: suspend Action<*>.() -> Unit = {}
 ) : SuspendableContext<C> {
     var suspension: CancellableContinuation<Unit>? = null

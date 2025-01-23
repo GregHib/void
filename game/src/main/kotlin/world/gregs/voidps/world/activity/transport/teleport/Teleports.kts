@@ -46,7 +46,7 @@ interfaceOption("Cast", "*_teleport", "*_spellbook") {
         player.animDelay("teleport_land_$book")
         if (book == "ancient") {
             delay(1)
-            player.clearAnimation()
+            player.clearAnim()
         }
     }
 }

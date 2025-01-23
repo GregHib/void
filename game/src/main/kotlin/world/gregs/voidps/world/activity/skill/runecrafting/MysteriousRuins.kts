@@ -70,7 +70,7 @@ itemOnObjectOperate("*_talisman", "*_altar_ruins") {
 }
 
 teleportTakeOff("Enter", "*_altar_ruins_enter") {
-    player.clearAnimation()
+    player.clearAnim()
     player.playSound("teleport")
     player.message("You feel a powerful force talk hold of you...")
 }
@@ -95,7 +95,7 @@ teleportTakeOff("Enter", "*_altar_portal") {
         cancel()
         return@teleportTakeOff
     }
-    player.clearAnimation()
+    player.clearAnim()
     player.playSound("teleport")
     player.message("You step through the portal...")
 }

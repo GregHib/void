@@ -150,7 +150,7 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
     /**
      * Clear the characters current animation
      */
-    fun clearAnimation() {
+    fun clearAnim() {
         visuals.animation.reset()
         flagAnimation()
     }

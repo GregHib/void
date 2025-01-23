@@ -55,6 +55,6 @@ npcOperateFloorItem("Take") {
     if (npc.id == "ash_cleaner") {
         npc.anim("cleaner_sweeping")
         delay(2)
-        npc.clearAnimation()
+        npc.clearAnim()
     }
 }

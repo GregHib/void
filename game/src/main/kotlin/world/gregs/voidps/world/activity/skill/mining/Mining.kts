@@ -93,7 +93,7 @@ objectOperate("Mine") {
                 player.experience.add(Skill.Mining, ore.xp)
                 ShootingStarHandler.extraOreHandler(player, item, ore.xp)
                 if (!addOre(player, item) || deplete(rock, target)) {
-                    player.clearAnimation()
+                    player.clearAnim()
                     break
                 }
             }

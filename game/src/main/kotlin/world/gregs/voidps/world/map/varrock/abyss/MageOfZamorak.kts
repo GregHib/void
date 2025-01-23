@@ -292,7 +292,7 @@ fun teleport(player: Player, target: NPC) {
         }
         player.tele(tile!!)
         player.levels.drain(Skill.Prayer, player.levels.get(Skill.Prayer))
-        player.clearAnimation()
+        player.clearAnim()
     }
 }
 

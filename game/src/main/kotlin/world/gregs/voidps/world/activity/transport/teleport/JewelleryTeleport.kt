@@ -26,7 +26,7 @@ fun itemTeleport(player: Player, inventory: String, slot: Int, area: Area, type:
         player.tele(area.random(player)!!)
         val int = player.anim("teleport_land_$type")
         if (int == -1) {
-            player.clearAnimation()
+            player.clearAnim()
         } else {
             player.gfx("teleport_land_$type")
         }

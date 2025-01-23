@@ -33,7 +33,7 @@ modCommand("players", "get the total and local player counts") {
 
 adminCommand("anim (anim-id)", "perform animation by int or string id (-1 to clear)") {
     when (content) {
-        "-1", "" -> player.clearAnimation()
+        "-1", "" -> player.clearAnim()
         else -> player.anim(content, override = true)// 863
     }
 }

@@ -50,7 +50,7 @@ objectOperate("Mine", "abyss_rock") {
     val success = Level.success(player.levels.get(Skill.Mining), chance)
     if (!success) {
         player.message("...but fail to break-up the rock.", ChatType.Filter)
-        player.clearAnimation()
+        player.clearAnim()
         return@objectOperate
     }
     delay(1)
@@ -64,7 +64,7 @@ objectOperate("Mine", "abyss_rock") {
     val (walkTile, teleTile) = positions[target.tile]!!
     player.walkTo(walkTile)
     player.message("...and manage to break through the rock.", ChatType.Filter)
-    player.clearAnimation()
+    player.clearAnim()
     player.tele(teleTile)
     delay(1)
     player["abyss_obstacles"] = 0

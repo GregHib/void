@@ -104,7 +104,7 @@ open class Movement(
             clearSteps()
             return false
         }
-        character.clearAnimation()
+        character.clearAnim()
         setMovementType(runStep, end = false)
         if (runStep) {
             character.visuals.runStep = clockwise(direction)

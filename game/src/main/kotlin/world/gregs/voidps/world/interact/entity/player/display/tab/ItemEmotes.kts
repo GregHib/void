@@ -105,7 +105,7 @@ interfaceClose("snow_globe") { player ->
         pause(ticks)
         player.message("The snow globe fills your inventory with snow!")
         player.inventory.add("snowball_2007_christmas_event", player.inventory.spaces)
-        player.clearAnimation()
+        player.clearAnim()
         player.closeDialogue()
     }
 }

@@ -201,7 +201,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     delay(1)
     delrith.face(denath)
     for (wizard in wizards) {
-        wizard.clearAnimation()
+        wizard.clearAnim()
         wizard.face(delrith)
     }
     npc<Chuckle>("denath", """

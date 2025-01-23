@@ -163,7 +163,7 @@ suspend fun SuspendableContext<Player>.cutscenePart2(instance: Region) {
     player.open("fade_out")
     delay(3)
     npcs.clear(instance.toLevel(0))
-    player.clearAnimation()
+    player.clearAnim()
     delay(1)
     val offset = instance.offset(region)
     player.tele(Tile(3083, 3426).add(offset), clearInterfaces = false)
@@ -262,7 +262,7 @@ suspend fun SuspendableContext<Player>.endCutscene(instance: Region) {
     player.tele(3081, 3416)
     stopCutscene(instance)
     player.clearCamera()
-    player.clearAnimation()
+    player.clearAnim()
 }
 
 suspend fun SuspendableContext<Player>.poem() {
