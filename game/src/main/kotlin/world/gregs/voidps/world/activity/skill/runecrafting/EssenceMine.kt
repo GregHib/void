@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
@@ -18,12 +17,12 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 object EssenceMine {
     fun teleport(npc: NPC, player: Player) {
         npc.say("Senventior Disthine Molenko!")
-        npc.setGraphic("curse_cast")
+        npc.gfx("curse_cast")
         npc.face(player)
         if (!npc.contains("old_model")) {
             npc.setAnimation("curse")
         }
-        player.setGraphic("curse_hit")
+        player.gfx("curse_hit")
         player.shoot("curse", player.tile)
         player.softQueue("essence_mine_teleport", 3) {
             player["last_npc_teleport_to_rune_essence_mine"] = npc.id

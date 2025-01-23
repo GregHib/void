@@ -73,7 +73,7 @@ interfaceOption(id = "emotes") {
                 if (id == "air_guitar") {
                     player.playJingle(id)
                 }
-                player.setGraphic("emote_$id")
+                player.gfx("emote_$id")
                 character.setAnimation("emote_$id")
             }
         }
@@ -160,38 +160,38 @@ suspend fun Interaction<Player>.playEnhancedEmote(player: Player, type: String) 
 }
 
 suspend fun Interaction<Player>.playEnhancedYawnEmote(player: Player) {
-    player.setGraphic("emote_enhanced_yawn")
+    player.gfx("emote_enhanced_yawn")
     player.animate("emote_enhanced_yawn")
 }
 
 suspend fun Interaction<Player>.playGiveThanksEmote(player: Player) {
-    player.setGraphic("emote_give_thanks")
+    player.gfx("emote_give_thanks")
     player.animate("emote_turkey_transform")
     player.transform("turkey")
     player.animate("emote_turkey_dance")
-    player.setGraphic("emote_give_thanks")
+    player.gfx("emote_give_thanks")
     player.clearTransform()
     player.animate("emote_turkey_return")
 }
 
 suspend fun Interaction<Player>.playSealOfApprovalEmote(player: Player) {
-    player.setGraphic("emote_seal_of_approval")
+    player.gfx("emote_seal_of_approval")
     player.animate("emote_seal_of_approval")
     player.transform("seal")
     player.animate("emote_seal_clap")
     player.animate("emote_seal_return")
-    player.setGraphic("emote_seal_of_approval")
+    player.gfx("emote_seal_of_approval")
     player.clearTransform()
     player.animate("emote_seal_stand")
 }
 
 suspend fun Interaction<Player>.playSkillCapeEmote(player: Player, skill: String) {
-    player.setGraphic("emote_$skill")
+    player.gfx("emote_$skill")
     player.animate("emote_$skill")
 }
 
 suspend fun Interaction<Player>.playDungeoneeringCapeEmote(player: Player) {
-    player.setGraphic("emote_dungeoneering_start")
+    player.gfx("emote_dungeoneering_start")
     player.animate("emote_dungeoneering_start")
     when (random.nextInt(3)) {
         0 -> {
@@ -214,21 +214,21 @@ suspend fun Interaction<Player>.playDungeoneeringMasterCapeEmote(player: Player)
     val direction = player.facing
 
     player.transform("sagittarian_ranger")
-    player.setGraphic("emote_dung_master_bow")
+    player.gfx("emote_dung_master_bow")
     var tile = player.tile.add(direction.rotate(1))
     var rotation = tile.delta(player.tile).toDirection().rotate(2)
     areaGraphic("emote_dung_master_hobgoblin", tile, rotation = rotation)
     player.animate("emote_dung_master_bow")
 
     player.transform("celestial_mage")
-    player.setGraphic("emote_dung_master_spell")
+    player.gfx("emote_dung_master_spell")
     tile = player.tile.add(direction.rotate(7))
     rotation = tile.delta(player.tile).toDirection().rotate(4)
     areaGraphic("emote_dung_master_gravecreeper", tile, rotation = rotation)
     player.animate("emote_dung_master_spell")
 
     player.transform("primal_warrior")
-    player.setGraphic("emote_dung_master_return")
+    player.gfx("emote_dung_master_return")
     tile = player.tile.add(direction)
     rotation = direction.inverse().rotate(7)
     areaGraphic("emote_dung_master_flesh_spoiler", tile, rotation = rotation)

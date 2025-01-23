@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -45,13 +44,13 @@ suspend fun SuspendableContext<Player>.pullLever(player: Player) {
 teleportTakeOff("Pull", "lever_*") {
     delay = 3
     player.playSound("teleport")
-    player.setGraphic("teleport_modern")
+    player.gfx("teleport_modern")
     player.setAnimation("teleport_modern")
 }
 
 teleportLand("Pull", "lever_*") {
     player.playSound("teleport_land")
-    player.setGraphic("teleport_land_modern")
+    player.gfx("teleport_land_modern")
     player.setAnimation("teleport_land_modern")
     val message: String = obj.getOrNull("land_message") ?: return@teleportLand
     player.message(message, ChatType.Filter)

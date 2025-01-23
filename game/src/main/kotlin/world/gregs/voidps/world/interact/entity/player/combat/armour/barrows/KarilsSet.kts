@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.armour.barrows
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
@@ -36,6 +35,6 @@ characterCombatAttack("karils_crossbow*", "range") { character ->
         return@characterCombatAttack
     }
     if (target.levels.drain(Skill.Agility, multiplier = 0.20) < 0) {
-        target.setGraphic("karils_effect")
+        target.gfx("karils_effect")
     }
 }

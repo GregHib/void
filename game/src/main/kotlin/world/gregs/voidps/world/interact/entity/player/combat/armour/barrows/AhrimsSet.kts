@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.armour.barrows
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
@@ -40,6 +39,6 @@ characterCombatAttack(type = "magic") { character ->
     }
     val drain = target.levels.drain(Skill.Strength, 5)
     if (drain < 0) {
-        target.setGraphic("ahrims_effect")
+        target.gfx("ahrims_effect")
     }
 }

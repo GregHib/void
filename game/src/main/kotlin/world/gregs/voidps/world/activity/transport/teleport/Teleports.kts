@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -41,12 +40,12 @@ interfaceOption("Cast", "*_teleport", "*_spellbook") {
         player.exp(Skill.Magic, definition.experience)
         val book = id.removeSuffix("_spellbook")
         player.playSound("teleport")
-        player.setGraphic("teleport_$book")
+        player.gfx("teleport_$book")
         player.animate("teleport_$book")
         player.tele(areas[component].random(player)!!)
         delay(1)
         player.playSound("teleport_land")
-        player.setGraphic("teleport_land_$book")
+        player.gfx("teleport_land_$book")
         player.animate("teleport_land_$book")
         if (book == "ancient") {
             delay(1)
@@ -67,7 +66,7 @@ inventoryItem("*", "*_teleport") {
     player.queue("teleport", onCancel = null) {
         if (player.inventory.remove(item.id)) {
             player.playSound("teleport_$type")
-            player.setGraphic("teleport_$type")
+            player.gfx("teleport_$type")
             player.setAnimation("teleport_$type")
             delay(3)
             player.tele(map.random(player)!!)

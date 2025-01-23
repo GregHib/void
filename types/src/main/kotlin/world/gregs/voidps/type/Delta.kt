@@ -23,6 +23,8 @@ value class Delta(val id: Long) : Coordinate3D<Delta> {
 
     fun isVertical() = y != 0
 
+    fun invert() = Delta(-x, -y, -level)
+
     override fun copy(x: Int, y: Int, level: Int) = Delta(x, y, level)
 
     fun toDirection(): Direction = when {

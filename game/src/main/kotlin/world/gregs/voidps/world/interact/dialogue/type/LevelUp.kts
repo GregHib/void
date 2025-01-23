@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.exp.experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelChange
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.sound.playJingle
@@ -39,7 +38,7 @@ maxLevelChange { player ->
             else -> true// TODO has unlocked something
         }
         player.playJingle("level_up_${skill.name.lowercase()}${if (unlock) "_unlock" else ""}", 0.5)
-        player.setGraphic("level_up")
+        player.gfx("level_up")
         player.addVarbit("skill_stat_flash", skill.name.lowercase())
         levelUp(skill, """
             Congratulations! You've just advanced${skill.name.an()} ${skill.name} level!

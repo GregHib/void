@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.engine.timer.characterTimerStart
 import world.gregs.voidps.engine.timer.characterTimerStop
@@ -23,7 +22,7 @@ combatAttack { player ->
     target["soul_split_delay"] = CLIENT_TICKS.toTicks(time)
     target["soul_split_source"] = player
     target["soul_split_damage"] = damage
-    target.setGraphic("soul_split_hit", time)
+    target.gfx("soul_split_hit", time)
     target.softTimers.start("soul_split")
 }
 

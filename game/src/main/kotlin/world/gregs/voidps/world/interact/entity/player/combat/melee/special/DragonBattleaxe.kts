@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAttack
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackPrepare
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -13,7 +12,7 @@ specialAttackPrepare("rampage") { player ->
         return@specialAttackPrepare
     }
     player.setAnimation("${id}_special")
-    player.setGraphic("${id}_special")
+    player.gfx("${id}_special")
     player.playSound("${id}_special")
     player.say("Raarrrrrgggggghhhhhhh!")
     player.levels.drain(Skill.Attack, multiplier = 0.10)

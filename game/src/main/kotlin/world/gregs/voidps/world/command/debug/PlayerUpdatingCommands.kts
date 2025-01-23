@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.zone.DynamicZones
-import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.effect.transform
@@ -48,8 +47,8 @@ adminCommand("emote (emote-id)", "perform render emote by int or string id (-1 t
 
 adminCommand("gfx (gfx-id)", "perform graphic effect by int or string id (-1 to clear)") {
     when (content) {
-        "-1", "" -> player.clearGraphic()
-        else -> player.setGraphic(content)// 93
+        "-1", "" -> player.clearGfx()
+        else -> player.gfx(content)// 93
     }
 }
 
@@ -70,7 +69,15 @@ adminCommand("chat (message)", "force a chat message over players head") {
 }
 
 adminCommand("move") {
-    player.setExactMovement(Delta(0, -2), 120, startDelay = 60, direction = Direction.SOUTH)
+    val move = player.visuals.exactMovement
+    move.startX = 0
+    move.startY = 0
+    move.startDelay = 60
+    move.endX = 0
+    move.endY = -2
+    move.endDelay = 120
+    move.direction = Direction.SOUTH.ordinal
+    player.flagExactMovement()
 }
 
 adminCommand("hit [amount]", "damage player by an amount") {

@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.obj.objectOperate
@@ -56,7 +55,7 @@ objectOperate("Craft-rune", "ourania_altar") {
         TransactionError.None -> {
             player.exp(Skill.Runecrafting, experience)
             player.setAnimation("bind_runes")
-            player.setGraphic("bind_runes")
+            player.gfx("bind_runes")
             player.playSound("bind_runes")
             player.message("You bind the temple's power into runes.", ChatType.Filter)
             if (usedArdougneCloak) {

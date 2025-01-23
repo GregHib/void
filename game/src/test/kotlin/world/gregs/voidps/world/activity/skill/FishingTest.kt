@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.skill
 
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.FakeRandom
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -14,7 +15,9 @@ internal class FishingTest : WorldTest() {
 
     @Test
     fun `Fishing gives fish and removes bait`() {
-        setRandom(Random)
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int): Int = 0
+        })
         val player = createPlayer("fisher", emptyTile)
         player.levels.set(Skill.Fishing, 20)
         val fishingSpot = createNPC("fishing_spot_lure_bait_lumbridge", emptyTile.addY(1))

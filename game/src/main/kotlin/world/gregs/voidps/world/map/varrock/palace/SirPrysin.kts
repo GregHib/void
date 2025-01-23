@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -266,7 +265,7 @@ suspend fun NPCOption<Player>.giveSilverlight() {
     player.inventory.add("silverlight")
     item("silverlight", 600, "Sir Prysin hands you a very shiny sword.")
     player.setAnimation("silverlight_showoff")
-    player.setGraphic("silverlight_sparkle")
+    player.gfx("silverlight_sparkle")
     player.playSound("equip_silverlight")
     delay()
     target.face(Direction.NONE)

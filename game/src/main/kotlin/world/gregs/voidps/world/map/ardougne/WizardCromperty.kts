@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.world.activity.quest.questComplete
 import world.gregs.voidps.world.activity.skill.runecrafting.EssenceMine
@@ -74,8 +73,8 @@ fun ChoiceBuilder<NPCOption<Player>>.teleportMe() {
         choice {
             option<Talk>("Yes, that sounds good. Teleport me!") {
                 npc<Happy>("Okey dokey! Ready?")
-                player.setGraphic("curse_hit")
-                target.setGraphic("curse_cast")
+                player.gfx("curse_hit")
+                target.gfx("curse_cast")
                 target.say("Dipsolum sententa sententi!")
                 target.shoot("curse", player.tile, offset = 64)
                 player.softQueue("cromperty_teleport", 2) {

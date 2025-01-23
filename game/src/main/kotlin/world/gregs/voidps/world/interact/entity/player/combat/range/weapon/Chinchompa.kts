@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.weapon
 
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
@@ -14,7 +13,7 @@ import kotlin.random.nextInt
 characterCombatHit("*chinchompa", "range") { character ->
     source as Player
     source.playSound("chinchompa_explode", delay = 40)
-    character.setGraphic("chinchompa_hit")
+    character.gfx("chinchompa_hit")
 }
 
 combatAttack(type = "range") { source ->

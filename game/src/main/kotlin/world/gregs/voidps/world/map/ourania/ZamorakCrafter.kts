@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.mode.move.npcMove
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inject
@@ -26,7 +25,7 @@ npcMove("zamorak_crafter*", to = Tile(3314, 4811)) {
     }
     delay(4)
     npc.setAnimation("bind_runes")
-    npc.setGraphic("bind_runes")
+    npc.gfx("bind_runes")
     delay(4)
     val patrol = patrols.get("zamorak_crafter_to_bank")
     npc.mode = Patrol(npc, patrol.waypoints)

@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.armour.barrows
 
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
@@ -37,6 +36,6 @@ characterCombatAttack("torags_hammers*", "melee") { character ->
     }
     if (target.runEnergy > 0) {
         target.runEnergy -= target.runEnergy / 5
-        target.setGraphic("torags_effect")
+        target.gfx("torags_effect")
     }
 }

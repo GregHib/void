@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.range.special
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
@@ -16,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 specialAttack("descent_of_darkness") { player ->
     val dragon = player.ammo == "dragon_arrow"
     player.setAnimation("bow_accurate")
-    player.setGraphic("${player.ammo}_double_shot")
+    player.gfx("${player.ammo}_double_shot")
     player.playSound("dark_bow_special")
     player.playSound("descent_of_${if (dragon) "dragons" else "darkness"}")
 
@@ -38,13 +37,13 @@ specialAttack("descent_of_darkness") { player ->
 characterCombatHit("dark_bow*", "range") { character ->
     source.playSound("descent_of_darkness")
     source.playSound("descent_of_darkness", delay = 20)
-    character.setGraphic("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_hit")
+    character.gfx("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_hit")
 }
 
 combatSwing("dark_bow*", "range") { player ->
     player.setAnimation("bow_accurate")
     val ammo = player.ammo
-    player.setGraphic("${ammo}_double_shot")
+    player.gfx("${ammo}_double_shot")
     val time1 = player.shoot(ammo, target, true)
     val time2 = player.shoot(ammo, target, false)
     player.hit(target, delay = time1)

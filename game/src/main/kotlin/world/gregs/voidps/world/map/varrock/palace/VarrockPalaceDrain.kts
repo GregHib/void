@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.add
@@ -54,7 +53,7 @@ itemOnObjectOperate("*of_water", "varrock_palace_drain") {
     player["demon_slayer_drain_dislodged"] = true
     player.message("You pour the liquid down the drain.")
     player.setAnimation("toss_water")
-    player.setGraphic("toss_water")
+    player.gfx("toss_water")
     player.playSound("demon_slayer_drain")
     player.playSound("demon_slayer_key_fall")
     if (player.quest("demon_slayer") == "key_hunt") {

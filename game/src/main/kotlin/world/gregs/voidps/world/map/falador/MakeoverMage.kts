@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
@@ -218,7 +217,7 @@ npcTimerTick("makeover") { npc ->
     val current: String = npc["transform_id", "makeover_mage_male"]
     val toFemale = current == "makeover_mage_male"
     npc.transform = if (toFemale) "makeover_mage_female" else "makeover_mage_male"
-    npc.setGraphic("curse_hit", delay = 15)
+    npc.gfx("curse_hit", delay = 15)
     npc.setAnimation("bind_staff")
     npc.softQueue("transform", 1) {
         npc.say(if (toFemale) "Ooh!" else "Aha!")

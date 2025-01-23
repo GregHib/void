@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 import world.gregs.voidps.world.interact.entity.player.toxin.curePoison
@@ -28,7 +27,7 @@ itemOnPlayerApproach(id = "lunar_spellbook", component = "cure_other") {
     val definition = definitions.get(spell)
     player.start("movement_delay", 2)
     player.setAnimation("lunar_cast")
-    target.setGraphic(spell)
+    target.gfx(spell)
     player.experience.add(Skill.Magic, definition.experience)
     target.curePoison()
     target.message("You have been cured by ${player.name}.")

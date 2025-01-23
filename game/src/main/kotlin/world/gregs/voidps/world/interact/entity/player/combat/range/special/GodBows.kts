@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.range.special
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.world.interact.entity.combat.hit.*
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -39,7 +38,7 @@ combatAttack("zamorak_bow", handler = specialHandler)
 
 val hitHandler: suspend CombatHit.(Character) -> Unit = { character ->
     if (special) {
-        character.setGraphic("${weapon.id}_special_hit")
+        character.gfx("${weapon.id}_special_hit")
         source.playSound("god_bow_special_hit")
     }
 }
@@ -60,7 +59,7 @@ timerTick("restorative_shot", "balanced_shot") { player ->
     val restore = player["restoration_amount", 0]
     player.restoration -= restore
     player.levels.restore(Skill.Constitution, restore)
-    player.setGraphic("saradomin_bow_restoration")
+    player.gfx("saradomin_bow_restoration")
 }
 
 timerStop("restorative_shot", "balanced_shot") { player ->

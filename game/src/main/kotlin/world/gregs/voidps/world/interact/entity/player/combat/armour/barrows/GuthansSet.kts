@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.armour.barrows
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
@@ -34,6 +33,6 @@ fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
 characterCombatAttack(type = "melee") { character ->
     if (character.contains("guthans_set_effect") && random.nextInt(4) == 0) {
         character.levels.boost(Skill.Constitution, damage)
-        target.setGraphic("guthans_effect")
+        target.gfx("guthans_effect")
     }
 }

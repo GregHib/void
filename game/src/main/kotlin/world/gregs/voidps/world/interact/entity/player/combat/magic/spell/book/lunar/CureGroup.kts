@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 import world.gregs.voidps.world.interact.entity.player.toxin.curePoison
@@ -27,7 +26,7 @@ interfaceOption(component = "cure_group", id = "lunar_spellbook") {
     players
         .filter { other -> other.tile.within(player.tile, 1) && other.poisoned }
         .forEach { target ->
-            target.setGraphic(spell)
+            target.gfx(spell)
             target.curePoison()
             target.message("You have been cured by ${player.name}")
         }

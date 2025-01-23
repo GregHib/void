@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.target
 import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAttack
@@ -17,6 +16,6 @@ specialAttackPrepare("quick_smash") { player ->
     }
     val target = player.target ?: return@specialAttackPrepare
     player.setAnimation("${id}_special")
-    player.setGraphic("${id}_special")
+    player.gfx("${id}_special")
     player.hit(target)
 }

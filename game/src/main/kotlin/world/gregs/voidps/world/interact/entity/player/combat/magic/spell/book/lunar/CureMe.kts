@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 import world.gregs.voidps.world.interact.entity.player.toxin.curePoison
@@ -24,7 +23,7 @@ interfaceOption(component = "cure_me", id = "lunar_spellbook") {
     }
     val definition = definitions.get(spell)
     player.setAnimation("lunar_cast")
-    player.setGraphic(spell)
+    player.gfx(spell)
     player.experience.add(Skill.Magic, definition.experience)
     player.curePoison()
 }

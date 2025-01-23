@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.combat.characterCombatSwing
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
@@ -55,14 +54,14 @@ fun castSpell(source: Character, target: Character): Boolean {
     }
     if (source.weapon.def["weapon_type", ""] == "salamander" && source.spell.isBlank()) {
         source.setAnimation("salamander_scorch")
-        source.setGraphic("salamander_blaze")
+        source.gfx("salamander_blaze")
         time = 0
     } else {
         val staff = source.weapon.def["category", ""] == "staff"
         val animation: String = if (staff && definition.contains("animation_staff")) definition["animation_staff"] else definition["animation", ""]
         val graphic: String = if (staff && definition.contains("graphic_staff")) definition["graphic_staff"] else definition["graphic", ""]
         source.setAnimation(animation)
-        source.setGraphic(graphic)
+        source.gfx(graphic)
     }
     val damage = source.hit(target, delay = if (time == -1) 64 else time)
     if (damage != -1) {

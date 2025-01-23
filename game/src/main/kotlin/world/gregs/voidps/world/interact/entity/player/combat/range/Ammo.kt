@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.get
@@ -128,7 +127,7 @@ object Ammo {
 
     private fun chance(source: Player, target: Character, name: String, chance: Double): Boolean {
         if (random.nextDouble() < chance) {
-            target.setGraphic(name)
+            target.gfx(name)
             source.playSound(name, delay = 40)
             return true
         }

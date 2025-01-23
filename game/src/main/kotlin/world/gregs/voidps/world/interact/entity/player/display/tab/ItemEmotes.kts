@@ -35,8 +35,8 @@ inventoryItem("Emote", "reindeer_hat", "worn_equipment") {
         player.message("Please wait till you've finished performing your current emote.")
         return@inventoryItem
     }
-    player.setGraphic("emote_reindeer")
-    player.setGraphic("emote_reindeer_2")
+    player.gfx("emote_reindeer")
+    player.gfx("emote_reindeer_2")
     player.animate("emote_reindeer")
 }
 
@@ -101,7 +101,7 @@ continueDialogue("snow_globe", "continue") { player ->
 
 interfaceClose("snow_globe") { player ->
     player.queue("snow_globe_close") {
-        player.setGraphic("emote_snow_globe_flurry")
+        player.gfx("emote_snow_globe_flurry")
         val ticks = player.setAnimation("emote_trample_snow")
         pause(ticks)
         player.message("The snow globe fills your inventory with snow!")
@@ -153,7 +153,7 @@ inventoryItem("Celebrate", "tenth_anniversary_cake") {
         player.message("Please wait till you've finished performing your current emote.")
         return@inventoryItem
     }
-    player.setGraphic("10th_anniversary_cake")
+    player.gfx("10th_anniversary_cake")
     player.animate("emote_10th_anniversary_cake")
 }
 
@@ -170,7 +170,7 @@ inventoryItem("Spin (2010)", "golden_hammer", "worn_equipment") {
         player.message("Please wait till you've finished performing your current emote.")
         return@inventoryItem
     }
-    player.setGraphic("emote_golden_hammer_spin")
+    player.gfx("emote_golden_hammer_spin")
     player.animate("emote_golden_hammer_spin")
 }
 
@@ -179,7 +179,7 @@ inventoryOptions("Jump", "Walk", "Bow", "Dance", item = "*_marionette", inventor
         player.message("Please wait till you've finished performing your current emote.")
         return@inventoryOptions
     }
-    player.setGraphic("emote_${item.id}_${option.lowercase()}")
+    player.gfx("emote_${item.id}_${option.lowercase()}")
     player.animate("emote_marionette_${option.lowercase()}")
 }
 
@@ -196,7 +196,7 @@ inventoryItem("Emote", "chocatrice_cape", "worn_equipment") {
         player.message("Please wait till you've finished performing your current emote.")
         return@inventoryItem
     }
-    player.setGraphic("emote_chocatrice_cape")
+    player.gfx("emote_chocatrice_cape")
     player.animate("emote_chocatrice_cape")
 }
 
@@ -205,7 +205,7 @@ inventoryItem("Juggle", "squirrel_ears", "worn_equipment") {
         player.message("Please wait till you've finished performing your current emote.")
         return@inventoryItem
     }
-    player.setGraphic("emote_squirrel_ears")
+    player.gfx("emote_squirrel_ears")
     player.animate("emote_squirrel_ears")
 }
 
@@ -228,7 +228,7 @@ inventoryOptions("Play-with", item = "eek") {
         player.message("Please wait till you've finished performing your current emote.")
         return@inventoryOptions
     }
-    player.setGraphic("play_with_eek")
+    player.gfx("play_with_eek")
     player.animate("play_with_eek")
 }
 

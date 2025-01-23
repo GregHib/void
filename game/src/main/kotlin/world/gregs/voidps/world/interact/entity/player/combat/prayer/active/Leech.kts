@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
@@ -135,9 +134,9 @@ fun cast(source: Character, target: Character, sap: Boolean, name: String) {
     source.queue("leech", 1) {
         val type = if (sap) "sap" else "leech"
         source.setAnimation(type)
-        source.setGraphic("cast_${type}_${name}")
+        source.gfx("cast_${type}_${name}")
         val time = source.shoot("proj_${type}_${name}", target)
-        target.setGraphic("land_${type}_${name}", delay = time)
+        target.gfx("land_${type}_${name}", delay = time)
     }
 }
 

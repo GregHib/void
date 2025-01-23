@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.timer.toTicks
@@ -30,9 +29,9 @@ combatPrepare("melee") { player ->
 
 specialAttack("shove") { player ->
     player.setAnimation("${id}_special")
-    player.setGraphic("${id}_special")
+    player.gfx("${id}_special")
     val duration = TimeUnit.SECONDS.toTicks(3)
-    target.setGraphic("shove_hit")
+    target.gfx("shove_hit")
     target.freeze(duration)
     player["delay"] = duration
     player.hit(target, damage = -1) // Hit with no damage so target can auto-retaliate
