@@ -23,7 +23,7 @@ npcMove("zamorak_crafter*", to = Tile(3314, 4811)) {
         npc.face(altar)
     }
     delay(4)
-    npc.setAnimation("bind_runes")
+    npc.anim("bind_runes")
     npc.gfx("bind_runes")
     delay(4)
     val patrol = patrols.get("zamorak_crafter_to_bank")

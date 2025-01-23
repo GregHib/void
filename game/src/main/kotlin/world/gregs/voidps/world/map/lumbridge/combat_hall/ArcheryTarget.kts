@@ -56,7 +56,7 @@ fun swing(player: Player, obj: GameObject, delay: Int) {
             player.ammo = "training_arrows"
             player.equipment.remove(player.ammo)
             player.face(obj)
-            player.setAnimation("bow_accurate")
+            player.anim("bow_accurate")
             player.gfx("training_arrows_shoot")
             // We're going to ignore success check as we have no [Character] to check against
             val maxHit = Damage.maximum(player, player, "range", weapon)

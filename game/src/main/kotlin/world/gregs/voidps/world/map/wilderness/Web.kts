@@ -29,6 +29,6 @@ itemOnObjectOperate(obj = "web*") {
 }
 
 fun slash(player: Player, target: GameObject) {
-    player.setAnimation("dagger_slash")
+    player.anim("dagger_slash")
     target.replace("web_slashed", ticks = TimeUnit.MINUTES.toTicks(1))
 }

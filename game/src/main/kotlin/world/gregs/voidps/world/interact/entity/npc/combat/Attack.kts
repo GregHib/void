@@ -23,7 +23,7 @@ npcCombatSwing { npc ->
         npc.mode = Retreat(npc, target)
         return@npcCombatSwing
     }
-    npc.setAnimation(attackAnimation(npc))
+    npc.anim(attackAnimation(npc))
     (target as? Player)?.playSound(attackSound(npc))
     npc.hit(target)
 }

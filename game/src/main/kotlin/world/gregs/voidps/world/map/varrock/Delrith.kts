@@ -151,7 +151,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     }
     delay(1)
     for (wizard in wizards) {
-        wizard.setAnimation("summon_demon")
+        wizard.anim("summon_demon")
     }
 
     player.clearCamera()
@@ -186,7 +186,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     }
     delay(2)
     npcs.index(delrith)
-    delrith.setAnimation("delrith_appear")
+    delrith.anim("delrith_appear")
     delay(2)
     player.playSound("demon_slayer_break_table", delay = 10)
     player.playSound("demon_slayer_delrith_appear")
@@ -254,7 +254,7 @@ npcOperate("*", "delrith") {
             player<Talk>(text, largeHead = true, clickToContinue = false)
             val expected = DemonSlayerSpell.getWord(player, index + 1)
             if (selected != expected) {
-                target.setAnimation("delrith_continue")
+                target.anim("delrith_continue")
                 delay(1)
                 correct = false
                 npcs.remove(target)
@@ -265,7 +265,7 @@ npcOperate("*", "delrith") {
             }
         }
         if (correct) {
-            target.setAnimation("delrith_death")
+            target.anim("delrith_death")
             player.playSound("demon_slayer_delrith_banished")
             statement("Delrith is sucked into the vortex...", clickToContinue = false)
             delay(14)
@@ -291,7 +291,7 @@ npcLevelChange("delrith", Skill.Constitution) { npc ->
 }
 
 fun Context<Player>.questComplete() {
-    player.setAnimation("silverlight_showoff")
+    player.anim("silverlight_showoff")
     player.gfx("silverlight_sparkle")
     player.playSound("equip_silverlight")
     player.playJingle("quest_complete_1")

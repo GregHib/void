@@ -98,7 +98,7 @@ fun Player.make(item: Item, gem: String, amount: Int) {
         message("You need some gold bars in order to make a ${item.id.toLowerSpaceCase()}.")
         return
     }
-    setAnimation("cook_range")
+    anim("cook_range")
     weakQueue("make_jewllery", 3) {
         if (gem != "gold" && !inventory.remove(gem)) {
             message("You need some ${gem.toLowerSpaceCase()} in order to make a ${item.id.toLowerSpaceCase()}.")

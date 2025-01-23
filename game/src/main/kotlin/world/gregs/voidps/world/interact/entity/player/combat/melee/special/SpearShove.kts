@@ -27,7 +27,7 @@ combatPrepare("melee") { player ->
 }
 
 specialAttack("shove") { player ->
-    player.setAnimation("${id}_special")
+    player.anim("${id}_special")
     player.gfx("${id}_special")
     val duration = TimeUnit.SECONDS.toTicks(3)
     target.gfx("shove_hit")

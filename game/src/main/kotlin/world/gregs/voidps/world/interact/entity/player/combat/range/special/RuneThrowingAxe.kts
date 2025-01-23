@@ -23,7 +23,7 @@ val lineOfSight: LineValidator by inject()
 specialAttack("chainhit") { player ->
     val ammo = player.ammo
     player["chain_hits"] = mutableSetOf(target.index)
-    player.setAnimation("rune_throwing_axe_special")
+    player.anim("rune_throwing_axe_special")
     player.gfx("${ammo}_special_throw")
     val time = player.shoot(id = "${ammo}_special", target = target)
     player.hit(target, delay = time)

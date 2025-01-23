@@ -45,7 +45,7 @@ objectOperate("Mine", "abyss_rock") {
         player.message("You need a pickaxe for which you have the required Mining level to mine this rock.")
         return@objectOperate
     }
-    player.setAnimation("${pickaxe.id}_swing_low")
+    player.anim("${pickaxe.id}_swing_low")
     delay(7)
     val success = Level.success(player.levels.get(Skill.Mining), chance)
     if (!success) {
@@ -83,7 +83,7 @@ objectOperate("Chop", "abyss_tendrils") {
         player.message("You do not have a hatchet that you have the Woodcutting level to use.")
         return@objectOperate
     }
-    player.setAnimation("${hatchet.id}_chop")
+    player.anim("${hatchet.id}_chop")
     delay(2)
     val success = Level.success(player.levels.get(Skill.Woodcutting), chance)
     if (!success) {
@@ -95,7 +95,7 @@ objectOperate("Chop", "abyss_tendrils") {
     player.turnCamera(target.tile, 0, 10, 10)
     delay(2)
     player["abyss_obstacles"] = 14
-    player.setAnimation("${hatchet.id}_chop")
+    player.anim("${hatchet.id}_chop")
     delay(2)
     player["abyss_obstacles"] = 15
     val (walkTile, teleTile) = positions[target.tile]!!
@@ -123,7 +123,7 @@ objectOperate("Burn-down", "abyss_boil") {
         player.message("...but fail to burn it out of your way.", ChatType.Filter)
         return@objectOperate
     }
-    player.setAnimation("light_fire")
+    player.anim("light_fire")
     val offset = target.tile.add(direction(target.tile))
     player.moveCamera(offset, 2500, 0, 0)
     player.turnCamera(target.tile, 0, 10, 10)
@@ -154,13 +154,13 @@ objectOperate("Distract", "abyss_eyes") {
         player.message("...but fail to distract them enough to get past.", ChatType.Filter)
         return@objectOperate
     }
-    player.setAnimation(distractions.random())
+    player.anim(distractions.random())
     val offset = target.tile.add(direction(target.tile))
     player.moveCamera(offset, 2500, 0, 0)
     player.turnCamera(target.tile, 0, 10, 10)
     delay(4)
     player["abyss_obstacles"] = 18
-    player.setAnimation(distractions.random())
+    player.anim(distractions.random())
     delay(2)
     player["abyss_obstacles"] = 19
     val (walkTile, teleTile) = positions[target.tile]!!
@@ -185,17 +185,17 @@ val distractions = arrayOf(
 objectOperate("Squeeze-through", "abyss_gap") {
     player.message("You attempt to squeeze through the narrow gap...", ChatType.Filter)
     delay(4)
-    player.setAnimation("abyss_kneel")
+    player.anim("abyss_kneel")
     delay(2)
     val success = Level.success(player.levels.get(Skill.Agility), chance)
     if (!success) {
         player.message("...but you are not agile enough to get through the gap.", ChatType.Filter)
-        player.setAnimation("abyss_stand")
+        player.anim("abyss_stand")
         return@objectOperate
     }
     delay(2)
     player.message("...and you manage to crawl through.", ChatType.Filter)
-    player.setAnimation("crawling_cave")
+    player.anim("crawling_cave")
     val (_, teleTile) = positions[target.tile]!!
     player.tele(teleTile)
     val offset = target.tile.add(direction(target.tile))

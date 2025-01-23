@@ -20,7 +20,7 @@ npcTimerStart("eat_grass") { npc ->
 npcTimerTick("eat_grass") { npc ->
     if (npc.mode == EmptyMode) {
         npc.say("Moo")
-        npc.setAnimation("cow_eat_grass")
+        npc.anim("cow_eat_grass")
     }
 }
 

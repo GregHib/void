@@ -82,7 +82,7 @@ npcOperate("*", "fishing_spot_*") {
         if (remaining < 0) {
             player.face(target)
             val rod = tackle == "fishing_rod" || tackle == "fly_fishing_rod" || tackle == "barbarian_rod"
-            player.setAnimation("fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle}")
+            player.anim("fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle}")
             pause(5)
         } else if (remaining > 0) {
             return@npcOperate

@@ -74,7 +74,7 @@ interfaceOption(id = "emotes") {
                     player.playJingle(id)
                 }
                 player.gfx("emote_$id")
-                character.setAnimation("emote_$id")
+                character.anim("emote_$id")
             }
         }
     }

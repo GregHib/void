@@ -243,7 +243,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     player.running = true
     player.stepOver(Tile(3227, 3367).add(offset))
     player.face(Direction.NORTH)
-    player.setAnimation("wally_demon_slay")
+    player.anim("wally_demon_slay")
     player.playSound("demon_slayer_wally_sword", delay = 10)
     delay(4)
 
@@ -267,7 +267,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     player.playSound("equip_silverlight")
     player.playJingle("quest_complete_1")
     player.face(Direction.SOUTH_WEST)
-    player.setAnimation("silverlight_showoff")
+    player.anim("silverlight_showoff")
     player.gfx("silverlight_sparkle")
     npc<Pleased>("wally", "I am the greatest demon slayer EVER!")
 

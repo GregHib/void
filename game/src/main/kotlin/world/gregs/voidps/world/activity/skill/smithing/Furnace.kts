@@ -97,7 +97,7 @@ fun smelt(player: Player, target: GameObject, id: String, amount: Int) {
         return
     }
     player.face(furnaceSide(player, target))
-    player.setAnimation("furnace_smelt")
+    player.anim("furnace_smelt")
     player.playSound("smelt_bar")
     player.message(smelting.message, ChatType.Filter)
     player.weakQueue("smelting", 4) {

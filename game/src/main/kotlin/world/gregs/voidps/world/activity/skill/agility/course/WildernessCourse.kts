@@ -93,7 +93,7 @@ suspend fun SuspendableContext<Player>.fallIntoPit() {
     player.walkOver(Tile(2998, 3924))
     player.clearRenderEmote()
     player.face(Direction.NORTH)
-    player.setAnimation("rope_walk_fall_down")
+    player.anim("rope_walk_fall_down")
     player.message("You lose your footing and fall into the wolf pit.", ChatType.Filter)
     delay()
     player.exactMoveDelay(Tile(3001, 3923), 25, Direction.SOUTH)
@@ -107,11 +107,11 @@ objectOperate("Squeeze-through", "wilderness_obstacle_pipe") {
     if (player.tile.y == 3938) {
         player.walkTo(target.tile.addY(-1))
     }
-    player.setAnimation("climb_through_pipe", delay = 30)
+    player.anim("climb_through_pipe", delay = 30)
     player.exactMoveDelay(Tile(3004, 3940), startDelay = 30, delay = 96, direction = Direction.NORTH)
     player.tele(3004, 3947)
     delay()
-    player.setAnimation("climb_through_pipe", delay = 30)
+    player.anim("climb_through_pipe", delay = 30)
     player.exactMoveDelay(Tile(3004, 3950), startDelay = 30, delay = 96, direction = Direction.NORTH)
     player.exp(Skill.Agility, 12.5)
     player.agilityStage(1)
@@ -123,7 +123,7 @@ objectOperate("Swing-on", "wilderness_rope_swing") {
     player.face(Direction.NORTH)
     val disable = Settings["agility.disableCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), 200..250)
-    player.setAnimation("rope_swing")
+    player.anim("rope_swing")
     target.animate("swing_rope")
     delay()
     if (success) {
@@ -145,12 +145,12 @@ objectOperate("Swing-on", "wilderness_rope_swing") {
 objectOperate("Cross", "wilderness_stepping_stone") {
     player.message("You carefully start crossing the stepping stones...", ChatType.Filter)
     for (i in 0..5) {
-        player.setAnimation("stepping_stone_jump")
+        player.anim("stepping_stone_jump")
         player.playSound("jump")
         player.exactMoveDelay(target.tile.addX(-i), delay = 30, direction = Direction.WEST, startDelay = 15)
         delay(1)
         if (i == 2 && !Settings["agility.disableCourseFailure", false] && !Level.success(player.levels.get(Skill.Agility), 180..250)) {
-            player.setAnimation("rope_walk_fall_down")
+            player.anim("rope_walk_fall_down")
             player.face(Direction.WEST)
             player.clearRenderEmote()
             player.message("...You lose your footing and fall into the lava.", ChatType.Filter)
@@ -186,7 +186,7 @@ objectOperate("Walk-across", "wilderness_log_balance") {
         player.renderEmote("beam_balance")
         player.walkOver(Tile(2998, 3945))
         player.message("You slip and fall onto the spikes below.", type = ChatType.Filter)
-        player.setAnimation("rope_walk_fall_down")
+        player.anim("rope_walk_fall_down")
         player.face(Direction.NORTH)
         delay()
         player.tele(2998, 10346)

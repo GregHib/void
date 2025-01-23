@@ -19,7 +19,7 @@ object EssenceMine {
         npc.gfx("curse_cast")
         npc.face(player)
         if (!npc.contains("old_model")) {
-            npc.setAnimation("curse")
+            npc.anim("curse")
         }
         player.gfx("curse_hit")
         player.shoot("curse", player.tile)

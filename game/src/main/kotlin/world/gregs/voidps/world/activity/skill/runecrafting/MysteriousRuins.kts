@@ -64,7 +64,7 @@ itemOnObjectOperate("*_talisman", "*_altar_ruins") {
     val id = target.def.transforms?.getOrNull(1) ?: return@itemOnObjectOperate
     val definition = objectDefinitions.get(id)
     player.message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")
-    player.setAnimation("bend_down")
+    player.anim("bend_down")
     delay(2)
     player.mode = Interact(player, target, ObjectOption(player, target, definition, "Enter"), approachRange = -1)
 }

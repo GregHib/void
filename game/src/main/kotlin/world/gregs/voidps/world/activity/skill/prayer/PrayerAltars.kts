@@ -19,7 +19,7 @@ fun ObjectOption<Player>.pray() {
         player.message("You already have full Prayer points.")
     } else {
         player.levels.set(Skill.Prayer, player.levels.getMax(Skill.Prayer))
-        player.setAnimation("altar_pray")
+        player.anim("altar_pray")
         player.message("You recharge your Prayer points.")
         player["prayer_point_power_task"] = true
     }

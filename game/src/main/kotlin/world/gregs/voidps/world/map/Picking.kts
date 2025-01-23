@@ -17,7 +17,7 @@ val GameObject.pickable: Pickable?
 objectOperate("Pick") {
     val pickable: Pickable = target.pickable ?: return@objectOperate
     if (player.inventory.add(pickable.item)) {
-        player.setAnimation("climb_down")
+        player.anim("climb_down")
         target.remove(TimeUnit.SECONDS.toTicks(pickable.respawnDelay))
         player.message(pickable.message)
     } else {

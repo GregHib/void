@@ -22,14 +22,14 @@ import kotlin.random.nextInt
 combatSwing("hand_cannon", "range") { player ->
     val ammo = player.equipped(EquipSlot.Ammo)
     player.ammo = ammo.id
-    player.setAnimation("hand_cannon_shoot")
+    player.anim("hand_cannon_shoot")
     player.gfx("hand_cannon_shoot")
     val time = player.shoot(id = player.ammo, target = target)
     player.hit(target, delay = time)
     if (player.specialAttack) {
         val rapid = player.attackType == "rapid"
         player.strongQueue("hit", 2) {
-            player.setAnimation("hand_cannon_special")
+            player.anim("hand_cannon_special")
             player.gfx("hand_cannon_special")
             player.shoot(id = player.ammo, target = target)
             player.hit(target, delay = if (rapid) 30 else 60)
@@ -42,7 +42,7 @@ fun explode(player: Player, chance: Double) {
     if (random.nextDouble() >= chance || !player.equipment.remove(EquipSlot.Weapon.index, "hand_cannon")) {
         return
     }
-    player.setAnimation("hand_cannon_explode")
+    player.anim("hand_cannon_explode")
     player.gfx("hand_cannon_explode")
     player.weapon = Item.EMPTY
     player.damage(random.nextInt(10..160))

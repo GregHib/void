@@ -94,7 +94,7 @@ fun setupAssisted(player: Player, assistant: Player) {
     player["assistant"] = assistant
     player["assist_point"] = player.tile
     setAssistAreaStatus(player, true)
-    player.setAnimation("assist", delay = 60)
+    player.anim("assist", delay = 60)
     player.face(assistant)
 }
 
@@ -109,7 +109,7 @@ fun setupAssistant(player: Player, assisted: Player) {
     applyExistingSkillRedirects(player, assisted)
     setAssistAreaStatus(player, true)
     player.sendVariable("total_xp_earned")
-    player.setAnimation("assist")
+    player.anim("assist")
     player.gfx("assist")
     toggleInventory(player, enabled = false)
 }

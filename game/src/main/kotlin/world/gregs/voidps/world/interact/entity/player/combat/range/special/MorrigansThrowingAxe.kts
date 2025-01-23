@@ -8,7 +8,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 specialAttack("hamstring") { player ->
     val ammo = player.ammo
-    player.setAnimation("throw_morrigans_throwing_axe_special")
+    player.anim("throw_morrigans_throwing_axe_special")
     player.gfx("${ammo}_special")
     val time = player.shoot(id = ammo, target = target, height = 15)
     if (player.hit(target, delay = time) != -1) {

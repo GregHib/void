@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 specialAttack("phantom_strike") { player ->
     val ammo = player.ammo
-    player.setAnimation("throw_javelin")
+    player.anim("throw_javelin")
     player.gfx("${ammo}_special")
     val time = player.shoot(id = ammo, target = target)
     val damage = player.hit(target, delay = time)

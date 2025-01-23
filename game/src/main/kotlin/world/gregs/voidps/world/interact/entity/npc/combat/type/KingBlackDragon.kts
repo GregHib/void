@@ -21,20 +21,20 @@ npcCombatSwing("king_black_dragon") { npc ->
     val canMelee = CharacterTargetStrategy(npc).reached(target)
     when (random.nextInt(if (canMelee) 3 else 2)) {
         0 -> {
-            npc.setAnimation("dragon_breath")
+            npc.anim("dragon_breath")
             target.playSound("dragon_breath")
             nearestTile(npc, target).shoot("dragon_breath", target)
             npc.hit(target, type = "dragonfire")
         }
         1 -> {
             val type = specials.random()
-            npc.setAnimation("dragon_breath")
+            npc.anim("dragon_breath")
             target.playSound("dragon_breath_$type")
             nearestTile(npc, target).shoot("dragon_breath_$type", target)
             npc.hit(target, type = "dragonfire", spell = type, special = true)
         }
         else -> {
-            npc.setAnimation("dragon_attack")
+            npc.anim("dragon_attack")
             target.playSound("dragon_attack")
             npc.hit(target, type = "melee")
         }

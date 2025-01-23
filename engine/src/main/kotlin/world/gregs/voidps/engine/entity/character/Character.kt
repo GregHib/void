@@ -113,9 +113,10 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
 
 
     /**
-     * Set the animation (aka sequence) of the character model
+     * Temporarily perform animation [id] (aka sequence)
+     * with optional [delay] and [override]ing of the previous animation
      */
-    fun setAnimation(id: String, delay: Int? = null, override: Boolean = false): Int {
+    fun anim(id: String, delay: Int? = null, override: Boolean = false): Int {
         val definition = get<AnimationDefinitions>().getOrNull(id) ?: return -1
         val anim = visuals.animation
         if (!override && definition.priority < anim.priority) {

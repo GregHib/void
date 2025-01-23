@@ -27,7 +27,7 @@ objectOperate("Milk", "prized_dairy_cow") {
         player.message("You've already got some top-quality milk; you should take it to the cook.")
         return@objectOperate
     }
-    player.setAnimation("milk_cow")
+    player.anim("milk_cow")
     player.playSound("milk_cow")
     delay(5)
     player.inventory.replace("bucket", "top_quality_milk")
@@ -36,7 +36,7 @@ objectOperate("Milk", "prized_dairy_cow") {
 
 objectOperate("Milk", "dairy_cow") {
     if (player.holdsItem("bucket")) {
-        player.setAnimation("milk_cow")
+        player.anim("milk_cow")
         player.playSound("milk_cow")
         delay(5)
         player.inventory.replace("bucket", "bucket_of_milk")

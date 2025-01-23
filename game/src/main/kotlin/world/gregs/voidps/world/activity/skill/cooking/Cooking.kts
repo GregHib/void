@@ -75,7 +75,7 @@ fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked, offs
         return
     }
     face(obj)
-    setAnimation("cook_${if (obj.id.startsWith("fire_")) "fire" else "range"}")
+    anim("cook_${if (obj.id.startsWith("fire_")) "fire" else "range"}")
     weakQueue("cooking", offset ?: 4) {
         val level = levels.get(Skill.Cooking)
         val chance = when {

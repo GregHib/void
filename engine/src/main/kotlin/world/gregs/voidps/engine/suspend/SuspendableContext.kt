@@ -50,7 +50,7 @@ interface SuspendableContext<C : Character> : Context<C> {
      * @param override the current animation
      */
     suspend fun Character.animDelay(id: String, override: Boolean = false) {
-        val ticks = setAnimation(id, override = override)
+        val ticks = anim(id, override = override)
         delay(ticks)
     }
 }

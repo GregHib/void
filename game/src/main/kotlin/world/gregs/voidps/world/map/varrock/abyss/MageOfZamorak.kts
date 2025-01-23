@@ -276,11 +276,11 @@ fun teleport(player: Player, target: NPC) {
     player.queue("teleport", onCancel = null) {
         target.face(player)
         target.gfx("tele_other")
-        target.setAnimation("tele_other")
+        target.anim("tele_other")
         player.playSound("tele_other_cast")
         target.say("Veniens! Sallakar! Rinnesset!")
         delay(2)
-        player.setAnimation("lunar_teleport")
+        player.anim("lunar_teleport")
         player.gfx("tele_other_receive")
         player.playSound("teleport_all")
         delay(2)

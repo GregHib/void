@@ -72,7 +72,7 @@ fun Player.make(animation: String, obj: GameObject, item: Item, id: String, data
         softTimers.stop("pottery")
         return
     }
-    setAnimation(animation)
+    anim(animation)
     weakQueue("make_pottery", 3) {
         if (!inventory.replace(item.id, id)) {
             message("You need some ${item.id.toLowerSpaceCase()} in order to make a ${id.toLowerSpaceCase()}.")

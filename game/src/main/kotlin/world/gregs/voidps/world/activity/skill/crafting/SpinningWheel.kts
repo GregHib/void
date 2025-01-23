@@ -99,7 +99,7 @@ fun Player.spin(obj: GameObject, fibre: Item, amount: Int) {
     if (!has(Skill.Crafting, data.level)) {
         return
     }
-    setAnimation("spinning")
+    anim("spinning")
     weakQueue("spin", 3) {
         if (!inventory.replace(fibre.id, data.to)) {
             message("You need some ${fibre.id.toLowerSpaceCase()} in order to make a ${data.to.toLowerSpaceCase()}.")

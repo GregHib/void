@@ -55,7 +55,7 @@ val initialCaveTile: Tile = Tile(1752, 5237, 0)
 
 inventoryItem("Dig", "spade") {
     val playerTile: Tile = player.tile
-    player.setAnimation("dig_with_spade")
+    player.anim("dig_with_spade")
     if (!acceptedTiles.contains(playerTile)) {
         return@inventoryItem
     }
@@ -63,7 +63,7 @@ inventoryItem("Dig", "spade") {
 }
 
 objectOperate("Climb", "giant_mole_lair_escape_rope") {
-    player.setAnimation("climb_up")
+    player.anim("climb_up")
     player.tele(acceptedTiles.random())
 }
 
@@ -105,13 +105,13 @@ fun giantMoleBurrow(mole: NPC) {
         if (shouldThrowDirt()) {
             handleDirtOnScreen(mole.tile)
         }
-        mole.setAnimation("giant_mole_burrow")
+        mole.anim("giant_mole_burrow")
         areaSound("giant_mole_burrow_down", mole.tile)
         areaGraphic("burrow_dust", tileToDust)
         pause(1)
         val newLocation = gianMoleSpawns.random(mole)
         mole.tele(newLocation!!)
-        mole.setAnimation("mole_burrow_up")
+        mole.anim("mole_burrow_up")
     }
 }
 

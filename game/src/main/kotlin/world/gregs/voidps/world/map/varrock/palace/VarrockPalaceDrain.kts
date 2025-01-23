@@ -20,7 +20,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 val logger = InlineLogger()
 
 objectOperate("Search", "varrock_palace_drain") {
-    player.setAnimation("climb_down")
+    player.anim("climb_down")
     if (player["demon_slayer_drain_dislodged", false] || player.ownsItem("silverlight_key_sir_prysin")) {
         player.message("Nothing interesting seems to have been dropped down here today.")
     } else if (player.quest("demon_slayer") == "unstarted") {
@@ -51,7 +51,7 @@ itemOnObjectOperate("*of_water", "varrock_palace_drain") {
     }
     player["demon_slayer_drain_dislodged"] = true
     player.message("You pour the liquid down the drain.")
-    player.setAnimation("toss_water")
+    player.anim("toss_water")
     player.gfx("toss_water")
     player.playSound("demon_slayer_drain")
     player.playSound("demon_slayer_key_fall")

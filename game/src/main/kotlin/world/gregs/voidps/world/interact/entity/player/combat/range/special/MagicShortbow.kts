@@ -7,7 +7,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 specialAttack("snapshot") { player ->
-    player.setAnimation("${id}_special")
+    player.anim("${id}_special")
     player.gfx("${id}_special")
     player.gfx("${id}_special", delay = 30)
     player.playSound("${id}_special")

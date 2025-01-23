@@ -25,7 +25,7 @@ itemOnItem("chisel", "ring_from_jeffery") { player: Player ->
     } else {
         player.softQueue("engraving") {
             item("dororans_engraved_ring", 400, "You engrave 'Gudrun the Fair, Gudrun the Fiery' onto the ring.")
-            player.setAnimation("engrave")
+            player.anim("engrave")
             player.experience.add(Skill.Crafting, 125.0)
             player.inventory.replace("ring_from_jeffery", "dororans_engraved_ring")
             player["gunnars_ground"] = "engraved_ring"
@@ -65,7 +65,7 @@ suspend fun SuspendableContext<Player>.poem() {
             return
         }
         player.inventory.add("gunnars_ground")
-        player.setAnimation("pocket_item")
+        player.anim("pocket_item")
         item("gunnars_ground", 600, "Dororan gives you another poem.")
         npc<Talk>("Try not to lose this one.")
         return
@@ -88,7 +88,7 @@ suspend fun SuspendableContext<Player>.poemDone() {
     }
     player["gunnars_ground"] = "poem"
     player.inventory.add("gunnars_ground")
-    player.setAnimation("pocket_item")
+    player.anim("pocket_item")
     item("gunnars_ground", 400, "Dororan hands you the poem.")
     choice {
         option<Talk>("I'll get right on it.")
@@ -803,7 +803,7 @@ suspend fun SuspendableContext<Player>.started() {
     }
     player["gunnars_ground"] = "love_poem"
     player.inventory.add("love_poem")
-    player.setAnimation("pocket_item")
+    player.anim("pocket_item")
     item("love_poem", 600, "Dororan gives you a poem.")
     choice {
         option<Neutral>("I have some questions.") {
@@ -861,7 +861,7 @@ suspend fun SuspendableContext<Player>.lovePoem() {
             return
         }
         player.inventory.add("ring_from_jeffery")
-        player.setAnimation("pocket_item")
+        player.anim("pocket_item")
         // player.playSound("") // TODO
         item("ring_from_jeffery", 600, "Dororan gives you back the ring.")
         engrave()
@@ -883,7 +883,7 @@ suspend fun SuspendableContext<Player>.lovePoem() {
                     return@option
                 }
                 player.inventory.add("love_poem")
-                player.setAnimation("pocket_item")
+                player.anim("pocket_item")
                 item("love_poem", 600, "Dororan gives you another poem.")
                 npc<Talk>("Try to be more careful with this one.")
                 return@option
@@ -951,7 +951,7 @@ suspend fun SuspendableContext<Player>.haveChisel() {
         statement("You don't have room for the chisel. Speak to Dororan again when you have room.")
     } else {
         player.inventory.add("chisel")
-        player.setAnimation("pocket_item")
+        player.anim("pocket_item")
         item("chisel", 600, "Dororan gives you a chisel.")
     }
     choice {
@@ -1089,7 +1089,7 @@ npcOperate("Talk-to", "dororan_after_quest") {
                                         npc<Sad>("That's a shame. Maybe you can try again another time.")
                                         return@option
                                     }
-                                    player.setAnimation("engrave")
+                                    player.anim("engrave")
                                     player.experience.add(Skill.Crafting, 2000.0)
                                     player["dororan_ruby_bracelet"] = 1
                                     items( "chisel","ruby_bracelet","You carefully engrave 'With beauty blessed' onto the ruby bracelet.")
@@ -1119,7 +1119,7 @@ npcOperate("Talk-to", "dororan_after_quest") {
                                 npc<Sad>("That's a shame. Maybe you can try again another time.")
                                 return@option
                             }
-                            player.setAnimation("engrave")
+                            player.anim("engrave")
                             player.experience.add(Skill.Crafting, 10000.0)
                             player["dororan_dragonstone_necklace"] = 1
                             items( "chisel","dragonstone_necklace","You skillfully engrave 'Gudrun' onto the dragonstone necklace.")
@@ -1141,7 +1141,7 @@ npcOperate("Talk-to", "dororan_after_quest") {
                                 npc<Sad>("That's a shame. Maybe you can try again another time.")
                                 return@option
                             }
-                            player.setAnimation("engrave")
+                            player.anim("engrave")
                             player.experience.add(Skill.Crafting, 20000.0)
                             player["dororan_onyx_amulet"] = 1
                             items( "chisel","onyx_amulet","You expertly engrave 'The most beautiful girl in the room' onto the onyx amulet.")
@@ -1181,7 +1181,7 @@ suspend fun SuspendableContext<Player>.someThingElse() {
                 return@option
             }
             player.inventory.add("gunnars_ground")
-            player.setAnimation("pocket_item")
+            player.anim("pocket_item")
             item("gunnars_ground", 600, "Dororan gives you a copy of the poem.")
             npc<Pleased>("There you go!")
         }
@@ -1192,7 +1192,7 @@ suspend fun SuspendableContext<Player>.someThingElse() {
                     statement("you don't have room for the boots.")
                     return@option
                 }
-                player.setAnimation("pocket_item")
+                player.anim("pocket_item")
                 player.inventory.add("swanky_boots")
                 item("swanky_boots", 600, "Dororan gives you some more boots.")
                 npc<Happy>("Be more careful with these ones! I don't have an infinite supply.")
@@ -1210,7 +1210,7 @@ suspend fun SuspendableContext<Player>.giveRing(): Boolean {
         return false
     }
     player.inventory.add("dororans_engraved_ring")
-    player.setAnimation("pocket_item")
+    player.anim("pocket_item")
     item("dororans_engraved_ring", 400, "Dororan hands you back the engraved ring.")
     return true
 }

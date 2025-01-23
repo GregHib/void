@@ -185,7 +185,7 @@ suspend fun PlayerChoice.justTellMe(): Unit = option<Talk>("Just tell me if you 
 
 suspend fun TargetInteraction<Player, NPC>.startSpell() {
     npc<Neutral>("Hurrah! That's all 25 sets of bones.")
-    target.setAnimation("traiborn_bone_spell")
+    target.anim("traiborn_bone_spell")
     target.gfx("traiborn_bone_spell")
     player.playSound("demon_slayer_bone_spell")
     npc<Uncertain>("Wings of dark and colour too, Spreading in the morning dew; Locked away I have a key; Return it now, please, unto me.")
@@ -196,7 +196,7 @@ suspend fun TargetInteraction<Player, NPC>.startSpell() {
     target.clearWatch()
     target.face(obj)
     delay(1)
-    target.setAnimation("open_chest")
+    target.anim("open_chest")
     player.playSound("chest_open")
     delay(1)
     player.inventory.add("silverlight_key_wizard_traiborn")

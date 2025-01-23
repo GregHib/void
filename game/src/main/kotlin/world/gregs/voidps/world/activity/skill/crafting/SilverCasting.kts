@@ -105,7 +105,7 @@ fun Player.make(item: Item, amount: Int) {
         message("You have run out of silver bars to make another ${itemDefinitions.get(data.item).name}.")
         return
     }
-    setAnimation("cook_range")
+    anim("cook_range")
     weakQueue("cast_silver", 3) {
         inventory.replace("silver_bar", data.item)
         exp(Skill.Crafting, data.xp)

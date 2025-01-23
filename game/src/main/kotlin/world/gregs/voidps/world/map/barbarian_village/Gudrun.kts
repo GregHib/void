@@ -79,8 +79,8 @@ suspend fun SuspendableContext<Player>.cutscene() {
     delay(4)
     player.tele(Tile(3078, 3435).add(offset), clearInterfaces = false)
     val dororan = npcs.add("dororan_cutscene", Tile(3079, 3435).add(offset), Direction.SOUTH) ?: return
-    dororan.setAnimation("dororan_lean_on_door")
-    player.setAnimation("player_lean_on_door")
+    dororan.anim("dororan_lean_on_door")
+    player.anim("player_lean_on_door")
     dororan.face(Direction.NORTH)
     player.face(Direction.NORTH)
     player.moveCamera(Tile(3079, 3430).add(offset), 280)
@@ -88,7 +88,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     delay(2)
     player.open("fade_in")
     npc<Talk>("dororan_cutscene", "How long have they been in there?")
-    player.setAnimation("player_calm_doroan")
+    player.anim("player_calm_doroan")
     choice {
         option<Neutral>("They're just starting.") {
             cutsceneMenu(instance)
@@ -103,11 +103,11 @@ suspend fun SuspendableContext<Player>.cutsceneMenu(instance: Region) {
     npc<Sad>("dororan_cutscene", "This isn't going to work.")
     choice {
         option<Neutral>("Why's that?") {
-            player.setAnimation("player_calm_doroan")
+            player.anim("player_calm_doroan")
             cutsceneMenu2(instance)
         }
         option<Neutral>("You're so pessimistic.") {
-            player.setAnimation("player_calm_doroan")
+            player.anim("player_calm_doroan")
             cutsceneMenu2(instance)
         }
     }
@@ -117,12 +117,12 @@ suspend fun SuspendableContext<Player>.cutsceneMenu2(instance: Region) {
     npc<Cry>("dororan_cutscene", "What was I thinking? You should go in there and stop them before Gudrun makes a fool of herself.")
     choice {
         option<Neutral>("Okay, I will.") {
-            player.setAnimation("player_calm_doroan")
+            player.anim("player_calm_doroan")
             npc<Sad>("dororan_cutscene", "No! Wait, stay here, it's too late now. We'll just have to see how it turns out.")
             cutsceneMenu3(instance)
         }
         option<Neutral>("Don't be silly.") {
-            player.setAnimation("player_calm_doroan")
+            player.anim("player_calm_doroan")
             npc<Sad>("dororan_cutscene", "You're right, it's too late now. We'll just have to see how it turns out.")
             cutsceneMenu3(instance)
         }
@@ -131,10 +131,10 @@ suspend fun SuspendableContext<Player>.cutsceneMenu2(instance: Region) {
 
 suspend fun SuspendableContext<Player>.cutsceneMenu3(instance: Region) {
     npc<Sad>("dororan_cutscene", "I can't hear what's happening. Can you hear what's happening?")
-    player.setAnimation("player_calm_doroan")
+    player.anim("player_calm_doroan")
     player<Talk>("Gunthor is laughing at something.")
     npc<Upset>("dororan_cutscene", "He's probably considering the various tortures he has planned for me.")
-    player.setAnimation("player_calm_doroan")
+    player.anim("player_calm_doroan")
     choice {
         option<Neutral>("Why would he do that?") {
             cutsceneMenu4(instance)
@@ -148,7 +148,7 @@ suspend fun SuspendableContext<Player>.cutsceneMenu3(instance: Region) {
 suspend fun SuspendableContext<Player>.cutsceneMenu4(instance: Region) {
     npc<Talk>("dororan_cutscene", "The poem says you can honour your ancestors by settling peacefully on the land they conquered.")
     npc<Sad>("dororan_cutscene", "He'll probably just find it insulting.")
-    player.setAnimation("player_calm_doroan")
+    player.anim("player_calm_doroan")
     choice {
         option<Neutral>("Now's your chance to find out.") {
             cutscenePart2(instance)
@@ -179,7 +179,7 @@ suspend fun SuspendableContext<Player>.cutscenePart2(instance: Region) {
     delay(2)
     player.open("fade_in")
     npc<Upset>("dororan_cutscene", "I hope they at least give me a decent burial.")
-    gunthor.setAnimation("gunthor_announcement")
+    gunthor.anim("gunthor_announcement")
     npc<Frustrated>("chieftain_gunthor_cutscene", "Freemen! Freemen! I have an announcement!")
     npc<Frustrated>("kjell_cutscene", "Hear the chieftain speak! Hear him!")
     npc<Frustrated>("chieftain_gunthor_cutscene", "We have always borne the legacy of our ancestors, and we have borne it with honour!")
@@ -188,8 +188,8 @@ suspend fun SuspendableContext<Player>.cutscenePart2(instance: Region) {
     npc<Mad>("haakon_the_champion_cutscene", "FOR GUNNAR!")
     npc<Frustrated>("chieftain_gunthor_cutscene", "Gunthor says: This is Gunnar's ground, bought with blood! Let it remain Gunnar's ground forever! Here we settle!")
     npc<Frustrated>("chieftain_gunthor_cutscene", "GUNNAR'S GROUND!")
-    kjell.setAnimation("kjell_cheer")
-    haakon.setAnimation("haakon_cheer")
+    kjell.anim("kjell_cheer")
+    haakon.anim("haakon_cheer")
     npc<Mad>("haakon_the_champion_cutscene", "GUNNAR'S GROUND!")
     player.open("fade_out")
     delay(4)
@@ -272,7 +272,7 @@ suspend fun SuspendableContext<Player>.poem() {
         npc<Quiz>("A scroll?")
         player<Talk>("It's a poem; a story to convince your father to settle down. You could recite it to him.")
         npc<Amazed>("Let me see that.")
-        player.setAnimation("hand_over_item")
+        player.anim("hand_over_item")
         item("gunnars_ground", 400, "You show Gudrun the poem")
         npc<Talk>("'Gunnar's Ground'")
         npc<Pleased>("Yes! I think this could work. I'll go to the longhouse right away!")
@@ -344,7 +344,7 @@ suspend fun SuspendableContext<Player>.showGudrun() {
     npc<Talk>("Yes.")
     if (player.holdsItem("dororans_engraved_ring")) {
         player<Pleased>("This is for you.")
-        player.setAnimation("hand_over_item")
+        player.anim("hand_over_item")
         item("dororans_engraved_ring", 400, "You show Gudrun the ring.")
         npc<Happy>("It's lovely! There's something written on it:")
         npc<Pleased>("'Gudrun the Fair, Gudrun the Fiery.' Is it about me?")

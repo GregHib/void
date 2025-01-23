@@ -10,7 +10,7 @@ specialAttackPrepare("rampage") { player ->
     if (!SpecialAttack.drain(player)) {
         return@specialAttackPrepare
     }
-    player.setAnimation("${id}_special")
+    player.anim("${id}_special")
     player.gfx("${id}_special")
     player.playSound("${id}_special")
     player.say("Raarrrrrgggggghhhhhhh!")

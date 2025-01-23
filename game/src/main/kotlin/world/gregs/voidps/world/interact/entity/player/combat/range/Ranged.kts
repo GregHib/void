@@ -45,7 +45,7 @@ fun swing(character: Character, target: Character) {
         }
     }
     if (style.stringId == "sling") {
-        character.setAnimation(ammo)
+        character.anim(ammo)
     }
     if (style.stringId == "crossbow") {
         ammo = if (ammo == "barbed_bolts" || ammo == "bone_bolts" || ammo == "hand_cannon_shot") ammo else "crossbow_bolt"
@@ -93,6 +93,6 @@ fun swing(character: Character, target: Character) {
     if (animation == null) {
         animation = "${style.stringId}_${character.attackType}"
     }
-    character.setAnimation(animation)
+    character.anim(animation)
     character.hit(target, delay = if (time == -1) 64 else time)
 }

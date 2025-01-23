@@ -44,7 +44,7 @@ inventoryOptions("Eat", "Drink", "Heal") {
     } else {
         player.inventory.replace(slot, item.id, replacement)
     }
-    player.setAnimation("eat_drink")
+    player.anim("eat_drink")
     if (message.isNotEmpty()) {
         player.message(message, ChatType.Filter)
     } else {

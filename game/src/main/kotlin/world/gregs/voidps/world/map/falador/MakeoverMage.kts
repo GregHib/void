@@ -217,7 +217,7 @@ npcTimerTick("makeover") { npc ->
     val toFemale = current == "makeover_mage_male"
     npc.transform = if (toFemale) "makeover_mage_female" else "makeover_mage_male"
     npc.gfx("curse_hit", delay = 15)
-    npc.setAnimation("bind_staff")
+    npc.anim("bind_staff")
     npc.softQueue("transform", 1) {
         npc.say(if (toFemale) "Ooh!" else "Aha!")
     }

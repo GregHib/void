@@ -29,7 +29,7 @@ interfaceOption("Cast", "vengeance", "lunar_spellbook") {
         return@interfaceOption
     }
     val definition = definitions.get(spell)
-    player.setAnimation(spell)
+    player.anim(spell)
     player.gfx(spell)
     player.experience.add(Skill.Magic, definition.experience)
     player["vengeance"] = true

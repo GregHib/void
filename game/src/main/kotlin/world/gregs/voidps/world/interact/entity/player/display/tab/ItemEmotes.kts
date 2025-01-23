@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.player.playerOperate
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
@@ -102,7 +101,7 @@ continueDialogue("snow_globe", "continue") { player ->
 interfaceClose("snow_globe") { player ->
     player.queue("snow_globe_close") {
         player.gfx("emote_snow_globe_flurry")
-        val ticks = player.setAnimation("emote_trample_snow")
+        val ticks = player.anim("emote_trample_snow")
         pause(ticks)
         player.message("The snow globe fills your inventory with snow!")
         player.inventory.add("snowball_2007_christmas_event", player.inventory.spaces)

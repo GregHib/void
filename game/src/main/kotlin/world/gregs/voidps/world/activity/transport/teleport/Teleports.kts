@@ -64,7 +64,7 @@ inventoryItem("*", "*_teleport") {
         if (player.inventory.remove(item.id)) {
             player.playSound("teleport_$type")
             player.gfx("teleport_$type")
-            player.setAnimation("teleport_$type")
+            player.anim("teleport_$type")
             delay(3)
             player.tele(map.random(player)!!)
             player.animDelay("teleport_land")

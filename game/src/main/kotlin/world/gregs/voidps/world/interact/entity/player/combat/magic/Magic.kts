@@ -52,14 +52,14 @@ fun castSpell(source: Character, target: Character): Boolean {
         time = source.shoot(id = spell, target = target)
     }
     if (source.weapon.def["weapon_type", ""] == "salamander" && source.spell.isBlank()) {
-        source.setAnimation("salamander_scorch")
+        source.anim("salamander_scorch")
         source.gfx("salamander_blaze")
         time = 0
     } else {
         val staff = source.weapon.def["category", ""] == "staff"
         val animation: String = if (staff && definition.contains("animation_staff")) definition["animation_staff"] else definition["animation", ""]
         val graphic: String = if (staff && definition.contains("graphic_staff")) definition["graphic_staff"] else definition["graphic", ""]
-        source.setAnimation(animation)
+        source.anim(animation)
         source.gfx(graphic)
     }
     val damage = source.hit(target, delay = if (time == -1) 64 else time)

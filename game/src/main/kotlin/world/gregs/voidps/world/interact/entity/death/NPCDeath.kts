@@ -47,7 +47,7 @@ npcDeath { npc ->
         val killer = npc.killer
         val tile = npc.tile
         npc["death_tile"] = tile
-        npc.setAnimation(deathAnimation(npc))
+        npc.anim(deathAnimation(npc))
         val name = npc.def.name.toSnakeCase()
         (killer as? Player)?.playSound(deathSound(npc))
         delay(4)

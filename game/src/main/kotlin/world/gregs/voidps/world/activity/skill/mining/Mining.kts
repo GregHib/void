@@ -69,7 +69,7 @@ objectOperate("Mine") {
         val remaining = player.remaining("action_delay")
         if (remaining < 0) {
             player.face(target)
-            player.setAnimation("${pickaxe.id}_swing_low")
+            player.anim("${pickaxe.id}_swing_low")
             player.start("action_delay", delay)
             pause(delay)
         } else if (remaining > 0) {

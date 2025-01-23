@@ -20,7 +20,7 @@ floorItemOperate("Take", "white_apron_port_sarim", override = false) {
         player.inventoryFull()
         cancel()
     } else {
-        player.setAnimation("take")
+        player.anim("take")
         player.playSound("pickup_item")
         items.remove(target)
         player.inventory.add("white_apron")

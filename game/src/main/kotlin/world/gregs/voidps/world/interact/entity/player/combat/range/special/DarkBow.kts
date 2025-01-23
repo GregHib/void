@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 specialAttack("descent_of_darkness") { player ->
     val dragon = player.ammo == "dragon_arrow"
-    player.setAnimation("bow_accurate")
+    player.anim("bow_accurate")
     player.gfx("${player.ammo}_double_shot")
     player.playSound("dark_bow_special")
     player.playSound("descent_of_${if (dragon) "dragons" else "darkness"}")
@@ -40,7 +40,7 @@ characterCombatHit("dark_bow*", "range") { character ->
 }
 
 combatSwing("dark_bow*", "range") { player ->
-    player.setAnimation("bow_accurate")
+    player.anim("bow_accurate")
     val ammo = player.ammo
     player.gfx("${ammo}_double_shot")
     val time1 = player.shoot(ammo, target, true)

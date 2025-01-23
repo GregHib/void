@@ -20,7 +20,7 @@ interfaceOption(component = "cure_group", id = "lunar_spellbook") {
         return@interfaceOption
     }
     val definition = definitions.get(spell)
-    player.setAnimation("lunar_cast_group")
+    player.anim("lunar_cast_group")
     player.experience.add(Skill.Magic, definition.experience)
     players
         .filter { other -> other.tile.within(player.tile, 1) && other.poisoned }

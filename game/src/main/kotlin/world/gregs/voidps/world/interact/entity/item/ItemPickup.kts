@@ -39,7 +39,7 @@ floorItemOperate("Take") {
         TransactionError.None -> {
             if (player.tile != target.tile) {
                 player.turn(target.tile.delta(player.tile))
-                player.setAnimation("take")
+                player.anim("take")
             }
             player.playSound("pickup_item")
         }
@@ -53,7 +53,7 @@ npcOperateFloorItem("Take") {
         logger.warn { "$npc unable to pick up $target." }
     }
     if (npc.id == "ash_cleaner") {
-        npc.setAnimation("cleaner_sweeping")
+        npc.anim("cleaner_sweeping")
         delay(2)
         npc.clearAnimation()
     }

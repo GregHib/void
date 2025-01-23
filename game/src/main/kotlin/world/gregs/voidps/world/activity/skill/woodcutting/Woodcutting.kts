@@ -68,7 +68,7 @@ objectOperate("Chop*") {
         }
         val remaining = player.remaining("action_delay")
         if (remaining < 0) {
-            player.setAnimation("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")
+            player.anim("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")
             player.start("action_delay", 3)
             pause(3)
         } else if (remaining > 0) {

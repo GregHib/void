@@ -75,7 +75,7 @@ suspend fun Interaction<Player>.lightFire(
                 player.message("You attempt to light the logs.", ChatType.Filter)
                 first = false
             }
-            player.setAnimation("light_fire")
+            player.anim("light_fire")
             player.start("action_delay", 4)
             pause(4)
         } else if (remaining > 0) {

@@ -59,7 +59,7 @@ fun fletch(player: Player, addItem: String, addItemDef: Fletching, removeItem: S
         val itemCreated = getFletched(addItem)
         player.message("You carefully cut the wood into $itemCreated.", ChatType.Game)
         player.experience.add(Skill.Fletching, addItemDef.xp)
-        player.setAnimation(addItemDef.animation)
+        player.anim(addItemDef.animation)
         fletch(player, addItem, addItemDef, removeItem, amount - 1)
     }
 }

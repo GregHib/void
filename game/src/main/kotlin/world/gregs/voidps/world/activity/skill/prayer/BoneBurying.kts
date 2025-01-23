@@ -31,7 +31,7 @@ inventoryOption("Bury", "inventory") {
         return@inventoryOption
     }
     player.start("bone_delay", 1)
-    player.setAnimation("bend_down")
+    player.anim("bend_down")
     player.exp(Skill.Prayer, xp)
     player["i_wonder_if_itll_sprout_task"] = true
     player.weakQueue("bury", 1, onCancel = null) {

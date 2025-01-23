@@ -119,7 +119,7 @@ fun startCrashedStarEvent() {
             player.damage(random.nextInt(10, 50))
             val direction = Direction.all.first { !player.blocked(it) }
             player.exactMove(direction.delta, 1, direction = direction.inverse())
-            player.setAnimation("step_back_startled")
+            player.anim("step_back_startled")
         }
         World.queue("falling_star_object_removal", 1) {
             currentActiveObject = shootingStarObjectFalling.replace("crashed_star_tier_${tier}")

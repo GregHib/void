@@ -17,13 +17,13 @@ objectOperate("Operate", "hopper_controls") {
         return@objectOperate
     }
     if (player["hopper_bin", 0] != 1) {
-        player.setAnimation("pull_hopper_controls")
+        player.anim("pull_hopper_controls")
         player.playSound("lever")
         target.animate("3572")// todo find right anim
         player.message("You operate the empty hopper. Nothing interesting happens.")
         return@objectOperate
     }
-    player.setAnimation("pull_hopper_controls")
+    player.anim("pull_hopper_controls")
     player.playSound("lever")
     target.animate("3568")// todo find right anim
     player["hopper_bin"] = 0
@@ -37,7 +37,7 @@ objectOperate("Operate", "hopper_controls") {
 
 itemOnObjectOperate("grain", "hopper") {
     if (player.quest("cooks_assistant") != "started") {
-        player.setAnimation("fill_hopper")
+        player.anim("fill_hopper")
         player.inventory.remove("grain")
         player["hopper_bin"] = 1
         player.message("You put the grain in the hopper. You should now pull the lever nearby to operate the hopper.")
@@ -58,7 +58,7 @@ itemOnObjectOperate("grain", "hopper") {
     if (player["hopper_bin", 0] == 1) {
         player.message("There is already grain in the hopper.")
     } else {
-        player.setAnimation("fill_hopper")
+        player.anim("fill_hopper")
         player.inventory.remove("grain")
         player["hopper_bin"] = 1
         player.message("You put the grain in the hopper. You should now pull the lever nearby to operate the hopper.")

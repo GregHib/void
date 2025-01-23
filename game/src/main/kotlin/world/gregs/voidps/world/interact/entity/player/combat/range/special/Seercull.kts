@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 specialAttack("soulshot") { player ->
-    player.setAnimation("bow_accurate")
+    player.anim("bow_accurate")
     player.gfx("seercull_special_shoot")
     player.playSound("seercull_special")
     val time = player.shoot(id = "seercull_special_arrow", target = target)

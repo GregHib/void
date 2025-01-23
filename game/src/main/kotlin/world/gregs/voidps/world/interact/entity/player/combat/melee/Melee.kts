@@ -34,6 +34,6 @@ combatSwing(style = "melee") { player ->
         val style = styleDefinitions.get(id)
         animation = "${style.stringId}_${player.attackType}"
     }
-    player.setAnimation(animation)
+    player.anim(animation)
     player.hit(target)
 }

@@ -23,7 +23,7 @@ val lineOfSight: LineValidator by inject()
 
 specialAttack("disrupt") { player ->
     player["korasi_chain"] = mutableSetOf(target.index)
-    player.setAnimation("${id}_special")
+    player.anim("${id}_special")
     player.gfx("${id}_special")
     areaSound("godwars_saradomin_magic_impact", player.tile, 10)
     areaSound("godwars_godsword_special_attack", player.tile, 5)

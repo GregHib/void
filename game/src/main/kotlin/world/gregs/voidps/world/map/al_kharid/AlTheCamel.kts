@@ -200,7 +200,7 @@ suspend fun SuspendableContext<Player>.scoopPoop() {
     if (!player.inventory.replace("bucket", "ugthanki_dung")) {
         return
     }
-    player.setAnimation("fill_bucket")
+    player.anim("fill_bucket")
     player.message("You scoop up some camel dung into the bucket.")
     if (player.inventory.contains("ugthanki_dung", 28)) {
         player<Talk>("Phew - that's enough dung.")

@@ -28,7 +28,7 @@ suspend fun ItemOnObject.offer(amount: Int, tile: Tile) {
     repeat(amount) {
         if (player.inventory.remove(item.id)) {
             player.experience.add(Skill.Prayer, xp)
-            player.setAnimation("offer_bones")
+            player.anim("offer_bones")
             areaGraphic("bone_offering", tile)
             player.message("The gods ${
                 when {

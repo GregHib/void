@@ -88,7 +88,7 @@ fun useItemOnItem(
         return
     }
     if (def.animation.isNotEmpty()) {
-        player.setAnimation(def.animation)
+        player.anim(def.animation)
     }
     if (def.graphic.isNotEmpty()) {
         player.gfx(def.graphic)

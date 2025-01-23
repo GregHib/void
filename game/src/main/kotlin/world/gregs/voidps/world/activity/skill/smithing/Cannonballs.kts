@@ -46,16 +46,16 @@ suspend fun Interaction<Player>.smelt(player: Player, target: GameObject, id: St
         return
     }
     player.face(furnaceSide(player, target))
-    player.setAnimation("furnace_smelt")
+    player.anim("furnace_smelt")
     player.playSound("smelt_bar")
     player.message("You heat the steel bar into a liquid state.", ChatType.Filter)
     delay(3)
     player.message("You poor the molten metal into your cannonball mould.", ChatType.Filter)
-    player.setAnimation("climb_down")
+    player.anim("climb_down")
     delay(1)
     player.message("The molten metal cools slowly to form 4 cannonballs.", ChatType.Filter)
     delay(3)
-    player.setAnimation("climb_down")
+    player.anim("climb_down")
     player.message("You remove the cannonballs from the mould.", ChatType.Filter)
     player.inventory.transaction {
         remove("steel_bar")

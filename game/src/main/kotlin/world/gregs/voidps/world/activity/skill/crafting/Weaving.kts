@@ -82,7 +82,7 @@ fun Player.weave(obj: GameObject, item: Item, amount: Int) {
     if (!has(Skill.Crafting, data.level)) {
         return
     }
-    setAnimation("weaving")
+    anim("weaving")
     weakQueue("weave", 4) {
         inventory.transaction {
             remove(item.id, data.amount)

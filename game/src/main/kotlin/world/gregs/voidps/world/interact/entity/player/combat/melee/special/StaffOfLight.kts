@@ -28,7 +28,7 @@ specialAttackPrepare("power_of_light") { player ->
     if (!SpecialAttack.drain(player)) {
         return@specialAttackPrepare
     }
-    player.setAnimation("${id}_special")
+    player.anim("${id}_special")
     player.gfx("${id}_special")
     player[id] = TimeUnit.MINUTES.toTicks(1)
     player.softTimers.start(id)

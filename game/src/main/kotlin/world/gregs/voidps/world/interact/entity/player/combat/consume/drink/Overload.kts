@@ -58,7 +58,7 @@ timerStart("overload") { player ->
     player.queue(name = "overload_hits") {
         repeat(5) {
             player.directHit(100)
-            player.setAnimation("overload")
+            player.anim("overload")
             player.gfx("overload")
             pause(2)
         }

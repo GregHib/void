@@ -31,7 +31,7 @@ objectOperate("Squeeze-through", "barbarian_outpost_entrance") {
         player.face(target)
         delay()
     }
-    player.setAnimation("climb_through_pipe")
+    player.anim("climb_through_pipe")
     val end = if (player.tile.y >= 3560) 3558 else 3561
     player.exactMoveDelay(Tile(2552, end), 60, direction = if (player.tile.y >= 3560) Direction.SOUTH else Direction.NORTH)
 }
@@ -44,7 +44,7 @@ objectOperate("Swing-on", "barbarian_outpost_rope_swing") {
     val disable = Settings["agility.disableCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), 70) // 50% success at 35
 //  player.message("The rope swing is being used at the moment.", ChatType.Filter)
-    player.setAnimation("rope_swing")
+    player.anim("rope_swing")
     target.animate("swing_rope")
     delay()
     if (success) {
@@ -81,7 +81,7 @@ objectOperate("Walk-across", "barbarian_outpost_log_balance") {
         player.clear("face_entity")
         player.face(Direction.WEST)
         player.walkOver(Tile(2545, 3546))
-        player.setAnimation("fall_off_log_left")
+        player.anim("fall_off_log_left")
         delay()
         player.message("... but you lose your footing and fall into the water.", ChatType.Filter)
         player.tele(2545, 3545)
@@ -99,7 +99,7 @@ objectOperate("Walk-across", "barbarian_outpost_log_balance") {
 
 objectOperate("Climb-over", "barbarian_outpost_obstacle_net") {
     player.message("You climb the netting...", ChatType.Filter)
-    player.setAnimation("climb_up")
+    player.anim("climb_up")
     delay(2)
     player.agilityStage(3)
     player.tele(2537, player.tile.y.coerceIn(3545, 3546), 1)
@@ -107,7 +107,7 @@ objectOperate("Climb-over", "barbarian_outpost_obstacle_net") {
 }
 
 objectOperate("Walk-across", "barbarian_outpost_balancing_ledge") {
-    player.setAnimation("ledge_stand_right")
+    player.anim("ledge_stand_right")
     val disable = Settings["agility.disableCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), 93) // 62.1% success rate
     delay()
@@ -116,7 +116,7 @@ objectOperate("Walk-across", "barbarian_outpost_balancing_ledge") {
     if (success) {
         player.walkOver(Tile(2532, 3547, 1))
         player.face(Direction.WEST)
-        player.setAnimation("ledge_stand_away_right")
+        player.anim("ledge_stand_away_right")
         player.clearRenderEmote()
         player.exp(Skill.Agility, 22.0)
         player.message("You skillfully edge across the gap.", ChatType.Filter)
@@ -124,7 +124,7 @@ objectOperate("Walk-across", "barbarian_outpost_balancing_ledge") {
         // https://youtu.be/bPFbuMnCx18?si=KJIVXuBftlZ9_Wth&t=47
         player.walkOver(Tile(2534, 3547, 1))
         player.face(Direction.WEST)
-        player.setAnimation("fall_off_log_left")
+        player.anim("fall_off_log_left")
         delay()
         player.tele(2534, 3546, 1)
         player.face(Direction.SOUTH)
@@ -152,7 +152,7 @@ objectOperate("Climb-over", "barbarian_outpost_crumbling_wall") {
         player.walkTo(target.tile.addX(-1))
     }
     player.message("You climb the low wall...", ChatType.Filter)
-    player.setAnimation("climb_over_wall")
+    player.anim("climb_over_wall")
     player.exactMove(target.tile.addX(1), 60, Direction.EAST)
     delay()
     if (target.tile.equals(2542, 3553)) {

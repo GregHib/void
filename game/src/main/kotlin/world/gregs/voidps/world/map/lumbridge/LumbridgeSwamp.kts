@@ -46,7 +46,7 @@ objectOperate("Search", "rocks_skull_restless_ghost_quest") {
     player.message("A skeleton warlock has appeared.")
     val warlock = npcs.add("skeleton_warlock", Tile(3236, 3149), Direction.SOUTH) ?: return@objectOperate
     player["restless_ghost_warlock"] = warlock.index
-    warlock.setAnimation("restless_ghost_warlock_spawn")
+    warlock.anim("restless_ghost_warlock_spawn")
     val player = player
     warlock.softQueue("delayed_attack", 4) {
         warlock.mode = Interact(warlock, player, PlayerOption(warlock, player, "Attack"))
