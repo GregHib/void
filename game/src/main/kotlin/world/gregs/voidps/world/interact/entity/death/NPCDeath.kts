@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -48,7 +47,7 @@ npcDeath { npc ->
         val killer = npc.killer
         val tile = npc.tile
         npc["death_tile"] = tile
-        npc.setAnimation(deathAnimation(npc))
+        npc.anim(deathAnimation(npc))
         val name = npc.def.name.toSnakeCase()
         (killer as? Player)?.playSound(deathSound(npc))
         delay(4)

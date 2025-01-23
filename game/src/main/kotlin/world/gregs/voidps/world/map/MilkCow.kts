@@ -1,14 +1,15 @@
 package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.inv.*
+import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Chuckle
-import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Quiz
+import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.dialogue.type.statement
@@ -26,7 +27,7 @@ objectOperate("Milk", "prized_dairy_cow") {
         player.message("You've already got some top-quality milk; you should take it to the cook.")
         return@objectOperate
     }
-    player.setAnimation("milk_cow")
+    player.anim("milk_cow")
     player.playSound("milk_cow")
     delay(5)
     player.inventory.replace("bucket", "top_quality_milk")
@@ -35,7 +36,7 @@ objectOperate("Milk", "prized_dairy_cow") {
 
 objectOperate("Milk", "dairy_cow") {
     if (player.holdsItem("bucket")) {
-        player.setAnimation("milk_cow")
+        player.anim("milk_cow")
         player.playSound("milk_cow")
         delay(5)
         player.inventory.replace("bucket", "bucket_of_milk")

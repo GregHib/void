@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
 
 import world.gregs.voidps.engine.data.definition.PrayerDefinitions
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
@@ -33,7 +32,7 @@ characterCombatAttack { character ->
     }
     val damage = target["protected_damage", 0]
     if (damage > 0) {
-        target.setAnimation("deflect", delay)
+        target.anim("deflect", delay)
         target.gfx("deflect_$type", delay)
         if (random.nextDouble() >= 0.4) {
             target.hit(target = character, type = "deflect", delay = delay, damage = (damage * 0.10).toInt())

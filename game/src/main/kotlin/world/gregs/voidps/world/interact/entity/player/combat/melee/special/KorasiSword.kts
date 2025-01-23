@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.type.random
@@ -24,7 +23,7 @@ val lineOfSight: LineValidator by inject()
 
 specialAttack("disrupt") { player ->
     player["korasi_chain"] = mutableSetOf(target.index)
-    player.setAnimation("${id}_special")
+    player.anim("${id}_special")
     player.gfx("${id}_special")
     areaSound("godwars_saradomin_magic_impact", player.tile, 10)
     areaSound("godwars_godsword_special_attack", player.tile, 5)

@@ -29,7 +29,7 @@ objectOperate("Climb-up", "gnome_tree_branch_advanced") {
     }
     npcs.gnomeTrainer("Terrorbirds could climb faster than that!", Zone(9263413))
     player.message("You climb the tree...", ChatType.Filter)
-    player.setAnimation("climb_up")
+    player.anim("climb_up")
     delay(2)
     player.message("... to an even higher platform.", ChatType.Filter)
     player.agilityStage(4)
@@ -44,7 +44,7 @@ objectApproach("Run-across", "gnome_sign_post_advanced") {
     val disable = Settings["agility.disableCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), -8..286) // failure rate 4.68-1.17% from 85-88
     player.face(Direction.EAST)
-    player.setAnimation("gnome_wall_${if (success) "run" else "fail"}")
+    player.anim("gnome_wall_${if (success) "run" else "fail"}")
     delay(1)
     if (!success) {
         player.exactMoveDelay(Tile(2480, 3418, 3), 30, Direction.EAST)
@@ -55,7 +55,7 @@ objectApproach("Run-across", "gnome_sign_post_advanced") {
         player.exp(Skill.Agility, 25.0)
     } else {
         delay(3)
-        player.setAnimation("gnome_wall_stand")
+        player.anim("gnome_wall_stand")
         delay()
         player.damage((player.levels.get(Skill.Constitution) - 10).coerceAtMost(65))
     }
@@ -63,7 +63,7 @@ objectApproach("Run-across", "gnome_sign_post_advanced") {
     if (success || Settings["agility.disableFailLapSkip", false]) {
         player.agilityStage(5)
     }
-    player.clearAnimation()
+    player.clearAnim()
 }
 
 objectApproach("Swing-to", "gnome_pole_advanced") {
@@ -74,11 +74,11 @@ objectApproach("Swing-to", "gnome_pole_advanced") {
     player.steps.clear()
     player.face(Direction.NORTH)
     delay()
-    player.setAnimation("gnome_run_up")
+    player.anim("gnome_run_up")
     player.exactMoveDelay(tile.copy(y = 3421), 60, Direction.NORTH)
-    player.setAnimation("gnome_jump")
+    player.anim("gnome_jump")
     player.exactMoveDelay(tile.copy(y = 3425), 30, Direction.NORTH)
-    player.setAnimation("gnome_swing")
+    player.anim("gnome_swing")
     delay(4)
     player.exactMoveDelay(tile.copy(y = 3429), 30, Direction.NORTH)
     delay(4)
@@ -89,12 +89,12 @@ objectApproach("Swing-to", "gnome_pole_advanced") {
 }
 
 objectOperate("Jump-over", "gnome_barrier_advanced") {
-    player.setAnimation("gnome_jump_barrier")
+    player.anim("gnome_jump_barrier")
     delay()
     player.exactMoveDelay(Tile(2485, 3434, 3), 30, Direction.NORTH)
     delay(1)
     player.tele(2485, 3436, 0)
-    player.setAnimation("gnome_pipe_land")
+    player.anim("gnome_pipe_land")
     if (player.agilityStage == 6) {
         player.agilityStage = 0
         player.inc("gnome_course_advanced_laps")

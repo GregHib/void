@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -99,7 +98,7 @@ fun Player.make(item: Item, gem: String, amount: Int) {
         message("You need some gold bars in order to make a ${item.id.toLowerSpaceCase()}.")
         return
     }
-    setAnimation("cook_range")
+    anim("cook_range")
     weakQueue("make_jewllery", 3) {
         if (gem != "gold" && !inventory.remove(gem)) {
             message("You need some ${gem.toLowerSpaceCase()} in order to make a ${item.id.toLowerSpaceCase()}.")

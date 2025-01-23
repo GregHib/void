@@ -6,11 +6,9 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
@@ -66,13 +64,13 @@ itemOnObjectOperate("*_talisman", "*_altar_ruins") {
     val id = target.def.transforms?.getOrNull(1) ?: return@itemOnObjectOperate
     val definition = objectDefinitions.get(id)
     player.message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")
-    player.setAnimation("bend_down")
+    player.anim("bend_down")
     delay(2)
     player.mode = Interact(player, target, ObjectOption(player, target, definition, "Enter"), approachRange = -1)
 }
 
 teleportTakeOff("Enter", "*_altar_ruins_enter") {
-    player.clearAnimation()
+    player.clearAnim()
     player.playSound("teleport")
     player.message("You feel a powerful force talk hold of you...")
 }
@@ -97,7 +95,7 @@ teleportTakeOff("Enter", "*_altar_portal") {
         cancel()
         return@teleportTakeOff
     }
-    player.clearAnimation()
+    player.clearAnim()
     player.playSound("teleport")
     player.message("You step through the portal...")
 }

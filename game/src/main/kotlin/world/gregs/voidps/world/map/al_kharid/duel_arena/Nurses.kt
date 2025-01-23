@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteractio
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.world.interact.dialogue.Chuckle
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Neutral
@@ -26,7 +25,7 @@ internal suspend fun TargetInteraction<Player, NPC>.heal() {
     target.face(player)
     val heal = player.levels.getMax(Skill.Constitution)
     if (player.levels.get(Skill.Constitution) < heal) {
-        target.setAnimation("pick_pocket")
+        target.anim("pick_pocket")
         player.playSound("heal")
         player.levels.restore(Skill.Constitution, heal)
         player.message("You feel a little better.")

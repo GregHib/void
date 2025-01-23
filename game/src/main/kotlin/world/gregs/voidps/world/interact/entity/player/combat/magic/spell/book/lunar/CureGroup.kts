@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 import world.gregs.voidps.world.interact.entity.player.toxin.curePoison
@@ -21,7 +20,7 @@ interfaceOption(component = "cure_group", id = "lunar_spellbook") {
         return@interfaceOption
     }
     val definition = definitions.get(spell)
-    player.setAnimation("lunar_cast_group")
+    player.anim("lunar_cast_group")
     player.experience.add(Skill.Magic, definition.experience)
     players
         .filter { other -> other.tile.within(player.tile, 1) && other.poisoned }

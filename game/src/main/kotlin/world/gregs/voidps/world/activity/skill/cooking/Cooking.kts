@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -76,7 +75,7 @@ fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked, offs
         return
     }
     face(obj)
-    setAnimation("cook_${if (obj.id.startsWith("fire_")) "fire" else "range"}")
+    anim("cook_${if (obj.id.startsWith("fire_")) "fire" else "range"}")
     weakQueue("cooking", offset ?: 4) {
         val level = levels.get(Skill.Cooking)
         val chance = when {

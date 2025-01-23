@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.character.mode
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.setAnimation
 
 class Rest(
     private val player: Player,
@@ -16,7 +15,7 @@ class Rest(
     override fun start() {
         player["movement_temp"] = player["movement", "walk"]
         player["movement"] = if (track != -1) "music" else "rest"
-        player.setAnimation(anim)
+        player.anim(anim)
         if (track != -1) {
             player.playTrack(track)
         }
@@ -32,7 +31,7 @@ class Rest(
         if (lastTrack != -1) {
             player.playTrack(lastTrack)
         }
-        player.setAnimation(anim.replace("rest", "stand"))
+        player.anim(anim.replace("rest", "stand"))
     }
 
     companion object {

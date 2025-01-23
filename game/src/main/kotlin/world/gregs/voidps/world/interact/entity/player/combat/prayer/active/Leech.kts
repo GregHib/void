@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
@@ -133,7 +132,7 @@ combatHit { target ->
 fun cast(source: Character, target: Character, sap: Boolean, name: String) {
     source.queue("leech", 1) {
         val type = if (sap) "sap" else "leech"
-        source.setAnimation(type)
+        source.anim(type)
         source.gfx("cast_${type}_${name}")
         val time = source.shoot("proj_${type}_${name}", target)
         target.gfx("land_${type}_${name}", delay = time)

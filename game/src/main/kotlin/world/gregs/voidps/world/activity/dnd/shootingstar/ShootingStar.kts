@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.entity.objectDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
@@ -120,7 +119,7 @@ fun startCrashedStarEvent() {
             player.damage(random.nextInt(10, 50))
             val direction = Direction.all.first { !player.blocked(it) }
             player.exactMove(direction.delta, 1, direction = direction.inverse())
-            player.setAnimation("step_back_startled")
+            player.anim("step_back_startled")
         }
         World.queue("falling_star_object_removal", 1) {
             currentActiveObject = shootingStarObjectFalling.replace("crashed_star_tier_${tier}")

@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.male
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
@@ -29,11 +28,11 @@ characterCombatAttack { character ->
         target.playSound(calculateHitSound(target), delay)
         val shield = target.equipped(EquipSlot.Shield).id
         if (shield.endsWith("shield")) {
-            target.setAnimation("shield_block", delay)
+            target.anim("shield_block", delay)
         } else if (shield.endsWith("defender")) {
-            target.setAnimation("defender_block", delay)
+            target.anim("defender_block", delay)
         } else if (shield.endsWith("book")) {
-            target.setAnimation("book_block", delay)
+            target.anim("book_block", delay)
         } else {
             val type: String? = target.weapon.def.getOrNull("weapon_type")
             val definition = if (type != null) weaponDefinitions.get(type) else null
@@ -43,11 +42,11 @@ characterCombatAttack { character ->
                 val style = styleDefinitions.get(id)
                 animation = if (id != -1 && animationDefinitions.contains("${style.stringId}_hit")) "${style.stringId}_hit" else "human_hit"
             }
-            target.setAnimation(animation, delay)
+            target.anim(animation, delay)
         }
     } else if (target is NPC) {
         val animation = hitAnimation(target)
-        target.setAnimation(animation, delay)
+        target.anim(animation, delay)
     }
 }
 

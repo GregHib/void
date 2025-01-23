@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.item
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
@@ -22,7 +21,7 @@ itemOnObjectOperate(obj = "table*") {
         return@itemOnObjectOperate
     }
     if (player.inventory.remove(itemSlot, item.id, item.amount)) {
-        player.setAnimation("take")
+        player.anim("take")
         player.playSound("drop_item")
         val tile = target.nearestTo(player.tile)
         floorItems.add(tile, item.id, item.amount, revealTicks = 100, disappearTicks = 1000, owner = player)

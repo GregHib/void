@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -47,16 +46,16 @@ suspend fun Interaction<Player>.smelt(player: Player, target: GameObject, id: St
         return
     }
     player.face(furnaceSide(player, target))
-    player.setAnimation("furnace_smelt")
+    player.anim("furnace_smelt")
     player.playSound("smelt_bar")
     player.message("You heat the steel bar into a liquid state.", ChatType.Filter)
     delay(3)
     player.message("You poor the molten metal into your cannonball mould.", ChatType.Filter)
-    player.setAnimation("climb_down")
+    player.anim("climb_down")
     delay(1)
     player.message("The molten metal cools slowly to form 4 cannonballs.", ChatType.Filter)
     delay(3)
-    player.setAnimation("climb_down")
+    player.anim("climb_down")
     player.message("You remove the cannonballs from the mould.", ChatType.Filter)
     player.inventory.transaction {
         remove("steel_bar")

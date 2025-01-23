@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Ore
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -19,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirementsToUse
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -71,7 +69,7 @@ objectOperate("Mine") {
         val remaining = player.remaining("action_delay")
         if (remaining < 0) {
             player.face(target)
-            player.setAnimation("${pickaxe.id}_swing_low")
+            player.anim("${pickaxe.id}_swing_low")
             player.start("action_delay", delay)
             pause(delay)
         } else if (remaining > 0) {
@@ -95,7 +93,7 @@ objectOperate("Mine") {
                 player.experience.add(Skill.Mining, ore.xp)
                 ShootingStarHandler.extraOreHandler(player, item, ore.xp)
                 if (!addOre(player, item) || deplete(rock, target)) {
-                    player.clearAnimation()
+                    player.clearAnim()
                     break
                 }
             }

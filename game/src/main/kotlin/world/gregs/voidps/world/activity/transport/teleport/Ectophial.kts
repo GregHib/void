@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inject
@@ -22,7 +21,7 @@ val objects: GameObjects by inject()
 
 inventoryItem("Empty", "ectophial", "inventory") {
     player.strongQueue("ectophial") {
-        player.setAnimation("empty_ectophial")
+        player.anim("empty_ectophial")
         player.gfx("empty_ectophial")
         player.message("You empty the ectoplasm onto the ground around your feet...", ChatType.Filter)
         player.start("movement_delay", 4)
@@ -38,7 +37,7 @@ inventoryItem("Empty", "ectophial", "inventory") {
 
 itemOnObjectOperate("ectophial_empty", "ectofuntus") {
     if (player.inventory.replace(itemSlot, item.id, "ectophial")) {
-        player.setAnimation("take")
+        player.anim("take")
         player.message("You refill the ectophial from the Ectofuntus.")
     }
 }

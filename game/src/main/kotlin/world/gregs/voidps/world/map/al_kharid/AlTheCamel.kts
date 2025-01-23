@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
@@ -201,7 +200,7 @@ suspend fun SuspendableContext<Player>.scoopPoop() {
     if (!player.inventory.replace("bucket", "ugthanki_dung")) {
         return
     }
-    player.setAnimation("fill_bucket")
+    player.anim("fill_bucket")
     player.message("You scoop up some camel dung into the bucket.")
     if (player.inventory.contains("ugthanki_dung", 28)) {
         player<Talk>("Phew - that's enough dung.")

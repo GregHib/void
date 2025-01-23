@@ -35,7 +35,7 @@ adminCommand("npcturn") {
 
 adminCommand("npcanim") {
     val npc = npcs[player.tile.addY(1)].first()
-    npc.setAnimation(content)// 863
+    npc.anim(content)// 863
 }
 
 adminCommand("npcoverlay") {

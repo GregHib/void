@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
@@ -65,7 +64,7 @@ fun Runecrafting.bindRunes(player: Player, id: String, itemDefinition: ItemDefin
         }
         TransactionError.None -> {
             player.exp(Skill.Runecrafting, rune.xp * essence)
-            player.setAnimation("bind_runes")
+            player.anim("bind_runes")
             player.gfx("bind_runes")
             player.playSound("bind_runes")
             player.message("You bind the temple's power into ${id.toSentenceCase().plural()}.", ChatType.Filter)
@@ -125,7 +124,7 @@ itemOnObjectOperate("*_rune", "*_altar") {
                     player.message("You have $charge ${"charge".plural(charge)} left before your Binding necklace disintegrates.")
                 }
             }
-            player.setAnimation("bind_runes")
+            player.anim("bind_runes")
             player.gfx("bind_runes")
             player.playSound("bind_runes")
             if (successes != count) {

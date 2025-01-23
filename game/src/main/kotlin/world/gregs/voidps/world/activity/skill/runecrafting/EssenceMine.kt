@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
@@ -20,7 +19,7 @@ object EssenceMine {
         npc.gfx("curse_cast")
         npc.face(player)
         if (!npc.contains("old_model")) {
-            npc.setAnimation("curse")
+            npc.anim("curse")
         }
         player.gfx("curse_hit")
         player.shoot("curse", player.tile)

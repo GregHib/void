@@ -3,7 +3,6 @@ package world.gregs.voidps.world.map.varrock.palace
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.add
@@ -21,7 +20,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 val logger = InlineLogger()
 
 objectOperate("Search", "varrock_palace_drain") {
-    player.setAnimation("climb_down")
+    player.anim("climb_down")
     if (player["demon_slayer_drain_dislodged", false] || player.ownsItem("silverlight_key_sir_prysin")) {
         player.message("Nothing interesting seems to have been dropped down here today.")
     } else if (player.quest("demon_slayer") == "unstarted") {
@@ -52,7 +51,7 @@ itemOnObjectOperate("*of_water", "varrock_palace_drain") {
     }
     player["demon_slayer_drain_dislodged"] = true
     player.message("You pour the liquid down the drain.")
-    player.setAnimation("toss_water")
+    player.anim("toss_water")
     player.gfx("toss_water")
     player.playSound("demon_slayer_drain")
     player.playSound("demon_slayer_key_fall")

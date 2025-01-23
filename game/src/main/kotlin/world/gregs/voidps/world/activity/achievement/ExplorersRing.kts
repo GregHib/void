@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.activity.achievement
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.inventory
@@ -19,7 +18,7 @@ playerSpawn { player ->
 
 inventoryOption("Run-replenish", "explorers_ring_*") {
     if (player.inventory.discharge(player, slot)) {
-        player.setAnimation("run_replenish")
+        player.anim("run_replenish")
         player.gfx("run_replenish")
         player.runEnergy += MAX_RUN_ENERGY / 2
         player["explorers_ring_last_use"] = TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis())

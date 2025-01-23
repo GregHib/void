@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
@@ -76,7 +75,7 @@ suspend fun Interaction<Player>.lightFire(
                 player.message("You attempt to light the logs.", ChatType.Filter)
                 first = false
             }
-            player.setAnimation("light_fire")
+            player.anim("light_fire")
             player.start("action_delay", 4)
             pause(4)
         } else if (remaining > 0) {

@@ -2,7 +2,6 @@ package world.gregs.voidps.world.map.port_sarim
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.floorItemOperate
 import world.gregs.voidps.engine.inject
@@ -21,7 +20,7 @@ floorItemOperate("Take", "white_apron_port_sarim", override = false) {
         player.inventoryFull()
         cancel()
     } else {
-        player.setAnimation("take")
+        player.anim("take")
         player.playSound("pickup_item")
         items.remove(target)
         player.inventory.add("white_apron")

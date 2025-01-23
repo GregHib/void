@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
@@ -30,7 +29,7 @@ interfaceOption("Cast", "vengeance", "lunar_spellbook") {
         return@interfaceOption
     }
     val definition = definitions.get(spell)
-    player.setAnimation(spell)
+    player.anim(spell)
     player.gfx(spell)
     player.experience.add(Skill.Magic, definition.experience)
     player["vengeance"] = true

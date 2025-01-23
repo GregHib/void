@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
@@ -83,7 +82,7 @@ fun Player.weave(obj: GameObject, item: Item, amount: Int) {
     if (!has(Skill.Crafting, data.level)) {
         return
     }
-    setAnimation("weaving")
+    anim("weaving")
     weakQueue("weave", 4) {
         inventory.transaction {
             remove(item.id, data.amount)

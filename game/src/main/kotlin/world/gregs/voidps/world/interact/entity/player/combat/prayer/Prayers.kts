@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.prayer
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.headIcon
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.ACTIVE_CURSES
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
@@ -21,7 +20,7 @@ prayerStart { player ->
     if (!restart) {
         val curses = player.isCurses()
         if (curses) {
-            player.setAnimation("activate_$prayer")
+            player.anim("activate_$prayer")
             player.gfx("activate_$prayer")
         } else {
             player.playSound("activate_$prayer")

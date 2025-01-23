@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
@@ -73,7 +72,7 @@ fun Player.make(animation: String, obj: GameObject, item: Item, id: String, data
         softTimers.stop("pottery")
         return
     }
-    setAnimation(animation)
+    anim(animation)
     weakQueue("make_pottery", 3) {
         if (!inventory.replace(item.id, id)) {
             message("You need some ${item.id.toLowerSpaceCase()} in order to make a ${id.toLowerSpaceCase()}.")

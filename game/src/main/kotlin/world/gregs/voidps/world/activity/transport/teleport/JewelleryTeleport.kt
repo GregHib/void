@@ -1,11 +1,8 @@
 package world.gregs.voidps.world.activity.transport.teleport
 
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.entity.character.animate
-import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.ActionPriority
@@ -25,11 +22,11 @@ fun itemTeleport(player: Player, inventory: String, slot: Int, area: Area, type:
     player.queue("teleport_$type", onCancel = null) {
         player.playSound("teleport")
         player.gfx("teleport_$type")
-        player.animate("teleport_$type")
+        player.animDelay("teleport_$type")
         player.tele(area.random(player)!!)
-        val int = player.setAnimation("teleport_land_$type")
+        val int = player.anim("teleport_land_$type")
         if (int == -1) {
-            player.clearAnimation()
+            player.clearAnim()
         } else {
             player.gfx("teleport_land_$type")
         }

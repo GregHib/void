@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.timer.epochSeconds
@@ -40,7 +39,7 @@ interfaceOption("Cast", "lumbridge_home_teleport", "modern_spellbook") {
         player.start("teleport_delay", 17)
         repeat(17) {
             player.gfx("home_tele_${it + 1}")
-            val ticks = player.setAnimation("home_tele_${it + 1}")
+            val ticks = player.anim("home_tele_${it + 1}")
             pause(ticks)
         }
         withContext(NonCancellable) {

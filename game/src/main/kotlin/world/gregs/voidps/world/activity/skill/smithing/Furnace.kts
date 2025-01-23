@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
@@ -98,7 +97,7 @@ fun smelt(player: Player, target: GameObject, id: String, amount: Int) {
         return
     }
     player.face(furnaceSide(player, target))
-    player.setAnimation("furnace_smelt")
+    player.anim("furnace_smelt")
     player.playSound("smelt_bar")
     player.message(smelting.message, ChatType.Filter)
     player.weakQueue("smelting", 4) {

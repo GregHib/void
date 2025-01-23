@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.equipment
@@ -57,7 +56,7 @@ fun swing(player: Player, obj: GameObject, delay: Int) {
             player.ammo = "training_arrows"
             player.equipment.remove(player.ammo)
             player.face(obj)
-            player.setAnimation("bow_accurate")
+            player.anim("bow_accurate")
             player.gfx("training_arrows_shoot")
             // We're going to ignore success check as we have no [Character] to check against
             val maxHit = Damage.maximum(player, player, "range", weapon)

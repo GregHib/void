@@ -3,7 +3,6 @@ package world.gregs.voidps.world.map.edgeville
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -123,8 +122,8 @@ suspend fun NPCOption<Player>.cheekyLittle() {
 suspend fun NPCOption<Player>.goldRing() {
     player.inventory.replace("love_poem", "ring_from_jeffery")
     player["gunnars_ground"] = "jeffery_ring"
-    player.setAnimation("hand_over_item")
-    target.setAnimation("exchange_pocket")
+    player.anim("hand_over_item")
+    target.anim("exchange_pocket")
     items("love_poem", "ring_from_jeffery", "Jeffery trades you a gold ring for the poem.")
     npc<Frustrated>("Now, leave me in peace!")
 }

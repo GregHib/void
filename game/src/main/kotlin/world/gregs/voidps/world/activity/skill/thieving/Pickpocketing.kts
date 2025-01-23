@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.inject
@@ -48,7 +47,7 @@ npcApproach("Pickpocket") {
     }
     val name = target.def.name
     player.message("You attempt to pick the ${name}'s pocket.", ChatType.Filter)
-    player.setAnimation("pick_pocket")
+    player.anim("pick_pocket")
     delay(2)
     if (success) {
         player.inventory.transaction {
@@ -59,7 +58,7 @@ npcApproach("Pickpocket") {
     } else {
         target.face(player)
         target.say(pocket.caughtMessage)
-        target.setAnimation(NPCAttack.animation(target, animationDefinitions))
+        target.anim(NPCAttack.animation(target, animationDefinitions))
         player.message("You fail to pick the ${name}'s pocket.", ChatType.Filter)
         target.stun(player, pocket.stunTicks, pocket.stunHit)
         delay(2)

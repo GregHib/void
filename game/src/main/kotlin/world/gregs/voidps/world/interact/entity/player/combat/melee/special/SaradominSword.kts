@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
@@ -8,7 +7,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
 import world.gregs.voidps.world.interact.entity.sound.areaSound
 
 specialAttack("saradomins_lightning") { player ->
-    player.setAnimation("${id}_special")
+    player.anim("${id}_special")
     areaSound("godwars_godsword_special_attack", player.tile)
     val weapon = player.weapon
     val damage = Damage.roll(player, target, "melee", weapon)

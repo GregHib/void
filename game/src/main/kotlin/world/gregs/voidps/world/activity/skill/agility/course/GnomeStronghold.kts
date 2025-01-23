@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
@@ -36,7 +35,7 @@ objectOperate("Climb-over", "gnome_obstacle_net") {
     player.agilityCourse("gnome")
     npcs.gnomeTrainer("Move it, move it, move it!", listOf(Zone(8768252), Zone(876853)))
     player.message("You climb the netting...", ChatType.Filter)
-    player.setAnimation("climb_up")
+    player.anim("climb_up")
     delay(2)
     player.agilityStage(2)
     player.tele(player.tile.x.coerceIn(2471, 2476), 3424, 1)
@@ -46,7 +45,7 @@ objectOperate("Climb-over", "gnome_obstacle_net") {
 objectOperate("Climb", "gnome_tree_branch_up") {
     npcs.gnomeTrainer("That's it - straight up", listOf(Zone(5069109), Zone(5071157)))
     player.message("You climb the tree...", ChatType.Filter)
-    player.setAnimation("climb_up")
+    player.anim("climb_up")
     delay(2)
     player.message("... to the platform above.", ChatType.Filter)
     player.agilityStage(3)
@@ -74,7 +73,7 @@ objectOperate("Walk-on", "gnome_balancing_rope_end") {
 
 objectOperate("Climb-down", "gnome_tree_branch_down") {
     player.message("You climb the tree...", ChatType.Filter)
-    player.setAnimation("climb_down")
+    player.anim("climb_down")
     delay(2)
     player.agilityStage(5)
     player.tele(2486, 3420, 0)
@@ -85,7 +84,7 @@ objectOperate("Climb-over", "gnome_obstacle_net_free_standing") {
     player.agilityCourse("gnome")
     npcs.gnomeTrainer("My Granny can move faster than you.", Zone(876854))
     player.message("You climb the netting.", ChatType.Filter)
-    player.setAnimation("climb_up")
+    player.anim("climb_up")
     delay(2)
     player.agilityStage(6)
     val direction = target.tile.delta(player.tile).toDirection().vertical()
@@ -99,11 +98,11 @@ objectOperate("Squeeze-through", "gnome_obstacle_pipe_*") {
     player.face(Direction.NORTH)
     player.message("You pull yourself through the pipes..", ChatType.Filter)
     delay()
-    player.setAnimation("climb_through_pipe")
+    player.anim("climb_through_pipe")
     player.exactMoveDelay(target.tile.addY(2))
     player.face(Direction.NORTH)
     player.tele(target.tile.addY(3))
-    player.setAnimation("climb_through_pipe", delay = 1)
+    player.anim("climb_through_pipe", delay = 1)
     player.exactMoveDelay(target.tile.addY(6))
     if (player.agilityStage == 6) {
         player.agilityStage = 0

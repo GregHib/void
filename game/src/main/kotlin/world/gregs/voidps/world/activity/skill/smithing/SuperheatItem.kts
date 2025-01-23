@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smelting
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -40,7 +39,7 @@ itemOnItem(fromInterface = "modern_spellbook", fromComponent = "superheat_item")
     }
     if (player.inventory.transaction.error == TransactionError.None) {
         player.playSound("superheat_all")
-        player.setAnimation(spell)
+        player.anim(spell)
         player.gfx(spell)
         val definition = spellDefinitions.get(spell)
         player.experience.add(Skill.Magic, definition.experience)

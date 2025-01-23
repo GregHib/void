@@ -44,4 +44,13 @@ interface SuspendableContext<C : Character> : Context<C> {
         character.exactMove(target, delay, direction, startDelay)
         delay((startDelay + delay) / 30)
     }
+
+    /**
+     * Delay until characters animation [id] is complete
+     * @param override the current animation
+     */
+    suspend fun Character.animDelay(id: String, override: Boolean = false) {
+        val ticks = anim(id, override = override)
+        delay(ticks)
+    }
 }

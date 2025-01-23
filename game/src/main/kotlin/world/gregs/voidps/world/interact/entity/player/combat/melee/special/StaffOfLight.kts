@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.engine.timer.timerStart
@@ -29,7 +28,7 @@ specialAttackPrepare("power_of_light") { player ->
     if (!SpecialAttack.drain(player)) {
         return@specialAttackPrepare
     }
-    player.setAnimation("${id}_special")
+    player.anim("${id}_special")
     player.gfx("${id}_special")
     player[id] = TimeUnit.MINUTES.toTicks(1)
     player.softTimers.start(id)

@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -36,7 +35,7 @@ objectOperate("Pull", "lever_*", override = false) {
 
 suspend fun SuspendableContext<Player>.pullLever(player: Player) {
     player.message("You pull the lever...", ChatType.Filter)
-    player.setAnimation("pull_lever")
+    player.anim("pull_lever")
     player.start("movement_delay", 3)
     delay(1)
 }
@@ -45,13 +44,13 @@ teleportTakeOff("Pull", "lever_*") {
     delay = 3
     player.playSound("teleport")
     player.gfx("teleport_modern")
-    player.setAnimation("teleport_modern")
+    player.anim("teleport_modern")
 }
 
 teleportLand("Pull", "lever_*") {
     player.playSound("teleport_land")
     player.gfx("teleport_land_modern")
-    player.setAnimation("teleport_land_modern")
+    player.anim("teleport_land_modern")
     val message: String = obj.getOrNull("land_message") ?: return@teleportLand
     player.message(message, ChatType.Filter)
 }

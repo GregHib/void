@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.timer.characterTimerStart
 import world.gregs.voidps.engine.timer.characterTimerTick
 import world.gregs.voidps.engine.timer.npcTimerStop
@@ -14,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 specialAttack("phantom_strike") { player ->
     val ammo = player.ammo
-    player.setAnimation("throw_javelin")
+    player.anim("throw_javelin")
     player.gfx("${ammo}_special")
     val time = player.shoot(id = ammo, target = target)
     val damage = player.hit(target, delay = time)

@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.BlockedExperience
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.world.community.assist.Assistance.MAX_EXPERIENCE
@@ -95,7 +94,7 @@ fun setupAssisted(player: Player, assistant: Player) {
     player["assistant"] = assistant
     player["assist_point"] = player.tile
     setAssistAreaStatus(player, true)
-    player.setAnimation("assist", delay = 60)
+    player.anim("assist", delay = 60)
     player.face(assistant)
 }
 
@@ -110,7 +109,7 @@ fun setupAssistant(player: Player, assisted: Player) {
     applyExistingSkillRedirects(player, assisted)
     setAssistAreaStatus(player, true)
     player.sendVariable("total_xp_earned")
-    player.setAnimation("assist")
+    player.anim("assist")
     player.gfx("assist")
     toggleInventory(player, enabled = false)
 }

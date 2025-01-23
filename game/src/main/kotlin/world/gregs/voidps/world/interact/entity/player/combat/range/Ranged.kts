@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
@@ -46,7 +45,7 @@ fun swing(character: Character, target: Character) {
         }
     }
     if (style.stringId == "sling") {
-        character.setAnimation(ammo)
+        character.anim(ammo)
     }
     if (style.stringId == "crossbow") {
         ammo = if (ammo == "barbed_bolts" || ammo == "bone_bolts" || ammo == "hand_cannon_shot") ammo else "crossbow_bolt"
@@ -94,6 +93,6 @@ fun swing(character: Character, target: Character) {
     if (animation == null) {
         animation = "${style.stringId}_${character.attackType}"
     }
-    character.setAnimation(animation)
+    character.anim(animation)
     character.hit(target, delay = if (time == -1) 64 else time)
 }

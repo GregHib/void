@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
@@ -100,7 +99,7 @@ fun Player.spin(obj: GameObject, fibre: Item, amount: Int) {
     if (!has(Skill.Crafting, data.level)) {
         return
     }
-    setAnimation("spinning")
+    anim("spinning")
     weakQueue("spin", 3) {
         if (!inventory.replace(fibre.id, data.to)) {
             message("You need some ${fibre.id.toLowerSpaceCase()} in order to make a ${data.to.toLowerSpaceCase()}.")

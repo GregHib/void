@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
@@ -105,7 +104,7 @@ open class Movement(
             clearSteps()
             return false
         }
-        character.clearAnimation()
+        character.clearAnim()
         setMovementType(runStep, end = false)
         if (runStep) {
             character.visuals.runStep = clockwise(direction)

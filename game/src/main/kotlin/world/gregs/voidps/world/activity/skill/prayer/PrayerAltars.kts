@@ -3,7 +3,6 @@ package world.gregs.voidps.world.activity.skill.prayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectOperate
 
@@ -20,7 +19,7 @@ fun ObjectOption<Player>.pray() {
         player.message("You already have full Prayer points.")
     } else {
         player.levels.set(Skill.Prayer, player.levels.getMax(Skill.Prayer))
-        player.setAnimation("altar_pray")
+        player.anim("altar_pray")
         player.message("You recharge your Prayer points.")
         player["prayer_point_power_task"] = true
     }

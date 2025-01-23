@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
@@ -9,7 +8,7 @@ import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 specialAttack("slice_and_dice") { player ->
-    player.setAnimation("${id}_special")
+    player.anim("${id}_special")
     player.gfx("${id}_special")
 
     val weapon = player.weapon

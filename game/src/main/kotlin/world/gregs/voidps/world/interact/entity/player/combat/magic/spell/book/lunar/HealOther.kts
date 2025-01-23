@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
@@ -30,7 +29,7 @@ itemOnPlayerApproach(id = "lunar_spellbook", component = "heal_other") {
     val definition = definitions.get(spell)
     val amount = (player.levels.get(Skill.Constitution) * 0.75).toInt() + 1
     player.start("movement_delay", 2)
-    player.setAnimation("lunar_cast")
+    player.anim("lunar_cast")
     target.gfx(spell)
     player.experience.add(Skill.Magic, definition.experience)
     val restored = target.levels.restore(Skill.Constitution, amount)
