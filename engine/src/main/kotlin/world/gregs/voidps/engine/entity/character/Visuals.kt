@@ -186,11 +186,6 @@ fun Character.exactMove(delta: Delta, delay: Int = tile.distanceTo(tile.add(delt
     setExactMovement(Delta.EMPTY, delay, start.delta(tile), direction = direction)
 }
 
-context(SuspendableContext<*>) suspend fun Character.exactMoveDelay(delta: Delta, delay: Int = tile.distanceTo(tile.add(delta)) * 30, direction: Direction = Direction.NONE) {
-    character.exactMove(delta, delay, direction)
-    delay(delay / 30)
-}
-
 fun Character.exactMove(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE, startDelay: Int = 0) {
     val start = tile
     tele(target)
@@ -198,11 +193,6 @@ fun Character.exactMove(target: Tile, delay: Int = tile.distanceTo(target) * 30,
         movementType = MoveType.Walk
     }
     setExactMovement(Delta.EMPTY, delay, start.delta(tile), startDelay, direction = direction)
-}
-
-context(SuspendableContext<*>) suspend fun Character.exactMoveDelay(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE, startDelay: Int = 0) {
-    character.exactMove(target, delay, direction, startDelay)
-    delay((startDelay + delay) / 30)
 }
 
 val Character.turn: Delta
