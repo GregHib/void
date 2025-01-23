@@ -176,8 +176,7 @@ suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinitio
  * Enter through a door with fixed [delay]
  */
 suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3, delay: Int) {
-    if (player.enter(door, def, ticks) == null) {
-        return
-    }
+    val tile = player.enter(door, def, ticks) ?: return
+    player.walkTo(tile, noCollision = true, forceWalk = true)
     delay(delay)
 }

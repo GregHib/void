@@ -47,6 +47,13 @@ class Player(
     val body: BodyParts = BodyParts()
 ) : Character {
 
+    override val visuals: PlayerVisuals = PlayerVisuals(body)
+    init {
+        if (index != -1) {
+            visuals.hits.self = -index
+        }
+    }
+
     override val size: Int
         get() = appearance.size
 
@@ -57,7 +64,6 @@ class Player(
             value.start()
         }
 
-    override val visuals: PlayerVisuals = PlayerVisuals(body)
     val instructions = Channel<Instruction>(capacity = InstructionTask.MAX_INSTRUCTIONS)
     lateinit var options: PlayerOptions
     lateinit var interfaces: Interfaces
