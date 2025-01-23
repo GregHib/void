@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.move.walkOver
-import world.gregs.voidps.engine.entity.character.move.walkTo
+import world.gregs.voidps.engine.entity.character.move.walkToDelay
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
@@ -70,7 +70,7 @@ objectOperate("Open", "wilderness_agility_gate_east_closed", "wilderness_agility
     val disable = Settings["agility.disableCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), 200..250)
     player.message("You go through the gate and try to edge over the ridge...", ChatType.Filter)
-    player.walkTo(player.tile.copy(x = player.tile.x.coerceIn(2997, 2998)))
+    player.walkToDelay(player.tile.copy(x = player.tile.x.coerceIn(2997, 2998)))
     enterDoor(target)
     player.renderEmote("beam_balance")
     if (!success) {
@@ -105,7 +105,7 @@ objectOperate("Squeeze-through", "wilderness_obstacle_pipe") {
         return@objectOperate
     }
     if (player.tile.y == 3938) {
-        player.walkTo(target.tile.addY(-1))
+        player.walkToDelay(target.tile.addY(-1))
     }
     player.anim("climb_through_pipe", delay = 30)
     player.exactMoveDelay(Tile(3004, 3940), startDelay = 30, delay = 96, direction = Direction.NORTH)
@@ -118,7 +118,7 @@ objectOperate("Squeeze-through", "wilderness_obstacle_pipe") {
 }
 
 objectOperate("Swing-on", "wilderness_rope_swing") {
-    player.walkTo(target.tile.copy(y = 3953))
+    player.walkToDelay(target.tile.copy(y = 3953))
     player.clear("face_entity")
     player.face(Direction.NORTH)
     val disable = Settings["agility.disableCourseFailure", false]

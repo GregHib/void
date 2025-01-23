@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.move.walkTo
+import world.gregs.voidps.engine.entity.character.move.walkToDelay
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -62,7 +62,7 @@ objectOperate("Mine", "abyss_rock") {
     delay(2)
     player["abyss_obstacles"] = 13
     val (walkTile, teleTile) = positions[target.tile]!!
-    player.walkTo(walkTile)
+    player.walkToDelay(walkTile)
     player.message("...and manage to break through the rock.", ChatType.Filter)
     player.clearAnim()
     player.tele(teleTile)
@@ -99,7 +99,7 @@ objectOperate("Chop", "abyss_tendrils") {
     delay(2)
     player["abyss_obstacles"] = 15
     val (walkTile, teleTile) = positions[target.tile]!!
-    player.walkTo(walkTile)
+    player.walkToDelay(walkTile)
     player.message("...and manage to cut a way through the tendrils.", ChatType.Filter)
     delay(1)
     player.tele(teleTile)
@@ -134,7 +134,7 @@ objectOperate("Burn-down", "abyss_boil") {
     val (walkTile, teleTile) = positions[target.tile]!!
     areaGraphic("fire_wave_hit", target.tile, height = 128)
     player.playSound("boil_burst")
-    player.walkTo(walkTile)
+    player.walkToDelay(walkTile)
     player.message("...and manage to burn it down and get past.", ChatType.Filter)
     delay()
     player.tele(teleTile)
@@ -164,7 +164,7 @@ objectOperate("Distract", "abyss_eyes") {
     delay(2)
     player["abyss_obstacles"] = 19
     val (walkTile, teleTile) = positions[target.tile]!!
-    player.walkTo(walkTile)
+    player.walkToDelay(walkTile)
     player.message("...and sneak past while they're not looking.", ChatType.Filter)
     delay(1)
     player.tele(teleTile)

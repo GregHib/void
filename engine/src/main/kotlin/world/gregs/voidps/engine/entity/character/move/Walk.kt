@@ -19,7 +19,7 @@ fun Character.walkTo(target: Tile, noCollision: Boolean = false, noRun: Boolean 
 /**
  * Forces the character to walk to a tile
  */
-context(SuspendableContext<*>) suspend fun Character.walkTo(tile: Tile) {
+context(SuspendableContext<*>) suspend fun Character.walkToDelay(tile: Tile) {
     if (this.tile == tile) {
         return
     }

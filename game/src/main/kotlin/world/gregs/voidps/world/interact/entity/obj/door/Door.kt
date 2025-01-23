@@ -4,7 +4,6 @@ import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.move.walkOver
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects

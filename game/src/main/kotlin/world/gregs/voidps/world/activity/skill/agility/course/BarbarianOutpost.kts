@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.move.walkOver
-import world.gregs.voidps.engine.entity.character.move.walkTo
+import world.gregs.voidps.engine.entity.character.move.walkToDelay
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.renderEmote
@@ -27,7 +27,7 @@ objectOperate("Squeeze-through", "barbarian_outpost_entrance") {
     player.agilityCourse("barbarian")
     val start = if (player.tile.y >= 3560) Tile(2552, 3561) else Tile(2552, 3558)
     if (player.tile != start) {
-        player.walkTo(start)
+        player.walkToDelay(start)
         player.face(target)
         delay()
     }
@@ -37,7 +37,7 @@ objectOperate("Squeeze-through", "barbarian_outpost_entrance") {
 }
 
 objectOperate("Swing-on", "barbarian_outpost_rope_swing") {
-    player.walkTo(player.tile.copy(y = 3554))
+    player.walkToDelay(player.tile.copy(y = 3554))
     arriveDelay()
     player.clear("face_entity")
     player.face(Direction.SOUTH)
@@ -149,7 +149,7 @@ objectOperate("Climb-over", "barbarian_outpost_crumbling_wall") {
         return@objectOperate
     }
     if (player.tile.x == target.tile.x) {
-        player.walkTo(target.tile.addX(-1))
+        player.walkToDelay(target.tile.addX(-1))
     }
     player.message("You climb the low wall...", ChatType.Filter)
     player.anim("climb_over_wall")
