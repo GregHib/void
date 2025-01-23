@@ -41,8 +41,6 @@ fun Character.colourOverlay(colour: Int, delay: Int, duration: Int) {
     softTimers.start("colour_overlay")
 }
 
-private fun primaryGfxFlagged(character: Character) = character.visuals.flagged(if (character is Player) VisualMask.PLAYER_GRAPHIC_1_MASK else VisualMask.NPC_GRAPHIC_1_MASK)
-
 fun Character.flagPrimaryGraphic() = visuals.flag(if (this is Player) VisualMask.PLAYER_GRAPHIC_1_MASK else VisualMask.NPC_GRAPHIC_1_MASK)
 
 fun Character.flagSecondaryGraphic() = visuals.flag(if (this is Player) VisualMask.PLAYER_GRAPHIC_2_MASK else VisualMask.NPC_GRAPHIC_2_MASK)
