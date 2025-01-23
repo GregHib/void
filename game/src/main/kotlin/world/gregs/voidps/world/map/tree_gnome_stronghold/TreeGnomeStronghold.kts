@@ -11,5 +11,5 @@ objectOperate("Open", "tree_gnome_door_east_closed", "tree_gnome_door_west_close
         player.face(target)
     }
     target.replace(target.id.replace("_closed", "_opened"), ticks = 4)
-    player.walkOver(player.tile.addY(if (player.tile.y < target.tile.y) 2 else -2))
+    player.walkOverDelay(player.tile.addY(if (player.tile.y < target.tile.y) 2 else -2))
 }

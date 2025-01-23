@@ -240,7 +240,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
 
     delay(2)
     player.running = true
-    player.walkOver(Tile(3227, 3367).add(offset), noRun = false)
+    player.walkOverDelay(Tile(3227, 3367).add(offset), noRun = false)
     player.face(Direction.NORTH)
     player.anim("wally_demon_slay")
     player.playSound("demon_slayer_wally_sword", delay = 10)

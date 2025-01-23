@@ -22,7 +22,7 @@ objectOperate("Walk-across", "gnome_log_balance") {
     npcs.gnomeTrainer("Okay get over that log, quick quick!", listOf(Zone(878901), Zone(878900), Zone(876852)))
     player.renderEmote("rope_balance")
     player.message("You walk carefully across the slippery log...", ChatType.Filter)
-    player.walkOver(Tile(2474, 3429))
+    player.walkOverDelay(Tile(2474, 3429))
     player.clearRenderEmote()
     player.agilityStage(1)
     player.exp(Skill.Agility, 7.5)
@@ -55,7 +55,7 @@ objectOperate("Climb", "gnome_tree_branch_up") {
 objectOperate("Walk-on", "gnome_balancing_rope") {
     npcs.gnomeTrainer("Come on scaredy cat, get across that rope!", Zone(9263413))
     player.renderEmote("rope_balance")
-    player.walkOver(Tile(2483, 3420, 2))
+    player.walkOverDelay(Tile(2483, 3420, 2))
     player.agilityStage(4)
     player.clearRenderEmote()
     player.exp(Skill.Agility, 7.5)
@@ -64,7 +64,7 @@ objectOperate("Walk-on", "gnome_balancing_rope") {
 
 objectOperate("Walk-on", "gnome_balancing_rope_end") {
     player.renderEmote("rope_balance")
-    player.walkOver(Tile(2477, 3420, 2))
+    player.walkOverDelay(Tile(2477, 3420, 2))
     player.clearRenderEmote()
     player.exp(Skill.Agility, 7.5)
     player.message("You passed the obstacle successfully.", ChatType.Filter)

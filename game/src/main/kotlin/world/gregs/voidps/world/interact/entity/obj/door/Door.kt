@@ -169,7 +169,7 @@ private fun Player.enter(door: GameObject, def: ObjectDefinition = door.def, tic
  */
 suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3) {
     val tile = player.enter(door, def, ticks) ?: return
-    player.walkOver(tile)
+    player.walkOverDelay(tile)
 }
 
 /**

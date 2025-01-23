@@ -45,14 +45,14 @@ objectOperate("Open", "wilderness_agility_door_closed") {
 //        fallIntoPit()
 //        return@strongQueue
 //    }
-    player.walkOver(Tile(2998, 3930))
+    player.walkOverDelay(Tile(2998, 3930))
     player.clearRenderEmote()
     val gateTile = Tile(2998, 3931)
     val gate = objects[gateTile, "wilderness_agility_gate_east_closed"]
     if (gate != null) {
         enterDoor(gate)
     } else {
-        player.walkOver(gateTile)
+        player.walkOverDelay(gateTile)
     }
     player.message("You skillfully balance across the ridge...", ChatType.Filter)
     player.exp(Skill.Agility, 15.0)
@@ -75,20 +75,20 @@ objectOperate("Open", "wilderness_agility_gate_east_closed", "wilderness_agility
         fallIntoPit()
         return@objectOperate
     }
-    player.walkOver(Tile(2998, 3917))
+    player.walkOverDelay(Tile(2998, 3917))
     player.clearRenderEmote()
     val door = objects[Tile(2998, 3917), "wilderness_agility_door_closed"]
     if (door != null) {
         enterDoor(door, delay = 1)
     } else {
-        player.walkOver(Tile(2998, 3916))
+        player.walkOverDelay(Tile(2998, 3916))
     }
     player.message("You skillfully balance across the ridge...", ChatType.Filter)
     player.exp(Skill.Agility, 15.0)
 }
 
 suspend fun SuspendableContext<Player>.fallIntoPit() {
-    player.walkOver(Tile(2998, 3924))
+    player.walkOverDelay(Tile(2998, 3924))
     player.clearRenderEmote()
     player.face(Direction.NORTH)
     player.anim("rope_walk_fall_down")
@@ -171,18 +171,18 @@ objectOperate("Walk-across", "wilderness_log_balance") {
     val disable = Settings["agility.disableCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), 200..250)
     if (success) {
-        player.walkOver(target.tile)
+        player.walkOverDelay(target.tile)
         player.renderEmote("beam_balance")
-        player.walkOver(Tile(2994, 3945))
+        player.walkOverDelay(Tile(2994, 3945))
         player.message("You skillfully edge across the gap.", type = ChatType.Filter)
         player.clearRenderEmote()
         delay()
         player.exp(Skill.Agility, 20.0)
         player.agilityStage(4)
     } else {
-        player.walkOver(target.tile)
+        player.walkOverDelay(target.tile)
         player.renderEmote("beam_balance")
-        player.walkOver(Tile(2998, 3945))
+        player.walkOverDelay(Tile(2998, 3945))
         player.message("You slip and fall onto the spikes below.", type = ChatType.Filter)
         player.anim("rope_walk_fall_down")
         player.face(Direction.NORTH)
@@ -191,7 +191,7 @@ objectOperate("Walk-across", "wilderness_log_balance") {
         player.clearRenderEmote()
         player.playSound("2h_stab")
         delay()
-        player.walkOver(Tile(2998, 10345))
+        player.walkOverDelay(Tile(2998, 10345))
         player.damage((player.levels.get(Skill.Constitution) * 0.15).toInt() + 10)
         player.playSound("male_hit_1", delay = 20)
     }
@@ -203,7 +203,7 @@ objectOperate("Walk-across", "wilderness_log_balance") {
 objectOperate("Climb", "wilderness_agility_rocks") {
     player.message("You walk carefully across the slippery log...", ChatType.Filter)
     player.renderEmote("climbing")
-    player.walkOver(player.tile.copy(y = 3933))
+    player.walkOverDelay(player.tile.copy(y = 3933))
     player.clearRenderEmote()
     player.message("You reach the top.", type = ChatType.Filter)
     if (player.agilityStage == 4) {
