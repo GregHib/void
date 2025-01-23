@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.network.login.protocol.visual.VisualMask
-import world.gregs.voidps.network.login.protocol.visual.Visuals
 import world.gregs.voidps.network.login.protocol.visual.update.Hitsplat
 import world.gregs.voidps.network.login.protocol.visual.update.Turn
 import world.gregs.voidps.network.login.protocol.visual.update.player.MoveType
@@ -89,52 +88,36 @@ fun Character.colourOverlay(colour: Int, delay: Int, duration: Int) {
     softTimers.start("colour_overlay")
 }
 
-fun Character.say(message: String) {
-    visuals.say.text = message
-    flagSay()
-}
+private fun primaryGfxFlagged(character: Character) = character.visuals.flagged(if (character is Player) VisualMask.PLAYER_GRAPHIC_1_MASK else VisualMask.NPC_GRAPHIC_1_MASK)
 
-private fun getPlayerMask(index: Int) = when (index) {
-    1 -> VisualMask.PLAYER_GRAPHIC_2_MASK
-    else -> VisualMask.PLAYER_GRAPHIC_1_MASK
-}
+fun Character.flagPrimaryGraphic() = visuals.flag(if (this is Player) VisualMask.PLAYER_GRAPHIC_1_MASK else VisualMask.NPC_GRAPHIC_1_MASK)
 
-private fun getNPCMask(index: Int) = when (index) {
-    1 -> VisualMask.NPC_GRAPHIC_2_MASK
-    else -> VisualMask.NPC_GRAPHIC_1_MASK
-}
-
-private fun index(character: Character) = if (character is Player) character.visuals.getIndex(::getPlayerMask) else character.visuals.getIndex(::getNPCMask)
-
-fun Character.flagGraphic(index: Int) = visuals.flag(if (this is Player) getPlayerMask(index) else getNPCMask(index))
-
-private fun Visuals.getIndex(indexer: (Int) -> Int): Int {
-    for (i in 0 until 2) {
-        if (!flagged(indexer(i))) {
-            return i
-        }
-    }
-    return -1
-}
+fun Character.flagSecondaryGraphic() = visuals.flag(if (this is Player) VisualMask.PLAYER_GRAPHIC_2_MASK else VisualMask.NPC_GRAPHIC_2_MASK)
 
 fun Character.setGraphic(id: String, delay: Int? = null) {
     val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
-    val index = index(this)
-    val graphic = if (index == 0) visuals.primaryGraphic else visuals.secondaryGraphic
+    val graphic = if (primaryGfxFlagged(this)) visuals.primaryGraphic else visuals.secondaryGraphic
     graphic.id = definition.id
     graphic.delay = delay ?: definition["delay", 0]
     val characterHeight = (this as? NPC)?.def?.get("height", 0) ?: 40
     graphic.height = (characterHeight + definition["height", -1000]).coerceAtLeast(0)
     graphic.rotation = definition["rotation", 0]
     graphic.forceRefresh = definition["force_refresh", false]
-    flagGraphic(index)
+    if (primaryGfxFlagged(this)) {
+        flagPrimaryGraphic()
+    } else {
+        flagSecondaryGraphic()
+    }
 }
 
 fun Character.clearGraphic() {
-    val index = index(this)
-    val graphic = if (index == 0) visuals.primaryGraphic else visuals.secondaryGraphic
-    graphic.reset()
-    flagGraphic(index)
+    if (primaryGfxFlagged(this)) {
+        visuals.primaryGraphic.reset()
+        flagPrimaryGraphic()
+    } else {
+        visuals.secondaryGraphic.reset()
+        flagSecondaryGraphic()
+    }
 }
 
 fun Character.hit(source: Character, amount: Int, mark: Hitsplat.Mark, delay: Int = 0, critical: Boolean = false, soak: Int = -1) {

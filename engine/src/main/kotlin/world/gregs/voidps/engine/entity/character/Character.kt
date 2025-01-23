@@ -33,6 +33,12 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
     override fun compareTo(other: Character): Int {
         return index.compareTo(other.index)
     }
+
+    fun say(message: String) {
+        visuals.say.text = message
+        flagSay()
+    }
+
 }
 
 val Entity.size: Int
