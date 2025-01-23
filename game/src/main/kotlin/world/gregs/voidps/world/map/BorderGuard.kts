@@ -38,7 +38,7 @@ enterArea("border_guard*") {
     if (player.steps.destination in border) {
         val tile = border.nearestTo(player.tile)
         val endSide = getOppositeSide(border, tile)
-        player.walkTo(endSide, noCollision = true, noRun = true)
+        player.walkTo(endSide, noCollision = true, forceWalk = true)
     } else {
         player.steps.update(noCollision = true, noRun = true)
     }

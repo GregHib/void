@@ -161,13 +161,13 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
     /**
      * Walks player to [target]
      * Specify [noCollision] to walk through [GameObject]s and
-     * [noRun] to force walking even if the player has running active
+     * [forceWalk] to force walking even if the player has running active
      */
-    fun walkTo(target: Tile, noCollision: Boolean = false, noRun: Boolean = false) {
+    fun walkTo(target: Tile, noCollision: Boolean = false, forceWalk: Boolean = false) {
         if (tile == target) {
             return
         }
-        mode = Movement(this, TileTargetStrategy(target, noCollision, noRun))
+        mode = Movement(this, TileTargetStrategy(target, noCollision, forceWalk))
     }
 }
 
