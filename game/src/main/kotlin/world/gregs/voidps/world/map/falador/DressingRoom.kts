@@ -15,7 +15,7 @@ timerTick("dressing_room") { player ->
 }
 
 timerStop("dressing_room") { player ->
-    player.clearGraphic()
+    player.clearGfx()
     player["delay"] = 1
     player.closeMenu()
     player.gfx("dressing_room_finish")

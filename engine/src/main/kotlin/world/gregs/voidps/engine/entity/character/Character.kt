@@ -97,7 +97,7 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
         }
     }
 
-    fun clearGraphic() {
+    fun clearGfx() {
         visuals.primaryGraphic.reset()
         flagPrimaryGraphic()
         visuals.secondaryGraphic.reset()

@@ -47,7 +47,7 @@ adminCommand("emote (emote-id)", "perform render emote by int or string id (-1 t
 
 adminCommand("gfx (gfx-id)", "perform graphic effect by int or string id (-1 to clear)") {
     when (content) {
-        "-1", "" -> player.clearGraphic()
+        "-1", "" -> player.clearGfx()
         else -> player.gfx(content)// 93
     }
 }
