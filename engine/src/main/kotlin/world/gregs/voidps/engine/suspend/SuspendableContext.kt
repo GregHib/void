@@ -63,6 +63,14 @@ interface SuspendableContext<C : Character> : Context<C> {
         delayTarget(tile)
     }
 
+    /**
+     * Force a character to walk to tile ignoring collisions
+     */
+    suspend fun Character.walkOver(tile: Tile) {
+        walkTo(tile, noCollision = true, noRun = true)
+        delayTarget(tile)
+    }
+
     private suspend fun delayTarget(target: Tile) {
         while (character.tile != target) {
             delay()

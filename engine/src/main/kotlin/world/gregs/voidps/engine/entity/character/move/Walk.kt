@@ -20,19 +20,6 @@ fun Character.walkTo(target: Tile, noCollision: Boolean = false, noRun: Boolean 
 }
 
 /**
- * Force a character to walk to tile ignoring collisions
- */
-context(SuspendableContext<*>) suspend fun Character.walkOver(tile: Tile) {
-    if (this.tile == tile) {
-        return
-    }
-    walkTo(tile, noCollision = true, noRun = true)
-    while (this.tile != tile) {
-        delay()
-    }
-}
-
-/**
  * Steps a character to tile (run or walk)
  */
 context(SuspendableContext<*>) suspend fun Character.stepTo(tile: Tile) {
