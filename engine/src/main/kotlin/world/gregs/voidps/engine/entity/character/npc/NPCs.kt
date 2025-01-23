@@ -98,8 +98,7 @@ data class NPCs(
             return null
         }
         val index = index() ?: return null
-        val npc = NPC(id, tile)
-        npc.def = def
+        val npc = NPC(id, tile, def)
         npc.levels.link(npc, NPCLevels(def))
         npc.levels.clear(Skill.Constitution)
         npc.levels.clear(Skill.Attack)

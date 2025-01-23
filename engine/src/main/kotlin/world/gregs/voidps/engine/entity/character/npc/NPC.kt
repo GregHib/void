@@ -22,7 +22,8 @@ import kotlin.coroutines.Continuation
 data class NPC(
     val id: String = "",
     override var tile: Tile = Tile.EMPTY,
-    override val levels: Levels = Levels()
+    val def: NPCDefinition = NPCDefinition.EMPTY,
+    override val levels: Levels = Levels(),
 ) : Character {
 
     override var mode: Mode = EmptyMode
@@ -31,7 +32,7 @@ data class NPC(
             field = value
             value.start()
         }
-    lateinit var def: NPCDefinition
+
     override var queue = ActionQueue(this)
     override var softTimers: Timers = TimerSlot(this)
     override var delay: Continuation<Unit>? = null
@@ -42,7 +43,7 @@ data class NPC(
     override lateinit var collision: CollisionStrategy
     override lateinit var visuals: NPCVisuals
 
-    constructor(id: String = "", tile: Tile = Tile.EMPTY, index: Int) : this(id, tile) {
+    constructor(id: String = "", tile: Tile = Tile.EMPTY, index: Int, def: NPCDefinition = NPCDefinition.EMPTY) : this(id, tile, def) {
         this.index = index
     }
 

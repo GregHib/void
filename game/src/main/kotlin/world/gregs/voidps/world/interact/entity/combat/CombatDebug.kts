@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCLevels
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 
@@ -26,8 +27,7 @@ modCommand("maxhit [npc-id] [spell-id]", "calculate your max hit against an npc"
     val magicMax = Damage.maximum(player, player, "magic", weapon, spell)
     player.message("Ranged: $rangeMax Melee: $meleeMax Magic: $magicMax")
     player.message("Hit Chance")
-    val target = NPC(npcName).apply {
-        def = npcDefinitions.get(npcName)
+    val target = NPC(npcName, Tile.EMPTY, npcDefinitions.get(npcName)).apply {
         levels.link(this, NPCLevels(def))
         levels.clear()
     }
