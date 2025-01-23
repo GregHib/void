@@ -13,7 +13,7 @@ import kotlin.random.nextInt
 characterCombatHit("*chinchompa", "range") { character ->
     source as Player
     source.playSound("chinchompa_explode", delay = 40)
-    character.setGraphic("chinchompa_hit")
+    character.gfx("chinchompa_hit")
 }
 
 combatAttack(type = "range") { source ->

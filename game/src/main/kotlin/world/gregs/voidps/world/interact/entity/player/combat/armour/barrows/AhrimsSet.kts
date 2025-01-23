@@ -39,6 +39,6 @@ characterCombatAttack(type = "magic") { character ->
     }
     val drain = target.levels.drain(Skill.Strength, 5)
     if (drain < 0) {
-        target.setGraphic("ahrims_effect")
+        target.gfx("ahrims_effect")
     }
 }

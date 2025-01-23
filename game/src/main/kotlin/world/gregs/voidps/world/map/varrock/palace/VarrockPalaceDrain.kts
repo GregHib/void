@@ -53,7 +53,7 @@ itemOnObjectOperate("*of_water", "varrock_palace_drain") {
     player["demon_slayer_drain_dislodged"] = true
     player.message("You pour the liquid down the drain.")
     player.setAnimation("toss_water")
-    player.setGraphic("toss_water")
+    player.gfx("toss_water")
     player.playSound("demon_slayer_drain")
     player.playSound("demon_slayer_key_fall")
     if (player.quest("demon_slayer") == "key_hunt") {

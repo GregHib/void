@@ -39,7 +39,7 @@ interfaceOption("Cast", "lumbridge_home_teleport", "modern_spellbook") {
         }
         player.start("teleport_delay", 17)
         repeat(17) {
-            player.setGraphic("home_tele_${it + 1}")
+            player.gfx("home_tele_${it + 1}")
             val ticks = player.setAnimation("home_tele_${it + 1}")
             pause(ticks)
         }

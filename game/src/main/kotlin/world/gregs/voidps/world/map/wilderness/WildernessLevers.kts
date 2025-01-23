@@ -44,13 +44,13 @@ suspend fun SuspendableContext<Player>.pullLever(player: Player) {
 teleportTakeOff("Pull", "lever_*") {
     delay = 3
     player.playSound("teleport")
-    player.setGraphic("teleport_modern")
+    player.gfx("teleport_modern")
     player.setAnimation("teleport_modern")
 }
 
 teleportLand("Pull", "lever_*") {
     player.playSound("teleport_land")
-    player.setGraphic("teleport_land_modern")
+    player.gfx("teleport_land_modern")
     player.setAnimation("teleport_land_modern")
     val message: String = obj.getOrNull("land_message") ?: return@teleportLand
     player.message(message, ChatType.Filter)

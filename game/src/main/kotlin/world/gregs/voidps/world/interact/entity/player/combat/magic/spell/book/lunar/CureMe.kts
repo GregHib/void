@@ -23,7 +23,7 @@ interfaceOption(component = "cure_me", id = "lunar_spellbook") {
     }
     val definition = definitions.get(spell)
     player.setAnimation("lunar_cast")
-    player.setGraphic(spell)
+    player.gfx(spell)
     player.experience.add(Skill.Magic, definition.experience)
     player.curePoison()
 }

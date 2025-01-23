@@ -31,7 +31,7 @@ itemOnPlayerApproach(id = "lunar_spellbook", component = "heal_other") {
     val amount = (player.levels.get(Skill.Constitution) * 0.75).toInt() + 1
     player.start("movement_delay", 2)
     player.setAnimation("lunar_cast")
-    target.setGraphic(spell)
+    target.gfx(spell)
     player.experience.add(Skill.Magic, definition.experience)
     val restored = target.levels.restore(Skill.Constitution, amount)
     target.message("You have been healed by ${player.name}.")

@@ -92,7 +92,7 @@ fun useItemOnItem(
         player.setAnimation(def.animation)
     }
     if (def.graphic.isNotEmpty()) {
-        player.setGraphic(def.graphic)
+        player.gfx(def.graphic)
     }
     if (def.sound.isNotEmpty()) {
         player.playSound(def.sound)

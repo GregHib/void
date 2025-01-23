@@ -11,13 +11,13 @@ timerStart("dressing_room") {
 }
 
 timerTick("dressing_room") { player ->
-    player.setGraphic("dressing_room")
+    player.gfx("dressing_room")
 }
 
 timerStop("dressing_room") { player ->
     player.clearGraphic()
     player["delay"] = 1
     player.closeMenu()
-    player.setGraphic("dressing_room_finish")
+    player.gfx("dressing_room_finish")
     player.flagAppearance()
 }

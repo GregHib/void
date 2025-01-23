@@ -10,7 +10,7 @@ import kotlin.random.nextInt
 
 characterCombatHit { character ->
     if (spell.isNotBlank()) {
-        character.setGraphic("${spell}_hit")
+        character.gfx("${spell}_hit")
     }
 }
 

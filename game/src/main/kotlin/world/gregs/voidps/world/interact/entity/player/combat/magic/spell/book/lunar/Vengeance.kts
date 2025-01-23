@@ -31,7 +31,7 @@ interfaceOption("Cast", "vengeance", "lunar_spellbook") {
     }
     val definition = definitions.get(spell)
     player.setAnimation(spell)
-    player.setGraphic(spell)
+    player.gfx(spell)
     player.experience.add(Skill.Magic, definition.experience)
     player["vengeance"] = true
     player.start("vengeance_delay", definition["delay_seconds"], epochSeconds())

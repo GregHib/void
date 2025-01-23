@@ -11,5 +11,5 @@ levelChange(Skill.Constitution) { player ->
     player.levels.set(Skill.Prayer, 0)
     val health = (player.levels.getMax(Skill.Prayer) * 2.5).toInt()
     player.levels.restore(Skill.Constitution, health)
-    player.setGraphic("redemption")
+    player.gfx("redemption")
 }

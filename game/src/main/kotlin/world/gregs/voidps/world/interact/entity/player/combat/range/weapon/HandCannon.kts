@@ -24,14 +24,14 @@ combatSwing("hand_cannon", "range") { player ->
     val ammo = player.equipped(EquipSlot.Ammo)
     player.ammo = ammo.id
     player.setAnimation("hand_cannon_shoot")
-    player.setGraphic("hand_cannon_shoot")
+    player.gfx("hand_cannon_shoot")
     val time = player.shoot(id = player.ammo, target = target)
     player.hit(target, delay = time)
     if (player.specialAttack) {
         val rapid = player.attackType == "rapid"
         player.strongQueue("hit", 2) {
             player.setAnimation("hand_cannon_special")
-            player.setGraphic("hand_cannon_special")
+            player.gfx("hand_cannon_special")
             player.shoot(id = player.ammo, target = target)
             player.hit(target, delay = if (rapid) 30 else 60)
         }
@@ -44,7 +44,7 @@ fun explode(player: Player, chance: Double) {
         return
     }
     player.setAnimation("hand_cannon_explode")
-    player.setGraphic("hand_cannon_explode")
+    player.gfx("hand_cannon_explode")
     player.weapon = Item.EMPTY
     player.damage(random.nextInt(10..160))
     player.message("Your hand cannon explodes!")

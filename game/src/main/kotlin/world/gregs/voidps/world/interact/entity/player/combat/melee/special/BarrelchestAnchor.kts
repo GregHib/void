@@ -9,7 +9,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 specialAttack("sunder") { player ->
     player.setAnimation("${id}_special")
-    player.setGraphic("${id}_special")
+    player.gfx("${id}_special")
     player.playSound("${id}_special")
     val damage = player.hit(target, delay = 60)
     if (damage >= 0) {

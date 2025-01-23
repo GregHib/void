@@ -60,7 +60,7 @@ timerStart("overload") { player ->
         repeat(5) {
             player.directHit(100)
             player.setAnimation("overload")
-            player.setGraphic("overload")
+            player.gfx("overload")
             pause(2)
         }
     }

@@ -12,7 +12,7 @@ specialAttackPrepare("rampage") { player ->
         return@specialAttackPrepare
     }
     player.setAnimation("${id}_special")
-    player.setGraphic("${id}_special")
+    player.gfx("${id}_special")
     player.playSound("${id}_special")
     player.say("Raarrrrrgggggghhhhhhh!")
     player.levels.drain(Skill.Attack, multiplier = 0.10)

@@ -127,7 +127,7 @@ object Ammo {
 
     private fun chance(source: Player, target: Character, name: String, chance: Double): Boolean {
         if (random.nextDouble() < chance) {
-            target.setGraphic(name)
+            target.gfx(name)
             source.playSound(name, delay = 40)
             return true
         }

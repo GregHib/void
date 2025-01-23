@@ -292,7 +292,7 @@ npcLevelChange("delrith", Skill.Constitution) { npc ->
 
 fun Context<Player>.questComplete() {
     player.setAnimation("silverlight_showoff")
-    player.setGraphic("silverlight_sparkle")
+    player.gfx("silverlight_sparkle")
     player.playSound("equip_silverlight")
     player.playJingle("quest_complete_1")
     player["demon_slayer"] = "completed"

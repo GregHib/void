@@ -50,7 +50,7 @@ adminCommand("npcchat") {
 
 adminCommand("npcgfx") {
     val npc = npcs[player.tile.addY(1)].first()
-    npc.setGraphic(content)// 93
+    npc.gfx(content)// 93
 }
 
 adminCommand("npchit") {

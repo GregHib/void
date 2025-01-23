@@ -34,7 +34,7 @@ characterCombatAttack { character ->
     val damage = target["protected_damage", 0]
     if (damage > 0) {
         target.setAnimation("deflect", delay)
-        target.setGraphic("deflect_$type", delay)
+        target.gfx("deflect_$type", delay)
         if (random.nextDouble() >= 0.4) {
             target.hit(target = character, type = "deflect", delay = delay, damage = (damage * 0.10).toInt())
         }

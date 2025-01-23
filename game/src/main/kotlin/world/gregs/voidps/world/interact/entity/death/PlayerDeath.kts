@@ -137,7 +137,7 @@ fun retribution(source: Player) {
     if (!source.praying("retribution")) {
         return
     }
-    source.setGraphic("retribution")
+    source.gfx("retribution")
     val maxHit = (source.levels.get(Skill.Prayer) * 2.5).toInt()
     val target = source.target
     for (direction in Direction.all) {
@@ -155,7 +155,7 @@ fun wrath(source: Player) {
     if (!source.praying("wrath")) {
         return
     }
-    source.setGraphic("wrath")
+    source.gfx("wrath")
     for (direction in Direction.all) {
         val inner = source.tile.add(direction)
         val outer = inner.add(direction)

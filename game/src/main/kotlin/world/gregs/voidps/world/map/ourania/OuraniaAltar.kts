@@ -55,7 +55,7 @@ objectOperate("Craft-rune", "ourania_altar") {
         TransactionError.None -> {
             player.exp(Skill.Runecrafting, experience)
             player.setAnimation("bind_runes")
-            player.setGraphic("bind_runes")
+            player.gfx("bind_runes")
             player.playSound("bind_runes")
             player.message("You bind the temple's power into runes.", ChatType.Filter)
             if (usedArdougneCloak) {

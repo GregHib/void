@@ -41,7 +41,7 @@ itemOnItem(fromInterface = "modern_spellbook", fromComponent = "superheat_item")
     if (player.inventory.transaction.error == TransactionError.None) {
         player.playSound("superheat_all")
         player.setAnimation(spell)
-        player.setGraphic(spell)
+        player.gfx(spell)
         val definition = spellDefinitions.get(spell)
         player.experience.add(Skill.Magic, definition.experience)
         player.experience.add(Skill.Smithing, smelting.exp(player, bar))

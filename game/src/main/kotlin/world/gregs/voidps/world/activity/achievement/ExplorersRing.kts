@@ -20,7 +20,7 @@ playerSpawn { player ->
 inventoryOption("Run-replenish", "explorers_ring_*") {
     if (player.inventory.discharge(player, slot)) {
         player.setAnimation("run_replenish")
-        player.setGraphic("run_replenish")
+        player.gfx("run_replenish")
         player.runEnergy += MAX_RUN_ENERGY / 2
         player["explorers_ring_last_use"] = TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis())
         player.message("You feel refreshed as the ring revitalises you and a charge is used up.")

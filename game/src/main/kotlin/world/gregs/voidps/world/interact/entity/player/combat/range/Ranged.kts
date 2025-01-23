@@ -58,7 +58,7 @@ fun swing(character: Character, target: Character) {
     when (style.stringId) {
         "thrown" -> {
             val ammoName = character.ammo.removePrefix("corrupt_").removeSuffix("_p++").removeSuffix("_p+").removeSuffix("_p")
-            character.setGraphic("${ammoName}_throw")
+            character.gfx("${ammoName}_throw")
             if (weapon.contains("dart")) {
                 character.playSound("dart_throw")
             } else if (weapon.contains("javelin")) {
@@ -72,7 +72,7 @@ fun swing(character: Character, target: Character) {
             }
         }
         "bow" -> {
-            character.setGraphic("${if (ammo.endsWith("brutal")) "brutal" else ammo}_shoot")
+            character.gfx("${if (ammo.endsWith("brutal")) "brutal" else ammo}_shoot")
             if (weapon.contains("shortbow")) {
                 character.playSound("shortbow_shoot")
             } else {
@@ -84,7 +84,7 @@ fun swing(character: Character, target: Character) {
         }
         "salamander" -> {
             time = 0
-            character.setGraphic("salamander_${character.attackType}")
+            character.gfx("salamander_${character.attackType}")
         }
         "crossbow" -> character.playSound("crossbow_shoot")
     }

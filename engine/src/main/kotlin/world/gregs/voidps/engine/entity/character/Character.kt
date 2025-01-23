@@ -76,7 +76,11 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
         flagSay()
     }
 
-    fun setGraphic(id: String, delay: Int? = null) {
+    /**
+     * Apply [id] graphical effect (aka spotanim) to the character with optional [delay]
+     * @see GraphicDefinitions for adjusting height, rotation and refresh
+     */
+    fun gfx(id: String, delay: Int? = null) {
         val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
         val mask = if (this is Player) VisualMask.PLAYER_GRAPHIC_1_MASK else VisualMask.NPC_GRAPHIC_1_MASK
         val graphic = if (visuals.flagged(mask)) visuals.primaryGraphic else visuals.secondaryGraphic

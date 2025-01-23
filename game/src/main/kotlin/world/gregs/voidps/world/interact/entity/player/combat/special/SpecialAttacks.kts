@@ -26,12 +26,12 @@ variableSet("special_attack", to = true) { player ->
 
 specialAttack { player ->
     player.setAnimation("${id}_special")
-    player.setGraphic("${id}_special")
+    player.gfx("${id}_special")
     player.playSound("${id}_special")
     val damage = player.hit(target)
     if (damage >= 0) {
         target.setAnimation("${id}_hit")
-        target.setGraphic("${id}_hit")
+        target.gfx("${id}_hit")
     }
     player.emit(SpecialAttackHit(id, target, damage))
 }

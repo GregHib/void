@@ -24,14 +24,14 @@ fun itemTeleport(player: Player, inventory: String, slot: Int, area: Area, type:
     player.closeInterfaces()
     player.queue("teleport_$type", onCancel = null) {
         player.playSound("teleport")
-        player.setGraphic("teleport_$type")
+        player.gfx("teleport_$type")
         player.animate("teleport_$type")
         player.tele(area.random(player)!!)
         val int = player.setAnimation("teleport_land_$type")
         if (int == -1) {
             player.clearAnimation()
         } else {
-            player.setGraphic("teleport_land_$type")
+            player.gfx("teleport_land_$type")
         }
     }
     return true

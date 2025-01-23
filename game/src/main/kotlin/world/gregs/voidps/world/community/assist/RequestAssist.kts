@@ -111,7 +111,7 @@ fun setupAssistant(player: Player, assisted: Player) {
     setAssistAreaStatus(player, true)
     player.sendVariable("total_xp_earned")
     player.setAnimation("assist")
-    player.setGraphic("assist")
+    player.gfx("assist")
     toggleInventory(player, enabled = false)
 }
 

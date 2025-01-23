@@ -35,6 +35,6 @@ characterCombatAttack("karils_crossbow*", "range") { character ->
         return@characterCombatAttack
     }
     if (target.levels.drain(Skill.Agility, multiplier = 0.20) < 0) {
-        target.setGraphic("karils_effect")
+        target.gfx("karils_effect")
     }
 }

@@ -33,6 +33,6 @@ fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
 characterCombatAttack(type = "melee") { character ->
     if (character.contains("guthans_set_effect") && random.nextInt(4) == 0) {
         character.levels.boost(Skill.Constitution, damage)
-        target.setGraphic("guthans_effect")
+        target.gfx("guthans_effect")
     }
 }

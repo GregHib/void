@@ -36,6 +36,6 @@ characterCombatAttack("torags_hammers*", "melee") { character ->
     }
     if (target.runEnergy > 0) {
         target.runEnergy -= target.runEnergy / 5
-        target.setGraphic("torags_effect")
+        target.gfx("torags_effect")
     }
 }

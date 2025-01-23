@@ -12,7 +12,7 @@ val areas: AreaDefinitions by inject()
 
 objectOperate("Enter", "rune_essence_exit_portal") {
     player.message("You step through the portal...")
-    player.setGraphic("curse_hit", delay = 30)
+    player.gfx("curse_hit", delay = 30)
     target.tile.shoot("curse", player.tile)
 
     player.softQueue("essence_mine_exit", 3) {

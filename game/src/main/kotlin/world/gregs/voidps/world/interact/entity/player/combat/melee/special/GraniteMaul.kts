@@ -16,6 +16,6 @@ specialAttackPrepare("quick_smash") { player ->
     }
     val target = player.target ?: return@specialAttackPrepare
     player.setAnimation("${id}_special")
-    player.setGraphic("${id}_special")
+    player.gfx("${id}_special")
     player.hit(target)
 }

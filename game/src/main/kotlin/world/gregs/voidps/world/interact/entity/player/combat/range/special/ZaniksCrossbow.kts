@@ -8,7 +8,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 specialAttack("defiance") { player ->
     player.setAnimation("zaniks_crossbow_special")
-    player.setGraphic("zaniks_crossbow_special")
+    player.gfx("zaniks_crossbow_special")
     val time = player.shoot(id = "zaniks_crossbow_bolt", target = target)
     val damage = player.hit(target, delay = time)
     if (damage != -1) {

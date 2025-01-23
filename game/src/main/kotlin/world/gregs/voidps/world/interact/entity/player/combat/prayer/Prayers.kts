@@ -22,7 +22,7 @@ prayerStart { player ->
         val curses = player.isCurses()
         if (curses) {
             player.setAnimation("activate_$prayer")
-            player.setGraphic("activate_$prayer")
+            player.gfx("activate_$prayer")
         } else {
             player.playSound("activate_$prayer")
         }

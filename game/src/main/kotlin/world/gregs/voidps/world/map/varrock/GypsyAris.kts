@@ -269,7 +269,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     player.playJingle("quest_complete_1")
     player.face(Direction.SOUTH_WEST)
     player.setAnimation("silverlight_showoff")
-    player.setGraphic("silverlight_sparkle")
+    player.gfx("silverlight_sparkle")
     npc<Pleased>("wally", "I am the greatest demon slayer EVER!")
 
     npc<Talk>("By reciting the correct magical incantation, and thrusting Silverlight into Delrith while he was newly summoned, Wally was able to imprison Delrith in the stone table at the centre of the circle.")

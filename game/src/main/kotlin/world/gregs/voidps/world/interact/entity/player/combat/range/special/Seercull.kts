@@ -12,14 +12,14 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 specialAttack("soulshot") { player ->
     player.setAnimation("bow_accurate")
-    player.setGraphic("seercull_special_shoot")
+    player.gfx("seercull_special_shoot")
     player.playSound("seercull_special")
     val time = player.shoot(id = "seercull_special_arrow", target = target)
     player.hit(target, delay = time)
 }
 
 characterCombatHit("seercull", "range") { character ->
-    character.setGraphic("seercull_special_hit")
+    character.gfx("seercull_special_hit")
 }
 
 combatAttack("seercull*") {

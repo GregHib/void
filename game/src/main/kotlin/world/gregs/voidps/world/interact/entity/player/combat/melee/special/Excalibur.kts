@@ -21,7 +21,7 @@ specialAttackPrepare("sanctuary") { player ->
         return@specialAttackPrepare
     }
     player.setAnimation("${id}_special")
-    player.setGraphic("${id}_special")
+    player.gfx("${id}_special")
     player.playSound("${id}_special")
     player.say("For Camelot!")
     if (player.weapon.id.startsWith("enhanced")) {

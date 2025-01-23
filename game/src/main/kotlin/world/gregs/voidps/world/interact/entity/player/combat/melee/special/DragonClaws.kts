@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
 
 specialAttack("slice_and_dice") { player ->
     player.setAnimation("${id}_special")
-    player.setGraphic("${id}_special")
+    player.gfx("${id}_special")
 
     val weapon = player.weapon
     var (hit1, hit2, hit3, hit4) = intArrayOf(0, 0, 0, 0)

@@ -17,7 +17,7 @@ val npcs: NPCs by inject()
 
 specialAttack("sweep") { player ->
     player.setAnimation("${id}_special")
-    player.setGraphic("${id}_special")
+    player.gfx("${id}_special")
     player.playSound("${id}_special")
     val dir = target.tile.delta(player.tile).toDirection()
     val firstTile = target.tile.add(if (dir.isDiagonal()) dir.horizontal() else dir.rotate(2))

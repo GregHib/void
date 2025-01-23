@@ -23,7 +23,7 @@ val objects: GameObjects by inject()
 inventoryItem("Empty", "ectophial", "inventory") {
     player.strongQueue("ectophial") {
         player.setAnimation("empty_ectophial")
-        player.setGraphic("empty_ectophial")
+        player.gfx("empty_ectophial")
         player.message("You empty the ectoplasm onto the ground around your feet...", ChatType.Filter)
         player.start("movement_delay", 4)
         delay(4)

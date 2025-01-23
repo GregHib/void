@@ -9,8 +9,8 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 specialAttack("snapshot") { player ->
     player.setAnimation("${id}_special")
-    player.setGraphic("${id}_special")
-    player.setGraphic("${id}_special", delay = 30)
+    player.gfx("${id}_special")
+    player.gfx("${id}_special", delay = 30)
     player.playSound("${id}_special")
     val distance = player.tile.distanceTo(target)
     val time1 = player.shoot(id = "special_arrow", target = target, delay = 20, flightTime = 10 + distance * 3)

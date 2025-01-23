@@ -43,7 +43,7 @@ itemOnPlayerApproach(id = "lunar_spellbook", component = "energy_transfer") {
     val definition = definitions.get(spell)
     player.start("movement_delay", 2)
     player.setAnimation("lunar_cast")
-    target.setGraphic(spell)
+    target.gfx(spell)
     player.experience.add(Skill.Magic, definition.experience)
     player.damage(random.nextInt(95, 100))
     player.specialAttackEnergy = 0

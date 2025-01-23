@@ -31,7 +31,7 @@ interfaceOption(component = "heal_group", id = "lunar_spellbook") {
         .filter { other -> other != player && other.tile.within(player.tile, 1) && other.levels.getOffset(Skill.Constitution) < 0 }
         .take(5)
     group.forEach { target ->
-        target.setGraphic(spell)
+        target.gfx(spell)
         player.experience.add(Skill.Magic, definition.experience)
         healed += target.levels.restore(Skill.Constitution, amount / group.size)
         target.message("You have been healed by ${player.name}.")

@@ -26,7 +26,7 @@ interfaceOption(component = "cure_group", id = "lunar_spellbook") {
     players
         .filter { other -> other.tile.within(player.tile, 1) && other.poisoned }
         .forEach { target ->
-            target.setGraphic(spell)
+            target.gfx(spell)
             target.curePoison()
             target.message("You have been cured by ${player.name}")
         }

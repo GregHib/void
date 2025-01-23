@@ -20,7 +20,7 @@ itemRemoved("staff_of_light*", EquipSlot.Weapon, "worn_equipment") { player ->
 
 combatHit { player ->
     if (player.softTimers.contains("power_of_light")) {
-        player.setGraphic("power_of_light_hit")
+        player.gfx("power_of_light_hit")
     }
 }
 
@@ -30,7 +30,7 @@ specialAttackPrepare("power_of_light") { player ->
         return@specialAttackPrepare
     }
     player.setAnimation("${id}_special")
-    player.setGraphic("${id}_special")
+    player.gfx("${id}_special")
     player[id] = TimeUnit.MINUTES.toTicks(1)
     player.softTimers.start(id)
 }
