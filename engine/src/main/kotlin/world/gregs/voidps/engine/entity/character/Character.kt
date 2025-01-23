@@ -71,6 +71,9 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
         exactMove(target.delta(tile), delay, direction, startDelay)
     }
 
+    /**
+     * Force a message to be displayed above character
+     */
     fun say(message: String) {
         visuals.say.text = message
         flagSay()
@@ -97,6 +100,9 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
         }
     }
 
+    /**
+     * Remove any graphical effects in progress
+     */
     fun clearGfx() {
         visuals.primaryGraphic.reset()
         flagPrimaryGraphic()
