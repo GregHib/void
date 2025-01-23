@@ -8,6 +8,7 @@ val teleports: Teleports by inject()
 
 for (option in teleports.options()) {
     objectOperate(option) {
+        delay()
         teleports.teleport(this)
     }
 }

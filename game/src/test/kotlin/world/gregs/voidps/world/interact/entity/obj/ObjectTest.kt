@@ -57,7 +57,7 @@ internal class ObjectTest : WorldTest() {
         val ladder = objects.getLayer(Tile(3229, 3213), ObjectLayer.GROUND)!!
 
         player.objectOption(ladder, "Climb-up")
-        tick(3)
+        tick(4)
 
         assertEquals(1, player.tile.level)
     }
@@ -70,7 +70,7 @@ internal class ObjectTest : WorldTest() {
         // The one in Objects has wrong id as config replace id disabled.
         val ladder = GameObject(id = 36769, tile = Tile(3229, 3213, 1), shape = ObjectShape.GROUND_DECOR, rotation = 3)
         player.objectOption(ladder, "Climb-down")
-        tick(3)
+        tick(4)
 
         assertEquals(0, player.tile.level)
     }

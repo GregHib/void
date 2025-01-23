@@ -53,7 +53,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         val ladder = objects[Tile(3207, 3223, 2), "lumbridge_castle_ladder"]!!
 
         player.objectOption(ladder, "Climb-up")
-        tick(3)
+        tick(4)
 
         assertTrue(player["master_of_all_i_survey_task", false])
     }
