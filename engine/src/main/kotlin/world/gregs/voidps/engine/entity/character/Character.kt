@@ -7,13 +7,16 @@ import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.mode.Mode
+import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
+import world.gregs.voidps.engine.entity.character.mode.move.target.TileTargetStrategy
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.queue.ActionQueue
@@ -153,6 +156,18 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
     fun clearAnim() {
         visuals.animation.reset()
         flagAnimation()
+    }
+
+    /**
+     * Walks player to [target]
+     * Specify [noCollision] to walk through [GameObject]s and
+     * [noRun] to force walking even if the player has running active
+     */
+    fun walkTo(target: Tile, noCollision: Boolean = false, noRun: Boolean = false) {
+        if (tile == target) {
+            return
+        }
+        mode = Movement(this, TileTargetStrategy(target, noCollision, noRun))
     }
 }
 

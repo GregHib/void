@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.suspend
 
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
@@ -59,7 +58,7 @@ interface SuspendableContext<C : Character> : Context<C> {
      * Forces the character to walk to a tile
      */
     suspend fun Character.walkToDelay(tile: Tile, noRun: Boolean = false) {
-        walkTo(tile, noCollision = false, noRun = false)
+        walkTo(tile, noCollision = false, noRun = noRun)
         delayTarget(tile)
     }
 
