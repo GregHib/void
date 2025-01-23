@@ -104,10 +104,10 @@ adminCommand("shoot") {
 adminCommand("face (delta-x) (delta-y)", "turn player to face a direction or delta coordinate") {
     if (content.contains(" ")) {
         val parts = content.split(" ")
-        player.turn(parts[0].toInt(), parts[1].toInt())
+        player.face(parts[0].toInt(), parts[1].toInt())
     } else {
         val direction = Direction.valueOf(content.toScreamingSnakeCase())
-        player.turn(direction.delta)
+        player.face(direction.delta)
     }
 }
 

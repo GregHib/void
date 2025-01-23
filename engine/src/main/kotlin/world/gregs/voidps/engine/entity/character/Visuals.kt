@@ -7,10 +7,9 @@ import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.network.login.protocol.visual.VisualMask
 import world.gregs.voidps.network.login.protocol.visual.update.Hitsplat
-import world.gregs.voidps.network.login.protocol.visual.update.Turn
+import world.gregs.voidps.network.login.protocol.visual.update.Face
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance
@@ -26,11 +25,15 @@ fun Character.flagHits() = visuals.flag(if (this is Player) VisualMask.PLAYER_HI
 
 fun Character.flagExactMovement() = visuals.flag(if (this is Player) VisualMask.PLAYER_EXACT_MOVEMENT_MASK else VisualMask.NPC_EXACT_MOVEMENT_MASK)
 
-fun Character.flagTurn() = visuals.flag(if (this is Player) VisualMask.PLAYER_TURN_MASK else VisualMask.NPC_TURN_MASK)
+fun Character.flagTurn() = visuals.flag(if (this is Player) VisualMask.PLAYER_FACE_MASK else VisualMask.NPC_FACE_MASK)
 
 fun Character.flagTimeBar() = visuals.flag(if (this is Player) VisualMask.PLAYER_TIME_BAR_MASK else VisualMask.NPC_TIME_BAR_MASK)
 
 fun Character.flagWatch() = visuals.flag(if (this is Player) VisualMask.PLAYER_WATCH_MASK else VisualMask.NPC_WATCH_MASK)
+
+fun Character.flagPrimaryGraphic() = visuals.flag(if (this is Player) VisualMask.PLAYER_GRAPHIC_1_MASK else VisualMask.NPC_GRAPHIC_1_MASK)
+
+fun Character.flagSecondaryGraphic() = visuals.flag(if (this is Player) VisualMask.PLAYER_GRAPHIC_2_MASK else VisualMask.NPC_GRAPHIC_2_MASK)
 
 fun Character.colourOverlay(colour: Int, delay: Int, duration: Int) {
     val overlay = visuals.colourOverlay
@@ -40,11 +43,6 @@ fun Character.colourOverlay(colour: Int, delay: Int, duration: Int) {
     flagColourOverlay()
     softTimers.start("colour_overlay")
 }
-
-fun Character.flagPrimaryGraphic() = visuals.flag(if (this is Player) VisualMask.PLAYER_GRAPHIC_1_MASK else VisualMask.NPC_GRAPHIC_1_MASK)
-
-fun Character.flagSecondaryGraphic() = visuals.flag(if (this is Player) VisualMask.PLAYER_GRAPHIC_2_MASK else VisualMask.NPC_GRAPHIC_2_MASK)
-
 
 fun Character.hit(source: Character, amount: Int, mark: Hitsplat.Mark, delay: Int = 0, critical: Boolean = false, soak: Int = -1) {
     val after = (levels.get(Skill.Constitution) - amount).coerceAtLeast(0)
@@ -64,7 +62,7 @@ fun Character.setTimeBar(full: Boolean = false, exponentialDelay: Int = 0, delay
 
 fun Character.watch(character: Character) {
     visuals.watch.index = watchIndex(character)
-    visuals.turn.clear()
+    visuals.face.clear()
     flagWatch()
 }
 
@@ -77,39 +75,39 @@ fun Character.clearWatch() {
 
 private fun watchIndex(character: Character) = if (character is Player) character.index or 0x8000 else character.index
 
-val Character.turn: Delta
-    get() = Tile(visuals.turn.targetX, visuals.turn.targetY, tile.level).delta(tile)
 
-fun Character.turn(delta: Delta, update: Boolean = true): Boolean {
+fun Character.face(delta: Delta, update: Boolean = true): Boolean {
     if (delta == Delta.EMPTY) {
         clearTurn()
         return false
     }
-    turn(delta.x, delta.y, update)
+    face(delta.x, delta.y, update)
     return true
 }
 
 fun Character.clearTurn(): Boolean {
-    visuals.turn.reset()
+    visuals.face.reset()
     return true
 }
 
-fun Character.turn(deltaX: Int = 0, deltaY: Int = -1, update: Boolean = true) {
-    val turn = visuals.turn
+fun Character.face(deltaX: Int = 0, deltaY: Int = -1, update: Boolean = true) {
+    val turn = visuals.face
     turn.targetX = tile.x + deltaX
     turn.targetY = tile.y + deltaY
-    turn.direction = Turn.getFaceDirection(deltaX, deltaY)
+    turn.direction = Face.getFaceDirection(deltaX, deltaY)
     if (update) {
         flagTurn()
     }
 }
+val Character.turn: Delta
+    get() = Tile(visuals.face.targetX, visuals.face.targetY, tile.level).delta(tile)
 
 val Character.facing: Direction
     get() = turn.toDirection()
 
-fun Character.face(direction: Direction, update: Boolean = true) = turn(direction.delta.x, direction.delta.y, update)
+fun Character.face(direction: Direction, update: Boolean = true) = face(direction.delta.x, direction.delta.y, update)
 
-fun Character.face(tile: Tile, update: Boolean = true) = turn(tile.delta(this.tile), update)
+fun Character.face(tile: Tile, update: Boolean = true) = face(tile.delta(this.tile), update)
 
 fun Character.facing(tile: Tile) = turn == tile.delta(this.tile)
 
@@ -121,7 +119,7 @@ fun Character.face(entity: Entity, update: Boolean = true) {
             ObjectShape.isCorner(entity.shape) -> face(Direction.ordinal[entity.rotation], update)
             else -> {
                 val delta = tile.add(entity.width, entity.height).delta(entity.tile.add(entity.width, entity.height))
-                turn(delta, update)
+                face(delta, update)
             }
         }
     }

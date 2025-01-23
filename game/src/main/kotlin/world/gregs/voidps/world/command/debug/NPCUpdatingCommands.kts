@@ -30,7 +30,7 @@ adminCommand("npctfm") {
 adminCommand("npcturn") {
     val npc = npcs[player.tile.addY(1)].first()
     val parts = content.split(" ")
-    npc.turn(parts[0].toInt(), parts[1].toInt())
+    npc.face(parts[0].toInt(), parts[1].toInt())
 }
 
 adminCommand("npcanim") {

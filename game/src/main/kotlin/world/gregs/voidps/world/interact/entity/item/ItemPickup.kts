@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.item
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.entity.character.turn
+import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.floorItemOperate
 import world.gregs.voidps.engine.entity.item.floor.npcOperateFloorItem
@@ -38,7 +38,7 @@ floorItemOperate("Take") {
     when (player.inventory.transaction.error) {
         TransactionError.None -> {
             if (player.tile != target.tile) {
-                player.turn(target.tile.delta(player.tile))
+                player.face(target.tile.delta(player.tile))
                 player.anim("take")
             }
             player.playSound("pickup_item")
