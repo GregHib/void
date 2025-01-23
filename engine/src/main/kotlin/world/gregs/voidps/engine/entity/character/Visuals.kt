@@ -1,13 +1,10 @@
 package world.gregs.voidps.engine.entity.character
 
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
-import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.Entity
-import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
-import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectShape
@@ -16,7 +13,6 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.network.login.protocol.visual.VisualMask
 import world.gregs.voidps.network.login.protocol.visual.update.Hitsplat
 import world.gregs.voidps.network.login.protocol.visual.update.Turn
-import world.gregs.voidps.network.login.protocol.visual.update.player.MoveType
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance
@@ -93,22 +89,6 @@ private fun primaryGfxFlagged(character: Character) = character.visuals.flagged(
 fun Character.flagPrimaryGraphic() = visuals.flag(if (this is Player) VisualMask.PLAYER_GRAPHIC_1_MASK else VisualMask.NPC_GRAPHIC_1_MASK)
 
 fun Character.flagSecondaryGraphic() = visuals.flag(if (this is Player) VisualMask.PLAYER_GRAPHIC_2_MASK else VisualMask.NPC_GRAPHIC_2_MASK)
-
-fun Character.setGraphic(id: String, delay: Int? = null) {
-    val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
-    val graphic = if (primaryGfxFlagged(this)) visuals.primaryGraphic else visuals.secondaryGraphic
-    graphic.id = definition.id
-    graphic.delay = delay ?: definition["delay", 0]
-    val characterHeight = (this as? NPC)?.def?.get("height", 0) ?: 40
-    graphic.height = (characterHeight + definition["height", -1000]).coerceAtLeast(0)
-    graphic.rotation = definition["rotation", 0]
-    graphic.forceRefresh = definition["force_refresh", false]
-    if (primaryGfxFlagged(this)) {
-        flagPrimaryGraphic()
-    } else {
-        flagSecondaryGraphic()
-    }
-}
 
 fun Character.clearGraphic() {
     if (primaryGfxFlagged(this)) {

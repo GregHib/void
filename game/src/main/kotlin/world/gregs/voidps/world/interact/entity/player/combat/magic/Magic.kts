@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.combat.characterCombatSwing
 import world.gregs.voidps.world.interact.entity.combat.combatSwing

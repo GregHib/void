@@ -3,7 +3,6 @@ package world.gregs.voidps.world.map.falador
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.entity.character.clearGraphic
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick

@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.character
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.Variables
+import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
@@ -13,9 +14,11 @@ import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.timer.Timers
+import world.gregs.voidps.network.login.protocol.visual.VisualMask
 import world.gregs.voidps.network.login.protocol.visual.Visuals
 import world.gregs.voidps.network.login.protocol.visual.update.player.MoveType
 import world.gregs.voidps.type.Delta
@@ -73,6 +76,22 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
         flagSay()
     }
 
+    fun setGraphic(id: String, delay: Int? = null) {
+        val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
+        val mask = if (this is Player) VisualMask.PLAYER_GRAPHIC_1_MASK else VisualMask.NPC_GRAPHIC_1_MASK
+        val graphic = if (visuals.flagged(mask)) visuals.primaryGraphic else visuals.secondaryGraphic
+        graphic.id = definition.id
+        graphic.delay = delay ?: definition["delay", 0]
+        val characterHeight = (this as? NPC)?.def?.get("height", 0) ?: 40
+        graphic.height = (characterHeight + definition["height", -1000]).coerceAtLeast(0)
+        graphic.rotation = definition["rotation", 0]
+        graphic.forceRefresh = definition["force_refresh", false]
+        if (visuals.flagged(mask)) {
+            flagPrimaryGraphic()
+        } else {
+            flagSecondaryGraphic()
+        }
+    }
 }
 
 val Entity.size: Int

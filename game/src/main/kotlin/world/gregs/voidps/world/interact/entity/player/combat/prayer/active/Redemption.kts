@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
 
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.levelChange
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
 
 levelChange(Skill.Constitution) { player ->

@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
 
 import world.gregs.voidps.engine.data.definition.PrayerDefinitions
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack

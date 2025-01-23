@@ -2,7 +2,6 @@ package world.gregs.voidps.world.activity.achievement
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.inventory

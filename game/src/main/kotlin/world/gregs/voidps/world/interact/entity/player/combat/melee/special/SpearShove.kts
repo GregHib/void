@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.timer.toTicks

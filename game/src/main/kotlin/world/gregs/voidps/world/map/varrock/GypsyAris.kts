@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.move.running
@@ -17,7 +16,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.LogoutBehaviour

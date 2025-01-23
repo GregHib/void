@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.setGraphic
 
 internal suspend fun Interaction<Player>.openDressingRoom(id: String) {
     player.closeDialogue()

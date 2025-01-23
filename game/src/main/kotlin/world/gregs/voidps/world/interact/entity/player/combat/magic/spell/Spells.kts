@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack

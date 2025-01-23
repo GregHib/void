@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.special
 
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.sound.playSound

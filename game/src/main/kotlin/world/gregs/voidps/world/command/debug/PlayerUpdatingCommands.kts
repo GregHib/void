@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.zone.DynamicZones
-import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.effect.transform
