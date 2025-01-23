@@ -56,7 +56,6 @@ class AccountManager(
         player.visuals.hits.self = player.index
         player.interfaces = Interfaces(player, player.client, interfaceDefinitions)
         player.interfaceOptions = InterfaceOptions(player, interfaceDefinitions, inventoryDefinitions)
-        player.options = PlayerOptions(player)
         (player.variables as PlayerVariables).definitions = variableDefinitions
         player.inventories.definitions = inventoryDefinitions
         player.inventories.itemDefinitions = itemDefinitions

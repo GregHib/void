@@ -65,7 +65,7 @@ class Player(
         }
 
     val instructions = Channel<Instruction>(capacity = InstructionTask.MAX_INSTRUCTIONS)
-    lateinit var options: PlayerOptions
+    val options = PlayerOptions(this)
     lateinit var interfaces: Interfaces
     lateinit var interfaceOptions: InterfaceOptions
     override lateinit var collision: CollisionStrategy
