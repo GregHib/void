@@ -3,7 +3,6 @@ package world.gregs.voidps.world.map
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
@@ -39,7 +38,7 @@ enterArea("border_guard*") {
     if (player.steps.destination in border) {
         val tile = border.nearestTo(player.tile)
         val endSide = getOppositeSide(border, tile)
-        player.walkTo(endSide, noCollision = true, noRun = true)
+        player.walkTo(endSide, noCollision = true, forceWalk = true)
     } else {
         player.steps.update(noCollision = true, noRun = true)
     }

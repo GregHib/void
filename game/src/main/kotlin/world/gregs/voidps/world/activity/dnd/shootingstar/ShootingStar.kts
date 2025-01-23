@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.data.settingsReload
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
@@ -105,7 +104,7 @@ fun startCrashedStarEvent() {
     }
     logger.info { "Crashed star event has started at: $location (${currentStarTile.x}, ${currentStarTile.y}) tier ${tier}." }
     val shootingStarShadow: NPC? = npcs.add("shooting_star_shadow", Tile(currentStarTile.x, currentStarTile.y + 6), Direction.NONE)
-    shootingStarShadow?.walkTo(currentStarTile, noCollision = true, noRun = true)
+    shootingStarShadow?.walkTo(currentStarTile, noCollision = true, forceWalk = true)
     areaSound("star_meteor_falling", currentStarTile, radius = 15, delay = 20)
     World.queue("awaiting_shadow_walk", 6) {
         val shootingStarObjectFalling: GameObject = objects.add("crashed_star_falling_object", currentStarTile)

@@ -5,7 +5,6 @@ import org.rsmod.game.pathfinder.collision.CollisionFlagMap
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile

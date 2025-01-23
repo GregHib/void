@@ -6,8 +6,10 @@ import world.gregs.voidps.engine.client.ui.event.modCommand
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.Hitsplat
+import world.gregs.voidps.type.Delta
 import world.gregs.voidps.world.interact.entity.effect.transform
 
 val npcs: NPCs by inject()
@@ -30,7 +32,7 @@ adminCommand("npctfm") {
 adminCommand("npcturn") {
     val npc = npcs[player.tile.addY(1)].first()
     val parts = content.split(" ")
-    npc.turn(parts[0].toInt(), parts[1].toInt())
+    npc.face(Delta(parts[0].toInt(), parts[1].toInt()))
 }
 
 adminCommand("npcanim") {
@@ -55,7 +57,8 @@ adminCommand("npcgfx") {
 
 adminCommand("npchit") {
     val npc = npcs[player.tile.addY(1)].first()
-    npc.hit(player, 10, Hitsplat.Mark.Healed)
+    npc.visuals.hits.hits.add(Hitsplat(10, Hitsplat.Mark.Healed, npc.levels.getPercent(Skill.Constitution, fraction = 255.0).toInt()))
+    npc.flagHits()
 }
 
 adminCommand("npctime") {

@@ -10,7 +10,7 @@ internal class VisualsTest {
 
     @BeforeEach
     fun setup() {
-        visuals = object : Visuals(0) {
+        visuals = object : Visuals() {
         }
     }
 

@@ -7,13 +7,17 @@ import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.mode.Mode
+import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
+import world.gregs.voidps.engine.entity.character.mode.move.target.TileTargetStrategy
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.queue.ActionQueue
@@ -21,9 +25,11 @@ import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.network.login.protocol.visual.VisualMask
 import world.gregs.voidps.network.login.protocol.visual.Visuals
+import world.gregs.voidps.network.login.protocol.visual.update.Face
 import world.gregs.voidps.network.login.protocol.visual.update.player.MoveType
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 import kotlin.coroutines.Continuation
 
@@ -39,6 +45,7 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
     var delay: Continuation<Unit>?
     override var variables: Variables
     val steps: Steps
+    val size: Int
 
     override fun compareTo(other: Character): Int {
         return index.compareTo(other.index)
@@ -111,7 +118,6 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
         flagSecondaryGraphic()
     }
 
-
     /**
      * Temporarily perform animation [id] (aka sequence)
      * with optional [delay] and [override]ing of the previous animation
@@ -154,11 +160,118 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
         visuals.animation.reset()
         flagAnimation()
     }
-}
 
-val Entity.size: Int
-    get() = when (this) {
-        is NPC -> def.size
-        is Player -> appearance.size
-        else -> 1
+    /**
+     * Walks player to [target]
+     * Specify [noCollision] to walk through [GameObject]s and
+     * [forceWalk] to force walking even if the player has running active
+     */
+    fun walkTo(target: Tile, noCollision: Boolean = false, forceWalk: Boolean = false) {
+        if (tile == target) {
+            return
+        }
+        mode = Movement(this, TileTargetStrategy(target, noCollision, forceWalk))
     }
+
+    /**
+     * The direction the character is currently facing
+     */
+    val direction: Direction
+        get() = Direction.of(visuals.face.targetX - tile.x, visuals.face.targetY - tile.y)
+
+    /**
+     * Turn to face a [direction]
+     */
+    fun face(direction: Direction, update: Boolean = true) = face(direction.delta, update)
+
+    /**
+     * Turn to face a [tile]
+     */
+    fun face(tile: Tile, update: Boolean = true) = face(tile.delta(this.tile), update)
+
+
+    /**
+     * Turn to face [delta]
+     */
+    fun face(delta: Delta, update: Boolean = true): Boolean {
+        if (delta == Delta.EMPTY) {
+            clearFace()
+            return false
+        }
+        val turn = visuals.face
+        turn.targetX = tile.x + delta.x
+        turn.targetY = tile.y + delta.y
+        turn.direction = Face.getFaceDirection(delta.x, delta.y)
+        if (update) {
+            flagTurn()
+        }
+        return true
+    }
+
+    /**
+     * Turn to face [entity]
+     */
+    fun face(entity: Entity, update: Boolean = true) {
+        val tile = nearestTile(entity)
+        if (!face(tile, update) && entity is GameObject) {
+            when {
+                ObjectShape.isWall(entity.shape) -> face(Direction.cardinal[(entity.rotation + 3) and 0x3], update)
+                ObjectShape.isCorner(entity.shape) -> face(Direction.ordinal[entity.rotation], update)
+                else -> {
+                    val delta = tile.add(entity.width, entity.height).delta(entity.tile.add(entity.width, entity.height))
+                    face(delta, update)
+                }
+            }
+        }
+    }
+
+    /**
+     * Reset character face direction
+     */
+    fun clearFace(): Boolean {
+        visuals.face.reset()
+        return true
+    }
+
+    private fun nearestTile(entity: Entity): Tile {
+        return when (entity) {
+            is GameObject -> Distance.getNearest(entity.tile, entity.width, entity.height, this.tile)
+            is NPC -> Distance.getNearest(entity.tile, entity.def.size, entity.def.size, this.tile)
+            is Player -> Distance.getNearest(entity.tile, entity.appearance.size, entity.appearance.size, this.tile)
+            else -> entity.tile
+        }
+    }
+
+    /**
+     * Track facing a [character] until otherwise specified
+     */
+    fun watch(character: Character) {
+        if (character is Player) {
+            visuals.watch.index = character.index or 0x8000
+        } else {
+            visuals.watch.index = character.index
+        }
+        visuals.face.clear()
+        flagWatch()
+    }
+
+    /**
+     * Check if character is currently watching [character]
+     */
+    fun watching(character: Character): Boolean {
+        return if (character is Player) {
+            visuals.watch.index == character.index or 0x8000
+        } else {
+            visuals.watch.index == character.index
+        }
+    }
+
+    /**
+     * Stop watching the targeted entity
+     */
+    fun clearWatch() {
+        visuals.watch.index = -1
+        flagWatch()
+    }
+
+}

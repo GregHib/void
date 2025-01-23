@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.character.mode.move.target
 
 import org.rsmod.game.pathfinder.reach.ReachStrategy
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get

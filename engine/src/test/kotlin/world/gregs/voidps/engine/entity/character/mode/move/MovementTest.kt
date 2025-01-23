@@ -13,7 +13,6 @@ import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.facing
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.mode.move.target.TileTargetStrategy
 import world.gregs.voidps.engine.entity.character.move.previousTile
@@ -39,7 +38,6 @@ internal class MovementTest : KoinMock() {
     @BeforeEach
     fun setup() {
         player = Player(tile = Tile(5, 5))
-        player.visuals = PlayerVisuals(0, BodyParts())
         player.collision = CollisionStrategies.Normal
         declareMock<AreaDefinitions> {
             every { get(any<Zone>()) } returns emptySet()
@@ -114,7 +112,7 @@ internal class MovementTest : KoinMock() {
         assertEquals(MoveType.Walk, player.movementType)
         assertEquals(MoveType.Walk, player.temporaryMoveType)
 
-        assertEquals(Direction.NORTH_EAST, player.facing)
+        assertEquals(Direction.NORTH_EAST, player.direction)
         assertEquals(Tile(5, 5), player.previousTile)
         assertEquals(Tile(6, 6), player.tile)
     }
@@ -129,7 +127,7 @@ internal class MovementTest : KoinMock() {
         assertEquals(1, player.visuals.walkStep)
         assertEquals(1, player.visuals.runStep)
 
-        assertEquals(Direction.NORTH_EAST, player.facing)
+        assertEquals(Direction.NORTH_EAST, player.direction)
         assertEquals(Tile(6, 6), player.previousTile)
         assertEquals(Tile(7, 7), player.tile)
         assertFalse(player.steps.isEmpty())

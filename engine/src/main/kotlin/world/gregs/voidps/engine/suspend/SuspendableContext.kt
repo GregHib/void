@@ -53,4 +53,26 @@ interface SuspendableContext<C : Character> : Context<C> {
         val ticks = anim(id, override = override)
         delay(ticks)
     }
+
+    /**
+     * Forces the character to walk to a tile
+     */
+    suspend fun Character.walkToDelay(tile: Tile, forceWalk: Boolean = false) {
+        walkTo(tile, noCollision = false, forceWalk = forceWalk)
+        delayTarget(tile)
+    }
+
+    /**
+     * Force a character to walk to tile ignoring collisions
+     */
+    suspend fun Character.walkOverDelay(tile: Tile, forceWalk: Boolean = true) {
+        walkTo(tile, noCollision = true, forceWalk = forceWalk)
+        delayTarget(tile)
+    }
+
+    private suspend fun delayTarget(target: Tile) {
+        while (character.tile != target) {
+            delay()
+        }
+    }
 }

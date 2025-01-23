@@ -2,7 +2,6 @@ package world.gregs.voidps.world.map.barbarian_outpost
 
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.obj.objectOperate
@@ -19,6 +18,6 @@ objectOperate("Open", "barbarian_outpost_gate_left_closed", "barbarian_outpost_g
         player.mode = Interact(player, guard, NPCOption(player, guard, guard.def, "Talk-to"))
         return@objectOperate
     }
-    player.walkTo(player.tile.copy(y = player.tile.y.coerceIn(2569, 3570)))
+    player.walkToDelay(player.tile.copy(y = player.tile.y.coerceIn(2569, 3570)))
     enterDoor(target, delay = 2)
 }

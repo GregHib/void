@@ -30,8 +30,7 @@ internal class NPCChatTest : DialogueTest() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        npc = NPC(id = "jim", index = -1)
-        npc.def = NPCDefinition(id = 123, stringId = npc.id, name = "Jim")
+        npc = NPC(id = "jim", index = -1, def = NPCDefinition(id = 123, stringId = "jim", name = "Jim"))
         player.talkWith(npc)
         declareMock<AnimationDefinitions> {
             every { this@declareMock.get(any<String>()) } returns AnimationDefinition()

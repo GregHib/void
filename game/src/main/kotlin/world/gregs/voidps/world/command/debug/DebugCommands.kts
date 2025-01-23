@@ -27,7 +27,6 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.network.login.protocol.encode.clearCamera
@@ -38,7 +37,6 @@ import world.gregs.voidps.type.Zone
 import world.gregs.voidps.world.activity.quest.*
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.startQuest
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
@@ -48,10 +46,8 @@ val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 
 modCommand("test") {
-    player.weakQueue(name = "level_up") {
-        val response = startQuest(content)
-        println(response)
-    }
+    println()
+    println("Facing ${player.tile.delta(player.visuals.face.targetX, player.visuals.face.targetY)}")
 }
 
 modCommand("commands", aliases = listOf("help")) {

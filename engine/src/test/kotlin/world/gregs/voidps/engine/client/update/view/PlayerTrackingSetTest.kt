@@ -17,7 +17,6 @@ internal class PlayerTrackingSetTest {
     @BeforeEach
     fun setup() {
         player = Player(index = 1)
-        player.visuals = PlayerVisuals(index = 0, body = BodyParts())
         set = PlayerTrackingSet()
     }
 

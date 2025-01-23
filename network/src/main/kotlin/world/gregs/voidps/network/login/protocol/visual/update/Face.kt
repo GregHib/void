@@ -6,7 +6,7 @@ import kotlin.math.atan2
 /**
  * Turn a character to face [targetX], [targetY] or [direction]
  */
-data class Turn(
+data class Face(
     var targetX: Int = 0,
     var targetY: Int = 0,
     var direction: Int = 0

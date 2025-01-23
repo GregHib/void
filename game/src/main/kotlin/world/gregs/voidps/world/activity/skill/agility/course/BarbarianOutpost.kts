@@ -2,10 +2,7 @@ package world.gregs.voidps.world.activity.skill.agility.course
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.move.walkOver
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.renderEmote
@@ -27,7 +24,7 @@ objectOperate("Squeeze-through", "barbarian_outpost_entrance") {
     player.agilityCourse("barbarian")
     val start = if (player.tile.y >= 3560) Tile(2552, 3561) else Tile(2552, 3558)
     if (player.tile != start) {
-        player.walkTo(start)
+        player.walkToDelay(start)
         player.face(target)
         delay()
     }
@@ -37,7 +34,7 @@ objectOperate("Squeeze-through", "barbarian_outpost_entrance") {
 }
 
 objectOperate("Swing-on", "barbarian_outpost_rope_swing") {
-    player.walkTo(player.tile.copy(y = 3554))
+    player.walkToDelay(player.tile.copy(y = 3554))
     arriveDelay()
     player.clear("face_entity")
     player.face(Direction.SOUTH)
@@ -59,7 +56,7 @@ objectOperate("Swing-on", "barbarian_outpost_rope_swing") {
         player.damage(50)
         delay(3)
         player.message("You slip and fall to the pit below.", ChatType.Filter)
-        player.walkOver(player.tile.copy(y = 9949))
+        player.walkOverDelay(player.tile.copy(y = 9949))
     }
     if (success || Settings["agility.disableFailLapSkip", false]) {
         player.agilityStage(1)
@@ -67,27 +64,27 @@ objectOperate("Swing-on", "barbarian_outpost_rope_swing") {
 }
 
 objectOperate("Walk-across", "barbarian_outpost_log_balance") {
-    player.walkOver(Tile(2550, 3546))
+    player.walkOverDelay(Tile(2550, 3546))
     val disable = Settings["agility.disableCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), 93) // 62.1% success rate at 35
     player.message("You walk carefully across the slippery log...", ChatType.Filter)
     player.renderEmote("rope_balance")
     if (success) {
-        player.walkOver(Tile(2541, 3546))
+        player.walkOverDelay(Tile(2541, 3546))
         player.clearRenderEmote()
         player.exp(Skill.Agility, 13.7)
         player.message("... and make it safely to the other side.", ChatType.Filter)
     } else {
         player.clear("face_entity")
         player.face(Direction.WEST)
-        player.walkOver(Tile(2545, 3546))
+        player.walkOverDelay(Tile(2545, 3546))
         player.anim("fall_off_log_left")
         delay()
         player.message("... but you lose your footing and fall into the water.", ChatType.Filter)
         player.tele(2545, 3545)
         player.renderEmote("tread_water")
         delay()
-        player.walkOver(Tile(2545, 3543))
+        player.walkOverDelay(Tile(2545, 3543))
         player.message("Something in the water bites you.", ChatType.Filter)
         player.clearRenderEmote()
         player.damage(random.nextInt(30, 52))
@@ -114,7 +111,7 @@ objectOperate("Walk-across", "barbarian_outpost_balancing_ledge") {
     player.renderEmote("ledge_balance")
     player.message("You put your foot on the ledge and try to edge across...", ChatType.Filter)
     if (success) {
-        player.walkOver(Tile(2532, 3547, 1))
+        player.walkOverDelay(Tile(2532, 3547, 1))
         player.face(Direction.WEST)
         player.anim("ledge_stand_away_right")
         player.clearRenderEmote()
@@ -122,7 +119,7 @@ objectOperate("Walk-across", "barbarian_outpost_balancing_ledge") {
         player.message("You skillfully edge across the gap.", ChatType.Filter)
     } else {
         // https://youtu.be/bPFbuMnCx18?si=KJIVXuBftlZ9_Wth&t=47
-        player.walkOver(Tile(2534, 3547, 1))
+        player.walkOverDelay(Tile(2534, 3547, 1))
         player.face(Direction.WEST)
         player.anim("fall_off_log_left")
         delay()
@@ -134,7 +131,7 @@ objectOperate("Walk-across", "barbarian_outpost_balancing_ledge") {
         player.clearRenderEmote()
         player.damage(50)
         delay()
-        player.walkOver(Tile(2534, 3545))
+        player.walkOverDelay(Tile(2534, 3545))
         //player.message("", ChatType.Filter) // TODO
     }
     // Skip stage so lap doesn't count at end
@@ -149,7 +146,7 @@ objectOperate("Climb-over", "barbarian_outpost_crumbling_wall") {
         return@objectOperate
     }
     if (player.tile.x == target.tile.x) {
-        player.walkTo(target.tile.addX(-1))
+        player.walkToDelay(target.tile.addX(-1))
     }
     player.message("You climb the low wall...", ChatType.Filter)
     player.anim("climb_over_wall")

@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -211,7 +210,7 @@ suspend fun Interaction<Player>.playDungeoneeringCapeEmote(player: Player) {
 }
 
 suspend fun Interaction<Player>.playDungeoneeringMasterCapeEmote(player: Player) {
-    val direction = player.facing
+    val direction = player.direction
 
     player.transform("sagittarian_ranger")
     player.gfx("emote_dung_master_bow")

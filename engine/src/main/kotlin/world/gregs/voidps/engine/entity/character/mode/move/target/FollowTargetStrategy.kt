@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.character.mode.move.target
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.move.followTile
-import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.type.Tile
 
 data class FollowTargetStrategy(

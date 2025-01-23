@@ -53,10 +53,9 @@ class AccountManager(
 
     fun setup(player: Player): Boolean {
         player.index = players.index() ?: return false
-        player.visuals = PlayerVisuals(player.index, player.body)
+        player.visuals.hits.self = player.index
         player.interfaces = Interfaces(player, player.client, interfaceDefinitions)
         player.interfaceOptions = InterfaceOptions(player, interfaceDefinitions, inventoryDefinitions)
-        player.options = PlayerOptions(player)
         (player.variables as PlayerVariables).definitions = variableDefinitions
         player.inventories.definitions = inventoryDefinitions
         player.inventories.itemDefinitions = itemDefinitions

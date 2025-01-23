@@ -1,8 +1,6 @@
 package world.gregs.voidps.world.activity.skill.agility.course
 
-import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -30,7 +28,7 @@ objectOperate("Run-up", "barbarian_outpost_run_wall") {
 
 objectOperate("Climb-up", "barbarian_outpost_climb_wall") {
     player.clear("face_entity")
-    player.walkTo(Tile(2537, 3546, 2))
+    player.walkToDelay(Tile(2537, 3546, 2))
     player.face(Direction.WEST)
     delay()
     player.anim("barbarian_wall_climb")

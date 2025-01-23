@@ -7,7 +7,6 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.type.Tile
 
 fun PathFinder.findPath(character: Character, strategy: TargetStrategy, shape: Int?) = findPath(

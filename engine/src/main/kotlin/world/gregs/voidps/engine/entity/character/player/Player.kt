@@ -47,6 +47,16 @@ class Player(
     val body: BodyParts = BodyParts()
 ) : Character {
 
+    override val visuals: PlayerVisuals = PlayerVisuals(body)
+    init {
+        if (index != -1) {
+            visuals.hits.self = -index
+        }
+    }
+
+    override val size: Int
+        get() = appearance.size
+
     override var mode: Mode = EmptyMode
         set(value) {
             field.stop(value)
@@ -54,9 +64,8 @@ class Player(
             value.start()
         }
 
-    override lateinit var visuals: PlayerVisuals
     val instructions = Channel<Instruction>(capacity = InstructionTask.MAX_INSTRUCTIONS)
-    lateinit var options: PlayerOptions
+    val options = PlayerOptions(this)
     lateinit var interfaces: Interfaces
     lateinit var interfaceOptions: InterfaceOptions
     override lateinit var collision: CollisionStrategy

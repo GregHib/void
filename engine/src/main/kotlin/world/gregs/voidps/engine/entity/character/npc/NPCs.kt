@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.MAX_NPCS
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.CharacterMap
-import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.mode.move.AreaEntered
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -99,8 +98,7 @@ data class NPCs(
             return null
         }
         val index = index() ?: return null
-        val npc = NPC(id, tile)
-        npc.def = def
+        val npc = NPC(id, tile, def, index)
         npc.levels.link(npc, NPCLevels(def))
         npc.levels.clear(Skill.Constitution)
         npc.levels.clear(Skill.Attack)
@@ -113,7 +111,6 @@ data class NPCs(
             npc.mode = Wander(npc, tile)
         }
         val dir = if (direction == Direction.NONE) Direction.all.random() else direction
-        npc.index = index
         npc.face(dir)
         npc.collision = collision.get(npc)
         add(npc)

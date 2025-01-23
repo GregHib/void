@@ -3,8 +3,6 @@ package world.gregs.voidps.world.interact.entity.obj.door
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.move.walkOver
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -23,24 +21,6 @@ object Door {
 
     // Delay in ticks before a door closes itself
     private val doorResetDelay = TimeUnit.MINUTES.toTicks(5)
-
-    /**
-     * Walks a player through a door which other players can't walk through
-     */
-    fun enter(player: Player, door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3) {
-        if (door.id.endsWith("_opened")) {
-            return
-        }
-        val direction = door.tile.delta(player.tile).toDirection()
-        val vertical = door.rotation == 0 || door.rotation == 2
-        val target = if (vertical && direction.isHorizontal() || !vertical && direction.isVertical()) {
-            door.tile
-        } else {
-            tile(door, 1)
-        }
-        player.walkTo(target, noCollision = true, noRun = true)
-        openDoor(player, door, def, ticks, collision = false)
-    }
 
     /**
      * Closes if [door] is open and opens [door] is closed
@@ -167,31 +147,36 @@ object Door {
 
 
 /**
- * Enter through a door
+ * Walks a player through a door which other players can't walk through
  */
-suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3, delay: Int) {
-    Door.enter(player, door, def, ticks)
+private fun Player.enter(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3): Tile? {
     if (door.id.endsWith("_opened")) {
-        return
+        return null
     }
-    delay(delay)
-}
-
-
-/**
- * Enter through a door
- */
-suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3) {
-    if (door.id.endsWith("_opened")) {
-        return
-    }
-    val direction = door.tile.delta(player.tile).toDirection()
+    val direction = door.tile.delta(tile).toDirection()
     val vertical = door.rotation == 0 || door.rotation == 2
     val target = if (vertical && direction.isHorizontal() || !vertical && direction.isVertical()) {
         door.tile
     } else {
         tile(door, 1)
     }
-    openDoor(player, door, def, ticks, collision = false)
-    player.walkOver(target)
+    openDoor(this, door, def, ticks, collision = false)
+    return target
+}
+
+/**
+ * Enter through a doorway
+ */
+suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3) {
+    val tile = player.enter(door, def, ticks) ?: return
+    player.walkOverDelay(tile)
+}
+
+/**
+ * Enter through a door with fixed [delay]
+ */
+suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3, delay: Int) {
+    val tile = player.enter(door, def, ticks) ?: return
+    player.walkTo(tile, noCollision = true, forceWalk = true)
+    delay(delay)
 }

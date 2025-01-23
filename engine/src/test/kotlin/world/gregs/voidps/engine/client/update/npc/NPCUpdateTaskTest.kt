@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.login.protocol.visual.NPCVisuals
 import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
 import world.gregs.voidps.network.login.protocol.visual.update.Animation
-import world.gregs.voidps.network.login.protocol.visual.update.Turn
+import world.gregs.voidps.network.login.protocol.visual.update.Face
 import world.gregs.voidps.type.Tile
 
 internal class NPCUpdateTaskTest : KoinMock() {
@@ -185,7 +185,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.tile } returns value(Tile(5, 3, 0))
         every { npc.index } returns index
         every { npc.def.id } returns id
-        every { npc.visuals.turn } returns Turn(direction = direction)
+        every { npc.visuals.face } returns Face(direction = direction)
         every { npc.visuals.animation } returns Animation(123)
         every { npcs.getDirect(player.tile.regionLevel) } returns listOf(index)
         every { npcs.indexed(index) } returns npc
@@ -228,7 +228,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.def.id } returns id
         every { npcs.getDirect(player.tile.regionLevel) } returns listOf(index)
         every { npcs.indexed(index) } returns npc
-        every { npc.visuals.turn.direction } returns 8194
+        every { npc.visuals.face.direction } returns 8194
         every { entities.size } returns 256
         // When
         task.processAdditions(player, viewport, sync, updates, entities)
@@ -252,7 +252,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.def.id } returns 20
         every { npcs.getDirect(player.tile.regionLevel) } returns listOf(index)
         every { npcs.indexed(index) } returns npc
-        every { npc.visuals.turn.direction } returns 8194
+        every { npc.visuals.face.direction } returns 8194
         // When
         task.processAdditions(player, viewport, sync, updates, entities)
         // Then
@@ -275,7 +275,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.def.id } returns 20
         every { npcs.getDirect(player.tile.regionLevel) } returns listOf(index)
         every { npcs.indexed(index) } returns npc
-        every { npc.visuals.turn.direction } returns 8194
+        every { npc.visuals.face.direction } returns 8194
         // When
         task.processAdditions(player, viewport, sync, updates, entities)
         // Then

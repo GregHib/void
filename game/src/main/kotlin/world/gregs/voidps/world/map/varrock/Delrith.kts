@@ -7,14 +7,12 @@ import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -193,7 +191,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     player.turnCamera(Tile(3227, 3369).add(offset), 400, 1, 1)
     player["demon_slayer_summoned"] = true
     delay(5)
-    delrith.walkTo(Tile(3227, 3367).add(offset))
+    delrith.walkToDelay(Tile(3227, 3367).add(offset))
     delay(2)
     player.clearCamera()
     player.moveCamera(Tile(3226, 3375).add(offset), 500, 232, 232)
@@ -215,7 +213,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     delrith.face(player)
     npc<Surprised>("dark_wizard_earth", "Who's that?")
     npc<Afraid>("denath", "Noo! Not Silverlight! Delrith is not ready yet!")
-    denath.walkTo(Tile(3236, 3368).add(offset))
+    denath.walkToDelay(Tile(3236, 3368).add(offset))
     player.clearCamera()
     player.moveCamera(Tile(3226, 3383).add(offset), 1000, 1, 1)
     npc<Shifty>("denath", "I've got to get out of here...")
