@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.Hitsplat
+import world.gregs.voidps.type.Delta
 import world.gregs.voidps.world.interact.entity.effect.transform
 
 val npcs: NPCs by inject()
@@ -30,7 +31,7 @@ adminCommand("npctfm") {
 adminCommand("npcturn") {
     val npc = npcs[player.tile.addY(1)].first()
     val parts = content.split(" ")
-    npc.face(parts[0].toInt(), parts[1].toInt())
+    npc.face(Delta(parts[0].toInt(), parts[1].toInt()))
 }
 
 adminCommand("npcanim") {

@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.MAX_NPCS
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.CharacterMap
-import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.mode.move.AreaEntered
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

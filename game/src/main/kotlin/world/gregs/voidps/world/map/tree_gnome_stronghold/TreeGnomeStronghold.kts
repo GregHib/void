@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.map.tree_gnome_stronghold
 
-import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
 
