@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.npc.move
 
-import world.gregs.voidps.engine.entity.character.say
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.Wander

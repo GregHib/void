@@ -3,7 +3,6 @@ package world.gregs.voidps.world.activity.skill.runecrafting
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.say
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player

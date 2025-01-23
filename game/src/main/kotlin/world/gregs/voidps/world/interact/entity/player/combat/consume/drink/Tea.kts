@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.consume.drink
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
-import world.gregs.voidps.engine.entity.character.say
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.discharge

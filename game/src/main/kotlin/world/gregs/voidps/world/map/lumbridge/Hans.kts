@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.map.lumbridge
 
-import world.gregs.voidps.engine.entity.character.say
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.world.interact.dialogue.EvilLaugh

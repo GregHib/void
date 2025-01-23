@@ -177,7 +177,7 @@ fun Character.setExactMovement(
     flagExactMovement()
 }
 
-fun Character.setExactMove(delta: Delta, delay: Int = tile.distanceTo(tile.add(delta)) * 30, direction: Direction = Direction.NONE) {
+fun Character.exactMove(delta: Delta, delay: Int = tile.distanceTo(tile.add(delta)) * 30, direction: Direction = Direction.NONE) {
     val start = tile
     tele(delta)
     if (this is Player) {
@@ -186,12 +186,12 @@ fun Character.setExactMove(delta: Delta, delay: Int = tile.distanceTo(tile.add(d
     setExactMovement(Delta.EMPTY, delay, start.delta(tile), direction = direction)
 }
 
-context(SuspendableContext<*>) suspend fun Character.exactMove(delta: Delta, delay: Int = tile.distanceTo(tile.add(delta)) * 30, direction: Direction = Direction.NONE) {
-    character.setExactMove(delta, delay, direction)
+context(SuspendableContext<*>) suspend fun Character.exactMoveDelay(delta: Delta, delay: Int = tile.distanceTo(tile.add(delta)) * 30, direction: Direction = Direction.NONE) {
+    character.exactMove(delta, delay, direction)
     delay(delay / 30)
 }
 
-fun Character.setExactMove(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE, startDelay: Int = 0) {
+fun Character.exactMove(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE, startDelay: Int = 0) {
     val start = tile
     tele(target)
     if (this is Player) {
@@ -200,8 +200,8 @@ fun Character.setExactMove(target: Tile, delay: Int = tile.distanceTo(target) * 
     setExactMovement(Delta.EMPTY, delay, start.delta(tile), startDelay, direction = direction)
 }
 
-context(SuspendableContext<*>) suspend fun Character.exactMove(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE, startDelay: Int = 0) {
-    character.setExactMove(target, delay, direction, startDelay)
+context(SuspendableContext<*>) suspend fun Character.exactMoveDelay(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE, startDelay: Int = 0) {
+    character.exactMove(target, delay, direction, startDelay)
     delay((startDelay + delay) / 30)
 }
 

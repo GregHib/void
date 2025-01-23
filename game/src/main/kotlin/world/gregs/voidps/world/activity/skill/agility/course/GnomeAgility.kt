@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.activity.skill.agility.course
 
-import world.gregs.voidps.engine.entity.character.say
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.random

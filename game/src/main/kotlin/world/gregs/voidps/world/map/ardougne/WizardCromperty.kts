@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.map.ardougne
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.say
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate

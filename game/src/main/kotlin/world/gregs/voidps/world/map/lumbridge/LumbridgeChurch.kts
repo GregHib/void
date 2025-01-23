@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.character.animate
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.say
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs

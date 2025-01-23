@@ -2,7 +2,7 @@ package world.gregs.voidps.world.activity.skill.agility.course
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.exactMove
+import world.gregs.voidps.engine.entity.character.exactMoveDelay
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.move.walkOver
@@ -98,7 +98,7 @@ suspend fun SuspendableContext<Player>.fallIntoPit() {
     player.setAnimation("rope_walk_fall_down")
     player.message("You lose your footing and fall into the wolf pit.", ChatType.Filter)
     delay()
-    player.exactMove(Tile(3001, 3923), 25, Direction.SOUTH)
+    player.exactMoveDelay(Tile(3001, 3923), 25, Direction.SOUTH)
 }
 
 objectOperate("Squeeze-through", "wilderness_obstacle_pipe") {
@@ -110,11 +110,11 @@ objectOperate("Squeeze-through", "wilderness_obstacle_pipe") {
         player.walkTo(target.tile.addY(-1))
     }
     player.setAnimation("climb_through_pipe", delay = 30)
-    player.exactMove(Tile(3004, 3940), startDelay = 30, delay = 96, direction = Direction.NORTH)
+    player.exactMoveDelay(Tile(3004, 3940), startDelay = 30, delay = 96, direction = Direction.NORTH)
     player.tele(3004, 3947)
     delay()
     player.setAnimation("climb_through_pipe", delay = 30)
-    player.exactMove(Tile(3004, 3950), startDelay = 30, delay = 96, direction = Direction.NORTH)
+    player.exactMoveDelay(Tile(3004, 3950), startDelay = 30, delay = 96, direction = Direction.NORTH)
     player.exp(Skill.Agility, 12.5)
     player.agilityStage(1)
 }
@@ -129,11 +129,11 @@ objectOperate("Swing-on", "wilderness_rope_swing") {
     target.animate("swing_rope")
     delay()
     if (success) {
-        player.exactMove(player.tile.copy(y = 3958), 60, Direction.NORTH)
+        player.exactMoveDelay(player.tile.copy(y = 3958), 60, Direction.NORTH)
         player.exp(Skill.Agility, 20.0)
         player.message("You skillfully swing across.", ChatType.Filter)
     } else {
-        player.exactMove(player.tile.copy(y = 3957), 50, Direction.NORTH)
+        player.exactMoveDelay(player.tile.copy(y = 3957), 50, Direction.NORTH)
         delay(1)
         player.tele(3004, 10357)
         player.damage((player.levels.get(Skill.Constitution) * 0.15).toInt() + 10)
@@ -149,7 +149,7 @@ objectOperate("Cross", "wilderness_stepping_stone") {
     for (i in 0..5) {
         player.setAnimation("stepping_stone_jump")
         player.playSound("jump")
-        player.exactMove(target.tile.addX(-i), delay = 30, direction = Direction.WEST, startDelay = 15)
+        player.exactMoveDelay(target.tile.addX(-i), delay = 30, direction = Direction.WEST, startDelay = 15)
         delay(1)
         if (i == 2 && !Settings["agility.disableCourseFailure", false] && !Level.success(player.levels.get(Skill.Agility), 180..250)) {
             player.setAnimation("rope_walk_fall_down")

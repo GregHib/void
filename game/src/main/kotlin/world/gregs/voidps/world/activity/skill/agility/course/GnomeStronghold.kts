@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.activity.skill.agility.course
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.exactMove
+import world.gregs.voidps.engine.entity.character.exactMoveDelay
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.move.walkOver
@@ -101,11 +101,11 @@ objectOperate("Squeeze-through", "gnome_obstacle_pipe_*") {
     player.message("You pull yourself through the pipes..", ChatType.Filter)
     delay()
     player.setAnimation("climb_through_pipe")
-    player.exactMove(target.tile.addY(2))
+    player.exactMoveDelay(target.tile.addY(2))
     player.face(Direction.NORTH)
     player.tele(target.tile.addY(3))
     player.setAnimation("climb_through_pipe", delay = 1)
-    player.exactMove(target.tile.addY(6))
+    player.exactMoveDelay(target.tile.addY(6))
     if (player.agilityStage == 6) {
         player.agilityStage = 0
         player.inc("gnome_course_laps")

@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.data.settingsReload
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.setExactMove
+import world.gregs.voidps.engine.entity.character.exactMove
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -120,7 +120,7 @@ fun startCrashedStarEvent() {
         for (player in under) {
             player.damage(random.nextInt(10, 50))
             val direction = Direction.all.first { !player.blocked(it) }
-            player.setExactMove(direction.delta, 1, direction = direction.inverse())
+            player.exactMove(direction.delta, 1, direction = direction.inverse())
             player.setAnimation("step_back_startled")
         }
         World.queue("falling_star_object_removal", 1) {

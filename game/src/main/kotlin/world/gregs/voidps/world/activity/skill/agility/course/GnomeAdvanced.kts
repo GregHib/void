@@ -47,10 +47,10 @@ objectApproach("Run-across", "gnome_sign_post_advanced") {
     player.setAnimation("gnome_wall_${if (success) "run" else "fail"}")
     delay(1)
     if (!success) {
-        player.exactMove(Tile(2480, 3418, 3), 30, Direction.EAST)
+        player.exactMoveDelay(Tile(2480, 3418, 3), 30, Direction.EAST)
         delay(5)
     }
-    player.exactMove(Tile(2484, 3418, 3), if (success) 60 else 210, Direction.EAST)
+    player.exactMoveDelay(Tile(2484, 3418, 3), if (success) 60 else 210, Direction.EAST)
     if (success) {
         player.exp(Skill.Agility, 25.0)
     } else {
@@ -75,14 +75,14 @@ objectApproach("Swing-to", "gnome_pole_advanced") {
     player.face(Direction.NORTH)
     delay()
     player.setAnimation("gnome_run_up")
-    player.exactMove(tile.copy(y = 3421), 60, Direction.NORTH)
+    player.exactMoveDelay(tile.copy(y = 3421), 60, Direction.NORTH)
     player.setAnimation("gnome_jump")
-    player.exactMove(tile.copy(y = 3425), 30, Direction.NORTH)
+    player.exactMoveDelay(tile.copy(y = 3425), 30, Direction.NORTH)
     player.setAnimation("gnome_swing")
     delay(4)
-    player.exactMove(tile.copy(y = 3429), 30, Direction.NORTH)
+    player.exactMoveDelay(tile.copy(y = 3429), 30, Direction.NORTH)
     delay(4)
-    player.exactMove(tile.copy(y = 3432), 30, Direction.NORTH)
+    player.exactMoveDelay(tile.copy(y = 3432), 30, Direction.NORTH)
     delay(1)
     player.agilityStage(6)
     player.exp(Skill.Agility, 25.0)
@@ -91,7 +91,7 @@ objectApproach("Swing-to", "gnome_pole_advanced") {
 objectOperate("Jump-over", "gnome_barrier_advanced") {
     player.setAnimation("gnome_jump_barrier")
     delay()
-    player.exactMove(Tile(2485, 3434, 3), 30, Direction.NORTH)
+    player.exactMoveDelay(Tile(2485, 3434, 3), 30, Direction.NORTH)
     delay(1)
     player.tele(2485, 3436, 0)
     player.setAnimation("gnome_pipe_land")

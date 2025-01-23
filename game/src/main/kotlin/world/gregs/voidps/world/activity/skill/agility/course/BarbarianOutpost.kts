@@ -2,8 +2,8 @@ package world.gregs.voidps.world.activity.skill.agility.course
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.entity.character.exactMoveDelay
 import world.gregs.voidps.engine.entity.character.exactMove
-import world.gregs.voidps.engine.entity.character.setExactMove
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.move.walkOver
@@ -36,7 +36,7 @@ objectOperate("Squeeze-through", "barbarian_outpost_entrance") {
     }
     player.setAnimation("climb_through_pipe")
     val end = if (player.tile.y >= 3560) 3558 else 3561
-    player.exactMove(Tile(2552, end), 60, direction = if (player.tile.y >= 3560) Direction.SOUTH else Direction.NORTH)
+    player.exactMoveDelay(Tile(2552, end), 60, direction = if (player.tile.y >= 3560) Direction.SOUTH else Direction.NORTH)
 }
 
 objectOperate("Swing-on", "barbarian_outpost_rope_swing") {
@@ -51,12 +51,12 @@ objectOperate("Swing-on", "barbarian_outpost_rope_swing") {
     target.animate("swing_rope")
     delay()
     if (success) {
-        player.setExactMove(player.tile.copy(y = 3549), 60, Direction.SOUTH)
+        player.exactMove(player.tile.copy(y = 3549), 60, Direction.SOUTH)
         delay()
         player.exp(Skill.Agility, 22.0)
         player.message("You skillfully swing across.", ChatType.Filter)
     } else {
-        player.exactMove(player.tile.copy(y = 3550), 50, Direction.SOUTH)
+        player.exactMoveDelay(player.tile.copy(y = 3550), 50, Direction.SOUTH)
         delay(1)
         player.tele(player.tile.copy(y = 9950))
         player.damage(50)
@@ -156,7 +156,7 @@ objectOperate("Climb-over", "barbarian_outpost_crumbling_wall") {
     }
     player.message("You climb the low wall...", ChatType.Filter)
     player.setAnimation("climb_over_wall")
-    player.setExactMove(target.tile.addX(1), 60, Direction.EAST)
+    player.exactMove(target.tile.addX(1), 60, Direction.EAST)
     delay()
     if (target.tile.equals(2542, 3553)) {
         if (player.agilityStage == 5) {

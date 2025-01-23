@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.map.karamja
 
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.say
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
