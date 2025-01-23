@@ -98,7 +98,7 @@ data class NPCs(
             return null
         }
         val index = index() ?: return null
-        val npc = NPC(id, tile, def)
+        val npc = NPC(id, tile, def, index)
         npc.levels.link(npc, NPCLevels(def))
         npc.levels.clear(Skill.Constitution)
         npc.levels.clear(Skill.Attack)
@@ -111,7 +111,6 @@ data class NPCs(
             npc.mode = Wander(npc, tile)
         }
         val dir = if (direction == Direction.NONE) Direction.all.random() else direction
-        npc.index = index
         npc.face(dir)
         npc.collision = collision.get(npc)
         add(npc)

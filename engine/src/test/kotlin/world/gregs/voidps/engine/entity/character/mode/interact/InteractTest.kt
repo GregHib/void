@@ -75,7 +75,6 @@ internal class InteractTest : KoinMock() {
         every { player.close(null) } returns true
         every { player.sendScript(any()) } just Runs
         every { player.interfaces.get(any()) } returns null
-        player.visuals = PlayerVisuals(0, BodyParts())
         player.collision = CollisionStrategies.Normal
         target = NPC(tile = Tile(10, 10))
         target.visuals = NPCVisuals(0)

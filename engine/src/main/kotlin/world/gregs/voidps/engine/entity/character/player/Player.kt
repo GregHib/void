@@ -57,7 +57,7 @@ class Player(
             value.start()
         }
 
-    override lateinit var visuals: PlayerVisuals
+    override val visuals: PlayerVisuals = PlayerVisuals(body)
     val instructions = Channel<Instruction>(capacity = InstructionTask.MAX_INSTRUCTIONS)
     lateinit var options: PlayerOptions
     lateinit var interfaces: Interfaces

@@ -23,8 +23,17 @@ data class NPC(
     val id: String = "",
     override var tile: Tile = Tile.EMPTY,
     val def: NPCDefinition = NPCDefinition.EMPTY,
-    override val levels: Levels = Levels(),
+    override val index: Int = -1,
+    override val levels: Levels = Levels()
 ) : Character {
+    override val visuals: NPCVisuals = NPCVisuals()
+
+    init {
+        if (index != -1) {
+            visuals.hits.self = -index
+        }
+    }
+
     override val size = def.size
     override var mode: Mode = EmptyMode
         set(value) {
@@ -41,17 +50,6 @@ data class NPC(
     override val steps: Steps = Steps(this)
 
     override lateinit var collision: CollisionStrategy
-    override lateinit var visuals: NPCVisuals
-
-    constructor(id: String = "", tile: Tile = Tile.EMPTY, index: Int, def: NPCDefinition = NPCDefinition.EMPTY) : this(id, tile, def) {
-        this.index = index
-    }
-
-    override var index: Int = -1
-        set(value) {
-            field = value
-            visuals = NPCVisuals(value)
-        }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

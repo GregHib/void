@@ -38,7 +38,6 @@ internal class MovementTest : KoinMock() {
     @BeforeEach
     fun setup() {
         player = Player(tile = Tile(5, 5))
-        player.visuals = PlayerVisuals(0, BodyParts())
         player.collision = CollisionStrategies.Normal
         declareMock<AreaDefinitions> {
             every { get(any<Zone>()) } returns emptySet()
