@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.data.settingsReload
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.exactMove
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC

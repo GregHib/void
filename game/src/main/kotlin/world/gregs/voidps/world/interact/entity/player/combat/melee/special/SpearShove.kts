@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.entity.character.exactMove
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic

@@ -177,24 +177,6 @@ fun Character.setExactMovement(
     flagExactMovement()
 }
 
-fun Character.exactMove(delta: Delta, delay: Int = tile.distanceTo(tile.add(delta)) * 30, direction: Direction = Direction.NONE) {
-    val start = tile
-    tele(delta)
-    if (this is Player) {
-        movementType = MoveType.Walk
-    }
-    setExactMovement(Delta.EMPTY, delay, start.delta(tile), direction = direction)
-}
-
-fun Character.exactMove(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE, startDelay: Int = 0) {
-    val start = tile
-    tele(target)
-    if (this is Player) {
-        movementType = MoveType.Walk
-    }
-    setExactMovement(Delta.EMPTY, delay, start.delta(tile), startDelay, direction = direction)
-}
-
 val Character.turn: Delta
     get() = Tile(visuals.turn.targetX, visuals.turn.targetY, tile.level).delta(tile)
 
