@@ -32,11 +32,6 @@ fun Character.flagTimeBar() = visuals.flag(if (this is Player) VisualMask.PLAYER
 
 fun Character.flagWatch() = visuals.flag(if (this is Player) VisualMask.PLAYER_WATCH_MASK else VisualMask.NPC_WATCH_MASK)
 
-context(SuspendableContext<*>) suspend fun Character.animDelay(id: String, override: Boolean = false) {
-    val ticks = setAnimation(id, override = override)
-    delay(ticks)
-}
-
 fun Character.colourOverlay(colour: Int, delay: Int, duration: Int) {
     val overlay = visuals.colourOverlay
     overlay.colour = colour

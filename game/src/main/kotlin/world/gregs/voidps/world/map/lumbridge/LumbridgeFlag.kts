@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.map.lumbridge
 
-import world.gregs.voidps.engine.entity.character.animDelay
 import world.gregs.voidps.engine.entity.obj.objectOperate
 
 objectOperate("Raise", "lumbridge_flag") {
