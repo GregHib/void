@@ -1,0 +1,14 @@
+<configuration>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%logger{0}] - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <root level="trace">
+        <appender-ref ref="console"/>
+    </root>
+    <logger name="com.zaxxer.hikari.pool" level="WARN"/>
+    <logger name="com.zaxxer.hikari.HikariConfig" level="WARN"/>
+    <logger name="Exposed" level="WARN">
+    </logger>
+</configuration>

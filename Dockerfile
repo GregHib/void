@@ -6,7 +6,7 @@ RUN mkdir /app
 WORKDIR /app/
 
 # Copy JAR file
-COPY ./game/build/libs/void-server-*.jar /app/void-server.jar
+COPY ./server/build/libs/void-server-*.jar /app/void-server.jar
 
 # Copy configuration and cache files
 COPY ./data/map/ /app/data/map/

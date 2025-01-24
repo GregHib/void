@@ -50,7 +50,7 @@ import world.gregs.voidps.gameModule
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
-import world.gregs.voidps.script.loadScripts
+import world.gregs.voidps.script.ScriptLoader
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
@@ -187,7 +187,7 @@ abstract class WorldTest : KoinTest {
                 }
             })
         }
-        loadScripts()
+        ScriptLoader.load()
         MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache()
         saves = File(Settings["storage.players.path"])
         saves?.mkdirs()
