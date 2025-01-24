@@ -23,5 +23,20 @@ dependencies {
     testImplementation("io.insert-koin:koin-test:${findProperty("koinVersion")}")
     testImplementation("io.mockk:mockk:${findProperty("mockkVersion")}")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${findProperty("kotlinCoroutinesVersion")}")
+}
 
+val commonDeps = project.configurations.getByName("implementation").dependencies
+
+subprojects {
+    dependencies {
+        for(dep in commonDeps) {
+            implementation(dep)
+        }
+    }
+}
+
+dependencies {
+    for (project in subprojects) {
+        api(project)
+    }
 }
