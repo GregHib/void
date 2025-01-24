@@ -51,14 +51,14 @@ npcLevelChange("melee_dummy", Skill.Constitution, handler = levelHandler)
 npcLevelChange("magic_dummy", Skill.Constitution, handler = levelHandler)
 
 combatPrepare("magic") { player ->
-    if (target is NPC && target.id == "magic_dummy" && player.fightStyle != "magic") {
+    if (target is NPC && (target as NPC).id == "magic_dummy" && player.fightStyle != "magic") {
         player.message("You can only use Magic against this dummy.")
         cancel()
     }
 }
 
 combatPrepare("melee") { player ->
-    if (target is NPC && target.id == "melee_dummy" && player.fightStyle != "melee") {
+    if (target is NPC && (target as NPC).id == "melee_dummy" && player.fightStyle != "melee") {
         player.message("You can only use Melee against this dummy.")
         cancel()
     }

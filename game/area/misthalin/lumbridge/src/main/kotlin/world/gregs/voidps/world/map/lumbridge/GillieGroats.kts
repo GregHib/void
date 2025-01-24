@@ -45,7 +45,6 @@ suspend fun SuspendableContext<Player>.howToMilkCow() {
     npc<Happy>("Then just milk the cow and your bucket will fill with tasty, nutritious milk.")
 }
 
-
 suspend fun SuspendableContext<Player>.topQualityMilk() {
     npc<Talk>("Really? Is it for something special?")
     player<Happy>("Most certainly! It's for the cook to make a cake foe Duke Horacio!")
