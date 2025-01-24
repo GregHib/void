@@ -1,4 +1,4 @@
 
 dependencies {
-    implementation(project(":game:interact:dialogue"))
+    implementation(project(":game:entity:player:dialogue"))
 }
