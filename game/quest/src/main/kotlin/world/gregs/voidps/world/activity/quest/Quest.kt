@@ -18,10 +18,6 @@ val quests = listOf(
     "enter_the_abyss",
 )
 
-fun Player.quest(name: String): String = this[name, "unstarted"]
-
-fun Player.questComplete(name: String): Boolean = quest(name) == "completed"
-
 fun Player.refreshQuestJournal() {
     sendScript("quest_journal_refresh")
 }
