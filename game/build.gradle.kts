@@ -29,7 +29,10 @@ val commonDeps = project.configurations.getByName("implementation").dependencies
 
 subprojects {
     dependencies {
-        for(dep in commonDeps) {
+        for (dep in commonDeps) {
+            if (this@subprojects.name == "test" && dep.name == "test") {
+                continue
+            }
             implementation(dep)
         }
     }
