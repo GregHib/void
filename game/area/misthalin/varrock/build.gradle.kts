@@ -4,5 +4,6 @@ dependencies {
     implementation(project(":game:api"))
     implementation(project(":game:quest"))
     implementation(project(":game:skill:runecrafting"))
+    implementation(project(":game:quest:miniquest:alfred-grimhands-barcrawl"))
     testImplementation(project(":game:api:testing"))
 }
