@@ -2,9 +2,6 @@ package world.gregs.voidps.world.command.debug
 
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.flag.CollisionFlag
-import world.gregs.voidps.bot.path.Dijkstra
-import world.gregs.voidps.bot.path.EdgeTraversal
-import world.gregs.voidps.bot.path.NodeTargetStrategy
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.*
 import world.gregs.voidps.engine.client.ui.chat.Colours
@@ -225,38 +222,6 @@ operator fun Array<IntArray?>.get(baseX: Int, baseY: Int, localX: Int, localY: I
     return zone[Tile.index(x, y)]
 }
 
-adminCommand("walkToBank") {
-    val east = Tile(3179, 3433).toCuboid(15, 14)
-    val west = Tile(3250, 3417).toCuboid(7, 8)
-    val dijkstra: Dijkstra = get()
-    val strategy = object : NodeTargetStrategy() {
-        override fun reached(node: Any): Boolean {
-            return if (node is Tile) east.contains(node) || west.contains(node) else false
-        }
-    }
-    println("Path took ${
-        measureNanoTime {
-            dijkstra.find(player, strategy, EdgeTraversal())
-        }
-    }ns")
-    /*player.action { FIXME
-        var first = true
-        while (player.waypoints.isNotEmpty()) {
-            val next = player.waypoints.poll()
-            suspendCoroutine<Unit> { cont ->
-                val tile = if (first && !player.tile.within(next.end as Tile, 20)) {
-                    next.start
-                } else {
-                    next.end
-                } as Tile
-                first = false
-                scheduler.add {
-                    player.walkTo(tile)
-                }
-            }
-        }
-    }*/
-}
 
 adminCommand("sendItems") {
     val array = IntArray(28 * 2)

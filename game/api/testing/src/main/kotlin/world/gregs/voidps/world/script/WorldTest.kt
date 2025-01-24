@@ -11,6 +11,7 @@ import org.koin.core.logger.Level
 import org.koin.dsl.module
 import org.koin.test.KoinTest
 import world.gregs.voidps.FakeRandom
+import world.gregs.voidps.bot.botModule
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.MemoryCache
@@ -156,7 +157,7 @@ abstract class WorldTest : KoinTest {
         startKoin {
             printLogger(Level.ERROR)
             allowOverride(true)
-            modules(engineModule, gameModule, module {
+            modules(engineModule, gameModule, botModule, module {
                 single(createdAtStart = true) { cache }
                 single(createdAtStart = true) { huffman }
                 single(createdAtStart = true) { objectDefinitions }

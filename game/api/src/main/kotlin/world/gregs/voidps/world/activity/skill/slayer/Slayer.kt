@@ -9,11 +9,11 @@ private fun isUndead(category: String) = category == "shade" || category == "zom
 val Character.undead: Boolean
     get() = if (this is NPC) isUndead(race) else false
 
-val Player.hasSlayerTask: Boolean
-    get() = this["slayer_task", false]
-
 val NPC.race: String
     get() = this.def["race", ""]
+
+val Player.hasSlayerTask: Boolean
+    get() = this["slayer_task", false]
 
 fun Player.isTask(character: Character?): Boolean {
     val target = character ?: return false

@@ -3,4 +3,5 @@ dependencies {
     implementation(project(":game:area:global"))
     implementation(project(":game:api"))
     implementation(project(":game:quest"))
+    implementation(project(":game:skill:runecrafting"))
 }

@@ -9,7 +9,6 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import net.pearx.kasechange.toSentenceCase
 import net.pearx.kasechange.toSnakeCase
-import world.gregs.voidps.bot.navigation.graph.NavigationGraph
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.engine.client.clearCamera
@@ -432,7 +431,6 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
             defs.load()
             loadObjectSpawns(custom, definitions = defs)
         }
-        "nav graph", "ai graph" -> get<NavigationGraph>().load()
         "npcs" -> {
             get<NPCDefinitions>().load()
             val npcs: NPCs = get()

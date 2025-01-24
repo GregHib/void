@@ -7,6 +7,7 @@ import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import org.koin.dsl.module
 import org.koin.logger.slf4jLogger
+import world.gregs.voidps.bot.botModule
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
@@ -84,7 +85,7 @@ object Main {
         val module = cache(cache)
         startKoin {
             slf4jLogger(level = Level.ERROR)
-            modules(engineModule, gameModule, module)
+            modules(engineModule, gameModule, botModule, module)
         }
         ScriptLoader.load(Main::class, Settings["storage.scripts.package"], Settings["storage.scripts.bots.package"])
     }

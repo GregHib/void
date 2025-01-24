@@ -5,6 +5,7 @@ dependencies {
     implementation(project(":cache"))
     implementation(project(":yaml"))
     implementation(project(":game:api"))
+    implementation(project(":game:bot"))
     implementation(kotlin("script-runtime"))
     implementation("com.michael-bull.kotlin-inline-logger:kotlin-inline-logger-jvm:${findProperty("inlineLoggingVersion")}")
     implementation("org.rsmod:rsmod-pathfinder:${findProperty("pathfinderVersion")}")
