@@ -226,10 +226,10 @@ suspend fun SuspendableContext<Player>.cutscene() {
 }
 
 combatPrepare("melee") { player ->
-    if (target is NPC && target.id == "delrith" && target.transform == "delrith_weakened") {
+    if (target is NPC && (target as NPC).id == "delrith" && (target as NPC).transform == "delrith_weakened") {
         cancel()
         player.strongQueue("banish_delrith", 1) {
-            player.mode = Interact(player, target, NPCOption(player, target, target.def, "Banish"))
+            player.mode = Interact(player, target, NPCOption(player, target as NPC, (target as NPC).def, "Banish"))
         }
     }
 }
