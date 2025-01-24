@@ -86,7 +86,7 @@ object Main {
             slf4jLogger(level = Level.ERROR)
             modules(engineModule, gameModule, module)
         }
-        ScriptLoader.load(Main::class)
+        ScriptLoader.load(Main::class, Settings["storage.scripts.package"], Settings["storage.scripts.bots.package"])
     }
 
     private fun cache(cache: Cache) = module {

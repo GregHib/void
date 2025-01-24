@@ -38,10 +38,11 @@ import java.util.concurrent.TimeUnit
 val npcs: NPCs by inject()
 
 objectOperate("Play", "lumbridge_organ") {
-    player.anim("play_organ")
-    player.playMidi("church_organ")
+//    player.playMidi("church_organ")
     player.playJingle("ambient_church_happy")
     player["tinkle_the_ivories_task"] = true
+    player.animDelay("play_organ")
+    pause(6)
 }
 
 objectOperate("Ring", "lumbridge_church_bell") {

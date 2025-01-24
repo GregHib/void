@@ -25,7 +25,8 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${findProperty("kotlinCoroutinesVersion")}")
 }
 
-val commonDeps = project.configurations.getByName("implementation").dependencies
+val commonDeps = project.configurations.getByName("implementation").dependencies +
+        project.configurations.getByName("testImplementation").dependencies
 
 subprojects {
     dependencies {

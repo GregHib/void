@@ -776,7 +776,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
         val stairs = objects[Tile(3243, 3214), "lumbridge_organ"]!!
         player.objectOption(stairs, "Play")
-        tick()
+        tick(4)
 
         assertTrue(player["tinkle_the_ivories_task", false])
     }
