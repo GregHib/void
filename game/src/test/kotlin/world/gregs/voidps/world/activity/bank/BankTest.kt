@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.activity.bank
 
+import content.entity.player.bank.bank
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.item.Item

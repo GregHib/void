@@ -25,7 +25,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.world.activity.bank.ownsItem
+import content.entity.player.bank.ownsItem
 import content.skill.melee.weapon.attackRange
 import content.entity.combat.attackers
 import content.entity.combat.inCombat

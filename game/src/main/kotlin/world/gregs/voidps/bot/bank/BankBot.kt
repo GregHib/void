@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.EnterInt
 import world.gregs.voidps.network.client.instruction.InteractInterface
-import world.gregs.voidps.world.activity.bank.bank
+import content.entity.player.bank.bank
 
 private fun getItemId(id: String): Int? = get<ItemDefinitions>().getOrNull(id)?.id
 

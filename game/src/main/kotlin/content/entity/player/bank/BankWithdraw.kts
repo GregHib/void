@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.bank
+package content.entity.player.bank
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message

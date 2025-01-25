@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.activity.bank.ownsItem
+import content.entity.player.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import content.entity.player.dialogue.type.statement
 import content.entity.death.playerDeath

@@ -2,7 +2,7 @@ package world.gregs.voidps.world.activity.quest
 
 import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.inv.holdsItem
-import world.gregs.voidps.world.activity.bank.bank
+import content.entity.player.bank.bank
 
 interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 1) {
     val lines = when (player.quest("cooks_assistant")) {

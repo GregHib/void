@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.world.activity.bank.ownsItem
+import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.player.modal.Tab

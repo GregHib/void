@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
-import world.gregs.voidps.world.activity.bank.isNote
-import world.gregs.voidps.world.activity.bank.noted
+import content.entity.player.bank.isNote
+import content.entity.player.bank.noted
 
 interfaceOption("Value", "inventory", "shop_side") {
     val inventory = player.shopInventory(false)

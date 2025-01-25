@@ -24,7 +24,7 @@ import world.gregs.voidps.network.client.instruction.InteractInterface
 import world.gregs.voidps.network.client.instruction.InteractNPC
 import world.gregs.voidps.network.client.instruction.InteractObject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.world.activity.bank.bank
+import content.entity.player.bank.bank
 
 val Player.isBot: Boolean
     get() = contains("bot")

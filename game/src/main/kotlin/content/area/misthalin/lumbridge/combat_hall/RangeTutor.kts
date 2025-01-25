@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.timer.epochSeconds
-import world.gregs.voidps.world.activity.bank.bank
-import world.gregs.voidps.world.activity.bank.ownsItem
+import content.entity.player.bank.bank
+import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import java.util.concurrent.TimeUnit

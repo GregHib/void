@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.*
-import world.gregs.voidps.world.activity.bank.bank
+import content.entity.player.bank.bank
 import world.gregs.voidps.world.activity.quest.quest
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.player

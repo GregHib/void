@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.world.activity.bank.ownsItem
+import content.entity.player.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral

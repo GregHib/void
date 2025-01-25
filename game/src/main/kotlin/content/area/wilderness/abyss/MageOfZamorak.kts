@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.activity.bank.ownsItem
+import content.entity.player.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.questComplete
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*

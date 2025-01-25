@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.bank
+package content.entity.player.bank
 
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.interfaceSwap

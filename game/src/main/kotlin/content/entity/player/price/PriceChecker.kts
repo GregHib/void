@@ -14,8 +14,8 @@ import world.gregs.voidps.engine.inv.moveAll
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
-import world.gregs.voidps.world.activity.bank.isNote
-import world.gregs.voidps.world.activity.bank.noted
+import content.entity.player.bank.isNote
+import content.entity.player.bank.noted
 import content.social.trade.offer
 import content.entity.player.dialogue.type.intEntry
 import content.entity.player.modal.Tab

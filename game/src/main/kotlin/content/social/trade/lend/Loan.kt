@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.timer.epochSeconds
-import world.gregs.voidps.world.activity.bank.bank
+import content.entity.player.bank.bank
 import content.social.trade.returnedItems
 import java.util.concurrent.TimeUnit
 

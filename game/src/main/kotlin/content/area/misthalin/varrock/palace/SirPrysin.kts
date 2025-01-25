@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.activity.bank.ownsItem
+import content.entity.player.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*

@@ -1,8 +1,8 @@
-package world.gregs.voidps.world.activity.bank
+package content.entity.player.bank
 
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shiftToFreeIndex
-import world.gregs.voidps.world.activity.bank.Bank.tabIndex
+import content.entity.player.bank.Bank.tabIndex
 
 interfaceOption("Collapse", "tab_#", "bank") {
     val tab = component.removePrefix("tab_").toInt() - 1

@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.world.activity.bank.bank
+import content.entity.player.bank.bank
 import content.entity.player.dialogue.type.statement
 
 playerSpawn(priority = true) { player ->

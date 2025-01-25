@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.activity.quest
 
 import world.gregs.voidps.engine.client.ui.interfaceSlot
-import world.gregs.voidps.world.activity.bank.ownsItem
+import content.entity.player.bank.ownsItem
 
 interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 11) {
     val lines = when (player.quest("the_restless_ghost")) {

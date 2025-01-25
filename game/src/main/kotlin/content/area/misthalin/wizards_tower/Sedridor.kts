@@ -13,8 +13,8 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.world.activity.bank.bank
-import world.gregs.voidps.world.activity.bank.ownsItem
+import content.entity.player.bank.bank
+import content.entity.player.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.activity.quest.sendQuestComplete

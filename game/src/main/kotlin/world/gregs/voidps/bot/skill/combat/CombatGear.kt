@@ -15,8 +15,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRe
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.world.activity.bank.bank
-import world.gregs.voidps.world.activity.bank.ownsItem
+import content.entity.player.bank.bank
+import content.entity.player.bank.ownsItem
 
 suspend fun Bot.setupGear(gear: GearDefinition, buy: Boolean = true) {
     openBank()
