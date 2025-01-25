@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.barbarian_village
+package content.area.misthalin.barbarian_village
 
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
