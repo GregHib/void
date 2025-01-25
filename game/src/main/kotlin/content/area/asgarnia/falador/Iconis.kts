@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.falador
+package content.area.asgarnia.falador
 
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCOption

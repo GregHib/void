@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.falador
+package content.area.asgarnia.falador
 
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith

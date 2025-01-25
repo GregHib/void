@@ -21,7 +21,7 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
-import world.gregs.voidps.world.map.falador.openDressingRoom
+import content.area.asgarnia.falador.openDressingRoom
 
 val enums: EnumDefinitions by inject()
 

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.falador
+package content.area.asgarnia.falador
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
