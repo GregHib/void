@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.crafting
+package content.skill.crafting
 
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
