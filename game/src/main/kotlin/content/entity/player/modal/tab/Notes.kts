@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.display.tab
+package content.entity.player.modal.tab
 
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 

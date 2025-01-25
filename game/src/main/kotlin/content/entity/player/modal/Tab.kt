@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.display
+package content.entity.player.modal
 
 enum class Tab {
     CombatStyles,

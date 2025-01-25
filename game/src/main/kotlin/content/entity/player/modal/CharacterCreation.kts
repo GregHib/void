@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.display
+package content.entity.player.modal
 
 import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
-import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.onStyle
+import content.entity.player.modal.CharacterStyle.onStyle
 
 val enums: EnumDefinitions by inject()
 val structs: StructDefinitions by inject()

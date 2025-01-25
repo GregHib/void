@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.player.display.Tab
+import content.entity.player.modal.Tab
 
 val variables: VariableDefinitions by inject()
 val enumDefinitions: EnumDefinitions by inject()

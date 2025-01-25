@@ -18,7 +18,7 @@ import content.entity.player.dialogue.type.PlayerChoice
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
-import world.gregs.voidps.world.interact.entity.player.display.Tab
+import content.entity.player.modal.Tab
 import java.util.concurrent.TimeUnit
 
 npcOperate("Talk-to", "mikasi") {

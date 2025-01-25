@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.activity.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import world.gregs.voidps.world.interact.entity.player.display.Tab
+import content.entity.player.modal.Tab
 
 npcOperate("Talk-to", "harlan") {
     npc<Quiz>("Greetings adventurer, I am the Melee combat tutor. Is there anything I can do for you?")

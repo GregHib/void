@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.moveAll
 import world.gregs.voidps.world.community.friend.friend
 import world.gregs.voidps.world.community.trade.Trade.getPartner
-import world.gregs.voidps.world.interact.entity.player.display.Tab
+import content.entity.player.modal.Tab
 
 /**
  * Requesting to trade with another player, accepting the request and setting up the trade

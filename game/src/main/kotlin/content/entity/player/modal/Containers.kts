@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.display
+package content.entity.player.modal
 
 import world.gregs.voidps.engine.client.sendInterfaceItemUpdate
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions

@@ -16,7 +16,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfi
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.TEMP_QUICK_PRAYERS
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.USING_QUICK_PRAYERS
-import world.gregs.voidps.world.interact.entity.player.display.Tab
+import content.entity.player.modal.Tab
 import content.entity.sound.playSound
 
 /**

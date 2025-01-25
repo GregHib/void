@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.display
+package content.entity.player.modal
 
 import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.engine.data.definition.StructDefinitions

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.display.tab
+package content.entity.player.combat
 
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.itemAdded
