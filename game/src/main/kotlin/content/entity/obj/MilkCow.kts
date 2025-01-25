@@ -7,12 +7,12 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.interact.dialogue.Chuckle
-import world.gregs.voidps.world.interact.dialogue.Quiz
-import world.gregs.voidps.world.interact.dialogue.Talk
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.dialogue.type.statement
+import content.entity.player.dialogue.Chuckle
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 objectOperate("Milk", "prized_dairy_cow") {

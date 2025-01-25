@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.world.community.trade.lend.Loan.getExpiry
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.item
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.item
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryOption
 
 /**

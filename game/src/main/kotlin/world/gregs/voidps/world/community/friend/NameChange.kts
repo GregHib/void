@@ -13,8 +13,8 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.protocol.encode.Friend
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.stringEntry
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.stringEntry
 import java.util.concurrent.TimeUnit
 
 val players: Players by inject()

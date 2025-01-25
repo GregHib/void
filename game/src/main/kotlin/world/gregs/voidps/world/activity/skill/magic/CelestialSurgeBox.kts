@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.inv.transact.discharge
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.dialogue.type.choice
+import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 import kotlin.math.min

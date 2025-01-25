@@ -16,8 +16,8 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
-import world.gregs.voidps.world.interact.dialogue.HappyOld
-import world.gregs.voidps.world.interact.dialogue.type.npc
+import content.entity.player.dialogue.HappyOld
+import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
 
 val npcs: NPCs by inject()

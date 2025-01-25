@@ -11,10 +11,10 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.community.trade.lend.Loan.getSecondsRemaining
-import world.gregs.voidps.world.interact.dialogue.Quiz
-import world.gregs.voidps.world.interact.dialogue.Talk
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.npc
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
 
 val npcs: NPCs by inject()
 

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.dialogue
+package content.entity.player.dialogue
 
 import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
 import world.gregs.voidps.engine.client.ui.event.IntEntered

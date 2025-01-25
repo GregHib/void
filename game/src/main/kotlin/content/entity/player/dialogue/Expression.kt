@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.dialogue
+package content.entity.player.dialogue
 
 sealed class Expression
 

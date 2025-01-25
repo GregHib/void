@@ -26,8 +26,8 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.interact.dialogue.type.intEntry
-import world.gregs.voidps.world.interact.dialogue.type.statement
+import content.entity.player.dialogue.type.intEntry
+import content.entity.player.dialogue.type.statement
 
 val types = listOf(
     "dagger",

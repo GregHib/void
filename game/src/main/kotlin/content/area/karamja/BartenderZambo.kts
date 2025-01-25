@@ -8,9 +8,9 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.world.activity.quest.mini.barCrawlDrink
 import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
-import world.gregs.voidps.world.interact.dialogue.Talk
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.npc
+import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
 npcOperate("Talk-to", "bartender_zambo") {

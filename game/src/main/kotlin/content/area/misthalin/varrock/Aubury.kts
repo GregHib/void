@@ -11,8 +11,8 @@ import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.skill.runecrafting.EssenceMine
-import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.*
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 
 npcOperate("Talk-to", "aubury") {

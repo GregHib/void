@@ -14,14 +14,14 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.interact.dialogue.Frustrated
-import world.gregs.voidps.world.interact.dialogue.Neutral
-import world.gregs.voidps.world.interact.dialogue.Uncertain
-import world.gregs.voidps.world.interact.dialogue.Quiz
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.dialogue.type.statement
+import content.entity.player.dialogue.Frustrated
+import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Uncertain
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 

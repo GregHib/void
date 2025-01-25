@@ -3,10 +3,10 @@ package world.gregs.voidps.world.interact.entity.npc
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.world.interact.dialogue.Neutral
-import world.gregs.voidps.world.interact.dialogue.Quiz
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
+import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
 
 suspend fun SuspendableContext<Player>.minimumCanoeLevel(): Boolean {
     player<Quiz>("Could you teach me about canoes?")

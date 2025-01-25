@@ -23,7 +23,7 @@ import world.gregs.voidps.engine.inv.transact.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.dialogue.type.makeAmount
+import content.entity.player.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val bars = listOf(

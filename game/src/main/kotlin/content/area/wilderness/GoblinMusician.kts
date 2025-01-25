@@ -3,13 +3,13 @@ package content.area.wilderness
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.world.interact.dialogue.HappyOld
-import world.gregs.voidps.world.interact.dialogue.NeutralOld
-import world.gregs.voidps.world.interact.dialogue.Pleased
-import world.gregs.voidps.world.interact.dialogue.Quiz
-import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.npc
+import content.entity.player.dialogue.HappyOld
+import content.entity.player.dialogue.NeutralOld
+import content.entity.player.dialogue.Pleased
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.type.PlayerChoice
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
 
 npcOperate("Talk-to", "goblin_musician") {
     choice()

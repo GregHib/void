@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.dialogue.type.choice
+import content.entity.player.dialogue.type.choice
 
 val teleports: Teleports by inject()
 

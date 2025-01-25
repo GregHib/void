@@ -5,13 +5,13 @@ import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteractio
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.world.interact.dialogue.Chuckle
-import world.gregs.voidps.world.interact.dialogue.Happy
-import world.gregs.voidps.world.interact.dialogue.Neutral
-import world.gregs.voidps.world.interact.dialogue.Uncertain
-import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
+import content.entity.player.dialogue.Chuckle
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Uncertain
+import content.entity.player.dialogue.type.PlayerChoice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 internal suspend fun PlayerChoice.fighters(): Unit = option<Uncertain>("Do you see a lot of injured fighters?") {

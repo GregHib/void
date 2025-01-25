@@ -4,11 +4,11 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.world.activity.quest.questComplete
 import world.gregs.voidps.world.activity.skill.runecrafting.EssenceMine
-import world.gregs.voidps.world.interact.dialogue.Quiz
-import world.gregs.voidps.world.interact.dialogue.Talk
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
 
 npcOperate("Talk-to", "wizard_distentor") {
     npc<Talk>("Welcome to the Magicians' Guild!")

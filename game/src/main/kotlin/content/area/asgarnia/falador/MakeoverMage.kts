@@ -27,8 +27,8 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.*
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.effect.transform
 import java.util.concurrent.TimeUnit
 

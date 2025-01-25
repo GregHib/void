@@ -2,11 +2,11 @@ package content.area.misthalin.lumbridge
 
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.world.interact.dialogue.EvilLaugh
-import world.gregs.voidps.world.interact.dialogue.Talk
-import world.gregs.voidps.world.interact.dialogue.Uncertain
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.npc
+import content.entity.player.dialogue.EvilLaugh
+import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.Uncertain
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
 
 npcOperate("Talk-to", "hans") {
     npc<Talk>("Hello. What are you doing here?")

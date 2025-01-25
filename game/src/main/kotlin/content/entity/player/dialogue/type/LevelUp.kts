@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.dialogue.type
+package content.entity.player.dialogue.type
 
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.closeInterfaces

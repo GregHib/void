@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.dialogue
+package content.entity.player.dialogue
 
 import io.mockk.*
 import org.junit.jupiter.api.BeforeEach
@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.IntSuspension
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.player
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.player
 import kotlin.test.assertEquals
 
 internal class ChoiceTest : DialogueTest() {
@@ -19,7 +19,7 @@ internal class ChoiceTest : DialogueTest() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        mockkStatic("world.gregs.voidps.world.interact.dialogue.type.PlayerDialogueKt")
+        mockkStatic("content.entity.player.dialogue.type.PlayerDialogueKt")
         coEvery { context.player(any(), any()) } just Runs
     }
 

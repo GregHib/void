@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.dialogue
+package content.entity.player.dialogue
 
 import io.mockk.coVerify
 import io.mockk.every
@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.suspend.IntSuspension
-import world.gregs.voidps.world.interact.dialogue.type.makeAmount
+import content.entity.player.dialogue.type.makeAmount
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 

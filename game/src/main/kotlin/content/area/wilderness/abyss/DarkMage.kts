@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.world.activity.bank.ownsItem
-import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.*
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
 
 npcOperate("Talk-to", "dark_mage") {
     player<Talk>("Hello there.")

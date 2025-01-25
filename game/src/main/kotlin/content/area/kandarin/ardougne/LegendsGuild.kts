@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.world.interact.dialogue.type.item
-import world.gregs.voidps.world.interact.dialogue.type.statement
+import content.entity.player.dialogue.type.item
+import content.entity.player.dialogue.type.statement
 
 objectOperate("Look", "legends_guild_totem_pole") {
     if (player.inventory.contains("combat_bracelet") && player.inventory.replace("combat_bracelet", "combat_bracelet_4")) {

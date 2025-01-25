@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.*
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
 
 npcOperate("Talk-to", "captain_rovin") {
     npc<Angry>("What are you doing up here? Only the palace guards are allowed up here.")

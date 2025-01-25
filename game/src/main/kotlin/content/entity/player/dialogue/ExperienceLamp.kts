@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.dialogue
+package content.entity.player.dialogue
 
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.suspend.StringSuspension

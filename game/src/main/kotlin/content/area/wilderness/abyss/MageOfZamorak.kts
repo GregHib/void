@@ -23,8 +23,8 @@ import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.questComplete
-import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.*
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 import world.gregs.voidps.world.interact.entity.sound.playSound
 

@@ -15,8 +15,8 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.activity.quest.sendQuestComplete
-import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.*
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
 npcOperate("Talk-to", "cook_lumbridge") {

@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.world.interact.dialogue.type.statement
+import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
 val areas: AreaDefinitions by inject()

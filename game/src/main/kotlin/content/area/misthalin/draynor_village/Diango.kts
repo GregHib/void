@@ -8,13 +8,13 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.world.interact.dialogue.Chuckle
-import world.gregs.voidps.world.interact.dialogue.Happy
-import world.gregs.voidps.world.interact.dialogue.Neutral
-import world.gregs.voidps.world.interact.dialogue.Quiz
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.stringEntry
+import content.entity.player.dialogue.Chuckle
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.stringEntry
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
 npcOperate("Talk-to", "diango") {

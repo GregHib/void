@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.dialogue
+package content.entity.player.dialogue
 
 import io.mockk.*
 import kotlinx.coroutines.runBlocking
@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.playerDialogueHead
-import world.gregs.voidps.world.interact.dialogue.type.player
+import content.entity.player.dialogue.type.player
 import kotlin.test.assertTrue
 
 internal class PlayerChatTest : DialogueTest() {

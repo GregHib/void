@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
 import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shift
 import world.gregs.voidps.world.activity.bank.Bank.tabIndex
-import world.gregs.voidps.world.interact.dialogue.type.intEntry
+import content.entity.player.dialogue.type.intEntry
 
 val logger = InlineLogger()
 

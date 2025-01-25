@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.item
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.world.interact.dialogue.type.destroy
+import content.entity.player.dialogue.type.destroy
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryOptions
 import world.gregs.voidps.world.interact.entity.sound.playSound
 

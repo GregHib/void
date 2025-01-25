@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import world.gregs.voidps.world.community.trade.Trade.isTrading
-import world.gregs.voidps.world.interact.dialogue.type.intEntry
+import content.entity.player.dialogue.type.intEntry
 
 /**
  * Removing an item from an offer or loan

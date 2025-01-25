@@ -17,8 +17,8 @@ import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.equals
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.statement
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.obj.Teleports
 import world.gregs.voidps.world.interact.entity.obj.teleportTakeOff
 import world.gregs.voidps.world.interact.entity.sound.playSound

@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.world.activity.bank.bank
-import world.gregs.voidps.world.interact.dialogue.type.statement
+import content.entity.player.dialogue.type.statement
 
 playerSpawn(priority = true) { player ->
     player.message("Welcome to ${Settings["server.name"]}.", ChatType.Welcome)

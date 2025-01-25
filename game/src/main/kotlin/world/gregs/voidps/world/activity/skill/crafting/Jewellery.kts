@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.activity.skill.slayer.unlocked
-import world.gregs.voidps.world.interact.dialogue.type.intEntry
+import content.entity.player.dialogue.type.intEntry
 import kotlin.math.min
 
 val moulds = listOf("ring", "necklace", "amulet_unstrung", "bracelet")

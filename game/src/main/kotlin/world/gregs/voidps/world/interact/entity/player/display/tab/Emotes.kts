@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.dialogue.type.statement
+import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.effect.clearTransform
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic

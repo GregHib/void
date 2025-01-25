@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
-import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.*
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
 
 npcOperate("Talk-to", "duke_horacio") {
     player["hail_to_the_duke_baby_task"] = true

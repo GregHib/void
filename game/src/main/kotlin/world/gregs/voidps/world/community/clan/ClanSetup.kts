@@ -18,7 +18,7 @@ import world.gregs.voidps.network.login.protocol.encode.leaveClanChat
 import world.gregs.voidps.network.login.protocol.encode.updateClanChat
 import world.gregs.voidps.world.community.friend.world
 import world.gregs.voidps.world.community.friend.worldName
-import world.gregs.voidps.world.interact.dialogue.type.stringEntry
+import content.entity.player.dialogue.type.stringEntry
 
 interfaceOption("Clan Setup", "settings", "clan_chat") {
     if (player.hasMenuOpen()) {

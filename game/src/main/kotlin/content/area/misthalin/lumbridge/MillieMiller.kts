@@ -5,13 +5,13 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.interact.dialogue.Happy
-import world.gregs.voidps.world.interact.dialogue.Quiz
-import world.gregs.voidps.world.interact.dialogue.Talk
-import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.type.PlayerChoice
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
 
 npcOperate("Talk-to", "millie_miller") {
     npc<Happy>("Hello Adventurer. Welcome to Mill Lane Mill. Can I help you?")

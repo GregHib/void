@@ -26,9 +26,9 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.activity.quest.*
-import world.gregs.voidps.world.interact.dialogue.Happy
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.statement
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playMidi

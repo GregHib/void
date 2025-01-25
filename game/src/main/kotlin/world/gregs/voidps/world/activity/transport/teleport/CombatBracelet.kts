@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.dialogue.type.choice
+import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
 val areas: AreaDefinitions by inject()

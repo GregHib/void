@@ -2,10 +2,10 @@ package content.area.asgarnia.goblin_village
 
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
 
 npcOperate("Talk-to", "goblin_*_red") {
     when (random.nextInt(0, 2)) {

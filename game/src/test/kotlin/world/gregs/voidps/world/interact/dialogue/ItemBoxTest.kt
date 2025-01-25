@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.dialogue
+package content.entity.player.dialogue
 
 import io.mockk.*
 import org.junit.jupiter.api.Test
@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.suspend.ContinueSuspension
-import world.gregs.voidps.world.interact.dialogue.type.item
-import world.gregs.voidps.world.interact.dialogue.type.items
+import content.entity.player.dialogue.type.item
+import content.entity.player.dialogue.type.items
 import kotlin.test.assertTrue
 
 internal class ItemBoxTest : DialogueTest() {

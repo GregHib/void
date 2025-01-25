@@ -8,10 +8,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.interact.dialogue.Sad
-import world.gregs.voidps.world.interact.dialogue.Talk
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
+import content.entity.player.dialogue.Sad
+import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
 
 suspend fun <T : TargetInteraction<Player, NPC>> T.barCrawlDrink(
     start: (suspend T.() -> Unit)? = null,

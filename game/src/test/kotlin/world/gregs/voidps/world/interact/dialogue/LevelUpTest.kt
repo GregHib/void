@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.dialogue
+package content.entity.player.dialogue
 
 import io.mockk.coVerify
 import io.mockk.every
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.suspend.ContinueSuspension
-import world.gregs.voidps.world.interact.dialogue.type.levelUp
+import content.entity.player.dialogue.type.levelUp
 import kotlin.test.assertTrue
 
 internal class LevelUpTest : DialogueTest() {

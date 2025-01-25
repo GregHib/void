@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.ownsItem
-import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.*
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
 import java.util.concurrent.TimeUnit
 
 npcOperate("Talk-to", "nemarti") {

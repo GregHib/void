@@ -17,8 +17,8 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.interact.dialogue.type.makeAmount
-import world.gregs.voidps.world.interact.dialogue.type.statement
+import content.entity.player.dialogue.type.makeAmount
+import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val logger = InlineLogger()

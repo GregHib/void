@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
-import world.gregs.voidps.world.interact.dialogue.type.item
+import content.entity.player.dialogue.type.item
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
 val cake = 0x1

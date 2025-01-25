@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.dialogue
+package content.entity.player.dialogue
 
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions

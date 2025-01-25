@@ -10,11 +10,11 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.interact.dialogue.Happy
-import world.gregs.voidps.world.interact.dialogue.Neutral
-import world.gregs.voidps.world.interact.dialogue.Shifty
-import world.gregs.voidps.world.interact.dialogue.type.item
-import world.gregs.voidps.world.interact.dialogue.type.player
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Shifty
+import content.entity.player.dialogue.type.item
+import content.entity.player.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val logger = InlineLogger()

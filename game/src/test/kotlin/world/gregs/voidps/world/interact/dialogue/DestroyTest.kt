@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.dialogue
+package content.entity.player.dialogue
 
 import io.mockk.coVerify
 import io.mockk.every
@@ -12,7 +12,7 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.suspend.StringSuspension
-import world.gregs.voidps.world.interact.dialogue.type.destroy
+import content.entity.player.dialogue.type.destroy
 
 internal class DestroyTest : DialogueTest() {
 

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.dialogue
+package content.entity.player.dialogue
 
 import io.mockk.*
 import org.junit.jupiter.api.BeforeEach
@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.npcDialogueHead
-import world.gregs.voidps.world.interact.dialogue.type.npc
+import content.entity.player.dialogue.type.npc
 import kotlin.test.assertTrue
 
 internal class NPCChatTest : DialogueTest() {

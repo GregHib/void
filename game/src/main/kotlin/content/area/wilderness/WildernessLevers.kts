@@ -6,8 +6,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.statement
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.obj.teleportLand
 import world.gregs.voidps.world.interact.entity.obj.teleportTakeOff
 import world.gregs.voidps.world.interact.entity.sound.playSound

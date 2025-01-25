@@ -16,8 +16,8 @@ import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.questComplete
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
-import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.*
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
 
 itemOnItem("chisel", "ring_from_jeffery") { player: Player ->
     if (player.quest("gunnars_ground") == "jeffery_ring") {

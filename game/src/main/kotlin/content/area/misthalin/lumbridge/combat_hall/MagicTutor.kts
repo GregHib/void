@@ -13,11 +13,11 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.ownsItem
-import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.item
-import world.gregs.voidps.world.interact.dialogue.type.npc
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.PlayerChoice
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.item
+import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.player.display.Tab
 import java.util.concurrent.TimeUnit
 

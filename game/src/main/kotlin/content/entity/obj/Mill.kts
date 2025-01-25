@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.interact.dialogue.Talk
-import world.gregs.voidps.world.interact.dialogue.type.player
+import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 objectOperate("Operate", "hopper_controls") {

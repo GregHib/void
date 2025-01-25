@@ -37,9 +37,9 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.currentActiveObject
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.currentStarTile
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.totalCollected
-import world.gregs.voidps.world.interact.dialogue.Happy
-import world.gregs.voidps.world.interact.dialogue.Sad
-import world.gregs.voidps.world.interact.dialogue.type.npc
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Sad
+import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.sound.areaSound
 import java.util.concurrent.TimeUnit

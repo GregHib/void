@@ -1,11 +1,11 @@
-package world.gregs.voidps.world.interact.dialogue
+package content.entity.player.dialogue
 
 import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.suspend.IntSuspension
-import world.gregs.voidps.world.interact.dialogue.type.intEntry
+import content.entity.player.dialogue.type.intEntry
 import kotlin.test.assertTrue
 
 internal class IntEntryTest : DialogueTest() {

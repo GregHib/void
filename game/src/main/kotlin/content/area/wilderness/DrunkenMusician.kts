@@ -3,14 +3,14 @@ package content.area.wilderness
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.world.interact.dialogue.Drunk
-import world.gregs.voidps.world.interact.dialogue.Pleased
-import world.gregs.voidps.world.interact.dialogue.Quiz
-import world.gregs.voidps.world.interact.dialogue.RollEyes
-import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
+import content.entity.player.dialogue.Drunk
+import content.entity.player.dialogue.Pleased
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.RollEyes
+import content.entity.player.dialogue.type.PlayerChoice
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
 
 npcOperate("Talk-to", "drunken_musician") {
     choice()

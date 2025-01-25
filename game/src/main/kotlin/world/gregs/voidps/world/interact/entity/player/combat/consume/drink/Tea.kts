@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddCharge.charge
 import world.gregs.voidps.engine.inv.transact.operation.RemoveCharge.discharge
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.dialogue.type.item
+import content.entity.player.dialogue.type.item
 import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy

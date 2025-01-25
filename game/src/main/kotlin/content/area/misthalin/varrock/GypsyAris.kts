@@ -29,8 +29,8 @@ import world.gregs.voidps.world.activity.quest.DemonSlayerSpell.randomiseOrder
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.startCutscene
 import world.gregs.voidps.world.activity.quest.stopCutscene
-import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.*
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.effect.clearTransform
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.player.music.playTrack
