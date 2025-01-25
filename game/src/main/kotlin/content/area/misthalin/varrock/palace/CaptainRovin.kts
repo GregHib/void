@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import content.entity.player.bank.ownsItem
-import world.gregs.voidps.world.activity.quest.quest
+import content.quest.quest
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 

@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.world.activity.quest.quest
+import content.quest.quest
 import content.entity.player.dialogue.Frustrated
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Uncertain

@@ -34,10 +34,10 @@ import world.gregs.voidps.network.login.protocol.encode.npcDialogueHead
 import world.gregs.voidps.network.login.protocol.encode.playerDialogueHead
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
-import world.gregs.voidps.world.activity.quest.*
 import content.entity.player.dialogue.sendLines
 import content.entity.player.dialogue.type.npc
 import content.entity.gfx.areaGraphic
+import content.quest.sendQuestJournal
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 

@@ -53,9 +53,9 @@ import world.gregs.voidps.network.login.protocol.encode.playMIDI
 import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
-import world.gregs.voidps.world.activity.quest.Books
-import world.gregs.voidps.world.activity.quest.quests
-import world.gregs.voidps.world.activity.quest.refreshQuestJournal
+import content.entity.player.modal.book.Books
+import content.quest.quests
+import content.quest.refreshQuestJournal
 import content.entity.npc.shop.OpenShop
 import content.entity.obj.Teleports
 import content.skill.prayer.PrayerConfigs

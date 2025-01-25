@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
 import content.entity.player.bank.ownsItem
-import world.gregs.voidps.world.activity.quest.questComplete
+import content.quest.questComplete
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.npc.shop.openShop

@@ -2,7 +2,7 @@ package content.area.kandarin.tree_gnome_stronghold
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.world.activity.quest.questComplete
+import content.quest.questComplete
 import world.gregs.voidps.world.activity.skill.runecrafting.EssenceMine
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Quiz

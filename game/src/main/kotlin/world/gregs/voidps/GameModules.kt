@@ -6,7 +6,7 @@ import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.navigation.graph.NavigationGraph
 import world.gregs.voidps.bot.path.Dijkstra
 import world.gregs.voidps.bot.path.DijkstraFrontier
-import world.gregs.voidps.world.activity.quest.Books
+import content.entity.player.modal.book.Books
 import content.entity.obj.Teleports
 import content.entity.world.music.MusicTracks
 import content.entity.item.spawn.ItemSpawns

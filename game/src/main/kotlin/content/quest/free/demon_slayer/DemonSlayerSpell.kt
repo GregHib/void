@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.quest
+package content.quest.free.demon_slayer
 
 import world.gregs.voidps.engine.entity.character.player.Player
 

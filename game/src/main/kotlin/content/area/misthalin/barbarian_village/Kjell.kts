@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.activity.quest.quest
+import content.quest.quest
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Frustrated
 import content.entity.player.dialogue.Neutral

@@ -1,7 +1,7 @@
 package content.area.misthalin.varrock.palace
 
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.world.activity.quest.quest
+import content.quest.quest
 import content.entity.player.dialogue.Chuckle
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Shifty

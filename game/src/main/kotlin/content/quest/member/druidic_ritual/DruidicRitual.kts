@@ -1,6 +1,8 @@
-package world.gregs.voidps.world.activity.quest
+package content.quest.member.druidic_ritual
 
 import world.gregs.voidps.engine.client.ui.interfaceSlot
+import content.quest.quest
+import content.quest.sendQuestJournal
 
 interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 33) {
     val lines = when (player.quest("druidic_ritual")) {

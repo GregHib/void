@@ -15,9 +15,9 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
-import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.activity.quest.refreshQuestJournal
-import world.gregs.voidps.world.activity.quest.sendQuestComplete
+import content.quest.quest
+import content.quest.refreshQuestJournal
+import content.quest.sendQuestComplete
 import world.gregs.voidps.world.activity.skill.runecrafting.EssenceMine
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*

@@ -25,7 +25,6 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.activity.quest.*
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
@@ -33,6 +32,7 @@ import content.entity.proj.shoot
 import content.entity.sound.playJingle
 import content.entity.sound.playMidi
 import content.entity.sound.playSound
+import content.quest.*
 import java.util.concurrent.TimeUnit
 
 val npcs: NPCs by inject()

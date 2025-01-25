@@ -1,8 +1,10 @@
-package world.gregs.voidps.world.activity.quest
+package content.quest.free.cooks_assistant
 
 import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.inv.holdsItem
 import content.entity.player.bank.bank
+import content.quest.quest
+import content.quest.sendQuestJournal
 
 interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 1) {
     val lines = when (player.quest("cooks_assistant")) {

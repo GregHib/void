@@ -34,7 +34,6 @@ import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.activity.quest.*
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -47,6 +46,8 @@ import content.entity.world.music.playTrack
 import content.entity.proj.shoot
 import content.entity.sound.playJingle
 import content.entity.sound.playSound
+import content.quest.*
+import content.quest.free.demon_slayer.DemonSlayerSpell
 
 val objects: GameObjects by inject()
 val collisions: Collisions by inject()

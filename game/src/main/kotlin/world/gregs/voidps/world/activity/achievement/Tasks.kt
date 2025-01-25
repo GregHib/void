@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.character.player.summoningCombatLevel
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.world.activity.quest.questComplete
+import content.quest.questComplete
 import java.util.*
 import java.util.Calendar.HOUR_OF_DAY
 import java.util.concurrent.TimeUnit

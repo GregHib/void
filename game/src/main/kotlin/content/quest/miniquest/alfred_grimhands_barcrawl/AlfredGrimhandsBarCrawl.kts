@@ -1,11 +1,11 @@
-package world.gregs.voidps.world.activity.quest.mini
+package content.quest.miniquest.alfred_grimhands_barcrawl
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.world.activity.quest.sendMessageScroll
+import content.quest.sendMessageScroll
 import content.entity.player.inv.inventoryItem
 
 inventoryItem("Read", "barcrawl_card") {

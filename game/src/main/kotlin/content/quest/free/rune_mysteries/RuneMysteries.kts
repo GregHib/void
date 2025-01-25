@@ -1,7 +1,9 @@
-package world.gregs.voidps.world.activity.quest
+package content.quest.free.rune_mysteries
 
 import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.inv.holdsItem
+import content.quest.quest
+import content.quest.sendQuestJournal
 
 interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 13) {
     val lines = when (player.quest("rune_mysteries")) {

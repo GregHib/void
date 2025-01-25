@@ -12,9 +12,9 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.activity.quest.refreshQuestJournal
-import world.gregs.voidps.world.activity.quest.sendQuestComplete
+import content.quest.quest
+import content.quest.refreshQuestJournal
+import content.quest.sendQuestComplete
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.sound.playJingle

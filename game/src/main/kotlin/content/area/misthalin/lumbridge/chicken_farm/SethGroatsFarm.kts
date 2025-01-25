@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
 import content.entity.player.bank.bank
-import world.gregs.voidps.world.activity.quest.questComplete
+import content.quest.questComplete
 import java.util.concurrent.TimeUnit
 
 objectOperate("Take-hatchet", "hatchet_logs") {

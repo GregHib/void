@@ -28,10 +28,10 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.activity.quest.sendQuestComplete
-import world.gregs.voidps.world.activity.quest.startCutscene
-import world.gregs.voidps.world.activity.quest.stopCutscene
+import content.quest.quest
+import content.quest.sendQuestComplete
+import content.quest.startCutscene
+import content.quest.stopCutscene
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.sound.playJingle

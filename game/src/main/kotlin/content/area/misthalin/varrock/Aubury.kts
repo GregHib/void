@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
-import world.gregs.voidps.world.activity.quest.quest
+import content.quest.quest
 import world.gregs.voidps.world.activity.skill.runecrafting.EssenceMine
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*

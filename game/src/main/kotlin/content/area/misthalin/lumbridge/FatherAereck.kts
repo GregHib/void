@@ -4,8 +4,8 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.activity.quest.refreshQuestJournal
+import content.quest.quest
+import content.quest.refreshQuestJournal
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc

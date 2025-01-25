@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.quest
+package content.quest
 
 import world.gregs.voidps.engine.client.Minimap
 import world.gregs.voidps.engine.client.clearMinimap

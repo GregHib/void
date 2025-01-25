@@ -1,9 +1,12 @@
-package world.gregs.voidps.world.activity.quest
+package content.quest.free.gunnars_ground
 
 import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.holdsItem
 import content.entity.player.inv.inventoryItem
+import content.quest.quest
+import content.quest.sendLetterScroll
+import content.quest.sendQuestJournal
 
 playerSpawn { player ->
     player.sendVariable("gudrun_after_quest")

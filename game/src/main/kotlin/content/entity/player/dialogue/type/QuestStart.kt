@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMa
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.StringSuspension
-import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.activity.quest.questComplete
+import content.quest.quest
+import content.quest.questComplete
 
 private const val QUEST_START_ID = "quest_intro"
 

@@ -13,9 +13,9 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import content.entity.player.bank.ownsItem
-import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.activity.quest.questComplete
-import world.gregs.voidps.world.activity.quest.refreshQuestJournal
+import content.quest.quest
+import content.quest.questComplete
+import content.quest.refreshQuestJournal
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 

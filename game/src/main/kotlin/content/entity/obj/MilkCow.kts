@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import content.entity.player.bank.bank
-import world.gregs.voidps.world.activity.quest.quest
+import content.quest.quest
 import content.entity.player.dialogue.Chuckle
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.quest
+package content.entity.player.modal.tab
 
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
+import content.quest.refreshQuestJournal
 
 val quests = arrayOf(
     // free

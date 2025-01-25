@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import content.entity.player.bank.ownsItem
-import world.gregs.voidps.world.activity.quest.quest
+import content.quest.quest
 import content.entity.player.dialogue.type.statement
 import content.entity.death.playerDeath
 import content.entity.player.inv.item.destroyed

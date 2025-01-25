@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.world.activity.quest.questComplete
+import content.quest.questComplete
 import world.gregs.voidps.world.activity.skill.runecrafting.EssenceMine
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.ChoiceBuilder

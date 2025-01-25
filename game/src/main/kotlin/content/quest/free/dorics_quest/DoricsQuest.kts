@@ -1,9 +1,11 @@
-package world.gregs.voidps.world.activity.quest
+package content.quest.free.dorics_quest
 
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
+import content.quest.quest
+import content.quest.sendQuestJournal
 
 interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 3) {
     val lines = when (player.quest("dorics_quest")) {

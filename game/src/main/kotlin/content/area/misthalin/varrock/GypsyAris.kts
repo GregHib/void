@@ -24,11 +24,11 @@ import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.activity.quest.DemonSlayerSpell.getWord
-import world.gregs.voidps.world.activity.quest.DemonSlayerSpell.randomiseOrder
-import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.activity.quest.startCutscene
-import world.gregs.voidps.world.activity.quest.stopCutscene
+import content.quest.free.demon_slayer.DemonSlayerSpell.getWord
+import content.quest.free.demon_slayer.DemonSlayerSpell.randomiseOrder
+import content.quest.quest
+import content.quest.startCutscene
+import content.quest.stopCutscene
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.effect.clearTransform

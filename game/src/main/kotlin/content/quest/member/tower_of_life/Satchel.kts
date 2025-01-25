@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.quest.toweroflife
+package content.quest.member.tower_of_life
 
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message

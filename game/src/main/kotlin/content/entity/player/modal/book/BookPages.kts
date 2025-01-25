@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.quest
+package content.entity.player.modal.book
 
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.close
