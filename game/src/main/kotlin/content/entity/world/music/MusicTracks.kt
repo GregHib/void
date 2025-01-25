@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.music
+package content.entity.world.music
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap

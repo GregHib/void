@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.music
+package content.entity.world.music
 
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.message

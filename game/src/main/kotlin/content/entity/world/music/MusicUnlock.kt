@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.music
+package content.entity.world.music
 
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.client.variable.BitwiseValues

@@ -43,7 +43,7 @@ import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.combat.combatPrepare
 import content.entity.effect.transform
 import content.entity.gfx.areaGraphic
-import world.gregs.voidps.world.interact.entity.player.music.playTrack
+import content.entity.world.music.playTrack
 import content.entity.proj.shoot
 import content.entity.sound.playJingle
 import content.entity.sound.playSound

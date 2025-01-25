@@ -33,7 +33,7 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
-import world.gregs.voidps.world.interact.entity.player.music.playTrack
+import content.entity.world.music.playTrack
 import content.entity.sound.areaSound
 import content.entity.sound.playJingle
 import content.entity.sound.playSound
