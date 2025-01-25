@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.rellekka
+package content.area.fremennik_province.rellekka
 
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
