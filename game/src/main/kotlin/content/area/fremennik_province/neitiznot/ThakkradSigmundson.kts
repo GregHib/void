@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.neitiznot
+package content.area.fremennik_province.neitiznot
 
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
