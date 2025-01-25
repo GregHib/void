@@ -28,9 +28,9 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.interact.entity.combat.attackers
-import world.gregs.voidps.world.interact.entity.combat.fightStyle
-import world.gregs.voidps.world.interact.entity.combat.hit.npcCombatHit
+import content.entity.combat.attackers
+import content.skill.melee.weapon.fightStyle
+import content.entity.combat.hit.npcCombatHit
 import content.entity.gfx.areaGraphic
 import content.entity.player.inv.inventoryItem
 import content.entity.sound.areaSound

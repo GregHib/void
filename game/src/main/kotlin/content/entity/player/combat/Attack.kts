@@ -6,9 +6,9 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.characterApproachNPC
 import world.gregs.voidps.engine.entity.character.player.characterApproachPlayer
-import world.gregs.voidps.world.interact.entity.combat.CombatInteraction
-import world.gregs.voidps.world.interact.entity.combat.attackRange
-import world.gregs.voidps.world.interact.entity.combat.combatPrepare
+import content.entity.combat.CombatInteraction
+import content.skill.melee.weapon.attackRange
+import content.entity.combat.combatPrepare
 import content.skill.magic.spell.spell
 
 characterApproachNPC("Attack") {

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import content.entity.combat.hit.hit
 import content.entity.effect.frozen
 import content.entity.effect.toxin.poisoned
 

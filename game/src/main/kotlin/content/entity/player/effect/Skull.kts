@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.world.interact.entity.combat.attackers
-import world.gregs.voidps.world.interact.entity.combat.inWilderness
+import content.entity.combat.attackers
+import content.area.wilderness.inWilderness
 
 playerSpawn { player ->
     if (player.skulled) {

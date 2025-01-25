@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import content.skill.melee.weapon.weapon
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttackPrepare
 import content.entity.sound.playSound

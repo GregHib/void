@@ -1,17 +1,21 @@
 package content.skill.ranged
 
+import content.entity.combat.characterCombatSwing
+import content.entity.combat.combatPrepare
+import content.entity.combat.combatSwing
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.combat.*
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import content.entity.combat.hit.hit
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.entity.sound.playSound
+import content.skill.melee.weapon.attackType
+import content.skill.melee.weapon.weapon
 
 val weaponStyles: WeaponStyleDefinitions by inject()
 val animationDefinitions: WeaponAnimationDefinitions by inject()

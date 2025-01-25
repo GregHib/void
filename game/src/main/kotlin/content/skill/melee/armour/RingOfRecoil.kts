@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
-import world.gregs.voidps.world.interact.entity.combat.hit.directHit
+import content.entity.combat.hit.combatHit
+import content.entity.combat.hit.directHit
 import content.entity.player.inv.inventoryItem
 
 combatHit { player ->

@@ -10,9 +10,9 @@ import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.CurrentLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.level.npcLevelChange
-import world.gregs.voidps.world.interact.entity.combat.attackers
-import world.gregs.voidps.world.interact.entity.combat.combatPrepare
-import world.gregs.voidps.world.interact.entity.combat.fightStyle
+import content.entity.combat.attackers
+import content.entity.combat.combatPrepare
+import content.skill.melee.weapon.fightStyle
 
 npcApproach("Attack", "magic_dummy", "melee_dummy", override = false) {
     val type = target.id.removeSuffix("_dummy")

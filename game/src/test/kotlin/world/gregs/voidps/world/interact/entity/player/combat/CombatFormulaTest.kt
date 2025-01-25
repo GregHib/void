@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.world.interact.entity.combat.hit.Damage
-import world.gregs.voidps.world.interact.entity.combat.hit.Hit
+import content.entity.combat.hit.Damage
+import content.entity.combat.hit.Hit
 import world.gregs.voidps.world.script.WorldTest
 
 abstract class CombatFormulaTest : WorldTest() {

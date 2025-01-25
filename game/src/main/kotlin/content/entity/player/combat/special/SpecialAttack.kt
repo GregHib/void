@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import content.skill.melee.weapon.weapon
 import kotlin.math.floor
 
 const val MAX_SPECIAL_ATTACK = 1000

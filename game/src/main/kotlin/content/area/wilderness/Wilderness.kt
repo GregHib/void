@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.combat
+package content.area.wilderness
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player

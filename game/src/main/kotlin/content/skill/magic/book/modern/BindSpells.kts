@@ -3,8 +3,8 @@ package content.skill.magic.book.modern
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
-import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
+import content.entity.combat.hit.CombatAttack
+import content.entity.combat.hit.characterCombatAttack
 import content.entity.effect.freeze
 
 val definitions: SpellDefinitions by inject()

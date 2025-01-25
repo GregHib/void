@@ -4,10 +4,10 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.combat.characterCombatSwing
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import content.entity.combat.characterCombatSwing
+import content.entity.combat.combatSwing
+import content.entity.combat.hit.hit
+import content.skill.melee.weapon.weapon
 import content.skill.magic.spell.Spell
 import content.skill.magic.book.modern.teleBlock
 import content.skill.magic.spell.removeSpellItems

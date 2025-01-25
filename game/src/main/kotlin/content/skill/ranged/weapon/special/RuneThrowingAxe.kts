@@ -7,10 +7,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
-import world.gregs.voidps.world.interact.entity.combat.Target
-import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
+import content.entity.combat.Target
+import content.entity.combat.hit.characterCombatHit
+import content.entity.combat.hit.hit
+import content.area.wilderness.inMultiCombat
 import content.skill.ranged.ammo
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack

@@ -40,7 +40,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import world.gregs.voidps.world.interact.entity.combat.combatPrepare
+import content.entity.combat.combatPrepare
 import content.entity.effect.transform
 import content.entity.gfx.areaGraphic
 import content.entity.world.music.playTrack

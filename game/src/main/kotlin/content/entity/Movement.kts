@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.interact.entity.combat.dead
+import content.entity.combat.dead
 import content.entity.death.npcDeath
 
 val collisions: Collisions by inject()

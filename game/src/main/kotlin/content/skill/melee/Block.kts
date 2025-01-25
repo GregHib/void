@@ -13,8 +13,8 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.skill.slayer.race
-import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import content.entity.combat.hit.characterCombatAttack
+import content.skill.melee.weapon.weapon
 import content.entity.sound.playSound
 
 val styleDefinitions: WeaponStyleDefinitions by inject()

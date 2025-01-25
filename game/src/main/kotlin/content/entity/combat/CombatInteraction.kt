@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.combat
+package content.entity.combat
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement

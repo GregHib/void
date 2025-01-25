@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.world.interact.entity.combat.Equipment
-import world.gregs.voidps.world.interact.entity.combat.Target
+import content.entity.player.equip.Equipment
+import content.entity.combat.Target
 import content.skill.prayer.protectMagic
 import java.util.concurrent.TimeUnit
 

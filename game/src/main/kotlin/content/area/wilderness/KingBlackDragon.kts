@@ -6,9 +6,9 @@ import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTarg
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.hit.npcCombatAttack
-import world.gregs.voidps.world.interact.entity.combat.npcCombatSwing
+import content.entity.combat.hit.hit
+import content.entity.combat.hit.npcCombatAttack
+import content.entity.combat.npcCombatSwing
 import content.entity.effect.freeze
 import content.entity.effect.toxin.poison
 import content.entity.proj.shoot

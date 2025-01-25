@@ -1,7 +1,7 @@
 package content.skill.melee.weapon.special
 
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.target
+import content.entity.combat.hit.hit
+import content.entity.combat.target
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttackPrepare
 

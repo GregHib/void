@@ -8,12 +8,12 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.Target
-import world.gregs.voidps.world.interact.entity.combat.hit.Damage
-import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import content.entity.combat.Target
+import content.entity.combat.hit.Damage
+import content.entity.combat.hit.characterCombatHit
+import content.entity.combat.hit.hit
+import content.area.wilderness.inMultiCombat
+import content.skill.melee.weapon.weapon
 import content.entity.player.combat.special.specialAttack
 import content.entity.sound.areaSound
 

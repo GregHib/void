@@ -1,5 +1,9 @@
-package world.gregs.voidps.world.interact.entity.combat
+package content.entity.combat
 
+import content.area.wilderness.Wilderness
+import content.area.wilderness.inPvp
+import content.area.wilderness.inSingleCombat
+import content.area.wilderness.inWilderness
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.client.message

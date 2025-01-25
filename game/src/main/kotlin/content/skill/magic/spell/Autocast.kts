@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.attackRange
+import content.skill.melee.weapon.attackRange
 
 val interfaceDefinitions: InterfaceDefinitions by inject()
 

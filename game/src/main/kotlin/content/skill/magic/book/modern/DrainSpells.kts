@@ -2,7 +2,7 @@ package content.skill.magic.book.modern
 
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.combat.characterCombatPrepare
+import content.entity.combat.characterCombatPrepare
 import content.skill.magic.spell.Spell
 import content.skill.magic.spell.spell
 

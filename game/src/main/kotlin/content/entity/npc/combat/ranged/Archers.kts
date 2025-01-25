@@ -1,6 +1,6 @@
 package content.entity.npc.combat.ranged
 
-import world.gregs.voidps.world.interact.entity.combat.npcCombatPrepare
+import content.entity.combat.npcCombatPrepare
 import content.skill.ranged.ammo
 
 npcCombatPrepare { npc ->

@@ -9,11 +9,11 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
-import world.gregs.voidps.world.interact.entity.combat.hit.damage
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import content.skill.melee.weapon.attackType
+import content.entity.combat.combatSwing
+import content.entity.combat.hit.damage
+import content.entity.combat.hit.hit
+import content.skill.melee.weapon.weapon
 import content.skill.ranged.ammo
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot

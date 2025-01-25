@@ -9,9 +9,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.activity.skill.slayer.isTask
-import world.gregs.voidps.world.interact.entity.combat.attackStyle
-import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
+import content.skill.melee.weapon.attackStyle
+import content.skill.melee.weapon.attackType
+import content.entity.combat.hit.combatAttack
 import kotlin.math.floor
 
 val definitions: SpellDefinitions by inject()

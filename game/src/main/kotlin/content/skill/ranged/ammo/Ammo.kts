@@ -10,10 +10,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasUseLevel
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.combatPrepare
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
-import world.gregs.voidps.world.interact.entity.combat.fightStyle
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import content.entity.combat.combatPrepare
+import content.entity.combat.combatSwing
+import content.skill.melee.weapon.fightStyle
+import content.skill.melee.weapon.weapon
 import content.skill.ranged.Ammo
 import content.skill.ranged.ammo
 import content.entity.player.combat.special.specialAttack

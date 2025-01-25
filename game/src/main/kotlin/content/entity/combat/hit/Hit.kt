@@ -1,6 +1,8 @@
-package world.gregs.voidps.world.interact.entity.combat.hit
+package content.entity.combat.hit
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.combat.Bonus
+import content.entity.combat.dead
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -10,10 +12,12 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.*
 import content.skill.magic.spell.spell
 import content.skill.prayer.Prayer
 import content.entity.player.combat.special.specialAttack
+import content.entity.player.equip.Equipment
+import content.skill.melee.weapon.Weapon
+import content.skill.melee.weapon.weapon
 import kotlin.math.floor
 
 object Hit {

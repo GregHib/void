@@ -19,9 +19,9 @@ import world.gregs.voidps.engine.inv.itemReplaced
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.interact.entity.combat.attackStyle
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
-import world.gregs.voidps.world.interact.entity.combat.killer
+import content.skill.melee.weapon.attackStyle
+import content.entity.combat.hit.combatAttack
+import content.entity.combat.killer
 import content.entity.death.npcDeath
 import content.entity.npc.shop.sell.itemSold
 import content.entity.npc.shop.shopOpen

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.combat.style
+package content.skill.melee
 
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen

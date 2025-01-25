@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import content.entity.combat.hit.hit
 import world.gregs.voidps.world.script.interfaceOption
 
 internal class AddChargeGodSpellEffectTest : CombatFormulaTest() {

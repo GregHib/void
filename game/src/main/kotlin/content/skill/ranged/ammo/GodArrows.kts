@@ -2,9 +2,9 @@ package content.skill.ranged.ammo
 
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.hit.Damage
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import content.entity.combat.hit.Damage
+import content.entity.combat.hit.combatAttack
+import content.entity.combat.hit.hit
 import content.skill.ranged.ammo
 
 combatAttack(type = "range") { source ->

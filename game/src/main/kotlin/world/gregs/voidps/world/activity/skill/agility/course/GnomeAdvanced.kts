@@ -2,7 +2,6 @@ package world.gregs.voidps.world.activity.skill.agility.course
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -18,7 +17,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import content.entity.player.dialogue.HappyOld
 import content.entity.player.dialogue.type.npc
-import world.gregs.voidps.world.interact.entity.combat.hit.damage
+import content.entity.combat.hit.damage
 
 val npcs: NPCs by inject()
 

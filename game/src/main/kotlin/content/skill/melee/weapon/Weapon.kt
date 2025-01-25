@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.combat
+package content.skill.melee.weapon
 
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -19,6 +19,9 @@ import content.skill.prayer.Prayer
 import content.skill.ranged.Ammo
 import content.skill.ranged.ammo
 import content.entity.player.combat.special.specialAttack
+import content.entity.player.equip.Equipment
+import content.entity.combat.Target
+import content.entity.combat.attackers
 import kotlin.random.nextInt
 
 object Weapon {

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.combat.hit
+package content.entity.combat.hit
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
@@ -13,10 +13,10 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.Bonus
-import world.gregs.voidps.world.interact.entity.combat.Equipment
-import world.gregs.voidps.world.interact.entity.combat.Target
-import world.gregs.voidps.world.interact.entity.combat.Weapon
+import content.entity.combat.Bonus
+import content.entity.player.equip.Equipment
+import content.entity.combat.Target
+import content.skill.melee.weapon.Weapon
 import content.skill.melee.armour.barrows.BarrowsArmour
 import content.skill.magic.spell.Spell
 import content.skill.magic.spell.spell

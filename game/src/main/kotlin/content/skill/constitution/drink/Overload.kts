@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.world.interact.entity.combat.hit.directHit
-import world.gregs.voidps.world.interact.entity.combat.inWilderness
+import content.entity.combat.hit.directHit
+import content.area.wilderness.inWilderness
 import content.skill.constitution.canConsume
 import java.util.concurrent.TimeUnit
 

@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelChange
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
+import content.entity.combat.hit.combatHit
 import content.entity.sound.playJingle
 
 experience { player ->

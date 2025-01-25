@@ -1,6 +1,6 @@
 package content.skill.magic.book
 
-import world.gregs.voidps.world.interact.entity.combat.combatPrepare
+import content.entity.combat.combatPrepare
 import content.skill.magic.spell.hasSpellItems
 import content.skill.magic.spell.spell
 

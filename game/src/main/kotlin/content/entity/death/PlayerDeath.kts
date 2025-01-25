@@ -1,5 +1,7 @@
 package content.entity.death
 
+import content.area.wilderness.inMultiCombat
+import content.area.wilderness.inWilderness
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.client.message
@@ -22,9 +24,11 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.*
-import world.gregs.voidps.world.interact.entity.combat.Target
-import world.gregs.voidps.world.interact.entity.combat.hit.directHit
+import content.entity.combat.Target
+import content.entity.combat.attackers
+import content.entity.combat.dead
+import content.entity.combat.target
+import content.entity.combat.hit.directHit
 import content.entity.gfx.areaGraphic
 import content.entity.player.inv.item.tradeable
 import content.skill.prayer.getActivePrayerVarKey

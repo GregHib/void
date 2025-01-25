@@ -1,10 +1,10 @@
 package content.skill.melee.weapon.special
 
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.hit.Damage
-import world.gregs.voidps.world.interact.entity.combat.hit.Hit
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import content.entity.combat.hit.Damage
+import content.entity.combat.hit.Hit
+import content.entity.combat.hit.hit
+import content.skill.melee.weapon.weapon
 import content.entity.player.combat.special.specialAttack
 
 specialAttack("slice_and_dice") { player ->

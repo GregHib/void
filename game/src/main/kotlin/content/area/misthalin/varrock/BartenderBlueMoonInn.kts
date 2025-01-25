@@ -18,7 +18,7 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.combat.hit.damage
+import content.entity.combat.hit.damage
 import content.entity.npc.shop.buy
 
 npcApproach("Talk-to", "bartender_blue_moon_inn") {

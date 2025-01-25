@@ -1,5 +1,7 @@
-package world.gregs.voidps.world.interact.entity.combat
+package content.entity.combat
 
+import content.skill.melee.weapon.fightStyle
+import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player

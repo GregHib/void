@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import content.skill.melee.weapon.weapon
 import java.util.concurrent.TimeUnit
 
 objectOperate("Slash", "web*") {

@@ -1,5 +1,6 @@
-package world.gregs.voidps.world.interact.entity.combat
+package content.entity.combat
 
+import content.area.wilderness.inSingleCombat
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -14,9 +15,13 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.characterDespawn
 import world.gregs.voidps.engine.event.onEvent
-import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
+import content.entity.combat.hit.characterCombatHit
 import content.entity.death.characterDeath
 import content.entity.player.combat.special.specialAttack
+import content.skill.melee.weapon.attackRange
+import content.skill.melee.weapon.attackSpeed
+import content.skill.melee.weapon.fightStyle
+import content.skill.melee.weapon.weapon
 
 /**
  * When triggered via [Interact] replace the Interaction with [CombatInteraction]

@@ -15,7 +15,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.hit.damage
+import content.entity.combat.hit.damage
 
 objectOperate("Squeeze-through", "barbarian_outpost_entrance") {
     if (!player.has(Skill.Agility, 35, message = true)) {

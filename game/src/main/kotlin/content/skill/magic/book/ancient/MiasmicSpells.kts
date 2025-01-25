@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
-import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
+import content.entity.combat.hit.characterCombatAttack
 
 val definitions: SpellDefinitions by inject()
 

@@ -1,5 +1,10 @@
 package content.entity.death
 
+import content.area.wilderness.inMultiCombat
+import content.entity.combat.attackers
+import content.entity.combat.damageDealers
+import content.entity.combat.dead
+import content.entity.combat.killer
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -28,7 +33,6 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.community.clan.clan
-import world.gregs.voidps.world.interact.entity.combat.*
 import content.entity.player.inv.item.tradeable
 import content.entity.sound.playSound
 

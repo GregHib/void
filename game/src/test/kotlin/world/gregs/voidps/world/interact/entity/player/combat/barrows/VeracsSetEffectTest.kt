@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.hit.Hit
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import content.entity.combat.hit.Hit
+import content.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.CombatFormulaTest
 
 internal class VeracsSetEffectTest : CombatFormulaTest() {

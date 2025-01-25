@@ -3,11 +3,11 @@ package content.skill.melee
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.combatPrepare
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import content.skill.melee.weapon.attackType
+import content.entity.combat.combatPrepare
+import content.entity.combat.combatSwing
+import content.entity.combat.hit.hit
+import content.skill.melee.weapon.weapon
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 

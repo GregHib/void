@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
-import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
+import content.entity.combat.hit.combatAttack
+import content.entity.combat.hit.combatHit
 
 combatHit { player ->
     degrade(player)

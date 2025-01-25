@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timer.characterTimerStart
 import world.gregs.voidps.engine.timer.characterTimerTick
 import world.gregs.voidps.engine.timer.npcTimerStop
-import world.gregs.voidps.world.interact.entity.combat.hit.directHit
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import content.entity.combat.hit.directHit
+import content.entity.combat.hit.hit
 import content.skill.ranged.ammo
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot

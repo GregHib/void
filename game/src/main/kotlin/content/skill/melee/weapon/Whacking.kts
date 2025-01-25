@@ -1,10 +1,9 @@
-package content.entity.player.combat
+package content.skill.melee.weapon
 
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.weapon
 
 itemAdded("rubber_chicken", EquipSlot.Weapon, "worn_equipment") { player ->
     player.options.set(5, "Whack")

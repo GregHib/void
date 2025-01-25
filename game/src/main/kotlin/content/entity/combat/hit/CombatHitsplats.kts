@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.combat.hit
+package content.entity.combat.hit
 
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.Hitsplat
-import world.gregs.voidps.world.interact.entity.combat.damageDealers
+import content.entity.combat.damageDealers
 import kotlin.collections.set
 import kotlin.math.floor
 

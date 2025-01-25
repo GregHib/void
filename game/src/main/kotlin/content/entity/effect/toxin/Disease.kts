@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.timer.characterTimerStart
 import world.gregs.voidps.engine.timer.characterTimerStop
 import world.gregs.voidps.engine.timer.characterTimerTick
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.hit.directHit
+import content.entity.combat.hit.directHit
 import kotlin.math.sign
 
 characterSpawn { character ->

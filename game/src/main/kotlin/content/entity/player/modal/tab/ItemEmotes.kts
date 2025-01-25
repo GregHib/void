@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import content.skill.melee.weapon.weapon
 import content.entity.player.inv.inventoryItem
 import content.entity.player.inv.inventoryOptions
 import content.entity.effect.toxin.curePoison

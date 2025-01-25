@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.combat
+package content.entity.player.equip
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -16,6 +16,8 @@ import content.skill.magic.spell.spell
 import content.skill.prayer.protectMagic
 import content.entity.player.effect.antifire
 import content.entity.player.effect.superAntifire
+import content.skill.melee.weapon.Weapon
+import content.skill.melee.weapon.combatStyle
 import kotlin.math.ceil
 
 object Equipment {

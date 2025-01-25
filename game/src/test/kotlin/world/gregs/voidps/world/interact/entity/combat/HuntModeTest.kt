@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.combat
 
+import content.entity.combat.inCombat
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach

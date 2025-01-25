@@ -19,9 +19,9 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.skill.slayer.undead
-import world.gregs.voidps.world.interact.entity.combat.Equipment
-import world.gregs.voidps.world.interact.entity.combat.Target
-import world.gregs.voidps.world.interact.entity.combat.hit.directHit
+import content.entity.player.equip.Equipment
+import content.entity.combat.Target
+import content.entity.combat.hit.directHit
 import content.entity.effect.freeze
 import content.entity.effect.toxin.poison
 import content.entity.sound.playSound

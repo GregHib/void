@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.world.interact.entity.combat.inWilderness
+import content.area.wilderness.inWilderness
 import content.skill.prayer.prayerStart
 import content.skill.prayer.prayerStop
 

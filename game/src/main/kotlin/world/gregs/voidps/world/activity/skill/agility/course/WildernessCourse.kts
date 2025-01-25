@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
-import world.gregs.voidps.world.interact.entity.combat.hit.damage
+import content.entity.combat.hit.damage
 import content.entity.obj.door.enterDoor
 import content.entity.sound.playSound
 

@@ -1,6 +1,6 @@
 package content.skill.magic.book.ancient
 
-import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
+import content.entity.combat.hit.characterCombatAttack
 import content.skill.magic.spell.Spell
 
 characterCombatAttack(spell = "shadow_*", type = "magic") { source ->
