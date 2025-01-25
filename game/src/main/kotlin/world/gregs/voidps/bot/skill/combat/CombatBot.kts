@@ -35,8 +35,8 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.inCombat
-import world.gregs.voidps.world.interact.entity.death.playerDeath
-import world.gregs.voidps.world.interact.entity.death.weightedSample
+import content.entity.death.playerDeath
+import content.entity.death.weightedSample
 import content.skill.magic.spell.removeSpellItems
 import content.skill.magic.spell.spell
 

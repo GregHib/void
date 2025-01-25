@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.death
+package content.entity.death
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.item.Item

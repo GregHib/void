@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.client.instruction.InteractObject
-import world.gregs.voidps.world.interact.entity.death.weightedSample
+import content.entity.death.weightedSample
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()

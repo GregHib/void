@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.death
 
+import content.entity.death.Distribution
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals

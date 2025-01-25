@@ -22,7 +22,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.entity.combat.attackStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.killer
-import world.gregs.voidps.world.interact.entity.death.npcDeath
+import content.entity.death.npcDeath
 import content.entity.npc.shop.sell.itemSold
 import content.entity.npc.shop.shopOpen
 import content.entity.obj.teleportLand

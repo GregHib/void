@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.death.playerDeath
+import content.entity.death.playerDeath
 import content.skill.prayer.PrayerConfigs.QUICK_CURSES
 import content.skill.prayer.PrayerConfigs.QUICK_PRAYERS
 import content.skill.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS

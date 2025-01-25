@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.timer.npcTimerStart
 import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.death.npcDeath
+import content.entity.death.npcDeath
 
 val npcs: NPCs by inject()
 

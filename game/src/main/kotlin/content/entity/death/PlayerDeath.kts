@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.death
+package content.entity.death
 
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList

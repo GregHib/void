@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.death
+package content.entity.death
 
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
