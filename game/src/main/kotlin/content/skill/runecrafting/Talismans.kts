@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.runecrafting
+package content.skill.runecrafting
 
 import net.pearx.kasechange.toKebabCase
 import net.pearx.kasechange.toSentenceCase

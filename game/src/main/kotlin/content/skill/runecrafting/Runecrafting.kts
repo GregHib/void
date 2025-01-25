@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.runecrafting
+package content.skill.runecrafting
 
 import com.github.michaelbull.logging.InlineLogger
 import net.pearx.kasechange.toSentenceCase

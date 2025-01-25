@@ -18,7 +18,7 @@ import content.entity.player.bank.ownsItem
 import content.quest.quest
 import content.quest.refreshQuestJournal
 import content.quest.sendQuestComplete
-import world.gregs.voidps.world.activity.skill.runecrafting.EssenceMine
+import content.skill.runecrafting.EssenceMine
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.sound.playJingle

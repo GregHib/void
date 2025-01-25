@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.runecrafting
+package content.skill.runecrafting
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions

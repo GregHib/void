@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
 import content.quest.quest
-import world.gregs.voidps.world.activity.skill.runecrafting.EssenceMine
+import content.skill.runecrafting.EssenceMine
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.npc.shop.OpenShop

@@ -3,7 +3,7 @@ package content.area.kandarin.yanille
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import content.quest.questComplete
-import world.gregs.voidps.world.activity.skill.runecrafting.EssenceMine
+import content.skill.runecrafting.EssenceMine
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
