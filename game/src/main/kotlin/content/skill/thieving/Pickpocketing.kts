@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.thieving
+package content.skill.thieving
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
