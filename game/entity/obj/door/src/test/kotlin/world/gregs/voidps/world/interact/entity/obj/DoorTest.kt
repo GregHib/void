@@ -14,7 +14,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.objectOption
 
-internal class ObjectTest : WorldTest() {
+internal class DoorTest : WorldTest() {
 
     private lateinit var collision: Collisions
     private val handler = WalkHandler()

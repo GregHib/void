@@ -176,6 +176,9 @@ internal class CombatTest : WorldTest() {
 
     @Test
     fun `Kill player with melee`() {
+        setRandom(object : FakeRandom() {
+            override fun nextBits(bitCount: Int) = 100
+        })
         val player = createPlayer("player", emptyTile)
         val target = createPlayer("target", emptyTile.addY(4))
 
@@ -187,6 +190,7 @@ internal class CombatTest : WorldTest() {
         player.levels.boost(Skill.Strength, 25)
         player["in_wilderness"] = true
         target["in_wilderness"] = true
+        player.appearance.combatLevel = 90
         target.appearance.combatLevel = 90
         target.inventory.add("dragon_longsword", 1)
         target.inventory.add("magic_shortbow", 1)

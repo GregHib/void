@@ -43,3 +43,16 @@ dependencies {
         api(project)
     }
 }
+
+sourceSets {
+    test {
+        kotlin {
+            for(subproject in subprojects) {
+                for(dir in subproject.sourceSets.test.get().kotlin.srcDirs) {
+                    srcDirs += dir
+                }
+            }
+
+        }
+    }
+}
