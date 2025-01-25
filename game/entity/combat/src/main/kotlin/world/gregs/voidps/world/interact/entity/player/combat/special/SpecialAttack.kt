@@ -52,16 +52,3 @@ data class SpecialAttack(val id: String, val target: Character) : Event {
 fun specialAttack(id: String = "*", handler: suspend SpecialAttack.(Player) -> Unit) {
     Events.handle("special_attack", id, handler = handler)
 }
-
-var Player.specialAttack: Boolean
-    get() = get("special_attack", false)
-    set(value) = set("special_attack", value)
-
-var Player.specialAttackEnergy: Int
-    get() = get("special_attack_energy", MAX_SPECIAL_ATTACK)
-    set(value) {
-        set("special_attack_energy", value)
-        if (value < MAX_SPECIAL_ATTACK) {
-            softTimers.startIfAbsent("restore_special_energy")
-        }
-    }

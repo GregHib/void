@@ -94,7 +94,7 @@ combatHit { target ->
     target.specialAttackEnergy = (energy - amount).coerceAtLeast(0)
     cast(player, target, false, "special_attack")
 
-    energy = player.specialAttackEnergy
+    energy = (player as Player).specialAttackEnergy
     if (energy == MAX_SPECIAL_ATTACK) {
         drainMessage(player, "special_attack")
         return@combatHit
@@ -120,7 +120,7 @@ combatHit { target ->
     target.runEnergy = energy - amount
     cast(player, target, false, "energy")
 
-    energy = player.runEnergy
+    energy = (player as Player).runEnergy
     if (energy == MAX_RUN_ENERGY) {
         drainMessage(player, "run_energy")
         return@combatHit

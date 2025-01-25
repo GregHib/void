@@ -276,10 +276,3 @@ fun Player.hasSpellItems(spell: String, message: Boolean = true): Boolean {
 fun Player.removeSpellItems(spell: String) = inventory.transaction {
     removeItems(this@removeSpellItems, spell)
 }
-
-var Character.spell: String
-    get() = get("spell", get("autocast_spell", ""))
-    set(value) = set("spell", value)
-
-val Player.spellBook: String
-    get() = interfaces.get("spellbook_tab") ?: "unknown_spellbook"

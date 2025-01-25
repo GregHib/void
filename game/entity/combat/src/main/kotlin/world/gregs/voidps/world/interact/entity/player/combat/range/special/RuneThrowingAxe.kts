@@ -43,7 +43,7 @@ characterCombatHit("rune_throwing_axe", "range") { target ->
             if (!lineOfSight.hasLineOfSight(target, character)) {
                 continue
             }
-            if (!SpecialAttack.drain(source)) {
+            if (!SpecialAttack.drain(source as Player)) {
                 source.clear("chain_hits")
                 return@characterCombatHit
             }

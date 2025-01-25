@@ -26,7 +26,7 @@ characterCombatAttack { character ->
     character.playSound(calculateHitSound(target), delay)
     if (target is Player) {
         target.playSound(calculateHitSound(target), delay)
-        val shield = target.equipped(EquipSlot.Shield).id
+        val shield = (target as Player).equipped(EquipSlot.Shield).id
         if (shield.endsWith("shield")) {
             target.anim("shield_block", delay)
         } else if (shield.endsWith("defender")) {
@@ -45,7 +45,7 @@ characterCombatAttack { character ->
             target.anim(animation, delay)
         }
     } else if (target is NPC) {
-        val animation = hitAnimation(target)
+        val animation = hitAnimation(target as NPC)
         target.anim(animation, delay)
     }
 }

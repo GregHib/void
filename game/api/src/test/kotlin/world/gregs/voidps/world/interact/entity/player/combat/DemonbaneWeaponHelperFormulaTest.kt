@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import kotlin.test.assertEquals
 
-internal class DemonbaneWeaponFormulaTest : CombatFormulaTest() {
+internal class DemonbaneWeaponHelperFormulaTest : CombatFormulaTest() {
 
     @Test
     fun `Darklight on greater demon`() {

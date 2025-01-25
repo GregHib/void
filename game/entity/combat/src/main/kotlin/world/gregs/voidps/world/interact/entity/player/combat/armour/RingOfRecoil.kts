@@ -18,7 +18,7 @@ combatHit { player ->
     if (player.equipped(EquipSlot.Ring).id != "ring_of_recoil") {
         return@combatHit
     }
-    if (source is NPC && source.def["immune_deflect", false]) {
+    if (source is NPC && (source as NPC).def["immune_deflect", false]) {
         return@combatHit
     }
     val charges = player.equipment.charges(player, EquipSlot.Ring.index)

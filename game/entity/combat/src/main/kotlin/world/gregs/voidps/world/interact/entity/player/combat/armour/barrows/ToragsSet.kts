@@ -34,8 +34,8 @@ characterCombatAttack("torags_hammers*", "melee") { character ->
     if (damage <= 0 || target !is Player || !character.contains("torags_set_effect") || random.nextInt(4) != 0) {
         return@characterCombatAttack
     }
-    if (target.runEnergy > 0) {
-        target.runEnergy -= target.runEnergy / 5
+    if ((target as Player).runEnergy > 0) {
+        (target as Player).runEnergy -= (target as Player).runEnergy / 5
         target.gfx("torags_effect")
     }
 }

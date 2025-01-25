@@ -173,35 +173,3 @@ object Weapon {
         return damage
     }
 }
-
-val Character.fightStyle: String
-    get() = Weapon.type(this)
-
-var Character.weapon: Item
-    get() = get("weapon", Item.EMPTY)
-    set(value) = set("weapon", value)
-
-val Character.attackSpeed: Int
-    get() = when {
-        this is NPC -> def["attack_speed", 4]
-        fightStyle == "magic" -> 5
-        this is Player && specialAttack && weapon.id.startsWith("granite_maul") -> 1
-        else -> weapon.def["attack_speed", 4] - (attackType == "rapid" || attackType == "medium_fuse").toInt()
-    }
-
-var Character.attackRange: Int
-    get() = get("attack_range", if (this is NPC) def["attack_range", 1] else 1)
-    set(value) = set("attack_range", value)
-
-// E.g "accurate"
-val Character.attackStyle: String
-    get() = get("attack_style", "")
-
-// E.g "flick"
-val Character.attackType: String
-    get() = get("attack_type", "")
-
-// E.g "crush"
-val Character.combatStyle: String
-    get() = get("combat_style", "")
-

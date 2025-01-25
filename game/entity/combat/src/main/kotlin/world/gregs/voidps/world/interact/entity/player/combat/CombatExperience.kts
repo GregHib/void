@@ -48,7 +48,7 @@ combatAttack { player ->
         }
     }
     if (target is NPC && player.isTask(target)) {
-        grant(player, target, Skill.Slayer, target.def["slayer_xp", 0.0])
+        grant(player, target, Skill.Slayer, (target as NPC).def["slayer_xp", 0.0])
     }
     grant(player, target, Skill.Constitution, damage / 7.5)
 }
