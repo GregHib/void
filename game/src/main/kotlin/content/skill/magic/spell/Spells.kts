@@ -5,7 +5,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
-import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargets
+import content.skill.melee.weapon.multiTargets
 import kotlin.random.nextInt
 
 characterCombatHit { character ->
