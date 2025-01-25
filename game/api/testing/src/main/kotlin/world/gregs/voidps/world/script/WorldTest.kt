@@ -28,6 +28,7 @@ import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.engineModule
+import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -55,9 +56,6 @@ import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.script.ScriptLoader
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
-import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
-import world.gregs.voidps.world.interact.world.spawn.loadNpcSpawns
-import world.gregs.voidps.world.interact.world.spawn.loadObjectSpawns
 import java.io.File
 import java.util.*
 import kotlin.system.measureTimeMillis
@@ -80,8 +78,6 @@ abstract class WorldTest : KoinTest {
     private var saves: File? = null
     private lateinit var properties: Properties
     lateinit var settings: Properties
-
-    open var loadNpcs: Boolean = false
 
     fun tick(times: Int = 1) = runBlocking(Contexts.Game) {
         repeat(times) {
@@ -231,11 +227,10 @@ abstract class WorldTest : KoinTest {
     @BeforeEach
     fun beforeEach() {
         settings = Settings.load(properties)
-        loadItemSpawns(floorItems, get())
-        if (loadNpcs) {
-            loadNpcSpawns(npcs)
-        }
-        loadObjectSpawns(objects)
+        World.emit(Spawn)
+//        loadItemSpawns(floorItems, get())
+//        loadNpcSpawns(npcs)
+//        loadObjectSpawns(objects)
         setRandom(FakeRandom())
     }
 

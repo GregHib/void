@@ -68,8 +68,6 @@ import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playMidi
 import world.gregs.voidps.world.interact.entity.sound.playSound
-import world.gregs.voidps.world.interact.world.spawn.loadNpcSpawns
-import world.gregs.voidps.world.interact.world.spawn.loadObjectSpawns
 import java.util.concurrent.TimeUnit
 import kotlin.collections.set
 import kotlin.system.measureTimeMillis
@@ -416,17 +414,6 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
     when (content) {
         "stairs", "tele", "teles", "teleports" -> get<Teleports>().load()
         "tracks", "songs" -> get<MusicTracks>().load()
-        "objects", "objs" -> {
-            val defs: ObjectDefinitions = get()
-            val custom: GameObjects = get()
-            defs.load()
-            loadObjectSpawns(custom, definitions = defs)
-        }
-        "npcs" -> {
-            get<NPCDefinitions>().load()
-            val npcs: NPCs = get()
-            loadNpcSpawns(npcs)
-        }
         "areas" -> get<AreaDefinitions>().load()
         "object defs" -> get<ObjectDefinitions>().load()
         "emotes", "render anims", "render emotes" -> get<RenderEmoteDefinitions>().load()

@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.world.spawn.ItemSpawns
 import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
 
 val items: FloorItems by inject()
-val spawns: ItemSpawns by inject()
+val spawns =  ItemSpawns()
 val definitions: ItemDefinitions by inject()
 
 worldSpawn {
