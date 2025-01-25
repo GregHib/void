@@ -32,7 +32,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.activity.skill.slayer.race
+import content.skill.slayer.race
 import content.entity.combat.attackers
 import content.entity.combat.inCombat
 import content.entity.death.playerDeath

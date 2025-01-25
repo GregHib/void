@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.activity.skill.slayer.isTask
+import content.skill.slayer.isTask
 import content.skill.melee.weapon.attackStyle
 import content.skill.melee.weapon.attackType
 import content.entity.combat.hit.combatAttack

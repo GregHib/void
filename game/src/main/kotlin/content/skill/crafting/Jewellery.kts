@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.world.activity.skill.slayer.unlocked
+import content.skill.slayer.unlocked
 import content.entity.player.dialogue.type.intEntry
 import kotlin.math.min
 

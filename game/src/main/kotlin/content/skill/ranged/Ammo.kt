@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.activity.skill.slayer.undead
+import content.skill.slayer.undead
 import content.entity.player.equip.Equipment
 import content.entity.combat.Target
 import content.entity.combat.hit.directHit

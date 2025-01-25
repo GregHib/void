@@ -2,7 +2,7 @@ package content.entity.npc.combat
 
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.world.activity.skill.slayer.race
+import content.skill.slayer.race
 
 object NPCAttack {
     fun animation(npc: NPC, animationDefinitions: AnimationDefinitions): String {

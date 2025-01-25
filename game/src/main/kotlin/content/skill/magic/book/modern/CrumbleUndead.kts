@@ -2,7 +2,7 @@ package content.skill.magic.book.modern
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.world.activity.skill.slayer.undead
+import content.skill.slayer.undead
 import content.entity.combat.combatPrepare
 import content.skill.magic.spell.spell
 

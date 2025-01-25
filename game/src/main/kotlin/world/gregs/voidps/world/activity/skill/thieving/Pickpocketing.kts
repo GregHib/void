@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.world.activity.skill.slayer.race
+import content.skill.slayer.race
 import content.entity.effect.stun
 import content.entity.npc.combat.NPCAttack
 

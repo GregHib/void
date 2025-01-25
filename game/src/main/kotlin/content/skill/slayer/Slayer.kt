@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.slayer
+package content.skill.slayer
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
