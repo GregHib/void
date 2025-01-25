@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.goblin_village
+package content.area.asgarnia.goblin_village
 
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.type.random
