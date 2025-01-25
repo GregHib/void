@@ -1,7 +1,6 @@
-package world.gregs.voidps.world.activity.skill
+package content.entity.player.stat
 
 import net.pearx.kasechange.toSentenceCase
-import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption

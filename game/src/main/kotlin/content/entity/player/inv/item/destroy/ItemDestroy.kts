@@ -1,4 +1,4 @@
-package content.entity.player.inv.item
+package content.entity.player.inv.item.destroy
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.inv.inventory

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill
+package content.entity.player.inv.item
 
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message

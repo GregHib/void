@@ -17,7 +17,7 @@ import content.entity.player.bank.ownsItem
 import content.quest.quest
 import content.entity.player.dialogue.type.statement
 import content.entity.death.playerDeath
-import content.entity.player.inv.item.destroyed
+import content.entity.player.inv.item.destroy.destroyed
 import java.util.concurrent.TimeUnit
 
 val npcs: NPCs by inject()

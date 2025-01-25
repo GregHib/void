@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill
+package content.entity.player.stat
 
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

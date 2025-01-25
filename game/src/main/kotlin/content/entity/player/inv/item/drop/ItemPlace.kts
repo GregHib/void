@@ -1,5 +1,6 @@
-package content.entity.player.inv.item
+package content.entity.player.inv.item.drop
 
+import content.entity.player.inv.item.tradeable
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.World

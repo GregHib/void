@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.world.activity.skill.ItemUsedOnItem
+import content.entity.player.inv.item.ItemUsedOnItem
 
 onEvent<Player, ItemUsedOnItem>("item_used_on_item", Skill.Crafting) { player ->
     if (def.add.any { it.id == "thread" }) {

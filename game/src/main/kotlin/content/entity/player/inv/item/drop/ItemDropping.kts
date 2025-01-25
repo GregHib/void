@@ -1,7 +1,8 @@
-package content.entity.player.inv.item
+package content.entity.player.inv.item.drop
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.inv.inventoryOption
+import content.entity.player.inv.item.tradeable
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.charges

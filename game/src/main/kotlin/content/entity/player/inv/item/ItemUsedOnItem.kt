@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill
+package content.entity.player.inv.item
 
 import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.event.Event
