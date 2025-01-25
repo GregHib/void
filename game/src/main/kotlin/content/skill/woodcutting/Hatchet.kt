@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.woodcutting
+package content.skill.woodcutting
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.woodcutting
+package content.skill.woodcutting
 
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
