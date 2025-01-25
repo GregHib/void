@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.edgeville
+package content.area.misthalin.edgeville
 
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
