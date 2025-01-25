@@ -1,4 +1,4 @@
-package content.entity.player.iface
+package content.entity.player.kept
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue

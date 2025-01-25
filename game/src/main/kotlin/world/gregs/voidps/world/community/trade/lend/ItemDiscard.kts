@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.world.community.trade.lend.Loan.getExpiry
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
-import world.gregs.voidps.world.interact.entity.player.equip.inventoryOption
+import content.entity.player.inv.inventoryOption
 
 /**
  * Lent item discarding

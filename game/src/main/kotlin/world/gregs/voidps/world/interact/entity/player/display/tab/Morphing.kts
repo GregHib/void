@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.queue.queue
 import content.entity.effect.clearTransform
 import content.entity.effect.movementDelay
 import content.entity.effect.transform
-import world.gregs.voidps.world.interact.entity.player.equip.inventoryOptions
+import content.entity.player.inv.inventoryOptions
 import kotlin.random.Random
 
 inventoryOptions("Wear", item = "easter_ring") {

@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.quest
 import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.holdsItem
-import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
+import content.entity.player.inv.inventoryItem
 
 playerSpawn { player ->
     player.sendVariable("gudrun_after_quest")

@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.obj.objectApproach
-import world.gregs.voidps.world.interact.entity.player.equip.inventoryOption
+import content.entity.player.inv.inventoryOption
 
 interfaceOption("Examine", id = "equipment_bonuses") {
     player.message(item.def.getOrNull("examine") ?: return@interfaceOption, ChatType.ItemExamine)

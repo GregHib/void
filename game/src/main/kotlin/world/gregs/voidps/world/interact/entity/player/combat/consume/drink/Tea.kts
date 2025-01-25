@@ -14,7 +14,7 @@ import content.entity.player.dialogue.type.item
 import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
-import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
+import content.entity.player.inv.inventoryItem
 import content.entity.effect.toxin.poisoned
 
 consume("cup_of_tea") { player ->

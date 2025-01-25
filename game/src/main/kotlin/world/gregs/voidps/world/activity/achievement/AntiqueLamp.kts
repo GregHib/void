@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import content.entity.player.dialogue.type.skillLamp
 import content.entity.player.dialogue.type.statement
-import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
+import content.entity.player.inv.inventoryItem
 
 inventoryItem("Rub", "antique_lamp_easy_lumbridge_tasks", "inventory") {
     val skill = skillLamp()

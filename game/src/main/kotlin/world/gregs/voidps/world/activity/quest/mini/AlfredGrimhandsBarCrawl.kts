@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.activity.quest.sendMessageScroll
-import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
+import content.entity.player.inv.inventoryItem
 
 inventoryItem("Read", "barcrawl_card") {
     val signatures: List<String> = player["barcrawl_signatures", emptyList()]

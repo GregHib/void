@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.equip
+package content.entity.player.inv
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.closeInterfaces

@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
-import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
+import content.entity.player.inv.inventoryItem
 import content.entity.sound.playSound
 
 val areas: AreaDefinitions by inject()

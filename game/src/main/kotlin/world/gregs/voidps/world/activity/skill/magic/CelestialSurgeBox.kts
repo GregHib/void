@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
-import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
+import content.entity.player.inv.inventoryItem
 import kotlin.math.min
 
 inventoryItem("Check*", "celestial_surgebox*", "inventory") {

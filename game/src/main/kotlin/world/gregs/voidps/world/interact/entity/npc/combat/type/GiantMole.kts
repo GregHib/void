@@ -32,7 +32,7 @@ import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.npcCombatHit
 import content.entity.gfx.areaGraphic
-import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
+import content.entity.player.inv.inventoryItem
 import content.entity.sound.areaSound
 import kotlin.random.Random
 

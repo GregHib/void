@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import content.entity.player.dialogue.type.destroy
-import world.gregs.voidps.world.interact.entity.player.equip.inventoryOptions
+import content.entity.player.inv.inventoryOptions
 import content.entity.sound.playSound
 
 val logger = InlineLogger()

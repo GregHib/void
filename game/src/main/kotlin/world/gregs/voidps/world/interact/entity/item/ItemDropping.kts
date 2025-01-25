@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.world.interact.entity.player.equip.inventoryOption
+import content.entity.player.inv.inventoryOption
 import content.entity.sound.playSound
 
 val floorItems: FloorItems by inject()

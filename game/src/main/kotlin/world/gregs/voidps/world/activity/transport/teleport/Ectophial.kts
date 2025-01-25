@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
+import content.entity.player.inv.inventoryItem
 
 val areas: AreaDefinitions by inject()
 val objects: GameObjects by inject()

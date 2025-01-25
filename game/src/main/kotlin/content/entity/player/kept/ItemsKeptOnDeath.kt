@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.equip
+package content.entity.player.kept
 
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player

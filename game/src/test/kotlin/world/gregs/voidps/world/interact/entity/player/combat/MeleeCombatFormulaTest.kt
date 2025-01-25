@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
-import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
+import content.entity.player.inv.InventoryOption
 import kotlin.test.assertEquals
 
 internal class MeleeCombatFormulaTest : CombatFormulaTest() {

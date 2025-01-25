@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.equip
+package content.entity.player.equip
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -16,6 +16,8 @@ import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import content.entity.sound.playSound
+import content.entity.player.inv.inventoryOption
+import content.entity.player.inv.inventoryOptions
 
 inventoryOptions("Wield", "Wear", "Hold", "Equip", inventory = "inventory") {
     val def = item.def

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.equip
+package content.entity.player.price
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.equip
+package content.entity.player.equip
 
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.inv.itemChange

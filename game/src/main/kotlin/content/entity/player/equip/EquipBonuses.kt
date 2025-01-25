@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.equip
+package content.entity.player.equip
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 

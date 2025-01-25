@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.equip
+package content.entity.player.equip
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
@@ -16,7 +16,8 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.network.login.protocol.visual.VisualMask.APPEARANCE_MASK
-import world.gregs.voidps.world.interact.entity.player.equip.EquipBonuses.names
+import content.entity.player.equip.EquipBonuses.names
+import content.entity.player.inv.InventoryOption
 import java.math.RoundingMode
 import java.text.DecimalFormat
 

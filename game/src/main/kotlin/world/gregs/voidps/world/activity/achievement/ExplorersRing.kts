@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
-import world.gregs.voidps.world.interact.entity.player.equip.inventoryOption
+import content.entity.player.inv.inventoryOption
 import java.util.concurrent.TimeUnit
 
 playerSpawn { player ->
