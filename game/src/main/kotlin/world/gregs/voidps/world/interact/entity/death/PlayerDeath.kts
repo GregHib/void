@@ -25,7 +25,7 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
-import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
+import content.entity.gfx.areaGraphic
 import world.gregs.voidps.world.interact.entity.item.tradeable
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePrayerVarKey
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying

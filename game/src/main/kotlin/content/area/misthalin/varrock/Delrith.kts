@@ -42,7 +42,7 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.combat.combatPrepare
 import world.gregs.voidps.world.interact.entity.effect.transform
-import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
+import content.entity.gfx.areaGraphic
 import world.gregs.voidps.world.interact.entity.player.music.playTrack
 import content.entity.proj.shoot
 import content.entity.sound.playJingle

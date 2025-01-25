@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
 import content.entity.player.dialogue.type.makeAmount
-import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
+import content.entity.gfx.areaGraphic
 
 itemOnObjectOperate(obj = "altar*", itemDef = "prayer_xp") {
     val tile = target.nearestTo(player.tile)

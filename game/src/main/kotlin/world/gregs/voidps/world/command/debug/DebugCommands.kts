@@ -37,7 +37,7 @@ import world.gregs.voidps.type.Zone
 import world.gregs.voidps.world.activity.quest.*
 import content.entity.player.dialogue.sendLines
 import content.entity.player.dialogue.type.npc
-import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
+import content.entity.gfx.areaGraphic
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 

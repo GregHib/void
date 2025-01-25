@@ -21,7 +21,7 @@ import world.gregs.voidps.type.random
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.effect.clearTransform
 import world.gregs.voidps.world.interact.entity.effect.transform
-import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
+import content.entity.gfx.areaGraphic
 import content.entity.sound.playJingle
 
 val definitions: InterfaceDefinitions by inject()

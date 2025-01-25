@@ -15,7 +15,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.activity.skill.mining.Pickaxe
 import world.gregs.voidps.world.activity.skill.woodcutting.Hatchet
-import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
+import content.entity.gfx.areaGraphic
 import content.entity.sound.playSound
 
 // Object tile, opposite passage tile, teleport tile

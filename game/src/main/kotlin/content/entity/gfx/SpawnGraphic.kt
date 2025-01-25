@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.gfx
+package content.entity.gfx
 
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
