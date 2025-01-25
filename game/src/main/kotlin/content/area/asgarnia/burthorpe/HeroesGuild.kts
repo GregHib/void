@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.burthorpe
+package content.area.asgarnia.burthorpe
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
