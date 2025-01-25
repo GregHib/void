@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.achievement
+package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -28,7 +28,6 @@ import world.gregs.voidps.world.interact.entity.npc.shop.shopOpen
 import world.gregs.voidps.world.interact.entity.obj.teleportLand
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
-import java.util.concurrent.TimeUnit
 
 move({ player.running && !player["on_the_run_task", false] }) {
     player["on_the_run_task"] = true
