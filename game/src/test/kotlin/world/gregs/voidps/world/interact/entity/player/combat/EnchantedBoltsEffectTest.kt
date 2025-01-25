@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.effect.frozen
+import content.entity.effect.frozen
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.player.effect.antifire
 import world.gregs.voidps.world.interact.entity.player.toxin.poisoned

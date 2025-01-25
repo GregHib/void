@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
-import world.gregs.voidps.world.interact.entity.effect.freeze
+import content.entity.effect.freeze
 
 val definitions: SpellDefinitions by inject()
 

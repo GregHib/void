@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.effect
+package content.entity.effect
 
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.flagTransform

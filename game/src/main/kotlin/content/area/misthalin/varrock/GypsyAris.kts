@@ -31,8 +31,8 @@ import world.gregs.voidps.world.activity.quest.startCutscene
 import world.gregs.voidps.world.activity.quest.stopCutscene
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import world.gregs.voidps.world.interact.entity.effect.clearTransform
-import world.gregs.voidps.world.interact.entity.effect.transform
+import content.entity.effect.clearTransform
+import content.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.player.music.playTrack
 import content.entity.sound.areaSound
 import content.entity.sound.playJingle

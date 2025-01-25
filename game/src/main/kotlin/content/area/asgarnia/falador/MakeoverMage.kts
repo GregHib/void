@@ -29,7 +29,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.type.random
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import world.gregs.voidps.world.interact.entity.effect.transform
+import content.entity.effect.transform
 import java.util.concurrent.TimeUnit
 
 val enums: EnumDefinitions by inject()

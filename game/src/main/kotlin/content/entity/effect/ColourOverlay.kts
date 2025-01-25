@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.effect
+package content.entity.effect
 
 import world.gregs.voidps.engine.timer.characterTimerStart
 import world.gregs.voidps.engine.timer.characterTimerStop

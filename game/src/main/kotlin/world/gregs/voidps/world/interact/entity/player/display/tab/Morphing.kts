@@ -5,9 +5,9 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.world.interact.entity.effect.clearTransform
-import world.gregs.voidps.world.interact.entity.effect.movementDelay
-import world.gregs.voidps.world.interact.entity.effect.transform
+import content.entity.effect.clearTransform
+import content.entity.effect.movementDelay
+import content.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryOptions
 import kotlin.random.Random
 

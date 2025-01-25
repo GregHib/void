@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.setRandom
-import world.gregs.voidps.world.interact.entity.effect.stunned
+import content.entity.effect.stunned
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.npcOption
 import kotlin.test.assertEquals

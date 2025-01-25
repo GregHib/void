@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.encode.updateInterface
-import world.gregs.voidps.world.interact.entity.effect.frozen
+import content.entity.effect.frozen
 
 val definitions: InterfaceDefinitions by inject()
 

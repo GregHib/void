@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.world.interact.entity.effect.freeze
+import content.entity.effect.freeze
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackHit
 import java.util.concurrent.TimeUnit
 

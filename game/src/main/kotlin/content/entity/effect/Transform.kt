@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.effect
+package content.entity.effect
 
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.data.definition.NPCDefinitions

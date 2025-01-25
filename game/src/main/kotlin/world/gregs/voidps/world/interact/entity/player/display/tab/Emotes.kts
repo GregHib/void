@@ -19,8 +19,8 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
 import content.entity.player.dialogue.type.statement
-import world.gregs.voidps.world.interact.entity.effect.clearTransform
-import world.gregs.voidps.world.interact.entity.effect.transform
+import content.entity.effect.clearTransform
+import content.entity.effect.transform
 import content.entity.gfx.areaGraphic
 import content.entity.sound.playJingle
 

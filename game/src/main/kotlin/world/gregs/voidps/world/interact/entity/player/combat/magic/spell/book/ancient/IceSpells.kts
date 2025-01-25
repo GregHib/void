@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
-import world.gregs.voidps.world.interact.entity.effect.freeze
+import content.entity.effect.freeze
 
 val definitions: SpellDefinitions by inject()
 
