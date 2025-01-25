@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.barbarian_outpost
+package content.area.kandarin.barbarian_outpost
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
