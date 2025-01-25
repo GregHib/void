@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.draynor
+package content.area.misthalin.draynor_village
 
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.world.interact.dialogue.Happy
