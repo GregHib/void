@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.npc.move
+package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow

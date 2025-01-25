@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.npc
+package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
