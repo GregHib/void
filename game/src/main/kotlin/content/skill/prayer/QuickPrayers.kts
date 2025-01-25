@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.prayer
+package content.skill.prayer
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -11,11 +11,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMa
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.death.playerDeath
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.QUICK_CURSES
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.QUICK_PRAYERS
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.TEMP_QUICK_PRAYERS
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.USING_QUICK_PRAYERS
+import content.skill.prayer.PrayerConfigs.QUICK_CURSES
+import content.skill.prayer.PrayerConfigs.QUICK_PRAYERS
+import content.skill.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS
+import content.skill.prayer.PrayerConfigs.TEMP_QUICK_PRAYERS
+import content.skill.prayer.PrayerConfigs.USING_QUICK_PRAYERS
 import content.entity.player.modal.Tab
 import content.entity.sound.playSound
 

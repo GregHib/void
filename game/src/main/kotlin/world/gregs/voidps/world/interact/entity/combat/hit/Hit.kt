@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.Prayer
+import content.skill.prayer.Prayer
 import content.entity.player.combat.special.specialAttack
 import kotlin.math.floor
 

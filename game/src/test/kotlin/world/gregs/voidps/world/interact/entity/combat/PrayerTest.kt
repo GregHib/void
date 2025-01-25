@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
+import content.skill.prayer.PrayerConfigs
+import content.skill.prayer.praying
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.interfaceOption
 

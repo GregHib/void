@@ -1,8 +1,8 @@
-package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
+package content.skill.prayer.active
 
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
+import content.skill.prayer.praying
 
 combatAttack { player ->
     if (damage <= 40 || !player.praying("smite")) {

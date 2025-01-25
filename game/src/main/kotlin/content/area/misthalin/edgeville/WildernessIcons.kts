@@ -6,8 +6,8 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.interact.entity.combat.inWilderness
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStop
+import content.skill.prayer.prayerStart
+import content.skill.prayer.prayerStop
 
 variableSet("in_wilderness", to = true) { player ->
     player.options.set(1, "Attack")

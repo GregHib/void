@@ -5,9 +5,9 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePrayerVarKey
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
+import content.skill.prayer.getActivePrayerVarKey
+import content.skill.prayer.isCurses
+import content.skill.prayer.prayerStart
 import content.entity.player.combat.special.specialAttackHit
 import java.util.concurrent.TimeUnit
 

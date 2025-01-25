@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
+import content.skill.prayer.PrayerConfigs
 import world.gregs.voidps.world.script.WorldTest
 
 internal class LevelRestorationTest : WorldTest() {

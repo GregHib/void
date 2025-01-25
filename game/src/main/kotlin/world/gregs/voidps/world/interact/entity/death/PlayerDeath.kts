@@ -27,8 +27,8 @@ import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import content.entity.gfx.areaGraphic
 import world.gregs.voidps.world.interact.entity.item.tradeable
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePrayerVarKey
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
+import content.skill.prayer.getActivePrayerVarKey
+import content.skill.prayer.praying
 import content.entity.player.kept.ItemsKeptOnDeath
 import content.entity.proj.shoot
 import content.entity.sound.playJingle

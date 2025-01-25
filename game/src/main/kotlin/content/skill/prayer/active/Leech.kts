@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
+package content.skill.prayer.active
 
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
@@ -13,12 +13,12 @@ import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.*
 import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import content.entity.player.combat.special.specialAttackEnergy
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.energy.runEnergy
 import content.entity.proj.shoot
+import content.skill.prayer.*
 
 timerStart("prayer_bonus_drain") {
     interval = 50

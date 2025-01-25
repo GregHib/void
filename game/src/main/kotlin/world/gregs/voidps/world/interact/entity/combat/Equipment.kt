@@ -13,7 +13,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.protectMagic
+import content.skill.prayer.protectMagic
 import content.entity.player.effect.antifire
 import content.entity.player.effect.superAntifire
 import kotlin.math.ceil

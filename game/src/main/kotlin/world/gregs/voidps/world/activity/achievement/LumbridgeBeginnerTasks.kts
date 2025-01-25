@@ -26,7 +26,7 @@ import world.gregs.voidps.world.interact.entity.death.npcDeath
 import world.gregs.voidps.world.interact.entity.npc.shop.itemSold
 import world.gregs.voidps.world.interact.entity.npc.shop.shopOpen
 import world.gregs.voidps.world.interact.entity.obj.teleportLand
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
+import content.skill.prayer.prayerStart
 import content.skill.ranged.combat.ammo
 
 move({ player.running && !player["on_the_run_task", false] }) {

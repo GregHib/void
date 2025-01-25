@@ -1,13 +1,13 @@
-package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
+package content.skill.prayer.active
 
 import world.gregs.voidps.engine.data.definition.PrayerDefinitions
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.Prayer
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStop
+import content.skill.prayer.Prayer
+import content.skill.prayer.prayerStart
+import content.skill.prayer.prayerStop
 
 
 val definitions: PrayerDefinitions by inject()

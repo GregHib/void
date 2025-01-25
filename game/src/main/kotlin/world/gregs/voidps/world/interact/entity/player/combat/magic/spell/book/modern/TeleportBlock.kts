@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.world.interact.entity.combat.combatPrepare
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.protectMagic
+import content.skill.prayer.protectMagic
 import kotlin.math.sign
 
 combatPrepare("magic") { player ->

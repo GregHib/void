@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
+package content.skill.prayer.active
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.BitwiseValues
@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePrayerVarKey
+import content.skill.prayer.PrayerConfigs
+import content.skill.prayer.getActivePrayerVarKey
 import content.entity.sound.playSound
 
 val definitions: PrayerDefinitions by inject()

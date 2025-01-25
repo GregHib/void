@@ -58,9 +58,9 @@ import world.gregs.voidps.world.activity.quest.quests
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import world.gregs.voidps.world.interact.entity.obj.Teleports
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.PRAYERS
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
+import content.skill.prayer.PrayerConfigs
+import content.skill.prayer.PrayerConfigs.PRAYERS
+import content.skill.prayer.isCurses
 import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import content.entity.player.combat.special.specialAttackEnergy
 import content.entity.player.effect.skull
