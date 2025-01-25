@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.moveAll
-import world.gregs.voidps.world.community.friend.friend
+import content.social.friend.friend
 import world.gregs.voidps.world.community.trade.Trade.getPartner
 import content.entity.player.modal.Tab
 

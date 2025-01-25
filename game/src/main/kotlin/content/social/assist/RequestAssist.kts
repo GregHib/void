@@ -26,7 +26,7 @@ import content.social.assist.Assistance.hasEarnedMaximumExperience
 import content.social.assist.Assistance.redirectSkillExperience
 import content.social.assist.Assistance.stopRedirectingSkillExp
 import content.social.assist.Assistance.toggleInventory
-import world.gregs.voidps.world.community.friend.friend
+import content.social.friend.friend
 import java.util.concurrent.TimeUnit
 import kotlin.math.min
 

@@ -24,8 +24,8 @@ import world.gregs.voidps.network.login.protocol.encode.Member
 import world.gregs.voidps.network.login.protocol.encode.appendClanChat
 import world.gregs.voidps.network.login.protocol.encode.leaveClanChat
 import world.gregs.voidps.network.login.protocol.encode.updateClanChat
-import world.gregs.voidps.world.community.friend.world
-import world.gregs.voidps.world.community.friend.worldName
+import content.social.friend.world
+import content.social.friend.worldName
 import java.util.concurrent.TimeUnit
 
 val accounts: AccountDefinitions by inject()

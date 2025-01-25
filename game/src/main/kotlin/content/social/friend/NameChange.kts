@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.friend
+package content.social.friend
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural

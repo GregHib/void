@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.friend
+package content.social.friend
 
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
