@@ -2,13 +2,17 @@ package world.gregs.voidps.world.interact.entity.player.music
 
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.playTrack
+import world.gregs.voidps.engine.client.variable.BitwiseValues
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 
 val tracks: MusicTracks by inject()
@@ -25,7 +29,7 @@ playerSpawn { player ->
 fun unlockDefaultTracks(player: Player) {
     enums.get("music_track_hints").map?.forEach { (key, value) ->
         if (value is String && value == "automatically.") {
-            MusicUnlock.unlockTrack(player, key)
+            unlockTrack(player, key)
         }
     }
 
@@ -80,4 +84,22 @@ fun autoPlay(player: Player, track: MusicTracks.Track) {
     if (!player["playing_song", false]) {
         player.playTrack(index)
     }
+}
+
+
+adminCommand("unlock") {
+    val type = content
+    if (type == "" || type == "music" || type == "songs" || type == "music tracks" || type == "music_tracks") {
+        get<EnumDefinitions>().get("music_track_names").map?.keys?.forEach { key ->
+            unlockTrack(player, key)
+        }
+        player.message("All songs unlocked.")
+    }
+}
+
+fun unlockTrack(player: Player, trackIndex: Int): Boolean {
+    val name = "unlocked_music_${trackIndex / 32}"
+    val list = get<VariableDefinitions>().get(name)?.values as? BitwiseValues
+    val track = list?.values?.get(trackIndex.rem(32)) as? String ?: return false
+    return player.addVarbit("unlocked_music_${trackIndex / 32}", track)
 }

@@ -65,7 +65,6 @@ import world.gregs.voidps.world.interact.entity.player.effect.skull
 import world.gregs.voidps.world.interact.entity.player.effect.unskull
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
-import world.gregs.voidps.world.interact.entity.player.music.MusicUnlock
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playMidi
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -246,12 +245,6 @@ adminCommand("master", "set all skills to 99") {
 
 adminCommand("unlock [activity-type]", "unlock everything or of a type (music, tasks, emotes, quests)") {
     val type = content
-    if (type == "" || type == "music" || type == "songs" || type == "music tracks" || type == "music_tracks") {
-        get<EnumDefinitions>().get("music_track_names").map?.keys?.forEach { key ->
-            MusicUnlock.unlockTrack(player, key)
-        }
-        player.message("All songs unlocked.")
-    }
     if (type == "" || type == "tasks" || type == "achievements") {
         for (struct in get<StructDefinitions>().definitions) {
             if (struct.stringId.endsWith("_task")) {

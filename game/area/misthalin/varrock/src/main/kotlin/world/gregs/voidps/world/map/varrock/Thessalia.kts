@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -24,10 +25,10 @@ import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
-import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.onStyle
 import world.gregs.voidps.world.map.falador.openDressingRoom
 
 val enums: EnumDefinitions by inject()
+val structs: StructDefinitions by inject()
 
 npcOperate("Talk-to", "thessalia") {
     npc<Happy>("Would you like to buy any fine clothes?")
@@ -101,10 +102,11 @@ interfaceOption(component = "styles", id = "thessalias_makeovers") {
         if (previous && !current) {
             setDefaultArms(player)
         } else if (current) {
-            onStyle(value) {
-                player["makeover_arms"] = it.get<Int>("character_style_arms")
-                player["makeover_wrists"] = it.get<Int>("character_style_wrists")
-            }
+            val style = (0 until 64)
+                .map { structs.get("character_style_$it") }
+                .first { def -> def.get<Int>("character_style_top") == value }
+            player["makeover_arms"] = style.get<Int>("character_style_arms")
+            player["makeover_wrists"] = style.get<Int>("character_style_wrists")
         }
     }
     player["makeover_${part}"] = value

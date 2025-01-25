@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
-import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.onStyle
 
 val enums: EnumDefinitions by inject()
 val structs: StructDefinitions by inject()
@@ -118,11 +117,12 @@ interfaceOption(component = "styles", id = "character_creation") {
         enums.get("character_${part}_styles_$sex").getInt(itemSlot)
     }
     if (part == "top") {
-        onStyle(value) {
-            setStyle(player, it.id)
-            player["makeover_arms"] = it.get<Int>("character_style_arms")
-            player["makeover_wrists"] = it.get<Int>("character_style_wrists")
-        }
+        val style = (0 until 64)
+            .map { structs.get("character_style_$it") }
+            .first { def -> def.get<Int>("character_style_top") == value }
+        setStyle(player, style.id)
+        player["makeover_arms"] = style.get<Int>("character_style_arms")
+        player["makeover_wrists"] = style.get<Int>("character_style_wrists")
         player["character_creation_sub_style"] = 1
     }
     player["character_creation_colour_offset"] = 0
