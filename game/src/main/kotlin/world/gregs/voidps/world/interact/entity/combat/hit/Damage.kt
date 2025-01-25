@@ -21,7 +21,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.armour.barrows.Bar
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.Prayer
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import content.entity.player.combat.special.specialAttack
 import content.entity.player.effect.Dragonfire
 
 object Damage {

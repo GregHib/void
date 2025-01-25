@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat
+package content.entity.player.combat
 
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character

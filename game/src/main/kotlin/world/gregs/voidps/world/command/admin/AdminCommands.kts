@@ -61,8 +61,8 @@ import world.gregs.voidps.world.interact.entity.obj.Teleports
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.PRAYERS
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
-import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
+import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import content.entity.player.combat.special.specialAttackEnergy
 import content.entity.player.effect.skull
 import content.entity.player.effect.unskull
 import content.entity.player.effect.energy.MAX_RUN_ENERGY

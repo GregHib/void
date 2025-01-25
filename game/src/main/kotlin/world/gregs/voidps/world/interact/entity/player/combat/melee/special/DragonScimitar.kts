@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePrayerVarKey
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackHit
+import content.entity.player.combat.special.specialAttackHit
 import java.util.concurrent.TimeUnit
 
 specialAttackHit("sever") {

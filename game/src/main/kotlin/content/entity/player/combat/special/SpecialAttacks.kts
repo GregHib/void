@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.special
+package content.entity.player.combat.special
 
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.world.interact.entity.combat.hit.hit

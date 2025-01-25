@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import content.entity.player.combat.special.specialAttack
 import content.entity.sound.areaSound
 
 specialAttack("saradomins_lightning") { player ->

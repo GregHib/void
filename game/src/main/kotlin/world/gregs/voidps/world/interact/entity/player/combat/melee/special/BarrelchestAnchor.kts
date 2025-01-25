@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.melee.drainByDamage
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import content.entity.player.combat.special.specialAttack
 import content.entity.sound.playSound
 
 specialAttack("sunder") { player ->

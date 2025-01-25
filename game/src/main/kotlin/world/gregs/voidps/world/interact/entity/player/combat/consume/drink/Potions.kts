@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
-import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
+import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import content.entity.player.combat.special.specialAttackEnergy
 import content.entity.player.effect.antifire
 import content.entity.player.effect.superAntifire
 import content.entity.player.effect.energy.runEnergy

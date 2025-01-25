@@ -9,7 +9,7 @@ import world.gregs.voidps.world.interact.entity.combat.combatPrepare
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import content.entity.effect.freeze
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import content.entity.player.combat.special.specialAttack
 import java.util.concurrent.TimeUnit
 
 combatPrepare("melee") { player ->

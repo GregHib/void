@@ -10,8 +10,8 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
-import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
+import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import content.entity.player.combat.special.specialAttackEnergy
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.energy.runEnergy
 

@@ -7,7 +7,7 @@ import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.entity.sound.playSound
 

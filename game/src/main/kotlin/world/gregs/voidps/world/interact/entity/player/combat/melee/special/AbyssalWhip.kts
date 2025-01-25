@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackHit
+import content.entity.player.combat.special.specialAttackHit
 import content.entity.player.effect.energy.runEnergy
 
 specialAttackHit("energy_drain") { player ->

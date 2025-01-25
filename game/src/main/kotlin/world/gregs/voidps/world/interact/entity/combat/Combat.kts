@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.entity.characterDespawn
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.death.characterDeath
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import content.entity.player.combat.special.specialAttack
 
 /**
  * When triggered via [Interact] replace the Interaction with [CombatInteraction]

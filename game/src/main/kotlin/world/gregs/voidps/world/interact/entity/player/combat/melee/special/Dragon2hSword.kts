@@ -9,7 +9,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackHit
+import content.entity.player.combat.special.specialAttackHit
 
 val players: Players by inject()
 val npcs: NPCs by inject()

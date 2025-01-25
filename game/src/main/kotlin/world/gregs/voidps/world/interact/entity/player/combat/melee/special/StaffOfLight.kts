@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
-import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAttack
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackPrepare
+import content.entity.player.combat.special.SpecialAttack
+import content.entity.player.combat.special.specialAttackPrepare
 import java.util.concurrent.TimeUnit
 
 itemRemoved("staff_of_light*", EquipSlot.Weapon, "worn_equipment") { player ->

@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 
 specialAttack("defiance") { player ->

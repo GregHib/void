@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.Prayer
 import world.gregs.voidps.world.interact.entity.player.combat.range.Ammo
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import content.entity.player.combat.special.specialAttack
 import kotlin.random.nextInt
 
 object Weapon {
