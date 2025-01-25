@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.client.instruction.InteractDialogue
-import world.gregs.voidps.world.activity.skill.smithing.oreToBar
+import content.skill.smithing.oreToBar
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()

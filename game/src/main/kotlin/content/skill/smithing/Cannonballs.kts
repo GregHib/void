@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.smithing
+package content.skill.smithing
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.smithing
+package content.skill.smithing
 
 import world.gregs.voidps.engine.data.definition.data.Smelting
 import world.gregs.voidps.engine.entity.character.player.Player
