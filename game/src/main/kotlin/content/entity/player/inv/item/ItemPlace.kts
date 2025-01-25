@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.item
+package content.entity.player.inv.item
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate

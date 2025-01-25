@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.item
+package content.entity.player.inv.item
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -6,19 +6,19 @@ import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 
-data class Destructible(val item: Item) : CancellableEvent() {
+data class Dropped(val item: Item) : CancellableEvent() {
 
     override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "can_destroy"
+        0 -> "drop"
         1 -> item.id
         else -> null
     }
 }
 
-fun canDestroy(vararg items: String = arrayOf("*"), handler: Destructible.(Player) -> Unit) {
+fun dropped(vararg items: String = arrayOf("*"), handler: Dropped.(Player) -> Unit) {
     for (item in items) {
-        Events.handle("can_destroy", item, handler = handler)
+        Events.handle("drop", item, handler = handler)
     }
 }

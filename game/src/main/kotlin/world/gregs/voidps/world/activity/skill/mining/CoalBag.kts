@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.addToLimit
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.removeToLimit
-import world.gregs.voidps.world.interact.entity.item.canDestroy
+import content.entity.player.inv.item.canDestroy
 import content.entity.player.inv.inventoryItem
 
 val bagCapacity = 81

@@ -17,7 +17,7 @@ import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.death.playerDeath
-import world.gregs.voidps.world.interact.entity.item.destroyed
+import content.entity.player.inv.item.destroyed
 import java.util.concurrent.TimeUnit
 
 val npcs: NPCs by inject()

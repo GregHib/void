@@ -1,12 +1,12 @@
-package world.gregs.voidps.world.interact.entity.item
+package content.entity.player.inv.item
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.player.inv.inventoryOption
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import content.entity.player.inv.inventoryOption
 import content.entity.sound.playSound
 
 val floorItems: FloorItems by inject()

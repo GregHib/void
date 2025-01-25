@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.item
+package content.entity.player.inv.item
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
