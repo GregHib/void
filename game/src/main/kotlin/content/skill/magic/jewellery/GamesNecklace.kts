@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.transport.teleport
+package content.skill.magic.jewellery
 
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.inject

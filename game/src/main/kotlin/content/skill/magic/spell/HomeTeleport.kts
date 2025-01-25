@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.transport.teleport
+package content.skill.magic.spell
 
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.timer.epochSeconds
-import content.skill.magic.spell.removeSpellItems
 import java.util.concurrent.TimeUnit
 
 val areas: AreaDefinitions by inject()

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.transport.teleport
+package content.quest.member.ghosts_ahoy
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Tile
 import content.entity.player.inv.inventoryItem
+import content.skill.magic.jewellery.itemTeleport
 
 val areas: AreaDefinitions by inject()
 val objects: GameObjects by inject()

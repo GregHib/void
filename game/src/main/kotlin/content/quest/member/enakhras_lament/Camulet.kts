@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.transport.teleport
+package content.quest.member.enakhras_lament
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.inventoryItem
+import content.skill.magic.jewellery.jewelleryTeleport
 
 val areas: AreaDefinitions by inject()
 

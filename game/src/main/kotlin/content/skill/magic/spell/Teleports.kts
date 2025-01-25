@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.transport.teleport
+package content.skill.magic.spell
 
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
-import content.skill.magic.spell.removeSpellItems
 import content.entity.player.inv.inventoryItem
 import content.entity.sound.playSound
 
