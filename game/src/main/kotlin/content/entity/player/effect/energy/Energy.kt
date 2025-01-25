@@ -1,4 +1,4 @@
-package content.entity.player.energy
+package content.entity.player.effect.energy
 
 import world.gregs.voidps.engine.client.sendRunEnergy
 import world.gregs.voidps.engine.entity.character.player.Player

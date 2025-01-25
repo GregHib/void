@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
-import content.entity.player.energy.runEnergy
+import content.entity.player.effect.energy.runEnergy
 
 playerSpawn { player ->
     if (player.hasFullSet()) {

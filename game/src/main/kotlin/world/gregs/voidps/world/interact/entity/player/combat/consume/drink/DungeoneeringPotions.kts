@@ -2,8 +2,8 @@ package world.gregs.voidps.world.interact.entity.player.combat.consume.drink
 
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
-import world.gregs.voidps.world.interact.entity.player.effect.antifire
-import world.gregs.voidps.world.interact.entity.player.effect.superAntifire
+import content.entity.player.effect.antifire
+import content.entity.player.effect.superAntifire
 import content.entity.effect.toxin.antiPoison
 
 consume("weak_melee_potion") { player ->

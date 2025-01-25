@@ -14,8 +14,8 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.protectMagic
-import world.gregs.voidps.world.interact.entity.player.effect.antifire
-import world.gregs.voidps.world.interact.entity.player.effect.superAntifire
+import content.entity.player.effect.antifire
+import content.entity.player.effect.superAntifire
 import kotlin.math.ceil
 
 object Equipment {

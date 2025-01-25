@@ -1,4 +1,4 @@
-package content.entity.player.energy
+package content.entity.player.effect.energy
 
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.hasClock

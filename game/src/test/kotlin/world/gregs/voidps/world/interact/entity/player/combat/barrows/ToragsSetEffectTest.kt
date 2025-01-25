@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.CombatFormulaTest
-import content.entity.player.energy.energyPercent
+import content.entity.player.effect.energy.energyPercent
 
 internal class ToragsSetEffectTest : CombatFormulaTest() {
 

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.effect
+package content.entity.player.effect
 
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start

@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.effect
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.world.interact.entity.player.effect.Dragonfire.maxHit
+import content.entity.player.effect.Dragonfire.maxHit
 
 internal class DragonfireTest {
 

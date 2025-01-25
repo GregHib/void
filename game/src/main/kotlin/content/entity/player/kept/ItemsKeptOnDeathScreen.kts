@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
-import world.gregs.voidps.world.interact.entity.player.effect.skulled
+import content.entity.player.effect.skulled
 
 val enums: EnumDefinitions by inject()
 

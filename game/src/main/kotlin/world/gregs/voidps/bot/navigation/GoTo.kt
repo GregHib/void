@@ -20,7 +20,7 @@ import world.gregs.voidps.network.client.instruction.InteractNPC
 import world.gregs.voidps.network.client.instruction.InteractObject
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Tile
-import content.entity.player.energy.energyPercent
+import content.entity.player.effect.energy.energyPercent
 
 private val logger = InlineLogger()
 

@@ -14,9 +14,9 @@ import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
-import world.gregs.voidps.world.interact.entity.player.effect.antifire
-import world.gregs.voidps.world.interact.entity.player.effect.superAntifire
-import content.entity.player.energy.runEnergy
+import content.entity.player.effect.antifire
+import content.entity.player.effect.superAntifire
+import content.entity.player.effect.energy.runEnergy
 import content.entity.effect.toxin.antiDisease
 import content.entity.effect.toxin.antiPoison
 import content.entity.effect.toxin.cureDisease

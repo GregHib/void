@@ -63,9 +63,9 @@ import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfi
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
-import world.gregs.voidps.world.interact.entity.player.effect.skull
-import world.gregs.voidps.world.interact.entity.player.effect.unskull
-import content.entity.player.energy.MAX_RUN_ENERGY
+import content.entity.player.effect.skull
+import content.entity.player.effect.unskull
+import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.world.music.MusicTracks
 import content.entity.world.music.MusicUnlock
 import content.entity.sound.playJingle

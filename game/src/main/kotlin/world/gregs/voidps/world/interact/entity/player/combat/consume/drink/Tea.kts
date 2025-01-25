@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.type.random
 import content.entity.player.dialogue.type.item
 import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
-import content.entity.player.energy.MAX_RUN_ENERGY
-import content.entity.player.energy.runEnergy
+import content.entity.player.effect.energy.MAX_RUN_ENERGY
+import content.entity.player.effect.energy.runEnergy
 import content.entity.player.inv.inventoryItem
 import content.entity.effect.toxin.poisoned
 

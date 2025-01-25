@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
-import world.gregs.voidps.world.interact.entity.player.effect.skulled
+import content.entity.player.effect.skulled
 import java.util.*
 
 object ItemsKeptOnDeath {

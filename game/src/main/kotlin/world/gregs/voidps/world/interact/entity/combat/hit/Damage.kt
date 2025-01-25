@@ -22,7 +22,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.Prayer
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
-import world.gregs.voidps.world.interact.entity.player.effect.Dragonfire
+import content.entity.player.effect.Dragonfire
 
 object Damage {
     private val logger = InlineLogger()
