@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.interact.entity.obj.door.enterDoor
+import content.entity.obj.door.enterDoor
 import java.util.concurrent.TimeUnit
 
 val npcs: NPCs by inject()

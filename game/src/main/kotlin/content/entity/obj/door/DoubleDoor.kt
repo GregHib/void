@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.obj.door
+package content.entity.obj.door
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -6,9 +6,9 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.equals
-import world.gregs.voidps.world.interact.entity.obj.Replace
-import world.gregs.voidps.world.interact.entity.obj.door.Door.isDoor
-import world.gregs.voidps.world.interact.entity.obj.door.Gate.isGate
+import content.entity.obj.Replace
+import content.entity.obj.door.Door.isDoor
+import content.entity.obj.door.Gate.isGate
 
 object DoubleDoor {
     /**

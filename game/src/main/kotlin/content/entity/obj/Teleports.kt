@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.obj
+package content.entity.obj
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap

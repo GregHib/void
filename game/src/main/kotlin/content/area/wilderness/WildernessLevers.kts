@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
-import world.gregs.voidps.world.interact.entity.obj.teleportLand
-import world.gregs.voidps.world.interact.entity.obj.teleportTakeOff
+import content.entity.obj.teleportLand
+import content.entity.obj.teleportTakeOff
 import content.entity.sound.playSound
 
 objectOperate("Pull", "lever_*", override = false) {

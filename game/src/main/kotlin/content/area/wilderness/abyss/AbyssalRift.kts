@@ -3,7 +3,7 @@ package content.area.wilderness.abyss
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.world.activity.quest.questComplete
-import world.gregs.voidps.world.interact.entity.obj.teleportTakeOff
+import content.entity.obj.teleportTakeOff
 
 teleportTakeOff("Exit-through", "*_rift") {
     when {

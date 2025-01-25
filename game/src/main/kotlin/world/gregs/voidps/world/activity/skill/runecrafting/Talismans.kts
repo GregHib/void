@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.area.Rectangle
-import world.gregs.voidps.world.interact.entity.obj.Teleports
+import content.entity.obj.Teleports
 import content.entity.player.inv.inventoryItem
 
 val overworld = Rectangle(2048, 2496, 3903, 4159)

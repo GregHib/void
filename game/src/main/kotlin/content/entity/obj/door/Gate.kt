@@ -1,9 +1,9 @@
-package world.gregs.voidps.world.interact.entity.obj.door
+package content.entity.obj.door
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.world.interact.entity.obj.Replace
-import world.gregs.voidps.world.interact.entity.obj.door.Door.rotation
+import content.entity.obj.Replace
+import content.entity.obj.door.Door.rotation
 
 object Gate {
     /**

@@ -11,7 +11,7 @@ import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Cuboid
-import world.gregs.voidps.world.interact.entity.obj.door.Door.isDoor
+import content.entity.obj.door.Door.isDoor
 import java.io.DataOutputStream
 import java.io.File
 import java.util.*

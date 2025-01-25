@@ -19,7 +19,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
-import world.gregs.voidps.world.interact.entity.obj.door.enterDoor
+import content.entity.obj.door.enterDoor
 import content.entity.sound.playSound
 
 val objects: GameObjects by inject()

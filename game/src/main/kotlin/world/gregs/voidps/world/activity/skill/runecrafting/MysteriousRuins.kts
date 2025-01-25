@@ -19,8 +19,8 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.equals
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
-import world.gregs.voidps.world.interact.entity.obj.Teleports
-import world.gregs.voidps.world.interact.entity.obj.teleportTakeOff
+import content.entity.obj.Teleports
+import content.entity.obj.teleportTakeOff
 import content.entity.sound.playSound
 
 val objectDefinitions: ObjectDefinitions by inject()

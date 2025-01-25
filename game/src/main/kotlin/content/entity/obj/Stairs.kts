@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.obj
+package content.entity.obj
 
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
