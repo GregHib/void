@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.rimmington
+package content.area.asgarnia.rimmington
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
