@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.ardougne
+package content.area.kandarin.ardougne
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
