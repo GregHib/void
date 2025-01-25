@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.taverley
+package content.area.asgarnia.taverley
 
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message

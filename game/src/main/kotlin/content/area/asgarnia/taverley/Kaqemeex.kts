@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.taverley
+package content.area.asgarnia.taverley
 
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
