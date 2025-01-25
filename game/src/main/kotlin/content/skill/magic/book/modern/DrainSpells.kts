@@ -1,10 +1,10 @@
-package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.modern
+package content.skill.magic.book.modern
 
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.combat.characterCombatPrepare
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
+import content.skill.magic.spell.Spell
+import content.skill.magic.spell.spell
 
 val spellDefinitions: SpellDefinitions by inject()
 

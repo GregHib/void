@@ -37,8 +37,8 @@ import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.inCombat
 import world.gregs.voidps.world.interact.entity.death.playerDeath
 import world.gregs.voidps.world.interact.entity.death.weightedSample
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
+import content.skill.magic.spell.removeSpellItems
+import content.skill.magic.spell.spell
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()

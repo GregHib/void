@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.lunar
+package content.skill.magic.book.lunar
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
+import content.skill.magic.spell.removeSpellItems
 
 val definitions: SpellDefinitions by inject()
 

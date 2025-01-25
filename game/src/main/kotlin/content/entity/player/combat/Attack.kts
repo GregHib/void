@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.characterApproachPlayer
 import world.gregs.voidps.world.interact.entity.combat.CombatInteraction
 import world.gregs.voidps.world.interact.entity.combat.attackRange
 import world.gregs.voidps.world.interact.entity.combat.combatPrepare
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
+import content.skill.magic.spell.spell
 
 characterApproachNPC("Attack") {
     if (character.attackRange != 1) {

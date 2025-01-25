@@ -1,8 +1,8 @@
-package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book
+package content.skill.magic.book
 
 import world.gregs.voidps.world.interact.entity.combat.combatPrepare
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.hasSpellItems
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
+import content.skill.magic.spell.hasSpellItems
+import content.skill.magic.spell.spell
 
 combatPrepare(style = "magic") { player ->
     if (player.spell.isNotBlank() && !player.hasSpellItems(player.spell)) {

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
+package content.skill.magic.spell
 
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.engine.client.message
@@ -23,7 +23,7 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.Equipment
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell.removeItems
+import content.skill.magic.spell.Spell.removeItems
 import kotlin.math.absoluteValue
 import kotlin.math.max
 import kotlin.math.roundToInt

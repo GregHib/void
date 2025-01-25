@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.modern
+package content.skill.magic.book.modern
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.TICKS
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
+import content.skill.magic.spell.removeSpellItems
 
 val definitions: SpellDefinitions by inject()
 

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.lunar
+package content.skill.magic.book.lunar
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnPlayerApproach
@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
+import content.skill.magic.spell.removeSpellItems
 import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import content.entity.player.combat.special.specialAttackEnergy
 import content.entity.player.effect.energy.MAX_RUN_ENERGY

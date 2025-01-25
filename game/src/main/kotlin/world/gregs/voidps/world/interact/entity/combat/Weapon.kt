@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
+import content.skill.magic.spell.spell
 import content.skill.prayer.Prayer
 import content.skill.ranged.combat.Ammo
 import content.skill.ranged.combat.ammo

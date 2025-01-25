@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.remove
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell.removeItems
+import content.skill.magic.spell.Spell.removeItems
 import content.entity.sound.playSound
 
 val spellDefinitions: SpellDefinitions by inject()

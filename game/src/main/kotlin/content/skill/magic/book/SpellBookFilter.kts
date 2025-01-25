@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book
+package content.skill.magic.book
 
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen

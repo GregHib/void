@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
+import content.skill.magic.spell.removeSpellItems
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.item.Item

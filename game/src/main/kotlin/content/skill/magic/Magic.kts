@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.magic
+package content.skill.magic
 
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -8,10 +8,10 @@ import world.gregs.voidps.world.interact.entity.combat.characterCombatSwing
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.modern.teleBlock
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
+import content.skill.magic.spell.Spell
+import content.skill.magic.book.modern.teleBlock
+import content.skill.magic.spell.removeSpellItems
+import content.skill.magic.spell.spell
 import content.entity.proj.shoot
 
 val spellDefinitions: SpellDefinitions by inject()

@@ -29,7 +29,7 @@ import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.interact.entity.combat.attackRange
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.inCombat
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spellBook
+import content.skill.magic.spell.spellBook
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()

@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.timer.epochSeconds
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
+import content.skill.magic.spell.removeSpellItems
 import java.util.concurrent.TimeUnit
 
 val areas: AreaDefinitions by inject()

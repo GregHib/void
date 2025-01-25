@@ -1,11 +1,11 @@
-package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.modern
+package content.skill.magic.book.modern
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.world.interact.entity.combat.combatPrepare
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
+import content.skill.magic.spell.spell
 import content.skill.prayer.protectMagic
 import kotlin.math.sign
 

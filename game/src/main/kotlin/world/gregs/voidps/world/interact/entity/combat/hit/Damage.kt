@@ -18,8 +18,8 @@ import world.gregs.voidps.world.interact.entity.combat.Equipment
 import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.combat.Weapon
 import world.gregs.voidps.world.interact.entity.player.combat.armour.barrows.BarrowsArmour
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
+import content.skill.magic.spell.Spell
+import content.skill.magic.spell.spell
 import content.skill.prayer.Prayer
 import content.entity.player.combat.special.specialAttack
 import content.entity.player.effect.Dragonfire
