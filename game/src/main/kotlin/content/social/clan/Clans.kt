@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.clan
+package content.social.clan
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan

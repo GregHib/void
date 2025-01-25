@@ -32,7 +32,7 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.activity.skill.slayer.race
-import world.gregs.voidps.world.community.clan.clan
+import content.social.clan.clan
 import content.entity.player.inv.item.tradeable
 import content.entity.sound.playSound
 

@@ -21,7 +21,7 @@ import world.gregs.voidps.network.login.protocol.encode.clanQuickChat
 import world.gregs.voidps.network.login.protocol.encode.privateQuickChatFrom
 import world.gregs.voidps.network.login.protocol.encode.privateQuickChatTo
 import world.gregs.voidps.network.login.protocol.encode.publicQuickChat
-import world.gregs.voidps.world.community.clan.clan
+import content.social.clan.clan
 import world.gregs.voidps.world.community.ignore.ignores
 
 val players: Players by inject()

@@ -19,8 +19,8 @@ import world.gregs.voidps.network.login.protocol.encode.clanChat
 import world.gregs.voidps.network.login.protocol.encode.privateChatFrom
 import world.gregs.voidps.network.login.protocol.encode.privateChatTo
 import world.gregs.voidps.network.login.protocol.encode.publicChat
-import world.gregs.voidps.world.community.clan.chatType
-import world.gregs.voidps.world.community.clan.clan
+import content.social.clan.chatType
+import content.social.clan.clan
 import world.gregs.voidps.world.community.ignore.ignores
 
 val players: Players by inject()

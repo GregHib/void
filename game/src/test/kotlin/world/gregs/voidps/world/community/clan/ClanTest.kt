@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.community.clan
 
+import content.social.clan.ownClan
 import io.mockk.mockkStatic
 import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi

@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.network.client.instruction.*
 import world.gregs.voidps.network.login.protocol.encode.*
 import content.social.chat.privateStatus
-import world.gregs.voidps.world.community.clan.ownClan
+import content.social.clan.ownClan
 import world.gregs.voidps.world.script.WorldTest
 import kotlin.collections.set
 import kotlin.test.assertContains

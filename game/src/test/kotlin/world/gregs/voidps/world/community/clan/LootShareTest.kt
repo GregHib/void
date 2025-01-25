@@ -17,6 +17,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.setRandom
 import content.entity.combat.damageDealers
 import content.area.wilderness.inMultiCombat
+import content.social.clan.clan
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.interfaceOption
 import world.gregs.voidps.world.script.npcOption

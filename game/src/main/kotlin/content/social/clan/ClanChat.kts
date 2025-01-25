@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.clan
+package content.social.clan
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
