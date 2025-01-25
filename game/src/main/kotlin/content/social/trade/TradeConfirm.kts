@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.trade
+package content.social.trade
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
@@ -14,8 +14,8 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.MoveItem.moveAll
-import world.gregs.voidps.world.community.trade.Trade.getPartner
-import world.gregs.voidps.world.community.trade.lend.Loan
+import content.social.trade.Trade.getPartner
+import content.social.trade.lend.Loan
 
 /**
  * Both players accepting the request moves onto the confirmation screen.

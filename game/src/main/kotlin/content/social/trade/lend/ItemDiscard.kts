@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.trade.lend
+package content.social.trade.lend
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.world.community.trade.lend.Loan.getExpiry
+import content.social.trade.lend.Loan.getExpiry
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.inv.inventoryOption

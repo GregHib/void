@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.trade.lend
+package content.social.trade.lend
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.remaining
@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.*
-import world.gregs.voidps.world.community.trade.lend.Loan.returnLoan
-import world.gregs.voidps.world.community.trade.returnedItems
+import content.social.trade.lend.Loan.returnLoan
+import content.social.trade.returnedItems
 import java.util.concurrent.TimeUnit
 
 /**

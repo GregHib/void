@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.trade
+package content.social.trade
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.inv.transact.operation.SwapItem.swap
-import world.gregs.voidps.world.community.trade.Trade.getPartner
+import content.social.trade.Trade.getPartner
 import content.entity.player.dialogue.type.intEntry
 
 /**

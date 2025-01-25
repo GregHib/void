@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.world.community.trade.lend.Loan.getSecondsRemaining
+import content.social.trade.lend.Loan.getSecondsRemaining
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice

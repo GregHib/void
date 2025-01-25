@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.trade
+package content.social.trade
 
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions

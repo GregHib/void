@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.trade
+package content.social.trade
 
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.menu

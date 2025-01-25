@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.world.community.trade.offer
+import content.social.trade.offer
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.interfaceOption
 import world.gregs.voidps.world.script.walk

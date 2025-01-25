@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.trade
+package content.social.trade
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.moveAll
 import content.social.friend.friend
-import world.gregs.voidps.world.community.trade.Trade.getPartner
+import content.social.trade.Trade.getPartner
 import content.entity.player.modal.Tab
 
 /**

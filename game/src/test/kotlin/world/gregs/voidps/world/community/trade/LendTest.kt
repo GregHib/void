@@ -1,5 +1,7 @@
 package world.gregs.voidps.world.community.trade
 
+import content.social.trade.loan
+import content.social.trade.returnedItems
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test

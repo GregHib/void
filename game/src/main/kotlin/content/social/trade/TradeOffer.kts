@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.trade
+package content.social.trade
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
-import world.gregs.voidps.world.community.trade.Trade.isTrading
+import content.social.trade.Trade.isTrading
 import content.entity.player.dialogue.type.intEntry
 
 /**

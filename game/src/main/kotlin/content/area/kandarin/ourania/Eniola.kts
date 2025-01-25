@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.StringSuspension
-import world.gregs.voidps.world.community.trade.lend.Loan.getSecondsRemaining
+import content.social.trade.lend.Loan.getSecondsRemaining
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.ChoiceBuilder
 import content.entity.player.dialogue.type.choice
