@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.firemaking
+package content.skill.firemaking
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnItems
