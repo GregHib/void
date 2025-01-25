@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.wizards_tower
+package content.area.misthalin.wizards_tower
 
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
