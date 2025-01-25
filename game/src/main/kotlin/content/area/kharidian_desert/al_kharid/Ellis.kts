@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.al_kharid
+package content.area.kharidian_desert.al_kharid
 
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message

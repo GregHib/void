@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.al_kharid.duel_arena
+package content.area.kharidian_desert.al_kharid.duel_arena
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.al_kharid
+package content.area.kharidian_desert.al_kharid
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
