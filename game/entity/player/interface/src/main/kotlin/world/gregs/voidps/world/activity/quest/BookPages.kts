@@ -3,9 +3,11 @@ package world.gregs.voidps.world.activity.quest
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
+import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryOption
 
@@ -60,5 +62,11 @@ fun Interfaces.display(book: String, title: String, pageNumber: Int, pages: List
     for (i in 0 until if (book == "book_long") 30 else 21) {
         println("Send line${i + 1} ${lines?.getOrNull(i)}")
         sendText(book, "line${i + 1}", lines?.getOrNull(i) ?: "")
+    }
+}
+
+adminCommand("reload") {
+    when (content) {
+        "book", "books" -> get<Books>().load()
     }
 }

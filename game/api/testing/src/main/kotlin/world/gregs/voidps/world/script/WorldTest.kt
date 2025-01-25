@@ -49,6 +49,7 @@ import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
 import world.gregs.voidps.gameModule
 import world.gregs.voidps.getTickStages
+import world.gregs.voidps.interfaceModule
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.script.ScriptLoader
@@ -157,7 +158,7 @@ abstract class WorldTest : KoinTest {
         startKoin {
             printLogger(Level.ERROR)
             allowOverride(true)
-            modules(engineModule, gameModule, botModule, module {
+            modules(engineModule, gameModule, interfaceModule, botModule, module {
                 single(createdAtStart = true) { cache }
                 single(createdAtStart = true) { huffman }
                 single(createdAtStart = true) { objectDefinitions }

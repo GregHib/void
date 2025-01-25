@@ -85,7 +85,7 @@ object Main {
         val module = cache(cache)
         startKoin {
             slf4jLogger(level = Level.ERROR)
-            modules(engineModule, gameModule, botModule, module)
+            modules(engineModule, gameModule, interfaceModule, botModule, module)
         }
         ScriptLoader.load(Main::class, Settings["storage.scripts.package"], Settings["storage.scripts.bots.package"])
     }

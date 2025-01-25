@@ -52,7 +52,6 @@ import world.gregs.voidps.network.login.protocol.encode.playMIDI
 import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
-import world.gregs.voidps.world.activity.quest.Books
 import world.gregs.voidps.world.activity.quest.quests
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
@@ -422,7 +421,6 @@ modCommand("pos", "print out players current coordinates", listOf("mypos")) {
 
 adminCommand("reload (config-name)", "reload any type of content or file e.g. npcs, object defs, or settings") {
     when (content) {
-        "book", "books" -> get<Books>().load()
         "stairs", "tele", "teles", "teleports" -> get<Teleports>().load()
         "tracks", "songs" -> get<MusicTracks>().load()
         "objects", "objs" -> {

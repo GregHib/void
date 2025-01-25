@@ -30,10 +30,6 @@ import world.gregs.voidps.network.client.instruction.InteractNPC
 import world.gregs.voidps.network.client.instruction.InteractObject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.bank.bank
-import world.gregs.voidps.world.activity.quest.Books
-import world.gregs.voidps.world.interact.entity.obj.Teleports
-import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
-import world.gregs.voidps.world.interact.world.spawn.ItemSpawns
 
 val botModule = module {
     single { TaskManager() }
