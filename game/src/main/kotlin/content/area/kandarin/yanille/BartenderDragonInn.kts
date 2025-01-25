@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.yanille
+package content.area.kandarin.yanille
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
