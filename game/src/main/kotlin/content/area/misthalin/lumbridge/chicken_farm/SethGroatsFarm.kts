@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.lumbridge.chicken_farm
+package content.area.misthalin.lumbridge.chicken_farm
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull

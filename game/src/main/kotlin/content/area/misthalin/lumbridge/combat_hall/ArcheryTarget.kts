@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.lumbridge.combat_hall
+package content.area.misthalin.lumbridge.combat_hall
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue

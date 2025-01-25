@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.lumbridge.combat_hall
+package content.area.misthalin.lumbridge.combat_hall
 
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
