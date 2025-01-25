@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.assist
+package content.social.assist
 
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.entity.character.player.Player

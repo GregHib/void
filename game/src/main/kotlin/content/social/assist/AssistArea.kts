@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.assist
+package content.social.assist
 
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.entity.character.mode.move.move

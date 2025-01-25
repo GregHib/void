@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.assist
+package content.social.assist
 
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
@@ -6,9 +6,9 @@ import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.world.community.assist.Assistance.canAssist
-import world.gregs.voidps.world.community.assist.Assistance.redirectSkillExperience
-import world.gregs.voidps.world.community.assist.Assistance.stopRedirectingSkillExp
+import content.social.assist.Assistance.canAssist
+import content.social.assist.Assistance.redirectSkillExperience
+import content.social.assist.Assistance.stopRedirectingSkillExp
 
 /**
  * Assistance system display interface

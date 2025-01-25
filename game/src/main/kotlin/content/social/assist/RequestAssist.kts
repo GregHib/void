@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.assist
+package content.social.assist
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
@@ -18,14 +18,14 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.BlockedExperience
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.timer.TICKS
-import world.gregs.voidps.world.community.assist.Assistance.MAX_EXPERIENCE
-import world.gregs.voidps.world.community.assist.Assistance.canAssist
-import world.gregs.voidps.world.community.assist.Assistance.exceededMaximum
-import world.gregs.voidps.world.community.assist.Assistance.getHoursRemaining
-import world.gregs.voidps.world.community.assist.Assistance.hasEarnedMaximumExperience
-import world.gregs.voidps.world.community.assist.Assistance.redirectSkillExperience
-import world.gregs.voidps.world.community.assist.Assistance.stopRedirectingSkillExp
-import world.gregs.voidps.world.community.assist.Assistance.toggleInventory
+import content.social.assist.Assistance.MAX_EXPERIENCE
+import content.social.assist.Assistance.canAssist
+import content.social.assist.Assistance.exceededMaximum
+import content.social.assist.Assistance.getHoursRemaining
+import content.social.assist.Assistance.hasEarnedMaximumExperience
+import content.social.assist.Assistance.redirectSkillExperience
+import content.social.assist.Assistance.stopRedirectingSkillExp
+import content.social.assist.Assistance.toggleInventory
 import world.gregs.voidps.world.community.friend.friend
 import java.util.concurrent.TimeUnit
 import kotlin.math.min

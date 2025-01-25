@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.assist
+package content.social.assist
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -6,8 +6,8 @@ import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.world.community.assist.Assistance.getHoursRemaining
-import world.gregs.voidps.world.community.assist.Assistance.hasEarnedMaximumExperience
+import content.social.assist.Assistance.getHoursRemaining
+import content.social.assist.Assistance.hasEarnedMaximumExperience
 
 /**
  * Assistance privacy filter settings
