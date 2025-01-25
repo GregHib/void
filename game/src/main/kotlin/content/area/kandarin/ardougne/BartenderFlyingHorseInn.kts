@@ -17,7 +17,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
-import world.gregs.voidps.world.interact.entity.npc.shop.buy
+import content.entity.npc.shop.buy
 
 npcOperate("Talk-to", "bartender_flying_horse_inn") {
     npc<Quiz>("Would you like to buy a drink?")

@@ -15,7 +15,7 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import world.gregs.voidps.world.interact.entity.npc.shop.buy
+import content.entity.npc.shop.buy
 
 npcOperate("Talk-to", "bartender_dead_mans_chest") {
     npc<Chuckle>("Yohoho me hearty what would you like to drink?")

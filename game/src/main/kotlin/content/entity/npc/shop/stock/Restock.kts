@@ -1,5 +1,6 @@
-package world.gregs.voidps.world.interact.entity.npc.shop
+package content.entity.npc.shop.stock
 
+import content.entity.npc.shop.general.GeneralStores
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.World

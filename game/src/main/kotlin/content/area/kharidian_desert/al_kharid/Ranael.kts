@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import world.gregs.voidps.world.interact.entity.npc.shop.openShop
+import content.entity.npc.shop.openShop
 
 npcOperate("Talk-to", "ranael") {
     npc<Neutral>("Do you want to buy any armoured skirts? Designed especially for ladies who like to fight.")

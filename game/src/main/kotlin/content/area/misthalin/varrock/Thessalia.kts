@@ -23,7 +23,7 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.PlayerChoice
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import world.gregs.voidps.world.interact.entity.npc.shop.openShop
+import content.entity.npc.shop.openShop
 import content.entity.player.modal.CharacterStyle.onStyle
 import content.area.asgarnia.falador.openDressingRoom
 

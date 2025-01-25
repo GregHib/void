@@ -1,5 +1,6 @@
-package world.gregs.voidps.world.interact.entity.npc.shop
+package content.entity.npc.shop.stock
 
+import content.entity.npc.shop.shopInventory
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.interfaceOption

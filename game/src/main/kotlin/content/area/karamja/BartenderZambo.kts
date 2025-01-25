@@ -11,7 +11,7 @@ import world.gregs.voidps.world.activity.quest.mini.barCrawlFilter
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import world.gregs.voidps.world.interact.entity.npc.shop.openShop
+import content.entity.npc.shop.openShop
 
 npcOperate("Talk-to", "bartender_zambo") {
     npc<Talk>("Hey, are you wanting to try some of my fine wines and spirits? All brewed locally on Karamja.")

@@ -1,5 +1,6 @@
-package world.gregs.voidps.world.interact.entity.npc.shop
+package content.entity.npc.shop.general
 
+import content.entity.npc.shop.openShop
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral

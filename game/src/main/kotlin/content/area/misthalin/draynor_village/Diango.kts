@@ -15,7 +15,7 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.stringEntry
-import world.gregs.voidps.world.interact.entity.npc.shop.openShop
+import content.entity.npc.shop.openShop
 
 npcOperate("Talk-to", "diango") {
     npc<Happy>("Howdy there partner! Want to see my spinning plates? Or did ya want a holiday item back?")

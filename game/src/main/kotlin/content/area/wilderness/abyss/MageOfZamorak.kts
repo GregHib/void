@@ -24,7 +24,7 @@ import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.questComplete
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import world.gregs.voidps.world.interact.entity.npc.shop.openShop
+import content.entity.npc.shop.openShop
 import content.entity.sound.playSound
 
 val areas: AreaDefinitions by inject()

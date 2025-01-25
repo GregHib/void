@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.npc.shop
+package content.entity.npc.shop.general
 
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions

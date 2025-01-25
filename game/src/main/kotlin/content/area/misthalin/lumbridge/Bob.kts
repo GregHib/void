@@ -15,7 +15,7 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.Upset
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import world.gregs.voidps.world.interact.entity.npc.shop.openShop
+import content.entity.npc.shop.openShop
 
 npcOperate("Talk-to", "bob") {
     choice {

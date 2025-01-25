@@ -13,7 +13,7 @@ import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.skill.runecrafting.EssenceMine
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
+import content.entity.npc.shop.OpenShop
 
 npcOperate("Talk-to", "aubury") {
     if (player.quest("rune_mysteries") == "research_notes") {

@@ -23,8 +23,8 @@ import world.gregs.voidps.world.interact.entity.combat.attackStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.killer
 import world.gregs.voidps.world.interact.entity.death.npcDeath
-import world.gregs.voidps.world.interact.entity.npc.shop.itemSold
-import world.gregs.voidps.world.interact.entity.npc.shop.shopOpen
+import content.entity.npc.shop.stock.itemSold
+import content.entity.npc.shop.shopOpen
 import content.entity.obj.teleportLand
 import content.skill.prayer.prayerStart
 import content.skill.ranged.ammo

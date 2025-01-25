@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.npc.shop
+package content.entity.npc.shop
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event

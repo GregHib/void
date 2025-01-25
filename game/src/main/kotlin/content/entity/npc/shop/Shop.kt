@@ -1,5 +1,6 @@
-package world.gregs.voidps.world.interact.entity.npc.shop
+package content.entity.npc.shop
 
+import content.entity.npc.shop.general.GeneralStores
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player

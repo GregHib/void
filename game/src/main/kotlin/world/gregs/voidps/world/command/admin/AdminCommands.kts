@@ -56,7 +56,7 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.world.activity.quest.Books
 import world.gregs.voidps.world.activity.quest.quests
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
-import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
+import content.entity.npc.shop.OpenShop
 import content.entity.obj.Teleports
 import content.skill.prayer.PrayerConfigs
 import content.skill.prayer.PrayerConfigs.PRAYERS

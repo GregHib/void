@@ -14,7 +14,7 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.npc.shop.buy
+import content.entity.npc.shop.buy
 
 npcOperate("Talk-to", "bartender_rusty_anchor") {
     choice {

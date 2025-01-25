@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.npc.shop
+package content.entity.npc.shop
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
