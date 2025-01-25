@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.port_sarim
+package content.area.asgarnia.port_sarim
 
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
