@@ -71,8 +71,8 @@ import world.gregs.voidps.world.interact.entity.player.music.MusicUnlock
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playMidi
 import world.gregs.voidps.world.interact.entity.sound.playSound
-import world.gregs.voidps.world.interact.world.spawn.loadNpcSpawns
-import world.gregs.voidps.world.interact.world.spawn.loadObjectSpawns
+import content.entity.npc.spawn.loadNpcSpawns
+import content.entity.obj.spawn.loadObjectSpawns
 import java.util.concurrent.TimeUnit
 import kotlin.collections.set
 import kotlin.system.measureTimeMillis

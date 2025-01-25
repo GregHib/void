@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.world.spawn.ItemSpawns
-import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
+import content.entity.item.spawn.ItemSpawns
+import content.entity.item.spawn.loadItemSpawns
 
 val items: FloorItems by inject()
 val spawns: ItemSpawns by inject()

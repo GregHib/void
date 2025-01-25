@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.world.spawn
+package content.entity.item.spawn
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.engine.data.Settings

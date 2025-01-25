@@ -53,9 +53,9 @@ import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.script.loadScripts
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
-import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
-import world.gregs.voidps.world.interact.world.spawn.loadNpcSpawns
-import world.gregs.voidps.world.interact.world.spawn.loadObjectSpawns
+import content.entity.item.spawn.loadItemSpawns
+import content.entity.npc.spawn.loadNpcSpawns
+import content.entity.obj.spawn.loadObjectSpawns
 import java.io.File
 import java.util.*
 import kotlin.system.measureTimeMillis

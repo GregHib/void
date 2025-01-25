@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.world.spawn
+package content.entity.item.spawn
 
 data class ItemSpawn(
     val id: String,

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.world.spawn
+package content.entity.npc.spawn
 
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.type.Direction

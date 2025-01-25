@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.world.map
+package content.entity.world
 
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.message

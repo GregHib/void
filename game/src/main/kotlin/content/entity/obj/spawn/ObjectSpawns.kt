@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.world.spawn
+package content.entity.obj.spawn
 
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
