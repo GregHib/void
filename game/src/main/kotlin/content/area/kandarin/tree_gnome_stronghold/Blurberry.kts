@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.tree_gnome_stronghold
+package content.area.kandarin.tree_gnome_stronghold
 
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
