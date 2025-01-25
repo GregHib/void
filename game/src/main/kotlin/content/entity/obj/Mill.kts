@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map
+package content.entity.obj
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate

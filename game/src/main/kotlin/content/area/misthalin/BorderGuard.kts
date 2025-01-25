@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map
+package content.area.misthalin
 
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea

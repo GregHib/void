@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.musicians
+package content.area.wilderness
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.musicians
+package content.area.morytania.mort_myre_swamp
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate

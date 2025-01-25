@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map
+package content.area.asgarnia.falador
 
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate

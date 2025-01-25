@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map
+package content.entity.obj
 
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace

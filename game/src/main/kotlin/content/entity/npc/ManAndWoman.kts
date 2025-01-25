@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map
+package content.entity.npc
 
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
