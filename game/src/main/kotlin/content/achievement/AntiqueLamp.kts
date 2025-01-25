@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.achievement
+package content.achievement
 
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.inv.inventory
