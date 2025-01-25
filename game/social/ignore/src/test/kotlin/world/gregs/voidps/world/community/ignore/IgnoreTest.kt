@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.friend
+package world.gregs.voidps.world.community.ignore
 
 import io.mockk.mockkStatic
 import io.mockk.verify
