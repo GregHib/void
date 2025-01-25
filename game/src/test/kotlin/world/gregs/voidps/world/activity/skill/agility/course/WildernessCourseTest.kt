@@ -1,5 +1,7 @@
 package world.gregs.voidps.world.activity.skill.agility.course
 
+import content.skill.agility.course.agilityCourse
+import content.skill.agility.course.agilityStage
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.FakeRandom

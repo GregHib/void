@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.agility.course
+package content.skill.agility.course
 
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote

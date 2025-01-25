@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.agility.course
+package content.area.kandarin.tree_gnome_stronghold
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate

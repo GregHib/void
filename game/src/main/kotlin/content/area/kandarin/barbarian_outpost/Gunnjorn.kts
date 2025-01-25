@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.agility.course
+package content.area.kandarin.barbarian_outpost
 
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
