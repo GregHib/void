@@ -1,4 +1,4 @@
-package content.area.misthalin.varrock.abyss
+package content.area.wilderness.abyss
 
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
