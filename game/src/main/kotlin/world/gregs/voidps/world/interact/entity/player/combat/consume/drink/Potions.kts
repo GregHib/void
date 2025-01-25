@@ -17,9 +17,9 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
 import world.gregs.voidps.world.interact.entity.player.effect.antifire
 import world.gregs.voidps.world.interact.entity.player.effect.superAntifire
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
-import world.gregs.voidps.world.interact.entity.player.toxin.antiDisease
-import world.gregs.voidps.world.interact.entity.player.toxin.antiPoison
-import world.gregs.voidps.world.interact.entity.player.toxin.cureDisease
+import content.entity.effect.toxin.antiDisease
+import content.entity.effect.toxin.antiPoison
+import content.entity.effect.toxin.cureDisease
 import java.util.concurrent.TimeUnit
 
 consume("*_4", "*_3", "*_2", "*_1") { player ->

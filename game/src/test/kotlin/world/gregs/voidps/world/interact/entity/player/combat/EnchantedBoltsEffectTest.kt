@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import content.entity.effect.frozen
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.player.effect.antifire
-import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
+import content.entity.effect.toxin.poisoned
 import kotlin.test.assertTrue
 
 internal class EnchantedBoltsEffectTest : CombatFormulaTest() {

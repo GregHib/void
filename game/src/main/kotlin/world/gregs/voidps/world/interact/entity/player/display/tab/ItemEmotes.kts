@@ -16,8 +16,8 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryOptions
-import world.gregs.voidps.world.interact.entity.player.toxin.curePoison
-import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
+import content.entity.effect.toxin.curePoison
+import content.entity.effect.toxin.poisoned
 import content.entity.sound.playJingle
 import content.entity.sound.playSound
 

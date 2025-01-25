@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.toxin
+package content.entity.effect.toxin
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.adminCommand

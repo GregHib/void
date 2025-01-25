@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
-import world.gregs.voidps.world.interact.entity.player.toxin.poison
+import content.entity.effect.toxin.poison
 
 val definitions: SpellDefinitions by inject()
 

@@ -23,7 +23,7 @@ import world.gregs.voidps.world.interact.entity.combat.Equipment
 import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import content.entity.effect.freeze
-import world.gregs.voidps.world.interact.entity.player.toxin.poison
+import content.entity.effect.toxin.poison
 import content.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 

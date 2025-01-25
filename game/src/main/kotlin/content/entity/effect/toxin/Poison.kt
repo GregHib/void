@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.toxin
+package content.entity.effect.toxin
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player

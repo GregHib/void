@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import content.entity.effect.frozen
-import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
+import content.entity.effect.toxin.poisoned
 
 internal class AncientSpellEffectsTest : CombatFormulaTest() {
 

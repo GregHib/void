@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
 import world.gregs.voidps.world.interact.entity.player.effect.antifire
 import world.gregs.voidps.world.interact.entity.player.effect.superAntifire
-import world.gregs.voidps.world.interact.entity.player.toxin.antiPoison
+import content.entity.effect.toxin.antiPoison
 
 consume("weak_melee_potion") { player ->
     player.levels.boost(Skill.Attack, 2, 0.07)

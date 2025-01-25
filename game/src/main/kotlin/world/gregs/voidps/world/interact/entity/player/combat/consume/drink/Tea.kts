@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
-import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
+import content.entity.effect.toxin.poisoned
 
 consume("cup_of_tea") { player ->
     player.levels.boost(Skill.Attack, 3)

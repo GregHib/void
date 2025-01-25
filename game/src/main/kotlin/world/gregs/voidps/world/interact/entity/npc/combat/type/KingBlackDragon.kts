@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.hit.npcCombatAttack
 import world.gregs.voidps.world.interact.entity.combat.npcCombatSwing
 import content.entity.effect.freeze
-import world.gregs.voidps.world.interact.entity.player.toxin.poison
+import content.entity.effect.toxin.poison
 import content.entity.proj.shoot
 import content.entity.sound.playSound
 
