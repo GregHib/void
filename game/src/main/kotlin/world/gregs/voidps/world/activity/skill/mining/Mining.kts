@@ -28,7 +28,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.bank.bank
-import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler
+import content.activity.shooting_star.ShootingStarHandler
 
 val objects: GameObjects by inject()
 val itemDefinitions: ItemDefinitions by inject()

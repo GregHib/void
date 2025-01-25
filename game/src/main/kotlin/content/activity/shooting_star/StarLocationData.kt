@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.dnd.shootingstar
+package content.activity.shooting_star
 
 import world.gregs.voidps.type.Tile
 

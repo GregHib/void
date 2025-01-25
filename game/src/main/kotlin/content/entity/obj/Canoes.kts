@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.transport
+package content.entity.obj
 
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen

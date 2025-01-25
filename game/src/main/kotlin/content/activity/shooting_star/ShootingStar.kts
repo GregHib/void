@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.dnd.shootingstar
+package content.activity.shooting_star
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
@@ -34,9 +34,9 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.currentActiveObject
-import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.currentStarTile
-import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.totalCollected
+import content.activity.shooting_star.ShootingStarHandler.currentActiveObject
+import content.activity.shooting_star.ShootingStarHandler.currentStarTile
+import content.activity.shooting_star.ShootingStarHandler.totalCollected
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.npc
