@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.varrock.palace
+package content.area.misthalin.varrock.palace
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message

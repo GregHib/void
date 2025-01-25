@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.varrock.palace
+package content.area.misthalin.varrock.palace
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.obj.objectOperate

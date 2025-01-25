@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.varrock
+package content.area.misthalin.varrock
 
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.varrock.palace
+package content.area.misthalin.varrock.palace
 
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
