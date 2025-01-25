@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.varrock.abyss
+package content.area.wilderness.abyss
 
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
