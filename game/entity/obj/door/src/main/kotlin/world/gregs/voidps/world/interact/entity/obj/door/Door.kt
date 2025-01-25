@@ -146,9 +146,6 @@ object Door {
 }
 
 
-/**
- * Walks a player through a door which other players can't walk through
- */
 private fun Player.enter(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3): Tile? {
     if (door.id.endsWith("_opened")) {
         return null
@@ -162,21 +159,4 @@ private fun Player.enter(door: GameObject, def: ObjectDefinition = door.def, tic
     }
     openDoor(this, door, def, ticks, collision = false)
     return target
-}
-
-/**
- * Enter through a doorway
- */
-suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3) {
-    val tile = player.enter(door, def, ticks) ?: return
-    player.walkOverDelay(tile)
-}
-
-/**
- * Enter through a door with fixed [delay]
- */
-suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3, delay: Int) {
-    val tile = player.enter(door, def, ticks) ?: return
-    player.walkTo(tile, noCollision = true, forceWalk = true)
-    delay(delay)
 }

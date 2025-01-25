@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.interact.entity.obj.door.Door.closeDoor
 import world.gregs.voidps.world.interact.entity.obj.door.Door.isDoor
 import world.gregs.voidps.world.interact.entity.obj.door.Door.openDoor
+import world.gregs.voidps.world.interact.entity.obj.door.Door.tile
 
 // Times a door can be closed consecutively before getting stuck
 val doorStuckCount = 5
@@ -50,4 +51,19 @@ fun stuck(player: Player): Boolean {
     }
     player.start("recently_opened_door", 10)
     return false
+}
+
+enterDoor {
+    if (target.id.endsWith("_opened")) {
+        return@enterDoor
+    }
+    val direction = target.tile.delta(player.tile).toDirection()
+    val vertical = target.rotation == 0 || target.rotation == 2
+    val target = if (vertical && direction.isHorizontal() || !vertical && direction.isVertical()) {
+        target.tile
+    } else {
+        tile(target, 1)
+    }
+    openDoor(player, this.target, this.target.def, ticks, collision = false)
+    tile = target
 }
