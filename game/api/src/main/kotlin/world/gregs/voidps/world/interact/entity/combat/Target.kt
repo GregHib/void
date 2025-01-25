@@ -111,7 +111,7 @@ object Target {
     }
 }
 
-internal var Character.target: Character?
+var Character.target: Character?
     get() = get("target")
     set(value) {
         if (value != null) {

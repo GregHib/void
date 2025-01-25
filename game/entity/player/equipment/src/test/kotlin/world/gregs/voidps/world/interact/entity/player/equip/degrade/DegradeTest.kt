@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.effect.degrade
+package world.gregs.voidps.world.interact.entity.player.equip.degrade
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test

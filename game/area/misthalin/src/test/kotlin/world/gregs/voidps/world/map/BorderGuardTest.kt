@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.obj
+package world.gregs.voidps.world.map
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
