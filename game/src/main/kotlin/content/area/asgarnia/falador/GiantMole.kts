@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.npc.combat.type
+package content.area.asgarnia.falador
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.close

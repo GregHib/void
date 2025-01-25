@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.npc
+package content.entity.npc
 
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open

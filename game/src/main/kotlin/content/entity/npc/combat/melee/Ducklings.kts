@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.npc.move
+package content.entity.npc.combat.melee
 
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow

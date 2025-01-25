@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.npc.combat.type
+package content.area.wilderness
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character

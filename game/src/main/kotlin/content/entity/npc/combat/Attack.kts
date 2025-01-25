@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.npc.combat
+package content.entity.npc.combat
 
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.SoundDefinitions

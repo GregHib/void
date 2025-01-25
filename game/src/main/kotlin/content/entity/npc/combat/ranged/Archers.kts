@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.npc.combat.type
+package content.entity.npc.combat.ranged
 
 import world.gregs.voidps.world.interact.entity.combat.npcCombatPrepare
 import content.skill.ranged.ammo

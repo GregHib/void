@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.npc
+package content.entity.obj
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

@@ -1,4 +1,4 @@
-package content.entity.npc
+package content.entity.npc.combat.melee
 
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.npcOperate

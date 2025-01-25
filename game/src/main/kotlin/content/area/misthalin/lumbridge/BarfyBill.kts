@@ -8,7 +8,7 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.npc.minimumCanoeLevel
+import content.entity.obj.minimumCanoeLevel
 
 npcOperate("Talk-To", "barfy_bill") {
     player<Neutral>("Hello there.")
