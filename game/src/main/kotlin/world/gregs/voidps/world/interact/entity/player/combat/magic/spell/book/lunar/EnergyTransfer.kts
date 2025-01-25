@@ -12,8 +12,8 @@ import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.removeSpellItems
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
-import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
-import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
+import content.entity.player.energy.MAX_RUN_ENERGY
+import content.entity.player.energy.runEnergy
 
 val definitions: SpellDefinitions by inject()
 

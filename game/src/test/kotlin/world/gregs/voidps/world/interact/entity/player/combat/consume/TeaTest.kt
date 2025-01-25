@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.setRandom
-import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
+import content.entity.player.energy.runEnergy
 import content.entity.effect.toxin.poison
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.itemOnItem

@@ -16,7 +16,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIA
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.effect.antifire
 import world.gregs.voidps.world.interact.entity.player.effect.superAntifire
-import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
+import content.entity.player.energy.runEnergy
 import content.entity.effect.toxin.antiDisease
 import content.entity.effect.toxin.antiPoison
 import content.entity.effect.toxin.cureDisease

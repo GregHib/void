@@ -4,8 +4,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
-import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
+import content.entity.player.energy.MAX_RUN_ENERGY
+import content.entity.player.energy.runEnergy
 import content.entity.player.inv.inventoryOption
 import java.util.concurrent.TimeUnit
 

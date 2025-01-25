@@ -65,7 +65,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIA
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.effect.skull
 import world.gregs.voidps.world.interact.entity.player.effect.unskull
-import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
+import content.entity.player.energy.MAX_RUN_ENERGY
 import content.entity.world.music.MusicTracks
 import content.entity.world.music.MusicUnlock
 import content.entity.sound.playJingle
