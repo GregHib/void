@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.fishing
+package content.skill.fishing
 
 import com.github.michaelbull.logging.InlineLogger
 import net.pearx.kasechange.toLowerSpaceCase

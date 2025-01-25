@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.fishing
+package content.skill.fishing
 
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC

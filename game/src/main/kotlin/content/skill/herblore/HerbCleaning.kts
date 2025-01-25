@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.herblore
+package content.skill.herblore
 
 import world.gregs.voidps.engine.data.definition.data.Cleaning
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

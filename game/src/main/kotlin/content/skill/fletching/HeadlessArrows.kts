@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.fletching
+package content.skill.fletching
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem

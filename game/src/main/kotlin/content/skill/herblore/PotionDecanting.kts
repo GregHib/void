@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.herblore
+package content.skill.herblore
 
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player

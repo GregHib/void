@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.magic
+package content.skill.magic.weapon
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
