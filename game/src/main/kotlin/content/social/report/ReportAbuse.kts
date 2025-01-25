@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.report
+package content.social.report
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasMenuOpen

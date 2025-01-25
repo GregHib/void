@@ -21,7 +21,7 @@ import world.gregs.voidps.network.login.protocol.encode.Friend
 import world.gregs.voidps.network.login.protocol.encode.sendFriendsList
 import content.social.chat.privateStatus
 import content.social.clan.clan
-import world.gregs.voidps.world.community.ignore.ignores
+import content.social.ignore.ignores
 
 val players: Players by inject()
 val accounts: AccountDefinitions by inject()

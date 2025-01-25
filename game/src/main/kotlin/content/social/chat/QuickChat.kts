@@ -22,7 +22,7 @@ import world.gregs.voidps.network.login.protocol.encode.privateQuickChatFrom
 import world.gregs.voidps.network.login.protocol.encode.privateQuickChatTo
 import world.gregs.voidps.network.login.protocol.encode.publicQuickChat
 import content.social.clan.clan
-import world.gregs.voidps.world.community.ignore.ignores
+import content.social.ignore.ignores
 
 val players: Players by inject()
 val phrases: QuickChatPhraseDefinitions by inject()

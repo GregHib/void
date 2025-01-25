@@ -21,7 +21,7 @@ import world.gregs.voidps.network.login.protocol.encode.privateChatTo
 import world.gregs.voidps.network.login.protocol.encode.publicChat
 import content.social.clan.chatType
 import content.social.clan.clan
-import world.gregs.voidps.world.community.ignore.ignores
+import content.social.ignore.ignores
 
 val players: Players by inject()
 val huffman: Huffman by inject()
