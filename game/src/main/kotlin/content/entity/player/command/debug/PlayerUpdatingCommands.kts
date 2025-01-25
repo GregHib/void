@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.command.debug
+package content.entity.player.command.debug
 
 import net.pearx.kasechange.toScreamingSnakeCase
 import world.gregs.voidps.bot.isBot

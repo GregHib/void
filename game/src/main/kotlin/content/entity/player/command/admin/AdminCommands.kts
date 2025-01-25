@@ -1,6 +1,6 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package world.gregs.voidps.world.command.admin
+package content.entity.player.command.admin
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import kotlinx.coroutines.GlobalScope

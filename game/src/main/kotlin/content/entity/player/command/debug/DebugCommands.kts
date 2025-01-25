@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.command.debug
+package content.entity.player.command.debug
 
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.flag.CollisionFlag

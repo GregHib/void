@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community
+package content.entity.player.command
 
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message

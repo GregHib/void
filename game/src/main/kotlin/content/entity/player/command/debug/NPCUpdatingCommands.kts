@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.command.debug
+package content.entity.player.command.debug
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.adminCommand

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.command.admin
+package content.entity.player.command.admin
 
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.entity.obj.GameObjects
