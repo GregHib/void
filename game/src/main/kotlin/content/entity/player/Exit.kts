@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.spawn
+package content.entity.player
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption

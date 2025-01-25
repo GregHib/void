@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player
+package content.entity.player
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue

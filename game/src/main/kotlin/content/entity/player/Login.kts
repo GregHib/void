@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player
+package content.entity.player
 
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.entity.character.player.flagAppearance

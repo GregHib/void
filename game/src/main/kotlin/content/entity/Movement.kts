@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity
+package content.entity
 
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.data.Settings

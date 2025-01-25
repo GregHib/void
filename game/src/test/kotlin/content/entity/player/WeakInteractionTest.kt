@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact
+package content.entity.player
 
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DynamicTest.dynamicTest
