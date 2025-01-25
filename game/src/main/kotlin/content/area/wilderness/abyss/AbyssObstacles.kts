@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.activity.skill.mining.Pickaxe
+import content.skill.mining.Pickaxe
 import world.gregs.voidps.world.activity.skill.woodcutting.Hatchet
 import content.entity.gfx.areaGraphic
 import content.entity.sound.playSound

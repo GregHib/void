@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.mining
+package content.skill.mining
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.mining
+package content.skill.mining
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

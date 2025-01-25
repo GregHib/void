@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.mining
+package content.skill.mining
 
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
