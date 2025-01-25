@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.sophanem
+package content.area.kharidian_desert.sophanem
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
