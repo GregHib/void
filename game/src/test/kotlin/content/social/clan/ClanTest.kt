@@ -1,9 +1,7 @@
 package content.social.clan
 
-import content.social.clan.ownClan
 import io.mockk.mockkStatic
 import io.mockk.verify
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
@@ -23,7 +21,6 @@ import kotlin.collections.set
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
-@OptIn(ExperimentalCoroutinesApi::class)
 internal class ClanTest : WorldTest() {
 
     lateinit var huffman: Huffman
