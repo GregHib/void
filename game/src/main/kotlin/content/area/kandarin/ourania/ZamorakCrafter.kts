@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.ourania
+package content.area.kandarin.ourania
 
 import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol

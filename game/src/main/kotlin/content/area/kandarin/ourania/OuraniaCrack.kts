@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.ourania
+package content.area.kandarin.ourania
 
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele

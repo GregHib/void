@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.ourania
+package content.area.kandarin.ourania
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
