@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.armour.barrows
+package content.skill.melee.armour.barrows
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -24,11 +24,13 @@ itemAdded("ahrims_*", BarrowsArmour.slots, "worn_equipment") { player ->
     }
 }
 
-fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
+fun Player.hasFullSet() = BarrowsArmour.hasSet(
+    this,
     "ahrims_staff",
     "ahrims_hood",
     "ahrims_robe_top",
-    "ahrims_robe_skirt")
+    "ahrims_robe_skirt"
+)
 
 characterCombatAttack(type = "magic") { character ->
     if (damage <= 0) {

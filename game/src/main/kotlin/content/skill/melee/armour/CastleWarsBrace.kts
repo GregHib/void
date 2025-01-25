@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.armour
+package content.skill.melee.armour
 
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea

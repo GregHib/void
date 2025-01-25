@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.armour.barrows
+package content.skill.melee.armour.barrows
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.playerSpawn
@@ -24,11 +24,13 @@ itemAdded("torags_*", BarrowsArmour.slots, "worn_equipment") { player ->
     }
 }
 
-fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
+fun Player.hasFullSet() = BarrowsArmour.hasSet(
+    this,
     "torags_hammers",
     "torags_helm",
     "torags_platebody",
-    "torags_platelegs")
+    "torags_platelegs"
+)
 
 characterCombatAttack("torags_hammers*", "melee") { character ->
     if (damage <= 0 || target !is Player || !character.contains("torags_set_effect") || random.nextInt(4) != 0) {

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.armour.barrows
+package content.skill.melee.armour.barrows
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -24,11 +24,13 @@ itemAdded("karils_*", BarrowsArmour.slots, "worn_equipment") { player ->
     }
 }
 
-fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
+fun Player.hasFullSet() = BarrowsArmour.hasSet(
+    this,
     "karils_crossbow",
     "karils_coif",
     "karils_top",
-    "karils_skirt")
+    "karils_skirt"
+)
 
 characterCombatAttack("karils_crossbow*", "range") { character ->
     if (damage <= 0 || target !is Player || !character.contains("karils_set_effect") || random.nextInt(4) != 0) {

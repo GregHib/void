@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.entity.combat.Bonus
 import world.gregs.voidps.world.interact.entity.combat.Equipment
 import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.combat.Weapon
-import world.gregs.voidps.world.interact.entity.player.combat.armour.barrows.BarrowsArmour
+import content.skill.melee.armour.barrows.BarrowsArmour
 import content.skill.magic.spell.Spell
 import content.skill.magic.spell.spell
 import content.skill.prayer.Prayer

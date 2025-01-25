@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.armour.barrows
+package content.skill.melee.armour.barrows
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -24,11 +24,13 @@ itemAdded("guthans_*", BarrowsArmour.slots, "worn_equipment") { player ->
     }
 }
 
-fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
+fun Player.hasFullSet() = BarrowsArmour.hasSet(
+    this,
     "guthans_warspear",
     "guthans_helm",
     "guthans_platebody",
-    "guthans_chainskirt")
+    "guthans_chainskirt"
+)
 
 characterCombatAttack(type = "melee") { character ->
     if (character.contains("guthans_set_effect") && random.nextInt(4) == 0) {

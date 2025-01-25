@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.armour.barrows
+package content.skill.melee.armour.barrows
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.playerSpawn
@@ -21,8 +21,10 @@ itemAdded("dharoks_*", BarrowsArmour.slots, "worn_equipment") { player ->
     }
 }
 
-fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
+fun Player.hasFullSet() = BarrowsArmour.hasSet(
+    this,
     "dharoks_greataxe",
     "dharoks_helm",
     "dharoks_platebody",
-    "dharoks_platelegs")
+    "dharoks_platelegs"
+)
