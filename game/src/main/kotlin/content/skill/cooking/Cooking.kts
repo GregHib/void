@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.cooking
+package content.skill.cooking
 
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.GameLoop

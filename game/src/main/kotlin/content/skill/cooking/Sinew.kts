@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.cooking
+package content.skill.cooking
 
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import content.entity.player.dialogue.type.choice
