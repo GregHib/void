@@ -4,7 +4,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
-import world.gregs.voidps.world.interact.entity.sound.areaSound
+import content.entity.sound.areaSound
 
 specialAttack("saradomins_lightning") { player ->
     player.anim("${id}_special")

@@ -13,7 +13,7 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 objectOperate("Milk", "prized_dairy_cow") {
     if (!player.holdsItem("bucket")) {

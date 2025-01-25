@@ -12,7 +12,7 @@ import content.entity.player.dialogue.Uncertain
 import content.entity.player.dialogue.type.PlayerChoice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 internal suspend fun PlayerChoice.fighters(): Unit = option<Uncertain>("Do you see a lot of injured fighters?") {
     npc<Neutral>("Yes I do. Thankfully we can cope with almost anything. Jaraah really is a wonderful surgeon, his methods are a little unorthodox but he gets the job done.")

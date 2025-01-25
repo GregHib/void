@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.special
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 specialAttackPrepare("*") { player ->
     if (!SpecialAttack.hasEnergy(player)) {

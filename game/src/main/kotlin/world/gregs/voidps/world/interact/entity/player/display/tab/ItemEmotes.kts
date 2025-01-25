@@ -18,8 +18,8 @@ import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryOptions
 import world.gregs.voidps.world.interact.entity.player.toxin.curePoison
 import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
-import world.gregs.voidps.world.interact.entity.sound.playJingle
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playJingle
+import content.entity.sound.playSound
 
 inventoryItem("Fly", "toy_kite") {
     if (player.contains("delay")) {

@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePrayerVarKey
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 val definitions: PrayerDefinitions by inject()
 val variableDefinitions: VariableDefinitions by inject()

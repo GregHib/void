@@ -31,7 +31,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePr
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
 import world.gregs.voidps.world.interact.entity.player.equip.ItemsKeptOnDeath
 import world.gregs.voidps.world.interact.entity.proj.shoot
-import world.gregs.voidps.world.interact.entity.sound.playJingle
+import content.entity.sound.playJingle
 
 val floorItems: FloorItems by inject()
 val enums: EnumDefinitions by inject()

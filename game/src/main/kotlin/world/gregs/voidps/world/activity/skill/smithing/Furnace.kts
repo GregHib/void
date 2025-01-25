@@ -24,7 +24,7 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import content.entity.player.dialogue.type.makeAmount
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 val bars = listOf(
     "bronze_bar",

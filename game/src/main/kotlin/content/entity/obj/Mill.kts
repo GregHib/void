@@ -9,7 +9,7 @@ import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.quest.quest
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 objectOperate("Operate", "hopper_controls") {
     if (player["flour_bin", 0] == 30) {

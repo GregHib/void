@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryOptions
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 inventoryOptions("Eat", "Drink", "Heal") {
     if (!item.def.contains("heals") && !item.def.contains("excess")) {

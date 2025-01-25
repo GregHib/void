@@ -68,9 +68,9 @@ import world.gregs.voidps.world.interact.entity.player.effect.unskull
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
 import world.gregs.voidps.world.interact.entity.player.music.MusicUnlock
-import world.gregs.voidps.world.interact.entity.sound.playJingle
-import world.gregs.voidps.world.interact.entity.sound.playMidi
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playJingle
+import content.entity.sound.playMidi
+import content.entity.sound.playSound
 import content.entity.npc.spawn.loadNpcSpawns
 import content.entity.obj.spawn.loadObjectSpawns
 import java.util.concurrent.TimeUnit

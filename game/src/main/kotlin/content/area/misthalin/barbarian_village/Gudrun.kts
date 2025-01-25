@@ -34,7 +34,7 @@ import world.gregs.voidps.world.activity.quest.startCutscene
 import world.gregs.voidps.world.activity.quest.stopCutscene
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import world.gregs.voidps.world.interact.entity.sound.playJingle
+import content.entity.sound.playJingle
 
 val objects: GameObjects by inject()
 

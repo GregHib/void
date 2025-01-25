@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryOption
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 val floorItems: FloorItems by inject()
 val logger = InlineLogger()

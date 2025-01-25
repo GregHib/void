@@ -19,7 +19,7 @@ import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.activity.quest.sendQuestComplete
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import world.gregs.voidps.world.interact.entity.sound.playJingle
+import content.entity.sound.playJingle
 
 npcOperate("Talk-to", "squire_asrol") {
     when (player.quest("the_knights_sword")) {

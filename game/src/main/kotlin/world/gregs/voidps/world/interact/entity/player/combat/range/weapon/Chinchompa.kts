@@ -7,7 +7,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargets
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 import kotlin.random.nextInt
 
 characterCombatHit("*chinchompa", "range") { character ->

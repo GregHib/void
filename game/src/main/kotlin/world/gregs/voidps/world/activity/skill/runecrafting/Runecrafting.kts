@@ -27,7 +27,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 import kotlin.math.min
 
 val itemDefinitions: ItemDefinitions by inject()

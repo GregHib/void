@@ -24,7 +24,7 @@ import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.effect.freeze
 import world.gregs.voidps.world.interact.entity.player.toxin.poison
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
 object Ammo {

@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.world.interact.entity.combat.hit.*
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
 var Player.restoration: Int

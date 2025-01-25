@@ -10,7 +10,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.obj.teleportLand
 import world.gregs.voidps.world.interact.entity.obj.teleportTakeOff
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 objectOperate("Pull", "lever_*", override = false) {
     if (target.id == "lever_ardougne_edgeville" && player["wilderness_lever_warning", true]) {

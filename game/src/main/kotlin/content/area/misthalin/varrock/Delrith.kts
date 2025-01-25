@@ -45,8 +45,8 @@ import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import world.gregs.voidps.world.interact.entity.player.music.playTrack
 import world.gregs.voidps.world.interact.entity.proj.shoot
-import world.gregs.voidps.world.interact.entity.sound.playJingle
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playJingle
+import content.entity.sound.playSound
 
 val objects: GameObjects by inject()
 val collisions: Collisions by inject()

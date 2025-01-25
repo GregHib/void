@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelCha
 import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelChange
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
-import world.gregs.voidps.world.interact.entity.sound.playJingle
+import content.entity.sound.playJingle
 
 experience { player ->
     val previousLevel = Experience.level(skill, from)

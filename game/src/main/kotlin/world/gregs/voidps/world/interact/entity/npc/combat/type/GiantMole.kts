@@ -33,7 +33,7 @@ import world.gregs.voidps.world.interact.entity.combat.fightStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.npcCombatHit
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
-import world.gregs.voidps.world.interact.entity.sound.areaSound
+import content.entity.sound.areaSound
 import kotlin.random.Random
 
 val logger = InlineLogger()

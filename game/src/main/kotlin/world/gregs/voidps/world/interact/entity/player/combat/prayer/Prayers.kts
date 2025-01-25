@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.headIcon
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.ACTIVE_CURSES
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 playerSpawn { player ->
     player.sendVariable("attack_bonus")

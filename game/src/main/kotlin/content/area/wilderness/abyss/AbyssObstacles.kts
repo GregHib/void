@@ -16,7 +16,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.activity.skill.mining.Pickaxe
 import world.gregs.voidps.world.activity.skill.woodcutting.Hatchet
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 // Object tile, opposite passage tile, teleport tile
 // Target tiles should be slightly randomised

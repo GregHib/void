@@ -34,9 +34,9 @@ import content.entity.player.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.effect.clearTransform
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.player.music.playTrack
-import world.gregs.voidps.world.interact.entity.sound.areaSound
-import world.gregs.voidps.world.interact.entity.sound.playJingle
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.areaSound
+import content.entity.sound.playJingle
+import content.entity.sound.playSound
 
 npcOperate("Talk-to", "gypsy_aris") {
     when (player.quest("demon_slayer")) {

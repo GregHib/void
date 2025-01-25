@@ -18,7 +18,7 @@ import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 npcOperate("Talk-to", "sir_prysin") {
     when (player.quest("demon_slayer")) {

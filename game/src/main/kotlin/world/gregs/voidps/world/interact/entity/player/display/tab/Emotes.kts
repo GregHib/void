@@ -22,7 +22,7 @@ import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.effect.clearTransform
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
-import world.gregs.voidps.world.interact.entity.sound.playJingle
+import content.entity.sound.playJingle
 
 val definitions: InterfaceDefinitions by inject()
 

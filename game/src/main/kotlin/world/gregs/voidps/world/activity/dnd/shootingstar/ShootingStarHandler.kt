@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.interact.entity.sound.areaSound
+import content.entity.sound.areaSound
 import kotlin.random.Random
 
 object ShootingStarHandler {

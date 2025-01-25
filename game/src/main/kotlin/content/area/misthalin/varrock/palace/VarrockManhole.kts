@@ -3,7 +3,7 @@ package content.area.misthalin.varrock.palace
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 objectOperate("Open", "varrock_manhole") {
     target.replace("varrock_manhole_open")

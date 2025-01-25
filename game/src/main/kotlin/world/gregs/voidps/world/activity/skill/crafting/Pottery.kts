@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import content.entity.player.dialogue.type.makeAmount
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 val Item.pottery: Pottery
     get() = def["pottery"]

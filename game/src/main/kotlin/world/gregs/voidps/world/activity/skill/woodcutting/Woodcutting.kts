@@ -24,7 +24,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.sound.areaSound
+import content.entity.sound.areaSound
 
 val players: Players by inject()
 val definitions: ObjectDefinitions by inject()

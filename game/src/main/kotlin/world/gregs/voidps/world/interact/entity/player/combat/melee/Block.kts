@@ -15,7 +15,7 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 val styleDefinitions: WeaponStyleDefinitions by inject()
 val weaponDefinitions: WeaponAnimationDefinitions by inject()

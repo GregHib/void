@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.npcCombatSwing
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 val definitions: WeaponStyleDefinitions by inject()
 val animationDefinitions: AnimationDefinitions by inject()

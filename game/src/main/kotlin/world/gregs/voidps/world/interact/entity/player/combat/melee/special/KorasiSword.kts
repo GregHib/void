@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
-import world.gregs.voidps.world.interact.entity.sound.areaSound
+import content.entity.sound.areaSound
 
 val players: Players by inject()
 val npcs: NPCs by inject()

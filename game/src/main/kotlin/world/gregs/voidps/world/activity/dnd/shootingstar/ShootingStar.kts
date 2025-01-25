@@ -41,7 +41,7 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
-import world.gregs.voidps.world.interact.entity.sound.areaSound
+import content.entity.sound.areaSound
 import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 

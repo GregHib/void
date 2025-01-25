@@ -15,7 +15,7 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 val logger = InlineLogger()
 

@@ -21,7 +21,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.obj.Teleports
 import world.gregs.voidps.world.interact.entity.obj.teleportTakeOff
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 val objectDefinitions: ObjectDefinitions by inject()
 

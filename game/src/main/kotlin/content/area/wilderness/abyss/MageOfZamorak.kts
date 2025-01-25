@@ -3,7 +3,6 @@ package content.area.wilderness.abyss
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -26,7 +25,7 @@ import world.gregs.voidps.world.activity.quest.questComplete
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 val areas: AreaDefinitions by inject()
 

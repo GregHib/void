@@ -30,7 +30,7 @@ import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.community.clan.clan
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.item.tradeable
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 
 val npcs: NPCs by inject()
 val floorItems: FloorItems by inject()

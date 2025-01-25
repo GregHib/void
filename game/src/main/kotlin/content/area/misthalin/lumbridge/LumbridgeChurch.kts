@@ -30,9 +30,9 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.proj.shoot
-import world.gregs.voidps.world.interact.entity.sound.playJingle
-import world.gregs.voidps.world.interact.entity.sound.playMidi
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playJingle
+import content.entity.sound.playMidi
+import content.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
 val npcs: NPCs by inject()

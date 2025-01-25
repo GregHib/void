@@ -14,7 +14,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.entity.obj.door.Door.openDoor
 import world.gregs.voidps.world.interact.entity.obj.door.Door.tile
 import world.gregs.voidps.world.interact.entity.obj.door.Gate.isGate
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
 object Door {

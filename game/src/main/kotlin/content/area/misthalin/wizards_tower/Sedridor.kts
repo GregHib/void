@@ -21,8 +21,8 @@ import world.gregs.voidps.world.activity.quest.sendQuestComplete
 import world.gregs.voidps.world.activity.skill.runecrafting.EssenceMine
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import world.gregs.voidps.world.interact.entity.sound.playJingle
-import world.gregs.voidps.world.interact.entity.sound.playSound
+import content.entity.sound.playJingle
+import content.entity.sound.playSound
 
 npcOperate("Talk-to", "sedridor") {
     when (player.quest("rune_mysteries")) {
