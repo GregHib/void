@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.engine.timer.characterTimerStart
 import world.gregs.voidps.engine.timer.characterTimerStop
-import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
+import content.skill.summoning.isFamiliar
 import content.entity.combat.dead
 import content.entity.combat.hit.combatAttack
 import content.skill.prayer.praying
