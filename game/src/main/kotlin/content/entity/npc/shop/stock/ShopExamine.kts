@@ -1,5 +1,6 @@
-package content.entity.npc.shop
+package content.entity.npc.shop.stock
 
+import content.entity.npc.shop.shopInventory
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 

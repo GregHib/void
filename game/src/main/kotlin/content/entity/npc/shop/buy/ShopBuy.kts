@@ -1,7 +1,8 @@
-package content.entity.npc.shop
+package content.entity.npc.shop.buy
 
 import com.github.michaelbull.logging.InlineLogger
-import content.entity.npc.shop.stock.BoughtItem
+import content.entity.npc.shop.hasShopSample
+import content.entity.npc.shop.shopInventory
 import content.entity.npc.shop.stock.Price
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
