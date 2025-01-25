@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.FakeRandom
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
@@ -146,8 +148,8 @@ internal class CombatTest : WorldTest() {
         npc.levels.clear()
 
         player.interfaceOption("prayer_list", "regular_prayers", "Activate", slot = 19, optionIndex = 0)
-        player.npcOption(npc, "Attack")
-        tick(4)
+        npc.mode = Interact(npc, player, PlayerOption(npc, player, "Attack"))
+        tick(5)
 
         assertEquals(990, player.levels.get(Skill.Constitution))
         assertNotEquals(0, player["protected_damage", 0])
