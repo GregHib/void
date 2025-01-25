@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.karamja
+package content.area.karamja
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
