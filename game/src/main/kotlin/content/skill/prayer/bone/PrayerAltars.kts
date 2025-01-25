@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.prayer
+package content.skill.prayer.bone
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player

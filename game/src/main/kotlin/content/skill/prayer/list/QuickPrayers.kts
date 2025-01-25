@@ -1,4 +1,4 @@
-package content.skill.prayer
+package content.skill.prayer.list
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -18,6 +18,8 @@ import content.skill.prayer.PrayerConfigs.TEMP_QUICK_PRAYERS
 import content.skill.prayer.PrayerConfigs.USING_QUICK_PRAYERS
 import content.entity.player.modal.Tab
 import content.entity.sound.playSound
+import content.skill.prayer.getActivePrayerVarKey
+import content.skill.prayer.isCurses
 
 /**
  * Prayers

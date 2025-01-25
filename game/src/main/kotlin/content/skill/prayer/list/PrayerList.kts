@@ -1,4 +1,4 @@
-package content.skill.prayer
+package content.skill.prayer.list
 
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh

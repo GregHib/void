@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.prayer
+package content.skill.prayer.bone
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
