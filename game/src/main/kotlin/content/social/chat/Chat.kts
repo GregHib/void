@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.chat
+package content.social.chat
 
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.client.message

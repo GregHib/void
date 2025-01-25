@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.encode.Friend
 import world.gregs.voidps.network.login.protocol.encode.sendFriendsList
-import world.gregs.voidps.world.community.chat.privateStatus
+import content.social.chat.privateStatus
 import world.gregs.voidps.world.community.clan.clan
 import world.gregs.voidps.world.community.ignore.ignores
 

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.chat
+package content.social.chat
 
 import world.gregs.voidps.cache.definition.data.QuickChatType
 import world.gregs.voidps.engine.client.message
