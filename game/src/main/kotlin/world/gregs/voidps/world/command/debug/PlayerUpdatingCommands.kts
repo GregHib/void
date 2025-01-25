@@ -14,7 +14,7 @@ import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.effect.transform
-import world.gregs.voidps.world.interact.entity.proj.shoot
+import content.entity.proj.shoot
 
 val players: Players by inject()
 

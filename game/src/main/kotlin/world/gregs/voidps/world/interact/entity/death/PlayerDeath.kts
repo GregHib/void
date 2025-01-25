@@ -30,7 +30,7 @@ import world.gregs.voidps.world.interact.entity.item.tradeable
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePrayerVarKey
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
 import world.gregs.voidps.world.interact.entity.player.equip.ItemsKeptOnDeath
-import world.gregs.voidps.world.interact.entity.proj.shoot
+import content.entity.proj.shoot
 import content.entity.sound.playJingle
 
 val floorItems: FloorItems by inject()

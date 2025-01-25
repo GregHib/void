@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.npcCombatAttack
 import world.gregs.voidps.world.interact.entity.combat.npcCombatSwing
 import world.gregs.voidps.world.interact.entity.effect.freeze
 import world.gregs.voidps.world.interact.entity.player.toxin.poison
-import world.gregs.voidps.world.interact.entity.proj.shoot
+import content.entity.proj.shoot
 import content.entity.sound.playSound
 
 val specials = listOf("toxic", "ice", "shock")

@@ -44,7 +44,7 @@ import world.gregs.voidps.world.interact.entity.combat.combatPrepare
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import world.gregs.voidps.world.interact.entity.player.music.playTrack
-import world.gregs.voidps.world.interact.entity.proj.shoot
+import content.entity.proj.shoot
 import content.entity.sound.playJingle
 import content.entity.sound.playSound
 

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.proj
+package content.entity.proj
 
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
@@ -10,9 +10,9 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.encode.zone.ProjectileAddition
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.DEFAULT_CURVE
-import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.DEFAULT_DELAY
-import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.DEFAULT_OFFSET
+import content.entity.proj.ShootProjectile.DEFAULT_CURVE
+import content.entity.proj.ShootProjectile.DEFAULT_DELAY
+import content.entity.proj.ShootProjectile.DEFAULT_OFFSET
 
 object ShootProjectile {
     const val DEFAULT_FLIGHT = 40

@@ -13,7 +13,7 @@ import content.entity.player.dialogue.type.ChoiceBuilder
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.proj.shoot
+import content.entity.proj.shoot
 
 npcOperate("Talk-to", "wizard_cromperty") {
     npc<Talk>("Hello there. My name is Cromperty. I am a wizard, and an inventor.")

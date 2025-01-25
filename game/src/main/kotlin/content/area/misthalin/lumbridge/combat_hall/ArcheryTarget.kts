@@ -21,7 +21,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.inCombat
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
-import world.gregs.voidps.world.interact.entity.proj.shoot
+import content.entity.proj.shoot
 
 objectOperate("Shoot-at", "archery_target") {
     player.closeDialogue()

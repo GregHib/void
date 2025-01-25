@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
-import world.gregs.voidps.world.interact.entity.proj.shoot
+import content.entity.proj.shoot
 
 specialAttack("hamstring") { player ->
     val ammo = player.ammo

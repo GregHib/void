@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.world.interact.entity.proj.shoot
+import content.entity.proj.shoot
 
 val areas: AreaDefinitions by inject()
 

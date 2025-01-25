@@ -16,7 +16,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
-import world.gregs.voidps.world.interact.entity.proj.shoot
+import content.entity.proj.shoot
 import kotlin.random.nextInt
 
 combatSwing("hand_cannon", "range") { player ->

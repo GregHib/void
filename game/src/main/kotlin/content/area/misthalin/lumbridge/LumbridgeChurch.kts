@@ -29,7 +29,7 @@ import world.gregs.voidps.world.activity.quest.*
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
-import world.gregs.voidps.world.interact.entity.proj.shoot
+import content.entity.proj.shoot
 import content.entity.sound.playJingle
 import content.entity.sound.playMidi
 import content.entity.sound.playSound
