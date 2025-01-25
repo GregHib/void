@@ -1,4 +1,4 @@
-package content.skill.ranged.combat
+package content.skill.ranged
 
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.client.message

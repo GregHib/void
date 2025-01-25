@@ -1,4 +1,4 @@
-package content.skill.ranged.combat.ammo
+package content.skill.ranged.ammo
 
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
@@ -14,8 +14,8 @@ import world.gregs.voidps.world.interact.entity.combat.combatPrepare
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import content.skill.ranged.combat.Ammo
-import content.skill.ranged.combat.ammo
+import content.skill.ranged.Ammo
+import content.skill.ranged.ammo
 import content.entity.player.combat.special.specialAttack
 import content.entity.sound.playSound
 

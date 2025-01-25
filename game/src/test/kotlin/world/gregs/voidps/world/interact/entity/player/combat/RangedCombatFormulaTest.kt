@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import content.skill.prayer.PrayerConfigs
-import content.skill.ranged.combat.ammo
+import content.skill.ranged.ammo
 import content.entity.player.inv.InventoryOption
 import kotlin.test.assertEquals
 

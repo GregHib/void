@@ -1,4 +1,4 @@
-package content.skill.ranged.combat.weapon.special
+package content.skill.ranged.weapon.special
 
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.world.interact.entity.combat.hit.hit

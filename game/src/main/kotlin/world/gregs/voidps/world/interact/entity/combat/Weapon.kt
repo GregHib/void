@@ -16,8 +16,8 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import content.skill.magic.spell.spell
 import content.skill.prayer.Prayer
-import content.skill.ranged.combat.Ammo
-import content.skill.ranged.combat.ammo
+import content.skill.ranged.Ammo
+import content.skill.ranged.ammo
 import content.entity.player.combat.special.specialAttack
 import kotlin.random.nextInt
 

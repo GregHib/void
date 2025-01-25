@@ -1,4 +1,4 @@
-package content.skill.ranged.combat.weapon.special
+package content.skill.ranged.weapon.special
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.timer.characterTimerTick
 import world.gregs.voidps.engine.timer.npcTimerStop
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import content.skill.ranged.combat.ammo
+import content.skill.ranged.ammo
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 

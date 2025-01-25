@@ -1,4 +1,4 @@
-package content.skill.ranged.combat
+package content.skill.ranged
 
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions

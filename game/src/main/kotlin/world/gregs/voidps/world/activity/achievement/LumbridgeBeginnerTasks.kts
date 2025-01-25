@@ -27,7 +27,7 @@ import world.gregs.voidps.world.interact.entity.npc.shop.itemSold
 import world.gregs.voidps.world.interact.entity.npc.shop.shopOpen
 import world.gregs.voidps.world.interact.entity.obj.teleportLand
 import content.skill.prayer.prayerStart
-import content.skill.ranged.combat.ammo
+import content.skill.ranged.ammo
 
 move({ player.running && !player["on_the_run_task", false] }) {
     player["on_the_run_task"] = true

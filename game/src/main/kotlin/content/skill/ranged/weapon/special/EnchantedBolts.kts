@@ -1,4 +1,4 @@
-package content.skill.ranged.combat.weapon.special
+package content.skill.ranged.weapon.special
 
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
