@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.range.special
+package content.skill.ranged.combat.weapon.special
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
+import content.skill.ranged.combat.ammo
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.entity.sound.playSound

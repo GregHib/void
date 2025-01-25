@@ -1,11 +1,11 @@
-package world.gregs.voidps.world.interact.entity.player.combat.range.ammo
+package content.skill.ranged.combat.ammo
 
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
+import content.skill.ranged.combat.ammo
 
 combatAttack(type = "range") { source ->
     if (source.ammo != "saradomin_arrows") {

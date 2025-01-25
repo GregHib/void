@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.range.weapon
+package content.skill.ranged.combat.weapon
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.random

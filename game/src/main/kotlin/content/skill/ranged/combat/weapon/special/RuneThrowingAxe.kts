@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.range.special
+package content.skill.ranged.combat.weapon.special
 
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
-import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
+import content.skill.ranged.combat.ammo
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot

@@ -20,7 +20,7 @@ import world.gregs.voidps.world.interact.entity.combat.fightStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.inCombat
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
+import content.skill.ranged.combat.ammo
 import content.entity.proj.shoot
 
 objectOperate("Shoot-at", "archery_target") {
