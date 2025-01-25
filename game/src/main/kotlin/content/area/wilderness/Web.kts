@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.wilderness
+package content.area.wilderness
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
