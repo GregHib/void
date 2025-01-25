@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.seers_village
+package content.area.kandarin.seers_village
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
