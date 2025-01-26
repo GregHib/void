@@ -26,13 +26,38 @@ import world.gregs.voidps.script.loadScripts
 import java.util.*
 
 /**
+ * Entry point for the application.
+ *
+ * The `Main` object initializes and starts various subsystems required for the application such as
+ * file server, content loader, login server, and game world. Additionally, it handles server shutdown
+ * and cleanup processes to ensure graceful termination of all resources.
+ *
  * @author GregHib <greg@gregs.world>
  * @since April 18, 2020
  */
 object Main {
 
+    /**
+     * A logger instance used for logging information, warnings, and errors throughout the application.
+     * This logger is based on inline logging, optimizing performance where logging evaluation can be skipped.
+     *
+     * Commonly utilized for crucial application events such as errors during application startup,
+     * processing game logic, or various system operations.
+     */
     private val logger = InlineLogger()
 
+    /**
+     * Entry point of the application.
+     * This method initializes and starts various components required for the server, including:
+     * - Loading cache and settings
+     * - Configuring and starting the game server
+     * - Preloading content
+     * - Setting up the login server
+     * - Starting the game world and its loop
+     * - Handling server shutdown gracefully
+     *
+     * @param args Command-line arguments passed to the application.
+     */
     @OptIn(ExperimentalUnsignedTypes::class)
     @JvmStatic
     fun main(args: Array<String>) {
@@ -74,12 +99,24 @@ object Main {
         }
     }
 
+    /**
+     * Loads and combines property settings from the specified property file and environment variables.
+     * The method execution time is logged for performance monitoring.
+     *
+     * @return A Properties object containing the combined configuration settings from the file and system environment variables.
+     */
     private fun settings(): Properties = timed("properties") {
         val properties = Settings.load()
         properties.putAll(System.getenv())
         return@timed properties
     }
 
+    /**
+     * Preloads the necessary modules, initializes the dependency injection container,
+     * and loads scripts for the application.
+     *
+     * @param cache The cache instance used to initialize various modules and definitions needed for the application.
+     */
     private fun preload(cache: Cache) {
         val module = cache(cache)
         startKoin {
@@ -89,6 +126,11 @@ object Main {
         loadScripts()
     }
 
+    /**
+     * Configures dependencies and initializes cache-related definitions and decoders.
+     *
+     * @param cache an instance of the Cache interface, representing the game cache being processed and used for loading various game definitions.
+     */
     private fun cache(cache: Cache) = module {
         val members = Settings["world.members", false]
         single(createdAtStart = true) { MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache() }
