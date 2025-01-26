@@ -1,12 +1,13 @@
 package content.skill.course
 
+import WorldTest
 import content.skill.agility.course.agilityCourse
 import content.skill.agility.course.agilityStage
+import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.script.*
 
 internal class GnomeStrongholdTest : WorldTest() {
 

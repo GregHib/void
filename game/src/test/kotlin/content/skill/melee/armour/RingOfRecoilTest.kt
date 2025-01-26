@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import content.entity.combat.hit.directHit
-import world.gregs.voidps.world.script.WorldTest
+import WorldTest
 import kotlin.test.assertTrue
 
 internal class RingOfRecoilTest : WorldTest() {

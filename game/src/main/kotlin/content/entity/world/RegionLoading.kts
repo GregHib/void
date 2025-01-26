@@ -1,6 +1,6 @@
 package content.entity.world
 
-import world.gregs.voidps.bot.isBot
+import content.bot.isBot
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.character.mode.move.ReloadRegion

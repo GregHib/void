@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import content.skill.prayer.PrayerConfigs
-import world.gregs.voidps.world.script.WorldTest
+import WorldTest
 import kotlin.test.assertTrue
 
 internal class HitpointRestorationTest : WorldTest() {

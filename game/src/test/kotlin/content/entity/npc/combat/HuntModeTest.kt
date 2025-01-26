@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.player.combatLevel
-import world.gregs.voidps.world.script.WorldTest
+import WorldTest
 import kotlin.test.assertEquals
 
 internal class HuntModeTest : WorldTest() {

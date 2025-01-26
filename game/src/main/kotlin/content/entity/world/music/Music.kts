@@ -1,6 +1,6 @@
 package content.entity.world.music
 
-import world.gregs.voidps.bot.isBot
+import content.bot.isBot
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.playTrack

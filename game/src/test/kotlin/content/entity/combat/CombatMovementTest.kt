@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.setRandom
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.npcOption
+import WorldTest
+import npcOption
 import kotlin.random.Random
 
 internal class CombatMovementTest : WorldTest() {

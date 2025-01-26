@@ -12,7 +12,7 @@ import world.gregs.voidps.network.client.instruction.*
 import world.gregs.voidps.network.login.protocol.encode.*
 import content.social.chat.privateStatus
 import content.social.clan.ownClan
-import world.gregs.voidps.world.script.WorldTest
+import WorldTest
 import kotlin.collections.set
 import kotlin.test.assertContains
 import kotlin.test.assertTrue

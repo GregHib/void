@@ -2,9 +2,9 @@ package content.entity.player.command.debug
 
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.flag.CollisionFlag
-import world.gregs.voidps.bot.path.Dijkstra
-import world.gregs.voidps.bot.path.EdgeTraversal
-import world.gregs.voidps.bot.path.NodeTargetStrategy
+import content.bot.interact.path.Dijkstra
+import content.bot.interact.path.EdgeTraversal
+import content.bot.interact.path.NodeTargetStrategy
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.*
 import world.gregs.voidps.engine.client.ui.chat.Colours

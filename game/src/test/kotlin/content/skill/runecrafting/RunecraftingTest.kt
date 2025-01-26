@@ -10,9 +10,9 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 import content.entity.obj.Teleports
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.itemOnObject
-import world.gregs.voidps.world.script.objectOption
+import WorldTest
+import itemOnObject
+import objectOption
 
 internal class RunecraftingTest : WorldTest() {
 

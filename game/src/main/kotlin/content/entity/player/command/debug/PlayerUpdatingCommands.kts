@@ -1,7 +1,7 @@
 package content.entity.player.command.debug
 
 import net.pearx.kasechange.toScreamingSnakeCase
-import world.gregs.voidps.bot.isBot
+import content.bot.isBot
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.event.modCommand

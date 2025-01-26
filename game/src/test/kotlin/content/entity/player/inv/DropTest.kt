@@ -7,10 +7,10 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.floorItemOption
-import world.gregs.voidps.world.script.interfaceOption
-import world.gregs.voidps.world.script.itemOnObject
+import WorldTest
+import floorItemOption
+import interfaceOption
+import itemOnObject
 import kotlin.test.assertFalse
 
 internal class DropTest : WorldTest() {

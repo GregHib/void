@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.FakeRandom
+import FakeRandom
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.npcOption
+import WorldTest
+import npcOption
 
 internal class CombatFlinchTest : WorldTest() {
 

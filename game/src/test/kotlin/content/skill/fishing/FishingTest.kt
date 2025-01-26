@@ -2,13 +2,13 @@ package content.skill.fishing
 
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.FakeRandom
+import FakeRandom
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.setRandom
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.npcOption
+import WorldTest
+import npcOption
 
 internal class FishingTest : WorldTest() {
 

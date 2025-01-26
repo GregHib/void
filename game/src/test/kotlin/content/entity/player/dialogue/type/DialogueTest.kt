@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.world.script.KoinMock
+import KoinMock
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.CoroutineContext
 

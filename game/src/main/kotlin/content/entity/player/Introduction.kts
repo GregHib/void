@@ -1,6 +1,6 @@
 package content.entity.player
 
-import world.gregs.voidps.bot.isBot
+import content.bot.isBot
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.open

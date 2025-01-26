@@ -1,5 +1,11 @@
 package content.skill.magic
 
+import WorldTest
+import dialogueOption
+import interfaceOption
+import itemOnItem
+import itemOption
+import npcOption
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -8,7 +14,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.setRandom
-import world.gregs.voidps.world.script.*
 import kotlin.random.Random
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse

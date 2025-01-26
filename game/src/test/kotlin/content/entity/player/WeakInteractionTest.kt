@@ -14,10 +14,10 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import content.entity.player.dialogue.Pleased
 import content.entity.player.dialogue.type.npc
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.interfaceOption
-import world.gregs.voidps.world.script.interfaceSwitch
-import world.gregs.voidps.world.script.walk
+import WorldTest
+import interfaceOption
+import interfaceSwitch
+import walk
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull

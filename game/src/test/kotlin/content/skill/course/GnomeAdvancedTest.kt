@@ -5,11 +5,12 @@ import content.skill.agility.course.agilityStage
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.FakeRandom
+import FakeRandom
+import WorldTest
+import objectOption
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
-import world.gregs.voidps.world.script.*
 
 internal class GnomeAdvancedTest : WorldTest() {
 

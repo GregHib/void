@@ -2,7 +2,17 @@ package content.achievement
 
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.FakeRandom
+import FakeRandom
+import WorldTest
+import dialogueContinue
+import dialogueOption
+import interfaceOption
+import itemOnItem
+import itemOnObject
+import itemOption
+import npcOption
+import objectOption
+import walk
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.entity.character.move.running
@@ -18,7 +28,6 @@ import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
-import world.gregs.voidps.world.script.*
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 

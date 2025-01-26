@@ -3,7 +3,7 @@ package content.skill.constitution.drink
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.FakeRandom
+import FakeRandom
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.inv.add
@@ -12,9 +12,9 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.setRandom
 import content.entity.player.effect.energy.runEnergy
 import content.entity.effect.toxin.poison
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.itemOnItem
-import world.gregs.voidps.world.script.itemOption
+import WorldTest
+import itemOnItem
+import itemOption
 
 internal class TeaTest : WorldTest() {
 

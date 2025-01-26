@@ -3,9 +3,9 @@ package content.area.wilderness.abyss
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.containsMessage
-import world.gregs.voidps.world.script.objectOption
+import WorldTest
+import containsMessage
+import objectOption
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 

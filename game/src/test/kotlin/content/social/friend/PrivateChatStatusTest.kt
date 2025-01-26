@@ -13,8 +13,8 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.Friend
 import world.gregs.voidps.network.login.protocol.encode.sendFriendsList
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.interfaceOption
+import WorldTest
+import interfaceOption
 
 internal class PrivateChatStatusTest : WorldTest() {
 

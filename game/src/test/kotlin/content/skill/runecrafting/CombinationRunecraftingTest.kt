@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import org.koin.test.get
-import world.gregs.voidps.FakeRandom
+import FakeRandom
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Rune
@@ -17,8 +17,8 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.setRandom
 import content.entity.obj.Teleports
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.itemOnObject
+import WorldTest
+import itemOnObject
 
 internal class CombinationRunecraftingTest : WorldTest() {
 

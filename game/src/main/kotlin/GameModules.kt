@@ -1,9 +1,9 @@
 import kotlinx.io.pool.DefaultPool
 import org.koin.dsl.module
-import world.gregs.voidps.bot.TaskManager
-import world.gregs.voidps.bot.navigation.graph.NavigationGraph
-import world.gregs.voidps.bot.path.Dijkstra
-import world.gregs.voidps.bot.path.DijkstraFrontier
+import content.bot.TaskManager
+import content.bot.interact.navigation.graph.NavigationGraph
+import content.bot.interact.path.Dijkstra
+import content.bot.interact.path.DijkstraFrontier
 import content.entity.player.modal.book.Books
 import content.entity.obj.Teleports
 import content.entity.world.music.MusicTracks

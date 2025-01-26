@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import content.skill.prayer.PrayerConfigs
-import world.gregs.voidps.world.script.WorldTest
+import WorldTest
 
 internal class LevelRestorationTest : WorldTest() {
 

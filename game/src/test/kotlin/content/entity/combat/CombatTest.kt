@@ -4,7 +4,8 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.FakeRandom
+import FakeRandom
+import WorldTest
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
@@ -16,7 +17,10 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import content.entity.combat.hit.npcCombatHit
-import world.gregs.voidps.world.script.*
+import equipItem
+import interfaceOption
+import npcOption
+import playerOption
 import kotlin.random.Random
 
 internal class CombatTest : WorldTest() {

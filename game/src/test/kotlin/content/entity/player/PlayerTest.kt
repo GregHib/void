@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.instruction.handle.WalkHandler
 import world.gregs.voidps.network.client.instruction.Walk
 import content.entity.player.effect.energy.runEnergy
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.interfaceOption
+import WorldTest
+import interfaceOption
 
 internal class PlayerTest : WorldTest() {
 

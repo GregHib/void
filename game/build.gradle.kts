@@ -34,7 +34,7 @@ dependencies {
 }
 
 application {
-    mainClass.set("world.gregs.voidps.Main")
+    mainClass.set("Main")
     tasks.run.get().workingDir = rootProject.projectDir
 }
 

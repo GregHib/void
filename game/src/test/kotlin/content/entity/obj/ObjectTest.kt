@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.objectOption
+import WorldTest
+import objectOption
 
 internal class ObjectTest : WorldTest() {
 

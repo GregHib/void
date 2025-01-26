@@ -11,7 +11,7 @@ import world.gregs.voidps.network.client.instruction.FriendAdd
 import world.gregs.voidps.network.client.instruction.FriendDelete
 import world.gregs.voidps.network.login.protocol.encode.Friend
 import world.gregs.voidps.network.login.protocol.encode.sendFriendsList
-import world.gregs.voidps.world.script.WorldTest
+import WorldTest
 import kotlin.test.assertContains
 import kotlin.test.assertTrue
 

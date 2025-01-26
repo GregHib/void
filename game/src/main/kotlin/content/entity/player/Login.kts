@@ -1,6 +1,6 @@
 package content.entity.player
 
-import world.gregs.voidps.bot.isBot
+import content.bot.isBot
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.flagMovementType
 import world.gregs.voidps.engine.entity.character.player.flagTemporaryMoveType

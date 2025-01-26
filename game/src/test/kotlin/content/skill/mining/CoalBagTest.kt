@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.dialogueOption
-import world.gregs.voidps.world.script.itemOnItem
-import world.gregs.voidps.world.script.itemOption
+import WorldTest
+import dialogueOption
+import itemOnItem
+import itemOption
 
 internal class CoalBagTest : WorldTest() {
 

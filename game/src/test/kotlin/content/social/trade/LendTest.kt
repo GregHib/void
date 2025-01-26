@@ -14,10 +14,10 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.epochSeconds
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.equipItem
-import world.gregs.voidps.world.script.interfaceOption
-import world.gregs.voidps.world.script.playerOption
+import WorldTest
+import equipItem
+import interfaceOption
+import playerOption
 import kotlin.test.assertFalse
 
 internal class LendTest : WorldTest() {

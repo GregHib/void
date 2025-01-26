@@ -3,7 +3,7 @@ package content.skill.melee.armour
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.FakeRandom
+import FakeRandom
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.setRandom
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.npcOption
+import WorldTest
+import npcOption
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 

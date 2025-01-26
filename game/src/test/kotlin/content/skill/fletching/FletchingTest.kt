@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.dialogueOption
-import world.gregs.voidps.world.script.interfaceOption
-import world.gregs.voidps.world.script.itemOnItem
+import WorldTest
+import dialogueOption
+import interfaceOption
+import itemOnItem
 
 internal class FletchingTest : WorldTest() {
 

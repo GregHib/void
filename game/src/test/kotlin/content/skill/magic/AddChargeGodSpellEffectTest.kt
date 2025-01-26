@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import content.entity.combat.hit.hit
 import content.skill.melee.CombatFormulaTest
-import world.gregs.voidps.world.script.interfaceOption
+import interfaceOption
 
 internal class AddChargeGodSpellEffectTest : CombatFormulaTest() {
 

@@ -8,10 +8,10 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.interfaceOption
-import world.gregs.voidps.world.script.playerOption
-import world.gregs.voidps.world.script.walk
+import WorldTest
+import interfaceOption
+import playerOption
+import walk
 import kotlin.test.assertFalse
 
 internal class RequestAssistTest : WorldTest() {

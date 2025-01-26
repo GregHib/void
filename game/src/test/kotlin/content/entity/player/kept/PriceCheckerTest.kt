@@ -7,9 +7,9 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import content.social.trade.offer
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.interfaceOption
-import world.gregs.voidps.world.script.walk
+import WorldTest
+import interfaceOption
+import walk
 
 internal class PriceCheckerTest : WorldTest() {
 

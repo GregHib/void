@@ -15,8 +15,8 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.client.instruction.*
 import world.gregs.voidps.network.login.protocol.encode.clanChat
 import world.gregs.voidps.network.login.protocol.encode.message
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.interfaceOption
+import WorldTest
+import interfaceOption
 import kotlin.collections.set
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse

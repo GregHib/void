@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.map.view
 
 import com.github.weisj.darklaf.LafManager
 import com.github.weisj.darklaf.LafManager.getPreferredThemeStyle
-import world.gregs.voidps.bot.navigation.graph.NavigationGraph
+import content.bot.interact.navigation.graph.NavigationGraph
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates

@@ -5,9 +5,9 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.charge
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.itemOnItem
-import world.gregs.voidps.world.script.itemOption
+import WorldTest
+import itemOnItem
+import itemOption
 import kotlin.test.assertEquals
 
 abstract class DungeoneeringRewardStaffTest : WorldTest() {

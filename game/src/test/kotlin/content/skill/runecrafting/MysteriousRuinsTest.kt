@@ -13,9 +13,9 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.itemOnObject
-import world.gregs.voidps.world.script.objectOption
+import WorldTest
+import itemOnObject
+import objectOption
 import kotlin.test.assertEquals
 
 internal class MysteriousRuinsTest : WorldTest() {

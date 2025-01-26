@@ -17,9 +17,9 @@ import world.gregs.voidps.network.client.instruction.ClanChatJoin
 import world.gregs.voidps.network.login.protocol.encode.message
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.setRandom
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.interfaceOption
-import world.gregs.voidps.world.script.npcOption
+import WorldTest
+import interfaceOption
+import npcOption
 import kotlin.collections.set
 import kotlin.random.Random
 import kotlin.test.assertFalse

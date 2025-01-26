@@ -2,7 +2,7 @@ package content.area.wilderness.abyss
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.FakeRandom
+import FakeRandom
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -12,9 +12,9 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.containsMessage
-import world.gregs.voidps.world.script.objectOption
+import WorldTest
+import containsMessage
+import objectOption
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 

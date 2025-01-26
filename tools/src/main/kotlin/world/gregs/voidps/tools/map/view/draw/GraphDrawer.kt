@@ -3,7 +3,7 @@ package world.gregs.voidps.tools.map.view.draw
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
-import world.gregs.voidps.bot.navigation.graph.NavigationGraph
+import content.bot.interact.navigation.graph.NavigationGraph
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.tools.map.view.MapViewer.Companion.DISPLAY_ALL_COLLISIONS
 import world.gregs.voidps.tools.map.view.MapViewer.Companion.DISPLAY_AREA_COLLISIONS
