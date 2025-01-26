@@ -82,7 +82,7 @@ Run the following command in the terminal to set up Gradle or close and re-open 
 
 Extract the [cache files](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A) into a new directory called `/cache/` inside of the `/data/` directory.
 
-From here you can navigate in the left panel to `/game/src/main/kotlin/world/gregs/voidps/` (Or Ctrl/Cmd + N for class search) where you will find [Main.kt](./game/src/main/kotlin/world/gregs/voidps/Main.kt) which you should be able to right-click and run.
+From here you can navigate in the left panel to `/game/src/main/kotlin/` (Or Ctrl/Cmd + N for class search) where you will find [Main.kt](./game/src/main/kotlin/Main.kt) which you should be able to right-click and run.
 
 You can also run in the command line using the gradle wrapper.
 

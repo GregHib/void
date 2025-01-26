@@ -187,8 +187,8 @@ object DialogueConverter {
             import world.gregs.voidps.engine.entity.character.npc.NPCOption
             import world.gregs.voidps.engine.entity.character.player.Player
             import world.gregs.voidps.engine.event.on
-            import world.gregs.voidps.world.interact.dialogue.*
-            import world.gregs.voidps.world.interact.dialogue.type.*
+            import content.entity.player.dialogue.*
+            import content.entity.player.dialogue.type.*
             
             npcOperate("Talk-to", "$name") {
                 startDialogue()

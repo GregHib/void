@@ -6,8 +6,15 @@
 *.checksum
 *.jct
 
+# scripts
+scripts.txt
+
 # tools
 *.jar
+/data/dump/
+/data/saves/
+/images/
+/temp/
 
 # class files
 *.class
@@ -45,7 +52,3 @@ gradle-app.setting
 .gradletasknamecache
 /gradle/
 *.lock
-/data/dump/
-/data/saves/
-/images/
-/temp/

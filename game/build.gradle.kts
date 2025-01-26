@@ -1,7 +1,6 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
-    `java-library`
     application
     id("com.github.johnrengelman.shadow")
 }
@@ -25,7 +24,6 @@ dependencies {
     implementation("io.insert-koin:koin-logger-slf4j:${findProperty("koinLogVersion")}")
     implementation("ch.qos.logback:logback-classic:${findProperty("logbackVersion")}")
     implementation("com.michael-bull.kotlin-inline-logger:kotlin-inline-logger-jvm:${findProperty("inlineLoggingVersion")}")
-    implementation("io.github.classgraph:classgraph:4.8.165")
 
     testImplementation("org.junit.jupiter:junit-jupiter-params:${findProperty("junitVersion")}")
     testImplementation("io.insert-koin:koin-test:${findProperty("koinVersion")}")
@@ -33,17 +31,43 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${findProperty("kotlinCoroutinesVersion")}")
 
 }
-tasks.withType<Test> {
-    jvmArgs("-XX:-OmitStackTraceInFastThrow")
-}
 
 application {
-    mainClass.set("world.gregs.voidps.Main")
+    mainClass.set("Main")
     tasks.run.get().workingDir = rootProject.projectDir
 }
 
 tasks {
+
+    named("build") {
+        dependsOn("collectSourcePaths")
+    }
+
+    named("classes") {
+        dependsOn("collectSourcePaths")
+    }
+
+    register("collectSourcePaths") {
+        doLast {
+            val main = sourceSets.getByName("main")
+            val outputFile = main.resources.srcDirs.first().resolve("scripts.txt")
+            val sourcePaths = main.allSource.srcDirs.first { it.name == "kotlin" }.walkTopDown()
+                .filter { it.isFile && it.extension == "kts" }
+                .map {
+                    it.absolutePath
+                        .substringAfter("kotlin${File.separatorChar}")
+                        .replace(File.separatorChar, '.')
+                        .removeSuffix(".kts")
+                }
+                .toList()
+            outputFile.writeText(sourcePaths.joinToString("\n"))
+            println("Collected ${sourcePaths.size} source file paths in ${outputFile.path}")
+        }
+    }
+
     named<ShadowJar>("shadowJar") {
+        dependsOn("collectSourcePaths")
+        from(layout.buildDirectory.file("scripts.txt"))
         minimize {
             exclude(dependency("org.postgresql:postgresql:.*"))
             exclude(dependency("org.jetbrains.exposed:exposed-jdbc:.*"))
@@ -53,12 +77,17 @@ tasks {
         archiveClassifier.set("")
         archiveVersion.set("")
     }
+
+    withType<Test> {
+        jvmArgs("-XX:-OmitStackTraceInFastThrow")
+    }
 }
 
 distributions {
     create("bundle") {
         distributionBaseName = "void"
         contents {
+            from(tasks["collectSourcePaths"])
             from(tasks["shadowJar"])
             from("../data/definitions/") {
                 into("data/definitions")
