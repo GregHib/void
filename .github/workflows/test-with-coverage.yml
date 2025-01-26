@@ -57,7 +57,7 @@ jobs:
         run: aws s3 cp --recursive s3://void-rsps/caches/${{ env.CACHE_VERSION }}/ data/cache/
       - name: Run all tests
         if: steps.check_secret.outputs.exists == 'true'
-        run: ./gradlew test
+        run: ./gradlew test --debug
       - name: Run unit tests
         if: steps.check_secret.outputs.exists != 'true'
         run: ./gradlew test -x :game:test
