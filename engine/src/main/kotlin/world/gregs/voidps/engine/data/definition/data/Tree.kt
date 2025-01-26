@@ -1,15 +1,16 @@
 package world.gregs.voidps.engine.data.definition.data
 
 /**
- * Note: all regular tree data is accurate to wiki/skilling chances spreadsheet
- * @param log The log given on success
- * @param level The woodcutting level required to cut
- * @param xp The woodcutting experience given on success
- * @param depleteRate The chance on success of a tree falling
- * @param chance The chance out of 256 of success at level 1 and 99
- * @param hatchetLowDifference The min and max difference increase in chance per hatchet at level 1
- * @param hatchetHighDifference The min and max difference increase in chance per hatchet at level 99
- * @param respawnDelay The delay in ticks before regrowing at 2000 and 0 players online (Taken from https://www.runehq.com/skill/woodcutting#respawntimes and unknown ones balanced around those values)
+ * Represents a tree with properties to define its behavior in a game or simulation.
+ *
+ * @param log The type of log associated with the tree.
+ * @param level The required level to interact with the tree.
+ * @param xp The experience rewarded for processes involving the tree.
+ * @param depleteRate The rate at which the tree depletes during interactions.
+ * @param chance The range of chance influencing the success of interactions with the tree.
+ * @param hatchetLowDifference The range of effectiveness difference for low-quality hatchets.
+ * @param hatchetHighDifference The range of effectiveness difference for high-quality hatchets.
+ * @param respawnDelay The range of delay in ticks before the tree respawns after being depleted.
  */
 data class Tree(
     val log: String = "",
@@ -21,7 +22,25 @@ data class Tree(
     val hatchetHighDifference: IntRange = 0..0,
     val respawnDelay: IntRange = 0..0
 ) {
+    /**
+     * Companion object for the Tree class.
+     * Provides utility methods and constants for creating and managing Tree instances.
+     */
     companion object {
+        /**
+         * Creates a Tree instance using values from the provided map.
+         * Defaults to `EMPTY` values for missing or invalid entries in the map.
+         *
+         * @param map A map containing key-value pairs for initializing the Tree instance:
+         * - `log`: String representing the log type, default is `EMPTY.log`.
+         * - `level`: Int representing the level requirement, default is `EMPTY.level`.
+         * - `xp`: Double representing the experience points, default is `EMPTY.xp`.
+         * - `deplete_rate`: Double representing the rate of resource depletion, default is `EMPTY.depleteRate`.
+         * - `chance`: IntRange representing the range of chance, default is `EMPTY.chance`.
+         * - `hatchet_low_dif`: IntRange representing the lower difference for hatchet levels, default is `EMPTY.hatchetLowDifference`.
+         * - `hatchet_high_dif`: IntRange representing the higher difference for hatchet levels, default is `EMPTY.hatchetHighDifference`.
+         * - `respawn`: IntRange representing the respawn delay interval, default is `EMPTY.respawnDelay`.
+         */
         operator fun invoke(map: Map<String, Any>) = Tree(
             log = map["log"] as? String ?: EMPTY.log,
             level = map["level"] as? Int ?: EMPTY.level,
@@ -32,6 +51,10 @@ data class Tree(
             hatchetHighDifference = map["hatchet_high_dif"] as? IntRange ?: EMPTY.hatchetHighDifference,
             respawnDelay = map["respawn"] as? IntRange ?: EMPTY.respawnDelay
         )
+        /**
+         * A predefined constant representing a Tree instance with default values for all properties.
+         * Used as a placeholder or default value to avoid null references or for initialization purposes.
+         */
         val EMPTY = Tree()
     }
 }
