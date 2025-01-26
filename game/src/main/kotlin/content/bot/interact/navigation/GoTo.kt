@@ -7,7 +7,6 @@ import content.bot.interact.navigation.graph.Edge
 import content.bot.interact.navigation.graph.NavigationGraph
 import content.bot.interact.navigation.graph.waypoints
 import content.bot.interact.path.*
-import world.gregs.voidps.bot.path.*
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.entity.character.move.running

@@ -2,7 +2,6 @@ package content.bot.skill.combat
 
 import kotlinx.coroutines.CancellationException
 import content.bot.Bot
-import world.gregs.voidps.bot.bank.*
 import content.bot.buyItem
 import content.bot.equip
 import content.bot.interact.bank.*
