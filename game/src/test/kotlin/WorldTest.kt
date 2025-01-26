@@ -50,7 +50,6 @@ import world.gregs.voidps.type.setRandom
 import content.entity.item.spawn.loadItemSpawns
 import content.entity.npc.spawn.loadNpcSpawns
 import content.entity.obj.spawn.loadObjectSpawns
-import ScriptLoader
 import java.io.File
 import java.util.*
 import kotlin.system.measureTimeMillis
@@ -182,7 +181,7 @@ abstract class WorldTest : KoinTest {
                 }
             })
         }
-        ScriptLoader.load()
+        ContentLoader.load()
         MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache()
         saves = File(Settings["storage.players.path"])
         saves?.mkdirs()

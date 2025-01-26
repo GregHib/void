@@ -83,7 +83,7 @@ object Main {
             slf4jLogger(level = Level.ERROR)
             modules(engineModule, gameModule, module)
         }
-        ScriptLoader.load(Main::class)
+        ContentLoader.load()
     }
 
     private fun cache(cache: Cache) = module {
