@@ -1,5 +1,3 @@
-package world.gregs.voidps
-
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking
@@ -22,7 +20,6 @@ import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
 import world.gregs.voidps.network.login.protocol.decoders
-import world.gregs.voidps.script.loadScripts
 import java.util.*
 
 /**
@@ -86,7 +83,7 @@ object Main {
             slf4jLogger(level = Level.ERROR)
             modules(engineModule, gameModule, module)
         }
-        loadScripts()
+        ScriptLoader.load(Main::class)
     }
 
     private fun cache(cache: Cache) = module {

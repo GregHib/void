@@ -46,16 +46,16 @@ import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
-import world.gregs.voidps.gameModule
-import world.gregs.voidps.getTickStages
+import gameModule
+import getTickStages
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
-import world.gregs.voidps.script.loadScripts
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import content.entity.item.spawn.loadItemSpawns
 import content.entity.npc.spawn.loadNpcSpawns
 import content.entity.obj.spawn.loadObjectSpawns
+import ScriptLoader
 import java.io.File
 import java.util.*
 import kotlin.system.measureTimeMillis
@@ -187,13 +187,14 @@ abstract class WorldTest : KoinTest {
                 }
             })
         }
-        loadScripts()
+        ScriptLoader.load()
         MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache()
         saves = File(Settings["storage.players.path"])
         saves?.mkdirs()
         val millis = measureTimeMillis {
             val handler = InterfaceHandler(get(), get(), get())
-            val tickStages = getTickStages(get(),
+            val tickStages = getTickStages(
+                get(),
                 get(),
                 get(),
                 get(),
@@ -207,7 +208,8 @@ abstract class WorldTest : KoinTest {
                 get(),
                 get(),
                 handler,
-                sequential = true)
+                sequential = true
+            )
             engine = GameLoop(tickStages)
 
             World.start()

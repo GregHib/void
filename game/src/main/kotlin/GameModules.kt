@@ -1,5 +1,3 @@
-package world.gregs.voidps
-
 import kotlinx.io.pool.DefaultPool
 import org.koin.dsl.module
 import world.gregs.voidps.bot.TaskManager

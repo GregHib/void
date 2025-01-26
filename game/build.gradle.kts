@@ -1,7 +1,6 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
-    `java-library`
     application
     id("com.github.johnrengelman.shadow")
 }
@@ -33,9 +32,6 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${findProperty("kotlinCoroutinesVersion")}")
 
 }
-tasks.withType<Test> {
-    jvmArgs("-XX:-OmitStackTraceInFastThrow")
-}
 
 application {
     mainClass.set("world.gregs.voidps.Main")
@@ -52,6 +48,9 @@ tasks {
         archiveBaseName.set("void-server-${version}")
         archiveClassifier.set("")
         archiveVersion.set("")
+    }
+    withType<Test> {
+        jvmArgs("-XX:-OmitStackTraceInFastThrow")
     }
 }
 

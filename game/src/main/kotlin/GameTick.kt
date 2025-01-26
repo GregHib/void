@@ -1,5 +1,3 @@
-package world.gregs.voidps
-
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.CharacterTask
