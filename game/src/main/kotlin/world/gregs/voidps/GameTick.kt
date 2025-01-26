@@ -34,6 +34,27 @@ import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.network.login.protocol.npcVisualEncoders
 import world.gregs.voidps.network.login.protocol.playerVisualEncoders
 
+/**
+ * Generates a list of tasks for processing game logic, including player and NPC resets,
+ * connections, updates, and other queued activities. The tasks generated are executed in the game's tick cycle.
+ *
+ * @param players The collection of players in the game. Default is obtained from the dependency injection framework.
+ * @param npcs The collection of NPCs in the game. Default is obtained from the dependency injection framework.
+ * @param items The collection of floor items in the game. Default is obtained from the dependency injection framework.
+ * @param floorItems The tracking system for floor items. Default is obtained from the dependency injection framework.
+ * @param objects The collection of game objects. Default is obtained from the dependency injection framework.
+ * @param queue The connection queue handling players' actions. Default is obtained from the dependency injection framework.
+ * @param accountSave The queue responsible for saving account states. Default is obtained from the dependency injection framework.
+ * @param batches Handles updates to game zones. Default is obtained from the dependency injection framework.
+ * @param itemDefinitions The definitions for all item types in the game. Default is obtained from the dependency injection framework.
+ * @param objectDefinitions The definitions for all object types in the game. Default is obtained from the dependency injection framework.
+ * @param npcDefinitions The definitions for all NPC types in the game. Default is obtained from the dependency injection framework.
+ * @param interfaceDefinitions Game interface definitions for UI handling. Default is obtained from the dependency injection framework.
+ * @param hunting The hunting task that handles hunting-related mechanics. Default is obtained from the dependency injection framework.
+ * @param handler The interface handler used to manage game interactions. Default is instantiated with dependencies from the framework.
+ * @param sequential A flag to determine whether the task execution should be sequential (true) or parallel (false). Default is the debugging mode value.
+ * @return A list of Runnable tasks to be executed in the game tick cycle.
+ */
 fun getTickStages(
     players: Players = get(),
     npcs: NPCs = get(),
@@ -81,6 +102,11 @@ fun getTickStages(
     )
 }
 
+/**
+ * Represents a task that emits the `AiTick` event to the world when executed.
+ * This class implements the `Runnable` interface and is designed to be run in a thread or scheduled task,
+ * triggering the `AiTick` event for handling AI-related updates in the game world.
+ */
 private class AiTick : Runnable {
     override fun run() {
         World.emit(AiTick)
