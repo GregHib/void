@@ -49,7 +49,6 @@ tasks {
 
     register("collectSourcePaths") {
         doLast {
-            println("Collect paths")
             val main = sourceSets.getByName("main")
             val outputFile = main.resources.srcDirs.first().resolve("scripts.txt")
             val sourcePaths = main.allSource.srcDirs.first { it.name == "kotlin" }.walkTopDown()
