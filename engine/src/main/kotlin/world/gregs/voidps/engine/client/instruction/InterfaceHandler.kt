@@ -9,13 +9,46 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.equipment
 
+/**
+ * Handles operations related to game interfaces, including retrieving interface items,
+ * managing component definitions, and verifying inventory items for a specified player.
+ *
+ * This class provides functionalities to retrieve items displayed on game interfaces,
+ * validating components and their mappings to ensure proper interactions, and tracking
+ * inventory items for specific interfaces.
+ *
+ * @property itemDefinitions Definitions and metadata of game items, providing access
+ * to string identifiers and other item attributes.
+ * @property interfaceDefinitions Definitions for game interfaces, including the
+ * organization and metadata of components within an interface.
+ * @property inventoryDefinitions Definitions for player inventories, managing inventory
+ * configurations, sizes, and related behaviors.
+ */
 class InterfaceHandler(
     private val itemDefinitions: ItemDefinitions,
     private val interfaceDefinitions: InterfaceDefinitions,
     private val inventoryDefinitions: InventoryDefinitions
 ) {
+    /**
+     * Logger instance used for logging messages throughout the application.
+     * This logger is initialized using the InlineLogger class.
+     */
     private val logger = InlineLogger()
 
+    /**
+     * Retrieves information about a specific item within an interface for the given player.
+     *
+     * This method checks whether a player has a specific interface open, verifies the component's existence,
+     * and retrieves additional details, including the associated inventory and item data if applicable.
+     *
+     * @param player The player for whom the interface item is being retrieved.
+     * @param interfaceId The unique identifier of the interface being checked.
+     * @param componentId The identifier of the specific component within the interface.
+     * @param itemId The identifier of the item being queried, or -1 if not applicable.
+     * @param itemSlot The slot within the inventory where the item is located, or -1 if not applicable.
+     * @return An instance of [InterfaceData] containing the details of the interface and the target item,
+     *         or `null` if the specified item, component, or interface conditions are not met.
+     */
     fun getInterfaceItem(player: Player, interfaceId: Int, componentId: Int, itemId: Int, itemSlot: Int): InterfaceData? {
         val id = getOpenInterface(player, interfaceId) ?: return null
         val componentDefinition = getComponentDefinition(player, interfaceId, componentId) ?: return null
@@ -29,6 +62,13 @@ class InterfaceHandler(
         return InterfaceData(id, component, item, inventory, componentDefinition.options)
     }
 
+    /**
+     * Retrieves the open interface identifier for a given player and interface.
+     *
+     * @param player The player whose open interface is being queried.
+     * @param interfaceId The ID of the interface to check.
+     * @return The string identifier of the open interface if the interface is open for the player, or null if it is not open.
+     */
     private fun getOpenInterface(player: Player, interfaceId: Int): String? {
         val id = interfaceDefinitions.get(interfaceId).stringId
         if (!player.interfaces.contains(id)) {
@@ -38,6 +78,14 @@ class InterfaceHandler(
         return id
     }
 
+    /**
+     * Retrieves the definition of a specific component within an interface.
+     *
+     * @param player The player requesting the component definition.
+     * @param id The identifier of the interface containing the component.
+     * @param componentId The identifier of the component within the interface.
+     * @return The definition of the specified component, or null if the component does not exist.
+     */
     private fun getComponentDefinition(player: Player, id: Int, componentId: Int): InterfaceComponentDefinition? {
         val interfaceDefinition = interfaceDefinitions.get(id)
         val componentDefinition = interfaceDefinition.components?.get(componentId)
@@ -48,6 +96,15 @@ class InterfaceHandler(
         return componentDefinition
     }
 
+    /**
+     * Retrieves the inventory identifier associated with a specific player and interface component.
+     *
+     * @param player The player for whom the inventory is being retrieved.
+     * @param id The identifier of the interface this component belongs to.
+     * @param component The specific component name or identifier within the interface.
+     * @param componentDefinition The interface component definition containing metadata for the component.
+     * @return The inventory identifier as a string if found and valid, otherwise null.
+     */
     private fun getInventory(player: Player, id: String, component: String, componentDefinition: InterfaceComponentDefinition): String? {
         if (component.isEmpty()) {
             logger.info { "No inventory component found [$player, interface=$id, inventory=$component]" }
@@ -61,6 +118,17 @@ class InterfaceHandler(
         return inventory
     }
 
+    /**
+     * Retrieves an `Item` from a player's inventory based on specified parameters.
+     *
+     * @param player The `Player` whose inventory is being accessed.
+     * @param id The identifier for the interface or context being used.
+     * @param componentDefinition The `InterfaceComponentDefinition` providing details about the interface component.
+     * @param inventoryId The identifier for the inventory type (e.g., "worn_equipment", "inventory").
+     * @param item The item ID to be matched, or -1 if no specific item ID is provided.
+     * @param itemSlot The slot index of the item, or -1 if the slot needs to be determined dynamically.
+     * @return The `Item` located at the specified slot in the inventory, or `null` if the item is not found or the parameters are invalid.
+     */
     private fun getInventoryItem(player: Player, id: String, componentDefinition: InterfaceComponentDefinition, inventoryId: String, item: Int, itemSlot: Int): Item? {
         val itemId = if (item == -1 || item > itemDefinitions.size) "" else itemDefinitions.get(item).stringId
         val slot = when {
@@ -87,6 +155,16 @@ class InterfaceHandler(
     }
 }
 
+/**
+ * A data class representing interface data with properties for ID, component name, item
+ * details, inventory name, and optional array of string options.
+ *
+ * @property id A unique identifier for the interface data.
+ * @property component The name of the associated component.
+ * @property item The item associated with the interface data.
+ * @property inventory The name of the inventory related to the interface data.
+ * @property options An optional array of string representations of additional options, which may be null.
+ */
 data class InterfaceData(
     val id: String,
     val component: String,
@@ -94,6 +172,12 @@ data class InterfaceData(
     val inventory: String,
     val options: Array<String?>?
 ) {
+    /**
+     * Checks if the current object is equal to another object.
+     *
+     * @param other The object to compare with the current instance.
+     * @return `true` if the objects are equal, `false` otherwise.
+     */
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -112,6 +196,15 @@ data class InterfaceData(
         return true
     }
 
+    /**
+     * Computes the hash code for the object based on its properties.
+     *
+     * The hash code is calculated using the `id`, `component`, `item`, `inventory`,
+     * and `options` properties. The calculation ensures that objects with the same
+     * property values produce the same hash code, satisfying the contract of `hashCode`.
+     *
+     * @return The hash code value of the object.
+     */
     override fun hashCode(): Int {
         var result = id.hashCode()
         result = 31 * result + component.hashCode()
