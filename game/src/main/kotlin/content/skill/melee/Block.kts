@@ -36,7 +36,7 @@ characterCombatAttack { character ->
         } else {
             val type: String? = target.weapon.def.getOrNull("weapon_type")
             val definition = if (type != null) weaponDefinitions.get(type) else null
-            var animation = definition?.attackTypes?.get("hit")
+            var animation = definition?.attackTypes?.get("defend")
             if (animation == null) {
                 val id = target.weapon.def["weapon_style", -1]
                 val style = styleDefinitions.get(id)
