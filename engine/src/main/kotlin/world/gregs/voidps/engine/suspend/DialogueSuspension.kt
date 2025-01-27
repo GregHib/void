@@ -22,8 +22,20 @@ sealed class DialogueSuspension<T : Any> {
     }
 }
 
-data object ContinueSuspension : DialogueSuspension<Unit>()
+class ContinueSuspension : DialogueSuspension<Unit>() {
+    companion object {
+        suspend fun get(player: Player) = ContinueSuspension().get(player)
+    }
+}
 
-data object StringSuspension : DialogueSuspension<String>()
+class StringSuspension : DialogueSuspension<String>() {
+    companion object {
+        suspend fun get(player: Player) = StringSuspension().get(player)
+    }
+}
 
-data object IntSuspension : DialogueSuspension<Int>()
+class IntSuspension : DialogueSuspension<Int>() {
+    companion object {
+        suspend fun get(player: Player) = IntSuspension().get(player)
+    }
+}

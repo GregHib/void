@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.suspend
 
+import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.Context
@@ -33,7 +34,7 @@ interface SuspendableContext<C : Character> : Context<C> {
      * Delay until the appeared location of the character has moved [delta] in [delay] time
      */
     suspend fun Character.exactMoveDelay(delta: Delta, delay: Int = tile.distanceTo(tile.add(delta)) * 30, direction: Direction = Direction.NONE) {
-        character.exactMove(delta, delay, direction)
+        exactMove(delta, delay, direction)
         delay(delay / 30)
     }
 
@@ -41,7 +42,7 @@ interface SuspendableContext<C : Character> : Context<C> {
      * Delay until the appeared location of the character has moved to [target] in [delay] time
      */
     suspend fun Character.exactMoveDelay(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE, startDelay: Int = 0) {
-        character.exactMove(target, delay, direction, startDelay)
+        exactMove(target, delay, direction, startDelay)
         delay((startDelay + delay) / 30)
     }
 
@@ -70,9 +71,17 @@ interface SuspendableContext<C : Character> : Context<C> {
         delayTarget(tile)
     }
 
-    private suspend fun delayTarget(target: Tile) {
-        while (character.tile != target) {
+    private suspend fun Character.delayTarget(target: Tile) {
+        var count = 0
+        while (tile != target && count++ < 50) {
             delay()
         }
+        if (count >= 50) {
+            logger.warn { "Failed delaying target char=$this, target=$target, context=${this@SuspendableContext}" }
+        }
+    }
+
+    companion object {
+        private val logger = InlineLogger()
     }
 }
