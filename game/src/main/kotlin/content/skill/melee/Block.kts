@@ -40,7 +40,7 @@ characterCombatAttack { character ->
             if (animation == null) {
                 val id = target.weapon.def["weapon_style", -1]
                 val style = styleDefinitions.get(id)
-                animation = if (id != -1 && animationDefinitions.contains("${style.stringId}_hit")) "${style.stringId}_hit" else "human_defend"
+                animation = if (id != -1 && animationDefinitions.contains("${style.stringId}_defend")) "${style.stringId}_defend" else "human_defend"
             }
             target.anim(animation, delay)
         }

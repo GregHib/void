@@ -1597,23 +1597,23 @@ bind_runes: 791
 unarmed_punch: 422
 unarmed_kick: 423
 unarmed_block: 422
-unarmed_hit: 424
+unarmed_defend: 424
 human_attack: 422
 human_block: 422
 human_defend: 424
 staff_bash: 419
 staff_pound: 419
 staff_focus: 419
-staff_hit: 420
+staff_defend: 420
 axe_chop: 395
 axe_hack: 395
 axe_smash: 401
 axe_block: 395
-axe_hit: 397
+axe_defend: 397
 sceptre_bash: 414
 sceptre_pound: 414
 sceptre_block: 414
-sceptre_hit: 430
+sceptre_defend: 430
 pickaxe_spike: 401
 pickaxe_impale: 401
 pickaxe_smash: 400
@@ -1623,31 +1623,31 @@ dagger_stab: 386
 dagger_lunge: 386
 dagger_slash: 390
 dagger_block: 386
-dagger_hit: 388
+dagger_defend: 388
 sword_chop: 390
 sword_slash: 390
 sword_lunge: 386
 sword_block: 390
-sword_hit: 388
+sword_defend: 388
 2h_chop: 7041
 2h_slash: 7041
 2h_smash: 7042
 2h_block: 7041
-2h_hit: 7050
+2h_defend: 7050
 mace_pound: 401
 mace_pummel: 401
 mace_spike: 400
 mace_block: 401
-mace_hit: 403
+mace_defend: 403
 claws_chop: 393
 claws_slash: 393
 claws_lunge: 1067
 claws_block: 393
-claws_hit: 397
+claws_defend: 397
 hammer_pound: 401
 hammer_pummel: 401
 hammer_block: 401
-hammer_hit: 403
+hammer_defend: 403
 whip_flick: 11968 # needs verification
 whip_lash: 11969 # needs verification
 whip_deflect: 11970 # needs verification
@@ -1656,35 +1656,35 @@ whip_defend: 11974 # needs verification
 fun_pound: 400
 fun_pummel: 400
 fun_block: 400
-fun_hit: 424
+fun_defend: 424
 pie_accurate: 2779
 pie_rapid: 2779
 pie_long_range: 2779
-pie_hit: 3176
+pie_defend: 3176
 spear_lunge: 428
 spear_swipe: 440
 spear_pound: 428
 spear_block: 429
-spear_hit: 430
+spear_defend: 430
 halberd_jab: 428
 halberd_swipe: 440
 halberd_fend: 428
-halberd_hit: 430
+halberd_defend: 430
 bow_accurate: 426
 bow_rapid: 426
 bow_long_range: 426
-bow_hit: 424
+bow_defend: 424
 snapshot_special: 1074
 crossbow_accurate: 4230
 crossbow_rapid: 4230
 crossbow_long_range: 4230
-crossbow_hit: 424
+crossbow_defend: 424
 karils_crossbow_shoot: 2075
 zaniks_crossbow_special: 11359
 thrown_accurate: 929
 thrown_rapid: 929
 thrown_long_range: 929
-thrown_hit: 424
+thrown_defend: 424
 throw_dart: 582
 toktz_xil_ul: 3353
 throw_javelin: 10501
@@ -1694,31 +1694,31 @@ throw_morrigans_throwing_axe_special: 10504
 chinchompa_short_fuse: 2779
 chinchompa_medium_fuse: 2779
 chinchompa_long_fuse: 2779
-chinchompa_hit: 3176
+chinchompa_defend: 3176
 fixed_device_aim_and_fire: -1 # needs verification
 salamander_scorch: 5247
-salamander_hit: 388
+salamander_defend: 388
 scythe_reap: 440
 scythe_chop: 440
 scythe_jab: 438
 scythe_block: 440
-scythe_hit: 435
+scythe_defend: 435
 ivandis_flail_slash: 9047
 ivandis_flail_crush: 9047
-ivandis_flail_hit: 9048
+ivandis_flail_defend: 9048
 sling_rock: 14867 # needs verification
 sling_sling: 14867 # needs verification
 sling_chuck: 14867 # needs verification
 sling_lob: 14867 # needs verification
-#sling_hit: -1
+#sling_defend: -1
 trident_jab: -1 # needs verification
 trident_swipe: -1 # needs verification
 trident_fend: -1 # needs verification
-trident_hit: -1 # needs verification
+trident_defend: -1 # needs verification
 staff_of_light_jab: 15072
 staff_of_light_swipe: 15071
 staff_of_light_fend: 414
-staff_of_light_hit: 12806
+staff_of_light_defend: 12806
 chaotic_maul_attack: 13055
 chaotic_maul_defend: 13054
 pull_lever: 2140
