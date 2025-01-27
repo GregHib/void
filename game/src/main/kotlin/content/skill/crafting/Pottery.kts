@@ -18,9 +18,6 @@ import world.gregs.voidps.engine.queue.weakQueue
 import content.entity.player.dialogue.type.makeAmount
 import content.entity.sound.playSound
 
-val Item.pottery: Pottery
-    get() = def["pottery"]
-
 itemOnObjectOperate("soft_clay", "potters_wheel*", arrive = false) {
     make("spinning", item)
 }
@@ -37,7 +34,7 @@ objectOperate("Fire", "pottery_oven*", arrive = false) {
 }
 
 suspend fun TargetInteraction<Player, GameObject>.make(animation: String, item: Item) {
-    val pottery = item.pottery.map
+    val pottery = item.def.getOrNull<Pottery>("pottery")?.map ?: return
     val (id, amount) = makeAmount(
         items = pottery.keys.toList(),
         type = "Make",
