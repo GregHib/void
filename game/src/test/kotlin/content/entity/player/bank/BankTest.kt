@@ -82,7 +82,7 @@ internal class BankTest : WorldTest() {
 
         assertTrue(player.equipment.isEmpty())
         assertEquals(Item("rune_arrow", 100), player.bank[1])
-        assertEquals(Item("ranged_cape", 1), player.bank[0])
+        assertEquals(Item("ranged_cape"), player.bank[0])
     }
 
     @Test
@@ -99,8 +99,8 @@ internal class BankTest : WorldTest() {
         player.interfaceOption("bank", "inventory", "Withdraw-1", item = Item("bronze_sword"), slot = 0)
 
         assertEquals(Item("coins", 1000), player.inventory[0])
-        assertEquals(Item("bronze_sword", 1), player.inventory[1])
-        assertEquals(Item("bronze_sword", 1), player.inventory[2])
+        assertEquals(Item("bronze_sword"), player.inventory[1])
+        assertEquals(Item("bronze_sword"), player.inventory[2])
         assertEquals(Item("bronze_sword", 8), player.bank[0])
     }
 

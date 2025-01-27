@@ -239,16 +239,16 @@ abstract class AccountStorageTest {
             ),
             inventories = mapOf(
                 "worn_equipment" to Array(14) { Item.EMPTY }.apply {
-                    this[0] = Item("green_partyhat", 1)
-                    this[1] = Item("fire_cape", 1)
-                    this[2] = Item("amulet_of_fury", 1)
-                    this[3] = Item("abyssal_whip", 1)
-                    this[4] = Item("ahrims_robe_top", 1)
-                    this[5] = Item("toktz_ket_xil", 1)
-                    this[7] = Item("ahrims_robe_skirt", 1)
-                    this[9] = Item("culinaromancers_gloves_10", 1)
-                    this[10] = Item("rock_climbing_boots", 1)
-                    this[12] = Item("berserker_ring", 1)
+                    this[0] = Item("green_partyhat")
+                    this[1] = Item("fire_cape")
+                    this[2] = Item("amulet_of_fury")
+                    this[3] = Item("abyssal_whip")
+                    this[4] = Item("ahrims_robe_top")
+                    this[5] = Item("toktz_ket_xil")
+                    this[7] = Item("ahrims_robe_skirt")
+                    this[9] = Item("culinaromancers_gloves_10")
+                    this[10] = Item("rock_climbing_boots")
+                    this[12] = Item("berserker_ring")
                 },
                 "inventory" to Array(28) { Item.EMPTY }.apply {
                     this[0] = Item("armadyl_godsword")

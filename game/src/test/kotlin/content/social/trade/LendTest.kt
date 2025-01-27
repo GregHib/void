@@ -25,19 +25,19 @@ internal class LendTest : WorldTest() {
     @Test
     fun `Lend whip from one player to another`() {
         val (lender, borrower) = setupTradeWithLend()
-        val whip = Item("abyssal_whip", 1)
+        val whip = Item("abyssal_whip")
         lender.interfaceOption("trade_side", "offer", "Lend", item = whip, slot = 0)
         acceptTrade(lender, borrower)
         assertEquals(Item.EMPTY, lender.inventory[0])
         assertEquals(whip, lender.returnedItems[0])
-        assertEquals(Item("abyssal_whip_lent", 1), borrower.inventory[0])
+        assertEquals(Item("abyssal_whip_lent"), borrower.inventory[0])
     }
 
     @Test
     fun `Lending a second item replaces offer`() {
         val (lender, borrower) = setupTradeWithLend()
-        val whip = Item("abyssal_whip", 1)
-        val claws = Item("dragon_claws", 1)
+        val whip = Item("abyssal_whip")
+        val claws = Item("dragon_claws")
         lender.interfaceOption("trade_side", "offer", "Lend", item = whip, slot = 0)
         lender.inventory.add("dragon_claws")
         lender.interfaceOption("trade_side", "offer", "Lend", item = claws, slot = 0)
@@ -45,7 +45,7 @@ internal class LendTest : WorldTest() {
         assertEquals(whip, lender.inventory[0])
         assertEquals(Item.EMPTY, lender.inventory[1])
         assertEquals(claws, lender.returnedItems[0])
-        assertEquals(Item("dragon_claws_lent", 1), borrower.inventory[0])
+        assertEquals(Item("dragon_claws_lent"), borrower.inventory[0])
     }
 
     @Test
@@ -161,7 +161,7 @@ internal class LendTest : WorldTest() {
     @Test
     fun `Lent items can be force collected before logout`() {
         val (lender, borrower) = setupTradeWithLend()
-        val item = Item("abyssal_whip", 1)
+        val item = Item("abyssal_whip")
         lender.interfaceOption("trade_side", "offer", "Lend", item = item, slot = 0)
         acceptTrade(lender, borrower)
         borrower.levels.set(Skill.Attack, 75)
@@ -178,7 +178,7 @@ internal class LendTest : WorldTest() {
     @Test
     fun `Lent items can't be collected before timeout`() {
         val (lender, borrower) = setupTradeWithLend()
-        val item = Item("abyssal_whip", 1)
+        val item = Item("abyssal_whip")
         lender.interfaceOption("trade_side", "offer", "Lend", item = item, slot = 0)
         lender.interfaceOption("trade_main", "loan_time", option = "Specify")
         lender.emit(IntEntered(1))
@@ -195,7 +195,7 @@ internal class LendTest : WorldTest() {
     @Test
     fun `Lent items can be collected after logout`() {
         val (lender, borrower) = setupTradeWithLend()
-        val item = Item("abyssal_whip", 1)
+        val item = Item("abyssal_whip")
         lender.interfaceOption("trade_side", "offer", "Lend", item = item, slot = 0)
         acceptTrade(lender, borrower)
         logout(borrower)
@@ -210,7 +210,7 @@ internal class LendTest : WorldTest() {
     @Test
     fun `Lent items can be collected after timeout`() {
         val (lender, borrower) = setupTradeWithLend()
-        val item = Item("abyssal_whip", 1)
+        val item = Item("abyssal_whip")
         lender.interfaceOption("trade_side", "offer", "Lend", item = item, slot = 0)
         lender.interfaceOption("trade_main", "loan_time", option = "Specify")
         lender.emit(IntEntered(1))
@@ -248,7 +248,7 @@ internal class LendTest : WorldTest() {
     private fun setupTradeWithLend(): Pair<Player, Player> {
         val lender = createPlayer("lender", emptyTile)
         val borrower = createPlayer("borrower", emptyTile.addY(1))
-        lender.inventory.add("abyssal_whip", 1)
+        lender.inventory.add("abyssal_whip")
         lender.playerOption(borrower, "Trade with")
         borrower.playerOption(lender, "Trade with")
         tick()

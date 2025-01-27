@@ -96,7 +96,7 @@ fun dropItems(player: Player, killer: Character?, tile: Tile, inWilderness: Bool
         }
     }
     // Drop everything
-    drop(player, Item("bones", 1), tile, inWilderness, killer)
+    drop(player, Item("bones"), tile, inWilderness, killer)
     drop(player, player.inventory, tile, inWilderness, killer)
     drop(player, player.equipment, tile, inWilderness, killer)
     // Clear everything

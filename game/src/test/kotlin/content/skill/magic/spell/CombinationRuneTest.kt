@@ -23,7 +23,7 @@ class CombinationRuneTest : MagicSpellTest() {
         dynamicTest("Remove ${combo.replace("_", " ")}s") {
             Settings.load(mapOf("world.members" to "true"))
             val player = player()
-            setItems(Item(element1, 2), Item(element2, 1), Item("chaos_rune", 1))
+            setItems(Item(element1, 2), Item(element2), Item("chaos_rune"))
 
             player.inventory.add(combo, 10)
             player.inventory.add("chaos_rune", 10)

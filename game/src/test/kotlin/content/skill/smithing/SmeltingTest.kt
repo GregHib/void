@@ -21,15 +21,15 @@ import kotlin.test.assertEquals
 class SmeltingTest : WorldTest() {
 
     private val bars = mapOf(
-        "bronze" to listOf(Item("copper_ore", 1), Item("tin_ore", 1)),
-        "blurite" to listOf(Item("blurite_ore", 1)),
-        "iron" to listOf(Item("iron_ore", 1)),
-        "silver" to listOf(Item("silver_ore", 1)),
-        "steel" to listOf(Item("iron_ore", 1), Item("coal", 2)),
-        "gold" to listOf(Item("gold_ore", 1)),
-        "mithril" to listOf(Item("mithril_ore", 1), Item("coal", 4)),
-        "adamant" to listOf(Item("adamantite_ore", 1), Item("coal", 6)),
-        "rune" to listOf(Item("runite_ore", 1), Item("coal", 8)),
+        "bronze" to listOf(Item("copper_ore"), Item("tin_ore")),
+        "blurite" to listOf(Item("blurite_ore")),
+        "iron" to listOf(Item("iron_ore")),
+        "silver" to listOf(Item("silver_ore")),
+        "steel" to listOf(Item("iron_ore"), Item("coal", 2)),
+        "gold" to listOf(Item("gold_ore")),
+        "mithril" to listOf(Item("mithril_ore"), Item("coal", 4)),
+        "adamant" to listOf(Item("adamantite_ore"), Item("coal", 6)),
+        "rune" to listOf(Item("runite_ore"), Item("coal", 8)),
     )
 
     @TestFactory
