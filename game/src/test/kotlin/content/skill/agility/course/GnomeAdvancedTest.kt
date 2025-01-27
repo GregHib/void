@@ -1,4 +1,4 @@
-package content.skill.course
+package content.skill.agility.course
 
 import content.skill.agility.course.agilityCourse
 import content.skill.agility.course.agilityStage
