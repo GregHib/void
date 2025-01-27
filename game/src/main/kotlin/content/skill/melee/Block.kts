@@ -73,18 +73,18 @@ fun hitAnimation(npc: NPC): String {
 fun calculateHitSound(target: Character): String {
     if (target is NPC) {
         var sound: String
-        if (target.def.contains("hit_sound")) {
-            sound = target.def["hit_sound"]
+        if (target.def.contains("defend_sound")) {
+            sound = target.def["defend_sound"]
             if (soundDefinitions.contains(sound)) {
                 return sound
             }
         }
-        sound = "${target.id}_hit"
+        sound = "${target.id}_defend"
         if (soundDefinitions.contains(sound)) {
             return sound
         }
         if (target.race.isNotEmpty()) {
-            sound = "${target.race}_hit"
+            sound = "${target.race}_defend"
             if (soundDefinitions.contains(sound)) {
                 return sound
             }
@@ -94,10 +94,10 @@ fun calculateHitSound(target: Character): String {
 
     if (target is Player) {
         return if (target.male) {
-            "male_hit_${random.nextInt(0, 3)}"
+            "male_defend_${random.nextInt(0, 3)}"
         } else {
-            "female_hit_${random.nextInt(0, 1)}"
+            "female_defend_${random.nextInt(0, 1)}"
         }
     }
-    return "human_hit"
+    return "human_defend"
 }
