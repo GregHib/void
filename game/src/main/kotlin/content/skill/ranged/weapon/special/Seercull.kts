@@ -2,7 +2,7 @@ package content.skill.ranged.weapon.special
 
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.characterLevelChange
-import content.entity.combat.hit.characterCombatHit
+import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.hit
 import content.entity.player.combat.special.specialAttack
@@ -17,7 +17,7 @@ specialAttack("soulshot") { player ->
     player.hit(target, delay = time)
 }
 
-characterCombatHit("seercull", "range") { character ->
+characterCombatDamage("seercull", "range") { character ->
     character.gfx("seercull_special_hit")
 }
 

@@ -36,15 +36,15 @@ combatAttack("saradomin_bow", handler = specialHandler)
 combatAttack("guthix_bow", handler = specialHandler)
 combatAttack("zamorak_bow", handler = specialHandler)
 
-val hitHandler: suspend CombatHit.(Character) -> Unit = { character ->
+val hitHandler: suspend CombatDamage.(Character) -> Unit = { character ->
     if (special) {
         character.gfx("${weapon.id}_special_hit")
         source.playSound("god_bow_special_hit")
     }
 }
-combatHit("saradomin_bow", handler = hitHandler)
-combatHit("guthix_bow", handler = hitHandler)
-combatHit("zamorak_bow", handler = hitHandler)
+combatDamage("saradomin_bow", handler = hitHandler)
+combatDamage("guthix_bow", handler = hitHandler)
+combatDamage("zamorak_bow", handler = hitHandler)
 
 timerStart("restorative_shot", "balanced_shot") {
     interval = TimeUnit.SECONDS.toTicks(6)

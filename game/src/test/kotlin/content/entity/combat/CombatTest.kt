@@ -16,7 +16,7 @@ import world.gregs.voidps.network.client.instruction.InteractPlayer
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
-import content.entity.combat.hit.npcCombatHit
+import content.entity.combat.hit.npcCombatDamage
 import equipItem
 import interfaceOption
 import npcOption
@@ -113,7 +113,7 @@ internal class CombatTest : WorldTest() {
     @Test
     fun `Dragon dagger special attack`() {
         var hits = 0
-        npcCombatHit {
+        npcCombatDamage {
             hits++
         }
         val player = createPlayer("player", emptyTile)

@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
-import content.entity.combat.hit.combatHit
+import content.entity.combat.hit.combatDamage
 import content.entity.combat.hit.hit
 import content.skill.magic.spell.removeSpellItems
 
@@ -36,9 +36,9 @@ interfaceOption("Cast", "vengeance", "lunar_spellbook") {
     player.start("vengeance_delay", definition["delay_seconds"], epochSeconds())
 }
 
-combatHit { player ->
+combatDamage { player ->
     if (!player.contains("vengeance") || type == "damage" || damage < 4) {
-        return@combatHit
+        return@combatDamage
     }
     player.say("Taste vengeance!")
     player.hit(target = source, type = "damage", delay = 0, damage = (damage * 0.75).toInt())

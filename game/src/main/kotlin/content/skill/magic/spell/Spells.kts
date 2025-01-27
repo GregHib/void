@@ -1,14 +1,14 @@
 package content.skill.magic.spell
 
 import world.gregs.voidps.type.random
-import content.entity.combat.hit.characterCombatHit
+import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.directHit
 import content.area.wilderness.inMultiCombat
 import content.skill.melee.weapon.multiTargets
 import kotlin.random.nextInt
 
-characterCombatHit { character ->
+characterCombatDamage { character ->
     if (spell.isNotBlank()) {
         character.gfx("${spell}_hit")
     }

@@ -2,7 +2,7 @@ package content.skill.ranged.weapon
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.random
-import content.entity.combat.hit.characterCombatHit
+import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.directHit
 import content.area.wilderness.inMultiCombat
@@ -10,7 +10,7 @@ import content.skill.melee.weapon.multiTargets
 import content.entity.sound.playSound
 import kotlin.random.nextInt
 
-characterCombatHit("*chinchompa", "range") { character ->
+characterCombatDamage("*chinchompa", "range") { character ->
     source as Player
     source.playSound("chinchompa_explode", delay = 40)
     character.gfx("chinchompa_hit")

@@ -10,14 +10,14 @@ import world.gregs.voidps.engine.event.Events
 
 /**
  * Damage done by [source] to the emitter
- * Used for hit graphics, for effects use [CombatAttack]
+ * Used for defend graphics, for effects use [CombatAttack]
  * @param type the combat type, typically: melee, range or magic
  * @param damage the damage inflicted by the [source]
  * @param weapon weapon used
  * @param spell magic spell used
  * @param special whether weapon special attack was used
  */
-data class CombatHit(
+data class CombatDamage(
     val source: Character,
     val type: String,
     val damage: Int,
@@ -31,7 +31,7 @@ data class CombatHit(
     override val size = 5
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "${dispatcher.key}_combat_hit"
+        0 -> "${dispatcher.key}_combat_damage"
         1 -> dispatcher.identifier
         2 -> weapon.id
         3 -> type
@@ -40,15 +40,15 @@ data class CombatHit(
     }
 }
 
-fun combatHit(weapon: String = "*", type: String = "*", spell: String = "*", handler: suspend CombatHit.(Player) -> Unit) {
-    Events.handle("player_combat_hit", "player", weapon, type, spell, handler = handler)
+fun combatDamage(weapon: String = "*", type: String = "*", spell: String = "*", handler: suspend CombatDamage.(Player) -> Unit) {
+    Events.handle("player_combat_damage", "player", weapon, type, spell, handler = handler)
 }
 
-fun npcCombatHit(npc: String = "*", weapon: String = "*", type: String = "*", spell: String = "*", handler: suspend CombatHit.(NPC) -> Unit) {
-    Events.handle("npc_combat_hit", npc, weapon, type, spell, handler = handler)
+fun npcCombatDamage(npc: String = "*", weapon: String = "*", type: String = "*", spell: String = "*", handler: suspend CombatDamage.(NPC) -> Unit) {
+    Events.handle("npc_combat_damage", npc, weapon, type, spell, handler = handler)
 }
 
-fun characterCombatHit(weapon: String = "*", type: String = "*", spell: String = "*", handler: suspend CombatHit.(Character) -> Unit) {
-    combatHit(weapon, type, spell, handler)
-    npcCombatHit("*", weapon, type, spell, handler)
+fun characterCombatDamage(weapon: String = "*", type: String = "*", spell: String = "*", handler: suspend CombatDamage.(Character) -> Unit) {
+    combatDamage(weapon, type, spell, handler)
+    npcCombatDamage("*", weapon, type, spell, handler)
 }

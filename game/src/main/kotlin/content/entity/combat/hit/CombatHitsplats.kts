@@ -14,9 +14,9 @@ import kotlin.math.floor
 
 val definitions: SpellDefinitions by inject()
 
-characterCombatHit { character ->
+characterCombatDamage { character ->
     if (damage < 0 || type == "magic" && definitions.get(spell).maxHit == -1 || type == "healed") {
-        return@characterCombatHit
+        return@characterCombatDamage
     }
     var damage = damage
     var soak = 0
@@ -53,7 +53,7 @@ characterCombatHit { character ->
     character.levels.drain(Skill.Constitution, damage)
 }
 
-characterCombatHit { character ->
+characterCombatDamage { character ->
     if (damage < 0) {
         character.hit(
             source = source,

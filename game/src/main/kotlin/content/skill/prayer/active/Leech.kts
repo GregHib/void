@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.type.random
-import content.entity.combat.hit.characterCombatHit
-import content.entity.combat.hit.combatHit
+import content.entity.combat.hit.characterCombatDamage
+import content.entity.combat.hit.combatDamage
 import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import content.entity.player.combat.special.specialAttackEnergy
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
@@ -60,35 +60,35 @@ fun getLevel(target: Character, skill: Skill): Int {
     return target.levels.getMax(skill)
 }
 
-combatHit { target ->
+combatDamage { target ->
     if (source !is Player || !source.praying("sap_spirit")) {
-        return@combatHit
+        return@combatDamage
     }
     if (random.nextDouble() >= 0.25) {
-        return@combatHit
+        return@combatDamage
     }
     val player = source
     val energy = target.specialAttackEnergy
     if (energy <= 0) {
         weakMessage(player, true, "spirit")
-        return@combatHit
+        return@combatDamage
     }
     target.specialAttackEnergy = (energy - (MAX_SPECIAL_ATTACK / 10)).coerceAtLeast(0)
     cast(player, target, true, "spirit")
 }
 
-combatHit { target ->
+combatDamage { target ->
     if (source !is Player || !source.praying("special_attack")) {
-        return@combatHit
+        return@combatDamage
     }
     if (random.nextDouble() >= 0.15) {
-        return@combatHit
+        return@combatDamage
     }
     val player = source
     var energy = target.specialAttackEnergy
     if (energy <= 0) {
         weakMessage(player, true, "spirit")
-        return@combatHit
+        return@combatDamage
     }
     val amount = MAX_SPECIAL_ATTACK / 10
     target.specialAttackEnergy = (energy - amount).coerceAtLeast(0)
@@ -97,24 +97,24 @@ combatHit { target ->
     energy = player.specialAttackEnergy
     if (energy == MAX_SPECIAL_ATTACK) {
         drainMessage(player, "special_attack")
-        return@combatHit
+        return@combatDamage
     }
     player.specialAttackEnergy = (energy + amount).coerceAtMost(MAX_SPECIAL_ATTACK)
     boostMessage(player, "Special Attack")
 }
 
-combatHit { target ->
+combatDamage { target ->
     if (source !is Player || !source.praying("leech_energy")) {
-        return@combatHit
+        return@combatDamage
     }
     if (random.nextDouble() >= 0.15) {
-        return@combatHit
+        return@combatDamage
     }
     val player = source
     var energy = target.runEnergy
     if (energy <= 0) {
         weakMessage(player, false, "run_energy")
-        return@combatHit
+        return@combatDamage
     }
     val amount = MAX_RUN_ENERGY / 10
     target.runEnergy = energy - amount
@@ -123,7 +123,7 @@ combatHit { target ->
     energy = player.runEnergy
     if (energy == MAX_RUN_ENERGY) {
         drainMessage(player, "run_energy")
-        return@combatHit
+        return@combatDamage
     }
     target.runEnergy = energy + amount
     boostMessage(player, "Run Energy")
@@ -149,7 +149,7 @@ val map = mapOf(
     "leech_magic" to Skill.Magic
 )
 
-characterCombatHit { target ->
+characterCombatDamage { target ->
     for ((prayer, skill) in map) {
         if (!source.praying(prayer)) {
             continue

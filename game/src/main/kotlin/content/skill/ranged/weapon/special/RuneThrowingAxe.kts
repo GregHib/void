@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import content.entity.combat.Target
-import content.entity.combat.hit.characterCombatHit
+import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.hit
 import content.area.wilderness.inMultiCombat
 import content.skill.ranged.ammo
@@ -29,9 +29,9 @@ specialAttack("chainhit") { player ->
     player.hit(target, delay = time)
 }
 
-characterCombatHit("rune_throwing_axe", "range") { target ->
+characterCombatDamage("rune_throwing_axe", "range") { target ->
     if (source !is Player || !target.inMultiCombat || !special) {
-        return@characterCombatHit
+        return@characterCombatDamage
     }
     val chain: MutableSet<Int> = source.getOrPut("chain_hits") { mutableSetOf() }
     val characters = if (target is Player) players else npcs
@@ -45,12 +45,12 @@ characterCombatHit("rune_throwing_axe", "range") { target ->
             }
             if (!SpecialAttack.drain(source)) {
                 source.clear("chain_hits")
-                return@characterCombatHit
+                return@characterCombatDamage
             }
             chain.add(character.index)
             val time = target.shoot(id = "rune_throwing_axe_special", target = character)
             source.hit(character, weapon, type, special = true, delay = time)
-            return@characterCombatHit
+            return@characterCombatDamage
         }
     }
 }

@@ -2,7 +2,7 @@ package content.area.asgarnia.falador
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.combat.attackers
-import content.entity.combat.hit.npcCombatHit
+import content.entity.combat.hit.npcCombatDamage
 import content.entity.gfx.areaGraphic
 import content.entity.player.inv.inventoryItem
 import content.entity.sound.areaSound
@@ -73,7 +73,7 @@ interfaceOption(component = "stayout", id = "warning_dark") {
     player.closeInterfaces()
 }
 
-npcCombatHit("giant_mole") {
+npcCombatDamage("giant_mole") {
     val currentHealth = it.levels.get(Skill.Constitution)
     var shouldBurrow = false
     if (it.fightStyle == "magic" && damage != 0) {
