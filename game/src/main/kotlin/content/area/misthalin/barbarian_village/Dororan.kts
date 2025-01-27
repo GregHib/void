@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import content.entity.player.bank.ownsItem
 import content.quest.quest
-import content.quest.questComplete
+import content.quest.questCompleted
 import content.quest.refreshQuestJournal
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
@@ -1060,7 +1060,7 @@ suspend fun SuspendableContext<Player>.helpMe() {
 }
 
 npcOperate("Talk-to", "dororan_after_quest") {
-    if (!player.questComplete("gunnars_ground")) {
+    if (!player.questCompleted("gunnars_ground")) {
         return@npcOperate
     }
     if (player["dororan_ruby_bracelet", 0] != 1) {

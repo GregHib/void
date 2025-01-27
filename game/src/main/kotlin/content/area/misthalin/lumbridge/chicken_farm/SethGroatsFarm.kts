@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
 import content.entity.player.bank.bank
-import content.quest.questComplete
+import content.quest.questCompleted
 import java.util.concurrent.TimeUnit
 
 objectOperate("Take-hatchet", "hatchet_logs") {
@@ -22,7 +22,7 @@ objectOperate("Take-hatchet", "hatchet_logs") {
 }
 
 floorItemOperate("Take", "super_large_egg", override = false) {
-    if (player.questComplete("cooks_assistant")) {
+    if (player.questCompleted("cooks_assistant")) {
         player.message("You've no reason to pick that up; eggs of that size are only useful for royal cakes.")
         cancel()
     } else if (player.holdsItem("super_large_egg") || player.bank.contains("super_large_egg")) {

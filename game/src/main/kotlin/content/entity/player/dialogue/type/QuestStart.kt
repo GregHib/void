@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.StringSuspension
 import content.quest.quest
-import content.quest.questComplete
+import content.quest.questCompleted
 
 private const val QUEST_START_ID = "quest_intro"
 
@@ -21,7 +21,7 @@ suspend fun SuspendableContext<Player>.startQuest(questId: String): Boolean {
     val questDefinitions: QuestDefinitions = get()
     val quest = questDefinitions.getOrNull(questId)
     check(quest != null) { "Unable to find quest with id $questId $player" }
-    val completed = player.questComplete(questId)
+    val completed = player.questCompleted(questId)
     player.interfaces.sendVisibility("quest_intro", "start_choice_layer", !completed)
     player.interfaces.sendVisibility("quest_intro", "progress_status_layer", completed)
     val status = when (player.quest(questId)) {

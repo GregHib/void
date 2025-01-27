@@ -139,7 +139,7 @@ objectOperate("Open", "restless_ghost_coffin_closed") {
     player.animDelay("open_chest")
     player.playSound("coffin_open")
     target.replace("coffin_restless_ghost_2", ticks = TimeUnit.MINUTES.toTicks(3))
-    if (!player.questComplete("the_restless_ghost")) {
+    if (!player.questCompleted("the_restless_ghost")) {
         spawnGhost()
     }
 }
@@ -149,7 +149,7 @@ objectOperate("Search", "restless_ghost_coffin_closed") {
     player.animDelay("open_chest")
     player.playSound("coffin_open")
     target.replace("coffin_restless_ghost_2", ticks = TimeUnit.MINUTES.toTicks(3))
-    if (!player.questComplete("the_restless_ghost")) {
+    if (!player.questCompleted("the_restless_ghost")) {
         spawnGhost()
     }
 }

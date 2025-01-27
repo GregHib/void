@@ -63,7 +63,7 @@ val targets = listOf(
 )
 
 enterArea("demon_slayer_stone_circle") {
-    if (!player.questComplete("demon_slayer") && player["demon_slayer_silverlight", false] && !player.hasClock("demon_slayer_instance_exit")) {
+    if (!player.questCompleted("demon_slayer") && player["demon_slayer_silverlight", false] && !player.hasClock("demon_slayer_instance_exit")) {
         cutscene()
     }
 }

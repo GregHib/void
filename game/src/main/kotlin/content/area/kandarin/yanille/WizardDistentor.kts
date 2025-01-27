@@ -2,7 +2,7 @@ package content.area.kandarin.yanille
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import content.quest.questComplete
+import content.quest.questCompleted
 import content.skill.runecrafting.EssenceMine
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk
@@ -12,7 +12,7 @@ import content.entity.player.dialogue.type.player
 
 npcOperate("Talk-to", "wizard_distentor") {
     npc<Talk>("Welcome to the Magicians' Guild!")
-    if (!player.questComplete("rune_mysteries")) {
+    if (!player.questCompleted("rune_mysteries")) {
         return@npcOperate
     }
     player<Talk>("Hello there.")
@@ -28,7 +28,7 @@ npcOperate("Talk-to", "wizard_distentor") {
 }
 
 npcOperate("Teleport", "wizard_distentor") {
-    if (player.questComplete("rune_mysteries")) {
+    if (player.questCompleted("rune_mysteries")) {
         EssenceMine.teleport(target, player)
     } else {
         player.message("You need to have completed the Rune Mysteries Quest to use this feature.")

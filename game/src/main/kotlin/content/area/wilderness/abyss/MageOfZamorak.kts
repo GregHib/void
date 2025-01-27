@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
 import content.entity.player.bank.ownsItem
-import content.quest.questComplete
+import content.quest.questCompleted
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.npc.shop.openShop
@@ -46,7 +46,7 @@ npcOperate("Talk-to", "mage_of_zamorak_wilderness") {
         return@npcOperate
     }
 
-    if (player.questComplete("rune_mysteries")) {
+    if (player.questCompleted("rune_mysteries")) {
         when (player["enter_the_abyss", "unstarted"]) {
             "unstarted" -> {
                 npc<Talk>("If you want to talk, this isn't the place for it. Meet me in Varrock's Chaos Temple, by the rune shop. Unless you're here to buy something?")
@@ -63,7 +63,7 @@ npcOperate("Talk-to", "mage_of_zamorak_wilderness") {
         option("Let's see what you're selling.") {
             player.openShop("mage_of_zamorak")
         }
-        option<Quiz>("Could you teleport me to the Abyss?", filter = { player.questComplete("enter_the_abyss") }) {
+        option<Quiz>("Could you teleport me to the Abyss?", filter = { player.questCompleted("enter_the_abyss") }) {
             teleport(player, target)
         }
         option<Uncertain>("Alright, I'll go.")
@@ -75,7 +75,7 @@ npcOperate("Talk-to", "mage_of_zamorak_varrock") {
         npc<Angry>("How dare you wear such disrespectful attire in this holy place? Remove those immediately if you wish to speak to me.")
         return@npcOperate
     }
-    if (player.questComplete("enter_the_abyss")) {
+    if (player.questCompleted("enter_the_abyss")) {
         npc<Talk>("Ah, you again. What do you want?")
         choice {
             aboutAbyss()

@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.character.player.summoningCombatLevel
 import world.gregs.voidps.engine.get
-import content.quest.questComplete
+import content.quest.questCompleted
 import java.util.*
 import java.util.Calendar.HOUR_OF_DAY
 import java.util.concurrent.TimeUnit
@@ -67,7 +67,7 @@ object Tasks {
                 63 -> return hasRequirements(player, definition.id)
                 62 -> {
                     val quest = get<QuestDefinitions>().get(value)
-                    if (player.questComplete(quest.stringId)) {
+                    if (player.questCompleted(quest.stringId)) {
                         return false
                     }
                 }
@@ -118,9 +118,9 @@ object Tasks {
             12 -> player["penguin_hide_and_seek_explained", false]
             23 -> player["fairy_rings_unlocked", false]
             49 -> player["unlocked_emote_air_guitar", false]
-            59 -> player.questComplete("into_the_abyss")
+            59 -> player.questCompleted("into_the_abyss")
             147, 167 -> player["fairy_rings_unlocked", false]
-            107 -> player.getInt("dragon_slayer", "unstarted") >= 2 && player["dragon_slayer_received_shield", false] || player.questComplete("dragon_slayer")
+            107 -> player.getInt("dragon_slayer", "unstarted") >= 2 && player["dragon_slayer_received_shield", false] || player.questCompleted("dragon_slayer")
             219 -> player.combatLevel >= 100
             331 -> player.summoningCombatLevel >= 100
             276, 3011 -> player["quest_points", 0] >= 33
