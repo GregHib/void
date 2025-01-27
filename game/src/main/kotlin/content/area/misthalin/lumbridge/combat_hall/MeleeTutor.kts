@@ -14,6 +14,7 @@ import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.player.modal.Tab
+import content.entity.player.modal.tab
 
 npcOperate("Talk-to", "harlan") {
     npc<Quiz>("Greetings adventurer, I am the Melee combat tutor. Is there anything I can do for you?")
@@ -36,9 +37,9 @@ suspend fun SuspendableContext<Player>.menu(followUp: String = "") {
 suspend fun PlayerChoice.meleeCombat(): Unit = option<Quiz>("Tell me about melee combat.") {
     npc<Neutral>("Well adventurer, the first thing you will need is a sword and a shield appropriate for your level.")
     // look down talking, look up eyebrow raised then quiet
-    player["tab"] = Tab.WornEquipment.name
+    player.tab(Tab.WornEquipment)
     npc<Neutral>("Make sure to equip your sword and shield. Click on them in your inventory, they will disappear from your inventory and move to your worn items. You can see your worn items in the worn items tab here.")
-    player["tab"] = Tab.CombatStyles.name
+    player.tab(Tab.CombatStyles)
     npc<Neutral>("When you are wielding your sword you will then be able to see the correct options in the combat interface.")
     npc<Neutral>("There are four different melee styles. Accurate, aggressive, defensive and controlled. Not all weapons will have all four styles though.")
     player<Quiz>("Interesting, what does each style do?")

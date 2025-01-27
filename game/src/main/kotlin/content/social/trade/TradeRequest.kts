@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.inv.moveAll
 import content.social.friend.friend
 import content.social.trade.Trade.getPartner
 import content.entity.player.modal.Tab
+import content.entity.player.modal.tab
 
 /**
  * Requesting to trade with another player, accepting the request and setting up the trade
@@ -89,7 +90,7 @@ fun reset(player: Player, other: Player) {
     player.interfaces.close("trade_side")
     player.interfaces.open("inventory")
 
-    player["tab"] = Tab.Inventory.name
+    player.tab(Tab.Inventory)
     player["offer_value"] = 0
     player["other_offer_value"] = 0
     player["lend_time"] = 0

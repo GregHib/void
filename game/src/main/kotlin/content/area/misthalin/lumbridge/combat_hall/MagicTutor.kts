@@ -19,6 +19,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.modal.Tab
+import content.entity.player.modal.tab
 import java.util.concurrent.TimeUnit
 
 npcOperate("Talk-to", "mikasi") {
@@ -52,7 +53,7 @@ suspend fun PlayerChoice.runeMaking(): Unit = option<Quiz>("How do I make runes?
     if (player.experience.get(Skill.Runecrafting) > 0.0) {
         npc<Amazed>("To get rune essence you will need to gather them in the essence mine. You can get to the mine by talking to Aubury who owns the runes shop in south east Varrock.")
         npc<Happy>("I see you have some experience already in Runecrafting. Perhaps you should try crafting some runes which you can then use in magic.")
-        player["tab"] = Tab.Stats.name
+        player.tab(Tab.Stats)
         npc<Happy>("Check the skill guide to see which runes you can craft.")
     } else {
         npc<Happy>("To get rune essence you will need to gather them somehow. You should talk to the Duke of Lumbridge, he may be able to help you with that. Alternatively, other players may sell you the essence.")
