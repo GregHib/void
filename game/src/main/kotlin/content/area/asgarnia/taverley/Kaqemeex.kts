@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -179,11 +178,11 @@ fun Context<Player>.questComplete() {
     player.inc("quest_points", 4)
     player.softQueue("quest_complete", 1) {
         player.sendQuestComplete(
-            "Druidic Ritual", listOf(
-                "4 Quest Points",
-                "Access to the Herblore Skill",
-                "250 Herblore XP",
-            ), Item("clean_marrentill")
+            "Druidic Ritual",
+            "4 Quest Points",
+            "Access to the Herblore Skill",
+            "250 Herblore XP",
+            item = "clean_marrentill"
         )
     }
 }

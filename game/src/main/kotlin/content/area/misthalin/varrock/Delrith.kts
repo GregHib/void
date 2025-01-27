@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.npcLevelChange
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.event.Context
@@ -203,11 +202,13 @@ suspend fun SuspendableContext<Player>.cutscene() {
         wizard.clearAnim()
         wizard.face(delrith)
     }
-    npc<Chuckle>("denath", """
+    npc<Chuckle>(
+        "denath", """
         Ha ha ha! At last you are free, my demonic brother!
         Rest now, and then have your revenge on this pitiful
         city!
-    """)
+    """
+    )
     for (wizard in wizards) {
         wizard.face(player)
     }
@@ -298,10 +299,12 @@ fun Context<Player>.questComplete() {
     player.inc("quest_points", 3)
     DemonSlayerSpell.clear(player)
     player.softQueue("quest_complete", 1) {
-        player.sendQuestComplete("Demon Slayer", listOf(
+        player.sendQuestComplete(
+            "Demon Slayer",
             "3 Quest Points",
-            "Silverlight"
-        ), Item("silverlight"))
+            "Silverlight",
+            item = "silverlight"
+        )
     }
 }
 

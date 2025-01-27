@@ -40,6 +40,10 @@ fun Player.sendQuestJournal(name: String, lines: List<String>) {
     }
 }
 
+fun Player.sendQuestComplete(name: String, vararg lines: String, item: String = "") {
+    sendQuestComplete(name, lines.toList(), if (item == "") Item.EMPTY else Item(item))
+}
+
 fun Player.sendQuestComplete(name: String, lines: List<String>, item: Item = Item.EMPTY) {
     open("quest_complete")
     interfaces.sendText("quest_complete", "quest_name", "You have completed $name!")

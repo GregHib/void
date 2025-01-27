@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -263,10 +262,12 @@ fun Context<Player>.questComplete() {
     player.message("Congratulations, you've completed a quest: <col=081190>Rune Mysteries</col>")
     player.refreshQuestJournal()
     player.softQueue("quest_complete", 1) {
-        player.sendQuestComplete("Rune Mysteries", listOf(
+        player.sendQuestComplete(
+            "Rune Mysteries",
             "1 Quest Point",
             "An Air Talisman",
-            "Rune Essence Mine Access"
-        ), Item("air_talisman"))
+            "Rune Essence Mine Access",
+            item = "air_talisman"
+        )
     }
 }
