@@ -2,9 +2,9 @@ package content.skill.melee.weapon.special
 
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import content.entity.combat.Target
-import content.entity.player.combat.special.specialAttackHit
+import content.entity.player.combat.special.specialAttackDamage
 
-specialAttackHit("weaken") {
+specialAttackDamage("weaken") {
     val amount = if (Target.isDemon(target)) 0.10 else 0.05
     target.levels.drain(Skill.Attack, multiplier = amount)
     target.levels.drain(Skill.Strength, multiplier = amount)

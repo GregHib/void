@@ -31,5 +31,5 @@ specialAttack { player ->
     if (damage >= 0) {
         target.gfx("${id}_impact")
     }
-    player.emit(SpecialAttackHit(id, target, damage))
+    player.emit(SpecialAttackDamage(id, target, damage))
 }

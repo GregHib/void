@@ -9,14 +9,14 @@ import world.gregs.voidps.type.Direction
 import content.entity.combat.Target
 import content.entity.combat.hit.hit
 import content.area.wilderness.inMultiCombat
-import content.entity.player.combat.special.specialAttackHit
+import content.entity.player.combat.special.specialAttackDamage
 
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-specialAttackHit("powerstab") { player ->
+specialAttackDamage("powerstab") { player ->
     if (!player.inMultiCombat) {
-        return@specialAttackHit
+        return@specialAttackDamage
     }
     val characters: CharacterList<*> = if (target is Player) players else npcs
     var remaining = if (target is Player) 2 else 14
@@ -28,7 +28,7 @@ specialAttackHit("powerstab") { player ->
             }
             player.hit(char)
             if (--remaining <= 0) {
-                return@specialAttackHit
+                return@specialAttackDamage
             }
         }
     }
