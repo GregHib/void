@@ -41,10 +41,10 @@ itemOnItems(arrayOf("tinderbox*"), acceptedUnlitSource) {
 }
 
 inventoryItem("Extinguish") {
-    val toExtinguish: LightSources = item.def.getOrNull("light_source") ?: return@inventoryItem
+    val source: LightSources = item.def.getOrNull("light_source") ?: return@inventoryItem
 
     player.inventory.transaction {
-        replace(item.id, toExtinguish.onceExtinguish)
+        replace(item.id, source.onceExtinguish)
     }
 
     player.message("You extinguish the flame.", ChatType.Game)

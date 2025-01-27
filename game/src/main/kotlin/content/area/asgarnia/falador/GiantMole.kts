@@ -1,6 +1,13 @@
 package content.area.asgarnia.falador
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.combat.attackers
+import content.entity.combat.hit.npcCombatHit
+import content.entity.gfx.areaGraphic
+import content.entity.player.inv.inventoryItem
+import content.entity.sound.areaSound
+import content.skill.firemaking.Light.hasLightSource
+import content.skill.melee.weapon.fightStyle
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -20,7 +27,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
@@ -28,12 +34,6 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import content.entity.combat.attackers
-import content.skill.melee.weapon.fightStyle
-import content.entity.combat.hit.npcCombatHit
-import content.entity.gfx.areaGraphic
-import content.entity.player.inv.inventoryItem
-import content.entity.sound.areaSound
 import kotlin.random.Random
 
 val logger = InlineLogger()
@@ -193,23 +193,4 @@ itemChange("inventory") { player: Player ->
             player.close("level_three_darkness")
         }
     }
-}
-
-fun hasLightSource(player: Player): Boolean {
-    val playerItems = player.inventory.items
-    val playerEquipment = player.equipment.items
-
-    for (item in playerItems) {
-        if (item.id.endsWith("lantern_lit") || item.id.endsWith("candle_lit") || item.id == "firemaking_cape_t" || item.id == "firemaking_cape") {
-            return true
-        }
-    }
-
-    for (equipmentItem in playerEquipment) {
-        if (equipmentItem.id == "firemaking_cape" || equipmentItem.id == "firemaking_cape_t") {
-            return true
-        }
-    }
-
-    return false
 }
