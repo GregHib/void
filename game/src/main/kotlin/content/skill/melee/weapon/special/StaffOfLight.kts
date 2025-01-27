@@ -19,7 +19,7 @@ itemRemoved("staff_of_light*", EquipSlot.Weapon, "worn_equipment") { player ->
 
 combatDamage { player ->
     if (player.softTimers.contains("power_of_light")) {
-        player.gfx("power_of_light_hit")
+        player.gfx("power_of_light_impact")
     }
 }
 

@@ -10,7 +10,7 @@ import kotlin.random.nextInt
 
 characterCombatDamage { character ->
     if (spell.isNotBlank()) {
-        character.gfx("${spell}_hit")
+        character.gfx("${spell}_impact")
     }
 }
 

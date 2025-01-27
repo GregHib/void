@@ -192,7 +192,7 @@ objectOperate("Walk-across", "wilderness_log_balance") {
         delay()
         player.walkOverDelay(Tile(2998, 10345))
         player.damage((player.levels.get(Skill.Constitution) * 0.15).toInt() + 10)
-        player.playSound("male_hit_1", delay = 20)
+        player.playSound("male_defend_1", delay = 20)
     }
     if (success || Settings["agility.disableFailLapSkip", false]) {
         player.agilityStage(4)

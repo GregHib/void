@@ -38,8 +38,8 @@ combatAttack("zamorak_bow", handler = specialHandler)
 
 val hitHandler: suspend CombatDamage.(Character) -> Unit = { character ->
     if (special) {
-        character.gfx("${weapon.id}_special_hit")
-        source.playSound("god_bow_special_hit")
+        character.gfx("${weapon.id}_special_impact")
+        source.playSound("god_bow_special_impact")
     }
 }
 combatDamage("saradomin_bow", handler = hitHandler)

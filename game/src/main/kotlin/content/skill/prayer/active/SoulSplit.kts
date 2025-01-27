@@ -22,7 +22,7 @@ combatAttack { player ->
     target["soul_split_delay"] = CLIENT_TICKS.toTicks(time)
     target["soul_split_source"] = player
     target["soul_split_damage"] = damage
-    target.gfx("soul_split_hit", time)
+    target.gfx("soul_split_impact", time)
     target.softTimers.start("soul_split")
 }
 

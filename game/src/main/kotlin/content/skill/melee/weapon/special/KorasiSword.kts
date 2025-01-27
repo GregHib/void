@@ -37,7 +37,7 @@ characterCombatDamage("korasis_sword") { target ->
         return@characterCombatDamage
     }
     areaSound("godwars_saradomin_magic_impact", target.tile, 10)
-    target.gfx("disrupt_hit")
+    target.gfx("disrupt_impact")
     if (!target.inMultiCombat) {
         return@characterCombatDamage
     }

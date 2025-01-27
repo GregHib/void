@@ -36,7 +36,7 @@ specialAttack("descent_of_darkness") { player ->
 characterCombatDamage("dark_bow*", "range") { character ->
     source.playSound("descent_of_darkness")
     source.playSound("descent_of_darkness", delay = 20)
-    character.gfx("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_hit")
+    character.gfx("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_impact")
 }
 
 combatSwing("dark_bow*", "range") { player ->

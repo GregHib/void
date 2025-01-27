@@ -180,7 +180,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     delay(1)
     player.shakeCamera(0, 0, 0, 0, 0)
     for ((_, target) in targets) {
-        areaGraphic("demon_slayer_spell_hit", target.add(offset))
+        areaGraphic("demon_slayer_spell_impact", target.add(offset))
     }
     delay(2)
     npcs.index(delrith)

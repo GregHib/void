@@ -18,7 +18,7 @@ specialAttack("soulshot") { player ->
 }
 
 characterCombatDamage("seercull", "range") { character ->
-    character.gfx("seercull_special_hit")
+    character.gfx("seercull_special_impact")
 }
 
 combatAttack("seercull*") {

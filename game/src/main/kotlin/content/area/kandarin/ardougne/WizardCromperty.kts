@@ -73,7 +73,7 @@ fun ChoiceBuilder<NPCOption<Player>>.teleportMe() {
         choice {
             option<Talk>("Yes, that sounds good. Teleport me!") {
                 npc<Happy>("Okey dokey! Ready?")
-                player.gfx("curse_hit")
+                player.gfx("curse_impact")
                 target.gfx("curse_cast")
                 target.say("Dipsolum sententa sententi!")
                 target.shoot("curse", player.tile, offset = 64)
