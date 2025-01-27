@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import set
 
-class SpellTest : MagicSpellTest() {
+class SpellRunesTest : MagicSpellTest() {
 
     @Test
     fun `Spell with elemental runes`() {
