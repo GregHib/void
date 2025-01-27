@@ -37,7 +37,7 @@ import world.gregs.voidps.type.Zone
 import content.entity.player.dialogue.sendLines
 import content.entity.player.dialogue.type.npc
 import content.entity.gfx.areaGraphic
-import content.quest.sendQuestJournal
+import content.quest.questJournal
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
@@ -58,7 +58,7 @@ modCommand("commands") {
         "command description",
         ""
     )
-    player.sendQuestJournal("Commands List", list + commands)
+    player.questJournal("Commands List", list + commands)
 }
 
 modCommand("help (command-name)", "gives more information about a command") {

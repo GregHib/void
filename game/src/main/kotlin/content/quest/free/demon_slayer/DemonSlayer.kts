@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import content.quest.quest
-import content.quest.sendQuestJournal
+import content.quest.questJournal
 
 interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 2) {
     val lines = when (player.quest("demon_slayer")) {
@@ -57,7 +57,7 @@ interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 2) {
         )
         else -> listOf()
     }
-    player.sendQuestJournal("Demon Slayer", lines)
+    player.questJournal("Demon Slayer", lines)
 }
 
 fun listKeys(

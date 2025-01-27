@@ -3,7 +3,7 @@ package content.quest.free.the_restless_ghost
 import world.gregs.voidps.engine.client.ui.interfaceSlot
 import content.entity.player.bank.ownsItem
 import content.quest.quest
-import content.quest.sendQuestJournal
+import content.quest.questJournal
 
 interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 11) {
     val lines = when (player.quest("the_restless_ghost")) {
@@ -89,5 +89,5 @@ interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 11) {
             "<maroon>church <navy>next to <maroon>Lumbridge Castle."
         )
     }
-    player.sendQuestJournal("The Restless Ghost", lines)
+    player.questJournal("The Restless Ghost", lines)
 }

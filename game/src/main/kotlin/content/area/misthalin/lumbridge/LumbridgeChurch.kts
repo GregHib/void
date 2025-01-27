@@ -120,7 +120,7 @@ fun Context<Player>.questComplete() {
     player.refreshQuestJournal()
     player.inc("quest_points")
     player.softQueue("quest_complete", 1) {
-        player.sendQuestComplete(
+        player.questComplete(
             "The Restless Ghost",
             "1 Quest Point",
             "1,125 Prayer XP",

@@ -28,7 +28,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import content.quest.quest
-import content.quest.sendQuestComplete
+import content.quest.questComplete
 import content.quest.startCutscene
 import content.quest.stopCutscene
 import content.entity.player.dialogue.*
@@ -496,7 +496,7 @@ fun Context<Player>.questComplete() {
     player.inc("quest_points", 5)
     player.experience.add(Skill.Crafting, 300.0)
     player.softQueue("quest_complete", 1) {
-        player.sendQuestComplete(
+        player.questComplete(
             "Gunnar's Ground",
             "5 Quest Points",
             "300 Crafting XP.",

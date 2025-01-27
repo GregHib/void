@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.inv.holdsItem
 import content.entity.player.bank.bank
 import content.quest.quest
-import content.quest.sendQuestJournal
+import content.quest.questJournal
 
 interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 1) {
     val lines = when (player.quest("cooks_assistant")) {
@@ -79,5 +79,5 @@ interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 1) {
             "<maroon>kitchen <navy>of <maroon>Lumbridge Castle."
         )
     }
-    player.sendQuestJournal("Cook's Aassistant", lines)
+    player.questJournal("Cook's Aassistant", lines)
 }

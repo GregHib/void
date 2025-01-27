@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.inv.holdsItem
 import content.entity.player.bank.ownsItem
 import content.quest.quest
-import content.quest.sendQuestJournal
+import content.quest.questJournal
 
 interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 8) {
     val lines = when (player.quest("the_knights_sword")) {
@@ -96,5 +96,5 @@ interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 8) {
             "<navy>and to be unafraid of <maroon>Level 57 Ice Warriors."
         )
     }
-    player.sendQuestJournal("The Knight's Sword", lines)
+    player.questJournal("The Knight's Sword", lines)
 }

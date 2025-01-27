@@ -40,11 +40,11 @@ fun Player.questJournal(name: String, lines: List<String>) {
     }
 }
 
-fun Player.sendQuestComplete(name: String, vararg lines: String, item: String = "") {
-    sendQuestComplete(name, lines.toList(), if (item == "") Item.EMPTY else Item(item))
+fun Player.questComplete(name: String, vararg lines: String, item: String = "") {
+    questComplete(name, lines.toList(), if (item == "") Item.EMPTY else Item(item))
 }
 
-fun Player.sendQuestComplete(name: String, lines: List<String>, item: Item = Item.EMPTY) {
+fun Player.questComplete(name: String, lines: List<String>, item: Item = Item.EMPTY) {
     open("quest_complete")
     interfaces.sendText("quest_complete", "quest_name", "You have completed $name!")
     interfaces.sendText("quest_complete", "quest_points", get("quest_points", 0).toString())
@@ -56,7 +56,7 @@ fun Player.sendQuestComplete(name: String, lines: List<String>, item: Item = Ite
     }
 }
 
-fun Player.sendLetterScroll(name: String, lines: List<String>) {
+fun Player.letterScroll(name: String, lines: List<String>) {
     if (!interfaces.open("letter_scroll")) {
         return
     }
@@ -68,7 +68,7 @@ fun Player.sendLetterScroll(name: String, lines: List<String>) {
     }
 }
 
-fun Player.sendWomScroll(name: String, lines: List<String>) {
+fun Player.wiseOldManScroll(name: String, lines: List<String>) {
     if (!interfaces.open("wise_old_man_scroll")) {
         return
     }
@@ -78,7 +78,7 @@ fun Player.sendWomScroll(name: String, lines: List<String>) {
     }
 }
 
-fun Player.sendMessageScroll(lines: List<String>, handwriting: Boolean = false) {
+fun Player.messageScroll(lines: List<String>, handwriting: Boolean = false) {
     val id = "message_scroll${if (handwriting) "_handwriting" else ""}"
     if (!interfaces.open(id)) {
         return

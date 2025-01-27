@@ -3,7 +3,7 @@ package content.quest.free.rune_mysteries
 import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.inv.holdsItem
 import content.quest.quest
-import content.quest.sendQuestJournal
+import content.quest.questJournal
 
 interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 13) {
     val lines = when (player.quest("rune_mysteries")) {
@@ -118,5 +118,5 @@ interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 13) {
             "<maroon>Lumbridge<navy>upstairs in <maroon>Lumbridge Castle."
         )
     }
-    player.sendQuestJournal("Rune Mysteries", lines)
+    player.questJournal("Rune Mysteries", lines)
 }

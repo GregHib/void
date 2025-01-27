@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import content.quest.quest
 import content.quest.refreshQuestJournal
-import content.quest.sendQuestComplete
+import content.quest.questComplete
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.sound.playJingle
@@ -121,7 +121,7 @@ fun Context<Player>.questComplete() {
     player.inc("quest_points")
     player.message("Congratulations, you've completed a quest: <navy>cook's assistant")
     player.refreshQuestJournal()
-    player.sendQuestComplete(
+    player.questComplete(
         "cook's assistant",
         "1 Quest Point",
         "300 Cooking XP",

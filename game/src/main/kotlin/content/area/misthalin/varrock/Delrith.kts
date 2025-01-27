@@ -299,7 +299,7 @@ fun Context<Player>.questComplete() {
     player.inc("quest_points", 3)
     DemonSlayerSpell.clear(player)
     player.softQueue("quest_complete", 1) {
-        player.sendQuestComplete(
+        player.questComplete(
             "Demon Slayer",
             "3 Quest Points",
             "Silverlight",

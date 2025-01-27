@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
-import content.quest.sendMessageScroll
+import content.quest.messageScroll
 import content.entity.player.inv.inventoryItem
 
 inventoryItem("Read", "barcrawl_card") {
@@ -14,7 +14,7 @@ inventoryItem("Read", "barcrawl_card") {
         player.message("You are too drunk to be able to read the barcrawl card.")
         return@inventoryItem
     }
-    player.sendMessageScroll(
+    player.messageScroll(
         listOf(
             "${Colours.BLUE.toTag()}The Official Alfred Grimhand Barcrawl!",
             "",

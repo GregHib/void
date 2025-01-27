@@ -6,7 +6,7 @@ import content.entity.player.dialogue.type.*
 import content.entity.sound.playJingle
 import content.quest.quest
 import content.quest.refreshQuestJournal
-import content.quest.sendQuestComplete
+import content.quest.questComplete
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -196,7 +196,7 @@ fun Context<Player>.questComplete() {
     player.inc("quest_points")
     player.message("Congratulations! Quest complete!")
     player.softQueue("quest_complete", 1) {
-        player.sendQuestComplete(
+        player.questComplete(
             "The Knight's Sword Quest",
             "1 Quest Point",
             "12,725 Smithing XP",
