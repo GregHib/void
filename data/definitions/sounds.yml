@@ -108,7 +108,7 @@ gate_close: 70
 gate_open: 71
 fell_tree: 2734
 drop_item: 2739
-pickup_item: 2582
+take_item: 2582
 prayer_drain: 2672
 teleport: 200
 teleport_land: 201

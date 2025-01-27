@@ -1,4 +1,4 @@
-package content.entity.player.inv.item
+package content.entity.player.inv.item.take
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
@@ -12,13 +12,20 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
 import content.entity.sound.playSound
+import world.gregs.voidps.engine.entity.item.Item
 
 val floorItems: FloorItems by inject()
 val logger = InlineLogger()
 
 floorItemOperate("Take") {
     approachRange(-1)
-    if (player.inventory.isFull() && (!player.inventory.stackable(target.id) || !player.inventory.contains(target.id))) {
+    val takeable = Takeable(target.id)
+    player.emit(takeable)
+    if (takeable.cancelled) {
+        return@floorItemOperate
+    }
+    val item = takeable.item
+    if (player.inventory.isFull() && (!player.inventory.stackable(item) || !player.inventory.contains(item))) {
         player.inventoryFull()
         return@floorItemOperate
     }
@@ -29,7 +36,7 @@ floorItemOperate("Take") {
 
     player.inventory.transaction {
         val freeIndex = inventory.freeIndex()
-        add(target.id, target.amount)
+        add(item, target.amount)
         if (target.charges > 0) {
             setCharge(freeIndex, target.charges)
         }
@@ -40,16 +47,17 @@ floorItemOperate("Take") {
                 player.face(target.tile.delta(player.tile))
                 player.anim("take")
             }
-            player.playSound("pickup_item")
+            player.playSound("take_item")
+            player.emit(Taken(target, item))
         }
         is TransactionError.Full -> player.inventoryFull()
-        else -> logger.warn { "Error picking up item $target ${player.inventory.transaction.error}" }
+        else -> logger.warn { "Error taking item $target ${player.inventory.transaction.error}" }
     }
 }
 
 npcOperateFloorItem("Take") {
     if (!floorItems.remove(target)) {
-        logger.warn { "$npc unable to pick up $target." }
+        logger.warn { "$npc unable to take $target." }
     }
     if (npc.id == "ash_cleaner") {
         npc.anim("cleaner_sweeping")

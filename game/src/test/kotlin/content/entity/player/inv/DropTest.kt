@@ -27,19 +27,6 @@ internal class DropTest : WorldTest() {
     }
 
     @Test
-    fun `Pickup item off the floor`() {
-        val tile = emptyTile
-        val player = createPlayer("player", tile)
-        val item = floorItems.add(tile.add(0, 2), "bronze_sword")
-
-        player.floorItemOption(item, "Take")
-        tick(5)
-
-        assertTrue(player.inventory.contains("bronze_sword"))
-        assertTrue(floorItems[tile.add(0, 2)].isEmpty())
-    }
-
-    @Test
     fun `Floor item respawns after delay`() {
         val tile = Tile(3244, 3157)
         val player = createPlayer("player", tile)
@@ -103,20 +90,6 @@ internal class DropTest : WorldTest() {
 
         assertTrue(player.inventory.contains("toolkit"))
         assertFalse(floorItems[tile.addX(1)].any { it.id == "toolkit" })
-    }
-
-    @Test
-    fun `Pickup item up off a table`() {
-        val tile = Tile(3212, 3218, 1)
-        val player = createPlayer("player", tile)
-        val item = floorItems.add(tile.add(1, 0), "bronze_sword")
-
-        player.floorItemOption(item, "Take")
-        tick(5)
-
-        assertTrue(player.inventory.contains("bronze_sword"))
-        assertTrue(floorItems[tile.add(1, 0)].isEmpty())
-        assertEquals(tile, player.tile)
     }
 
 }
