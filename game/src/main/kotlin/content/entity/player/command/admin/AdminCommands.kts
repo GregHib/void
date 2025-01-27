@@ -205,7 +205,7 @@ adminCommand("give (item-id) [amount] (player-name)", "spawn item in another pla
     }
 }
 
-modCommand("find (item name)", "search the id of an item", aliases = listOf("search")) {
+modCommand("find (content-name)", "search for a piece of content by name", aliases = listOf("search")) {
     val search = content.lowercase()
     var found = 0
     player.message("===== Items =====", ChatType.Console)
@@ -214,6 +214,15 @@ modCommand("find (item name)", "search the id of an item", aliases = listOf("sea
     found += search(player, get<ObjectDefinitions>(), search) { it.name }
     player.message("===== NPCs =====", ChatType.Console)
     found += search(player, get<NPCDefinitions>(), search) { it.name }
+    player.message("===== Commands =====", ChatType.Console)
+    for (command in Command.adminCommands) {
+        if (command.startsWith(Colours.BLUE.toTag()) && command.contains(content, ignoreCase = true)) {
+            val colourless = command.removePrefix(Colours.BLUE.toTag()).removeSuffix("</col>")
+            val cmd = colourless.substringBefore("(").substringBefore("[").trim()
+            player.message("[${cmd}] - usage: $colourless", ChatType.Console)
+            found++
+        }
+    }
     player.message("$found results found for '$search'", ChatType.Console)
 }
 

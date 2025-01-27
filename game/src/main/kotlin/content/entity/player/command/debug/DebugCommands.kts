@@ -76,6 +76,11 @@ modCommand("help (command-name)", "gives more information about a command") {
             player.message("activity-type:", ChatType.Console)
             player.message("music, tasks, emotes, quests, or blank to unlock all.", ChatType.Console)
         }
+        "find" -> {
+            player.message("Find the string or integer id of a piece of content.", ChatType.Console)
+            player.message("content-types:", ChatType.Console)
+            player.message("items, objects, npcs, commands", ChatType.Console)
+        }
         else -> {
             player.message("No help info found for command '${content}'.", ChatType.Console)
             player.message("Enter 'commands' for full list of commands.", ChatType.Console)
