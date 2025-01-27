@@ -90,7 +90,7 @@ fun smelt(player: Player, target: GameObject, id: String, amount: Int) {
     }
 
     val definition = itemDefinitions.get(id)
-    val smelting: Smelting = definition["smelting"]
+    val smelting: Smelting = definition.getOrNull("smelting") ?: return
     if (!player.has(Skill.Smithing, smelting.level, message = true)) {
         player.softTimers.stop("smelting")
         return
@@ -113,7 +113,7 @@ fun smelt(player: Player, target: GameObject, id: String, amount: Int) {
                 if (success) {
                     player.exp(Skill.Smithing, smelting.exp(player, id))
                     player.message("You retrieve a bar of ${id.removeSuffix("_bar")}.")
-                    if (varrockArmour(player, target, id, smelting)) {
+                    if (amount - 1 > 0 && varrockArmour(player, target, id, smelting)) {
                         removed = 2
                     }
                 } else {
