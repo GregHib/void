@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
 import content.entity.sound.playSound
-import world.gregs.voidps.engine.entity.item.Item
 
 val floorItems: FloorItems by inject()
 val logger = InlineLogger()
