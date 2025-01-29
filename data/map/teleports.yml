@@ -2739,14 +2739,14 @@
     y: 3126
   delta:
     y: 6400
-- id: 36773
+- id: lumbridge_staircase
   option: Climb-up
   tile:
     x: 3115
     y: 3107
   delta:
     level: 1
-- id: 36775
+- id: lumbridge_staircase_top
   option: Climb-down
   tile:
     x: 3115
@@ -2754,14 +2754,14 @@
     level: 1
   delta:
     level: -1
-- id: 36773
+- id: lumbridge_staircase
   option: Climb-up
   tile:
     x: 3082
     y: 3124
   delta:
     level: 1
-- id: 36775
+- id: lumbridge_staircase_top
   option: Climb-down
   tile:
     x: 3082
@@ -3676,14 +3676,14 @@
   delta:
     x: -2
     y: 6400
-- id: 36773
+- id: lumbridge_staircase
   option: Climb-up
   tile:
     x: 3204
     y: 3207
   delta:
     level: 1
-- id: 36774
+- id: lumbridge_castle_staircase_south_middle
   option: Climb-up
   tile:
     x: 3204
@@ -3691,7 +3691,7 @@
     level: 1
   delta:
     level: 1
-- id: 36774
+- id: lumbridge_castle_staircase_south_middle
   option: Climb-down
   tile:
     x: 3204
@@ -3699,7 +3699,7 @@
     level: 1
   delta:
     level: -1
-- id: 36775
+- id: lumbridge_staircase_top
   option: Climb-down
   tile:
     x: 3204
@@ -3707,14 +3707,14 @@
     level: 2
   delta:
     level: -1 
-- id: 36776
+- id: lumbridge_castle_staircase_north
   option: Climb-up
   tile:
     x: 3204
     y: 3229
   delta:
     level: 1
-- id: 36778
+- id: lumbridge_castle_staircase_north_top
   option: Climb-down
   tile:
     x: 3204
@@ -3722,7 +3722,7 @@
     level: 2
   delta:
     level: -1
-- id: 36777
+- id: lumbridge_castle_staircase_north_middle
   option: Climb-up
   tile:
     x: 3204
@@ -3730,7 +3730,7 @@
     level: 1
   delta:
     level: 1
-- id: 36777
+- id: lumbridge_castle_staircase_north_middle
   option: Climb-down
   tile:
     x: 3204

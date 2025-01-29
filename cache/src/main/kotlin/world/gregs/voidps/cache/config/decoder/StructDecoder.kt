@@ -13,7 +13,6 @@ class StructDecoder(
 
     override fun create(size: Int) = Array(size) { StructDefinition(it) }
 
-
     override fun load(cache: Cache): Array<StructDefinition> {
         val definitions = super.load(cache)
         // Manually fix values see https://github.com/GregHib/void/issues/540
