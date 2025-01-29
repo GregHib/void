@@ -161,7 +161,10 @@ fun areaId(player: Player) = variables.get("task_area")!!.values.toInt(player["t
  */
 
 interfaceOption("Details", "details", "task_popup") {
-    player["task_popup_summary"] = true
+    if (player.quest("unstable_foundations") == "unstarted") {
+        player["task_popup_summary"] = true
+        player.interfaces.sendVisibility("task_system", "ok", true)
+    }
     player.tab(Tab.TaskSystem)
 }
 

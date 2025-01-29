@@ -2666,6 +2666,7 @@ task_system:
     hint_1: 77
     hint_2: 79
     hint_3: 81
+    pin: 88
 warriors_guild: 1057
 fade_out:
   id: 120
