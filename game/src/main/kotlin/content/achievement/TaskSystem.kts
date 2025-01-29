@@ -76,8 +76,8 @@ interfaceOption("OK", "ok", "task_system") {
     if (selected != -1 && selected == player["task_pin_index", -1]) {
         player.clear("task_pinned")
         player.clear("task_pin_index")
-        player.interfaces.sendVisibility("task_system", "ok", false)
     }
+    player.interfaces.sendVisibility("task_system", "ok", false)
     refreshSlots(player)
 }
 
