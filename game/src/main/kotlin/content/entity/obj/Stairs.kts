@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import content.entity.player.dialogue.type.choice
 
-val teleports: Teleports by inject()
+val teleports: ObjectTeleports by inject()
 
 objectOperate("Climb", arrive = false) {
     if (def.options?.filterNotNull()?.any { it.startsWith("Climb-") } != true) {
@@ -19,9 +19,9 @@ objectOperate("Climb", arrive = false) {
     }
 }
 
-teleportTakeOff {
+objTeleportTakeOff {
     if (!obj.name.isLadder()) {
-        return@teleportTakeOff
+        return@objTeleportTakeOff
     }
     val remaining = player.remaining("teleport_delay")
     if (remaining > 0) {

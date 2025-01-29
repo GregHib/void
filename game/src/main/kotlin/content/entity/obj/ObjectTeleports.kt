@@ -18,7 +18,7 @@ import world.gregs.yaml.read.YamlReaderConfiguration
 /**
  * Object interaction teleports
  */
-class Teleports {
+class ObjectTeleports {
 
     private lateinit var teleports: Map<String, Map<Int, TeleportDefinition>>
 
@@ -32,7 +32,7 @@ class Teleports {
         if (definition.id != id) {
             return false
         }
-        val teleport = Teleport(player, definition.id, definition.tile, def, definition.option)
+        val teleport = ObjectTeleport(player, definition.id, definition.tile, def, definition.option)
         player.emit(teleport)
         if (teleport.cancelled) {
             return false
@@ -70,7 +70,7 @@ class Teleports {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["map.teleports"]): Teleports {
+    fun load(yaml: Yaml = get(), path: String = Settings["map.teleports"]): ObjectTeleports {
         timedLoad("object teleport") {
             val config = object : YamlReaderConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {

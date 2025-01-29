@@ -10,7 +10,7 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.obj.teleportTakeOff
+import content.entity.obj.objTeleportTakeOff
 
 npcOperate("Talk-to", "brimstail") {
     if (!player.questCompleted("rune_mysteries")) {
@@ -44,10 +44,10 @@ npcOperate("Teleport", "brimstail") {
     }
 }
 
-teleportTakeOff("Enter", "brimstails_cave_entrance") {
+objTeleportTakeOff("Enter", "brimstails_cave_entrance") {
     player.message("You duck down as you enter this small door.")
 }
 
-teleportTakeOff("Exit", "brimstails_cave_exit_*") {
+objTeleportTakeOff("Exit", "brimstails_cave_exit_*") {
     player.message("You crouch your way through a cramped tunnel.")
 }
