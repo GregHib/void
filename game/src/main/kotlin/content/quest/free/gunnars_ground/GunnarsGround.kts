@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.holdsItem
 import content.entity.player.inv.inventoryItem
 import content.quest.quest
-import content.quest.sendLetterScroll
-import content.quest.sendQuestJournal
+import content.quest.letterScroll
+import content.quest.questJournal
 
 playerSpawn { player ->
     player.sendVariable("gudrun_after_quest")
@@ -22,7 +22,7 @@ playerSpawn { player ->
 }
 
 inventoryItem("Read", "gunnars_ground", "inventory") {
-    player.sendLetterScroll("Gunnar's Ground", listOf(
+    player.letterScroll("Gunnar's Ground", listOf(
         "Our people dwelt on mountains steeped in lore,",
         "A mighty tribe as harsh as any beast",
         "Who then, in face of madness swept to war,",
@@ -296,5 +296,5 @@ interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 17) {
             "<navy>just outside the <maroon>barbarian village."
         )
     }
-    player.sendQuestJournal("Gunnar's Ground", lines)
+    player.questJournal("Gunnar's Ground", lines)
 }

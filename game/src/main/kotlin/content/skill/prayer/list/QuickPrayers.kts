@@ -17,6 +17,7 @@ import content.skill.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS
 import content.skill.prayer.PrayerConfigs.TEMP_QUICK_PRAYERS
 import content.skill.prayer.PrayerConfigs.USING_QUICK_PRAYERS
 import content.entity.player.modal.Tab
+import content.entity.player.modal.tab
 import content.entity.sound.playSound
 import content.skill.prayer.getActivePrayerVarKey
 import content.skill.prayer.isCurses
@@ -74,7 +75,7 @@ fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
 interfaceOption("Select Quick Prayers", "orb", "prayer_orb") {
     val selecting = player.toggle(SELECTING_QUICK_PRAYERS)
     if (selecting) {
-        player["tab"] = Tab.PrayerList.name
+        player.tab(Tab.PrayerList)
         player.sendVariable(player.getQuickVarKey())
         player[TEMP_QUICK_PRAYERS] = player[player.getQuickVarKey(), 0]
     } else if (player.contains(TEMP_QUICK_PRAYERS)) {

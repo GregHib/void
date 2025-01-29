@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.combat.hit.combatHit
+import content.entity.combat.hit.combatDamage
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttackPrepare
 import java.util.concurrent.TimeUnit
@@ -17,9 +17,9 @@ itemRemoved("staff_of_light*", EquipSlot.Weapon, "worn_equipment") { player ->
     player.softTimers.stop("power_of_light")
 }
 
-combatHit { player ->
+combatDamage { player ->
     if (player.softTimers.contains("power_of_light")) {
-        player.gfx("power_of_light_hit")
+        player.gfx("power_of_light_impact")
     }
 }
 

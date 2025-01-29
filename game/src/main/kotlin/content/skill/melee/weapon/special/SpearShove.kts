@@ -29,7 +29,7 @@ specialAttack("shove") { player ->
     player.anim("${id}_special")
     player.gfx("${id}_special")
     val duration = TimeUnit.SECONDS.toTicks(3)
-    target.gfx("shove_hit")
+    target.gfx("dragon_spear_stun")
     target.freeze(duration)
     player["delay"] = duration
     player.hit(target, damage = -1) // Hit with no damage so target can auto-retaliate

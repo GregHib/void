@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 
 class Item(
     val id: String = "",
-    amount: Int = 0
+    amount: Int = 1
 ) {
     internal val value = amount
     val def: ItemDefinition

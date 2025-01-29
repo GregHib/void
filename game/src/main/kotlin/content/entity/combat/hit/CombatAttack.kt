@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.event.Events
 
 /**
  * Damage done to a [target]
- * Emitted on swing, where [CombatHit] is after the attack delay
+ * Emitted on swing, where [CombatDamage] is after the attack delay
  * @param type the combat type, typically: melee, range or magic
  * @param damage the damage inflicted upon the [target]
  * @param delay until hit in client ticks

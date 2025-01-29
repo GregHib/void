@@ -16,14 +16,14 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import set
 
-class SpellTest : MagicSpellTest() {
+class SpellRunesTest : MagicSpellTest() {
 
     @Test
     fun `Spell with elemental runes`() {
         val player = player()
         player.levels.set(Skill.Magic, 10)
         setLevel(10)
-        setItems(Item("air_rune", 1))
+        setItems(Item("air_rune"))
         assertFalse(player.hasSpellItems("spell", message = false))
 
         player.inventory.add("air_rune")
@@ -50,7 +50,7 @@ class SpellTest : MagicSpellTest() {
         World.start()
 
         val player = player()
-        setItems(Item("blood_rune", 1) to ItemDefinition(stringId = "blood_rune", members = true))
+        setItems(Item("blood_rune") to ItemDefinition(stringId = "blood_rune", members = true))
         player.inventory.add("blood_rune", 10)
 
         assertFalse(player.hasSpellItems("spell", message = false))
@@ -63,7 +63,7 @@ class SpellTest : MagicSpellTest() {
         val player = player()
         player.levels.set(Skill.Magic, 5)
         setLevel(10)
-        setItems(Item("air_rune", 1))
+        setItems(Item("air_rune"))
         player.inventory.add("air_rune")
 
         assertFalse(player.hasSpellItems("spell", message = false))
@@ -86,7 +86,7 @@ class SpellTest : MagicSpellTest() {
     @Test
     fun `Spell with mix of runes`() {
         val player = player()
-        setItems(Item("air_rune", 1), Item("fire_rune", 1), Item("mind_rune", 1))
+        setItems(Item("air_rune"), Item("fire_rune"), Item("mind_rune"))
 
         player.inventory.add("air_rune")
         player.inventory.add("fire_rune")
@@ -100,7 +100,7 @@ class SpellTest : MagicSpellTest() {
     @Test
     fun `Spell with required staff`() {
         val player = player()
-        setItems(Item("air_rune", 1), Item("slayers_staff", 1))
+        setItems(Item("air_rune"), Item("slayers_staff"))
 
         player.inventory.add("air_rune")
         assertFalse(player.hasSpellItems("spell", message = false))
@@ -114,7 +114,7 @@ class SpellTest : MagicSpellTest() {
     @Test
     fun `Spell with required staff not equipped`() {
         val player = player()
-        setItems(Item("air_rune", 1), Item("slayers_staff", 1))
+        setItems(Item("air_rune"), Item("slayers_staff"))
 
         player.inventory.add("air_rune")
         player.inventory.add("slayers_staff")
@@ -127,7 +127,7 @@ class SpellTest : MagicSpellTest() {
     @Test
     fun `Staff with infinite runes`() {
         val player = player()
-        setItems(Item("air_rune", 1), Item("chaos_rune", 1))
+        setItems(Item("air_rune"), Item("chaos_rune"))
         addItemDef(ItemDefinition(stringId = "staff_of_air", extras = mapOf("infinite_air_runes" to 1)))
 
         player.inventory.add("air_rune", 10)
@@ -150,7 +150,7 @@ class SpellTest : MagicSpellTest() {
             "zuriels_staff_corrupted" -> "zuriels_staff"
             else -> staff
         }
-        setItems(Item(required, 1), Item("air_rune", 2))
+        setItems(Item(required), Item("air_rune", 2))
 
         player.inventory.add("air_rune", 10)
         player.equipment.set(EquipSlot.Weapon.index, staff)

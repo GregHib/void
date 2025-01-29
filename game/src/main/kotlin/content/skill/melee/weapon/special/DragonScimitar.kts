@@ -8,10 +8,10 @@ import world.gregs.voidps.engine.timer.toTicks
 import content.skill.prayer.getActivePrayerVarKey
 import content.skill.prayer.isCurses
 import content.skill.prayer.prayerStart
-import content.entity.player.combat.special.specialAttackHit
+import content.entity.player.combat.special.specialAttackDamage
 import java.util.concurrent.TimeUnit
 
-specialAttackHit("sever") {
+specialAttackDamage("sever") {
     target.softTimers.start(id)
 }
 

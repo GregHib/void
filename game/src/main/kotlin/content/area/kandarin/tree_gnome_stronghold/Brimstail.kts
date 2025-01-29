@@ -2,7 +2,7 @@ package content.area.kandarin.tree_gnome_stronghold
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import content.quest.questComplete
+import content.quest.questCompleted
 import content.skill.runecrafting.EssenceMine
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Quiz
@@ -13,7 +13,7 @@ import content.entity.player.dialogue.type.player
 import content.entity.obj.teleportTakeOff
 
 npcOperate("Talk-to", "brimstail") {
-    if (!player.questComplete("rune_mysteries")) {
+    if (!player.questCompleted("rune_mysteries")) {
         npc<Happy>("Hello adventurer, what can I do for you?")
         player<Quiz>("What's that cute creature wandering around?")
         npc<Talk>("Oh Izzie? He's my pet.")
@@ -37,7 +37,7 @@ npcOperate("Talk-to", "brimstail") {
 }
 
 npcOperate("Teleport", "brimstail") {
-    if (player.questComplete("rune_mysteries")) {
+    if (player.questCompleted("rune_mysteries")) {
         EssenceMine.teleport(target, player)
     } else {
         player.message("You need to have completed the Rune Mysteries Quest to use this feature.")

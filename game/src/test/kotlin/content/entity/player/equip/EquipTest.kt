@@ -24,7 +24,7 @@ internal class EquipTest : WorldTest() {
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("bronze_sword"), 0)
 
-        assertEquals(Item("bronze_sword", 1), player.equipped(EquipSlot.Weapon))
+        assertEquals(Item("bronze_sword"), player.equipped(EquipSlot.Weapon))
         assertEquals(1, player.inventory.spaces)
     }
 
@@ -37,7 +37,7 @@ internal class EquipTest : WorldTest() {
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("bronze_2h_sword"), 0)
 
-        assertEquals(Item("bronze_2h_sword", 1), player.equipped(EquipSlot.Weapon))
+        assertEquals(Item("bronze_2h_sword"), player.equipped(EquipSlot.Weapon))
         assertTrue(player.inventory.contains("bronze_sword"))
     }
 
@@ -50,7 +50,7 @@ internal class EquipTest : WorldTest() {
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("bronze_2h_sword"), 0)
 
-        assertEquals(Item("bronze_2h_sword", 1), player.equipped(EquipSlot.Weapon))
+        assertEquals(Item("bronze_2h_sword"), player.equipped(EquipSlot.Weapon))
         assertTrue(player.equipped(EquipSlot.Shield).isEmpty())
         assertTrue(player.inventory.contains("bronze_sq_shield"))
     }
@@ -65,7 +65,7 @@ internal class EquipTest : WorldTest() {
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("bronze_2h_sword"), 0)
 
-        assertEquals(Item("bronze_2h_sword", 1), player.equipped(EquipSlot.Weapon))
+        assertEquals(Item("bronze_2h_sword"), player.equipped(EquipSlot.Weapon))
         assertTrue(player.equipped(EquipSlot.Shield).isEmpty())
         assertTrue(player.inventory.contains("bronze_sword"))
         assertTrue(player.inventory.contains("bronze_sq_shield"))
@@ -81,8 +81,8 @@ internal class EquipTest : WorldTest() {
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("bronze_2h_sword"), 0)
 
-        assertEquals(Item("bronze_sword", 1), player.equipped(EquipSlot.Weapon))
-        assertEquals(Item("bronze_sq_shield", 1), player.equipped(EquipSlot.Shield))
+        assertEquals(Item("bronze_sword"), player.equipped(EquipSlot.Weapon))
+        assertEquals(Item("bronze_sq_shield"), player.equipped(EquipSlot.Shield))
         assertTrue(player.inventory.contains("bronze_2h_sword"))
     }
 
@@ -95,7 +95,7 @@ internal class EquipTest : WorldTest() {
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("bronze_sword"), 0)
 
-        assertEquals(Item("bronze_sword", 1), player.equipped(EquipSlot.Weapon))
+        assertEquals(Item("bronze_sword"), player.equipped(EquipSlot.Weapon))
         assertTrue(player.inventory.contains("bronze_2h_sword"))
     }
 
@@ -109,7 +109,7 @@ internal class EquipTest : WorldTest() {
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("bronze_sq_shield"), 0)
 
         assertTrue(player.equipped(EquipSlot.Weapon).isEmpty())
-        assertEquals(Item("bronze_sq_shield", 1), player.equipped(EquipSlot.Shield))
+        assertEquals(Item("bronze_sq_shield"), player.equipped(EquipSlot.Shield))
         assertTrue(player.inventory.contains("bronze_2h_sword"))
     }
 

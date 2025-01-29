@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.playerSpawn
@@ -121,12 +120,12 @@ fun Context<Player>.questComplete() {
     player.refreshQuestJournal()
     player.inc("quest_points")
     player.softQueue("quest_complete", 1) {
-        player.sendQuestComplete(
-            "The Restless Ghost", listOf(
-                "1 Quest Point",
-                "1,125 Prayer XP",
-                "A Ghostspeak Amulet",
-            ), Item("muddy_skull")
+        player.questComplete(
+            "The Restless Ghost",
+            "1 Quest Point",
+            "1,125 Prayer XP",
+            "A Ghostspeak Amulet",
+            item = "muddy_skull"
         )
     }
 }
@@ -140,7 +139,7 @@ objectOperate("Open", "restless_ghost_coffin_closed") {
     player.animDelay("open_chest")
     player.playSound("coffin_open")
     target.replace("coffin_restless_ghost_2", ticks = TimeUnit.MINUTES.toTicks(3))
-    if (!player.questComplete("the_restless_ghost")) {
+    if (!player.questCompleted("the_restless_ghost")) {
         spawnGhost()
     }
 }
@@ -150,7 +149,7 @@ objectOperate("Search", "restless_ghost_coffin_closed") {
     player.animDelay("open_chest")
     player.playSound("coffin_open")
     target.replace("coffin_restless_ghost_2", ticks = TimeUnit.MINUTES.toTicks(3))
-    if (!player.questComplete("the_restless_ghost")) {
+    if (!player.questCompleted("the_restless_ghost")) {
         spawnGhost()
     }
 }

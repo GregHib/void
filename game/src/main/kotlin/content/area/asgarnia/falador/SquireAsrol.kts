@@ -1,25 +1,24 @@
 package content.area.asgarnia.falador
 
+import content.entity.player.bank.ownsItem
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
+import content.entity.sound.playJingle
+import content.quest.quest
+import content.quest.refreshQuestJournal
+import content.quest.questComplete
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.entity.player.bank.ownsItem
-import content.quest.quest
-import content.quest.refreshQuestJournal
-import content.quest.sendQuestComplete
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
-import content.entity.sound.playJingle
 
 npcOperate("Talk-to", "squire_asrol") {
     when (player.quest("the_knights_sword")) {
@@ -197,9 +196,11 @@ fun Context<Player>.questComplete() {
     player.inc("quest_points")
     player.message("Congratulations! Quest complete!")
     player.softQueue("quest_complete", 1) {
-        player.sendQuestComplete("The Knight's Sword Quest", listOf(
+        player.questComplete(
+            "The Knight's Sword Quest",
             "1 Quest Point",
-            "12,725 Smithing XP"
-        ), Item("blurite_sword"))
+            "12,725 Smithing XP",
+            item = "blurite_sword"
+        )
     }
 }

@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.characterDespawn
 import world.gregs.voidps.engine.event.onEvent
-import content.entity.combat.hit.characterCombatHit
+import content.entity.combat.hit.characterCombatDamage
 import content.entity.death.characterDeath
 import content.entity.player.combat.special.specialAttack
 import content.skill.melee.weapon.attackRange
@@ -117,9 +117,9 @@ characterDeath { character ->
     }
 }
 
-characterCombatHit { character ->
+characterCombatDamage { character ->
     if (source == character || type == "poison" || type == "disease" || type == "healed") {
-        return@characterCombatHit
+        return@characterCombatDamage
     }
     if (character.mode !is CombatMovement) {
         retaliate(character, source)

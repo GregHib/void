@@ -8,12 +8,10 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
 fun Smelting.exp(player: Player, bar: String): Double {
-    if (bar != "gold_bar") {
-        return xp
+    if (bar == "gold_bar" && (player.equipped(EquipSlot.Hands).id == "goldsmith_gauntlets" || player.equipped(EquipSlot.Cape).id.startsWith("smithing_cape"))) {
+        return 56.2
     }
-    val gloves = player.equipped(EquipSlot.Hands)
-    val cape = player.equipped(EquipSlot.Cape)
-    return if (gloves.id == "goldsmith_gauntlets" || cape.id.startsWith("smithing_cape")) 56.2 else xp
+    return xp
 }
 
 fun oreToBar(ore: String): String {

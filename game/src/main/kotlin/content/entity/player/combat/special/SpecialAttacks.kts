@@ -29,8 +29,7 @@ specialAttack { player ->
     player.playSound("${id}_special")
     val damage = player.hit(target)
     if (damage >= 0) {
-        target.anim("${id}_hit")
-        target.gfx("${id}_hit")
+        target.gfx("${id}_impact")
     }
-    player.emit(SpecialAttackHit(id, target, damage))
+    player.emit(SpecialAttackDamage(id, target, damage))
 }

@@ -10,15 +10,15 @@ import world.gregs.voidps.engine.map.spiral
 import content.entity.combat.Target
 import content.entity.combat.hit.hit
 import content.area.wilderness.inMultiCombat
-import content.entity.player.combat.special.specialAttackHit
+import content.entity.player.combat.special.specialAttackDamage
 
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-specialAttackHit("spear_wall", noHit = false) { player ->
+specialAttackDamage("spear_wall", noHit = false) { player ->
     player.start(id, duration = 8)
     if (!player.inMultiCombat) {
-        return@specialAttackHit
+        return@specialAttackDamage
     }
     var remaining = 15
     val characters: CharacterList<*> = if (target is Player) players else npcs
@@ -29,7 +29,7 @@ specialAttackHit("spear_wall", noHit = false) { player ->
             }
             player.hit(char)
             if (--remaining <= 0) {
-                return@specialAttackHit
+                return@specialAttackDamage
             }
         }
     }

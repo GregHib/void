@@ -37,7 +37,7 @@ import world.gregs.voidps.type.Zone
 import content.entity.player.dialogue.sendLines
 import content.entity.player.dialogue.type.npc
 import content.entity.gfx.areaGraphic
-import content.quest.sendQuestJournal
+import content.quest.questJournal
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
@@ -50,7 +50,7 @@ modCommand("test") {
     println("Facing ${player.tile.delta(player.visuals.face.targetX, player.visuals.face.targetY)}")
 }
 
-modCommand("commands", aliases = listOf("help")) {
+modCommand("commands") {
     val commands = if (player.isAdmin()) Command.adminCommands else Command.modCommands
     val list = listOf(
         "Commands list with descriptions and usage instructions in the format:",
@@ -58,7 +58,34 @@ modCommand("commands", aliases = listOf("help")) {
         "command description",
         ""
     )
-    player.sendQuestJournal("Commands List", list + commands)
+    player.questJournal("Commands List", list + commands)
+}
+
+modCommand("help (command-name)", "gives more information about a command") {
+    // TODO find a way to automate this.
+    when (content) {
+        "reload" -> {
+            player.message("Reload configuration files for the game server.", ChatType.Console)
+            player.message("config-names:", ChatType.Console)
+            player.message("books, stairs, songs, objects, nav graph, npcs, areas, object defs, emotes, anims", ChatType.Console)
+            player.message("invs, graphics, npc defs, item-on-item, sounds, quests, midi, vars, music, interfaces", ChatType.Console)
+            player.message("spells, patrols, prayers, drops, client scripts, settings", ChatType.Console)
+        }
+        "unlock" -> {
+            player.message("Unlock content of a specific type.", ChatType.Console)
+            player.message("activity-type:", ChatType.Console)
+            player.message("music, tasks, emotes, quests, or blank to unlock all.", ChatType.Console)
+        }
+        "find" -> {
+            player.message("Find the string or integer id of a piece of content.", ChatType.Console)
+            player.message("content-types:", ChatType.Console)
+            player.message("items, objects, npcs, commands", ChatType.Console)
+        }
+        else -> {
+            player.message("No help info found for command '${content}'.", ChatType.Console)
+            player.message("Enter 'commands' for full list of commands.", ChatType.Console)
+        }
+    }
 }
 
 Command.adminCommands.add("${Colours.PURPLE.toTag()}====== Testing Commands ======</col>")

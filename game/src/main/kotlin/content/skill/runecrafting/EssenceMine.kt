@@ -20,7 +20,7 @@ object EssenceMine {
         if (!npc.contains("old_model")) {
             npc.anim("curse")
         }
-        player.gfx("curse_hit")
+        player.gfx("curse_impact")
         player.shoot("curse", player.tile)
         player.softQueue("essence_mine_teleport", 3) {
             player["last_npc_teleport_to_rune_essence_mine"] = npc.id

@@ -2,7 +2,7 @@ package content.quest.member.druidic_ritual
 
 import world.gregs.voidps.engine.client.ui.interfaceSlot
 import content.quest.quest
-import content.quest.sendQuestJournal
+import content.quest.questJournal
 
 interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 33) {
     val lines = when (player.quest("druidic_ritual")) {
@@ -36,5 +36,5 @@ interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 33) {
             "<navy>I can start this quest by talking to <maroon>Kaqemeex <navy>at the<maroon> Taverley Stone Circle."
         )
     }
-    player.sendQuestJournal("Druidic Ritual", lines)
+    player.questJournal("Druidic Ritual", lines)
 }

@@ -15,10 +15,10 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 
 val enchantedMeat = listOf(
-    Item("enchanted_beef", 1),
-    Item("enchanted_rat_meat", 1),
-    Item("enchanted_bear_meat", 1),
-    Item("enchanted_chicken", 1)
+    Item("enchanted_beef"),
+    Item("enchanted_rat_meat"),
+    Item("enchanted_bear_meat"),
+    Item("enchanted_chicken")
 )
 
 npcOperate("Talk-to", "sanfew") {

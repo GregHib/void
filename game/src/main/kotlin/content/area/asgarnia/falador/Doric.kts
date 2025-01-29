@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import content.quest.quest
 import content.quest.refreshQuestJournal
-import content.quest.sendQuestComplete
+import content.quest.questComplete
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.sound.playJingle
@@ -149,11 +149,13 @@ fun Context<Player>.questComplete() {
     player.refreshQuestJournal()
     player.inc("quest_points")
     player.softQueue("quest_complete", 1) {
-        player.sendQuestComplete("Doric's Quest", listOf(
+        player.questComplete(
+            "Doric's Quest",
             "1 Quest Point",
             "1300 Mining XP",
             "180 coins",
-            "Use of Doric's Anvils"
-        ), Item("steel_pickaxe"))
+            "Use of Doric's Anvils",
+            item = "steel_pickaxe"
+        )
     }
 }

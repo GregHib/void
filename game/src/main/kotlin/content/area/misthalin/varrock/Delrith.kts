@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.npcLevelChange
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.event.Context
@@ -64,7 +63,7 @@ val targets = listOf(
 )
 
 enterArea("demon_slayer_stone_circle") {
-    if (!player.questComplete("demon_slayer") && player["demon_slayer_silverlight", false] && !player.hasClock("demon_slayer_instance_exit")) {
+    if (!player.questCompleted("demon_slayer") && player["demon_slayer_silverlight", false] && !player.hasClock("demon_slayer_instance_exit")) {
         cutscene()
     }
 }
@@ -181,7 +180,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     delay(1)
     player.shakeCamera(0, 0, 0, 0, 0)
     for ((_, target) in targets) {
-        areaGraphic("demon_slayer_spell_hit", target.add(offset))
+        areaGraphic("demon_slayer_spell_impact", target.add(offset))
     }
     delay(2)
     npcs.index(delrith)
@@ -203,11 +202,13 @@ suspend fun SuspendableContext<Player>.cutscene() {
         wizard.clearAnim()
         wizard.face(delrith)
     }
-    npc<Chuckle>("denath", """
+    npc<Chuckle>(
+        "denath", """
         Ha ha ha! At last you are free, my demonic brother!
         Rest now, and then have your revenge on this pitiful
         city!
-    """)
+    """
+    )
     for (wizard in wizards) {
         wizard.face(player)
     }
@@ -298,10 +299,12 @@ fun Context<Player>.questComplete() {
     player.inc("quest_points", 3)
     DemonSlayerSpell.clear(player)
     player.softQueue("quest_complete", 1) {
-        player.sendQuestComplete("Demon Slayer", listOf(
+        player.questComplete(
+            "Demon Slayer",
             "3 Quest Points",
-            "Silverlight"
-        ), Item("silverlight"))
+            "Silverlight",
+            item = "silverlight"
+        )
     }
 }
 

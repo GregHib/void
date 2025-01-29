@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.inject
@@ -29,7 +28,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import content.quest.quest
-import content.quest.sendQuestComplete
+import content.quest.questComplete
 import content.quest.startCutscene
 import content.quest.stopCutscene
 import content.entity.player.dialogue.*
@@ -199,7 +198,7 @@ suspend fun SuspendableContext<Player>.cutscenePart2(instance: Region) {
     }
     player.moveCamera(Tile(3084, 3421).add(offset), 350)
     player.turnCamera(Tile(3082, 3426).add(offset), 250)
-	val gudrunHugging = objects.add("gudrun_and_dororan", Tile(3082,3426).add(offset), shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+    val gudrunHugging = objects.add("gudrun_and_dororan", Tile(3082, 3426).add(offset), shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
     player.open("fade_in")
     npc<Happy>("gudrun_cutscene", "That was brilliant! I must know who wrote that poem.")
     npc<Sad>("dororan_cutscene", "Um, that would be me. Hello")
@@ -497,12 +496,14 @@ fun Context<Player>.questComplete() {
     player.inc("quest_points", 5)
     player.experience.add(Skill.Crafting, 300.0)
     player.softQueue("quest_complete", 1) {
-        player.sendQuestComplete("Gunnar's Ground", listOf(
+        player.questComplete(
+            "Gunnar's Ground",
             "5 Quest Points",
             "300 Crafting XP.",
             "Antique lamp.",
-            "Swanky boots."
-        ), Item("gunnars_ground"))
+            "Swanky boots.",
+            item = "gunnars_ground"
+        )
     }
     player.inventory.add("antique_lamp_gunnars_ground")
     player.inventory.add("swanky_boots")

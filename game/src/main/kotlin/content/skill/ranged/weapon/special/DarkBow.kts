@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.distanceTo
 import content.entity.combat.combatSwing
-import content.entity.combat.hit.characterCombatHit
+import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.hit
 import content.skill.ranged.ammo
 import content.entity.player.combat.special.specialAttack
@@ -33,10 +33,10 @@ specialAttack("descent_of_darkness") { player ->
     player.hit(target, delay = time2)
 }
 
-characterCombatHit("dark_bow*", "range") { character ->
+characterCombatDamage("dark_bow*", "range") { character ->
     source.playSound("descent_of_darkness")
     source.playSound("descent_of_darkness", delay = 20)
-    character.gfx("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_hit")
+    character.gfx("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_impact")
 }
 
 combatSwing("dark_bow*", "range") { player ->

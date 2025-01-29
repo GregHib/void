@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
+import world.gregs.voidps.engine.client.ui.event.IntEntered
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
@@ -35,14 +36,18 @@ fun Player.itemOption(
     slot: Int = inventories.inventory(inventory).indexOf(item)
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    emit(InterfaceOption(this,
-        id = id,
-        component = component,
-        optionIndex = optionIndex,
-        option = option,
-        item = inventories.inventory(inventory).getOrNull(slot) ?: Item(item),
-        itemSlot = slot,
-        inventory = inventory))
+    emit(
+        InterfaceOption(
+            this,
+            id = id,
+            component = component,
+            optionIndex = optionIndex,
+            option = option,
+            item = inventories.inventory(inventory).getOrNull(slot) ?: Item(item),
+            itemSlot = slot,
+            inventory = inventory
+        )
+    )
 }
 
 fun Player.interfaceOption(
@@ -58,6 +63,22 @@ fun Player.interfaceOption(
     emit(InterfaceOption(this, id = id, component = component, optionIndex = optionIndex, option = option, item = item, itemSlot = slot, inventory = inventory))
 }
 
+fun Player.skillCreation(
+    item: String,
+    amount: Int = 1
+) {
+    Assertions.assertTrue(hasOpen("dialogue_skill_creation")) { "Player $this doesn't have interface dialogue_skill_creation open" }
+    set("skill_creation_amount", amount)
+    var index = -1
+    for (i in 0 until 10) {
+        val name = get<String>("skill_creation_name_$i") ?: continue
+        if (item == name) {
+            index = i
+        }
+    }
+    emit(IntEntered(index))
+}
+
 fun Player.interfaceUse(
     id: String,
     component: String,
@@ -68,18 +89,20 @@ fun Player.interfaceUse(
     toSlot: Int = -1
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    emit(ItemOnItem(
-        fromItem = fromItem,
-        toItem = toItem,
-        fromSlot = fromSlot,
-        toSlot = toSlot,
-        fromInterface = id,
-        fromComponent = component,
-        toInterface = id,
-        toComponent = component,
-        fromInventory = inventory,
-        toInventory = inventory
-    ))
+    emit(
+        ItemOnItem(
+            fromItem = fromItem,
+            toItem = toItem,
+            fromSlot = fromSlot,
+            toSlot = toSlot,
+            fromInterface = id,
+            fromComponent = component,
+            toInterface = id,
+            toComponent = component,
+            fromInventory = inventory,
+            toInventory = inventory
+        )
+    )
 }
 
 fun Player.interfaceSwitch(
@@ -92,18 +115,20 @@ fun Player.interfaceSwitch(
     toSlot: Int = -1
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    emit(InterfaceSwitch(
-        id = id,
-        component = component,
-        fromItem = fromItem,
-        fromSlot = fromSlot,
-        fromInventory = inventory,
-        toId = id,
-        toComponent = component,
-        toItem = toItem,
-        toSlot = toSlot,
-        toInventory = inventory
-    ))
+    emit(
+        InterfaceSwitch(
+            id = id,
+            component = component,
+            fromItem = fromItem,
+            fromSlot = fromSlot,
+            fromInventory = inventory,
+            toId = id,
+            toComponent = component,
+            toItem = toItem,
+            toSlot = toSlot,
+            toInventory = inventory
+        )
+    )
 }
 
 fun Player.equipItem(
@@ -167,18 +192,20 @@ fun Player.itemOnItem(
 ) {
     val one = inventories.inventory(firstInventory)
     val two = inventories.inventory(secondInventory)
-    emit(ItemOnItem(
-        one[firstSlot],
-        two[secondSlot],
-        firstSlot,
-        secondSlot,
-        firstInventory,
-        firstComponent,
-        secondInventory,
-        secondComponent,
-        firstInventory,
-        secondInventory
-    ))
+    emit(
+        ItemOnItem(
+            one[firstSlot],
+            two[secondSlot],
+            firstSlot,
+            secondSlot,
+            firstInventory,
+            firstComponent,
+            secondInventory,
+            secondComponent,
+            firstInventory,
+            secondInventory
+        )
+    )
 }
 
 fun Player.npcOption(npc: NPC, option: String) = npcOption(npc, npc.def.options.indexOf(option))

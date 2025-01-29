@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.type.random
 import content.entity.combat.Target
 import content.entity.combat.hit.Damage
-import content.entity.combat.hit.characterCombatHit
+import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.hit
 import content.area.wilderness.inMultiCombat
 import content.skill.melee.weapon.weapon
@@ -32,18 +32,18 @@ specialAttack("disrupt") { player ->
     player.hit(target, damage = hit, type = "magic", delay = 0)
 }
 
-characterCombatHit("korasis_sword") { target ->
+characterCombatDamage("korasis_sword") { target ->
     if (!special) {
-        return@characterCombatHit
+        return@characterCombatDamage
     }
     areaSound("godwars_saradomin_magic_impact", target.tile, 10)
-    target.gfx("disrupt_hit")
+    target.gfx("disrupt_impact")
     if (!target.inMultiCombat) {
-        return@characterCombatHit
+        return@characterCombatDamage
     }
     val chain: MutableSet<Int> = source["korasi_chain", mutableSetOf()]
     if (chain.size >= 3) {
-        return@characterCombatHit
+        return@characterCombatDamage
     }
     val characters = if (target is Player) players else npcs
     for (tile in target.tile.spiral(4)) {
@@ -58,10 +58,10 @@ characterCombatHit("korasis_sword") { target ->
             val hit = damage / when (chain.size) {
                 2 -> 2
                 3 -> 4
-                else -> return@characterCombatHit
+                else -> return@characterCombatDamage
             }
             source.hit(character, damage = hit, weapon = weapon, type = type, special = true)
-            return@characterCombatHit
+            return@characterCombatDamage
         }
     }
 }

@@ -1,9 +1,9 @@
 package content.skill.melee.weapon.special
 
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import content.entity.player.combat.special.specialAttackHit
+import content.entity.player.combat.special.specialAttackDamage
 
-specialAttackHit("clobber") {
+specialAttackDamage("clobber") {
     val drain = damage / 100
     if (drain > 0) {
         target.levels.drain(Skill.Defence, drain)

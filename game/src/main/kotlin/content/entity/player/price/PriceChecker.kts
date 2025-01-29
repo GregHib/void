@@ -19,6 +19,7 @@ import content.entity.player.bank.noted
 import content.social.trade.offer
 import content.entity.player.dialogue.type.intEntry
 import content.entity.player.modal.Tab
+import content.entity.player.modal.tab
 
 /*
     Price checker interface
@@ -59,7 +60,7 @@ interfaceClose("price_checker") { player ->
  */
 
 interfaceOpen("price_checker_side") { player ->
-    player["tab"] = Tab.Inventory.name
+    player.tab(Tab.Inventory)
     player.interfaceOptions.send(id, "items")
     player.interfaceOptions.unlockAll(id, "items", 0 until 28)
     player.sendInventory(player.inventory)

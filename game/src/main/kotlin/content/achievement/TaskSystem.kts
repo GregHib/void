@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
 import content.entity.player.modal.Tab
+import content.entity.player.modal.tab
 
 val variables: VariableDefinitions by inject()
 val enumDefinitions: EnumDefinitions by inject()
@@ -161,7 +162,7 @@ fun areaId(player: Player) = variables.get("task_area")!!.values.toInt(player["t
 
 interfaceOption("Details", "details", "task_popup") {
     player["task_popup_summary"] = true
-    player["tab"] = Tab.TaskSystem.name
+    player.tab(Tab.TaskSystem)
 }
 
 variableSet("*_task") { player ->

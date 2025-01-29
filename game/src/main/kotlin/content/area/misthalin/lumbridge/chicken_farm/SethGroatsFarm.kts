@@ -1,16 +1,15 @@
 package content.area.misthalin.lumbridge.chicken_farm
 
+import content.entity.player.bank.ownsItem
+import content.entity.player.inv.item.take.canTake
+import content.quest.questCompleted
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.entity.item.floor.floorItemOperate
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
-import content.entity.player.bank.bank
-import content.quest.questComplete
 import java.util.concurrent.TimeUnit
 
 objectOperate("Take-hatchet", "hatchet_logs") {
@@ -21,11 +20,11 @@ objectOperate("Take-hatchet", "hatchet_logs") {
     }
 }
 
-floorItemOperate("Take", "super_large_egg", override = false) {
-    if (player.questComplete("cooks_assistant")) {
+canTake("super_large_egg") { player ->
+    if (player.questCompleted("cooks_assistant")) {
         player.message("You've no reason to pick that up; eggs of that size are only useful for royal cakes.")
         cancel()
-    } else if (player.holdsItem("super_large_egg") || player.bank.contains("super_large_egg")) {
+    } else if (player.ownsItem("super_large_egg")) {
         player.message("You've already got one of those eggs and one's enough.")
         cancel()
     }

@@ -20,9 +20,9 @@ suspend fun Context<Player>.makeAmount(
     allowAll: Boolean = true,
     names: List<String>? = null
 ): Pair<String, Int> {
-    val result = makeAmountIndex(items, type, maximum, text, allowAll, names)
-    val id = items.getOrNull(result.first) ?: ""
-    return id to result.second
+    val (index, amount) = makeAmountIndex(items, type, maximum, text, allowAll, names)
+    val id = items.getOrNull(index) ?: ""
+    return id to amount
 }
 
 suspend fun Context<Player>.makeAmountIndex(
@@ -53,7 +53,7 @@ suspend fun Context<Player>.makeAmountIndex(
 
 private fun setItemOptions(player: Player, items: List<String>, names: List<String>?) {
     val definitions: ItemDefinitions = get()
-    repeat(10) { index ->
+    for (index in 0 until 10) {
         val item = definitions.get(items.getOrNull(index) ?: "")
         player["skill_creation_item_$index"] = item.id
         if (names != null && names.indices.contains(index)) {

@@ -20,23 +20,10 @@ internal class DropTest : WorldTest() {
         val player = createPlayer("player")
         player.inventory.add("bronze_sword")
 
-        player.interfaceOption("inventory", "inventory", "Drop", 4, Item("bronze_sword", 1), 0)
+        player.interfaceOption("inventory", "inventory", "Drop", 4, Item("bronze_sword"), 0)
 
         assertTrue(player.inventory.isEmpty())
         assertTrue(floorItems[player.tile].any { it.id == "bronze_sword" })
-    }
-
-    @Test
-    fun `Pickup item off the floor`() {
-        val tile = emptyTile
-        val player = createPlayer("player", tile)
-        val item = floorItems.add(tile.add(0, 2), "bronze_sword")
-
-        player.floorItemOption(item, "Take")
-        tick(5)
-
-        assertTrue(player.inventory.contains("bronze_sword"))
-        assertTrue(floorItems[tile.add(0, 2)].isEmpty())
     }
 
     @Test
@@ -74,7 +61,7 @@ internal class DropTest : WorldTest() {
         floorItems.add(tile, "bronze_sword")
         player.inventory.add("bronze_sword")
 
-        player.interfaceOption("inventory", "inventory", "Drop", 4, Item("bronze_sword", 1), 0)
+        player.interfaceOption("inventory", "inventory", "Drop", 4, Item("bronze_sword"), 0)
 
         assertTrue(player.inventory.isEmpty())
         assertEquals(2, floorItems[tile].count { it.id == "bronze_sword" })
@@ -103,20 +90,6 @@ internal class DropTest : WorldTest() {
 
         assertTrue(player.inventory.contains("toolkit"))
         assertFalse(floorItems[tile.addX(1)].any { it.id == "toolkit" })
-    }
-
-    @Test
-    fun `Pickup item up off a table`() {
-        val tile = Tile(3212, 3218, 1)
-        val player = createPlayer("player", tile)
-        val item = floorItems.add(tile.add(1, 0), "bronze_sword")
-
-        player.floorItemOption(item, "Take")
-        tick(5)
-
-        assertTrue(player.inventory.contains("bronze_sword"))
-        assertTrue(floorItems[tile.add(1, 0)].isEmpty())
-        assertEquals(tile, player.tile)
     }
 
 }

@@ -36,11 +36,11 @@ characterCombatAttack { character ->
         } else {
             val type: String? = target.weapon.def.getOrNull("weapon_type")
             val definition = if (type != null) weaponDefinitions.get(type) else null
-            var animation = definition?.attackTypes?.get("hit")
+            var animation = definition?.attackTypes?.get("defend")
             if (animation == null) {
                 val id = target.weapon.def["weapon_style", -1]
                 val style = styleDefinitions.get(id)
-                animation = if (id != -1 && animationDefinitions.contains("${style.stringId}_hit")) "${style.stringId}_hit" else "human_hit"
+                animation = if (id != -1 && animationDefinitions.contains("${style.stringId}_defend")) "${style.stringId}_defend" else "human_defend"
             }
             target.anim(animation, delay)
         }
@@ -51,18 +51,18 @@ characterCombatAttack { character ->
 }
 
 fun hitAnimation(npc: NPC): String {
-    var animation = "${npc.id}_hit"
+    var animation = "${npc.id}_defend"
     if (animationDefinitions.contains(animation)) {
         return animation
     }
-    if (npc.def.contains("hit_anim")) {
-        animation = npc.def["hit_anim", ""]
+    if (npc.def.contains("defend_anim")) {
+        animation = npc.def["defend_anim", ""]
         if (animationDefinitions.contains(animation)) {
             return animation
         }
     }
     if (npc.race.isNotEmpty()) {
-        animation = "${npc.race}_hit"
+        animation = "${npc.race}_defend"
         if (animationDefinitions.contains(animation)) {
             return animation
         }
@@ -73,18 +73,18 @@ fun hitAnimation(npc: NPC): String {
 fun calculateHitSound(target: Character): String {
     if (target is NPC) {
         var sound: String
-        if (target.def.contains("hit_sound")) {
-            sound = target.def["hit_sound"]
+        if (target.def.contains("defend_sound")) {
+            sound = target.def["defend_sound"]
             if (soundDefinitions.contains(sound)) {
                 return sound
             }
         }
-        sound = "${target.id}_hit"
+        sound = "${target.id}_defend"
         if (soundDefinitions.contains(sound)) {
             return sound
         }
         if (target.race.isNotEmpty()) {
-            sound = "${target.race}_hit"
+            sound = "${target.race}_defend"
             if (soundDefinitions.contains(sound)) {
                 return sound
             }
@@ -94,10 +94,10 @@ fun calculateHitSound(target: Character): String {
 
     if (target is Player) {
         return if (target.male) {
-            "male_hit_${random.nextInt(0, 3)}"
+            "male_defend_${random.nextInt(0, 3)}"
         } else {
-            "female_hit_${random.nextInt(0, 1)}"
+            "female_defend_${random.nextInt(0, 1)}"
         }
     }
-    return "human_hit"
+    return "human_defend"
 }

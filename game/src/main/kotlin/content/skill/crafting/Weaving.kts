@@ -74,7 +74,7 @@ fun Player.weave(obj: GameObject, item: Item, amount: Int) {
     val current = inventory.count(item.id)
     if (current < data.amount) {
         val name = data.to.toLowerSpaceCase()
-        message("You need ${data.amount} ${plural(item)} in order to make ${name.an()} $name.")
+        message("You need ${data.amount} ${plural(item)} in order to make${name.an()} $name.")
         return
     }
     face(obj)
@@ -90,7 +90,7 @@ fun Player.weave(obj: GameObject, item: Item, amount: Int) {
         when (inventory.transaction.error) {
             is TransactionError.Full, is TransactionError.Deficient -> {
                 val name = data.to.toLowerSpaceCase()
-                message("You need ${data.amount} ${plural(item)} in order to make ${name.an()} $name.")
+                message("You need ${data.amount} ${plural(item)} in order to make${name.an()} $name.")
                 return@weakQueue
             }
             else -> {}

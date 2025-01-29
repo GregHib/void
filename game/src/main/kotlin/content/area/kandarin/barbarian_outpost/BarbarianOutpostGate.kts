@@ -6,13 +6,13 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
-import content.quest.questComplete
+import content.quest.questCompleted
 import content.entity.obj.door.enterDoor
 
 val npcs: NPCs by inject()
 
 objectOperate("Open", "barbarian_outpost_gate_left_closed", "barbarian_outpost_gate_right_closed") {
-    if (!player.questComplete("alfred_grimhands_barcrawl")) {
+    if (!player.questCompleted("alfred_grimhands_barcrawl")) {
         val guard = npcs[player.tile.regionLevel].firstOrNull { it.id == "barbarian_guard" } ?: return@objectOperate
         player.talkWith(guard)
         player.mode = Interact(player, guard, NPCOption(player, guard, guard.def, "Talk-to"))

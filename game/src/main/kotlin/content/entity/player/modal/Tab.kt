@@ -1,5 +1,7 @@
 package content.entity.player.modal
 
+import world.gregs.voidps.engine.entity.character.player.Player
+
 enum class Tab {
     CombatStyles,
     TaskSystem,
@@ -16,4 +18,8 @@ enum class Tab {
     Emotes,
     MusicPlayer,
     Notes;
+}
+
+fun Player.tab(tab: Tab) {
+    this["tab"] = tab.name
 }

@@ -50,12 +50,11 @@ inventoryItem("Withdraw-many", "coal_bag") {
 }
 
 itemOnItem("coal", "coal_bag") { player ->
-    val count = player.inventory.count("coal")
-    if (count == bagCapacity) {
+    val coal = player["coal_bag_coal", 0]
+    if (coal == bagCapacity) {
         player.message("The coal bag is already full.")
         return@itemOnItem
     }
-    val coal = player["coal_bag_coal", 0]
     val limit = bagCapacity - coal
     val removed = player.inventory.removeToLimit("coal", limit)
     if (removed == 0) {

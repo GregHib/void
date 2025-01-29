@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import content.quest.quest
-import content.quest.sendQuestJournal
+import content.quest.questJournal
 
 interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 3) {
     val lines = when (player.quest("dorics_quest")) {
@@ -33,7 +33,7 @@ interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 3) {
             "<navy>There aren't any requirements but <maroon>Level 15 Mining<navy> will help"
         )
     }
-    player.sendQuestJournal("Doric's Quest", lines)
+    player.questJournal("Doric's Quest", lines)
 }
 
 fun requiredItem(player: Player, item: String, required: Int): String {

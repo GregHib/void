@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.queue.softQueue
-import content.quest.questComplete
+import content.quest.questCompleted
 import content.skill.runecrafting.EssenceMine
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.ChoiceBuilder
@@ -30,14 +30,14 @@ npcOperate("Talk-to", "wizard_cromperty") {
             }
         }
         whatHaveYouInvented()
-        option<Quiz>("Can you teleport me to the Rune Essence Mine?", filter = { player.questComplete("rune_mysteries") }) {
+        option<Quiz>("Can you teleport me to the Rune Essence Mine?", filter = { player.questCompleted("rune_mysteries") }) {
             EssenceMine.teleport(target, player)
         }
     }
 }
 
 npcOperate("Teleport", "wizard_cromperty") {
-    if (player.questComplete("rune_mysteries")) {
+    if (player.questCompleted("rune_mysteries")) {
         EssenceMine.teleport(target, player)
     } else {
         player.message("You need to have completed the Rune Mysteries Quest to use this feature.")
@@ -73,7 +73,7 @@ fun ChoiceBuilder<NPCOption<Player>>.teleportMe() {
         choice {
             option<Talk>("Yes, that sounds good. Teleport me!") {
                 npc<Happy>("Okey dokey! Ready?")
-                player.gfx("curse_hit")
+                player.gfx("curse_impact")
                 target.gfx("curse_cast")
                 target.say("Dipsolum sententa sententi!")
                 target.shoot("curse", player.tile, offset = 64)

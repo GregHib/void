@@ -43,7 +43,7 @@ suspend fun PlayerChoice.madeSword() = option<Happy>(
 }
 
 val items = listOf(
-    Item("blurite_ore", 1),
+    Item("blurite_ore"),
     Item("iron_bar", 2)
 )
 

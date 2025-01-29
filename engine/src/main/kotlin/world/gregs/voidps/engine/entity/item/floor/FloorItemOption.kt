@@ -25,8 +25,8 @@ data class FloorItemOption<C : Character>(
     }
 }
 
-fun floorItemOperate(option: String, item: String = "*", arrive: Boolean = true, override: Boolean = true, handler: suspend FloorItemOption<Player>.() -> Unit) {
-    Events.handle<FloorItemOption<Player>>("player_operate_floor_item", option, item, "player", override = override) {
+fun floorItemOperate(option: String, item: String = "*", arrive: Boolean = true, handler: suspend FloorItemOption<Player>.() -> Unit) {
+    Events.handle<FloorItemOption<Player>>("player_operate_floor_item", option, item, "player") {
         if (arrive) {
             arriveDelay()
         }
@@ -34,14 +34,14 @@ fun floorItemOperate(option: String, item: String = "*", arrive: Boolean = true,
     }
 }
 
-fun floorItemApproach(option: String, item: String = "*", override: Boolean = true, handler: suspend FloorItemOption<Player>.() -> Unit) {
-    Events.handle<FloorItemOption<Player>>("player_approach_floor_item", option, item, "player", override = override) {
+fun floorItemApproach(option: String, item: String = "*", handler: suspend FloorItemOption<Player>.() -> Unit) {
+    Events.handle<FloorItemOption<Player>>("player_approach_floor_item", option, item, "player") {
         handler.invoke(this)
     }
 }
 
-fun npcOperateFloorItem(option: String, item: String = "*", npc: String = "*", arrive: Boolean = true, override: Boolean = true, handler: suspend FloorItemOption<NPC>.() -> Unit) {
-    Events.handle<FloorItemOption<NPC>>("npc_operate_floor_item", option, item, npc, override = override) {
+fun npcOperateFloorItem(option: String, item: String = "*", npc: String = "*", arrive: Boolean = true, handler: suspend FloorItemOption<NPC>.() -> Unit) {
+    Events.handle<FloorItemOption<NPC>>("npc_operate_floor_item", option, item, npc) {
         if (arrive) {
             arriveDelay()
         }
@@ -49,27 +49,27 @@ fun npcOperateFloorItem(option: String, item: String = "*", npc: String = "*", a
     }
 }
 
-fun npcApproachFloorItem(option: String, item: String = "*", npc: String = "*", override: Boolean = true, handler: suspend FloorItemOption<NPC>.() -> Unit) {
-    Events.handle<FloorItemOption<NPC>>("npc_approach_floor_item", option, item, npc, override = override) {
+fun npcApproachFloorItem(option: String, item: String = "*", npc: String = "*", handler: suspend FloorItemOption<NPC>.() -> Unit) {
+    Events.handle<FloorItemOption<NPC>>("npc_approach_floor_item", option, item, npc) {
         handler.invoke(this)
     }
 }
 
-fun characterOperateFloorItem(option: String, item: String = "*", arrive: Boolean = true, override: Boolean = true, block: suspend FloorItemOption<Character>.() -> Unit) {
+fun characterOperateFloorItem(option: String, item: String = "*", arrive: Boolean = true, block: suspend FloorItemOption<Character>.() -> Unit) {
     val handler: suspend FloorItemOption<Character>.(Character) -> Unit = {
         if (arrive) {
             arriveDelay()
         }
         block.invoke(this)
     }
-    Events.handle("player_operate_floor_item", option, item, "player", override = override, handler = handler)
-    Events.handle("npc_operate_floor_item", option, item, "*", override = override, handler = handler)
+    Events.handle("player_operate_floor_item", option, item, "player", handler = handler)
+    Events.handle("npc_operate_floor_item", option, item, "*", handler = handler)
 }
 
-fun characterApproachFloorItem(option: String, item: String = "*", override: Boolean = true, block: suspend FloorItemOption<Character>.() -> Unit) {
+fun characterApproachFloorItem(option: String, item: String = "*", block: suspend FloorItemOption<Character>.() -> Unit) {
     val handler: suspend FloorItemOption<Character>.(Character) -> Unit = {
         block.invoke(this)
     }
-    Events.handle("player_approach_floor_item", option, item, "player", override = override, handler = handler)
-    Events.handle("npc_approach_floor_item", option, item, "*", override = override, handler = handler)
+    Events.handle("player_approach_floor_item", option, item, "player", handler = handler)
+    Events.handle("npc_approach_floor_item", option, item, "*", handler = handler)
 }

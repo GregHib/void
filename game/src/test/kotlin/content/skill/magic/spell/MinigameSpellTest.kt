@@ -11,7 +11,7 @@ class MinigameSpellTest : MagicSpellTest() {
     @Test
     fun `Remove minigame runes`() {
         val player = player()
-        setItems(Item("earth_rune", 2), Item("air_rune", 1), Item("death_rune", 1))
+        setItems(Item("earth_rune", 2), Item("air_rune"), Item("death_rune"))
         player["minigame_type"] = "fist_of_guthix"
 
         player.inventory.add("elemental_rune", 10)
@@ -25,11 +25,11 @@ class MinigameSpellTest : MagicSpellTest() {
     @Test
     fun `Remove last minigame runes`() {
         val player = player()
-        setItems(Item("earth_rune", 1), Item("air_rune", 2), Item("death_rune", 1))
+        setItems(Item("earth_rune"), Item("air_rune", 2), Item("death_rune"))
         player["minigame_type"] = "stealing_creation"
 
         player.inventory.add("elemental_rune", 3)
-        player.inventory.add("catalytic_rune", 1)
+        player.inventory.add("catalytic_rune")
 
         assertTrue(player.removeSpellItems("spell"))
         assertEquals(0, player.inventory.count("elemental_rune"))
@@ -39,7 +39,7 @@ class MinigameSpellTest : MagicSpellTest() {
     @Test
     fun `Can't use minigame runes outside of minigame`() {
         val player = player()
-        setItems(Item("earth_rune", 1), Item("air_rune", 2), Item("death_rune", 1))
+        setItems(Item("earth_rune"), Item("air_rune", 2), Item("death_rune"))
 
         player.inventory.add("elemental_rune", 10)
         player.inventory.add("catalytic_rune", 10)
@@ -52,11 +52,11 @@ class MinigameSpellTest : MagicSpellTest() {
     @Test
     fun `Not enough minigame runes`() {
         val player = player()
-        setItems(Item("air_rune", 3), Item("death_rune", 1))
+        setItems(Item("air_rune", 3), Item("death_rune"))
         player["minigame_type"] = "barbarian_assault"
 
         player.inventory.add("elemental_rune", 2)
-        player.inventory.add("catalytic_rune", 1)
+        player.inventory.add("catalytic_rune")
 
         assertFalse(player.removeSpellItems("spell"))
         assertEquals(2, player.inventory.count("elemental_rune"))
