@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
+import content.quest.quest
 
 val variables: VariableDefinitions by inject()
 val enumDefinitions: EnumDefinitions by inject()
@@ -29,7 +30,7 @@ interfaceOpen("task_system") { player ->
     if (player.contains("task_dont_show_again")) {
         player.sendVariable("task_dont_show_again")
     }
-    if (player["unstable_foundations", "unstarted"] == "unstarted") {
+    if (player.quest("unstable_foundations") == "unstarted") {
         player["task_pinned"] = 3520 // Talk to explorer jack
         player["task_pin_index"] = 1
         player["task_selected"] = 1
@@ -83,11 +84,21 @@ interfaceOption("OK", "ok", "task_system") {
 
 interfaceOption("Pin/Unpin Task", "task_*", "task_system") {
     val index = component.removePrefix("task_").toInt()
+    pin(player, index)
+}
+
+interfaceOption("Set", "pin", "task_system") {
+    val i = player.get<Int>("task_selected") ?: return@interfaceOption
+    pin(player, i)
+    player.interfaces.sendVisibility("task_system", "summary_overlay", false)
+}
+
+fun pin(player: Player, index: Int) {
     if (player["task_pin_index", -1] == index) {
         player.clear("task_pinned")
         player.clear("task_pin_index")
     } else {
-        player["task_pinned"] = indexOfSlot(player, index) ?: return@interfaceOption
+        player["task_pinned"] = indexOfSlot(player, index) ?: return
         player["task_pin_index"] = index
     }
 }
