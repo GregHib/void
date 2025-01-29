@@ -146,6 +146,7 @@ fun refreshSlots(player: Player) {
         }
         if (pinned) {
             player["task_slot_${slot++}"] = player["task_pinned", 4091]
+            total--
             skip = true
         } else if (slot < 7) {
             player["task_slot_${slot++}"] = index
