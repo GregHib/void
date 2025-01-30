@@ -42,7 +42,7 @@ objectOperate("Swing-on", "barbarian_outpost_rope_swing") {
     val success = disable || Level.success(player.levels.get(Skill.Agility), 70) // 50% success at 35
 //  player.message("The rope swing is being used at the moment.", ChatType.Filter)
     player.anim("rope_swing")
-    target.animate("swing_rope")
+    target.anim("swing_rope")
     delay()
     if (success) {
         player.exactMove(player.tile.copy(y = 3549), 60, Direction.SOUTH)

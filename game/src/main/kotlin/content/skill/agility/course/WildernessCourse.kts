@@ -121,7 +121,7 @@ objectOperate("Swing-on", "wilderness_rope_swing") {
     val disable = Settings["agility.disableCourseFailure", false]
     val success = disable || Level.success(player.levels.get(Skill.Agility), 200..250)
     player.anim("rope_swing")
-    target.animate("swing_rope")
+    target.anim("swing_rope")
     delay()
     if (success) {
         player.exactMoveDelay(player.tile.copy(y = 3958), 60, Direction.NORTH)

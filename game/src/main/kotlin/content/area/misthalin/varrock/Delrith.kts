@@ -171,7 +171,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     player.playSound("summon_npc")
     player.playSound("demon_slayer_table_explosion")
     delay(1)
-    table.animate("demon_slayer_table_light")
+    table.anim("demon_slayer_table_light")
     delay(1)
     player.shakeCamera(15, 0, 0, 0, 0)
     for ((source, target) in targets) {
