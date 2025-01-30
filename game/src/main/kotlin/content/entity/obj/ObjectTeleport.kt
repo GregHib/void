@@ -23,7 +23,7 @@ data class ObjectTeleport(
     override val notification: Boolean = true
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "${dispatcher.key}_teleport_${if (land) "land" else "takeoff"}"
+        0 -> "${dispatcher.key}_obj_teleport_${if (land) "land" else "takeoff"}"
         1 -> dispatcher.identifier
         2 -> id
         3 -> obj.stringId
@@ -37,7 +37,7 @@ fun objTeleportTakeOff(option: String = "*", vararg ids: String = arrayOf("*"), 
         block.invoke(this)
     }
     for (id in ids) {
-        Events.handle("player_teleport_takeoff", "player", "*", id, option, handler = handler)
+        Events.handle("player_obj_teleport_takeoff", "player", "*", id, option, handler = handler)
     }
 }
 
@@ -46,12 +46,12 @@ fun objTeleportLand(option: String = "*", vararg ids: String = arrayOf("*"), blo
         block.invoke(this)
     }
     for (id in ids) {
-        Events.handle("player_teleport_land", "player", "*", id, option, handler = handler)
+        Events.handle("player_obj_teleport_land", "player", "*", id, option, handler = handler)
     }
 }
 
 fun objTeleport(option: String = "*", obj: String = "*", id: String = "*", land: Boolean = true, handler: suspend ObjectTeleport.() -> Unit) {
-    Events.handle<Player, ObjectTeleport>("player_teleport_${if (land) "land" else "takeoff"}", "player", id, obj, option) {
+    Events.handle<Player, ObjectTeleport>("player_obj_teleport_${if (land) "land" else "takeoff"}", "player", id, obj, option) {
         handler.invoke(this)
     }
 }

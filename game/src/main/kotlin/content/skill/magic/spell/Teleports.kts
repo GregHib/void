@@ -23,7 +23,7 @@ interfaceOption("Cast", "*_teleport", "*_spellbook") {
     if (component == "lumbridge_home_teleport") {
         return@interfaceOption
     }
-    if (player.queue.contains(ActionPriority.Normal)) {
+    if (player.contains("delay") || player.queue.contains("teleport")) {
         return@interfaceOption
     }
     player.closeInterfaces()
@@ -51,7 +51,7 @@ interfaceOption("Cast", "*_teleport", "*_spellbook") {
 }
 
 inventoryItem("*", "*_teleport") {
-    if (player.queue.contains(ActionPriority.Normal)) {
+    if (player.contains("delay") || player.queue.contains("teleport")) {
         return@inventoryItem
     }
     player.closeInterfaces()

@@ -15,6 +15,9 @@ val monastery = areas["monastery_teleport"]
 val rangingGuild = areas["ranging_guild_teleport"]
 
 inventoryItem("Rub", "combat_bracelet_#", "inventory") {
+    if (player.contains("delay")) {
+        return@inventoryItem
+    }
     choice("Where would you like to teleport to?") {
         option("Warriors' Guild") {
             player.message("You rub the bracelet...", ChatType.Filter)
@@ -37,6 +40,9 @@ inventoryItem("Rub", "combat_bracelet_#", "inventory") {
 }
 
 inventoryItem("*", "combat_bracelet_#", "worn_equipment") {
+    if (player.contains("delay")) {
+        return@inventoryItem
+    }
     val area = when (option) {
         "Warriors' Guild" -> warriorsGuild
         "Champions' Guild" -> championsGuild

@@ -13,6 +13,9 @@ val mobilisingArmies = areas["mobilising_armies_teleport"]
 val fistOfGuthix = areas["fist_of_guthix_teleport"]
 
 inventoryItem("Rub", "ring_of_duelling_#", "inventory") {
+    if (player.contains("delay")) {
+        return@inventoryItem
+    }
     choice("Where would you like to teleport to?") {
         option("Al Kharid Duel Arena.") {
             jewelleryTeleport(player, inventory, slot, duelArena)
@@ -31,6 +34,9 @@ inventoryItem("Rub", "ring_of_duelling_#", "inventory") {
 }
 
 inventoryItem("*", "ring_of_duelling_#", "worn_equipment") {
+    if (player.contains("delay")) {
+        return@inventoryItem
+    }
     val area = when (option) {
         "Duel Arena" -> duelArena
         "Castle Wars" -> castleWars

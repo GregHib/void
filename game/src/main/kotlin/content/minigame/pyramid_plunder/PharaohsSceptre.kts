@@ -13,6 +13,9 @@ val jaleustrophos = areas["jaleustrophos_teleport"]
 val jaldraocht = areas["jaldraocht_teleport"]
 
 inventoryItem("Teleport", "pharaohs_sceptre_#", "inventory") {
+    if (player.contains("delay")) {
+        return@inventoryItem
+    }
     choice("Which Pyramid do you want to teleport to?") {
         option("Jalsavrah") {
             itemTeleport(player, inventory, slot, jalsavrah, "pharaohs_sceptre")
@@ -28,6 +31,9 @@ inventoryItem("Teleport", "pharaohs_sceptre_#", "inventory") {
 }
 
 inventoryItem("*", "pharaohs_sceptre_#", "worn_equipment") {
+    if (player.contains("delay")) {
+        return@inventoryItem
+    }
     val area = when (option) {
         "Jalsavrah" -> jalsavrah
         "Jaleustrophos" -> jaleustrophos

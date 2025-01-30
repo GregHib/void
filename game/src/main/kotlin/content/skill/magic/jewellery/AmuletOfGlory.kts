@@ -15,6 +15,9 @@ val draynorVillage = areas["draynor_village_teleport"]
 val alKharid = areas["al_kharid_teleport"]
 
 inventoryItem("Rub", "amulet_of_glory_#", "inventory") {
+    if (player.contains("delay")) {
+        return@inventoryItem
+    }
     choice("Where would you like to teleport to?") {
         option("Edgeville") {
             player.message("You rub the amulet...", ChatType.Filter)
@@ -37,6 +40,9 @@ inventoryItem("Rub", "amulet_of_glory_#", "inventory") {
 }
 
 inventoryItem("*", "amulet_of_glory_#", "worn_equipment") {
+    if (player.contains("delay")) {
+        return@inventoryItem
+    }
     val area = when (option) {
         "Edgeville" -> edgeville
         "Karamja" -> karamja
