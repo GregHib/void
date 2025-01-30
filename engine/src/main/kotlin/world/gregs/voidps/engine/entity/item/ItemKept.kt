@@ -13,7 +13,7 @@ enum class ItemKept {
      */
     Reclaim,
     /**
-     * Kept safe unless in the wilderness where it is dropped
+     * Kept safe in gravestone unless in the wilderness where it is dropped
      */
     Wilderness,
     /**
