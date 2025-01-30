@@ -3,6 +3,7 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.Settings
 import java.io.File
 import java.nio.file.NoSuchFileException
+import kotlin.system.exitProcess
 
 /**
  * Loads content scripts from a precomputed list made by gradle build task
@@ -22,11 +23,18 @@ object ContentLoader {
                 scriptCount++
             }
         } else {
-            while (scripts.ready()) {
-                loadScript(scripts.readLine())
-                scriptCount++
+            try {
+                while (scripts.ready()) {
+                    loadScript(scripts.readLine())
+                    scriptCount++
+                }
+                scripts.close()
+            } catch (e: ClassNotFoundException) {
+                scripts.close()
+                logger.error(e) { "Failed to load script: ${e.message}" }
+                logger.error { "Make sure the scripts package is correct." }
+                exitProcess(1)
             }
-            scripts.close()
         }
 
         if (scriptCount == 0) {
