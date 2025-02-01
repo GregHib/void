@@ -35,9 +35,24 @@ canoe:
     invisible_waka: 8
     invisible_dugout: 9
     invisible_stable_dugout: 10
+    a_log: 30
+    a_dugout: 31
+    a_stable_dugout: 32
+    a_waka: 33
 canoe_stations_map:
   id: 53
-  type: main_screen        
+  type: main_screen
+  components:
+    lumbridge: 10
+    champions_guild: 11
+    barbarian_village: 12
+    you_are_here_edgeville: 19
+    edgeville: 20
+    wilderness_pond: 18
+    wilderness_warning: 22
+    you_are_here_barbarian_village: 23
+    you_are_here_champions_guild: 24
+    you_are_here_lumbridge: 25
 dialogue_castlewars_score:
   id: 55
   type: dialogue_box
