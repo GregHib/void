@@ -1,10 +1,11 @@
-package world.gregs.voidps.cache.definition.decoder
+package world.gregs.voidps.tools.map
 
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapObject
+import world.gregs.voidps.cache.definition.decoder.MapObjectDecoder
 
 /**
  * Adds all objects except bridges to a [MapDefinition]

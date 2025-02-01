@@ -1,4 +1,4 @@
-package world.gregs.voidps.cache.definition.decoder
+package world.gregs.voidps.tools.map
 
 import io.mockk.every
 import io.mockk.mockk

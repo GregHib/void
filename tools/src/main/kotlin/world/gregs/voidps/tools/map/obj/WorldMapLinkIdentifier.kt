@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.*
 import world.gregs.voidps.tools.cache.Xteas
+import world.gregs.voidps.tools.map.MapDecoder
 import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
 import world.gregs.voidps.tools.property
 import world.gregs.voidps.tools.propertyOrNull

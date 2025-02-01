@@ -4,9 +4,9 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
-import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoderFull
 import world.gregs.voidps.tools.cache.Xteas
+import world.gregs.voidps.tools.map.MapDecoder
 import world.gregs.voidps.tools.property
 import world.gregs.voidps.type.Region
 

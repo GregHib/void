@@ -1,4 +1,4 @@
-package world.gregs.voidps.cache.definition.decoder
+package world.gregs.voidps.tools.map
 
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
@@ -7,6 +7,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Index.MAPS
 import world.gregs.voidps.cache.definition.data.MapDefinition
+import world.gregs.voidps.cache.definition.decoder.MapTileDecoder
 import world.gregs.voidps.type.Region
 
 class MapDecoder(val xteas: Map<Int, IntArray>? = null) : DefinitionDecoder<MapDefinition>(MAPS) {
