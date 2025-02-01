@@ -12,7 +12,7 @@ plugins {
     id("jacoco-report-aggregation")
 }
 
-val cacheVersion = "1.2.0"
+val cacheVersion = "1.3.0"
 
 allprojects {
     apply(plugin = "kotlin")
