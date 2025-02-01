@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.map.obj
 
-import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.decoder.MapObjectDecoder

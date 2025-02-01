@@ -72,9 +72,10 @@ object MapTileDecoder {
 
     fun loadTiles(data: ByteArray, tiles: ByteArray) {
         var position = 0
+        val size = data.size
         for (index in indices) {
             var settings = 0
-            while (position < data.size) {
+            while (position < size) {
                 val config = data[position++]
                 when {
                     config == ZERO -> {

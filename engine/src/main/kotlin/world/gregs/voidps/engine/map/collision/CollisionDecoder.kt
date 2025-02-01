@@ -56,24 +56,9 @@ class CollisionDecoder(private val collisions: Collisions) {
         }
     }
 
-    private fun Collisions.allocateIfAbsent(zoneIndex: Int): IntArray {
-        val existingFlags = flags[zoneIndex]
-        if (existingFlags != null) return existingFlags
-        val tileFlags = IntArray(64)
-        flags[zoneIndex] = tileFlags
-        return tileFlags
-    }
-
-    private fun Collisions.allocateUnsafe(zoneIndex: Int): IntArray {
-        val tileFlags = IntArray(64)
-        flags[zoneIndex] = tileFlags
-        return tileFlags
-    }
-
     private fun Collisions.add(zoneIndex: Int, tileIndex: Int, mask: Int) {
         val tiles = flags[zoneIndex]!!
-        val currentFlags = tiles[tileIndex]
-        tiles[tileIndex] = currentFlags or mask
+        tiles[tileIndex] = tiles[tileIndex] or mask
     }
 
     fun decode(settings: ByteArray, zoneId: Int) {
@@ -81,7 +66,7 @@ class CollisionDecoder(private val collisions: Collisions) {
             if ((index and 0x1c7) == 0) { // divisible by 8
                 // Convert from tileIndex to zoneIndex
                 val zoneTile = (index and 0x38 shl 8) + (index shr 9 and 0x7) + (index and 0x3000 shl 10)
-                collisions.allocateIfAbsent(zoneId + zoneTile)
+                collisions.flags[zoneId + zoneTile] = IntArray(64)
             }
             if (!isTile(settings, index, BLOCKED_TILE)) {
                 continue

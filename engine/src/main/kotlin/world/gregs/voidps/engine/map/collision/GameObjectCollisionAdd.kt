@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.map.collision
 
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.Zone
 
 class GameObjectCollisionAdd(
     private val collisions: Collisions
