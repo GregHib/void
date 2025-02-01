@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
@@ -21,7 +20,7 @@ class MapObjectsDecoderTest {
     private lateinit var definitions: ObjectDefinitions
     private lateinit var objects: GameObjects
     private lateinit var decoder: MapObjectsDecoder
-    private lateinit var tiles: LongArray
+    private lateinit var tiles: ByteArray
 
     @BeforeEach
     fun setup() {
@@ -29,7 +28,7 @@ class MapObjectsDecoderTest {
         val collisions = Collisions()
         objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), definitions, storeUnused = true)
         decoder = MapObjectsDecoder(objects, definitions)
-        tiles = LongArray(64 * 64 * 4)
+        tiles = ByteArray(64 * 64 * 4)
     }
 
     @Test
@@ -41,8 +40,8 @@ class MapObjectsDecoderTest {
         writer.writeByte(packInfo(shape, 2))
         writer.writeSmart(0)
         writer.writeSmart(0)
-        val reader = BufferReader(writer.toArray())
-        decoder.decode(reader, tiles, 128, 256)
+        val array = writer.toArray()
+        decoder.decode(array, tiles, 128, 256)
 
         val tile = Tile(138, 267, 1)
         val gameObject = objects.getShape(tile, shape)
@@ -63,8 +62,8 @@ class MapObjectsDecoderTest {
         writer.writeByte(packInfo(ObjectShape.WALL_STRAIGHT, 1))
         writer.writeSmart(0)
         writer.writeSmart(0)
-        val reader = BufferReader(writer.toArray())
-        decoder.decode(reader, tiles, 128, 256)
+        val array = writer.toArray()
+        decoder.decode(array, tiles, 128, 256)
 
         var tile = Tile(138, 267, 1)
         var gameObject = objects.getShape(tile, ObjectShape.WALL_CORNER)
@@ -91,8 +90,8 @@ class MapObjectsDecoderTest {
         writer.writeByte(packInfo(ObjectShape.ROOF_DIAGONAL, 0))
         writer.writeSmart(0)
         writer.writeSmart(0)
-        val reader = BufferReader(writer.toArray())
-        decoder.decode(reader, tiles, 192, 64)
+        val array = writer.toArray()
+        decoder.decode(array, tiles, 192, 64)
 
         var tile = Tile(202, 75, 0)
         var gameObject = objects.getShape(tile, ObjectShape.GROUND_DECOR)
