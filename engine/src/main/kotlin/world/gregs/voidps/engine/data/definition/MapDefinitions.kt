@@ -1,21 +1,28 @@
 package world.gregs.voidps.engine.data.definition
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
-import world.gregs.voidps.cache.definition.decoder.MapDecoder
+import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.definition.decoder.MapTileDecoder
+import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
+import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
 import world.gregs.voidps.engine.map.obj.MapObjectsDecoder
 import world.gregs.voidps.engine.map.obj.MapObjectsRotatedDecoder
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Zone
+import world.gregs.yaml.Yaml
+import java.io.File
 
 /**
- * Loads map collision and objects directly, quicker than [MapDecoder]
+ * Loads map collision and objects fast and direct
  *
  *  Note: this is the only place we store the cache; for dynamic zone loading.
  */
@@ -33,12 +40,16 @@ class MapDefinitions(
     fun loadCache(xteas: Map<Int, IntArray>? = null): MapDefinitions {
         val start = System.currentTimeMillis()
         var regions = 0
+        val settings = ByteArray(16384)
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
-                val tiles = loadTiles(cache, regionX, regionY) ?: continue
-                collisions.decode(tiles, regionX shl 6, regionY shl 6)
+                if (!loadSettings(cache, regionX, regionY, settings)) {
+                    continue
+                }
+                val zone = Zone.id(regionX shl 3, regionY shl 3, 0)
+                collisions.decode(settings, zone)
                 val keys = if (xteas != null) xteas[Region.id(regionX, regionY)] else null
-                decoder.decode(cache, tiles, regionX, regionY, keys)
+                decoder.decode(cache, settings, regionX, regionY, keys)
                 regions++
             }
         }
@@ -48,25 +59,34 @@ class MapDefinitions(
 
     fun loadZone(from: Zone, to: Zone, rotation: Int, xteas: Map<Int, IntArray>? = null) {
         val start = System.currentTimeMillis()
-        val tiles = loadTiles(cache, from.region.x, from.region.y) ?: return
-        collisions.decode(tiles, from, to, rotation)
+        val settings = loadSettings(cache, from.region.x, from.region.y) ?: return
+        collisions.decode(settings, from, to, rotation)
         val keys = if (xteas != null) xteas[from.region.id] else null
-        rotationDecoder.decode(cache, tiles, from, to, rotation, keys)
+        rotationDecoder.decode(cache, settings, from, to, rotation, keys)
         val took = System.currentTimeMillis() - start
         if (took > 5) {
             logger.info { "Loaded zone $from -> $to $rotation in ${took}ms" }
         }
     }
 
-    private fun loadTiles(cache: Cache, regionX: Int, regionY: Int): LongArray? {
+    private fun loadSettings(cache: Cache, regionX: Int, regionY: Int, settings: ByteArray): Boolean {
+        val archive = cache.archiveId(Index.MAPS, "m${regionX}_$regionY")
+        if (archive == -1) {
+            return false
+        }
+        val data = cache.data(Index.MAPS, archive) ?: return false
+        MapTileDecoder.loadTiles(data, settings)
+        return true
+    }
+
+    private fun loadSettings(cache: Cache, regionX: Int, regionY: Int): ByteArray? {
         val archive = cache.archiveId(Index.MAPS, "m${regionX}_$regionY")
         if (archive == -1) {
             return null
         }
+        val settings = ByteArray(16384)
         val data = cache.data(Index.MAPS, archive) ?: return null
-        val buffer = BufferReader(data)
-        val tiles = LongArray(16384)
-        MapTileDecoder.loadTiles(buffer, tiles)
-        return tiles
+        MapTileDecoder.loadTiles(data, settings)
+        return settings
     }
 }

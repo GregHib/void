@@ -18,8 +18,8 @@ class MapDefinition(
         fun index(localX: Int, localY: Int, level: Int): Int {
             return (level shl 12) + (localX shl 6) + localY
         }
-        internal fun localX(tile: Int) = tile shr 6 and 0x3f
-        internal fun localY(tile: Int) = tile and 0x3f
-        internal fun level(level: Int) = level shr 12 and 0x3
+        fun localX(tile: Int) = tile shr 6 and 0x3f
+        fun localY(tile: Int) = tile and 0x3f
+        fun level(level: Int) = level shr 12 and 0x3
     }
 }

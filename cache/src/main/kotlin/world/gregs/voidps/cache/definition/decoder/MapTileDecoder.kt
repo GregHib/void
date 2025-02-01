@@ -52,4 +52,44 @@ object MapTileDecoder {
             }
         }
     }
+
+
+    private val indices = IntArray(16384)
+
+    init {
+        var i = 0
+        for (level in 0 until 4) {
+            for (localX in 0 until 64) {
+                for (localY in 0 until 64) {
+                    indices[i++] = MapDefinition.index(localX, localY, level)
+                }
+            }
+        }
+    }
+
+    private const val ZERO: Byte = 0
+    private const val ONE: Byte = 1
+
+    fun loadTiles(data: ByteArray, tiles: ByteArray) {
+        var position = 0
+        for (index in indices) {
+            var settings = 0
+            while (position < data.size) {
+                val config = data[position++]
+                when {
+                    config == ZERO -> {
+                        tiles[index] = settings.toByte()
+                        break
+                    }
+                    config == ONE -> {
+                        position++
+                        tiles[index] = settings.toByte()
+                        break
+                    }
+                    config <= 49 -> position++
+                    config <= 81 -> settings = config - 49
+                }
+            }
+        }
+    }
 }

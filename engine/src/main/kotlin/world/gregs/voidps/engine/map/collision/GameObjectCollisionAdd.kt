@@ -8,10 +8,7 @@ class GameObjectCollisionAdd(
 ) : GameObjectCollision() {
 
     override fun modifyTile(x: Int, y: Int, level: Int, block: Int, direction: Int) {
-        var flags = collisions.flags[Zone.tileIndex(x, y, level)]
-        if (flags == null) {
-            flags = collisions.allocateIfAbsent(x, y, level)
-        }
+        val flags = collisions.allocateIfAbsent(x, y, level)
         flags[Tile.index(x, y)] = flags[Tile.index(x, y)] or CollisionFlags.blocked[direction or block]
     }
 }
