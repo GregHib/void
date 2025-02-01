@@ -53,7 +53,6 @@ object MapTileDecoder {
         }
     }
 
-
     private val indices = IntArray(16384)
 
     init {
