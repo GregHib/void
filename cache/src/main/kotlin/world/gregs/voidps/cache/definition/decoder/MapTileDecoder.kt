@@ -67,22 +67,19 @@ object MapTileDecoder {
         }
     }
 
-    private const val ZERO: Byte = 0
-    private const val ONE: Byte = 1
-
     fun loadTiles(data: ByteArray, tiles: ByteArray) {
         var position = 0
         val size = data.size
         for (index in indices) {
             var settings = 0
             while (position < size) {
-                val config = data[position++]
+                val config = data[position++].toInt() and 0xff
                 when {
-                    config == ZERO -> {
+                    config == 0 -> {
                         tiles[index] = settings.toByte()
                         break
                     }
-                    config == ONE -> {
+                    config == 1 -> {
                         position++
                         tiles[index] = settings.toByte()
                         break
