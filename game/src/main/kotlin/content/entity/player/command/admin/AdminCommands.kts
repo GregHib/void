@@ -192,14 +192,14 @@ adminCommand("item (item-id) [item-amount]", "spawn an item by int or string id 
     }
 }
 
-adminCommand("give (item-id) [amount] (player-name)", "spawn item in another players inventory") {
+adminCommand("give (item-id) (amount) (player-name)", "spawn item in another players inventory") {
     val parts = content.split(" ")
     val id = definitions.get(parts.first()).stringId
     val amount = parts[1]
     val name = content.removePrefix("${parts[0]} ${parts[1]} ")
     val target = players.get(name)
     if (target == null) {
-        player.message("Couldn't find player $target")
+        player.message("Couldn't find player $name")
     } else {
         target.inventory.add(id, if (amount == "max") Int.MAX_VALUE else amount.toSILong().toInt())
     }

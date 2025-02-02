@@ -1,11 +1,17 @@
 package content.entity.combat
 
+import FakeRandom
+import WorldTest
+import content.entity.combat.hit.npcCombatDamage
+import content.entity.player.effect.skull
+import equipItem
+import interfaceOption
 import kotlinx.coroutines.test.runTest
+import npcOption
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import FakeRandom
-import WorldTest
+import playerOption
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
@@ -16,18 +22,14 @@ import world.gregs.voidps.network.client.instruction.InteractPlayer
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
-import content.entity.combat.hit.npcCombatDamage
-import equipItem
-import interfaceOption
-import npcOption
-import playerOption
-import kotlin.random.Random
 
 internal class CombatTest : WorldTest() {
 
     @BeforeEach
     fun setup() {
-        setRandom(Random)
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = until
+        })
     }
 
     @Test
@@ -178,8 +180,10 @@ internal class CombatTest : WorldTest() {
 
     @Test
     fun `Kill player with melee`() {
-        val player = createPlayer("player", emptyTile)
-        val target = createPlayer("target", emptyTile.addY(4))
+        val startTile = Tile(3143, 3553)
+        val targetTile = startTile.addX(3)
+        val player = createPlayer("player", startTile)
+        val target = createPlayer("target", targetTile)
 
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
         player.experience.set(Skill.Attack, EXPERIENCE)
@@ -187,24 +191,23 @@ internal class CombatTest : WorldTest() {
         player.experience.set(Skill.Defence, EXPERIENCE)
         player.levels.boost(Skill.Attack, 25)
         player.levels.boost(Skill.Strength, 25)
-        player["in_wilderness"] = true
-        target["in_wilderness"] = true
         target.appearance.combatLevel = 90
         target.inventory.add("dragon_longsword", 1)
         target.inventory.add("magic_shortbow", 1)
         target.inventory.add("rune_arrow", 10)
-        target.inventory.add("excalibur", 1)
+        target.inventory.add("plague_jacket", 1)
+        target.skull()
 
         player.interfaceOption("combat_styles", "style3")
         player.playerOption(target, "Attack")
         tickIf { target.levels.get(Skill.Constitution) > 0 }
         tick(6) // player death
 
-        assertNotEquals(emptyTile, player.tile)
+        assertNotEquals(startTile, player.tile)
         assertTrue(player.experience.get(Skill.Attack) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Strength) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
-        val items = floorItems[emptyTile.addY(4)]
+        val items = floorItems[targetTile]
         assertTrue(items.any { it.id == "coins" })
         assertTrue(items.any { it.id == "rune_arrow" && it.amount > 1 })
         assertTrue(items.any { it.id == "bones" })

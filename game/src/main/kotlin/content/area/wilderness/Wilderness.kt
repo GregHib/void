@@ -9,7 +9,7 @@ object Wilderness {
         var wildernessLevel = 0
         if (player.tile.x in 3008..3135 && player.tile.y in 9920..10367) {
             wildernessLevel = (player.tile.y - 9920) / 8 + 1
-        } else if (player.tile.x in 2944..3392 && player.tile.y in 3525..3967 && player["decrease_combat_attack_range", false]) {
+        } else if (player.tile.x in 2944..3392 && player.tile.y in 3525..3967 && !player["decrease_combat_attack_range", false]) {
             wildernessLevel = (player.tile.y - 3520) / 8 + 1
         }
         wildernessLevel = wildernessLevel.coerceIn(0..60)
