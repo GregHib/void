@@ -28,7 +28,7 @@ class CombatMovement(
     strategy: TargetStrategy = CharacterTargetStrategy(target),
 ) : Movement(character, strategy) {
 
-    private val wanderRadius = (character as? NPC)?.def?.get("wander_radius") ?: 5
+    private val wanderRadius = (character as? NPC)?.def?.getOrNull("wander_radius") ?: 5
     private val spawn: Tile? = character["respawn_tile"]
 
     override fun start() {
