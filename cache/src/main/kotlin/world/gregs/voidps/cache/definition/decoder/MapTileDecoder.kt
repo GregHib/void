@@ -1,8 +1,6 @@
 package world.gregs.voidps.cache.definition.decoder
 
-import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.definition.data.MapDefinition
-import world.gregs.voidps.cache.definition.data.MapTile
 
 /**
  * Loads all

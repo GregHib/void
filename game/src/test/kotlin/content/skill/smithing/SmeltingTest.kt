@@ -1,6 +1,5 @@
 package content.skill.smithing
 
-import FakeRandom
 import WorldTest
 import net.pearx.kasechange.toSentenceCase
 import objectOption

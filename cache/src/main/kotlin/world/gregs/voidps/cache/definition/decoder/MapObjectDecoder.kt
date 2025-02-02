@@ -68,11 +68,11 @@ abstract class MapObjectDecoder {
                     }
                 }
                 // Data
-                val localX = MapDefinition.localX(tile)
-                val localY = MapDefinition.localY(tile)
                 val data = buffer[position++].toInt()
                 val shape = data shr 2
                 val rotation = data and 0x3
+                val localX = MapDefinition.localX(tile)
+                val localY = MapDefinition.localY(tile)
 
                 // Valid object
                 add(objectId, localX, localY, level, shape, rotation, regionTileX, regionTileY)

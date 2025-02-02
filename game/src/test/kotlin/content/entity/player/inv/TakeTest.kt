@@ -1,17 +1,12 @@
 package content.entity.player.inv
 
+import WorldTest
+import floorItemOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
-import WorldTest
-import floorItemOption
-import interfaceOption
-import itemOnObject
-import kotlin.test.assertFalse
 
 internal class TakeTest : WorldTest() {
 
