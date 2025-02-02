@@ -1,5 +1,4 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import kotlin.math.log
 
 plugins {
     application
@@ -69,16 +68,6 @@ tasks {
     named<ShadowJar>("shadowJar") {
         dependsOn("collectSourcePaths")
         from(layout.buildDirectory.file("scripts.txt"))
-        // Replace logback file as the custom colour classes can't be individually excluded from minimization
-        // https://github.com/GradleUp/shadow/issues/638
-        exclude("logback.xml")
-        val logback = layout.buildDirectory.file("resources/main/logback.xml")
-            .get().asFile.readText()
-            .replace("%colour", "%highlight")
-            .replace("%message(%msg){}", "%msg")
-        val asFile = layout.buildDirectory.file("logback-test.xml").get().asFile
-        asFile.writeText(logback)
-        from(asFile)
         minimize {
             exclude("world/gregs/voidps/engine/log/**")
             exclude(dependency("org.postgresql:postgresql:.*"))
@@ -88,6 +77,18 @@ tasks {
         archiveBaseName.set("void-server-${version}")
         archiveClassifier.set("")
         archiveVersion.set("")
+        // Replace logback file as the custom colour classes can't be individually excluded from minimization
+        // https://github.com/GradleUp/shadow/issues/638
+        exclude("logback.xml")
+        val resourcesDir = layout.projectDirectory.dir("src/main/resources")
+        val logback = resourcesDir.file("logback.xml").asFile
+            .readText()
+            .replace("%colour", "%highlight")
+            .replace("%message(%msg){}", "%msg")
+        val replacement = layout.buildDirectory.file("logback-test.xml").get().asFile
+        replacement.parentFile.mkdirs()
+        replacement.writeText(logback)
+        from(replacement)
     }
 
     withType<Test> {
