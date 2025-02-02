@@ -28,7 +28,6 @@ class CollisionDecoder(private val collisions: Collisions) {
                         if (--height < 0) {
                             continue
                         }
-                        collisions.allocateIfAbsent(x + localX, y + localY, height)
                     }
                     collisions.setUnsafe(x + localX, y + localY, height, CollisionFlag.FLOOR)
                 }
@@ -65,9 +64,7 @@ class CollisionDecoder(private val collisions: Collisions) {
                     }
                     val rotX = rotateX(localX, localY, zoneRotation)
                     val rotY = rotateY(localX, localY, zoneRotation)
-                    val tiles = collisions.flags[Zone.tileIndex(targetX + rotX, targetY + rotY, height)]!!
-                    val tileIndex = Tile.index(targetX + rotX, targetY + rotY)
-                    tiles[tileIndex] = tiles[tileIndex] or CollisionFlag.FLOOR
+                    collisions.setUnsafe(targetX + rotX, targetY + rotY, height, CollisionFlag.FLOOR)
                 }
             }
         }
