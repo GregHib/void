@@ -20,6 +20,7 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Zone
 import world.gregs.yaml.Yaml
 import java.io.File
+import kotlin.system.exitProcess
 import kotlin.time.measureTimedValue
 
 /**
@@ -39,22 +40,27 @@ class MapDefinitions(
     private val rotationDecoder = MapObjectsRotatedDecoder(objects, definitions)
 
     fun loadCache(xteas: Map<Int, IntArray>? = null): MapDefinitions {
-        val start = System.currentTimeMillis()
-        var regions = 0
-        val settings = ByteArray(16384)
-        for (regionX in 0 until 256) {
-            for (regionY in 0 until 256) {
-                if (!loadSettings(cache, regionX, regionY, settings)) {
-                    continue
+        try {
+            val start = System.currentTimeMillis()
+            var regions = 0
+            val settings = ByteArray(16384)
+            for (regionX in 0 until 256) {
+                for (regionY in 0 until 256) {
+                    if (!loadSettings(cache, regionX, regionY, settings)) {
+                        continue
+                    }
+                    collisions.decode(settings, regionX shl 6, regionY shl 6)
+                    val keys = if (xteas != null) xteas[Region.id(regionX, regionY)] else null
+                    decoder.decode(cache, settings, regionX, regionY, keys)
+                    regions++
                 }
-                collisions.decode(settings, regionX shl 6, regionY shl 6)
-                val keys = if (xteas != null) xteas[Region.id(regionX, regionY)] else null
-                decoder.decode(cache, settings, regionX, regionY, keys)
-                regions++
             }
+            logger.info { "Loaded $regions maps ${objects.size} ${"object".plural(objects.size)} in ${System.currentTimeMillis() - start}ms" }
+            return this
+        } catch (e: ArrayIndexOutOfBoundsException) {
+            logger.error(e) { "Error loading map definition; do you have the latest cache?" }
+            exitProcess(1)
         }
-        logger.info { "Loaded $regions maps ${objects.size} ${"object".plural(objects.size)} in ${System.currentTimeMillis() - start}ms" }
-        return this
     }
 
     fun loadZone(from: Zone, to: Zone, rotation: Int, xteas: Map<Int, IntArray>? = null) {

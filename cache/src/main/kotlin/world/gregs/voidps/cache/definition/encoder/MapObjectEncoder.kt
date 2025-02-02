@@ -4,6 +4,11 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.DefinitionEncoder
 import world.gregs.voidps.cache.definition.data.MapDefinition
 
+/**
+ * Encodes [MapDefinition] the trouble with objects is the decoder modifies the level
+ * When a bridge exists, so the original data needs to be stored separately.
+ * Make sure to use MapObjectDefinitionDecoder#modified = false
+ */
 class MapObjectEncoder : DefinitionEncoder<MapDefinition> {
 
     override fun Writer.encode(definition: MapDefinition) {
@@ -11,7 +16,7 @@ class MapObjectEncoder : DefinitionEncoder<MapDefinition> {
             return
         }
         var id = -1
-        definition.objects.groupBy { it.id }.toSortedMap().forEach { (objectId, objects) ->
+        definition.objects.groupBy { it.id }.toList().sortedBy { it.first }.forEach { (objectId, objects) ->
             val difference = objectId - id
             id += difference
             writeLargeSmart(difference)

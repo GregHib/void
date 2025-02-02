@@ -56,6 +56,7 @@ object CacheBuilder {
         val library = CacheLibrary(path.path)
         RemoveXteas.remove(library, xteas)
         RemoveBzip2.remove(library)
+        ValidateMapObjects.validateAll(library)
         CopyCs2Script.convert(library, cache667, 677) // Scroll interface - scrollbar max
         RemovePriceCheckerTradeLimit.convert(library)
         MoveCameraClientScript.convert(library, cache667)

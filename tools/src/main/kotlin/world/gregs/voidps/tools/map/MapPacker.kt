@@ -5,6 +5,7 @@ import kotlinx.coroutines.runBlocking
 import org.jsoup.Jsoup
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
+import world.gregs.voidps.tools.cache.OpenRS2
 import world.gregs.voidps.tools.cache.Xteas
 import world.gregs.voidps.type.Region
 import java.io.File
@@ -27,7 +28,7 @@ object MapPacker {
         val xteas = Xteas().load("./tools/src/main/resources/xteas.dat", Xteas.DEFAULT_KEY, Xteas.DEFAULT_VALUE)
         val cache727 = File("${System.getProperty("user.home")}/Downloads/727 cache with most xteas/")
         val cache681 = File("${System.getProperty("user.home")}/Downloads/cache-280/")
-        val xteas681 = getKeys(280)
+        val xteas681 = OpenRS2.getKeys(280)
         val cache537 = File("${System.getProperty("user.home")}/Downloads/cache-257/")
         pack634(target, xteas, cache727, Xteas(), cache681, xteas681, cache537)
     }
@@ -83,23 +84,6 @@ object MapPacker {
             }
         }
         return list
-    }
-
-    private fun getKeys(target: Int): Xteas {
-        val file = File("./temp/xteas/runescape-${target}.keys.json")
-        val content = if (file.exists()) {
-            file.readText()
-        } else {
-            val text = Jsoup.connect("https://archive.openrs2.org/caches/runescape/${target}/keys.json")
-                .ignoreContentType(true)
-                .get()
-                .body()
-                .ownText()
-            file.parentFile.mkdirs()
-            file.writeText(text)
-            text
-        }
-        return Xteas(Xteas.loadJson(content, value = "key").toMutableMap())
     }
 
 }

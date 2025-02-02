@@ -15,18 +15,15 @@ class MapObjectDefinitionDecoder(
     val xteas: Map<Int, IntArray>? = null
 ) : MapObjectDecoder() {
 
-    lateinit var definition: MapDefinition
-
-    fun decode(cache: Cache, definition: MapDefinition) {
-        this.definition = definition
+    fun decode(cache: Cache, definition: MapDefinition, modified: Boolean = true) {
         val regionX = definition.id shr 8
         val regionY = definition.id and 0xff
         val objectData = cache.data(Index.MAPS, "l${regionX}_$regionY", xteas?.get(definition.id)) ?: return
         val reader = BufferReader(objectData)
-        decode(reader, definition.tiles)
+        decode(reader, definition, modified)
     }
 
-    private fun decode(reader: BufferReader, tiles: LongArray) {
+    private fun decode(reader: BufferReader, definition: MapDefinition, modified: Boolean) {
         var objectId = -1
         while (true) {
             val skip = reader.readLargeSmart()
@@ -49,12 +46,12 @@ class MapObjectDefinitionDecoder(
                 val data = reader.readUnsignedByte()
 
                 // Decrease bridges
-                if (isBridge(tiles, localX, localY)) {
+                if (modified && isBridge(definition.tiles, localX, localY)) {
                     level--
                 }
 
                 // Validate level
-                if (level !in 0 until 4) {
+                if (modified && level !in 0 until 4) {
                     continue
                 }
 
@@ -62,7 +59,7 @@ class MapObjectDefinitionDecoder(
                 val rotation = data and 0x3
 
                 // Valid object
-                add(objectId, localX, localY, level, shape, rotation, -1, -1)
+                definition.objects.add(MapObject(objectId, localX, localY, level, shape, rotation))
             }
         }
     }
@@ -72,6 +69,6 @@ class MapObjectDefinitionDecoder(
     }
 
     override fun add(objectId: Int, localX: Int, localY: Int, level: Int, shape: Int, rotation: Int, regionTileX: Int, regionTileY: Int) {
-        definition.objects.add(MapObject(objectId, localX, localY, level, shape, rotation))
+
     }
 }

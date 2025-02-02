@@ -33,6 +33,7 @@ class MapDecoder(val xteas: Map<Int, IntArray>? = null) : DefinitionDecoder<MapD
     }
 
     val regionHashes: MutableMap<Int, Int> = Int2IntOpenHashMap(1600)
+    var modified = true
 
     override fun load(cache: Cache): Array<MapDefinition> {
         regionHashes.clear()
@@ -55,7 +56,7 @@ class MapDecoder(val xteas: Map<Int, IntArray>? = null) : DefinitionDecoder<MapD
         val definition = definitions[id]
         definition.id = region
         loadTiles(reader, definition.tiles)
-        objects.decode(cache, definition)
+        objects.decode(cache, definition, modified)
     }
 
     private fun loadTiles(reader: Reader, tiles: LongArray) {

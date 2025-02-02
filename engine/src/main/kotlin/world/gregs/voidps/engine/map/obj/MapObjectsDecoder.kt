@@ -22,9 +22,6 @@ class MapObjectsDecoder(
     }
 
     override fun add(objectId: Int, localX: Int, localY: Int, level: Int, shape: Int, rotation: Int, regionTileX: Int, regionTileY: Int) {
-        if (objectId > definitions.definitions.size) {
-            return
-        }
         objects.set(objectId, regionTileX + localX, regionTileY + localY, level, shape, rotation, definitions.getValue(objectId))
     }
 }
