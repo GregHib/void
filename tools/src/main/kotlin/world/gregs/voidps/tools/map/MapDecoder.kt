@@ -18,7 +18,7 @@ class MapDecoder(val xteas: Map<Int, IntArray>? = null) : DefinitionDecoder<MapD
         throw UnsupportedOperationException("Not in use.")
     }
 
-    override fun create(size: Int) = Array(size) { MapDefinition(it) }
+    override fun create(size: Int) = Array(size) { MapDefinition() }
 
     override fun size(cache: Cache): Int {
         return cache.lastArchiveId(index)
