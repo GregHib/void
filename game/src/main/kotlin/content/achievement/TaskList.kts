@@ -44,7 +44,7 @@ interfaceOption("Select", "area_*", "task_list") {
 }
 
 interfaceOption("Summary", "tasks", "task_list") {
-    player["task_selected"] = itemSlot / 4
+    player["task_slot_selected"] = itemSlot / 4
 }
 
 interfaceOption("Pin", "tasks", "task_list") {
@@ -52,7 +52,7 @@ interfaceOption("Pin", "tasks", "task_list") {
 }
 
 interfaceOption("Pin", "pin", "task_list") {
-    pin(player, player["task_selected", 0])
+    pin(player, player["task_slot_selected", 0])
 }
 
 fun indexOfSlot(player: Player, slot: Int): Int? {
@@ -104,20 +104,20 @@ fun refresh(player: Player) {
     refreshCompletedCount(player)
 }
 
-variableSet("task_pin_index") { player ->
+variableSet("task_pin_slot") { player ->
     player.close("task_list")
 }
 
 fun areaId(player: Player) = variables.get("task_list_area")!!.values.toInt(player["task_list_area", "unstable_foundations"])
 
-fun pin(player: Player, index: Int) {
-    val id = indexOfSlot(player, index) ?: return
-    if (player["task_pinned", -1] == id) {
+fun pin(player: Player, slot: Int) {
+    val index = indexOfSlot(player, slot) ?: return
+    if (player["task_pinned", -1] == index) {
         player.clear("task_pinned")
-        player.clear("task_pin_index")
+        player.clear("task_pin_slot")
     } else {
-        player["task_pinned"] = id
-        player["task_pin_index"] = find(player, id)
+        player["task_pinned"] = index
+        player["task_pin_slot"] = find(player, index)
     }
 }
 
@@ -143,7 +143,7 @@ fun refreshCompletedCount(player: Player) {
 val enumDefinitions: EnumDefinitions by inject()
 
 interfaceOption("Hint", "hint_*", "task_list") {
-    val selected = player["task_selected", 0]
+    val selected = player["task_slot_selected", 0]
     val index = indexOfSlot(player, selected) ?: return@interfaceOption
     val tile: Int = enumDefinitions.getStructOrNull("task_structs", index, component.replace("hint_", "task_hint_tile_")) ?: return@interfaceOption
     // TODO I expect the functionality is actually minimap highlights not world map

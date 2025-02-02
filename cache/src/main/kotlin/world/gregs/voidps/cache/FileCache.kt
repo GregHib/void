@@ -40,16 +40,24 @@ class FileCache(
     }
 
     override fun data(index: Int, archive: Int, file: Int, xtea: IntArray?): ByteArray? {
-        val matchingIndex = files.getOrNull(index)?.getOrNull(archive)?.indexOf(file) ?: -1
+        if (index >= files.size) {
+            return null
+        }
+        val archives = files[index]
+        if (archives == null || archive >= archives.size) {
+            return null
+        }
+        val files = archives[archive] ?: return null
+        val matchingIndex = files.indexOf(file)
         if (matchingIndex == -1) {
             return null
         }
         val hash = index + (archive shl 6)
-        val files = dataCache.getOrPut(hash) {
+        val data = dataCache.getOrPut(hash) {
             val indexRaf = indexes[index] ?: return null
             fileData(context, main, length, indexRaf, index, archive, xteas) ?: return null
         }
-        return files[matchingIndex]
+        return data[matchingIndex]
     }
 
     override fun close() {

@@ -1,14 +1,16 @@
 <configuration>
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+    <conversionRule conversionWord="colour" class="world.gregs.voidps.engine.log.LogLevelColourConverter"/>
+    <conversionRule conversionWord="message" class="world.gregs.voidps.engine.log.LogMessageColourConverter"/>
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>[%logger{0}] - %msg%n</pattern>
+            <pattern>%colour(%level) %green([%logger{0}]) %message(%msg){}%n%red(%ex)</pattern>
         </encoder>
     </appender>
-    <root level="trace">
+    <root level="debug">
         <appender-ref ref="console"/>
     </root>
+    <logger name="org.jetbrains.exposed" level="WARN"/>
     <logger name="com.zaxxer.hikari.pool" level="WARN"/>
     <logger name="com.zaxxer.hikari.HikariConfig" level="WARN"/>
-    <logger name="Exposed" level="WARN">
-    </logger>
 </configuration>

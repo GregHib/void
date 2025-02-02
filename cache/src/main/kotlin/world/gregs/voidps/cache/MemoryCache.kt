@@ -27,13 +27,34 @@ class MemoryCache(indexCount: Int) : ReadOnlyCache(indexCount) {
 
     override fun sector(index: Int, archive: Int): ByteArray? {
         if (index == 255) {
-            return index255.getOrNull(archive)
+            if (archive >= index255.size) {
+                return null
+            }
+            return index255[archive]
         }
-        return sectors.getOrNull(index)?.getOrNull(archive)
+        if (index >= sectors.size) {
+            return null
+        }
+        val archives = sectors[index]
+        if (archives == null || archive >= archives.size) {
+            return null
+        }
+        return archives[archive]
     }
 
     override fun data(index: Int, archive: Int, file: Int, xtea: IntArray?): ByteArray? {
-        return data.getOrNull(index)?.getOrNull(archive)?.getOrNull(file)
+        if (index >= data.size) {
+            return null
+        }
+        val archives = data[index]
+        if (archives == null || archive >= archives.size) {
+            return null
+        }
+        val files = archives[archive]
+        if (files == null || file >= files.size) {
+            return null
+        }
+        return files[file]
     }
 
     companion object : CacheLoader {

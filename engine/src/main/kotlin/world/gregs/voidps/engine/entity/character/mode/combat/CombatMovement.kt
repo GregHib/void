@@ -28,6 +28,9 @@ class CombatMovement(
     strategy: TargetStrategy = CharacterTargetStrategy(target),
 ) : Movement(character, strategy) {
 
+    private val wanderRadius = (character as? NPC)?.def?.getOrNull("wander_radius") ?: 5
+    private val spawn: Tile? = character["respawn_tile"]
+
     override fun start() {
         character.watch(target)
         character.clear("face_entity")
@@ -62,6 +65,8 @@ class CombatMovement(
             if (character.mode == this) {
                 character.mode = EmptyMode
             }
+        } else if (character is NPC && retreat(character)) {
+            return
         }
     }
 
@@ -85,8 +90,7 @@ class CombatMovement(
     }
 
     private fun retreat(character: NPC): Boolean {
-        val wanderRadius = character.def["wander_radius", 5]
-        val spawn: Tile = character["respawn_tile"] ?: return false
+        val spawn = spawn ?: return false
         if (!character.tile.within(spawn, wanderRadius)) {
             character.walkTo(spawn)
             character.stop("in_combat")

@@ -5,7 +5,7 @@ import content.bot.interact.navigation.graph.NavigationGraph
 import content.bot.interact.path.Dijkstra
 import content.bot.interact.path.DijkstraFrontier
 import content.entity.player.modal.book.Books
-import content.entity.obj.Teleports
+import content.entity.obj.ObjectTeleports
 import content.entity.world.music.MusicTracks
 import content.entity.item.spawn.ItemSpawns
 
@@ -24,5 +24,5 @@ val gameModule = module {
     single(createdAtStart = true) { NavigationGraph(get(), get()).load() }
     single(createdAtStart = true) { Books().load() }
     single(createdAtStart = true) { MusicTracks().load() }
-    single(createdAtStart = true) { Teleports().load() }
+    single(createdAtStart = true) { ObjectTeleports().load() }
 }

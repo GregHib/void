@@ -12,6 +12,9 @@ val areas: AreaDefinitions by inject()
 val digSite = areas["dig_site_teleport"]
 
 inventoryItem("Rub", "dig_site_pendant_#") {
+    if (player.contains("delay")) {
+        return@inventoryItem
+    }
     player.message("You rub the pendant...", ChatType.Filter)
     jewelleryTeleport(player, inventory, slot, digSite)
 }

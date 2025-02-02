@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 
-val teleports: Teleports by inject()
+val teleports: ObjectTeleports by inject()
 
 for (option in teleports.options()) {
     objectOperate(option) {
@@ -13,7 +13,7 @@ for (option in teleports.options()) {
     }
 }
 
-teleportTakeOff {
+objTeleportTakeOff {
     if (delay != null) {
         player.start("teleport_delay", 1)
     }

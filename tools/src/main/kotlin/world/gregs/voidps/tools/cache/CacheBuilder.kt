@@ -55,7 +55,8 @@ object CacheBuilder {
         val cache667 = OpenRS2.downloadCache(temp.resolve("cache-667/"), 1473)
         val library = CacheLibrary(path.path)
         RemoveXteas.remove(library, xteas)
-//        RemoveBzip2.remove(library)
+        RemoveBzip2.remove(library)
+        ValidateMapObjects.validateAll(library)
         CopyCs2Script.convert(library, cache667, 677) // Scroll interface - scrollbar max
         RemovePriceCheckerTradeLimit.convert(library)
         MoveCameraClientScript.convert(library, cache667)

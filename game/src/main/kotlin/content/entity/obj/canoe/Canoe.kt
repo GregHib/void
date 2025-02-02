@@ -1,4 +1,4 @@
-package content.entity.obj
+package content.entity.obj.canoe
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

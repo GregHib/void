@@ -6,12 +6,12 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.area.Rectangle
-import content.entity.obj.Teleports
+import content.entity.obj.ObjectTeleports
 import content.entity.player.inv.inventoryItem
 
 val overworld = Rectangle(2048, 2496, 3903, 4159)
 
-val teleports: Teleports by inject()
+val teleports: ObjectTeleports by inject()
 
 inventoryItem("Locate", "*_talisman") {
     if (item.id == "elemental_talisman") {

@@ -199,7 +199,7 @@ suspend fun TargetInteraction<Player, NPC>.startSpell() {
     player.playSound("chest_open")
     delay(1)
     player.inventory.add("silverlight_key_wizard_traiborn")
-    obj.animate("demon_slayer_cupboard_disappear")
+    obj.anim("demon_slayer_cupboard_disappear")
     player.playSound("demon_slayer_cupboard_disappear")
     target.watch(player)
     item("silverlight_key_wizard_traiborn", 400, "Traiborn hands you a key.")

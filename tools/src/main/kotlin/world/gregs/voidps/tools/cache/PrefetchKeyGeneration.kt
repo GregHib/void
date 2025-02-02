@@ -14,6 +14,6 @@ object PrefetchKeyGeneration {
 
     fun print(cache: CacheLibrary) {
         val keys = generatePrefetchKeys(CacheDelegate(cache))
-        println("prefetchKeys=${keys.joinToString(",")}")
+        println("prefetch.keys=${keys.joinToString(",")}")
     }
 }

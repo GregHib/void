@@ -13,6 +13,7 @@ import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.cache.Xteas
+import world.gregs.voidps.tools.map.MapDecoder
 import world.gregs.voidps.tools.map.render.draw.MinimapIconPainter
 import world.gregs.voidps.tools.map.render.draw.RegionRenderer
 import world.gregs.voidps.tools.map.render.load.MapTileSettings

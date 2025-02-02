@@ -671,8 +671,9 @@ task_slot_6:
 task_pinned:
   id: 8576
   format: int
+  default: 4091
   persist: true
-task_pin_index:
+task_pin_slot:
   id: 8577
   format: int
   persist: true

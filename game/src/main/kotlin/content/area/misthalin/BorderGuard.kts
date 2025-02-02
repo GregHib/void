@@ -58,7 +58,7 @@ val raised = mutableMapOf<GameObject, Boolean>()
 fun changeGuardState(guards: List<GameObject>, raise: Boolean) {
     for (guard in guards) {
         if (raised.getOrDefault(guard, false) != raise) {
-            guard.animate(guard.def[if (raise) "raise" else "lower"])
+            guard.anim(guard.def[if (raise) "raise" else "lower"])
             raised[guard] = raise
         }
     }

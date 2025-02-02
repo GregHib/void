@@ -69,6 +69,7 @@ tasks {
         dependsOn("collectSourcePaths")
         from(layout.buildDirectory.file("scripts.txt"))
         minimize {
+            exclude("world/gregs/voidps/engine/log/**")
             exclude(dependency("org.postgresql:postgresql:.*"))
             exclude(dependency("org.jetbrains.exposed:exposed-jdbc:.*"))
             exclude(dependency("ch.qos.logback:logback-classic:.*"))
@@ -76,6 +77,18 @@ tasks {
         archiveBaseName.set("void-server-${version}")
         archiveClassifier.set("")
         archiveVersion.set("")
+        // Replace logback file as the custom colour classes can't be individually excluded from minimization
+        // https://github.com/GradleUp/shadow/issues/638
+        exclude("logback.xml")
+        val resourcesDir = layout.projectDirectory.dir("src/main/resources")
+        val logback = resourcesDir.file("logback.xml").asFile
+            .readText()
+            .replace("%colour", "%highlight")
+            .replace("%message(%msg){}", "%msg")
+        val replacement = layout.buildDirectory.file("logback-test.xml").get().asFile
+        replacement.parentFile.mkdirs()
+        replacement.writeText(logback)
+        from(replacement)
     }
 
     withType<Test> {

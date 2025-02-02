@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.map.obj
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
@@ -21,7 +20,7 @@ class MapObjectsRotatedDecoderTest {
     private lateinit var definitions: ObjectDefinitions
     private lateinit var objects: GameObjects
     private lateinit var decoder: MapObjectsRotatedDecoder
-    private lateinit var tiles: LongArray
+    private lateinit var settings: ByteArray
 
     @BeforeEach
     fun setup() {
@@ -29,7 +28,7 @@ class MapObjectsRotatedDecoderTest {
         val collisions = Collisions()
         objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), definitions, storeUnused = true)
         decoder = MapObjectsRotatedDecoder(objects, definitions)
-        tiles = LongArray(64 * 64 * 4)
+        settings = ByteArray(64 * 64 * 4)
     }
 
     @Test
@@ -41,11 +40,11 @@ class MapObjectsRotatedDecoderTest {
         writer.writeByte(packInfo(shape, 2))
         writer.writeSmart(0)
         writer.writeSmart(0)
-        val reader = BufferReader(writer.toArray())
+        val array = writer.toArray()
 
         decoder.zoneRotation = 2
         decoder.zone = Rectangle(8, 8, 16, 16)
-        decoder.decode(reader, tiles, 960, 896)
+        decoder.decode(array, settings, 960, 896)
 
         val tile = Tile(965, 900, 1) // local 5, 4
         val gameObject = objects.getShape(tile, shape)
@@ -65,11 +64,11 @@ class MapObjectsRotatedDecoderTest {
         writer.writeByte(packInfo(shape, 2))
         writer.writeSmart(0)
         writer.writeSmart(0)
-        val reader = BufferReader(writer.toArray())
+        val array = writer.toArray()
 
         decoder.zoneRotation = 3
         decoder.zone = Rectangle(0, 0, 8, 8)
-        decoder.decode(reader, tiles, 0, 0)
+        decoder.decode(array, settings, 0, 0)
 
         val tile = Tile(4, 2, 0)
         val gameObject = objects.getShape(tile, shape)
@@ -89,11 +88,11 @@ class MapObjectsRotatedDecoderTest {
         writer.writeByte(packInfo(shape, 1))
         writer.writeSmart(0)
         writer.writeSmart(0)
-        val reader = BufferReader(writer.toArray())
+        val array = writer.toArray()
 
         decoder.zoneRotation = 0
         decoder.zone = Rectangle(8, 8, 16, 16)
-        decoder.decode(reader, tiles, 64, 64)
+        decoder.decode(array, settings, 64, 64)
 
         val tile = Tile(82, 84, 0)
         val gameObject = objects.getShape(tile, shape)

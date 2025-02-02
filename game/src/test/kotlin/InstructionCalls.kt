@@ -225,4 +225,7 @@ fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {
 
 fun Inventory.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }
 
-fun Player.containsMessage(message: String) = get<List<String>>("messages", emptyList()).any { it.contains(message) }
+fun Player.containsMessage(message: String) = messages.any { it.contains(message) }
+
+val Player.messages: List<String>
+    get() = get("messages", emptyList())

@@ -4,6 +4,7 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.definition.data.MapTile
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
@@ -11,6 +12,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.*
 import world.gregs.voidps.tools.cache.Xteas
+import world.gregs.voidps.tools.map.MapDecoder
 import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
 import world.gregs.voidps.tools.property
 import world.gregs.voidps.tools.propertyOrNull
@@ -61,7 +63,9 @@ object WorldMapLinkIdentifier {
                 objects.add(obj)
                 objCollision.modify(obj)
             }
-            collisionDecoder.decode(region, def)
+            val x = region.tile.x
+            val y = region.tile.y
+            collisionDecoder.decode(def.tiles.map { MapTile.settings(it).toByte() }.toByteArray(), x, y)
         }
         val cacheLinks = mutableListOf<Pair<Tile, Tile>>()
         val dungeons = WorldMapDungeons(worldMapDetailsDecoder, worldMapIconDecoder, clientScriptDecoder, cache)

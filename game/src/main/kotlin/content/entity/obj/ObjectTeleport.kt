@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.type.Tile
 
-data class Teleport(
+data class ObjectTeleport(
     override val character: Player,
     val id: String,
     val tile: Tile,
@@ -23,7 +23,7 @@ data class Teleport(
     override val notification: Boolean = true
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "${dispatcher.key}_teleport_${if (land) "land" else "takeoff"}"
+        0 -> "${dispatcher.key}_obj_teleport_${if (land) "land" else "takeoff"}"
         1 -> dispatcher.identifier
         2 -> id
         3 -> obj.stringId
@@ -32,26 +32,26 @@ data class Teleport(
     }
 }
 
-fun teleportTakeOff(option: String = "*", vararg ids: String = arrayOf("*"), block: suspend Teleport.() -> Unit) {
-    val handler: suspend Teleport.(Player) -> Unit = {
+fun objTeleportTakeOff(option: String = "*", vararg ids: String = arrayOf("*"), block: suspend ObjectTeleport.() -> Unit) {
+    val handler: suspend ObjectTeleport.(Player) -> Unit = {
         block.invoke(this)
     }
     for (id in ids) {
-        Events.handle("player_teleport_takeoff", "player", "*", id, option, handler = handler)
+        Events.handle("player_obj_teleport_takeoff", "player", "*", id, option, handler = handler)
     }
 }
 
-fun teleportLand(option: String = "*", vararg ids: String = arrayOf("*"), block: suspend Teleport.() -> Unit) {
-    val handler: suspend Teleport.(Player) -> Unit = {
+fun objTeleportLand(option: String = "*", vararg ids: String = arrayOf("*"), block: suspend ObjectTeleport.() -> Unit) {
+    val handler: suspend ObjectTeleport.(Player) -> Unit = {
         block.invoke(this)
     }
     for (id in ids) {
-        Events.handle("player_teleport_land", "player", "*", id, option, handler = handler)
+        Events.handle("player_obj_teleport_land", "player", "*", id, option, handler = handler)
     }
 }
 
-fun teleport(option: String = "*", obj: String = "*", id: String = "*", land: Boolean = true, handler: suspend Teleport.() -> Unit) {
-    Events.handle<Player, Teleport>("player_teleport_${if (land) "land" else "takeoff"}", "player", id, obj, option) {
+fun objTeleport(option: String = "*", obj: String = "*", id: String = "*", land: Boolean = true, handler: suspend ObjectTeleport.() -> Unit) {
+    Events.handle<Player, ObjectTeleport>("player_obj_teleport_${if (land) "land" else "takeoff"}", "player", id, obj, option) {
         handler.invoke(this)
     }
 }

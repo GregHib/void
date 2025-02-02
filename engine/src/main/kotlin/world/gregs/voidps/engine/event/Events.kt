@@ -56,11 +56,12 @@ class Events(
      * @return any handlers were found and executed
      */
     fun emit(dispatcher: EventDispatcher, event: Event): Boolean {
+        if (dispatcher is Player && dispatcher.contains("bot")) {
+            all?.invoke(dispatcher, event)
+        }
         val handlers = search(dispatcher, event) ?: return false
         if (dispatcher is Player) {
-            if (dispatcher.contains("bot")) {
-                all?.invoke(dispatcher, event)
-            } else if (dispatcher["debug", false]) {
+            if (dispatcher["debug", false]) {
                 logger.debug { "Event: $dispatcher - ${event.debug(dispatcher)}" }
             }
         }
@@ -75,10 +76,10 @@ class Events(
      * @return any handlers were found and executed
      */
     fun emit(dispatcher: EventDispatcher, event: SuspendableEvent): Boolean {
-        val handlers = search(dispatcher, event) ?: return false
         if (dispatcher is Player && dispatcher.contains("bot")) {
             all?.invoke(dispatcher, event)
         }
+        val handlers = search(dispatcher, event) ?: return false
         scope.launch(errorHandler) {
             handleEvent(handlers, event, dispatcher)
         }

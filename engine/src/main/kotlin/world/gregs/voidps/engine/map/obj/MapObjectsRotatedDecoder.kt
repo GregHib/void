@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.map.obj
 
-import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.decoder.MapObjectDecoder
@@ -20,14 +19,13 @@ class MapObjectsRotatedDecoder(
     internal var zoneRotation: Int = 0
     internal lateinit var zone: Rectangle
 
-    fun decode(cache: Cache, tiles: LongArray, from: Zone, to: Zone, rotation: Int, keys: IntArray?) {
+    fun decode(cache: Cache, settings: ByteArray, from: Zone, to: Zone, rotation: Int, keys: IntArray?) {
         val objectData = cache.data(Index.MAPS, "l${from.region.x}_${from.region.y}", xtea = keys) ?: return
-        val reader = BufferReader(objectData)
         val x = from.tile.x.rem(64)
         val y = from.tile.y.rem(64)
         zone = Rectangle(x, y, x + 8, y + 8)
         zoneRotation = rotation
-        super.decode(reader, tiles, to.tile.x, to.tile.y)
+        super.decode(objectData, settings, to.tile.x, to.tile.y)
     }
 
     override fun add(objectId: Int, localX: Int, localY: Int, level: Int, shape: Int, rotation: Int, regionTileX: Int, regionTileY: Int) {

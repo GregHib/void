@@ -12013,3 +12013,21 @@ wilderness_log_balance:
 wilderness_agility_rocks:
   id: 2328
   examine: "A rocky outcrop."
+lumbridge_castle_staircase_north:
+  id: 36776
+  examine: "I can climb up these stairs."
+lumbridge_castle_staircase_north_middle:
+  id: 36777
+  examine: "I can climb up or down these stairs."
+lumbridge_castle_staircase_north_top:
+  id: 36778
+  examine: "I can climb down these stairs."
+lumbridge_staircase_top:
+  id: 36775
+  examine: "I can climb up these stairs."
+lumbridge_castle_staircase_south_middle:
+  id: 36774
+  examine: "I can climb up or down these stairs."
+lumbridge_staircase:
+  id: 36773
+  examine: "I can climb up these stairs."

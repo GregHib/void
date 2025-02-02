@@ -19,8 +19,8 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.equals
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
-import content.entity.obj.Teleports
-import content.entity.obj.teleportTakeOff
+import content.entity.obj.ObjectTeleports
+import content.entity.obj.objTeleportTakeOff
 import content.entity.sound.playSound
 
 val objectDefinitions: ObjectDefinitions by inject()
@@ -69,15 +69,15 @@ itemOnObjectOperate("*_talisman", "*_altar_ruins") {
     player.mode = Interact(player, target, ObjectOption(player, target, definition, "Enter"), approachRange = -1)
 }
 
-teleportTakeOff("Enter", "*_altar_ruins_enter") {
+objTeleportTakeOff("Enter", "*_altar_ruins_enter") {
     player.clearAnim()
     player.playSound("teleport")
     player.message("You feel a powerful force talk hold of you...")
 }
 
-val teleports: Teleports by inject()
+val teleports: ObjectTeleports by inject()
 
-teleportTakeOff("Enter", "*_altar_portal") {
+objTeleportTakeOff("Enter", "*_altar_portal") {
     if (id == "chaos_altar_portal" && !player.hasClock("chaos_altar_skip")) {
         player.softQueue("chaos_altar_check") {
             statement("Warning! This portal will teleport you into the Wilderness.")
@@ -93,25 +93,25 @@ teleportTakeOff("Enter", "*_altar_portal") {
             }
         }
         cancel()
-        return@teleportTakeOff
+        return@objTeleportTakeOff
     }
     player.clearAnim()
     player.playSound("teleport")
     player.message("You step through the portal...")
 }
 
-teleportTakeOff("Climb-down", "chaos_altar_ladder_down") {
+objTeleportTakeOff("Climb-down", "chaos_altar_ladder_down") {
     if (tile.equals(2259, 4845, 1)) {
         player.message("The ladder is broken, I can't climb it.")
         cancel()
-        return@teleportTakeOff
+        return@objTeleportTakeOff
     }
 }
 
-teleportTakeOff("Climb-up", "chaos_altar_ladder_up") {
+objTeleportTakeOff("Climb-up", "chaos_altar_ladder_up") {
     if (tile.equals(2259, 4845)) {
         player.message("The ladder is broken, I can't climb it.")
         cancel()
-        return@teleportTakeOff
+        return@objTeleportTakeOff
     }
 }

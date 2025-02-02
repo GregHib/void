@@ -16,13 +16,13 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.setRandom
-import content.entity.obj.Teleports
+import content.entity.obj.ObjectTeleports
 import WorldTest
 import itemOnObject
 
 internal class CombinationRunecraftingTest : WorldTest() {
 
-    private lateinit var teleports: Teleports
+    private lateinit var teleports: ObjectTeleports
     private lateinit var definitions: ItemDefinitions
     private val combinationsList = mutableListOf<List<Any>>()
 

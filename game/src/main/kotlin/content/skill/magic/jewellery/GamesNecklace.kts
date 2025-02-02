@@ -16,6 +16,9 @@ val wildernessVolcano = areas["wilderness_volcano_teleport"]
 val burghDeRott = areas["burgh_de_rott_teleport"]
 
 inventoryItem("Rub", "games_necklace_#", "inventory") {
+    if (player.contains("delay")) {
+        return@inventoryItem
+    }
     choice("Where would you like to teleport to?") {
         option("Burthorpe Games Rooms.") {
             jewelleryTeleport(player, inventory, slot, burthorpe)
@@ -37,6 +40,9 @@ inventoryItem("Rub", "games_necklace_#", "inventory") {
 }
 
 inventoryItem("*", "games_necklace_#", "worn_equipment") {
+    if (player.contains("delay")) {
+        return@inventoryItem
+    }
     val area = when (option) {
         "Burthorpe" -> burthorpe
         "Barbarian Outpost" -> barbarianOutput

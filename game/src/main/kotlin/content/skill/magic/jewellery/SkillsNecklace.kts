@@ -15,6 +15,9 @@ val crafting = areas["crafting_guild_teleport"]
 val cooking = areas["cooking_guild_teleport"]
 
 inventoryItem("Rub", "skills_necklace_#", "inventory") {
+    if (player.contains("delay")) {
+        return@inventoryItem
+    }
     choice("Where would you like to teleport to?") {
         option("Fishing Guild.") {
             player.message("You rub the necklace...", ChatType.Filter)
@@ -37,6 +40,9 @@ inventoryItem("Rub", "skills_necklace_#", "inventory") {
 }
 
 inventoryItem("*", "skills_necklace_#", "worn_equipment") {
+    if (player.contains("delay")) {
+        return@inventoryItem
+    }
     val area = when (option) {
         "Fishing Guild" -> fishing
         "Mining Guild" -> mining

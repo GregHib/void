@@ -16,23 +16,24 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
+import content.quest.questCompleted
 
 val variables: VariableDefinitions by inject()
 val enumDefinitions: EnumDefinitions by inject()
 val structDefinitions: StructDefinitions by inject()
 
 interfaceOpen("task_system") { player ->
-    player.sendVariable("task_pin_index")
+    player.sendVariable("task_pin_slot")
     player.sendVariable("task_pinned")
     player.sendVariable("introducing_explorer_jack_task")
     refreshSlots(player)
     if (player.contains("task_dont_show_again")) {
         player.sendVariable("task_dont_show_again")
     }
-    if (player["unstable_foundations", "unstarted"] == "unstarted") {
+    if (!player.questCompleted("unstable_foundations")) {
         player["task_pinned"] = 3520 // Talk to explorer jack
-        player["task_pin_index"] = 1
-        player["task_selected"] = 1
+        player["task_pin_slot"] = 1
+        player["task_slot_selected"] = 1
         player["unstable_foundations"] = "incomplete"
     }
 }
@@ -58,8 +59,8 @@ interfaceOption("Close", "close_hint", "task_system") {
 }
 
 interfaceOption("Select Task", "task_*", "task_system") {
-    val index = component.removePrefix("task_").toInt()
-    player["task_selected"] = index
+    val slot = component.removePrefix("task_").toInt()
+    player["task_slot_selected"] = slot
 }
 
 interfaceOption("Toggle", "dont_show", "task_system") {
@@ -72,23 +73,34 @@ interfaceOption("Open", "task_list", "task_system") {
 
 interfaceOption("OK", "ok", "task_system") {
     player.interfaces.sendVisibility("task_system", "summary_overlay", false)
-    val selected = player["task_selected", -1]
-    if (selected != -1 && selected == player["task_pin_index", -1]) {
+    val slot = player["task_slot_selected", 0]
+    val selected = indexOfSlot(player, slot) ?: return@interfaceOption
+    if (selected == player["task_pinned", -1]) {
         player.clear("task_pinned")
-        player.clear("task_pin_index")
-        player.interfaces.sendVisibility("task_system", "ok", false)
+        player.clear("task_pin_slot")
     }
+    player.interfaces.sendVisibility("task_system", "ok", false)
     refreshSlots(player)
 }
 
 interfaceOption("Pin/Unpin Task", "task_*", "task_system") {
     val index = component.removePrefix("task_").toInt()
-    if (player["task_pin_index", -1] == index) {
+    pin(player, index)
+}
+
+interfaceOption("Set", "pin", "task_system") {
+    val slot = player.get<Int>("task_slot_selected") ?: return@interfaceOption
+    pin(player, slot)
+    player.interfaces.sendVisibility("task_system", "summary_overlay", false)
+}
+
+fun pin(player: Player, slot: Int) {
+    if (player["task_pin_slot", -1] == slot) {
         player.clear("task_pinned")
-        player.clear("task_pin_index")
+        player.clear("task_pin_slot")
     } else {
-        player["task_pinned"] = indexOfSlot(player, index) ?: return@interfaceOption
-        player["task_pin_index"] = index
+        player["task_pinned"] = indexOfSlot(player, slot) ?: return
+        player["task_pin_slot"] = slot
     }
 }
 
@@ -100,7 +112,7 @@ fun indexOfSlot(player: Player, slot: Int): Int? {
         if (hideCompleted || hideMembers) {
             return@forEach null
         }
-        if (count == player["task_pin_index", -1]) {
+        if (count == player["task_pin_slot", -1]) {
             val pinned = player["task_pinned", 4091]
             if (count == slot) {
                 return@forEach pinned
@@ -114,7 +126,7 @@ fun indexOfSlot(player: Player, slot: Int): Int? {
     }
 }
 
-variableSet("task_pin_index", "task_area") { player ->
+variableSet("task_pin_slot", "task_area") { player ->
     refreshSlots(player)
 }
 
@@ -134,6 +146,7 @@ fun refreshSlots(player: Player) {
         }
         if (pinned) {
             player["task_slot_${slot++}"] = player["task_pinned", 4091]
+            total--
             skip = true
         } else if (slot < 7) {
             player["task_slot_${slot++}"] = index
@@ -149,9 +162,9 @@ fun refreshSlots(player: Player) {
     player["task_progress_current"] = completed
 }
 
-fun pinned(player: Player, index: Int): Boolean {
-    val pinIndex = player["task_pin_index", -1]
-    return pinIndex != -1 && index == pinIndex
+fun pinned(player: Player, slot: Int): Boolean {
+    val pinned = player["task_pin_slot", -1]
+    return pinned != -1 && slot == pinned
 }
 
 fun areaId(player: Player) = variables.get("task_area")!!.values.toInt(player["task_area", "empty"])
@@ -161,7 +174,17 @@ fun areaId(player: Player) = variables.get("task_area")!!.values.toInt(player["t
  */
 
 interfaceOption("Details", "details", "task_popup") {
-    player["task_popup_summary"] = true
+    if (player.questCompleted("unstable_foundations")) {
+        player["task_popup_summary"] = true
+        player.interfaces.sendVisibility("task_system", "ok", true)
+        val index = player["task_popup", -1]
+        for (slot in 0 until 6) {
+            if (player["task_slot_${slot}", -1] == index) {
+                player["task_slot_selected"] = slot
+                break
+            }
+        }
+    }
     player.tab(Tab.TaskSystem)
 }
 
@@ -211,7 +234,7 @@ fun completeTask(player: Player, id: String) {
  */
 
 interfaceOption("Hint", "hint_*", "task_system") {
-    val selected = player["task_selected", 0]
+    val selected = player["task_slot_selected", 0]
     val index = indexOfSlot(player, selected) ?: return@interfaceOption
     val tile: Int = enumDefinitions.getStructOrNull("task_structs", index, component.replace("hint_", "task_hint_tile_")) ?: return@interfaceOption
     // TODO I expect the functionality is actually minimap highlights not world map

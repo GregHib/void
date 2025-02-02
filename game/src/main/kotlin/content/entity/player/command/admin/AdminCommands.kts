@@ -57,7 +57,7 @@ import content.entity.player.modal.book.Books
 import content.quest.quests
 import content.quest.refreshQuestJournal
 import content.entity.npc.shop.OpenShop
-import content.entity.obj.Teleports
+import content.entity.obj.ObjectTeleports
 import content.skill.prayer.PrayerConfigs
 import content.skill.prayer.PrayerConfigs.PRAYERS
 import content.skill.prayer.isCurses
@@ -192,14 +192,14 @@ adminCommand("item (item-id) [item-amount]", "spawn an item by int or string id 
     }
 }
 
-adminCommand("give (item-id) [amount] (player-name)", "spawn item in another players inventory") {
+adminCommand("give (item-id) (amount) (player-name)", "spawn item in another players inventory") {
     val parts = content.split(" ")
     val id = definitions.get(parts.first()).stringId
     val amount = parts[1]
     val name = content.removePrefix("${parts[0]} ${parts[1]} ")
     val target = players.get(name)
     if (target == null) {
-        player.message("Couldn't find player $target")
+        player.message("Couldn't find player $name")
     } else {
         target.inventory.add(id, if (amount == "max") Int.MAX_VALUE else amount.toSILong().toInt())
     }
@@ -433,7 +433,7 @@ modCommand("pos", "print out players current coordinates", listOf("mypos")) {
 adminCommand("reload (config-name)", "reload any type of content or file e.g. npcs, object defs, or settings") {
     when (content) {
         "book", "books" -> get<Books>().load()
-        "stairs", "tele", "teles", "teleports" -> get<Teleports>().load()
+        "stairs", "tele", "teles", "teleports" -> get<ObjectTeleports>().load()
         "tracks", "songs" -> get<MusicTracks>().load()
         "objects", "objs" -> {
             val defs: ObjectDefinitions = get()

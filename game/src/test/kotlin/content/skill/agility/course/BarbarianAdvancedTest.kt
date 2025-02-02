@@ -1,13 +1,11 @@
 package content.skill.agility.course
 
-import content.skill.agility.course.agilityCourse
-import content.skill.agility.course.agilityStage
+import WorldTest
+import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.Tile
-import WorldTest
-import objectOption
 
 internal class BarbarianAdvancedTest : WorldTest() {
 

@@ -208,7 +208,7 @@ suspend fun SuspendableContext<Player>.cutscenePart2(instance: Region) {
     npc<Cry>("dororan_cutscene", "Sorry.")
     npc<Happy>("gudrun_cutscene", "I had no idea dwarves could be so romantic! Come here! ")
     delay(2)
-    gudrunHugging.animate("gudrun_hugging")
+    gudrunHugging.anim("gudrun_hugging")
     delay(4)
     player.queue.clear("gunnars_ground_cutscene_end")
     endCutscene(instance)

@@ -25,7 +25,7 @@ import content.entity.combat.killer
 import content.entity.death.npcDeath
 import content.entity.npc.shop.sell.itemSold
 import content.entity.npc.shop.shopOpen
-import content.entity.obj.teleportLand
+import content.entity.obj.objTeleportLand
 import content.skill.prayer.prayerStart
 import content.skill.ranged.ammo
 
@@ -33,7 +33,7 @@ move({ player.running && !player["on_the_run_task", false] }) {
     player["on_the_run_task"] = true
 }
 
-teleportLand("Climb-up", "lumbridge_castle_ladder") {
+objTeleportLand("Climb-up", "lumbridge_castle_ladder") {
     player["master_of_all_i_survey_task"] = true
 }
 

@@ -92,7 +92,7 @@ class BufferReader(
     override fun readSmart(): Int {
         val peek = readUnsignedByte()
         return if (peek < 128) {
-            peek and 0xFF
+            peek
         } else {
             (peek shl 8 or readUnsignedByte()) - 32768
         }

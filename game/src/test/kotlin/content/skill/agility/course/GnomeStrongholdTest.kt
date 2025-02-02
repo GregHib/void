@@ -1,8 +1,6 @@
 package content.skill.agility.course
 
 import WorldTest
-import content.skill.agility.course.agilityCourse
-import content.skill.agility.course.agilityStage
 import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

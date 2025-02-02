@@ -8,7 +8,7 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.obj.minimumCanoeLevel
+import content.entity.obj.canoe.minimumCanoeLevel
 
 npcOperate("Talk-To", "hari") {
     player<Neutral>("Hello there.")
