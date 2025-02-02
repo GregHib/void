@@ -22,25 +22,25 @@ object MapTileDecoder {
         }
     }
 
-    fun loadTiles(data: ByteArray, tiles: ByteArray) {
+    fun loadTiles(data: ByteArray, settings: ByteArray) {
         var position = 0
         val size = data.size
         for (index in indices) {
-            var settings = 0
+            var setting = 0
             while (position < size) {
                 val config = data[position++].toInt() and 0xff
                 when {
                     config == 0 -> {
-                        tiles[index] = settings.toByte()
+                        settings[index] = setting.toByte()
                         break
                     }
                     config == 1 -> {
                         position++
-                        tiles[index] = settings.toByte()
+                        settings[index] = setting.toByte()
                         break
                     }
                     config <= 49 -> position++
-                    config <= 81 -> settings = config - 49
+                    config <= 81 -> setting = config - 49
                 }
             }
         }
