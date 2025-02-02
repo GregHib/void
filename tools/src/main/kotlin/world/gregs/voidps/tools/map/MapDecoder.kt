@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Index.MAPS
 import world.gregs.voidps.cache.definition.data.MapDefinition
-import world.gregs.voidps.cache.definition.decoder.MapTileDecoder
+import world.gregs.voidps.cache.definition.data.MapTile
 import world.gregs.voidps.type.Region
 
 class MapDecoder(val xteas: Map<Int, IntArray>? = null) : DefinitionDecoder<MapDefinition>(MAPS) {
@@ -54,8 +54,53 @@ class MapDecoder(val xteas: Map<Int, IntArray>? = null) : DefinitionDecoder<MapD
         val reader = BufferReader(data)
         val definition = definitions[id]
         definition.id = region
-        MapTileDecoder.loadTiles(reader, definition.tiles)
+        loadTiles(reader, definition.tiles)
         objects.decode(cache, definition)
+    }
+
+    private fun loadTiles(reader: Reader, tiles: LongArray) {
+        for (level in 0 until 4) {
+            for (localX in 0 until 64) {
+                for (localY in 0 until 64) {
+                    var height = 0
+                    var attrOpcode = 0
+                    var overlayPath = 0
+                    var overlayRotation = 0
+                    var overlayId = 0
+                    var settings = 0
+                    var underlayId = 0
+                    loop@ while (true) {
+                        val config = reader.readUnsignedByte()
+                        if (config == 0) {
+                            break@loop
+                        } else if (config == 1) {
+                            height = reader.readUnsignedByte()
+                            break@loop
+                        } else if (config <= 49) {
+                            attrOpcode = config
+                            overlayId = reader.readUnsignedByte()
+                            overlayPath = (config - 2) / 4
+                            overlayRotation = 3 and (config - 2)
+                        } else if (config <= 81) {
+                            settings = config - 49
+                        } else {
+                            underlayId = (config - 81) and 0xff
+                        }
+                    }
+                    if (height != 0 || attrOpcode != 0 || overlayPath != 0 || overlayRotation != 0 || overlayId != 0 || settings != 0 || underlayId != 0) {
+                        tiles[MapDefinition.index(localX, localY, level)] = MapTile.pack(
+                            height,
+                            attrOpcode,
+                            overlayId,
+                            overlayPath,
+                            overlayRotation,
+                            settings,
+                            underlayId
+                        )
+                    }
+                }
+            }
+        }
     }
 
     override fun readLoop(definition: MapDefinition, buffer: Reader) {
