@@ -296,12 +296,13 @@ adminCommand("sendItems") {
     player.sendInventoryItems(90, 28, ags, true)
 }
 
-adminCommand("obj (object-id) [object-shape] [object-rotation]", "spawn an object") {
+adminCommand("obj (object-id) [object-shape] [object-rotation] [ticks]", "spawn an object") {
     val parts = content.split(" ")
     val id = parts[0]
     val shape = parts.getOrNull(1)?.toIntOrNull() ?: 10
     val rotation = parts.getOrNull(2)?.toIntOrNull() ?: 0
-    objects.add(id, player.tile, shape, rotation)
+    val ticks = parts.getOrNull(3)?.toIntOrNull() ?: -1
+    objects.add(id, player.tile, shape, rotation, ticks)
 }
 
 
