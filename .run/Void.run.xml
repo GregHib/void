@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Void" type="JetRunConfigurationType">
+    <option name="MAIN_CLASS_NAME" value="Main" />
+    <module name="void.game.main" />
+    <shortenClasspath name="NONE" />
+    <method v="2">
+      <option name="Gradle.BeforeRunTask" enabled="false" tasks="collectSourcePaths" externalProjectPath="$PROJECT_DIR$/game" vmOptions="" scriptParameters="" />
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
