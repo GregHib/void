@@ -2710,3 +2710,15 @@ rocks_restless_ghost:
   format: list
   default: skull
   values: [ skull, no_skull ]
+canoe_state_lumbridge:
+  id: 1839
+  persist: true
+  format: list
+  default: tree
+  values: [ tree, log, dugout, stable_dugout, waka, float_log, float_dugout, float_stable_dugout, float_waka, falling, fallen, water_log, water_dugout, water_stable_dugout, water_waka ]
+canoe_state_champions_guild:
+  id: 1840
+  persist: true
+  format: list
+  default: tree
+  values: [ tree, log, dugout, stable_dugout, waka, float_log, float_dugout, float_stable_dugout, float_waka, falling, fallen, water_log, water_dugout, water_stable_dugout, water_waka ]

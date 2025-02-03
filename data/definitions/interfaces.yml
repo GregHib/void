@@ -43,16 +43,21 @@ canoe_stations_map:
   id: 53
   type: main_screen
   components:
-    lumbridge: 10
-    champions_guild: 11
-    barbarian_village: 12
+    travel_edgeville: 6
+    travel_barbarian_village: 3
+    lumbridge_group: 10
+    champions_guild_group: 11
+    barbarian_village_group: 12
     you_are_here_edgeville: 19
-    edgeville: 20
-    wilderness_pond: 18
+    edgeville_group: 20
+    wilderness_pond_group: 18
     wilderness_warning: 22
     you_are_here_barbarian_village: 23
     you_are_here_champions_guild: 24
     you_are_here_lumbridge: 25
+    travel_lumbridge: 47
+    travel_champions_guild: 48
+    travel_wilderness_pond: 49
 dialogue_castlewars_score:
   id: 55
   type: dialogue_box

@@ -1853,3 +1853,5 @@ dragon_hatchet_shape_canoe: 11601
 sacred_clay_hatchet_shape_canoe: 11602
 volatile_clay_hatchet_shape_canoe: 11603
 inferno_adze_hatchet_shape_canoe: 11604
+canoe_push: 3301
+canoe_fall: 3304
