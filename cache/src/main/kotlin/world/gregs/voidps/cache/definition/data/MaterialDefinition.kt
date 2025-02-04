@@ -2,7 +2,7 @@ package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
 
-data class TextureDefinition(
+data class MaterialDefinition(
     override var id: Int = -1,
     var useTextureColour: Boolean = false,
     var aBoolean1204: Boolean = false,

@@ -48,7 +48,7 @@ object WorldMapDumper {
         val objectDecoder = ObjectDecoderFull(members = true, lowDetail = false).load(cache)
         val overlayDefinitions = OverlayDecoder().load(cache)
         val underlayDefinitions = UnderlayDecoder().load(cache)
-        val textureDefinitions = TextureDecoder().load(cache)
+        val textureDefinitions = MaterialDecoder().load(cache)
         val worldMapDecoder = WorldMapDetailsDecoder().load(cache)
         val worldMapInfoDecoder = WorldMapInfoDecoder().load(cache)
         val spriteDecoder = SpriteDecoder().load(cache)
