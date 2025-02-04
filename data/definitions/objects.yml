@@ -12055,3 +12055,24 @@ a_sinking_canoe_stable_dugout:
 a_sinking_canoe_waka:
   id: 12162
   examine: "Glug, glug, glug."
+nettles:
+  id: 1181
+  examine: "I'd better not get stung."
+cadava_bush_full:
+  id: 23625
+  examine: "Wild cadava berries are growing here."
+cadava_bush_half:
+  id: 23626
+  examine: "Wild cadava berries are growing here."
+cadava_bush_empty:
+  id: 23627
+  examine: "Wild cadava berries grow here."
+redberry_bush_full:
+  id: 23628
+  examine: "Wild redberries are growing here."
+redberry_bush_half:
+  id: 23629
+  examine: "Wild redberries are growing here."
+redberry_bush_empty:
+  id: 23630
+  examine: "Wild redberries grow here."
