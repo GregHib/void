@@ -26,7 +26,7 @@ modCommand("npcs", "get total npc count") {
 
 adminCommand("npctfm") {
     val npc = npcs[player.tile.addY(1)].first()
-    npc.transform = content
+    npc.transform(content)
 }
 
 adminCommand("npcturn") {

@@ -36,7 +36,7 @@ timerStop("transform") { player ->
 }
 
 npcTimerStop("transform") { npc ->
-    npc.visuals.transform.reset()
+    npc.visuals.transform.id = npc.def.id
     npc.clear("transform_id")
     npc.flagTransform()
     npc.collision = npc.remove("old_collision") ?: return@npcTimerStop
