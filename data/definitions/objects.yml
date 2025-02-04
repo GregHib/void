@@ -4524,6 +4524,18 @@ coffin_16:
 coffin_17:
   id: 12135
   examine: "Contains dead people."
+canoe_station_lumbridge:
+  id: 12163
+  examine: "You can create a canoe here."
+canoe_station_champions_guild:
+  id: 12164
+  examine: "You can create a canoe here."
+canoe_station_barbarian_village:
+  id: 12165
+  examine: "You can create a canoe here."
+canoe_station_edgeville:
+  id: 12166
+  examine: "You can create a canoe here."
 canoe_station:
   id: 12144
   examine: "You can create a canoe here."
@@ -12034,6 +12046,12 @@ lumbridge_staircase:
 a_sinking_canoe_log:
   id: 12159
   examine: "Glug, glug, glug."
-canoe_station_champions_guild:
-  id: 12164
-  examine: "You can create a canoe here."
+a_sinking_canoe_dugout:
+  id: 12160
+  examine: "Glug, glug, glug."
+a_sinking_canoe_stable_dugout:
+  id: 12161
+  examine: "Glug, glug, glug."
+a_sinking_canoe_waka:
+  id: 12162
+  examine: "Glug, glug, glug."

@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.ui.event.CloseInterface
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -165,6 +166,13 @@ class Interfaces(
     fun sendAnimation(id: String, component: String, animation: Int): Boolean {
         val comp = definitions.getComponent(id, component) ?: return false
         client?.animateInterface(comp["parent", -1], comp.id, animation)
+        return true
+    }
+
+    fun sendAnimation(id: String, component: String, animation: String): Boolean {
+        val comp = definitions.getComponent(id, component) ?: return false
+        val definitions: AnimationDefinitions = get()
+        client?.animateInterface(comp["parent", -1], comp.id, definitions.get(animation).id)
         return true
     }
 

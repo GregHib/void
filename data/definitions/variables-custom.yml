@@ -517,3 +517,7 @@ barcrawl_signatures:
   persist: true
   format: bitwise
   values: [ uncle_humphreys_gutrot, fire_toad_blast, supergrog, fire_brandy, heart_stopper, liverbane_ale, olde_suspiciouse, ape_bite_liqueur, hand_of_death_cocktail, black_skull_ale ]
+wilderness_canoe_warning:
+  format: boolean
+  persist: true
+  default: true

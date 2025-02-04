@@ -2268,6 +2268,8 @@ world_map:
 chat_model_text: 757
 canoe_travel: 
   id: 758
+  components:
+    model: 3
 vants_requests: 761
 bank:
   id: 762

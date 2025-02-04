@@ -3,10 +3,12 @@ package world.gregs.voidps.engine.suspend
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import kotlin.math.log
 
 interface SuspendableContext<C : Character> : Context<C> {
     /**
@@ -73,7 +75,11 @@ interface SuspendableContext<C : Character> : Context<C> {
 
     private suspend fun Character.delayTarget(target: Tile) {
         var count = 0
-        while (tile != target && count++ < 50) {
+        if (tile.distanceTo(target) >= 50) {
+            logger.warn { "Skipping target delay distance too great char=$this, target=$target, context=${this@SuspendableContext}" }
+            return
+        }
+        while (tile != target && count++ < 50 && mode != EmptyMode) {
             delay()
         }
         if (count >= 50) {

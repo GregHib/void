@@ -7134,6 +7134,7 @@ iron_hatchet:
   limit: 1000
   weight: 1.36
   rank: 1
+  canoe_chance: 48-150
   smithing:
     level: 16
     xp: 25.0
@@ -7148,6 +7149,7 @@ bronze_hatchet:
   limit: 1000
   weight: 1.36
   rank: 0
+  canoe_chance: 32-100
   aka: [ bronze_axe ]
   smithing:
     level: 1
@@ -7162,6 +7164,7 @@ steel_hatchet:
   limit: 1000
   weight: 1.36
   rank: 2
+  canoe_chance: 64-200
   aka: [ steel_axe ]
   smithing:
     level: 31
@@ -7176,6 +7179,7 @@ mithril_hatchet:
   limit: 1000
   weight: 1.133
   rank: 4
+  canoe_chance: 80-250
   aka: [ mith_axe, mithril_axe ]
   smithing:
     level: 51
@@ -7189,6 +7193,7 @@ adamant_hatchet:
   limit: 1000
   weight: 1.587
   rank: 5
+  canoe_chance: 96-300
   aka: [ addy_axe, adamant_axe ]
   smithing:
     level: 71
@@ -7202,6 +7207,7 @@ rune_hatchet:
   limit: 100
   weight: 1.36
   rank: 6
+  canoe_chance: 112-350
   aka: [ rune_axe ]
   smithing:
     level: 86
@@ -7215,6 +7221,7 @@ black_hatchet:
   limit: 1000
   weight: 1.36
   rank: 3
+  canoe_chance: 72-225
   aka: [ black_axe ]
   slot: "Weapon"
   examine: "A sinister looking hatchet."
@@ -29368,6 +29375,7 @@ dragon_hatchet:
   price: 1200000
   limit: 10
   weight: 1.36
+  canoe_chance: 112-350
   aka: [ dragon_axe, daxe ]
   special_energy: 1000
   special: clobber
@@ -58753,6 +58761,7 @@ inferno_adze:
   weight: 2.267
   rank: 7
   mining_delay: 2
+  canoe_chance: 112-350
   skill_req:
     mining: 41
     woodcutting: 61
@@ -60947,6 +60956,7 @@ volatile_clay_hatchet:
   id: 14100
   bank_stacks: false
   rank: 6
+  canoe_chance: 112-350
   skill_req:
     woodcutting: 50
   charges: 29340
@@ -61005,6 +61015,7 @@ sacred_clay_hatchet:
   id: 14108
   bank_stacks: false
   rank: 6
+  canoe_chance: 112-350
   skill_req:
     woodcutting: 50
   charges: 24450

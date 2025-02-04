@@ -85,13 +85,13 @@ class ObjectOptionHandler(
             val varbit = def.varbit
             if (varbit != -1) {
                 val index = getVarbitIndex(player, varbit)
-                return definitions.get(transforms[index])
+                return definitions.get(transforms.getOrNull(index) ?: return definition)
             }
 
             val varp = def.varp
             if (varp != -1) {
                 val index = this.getVarpIndex(player, varp)
-                return definitions.get(transforms[index])
+                return definitions.get(transforms.getOrNull(index) ?: return definition)
             }
             return definition
         }
