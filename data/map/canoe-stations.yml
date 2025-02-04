@@ -1,0 +1,20 @@
+lumbridge:
+  destination: [ 3231, 3250 ]
+  sink: [ 3235, 3248 ]
+  message: "You arrive at Lumbridge.<br>Your canoe sinks into the water after the hard journey."
+champions_guild:
+  destination: [ 3199, 3344 ]
+  sink: [ 3197, 3341 ]
+  message: "You arrive at the Champions' Guild.<br>Your canoe sinks into the water after the hard journey."
+barbarian_village:
+  destination: [ 3109, 3415 ]
+  sink: [ 3107, 3414 ]
+  message: "You arrive at the Barbarian's Village.<br>Your canoe sinks into the water after the hard journey."
+edgeville:
+  destination: [ 3129, 3501 ]
+  sink: [ 3129, 3505 ]
+  message: "You arrive at Edgeville.<br>Your canoe sinks into the water after the hard journey."
+wilderness_pond:
+  destination: [ 3142, 3796 ]
+  sink: [ 3142, 3795 ]
+  message: "You arrive in the Wilderness. There are no trees suitable to make a canoe.<br>Your canoe sinks into the water after the hard journey. Looks like you're walking back."

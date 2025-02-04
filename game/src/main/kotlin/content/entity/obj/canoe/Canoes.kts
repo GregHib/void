@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.CanoeDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -102,12 +103,22 @@ objectOperate("Shape-canoe", "canoe_station_fallen") {
     player.open("canoe")
     val canoe = StringSuspension.get(player)
     player.closeMenu()
+    val required = when (canoe) {
+        "log" -> 12
+        "dugout" -> 26
+        "stable_dugout" -> 41
+        "waka" -> 56
+        else -> return@objectOperate
+    }
+    if (!player.has(Skill.Woodcutting, required, message = true)) {
+        return@objectOperate
+    }
     val level = player.levels.get(Skill.Woodcutting)
     val chance: IntRange = hatchet.def.getOrNull<String>("canoe_chance")?.toIntRange() ?: return@objectOperate
     var count = 0
     while (count++ < 50) {
         player.anim("${hatchet.id}_shape_canoe")
-        delay(3) // TODO can it be cancelled?
+        delay(3)
         if (Level.success(level, chance)) {
             break
         }
@@ -150,30 +161,7 @@ suspend fun ObjectOption<Player>.float() {
     player["canoe_state_${location}"] = "water_$canoe"
 }
 
-// TODO config file
-val destinations = mapOf(
-    "lumbridge" to Tile(3231, 3250),
-    "champions_guild" to Tile(3199, 3344),
-    "barbarian_village" to Tile(3109, 3415),
-    "edgeville" to Tile(3129, 3501),
-    "wilderness_pond" to Tile(3142, 3796),
-)
-
-val names = mapOf(
-    "lumbridge" to "Lumbridge",
-    "champions_guild" to "the Champions' Guild",
-    "barbarian_village" to "the Barbarian's Village",
-    "edgeville" to "Edgeville",
-    "wilderness_pond" to "the Wilderness",
-)
-
-val sink = mapOf(
-    "lumbridge" to Tile(3235, 3248),
-    "champions_guild" to Tile(3197, 3341),
-    "barbarian_village" to Tile(3107, 3414),
-    "edgeville" to Tile(3129, 3505),
-    "wilderness_pond" to Tile(3142, 3795),
-)
+val stations: CanoeDefinitions by inject()
 
 objectOperate("Paddle Canoe", "canoe_station_water_*") {
     player.face(Direction.cardinal[target.rotation])
@@ -196,15 +184,11 @@ objectOperate("Paddle Canoe", "canoe_station_water_*") {
         }
     }
     canoeTravel(canoe, station, destination)
-    player.tele(destinations[destination]!!)
+    val definition = stations.get(destination)
+    player.tele(definition.destination)
     player["canoe_state_${station}"] = "tree"
     player["canoe_state_${destination}"] = "tree"
-    objects.add("a_sinking_canoe_${canoe}", tile = sink[destination]!!, rotation = 1, ticks = 3)
+    objects.add("a_sinking_canoe_${canoe}", tile = definition.sink, rotation = 1, ticks = 3)
     player.playSound("canoe_sink")
-    if (destination == "wilderness_pond") {
-        player.message("You arrive in the Wilderness. There are no trees suitable to make a canoe.")
-        player.message("Your canoe sinks into the water after the hard journey. Looks like you're walking back.")
-    } else {
-        player.message("You arrive at ${names[destination]}.<br>Your canoe sinks into the water after the hard journey.", type = ChatType.Filter)
-    }
+    player.message(definition.message, type = ChatType.Filter)
 }

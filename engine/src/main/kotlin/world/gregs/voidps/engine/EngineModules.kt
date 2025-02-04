@@ -68,6 +68,7 @@ val engineModule = module {
     single { ZoneBatchUpdates() }
     single { DynamicZones(get(), get(), get()) }
     single(createdAtStart = true) { AreaDefinitions().load() }
+    single(createdAtStart = true) { CanoeDefinitions().load() }
     // Network
     single {
         ConnectionQueue(Settings["network.maxLoginsPerTick", 1])
