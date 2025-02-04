@@ -1086,8 +1086,8 @@
 - { id: sheep, x: 2659, y: 4707, members: true }
 - { id: sheep_black_feet, x: 2653, y: 4713, members: true }
 - { id: sheep_2, x: 2659, y: 4714, members: true }
-- { id: sheep_grey, x: 2656, y: 4714, members: true }
-- { id: sheep_light_2, x: 2653, y: 4706, members: true }
+- { id: sheep_light_5, x: 2656, y: 4714, members: true }
+- { id: sheep_light_6, x: 2653, y: 4706, members: true }
 - { id: duck_swim, x: 2662, y: 4686, members: true }
 - { id: duck_swim, x: 2666, y: 4687, members: true }
 - { id: duck_swim, x: 2668, y: 4688, members: true }
@@ -1310,8 +1310,8 @@
 - { id: sheep, x: 2921, y: 3319 }
 - { id: sheep_2, x: 2920, y: 3320 }
 - { id: sheep_2, x: 2922, y: 3320 }
-- { id: sheep_light_2, x: 2925, y: 3324 }
-- { id: sheep_light_2, x: 2920, y: 3318 }
+- { id: sheep_light_6, x: 2925, y: 3324 }
+- { id: sheep_light_6, x: 2920, y: 3318 }
 - { id: cow, x: 2917, y: 3289 }
 - { id: cow, x: 2925, y: 3282 }
 - { id: cow, x: 2926, y: 3271 }
@@ -1796,7 +1796,7 @@
 - { id: butterfly_1, x: 3179, y: 3226 }
 - { id: sheep, x: 3197, y: 3261 }
 - { id: sheep_2, x: 3193, y: 3262 }
-- { id: sheep_grey, x: 3197, y: 3263 }
+- { id: sheep_light_5, x: 3197, y: 3263 }
 - { id: sheep_black, x: 3195, y: 3263 }
 - { id: hank, x: 3195, y: 3254 }
 - { id: giant_spider, x: 3165, y: 3249 }
@@ -1839,8 +1839,8 @@
 - { id: sheep, x: 3197, y: 3265 }
 - { id: sheep_2, x: 3197, y: 3269 }
 - { id: sheep_penguin, x: 3199, y: 3267 }
-- { id: sheep_grey, x: 3195, y: 3272 }
-- { id: sheep_light_2, x: 3194, y: 3267 }
+- { id: sheep_light_5, x: 3195, y: 3272 }
+- { id: sheep_light_6, x: 3194, y: 3267 }
 - { id: sheep_black, x: 3195, y: 3275 }
 - { id: cow_calf_2, x: 3166, y: 3321 }
 - { id: cow_calf_3, x: 3181, y: 3315 }
@@ -2190,9 +2190,9 @@
 - { id: chicken, x: 3230, y: 3298 }
 - { id: chicken, x: 3235, y: 3298 }
 - { id: chicken, x: 3237, y: 3323 }
-- { id: sheep_grey, x: 3202, y: 3271 }
-- { id: sheep_light_2, x: 3210, y: 3274 }
-- { id: sheep_light, x: 3205, y: 3266 }
+- { id: sheep_light_5, x: 3202, y: 3271 }
+- { id: sheep_light_6, x: 3210, y: 3274 }
+- { id: sheep_light_2, x: 3205, y: 3266 }
 - { id: sheep_black, x: 3208, y: 3272 }
 - { id: sheep_black, x: 3208, y: 3267 }
 - { id: sheep_black, x: 3201, y: 3271 }
@@ -2206,9 +2206,9 @@
 - { id: gillie_groats, x: 3254, y: 3274 }
 # 12852
 - { id: sheep, x: 3238, y: 3349 }
-- { id: sheep_grey, x: 3246, y: 3344 }
-- { id: sheep_light_2, x: 3246, y: 3350 }
-- { id: sheep_light_2, x: 3233, y: 3343 }
+- { id: sheep_light_5, x: 3246, y: 3344 }
+- { id: sheep_light_6, x: 3246, y: 3350 }
+- { id: sheep_light_6, x: 3233, y: 3343 }
 - { id: dark_wizard_water, x: 3225, y: 3374 }
 - { id: dark_wizard_water, x: 3232, y: 3367 }
 - { id: dark_wizard_water, x: 3225, y: 3365 }

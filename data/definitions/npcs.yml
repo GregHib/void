@@ -57,6 +57,10 @@ sheep:
   wander_radius: 10
   race: sheep
   examine: "White and fluffy."
+sheep_shorn:
+  <<: *sheep
+  id: 42
+  examine: "Freshly sheared."
 banker:
   id: 44
   interact_distance: 2
@@ -847,9 +851,17 @@ crow_2:
 crow_3:
   <<: *crow
   id: 1756
+sheep_black_feet_shorn:
+  <<: *sheep
+  id: 1762
+  examine: "Freshly sheared."
 sheep_black_feet:
   <<: *sheep
   id: 1763
+sheep_2_shorn:
+  <<: *sheep
+  id: 1764
+  examine: "Freshly sheared."
 sheep_2:
   <<: *sheep
   id: 1765
@@ -1380,15 +1392,64 @@ lil_lamb:
   <<: *sheep
   id: 5146
   examine: "How cute!"
-sheep_light:
+sheep_light_1_shorn:
   <<: *sheep
-  id: 5157
-sheep_grey:
+  id: 5148
+  examine: "Freshly sheared."
+sheep_light_1:
   <<: *sheep
-  id: 5160
+  id: 5156
+sheep_light_2_shorn:
+  <<: *sheep
+  id: 5149
+  examine: "Freshly sheared."
 sheep_light_2:
   <<: *sheep
+  id: 5157
+sheep_light_3_shorn:
+  <<: *sheep
+  id: 5150
+  examine: "Freshly sheared."
+sheep_light_3:
+  <<: *sheep
+  id: 5158
+sheep_light_4_shorn:
+  <<: *sheep
+  id: 5151
+  examine: "Freshly sheared."
+sheep_light_4:
+  <<: *sheep
+  id: 5159
+sheep_light_5_shorn:
+  <<: *sheep
+  id: 5152
+  examine: "Freshly sheared."
+sheep_light_5:
+  <<: *sheep
+  id: 5160
+sheep_light_6_shorn:
+  <<: *sheep
+  id: 5153
+  examine: "Freshly sheared."
+sheep_light_6:
+  <<: *sheep
   id: 5161
+sheep_light_monastery_1_shorn:
+  <<: *sheep
+  id: 5154
+  examine: "White and shaggy."
+sheep_light_monastery_1:
+  <<: *sheep
+  id: 5162
+  examine: "White and shaggy."
+sheep_light_monastery_2_shorn:
+  <<: *sheep
+  id: 5155
+  examine: "White and shaggy."
+sheep_light_monastery_2:
+  <<: *sheep
+  id: 5163
+  examine: "White and shaggy."
 banker_sophanem_dungeon:
   id: 5258
   interact_distance: 2
@@ -1927,6 +1988,10 @@ sheep_black:
   <<: *sheep
   id: 8876
   examine: "It's sporting the height of wool-based fashion."
+sheep_black_shorn:
+  <<: *sheep
+  id: 8877
+  examine: "Freshly sheared."
 iconis:
   id: 8879
   race: human

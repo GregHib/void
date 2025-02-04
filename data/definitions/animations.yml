@@ -1401,6 +1401,7 @@ giant_spider_defend: 5328
 giant_spider_death: 5329
 rat_attack: 2705
 rat_defend: 2706
+rat_death: 2707
 giant_rat_attack: 14859
 giant_rat_death: 14860
 giant_rat_defend: 14861
@@ -1569,6 +1570,7 @@ traiborn_bone_spell: 4602
 summon_demon: 4617
 demon_attack: 64
 demon_defend: 65
+demon_death: 67
 delrith_continue: 4620
 delrith_appear: 4623
 delrith_death: 4624
@@ -1871,3 +1873,4 @@ edgeville_to_barbarian_village: 9903
 barbarian_village_to_lumbridge: 9904
 barbarian_village_to_champions_guild: 9904
 champions_guild_to_lumbridge: 9904
+shear_sheep: 893
