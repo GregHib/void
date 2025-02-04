@@ -23,15 +23,17 @@ object ContentLoader {
                 scriptCount++
             }
         } else {
+            var script = ""
             try {
                 while (scripts.ready()) {
-                    loadScript(scripts.readLine())
+                    script = scripts.readLine()
+                    loadScript(script)
                     scriptCount++
                 }
                 scripts.close()
-            } catch (e: ClassNotFoundException) {
+            } catch (e: Exception) {
                 scripts.close()
-                logger.error(e) { "Failed to load script: ${e.message}" }
+                logger.error(e) { "Failed to load script: $script" }
                 logger.error { "Make sure the scripts package is correct." }
                 exitProcess(1)
             }
