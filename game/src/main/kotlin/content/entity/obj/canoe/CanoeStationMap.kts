@@ -1,23 +1,14 @@
 package content.entity.obj.canoe
 
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
+import world.gregs.voidps.engine.client.ui.interfaceOption
+import world.gregs.voidps.engine.suspend.StringSuspension
 
-val stations = mapOf(
-    12342 to "edgeville",
-    12850 to "lumbridge",
-    12852 to "champions_guild",
-    12341 to "barbarian_village",
-)
+interfaceClose("canoe_stations_map") { player ->
+    player.dialogueSuspension = null
+}
 
-interfaceOpen("canoe_stations_map") { player ->
-    val canoe = ""
-    val location = stations[player.tile.region.id]
-    val canTravelToWildy = false
-
-    for (station in stations.values) {
-        val here = station == location
-        player.interfaces.sendVisibility(id, "you_are_here_$station", here)
-        player.interfaces.sendVisibility(id, station, !here)
-    }
-    player.interfaces.sendVisibility(id, "wilderness_warning", canTravelToWildy)
+interfaceOption("Select", "travel_*", "canoe_stations_map") {
+    val destination = component.removePrefix("travel_")
+    (player.dialogueSuspension as? StringSuspension)?.resume(destination)
 }

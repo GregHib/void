@@ -5,17 +5,17 @@ import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Index.TEXTURE_DEFINITIONS
-import world.gregs.voidps.cache.definition.data.TextureDefinition
+import world.gregs.voidps.cache.definition.data.MaterialDefinition
 
-class TextureDecoder : DefinitionDecoder<TextureDefinition>(TEXTURE_DEFINITIONS) {
+class MaterialDecoder : DefinitionDecoder<MaterialDefinition>(TEXTURE_DEFINITIONS) {
 
-    override fun create(size: Int) = Array(size) { TextureDefinition(it) }
+    override fun create(size: Int) = Array(size) { MaterialDefinition(it) }
 
     override fun getArchive(id: Int) = 0
 
     override fun getFile(id: Int) = 0
 
-    override fun load(cache: Cache): Array<TextureDefinition> {
+    override fun load(cache: Cache): Array<MaterialDefinition> {
         val start = System.currentTimeMillis()
         val data = cache.data(index, 0, 0)!!
         val reader = BufferReader(data)
@@ -26,8 +26,8 @@ class TextureDecoder : DefinitionDecoder<TextureDefinition>(TEXTURE_DEFINITIONS)
         return definitions
     }
 
-    override fun load(definitions: Array<TextureDefinition>, reader: Reader) {
-        val data = mutableListOf<TextureDefinition>()
+    override fun load(definitions: Array<MaterialDefinition>, reader: Reader) {
+        val data = mutableListOf<MaterialDefinition>()
         for (index in definitions.indices) {
             if (reader.readUnsignedBoolean()) {
                 data.add(definitions[index])
@@ -93,7 +93,7 @@ class TextureDecoder : DefinitionDecoder<TextureDefinition>(TEXTURE_DEFINITIONS)
         }
     }
 
-    override fun TextureDefinition.read(opcode: Int, buffer: Reader) {
+    override fun MaterialDefinition.read(opcode: Int, buffer: Reader) {
         throw IllegalStateException("Shouldn't be used.")
     }
 }

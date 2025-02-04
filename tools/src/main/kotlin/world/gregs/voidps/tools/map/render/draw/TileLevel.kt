@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.map.render.draw
 
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapTile
-import world.gregs.voidps.cache.definition.data.TextureDefinition
+import world.gregs.voidps.cache.definition.data.MaterialDefinition
 import world.gregs.voidps.tools.map.render.load.MapConstants.SIZE
 import world.gregs.voidps.tools.map.render.load.MapTileSettings
 import world.gregs.voidps.tools.map.render.model.TextureColours
@@ -12,7 +12,7 @@ import world.gregs.voidps.type.Region
 import kotlin.math.sqrt
 
 class TileLevel(
-    private val textureDefinitions: Array<TextureDefinition>,
+    private val materialDefinitions: Array<MaterialDefinition>,
     private val width: Int,
     private val height: Int,
     val level: Int,
@@ -120,7 +120,7 @@ class TileLevel(
     }
 
     private fun textureColour(i: Int): Int {
-        return textureDefinitions[i].colour and 0xffff
+        return materialDefinitions[i].colour and 0xffff
     }
 
     private fun light(light: Int, colour: Int): Int {
@@ -308,7 +308,7 @@ class TileLevel(
                 }
                 val id = textures[index]
                 if (id != -1) {
-                    val textureMetrics = textureDefinitions[id]
+                    val textureMetrics = materialDefinitions[id]
                     if (!textureMetrics.useTextureColour) {
                         withoutTexture = true
                         if (isTypeFourEightNine(textureMetrics.type.toInt()) || textureMetrics.aByte1211.toInt() != 0 || textureMetrics.aByte1203.toInt() != 0) {
@@ -346,7 +346,7 @@ class TileLevel(
                     textureColour.vertexIndices2!![textureColour.count.toInt()] = vertexIndices2[index].toShort()
                     textureColour.vertexIndices3!![textureColour.count.toInt()] = vertexIndices3[index].toShort()
                     if (withoutTexture) {
-                        if (textures[index] == -1 || textureDefinitions[textures[index]].useTextureColour) {
+                        if (textures[index] == -1 || materialDefinitions[textures[index]].useTextureColour) {
                             textureColour.textureIds!![textureColour.count.toInt()] = (-1).toShort()
                         } else {
                             textureColour.textureIds!![textureColour.count.toInt()] = textures[index].toShort()
@@ -370,9 +370,9 @@ class TileLevel(
             if (tile(x, y).height == tile(x + 1, y).height && tile(x, y).height == tile(x + 1, y + 1).height && tile(x, y).height == tile(x, y + 1).height) {
                 tileColour.type = (tileColour.type.toInt() or 0x1).toByte()
             }
-            var textureMetrics: TextureDefinition? = null
+            var textureMetrics: MaterialDefinition? = null
             if (texture != -1) {
-                textureMetrics = textureDefinitions[texture]
+                textureMetrics = materialDefinitions[texture]
             }
             if (textureMetrics != null && tileColour.type.toInt() and 0x2 == 0 && !textureMetrics.useTextureColour) {
                 tileColour.middleColourIndex = (tileBrightness[x][y] - tileShadows[x][y]).toShort()

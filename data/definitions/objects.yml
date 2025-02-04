@@ -4524,25 +4524,37 @@ coffin_16:
 coffin_17:
   id: 12135
   examine: "Contains dead people."
+canoe_station_lumbridge:
+  id: 12163
+  examine: "You can create a canoe here."
+canoe_station_champions_guild:
+  id: 12164
+  examine: "You can create a canoe here."
+canoe_station_barbarian_village:
+  id: 12165
+  examine: "You can create a canoe here."
+canoe_station_edgeville:
+  id: 12166
+  examine: "You can create a canoe here."
 canoe_station:
   id: 12144
   examine: "You can create a canoe here."
 canoe_station_2:
   id: 12145
   examine: "You can create a canoe here."
-canoe_station_3:
+canoe_station_fallen:
   id: 12146
   examine: "You can create a canoe here."
-canoe_station_4:
+canoe_station_log:
   id: 12147
   examine: "You can create a canoe here."
-canoe_station_5:
+canoe_station_dugout:
   id: 12148
   examine: "You can create a canoe here."
-canoe_station_6:
+canoe_station_stable_dugout:
   id: 12149
   examine: "You can create a canoe here."
-canoe_station_7:
+canoe_station_waka:
   id: 12150
   examine: "You can create a canoe here."
 canoe_station_8:
@@ -4557,16 +4569,16 @@ canoe_station_10:
 canoe_station_11:
   id: 12154
   examine: "You can create a canoe here."
-canoe_station_12:
+canoe_station_water_log:
   id: 12155
   examine: "You can create a canoe here."
-canoe_station_13:
+canoe_station_water_dugout:
   id: 12156
   examine: "You can create a canoe here."
-canoe_station_14:
+canoe_station_water_stable_dugout:
   id: 12157
   examine: "You can create a canoe here."
-canoe_station_15:
+canoe_station_water_waka:
   id: 12158
   examine: "You can create a canoe here."
 crate_99:
@@ -12031,3 +12043,15 @@ lumbridge_castle_staircase_south_middle:
 lumbridge_staircase:
   id: 36773
   examine: "I can climb up these stairs."
+a_sinking_canoe_log:
+  id: 12159
+  examine: "Glug, glug, glug."
+a_sinking_canoe_dugout:
+  id: 12160
+  examine: "Glug, glug, glug."
+a_sinking_canoe_stable_dugout:
+  id: 12161
+  examine: "Glug, glug, glug."
+a_sinking_canoe_waka:
+  id: 12162
+  examine: "Glug, glug, glug."

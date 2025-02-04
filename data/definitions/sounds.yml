@@ -214,3 +214,6 @@ bigghost_appear: 1595
 rg_ghost_approach: 1743
 jump: 2461
 2h_stab: 2504
+canoe_roll: 2731
+canoe_sink: 2732
+tree_fall: 2734

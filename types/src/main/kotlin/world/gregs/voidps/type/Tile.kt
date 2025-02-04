@@ -56,6 +56,8 @@ value class Tile(val id: Int) : Coordinate3D<Tile> {
         val EMPTY = Tile(0)
 
         fun fromMap(map: Map<String, Any>) = Tile(map["x"] as Int, map["y"] as Int, map["level"] as? Int ?: 0)
+        fun fromArray(array: IntArray) = Tile(array[0], array[1], array.getOrNull(2) ?: 0)
+        fun fromArray(array: List<Int>) = Tile(array[0], array[1], array.getOrNull(2) ?: 0)
 
         /**
          * Index for a tile within a [Zone]
