@@ -286,7 +286,7 @@ npcLevelChange("delrith", Skill.Constitution) { npc ->
         return@npcLevelChange
     }
 //    player.playSound("demon_slayer_portal_open")
-    npc.transform = "delrith_weakened"
+    npc.transform("delrith_weakened")
     npc.mode = PauseMode
 }
 

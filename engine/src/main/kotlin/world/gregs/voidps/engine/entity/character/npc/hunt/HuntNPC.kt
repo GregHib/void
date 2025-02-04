@@ -7,7 +7,8 @@ import world.gregs.voidps.engine.event.Events
 
 data class HuntNPC(
     val mode: String,
-    val target: NPC
+    val targets: List<NPC>,
+    val target: NPC = targets.random()
 ) : Event {
 
     override val size = 4
