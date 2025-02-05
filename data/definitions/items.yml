@@ -17979,14 +17979,14 @@ monkey_talisman:
   slot: "Weapon"
   examine: "A magical talisman in the shape of a monkey head."
   kept: "Reclaim"
-ninja_monkey_greegree:
+small_ninja_monkey_greegree:
   id: 4024
   tradeable: false
   weight: 0.085
   slot: "Weapon"
   examine: "A magical talisman in the shape of a small ninja monkey head."
   kept: "Reclaim"
-ninja_monkey_greegree_small:
+medium_ninja_monkey_greegree:
   id: 4025
   tradeable: false
   weight: 0.085
@@ -18000,28 +18000,28 @@ gorilla_greegree:
   slot: "Weapon"
   examine: "A magical talisman in the shape of a gorilla head."
   kept: "Reclaim"
-gorilla_greegree_bearded:
+bearded_gorilla_greegree:
   id: 4027
   tradeable: false
   weight: 0.085
   slot: "Weapon"
   examine: "A magical talisman in the shape of a bearded gorilla head."
   kept: "Reclaim"
-gorilla_greegree_ancient:
+ancient_gorilla_greegree:
   id: 4028
   tradeable: false
   weight: 0.085
   slot: "Weapon"
   examine: "A magical talisman in the shape of a mysterious monkey head."
   kept: "Reclaim"
-zombie_monkey_greegree_small:
+small_zombie_monkey_greegree:
   id: 4029
   tradeable: false
   weight: 0.085
   slot: "Weapon"
   examine: "A magical talisman in the shape of a small zombie monkey head."
   kept: "Reclaim"
-zombie_monkey_greegree:
+large_zombie_monkey_greegree:
   id: 4030
   tradeable: false
   weight: 0.085

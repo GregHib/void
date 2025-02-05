@@ -18,15 +18,23 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import content.entity.sound.playSound
 import content.entity.player.inv.inventoryOption
 import content.entity.player.inv.inventoryOptions
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.inject
+
+val areas: AreaDefinitions by inject()
 
 inventoryOptions("Wield", "Wear", "Hold", "Equip", inventory = "inventory") {
     val def = item.def
-
     if (!player.hasRequirements(item, true)) {
         return@inventoryOptions
     }
     if (replaceWeaponShieldWith2h(player, def) && !player.equipment.move(EquipSlot.Shield.index, player.inventory)) {
         player.inventoryFull()
+        return@inventoryOptions
+    }
+    if (item.id.contains("greegree") && player.tile !in areas["ape_atoll_multi_area"]) {
+        player.message("You attempt to use the Monkey Greegree but nothing happens.")
         return@inventoryOptions
     }
     if (replace2hWithShield(player, def) || replaceShieldWith2h(player, def)) {
