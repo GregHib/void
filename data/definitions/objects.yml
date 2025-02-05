@@ -12076,3 +12076,30 @@ redberry_bush_half:
 redberry_bush_empty:
   id: 23630
   examine: "Wild redberries grow here."
+ape_atoll_stepping_stones:
+  id: 12568
+  examine: "A very slippery stepping stone."
+ape_atoll_tropical_tree:
+  id: 12570
+  examine: "A terribly tall tropical tree."
+ape_atoll_monkeybars:
+  id: 12573
+  examine: "I can traverse these."
+ape_atoll_monkeybars_2:
+  id: 12575
+  examine: "I can traverse these."
+ape_atoll_skull_slope:
+  id: 12576
+  examine: ""
+ape_atoll_rope_swing:
+  id: 12578
+  examine: "For swinging on."
+ape_atoll_hole:
+  id: 12581
+  examine: "A vine-choked hole."
+ape_atoll_tropical_tree_rope:
+  id: 12618
+  examine: "A terribly tall tropical tree."
+ape_atoll_signpost:
+  id: 12661
+  examine: "Entrance to the monkey agility arena.	"
