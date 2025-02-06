@@ -20,7 +20,7 @@ val areas: AreaDefinitions by inject()
 playerSpawn { player ->
     val item = player.equipped(EquipSlot.Weapon).id
     if (item.endsWith("_greegree")) {
-        if (player.tile in areas["ape_atoll_multi_area"]) {
+        if (player.tile in areas["ape_atoll"]) {
             player.transform(item.replace("_greegree", ""))
         } else {
             forceRemove(player)
@@ -45,7 +45,7 @@ itemRemoved("*_greegree", EquipSlot.Weapon, "worn_equipment") { player ->
     player.clearTransform()
 }
 
-exitArea("ape_atoll_multi_area") {
+exitArea("ape_atoll") {
     forceRemove(player)
 }
 

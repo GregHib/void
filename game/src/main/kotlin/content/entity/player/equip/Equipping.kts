@@ -33,7 +33,7 @@ inventoryOptions("Wield", "Wear", "Hold", "Equip", inventory = "inventory") {
         player.inventoryFull()
         return@inventoryOptions
     }
-    if (item.id.contains("greegree") && player.tile !in areas["ape_atoll_multi_area"]) {
+    if (item.id.contains("greegree") && player.tile !in areas["ape_atoll"]) {
         player.message("You attempt to use the Monkey Greegree but nothing happens.")
         return@inventoryOptions
     }

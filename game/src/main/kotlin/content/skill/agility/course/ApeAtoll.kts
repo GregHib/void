@@ -42,15 +42,19 @@ objectOperate("Jump-to", "ape_atoll_stepping_stones") {
         player.clearRenderEmote()
         return@objectOperate
     }
+    player.face(target)
+    arriveDelay()
     player.agilityCourse("ape_atoll")
     player.anim("3481")
+    delay(1)
     player.playSound("2461")
-    player.exactMoveDelay(Tile(2755, 2742))
+    player.exactMoveDelay(Tile(2754, 2742), delay = 30)
     delay(3)
     player.anim("3481")
+    delay(1)
     player.playSound("2461")
-    player.exactMoveDelay(Tile(2754, 2742))
-    player.exp(Skill.Agility, 40.0)
+    player.exactMoveDelay(Tile(2753, 2742))
+//    player.exp(Skill.Agility, 40.0)
 }
 
 objectOperate("Climb", "ape_atoll_tropical_tree") {
@@ -60,12 +64,12 @@ objectOperate("Climb", "ape_atoll_tropical_tree") {
     }
     player.anim("3487")
     player.playSound("2454", repeat = 3)
-    player.tele(2753, 2742, 2)
     delay(3)
+    player.tele(2753, 2742, 2)
     player.exp(Skill.Agility, 40.0)
 }
 
-objectOperate("Swing Across", "ape_atoll_tropical_tree") {
+objectOperate("Swing Across", "ape_atoll_monkeybars") {
     if (!player.equipped(EquipSlot.Weapon).id.endsWith("_greegree")) {
         player.anim("742")
         player.renderEmote("monkey_bars")
@@ -94,6 +98,9 @@ objectOperate("Swing Across", "ape_atoll_tropical_tree") {
         player.clearTransform()
         return@objectOperate
     }
+    player.anim("3482")
+    player.walkOverDelay(Tile(2747, 2741, 2))
     delay(3)
+    player.anim("3484")
     player.exp(Skill.Agility, 40.0)
 }
