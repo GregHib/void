@@ -12090,7 +12090,7 @@ ape_atoll_monkeybars_2:
   examine: "I can traverse these."
 ape_atoll_skull_slope:
   id: 12576
-  examine: ""
+  examine: "A climbing wall made from skulls."
 ape_atoll_rope_swing:
   id: 12578
   examine: "For swinging on."
@@ -12102,4 +12102,10 @@ ape_atoll_tropical_tree_rope:
   examine: "A terribly tall tropical tree."
 ape_atoll_signpost:
   id: 12661
-  examine: "Entrance to the monkey agility arena.	"
+  examine: "Entrance to the monkey agility arena."
+ape_atoll_hole_rope:
+  id: 12616
+  examine: "I can see the surface."
+ape_atoll_monkey_nut_bush:
+  id: 12615
+  examine: "A Bush with monkey nuts growing on it."

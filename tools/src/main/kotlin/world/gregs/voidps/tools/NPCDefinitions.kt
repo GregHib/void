@@ -21,7 +21,7 @@ object NPCDefinitions {
         val decoder = NPCDefinitions(definitions).load(yaml, property("definitions.npcs"))
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.name.contains("diango", ignoreCase = true)) {
+            if (def.name.contains("Talent scout", ignoreCase = true)) {
                 println("$i ${def.name} ${def.extras} ${def.transforms?.contentToString()} ${def.options.contentDeepToString()}")
             }
         }

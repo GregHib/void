@@ -79,7 +79,7 @@ equip_type_hide_hair: 624
 equip_type_hat: 625
 strength: 641
 ranged_strength: 643
-render_animation: 644
+render_emote: 644
 spellbook_y: 654
 spellbook_x: 655
 spellbook_offset_y_1: 656

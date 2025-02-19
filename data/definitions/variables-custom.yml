@@ -521,3 +521,9 @@ wilderness_canoe_warning:
   format: boolean
   persist: true
   default: true
+ape_atoll_course_stage:
+  persist: true
+  format: int
+ape_atoll_course_laps:
+  persist: true
+  format: int

@@ -189,7 +189,7 @@ objectOperate("Squeeze-through", "abyss_gap") {
     val success = Level.success(player.levels.get(Skill.Agility), chance)
     if (!success) {
         player.message("...but you are not agile enough to get through the gap.", ChatType.Filter)
-        player.anim("abyss_stand")
+        player.anim("stand")
         return@objectOperate
     }
     delay(2)

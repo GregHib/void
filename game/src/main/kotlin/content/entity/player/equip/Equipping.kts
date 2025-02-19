@@ -29,12 +29,12 @@ inventoryOptions("Wield", "Wear", "Hold", "Equip", inventory = "inventory") {
     if (!player.hasRequirements(item, true)) {
         return@inventoryOptions
     }
-    if (replaceWeaponShieldWith2h(player, def) && !player.equipment.move(EquipSlot.Shield.index, player.inventory)) {
-        player.inventoryFull()
+    if (item.id.contains("greegree") && player.tile !in areas["ape_atoll"] && player.tile !in areas["ape_atoll_agility_dungeon"]) {
+        player.message("You attempt to use the Monkey Greegree but nothing happens.")
         return@inventoryOptions
     }
-    if (item.id.contains("greegree") && player.tile !in areas["ape_atoll"]) {
-        player.message("You attempt to use the Monkey Greegree but nothing happens.")
+    if (replaceWeaponShieldWith2h(player, def) && !player.equipment.move(EquipSlot.Shield.index, player.inventory)) {
+        player.inventoryFull()
         return@inventoryOptions
     }
     if (replace2hWithShield(player, def) || replaceShieldWith2h(player, def)) {
@@ -85,8 +85,8 @@ fun getOtherHandSlot(slot: EquipSlot) = if (slot == EquipSlot.Shield) EquipSlot.
 
 fun updateWeaponEmote(player: Player) {
     val weapon = player.equipped(EquipSlot.Weapon)
-    val anim = weapon.def["render_animation", 1426]
-    player.appearance.emote = anim
+    val emote = weapon.def["render_emote", 1426]
+    player.appearance.emote = emote
     player.flagAppearance()
 }
 

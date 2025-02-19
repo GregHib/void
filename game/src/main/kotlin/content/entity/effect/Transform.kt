@@ -20,7 +20,7 @@ fun Character.transform(id: String) {
     }
     this["transform_id"] = id
     val definition = get<NPCDefinitions>().get(id)
-    if(this is Player) {
+    if (this is Player) {
         appearance.apply {
             emote = definition.renderEmote
             transform = definition.id
@@ -32,7 +32,7 @@ fun Character.transform(id: String) {
             soundDistance = definition.soundDistance
         }
         flagAppearance()
-    } else if(this is NPC) {
+    } else if (this is NPC) {
         visuals.transform.id = definition.id
         flagTransform()
     }

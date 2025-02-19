@@ -4,14 +4,32 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.npc.characterApproachNPC
 import world.gregs.voidps.engine.entity.character.player.characterApproachPlayer
 import content.entity.combat.CombatInteraction
 import content.skill.melee.weapon.attackRange
 import content.entity.combat.combatPrepare
+import content.entity.player.dialogue.type.statement
 import content.skill.magic.spell.spell
+import world.gregs.voidps.engine.entity.character.npc.npcApproach
+import world.gregs.voidps.engine.entity.character.npc.npcApproachNPC
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-characterApproachNPC("Attack") {
+npcApproach("Attack") {
+    if (player.equipped(EquipSlot.Weapon).id.endsWith("_greegree")) {
+        statement("You cannot attack as a monkey.")
+        cancel()
+        return@npcApproach
+    }
+    if (character.attackRange != 1) {
+        approachRange(character.attackRange, update = false)
+    } else {
+        approachRange(null, update = true)
+    }
+    combatInteraction(character, target)
+}
+
+npcApproachNPC("Attack") {
     if (character.attackRange != 1) {
         approachRange(character.attackRange, update = false)
     } else {
@@ -40,7 +58,7 @@ itemOnNPCApproach(id = "*_spellbook") {
     cancel()
 }
 
-combatPrepare {  player ->
+combatPrepare { player ->
     if (player.contains("one_time")) {
         player.mode = EmptyMode
         player.clear("one_time")

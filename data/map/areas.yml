@@ -608,6 +608,11 @@ ape_atoll:
     x: [ 2688, 2815 ]
     y: [ 2688, 2815 ]
   tags: [ multi_combat ]
+ape_atoll_agility_dungeon:
+  area:
+    x: [ 3008, 3071 ]
+    y: [ 5440, 5503 ]
+  tags: [ multi_combat ]
 pest_control_multi_area:
   area:
     x: [ 2624, 2687 ]
