@@ -1877,9 +1877,12 @@ shear_sheep: 893
 pick_plant: 2282
 jump_onto_monkey_bars: 742
 ninja_monkey_jump: 3481
-ninja_monkey_jump_on_bars: 3482
+ninja_monkey_bars_jump: 3482
+ninja_monkey_bars_fail: 3493
 ninja_monkey_jump_off: 3484
 ninja_monkey_climb_tree: 3487
+ninja_monkey_climb_tree_fail: 3492
+ninja_monkey_fall: 3486
 rocks_climb_up_fail: 739
 ninja_monkey_swing: 3488
 ape_atol_rope_swing: 3123
