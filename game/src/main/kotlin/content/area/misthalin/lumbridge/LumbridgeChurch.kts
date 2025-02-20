@@ -29,7 +29,7 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
 import content.entity.proj.shoot
 import content.entity.sound.playJingle
-import content.entity.sound.playMidi
+import content.entity.sound.midi
 import content.entity.sound.sound
 import content.quest.*
 import java.util.concurrent.TimeUnit
@@ -38,7 +38,7 @@ val npcs: NPCs by inject()
 
 objectOperate("Play", "lumbridge_organ") {
     player.anim("play_organ")
-    player.playMidi("church_organ")
+    player.midi("church_organ")
     player.playJingle("ambient_church_happy")
     player["tinkle_the_ivories_task"] = true
 }

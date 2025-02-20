@@ -37,7 +37,7 @@ fun Player.soundGlobal(
     }
 }
 
-fun Player.playMidi(
+fun Player.midi(
     id: String,
     delay: Int = 0,
     volume: Int = 255,
@@ -47,7 +47,7 @@ fun Player.playMidi(
     client?.playMIDI(get<MidiDefinitions>().getOrNull(id)?.id ?: return, delay, volume, speed, repeat)
 }
 
-fun Player.playGlobalMidi(
+fun Player.midiGlobal(
     id: String,
     radius: Int = 10,
     delay: Int = 0,
