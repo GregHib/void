@@ -61,7 +61,7 @@ fun Player.midiGlobal(
     }
 }
 
-fun Player.playJingle(
+fun Player.jingle(
     id: String,
     volume: Double = 1.0
 ) {

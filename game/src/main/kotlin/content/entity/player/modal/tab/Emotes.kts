@@ -22,7 +22,7 @@ import content.entity.player.dialogue.type.statement
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import content.entity.gfx.areaGraphic
-import content.entity.sound.playJingle
+import content.entity.sound.jingle
 
 val definitions: InterfaceDefinitions by inject()
 
@@ -70,7 +70,7 @@ interfaceOption(id = "emotes") {
             id == "flap" && player.equipped(EquipSlot.Feet).id == "chicken_feet" && player.equipped(EquipSlot.Legs).id == "chicken_legs" && player.equipped(EquipSlot.Chest).id == "chicken_wings" && player.equipped(EquipSlot.Hat).id == "chicken_head" -> playEnhancedEmote(player, id)
             else -> {
                 if (id == "air_guitar") {
-                    player.playJingle(id)
+                    player.jingle(id)
                 }
                 player.gfx("emote_$id")
                 character.anim("emote_$id")

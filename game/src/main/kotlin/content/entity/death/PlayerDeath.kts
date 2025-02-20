@@ -35,7 +35,7 @@ import content.skill.prayer.getActivePrayerVarKey
 import content.skill.prayer.praying
 import content.entity.player.kept.ItemsKeptOnDeath
 import content.entity.proj.shoot
-import content.entity.sound.playJingle
+import content.entity.sound.jingle
 
 val floorItems: FloorItems by inject()
 val enums: EnumDefinitions by inject()
@@ -70,7 +70,7 @@ playerDeath { player ->
         player.clearAnim()
         player.attackers.clear()
         player.damageDealers.clear()
-        player.playJingle("death")
+        player.jingle("death")
         player.timers.stopAll()
         player.softTimers.stopAll()
         player.clear(player.getActivePrayerVarKey())

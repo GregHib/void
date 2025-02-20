@@ -20,7 +20,7 @@ import content.quest.questComplete
 import content.skill.runecrafting.EssenceMine
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.sound.playJingle
+import content.entity.sound.jingle
 import content.entity.sound.sound
 
 npcOperate("Talk-to", "sedridor") {
@@ -251,7 +251,7 @@ suspend fun PlayerChoice.thanksForInformation(): Unit = option<Happy>("Thanks fo
 
 fun Context<Player>.questComplete() {
     player["rune_mysteries"] = "completed"
-    player.playJingle("quest_complete_1")
+    player.jingle("quest_complete_1")
     if (player.inventory.isFull()) {
         player.bank.add("air_talisman")
         player.message("The air talisman has been sent to your bank.")

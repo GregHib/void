@@ -28,7 +28,7 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
 import content.entity.proj.shoot
-import content.entity.sound.playJingle
+import content.entity.sound.jingle
 import content.entity.sound.midi
 import content.entity.sound.sound
 import content.quest.*
@@ -39,7 +39,7 @@ val npcs: NPCs by inject()
 objectOperate("Play", "lumbridge_organ") {
     player.anim("play_organ")
     player.midi("church_organ")
-    player.playJingle("ambient_church_happy")
+    player.jingle("ambient_church_happy")
     player["tinkle_the_ivories_task"] = true
 }
 
@@ -115,7 +115,7 @@ suspend fun Interaction<Player>.returnSkull() {
 fun Context<Player>.questComplete() {
     player["restless_ghost_coffin"] = "skull"
     player["the_restless_ghost"] = "completed"
-    player.playJingle("quest_complete_1")
+    player.jingle("quest_complete_1")
     player.experience.add(Skill.Prayer, 1125.0)
     player.refreshQuestJournal()
     player.inc("quest_points")

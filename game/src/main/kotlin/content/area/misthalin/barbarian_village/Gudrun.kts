@@ -33,7 +33,7 @@ import content.quest.startCutscene
 import content.quest.stopCutscene
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.sound.playJingle
+import content.entity.sound.jingle
 
 val objects: GameObjects by inject()
 
@@ -491,7 +491,7 @@ suspend fun SuspendableContext<Player>.finishQuest() {
 }
 
 fun Context<Player>.questComplete() {
-    player.playJingle("quest_complete_3")
+    player.jingle("quest_complete_3")
     player["gunnars_ground"] = "completed"
     player.inc("quest_points", 5)
     player.experience.add(Skill.Crafting, 300.0)

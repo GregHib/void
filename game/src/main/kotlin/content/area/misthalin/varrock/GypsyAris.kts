@@ -35,7 +35,7 @@ import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import content.entity.world.music.playTrack
 import content.entity.sound.areaSound
-import content.entity.sound.playJingle
+import content.entity.sound.jingle
 import content.entity.sound.sound
 
 npcOperate("Talk-to", "gypsy_aris") {
@@ -263,7 +263,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     player.moveCamera(Tile(3225, 3363).add(offset), height = 500)
     player.turnCamera(Tile(3227, 3367).add(offset), height = 200)
     player.sound("equip_silverlight")
-    player.playJingle("quest_complete_1")
+    player.jingle("quest_complete_1")
     player.face(Direction.SOUTH_WEST)
     player.anim("silverlight_showoff")
     player.gfx("silverlight_sparkle")

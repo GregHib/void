@@ -68,7 +68,7 @@ import content.entity.player.effect.unskull
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.world.music.MusicTracks
 import content.entity.world.music.MusicUnlock
-import content.entity.sound.playJingle
+import content.entity.sound.jingle
 import content.entity.sound.midi
 import content.entity.sound.sound
 import content.entity.npc.spawn.loadNpcSpawns
@@ -396,7 +396,7 @@ adminCommand("midi (midi-id)", "play a midi effect by int or string id") {
 adminCommand("jingle (jingle-id)", "play a jingle sound by int or string id") {
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playJingle(content.toSnakeCase())
+        player.jingle(content.toSnakeCase())
     } else {
         player.client?.playJingle(id)
     }

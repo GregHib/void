@@ -43,7 +43,7 @@ import content.entity.effect.transform
 import content.entity.gfx.areaGraphic
 import content.entity.world.music.playTrack
 import content.entity.proj.shoot
-import content.entity.sound.playJingle
+import content.entity.sound.jingle
 import content.entity.sound.sound
 import content.quest.*
 import content.quest.free.demon_slayer.DemonSlayerSpell
@@ -294,7 +294,7 @@ fun Context<Player>.questComplete() {
     player.anim("silverlight_showoff")
     player.gfx("silverlight_sparkle")
     player.sound("equip_silverlight")
-    player.playJingle("quest_complete_1")
+    player.jingle("quest_complete_1")
     player["demon_slayer"] = "completed"
     player.inc("quest_points", 3)
     DemonSlayerSpell.clear(player)
