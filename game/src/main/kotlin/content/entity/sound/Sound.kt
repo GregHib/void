@@ -1,5 +1,6 @@
 package content.entity.sound
 
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.JingleDefinitions
 import world.gregs.voidps.engine.data.definition.MidiDefinitions
 import world.gregs.voidps.engine.data.definition.SoundDefinitions
@@ -9,6 +10,9 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.encode.playJingle
 import world.gregs.voidps.network.login.protocol.encode.playMIDI
 import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
+import world.gregs.voidps.network.login.protocol.encode.zone.MidiAddition
+import world.gregs.voidps.network.login.protocol.encode.zone.SoundAddition
+import world.gregs.voidps.type.Tile
 
 fun Character.sound(
     id: String,
@@ -37,6 +41,20 @@ fun Player.soundGlobal(
     }
 }
 
+fun areaSound(
+    id: String,
+    tile: Tile,
+    radius: Int = 5,
+    repeat: Int = 1,
+    delay: Int = 0,
+    volume: Int = 255,
+    speed: Int = 255,
+) {
+    val definitions: SoundDefinitions = get()
+    val batches: ZoneBatchUpdates = get()
+    batches.add(tile.zone, SoundAddition(tile.id, definitions.get(id).id, radius, repeat, delay, volume, speed))
+}
+
 fun Player.midi(
     id: String,
     delay: Int = 0,
@@ -59,6 +77,20 @@ fun Player.midiGlobal(
     if (radius > 0) {
         areaMidi(id, tile, radius, repeat, delay, volume, speed)
     }
+}
+
+fun areaMidi(
+    id: String,
+    tile: Tile,
+    radius: Int,
+    repeat: Int = 1,
+    delay: Int = 0,
+    volume: Int = 255,
+    speed: Int = 255,
+) {
+    val definitions: SoundDefinitions = get()
+    val batches: ZoneBatchUpdates = get()
+    batches.add(tile.zone, MidiAddition(tile.id, definitions.get(id).id, radius, repeat, delay, volume, speed))
 }
 
 fun Player.jingle(
