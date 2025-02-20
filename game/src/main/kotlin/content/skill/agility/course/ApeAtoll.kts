@@ -1,7 +1,7 @@
 package content.skill.agility.course
 
 import content.entity.combat.hit.damage
-import content.entity.gfx.areaGraphic
+import content.entity.gfx.areaGfx
 import content.entity.sound.sound
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
@@ -60,7 +60,7 @@ objectOperate("Jump-to", "ape_atoll_stepping_stones") {
             player.renderEmote("swim")
             player.walkOverDelay(target.tile.addY(1))
             player.sound("jump")
-            areaGraphic("big_splash", target.tile.addY(1), delay = 3)
+            areaGfx("big_splash", target.tile.addY(1), delay = 3)
             player.sound("water_splash")
             delay()
             player.walkOverDelay(Tile(2757, 2748))
@@ -102,7 +102,7 @@ objectOperate("Climb", "ape_atoll_tropical_tree") {
             if (monkey) {
                 player.message("You lose your grip on the tree and fall into the water.")
                 player.message("Something in the water bites you...")
-                areaGraphic("big_splash", Tile(2753, 2743), 3)
+                areaGfx("big_splash", Tile(2753, 2743), 3)
             } else {
                 player.message("...you're not monkey enough to try this!")
                 player.anim("human_death")
@@ -165,7 +165,7 @@ objectOperate("Swing Across", "ape_atoll_monkeybars") {
             player.clearAnim()
             delay()
             player.renderEmote(if (monkey) "ninja_monkey_swim" else "swim")
-            areaGraphic("big_splash", Tile(2750, 2741), 3)
+            areaGfx("big_splash", Tile(2750, 2741), 3)
             player.sound("watersplash")
             player.sound("swim_stroke", repeat = 9)
             returnToShore()
@@ -223,7 +223,7 @@ objectOperate("Climb-up", "ape_atoll_skull_slope") {
             player.message("...you're not monkey enough to try this!")
             player.clearAnim()
             player.renderEmote("swim")
-            areaGraphic("big_splash", target.tile, delay = 3)
+            areaGfx("big_splash", target.tile, delay = 3)
             player.sound("water_splash")
             player.sound("swim_stroke", repeat = 9)
             player.walkOverDelay(Tile(2750, 2742))
@@ -256,7 +256,7 @@ objectOperate("Swing", "ape_atoll_rope_swing") {
             target.anim("ape_atol_rope_swing")
             player.sound("fall_splash")
             player.exactMoveDelay(Tile(2754, 2731), 45, Direction.EAST)
-            areaGraphic("big_splash", Tile(2754, 2731), 3)
+            areaGfx("big_splash", Tile(2754, 2731), 3)
             delay()
             if (monkey) {
                 player.message("...something in the water bites you.")

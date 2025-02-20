@@ -29,7 +29,7 @@ import content.entity.combat.attackers
 import content.entity.combat.dead
 import content.entity.combat.target
 import content.entity.combat.hit.directHit
-import content.entity.gfx.areaGraphic
+import content.entity.gfx.areaGfx
 import content.entity.player.inv.item.tradeable
 import content.skill.prayer.getActivePrayerVarKey
 import content.skill.prayer.praying
@@ -165,9 +165,9 @@ fun wrath(source: Player) {
         val outer = inner.add(direction)
         source.shoot("wrath_shoot", outer, height = 10, endHeight = 0)
         if (direction.isDiagonal()) {
-            areaGraphic("wrath_splash", inner, delay = 30)
+            areaGfx("wrath_splash", inner, delay = 30)
         }
-        areaGraphic("wrath_splash", outer, delay = 10)
+        areaGfx("wrath_splash", outer, delay = 10)
     }
     val maxHit = (source.levels.getMax(Skill.Prayer) * 2.5).toInt()
     if (source.inMultiCombat) {

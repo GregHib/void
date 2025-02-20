@@ -40,7 +40,7 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.combat.combatPrepare
 import content.entity.effect.transform
-import content.entity.gfx.areaGraphic
+import content.entity.gfx.areaGfx
 import content.entity.world.music.playTrack
 import content.entity.proj.shoot
 import content.entity.sound.jingle
@@ -180,7 +180,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     delay(1)
     player.shakeCamera(0, 0, 0, 0, 0)
     for ((_, target) in targets) {
-        areaGraphic("demon_slayer_spell_impact", target.add(offset))
+        areaGfx("demon_slayer_spell_impact", target.add(offset))
     }
     delay(2)
     npcs.index(delrith)
