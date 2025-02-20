@@ -3,7 +3,7 @@ package content.area.asgarnia.falador
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.sound.playJingle
+import content.entity.sound.jingle
 import content.quest.quest
 import content.quest.refreshQuestJournal
 import content.quest.questComplete
@@ -190,7 +190,7 @@ suspend fun SuspendableContext<Player>.completed() {
 
 fun Context<Player>.questComplete() {
     player["the_knights_sword"] = "completed"
-    player.playJingle("quest_complete_1")
+    player.jingle("quest_complete_1")
     player.experience.add(Skill.Smithing, 12725.0)
     player.refreshQuestJournal()
     player.inc("quest_points")

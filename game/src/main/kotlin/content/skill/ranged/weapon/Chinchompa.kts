@@ -7,12 +7,12 @@ import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.directHit
 import content.area.wilderness.inMultiCombat
 import content.skill.melee.weapon.multiTargets
-import content.entity.sound.playSound
+import content.entity.sound.sound
 import kotlin.random.nextInt
 
 characterCombatDamage("*chinchompa", "range") { character ->
     source as Player
-    source.playSound("chinchompa_explode", delay = 40)
+    source.sound("chinchompa_explode", delay = 40)
     character.gfx("chinchompa_impact")
 }
 

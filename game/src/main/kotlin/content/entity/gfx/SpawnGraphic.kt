@@ -7,7 +7,7 @@ import world.gregs.voidps.network.login.protocol.encode.zone.GraphicAddition
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-fun areaGraphic(
+fun areaGfx(
     id: String,
     tile: Tile,
     delay: Int = 0,

@@ -4,13 +4,13 @@ import world.gregs.voidps.engine.entity.distanceTo
 import content.entity.combat.hit.hit
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 specialAttack("snapshot") { player ->
     player.anim("${id}_special")
     player.gfx("${id}_special")
     player.gfx("${id}_special", delay = 30)
-    player.playSound("${id}_special")
+    player.sound("${id}_special")
     val distance = player.tile.distanceTo(target)
     val time1 = player.shoot(id = "special_arrow", target = target, delay = 20, flightTime = 10 + distance * 3)
     val time2 = player.shoot(id = "special_arrow", target = target, delay = 50, flightTime = distance * 3)

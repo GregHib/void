@@ -35,8 +35,8 @@ import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import content.entity.world.music.playTrack
 import content.entity.sound.areaSound
-import content.entity.sound.playJingle
-import content.entity.sound.playSound
+import content.entity.sound.jingle
+import content.entity.sound.sound
 
 npcOperate("Talk-to", "gypsy_aris") {
     when (player.quest("demon_slayer")) {
@@ -173,13 +173,13 @@ npcTimerTick("demon_slayer_crystal_ball") { npc ->
 suspend fun ChoiceBuilder<NPCOption<Player>>.hereYouGo(): Unit = option<Talk>("Okay, here you go.") {
     player.inventory.remove("coins", 1)
     npc<Happy>("Come closer and listen carefully to what the future holds, as I peer into the swirling mists o the crystal ball.")
-    player.playSound("demon_slayer_crystal_ball_start")
+    player.sound("demon_slayer_crystal_ball_start")
     target.softTimers.start("demon_slayer_crystal_ball")
     npc<Talk>("I can see images forming. I can see you.")
     npc<Uncertain>("You are holding a very impressive-looking sword. I'm sure I recognise it...")
     npc<Uncertain>("There is a big, dark shadow appearing now.")
     target.softTimers.stop("demon_slayer_crystal_ball")
-    player.playSound("demon_slayer_crystal_ball_end")
+    player.sound("demon_slayer_crystal_ball_end")
     npc<Afraid>("Aaargh!")
     player<Quiz>("Are you all right?")
     npc<Afraid>("It's Delrith! Delrith is coming!")
@@ -223,7 +223,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     player.turnCamera(Tile(3229, 3367).add(offset), 250)
     player.shakeCamera(type = 1, intensity = 0, movement = 10, speed = 10, cycle = 0)
     player.shakeCamera(type = 3, intensity = 0, movement = 90, speed = 1, cycle = 0)
-    player.playSound("rumbling")
+    player.sound("rumbling")
     delay(1)
     player.open("fade_in")
     npc<Talk>("gypsy_aris","Wally managed to arrive at the stone circle just as Delrith was summoned by a cult of chaos druids...")
@@ -233,7 +233,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     player.turnCamera(Tile(3227, 3367).add(offset), height = 200, constantSpeed = 2, variableSpeed = 10)
     player.turnCamera(Tile(3227, 3367).add(offset), height = 100, constantSpeed = 1, variableSpeed = 10)
     player.shakeCamera(type = 3, intensity = 0, movement = 0, speed = 0, cycle = 0)
-    player.playSound("rumbling")
+    player.sound("rumbling")
     npc<Angry>("wally", "Die, foul demon!", clickToContinue = false)
     player.tele(Tile(3225, 3363).add(offset), clearInterfaces = false)
 
@@ -242,14 +242,14 @@ suspend fun SuspendableContext<Player>.cutscene() {
     player.walkOverDelay(Tile(3227, 3367).add(offset), forceWalk = false)
     player.face(Direction.NORTH)
     player.anim("wally_demon_slay")
-    player.playSound("demon_slayer_wally_sword", delay = 10)
+    player.sound("demon_slayer_wally_sword", delay = 10)
     delay(4)
 
     player.clearCamera()
     player.moveCamera(Tile(3227, 3369).add(offset), height = 100, constantSpeed = 2, variableSpeed = 10)
     player.shakeCamera(type = 1, intensity = 0, movement = 10, speed = 5, cycle = 0)
     player.shakeCamera(type = 3, intensity = 0, movement = 2, speed = 50, cycle = 0)
-    player.playSound("rumbling")
+    player.sound("rumbling")
     npc<Quiz>("wally", "Now, what was that incantation again?")
     randomiseOrder(player)
     npc<Frustrated>("wally", "${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}... ${getWord(player, 4)}... ${getWord(player, 5)}!")
@@ -259,11 +259,11 @@ suspend fun SuspendableContext<Player>.cutscene() {
     player.clearCamera()
     player.shakeCamera(type = 1, intensity = 0, movement = 0, speed = 0, cycle = 0)
     player.shakeCamera(type = 3, intensity = 0, movement = 0, speed = 0, cycle = 0)
-    player.playSound("rumbling")
+    player.sound("rumbling")
     player.moveCamera(Tile(3225, 3363).add(offset), height = 500)
     player.turnCamera(Tile(3227, 3367).add(offset), height = 200)
-    player.playSound("equip_silverlight")
-    player.playJingle("quest_complete_1")
+    player.sound("equip_silverlight")
+    player.jingle("quest_complete_1")
     player.face(Direction.SOUTH_WEST)
     player.anim("silverlight_showoff")
     player.gfx("silverlight_sparkle")

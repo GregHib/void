@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelCha
 import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelChange
 import world.gregs.voidps.engine.queue.weakQueue
 import content.entity.combat.hit.combatDamage
-import content.entity.sound.playJingle
+import content.entity.sound.jingle
 
 experience { player ->
     val previousLevel = Experience.level(skill, from)
@@ -37,7 +37,7 @@ maxLevelChange { player ->
             Hunter -> to.rem(2) == 0
             else -> true// TODO has unlocked something
         }
-        player.playJingle("level_up_${skill.name.lowercase()}${if (unlock) "_unlock" else ""}", 0.5)
+        player.jingle("level_up_${skill.name.lowercase()}${if (unlock) "_unlock" else ""}", 0.5)
         player.gfx("level_up")
         player.addVarbit("skill_stat_flash", skill.name.lowercase())
         levelUp(skill, """

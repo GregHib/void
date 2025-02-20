@@ -36,7 +36,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import content.entity.player.dialogue.sendLines
 import content.entity.player.dialogue.type.npc
-import content.entity.gfx.areaGraphic
+import content.entity.gfx.areaGfx
 import content.quest.questJournal
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
@@ -210,7 +210,7 @@ adminCommand("showcol", "show nearby collision") {
     val collisions: Collisions = get()
     for (tile in area) {
         if (collisions[tile.x, tile.y, tile.level] != 0) {
-            areaGraphic("2000", tile)
+            areaGfx("2000", tile)
         }
     }
 }
@@ -223,7 +223,7 @@ timerTick("show_path") { player ->
     var tile = player.tile
     for (step in player.steps) {
         tile = tile.add(step)
-        areaGraphic("2000", tile)
+        areaGfx("2000", tile)
     }
 }
 

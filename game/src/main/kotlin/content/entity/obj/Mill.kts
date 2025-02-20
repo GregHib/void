@@ -9,7 +9,7 @@ import content.entity.player.bank.bank
 import content.quest.quest
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.player
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 objectOperate("Operate", "hopper_controls") {
     if (player["flour_bin", 0] == 30) {
@@ -18,13 +18,13 @@ objectOperate("Operate", "hopper_controls") {
     }
     if (player["hopper_bin", 0] != 1) {
         player.anim("pull_hopper_controls")
-        player.playSound("lever")
+        player.sound("lever")
         target.anim("3572")// todo find right anim
         player.message("You operate the empty hopper. Nothing interesting happens.")
         return@objectOperate
     }
     player.anim("pull_hopper_controls")
-    player.playSound("lever")
+    player.sound("lever")
     target.anim("3568")// todo find right anim
     player["hopper_bin"] = 0
     player.inc("flour_bin")

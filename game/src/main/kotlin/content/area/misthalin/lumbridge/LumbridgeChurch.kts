@@ -28,9 +28,9 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
 import content.entity.proj.shoot
-import content.entity.sound.playJingle
-import content.entity.sound.playMidi
-import content.entity.sound.playSound
+import content.entity.sound.jingle
+import content.entity.sound.midi
+import content.entity.sound.sound
 import content.quest.*
 import java.util.concurrent.TimeUnit
 
@@ -38,8 +38,8 @@ val npcs: NPCs by inject()
 
 objectOperate("Play", "lumbridge_organ") {
     player.anim("play_organ")
-    player.playMidi("church_organ")
-    player.playJingle("ambient_church_happy")
+    player.midi("church_organ")
+    player.jingle("ambient_church_happy")
     player["tinkle_the_ivories_task"] = true
 }
 
@@ -52,7 +52,7 @@ objectOperate("Close", "restless_ghost_coffin_headless", "restless_ghost_coffin"
     target.replace("restless_ghost_coffin_closed")
     player.animDelay("close_chest")
     player.message("You close the coffin.")
-    player.playSound("coffin_close")
+    player.sound("coffin_close")
 }
 
 objectOperate("Search", "restless_ghost_coffin_headless", "restless_ghost_coffin") {
@@ -115,7 +115,7 @@ suspend fun Interaction<Player>.returnSkull() {
 fun Context<Player>.questComplete() {
     player["restless_ghost_coffin"] = "skull"
     player["the_restless_ghost"] = "completed"
-    player.playJingle("quest_complete_1")
+    player.jingle("quest_complete_1")
     player.experience.add(Skill.Prayer, 1125.0)
     player.refreshQuestJournal()
     player.inc("quest_points")
@@ -137,7 +137,7 @@ itemOnObjectOperate("muddy_skull", "restless_ghost_coffin_closed") {
 objectOperate("Open", "restless_ghost_coffin_closed") {
     player.message("You open the coffin.")
     player.animDelay("open_chest")
-    player.playSound("coffin_open")
+    player.sound("coffin_open")
     target.replace("coffin_restless_ghost_2", ticks = TimeUnit.MINUTES.toTicks(3))
     if (!player.questCompleted("the_restless_ghost")) {
         spawnGhost()
@@ -147,7 +147,7 @@ objectOperate("Open", "restless_ghost_coffin_closed") {
 objectOperate("Search", "restless_ghost_coffin_closed") {
     player.message("You open the coffin.")
     player.animDelay("open_chest")
-    player.playSound("coffin_open")
+    player.sound("coffin_open")
     target.replace("coffin_restless_ghost_2", ticks = TimeUnit.MINUTES.toTicks(3))
     if (!player.questCompleted("the_restless_ghost")) {
         spawnGhost()
@@ -157,11 +157,11 @@ objectOperate("Search", "restless_ghost_coffin_closed") {
 suspend fun Interaction<Player>.spawnGhost() {
     val ghostExists = npcs[ghostSpawn.zone].any { it.id == "restless_ghost" }
     if (!ghostExists) {
-        player.playSound("coffin_open")
-        player.playSound("rg_ghost_approach")
+        player.sound("coffin_open")
+        player.sound("rg_ghost_approach")
         player.shoot("restless_ghost", ghostSpawn, height = 30, endHeight = 0, flightTime = 50)
         delay(1)
-        player.playSound("bigghost_appear")
+        player.sound("bigghost_appear")
         delay(1)
         val ghost = npcs.add("restless_ghost", ghostSpawn, Direction.SOUTH) ?: return
         ghost.animDelay("restless_ghost_awakens")

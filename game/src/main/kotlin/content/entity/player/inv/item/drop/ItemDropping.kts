@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val floorItems: FloorItems by inject()
 val logger = InlineLogger()
@@ -27,7 +27,7 @@ inventoryOption("Drop", "inventory") {
             floorItems.add(player.tile, item.id, item.amount, charges = item.charges(), revealTicks = FloorItems.NEVER, disappearTicks = 300, owner = player)
         }
         player.emit(Dropped(item))
-        player.playSound("drop_item")
+        player.sound("drop_item")
     } else {
         logger.info { "Error dropping item $item for $player" }
     }

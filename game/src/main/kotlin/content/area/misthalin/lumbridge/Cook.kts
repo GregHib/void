@@ -16,7 +16,7 @@ import content.quest.refreshQuestJournal
 import content.quest.questComplete
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.sound.playJingle
+import content.entity.sound.jingle
 
 npcOperate("Talk-to", "cook_lumbridge") {
     when (player.quest("cooks_assistant")) {
@@ -114,7 +114,7 @@ suspend fun SuspendableContext<Player>.completed() {
 
 fun Context<Player>.questComplete() {
     player["cooks_assistant"] = "completed"
-    player.playJingle("quest_complete_1")
+    player.jingle("quest_complete_1")
     player.inventory.add("sardine_noted", 20)
     player.experience.add(Skill.Cooking, 300.0)
     player.inventory.add("coins", 500)

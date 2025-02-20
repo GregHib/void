@@ -68,9 +68,9 @@ import content.entity.player.effect.unskull
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.world.music.MusicTracks
 import content.entity.world.music.MusicUnlock
-import content.entity.sound.playJingle
-import content.entity.sound.playMidi
-import content.entity.sound.playSound
+import content.entity.sound.jingle
+import content.entity.sound.midi
+import content.entity.sound.sound
 import content.entity.npc.spawn.loadNpcSpawns
 import content.entity.obj.spawn.loadObjectSpawns
 import java.util.concurrent.TimeUnit
@@ -378,7 +378,7 @@ adminCommand("restore", "restore all skills") {
 adminCommand("sound (sound-id)", "play a sound by int or string id") {
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playSound(content.toSnakeCase())
+        player.sound(content.toSnakeCase())
     } else {
         player.client?.playSoundEffect(id)
     }
@@ -387,7 +387,7 @@ adminCommand("sound (sound-id)", "play a sound by int or string id") {
 adminCommand("midi (midi-id)", "play a midi effect by int or string id") {
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playMidi(content.toSnakeCase())
+        player.midi(content.toSnakeCase())
     } else {
         player.client?.playMIDI(id)
     }
@@ -396,7 +396,7 @@ adminCommand("midi (midi-id)", "play a midi effect by int or string id") {
 adminCommand("jingle (jingle-id)", "play a jingle sound by int or string id") {
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playJingle(content.toSnakeCase())
+        player.jingle(content.toSnakeCase())
     } else {
         player.client?.playJingle(id)
     }

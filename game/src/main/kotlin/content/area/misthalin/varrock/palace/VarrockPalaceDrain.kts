@@ -15,7 +15,7 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.player
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val logger = InlineLogger()
 
@@ -53,8 +53,8 @@ itemOnObjectOperate("*of_water", "varrock_palace_drain") {
     player.message("You pour the liquid down the drain.")
     player.anim("toss_water")
     player.gfx("toss_water")
-    player.playSound("demon_slayer_drain")
-    player.playSound("demon_slayer_key_fall")
+    player.sound("demon_slayer_drain")
+    player.sound("demon_slayer_key_fall")
     if (player.quest("demon_slayer") == "key_hunt") {
         player<Happy>("OK, I think I've washed the key down into the sewer. I'd better go down and get it!")
     } else {

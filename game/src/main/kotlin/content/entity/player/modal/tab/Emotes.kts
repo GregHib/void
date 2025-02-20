@@ -21,8 +21,8 @@ import world.gregs.voidps.type.random
 import content.entity.player.dialogue.type.statement
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
-import content.entity.gfx.areaGraphic
-import content.entity.sound.playJingle
+import content.entity.gfx.areaGfx
+import content.entity.sound.jingle
 
 val definitions: InterfaceDefinitions by inject()
 
@@ -70,7 +70,7 @@ interfaceOption(id = "emotes") {
             id == "flap" && player.equipped(EquipSlot.Feet).id == "chicken_feet" && player.equipped(EquipSlot.Legs).id == "chicken_legs" && player.equipped(EquipSlot.Chest).id == "chicken_wings" && player.equipped(EquipSlot.Hat).id == "chicken_head" -> playEnhancedEmote(player, id)
             else -> {
                 if (id == "air_guitar") {
-                    player.playJingle(id)
+                    player.jingle(id)
                 }
                 player.gfx("emote_$id")
                 character.anim("emote_$id")
@@ -216,24 +216,24 @@ suspend fun Interaction<Player>.playDungeoneeringMasterCapeEmote(player: Player)
     player.gfx("emote_dung_master_bow")
     var tile = player.tile.add(direction.rotate(1))
     var rotation = tile.delta(player.tile).toDirection().rotate(2)
-    areaGraphic("emote_dung_master_hobgoblin", tile, rotation = rotation)
+    areaGfx("emote_dung_master_hobgoblin", tile, rotation = rotation)
     player.animDelay("emote_dung_master_bow")
 
     player.transform("celestial_mage")
     player.gfx("emote_dung_master_spell")
     tile = player.tile.add(direction.rotate(7))
     rotation = tile.delta(player.tile).toDirection().rotate(4)
-    areaGraphic("emote_dung_master_gravecreeper", tile, rotation = rotation)
+    areaGfx("emote_dung_master_gravecreeper", tile, rotation = rotation)
     player.animDelay("emote_dung_master_spell")
 
     player.transform("primal_warrior")
     player.gfx("emote_dung_master_return")
     tile = player.tile.add(direction)
     rotation = direction.inverse().rotate(7)
-    areaGraphic("emote_dung_master_flesh_spoiler", tile, rotation = rotation)
+    areaGfx("emote_dung_master_flesh_spoiler", tile, rotation = rotation)
     tile = player.tile.add(direction.inverse())
     rotation = direction.rotate(3)
-    areaGraphic("emote_dung_master_cursebearer", tile, rotation = rotation)
+    areaGfx("emote_dung_master_cursebearer", tile, rotation = rotation)
     player.animDelay("emote_dung_master_sword")
 
     player.clearTransform()

@@ -40,11 +40,11 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.combat.combatPrepare
 import content.entity.effect.transform
-import content.entity.gfx.areaGraphic
+import content.entity.gfx.areaGfx
 import content.entity.world.music.playTrack
 import content.entity.proj.shoot
-import content.entity.sound.playJingle
-import content.entity.sound.playSound
+import content.entity.sound.jingle
+import content.entity.sound.sound
 import content.quest.*
 import content.quest.free.demon_slayer.DemonSlayerSpell
 
@@ -168,8 +168,8 @@ suspend fun SuspendableContext<Player>.cutscene() {
     player.clearCamera()
     player.turnCamera(Tile(3227, 3369).add(offset), 100, 232, 232)
     player.moveCamera(Tile(3227, 3365).add(offset), 500, 232, 232)
-    player.playSound("summon_npc")
-    player.playSound("demon_slayer_table_explosion")
+    player.sound("summon_npc")
+    player.sound("demon_slayer_table_explosion")
     delay(1)
     table.anim("demon_slayer_table_light")
     delay(1)
@@ -180,14 +180,14 @@ suspend fun SuspendableContext<Player>.cutscene() {
     delay(1)
     player.shakeCamera(0, 0, 0, 0, 0)
     for ((_, target) in targets) {
-        areaGraphic("demon_slayer_spell_impact", target.add(offset))
+        areaGfx("demon_slayer_spell_impact", target.add(offset))
     }
     delay(2)
     npcs.index(delrith)
     delrith.anim("delrith_appear")
     delay(2)
-    player.playSound("demon_slayer_break_table", delay = 10)
-    player.playSound("demon_slayer_delrith_appear")
+    player.sound("demon_slayer_break_table", delay = 10)
+    player.sound("demon_slayer_delrith_appear")
     player.turnCamera(Tile(3227, 3369).add(offset), 400, 1, 1)
     player["demon_slayer_summoned"] = true
     delay(5)
@@ -266,7 +266,7 @@ npcOperate("*", "delrith") {
         }
         if (correct) {
             target.anim("delrith_death")
-            player.playSound("demon_slayer_delrith_banished")
+            player.sound("demon_slayer_delrith_banished")
             statement("Delrith is sucked into the vortex...", clickToContinue = false)
             delay(14)
             npcs.remove(target)
@@ -293,8 +293,8 @@ npcLevelChange("delrith", Skill.Constitution) { npc ->
 fun Context<Player>.questComplete() {
     player.anim("silverlight_showoff")
     player.gfx("silverlight_sparkle")
-    player.playSound("equip_silverlight")
-    player.playJingle("quest_complete_1")
+    player.sound("equip_silverlight")
+    player.jingle("quest_complete_1")
     player["demon_slayer"] = "completed"
     player.inc("quest_points", 3)
     DemonSlayerSpell.clear(player)

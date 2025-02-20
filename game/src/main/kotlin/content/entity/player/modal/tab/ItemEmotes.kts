@@ -18,8 +18,8 @@ import content.entity.player.inv.inventoryItem
 import content.entity.player.inv.inventoryOptions
 import content.entity.effect.toxin.curePoison
 import content.entity.effect.toxin.poisoned
-import content.entity.sound.playJingle
-import content.entity.sound.playSound
+import content.entity.sound.jingle
+import content.entity.sound.sound
 
 inventoryItem("Fly", "toy_kite") {
     if (player.contains("delay")) {
@@ -66,7 +66,7 @@ inventoryItem("Recite-prayer", "prayer_book", "inventory") {
 
 playerOperate("Whack") {
     if (player.weapon.id == "rubber_chicken") {
-        player.playSound("rubber_chicken_whack")
+        player.sound("rubber_chicken_whack")
         player.animDelay("rubber_chicken_whack")
     } else {
         //todo player.playSound("")
@@ -79,7 +79,7 @@ inventoryItem("Dance", "rubber_chicken") {
         player.message("Please wait till you've finished performing your current emote.")
         return@inventoryItem
     }
-    player.playJingle("easter_scape_scrambled")
+    player.jingle("easter_scape_scrambled")
     player.animDelay("emote_chicken_dance")
 }
 
@@ -118,7 +118,7 @@ inventoryItem("Shake", "snow_globe", "inventory") {
     player.queue("snow_globe") {
         player.message("You shake the snow globe.")
         player.animDelay("emote_shake_snow_globe")
-        player.playJingle("harmony_snow_globe")
+        player.jingle("harmony_snow_globe")
         player.open("snow_globe")
     }
 }

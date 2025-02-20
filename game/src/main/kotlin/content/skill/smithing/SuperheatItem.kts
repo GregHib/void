@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.remove
 import content.skill.magic.spell.SpellRunes.removeItems
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val spellDefinitions: SpellDefinitions by inject()
 val itemDefinitions: ItemDefinitions by inject()
@@ -38,7 +38,7 @@ itemOnItem(fromInterface = "modern_spellbook", fromComponent = "superheat_item")
         add(bar)
     }
     if (player.inventory.transaction.error == TransactionError.None) {
-        player.playSound("superheat_all")
+        player.sound("superheat_all")
         player.anim(spell)
         player.gfx(spell)
         val definition = spellDefinitions.get(spell)

@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 import content.skill.prayer.PrayerConfigs
 import content.skill.prayer.getActivePrayerVarKey
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val definitions: PrayerDefinitions by inject()
 val variableDefinitions: VariableDefinitions by inject()
@@ -31,7 +31,7 @@ timerTick("prayer_drain") { player ->
         player.levels.drain(Skill.Prayer, 1)
         prayerDrainCounter -= prayerDrainResistance
         if (player.levels.get(Skill.Prayer) == 0) {
-            player.playSound("prayer_drain")
+            player.sound("prayer_drain")
             player.message("You have run out of Prayer points; you can recharge at an altar.")
             cancel()
             break

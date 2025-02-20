@@ -24,7 +24,7 @@ import content.entity.combat.Target
 import content.entity.combat.hit.directHit
 import content.entity.effect.freeze
 import content.entity.effect.toxin.poison
-import content.entity.sound.playSound
+import content.entity.sound.sound
 import java.util.concurrent.TimeUnit
 
 object Ammo {
@@ -128,7 +128,7 @@ object Ammo {
     private fun chance(source: Player, target: Character, name: String, chance: Double): Boolean {
         if (random.nextDouble() < chance) {
             target.gfx(name)
-            source.playSound(name, delay = 40)
+            source.sound(name, delay = 40)
             return true
         }
         return false

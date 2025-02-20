@@ -15,7 +15,7 @@ import world.gregs.voidps.type.random
 import content.skill.slayer.race
 import content.entity.combat.hit.characterCombatAttack
 import content.skill.melee.weapon.weapon
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val styleDefinitions: WeaponStyleDefinitions by inject()
 val weaponDefinitions: WeaponAnimationDefinitions by inject()
@@ -23,9 +23,9 @@ val animationDefinitions: AnimationDefinitions by inject()
 val soundDefinitions: SoundDefinitions by inject()
 
 characterCombatAttack { character ->
-    character.playSound(calculateHitSound(target), delay)
+    character.sound(calculateHitSound(target), delay)
     if (target is Player) {
-        target.playSound(calculateHitSound(target), delay)
+        target.sound(calculateHitSound(target), delay)
         val shield = target.equipped(EquipSlot.Shield).id
         if (shield.endsWith("shield")) {
             target.anim("shield_block", delay)

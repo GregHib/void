@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
 import content.entity.player.dialogue.type.makeAmount
-import content.entity.gfx.areaGraphic
+import content.entity.gfx.areaGfx
 
 itemOnObjectOperate(obj = "altar*", itemDef = "prayer_xp") {
     val tile = target.nearestTo(player.tile)
@@ -29,7 +29,7 @@ suspend fun ItemOnObject.offer(amount: Int, tile: Tile) {
         if (player.inventory.remove(item.id)) {
             player.experience.add(Skill.Prayer, xp)
             player.anim("offer_bones")
-            areaGraphic("bone_offering", tile)
+            areaGfx("bone_offering", tile)
             player.message("The gods ${
                 when {
                     xp <= 25 -> "accept"

@@ -3,7 +3,7 @@ package content.entity.player.combat.special
 import world.gregs.voidps.engine.client.variable.variableSet
 import content.entity.combat.hit.hit
 import content.skill.melee.weapon.weapon
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 specialAttackPrepare("*") { player ->
     if (!SpecialAttack.hasEnergy(player)) {
@@ -26,7 +26,7 @@ variableSet("special_attack", to = true) { player ->
 specialAttack { player ->
     player.anim("${id}_special")
     player.gfx("${id}_special")
-    player.playSound("${id}_special")
+    player.sound("${id}_special")
     val damage = player.hit(target)
     if (damage >= 0) {
         target.gfx("${id}_impact")

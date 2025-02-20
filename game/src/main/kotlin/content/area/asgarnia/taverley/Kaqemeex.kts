@@ -19,7 +19,7 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.player
-import content.entity.sound.playJingle
+import content.entity.sound.jingle
 
 npcOperate("Talk-to", "kaqemeex") {
     when (player.quest("druidic_ritual")) {
@@ -172,7 +172,7 @@ suspend fun SuspendableContext<Player>.completed() {
 
 fun Context<Player>.questComplete() {
     player["druidic_ritual"] = "completed"
-    player.playJingle("quest_complete_1")
+    player.jingle("quest_complete_1")
     player.experience.add(Skill.Herblore, 250.0)
     player.refreshQuestJournal()
     player.inc("quest_points", 4)

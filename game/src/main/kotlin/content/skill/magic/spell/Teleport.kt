@@ -1,6 +1,6 @@
 package content.skill.magic.spell
 
-import content.entity.sound.playSound
+import content.entity.sound.sound
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -48,12 +48,12 @@ data class Teleport(
                 if (teleport.cancelled) {
                     return@strongQueue
                 }
-                player.playSound("teleport")
+                player.sound("teleport")
                 player.gfx("teleport_$type")
                 player.animDelay("teleport_$type")
                 player.tele(tile)
                 delay(1)
-                player.playSound("teleport_land")
+                player.sound("teleport_land")
                 player.gfx("teleport_land_$type")
                 player.animDelay("teleport_land_$type")
                 if (type == "ancient" || type == "ectophial") {

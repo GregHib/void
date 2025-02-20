@@ -21,7 +21,7 @@ import world.gregs.voidps.type.Direction
 import content.quest.quest
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val floorItems: FloorItems by inject()
 val objects: GameObjects by inject()
@@ -186,9 +186,9 @@ suspend fun TargetInteraction<Player, NPC>.startSpell() {
     npc<Neutral>("Hurrah! That's all 25 sets of bones.")
     target.anim("traiborn_bone_spell")
     target.gfx("traiborn_bone_spell")
-    player.playSound("demon_slayer_bone_spell")
+    player.sound("demon_slayer_bone_spell")
     npc<Uncertain>("Wings of dark and colour too, Spreading in the morning dew; Locked away I have a key; Return it now, please, unto me.")
-    player.playSound("demon_slayer_cupboard_appear")
+    player.sound("demon_slayer_cupboard_appear")
     val direction = Direction.westClockwise.first { !target.blocked(it) }
     val rotation = Direction.westClockwise.indexOf(direction.rotate(6))
     val obj = objects.add("demon_slayer_spell_wardrobe", target.tile.add(direction), 10, rotation, 5)
@@ -196,11 +196,11 @@ suspend fun TargetInteraction<Player, NPC>.startSpell() {
     target.face(obj)
     delay(1)
     target.anim("open_chest")
-    player.playSound("chest_open")
+    player.sound("chest_open")
     delay(1)
     player.inventory.add("silverlight_key_wizard_traiborn")
     obj.anim("demon_slayer_cupboard_disappear")
-    player.playSound("demon_slayer_cupboard_disappear")
+    player.sound("demon_slayer_cupboard_disappear")
     target.watch(player)
     item("silverlight_key_wizard_traiborn", 400, "Traiborn hands you a key.")
     player<Neutral>("Thank you very much.")

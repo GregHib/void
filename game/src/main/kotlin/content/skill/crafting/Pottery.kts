@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import content.entity.player.dialogue.type.makeAmount
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 itemOnObjectOperate("soft_clay", "potters_wheel*", arrive = false) {
     make("spinning", item)
@@ -75,7 +75,7 @@ fun Player.make(animation: String, obj: GameObject, item: Item, id: String, data
             softTimers.stop("pottery")
             return@weakQueue
         }
-		player.playSound("pottery")
+		player.sound("pottery")
         exp(Skill.Crafting, data.xp)
         make(animation, obj, item, id, data, amount - 1)
 		message("You make the clay into a ${id.toLowerSpaceCase()}.")

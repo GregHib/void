@@ -22,7 +22,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.entity.sound.playSound
+import content.entity.sound.sound
 import java.util.concurrent.TimeUnit
 
 val floorItems: FloorItems by inject()
@@ -30,12 +30,12 @@ val npcs: NPCs by inject()
 val lineValidator: LineValidator by inject()
 
 objectOperate("Open", "cupboard_the_knights_sword_closed") {
-    player.playSound("cupboard_open")
+    player.sound("cupboard_open")
     target.replace("cupboard_the_knights_sword_opened", ticks = TimeUnit.MINUTES.toTicks(3))
 }
 
 objectOperate("Shut", "cupboard_the_knights_sword_opened") {
-    player.playSound("cupboard_close")
+    player.sound("cupboard_close")
     target.replace("cupboard_the_knights_sword_closed")
 }
 

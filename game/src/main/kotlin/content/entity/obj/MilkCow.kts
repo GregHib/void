@@ -13,7 +13,7 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 objectOperate("Milk", "prized_dairy_cow") {
     if (!player.holdsItem("bucket")) {
@@ -28,7 +28,7 @@ objectOperate("Milk", "prized_dairy_cow") {
         return@objectOperate
     }
     player.anim("milk_cow")
-    player.playSound("milk_cow")
+    player.sound("milk_cow")
     delay(5)
     player.inventory.replace("bucket", "top_quality_milk")
     player.message("You milk the cow for top-quality milk.")
@@ -37,7 +37,7 @@ objectOperate("Milk", "prized_dairy_cow") {
 objectOperate("Milk", "dairy_cow") {
     if (player.holdsItem("bucket")) {
         player.anim("milk_cow")
-        player.playSound("milk_cow")
+        player.sound("milk_cow")
         delay(5)
         player.inventory.replace("bucket", "bucket_of_milk")
         player.message("You milk the cow.")

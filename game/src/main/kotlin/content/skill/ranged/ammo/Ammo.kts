@@ -17,7 +17,7 @@ import content.skill.melee.weapon.weapon
 import content.skill.ranged.Ammo
 import content.skill.ranged.ammo
 import content.entity.player.combat.special.specialAttack
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val ammoDefinitions: AmmoDefinitions by inject()
 val weaponStyles: WeaponStyleDefinitions by inject()
@@ -42,7 +42,7 @@ combatSwing(style = "melee") { player ->
 
 combatPrepare("range") { player ->
     if (!checkAmmo(player)) {
-        player.playSound("out_of_ammo")
+        player.sound("out_of_ammo")
         cancel()
     }
 }

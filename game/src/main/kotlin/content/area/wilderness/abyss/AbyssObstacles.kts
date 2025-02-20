@@ -15,8 +15,8 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import content.skill.mining.Pickaxe
 import content.skill.woodcutting.Hatchet
-import content.entity.gfx.areaGraphic
-import content.entity.sound.playSound
+import content.entity.gfx.areaGfx
+import content.entity.sound.sound
 
 // Object tile, opposite passage tile, teleport tile
 // Target tiles should be slightly randomised
@@ -131,8 +131,8 @@ objectOperate("Burn-down", "abyss_boil") {
     delay(6)
     player["abyss_obstacles"] = 17
     val (walkTile, teleTile) = positions[target.tile]!!
-    areaGraphic("fire_wave_impact", target.tile, height = 128)
-    player.playSound("boil_burst")
+    areaGfx("fire_wave_impact", target.tile, height = 128)
+    player.sound("boil_burst")
     player.walkToDelay(walkTile)
     player.message("...and manage to burn it down and get past.", ChatType.Filter)
     delay()
@@ -200,7 +200,7 @@ objectOperate("Squeeze-through", "abyss_gap") {
     val offset = target.tile.add(direction(target.tile))
     player.moveCamera(offset, 2500, 0, 0)
     player.turnCamera(target.tile, 0, 10, 10)
-    player.playSound("abyssal_squeezethrough", repeat = 4)
+    player.sound("abyssal_squeezethrough", repeat = 4)
     delay(1)
     player["abyss_obstacles"] = 0
     player.turnCamera(player.tile.region.tile, 0, 0, 0)

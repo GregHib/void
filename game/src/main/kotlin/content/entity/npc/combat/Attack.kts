@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inject
 import content.skill.slayer.race
 import content.entity.combat.hit.hit
 import content.entity.combat.npcCombatSwing
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val definitions: WeaponStyleDefinitions by inject()
 val animationDefinitions: AnimationDefinitions by inject()
@@ -24,7 +24,7 @@ npcCombatSwing { npc ->
         return@npcCombatSwing
     }
     npc.anim(attackAnimation(npc))
-    (target as? Player)?.playSound(attackSound(npc))
+    (target as? Player)?.sound(attackSound(npc))
     npc.hit(target)
 }
 

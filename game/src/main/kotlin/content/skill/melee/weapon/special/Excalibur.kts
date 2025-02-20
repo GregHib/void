@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import content.skill.melee.weapon.weapon
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttackPrepare
-import content.entity.sound.playSound
+import content.entity.sound.sound
 import java.util.concurrent.TimeUnit
 
 fun seersVillageEliteTasks(player: Player) = false
@@ -21,7 +21,7 @@ specialAttackPrepare("sanctuary") { player ->
     }
     player.anim("${id}_special")
     player.gfx("${id}_special")
-    player.playSound("${id}_special")
+    player.sound("${id}_special")
     player.say("For Camelot!")
     if (player.weapon.id.startsWith("enhanced")) {
         player.levels.boost(Skill.Defence, multiplier = 0.15)

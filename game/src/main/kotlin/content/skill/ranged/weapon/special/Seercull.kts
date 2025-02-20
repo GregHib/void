@@ -7,12 +7,12 @@ import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.hit
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 specialAttack("soulshot") { player ->
     player.anim("bow_accurate")
     player.gfx("seercull_special_shoot")
-    player.playSound("seercull_special")
+    player.sound("seercull_special")
     val time = player.shoot(id = "seercull_special_arrow", target = target)
     player.hit(target, delay = time)
 }

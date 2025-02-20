@@ -18,7 +18,7 @@ import content.quest.refreshQuestJournal
 import content.quest.questComplete
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.sound.playJingle
+import content.entity.sound.jingle
 
 val floorItems: FloorItems by inject()
 
@@ -143,7 +143,7 @@ suspend fun SuspendableContext<Player>.takeOre() {
 
 fun Context<Player>.questComplete() {
     player["dorics_quest"] = "completed"
-    player.playJingle("quest_complete_1")
+    player.jingle("quest_complete_1")
     player.experience.add(Skill.Mining, 1300.0)
     player.inventory.add("coins", 180)
     player.refreshQuestJournal()

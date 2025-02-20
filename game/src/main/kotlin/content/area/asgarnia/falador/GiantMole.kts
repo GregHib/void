@@ -3,7 +3,7 @@ package content.area.asgarnia.falador
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.combat.attackers
 import content.entity.combat.hit.npcCombatDamage
-import content.entity.gfx.areaGraphic
+import content.entity.gfx.areaGfx
 import content.entity.player.inv.inventoryItem
 import content.entity.sound.areaSound
 import content.skill.firemaking.Light.hasLightSource
@@ -105,7 +105,7 @@ fun giantMoleBurrow(mole: NPC) {
         }
         mole.anim("giant_mole_burrow")
         areaSound("giant_mole_burrow_down", mole.tile)
-        areaGraphic("burrow_dust", tileToDust)
+        areaGfx("burrow_dust", tileToDust)
         pause(1)
         val newLocation = gianMoleSpawns.random(mole)
         mole.tele(newLocation!!)

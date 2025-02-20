@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val floorItems: FloorItems by inject()
 val logger = InlineLogger()
@@ -46,7 +46,7 @@ floorItemOperate("Take") {
                 player.face(target.tile.delta(player.tile))
                 player.anim("take")
             }
-            player.playSound("take_item")
+            player.sound("take_item")
             player.emit(Taken(target, item))
         }
         is TransactionError.Full -> player.inventoryFull()

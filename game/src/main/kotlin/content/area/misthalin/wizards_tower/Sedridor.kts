@@ -20,8 +20,8 @@ import content.quest.questComplete
 import content.skill.runecrafting.EssenceMine
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.sound.playJingle
-import content.entity.sound.playSound
+import content.entity.sound.jingle
+import content.entity.sound.sound
 
 npcOperate("Talk-to", "sedridor") {
     when (player.quest("rune_mysteries")) {
@@ -79,7 +79,7 @@ suspend fun SuspendableContext<Player>.okHere() {
         item("air_talisman", 600, "You hand the talisman to Sedridor.")
         player.inventory.remove("air_talisman")
         npc<Uncertain>("Hmm... Doesn't seem to be anything too special. Just a normal air talisman by the looks of things. Still, looks can be deceiving. Let me take a closer look...")
-        player.playSound("enchant_emerald_ring")
+        player.sound("enchant_emerald_ring")
         item("air_talisman", 600, "Sedridor murmurs some sort of incantation and the talisman glows slightly.")
         npc<Uncertain>("How interesting... It would appear I spoke too soon. There's more to this talisman than meets the eye. In fact, it may well be the last piece of the puzzle.")
         player<Quiz>("Puzzle?")
@@ -251,7 +251,7 @@ suspend fun PlayerChoice.thanksForInformation(): Unit = option<Happy>("Thanks fo
 
 fun Context<Player>.questComplete() {
     player["rune_mysteries"] = "completed"
-    player.playJingle("quest_complete_1")
+    player.jingle("quest_complete_1")
     if (player.inventory.isFull()) {
         player.bank.add("air_talisman")
         player.message("The air talisman has been sent to your bank.")
