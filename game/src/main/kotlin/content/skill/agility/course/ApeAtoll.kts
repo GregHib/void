@@ -192,10 +192,10 @@ objectOperate("Climb-up", "ape_atoll_skull_slope") {
         }
         // Success
         weapon == "small_ninja_monkey_greegree" && (Level.success(player.levels.get(Skill.Agility), 70) || Settings["agility.disableCourseFailure", false]) -> {
+            player.renderEmote("ninja_monkey_climb")
             player.playSound("climb_wall", repeat = 2)
             player.walkTo(Tile(2744, 2741))
             delay(2)
-            player.renderEmote("ninja_monkey_climb")
             player.playSound("climb_wall", repeat = 2)
             player.walkTo(Tile(2743, 2741))
             delay()
@@ -311,6 +311,7 @@ objectOperate("Climb-down", "ape_atoll_tropical_tree_rope") {
             delay()
             player.clearRenderEmote()
             player.exp(Skill.Agility, 100.0)
+            println("Stage ${player["agility_course", "unknown"]} ${player.agilityStage}")
             if (player.agilityStage == 5) {
                 player.agilityStage = 0
                 player.exp(Skill.Agility, 200.0)
