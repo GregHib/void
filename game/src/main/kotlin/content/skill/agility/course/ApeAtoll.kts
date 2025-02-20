@@ -1,14 +1,8 @@
 package content.skill.agility.course
 
 import content.entity.combat.hit.damage
-import content.entity.effect.clearTransform
 import content.entity.gfx.areaGraphic
-import content.entity.obj.objTeleportLand
-import content.entity.obj.objTeleportTakeOff
-import content.entity.sound.playMidi
 import content.entity.sound.playSound
-import content.quest.questCompleted
-import content.skill.magic.spell.teleportLand
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
@@ -22,9 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
