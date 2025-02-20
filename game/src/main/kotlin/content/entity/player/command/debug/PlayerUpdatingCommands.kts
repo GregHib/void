@@ -41,7 +41,7 @@ adminCommand("anim (anim-id)", "perform animation by int or string id (-1 to cle
 
 adminCommand("emote (emote-id)", "perform render emote by int or string id (-1 to clear)") {
     when (content) {
-        "-1", "" -> player.renderEmote("human_stand")
+        "-1", "" -> player.clearRenderEmote()
         else -> player.renderEmote(content)
     }
 }

@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player
 
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.RenderEmoteDefinitions
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.visual.VisualMask
@@ -64,7 +65,13 @@ fun Player.renderEmote(id: String) = flag {
 }
 
 fun Player.clearRenderEmote() = flag {
-    emote = 1426
+    val id: String? = this@clearRenderEmote["transform_id"]
+    if (id == null) {
+        emote = 1426
+    } else {
+        val definition = get<NPCDefinitions>().get(id)
+        emote = definition.renderEmote
+    }
 }
 
 var Player.name: String

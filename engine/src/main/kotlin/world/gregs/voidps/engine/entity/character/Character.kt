@@ -55,6 +55,9 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
      * Gradually move the characters appeared location to [delta] over [delay] time
      */
     fun exactMove(delta: Delta, delay: Int = tile.distanceTo(tile.add(delta)) * 30, direction: Direction = Direction.NONE, startDelay: Int = 0) {
+        if (delta == Delta.EMPTY) {
+            return
+        }
         tele(delta)
         if (this is Player) {
             movementType = MoveType.Walk

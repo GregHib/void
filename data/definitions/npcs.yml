@@ -2649,3 +2649,11 @@ skeleton_sword_shield_85:
 skeleton_hammer_shield:
   <<: *skeleton_85
   id: 4386
+small_ninja_monkey: 1480
+medium_ninja_monkey: 1481
+gorilla: 1482
+bearded_gorilla: 1483
+ancient_gorilla: 1484
+small_zombie_monkey: 1485
+large_zombie_monkey: 1486
+monkey: 1487
