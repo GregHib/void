@@ -10,7 +10,7 @@ import world.gregs.voidps.network.login.protocol.encode.playJingle
 import world.gregs.voidps.network.login.protocol.encode.playMIDI
 import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
 
-fun Character.playSound(
+fun Character.sound(
     id: String,
     delay: Int = 0,
     volume: Int = 255,
@@ -23,7 +23,7 @@ fun Character.playSound(
     client?.playSoundEffect(get<SoundDefinitions>().getOrNull(id)?.id ?: return, delay, volume, speed, repeat)
 }
 
-fun Player.playGlobalSound(
+fun Player.soundGlobal(
     id: String,
     radius: Int = 5,
     delay: Int = 0,

@@ -20,7 +20,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import content.entity.combat.hit.damage
 import content.entity.obj.door.enterDoor
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val objects: GameObjects by inject()
 
@@ -143,7 +143,7 @@ objectOperate("Cross", "wilderness_stepping_stone") {
     player.message("You carefully start crossing the stepping stones...", ChatType.Filter)
     for (i in 0..5) {
         player.anim("stepping_stone_jump")
-        player.playSound("jump")
+        player.sound("jump")
         player.exactMoveDelay(target.tile.addX(-i), delay = 30, direction = Direction.WEST, startDelay = 15)
         delay(1)
         if (i == 2 && !Settings["agility.disableCourseFailure", false] && !Level.success(player.levels.get(Skill.Agility), 180..250)) {
@@ -188,11 +188,11 @@ objectOperate("Walk-across", "wilderness_log_balance") {
         delay()
         player.tele(2998, 10346)
         player.clearRenderEmote()
-        player.playSound("2h_stab")
+        player.sound("2h_stab")
         delay()
         player.walkOverDelay(Tile(2998, 10345))
         player.damage((player.levels.get(Skill.Constitution) * 0.15).toInt() + 10)
-        player.playSound("male_defend_1", delay = 20)
+        player.sound("male_defend_1", delay = 20)
     }
     if (success || Settings["agility.disableFailLapSkip", false]) {
         player.agilityStage(4)

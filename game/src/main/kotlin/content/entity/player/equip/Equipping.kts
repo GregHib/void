@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.sound.playSound
+import content.entity.sound.sound
 import content.entity.player.inv.inventoryOption
 import content.entity.player.inv.inventoryOptions
 import world.gregs.voidps.engine.client.message
@@ -137,6 +137,6 @@ fun playEquipSound(player: Player, item: ItemDefinition) {
     if (material == "wood") {
         sound = "equip_wood"
     }
-    player.playSound(sound)
+    player.sound(sound)
     player.queue.clearWeak()
 }

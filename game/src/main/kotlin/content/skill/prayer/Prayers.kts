@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.headIcon
 import world.gregs.voidps.engine.entity.playerSpawn
 import content.skill.prayer.PrayerConfigs.ACTIVE_CURSES
 import content.skill.prayer.PrayerConfigs.ACTIVE_PRAYERS
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 playerSpawn { player ->
     player.sendVariable("attack_bonus")
@@ -23,7 +23,7 @@ prayerStart { player ->
             player.anim("activate_$prayer")
             player.gfx("activate_$prayer")
         } else {
-            player.playSound("activate_$prayer")
+            player.sound("activate_$prayer")
         }
         updateOverheadIcon(player, curses)
     }
@@ -31,7 +31,7 @@ prayerStart { player ->
 }
 
 prayerStop { player ->
-    player.playSound("deactivate_prayer")
+    player.sound("deactivate_prayer")
     val curses = player.isCurses()
     stopPrayerDrain(player, curses)
     updateOverheadIcon(player, curses)

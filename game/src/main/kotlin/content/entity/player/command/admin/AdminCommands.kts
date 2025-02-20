@@ -70,7 +70,7 @@ import content.entity.world.music.MusicTracks
 import content.entity.world.music.MusicUnlock
 import content.entity.sound.playJingle
 import content.entity.sound.playMidi
-import content.entity.sound.playSound
+import content.entity.sound.sound
 import content.entity.npc.spawn.loadNpcSpawns
 import content.entity.obj.spawn.loadObjectSpawns
 import java.util.concurrent.TimeUnit
@@ -378,7 +378,7 @@ adminCommand("restore", "restore all skills") {
 adminCommand("sound (sound-id)", "play a sound by int or string id") {
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playSound(content.toSnakeCase())
+        player.sound(content.toSnakeCase())
     } else {
         player.client?.playSoundEffect(id)
     }

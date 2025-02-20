@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
 import content.entity.player.inv.inventoryOptions
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 inventoryOptions("Eat", "Drink", "Heal") {
     if (!item.def.contains("heals") && !item.def.contains("excess")) {
@@ -51,7 +51,7 @@ inventoryOptions("Eat", "Drink", "Heal") {
         player.message("You ${if (drink) "drink" else "eat"} the ${item.def.name.lowercase()}.", ChatType.Filter)
 
     }
-    player.playSound(if (drink) "pour_tea" else "eat")
+    player.sound(if (drink) "pour_tea" else "eat")
     player.emit(Consume(item, slot))
     if (smash) {
         player.message("You quickly smash the empty vial using the trick a Barbarian taught you.", ChatType.Filter)

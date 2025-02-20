@@ -24,7 +24,7 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import content.entity.player.dialogue.type.makeAmount
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val bars = listOf(
     "bronze_bar",
@@ -97,7 +97,7 @@ fun smelt(player: Player, target: GameObject, id: String, amount: Int) {
     }
     player.face(furnaceSide(player, target))
     player.anim("furnace_smelt")
-    player.playSound("smelt_bar")
+    player.sound("smelt_bar")
     player.message(smelting.message, ChatType.Filter)
     player.weakQueue("smelting", 4) {
         val success = random.nextInt(255) < smelting.chance

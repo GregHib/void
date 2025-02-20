@@ -14,7 +14,7 @@ import world.gregs.voidps.type.Tile
 import content.entity.obj.door.Door.openDoor
 import content.entity.obj.door.Door.tile
 import content.entity.obj.door.Gate.isGate
-import content.entity.sound.playSound
+import content.entity.sound.sound
 import java.util.concurrent.TimeUnit
 
 object Door {
@@ -64,7 +64,7 @@ object Door {
 
     private fun closeSound(player: Player, definition: ObjectDefinition, gate: Boolean) {
         val material = if (definition.contains("material")) "${definition["material", "wood"]}_" else ""
-        player.playSound(if (gate) "${material}gate_close" else "${material}door_close")
+        player.sound(if (gate) "${material}gate_close" else "${material}door_close")
     }
 
     /**
@@ -96,7 +96,7 @@ object Door {
 
     private fun openSound(player: Player, definition: ObjectDefinition, gate: Boolean) {
         val material = if (definition.contains("material")) "${definition["material", "wood"]}_" else ""
-        player.playSound(if (gate) "${material}gate_open" else "${material}door_open")
+        player.sound(if (gate) "${material}gate_open" else "${material}door_open")
     }
 
     private fun resetExisting(obj: GameObject, double: GameObject?): Boolean {

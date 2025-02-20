@@ -34,7 +34,7 @@ import world.gregs.voidps.type.Tile
 import content.skill.slayer.race
 import content.social.clan.clan
 import content.entity.player.inv.item.tradeable
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val npcs: NPCs by inject()
 val floorItems: FloorItems by inject()
@@ -52,7 +52,7 @@ npcDeath { npc ->
         npc["death_tile"] = tile
         npc.anim(deathAnimation(npc))
         val name = npc.def.name.toSnakeCase()
-        (killer as? Player)?.playSound(deathSound(npc))
+        (killer as? Player)?.sound(deathSound(npc))
         delay(4)
         dropLoot(npc, killer, name, tile)
         npc.attackers.clear()

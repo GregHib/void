@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Area
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 fun jewelleryTeleport(player: Player, inventory: String, slot: Int, area: Area): Boolean {
     return itemTeleport(player, inventory, slot, area, "jewellery")
@@ -20,7 +20,7 @@ fun itemTeleport(player: Player, inventory: String, slot: Int, area: Area, type:
     }
     player.closeInterfaces()
     player.queue("teleport_$type", onCancel = null) {
-        player.playSound("teleport")
+        player.sound("teleport")
         player.gfx("teleport_$type")
         player.animDelay("teleport_$type")
         player.tele(area.random(player)!!)

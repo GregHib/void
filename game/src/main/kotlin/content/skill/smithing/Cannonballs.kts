@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.queue.weakQueue
 import content.quest.quest
 import content.entity.player.dialogue.type.makeAmount
 import content.entity.player.dialogue.type.statement
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val logger = InlineLogger()
 
@@ -46,7 +46,7 @@ suspend fun Interaction<Player>.smelt(player: Player, target: GameObject, id: St
     }
     player.face(furnaceSide(player, target))
     player.anim("furnace_smelt")
-    player.playSound("smelt_bar")
+    player.sound("smelt_bar")
     player.message("You heat the steel bar into a liquid state.", ChatType.Filter)
     delay(3)
     player.message("You poor the molten metal into your cannonball mould.", ChatType.Filter)

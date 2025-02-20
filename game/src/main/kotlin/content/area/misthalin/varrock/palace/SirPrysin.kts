@@ -18,7 +18,7 @@ import content.entity.player.bank.ownsItem
 import content.quest.quest
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 npcOperate("Talk-to", "sir_prysin") {
     when (player.quest("demon_slayer")) {
@@ -236,17 +236,17 @@ suspend fun NPCOption<Player>.giveSilverlight() {
     player.face(target)
     cupboard.anim("silverlight_sword_case_open")
     target.anim("silverlight_unlock_sword_case")
-    player.playSound("cupboard_open", delay = 19)
+    player.sound("cupboard_open", delay = 19)
     delay(3)
-    player.playSound("cupboard_open")
+    player.sound("cupboard_open")
     delay(2)
-    player.playSound("cupboard_open", delay = 10)
+    player.sound("cupboard_open", delay = 10)
     delay(2)
     target.anim("silverlight_open_sword_case")
     cupboard.anim("silverlight_sword_removed")
     delay(8)
     player["demon_slayer_silverlight_case"] = "open"
-    player.playSound("casket_open")
+    player.sound("casket_open")
     target.anim("silverlight_remove_sword")
     delay()
     player["demon_slayer_sir_prysin_sword"] = true
@@ -263,7 +263,7 @@ suspend fun NPCOption<Player>.giveSilverlight() {
     item("silverlight", 600, "Sir Prysin hands you a very shiny sword.")
     player.anim("silverlight_showoff")
     player.gfx("silverlight_sparkle")
-    player.playSound("equip_silverlight")
+    player.sound("equip_silverlight")
     delay()
     target.face(Direction.NONE)
     delay()

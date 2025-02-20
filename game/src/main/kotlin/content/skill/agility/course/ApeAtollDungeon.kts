@@ -2,7 +2,7 @@ package content.skill.agility.course
 
 import content.entity.obj.objTeleportLand
 import content.entity.obj.objTeleportTakeOff
-import content.entity.sound.playSound
+import content.entity.sound.sound
 import content.quest.questCompleted
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -27,7 +27,7 @@ objTeleportLand("Enter", "ape_atoll_hole") {
     if (player.equipped(EquipSlot.Weapon).id != "small_ninja_monkey_greegree") {
         player.message("You slip climbing down the hole and land hard on the floor.")
         player.anim("stand")
-        player.playSound("land_flat", delay = 5)
+        player.sound("land_flat", delay = 5)
         player.face(Direction.WEST)
     } else {
         player.message("...and find yourself in front of a magnificent Monkey Nut bush.")

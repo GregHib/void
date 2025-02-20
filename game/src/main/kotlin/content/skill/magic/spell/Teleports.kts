@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.queue
 import content.entity.player.inv.inventoryItem
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val areas: AreaDefinitions by inject()
 val definitions: SpellDefinitions by inject()
@@ -34,12 +34,12 @@ interfaceOption("Cast", "*_teleport", "*_spellbook") {
         val definition = definitions.get(component)
         player.exp(Skill.Magic, definition.experience)
         val book = id.removeSuffix("_spellbook")
-        player.playSound("teleport")
+        player.sound("teleport")
         player.gfx("teleport_$book")
         player.animDelay("teleport_$book")
         player.tele(areas[component].random(player)!!)
         delay(1)
-        player.playSound("teleport_land")
+        player.sound("teleport_land")
         player.gfx("teleport_land_$book")
         player.animDelay("teleport_land_$book")
         if (book == "ancient") {
@@ -60,7 +60,7 @@ inventoryItem("*", "*_teleport") {
     val map = definition.area
     player.queue("teleport", onCancel = null) {
         if (player.inventory.remove(item.id)) {
-            player.playSound("teleport_$type")
+            player.sound("teleport_$type")
             player.gfx("teleport_$type")
             player.anim("teleport_$type")
             delay(3)

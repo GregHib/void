@@ -3,7 +3,7 @@ package content.quest.member.monkey_madness
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import content.entity.player.dialogue.type.statement
-import content.entity.sound.playSound
+import content.entity.sound.sound
 import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -40,7 +40,7 @@ itemAdded("*_greegree", EquipSlot.Weapon, "worn_equipment") { player ->
         item.id.startsWith("small") -> "human_into_small_monkey"
         else -> "human_into_monkey"
     }
-    player.playSound(sound)
+    player.sound(sound)
     player.gfx("monkey_transform")
     player.transform(item.id.replace("_greegree", ""))
     player.closeType("spellbook_tab")
@@ -54,7 +54,7 @@ itemRemoved("*_greegree", EquipSlot.Weapon, "worn_equipment") { player ->
             item.id.startsWith("small") -> "small_monkey_into_human"
             else -> "monkey_into_human"
         }
-        player.playSound(sound)
+        player.sound(sound)
         player.gfx("monkey_transform")
         player.clearTransform()
         val book = player["spellbook_config", 0] and 0x3

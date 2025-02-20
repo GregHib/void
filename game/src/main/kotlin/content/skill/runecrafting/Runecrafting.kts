@@ -27,7 +27,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import content.entity.sound.playSound
+import content.entity.sound.sound
 import kotlin.math.min
 
 val itemDefinitions: ItemDefinitions by inject()
@@ -66,7 +66,7 @@ fun Runecrafting.bindRunes(player: Player, id: String, itemDefinition: ItemDefin
             player.exp(Skill.Runecrafting, rune.xp * essence)
             player.anim("bind_runes")
             player.gfx("bind_runes")
-            player.playSound("bind_runes")
+            player.sound("bind_runes")
             player.message("You bind the temple's power into ${id.toSentenceCase().plural()}.", ChatType.Filter)
         }
         else -> logger.warn { "Error binding runes $player $rune ${player.levels.get(Skill.Runecrafting)} $essence" }
@@ -126,7 +126,7 @@ itemOnObjectOperate("*_rune", "*_altar") {
             }
             player.anim("bind_runes")
             player.gfx("bind_runes")
-            player.playSound("bind_runes")
+            player.sound("bind_runes")
             if (successes != count) {
                 player.message("You partially succeed to bind the temple's power into $combination runes.", ChatType.Filter)
             } else {

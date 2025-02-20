@@ -13,7 +13,7 @@ import content.entity.combat.hit.hit
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
-import content.entity.sound.playSound
+import content.entity.sound.sound
 import content.skill.melee.weapon.attackType
 import content.skill.melee.weapon.weapon
 
@@ -63,23 +63,23 @@ fun swing(character: Character, target: Character) {
             val ammoName = character.ammo.removePrefix("corrupt_").removeSuffix("_p++").removeSuffix("_p+").removeSuffix("_p")
             character.gfx("${ammoName}_throw")
             if (weapon.contains("dart")) {
-                character.playSound("dart_throw")
+                character.sound("dart_throw")
             } else if (weapon.contains("javelin")) {
-                character.playSound("javelin_throw")
+                character.sound("javelin_throw")
             } else if (weapon.contains("knife")) {
-                character.playSound("knife_throw")
+                character.sound("knife_throw")
             } else if (weapon.contains("axe")) {
-                character.playSound("axe_throw")
+                character.sound("axe_throw")
             } else {
-                character.playSound("thrown")
+                character.sound("thrown")
             }
         }
         "bow" -> {
             character.gfx("${if (ammo.endsWith("brutal")) "brutal" else ammo}_shoot")
             if (weapon.contains("shortbow")) {
-                character.playSound("shortbow_shoot")
+                character.sound("shortbow_shoot")
             } else {
-                character.playSound("longbow_shoot")
+                character.sound("longbow_shoot")
             }
         }
         "fixed_device" -> {
@@ -89,7 +89,7 @@ fun swing(character: Character, target: Character) {
             time = 0
             character.gfx("salamander_${character.attackType}")
         }
-        "crossbow" -> character.playSound("crossbow_shoot")
+        "crossbow" -> character.sound("crossbow_shoot")
     }
     val type = character.weapon.def.getOrNull("weapon_type") ?: style.stringId
     val definition = animationDefinitions.get(type)

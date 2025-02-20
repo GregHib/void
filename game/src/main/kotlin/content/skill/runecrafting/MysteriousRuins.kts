@@ -21,7 +21,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import content.entity.obj.ObjectTeleports
 import content.entity.obj.objTeleportTakeOff
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val objectDefinitions: ObjectDefinitions by inject()
 
@@ -71,7 +71,7 @@ itemOnObjectOperate("*_talisman", "*_altar_ruins") {
 
 objTeleportTakeOff("Enter", "*_altar_ruins_enter") {
     player.clearAnim()
-    player.playSound("teleport")
+    player.sound("teleport")
     player.message("You feel a powerful force talk hold of you...")
 }
 
@@ -96,7 +96,7 @@ objTeleportTakeOff("Enter", "*_altar_portal") {
         return@objTeleportTakeOff
     }
     player.clearAnim()
-    player.playSound("teleport")
+    player.sound("teleport")
     player.message("You step through the portal...")
 }
 

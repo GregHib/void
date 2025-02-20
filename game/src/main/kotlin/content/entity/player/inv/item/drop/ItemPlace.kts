@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val floorItems: FloorItems by inject()
 
@@ -23,7 +23,7 @@ itemOnObjectOperate(obj = "table*") {
     }
     if (player.inventory.remove(itemSlot, item.id, item.amount)) {
         player.anim("take")
-        player.playSound("drop_item")
+        player.sound("drop_item")
         val tile = target.nearestTo(player.tile)
         floorItems.add(tile, item.id, item.amount, revealTicks = 100, disappearTicks = 1000, owner = player)
     }

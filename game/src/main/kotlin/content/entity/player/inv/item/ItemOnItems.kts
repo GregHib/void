@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import content.entity.player.dialogue.type.makeAmount
 import content.entity.combat.inCombat
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val itemOnItemDefs: ItemOnItemDefinitions by inject()
 
@@ -94,7 +94,7 @@ fun useItemOnItem(
         player.gfx(def.graphic)
     }
     if (def.sound.isNotEmpty()) {
-        player.playSound(def.sound)
+        player.sound(def.sound)
     }
     player.weakQueue("item_on_item_delay", if (count == 0) def.delay else def.ticks) {
         replaceItems(def, player, skill, amount, count)

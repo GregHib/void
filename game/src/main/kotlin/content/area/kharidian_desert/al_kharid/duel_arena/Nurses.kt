@@ -12,7 +12,7 @@ import content.entity.player.dialogue.Uncertain
 import content.entity.player.dialogue.type.PlayerChoice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 internal suspend fun PlayerChoice.fighters(): Unit = option<Uncertain>("Do you see a lot of injured fighters?") {
     npc<Neutral>("Yes I do. Thankfully we can cope with almost anything. Jaraah really is a wonderful surgeon, his methods are a little unorthodox but he gets the job done.")
@@ -25,7 +25,7 @@ internal suspend fun TargetInteraction<Player, NPC>.heal() {
     val heal = player.levels.getMax(Skill.Constitution)
     if (player.levels.get(Skill.Constitution) < heal) {
         target.anim("pick_pocket")
-        player.playSound("heal")
+        player.sound("heal")
         player.levels.restore(Skill.Constitution, heal)
         player.message("You feel a little better.")
         return

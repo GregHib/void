@@ -18,7 +18,7 @@ import content.skill.prayer.PrayerConfigs.TEMP_QUICK_PRAYERS
 import content.skill.prayer.PrayerConfigs.USING_QUICK_PRAYERS
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
-import content.entity.sound.playSound
+import content.entity.sound.sound
 import content.skill.prayer.getActivePrayerVarKey
 import content.skill.prayer.isCurses
 
@@ -106,7 +106,7 @@ interfaceOption("Turn Quick Prayers On", "orb", "prayer_orb") {
             return@interfaceOption
         }
     } else {
-        player.playSound("deactivate_prayer")
+        player.sound("deactivate_prayer")
         player.clear(activePrayers)
     }
 }

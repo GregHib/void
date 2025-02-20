@@ -2,7 +2,7 @@ package content.entity.obj.canoe
 
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
-import content.entity.sound.playSound
+import content.entity.sound.sound
 import content.skill.woodcutting.Hatchet
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
@@ -59,7 +59,7 @@ objectOperate("Chop-down", "canoe_station") {
     delay()
     target.anim("canoe_fall")
     player.clearAnim()
-    player.playSound("tree_fall")
+    player.sound("tree_fall")
     player["canoe_state_${location}"] = "falling"
     delay()
     player["canoe_state_${location}"] = "fallen"
@@ -155,7 +155,7 @@ suspend fun ObjectOption<Player>.float() {
     player.anim("canoe_push")
     player.face(Direction.cardinal[target.rotation])
     target.anim("canoe_fall")
-    player.playSound("canoe_roll")
+    player.sound("canoe_roll")
     delay(2)
     player["canoe_state_${location}"] = "water_$canoe"
 }
@@ -188,6 +188,6 @@ objectOperate("Paddle Canoe", "canoe_station_water_*") {
     player["canoe_state_${station}"] = "tree"
     player["canoe_state_${destination}"] = "tree"
     objects.add("a_sinking_canoe_${canoe}", tile = definition.sink, rotation = 1, ticks = 3)
-    player.playSound("canoe_sink")
+    player.sound("canoe_sink")
     player.message(definition.message, type = ChatType.Filter)
 }

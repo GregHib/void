@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import content.entity.player.dialogue.type.destroy
 import content.entity.player.inv.inventoryOptions
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val logger = InlineLogger()
 
@@ -28,7 +28,7 @@ inventoryOptions("Destroy", "Dismiss", "Release", inventory = "inventory") {
         return@inventoryOptions
     }
     if (player.inventory.remove(slot, item.id, item.amount)) {
-        player.playSound("destroy_object")
+        player.sound("destroy_object")
         player.emit(Destroyed(item))
         logger.info { "$player destroyed item $item" }
     } else {

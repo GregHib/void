@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import world.gregs.voidps.type.random
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val drops: DropTables by inject()
 val logger = InlineLogger()
@@ -55,7 +55,7 @@ objectOperate("Craft-rune", "ourania_altar") {
             player.exp(Skill.Runecrafting, experience)
             player.anim("bind_runes")
             player.gfx("bind_runes")
-            player.playSound("bind_runes")
+            player.sound("bind_runes")
             player.message("You bind the temple's power into runes.", ChatType.Filter)
             if (usedArdougneCloak) {
                 player.message("Your Ardougne cloak seems to shimmer with power.", ChatType.Filter)

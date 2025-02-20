@@ -2,7 +2,7 @@ package content.skill.agility.course
 
 import content.entity.combat.hit.damage
 import content.entity.gfx.areaGraphic
-import content.entity.sound.playSound
+import content.entity.sound.sound
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
@@ -36,12 +36,12 @@ objectOperate("Jump-to", "ape_atoll_stepping_stones") {
             player.agilityCourse("ape_atoll")
             player.anim("ninja_monkey_jump")
             delay()
-            player.playSound("jump")
+            player.sound("jump")
             player.exactMoveDelay(Tile(2754, 2742), delay = 30)
             delay(2)
             player.anim("ninja_monkey_jump")
             delay()
-            player.playSound("jump")
+            player.sound("jump")
             player.exactMoveDelay(Tile(2753, 2742))
             player.exp(Skill.Agility, 40.0)
             player.agilityCourse("ape_atoll")
@@ -51,17 +51,17 @@ objectOperate("Jump-to", "ape_atoll_stepping_stones") {
         else -> {
             player.message("The rock is covered in slime and you slip into the water...")
             player.anim("stepping_stone_jump")
-            player.playSound("jump")
+            player.sound("jump")
             player.exactMoveDelay(target.tile, direction = Direction.WEST)
             player.anim("rope_walk_fall_down")
-            player.playSound("stumble_loop", repeat = 10)
+            player.sound("stumble_loop", repeat = 10)
             delay()
             player.clearAnim()
             player.renderEmote("swim")
             player.walkOverDelay(target.tile.addY(1))
-            player.playSound("jump")
+            player.sound("jump")
             areaGraphic("big_splash", target.tile.addY(1), delay = 3)
-            player.playSound("water_splash")
+            player.sound("water_splash")
             delay()
             player.walkOverDelay(Tile(2757, 2748))
             player.message("...you're not monkey enough to try this!")
@@ -82,7 +82,7 @@ objectOperate("Climb", "ape_atoll_tropical_tree") {
         // Success
         weapon == "small_ninja_monkey_greegree" && (Level.success(player.levels.get(Skill.Agility), 70) || Settings["agility.disableCourseFailure", false]) -> {
             player.anim("ninja_monkey_climb_tree")
-            player.playSound("climbing_loop", repeat = 3)
+            player.sound("climbing_loop", repeat = 3)
             delay(3)
             player.tele(2753, 2742, 2)
             player.exp(Skill.Agility, 40.0)
@@ -94,9 +94,9 @@ objectOperate("Climb", "ape_atoll_tropical_tree") {
             player.message("You reach for the tree trunk and lose your footing...")
             player.anim(if (monkey) "ninja_monkey_climb_tree_fail" else "climb_up")
             if (monkey) {
-                player.playSound("climbing_loop", repeat = 3)
+                player.sound("climbing_loop", repeat = 3)
             } else {
-                player.playSound("land_flatter", 20)
+                player.sound("land_flatter", 20)
             }
             delay(if (monkey) 4 else 1)
             if (monkey) {
@@ -115,8 +115,8 @@ objectOperate("Climb", "ape_atoll_tropical_tree") {
                 player.exactMoveDelay(Tile(2753, 2743), 30, Direction.SOUTH)
             }
             player.renderEmote(if (monkey) "ninja_monkey_swim" else "swim")
-            player.playSound("water_splash")
-            player.playSound("swim_stroke", repeat = 6)
+            player.sound("water_splash")
+            player.sound("swim_stroke", repeat = 6)
             returnToShore()
         }
     }
@@ -135,11 +135,11 @@ objectOperate("Swing Across", "ape_atoll_monkeybars") {
             player.walkOverDelay(Tile(2752, 2741, 2))
             player.renderEmote("ninja_monkey_bars")
             player.anim("ninja_monkey_bars_jump")
-            player.playSound("monkeybars_on", repeat = 5)
-            player.playSound("monkeybars_loop", repeat = 5)
+            player.sound("monkeybars_on", repeat = 5)
+            player.sound("monkeybars_loop", repeat = 5)
             player.walkOverDelay(Tile(2747, 2741, 2))
             player.anim("ninja_monkey_jump_off")
-            player.playSound("monkeybars_off", repeat = 5)
+            player.sound("monkeybars_off", repeat = 5)
             player.clearRenderEmote()
             player.tele(2747, 2741, 0)
             player.exp(Skill.Agility, 40.0)
@@ -150,8 +150,8 @@ objectOperate("Swing Across", "ape_atoll_monkeybars") {
             val monkey = weapon == "small_ninja_monkey_greegree"
             player.anim(if (monkey) "ninja_monkey_bars_jump" else "jump_onto_monkey_bars")
             player.renderEmote(if (monkey) "ninja_monkey_bars" else "monkey_bars")
-            player.playSound("monkeybars_on", repeat = if (monkey) 5 else 1)
-            player.playSound("monkeybars_loop", repeat = if (monkey) 4 else 1, delay = if (monkey) 120 else 30)
+            player.sound("monkeybars_on", repeat = if (monkey) 5 else 1)
+            player.sound("monkeybars_loop", repeat = if (monkey) 4 else 1, delay = if (monkey) 120 else 30)
             player.walkOverDelay(Tile(2750, 2741, 2))
             player.anim(if (monkey) "ninja_monkey_bars_fail" else "rope_walk_fall_down")
             delay()
@@ -166,8 +166,8 @@ objectOperate("Swing Across", "ape_atoll_monkeybars") {
             delay()
             player.renderEmote(if (monkey) "ninja_monkey_swim" else "swim")
             areaGraphic("big_splash", Tile(2750, 2741), 3)
-            player.playSound("watersplash")
-            player.playSound("swim_stroke", repeat = 9)
+            player.sound("watersplash")
+            player.sound("swim_stroke", repeat = 9)
             returnToShore()
         }
     }
@@ -185,10 +185,10 @@ objectOperate("Climb-up", "ape_atoll_skull_slope") {
         // Success
         weapon == "small_ninja_monkey_greegree" && (Level.success(player.levels.get(Skill.Agility), 70) || Settings["agility.disableCourseFailure", false]) -> {
             player.renderEmote("ninja_monkey_climb")
-            player.playSound("climb_wall", repeat = 2)
+            player.sound("climb_wall", repeat = 2)
             player.walkTo(Tile(2744, 2741))
             delay(2)
-            player.playSound("climb_wall", repeat = 2)
+            player.sound("climb_wall", repeat = 2)
             player.walkTo(Tile(2743, 2741))
             delay()
             player.clearRenderEmote()
@@ -201,31 +201,31 @@ objectOperate("Climb-up", "ape_atoll_skull_slope") {
         weapon == "small_ninja_monkey_greegree" -> {
             player.walkOverDelay(Tile(2746, 2741))
             player.renderEmote("ninja_monkey_climb")
-            player.playSound("climb_wall", repeat = 2)
+            player.sound("climb_wall", repeat = 2)
             player.walkOverDelay(Tile(2745, 2741))
             player.message("You miss a hand hold...")
             player.message("...and slide back down the slope.")
             damage()
             player.anim("ninja_monkey_fall")
-            player.playSound("stumble_loop", repeat = 2)
+            player.sound("stumble_loop", repeat = 2)
             player.exactMoveDelay(Tile(2747, 2741), 50, Direction.WEST)
         }
         // Human
         else -> {
             player.renderEmote("climbing")
-            player.playSound("climb_wall", repeat = 2)
+            player.sound("climb_wall", repeat = 2)
             player.walkOverDelay(Tile(2745, 2741))
             player.message("The hand holds are too small to hold onto...")
             player.anim("rocks_climb_up_fail")
-            player.playSound("stumble_loop", repeat = 15)
+            player.sound("stumble_loop", repeat = 15)
             player.exactMoveDelay(Tile(2750, 2741), 90, Direction.EAST)
-            player.playSound("male_defend_3", delay = 20)
+            player.sound("male_defend_3", delay = 20)
             player.message("...you're not monkey enough to try this!")
             player.clearAnim()
             player.renderEmote("swim")
             areaGraphic("big_splash", target.tile, delay = 3)
-            player.playSound("water_splash")
-            player.playSound("swim_stroke", repeat = 9)
+            player.sound("water_splash")
+            player.sound("swim_stroke", repeat = 9)
             player.walkOverDelay(Tile(2750, 2742))
             returnToShore()
         }
@@ -244,7 +244,7 @@ objectOperate("Swing", "ape_atoll_rope_swing") {
             player.anim("ninja_monkey_swing")
             target.anim("ape_atol_rope_swing")
             player.exactMoveDelay(Tile(2756, 2731), 40, Direction.EAST)
-            player.playSound("swing_across")
+            player.sound("swing_across")
             player.exp(Skill.Agility, 100.0)
             player.agilityStage(5)
         }
@@ -254,7 +254,7 @@ objectOperate("Swing", "ape_atoll_rope_swing") {
             player.message("You lose your grip on the vine!")
             player.anim(if (monkey) "ninja_monkey_swing" else "fail_rope_swing")
             target.anim("ape_atol_rope_swing")
-            player.playSound("fall_splash")
+            player.sound("fall_splash")
             player.exactMoveDelay(Tile(2754, 2731), 45, Direction.EAST)
             areaGraphic("big_splash", Tile(2754, 2731), 3)
             delay()
@@ -265,9 +265,9 @@ objectOperate("Swing", "ape_atoll_rope_swing") {
             }
             player.renderEmote(if (monkey) "ninja_monkey_swim" else "drowning")
             player.face(Direction.NORTH)
-            player.playSound("water_splash")
+            player.sound("water_splash")
             delay()
-            player.playSound("swim_stroke", 6)
+            player.sound("swim_stroke", 6)
             player.exactMoveDelay(Tile(2754, 2736), 40, Direction.NORTH)
             if (monkey) {
                 player.walkOverDelay(Tile(2753, 2739))
@@ -295,11 +295,11 @@ objectOperate("Climb-down", "ape_atoll_tropical_tree_rope") {
         weapon == "small_ninja_monkey_greegree" && (Level.success(player.levels.get(Skill.Agility), 70) || Settings["agility.disableCourseFailure", false]) -> {
             player.renderEmote("ninja_monkey_swing")
             player.tele(2759, 2736, 1)
-            player.playSound("rope_climb", repeat = 30)
+            player.sound("rope_climb", repeat = 30)
             player.walkOverDelay(Tile(2770, 2747, 1))
             player.anim("ninja_monkey_jump_off")
             player.tele(2770, 2747, 0)
-            player.playSound("land_flat")
+            player.sound("land_flat")
             delay()
             player.clearRenderEmote()
             player.exp(Skill.Agility, 100.0)
@@ -316,18 +316,18 @@ objectOperate("Climb-down", "ape_atoll_tropical_tree_rope") {
             player.message("You jump up to seize the vine...")
             player.face(target)
             player.anim(if (monkey) "ninja_monkey_bars_jump" else "jump_onto_monkey_bars")
-            player.playSound("monkeybars_on")
+            player.sound("monkeybars_on")
             delay()
             player.renderEmote("monkey_bars")
-            player.playSound("monkeybars_loop", repeat = 2)
+            player.sound("monkeybars_loop", repeat = 2)
             player.walkOverDelay(Tile(2759, 2736))
             player.walkOverDelay(Tile(2760, 2737))
             player.message("...and lose your grip!")
             player.anim(if (monkey) "ninja_monkey_bars_fail" else "rope_walk_fall_down")
-            player.playSound("stumble_loop", repeat = 3)
+            player.sound("stumble_loop", repeat = 3)
             player.exactMoveDelay(Tile(2764, 2737), startDelay = 10, delay = 30, direction = Direction.NORTH_EAST)
             damage()
-            player.playSound("land_flat")
+            player.sound("land_flat")
             player.clearRenderEmote()
         }
     }
@@ -349,7 +349,7 @@ fun Interaction<Player>.damage() {
 }
 
 fun Interaction<Player>.damageSound() {
-    player.playSound(
+    player.sound(
         if (player.male) {
             "male_defend_${random.nextInt(0, 3)}"
         } else {

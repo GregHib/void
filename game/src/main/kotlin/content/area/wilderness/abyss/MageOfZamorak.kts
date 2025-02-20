@@ -25,7 +25,7 @@ import content.quest.questCompleted
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.npc.shop.openShop
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val areas: AreaDefinitions by inject()
 
@@ -276,12 +276,12 @@ fun teleport(player: Player, target: NPC) {
         target.face(player)
         target.gfx("tele_other")
         target.anim("tele_other")
-        player.playSound("tele_other_cast")
+        player.sound("tele_other_cast")
         target.say("Veniens! Sallakar! Rinnesset!")
         delay(2)
         player.anim("lunar_teleport")
         player.gfx("tele_other_receive")
-        player.playSound("teleport_all")
+        player.sound("teleport_all")
         delay(2)
         player["abyss_obstacles"] = random.nextInt(0, 12)
         var tile = abyss.random(player)

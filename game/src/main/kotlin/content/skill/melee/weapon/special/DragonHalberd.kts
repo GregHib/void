@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.inject
 import content.entity.combat.hit.hit
 import content.entity.player.combat.special.specialAttack
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 val players: Players by inject()
 val npcs: NPCs by inject()
@@ -16,7 +16,7 @@ val npcs: NPCs by inject()
 specialAttack("sweep") { player ->
     player.anim("${id}_special")
     player.gfx("${id}_special")
-    player.playSound("${id}_special")
+    player.sound("${id}_special")
     val dir = target.tile.delta(player.tile).toDirection()
     val firstTile = target.tile.add(if (dir.isDiagonal()) dir.horizontal() else dir.rotate(2))
     val secondTile = target.tile.add(if (dir.isDiagonal()) dir.vertical() else dir.rotate(-2))

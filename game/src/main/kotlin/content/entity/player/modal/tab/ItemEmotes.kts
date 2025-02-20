@@ -19,7 +19,7 @@ import content.entity.player.inv.inventoryOptions
 import content.entity.effect.toxin.curePoison
 import content.entity.effect.toxin.poisoned
 import content.entity.sound.playJingle
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 inventoryItem("Fly", "toy_kite") {
     if (player.contains("delay")) {
@@ -66,7 +66,7 @@ inventoryItem("Recite-prayer", "prayer_book", "inventory") {
 
 playerOperate("Whack") {
     if (player.weapon.id == "rubber_chicken") {
-        player.playSound("rubber_chicken_whack")
+        player.sound("rubber_chicken_whack")
         player.animDelay("rubber_chicken_whack")
     } else {
         //todo player.playSound("")

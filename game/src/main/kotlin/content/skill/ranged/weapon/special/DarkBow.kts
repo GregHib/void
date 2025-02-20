@@ -9,14 +9,14 @@ import content.entity.combat.hit.hit
 import content.skill.ranged.ammo
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 specialAttack("descent_of_darkness") { player ->
     val dragon = player.ammo == "dragon_arrow"
     player.anim("bow_accurate")
     player.gfx("${player.ammo}_double_shot")
-    player.playSound("dark_bow_special")
-    player.playSound("descent_of_${if (dragon) "dragons" else "darkness"}")
+    player.sound("dark_bow_special")
+    player.sound("descent_of_${if (dragon) "dragons" else "darkness"}")
 
     val time1 = player.shoot("descent_of_arrow", target, true)
     player.shoot("arrow_smoke", target, true)
@@ -34,8 +34,8 @@ specialAttack("descent_of_darkness") { player ->
 }
 
 characterCombatDamage("dark_bow*", "range") { character ->
-    source.playSound("descent_of_darkness")
-    source.playSound("descent_of_darkness", delay = 20)
+    source.sound("descent_of_darkness")
+    source.sound("descent_of_darkness", delay = 20)
     character.gfx("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_impact")
 }
 

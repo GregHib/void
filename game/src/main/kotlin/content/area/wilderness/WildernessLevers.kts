@@ -10,7 +10,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import content.entity.obj.objTeleportLand
 import content.entity.obj.objTeleportTakeOff
-import content.entity.sound.playSound
+import content.entity.sound.sound
 
 objectOperate("Pull", "lever_*", override = false) {
     if (target.id == "lever_ardougne_edgeville" && player["wilderness_lever_warning", true]) {
@@ -42,13 +42,13 @@ suspend fun SuspendableContext<Player>.pullLever(player: Player) {
 
 objTeleportTakeOff("Pull", "lever_*") {
     delay = 3
-    player.playSound("teleport")
+    player.sound("teleport")
     player.gfx("teleport_modern")
     player.anim("teleport_modern")
 }
 
 objTeleportLand("Pull", "lever_*") {
-    player.playSound("teleport_land")
+    player.sound("teleport_land")
     player.gfx("teleport_land_modern")
     player.anim("teleport_land_modern")
     val message: String = obj.getOrNull("land_message") ?: return@objTeleportLand

@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.timer.*
-import content.entity.sound.playSound
+import content.entity.sound.sound
 import java.util.concurrent.TimeUnit
 
 var Player.restoration: Int
@@ -39,7 +39,7 @@ combatAttack("zamorak_bow", handler = specialHandler)
 val hitHandler: suspend CombatDamage.(Character) -> Unit = { character ->
     if (special) {
         character.gfx("${weapon.id}_special_impact")
-        source.playSound("god_bow_special_impact")
+        source.sound("god_bow_special_impact")
     }
 }
 combatDamage("saradomin_bow", handler = hitHandler)
