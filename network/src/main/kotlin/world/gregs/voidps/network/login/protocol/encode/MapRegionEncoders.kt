@@ -60,9 +60,6 @@ enum class DynamicRegionLoadType(val index: Int) {
     LARGE_NO_UPDATEZONE_RESET(4)   //Ignores render-distance restrictions on zone updates and doesn't reset objs, locs, etc on load
 }
 
-/**
- * @param unknownMode (0 = only shows 1 region, 1 = ?, 2 = ?, 3 = ?, 4 = ?)
- */
 fun Client.dynamicMapRegion(
     zoneX: Int,
     zoneY: Int,
