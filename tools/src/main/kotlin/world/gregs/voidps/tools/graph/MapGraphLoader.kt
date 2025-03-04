@@ -22,7 +22,7 @@ object MapGraphLoader {
         val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache))
             .load(Yaml(), property("definitions.objects"))
         val objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), objectDefinitions)
-        val xteas: Xteas = Xteas().load()
+        val xteas = Xteas()//.load("./xteas.json")
         val graph = MapGraph(objects, xteas, cache, collisions)
         graph.load(12342)
     }

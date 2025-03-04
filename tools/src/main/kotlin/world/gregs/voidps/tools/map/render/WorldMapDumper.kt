@@ -2,7 +2,6 @@ package world.gregs.voidps.tools.map.render
 
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
-import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.config.decoder.MapSceneDecoder
@@ -31,8 +30,8 @@ object WorldMapDumper {
 
     @JvmStatic
     fun main(args: Array<String>) {
+        Settings.load("tool.properties")
         val koin = startKoin {
-            fileProperties("/tool.properties")
             modules(
             module {
                 single { MemoryCache(Settings["storage.cache.path"]) as Cache }

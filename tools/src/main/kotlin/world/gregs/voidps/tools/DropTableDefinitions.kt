@@ -2,7 +2,6 @@ package world.gregs.voidps.tools
 
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
-import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
@@ -17,8 +16,8 @@ import world.gregs.yaml.Yaml
 object DropTableDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
+        Settings.load("tool.properties")
         startKoin {
-            fileProperties("/tool.properties")
             modules(module {
                 @Suppress("USELESS_CAST")
                 single { CacheDelegate(Settings["storage.cache.path"]) as Cache }

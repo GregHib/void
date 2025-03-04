@@ -20,6 +20,9 @@ import world.gregs.yaml.Yaml
 import java.awt.EventQueue
 import javax.swing.JFrame
 
+/**
+ * Make sure to run WorldMapDumper.kt first
+ */
 class MapViewer {
 
     init {
