@@ -47,11 +47,11 @@ class MemoryCache(indexCount: Int) : ReadOnlyCache(indexCount) {
             return null
         }
         val archives = data[index]
-        if (archives == null || archive >= archives.size) {
+        if (archives == null || archive >= archives.size || archive < 0) {
             return null
         }
         val files = archives[archive]
-        if (files == null || file >= files.size) {
+        if (files == null || file >= files.size || file < 0) {
             return null
         }
         return files[file]
