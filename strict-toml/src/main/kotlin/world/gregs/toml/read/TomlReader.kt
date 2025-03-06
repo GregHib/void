@@ -409,7 +409,6 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
             }
         }
         var decimal = false
-        var power = 1
         val builder = StringBuilder()
         while (reader.inBounds) {
             when (reader.char) {
@@ -432,135 +431,30 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
                     }
                     break
                 }
-                'E', 'e' -> {
-                    if (negative) {
-                        return "-${scientificNotation(builder)}"
-                    }
-                    return scientificNotation(builder)
-                }
-                '-' -> return localDateTime(builder)
-                ':' -> return localTime(builder)
                 else -> throw IllegalArgumentException("Unexpected character at ${reader.exception}")
             }
         }
-        return number(decimal, negative, power, builder.toString())
+        return number(decimal, negative, builder.toString())
     }
 
-    fun number(decimal: Boolean, negative: Boolean, power: Int, string: String): Number {
+    fun number(decimal: Boolean, negative: Boolean, string: String): Number {
         return if (negative) {
             if (decimal) {
                 -string.toDouble()
             } else if (string.length < 10) {
-                if (power == 1) {
-                    -string.toInt()
-                } else {
-                    -(string.toInt() + 10.0.pow(power.toDouble()).toLong())
-                }
+                -string.toInt()
             } else {
-                val long = string.toLong()
-                if (power == 1) {
-                    -long
-                } else {
-                    -(long * 10.0.pow(power.toDouble()).toLong())
-                }
+                -string.toLong()
             }
         } else {
             if (decimal) {
                 string.toDouble()
             } else if (string.length < 10) {
-                if (power == 1) {
-                    string.toInt()
-                } else {
-                    string.toInt() * 10.0.pow(power.toDouble()).toLong()
-                }
+                string.toInt()
             } else {
-                val long = string.toLong()
-                if (power == 1) {
-                    long
-                } else {
-                    long * 10.0.pow(power.toDouble()).toLong()
-                }
+                string.toLong()
             }
         }
-    }
-
-    internal fun localDateTime(builder: StringBuilder): Any {
-        while (reader.inBounds) {
-            when (reader.char) {
-                in '0'..'9', '-', '+', ':', '.', 't', 'T', 'z', 'Z' -> {
-                    builder.append(reader.char)
-                    reader.skip(1)
-                }
-                ' ' -> {
-                    // RFC 3339 support
-                    if (builder.length != 10) {
-                        break
-                    }
-                    builder.append('T')
-                    reader.skip(1)
-                }
-                '\t', '#', '\n', '\r' -> break
-            }
-        }
-        if (builder.length == 10) { // e.g. 1979-05-27
-            return LocalDate.parse(builder)
-        }
-        return if (builder.length < 20 || (builder[19] == '.' && builder[builder.length - 6] != '-' && builder[builder.length - 6] != '+')) {
-            LocalDateTime.parse(builder)
-        } else {
-            Instant.parse(builder)
-        }
-    }
-
-    internal fun localTime(builder: StringBuilder): Any {
-        while (reader.inBounds) {
-            when (reader.char) {
-                in '0'..'9', ':', '.' -> {
-                    builder.append(reader.char)
-                    reader.skip(1)
-                }
-                ' ', '\t', '#', '\n', '\r' -> break
-            }
-        }
-        return LocalTime.parse(builder)
-    }
-
-    private fun scientificNotation(builder: StringBuilder): Any {
-        builder.append(reader.char)
-        reader.skip(1)
-        var negative = false
-        when (reader.char) {
-            '-' -> {
-                builder.append(reader.char)
-                reader.skip(1)
-                negative = true
-            }
-            '+' -> {
-                builder.append(reader.char)
-                reader.skip(1)
-            }
-            !in '0'..'9' -> {
-                throw IllegalArgumentException("Unexpected character, expecting -, + or digit at ${reader.exception}.")
-            }
-        }
-//        val builder = StringBuilder()
-        while (reader.inBounds) {
-            when (reader.char) {
-                '_' -> reader.skip(1)
-                in '0'..'9' -> {
-                    builder.append(reader.char)
-                    reader.skip(1)
-                }
-                else -> {
-                    if (reader.peek(-1) == '_') {
-                        throw IllegalArgumentException("Incomplete number at ${reader.exception}")
-                    }
-                    break
-                }
-            }
-        }
-        return builder.toString()
-//        return number(false, negative, 1, builder.toString()) as Int
     }
 
     fun hex(): Any {
