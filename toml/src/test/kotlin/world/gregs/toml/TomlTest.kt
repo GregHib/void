@@ -35,7 +35,7 @@ internal class TomlTest {
                     } else {
                         builder.append(',')
                     }
-                    builder.append("\"$key\":")
+                    builder.append("\"${escapeString(key)}\":")
                     printJson(builder, value!!)
                 }
                 builder.append('}')
@@ -76,12 +76,21 @@ internal class TomlTest {
     }
 
     private fun escapeString(input: String): String {
+        var previous = ' '
+        for(char in input) {
+            if (char == '"' && previous != '\\') {
+                return input.replace("\"", "\\\"")
+            }/* else if (char == '\\' && previous != '\\') {
+                return input.replace("\\", "\\\\")
+            }*/
+            previous = char
+        }
         return input
-            .replace("\\", "\\\\") // Escape backslashes first to avoid double escaping
-            .replace("\n", "\\n")
-            .replace("\t", "\\t")
-            .replace("\r", "\\r")
-            .replace("\"", "\\\"")
+//            .replace("\\", "\\\\") // Escape backslashes first to avoid double escaping
+//            .replace("\n", "\\n")
+//            .replace("\t", "\\t")
+//            .replace("\r", "\\r")
+//            .replace("\"", "\\\"")
     }
 
 

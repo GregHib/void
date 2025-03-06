@@ -9,6 +9,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
+import kotlin.math.pow
 
 class TomlReader(private val reader: CharReader, private val settings: Toml.Settings) {
 
@@ -251,8 +252,8 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
     }
 
     fun multiLineString(): String {
-        while (reader.inBounds && (reader.char == '\r' || reader.char == '\n')) {
-            reader.skip(1)
+        if (reader.inBounds && (reader.char == '\r' || reader.char == '\n')) {
+            reader.markLine()
         }
         val builder = StringBuilder()
         while (reader.inBounds) {
@@ -266,18 +267,24 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
                         }
                     }
                 }
-                '"' -> if (reader.peek(-1) == '\\') {
-                    builder.append(reader.char)
-                    reader.skip(1)
-                } else if (reader.peek(1) == '"' && reader.peek(2) == '"') {
-                    while (reader.inBounds && reader.char == '"') {
+                '"' -> {
+                    if (reader.peek(-1) == '\\') {
+                        builder.append(reader.char)
+                        reader.skip(1)
+                    } else if (reader.peek(1) == '"' && reader.peek(2) == '"') {
+                        while (reader.inBounds && reader.char == '"') {
+                            builder.append(reader.char)
+                            reader.skip(1)
+                        }
+                        builder.deleteCharAt(builder.lastIndex)
+                        builder.deleteCharAt(builder.lastIndex)
+                        builder.deleteCharAt(builder.lastIndex)
+                        reader.skip(-3)
+                        break
+                    } else {
+                        builder.append(reader.char)
                         reader.skip(1)
                     }
-                    reader.skip(-3)
-                    break
-                } else {
-                    builder.append(reader.char)
-                    reader.skip(1)
                 }
                 else -> {
                     builder.append(reader.char)
@@ -321,6 +328,7 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
             reader.markLine()
         }
         val start = reader.index
+        // TODO fix line counting.
         // TODO will need to validate end of line, whether that's , ], }, #, ' '
         while (reader.inBounds) {
             if (reader.char == '\'' && reader.peek(1) == '\'' && reader.peek(2) == '\'') {
@@ -389,7 +397,7 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
         if (reader.char == 'i') {
             if (reader.peek(1) == 'n' && reader.peek(2) == 'f') {
                 reader.skip(3)
-                return Double.POSITIVE_INFINITY
+                return if (negative) Double.NEGATIVE_INFINITY else Double.POSITIVE_INFINITY
             } else {
                 throw IllegalArgumentException("Unexpected character, expecting string, number, boolean, inline array or inline table at ${reader.exception}")
             }
@@ -402,7 +410,7 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
             }
         }
         var decimal = false
-        var power = 0
+        var power = 1
         val builder = StringBuilder()
         while (reader.inBounds) {
             when (reader.char) {
@@ -411,6 +419,7 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
                         throw IllegalArgumentException("Unexpected character at ${reader.exception}")
                     }
                     decimal = true
+                    builder.append(reader.char)
                     reader.skip(1)
                 }
                 '_' -> reader.skip(1)
@@ -425,15 +434,55 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
                     break
                 }
                 'E', 'e' -> {
-                    power = scientificNotation()
-                    break
+                    if (negative) {
+                        return "-${scientificNotation(builder)}"
+                    }
+                    return scientificNotation(builder)
                 }
                 '-' -> return localDateTime(builder)
                 ':' -> return localTime(builder)
                 else -> throw IllegalArgumentException("Unexpected character at ${reader.exception}")
             }
         }
-        return reader.number(decimal, negative, power, builder.toString())
+        return number(decimal, negative, power, builder.toString())
+    }
+
+    fun number(decimal: Boolean, negative: Boolean, power: Int, string: String): Number {
+        return if (negative) {
+            if (decimal) {
+                -string.toDouble()
+            } else if (string.length < 10) {
+                if (power == 1) {
+                    -string.toInt()
+                } else {
+                    -(string.toInt() + 10.0.pow(power.toDouble()).toLong())
+                }
+            } else {
+                val long = string.toLong()
+                if (power == 1) {
+                    -long
+                } else {
+                    -(long * 10.0.pow(power.toDouble()).toLong())
+                }
+            }
+        } else {
+            if (decimal) {
+                string.toDouble()
+            } else if (string.length < 10) {
+                if (power == 1) {
+                    string.toInt()
+                } else {
+                    string.toInt() * 10.0.pow(power.toDouble()).toLong()
+                }
+            } else {
+                val long = string.toLong()
+                if (power == 1) {
+                    long
+                } else {
+                    long * 10.0.pow(power.toDouble()).toLong()
+                }
+            }
+        }
     }
 
     internal fun localDateTime(builder: StringBuilder): Any {
@@ -477,20 +526,25 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
         return LocalTime.parse(builder)
     }
 
-    private fun scientificNotation(): Int {
+    private fun scientificNotation(builder: StringBuilder): Any {
+        builder.append(reader.char)
         reader.skip(1)
         var negative = false
         when (reader.char) {
             '-' -> {
+                builder.append(reader.char)
                 reader.skip(1)
                 negative = true
             }
-            '+' -> reader.skip(1)
+            '+' -> {
+                builder.append(reader.char)
+                reader.skip(1)
+            }
             !in '0'..'9' -> {
                 throw IllegalArgumentException("Unexpected character, expecting -, + or digit at ${reader.exception}.")
             }
         }
-        val builder = StringBuilder()
+//        val builder = StringBuilder()
         while (reader.inBounds) {
             when (reader.char) {
                 '_' -> reader.skip(1)
@@ -506,7 +560,8 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
                 }
             }
         }
-        return reader.number(false, negative, 0, builder.toString()) as Int
+        return builder.toString()
+//        return number(false, negative, 1, builder.toString()) as Int
     }
 
     fun hex(): Any {

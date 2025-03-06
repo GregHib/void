@@ -52,36 +52,6 @@ class CharReader {
         return String(input, start, end - start)
     }
 
-    fun number(decimal: Boolean, negative: Boolean, power: Int, string: String): Number {
-        return if (negative) {
-            if (decimal) {
-                -string.toDouble()
-            } else if (string.length < 10) {
-                if (power == 0) {
-                    -string.toInt()
-                } else {
-                    -(string.toInt() + 10.0.pow(power.toDouble()).toLong())
-                }
-            } else {
-                val long = string.toLong()
-                -(long * 10.0.pow(power.toDouble()).toLong())
-            }
-        } else {
-            if (decimal) {
-                string.toDouble()
-            } else if (string.length < 10) {
-                if (power == 0) {
-                    string.toInt()
-                } else {
-                    string.toInt() * 10.0.pow(power.toDouble()).toLong()
-                }
-            } else {
-                val long = string.toLong()
-                long * 10.0.pow(power.toDouble()).toLong()
-            }
-        }
-    }
-
     fun skip(count: Int) {
         index += count
     }

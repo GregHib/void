@@ -379,6 +379,16 @@ internal class TomlReaderTest {
         }
     }
 
+    @Test
+    fun `Decimal number`() {
+        assertEquals(0.1, reader.number(true, false, 1, "0.1"))
+    }
+
+    @Test
+    fun `Negative decimal number`() {
+        assertEquals(-0.1, reader.number(true, true, 1, "0.1"))
+    }
+
     private fun read(text: String) {
         charReader.set(text.toCharArray(), text.length)
     }
