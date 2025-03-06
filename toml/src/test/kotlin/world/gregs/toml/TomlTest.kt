@@ -6,6 +6,10 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
 import java.io.File
+import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
 
 internal class TomlTest {
 
@@ -69,6 +73,11 @@ internal class TomlTest {
             is String -> {
                 builder.append('\"')
                 builder.append(escapeString(any))
+                builder.append('\"')
+            }
+            is Instant, is LocalDateTime, is LocalDate, is LocalTime -> {
+                builder.append('\"')
+                builder.append(any)
                 builder.append('\"')
             }
             else -> builder.append(any)

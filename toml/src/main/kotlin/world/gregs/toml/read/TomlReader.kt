@@ -262,7 +262,8 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
                     reader.skip(1)
                     while (reader.inBounds) {
                         when (reader.char) {
-                            ' ', '\t', '\n', '\r' -> reader.skip(1)
+                            ' ', '\t' -> reader.skip(1)
+                            '\n', '\r' -> reader.markLine()
                             else -> break
                         }
                     }
@@ -328,8 +329,6 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
             reader.markLine()
         }
         val start = reader.index
-        // TODO fix line counting.
-        // TODO will need to validate end of line, whether that's , ], }, #, ' '
         while (reader.inBounds) {
             if (reader.char == '\'' && reader.peek(1) == '\'' && reader.peek(2) == '\'') {
                 while (reader.inBounds && reader.char == '\'') {
