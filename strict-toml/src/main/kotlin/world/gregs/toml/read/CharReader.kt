@@ -23,6 +23,18 @@ class CharReader {
 
     fun peek(offset: Int): Char = input[index + offset]
 
+    fun matches(vararg chars: Char): Boolean {
+        if (index + chars.size > size) {
+            return false
+        }
+        for (i in chars.indices) {
+            if (input[index + i] != chars[i]) {
+                return false
+            }
+        }
+        return true
+    }
+
     fun set(chars: CharArray, size: Int) {
         this.lineCount = 1
         this.lastLine = 0

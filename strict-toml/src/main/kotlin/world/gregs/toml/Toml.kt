@@ -7,14 +7,11 @@ import java.io.File
 
 open class Toml(block: Settings.() -> Unit = {}) {
 
-    data class Settings(
-        var multiLine: Boolean = true,
-        var appendArrays: Boolean = true,
-    )
+    class Settings
 
     private val settings = Settings()
     private val reader = CharReader()
-    private val tomlReader = TomlReader(reader, settings)
+    private val tomlReader = TomlReader(reader)
 
     init {
         block.invoke(settings)

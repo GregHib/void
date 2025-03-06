@@ -4,14 +4,8 @@ package world.gregs.toml.read
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
-import world.gregs.toml.Toml
-import java.time.Instant
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.LocalTime
-import kotlin.math.pow
 
-class TomlReader(private val reader: CharReader, private val settings: Toml.Settings) {
+class TomlReader(private val reader: CharReader) {
 
     fun read(root: MutableMap<String, Any>): Map<String, Any> {
         var map = root
@@ -43,24 +37,16 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
     private fun tableTitle(map: MutableMap<String, Any>): MutableMap<String, Any> {
         val label = label()
         reader.skipSpaces()
-        val entry = map[label]
-        var child: MutableMap<String, Any> = when {
-            entry == null -> {
+        var child: MutableMap<String, Any> = when (val entry = map[label]) {
+            null -> {
                 // Set new element
                 val child: MutableMap<String, Any> = Object2ObjectOpenHashMap()
                 map[label] = child
                 child
             }
-            reader.inBounds && reader.char == ']' -> {
-                if (entry is Map<*, *> && (entry as Map<String, Any>).values.any { it is Map<*, *> }) {
-                    entry as MutableMap<String, Any>
-                } else {
-                    throw IllegalArgumentException("Can't redefine existing key at ${reader.exception}.")
-                }
-            }
             // Get last element
-            entry is List<*> -> (entry as MutableList<*>).last() as MutableMap<String, Any>
-            entry is Map<*, *> -> entry as MutableMap<String, Any>
+            is List<*> -> (entry as MutableList<*>).last() as MutableMap<String, Any>
+            is Map<*, *> -> entry as MutableMap<String, Any>
             else -> throw IllegalArgumentException("Can't redefine existing key at ${reader.exception}.")
         }
         if (reader.inBounds) {
@@ -105,7 +91,6 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
                     list.add(element)
                     element
                 }
-                is Array<*> -> throw IllegalArgumentException("Can't extend an inline array at ${reader.exception}.")
                 else -> throw IllegalArgumentException("Can't redefine existing key at ${reader.exception}.")
             }
             return child
@@ -299,7 +284,6 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
         return builder.toString()
     }
 
-
     fun stringLiteral(): String {
         reader.expect('\'')
         if (reader.char == '\'') {
@@ -350,11 +334,14 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
         reader.nextLine()
     }
 
-    fun booleanTrue(): Any {
-        if (reader.index + 3 < reader.size) {
-            if (reader.peek(1) == 'r' && reader.peek(2) == 'u' && reader.peek(3) == 'e') {
-                if (reader.index + 4 == reader.size || reader.peek(4) == ' ' || reader.peek(4) == '\r' || reader.peek(4) == '\n' || reader.peek(4) == '#') {
-                    reader.skip(4)
+    fun booleanTrue(): Boolean {
+        if (reader.matches('t', 'r', 'u', 'e')) {
+            reader.skip(4)
+            if (!reader.inBounds) {
+                return true
+            }
+            when (reader.char) {
+                ' ', '\t', '\r', '\n', '#' -> {
                     reader.skipSpacesComment()
                     return true
                 }
@@ -363,11 +350,14 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
         throw IllegalArgumentException("Unexpected character, expected whitespace or comments till end of line at ${reader.exception}")
     }
 
-    fun booleanFalse(): Any {
-        if (reader.index + 4 < reader.size) {
-            if (reader.peek(1) == 'a' && reader.peek(2) == 'l' && reader.peek(3) == 's' && reader.peek(4) == 'e') {
-                if (reader.index + 5 == reader.size || reader.peek(5) == ' ' || reader.peek(5) == '\r' || reader.peek(5) == '\n' || reader.peek(5) == '#') {
-                    reader.skip(5)
+    fun booleanFalse(): Boolean {
+        if (reader.matches('f', 'a', 'l', 's', 'e')) {
+            reader.skip(5)
+            if (!reader.inBounds) {
+                return false
+            }
+            when (reader.char) {
+                ' ', '\t', '\r', '\n', '#' -> {
                     reader.skipSpacesComment()
                     return false
                 }
@@ -392,28 +382,23 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
                 negative = true
             }
         }
-
-        if (reader.char == 'i') {
-            if (reader.peek(1) == 'n' && reader.peek(2) == 'f') {
-                reader.skip(3)
-                return if (negative) Double.NEGATIVE_INFINITY else Double.POSITIVE_INFINITY
-            } else {
-                throw IllegalArgumentException("Unexpected character, expecting string, number, boolean, inline array or inline table at ${reader.exception}")
-            }
+        if (reader.matches('i', 'n', 'f')) {
+            reader.skip(3)
+            return if (negative) Double.NEGATIVE_INFINITY else Double.POSITIVE_INFINITY
+        } else if (reader.char == 'i') {
+            throw IllegalArgumentException("Unexpected character, expecting string, number, boolean, inline array or inline table at ${reader.exception}")
+        } else if (reader.matches('n', 'a', 'n')) {
+            reader.skip(3)
+            return Double.NaN
         } else if (reader.char == 'n') {
-            if (reader.peek(1) == 'a' && reader.peek(2) == 'n') {
-                reader.skip(3)
-                return Double.NaN
-            } else {
-                throw IllegalArgumentException("Unexpected character, expecting string, number, boolean, inline array or inline table at ${reader.exception}")
-            }
+            throw IllegalArgumentException("Unexpected character, expecting string, number, boolean, inline array or inline table at ${reader.exception}")
         }
         var decimal = false
         val builder = StringBuilder()
         while (reader.inBounds) {
             when (reader.char) {
                 '.' -> {
-                    if (decimal || reader.index + 1 == reader.size || reader.peek(1).lowercaseChar() == 'e') {
+                    if (decimal || reader.index + 1 == reader.size) {
                         throw IllegalArgumentException("Unexpected character at ${reader.exception}")
                     }
                     decimal = true
@@ -446,14 +431,12 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
             } else {
                 -string.toLong()
             }
+        } else if (decimal) {
+            string.toDouble()
+        } else if (string.length < 10) {
+            string.toInt()
         } else {
-            if (decimal) {
-                string.toDouble()
-            } else if (string.length < 10) {
-                string.toInt()
-            } else {
-                string.toLong()
-            }
+            string.toLong()
         }
     }
 
@@ -515,7 +498,7 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
         return long
     }
 
-    fun inlineArray(): Array<Any> {
+    fun inlineArray(): List<Any> {
         reader.skip(1)
         val list = ObjectArrayList<Any>()
         while (reader.inBounds) {
@@ -531,7 +514,7 @@ class TomlReader(private val reader: CharReader, private val settings: Toml.Sett
             reader.expect(',')
         }
         reader.expect(']')
-        return list.toArray()
+        return list
     }
 
     fun inlineTable(): Map<String, Any> {

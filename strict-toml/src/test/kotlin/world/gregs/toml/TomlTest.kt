@@ -89,17 +89,10 @@ internal class TomlTest {
         for(char in input) {
             if (char == '"' && previous != '\\') {
                 return input.replace("\"", "\\\"")
-            }/* else if (char == '\\' && previous != '\\') {
-                return input.replace("\\", "\\\\")
-            }*/
+            }
             previous = char
         }
         return input
-//            .replace("\\", "\\\\") // Escape backslashes first to avoid double escaping
-//            .replace("\n", "\\n")
-//            .replace("\t", "\\t")
-//            .replace("\r", "\\r")
-//            .replace("\"", "\\\"")
     }
 
 

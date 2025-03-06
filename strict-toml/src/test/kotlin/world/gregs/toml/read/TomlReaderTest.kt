@@ -3,13 +3,12 @@ package world.gregs.toml.read
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import world.gregs.toml.Toml
 
 internal class TomlReaderTest {
 
 
     private val charReader = CharReader()
-    private val reader = TomlReader(charReader, Toml.Settings())
+    private val reader = TomlReader(charReader)
 
     @Test
     fun `Table title`() {
@@ -139,19 +138,19 @@ internal class TomlReaderTest {
     @Test
     fun `Valid false boolean`() {
         read("false")
-        assertFalse(reader.booleanFalse() as Boolean)
+        assertFalse(reader.booleanFalse())
     }
 
     @Test
     fun `Valid false space boolean`() {
         read("false  # Allowed")
-        assertFalse(reader.booleanFalse() as Boolean)
+        assertFalse(reader.booleanFalse())
     }
 
     @Test
     fun `Valid false comment boolean`() {
         read("false# Comment")
-        assertFalse(reader.booleanFalse() as Boolean)
+        assertFalse(reader.booleanFalse())
     }
 
     @Test
