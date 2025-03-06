@@ -15,7 +15,7 @@ internal class TomlReaderTest {
     fun `Table title`() {
         read("[test]")
         val root = mutableMapOf<String, Any>()
-        val result = reader.tableTitle(root)
+        val result = reader.title(root)
 
         assertEquals(mapOf("test" to emptyMap<String, Any>()), root)
         assertEquals(emptyMap<String, Any>(), result)
@@ -25,7 +25,7 @@ internal class TomlReaderTest {
     fun `Nested title`() {
         read("[test.fun]")
         val root = mutableMapOf<String, Any>()
-        val result = reader.tableTitle(root)
+        val result = reader.title(root)
 
         assertEquals(mapOf("test" to mapOf("fun" to emptyMap<String, Any>())), root)
         assertEquals(emptyMap<String, Any>(), result)
@@ -35,7 +35,7 @@ internal class TomlReaderTest {
     fun `Nested quoted title`() {
         read("[test. \"fun.com\".1]")
         val root = mutableMapOf<String, Any>()
-        val result = reader.tableTitle(root)
+        val result = reader.title(root)
 
         assertEquals(mapOf("test" to mapOf("fun.com" to mapOf("1" to emptyMap<String, Any>()))), root)
         assertEquals(emptyMap<String, Any>(), result)
@@ -45,7 +45,7 @@ internal class TomlReaderTest {
     fun `Array of table title`() {
         read("[[test]]")
         val root = mutableMapOf<String, Any>()
-        val result = reader.tableTitle(root)
+        val result = reader.title(root)
 
         assertEquals(mapOf("test" to listOf(emptyMap<String, Any>())), root)
         assertEquals(emptyMap<String, Any>(), result)
@@ -55,7 +55,7 @@ internal class TomlReaderTest {
     fun `Nested array of table title`() {
         read("[[test  . fun]]")
         val root = mutableMapOf<String, Any>()
-        val result = reader.tableTitle(root)
+        val result = reader.title(root)
 
         assertEquals(mapOf("test" to mapOf("fun" to listOf(emptyMap<String, Any>()))), root)
         assertEquals(emptyMap<String, Any>(), result)
@@ -223,20 +223,20 @@ internal class TomlReaderTest {
     @Test
     fun `Double quoted string`() {
         read("\"this is a string\"")
-        assertEquals("this is a string", reader.doubleQuotedString())
+        assertEquals("this is a string", reader.basicString())
     }
 
     @Test
     fun `Double quoted escaped string`() {
         read("\"an escaped \\\" quote\"")
-        assertEquals("an escaped \\\" quote", reader.doubleQuotedString())
+        assertEquals("an escaped \\\" quote", reader.basicString())
     }
 
     @Test
     fun `Incomplete double quoted string`() {
         read("\"no end")
         assertThrows<IllegalArgumentException>("Expected character '\"'") {
-            reader.doubleQuotedString()
+            reader.basicString()
         }
     }
 
@@ -244,7 +244,7 @@ internal class TomlReaderTest {
     fun `Early line break double quoted string`() {
         read("\"no end \n\"")
         assertThrows<IllegalArgumentException>("Expected character '\"'") {
-            reader.doubleQuotedString()
+            reader.basicString()
         }
     }
 
@@ -264,7 +264,7 @@ internal class TomlReaderTest {
     fun `Incomplete single quoted string`() {
         read("'no end")
         assertThrows<IllegalArgumentException>("Expected character '''") {
-            reader.doubleQuotedString()
+            reader.basicString()
         }
     }
 
@@ -290,9 +290,93 @@ internal class TomlReaderTest {
         }
     }
 
-    private fun parse(text: String): Map<String, Any> {
-        read(text)
-        return reader.read(mutableMapOf())
+    @Test
+    fun `Binary value`() {
+        read("0b10011010010")
+        val binary = reader.binary()
+        assertEquals(1234L, binary)
+    }
+
+    @Test
+    fun `Invalid binary value`() {
+        read("0b10011210010")
+        assertThrows<IllegalArgumentException>("Unexpected character") {
+            reader.binary()
+        }
+    }
+
+    @Test
+    fun `Long binary value`() {
+        read("0b1111111111111111111111111111111111111111111111111111111111111111")
+        assertEquals(-1L, reader.binary())
+    }
+
+    @Test
+    fun `Too long binary value`() {
+        read("0b01101000011001010110110001101100011011110010110000100000011101111")
+        assertThrows<IllegalArgumentException>("Unexpected character length") {
+            reader.binary()
+        }
+    }
+
+    @Test
+    fun `Hexadecimal value`() {
+        read("0x4D2")
+        val hex = reader.hex()
+        assertEquals(1234L, hex)
+    }
+
+    @Test
+    fun `Invalid hexadecimal value`() {
+        read("0xC3PO")
+        assertThrows<IllegalArgumentException>("Unexpected character") {
+            reader.hex()
+        }
+    }
+
+    @Test
+    fun `Long hexadecimal value`() {
+        read("0xFFFFFFFFFFFFFFFF")
+        val hex = reader.hex()
+        assertEquals(-1L, hex)
+    }
+
+    @Test
+    fun `Too long hexadecimal value`() {
+        read("0xFFFFFFFFFFFFFFFFF")
+        assertThrows<IllegalArgumentException>("Unexpected character length") {
+            reader.hex()
+        }
+    }
+
+    @Test
+    fun `Octal value`() {
+        read("0o2322")
+        val hex = reader.octal()
+        assertEquals(1234L, hex)
+    }
+
+    @Test
+    fun `Invalid octal value`() {
+        read("0o12345678")
+        assertThrows<IllegalArgumentException>("Unexpected character") {
+            reader.octal()
+        }
+    }
+
+    @Test
+    fun `Long octal value`() {
+        read("0o777777777777777777777")
+        val hex = reader.octal()
+        assertEquals(Long.MAX_VALUE, hex)
+    }
+
+    @Test
+    fun `Too long octal value`() {
+        read("0o7777777777777777777777")
+        assertThrows<IllegalArgumentException>("Unexpected character length") {
+            reader.octal()
+        }
     }
 
     private fun read(text: String) {

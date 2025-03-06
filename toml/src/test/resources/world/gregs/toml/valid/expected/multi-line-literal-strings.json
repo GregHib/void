@@ -1,0 +1,1 @@
+{"lines":"The first newline is\r\ntrimmed in raw strings.\r\n   All other whitespace\r\n   is preserved.\r\n","regex2":"I [dw]on't need \\d{2} apples"}
