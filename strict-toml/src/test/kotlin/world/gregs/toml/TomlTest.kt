@@ -3,6 +3,7 @@ package world.gregs.toml
 import net.pearx.kasechange.toSentenceCase
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DynamicTest.dynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
 import java.io.File
@@ -12,6 +13,21 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 
 internal class TomlTest {
+
+    @Test
+    fun `Benchmark test`() {
+        val text = File("C:\\Users\\Greg\\AppData\\Roaming\\JetBrains\\IntelliJIdea2024.3\\scratches\\scratch.toml").readText().toCharArray()
+        var result: Any = ""
+        val toml = Toml
+        val count = 10
+        val start = System.nanoTime()
+        for (i in 0 until count) {
+            result = toml.decodeFromCharArray(text)
+        }
+        val end = System.nanoTime()
+        println(result)
+        println("Took ${(end-start)/count}ns")
+    }
 
     @TestFactory
     fun `Toml examples`() = File(TomlTest::class.java.getResource("valid/")!!.file).listFiles()!!.mapNotNull { file ->
@@ -104,7 +120,7 @@ internal class TomlTest {
 
     private fun escapeString(input: String): String {
         var previous = ' '
-        for(char in input) {
+        for (char in input) {
             if (char == '"' && previous != '\\') {
                 return input.replace("\"", "\\\"")
             }
