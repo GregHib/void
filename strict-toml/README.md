@@ -37,3 +37,7 @@ Anything goes so long as the types are correct.
 ### No scientific format
 
 You're the scientist, convert your own strings.
+
+### No infinity or nan
+
+Who uses those anyway?

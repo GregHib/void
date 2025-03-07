@@ -26,7 +26,12 @@ class TomlReader(private val reader: CharReader) {
                     }
                 }
                 '=' -> throw IllegalArgumentException("Expected variable or table at start of line.")
-                else -> variable(map)
+                else -> {
+                    variable(map)
+                    if (reader.inBounds) {
+                        reader.expectLineBreak()
+                    }
+                }
             }
             reader.nextLine()
         }
@@ -141,7 +146,7 @@ class TomlReader(private val reader: CharReader) {
         return child
     }
 
-    fun variable(map: MutableMap<String, Any>, requireEnd: Boolean = true) {
+    fun variable(map: MutableMap<String, Any>) {
         val label = label()
         reader.skipSpaces()
         when (reader.char) {
@@ -155,11 +160,9 @@ class TomlReader(private val reader: CharReader) {
                 }
                 reader.expect('=')
                 reader.skipSpaces()
-                map[label] = value()
+                val value = value()
+                map[label] = value
                 reader.skipSpacesComment()
-                if (reader.inBounds && requireEnd) {
-                    reader.expectLineBreak()
-                }
                 return
             }
         }
@@ -174,7 +177,7 @@ class TomlReader(private val reader: CharReader) {
             map[label] = child
             child
         }
-        variable(child, requireEnd)
+        variable(child)
     }
 
     fun label(): String = when (reader.char) {
@@ -229,15 +232,31 @@ class TomlReader(private val reader: CharReader) {
         't' -> booleanTrue()
         'f' -> booleanFalse()
         '#' -> throw IllegalArgumentException("Invalid comment")
-        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '+', 'i', 'n' -> number()
+        '0' -> when (reader.peek) {
+            'x' -> hex()
+            'o' -> octal()
+            'b' -> binary()
+            else -> number()
+        }
+        '-' -> {
+            reader.skip(1)
+            number(negative = true)
+        }
+        '+' -> {
+            reader.skip(1)
+            number()
+        }
+        '1', '2', '3', '4', '5', '6', '7', '8', '9' -> number()
         else -> throw IllegalArgumentException("Unexpected character, expecting string, number, boolean, inline array or inline table at ${reader.exception}")
     }
 
     fun basicString(): String {
-        reader.expect('"')
+        reader.skip(1)
         if (reader.char == '"') {
-            reader.expect('"')
-            reader.expect('"')
+            if (reader.peek != '"') {
+                throw IllegalArgumentException("Expected character '\"' at ${reader.exception}")
+            }
+            reader.skip(2)
             return multiLineString()
         }
         val start = reader.index
@@ -302,7 +321,7 @@ class TomlReader(private val reader: CharReader) {
     }
 
     fun stringLiteral(): String {
-        reader.expect('\'')
+        reader.skip(1)
         if (reader.char == '\'') {
             return multilineLiteral()
         }
@@ -352,8 +371,9 @@ class TomlReader(private val reader: CharReader) {
     }
 
     fun booleanTrue(): Boolean {
-        if (reader.matches('t', 'r', 'u', 'e')) {
-            reader.skip(4)
+        reader.skip(1)
+        if (reader.matches('r', 'u', 'e')) {
+            reader.skip(3)
             if (!reader.inBounds) {
                 return true
             }
@@ -368,8 +388,9 @@ class TomlReader(private val reader: CharReader) {
     }
 
     fun booleanFalse(): Boolean {
-        if (reader.matches('f', 'a', 'l', 's', 'e')) {
-            reader.skip(5)
+        reader.skip(1)
+        if (reader.matches('a', 'l', 's', 'e')) {
+            reader.skip(4)
             if (!reader.inBounds) {
                 return false
             }
@@ -383,33 +404,7 @@ class TomlReader(private val reader: CharReader) {
         throw IllegalArgumentException("Unexpected character, expected whitespace or comments till end of line at ${reader.exception}")
     }
 
-    fun number(): Any {
-        var negative = false
-        when (reader.char) {
-            '0' -> {
-                when (reader.peek) {
-                    'x' -> return hex()
-                    'o' -> return octal()
-                    'b' -> return binary()
-                }
-            }
-            '+' -> reader.skip(1)
-            '-' -> {
-                reader.skip(1)
-                negative = true
-            }
-        }
-        if (reader.matches('i', 'n', 'f')) {
-            reader.skip(3)
-            return if (negative) Double.NEGATIVE_INFINITY else Double.POSITIVE_INFINITY
-        } else if (reader.char == 'i') {
-            throw IllegalArgumentException("Unexpected character, expecting string, number, boolean, inline array or inline table at ${reader.exception}")
-        } else if (reader.matches('n', 'a', 'n')) {
-            reader.skip(3)
-            return Double.NaN
-        } else if (reader.char == 'n') {
-            throw IllegalArgumentException("Unexpected character, expecting string, number, boolean, inline array or inline table at ${reader.exception}")
-        }
+    fun number(negative: Boolean = false): Any {
         var decimal = false
         val builder = StringBuilder()
         while (reader.inBounds) {
@@ -543,7 +538,7 @@ class TomlReader(private val reader: CharReader) {
             if (reader.char == '}') {
                 break
             }
-            variable(map, requireEnd = false)
+            variable(map)
             reader.nextLine()
             if (reader.char == '}') {
                 break
