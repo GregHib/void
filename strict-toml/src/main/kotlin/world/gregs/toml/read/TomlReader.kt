@@ -7,16 +7,16 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 
 class TomlReader(private val reader: CharReader) {
 
+    private fun list() = ObjectArrayList<Any>(2)
+    private fun map() = Object2ObjectOpenHashMap<String, Any>(8, .25f)
+
     fun read(root: MutableMap<String, Any>): Map<String, Any> {
         var map = root
         var previous = map
+        reader.nextLine()
         while (reader.inBounds) {
-            reader.nextLine()
-            if (!reader.inBounds) {
-                break
-            }
-            when {
-                reader.char == '[' -> {
+            when (reader.char) {
+                '[' -> {
                     val inherit = (reader.inBounds(1) && reader.peek(1) == '.') || (reader.inBounds(2) && reader.peek(1) == '[' && reader.peek(2) == '.')
                     if (inherit) {
                         map = title(previous)
@@ -25,10 +25,10 @@ class TomlReader(private val reader: CharReader) {
                         previous = map
                     }
                 }
-                reader.char == '#' -> comment()
-                (reader.char.isLetterOrDigit() || reader.char == '"' || reader.char == '\'') -> variable(map)
-                else -> throw IllegalArgumentException("Expected variable or table at start of line.")
+                '=' -> throw IllegalArgumentException("Expected variable or table at start of line.")
+                else -> variable(map)
             }
+            reader.nextLine()
         }
         return root
     }
@@ -38,6 +38,7 @@ class TomlReader(private val reader: CharReader) {
         if (reader.char == '[') {
             return arrayOfTables(map)
         }
+        reader.skipSpaces()
         val childMap = tableTitle(map)
         reader.expect(']')
         return childMap
@@ -52,7 +53,7 @@ class TomlReader(private val reader: CharReader) {
         var child: MutableMap<String, Any> = when (val entry = map[label]) {
             null -> {
                 // Set new element
-                val child: MutableMap<String, Any> = Object2ObjectOpenHashMap()
+                val child: MutableMap<String, Any> = map()
                 map[label] = child
                 child
             }
@@ -93,16 +94,16 @@ class TomlReader(private val reader: CharReader) {
             val child = when (val current = map[label]) {
                 null -> {
                     // Set new list and element
-                    val list = ObjectArrayList<Any>()
+                    val list = list()
                     map[label] = list
-                    val element: MutableMap<String, Any> = Object2ObjectOpenHashMap()
+                    val element: MutableMap<String, Any> = map()
                     list.add(element)
                     element
                 }
                 is List<*> -> {
                     // Append new element
                     val list = (current as MutableList<Any>)
-                    val element: MutableMap<String, Any> = Object2ObjectOpenHashMap()
+                    val element: MutableMap<String, Any> = map()
                     list.add(element)
                     element
                 }
@@ -113,7 +114,7 @@ class TomlReader(private val reader: CharReader) {
         var child = when (val current = map[label]) {
             null -> {
                 // Set new element
-                val element = Object2ObjectOpenHashMap<String, Any>()
+                val element = map()
                 map[label] = element
                 element
             }
@@ -141,9 +142,6 @@ class TomlReader(private val reader: CharReader) {
     }
 
     fun variable(map: MutableMap<String, Any>, requireEnd: Boolean = true) {
-        if (!reader.inBounds) {
-            return
-        }
         val label = label()
         reader.skipSpaces()
         when (reader.char) {
@@ -151,7 +149,6 @@ class TomlReader(private val reader: CharReader) {
                 reader.expect('.')
                 reader.skipSpaces()
             }
-            '"', '\'' -> {}
             else -> {
                 if (map.containsKey(label)) {
                     throw IllegalArgumentException("Can't redefine existing key at ${reader.exception}.")
@@ -173,7 +170,7 @@ class TomlReader(private val reader: CharReader) {
             }
             value as MutableMap<String, Any>
         } else {
-            val child = Object2ObjectOpenHashMap<String, Any>()
+            val child = map()
             map[label] = child
             child
         }
@@ -197,25 +194,30 @@ class TomlReader(private val reader: CharReader) {
             reader.expect(quote)
             label
         }
-        else -> buildString {
-            reader.skipSpaces()
+        else -> {
+            val start = reader.index
+            var end = -1
             // Read until reached a new level of nesting or end of table title
             while (reader.inBounds) {
                 when (reader.char) {
                     '\r', '\n' -> throw IllegalArgumentException("Unterminated string at ${reader.exception}")
-                    '"', '\'', '.', ']', '=' -> break
+                    '"', '\'', '.', ']', '=' -> {
+                        end = reader.index
+                        break
+                    }
                     ' ', '\t' -> {
+                        end = reader.index
                         reader.skipSpaces()
                         when (reader.char) {
                             '"', '\'', '.', ']', '=' -> break
                         }
-                        reader.expect('.')
-                        reader.skipSpaces()
+                        break
                     }
-                    else -> append(reader.char)
                 }
                 reader.skip(1)
             }
+            val label = reader.substring(start, end)
+            label
         }
     }
 
@@ -227,7 +229,7 @@ class TomlReader(private val reader: CharReader) {
         't' -> booleanTrue()
         'f' -> booleanFalse()
         '#' -> throw IllegalArgumentException("Invalid comment")
-        in '0'..'9', '-', '+', 'i', 'n' -> number()
+        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '+', 'i', 'n' -> number()
         else -> throw IllegalArgumentException("Unexpected character, expecting string, number, boolean, inline array or inline table at ${reader.exception}")
     }
 
@@ -421,7 +423,7 @@ class TomlReader(private val reader: CharReader) {
                     reader.skip(1)
                 }
                 '_' -> reader.skip(1)
-                in '0'..'9' -> {
+                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> {
                     builder.append(reader.char)
                     reader.skip(1)
                 }
@@ -462,7 +464,7 @@ class TomlReader(private val reader: CharReader) {
         while (reader.inBounds) {
             when (reader.char) {
                 '_' -> {}
-                in '0'..'9', in 'A'..'F', in 'a'..'f' -> long = (long shl 4) or reader.char.digitToInt(16).toLong()
+                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'a', 'b', 'c', 'd', 'e', 'f' -> long = (long shl 4) or reader.char.digitToInt(16).toLong()
                 '#', ' ', '\t', '\r', '\n' -> break
                 else -> throw IllegalArgumentException("Unexpected character, expecting 0-9, A-F, whitespace, comment or line break at ${reader.exception}.")
             }
@@ -481,7 +483,7 @@ class TomlReader(private val reader: CharReader) {
         while (reader.inBounds) {
             when (reader.char) {
                 '_' -> {}
-                in '0'..'7' -> long = (long shl 3) or reader.char.digitToInt(8).toLong()
+                '0', '1', '2', '3', '4', '5', '6', '7' -> long = (long shl 3) or reader.char.digitToInt(8).toLong()
                 '#', ' ', '\t', '\r', '\n' -> break
                 else -> throw IllegalArgumentException("Unexpected character, expecting 0-7, whitespace, comment or line break at ${reader.exception}.")
             }
@@ -515,13 +517,14 @@ class TomlReader(private val reader: CharReader) {
 
     fun inlineArray(): List<Any> {
         reader.skip(1)
-        val list = ObjectArrayList<Any>()
+        val list = list()
         while (reader.inBounds) {
             reader.nextLine()
             if (reader.char == ']') {
                 break
             }
-            list.add(value())
+            val value = value()
+            list.add(value)
             reader.nextLine()
             if (reader.char == ']') {
                 break
@@ -534,7 +537,7 @@ class TomlReader(private val reader: CharReader) {
 
     fun inlineTable(): Map<String, Any> {
         reader.skip(1)
-        val map: MutableMap<String, Any> = Object2ObjectOpenHashMap()
+        val map: MutableMap<String, Any> = map()
         while (reader.inBounds) {
             reader.nextLine()
             if (reader.char == '}') {
