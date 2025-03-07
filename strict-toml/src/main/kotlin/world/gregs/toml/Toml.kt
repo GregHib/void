@@ -5,17 +5,9 @@ import world.gregs.toml.read.CharReader
 import world.gregs.toml.read.TomlReader
 import java.io.File
 
-open class Toml(block: Settings.() -> Unit = {}) {
-
-    class Settings
-
-    private val settings = Settings()
+object Toml {
     private val reader = CharReader()
     private val tomlReader = TomlReader(reader)
-
-    init {
-        block.invoke(settings)
-    }
 
     fun decodeFromFile(path: String): Map<String, Any> {
         val file = File(path)
@@ -38,6 +30,4 @@ open class Toml(block: Settings.() -> Unit = {}) {
         }
         return tomlReader.read(root)
     }
-
-    companion object : Toml()
 }
