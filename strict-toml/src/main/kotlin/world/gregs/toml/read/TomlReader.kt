@@ -413,7 +413,7 @@ class TomlReader(private val reader: CharReader) {
         while (reader.inBounds) {
             when (reader.char) {
                 '.' -> {
-                    if (decimal || reader.inBounds(1)) {
+                    if (decimal || reader.index + 1 == reader.size) {
                         throw IllegalArgumentException("Unexpected character at ${reader.exception}")
                     }
                     decimal = true

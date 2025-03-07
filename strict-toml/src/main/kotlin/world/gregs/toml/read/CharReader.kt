@@ -21,7 +21,6 @@ class CharReader {
 
     fun peek(offset: Int): Char = input[index + offset]
 
-
     fun inBounds(amount: Int): Boolean {
         return index + amount <= size
     }
@@ -46,18 +45,22 @@ class CharReader {
         this.size = size
     }
 
+    fun skip(count: Int) {
+        index += count
+    }
+
     fun skipSpaces() {
-        while (inBounds && (input[index] == ' ' || input[index] == '\t')) {
+        while (inBounds && space(input[index])) {
             index++
         }
     }
 
     fun skipSpacesComment() {
-        while (inBounds && input[index] == ' ') {
+        while (inBounds && space(input[index])) {
             index++
         }
         if (inBounds && input[index] == '#') {
-            while (inBounds && input[index] != '\n' && input[index] != '\r') {
+            while (inBounds && !linebreak(input[index])) {
                 index++
             }
         }
@@ -67,17 +70,11 @@ class CharReader {
         return String(input, start, end - start)
     }
 
-    fun skip(count: Int) {
-        index += count
-    }
-
-    fun debug(length: Int) = substring(index, (index + length).coerceAtMost(size)).replace("\n", "\\n").replace("\r", "\\r")
-
-    fun nextLine() {
+   fun nextLine() {
         while (inBounds) {
             when (input[index]) {
                 ' ', '\t' -> {}
-                '\n', '\r' -> {
+                '\r', '\n' -> {
                     markLine()
                     continue
                 }
@@ -96,7 +93,7 @@ class CharReader {
 
     fun markLine() {
         while (inBounds) {
-            if (char != '\n' && char != '\r') {
+            if (!linebreak(char)) {
                 break
             }
             index++
@@ -115,7 +112,7 @@ class CharReader {
     }
 
     fun expectLineBreak() {
-        if (!inBounds || char != '\r' && char != '\n') {
+        if (!inBounds || !linebreak(char)) {
             throw IllegalArgumentException("Expected newline at $exception")
         }
         markLine()
@@ -123,6 +120,8 @@ class CharReader {
 
     val debug: String
         get() = debug(20)
+
+    fun debug(length: Int) = substring(index, (index + length).coerceAtMost(size)).replace("\n", "\\n").replace("\r", "\\r")
 
     val line: String
         get() {
@@ -145,5 +144,6 @@ class CharReader {
 
     companion object {
         private fun linebreak(char: Char) = char == '\r' || char == '\n'
+        private fun space(char: Char) = char == ' ' || char == '\t'
     }
 }
