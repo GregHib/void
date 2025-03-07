@@ -188,7 +188,7 @@ class TomlReader(private val reader: CharReader) {
             val start = reader.index
             while (reader.inBounds) {
                 when (reader.char) {
-                    '\n', '\r' -> throw IllegalArgumentException("Unterminated string at ${reader.exception}")
+                    '\r', '\n' -> throw IllegalArgumentException("Unterminated string at ${reader.exception}")
                     quote -> break
                     else -> reader.skip(1)
                 }
@@ -202,7 +202,7 @@ class TomlReader(private val reader: CharReader) {
             // Read until reached a new level of nesting or end of table title
             while (reader.inBounds) {
                 when (reader.char) {
-                    '\n', '\r' -> throw IllegalArgumentException("Unterminated string at ${reader.exception}")
+                    '\r', '\n' -> throw IllegalArgumentException("Unterminated string at ${reader.exception}")
                     '"', '\'', '.', ']', '=' -> break
                     ' ', '\t' -> {
                         reader.skipSpaces()
@@ -241,7 +241,7 @@ class TomlReader(private val reader: CharReader) {
         val start = reader.index
         while (reader.inBounds) {
             when (reader.char) {
-                '\n', '\r' -> throw IllegalArgumentException("Unterminated string at ${reader.exception}")
+                '\r', '\n' -> throw IllegalArgumentException("Unterminated string at ${reader.exception}")
                 '"' -> if (reader.peek(-1) != '\\') break
             }
             reader.skip(1)
@@ -307,7 +307,7 @@ class TomlReader(private val reader: CharReader) {
         val start = reader.index
         while (reader.inBounds) {
             when (reader.char) {
-                '\n', '\r' -> if (reader.peek(-1) == '\\') {
+                '\r', '\n' -> if (reader.peek(-1) == '\\') {
                     reader.skip(1)
                 } else {
                     throw IllegalArgumentException("Unterminated string literal at ${reader.exception}")
@@ -324,7 +324,7 @@ class TomlReader(private val reader: CharReader) {
     fun multilineLiteral(): String {
         reader.expect('\'')
         reader.expect('\'')
-        if (reader.char == '\n' || reader.char == '\r') {
+        if (reader.char == '\r' || reader.char == '\n') {
             reader.markLine()
         }
         val start = reader.index
