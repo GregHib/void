@@ -7,8 +7,6 @@ class CharReader {
         private set
     var index = 0
         private set
-    private var lineCount = 1
-    private var lastLine = 0
 
     val char: Char
         get() = input[index]
@@ -16,7 +14,7 @@ class CharReader {
     val peek: Char
         get() = input[index + 1]
 
-    val inBounds: Boolean
+    inline val inBounds: Boolean
         get() = index < size
 
     fun peek(offset: Int): Char = input[index + offset]
@@ -38,8 +36,6 @@ class CharReader {
     }
 
     fun set(chars: CharArray, size: Int) {
-        this.lineCount = 1
-        this.lastLine = 0
         this.index = 0
         input = chars
         this.size = size
@@ -70,7 +66,7 @@ class CharReader {
         return String(input, start, end - start)
     }
 
-   fun nextLine() {
+    fun nextLine() {
         while (inBounds) {
             when (input[index]) {
                 ' ', '\t' -> {}
@@ -80,7 +76,6 @@ class CharReader {
                 }
                 '#' -> while (inBounds) {
                     if (linebreak(input[index])) {
-                        lastLine = index
                         break
                     }
                     index++
@@ -98,10 +93,6 @@ class CharReader {
             }
             index++
         }
-        if (lastLine < index - 1) {
-            lineCount++
-        }
-        lastLine = index + 1
     }
 
     fun expect(c: Char) {
@@ -123,24 +114,29 @@ class CharReader {
 
     fun debug(length: Int) = substring(index, (index + length).coerceAtMost(size)).replace("\n", "\\n").replace("\r", "\\r")
 
-    val line: String
+    val exception: String
         get() {
-            var end = lastLine
-            while (end < size) {
-                val char = input[end]
-                if (linebreak(char)) {
-                    break
+            var lineCount = 0
+            var lastLine = 0
+            for (index in 0 until index) {
+                if (input[index] == '\n') {
+                    lastLine = index
+                    lineCount++
                 }
-                end++
+            }
+
+            var end = index
+            for (index in lastLine + 1 until index) {
+                if (input[index] == '\n') {
+                    end = index
+                }
             }
             if (lastLine == end) {
                 return ""
             }
-            return substring(lastLine, end).replace("\n", "\\n").replace("\r", "\\r").trim()
+            val line = substring(lastLine, end).replace("\n", "\\n").replace("\r", "\\r").trim()
+            return "line=$lineCount char=${index - lastLine} '$line'"
         }
-
-    val exception: String
-        get() = "line=$lineCount char=${index - lastLine} '$line'"
 
     companion object {
         private fun linebreak(char: Char) = char == '\r' || char == '\n'
