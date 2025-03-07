@@ -1,0 +1,6 @@
+[fruit.physical]  # subtable, but to which parent element should it belong?
+color = "red"
+shape = "round"
+
+[[.shape]]  # parser must throw an error upon discovering that "shape" is not a table
+name = "apple"

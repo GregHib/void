@@ -1,7 +1,5 @@
 package world.gregs.toml.read
 
-import kotlin.math.pow
-
 class CharReader {
 
     private var input: CharArray = CharArray(0)
@@ -23,8 +21,13 @@ class CharReader {
 
     fun peek(offset: Int): Char = input[index + offset]
 
+
+    fun inBounds(amount: Int): Boolean {
+        return index + amount <= size
+    }
+
     fun matches(vararg chars: Char): Boolean {
-        if (index + chars.size > size) {
+        if (!inBounds(chars.size)) {
             return false
         }
         for (i in chars.indices) {
@@ -44,17 +47,17 @@ class CharReader {
     }
 
     fun skipSpaces() {
-        while (index < size && (input[index] == ' ' || input[index] == '\t')) {
+        while (inBounds && (input[index] == ' ' || input[index] == '\t')) {
             index++
         }
     }
 
     fun skipSpacesComment() {
-        while (index < size && input[index] == ' ') {
+        while (inBounds && input[index] == ' ') {
             index++
         }
         if (inBounds && input[index] == '#') {
-            while (index < size && input[index] != '\n' && input[index] != '\r') {
+            while (inBounds && input[index] != '\n' && input[index] != '\r') {
                 index++
             }
         }
@@ -71,14 +74,14 @@ class CharReader {
     fun debug(length: Int) = substring(index, (index + length).coerceAtMost(size)).replace("\n", "\\n").replace("\r", "\\r")
 
     fun nextLine() {
-        while (index < size) {
+        while (inBounds) {
             when (input[index]) {
                 ' ', '\t' -> {}
                 '\n', '\r' -> {
                     markLine()
                     continue
                 }
-                '#' -> while (index < size) {
+                '#' -> while (inBounds) {
                     if (linebreak(input[index])) {
                         lastLine = index
                         break

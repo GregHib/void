@@ -9,13 +9,22 @@ class TomlReader(private val reader: CharReader) {
 
     fun read(root: MutableMap<String, Any>): Map<String, Any> {
         var map = root
+        var previous = map
         while (reader.inBounds) {
             reader.nextLine()
             if (!reader.inBounds) {
                 break
             }
             when {
-                reader.char == '[' -> map = title(root)
+                reader.char == '[' -> {
+                    val inherit = (reader.inBounds(1) && reader.peek(1) == '.') || (reader.inBounds(2) && reader.peek(1) == '[' && reader.peek(2) == '.')
+                    if (inherit) {
+                        map = title(previous)
+                    } else {
+                        map = title(root)
+                        previous = map
+                    }
+                }
                 reader.char == '#' -> comment()
                 (reader.char.isLetterOrDigit() || reader.char == '"' || reader.char == '\'') -> variable(map)
                 else -> throw IllegalArgumentException("Expected variable or table at start of line.")
@@ -35,6 +44,9 @@ class TomlReader(private val reader: CharReader) {
     }
 
     private fun tableTitle(map: MutableMap<String, Any>): MutableMap<String, Any> {
+        if (reader.inBounds && reader.char == '.') {
+            reader.skip(1)
+        }
         val label = label()
         reader.skipSpaces()
         var child: MutableMap<String, Any> = when (val entry = map[label]) {
@@ -71,6 +83,9 @@ class TomlReader(private val reader: CharReader) {
     }
 
     private fun arrayOfTablesTitle(map: MutableMap<String, Any>): MutableMap<String, Any> {
+        if (reader.inBounds && reader.char == '.') {
+            reader.skip(1)
+        }
         val label = label()
         reader.skipSpaces()
         // Nest inside a list if at end of title
@@ -248,7 +263,7 @@ class TomlReader(private val reader: CharReader) {
                     while (reader.inBounds) {
                         when (reader.char) {
                             ' ', '\t' -> reader.skip(1)
-                            '\n', '\r' -> reader.markLine()
+                            '\r', '\n' -> reader.markLine()
                             else -> break
                         }
                     }
@@ -398,7 +413,7 @@ class TomlReader(private val reader: CharReader) {
         while (reader.inBounds) {
             when (reader.char) {
                 '.' -> {
-                    if (decimal || reader.index + 1 == reader.size) {
+                    if (decimal || reader.inBounds(1)) {
                         throw IllegalArgumentException("Unexpected character at ${reader.exception}")
                     }
                     decimal = true
@@ -410,7 +425,7 @@ class TomlReader(private val reader: CharReader) {
                     builder.append(reader.char)
                     reader.skip(1)
                 }
-                ' ', '\n', '\r', '#', ',', ']', '}' -> {
+                ' ', '\t', '\r', '\n', '#', ',', ']', '}' -> {
                     if (reader.peek(-1) == '_') {
                         throw IllegalArgumentException("Incomplete number at ${reader.exception}")
                     }
@@ -448,7 +463,7 @@ class TomlReader(private val reader: CharReader) {
             when (reader.char) {
                 '_' -> {}
                 in '0'..'9', in 'A'..'F', in 'a'..'f' -> long = (long shl 4) or reader.char.digitToInt(16).toLong()
-                '#', ' ', '\n', '\r' -> break
+                '#', ' ', '\t', '\r', '\n' -> break
                 else -> throw IllegalArgumentException("Unexpected character, expecting 0-9, A-F, whitespace, comment or line break at ${reader.exception}.")
             }
             reader.skip(1)
@@ -467,7 +482,7 @@ class TomlReader(private val reader: CharReader) {
             when (reader.char) {
                 '_' -> {}
                 in '0'..'7' -> long = (long shl 3) or reader.char.digitToInt(8).toLong()
-                '#', ' ', '\n', '\r' -> break
+                '#', ' ', '\t', '\r', '\n' -> break
                 else -> throw IllegalArgumentException("Unexpected character, expecting 0-7, whitespace, comment or line break at ${reader.exception}.")
             }
             reader.skip(1)
@@ -487,7 +502,7 @@ class TomlReader(private val reader: CharReader) {
                 '_' -> {}
                 '1' -> long = (long shl 1) or 1
                 '0' -> long = (long shl 1)
-                '#', ' ', '\n', '\r' -> break
+                '#', ' ', '\t', '\r', '\n' -> break
                 else -> throw IllegalArgumentException("Unexpected character, expecting 0, 1, whitespace, comment or line break at ${reader.exception}.")
             }
             reader.skip(1)

@@ -28,6 +28,24 @@ internal class TomlTest {
         }
     }
 
+    @TestFactory
+    fun `Invalid toml examples`() = File(TomlTest::class.java.getResource("invalid/")!!.file).listFiles()!!.mapNotNull { file ->
+        if (file.isDirectory || file.nameWithoutExtension == "invalid-inline-table") {
+//            Maps are only shallow immutable so no way to check if it's an inline map to prevent modification.
+            return@mapNotNull null
+        }
+        dynamicTest(file.nameWithoutExtension.toSentenceCase()) {
+            val toml = file.readText()
+            assertThrows<IllegalArgumentException> {
+                parse(toml)
+            }
+        }
+    }
+
+    private fun parse(string: String): Map<String, Any> {
+        return Toml.decodeFromString(string)
+    }
+
     private fun printJson(builder: StringBuilder, any: Any) {
         when (any) {
             is Map<*, *> -> {
@@ -93,24 +111,5 @@ internal class TomlTest {
             previous = char
         }
         return input
-    }
-
-
-    @TestFactory
-    fun `Invalid toml examples`() = File(TomlTest::class.java.getResource("invalid/")!!.file).listFiles()!!.mapNotNull { file ->
-        if (file.isDirectory || file.nameWithoutExtension == "invalid-inline-table") {
-//            Maps are only shallow immutable so no way to check if it's an inline map to prevent modification.
-            return@mapNotNull null
-        }
-        dynamicTest(file.nameWithoutExtension.toSentenceCase()) {
-            val toml = file.readText()
-            assertThrows<IllegalArgumentException> {
-                parse(toml)
-            }
-        }
-    }
-
-    private fun parse(string: String): Map<String, Any> {
-        return Toml.decodeFromString(string)
     }
 }
