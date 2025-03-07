@@ -59,7 +59,7 @@ class CharReader {
         while (inBounds) {
             when (input[index]) {
                 ' ', '\t', '\r', '\n' -> index++
-                '#' -> skipComment()
+                '#' -> skipComment() // TODO won't this leave linebreaks behind?
                 else -> break
             }
         }

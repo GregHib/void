@@ -385,23 +385,32 @@ class TomlReader(private val reader: CharReader) {
     }
 
     fun number(negative: Boolean): Any {
+        var long = 0L
+        var double = 0.0
+        var decimalFactor = 1.0
         var decimal = false
         val start = reader.index
-        var underscored = false
         while (reader.inBounds) {
             when (reader.char) {
                 '.' -> {
                     if (decimal || reader.index + 1 == reader.size) {
-                        throw IllegalArgumentException("Unexpected character at ${reader.exception}.")
+                        throw IllegalArgumentException("Unexpected decimal at ${reader.exception}.")
                     }
+                    double = long.toDouble()
                     decimal = true
                     reader.skip(1)
                 }
                 '_' -> {
-                    underscored = true
                     reader.skip(1)
                 }
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> {
+                    val digit = reader.char - '0'
+                    if (decimal) {
+                        decimalFactor /= 10
+                        double += digit * decimalFactor
+                    } else {
+                        long = long * 10 + digit
+                    }
                     reader.skip(1)
                 }
                 ' ', '\t', '\r', '\n', '#', ',', ']', '}' -> {
@@ -413,28 +422,18 @@ class TomlReader(private val reader: CharReader) {
                 else -> throw IllegalArgumentException("Unexpected character at ${reader.exception}.")
             }
         }
-        var string = reader.substring(start)
-        if (underscored) {
-            string = string.replace("_", "")
-        }
-        return number(decimal, negative, string)
-    }
-
-    fun number(decimal: Boolean, negative: Boolean, string: String): Number {
         return if (negative) {
-            if (decimal) {
-                -string.toDouble()
-            } else if (string.length < 10) {
-                -string.toInt()
-            } else {
-                -string.toLong()
+            when {
+                decimal -> -double
+                long < Int.MAX_VALUE -> -(long.toInt())
+                else -> -long
             }
-        } else if (decimal) {
-            string.toDouble()
-        } else if (string.length < 10) {
-            string.toInt()
         } else {
-            string.toLong()
+            when {
+                decimal -> double
+                long < Int.MAX_VALUE -> long.toInt()
+                else -> long
+            }
         }
     }
 
