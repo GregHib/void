@@ -16,20 +16,76 @@ class TomlReader(private val reader: CharReader) {
         reader.nextLine()
         while (reader.inBounds) {
             when (reader.char) {
-                '[' -> {
-                    val inherit = (reader.inBounds(1) && reader.peek(1) == '.') || (reader.inBounds(2) && reader.peek(1) == '[' && reader.peek(2) == '.')
-                    if (inherit) {
-                        map = title(previous)
-                    } else {
-                        map = title(root)
+                // Tables
+                '[' -> when (reader.peek) {
+                    '[' -> when (reader.peek(2)) {
+                        '.' -> { // Inherited array of tables
+                            reader.skip(3)
+                            map = arrayOfTablesTitle(previous)
+                            if (reader.char != ']' && reader.peek != ']') {
+                                throw IllegalArgumentException("Expected character ']' at ${reader.exception}.")
+                            }
+                            reader.skip(2)
+                        }
+                        ' ', '\t' -> { // Array of tables (with spaces)
+                            reader.skip(2)
+                            reader.skipSpaces()
+                            map = arrayOfTablesTitle(root)
+                            previous = map
+                            if (reader.char != ']' && reader.peek != ']') {
+                                throw IllegalArgumentException("Expected character ']' at ${reader.exception}.")
+                            }
+                            reader.skip(2)
+                        }
+                        ']' -> throw IllegalArgumentException("Empty bare keys are not allowed at ${reader.exception}.")
+                        else -> { // Array of tables
+                            reader.skip(2)
+                            map = arrayOfTablesTitle(root)
+                            previous = map
+                            if (reader.char != ']' && reader.peek != ']') {
+                                throw IllegalArgumentException("Expected character ']' at ${reader.exception}.")
+                            }
+                            reader.skip(2)
+                        }
+                    }
+                    ']' -> throw IllegalArgumentException("Empty bare keys are not allowed at ${reader.exception}.")
+                    '.' -> { // Inherited table
+                        reader.skip(2)
+                        map = tableTitle(previous)
+                        if (reader.char != ']') {
+                            throw IllegalArgumentException("Expected character ']' at ${reader.exception}.")
+                        }
+                        reader.skip(1)
+                    }
+                    ' ', '\t' -> { // Tables (with spaces)
+                        reader.skip(1)
+                        reader.skipSpaces()
+                        map = tableTitle(root)
                         previous = map
+                        if (reader.char != ']') {
+                            throw IllegalArgumentException("Expected character ']' at ${reader.exception}.")
+                        }
+                        reader.skip(1)
+                    }
+                    else -> { // Tables
+                        reader.skip(1)
+                        map = tableTitle(root)
+                        previous = map
+                        if (reader.char != ']') {
+                            throw IllegalArgumentException("Expected character ']' at ${reader.exception}.")
+                        }
+                        reader.skip(1)
                     }
                 }
                 '=' -> throw IllegalArgumentException("Expected variable or table at start of line.")
                 else -> {
                     variable(map)
-                    if (reader.inBounds) {
-                        reader.expectLineBreak()
+                    reader.skipSpaces()
+                    if (reader.inBounds && reader.char == '#') {
+                        reader.skipComment()
+                    }
+                    if (reader.inBounds && reader.char != '\r' && reader.char != '\n') {
+                        throw IllegalArgumentException("Expected newline at ${reader.exception}.")
                     }
                 }
             }
@@ -38,21 +94,7 @@ class TomlReader(private val reader: CharReader) {
         return root
     }
 
-    internal fun title(map: MutableMap<String, Any>): MutableMap<String, Any> {
-        reader.expect('[')
-        if (reader.char == '[') {
-            return arrayOfTables(map)
-        }
-        reader.skipSpaces()
-        val childMap = tableTitle(map)
-        reader.expect(']')
-        return childMap
-    }
-
     private fun tableTitle(map: MutableMap<String, Any>): MutableMap<String, Any> {
-        if (reader.inBounds && reader.char == '.') {
-            reader.skip(1)
-        }
         val label = label()
         reader.skipSpaces()
         var child: MutableMap<String, Any> = when (val entry = map[label]) {
@@ -63,14 +105,14 @@ class TomlReader(private val reader: CharReader) {
                 child
             }
             // Get last element
-            is List<*> -> (entry as MutableList<*>).last() as MutableMap<String, Any>
+            is List<*> -> entry.last() as MutableMap<String, Any>
             is Map<*, *> -> entry as MutableMap<String, Any>
             else -> throw IllegalArgumentException("Can't redefine existing key at ${reader.exception}.")
         }
         if (reader.inBounds) {
             when (reader.char) {
                 '.' -> {
-                    reader.expect('.')
+                    reader.skip(1)
                     reader.skipSpaces()
                     child = tableTitle(child)
                 }
@@ -80,18 +122,7 @@ class TomlReader(private val reader: CharReader) {
         return child
     }
 
-    private fun arrayOfTables(map: MutableMap<String, Any>): MutableMap<String, Any> {
-        reader.expect('[')
-        val childMap = arrayOfTablesTitle(map)
-        reader.expect(']')
-        reader.expect(']')
-        return childMap
-    }
-
     private fun arrayOfTablesTitle(map: MutableMap<String, Any>): MutableMap<String, Any> {
-        if (reader.inBounds && reader.char == '.') {
-            reader.skip(1)
-        }
         val label = label()
         reader.skipSpaces()
         // Nest inside a list if at end of title
@@ -125,7 +156,7 @@ class TomlReader(private val reader: CharReader) {
             }
             is List<*> -> {
                 // Get current last list element
-                val last = (current as List<Any>).last()
+                val last = current.last()
                 if (last !is Map<*, *>) {
                     throw IllegalArgumentException("Can't redefine existing key at ${reader.exception}.")
                 }
@@ -136,7 +167,7 @@ class TomlReader(private val reader: CharReader) {
         if (reader.inBounds) {
             when (reader.char) {
                 '.' -> {
-                    reader.expect('.')
+                    reader.skip(1)
                     reader.skipSpaces()
                     child = arrayOfTablesTitle(child)
                 }
@@ -151,77 +182,64 @@ class TomlReader(private val reader: CharReader) {
         reader.skipSpaces()
         when (reader.char) {
             '.' -> {
-                reader.expect('.')
+                reader.skip(1)
                 reader.skipSpaces()
             }
-            else -> {
+            '=' -> {
                 if (map.containsKey(label)) {
                     throw IllegalArgumentException("Can't redefine existing key at ${reader.exception}.")
                 }
-                reader.expect('=')
+                reader.skip(1)
                 reader.skipSpaces()
                 val value = value()
                 map[label] = value
-                reader.skipSpacesComment()
                 return
             }
+            else -> throw IllegalArgumentException("Unexpected character, expecting equals at ${reader.exception}.")
         }
-        val child = if (map.containsKey(label)) {
-            val value = map.getValue(label)
-            if (value !is MutableMap<*, *>) {
-                throw IllegalArgumentException("Can't redefine existing key at ${reader.exception}.")
-            }
-            value as MutableMap<String, Any>
-        } else {
-            val child = map()
+        var child = map[label]
+        if (child != null && child !is Map<*, *>) {
+            throw IllegalArgumentException("Can't redefine existing key at ${reader.exception}.")
+        } else if (child == null) {
+            child = map()
             map[label] = child
-            child
         }
-        variable(child)
+        variable(child as MutableMap<String, Any>)
     }
 
     fun label(): String = when (reader.char) {
-        '"', '\'' -> {
-            // Read between quotes
-            val quote = reader.char
-            reader.expect(quote)
-            val start = reader.index
-            while (reader.inBounds) {
-                when (reader.char) {
-                    '\r', '\n' -> throw IllegalArgumentException("Unterminated string at ${reader.exception}")
-                    quote -> break
-                    else -> reader.skip(1)
-                }
+        '"', '\'' -> quotedLabel()
+        else -> bareLabel()
+    }
+
+    private fun bareLabel(): String {
+        val start = reader.index
+        // Read until reached a new level of nesting or end of table title
+        while (reader.inBounds) {
+            when (reader.char) {
+                '\r', '\n' -> break
+                '"', '\'', '.', ']', '=', ' ', '\t' -> return reader.substring(start)
             }
-            val label = reader.substring(start)
-            reader.expect(quote)
-            label
+            reader.skip(1)
         }
-        else -> {
-            val start = reader.index
-            var end = -1
-            // Read until reached a new level of nesting or end of table title
-            while (reader.inBounds) {
-                when (reader.char) {
-                    '\r', '\n' -> throw IllegalArgumentException("Unterminated string at ${reader.exception}")
-                    '"', '\'', '.', ']', '=' -> {
-                        end = reader.index
-                        break
-                    }
-                    ' ', '\t' -> {
-                        end = reader.index
-                        reader.skipSpaces()
-                        when (reader.char) {
-                            '"', '\'', '.', ']', '=' -> break
-                        }
-                        break
-                    }
+        throw IllegalArgumentException("Unterminated string at ${reader.exception}.")
+    }
+
+    private fun quotedLabel(): String {
+        val quote = reader.char
+        reader.skip(1)
+        val start = reader.index
+        while (reader.inBounds) {
+            when (reader.char) {
+                '\r', '\n' -> break
+                quote -> {
+                    reader.skip(1)
+                    return reader.substring(start, reader.index - 1)
                 }
-                reader.skip(1)
+                else -> reader.skip(1)
             }
-            val label = reader.substring(start, end)
-            label
         }
+        throw IllegalArgumentException("Unterminated string at ${reader.exception}.")
     }
 
     fun value(): Any = when (reader.char) {
@@ -236,7 +254,7 @@ class TomlReader(private val reader: CharReader) {
             'x' -> hex()
             'o' -> octal()
             'b' -> binary()
-            else -> number()
+            else -> number(negative = false)
         }
         '-' -> {
             reader.skip(1)
@@ -244,17 +262,17 @@ class TomlReader(private val reader: CharReader) {
         }
         '+' -> {
             reader.skip(1)
-            number()
+            number(negative = false)
         }
-        '1', '2', '3', '4', '5', '6', '7', '8', '9' -> number()
-        else -> throw IllegalArgumentException("Unexpected character, expecting string, number, boolean, inline array or inline table at ${reader.exception}")
+        '1', '2', '3', '4', '5', '6', '7', '8', '9' -> number(negative = false)
+        else -> throw IllegalArgumentException("Unexpected character, expecting string, number, boolean, inline array or inline table at ${reader.exception}.")
     }
 
     fun basicString(): String {
         reader.skip(1)
         if (reader.char == '"') {
             if (reader.peek != '"') {
-                throw IllegalArgumentException("Expected character '\"' at ${reader.exception}")
+                throw IllegalArgumentException("Expected character '\"' at ${reader.exception}.")
             }
             reader.skip(2)
             return multiLineString()
@@ -262,91 +280,80 @@ class TomlReader(private val reader: CharReader) {
         val start = reader.index
         while (reader.inBounds) {
             when (reader.char) {
-                '\r', '\n' -> throw IllegalArgumentException("Unterminated string at ${reader.exception}")
-                '"' -> if (reader.peek(-1) != '\\') break
+                '\r', '\n' -> break
+                '\\' -> reader.skip(1)
+                '"' -> {
+                    reader.skip(1)
+                    return reader.substring(start, reader.index - 1)
+                }
             }
             reader.skip(1)
         }
-        val value = reader.substring(start)
-        reader.expect('"')
-        return value
+        throw IllegalArgumentException("Unterminated string at ${reader.exception}.")
     }
 
+    fun spaceOrLine(char: Char) = char == ' ' || char == '\t' || char == '\r' || char == '\n'
+
     fun multiLineString(): String {
-        if (reader.inBounds && (reader.char == '\r' || reader.char == '\n')) {
-            reader.markLine()
+        if (reader.char == '\r' || reader.char == '\n') {
+            reader.skipLine()
         }
         val builder = StringBuilder()
         while (reader.inBounds) {
             when (reader.char) {
                 '\\' -> {
                     reader.skip(1)
-                    while (reader.inBounds) {
-                        when (reader.char) {
-                            ' ', '\t' -> reader.skip(1)
-                            '\r', '\n' -> reader.markLine()
-                            else -> break
+                    if (spaceOrLine(reader.char)) {
+                        while (reader.inBounds && spaceOrLine(reader.char)) {
+                            reader.skip(1)
                         }
+                        continue
                     }
                 }
                 '"' -> {
-                    if (reader.peek(-1) == '\\') {
-                        builder.append(reader.char)
-                        reader.skip(1)
-                    } else if (reader.peek(1) == '"' && reader.peek(2) == '"') {
+                    if (reader.inBounds(2) && reader.peek(1) == '"' && reader.peek(2) == '"') {
                         while (reader.inBounds && reader.char == '"') {
                             builder.append(reader.char)
                             reader.skip(1)
                         }
-                        builder.deleteCharAt(builder.lastIndex)
-                        builder.deleteCharAt(builder.lastIndex)
-                        builder.deleteCharAt(builder.lastIndex)
-                        reader.skip(-3)
-                        break
-                    } else {
-                        builder.append(reader.char)
-                        reader.skip(1)
+                        builder.delete(builder.length - 3, builder.length)
+                        return builder.toString()
                     }
                 }
-                else -> {
-                    builder.append(reader.char)
-                    reader.skip(1)
-                }
             }
+            builder.append(reader.char)
+            reader.skip(1)
         }
-        reader.expect('"')
-        reader.expect('"')
-        reader.expect('"')
-        return builder.toString()
+        throw IllegalArgumentException("Unterminated multiline string at ${reader.exception}.")
     }
 
     fun stringLiteral(): String {
         reader.skip(1)
         if (reader.char == '\'') {
+            if (reader.peek != '\'') {
+                throw IllegalArgumentException("Expected character ''' at ${reader.exception}.")
+            }
+            reader.skip(2)
             return multilineLiteral()
         }
         val start = reader.index
         while (reader.inBounds) {
             when (reader.char) {
-                '\r', '\n' -> if (reader.peek(-1) == '\\') {
+                '\\' -> reader.skip(1)
+                '\r', '\n' -> break
+                '\'' -> {
                     reader.skip(1)
-                } else {
-                    throw IllegalArgumentException("Unterminated string literal at ${reader.exception}")
+                    return reader.substring(start, reader.index - 1)
                 }
-                '\'' -> break
                 else -> reader.skip(1)
             }
         }
-        val value = reader.substring(start)
-        reader.expect('\'')
-        return value
+        throw IllegalArgumentException("Unterminated string literal at ${reader.exception}.")
     }
 
     fun multilineLiteral(): String {
-        reader.expect('\'')
-        reader.expect('\'')
         if (reader.char == '\r' || reader.char == '\n') {
-            reader.markLine()
+            reader.skipLine()
         }
         val start = reader.index
         while (reader.inBounds) {
@@ -354,84 +361,63 @@ class TomlReader(private val reader: CharReader) {
                 while (reader.inBounds && reader.char == '\'') {
                     reader.skip(1)
                 }
-                reader.skip(-3)
-                break
+                return reader.substring(start, reader.index - 3)
             }
             reader.skip(1)
         }
-        val value = reader.substring(start)
-        reader.expect('\'')
-        reader.expect('\'')
-        reader.expect('\'')
-        return value
-    }
-
-    fun comment() {
-        reader.nextLine()
+        throw IllegalArgumentException("Unterminated multiline string literal at ${reader.exception}.")
     }
 
     fun booleanTrue(): Boolean {
-        reader.skip(1)
-        if (reader.matches('r', 'u', 'e')) {
-            reader.skip(3)
-            if (!reader.inBounds) {
-                return true
-            }
-            when (reader.char) {
-                ' ', '\t', '\r', '\n', '#' -> {
-                    reader.skipSpacesComment()
-                    return true
-                }
-            }
+        if (!reader.inBounds(4) || reader.peek(1) != 'r' || reader.peek(2) != 'u' || reader.peek(3) != 'e') {
+            throw IllegalArgumentException("Unexpected character, expected true at ${reader.exception}.")
         }
-        throw IllegalArgumentException("Unexpected character, expected whitespace or comments till end of line at ${reader.exception}")
+        reader.skip(4)
+        return true
     }
 
     fun booleanFalse(): Boolean {
-        reader.skip(1)
-        if (reader.matches('a', 'l', 's', 'e')) {
-            reader.skip(4)
-            if (!reader.inBounds) {
-                return false
-            }
-            when (reader.char) {
-                ' ', '\t', '\r', '\n', '#' -> {
-                    reader.skipSpacesComment()
-                    return false
-                }
-            }
+        if (!reader.inBounds(5) || reader.peek(1) != 'a' || reader.peek(2) != 'l' || reader.peek(3) != 's' || reader.peek(4) != 'e') {
+            throw IllegalArgumentException("Unexpected character, expected false at ${reader.exception}.")
         }
-        throw IllegalArgumentException("Unexpected character, expected whitespace or comments till end of line at ${reader.exception}")
+        reader.skip(5)
+        return false
     }
 
-    fun number(negative: Boolean = false): Any {
+    fun number(negative: Boolean): Any {
         var decimal = false
-        val builder = StringBuilder()
+        val start = reader.index
+        var underscored = false
         while (reader.inBounds) {
             when (reader.char) {
                 '.' -> {
                     if (decimal || reader.index + 1 == reader.size) {
-                        throw IllegalArgumentException("Unexpected character at ${reader.exception}")
+                        throw IllegalArgumentException("Unexpected character at ${reader.exception}.")
                     }
                     decimal = true
-                    builder.append(reader.char)
                     reader.skip(1)
                 }
-                '_' -> reader.skip(1)
+                '_' -> {
+                    underscored = true
+                    reader.skip(1)
+                }
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> {
-                    builder.append(reader.char)
                     reader.skip(1)
                 }
                 ' ', '\t', '\r', '\n', '#', ',', ']', '}' -> {
                     if (reader.peek(-1) == '_') {
-                        throw IllegalArgumentException("Incomplete number at ${reader.exception}")
+                        throw IllegalArgumentException("Incomplete number at ${reader.exception}.")
                     }
                     break
                 }
-                else -> throw IllegalArgumentException("Unexpected character at ${reader.exception}")
+                else -> throw IllegalArgumentException("Unexpected character at ${reader.exception}.")
             }
         }
-        return number(decimal, negative, builder.toString())
+        var string = reader.substring(start)
+        if (underscored) {
+            string = string.replace("_", "")
+        }
+        return number(decimal, negative, string)
     }
 
     fun number(decimal: Boolean, negative: Boolean, string: String): Number {
@@ -516,18 +502,22 @@ class TomlReader(private val reader: CharReader) {
         while (reader.inBounds) {
             reader.nextLine()
             if (reader.char == ']') {
-                break
+                reader.skip(1)
+                return list
             }
             val value = value()
             list.add(value)
             reader.nextLine()
-            if (reader.char == ']') {
-                break
+            when (reader.char) {
+                ']' -> {
+                    reader.skip(1)
+                    return list
+                }
+                ',' -> reader.skip(1)
+                else -> throw IllegalArgumentException("Expected character ',' at ${reader.exception}.")
             }
-            reader.expect(',')
         }
-        reader.expect(']')
-        return list
+        throw IllegalArgumentException("Expected character ']' at ${reader.exception}.")
     }
 
     fun inlineTable(): Map<String, Any> {
@@ -536,17 +526,20 @@ class TomlReader(private val reader: CharReader) {
         while (reader.inBounds) {
             reader.nextLine()
             if (reader.char == '}') {
-                break
+                reader.skip(1)
+                return map
             }
             variable(map)
             reader.nextLine()
-            if (reader.char == '}') {
-                break
+            when (reader.char) {
+                '}' -> {
+                    reader.skip(1)
+                    return map
+                }
+                ',' -> reader.skip(1)
             }
-            reader.expect(',')
         }
-        reader.expect('}')
-        return map
+        throw IllegalArgumentException("Expected character '}' at ${reader.exception}.")
     }
 
 }

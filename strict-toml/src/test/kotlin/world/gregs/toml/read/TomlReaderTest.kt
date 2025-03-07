@@ -11,56 +11,6 @@ internal class TomlReaderTest {
     private val reader = TomlReader(charReader)
 
     @Test
-    fun `Table title`() {
-        read("[test]")
-        val root = mutableMapOf<String, Any>()
-        val result = reader.title(root)
-
-        assertEquals(mapOf("test" to emptyMap<String, Any>()), root)
-        assertEquals(emptyMap<String, Any>(), result)
-    }
-
-    @Test
-    fun `Nested title`() {
-        read("[test.fun]")
-        val root = mutableMapOf<String, Any>()
-        val result = reader.title(root)
-
-        assertEquals(mapOf("test" to mapOf("fun" to emptyMap<String, Any>())), root)
-        assertEquals(emptyMap<String, Any>(), result)
-    }
-
-    @Test
-    fun `Nested quoted title`() {
-        read("[test. \"fun.com\".1]")
-        val root = mutableMapOf<String, Any>()
-        val result = reader.title(root)
-
-        assertEquals(mapOf("test" to mapOf("fun.com" to mapOf("1" to emptyMap<String, Any>()))), root)
-        assertEquals(emptyMap<String, Any>(), result)
-    }
-
-    @Test
-    fun `Array of table title`() {
-        read("[[test]]")
-        val root = mutableMapOf<String, Any>()
-        val result = reader.title(root)
-
-        assertEquals(mapOf("test" to listOf(emptyMap<String, Any>())), root)
-        assertEquals(emptyMap<String, Any>(), result)
-    }
-
-    @Test
-    fun `Nested array of table title`() {
-        read("[[test  . fun]]")
-        val root = mutableMapOf<String, Any>()
-        val result = reader.title(root)
-
-        assertEquals(mapOf("test" to mapOf("fun" to listOf(emptyMap<String, Any>()))), root)
-        assertEquals(emptyMap<String, Any>(), result)
-    }
-
-    @Test
     fun `Bare label`() {
         read("test")
         val label = reader.label()

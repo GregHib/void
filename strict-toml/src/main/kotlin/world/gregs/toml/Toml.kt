@@ -30,11 +30,11 @@ open class Toml(block: Settings.() -> Unit = {}) {
         return decodeFromCharArray(string.toCharArray())
     }
 
-    fun decodeFromCharArray(charArray: CharArray, length: Int = charArray.size, root: MutableMap<String, Any> = Object2ObjectOpenHashMap()): Map<String, Any> {
+    fun decodeFromCharArray(charArray: CharArray, length: Int = charArray.size, root: MutableMap<String, Any> = Object2ObjectOpenHashMap(8, .25f)): Map<String, Any> {
         reader.set(charArray, length)
         reader.nextLine()
         if (!reader.inBounds) {
-            return emptyMap()
+            return root
         }
         return tomlReader.read(root)
     }

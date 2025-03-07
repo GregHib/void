@@ -23,18 +23,6 @@ class CharReader {
         return index + amount <= size
     }
 
-    fun matches(vararg chars: Char): Boolean {
-        if (!inBounds(chars.size)) {
-            return false
-        }
-        for (i in chars.indices) {
-            if (input[index + i] != chars[i]) {
-                return false
-            }
-        }
-        return true
-    }
-
     fun set(chars: CharArray, size: Int) {
         this.index = 0
         input = chars
@@ -51,14 +39,15 @@ class CharReader {
         }
     }
 
-    fun skipSpacesComment() {
-        while (inBounds && space(input[index])) {
+    fun skipComment() {
+        while (inBounds && !linebreak(input[index])) {
             index++
         }
-        if (inBounds && input[index] == '#') {
-            while (inBounds && !linebreak(input[index])) {
-                index++
-            }
+    }
+
+    fun skipLine() {
+        while (inBounds && linebreak(char)) {
+            index++
         }
     }
 
@@ -69,44 +58,11 @@ class CharReader {
     fun nextLine() {
         while (inBounds) {
             when (input[index]) {
-                ' ', '\t' -> {}
-                '\r', '\n' -> {
-                    markLine()
-                    continue
-                }
-                '#' -> while (inBounds) {
-                    if (linebreak(input[index])) {
-                        break
-                    }
-                    index++
-                }
+                ' ', '\t', '\r', '\n' -> index++
+                '#' -> skipComment()
                 else -> break
             }
-            index++
         }
-    }
-
-    fun markLine() {
-        while (inBounds) {
-            if (!linebreak(char)) {
-                break
-            }
-            index++
-        }
-    }
-
-    fun expect(c: Char) {
-        if (!inBounds || char != c) {
-            throw IllegalArgumentException("Expected character '$c' at $exception")
-        }
-        index++
-    }
-
-    fun expectLineBreak() {
-        if (!inBounds || !linebreak(char)) {
-            throw IllegalArgumentException("Expected newline at $exception")
-        }
-        markLine()
     }
 
     val debug: String
