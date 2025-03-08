@@ -18,6 +18,14 @@ name = "root"
 password = "root"
 ```
 
+### No flexibility with spaces
+
+When required, only space or one tab is allowed.
+
+```toml
+[  none .  of .   this ]
+```
+
 ### Multi-line inline maps
 
 Multi-line arrays are allowed so maps should be too, keep it consistent.

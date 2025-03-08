@@ -389,7 +389,6 @@ class TomlReader(private val reader: CharReader) {
         var double = 0.0
         var decimalFactor = 1.0
         var decimal = false
-        val start = reader.index
         while (reader.inBounds) {
             when (reader.char) {
                 '.' -> {
