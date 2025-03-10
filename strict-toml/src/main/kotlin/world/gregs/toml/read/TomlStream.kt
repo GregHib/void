@@ -5,27 +5,23 @@ import java.io.BufferedInputStream
 class TomlStream {
 
     interface Api {
-        fun table(addressBuffer: Array<String>, addressSize: Int) {}
-        fun inlineTable(addressBuffer: Array<String>, addressSize: Int) {}
-        fun appendMap(addressBuffer: Array<String>, addressSize: Int, key: String, value: Double) {}
-        fun appendMap(addressBuffer: Array<String>, addressSize: Int, key: String, value: Long) {}
-        fun appendMap(addressBuffer: Array<String>, addressSize: Int, key: String, value: String) {}
-        fun appendMap(addressBuffer: Array<String>, addressSize: Int, key: String, value: Boolean) {}
-        fun mapEnd(addressBuffer: Array<String>, addressSize: Int) {}
+        fun table(addressBuffer: Array<Any>, addressSize: Int) {}
+        fun inlineTable(addressBuffer: Array<Any>, addressSize: Int) {}
+        fun appendMap(addressBuffer: Array<Any>, addressSize: Int, key: String, value: Double) {}
+        fun appendMap(addressBuffer: Array<Any>, addressSize: Int, key: String, value: Long) {}
+        fun appendMap(addressBuffer: Array<Any>, addressSize: Int, key: String, value: String) {}
+        fun appendMap(addressBuffer: Array<Any>, addressSize: Int, key: String, value: Boolean) {}
+        fun mapEnd(addressBuffer: Array<Any>, addressSize: Int) {}
 
-        fun list(addressBuffer: Array<String>, addressSize: Int) {}
-        fun appendList(addressBuffer: Array<String>, addressSize: Int, value: Double) {}
-        fun appendList(addressBuffer: Array<String>, addressSize: Int, value: Long) {}
-        fun appendList(addressBuffer: Array<String>, addressSize: Int, value: String) {}
-        fun appendList(addressBuffer: Array<String>, addressSize: Int, value: Boolean) {}
-        fun listEnd(addressBuffer: Array<String>, addressSize: Int) {}
+        fun list(addressBuffer: Array<Any>, addressSize: Int) {}
+        fun appendList(addressBuffer: Array<Any>, addressSize: Int, value: Double) {}
+        fun appendList(addressBuffer: Array<Any>, addressSize: Int, value: Long) {}
+        fun appendList(addressBuffer: Array<Any>, addressSize: Int, value: String) {}
+        fun appendList(addressBuffer: Array<Any>, addressSize: Int, value: Boolean) {}
+        fun listEnd(addressBuffer: Array<Any>, addressSize: Int) {}
     }
 
-    /**
-     *  TODO
-     *      remove keyName checks with an array and table version of each method?
-     */
-    fun read(input: BufferedInputStream, api: Api, buffer: ByteArray, address: Array<String>) {
+    fun read(input: BufferedInputStream, api: Api, buffer: ByteArray, address: Array<Any>) {
         var bufferIndex = 0
         var addressIndex = 0
         var previousIndex = 0
@@ -57,6 +53,7 @@ class TomlStream {
                     if (isArrayOfTables) {
                         byte = input.read()
                     }
+                    // TODO handle creating array of tables
 
                     val absoluteAddress = byte != DOT
                     if (absoluteAddress) {
@@ -66,7 +63,6 @@ class TomlStream {
                         addressIndex = previousIndex
                         byte = input.read() // Skip dot
                     }
-
 
                     // Read table name
                     while (byte != CLOSE_BRACKET && byte != EOF) {
@@ -107,7 +103,7 @@ class TomlStream {
         }
     }
 
-    private fun parseSpecialNumbers(input: BufferedInputStream, api: Api, address: Array<String>, addressIndex: Int, keyName: String?): Int {
+    private fun parseSpecialNumbers(input: BufferedInputStream, api: Api, address: Array<Any>, addressIndex: Int, keyName: String?): Int {
         var byte = input.read()
         when (byte) {
             X -> {
@@ -115,7 +111,7 @@ class TomlStream {
                 byte = input.read() // Skip 'x'
                 var value = 0L
 
-                while (byte != EOF && byte != LINE && byte != SPACE && byte != TAB && byte != COMMA && byte != CLOSE_BRACKET && byte != CLOSE_PAREN) {
+                while (isNotEndOfValue(byte)) {
                     when (byte) {
                         UNDERSCORE -> {
                             // Skip underscores
@@ -141,7 +137,7 @@ class TomlStream {
                 byte = input.read() // Skip 'o'
                 var value = 0L
 
-                while (byte != EOF && byte != LINE && byte != SPACE && byte != TAB && byte != COMMA && byte != CLOSE_BRACKET && byte != CLOSE_PAREN) {
+                while (isNotEndOfValue(byte)) {
                     when (byte) {
                         UNDERSCORE -> {
                             // Skip underscores
@@ -164,7 +160,7 @@ class TomlStream {
                 // Binary
                 byte = input.read() // Skip 'b'
                 var value = 0L
-                while (byte != EOF && byte != LINE && byte != SPACE && byte != TAB && byte != COMMA && byte != CLOSE_BRACKET && byte != CLOSE_PAREN) {
+                while (isNotEndOfValue(byte)) {
                     when (byte) {
                         UNDERSCORE -> {
                             // Skip underscores
@@ -195,7 +191,7 @@ class TomlStream {
         return byte
     }
 
-    private fun parseArray(input: BufferedInputStream, buffer: ByteArray, api: Api, address: Array<String>, parentAddressIndex: Int, keyName: String?) {
+    private fun parseArray(input: BufferedInputStream, buffer: ByteArray, api: Api, address: Array<Any>, parentAddressIndex: Int, keyName: String?) {
         // Create new address array for this scope
         var addressIndex = parentAddressIndex
 
@@ -237,13 +233,13 @@ class TomlStream {
                 }
                 OPEN_BRACKET -> {
                     // Nested array - We create a new address including the array index
-                    address[addressIndex] = arrayIndex.toString()
+                    address[addressIndex] = arrayIndex
                     parseArray(input, buffer, api, address, addressIndex + 1, null)
                     input.read() // Skip closing bracket
                 }
                 OPEN_PAREN -> {
                     // Nested inline table - We create a new address including the array index
-                    address[addressIndex] = arrayIndex.toString()
+                    address[addressIndex] = arrayIndex
                     parseInlineTable(input, buffer, api, address, addressIndex + 1)
                     input.read() // Skip closing brace
                 }
@@ -275,7 +271,7 @@ class TomlStream {
         api.listEnd(address, addressIndex)
     }
 
-    private fun parseTrue(input: BufferedInputStream, api: Api, address: Array<String>, addressIndex: Int, keyName: String?) {
+    private fun parseTrue(input: BufferedInputStream, api: Api, address: Array<Any>, addressIndex: Int, keyName: String?) {
         if (input.read() != r || input.read() != u || input.read() != e) {
             throw IllegalArgumentException("Expected boolean true.")
         }
@@ -286,7 +282,7 @@ class TomlStream {
         }
     }
 
-    private fun parseFalse(input: BufferedInputStream, api: Api, address: Array<String>, addressIndex: Int, keyName: String?) {
+    private fun parseFalse(input: BufferedInputStream, api: Api, address: Array<Any>, addressIndex: Int, keyName: String?) {
         val first = input.read()
         val second = input.read()
         val third = input.read()
@@ -303,7 +299,7 @@ class TomlStream {
 
     private fun parseRegularNumber(
         input: BufferedInputStream,
-        address: Array<String>,
+        address: Array<Any>,
         addressIndex: Int,
         keyName: String?,
         isNegative: Boolean,
@@ -314,9 +310,7 @@ class TomlStream {
 
         // Parse integer part
         var byte = input.read()
-        while (byte != EOF && byte != LINE && byte != SPACE && byte != TAB &&
-            byte != DOT && byte != COMMA && byte != CLOSE_BRACKET && byte != CLOSE_PAREN
-        ) {
+        while (isNotEndOfValue(byte) && byte != DOT) {
             when (byte) {
                 UNDERSCORE -> {
                     // Skip underscores
@@ -336,9 +330,7 @@ class TomlStream {
             var doubleValue = value.toDouble()
             var decimalFactor = 0.1
             byte = input.read() // Skip the dot
-            while (byte != EOF && byte != LINE && byte != SPACE && byte != TAB &&
-                byte != COMMA && byte != CLOSE_BRACKET && byte != CLOSE_PAREN
-            ) {
+            while (isNotEndOfValue(byte)) {
                 when (byte) {
                     UNDERSCORE -> {
                         // Skip underscores
@@ -375,7 +367,7 @@ class TomlStream {
         input: BufferedInputStream,
         buffer: ByteArray,
         api: Api,
-        address: Array<String>,
+        address: Array<Any>,
         addressIndex: Int
     ) {
         // Notify API about new inline table
@@ -403,7 +395,7 @@ class TomlStream {
     private fun parseKeyValue(
         input: BufferedInputStream,
         buffer: ByteArray,
-        address: Array<String>,
+        address: Array<Any>,
         api: Api,
         parentAddressIndex: Int,
         byteIn: Int
@@ -499,6 +491,9 @@ class TomlStream {
     }
 
     companion object {
+
+        private fun isNotEndOfValue(byte: Int) = byte != EOF && byte != LINE && byte != SPACE && byte != TAB && byte != COMMA && byte != CLOSE_BRACKET && byte != CLOSE_PAREN
+
         private const val SPACE = ' '.code
         private const val TAB = '\t'.code
         private const val LINE = '\n'.code

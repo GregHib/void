@@ -2,7 +2,6 @@
 
 package world.gregs.toml.read
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import java.io.BufferedWriter
 import java.time.temporal.Temporal
 import java.time.format.DateTimeFormatter
@@ -11,6 +10,7 @@ import java.time.LocalDateTime
 import java.time.LocalDate
 
 class TomlWriter {
+
     /**
      * Writes a Map to a BufferedWriter in TOML format.
      *
@@ -44,7 +44,7 @@ class TomlWriter {
         }
 
         // Add a newline if we're going to write nested maps next
-        if (variableHeader) {
+        if (variableHeader || path == null) {
             writer.write('\n'.code)
         }
 

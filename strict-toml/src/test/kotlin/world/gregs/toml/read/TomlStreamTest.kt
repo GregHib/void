@@ -9,63 +9,65 @@ class TomlStreamTest {
     fun `Streaming test`() {
         val file = File("C:\\Users\\Greg\\AppData\\Roaming\\JetBrains\\IntelliJIdea2024.3\\scratches\\scratch.toml")
         val streaming = TomlStream()
-        val api = object : TomlStream.Api {
-            override fun table(addressBuffer: Array<String>, addressSize: Int) {
-                println("api.table(${addressBuffer.take(addressSize)})")
-            }
-
-            override fun inlineTable(addressBuffer: Array<String>, addressSize: Int) {
-                println("api.inlineTable(${addressBuffer.take(addressSize)})")
-            }
-
-            override fun appendMap(addressBuffer: Array<String>, addressSize: Int, key: String, value: Double) {
-                println("api.appendMap(${addressBuffer.take(addressSize)}, $key, $value)")
-            }
-
-            override fun appendMap(addressBuffer: Array<String>, addressSize: Int, key: String, value: Long) {
-                println("api.appendMap(${addressBuffer.take(addressSize)}, $key, $value)")
-            }
-
-            override fun appendMap(addressBuffer: Array<String>, addressSize: Int, key: String, value: String) {
-                println("api.appendMap(${addressBuffer.take(addressSize)}, $key, $value)")
-            }
-
-            override fun appendMap(addressBuffer: Array<String>, addressSize: Int, key: String, value: Boolean) {
-                println("api.appendMap(${addressBuffer.take(addressSize)}, $key, $value)")
-            }
-
-            override fun mapEnd(addressBuffer: Array<String>, addressSize: Int) {
-                println("api.mapEnd(${addressBuffer.take(addressSize)})")
-            }
-
-            override fun list(addressBuffer: Array<String>, addressSize: Int) {
-                println("api.list(${addressBuffer.take(addressSize)})")
-            }
-
-            override fun appendList(addressBuffer: Array<String>, addressSize: Int, value: Double) {
-                println("api.appendList(${addressBuffer.take(addressSize)}, $value)")
-            }
-
-            override fun appendList(addressBuffer: Array<String>, addressSize: Int, value: Long) {
-                println("api.appendList(${addressBuffer.take(addressSize)}, $value)")
-            }
-
-            override fun appendList(addressBuffer: Array<String>, addressSize: Int, value: String) {
-                println("api.appendList(${addressBuffer.take(addressSize)}, $value)")
-            }
-
-            override fun appendList(addressBuffer: Array<String>, addressSize: Int, value: Boolean) {
-                println("api.appendList(${addressBuffer.take(addressSize)}, $value)")
-            }
-
-            override fun listEnd(addressBuffer: Array<String>, addressSize: Int) {
-                println("api.listEnd(${addressBuffer.take(addressSize)})")
-            }
-
-        }
+        val api = printApi()
         val buffer = ByteArray(1024)
-        val address = Array(10) { "" }
+        val address = Array<Any>(10) { "" }
         streaming.read(file.inputStream().buffered(), api, buffer, address)
+    }
+
+    private fun printApi() = object : TomlStream.Api {
+        override fun table(addressBuffer: Array<Any>, addressSize: Int) {
+            println("api.table(${addressBuffer.take(addressSize)})")
+        }
+
+        override fun inlineTable(addressBuffer: Array<Any>, addressSize: Int) {
+            println("api.inlineTable(${addressBuffer.take(addressSize)})")
+        }
+
+        override fun appendMap(addressBuffer: Array<Any>, addressSize: Int, key: String, value: Double) {
+            println("api.appendMap(${addressBuffer.take(addressSize)}, $key, $value)")
+        }
+
+        override fun appendMap(addressBuffer: Array<Any>, addressSize: Int, key: String, value: Long) {
+            println("api.appendMap(${addressBuffer.take(addressSize)}, $key, $value)")
+        }
+
+        override fun appendMap(addressBuffer: Array<Any>, addressSize: Int, key: String, value: String) {
+            println("api.appendMap(${addressBuffer.take(addressSize)}, $key, $value)")
+        }
+
+        override fun appendMap(addressBuffer: Array<Any>, addressSize: Int, key: String, value: Boolean) {
+            println("api.appendMap(${addressBuffer.take(addressSize)}, $key, $value)")
+        }
+
+        override fun mapEnd(addressBuffer: Array<Any>, addressSize: Int) {
+            println("api.mapEnd(${addressBuffer.take(addressSize)})")
+        }
+
+        override fun list(addressBuffer: Array<Any>, addressSize: Int) {
+            println("api.list(${addressBuffer.take(addressSize)})")
+        }
+
+        override fun appendList(addressBuffer: Array<Any>, addressSize: Int, value: Double) {
+            println("api.appendList(${addressBuffer.take(addressSize)}, $value)")
+        }
+
+        override fun appendList(addressBuffer: Array<Any>, addressSize: Int, value: Long) {
+            println("api.appendList(${addressBuffer.take(addressSize)}, $value)")
+        }
+
+        override fun appendList(addressBuffer: Array<Any>, addressSize: Int, value: String) {
+            println("api.appendList(${addressBuffer.take(addressSize)}, $value)")
+        }
+
+        override fun appendList(addressBuffer: Array<Any>, addressSize: Int, value: Boolean) {
+            println("api.appendList(${addressBuffer.take(addressSize)}, $value)")
+        }
+
+        override fun listEnd(addressBuffer: Array<Any>, addressSize: Int) {
+            println("api.listEnd(${addressBuffer.take(addressSize)})")
+        }
+
     }
 
     @Test
@@ -74,8 +76,27 @@ class TomlStreamTest {
         val streaming = TomlStream()
         val api = TomlMapApi()
         val buffer = ByteArray(1024)
-        val address = Array(10) { "" }
+        val address = Array<Any>(10) { "" }
         streaming.read(file.inputStream().buffered(), api, buffer, address)
+        println(api.root)
+    }
+
+    @Test
+    fun `Read array test`() {
+        val text = """
+            worn_equipment = [
+                { id = "ray", amount = 1 },
+                { }
+            ]
+            [[confused.0]]
+            com = true
+        """.trimIndent()
+        val streaming = TomlStream()
+        val api = TomlMapApi()
+//        val api = printApi()
+        val buffer = ByteArray(1024)
+        val address = Array<Any>(10) { "" }
+        streaming.read(text.byteInputStream().buffered(), api, buffer, address)
         println(api.root)
     }
 
@@ -88,7 +109,7 @@ class TomlStreamTest {
         val api = TomlMapApi()
         val count = 10
         val buffer = ByteArray(1024)
-        val address = Array(10) { "" }
+        val address = Array<Any>(10) { "" }
         var total = 0L
         for (i in 0 until count) {
             val stream = file.inputStream().buffered()
@@ -98,6 +119,6 @@ class TomlStreamTest {
             total += end - start
             api.root.clear()
         }
-        println("Took ${total/ count}ns")
+        println("Took ${total / count}ns")
     }
 }
