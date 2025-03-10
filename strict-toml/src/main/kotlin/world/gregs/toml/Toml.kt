@@ -5,6 +5,7 @@ import java.io.*
 
 object Toml {
     private val tomlReader = TomlStream()
+    private val tomlWriter = TomlWriter()
 
     fun decodeFromFile(path: String, maximumStringSize: Int = 1024, maximumNesting: Int = 10): Map<String, Any> {
         val api = TomlMapApi()
@@ -28,6 +29,22 @@ object Toml {
             decodeFromStream(reader, api, buffer, addressBuffer)
         }
         return api.root
+    }
+
+    fun encodeToString(map: Map<String, Any>): String {
+        val stringWriter = StringWriter()
+        encodeToWriter(map, BufferedWriter(stringWriter))
+        return stringWriter.buffer.toString()
+    }
+
+    fun encodeToFile(map: Map<String, Any>, path: String) {
+        encodeToWriter(map, BufferedWriter(FileWriter(path)))
+    }
+
+    fun encodeToWriter(map: Map<String, Any>, writer: BufferedWriter) {
+        writer.use { buffer ->
+            tomlWriter.write(buffer, map)
+        }
     }
 
 }
