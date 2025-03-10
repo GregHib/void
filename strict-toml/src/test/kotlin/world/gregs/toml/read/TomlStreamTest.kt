@@ -88,57 +88,6 @@ class TomlStreamTest {
         val file = File("C:\\Users\\Greg\\AppData\\Roaming\\JetBrains\\IntelliJIdea2024.3\\scratches\\scratch.toml")
         val streaming = TomlStream()
         val api = object : TomlStream.API {
-            override fun table(address: Array<String>, addressSize: Int) {
-            }
-
-            override fun inlineTable(address: Array<String>, addressSize: Int) {
-            }
-
-            override fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Double) {
-            }
-
-            override fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Long) {
-            }
-
-            override fun appendMap(address: Array<String>, addressSize: Int, key: String, value: String) {
-            }
-
-            override fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Boolean) {
-            }
-
-            override fun appendMap(address: Array<String>, addressSize: Int, key: String, value: List<Any>) {
-            }
-
-            override fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Map<String, Any>) {
-            }
-
-            override fun mapEnd(address: Array<String>, addressSize: Int) {
-            }
-
-            override fun list(address: Array<String>, addressSize: Int) {
-            }
-
-            override fun appendList(address: Array<String>, addressSize: Int, value: Double) {
-            }
-
-            override fun appendList(address: Array<String>, addressSize: Int, value: Long) {
-            }
-
-            override fun appendList(address: Array<String>, addressSize: Int, value: String) {
-            }
-
-            override fun appendList(address: Array<String>, addressSize: Int, value: Boolean) {
-            }
-
-            override fun appendList(address: Array<String>, addressSize: Int, value: List<Any>) {
-            }
-
-            override fun appendList(address: Array<String>, addressSize: Int, value: Map<String, Any>) {
-            }
-
-            override fun listEnd(address: Array<String>, addressSize: Int) {
-            }
-
         }
         var count = 10
         var start = System.nanoTime()

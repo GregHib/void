@@ -5,37 +5,39 @@ import java.io.BufferedInputStream
 class TomlStream {
 
     interface API {
-        fun table(address: Array<String>, addressSize: Int)
-        fun inlineTable(address: Array<String>, addressSize: Int)
-        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Double)
-        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Long)
-        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: String)
-        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Boolean)
-        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: List<Any>)
-        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Map<String, Any>)
-        fun mapEnd(address: Array<String>, addressSize: Int)
+        fun table(address: Array<String>, addressSize: Int) {}
+        fun inlineTable(address: Array<String>, addressSize: Int) {}
+        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Double) {}
+        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Long) {}
+        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: String) {}
+        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Boolean) {}
+        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: List<Any>) {}
+        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Map<String, Any>) {}
+        fun mapEnd(address: Array<String>, addressSize: Int) {}
 
-        fun list(address: Array<String>, addressSize: Int)
-        fun appendList(address: Array<String>, addressSize: Int, value: Double)
-        fun appendList(address: Array<String>, addressSize: Int, value: Long)
-        fun appendList(address: Array<String>, addressSize: Int, value: String)
-        fun appendList(address: Array<String>, addressSize: Int, value: Boolean)
-        fun appendList(address: Array<String>, addressSize: Int, value: List<Any>)
-        fun appendList(address: Array<String>, addressSize: Int, value: Map<String, Any>)
-        fun listEnd(address: Array<String>, addressSize: Int)
+        fun list(address: Array<String>, addressSize: Int) {}
+        fun appendList(address: Array<String>, addressSize: Int, value: Double) {}
+        fun appendList(address: Array<String>, addressSize: Int, value: Long) {}
+        fun appendList(address: Array<String>, addressSize: Int, value: String) {}
+        fun appendList(address: Array<String>, addressSize: Int, value: Boolean) {}
+        fun appendList(address: Array<String>, addressSize: Int, value: List<Any>) {}
+        fun appendList(address: Array<String>, addressSize: Int, value: Map<String, Any>) {}
+        fun listEnd(address: Array<String>, addressSize: Int) {}
     }
 
     /**
      *  TODO
-     *      fix empty address for nested inline tables
-     *      remove address.copying(), replace with addressIndex-- once out of a scope
+     *      [x] fix empty address for nested inline tables
+     *      [x] remove address.copying(), replace with addressIndex-- once out of a scope
      *      remove keyName checks with an array and table version of each method?
+     *      [x] support custom alias syntax
      */
     fun read(input: BufferedInputStream, api: API) {
         val buffer = ByteArray(1024)
         var bufferIndex = 0
         val address = Array(10) { "" }
         var addressIndex = 0
+        var previousIndex = 0
         var byte = input.read()
 
         while (byte != EOF) {
@@ -65,11 +67,15 @@ class TomlStream {
                         byte = input.read()
                     }
 
-                    // Reset address index for new table context
-                    for (i in 0 until addressIndex) {
-                        address[i] = ""
+                    val absoluteAddress = byte != DOT
+                    if (absoluteAddress) {
+                        // Reset address index for new table context
+                        addressIndex = 0
+                    } else {
+                        addressIndex = previousIndex
+                        byte = input.read() // Skip dot
                     }
-                    addressIndex = 0
+
 
                     // Read table name
                     while (byte != CLOSE_BRACKET && byte != EOF) {
@@ -87,6 +93,10 @@ class TomlStream {
                     if (bufferIndex > 0) {
                         address[addressIndex++] = String(buffer, 0, bufferIndex)
                         bufferIndex = 0
+                    }
+
+                    if (absoluteAddress) {
+                        previousIndex = addressIndex
                     }
 
                     // Handle array of tables close bracket
