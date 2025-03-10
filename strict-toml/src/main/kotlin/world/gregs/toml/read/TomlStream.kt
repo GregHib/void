@@ -5,24 +5,24 @@ import java.io.BufferedInputStream
 class TomlStream {
 
     interface API {
-        fun table(address: Array<String>)
-        fun inlineTable(address: Array<String>)
-        fun appendMap(address: Array<String>, key: String, value: Double)
-        fun appendMap(address: Array<String>, key: String, value: Long)
-        fun appendMap(address: Array<String>, key: String, value: String)
-        fun appendMap(address: Array<String>, key: String, value: Boolean)
-        fun appendMap(address: Array<String>, key: String, value: List<Any>)
-        fun appendMap(address: Array<String>, key: String, value: Map<String, Any>)
-        fun mapEnd(address: Array<String>, key: String)
+        fun table(address: Array<String>, addressSize: Int)
+        fun inlineTable(address: Array<String>, addressSize: Int)
+        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Double)
+        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Long)
+        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: String)
+        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Boolean)
+        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: List<Any>)
+        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Map<String, Any>)
+        fun mapEnd(address: Array<String>, addressSize: Int)
 
-        fun list(address: Array<String>)
-        fun appendList(address: Array<String>, value: Double)
-        fun appendList(address: Array<String>, value: Long)
-        fun appendList(address: Array<String>, value: String)
-        fun appendList(address: Array<String>, value: Boolean)
-        fun appendList(address: Array<String>, value: List<Any>)
-        fun appendList(address: Array<String>, value: Map<String, Any>)
-        fun listEnd(address: Array<String>)
+        fun list(address: Array<String>, addressSize: Int)
+        fun appendList(address: Array<String>, addressSize: Int, value: Double)
+        fun appendList(address: Array<String>, addressSize: Int, value: Long)
+        fun appendList(address: Array<String>, addressSize: Int, value: String)
+        fun appendList(address: Array<String>, addressSize: Int, value: Boolean)
+        fun appendList(address: Array<String>, addressSize: Int, value: List<Any>)
+        fun appendList(address: Array<String>, addressSize: Int, value: Map<String, Any>)
+        fun listEnd(address: Array<String>, addressSize: Int)
     }
 
     /**
@@ -39,22 +39,22 @@ class TomlStream {
         var byte = input.read()
 
         while (byte != EOF) {
-            when (byte) {
+            byte = when (byte) {
                 SPACE, TAB, RETURN -> {
                     // Skip whitespace
-                    byte = input.read()
+                    input.read()
                 }
                 LINE -> {
                     // New line
                     bufferIndex = 0
-                    byte = input.read()
+                    input.read()
                 }
                 HASH -> {
                     // Comment, skip to end of line
                     while (byte != LINE && byte != EOF) {
                         byte = input.read()
                     }
-                    if (byte != EOF) byte = input.read()
+                    input.read()
                 }
                 OPEN_BRACKET -> {
                     // Handle table or array of tables
@@ -98,19 +98,15 @@ class TomlStream {
                     }
 
                     // Notify API about new table
-                    api.table(address)
-                    byte = input.read()
+                    api.table(address, addressIndex)
+                    input.read()
                 }
-                else -> {
-                    val pair = parseKeyValue(input, buffer, address, api, addressIndex, byte)
-                    byte = pair.first
-                    addressIndex = pair.second
-                }
+                else -> parseKeyValue(input, buffer, address, api, addressIndex, byte)
             }
         }
     }
 
-    private fun parseSpecialNumbers(input: BufferedInputStream, api: API, address: Array<String>, keyName: String?): Int {
+    private fun parseSpecialNumbers(input: BufferedInputStream, api: API, address: Array<String>, addressIndex: Int, keyName: String?): Int {
         var byte = input.read()
         when (byte) {
             X -> {
@@ -134,9 +130,9 @@ class TomlStream {
                 }
 
                 if (keyName == null) {
-                    api.appendList(address, value)
+                    api.appendList(address, addressIndex, value)
                 } else {
-                    api.appendMap(address, keyName, value)
+                    api.appendMap(address, addressIndex, keyName, value)
                 }
             }
             O -> {
@@ -158,9 +154,9 @@ class TomlStream {
                 }
 
                 if (keyName == null) {
-                    api.appendList(address, value)
+                    api.appendList(address, addressIndex, value)
                 } else {
-                    api.appendMap(address, keyName, value)
+                    api.appendMap(address, addressIndex, keyName, value)
                 }
             }
             b -> {
@@ -178,29 +174,28 @@ class TomlStream {
                     byte = input.read()
                 }
                 if (keyName == null) {
-                    api.appendList(address, value)
+                    api.appendList(address, addressIndex, value)
                 } else {
-                    api.appendMap(address, keyName, value)
+                    api.appendMap(address, addressIndex, keyName, value)
                 }
             }
             CLOSE_BRACKET, CLOSE_PAREN -> {
                 if (keyName == null) {
-                    api.appendList(address, 0L)
+                    api.appendList(address, addressIndex, 0L)
                 } else {
-                    api.appendMap(address, keyName, 0L)
+                    api.appendMap(address, addressIndex, keyName, 0L)
                 }
                 return byte
             }
             else -> {
-                return parseRegularNumber(input, address, keyName, false, api, 0)
+                return parseRegularNumber(input, address, addressIndex, keyName, false, api, 0)
             }
         }
         return byte
     }
 
-    private fun parseArray(input: BufferedInputStream, buffer: ByteArray, api: API, parentAddress: Array<String>, parentAddressIndex: Int, keyName: String?): Int {
+    private fun parseArray(input: BufferedInputStream, buffer: ByteArray, api: API, address: Array<String>, parentAddressIndex: Int, keyName: String?) {
         // Create new address array for this scope
-        val address = parentAddress.copyOf()
         var addressIndex = parentAddressIndex
 
         // If we have a keyName, add it to the address
@@ -209,12 +204,14 @@ class TomlStream {
         }
 
         // Create a new list with appropriate address
-        api.list(address)
+        api.list(address, addressIndex)
 
         var byte = input.read() // Skip opening bracket
 
         // Skip whitespace
-        while (byte == SPACE || byte == TAB || byte == LINE || byte == RETURN) byte = input.read()
+        while (byte == SPACE || byte == TAB || byte == LINE || byte == RETURN) {
+            byte = input.read()
+        }
 
         // Track array index for nested elements
         var arrayIndex = 0
@@ -222,7 +219,7 @@ class TomlStream {
         while (byte != CLOSE_BRACKET && byte != EOF) {
 
             // Parse array element
-            when (byte) {
+            byte = when (byte) {
                 DOUBLE_QUOTE -> {
                     // String element
                     byte = input.read() // Skip opening quote
@@ -234,42 +231,35 @@ class TomlStream {
                         byte = input.read()
                     }
 
-                    api.appendList(address, String(buffer, 0, bufferIndex))
-                    byte = input.read() // Skip closing quote
+                    api.appendList(address, addressIndex, String(buffer, 0, bufferIndex))
+                    input.read() // Skip closing quote
                 }
                 OPEN_BRACKET -> {
                     // Nested array - We create a new address including the array index
-                    val nestedAddress = address.copyOf()
-                    nestedAddress[addressIndex] = arrayIndex.toString()
-                    byte = parseArray(input, buffer, api, nestedAddress, addressIndex + 1, null)
+                    address[addressIndex] = arrayIndex.toString()
+                    parseArray(input, buffer, api, address, addressIndex + 1, null)
+                    input.read() // Skip closing bracket
                 }
                 OPEN_PAREN -> {
                     // Nested inline table - We create a new address including the array index
-                    val nestedAddress = address.copyOf()
-                    nestedAddress[addressIndex] = arrayIndex.toString()
-                    byte = parseInlineTable(input, buffer, api, nestedAddress, addressIndex + 1, true)
+                    address[addressIndex] = arrayIndex.toString()
+                    parseInlineTable(input, buffer, api, address, addressIndex + 1)
+                    input.read() // Skip closing brace
                 }
                 t -> { // True
-                    parseTrue(input, api, address, null)
-                    byte = input.read()
+                    parseTrue(input, api, address, addressIndex, null)
+                    input.read()
                 }
                 f -> { // False
-                    parseFalse(input, api, address, null)
-                    byte = input.read()
+                    parseFalse(input, api, address, addressIndex, null)
+                    input.read()
                 }
-                PLUS -> {
-                    byte = parseRegularNumber(input, address, null, false, api, 0)
-                }
-                MINUS -> {
-                    byte = parseRegularNumber(input, address, null, true, api, 0)
-                }
-                ZERO -> {
-                    // Could be hex, octal, binary, or decimal
-                    byte = parseSpecialNumbers(input, api, address, null)
-                }
-                ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> { // Number
-                    byte = parseRegularNumber(input, address, null, false, api, byte - ZERO)
-                }
+                PLUS -> parseRegularNumber(input, address, addressIndex, null, false, api, 0)
+                MINUS -> parseRegularNumber(input, address, addressIndex, null, true, api, 0)
+                ZERO -> parseSpecialNumbers(input, api, address, addressIndex, null)
+                ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE ->
+                    parseRegularNumber(input, address, addressIndex, null, false, api, byte - ZERO)
+                else -> byte
             }
 
             // Skip whitespace and commas
@@ -281,23 +271,21 @@ class TomlStream {
             arrayIndex++
         }
 
-        api.listEnd(address)
-        byte = input.read() // Skip closing bracket
-        return byte // Return original parent address index
+        api.listEnd(address, addressIndex)
     }
 
-    private fun parseTrue(input: BufferedInputStream, api: API, address: Array<String>, keyName: String?) {
+    private fun parseTrue(input: BufferedInputStream, api: API, address: Array<String>, addressIndex: Int, keyName: String?) {
         if (input.read() != r || input.read() != u || input.read() != e) {
             throw IllegalArgumentException("Expected boolean true.")
         }
         if (keyName == null) {
-            api.appendList(address, true)
+            api.appendList(address, addressIndex, true)
         } else {
-            api.appendMap(address, keyName, true)
+            api.appendMap(address, addressIndex, keyName, true)
         }
     }
 
-    private fun parseFalse(input: BufferedInputStream, api: API, address: Array<String>, keyName: String?) {
+    private fun parseFalse(input: BufferedInputStream, api: API, address: Array<String>, addressIndex: Int, keyName: String?) {
         val first = input.read()
         val second = input.read()
         val third = input.read()
@@ -306,16 +294,16 @@ class TomlStream {
             throw IllegalArgumentException("Expected boolean false.")
         }
         if (keyName == null) {
-            api.appendList(address, false)
+            api.appendList(address, addressIndex, false)
         } else {
-            api.appendMap(address, keyName, false)
+            api.appendMap(address, addressIndex, keyName, false)
         }
     }
 
-    // Parse regular decimal numbers
     private fun parseRegularNumber(
         input: BufferedInputStream,
         address: Array<String>,
+        addressIndex: Int,
         keyName: String?,
         isNegative: Boolean,
         api: API,
@@ -341,6 +329,7 @@ class TomlStream {
             byte = input.read()
         }
 
+        // TODO support scientific notation with a third section for e?
         if (byte == DOT) {
             // Handle decimal part
             var doubleValue = value.toDouble()
@@ -365,16 +354,16 @@ class TomlStream {
 
             val finalValue = if (isNegative) -doubleValue else doubleValue
             if (keyName == null) {
-                api.appendList(address, finalValue)
+                api.appendList(address, addressIndex, finalValue)
             } else {
-                api.appendMap(address, keyName, finalValue)
+                api.appendMap(address, addressIndex, keyName, finalValue)
             }
         } else {
             val finalValue = if (isNegative) -value else value
             if (keyName == null) {
-                api.appendList(address, finalValue)
+                api.appendList(address, addressIndex, finalValue)
             } else {
-                api.appendMap(address, keyName, finalValue)
+                api.appendMap(address, addressIndex, keyName, finalValue)
             }
         }
         return byte
@@ -385,15 +374,11 @@ class TomlStream {
         input: BufferedInputStream,
         buffer: ByteArray,
         api: API,
-        parentAddress: Array<String>,
-        parentAddressIndex: Int,
-        isInList: Boolean
-    ): Int {
-        // Create a copy of the address with the correct size for this table
-        val address = parentAddress.copyOf()
-
+        address: Array<String>,
+        addressIndex: Int
+    ) {
         // Notify API about new inline table
-        api.inlineTable(address)
+        api.inlineTable(address, addressIndex)
 
         var byte = input.read() // Skip opening brace
 
@@ -401,10 +386,8 @@ class TomlStream {
         while (byte == SPACE || byte == TAB) byte = input.read()
 
         while (byte != CLOSE_PAREN && byte != EOF) {
-            // Parse key-value pair in the inline table
             // We pass the current address and index to maintain the scope
-            val pair = parseKeyValue(input, buffer, address, api, parentAddressIndex, byte)
-            byte = pair.first
+            byte = parseKeyValue(input, buffer, address, api, addressIndex, byte)
             // We don't update the parentAddressIndex here as we want to maintain scope
 
             // Skip whitespace and commas
@@ -412,36 +395,20 @@ class TomlStream {
                 byte = input.read()
             }
         }
-
-        // Get the key name from the last element in the address
-        // if we're not in a list context and the address has elements
-        val keyName = if (!isInList && parentAddressIndex > 0) {
-            address[parentAddressIndex - 1]
-        } else {
-            ""
-        }
-
         // Mark the end of the inline table
-        api.mapEnd(address, keyName)
-
-        byte = input.read() // Skip closing brace
-        return byte // Return original parent address index
+        api.mapEnd(address, addressIndex)
     }
 
     private fun parseKeyValue(
         input: BufferedInputStream,
         buffer: ByteArray,
-        parentAddress: Array<String>,
+        address: Array<String>,
         api: API,
         parentAddressIndex: Int,
         byteIn: Int
-    ): Pair<Int, Int> {
-        // Handle key-value pairs
+    ): Int {
         // Read key
         var byte = byteIn
-
-        // Create a new address array for this scope
-        val address = parentAddress.copyOf()
         var addressIndex = parentAddressIndex
 
         var bufferIndex = 0
@@ -485,7 +452,7 @@ class TomlStream {
         }
 
         // Parse value
-        when (byte) {
+        return when (byte) {
             DOUBLE_QUOTE -> {
                 // String value
                 byte = input.read() // Skip opening quote
@@ -498,43 +465,36 @@ class TomlStream {
                 }
 
                 val stringValue = String(buffer, 0, bufferIndex)
-                api.appendMap(address, keyName, stringValue)
+                api.appendMap(address, addressIndex, keyName, stringValue)
 
-                byte = input.read() // Skip closing quote
+                input.read() // Skip closing quote
             }
             OPEN_BRACKET -> {
                 // Array - Pass parent address and index
-                byte = parseArray(input, buffer, api, address, addressIndex, keyName)
+                parseArray(input, buffer, api, address, addressIndex, keyName)
+                input.read() // Skip closing bracket
             }
             OPEN_PAREN -> {
                 // Inline table - Add the key to the address for the inline table
-                val nestedAddress = address.copyOf()
-                nestedAddress[addressIndex] = keyName
-                byte = parseInlineTable(input, buffer, api, nestedAddress, addressIndex + 1, false)
+                address[addressIndex] = keyName
+                parseInlineTable(input, buffer, api, address, addressIndex + 1)
+                input.read() // Skip closing brace
             }
             t -> { // True
-                parseTrue(input, api, address, keyName)
-                byte = input.read()
+                parseTrue(input, api, address, addressIndex, keyName)
+                input.read()
             }
             f -> { // False
-                parseFalse(input, api, address, keyName)
-                byte = input.read()
+                parseFalse(input, api, address, addressIndex, keyName)
+                input.read()
             }
-            PLUS -> {
-                byte = parseRegularNumber(input, address, keyName, false, api, 0)
-            }
-            MINUS -> {
-                byte = parseRegularNumber(input, address, keyName, true, api, 0)
-            }
-            ZERO -> {
-                // Could be hex, octal, binary, or decimal
-                byte = parseSpecialNumbers(input, api, address, keyName)
-            }
-            ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> { // Number
-                byte = parseRegularNumber(input, address, keyName, false, api, byte - ZERO)
-            }
+            PLUS -> parseRegularNumber(input, address, addressIndex, keyName, false, api, 0)
+            MINUS -> parseRegularNumber(input, address, addressIndex, keyName, true, api, 0)
+            ZERO -> parseSpecialNumbers(input, api, address, addressIndex, keyName)
+            ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE ->
+                parseRegularNumber(input, address, addressIndex, keyName, false, api, byte - ZERO)
+            else -> byte
         }
-        return Pair(byte, parentAddressIndex) // Return parent address index to maintain scope
     }
 
     companion object {
