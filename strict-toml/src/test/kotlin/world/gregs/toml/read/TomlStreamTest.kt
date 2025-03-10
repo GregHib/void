@@ -1,7 +1,6 @@
 package world.gregs.toml.read
 
 import org.junit.jupiter.api.Test
-import world.gregs.toml.Toml
 import java.io.File
 
 class TomlStreamTest {
@@ -10,97 +9,95 @@ class TomlStreamTest {
     fun `Streaming test`() {
         val file = File("C:\\Users\\Greg\\AppData\\Roaming\\JetBrains\\IntelliJIdea2024.3\\scratches\\scratch.toml")
         val streaming = TomlStream()
-        val api = object : TomlStream.API {
-            override fun table(address: Array<String>, addressSize: Int) {
-                println("api.table(${address.take(addressSize)})")
+        val api = object : TomlStream.Api {
+            override fun table(addressBuffer: Array<String>, addressSize: Int) {
+                println("api.table(${addressBuffer.take(addressSize)})")
             }
 
-            override fun inlineTable(address: Array<String>, addressSize: Int) {
-                println("api.inlineTable(${address.take(addressSize)})")
+            override fun inlineTable(addressBuffer: Array<String>, addressSize: Int) {
+                println("api.inlineTable(${addressBuffer.take(addressSize)})")
             }
 
-            override fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Double) {
-                println("api.appendMap(${address.take(addressSize)}, $key, $value)")
+            override fun appendMap(addressBuffer: Array<String>, addressSize: Int, key: String, value: Double) {
+                println("api.appendMap(${addressBuffer.take(addressSize)}, $key, $value)")
             }
 
-            override fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Long) {
-                println("api.appendMap(${address.take(addressSize)}, $key, $value)")
+            override fun appendMap(addressBuffer: Array<String>, addressSize: Int, key: String, value: Long) {
+                println("api.appendMap(${addressBuffer.take(addressSize)}, $key, $value)")
             }
 
-            override fun appendMap(address: Array<String>, addressSize: Int, key: String, value: String) {
-                println("api.appendMap(${address.take(addressSize)}, $key, $value)")
+            override fun appendMap(addressBuffer: Array<String>, addressSize: Int, key: String, value: String) {
+                println("api.appendMap(${addressBuffer.take(addressSize)}, $key, $value)")
             }
 
-            override fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Boolean) {
-                println("api.appendMap(${address.take(addressSize)}, $key, $value)")
+            override fun appendMap(addressBuffer: Array<String>, addressSize: Int, key: String, value: Boolean) {
+                println("api.appendMap(${addressBuffer.take(addressSize)}, $key, $value)")
             }
 
-            override fun appendMap(address: Array<String>, addressSize: Int, key: String, value: List<Any>) {
-                println("api.appendMap(${address.take(addressSize)}, $key, $value)")
+            override fun mapEnd(addressBuffer: Array<String>, addressSize: Int) {
+                println("api.mapEnd(${addressBuffer.take(addressSize)})")
             }
 
-            override fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Map<String, Any>) {
-                println("api.appendMap(${address.take(addressSize)}, $key, $value)")
+            override fun list(addressBuffer: Array<String>, addressSize: Int) {
+                println("api.list(${addressBuffer.take(addressSize)})")
             }
 
-            override fun mapEnd(address: Array<String>, addressSize: Int) {
-                println("api.mapEnd(${address.take(addressSize)})")
+            override fun appendList(addressBuffer: Array<String>, addressSize: Int, value: Double) {
+                println("api.appendList(${addressBuffer.take(addressSize)}, $value)")
             }
 
-            override fun list(address: Array<String>, addressSize: Int) {
-                println("api.list(${address.take(addressSize)})")
+            override fun appendList(addressBuffer: Array<String>, addressSize: Int, value: Long) {
+                println("api.appendList(${addressBuffer.take(addressSize)}, $value)")
             }
 
-            override fun appendList(address: Array<String>, addressSize: Int, value: Double) {
-                println("api.appendList(${address.take(addressSize)}, $value)")
+            override fun appendList(addressBuffer: Array<String>, addressSize: Int, value: String) {
+                println("api.appendList(${addressBuffer.take(addressSize)}, $value)")
             }
 
-            override fun appendList(address: Array<String>, addressSize: Int, value: Long) {
-                println("api.appendList(${address.take(addressSize)}, $value)")
+            override fun appendList(addressBuffer: Array<String>, addressSize: Int, value: Boolean) {
+                println("api.appendList(${addressBuffer.take(addressSize)}, $value)")
             }
 
-            override fun appendList(address: Array<String>, addressSize: Int, value: String) {
-                println("api.appendList(${address.take(addressSize)}, $value)")
-            }
-
-            override fun appendList(address: Array<String>, addressSize: Int, value: Boolean) {
-                println("api.appendList(${address.take(addressSize)}, $value)")
-            }
-
-            override fun appendList(address: Array<String>, addressSize: Int, value: List<Any>) {
-                println("api.appendList(${address.take(addressSize)}, $value)")
-            }
-
-            override fun appendList(address: Array<String>, addressSize: Int, value: Map<String, Any>) {
-                println("api.appendList(${address.take(addressSize)}, $value)")
-            }
-
-            override fun listEnd(address: Array<String>, addressSize: Int) {
-                println("api.listEnd(${address.take(addressSize)})")
+            override fun listEnd(addressBuffer: Array<String>, addressSize: Int) {
+                println("api.listEnd(${addressBuffer.take(addressSize)})")
             }
 
         }
-        streaming.read(file.inputStream().buffered(), api)
+        val buffer = ByteArray(1024)
+        val address = Array(10) { "" }
+        streaming.read(file.inputStream().buffered(), api, buffer, address)
+    }
+
+    @Test
+    fun `Collection test`() {
+        val file = File("C:\\Users\\Greg\\AppData\\Roaming\\JetBrains\\IntelliJIdea2024.3\\scratches\\scratch.toml")
+        val streaming = TomlStream()
+        val api = TomlMapApi()
+        val buffer = ByteArray(1024)
+        val address = Array(10) { "" }
+        streaming.read(file.inputStream().buffered(), api, buffer, address)
+        println(api.root)
     }
 
     @Test
     fun `Benchmark test`() {
         val file = File("C:\\Users\\Greg\\AppData\\Roaming\\JetBrains\\IntelliJIdea2024.3\\scratches\\scratch.toml")
         val streaming = TomlStream()
-        val api = object : TomlStream.API {
+//        val api = object : TomlStream.API {
+//        }
+        val api = TomlMapApi()
+        val count = 10
+        val buffer = ByteArray(1024)
+        val address = Array(10) { "" }
+        var total = 0L
+        for (i in 0 until count) {
+            val stream = file.inputStream().buffered()
+            val start = System.nanoTime()
+            streaming.read(stream, api, buffer, address)
+            val end = System.nanoTime()
+            total += end - start
+            api.root.clear()
         }
-        var count = 10
-        var start = System.nanoTime()
-        for(i in 0 until count) {
-            streaming.read(file.inputStream().buffered(), api)
-        }
-        var end = System.nanoTime()
-        println("Took ${(end-start)/count}ns")
-        start = System.nanoTime()
-        for(i in 0 until count) {
-            Toml.decodeFromCharArray(file.readText().toCharArray())
-        }
-        end = System.nanoTime()
-        println("Took ${(end-start)/count}ns")
+        println("Took ${total/ count}ns")
     }
 }

@@ -22,7 +22,7 @@ internal class TomlTest {
         val count = 10
         val start = System.nanoTime()
         for (i in 0 until count) {
-            result = toml.decodeFromCharArray(text)
+//            result = toml.decodeFromCharArray(text)
         }
         val end = System.nanoTime()
         println(result)

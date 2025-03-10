@@ -4,38 +4,29 @@ import java.io.BufferedInputStream
 
 class TomlStream {
 
-    interface API {
-        fun table(address: Array<String>, addressSize: Int) {}
-        fun inlineTable(address: Array<String>, addressSize: Int) {}
-        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Double) {}
-        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Long) {}
-        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: String) {}
-        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Boolean) {}
-        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: List<Any>) {}
-        fun appendMap(address: Array<String>, addressSize: Int, key: String, value: Map<String, Any>) {}
-        fun mapEnd(address: Array<String>, addressSize: Int) {}
+    interface Api {
+        fun table(addressBuffer: Array<String>, addressSize: Int) {}
+        fun inlineTable(addressBuffer: Array<String>, addressSize: Int) {}
+        fun appendMap(addressBuffer: Array<String>, addressSize: Int, key: String, value: Double) {}
+        fun appendMap(addressBuffer: Array<String>, addressSize: Int, key: String, value: Long) {}
+        fun appendMap(addressBuffer: Array<String>, addressSize: Int, key: String, value: String) {}
+        fun appendMap(addressBuffer: Array<String>, addressSize: Int, key: String, value: Boolean) {}
+        fun mapEnd(addressBuffer: Array<String>, addressSize: Int) {}
 
-        fun list(address: Array<String>, addressSize: Int) {}
-        fun appendList(address: Array<String>, addressSize: Int, value: Double) {}
-        fun appendList(address: Array<String>, addressSize: Int, value: Long) {}
-        fun appendList(address: Array<String>, addressSize: Int, value: String) {}
-        fun appendList(address: Array<String>, addressSize: Int, value: Boolean) {}
-        fun appendList(address: Array<String>, addressSize: Int, value: List<Any>) {}
-        fun appendList(address: Array<String>, addressSize: Int, value: Map<String, Any>) {}
-        fun listEnd(address: Array<String>, addressSize: Int) {}
+        fun list(addressBuffer: Array<String>, addressSize: Int) {}
+        fun appendList(addressBuffer: Array<String>, addressSize: Int, value: Double) {}
+        fun appendList(addressBuffer: Array<String>, addressSize: Int, value: Long) {}
+        fun appendList(addressBuffer: Array<String>, addressSize: Int, value: String) {}
+        fun appendList(addressBuffer: Array<String>, addressSize: Int, value: Boolean) {}
+        fun listEnd(addressBuffer: Array<String>, addressSize: Int) {}
     }
 
     /**
      *  TODO
-     *      [x] fix empty address for nested inline tables
-     *      [x] remove address.copying(), replace with addressIndex-- once out of a scope
      *      remove keyName checks with an array and table version of each method?
-     *      [x] support custom alias syntax
      */
-    fun read(input: BufferedInputStream, api: API) {
-        val buffer = ByteArray(1024)
+    fun read(input: BufferedInputStream, api: Api, buffer: ByteArray, address: Array<String>) {
         var bufferIndex = 0
-        val address = Array(10) { "" }
         var addressIndex = 0
         var previousIndex = 0
         var byte = input.read()
@@ -116,7 +107,7 @@ class TomlStream {
         }
     }
 
-    private fun parseSpecialNumbers(input: BufferedInputStream, api: API, address: Array<String>, addressIndex: Int, keyName: String?): Int {
+    private fun parseSpecialNumbers(input: BufferedInputStream, api: Api, address: Array<String>, addressIndex: Int, keyName: String?): Int {
         var byte = input.read()
         when (byte) {
             X -> {
@@ -204,7 +195,7 @@ class TomlStream {
         return byte
     }
 
-    private fun parseArray(input: BufferedInputStream, buffer: ByteArray, api: API, address: Array<String>, parentAddressIndex: Int, keyName: String?) {
+    private fun parseArray(input: BufferedInputStream, buffer: ByteArray, api: Api, address: Array<String>, parentAddressIndex: Int, keyName: String?) {
         // Create new address array for this scope
         var addressIndex = parentAddressIndex
 
@@ -284,7 +275,7 @@ class TomlStream {
         api.listEnd(address, addressIndex)
     }
 
-    private fun parseTrue(input: BufferedInputStream, api: API, address: Array<String>, addressIndex: Int, keyName: String?) {
+    private fun parseTrue(input: BufferedInputStream, api: Api, address: Array<String>, addressIndex: Int, keyName: String?) {
         if (input.read() != r || input.read() != u || input.read() != e) {
             throw IllegalArgumentException("Expected boolean true.")
         }
@@ -295,7 +286,7 @@ class TomlStream {
         }
     }
 
-    private fun parseFalse(input: BufferedInputStream, api: API, address: Array<String>, addressIndex: Int, keyName: String?) {
+    private fun parseFalse(input: BufferedInputStream, api: Api, address: Array<String>, addressIndex: Int, keyName: String?) {
         val first = input.read()
         val second = input.read()
         val third = input.read()
@@ -316,7 +307,7 @@ class TomlStream {
         addressIndex: Int,
         keyName: String?,
         isNegative: Boolean,
-        api: API,
+        api: Api,
         initialDigit: Int
     ): Int {
         var value = initialDigit.toLong()
@@ -383,7 +374,7 @@ class TomlStream {
     private fun parseInlineTable(
         input: BufferedInputStream,
         buffer: ByteArray,
-        api: API,
+        api: Api,
         address: Array<String>,
         addressIndex: Int
     ) {
@@ -413,7 +404,7 @@ class TomlStream {
         input: BufferedInputStream,
         buffer: ByteArray,
         address: Array<String>,
-        api: API,
+        api: Api,
         parentAddressIndex: Int,
         byteIn: Int
     ): Int {
@@ -508,53 +499,53 @@ class TomlStream {
     }
 
     companion object {
-        const val SPACE = ' '.code
-        const val TAB = '\t'.code
-        const val LINE = '\n'.code
-        const val HASH = '#'.code
-        const val RETURN = '\r'.code
-        const val OPEN_BRACKET = '['.code
-        const val CLOSE_BRACKET = ']'.code
-        const val OPEN_PAREN = '{'.code
-        const val CLOSE_PAREN = '}'.code
-        const val DOT = '.'.code
-        const val DOUBLE_QUOTE = '"'.code
-        const val EQUALS = '='.code
-        const val EOF = -1
-        const val ZERO = '0'.code
-        const val ONE = '1'.code
-        const val TWO = '2'.code
-        const val THREE = '3'.code
-        const val FOUR = '4'.code
-        const val FIVE = '5'.code
-        const val SIX = '6'.code
-        const val SEVEN = '7'.code
-        const val EIGHT = '8'.code
-        const val NINE = '9'.code
-        const val PLUS = '+'.code
-        const val MINUS = '-'.code
-        const val t = 't'.code
-        const val r = 'r'.code
-        const val u = 'u'.code
-        const val a = 'a'.code
-        const val b = 'b'.code
-        const val c = 'c'.code
-        const val d = 'd'.code
-        const val e = 'e'.code
-        const val f = 'f'.code
-        const val A = 'A'.code
-        const val B = 'B'.code
-        const val C = 'C'.code
-        const val D = 'D'.code
-        const val E = 'E'.code
-        const val F = 'F'.code
-        const val L = 'L'.code
-        const val l = 'l'.code
-        const val S = 'S'.code
-        const val s = 's'.code
-        const val X = 'x'.code
-        const val O = 'o'.code
-        const val UNDERSCORE = '_'.code
-        const val COMMA = ','.code
+        private const val SPACE = ' '.code
+        private const val TAB = '\t'.code
+        private const val LINE = '\n'.code
+        private const val HASH = '#'.code
+        private const val RETURN = '\r'.code
+        private const val OPEN_BRACKET = '['.code
+        private const val CLOSE_BRACKET = ']'.code
+        private const val OPEN_PAREN = '{'.code
+        private const val CLOSE_PAREN = '}'.code
+        private const val DOT = '.'.code
+        private const val DOUBLE_QUOTE = '"'.code
+        private const val EQUALS = '='.code
+        private const val EOF = -1
+        private const val ZERO = '0'.code
+        private const val ONE = '1'.code
+        private const val TWO = '2'.code
+        private const val THREE = '3'.code
+        private const val FOUR = '4'.code
+        private const val FIVE = '5'.code
+        private const val SIX = '6'.code
+        private const val SEVEN = '7'.code
+        private const val EIGHT = '8'.code
+        private const val NINE = '9'.code
+        private const val PLUS = '+'.code
+        private const val MINUS = '-'.code
+        private const val t = 't'.code
+        private const val r = 'r'.code
+        private const val u = 'u'.code
+        private const val a = 'a'.code
+        private const val b = 'b'.code
+        private const val c = 'c'.code
+        private const val d = 'd'.code
+        private const val e = 'e'.code
+        private const val f = 'f'.code
+        private const val A = 'A'.code
+        private const val B = 'B'.code
+        private const val C = 'C'.code
+        private const val D = 'D'.code
+        private const val E = 'E'.code
+        private const val F = 'F'.code
+        private const val L = 'L'.code
+        private const val l = 'l'.code
+        private const val S = 'S'.code
+        private const val s = 's'.code
+        private const val X = 'x'.code
+        private const val O = 'o'.code
+        private const val UNDERSCORE = '_'.code
+        private const val COMMA = ','.code
     }
 }
