@@ -62,6 +62,7 @@ class TomlMapApi : TomlStream.Api {
         val list = getOrCreateList(addressBuffer, addressSize)
         list.add(value)
     }
+
     private fun navigateAddress(addressBuffer: Array<Any>, addressSize: Int): Any {
         var current: Any = root
 
@@ -71,35 +72,29 @@ class TomlMapApi : TomlStream.Api {
             when {
                 // Handle array indexing
                 addressPart is Int && current is MutableList<*> -> {
-                    @Suppress("UNCHECKED_CAST")
                     val list = current as MutableList<Any>
-                    val index = addressPart
 
                     // Ensure the list has enough elements
-                    while (list.size <= index) {
-                        list.add(mutableMapOf<String, Any>())
+                    while (list.size <= addressPart) {
+                        list.add(map())
                     }
 
-                    current = list[index]
+                    current = list[addressPart]
                 }
 
                 // Handle map navigation
                 addressPart is String && current is MutableMap<*, *> -> {
-                    @Suppress("UNCHECKED_CAST")
                     val map = current as MutableMap<String, Any>
 
                     if (addressPart !in map) {
-                        map[addressPart] = mutableMapOf<String, Any>()
+                        map[addressPart] = map()
                     }
 
                     current = map[addressPart]!!
                 }
 
                 // Unexpected state: can't navigate further
-                else -> {
-                    // Create a new empty map and return it
-                    return mutableMapOf<String, Any>()
-                }
+                else -> throw IllegalArgumentException("Unknown address type: $addressPart")
             }
         }
 
@@ -108,31 +103,21 @@ class TomlMapApi : TomlStream.Api {
 
     // Get or create a nested map based on the address path
     private fun getOrCreateNestedMap(addressBuffer: Array<Any>, addressSize: Int): MutableMap<String, Any> {
-        val current = navigateAddress(addressBuffer, addressSize)
+        return when (val current = navigateAddress(addressBuffer, addressSize)) {
+            is MutableMap<*, *> -> current as MutableMap<String, Any>
+            is MutableList<*> -> {
+                // If parent is a list, we should append a new map rather than overriding
+                val list = current as MutableList<Any>
 
-        return if (current is MutableMap<*, *>) {
-            @Suppress("UNCHECKED_CAST")
-            current as MutableMap<String, Any>
-        } else {
-            // If we can't get a map at this address, create a new one
-            val newMap = mutableMapOf<String, Any>()
-
-            // Update the parent to point to this new map
-            if (addressSize > 0) {
-                val parentSize = addressSize - 1
-                val lastKey = addressBuffer[parentSize]
-                val parent = navigateAddress(addressBuffer, parentSize)
-
-                if (parent is MutableMap<*, *> && lastKey is String) {
-                    @Suppress("UNCHECKED_CAST")
-                    (parent as MutableMap<String, Any>)[lastKey] = newMap
-                } else if (parent is MutableList<*> && lastKey is Int) {
-                    @Suppress("UNCHECKED_CAST")
-                    (parent as MutableList<Any>)[lastKey] = newMap
+                if (list.isEmpty()) {
+                    val map = map()
+                    list.add(map)
+                    return map
                 }
-            }
 
-            newMap
+                return list.last() as MutableMap<String, Any>
+            }
+            else -> throw IllegalArgumentException("Unknown type $current")
         }
     }
 
@@ -147,35 +132,49 @@ class TomlMapApi : TomlStream.Api {
         val parent = navigateAddress(addressBuffer, parentSize)
 
         if (parent is MutableMap<*, *> && lastKey is String) {
-            @Suppress("UNCHECKED_CAST")
             val map = parent as MutableMap<String, Any>
 
-            if (lastKey !in map || map[lastKey] !is MutableList<*>) {
-                map[lastKey] = mutableListOf<Any>()
+            if (lastKey !in map || map[lastKey] == null) {
+                map[lastKey] = list()
             }
 
-            @Suppress("UNCHECKED_CAST")
             return map[lastKey] as MutableList<Any>
         } else if (parent is MutableList<*> && lastKey is Int) {
-            @Suppress("UNCHECKED_CAST")
             val list = parent as MutableList<Any>
-            val index = lastKey
 
             // Ensure the list has enough elements
-            while (list.size <= index) {
-                list.add(mutableListOf<Any>())
+            while (list.size <= lastKey) {
+                list.add(list())
             }
 
-            if (list[index] !is MutableList<*>) {
-                list[index] = mutableListOf<Any>()
-            }
-
-            @Suppress("UNCHECKED_CAST")
-            return list[index] as MutableList<Any>
+            return list[lastKey] as MutableList<Any>
         } else {
-            // Fallback: create a new list
-            val newList = mutableListOf<Any>()
-            return newList
+            throw IllegalArgumentException("Unknown type $parent")
+        }
+    }
+
+    override fun arrayOfTables(addressBuffer: Array<Any>, addressSize: Int) {
+        if (addressSize == 0) {
+            return
+        }
+
+        val parentSize = addressSize - 1
+        val lastKey = addressBuffer[addressSize - 1]
+        val parent = navigateAddress(addressBuffer, parentSize)
+
+        if (parent is MutableMap<*, *> && lastKey is String) {
+            val map = parent as MutableMap<String, Any>
+
+            // If key doesn't exist create a new array of tables
+            if (lastKey !in map || map[lastKey] == null) {
+                map[lastKey] = list()
+            }
+
+            // Add a new table to the array
+            val tableArray = map[lastKey] as MutableList<Any>
+            tableArray.add(map())
+        } else {
+            throw IllegalArgumentException("Unknown type $parent")
         }
     }
 }

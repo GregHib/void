@@ -68,6 +68,10 @@ class TomlStreamTest {
             println("api.listEnd(${addressBuffer.take(addressSize)})")
         }
 
+        override fun arrayOfTables(addressBuffer: Array<Any>, addressSize: Int) {
+            println("api.arrayOfTables(${addressBuffer.take(addressSize)})")
+        }
+
     }
 
     @Test

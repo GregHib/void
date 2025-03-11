@@ -5,6 +5,7 @@ import java.io.BufferedInputStream
 class TomlStream {
 
     interface Api {
+        fun arrayOfTables(addressBuffer: Array<Any>, addressSize: Int) {}
         fun table(addressBuffer: Array<Any>, addressSize: Int) {}
         fun inlineTable(addressBuffer: Array<Any>, addressSize: Int) {}
         fun appendMap(addressBuffer: Array<Any>, addressSize: Int, key: String, value: Double) {}
@@ -53,7 +54,6 @@ class TomlStream {
                     if (isArrayOfTables) {
                         byte = input.read()
                     }
-                    // TODO handle creating array of tables
 
                     val absoluteAddress = byte != DOT
                     if (absoluteAddress) {
@@ -92,10 +92,10 @@ class TomlStream {
                         if (byte != CLOSE_BRACKET) {
                             throw IllegalArgumentException("Expected close bracket")
                         }
+                        api.arrayOfTables(address, addressIndex)
+                    } else {
+                        api.table(address, addressIndex)
                     }
-
-                    // Notify API about new table
-                    api.table(address, addressIndex)
                     input.read()
                 }
                 else -> parseKeyValue(input, buffer, address, api, addressIndex, byte)
