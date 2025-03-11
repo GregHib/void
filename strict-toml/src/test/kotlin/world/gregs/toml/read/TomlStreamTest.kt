@@ -88,12 +88,9 @@ class TomlStreamTest {
     @Test
     fun `Read array test`() {
         val text = """
-            worn_equipment = [
-                { id = "ray", amount = 1 },
-                { }
-            ]
-            [[confused.0]]
-            com = true
+            id1 = 1E2
+            id2 = 1.2e+3
+            id3 = 1.2E-3
         """.trimIndent()
         val streaming = TomlStream()
         val api = TomlMapApi()

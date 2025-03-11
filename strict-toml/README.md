@@ -42,10 +42,6 @@ date = "1979-05-27T07:32:00Z"
 
 Anything goes so long as the types are correct.
 
-### No scientific format
-
-You're the scientist, convert your own strings.
-
 ### No infinity or nan
 
 Who uses those anyway?

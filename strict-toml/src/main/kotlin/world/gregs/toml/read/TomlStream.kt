@@ -310,7 +310,7 @@ class TomlStream {
 
         // Parse integer part
         var byte = input.read()
-        while (isNotEndOfValue(byte) && byte != DOT) {
+        while (isNotEndOfValue(byte) && byte != DOT && byte != e && byte != E) {
             when (byte) {
                 UNDERSCORE -> {
                     // Skip underscores
@@ -324,13 +324,13 @@ class TomlStream {
             byte = input.read()
         }
 
-        // TODO support scientific notation with a third section for e?
-        if (byte == DOT) {
+        var hasDecimal = byte == DOT
+        var doubleValue = value.toDouble()
+        if (hasDecimal) {
             // Handle decimal part
-            var doubleValue = value.toDouble()
             var decimalFactor = 0.1
             byte = input.read() // Skip the dot
-            while (isNotEndOfValue(byte)) {
+            while (isNotEndOfValue(byte) && byte != e && byte != E) {
                 when (byte) {
                     UNDERSCORE -> {
                         // Skip underscores
@@ -344,7 +344,56 @@ class TomlStream {
                 }
                 byte = input.read()
             }
+        }
 
+        if (byte == e || byte == E) {
+            hasDecimal = true // Force double type for scientific notation
+            byte = input.read() // Skip the 'e' or 'E'
+
+            // Check for explicit sign in exponent
+            var exponentIsNegative = false
+            if (byte == PLUS) {
+                byte = input.read() // Skip the '+'
+            } else if (byte == MINUS) {
+                exponentIsNegative = true
+                byte = input.read() // Skip the '-'
+            }
+
+            // Parse exponent value
+            var exponent = 0
+            while (isNotEndOfValue(byte)) {
+                when (byte) {
+                    UNDERSCORE -> {
+                        // Skip underscores
+                    }
+                    ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> {
+                        val digit = byte - ZERO
+                        exponent = exponent * 10 + digit
+                    }
+                    else -> break
+                }
+                byte = input.read()
+            }
+
+            // Apply exponent
+            val power = if (exponentIsNegative) -exponent else exponent
+            if (power >= 0) {
+                // For positive exponents, multiply
+                var factor = 1.0
+                for (i in 0 until power) {
+                    factor *= 10.0
+                }
+                doubleValue *= factor
+            } else {
+                // For negative exponents, divide
+                var factor = 1.0
+                for (i in 0 until -power) {
+                    factor *= 10.0
+                }
+                doubleValue /= factor
+            }
+        }
+        if (hasDecimal) {
             val finalValue = if (isNegative) -doubleValue else doubleValue
             if (keyName == null) {
                 api.appendList(address, addressIndex, finalValue)
