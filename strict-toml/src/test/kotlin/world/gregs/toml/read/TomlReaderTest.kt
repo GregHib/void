@@ -9,161 +9,138 @@ internal class TomlReaderTest {
 
     private val charReader = CharReader()
     private val reader = TomlReader(charReader)
+    private val stream = TomlStream()
 
     @Test
     fun `Bare label`() {
-        read("test")
-        val label = reader.label()
-        assertEquals("test", label)
+        val map = read("test = 0")
+        assertEquals("test", map.keys.first())
     }
 
     @Test
     fun `Double quoted label`() {
-        read("\"test \"")
-        val label = reader.label()
-        assertEquals("test ", label)
+        val map = read("\"test \" = 0")
+        assertEquals("test ", map.keys.first())
     }
 
     @Test
     fun `Single quoted label`() {
-        read("'\"test '")
-        val label = reader.label()
-        assertEquals("\"test ", label)
+        val map = read("'\"test '")
+        assertEquals("\"test ", map.keys.first())
     }
 
     @Test
     fun `Test variable assignment`() {
-        read("test = \"value\"")
-        val map = mutableMapOf<String, Any>()
-        reader.variable(map)
-
+        val map = read("test = \"value\"")
         assertEquals(mapOf("test" to "value"), map)
     }
 
     @Test
     fun `Nested variable assignment`() {
-        read("test.fun = \"value\"")
-        val map = mutableMapOf<String, Any>()
-        reader.variable(map)
-
+        val map = read("test.fun = \"value\"")
         assertEquals(mapOf("test" to mapOf("fun" to "value")), map)
     }
 
     @Test
     fun `Nested quoted variable assignment`() {
-        read("test.\"fun.com\" = \"value\"")
-        val map = mutableMapOf<String, Any>()
-        reader.variable(map)
-
+        val map = read("test.\"fun.com\" = \"value\"")
         assertEquals(mapOf("test" to mapOf("fun.com" to "value")), map)
     }
 
     @Test
     fun `Nested spaced variable assignment`() {
-        read("test  . fun = \"value\"")
-        val map = mutableMapOf<String, Any>()
-        reader.variable(map)
-
+        val map = read("test  . fun = \"value\"")
         assertEquals(mapOf("test" to mapOf("fun" to "value")), map)
     }
 
     @Test
     fun `Invalid spaced variable assignment`() {
-        read("test fail = \"value\"")
-        val map = mutableMapOf<String, Any>()
         assertThrows<IllegalArgumentException>("Expected character '='") {
-            reader.variable(map)
+            read("test fail = \"value\"")
         }
     }
 
     @Test
     fun `Invalid double variable assignment`() {
-        read("test = nope = \"value\"")
-        val map = mutableMapOf<String, Any>()
         assertThrows<IllegalArgumentException>("Unexpected character, expecting ") {
-            reader.variable(map)
+            val map = read("test = nope = \"value\"")
+            println(map)
         }
     }
 
     @Test
     fun `Valid false boolean`() {
-        read("false")
-        assertFalse(reader.booleanFalse())
+        val map = read("key = false")
+        assertFalse(map["key"] as Boolean)
     }
 
     @Test
     fun `Valid false space boolean`() {
-        read("false  # Allowed")
-        assertFalse(reader.booleanFalse())
+        val map = read("key = false  # Allowed")
+        assertFalse(map["key"] as Boolean)
     }
 
     @Test
     fun `Valid false comment boolean`() {
-        read("false# Comment")
-        assertFalse(reader.booleanFalse())
+        val map = read("key = false# Comment")
+        assertFalse(map["key"] as Boolean)
     }
 
     @Test
     fun `Invalid false boolean value long`() {
-        read("falsey")
         assertThrows<IllegalArgumentException> {
-            reader.booleanFalse()
+            read("key = falsey")
         }
     }
 
     @Test
     fun `Invalid false boolean value short`() {
-        read("no")
         assertThrows<IllegalArgumentException> {
-            reader.booleanFalse()
+            read("key = no")
         }
     }
 
     @Test
     fun `Invalid false boolean value`() {
-        read("wrong")
         assertThrows<IllegalArgumentException> {
-            reader.booleanFalse()
+            read("key = wrong")
         }
     }
 
     @Test
     fun `Valid true boolean`() {
-        read("true")
-        assertTrue(reader.booleanTrue() as Boolean)
+        val map = read("key = true")
+        assertTrue(map["key"] as Boolean)
     }
 
     @Test
     fun `Valid true space boolean`() {
-        read("true  # Allowed")
-        assertTrue(reader.booleanTrue() as Boolean)
+        val map = read("key = true  # Allowed")
+        assertTrue(map["key"] as Boolean)
     }
 
     @Test
     fun `Valid true comment boolean`() {
-        read("true# Comment")
-        assertTrue(reader.booleanTrue() as Boolean)
+        val map = read("key = true# Comment")
+        assertTrue(map["key"] as Boolean)
     }
 
     @Test
     fun `Invalid true boolean value long`() {
-        read("truey")
         assertThrows<IllegalArgumentException> {
-            reader.booleanTrue()
+            read("key = truey")
         }
     }
 
     @Test
     fun `Invalid true boolean value short`() {
-        read("no")
         assertThrows<IllegalArgumentException> {
-            reader.booleanTrue()
+            read("key = no")
         }
     }
 
     @Test
     fun `Invalid true boolean value wrong`() {
-        read("nope")
         assertThrows<IllegalArgumentException> {
             reader.booleanTrue()
         }
@@ -171,164 +148,151 @@ internal class TomlReaderTest {
 
     @Test
     fun `Double quoted string`() {
-        read("\"this is a string\"")
-        assertEquals("this is a string", reader.basicString())
+        val map = read("key = \"this is a string\"")
+        assertEquals("this is a string", map["key"])
     }
 
     @Test
     fun `Double quoted escaped string`() {
-        read("\"an escaped \\\" quote\"")
-        assertEquals("an escaped \\\" quote", reader.basicString())
+        val map = read("key = \"an escaped \\\" quote\"")
+        assertEquals("an escaped \\\" quote", map["key"])
     }
 
     @Test
     fun `Incomplete double quoted string`() {
-        read("\"no end")
         assertThrows<IllegalArgumentException>("Expected character '\"'") {
-            reader.basicString()
+            val map = read("key = \"no end")
+            println(map)
         }
     }
 
     @Test
     fun `Early line break double quoted string`() {
-        read("\"no end \n\"")
         assertThrows<IllegalArgumentException>("Expected character '\"'") {
-            reader.basicString()
+            read("key = \"no end \n\"")
         }
     }
 
     @Test
     fun `Single quoted string`() {
-        read("'this is a string'")
-        assertEquals("this is a string", reader.stringLiteral())
+        val map = read("key = 'this is a string'")
+        assertEquals("this is a string", map["key"])
     }
 
     @Test
     fun `Single quoted escaped string`() {
-        read("'an escaped \\' quote'")
-        assertEquals("an escaped \\", reader.stringLiteral())
+        val map = read("key = 'an escaped \\' quote'")
+        assertEquals("an escaped \\", map["key"])
     }
 
     @Test
     fun `Incomplete single quoted string`() {
-        read("'no end")
         assertThrows<IllegalArgumentException>("Expected character '''") {
-            reader.basicString()
+            read("key = 'no end")
         }
     }
 
     @Test
     fun `Early line break single quoted string`() {
-        read("'no end \n'")
         assertThrows<IllegalArgumentException>("Expected character '''") {
-            reader.stringLiteral()
+            read("key = 'no end \n'")
         }
     }
 
     @Test
     fun `Escaped string literal`() {
-        read("""'line \n fine'""")
-        assertEquals("line \\n fine", reader.stringLiteral())
+        val map = read("""key = 'line \n fine'""")
+        assertEquals("line \\n fine", map["key"])
     }
 
     @Test
     fun `String literal`() {
-        read("'line \n broken'")
         assertThrows<IllegalArgumentException>("Expected character '''") {
-            reader.stringLiteral()
+            read("key = 'line \n broken'")
         }
     }
 
     @Test
     fun `Binary value`() {
-        read("0b10011010010")
-        val binary = reader.binary()
-        assertEquals(1234L, binary)
+        val map = read("key = 0b10011010010")
+        assertEquals(1234L, map["key"])
     }
 
     @Test
     fun `Invalid binary value`() {
-        read("0b10011210010")
         assertThrows<IllegalArgumentException>("Unexpected character") {
-            reader.binary()
+            read("key = 0b10011210010")
         }
     }
 
     @Test
     fun `Long binary value`() {
-        read("0b1111111111111111111111111111111111111111111111111111111111111111")
-        assertEquals(-1L, reader.binary())
+        val map = read("key = 0b1111111111111111111111111111111111111111111111111111111111111111")
+        assertEquals(-1L, map["key"])
     }
 
     @Test
     fun `Too long binary value`() {
-        read("0b01101000011001010110110001101100011011110010110000100000011101111")
         assertThrows<IllegalArgumentException>("Unexpected character length") {
-            reader.binary()
+            read("key = 0b01101000011001010110110001101100011011110010110000100000011101111")
         }
     }
 
     @Test
     fun `Hexadecimal value`() {
-        read("0x4D2")
-        val hex = reader.hex()
-        assertEquals(1234L, hex)
+        val map = read("key = 0x4D2")
+        assertEquals(1234L, map["key"])
     }
 
     @Test
     fun `Invalid hexadecimal value`() {
-        read("0xC3PO")
         assertThrows<IllegalArgumentException>("Unexpected character") {
-            reader.hex()
+            read("key = 0xC3PO")
         }
     }
 
     @Test
     fun `Long hexadecimal value`() {
-        read("0xFFFFFFFFFFFFFFFF")
-        val hex = reader.hex()
-        assertEquals(-1L, hex)
+        val map = read("key = 0xFFFFFFFFFFFFFFFF")
+        assertEquals(-1L, map["key"])
     }
 
     @Test
     fun `Too long hexadecimal value`() {
-        read("0xFFFFFFFFFFFFFFFFF")
         assertThrows<IllegalArgumentException>("Unexpected character length") {
-            reader.hex()
+            read("key = 0xFFFFFFFFFFFFFFFFF")
         }
     }
 
     @Test
     fun `Octal value`() {
-        read("0o2322")
-        val hex = reader.octal()
-        assertEquals(1234L, hex)
+        val map = read("key = 0o2322")
+        assertEquals(1234L, map["key"])
     }
 
     @Test
     fun `Invalid octal value`() {
-        read("0o12345678")
         assertThrows<IllegalArgumentException>("Unexpected character") {
-            reader.octal()
+            read("key = 0o12345678")
         }
     }
 
     @Test
     fun `Long octal value`() {
-        read("0o777777777777777777777")
-        val hex = reader.octal()
-        assertEquals(Long.MAX_VALUE, hex)
+        val map = read("key = 0o777777777777777777777")
+        assertEquals(Long.MAX_VALUE, map["key"])
     }
 
     @Test
     fun `Too long octal value`() {
-        read("0o7777777777777777777777")
         assertThrows<IllegalArgumentException>("Unexpected character length") {
-            reader.octal()
+            read("key = 0o7777777777777777777777")
         }
     }
 
-    private fun read(text: String) {
-        charReader.set(text.toCharArray(), text.length)
+    private fun read(text: String): Map<String, Any> {
+        val api = TomlMapApi()
+        stream.read(text.byteInputStream().buffered(), api, ByteArray(100), Array(10) { "" })
+        return api.root
     }
 }

@@ -110,18 +110,21 @@ class TomlStream {
                 // Hexadecimal
                 byte = input.read() // Skip 'x'
                 var value = 0L
-
+                var index = 0
                 while (isNotEndOfValue(byte)) {
                     when (byte) {
                         UNDERSCORE -> {
                             // Skip underscores
                         }
-                        ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> {
+                        ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> {
                             value = (value shl 4) or (byte - ZERO).toLong()
                         }
                         a, b, c, d, e, f -> value = (value shl 4) or (byte - a + 10).toLong()
                         A, B, C, D, E, F -> value = (value shl 4) or (byte - A + 10).toLong()
                         else -> break
+                    }
+                    if (index++ == 16) {
+                        throw IllegalArgumentException("Unexpected character length, maximum 16 hex digits are allowed.")
                     }
                     byte = input.read()
                 }
@@ -136,16 +139,19 @@ class TomlStream {
                 // Octal
                 byte = input.read() // Skip 'o'
                 var value = 0L
-
+                var index = 0
                 while (isNotEndOfValue(byte)) {
                     when (byte) {
                         UNDERSCORE -> {
                             // Skip underscores
                         }
-                        ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN -> {
+                        ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN -> {
                             value = (value shl 3) or (byte - ZERO).toLong()
                         }
                         else -> break
+                    }
+                    if (index++ == 21) {
+                        throw IllegalArgumentException("Unexpected character length, maximum 21 octal digits are allowed.")
                     }
                     byte = input.read()
                 }
@@ -160,6 +166,7 @@ class TomlStream {
                 // Binary
                 byte = input.read() // Skip 'b'
                 var value = 0L
+                var index = 0
                 while (isNotEndOfValue(byte)) {
                     when (byte) {
                         UNDERSCORE -> {
@@ -169,6 +176,9 @@ class TomlStream {
                         else -> break
                     }
                     byte = input.read()
+                    if (index++ >= 64) {
+                        throw IllegalArgumentException("Unexpected character length, maximum 64 binary bits are allowed.")
+                    }
                 }
                 if (keyName == null) {
                     api.appendList(address, addressIndex, value)
@@ -223,6 +233,20 @@ class TomlStream {
                     var bufferIndex = 0
 
                     while (byte != DOUBLE_QUOTE && byte != EOF) {
+                        // Handle escapes here if needed
+                        buffer[bufferIndex++] = byte.toByte()
+                        byte = input.read()
+                    }
+
+                    api.appendList(address, addressIndex, String(buffer, 0, bufferIndex))
+                    input.read() // Skip closing quote
+                }
+                SINGLE_QUOTE -> {
+                    // String element
+                    byte = input.read() // Skip opening quote
+                    var bufferIndex = 0
+
+                    while (byte != SINGLE_QUOTE && byte != EOF) {
                         // Handle escapes here if needed
                         buffer[bufferIndex++] = byte.toByte()
                         byte = input.read()
@@ -328,7 +352,7 @@ class TomlStream {
         var doubleValue = value.toDouble()
         if (hasDecimal) {
             // Handle decimal part
-            var decimalFactor = 0.1
+            var decimalFactor = 1.0
             byte = input.read() // Skip the dot
             while (isNotEndOfValue(byte) && byte != e && byte != E) {
                 when (byte) {
@@ -337,8 +361,8 @@ class TomlStream {
                     }
                     ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> {
                         val digit = byte - ZERO
+                        decimalFactor /= 10
                         doubleValue += digit * decimalFactor
-                        decimalFactor *= 0.1
                     }
                     else -> break
                 }
@@ -452,11 +476,37 @@ class TomlStream {
         // Read key
         var byte = byteIn
         var addressIndex = parentAddressIndex
-
         var bufferIndex = 0
-        while (byte != EQUALS && byte != DOT && byte != EOF && byte != SPACE && byte != TAB) {
-            buffer[bufferIndex++] = byte.toByte()
-            byte = input.read()
+
+        when (byte) {
+            DOUBLE_QUOTE -> {
+                byte = input.read()
+                while (byte != DOUBLE_QUOTE && byte != EOF && byte != LINE && byte != RETURN) {
+                    buffer[bufferIndex++] = byte.toByte()
+                    byte = input.read()
+                }
+                if (byte == LINE || byte == RETURN) {
+                    throw IllegalArgumentException("Unterminated string")
+                }
+                byte = input.read() // Skip closing quote
+            }
+            SINGLE_QUOTE -> {
+                byte = input.read()
+                while (byte != SINGLE_QUOTE && byte != EOF && byte != LINE && byte != RETURN) {
+                    buffer[bufferIndex++] = byte.toByte()
+                    byte = input.read()
+                }
+                if (byte == LINE || byte == RETURN) {
+                    throw IllegalArgumentException("Unterminated string")
+                }
+                byte = input.read() // Skip closing quote
+            }
+            else -> {
+                while (byte != EQUALS && byte != DOT && byte != EOF && byte != SPACE && byte != TAB) {
+                    buffer[bufferIndex++] = byte.toByte()
+                    byte = input.read()
+                }
+            }
         }
 
         val keyName = String(buffer, 0, bufferIndex)
@@ -499,13 +549,35 @@ class TomlStream {
                 // String value
                 byte = input.read() // Skip opening quote
                 bufferIndex = 0
-
-                while (byte != DOUBLE_QUOTE && byte != EOF) {
-                    // Handle escape sequences here if needed
+                var previous = 0
+                while ((byte != DOUBLE_QUOTE || previous == BACK_SLASH) && byte != EOF && byte != LINE && byte != RETURN) {
+                    // Handle escaped quotes
                     buffer[bufferIndex++] = byte.toByte()
+                    previous = byte
                     byte = input.read()
                 }
 
+                if (byte != DOUBLE_QUOTE) {
+                    throw IllegalArgumentException("Expected character '\"'")
+                }
+                val stringValue = String(buffer, 0, bufferIndex)
+                api.appendMap(address, addressIndex, keyName, stringValue)
+
+                input.read() // Skip closing quote
+            }
+            SINGLE_QUOTE -> {
+                // String value
+                byte = input.read() // Skip opening quote
+                bufferIndex = 0
+
+                while (byte != SINGLE_QUOTE && byte != EOF && byte != LINE && byte != RETURN) {
+                    // Handle escaped quotes
+                    buffer[bufferIndex++] = byte.toByte()
+                    byte = input.read()
+                }
+                if (byte != SINGLE_QUOTE) {
+                    throw IllegalArgumentException("Expected character \"'\"")
+                }
                 val stringValue = String(buffer, 0, bufferIndex)
                 api.appendMap(address, addressIndex, keyName, stringValue)
 
@@ -535,7 +607,7 @@ class TomlStream {
             ZERO -> parseSpecialNumbers(input, api, address, addressIndex, keyName)
             ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE ->
                 parseRegularNumber(input, address, addressIndex, keyName, false, api, byte - ZERO)
-            else -> byte
+            else -> throw IllegalArgumentException("Unexpected character $byte, expecting string, number, boolean, inline array or inline table.")
         }
     }
 
@@ -554,6 +626,8 @@ class TomlStream {
         private const val CLOSE_PAREN = '}'.code
         private const val DOT = '.'.code
         private const val DOUBLE_QUOTE = '"'.code
+        private const val SINGLE_QUOTE = '\''.code
+        private const val BACK_SLASH = '\\'.code
         private const val EQUALS = '='.code
         private const val EOF = -1
         private const val ZERO = '0'.code
