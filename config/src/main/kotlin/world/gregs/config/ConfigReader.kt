@@ -259,6 +259,9 @@ abstract class ConfigReader {
         }
         if (byte == HASH) {
             byte = skipComment(input)
+            while (byte == SPACE || byte == TAB || byte == COMMA || byte == RETURN || byte == NEWLINE) {
+                byte = input.read()
+            }
         }
         // Next byte is unknown to hand it over to the next process
         return byte

@@ -15,7 +15,6 @@ class ConfigReaderTest {
             dynamicTest(file.nameWithoutExtension.toSentenceCase()) {
                 val reader = ConfigPrinter()
                 reader.parse(file.inputStream().buffered())
-            File("C:\\Users\\Greg\\IdeaProjects\\void\\config\\src\\test\\resources\\world\\gregs\\config\\read\\valid\\${file.nameWithoutExtension}.txt").writeText(reader.builder.toString())
                 val expected = ConfigReaderTest::class.java.getResourceAsStream("read/valid/${file.nameWithoutExtension}.txt")!!.readBytes().toString(Charsets.UTF_8)
                 assertEquals(expected, reader.builder.toString())
             }
