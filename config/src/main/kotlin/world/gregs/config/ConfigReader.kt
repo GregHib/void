@@ -51,6 +51,7 @@ abstract class ConfigReader {
                         section = String(buffer, 0, bufferIndex)
                     }
                     byte = input.read() // skip ]
+                    require(byte != CLOSE_BRACKET) { "Array of tables are not supported in section '$section'." }
                 }
                 DOUBLE_QUOTE -> {
                     val key = quotedString(input)
@@ -65,11 +66,20 @@ abstract class ConfigReader {
                     val value: Any = parseType(byte, input)
                     set(section, key, value)
                     byte = input.read()
+                    require(byte != DOUBLE_QUOTE) { "Multi-line strings are not supported in '$section'." }
                 }
             }
         }
 
         input.close()
+    }
+
+    private fun skipComment(input: BufferedInputStream): Int {
+        var byte = input.read()
+        while (byte != EOF && byte != RETURN && byte != NEWLINE) {
+            byte = input.read()
+        }
+        return byte
     }
 
     private fun bareKey(currentByte: Int, input: BufferedInputStream): String {
@@ -79,12 +89,14 @@ abstract class ConfigReader {
             buffer[bufferIndex++] = byte.toByte()
             byte = input.read()
         }
+        require(bufferIndex > 0) { "Expected key in section '${section}." }
         // Ignore current byte as we know it's junk
         return String(buffer, 0, bufferIndex)
     }
 
     private fun parseType(currentByte: Int, input: BufferedInputStream): Any = when (currentByte) {
         DOUBLE_QUOTE -> quotedString(input)
+        SINGLE_QUOTE -> literalString(input)
         OPEN_BRACKET -> parseArray(input)
         OPEN_BRACE -> parseMap(input)
         T -> parseTrue(input)
@@ -116,6 +128,9 @@ abstract class ConfigReader {
             var decimalFactor = 1.0
             var doubleValue = value.toDouble()
             byte = input.read() // Skip the decimal
+            require(byte == ZERO || byte == ONE || byte == TWO || byte == THREE || byte == FOUR || byte == FIVE || byte == SIX || byte == SEVEN || byte == EIGHT || byte == NINE) {
+                "Expecting a digit after decimal point in section '$section'."
+            }
             while (byte != EOF && byte != DOT && byte != RETURN && byte != NEWLINE && byte != COMMA && byte != CLOSE_BRACE && byte != CLOSE_BRACKET) {
                 when (byte) {
                     UNDERSCORE -> {
@@ -186,6 +201,10 @@ abstract class ConfigReader {
                     values.add(quotedString(input))
                     byte = input.read()
                 }
+                SINGLE_QUOTE -> {
+                    values.add(literalString(input))
+                    byte = input.read()
+                }
                 OPEN_BRACKET -> {
                     values.add(parseArray(input))
                     byte = input.read()
@@ -214,7 +233,11 @@ abstract class ConfigReader {
                     values.add(parseNumber(input, false, byte - ZERO))
                     byte = buffer[0].toInt()
                 }
-                else -> throw IllegalArgumentException("Unexpected character '${byte.toChar()}' section $section")
+                HASH -> {
+                    skipComment(input)
+                    byte = input.read()
+                }
+                else -> throw IllegalArgumentException("Unexpected character '${if (byte == NEWLINE) "\\n" else if (byte == RETURN) "\\r" else byte.toChar()}' in section $section")
             }
         }
         return values
@@ -234,27 +257,40 @@ abstract class ConfigReader {
         while (byte == SPACE || byte == TAB || byte == COMMA || byte == RETURN || byte == NEWLINE) {
             byte = input.read()
         }
+        if (byte == HASH) {
+            byte = skipComment(input)
+        }
         // Next byte is unknown to hand it over to the next process
         return byte
     }
 
     private fun quotedString(input: BufferedInputStream): String {
         bufferIndex = 0
-        var currentByte = input.read() // skip opening quote
-        while (currentByte != EOF && currentByte != DOUBLE_QUOTE) {
-            if (currentByte == BACKSLASH) {
-                currentByte = input.read()
-                if (currentByte == DOUBLE_QUOTE) {
+        var byte = input.read() // skip opening quote
+        while (byte != EOF && byte != DOUBLE_QUOTE) {
+            if (byte == BACKSLASH) {
+                byte = input.read()
+                if (byte == DOUBLE_QUOTE) {
                     buffer[bufferIndex++] = DOUBLE_QUOTE.toByte()
-                    currentByte = input.read()
+                    byte = input.read()
                     continue
                 } else {
                     buffer[bufferIndex++] = BACKSLASH.toByte()
                 }
             }
 
-            buffer[bufferIndex++] = currentByte.toByte()
-            currentByte = input.read()
+            buffer[bufferIndex++] = byte.toByte()
+            byte = input.read()
+        }
+        return String(buffer, 0, bufferIndex)
+    }
+
+    private fun literalString(input: BufferedInputStream): String {
+        bufferIndex = 0
+        var byte = input.read() // skip opening quote
+        while (byte != EOF && byte != SINGLE_QUOTE) {
+            buffer[bufferIndex++] = byte.toByte()
+            byte = input.read()
         }
         return String(buffer, 0, bufferIndex)
     }
@@ -270,6 +306,7 @@ abstract class ConfigReader {
         private const val CLOSE_BRACKET = ']'.code
         private const val DOT = '.'.code
         private const val DOUBLE_QUOTE = '"'.code
+        private const val SINGLE_QUOTE = '\''.code
         private const val EQUALS = '='.code
         private const val OPEN_BRACE = '{'.code
         private const val CLOSE_BRACE = '}'.code

@@ -1,0 +1,16 @@
+[fruits]
+name = "apple"
+
+[.physical]  # inherits fruits
+color = "red"
+shape = "round"
+
+[.varieties] # fruits.physical.varieties
+name = "granny smith"
+
+
+[fruits]
+name = "banana"
+
+[.varieties]
+name = "plantain"
