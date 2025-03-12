@@ -3,15 +3,10 @@ package world.gregs.toml.read
 import java.io.BufferedInputStream
 import java.io.File
 
+
 object ConfigReader {
     interface Api {
         fun set(section: String, key: String, value: Any)
-        fun set(section: String, key: String, value: String)
-        fun set(section: String, key: String, value: Long)
-        fun set(section: String, key: String, value: Double)
-        fun set(section: String, key: String, value: Boolean)
-        fun set(section: String, key: String, values: List<Any>)
-        fun set(section: String, key: String, values: Map<String, Any>)
     }
 
     class IniParser(private val api: Api) {
@@ -22,70 +17,56 @@ object ConfigReader {
         fun parse(file: File) {
             val input = file.inputStream().buffered()
             var byte = input.read()
-
-            while (byte != -1) {
+            while (byte != EOF) {
                 when (byte) {
-                    ' '.code, '\t'.code -> {
-                        // Skip whitespace
-                        while (byte == ' '.code || byte == '\t'.code) {
+                    SPACE, TAB -> { // Skip whitespace
+                        while (byte == SPACE || byte == TAB) {
                             byte = input.read()
                         }
                         continue
                     }
-                    '#'.code -> {
-                        // Skip comments
-                        while (byte != -1 && byte != '\r'.code && byte != '\n'.code) {
+                    HASH -> { // Skip comments
+                        while (byte != EOF && byte != RETURN && byte != NEWLINE) {
                             byte = input.read()
                         }
                         continue
                     }
-                    '\r'.code, '\n'.code -> {
-                        // Skip newlines
-                        while (byte == '\r'.code || byte == '\n'.code) {
+                    RETURN, NEWLINE -> { // Skip newlines
+                        while (byte == RETURN || byte == NEWLINE) {
                             byte = input.read()
                         }
                         continue
                     }
-                    '['.code -> {
-                        // Parse section
-                        bufferIndex = 0
+                    OPEN_BRACKET -> { // Section
                         byte = input.read() // skip [
+                        val inherit = byte == DOT
 
-                        // Handle section inheritance with [parent.child]
-                        if (byte == '.'.code) {
-                            for (c in section) {
-                                buffer[bufferIndex++] = c.code.toByte()
-                            }
-                        }
-
-                        while (byte != -1 && byte != ']'.code) {
+                        bufferIndex = 0
+                        while (byte != EOF && byte != CLOSE_BRACKET) {
                             buffer[bufferIndex++] = byte.toByte()
                             byte = input.read()
                         }
 
-                        section = String(buffer, 0, bufferIndex)
+                        if (inherit) {
+                            section += String(buffer, 0, bufferIndex)
+                        } else {
+                            section = String(buffer, 0, bufferIndex)
+                        }
                         byte = input.read() // skip ]
                     }
-                    '"'.code -> {
-                        // Parse quoted key
-                        quotedString(input)
-                        val key = String(buffer, 0, bufferIndex)
-                        byte = input.read() // Skip closing quote
-
-                        // Skip whitespace and equals sign
-                        byte = skipKeyValueWhitespace(byte, input)
-
-                        byte = parseValue(byte, input, section, key)
+                    DOUBLE_QUOTE -> {
+                        val key = quotedString(input)
+                        byte = skipKeyValueWhitespace(input)
+                        val value: Any = parseType(byte, input)
+                        api.set(section, key, value)
+                        byte = input.read()
                     }
                     else -> {
-                        byte = bareKey(byte, input)
-
-                        val key = String(buffer, 0, bufferIndex)
-
-                        // Skip whitespace and equals sign
-                        byte = skipKeyValueWhitespace(byte, input)
-
-                        byte = parseValue(byte, input, section, key)
+                        val key = bareKey(byte, input)
+                        byte = skipKeyValueWhitespace(input)
+                        val value: Any = parseType(byte, input)
+                        api.set(section, key, value)
+                        byte = input.read()
                     }
                 }
             }
@@ -93,78 +74,57 @@ object ConfigReader {
             input.close()
         }
 
-        private fun bareKey(currentByte: Int, input: BufferedInputStream): Int {
+        private fun bareKey(currentByte: Int, input: BufferedInputStream): String {
             bufferIndex = 0
             var byte = currentByte
-            while (byte != -1 && byte != ' '.code && byte != '\t'.code && byte != '='.code && byte != '\r'.code && byte != '\n'.code) {
+            while (byte != EOF && byte != SPACE && byte != TAB && byte != EQUALS && byte != RETURN && byte != NEWLINE) {
                 buffer[bufferIndex++] = byte.toByte()
                 byte = input.read()
             }
-            return byte
-        }
-
-        private fun parseValue(byte: Int, input: BufferedInputStream, section: String, key: String): Int {
-            var currentByte = byte
-
-            // Skip leading whitespace
-            while (currentByte == ' '.code || currentByte == '\t'.code) {
-                currentByte = input.read()
-            }
-
-            val value: Any = parseType(currentByte, input)
-            api.set(section, key, value)
-            return input.read()
+            // Ignore current byte as we know it's junk
+            return String(buffer, 0, bufferIndex)
         }
 
         private fun parseType(currentByte: Int, input: BufferedInputStream): Any = when (currentByte) {
-            '"'.code -> {
-                quotedString(input)
-                String(buffer, 0, bufferIndex)
-            }
-            '['.code -> parseArray(input)
-            '{'.code -> parseMap(input)
-            't'.code -> {
-                parseTrue(input)
-                true
-            }
-            'f'.code -> {
-                parseFalse(input)
-                false
-            }
-            '-'.code -> parseNumber(input, true, 0)
-            '+'.code -> parseNumber(input, false, 0)
-            '0'.code, '1'.code, '2'.code, '3'.code, '4'.code, '5'.code, '6'.code, '7'.code, '8'.code, '9'.code ->
-                parseNumber(input, false, currentByte - '0'.code)
+            DOUBLE_QUOTE -> quotedString(input)
+            OPEN_BRACKET -> parseArray(input)
+            OPEN_BRACE -> parseMap(input)
+            T -> parseTrue(input)
+            F -> parseFalse(input)
+            MINUS -> parseNumber(input, true, 0)
+            PLUS -> parseNumber(input, false, 0)
+            ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE ->
+                parseNumber(input, false, currentByte - ZERO)
             else -> throw IllegalArgumentException("Unexpected character '${currentByte.toChar()}'")
         }
 
         private fun parseNumber(input: BufferedInputStream, negative: Boolean, initialDigit: Int): Number {
             var value = initialDigit.toLong()
             var byte = input.read()
-            while (byte != -1 && byte != '.'.code && byte != '\r'.code && byte != '\n'.code && byte != ','.code && byte != '}'.code && byte != ']'.code) {
+            while (byte != EOF && byte != DOT && byte != RETURN && byte != NEWLINE && byte != COMMA && byte != CLOSE_BRACE && byte != CLOSE_BRACKET) {
                 when (byte) {
-                    '_'.code -> {
+                    UNDERSCORE -> {
                         // Skip underscores
                     }
-                    '0'.code, '1'.code, '2'.code, '3'.code, '4'.code, '5'.code, '6'.code, '7'.code, '8'.code, '9'.code -> {
-                        val digit = byte - '0'.code
+                    ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> {
+                        val digit = byte - ZERO
                         value = value * 10 + digit
                     }
                     else -> break
                 }
                 byte = input.read()
             }
-            if (byte == '.'.code) {
+            if (byte == DOT) {
                 var decimalFactor = 1.0
                 var doubleValue = value.toDouble()
-                byte = input.read() // Skip the dot
-                while (byte != -1 && byte != '.'.code && byte != '\r'.code && byte != '\n'.code && byte != ','.code && byte != '}'.code && byte != ']'.code) {
+                byte = input.read() // Skip the decimal
+                while (byte != EOF && byte != DOT && byte != RETURN && byte != NEWLINE && byte != COMMA && byte != CLOSE_BRACE && byte != CLOSE_BRACKET) {
                     when (byte) {
-                        '_'.code -> {
+                        UNDERSCORE -> {
                             // Skip underscores
                         }
-                        '0'.code, '1'.code, '2'.code, '3'.code, '4'.code, '5'.code, '6'.code, '7'.code, '8'.code, '9'.code -> {
-                            val digit = byte - '0'.code
+                        ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> {
+                            val digit = byte - ZERO
                             decimalFactor /= 10
                             doubleValue += digit * decimalFactor
                         }
@@ -177,45 +137,35 @@ object ConfigReader {
             return if (negative) -value else value
         }
 
-        private fun parseTrue(input: BufferedInputStream) {
-            if (input.read() != 'r'.code && input.read() != 'u'.code && input.read() != 'e'.code) {
+        private fun parseTrue(input: BufferedInputStream): Boolean {
+            if (input.read() != R && input.read() != U && input.read() != E) {
                 throw IllegalArgumentException("Expected boolean true.")
             }
+            return true
         }
 
-        private fun parseFalse(input: BufferedInputStream) {
-            if (input.read() != 'a'.code && input.read() != 'l'.code && input.read() != 's'.code && input.read() != 'e'.code) {
+        private fun parseFalse(input: BufferedInputStream): Boolean {
+            if (input.read() != A && input.read() != L && input.read() != S && input.read() != E) {
                 throw IllegalArgumentException("Expected boolean false.")
             }
+            return false
         }
 
         private fun parseMap(input: BufferedInputStream): Map<String, Any> {
             val map = mutableMapOf<String, Any>()
             var byte = input.read() // skip opening brace
 
-            while (byte != -1 && byte != '}'.code) {
+            while (byte != EOF && byte != CLOSE_BRACE) {
                 // Skip whitespace and commas
                 byte = skipMultilineWhitespace(byte, input)
-
-                if (byte == '}'.code) {
-                    break
+                val mapKey = when (byte) {
+                    CLOSE_BRACE -> {
+                        break
+                    }
+                    DOUBLE_QUOTE -> quotedString(input)
+                    else -> bareKey(byte, input)
                 }
-
-                byte = if (byte == '"'.code) {
-                    quotedString(input)
-                    input.read() // Skip closing quote
-                } else {
-                    bareKey(byte, input)
-                }
-
-                val mapKey = String(buffer, 0, bufferIndex).trim()
-
-                // Skip whitespace and equals sign
-                byte = skipKeyValueWhitespace(byte, input)
-
-                // Parse map value
-                bufferIndex = 0
-
+                byte = skipKeyValueWhitespace(input)
                 val value = parseType(byte, input)
                 map[mapKey] = value
                 byte = input.read()
@@ -224,61 +174,68 @@ object ConfigReader {
             return map
         }
 
-        private fun skipKeyValueWhitespace(byte: Int, input: BufferedInputStream): Int {
-            var byte1 = byte
-            while (byte1 == ' '.code || byte1 == '\t'.code || byte1 == '='.code) {
-                byte1 = input.read()
-            }
-            return byte1
-        }
-
         private fun parseArray(input: BufferedInputStream): List<Any> {
-            // Parse array [1, 2, 3]
             val values = mutableListOf<Any>()
             var byte = input.read() // skip opening bracket
-
-            while (byte != -1 && byte != ']'.code) {
+            while (byte != EOF && byte != CLOSE_BRACKET) {
                 // Skip whitespace and commas
                 byte = skipMultilineWhitespace(byte, input)
-
-                if (byte == ']'.code) {
-                    break
+                val value: Any = when (byte) {
+                    CLOSE_BRACKET -> break
+                    DOUBLE_QUOTE -> quotedString(input)
+                    OPEN_BRACKET -> parseArray(input)
+                    OPEN_BRACE -> parseMap(input)
+                    T -> parseTrue(input)
+                    F -> parseFalse(input)
+                    MINUS -> parseNumber(input, true, 0)
+                    PLUS -> parseNumber(input, false, 0)
+                    ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE ->
+                        parseNumber(input, false, byte - ZERO)
+                    else -> throw IllegalArgumentException("Unexpected character '${byte.toChar()}'")
                 }
-
-                val value = parseType(byte, input)
                 values.add(value)
                 byte = input.read()
             }
             return values
         }
 
-        private fun skipMultilineWhitespace(byte: Int, input: BufferedInputStream): Int {
-            var byte1 = byte
-            while (byte1 == ' '.code || byte1 == '\t'.code || byte1 == ','.code || byte1 == '\r'.code || byte1 == '\n'.code) {
-                byte1 = input.read()
+        private fun skipKeyValueWhitespace(input: BufferedInputStream): Int {
+            var byte = input.read()
+            while (byte == SPACE || byte == TAB || byte == EQUALS) {
+                byte = input.read()
             }
-            return byte1
+            // Next byte is unknown to hand it over to the next process
+            return byte
         }
 
-        private fun quotedString(input: BufferedInputStream) {
+        private fun skipMultilineWhitespace(currentByte: Int, input: BufferedInputStream): Int {
+            var byte = currentByte
+            while (byte == SPACE || byte == TAB || byte == COMMA || byte == RETURN || byte == NEWLINE) {
+                byte = input.read()
+            }
+            // Next byte is unknown to hand it over to the next process
+            return byte
+        }
+
+        private fun quotedString(input: BufferedInputStream): String {
             bufferIndex = 0
             var currentByte = input.read() // skip opening quote
-
-            while (currentByte != -1 && currentByte != '"'.code) {
-                if (currentByte == '\\'.code) {
+            while (currentByte != EOF && currentByte != DOUBLE_QUOTE) {
+                if (currentByte == BACKSLASH) {
                     currentByte = input.read()
-                    if (currentByte == '"'.code) {
-                        buffer[bufferIndex++] = '"'.code.toByte()
+                    if (currentByte == DOUBLE_QUOTE) {
+                        buffer[bufferIndex++] = DOUBLE_QUOTE.toByte()
                         currentByte = input.read()
                         continue
                     } else {
-                        buffer[bufferIndex++] = '\\'.code.toByte()
+                        buffer[bufferIndex++] = BACKSLASH.toByte()
                     }
                 }
 
                 buffer[bufferIndex++] = currentByte.toByte()
                 currentByte = input.read()
             }
+            return String(buffer, 0, bufferIndex)
         }
     }
 
@@ -286,32 +243,8 @@ object ConfigReader {
     class IniConfig : Api {
         val sections = mutableMapOf<String, MutableMap<String, Any>>()
 
-        override fun set(section: String, key: String, value: String) {
-            getOrCreateSection(section)[key] = value
-        }
-
-        override fun set(section: String, key: String, value: Long) {
-            getOrCreateSection(section)[key] = value
-        }
-
-        override fun set(section: String, key: String, value: Double) {
-            getOrCreateSection(section)[key] = value
-        }
-
         override fun set(section: String, key: String, value: Any) {
             getOrCreateSection(section)[key] = value
-        }
-
-        override fun set(section: String, key: String, value: Boolean) {
-            getOrCreateSection(section)[key] = value
-        }
-
-        override fun set(section: String, key: String, values: List<Any>) {
-            getOrCreateSection(section)[key] = values
-        }
-
-        override fun set(section: String, key: String, values: Map<String, Any>) {
-            getOrCreateSection(section)[key] = values
         }
 
         private fun getOrCreateSection(section: String): MutableMap<String, Any> {
@@ -328,7 +261,14 @@ object ConfigReader {
             val value = sections[section]?.get(key) ?: return default
             return when (value) {
                 is Long -> value
-                is String -> value.toLongOrNull() ?: default
+                else -> default
+            }
+        }
+
+        fun getDouble(section: String, key: String, default: Double = 0.0): Double {
+            val value = sections[section]?.get(key) ?: return default
+            return when (value) {
+                is Double -> value
                 else -> default
             }
         }
@@ -337,42 +277,29 @@ object ConfigReader {
             val value = sections[section]?.get(key) ?: return default
             return when (value) {
                 is Boolean -> value
-                is String -> value.equals("true", ignoreCase = true)
                 else -> default
             }
         }
 
-        fun getList(section: String, key: String): List<String> {
+        @Suppress("UNCHECKED_CAST")
+        fun getList(section: String, key: String): List<Any> {
             val value = sections[section]?.get(key) ?: return emptyList()
             return when (value) {
-                is List<*> -> value.filterIsInstance<String>()
+                is List<*> -> value as List<Any>
                 else -> emptyList()
             }
         }
 
-        fun getMap(section: String, key: String): Map<String, String> {
+        @Suppress("UNCHECKED_CAST")
+        fun getMap(section: String, key: String): Map<String, Any> {
             val value = sections[section]?.get(key) ?: return emptyMap()
             return when (value) {
-                is Map<*, *> -> {
-                    @Suppress("UNCHECKED_CAST")
-                    value as Map<String, String>
-                }
+                is Map<*, *> -> value as Map<String, Any>
                 else -> emptyMap()
             }
         }
     }
 
-    // Usage example
-    /*fun main() {
-        val config = IniConfig()
-        val parser = IniParser(config)
-        parser.parse(File("config.ini"))
-
-        // Access values
-        val serverPort = config.getLong("server", "port", 8080)
-        val debugMode = config.getBoolean("debug", "enabled", false)
-        val userList = config.getList("users", "admins")
-    }*/
     @JvmStatic
     fun main(args: Array<String>) {
 //        val file = File("./temp/toml/interfaces.toml")
@@ -396,4 +323,41 @@ object ConfigReader {
 
         println("Took ${System.currentTimeMillis() - start}ms")
     }
+
+    private const val EOF = -1
+    private const val SPACE = ' '.code
+    private const val TAB = '\t'.code
+    private const val HASH = '#'.code
+    private const val RETURN = '\r'.code
+    private const val NEWLINE = '\n'.code
+    private const val OPEN_BRACKET = '['.code
+    private const val CLOSE_BRACKET = ']'.code
+    private const val DOT = '.'.code
+    private const val DOUBLE_QUOTE = '"'.code
+    private const val EQUALS = '='.code
+    private const val OPEN_BRACE = '{'.code
+    private const val CLOSE_BRACE = '}'.code
+    private const val COMMA = ','.code
+    private const val T = 't'.code
+    private const val F = 'f'.code
+    private const val MINUS = '-'.code
+    private const val PLUS = '+'.code
+    private const val ZERO = '0'.code
+    private const val ONE = '1'.code
+    private const val TWO = '2'.code
+    private const val THREE = '3'.code
+    private const val FOUR = '4'.code
+    private const val FIVE = '5'.code
+    private const val SIX = '6'.code
+    private const val SEVEN = '7'.code
+    private const val EIGHT = '8'.code
+    private const val NINE = '9'.code
+    private const val UNDERSCORE = '_'.code
+    private const val R = 'r'.code
+    private const val U = 'u'.code
+    private const val E = 'e'.code
+    private const val A = 'a'.code
+    private const val L = 'l'.code
+    private const val S = 's'.code
+    private const val BACKSLASH = '\\'.code
 }
