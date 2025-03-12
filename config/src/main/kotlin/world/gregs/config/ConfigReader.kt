@@ -6,6 +6,7 @@ abstract class ConfigReader {
     abstract val buffer: ByteArray
     private var bufferIndex: Int = 0
     private var section: String = ""
+    private var parent: String = ""
 
     open fun map(): MutableMap<String, Any> = mutableMapOf()
 
@@ -46,9 +47,10 @@ abstract class ConfigReader {
                     }
 
                     if (inherit) {
-                        section += String(buffer, 0, bufferIndex)
+                        section = "${parent}${String(buffer, 0, bufferIndex)}"
                     } else {
                         section = String(buffer, 0, bufferIndex)
+                        parent = section
                     }
                     byte = input.read() // skip ]
                     require(byte != CLOSE_BRACKET) { "Array of tables are not supported in section '$section'." }
@@ -169,7 +171,6 @@ abstract class ConfigReader {
     private fun parseMap(input: BufferedInputStream): Map<String, Any> {
         val map = map()
         var byte = input.read() // skip opening brace
-
         while (byte != EOF && byte != CLOSE_BRACE) {
             // Skip whitespace and commas
             byte = skipMultilineWhitespace(byte, input)

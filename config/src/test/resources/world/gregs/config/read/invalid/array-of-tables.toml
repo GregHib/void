@@ -1,0 +1,4 @@
+# INVALID
+[[fruit]]  # parser must throw an error
+#
+name = "apple"

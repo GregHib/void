@@ -1,8 +1,0 @@
-[x.y.z]
-alphabet = true
-
-[.a] # inheriting previous table
-name = "a"
-
-[.a] # inheriting same table
-start = true

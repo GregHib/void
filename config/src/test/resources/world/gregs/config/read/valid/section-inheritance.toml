@@ -5,7 +5,7 @@ name = "apple"
 color = "red"
 shape = "round"
 
-[.varieties] # fruits.physical.varieties
+[.varieties] # fruits.varieties
 name = "granny smith"
 
 
