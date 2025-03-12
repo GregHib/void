@@ -5,6 +5,7 @@ dependencies {
     implementation(project(":game"))
     implementation(project(":network"))
     implementation(project(":yaml"))
+    implementation(project(":strict-toml"))
     implementation(project(":types"))
 
     implementation("org.seleniumhq.selenium:selenium-java:4.16.1")

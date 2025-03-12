@@ -1,10 +1,18 @@
-package world.gregs.toml.read
+package world.gregs.config
 
-import world.gregs.toml.read.ConfigReader.Api
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 
+/**
+ * Basic implementation of [ConfigReader]
+ */
+class ConfigMap : ConfigReader() {
+    override val buffer: ByteArray = ByteArray(1024) // Maximum string length
+    val sections = Object2ObjectOpenHashMap<String, MutableMap<String, Any>>(100, 0.25f)
 
-class IniConfig : Api {
-    val sections = mutableMapOf<String, MutableMap<String, Any>>()
+    override fun map() = Object2ObjectOpenHashMap<String, Any>(8, 0.25f)
+
+    override fun list() = ObjectArrayList<Any>(2)
 
     override fun set(section: String, key: String, value: Any) {
         getOrCreateSection(section)[key] = value

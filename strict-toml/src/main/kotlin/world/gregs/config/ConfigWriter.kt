@@ -1,31 +1,32 @@
-package world.gregs.toml.read
+package world.gregs.config
 
-import java.io.File
 import java.io.Writer
 
 // Extension of the IniConfig class to include encoding functionality
 class ConfigWriter {
 
-    // Encoding functionality
-    fun encode(file: File, config: IniConfig) {
-        file.bufferedWriter().use { writer ->
-            encodeTo(writer, config)
-        }
-    }
-
-    fun encodeTo(writer: Writer, config: IniConfig) {
-        val sectionParentMap = buildSectionHierarchy(config)
+    fun encode(writer: Writer, map: Map<String, Any>) {
+        val sectionParentMap = buildSectionHierarchy(map)
 
         // Write sections in an order that ensures parents come before children
-        val orderedSections = orderSections(config, sectionParentMap)
+        val orderedSections = orderSections(map, sectionParentMap)
+
+        for ((key, value) in map) {
+            if (value !is Map<*, *>) {
+                encodeKeyValue(writer, key, value)
+            }
+        }
 
         for (section in orderedSections) {
             // Write section header
             writer.write("[$section]\n")
 
             // Write section contents
-            config.sections[section]?.forEach { (key, value) ->
-                encodeKeyValue(writer, key, value)
+            val m = map[section]
+            if (m is Map<*, *>) {
+                for ((key, value) in m as Map<String, Any>) {
+                    encodeKeyValue(writer, key, value)
+                }
             }
 
             // Add a blank line after each section
@@ -33,7 +34,7 @@ class ConfigWriter {
         }
     }
 
-    private fun orderSections(config: IniConfig, sectionParentMap: Map<String, String?>): List<String> {
+    private fun orderSections(map: Map<String, Any>, sectionParentMap: Map<String, String?>): List<String> {
         val result = mutableListOf<String>()
         val visited = mutableSetOf<String>()
 
@@ -50,15 +51,18 @@ class ConfigWriter {
         }
 
         // Visit all sections
-        config.sections.keys.forEach { visit(it) }
-
+        for ((key, value) in map) {
+            if (value is Map<*, *>) {
+                visit(key)
+            }
+        }
         return result
     }
 
-    private fun buildSectionHierarchy(config: IniConfig): Map<String, String?> {
+    private fun buildSectionHierarchy(map: Map<String, Any>): Map<String, String?> {
         val result = mutableMapOf<String, String?>()
 
-        for (section in config.sections.keys) {
+        for (section in map.keys) {
             val lastDotIndex = section.lastIndexOf('.')
             if (lastDotIndex > 0) {
                 val parent = section.substring(0, lastDotIndex)
@@ -104,7 +108,7 @@ class ConfigWriter {
     private fun encodeList(writer: Writer, list: List<*>) {
         writer.write("[")
 
-        list.forEachIndexed { index, item ->
+        for ((index, item) in list.withIndex()) {
             if (index > 0) {
                 writer.write(", ")
             }
@@ -121,7 +125,8 @@ class ConfigWriter {
     private fun encodeMap(writer: Writer, map: Map<*, *>) {
         writer.write("{")
 
-        map.entries.forEachIndexed { index, (key, value) ->
+        for ((index, pair) in map.entries.withIndex()) {
+            val (key, value) = pair
             if (index > 0) {
                 writer.write(", ")
             }
@@ -167,61 +172,4 @@ class ConfigWriter {
     private fun escapeQuotes(str: String): String {
         return str.replace("\"", "\\\"")
     }
-}
-
-// Helper function to create a new INI config and populate it
-fun createIniConfig(): IniConfig {
-    val config = IniConfig()
-
-    // Add some values
-    config.set("server", "host", "localhost")
-    config.set("server", "port", 8080L)
-    config.set("server", "debug", true)
-
-    // Add a list
-    config.set("users", "admins", listOf("admin", "root", "superuser"))
-
-    // Add a map
-    config.set("database", "credentials", mapOf(
-        "username" to "dbuser",
-        "password" to "dbpass",
-        "host" to "db.example.com"
-    ))
-
-    // Add a section with inheritance
-    config.set("server.http", "enabled", true)
-    config.set("server.http", "port", 80L)
-
-    return config
-}
-
-// Usage example
-fun main() {
-    // Create a new config
-    val config = createIniConfig()
-    val encoder = ConfigWriter()
-
-    val start = System.nanoTime()
-    // Write to file
-    encoder.encode(File("./output.ini"), config)
-    println("Took ${System.nanoTime() - start}ns")
-
-    // Write with comments
-    val comments = mapOf(
-        "" to "Configuration file for the application",
-        "server.host" to "The hostname to bind to",
-        "server.port" to "The port to listen on",
-        "database.credentials" to "Database connection credentials"
-    )
-
-    val sectionComments = mapOf(
-        "server" to "Server configuration",
-        "users" to "User management",
-        "database" to "Database settings"
-    )
-
-    // Read the file back
-    val readConfig = IniConfig()
-    val parser = ConfigReader.IniParser(readConfig)
-    parser.parse(File("./output.ini"))
 }
