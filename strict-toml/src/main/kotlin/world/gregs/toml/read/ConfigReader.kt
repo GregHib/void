@@ -95,7 +95,7 @@ object ConfigReader {
             PLUS -> parseNumber(input, false, 0)
             ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE ->
                 parseNumber(input, false, currentByte - ZERO)
-            else -> throw IllegalArgumentException("Unexpected character '${currentByte.toChar()}'")
+            else -> throw IllegalArgumentException("Unexpected character '${currentByte.toChar()}' in section '$section'")
         }
 
         private fun parseNumber(input: BufferedInputStream, negative: Boolean, initialDigit: Int): Number {
@@ -138,17 +138,17 @@ object ConfigReader {
         }
 
         private fun parseTrue(input: BufferedInputStream): Boolean {
-            if (input.read() != R && input.read() != U && input.read() != E) {
-                throw IllegalArgumentException("Expected boolean true.")
+            if (input.read() == R && input.read() == U && input.read() == E) {
+                return true
             }
-            return true
+            throw IllegalArgumentException("Expected boolean 'true' at section $section")
         }
 
         private fun parseFalse(input: BufferedInputStream): Boolean {
-            if (input.read() != A && input.read() != L && input.read() != S && input.read() != E) {
-                throw IllegalArgumentException("Expected boolean false.")
+            if (input.read() == A && input.read() == L && input.read() == S && input.read() == E) {
+                return false
             }
-            return false
+            throw IllegalArgumentException("Expected boolean 'false' at section $section")
         }
 
         private fun parseMap(input: BufferedInputStream): Map<String, Any> {
@@ -177,6 +177,7 @@ object ConfigReader {
         private fun parseArray(input: BufferedInputStream): List<Any> {
             val values = mutableListOf<Any>()
             var byte = input.read() // skip opening bracket
+            // TODO fix last value read skipping the closing bracket
             while (byte != EOF && byte != CLOSE_BRACKET) {
                 // Skip whitespace and commas
                 byte = skipMultilineWhitespace(byte, input)
@@ -191,7 +192,7 @@ object ConfigReader {
                     PLUS -> parseNumber(input, false, 0)
                     ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE ->
                         parseNumber(input, false, byte - ZERO)
-                    else -> throw IllegalArgumentException("Unexpected character '${byte.toChar()}'")
+                    else -> throw IllegalArgumentException("Unexpected character '${byte.toChar()}' section $section")
                 }
                 values.add(value)
                 byte = input.read()
@@ -240,88 +241,20 @@ object ConfigReader {
     }
 
     // Implementation of the Api interface
-    class IniConfig : Api {
-        val sections = mutableMapOf<String, MutableMap<String, Any>>()
-
-        override fun set(section: String, key: String, value: Any) {
-            getOrCreateSection(section)[key] = value
-        }
-
-        private fun getOrCreateSection(section: String): MutableMap<String, Any> {
-            return sections.getOrPut(section) { mutableMapOf() }
-        }
-
-        // Helper methods to retrieve values
-        fun getString(section: String, key: String, default: String = ""): String {
-            val value = sections[section]?.get(key) ?: return default
-            return value.toString()
-        }
-
-        fun getLong(section: String, key: String, default: Long = 0): Long {
-            val value = sections[section]?.get(key) ?: return default
-            return when (value) {
-                is Long -> value
-                else -> default
-            }
-        }
-
-        fun getDouble(section: String, key: String, default: Double = 0.0): Double {
-            val value = sections[section]?.get(key) ?: return default
-            return when (value) {
-                is Double -> value
-                else -> default
-            }
-        }
-
-        fun getBoolean(section: String, key: String, default: Boolean = false): Boolean {
-            val value = sections[section]?.get(key) ?: return default
-            return when (value) {
-                is Boolean -> value
-                else -> default
-            }
-        }
-
-        @Suppress("UNCHECKED_CAST")
-        fun getList(section: String, key: String): List<Any> {
-            val value = sections[section]?.get(key) ?: return emptyList()
-            return when (value) {
-                is List<*> -> value as List<Any>
-                else -> emptyList()
-            }
-        }
-
-        @Suppress("UNCHECKED_CAST")
-        fun getMap(section: String, key: String): Map<String, Any> {
-            val value = sections[section]?.get(key) ?: return emptyMap()
-            return when (value) {
-                is Map<*, *> -> value as Map<String, Any>
-                else -> emptyMap()
-            }
-        }
-    }
 
     @JvmStatic
     fun main(args: Array<String>) {
-//        val file = File("./temp/toml/interfaces.toml")
-
-
         val filter = File("./temp/toml/").walkTopDown().filter { it.isFile && it.extension == "toml" }
 
-        var buffer = ByteArray(1024)
-        var bufferIndex = 0
-        var start = System.currentTimeMillis()
         val config = IniConfig()
         val reader = IniParser(config)
-        var section = ""
+        val start = System.nanoTime()
         for (file in filter) {
-            println(file.name)
+            if(file.name.contains("areas"))
             reader.parse(file)
-            println(config.sections)
-            break
         }
+        println("Took ${System.nanoTime() - start}ns")
         println(config.getLong("harralander_tar", "id"))
-
-        println("Took ${System.currentTimeMillis() - start}ms")
     }
 
     private const val EOF = -1
