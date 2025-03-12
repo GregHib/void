@@ -11121,7 +11121,7 @@ cosmic_altar:
   examine: "A mysterious power emanates from this shrine."
 law_altar:
   id: 2485
-  examine: "A mysterious pow`er emanates from this shrine."
+  examine: "A mysterious power emanates from this shrine."
 nature_altar:
   id: 2486
   examine: "A mysterious power emanates from this shrine."
