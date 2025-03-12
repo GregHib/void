@@ -271,11 +271,11 @@ class TomlReader(private val reader: CharReader) {
     fun basicString(): String {
         reader.skip(1)
         if (reader.char == '"') {
-            if (reader.peek != '"') {
-                throw IllegalArgumentException("Expected character '\"' at ${reader.exception}.")
+            if (reader.peek == '"') {
+                reader.skip(2)
+                return multiLineString()
             }
-            reader.skip(2)
-            return multiLineString()
+//            throw IllegalArgumentException("Expected character '\"' at ${reader.exception}.")
         }
         val start = reader.index
         while (reader.inBounds) {

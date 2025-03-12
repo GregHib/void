@@ -607,7 +607,7 @@ class TomlStream {
             ZERO -> parseSpecialNumbers(input, api, address, addressIndex, keyName)
             ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE ->
                 parseRegularNumber(input, address, addressIndex, keyName, false, api, byte - ZERO)
-            else -> throw IllegalArgumentException("Unexpected character $byte, expecting string, number, boolean, inline array or inline table.")
+            else -> throw IllegalArgumentException("Unexpected character ${byte.toChar()}, expecting string, number, boolean, inline array or inline table.")
         }
     }
 
