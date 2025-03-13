@@ -103,7 +103,7 @@ object Main {
         single(createdAtStart = true) { WeaponStyleDefinitions().load() }
         single(createdAtStart = true) { WeaponAnimationDefinitions().load() }
         single(createdAtStart = true) { AmmoDefinitions().load() }
-        single(createdAtStart = true) { ParameterDefinitions(CategoryDefinitions().load(), get()).load() }
+        single(createdAtStart = true) { ParameterDefinitions(get(), get()).load() }
         single(createdAtStart = true) { FontDefinitions(FontDecoder().load(cache)).load() }
     }
 }

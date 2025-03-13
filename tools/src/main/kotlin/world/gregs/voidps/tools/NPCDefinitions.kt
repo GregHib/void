@@ -14,7 +14,7 @@ object NPCDefinitions {
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("storage.cache.path"))
         val yaml = Yaml()
-        val categories = CategoryDefinitions().load(yaml, property("definitions.categories"))
+        val categories = CategoryDefinitions().load(property("definitions.categories"))
         val ammo = AmmoDefinitions().load(property("definitions.ammoGroups"))
         val parameters = ParameterDefinitions(categories, ammo).load(yaml, property("definitions.parameters"))
         val definitions = NPCDecoder(true, parameters).load(cache)
