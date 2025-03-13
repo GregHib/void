@@ -6,8 +6,7 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 /**
  * Basic implementation of [ConfigReader]
  */
-class ConfigMap : ConfigReader() {
-    override val buffer: ByteArray = ByteArray(1024) // Maximum string length
+class ConfigMap : ConfigReader(1024) {
     val sections = Object2ObjectOpenHashMap<String, MutableMap<String, Any>>(100, 0.25f)
 
     override fun map() = Object2ObjectOpenHashMap<String, Any>(8, 0.25f)

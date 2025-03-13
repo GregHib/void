@@ -21,6 +21,12 @@ object Config {
         return api.sections
     }
 
+    fun decodeFromFile(path: String, api: ConfigReader) {
+        BufferedInputStream(FileInputStream(path)).use { input ->
+            api.parse(input)
+        }
+    }
+
     fun encodeToString(map: Map<String, Any>): String {
         val stringWriter = StringWriter()
         BufferedWriter(stringWriter).use { output ->

@@ -2,8 +2,8 @@ package world.gregs.config
 
 import java.io.BufferedInputStream
 
-abstract class ConfigReader {
-    abstract val buffer: ByteArray
+abstract class ConfigReader(maxStringSize: Int) {
+    val buffer: ByteArray = ByteArray(maxStringSize)
     private var bufferIndex: Int = 0
     private var section: String = ""
     private var parent: String = ""
