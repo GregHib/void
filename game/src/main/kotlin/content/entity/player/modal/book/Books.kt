@@ -1,12 +1,15 @@
 package content.entity.player.modal.book
 
+import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import world.gregs.config.Config
+import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.Yaml
-import world.gregs.yaml.read.YamlReaderConfiguration
 
 class Books {
 
@@ -21,18 +24,25 @@ class Books {
     fun title(name: String) = titles.getOrDefault(name, "")
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["definitions.books"]): Books {
+    fun load(path: String = Settings["definitions.books"]): Books {
         timedLoad("book") {
-            val config = object : YamlReaderConfiguration(2, 2) {
-                override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
-                    super.add(list, (value as String).trimIndent(), parentMap)
+            val longBooks = ObjectOpenHashSet<String>(10, Hash.VERY_FAST_LOAD_FACTOR)
+            val titles = Object2ObjectOpenHashMap<String, String>(10, Hash.VERY_FAST_LOAD_FACTOR)
+            val books = Object2ObjectOpenHashMap<String, List<String>>(10, Hash.VERY_FAST_LOAD_FACTOR)
+            val reader = object : ConfigReader(50) {
+                override fun set(section: String, key: String, value: Any) {
+                    when (key) {
+                        "long" -> if (value is Boolean && value) longBooks.add(section)
+                        "title" -> titles[section] = value as String
+                        "pages" -> books[section] = value as List<String>
+                    }
                 }
             }
-            val data = yaml.load<Map<String, Map<String, Any>>>(path, config)
-            this.longBooks = data.mapNotNull { if (it.value["long"] as? Boolean == true) it.value["title"] as String else null }.toSet()
-            this.titles = data.mapValues { it.value["title"] as String }
-            this.books = data.mapValues { it.value["pages"] as List<String> }
-            this.books.size
+            Config.decodeFromFile(path, reader)
+            this.longBooks = longBooks
+            this.titles = titles
+            this.books = books
+            titles.size
         }
         return this
     }
