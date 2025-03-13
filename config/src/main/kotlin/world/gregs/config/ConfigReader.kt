@@ -101,7 +101,7 @@ abstract class ConfigReader {
         return String(buffer, 0, bufferIndex)
     }
 
-    private fun parseType(currentByte: Int, input: BufferedInputStream): Any = when (currentByte) {
+    private fun parseType(byte: Int, input: BufferedInputStream): Any = when (byte) {
         DOUBLE_QUOTE -> quotedString(input)
         SINGLE_QUOTE -> literalString(input)
         OPEN_BRACKET -> parseArray(input)
@@ -111,8 +111,8 @@ abstract class ConfigReader {
         MINUS -> parseNumber(input, true, 0)
         PLUS -> parseNumber(input, false, 0)
         ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE ->
-            parseNumber(input, false, currentByte - ZERO)
-        else -> throw IllegalArgumentException("Unexpected character '${currentByte.toChar()}' in section '$section'")
+            parseNumber(input, false, byte - ZERO)
+        else -> throw IllegalArgumentException("Unexpected character '${charType(byte)}' in section '$section'.")
     }
 
     private fun parseNumber(input: BufferedInputStream, negative: Boolean, initialDigit: Int): Number {
@@ -136,7 +136,7 @@ abstract class ConfigReader {
             var doubleValue = value.toDouble()
             byte = input.read() // Skip the decimal
             require(byte == ZERO || byte == ONE || byte == TWO || byte == THREE || byte == FOUR || byte == FIVE || byte == SIX || byte == SEVEN || byte == EIGHT || byte == NINE) {
-                "Expecting a digit after decimal point in section '$section'."
+                "Unexpected character '${charType(byte)}', expecting a digit after decimal point in section '$section'."
             }
             while (byte != EOF && byte != DOT && byte != RETURN && byte != NEWLINE && byte != COMMA && byte != CLOSE_BRACE && byte != CLOSE_BRACKET) {
                 when (byte) {
@@ -183,9 +183,7 @@ abstract class ConfigReader {
             skipMultilineWhitespace(byte, input)
             byte = this.byte
             val mapKey = when (byte) {
-                CLOSE_BRACE -> {
-                    break
-                }
+                CLOSE_BRACE -> break
                 DOUBLE_QUOTE -> quotedString(input)
                 else -> bareKey(byte, input)
             }
@@ -196,7 +194,7 @@ abstract class ConfigReader {
             map[mapKey] = value
             byte = this.byte
             require(byte == EOF || byte == SPACE || byte == TAB || byte == COMMA || byte == RETURN || byte == NEWLINE || byte == CLOSE_BRACE) {
-                "Unexpected character '${byte.toChar()}', expecting whitespace, comma, newline or close brace in section '$section'."
+                "Unexpected character '${charType(byte)}', expecting whitespace, comma, newline or close brace in section '$section'."
             }
         }
         this.byte = input.read()// skip closing brace
@@ -212,41 +210,21 @@ abstract class ConfigReader {
             byte = this.byte
             when (byte) {
                 CLOSE_BRACKET -> break
-                DOUBLE_QUOTE -> {
-                    values.add(quotedString(input))
-                }
-                SINGLE_QUOTE -> {
-                    values.add(literalString(input))
-                }
-                OPEN_BRACKET -> {
-                    values.add(parseArray(input))
-                }
-                OPEN_BRACE -> {
-                    values.add(parseMap(input))
-                }
-                T -> {
-                    values.add(parseTrue(input))
-                }
-                F -> {
-                    values.add(parseFalse(input))
-                }
-                MINUS -> {
-                    values.add(parseNumber(input, true, 0))
-                }
-                PLUS -> {
-                    values.add(parseNumber(input, false, 0))
-                }
-                ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> {
-                    values.add(parseNumber(input, false, byte - ZERO))
-                }
-                HASH -> {
-                    skipComment(input)
-                }
-                else -> throw IllegalArgumentException("Unexpected character '${if (byte == NEWLINE) "\\n" else if (byte == RETURN) "\\r" else byte.toChar()}' in section $section")
+                DOUBLE_QUOTE -> values.add(quotedString(input))
+                SINGLE_QUOTE -> values.add(literalString(input))
+                OPEN_BRACKET -> values.add(parseArray(input))
+                OPEN_BRACE -> values.add(parseMap(input))
+                T -> values.add(parseTrue(input))
+                F -> values.add(parseFalse(input))
+                MINUS -> values.add(parseNumber(input, true, 0))
+                PLUS -> values.add(parseNumber(input, false, 0))
+                ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> values.add(parseNumber(input, false, byte - ZERO))
+                HASH -> skipComment(input)
+                else -> throw IllegalArgumentException("Unexpected character '${charType(byte)}' in section $section")
             }
             byte = this.byte
             require(byte == EOF || byte == SPACE || byte == TAB || byte == COMMA || byte == RETURN || byte == NEWLINE || byte == CLOSE_BRACKET) {
-                "Unexpected character '${byte.toChar()}', expecting whitespace, comma, newline or close bracket in section '$section'."
+                "Unexpected character '${charType(byte)}', expecting whitespace, comma, newline or close bracket in section '$section'."
             }
         }
         this.byte = input.read()
@@ -310,6 +288,15 @@ abstract class ConfigReader {
     }
 
     companion object {
+
+        private fun charType(byte: Int): String = when(byte) {
+            NEWLINE -> "\\n"
+            RETURN -> "\\r"
+            TAB -> "\\t"
+            BACKSLASH -> "\\"
+            else -> byte.toChar().toString()
+        }
+
         private const val EOF = -1
         private const val SPACE = ' '.code
         private const val TAB = '\t'.code
