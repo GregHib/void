@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.item.Item
  */
 data class DiangoCodeDefinition(
     val variable: String = "",
-    val add: List<Item> = emptyList(),
+    val add: List<Item> = mutableListOf(),
 ) {
 
     companion object {
