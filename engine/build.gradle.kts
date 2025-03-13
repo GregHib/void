@@ -4,6 +4,7 @@ dependencies {
     implementation(project(":network"))
     implementation(project(":types"))
     implementation(project(":yaml"))
+    implementation(project(":config"))
 
     implementation(kotlin("reflect"))
     implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")

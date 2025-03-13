@@ -5,7 +5,7 @@ import world.gregs.voidps.cache.definition.Extra
 
 data class AmmoDefinition(
     override var id: Int,
-    val items: Set<String> = emptySet(),
+    val items: Set<String> = mutableSetOf(),
     override var stringId: String = "",
     override var extras: Map<String, Any>? = null
 ) : Definition, Extra {
