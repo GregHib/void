@@ -5,7 +5,7 @@ It supports multi-line arrays and maps like TOML v1.1. but not multiline strings
 
 Files use the `.toml` ending for syntax highlighting support.
 
-# Tour
+# Basic Spec
 
 ## Comments
 
@@ -87,7 +87,7 @@ intergers = [1, 2, 3]
 colours = ["red", "yellow", "green"]
 nested_mixed_array = [ [ 1, 2 ], ["a", "b", "c"] ]
 separated_array = [ 1, 2, , 3, 4] # Same as [1, 2, 3, 4]
-commaless_array = [ "one" "two" "three"] # Same as ["one", "two", "three"]
+commaless_array = [ "one" "two" "three"] # Same as ["one", "two", "three"] but not recommended
 ```
 
 Arrays can be multi-line
@@ -104,52 +104,21 @@ integers3 = [
 
 ## Maps
 
-Maps use curly braces. whitespace
+Maps use curly braces. Whitespace and commas are also ignored.
+
 ```toml
 point = { x = 1, y = 2 }
 animal = { type.name = "pug" }
 ```
 
+Map can also be multi-line
 
-## Spec Changes
-
-### Table inheritance
-
-Inherit previous tables with `.` prefix.
-
-```toml
-[databases.foo.server]
-ip = "10.0.0.1"
-
-[.user] # Goodbye [databases.foo.server.user]
-name = "root"
-password = "root"
+```ini
+point = {
+  x = 1,
+  y = 2
+}
+animal = {
+  type.name = "pug"
+}
 ```
-
-### No flexibility with spaces
-
-When required, only space or one tab is allowed.
-
-```toml
-[  none .  of .   this ]
-```
-
-### Multi-line inline maps
-
-Multi-line arrays are allowed so maps should be too, keep it consistent.
-
-### No date support
-
-Just use strings, none of this RFC 3339 nonsense. 
-
-```toml
-date = "1979-05-27T07:32:00Z" 
-```
-
-### No immutability rules
-
-Anything goes so long as the types are correct.
-
-### No infinity or nan
-
-Who uses those anyway?
