@@ -19,7 +19,9 @@ class ConfigWriter {
 
         for (section in orderedSections) {
             // Write section header
-            writer.write("[$section]\n")
+            if (section.isNotBlank()) {
+                writer.write("[$section]\n")
+            }
 
             // Write section contents
             val m = map[section]
