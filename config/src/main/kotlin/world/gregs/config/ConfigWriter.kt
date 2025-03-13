@@ -90,6 +90,12 @@ class ConfigWriter {
         writer.write(" = ")
 
         // Write value based on type
+        encodeValue(writer, value)
+
+        writer.write("\n")
+    }
+
+    private fun encodeValue(writer: Writer, value: Any?) {
         when (value) {
             is String -> encodeString(writer, value)
             is Long, is Int -> writer.write(value.toString())
@@ -97,10 +103,9 @@ class ConfigWriter {
             is Boolean -> writer.write(value.toString())
             is List<*> -> encodeList(writer, value)
             is Map<*, *> -> encodeMap(writer, value)
+            null -> writer.write("null")
             else -> writer.write(value.toString())
         }
-
-        writer.write("\n")
     }
 
     private fun encodeString(writer: Writer, value: String) {
@@ -115,10 +120,7 @@ class ConfigWriter {
                 writer.write(", ")
             }
 
-            when (item) {
-                is String -> encodeString(writer, item)
-                else -> writer.write(item.toString())
-            }
+            encodeValue(writer, item)
         }
 
         writer.write("]")
@@ -147,10 +149,7 @@ class ConfigWriter {
             writer.write(" = ")
 
             // Write value
-            when (value) {
-                is String -> encodeString(writer, value)
-                else -> writer.write(value.toString())
-            }
+            encodeValue(writer, value)
         }
 
         writer.write("}")
