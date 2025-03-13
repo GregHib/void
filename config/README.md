@@ -1,7 +1,9 @@
 # Groml - Greg's Really Obvious Minimal Language
 
-A custom config language that sits in-between a strict [TOML](https://toml.io/en/) or extended [INI](https://en.wikipedia.org/wiki/INI_file) in terms of complexity and features.
+A custom config language that sits in-between a simplified [TOML](https://toml.io/en/) or an extended [INI](https://en.wikipedia.org/wiki/INI_file) in terms of complexity and features.
+It supports multi-line arrays and maps like TOML v1.1. but not multiline strings, dates, special floats and integers. Sections instead of tables and section inheritance like ini files.
 
+Files use the `.toml` ending for syntax highlighting support.
 
 # Tour
 
@@ -29,7 +31,7 @@ path = 'C:\Users\nodejs\templates'
 quoted = 'Tom "Dubs" Preston-Werner'
 ```
 
-Multi-line strings are *not* supported. Use an array of single-line strings.
+Multi-line strings are **not** supported. Use an array of single-line strings.
 
 ## Numbers
 
