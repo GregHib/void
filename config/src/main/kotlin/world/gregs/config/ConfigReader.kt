@@ -181,16 +181,13 @@ abstract class ConfigReader {
         while (byte != EOF && byte != CLOSE_BRACE) {
             // Skip whitespace and commas
             skipMultilineWhitespace(byte, input)
-            byte = this.byte
-            val mapKey = when (byte) {
+            val mapKey = when (this.byte) {
                 CLOSE_BRACE -> break
                 DOUBLE_QUOTE -> quotedString(input)
-                else -> bareKey(byte, input)
+                else -> bareKey(this.byte, input)
             }
-            byte = this.byte
-            skipKeyValueWhitespace(byte, input)
-            byte = this.byte
-            val value = parseType(byte, input)
+            skipKeyValueWhitespace(this.byte, input)
+            val value = parseType(this.byte, input)
             map[mapKey] = value
             byte = this.byte
             require(byte == EOF || byte == SPACE || byte == TAB || byte == COMMA || byte == RETURN || byte == NEWLINE || byte == CLOSE_BRACE) {
