@@ -2,7 +2,7 @@ package world.gregs.config
 
 import java.io.*
 
-object Groml {
+object Config {
     private val writer = ConfigWriter()
 
     fun decodeFromString(string: String): Map<String, Any> {

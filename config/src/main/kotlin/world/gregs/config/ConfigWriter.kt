@@ -2,18 +2,18 @@ package world.gregs.config
 
 import java.io.Writer
 
-// Extension of the IniConfig class to include encoding functionality
 class ConfigWriter {
 
     fun encode(writer: Writer, map: Map<String, Any>) {
         encodeSection(writer, "", map)
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun encodeSection(writer: Writer, section: String, map: Map<String, Any>) {
         var start = true
         for ((key, value) in map) {
             if (value is Map<*, *>) {
-                if(!start) {
+                if (!start) {
                     writer.write("\n")
                     writer.flush()
                 }
