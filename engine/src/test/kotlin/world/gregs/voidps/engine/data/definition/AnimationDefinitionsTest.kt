@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.data.definition
 
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
-import world.gregs.yaml.Yaml
 
 internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefinition, AnimationDecoder, AnimationDefinitions>() {
 
@@ -24,7 +23,7 @@ internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefini
     }
 
     override fun load(definitions: AnimationDefinitions) {
-        definitions.load(Yaml(), "../data/definitions/animations.yml")
+        definitions.load("../data/definitions/animations.toml")
     }
 
 }
