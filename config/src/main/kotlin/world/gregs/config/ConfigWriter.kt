@@ -6,76 +6,35 @@ import java.io.Writer
 class ConfigWriter {
 
     fun encode(writer: Writer, map: Map<String, Any>) {
-        val sectionParentMap = buildSectionHierarchy(map)
+        encodeSection(writer, "", map)
+    }
 
-        // Write sections in an order that ensures parents come before children
-        val orderedSections = orderSections(map, sectionParentMap)
-
+    private fun encodeSection(writer: Writer, section: String, map: Map<String, Any>) {
+        var start = true
         for ((key, value) in map) {
-            if (value !is Map<*, *>) {
+            if (value is Map<*, *>) {
+                if(!start) {
+                    writer.write("\n")
+                    writer.flush()
+                }
+                encodeSection(writer, if (section.isBlank()) key else "${section}.${key}", value as Map<String, Any>)
+                start = true
+            } else {
+                if (start) {
+                    if (section.isNotBlank()) {
+                        writer.write("[$section]\n")
+                    }
+                    start = false
+                }
                 encodeKeyValue(writer, key, value)
             }
         }
 
-        for (section in orderedSections) {
-            // Write section header
-            if (section.isNotBlank()) {
-                writer.write("[$section]\n")
-            }
-
-            // Write section contents
-            val m = map[section]
-            if (m is Map<*, *>) {
-                for ((key, value) in m as Map<String, Any>) {
-                    encodeKeyValue(writer, key, value)
-                }
-            }
-
-            // Add a blank line after each section
+        // Add a blank line after each section
+        if (!start) {
             writer.write("\n")
             writer.flush()
         }
-    }
-
-    private fun orderSections(map: Map<String, Any>, sectionParentMap: Map<String, String?>): List<String> {
-        val result = mutableListOf<String>()
-        val visited = mutableSetOf<String>()
-
-        fun visit(section: String) {
-            if (section in visited) return
-            visited.add(section)
-
-            // First visit parent if exists
-            sectionParentMap[section]?.let { parent ->
-                visit(parent)
-            }
-
-            result.add(section)
-        }
-
-        // Visit all sections
-        for ((key, value) in map) {
-            if (value is Map<*, *>) {
-                visit(key)
-            }
-        }
-        return result
-    }
-
-    private fun buildSectionHierarchy(map: Map<String, Any>): Map<String, String?> {
-        val result = mutableMapOf<String, String?>()
-
-        for (section in map.keys) {
-            val lastDotIndex = section.lastIndexOf('.')
-            if (lastDotIndex > 0) {
-                val parent = section.substring(0, lastDotIndex)
-                result[section] = parent
-            } else {
-                result[section] = null
-            }
-        }
-
-        return result
     }
 
     private fun encodeKeyValue(writer: Writer, key: String, value: Any) {
