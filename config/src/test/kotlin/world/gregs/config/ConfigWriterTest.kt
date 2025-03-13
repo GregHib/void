@@ -32,7 +32,6 @@ class ConfigWriterTest {
             BufferedWriter(stringWriter).use { output ->
                 writer.encode(output, input)
             }
-//            File("C:\\Users\\Greg\\IdeaProjects\\void\\config\\src\\test\\resources\\world\\gregs\\config\\write\\valid\\${name.toKebabCase()}.toml").writeText(stringWriter.buffer.toString())
             val expected = ConfigWriterTest::class.java.getResourceAsStream("write/valid/${name.toKebabCase()}.toml")!!
                 .readBytes()
                 .toString(Charsets.UTF_8)
