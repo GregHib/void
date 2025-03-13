@@ -1,0 +1,4 @@
+[table-1] key1 = some string
+[table-1] key2 = 123
+[table-2] key1 = another string
+[table-2] key2 = 456

@@ -1,0 +1,1 @@
+lists = [{host = "alpha", enabled = true}, {host = "beta", enabled = false}]

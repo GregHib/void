@@ -1,0 +1,19 @@
+[fruits]
+name = "apple"
+
+[fruits.physical]  # subtable
+color = "red"
+shape = "round"
+
+[fruits.varieties]
+name = "red delicious"
+
+[fruits.varieties]
+name = "granny smith" # This will override "red delicious"
+
+
+[fruits]
+name = "banana"  # This will override "apple"
+
+[fruits.varieties]
+name = "plantain"

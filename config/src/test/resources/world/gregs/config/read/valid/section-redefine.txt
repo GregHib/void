@@ -1,0 +1,2 @@
+[fruit] apple.color = red
+[fruit] apple.taste.sweet = true

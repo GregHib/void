@@ -1,0 +1,7 @@
+[lists.one]
+name = "one"
+number = 1
+
+[lists.two]
+name = "two"
+number = 2
