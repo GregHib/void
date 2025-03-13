@@ -7,6 +7,7 @@ abstract class ConfigReader {
     private var bufferIndex: Int = 0
     private var section: String = ""
     private var parent: String = ""
+    private var byte: Int = -1
 
     open fun map(): MutableMap<String, Any> = mutableMapOf()
 
@@ -57,17 +58,21 @@ abstract class ConfigReader {
                 }
                 DOUBLE_QUOTE -> {
                     val key = quotedString(input)
-                    byte = skipKeyValueWhitespace(input)
+                    byte = this.byte
+                    skipKeyValueWhitespace(byte, input)
+                    byte = this.byte
                     val value: Any = parseType(byte, input)
                     set(section, key, value)
-                    byte = input.read()
+                    byte = this.byte
                 }
                 else -> {
                     val key = bareKey(byte, input)
-                    byte = skipKeyValueWhitespace(input)
+                    byte = this.byte
+                    skipKeyValueWhitespace(byte, input)
+                    byte = this.byte
                     val value: Any = parseType(byte, input)
                     set(section, key, value)
-                    byte = input.read()
+                    byte = this.byte
                     require(byte != DOUBLE_QUOTE) { "Multi-line strings are not supported in '$section'." }
                 }
             }
@@ -76,12 +81,12 @@ abstract class ConfigReader {
         input.close()
     }
 
-    private fun skipComment(input: BufferedInputStream): Int {
+    private fun skipComment(input: BufferedInputStream) {
         var byte = input.read()
         while (byte != EOF && byte != RETURN && byte != NEWLINE) {
             byte = input.read()
         }
-        return byte
+        this.byte = byte
     }
 
     private fun bareKey(currentByte: Int, input: BufferedInputStream): String {
@@ -91,8 +96,8 @@ abstract class ConfigReader {
             buffer[bufferIndex++] = byte.toByte()
             byte = input.read()
         }
+        this.byte = byte
         require(bufferIndex > 0) { "Expected key in section '${section}." }
-        // Ignore current byte as we know it's junk
         return String(buffer, 0, bufferIndex)
     }
 
@@ -147,15 +152,16 @@ abstract class ConfigReader {
                 }
                 byte = input.read()
             }
-            buffer[0] = byte.toByte()
+            this.byte = byte
             return if (negative) -doubleValue else doubleValue
         }
-        buffer[0] = byte.toByte()
+        this.byte = byte
         return if (negative) -value else value
     }
 
     private fun parseTrue(input: BufferedInputStream): Boolean {
         if (input.read() == R && input.read() == U && input.read() == E) {
+            this.byte = input.read()
             return true
         }
         throw IllegalArgumentException("Expected boolean 'true' at section $section")
@@ -163,6 +169,7 @@ abstract class ConfigReader {
 
     private fun parseFalse(input: BufferedInputStream): Boolean {
         if (input.read() == A && input.read() == L && input.read() == S && input.read() == E) {
+            this.byte = input.read()
             return false
         }
         throw IllegalArgumentException("Expected boolean 'false' at section $section")
@@ -173,7 +180,8 @@ abstract class ConfigReader {
         var byte = input.read() // skip opening brace
         while (byte != EOF && byte != CLOSE_BRACE) {
             // Skip whitespace and commas
-            byte = skipMultilineWhitespace(byte, input)
+            skipMultilineWhitespace(byte, input)
+            byte = this.byte
             val mapKey = when (byte) {
                 CLOSE_BRACE -> {
                     break
@@ -181,12 +189,17 @@ abstract class ConfigReader {
                 DOUBLE_QUOTE -> quotedString(input)
                 else -> bareKey(byte, input)
             }
-            byte = skipKeyValueWhitespace(input)
+            byte = this.byte
+            skipKeyValueWhitespace(byte, input)
+            byte = this.byte
             val value = parseType(byte, input)
             map[mapKey] = value
-            byte = input.read()
+            byte = this.byte
+            require(byte == EOF || byte == SPACE || byte == TAB || byte == COMMA || byte == RETURN || byte == NEWLINE || byte == CLOSE_BRACE) {
+                "Unexpected character '${byte.toChar()}', expecting whitespace, comma, newline or close brace in section '$section'."
+            }
         }
-
+        this.byte = input.read()// skip closing brace
         return map
     }
 
@@ -195,77 +208,72 @@ abstract class ConfigReader {
         var byte = input.read() // skip opening bracket
         while (byte != EOF && byte != CLOSE_BRACKET) {
             // Skip whitespace and commas
-            byte = skipMultilineWhitespace(byte, input)
+            skipMultilineWhitespace(byte, input)
+            byte = this.byte
             when (byte) {
                 CLOSE_BRACKET -> break
                 DOUBLE_QUOTE -> {
                     values.add(quotedString(input))
-                    byte = input.read()
                 }
                 SINGLE_QUOTE -> {
                     values.add(literalString(input))
-                    byte = input.read()
                 }
                 OPEN_BRACKET -> {
                     values.add(parseArray(input))
-                    byte = input.read()
                 }
                 OPEN_BRACE -> {
                     values.add(parseMap(input))
-                    byte = input.read()
                 }
                 T -> {
                     values.add(parseTrue(input))
-                    byte = input.read()
                 }
                 F -> {
                     values.add(parseFalse(input))
-                    byte = input.read()
                 }
                 MINUS -> {
                     values.add(parseNumber(input, true, 0))
-                    byte = buffer[0].toInt()
                 }
                 PLUS -> {
                     values.add(parseNumber(input, false, 0))
-                    byte = buffer[0].toInt()
                 }
                 ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> {
                     values.add(parseNumber(input, false, byte - ZERO))
-                    byte = buffer[0].toInt()
                 }
                 HASH -> {
                     skipComment(input)
-                    byte = input.read()
                 }
                 else -> throw IllegalArgumentException("Unexpected character '${if (byte == NEWLINE) "\\n" else if (byte == RETURN) "\\r" else byte.toChar()}' in section $section")
             }
+            byte = this.byte
+            require(byte == EOF || byte == SPACE || byte == TAB || byte == COMMA || byte == RETURN || byte == NEWLINE || byte == CLOSE_BRACKET) {
+                "Unexpected character '${byte.toChar()}', expecting whitespace, comma, newline or close bracket in section '$section'."
+            }
         }
+        this.byte = input.read()
         return values
     }
 
-    private fun skipKeyValueWhitespace(input: BufferedInputStream): Int {
-        var byte = input.read()
+    private fun skipKeyValueWhitespace(currentByte: Int, input: BufferedInputStream) {
+        var byte = currentByte
         while (byte == SPACE || byte == TAB || byte == EQUALS) {
             byte = input.read()
         }
-        // Next byte is unknown to hand it over to the next process
-        return byte
+        this.byte = byte
     }
 
-    private fun skipMultilineWhitespace(currentByte: Int, input: BufferedInputStream): Int {
+    private fun skipMultilineWhitespace(currentByte: Int, input: BufferedInputStream) {
         var byte = currentByte
         while (byte == SPACE || byte == TAB || byte == COMMA || byte == RETURN || byte == NEWLINE) {
             byte = input.read()
         }
         if (byte == HASH) {
-            byte = skipComment(input)
+            skipComment(input)
+            byte = this.byte
             while (byte == SPACE || byte == TAB || byte == COMMA || byte == RETURN || byte == NEWLINE) {
                 byte = input.read()
             }
         }
-        // Next byte is unknown to hand it over to the next process
-        return byte
+        this.byte = byte
     }
 
     private fun quotedString(input: BufferedInputStream): String {
@@ -286,6 +294,7 @@ abstract class ConfigReader {
             buffer[bufferIndex++] = byte.toByte()
             byte = input.read()
         }
+        this.byte = input.read() // Skip closing quote
         return String(buffer, 0, bufferIndex)
     }
 
@@ -296,6 +305,7 @@ abstract class ConfigReader {
             buffer[bufferIndex++] = byte.toByte()
             byte = input.read()
         }
+        this.byte = input.read() // skip closing quote
         return String(buffer, 0, bufferIndex)
     }
 

@@ -33,6 +33,7 @@ class ConfigWriter {
 
             // Add a blank line after each section
             writer.write("\n")
+            writer.flush()
         }
     }
 
@@ -102,6 +103,7 @@ class ConfigWriter {
             is Double, is Float -> writer.write(value.toString())
             is Boolean -> writer.write(value.toString())
             is List<*> -> encodeList(writer, value)
+            is Array<*> -> encodeArray(writer, value)
             is Map<*, *> -> encodeMap(writer, value)
             null -> writer.write("null")
             else -> writer.write(value.toString())
@@ -113,6 +115,20 @@ class ConfigWriter {
     }
 
     private fun encodeList(writer: Writer, list: List<*>) {
+        writer.write("[")
+
+        for ((index, item) in list.withIndex()) {
+            if (index > 0) {
+                writer.write(", ")
+            }
+
+            encodeValue(writer, item)
+        }
+
+        writer.write("]")
+    }
+
+    private fun encodeArray(writer: Writer, list: Array<*>) {
         writer.write("[")
 
         for ((index, item) in list.withIndex()) {
