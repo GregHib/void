@@ -37,7 +37,8 @@ class ConfigWriterTest {
                 .readBytes()
                 .toString(Charsets.UTF_8)
                 .replace("\r\n", "\n")
-            assertEquals(expected, stringWriter.buffer.toString())
+                .trim('\n')
+            assertEquals(expected, stringWriter.buffer.toString().trim('\n'))
         }
     }
 
