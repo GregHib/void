@@ -69,6 +69,7 @@ class EnumDefinitions(
                 }
             }
             Config.decodeFromFile(path, reader)
+            this.ids = ids
             ids.size
         }
         return this
