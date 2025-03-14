@@ -1,15 +1,16 @@
 package world.gregs.config
 
+import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 
 /**
  * Basic implementation of [ConfigReader]
  */
-class ConfigMap : ConfigReader(1024) {
-    val sections = Object2ObjectOpenHashMap<String, MutableMap<String, Any>>(100, 0.25f)
+class ConfigMap(maxStringSize: Int = 1024, expectedSections: Int = 100) : ConfigReader(maxStringSize) {
+    val sections = Object2ObjectOpenHashMap<String, MutableMap<String, Any>>(expectedSections, Hash.VERY_FAST_LOAD_FACTOR)
 
-    override fun map() = Object2ObjectOpenHashMap<String, Any>(8, 0.25f)
+    override fun map() = Object2ObjectOpenHashMap<String, Any>(8, Hash.VERY_FAST_LOAD_FACTOR)
 
     override fun list() = ObjectArrayList<Any>(2)
 
