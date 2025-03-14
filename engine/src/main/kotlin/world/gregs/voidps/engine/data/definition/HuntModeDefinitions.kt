@@ -1,11 +1,12 @@
 package world.gregs.voidps.engine.data.definition
 
+import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.config.Config
+import world.gregs.config.ConfigMap
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.HuntModeDefinition
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.Yaml
-import world.gregs.yaml.read.YamlReaderConfiguration
 
 class HuntModeDefinitions {
 
@@ -15,23 +16,15 @@ class HuntModeDefinitions {
         return modes.getValue(name)
     }
 
-    @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["definitions.huntModes"]): HuntModeDefinitions {
+    fun load(path: String = Settings["definitions.huntModes"]): HuntModeDefinitions {
         timedLoad("hunt mode") {
-            val config = object : YamlReaderConfiguration(2, 2) {
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-                    if (key == "<<") {
-                        map.putAll(value as Map<String, Any>)
-                        return
-                    }
-                    if (indent == 0) {
-                        super.set(map, key, HuntModeDefinition.fromMap(value as Map<String, Any>), indent, parentMap)
-                    } else {
-                        super.set(map, key, value, indent, parentMap)
-                    }
-                }
+            val modes = Object2ObjectOpenHashMap<String, HuntModeDefinition>(10, Hash.VERY_FAST_LOAD_FACTOR)
+            val reader = ConfigMap(50, 10)
+            Config.decodeFromFile(path, reader)
+            for ((section, map) in reader.sections) {
+                modes[section] = HuntModeDefinition.fromMap(map as Map<String, Any>)
             }
-            this.modes = yaml.load(path, config)
+            this.modes = modes
             modes.size
         }
         return this
