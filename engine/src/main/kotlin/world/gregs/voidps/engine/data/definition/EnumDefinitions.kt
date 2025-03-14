@@ -1,7 +1,15 @@
 package world.gregs.voidps.engine.data.definition
 
+import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.config.Config
+import world.gregs.config.ConfigReader
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.config.DiangoCodeDefinition
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
@@ -37,6 +45,37 @@ class EnumDefinitions(
     fun load(yaml: Yaml = get(), path: String = Settings["definitions.enums"]): EnumDefinitions {
         timedLoad("enum extra") {
             decode(yaml, path)
+            val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
+            val reader = object : ConfigReader(50) {
+                override fun set(section: String, key: String, value: Any) {
+                    if (section == "enums") {
+                        val id = (value as Long).toInt()
+                        ids[key] = id
+                        definitions[id].stringId = key
+                    } else {
+                        val stringId = section.removePrefix("enums.")
+                        when (key) {
+                            "id" -> {
+                                val id = (value as Long).toInt()
+                                ids[stringId] = id
+                                definitions[id].stringId = stringId
+                            }
+                            else -> {
+                                require(ids.containsKey(stringId)) { "Cannot find definition for id '$stringId'. Make sure the id value is first in the section." }
+                                val definition = definitions[ids.getInt(stringId)]
+                                var extras = definition.extras
+                                if (extras == null) {
+                                    extras = Object2ObjectOpenHashMap(2, Hash.VERY_FAST_LOAD_FACTOR)
+                                    definition.extras = extras
+                                }
+                                (extras as MutableMap<String, Any>)[key] = value
+                            }
+                        }
+                    }
+                }
+            }
+            Config.decodeFromFile(path, reader)
+            ids.size
         }
         return this
     }
