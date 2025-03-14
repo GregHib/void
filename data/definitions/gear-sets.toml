@@ -1,0 +1,97 @@
+runecrafting = [
+  { levels = "0-9", inventory = [{ amount = 28, id = "rune_essence" }], equipment = { hat = [{ id = "air_tiara" }] } },
+  { levels = "9-14", inventory = [{ amount = 28, id = "rune_essence" }], equipment = { hat = [{ id = "earth_tiara" }] } }
+]
+smelting = [
+  { levels = "0-20", inventory = [{ amount = 14, id = "tin_ore" }, { amount = 14, id = "copper_ore" }] },
+  { levels = "15-60", inventory = [{ amount = 28, id = "iron_ore" }] },
+  { levels = "30-60", inventory = [{ amount = 9, id = "iron_ore" }, { amount = 18, id = "coal" }] },
+  { levels = "40-75", inventory = [{ amount = 28, id = "gold_ore" }] },
+  { levels = "50-85", inventory = [{ amount = 5, id = "mithril_ore" }, { amount = 20, id = "coal" }] },
+  { levels = "70-99", inventory = [{ amount = 4, id = "adamantite_ore" }, { amount = 24, id = "coal" }] },
+  { levels = "85-99", inventory = [{ amount = 3, id = "runite_ore" }, { amount = 24, id = "coal" }] }
+]
+smithing = [
+  { levels = "0-5", inventory = [{ id = "hammer" }, { amount = 27, id = "bronze_bar" }], types = ["dagger", "hatchet", "mace"] },
+  { levels = "5-10", inventory = [{ id = "hammer" }, { amount = 27, id = "bronze_bar" }], types = ["scimitar"] },
+  { levels = "10-15", inventory = [{ id = "hammer" }, { amount = 27, id = "bronze_bar" }], types = ["battleaxe", "full_helm"] },
+  { levels = "15-25", inventory = [{ id = "hammer" }, { amount = 27, id = "bronze_bar" }], types = ["platelegs", "plateskirt", "platebody"] },
+  { levels = "15-20", inventory = [{ id = "hammer" }, { amount = 27, id = "iron_bar" }], types = ["dagger", "hatchet", "mace"] },
+  { levels = "20-25", inventory = [{ id = "hammer" }, { amount = 27, id = "iron_bar" }], types = ["scimitar", "pickaxe", "longsword", "full_helm"] }
+]
+cooking = [
+  { levels = "1-15", inventory = [{ amount = 28, id = ["raw_anchovies", "raw_shrimps", "raw_beef", "raw_rat_meat", "raw_chicken", "raw_crayfish"] }] },
+  { levels = "5-15", inventory = [{ amount = 28, id = "raw_herring" }] },
+  { levels = "10-15", inventory = [{ amount = 28, id = "raw_mackerel" }] },
+  { levels = "15-30", inventory = [{ amount = 28, id = "raw_trout" }] },
+  { levels = "20-30", inventory = [{ amount = 28, id = "raw_pike" }] },
+  { levels = "25-40", inventory = [{ amount = 28, id = "raw_salmon" }] },
+  { levels = "30-40", inventory = [{ amount = 28, id = "raw_tuna" }] },
+  { levels = "40-99", inventory = [{ amount = 28, id = "raw_lobster" }] },
+  { levels = "45-99", inventory = [{ amount = 28, id = "raw_swordfish" }] },
+  { levels = "62-99", inventory = [{ amount = 28, id = "raw_monkfish" }] },
+  { levels = "80-99", inventory = [{ amount = 28, id = "raw_shark" }] },
+  { levels = "82-99", inventory = [{ amount = 28, id = "raw_sea_turtle" }] },
+  { levels = "88-99", inventory = [{ amount = 28, id = "raw_cavefish" }] },
+  { levels = "91-99", inventory = [{ amount = 28, id = "raw_manta_ray" }] },
+  { levels = "93-99", inventory = [{ amount = 28, id = "raw_rocktail" }] }
+]
+firemaking = [
+  { levels = "1-15", inventory = [{ id = "tinderbox" }, { amount = 27, id = "logs" }] },
+  { levels = "15-30", inventory = [{ id = "tinderbox" }, { amount = 27, id = "oak_logs" }] },
+  { levels = "30-45", inventory = [{ id = "tinderbox" }, { amount = 27, id = "willow_logs" }] },
+  { levels = "45-60", inventory = [{ id = "tinderbox" }, { amount = 27, id = "maple_logs" }] },
+  { levels = "60-99", inventory = [{ id = "tinderbox" }, { amount = 27, id = "yew_logs" }] },
+  { levels = "75-99", inventory = [{ id = "tinderbox" }, { amount = 27, id = "magic_logs" }] }
+]
+fishing = [
+  { levels = "1-20", action = "Net", spot = "small_net_bait", inventory = [{ id = "small_fishing_net" }] },
+  { levels = "0-15", action = "Cage", spot = "crayfish", inventory = [{ id = "crayfish_cage" }] },
+  { levels = "5-20", action = "Bait", spot = "small_net_bait", inventory = [{ id = "fishing_rod" }, { amount = 27, id = "fishing_bait" }] },
+  { levels = "20-40", action = "Lure", spot = "lure_bait", inventory = [{ id = "fishing_rod" }, { amount = 27, id = "fishing_bait" }] },
+  { levels = "38-40", action = "Lure", spot = "lure_bait", inventory = [{ id = "fly_fishing_rod" }, { amount = 27, id = "feather" }] },
+  { levels = "25-35", action = "Bait", spot = "lure_bait", inventory = [{ id = "fly_fishing_rod" }, { amount = 27, id = "feather" }] },
+  { levels = "62-99", action = "Net", spot = "small_net_harpoon", inventory = [{ id = "small_fishing_net" }] },
+  { levels = "76-99", action = "Harpoon", spot = "big_net_harpoon", equipment = { weapon = [{ id = "barb_tail_harpoon" }, { id = "harpoon" }] } },
+  { levels = "35-99", action = "Harpoon", spot = "cage_harpoon", equipment = { weapon = [{ id = "barb_tail_harpoon" }, { id = "harpoon" }] } }, { inventory = [{ id = "lobster_pot" }], action = "Cage", spot = "cage_harpoon", levels = "40-50" }
+]
+woodcutting = [
+  { levels = "1-6", equipment = { weapon = [{ id = "iron_hatchet" }, { id = "bronze_hatchet" }] } },
+  { levels = "6-21", equipment = { weapon = [{ id = "steel_hatchet" }, { id = "iron_hatchet" }, { id = "bronze_hatchet" }] } },
+  { levels = "21-31", equipment = { weapon = [{ id = "mithril_hatchet" }, { id = "steel_hatchet" }, { id = "iron_hatchet" }, { id = "bronze_hatchet" }] } },
+  { levels = "31-41", equipment = { weapon = [{ id = "adamant_hatchet" }, { id = "mithril_hatchet" }, { id = "steel_hatchet" }, { id = "iron_hatchet" }, { id = "bronze_hatchet" }] } },
+  { levels = "41-61", equipment = { weapon = [{ id = "rune_hatchet" }, { id = "adamant_hatchet" }, { id = "mithril_hatchet" }, { id = "steel_hatchet" }, { id = "iron_hatchet" }, { id = "bronze_hatchet" }] } },
+  { levels = "61-99", equipment = { weapon = [{ id = "inferno_adze" }, { id = "dragon_hatchet" }, { id = "rune_hatchet" }, { id = "adamant_hatchet" }, { id = "mithril_hatchet" }, { id = "steel_hatchet" }, { id = "iron_hatchet" }, { id = "bronze_hatchet" }] } }
+]
+mining = [
+  { levels = "1-6", equipment = { weapon = [{ id = "iron_pickaxe" }, { id = "bronze_pickaxe" }] } },
+  { levels = "6-21", equipment = { weapon = [{ id = "steel_pickaxe" }, { id = "iron_pickaxe" }, { id = "bronze_pickaxe" }] } },
+  { levels = "21-31", equipment = { weapon = [{ id = "mithril_pickaxe" }, { id = "steel_pickaxe" }, { id = "iron_pickaxe" }, { id = "bronze_pickaxe" }] } },
+  { levels = "31-41", equipment = { weapon = [{ id = "adamant_pickaxe" }, { id = "mithril_pickaxe" }, { id = "steel_pickaxe" }, { id = "iron_pickaxe" }, { id = "bronze_pickaxe" }] } },
+  { levels = "41-61", equipment = { weapon = [{ id = "inferno_adze" }, { id = "rune_pickaxe" }, { id = "adamant_pickaxe" }, { id = "mithril_pickaxe" }, { id = "steel_pickaxe" }, { id = "iron_pickaxe" }, { id = "bronze_pickaxe" }] } },
+  { levels = "61-99", equipment = { weapon = [{ id = "dragon_pickaxe" }, { id = "inferno_adze" }, { id = "rune_pickaxe" }, { id = "adamant_pickaxe" }, { id = "mithril_pickaxe" }, { id = "steel_pickaxe" }, { id = "iron_pickaxe" }, { id = "bronze_pickaxe" }] } },
+  { levels = "1-6", inventory = [{ id = ["iron_pickaxe", "bronze_pickaxe"] }] },
+  { levels = "6-21", inventory = [{ id = ["steel_pickaxe", "iron_pickaxe", "bronze_pickaxe"] }] },
+  { levels = "21-31", inventory = [{ id = ["mithril_pickaxe", "steel_pickaxe", "iron_pickaxe"] }] },
+  { levels = "31-41", inventory = [{ id = ["adamant_pickaxe", "mithril_pickaxe", "steel_pickaxe", "iron_pickaxe"] }] },
+  { levels = "41-61", inventory = [{ id = ["inferno_adze", "rune_pickaxe", "adamant_pickaxe", "mithril_pickaxe"] }] },
+  { levels = "61-99", inventory = [{ id = ["dragon_pickaxe", "inferno_adze", "rune_pickaxe", "adamant_pickaxe"] }] }
+]
+magic = [
+  { levels = "1-5", spell = "wind_rush", equipment = { weapon = [{ id = "staff_of_air" }] } },
+  { levels = "1-5", spell = "wind_rush", inventory = [{ amount = 25, id = "air_rune" }] },
+  { levels = "5-20", spell = "water_strike", inventory = [{ amount = 25, id = "air_rune" }, { amount = 25, id = "mind_rune" }], equipment = { weapon = [{ id = "staff_of_water" }] } },
+  { levels = "5-20", spell = "water_strike", inventory = [{ amount = 25, id = "water_rune" }, { amount = 25, id = "air_rune" }, { amount = 25, id = "mind_rune" }] },
+  { levels = "9-20", spell = "earth_strike", inventory = [{ amount = 25, id = "air_rune" }, { amount = 25, id = "mind_rune" }], equipment = { weapon = [{ id = "staff_of_earth" }] } },
+  { levels = "9-20", spell = "earth_strike", inventory = [{ amount = 50, id = "earth_rune" }, { amount = 25, id = "air_rune" }, { amount = 25, id = "mind_rune" }] }
+]
+range = [
+  { levels = "1-5", inventory = [{ amount = 5, id = ["cooked_chicken", "cooked_meat", "shrimps", "anchovies", "sardine", "herring"] }], equipment = { ammo = [{ amount = 50, id = "bronze_arrow" }, { amount = 50, id = "iron_arrow" }], weapon = [{ id = "shortbow" }] } },
+  { levels = "1-5", equipment = { ammo = [{ amount = 50, id = "bronze_arrow" }, { amount = 50, id = "iron_arrow" }], weapon = [{ id = "shortbow" }] } }
+]
+melee = [
+  { levels = "1-5", inventory = [{ amount = 5, id = ["cooked_chicken", "cooked_meat", "shrimps", "anchovies", "sardine", "herring"] }], equipment = { weapon = [{ id = "iron_scimitar" }, { id = "bronze_scimitar" }, { id = "iron_battleaxe" }, { id = "iron_longsword" }, { id = "iron_sword" }, { id = "bronze_sword" }, { id = "bronze_longsword" }, { id = "bronze_dagger" }] } },
+  { levels = "1-5", equipment = { weapon = [{ id = "iron_scimitar" }, { id = "bronze_scimitar" }, { id = "iron_battleaxe" }, { id = "iron_longsword" }, { id = "iron_sword" }, { id = "bronze_sword" }, { id = "bronze_longsword" }, { id = "bronze_dagger" }] } },
+  { levels = "5-10", inventory = [{ amount = 5, id = ["cooked_chicken", "cooked_meat", "shrimps", "anchovies", "sardine", "herring", "mackerel", "trout"] }], equipment = { weapon = [{ id = "steel_scimitar" }, { id = "iron_scimitar" }, { id = "steel_battleaxe" }, { id = "steel_longsword" }, { id = "steel_sword" }, { id = "iron_sword" }, { id = "iron_longsword" }, { id = "iron_dagger" }] } },
+  { levels = "5-10", equipment = { weapon = [{ id = "steel_scimitar" }, { id = "iron_scimitar" }, { id = "steel_battleaxe" }, { id = "steel_longsword" }, { id = "steel_sword" }, { id = "iron_sword" }, { id = "iron_longsword" }, { id = "iron_dagger" }] } }
+]
