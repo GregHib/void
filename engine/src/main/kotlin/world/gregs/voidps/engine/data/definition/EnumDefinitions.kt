@@ -3,16 +3,11 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.config.DiangoCodeDefinition
-import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.Yaml
 
 /**
  * Also known as DataMap in cs2
@@ -42,9 +37,8 @@ class EnumDefinitions(
         return structs.get(struct)[param, default]
     }
 
-    fun load(yaml: Yaml = get(), path: String = Settings["definitions.enums"]): EnumDefinitions {
+    fun load(path: String = Settings["definitions.enums"]): EnumDefinitions {
         timedLoad("enum extra") {
-            decode(yaml, path)
             val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
             val reader = object : ConfigReader(50) {
                 override fun set(section: String, key: String, value: Any) {
