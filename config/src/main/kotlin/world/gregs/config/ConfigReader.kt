@@ -1,10 +1,6 @@
 package world.gregs.config
 
 import it.unimi.dsi.fastutil.Hash
-import it.unimi.dsi.fastutil.booleans.BooleanArrayList
-import it.unimi.dsi.fastutil.doubles.DoubleArrayList
-import it.unimi.dsi.fastutil.ints.IntArrayList
-import it.unimi.dsi.fastutil.longs.LongArrayList
 import it.unimi.dsi.fastutil.objects.*
 import java.io.Closeable
 import java.io.InputStream
@@ -59,13 +55,12 @@ class ConfigReader(
     /**
      * Read all sections into a map, not as performant as reading individually.
      */
-    fun sections(expectedSections: Int = 8, expectedSize: Int = 8, loadFactor: Float = Hash.VERY_FAST_LOAD_FACTOR): Map<String, Any> {
-        val sections = Object2ObjectOpenHashMap<String, Any>(expectedSections, loadFactor)
+    fun sections(expectedSections: Int = 8, expectedSize: Int = 8, loadFactor: Float = Hash.VERY_FAST_LOAD_FACTOR): Map<String, Map<String, Any>> {
+        val sections = Object2ObjectOpenHashMap<String, MutableMap<String, Any>>(expectedSections, loadFactor)
         while (nextSection()) {
             val section = section()
-            val map = Object2ObjectOpenHashMap<String, Any>(expectedSize, loadFactor)
-            sections[section] = map
-            while (nextEntry()) {
+            val map = sections.getOrPut(section) { Object2ObjectOpenHashMap(expectedSize, loadFactor) }
+            while (nextPair()) {
                 map[key()] = value()
             }
         }
@@ -178,11 +173,24 @@ class ConfigReader(
     fun int(): Int {
         val int = when (byte) {
             MINUS -> -readInt(0)
-            PLUS -> -readInt(0)
+            PLUS -> readInt(0)
             else -> readInt(byte - ZERO)
         }
         nextLine()
         return int
+    }
+
+    private fun readInt(int: Int): Int {
+        var value = int
+        byte = input.read()
+        while (isDigit() || byte == UNDERSCORE) {
+            if (byte != UNDERSCORE) {
+                val digit = byte - ZERO
+                value = value * 10 + digit
+            }
+            byte = input.read()
+        }
+        return value
     }
 
     /**
@@ -196,6 +204,19 @@ class ConfigReader(
         }
         nextLine()
         return long
+    }
+
+    private fun readLong(long: Long): Long {
+        var value = long
+        byte = input.read()
+        while (isDigit() || byte == UNDERSCORE) {
+            if (byte != UNDERSCORE) {
+                val digit = byte - ZERO
+                value = value * 10 + digit
+            }
+            byte = input.read()
+        }
+        return value
     }
 
     /**
@@ -223,34 +244,6 @@ class ConfigReader(
         return double
     }
 
-    private fun isDigit() = byte == ZERO || byte == ONE || byte == TWO || byte == THREE || byte == FOUR || byte == FIVE || byte == SIX || byte == SEVEN || byte == EIGHT || byte == NINE
-
-    private fun readLong(long: Long): Long {
-        var value = long
-        byte = input.read()
-        while (isDigit() || byte == UNDERSCORE) {
-            if (byte != UNDERSCORE) {
-                val digit = byte - ZERO
-                value = value * 10 + digit
-            }
-            byte = input.read()
-        }
-        return value
-    }
-
-    private fun readInt(int: Int): Int {
-        var value = int
-        byte = input.read()
-        while (isDigit() || byte == UNDERSCORE) {
-            if (byte != UNDERSCORE) {
-                val digit = byte - ZERO
-                value = value * 10 + digit
-            }
-            byte = input.read()
-        }
-        return value
-    }
-
     private fun readDecimal(long: Long): Double {
         var double = long.toDouble()
         byte = input.read() // Skip decimal point
@@ -266,6 +259,8 @@ class ConfigReader(
         }
         return double
     }
+
+    private fun isDigit() = byte == ZERO || byte == ONE || byte == TWO || byte == THREE || byte == FOUR || byte == FIVE || byte == SIX || byte == SEVEN || byte == EIGHT || byte == NINE
 
     /**
      * Read a case-sensitive boolean value
@@ -347,7 +342,7 @@ class ConfigReader(
     }
 
     /**
-     * Read a mixed type list
+     * Read a mixed type list, if the types are known you should call [nextElement] with the relevant method(s) directly for better performance.
      */
     fun list(expectedSize: Int = 2): List<Any> {
         require(byte == OPEN_BRACKET) { "Lists must start with an opening bracket. ${exception()}" }
@@ -358,53 +353,8 @@ class ConfigReader(
         return list
     }
 
-    fun booleanList(expectedSize: Int = 2): List<Boolean> {
-        require(byte == OPEN_BRACKET) { "Lists must start with an opening bracket. ${exception()}" }
-        val list = BooleanArrayList(expectedSize)
-        while (nextElement()) {
-            list.add(boolean())
-        }
-        return list
-    }
-
-    fun intList(expectedSize: Int = 2): List<Int> {
-        require(byte == OPEN_BRACKET) { "Lists must start with an opening bracket. ${exception()}" }
-        val list = IntArrayList(expectedSize)
-        while (nextElement()) {
-            list.add(int())
-        }
-        return list
-    }
-
-    fun longList(expectedSize: Int = 2): List<Long> {
-        require(byte == OPEN_BRACKET) { "Lists must start with an opening bracket. ${exception()}" }
-        val list = LongArrayList(expectedSize)
-        while (nextElement()) {
-            list.add(long())
-        }
-        return list
-    }
-
-    fun doubleList(expectedSize: Int = 2): List<Double> {
-        require(byte == OPEN_BRACKET) { "Lists must start with an opening bracket. ${exception()}" }
-        val list = DoubleArrayList(expectedSize)
-        while (nextElement()) {
-            list.add(double())
-        }
-        return list
-    }
-
-    fun stringList(expectedSize: Int = 2): List<String> {
-        require(byte == OPEN_BRACKET) { "Lists must start with an opening bracket. ${exception()}" }
-        val list = ObjectArrayList<String>(expectedSize)
-        while (nextElement()) {
-            list.add(string())
-        }
-        return list
-    }
-
     /**
-     * Read a mixed type map
+     * Read a mixed type map, if the types are known you should call [nextEntry] with the relevant method directly for better performance.
      */
     fun map(expectedSize: Int = 8, loadFactor: Float = Hash.VERY_FAST_LOAD_FACTOR): Map<String, Any> {
         require(byte == OPEN_BRACE) { "Maps must start with an opening brace. ${exception()}" }
@@ -415,53 +365,8 @@ class ConfigReader(
         return map
     }
 
-    fun booleanMap(expectedSize: Int = 8, loadFactor: Float = Hash.VERY_FAST_LOAD_FACTOR): Map<String, Boolean> {
-        require(byte == OPEN_BRACE) { "Maps must start with an opening brace. ${exception()}" }
-        val map = Object2BooleanOpenHashMap<String>(expectedSize, loadFactor)
-        while (nextEntry()) {
-            map[key()] = boolean()
-        }
-        return map
-    }
-
-    fun intMap(expectedSize: Int = 8, loadFactor: Float = Hash.VERY_FAST_LOAD_FACTOR): Map<String, Int> {
-        require(byte == OPEN_BRACE) { "Maps must start with an opening brace. ${exception()}" }
-        val map = Object2IntOpenHashMap<String>(expectedSize, loadFactor)
-        while (nextEntry()) {
-            map[key()] = int()
-        }
-        return map
-    }
-
-    fun longMap(expectedSize: Int = 8, loadFactor: Float = Hash.VERY_FAST_LOAD_FACTOR): Map<String, Long> {
-        require(byte == OPEN_BRACE) { "Maps must start with an opening brace. ${exception()}" }
-        val map = Object2LongOpenHashMap<String>(expectedSize, loadFactor)
-        while (nextEntry()) {
-            map[key()] = long()
-        }
-        return map
-    }
-
-    fun doubleMap(expectedSize: Int = 8, loadFactor: Float = Hash.VERY_FAST_LOAD_FACTOR): Map<String, Double> {
-        require(byte == OPEN_BRACE) { "Maps must start with an opening brace. ${exception()}" }
-        val map = Object2DoubleOpenHashMap<String>(expectedSize, loadFactor)
-        while (nextEntry()) {
-            map[key()] = double()
-        }
-        return map
-    }
-
-    fun stringMap(expectedSize: Int = 8, loadFactor: Float = Hash.VERY_FAST_LOAD_FACTOR): Map<String, String> {
-        require(byte == OPEN_BRACE) { "Maps must start with an opening brace. ${exception()}" }
-        val map = Object2ObjectOpenHashMap<String, String>(expectedSize, loadFactor)
-        while (nextEntry()) {
-            map[key()] = string()
-        }
-        return map
-    }
-
     /**
-     * Read a generic value
+     * Read a generic value, if the type is known you should call the relevant method directly for better performance.
      */
     fun value(): Any {
         val value: Any = when (byte) {

@@ -83,181 +83,189 @@ internal class ConfigReaderTest {
 
     @Test
     fun `Read section`() {
-        "[section]".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertFalse(parser.nextPair())
-            assertTrue(parser.nextSection())
-            assertTrue(parser.nextSection())
-            assertEquals("section", parser.section())
-            assertFalse(parser.nextSection())
+        Config.stringReader("[section]").use { reader ->
+            assertFalse(reader.nextPair())
+            assertTrue(reader.nextSection())
+            assertTrue(reader.nextSection())
+            assertEquals("section", reader.section())
+            assertFalse(reader.nextSection())
         }
     }
 
     @Test
     fun `Read key`() {
-        "bare-key".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertTrue(parser.nextPair())
-            assertEquals("bare-key", parser.key())
+        Config.stringReader("[section]")
+        Config.stringReader("bare-key").use { reader ->
+            assertTrue(reader.nextPair())
+            assertEquals("bare-key", reader.key())
         }
-        "\"quoted \\n key\"".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertTrue(parser.nextPair())
-            assertEquals("quoted \\n key", parser.key())
+        Config.stringReader("\"quoted \\n key\"").use { reader ->
+            assertTrue(reader.nextPair())
+            assertEquals("quoted \\n key", reader.key())
         }
-        "'literal \n key'".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertTrue(parser.nextPair())
-            assertEquals("literal \n key", parser.key())
+        Config.stringReader("'literal \n key'").use { reader ->
+            assertTrue(reader.nextPair())
+            assertEquals("literal \n key", reader.key())
         }
     }
 
     @Test
     fun `Read string`() {
-        "\"quoted \\n string\"".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals("quoted \\n string", parser.string())
+        Config.stringReader("\"quoted \\n string\"").use { reader ->
+            assertEquals("quoted \\n string", reader.string())
         }
-        "'literal \n string'".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertTrue(parser.nextPair())
-            assertEquals("literal \n string", parser.string())
+        Config.stringReader("'literal \n string'").use { reader ->
+            assertTrue(reader.nextPair())
+            assertEquals("literal \n string", reader.string())
         }
     }
 
     @Test
     fun `Read number`() {
-        "1234".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(1234L, parser.number())
+        Config.stringReader("1234").use { reader ->
+            assertEquals(1234L, reader.number())
         }
-        "-1234".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(-1234L, parser.number())
+        Config.stringReader("-1234").use { reader ->
+            assertEquals(-1234L, reader.number())
         }
-        "+1234".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(1234L, parser.number())
+        Config.stringReader("+1234").use { reader ->
+            assertEquals(1234L, reader.number())
         }
-        "12.34".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(12.34, parser.number())
+        Config.stringReader("12.34").use { reader ->
+            assertEquals(12.34, reader.number())
         }
-        "-12.34".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(-12.34, parser.number())
+        Config.stringReader("-12.34").use { reader ->
+            assertEquals(-12.34, reader.number())
         }
-        "+12.34".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(12.34, parser.number())
+        Config.stringReader("+12.34").use { reader ->
+            assertEquals(12.34, reader.number())
+        }
+    }
+
+    @Test
+    fun `Read int`() {
+        Config.stringReader("1234").use { reader ->
+            assertEquals(1234, reader.int())
+        }
+        Config.stringReader("-1234").use { reader ->
+            assertEquals(-1234, reader.int())
+        }
+        Config.stringReader("+1234").use { reader ->
+            assertEquals(1234, reader.int())
         }
     }
 
     @Test
     fun `Read long`() {
-        "1234".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(1234L, parser.long())
+        Config.stringReader("1234").use { reader ->
+            assertEquals(1234L, reader.long())
         }
-        "-1234".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(-1234L, parser.long())
+        Config.stringReader("-1234").use { reader ->
+            assertEquals(-1234L, reader.long())
         }
-        "+1234".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(1234L, parser.long())
+        Config.stringReader("+1234").use { reader ->
+            assertEquals(1234L, reader.long())
         }
     }
 
     @Test
     fun `Read double`() {
-        "12.34".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(12.34, parser.double())
+        Config.stringReader("12.34").use { reader ->
+            assertEquals(12.34, reader.double())
         }
-        "-12.34".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(-12.34, parser.double())
+        Config.stringReader("-12.34").use { reader ->
+            assertEquals(-12.34, reader.double())
         }
-        "+12.34".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(12.34, parser.double())
+        Config.stringReader("+12.34").use { reader ->
+            assertEquals(12.34, reader.double())
         }
     }
 
     @Test
     fun `Read boolean`() {
-        "true".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertTrue(parser.boolean())
+        Config.stringReader("true").use { reader ->
+            assertTrue(reader.boolean())
         }
-        "false".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertFalse(parser.boolean())
+        Config.stringReader("false").use { reader ->
+            assertFalse(reader.boolean())
         }
     }
 
     @Test
     fun `Read list`() {
-        "[ 1, 2, 3, 4 ]".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(listOf(1L, 2L, 3L, 4L), parser.list())
+        Config.stringReader("[ 1, 2, 3, 4 ]").use { reader ->
+            assertEquals(listOf(1L, 2L, 3L, 4L), reader.list())
         }
-        "[ \"1\", \"two\", 3 ]".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(listOf("1", "two", 3L), parser.list())
+        Config.stringReader("[ \"1\", \"two\", 3 ]").use { reader ->
+            assertEquals(listOf("1", "two", 3L), reader.list())
         }
-        "[1 , # comment \n \"two\" # c\n,3]".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(listOf(1L, "two", 3L), parser.list())
+        Config.stringReader("[1 , # comment \n \"two\" # c\n,3]").use { reader ->
+            assertEquals(listOf(1L, "two", 3L), reader.list())
         }
-        "[]".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(emptyList<Any>(), parser.list())
+        Config.stringReader("[]").use { reader ->
+            assertEquals(emptyList<Any>(), reader.list())
         }
-        "[  ]".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(emptyList<Any>(), parser.list())
+        Config.stringReader("[  ]").use { reader ->
+            assertEquals(emptyList<Any>(), reader.list())
         }
-        "[#comment\n]".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(emptyList<Any>(), parser.list())
+        Config.stringReader("[#comment\n]").use { reader ->
+            assertEquals(emptyList<Any>(), reader.list())
         }
-        "[\n#comment\n ]".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(emptyList<Any>(), parser.list())
+        Config.stringReader("[\n#comment\n ]").use { reader ->
+            assertEquals(emptyList<Any>(), reader.list())
         }
     }
 
     @Test
     fun `Read map`() {
-        "{ one = 1, two = 2, three = 3 }".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(mapOf("one" to 1L, "two" to 2L, "three" to 3L), parser.map())
+        Config.stringReader("{ one = 1, two = 2, three = 3 }").use { reader ->
+            assertEquals(mapOf("one" to 1L, "two" to 2L, "three" to 3L), reader.map())
         }
-        "{ one = \"1\", two = \"two\", three = 3 }".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(mapOf("one" to "1", "two" to "two", "three" to 3L), parser.map())
+        Config.stringReader("{ one = \"1\", two = \"two\", three = 3 }").use { reader ->
+            assertEquals(mapOf("one" to "1", "two" to "two", "three" to 3L), reader.map())
         }
-        "{one=1 , # comment \n two =\"two\" # c\n,three= 3}".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(mapOf("one" to 1L, "two" to "two", "three" to 3L), parser.map())
+        Config.stringReader("{one=1 , # comment \n two =\"two\" # c\n,three= 3}").use { reader ->
+            assertEquals(mapOf("one" to 1L, "two" to "two", "three" to 3L), reader.map())
         }
-        "{}".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(emptyMap<String, Any>(), parser.map())
+        Config.stringReader("{}").use { reader ->
+            assertEquals(emptyMap<String, Any>(), reader.map())
         }
-        "{  }".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(emptyMap<String, Any>(), parser.map())
+        Config.stringReader("{  }").use { reader ->
+            assertEquals(emptyMap<String, Any>(), reader.map())
         }
-        "{#comment\n }".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(emptyMap<String, Any>(), parser.map())
+        Config.stringReader("{#comment\n }").use { reader ->
+            assertEquals(emptyMap<String, Any>(), reader.map())
         }
-        "{\n#comment \n}".byteInputStream().use { input ->
-            val parser = ConfigReader(input)
-            assertEquals(emptyMap<String, Any>(), parser.map())
+        Config.stringReader("{\n#comment \n}").use { reader ->
+            assertEquals(emptyMap<String, Any>(), reader.map())
+        }
+    }
+
+    @Test
+    fun `Read value`() {
+        Config.stringReader("false").use { reader ->
+            assertEquals(false, reader.value())
+        }
+        Config.stringReader("\"value\"").use { reader ->
+            assertEquals("value", reader.value())
+        }
+        Config.stringReader("'literal'").use { reader ->
+            assertEquals("literal", reader.value())
+        }
+        Config.stringReader("+123").use { reader ->
+            assertEquals(123L, reader.value())
+        }
+        Config.stringReader("123").use { reader ->
+            assertEquals(123L, reader.value())
+        }
+        Config.stringReader("-12.3").use { reader ->
+            assertEquals(-12.3, reader.value())
+        }
+        Config.stringReader("[ 1, 2 ]").use { reader ->
+            assertEquals(listOf(1L, 2L), reader.value())
+        }
+        Config.stringReader("{ one = 1 }").use { reader ->
+            assertEquals(mapOf("one" to 1L), reader.value())
         }
     }
 
@@ -287,6 +295,19 @@ internal class ConfigReaderTest {
             assertEquals("four", parser.string())
             assertFalse(parser.nextPair())
             assertFalse(parser.nextSection())
+        }
+
+        resource("multi-sections").byteInputStream().use { input ->
+            val parser = ConfigReader(input)
+            val sections = parser.sections()
+            assertEquals(3, sections.size)
+            assertTrue(sections.contains(""))
+            assertTrue(sections.contains("section-1"))
+            assertTrue(sections.contains("section-2"))
+            val root = sections[""]
+            assertNotNull(root)
+            assertEquals(1, root!!.size)
+            assertTrue(root.contains("one"))
         }
     }
 
