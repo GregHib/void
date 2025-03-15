@@ -1,296 +1,433 @@
 package world.gregs.config
 
-import java.io.BufferedInputStream
+import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.objects.*
+import java.io.Closeable
+import java.io.InputStream
 
-abstract class ConfigReader {
-    abstract val buffer: ByteArray
-    private var bufferIndex: Int = 0
-    private var section: String = ""
-    private var parent: String = ""
-    private var byte: Int = -1
+class ConfigReader(
+    private val input: InputStream,
+    private val stringBuffer: ByteArray = ByteArray(100), // Maximum string length
+) : Closeable {
+    internal var byte: Int = input.read()
+    private var lastSection = ""
+    private var line = 1
 
-    open fun map(): MutableMap<String, Any> = mutableMapOf()
-
-    open fun list(): MutableList<Any> = mutableListOf()
-
-    abstract fun set(section: String, key: String, value: Any)
-
-    fun parse(input: BufferedInputStream) {
-        var byte = input.read()
-        while (byte != EOF) {
-            when (byte) {
-                SPACE, TAB -> { // Skip whitespace
-                    while (byte == SPACE || byte == TAB) {
-                        byte = input.read()
-                    }
-                    continue
-                }
-                HASH -> { // Skip comments
-                    while (byte != EOF && byte != RETURN && byte != NEWLINE) {
-                        byte = input.read()
-                    }
-                    continue
-                }
-                RETURN, NEWLINE -> { // Skip newlines
-                    while (byte == RETURN || byte == NEWLINE) {
-                        byte = input.read()
-                    }
-                    continue
-                }
-                OPEN_BRACKET -> { // Section
-                    byte = input.read() // skip [
-                    val inherit = byte == DOT
-
-                    bufferIndex = 0
-                    while (byte != EOF && byte != CLOSE_BRACKET) {
-                        buffer[bufferIndex++] = byte.toByte()
-                        byte = input.read()
-                    }
-
-                    if (inherit) {
-                        section = "${parent}${String(buffer, 0, bufferIndex)}"
-                    } else {
-                        section = String(buffer, 0, bufferIndex)
-                        parent = section
-                    }
-                    byte = input.read() // skip ]
-                    require(byte != CLOSE_BRACKET) { "Array of tables are not supported in section '$section'." }
-                }
-                DOUBLE_QUOTE -> {
-                    val key = quotedString(input)
-                    byte = this.byte
-                    skipKeyValueWhitespace(byte, input)
-                    byte = this.byte
-                    val value: Any = parseType(byte, input)
-                    set(section, key, value)
-                    byte = this.byte
-                }
-                else -> {
-                    val key = bareKey(byte, input)
-                    byte = this.byte
-                    skipKeyValueWhitespace(byte, input)
-                    byte = this.byte
-                    val value: Any = parseType(byte, input)
-                    set(section, key, value)
-                    byte = this.byte
-                    require(byte != DOUBLE_QUOTE) { "Multi-line strings are not supported in '$section'." }
-                }
-            }
-        }
-
-        input.close()
+    init {
+        nextLine()
     }
 
-    private fun skipComment(input: BufferedInputStream) {
-        var byte = input.read()
-        while (byte != EOF && byte != RETURN && byte != NEWLINE) {
-            byte = input.read()
-        }
-        this.byte = byte
+    /**
+     * Check if there are anymore sections remaining
+     */
+    fun nextSection(): Boolean = when (byte) {
+        EOF -> false
+        else -> true
     }
 
-    private fun bareKey(currentByte: Int, input: BufferedInputStream): String {
-        bufferIndex = 0
-        var byte = currentByte
-        while (byte != EOF && byte != SPACE && byte != TAB && byte != EQUALS && byte != RETURN && byte != NEWLINE) {
-            buffer[bufferIndex++] = byte.toByte()
-            byte = input.read()
+    /**
+     * Read the section title
+     */
+    fun section(): String {
+        if (byte != OPEN_BRACKET) {
+            return ""
         }
-        this.byte = byte
-        require(bufferIndex > 0) { "Expected key in section '${section}." }
-        return String(buffer, 0, bufferIndex)
-    }
-
-    private fun parseType(byte: Int, input: BufferedInputStream): Any = when (byte) {
-        DOUBLE_QUOTE -> quotedString(input)
-        SINGLE_QUOTE -> literalString(input)
-        OPEN_BRACKET -> parseArray(input)
-        OPEN_BRACE -> parseMap(input)
-        T -> parseTrue(input)
-        F -> parseFalse(input)
-        MINUS -> parseNumber(input, true, 0)
-        PLUS -> parseNumber(input, false, 0)
-        ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE ->
-            parseNumber(input, false, byte - ZERO)
-        else -> throw IllegalArgumentException("Unexpected character '${charType(byte)}' in section '$section'.")
-    }
-
-    private fun parseNumber(input: BufferedInputStream, negative: Boolean, initialDigit: Int): Number {
-        var value = initialDigit.toLong()
-        var byte = input.read()
-        while (byte != EOF && byte != DOT && byte != RETURN && byte != NEWLINE && byte != COMMA && byte != CLOSE_BRACE && byte != CLOSE_BRACKET) {
-            when (byte) {
-                UNDERSCORE -> {
-                    // Skip underscores
-                }
-                ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> {
-                    val digit = byte - ZERO
-                    value = value * 10 + digit
-                }
-                else -> break
-            }
-            byte = input.read()
-        }
-        if (byte == DOT) {
-            var decimalFactor = 1.0
-            var doubleValue = value.toDouble()
-            byte = input.read() // Skip the decimal
-            require(byte == ZERO || byte == ONE || byte == TWO || byte == THREE || byte == FOUR || byte == FIVE || byte == SIX || byte == SEVEN || byte == EIGHT || byte == NINE) {
-                "Unexpected character '${charType(byte)}', expecting a digit after decimal point in section '$section'."
-            }
-            while (byte != EOF && byte != DOT && byte != RETURN && byte != NEWLINE && byte != COMMA && byte != CLOSE_BRACE && byte != CLOSE_BRACKET) {
-                when (byte) {
-                    UNDERSCORE -> {
-                        // Skip underscores
-                    }
-                    ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> {
-                        val digit = byte - ZERO
-                        decimalFactor /= 10
-                        doubleValue += digit * decimalFactor
-                    }
-                    else -> break
-                }
-                byte = input.read()
-            }
-            this.byte = byte
-            return if (negative) -doubleValue else doubleValue
-        }
-        this.byte = byte
-        return if (negative) -value else value
-    }
-
-    private fun parseTrue(input: BufferedInputStream): Boolean {
-        if (input.read() == R && input.read() == U && input.read() == E) {
-            this.byte = input.read()
-            return true
-        }
-        throw IllegalArgumentException("Expected boolean 'true' at section $section")
-    }
-
-    private fun parseFalse(input: BufferedInputStream): Boolean {
-        if (input.read() == A && input.read() == L && input.read() == S && input.read() == E) {
-            this.byte = input.read()
-            return false
-        }
-        throw IllegalArgumentException("Expected boolean 'false' at section $section")
-    }
-
-    private fun parseMap(input: BufferedInputStream): Map<String, Any> {
-        val map = map()
-        var byte = input.read() // skip opening brace
-        while (byte != EOF && byte != CLOSE_BRACE) {
-            // Skip whitespace and commas
-            skipMultilineWhitespace(byte, input)
-            val mapKey = when (this.byte) {
-                CLOSE_BRACE -> break
-                DOUBLE_QUOTE -> quotedString(input)
-                else -> bareKey(this.byte, input)
-            }
-            skipKeyValueWhitespace(this.byte, input)
-            val value = parseType(this.byte, input)
-            map[mapKey] = value
-            byte = this.byte
-            require(byte == EOF || byte == SPACE || byte == TAB || byte == COMMA || byte == RETURN || byte == NEWLINE || byte == CLOSE_BRACE) {
-                "Unexpected character '${charType(byte)}', expecting whitespace, comma, newline or close brace in section '$section'."
-            }
-        }
-        this.byte = input.read()// skip closing brace
-        return map
-    }
-
-    private fun parseArray(input: BufferedInputStream): List<Any> {
-        val values = list()
-        var byte = input.read() // skip opening bracket
+        byte = input.read() // Skip [
+        val inherit = byte == DOT
+        var bufferIndex = 0
         while (byte != EOF && byte != CLOSE_BRACKET) {
-            // Skip whitespace and commas
-            skipMultilineWhitespace(byte, input)
-            byte = this.byte
-            when (byte) {
-                CLOSE_BRACKET -> break
-                DOUBLE_QUOTE -> values.add(quotedString(input))
-                SINGLE_QUOTE -> values.add(literalString(input))
-                OPEN_BRACKET -> values.add(parseArray(input))
-                OPEN_BRACE -> values.add(parseMap(input))
-                T -> values.add(parseTrue(input))
-                F -> values.add(parseFalse(input))
-                MINUS -> values.add(parseNumber(input, true, 0))
-                PLUS -> values.add(parseNumber(input, false, 0))
-                ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> values.add(parseNumber(input, false, byte - ZERO))
-                HASH -> skipComment(input)
-                else -> throw IllegalArgumentException("Unexpected character '${charType(byte)}' in section $section")
-            }
-            byte = this.byte
-            require(byte == EOF || byte == SPACE || byte == TAB || byte == COMMA || byte == RETURN || byte == NEWLINE || byte == CLOSE_BRACKET) {
-                "Unexpected character '${charType(byte)}', expecting whitespace, comma, newline or close bracket in section '$section'."
-            }
+            stringBuffer[bufferIndex++] = byte.toByte()
+            byte = input.read()
         }
-        this.byte = input.read()
-        return values
+        byte = input.read() // Skip ]
+        require(byte != CLOSE_BRACKET) { "Array of tables are not supported. ${exception()}" }
+        val section = if (inherit) {
+            "${lastSection}${String(stringBuffer, 0, bufferIndex)}"
+        } else {
+            val section = String(stringBuffer, 0, bufferIndex)
+            lastSection = section
+            section
+        }
+        nextLine()
+        return section
     }
 
-    private fun skipKeyValueWhitespace(currentByte: Int, input: BufferedInputStream) {
-        var byte = currentByte
+    /**
+     * Read all sections into a map, not as performant as reading individually.
+     */
+    fun sections(expectedSections: Int = 8, expectedSize: Int = 8, loadFactor: Float = Hash.VERY_FAST_LOAD_FACTOR): Map<String, Map<String, Any>> {
+        val sections = Object2ObjectOpenHashMap<String, MutableMap<String, Any>>(expectedSections, loadFactor)
+        while (nextSection()) {
+            val section = section()
+            val map = sections.getOrPut(section) { Object2ObjectOpenHashMap(expectedSize, loadFactor) }
+            while (nextPair()) {
+                map[key()] = value()
+            }
+        }
+        return sections
+    }
+
+    /**
+     * Check if there are anymore key-value pairs remaining for the current section
+     */
+    fun nextPair(): Boolean = byte != EOF && byte != OPEN_BRACKET
+
+    fun key(): String {
+        val key = when (byte) {
+            DOUBLE_QUOTE -> quotedString()
+            SINGLE_QUOTE -> literalString()
+            else -> bareKey()
+        }
+        skipEquals()
+        return key
+    }
+
+    private fun skipEquals() {
         while (byte == SPACE || byte == TAB || byte == EQUALS) {
             byte = input.read()
         }
-        this.byte = byte
     }
 
-    private fun skipMultilineWhitespace(currentByte: Int, input: BufferedInputStream) {
-        var byte = currentByte
-        while (byte == SPACE || byte == TAB || byte == COMMA || byte == RETURN || byte == NEWLINE) {
-            byte = input.read()
+    /**
+     * Read a quoted string value
+     */
+    fun string(): String {
+        val string = when (byte) {
+            DOUBLE_QUOTE -> quotedString()
+            SINGLE_QUOTE -> literalString()
+            else -> throw IllegalArgumentException("Strings must be quoted. ${exception()}")
         }
-        if (byte == HASH) {
-            skipComment(input)
-            byte = this.byte
-            while (byte == SPACE || byte == TAB || byte == COMMA || byte == RETURN || byte == NEWLINE) {
-                byte = input.read()
-            }
-        }
-        this.byte = byte
+        nextLine()
+        return string
     }
 
-    private fun quotedString(input: BufferedInputStream): String {
-        bufferIndex = 0
-        var byte = input.read() // skip opening quote
+    private fun quotedString(): String {
+        var bufferIndex = 0
+        byte = input.read() // skip opening quote
         while (byte != EOF && byte != DOUBLE_QUOTE) {
             if (byte == BACKSLASH) {
                 byte = input.read()
                 if (byte == DOUBLE_QUOTE) {
-                    buffer[bufferIndex++] = DOUBLE_QUOTE.toByte()
+                    stringBuffer[bufferIndex++] = DOUBLE_QUOTE.toByte()
                     byte = input.read()
                     continue
                 } else {
-                    buffer[bufferIndex++] = BACKSLASH.toByte()
+                    stringBuffer[bufferIndex++] = BACKSLASH.toByte()
                 }
             }
 
-            buffer[bufferIndex++] = byte.toByte()
+            stringBuffer[bufferIndex++] = byte.toByte()
             byte = input.read()
         }
-        this.byte = input.read() // Skip closing quote
-        return String(buffer, 0, bufferIndex)
+        byte = input.read() // Skip closing quote
+        return String(stringBuffer, 0, bufferIndex)
     }
 
-    private fun literalString(input: BufferedInputStream): String {
-        bufferIndex = 0
-        var byte = input.read() // skip opening quote
+    private fun literalString(): String {
+        var bufferIndex = 0
+        byte = input.read() // skip opening quote
         while (byte != EOF && byte != SINGLE_QUOTE) {
-            buffer[bufferIndex++] = byte.toByte()
+            stringBuffer[bufferIndex++] = byte.toByte()
             byte = input.read()
         }
-        this.byte = input.read() // skip closing quote
-        return String(buffer, 0, bufferIndex)
+        require(byte == SINGLE_QUOTE) { "Strings must be quoted" }
+        byte = input.read() // Skip closing quote
+        return String(stringBuffer, 0, bufferIndex)
     }
+
+    private fun bareKey(): String {
+        var bufferIndex = 0
+        while (byte != EOF && byte != SPACE && byte != TAB && byte != EQUALS && byte != RETURN && byte != NEWLINE) {
+            stringBuffer[bufferIndex++] = byte.toByte()
+            byte = input.read()
+        }
+        require(bufferIndex > 0) { "No key found. ${exception()}" }
+        return String(stringBuffer, 0, bufferIndex)
+    }
+
+    /**
+     * Read a Double or Long number
+     */
+    fun number(): Number {
+        val number: Number = when (byte) {
+            MINUS -> {
+                val value = readLong(0)
+                if (byte == DOT) -readDecimal(value) else -value
+            }
+            PLUS -> {
+                val value = readLong(0)
+                if (byte == DOT) readDecimal(value) else value
+            }
+            else -> {
+                val value = readLong(byte - ZERO.toLong())
+                if (byte == DOT) readDecimal(value) else value
+            }
+        }
+        nextLine()
+        return number
+    }
+
+    /**
+     * Read an Int value
+     */
+    fun int(): Int {
+        val int = when (byte) {
+            MINUS -> -readInt(0)
+            PLUS -> readInt(0)
+            else -> readInt(byte - ZERO)
+        }
+        nextLine()
+        return int
+    }
+
+    private fun readInt(int: Int): Int {
+        var value = int
+        byte = input.read()
+        while (isDigit() || byte == UNDERSCORE) {
+            if (byte != UNDERSCORE) {
+                val digit = byte - ZERO
+                value = value * 10 + digit
+            }
+            byte = input.read()
+        }
+        return value
+    }
+
+    /**
+     * Read a Long value
+     */
+    fun long(): Long {
+        val long = when (byte) {
+            MINUS -> -readLong(0)
+            PLUS -> readLong(0)
+            else -> readLong(byte - ZERO.toLong())
+        }
+        nextLine()
+        return long
+    }
+
+    private fun readLong(long: Long): Long {
+        var value = long
+        byte = input.read()
+        while (isDigit() || byte == UNDERSCORE) {
+            if (byte != UNDERSCORE) {
+                val digit = byte - ZERO
+                value = value * 10 + digit
+            }
+            byte = input.read()
+        }
+        return value
+    }
+
+    /**
+     * Read a Double value
+     */
+    fun double(): Double {
+        val double = when (byte) {
+            MINUS -> {
+                val value = readLong(0)
+                require(byte == DOT) { "Expecting decimal point. ${exception()}" }
+                -readDecimal(value)
+            }
+            PLUS -> {
+                val value = readLong(0)
+                require(byte == DOT) { "Expecting decimal point. ${exception()}" }
+                readDecimal(value)
+            }
+            else -> {
+                val value = readLong(byte - ZERO.toLong())
+                require(byte == DOT) { "Expecting decimal point. ${exception()}" }
+                readDecimal(value)
+            }
+        }
+        nextLine()
+        return double
+    }
+
+    private fun readDecimal(long: Long): Double {
+        var double = long.toDouble()
+        byte = input.read() // Skip decimal point
+        var decimalFactor = 1.0
+        require(isDigit()) { "Expecting a digit after decimal point." }
+        while (isDigit() || byte == UNDERSCORE) {
+            if (byte != UNDERSCORE) {
+                val digit = byte - ZERO
+                decimalFactor /= 10
+                double += digit * decimalFactor
+            }
+            byte = input.read()
+        }
+        return double
+    }
+
+    private fun isDigit() = byte == ZERO || byte == ONE || byte == TWO || byte == THREE || byte == FOUR || byte == FIVE || byte == SIX || byte == SEVEN || byte == EIGHT || byte == NINE
+
+    /**
+     * Read a case-sensitive boolean value
+     */
+    fun boolean(): Boolean {
+        val boolean = when (byte) {
+            T -> booleanTrue()
+            F -> booleanFalse()
+            else -> throw IllegalArgumentException("Expecting boolean. ${exception()}")
+        }
+        nextLine()
+        return boolean
+    }
+
+    private fun booleanFalse(): Boolean {
+        if (input.read() == A && input.read() == L && input.read() == S && input.read() == E) {
+            byte = input.read()
+            return false
+        }
+        throw IllegalArgumentException("Expecting boolean 'false'. ${exception()}")
+    }
+
+    private fun booleanTrue(): Boolean {
+        if (input.read() == R && input.read() == U && input.read() == E) {
+            byte = input.read()
+            return true
+        }
+        throw IllegalArgumentException("Expecting boolean 'true'. ${exception()}")
+    }
+
+    /**
+     * Check if there are anymore list elements remaining
+     */
+    fun nextElement(): Boolean = when (byte) {
+        OPEN_BRACKET, COMMA -> {
+            byte = input.read() // Skip [ or ,
+            nextLine()
+            when (byte) {
+                EOF -> throw IllegalArgumentException("Expecting list closing bracket. ${exception()}")
+                CLOSE_BRACKET -> {
+                    byte = input.read() // Skip ]
+                    nextLine()
+                    false
+                }
+                else -> true
+            }
+        }
+        CLOSE_BRACKET -> {
+            byte = input.read() // Skip ]
+            nextLine()
+            false
+        }
+        else -> false
+    }
+
+    /**
+     * Check if there are anymore map entries remaining
+     */
+    fun nextEntry() = when (byte) {
+        OPEN_BRACE, COMMA -> {
+            byte = input.read() // Skip { or ,
+            nextLine()
+            when (byte) {
+                EOF -> throw IllegalArgumentException("Expecting map closing brace. ${exception()}")
+                CLOSE_BRACE -> {
+                    byte = input.read() // Skip }
+                    nextLine()
+                    false
+                }
+                else -> true
+            }
+        }
+        CLOSE_BRACE -> {
+            byte = input.read() // Skip }
+            nextLine()
+            false
+        }
+        else -> false
+    }
+
+    /**
+     * Read a mixed type list, if the types are known you should call [nextElement] with the relevant method(s) directly for better performance.
+     */
+    fun list(expectedSize: Int = 2): List<Any> {
+        require(byte == OPEN_BRACKET) { "Lists must start with an opening bracket. ${exception()}" }
+        val list = ObjectArrayList<Any>(expectedSize)
+        while (nextElement()) {
+            list.add(value())
+        }
+        return list
+    }
+
+    /**
+     * Read a mixed type map, if the types are known you should call [nextEntry] with the relevant method directly for better performance.
+     */
+    fun map(expectedSize: Int = 8, loadFactor: Float = Hash.VERY_FAST_LOAD_FACTOR): Map<String, Any> {
+        require(byte == OPEN_BRACE) { "Maps must start with an opening brace. ${exception()}" }
+        val map = Object2ObjectOpenHashMap<String, Any>(expectedSize, loadFactor)
+        while (nextEntry()) {
+            map[key()] = value()
+        }
+        return map
+    }
+
+    /**
+     * Read a generic value, if the type is known you should call the relevant method directly for better performance.
+     */
+    fun value(): Any {
+        val value: Any = when (byte) {
+            DOUBLE_QUOTE -> quotedString()
+            SINGLE_QUOTE -> literalString()
+            OPEN_BRACKET -> list()
+            OPEN_BRACE -> map()
+            T -> booleanTrue()
+            F -> booleanFalse()
+            MINUS -> {
+                val value = readLong(0)
+                if (byte == DOT) -readDecimal(value) else -value
+            }
+            PLUS -> {
+                val value = readLong(0)
+                if (byte == DOT) readDecimal(value) else value
+            }
+            ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> {
+                val value = readLong(byte - ZERO.toLong())
+                if (byte == DOT) readDecimal(value) else value
+            }
+            else -> throw IllegalArgumentException("Unexpected character. ${exception()}")
+        }
+        nextLine()
+        return value
+    }
+
+    private fun nextLine() {
+        // Skip whitespace, new lines and comments
+        while (byte == SPACE || byte == TAB || byte == RETURN || byte == NEWLINE || byte == HASH) {
+            when (byte) {
+                HASH -> {
+                    while (byte != EOF && byte != RETURN && byte != NEWLINE) {
+                        byte = input.read()
+                    }
+                }
+                NEWLINE -> {
+                    line++
+                    byte = input.read()
+                }
+                else -> {
+                    byte = input.read()
+                }
+            }
+        }
+    }
+
+    override fun close() {
+        input.close()
+    }
+
+    private fun exception(): String = "line=$line char='${charType(byte)}'"
 
     companion object {
 
-        private fun charType(byte: Int): String = when(byte) {
+        private fun charType(byte: Int): String = when (byte) {
             NEWLINE -> "\\n"
             RETURN -> "\\r"
             TAB -> "\\t"
             BACKSLASH -> "\\"
+            EOF -> "<end-of-file>"
             else -> byte.toChar().toString()
         }
 

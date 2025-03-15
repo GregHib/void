@@ -5,6 +5,43 @@ It supports multi-line arrays and maps like TOML v1.1. but not multiline strings
 
 Files use the `.toml` ending for syntax highlighting support.
 
+# Usage
+
+## Simplified
+```kotlin
+val sections: Map<String, Any> = Config.decodeFromFile(file)
+```
+
+## Performance
+```kotlin
+Config.fileReader(file).use { reader ->
+    while (reader.nextSection()) {
+        val section = reader.section()
+        while (reader.nextPair()) {
+            val key = reader.key()
+            
+            // TODO: Read your values using reader.string(), boolean(), int(), long(), double() etc... 
+        }
+    }
+}
+```
+
+### Reading arrays
+```kotlin
+while (reader.nextElement()) {
+    // TODO: Read your values using reader.string(), boolean(), int(), long(), double() etc... 
+}
+```
+
+### Reading maps
+```kotlin
+while (reader.nextPair()) {
+    val key = reader.key()
+    
+    // TODO: Read your values using reader.string(), boolean(), int(), long(), double() etc... 
+}
+```
+
 # Basic Spec
 
 ## Comments
@@ -81,13 +118,11 @@ name = "Tom"
 
 ## Arrays
 
-Arrays use square brackets. Whitespace and commas are ignored.
+Arrays use square brackets. Whitespace and lines are ignored.
 ```toml
 intergers = [1, 2, 3]
 colours = ["red", "yellow", "green"]
 nested_mixed_array = [ [ 1, 2 ], ["a", "b", "c"] ]
-separated_array = [ 1, 2, , 3, 4] # Same as [1, 2, 3, 4]
-commaless_array = [ "one" "two" "three"] # Same as ["one", "two", "three"] but not recommended
 ```
 
 Arrays can be multi-line
@@ -116,7 +151,7 @@ Map can also be multi-line
 ```ini
 point = {
   x = 1,
-  y = 2
+  y = 2, # also ok
 }
 animal = {
   type.name = "pug"

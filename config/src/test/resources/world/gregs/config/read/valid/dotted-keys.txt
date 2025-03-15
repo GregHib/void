@@ -1,4 +1,4 @@
-[] name = Orange
-[] physical.color = orange
-[] physical.shape = round
+[] name = "Orange"
+[] physical.color = "orange"
+[] physical.shape = "round"
 [] site."google.com" = true

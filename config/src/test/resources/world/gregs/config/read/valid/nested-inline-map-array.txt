@@ -1,1 +1,4 @@
-[] songs = [{title=Here comes the Sun, year=1969}, {title=Can't Help Falling in Love, year=1961}]
+[] songs[0]["title"] = "Here comes the Sun"
+[] songs[0]["year"] = 1969
+[] songs[1]["title"] = "Can't Help Falling in Love"
+[] songs[1]["year"] = 1961

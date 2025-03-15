@@ -1,2 +1,2 @@
-[product] type = {name=Nail}
+[product] type["name"] = "Nail"
 [product] type.edible = false

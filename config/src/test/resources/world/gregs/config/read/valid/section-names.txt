@@ -1,1 +1,1 @@
-[dog."tater.man"] type.name = pug
+[dog."tater.man"] type.name = "pug"
