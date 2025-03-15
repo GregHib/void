@@ -4,7 +4,6 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
-import world.gregs.config.ConfigReader
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.timedLoad
@@ -20,32 +19,32 @@ class GraphicDefinitions(
     fun load(path: String = Settings["definitions.graphics"]): GraphicDefinitions {
         timedLoad("graphic extra") {
             val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
-            val reader = object : ConfigReader(50) {
-                override fun set(section: String, key: String, value: Any) {
+            Config.fileReader(path) {
+                while (nextSection()) {
+                    val section = section()
                     if (section == "gfx") {
-                        val id = (value as Long).toInt()
-                        ids[key] = id
-                        definitions[id].stringId = key
+                        while (nextPair()) {
+                            val key = key()
+                            val id = int()
+                            ids[key] = id
+                            definitions[id].stringId = key
+                        }
                     } else {
-                        when (key) {
-                            "id" -> {
-                                val id = (value as Long).toInt()
-                                ids[section] = id
-                                definitions[id].stringId = section
-                            }
-                            else -> {
-                                require(ids.containsKey(section)) { "Unable to find definition '$section', make sure definition id is set first in section." }
-                                var extras = definitions[ids.getInt(section)].extras
-                                if (extras == null) {
-                                    extras = Object2ObjectOpenHashMap(2, Hash.VERY_FAST_LOAD_FACTOR)
-                                }
-                                (extras as MutableMap<String, Any>)[section] = value
+                        val stringId = section.substring(4)
+                        var id = 0
+                        val extras = Object2ObjectOpenHashMap<String, Any>(0)
+                        while (nextPair()) {
+                            when (val key = key()) {
+                                "id" -> id = int()
+                                else -> extras[key] = value()
                             }
                         }
+                        ids[stringId] = id
+                        definitions[id].stringId = stringId
+                        definitions[id].extras = extras.ifEmpty { null }
                     }
                 }
             }
-            Config.decodeFromFile(path, reader)
             this.ids = ids
             ids.size
         }

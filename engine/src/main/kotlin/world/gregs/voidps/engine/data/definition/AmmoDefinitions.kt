@@ -17,30 +17,31 @@ class AmmoDefinitions : DefinitionsDecoder<AmmoDefinition> {
     override lateinit var definitions: Array<AmmoDefinition>
     override lateinit var ids: Map<String, Int>
 
-    @Suppress("UNCHECKED_CAST")
     fun load(path: String = Settings["definitions.ammoGroups"]): AmmoDefinitions {
         timedLoad("ammo definition") {
             val size = 1300
             val ids = Object2IntOpenHashMap<String>(size, 0.25f)
             definitions = Array(size) { AmmoDefinition.EMPTY }
-            var count = 0
-            val reader = object : ConfigReader(100) {
-                override fun set(section: String, key: String, value: Any) {
-                    if (key == "id") {
-                        val id = (value as Long).toInt()
-                        ids[key] = id
-                        definitions[id] = AmmoDefinition(id, stringId = key)
-                        count++
-                    } else if (key == "items") {
-                        val id = ids.getInt(key)
-                        require(id != -1) { "Unable to find id for '$key' make sure id is the first in the section."}
-                        (definitions[id].items as MutableSet<String>).addAll(value as List<String>)
+            Config.fileReader(path) {
+                while (nextSection()) {
+                    val section = section()
+                    var id = -1
+                    val set = ObjectOpenHashSet<String>(2)
+                    while (nextPair()) {
+                        val key = key()
+                        when (key) {
+                            "id" -> id = int()
+                            "items" -> while (nextElement()) {
+                                set.add(string())
+                            }
+                        }
                     }
+                    ids[section] = id
+                    definitions[id] = AmmoDefinition(id, set, section)
                 }
             }
-            Config.decodeFromFile(path, reader)
             this.ids = ids
-            count
+            ids.size
         }
         return this
     }

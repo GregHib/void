@@ -20,16 +20,17 @@ class CategoryDefinitions : DefinitionsDecoder<CategoryDefinition> {
         timedLoad("category definition") {
             val ids = Object2IntOpenHashMap<String>(38, Hash.VERY_FAST_LOAD_FACTOR)
             val definitions = Array(38) { CategoryDefinition.EMPTY }
-            val reader = object : ConfigReader(50) {
-                override fun set(section: String, key: String, value: Any) {
-                    if (section == "categories") {
-                        val id = (value as Long).toInt()
+            Config.fileReader(path, 50) {
+                while (nextSection()) {
+                    section()
+                    while (nextPair()) {
+                        val key = key()
+                        val id = int()
                         ids[key] = id
                         definitions[id] = CategoryDefinition(id, key)
                     }
                 }
             }
-            Config.decodeFromFile(path, reader)
             this.definitions = definitions
             this.ids = ids
             ids.size

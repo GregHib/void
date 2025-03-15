@@ -50,13 +50,13 @@ fun refreshBook(player: Player, book: String) {
     player.interfaces.display(book, books.title(book), page, pages)
 }
 
-fun Interfaces.display(book: String, title: String, pageNumber: Int, pages: List<String>) {
+fun Interfaces.display(book: String, title: String, pageNumber: Int, pages: List<List<String>>) {
     sendText(book, "title", title)
     sendText(book, "page_number_left", (pageNumber + 1).toString())
     sendText(book, "page_number_right", (pageNumber + 2).toString())
     sendVisibility(book, "turn_page_left", pageNumber > 0)
     sendVisibility(book, "turn_page_right", pageNumber < pages.lastIndex)
-    val lines = pages.getOrNull(pageNumber)?.lines()
+    val lines = pages.getOrNull(pageNumber)
     for (i in 0 until if (book == "book_long") 30 else 21) {
         println("Send line${i + 1} ${lines?.getOrNull(i)}")
         sendText(book, "line${i + 1}", lines?.getOrNull(i) ?: "")

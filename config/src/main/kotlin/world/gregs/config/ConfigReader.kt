@@ -9,9 +9,14 @@ class ConfigReader(
     private val input: InputStream,
     private val stringBuffer: ByteArray = ByteArray(100), // Maximum string length
 ) : Closeable {
-    internal var byte: Int = input.read()
+    private var byte: Int = input.read()
     private var lastSection = ""
     private var line = 1
+
+    val peek: Char
+        get() = byte.toChar()
+
+    constructor(input: InputStream, maxStringLength: Int) : this(input, ByteArray(maxStringLength))
 
     init {
         nextLine()
@@ -407,9 +412,7 @@ class ConfigReader(
                     line++
                     byte = input.read()
                 }
-                else -> {
-                    byte = input.read()
-                }
+                else -> byte = input.read()
             }
         }
     }

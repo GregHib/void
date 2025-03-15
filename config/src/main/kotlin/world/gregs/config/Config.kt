@@ -28,31 +28,19 @@ object Config {
         }
     }
 
-    /**
-     * Make sure to call [ConfigReader.close] after finished
-     */
-    fun fileReader(path: String): ConfigReader {
-        return ConfigReader(BufferedInputStream(FileInputStream(path)))
+    fun fileReader(path: String, maxStringLength: Int = 100, block: ConfigReader.() -> Unit) {
+        ConfigReader(BufferedInputStream(FileInputStream(path)), maxStringLength).use(block)
     }
 
-    /**
-     * Make sure to call [ConfigReader.close] after finished
-     */
-    fun fileReader(file: File): ConfigReader {
-        return ConfigReader(BufferedInputStream(FileInputStream(file)))
+    fun fileReader(file: File, maxStringLength: Int = 100, block: ConfigReader.() -> Unit) {
+        ConfigReader(BufferedInputStream(FileInputStream(file)), maxStringLength).use(block)
     }
 
-    /**
-     * Make sure to call [ConfigReader.close] after finished
-     */
-    fun stringReader(string: String): ConfigReader {
-        return ConfigReader(BufferedInputStream(string.byteInputStream()))
+    fun stringReader(string: String, maxStringLength: Int = 100, block: ConfigReader.() -> Unit) {
+        ConfigReader(BufferedInputStream(string.byteInputStream()), maxStringLength).use(block)
     }
 
     fun decodeFromFile(path: String, api: ConfigReader) {
-        BufferedInputStream(FileInputStream(path)).use { input ->
-            api.parse(input)
-        }
     }
 
     fun encodeToString(map: Map<String, Any>): String {

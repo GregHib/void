@@ -40,35 +40,34 @@ class EnumDefinitions(
     fun load(path: String = Settings["definitions.enums"]): EnumDefinitions {
         timedLoad("enum extra") {
             val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
-            val reader = object : ConfigReader(50) {
-                override fun set(section: String, key: String, value: Any) {
+            Config.fileReader(path, 50) {
+                while (nextSection()) {
+                    val section = section()
                     if (section == "enums") {
-                        val id = (value as Long).toInt()
-                        ids[key] = id
-                        definitions[id].stringId = key
+                        while (nextPair()) {
+                            val stringId = key()
+                            val id = int()
+                            ids[stringId] = id
+                            definitions[id].stringId = stringId
+                        }
                     } else {
-                        val stringId = section.removePrefix("enums.")
-                        when (key) {
-                            "id" -> {
-                                val id = (value as Long).toInt()
-                                ids[stringId] = id
-                                definitions[id].stringId = stringId
-                            }
-                            else -> {
-                                require(ids.containsKey(stringId)) { "Cannot find definition for id '$stringId'. Make sure the id value is first in the section." }
-                                val definition = definitions[ids.getInt(stringId)]
-                                var extras = definition.extras
-                                if (extras == null) {
-                                    extras = Object2ObjectOpenHashMap(2, Hash.VERY_FAST_LOAD_FACTOR)
-                                    definition.extras = extras
+                        val stringId = section.substring(6)
+                        var id = 0
+                        val extras = Object2ObjectOpenHashMap<String, Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
+                        while (nextPair()) {
+                            when (val key = key()) {
+                                "id" -> {
+                                    id = int()
+                                    ids[stringId] = id
+                                    definitions[id].stringId = stringId
                                 }
-                                (extras as MutableMap<String, Any>)[key] = value
+                                else -> extras[key] = value()
                             }
                         }
+                        definitions[id].extras = extras
                     }
                 }
             }
-            Config.decodeFromFile(path, reader)
             this.ids = ids
             ids.size
         }

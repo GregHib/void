@@ -19,14 +19,14 @@ class FontDefinitions(
     fun load(path: String = Settings["definitions.fonts"]): FontDefinitions {
         timedLoad("font extra") {
             val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
-            val reader = object : ConfigReader(50) {
-                override fun set(section: String, key: String, value: Any) {
-                    val id = (value as Long).toInt()
+            Config.fileReader(path) {
+                while (nextPair()) {
+                    val key = key()
+                    val id = int()
                     ids[key] = id
                     definitions[id].stringId = key
                 }
             }
-            Config.decodeFromFile(path, reader)
             this.ids = ids
             ids.size
         }
