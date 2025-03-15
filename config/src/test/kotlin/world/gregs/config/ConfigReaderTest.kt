@@ -49,24 +49,24 @@ internal class ConfigReaderTest {
     }
 
     private fun parseValue(builder: StringBuilder, reader: ConfigReader, section: String, key: String, collection: String = "") {
-        when (reader.byte) {
-            '"'.code, '\''.code -> builder.appendLine("[$section] $key$collection = \"${reader.string()}\"")
-            '['.code -> {
+        when (reader.peek) {
+            '"', '\'' -> builder.appendLine("[$section] $key$collection = \"${reader.string()}\"")
+            '[' -> {
                 var index = 0
                 while (reader.nextElement()) {
                     parseValue(builder, reader, section, key, collection = "${collection}[${index++}]")
                 }
             }
-            '{'.code -> {
+            '{' -> {
                 while (reader.nextEntry()) {
                     val k = reader.key()
                     parseValue(builder, reader, section, key, collection = "${collection}[\"${k}\"]")
                 }
             }
-            't'.code, 'f'.code -> builder.appendLine("[$section] $key$collection = ${reader.boolean()}")
-            '-'.code, '+'.code, '0'.code, '1'.code, '2'.code, '3'.code, '4'.code, '5'.code, '6'.code, '7'.code, '8'.code, '9'.code ->
+            't', 'f' -> builder.appendLine("[$section] $key$collection = ${reader.boolean()}")
+            '-', '+', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ->
                 builder.appendLine("[$section] $key$collection = ${reader.number()}")
-            else -> throw IllegalArgumentException("Unexpected character section=${section} char=${reader.byte.toChar()}")
+            else -> throw IllegalArgumentException("Unexpected character section=${section} char=${reader.peek}")
         }
     }
 
