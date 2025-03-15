@@ -1,6 +1,6 @@
-[fruits] name = apple
-[fruits.physical] color = red
-[fruits.physical] shape = round
-[fruits.varieties] name = granny smith
-[fruits] name = banana
-[fruits.varieties] name = plantain
+[fruits] name = "apple"
+[fruits.physical] color = "red"
+[fruits.physical] shape = "round"
+[fruits.varieties] name = "granny smith"
+[fruits] name = "banana"
+[fruits.varieties] name = "plantain"

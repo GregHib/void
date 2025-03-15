@@ -6,19 +6,17 @@ object Config {
     private val writer = ConfigWriter()
 
     fun decodeFromString(string: String): Map<String, Any> {
-        val api = ConfigMap()
-        BufferedInputStream(string.byteInputStream()).use { input ->
-            api.parse(input)
+        return BufferedInputStream(string.byteInputStream()).use { input ->
+            val api = ConfigReader(input)
+            api.sections()
         }
-        return api.sections
     }
 
     fun decodeFromFile(path: String): Map<String, Any> {
-        val api = ConfigMap()
-        BufferedInputStream(FileInputStream(path)).use { input ->
-            api.parse(input)
+        return BufferedInputStream(FileInputStream(path)).use { input ->
+            val api = ConfigReader(input)
+            api.sections()
         }
-        return api.sections
     }
 
     fun encodeToString(map: Map<String, Any>): String {

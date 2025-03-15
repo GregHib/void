@@ -1,2 +1,2 @@
-[fruit] apple = red
-[fruit] orange = orange
+[fruit] apple = "red"
+[fruit] orange = "orange"
