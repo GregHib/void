@@ -6,12 +6,13 @@ import it.unimi.dsi.fastutil.doubles.DoubleArrayList
 import it.unimi.dsi.fastutil.ints.IntArrayList
 import it.unimi.dsi.fastutil.longs.LongArrayList
 import it.unimi.dsi.fastutil.objects.*
+import java.io.Closeable
 import java.io.InputStream
 
 class ConfigReader(
     private val input: InputStream,
     private val stringBuffer: ByteArray = ByteArray(100), // Maximum string length
-) {
+) : Closeable {
     internal var byte: Int = input.read()
     private var lastSection = ""
     private var line = 1
@@ -506,6 +507,10 @@ class ConfigReader(
                 }
             }
         }
+    }
+
+    override fun close() {
+        input.close()
     }
 
     private fun exception(): String = "line=$line char='${charType(byte)}'"

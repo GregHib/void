@@ -35,13 +35,14 @@ internal class ConfigReaderTest {
         }
 
     private fun parse(file: File): String {
-        val reader = ConfigReader(file.inputStream().buffered())
         val builder = StringBuilder()
-        while (reader.nextSection()) {
-            val section = reader.section()
-            while (reader.nextPair()) {
-                val key = reader.key()
-                parseValue(builder, reader, section, key)
+        Config.fileReader(file).use { reader ->
+            while (reader.nextSection()) {
+                val section = reader.section()
+                while (reader.nextPair()) {
+                    val key = reader.key()
+                    parseValue(builder, reader, section, key)
+                }
             }
         }
         return builder.toString()
