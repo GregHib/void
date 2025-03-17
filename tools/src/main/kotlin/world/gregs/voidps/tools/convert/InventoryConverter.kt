@@ -16,7 +16,7 @@ import kotlin.collections.component2
 import kotlin.collections.set
 
 /**
- * Converts inventories from one cache into another, dumping the default values into inventories.yml
+ * Converts inventories from one cache into another, dumping the default values into inventories.toml
  */
 @Suppress("UNCHECKED_CAST")
 object InventoryConverter {
@@ -80,7 +80,7 @@ object InventoryConverter {
         if (targetCache.update()) {
             println("Updated $counter inventories.")
         }
-//        yaml.save("inventories.yml", data)
+//        yaml.save("inventories.toml", data)
     }
 
     @JvmStatic

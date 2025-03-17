@@ -1,12 +1,14 @@
 package world.gregs.voidps.engine.data.definition
 
+import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.ints.IntArrayList
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.yaml.DefinitionConfig
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.Yaml
 
 class InventoryDefinitions(
     override var definitions: Array<InventoryDefinition>
@@ -16,27 +18,38 @@ class InventoryDefinitions(
 
     override fun empty() = InventoryDefinition.EMPTY
 
-    @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["definitions.inventories"], itemDefs: ItemDefinitions = get()): InventoryDefinitions {
+    fun load(path: String = Settings["definitions.inventories"], itemDefs: ItemDefinitions = get()): InventoryDefinitions {
         timedLoad("inventory extra") {
             val ids = Object2IntOpenHashMap<String>()
-            val config = object : DefinitionConfig<InventoryDefinition>(ids, definitions) {
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-                    if (key == "defaults" && value is List<*>) {
-                        val id = map["id"] as Int
-                        value as List<Map<String, Int>>
-                        if (id !in definitions.indices) {
-                            return
+            Config.fileReader(path) {
+                while (nextSection()) {
+                    val section = section()
+                    var id = -1
+                    val extras = Object2ObjectOpenHashMap<String, Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
+                    val items = IntArrayList()
+                    val amounts = IntArrayList()
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "id" -> id = int()
+                            "defaults" -> {
+                                while (nextPair()) {
+                                    val item = key()
+                                    amounts.add(int())
+                                    items.add(itemDefs.get(item).id)
+                                }
+                            }
+                            else -> extras[key] = value()
                         }
-                        val def = definitions[id]
-                        def.length = map["length"] as? Int ?: def.length
-                        def.ids = IntArray(def.length) { itemDefs.get(value.getOrNull(it)?.keys?.first() ?: "").id }
-                        def.amounts = IntArray(def.length) { value.getOrNull(it)?.values?.first() ?: 0 }
                     }
-                    super.set(map, key, value, indent, parentMap)
+                    if (id > -1) {
+                        ids[section] = id
+                        definitions[id].length = items.size
+                        definitions[id].ids = IntArray(items.size) { items.getInt(it) }
+                        definitions[id].amounts = IntArray(amounts.size) { amounts.getInt(it) }
+                        definitions[id].extras = extras
+                    }
                 }
             }
-            yaml.load<Any>(path, config)
             this.ids = ids
             ids.size
         }

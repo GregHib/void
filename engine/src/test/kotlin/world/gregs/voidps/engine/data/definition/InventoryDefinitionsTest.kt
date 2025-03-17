@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.data.definition
 import io.mockk.mockk
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
-import world.gregs.yaml.Yaml
 
 internal class InventoryDefinitionsTest : DefinitionsDecoderTest<InventoryDefinition, InventoryDecoder, InventoryDefinitions>() {
 
@@ -37,6 +36,6 @@ internal class InventoryDefinitionsTest : DefinitionsDecoderTest<InventoryDefini
     }
 
     override fun load(definitions: InventoryDefinitions) {
-        definitions.load(Yaml(), "../data/definitions/inventories.yml", mockk(relaxed = true))
+        definitions.load("../data/definitions/inventories.toml", mockk(relaxed = true))
     }
 }
