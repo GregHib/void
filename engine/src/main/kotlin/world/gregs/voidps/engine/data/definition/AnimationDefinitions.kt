@@ -37,9 +37,11 @@ class AnimationDefinitions(
                         while (nextPair()) {
                             when (val key = key()) {
                                 "id" -> id = int()
+                                "ticks" -> extras[key] = int()
                                 else -> extras[key] = value()
                             }
                         }
+                        ids[stringId] = id
                         definitions[id].stringId = stringId
                         if (extras.isNotEmpty()) {
                             definitions[id].extras = extras
