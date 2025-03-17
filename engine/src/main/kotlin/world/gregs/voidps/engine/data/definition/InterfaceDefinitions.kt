@@ -172,6 +172,7 @@ class InterfaceDefinitions(
                                     optionsArray[index] = option
                                 }
                             }
+                            "cast_id", "amount", "bars" -> componentExtras[componentKey] = int()
                             else -> componentExtras[componentKey] = value()
                         }
                     }
