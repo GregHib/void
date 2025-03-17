@@ -1,6 +1,7 @@
 package world.gregs.voidps.cache
 
 import world.gregs.voidps.cache.compress.DecompressionContext
+import world.gregs.voidps.cache.secure.CRC
 import world.gregs.voidps.cache.secure.VersionTableBuilder
 import world.gregs.voidps.cache.secure.Whirlpool
 import java.io.File
@@ -31,6 +32,14 @@ class FileCache(
     }
     private val length = main.length()
     private val context = DecompressionContext()
+    private val indexCrcs by lazy {
+        indices.map {
+            val data = sector(255, it) ?: return@map 0
+            CRC.calculate(data, 0, data.size)
+        }.toIntArray()
+    }
+
+    override fun indexCrcs() = indexCrcs
 
     override fun sector(index: Int, archive: Int): ByteArray? {
         val indexRaf = if (index == 255) index255 else indexes[index] ?: return null

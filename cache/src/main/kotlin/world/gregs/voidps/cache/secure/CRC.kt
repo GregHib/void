@@ -1,6 +1,6 @@
 package world.gregs.voidps.cache.secure
 
-class CRC {
+object CRC {
     private val table = IntArray(256) {
         var crc = it
         for (i in 0..7) {
