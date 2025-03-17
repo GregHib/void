@@ -9,7 +9,6 @@ class VersionTableBuilder(
     private val indexCount: Int
 ) {
 
-    private val crc = CRC()
     private val versionTable = ByteArray(positionFor(indexCount) + MAX_RSA_SIZE)
     private var built = false
 
@@ -25,7 +24,7 @@ class VersionTableBuilder(
     }
 
     fun sector(index: Int, sectorData: ByteArray, whirlpool: Whirlpool) {
-        val crc = crc.calculate(sectorData)
+        val crc = CRC.calculate(sectorData)
         crc(index, crc)
         val output = ByteArray(ReadOnlyCache.WHIRLPOOL_SIZE)
         whirlpool.reset()

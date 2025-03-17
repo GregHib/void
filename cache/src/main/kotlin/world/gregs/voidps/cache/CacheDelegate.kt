@@ -2,9 +2,16 @@ package world.gregs.voidps.cache
 
 import com.displee.cache.CacheLibrary
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.cache.secure.CRC
 import java.math.BigInteger
 
 class CacheDelegate(private val library: CacheLibrary, exponent: BigInteger? = null, modulus: BigInteger? = null) : Cache {
+    private val indexCrcs by lazy {
+        indices().map {
+            val data = sector(255, it) ?: return@map 0
+            CRC.calculate(data, 0, data.size)
+        }.toIntArray()
+    }
 
     constructor(directory: String, exponent: BigInteger? = null, modulus: BigInteger? = null) : this(timed(directory), exponent, modulus)
 
@@ -15,6 +22,8 @@ class CacheDelegate(private val library: CacheLibrary, exponent: BigInteger? = n
     override fun indexCount() = library.indices().size
 
     override fun indices() = library.indices().map { it.id }.toIntArray()
+
+    override fun indexCrcs() = indexCrcs
 
     override fun sector(index: Int, archive: Int): ByteArray? {
         return if (index == 255) {
