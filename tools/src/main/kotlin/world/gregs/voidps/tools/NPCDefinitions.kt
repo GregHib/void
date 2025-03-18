@@ -16,7 +16,7 @@ object NPCDefinitions {
         val yaml = Yaml()
         val categories = CategoryDefinitions().load(property("definitions.categories"))
         val ammo = AmmoDefinitions().load(property("definitions.ammoGroups"))
-        val parameters = ParameterDefinitions(categories, ammo).load(yaml, property("definitions.parameters"))
+        val parameters = ParameterDefinitions(categories, ammo).load(property("definitions.parameters"))
         val definitions = NPCDecoder(true, parameters).load(cache)
         val decoder = NPCDefinitions(definitions).load(property("definitions.npcs"))
         for (i in decoder.definitions.indices) {

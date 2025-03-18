@@ -17,7 +17,7 @@ object ItemDefinitions {
         val yaml = Yaml()
         val categories = CategoryDefinitions().load(property("definitions.categories"))
         val ammo = AmmoDefinitions().load(property("definitions.ammoGroups"))
-        val parameters = ParameterDefinitions(categories, ammo).load(yaml, property("definitions.parameters"))
+        val parameters = ParameterDefinitions(categories, ammo).load(property("definitions.parameters"))
         val decoder = ItemDefinitions(ItemDecoder(parameters).load(cache)).load(property("definitions.items"))
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
