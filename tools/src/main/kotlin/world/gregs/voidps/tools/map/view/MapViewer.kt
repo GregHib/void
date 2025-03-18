@@ -34,7 +34,7 @@ class MapViewer {
             val yaml = Yaml()
             val decoder = ObjectDecoder(member = false, lowDetail = false).load(cache)
             val defs = ObjectDefinitions(decoder).load("./data/definitions/objects.toml")
-            val areas = AreaDefinitions().load(yaml, "./data/map/areas.yml")
+            val areas = AreaDefinitions().load("./data/map/areas.toml")
             val nav = NavigationGraph(defs, areas).load(yaml, "./data/map/nav-graph.yml")
             val collisions = Collisions()
             if (DISPLAY_AREA_COLLISIONS || DISPLAY_ALL_COLLISIONS) {
@@ -43,7 +43,7 @@ class MapViewer {
                 val objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), objectDefinitions)
                 MapDefinitions(CollisionDecoder(collisions), objectDefinitions, objects, cache).loadCache()
             }
-            frame.add(MapView(nav, collisions, "./data/map/areas.yml"))
+            frame.add(MapView(nav, collisions, "./data/map/areas.toml"))
             frame.pack()
             frame.setLocationRelativeTo(null)
             frame.isVisible = true

@@ -1,14 +1,20 @@
 package world.gregs.voidps.engine.data.definition
 
+import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.ints.IntArrayList
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import world.gregs.config.Config
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Zone
-import world.gregs.yaml.Yaml
+import world.gregs.voidps.type.area.Cuboid
+import world.gregs.voidps.type.area.Polygon
+import world.gregs.voidps.type.area.Rectangle
 import world.gregs.yaml.read.YamlReaderConfiguration
 
 class AreaDefinitions(
@@ -33,37 +39,60 @@ class AreaDefinitions(
         return tagged[tag] ?: emptySet()
     }
 
-    @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["map.areas"]): AreaDefinitions {
+    fun load(path: String = Settings["map.areas"]): AreaDefinitions {
         timedLoad("map area") {
-            val config = object : YamlReaderConfiguration(2, 2) {
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-                    if (key == "tags") {
-                        super.set(map, key, ObjectOpenHashSet(value as List<Any>), indent, parentMap)
-                    } else if (key == "area") {
-                        value as Map<String, Any>
-                        val area = Area.fromMap(value, 3)
-                        super.set(map, key, area, indent, parentMap)
-                    } else if (indent == 0) {
-                        val area = AreaDefinition.fromMap(key, value as MutableMap<String, Any>)
-                        super.set(map, key, area, indent, parentMap)
+            val named = Object2ObjectOpenHashMap<String, AreaDefinition>()
+            val tagged = Object2ObjectOpenHashMap<String, MutableSet<AreaDefinition>>()
+            val areas = Int2ObjectOpenHashMap<MutableSet<AreaDefinition>>()
+            Config.fileReader(path) {
+                val x = IntArrayList()
+                val y = IntArrayList()
+                while (nextSection()) {
+                    val name = section()
+                    x.clear()
+                    y.clear()
+                    var level: Int? = null
+                    val tags = ObjectOpenHashSet<String>()
+                    val extras = Object2ObjectOpenHashMap<String, Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "x" -> while (nextElement()) {
+                                x.add(int())
+                            }
+                            "y" -> while (nextElement()) {
+                                y.add(int())
+                            }
+                            "level" -> level = int()
+                            "tags" -> while (nextElement()) {
+                                tags.add(string())
+                            }
+                            else -> extras[key] = value()
+                        }
+                    }
+                    val area: Area = if (x.size <= 2) {
+                        if (level == null) {
+                            Rectangle(x.first(), y.first(), x.last(), y.last())
+                        } else {
+                            Cuboid(x.first(), y.first(), x.last(), y.last(), level, level)
+                        }
                     } else {
-                        super.set(map, key, value, indent, parentMap)
+                        Polygon(x.toIntArray(), y.toIntArray(), level ?: 0, level ?: 3)
+                    }
+                    val definition = if (extras.isEmpty()) {
+                        AreaDefinition(name = name, area = area, tags = tags, stringId = name)
+                    } else {
+                        AreaDefinition(name = name, area = area, tags = tags, stringId = name, extras = extras)
+                    }
+                    named[name] = definition
+                    for (tag in tags) {
+                        tagged.getOrPut(tag) { ObjectOpenHashSet(2) }.add(definition)
+                    }
+                    for (zone in area.toZones()) {
+                        areas.getOrPut(zone.id) { ObjectOpenHashSet(2) }.add(definition)
                     }
                 }
             }
-            named = yaml.load(path, config)
-            val tagged = Object2ObjectOpenHashMap<String, MutableSet<AreaDefinition>>()
-            val areas = Int2ObjectOpenHashMap<MutableSet<AreaDefinition>>()
-            for (key in named.keys) {
-                val area = named.getValue(key)
-                for (tag in area.tags) {
-                    tagged.getOrPut(tag) { ObjectOpenHashSet(2) }.add(area)
-                }
-                for (zone in area.area.toZones()) {
-                    areas.getOrPut(zone.id) { ObjectOpenHashSet(2) }.add(area)
-                }
-            }
+            this.named = named
             this.areas = areas
             this.tagged = tagged
             named.size
