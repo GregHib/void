@@ -1,0 +1,692 @@
+[dororan_ruby_bracelet]
+format = "boolean"
+persist = true
+
+[dororan_dragonstone_necklace]
+format = "boolean"
+persist = true
+
+[dororan_onyx_amulet]
+format = "boolean"
+persist = true
+
+[demon_slayer_bones]
+format = "int"
+persist = true
+default = -1
+
+[hopper_bin]
+format = "boolean"
+persist = true
+
+[cooks_assistant_milk]
+format = "boolean"
+persist = true
+
+[cooks_assistant_egg]
+format = "boolean"
+persist = true
+
+[cooks_assistant_flour]
+format = "boolean"
+persist = true
+
+[cooks_assistant_talked_to_millie]
+format = "boolean"
+persist = true
+
+[bone_delay]
+format = "int"
+
+[recover_special_delay]
+format = "int"
+persist = true
+
+[rename_delay]
+format = "int"
+persist = true
+
+[recent_assist_request]
+format = "int"
+persist = true
+
+[clan_join_spam]
+format = "int"
+persist = true
+
+[skull]
+format = "int"
+persist = true
+
+[skull_duration]
+format = "int"
+persist = true
+
+[stun_immunity]
+format = "int"
+persist = true
+
+[bind_immunity]
+format = "int"
+persist = true
+
+[stuck_door]
+format = "int"
+persist = true
+
+[void_set_effect]
+format = "boolean"
+
+[elite_void_set_effect]
+format = "boolean"
+
+[ahrims_set_effect]
+format = "boolean"
+
+[charge]
+format = "int"
+persist = true
+
+[charge_delay]
+format = "int"
+persist = true
+
+[vengeance_delay]
+format = "int"
+persist = true
+
+[power_of_light]
+format = "int"
+persist = true
+
+[home_teleport_timeout]
+format = "int"
+persist = true
+
+[claimed_tutor_consumables]
+format = "int"
+persist = true
+
+[smash_vials]
+format = "boolean"
+persist = true
+
+[thread_used]
+format = "int"
+persist = true
+
+[name_history]
+persist = true
+
+[creation]
+format = "int"
+persist = true
+
+[rights]
+format = "list"
+persist = true
+values = [ "None", "Mod", "Admin" ]
+
+[display_name]
+format = "string"
+persist = true
+
+[attack_style_default]
+format = "int"
+persist = true
+
+[attack_style_staff]
+format = "int"
+persist = true
+
+[attack_style_axe]
+format = "int"
+persist = true
+
+[attack_style_sceptre]
+format = "int"
+persist = true
+
+[attack_style_pickaxe]
+format = "int"
+persist = true
+
+[attack_style_dagger]
+format = "int"
+persist = true
+
+[attack_style_sword]
+format = "int"
+persist = true
+
+[attack_style_2h]
+format = "int"
+persist = true
+
+[attack_style_mace]
+format = "int"
+persist = true
+
+[attack_style_claws]
+format = "int"
+persist = true
+
+[attack_style_hammer]
+format = "int"
+persist = true
+
+[attack_style_whip]
+format = "int"
+persist = true
+
+[attack_style_fun]
+format = "int"
+persist = true
+
+[attack_style_pie]
+format = "int"
+persist = true
+
+[attack_style_spear]
+format = "int"
+persist = true
+
+[attack_style_halberd]
+format = "int"
+persist = true
+
+[attack_style_bow]
+format = "int"
+persist = true
+
+[attack_style_crossbow]
+format = "int"
+persist = true
+
+[attack_style_thrown]
+format = "int"
+persist = true
+
+[attack_style_chinchompa]
+format = "int"
+persist = true
+
+[attack_style_fixed_device]
+format = "int"
+persist = true
+
+[attack_style_salamander]
+format = "int"
+persist = true
+
+[attack_style_scythe]
+format = "int"
+persist = true
+
+[attack_style_flail]
+format = "int"
+persist = true
+
+[attack_style_]
+format = "int"
+persist = true
+
+[attack_style_trident]
+format = "int"
+persist = true
+
+[attack_style_sol]
+format = "int"
+persist = true
+
+[prayer_drain_counter]
+format = "int"
+persist = true
+
+[lifetime_xp]
+format = "double"
+persist = true
+
+[assist_timeout]
+format = "int"
+persist = true
+
+[public_status]
+format = "list"
+persist = true
+values = [ "on", "friends", "off", "hide" ]
+
+[private_status]
+format = "list"
+persist = true
+values = [ "on", "friends", "off" ]
+
+[trade_status]
+format = "list"
+persist = true
+values = [ "on", "friends", "off" ]
+
+[clan_name]
+persist = true
+default = ""
+
+[clan_chat]
+persist = true
+default = ""
+
+[clan_join_rank]
+format = "string"
+persist = true
+
+[clan_talk_rank]
+format = "string"
+persist = true
+
+[clan_kick_rank]
+format = "string"
+persist = true
+
+[clan_loot_rank]
+format = "string"
+persist = true
+
+[lend_timeout]
+format = "int"
+persist = true
+
+[borrow_timeout]
+format = "int"
+persist = true
+
+[borrowed_item]
+format = "string"
+persist = true
+
+[lent_item]
+format = "string"
+persist = true
+
+[loot_share_potential]
+format = "int"
+persist = true
+
+[collect_junk]
+format = "boolean"
+persist = true
+
+[energy]
+format = "int"
+persist = true
+default = 10000
+
+[disease_damage]
+format = "int"
+persist = true
+
+[poison_damage]
+format = "int"
+persist = true
+
+[tolerance]
+format = "int"
+persist = true
+
+[debug]
+format = "boolean"
+persist = true
+
+[wilderness_lever_warning]
+format = "boolean"
+persist = true
+default = true
+
+[binding_necklace_charges]
+format = "int"
+persist = true
+
+[camulet_charges]
+format = "int"
+persist = true
+
+[crystal_saw_charges]
+format = "int"
+persist = true
+
+[explorers_ring_last_use]
+format = "long"
+persist = true
+
+[explorers_ring_charges]
+format = "int"
+persist = true
+
+[falador_shield_charges]
+format = "int"
+persist = true
+
+[ibans_staff_charges]
+format = "int"
+default = 120
+
+[ring_of_recoil_charges]
+format = "int"
+persist = true
+
+[skull_sceptre_charges]
+format = "int"
+persist = true
+
+[shooting_star_bonus_ore]
+format = "int"
+default = 0
+persist = true
+
+[al_the_camel]
+format = "boolean"
+persist = true
+
+[magical_blastbox_mode]
+format = "boolean"
+persist = true
+
+[magical_blastbox_mode_dungeoneering]
+format = "boolean"
+persist = true
+
+[celestial_surgebox_mode]
+format = "boolean"
+persist = true
+
+[celestial_surgebox_mode_dungeoneering]
+format = "boolean"
+persist = true
+
+[small_pouch_essence]
+format = "int"
+persist = true
+
+[small_pouch_pure]
+format = "boolean"
+persist = true
+
+[medium_pouch_essence]
+format = "int"
+persist = true
+
+[medium_pouch_pure]
+format = "boolean"
+persist = true
+
+[large_pouch_essence]
+format = "int"
+persist = true
+
+[large_pouch_pure]
+format = "boolean"
+persist = true
+
+[giant_pouch_essence]
+format = "int"
+persist = true
+
+[giant_pouch_pure]
+format = "boolean"
+persist = true
+
+[coal_bag_coal]
+format = "int"
+persist = true
+
+[gem_bag_sapphire]
+format = "int"
+persist = true
+
+[gem_bag_emerald]
+format = "int"
+persist = true
+
+[gem_bag_ruby]
+format = "int"
+persist = true
+
+[gem_bag_diamond]
+format = "int"
+persist = true
+
+[varrock_easy]
+persist = true
+format = "bitwise"
+values = [ "strike_a_pose", "essential_facilitator", "doing_the_ironing", "plank_you_very_much", "making_learning_fun", "jumping_off_point", "lumbering_around", "read_all_about_it", "dog_and_bone", "pot_stop", "on_the_ragged_edge", "relocation_relocation_relocation", "it_belongs_in_a_museum", "journey_to_the_centre_of_the_earth_altar", "jackanory", "limey", "sherpas_delight", "king_of_the_castle", "stick_the_knife_in" ]
+
+[varrock_medium]
+persist = true
+format = "bitwise"
+values = [ "double_strength_weaksauce", "champion", "what_lies_below", "with_a_ten_foot_pole", "cant_make_an_omelette", "point_of_en_tree", "unlocking_your_emotions", "a_lick_of_paint", "for_fast_transactions", "you_wouldnt_like_me_when_im_angry", "return_to_senntisten", "promised_the_earth", "royale_with_thieve", "like_a_varrocket", "challenge_vannaka", "flatpack_backpack", "master_scrumper", "engage", "faster_pussycat_kill_kill", "dial_v_for_varrock", "the_body_shop" ]
+
+[varrock_hard]
+persist = true
+format = "bitwise"
+values = [ "burning_bush", "but_it_wont_warp_you_anywhere", "lighten_up", "put_your_smithing_hat_on", "kudos_on_the_kudos", "who_ate_all_the_pie", "battle_of_the_elements", "changing_rooms", "keeping_tabs_on_varrock", "hand_me_downs", "waka_waka_waka", "living_on_the_edge", "intersceptre" ]
+
+[varrock_elite]
+persist = true
+format = "bitwise"
+values = [ "stick_a_bork_in_him_hes_done", "nomadness", "double_jointed", "it_all_adze_up", "mind_your_back", "red_red_pies_of_summer", "splitting_headache", "a_bolt_from_the_blue", "a_ton_of_earth" ]
+
+[karamja_easy]
+persist = true
+format = "bitwise"
+values = [ "five_a_day", "im_lichen_this", "golden_shores", "put_to_port_in_port_sarim", "avast_ardougne", "show_that_you_cairn", "fruity_catch", "beachcomber", "tzhaar_wars", "its_a_jungle_ogre" ]
+
+[karamja_medium]
+persist = true
+format = "bitwise"
+values = [ "just_the_ticket", "back_cran_door", "dungeons_and_dragons", "horseless_carriage", "they_like_me_they_really_like_me", "arachnophagia", "romancing_the_stone", "im_a_lumberjack_and_im_okay", "i_sleep_all_night_and_i_work_all_day", "to_catch_a_karambwan", "thats_not_a_knife", "falling_with_style", "scourge_of_scurvy", "hunters_of_the_horned_graahk", "the_roots_of_all_evil", "hotfooting_it", "stairway_to_haven", "thank_you_madam", "shipping_out_from_the_shipyard" ]
+
+[karamja_hard]
+persist = true
+format = "bitwise"
+values = [ "flawless_victory", "play_dead_doggy", "id_be_kharazi_to_eat_this", "at_one_with_nature", "drop_it_like_its_hot", "deadwing", "quick_as_a_shot", "a_palm_for_each_finger", "yes_my_master", "can_opener" ]
+
+[karamja_elite]
+persist = true
+format = "bitwise"
+values = [ "at_one_plus_fifty_five_with_nature", "the_power_of_lava", "boxing_clever", "its_a_snap", "crunchy_coating", "walkies", "tread_carefully", "ten_in_a_row" ]
+
+[seers_village_easy]
+persist = true
+format = "bitwise"
+values = [ "reflax_actions", "why", "stir_galahad", "la_morte_darthur", "bunch_of_flours", "happy_hour", "jute_alors", "sinclair_swirling", "grand_candle", "a_seer_ing_light", "mack_rolled" ]
+
+[seers_village_medium]
+persist = true
+format = "bitwise"
+values = [ "fleeing_the_scene", "its_a_slightly_magical_stick", "king_coal", "i_can_seer_my_house_from_here", "mastering_the_elements", "its_only_a_model", "sniper_training", "arch_archer", "what_no_cuddly_toy", "familiar_fire_familiarity", "at_least_it_doesnt_need_walking", "all_your_bass" ]
+
+[seers_village_hard]
+persist = true
+format = "bitwise"
+values = [ "at_home_on_the_range", "see_yew_at_five", "the_short_of_it", "prayer_of_attorney", "beware_of_the_dog", "twisted_fire_starter", "alch_aholic", "gonna_need_a_bigger_boat", "gonna_need_a_bigger_range", "water_palaver", "island_hopper" ]
+
+[seers_village_elite]
+persist = true
+format = "bitwise"
+values = [ "its_a_trap_no_wait_its_a_pie", "make_a_bolt_for_it", "the_long_of_it", "plentypotionentiary", "moon_raker" ]
+
+[elsewhere_none]
+persist = true
+format = "bitwise"
+values = [ ]
+
+[lumbridge_draynor_beginner_rewards]
+persist = true
+format = "bitwise"
+values = [ "on_the_run", "a_world_in_microcosm", "master_of_all_i_survey", "raise_the_roof", "take_your_pick", "adventurers_log", "arent_they_supposed_to_be_twins", "log_a_rhythm", "shellfish_roasting_on_an_open_fire", "heavy_metal", "bar_one", "cutting_edge_technology", "armed_and_dangerous", "on_your_way", "you_can_bank_on_us", "hang_on_to_something", "bovine_intervention", "tan_your_hide", "handicrafts", "handy_dandy", "just_cant_get_the_staff", "click_your_heels_three_times", "come_and_have_a_go", "reach_out_and_touch_someone", "three_rounds_rapid_men", "death_from_above", "flour_power", "a_labour_of_loaf", "om_nom_nom_nom", "on_the_level", "so_thats_what_ess_stands_for", "air_craft", "greasing_the_wheels_of_commerce", "must_be_funny_in_a_rich_mans_world", "i_wonder_if_itll_sprout", "put_your_hands_together_for", "prayer_point_power", "not_what_we_mean_by_irony", "alls_ferrous_in_love_and_war", "am_i_a_blademaster_yet", "first_blood", "temper_temper", "steel_yourself_for_combat", "ammo_ammo_ammo", "take_a_bow", "dont_bury_this_one", "mace_invaders", "capital_protection_what", "clay_of_champions", "just_add_water", "very_potter", "hotpot", "hack_and_smash", "shrimpin_aint_easy", "the_fruit_of_the_sea", "made_for_walking", "did_anyone_bring_any_toast", "its_not_a_red_one", "not_so_confusing_after_all", "absolutely_enchanting", "heart_of_oak", "get_the_point", "berry_tasty", "dishwater", "cant_touch_this", "quarter_centurion", "fledgeling_adventurer", "hail_to_the_duke_baby", "doom", "sage_advice", "window_shopping", "wait_thats_not_a_sheep", "in_the_countyard", "grinding_my_gears", "beware_of_pigzilla", "the_rules_of_engagement", "tower_power", "a_grave_consideration", "tinkle_the_ivories", "ring_my_bell", "passing_out" ]
+
+[lumbridge_draynor_easy_rewards]
+persist = true
+format = "bitwise"
+values = [ "what_is_this_place", "artisan_crafting", "bless_is_more", "morgan_the_merrier", "iron_on", "and_it_was_this_big", "belter_of_a_smelter", "nowt_tool_look_at", "you_doity_rat", "it_was_dead_already", "camping_trip", "ratatouille", "slippery_when_wet", "i_cant_hear_dead_people", "come_in_here_and_say_that", "money_down_the_drayn", "klept_old_man_ia", "eye_on_the_prize", "draaaaaiiiiiins" ]
+
+[lumbridge_draynor_medium_rewards]
+persist = true
+format = "bitwise"
+values = [ "steel_justice", "ease_of_access", "everybody_loves_coal", "weeping_willow", "willow_the_wisp_of_smoke", "a_meal_fit_for_a_duke", "always_be_prepared", "hi_ho_silver", "lovely_with_a_squeeze_of_lemon", "one_day_you_shall_be_a_fork", "made_to_order", "wheres_the_beef" ]
+
+[lumbridge_draynor_hard_rewards]
+persist = true
+format = "bitwise"
+values = [ "a_body_in_the_sewers", "building_up_strength", "have_your_cake_and_eat_it", "blast_and_hellfire", "gods_give_me_strength", "not_waving_but_drowning", "are_yew_as_fired_up_as_i_am" ]
+
+[falador_easy_rewards]
+persist = true
+format = "bitwise"
+values = [ "amulet_of_weedspeak", "the_good_stuff", "chain_store", "sir_mitt", "family_values", "sniffing_out_the_mole", "chinchompa_powered", "fill_yer_bucket", "elementary_medicine", "its_not_wabbit_season", "stand_and_deliver", "making_my_mind_up", "mudskip_the_light_fantastic", "disarm_and_embark", "going_along_with_the_fro" ]
+
+[falador_medium_rewards]
+persist = true
+format = "bitwise"
+values = [ "fruit_of_the_loom", "is_it_so_hard_to_walk_round", "climbing_the_walls", "its_nothing_personal", "ice_the_icy", "blinded_with_science", "they_have_families_to_feed", "stoic_sweetcorn_guardian", "look_spiffy_for_tiffy", "do_they_come_in_other_colours", "these_arent_the_coins_youre_looking_for", "fun_for_the_whole_family" ]
+
+[falador_hard_rewards]
+persist = true
+format = "bitwise"
+values = [ "a_knight_in_the_darkness", "child_of_saradomin", "mass_production", "it_spoiled_my_view", "i_heard_you_like_mudskips", "it_matches_my_eyes", "the_stonemasons", "the_mogre_mash", "why_oh_wyvern", "banned_for_life" ]
+
+[falador_elite_rewards]
+persist = true
+format = "bitwise"
+values = [ "when_this_caverns_rockin", "youd_best_come_a_cookin", "concentration_is_key", "i_swear_i_heard_it_scream", "ive_changed_my_mind", "a_string_and_a_flare", "altar_ed_state" ]
+
+[fremennik_easy_rewards]
+persist = true
+format = "bitwise"
+values = [ "bring_the_antipoisons", "why_wont_you_die", "king_conifer", "assaulted_goodies", "oxymoron_incarnate", "why_did_the_lobster_blush", "hunting_the_hunter", "peer_off_the_pier", "a_familiar_feeling", "endangered_species" ]
+
+[fremennik_medium_rewards]
+persist = true
+format = "bitwise"
+values = [ "fremennik_history_101", "cool_story_bro", "whos_a_good_boy", "only_takes_a_little_vial", "you_know_you_want_it", "yak_attack", "fremmental", "fairy_mountaineering", "you_really_dont_need_any_more_shoes", "big_game_hunter", "grand_theft_fish" ]
+
+[fremennik_hard_rewards]
+persist = true
+format = "bitwise"
+values = [ "defeating_deadly_dagannoths", "dress_to_impress", "the_graceful_barbarian", "runes_on_the_moon", "pyre_at_will", "fish_fingers", "easy_as_pie", "how_to_maim_your_dragon", "a_periodic_table" ]
+
+[fremennik_elite_rewards]
+persist = true
+format = "bitwise"
+values = [ "jaws_breaker", "limber_lumber_jumper", "astronomical", "first_stryke", "leap_of_faith", "no_smoke_without_pyre", "this_hasta_work", "potting_with_otto", "axell_grease" ]
+
+[ardougne_easy_rewards]
+persist = true
+format = "bitwise"
+values = [ "the_essence_of_magic", "yoink", "silky_smooth", "preaching_to_the_infected", "playing_the_waiting_game", "gone_fishing", "boot_camp", "a_cat_is_for_life", "creator_and_destroyer", "red_revolution", "going_on_a_summer_holiday", "breaking_and_entering", "p_p_p_pick_up_some_prizes", "a_gift_from_khazard", "party_pooper", "vial_deeds", "star_seeker", "dukes_of_khazard", "dont_eat_the_pointy_bit", "bargain_hunter", "are_you_being_served", "no_time_to_lose", "theyre_long_and_pointy" ]
+
+[ardougne_medium_rewards]
+persist = true
+format = "bitwise"
+values = [ "a_visit_to_charlie", "i_wonder_what_this_does", "sandys_secret_getaway", "i_know_a_shortcut", "volatile_valuables", "what_a_melon", "ardougne_express", "arriving_in_style", "by_the_bucketload", "meeting_history_again", "fearless_fishing", "water_logged", "green_fingers", "a_natural_thief", "the_coal_train", "are_you_chicken" ]
+
+[ardougne_hard_rewards]
+persist = true
+format = "bitwise"
+values = [ "brace_yourself", "shadow_boxing", "just_like_that", "nice_view", "youre_the_dirty_rascal", "ourania_mania", "not_on_my_watch", "it_just_croaked", "get_your_stinking_hands_off_me", "vine_detta", "living_on_a_prayer", "who_wants_to_watch_the_watchtower", "monkey_business", "its_my_newt", "a_taste_of_the_exotic", "blood_bank_withdrawal", "artillery_strike" ]
+
+[ardougne_elite_rewards]
+persist = true
+format = "bitwise"
+values = [ "catching_some_rays", "abyssal_valet", "you_could_just_knock", "honestly_its_not_a_purse", "almost_made_in_ardougne" ]
+
+[giant_rat_aggressive]
+persist = true
+format = "boolean"
+
+[giant_rat_defensive]
+persist = true
+format = "boolean"
+
+[giant_rat_controlled]
+persist = true
+format = "boolean"
+
+[equip_shortbow]
+persist = true
+format = "boolean"
+
+[equip_longbow]
+persist = true
+format = "boolean"
+
+[equip_crossbow]
+persist = true
+format = "boolean"
+
+[flagstaff_runefest]
+persist = true
+format = "boolean"
+
+[gnome_course_stage]
+persist = true
+format = "int"
+
+[gnome_course_laps]
+persist = true
+format = "int"
+
+[gnome_course_advanced_laps]
+persist = true
+format = "int"
+
+[agility_course_rewards_claimed]
+persist = true
+format = "bitwise"
+values = [ "agile_top", "agile_legs" ]
+
+[agility_course]
+format = "list"
+persist = true
+values = [ "gnome", "barbarian", "wilderness" ]
+
+[barbarian_course_stage]
+persist = true
+format = "int"
+
+[barbarian_course_laps]
+persist = true
+format = "int"
+
+[barbarian_course_advanced_laps]
+persist = true
+format = "int"
+
+[alfred_grimhands_barcrawl]
+persist = true
+format = "list"
+values = [ "unstarted", "signatures", "completed" ]
+
+[wilderness_course_stage]
+persist = true
+format = "int"
+
+[wilderness_course_laps]
+persist = true
+format = "int"
+
+[barcrawl_signatures]
+persist = true
+format = "bitwise"
+values = [ "uncle_humphreys_gutrot", "fire_toad_blast", "supergrog", "fire_brandy", "heart_stopper", "liverbane_ale", "olde_suspiciouse", "ape_bite_liqueur", "hand_of_death_cocktail", "black_skull_ale" ]
+
+[wilderness_canoe_warning]
+format = "boolean"
+persist = true
+default = true
+
+[ape_atoll_course_stage]
+persist = true
+format = "int"
+
+[ape_atoll_course_laps]
+persist = true
+format = "int"

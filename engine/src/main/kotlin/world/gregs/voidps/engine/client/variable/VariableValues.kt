@@ -71,7 +71,9 @@ class MapValues(
 ) : VariableValues() {
     constructor(values: Map<Any, Int>, default: Any?) : this(values) {
         check(default != null) { "Maps must have a default value" }
-        check(values.containsKey(default) || values.containsKey(default.toString())) { "Map must contain default value '$default'." }
+        check(values.containsKey(default) || values.containsKey(default.toString())) {
+            "Map must contain default value '$default'."
+        }
     }
 
     override fun default() = "null"
