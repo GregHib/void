@@ -1,4 +1,3 @@
-
 [unarmed]
 id = 0
 attack_types = [ "punch", "kick", "block" ]
