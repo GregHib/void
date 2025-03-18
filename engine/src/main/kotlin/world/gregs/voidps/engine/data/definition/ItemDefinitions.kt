@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ItemDefinition
@@ -36,6 +35,7 @@ class ItemDefinitions(
                 }
             }
             val ids = Object2IntOpenHashMap<String>()
+            ids.defaultReturnValue(-1)
             Config.fileReader(path, 256) {
                 while (nextSection()) {
                     val stringId = section()
@@ -80,6 +80,12 @@ class ItemDefinitions(
                             "heals" -> extras[key] = if (peek == '"') string().toIntRange() else {
                                 val int = int()
                                 int..int
+                            }
+                            "clone" -> {
+                                val item = ids.getInt(string())
+                                require(item != -1) { "Unable to find item id to clone '$item'" }
+                                val definition = definitions[item]
+                                extras.putAll(definition.extras ?: continue)
                             }
                             else -> extras[key] = value()
                         }
