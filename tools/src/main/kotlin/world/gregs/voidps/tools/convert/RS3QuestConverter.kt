@@ -14,7 +14,7 @@ object RS3QuestConverter {
 
     @JvmStatic
     fun main(args: Array<String>) {
-//        val definitions = QuestDefinitions().load(Yaml(), "./data/definitions/quests.yml")
+//        val definitions = QuestDefinitions().load(Yaml(), "./data/definitions/quests.toml")
         val rs3Cache = CacheDelegate(File("./temp/cache/cache-939-1").path)
 //        OpenRS2.downloadCache(cache, 1963)
         val decoder = QuestDecoderRS3().load(rs3Cache)
