@@ -58,13 +58,13 @@ object YamlSorter {
     @JvmStatic
     fun main(args: Array<String>) {
         val yaml = Yaml()
-        val path = "./data/definitions/items.yml"
+        val path = "./data/definitions/items.toml"
         val readConfig = YamlReaderConfiguration(ignoreAnchors = true)
         val data: Map<String, Any> = yaml.load(path, readConfig)
         val writeConfig = object : YamlWriterConfiguration() {
             override fun explicit(list: List<*>, indent: Int, parentMap: String?) = parentMap != "items"
         }
-        yaml.save("./items.yml", data.toList()
+        yaml.save("./items.toml", data.toList()
             .map { (key, value) -> key to sort(value) }
             .sortedBy { (_, value) -> if (value is Int) value else (value as? Map<String, Any>)?.get("id") as? Int ?: -1 }
             .toMap(), writeConfig)

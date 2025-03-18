@@ -21,7 +21,7 @@ object DropTableDefinitions {
             modules(module {
                 @Suppress("USELESS_CAST")
                 single { CacheDelegate(Settings["storage.cache.path"]) as Cache }
-                single { ItemDefinitions(ItemDecoder().load(get())).load(Yaml()) }
+                single { ItemDefinitions(ItemDecoder().load(get())).load() }
             })
         }
         val decoder = DropTables().load(Yaml())

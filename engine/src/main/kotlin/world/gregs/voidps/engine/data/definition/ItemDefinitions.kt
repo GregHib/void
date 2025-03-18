@@ -1,21 +1,20 @@
 package world.gregs.voidps.engine.data.definition
 
+import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import net.pearx.kasechange.toSentenceCase
+import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.data.*
-import world.gregs.voidps.engine.data.yaml.DefinitionConfig
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.ItemKept
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.yaml.Yaml
-import world.gregs.yaml.read.YamlReader
 
 class ItemDefinitions(
     override var definitions: Array<ItemDefinition>
@@ -27,7 +26,7 @@ class ItemDefinitions(
 
     override fun empty() = ItemDefinition.EMPTY
 
-    fun load(yaml: Yaml = get(), path: String = Settings["definitions.items"]): ItemDefinitions {
+    fun load(path: String = Settings["definitions.items"]): ItemDefinitions {
         timedLoad("item extra") {
             val equipment = IntArray(definitions.size) { -1 }
             var index = 0
@@ -37,100 +36,69 @@ class ItemDefinitions(
                 }
             }
             val ids = Object2IntOpenHashMap<String>()
+            Config.fileReader(path, 256) {
+                while (nextSection()) {
+                    val stringId = section()
+                    var id = -1
+                    val extras = Object2ObjectOpenHashMap<String, Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "id" -> {
+                                id = int()
+                                if (id in equipment.indices && equipment[id] != -1) {
+                                    extras["equip"] = equipment[id]
+                                }
+                            }
+                            "slot" -> extras[key] = EquipSlot.valueOf(string())
+                            "type" -> extras[key] = EquipType.valueOf(string())
+                            "kept" -> extras[key] = ItemKept.valueOf(string())
+                            "smelting" -> extras[key] = Smelting(this)
+                            "smithing" -> extras[key] = Smithing(this)
+                            "fishing" -> extras[key] = Catch(this)
+                            "firemaking" -> extras[key] = Fire(this)
+                            "mining" -> extras[key] = Ore(this)
+                            "cooking" -> extras[key] = Uncooked(this)
+                            "tanning" -> extras[key] = Tanning(this)
+                            "spinning" -> extras[key] = Spinning(this)
+                            "pottery" -> extras[key] = Pottery(this)
+                            "weaving" -> extras[key] = Weaving(this)
+                            "jewellery" -> extras[key] = Jewellery(this)
+                            "silver_jewellery" -> extras[key] = Silver(this)
+                            "runecrafting" -> extras[key] = Rune(this)
+                            "ammo" -> extras[key] = ObjectOpenHashSet(list())
+                            "cleaning" -> extras[key] = Cleaning(this)
+                            "fletch_dart" -> extras[key] = FletchDarts(this)
+                            "fletch_bolts" -> extras[key] = FletchBolts(this)
+                            "fletching_unf" -> extras[key] = Fletching(this)
+                            "light_source" -> extras[key] = LightSources(this)
+                            "skill_req" -> extras[key] = map().mapKeys { Skill.valueOf(it.key.toSentenceCase()) }
+                            "heals" -> extras[key] = if (peek == '"') string().toIntRange() else {
+                                val int = int()
+                                int..int
+                            }
+                            else -> extras[key] = value()
+                        }
+                    }
+                    ids[stringId] = id
+                    definitions[id].stringId = stringId
+                    definitions[id].extras = extras
+                }
+            }
+            for (definition in definitions) {
+                if (definition.stringId.endsWith("_lent")) {
+                    val normal = definitions[definition.lendId]
+                    if (normal.extras != null) {
+                        val lentExtras = Object2ObjectOpenHashMap(normal.extras)
+                        lentExtras.remove("aka")
+                        if (definition.extras != null) {
+                            lentExtras.putAll(definition.extras!!)
+                        }
+                    }
+                }
+            }
             this.ids = ids
-            val config = CustomConfig(equipment, ids, definitions)
-            yaml.load<Any>(path, config)
             ids.size
         }
         return this
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    private class CustomConfig(
-        private val equipment: IntArray,
-        ids: MutableMap<String, Int>,
-        definitions: Array<ItemDefinition>
-    ) : DefinitionConfig<ItemDefinition>(ids, definitions) {
-        override fun setMapValue(reader: YamlReader, map: MutableMap<String, Any>, key: String, indent: Int, indentOffset: Int, withinMap: String?, parentMap: String?) {
-            if (indent > 1 && parentMap == "pottery") {
-                val value = reader.value(indentOffset, withinMap)
-                super.set(map, key, Pottery.Ceramic(value as Map<String, Any>), indent, parentMap)
-            } else if (indent == 1 && key == "heals" || key == "chance" || parentMap == "chances") {
-                set(map, key, reader.readIntRange(), indent, parentMap)
-            } else {
-                super.setMapValue(reader, map, key, indent, indentOffset, withinMap, parentMap)
-            }
-        }
-
-        override fun set(map: MutableMap<String, Any>, key: String, id: Int, extras: Map<String, Any>?) {
-            if (key.endsWith("_lent") && id in definitions.indices) {
-                val def = definitions[id]
-                val normal = definitions[def.lendId]
-                if (normal.extras != null) {
-                    val lentExtras = Object2ObjectOpenHashMap(normal.extras)
-                    lentExtras.remove("aka")
-                    if (extras != null) {
-                        lentExtras.putAll(extras)
-                    }
-                    super.set(map, key, id, lentExtras)
-                } else {
-                    super.set(map, key, id, extras)
-                }
-            } else {
-                super.set(map, key, id, extras)
-            }
-        }
-
-        override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-            if (indent == 1) {
-                super.set(map, key, when (key) {
-                    "<<" -> {
-                        map.putAll(value as Map<String, Any>)
-                        return
-                    }
-                    "id" -> {
-                        value as Int
-                        if (value in equipment.indices && equipment[value] != -1) {
-                            super.set(map, "equip", equipment[value], indent, parentMap)
-                        }
-                        value
-                    }
-                    "slot" -> EquipSlot.valueOf(value as String)
-                    "type" -> EquipType.valueOf(value as String)
-                    "kept" -> ItemKept.valueOf(value as String)
-                    "smelting" -> Smelting(value as Map<String, Any>)
-                    "smithing" -> Smithing(value as Map<String, Any>)
-                    "fishing" -> Catch(value as Map<String, Any>)
-                    "firemaking" -> Fire(value as Map<String, Any>)
-                    "mining" -> Ore(value as Map<String, Any>)
-                    "cooking" -> Uncooked(value as Map<String, Any>)
-                    "tanning" -> Tanning(value as List<List<Any>>)
-                    "spinning" -> Spinning(value as Map<String, Any>)
-                    "pottery" -> Pottery(value as Map<String, Pottery.Ceramic>)
-                    "weaving" -> Weaving(value as Map<String, Any>)
-                    "jewellery" -> Jewellery(value as Map<String, Any>)
-                    "silver_jewellery" -> Silver(value as Map<String, Any>)
-                    "runecrafting" -> Rune(value as Map<String, Any>)
-                    "ammo" -> ObjectOpenHashSet(value as List<String>)
-                    "cleaning" -> Cleaning(value as Map<String, Any>)
-                    "fletch_dart" -> FletchDarts(value as Map<String, Any>)
-                    "fletch_bolts" -> FletchBolts(value as Map<String, Any>)
-                    "fletching_unf" -> Fletching(value as Map<String, Any>)
-                    "light_source" -> LightSources(value as Map<String, Any>)
-                    "skill_req" -> (value as MutableMap<String, Any>).mapKeys { Skill.valueOf(it.key.toSentenceCase()) }
-                    else -> value
-                }, indent, parentMap)
-            } else {
-                super.set(map, key, value, indent, parentMap)
-            }
-        }
-
-        override fun anchor(anchor: Any): Any {
-            val value = super.anchor(anchor)
-            if (value is MutableMap<*, *>) {
-                value.remove("aka")
-            }
-            return value
-        }
     }
 }

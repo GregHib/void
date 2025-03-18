@@ -421,7 +421,7 @@ class ConfigReader(
         input.close()
     }
 
-    private fun exception(): String = "line=$line char='${charType(byte)}'"
+    fun exception(): String = "line=$line char='${charType(byte)}'"
 
     companion object {
 

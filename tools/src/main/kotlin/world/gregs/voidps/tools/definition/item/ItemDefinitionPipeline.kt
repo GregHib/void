@@ -62,7 +62,7 @@ object ItemDefinitionPipeline {
         val map = convertToYaml(output)
         val yaml = Yaml()
         val config = YamlWriterConfiguration(forceQuoteStrings = true)
-        val file = File("items.yml")
+        val file = File("items.toml")
         yaml.save(file.path, map, config)
         val contents = "# Don't edit; apply changes to the ItemDefinitionPipeline tool's ItemManualChanges class instead.\n${file.readText()}"
         file.writeText(contents)

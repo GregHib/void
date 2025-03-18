@@ -32,8 +32,8 @@ object YamlInjector {
                 println("$key - $level - $name - $item - $xp - $members")
             }
         }
-        val output = FileWriter("items.yml")
-        val queue = LinkedList(File("./data/definitions/items.yml").readLines())
+        val output = FileWriter("items.toml")
+        val queue = LinkedList(File("./data/definitions/items.toml").readLines())
         while (queue.isNotEmpty()) {
             val line = queue.pop()
             output.write("${line}\n")

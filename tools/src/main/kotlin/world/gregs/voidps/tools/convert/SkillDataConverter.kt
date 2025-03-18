@@ -29,7 +29,7 @@ object SkillDataConverter {
 
         val koin = startKoin {
             modules(module {
-                single { ItemDefinitions(ItemDecoder().load(get())).load(get(), property("definitions.items")) }
+                single { ItemDefinitions(ItemDecoder().load(get())).load(property("definitions.items")) }
                 single { CacheDelegate("./data/cache/") as Cache }
             })
         }.koin

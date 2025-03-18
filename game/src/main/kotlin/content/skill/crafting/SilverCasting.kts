@@ -17,12 +17,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.holdsItem
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import content.quest.quest
 import content.entity.player.dialogue.type.intEntry
+import world.gregs.voidps.engine.inv.*
 
 val itemDefinitions: ItemDefinitions by inject()
 
@@ -49,14 +47,16 @@ interfaceOpen("silver_mould") { player ->
         val quest = silver.quest
         player.interfaces.sendVisibility(id, mould.id, quest == null || player.quest(quest) != "unstarted")
         val has = player.holdsItem(mould.id)
-        player.interfaces.sendText(id,
+        player.interfaces.sendText(
+            id,
             "${mould.id}_text",
             if (has) {
                 val colour = if (has && player.holdsItem("silver_bar")) "green" else "orange"
                 "<$colour>Make ${itemDefinitions.get(item).name.toTitleCase()}"
             } else {
                 "<orange>You need a ${silver.name ?: mould.def.name.lowercase()} to make this item."
-            })
+            }
+        )
         player.interfaces.sendItem(id, "${mould.id}_model", if (has) itemDefinitions.get(item).id else mould.def.id)
     }
 }
@@ -107,7 +107,12 @@ fun Player.make(item: Item, amount: Int) {
     }
     anim("cook_range")
     weakQueue("cast_silver", 3) {
-        inventory.replace("silver_bar", data.item)
+        if (data.amount >= 1) {
+            inventory.remove("silver_bar")
+            inventory.add(data.item, data.amount)
+        } else {
+            inventory.replace("silver_bar", data.item)
+        }
         exp(Skill.Crafting, data.xp)
         make(item, amount - 1)
     }

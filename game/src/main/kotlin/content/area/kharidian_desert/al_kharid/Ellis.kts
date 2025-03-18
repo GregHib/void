@@ -99,11 +99,11 @@ fun tan(player: Player, type: String, amount: Int) {
     var noHides = false
     for (i in 0 until amount) {
         if (!player.inventory.transaction {
-                replace(item, leather as String)
+                replace(item, leather)
                 if (failed) {
                     noHides = true
                 }
-                remove("coins", cost as Int)
+                remove("coins", cost)
             }) {
             break
         }

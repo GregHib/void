@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.data.definition.data
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.entity.item.Item
 
 /**
@@ -16,14 +18,37 @@ data class Smelting(
     val message: String = ""
 ) {
     companion object {
-        @Suppress("UNCHECKED_CAST")
-        operator fun invoke(map: Map<String, Any>) = Smelting(
-            level = map["level"] as Int,
-            xp = map["xp"] as Double,
-            chance = (map["chance"] as? IntRange)?.last ?: EMPTY.chance,
-            items = (map["items"] as List<Map<String, Any>>).map { Item(it["item"] as String, it["amount"] as? Int ?: 1) },
-            message = map["message"] as String
-        )
+        operator fun invoke(reader: ConfigReader): Smelting {
+            var level = 0
+            var xp = 0.0
+            var chance = 255
+            val items = ObjectArrayList<Item>(0)
+            var message = ""
+            while (reader.nextEntry()) {
+                when (val key = reader.key()) {
+                    "level" -> level = reader.int()
+                    "xp" -> xp = reader.double()
+                    "chance" -> chance = reader.int()
+                    "items" -> {
+                        while (reader.nextElement()) {
+                            var item = ""
+                            var amount = 1
+                            while (reader.nextEntry()) {
+                                when (val itemKey = reader.key()) {
+                                    "id" -> item = reader.string()
+                                    "amount" -> amount = reader.int()
+                                    else -> throw IllegalArgumentException("Unexpected key: '$itemKey' ${reader.exception()}")
+                                }
+                            }
+                            items.add(Item(item, amount))
+                        }
+                    }
+                    "message" -> message = reader.string()
+                    else -> throw IllegalArgumentException("Unexpected key: '$key' ${reader.exception()}")
+                }
+            }
+            return Smelting(level = level, xp = xp, chance = chance, items = items, message = message)
+        }
 
         val EMPTY = Smelting()
     }

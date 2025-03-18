@@ -1,5 +1,9 @@
 package world.gregs.voidps.engine.data.definition.data
 
+import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.ints.IntArrayList
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
@@ -46,15 +50,28 @@ data class Rune(
     }
 
     companion object {
-
-        @Suppress("UNCHECKED_CAST")
-        operator fun invoke(map: Map<String, Any>) = Rune(
-            xp = map["xp"] as? Double ?: EMPTY.xp,
-            pure = map["pure"] as? Boolean ?: EMPTY.pure,
-            levels = (map["levels"] as? List<Int>)?.toIntArray() ?: EMPTY.levels,
-            combinations = (map["combinations"] as? Map<String, List<Any>>) ?: EMPTY.combinations,
-            doubleChance = (map["ourania_chance"] as? Double) ?: EMPTY.doubleChance,
-        )
+        operator fun invoke(reader: ConfigReader): Rune {
+            var xp = 0.0
+            var pure = false
+            val levels = IntArrayList()
+            val combinations = Object2ObjectOpenHashMap<String, List<Any>>(3, Hash.VERY_FAST_LOAD_FACTOR)
+            var doubleChance = 0.0
+            while (reader.nextEntry()) {
+                when (val key = reader.key()) {
+                    "xp" -> xp = reader.double()
+                    "pure" -> pure = reader.boolean()
+                    "levels" -> while (reader.nextElement()) {
+                        levels.add(reader.int())
+                    }
+                    "combinations" -> while (reader.nextEntry()) {
+                        combinations[reader.key()] = reader.list()
+                    }
+                    "ourania_chance" -> doubleChance = reader.double()
+                    else -> throw IllegalArgumentException("Unexpected key: '$key' ${reader.exception()}")
+                }
+            }
+            return Rune(xp = xp, pure = pure, levels = levels.toIntArray(), combinations = combinations, doubleChance = doubleChance)
+        }
 
         val EMPTY = Rune()
     }
