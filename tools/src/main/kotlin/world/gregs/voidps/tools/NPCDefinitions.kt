@@ -18,7 +18,7 @@ object NPCDefinitions {
         val ammo = AmmoDefinitions().load(property("definitions.ammoGroups"))
         val parameters = ParameterDefinitions(categories, ammo).load(yaml, property("definitions.parameters"))
         val definitions = NPCDecoder(true, parameters).load(cache)
-        val decoder = NPCDefinitions(definitions).load(yaml, property("definitions.npcs"))
+        val decoder = NPCDefinitions(definitions).load(property("definitions.npcs"))
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
             if (def.name.contains("Talent scout", ignoreCase = true)) {

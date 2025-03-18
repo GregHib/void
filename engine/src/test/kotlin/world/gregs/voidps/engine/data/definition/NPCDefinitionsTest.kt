@@ -5,7 +5,6 @@ import io.mockk.mockk
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
-import world.gregs.yaml.Yaml
 
 internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDecoder, NPCDefinitions>() {
 
@@ -34,6 +33,6 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
         val itemDefinitions: ItemDefinitions = mockk(relaxed = true)
         every { itemDefinitions.get(any<Int>()) } returns ItemDefinition.EMPTY
         every { itemDefinitions.get(any<String>()) } returns ItemDefinition.EMPTY
-        definitions.load(Yaml(), "../data/definitions/npcs.yml")
+        definitions.load("../data/definitions/npcs.toml")
     }
 }
