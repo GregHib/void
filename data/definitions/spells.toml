@@ -1,0 +1,494 @@
+[blood_rush]
+max_hit = 150
+exp = 33.0
+max_heal = 40
+animation = "ancient_spell"
+
+[blood_burst]
+max_hit = 210
+exp = 39.0
+max_heal = 50
+animation = "ancient_spell_multi"
+
+[blood_blitz]
+max_hit = 250
+exp = 45.0
+max_heal = 60
+animation = "ancient_spell"
+
+[blood_barrage]
+max_hit = 290
+exp = 51.0
+max_heal = 119
+animation = "ancient_spell_multi"
+
+[ice_rush]
+max_hit = 160
+exp = 34.0
+freeze_ticks = 3
+animation = "ancient_spell"
+
+[ice_burst]
+max_hit = 220
+exp = 40.0
+freeze_ticks = 6
+animation = "ancient_spell_multi"
+
+[ice_blitz]
+max_hit = 260
+exp = 46.0
+freeze_ticks = 9
+animation = "ancient_spell"
+
+[ice_barrage]
+max_hit = 300
+exp = 52.0
+freeze_ticks = 12
+animation = "ancient_spell_multi"
+projectiles = [
+  {id = "ice_barrage", end_height = 0}
+]
+
+[miasmic_rush]
+max_hit = 180
+exp = 36.0
+effect_seconds = 12
+animation = "miasmic_rush_cast"
+
+[miasmic_burst]
+max_hit = 240
+exp = 42.0
+effect_seconds = 24
+animation = "miasmic_burst_cast"
+
+[miasmic_blitz]
+max_hit = 280
+exp = 48.0
+effect_seconds = 36
+animation = "miasmic_blitz_cast"
+
+[miasmic_barrage]
+max_hit = 320
+exp = 54.0
+effect_seconds = 48
+animation = "miasmic_barrage_cast"
+
+[shadow_rush]
+max_hit = 140
+exp = 31.0
+drain_skill = "Attack"
+drain_multiplier = 0.1
+animation = "ancient_spell"
+
+[shadow_burst]
+max_hit = 180
+exp = 37.0
+drain_skill = "Attack"
+drain_multiplier = 0.1
+animation = "ancient_spell_multi"
+
+[shadow_blitz]
+max_hit = 240
+exp = 43.0
+drain_skill = "Attack"
+drain_multiplier = 0.1
+animation = "ancient_spell"
+
+[shadow_barrage]
+max_hit = 280
+exp = 48.0
+drain_skill = "Attack"
+drain_multiplier = 0.15
+animation = "ancient_spell_multi"
+
+[smoke_rush]
+max_hit = 130
+exp = 30.0
+poison_damage = 20
+animation = "ancient_spell"
+
+[smoke_burst]
+max_hit = 170
+exp = 36.0
+poison_damage = 20
+animation = "ancient_spell_multi"
+
+[smoke_blitz]
+max_hit = 230
+exp = 42.0
+poison_damage = 48
+animation = "ancient_spell"
+
+[smoke_barrage]
+max_hit = 270
+exp = 48.0
+poison_damage = 40
+animation = "ancient_spell_multi"
+
+[bind]
+damage = -1.0
+exp = 30.0
+freeze_ticks = 8
+graphic = "bind_cast"
+animation = "bind"
+animation_staff = "bind_staff"
+projectiles = [
+  {id = "bind", end_height = 0}
+]
+
+[snare]
+clone = "bind"
+max_hit = 20
+exp = 60.5
+freeze_ticks = 16
+
+[entangle]
+clone = "bind"
+max_hit = 50
+exp = 91.0
+freeze_ticks = 24
+
+[confuse]
+damage = -1.0
+exp = 13.0
+drain_skill = "Attack"
+drain_multiplier = 0.05
+animation = "confuse"
+animation_staff = "confuse_staff"
+graphic = "confuse_cast"
+
+[crumble_undead]
+max_hit = 150
+exp = 24.5
+animation = "crumble_undead"
+graphic = "crumble_undead_cast"
+
+[curse]
+damage = -1.0
+exp = 29.0
+drain_skill = "Defence"
+drain_multiplier = 0.05
+animation = "curse"
+animation_staff = "curse_staff"
+graphic = "curse_cast"
+
+[wind_rush]
+max_hit = 10
+exp = 2.7
+graphic = "wind_spell_cast"
+animation = "wind_spell"
+animation_staff = "wind_spell_staff"
+
+[wind_strike]
+clone = "wind_rush"
+max_hit = 20
+exp = 5.5
+
+[wind_bolt]
+clone = "wind_rush"
+max_hit = 90
+exp = 13.5
+
+[wind_blast]
+clone = "wind_rush"
+max_hit = 130
+exp = 25.5
+
+[wind_wave]
+clone = "wind_rush"
+max_hit = 170
+exp = 36.0
+
+[wind_surge]
+clone = "wind_rush"
+max_hit = 220
+exp = 75.0
+
+[water_strike]
+graphic = "water_spell_cast"
+graphic_staff = "water_spell_staff_cast"
+animation = "water_spell"
+animation_staff = "water_spell_staff"
+max_hit = 40
+exp = 7.5
+
+[water_bolt]
+clone = "water_strike"
+max_hit = 100
+exp = 16.5
+
+[water_blast]
+clone = "water_strike"
+max_hit = 140
+exp = 28.5
+
+[water_wave]
+clone = "water_strike"
+max_hit = 180
+exp = 38.5
+
+[water_surge]
+clone = "water_strike"
+max_hit = 240
+exp = 80.0
+
+[earth_strike]
+max_hit = 60
+exp = 9.5
+graphic = "earth_strike_cast"
+animation = "earth_spell"
+animation_staff = "earth_spell_staff"
+
+[earth_bolt]
+clone = "earth_strike"
+max_hit = 110
+exp = 19.5
+graphic = "earth_bolt_cast"
+
+[earth_blast]
+clone = "earth_strike"
+max_hit = 150
+exp = 31.5
+graphic = "earth_blast_cast"
+
+[earth_wave]
+clone = "earth_strike"
+max_hit = 190
+exp = 41.0
+graphic = "earth_wave_cast"
+
+[earth_surge]
+clone = "earth_strike"
+max_hit = 260
+exp = 85.0
+graphic = "earth_surge_cast"
+
+[fire_strike]
+max_hit = 80
+exp = 11.5
+graphic = "fire_spell_cast"
+animation = "fire_spell"
+animation_staff = "fire_spell_staff"
+
+[fire_bolt]
+clone = "fire_strike"
+max_hit = 120
+exp = 22.5
+
+[fire_blast]
+clone = "fire_strike"
+max_hit = 160
+exp = 34.5
+projectiles = [
+  {id = "fire_blast_1"},
+  {id = "fire_blast_2"},
+]
+
+[fire_wave]
+clone = "fire_strike"
+max_hit = 200
+exp = 43.5
+projectiles = [
+  {id = "fire_blast_1", delay = 54, curve = 16},
+  {id = "fire_blast_1", curve = -10},
+  {id = "fire_blast_2"},
+]
+
+[fire_surge]
+clone = "fire_strike"
+max_hit = 280
+exp = 90.0
+graphic = "fire_spell_cast"
+projectiles = [
+  {id = "fire_blast_1", delay = 54, curve = 16},
+  {id = "fire_blast_1", curve = -10},
+  {id = "fire_blast_2"},
+]
+
+[enfeeble]
+max_hit = 50
+exp = 83.0
+drain_skill = "Strength"
+drain_multiplier = 0.1
+animation = "enfeeble"
+animation_staff = "enfeeble_staff"
+graphic = "enfeeble_cast"
+
+[claws_of_guthix]
+max_hit = 200
+exp = 35.0
+animation = "cast_god_spell"
+
+[flames_of_zamorak]
+max_hit = 200
+exp = 35.0
+animation = "cast_god_spell"
+
+[saradomin_strike]
+max_hit = 200
+exp = 35.0
+animation = "cast_god_spell"
+
+[iban_blast]
+max_hit = 250
+exp = 35.0
+animation = "iban_blast"
+graphic = "iban_blast_cast"
+
+[magic_dart]
+damage = -1.0
+exp = 30.0
+animation = "magic_dart"
+graphic = "magic_dart_cast"
+
+[stun]
+max_hit = 50
+exp = 90.0
+drain_skill = "Attack"
+drain_multiplier = 0.1
+animation = "stun"
+animation_staff = "stun_staff"
+graphic = "stun_cast"
+
+[teleport_block]
+max_hit = 30
+exp = 80.0
+block_ticks = 500
+animation = "teleport_block_cast"
+graphic = "teleport_block_cast"
+
+[vulnerability]
+max_hit = 50
+exp = 76.0
+drain_skill = "Attack"
+drain_multiplier = 0.1
+animation = "vulnerability"
+animation_staff = "vulnerability_staff"
+graphic = "vulnerability_cast"
+
+[weaken]
+damage = -1.0
+exp = 21.0
+drain_skill = "Strength"
+drain_multiplier = 0.05
+animation = "weaken"
+animation_staff = "weaken_staff"
+graphic = "weaken_cast"
+
+[charge]
+exp = 180.0
+effect_ticks = 252
+delay_ticks = 36
+
+[lumbridge_home_teleport]
+exp = 0.0
+
+[varrock_teleport]
+exp = 35.0
+
+[lumbridge_teleport]
+exp = 41.0
+
+[falador_teleport]
+exp = 48.0
+
+[teleport_to_house]
+exp = 30.0
+
+[camelot_teleport]
+exp = 55.5
+
+[ardougne_teleport]
+exp = 61.0
+
+[watchtower_teleport]
+exp = 68.0
+
+[trollheim_teleport]
+exp = 68.0
+
+[ape_atoll_teleport]
+exp = 74.0
+
+[edgeville_home_teleport]
+exp = 0.0
+
+[paddewwa_teleport]
+exp = 64.0
+
+[senntisten_teleport]
+exp = 70.0
+
+[kharyrll_teleport]
+exp = 76.0
+
+[lassar_teleport]
+exp = 82.0
+
+[dareeyak_teleport]
+exp = 88.0
+
+[carrallangar_teleport]
+exp = 94.0
+
+[annakarl_teleport]
+exp = 100.0
+
+[ghorrock_teleport]
+exp = 106.0
+
+[lunar_home_teleport]
+exp = 0.0
+
+[moonclan_teleport]
+exp = 66.0
+
+[ourania_teleport]
+exp = 69.0
+
+[waterbirth_teleport]
+exp = 71.0
+
+[barbarian_teleport]
+exp = 76.0
+
+[khazard_teleport]
+exp = 80.0
+
+[fishing_guild_teleport]
+exp = 89.0
+
+[catherby_teleport]
+exp = 92.0
+
+[ice_plateau_teleport]
+exp = 96.0
+
+[vengeance]
+exp = 112.0
+delay_seconds = 30
+
+[vengeance_other]
+exp = 108.0
+delay_seconds = 30
+
+[cure_other]
+exp = 65.0
+
+[cure_me]
+exp = 69.0
+
+[cure_group]
+exp = 74.0
+
+[heal_other]
+exp = 101.0
+
+[heal_group]
+exp = 124.0
+
+[energy_transfer]
+exp = 100.0
+
+[superheat_item]
+exp = 53.0
