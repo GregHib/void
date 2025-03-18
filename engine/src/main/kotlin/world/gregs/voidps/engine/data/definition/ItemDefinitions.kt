@@ -82,9 +82,10 @@ class ItemDefinitions(
                                 int..int
                             }
                             "clone" -> {
-                                val item = ids.getInt(string())
-                                require(item != -1) { "Unable to find item id to clone '$item'" }
-                                val definition = definitions[item]
+                                val item = string()
+                                val itemId = ids.getInt(item)
+                                require(itemId != -1) { "Unable to find item id to clone '$item'" }
+                                val definition = definitions[itemId]
                                 extras.putAll(definition.extras ?: continue)
                             }
                             else -> extras[key] = value()

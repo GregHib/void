@@ -84700,7 +84700,7 @@ examine = "An ornate horn with a fading inscription."
 weight = 0.453
 
 [abyssal_whip_yellow]
-clone = "whip"
+clone = "abyssal_whip"
 id = 15441
 tradeable = false
 aka = ["yellow_whip", "whip_yellow", "yellow_abyssal_whip"]
@@ -84708,7 +84708,7 @@ examine = "A weapon from the Abyss, painted yellow from the yolk of a Penance eg
 kept = "Reclaim"
 
 [abyssal_whip_blue]
-clone = "whip"
+clone = "abyssal_whip"
 id = 15442
 tradeable = false
 aka = ["blue_whip", "whip_blue", "blue_abyssal_whip"]
@@ -84716,7 +84716,7 @@ examine = "A weapon from the Abyss, painted blue from the yolk of a Penance egg.
 kept = "Reclaim"
 
 [abyssal_whip_white]
-clone = "whip"
+clone = "abyssal_whip"
 id = 15443
 tradeable = false
 aka = ["white_whip", "whip_white", "white_abyssal_whip"]
@@ -84724,7 +84724,7 @@ examine = "A weapon from the Abyss, painted white from the egg white of a Penanc
 kept = "Reclaim"
 
 [abyssal_whip_green]
-clone = "whip"
+clone = "abyssal_whip"
 id = 15444
 tradeable = false
 aka = ["green_whip", "whip_green", "green_abyssal_whip"]
