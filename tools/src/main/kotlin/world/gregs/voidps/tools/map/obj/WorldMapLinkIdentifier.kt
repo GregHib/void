@@ -18,7 +18,6 @@ import world.gregs.voidps.tools.property
 import world.gregs.voidps.tools.propertyOrNull
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
-import world.gregs.yaml.Yaml
 
 /**
  * Finds links between objects e.g ladders, stairs, entrances, exits
@@ -31,7 +30,7 @@ object WorldMapLinkIdentifier {
         val xteas: Xteas = Xteas().load(property("storage.xteas"), propertyOrNull("xteaJsonKey") ?: Xteas.DEFAULT_KEY, propertyOrNull("xteaJsonValue") ?: Xteas.DEFAULT_VALUE)
         val worldMapDetailsDecoder = WorldMapDetailsDecoder().load(cache)
         val worldMapIconDecoder = WorldMapIconDecoder().load(cache)
-        val definitions: ObjectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(Yaml(), property("definitions.objects"))
+        val definitions: ObjectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(property("definitions.objects"))
         val mapDecoder = MapDecoder(xteas).load(cache)
         val collisions = Collisions()
         val collisionDecoder = CollisionDecoder(collisions)

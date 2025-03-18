@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.map.obj.MapObjectsDecoder
 import world.gregs.voidps.engine.map.obj.MapObjectsRotatedDecoder
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Zone
-import world.gregs.yaml.Yaml
 import java.io.File
 import kotlin.system.exitProcess
 import kotlin.time.measureTimedValue
@@ -103,7 +102,7 @@ class MapDefinitions(
 //            properties["storage.cache.path"] = "./data/cache-old/"
             val (cache, duration) = measureTimedValue { FileCache.load(properties) }
             println("Loaded cache in ${duration.inWholeMilliseconds}ms")
-            val definitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(Yaml(), "./data/definitions/objects.yml")
+            val definitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(properties.getProperty("definitions.objects"))
             val collisions = Collisions()
             val add = GameObjectCollisionAdd(collisions)
             val remove = GameObjectCollisionRemove(collisions)

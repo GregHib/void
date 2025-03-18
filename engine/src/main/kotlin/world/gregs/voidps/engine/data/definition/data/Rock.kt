@@ -1,5 +1,8 @@
 package world.gregs.voidps.engine.data.definition.data
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.config.ConfigReader
+
 /**
  * @param level required to attempt to mine
  * @param ores List of materials that can be mined
@@ -13,14 +16,24 @@ data class Rock(
     val gems: Boolean = false
 ) {
     companion object {
-
-        @Suppress("UNCHECKED_CAST")
-        operator fun invoke(map: Map<String, Any>) = Rock(
-            level = map["level"] as? Int ?: EMPTY.level,
-            ores = map["ores"] as? List<String> ?: EMPTY.ores,
-            life = map["life"] as? Int ?: EMPTY.life,
-            gems = map["gems"] as? Boolean ?: EMPTY.gems,
-        )
+        operator fun invoke(reader: ConfigReader): Rock {
+            var level = 1
+            val ores = ObjectArrayList<String>(1)
+            var life = -1
+            var gems = false
+            while (reader.nextEntry()) {
+                when (val key = reader.key()) {
+                    "level" -> level = reader.int()
+                    "ores" -> while (reader.nextElement()) {
+                        ores.add(reader.string())
+                    }
+                    "life" -> life = reader.int()
+                    "gems" -> gems = reader.boolean()
+                    else -> throw IllegalArgumentException("Unexpected key: '$key' ${reader.exception()}")
+                }
+            }
+            return Rock(level = level, ores = ores, life = life, gems = gems)
+        }
 
         val EMPTY = Rock()
     }

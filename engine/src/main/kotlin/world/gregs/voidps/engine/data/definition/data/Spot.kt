@@ -15,8 +15,7 @@ data class Spot(
             val tackle = ObjectArrayList<String>(1)
             val bait = Object2ObjectOpenHashMap<String, List<String>>(1, Hash.VERY_FAST_LOAD_FACTOR)
             while (reader.nextEntry()) {
-                val key = reader.key()
-                when (key) {
+                when (val key = reader.key()) {
                     "items" -> while (reader.nextElement()) {
                         tackle.add(reader.string())
                     }
@@ -28,6 +27,7 @@ data class Spot(
                         }
                         bait[name] = items
                     }
+                    else -> throw IllegalArgumentException("Unexpected key: '$key' ${reader.exception()}")
                 }
             }
             return Spot(tackle = tackle, bait = bait)
