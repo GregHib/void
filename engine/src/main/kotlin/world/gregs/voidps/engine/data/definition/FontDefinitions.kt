@@ -18,7 +18,7 @@ class FontDefinitions(
 
     fun load(path: String = Settings["definitions.fonts"]): FontDefinitions {
         timedLoad("font extra") {
-            val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
+            val ids = Object2IntOpenHashMap<String>(20, Hash.VERY_FAST_LOAD_FACTOR)
             Config.fileReader(path) {
                 while (nextPair()) {
                     val key = key()

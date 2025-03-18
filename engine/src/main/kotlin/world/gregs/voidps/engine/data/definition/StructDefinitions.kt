@@ -1,10 +1,11 @@
 package world.gregs.voidps.engine.data.definition
 
+import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.Yaml
 
 /**
  * Also known as AttributeMaps in cs2
@@ -17,9 +18,19 @@ class StructDefinitions(
 
     override fun empty() = StructDefinition.EMPTY
 
-    fun load(yaml: Yaml = get(), path: String = Settings["definitions.structs"]): StructDefinitions {
+    fun load(path: String = Settings["definitions.structs"]): StructDefinitions {
         timedLoad("struct extra") {
-            decode(yaml, path)
+            val ids = Object2IntOpenHashMap<String>(512, Hash.VERY_FAST_LOAD_FACTOR)
+            Config.fileReader(path) {
+                while (nextPair()) {
+                    val stringId = key()
+                    val id = int()
+                    ids[stringId] = id
+                    definitions[id].stringId = stringId
+                }
+            }
+            this.ids = ids
+            ids.size
         }
         return this
     }
