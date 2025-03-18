@@ -65,13 +65,18 @@ class ItemDefinitions(
                             "jewellery" -> extras[key] = Jewellery(this)
                             "silver_jewellery" -> extras[key] = Silver(this)
                             "runecrafting" -> extras[key] = Rune(this)
-                            "ammo" -> extras[key] = ObjectOpenHashSet(list())
                             "cleaning" -> extras[key] = Cleaning(this)
                             "fletch_dart" -> extras[key] = FletchDarts(this)
                             "fletch_bolts" -> extras[key] = FletchBolts(this)
                             "fletching_unf" -> extras[key] = Fletching(this)
                             "light_source" -> extras[key] = LightSources(this)
-                            "skill_req" -> extras[key] = map().mapKeys { Skill.valueOf(it.key.toSentenceCase()) }
+                            "skill_req" -> {
+                                val map = Object2IntOpenHashMap<Skill>(1, Hash.VERY_FAST_LOAD_FACTOR)
+                                while (nextEntry()) {
+                                    map[Skill.valueOf(key().toSentenceCase())] = int()
+                                }
+                                extras[key] = map
+                            }
                             "heals" -> extras[key] = if (peek == '"') string().toIntRange() else {
                                 val int = int()
                                 int..int
