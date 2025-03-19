@@ -2,18 +2,16 @@ package content.entity.obj
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Tile
-import world.gregs.yaml.Yaml
-import world.gregs.yaml.read.YamlReaderConfiguration
 
 /**
  * Object interaction teleports
@@ -69,40 +67,72 @@ class ObjectTeleports {
         return teleports.keys
     }
 
-    @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["map.teleports"]): ObjectTeleports {
+    fun load(path: String = Settings["map.teleports"]): ObjectTeleports {
+        val teleports = Object2ObjectOpenHashMap<String, Int2ObjectOpenHashMap<TeleportDefinition>>()
         timedLoad("object teleport") {
-            val config = object : YamlReaderConfiguration() {
-                override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
-                    val map = value as Map<String, Any>
-                    val tile = map["tile"] as Tile
-                    val option = map["option"] as String
-                    val id = (map["id"] as? Int)?.toString() ?: map["id"] as String
-                    val definition = TeleportDefinition(
-                        id = id,
-                        option = option,
-                        tile = tile,
-                        delta = map["delta"] as? Delta ?: Delta.EMPTY,
-                        to = map["to"] as? Tile ?: Tile.EMPTY
-                    )
-                    super.add(list, definition, parentMap)
+            var counter = 0
+            Config.fileReader(path) {
+                while (nextSection()) {
+                    val stringId = section()
+                    var option = ""
+                    var tile = Tile.EMPTY
+                    var to = Tile.EMPTY
+                    var delta = Delta.EMPTY
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "option" -> option = string()
+                            "tile" -> {
+                                var x = 0
+                                var y = 0
+                                var level = 0
+                                while (nextEntry()) {
+                                    when (val k = key()) {
+                                        "x" -> x = int()
+                                        "y" -> y = int()
+                                        "level" -> level = int()
+                                        else -> throw IllegalArgumentException("Unexpected key: '$k' ${exception()}")
+                                    }
+                                }
+                                tile = Tile(x, y, level)
+                            }
+                            "delta" -> {
+                                var x = 0
+                                var y = 0
+                                var level = 0
+                                while (nextEntry()) {
+                                    when (val k = key()) {
+                                        "x" -> x = int()
+                                        "y" -> y = int()
+                                        "level" -> level = int()
+                                        else -> throw IllegalArgumentException("Unexpected key: '$k' ${exception()}")
+                                    }
+                                }
+                                delta = Delta(x, y, level)
+                            }
+                            "to" -> {
+                                var x = 0
+                                var y = 0
+                                var level = 0
+                                while (nextEntry()) {
+                                    when (val k = key()) {
+                                        "x" -> x = int()
+                                        "y" -> y = int()
+                                        "level" -> level = int()
+                                        else -> throw IllegalArgumentException("Unexpected key: '$k' ${exception()}")
+                                    }
+                                }
+                                to = Tile(x, y, level)
+                            }
+                            else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
+                        }
+                    }
+                    val definition = TeleportDefinition(stringId, option, tile, delta, to)
+                    teleports.getOrPut(option) { Int2ObjectOpenHashMap() }.put(tile.id, definition)
+                    counter++
                 }
-
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-                    super.set(map, key, when (key) {
-                        "delta" -> Delta.fromMap(value as Map<String, Any>)
-                        "tile", "to" -> Tile.fromMap(value as Map<String, Any>)
-                        else -> value
-                    }, indent, parentMap)
-                }
-            }
-            val data: List<TeleportDefinition> = yaml.load(path, config)
-            val teleports = Object2ObjectOpenHashMap<String, Int2ObjectOpenHashMap<TeleportDefinition>>()
-            for (definition in data) {
-                teleports.getOrPut(definition.option) { Int2ObjectOpenHashMap() }.put(definition.tile.id, definition)
             }
             this.teleports = teleports
-            data.size
+            counter
         }
         return this
     }
