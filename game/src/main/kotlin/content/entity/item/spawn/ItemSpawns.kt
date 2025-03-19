@@ -35,7 +35,7 @@ fun loadItemSpawns(
         val membersWorld = World.members
         Config.fileReader(path) {
             while (nextPair()) {
-                key()
+                require(key() == "spawns")
                 while (nextElement()) {
                     var id = ""
                     var amount = 1
