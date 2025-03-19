@@ -17,6 +17,7 @@ fun loadObjectSpawns(
 ) = timedLoad("object spawn") {
     objects.reset()
     val membersWorld = World.members
+    var count = 0
     Config.fileReader(path) {
         while (nextPair()) {
             require(key() == "spawns")
@@ -45,8 +46,9 @@ fun loadObjectSpawns(
                 }
                 val tile = Tile(x, y, level)
                 objects.add(GameObject(definitions.get(id).id, tile.x, tile.y, tile.level, type, rotation))
+                count++
             }
         }
     }
-    objects.size
+    count
 }
