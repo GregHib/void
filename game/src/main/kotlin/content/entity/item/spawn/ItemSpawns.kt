@@ -1,14 +1,12 @@
 package content.entity.item.spawn
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import world.gregs.config.Config
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.Yaml
-import world.gregs.yaml.read.YamlReaderConfiguration
 
 class ItemSpawns(
     private val zones: MutableMap<Int, ItemSpawn> = Int2ObjectOpenHashMap()
@@ -27,32 +25,46 @@ class ItemSpawns(
     }
 }
 
-@Suppress("UNCHECKED_CAST")
 fun loadItemSpawns(
     items: FloorItems,
     spawns: ItemSpawns,
-    yaml: Yaml = get(),
     path: String = Settings["spawns.items"]
 ) {
     timedLoad("item spawn") {
         spawns.clear()
         val membersWorld = World.members
-        val config = object : YamlReaderConfiguration() {
-            override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
-                value as Map<String, Any>
-                val members = value["members"] as? Boolean ?: false
-                if (!membersWorld && members) {
-                    return
+        Config.fileReader(path) {
+            while (nextPair()) {
+                key()
+                while (nextElement()) {
+                    var id = ""
+                    var amount = 1
+                    var x = 0
+                    var y = 0
+                    var level = 0
+                    var delay = 60
+                    var members = false
+                    while (nextEntry()) {
+                        when (val key = key()) {
+                            "id" -> id = string()
+                            "x" -> x = int()
+                            "y" -> y = int()
+                            "level" -> level = int()
+                            "amount", "charges" -> amount = int()
+                            "delay" -> delay = int()
+                            "members" -> members = boolean()
+                            else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
+                        }
+                    }
+                    if (!membersWorld && members) {
+                        continue
+                    }
+                    val tile = Tile(x, y, level)
+                    spawns.set(tile, ItemSpawn(id, amount, delay))
+                    items.add(tile, id, amount)
                 }
-                val id = value["id"] as String
-                val tile = Tile.fromMap(value)
-                val amount = value["amount"] as? Int ?: value["charges"] as? Int ?: 1
-                val delay = value["delay"] as? Int ?: 60
-                spawns.set(tile, ItemSpawn(id, amount, delay))
-                items.add(tile, id, amount)
             }
         }
-        yaml.load<Any>(path, config)
         spawns.size
     }
 }
