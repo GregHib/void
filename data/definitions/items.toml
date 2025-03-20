@@ -22039,7 +22039,7 @@ examine = "This bucket is completely full. It has a 5 painted on its side."
 use = "Quest"
 kept = "Vanish"
 
-["4_5ths_full_bucket"]
+[4_5ths_full_bucket]
 id = 3723
 tradeable = false
 weight = 0.001

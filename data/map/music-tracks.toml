@@ -1504,7 +1504,7 @@ areas = [
 index = 284
 areas = [ { region = 12438 } ]
 
-["7th_realm"]
+[7th_realm]
 index = 285
 areas = [ { region = 10644 } ]
 
@@ -2703,7 +2703,7 @@ areas = [
 index = 590
 areas = [ { region = 14488 } ]
 
-["dillo-gence_is_key"]
+[dillo-gence_is_key]
 index = 591
 areas = [ { region = 8280 } ]
 

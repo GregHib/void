@@ -1,144 +1,144 @@
 ######## 6475 ########
 ######## 6726 ########
-["27243"]
+[27243]
 option = "Climb-down"
 tile = { x = 1636, y = 4835 }
 to = { x = 1703, y = 4826 }
 
-["10708"]
+[10708]
 option = "Climb-down"
 tile = { x = 1698, y = 4515, level = 1 }
 delta = { x = -2, level = -1 }
 
-["10707"]
+[10707]
 option = "Climb-up"
 tile = { x = 1698, y = 4515 }
 delta = { x = 2, level = 1 }
 
-["10708"]
+[10708]
 option = "Climb-down"
 tile = { x = 1695, y = 4515, level = 1 }
 delta = { x = 2, level = -1 }
 
-["10707"]
+[10707]
 option = "Climb-up"
 tile = { x = 1695, y = 4515 }
 delta = { x = -2, level = 1 }
 
 ######## 6731 ########
-["10699"]
+[10699]
 option = "Climb-up"
 tile = { x = 1693, y = 4510, level = 1 }
 to = { x = 3091, y = 3275 }
 
 ######## 6989 ########
-["27242"]
+[27242]
 option = "Climb-up"
 tile = { x = 1700, y = 4824 }
 to = { x = 1639, y = 4835 }
 
 ######## 7505 ########
-["24427"]
+[24427]
 option = "Walk-up"
 tile = { x = 1758, y = 4959 }
 delta = { x = 1500, y = -1505 }
 
-["16148"]
+[16148]
 option = "Climb-up"
 tile = { x = 1859, y = 5244 }
 to = { x = 3081, y = 3421 }
 
-["16146"]
+[16146]
 option = "Climb-up"
 tile = { x = 1881, y = 5232 }
 to = { x = 1859, y = 5243 }
 
-["16148"]
+[16148]
 option = "Climb-up"
 tile = { x = 1913, y = 5226 }
 to = { x = 3081, y = 3421 }
 
 ######## 8005 ########
-["16149"]
+[16149]
 option = "Climb-down"
 tile = { x = 1902, y = 5222 }
 to = { x = 2042, y = 5245 }
 
-["10708"]
+[10708]
 option = "Climb-down"
 tile = { x = 2009, y = 4431, level = 1 }
 delta = { x = -2, level = -1 }
 
-["10707"]
+[10707]
 option = "Climb-up"
 tile = { x = 2009, y = 4431 }
 delta = { x = 2, level = 1 }
 
-["10708"]
+[10708]
 option = "Climb-down"
 tile = { x = 2006, y = 4431, level = 1 }
 delta = { x = 2, level = -1 }
 
-["10707"]
+[10707]
 option = "Climb-up"
 tile = { x = 2006, y = 4431 }
 delta = { x = -2, level = 1 }
 
 ######## 8017 ########
-["10699"]
+[10699]
 option = "Climb-up"
 tile = { x = 2004, y = 4426, level = 1 }
 to = { x = 3091, y = 3275 }
 
-["16080"]
+[16080]
 option = "Climb-up"
 tile = { x = 2042, y = 5246 }
 to = { x = 1859, y = 5243 }
 
-["16078"]
+[16078]
 option = "Climb-up"
 tile = { x = 2040, y = 5208 }
 to = { x = 2042, y = 5245 }
 
-["16078"]
+[16078]
 option = "Climb-up"
 tile = { x = 2031, y = 5189 }
 to = { x = 2042, y = 5245 }
 
-["16078"]
+[16078]
 option = "Climb-up"
 tile = { x = 2011, y = 5192 }
 to = { x = 2042, y = 5245 }
 
-["16078"]
+[16078]
 option = "Climb-up"
 tile = { x = 2017, y = 5210 }
 to = { x = 2042, y = 5245 }
 
 ######## 8530 ########
-["16081"]
+[16081]
 option = "Climb-down"
 tile = { x = 2026, y = 5218 }
 to = { x = 2123, y = 5252 }
 
-["16114"]
+[16114]
 option = "Climb-up"
 tile = { x = 2123, y = 5251 }
 to = { x = 2042, y = 5245 }
 
-["16112"]
+[16112]
 option = "Climb-up"
 tile = { x = 2150, y = 5278 }
 to = { x = 2123, y = 5252 }
 
 ######## 8787 ########
-["16115"]
+[16115]
 option = "Climb-down"
 tile = { x = 2148, y = 5284 }
 to = { x = 2358, y = 5215 }
 
 ######## 9033 ########
-["28714"]
+[28714]
 option = "Climb"
 tile = { x = 2209, y = 5349 }
 to = { x = 2926, y = 3444 }
@@ -215,18 +215,18 @@ option = "Enter"
 tile = { x = 2282, y = 4837 }
 to = { x = 3060, y = 3585 }
 
-["16049"]
+[16049]
 option = "Climb-up"
 tile = { x = 2358, y = 5216 }
 to = { x = 2123, y = 5252 }
 
-["16048"]
+[16048]
 option = "Climb-up"
 tile = { x = 2309, y = 5240 }
 to = { x = 3081, y = 3421 }
 
 ######## 9547 ########
-["16048"]
+[16048]
 option = "Climb-up"
 tile = { x = 2350, y = 5215 }
 to = { x = 3081, y = 3421 }
@@ -281,23 +281,23 @@ tile = { x = 2868, y = 3018 }
 to = { x = 2400, y = 4835 }
 
 ######## 11314 ########
-["492"]
+[492]
 option = "Climb-down"
 tile = { x = 2856, y = 3168 }
 to = { x = 2857, y = 9569 }
 
-["25154"]
+[25154]
 option = "Enter"
 tile = { x = 2833, y = 3255 }
 to = { x = 2833, y = 9658 }
 
-["272"]
+[272]
 option = "Climb-up"
 tile = { x = 2847, y = 3235 }
 delta = { level = 1 }
 
 ######## 9803 ########
-["273"]
+[273]
 option = "Climb-down"
 tile = { x = 2847, y = 3235, level = 1 }
 delta = { level = -1 }
@@ -308,7 +308,7 @@ option = "Enter"
 tile = { x = 2464, y = 4817 }
 to = { x = 2859, y = 3379 }
 
-["3205"]
+[3205]
 option = "Climb-down"
 tile = { x = 2532, y = 3545, level = 1 }
 delta = { level = -1 }
@@ -318,7 +318,7 @@ option = "Climb-up"
 tile = { x = 2532, y = 3545 }
 delta = { level = 1 }
 
-["20987"]
+[20987]
 option = "Climb-down"
 tile = { x = 2547, y = 3551 }
 delta = { y = 6400 }
@@ -336,13 +336,13 @@ tile = { x = 2857, y = 3380 }
 to = { x = 2464, y = 4818 }
 
 ######## 11414 ########
-["1764"]
+[1764]
 option = "Climb"
 tile = { x = 2856, y = 9569 }
 to = { x = 2856, y = 3167 }
 
 ######## 11570 ########
-["25213"]
+[25213]
 option = "Climb"
 tile = { x = 2833, y = 9657 }
 to = { x = 2834, y = 3258 }
@@ -357,7 +357,7 @@ option = "Climb-down"
 tile = { x = 2928, y = 3256, level = 1 }
 delta = { level = -1 }
 
-["25045"]
+[25045]
 option = "Climb-down"
 tile = { x = 2925, y = 3258, level = 1 }
 delta = { level = -1 }
@@ -382,17 +382,17 @@ option = "Climb-down"
 tile = { x = 2923, y = 3240, level = 1 }
 delta = { level = -1 }
 
-["2605"]
+[2605]
 option = "Climb-down"
 tile = { x = 2932, y = 3240 }
 delta = { y = 6400 }
 
-["1754"]
+[1754]
 option = "Climb-down"
 tile = { x = 2924, y = 3250 }
 delta = { y = 6400 }
 
-["1754"]
+[1754]
 option = "Climb-down"
 tile = { x = 2939, y = 3257 }
 delta = { y = 6400 }
@@ -488,89 +488,89 @@ option = "Climb-down"
 tile = { x = 2938, y = 3255, level = 2 }
 delta = { level = -1 }
 
-["9582"]
+[9582]
 option = "Climb-up"
 tile = { x = 2931, y = 3282 }
 to = { x = 2933, y = 3282, level = 1 }
 
-["9584"]
+[9584]
 option = "Climb-down"
 tile = { x = 2932, y = 3282, level = 1 }
 to = { x = 2932, y = 3281 }
 
-["9558"]
+[9558]
 option = "Climb-up"
 tile = { x = 2915, y = 3323 }
 delta = { level = 1 }
 
 ######## 11572 ########
-["9559"]
+[9559]
 option = "Climb-down"
 tile = { x = 2915, y = 3323, level = 1 }
 delta = { level = -1 }
 
-["11888"]
+[11888]
 option = "Climb-up"
 tile = { x = 2907, y = 3334 }
 to = { x = 2908, y = 3336, level = 1 }
 
-["11889"]
+[11889]
 option = "Climb-down"
 tile = { x = 2907, y = 3334, level = 1 }
 to = { x = 2909, y = 3335 }
 
-["11889"]
+[11889]
 option = "Climb-up"
 tile = { x = 2907, y = 3334, level = 1 }
 delta = { level = 1 }
 
 ######## 11573 ########
-["11890"]
+[11890]
 option = "Climb-down"
 tile = { x = 2908, y = 3335, level = 2 }
 delta = { level = -1 }
 
-["55404"]
+[55404]
 option = "Climb-down"
 tile = { x = 2884, y = 3397 }
 delta = { y = 6398 }
 
-["35125"]
+[35125]
 option = "Climb-up"
 tile = { x = 2898, y = 3428 }
 delta = { level = 1 }
 
-["28652"]
+[28652]
 option = "Climb-down"
 tile = { x = 2898, y = 3428, level = 1 }
 delta = { level = -1 }
 
-["35125"]
+[35125]
 option = "Climb-up"
 tile = { x = 2914, y = 3441 }
 delta = { level = 1 }
 
-["28652"]
+[28652]
 option = "Climb-down"
 tile = { x = 2914, y = 3441, level = 1 }
 delta = { level = -1 }
 
-["35125"]
+[35125]
 option = "Climb-up"
 tile = { x = 2915, y = 3450 }
 delta = { level = 1 }
 
-["28652"]
+[28652]
 option = "Climb-down"
 tile = { x = 2915, y = 3450, level = 1 }
 delta = { level = -1 }
 
-["28572"]
+[28572]
 option = "Climb-up"
 tile = { x = 2925, y = 3442 }
 delta = { x = 2, level = 1 }
 
-["28653"]
+[28653]
 option = "Climb-down"
 tile = { x = 2925, y = 3442, level = 1 }
 delta = { x = -2, level = -1 }
@@ -581,12 +581,12 @@ option = "Climb-down"
 tile = { x = 2927, y = 3444 }
 to = { x = 2209, y = 5348 }
 
-["1738"]
+[1738]
 option = "Climb-up"
 tile = { x = 2895, y = 3513 }
 to = { x = 2897, y = 3513, level = 1 }
 
-["1740"]
+[1740]
 option = "Climb-down"
 tile = { x = 2896, y = 3513, level = 1 }
 to = { x = 2896, y = 3512 }
@@ -621,28 +621,28 @@ option = "Climb-down"
 tile = { x = 2895, y = 3505, level = 2 }
 delta = { level = -1 }
 
-["1754"]
+[1754]
 option = "Climb-down"
 tile = { x = 2892, y = 3507 }
 delta = { y = 6400 }
 
-["24672"]
+[24672]
 option = "Walk-up"
 tile = { x = 2906, y = 3469 }
 delta = { y = 4, level = 1 }
 
-["24673"]
+[24673]
 option = "Walk-down"
 tile = { x = 2906, y = 3470, level = 1 }
 delta = { y = -4, level = -1 }
 
-["24718"]
+[24718]
 option = "Climb-down"
 tile = { x = 2907, y = 3476 }
 delta = { y = 6400 }
 
 ######## 11599 ########
-["24842"]
+[24842]
 option = "Enter"
 tile = { x = 2899, y = 3469 }
 to = { x = 2901, y = 9867 }
@@ -664,7 +664,7 @@ tile = { x = 2939, y = 9657 }
 delta = { y = -6400 }
 
 ######## 11673 ########
-["25038"]
+[25038]
 option = "Climb-up"
 tile = { x = 2928, y = 9658 }
 delta = { y = -6400 }
@@ -675,69 +675,69 @@ option = "Climb-up"
 tile = { x = 2884, y = 9797 }
 delta = { y = -6398 }
 
-["1757"]
+[1757]
 option = "Climb-up"
 tile = { x = 2892, y = 9907 }
 delta = { y = -6400 }
 
-["24717"]
+[24717]
 option = "Climb-up"
 tile = { x = 2907, y = 9876 }
 delta = { y = -6400 }
 
 ######## 11825 ########
-["24687"]
+[24687]
 option = "Climb-up"
 tile = { x = 2898, y = 9867 }
 to = { x = 2898, y = 3469 }
 
-["273"]
+[273]
 option = "Climb-down"
 tile = { x = 2953, y = 3141, level = 1 }
 delta = { level = -1 }
 
-["272"]
+[272]
 option = "Climb-up"
 tile = { x = 2953, y = 3141 }
 delta = { level = 1 }
 
-["273"]
+[273]
 option = "Climb-down"
 tile = { x = 2957, y = 3141, level = 1 }
 delta = { level = -1 }
 
-["272"]
+[272]
 option = "Climb-up"
 tile = { x = 2957, y = 3141 }
 delta = { level = 1 }
 
-["273"]
+[273]
 option = "Climb-down"
 tile = { x = 2961, y = 3141, level = 1 }
 delta = { level = -1 }
 
 ######## 11826 ########
-["272"]
+[272]
 option = "Climb-up"
 tile = { x = 2961, y = 3141 }
 delta = { level = 1 }
 
-["9470"]
+[9470]
 option = "Climb-up"
 tile = { x = 2965, y = 3215 }
 delta = { x = 4, level = 1 }
 
-["9471"]
+[9471]
 option = "Climb-down"
 tile = { x = 2966, y = 3215, level = 1 }
 delta = { x = -4, level = -1 }
 
-["9558"]
+[9558]
 option = "Climb-up"
 tile = { x = 2948, y = 3213 }
 delta = { level = 1 }
 
-["9559"]
+[9559]
 option = "Climb-down"
 tile = { x = 2948, y = 3213, level = 1 }
 delta = { level = -1 }
@@ -748,193 +748,193 @@ option = "Climb-down"
 tile = { x = 2968, y = 3201 }
 delta = { x = 198, y = 1314 }
 
-["11740"]
+[11740]
 option = "Climb-up"
 tile = { x = 2954, y = 3389 }
 delta = { y = -2, level = 1 }
 
-["11741"]
+[11741]
 option = "Climb-down"
 tile = { x = 2954, y = 3389, level = 1 }
 delta = { y = 2, level = -1 }
 
-["11739"]
+[11739]
 option = "Climb-up"
 tile = { x = 2954, y = 3390, level = 1 }
 delta = { x = -2, level = 1 }
 
-["11741"]
+[11741]
 option = "Climb-down"
 tile = { x = 2954, y = 3390, level = 2 }
 delta = { x = 2, level = -1 }
 
-["11739"]
+[11739]
 option = "Climb-up"
 tile = { x = 2954, y = 3389, level = 2 }
 delta = { y = 2, level = 1 }
 
-["11741"]
+[11741]
 option = "Climb-down"
 tile = { x = 2954, y = 3389, level = 3 }
 delta = { y = -2, level = -1 }
 
-["11739"]
+[11739]
 option = "Climb-up"
 tile = { x = 2946, y = 3378 }
 delta = { y = -2, level = 1 }
 
-["11741"]
+[11741]
 option = "Climb-down"
 tile = { x = 2946, y = 3378, level = 1 }
 delta = { y = 2, level = -1 }
 
-["11736"]
+[11736]
 option = "Climb-up"
 tile = { x = 2959, y = 3369 }
 delta = { y = 4, level = 1 }
 
-["11737"]
+[11737]
 option = "Climb-down"
 tile = { x = 2959, y = 3370, level = 1 }
 delta = { y = -4, level = -1 }
 
-["11739"]
+[11739]
 option = "Climb-up"
 tile = { x = 2946, y = 3363 }
 delta = { level = 1 }
 
-["11741"]
+[11741]
 option = "Climb-down"
 tile = { x = 2946, y = 3363, level = 1 }
 delta = { level = -1 }
 
-["11732"]
+[11732]
 option = "Climb-up"
 tile = { x = 2973, y = 3384 }
 to = { x = 2972, y = 3385, level = 1 }
 
-["35782"]
+[35782]
 option = "Climb-down"
 tile = { x = 2973, y = 3385, level = 1 }
 to = { x = 2973, y = 3386 }
 
-["11736"]
+[11736]
 option = "Climb-up"
 tile = { x = 2971, y = 3370 }
 delta = { y = 4, level = 1 }
 
-["11737"]
+[11737]
 option = "Climb-down"
 tile = { x = 2971, y = 3371, level = 1 }
 delta = { y = -4, level = -1 }
 
-["11729"]
+[11729]
 option = "Climb-up"
 tile = { x = 2954, y = 3338 }
 to = { x = 2956, y = 3338, level = 1 }
 
-["11731"]
+[11731]
 option = "Climb-down"
 tile = { x = 2955, y = 3338, level = 1 }
 to = { x = 2955, y = 3337 }
 
-["11729"]
+[11729]
 option = "Climb-up"
 tile = { x = 2960, y = 3338, level = 1 }
 to = { x = 2959, y = 3339, level = 2 }
 
-["11731"]
+[11731]
 option = "Climb-down"
 tile = { x = 2960, y = 3339, level = 2 }
 to = { x = 2960, y = 3340, level = 1 }
 
-["11729"]
+[11729]
 option = "Climb-up"
 tile = { x = 2957, y = 3338, level = 2 }
 to = { x = 2959, y = 3338, level = 3 }
 
-["11731"]
+[11731]
 option = "Climb-down"
 tile = { x = 2958, y = 3338, level = 3 }
 to = { x = 2958, y = 3337, level = 2 }
 
-["11724"]
+[11724]
 option = "Climb-up"
 tile = { x = 2968, y = 3347 }
 delta = { x = -3, y = 1, level = 1 }
 
-["11725"]
+[11725]
 option = "Climb-down"
 tile = { x = 2968, y = 3347, level = 1 }
 delta = { x = 3, y = -1, level = -1 }
 
-["11727"]
+[11727]
 option = "Climb-up"
 tile = { x = 2983, y = 3351 }
 delta = { level = 1 }
 
-["11728"]
+[11728]
 option = "Climb-down"
 tile = { x = 2983, y = 3351, level = 1 }
 delta = { level = -1 }
 
-["11727"]
+[11727]
 option = "Climb-up"
 tile = { x = 2983, y = 3352, level = 1 }
 delta = { level = 1 }
 
-["11728"]
+[11728]
 option = "Climb-down"
 tile = { x = 2983, y = 3352, level = 2 }
 delta = { level = -1 }
 
-["11727"]
+[11727]
 option = "Climb-up"
 tile = { x = 2983, y = 3351, level = 2 }
 delta = { level = 1 }
 
-["11728"]
+[11728]
 option = "Climb-down"
 tile = { x = 2983, y = 3351, level = 3 }
 delta = { level = -1 }
 
-["11727"]
+[11727]
 option = "Climb-up"
 tile = { x = 2994, y = 3341 }
 delta = { level = 1 }
 
-["11728"]
+[11728]
 option = "Climb-down"
 tile = { x = 2994, y = 3341, level = 1 }
 delta = { level = -1 }
 
-["11727"]
+[11727]
 option = "Climb-up"
 tile = { x = 2996, y = 3341, level = 1 }
 delta = { level = 1 }
 
-["11728"]
+[11728]
 option = "Climb-down"
 tile = { x = 2996, y = 3341, level = 2 }
 delta = { level = -1 }
 
-["11727"]
+[11727]
 option = "Climb-up"
 tile = { x = 2994, y = 3341, level = 2 }
 delta = { level = 1 }
 
-["11728"]
+[11728]
 option = "Climb-down"
 tile = { x = 2994, y = 3341, level = 3 }
 delta = { level = -1 }
 
-["11734"]
+[11734]
 option = "Climb-up"
 tile = { x = 2984, y = 3337, level = 1 }
 delta = { y = 4, level = 1 }
 
 ######## 11829 ########
-["35783"]
+[35783]
 option = "Climb-down"
 tile = { x = 2984, y = 3338, level = 2 }
 delta = { y = -4, level = -1 }
@@ -962,13 +962,13 @@ option = "Enter"
 tile = { x = 2981, y = 3513 }
 to = { x = 2793, y = 4828 }
 
-["16450"]
+[16450]
 option = "Climb-up"
 tile = { x = 2954, y = 3497 }
 to = { x = 2955, y = 3497, level = 2 }
 
 ######## 11837 ######## 
-["16556"]
+[16556]
 option = "Climb-down"
 tile = { x = 2954, y = 3497, level = 2 }
 to = { x = 2955, y = 3497 }
@@ -986,7 +986,7 @@ tile = { x = 2962, y = 9651 }
 to = { x = 3018, y = 3231 }
 
 ######## 11937 ######## 
-["31002"]
+[31002]
 option = "Climb-up"
 tile = { x = 2996, y = 9846 }
 delta = { x = 2, y = -6393 }
@@ -997,113 +997,113 @@ option = "Climb-up"
 tile = { x = 3005, y = 10363 }
 delta = { y = -6400 }
 
-["9472"]
+[9472]
 option = "Climb-down"
 tile = { x = 3008, y = 3150 }
 delta = { y = 6400 }
 
-["40114"]
+[40114]
 option = "Climb-up"
 tile = { x = 3010, y = 3184 }
 delta = { level = 1 }
 
-["55450"]
+[55450]
 option = "Climb-down"
 tile = { x = 3010, y = 3184, level = 1 }
 delta = { level = -1 }
 
-["40114"]
+[40114]
 option = "Climb-up"
 tile = { x = 3013, y = 3179, level = 1 }
 delta = { level = 1 }
 
-["40113"]
+[40113]
 option = "Climb-down"
 tile = { x = 3013, y = 3179, level = 2 }
 delta = { level = -1 }
 
-["287"]
+[287]
 option = "Climb-down"
 tile = { x = 3042, y = 3198, level = 1 }
 delta = { level = -1 }
 
 ######## 12082 ########
-["272"]
+[272]
 option = "Climb-up"
 tile = { x = 3042, y = 3198 }
 delta = { level = 1 }
 
-["2590"]
+[2590]
 option = "Climb-down"
 tile = { x = 3049, y = 3208, level = 1 }
 to = { x = 3049, y = 3208 }
 
-["272"]
+[272]
 option = "Climb-up"
 tile = { x = 3049, y = 3208 }
 delta = { level = 1 }
 
-["273"]
+[273]
 option = "Climb-down"
 tile = { x = 3034, y = 3214, level = 1 }
 delta = { level = -1 }
 
-["272"]
+[272]
 option = "Climb-up"
 tile = { x = 3034, y = 3214 }
 delta = { level = 1 }
 
-["273"]
+[273]
 option = "Climb-down"
 tile = { x = 3034, y = 3218, level = 1 }
 delta = { level = -1 }
 
-["272"]
+[272]
 option = "Climb-up"
 tile = { x = 3034, y = 3218 }
 delta = { level = 1 }
 
-["273"]
+[273]
 option = "Climb-down"
 tile = { x = 3034, y = 3222, level = 1 }
 delta = { level = -1 }
 
-["272"]
+[272]
 option = "Climb-up"
 tile = { x = 3034, y = 3222 }
 delta = { level = 1 }
 
-["273"]
+[273]
 option = "Climb-down"
 tile = { x = 3052, y = 3229, level = 1 }
 delta = { level = -1 }
 
-["272"]
+[272]
 option = "Climb-up"
 tile = { x = 3052, y = 3229 }
 delta = { level = 1 }
 
-["40026"]
+[40026]
 option = "Climb-up"
 tile = { x = 3011, y = 3235 }
 delta = { level = 1 }
 
-["40027"]
+[40027]
 option = "Climb-down"
 tile = { x = 3011, y = 3235, level = 1 }
 delta = { level = -1 }
 
-["10321"]
+[10321]
 option = "Climb-down"
 tile = { x = 3018, y = 3232 }
 to = { x = 2962, y = 9650 }
 
-["40026"]
+[40026]
 option = "Climb-up"
 tile = { x = 3013, y = 3244 }
 delta = { level = 1 }
 
-["40027"]
+[40027]
 option = "Climb-down"
 tile = { x = 3013, y = 3244, level = 1 }
 delta = { level = -1 }
@@ -1113,184 +1113,184 @@ option = "Climb-down"
 tile = { x = 3015, y = 3257 }
 to = { x = 3221, y = 4522 }
 
-["40057"]
+[40057]
 option = "Climb-up"
 tile = { x = 3023, y = 3261 }
 to = { x = 3025, y = 3261, level = 1 }
 
-["40059"]
+[40059]
 option = "Climb-down"
 tile = { x = 3024, y = 3261, level = 1 }
 to = { x = 3024, y = 3260 }
 
-["40057"]
+[40057]
 option = "Climb-up"
 tile = { x = 3026, y = 3248 }
 to = { x = 3026, y = 3247, level = 1 }
 
 ######## 12084 ########
-["40059"]
+[40059]
 option = "Climb-down"
 tile = { x = 3026, y = 3248, level = 1 }
 to = { x = 3025, y = 3248 }
 
-["26144"]
+[26144]
 option = "Climb-up"
 tile = { x = 3037, y = 3383 }
 to = { x = 3039, y = 3383, level = 1 }
 
-["26148"]
+[26148]
 option = "Climb-down"
 tile = { x = 3037, y = 3383, level = 1 }
 to = { x = 3037, y = 3382 }
 
-["26145"]
+[26145]
 option = "Climb-up"
 tile = { x = 3053, y = 3383 }
 to = { x = 3052, y = 3383, level = 1 }
 
-["26150"]
+[26150]
 option = "Climb-down"
 tile = { x = 3053, y = 3383, level = 1 }
 to = { x = 3054, y = 3382 }
 
-["26147"]
+[26147]
 option = "Climb-up"
 tile = { x = 3053, y = 3372, level = 1 }
 to = { x = 3053, y = 3374, level = 2 }
 
-["26151"]
+[26151]
 option = "Climb-down"
 tile = { x = 3053, y = 3372, level = 2 }
 to = { x = 3052, y = 3372, level = 1 }
 
-["26146"]
+[26146]
 option = "Climb-up"
 tile = { x = 3037, y = 3372, level = 1 }
 to = { x = 3038, y = 3374, level = 2 }
 
-["26149"]
+[26149]
 option = "Climb-down"
 tile = { x = 3037, y = 3372, level = 2 }
 to = { x = 3039, y = 3372, level = 1 }
 
-["30944"]
+[30944]
 option = "Climb-down"
 tile = { x = 3059, y = 3376 }
 delta = { x = -3, y = 6400 }
 
-["35781"]
+[35781]
 option = "Climb-up"
 tile = { x = 3034, y = 3363 }
 to = { x = 3036, y = 3363, level = 1 }
 
-["35782"]
+[35782]
 option = "Climb-down"
 tile = { x = 3035, y = 3363, level = 1 }
 to = { x = 3035, y = 3362 }
 
-["11736"]
+[11736]
 option = "Climb-up"
 tile = { x = 3045, y = 3363 }
 delta = { y = 4, level = 1 }
 
-["11737"]
+[11737]
 option = "Climb-down"
 tile = { x = 3045, y = 3364, level = 1 }
 delta = { y = -4, level = -1 }
 
-["35781"]
+[35781]
 option = "Climb-up"
 tile = { x = 3048, y = 3352 }
 to = { x = 3049, y = 3354, level = 1 }
 
-["35782"]
+[35782]
 option = "Climb-down"
 tile = { x = 3049, y = 3353, level = 1 }
 to = { x = 3050, y = 3353 }
 
-["11739"]
+[11739]
 option = "Climb-up"
 tile = { x = 3035, y = 3344 }
 delta = { level = 1 }
 
-["11742"]
+[11742]
 option = "Climb-down"
 tile = { x = 3035, y = 3344, level = 1 }
 delta = { level = -1 }
 
-["11739"]
+[11739]
 option = "Climb-up"
 tile = { x = 3027, y = 3353 }
 delta = { y = -2, level = 1 }
 
-["11741"]
+[11741]
 option = "Climb-down"
 tile = { x = 3027, y = 3353, level = 1 }
 delta = { y = 2, level = -1 }
 
-["11734"]
+[11734]
 option = "Climb-up"
 tile = { x = 3018, y = 3343 }
 delta = { x = 4, level = 1 }
 
-["35783"]
+[35783]
 option = "Climb-down"
 tile = { x = 3019, y = 3343, level = 1 }
 delta = { x = -4, level = -1 }
 
-["11729"]
+[11729]
 option = "Climb-up"
 tile = { x = 3011, y = 3338 }
 to = { x = 3011, y = 3337, level = 1 }
 
-["11731"]
+[11731]
 option = "Climb-down"
 tile = { x = 3011, y = 3338, level = 1 }
 to = { x = 3010, y = 3338 }
 
-["11734"]
+[11734]
 option = "Climb-up"
 tile = { x = 3021, y = 3332 }
 delta = { x = 4, level = 1 }
 
-["35783"]
+[35783]
 option = "Climb-down"
 tile = { x = 3022, y = 3332, level = 1 }
 delta = { x = -4, level = -1 }
 
-["2113"]
+[2113]
 option = "Climb-down"
 tile = { x = 3018, y = 3339 }
 delta = { y = 6400 }
 
-["2113"]
+[2113]
 option = "Climb-down"
 tile = { x = 3019, y = 3338 }
 delta = { y = 6400 }
 
-["2113"]
+[2113]
 option = "Climb-down"
 tile = { x = 3020, y = 3339 }
 delta = { y = 6400 }
 
-["2113"]
+[2113]
 option = "Climb-down"
 tile = { x = 3019, y = 3340 }
 delta = { y = 6400 }
 
-["11727"]
+[11727]
 option = "Climb-up"
 tile = { x = 3058, y = 3356 }
 delta = { level = 1 }
 
 ######## 12085 ########
-["11728"]
+[11728]
 option = "Climb-down"
 tile = { x = 3058, y = 3356, level = 1 }
 delta = { level = -1 }
 
-["30942"]
+[30942]
 option = "Climb-down"
 tile = { x = 3019, y = 3450 }
 delta = { y = 6400 }
@@ -1307,133 +1307,133 @@ option = "Enter"
 tile = { x = 2521, y = 4833 }
 to = { x = 3051, y = 3444 }
 
-["26197"]
+[26197]
 option = "Climb-up"
 tile = { x = 3010, y = 3514 }
 to = { x = 3012, y = 3514, level = 1 }
 
-["26199"]
+[26199]
 option = "Climb-down"
 tile = { x = 3010, y = 3514, level = 1 }
 to = { x = 3012, y = 3515 }
 
-["17148"]
+[17148]
 option = "Climb-up"
 tile = { x = 3015, y = 3519 }
 delta = { level = 1 }
 
-["17149"]
+[17149]
 option = "Climb-down"
 tile = { x = 3015, y = 3519, level = 1 }
 delta = { level = -1 }
 
-["17148"]
+[17148]
 option = "Climb-up"
 tile = { x = 3016, y = 3519, level = 1 }
 delta = { level = 1 }
 
-["17149"]
+[17149]
 option = "Climb-down"
 tile = { x = 3016, y = 3519, level = 2 }
 delta = { level = -1 }
 
-["17148"]
+[17148]
 option = "Climb-up"
 tile = { x = 3017, y = 3516, level = 1 }
 delta = { level = 1 }
 
-["17149"]
+[17149]
 option = "Climb-down"
 tile = { x = 3017, y = 3516, level = 2 }
 delta = { level = -1 }
 
-["26197"]
+[26197]
 option = "Climb-up"
 tile = { x = 3010, y = 3516, level = 2 }
 to = { x = 3010, y = 3515, level = 3 }
 
-["26199"]
+[26199]
 option = "Climb-down"
 tile = { x = 3010, y = 3516, level = 3 }
 to = { x = 3010, y = 3515, level = 2 }
 
-["17159"]
+[17159]
 option = "Climb-up"
 tile = { x = 3022, y = 3518 }
 delta = { level = 1 }
 
-["17160"]
+[17160]
 option = "Climb-down"
 tile = { x = 3022, y = 3518, level = 1 }
 delta = { level = -1 }
 
-["17148"]
+[17148]
 option = "Climb-up"
 tile = { x = 3023, y = 3513, level = 1 }
 delta = { level = 1 }
 
-["17149"]
+[17149]
 option = "Climb-down"
 tile = { x = 3023, y = 3513, level = 2 }
 delta = { level = -1 }
 
-["17148"]
+[17148]
 option = "Climb-up"
 tile = { x = 3025, y = 3513, level = 1 }
 delta = { level = 1 }
 
-["17149"]
+[17149]
 option = "Climb-down"
 tile = { x = 3025, y = 3513, level = 2 }
 delta = { level = -1 }
 
-["17148"]
+[17148]
 option = "Climb-up"
 tile = { x = 3021, y = 3510 }
 delta = { level = 1 }
 
-["17149"]
+[17149]
 option = "Climb-down"
 tile = { x = 3021, y = 3510, level = 1 }
 delta = { level = -1 }
 
-["26197"]
+[26197]
 option = "Climb-up"
 tile = { x = 3029, y = 3506, level = 2 }
 to = { x = 3028, y = 3507, level = 3 }
 
-["26199"]
+[26199]
 option = "Climb-down"
 tile = { x = 3029, y = 3506, level = 3 }
 to = { x = 3029, y = 3508, level = 2 }
 
-["26982"]
+[26982]
 option = "Climb-up"
 tile = { x = 3069, y = 3517 }
 delta = { level = 1 }
 
-["26983"]
+[26983]
 option = "Climb-down"
 tile = { x = 3069, y = 3517, level = 1 }
 delta = { level = -1 }
 
-["2641"]
+[2641]
 option = "Climb-up"
 tile = { x = 3057, y = 3483 }
 delta = { level = 1 }
 
-["30863"]
+[30863]
 option = "Climb-down"
 tile = { x = 3057, y = 3483, level = 1 }
 delta = { level = -1 }
 
-["2641"]
+[2641]
 option = "Climb-up"
 tile = { x = 3046, y = 3483 }
 delta = { level = 1 }
 
 ######## 12088 ########
-["30863"]
+[30863]
 option = "Climb-down"
 tile = { x = 3046, y = 3483, level = 1 }
 delta = { level = -1 }
@@ -1443,135 +1443,135 @@ option = "Enter"
 tile = { x = 3059, y = 3590 }
 to = { x = 2275, y = 4847, level = 3 }
 
-["14745"]
+[14745]
 option = "Climb-up"
 tile = { x = 3022, y = 3625 }
 delta = { level = 1 }
 
-["14747"]
+[14747]
 option = "Climb-down"
 tile = { x = 3022, y = 3625, level = 1 }
 delta = { level = -1 }
 
-["14747"]
+[14747]
 option = "Climb-up"
 tile = { x = 3022, y = 3625, level = 1 }
 delta = { level = 1 }
 
-["14747"]
+[14747]
 option = "Climb-down"
 tile = { x = 3022, y = 3625, level = 2 }
 delta = { level = -1 }
 
-["14747"]
+[14747]
 option = "Climb-up"
 tile = { x = 3022, y = 3625, level = 2 }
 delta = { level = 1 }
 
-["14746"]
+[14746]
 option = "Climb-down"
 tile = { x = 3022, y = 3625, level = 3 }
 delta = { level = -1 }
 
-["14745"]
+[14745]
 option = "Climb-up"
 tile = { x = 3036, y = 3625 }
 delta = { level = 1 }
 
-["14747"]
+[14747]
 option = "Climb-down"
 tile = { x = 3036, y = 3625, level = 1 }
 delta = { level = -1 }
 
-["14747"]
+[14747]
 option = "Climb-up"
 tile = { x = 3036, y = 3625, level = 1 }
 delta = { level = 1 }
 
-["14747"]
+[14747]
 option = "Climb-down"
 tile = { x = 3036, y = 3625, level = 2 }
 delta = { level = -1 }
 
-["14747"]
+[14747]
 option = "Climb-up"
 tile = { x = 3036, y = 3625, level = 2 }
 delta = { level = 1 }
 
-["14746"]
+[14746]
 option = "Climb-down"
 tile = { x = 3036, y = 3625, level = 3 }
 delta = { level = -1 }
 
-["14745"]
+[14745]
 option = "Climb-up"
 tile = { x = 3036, y = 3638 }
 delta = { level = 1 }
 
-["14747"]
+[14747]
 option = "Climb-down"
 tile = { x = 3036, y = 3638, level = 1 }
 delta = { level = -1 }
 
-["14747"]
+[14747]
 option = "Climb-up"
 tile = { x = 3036, y = 3638, level = 1 }
 delta = { level = 1 }
 
-["14747"]
+[14747]
 option = "Climb-down"
 tile = { x = 3036, y = 3638, level = 2 }
 delta = { level = -1 }
 
-["14747"]
+[14747]
 option = "Climb-up"
 tile = { x = 3036, y = 3638, level = 2 }
 delta = { level = 1 }
 
-["14746"]
+[14746]
 option = "Climb-down"
 tile = { x = 3036, y = 3638, level = 3 }
 delta = { level = -1 }
 
-["14747"]
+[14747]
 option = "Climb-down"
 tile = { x = 3022, y = 3638, level = 1 }
 delta = { level = -1 }
 
-["14747"]
+[14747]
 option = "Climb-up"
 tile = { x = 3022, y = 3638, level = 1 }
 delta = { level = 1 }
 
-["14747"]
+[14747]
 option = "Climb-down"
 tile = { x = 3022, y = 3638, level = 2 }
 delta = { level = -1 }
 
-["14747"]
+[14747]
 option = "Climb-up"
 tile = { x = 3022, y = 3638, level = 2 }
 delta = { level = 1 }
 
 ######## 12092 ########
-["14746"]
+[14746]
 option = "Climb-down"
 tile = { x = 3022, y = 3638, level = 3 }
 delta = { level = -1 }
 
-["1765"]
+[1765]
 option = "Climb-down"
 tile = { x = 3017, y = 3849 }
 delta = { x = 52, y = 6407 }
 
 ######## 12093 ########
-["1767"]
+[1767]
 option = "Climb-down"
 tile = { x = 3069, y = 3857 }
 delta = { x = -52, y = 6392 }
 
 ######## 12107 ########
-["1733"]
+[1733]
 option = "Climb-down"
 tile = { x = 3044, y = 3924 }
 delta = { y = 6400 }
@@ -1649,34 +1649,34 @@ option = "Climb-up"
 tile = { x = 3008, y = 9550 }
 delta = { y = -6400 }
 
-["30943"]
+[30943]
 option = "Climb-up"
 tile = { x = 3059, y = 9776 }
 delta = { x = 3, y = -6400 }
 
-["6226"]
+[6226]
 option = "Climb-up"
 tile = { x = 3018, y = 9739 }
 delta = { y = -6400 }
 
-["6226"]
+[6226]
 option = "Climb-up"
 tile = { x = 3019, y = 9738 }
 delta = { y = -6400 }
 
-["6226"]
+[6226]
 option = "Climb-up"
 tile = { x = 3020, y = 9739 }
 delta = { y = -6400 }
 
 ######## 12185 ########
-["6226"]
+[6226]
 option = "Climb-up"
 tile = { x = 3019, y = 9740 }
 delta = { y = -6400 }
 
 ######## 12192 ########
-["6226"]
+[6226]
 option = "Climb-up"
 tile = { x = 3019, y = 9850 }
 delta = { y = -6400 }
@@ -1698,42 +1698,42 @@ tile = { x = 3069, y = 10256 }
 delta = { x = -52, y = -6407 }
 
 ######## 12336 ########
-["32048"]
+[32048]
 option = "Climb-up"
 tile = { x = 3043, y = 10328 }
 delta = { y = -6400 }
 
-["36768"]
+[36768]
 option = "Climb-up"
 tile = { x = 3126, y = 3124, level = 1 }
 delta = { level = 1 }
 
-["36770"]
+[36770]
 option = "Climb-down"
 tile = { x = 3126, y = 3124, level = 2 }
 delta = { level = -1 }
 
-["36945"]
+[36945]
 option = "Climb-up"
 tile = { x = 3123, y = 3128 }
 delta = { level = 1 }
 
-["36770"]
+[36770]
 option = "Climb-down"
 tile = { x = 3123, y = 3128, level = 1 }
 delta = { level = -1 }
 
-["36770"]
+[36770]
 option = "Climb-down"
 tile = { x = 3116, y = 3126, level = 1 }
 delta = { level = -1 }
 
-["36945"]
+[36945]
 option = "Climb-up"
 tile = { x = 3116, y = 3126 }
 delta = { level = 1 }
 
-["3031"]
+[3031]
 option = "Climb-down"
 tile = { x = 3111, y = 3126 }
 delta = { y = 6400 }
@@ -1759,17 +1759,17 @@ tile = { x = 3082, y = 3124, level = 1 }
 delta = { level = -1 }
 
 ######## 12337 ########
-["3029"]
+[3029]
 option = "Climb-down"
 tile = { x = 3088, y = 3119 }
 delta = { y = 6400 }
 
-["2147"]
+[2147]
 option = "Climb-down"
 tile = { x = 3104, y = 3162 }
 to = { x = 3104, y = 9576 }
 
-["12536"]
+[12536]
 option = "Climb-up"
 tile = { x = 3103, y = 3159 }
 delta = { x = -1, y = 1, level = 1 }
@@ -1785,17 +1785,17 @@ tile = { x = 3103, y = 3159, level = 1 }
 delta = { level = 1 }
 
 ######## 12338 ########
-["12538"]
+[12538]
 option = "Climb-down"
 tile = { x = 3104, y = 3160, level = 2 }
 delta = { level = -1 }
 
-["7057"]
+[7057]
 option = "Climb-up"
 tile = { x = 3090, y = 3251 }
 delta = { x = 4, level = 1 }
 
-["7056"]
+[7056]
 option = "Climb-down"
 tile = { x = 3091, y = 3251, level = 1 }
 delta = { x = -4, level = -1 }
@@ -1811,44 +1811,44 @@ option = "Climb-down"
 tile = { x = 3084, y = 3272 }
 delta = { y = 6400 }
 
-["46244"]
+[46244]
 option = "Climb-up"
 tile = { x = 3099, y = 3266 }
 delta = { x = 4, level = 1 }
 
 ######## 12340 ########
-["46245"]
+[46245]
 option = "Climb-down"
 tile = { x = 3100, y = 3266, level = 1 }
 delta = { x = -4, level = -1 }
 
-["47364"]
+[47364]
 option = "Climb-up"
 tile = { x = 3107, y = 3362 }
 delta = { y = 5, level = 1 }
 
-["47657"]
+[47657]
 option = "Climb-down"
 tile = { x = 3108, y = 3364, level = 1 }
 delta = { y = -5, level = -1 }
 
-["47574"]
+[47574]
 option = "Climb-up"
 tile = { x = 3105, y = 3363, level = 1 }
 delta = { y = -2, level = 1 }
 
-["47575"]
+[47575]
 option = "Climb-down"
 tile = { x = 3105, y = 3363, level = 2 }
 delta = { y = 2, level = -1 }
 
-["47643"]
+[47643]
 option = "Walk-down"
 tile = { x = 3115, y = 3356 }
 delta = { x = -35, y = 6421 }
 
 ######## 11339 ########
-["133"]
+[133]
 option = "Climb-down"
 tile = { x = 3092, y = 3362 }
 delta = { x = 25, y = 6392 }
@@ -1864,38 +1864,38 @@ option = "Enter"
 tile = { x = 3126, y = 3404 }
 to = { x = 2841, y = 4829 }
 
-["16154"]
+[16154]
 option = "Climb-down"
 tile = { x = 3081, y = 3420 }
 to = { x = 1859, y = 5243 }
 
-["1750"]
+[1750]
 option = "Climb-up"
 tile = { x = 3096, y = 3433 }
 delta = { level = 1 }
 
-["1749"]
+[1749]
 option = "Climb-down"
 tile = { x = 3096, y = 3433, level = 1 }
 delta = { level = -1 }
 
-["1750"]
+[1750]
 option = "Climb-up"
 tile = { x = 3097, y = 3433, level = 1 }
 delta = { level = 1 }
 
-["1749"]
+[1749]
 option = "Climb-down"
 tile = { x = 3097, y = 3433, level = 2 }
 delta = { level = -1 }
 
-["12389"]
+[12389]
 option = "Climb-Down"
 tile = { x = 3116, y = 3452 }
 delta = { y = 6400 }
 
 ######## 12342 ########
-["29592"]
+[29592]
 option = "Climb-down"
 tile = { x = 3084, y = 3452 }
 to = { x = 3086, y = 4247 }
@@ -1905,12 +1905,12 @@ option = "Pull"
 tile = { x = 3090, y = 3474 }
 to = { x = 3154, y = 3924 }
 
-["29728"]
+[29728]
 option = "Enter"
 tile = { x = 3076, y = 3463 }
 to = { x = 3157, y = 4279, level = 3 }
 
-["29603"]
+[29603]
 option = "Use"
 tile = { x = 3075, y = 3456 }
 to = { x = 3082, y = 4229 }
@@ -1920,56 +1920,56 @@ option = "Climb-down"
 tile = { x = 3097, y = 3468 }
 delta = { y = 6399 }
 
-["12268"]
+[12268]
 option = "Go-down"
 tile = { x = 3077, y = 3493 }
 delta = { x = -1, y = 6400 }
 
-["26982"]
+[26982]
 option = "Climb-up"
 tile = { x = 3082, y = 3513 }
 delta = { level = 1 }
 
-["26983"]
+[26983]
 option = "Climb-down"
 tile = { x = 3082, y = 3513, level = 1 }
 delta = { level = -1 }
 
-["26982"]
+[26982]
 option = "Climb-up"
 tile = { x = 3096, y = 3511 }
 delta = { level = 1 }
 
 ######## 12343 ########
-["26983"]
+[26983]
 option = "Climb-down"
 tile = { x = 3096, y = 3511, level = 1 }
 delta = { level = -1 }
 
 ######## 12354 ########
-["29358"]
+[29358]
 option = "Climb-down"
 tile = { x = 3088, y = 3571 }
 to = { x = 3089, y = 9971 }
 
-["29589"]
+[29589]
 option = "Climb-up"
 tile = { x = 3086, y = 4244 }
 to = { x = 3083, y = 3452 }
 
 ######## 12436 ########
-["29602"]
+[29602]
 option = "Leave"
 tile = { x = 3082, y = 4228 }
 to = { x = 3074, y = 3456 }
 
-["3028"]
+[3028]
 option = "Climb-up"
 tile = { x = 3088, y = 9519 }
 delta = { y = -6400 }
 
 ######## 12437 ########
-["3030"]
+[3030]
 option = "Climb-up"
 tile = { x = 3111, y = 9526 }
 delta = { y = -6400 }
@@ -1981,7 +1981,7 @@ tile = { x = 3103, y = 9576 }
 delta = { y = -6415 }
 
 ######## 12439 ########
-["26518"]
+[26518]
 option = "Climb-up"
 tile = { x = 3118, y = 9643 }
 delta = { y = -6400 }
@@ -1992,7 +1992,7 @@ option = "Climb-up"
 tile = { x = 3084, y = 9672 }
 delta = { y = -6400 }
 
-["164"]
+[164]
 option = "Climb-up"
 tile = { x = 3080, y = 9772 }
 delta = { x = 35, y = -6421 }
@@ -2004,35 +2004,35 @@ tile = { x = 3117, y = 9754 }
 delta = { x = -25, y = -6392 }
 
 ######## 12442 ######## 
-["29355"]
+[29355]
 option = "Climb-up"
 tile = { x = 3116, y = 9852 }
 delta = { y = -6400 }
 
-["29355"]
+[29355]
 option = "Climb-up"
 tile = { x = 3097, y = 9867 }
 delta = { y = -6399 }
 
 ######## 12443 ######## 
-["12265"]
+[12265]
 option = "Climb"
 tile = { x = 3076, y = 9893 }
 delta = { x = 1, y = -6400 }
 
 ######## 12592 ########
-["29355"]
+[29355]
 option = "Climb-up"
 tile = { x = 3088, y = 9971 }
 to = { x = 3089, y = 3571 }
 
-["36768"]
+[36768]
 option = "Climb-up"
 tile = { x = 3139, y = 3078 }
 delta = { level = 1 }
 
 ######## 13899 ########
-["36770"]
+[36770]
 option = "Climb-down"
 tile = { x = 3139, y = 3078, level = 1 }
 delta = { level = -1 }
@@ -2049,94 +2049,94 @@ option = "Enter"
 tile = { x = 3184, y = 3164 }
 to = { x = 3494, y = 4832 }
 
-["36768"]
+[36768]
 option = "Climb-up"
 tile = { x = 3198, y = 3219 }
 delta = { level = 1 }
 
-["36769"]
+[36769]
 option = "Climb-up"
 tile = { x = 3198, y = 3219, level = 1 }
 delta = { level = 1 }
 
-["36769"]
+[36769]
 option = "Climb-down"
 tile = { x = 3198, y = 3219, level = 1 }
 delta = { level = -1 }
 
-["36770"]
+[36770]
 option = "Climb-down"
 tile = { x = 3198, y = 3219, level = 2 }
 delta = { level = -1 }
 
-["45481"]
+[45481]
 option = "Climb-up"
 tile = { x = 3193, y = 3255 }
 delta = { x = 3, level = 1 }
 
 ######## 12595 ########
-["45482"]
+[45482]
 option = "Climb-down"
 tile = { x = 3193, y = 3255, level = 1 }
 delta = { x = -3, level = -1 }
 
-["45483"]
+[45483]
 option = "Climb-up"
 tile = { x = 3186, y = 3270 }
 delta = { x = 3, level = 1 }
 
-["45484"]
+[45484]
 option = "Climb-down"
 tile = { x = 3186, y = 3270, level = 1 }
 delta = { x = -3, level = -1 }
 
-["36795"]
+[36795]
 option = "Climb-up"
 tile = { x = 3164, y = 3307 }
 delta = { level = 1 }
 
-["36796"]
+[36796]
 option = "Climb-up"
 tile = { x = 3164, y = 3307, level = 1 }
 delta = { level = 1 }
 
-["36796"]
+[36796]
 option = "Climb-down"
 tile = { x = 3164, y = 3307, level = 1 }
 delta = { level = -1 }
 
-["36797"]
+[36797]
 option = "Climb-down"
 tile = { x = 3164, y = 3307, level = 2 }
 delta = { level = -1 }
 
-["52833"]
+[52833]
 option = "Climb-up"
 tile = { x = 3140, y = 3305 }
 delta = { level = 1 }
 
 ######## 12596 ########
-["52834"]
+[52834]
 option = "Climb-down"
 tile = { x = 3140, y = 3305, level = 1 }
 delta = { level = -1 }
 
-["24357"]
+[24357]
 option = "Climb-up"
 tile = { x = 3188, y = 3355 }
 delta = { y = -4, level = 1 }
 
-["24359"]
+[24359]
 option = "Climb-down"
 tile = { x = 3188, y = 3355, level = 1 }
 delta = { y = 4, level = -1 }
 
-["24356"]
+[24356]
 option = "Climb-up"
 tile = { x = 3188, y = 3389 }
 delta = { y = 4, level = 1 }
 
-["24359"]
+[24359]
 option = "Climb-down"
 tile = { x = 3188, y = 3390, level = 1 }
 delta = { y = -4, level = -1 }
@@ -2147,78 +2147,78 @@ option = "Climb-down"
 tile = { x = 3190, y = 3355 }
 delta = { x = -1, y = 6410 }
 
-["24073"]
+[24073]
 option = "Climb-up"
 tile = { x = 3144, y = 3447 }
 delta = { level = 1 }
 
-["24074"]
+[24074]
 option = "Climb-down"
 tile = { x = 3144, y = 3447, level = 1 }
 delta = { level = -1 }
 
-["24074"]
+[24074]
 option = "Climb-up"
 tile = { x = 3144, y = 3447, level = 1 }
 delta = { y = -3, level = 1 }
 
-["24075"]
+[24075]
 option = "Climb-down"
 tile = { x = 3144, y = 3447, level = 2 }
 delta = { y = 3, level = -1 }
 
-["24357"]
+[24357]
 option = "Climb-up"
 tile = { x = 3156, y = 3435 }
 delta = { x = -4, level = 1 }
 
-["24359"]
+[24359]
 option = "Climb-down"
 tile = { x = 3156, y = 3435, level = 1 }
 delta = { x = 4, level = -1 }
 
-["24361"]
+[24361]
 option = "Climb-up"
 tile = { x = 3175, y = 3420 }
 delta = { y = -2, level = 1 }
 
-["24362"]
+[24362]
 option = "Climb-down"
 tile = { x = 3175, y = 3420, level = 1 }
 delta = { y = 2, level = -1 }
 
-["24361"]
+[24361]
 option = "Climb-up"
 tile = { x = 3178, y = 3401 }
 delta = { x = -2, level = 1 }
 
-["24362"]
+[24362]
 option = "Climb-down"
 tile = { x = 3178, y = 3401, level = 1 }
 delta = { x = 2, level = -1 }
 
-["24354"]
+[24354]
 option = "Climb-up"
 tile = { x = 3187, y = 3415 }
 delta = { level = 1 }
 
-["24355"]
+[24355]
 option = "Climb-down"
 tile = { x = 3187, y = 3415, level = 1 }
 delta = { level = -1 }
 
-["24354"]
+[24354]
 option = "Climb-up"
 tile = { x = 3183, y = 3446 }
 delta = { level = 1 }
 
-["24355"]
+[24355]
 option = "Climb-down"
 tile = { x = 3183, y = 3446, level = 1 }
 delta = { level = -1 }
 
 ######## 12605 ########
-["24360"]
+[24360]
 option = "Climb-down"
 tile = { x = 3189, y = 3432 }
 delta = { x = 2, y = 6401 }
@@ -2229,97 +2229,97 @@ option = "Pull"
 tile = { x = 3153, y = 3923 }
 to = { x = 2562, y = 3311 }
 
-["29729"]
+[29729]
 option = "Climb"
 tile = { x = 3159, y = 4280, level = 3 }
 to = { x = 3077, y = 3462 }
 
-["29660"]
+[29660]
 option = "Climb-up"
 tile = { x = 3147, y = 4249, level = 1 }
 delta = { x = 3, y = 2, level = 1 }
 
-["29659"]
+[29659]
 option = "Climb-down"
 tile = { x = 3149, y = 4250, level = 2 }
 delta = { x = -3, y = -2, level = -1 }
 
-["29656"]
+[29656]
 option = "Climb-up"
 tile = { x = 3147, y = 4246, level = 1 }
 delta = { x = 3, y = -2, level = 1 }
 
-["29655"]
+[29655]
 option = "Climb-down"
 tile = { x = 3149, y = 4245, level = 2 }
 delta = { x = -3, y = 2, level = -1 }
 
-["29664"]
+[29664]
 option = "Climb-up"
 tile = { x = 3157, y = 4246, level = 1 }
 delta = { x = -3, y = -2, level = 1 }
 
-["29663"]
+[29663]
 option = "Climb-down"
 tile = { x = 3157, y = 4245, level = 2 }
 delta = { x = 3, y = 2, level = -1 }
 
-["29668"]
+[29668]
 option = "Climb-up"
 tile = { x = 3157, y = 4249, level = 1 }
 delta = { x = -3, y = 2, level = 1 }
 
-["29667"]
+[29667]
 option = "Climb-down"
 tile = { x = 3157, y = 4250, level = 2 }
 delta = { x = 3, y = -2, level = -1 }
 
-["29672"]
+[29672]
 option = "Climb-up"
 tile = { x = 3171, y = 4273, level = 2 }
 delta = { x = -3, y = -2, level = 1 }
 
 ######## 12614 ########
-["29671"]
+[29671]
 option = "Climb-down"
 tile = { x = 3171, y = 4272, level = 3 }
 to = { x = 3174, y = 4273, level = 2 }
 
 ######## 12696 ########
-["39329"]
+[39329]
 option = "Climb-up"
 tile = { x = 3165, y = 4514 }
 delta = { x = -198, y = -1314 }
 
 ######## 12697 ########
-["10560"]
+[10560]
 option = "Climb-up"
 tile = { x = 3190, y = 9766 }
 delta = { x = 1, y = -6410 }
 
 ######## 12849 ########
-["24365"]
+[24365]
 option = "Climb-up"
 tile = { x = 3187, y = 9833 }
 delta = { x = -2, y = -6401 }
 
-["45481"]
+[45481]
 option = "Climb-up"
 tile = { x = 3237, y = 3196 }
 delta = { y = -3, level = 1 }
 
-["45482"]
+[45482]
 option = "Climb-down"
 tile = { x = 3237, y = 3196, level = 1 }
 delta = { y = 3, level = -1 }
 
 ######## 12850 ########
-["48797"]
+[48797]
 option = "Climb-down"
 tile = { x = 3247, y = 3197 }
 to = { x = 3877, y = 5526, level = 1 }
 
-["36687"]
+[36687]
 option = "Climb-down"
 tile = { x = 3209, y = 3216 }
 delta = { x = -2, y = 6400 }
@@ -2369,456 +2369,456 @@ option = "Climb-up"
 tile = { x = 3207, y = 3223, level = 2 }
 delta = { y = -2, level = 1 }
 
-["36772"]
+[36772]
 option = "Climb-down"
 tile = { x = 3207, y = 3223, level = 3 }
 delta = { y = 2, level = -1 }
 
-["36768"]
+[36768]
 option = "Climb-up"
 tile = { x = 3229, y = 3213 }
 delta = { level = 1 }
 
-["36769"]
+[36769]
 option = "Climb-up"
 tile = { x = 3229, y = 3213, level = 1 }
 delta = { level = 1 }
 
-["36769"]
+[36769]
 option = "Climb-down"
 tile = { x = 3229, y = 3213, level = 1 }
 delta = { level = -1 }
 
-["36770"]
+[36770]
 option = "Climb-down"
 tile = { x = 3229, y = 3213, level = 2 }
 delta = { level = -1 }
 
-["36768"]
+[36768]
 option = "Climb-up"
 tile = { x = 3229, y = 3224 }
 delta = { level = 1 }
 
-["36769"]
+[36769]
 option = "Climb-up"
 tile = { x = 3229, y = 3224, level = 1 }
 delta = { level = 1 }
 
-["36769"]
+[36769]
 option = "Climb-down"
 tile = { x = 3229, y = 3224, level = 1 }
 delta = { level = -1 }
 
-["36770"]
+[36770]
 option = "Climb-down"
 tile = { x = 3229, y = 3224, level = 2 }
 delta = { level = -1 }
 
-["45483"]
+[45483]
 option = "Climb-up"
 tile = { x = 3230, y = 3205 }
 delta = { x = -3, level = 1 }
 
-["45484"]
+[45484]
 option = "Climb-down"
 tile = { x = 3230, y = 3205, level = 1 }
 delta = { x = 3, level = -1 }
 
-["45483"]
+[45483]
 option = "Climb-up"
 tile = { x = 3230, y = 3209 }
 delta = { x = -3, level = 1 }
 
-["45484"]
+[45484]
 option = "Climb-down"
 tile = { x = 3230, y = 3209, level = 1 }
 delta = { x = 3, level = -1 }
 
-["36984"]
+[36984]
 option = "Climb-up"
 tile = { x = 3241, y = 3213 }
 delta = { x = -2, level = 1 }
 
-["36985"]
+[36985]
 option = "Climb-down"
 tile = { x = 3241, y = 3213, level = 1 }
 delta = { x = 2, level = -1 }
 
-["36986"]
+[36986]
 option = "Climb-up"
 tile = { x = 3246, y = 3213 }
 delta = { x = 2, level = 1 }
 
-["36987"]
+[36987]
 option = "Climb-down"
 tile = { x = 3246, y = 3213, level = 1 }
 delta = { x = -2, level = -1 }
 
-["36989"]
+[36989]
 option = "Climb-up"
 tile = { x = 3242, y = 3207, level = 1 }
 delta = { x = 1, y = -1, level = 1 }
 
-["36991"]
+[36991]
 option = "Climb-down"
 tile = { x = 3242, y = 3207, level = 2 }
 delta = { x = -1, y = 1, level = -1 }
 
-["36988"]
+[36988]
 option = "Climb-up"
 tile = { x = 3245, y = 3207, level = 1 }
 delta = { x = -1, y = -1, level = 1 }
 
-["36990"]
+[36990]
 option = "Climb-down"
 tile = { x = 3245, y = 3207, level = 2 }
 delta = { x = 1, y = 1, level = -1 }
 
-["37683"]
+[37683]
 option = "Climb-down"
 tile = { x = 3230, y = 3241 }
 delta = { x = 60, y = 1696 }
 
-["45483"]
+[45483]
 option = "Climb-up"
 tile = { x = 3232, y = 3239 }
 delta = { y = 3, level = 1 }
 
-["45484"]
+[45484]
 option = "Climb-down"
 tile = { x = 3232, y = 3239, level = 1 }
 delta = { y = -3, level = -1 }
 
-["45481"]
+[45481]
 option = "Climb-up"
 tile = { x = 3215, y = 3239 }
 delta = { x = -3, level = 1 }
 
-["45482"]
+[45482]
 option = "Climb-down"
 tile = { x = 3215, y = 3239, level = 1 }
 delta = { x = 3, level = -1 }
 
-["45481"]
+[45481]
 option = "Climb-up"
 tile = { x = 3200, y = 3243 }
 delta = { y = -3, level = 1 }
 
-["45482"]
+[45482]
 option = "Climb-down"
 tile = { x = 3200, y = 3243, level = 1 }
 delta = { y = 3, level = -1 }
 
-["45481"]
+[45481]
 option = "Climb-up"
 tile = { x = 3212, y = 3256 }
 delta = { x = 3, level = 1 }
 
 ######## 12851 ########
-["45482"]
+[45482]
 option = "Climb-down"
 tile = { x = 3212, y = 3256, level = 1 }
 delta = { x = -3, level = -1 }
 
-["45481"]
+[45481]
 option = "Climb-up"
 tile = { x = 3225, y = 3265 }
 delta = { y = -3, level = 1 }
 
-["45482"]
+[45482]
 option = "Climb-down"
 tile = { x = 3225, y = 3265, level = 1 }
 delta = { y = 3, level = -1 }
 
-["45483"]
+[45483]
 option = "Climb-up"
 tile = { x = 3225, y = 3288 }
 delta = { y = -3, level = 1 }
 
 ######## 12852 ########
-["45484"]
+[45484]
 option = "Climb-down"
 tile = { x = 3225, y = 3288, level = 1 }
 delta = { y = 3, level = -1 }
 
-["24361"]
+[24361]
 option = "Climb-up"
 tile = { x = 3204, y = 3389 }
 delta = { x = -2, level = 1 }
 
-["24362"]
+[24362]
 option = "Climb-down"
 tile = { x = 3204, y = 3389, level = 1 }
 delta = { x = 2, level = -1 }
 
-["24354"]
+[24354]
 option = "Climb-up"
 tile = { x = 3223, y = 3387 }
 delta = { x = 2, level = 1 }
 
-["24362"]
+[24362]
 option = "Climb-down"
 tile = { x = 3223, y = 3387, level = 1 }
 delta = { x = -2, level = -1 }
 
-["24357"]
+[24357]
 option = "Climb-up"
 tile = { x = 3230, y = 3383 }
 delta = { y = -4, level = 1 }
 
-["24359"]
+[24359]
 option = "Climb-down"
 tile = { x = 3230, y = 3383, level = 1 }
 delta = { y = 4, level = -1 }
 
-["24363"]
+[24363]
 option = "Climb-down"
 tile = { x = 3244, y = 3383 }
 delta = { y = 6400 }
 
-["24354"]
+[24354]
 option = "Climb-up"
 tile = { x = 3252, y = 3384 }
 delta = { y = -2, level = 1 }
 
 ######## 12853 ########
-["24362"]
+[24362]
 option = "Climb-down"
 tile = { x = 3252, y = 3384, level = 1 }
 delta = { y = 2, level = -1 }
 
-["24354"]
+[24354]
 option = "Climb-up"
 tile = { x = 3202, y = 3434 }
 delta = { level = 1 }
 
-["24355"]
+[24355]
 option = "Climb-down"
 tile = { x = 3202, y = 3434, level = 1 }
 delta = { level = -1 }
 
-["24354"]
+[24354]
 option = "Climb-up"
 tile = { x = 3202, y = 3416 }
 delta = { level = 1 }
 
-["24355"]
+[24355]
 option = "Climb-down"
 tile = { x = 3202, y = 3416, level = 1 }
 delta = { level = -1 }
 
-["24354"]
+[24354]
 option = "Climb-up"
 tile = { x = 3205, y = 3395 }
 delta = { level = 1 }
 
-["37116"]
+[37116]
 option = "Climb-down"
 tile = { x = 3205, y = 3395, level = 1 }
 delta = { level = -1 }
 
-["24354"]
+[24354]
 option = "Climb-up"
 tile = { x = 3214, y = 3410 }
 delta = { level = 1 }
 
-["24355"]
+[24355]
 option = "Climb-down"
 tile = { x = 3214, y = 3410, level = 1 }
 delta = { level = -1 }
 
-["24356"]
+[24356]
 option = "Climb-up"
 tile = { x = 3227, y = 3393 }
 delta = { x = 4, level = 1 }
 
-["37117"]
+[37117]
 option = "Climb-down"
 tile = { x = 3228, y = 3393, level = 1 }
 delta = { x = -4, level = -1 }
 
-["24363"]
+[24363]
 option = "Climb-down"
 tile = { x = 3231, y = 3401 }
 delta = { y = 6400 }
 
-["24354"]
+[24354]
 option = "Climb-up"
 tile = { x = 3233, y = 3424 }
 delta = { level = 1 }
 
-["37116"]
+[37116]
 option = "Climb-down"
 tile = { x = 3233, y = 3424, level = 1 }
 delta = { level = -1 }
 
-["31615"]
+[31615]
 option = "Climb-up"
 tile = { x = 3237, y = 3447 }
 to = { x = 3239, y = 3447, level = 1 }
 
-["31616"]
+[31616]
 option = "Climb-down"
 tile = { x = 3237, y = 3447, level = 1 }
 to = { x = 3238, y = 3446 }
 
-["24428"]
+[24428]
 option = "Walk-down"
 tile = { x = 3255, y = 3451 }
 to = { x = 1759, y = 4958 }
 
-["24357"]
+[24357]
 option = "Climb-up"
 tile = { x = 3253, y = 3443, level = 1 }
 delta = { y = 4, level = 1 }
 
-["24359"]
+[24359]
 option = "Climb-down"
 tile = { x = 3253, y = 3444, level = 2 }
 delta = { y = -4, level = -1 }
 
-["24349"]
+[24349]
 option = "Climb-up"
 tile = { x = 3255, y = 3421 }
 to = { x = 3257, y = 3421, level = 1 }
 
-["24353"]
+[24353]
 option = "Climb-down"
 tile = { x = 3255, y = 3421, level = 1 }
 to = { x = 3256, y = 3420 }
 
-["24354"]
+[24354]
 option = "Climb-up"
 tile = { x = 3247, y = 3409 }
 delta = { level = 1 }
 
-["24355"]
+[24355]
 option = "Climb-down"
 tile = { x = 3247, y = 3409, level = 1 }
 delta = { level = -1 }
 
-["24354"]
+[24354]
 option = "Climb-up"
 tile = { x = 3262, y = 3403 }
 delta = { level = 1 }
 
 ######## 12854 ########
-["24355"]
+[24355]
 option = "Climb-down"
 tile = { x = 3262, y = 3403, level = 1 }
 delta = { level = -1 }
 
-["24350"]
+[24350]
 option = "Climb-up"
 tile = { x = 3202, y = 3497 }
 delta = { x = 1, y = 1, level = 1 }
 
-["24352"]
+[24352]
 option = "Climb-up"
 tile = { x = 3202, y = 3497, level = 1 }
 delta = { level = 1 }
 
-["24352"]
+[24352]
 option = "Climb-down"
 tile = { x = 3202, y = 3497, level = 1 }
 delta = { x = -1, y = -1, level = -1 }
 
-["24353"]
+[24353]
 option = "Climb-down"
 tile = { x = 3202, y = 3497, level = 2 }
 delta = { level = -1 }
 
-["24361"]
+[24361]
 option = "Climb-up"
 tile = { x = 3205, y = 3497, level = 2 }
 delta = { x = 2, level = 1 }
 
-["24362"]
+[24362]
 option = "Climb-down"
 tile = { x = 3205, y = 3497, level = 3 }
 delta = { x = -2, level = -1 }
 
-["24349"]
+[24349]
 option = "Climb-up"
 tile = { x = 3218, y = 3496 }
 to = { x = 3220, y = 3496, level = 1 }
 
-["24353"]
+[24353]
 option = "Climb-down"
 tile = { x = 3218, y = 3496, level = 1 }
 delta = { x = -1, y = -1, level = -1 }
 
-["24264"]
+[24264]
 option = "Climb-down"
 tile = { x = 3230, y = 3504 }
 delta = { y = 6400 }
 
-["24367"]
+[24367]
 option = "Climb-up"
 tile = { x = 3212, y = 3473 }
 delta = { y = 4, level = 1 }
 
-["24359"]
+[24359]
 option = "Climb-down"
 tile = { x = 3212, y = 3474, level = 1 }
 delta = { y = -4, level = -1 }
 
-["24361"]
+[24361]
 option = "Climb-up"
 tile = { x = 3224, y = 3472, level = 1 }
 delta = { x = 2, level = 1 }
 
-["24362"]
+[24362]
 option = "Climb-down"
 tile = { x = 3224, y = 3472, level = 2 }
 delta = { x = -2, level = -1 }
 
-["24350"]
+[24350]
 option = "Climb-up"
 tile = { x = 3221, y = 3472, level = 2 }
 to = { x = 3223, y = 3472, level = 3 }
 
-["24353"]
+[24353]
 option = "Climb-down"
 tile = { x = 3221, y = 3472, level = 3 }
 delta = { x = -1, y = -1, level = -1 }
 
-["24357"]
+[24357]
 option = "Climb-up"
 tile = { x = 3241, y = 3489 }
 delta = { x = 4, level = 1 }
 
-["24359"]
+[24359]
 option = "Climb-down"
 tile = { x = 3242, y = 3489, level = 1 }
 delta = { x = -4, level = -1 }
 
-["24350"]
+[24350]
 option = "Climb-up"
 tile = { x = 3258, y = 3487 }
 to = { x = 3258, y = 3486, level = 1 }
 
-["24352"]
+[24352]
 option = "Climb-down"
 tile = { x = 3258, y = 3487, level = 1 }
 delta = { x = -1, y = 1, level = -1 }
 
-["24352"]
+[24352]
 option = "Climb-up"
 tile = { x = 3258, y = 3487, level = 1 }
 delta = { level = 1 }
 
-["24352"]
+[24352]
 option = "Climb-down"
 tile = { x = 3258, y = 3487, level = 2 }
 delta = { level = -1 }
 
-["24352"]
+[24352]
 option = "Climb-up"
 tile = { x = 3258, y = 3487, level = 2 }
 delta = { level = 1 }
 
-["24353"]
+[24353]
 option = "Climb-down"
 tile = { x = 3258, y = 3487, level = 3 }
 delta = { level = -1 }
@@ -2841,103 +2841,103 @@ tile = { x = 1673, y = 5598 }
 to = { x = 3242, y = 3574 }
 
 ######## 12879 ########
-["39273"]
+[39273]
 option = "Climb-up"
 tile = { x = 3220, y = 4522 }
 to = { x = 3014, y = 3257 }
 
 ######## 12950 ########
-["27668"]
+[27668]
 option = "Climb-up"
 tile = { x = 3232, y = 5091 }
 to = { x = 3368, y = 3268 }
 
 ######## 12952 ######## 
-["29355"]
+[29355]
 option = "Climb-up"
 tile = { x = 3209, y = 9616 }
 delta = { x = 2, y = -6400 }
 
 ######## 12953 ########
-["2405"]
+[2405]
 option = "Climb-up"
 tile = { x = 3244, y = 9783 }
 to = { x = 3244, y = 3382 }
 
 ######## 12954 ######## 
-["24364"]
+[24364]
 option = "Climb-up"
 tile = { x = 3231, y = 9801 }
 delta = { y = -6400 }
 
-["29355"]
+[29355]
 option = "Climb-up"
 tile = { x = 3230, y = 9904 }
 delta = { y = -6400 }
 
 ######## 13105 ########
-["24366"]
+[24366]
 option = "Climb-up"
 tile = { x = 3237, y = 9858 }
 to = { x = 3238, y = 3458 }
 
-["35533"]
+[35533]
 option = "Climb-up"
 tile = { x = 3284, y = 3165 }
 to = { x = 3285, y = 3164, level = 1 }
 
-["35534"]
+[35534]
 option = "Climb-down"
 tile = { x = 3284, y = 3165, level = 1 }
 to = { x = 3284, y = 3164 }
 
-["35516"]
+[35516]
 option = "Climb-up"
 tile = { x = 3292, y = 3169, level = 1 }
 delta = { y = -1, level = 1 }
 
-["35518"]
+[35518]
 option = "Climb-down"
 tile = { x = 3292, y = 3168, level = 2 }
 delta = { y = 1, level = -1 }
 
-["35646"]
+[35646]
 option = "Climb-up"
 tile = { x = 3311, y = 3187 }
 to = { x = 3314, y = 3187, level = 1 }
 
-["35645"]
+[35645]
 option = "Climb-down"
 tile = { x = 3314, y = 3187, level = 1 }
 to = { x = 3310, y = 3187 }
 
-["35646"]
+[35646]
 option = "Climb-up"
 tile = { x = 3284, y = 3187 }
 to = { x = 3284, y = 3190, level = 1 }
 
-["35645"]
+[35645]
 option = "Climb-down"
 tile = { x = 3284, y = 3190, level = 1 }
 to = { x = 3284, y = 3186 }
 
-["35672"]
+[35672]
 option = "Climb-up"
 tile = { x = 3286, y = 3192, level = 1 }
 delta = { level = 1 }
 
-["35673"]
+[35673]
 option = "Climb-down"
 tile = { x = 3286, y = 3192, level = 2 }
 delta = { level = -1 }
 
-["35646"]
+[35646]
 option = "Climb-up"
 tile = { x = 3325, y = 3142 }
 to = { x = 3324, y = 3139, level = 1 }
 
 ######## 10315 ########
-["35645"]
+[35645]
 option = "Climb-down"
 tile = { x = 3325, y = 3139, level = 1 }
 to = { x = 3325, y = 3143 }
@@ -2954,39 +2954,39 @@ option = "Enter"
 tile = { x = 3312, y = 3254 }
 to = { x = 2577, y = 4846 }
 
-["24354"]
+[24354]
 option = "Climb-up"
 tile = { x = 3268, y = 3379 }
 delta = { level = 1 }
 
 ######## 13109 ########
-["24355"]
+[24355]
 option = "Climb-down"
 tile = { x = 3268, y = 3379, level = 1 }
 delta = { level = -1 }
 
-["24358"]
+[24358]
 option = "Climb-up"
 tile = { x = 3266, y = 3452 }
 delta = { y = 4, level = 1 }
 
-["24359"]
+[24359]
 option = "Climb-down"
 tile = { x = 3266, y = 3453, level = 1 }
 delta = { y = -4, level = -1 }
 
-["24361"]
+[24361]
 option = "Climb-up"
 tile = { x = 3283, y = 3398 }
 delta = { y = 2, level = 1 }
 
-["24362"]
+[24362]
 option = "Climb-down"
 tile = { x = 3283, y = 3398, level = 1 }
 delta = { y = -2, level = -1 }
 
 ######## 10571 ########
-["10321"]
+[10321]
 option = "Climb-down"
 tile = { x = 3267, y = 3400 }
 to = { x = 2894, y = 5097 }
@@ -3002,227 +3002,227 @@ option = "Enter"
 tile = { x = 3305, y = 3473 }
 to = { x = 2655, y = 4830 }
 
-["24357"]
+[24357]
 option = "Climb-up"
 tile = { x = 3285, y = 3493 }
 delta = { y = -4, level = 1 }
 
-["24359"]
+[24359]
 option = "Climb-down"
 tile = { x = 3285, y = 3493, level = 1 }
 delta = { y = 4, level = -1 }
 
-["24354"]
+[24354]
 option = "Climb-up"
 tile = { x = 3304, y = 3494 }
 delta = { y = 2, level = 1 }
 
-["24362"]
+[24362]
 option = "Climb-down"
 tile = { x = 3304, y = 3494, level = 1 }
 delta = { y = -2, level = -1 }
 
-["24354"]
+[24354]
 option = "Climb-up"
 tile = { x = 3310, y = 3509 }
 delta = { level = 1 }
 
 ######## 13117 ########
-["24355"]
+[24355]
 option = "Climb-down"
 tile = { x = 3310, y = 3509, level = 1 }
 delta = { level = -1 }
 
-["38854"]
+[38854]
 option = "Climb-up"
 tile = { x = 3280, y = 3936 }
 to = { x = 3281, y = 3935, level = 1 }
 
-["38855"]
+[38855]
 option = "Climb-down"
 tile = { x = 3280, y = 3936, level = 1 }
 delta = { level = -1 }
 
-["38855"]
+[38855]
 option = "Climb-up"
 tile = { x = 3280, y = 3936, level = 1 }
 delta = { level = 1 }
 
-["38855"]
+[38855]
 option = "Climb-down"
 tile = { x = 3280, y = 3936, level = 2 }
 delta = { level = -1 }
 
-["38855"]
+[38855]
 option = "Climb-up"
 tile = { x = 3280, y = 3936, level = 2 }
 to = { x = 3282, y = 3936, level = 3 }
 
 ######## 13133 ########
-["38856"]
+[38856]
 option = "Climb-down"
 tile = { x = 3280, y = 3936, level = 3 }
 to = { x = 3281, y = 3935, level = 2 }
 
 ######## 13363 ########
-["37684"]
+[37684]
 option = "Climb-up"
 tile = { x = 3290, y = 4935 }
 delta = { x = -60, y = -1696 }
 
-["27669"]
+[27669]
 option = "Climb-down"
 tile = { x = 3366, y = 3268 }
 to = { x = 3231, y = 5091 }
 
-["10775"]
+[10775]
 option = "Climb-up"
 tile = { x = 3357, y = 3306 }
 to = { x = 3357, y = 3307, level = 1 }
 
-["10776"]
+[10776]
 option = "Climb-down"
 tile = { x = 3357, y = 3306, level = 1 }
 to = { x = 3360, y = 3306 }
 
-["10771"]
+[10771]
 option = "Climb-up"
 tile = { x = 3367, y = 3306 }
 to = { x = 3369, y = 3307, level = 1 }
 
-["10773"]
+[10773]
 option = "Climb-down"
 tile = { x = 3367, y = 3306, level = 1 }
 to = { x = 3366, y = 3306 }
 
 ######## 14411 ########
-["527"]
+[527]
 option = "Climb-down"
 tile = { x = 3357, y = 3305 }
 to = { x = 3619, y = 4814 }
 
 ######## 14669 ########
-["528"]
+[528]
 option = "Climb-up"
 tile = { x = 3618, y = 4814 }
 to = { x = 3358, y = 3305 }
 
 ######## 14930 ########
-["45784"]
+[45784]
 option = "Climb"
 tile = { x = 3654, y = 4949 }
 delta = { x = -447, y = -1708 }
 
-["46936"]
+[46936]
 option = "Climb-down"
 tile = { x = 3744, y = 5288 }
 to = { x = 3936, y = 5372, level = 2 }
 
 ######## 15184 ########
-["46938"]
+[46938]
 option = "Climb-up"
 tile = { x = 3744, y = 5275 }
 delta = { x = 65, y = 1 }
 
-["27866"]
+[27866]
 option = "Climb-up"
 tile = { x = 3807, y = 5154 }
 delta = { x = -5, level = 1 }
 
 ######## 15186 ########
-["27870"]
+[27870]
 option = "Climb-down"
 tile = { x = 3804, y = 5155, level = 1 }
 delta = { x = 5, level = -1 }
 
 ######## 15446 ########
-["46936"]
+[46936]
 option = "Climb-down"
 tile = { x = 3809, y = 5276 }
 delta = { x = -65, y = -1 }
 
-["48798"]
+[48798]
 option = "Climb-up"
 tile = { x = 3877, y = 5525, level = 1 }
 delta = { x = -631, y = -2328, level = -1 }
 
-["48680"]
+[48680]
 option = "Climb-down"
 tile = { x = 3874, y = 5527, level = 1 }
 to = { x = 3869, y = 5524 }
 
-["48679"]
+[48679]
 option = "Climb-up"
 tile = { x = 3870, y = 5524 }
 to = { x = 3875, y = 5527, level = 1 }
 
-["48677"]
+[48677]
 option = "Climb-up"
 tile = { x = 3858, y = 5533 }
 delta = { x = -4, level = 1 }
 
-["48678"]
+[48678]
 option = "Climb-down"
 tile = { x = 3858, y = 5533, level = 1 }
 delta = { x = 4, level = -1 }
 
-["48677"]
+[48677]
 option = "Climb-up"
 tile = { x = 3858, y = 5543 }
 delta = { x = -4, level = 1 }
 
-["48678"]
+[48678]
 option = "Climb-down"
 tile = { x = 3858, y = 5543, level = 1 }
 delta = { x = 4, level = -1 }
 
 ######## 15696 ########
-["48688"]
+[48688]
 option = "Climb-down"
 tile = { x = 3865, y = 5524 }
 to = { x = 3972, y = 5565 }
 
 ######## 15699 ########
-["46731"]
+[46731]
 option = "Climb"
 tile = { x = 3936, y = 5151, level = 2 }
 delta = { y = 165 }
 
-["46939"]
+[46939]
 option = "Climb-down"
 tile = { x = 3936, y = 5314, level = 2 }
 delta = { y = -165 }
 
 ######## 15958 ########
-["46731"]
+[46731]
 option = "Climb"
 tile = { x = 3936, y = 5373, level = 2 }
 to = { x = 3744, y = 5287 }
 
 ######## 17235 ######## 
-["48683"]
+[48683]
 option = "Climb-up"
 tile = { x = 3972, y = 5566 }
 to = { x = 3868, y = 5524 }
 
-["27866"]
+[27866]
 option = "Climb-up"
 tile = { x = 4319, y = 5346 }
 delta = { x = -5, level = 1 }
 
 ######## 17237 ########
-["27870"]
+[27870]
 option = "Climb-down"
 tile = { x = 4316, y = 5347, level = 1 }
 delta = { x = 5, level = -1 }
 
-["27866"]
+[27866]
 option = "Climb-up"
 tile = { x = 4319, y = 5474 }
 delta = { x = -5, level = 1 }
 
 ######## 9540 ########
-["27870"]
+[27870]
 option = "Climb-down"
 tile = { x = 4316, y = 5475, level = 1 }
 delta = { x = 5, level = -1 }

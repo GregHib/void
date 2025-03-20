@@ -31,7 +31,7 @@ class MusicTracks {
             val names = Object2IntOpenHashMap<String>(650)
             Config.fileReader(path) {
                 while (nextSection()) {
-                    val stringId = section()
+                    val stringId = section().trim('"')
                     var index = -1
                     while (nextPair()) {
                         when (val key = key()) {

@@ -56,7 +56,7 @@ class PrayerDefinitions {
                             "members" -> members = boolean()
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
-                        val id = stringId.dropLastWhile { it != '_' }
+                        val id = stringId.substring(0, stringId.lastIndexOf('_'))
                         val definition = PrayerDefinition(index, level, drain, groups, bonuses, members, id)
                         definitions[id] = definition
                         if (stringId.endsWith("_curse")) {

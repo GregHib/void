@@ -38,7 +38,7 @@ class ItemDefinitions(
             ids.defaultReturnValue(-1)
             Config.fileReader(path, 256) {
                 while (nextSection()) {
-                    val stringId = section()
+                    val stringId = section().trim('"')
                     var id = -1
                     val extras = Object2ObjectOpenHashMap<String, Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
                     while (nextPair()) {
