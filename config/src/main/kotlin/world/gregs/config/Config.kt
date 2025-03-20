@@ -40,9 +40,6 @@ object Config {
         ConfigReader(BufferedInputStream(string.byteInputStream()), maxStringLength).use(block)
     }
 
-    fun decodeFromFile(path: String, api: ConfigReader) {
-    }
-
     fun encodeToString(map: Map<String, Any>): String {
         val stringWriter = StringWriter()
         BufferedWriter(stringWriter).use { output ->
