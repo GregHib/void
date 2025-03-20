@@ -31,7 +31,6 @@ class MapViewer {
             val frame = JFrame("Map viewer")
             frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
             val cache = CacheDelegate("./data/cache/")
-            val yaml = Yaml()
             val decoder = ObjectDecoder(member = false, lowDetail = false).load(cache)
             val defs = ObjectDefinitions(decoder).load("./data/definitions/objects.toml")
             val areas = AreaDefinitions().load("./data/map/areas.toml")

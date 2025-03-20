@@ -13,7 +13,6 @@ object NPCDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("storage.cache.path"))
-        val yaml = Yaml()
         val categories = CategoryDefinitions().load(property("definitions.categories"))
         val ammo = AmmoDefinitions().load(property("definitions.ammoGroups"))
         val parameters = ParameterDefinitions(categories, ammo).load(property("definitions.parameters"))

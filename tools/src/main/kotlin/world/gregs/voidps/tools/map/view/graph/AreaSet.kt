@@ -4,7 +4,11 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import world.gregs.yaml.Yaml
+import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.ints.IntArrayList
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import world.gregs.config.Config
 
 class AreaSet {
     val areas = mutableSetOf<Area>()
@@ -65,21 +69,39 @@ class AreaSet {
 //            writer.writeValue(File(path), set.areas)
         }
 
-        @Suppress("UNCHECKED_CAST")
-        fun load(yaml: Yaml, path: String = "./areas.toml"): AreaSet {
+        fun load(path: String = "./areas.toml"): AreaSet {
             val set = AreaSet()
-            // FIXME
-            val map = yaml.load<Map<String, Map<String, Any>>>(path)
-            val areas = map.map { (key, value) ->
-                val a = value["area"] as Map<String, Any>
-                val x = a["x"] as List<Int>
-                val y = a["y"] as List<Int>
-                Area(
-                    key,
-                    value["level"] as? Int ?: 0,
-                    value["level"] as? Int ?: 0,
-                    x.mapIndexed { index, m -> Point(m, y[index]) }.toMutableList()
-                )
+            val areas = mutableListOf<Area>()
+            Config.fileReader(path) {
+                while (nextSection()) {
+                    val name = section()
+                    val x = IntArrayList()
+                    val y = IntArrayList()
+                    var level: Int? = null
+                    val tags = ObjectOpenHashSet<String>()
+                    val extras = Object2ObjectOpenHashMap<String, Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "x" -> while (nextElement()) {
+                                x.add(int())
+                            }
+                            "y" -> while (nextElement()) {
+                                y.add(int())
+                            }
+                            "level" -> level = int()
+                            "tags" -> while (nextElement()) {
+                                tags.add(string())
+                            }
+                            else -> extras[key] = value()
+                        }
+                    }
+                    areas.add(Area(
+                        name,
+                        level ?: 0,
+                        level ?: 0,
+                        x.mapIndexed { index, m -> Point(m, y.getInt(index)) }.toMutableList()
+                    ))
+                }
             }
             areas.forEach { area ->
                 area.points.forEach {
