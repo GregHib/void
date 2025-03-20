@@ -21,31 +21,20 @@ class AnimationDefinitions(
             val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
             Config.fileReader(path) {
                 while (nextSection()) {
-                    val section = section()
-                    if (section == "anims") {
-                        while (nextPair()) {
-                            val key = key()
-                            val id = int()
-                            require(id < definitions.size) { "Invalid animation id '$id' for anim '$key'. Maximum id: ${definitions.size}" }
-                            definitions[id].stringId = key
-                            ids[key] = id
+                    val stringId = section()
+                    var id = -1
+                    val extras = Object2ObjectOpenHashMap<String, Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "id" -> id = int()
+                            "ticks" -> extras[key] = int()
+                            else -> extras[key] = value()
                         }
-                    } else {
-                        val stringId = section.substring(6)
-                        var id = -1
-                        val extras = Object2ObjectOpenHashMap<String, Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
-                        while (nextPair()) {
-                            when (val key = key()) {
-                                "id" -> id = int()
-                                "ticks" -> extras[key] = int()
-                                else -> extras[key] = value()
-                            }
-                        }
-                        ids[stringId] = id
-                        definitions[id].stringId = stringId
-                        if (extras.isNotEmpty()) {
-                            definitions[id].extras = extras
-                        }
+                    }
+                    ids[stringId] = id
+                    definitions[id].stringId = stringId
+                    if (extras.isNotEmpty()) {
+                        definitions[id].extras = extras
                     }
                 }
             }

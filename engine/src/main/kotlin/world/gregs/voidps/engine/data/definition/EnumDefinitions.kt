@@ -4,7 +4,6 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
-import world.gregs.config.ConfigReader
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.timedLoad
@@ -42,30 +41,20 @@ class EnumDefinitions(
             val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
             Config.fileReader(path, 50) {
                 while (nextSection()) {
-                    val section = section()
-                    if (section == "enums") {
-                        while (nextPair()) {
-                            val stringId = key()
-                            val id = int()
-                            ids[stringId] = id
-                            definitions[id].stringId = stringId
-                        }
-                    } else {
-                        val stringId = section.substring(6)
-                        var id = 0
-                        val extras = Object2ObjectOpenHashMap<String, Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
-                        while (nextPair()) {
-                            when (val key = key()) {
-                                "id" -> {
-                                    id = int()
-                                    ids[stringId] = id
-                                    definitions[id].stringId = stringId
-                                }
-                                else -> extras[key] = value()
+                    val stringId = section()
+                    var id = 0
+                    val extras = Object2ObjectOpenHashMap<String, Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "id" -> {
+                                id = int()
+                                ids[stringId] = id
+                                definitions[id].stringId = stringId
                             }
+                            else -> extras[key] = value()
                         }
-                        definitions[id].extras = extras
                     }
+                    definitions[id].extras = extras
                 }
             }
             this.ids = ids

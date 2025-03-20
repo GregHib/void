@@ -1,205 +1,315 @@
-[enums.look_arms_male]
+[look_arms_male]
 id = 711
 struct = "looks"
 
-[enums.look_arms_female]
+[look_arms_female]
 id = 693
 struct = "looks"
 
-[enums.look_wrists_male]
+[look_wrists_male]
 id = 749
 struct = "looks"
 
-[enums.look_wrists_female]
+[look_wrists_female]
 id = 751
 struct = "looks"
 
-[enums.look_legs_male]
+[look_legs_male]
 id = 1586
 struct = "looks"
 
-[enums.look_legs_female]
+[look_legs_female]
 id = 1607
 struct = "looks"
 
-[enums.look_top_male]
+[look_top_male]
 id = 690
 struct = "looks"
 
-[enums.look_top_female]
+[look_top_female]
 id = 1591
 struct = "looks"
 
-[enums.look_shoes_male]
+[look_shoes_male]
 id = 1136
 struct = "looks"
 
-[enums.look_shoes_female]
+[look_shoes_female]
 id = 1137
 struct = "looks"
 
-[enums.look_beard_male]
+[look_beard_male]
 id = 703
 struct = "looks"
 
-[enums.look_hair_male]
+[look_hair_male]
 id = 2338
 struct = "looks"
 
-[enums.look_hair_female]
+[look_hair_female]
 id = 2341
 struct = "looks"
 
-[enums]
-style_hair_male = 2339
-style_hair_female = 2342
-colour_legs = 3284
-colour_top = 3282
-colour_shoes = 3297
-colour_hair = 2345
+[style_hair_male]
+id = 2339
 
-[enums.curses]
+[style_hair_female]
+id = 2342
+
+[colour_legs]
+id = 3284
+
+[colour_top]
+id = 3282
+
+[colour_shoes]
+id = 3297
+
+[colour_hair]
+id = 2345
+
+[curses]
 id = 863
 struct = "prayers"
 
-[enums.quick_curses]
+[quick_curses]
 id = 862
 struct = "prayers"
 
-[enums.prayers]
+[prayers]
 id = 2279
 struct = "prayers"
 
-[enums.quick_prayers]
+[quick_prayers]
 id = 1446
 struct = "prayers"
 
-[enums]
-item_info_titles = 1434
-item_info_requirement_titles = 1435
+[item_info_titles]
+id = 1434
 
-[enums.item_info_quests]
+[item_info_requirement_titles]
+id = 1435
+
+[item_info_quests]
 id = 2252
 struct = "item_quest_info"
 
-[enums]
-price_runes = 731
-price_garden = 733
-music_track_names = 1345
-music_track_hints = 1349
-music_tracks = 1351
-character_skin_interfaces = 746
-character_skin_colour_tooltips = 747
-character_skin = 748
-character_hair_interfaces = 2343
-character_hair_colour_tooltips = 2344
-character_hair = 2345
-character_top_interfaces = 2347
-character_top_colour_tooltips = 2348
-character_top = 3283
-character_legs_interfaces = 2347
-character_legs_colour_tooltips = 2348
-character_legs = 3283
-character_shoes_interfaces = 753
-character_shoes_colour_tooltips = 3296
-character_shoes = 3297
+[price_runes]
+id = 731
 
-[enums.character_hair_styles_female]
+[price_garden]
+id = 733
+
+[music_track_names]
+id = 1345
+
+[music_track_hints]
+id = 1349
+
+[music_tracks]
+id = 1351
+
+[character_skin_interfaces]
+id = 746
+
+[character_skin_colour_tooltips]
+id = 747
+
+[character_skin]
+id = 748
+
+[character_hair_interfaces]
+id = 2343
+
+[character_hair_colour_tooltips]
+id = 2344
+
+[character_hair]
+id = 2345
+
+[character_top_interfaces]
+id = 2347
+
+[character_top_colour_tooltips]
+id = 2348
+
+[character_top]
+id = 3283
+
+[character_legs_interfaces]
+id = 2347
+
+[character_legs_colour_tooltips]
+id = 2348
+
+[character_legs]
+id = 3283
+
+[character_shoes_interfaces]
+id = 753
+
+[character_shoes_colour_tooltips]
+id = 3296
+
+[character_shoes]
+id = 3297
+
+[character_hair_styles_female]
 id = 3302
 struct = "looks"
 
-[enums]
-character_hair_sprites_female = 3303
+[character_hair_sprites_female]
+id = 3303
 
-[enums.character_hair_styles_male]
+[character_hair_styles_male]
 id = 3304
 struct = "looks"
 
-[enums]
-character_hair_sprites_male = 3305
+[character_hair_sprites_male]
+id = 3305
 
-[enums.character_beard_styles_male]
+[character_beard_styles_male]
 id = 3307
 struct = "looks"
 
-[enums]
-character_beard_sprites_male = 3306
-character_beard_tooltips_male = 2340
+[character_beard_sprites_male]
+id = 3306
 
-[enums.character_top_styles_female]
+[character_beard_tooltips_male]
+id = 2340
+
+[character_top_styles_female]
 id = 3299
 struct = "looks"
 
-[enums]
-character_top_sprites_female = 3298
-character_top_tooltips_female = 1590
+[character_top_sprites_female]
+id = 3298
 
-[enums.character_top_styles_male]
+[character_top_tooltips_female]
+id = 1590
+
+[character_top_styles_male]
 id = 3287
 struct = "looks"
 
-[enums]
-character_top_sprites_male = 3286
-character_top_tooltips_male = 689
+[character_top_sprites_male]
+id = 3286
 
-[enums.character_legs_styles_female]
+[character_top_tooltips_male]
+id = 689
+
+[character_legs_styles_female]
 id = 3301
 struct = "looks"
 
-[enums]
-character_legs_sprites_female = 3300
-character_legs_tooltips_female = 1606
+[character_legs_sprites_female]
+id = 3300
 
-[enums.character_legs_styles_male]
+[character_legs_tooltips_female]
+id = 1606
+
+[character_legs_styles_male]
 id = 3289
 struct = "looks"
 
-[enums]
-character_legs_sprites_male = 3288
-character_legs_tooltips_male = 1585
+[character_legs_sprites_male]
+id = 3288
 
-[enums.character_shoes_styles_female]
+[character_legs_tooltips_male]
+id = 1585
+
+[character_shoes_styles_female]
 id = 1137
 struct = "looks"
 
-[enums]
-character_shoes_sprites_female = 3295
-character_shoes_tooltips_female = 3294
+[character_shoes_sprites_female]
+id = 3295
 
-[enums.character_shoes_styles_male]
+[character_shoes_tooltips_female]
+id = 3294
+
+[character_shoes_styles_male]
 id = 1136
 struct = "looks"
 
-[enums]
-character_shoes_sprites_male = 3292
-character_shoes_tooltips_male = 3291
+[character_shoes_sprites_male]
+id = 3292
 
-[enums.character_styles]
+[character_shoes_tooltips_male]
+id = 3291
+
+[character_styles]
 id = 3278
 struct = "style"
 
-[enums]
-character_style_names = 3279
-character_style_interfaces = 3280
-graphics_option_structs = 201
-quest_list_structs = 2252
-npc_contact_structs = 869
-dungeoneering_rewards = 3016
-dungeoneering_rewards_members = 3015
-ring_of_kingship_classes = 3088
-task_area_start_indices = 3482
-task_structs = 3483
-task_area_first_ids = 3484
-task_distraction_and_diversions = 3485
-task_area_names = 3487
-task_difficulties = 3488
-task_set_dropdown_interfaces = 3489
-task_set_dropdown_sprite_interfaces = 3490
-task_set_dropdown_sprites = 3491
-task_difficulty_sprites = 3492
-task_summary_interfaces = 3493
-task_set_structs = 3494
-task_set_sprites = 3495
-task_sprites = 3492
-clan_wars_arenas = 1604
-items_lost_on_death = 616
+[character_style_names]
+id = 3279
+
+[character_style_interfaces]
+id = 3280
+
+[graphics_option_structs]
+id = 201
+
+[quest_list_structs]
+id = 2252
+
+[npc_contact_structs]
+id = 869
+
+[dungeoneering_rewards]
+id = 3016
+
+[dungeoneering_rewards_members]
+id = 3015
+
+[ring_of_kingship_classes]
+id = 3088
+
+[task_area_start_indices]
+id = 3482
+
+[task_structs]
+id = 3483
+
+[task_area_first_ids]
+id = 3484
+
+[task_distraction_and_diversions]
+id = 3485
+
+[task_area_names]
+id = 3487
+
+[task_difficulties]
+id = 3488
+
+[task_set_dropdown_interfaces]
+id = 3489
+
+[task_set_dropdown_sprite_interfaces]
+id = 3490
+
+[task_set_dropdown_sprites]
+id = 3491
+
+[task_difficulty_sprites]
+id = 3492
+
+[task_summary_interfaces]
+id = 3493
+
+[task_set_structs]
+id = 3494
+
+[task_set_sprites]
+id = 3495
+
+[task_sprites]
+id = 3492
+
+[clan_wars_arenas]
+id = 1604
+
+[items_lost_on_death]
+id = 616

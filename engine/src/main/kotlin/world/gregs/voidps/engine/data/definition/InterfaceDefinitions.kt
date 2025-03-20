@@ -82,60 +82,43 @@ class InterfaceDefinitions(
             }
             Config.fileReader(path) {
                 while (nextSection()) {
-                    val section = section()
-                    if (section == "interfaces") {
-                        while (nextPair()) {
-                            val key = key()
-                            val id = int()
-                            ids[key] = id
-                            val extras = Object2ObjectOpenHashMap<String, Any>(1, Hash.VERY_FAST_LOAD_FACTOR)
-                            extras["id"] = id
-                            definitions[id].stringId = key
-                            if (definitions[id].extras == null) {
-                                definitions[id].extras = extras
-                            } else {
-                                (definitions[id].extras as MutableMap<String, Any>).putAll(extras)
-                            }
-                        }
-                    } else {
-                        val interfaceStringId = section.substring(11)
-                        var interfaceId = -1
-                        val extras = Object2ObjectOpenHashMap<String, Any>(1, Hash.VERY_FAST_LOAD_FACTOR)
-                        var typed = false
-                        while (nextPair()) {
-                            when (val key = key()) {
-                                "id" -> {
-                                    interfaceId = int()
-                                    extras["id"] = interfaceId
-                                    if (interfaceId != -1) {
-                                        ids[interfaceStringId] = interfaceId
-                                        definitions[interfaceId].stringId = interfaceStringId
-                                        if (definitions[interfaceId].extras == null) {
-                                            definitions[interfaceId].extras = extras
-                                        } else {
-                                            (definitions[interfaceId].extras as MutableMap<String, Any>).putAll(extras)
-                                        }
+                    val interfaceStringId = section()
+                    var interfaceId = -1
+                    val extras = Object2ObjectOpenHashMap<String, Any>(1, Hash.VERY_FAST_LOAD_FACTOR)
+                    var typed = false
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "id" -> {
+                                interfaceId = int()
+                                extras["id"] = interfaceId
+                                if (interfaceId != -1) {
+                                    ids[interfaceStringId] = interfaceId
+                                    definitions[interfaceId].stringId = interfaceStringId
+                                    if (definitions[interfaceId].extras == null) {
+                                        definitions[interfaceId].extras = extras
+                                    } else {
+                                        (definitions[interfaceId].extras as MutableMap<String, Any>).putAll(extras)
                                     }
                                 }
-                                "components" -> components(componentIds, interfaceStringId, interfaceId, extras)
-                                "type" -> {
-                                    typed = true
-                                    val type = string()
-                                    extras["type"] = type
-                                    extras.putAll(typeData[type]!!)
-                                }
-                                else -> extras[key] = value()
                             }
+                            "components" -> components(componentIds, interfaceStringId, interfaceId, extras)
+                            "type" -> {
+                                typed = true
+                                val type = string()
+                                extras["type"] = type
+                                extras.putAll(typeData[type]!!)
+                            }
+                            else -> extras[key] = value()
                         }
-                        if (interfaceId != -1) {
-                            if (!typed) {
-                                extras.putAll(typeData[DEFAULT_TYPE]!!)
-                            }
-                            if (definitions[interfaceId].extras == null) {
-                                definitions[interfaceId].extras = extras
-                            } else {
-                                (definitions[interfaceId].extras as MutableMap<String, Any>).putAll(extras)
-                            }
+                    }
+                    if (interfaceId != -1) {
+                        if (!typed) {
+                            extras.putAll(typeData[DEFAULT_TYPE]!!)
+                        }
+                        if (definitions[interfaceId].extras == null) {
+                            definitions[interfaceId].extras = extras
+                        } else {
+                            (definitions[interfaceId].extras as MutableMap<String, Any>).putAll(extras)
                         }
                     }
                 }

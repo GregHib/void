@@ -22,7 +22,7 @@ class DiangoCodeDefinitions {
             val definitions = Object2ObjectOpenHashMap<String, DiangoCodeDefinition>(1, Hash.VERY_FAST_LOAD_FACTOR)
             Config.fileReader(path, 50) {
                 while (nextSection()) {
-                    val stringId = section().substring(7)
+                    val stringId = section()
                     var variable = ""
                     val items = ObjectArrayList<Item>(2)
                     while (nextPair()) {

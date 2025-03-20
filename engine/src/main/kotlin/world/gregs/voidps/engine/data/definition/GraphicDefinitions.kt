@@ -21,28 +21,18 @@ class GraphicDefinitions(
             val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
             Config.fileReader(path) {
                 while (nextSection()) {
-                    val section = section()
-                    if (section == "gfx") {
-                        while (nextPair()) {
-                            val key = key()
-                            val id = int()
-                            ids[key] = id
-                            definitions[id].stringId = key
+                    val stringId = section()
+                    var id = 0
+                    val extras = Object2ObjectOpenHashMap<String, Any>(0)
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "id" -> id = int()
+                            else -> extras[key] = value()
                         }
-                    } else {
-                        val stringId = section.substring(4)
-                        var id = 0
-                        val extras = Object2ObjectOpenHashMap<String, Any>(0)
-                        while (nextPair()) {
-                            when (val key = key()) {
-                                "id" -> id = int()
-                                else -> extras[key] = value()
-                            }
-                        }
-                        ids[stringId] = id
-                        definitions[id].stringId = stringId
-                        definitions[id].extras = extras.ifEmpty { null }
                     }
+                    ids[stringId] = id
+                    definitions[id].stringId = stringId
+                    definitions[id].extras = extras.ifEmpty { null }
                 }
             }
             this.ids = ids

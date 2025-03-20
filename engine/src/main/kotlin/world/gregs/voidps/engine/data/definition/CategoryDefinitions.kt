@@ -21,14 +21,11 @@ class CategoryDefinitions : DefinitionsDecoder<CategoryDefinition> {
             val ids = Object2IntOpenHashMap<String>(38, Hash.VERY_FAST_LOAD_FACTOR)
             val definitions = Array(38) { CategoryDefinition.EMPTY }
             Config.fileReader(path, 50) {
-                while (nextSection()) {
-                    section()
-                    while (nextPair()) {
-                        val key = key()
-                        val id = int()
-                        ids[key] = id
-                        definitions[id] = CategoryDefinition(id, key)
-                    }
+                while (nextPair()) {
+                    val key = key()
+                    val id = int()
+                    ids[key] = id
+                    definitions[id] = CategoryDefinition(id, key)
                 }
             }
             this.definitions = definitions

@@ -1,21 +1,28 @@
 # https//www.rune-server.ee/runescape-development/rs-503-client-server/configuration/683354-interface-list-official-names.html
-
-[interfaces.root]
+[root]
 id = -1
 type = "full_screen"
 
-[interfaces.free_lumbridge_guide_quiz]
+[free_lumbridge_guide_quiz]
 id = 2
 components = { inventory = 30 }
 
-[interfaces]
-bank_pin = 13
-bank_deposit_box = 11
-bank_pin_settings = 14
-barrows_brothers_slain = 24
-blast_furance_bar_stock = 28
+[bank_pin]
+id = 13
 
-[interfaces.notes]
+[bank_deposit_box]
+id = 11
+
+[bank_pin_settings]
+id = 14
+
+[barrows_brothers_slain]
+id = 24
+
+[blast_furance_bar_stock]
+id = 28
+
+[notes]
 id = 34
 type = "notes_tab"
 components = {
@@ -33,8 +40,7 @@ components = {
   }
 }
 
-
-[interfaces.canoe]
+[canoe]
 id = 52
 type = "main_screen"
 components = {
@@ -50,7 +56,7 @@ components = {
   a_waka = 33,
 }
 
-[interfaces.canoe_stations_map]
+[canoe_stations_map]
 id = 53
 type = "main_screen"
 components = {
@@ -71,19 +77,19 @@ components = {
   travel_wilderness_pond = 49,
 }
 
-[interfaces.dialogue_castlewars_score]
+[dialogue_castlewars_score]
 id = 55
 type = "dialogue_box"
 
-[interfaces]
-castlewars_shopside = 56
+[castlewars_shopside]
+id = 56
 
-[interfaces.castlewars_status_overlay]
+[castlewars_status_overlay]
 id = 57
 type = "dialogue_box"
 
 # Player
-[interfaces.dialogue_chat1]
+[dialogue_chat1]
 id = 64
 type = "dialogue_box"
 components = {
@@ -94,7 +100,7 @@ components = {
   continue = 5,
 }
 
-[interfaces.dialogue_chat2]
+[dialogue_chat2]
 id = 65
 type = "dialogue_box"
 components = {
@@ -106,7 +112,7 @@ components = {
   continue = 6,
 }
 
-[interfaces.dialogue_chat3]
+[dialogue_chat3]
 id = 66
 type = "dialogue_box"
 components = {
@@ -119,7 +125,7 @@ components = {
   continue = 7,
 }
 
-[interfaces.dialogue_chat4]
+[dialogue_chat4]
 id = 67
 type = "dialogue_box"
 components = {
@@ -133,7 +139,7 @@ components = {
   continue = 8,
 }
 
-[interfaces.dialogue_chat_np1]
+[dialogue_chat_np1]
 id = 68
 type = "dialogue_box"
 components = {
@@ -144,7 +150,7 @@ components = {
   continue = 5,
 }
 
-[interfaces.dialogue_chat_np2]
+[dialogue_chat_np2]
 id = 69
 type = "dialogue_box"
 components = {
@@ -156,7 +162,7 @@ components = {
   continue = 6,
 }
 
-[interfaces.dialogue_chat_np3]
+[dialogue_chat_np3]
 id = 70
 type = "dialogue_box"
 components = {
@@ -169,7 +175,7 @@ components = {
   continue = 7,
 }
 
-[interfaces.dialogue_chat_np4]
+[dialogue_chat_np4]
 id = 71
 type = "dialogue_box"
 components = {
@@ -183,28 +189,30 @@ components = {
   continue = 8,
 }
 
-[interfaces]
-summoning_trade_in = 78
-summoning_creation = 79
+[summoning_trade_in]
+id = 78
+
+[summoning_creation]
+id = 79
 
 # Un-contained
-[interfaces.dialogue_npc_chat_np4u]
+[dialogue_npc_chat_np4u]
 id = 90
 type = "dialogue_box"
 
-[interfaces.dialogue_npc_chat_np3u]
+[dialogue_npc_chat_np3u]
 id = 91
 type = "dialogue_box"
 
-[interfaces.dialogue_npc_chat_np1u]
+[dialogue_npc_chat_np1u]
 id = 92
 type = "dialogue_box"
 
-[interfaces.dialogue_npc_chat_np2u]
+[dialogue_npc_chat_np2u]
 id = 93
 type = "dialogue_box"
 
-[interfaces.dialogue_confirm_destroy]
+[dialogue_confirm_destroy]
 id = 94
 type = "dialogue_box"
 components = {
@@ -215,10 +223,10 @@ components = {
   item_slot = 9,
 }
 
-[interfaces]
-charter_ship_map = 95
+[charter_ship_map]
+id = 95
 
-[interfaces.items_kept_on_death]
+[items_kept_on_death]
 id = 102
 type = "main_screen"
 components = {
@@ -230,10 +238,10 @@ components = {
   lost_items = 21,
 }
 
-[interfaces]
-stock_side = 107
+[stock_side]
+id = 107
 
-[interfaces.collection_box]
+[collection_box]
 id = 109
 components = {
   box1 = 19,
@@ -245,7 +253,7 @@ components = {
 }
 
 # Item
-[interfaces.dialogue_double_obj_box]
+[dialogue_double_obj_box]
 id = 131
 type = "dialogue_box_small"
 components = {
@@ -255,11 +263,11 @@ components = {
   continue = 3,
 }
 
-[interfaces.dialogue_garden_quiz]
+[dialogue_garden_quiz]
 id = 133
 type = "dialogue_box"
 
-[interfaces.skill_stat_advance]
+[skill_stat_advance]
 id = 134
 type = "main_screen"
 components = {
@@ -292,29 +300,29 @@ components = {
   dungeoneering = 54,
 }
 
-[interfaces.dialogue_chat_both]
+[dialogue_chat_both]
 id = 136
 type = "dialogue_box"
 
-[interfaces.chat_background]
+[chat_background]
 id = 137
 type = "chat_background"
 quick_chat = 54
 help_quick_chat = 5
 close_quick_chat = 4
 
-[interfaces]
-glider_map = 138
+[glider_map]
+id = 138
 
-[interfaces.dialogue_select2_models]
+[dialogue_select2_models]
 id = 140
 type = "dialogue_box"
 
-[interfaces.dialogue_text_box_model]
+[dialogue_text_box_model]
 id = 148
 type = "dialogue_box"
 
-[interfaces.inventory]
+[inventory]
 id = 149
 type = "inventory_tab"
 components = {
@@ -340,7 +348,7 @@ components = {
   }
 }
 
-[interfaces.letter_scroll]
+[letter_scroll]
 id = 156
 type = "wide_screen"
 components = {
@@ -348,13 +356,19 @@ components = {
   line0 = "7-106",
 }
 
-[interfaces]
-slayer_rewards_assignment = 161
-slayer_rewards_learn_old = 163
-slayer_rewards = 164
-chat1_double_model = 173
+[slayer_rewards_assignment]
+id = 161
 
-[interfaces.logout]
+[slayer_rewards_learn_old]
+id = 163
+
+[slayer_rewards]
+id = 164
+
+[chat1_double_model]
+id = 173
+
+[logout]
 id = 182
 type = "logout_tab"
 components = {
@@ -362,7 +376,7 @@ components = {
   login = 10,
 }
 
-[interfaces.music_player]
+[music_player]
 id = 187
 type = "music_player_tab"
 components = {
@@ -379,7 +393,7 @@ components = {
   playlist = 9,
 }
 
-[interfaces.quest_intro]
+[quest_intro]
 id = 178
 type = "main_screen"
 components = {
@@ -407,11 +421,11 @@ components = {
   quest_icon = 79,
 }
 
-[interfaces.dialogue_macro_mime_emotes]
+[dialogue_macro_mime_emotes]
 id = 188
 type = "dialogue_box"
 
-[interfaces.quest_journals]
+[quest_journals]
 id = 190
 type = "quest_journals_tab"
 components = {
@@ -425,11 +439,11 @@ components = {
   }
 }
 
-[interfaces.dialogue_macro_quiz_show]
+[dialogue_macro_quiz_show]
 id = 191
 type = "dialogue_box"
 
-[interfaces.modern_spellbook]
+[modern_spellbook]
 id = 192
 type = "spellbook_tab"
 components = {
@@ -580,7 +594,7 @@ components = {
   }
 }
 
-[interfaces.ancient_spellbook]
+[ancient_spellbook]
 id = 193
 type = "spellbook_tab"
 components = {
@@ -681,11 +695,11 @@ components = {
   }
 }
 
-[interfaces.dialogue_container_continue]
+[dialogue_container_continue]
 id = 200
 type = "dialogue_box"
 
-[interfaces.price_checker]
+[price_checker]
 id = 206
 type = "main_screen"
 components = {
@@ -706,7 +720,7 @@ components = {
   }
 }
 
-[interfaces.price_checker_side]
+[price_checker_side]
 id = 207
 type = "inventory_tab"
 components = {
@@ -724,12 +738,12 @@ components = {
   }
 }
 
-[interfaces.dialogue_price_check_box_title]
+[dialogue_price_check_box_title]
 id = 208
 type = "dialogue_box"
 
 # Statements
-[interfaces.dialogue_message1]
+[dialogue_message1]
 id = 210
 type = "dialogue_box"
 components = {
@@ -737,7 +751,7 @@ components = {
   continue = 2,
 }
 
-[interfaces.dialogue_message2]
+[dialogue_message2]
 id = 211
 type = "dialogue_box"
 components = {
@@ -746,7 +760,7 @@ components = {
   continue = 3,
 }
 
-[interfaces.dialogue_message3]
+[dialogue_message3]
 id = 212
 type = "dialogue_box"
 components = {
@@ -756,7 +770,7 @@ components = {
   continue = 4,
 }
 
-[interfaces.dialogue_message4]
+[dialogue_message4]
 id = 213
 type = "dialogue_box"
 components = {
@@ -767,7 +781,7 @@ components = {
   continue = 5,
 }
 
-[interfaces.dialogue_message5]
+[dialogue_message5]
 id = 214
 type = "dialogue_box"
 components = {
@@ -779,14 +793,14 @@ components = {
   continue = 6,
 }
 
-[interfaces.dialogue_message_np1]
+[dialogue_message_np1]
 id = 215
 type = "dialogue_box"
 components = {
   line1 = 1,
 }
 
-[interfaces.dialogue_message_np2]
+[dialogue_message_np2]
 id = 216
 type = "dialogue_box"
 components = {
@@ -794,7 +808,7 @@ components = {
   line2 = 2,
 }
 
-[interfaces.dialogue_message_np3]
+[dialogue_message_np3]
 id = 217
 type = "dialogue_box"
 components = {
@@ -803,7 +817,7 @@ components = {
   line3 = 3,
 }
 
-[interfaces.dialogue_message_np4]
+[dialogue_message_np4]
 id = 218
 type = "dialogue_box"
 components = {
@@ -813,7 +827,7 @@ components = {
   line4 = 4,
 }
 
-[interfaces.dialogue_message_np5]
+[dialogue_message_np5]
 id = 219
 type = "dialogue_box"
 components = {
@@ -824,7 +838,7 @@ components = {
   line5 = 5,
 }
 
-[interfaces.message_scroll]
+[message_scroll]
 id = 220
 type = "wide_screen"
 components = {
@@ -832,7 +846,7 @@ components = {
   close = 16,
 }
 
-[interfaces.message_scroll_handwriting]
+[message_scroll_handwriting]
 id = 222
 type = "wide_screen"
 components = {
@@ -840,11 +854,11 @@ components = {
   close = 12,
 }
 
-[interfaces]
-items_needed_list = 227
+[items_needed_list]
+id = 227
 
 # Choice
-[interfaces.dialogue_multi2]
+[dialogue_multi2]
 id = 228
 type = "dialogue_box"
 components = {
@@ -855,7 +869,7 @@ components = {
   line2 = 3,
 }
 
-[interfaces.dialogue_multi2_chat]
+[dialogue_multi2_chat]
 id = 229
 type = "dialogue_box"
 components = {
@@ -866,7 +880,7 @@ components = {
   line2 = 3,
 }
 
-[interfaces.dialogue_multi3]
+[dialogue_multi3]
 id = 230
 type = "dialogue_box"
 components = {
@@ -878,7 +892,7 @@ components = {
   line3 = 4,
 }
 
-[interfaces.dialogue_multi3_chat]
+[dialogue_multi3_chat]
 id = 231
 type = "dialogue_box"
 components = {
@@ -890,7 +904,7 @@ components = {
   line3 = 4,
 }
 
-[interfaces.dialogue_multi4]
+[dialogue_multi4]
 id = 232
 type = "dialogue_box"
 components = {
@@ -903,7 +917,7 @@ components = {
   line4 = 5,
 }
 
-[interfaces.dialogue_multi4_chat]
+[dialogue_multi4_chat]
 id = 233
 type = "dialogue_box"
 components = {
@@ -916,7 +930,7 @@ components = {
   line4 = 5,
 }
 
-[interfaces.dialogue_multi5]
+[dialogue_multi5]
 id = 234
 type = "dialogue_box"
 components = {
@@ -930,7 +944,7 @@ components = {
   line5 = 6,
 }
 
-[interfaces.dialogue_multi5_chat]
+[dialogue_multi5_chat]
 id = 235
 type = "dialogue_box"
 components = {
@@ -944,7 +958,7 @@ components = {
   line5 = 6,
 }
 
-[interfaces.dialogue_multi_var2]
+[dialogue_multi_var2]
 id = 236
 type = "dialogue_box"
 components = {
@@ -955,7 +969,7 @@ components = {
   line2 = 2,
 }
 
-[interfaces.dialogue_multi_var4]
+[dialogue_multi_var4]
 id = 237
 type = "dialogue_box"
 components = {
@@ -968,7 +982,7 @@ components = {
   line4 = 4,
 }
 
-[interfaces.dialogue_multi_var5]
+[dialogue_multi_var5]
 id = 238
 type = "dialogue_box"
 components = {
@@ -983,7 +997,7 @@ components = {
 }
 
 # NPC
-[interfaces.dialogue_npc_chat1]
+[dialogue_npc_chat1]
 id = 241
 type = "dialogue_box"
 components = {
@@ -994,7 +1008,7 @@ components = {
   continue = 5,
 }
 
-[interfaces.dialogue_npc_chat2]
+[dialogue_npc_chat2]
 id = 242
 type = "dialogue_box"
 components = {
@@ -1006,7 +1020,7 @@ components = {
   continue = 6,
 }
 
-[interfaces.dialogue_npc_chat3]
+[dialogue_npc_chat3]
 id = 243
 type = "dialogue_box"
 components = {
@@ -1019,7 +1033,7 @@ components = {
   continue = 7,
 }
 
-[interfaces.dialogue_npc_chat4]
+[dialogue_npc_chat4]
 id = 244
 type = "dialogue_box"
 components = {
@@ -1033,7 +1047,7 @@ components = {
   continue = 8,
 }
 
-[interfaces.dialogue_npc_chat_np1]
+[dialogue_npc_chat_np1]
 id = 245
 type = "dialogue_box"
 components = {
@@ -1043,7 +1057,7 @@ components = {
   line1 = 4,
 }
 
-[interfaces.dialogue_npc_chat_np2]
+[dialogue_npc_chat_np2]
 id = 246
 type = "dialogue_box"
 components = {
@@ -1054,7 +1068,7 @@ components = {
   line2 = 5,
 }
 
-[interfaces.dialogue_npc_chat_np3]
+[dialogue_npc_chat_np3]
 id = 247
 type = "dialogue_box"
 components = {
@@ -1066,7 +1080,7 @@ components = {
   line3 = 6,
 }
 
-[interfaces.dialogue_npc_chat_np4]
+[dialogue_npc_chat_np4]
 id = 248
 type = "dialogue_box"
 components = {
@@ -1079,11 +1093,13 @@ components = {
   line4 = 7,
 }
 
-[interfaces]
-barbarian_assault_team = 256
-achievements = 259
+[barbarian_assault_team]
+id = 256
 
-[interfaces.options]
+[achievements]
+id = 259
+
+[options]
 id = 261
 type = "options_tab"
 components = {
@@ -1097,10 +1113,10 @@ components = {
   house = 8,
 }
 
-[interfaces]
-pest_control_rewards = 267
+[pest_control_rewards]
+id = 267
 
-[interfaces.prayer_list]
+[prayer_list]
 id = 271
 type = "prayer_list_tab"
 components = {
@@ -1120,7 +1136,7 @@ components = {
   confirm = 43,
 }
 
-[interfaces.quest_scroll]
+[quest_scroll]
 id = 275
 type = "wide_screen"
 components = {
@@ -1128,10 +1144,10 @@ components = {
   line0 = "16-315",
 }
 
-[interfaces]
-soul_wars_rewards = 276
+[soul_wars_rewards]
+id = 276
 
-[interfaces.quest_complete]
+[quest_complete]
 id = 277
 components = {
   quest_name = 4,
@@ -1140,7 +1156,7 @@ components = {
   line1 = "10-17",
 }
 
-[interfaces.smithing]
+[smithing]
 id = 300
 components = {
   title = 14,
@@ -1436,7 +1452,7 @@ components = {
   crossbow_limbs_1 = 265,
 }
 
-[interfaces.assist_xp]
+[assist_xp]
 id = 301
 type = "main_screen"
 components = {
@@ -1453,7 +1469,7 @@ components = {
   herblore = 82,
 }
 
-[interfaces.hairdressers_salon]
+[hairdressers_salon]
 id = 309
 type = "main_screen"
 components = {
@@ -1475,12 +1491,16 @@ components = {
   confirm_text = 20,
 }
 
-[interfaces]
-spells_blast = 310
-chat3_models = 314
-spells_elements = 319
+[spells_blast]
+id = 310
 
-[interfaces.stats]
+[chat3_models]
+id = 314
+
+[spells_elements]
+id = 319
+
+[stats]
 id = 320
 type = "stats_tab"
 components = {
@@ -1511,7 +1531,7 @@ components = {
   attack = 200,
 }
 
-[interfaces.tanner]
+[tanner]
 id = 324
 components = {
   cowhide = 1,
@@ -1524,12 +1544,16 @@ components = {
   black_dragonhide = 8,
 }
 
-[interfaces]
-teleport_other = 326
-warning_cold = 327
-battlestaff_enchant = 332
+[teleport_other]
+id = 326
 
-[interfaces.trade_confirm]
+[warning_cold]
+id = 327
+
+[battlestaff_enchant]
+id = 332
+
+[trade_confirm]
 id = 334
 type = "main_screen"
 components = {
@@ -1550,7 +1574,7 @@ components = {
   other_lend_text = 1,
 }
 
-[interfaces.trade_main]
+[trade_main]
 id = 335
 type = "main_screen"
 components = {
@@ -1623,7 +1647,7 @@ components = {
   other_loan_time = 86,
 }
 
-[interfaces.trade_side]
+[trade_side]
 id = 336
 type = "inventory_tab"
 components = {
@@ -1644,21 +1668,21 @@ components = {
 }
 
 # 6 lines
-[interfaces.dialogue_tutorial_text]
+[dialogue_tutorial_text]
 id = 372
 type = "dialogue_box"
 
-[interfaces.morph]
+[morph]
 id = 375
 type = "overlay_tab"
 components = {
   unmorph = 3,
 }
 
-[interfaces]
-slayer_rewards_learn = 378
+[slayer_rewards_learn]
+id = 378
 
-[interfaces.wilderness_skull]
+[wilderness_skull]
 id = 381
 type = "overlay"
 components = {
@@ -1666,11 +1690,13 @@ components = {
   center_skull = 4,
 }
 
-[interfaces]
-quest_complete_wide = 380
-warning_wilderness = 382
+[quest_complete_wide]
+id = 380
 
-[interfaces.worn_equipment]
+[warning_wilderness]
+id = 382
+
+[worn_equipment]
 id = 387
 type = "worn_equipment_tab"
 components = {
@@ -1821,27 +1847,30 @@ components = {
     },
   },
 }
-[interfaces]
-spells_ancient_elements = 389
 
-[interfaces.dialogue_obj_dialog]
+[spells_ancient_elements]
+id = 389
+
+[dialogue_obj_dialog]
 id = 389
 type = "dialogue_box"
 
-[interfaces.dialogue_poh_hangman]
+[dialogue_poh_hangman]
 id = 393
 type = "dialogue_box"
 
-[interfaces]
-pest_control_waiting = 407
-pest_control_playing = 408
+[pest_control_waiting]
+id = 407
+
+[pest_control_playing]
+id = 408
 
 # 12 lines
-[interfaces.dialogue_tutorial_text2]
+[dialogue_tutorial_text2]
 id = 421
 type = "dialogue_box"
 
-[interfaces.lunar_spellbook]
+[lunar_spellbook]
 id = 430
 type = "spellbook_tab"
 components = {
@@ -1893,10 +1922,10 @@ components = {
   spellbook_swap = 34,
 }
 
-[interfaces]
-enchant_crossbow_bolts = 432
+[enchant_crossbow_bolts]
+id = 432
 
-[interfaces.silver_mould]
+[silver_mould]
 id = 438
 components = {
   holy_mould_button = 16,
@@ -1934,11 +1963,11 @@ components = {
   key_mould_text = 81,
 }
 
-[interfaces.dialogue_open_url]
+[dialogue_open_url]
 id = 445
 type = "dialogue_box"
 
-[interfaces.make_mould_slayer]
+[make_mould_slayer]
 id = 446
 components = {
   ring_text = 17,
@@ -2006,7 +2035,7 @@ components = {
   make_bracelet_option_onyx = 45,
 }
 
-[interfaces.item_info]
+[item_info]
 id = 449
 type = "overlay_tab"
 components = {
@@ -2025,7 +2054,7 @@ components = {
   }
 }
 
-[interfaces.dialogue_multi_var3]
+[dialogue_multi_var3]
 id = 451
 type = "dialogue_box"
 components = {
@@ -2037,14 +2066,14 @@ components = {
   line3 = 3,
 }
 
-[interfaces.dialogue_multi3_off_centre]
+[dialogue_multi3_off_centre]
 id = 458
 type = "dialogue_box"
 
-[interfaces]
-reward_scroll = 463
+[reward_scroll]
+id = 463
 
-[interfaces.emotes]
+[emotes]
 id = 464
 type = "emotes_tab"
 components = {
@@ -2111,7 +2140,7 @@ components = {
   seal_of_approval = 52,
 }
 
-[interfaces.diangos_item_retrieval]
+[diangos_item_retrieval]
 id = 468
 type = "main_screen"
 components = {
@@ -2125,32 +2154,46 @@ components = {
   }
 }
 
-[interfaces]
-barbarian_assult_rewards = 473
-barbarian_assult_horn = 484
-barbarian_assult_attacker = 485
-barbarian_assult_collector = 486
-barbarian_assult_defenderr = 487
-barbarian_assult_healer = 488
-barbarian_assult_waiting = 489
+[barbarian_assult_rewards]
+id = 473
 
-[interfaces.skill_guide]
+[barbarian_assult_horn]
+id = 484
+
+[barbarian_assult_attacker]
+id = 485
+
+[barbarian_assult_collector]
+id = 486
+
+[barbarian_assult_defenderr]
+id = 487
+
+[barbarian_assult_healer]
+id = 488
+
+[barbarian_assult_waiting]
+id = 489
+
+[skill_guide]
 id = 499
 type = "wide_screen"
 components = {
   section1 = "10-24",
 }
 
-[interfaces.dialogue_poh_hangman_german]
+[dialogue_poh_hangman_german]
   id = 507
   type = "dialogue_box"
 
-[interfaces]
-inventory_ranging = 512
-unknown_side0 = 517
+[inventory_ranging]
+id = 512
+
+[unknown_side0]
+id = 517
 
 # Item
-[interfaces.dialogue_obj_box]
+[dialogue_obj_box]
 id = 519
 type = "dialogue_box_small"
 components = {
@@ -2160,11 +2203,13 @@ components = {
   sprite = 3,
 }
 
-[interfaces]
-monster_stat_spy = 522
-player_stat_spy = 523
+[monster_stat_spy]
+id = 522
 
-[interfaces.toplevel]
+[player_stat_spy]
+id = 523
+
+[toplevel]
 id = 548
 type = "full_screen"
 components = {
@@ -2193,10 +2238,10 @@ components = {
   wilderness_level = 9,
 }
 
-[interfaces]
-photo_booth = 549
+[photo_booth]
+id = 549
 
-[interfaces.friends_list]
+[friends_list]
 id = 550
 type = "friends_list_tab"
 components = {
@@ -2204,7 +2249,7 @@ components = {
   delete = 8,
 }
 
-[interfaces.ignores_list]
+[ignores_list]
 id = 551
 type = "ignores_list_tab"
 components = {
@@ -2212,27 +2257,29 @@ components = {
   delete = 5,
 }
 
-[interfaces.dialogue_chat4_model]
+[dialogue_chat4_model]
 id = 554
 type = "dialogue_box"
 
-[interfaces.dialogue_chat6_model]
+[dialogue_chat6_model]
 id = 555
 type = "dialogue_box"
 
-[interfaces.dialogue_chat7_model]
+[dialogue_chat7_model]
 id = 556
 type = "dialogue_box"
 
-[interfaces.dialogue_multi2_mes]
+[dialogue_multi2_mes]
 id = 557
 type = "dialogue_box"
 
-[interfaces]
-warning_spiders = 560
-warning_kalphite_queen = 561
+[warning_spiders]
+id = 560
 
-[interfaces.warning_dark]
+[warning_kalphite_queen]
+id = 561
+
+[warning_dark]
 id = 562
 type = "main_screen"
 components = {
@@ -2240,28 +2287,64 @@ components = {
   stayout = 18,
 }
 
-[interfaces]
-warning_building_mode = 563
-warning_archers = 564
-warning_desert = 565
-warning_collect_items = 566
-warning_light_source = 567
-warning_dark_regardless = 568
-warning_light_source2 = 569
-warning_dark_scared = 570
-warning_dark_tunnel = 571
-warning_tinderbox = 572
-warning_run_past = 573
-warning_dangerous_area = 574
-warning_one_way_wilderness = 576
-interfaces.warning_light_source_3 = 577
-warning_dark_fairy_ring = 578
-warning_climb_down = 579
-warning_mort_myre = 580
-warning_death_plateau = 580
-warning_messages = 583
+[warning_building_mode]
+id = 563
 
-[interfaces.clan_chat]
+[warning_archers]
+id = 564
+
+[warning_desert]
+id = 565
+
+[warning_collect_items]
+id = 566
+
+[warning_light_source]
+id = 567
+
+[warning_dark_regardless]
+id = 568
+
+[warning_light_source2]
+id = 569
+
+[warning_dark_scared]
+id = 570
+
+[warning_dark_tunnel]
+id = 571
+
+[warning_tinderbox]
+id = 572
+
+[warning_run_past]
+id = 573
+
+[warning_dangerous_area]
+id = 574
+
+[warning_one_way_wilderness]
+id = 576
+
+[warning_light_source_3]
+id = 577
+
+[warning_dark_fairy_ring]
+id = 578
+
+[warning_climb_down]
+id = 579
+
+[warning_mort_myre]
+id = 580
+
+[warning_death_plateau]
+id = 580
+
+[warning_messages]
+id = 583
+
+[clan_chat]
 id = 589
 type = "clan_chat_tab"
 components = {
@@ -2270,7 +2353,7 @@ components = {
   loot_share = 0,
 }
 
-[interfaces.clan_chat_setup]
+[clan_chat_setup]
 id = 590
 type = "main_screen"
 components = {
@@ -2282,15 +2365,25 @@ components = {
   coin_share = 33,
 }
 
-[interfaces]
-bounty_hunter_target = 591
-report_abuse_name = 593
-report_abuse_select = 594
-godwars_killcount = 598
-warning_wilderness2 = 600
-unknown_side1 = 602
+[bounty_hunter_target]
+id = 591
 
-[interfaces.ourania_bank_charge]
+[report_abuse_name]
+id = 593
+
+[report_abuse_select]
+id = 594
+
+[godwars_killcount]
+id = 598
+
+[warning_wilderness2]
+id = 600
+
+[unknown_side1]
+id = 602
+
+[ourania_bank_charge]
 id = 619
 type = "main_screen"
 components = {
@@ -2325,7 +2418,7 @@ components = {
   soul_rune_hide = 58,
 }
 
-[interfaces.shop]
+[shop]
 id = 620
 type = "main_screen"
 components = {
@@ -2358,7 +2451,7 @@ components = {
   }
 }
 
-[interfaces.shop_side]
+[shop_side]
 id = 621
 type = "overlay_tab"
 components = {
@@ -2376,38 +2469,74 @@ components = {
   }
 }
 
-[interfaces]
-stake_confirm = 626
-warning_duel = 627
-duel2_side = 628
-stake = 631
-duel_victory = 633
-stake_victory = 634
-duel_confirm = 637
-duel_rules_confirm = 639
-duel_request = 640
-exchange_history = 643
-exchange_sets_side = 644
-exchange_item_sets = 645
-party_room_dropping = 647
-party_room_side = 648
-bounty_overlay_waiting = 656
+[stake_confirm]
+id = 626
 
-[interfaces.snow_globe]
+[warning_duel]
+id = 627
+
+[duel2_side]
+id = 628
+
+[stake]
+id = 631
+
+[duel_victory]
+id = 633
+
+[stake_victory]
+id = 634
+
+[duel_confirm]
+id = 637
+
+[duel_rules_confirm]
+id = 639
+
+[duel_request]
+id = 640
+
+[exchange_history]
+id = 643
+
+[exchange_sets_side]
+id = 644
+
+[exchange_item_sets]
+id = 645
+
+[party_room_dropping]
+id = 647
+
+[party_room_side]
+id = 648
+
+[bounty_overlay_waiting]
+id = 656
+
+[snow_globe]
 id = 659
 type = "main_screen"
 components = {
   continue = 2,
 }
 
-[interfaces]
-pet_details = 662
-pet_hunger_details = 663
-attack_style = 664
-lore_bank_side = 665
-summoning_scroll_creation = 666
+[pet_details]
+id = 662
 
-[interfaces.equipment_bonuses]
+[pet_hunger_details]
+id = 663
+
+[attack_style]
+id = 664
+
+[lore_bank_side]
+id = 665
+
+[summoning_scroll_creation]
+id = 666
+
+[equipment_bonuses]
 id = 667
 type = "main_screen"
 components = {
@@ -2444,11 +2573,11 @@ components = {
   close = 75,
 }
 
-[interfaces.dialogue_pick_a_puppy]
+[dialogue_pick_a_puppy]
 id = 668
 type = "dialogue_box"
 
-[interfaces.equipment_side]
+[equipment_side]
 id = 670
 type = "inventory_tab"
 components = {
@@ -2463,11 +2592,13 @@ components = {
   }
 }
 
-[interfaces]
-beast_of_burden = 671
-summoning_pouch_creation = 672
+[beast_of_burden]
+id = 671
 
-[interfaces.make_mould]
+[summoning_pouch_creation]
+id = 672
+
+[make_mould]
 id = 675
 components = {
   ring_text = 16,
@@ -2532,20 +2663,26 @@ components = {
   make_bracelet_option_onyx = 89,
 }
 
-[interfaces]
-warning_death = 676
-warning_death2 = 677
-warning_death3 = 678
+[warning_death]
+id = 676
 
-[interfaces.dialogue_multi_var2_wide]
+[warning_death2]
+id = 677
+
+[warning_death3]
+id = 678
+
+[dialogue_multi_var2_wide]
 id = 718
 type = "dialogue_box"
 
-[interfaces]
-smithing_emporium = 725
-scroll = 726
+[smithing_emporium]
+id = 725
 
-[interfaces.yrsas_shoe_store]
+[scroll]
+id = 726
+
+[yrsas_shoe_store]
 id = 728
 components = {
   styles = {
@@ -2564,7 +2701,7 @@ components = {
   confirm_text = 16,
 }
 
-[interfaces.thessalias_makeovers]
+[thessalias_makeovers]
 id = 729
 components = {
   close = 4,
@@ -2588,18 +2725,26 @@ components = {
   confirm_text = 21,
 }
 
-[interfaces]
-fist_of_guthix = 730
-fist_of_guthix_waiting = 731
-fist_of_guthix_rewards = 732
-fairy_ring = 734
-travel_log = 735
+[fist_of_guthix]
+id = 730
 
-[interfaces.dialogue_pick_a_kitten]
+[fist_of_guthix_waiting]
+id = 731
+
+[fist_of_guthix_rewards]
+id = 732
+
+[fairy_ring]
+id = 734
+
+[travel_log]
+id = 735
+
+[dialogue_pick_a_kitten]
 id = 737
 type = "dialogue_box"
 
-[interfaces.dialogue_level_up]
+[dialogue_level_up]
 id = 740
 type = "dialogue_box"
 components = {
@@ -2608,15 +2753,15 @@ components = {
   continue = 3,
 }
 
-[interfaces.skill_level_details]
+[skill_level_details]
 id = 741
 type = "main_screen"
 
-[interfaces.graphics_options]
+[graphics_options]
 id = 742
 type = "main_screen"
 
-[interfaces.audio_options]
+[audio_options]
 id = 743
 type = "main_screen"
 components = {
@@ -2624,7 +2769,7 @@ components = {
   stereo = 51,
 }
 
-[interfaces.area_status_icon]
+[area_status_icon]
 id = 745
 type = "area_status"
 components = {
@@ -2636,7 +2781,7 @@ components = {
   protection_active = 6,
 }
 
-[interfaces.toplevel_full]
+[toplevel_full]
 id = 746
 type = "full_screen"
 components = {
@@ -2664,29 +2809,29 @@ components = {
   wilderness_level = 13,
 }
 
-[interfaces.summoning_orb]
+[summoning_orb]
 id = 747
 type = "summoning_orb"
 
-[interfaces.health_orb]
+[health_orb]
 id = 748
 type = "health_orb"
 component = {
   poison = 2,
 }
 
-[interfaces.prayer_orb]
+[prayer_orb]
 id = 749
 type = "prayer_orb"
 components = {
   orb = 1,
 }
 
-[interfaces.energy_orb]
+[energy_orb]
 id = 750
 type = "energy_orb"
 
-[interfaces.filter_buttons]
+[filter_buttons]
 id = 751
 type = "chat_settings"
 components = {
@@ -2700,15 +2845,15 @@ components = {
   report = 9,
 }
 
-[interfaces.chat_box]
+[chat_box]
 id = 752
 type = "chat_box"
 
-[interfaces.private_chat]
+[private_chat]
 id = 754
 type = "private_chat"
 
-[interfaces.world_map]
+[world_map]
 id = 755
 type = "full_screen"
 components = {
@@ -2723,19 +2868,19 @@ components = {
   }
 }
 
-[interfaces]
-chat_model_text = 757
+[chat_model_text]
+id = 757
 
-[interfaces.canoe_travel]
+[canoe_travel]
 id = 758
 components = {
   model = 3,
 }
 
-[interfaces]
-vants_requests = 761
+[vants_requests]
+id = 761
 
-[interfaces.bank]
+[bank]
 id = 762
 components = {
   item_mode = 15,
@@ -2773,7 +2918,7 @@ components = {
   }
 }
 
-[interfaces.bank_side]
+[bank_side]
 id = 763
 type = "overlay_tab"
 components = {
@@ -2792,11 +2937,13 @@ components = {
   }
 }
 
-[interfaces]
-bank_help = 767
-loan_return_side = 771
+[bank_help]
+id = 767
 
-[interfaces.returned_items]
+[loan_return_side]
+id = 771
+
+[returned_items]
 id = 772
 components = {
   item = {
@@ -2805,55 +2952,109 @@ components = {
   }
 }
 
-[interfaces]
-rc_guild_side = 778
-rc_guild_rewards = 779
-circus_side = 784
-circus_rewards = 785
-shooting_star = 785
-clan_wars = 789
-clan_wars_defeat = 790
-clan_wars_request = 791
-clan_wars_overview = 792
-clan_wars_respawn = 793
-spells_ancient = 797
-warning_lots_of_items = 798
-stealing_creation = 804
-stealing_creation_trade = 805
-stealing_creation_trade_side = 807
-stealing_creation_victory = 810
-stealing_creation_rewards = 811
-stealing_creation_kiln = 813
-soul_wars_demo = 834
+[rc_guild_side]
+id = 778
 
-[interfaces.dialogue_text_box_continue]
+[rc_guild_rewards]
+id = 779
+
+[circus_side]
+id = 784
+
+[circus_rewards]
+id = 785
+
+[shooting_star]
+id = 785
+
+[clan_wars]
+id = 789
+
+[clan_wars_defeat]
+id = 790
+
+[clan_wars_request]
+id = 791
+
+[clan_wars_overview]
+id = 792
+
+[clan_wars_respawn]
+id = 793
+
+[spells_ancient]
+id = 797
+
+[warning_lots_of_items]
+id = 798
+
+[stealing_creation]
+id = 804
+
+[stealing_creation_trade]
+id = 805
+
+[stealing_creation_trade_side]
+id = 807
+
+[stealing_creation_victory]
+id = 810
+
+[stealing_creation_rewards]
+id = 811
+
+[stealing_creation_kiln]
+id = 813
+
+[soul_wars_demo]
+id = 834
+
+[dialogue_text_box_continue]
 id = 835
 type = "dialogue_box"
 
-[interfaces]
-soul_wars = 836
-soul_wars_waiting = 837
-soul_wars_side1 = 839
-soul_wars_side2 = 841
+[soul_wars]
+id = 836
 
-[interfaces.dialogue_text_box_continue_resizable]
+[soul_wars_waiting]
+id = 837
+
+[soul_wars_side1]
+id = 839
+
+[soul_wars_side2]
+id = 841
+
+[dialogue_text_box_continue_resizable]
 id = 846
 type = "dialogue_box"
 
-[interfaces.dialogue_mobilising_armies1]
+[dialogue_mobilising_armies1]
 id = 856
 type = "dialogue_box"
 
-[interfaces]
-spirit_tree = 864
-prefixes = 865
-quest_list = 868
-quest_scroll2 = 877
-unknown_side5 = 878
-familiar_options = 880
-unknown_side6 = 881
+[spirit_tree]
+id = 864
 
-[interfaces.combat_styles]
+[prefixes]
+id = 865
+
+[quest_list]
+id = 868
+
+[quest_scroll2]
+id = 877
+
+[unknown_side5]
+id = 878
+
+[familiar_options]
+id = 880
+
+[unknown_side6]
+id = 881
+
+[combat_styles]
 id = 884
 type = "combat_styles_tab"
 components = {
@@ -2885,11 +3086,13 @@ components = {
   special_attack_bar = 4,
 }
 
-[interfaces]
-character_rename = 890
-warning_death4 = 892
+[character_rename]
+id = 890
 
-[interfaces.skin_colour]
+[warning_death4]
+id = 892
+
+[skin_colour]
 id = 900
 components = {
   male = 16,
@@ -2898,7 +3101,7 @@ components = {
   confirm = 33,
 }
 
-[interfaces.dialogue_skill_creation]
+[dialogue_skill_creation]
 id = 905
 type = "dialogue_box"
 components = {
@@ -2915,7 +3118,7 @@ components = {
   choice10 = 23,
 }
 
-[interfaces.skill_creation_amount]
+[skill_creation_amount]
 id = 916
 type = "skill_creation"
 components = {
@@ -2933,7 +3136,7 @@ components = {
   decrement = 20,
 }
 
-[interfaces.task_list]
+[task_list]
 id = 917
 type = "main_screen"
 components = {
@@ -2963,23 +3166,38 @@ components = {
   }
 }
 
-
-[interfaces.dialogue_make_amount]
+[dialogue_make_amount]
 id = 944
 type = "dialogue_box"
 
-[interfaces]
-dungeon_complete = 933
-dungeoneering_smithing = 934
-teammate_stats = 936
-dungeon_complexity = 938
-dungeoneering_party = 939
-dungeoneering_rewards = 940
-dungeoneering_smelt = 941
-dungeon_floor = 947
-dungeon_party_invite = 949
+[dungeon_complete]
+id = 933
 
-[interfaces.dungeoneering_spellbook]
+[dungeoneering_smithing]
+id = 934
+
+[teammate_stats]
+id = 936
+
+[dungeon_complexity]
+id = 938
+
+[dungeoneering_party]
+id = 939
+
+[dungeoneering_rewards]
+id = 940
+
+[dungeoneering_smelt]
+id = 941
+
+[dungeon_floor]
+id = 947
+
+[dungeon_party_invite]
+id = 949
+
+[dungeoneering_spellbook]
 id = 950
 type = "spellbook_tab"
 components = {
@@ -3094,7 +3312,7 @@ components = {
   }
 }
 
-[interfaces.book]
+[book]
 id = 959
 type = "main_screen"
 components = {
@@ -3107,7 +3325,7 @@ components = {
   page_number_right = 53,
 }
 
-[interfaces.book_long]
+[book_long]
 id = 960
 type = "main_screen"
 components = {
@@ -3149,7 +3367,7 @@ components = {
   title = 39,
 }
 
-[interfaces.chat_setup]
+[chat_setup]
 id = 982
 type = "options_tab"
 components = {
@@ -3159,31 +3377,35 @@ components = {
   private_colour1 = "45-62",
 }
 
-[interfaces.dialogue_text_box_chat]
+[dialogue_text_box_chat]
 id = 1018
 type = "dialogue_box"
 
-[interfaces.dialogue_text_box_continue2]
+[dialogue_text_box_continue2]
 id = 1020
 type = "dialogue_box"
 
-[interfaces]
-herbicide = 1006
-conquest = 1010
-conquest_rewards = 1011
+[herbicide]
+id = 1006
 
-[interfaces.dialogue_chat_layered_model]
+[conquest]
+id = 1010
+
+[conquest_rewards]
+id = 1011
+
+[dialogue_chat_layered_model]
 id = 1018
 type = "dialogue_box"
 
-[interfaces.dialogue_chat_large]
+[dialogue_chat_large]
 id = 1020
 type = "dialogue_box"
 
-[interfaces]
-conquest_commands = 1024
+[conquest_commands]
+id = 1024
 
-[interfaces.character_creation]
+[character_creation]
 id = 1028
 type = "full_screen"
 components = {
@@ -3220,14 +3442,14 @@ components = {
   confirm = 117
 }
 
-[interfaces.task_popup]
+[task_popup]
 id = 1055
 type = "task_overlay"
 components = {
   details = 2
 }
 
-[interfaces.task_system]
+[task_system]
 id = 1056
 type = "task_system_tab"
 components = {
@@ -3251,21 +3473,21 @@ components = {
   pin = 88,
 }
 
-[interfaces]
-warriors_guild = 1057
+[warriors_guild]
+id = 1057
 
-[interfaces.fade_out]
+[fade_out]
 id = 120
 type = "overlay"
 components = {
   text = 1
 }
 
-[interfaces.fade_in]
+[fade_in]
 id = 170
 type = "overlay"
 
-[interfaces.wise_old_man_scroll]
+[wise_old_man_scroll]
 id = 174
 type = "main_screen"
 components = {
@@ -3273,22 +3495,22 @@ components = {
   line0 = "1-16",
 }
 
-[interfaces.fade_out_smoke]
+[fade_out_smoke]
 id = 162
 type = "overlay"
 
-[interfaces.level_one_darkness]
+[level_one_darkness]
 id = 97
 type = "overlay"
 
-[interfaces.level_two_darkness]
+[level_two_darkness]
 id = 98
 type = "overlay"
 
-[interfaces.level_three_darkness]
+[level_three_darkness]
 id = 96
 type = "overlay"
 
-[interfaces.dirt_on_screen]
+[dirt_on_screen]
 id = 226
 type = "overlay"
