@@ -1,5 +1,6 @@
 package content.entity.obj
 
+import content.bot.interact.navigation.graph.readTile
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
@@ -81,20 +82,7 @@ class ObjectTeleports {
                     while (nextPair()) {
                         when (val key = key()) {
                             "option" -> option = string()
-                            "tile" -> {
-                                var x = 0
-                                var y = 0
-                                var level = 0
-                                while (nextEntry()) {
-                                    when (val k = key()) {
-                                        "x" -> x = int()
-                                        "y" -> y = int()
-                                        "level" -> level = int()
-                                        else -> throw IllegalArgumentException("Unexpected key: '$k' ${exception()}")
-                                    }
-                                }
-                                tile = Tile(x, y, level)
-                            }
+                            "tile" -> tile = readTile()
                             "delta" -> {
                                 var x = 0
                                 var y = 0
@@ -109,20 +97,7 @@ class ObjectTeleports {
                                 }
                                 delta = Delta(x, y, level)
                             }
-                            "to" -> {
-                                var x = 0
-                                var y = 0
-                                var level = 0
-                                while (nextEntry()) {
-                                    when (val k = key()) {
-                                        "x" -> x = int()
-                                        "y" -> y = int()
-                                        "level" -> level = int()
-                                        else -> throw IllegalArgumentException("Unexpected key: '$k' ${exception()}")
-                                    }
-                                }
-                                to = Tile(x, y, level)
-                            }
+                            "to" -> to = readTile()
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }

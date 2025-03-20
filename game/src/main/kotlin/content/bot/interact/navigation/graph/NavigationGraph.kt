@@ -132,21 +132,6 @@ class NavigationGraph(
         return this
     }
 
-    private fun ConfigReader.readTile(): Tile {
-        var x = 0
-        var y = 0
-        var level = 0
-        while (nextEntry()) {
-            when (val k = key()) {
-                "x" -> x = int()
-                "y" -> y = int()
-                "level" -> level = int()
-                else -> throw IllegalArgumentException("Unexpected key: '$k' ${exception()}")
-            }
-        }
-        return Tile(x, y, level)
-    }
-
     private fun tagAreas() {
         adjacencyList.forEach { (node, _) ->
             val tile = when (node) {
@@ -162,4 +147,19 @@ class NavigationGraph(
         private val empty = emptySet<Edge>()
         private val emptyTags = emptySet<AreaDefinition>()
     }
+}
+
+fun ConfigReader.readTile(): Tile {
+    var x = 0
+    var y = 0
+    var level = 0
+    while (nextEntry()) {
+        when (val key = key()) {
+            "x" -> x = int()
+            "y" -> y = int()
+            "level" -> level = int()
+            else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
+        }
+    }
+    return Tile(x, y, level)
 }
