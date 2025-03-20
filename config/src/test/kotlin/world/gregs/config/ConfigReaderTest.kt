@@ -193,13 +193,13 @@ internal class ConfigReaderTest {
     @Test
     fun `Read list`() {
         Config.stringReader("[ 1, 2, 3, 4 ]") {
-            assertEquals(listOf(1L, 2L, 3L, 4L), list())
+            assertEquals(listOf(1, 2, 3, 4), list())
         }
         Config.stringReader("[ \"1\", \"two\", 3 ]") {
-            assertEquals(listOf("1", "two", 3L), list())
+            assertEquals(listOf("1", "two", 3), list())
         }
         Config.stringReader("[1 , # comment \n \"two\" # c\n,3]") {
-            assertEquals(listOf(1L, "two", 3L), list())
+            assertEquals(listOf(1, "two", 3), list())
         }
         Config.stringReader("[]") {
             assertEquals(emptyList<Any>(), list())
@@ -218,13 +218,13 @@ internal class ConfigReaderTest {
     @Test
     fun `Read map`() {
         Config.stringReader("{ one = 1, two = 2, three = 3 }") {
-            assertEquals(mapOf("one" to 1L, "two" to 2L, "three" to 3L), map())
+            assertEquals(mapOf("one" to 1, "two" to 2, "three" to 3), map())
         }
         Config.stringReader("{ one = \"1\", two = \"two\", three = 3 }") {
-            assertEquals(mapOf("one" to "1", "two" to "two", "three" to 3L), map())
+            assertEquals(mapOf("one" to "1", "two" to "two", "three" to 3), map())
         }
         Config.stringReader("{one=1 , # comment \n two =\"two\" # c\n,three= 3}") {
-            assertEquals(mapOf("one" to 1L, "two" to "two", "three" to 3L), map())
+            assertEquals(mapOf("one" to 1, "two" to "two", "three" to 3), map())
         }
         Config.stringReader("{}") {
             assertEquals(emptyMap<String, Any>(), map())
@@ -252,19 +252,19 @@ internal class ConfigReaderTest {
             assertEquals("literal", value())
         }
         Config.stringReader("+123") {
-            assertEquals(123L, value())
+            assertEquals(123, value())
         }
         Config.stringReader("123") {
-            assertEquals(123L, value())
+            assertEquals(123, value())
         }
         Config.stringReader("-12.3") {
             assertEquals(-12.3, value())
         }
         Config.stringReader("[ 1, 2 ]") {
-            assertEquals(listOf(1L, 2L), value())
+            assertEquals(listOf(1, 2), value())
         }
         Config.stringReader("{ one = 1 }") {
-            assertEquals(mapOf("one" to 1L), value())
+            assertEquals(mapOf("one" to 1), value())
         }
     }
 
