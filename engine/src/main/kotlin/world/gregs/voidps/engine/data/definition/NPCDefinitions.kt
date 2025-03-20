@@ -53,7 +53,11 @@ class NPCDefinitions(
                     ids[stringId] = id
                     definitions[id].stringId = stringId
                     if (extras.isNotEmpty()) {
-                        definitions[id].extras = extras
+                        if (definitions[id].extras != null) {
+                            (definitions[id].extras as MutableMap<String, Any>).putAll(extras)
+                        } else {
+                            definitions[id].extras = extras
+                        }
                     }
                 }
             }
