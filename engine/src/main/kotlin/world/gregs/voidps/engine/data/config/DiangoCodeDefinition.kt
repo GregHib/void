@@ -13,13 +13,6 @@ data class DiangoCodeDefinition(
 ) {
 
     companion object {
-
-        @Suppress("UNCHECKED_CAST")
-        operator fun invoke(map: Map<String, Any>) = DiangoCodeDefinition(
-            variable = map["variable"] as? String ?: EMPTY.variable,
-            add = map["add"] as? List<Item> ?: EMPTY.add,
-        )
-
         val EMPTY = DiangoCodeDefinition()
     }
 }

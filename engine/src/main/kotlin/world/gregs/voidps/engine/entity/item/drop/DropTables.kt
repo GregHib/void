@@ -52,7 +52,7 @@ class DropTables {
         var table = ""
         var members = false
         var chance: Int? = null
-        var roll = 0
+        var roll = 1
         var id = ""
         var min = 1
         var max = 1

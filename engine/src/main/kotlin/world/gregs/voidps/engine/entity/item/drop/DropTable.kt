@@ -14,10 +14,10 @@ import world.gregs.voidps.type.random
  * @param drops A list of [ItemDrop]'s and nested [DropTable]'s
  */
 data class DropTable(
-    val type: TableType,
-    val roll: Int,
+    val type: TableType = TableType.First,
+    val roll: Int = 1,
     val drops: List<Drop>,
-    override val chance: Int
+    override val chance: Int = -1
 ) : Drop {
 
     /**
@@ -141,17 +141,6 @@ data class DropTable(
                 check(total <= roll!!) { "Chances $total cannot exceed roll $roll." }
             }
             return DropTable(type, roll ?: 1, drops, chance)
-        }
-    }
-
-    companion object {
-        @Suppress("UNCHECKED_CAST")
-        operator fun invoke(map: Map<String, Any>): DropTable {
-            val type = map["type"] as? TableType ?: TableType.First
-            val roll = map["roll"] as? Int ?: 1
-            val drops = map["drops"] as List<Drop>
-            val chance = map["chance"] as? Int ?: -1
-            return DropTable(type, roll, drops, chance)
         }
     }
 }
