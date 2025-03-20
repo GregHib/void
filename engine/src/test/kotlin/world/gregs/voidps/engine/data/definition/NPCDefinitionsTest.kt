@@ -30,9 +30,10 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
     }
 
     override fun load(definitions: NPCDefinitions) {
+        val uri = ItemDefinitionsTest::class.java.getResource("test-npc.toml")!!
         val itemDefinitions: ItemDefinitions = mockk(relaxed = true)
         every { itemDefinitions.get(any<Int>()) } returns ItemDefinition.EMPTY
         every { itemDefinitions.get(any<String>()) } returns ItemDefinition.EMPTY
-        definitions.load("../data/definitions/npcs.toml")
+        definitions.load(uri.path)
     }
 }

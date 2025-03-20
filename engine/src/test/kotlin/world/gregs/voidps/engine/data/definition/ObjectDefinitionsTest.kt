@@ -26,9 +26,10 @@ internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, 
     }
 
     override fun load(definitions: ObjectDefinitions) {
+        val uri = ItemDefinitionsTest::class.java.getResource("test-object.toml")!!
         val itemDefinitions = mockk<ItemDefinitions>(relaxed = true)
         every { itemDefinitions.get(any<Int>()) } returns ItemDefinition.EMPTY
         every { itemDefinitions.get(any<String>()) } returns ItemDefinition.EMPTY
-        definitions.load("../data/definitions/objects.toml")
+        definitions.load(uri.path)
     }
 }

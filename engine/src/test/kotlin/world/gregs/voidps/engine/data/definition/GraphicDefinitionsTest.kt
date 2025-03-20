@@ -23,7 +23,8 @@ internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition
     }
 
     override fun load(definitions: GraphicDefinitions) {
-        definitions.load("../data/definitions/graphics.toml")
+        val uri = ItemDefinitionsTest::class.java.getResource("test-gfx.toml")!!
+        definitions.load(uri.path)
     }
 
 }

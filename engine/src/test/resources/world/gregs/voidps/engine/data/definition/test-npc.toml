@@ -1,0 +1,5 @@
+[hans]
+id = 0
+wander_radius = 4
+race = "human"
+examine = "Servant of the Duke of Lumbridge."

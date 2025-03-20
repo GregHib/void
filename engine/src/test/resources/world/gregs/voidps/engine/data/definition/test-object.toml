@@ -1,0 +1,3 @@
+[door_closed]
+id = 3
+examine = "The door is closed."

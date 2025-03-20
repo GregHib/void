@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.IntArrayList
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.data.Settings
@@ -26,26 +27,25 @@ class InventoryDefinitions(
                     val section = section()
                     var id = -1
                     val extras = Object2ObjectOpenHashMap<String, Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
-                    val items = IntArrayList()
-                    val amounts = IntArrayList()
                     while (nextPair()) {
                         when (val key = key()) {
                             "id" -> id = int()
                             "defaults" -> {
-                                while (nextPair()) {
+                                val defaults = ObjectArrayList<Map<String, Int>>()
+                                while (nextEntry()) {
                                     val item = key()
-                                    amounts.add(int())
-                                    items.add(itemDefs.get(item).id)
+                                    val value = int()
+                                    val default = Object2IntOpenHashMap<String>()
+                                    default[item] = value
+                                    defaults.add(default)
                                 }
+                                extras[key] = defaults
                             }
                             else -> extras[key] = value()
                         }
                     }
                     if (id > -1) {
                         ids[section] = id
-                        definitions[id].length = items.size
-                        definitions[id].ids = IntArray(items.size) { items.getInt(it) }
-                        definitions[id].amounts = IntArray(amounts.size) { amounts.getInt(it) }
                         definitions[id].extras = extras
                     }
                 }
@@ -55,9 +55,4 @@ class InventoryDefinitions(
         }
         return this
     }
-}
-
-fun InventoryDefinition.items(): List<String> {
-    val defs: ItemDefinitions = get()
-    return ids?.map { defs.get(it).stringId } ?: emptyList()
 }
