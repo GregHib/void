@@ -27,6 +27,7 @@ class ParameterDefinitions(
     fun load(path: String = Settings["definitions.parameters"]): ParameterDefinitions {
         timedLoad("parameter definition") {
             val ids = Object2IntOpenHashMap<String>(500, Hash.VERY_FAST_LOAD_FACTOR)
+            val parameters = Int2ObjectOpenHashMap<String>(500, Hash.VERY_FAST_LOAD_FACTOR)
             val definitions = Array(2500) { ParameterDefinition.EMPTY }
             Config.fileReader(path) {
                 while (nextPair()) {
@@ -34,11 +35,12 @@ class ParameterDefinitions(
                     val id = int()
                     ids[stringId] = id
                     definitions[id].stringId = stringId
+                    parameters[id] = stringId
                 }
             }
             this.ids = ids
             this.definitions = definitions
-            parameters = definitions.associate { it.id to it.stringId }
+            this.parameters = parameters
             ids.size
         }
         return this

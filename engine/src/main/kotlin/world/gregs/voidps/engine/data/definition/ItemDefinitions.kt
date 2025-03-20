@@ -93,7 +93,11 @@ class ItemDefinitions(
                     }
                     ids[stringId] = id
                     definitions[id].stringId = stringId
-                    definitions[id].extras = extras
+                    if (definitions[id].extras != null) {
+                        (definitions[id].extras as MutableMap<String, Any>).putAll(extras)
+                    } else {
+                        definitions[id].extras = extras
+                    }
                 }
             }
             for (definition in definitions) {

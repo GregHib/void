@@ -88,7 +88,7 @@ class DropTables {
             require(dropTable != null) { "Unable to find drop table with name '${table}'." }
             return dropTable
         } else if (id != "") {
-            require(itemDefinitions == null || itemDefinitions.getOrNull(id) != null) { "Unable to find item with id '${id}'." }
+            require(itemDefinitions == null || id == "nothing" || itemDefinitions.getOrNull(id) != null) { "Unable to find item with id '${id}'." }
             return ItemDrop(id = id, min = min, max = max, chance = chance ?: 1, members = members, owns = owns, lacks = lacks)
         } else {
             throw IllegalStateException("Unexpected drop entry. ${exception()}")

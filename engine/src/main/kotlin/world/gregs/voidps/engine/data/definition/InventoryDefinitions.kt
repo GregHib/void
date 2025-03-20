@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.Hash
-import it.unimi.dsi.fastutil.ints.IntArrayList
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
@@ -24,7 +23,7 @@ class InventoryDefinitions(
             val ids = Object2IntOpenHashMap<String>()
             Config.fileReader(path) {
                 while (nextSection()) {
-                    val section = section()
+                    val stringId = section()
                     var id = -1
                     val extras = Object2ObjectOpenHashMap<String, Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
                     while (nextPair()) {
@@ -45,8 +44,9 @@ class InventoryDefinitions(
                         }
                     }
                     if (id > -1) {
-                        ids[section] = id
+                        ids[stringId] = id
                         definitions[id].extras = extras
+                        definitions[id].stringId = stringId
                     }
                 }
             }
