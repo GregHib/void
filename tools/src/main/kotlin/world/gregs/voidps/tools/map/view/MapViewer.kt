@@ -35,7 +35,7 @@ class MapViewer {
             val decoder = ObjectDecoder(member = false, lowDetail = false).load(cache)
             val defs = ObjectDefinitions(decoder).load("./data/definitions/objects.toml")
             val areas = AreaDefinitions().load("./data/map/areas.toml")
-            val nav = NavigationGraph(defs, areas).load(yaml, "./data/map/nav-graph.yml")
+            val nav = NavigationGraph(defs, areas).load("./data/map/nav-graph.toml")
             val collisions = Collisions()
             if (DISPLAY_AREA_COLLISIONS || DISPLAY_ALL_COLLISIONS) {
                 val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache))

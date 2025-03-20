@@ -68,6 +68,7 @@ class AreaSet {
         @Suppress("UNCHECKED_CAST")
         fun load(yaml: Yaml, path: String = "./areas.toml"): AreaSet {
             val set = AreaSet()
+            // FIXME
             val map = yaml.load<Map<String, Map<String, Any>>>(path)
             val areas = map.map { (key, value) ->
                 val a = value["area"] as Map<String, Any>
