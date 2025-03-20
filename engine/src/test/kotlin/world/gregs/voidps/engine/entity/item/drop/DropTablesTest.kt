@@ -7,8 +7,9 @@ import org.junit.jupiter.api.Test
 class DropTablesTest {
 
     @Test
-    fun `Load from yaml`() {
-        val decoder = DropTables().load("./src/test/resources/drop-table.yml")
+    fun `Load from toml`() {
+        val uri = DropTablesTest::class.java.getResource("drop-table.toml")!!.toURI()
+        val decoder = DropTables().load(uri.path)
         val table = decoder.getValue("test_drop_table")
         assertNotNull(table)
         assertNull(decoder.get("invalid_drop_table"))

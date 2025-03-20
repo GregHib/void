@@ -23,7 +23,7 @@ internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefini
     }
 
     override fun load(definitions: AnimationDefinitions) {
-        val uri = ItemDefinitionsTest::class.java.getResource("test-animation.toml")!!
+        val uri = AnimationDefinitionsTest::class.java.getResource("test-animation.toml")!!
         definitions.load(uri.path)
     }
 

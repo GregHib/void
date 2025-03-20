@@ -1,8 +1,5 @@
 package world.gregs.voidps.engine.data.definition
 
-import io.mockk.every
-import io.mockk.mockk
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 
@@ -30,10 +27,7 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
     }
 
     override fun load(definitions: NPCDefinitions) {
-        val uri = ItemDefinitionsTest::class.java.getResource("test-npc.toml")!!
-        val itemDefinitions: ItemDefinitions = mockk(relaxed = true)
-        every { itemDefinitions.get(any<Int>()) } returns ItemDefinition.EMPTY
-        every { itemDefinitions.get(any<String>()) } returns ItemDefinition.EMPTY
+        val uri = NPCDefinitionsTest::class.java.getResource("test-npc.toml")!!
         definitions.load(uri.path)
     }
 }
