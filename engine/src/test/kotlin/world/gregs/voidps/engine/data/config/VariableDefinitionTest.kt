@@ -5,6 +5,7 @@ import io.mockk.mockkStatic
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.client.variable.VariableValues
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.sendVarbit
 import world.gregs.voidps.network.login.protocol.encode.sendVarc
@@ -13,18 +14,16 @@ import world.gregs.voidps.network.login.protocol.encode.sendVarp
 
 internal class VariableDefinitionTest {
 
-    private lateinit var defs: MutableMap<String, Any>
     private lateinit var client: Client
+
+    private val id = 0
+    private val default = 0
+    private val persist = true
+    private val transmit = true
+    private val values = VariableValues(listOf("First", "Second"), "int", default)
 
     @BeforeEach
     fun setup() {
-        defs = mutableMapOf(
-            "id" to 0,
-            "format" to "int",
-            "persist" to true,
-            "transmit" to true,
-            "values" to listOf("First", "Second")
-        )
         client = mockk(relaxed = true)
         mockkStatic("world.gregs.voidps.network.login.protocol.encode.VarpEncoderKt")
         mockkStatic("world.gregs.voidps.network.login.protocol.encode.VarbitEncoderKt")
@@ -35,8 +34,7 @@ internal class VariableDefinitionTest {
     @Test
     fun `Variable can prevent transmission`() {
         // Given
-        defs["transmit"] = false
-        val variable = VariableDefinition.VarpDefinition(defs)
+        val variable = VariableDefinition.VarpDefinition(id, values, default, persist, false)
         // When
         variable.send(client, 0)
         // Then
@@ -46,7 +44,7 @@ internal class VariableDefinitionTest {
     @Test
     fun `Send varp`() {
         // Given
-        val variable = VariableDefinition.VarpDefinition(defs)
+        val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         // When
         variable.send(client, 0)
         // Then
@@ -55,7 +53,7 @@ internal class VariableDefinitionTest {
 
     @Test
     fun `Send varbit`() {
-        val variable = VariableDefinition.VarbitDefinition(defs)
+        val variable = VariableDefinition.VarbitDefinition(id, values, default, persist, transmit)
         // When
         variable.send(client, 0)
         // Then
@@ -65,7 +63,7 @@ internal class VariableDefinitionTest {
     @Test
     fun `Send varc`() {
         // Given
-        val variable = VariableDefinition.VarcDefinition(defs)
+        val variable = VariableDefinition.VarcDefinition(id, values, default, persist, transmit)
         // When
         variable.send(client, 0)
         // Then
@@ -75,8 +73,7 @@ internal class VariableDefinitionTest {
     @Test
     fun `Send varcstr`() {
         // Given
-        defs["format"] = "string"
-        val variable = VariableDefinition.VarcStrDefinition(defs)
+        val variable = VariableDefinition.VarcStrDefinition(id, VariableValues(listOf("First", "Second"), "string", default), persist, transmit)
         // When
         variable.send(client, "nothing")
         // Then

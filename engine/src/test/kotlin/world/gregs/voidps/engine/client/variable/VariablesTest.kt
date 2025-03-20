@@ -19,18 +19,15 @@ internal class VariablesTest {
     private lateinit var client: Client
     private lateinit var events: EventDispatcher
     private lateinit var map: MutableMap<String, Any>
-    private lateinit var defs: MutableMap<String, Any>
+
+    private val id = 0
+    private val default = "First"
+    private val persist = true
+    private val values = VariableValues(listOf("First", "Second"), "bitwise", default)
+    private val transmit = true
 
     @BeforeEach
     fun setup() {
-        defs = mutableMapOf(
-            "id" to 0,
-            "format" to "bitwise",
-            "default" to "First",
-            "persist" to true,
-            "transmit" to true,
-            "values" to listOf("First", "Second")
-        )
         map = mutableMapOf()
         variable = mockk(relaxed = true)
         every { variable.transmit } returns true
@@ -121,7 +118,7 @@ internal class VariablesTest {
     @Test
     fun `Add bitwise`() {
         // Given
-        val variable = VariableDefinition.VarpDefinition(defs)
+        val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[key] = arrayListOf<Any>()
         every { definitions.get(key) } returns variable
         // When
@@ -137,7 +134,7 @@ internal class VariablesTest {
     @Test
     fun `Add bitwise two`() {
         // Given
-        val variable = VariableDefinition.VarpDefinition(defs)
+        val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
@@ -153,7 +150,7 @@ internal class VariablesTest {
     @Test
     fun `Add bitwise existing`() {
         // Given
-        val variable = VariableDefinition.VarpDefinition(defs)
+        val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
@@ -166,7 +163,7 @@ internal class VariablesTest {
     @Test
     fun `Add bitwise no refresh`() {
         // Given
-        val variable = VariableDefinition.VarpDefinition(defs)
+        val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[key] = arrayListOf<Any>()
         every { definitions.get(key) } returns variable
         // When
@@ -179,7 +176,7 @@ internal class VariablesTest {
     @Test
     fun `Remove bitwise`() {
         // Given
-        val variable = VariableDefinition.VarpDefinition(defs)
+        val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
@@ -195,7 +192,7 @@ internal class VariablesTest {
     @Test
     fun `Remove bitwise no refresh`() {
         // Given
-        val variable = VariableDefinition.VarpDefinition(defs)
+        val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
@@ -208,8 +205,7 @@ internal class VariablesTest {
     @Test
     fun `Persistence uses different variable map`() {
         // Given
-        defs["persist"] = false
-        val variable = VariableDefinition.VarpDefinition(defs)
+        val variable = VariableDefinition.VarpDefinition(id, values, default, false, transmit)
         variables.temp[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
@@ -222,8 +218,7 @@ internal class VariablesTest {
     @Test
     fun `Clear bitwise of multiple values`() {
         // Given
-        defs["default"] = arrayListOf<Any>()
-        val variable = VariableDefinition.VarpDefinition(defs)
+        val variable = VariableDefinition.VarpDefinition(id, values, arrayListOf<Any>(), persist, transmit)
         map[key] = arrayListOf("Third")
         every { definitions.get(key) } returns variable
         // When
