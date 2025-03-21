@@ -144,7 +144,17 @@ abstract class WorldTest : KoinTest {
     @BeforeAll
     fun beforeAll() {
         properties = Properties()
-        properties.load(WorldTest::class.java.getResourceAsStream("/test.properties")!!)
+        properties.load(WorldTest::class.java.getResourceAsStream("/game.properties")!!)
+        for ((key, value) in properties) {
+            if (value is String && value.startsWith("./")) {
+                properties[key] = value.replace("./", "../")
+            }
+        }
+        properties["storage.players.path"] = "../data/test-saves/"
+        properties["world.npcs.randomWalk"] = false
+        properties["bots.count"] = 0
+        properties.remove("world.id")
+        properties.remove("world.name")
         settings = Settings.load(properties)
         stopKoin()
         startKoin {

@@ -30,7 +30,7 @@ object WorldMapDumper {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        Settings.load("tool.properties")
+        Settings.load("game.properties")
         val koin = startKoin {
             modules(
             module {

@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.inv.add
 object DropTableDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
-        Settings.load("tool.properties")
+        Settings.load("game.properties")
         startKoin {
             modules(module {
                 @Suppress("USELESS_CAST")
