@@ -14,7 +14,7 @@ object ItemDefinitionPatcher {
         val decoder = ItemDecoder().load(cache)
         val yaml = Yaml()
         val current = ItemDefinitions(ItemDecoder().load(cache)).load(property("definitions.items"))
-        val newer = ItemDefinitions(ItemDecoder().load(cache)).load("./items.toml")
+        val newer = ItemDefinitions(ItemDecoder().load(cache)).load("./items/")
         val map = mutableMapOf<Int, Double>()
         for (id in decoder.indices) {
             val def = current.getOrNull(id) ?: continue
