@@ -2,6 +2,7 @@ package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinitionFull
+import world.gregs.voidps.engine.data.Settings
 
 object RemovePriceCheckerTradeLimit : InterfaceModifier() {
 
@@ -22,8 +23,8 @@ object RemovePriceCheckerTradeLimit : InterfaceModifier() {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val path = "./data/cache/"
-        val cache = CacheLibrary(path)
+        Settings.load()
+        val cache = CacheLibrary(Settings["storage.cache.path"])
         convert(cache)
     }
 }

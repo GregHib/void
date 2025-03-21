@@ -7,6 +7,7 @@ import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
 import world.gregs.voidps.cache.definition.encoder.ClientScriptEncoder
+import world.gregs.voidps.engine.data.Settings
 import java.io.File
 
 object CopyCs2Script : InterfaceModifier() {
@@ -40,8 +41,8 @@ object CopyCs2Script : InterfaceModifier() {
     @JvmStatic
     fun main(args: Array<String>) {
         val path718 = "./temp/cache/cache-667/"
-        val path = "./data/cache/"
-        val cache = CacheLibrary(path)
+        Settings.load()
+        val cache = CacheLibrary(Settings["storage.cache.path"])
         convert(cache, File(path718), 677)
     }
 }

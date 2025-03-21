@@ -10,6 +10,7 @@ import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoderFull
 import world.gregs.voidps.cache.definition.encoder.ClientScriptEncoder
 import world.gregs.voidps.cache.definition.encoder.InterfaceEncoder
+import world.gregs.voidps.engine.data.Settings
 import java.io.File
 
 object MoveCameraClientScript {
@@ -89,8 +90,8 @@ object MoveCameraClientScript {
     @JvmStatic
     fun main(args: Array<String>) {
         val path718 = "./temp/cache/cache-667/"
-        val path = "./data/cache/"
-        val cache = CacheLibrary(path)
+        Settings.load()
+        val cache = CacheLibrary(Settings["storage.cache.path"])
         convert(cache, File(path718))
     }
 }

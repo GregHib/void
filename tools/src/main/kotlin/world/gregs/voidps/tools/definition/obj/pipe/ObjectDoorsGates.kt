@@ -3,6 +3,7 @@ package world.gregs.voidps.tools.definition.obj.pipe
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoderFull
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
 import kotlin.math.abs
@@ -107,7 +108,8 @@ class ObjectDoorsGates(private val decoder: Array<ObjectDefinitionFull>) : Pipel
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val cache = CacheDelegate("./data/cache")
+            Settings.load()
+            val cache = CacheDelegate(Settings["storage.cache.path"])
             val decoder = ObjectDecoderFull(members = false, lowDetail = true).load(cache)
             val gates = ObjectDoorsGates(decoder)
             val match = gates.match(decoder[45849])
