@@ -29,6 +29,48 @@ data class ItemDrop(
     companion object {
         private val logger = InlineLogger()
 
+        operator fun invoke(
+            id: String = "",
+            min: Int = 1,
+            max: Int = 1,
+            chance: Int = 1,
+            members: Boolean = false,
+            owns: String? = null,
+            lacks: String? = null,
+            variable: String? = null,
+            eq: Any? = null,
+            default: Any? = null,
+            within: String? = null,
+        ): ItemDrop {
+            var predicate: ((Player) -> Boolean)? =null
+            if (owns != null || lacks != null) {
+                predicate = { (owns == null || ownsItem(it, owns)) && (lacks == null || !ownsItem(it, lacks)) }
+            } else if (variable != null) {
+                if (eq != null) {
+                    when (default) {
+                        is Int -> predicate = { it[variable, default] == eq }
+                        is String -> predicate = { it[variable, default] == eq }
+                        is Double -> predicate = { it[variable, default] == eq }
+                        is Long -> predicate = { it[variable, default] == eq }
+                        is Boolean -> predicate = { it[variable, default] == eq }
+                        else -> when (eq) {
+                            is Int -> predicate = { it.get<Int>(variable) == eq }
+                            is String -> predicate = { it.get<String>(variable) == eq }
+                            is Double -> predicate = { it.get<Double>(variable) == eq }
+                            is Long -> predicate = { it.get<Long>(variable) == eq }
+                            is Boolean -> predicate = { it.get<Boolean>(variable) == eq }
+                            else -> {}
+                        }
+                    }
+                } else if (within != null) {
+                    val range = within.toIntRange(inclusive = true)
+                    predicate = { it[variable, default ?: -1] in range }
+                }
+            }
+            val amount = min..max
+            return ItemDrop(id, amount, chance, members, predicate)
+        }
+
         operator fun invoke(map: Map<String, Any>, itemDefinitions: ItemDefinitions? = null): ItemDrop {
             val id = map["id"] as String
             if (itemDefinitions != null && id != "nothing") {
@@ -76,7 +118,7 @@ data class ItemDrop(
 
         private val inventories = listOf("inventory", "worn_equipment", "bank")
 
-        private fun ownsItem(player: Player, item: String): Boolean {
+        fun ownsItem(player: Player, item: String): Boolean {
             for (inventory in inventories) {
                 val items = player.inventories.inventory(inventory).items
                 if (items.any { wildcardEquals(item, it.id) }) {

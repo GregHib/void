@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.data.definition
 
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.cache.definition.decoder.GraphicDecoder
-import world.gregs.yaml.Yaml
 
 internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition, GraphicDecoder, GraphicDefinitions>() {
 
@@ -24,7 +23,8 @@ internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition
     }
 
     override fun load(definitions: GraphicDefinitions) {
-        definitions.load(Yaml(), "../data/definitions/graphics.yml")
+        val uri = GraphicDefinitionsTest::class.java.getResource("test-gfx.toml")!!
+        definitions.load(uri.path)
     }
 
 }

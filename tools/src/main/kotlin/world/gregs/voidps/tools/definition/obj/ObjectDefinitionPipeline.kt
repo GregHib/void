@@ -63,7 +63,7 @@ private object ObjectDefinitionPipeline {
         val output = buildObjectExtras(decoder, pages)
         val map = ItemDefinitionPipeline.convertToYaml(output)
         val yaml = Yaml()
-        val file = File("objects.yml")
+        val file = File("objects.toml")
         yaml.save(file.path, map)
         val contents = "# Don't edit; apply changes to the ObjectDefinitionPipeline tool's ObjectManualChanges class instead.\n${file.readText()}"
         file.writeText(contents)

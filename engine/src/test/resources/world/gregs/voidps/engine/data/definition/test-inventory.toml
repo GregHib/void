@@ -1,0 +1,12 @@
+[bobs_brilliant_axes]
+id = 1
+shop = true
+defaults = {
+  bronze_pickaxe = 10,
+  bronze_hatchet = 10,
+  iron_hatchet = 10,
+  steel_hatchet = 10,
+  iron_battleaxe = 10,
+  steel_battleaxe = 10,
+  mithril_battleaxe = 10,
+}

@@ -1,0 +1,46 @@
+[aggressive]
+type = "player"
+check_visual = "line_of_sight"
+check_not_too_strong = false
+check_not_combat = true
+check_not_combat_self = true
+check_not_busy = false
+
+[aggressive_npcs]
+type = "npc"
+check_visual = "line_of_sight"
+check_not_too_strong = false
+check_not_combat = true
+check_not_combat_self = true
+check_not_busy = false
+
+[aggressive_intolerant]
+type = "player"
+check_visual = "line_of_sight"
+check_not_too_strong = false
+check_not_combat = true
+check_not_combat_self = true
+check_not_busy = false
+check_afk = false
+
+[not_busy]
+type = "player"
+check_visual = "line_of_sight"
+check_not_too_strong = false
+check_not_combat = true
+check_not_combat_self = true
+check_not_busy = true
+
+[cowardly]
+type = "player"
+check_visual = "line_of_sight"
+check_not_combat = true
+check_not_combat_self = true
+check_not_too_strong = true
+check_not_busy = true
+
+[ash_finder]
+type = "floor_item"
+check_visual = "line_of_sight"
+id = "ashes"
+rate = 4

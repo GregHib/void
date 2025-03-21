@@ -99,11 +99,11 @@ fun tan(player: Player, type: String, amount: Int) {
     var noHides = false
     for (i in 0 until amount) {
         if (!player.inventory.transaction {
-                replace(item, leather as String)
+                replace(item, leather)
                 if (failed) {
                     noHides = true
                 }
-                remove("coins", cost as Int)
+                remove("coins", cost)
             }) {
             break
         }
@@ -118,6 +118,6 @@ fun tan(player: Player, type: String, amount: Int) {
     if (noHides) {
         player.message("You have run out of ${item.plural().toLowerSpaceCase()}.")
     } else if (tanned < amount) {
-        player.message("You haven't got enough coins to pay for ${if (tanned == 0) "" else "more "}${(leather as String).toLowerSpaceCase()}.")
+        player.message("You haven't got enough coins to pay for ${if (tanned == 0) "" else "more "}${leather.toLowerSpaceCase()}.")
     }
 }

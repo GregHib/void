@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.add
-import world.gregs.yaml.Yaml
 
 object DropTableDefinitions {
     @JvmStatic
@@ -21,10 +20,10 @@ object DropTableDefinitions {
             modules(module {
                 @Suppress("USELESS_CAST")
                 single { CacheDelegate(Settings["storage.cache.path"]) as Cache }
-                single { ItemDefinitions(ItemDecoder().load(get())).load(Yaml()) }
+                single { ItemDefinitions(ItemDecoder().load(get())).load() }
             })
         }
-        val decoder = DropTables().load(Yaml())
+        val decoder = DropTables().load()
         val table = decoder.getValue("goblin_drop_table")
 
         val list = mutableListOf<ItemDrop>()

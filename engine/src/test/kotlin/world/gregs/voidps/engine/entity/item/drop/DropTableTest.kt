@@ -201,20 +201,19 @@ internal class DropTableTest {
     @Test
     fun `Build from map`() {
         val item1 = drop("1", 2, members = false)
-        val map = mapOf(
-            "type" to TableType.All,
-            "roll" to 12,
-            "drops" to listOf(item1),
-            "chance" to 6
+        val table = DropTable(
+            type = TableType.All,
+            roll = 12,
+            drops = listOf(item1),
+            chance = 6
         )
-        val table = DropTable(map)
         assertEquals(DropTable(TableType.All, 12, listOf(item1), 6), table)
     }
 
     @Test
     fun `Build from map defaults`() {
         val item1 = drop("1", 2, members = false)
-        val table = DropTable(mapOf("drops" to listOf(item1)))
+        val table = DropTable(drops = listOf(item1))
         assertEquals(DropTable(TableType.First, 1, listOf(item1), -1), table)
     }
 

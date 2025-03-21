@@ -50,7 +50,7 @@ class Yaml(
     fun read(charArray: CharArray, length: Int = charArray.size, config: YamlReaderConfiguration = defaultReader): Any {
         explicitReader.config = config
         normalReader.config = config
-        reader.anchors.clear()
+//        reader.anchors.clear()
         reader.set(charArray, length)
         reader.nextLine()
         if (reader.outBounds) {

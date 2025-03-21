@@ -1,5 +1,6 @@
 package world.gregs.voidps.tools.convert
 
+import world.gregs.config.Config
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Config.INVENTORIES
@@ -16,7 +17,7 @@ import kotlin.collections.component2
 import kotlin.collections.set
 
 /**
- * Converts inventories from one cache into another, dumping the default values into inventories.yml
+ * Converts inventories from one cache into another, dumping the default values into inventories.toml
  */
 @Suppress("UNCHECKED_CAST")
 object InventoryConverter {
@@ -25,12 +26,24 @@ object InventoryConverter {
         val targetCache = CacheDelegate(target.path)
         val otherCache = CacheDelegate(provider.path)
 
-        val yaml = Yaml()
         val otherDecoder = InventoryDecoder().load(otherCache)
         val targetDecoder = InventoryDecoder().load(targetCache)
-        val itemDefinitions = ItemDefinitions(ItemDecoder().load(targetCache)).load(yaml, property("definitions.items"))
+        val itemDefinitions = ItemDefinitions(ItemDecoder().load(targetCache)).load(property("definitions.items"))
         val encoder = InventoryEncoder()
-        val data: MutableMap<String, Any> = yaml.load<Map<String, Any>>(property("definitions.inventories")).toMutableMap()
+        val data: MutableMap<String, Any> = mutableMapOf()
+
+        Config.fileReader(property("definitions.inventories")) {
+            while (nextSection()) {
+                val section = section()
+                val map = mutableMapOf<String, Any>()
+                while (nextPair()) {
+                    val key = key()
+                    val value = value()
+                    map[key] = value
+                }
+                data[section] = map
+            }
+        }
 
         var counter = 0
         for (index in targetDecoder.indices) {
@@ -80,7 +93,7 @@ object InventoryConverter {
         if (targetCache.update()) {
             println("Updated $counter inventories.")
         }
-//        yaml.save("inventories.yml", data)
+//        yaml.save("inventories.toml", data)
     }
 
     @JvmStatic

@@ -48,30 +48,6 @@ data class ItemOnItemDefinition(
 ) {
 
     companion object {
-
-        @Suppress("UNCHECKED_CAST")
-        operator fun invoke(map: Map<String, Any>) = ItemOnItemDefinition(
-            skill = map["skill"] as? Skill,
-            xp = map["xp"] as? Double ?: EMPTY.xp,
-            level = map["level"] as? Int ?: EMPTY.level,
-            requires = map["requires"] as? List<Item> ?: EMPTY.requires,
-            one = map["one"] as? List<Item> ?: EMPTY.one,
-            remove = map["remove"] as? List<Item> ?: EMPTY.remove,
-            add = map["add"] as? List<Item> ?: EMPTY.add,
-            fail = map["fail"] as? List<Item> ?: EMPTY.fail,
-            chance = map["chance"] as? IntRange ?: EMPTY.chance,
-            delay = map["delay"] as? Int ?: EMPTY.delay,
-            ticks = map["ticks"] as? Int ?: EMPTY.ticks,
-            type = map["type"] as? String ?: EMPTY.type,
-            animation = map["animation"] as? String ?: EMPTY.animation,
-            graphic = map["graphic"] as? String ?: EMPTY.graphic,
-            sound = map["sound"] as? String ?: EMPTY.sound,
-            message = map["message"] as? String ?: EMPTY.message,
-            failure = map["failure"] as? String ?: EMPTY.failure,
-            question = map["question"] as? String ?: "How many would you like to ${map["type"] as? String ?: EMPTY.type}?",
-            maximum = map["maximum"] as? Int ?: EMPTY.maximum
-        )
-
         val EMPTY = ItemOnItemDefinition(Skill.Attack)
     }
 }

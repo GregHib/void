@@ -14,11 +14,10 @@ object ItemDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("storage.cache.path"))
-        val yaml = Yaml()
-        val categories = CategoryDefinitions().load(yaml, property("definitions.categories"))
-        val ammo = AmmoDefinitions().load(yaml, property("definitions.ammoGroups"))
-        val parameters = ParameterDefinitions(categories, ammo).load(yaml, property("definitions.parameters"))
-        val decoder = ItemDefinitions(ItemDecoder(parameters).load(cache)).load(yaml, property("definitions.items"))
+        val categories = CategoryDefinitions().load(property("definitions.categories"))
+        val ammo = AmmoDefinitions().load(property("definitions.ammoGroups"))
+        val parameters = ParameterDefinitions(categories, ammo).load(property("definitions.parameters"))
+        val decoder = ItemDefinitions(ItemDecoder(parameters).load(cache)).load(property("definitions.items"))
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
             if(def.stringId.contains("anchor"))

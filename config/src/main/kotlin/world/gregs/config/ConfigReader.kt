@@ -9,9 +9,14 @@ class ConfigReader(
     private val input: InputStream,
     private val stringBuffer: ByteArray = ByteArray(100), // Maximum string length
 ) : Closeable {
-    internal var byte: Int = input.read()
+    private var byte: Int = input.read()
     private var lastSection = ""
     private var line = 1
+
+    val peek: Char
+        get() = byte.toChar()
+
+    constructor(input: InputStream, maxStringLength: Int) : this(input, ByteArray(maxStringLength))
 
     init {
         nextLine()
@@ -378,15 +383,15 @@ class ConfigReader(
             F -> booleanFalse()
             MINUS -> {
                 val value = readLong(0)
-                if (byte == DOT) -readDecimal(value) else -value
+                if (byte == DOT) -readDecimal(value) else if (value > Int.MIN_VALUE && value < Int.MAX_VALUE) -value.toInt() else -value
             }
             PLUS -> {
                 val value = readLong(0)
-                if (byte == DOT) readDecimal(value) else value
+                if (byte == DOT) readDecimal(value) else if (value > Int.MIN_VALUE && value < Int.MAX_VALUE) value.toInt() else value
             }
             ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> {
                 val value = readLong(byte - ZERO.toLong())
-                if (byte == DOT) readDecimal(value) else value
+                if (byte == DOT) readDecimal(value) else if (value > Int.MIN_VALUE && value < Int.MAX_VALUE) value.toInt() else value
             }
             else -> throw IllegalArgumentException("Unexpected character. ${exception()}")
         }
@@ -407,9 +412,7 @@ class ConfigReader(
                     line++
                     byte = input.read()
                 }
-                else -> {
-                    byte = input.read()
-                }
+                else -> byte = input.read()
             }
         }
     }
@@ -418,7 +421,7 @@ class ConfigReader(
         input.close()
     }
 
-    private fun exception(): String = "line=$line char='${charType(byte)}'"
+    fun exception(): String = "line=$line char='${charType(byte)}'"
 
     companion object {
 

@@ -1,11 +1,7 @@
 package world.gregs.voidps.engine.data.definition
 
-import io.mockk.every
-import io.mockk.mockk
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.yaml.Yaml
 
 internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, ObjectDecoder, ObjectDefinitions>() {
 
@@ -27,9 +23,7 @@ internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, 
     }
 
     override fun load(definitions: ObjectDefinitions) {
-        val itemDefinitions = mockk<ItemDefinitions>(relaxed = true)
-        every { itemDefinitions.get(any<Int>()) } returns ItemDefinition.EMPTY
-        every { itemDefinitions.get(any<String>()) } returns ItemDefinition.EMPTY
-        definitions.load(Yaml(), "../data/definitions/objects.yml")
+        val uri = ObjectDefinitionsTest::class.java.getResource("test-object.toml")!!
+        definitions.load(uri.path)
     }
 }

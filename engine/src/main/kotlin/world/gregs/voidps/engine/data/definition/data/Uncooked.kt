@@ -1,5 +1,11 @@
 package world.gregs.voidps.engine.data.definition.data
 
+import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.objects.Object2ObjectMap
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.config.ConfigReader
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
+
 /**
  * @param level required to attempt cooking
  * @param xp experience for successfully cooking
@@ -33,27 +39,60 @@ data class Uncooked(
 ) {
 
     companion object {
-
-        @Suppress("UNCHECKED_CAST")
-        operator fun invoke(map: Map<String, Any>): Uncooked {
-            val chances = map["chances"] as? Map<String, IntRange> ?: emptyMap()
+        operator fun invoke(reader: ConfigReader): Uncooked {
+            var level = 1
+            var xp = 0.0
+            var burntXp = 0.0
+            var chance: IntRange = 255..255
+            var cooked = ""
+            var cookedMessage = ""
+            var burnt = ""
+            var burntMessage = ""
+            var leftover = ""
+            var start = 1
+            var ticks = 4
+            var type = "cook"
+            val chances = Object2ObjectOpenHashMap<String, IntRange>(0, Hash.VERY_FAST_LOAD_FACTOR)
+            while (reader.nextEntry()) {
+                when (val key = reader.key()) {
+                    "level" -> level = reader.int()
+                    "xp" -> xp = reader.double()
+                    "burntXp" -> burntXp = reader.double()
+                    "chance" -> chance = reader.string().toIntRange()
+                    "cooked" -> cooked = reader.string()
+                    "cooked_message" -> cookedMessage = reader.string()
+                    "burnt" -> burnt = reader.string()
+                    "burnt_message" -> burntMessage = reader.string()
+                    "leftover" -> leftover = reader.string()
+                    "start" -> start = reader.int()
+                    "ticks" -> ticks = reader.int()
+                    "type" -> type = reader.string()
+                    "chances" -> while (reader.nextEntry()) {
+                        chances[reader.key()] = reader.string().toIntRange()
+                    }
+                    else -> throw IllegalArgumentException("Unexpected key: '$key' ${reader.exception()}")
+                }
+            }
             val fireChance = chances["fire"] ?: EMPTY.chance
             val rangeChance = chances["range"] ?: fireChance
             val cooksRangeChance = chances["cooks_range"] ?: rangeChance
             val gauntletChance = chances["gauntlet"] ?: rangeChance
             return Uncooked(
-                level = map["level"] as? Int ?: EMPTY.level,
-                xp = map["xp"] as? Double ?: EMPTY.xp,
-                chance = fireChance,
+                level = level,
+                xp = xp,
+                burntXp = burntXp,
+                chance = chance,
                 rangeChance = rangeChance,
                 cooksRangeChance = cooksRangeChance,
                 gauntletChance = gauntletChance,
-                cooked = map["cooked"] as? String ?: EMPTY.cooked,
-                cookedMessage = map["cooked_message"] as? String ?: EMPTY.cookedMessage,
-                burnt = map["burnt"] as? String ?: EMPTY.burnt,
-                burntMessage = map["burnt_message"] as? String ?: EMPTY.burntMessage,
-                leftover = map["leftover"] as? String ?: EMPTY.leftover,
-                type = map["type"] as? String ?: EMPTY.type,
+                cooked = cooked,
+                cookedMessage = cookedMessage,
+                burnt = burnt,
+                burntMessage = burntMessage,
+                leftover = leftover,
+                start = start,
+                ticks = ticks,
+                type = type,
                 rangeOnly = chances.containsKey("range") && !chances.containsKey("fire")
             )
         }

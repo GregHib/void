@@ -1,12 +1,11 @@
 package world.gregs.voidps.engine.data.definition
 
+import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.config.Config
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.SpellDefinition
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.Yaml
-import world.gregs.yaml.read.YamlReaderConfiguration
 
 class SpellDefinitions {
 
@@ -14,28 +13,34 @@ class SpellDefinitions {
 
     fun get(key: String) = definitions[key] ?: SpellDefinition()
 
-    @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["definitions.spells"]): SpellDefinitions {
+    fun load(path: String = Settings["definitions.spells"]): SpellDefinitions {
         timedLoad("spell definition") {
             val definitions = Object2ObjectOpenHashMap<String, SpellDefinition>()
-            val config = object : YamlReaderConfiguration() {
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-                    if (key == "<<") {
-                        map.putAll(value as Map<String, Any>)
-                        return
-                    }
-                    if (indent == 0) {
-                        definitions[key] = if (value is Map<*, *>) {
-                            SpellDefinition(key, value as MutableMap<String, Any>)
-                        } else {
-                            SpellDefinition(stringId = key)
+            Config.fileReader(path) {
+                while (nextSection()) {
+                    val stringId = section()
+                    val extras = Object2ObjectOpenHashMap<String, Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
+                    var maxHit = 0
+                    var experience = 0.0
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "clone" -> {
+                                val clone = string()
+                                require(definitions.containsKey(clone)) { "Unable to find spell with id '$clone'" }
+                                extras.putAll(definitions[clone]?.extras ?: continue)
+                            }
+                            "exp" -> experience = double()
+                            "max_hit" -> maxHit = int()
+                            else -> extras[key] = value()
                         }
+                    }
+                    if (extras.isEmpty()) {
+                        definitions[stringId] = SpellDefinition(maxHit = maxHit, experience = experience, stringId = stringId)
                     } else {
-                        super.set(map, key, value, indent, parentMap)
+                        definitions[stringId] = SpellDefinition(maxHit = maxHit, experience = experience, stringId = stringId, extras = extras)
                     }
                 }
             }
-            yaml.load<Any>(path, config)
             this.definitions = definitions
             this.definitions.size
         }

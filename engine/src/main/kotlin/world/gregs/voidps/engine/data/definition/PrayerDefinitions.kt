@@ -2,13 +2,14 @@ package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.ints.IntArrayList
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArraySet
+import world.gregs.config.Config
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.PrayerDefinition
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.Yaml
-import world.gregs.yaml.read.YamlReaderConfiguration
 
 class PrayerDefinitions {
 
@@ -27,37 +28,49 @@ class PrayerDefinitions {
 
     fun getGroup(group: Int) = groups[group]
 
-    @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["definitions.prayers"]): PrayerDefinitions {
+    fun load(path: String = Settings["definitions.prayers"]): PrayerDefinitions {
         timedLoad("prayer definition") {
             val definitions = Object2ObjectOpenHashMap<String, PrayerDefinition>()
             val prayers = Int2ObjectArrayMap<PrayerDefinition>()
             val curses = Int2ObjectArrayMap<PrayerDefinition>()
-            val config = object : YamlReaderConfiguration() {
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-                    if (indent == 0) {
-                        val id = key.removeSuffix("_curse").removeSuffix("_prayer")
-                        val definition = if (value is Map<*, *>) {
-                            PrayerDefinition(id, value as MutableMap<String, Any>)
-                        } else {
-                            PrayerDefinition(stringId = id)
+            Config.fileReader(path) {
+                while (nextSection()) {
+                    val stringId = section()
+                    var index = -1
+                    var level = 1
+                    var drain = 0
+                    val groups = IntArrayList()
+                    val bonuses = Object2IntOpenHashMap<String>()
+                    var members = false
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "index" -> index = int()
+                            "level" -> level = int()
+                            "drain" -> drain = int()
+                            "groups" -> while (nextElement()) {
+                                groups.add(int())
+                            }
+                            "bonuses" -> while (nextEntry()) {
+                                bonuses[key()] = int()
+                            }
+                            "members" -> members = boolean()
+                            else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
-                        if (key.endsWith("_curse")) {
-                            curses[definition.index] = definition
-                        } else {
-                            prayers[definition.index] = definition
-                        }
+                        val id = stringId.substring(0, stringId.lastIndexOf('_'))
+                        val definition = PrayerDefinition(index, level, drain, groups, bonuses, members, id)
                         definitions[id] = definition
-                    } else {
-                        super.set(map, key, value, indent, parentMap)
+                        if (stringId.endsWith("_curse")) {
+                            curses[index] = definition
+                        } else {
+                            prayers[index] = definition
+                        }
                     }
                 }
             }
-            yaml.load<Any>(path, config)
             val groups = Int2ObjectOpenHashMap<MutableSet<String>>(16)
             for (prayer in definitions.values) {
                 for (group in prayer.groups) {
-                    groups.getOrPut(group) { mutableSetOf() }.add(prayer.stringId)
+                    groups.getOrPut(group) { ObjectArraySet(5) }.add(prayer.stringId)
                 }
             }
             this.prayers = Array(prayers.size) { prayers[it] }
@@ -68,5 +81,4 @@ class PrayerDefinitions {
         }
         return this
     }
-
 }

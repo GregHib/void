@@ -1,10 +1,12 @@
 package world.gregs.voidps.engine.data.definition
 
+import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.Yaml
 
 /**
  * Also known as DataMap in cs2
@@ -34,9 +36,29 @@ class EnumDefinitions(
         return structs.get(struct)[param, default]
     }
 
-    fun load(yaml: Yaml = get(), path: String = Settings["definitions.enums"]): EnumDefinitions {
+    fun load(path: String = Settings["definitions.enums"]): EnumDefinitions {
         timedLoad("enum extra") {
-            decode(yaml, path)
+            val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
+            Config.fileReader(path, 50) {
+                while (nextSection()) {
+                    val stringId = section()
+                    var id = 0
+                    val extras = Object2ObjectOpenHashMap<String, Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "id" -> {
+                                id = int()
+                                ids[stringId] = id
+                                definitions[id].stringId = stringId
+                            }
+                            else -> extras[key] = value()
+                        }
+                    }
+                    definitions[id].extras = extras
+                }
+            }
+            this.ids = ids
+            ids.size
         }
         return this
     }

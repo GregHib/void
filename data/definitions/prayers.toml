@@ -1,0 +1,437 @@
+[thick_skin_prayer]
+index = 0
+level = 1
+drain = 3
+groups = [ 0 ]
+bonuses = {
+  defence = 5
+}
+members = false
+
+[augury_prayer]
+index = 29
+level = 77
+drain = 18
+groups = [ 0, 4 ]
+bonuses = {
+  magic = 25,
+  defence = 25
+}
+members = true
+
+[chivalry_prayer]
+index = 25
+level = 60
+drain = 18
+groups = [ 0, 1, 2 ]
+bonuses = {
+  attack = 15,
+  strength = 18,
+  defence = 20
+}
+members = true
+
+[mystic_will_prayer]
+index = 4
+level = 9
+drain = 3
+groups = [ 4 ]
+bonuses = {
+  magic = 5
+}
+members = false
+
+[mystic_lore_prayer]
+index = 12
+level = 27
+drain = 6
+groups = [ 4 ]
+bonuses = {
+  magic = 10
+}
+members = false
+
+[steel_skin_prayer]
+index = 13
+level = 28
+drain = 12
+groups = [ 0 ]
+bonuses = {
+  defence = 15
+}
+members = false
+
+[rapid_restore_prayer]
+index = 8
+level = 19
+drain = 1
+groups = [ ]
+members = false
+
+[rapid_heal_prayer]
+index = 9
+level = 22
+drain = 2
+groups = [ 5 ]
+members = false
+
+[rigour_prayer]
+index = 28
+level = 74
+drain = 16
+groups = [ 0, 3 ]
+bonuses = {
+  ranged_attack = 20,
+  ranged_strength = 23,
+  defence = 25
+}
+members = true
+
+[smite_prayer]
+index = 24
+level = 52
+drain = 18
+groups = [ 6, 7 ]
+members = true
+
+[rapid_renewal_prayer]
+index = 26
+level = 65
+drain = 14
+groups = [ 5 ]
+members = true
+
+[redemption_prayer]
+index = 23
+level = 49
+drain = 6
+groups = [ 6, 7 ]
+members = true
+
+[protect_from_summoning_prayer]
+index = 16
+level = 35
+drain = 12
+groups = [ 7 ]
+members = true
+
+[protect_from_magic_prayer]
+index = 17
+level = 37
+drain = 12
+groups = [ 6 ]
+members = false
+
+[protect_from_melee_prayer]
+index = 19
+level = 43
+drain = 12
+groups = [ 6 ]
+members = false
+
+[protect_from_missiles_prayer]
+index = 18
+level = 40
+drain = 12
+groups = [ 6 ]
+members = false
+
+[retribution_prayer]
+index = 22
+level = 46
+drain = 3
+groups = [ 6, 7 ]
+members = true
+
+[mystic_might_prayer]
+index = 21
+level = 45
+drain = 12
+groups = [ 4 ]
+bonuses = {
+  magic = 15
+}
+members = false
+
+[eagle_eye_prayer]
+index = 20
+level = 44
+drain = 12
+groups = [ 3 ]
+bonuses = {
+  ranged_attack = 15,
+  ranged_strength = 15
+}
+members = false
+
+[clarity_of_thought_prayer]
+index = 2
+level = 7
+drain = 3
+groups = [ 2 ]
+bonuses = {
+  attack = 5
+}
+members = false
+
+[piety_prayer]
+index = 27
+level = 70
+drain = 20
+groups = [ 0, 1, 2 ]
+bonuses = {
+  attack = 20,
+  strength = 23,
+  defence = 25
+}
+members = true
+
+[superhuman_strength_prayer]
+index = 6
+level = 13
+drain = 6
+groups = [ 1 ]
+bonuses = {
+  strength = 10
+}
+members = false
+
+[incredible_reflexes_prayer]
+index = 15
+level = 34
+drain = 12
+groups = [ 2 ]
+bonuses = {
+  attack = 15
+}
+members = false
+
+[ultimate_strength_prayer]
+index = 14
+level = 31
+drain = 12
+groups = [ 1 ]
+bonuses = {
+  strength = 15
+}
+members = false
+
+[hawk_eye_prayer]
+index = 11
+level = 26
+drain = 6
+groups = [ 3 ]
+bonuses = {
+  ranged_attack = 10,
+  ranged_strength = 10
+}
+members = false
+
+[protect_item_prayer]
+index = 10
+level = 25
+drain = 2
+groups = [ ]
+members = false
+
+[burst_of_strength_prayer]
+index = 1
+level = 4
+drain = 3
+groups = [ 1 ]
+bonuses = {
+  strength = 5
+}
+members = false
+
+[sharp_eye_prayer]
+index = 3
+level = 8
+drain = 3
+groups = [ 3 ]
+bonuses = {
+  ranged_attack = 5,
+  ranged_strength = 5
+}
+members = false
+
+[improved_reflexes_prayer]
+index = 7
+level = 16
+drain = 6
+groups = [ 2 ]
+bonuses = {
+  attack = 10
+}
+members = false
+
+[rock_skin_prayer]
+index = 5
+level = 10
+drain = 6
+groups = [ 0 ]
+bonuses = {
+  defence = 10
+}
+members = false
+
+[protect_item_curse]
+index = 0
+level = 50
+drain = 2
+groups = [ ]
+members = true
+
+[sap_ranger_curse]
+index = 2
+level = 52
+drain = 14
+groups = [ 14 ]
+members = true
+
+[deflect_summoning_curse]
+index = 6
+level = 62
+drain = 12
+groups = [ 9 ]
+members = true
+
+[sap_spirit_curse]
+index = 4
+level = 56
+drain = 14
+groups = [ 16 ]
+members = true
+
+[leech_energy_curse]
+index = 15
+level = 84
+drain = 10
+groups = [ ]
+members = true
+
+[leech_strength_curse]
+index = 14
+level = 82
+drain = 10
+groups = [ 10 ]
+bonuses = {
+  strength = 5
+}
+members = true
+
+[leech_magic_curse]
+index = 12
+level = 78
+drain = 10
+groups = [ 13 ]
+bonuses = {
+  magic = 5
+}
+members = true
+
+[leech_defence_curse]
+index = 13
+level = 80
+drain = 10
+groups = [ 15 ]
+bonuses = {
+  defence = 5
+}
+members = true
+
+[deflect_missiles_curse]
+index = 8
+level = 68
+drain = 12
+groups = [ 12 ]
+members = true
+
+[deflect_melee_curse]
+index = 9
+level = 71
+drain = 12
+groups = [ 12 ]
+members = true
+
+[leech_ranged_curse]
+index = 11
+level = 76
+drain = 10
+groups = [ 14 ]
+bonuses = {
+  ranged_attack = 5,
+  ranged_strength = 5
+}
+members = true
+
+[leech_attack_curse]
+index = 10
+level = 74
+drain = 10
+groups = [ 11 ]
+bonuses = {
+  attack = 5
+}
+members = true
+
+[sap_warrior_curse]
+index = 1
+level = 50
+drain = 14
+groups = [ 11 ]
+members = true
+
+[sap_mage_curse]
+index = 3
+level = 54
+drain = 14
+groups = [ 13 ]
+members = true
+
+[deflect_magic_curse]
+index = 7
+level = 65
+drain = 12
+groups = [ 12 ]
+members = true
+
+[berserker_curse]
+index = 5
+level = 59
+drain = 2
+groups = [ ]
+members = true
+
+[leech_special_attack_curse]
+index = 16
+level = 86
+drain = 10
+groups = [ 16 ]
+members = true
+
+[wrath_curse]
+index = 17
+level = 89
+drain = 3
+groups = [ 8, 9, 12 ]
+members = true
+
+[turmoil_curse]
+index = 19
+level = 95
+drain = 16
+groups = [ 10, 11, 13, 14, 15, 16 ]
+bonuses = {
+  attack = 15,
+  strength = 23,
+  defence = 15
+}
+members = true
+
+[soul_split_curse]
+index = 18
+level = 92
+drain = 16
+groups = [ 8, 9, 12 ]
+members = true

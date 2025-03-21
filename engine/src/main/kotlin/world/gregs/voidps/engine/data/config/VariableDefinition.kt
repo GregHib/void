@@ -18,20 +18,16 @@ open class VariableDefinition internal constructor(
     val transmit: Boolean,
 ) : Definition {
 
-    constructor(
-        map: Map<String, Any?>,
-        id: Int = map["id"] as Int,
-        values: VariableValues = VariableValues(map["values"], map["format"] as? String, map["default"]),
-        defaultValue: Any? = map["default"] ?: values.default(),
-        persistent: Boolean = map["persist"] as? Boolean ?: false,
-        transmit: Boolean = map["transmit"] as? Boolean ?: true
-    ) : this(id, values, defaultValue, persistent, transmit)
-
-    class VarbitDefinition(map: Map<String, Any?>) : VariableDefinition(map)
-    class VarpDefinition(map: Map<String, Any?>) : VariableDefinition(map)
-    class VarcDefinition(map: Map<String, Any?>) : VariableDefinition(map)
-    class VarcStrDefinition(map: Map<String, Any?>) : VariableDefinition(map, values = StringValues)
-    class CustomVariableDefinition(map: Map<String, Any?>) : VariableDefinition(map, id = -1, transmit = false)
+    class VarbitDefinition(id: Int, values: VariableValues, default: Any?, persistent: Boolean, transmit: Boolean) :
+        VariableDefinition(id, values, default ?: values.default(), persistent, transmit)
+    class VarpDefinition(id: Int, values: VariableValues, default: Any?, persistent: Boolean, transmit: Boolean) :
+        VariableDefinition(id, values, default ?: values.default(), persistent, transmit)
+    class VarcDefinition(id: Int, values: VariableValues, default: Any?, persistent: Boolean, transmit: Boolean) :
+        VariableDefinition(id, values, default ?: values.default(), persistent, transmit)
+    class VarcStrDefinition(id: Int, default: Any?, persistent: Boolean, transmit: Boolean) :
+        VariableDefinition(id, StringValues, default ?: StringValues.default(), persistent, transmit)
+    class CustomVariableDefinition(values: VariableValues, default: Any?, persistent: Boolean) :
+        VariableDefinition(-1, values, default ?: values.default(), persistent, transmit = false)
 
     fun send(client: Client, value: Any) {
         try {

@@ -1,17 +1,36 @@
 package world.gregs.voidps.engine.data.definition.data
 
+import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.config.ConfigReader
+
 data class Spot(
     val tackle: List<String> = emptyList(),
     val bait: Map<String, List<String>> = emptyMap()
 ) {
 
     companion object {
-        @Suppress("UNCHECKED_CAST")
-        operator fun invoke(map: Map<String, Any>): Spot {
-            return Spot(
-                tackle = map["items"] as List<String>,
-                bait = map["bait"] as Map<String, List<String>>
-            )
+        operator fun invoke(reader: ConfigReader): Spot {
+            val tackle = ObjectArrayList<String>(1)
+            val bait = Object2ObjectOpenHashMap<String, List<String>>(1, Hash.VERY_FAST_LOAD_FACTOR)
+            while (reader.nextEntry()) {
+                when (val key = reader.key()) {
+                    "items" -> while (reader.nextElement()) {
+                        tackle.add(reader.string())
+                    }
+                    "bait" -> while (reader.nextEntry()) {
+                        val name = reader.key()
+                        val items = ObjectArrayList<String>(1)
+                        while (reader.nextElement()) {
+                            items.add(reader.string())
+                        }
+                        bait[name] = items
+                    }
+                    else -> throw IllegalArgumentException("Unexpected key: '$key' ${reader.exception()}")
+                }
+            }
+            return Spot(tackle = tackle, bait = bait)
         }
 
         val EMPTY = Spot()

@@ -1,0 +1,161 @@
+[unarmed]
+id = 0
+attack_types = [ "punch", "kick", "block" ]
+attack_styles = [ "accurate", "aggressive", "defensive" ]
+combat_styles = [ "crush", "crush", "crush" ]
+
+[staff]
+id = 1
+attack_types = [ "bash", "pound", "focus" ]
+attack_styles = [ "accurate", "aggressive", "defensive" ]
+combat_styles = [ "crush", "crush", "crush" ]
+
+[axe]
+id = 2
+attack_types = [ "chop", "hack", "smash", "block" ]
+attack_styles = [ "accurate", "aggressive", "aggressive", "defensive" ]
+combat_styles = [ "slash", "slash", "crush", "slash" ]
+
+[sceptre]
+id = 3
+attack_types = [ "bash", "pound", "block" ]
+attack_styles = [ "accurate", "aggressive", "defensive" ]
+combat_styles = [ "crush", "crush", "crush" ]
+
+[pickaxe]
+id = 4
+attack_types = [ "spike", "impale", "smash", "block" ]
+attack_styles = [ "accurate", "aggressive", "aggressive", "defensive" ]
+combat_styles = [ "stab", "stab", "crush", "stab" ]
+
+[dagger]
+id = 5
+attack_types = [ "stab", "lunge", "slash", "block" ]
+attack_styles = [ "accurate", "aggressive", "aggressive", "defensive" ]
+combat_styles = [ "stab", "stab", "slash", "stab" ]
+
+[sword]
+id = 6
+attack_types = [ "chop", "slash", "lunge", "block" ]
+attack_styles = [ "accurate", "aggressive", "controlled", "defensive" ]
+combat_styles = [ "slash", "slash", "stab", "slash" ]
+
+[2h]
+id = 7
+attack_types = [ "chop", "slash", "smash", "block" ]
+attack_styles = [ "accurate", "aggressive", "aggressive", "defensive" ]
+combat_styles = [ "slash", "slash", "crush", "slash" ]
+
+[mace]
+id = 8
+attack_types = [ "pound", "pummel", "spike", "block" ]
+attack_styles = [ "accurate", "aggressive", "controlled", "defensive" ]
+combat_styles = [ "crush", "crush", "stab", "crush" ]
+
+[claws]
+id = 9
+attack_types = [ "chop", "slash", "lunge", "block" ]
+attack_styles = [ "accurate", "aggressive", "controlled", "defensive" ]
+combat_styles = [ "slash", "slash", "stab", "slash" ]
+
+[hammer]
+id = 10
+attack_types = [ "pound", "pummel", "block" ]
+attack_styles = [ "accurate", "aggressive", "defensive" ]
+combat_styles = [ "crush", "crush", "crush" ]
+
+[whip]
+id = 11
+attack_types = [ "flick", "lash", "deflect" ]
+attack_styles = [ "accurate", "controlled", "defensive" ]
+combat_styles = [ "slash", "slash", "slash" ]
+
+[fun]
+id = 12
+attack_types = [ "pound", "pummel", "block" ]
+attack_styles = [ "accurate", "aggressive", "defensive" ]
+combat_styles = [ "crush", "crush", "crush" ]
+
+[pie]
+id = 13
+attack_types = [ "accurate", "rapid", "long_range" ]
+attack_styles = [ "accurate", "rapid", "long_range" ]
+combat_styles = [ ]
+
+[spear]
+id = 14
+attack_types = [ "lunge", "swipe", "pound", "block" ]
+attack_styles = [ "controlled", "controlled", "controlled", "defensive" ]
+combat_styles = [ "stab", "slash", "crush", "stab" ]
+
+[halberd]
+id = 15
+attack_types = [ "jab", "swipe", "fend" ]
+attack_styles = [ "controlled", "aggressive", "defensive" ]
+combat_styles = [ "stab", "slash", "stab" ]
+
+[bow]
+id = 16
+attack_types = [ "accurate", "rapid", "long_range" ]
+attack_styles = [ "accurate", "rapid", "long_range" ]
+combat_styles = [ ]
+
+[crossbow]
+id = 17
+attack_types = [ "accurate", "rapid", "long_range" ]
+attack_styles = [ "accurate", "rapid", "long_range" ]
+combat_styles = [ ]
+
+[thrown]
+id = 18
+attack_types = [ "accurate", "rapid", "long_range" ]
+attack_styles = [ "accurate", "rapid", "long_range" ]
+combat_styles = [ ]
+
+[chinchompa]
+id = 19
+attack_types = [ "short_fuse", "medium_fuse", "long_fuse" ]
+attack_styles = [ "short_fuse", "medium_fuse", "long_fuse" ]
+combat_styles = [ ]
+
+[fixed_device]
+id = 20
+attack_types = [ "aim_and_fire" ]
+attack_styles = [ "aim_and_fire", "aggressive" ]
+combat_styles = [ "crush" ]
+
+[salamander]
+id = 21
+attack_types = [ "scorch", "flare", "blaze" ]
+attack_styles = [ "aggressive", "accurate", "defensive" ]
+combat_styles = [ "slash", "ranged", "magic" ]
+
+[scythe]
+id = 22
+attack_types = [ "reap", "chop", "jab", "block" ]
+attack_styles = [ "accurate", "aggressive", "aggressive", "defensive" ]
+combat_styles = [ "slash", "stab", "crush", "slash" ]
+
+[ivandis_flail]
+id = 23
+attack_types = [ "slash", "crush", "slash" ]
+attack_styles = [ "accurate", "aggressive", "defensive" ]
+combat_styles = [ "slash", "crush", "slash" ]
+
+[sling]
+id = 24
+attack_types = [ "sling", "chuck", "lob" ]
+attack_styles = [ "accurate", "rapid", "long_range" ]
+combat_styles = [ ]
+
+[trident]
+id = 25
+attack_types = [ "jab", "swipe", "fend" ]
+attack_styles = [ "accurate", "aggressive", "defensive" ]
+combat_styles = [ "stab", "slash", "crush" ]
+
+[staff_of_light]
+id = 26
+attack_types = [ "jab", "swipe", "fend" ]
+attack_styles = [ "accurate", "aggressive", "defensive" ]
+combat_styles = [ "stab", "slash", "crush" ]

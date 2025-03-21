@@ -1,0 +1,149 @@
+# Chat box
+[chat_background]
+parent = "chat_box"
+index = 9
+
+[chat_box]
+fixedIndex = 191
+resizeIndex = 68
+
+[chat_settings]
+fixedIndex = 67
+resizeIndex = 15
+
+[private_chat]
+fixedIndex = 16
+resizeIndex = 69
+
+# Mini-map
+[energy_orb]
+fixedIndex = 185
+resizeIndex = 175
+
+[health_orb]
+fixedIndex = 182
+resizeIndex = 173
+
+[prayer_orb]
+fixedIndex = 184
+resizeIndex = 174
+
+[summoning_orb]
+fixedIndex = 187
+resizeIndex = 176
+
+# Tabs
+[combat_styles_tab]
+fixedIndex = 202
+resizeIndex = 86
+
+[task_system_tab]
+fixedIndex = 203
+resizeIndex = 87
+
+[stats_tab]
+fixedIndex = 204
+resizeIndex = 88
+
+[quest_journals_tab]
+fixedIndex = 205
+resizeIndex = 89
+
+[inventory_tab]
+fixedIndex = 206
+resizeIndex = 90
+
+[worn_equipment_tab]
+fixedIndex = 207
+resizeIndex = 91
+
+[prayer_list_tab]
+fixedIndex = 208
+resizeIndex = 92
+
+[spellbook_tab]
+fixedIndex = 209
+resizeIndex = 93
+
+[follower_details_tab]
+fixedIndex = 210
+resizeIndex = 94
+
+[friends_list_tab]
+fixedIndex = 211
+resizeIndex = 95
+
+[ignores_list_tab]
+fixedIndex = 212
+resizeIndex = 96
+
+[clan_chat_tab]
+fixedIndex = 213
+resizeIndex = 97
+
+[options_tab]
+fixedIndex = 214
+resizeIndex = 98
+
+[emotes_tab]
+fixedIndex = 215
+resizeIndex = 99
+
+[music_player_tab]
+fixedIndex = 216
+resizeIndex = 100
+
+[notes_tab]
+fixedIndex = 217
+resizeIndex = 101
+
+[overlay_tab]
+fixedIndex = 197
+resizeIndex = 83
+
+[logout_tab]
+fixedIndex = 220
+resizeIndex = 104
+
+# Main screen
+[dialogue_box]
+parent = "chat_box"
+index = 13
+permanent = false
+
+[dialogue_box_small]
+parent = "chat_box"
+index = 12
+
+[area_status]
+fixedIndex = 14
+resizeIndex = 11
+
+[underlay]
+index = 7
+permanent = false
+
+[overlay]
+index = 7
+
+[main_screen]
+fixedIndex = 18
+resizeIndex = 8
+permanent = false
+
+[wide_screen]
+fixedIndex = 8
+resizeIndex = 5
+permanent = false
+
+[full_screen]
+parent = "root"
+index = 0
+
+[skill_creation]
+parent = "dialogue_skill_creation"
+index = 4
+
+[task_overlay]
+fixedIndex = 20
+resizeIndex = 79

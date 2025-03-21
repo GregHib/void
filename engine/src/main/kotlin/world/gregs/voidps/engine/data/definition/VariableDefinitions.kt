@@ -2,12 +2,11 @@ package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.config.Config
+import world.gregs.voidps.engine.client.variable.VariableValues
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.VariableDefinition
-import world.gregs.voidps.engine.data.yaml.DefinitionIdsConfig
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.Yaml
 import java.io.File
 import kotlin.collections.set
 
@@ -23,52 +22,50 @@ class VariableDefinitions {
 
     fun getVarp(id: Int) = varpIds[id]
 
-    @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["definitions.path"]): VariableDefinitions {
+    fun load(path: String = Settings["definitions.path"]): VariableDefinitions {
         timedLoad("variable definition") {
+            val files = File(path).listFiles()?.filter { it.name.startsWith("variables-") } ?: return@timedLoad 0
             val definitions = Object2ObjectOpenHashMap<String, VariableDefinition>()
-            val files = File(path).listFiles()?.filter { it.name.startsWith("variables-") } ?: emptyList()
             val varbitIds = Int2ObjectOpenHashMap<String>()
             val varpIds = Int2ObjectOpenHashMap<String>()
             for (file in files) {
                 val type = file.nameWithoutExtension.removePrefix("variables-")
-                val factory: (Map<String, Any>) -> VariableDefinition = when (type) {
-                    "player" -> {
-                        { VariableDefinition.VarpDefinition(it) }
-                    }
-                    "player-bit" -> {
-                        { VariableDefinition.VarbitDefinition(it) }
-                    }
-                    "client" -> {
-                        { VariableDefinition.VarcDefinition(it) }
-                    }
-                    "client-string" -> {
-                        { VariableDefinition.VarcStrDefinition(it) }
-                    }
-                    else -> {
-                        { VariableDefinition.CustomVariableDefinition(it) }
-                    }
-                }
-                val config = object : DefinitionIdsConfig() {
-                    override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
-                        if (indent == 0) {
-                            val definition = factory.invoke(if (value is Int) {
-                                mapOf("id" to value)
-                            } else {
-                                value as Map<String, Any>
-                            })
-                            definitions[key] = definition
-                            if (type == "player") {
-                                varpIds[definition.id] = key
-                            } else if (type == "player-bit") {
-                                varbitIds[definition.id] = key
+                Config.fileReader(file) {
+                    while (nextSection()) {
+                        val stringId = section()
+                        var id = -1
+                        var values: Any? = null
+                        var format: String? = null
+                        var default: Any? = null
+                        var persist = false
+                        var transmit = true
+                        while (nextPair()) {
+                            when (val key = key()) {
+                                "id" -> id = int()
+                                "persist" -> persist = boolean()
+                                "transmit" -> transmit = boolean()
+                                "default" -> default = value()
+                                "format" -> format = string()
+                                "values" -> values = value()
+                                else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                             }
-                        } else {
-                            super.set(map, key, value, indent, parentMap)
+                        }
+                        val varValue = VariableValues(values, format, default)
+                        when (type) {
+                            "player" -> {
+                                definitions[stringId] = VariableDefinition.VarpDefinition(id, varValue, default, persist, transmit)
+                                varpIds[id] = stringId
+                            }
+                            "player-bit" -> {
+                                definitions[stringId] = VariableDefinition.VarbitDefinition(id, varValue, default, persist, transmit)
+                                varbitIds[id] = stringId
+                            }
+                            "client" -> definitions[stringId] = VariableDefinition.VarcDefinition(id, varValue, default, persist, transmit)
+                            "client-string" -> definitions[stringId] = VariableDefinition.VarcStrDefinition(id, default, persist, transmit)
+                            "custom" -> definitions[stringId] = VariableDefinition.CustomVariableDefinition(varValue, default, persist)
                         }
                     }
                 }
-                yaml.load<Any>(file.path, config)
             }
             this.varbitIds = varbitIds
             this.varpIds = varpIds

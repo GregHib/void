@@ -1,0 +1,160 @@
+[model_swapper]
+id = 67
+
+[is_quest_item]
+id = 927
+
+[recipe_for_disaster_can_equip_item]
+id = 933
+
+[number_to_SI]
+id = 940
+
+[quest_requirements]
+id = 2145
+
+[interface_quest_complete]
+id = 2155
+
+[quest_complete]
+id = 2193
+
+[quest_progress]
+id = 2194
+
+[activate_prayer]
+id = 2295
+
+[task_has_requirements]
+id = 3224
+
+[task_complete]
+id = 3994
+
+[clear_dialogues]
+id = 571
+
+[primary_options]
+id = 150
+
+[secondary_options]
+id = 695
+
+[update_bank_slots]
+id = 1465
+
+[quest_journal_refresh]
+id = 2165
+
+[quest_journal_length]
+id = 1207
+
+[trade_warning]
+id = 143
+
+[close_entry]
+id = 101
+
+[int_entry]
+id = 108
+
+[string_entry]
+id = 109
+
+[dialogue_item_zoom]
+id = 3449
+
+[items_kept_on_death]
+id = 118
+
+[message_scroll_max]
+id = 677
+
+[inv_total_available]
+id = 1
+
+[magic_rune_count]
+id = 19
+
+[task_main_list_populate]
+id = 3983
+
+[task_main_list_filter_done]
+id = 3985
+
+[task_main_list_filter_set]
+id = 3986
+
+[task_summary_accordion]
+id = 4000
+
+[task_summary_close]
+id = 4001
+
+[task_list_button_hide]
+id = 4101
+
+[set_scroll_height]
+id = 1208
+params = [
+  "scroll bar component",
+  "interface container",
+  "container height",
+  "append"
+]
+
+[interface_inv_init]
+id = 149
+params = [
+  "interface container",
+  "interface id",
+  "width",
+  "height",
+  "drag mode",
+  "drag start interface id",
+  "option 1",
+  "option 2",
+  "option 3",
+  "option 4",
+  "option 5"
+]
+
+[interface_inv_update]
+id = 152
+params = [
+  "interface container",
+  "interface id",
+  "width",
+  "height",
+  "drag mode",
+  "drag start interface id",
+  "option 1",
+  "option 2",
+  "option 3",
+  "option 4",
+  "option 5"
+]
+
+[scrollbar_resize]
+id = 72
+params = [
+  "scroll bar interface id",
+  "container interface id",
+  "scroll bar height",
+]
+
+[scrollbar_vertical]
+id = 30
+params = [
+  "scroll bar interface id",
+  "container interface id"
+]
+
+[quest_intro_req_text]
+id = 2827
+
+[quest_intro_req_items_text]
+id = 2828
+
+[quest_intro_rewards_text]
+id = 4074

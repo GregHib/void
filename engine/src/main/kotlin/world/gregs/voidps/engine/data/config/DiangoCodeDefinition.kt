@@ -9,17 +9,10 @@ import world.gregs.voidps.engine.entity.item.Item
  */
 data class DiangoCodeDefinition(
     val variable: String = "",
-    val add: List<Item> = emptyList(),
+    val add: List<Item> = listOf(),
 ) {
 
     companion object {
-
-        @Suppress("UNCHECKED_CAST")
-        operator fun invoke(map: Map<String, Any>) = DiangoCodeDefinition(
-            variable = map["variable"] as? String ?: EMPTY.variable,
-            add = map["add"] as? List<Item> ?: EMPTY.add,
-        )
-
         val EMPTY = DiangoCodeDefinition()
     }
 }

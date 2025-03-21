@@ -1,12 +1,14 @@
 package world.gregs.voidps.engine.data.definition
 
+import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.yaml.DefinitionConfig
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.Yaml
 
 class InventoryDefinitions(
     override var definitions: Array<InventoryDefinition>
@@ -16,35 +18,41 @@ class InventoryDefinitions(
 
     override fun empty() = InventoryDefinition.EMPTY
 
-    @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["definitions.inventories"], itemDefs: ItemDefinitions = get()): InventoryDefinitions {
+    fun load(path: String = Settings["definitions.inventories"], itemDefs: ItemDefinitions = get()): InventoryDefinitions {
         timedLoad("inventory extra") {
             val ids = Object2IntOpenHashMap<String>()
-            val config = object : DefinitionConfig<InventoryDefinition>(ids, definitions) {
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-                    if (key == "defaults" && value is List<*>) {
-                        val id = map["id"] as Int
-                        value as List<Map<String, Int>>
-                        if (id !in definitions.indices) {
-                            return
+            Config.fileReader(path) {
+                while (nextSection()) {
+                    val stringId = section()
+                    var id = -1
+                    val extras = Object2ObjectOpenHashMap<String, Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "id" -> id = int()
+                            "defaults" -> {
+                                val defaults = ObjectArrayList<Map<String, Int>>()
+                                while (nextEntry()) {
+                                    val item = key()
+                                    val value = int()
+                                    val default = Object2IntOpenHashMap<String>()
+                                    default[item] = value
+                                    defaults.add(default)
+                                }
+                                extras[key] = defaults
+                            }
+                            else -> extras[key] = value()
                         }
-                        val def = definitions[id]
-                        def.length = map["length"] as? Int ?: def.length
-                        def.ids = IntArray(def.length) { itemDefs.get(value.getOrNull(it)?.keys?.first() ?: "").id }
-                        def.amounts = IntArray(def.length) { value.getOrNull(it)?.values?.first() ?: 0 }
                     }
-                    super.set(map, key, value, indent, parentMap)
+                    if (id > -1) {
+                        ids[stringId] = id
+                        definitions[id].extras = extras
+                        definitions[id].stringId = stringId
+                    }
                 }
             }
-            yaml.load<Any>(path, config)
             this.ids = ids
             ids.size
         }
         return this
     }
-}
-
-fun InventoryDefinition.items(): List<String> {
-    val defs: ItemDefinitions = get()
-    return ids?.map { defs.get(it).stringId } ?: emptyList()
 }

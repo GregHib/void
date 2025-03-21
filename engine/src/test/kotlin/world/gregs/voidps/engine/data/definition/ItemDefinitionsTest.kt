@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.data.definition
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.yaml.Yaml
 
 internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, ItemDecoder, ItemDefinitions>() {
 
@@ -26,7 +25,8 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
     }
 
     override fun load(definitions: ItemDefinitions) {
-        definitions.load(Yaml(), "../data/definitions/items.yml")
+        val uri = ItemDefinitionsTest::class.java.getResource("test-item.toml")!!
+        definitions.load(uri.path)
     }
 
 

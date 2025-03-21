@@ -36,12 +36,12 @@ internal class ConfigReaderTest {
 
     private fun parse(file: File): String {
         val builder = StringBuilder()
-        Config.fileReader(file).use { reader ->
-            while (reader.nextSection()) {
-                val section = reader.section()
-                while (reader.nextPair()) {
-                    val key = reader.key()
-                    parseValue(builder, reader, section, key)
+        Config.fileReader(file) {
+            while (nextSection()) {
+                val section = section()
+                while (nextPair()) {
+                    val key = key()
+                    parseValue(builder, this, section, key)
                 }
             }
         }
@@ -49,24 +49,24 @@ internal class ConfigReaderTest {
     }
 
     private fun parseValue(builder: StringBuilder, reader: ConfigReader, section: String, key: String, collection: String = "") {
-        when (reader.byte) {
-            '"'.code, '\''.code -> builder.appendLine("[$section] $key$collection = \"${reader.string()}\"")
-            '['.code -> {
+        when (reader.peek) {
+            '"', '\'' -> builder.appendLine("[$section] $key$collection = \"${reader.string()}\"")
+            '[' -> {
                 var index = 0
                 while (reader.nextElement()) {
                     parseValue(builder, reader, section, key, collection = "${collection}[${index++}]")
                 }
             }
-            '{'.code -> {
+            '{' -> {
                 while (reader.nextEntry()) {
                     val k = reader.key()
                     parseValue(builder, reader, section, key, collection = "${collection}[\"${k}\"]")
                 }
             }
-            't'.code, 'f'.code -> builder.appendLine("[$section] $key$collection = ${reader.boolean()}")
-            '-'.code, '+'.code, '0'.code, '1'.code, '2'.code, '3'.code, '4'.code, '5'.code, '6'.code, '7'.code, '8'.code, '9'.code ->
+            't', 'f' -> builder.appendLine("[$section] $key$collection = ${reader.boolean()}")
+            '-', '+', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ->
                 builder.appendLine("[$section] $key$collection = ${reader.number()}")
-            else -> throw IllegalArgumentException("Unexpected character section=${section} char=${reader.byte.toChar()}")
+            else -> throw IllegalArgumentException("Unexpected character section=${section} char=${reader.peek}")
         }
     }
 
@@ -83,189 +83,188 @@ internal class ConfigReaderTest {
 
     @Test
     fun `Read section`() {
-        Config.stringReader("[section]").use { reader ->
-            assertFalse(reader.nextPair())
-            assertTrue(reader.nextSection())
-            assertTrue(reader.nextSection())
-            assertEquals("section", reader.section())
-            assertFalse(reader.nextSection())
+        Config.stringReader("[section]") {
+            assertFalse(nextPair())
+            assertTrue(nextSection())
+            assertTrue(nextSection())
+            assertEquals("section", section())
+            assertFalse(nextSection())
         }
     }
 
     @Test
     fun `Read key`() {
-        Config.stringReader("[section]")
-        Config.stringReader("bare-key").use { reader ->
-            assertTrue(reader.nextPair())
-            assertEquals("bare-key", reader.key())
+        Config.stringReader("bare-key") {
+            assertTrue(nextPair())
+            assertEquals("bare-key", key())
         }
-        Config.stringReader("\"quoted \\n key\"").use { reader ->
-            assertTrue(reader.nextPair())
-            assertEquals("quoted \\n key", reader.key())
+        Config.stringReader("\"quoted \\n key\"") {
+            assertTrue(nextPair())
+            assertEquals("quoted \\n key", key())
         }
-        Config.stringReader("'literal \n key'").use { reader ->
-            assertTrue(reader.nextPair())
-            assertEquals("literal \n key", reader.key())
+        Config.stringReader("'literal \n key'") {
+            assertTrue(nextPair())
+            assertEquals("literal \n key", key())
         }
     }
 
     @Test
     fun `Read string`() {
-        Config.stringReader("\"quoted \\n string\"").use { reader ->
-            assertEquals("quoted \\n string", reader.string())
+        Config.stringReader("\"quoted \\n string\"") {
+            assertEquals("quoted \\n string", string())
         }
-        Config.stringReader("'literal \n string'").use { reader ->
-            assertTrue(reader.nextPair())
-            assertEquals("literal \n string", reader.string())
+        Config.stringReader("'literal \n string'") {
+            assertTrue(nextPair())
+            assertEquals("literal \n string", string())
         }
     }
 
     @Test
     fun `Read number`() {
-        Config.stringReader("1234").use { reader ->
-            assertEquals(1234L, reader.number())
+        Config.stringReader("1234") {
+            assertEquals(1234L, number())
         }
-        Config.stringReader("-1234").use { reader ->
-            assertEquals(-1234L, reader.number())
+        Config.stringReader("-1234") {
+            assertEquals(-1234L, number())
         }
-        Config.stringReader("+1234").use { reader ->
-            assertEquals(1234L, reader.number())
+        Config.stringReader("+1234") {
+            assertEquals(1234L, number())
         }
-        Config.stringReader("12.34").use { reader ->
-            assertEquals(12.34, reader.number())
+        Config.stringReader("12.34") {
+            assertEquals(12.34, number())
         }
-        Config.stringReader("-12.34").use { reader ->
-            assertEquals(-12.34, reader.number())
+        Config.stringReader("-12.34") {
+            assertEquals(-12.34, number())
         }
-        Config.stringReader("+12.34").use { reader ->
-            assertEquals(12.34, reader.number())
+        Config.stringReader("+12.34") {
+            assertEquals(12.34, number())
         }
     }
 
     @Test
     fun `Read int`() {
-        Config.stringReader("1234").use { reader ->
-            assertEquals(1234, reader.int())
+        Config.stringReader("1234") {
+            assertEquals(1234, int())
         }
-        Config.stringReader("-1234").use { reader ->
-            assertEquals(-1234, reader.int())
+        Config.stringReader("-1234") {
+            assertEquals(-1234, int())
         }
-        Config.stringReader("+1234").use { reader ->
-            assertEquals(1234, reader.int())
+        Config.stringReader("+1234") {
+            assertEquals(1234, int())
         }
     }
 
     @Test
     fun `Read long`() {
-        Config.stringReader("1234").use { reader ->
-            assertEquals(1234L, reader.long())
+        Config.stringReader("1234") {
+            assertEquals(1234L, long())
         }
-        Config.stringReader("-1234").use { reader ->
-            assertEquals(-1234L, reader.long())
+        Config.stringReader("-1234") {
+            assertEquals(-1234L, long())
         }
-        Config.stringReader("+1234").use { reader ->
-            assertEquals(1234L, reader.long())
+        Config.stringReader("+1234") {
+            assertEquals(1234L, long())
         }
     }
 
     @Test
     fun `Read double`() {
-        Config.stringReader("12.34").use { reader ->
-            assertEquals(12.34, reader.double())
+        Config.stringReader("12.34") {
+            assertEquals(12.34, double())
         }
-        Config.stringReader("-12.34").use { reader ->
-            assertEquals(-12.34, reader.double())
+        Config.stringReader("-12.34") {
+            assertEquals(-12.34, double())
         }
-        Config.stringReader("+12.34").use { reader ->
-            assertEquals(12.34, reader.double())
+        Config.stringReader("+12.34") {
+            assertEquals(12.34, double())
         }
     }
 
     @Test
     fun `Read boolean`() {
-        Config.stringReader("true").use { reader ->
-            assertTrue(reader.boolean())
+        Config.stringReader("true") {
+            assertTrue(boolean())
         }
-        Config.stringReader("false").use { reader ->
-            assertFalse(reader.boolean())
+        Config.stringReader("false") {
+            assertFalse(boolean())
         }
     }
 
     @Test
     fun `Read list`() {
-        Config.stringReader("[ 1, 2, 3, 4 ]").use { reader ->
-            assertEquals(listOf(1L, 2L, 3L, 4L), reader.list())
+        Config.stringReader("[ 1, 2, 3, 4 ]") {
+            assertEquals(listOf(1, 2, 3, 4), list())
         }
-        Config.stringReader("[ \"1\", \"two\", 3 ]").use { reader ->
-            assertEquals(listOf("1", "two", 3L), reader.list())
+        Config.stringReader("[ \"1\", \"two\", 3 ]") {
+            assertEquals(listOf("1", "two", 3), list())
         }
-        Config.stringReader("[1 , # comment \n \"two\" # c\n,3]").use { reader ->
-            assertEquals(listOf(1L, "two", 3L), reader.list())
+        Config.stringReader("[1 , # comment \n \"two\" # c\n,3]") {
+            assertEquals(listOf(1, "two", 3), list())
         }
-        Config.stringReader("[]").use { reader ->
-            assertEquals(emptyList<Any>(), reader.list())
+        Config.stringReader("[]") {
+            assertEquals(emptyList<Any>(), list())
         }
-        Config.stringReader("[  ]").use { reader ->
-            assertEquals(emptyList<Any>(), reader.list())
+        Config.stringReader("[  ]") {
+            assertEquals(emptyList<Any>(), list())
         }
-        Config.stringReader("[#comment\n]").use { reader ->
-            assertEquals(emptyList<Any>(), reader.list())
+        Config.stringReader("[#comment\n]") {
+            assertEquals(emptyList<Any>(), list())
         }
-        Config.stringReader("[\n#comment\n ]").use { reader ->
-            assertEquals(emptyList<Any>(), reader.list())
+        Config.stringReader("[\n#comment\n ]") {
+            assertEquals(emptyList<Any>(), list())
         }
     }
 
     @Test
     fun `Read map`() {
-        Config.stringReader("{ one = 1, two = 2, three = 3 }").use { reader ->
-            assertEquals(mapOf("one" to 1L, "two" to 2L, "three" to 3L), reader.map())
+        Config.stringReader("{ one = 1, two = 2, three = 3 }") {
+            assertEquals(mapOf("one" to 1, "two" to 2, "three" to 3), map())
         }
-        Config.stringReader("{ one = \"1\", two = \"two\", three = 3 }").use { reader ->
-            assertEquals(mapOf("one" to "1", "two" to "two", "three" to 3L), reader.map())
+        Config.stringReader("{ one = \"1\", two = \"two\", three = 3 }") {
+            assertEquals(mapOf("one" to "1", "two" to "two", "three" to 3), map())
         }
-        Config.stringReader("{one=1 , # comment \n two =\"two\" # c\n,three= 3}").use { reader ->
-            assertEquals(mapOf("one" to 1L, "two" to "two", "three" to 3L), reader.map())
+        Config.stringReader("{one=1 , # comment \n two =\"two\" # c\n,three= 3}") {
+            assertEquals(mapOf("one" to 1, "two" to "two", "three" to 3), map())
         }
-        Config.stringReader("{}").use { reader ->
-            assertEquals(emptyMap<String, Any>(), reader.map())
+        Config.stringReader("{}") {
+            assertEquals(emptyMap<String, Any>(), map())
         }
-        Config.stringReader("{  }").use { reader ->
-            assertEquals(emptyMap<String, Any>(), reader.map())
+        Config.stringReader("{  }") {
+            assertEquals(emptyMap<String, Any>(), map())
         }
-        Config.stringReader("{#comment\n }").use { reader ->
-            assertEquals(emptyMap<String, Any>(), reader.map())
+        Config.stringReader("{#comment\n }") {
+            assertEquals(emptyMap<String, Any>(), map())
         }
-        Config.stringReader("{\n#comment \n}").use { reader ->
-            assertEquals(emptyMap<String, Any>(), reader.map())
+        Config.stringReader("{\n#comment \n}") {
+            assertEquals(emptyMap<String, Any>(), map())
         }
     }
 
     @Test
     fun `Read value`() {
-        Config.stringReader("false").use { reader ->
-            assertEquals(false, reader.value())
+        Config.stringReader("false") {
+            assertEquals(false, value())
         }
-        Config.stringReader("\"value\"").use { reader ->
-            assertEquals("value", reader.value())
+        Config.stringReader("\"value\"") {
+            assertEquals("value", value())
         }
-        Config.stringReader("'literal'").use { reader ->
-            assertEquals("literal", reader.value())
+        Config.stringReader("'literal'") {
+            assertEquals("literal", value())
         }
-        Config.stringReader("+123").use { reader ->
-            assertEquals(123L, reader.value())
+        Config.stringReader("+123") {
+            assertEquals(123, value())
         }
-        Config.stringReader("123").use { reader ->
-            assertEquals(123L, reader.value())
+        Config.stringReader("123") {
+            assertEquals(123, value())
         }
-        Config.stringReader("-12.3").use { reader ->
-            assertEquals(-12.3, reader.value())
+        Config.stringReader("-12.3") {
+            assertEquals(-12.3, value())
         }
-        Config.stringReader("[ 1, 2 ]").use { reader ->
-            assertEquals(listOf(1L, 2L), reader.value())
+        Config.stringReader("[ 1, 2 ]") {
+            assertEquals(listOf(1, 2), value())
         }
-        Config.stringReader("{ one = 1 }").use { reader ->
-            assertEquals(mapOf("one" to 1L), reader.value())
+        Config.stringReader("{ one = 1 }") {
+            assertEquals(mapOf("one" to 1), value())
         }
     }
 

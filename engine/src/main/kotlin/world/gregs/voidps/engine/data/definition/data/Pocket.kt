@@ -1,5 +1,8 @@
 package world.gregs.voidps.engine.data.definition.data
 
+import world.gregs.config.ConfigReader
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
+
 /**
  * @param level required to pickpocket
  * @param xp experience per pickpocket
@@ -18,14 +21,26 @@ data class Pocket(
 ) {
     companion object {
 
-        operator fun invoke(map: Map<String, Any>) = Pocket(
-            level = map["level"] as? Int ?: EMPTY.level,
-            xp = map["xp"] as? Double ?: EMPTY.xp,
-            stunHit = map["stun_hit"] as? Int ?: EMPTY.stunHit,
-            stunTicks = map["stun_ticks"] as? Int ?: EMPTY.stunTicks,
-            chance = map["chance"] as? IntRange ?: EMPTY.chance,
-            caughtMessage = map["caught"] as? String ?: EMPTY.caughtMessage,
-        )
+        operator fun invoke(reader: ConfigReader): Pocket {
+            var level = 1
+            var xp = 0.0
+            var stunHit = 0
+            var stunTicks = 1
+            var chance: IntRange = 1..1
+            var caughtMessage = "What do you think you're doing?"
+            while (reader.nextEntry()) {
+                when (val key = reader.key()) {
+                    "level" -> level = reader.int()
+                    "xp" -> xp = reader.double()
+                    "stun_hit" -> stunHit = reader.int()
+                    "stun_ticks" -> stunTicks = reader.int()
+                    "chance" -> chance = reader.string().toIntRange()
+                    "caught_message" -> caughtMessage = reader.string()
+                    else -> throw IllegalArgumentException("Unexpected key: '$key' ${reader.exception()}")
+                }
+            }
+            return Pocket(level = level, xp = xp, stunHit = stunHit, stunTicks = stunTicks, chance = chance, caughtMessage = caughtMessage)
+        }
 
         val EMPTY = Pocket()
     }

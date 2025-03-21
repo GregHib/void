@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.data.definition.data
 
+import world.gregs.config.ConfigReader
+
 /**
  * @param level required to make dart
  * @param xp experience per dart made
@@ -10,10 +12,18 @@ data class FletchDarts(
 ) {
     companion object {
 
-        operator fun invoke(map: Map<String, Any>) = FletchDarts(
-            level = map["level"] as? Int ?: EMPTY.level,
-            xp = map["xp"] as? Double ?: EMPTY.xp,
-        )
+        operator fun invoke(reader: ConfigReader): FletchDarts {
+            var level = 1
+            var xp = 0.0
+            while (reader.nextEntry()) {
+                when (val key = reader.key()) {
+                    "level" -> level = reader.int()
+                    "xp" -> xp = reader.double()
+                    else -> throw IllegalArgumentException("Unexpected key: '$key' ${reader.exception()}")
+                }
+            }
+            return FletchDarts(level = level, xp = xp)
+        }
 
         val EMPTY = FletchDarts()
     }

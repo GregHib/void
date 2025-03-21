@@ -1,0 +1,3128 @@
+[hans]
+id = 0
+wander_radius = 4
+race = "human"
+examine = "Servant of the Duke of Lumbridge."
+
+[man]
+id = 1
+max_hit_melee = 10
+hitpoints = 70
+wander_radius = 4
+respawn_delay = 25
+pickpocket = {
+  stun_hit = 10,
+  stun_ticks = 8,
+  xp = 8.0,
+  chance = "180-240"
+}
+style = "crush"
+race = "human"
+examine = "One of Gielinor's many citizens."
+
+[man_2]
+clone = "man"
+id = 2
+
+[man_3]
+clone = "man"
+id = 3
+
+[woman]
+clone = "man"
+id = 4
+
+[musician_lumbridge]
+id = 29
+song = 702
+race = "human"
+examine = "What restful music!"
+
+[musician_draynor_village]
+id = 30
+song = 702
+race = "human"
+examine = "What restful music!"
+
+[chicken]
+id = 41
+hitpoints = 30
+attack_bonus = -47
+height = 15
+wander_radius = 8
+attack_radius = 6
+slayer_xp = 3.0
+max_hit_melee = 1
+immune_poison = true
+style = "stab"
+respawn_delay = 25
+race = "bird"
+examine = "Yep. Definitely a chicken."
+
+[sheep]
+id = 43
+wander_radius = 10
+race = "sheep"
+examine = "White and fluffy."
+
+[sheep_shorn]
+clone = "sheep"
+id = 42
+examine = "Freshly sheared."
+
+[banker]
+id = 44
+interact_distance = 2
+race = "human"
+examine = "He can look after my money."
+
+[banker_2]
+id = 45
+interact_distance = 2
+race = "human"
+examine = "She can look after my money."
+
+[duck_swim]
+id = 46
+attack_bonus = -47
+wander_radius = 8
+hitpoints = 30
+slayer_xp = 3.0
+max_hit_melee = 1
+style = "stab"
+race = "duck"
+respawn_delay = 25
+swim = true
+height = 10
+examine = "Quackers."
+
+[rat]
+id = 47
+hitpoints = 20
+attack_bonus = -47
+wander_radius = 8
+attack_radius = 18
+slayer_xp = 2.0
+max_hit_melee = 1
+style = "crush"
+respawn_delay = 1
+race = "rat"
+height = 5
+examine = "A popular dwarven delicacy."
+
+[king_black_dragon]
+id = 50
+hitpoints = 2400
+att = 240
+str = 240
+def = 240
+mage = 240
+style = "stab"
+attack_range = 8
+attack_radius = 8
+max_hit_melee = 250
+max_hit_dragonfire = 650
+hunt_mode = "aggressive"
+allowed_under = true
+slayer_xp = 258.0
+race = "dragon"
+categories = [ "black_dragons", "bosses" ]
+aka = [ "kbd" ]
+respawn_delay = 16
+examine = "One of the biggest, meanest dragons around."
+
+[giant_spider]
+id = 59
+hitpoints = 50
+attack_bonus = -10
+attack_radius = 13
+wander_radius = 10
+hunt_mode = "cowardly"
+hunt_range = 1
+slayer_xp = 5.0
+max_hit_melee = 10
+style = "stab"
+respawn_delay = 45
+race = "giant_spider"
+height = 10
+examine = "I think this spider has been genetically modified."
+
+[giant_spider_2]
+id = 60
+hitpoints = 320
+att = 20
+str = 24
+def = 21
+wander_radius = 6
+respawn_delay = 30
+hunt_mode = "cowardly"
+hunt_range = 1
+slayer_xp = 33
+max_hit_melee = 30
+style = "stab"
+race = "giant_spider"
+height = 10
+examine = "I think this spider has been genetically modified."
+
+[cow]
+id = 81
+hitpoints = 80
+attack_bonus = -15
+wander_radius = 12
+immune_poison = true
+slayer_xp = 8.0
+max_hit_melee = 10
+style = "crush"
+respawn_delay = 45
+race = "cow"
+height = 30
+examine = "Converts grass to beef."
+
+[giant_rat]
+id = 86
+att = 2
+str = 3
+def = 2
+wander_radius = 10
+hitpoints = 50
+slayer_xp = 5.0
+max_hit_melee = 10
+style = "stab"
+respawn_delay = 30
+examine = "Overgrown vermin."
+race = "giant_rat"
+
+[wolf]
+id = 95
+hitpoints = 690
+att = 50
+str = 55
+def = 52
+wander_radius = 4
+slayer_xp = 69
+max_hit_melee = 60
+hunt_mode = "aggressive"
+style = "stab"
+respawn_delay = 90
+race = "wolves"
+examine = "Not man's best friend."
+
+[white_wolf]
+id = 96
+hitpoints = 340
+att = 20
+str = 16
+def = 22
+mage = 1
+range = 1
+wander_radius = 4
+slayer_xp = 34
+max_hit_melee = 30
+hunt_mode = "aggressive"
+style = "stab"
+respawn_delay = 90
+race = "wolves"
+examine = "A vicious mountain wolf."
+
+[white_wolf_2]
+id = 97
+hitpoints = 440
+att = 30
+str = 31
+def = 32
+mage = 1
+range = 1
+wander_radius = 4
+slayer_xp = 44
+max_hit_melee = 40
+hunt_mode = "aggressive"
+style = "stab"
+respawn_delay = 90
+race = "wolves"
+examine = "A vicious mountain wolf."
+
+[big_wolf]
+clone = "wolf"
+id = 141
+hitpoints = 740
+att = 60
+str = 61
+def = 62
+mage = 1
+range = 1
+max_hit_melee = 70
+examine = "Must be the pack leader."
+
+[butterfly_1]
+id = 153
+race = "butterfly"
+wander_radius = 4
+examine = "These look much better in the wild."
+
+[butterfly_2]
+id = 154
+race = "butterfly"
+wander_radius = 4
+examine = "I love butterflies."
+
+[butterfly_3]
+id = 155
+race = "butterfly"
+wander_radius = 4
+examine = "It's a Blue Morpho Butterfly."
+
+[butterfly_4]
+id = 156
+race = "butterfly"
+wander_radius = 4
+examine = "It's a Tiger Swallowtail Butterfly."
+
+[butterfly_5]
+id = 157
+race = "butterfly"
+wander_radius = 4
+examine = "It's a Viceroy Butterfly."
+
+[cook_lumbridge]
+id = 278
+race = "human"
+wander_radius = 4
+examine = "Lumbridge Castle's head cook."
+
+[star_sprite]
+id = 8091
+examine = "A shiny, happy star sprite."
+
+[shooting_star_shadow]
+id = 8092
+examine = "The shadow of a shooting star"
+
+[doric]
+id = 284
+race = "dwarf"
+wander_radius = 2
+examine = "A dwarf smith. Quite handy with a hammer."
+
+[sedridor]
+id = 300
+race = "human"
+wander_radius = 4
+examine = "Head wizard of the Wizard's Tower."
+
+[fishing_spot_cage_harpoon_fishing_guild]
+id = 312
+fishing = {
+  Cage = {
+    items = ["lobster_pot"],
+    bait = {
+      none = ["raw_lobster"]
+    }
+  },
+  Harpoon = {
+    items = ["harpoon", "barb_tail_harpoon"],
+    bait = {
+      none = ["raw_tuna", "raw_swordfish"]
+    }
+  }
+}
+examine = "I can see fish swimming in the water."
+
+[fishing_spot_big_net_harpoon_catherby]
+id = 322
+fishing = {
+  Net = {
+    items = ["big_fishing_net"],
+    bait = {
+      none = [
+        "raw_mackerel",
+        "raw_cod",
+        "raw_bass",
+        "oyster",
+        "casket",
+        "seaweed",
+        "leather_gloves",
+        "leather_boots"
+      ]
+    }
+  },
+  Harpoon = {
+    items = ["harpoon", "barb_tail_harpoon"],
+    bait = {
+      none = ["raw_shark"]
+    }
+  }
+}
+examine = "I can see fish swimming in the water."
+
+[fishing_spot_small_net_bait_draynor]
+id = 327
+fishing = {
+  Net = {
+    items = ["small_fishing_net"],
+    bait = {
+      none = ["raw_shrimps", "raw_anchovies"]
+    }
+  },
+  Bait = {
+    items = ["fishing_rod"],
+    bait = {
+      fishing_bait = ["raw_sardine", "raw_herring"]
+    }
+  }
+}
+examine = "It looks like there might be fish swimming in the water."
+
+[fishing_spot_lure_bait_lumbridge]
+id = 329
+fishing = {
+  Lure = {
+    items = ["fly_fishing_rod"],
+    bait = {
+      feather = ["raw_trout", "raw_salmon"],
+      stripy_feather = ["raw_rainbow_fish"]
+    }
+  },
+  Bait = {
+    items = ["fishing_rod"],
+    bait = {
+      fishing_bait = ["raw_pike"]
+    }
+  }
+}
+examine = "It looks like there might be fish swimming in the water."
+
+[frog_frogland]
+id = 390
+wander_radius = 3
+examine = "A frog."
+
+[frog_2_frogland]
+clone = "frog_frogland"
+id = 391
+
+[frog_3_frogland]
+clone = "frog_frogland"
+id = 392
+
+[frog_4_frogland]
+clone = "frog_frogland"
+id = 393
+
+[frog_5_frogland]
+clone = "frog_frogland"
+id = 394
+
+[frog_6_frogland]
+clone = "frog_frogland"
+id = 395
+
+[frog_7_frogland]
+clone = "frog_frogland"
+id = 396
+
+[cow_brown]
+clone = "cow"
+id = 397
+
+[frog_8_frogland]
+clone = "frog_frogland"
+id = 403
+
+[sanfew]
+id = 454
+wander_radius = 2
+race = "human"
+examine = "An old druid."
+
+[kaqemeex]
+id = 455
+wander_radius = 4
+race = "human"
+examine = "A wise druid."
+
+[father_aereck]
+id = 456
+wander_radius = 4
+race = "human"
+examine = "He seems to be very devout."
+
+[restless_ghost]
+id = 457
+race = "human"
+examine = "Eek! A ghost!"
+
+[father_urhney]
+id = 458
+wander_radius = 4
+race = "human"
+examine = "Very holy."
+
+[skeleton_warlock]
+id = 459
+hitpoints = 180
+mage = 10
+def = 7
+spell = "earth_strike"
+attack_range = 5
+attack_radius = 11
+style = "magic"
+max_hit_magic = 30
+race = "skeleton"
+examine = "It rattles when it moves."
+
+[giant_surprise_exam]
+id = 487
+examine = "I guess he wants to be more than just the muscle."
+
+[mummy_surprise_exam]
+id = 490
+examine = "If the mummy is at school, where are the kids?"
+
+[banker_3]
+id = 494
+race = "human"
+examine = "He can look after my money."
+
+[banker_4]
+id = 495
+interact_distance = 2
+race = "human"
+examine = "Good with money."
+
+[banker_al_kharid]
+id = 496
+interact_distance = 2
+race = "human"
+examine = "A financial expert."
+
+[banker_al_kharid_2]
+id = 497
+interact_distance = 2
+race = "human"
+examine = "Looks after your money."
+
+[banker_zanaris]
+id = 498
+interact_distance = 2
+race = "fairy"
+examine = "Manages money momentarily."
+
+[banker_shilo_village]
+id = 499
+race = "human"
+examine = "He can look after my money."
+
+[bob]
+id = 519
+race = "human"
+shop = "bobs_brilliant_axes"
+examine = "An expert on axes."
+
+[shopkeeper_lumbridge]
+id = 520
+race = "human"
+shop = "lumbridge_general_store"
+wander_radius = 2
+examine = "Sells stuff."
+
+[shop_assistant_lumbridge]
+id = 521
+race = "human"
+shop = "lumbridge_general_store"
+wander_radius = 2
+examine = "Helps sell stuff."
+
+[shopkeeper_varrock]
+id = 522
+race = "human"
+shop = "varrock_general_store"
+wander_radius = 2
+examine = "Likes people spending money."
+
+[shop_assistant_varrock]
+id = 523
+race = "human"
+shop = "varrock_general_store"
+wander_radius = 2
+examine = "Likes helping sell stuff."
+
+[shopkeeper_al_kharid]
+id = 524
+race = "human"
+shop = "al_kharid_general_store"
+wander_radius = 2
+examine = "A product of a consumerist society."
+
+[shop_assistant_al_kharid]
+id = 525
+race = "human"
+shop = "al_kharid_general_store"
+wander_radius = 2
+examine = "Likes you more, the more you spend."
+
+[shopkeeper_falador]
+id = 526
+race = "human"
+shop = "falador_general_store"
+wander_radius = 2
+examine = "A product of a consumerist society."
+
+[shop_assistant_falador]
+id = 527
+race = "human"
+shop = "falador_general_store"
+wander_radius = 2
+examine = "Likes you more, the more you spend."
+
+[shopkeeper_edgeville]
+id = 528
+race = "human"
+shop = "edgeville_general_store"
+wander_radius = 2
+examine = "If he doesn't have it, he can't sell it."
+
+[shop_assistant_edgeville]
+id = 529
+race = "human"
+shop = "edgeville_general_store"
+wander_radius = 2
+examine = "She's here on work experience."
+
+[shopkeeper_rimmington]
+id = 530
+race = "human"
+shop = "rimmington_general_store"
+wander_radius = 2
+examine = "Has an interesting assortment of items for sale."
+
+[shop_assistant_rimmington]
+id = 531
+race = "human"
+shop = "rimmington_general_store"
+wander_radius = 2
+examine = "Works on commission."
+
+[shopkeeper_musa_point]
+id = 11674
+race = "human"
+shop = "karamja_general_store"
+wander_radius = 2
+examine = "Clearly takes pride in his appearance."
+
+[shop_assistant_musa_point]
+id = 11678
+race = "human"
+shop = "karamja_general_store"
+wander_radius = 2
+examine = "Needs a haircut."
+
+[zeke]
+id = 541
+race = "human"
+shop = "zekes_superior_scimitars"
+wander_radius = 3
+examine = "Sells superior scimitars."
+
+[louie_legs]
+id = 542
+wander_radius = 4
+shop = "louies_armoured_legs_bazaar"
+race = "human"
+examine = "For the finest in armoured legware."
+
+[karim]
+id = 543
+wander_radius = 4
+race = "human"
+examine = "Kebabs are full of meaty goodness."
+
+[ranael]
+id = 544
+wander_radius = 4
+shop = "ranaels_super_skirt_store"
+race = "human"
+examine = "She's an expert on armoured skirts!"
+
+[dommik]
+id = 545
+wander_radius = 4
+shop = "dommiks_crafting_store"
+race = "human"
+examine = "If Crafting's your thing, he's your man."
+
+[baraek]
+id = 547
+race = "human"
+wander_radius = 3
+examine = "Animal skins are a speciality."
+
+[thessalia]
+id = 548
+shop = "thessalias_fine_clothes"
+race = "human"
+wander_radius = 3
+examine = "Interesting assortment of clothes on offer..."
+
+[aubury]
+id = 553
+shop = "auburys_rune_shop"
+race = "human"
+wander_radius = 3
+examine = "Runes are his passion."
+
+[hairdresser]
+id = 598
+race = "human"
+wander_radius = 3
+examine = "Anyone fancy a trim?"
+
+[makeover_mage_male]
+id = 599
+race = "human"
+wander_radius = 3
+examine = "Master of the mystical make-over."
+
+[thurgo]
+id = 604
+race = "dwarf"
+wander_radius = 4
+examine = "Dwarvish."
+
+[sir_vyvin]
+id = 605
+race = "human"
+wander_radius = 4
+examine = "A White Knight officer with an injured eye."
+
+[squire_asrol]
+id = 606
+race = "human"
+wander_radius = 4
+examine = "Indentured servant of a Knight."
+
+[jeffery]
+id = 637
+wander_radius = 4
+race = "human"
+examine = "The man with the armour."
+
+[reldo]
+id = 647
+wander_radius = 4
+
+[harlan]
+id = 705
+race = "human"
+examine = "Harlan, master of defence."
+
+[duke_horacio]
+id = 741
+race = "human"
+wander_radius = 3
+examine = "Duke Horacio of Lumbridge."
+
+[tanner]
+id = 804
+race = "human"
+examine = "Manufacturer of fine leathers."
+
+[master_crafter]
+id = 805
+race = "human"
+examine = "He's in charge of the Crafting Guild."
+
+[delrith]
+id = 879
+max_hit_melee = 90
+hitpoints = 70
+att = 11
+str = 10
+def = 5
+magic = 1
+attack_speed = 6
+race = "demon"
+examine = "A freshly summoned demon."
+
+[delrith_weakened]
+id = 880
+examine = "The demon doesn't look so strong now."
+
+[traiborn]
+id = 881
+wander_radius = 3
+examine = "An old wizard."
+
+[sir_prysin_normal]
+id = 883
+wander_radius = 3
+examine = "One of the king's knights."
+
+[captain_rovin]
+id = 884
+wander_radius = 3
+examine = "The head of the palace guard."
+
+[nora_t_hagg]
+id = 896
+examine = "Her friends call her Nor-T for short."
+
+[banker_zanaris_2]
+id = 909
+interact_distance = 2
+race = "fairy"
+examine = "Manages money momentarily."
+
+[border_guard_al_kharid]
+id = 925
+race = "human"
+examine = "Guards the border."
+
+[border_guard_al_kharid_2]
+id = 926
+race = "human"
+examine = "Guards the border."
+
+[master_chef]
+id = 942
+race = "human"
+examine = "An expert on all things culinary."
+
+[survival_expert]
+id = 943
+race = "human"
+examine = "Very much an outdoors type."
+
+[combat_instructor]
+id = 944
+race = "human"
+examine = "An expert on all forms of combat."
+
+[runescape_guide]
+id = 945
+race = "human"
+examine = "Your introduction to the world of RuneScape."
+
+[magic_instructor]
+id = 946
+race = "human"
+examine = "A Master of Magic."
+
+[financial_advisor]
+id = 947
+race = "human"
+examine = "A professional when it comes to accounts."
+
+[mining_instructor]
+id = 948
+race = "human"
+examine = "An expert on Mining-related skills."
+
+[quest_guide]
+id = 949
+race = "human"
+examine = "Your introduction to the world of Gielinor."
+
+[giant_rat_tutorial_island]
+id = 950
+race = "giant_rat"
+style = "stab"
+hitpoints = 30
+wander_radius = 2
+respawn_delay = 30
+examine = "Overgrown vermin."
+
+[chicken_tutorial_island]
+id = 951
+race = "bird"
+wander_radius = 2
+examine = "Yep. Definitely a chicken."
+
+[fishing_spot_tutorial_island]
+id = 952
+examine = "I can see fish swimming in the water."
+
+[banker_tutorial_island]
+id = 953
+race = "human"
+examine = "He can look after my money."
+
+[brother_brace]
+id = 954
+race = "human"
+examine = "A holy man."
+
+[mubariz]
+id = 957
+race = "human"
+wander_radius = 3
+examine = "Tough looking combat type."
+
+[fadli]
+id = 958
+race = "human"
+wander_radius = 3
+examine = "Looks kida bored."
+
+[a_abla]
+id = 959
+race = "human"
+wander_radius = 3
+examine = "Trained to deal with all sorts of injuries."
+
+[sabreen]
+id = 960
+race = "human"
+wander_radius = 3
+examine = "Heals people."
+
+[surgeon_general_tafani]
+id = 961
+race = "human"
+wander_radius = 3
+examine = "This nurse really knows her stuff."
+
+[jaraah]
+id = 962
+race = "human"
+wander_radius = 3
+examine = "Has the messy job of putting players back together again."
+
+[zahwa]
+id = 963
+race = "human"
+wander_radius = 4
+examine = "Battle-scarred."
+
+[ima]
+id = 964
+race = "human"
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[sabeil]
+id = 965
+race = "human"
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[jadid]
+id = 966
+race = "human"
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[dalal]
+id = 967
+race = "human"
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[afrah]
+id = 968
+race = "human"
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[jeed]
+id = 969
+race = "human"
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[diango]
+id = 970
+wander_radius = 4
+shop = "diangos_toy_store"
+race = "human"
+examine = "A toy-seller who looks after people's toys for them."
+
+[hamid]
+id = 1008
+race = "human"
+wander_radius = 3
+examine = "A holy man."
+
+[banker_canifis]
+id = 1036
+interact_distance = 2
+race = "human"
+examine = "He can look after my money."
+
+[dororan]
+id = 1168
+race = "dwarf"
+examine = "A dwarf in anguish."
+
+[yrsa]
+id = 1301
+race = "human"
+wander_radius = 2
+shop = "yrsas_shoe_store"
+examine = "Pretty shabbily dressed for a clothes shop owner."
+
+[banker_etceteria]
+id = 1360
+interact_distance = 2
+race = "human"
+examine = "He seems happy to see you."
+
+[crow]
+id = 1754
+race = "bird"
+examine = "A farmer's enemy."
+
+[crow_2]
+clone = "crow"
+id = 1755
+
+[crow_3]
+clone = "crow"
+id = 1756
+
+[sheep_black_feet_shorn]
+clone = "sheep"
+id = 1762
+examine = "Freshly sheared."
+
+[sheep_black_feet]
+clone = "sheep"
+id = 1763
+
+[sheep_2_shorn]
+clone = "sheep"
+id = 1764
+examine = "Freshly sheared."
+
+[sheep_2]
+clone = "sheep"
+id = 1765
+
+[cow_light_spots]
+clone = "cow"
+id = 1767
+
+[nemarti]
+id = 1861
+race = "human"
+examine = "Nemarti looks ready to teach you about ranged combat."
+
+[banker_keldagrim]
+id = 2163
+interact_distance = 2
+race = "dwarf"
+examine = "A rather personable banker lady."
+
+[banker_keldagrim_2]
+id = 2164
+interact_distance = 2
+race = "dwarf"
+examine = "A rather serious old fella."
+
+[crow_4]
+clone = "crow"
+id = 2252
+
+[cow_calf]
+id = 2310
+hitpoints = 60
+attack_bonus = -20
+wander_radius = 10
+slayer_xp = 6.0
+max_hit_melee = 10
+style = "crush"
+respawn_delay = 45
+examine = "Young, but still beefy."
+race = "cow"
+height = 15
+
+[banker_lletya]
+id = 2354
+interact_distance = 2
+race = "elf"
+examine = "He can look after my money."
+
+[banker_lletya_2]
+id = 2355
+interact_distance = 2
+race = "elf"
+examine = "She can look after my money."
+
+[frog_herald]
+id = 2472
+examine = "Speaks on behalf of His and Her Royal Frogness."
+
+[quiz_master]
+id = 2477
+interact_distance = 4
+race = "human"
+examine = "Apparently a master of quizzes!"
+
+[dororan_after_cutscene]
+id = 2646
+
+[dororan_after_cutscene2]
+id = 2647
+examine = "A dwarf on top of the world."
+
+[dororan_after_quest]
+id = 2648
+race = "dwarf"
+examine = "A dwarf on top of the world."
+
+[dororan_after_quest2]
+clone = "dororan_after_quest"
+id = 2651
+
+[reldo_normal]
+id = 2661
+race = "human"
+wander_radius = 4
+examine = "Reldo the librarian."
+
+[makeover_mage_female]
+id = 2676
+race = "human"
+wander_radius = 3
+examine = "Master of the mystical make-over."
+
+[duck_grey_swim]
+clone = "duck_swim"
+id = 2693
+wander_radius = 8
+swim = true
+examine = "She quackers."
+
+[duckling]
+clone = "duck_swim"
+id = 2694
+swim = true
+wander_radius = 6
+examine = "Mini quackers."
+
+[master_crafter_2]
+id = 2732
+race = "human"
+examine = "He works in the Crafting Guild."
+
+[master_crafter_3]
+id = 2733
+wander_radius = 4
+race = "human"
+examine = "He wanders around the Crafting Guild pretending to be working."
+
+[thorgel]
+id = 2788
+
+[thorgel_normal]
+id = 2789
+race = "dwarf"
+examine = "A short angry guy."
+
+[a_pile_of_broken_glass]
+id = 2800
+examine = "It looks like some broken bottles"
+
+[ellis]
+id = 2824
+race = "human"
+examine = "Manufacturer of fine leathers."
+
+[dororan_cutscene]
+id = 2863
+examine = "A dwarf in suspense."
+
+[gudrun]
+id = 2864
+wander_radius = 4
+race = "human"
+examine = "The chieftain's daughter."
+
+[gudrun2]
+clone = "gudrun"
+id = 2865
+
+[gudrun_after_cutscene]
+clone = "gudrun"
+id = 2866
+
+[gudrun_after_cutscene2]
+clone = "gudrun"
+id = 2867
+
+[gudrun_after_quest]
+clone = "gudrun"
+id = 2869
+
+[gudrun_after_quest2]
+clone = "gudrun"
+id = 2870
+
+[gudrun_cutscene]
+clone = "gudrun"
+id = 2871
+
+[kjell]
+id = 2872
+race = "human"
+examine = "A barbarian guard."
+
+[kjell_sword]
+clone = "kjell"
+id = 2873
+
+[kjell_guitar]
+clone = "kjell"
+id = 2874
+
+[kjell_cutscene]
+id = 2875
+examine = "A barbarian guard."
+
+[chieftain_gunthor]
+id = 2876
+race = "human"
+examine = "A heavily built barbarian with an air of power and authority."
+
+[chieftain_gunthor_icon]
+clone = "chieftain_gunthor"
+id = 2877
+
+[chieftain_gunthort_no_icon]
+clone = "chieftain_gunthor"
+id = 2878
+
+[rat_ratcatchers]
+id = 2974
+wander_radius = 4
+
+[rat_ratcatchers_2]
+id = 2975
+wander_radius = 4
+
+[rat_ratcatchers_3]
+id = 2976
+wander_radius = 4
+
+[rat_ratcatchers_4]
+id = 2977
+wander_radius = 4
+
+[rat_ratcatchers_5]
+id = 2978
+wander_radius = 4
+
+[rat_ratcatchers_6]
+id = 2979
+wander_radius = 4
+
+[rat_ratcatchers_7]
+id = 2980
+wander_radius = 4
+examine = "A popular dwarven delicacy."
+
+[chieftain_gunthor_cutscene]
+id = 3089
+examine = "A heavily built barbarian with an air of power and authority."
+
+[haakon_the_champion]
+id = 3090
+hitpoints = 360
+att = 22
+str = 22
+def = 25
+mage = 240
+attack_bonus = 8
+max_hit_melee = 42
+immune_poison = true
+wander_radius = 4
+respawn_delay = 75
+weapon_style = "2h"
+style = "crush"
+race = "human"
+examine = "A mighty warrior, Haakon is powerfully concerned for his tribe."
+
+[haakon_the_champion_cutscene]
+id = 3091
+examine = "A mighty warrior, Haakon is powerfully concerned for his tribe."
+
+[prison_pete]
+id = 3118
+examine = "He wants to escape!"
+
+[banker_mos_le_harmless]
+id = 3198
+interact_distance = 2
+race = "human"
+examine = "He can look after my money."
+
+[banker_mos_le_harmless_2]
+id = 3199
+interact_distance = 2
+race = "human"
+examine = "He can look after my money."
+
+[goblin_orange_hat_spear]
+id = 3264
+att = 3
+def = 4
+attack_bonus = 12
+attack_speed = 6
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 35
+wander_radius = 10
+hitpoints = 120
+slayer_xp = 12
+race = "goblin_spear"
+height = 30
+large_head = true
+examine = "An ugly, orange creature."
+
+[frog_9_frogland]
+clone = "frog_frogland"
+id = 3300
+
+[cow_zanaris]
+clone = "cow"
+id = 3309
+
+[jeffery3]
+id = 3323
+wander_radius = 4
+race = "human"
+examine = "The man with the armour."
+
+[tarquin]
+id = 3328
+examine = "A dandy canoe man."
+
+[sigurd]
+id = 3329
+examine = "His furs look very damp."
+
+[hari]
+id = 3330
+examine = "Strange looking fella."
+
+[barfy_bill]
+id = 3331
+examine = "Looks a little green around the gills."
+
+[giant_mole]
+id = 3340
+hitpoints = 2000
+att = 200
+str = 200
+def = 200
+mage = 200
+range = 1
+max_hit_melee = 210
+attack_speed = 4
+style = "crush"
+race = "mole"
+respawn_delay = 16
+wander_radius = 8
+examine = "Holy Mole-y!"
+
+[baby_mole]
+id = 3341
+wander_radius = 6
+examine = "I will call him, Mini Mole."
+
+[baby_mole_2]
+id = 3342
+wander_radius = 6
+examine = "Mooooooooooooole."
+
+[baby_mole_3]
+id = 3343
+wander_radius = 6
+examine = "Moley, moley, moley!"
+
+[grubfoot_brown]
+id = 4496
+large_head = true
+examine = "Smaller than the average goblin."
+
+[grubfoot_orange]
+id = 4497
+large_head = true
+examine = "Smaller than the average goblin."
+
+[grubfoot_blue]
+id = 4498
+large_head = true
+examine = "Smaller than the average goblin."
+
+[general_wartface_rfd]
+id = 3391
+large_head = true
+examine = "An ugly green creature."
+
+[general_bentnoze_rfd]
+id = 3392
+large_head = true
+examine = "An ugly green creature."
+
+[sheep_penguin]
+clone = "sheep"
+id = 3579
+examine = "Is it a sheep?"
+
+[millie_miller]
+id = 3806
+race = "human"
+wander_radius = 4
+examine = "Miss Millicent Miller, the Miller of Mill Lane Mill."
+
+[gillie_groats]
+id = 3807
+wander_radius = 4
+race = "human"
+examine = "Gillie milks cows and she's udderly fantastic at it."
+
+[fishing_spot_harpoon_small_net_piscatoris]
+id = 3848
+fishing = {
+  Harpoon = {
+    items = ["harpoon", "barb_tail_harpoon"],
+    bait = {
+      none = ["raw_tuna", "raw_swordfish"]
+    }
+  },
+  Net = {
+    items = ["small_fishing_net"],
+    bait = {
+      none = ["raw_monkfish"]
+    }
+  }
+}
+examine = "I can see fish swimming in the water."
+
+[goblin_mohawk_blue]
+id = 4262
+attack_bonus = -21
+wander_radius = 10
+hitpoints = 50
+slayer_xp = 5.0
+max_hit_melee = 10
+style = "crush"
+master2 = "turael"
+master3 = "spria"
+respawn_delay = 35
+examine = "An ugly, blue creature."
+race = "goblin"
+height = 30
+
+[goblin_mohawk_grey]
+clone = "goblin_mohawk_blue"
+id = 4263
+
+[goblin_bald_green]
+clone = "goblin_mohawk_blue"
+id = 4264
+
+[goblin_ponytail_brown]
+clone = "goblin_mohawk_blue"
+id = 4265
+
+[goblin_bald_grey]
+clone = "goblin_mohawk_blue"
+id = 4266
+
+[goblin_hat_grey]
+clone = "goblin_mohawk_blue"
+id = 4267
+
+[goblin_spiked_green]
+clone = "goblin_mohawk_blue"
+id = 4268
+
+[goblin_spiked_grey]
+clone = "goblin_mohawk_blue"
+id = 4269
+
+[goblin_metal_hat_brown]
+clone = "goblin_mohawk_blue"
+id = 4270
+
+[goblin_mohawk_dark]
+clone = "goblin_mohawk_blue"
+id = 4271
+
+[giant_spider_3]
+id = 4400
+hitpoints = 500
+att = 41
+str = 51
+def = 31
+attack_bonus = 10
+wander_radius = 6
+respawn_delay = 25
+hunt_mode = "cowardly"
+hunt_range = 1
+slayer_xp = 50
+max_hit_melee = 70
+style = "stab"
+race = "giant_spider"
+height = 10
+examine = "I think this spider has been genetically modified."
+
+[wolf_stronghold_of_security]
+clone = "wolf"
+id = 4413
+hitpoints = 100
+att = 10
+str = 10
+def = 10
+mage = 1
+range = 1
+max_hit_melee = 20
+slayer_xp = 10
+hunt_mode = "null"
+
+[wolf_stronghold_of_security_2]
+clone = "wolf"
+id = 4414
+hitpoints = 150
+att = 10
+str = 15
+def = 10
+mage = 1
+range = 1
+max_hit_melee = 30
+slayer_xp = 15
+hunt_mode = "null"
+
+[magic_dummy]
+id = 4474
+hitpoints = 150
+immune_poison = true
+immune_deflect = true
+immune_stun = true
+immune_drain = true
+retaliates = false
+examine = "This is ready for you to cast magic at it."
+
+[goblin_shield_battleaxe_red]
+id = 4479
+clone = "goblin_orange_hat_spear"
+race = "goblin_battleaxe"
+examine = "An ugly, red creature."
+
+[goblin_staff_red]
+id = 4480
+clone = "goblin_shield_battleaxe_red"
+race = "goblin_staff"
+
+[goblin_shield_warhammer_red]
+id = 4481
+clone = "goblin_shield_battleaxe_red"
+race = "goblin_battleaxe"
+
+[goblin_shield_spear_red]
+id = 4482
+clone = "goblin_shield_battleaxe_red"
+
+[goblin_battleaxe_red]
+id = 4483
+clone = "goblin_shield_battleaxe_red"
+race = "goblin_battleaxe"
+
+[goblin_mohawk_staff_red]
+id = 4484
+clone = "goblin_shield_battleaxe_red"
+race = "goblin_staff"
+
+[goblin_ponytail_staff_red]
+id = 4485
+clone = "goblin_shield_battleaxe_red"
+race = "goblin_staff"
+
+[goblin_shield_battleaxe_green]
+id = 4486
+clone = "goblin_orange_hat_spear"
+race = "goblin_battleaxe"
+examine = "An ugly, green creature."
+
+[goblin_staff_green]
+id = 4487
+clone = "goblin_shield_battleaxe_green"
+race = "goblin_staff"
+
+[goblin_shield_warhammer_green]
+id = 4488
+clone = "goblin_shield_battleaxe_green"
+race = "goblin_battleaxe"
+
+[goblin_shield_spear_green]
+id = 4489
+clone = "goblin_shield_battleaxe_green"
+
+[goblin_staff_2_green]
+id = 4491
+clone = "goblin_shield_battleaxe_green"
+race = "goblin_staff"
+
+[goblin_mohawk_staff_green]
+id = 4492
+clone = "goblin_shield_battleaxe_green"
+race = "goblin_staff"
+
+[crow_5]
+clone = "crow"
+id = 4570
+
+[crow_6]
+clone = "crow"
+id = 4571
+
+[captain_daerkin]
+id = 4595
+wander_radius = 3
+examine = "A gnome pilot off duty, he looks a bit drunk."
+
+[sir_prysin_sword]
+clone = "sir_prysin_normal"
+id = 4657
+
+[denath]
+id = 4663
+examine = "A practicer of dark arts."
+
+[wally]
+id = 4664
+examine = "Wally."
+
+[mikasi]
+id = 4707
+race = "human"
+examine = "Mikasi looks ready to teach you about magic."
+
+[fishing_spot_small_net_bait_lumbridge]
+id = 4908
+fishing = {
+  Net = {
+    items = ["small_fishing_net"],
+    bait = {
+      none = ["raw_shrimps", "raw_anchovies"]
+    }
+  },
+  Bait = {
+    items = ["fishing_rod"],
+    bait = {
+      fishing_bait = ["raw_sardine", "raw_herring"]
+    }
+  }
+}
+examine = "It looks like there might be fish swimming in the water."
+
+[lil_lamb]
+clone = "sheep"
+id = 5146
+examine = "How cute!"
+
+[sheep_light_1_shorn]
+clone = "sheep"
+id = 5148
+examine = "Freshly sheared."
+
+[sheep_light_1]
+clone = "sheep"
+id = 5156
+
+[sheep_light_2_shorn]
+clone = "sheep"
+id = 5149
+examine = "Freshly sheared."
+
+[sheep_light_2]
+clone = "sheep"
+id = 5157
+
+[sheep_light_3_shorn]
+clone = "sheep"
+id = 5150
+examine = "Freshly sheared."
+
+[sheep_light_3]
+clone = "sheep"
+id = 5158
+
+[sheep_light_4_shorn]
+clone = "sheep"
+id = 5151
+examine = "Freshly sheared."
+
+[sheep_light_4]
+clone = "sheep"
+id = 5159
+
+[sheep_light_5_shorn]
+clone = "sheep"
+id = 5152
+examine = "Freshly sheared."
+
+[sheep_light_5]
+clone = "sheep"
+id = 5160
+
+[sheep_light_6_shorn]
+clone = "sheep"
+id = 5153
+examine = "Freshly sheared."
+
+[sheep_light_6]
+clone = "sheep"
+id = 5161
+
+[sheep_light_monastery_1_shorn]
+clone = "sheep"
+id = 5154
+examine = "White and shaggy."
+
+[sheep_light_monastery_1]
+clone = "sheep"
+id = 5162
+examine = "White and shaggy."
+
+[sheep_light_monastery_2_shorn]
+clone = "sheep"
+id = 5155
+examine = "White and shaggy."
+
+[sheep_light_monastery_2]
+clone = "sheep"
+id = 5163
+examine = "White and shaggy."
+
+[banker_sophanem_dungeon]
+id = 5258
+interact_distance = 2
+race = "human"
+examine = "He can look after my money."
+
+[banker_sophanem_dungeon_2]
+id = 5260
+interact_distance = 2
+race = "human"
+examine = "She can look after my money."
+
+[musician_port_sarim]
+id = 5439
+song = 702
+race = "human"
+examine = "What restful music!"
+
+[musician_falador]
+id = 5442
+song = 702
+race = "human"
+examine = "What restful music!"
+
+[thakkrad_sigmundson_cutscene]
+id = 5466
+race = "human"
+examine = "A young master craftsman."
+
+[thakkrad_sigmundson]
+id = 5506
+race = "human"
+examine = "A young master craftsman."
+
+[banker_dorgesh_kaan]
+id = 5776
+interact_distance = 2
+race = "dorgeshuun"
+examine = "Looks after cave goblin money."
+
+[banker_dorgesh_kaan_2]
+id = 5777
+interact_distance = 2
+race = "dorgeshuun"
+examine = "Looks after cave goblin money."
+
+[surok_magis_normal]
+id = 5834
+race = "human"
+examine = "A powerful wizard."
+
+[surok_magis_dagon_hai]
+id = 5835
+race = "human"
+examine = "Leader of the Dagon'hai Order."
+
+[surok_magis]
+id = 5853
+wander_radius = 4
+
+[iffie]
+id = 5914
+race = "human"
+faces = false
+examine = "An old woman busily knitting."
+
+[ash_cleaner]
+id = 5916
+race = "human"
+wander_radius = 12
+hunt_range = 4
+hunt_mode = "ash_finder"
+examine = "Does what too many people aren't interested in doing."
+
+[big_wolf_2]
+clone = "wolf"
+id = 6046
+hitpoints = 740
+att = 60
+str = 61
+def = 62
+mage = 1
+range = 1
+max_hit_melee = 70
+examine = "Must be the pack leader."
+
+[wolf_2]
+clone = "wolf"
+id = 6047
+hitpoints = 340
+att = 20
+str = 16
+def = 22
+mage = 1
+range = 1
+max_hit_melee = 30
+slayer_xp = 34
+examine = "A social killer."
+
+[ducklings]
+id = 6112
+swim = true
+race = "duck"
+wander_radius = 6
+examine = "Aww, cute."
+
+[duck_grey_walk]
+clone = "duck_swim"
+id = 6113
+wander_radius = 8
+examine = "Waddle waddle waddle quack."
+
+[drake]
+clone = "duck_swim"
+id = 6114
+wander_radius = 8
+examine = "It quacks like a duck."
+
+[mr_mordau]
+id = 6117
+examine = "Professor of Unnatural History."
+
+[zombie_surprise_exam]
+id = 6131
+examine = "Brains!"
+
+[goblin_surprise_exam]
+id = 6132
+examine = "The studious one."
+
+[goblin_2_surprise_exam]
+id = 6133
+examine = "He looks bored."
+
+[dunce_surprise_exam]
+id = 6134
+examine = "This imp is clearly the class clown."
+
+[banker_falador]
+id = 6200
+interact_distance = 2
+race = "human"
+examine = "He can look after my money."
+
+[fishing_spot_crayfish_lumbridge]
+id = 6267
+fishing = {
+  Cage = {
+    items = ["crayfish_cage"],
+    bait = {
+      none = ["raw_crayfish"]
+    }
+  }
+}
+examine = "It looks like there might be fish swimming in the water."
+
+[jeffery2]
+id = 6298
+wander_radius = 4
+race = "human"
+examine = "The man with the armour."
+
+[bob_barter_herbs]
+id = 6524
+race = "human"
+examine = "He's probably seen better days."
+
+[pikkupstix]
+id = 6970
+race = "human"
+wander_radius = 2
+examine = "He's a very important druid."
+
+[pikkupstix_2]
+id = 6971
+race = "human"
+wander_radius = 2
+examine = "He's a very important druid."
+
+[pikkupstix_spawn]
+id = 6988
+
+[pikkupstix_spawn_2]
+id = 6989
+
+[patrick_platypus]
+id = 7027
+wander_radius = 4
+examine = "A most unlikely creature."
+
+[penelope_platypus]
+id = 7028
+wander_radius = 4
+examine = "A most unlikely creature."
+
+[peter_platypus]
+id = 7029
+wander_radius = 4
+examine = "A most unlikely creature."
+
+[peanut_platypus]
+id = 7030
+wander_radius = 4
+examine = "A most unlikely creature."
+
+[wimpy_bird]
+id = 7031
+wander_radius = 3
+examine = "An ogre snack with wings."
+
+[wimpy_bird_2]
+clone = "wimpy_bird"
+id = 7032
+
+[wimpy_bird_3]
+clone = "wimpy_bird"
+id = 7033
+
+[wimpy_bird_4]
+clone = "wimpy_bird"
+id = 7034
+
+[wimpy_bird_5]
+clone = "wimpy_bird"
+id = 7035
+
+[wimpy_bird_6]
+clone = "wimpy_bird"
+id = 7036
+
+[diseased_kebbit]
+id = 7039
+wander_radius = 3
+examine = "A shy creature with a toxic bite."
+
+[diseased_kebbit_2]
+clone = "diseased_kebbit"
+id = 7040
+
+[diseased_kebbit_3]
+clone = "diseased_kebbit"
+id = 7041
+
+[diseased_kebbit_4]
+clone = "diseased_kebbit"
+id = 7042
+
+[diseased_kebbit_5]
+clone = "diseased_kebbit"
+id = 7043
+
+[fishing_spot_big_net_harpoon_feldip_hills]
+id = 7044
+fishing = {
+  Net = {
+    items = ["big_fishing_net"],
+    bait = {
+      none = [
+        "raw_mackerel",
+        "raw_cod",
+        "raw_bass",
+        "oyster",
+        "casket",
+        "seaweed",
+        "leather_gloves",
+        "leather_boots"
+      ]
+    }
+  },
+  Harpoon = {
+    items = ["harpoon", "barb_tail_harpoon"],
+    bait = {
+      none = ["raw_shark"]
+    }
+  }
+}
+examine = "It looks like there might be fish swimming in the water."
+
+[fishing_spot_small_net_bait_feldip_hills]
+id = 7045
+fishing = {
+  Net = {
+    items = ["small_fishing_net"],
+    bait = {
+      none = ["raw_shrimps", "raw_anchovies"]
+    }
+  },
+  Bait = {
+    items = ["fishing_rod"],
+    bait = {
+      fishing_bait = ["raw_sardine", "raw_herring"]
+    }
+  }
+}
+examine = "It looks like there might be fish swimming in the water."
+
+[fishing_spot_cage_harpoon_feldip_hills]
+id = 7046
+fishing = {
+  Cage = {
+    items = ["lobster_pot"],
+    bait = {
+      none = ["raw_lobster"]
+    }
+  },
+  Harpoon = {
+    items = ["harpoon", "barb_tail_harpoon"],
+    bait = {
+      none = ["raw_tuna", "raw_swordfish"]
+    }
+  }
+}
+examine = "It looks like there might be fish swimming in the water."
+
+[flying_bugs]
+id = 7083
+wander_radius = 3
+examine = "Pesky little things."
+
+[patrick_platypus_2]
+clone = "patrick_platypus"
+id = 7091
+
+[penelope_platypus_2]
+clone = "penelope_platypus"
+id = 7092
+
+[peter_platypus_2]
+clone = "peter_platypus"
+id = 7093
+
+[peanut_platypus_2]
+clone = "peanut_platypus"
+id = 7094
+
+[patrick_platypus_3]
+clone = "patrick_platypus"
+id = 7095
+
+[penelope_platypus_3]
+clone = "penelope_platypus"
+id = 7096
+
+[peter_platypus_3]
+clone = "peter_platypus"
+id = 7097
+
+[peanut_platypus_3]
+clone = "peanut_platypus"
+id = 7098
+
+[fluffy]
+id = 7413
+race = "squirrel"
+examine = "A cute, cuddly, little squirrel - with teeth."
+
+[banker_fist_of_guthix]
+id = 7605
+race = "human"
+examine = "He has unbelievable strength!"
+
+[melee_dummy]
+id = 7891
+hitpoints = 150
+immune_poison = true
+immune_deflect = true
+immune_stun = true
+immune_drain = true
+retaliates = false
+examine = "Ready for all you can swing at it."
+
+[bat_swept_away]
+id = 8208
+examine = "Most at home in a dead tree."
+
+[rat_swept_away]
+id = 8209
+examine = "Cheese-eater."
+
+[lizard_swept_away]
+id = 8210
+examine = "Desert-dweller."
+
+[blackbird_swept_away]
+id = 8211
+examine = "Bleak and beaky."
+
+[spider_swept_away]
+id = 8212
+examine = "Isn't eight legs rather excessive?"
+
+[snail_swept_away]
+id = 8213
+examine = "Rather quick, considering."
+
+[holding_pen_swept_away]
+id = 8219
+
+[bat_pen_swept_away]
+id = 8220
+
+[blackbird_pen_swept_away]
+id = 8221
+
+[rat_pen_swept_away]
+id = 8222
+
+[snail_pen_swept_away]
+id = 8223
+
+[spider_pen_swept_away]
+id = 8224
+
+[reptile_pen_swept_away]
+id = 8225
+
+[turkey]
+id = 8499
+examine = "It's huge and delicious!"
+
+[sandwich_lady]
+id = 8629
+examine = "The sandwich lady."
+
+[frog_10_frogland]
+clone = "frog_frogland"
+id = 8636
+
+[frog_11_frogland]
+clone = "frog_frogland"
+id = 8637
+
+[musician_edgeville]
+id = 8698
+song = 705
+race = "human"
+examine = "Fiddle de dee!"
+
+[musician_cooks_guild]
+id = 8699
+song = 705
+race = "human"
+examine = "Fiddle de dee!"
+
+[musician_lumber_yard]
+id = 8700
+song = 705
+race = "human"
+examine = "Fiddle de dee!"
+
+[musician_gower_farm]
+id = 8701
+song = 705
+race = "human"
+examine = "Fiddle de dee!"
+
+[musician_piscatoris]
+id = 8702
+song = 702
+race = "human"
+examine = "What restful music!"
+
+[musician_fishing_guild]
+id = 8703
+song = 702
+race = "human"
+examine = "What restful music!"
+
+[musician_port_khazard]
+id = 8704
+song = 705
+race = "human"
+examine = "Fiddle de dee!"
+
+[musician_catherby]
+id = 8705
+song = 702
+race = "human"
+examine = "What restful music!"
+
+[musician_yanille]
+id = 8706
+song = 705
+race = "human"
+examine = "Fiddle de dee!"
+
+[musician_al_kharid]
+id = 8707
+song = 699
+race = "human"
+examine = "He plays charming music."
+
+[musician_shantay_pass]
+id = 8708
+song = 699
+race = "human"
+examine = "She plays charming music."
+
+[musician_sophanem]
+id = 8709
+song = 699
+race = "human"
+
+[musician_sophanem_1]
+id = 8710
+song = 699
+race = "human"
+examine = "She plays pipes."
+
+[musician_sophanem_2]
+id = 8711
+song = 699
+race = "human"
+examine = "She plays pipes."
+
+[goblin_musician]
+id = 8712
+song = 700
+race = "goblin"
+examine = "Bang-bang good!"
+
+[ghostly_piper]
+id = 8713
+song = 698
+race = "ghost"
+examine = "A call to arms for warrior's past."
+
+[drunken_musician]
+id = 8715
+song = 701
+race = "human"
+examine = "I've heard better lute playing..."
+
+[musician_miscellania]
+id = 8716
+song = 704
+race = "human"
+examine = "He's better than Prince Brand."
+
+[musician_rellekka]
+id = 8717
+song = 704
+race = "human"
+examine = "What restful music!"
+
+[musician_mountain_camp]
+id = 8718
+song = 703
+race = "human"
+examine = "What restful music!"
+
+[musician_tai_bwo_wannai]
+id = 8719
+song = 700
+race = "human"
+examine = "She bangs the drums."
+
+[musician_shilo_village]
+id = 8720
+song = 700
+race = "human"
+examine = "She bangs the drums."
+
+[musician_fenkenstrains_castle]
+id = 8721
+song = 702
+race = "human"
+examine = "What restful music."
+
+[bill_blakey]
+id = 8722
+song = 697
+race = "ghost"
+examine = "He looks lovelorn."
+
+[musician_isafdar]
+id = 8723
+song = 704
+race = "elf"
+examine = "She's beautiful."
+
+[giant_rat_dark]
+clone = "giant_rat"
+id = 8828
+att = 6
+str = 5
+def = 2
+hitpoints = 100
+slayer_xp = 10.0
+
+[giant_rat_dark_injured]
+clone = "giant_rat_dark"
+id = 8829
+
+[hank]
+id = 8864
+race = "human"
+shop = "lumbridge_fishing_supplies"
+examine = "A product of a consumerist society."
+
+[dark_wizard_water]
+id = 8871
+att = 5
+str = 2
+def = 5
+mage = 6
+attack_range = 5
+attack_radius = 11
+hitpoints = 120
+max_hit_magic = 60
+respawn_delay = 50
+hunt_mode = "cowardly"
+wander_radius = 4
+race = "human"
+examine = "He works evil magic."
+
+[dark_wizard_water_2]
+clone = "dark_wizard_water"
+id = 8872
+drop_table = "dark_wizard_water"
+
+[dark_wizard_earth]
+clone = "dark_wizard_water"
+id = 8873
+att = 17
+str = 17
+def = 14
+mage = 22
+hitpoints = 240
+drop_table = "dark_wizard_earth"
+examine = "A practicer of dark arts."
+
+[dark_wizard_earth_2]
+clone = "dark_wizard_earth"
+id = 8874
+
+[sheep_black]
+clone = "sheep"
+id = 8876
+examine = "It's sporting the height of wool-based fashion."
+
+[sheep_black_shorn]
+clone = "sheep"
+id = 8877
+examine = "Freshly sheared."
+
+[iconis]
+id = 8879
+race = "human"
+examine = "A wizard who specialises in magical picture-taking processes."
+
+[armour]
+id = 9354
+examine = "A suit of armour."
+
+[sir_prysin]
+clone = "sir_prysin_normal"
+id = 9359
+
+[gypsy_aris]
+id = 9362
+examine = "A fortune-teller."
+
+[charlie_the_squirrel_pet]
+id = 9681
+race = "squirrel"
+examine = "A squirrel wearing weird face paint."
+
+[fluffy_pet]
+id = 9682
+race = "squirrel"
+examine = "A cute, cuddly, little squirrel - with teeth."
+
+[goblin_courier]
+id = 9683
+race = "goblin"
+examine = "An ugly green creature. He seems to be waiting for something."
+
+[a_strange_courier]
+id = 9684
+race = "elf"
+examine = "An odd-looking person. Seems to be waiting for something."
+
+[courier]
+id = 9685
+race = "human"
+examine = "One of RuneScape's many citizens. He seems to be waiting for something."
+
+[charlie_the_squirrel]
+id = 9686
+race = "squirrel"
+examine = "A squirrel wearing weird face paint."
+
+[easter_bunny_2010]
+id = 9687
+race = "bird"
+examine = "The loveable protector of Easter."
+
+[easta_buni_spawn]
+id = 9688
+
+[easter_bird_2010]
+id = 9696
+race = "bird"
+examine = "The bird looks awake and alert."
+
+[primal_warrior]
+id = 11227
+
+[celestial_mage]
+id = 11228
+
+[sagittarian_ranger]
+id = 11229
+
+[balloon_animal_dog]
+id = 11232
+wander_radius = 3
+examine = "It looks like an animal."
+
+[balloon_animal_cat]
+id = 11233
+wander_radius = 3
+examine = "It looks like an animal."
+
+[balloon_animal_sheep]
+id = 11234
+wander_radius = 3
+examine = "It looks like an animal."
+
+[balloon_animal_goat]
+id = 11235
+wander_radius = 3
+examine = "It looks like an animal."
+
+[goblin_light_grey_bald]
+clone = "goblin_mohawk_blue"
+id = 12353
+
+[goblin_turquoise_topless_mohawk]
+clone = "goblin_mohawk_blue"
+id = 12354
+
+[goblin_light_brown_bald]
+clone = "goblin_mohawk_blue"
+id = 12355
+
+[goblin_turquoise_grey_ponytail]
+clone = "goblin_mohawk_blue"
+id = 12356
+
+[goblin_light_grey_helmet]
+clone = "goblin_mohawk_blue"
+id = 12357
+
+[goblin_light_grey_hat]
+clone = "goblin_mohawk_blue"
+id = 12358
+
+[goblin_light_brown_mohawk]
+clone = "goblin_mohawk_blue"
+id = 12359
+
+[goblin_light_topless_spiked]
+clone = "goblin_mohawk_blue"
+id = 12360
+
+[goblin_light_grey_bald_spear]
+clone = "goblin_orange_hat_spear"
+id = 12361
+
+[cow_2]
+clone = "cow"
+id = 12362
+
+[cow_brown_2]
+clone = "cow"
+id = 12363
+
+[cow_calf_2]
+clone = "cow_calf"
+id = 12364
+
+[cow_light_spots_2]
+clone = "cow"
+id = 12365
+
+[cow_calf_3]
+clone = "cow_calf"
+id = 12366
+
+[leela]
+id = 13172
+race = "human"
+wander_radius = 4
+examine = "She comes from Al Kharid."
+
+[seal]
+id = 13255
+wander_radius = 2
+examine = "Arf arf."
+
+[seal_2]
+id = 13256
+wander_radius = 2
+examine = "Arf arf."
+
+[seal_3]
+id = 13257
+wander_radius = 2
+examine = "Arf arf."
+
+[seal_4]
+id = 13258
+wander_radius = 2
+examine = "Arf arf."
+
+[seal_5]
+id = 13259
+wander_radius = 2
+examine = "Arf arf."
+
+[seal_6]
+id = 13260
+wander_radius = 2
+examine = "Arf arf."
+
+[greater_demon]
+id = 83
+att = 76
+str = 78
+def = 81
+attack_range = 5
+attack_radius = 11
+hitpoints = 870
+slayer_xp = 87
+max_hit_melee = 90
+style = "slash"
+race = "demon"
+respawn_delay = 15
+hunt_mode = "aggressive"
+height = 60
+examine = "Big, red, and incredibly evil."
+
+[zombie]
+id = 73
+att = 8
+str = 9
+def = 10
+attack_bonus = 5
+attack_speed = 5
+wander_radius = 10
+hitpoints = 220
+slayer_xp = 22.0
+max_hit_melee = 20
+style = "slash"
+respawn_delay = 35
+examine = "Dead man walking."
+race = "zombie"
+
+[guardian_mummy]
+id = 4476
+race = "mummy"
+large_head = true
+examine = "Who's your mummy?"
+
+[al_the_camel]
+id = 2809
+race = "camel"
+large_head = true
+wander_radius = 4
+examine = "A camel who has the soul of a poet."
+
+[dark_mage]
+id = 2262
+faces = false
+race = "human"
+examine = "An initiate of Zamorak."
+
+[mage_of_zamorak_wilderness]
+id = 2257
+faces = false
+race = "human"
+wander_radius = 4
+examine = "A disciple of Zamorak."
+
+[mage_of_zamorak_varrock]
+id = 2260
+faces = false
+race = "human"
+wander_radius = 5
+examine = "A disciple of Zamorak."
+
+[abyssal_leech]
+id = 2263
+hitpoints = 100
+att = 95
+str = 5
+def = 25
+attack_bonus = 100
+wander_radius = 6
+attack_radius = 6
+max_hit_melee = 20
+hunt_mode = "aggressive"
+style = "slash"
+height = 15
+respawn_delay = 5
+examine = "A blood-drinking denizen of the Abyss."
+
+[abyssal_guardian]
+id = 2264
+hitpoints = 500
+att = 30
+str = 90
+def = 30
+attack_bonus = 15
+wander_radius = 8
+attack_radius = 4
+max_hit_melee = 110
+hunt_mode = "aggressive"
+style = "stab"
+height = 30
+respawn_delay = 5
+examine = "It seems to have eyes in the back of its head..."
+
+[abyssal_walker]
+id = 2265
+hitpoints = 950
+att = 5
+str = 100
+def = 95
+attack_bonus = 5
+wander_radius = 6
+attack_radius = 2
+max_hit_melee = 130
+hunt_mode = "aggressive"
+style = "crush"
+height = 50
+attack_speed = 5
+respawn_delay = 5
+examine = "Apparently walks the Abyss."
+
+[wizard_distentor]
+id = 462
+examine = "Head of the Magic Guild."
+
+[wizard_cromperty]
+id = 844
+examine = "The hat is a dead give away."
+
+[brimstail]
+id = 171
+old_model = true
+examine = "Small but wise, he is."
+
+[mage_of_zamorak_ourania]
+id = 6370
+wander_radius = 4
+examine = "A representative of the Z.M.I."
+
+[eniola]
+id = 6362
+examine = "A roving banker."
+
+[zamorak_warrior_kite]
+id = 6363
+hitpoints = 450
+att = 85
+str = 70
+def = 90
+style = "slash"
+max_hit_melee = 80
+wander_radius = 5
+attack_radius = 11
+respawn_delay = 50
+hunt_mode = "aggressive"
+weapon_style = "sword"
+drop_table = "zamorak_warrior"
+race = "human"
+examine = "A warrior of Zamorak."
+
+[zamorak_warrior_square]
+clone = "zamorak_warrior_kite"
+id = 6364
+style = "crush"
+
+[zamorak_mage_fancy]
+id = 6367
+hitpoints = 500
+att = 75
+str = 80
+def = 80
+mage = 85
+spell = "fire_bolt"
+max_hit_magic = 90
+respawn_delay = 50
+hunt_mode = "aggressive"
+attack_range = 3
+attack_radius = 10
+wander_radius = 5
+race = "human"
+drop_table = "zamorak_mage"
+examine = "A mage of Zamorak."
+
+[zamorak_mage]
+clone = "zamorak_mage_fancy"
+id = 6368
+
+[zamorak_ranger]
+id = 6365
+hitpoints = 500
+att = 75
+str = 80
+def = 80
+range = 80
+max_hit_range = 90
+respawn_delay = 50
+hunt_mode = "aggressive"
+attack_range = 5
+attack_radius = 10
+wander_radius = 5
+race = "human"
+style = "accurate"
+weapon_style = "bow"
+ammo = "mithril_arrow"
+drop_table = "zamorak_ranger"
+height = 40
+examine = "A ranger of Zamorak."
+
+[zamorak_ranger_coat]
+clone = "zamorak_ranger"
+id = 6366
+
+[cave_lizard]
+id = 6369
+hitpoints = 200
+att = 38
+str = 36
+def = 35
+race = "gecko"
+style = "crush"
+height = 15
+hunt_range = 2
+attack_range = 1
+attack_radius = 11
+wander_radius = 5
+max_hit_melee = 50
+hunt_mode = "aggressive"
+drop_table = "empty"
+respawn_delay = 50
+examine = "A cave dweller."
+
+[zamorak_crafter_start]
+id = 6371
+solid = false
+hitpoints = 250
+att = 15
+str = 15
+def = 12
+mage = 20
+race = "human"
+style = "crush"
+height = 40
+hunt_range = 2
+attack_range = 1
+attack_radius = 11
+wander_radius = 5
+max_hit_melee = 20
+drop_table = "zamorak_crafter"
+respawn_delay = 50
+examine = "A Z.M.I. runecrafter."
+
+[zamorak_crafter_end]
+clone = "zamorak_crafter_start"
+id = 6372
+
+[monk_of_zamorak_ourania]
+id = 189
+hitpoints = 100
+att = 8
+str = 8
+def = 12
+mage = 25
+race = "human"
+style = "crush"
+height = 40
+hunt_range = 2
+attack_range = 1
+attack_radius = 11
+wander_radius = 5
+max_hit_melee = 50
+hunt_mode = "aggressive"
+drop_table = "monk_of_zamorak"
+respawn_delay = 50
+examine = "An evil human cleric."
+
+[explorer_jack]
+id = 13295
+wander_radius = 5
+race = "human"
+examine = "He looks like a professional explorer."
+
+[ring_of_stone]
+id = 2626
+
+[easter_egg_0]
+id = 3689
+
+[easter_egg_1]
+id = 3690
+
+[easter_egg_2]
+id = 3691
+
+[easter_egg_3]
+id = 3692
+
+[easter_egg_4]
+id = 3693
+
+[easter_egg_5]
+id = 3694
+
+[suit_of_armour]
+id = 453
+hitpoints = 290
+att = 16
+str = 14
+def = 9
+style = "slash"
+max_hit_melee = 30
+wander_radius = 5
+attack_radius = 8
+hunt_mode = "aggressive"
+weapon_style = "sword"
+race = "human"
+examine = "A dusty old suit of armour."
+
+[gnome_trainer]
+id = 162
+race = "gnome"
+wander_radius = 4
+examine = "He can advise on training."
+
+[gunnjorn]
+id = 607
+race = "human"
+wander_radius = 4
+examine = "He maintains this agility course."
+
+[barbarian_guard]
+id = 384
+race = "human"
+wander_radius = 4
+examine = "Not very civilised looking."
+
+[bartender_blue_moon_inn]
+id = 733
+bar_crawl = {
+  id = "uncle_humphreys_gutrot",
+  price = 50,
+  insufficient = "Oh dear. I don't seem to have enough money.",
+  give = "You buy some Uncle Humphrey's Gutrot.",
+  drink = "You drink the Uncle Humphrey's Gutrot.",
+  effect = "Your insides feel terrible.",
+  sign = "The bartender signs your card."
+}
+race = "human"
+wander_radius = 4
+examine = "I could get a beer from him."
+
+[bartender_rusty_anchor]
+id = 11707
+bar_crawl = {
+  id = "black_skull_ale",
+  price = 8,
+  insufficient = "I don't have 8 coins with me.",
+  give = "You buy a Black Skull Ale.",
+  drink = "You drink your Black Skull Ale...",
+  effect = "Your vision blurs.",
+  sign = "The bartender signs your card."
+}
+race = "human"
+wander_radius = 4
+examine = "I could get a beer from him."
+
+[barmaid_emily]
+id = 736
+bar_crawl = {
+  id = "hand_of_death_cocktail",
+  price = 70,
+  insufficient = "I don't have that much money on me.",
+  give = "You buy a Hand of Death cocktail.",
+  drink = "You drink the cocktail.",
+  effect = "You stumble around the room.",
+  sign = "The barmaid giggles and signs your card."
+}
+race = "human"
+wander_radius = 3
+examine = "Works in the Rising Sun."
+
+[barmaid_kaylee]
+clone = "barmaid_emily"
+id = 3217
+
+[barmaid_tina]
+clone = "barmaid_emily"
+id = 3218
+
+[bartender_zambo]
+id = 568
+shop = "karamja_wines_spirits_and_beers"
+bar_crawl = {
+  id = "ape_bite_liqueur",
+  price = 7,
+  start = "Ah, you'll be wanting some Ape Bite Liqueur, then. It's got a lovely banana taste and it'll only cost you 7 coins.",
+  insufficient = "I don't have 7 coins with me.",
+  give = "You buy some Ape Bite Liqueur.",
+  drink = "You swirl it around and swallow it.",
+  effect = "Zambo signs your card."
+}
+race = "human"
+wander_radius = 3
+examine = "Appears slightly drunk."
+
+[bartender_flying_horse_inn]
+id = 738
+bar_crawl = {
+  id = "heart_stopper",
+  price = 8,
+  start = "Fancy a bit of Heart Stopper then do you? It'll only be 8 coins.",
+  insufficient = "Sorry, I don't have 8 coins.",
+  give = "The bartender hands you a shot of Heart Stopper.",
+  drink = "You grimace and drink it.",
+  effect = "You clutch your chest.",
+  sign = "Through your tears you see the bartender..."
+}
+race = "human"
+wander_radius = 3
+examine = "I could get a beer from him."
+
+[blurberry]
+id = 848
+bar_crawl = {
+  id = "fire_toad_blast",
+  price = 10,
+  insufficient = "I don't have 10 coins right now.",
+  give = "You buy a Fire Toad Blast.",
+  drink = "Your mouth and throat burn as you gulp it down.",
+  effect = "Blurberry signs your card."
+}
+race = "gnome"
+wander_radius = 3
+examine = "He seems to run the cocktail bar."
+
+[bartender_dragon_inn]
+id = 739
+bar_crawl = {
+  id = "fire_brandy",
+  price = 12,
+  start = "I suppose you'll be wanting some Fire Brandy. That'll cost you 12 coins.",
+  insufficient = "Sorry I don't have 12 coins.",
+  give = "The bartender hands you a small glass and sets light to the contents.",
+  drink = "You blow out the flame and drink it.",
+  effect = "Your vision blurs and you stagger slightly.",
+  sign = "You can just about make out the bartender signing your barcrawl card."
+}
+race = "human"
+wander_radius = 5
+examine = "I could get a beer from him."
+
+[bartender_jolly_boar_inn]
+id = 731
+bar_crawl = {
+  id = "olde_suspiciouse",
+  price = 10,
+  start = "Ah, there seems to be a fair few doing that one these days. My supply of Olde Suspiciouse is starting to run low, it'll cost you 10 coins.",
+  insufficient = "I don't have 10 coins right now.",
+  give = "You buy a pint of Olde Suspiciouse.",
+  drink = "You gulp it down.",
+  effect = "Your head is spinning.",
+  sign = "The bartender signs your card."
+}
+race = "human"
+wander_radius = 5
+examine = "I could get a beer from him."
+
+[bartender_dead_mans_chest]
+id = 735
+bar_crawl = {
+  id = "supergrog",
+  price = 15,
+  start = "Fancy a bit of Heart Stopper then do you? It'll only be 8 coins.",
+  insufficient = "Sorry I don't have 15 coins.",
+  give = "The bartender serves you a glass of strange thick dark liquid.",
+  drink = "You wince and drink it.",
+  effect = "You stagger backwards.",
+  sign = "You think you see 2 bartenders signing 2 barcrawl cards."
+}
+race = "human"
+wander_radius = 5
+examine = "I could get a beer from him."
+
+[bartender_foresters_arms]
+id = 737
+bar_crawl = {
+  id = "liverbane_ale",
+  price = 18,
+  start = "Oh you're a barbarian then. Now which of these barrels contained the Liverbane Ale? That'll be 18 coins please.",
+  insufficient = "Sorry, I don't have 18 coins.",
+  give = "The bartender gives you a glass of Liverbane Ale.",
+  drink = "You gulp it down.",
+  effect = "The room seems to be swaying.",
+  sign = "The bartender scrawls his signature on your card."
+}
+race = "human"
+wander_radius = 5
+examine = "I could get a beer from him."
+
+[skeleton_mace_shield]
+id = 92
+hitpoints = 170
+att = 24
+str = 24
+def = 24
+wander_radius = 8
+attack_radius = 4
+max_hit_melee = 40
+hunt_mode = "aggressive_intolerant"
+style = "slash"
+height = 30
+respawn_delay = 60
+race = "skeleton"
+examine = "Could do with gaining a few pounds."
+
+[skeleton_flail]
+clone = "skeleton_mace_shield"
+id = 5340
+
+[skeleton_sword_shield]
+clone = "skeleton_mace_shield"
+id = 5338
+
+[skeleton_helmet]
+clone = "skeleton_mace_shield"
+id = 5332
+
+[skeleton_unarmed]
+id = 5333
+hitpoints = 290
+att = 15
+str = 18
+def = 17
+wander_radius = 8
+attack_radius = 4
+max_hit_melee = 30
+hunt_mode = "aggressive"
+style = "crush"
+height = 30
+respawn_delay = 70
+race = "skeleton"
+examine = "Could do with gaining a few pounds."
+
+[skeleton_shield_helmet]
+clone = "skeleton_unarmed"
+id = 90
+
+[skeleton_shield]
+clone = "skeleton_unarmed"
+id = 5334
+
+[skeleton_builder]
+clone = "skeleton_unarmed"
+id = 3291
+
+[skeleton_axe_shield]
+clone = "skeleton_mace_shield"
+id = 5337
+
+[skeleton_longsword]
+clone = "skeleton_mace_shield"
+id = 5339
+
+[skeleton_axe_shield_85]
+id = 5367
+hitpoints = 590
+att = 32
+str = 35
+def = 36
+wander_radius = 8
+attack_radius = 4
+max_hit_melee = 50
+hunt_mode = "aggressive"
+style = "slash"
+height = 30
+respawn_delay = 60
+race = "skeleton"
+examine = "Could do with gaining a few pounds."
+
+[skeleton_sword_shield_85]
+clone = "skeleton_axe_shield_85"
+id = 5368
+
+[skeleton_hammer_shield]
+clone = "skeleton_axe_shield_85"
+id = 4386
+
+[small_ninja_monkey]
+id = 1480
+
+[medium_ninja_monkey]
+id = 1481
+
+[gorilla]
+id = 1482
+
+[bearded_gorilla]
+id = 1483
+
+[ancient_gorilla]
+id = 1484
+
+[small_zombie_monkey]
+id = 1485
+
+[large_zombie_monkey]
+id = 1486
+
+[monkey]
+id = 1487

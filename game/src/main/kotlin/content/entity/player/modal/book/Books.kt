@@ -1,17 +1,20 @@
 package content.entity.player.modal.book
 
+import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import world.gregs.config.Config
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.Yaml
-import world.gregs.yaml.read.YamlReaderConfiguration
 
 class Books {
 
     private lateinit var longBooks: Set<String>
-    private lateinit var books: Map<String, List<String>>
+    private lateinit var books: Map<String, List<List<String>>>
     private lateinit var titles: Map<String, String>
 
     fun isLong(name: String) = longBooks.contains(name)
@@ -20,19 +23,38 @@ class Books {
 
     fun title(name: String) = titles.getOrDefault(name, "")
 
-    @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["definitions.books"]): Books {
+    fun load(path: String = Settings["definitions.books"]): Books {
         timedLoad("book") {
-            val config = object : YamlReaderConfiguration(2, 2) {
-                override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
-                    super.add(list, (value as String).trimIndent(), parentMap)
+            val longBooks = ObjectOpenHashSet<String>(10, Hash.VERY_FAST_LOAD_FACTOR)
+            val titles = Object2ObjectOpenHashMap<String, String>(10, Hash.VERY_FAST_LOAD_FACTOR)
+            val books = Object2ObjectOpenHashMap<String, List<List<String>>>(10, Hash.VERY_FAST_LOAD_FACTOR)
+            Config.fileReader(path, 50) {
+                while (nextSection()) {
+                    val book = section()
+                    while (nextPair()) {
+                        val key = key()
+                        when (key) {
+                            "long" -> if (boolean()) longBooks.add(book)
+                            "title" -> titles[book] = string()
+                            "pages" -> {
+                                val pages = ObjectArrayList<List<String>>(4)
+                                while (nextElement()) {
+                                    val lines = ObjectArrayList<String>(20)
+                                    while (nextElement()) {
+                                        lines.add(string())
+                                    }
+                                    pages.add(lines)
+                                }
+                                books[book] = pages
+                            }
+                        }
+                    }
                 }
             }
-            val data = yaml.load<Map<String, Map<String, Any>>>(path, config)
-            this.longBooks = data.mapNotNull { if (it.value["long"] as? Boolean == true) it.value["title"] as String else null }.toSet()
-            this.titles = data.mapValues { it.value["title"] as String }
-            this.books = data.mapValues { it.value["pages"] as List<String> }
-            this.books.size
+            this.longBooks = longBooks
+            this.titles = titles
+            this.books = books
+            titles.size
         }
         return this
     }

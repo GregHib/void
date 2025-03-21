@@ -1,12 +1,12 @@
 package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.config.Config
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.PatrolDefinition
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.Yaml
-import world.gregs.yaml.read.YamlReaderConfiguration
+import world.gregs.voidps.type.Tile
 
 class PatrolDefinitions {
 
@@ -14,28 +14,37 @@ class PatrolDefinitions {
 
     fun get(key: String) = definitions[key] ?: PatrolDefinition()
 
-    @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["definitions.patrols"]): PatrolDefinitions {
+    fun load(path: String = Settings["definitions.patrols"]): PatrolDefinitions {
         timedLoad("patrol definition") {
             val definitions = Object2ObjectOpenHashMap<String, PatrolDefinition>()
-            val config = object : YamlReaderConfiguration() {
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-                    if (key == "<<") {
-                        map.putAll(value as Map<String, Any>)
-                        return
-                    }
-                    if (indent == 0) {
-                        definitions[key] = if (value is Map<*, *>) {
-                            PatrolDefinition(key, value as MutableMap<String, Any>)
-                        } else {
-                            PatrolDefinition(stringId = key)
+            Config.fileReader(path) {
+                while (nextSection()) {
+                    val stringId = section()
+                    val points = ObjectArrayList<Pair<Tile, Int>>(10)
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "points" -> while (nextElement()) {
+                                var x = 0
+                                var y = 0
+                                var level = 0
+                                var delay = 0
+                                while (nextEntry()) {
+                                    when (val k = key()) {
+                                        "x" -> x = int()
+                                        "y" -> y = int()
+                                        "level" -> level = int()
+                                        "delay" -> delay = int()
+                                        else -> throw IllegalArgumentException("Unexpected key: '$k' ${exception()}")
+                                    }
+                                }
+                                points.add(Tile(x, y, level) to delay)
+                            }
+                            else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
-                    } else {
-                        super.set(map, key, value, indent, parentMap)
                     }
+                    definitions[stringId] = PatrolDefinition(stringId = stringId, waypoints = points)
                 }
             }
-            yaml.load<Any>(path, config)
             this.definitions = definitions
             this.definitions.size
         }

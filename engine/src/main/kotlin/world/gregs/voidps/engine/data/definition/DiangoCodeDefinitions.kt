@@ -1,13 +1,13 @@
 package world.gregs.voidps.engine.data.definition
 
-import com.github.michaelbull.logging.InlineLogger
+import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.config.Config
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.DiangoCodeDefinition
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.Yaml
-import world.gregs.yaml.read.YamlReaderConfiguration
 
 class DiangoCodeDefinitions {
 
@@ -17,42 +17,33 @@ class DiangoCodeDefinitions {
 
     fun getOrNull(code: String) = definitions[code]
 
-    @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = Settings["definitions.diangoCodes"], itemDefinitions: ItemDefinitions? = null): DiangoCodeDefinitions {
+    fun load(path: String = Settings["definitions.diangoCodes"], itemDefinitions: ItemDefinitions? = null): DiangoCodeDefinitions {
         timedLoad("diango code definition") {
-            val config = object : YamlReaderConfiguration(2, 2) {
-                override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
-                    super.add(list, if (value is Map<*, *>) {
-                        val id = value["item"] as String
-                        if (itemDefinitions != null && !itemDefinitions.contains(id)) {
-                            logger.warn { "Invalid diango item id: $id" }
+            val definitions = Object2ObjectOpenHashMap<String, DiangoCodeDefinition>(1, Hash.VERY_FAST_LOAD_FACTOR)
+            Config.fileReader(path, 50) {
+                while (nextSection()) {
+                    val stringId = section()
+                    var variable = ""
+                    val items = ObjectArrayList<Item>(2)
+                    while (nextPair()) {
+                        val key = key()
+                        when (key) {
+                            "variable" -> variable = string()
+                            "add" -> {
+                                while (nextElement()) {
+                                    val id = string()
+                                    require(itemDefinitions == null || itemDefinitions.contains(id)) { "Invalid diango item id: $id" }
+                                    items.add(Item(id))
+                                }
+                            }
                         }
-                        Item(id, value["amount"] as? Int ?: 1)
-                    } else {
-                        Item(value as String, amount = 1)
-                    }, parentMap)
-                }
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-                    if (key == "<<") {
-                        map.putAll(value as Map<String, Any>)
-                        return
-                    }
-                    if (indent == 0) {
-                        super.set(map, key, DiangoCodeDefinition(value as Map<String, Any>), indent, parentMap)
-                    } else {
-                        super.set(map, key, value, indent, parentMap)
+                        definitions[stringId] = DiangoCodeDefinition(variable, items)
                     }
                 }
             }
-            val definitions = yaml.load<Any>(path, config) as Map<String, DiangoCodeDefinition>
             this.definitions = definitions
             definitions.size
         }
         return this
     }
-
-    companion object {
-        private val logger = InlineLogger()
-    }
-
 }
