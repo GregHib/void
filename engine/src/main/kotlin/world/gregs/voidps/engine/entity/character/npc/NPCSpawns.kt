@@ -1,29 +1,20 @@
-package content.entity.npc.spawn
+package world.gregs.voidps.engine.entity.character.npc
 
 import world.gregs.config.Config
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.timedLoad
-import java.nio.file.Files
-import java.nio.file.Path
-import kotlin.io.path.extension
-import kotlin.io.path.pathString
 
 fun loadNpcSpawns(
     npcs: NPCs,
-    dir: String = Settings["spawns.npcs"]
+    paths: List<String>
 ) {
     timedLoad("npc spawn") {
         npcs.clear()
         val membersWorld = World.members
-        for (path in Files.list(Path.of(dir))) {
-            if (path.extension != "toml") {
-                continue
-            }
-            Config.fileReader(path.pathString) {
+        for (path in paths) {
+            Config.fileReader(path) {
                 while (nextPair()) {
                     require(key() == "spawns")
                     while (nextElement()) {

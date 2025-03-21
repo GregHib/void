@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.data.definition.AmmoDefinitions
 import world.gregs.voidps.engine.data.definition.CategoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.ParameterDefinitions
+import world.gregs.voidps.engine.data.configFiles
 
 object ItemDefinitions {
 
@@ -18,7 +19,8 @@ object ItemDefinitions {
         val categories = CategoryDefinitions().load(Settings["definitions.categories"])
         val ammo = AmmoDefinitions().load(Settings["definitions.ammoGroups"])
         val parameters = ParameterDefinitions(categories, ammo).load(Settings["definitions.parameters"])
-        val decoder = ItemDefinitions(ItemDecoder(parameters).load(cache)).load(Settings["definitions.items"])
+        val files = configFiles()
+        val decoder = ItemDefinitions(ItemDecoder(parameters).load(cache)).load(files.getOrDefault(Settings["definitions.items"], emptyList())
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
             if(def.stringId.contains("anchor"))

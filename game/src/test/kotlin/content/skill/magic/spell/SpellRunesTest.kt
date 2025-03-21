@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import set
+import world.gregs.voidps.engine.entity.Spawn
 
 class SpellRunesTest : MagicSpellTest() {
 
@@ -47,7 +48,7 @@ class SpellRunesTest : MagicSpellTest() {
     @Test
     fun `Members spell`() {
         Settings.load(mapOf("world.members" to "false"))
-        World.start()
+        World.emit(Spawn)
 
         val player = player()
         setItems(Item("blood_rune") to ItemDefinition(stringId = "blood_rune", members = true))

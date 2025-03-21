@@ -46,6 +46,6 @@ internal class InventoryDefinitionsTest : DefinitionsDecoderTest<InventoryDefini
         val uri = InventoryDefinitionsTest::class.java.getResource("test-inventory.toml")!!
         val itemDefs = mockk<ItemDefinitions>(relaxed = true)
         every { itemDefs.get(any<String>()) }.returns(ItemDefinition(1))
-        definitions.load(uri.path, itemDefs)
+        definitions.load(listOf(uri.path), itemDefs)
     }
 }

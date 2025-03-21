@@ -5,6 +5,7 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -20,7 +21,7 @@ object MapGraphLoader {
         val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
         val collisions: Collisions = Collisions()
         val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache))
-            .load(Settings["definitions.objects"])
+            .load(configFiles().getValue(Settings["definitions.objects"]))
         val objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), objectDefinitions)
         val xteas = Xteas()//.load("./xteas.json")
         val graph = MapGraph(objects, xteas, cache, collisions)

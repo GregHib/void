@@ -1,16 +1,10 @@
-package content.entity.item.spawn
+package world.gregs.voidps.engine.entity.item.floor
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.config.Config
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.timedLoad
-import java.nio.file.Files
-import java.nio.file.Path
-import kotlin.io.path.extension
-import kotlin.io.path.pathString
 
 class ItemSpawns(
     private val zones: MutableMap<Int, ItemSpawn> = Int2ObjectOpenHashMap()
@@ -32,16 +26,13 @@ class ItemSpawns(
 fun loadItemSpawns(
     items: FloorItems,
     spawns: ItemSpawns,
-    dir: String = Settings["spawns.items"]
+    paths: List<String>
 ) {
     timedLoad("item spawn") {
         spawns.clear()
         val membersWorld = World.members
-        for (path in Files.list(Path.of(dir))) {
-            if (path.extension != "toml") {
-                continue
-            }
-            Config.fileReader(path.pathString) {
+        for (path in paths) {
+            Config.fileReader(path) {
                 while (nextPair()) {
                     require(key() == "spawns")
                     while (nextElement()) {

@@ -5,7 +5,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.data.Pickable
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.data.definition.data.Tree
@@ -27,14 +26,11 @@ class ObjectDefinitions(
 
     override fun empty() = ObjectDefinition.EMPTY
 
-    fun load(dir: String = Settings["definitions.objects"]): ObjectDefinitions {
+    fun load(paths: List<String>): ObjectDefinitions {
         timedLoad("object extra") {
             val ids = Object2IntOpenHashMap<String>()
-            for (path in Files.list(Path.of(dir))) {
-                if (path.extension != "toml") {
-                    continue
-                }
-                Config.fileReader(path.pathString) {
+            for (path in paths) {
+                Config.fileReader(path) {
                     while (nextSection()) {
                         val stringId = section()
                         var id = -1

@@ -26,7 +26,7 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
 
     override fun load(definitions: ItemDefinitions) {
         val uri = ItemDefinitionsTest::class.java.getResource("test-item.toml")!!
-        definitions.load(uri.path)
+        definitions.load(listOf(uri.path))
     }
 
 

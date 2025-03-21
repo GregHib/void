@@ -29,7 +29,7 @@ class ItemDefinitions(
 
     override fun empty() = ItemDefinition.EMPTY
 
-    fun load(dir: String = Settings["definitions.items"]): ItemDefinitions {
+    fun load(paths: List<String>): ItemDefinitions {
         timedLoad("item extra") {
             val equipment = IntArray(definitions.size) { -1 }
             var index = 0
@@ -40,11 +40,8 @@ class ItemDefinitions(
             }
             val ids = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)
-            for (path in Files.list(Path.of(dir))) {
-                if (path.extension != "toml") {
-                    continue
-                }
-                Config.fileReader(path.pathString, 256) {
+            for (path in paths) {
+                Config.fileReader(path, 256) {
                     while (nextSection()) {
                         val stringId = section().trim('"')
                         var id = -1

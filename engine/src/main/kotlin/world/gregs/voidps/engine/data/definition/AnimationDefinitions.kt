@@ -5,12 +5,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.timedLoad
-import java.nio.file.Files
-import java.nio.file.Path
-import kotlin.io.path.extension
-import kotlin.io.path.pathString
 
 class AnimationDefinitions(
     override var definitions: Array<AnimationDefinition>
@@ -20,14 +15,11 @@ class AnimationDefinitions(
 
     override fun empty() = AnimationDefinition.EMPTY
 
-    fun load(dir: String = Settings["definitions.animations"]): AnimationDefinitions {
+    fun load(paths: List<String>): AnimationDefinitions {
         timedLoad("animation extra") {
             val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
-            for (path in Files.list(Path.of(dir))) {
-                if (path.extension != "toml") {
-                    continue
-                }
-                Config.fileReader(path.pathString) {
+            for (path in paths) {
+                Config.fileReader(path) {
                     while (nextSection()) {
                         val stringId = section()
                         var id = -1

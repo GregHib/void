@@ -22,14 +22,11 @@ class InventoryDefinitions(
 
     override fun empty() = InventoryDefinition.EMPTY
 
-    fun load(dir: String = Settings["definitions.inventories"], itemDefs: ItemDefinitions = get()): InventoryDefinitions {
+    fun load(paths: List<String>, itemDefs: ItemDefinitions = get()): InventoryDefinitions {
         timedLoad("inventory extra") {
             val ids = Object2IntOpenHashMap<String>()
-            for (path in Files.list(Path.of(dir))) {
-                if (path.extension != "toml") {
-                    continue
-                }
-                Config.fileReader(path.pathString) {
+            for (path in paths) {
+                Config.fileReader(path) {
                     while (nextSection()) {
                         val stringId = section()
                         var id = -1

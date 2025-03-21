@@ -7,6 +7,7 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.MapDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
@@ -31,13 +32,14 @@ class MapViewer {
             frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
             val cache = CacheDelegate(Settings["storage.cache.path"])
             val decoder = ObjectDecoder(member = false, lowDetail = false).load(cache)
-            val defs = ObjectDefinitions(decoder).load(Settings["definitions.objects"])
+            val files = configFiles().getValue(Settings["definitions.objects"])
+            val defs = ObjectDefinitions(decoder).load(files)
             val areas = AreaDefinitions().load(Settings["map.areas"])
             val nav = NavigationGraph(defs, areas).load(Settings["map.navGraph"])
             val collisions = Collisions()
             if (DISPLAY_AREA_COLLISIONS || DISPLAY_ALL_COLLISIONS) {
                 val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache))
-                    .load(Settings["definitions.objects"])
+                    .load(files)
                 val objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), objectDefinitions)
                 MapDefinitions(CollisionDecoder(collisions), objectDefinitions, objects, cache).loadCache()
             }

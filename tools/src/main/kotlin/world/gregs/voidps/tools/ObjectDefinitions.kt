@@ -4,6 +4,7 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 
 object ObjectDefinitions {
@@ -12,7 +13,8 @@ object ObjectDefinitions {
     fun main(args: Array<String>) {
         Settings.load()
         val cache = CacheDelegate(Settings["storage.cache.path"])
-        val definitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(Settings["definitions.objects"])
+        val definitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache))
+            .load(configFiles().getValue(Settings["definitions.objects"]))
         for (def in definitions.definitions) {
             println("${def.id} ${def.name}")
         }

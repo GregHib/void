@@ -22,15 +22,12 @@ class NPCDefinitions(
 
     override fun empty() = NPCDefinition.EMPTY
 
-    fun load(dir: String = Settings["definitions.npcs"]): NPCDefinitions {
+    fun load(paths: List<String>): NPCDefinitions {
         timedLoad("npc extra") {
             val ids = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)
-            for (path in Files.list(Path.of(dir))) {
-                if (path.extension != "toml") {
-                    continue
-                }
-                Config.fileReader(path.pathString, 150) {
+            for (path in paths) {
+                Config.fileReader(path, 150) {
                     while (nextSection()) {
                         val stringId = section()
                         val extras = Object2ObjectOpenHashMap<String, Any>(4, Hash.VERY_FAST_LOAD_FACTOR)

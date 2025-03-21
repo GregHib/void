@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.*
+import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
@@ -42,8 +43,9 @@ object Main {
         val job = server.start(Settings["network.port"].toInt())
 
         // Content
+        val configFiles = configFiles()
         try {
-            preload(cache)
+            preload(cache, configFiles)
         } catch (ex: Exception) {
             logger.error(ex) { "Error loading files." }
             server.stop()
@@ -56,7 +58,7 @@ object Main {
 
         // Game world
         val stages = getTickStages()
-        World.start()
+        World.start(configFiles)
         val scope = CoroutineScope(Contexts.Game)
         val engine = GameLoop(stages).start(scope)
         server.loginServer = loginServer
@@ -77,8 +79,8 @@ object Main {
         return@timed properties
     }
 
-    private fun preload(cache: Cache) {
-        val module = cache(cache)
+    private fun preload(cache: Cache, configFiles: Map<String, List<String>>) {
+        val module = cache(cache, configFiles)
         startKoin {
             slf4jLogger(level = Level.ERROR)
             modules(engineModule, gameModule, module)
@@ -86,18 +88,20 @@ object Main {
         ContentLoader.load()
     }
 
-    private fun cache(cache: Cache) = module {
+    private fun cache(cache: Cache, files: Map<String, List<String>>) = module {
         val members = Settings["world.members", false]
         single(createdAtStart = true) { MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache() }
         single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
-        single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load() }
-        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(members, get<ParameterDefinitions>()).load(cache)).load() }
-        single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).load(cache)).load() }
-        single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(cache)).load() }
+        single(createdAtStart = true) {
+            ObjectDefinitions(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load(files.getOrDefault(Settings["definitions.objects"], emptyList()))
+        }
+        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(members, get<ParameterDefinitions>()).load(cache)).load(files.getOrDefault(Settings["definitions.npcs"], emptyList())) }
+        single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).load(cache)).load(files.getOrDefault(Settings["definitions.items"], emptyList())) }
+        single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(cache)).load(files.getOrDefault(Settings["definitions.animations"], emptyList())) }
         single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(cache), get()).load() }
-        single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(cache)).load() }
-        single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(cache)).load() }
-        single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().load(cache)).load() }
+        single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(cache)).load(files.getOrDefault(Settings["definitions.graphics"], emptyList())) }
+        single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(cache)).load(files.getOrDefault(Settings["definitions.interfaces"], emptyList())) }
+        single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().load(cache)).load(files.getOrDefault(Settings["definitions.inventories"], emptyList())) }
         single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).load(cache)).load() }
         single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
         single(createdAtStart = true) { WeaponStyleDefinitions().load() }
@@ -105,5 +109,15 @@ object Main {
         single(createdAtStart = true) { AmmoDefinitions().load() }
         single(createdAtStart = true) { ParameterDefinitions(get(), get()).load() }
         single(createdAtStart = true) { FontDefinitions(FontDecoder().load(cache)).load() }
+        single(createdAtStart = true) { ItemOnItemDefinitions().load(files.getOrDefault(Settings["definitions.itemOnItem"], emptyList())) }
+        single(createdAtStart = true) {
+            VariableDefinitions().load(
+                files.getOrDefault(Settings["definitions.variables.players"], emptyList()),
+                files.getOrDefault(Settings["definitions.variables.bits"], emptyList()),
+                files.getOrDefault(Settings["definitions.variables.clients"], emptyList()),
+                files.getOrDefault(Settings["definitions.variables.strings"], emptyList()),
+                files.getOrDefault(Settings["definitions.variables.customs"], emptyList()),
+            )
+        }
     }
 }

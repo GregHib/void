@@ -1,32 +1,22 @@
-package content.entity.obj.spawn
+package world.gregs.voidps.engine.entity.obj
 
 import world.gregs.config.Config
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.timedLoad
-import java.nio.file.Files
-import java.nio.file.Path
-import kotlin.io.path.extension
-import kotlin.io.path.pathString
 
 fun loadObjectSpawns(
     objects: GameObjects,
-    dir: String = Settings["spawns.objects"],
+    paths: List<String>,
     definitions: ObjectDefinitions = get(),
 ) = timedLoad("object spawn") {
     objects.reset()
     val membersWorld = World.members
     var count = 0
-    for (path in Files.list(Path.of(dir))) {
-        if (path.extension != "toml") {
-            continue
-        }
-        Config.fileReader(path.pathString) {
+    for (path in paths) {
+        Config.fileReader(path) {
             while (nextPair()) {
                 require(key() == "spawns")
                 while (nextElement()) {

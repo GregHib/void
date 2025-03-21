@@ -42,7 +42,7 @@ class InterfaceDefinitions(
     override fun empty() = InterfaceDefinition.EMPTY
 
     fun load(
-        dir: String = Settings["definitions.interfaces"],
+        paths: List<String>,
         typePath: String = Settings["definitions.interfaces.types"]
     ): InterfaceDefinitions {
         timedLoad("interface extra") {
@@ -84,11 +84,8 @@ class InterfaceDefinitions(
                     }
                 }
             }
-            for (path in Files.list(Path.of(dir))) {
-                if (path.extension != "toml") {
-                    continue
-                }
-                Config.fileReader(path.pathString) {
+            for (path in paths) {
+                Config.fileReader(path) {
                     while (nextSection()) {
                         val interfaceStringId = section()
                         var interfaceId = -1

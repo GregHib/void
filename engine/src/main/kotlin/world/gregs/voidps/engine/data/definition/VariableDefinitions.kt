@@ -28,52 +28,36 @@ class VariableDefinitions {
 
     fun getVarp(id: Int) = varpIds[id]
 
-    fun load(path: String = Settings["definitions.variables"]): VariableDefinitions {
+    fun load(players: List<String>, playerBits: List<String>, clients: List<String>, clientStrings: List<String>, custom: List<String>): VariableDefinitions {
         timedLoad("variable definition") {
             val definitions = Object2ObjectOpenHashMap<String, VariableDefinition>()
             val varbitIds = Int2ObjectOpenHashMap<String>()
             val varpIds = Int2ObjectOpenHashMap<String>()
-            for (file in Files.list(Path.of(path))) {
-                if (file.extension != "toml") {
-                    continue
+            for (file in players) {
+                load(file) { id, stringId, values, default, persist, transmit ->
+                    definitions[stringId] = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
+                    varpIds[id] = stringId
                 }
-                val type = file.nameWithoutExtension.removePrefix("variables-")
-                Config.fileReader(file.pathString) {
-                    while (nextSection()) {
-                        val stringId = section()
-                        var id = -1
-                        var values: Any? = null
-                        var format: String? = null
-                        var default: Any? = null
-                        var persist = false
-                        var transmit = true
-                        while (nextPair()) {
-                            when (val key = key()) {
-                                "id" -> id = int()
-                                "persist" -> persist = boolean()
-                                "transmit" -> transmit = boolean()
-                                "default" -> default = value()
-                                "format" -> format = string()
-                                "values" -> values = value()
-                                else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
-                            }
-                        }
-                        val varValue = VariableValues(values, format, default)
-                        when (type) {
-                            "player" -> {
-                                definitions[stringId] = VariableDefinition.VarpDefinition(id, varValue, default, persist, transmit)
-                                varpIds[id] = stringId
-                            }
-                            "player-bit" -> {
-                                definitions[stringId] = VariableDefinition.VarbitDefinition(id, varValue, default, persist, transmit)
-                                varbitIds[id] = stringId
-                            }
-                            "client" -> definitions[stringId] = VariableDefinition.VarcDefinition(id, varValue, default, persist, transmit)
-                            "client-string" -> definitions[stringId] = VariableDefinition.VarcStrDefinition(id, default, persist, transmit)
-                            "custom" -> definitions[stringId] = VariableDefinition.CustomVariableDefinition(varValue, default, persist)
-                            else -> throw IllegalArgumentException("Unexpected variable type: '$type'.")
-                        }
-                    }
+            }
+            for (file in playerBits) {
+                load(file) { id, stringId, values, default, persist, transmit ->
+                    definitions[stringId] = VariableDefinition.VarbitDefinition(id, values, default, persist, transmit)
+                    varbitIds[id] = stringId
+                }
+            }
+            for (file in clients) {
+                load(file) { id, stringId, values, default, persist, transmit ->
+                    definitions[stringId] = VariableDefinition.VarcDefinition(id, values, default, persist, transmit)
+                }
+            }
+            for (file in clientStrings) {
+                load(file) { id, stringId, _, default, persist, transmit ->
+                    definitions[stringId] = VariableDefinition.VarcStrDefinition(id, default, persist, transmit)
+                }
+            }
+            for (file in custom) {
+                load(file) { _, stringId, values, default, persist, _ ->
+                    definitions[stringId] = VariableDefinition.CustomVariableDefinition(values, default, persist)
                 }
             }
             this.varbitIds = varbitIds
@@ -82,5 +66,32 @@ class VariableDefinitions {
             this.definitions.size
         }
         return this
+    }
+
+    fun load(path: String, block: (Int, String, VariableValues, Any?, Boolean, Boolean) -> Unit) {
+        Config.fileReader(path) {
+            while (nextSection()) {
+                val stringId = section()
+                var id = -1
+                var values: Any? = null
+                var format: String? = null
+                var default: Any? = null
+                var persist = false
+                var transmit = true
+                while (nextPair()) {
+                    when (val key = key()) {
+                        "id" -> id = int()
+                        "persist" -> persist = boolean()
+                        "transmit" -> transmit = boolean()
+                        "default" -> default = value()
+                        "format" -> format = string()
+                        "values" -> values = value()
+                        else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
+                    }
+                }
+                val varValue = VariableValues(values, format, default)
+                block.invoke(id, stringId, varValue, default, persist, transmit)
+            }
+        }
     }
 }

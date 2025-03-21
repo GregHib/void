@@ -34,7 +34,8 @@ object ContentLoader {
             } catch (e: Exception) {
                 scripts.close()
                 logger.error(e) { "Failed to load script: $script" }
-                logger.error { "Make sure the scripts package is correct." }
+                logger.error { "If the file exists make sure the scripts package is correct." }
+                logger.error { "If the file has been deleted make sure 'gradle collectSourcePaths' is correctly running." }
                 exitProcess(1)
             }
         }

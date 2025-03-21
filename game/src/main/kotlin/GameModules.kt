@@ -7,7 +7,7 @@ import content.bot.interact.path.DijkstraFrontier
 import content.entity.player.modal.book.Books
 import content.entity.obj.ObjectTeleports
 import content.entity.world.music.MusicTracks
-import content.entity.item.spawn.ItemSpawns
+import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 
 val gameModule = module {
     single { ItemSpawns() }

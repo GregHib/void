@@ -29,15 +29,12 @@ class ItemOnItemDefinitions {
 
     fun contains(one: Item, two: Item) = definitions.containsKey(id(one, two)) || definitions.containsKey(id(two, one))
 
-    fun load(dir: String = Settings["definitions.itemOnItem"], itemDefinitions: ItemDefinitions = get()): ItemOnItemDefinitions {
+    fun load(paths: List<String>, itemDefinitions: ItemDefinitions = get()): ItemOnItemDefinitions {
         timedLoad("item on item definition") {
             val definitions = Object2ObjectOpenHashMap<String, MutableList<ItemOnItemDefinition>>()
             var count = 0
-            for (path in Files.list(Path.of(dir))) {
-                if (path.extension != "toml") {
-                    continue
-                }
-                Config.fileReader(path.pathString) {
+            for (path in paths) {
+                Config.fileReader(path) {
                     while (nextSection()) {
                         section() // ignored
                         var skill: Skill? = null

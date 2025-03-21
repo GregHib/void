@@ -4,6 +4,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.AmmoDefinitions
 import world.gregs.voidps.engine.data.definition.CategoryDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
@@ -19,7 +20,7 @@ object NPCDefinitions {
         val ammo = AmmoDefinitions().load(Settings["definitions.ammoGroups"])
         val parameters = ParameterDefinitions(categories, ammo).load(Settings["definitions.parameters"])
         val definitions = NPCDecoder(true, parameters).load(cache)
-        val decoder = NPCDefinitions(definitions).load(Settings["definitions.npcs"])
+        val decoder = NPCDefinitions(definitions).load(configFiles().getValue(Settings["definitions.npcs"]))
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
             if (def.name.contains("Talent scout", ignoreCase = true)) {
