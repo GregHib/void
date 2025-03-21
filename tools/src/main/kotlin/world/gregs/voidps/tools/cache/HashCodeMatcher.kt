@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
 import world.gregs.voidps.cache.Index
-import world.gregs.voidps.tools.property
+import world.gregs.voidps.engine.data.Settings
 import java.io.File
 
 object HashCodeMatcher {
@@ -212,7 +212,8 @@ object HashCodeMatcher {
     }
 
     private fun dumpHashes() {
-        val lib = CacheLibrary.create(property("storage.cache.path"))
+        Settings.load()
+        val lib = CacheLibrary.create(Settings["storage.cache.path"])
         val hashes = File("./temp/hashes/hashes.txt")
         hashes.delete()
         for (index in lib.indices()) {

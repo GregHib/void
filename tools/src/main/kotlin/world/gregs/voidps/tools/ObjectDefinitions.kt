@@ -3,14 +3,16 @@ package world.gregs.voidps.tools
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 
 object ObjectDefinitions {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache = CacheDelegate("./data/cache")
-        val definitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(property("definitions.objects"))
+        Settings.load()
+        val cache = CacheDelegate(Settings["storage.cache.path"])
+        val definitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(Settings["definitions.objects"])
         for (def in definitions.definitions) {
             println("${def.id} ${def.name}")
         }

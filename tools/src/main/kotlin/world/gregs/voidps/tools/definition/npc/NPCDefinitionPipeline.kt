@@ -4,6 +4,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
 import world.gregs.voidps.tools.definition.item.ItemDefinitionPipeline.collectUnknownPages
@@ -15,7 +16,6 @@ import world.gregs.voidps.tools.definition.item.pipe.page.UniqueIdentifiers
 import world.gregs.voidps.tools.definition.npc.pipe.wiki.InfoBoxNPC
 import world.gregs.voidps.tools.definition.npc.pipe.wiki.NPCDefaults
 import world.gregs.voidps.tools.definition.npc.pipe.wiki.NPCManualChanges
-import world.gregs.voidps.tools.property
 import world.gregs.voidps.tools.wiki.model.Wiki
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.write.YamlWriterConfiguration
@@ -29,9 +29,10 @@ object NPCDefinitionPipeline {
 
     @JvmStatic
     fun main(args: Array<String>) {
+        Settings.load()
         val rs2Wiki = Wiki.load("${System.getProperty("user.home")}\\Downloads\\runescape_pages_full\\runescapewiki-latest-pages-articles-2011-01-31.xml")
         val start = System.currentTimeMillis()
-        val cache: Cache = CacheDelegate(property("storage.cache.path"))
+        val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
         val decoder = NPCDecoder(true).load(cache)
         val pages = getPages(decoder, rs2Wiki)
         val output = buildNPCExtras(decoder, pages)

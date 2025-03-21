@@ -5,16 +5,17 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoderFull
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.tools.cache.Xteas
 import world.gregs.voidps.tools.map.MapDecoder
-import world.gregs.voidps.tools.property
 import world.gregs.voidps.type.Region
 
 object ObjectUsageFinder {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("storage.cache.path"))
+        Settings.load()
+        val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
         val xteas = Xteas()
         val decoder = ObjectDecoderFull(members = false, lowDetail = false).load(cache)
         val maps = MapDecoder(xteas).load(cache)

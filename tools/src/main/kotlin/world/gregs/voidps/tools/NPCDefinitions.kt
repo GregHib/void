@@ -3,6 +3,7 @@ package world.gregs.voidps.tools
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AmmoDefinitions
 import world.gregs.voidps.engine.data.definition.CategoryDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
@@ -12,12 +13,13 @@ import world.gregs.yaml.Yaml
 object NPCDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("storage.cache.path"))
-        val categories = CategoryDefinitions().load(property("definitions.categories"))
-        val ammo = AmmoDefinitions().load(property("definitions.ammoGroups"))
-        val parameters = ParameterDefinitions(categories, ammo).load(property("definitions.parameters"))
+        Settings.load()
+        val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
+        val categories = CategoryDefinitions().load(Settings["definitions.categories"])
+        val ammo = AmmoDefinitions().load(Settings["definitions.ammoGroups"])
+        val parameters = ParameterDefinitions(categories, ammo).load(Settings["definitions.parameters"])
         val definitions = NPCDecoder(true, parameters).load(cache)
-        val decoder = NPCDefinitions(definitions).load(property("definitions.npcs"))
+        val decoder = NPCDefinitions(definitions).load(Settings["definitions.npcs"])
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
             if (def.name.contains("Talent scout", ignoreCase = true)) {
