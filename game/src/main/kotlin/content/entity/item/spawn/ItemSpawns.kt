@@ -7,6 +7,10 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.timedLoad
+import java.nio.file.Files
+import java.nio.file.Path
+import kotlin.io.path.extension
+import kotlin.io.path.pathString
 
 class ItemSpawns(
     private val zones: MutableMap<Int, ItemSpawn> = Int2ObjectOpenHashMap()
@@ -28,40 +32,45 @@ class ItemSpawns(
 fun loadItemSpawns(
     items: FloorItems,
     spawns: ItemSpawns,
-    path: String = Settings["spawns.items"]
+    dir: String = Settings["spawns.items"]
 ) {
     timedLoad("item spawn") {
         spawns.clear()
         val membersWorld = World.members
-        Config.fileReader(path) {
-            while (nextPair()) {
-                require(key() == "spawns")
-                while (nextElement()) {
-                    var id = ""
-                    var amount = 1
-                    var x = 0
-                    var y = 0
-                    var level = 0
-                    var delay = 60
-                    var members = false
-                    while (nextEntry()) {
-                        when (val key = key()) {
-                            "id" -> id = string()
-                            "x" -> x = int()
-                            "y" -> y = int()
-                            "level" -> level = int()
-                            "amount", "charges" -> amount = int()
-                            "delay" -> delay = int()
-                            "members" -> members = boolean()
-                            else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
+        for (path in Files.list(Path.of(dir))) {
+            if (path.extension != "toml") {
+                continue
+            }
+            Config.fileReader(path.pathString) {
+                while (nextPair()) {
+                    require(key() == "spawns")
+                    while (nextElement()) {
+                        var id = ""
+                        var amount = 1
+                        var x = 0
+                        var y = 0
+                        var level = 0
+                        var delay = 60
+                        var members = false
+                        while (nextEntry()) {
+                            when (val key = key()) {
+                                "id" -> id = string()
+                                "x" -> x = int()
+                                "y" -> y = int()
+                                "level" -> level = int()
+                                "amount", "charges" -> amount = int()
+                                "delay" -> delay = int()
+                                "members" -> members = boolean()
+                                else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
+                            }
                         }
+                        if (!membersWorld && members) {
+                            continue
+                        }
+                        val tile = Tile(x, y, level)
+                        spawns.set(tile, ItemSpawn(id, amount, delay))
+                        items.add(tile, id, amount)
                     }
-                    if (!membersWorld && members) {
-                        continue
-                    }
-                    val tile = Tile(x, y, level)
-                    spawns.set(tile, ItemSpawn(id, amount, delay))
-                    items.add(tile, id, amount)
                 }
             }
         }
