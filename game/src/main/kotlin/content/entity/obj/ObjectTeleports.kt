@@ -13,6 +13,10 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Tile
+import java.nio.file.Files
+import java.nio.file.Path
+import kotlin.io.path.extension
+import kotlin.io.path.pathString
 
 /**
  * Object interaction teleports
@@ -68,42 +72,47 @@ class ObjectTeleports {
         return teleports.keys
     }
 
-    fun load(path: String = Settings["map.teleports"]): ObjectTeleports {
+    fun load(dir: String = Settings["map.teleports"]): ObjectTeleports {
         val teleports = Object2ObjectOpenHashMap<String, Int2ObjectOpenHashMap<TeleportDefinition>>()
         timedLoad("object teleport") {
             var counter = 0
-            Config.fileReader(path) {
-                while (nextSection()) {
-                    val stringId = section()
-                    var option = ""
-                    var tile = Tile.EMPTY
-                    var to = Tile.EMPTY
-                    var delta = Delta.EMPTY
-                    while (nextPair()) {
-                        when (val key = key()) {
-                            "option" -> option = string()
-                            "tile" -> tile = readTile()
-                            "delta" -> {
-                                var x = 0
-                                var y = 0
-                                var level = 0
-                                while (nextEntry()) {
-                                    when (val k = key()) {
-                                        "x" -> x = int()
-                                        "y" -> y = int()
-                                        "level" -> level = int()
-                                        else -> throw IllegalArgumentException("Unexpected key: '$k' ${exception()}")
+            for (path in Files.list(Path.of(dir))) {
+                if (path.extension != "toml") {
+                    continue
+                }
+                Config.fileReader(path.pathString) {
+                    while (nextSection()) {
+                        val stringId = section()
+                        var option = ""
+                        var tile = Tile.EMPTY
+                        var to = Tile.EMPTY
+                        var delta = Delta.EMPTY
+                        while (nextPair()) {
+                            when (val key = key()) {
+                                "option" -> option = string()
+                                "tile" -> tile = readTile()
+                                "delta" -> {
+                                    var x = 0
+                                    var y = 0
+                                    var level = 0
+                                    while (nextEntry()) {
+                                        when (val k = key()) {
+                                            "x" -> x = int()
+                                            "y" -> y = int()
+                                            "level" -> level = int()
+                                            else -> throw IllegalArgumentException("Unexpected key: '$k' ${exception()}")
+                                        }
                                     }
+                                    delta = Delta(x, y, level)
                                 }
-                                delta = Delta(x, y, level)
+                                "to" -> to = readTile()
+                                else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                             }
-                            "to" -> to = readTile()
-                            else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
+                        val definition = TeleportDefinition(stringId, option, tile, delta, to)
+                        teleports.getOrPut(option) { Int2ObjectOpenHashMap() }.put(tile.id, definition)
+                        counter++
                     }
-                    val definition = TeleportDefinition(stringId, option, tile, delta, to)
-                    teleports.getOrPut(option) { Int2ObjectOpenHashMap() }.put(tile.id, definition)
-                    counter++
                 }
             }
             this.teleports = teleports

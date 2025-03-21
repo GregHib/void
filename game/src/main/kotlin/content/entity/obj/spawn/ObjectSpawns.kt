@@ -9,44 +9,53 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.timedLoad
+import java.nio.file.Files
+import java.nio.file.Path
+import kotlin.io.path.extension
+import kotlin.io.path.pathString
 
 fun loadObjectSpawns(
     objects: GameObjects,
-    path: String = Settings["spawns.objects"],
+    dir: String = Settings["spawns.objects"],
     definitions: ObjectDefinitions = get(),
 ) = timedLoad("object spawn") {
     objects.reset()
     val membersWorld = World.members
     var count = 0
-    Config.fileReader(path) {
-        while (nextPair()) {
-            require(key() == "spawns")
-            while (nextElement()) {
-                var id = ""
-                var rotation = 0
-                var x = 0
-                var y = 0
-                var level = 0
-                var type = 10
-                var members = false
-                while (nextEntry()) {
-                    when (val key = key()) {
-                        "id" -> id = string()
-                        "x" -> x = int()
-                        "y" -> y = int()
-                        "level" -> level = int()
-                        "rotation" -> rotation = int()
-                        "type" -> type = int()
-                        "members" -> members = boolean()
-                        else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
+    for (path in Files.list(Path.of(dir))) {
+        if (path.extension != "toml") {
+            continue
+        }
+        Config.fileReader(path.pathString) {
+            while (nextPair()) {
+                require(key() == "spawns")
+                while (nextElement()) {
+                    var id = ""
+                    var rotation = 0
+                    var x = 0
+                    var y = 0
+                    var level = 0
+                    var type = 10
+                    var members = false
+                    while (nextEntry()) {
+                        when (val key = key()) {
+                            "id" -> id = string()
+                            "x" -> x = int()
+                            "y" -> y = int()
+                            "level" -> level = int()
+                            "rotation" -> rotation = int()
+                            "type" -> type = int()
+                            "members" -> members = boolean()
+                            else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
+                        }
                     }
+                    if (!membersWorld && members) {
+                        continue
+                    }
+                    val tile = Tile(x, y, level)
+                    objects.add(GameObject(definitions.get(id).id, tile.x, tile.y, tile.level, type, rotation))
+                    count++
                 }
-                if (!membersWorld && members) {
-                    continue
-                }
-                val tile = Tile(x, y, level)
-                objects.add(GameObject(definitions.get(id).id, tile.x, tile.y, tile.level, type, rotation))
-                count++
             }
         }
     }
