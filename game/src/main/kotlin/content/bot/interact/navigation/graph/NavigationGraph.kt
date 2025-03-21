@@ -52,7 +52,7 @@ class NavigationGraph(
             var count = 0
             Config.fileReader(path) {
                 while (nextSection()) {
-                    section()
+                    val name = section()
                     var from = Tile.EMPTY
                     var to = Tile.EMPTY
                     var cost = 0
@@ -117,12 +117,16 @@ class NavigationGraph(
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
+                    val walk = steps.isEmpty
                     if (steps.isEmpty) {
                         cost = Distance.manhattan(from.x, from.y, to.x, to.y)
                         steps.add(Walk(to.x, to.y))
                     }
                     count++
-                    map.getOrPut(from) { ObjectOpenHashSet(1) }.add(Edge(path, from, to, cost, steps, conditions))
+                    map.getOrPut(from) { ObjectOpenHashSet(1) }.add(Edge(name, from, to, cost, steps, conditions))
+                    if (walk) { // Bidirectional
+                        map.getOrPut(to) { ObjectOpenHashSet(1) }.add(Edge(name, to, from, cost, listOf(Walk(from.x, from.y)), conditions))
+                    }
                 }
             }
             this.adjacencyList = map

@@ -60,7 +60,7 @@ settingsReload {
 }
 
 worldTimerStart("bot_spawn") {
-    interval = TimeUnit.MINUTES.toTicks(1)
+    interval = TimeUnit.SECONDS.toTicks(Settings["bots.spawnSeconds", 60])
 }
 
 worldTimerTick("bot_spawn") {
