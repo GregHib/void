@@ -32,7 +32,7 @@ class MapViewer {
             frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
             val cache = CacheDelegate("./data/cache/")
             val decoder = ObjectDecoder(member = false, lowDetail = false).load(cache)
-            val defs = ObjectDefinitions(decoder).load("./data/definitions/objects/")
+            val defs = ObjectDefinitions(decoder).load("./data/objects/definitions/")
             val areas = AreaDefinitions().load("./data/map/areas.toml")
             val nav = NavigationGraph(defs, areas).load("./data/map/nav-graph.toml")
             val collisions = Collisions()

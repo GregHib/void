@@ -8,7 +8,13 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.timedLoad
 import java.io.File
+import java.nio.file.Files
+import java.nio.file.Path
 import kotlin.collections.set
+import kotlin.io.path.extension
+import kotlin.io.path.name
+import kotlin.io.path.nameWithoutExtension
+import kotlin.io.path.pathString
 
 class VariableDefinitions {
 
@@ -22,15 +28,17 @@ class VariableDefinitions {
 
     fun getVarp(id: Int) = varpIds[id]
 
-    fun load(path: String = Settings["definitions.path"]): VariableDefinitions {
+    fun load(path: String = Settings["definitions.variables"]): VariableDefinitions {
         timedLoad("variable definition") {
-            val files = File(path).listFiles()?.filter { it.name.startsWith("variables-") } ?: return@timedLoad 0
             val definitions = Object2ObjectOpenHashMap<String, VariableDefinition>()
             val varbitIds = Int2ObjectOpenHashMap<String>()
             val varpIds = Int2ObjectOpenHashMap<String>()
-            for (file in files) {
+            for (file in Files.list(Path.of(path))) {
+                if (file.extension != "toml") {
+                    continue
+                }
                 val type = file.nameWithoutExtension.removePrefix("variables-")
-                Config.fileReader(file) {
+                Config.fileReader(file.pathString) {
                     while (nextSection()) {
                         val stringId = section()
                         var id = -1
@@ -63,6 +71,7 @@ class VariableDefinitions {
                             "client" -> definitions[stringId] = VariableDefinition.VarcDefinition(id, varValue, default, persist, transmit)
                             "client-string" -> definitions[stringId] = VariableDefinition.VarcStrDefinition(id, default, persist, transmit)
                             "custom" -> definitions[stringId] = VariableDefinition.CustomVariableDefinition(varValue, default, persist)
+                            else -> throw IllegalArgumentException("Unexpected variable type: '$type'.")
                         }
                     }
                 }
