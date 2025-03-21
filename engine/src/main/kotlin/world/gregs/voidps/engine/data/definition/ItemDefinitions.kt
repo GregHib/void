@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.nio.file.Files
 import java.nio.file.Path
+import kotlin.io.path.extension
 import kotlin.io.path.pathString
 
 class ItemDefinitions(
@@ -40,6 +41,9 @@ class ItemDefinitions(
             val ids = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)
             for (path in Files.list(Path.of(dir))) {
+                if (path.extension != "toml") {
+                    continue
+                }
                 Config.fileReader(path.pathString, 256) {
                     while (nextSection()) {
                         val stringId = section().trim('"')
