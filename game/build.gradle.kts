@@ -50,19 +50,25 @@ tasks {
 
     register("collectSourcePaths") {
         doLast {
+            val start = System.nanoTime()
             val main = sourceSets.getByName("main")
-            val outputFile = main.resources.srcDirs.first().resolve("scripts.txt")
-            val sourcePaths = main.allSource.srcDirs.first { it.name == "kotlin" }.walkTopDown()
-                .filter { it.isFile && it.extension == "kts" }
-                .map {
-                    it.absolutePath
-                        .substringAfter("kotlin${File.separatorChar}")
-                        .replace(File.separatorChar, '.')
-                        .removeSuffix(".kts")
+            val outputFile = main.resources.srcDirs.first { it.name == "resources" }.resolve("scripts.txt")
+            var count = 0
+            outputFile.writer().buffered().use { output ->
+                for (file in main.allSource.srcDirs.first { it.name == "kotlin" }.walkTopDown()) {
+                    if (file.extension == "kts") {
+                        output.write(
+                            file.absolutePath
+                                .substringAfter("kotlin${File.separatorChar}")
+                                .replace(File.separatorChar, '.')
+                                .removeSuffix(".kts")
+                        )
+                        output.write('\n'.code)
+                        count++
+                    }
                 }
-                .toList()
-            outputFile.writeText(sourcePaths.joinToString("\n"))
-            println("Collected ${sourcePaths.size} source file paths in ${outputFile.path}")
+            }
+            println("Collected $count source file paths to ${outputFile.path} in ${System.nanoTime() - start} ms")
         }
     }
 
