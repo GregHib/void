@@ -12,6 +12,10 @@ import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.timedLoad
+import java.nio.file.Files
+import java.nio.file.Path
+import kotlin.io.path.extension
+import kotlin.io.path.pathString
 
 private const val DEFAULT_TYPE = "main_screen"
 private const val DEFAULT_FIXED_PARENT = Interfaces.GAME_FRAME_NAME
@@ -38,7 +42,7 @@ class InterfaceDefinitions(
     override fun empty() = InterfaceDefinition.EMPTY
 
     fun load(
-        path: String = Settings["definitions.interfaces"],
+        dir: String = Settings["definitions.interfaces"],
         typePath: String = Settings["definitions.interfaces.types"]
     ): InterfaceDefinitions {
         timedLoad("interface extra") {
@@ -80,45 +84,50 @@ class InterfaceDefinitions(
                     }
                 }
             }
-            Config.fileReader(path) {
-                while (nextSection()) {
-                    val interfaceStringId = section()
-                    var interfaceId = -1
-                    val extras = Object2ObjectOpenHashMap<String, Any>(1, Hash.VERY_FAST_LOAD_FACTOR)
-                    var typed = false
-                    while (nextPair()) {
-                        when (val key = key()) {
-                            "id" -> {
-                                interfaceId = int()
-                                extras["id"] = interfaceId
-                                if (interfaceId != -1) {
-                                    ids[interfaceStringId] = interfaceId
-                                    definitions[interfaceId].stringId = interfaceStringId
-                                    if (definitions[interfaceId].extras == null) {
-                                        definitions[interfaceId].extras = extras
-                                    } else {
-                                        (definitions[interfaceId].extras as MutableMap<String, Any>).putAll(extras)
+            for (path in Files.list(Path.of(dir))) {
+                if (path.extension != "toml") {
+                    continue
+                }
+                Config.fileReader(path.pathString) {
+                    while (nextSection()) {
+                        val interfaceStringId = section()
+                        var interfaceId = -1
+                        val extras = Object2ObjectOpenHashMap<String, Any>(1, Hash.VERY_FAST_LOAD_FACTOR)
+                        var typed = false
+                        while (nextPair()) {
+                            when (val key = key()) {
+                                "id" -> {
+                                    interfaceId = int()
+                                    extras["id"] = interfaceId
+                                    if (interfaceId != -1) {
+                                        ids[interfaceStringId] = interfaceId
+                                        definitions[interfaceId].stringId = interfaceStringId
+                                        if (definitions[interfaceId].extras == null) {
+                                            definitions[interfaceId].extras = extras
+                                        } else {
+                                            (definitions[interfaceId].extras as MutableMap<String, Any>).putAll(extras)
+                                        }
                                     }
                                 }
+                                "components" -> components(componentIds, interfaceStringId, interfaceId, extras)
+                                "type" -> {
+                                    typed = true
+                                    val type = string()
+                                    extras["type"] = type
+                                    extras.putAll(typeData[type]!!)
+                                }
+                                else -> extras[key] = value()
                             }
-                            "components" -> components(componentIds, interfaceStringId, interfaceId, extras)
-                            "type" -> {
-                                typed = true
-                                val type = string()
-                                extras["type"] = type
-                                extras.putAll(typeData[type]!!)
+                        }
+                        if (interfaceId != -1) {
+                            if (!typed) {
+                                extras.putAll(typeData[DEFAULT_TYPE]!!)
                             }
-                            else -> extras[key] = value()
-                        }
-                    }
-                    if (interfaceId != -1) {
-                        if (!typed) {
-                            extras.putAll(typeData[DEFAULT_TYPE]!!)
-                        }
-                        if (definitions[interfaceId].extras == null) {
-                            definitions[interfaceId].extras = extras
-                        } else {
-                            (definitions[interfaceId].extras as MutableMap<String, Any>).putAll(extras)
+                            if (definitions[interfaceId].extras == null) {
+                                definitions[interfaceId].extras = extras
+                            } else {
+                                (definitions[interfaceId].extras as MutableMap<String, Any>).putAll(extras)
+                            }
                         }
                     }
                 }
