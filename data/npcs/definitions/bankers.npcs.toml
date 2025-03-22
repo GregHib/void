@@ -1,0 +1,138 @@
+[banker]
+id = 44
+interact_distance = 2
+race = "human"
+examine = "He can look after my money."
+
+[banker_2]
+id = 45
+interact_distance = 2
+race = "human"
+examine = "She can look after my money."
+
+[banker_3]
+id = 494
+race = "human"
+examine = "He can look after my money."
+
+[banker_4]
+id = 495
+interact_distance = 2
+race = "human"
+examine = "Good with money."
+
+[banker_al_kharid]
+id = 496
+interact_distance = 2
+race = "human"
+examine = "A financial expert."
+
+[banker_al_kharid_2]
+id = 497
+interact_distance = 2
+race = "human"
+examine = "Looks after your money."
+
+[banker_zanaris]
+id = 498
+interact_distance = 2
+race = "fairy"
+examine = "Manages money momentarily."
+
+[banker_shilo_village]
+id = 499
+race = "human"
+examine = "He can look after my money."
+
+[banker_zanaris_2]
+id = 909
+interact_distance = 2
+race = "fairy"
+examine = "Manages money momentarily."
+
+[banker_canifis]
+id = 1036
+interact_distance = 2
+race = "human"
+examine = "He can look after my money."
+
+[banker_etceteria]
+id = 1360
+interact_distance = 2
+race = "human"
+examine = "He seems happy to see you."
+
+[banker_keldagrim]
+id = 2163
+interact_distance = 2
+race = "dwarf"
+examine = "A rather personable banker lady."
+
+[banker_keldagrim_2]
+id = 2164
+interact_distance = 2
+race = "dwarf"
+examine = "A rather serious old fella."
+
+[banker_lletya]
+id = 2354
+interact_distance = 2
+race = "elf"
+examine = "He can look after my money."
+
+[banker_lletya_2]
+id = 2355
+interact_distance = 2
+race = "elf"
+examine = "She can look after my money."
+
+[banker_mos_le_harmless]
+id = 3198
+interact_distance = 2
+race = "human"
+examine = "He can look after my money."
+
+[banker_mos_le_harmless_2]
+id = 3199
+interact_distance = 2
+race = "human"
+examine = "He can look after my money."
+
+[banker_sophanem_dungeon]
+id = 5258
+interact_distance = 2
+race = "human"
+examine = "He can look after my money."
+
+[banker_sophanem_dungeon_2]
+id = 5260
+interact_distance = 2
+race = "human"
+examine = "She can look after my money."
+
+[banker_dorgesh_kaan]
+id = 5776
+interact_distance = 2
+race = "dorgeshuun"
+examine = "Looks after cave goblin money."
+
+[banker_dorgesh_kaan_2]
+id = 5777
+interact_distance = 2
+race = "dorgeshuun"
+examine = "Looks after cave goblin money."
+
+[banker_falador]
+id = 6200
+interact_distance = 2
+race = "human"
+examine = "He can look after my money."
+
+[banker_fist_of_guthix]
+id = 7605
+race = "human"
+examine = "He has unbelievable strength!"
+
+[eniola]
+id = 6362
+examine = "A roving banker."

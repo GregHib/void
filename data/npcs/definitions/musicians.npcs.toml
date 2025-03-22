@@ -1,0 +1,172 @@
+[musician_lumbridge]
+id = 29
+song = 702
+race = "human"
+examine = "What restful music!"
+
+[musician_draynor_village]
+id = 30
+song = 702
+race = "human"
+examine = "What restful music!"
+
+[musician_port_sarim]
+id = 5439
+song = 702
+race = "human"
+examine = "What restful music!"
+
+[musician_falador]
+id = 5442
+song = 702
+race = "human"
+examine = "What restful music!"
+
+[musician_edgeville]
+id = 8698
+song = 705
+race = "human"
+examine = "Fiddle de dee!"
+
+[musician_cooks_guild]
+id = 8699
+song = 705
+race = "human"
+examine = "Fiddle de dee!"
+
+[musician_lumber_yard]
+id = 8700
+song = 705
+race = "human"
+examine = "Fiddle de dee!"
+
+[musician_gower_farm]
+id = 8701
+song = 705
+race = "human"
+examine = "Fiddle de dee!"
+
+[musician_piscatoris]
+id = 8702
+song = 702
+race = "human"
+examine = "What restful music!"
+
+[musician_fishing_guild]
+id = 8703
+song = 702
+race = "human"
+examine = "What restful music!"
+
+[musician_port_khazard]
+id = 8704
+song = 705
+race = "human"
+examine = "Fiddle de dee!"
+
+[musician_catherby]
+id = 8705
+song = 702
+race = "human"
+examine = "What restful music!"
+
+[musician_yanille]
+id = 8706
+song = 705
+race = "human"
+examine = "Fiddle de dee!"
+
+[musician_al_kharid]
+id = 8707
+song = 699
+race = "human"
+examine = "He plays charming music."
+
+[musician_shantay_pass]
+id = 8708
+song = 699
+race = "human"
+examine = "She plays charming music."
+
+[musician_sophanem]
+id = 8709
+song = 699
+race = "human"
+
+[musician_sophanem_1]
+id = 8710
+song = 699
+race = "human"
+examine = "She plays pipes."
+
+[musician_sophanem_2]
+id = 8711
+song = 699
+race = "human"
+examine = "She plays pipes."
+
+[goblin_musician]
+id = 8712
+song = 700
+race = "goblin"
+examine = "Bang-bang good!"
+
+[ghostly_piper]
+id = 8713
+song = 698
+race = "ghost"
+examine = "A call to arms for warrior's past."
+
+[drunken_musician]
+id = 8715
+song = 701
+race = "human"
+examine = "I've heard better lute playing..."
+
+[musician_miscellania]
+id = 8716
+song = 704
+race = "human"
+examine = "He's better than Prince Brand."
+
+[musician_rellekka]
+id = 8717
+song = 704
+race = "human"
+examine = "What restful music!"
+
+[musician_mountain_camp]
+id = 8718
+song = 703
+race = "human"
+examine = "What restful music!"
+
+[musician_tai_bwo_wannai]
+id = 8719
+song = 700
+race = "human"
+examine = "She bangs the drums."
+
+[musician_shilo_village]
+id = 8720
+song = 700
+race = "human"
+examine = "She bangs the drums."
+
+[musician_fenkenstrains_castle]
+id = 8721
+song = 702
+race = "human"
+examine = "What restful music."
+
+[bill_blakey]
+id = 8722
+song = 697
+race = "ghost"
+examine = "He looks lovelorn."
+
+[musician_isafdar]
+id = 8723
+song = 704
+race = "elf"
+examine = "She's beautiful."

@@ -1,0 +1,220 @@
+[goblin_orange_hat_spear]
+id = 3264
+att = 3
+def = 4
+attack_bonus = 12
+attack_speed = 6
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 35
+wander_radius = 10
+hitpoints = 120
+slayer_xp = 12
+race = "goblin_spear"
+height = 30
+large_head = true
+examine = "An ugly, orange creature."
+
+[grubfoot_brown]
+id = 4496
+large_head = true
+examine = "Smaller than the average goblin."
+
+[grubfoot_orange]
+id = 4497
+large_head = true
+examine = "Smaller than the average goblin."
+
+[grubfoot_blue]
+id = 4498
+large_head = true
+examine = "Smaller than the average goblin."
+
+[general_wartface_rfd]
+id = 3391
+large_head = true
+examine = "An ugly green creature."
+
+[general_bentnoze_rfd]
+id = 3392
+large_head = true
+examine = "An ugly green creature."
+
+[goblin_mohawk_blue]
+id = 4262
+attack_bonus = -21
+wander_radius = 10
+hitpoints = 50
+slayer_xp = 5.0
+max_hit_melee = 10
+style = "crush"
+master2 = "turael"
+master3 = "spria"
+respawn_delay = 35
+examine = "An ugly, blue creature."
+race = "goblin"
+height = 30
+
+[goblin_mohawk_grey]
+clone = "goblin_mohawk_blue"
+id = 4263
+
+[goblin_bald_green]
+clone = "goblin_mohawk_blue"
+id = 4264
+
+[goblin_ponytail_brown]
+clone = "goblin_mohawk_blue"
+id = 4265
+
+[goblin_bald_grey]
+clone = "goblin_mohawk_blue"
+id = 4266
+
+[goblin_hat_grey]
+clone = "goblin_mohawk_blue"
+id = 4267
+
+[goblin_spiked_green]
+clone = "goblin_mohawk_blue"
+id = 4268
+
+[goblin_spiked_grey]
+clone = "goblin_mohawk_blue"
+id = 4269
+
+[goblin_metal_hat_brown]
+clone = "goblin_mohawk_blue"
+id = 4270
+
+[goblin_mohawk_dark]
+clone = "goblin_mohawk_blue"
+id = 4271
+
+[goblin_shield_battleaxe_red]
+id = 4479
+clone = "goblin_orange_hat_spear"
+race = "goblin_battleaxe"
+examine = "An ugly, red creature."
+
+[goblin_staff_red]
+id = 4480
+clone = "goblin_shield_battleaxe_red"
+race = "goblin_staff"
+
+[goblin_shield_warhammer_red]
+id = 4481
+clone = "goblin_shield_battleaxe_red"
+race = "goblin_battleaxe"
+
+[goblin_shield_spear_red]
+id = 4482
+clone = "goblin_shield_battleaxe_red"
+
+[goblin_battleaxe_red]
+id = 4483
+clone = "goblin_shield_battleaxe_red"
+race = "goblin_battleaxe"
+
+[goblin_mohawk_staff_red]
+id = 4484
+clone = "goblin_shield_battleaxe_red"
+race = "goblin_staff"
+
+[goblin_ponytail_staff_red]
+id = 4485
+clone = "goblin_shield_battleaxe_red"
+race = "goblin_staff"
+
+[goblin_shield_battleaxe_green]
+id = 4486
+clone = "goblin_orange_hat_spear"
+race = "goblin_battleaxe"
+examine = "An ugly, green creature."
+
+[goblin_staff_green]
+id = 4487
+clone = "goblin_shield_battleaxe_green"
+race = "goblin_staff"
+
+[goblin_shield_warhammer_green]
+id = 4488
+clone = "goblin_shield_battleaxe_green"
+race = "goblin_battleaxe"
+
+[goblin_shield_spear_green]
+id = 4489
+clone = "goblin_shield_battleaxe_green"
+
+[goblin_staff_2_green]
+id = 4491
+clone = "goblin_shield_battleaxe_green"
+race = "goblin_staff"
+
+[goblin_mohawk_staff_green]
+id = 4492
+clone = "goblin_shield_battleaxe_green"
+race = "goblin_staff"
+
+[goblin_light_grey_bald]
+clone = "goblin_mohawk_blue"
+id = 12353
+
+[goblin_turquoise_topless_mohawk]
+clone = "goblin_mohawk_blue"
+id = 12354
+
+[goblin_light_brown_bald]
+clone = "goblin_mohawk_blue"
+id = 12355
+
+[goblin_turquoise_grey_ponytail]
+clone = "goblin_mohawk_blue"
+id = 12356
+
+[goblin_light_grey_helmet]
+clone = "goblin_mohawk_blue"
+id = 12357
+
+[goblin_light_grey_hat]
+clone = "goblin_mohawk_blue"
+id = 12358
+
+[goblin_light_brown_mohawk]
+clone = "goblin_mohawk_blue"
+id = 12359
+
+[goblin_light_topless_spiked]
+clone = "goblin_mohawk_blue"
+id = 12360
+
+[goblin_light_grey_bald_spear]
+clone = "goblin_orange_hat_spear"
+id = 12361
+
+[hobgoblin]
+id = 2685
+hitpoints = 290
+att = 22
+str = 24
+def = 24
+style = "crush"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+wander_radius = 4
+race = "hobgoblin"
+respawn_delay = 30
+examine = "An ugly, smelly creature."
+
+[hobgoblin_2]
+clone = "hobgoblin"
+id = 2686
+
+[hobgoblin_3]
+clone = "hobgoblin"
+id = 2687
+
+[hobgoblin_spear]
+clone = "hobgoblin"
+id = 2688
+examine = "An ugly, smelly creature wielding a spear."

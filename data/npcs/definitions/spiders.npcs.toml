@@ -1,0 +1,50 @@
+[giant_spider]
+id = 59
+hitpoints = 50
+attack_bonus = -10
+attack_radius = 13
+wander_radius = 10
+hunt_mode = "cowardly"
+hunt_range = 1
+slayer_xp = 5.0
+max_hit_melee = 10
+style = "stab"
+respawn_delay = 45
+race = "giant_spider"
+height = 10
+examine = "I think this spider has been genetically modified."
+
+[giant_spider_2]
+id = 60
+hitpoints = 320
+att = 20
+str = 24
+def = 21
+wander_radius = 6
+respawn_delay = 30
+hunt_mode = "cowardly"
+hunt_range = 1
+slayer_xp = 33
+max_hit_melee = 30
+style = "stab"
+race = "giant_spider"
+height = 10
+examine = "I think this spider has been genetically modified."
+
+[giant_spider_3]
+id = 4400
+hitpoints = 500
+att = 41
+str = 51
+def = 31
+attack_bonus = 10
+wander_radius = 6
+respawn_delay = 25
+hunt_mode = "cowardly"
+hunt_range = 1
+slayer_xp = 50
+max_hit_melee = 70
+style = "stab"
+race = "giant_spider"
+height = 10
+examine = "I think this spider has been genetically modified."

@@ -1,0 +1,15 @@
+[zombie]
+id = 73
+att = 8
+str = 9
+def = 10
+attack_bonus = 5
+attack_speed = 5
+wander_radius = 10
+hitpoints = 220
+slayer_xp = 22.0
+max_hit_melee = 20
+style = "slash"
+respawn_delay = 35
+examine = "Dead man walking."
+race = "zombie"

@@ -1,0 +1,861 @@
+[hans]
+id = 0
+wander_radius = 4
+race = "human"
+examine = "Servant of the Duke of Lumbridge."
+
+[man]
+id = 1
+max_hit_melee = 10
+hitpoints = 70
+wander_radius = 4
+respawn_delay = 25
+pickpocket = {
+  stun_hit = 10,
+  stun_ticks = 8,
+  xp = 8.0,
+  chance = "180-240"
+}
+style = "crush"
+race = "human"
+examine = "One of Gielinor's many citizens."
+
+[man_2]
+clone = "man"
+id = 2
+
+[man_3]
+clone = "man"
+id = 3
+
+[woman]
+clone = "man"
+id = 4
+
+[monk_of_zamorak_ourania]
+id = 189
+hitpoints = 100
+att = 8
+str = 8
+def = 12
+mage = 25
+race = "human"
+style = "crush"
+height = 40
+hunt_range = 2
+attack_range = 1
+attack_radius = 11
+wander_radius = 5
+max_hit_melee = 50
+hunt_mode = "aggressive"
+drop_table = "monk_of_zamorak"
+respawn_delay = 50
+examine = "An evil human cleric."
+
+[cook_lumbridge]
+id = 278
+race = "human"
+wander_radius = 4
+examine = "Lumbridge Castle's head cook."
+
+[sedridor]
+id = 300
+race = "human"
+wander_radius = 4
+examine = "Head wizard of the Wizard's Tower."
+
+[barbarian_guard]
+id = 384
+race = "human"
+wander_radius = 4
+examine = "Not very civilised looking."
+
+[suit_of_armour]
+id = 453
+hitpoints = 290
+att = 16
+str = 14
+def = 9
+style = "slash"
+max_hit_melee = 30
+wander_radius = 5
+attack_radius = 8
+hunt_mode = "aggressive"
+weapon_style = "sword"
+race = "human"
+examine = "A dusty old suit of armour."
+
+[sanfew]
+id = 454
+wander_radius = 2
+race = "human"
+examine = "An old druid."
+
+[kaqemeex]
+id = 455
+wander_radius = 4
+race = "human"
+examine = "A wise druid."
+
+[father_aereck]
+id = 456
+wander_radius = 4
+race = "human"
+examine = "He seems to be very devout."
+
+[restless_ghost]
+id = 457
+race = "human"
+examine = "Eek! A ghost!"
+
+[father_urhney]
+id = 458
+wander_radius = 4
+race = "human"
+examine = "Very holy."
+
+[wizard_distentor]
+id = 462
+examine = "Head of the Magic Guild."
+
+[karim]
+id = 543
+wander_radius = 4
+race = "human"
+examine = "Kebabs are full of meaty goodness."
+
+[baraek]
+id = 547
+race = "human"
+wander_radius = 3
+examine = "Animal skins are a speciality."
+
+[hairdresser]
+id = 598
+race = "human"
+wander_radius = 3
+examine = "Anyone fancy a trim?"
+
+[makeover_mage_male]
+id = 599
+race = "human"
+wander_radius = 3
+examine = "Master of the mystical make-over."
+
+[sir_vyvin]
+id = 605
+race = "human"
+wander_radius = 4
+examine = "A White Knight officer with an injured eye."
+
+[squire_asrol]
+id = 606
+race = "human"
+wander_radius = 4
+examine = "Indentured servant of a Knight."
+
+[gunnjorn]
+id = 607
+race = "human"
+wander_radius = 4
+examine = "He maintains this agility course."
+
+[jeffery]
+id = 637
+wander_radius = 4
+race = "human"
+examine = "The man with the armour."
+
+[reldo]
+id = 647
+race = "human"
+wander_radius = 4
+
+[harlan]
+id = 705
+race = "human"
+examine = "Harlan, master of defence."
+
+[bartender_jolly_boar_inn]
+id = 731
+bar_crawl = {
+  id = "olde_suspiciouse",
+  price = 10,
+  start = "Ah, there seems to be a fair few doing that one these days. My supply of Olde Suspiciouse is starting to run low, it'll cost you 10 coins.",
+  insufficient = "I don't have 10 coins right now.",
+  give = "You buy a pint of Olde Suspiciouse.",
+  drink = "You gulp it down.",
+  effect = "Your head is spinning.",
+  sign = "The bartender signs your card."
+}
+race = "human"
+wander_radius = 5
+examine = "I could get a beer from him."
+
+[bartender_blue_moon_inn]
+id = 733
+bar_crawl = {
+  id = "uncle_humphreys_gutrot",
+  price = 50,
+  insufficient = "Oh dear. I don't seem to have enough money.",
+  give = "You buy some Uncle Humphrey's Gutrot.",
+  drink = "You drink the Uncle Humphrey's Gutrot.",
+  effect = "Your insides feel terrible.",
+  sign = "The bartender signs your card."
+}
+race = "human"
+wander_radius = 4
+examine = "I could get a beer from him."
+
+[bartender_dead_mans_chest]
+id = 735
+bar_crawl = {
+  id = "supergrog",
+  price = 15,
+  start = "Fancy a bit of Heart Stopper then do you? It'll only be 8 coins.",
+  insufficient = "Sorry I don't have 15 coins.",
+  give = "The bartender serves you a glass of strange thick dark liquid.",
+  drink = "You wince and drink it.",
+  effect = "You stagger backwards.",
+  sign = "You think you see 2 bartenders signing 2 barcrawl cards."
+}
+race = "human"
+wander_radius = 5
+examine = "I could get a beer from him."
+
+[barmaid_emily]
+id = 736
+bar_crawl = {
+  id = "hand_of_death_cocktail",
+  price = 70,
+  insufficient = "I don't have that much money on me.",
+  give = "You buy a Hand of Death cocktail.",
+  drink = "You drink the cocktail.",
+  effect = "You stumble around the room.",
+  sign = "The barmaid giggles and signs your card."
+}
+race = "human"
+wander_radius = 3
+examine = "Works in the Rising Sun."
+
+[bartender_foresters_arms]
+id = 737
+bar_crawl = {
+  id = "liverbane_ale",
+  price = 18,
+  start = "Oh you're a barbarian then. Now which of these barrels contained the Liverbane Ale? That'll be 18 coins please.",
+  insufficient = "Sorry, I don't have 18 coins.",
+  give = "The bartender gives you a glass of Liverbane Ale.",
+  drink = "You gulp it down.",
+  effect = "The room seems to be swaying.",
+  sign = "The bartender scrawls his signature on your card."
+}
+race = "human"
+wander_radius = 5
+examine = "I could get a beer from him."
+
+[bartender_flying_horse_inn]
+id = 738
+bar_crawl = {
+  id = "heart_stopper",
+  price = 8,
+  start = "Fancy a bit of Heart Stopper then do you? It'll only be 8 coins.",
+  insufficient = "Sorry, I don't have 8 coins.",
+  give = "The bartender hands you a shot of Heart Stopper.",
+  drink = "You grimace and drink it.",
+  effect = "You clutch your chest.",
+  sign = "Through your tears you see the bartender..."
+}
+race = "human"
+wander_radius = 3
+examine = "I could get a beer from him."
+
+[bartender_dragon_inn]
+id = 739
+bar_crawl = {
+  id = "fire_brandy",
+  price = 12,
+  start = "I suppose you'll be wanting some Fire Brandy. That'll cost you 12 coins.",
+  insufficient = "Sorry I don't have 12 coins.",
+  give = "The bartender hands you a small glass and sets light to the contents.",
+  drink = "You blow out the flame and drink it.",
+  effect = "Your vision blurs and you stagger slightly.",
+  sign = "You can just about make out the bartender signing your barcrawl card."
+}
+race = "human"
+wander_radius = 5
+examine = "I could get a beer from him."
+
+[duke_horacio]
+id = 741
+race = "human"
+wander_radius = 3
+examine = "Duke Horacio of Lumbridge."
+
+[tanner]
+id = 804
+race = "human"
+examine = "Manufacturer of fine leathers."
+
+[master_crafter]
+id = 805
+race = "human"
+examine = "He's in charge of the Crafting Guild."
+
+[wizard_cromperty]
+id = 844
+examine = "The hat is a dead give away."
+
+[traiborn]
+id = 881
+race = "human"
+wander_radius = 3
+examine = "An old wizard."
+
+[sir_prysin_normal]
+id = 883
+race = "human"
+wander_radius = 3
+examine = "One of the king's knights."
+
+[captain_rovin]
+id = 884
+race = "human"
+wander_radius = 3
+examine = "The head of the palace guard."
+
+[nora_t_hagg]
+id = 896
+examine = "Her friends call her Nor-T for short."
+
+[border_guard_al_kharid]
+id = 925
+race = "human"
+examine = "Guards the border."
+
+[border_guard_al_kharid_2]
+id = 926
+race = "human"
+examine = "Guards the border."
+
+[mubariz]
+id = 957
+race = "human"
+wander_radius = 3
+examine = "Tough looking combat type."
+
+[fadli]
+id = 958
+race = "human"
+wander_radius = 3
+examine = "Looks kida bored."
+
+[a_abla]
+id = 959
+race = "human"
+wander_radius = 3
+examine = "Trained to deal with all sorts of injuries."
+
+[sabreen]
+id = 960
+race = "human"
+wander_radius = 3
+examine = "Heals people."
+
+[surgeon_general_tafani]
+id = 961
+race = "human"
+wander_radius = 3
+examine = "This nurse really knows her stuff."
+
+[jaraah]
+id = 962
+race = "human"
+wander_radius = 3
+examine = "Has the messy job of putting players back together again."
+
+[zahwa]
+id = 963
+race = "human"
+wander_radius = 4
+examine = "Battle-scarred."
+
+[ima]
+id = 964
+race = "human"
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[sabeil]
+id = 965
+race = "human"
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[jadid]
+id = 966
+race = "human"
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[dalal]
+id = 967
+race = "human"
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[afrah]
+id = 968
+race = "human"
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[jeed]
+id = 969
+race = "human"
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[hamid]
+id = 1008
+race = "human"
+wander_radius = 3
+examine = "A holy man."
+
+[nemarti]
+id = 1861
+race = "human"
+examine = "Nemarti looks ready to teach you about ranged combat."
+
+[dark_mage]
+id = 2262
+faces = false
+race = "human"
+examine = "An initiate of Zamorak."
+
+[mage_of_zamorak_wilderness]
+id = 2257
+faces = false
+race = "human"
+wander_radius = 4
+examine = "A disciple of Zamorak."
+
+[mage_of_zamorak_varrock]
+id = 2260
+faces = false
+race = "human"
+wander_radius = 5
+examine = "A disciple of Zamorak."
+
+[reldo_normal]
+id = 2661
+race = "human"
+wander_radius = 4
+examine = "Reldo the librarian."
+
+[makeover_mage_female]
+id = 2676
+race = "human"
+wander_radius = 3
+examine = "Master of the mystical make-over."
+
+[master_crafter_2]
+id = 2732
+race = "human"
+examine = "He works in the Crafting Guild."
+
+[master_crafter_3]
+id = 2733
+wander_radius = 4
+race = "human"
+examine = "He wanders around the Crafting Guild pretending to be working."
+
+[ellis]
+id = 2824
+race = "human"
+examine = "Manufacturer of fine leathers."
+
+[gudrun]
+id = 2864
+wander_radius = 4
+race = "human"
+examine = "The chieftain's daughter."
+
+[gudrun2]
+clone = "gudrun"
+id = 2865
+
+[gudrun_after_cutscene]
+clone = "gudrun"
+id = 2866
+
+[gudrun_after_cutscene2]
+clone = "gudrun"
+id = 2867
+
+[gudrun_after_quest]
+clone = "gudrun"
+id = 2869
+
+[gudrun_after_quest2]
+clone = "gudrun"
+id = 2870
+
+[gudrun_cutscene]
+clone = "gudrun"
+id = 2871
+
+[kjell]
+id = 2872
+race = "human"
+examine = "A barbarian guard."
+
+[kjell_sword]
+clone = "kjell"
+id = 2873
+
+[kjell_guitar]
+clone = "kjell"
+id = 2874
+
+[kjell_cutscene]
+id = 2875
+examine = "A barbarian guard."
+
+[chieftain_gunthor]
+id = 2876
+race = "human"
+examine = "A heavily built barbarian with an air of power and authority."
+
+[chieftain_gunthor_icon]
+clone = "chieftain_gunthor"
+id = 2877
+
+[chieftain_gunthort_no_icon]
+clone = "chieftain_gunthor"
+id = 2878
+
+[chieftain_gunthor_cutscene]
+id = 3089
+examine = "A heavily built barbarian with an air of power and authority."
+
+[haakon_the_champion]
+id = 3090
+hitpoints = 360
+att = 22
+str = 22
+def = 25
+mage = 240
+attack_bonus = 8
+max_hit_melee = 42
+immune_poison = true
+wander_radius = 4
+respawn_delay = 75
+weapon_style = "2h"
+style = "crush"
+race = "human"
+examine = "A mighty warrior, Haakon is powerfully concerned for his tribe."
+
+[haakon_the_champion_cutscene]
+id = 3091
+examine = "A mighty warrior, Haakon is powerfully concerned for his tribe."
+
+[barmaid_kaylee]
+clone = "barmaid_emily"
+id = 3217
+
+[barmaid_tina]
+clone = "barmaid_emily"
+id = 3218
+
+[jeffery3]
+id = 3323
+wander_radius = 4
+race = "human"
+examine = "The man with the armour."
+
+[tarquin]
+id = 3328
+examine = "A dandy canoe man."
+
+[sigurd]
+id = 3329
+examine = "His furs look very damp."
+
+[hari]
+id = 3330
+examine = "Strange looking fella."
+
+[barfy_bill]
+id = 3331
+examine = "Looks a little green around the gills."
+
+[millie_miller]
+id = 3806
+race = "human"
+wander_radius = 4
+examine = "Miss Millicent Miller, the Miller of Mill Lane Mill."
+
+[gillie_groats]
+id = 3807
+wander_radius = 4
+race = "human"
+examine = "Gillie milks cows and she's udderly fantastic at it."
+
+[sir_prysin_sword]
+clone = "sir_prysin_normal"
+id = 4657
+
+[denath]
+id = 4663
+examine = "A practicer of dark arts."
+
+[wally]
+id = 4664
+examine = "Wally."
+
+[mikasi]
+id = 4707
+race = "human"
+examine = "Mikasi looks ready to teach you about magic."
+
+[thakkrad_sigmundson_cutscene]
+id = 5466
+race = "human"
+examine = "A young master craftsman."
+
+[thakkrad_sigmundson]
+id = 5506
+race = "human"
+examine = "A young master craftsman."
+
+[surok_magis_normal]
+id = 5834
+race = "human"
+examine = "A powerful wizard."
+
+[surok_magis_dagon_hai]
+id = 5835
+race = "human"
+examine = "Leader of the Dagon'hai Order."
+
+[surok_magis]
+id = 5853
+wander_radius = 4
+
+[iffie]
+id = 5914
+race = "human"
+faces = false
+examine = "An old woman busily knitting."
+
+[ash_cleaner]
+id = 5916
+race = "human"
+wander_radius = 12
+hunt_range = 4
+hunt_mode = "ash_finder"
+examine = "Does what too many people aren't interested in doing."
+
+[jeffery2]
+id = 6298
+wander_radius = 4
+race = "human"
+examine = "The man with the armour."
+
+[zamorak_warrior_kite]
+id = 6363
+hitpoints = 450
+att = 85
+str = 70
+def = 90
+style = "slash"
+max_hit_melee = 80
+wander_radius = 5
+attack_radius = 11
+respawn_delay = 50
+hunt_mode = "aggressive"
+weapon_style = "sword"
+drop_table = "zamorak_warrior"
+race = "human"
+examine = "A warrior of Zamorak."
+
+[zamorak_warrior_square]
+clone = "zamorak_warrior_kite"
+id = 6364
+style = "crush"
+
+[zamorak_mage_fancy]
+id = 6367
+hitpoints = 500
+att = 75
+str = 80
+def = 80
+mage = 85
+spell = "fire_bolt"
+max_hit_magic = 90
+respawn_delay = 50
+hunt_mode = "aggressive"
+attack_range = 3
+attack_radius = 10
+wander_radius = 5
+race = "human"
+drop_table = "zamorak_mage"
+examine = "A mage of Zamorak."
+
+[zamorak_mage]
+clone = "zamorak_mage_fancy"
+id = 6368
+
+[zamorak_ranger]
+id = 6365
+hitpoints = 500
+att = 75
+str = 80
+def = 80
+range = 80
+max_hit_range = 90
+respawn_delay = 50
+hunt_mode = "aggressive"
+attack_range = 5
+attack_radius = 10
+wander_radius = 5
+race = "human"
+style = "accurate"
+weapon_style = "bow"
+ammo = "mithril_arrow"
+drop_table = "zamorak_ranger"
+height = 40
+examine = "A ranger of Zamorak."
+
+[zamorak_ranger_coat]
+clone = "zamorak_ranger"
+id = 6366
+
+[mage_of_zamorak_ourania]
+id = 6370
+wander_radius = 4
+examine = "A representative of the Z.M.I."
+
+[zamorak_crafter_start]
+id = 6371
+solid = false
+hitpoints = 250
+att = 15
+str = 15
+def = 12
+mage = 20
+race = "human"
+style = "crush"
+height = 40
+hunt_range = 2
+attack_range = 1
+attack_radius = 11
+wander_radius = 5
+max_hit_melee = 20
+drop_table = "zamorak_crafter"
+respawn_delay = 50
+examine = "A Z.M.I. runecrafter."
+
+[zamorak_crafter_end]
+clone = "zamorak_crafter_start"
+id = 6372
+
+[bob_barter_herbs]
+id = 6524
+race = "human"
+examine = "He's probably seen better days."
+
+[pikkupstix]
+id = 6970
+race = "human"
+wander_radius = 2
+examine = "He's a very important druid."
+
+[pikkupstix_2]
+id = 6971
+race = "human"
+wander_radius = 2
+examine = "He's a very important druid."
+
+[pikkupstix_spawn]
+id = 6988
+
+[pikkupstix_spawn_2]
+id = 6989
+
+[dark_wizard_water]
+id = 8871
+att = 5
+str = 2
+def = 5
+mage = 6
+attack_range = 5
+attack_radius = 11
+hitpoints = 120
+max_hit_magic = 60
+respawn_delay = 50
+hunt_mode = "cowardly"
+wander_radius = 4
+race = "human"
+examine = "He works evil magic."
+
+[dark_wizard_water_2]
+clone = "dark_wizard_water"
+id = 8872
+drop_table = "dark_wizard_water"
+
+[dark_wizard_earth]
+clone = "dark_wizard_water"
+id = 8873
+att = 17
+str = 17
+def = 14
+mage = 22
+hitpoints = 240
+drop_table = "dark_wizard_earth"
+examine = "A practicer of dark arts."
+
+[dark_wizard_earth_2]
+clone = "dark_wizard_earth"
+id = 8874
+
+[iconis]
+id = 8879
+race = "human"
+examine = "A wizard who specialises in magical picture-taking processes."
+
+[sir_prysin]
+clone = "sir_prysin_normal"
+id = 9359
+
+[gypsy_aris]
+id = 9362
+examine = "A fortune-teller."
+
+[bartender_rusty_anchor]
+id = 11707
+bar_crawl = {
+  id = "black_skull_ale",
+  price = 8,
+  insufficient = "I don't have 8 coins with me.",
+  give = "You buy a Black Skull Ale.",
+  drink = "You drink your Black Skull Ale...",
+  effect = "Your vision blurs.",
+  sign = "The bartender signs your card."
+}
+race = "human"
+wander_radius = 4
+examine = "I could get a beer from him."
+
+[leela]
+id = 13172
+race = "human"
+wander_radius = 4
+examine = "She comes from Al Kharid."
+
+[explorer_jack]
+id = 13295
+wander_radius = 5
+race = "human"
+examine = "He looks like a professional explorer."
