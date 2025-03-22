@@ -2,14 +2,6 @@
 id = 1
 examine = "Big mysterious crate. You wonder what could be inside."
 
-[door_opened]
-id = 1531
-examine = "The door is open."
-
-[door_closed]
-id = 3
-examine = "The door is closed."
-
 [railing]
 id = 15
 examine = "A broken rail."
@@ -33,13 +25,6 @@ examine = "A broken rail."
 [railing_6]
 id = 20
 examine = "A broken rail."
-
-[door_2_opened]
-id = 37019
-
-[door_2_closed]
-id = 22
-examine = "The door is shut."
 
 [gate_opened]
 id = 2061
@@ -72,13 +57,6 @@ examine = "A wooden gate."
 id = 48
 examine = "A wooden gate."
 
-[door_3_opened]
-id = 2070
-
-[door_3_closed]
-id = 59
-examine = "A fancy hole in the wall."
-
 [crate_2]
 id = 63
 examine = "Used for storage."
@@ -86,68 +64,6 @@ examine = "Used for storage."
 [crate_3]
 id = 64
 examine = "Used for storage."
-
-[large_door_opened]
-id = 1517
-examine = "A large double door."
-
-[large_door_closed]
-id = 71
-examine = "Sturdy looking door."
-
-[large_door_2_opened]
-id = 1520
-examine = "A large double door."
-
-[large_door_2_closed]
-id = 72
-examine = "Sturdy looking door."
-
-[large_door_3_opened]
-id = 1517
-examine = "A large double door."
-
-[large_door_3_closed]
-id = 73
-examine = "Securely fastened shut."
-
-[large_door_4_opened]
-id = 1520
-examine = "A large double door."
-
-[large_door_4_closed]
-id = 74
-examine = "Securely fastened shut."
-
-[prison_door_opened]
-id = 43046
-
-[prison_door_closed]
-id = 79
-examine = "The door looks very secure."
-
-[prison_door_2_opened]
-id = 43046
-
-[prison_door_2_closed]
-id = 80
-examine = "The door looks very secure."
-
-[door_5_opened]
-id = 1531
-examine = "The door is open."
-
-[door_5_closed]
-id = 81
-examine = "The door is closed."
-
-[door_6_opened]
-id = 1531
-examine = "The door is open."
-
-[door_6_closed]
-id = 82
-examine = "The door is closed."
 
 [gate_10_opened]
 id = 2059
@@ -163,22 +79,6 @@ id = 2061
 id = 90
 examine = "A wrought iron gate."
 
-[door_7_opened]
-id = 1534
-examine = "A nicely fitted door."
-
-[door_7_closed]
-id = 92
-examine = "The door is closed."
-
-[door_8_opened]
-id = 1531
-examine = "The door is open."
-
-[door_8_closed]
-id = 93
-examine = "The door is closed."
-
 [gate_12_opened]
 id = 2061
 
@@ -193,31 +93,9 @@ id = 2059
 id = 95
 examine = "A wrought iron gate."
 
-[door_9_opened]
-id = 1531
-examine = "The door is open."
-
-[door_9_closed]
-id = 99
-examine = "The door is closed."
-
-[door_10_opened]
-id = 11403
-
-[door_10_closed]
-id = 102
-examine = "A sturdy door."
-
 [cooking_range_lumbridge_castle]
 id = 114
 examine = "Ideal for cooking on."
-
-[door_11_opened]
-id = 11445
-
-[door_11_closed]
-id = 131
-examine = "The door is closed."
 
 [fountain]
 id = 153
@@ -376,33 +254,6 @@ examine = "Now he's just too thin."
 id = 667
 examine = "He hasn't eaten in a long time."
 
-[bamboo_door_opened]
-id = 780
-
-[bamboo_door_closed]
-id = 779
-examine = "It's a door made from bamboo."
-
-[bamboo_door_2_opened]
-id = 780
-
-[bamboo_door_2_closed]
-id = 4807
-examine = "It's a door made from bamboo."
-
-[doorway_7_opened]
-id = 780
-
-[doorway_7_closed]
-id = 4710
-examine = "A doorway made from bamboo."
-
-[waiting_room_door_opened]
-id = 780
-
-[waiting_room_door_closed]
-id = 15984
-
 [flagpole]
 id = 860
 examine = "The flag of Asgarnia."
@@ -519,14 +370,6 @@ examine = "Who is this Heather girl?"
 [heather_3]
 id = 1180
 examine = "I wonder why it's purple?"
-
-[door_27_opened]
-id = 1240
-examine = "The door is open."
-
-[door_27_closed]
-id = 1804
-examine = "This door requires a key."
 
 [tree]
 id = 1276
@@ -937,212 +780,12 @@ examine = "It's only useful for firewood now."
 id = 1359
 examine = "This tree has been cut down."
 
-[large_door_5_opened]
-id = 1509
-
-[large_door_5_closed]
-id = 1506
-examine = "A sturdy wooden door."
-
-[large_door_7_opened]
-id = 1510
-
-[large_door_7_closed]
-id = 1508
-examine = "A sturdy wooden door."
-
-[large_door_9_opened]
-id = 1515
-examine = "A sturdy wooden door."
-
-[large_door_9_closed]
-id = 1512
-examine = "A sturdy wooden door."
-
-[large_door_10_opened]
-id = 1514
-examine = "A sturdy wooden door."
-
-[large_door_10_closed]
-id = 1513
-examine = "A sturdy wooden door."
-
-[large_door_13_opened]
-id = 41132
-examine = "Large double doors."
-
-[large_door_13_closed]
-id = 1516
-examine = "A large double door."
-
-[large_door_15_opened]
-id = 41134
-examine = "Large double doors."
-
-[large_door_15_closed]
-id = 1519
-examine = "A large double door."
-
-[magic_guild_door_opened]
-id = 1522
-
-[magic_guild_door_closed]
-id = 1600
-examine = "The doors to the Magic Guild."
-
-[door_74_opened]
-id = 1522
-
-[door_74_closed]
-id = 2624
-examine = "The entrance to the Heroes' Guild."
-
-[mine_door_entrance_opened]
-id = 1522
-
-[mine_door_entrance_closed]
-id = 2675
-examine = "Large doors made of solid oak."
-
-[mine_door_entrance_3_opened]
-id = 1522
-
-[mine_door_entrance_3_closed]
-id = 2690
-examine = "Large solid, thick set oak doors - they lead outside."
-
-[large_door_36_opened]
-id = 1522
-
-[large_door_36_closed]
-id = 4963
-examine = "A large double door."
-
-[large_door_37_opened]
-id = 1523
-
-[large_door_37_closed]
-id = 4964
-examine = "A large double door."
-
-[mine_door_entrance_2_opened]
-id = 1523
-
-[mine_door_entrance_2_closed]
-id = 2676
-examine = "Large doors made of solid oak."
-
-[mine_door_entrance_4_opened]
-id = 1523
-
-[mine_door_entrance_4_closed]
-id = 2691
-examine = "Large solid, thick set oak doors - they lead outside."
-
-[door_75_opened]
-id = 1523
-
-[door_75_closed]
-id = 2625
-examine = "The entrance to the Heroes' Guild."
-
-[magic_guild_door_2_opened]
-id = 1523
-
-[magic_guild_door_2_closed]
-id = 1601
-examine = "The doors to the Magic Guild."
-
-[door_14_opened]
-id = 1531
-examine = "The door is open."
-
-[door_14_closed]
-id = 1530
-examine = "The door is closed."
-
-[door_26_opened]
-id = 1532
-
-[door_26_closed]
-id = 1591
-examine = "The door is closed."
-
-[door_16_opened]
-id = 1534
-examine = "A nicely fitted door."
-
-[door_16_closed]
-id = 1533
-examine = "A nicely fitted door."
-
-[door_106_opened]
-id = 1535
-
-[door_106_closed]
-id = 3747
-examine = "A nicely fitted door."
-
-[door_18_opened]
-id = 1537
-examine = "An elf-fashioned door."
-
-[door_18_closed]
-id = 1536
-examine = "An ornately-fashioned door."
-
-[door_20_opened]
-id = 1540
-examine = "Solid bars of iron."
-
-[door_20_closed]
-id = 1539
-examine = "Solid bars of iron."
-
-[door_22_opened]
-id = 1541
-
-[door_22_closed]
-id = 1542
-examine = "Solid bars of iron."
-
 [gate_33_opened]
 id = 1543
 examine = "Solid bars of iron."
 
 [gate_33_closed]
 id = 1991
-examine = "Solid bars of iron."
-
-[wilderness_agility_door_opened]
-id = 1543
-examine = "Solid bars of iron."
-
-[wilderness_agility_door_closed]
-id = 2309
-
-[door_68_opened]
-id = 1543
-examine = "Solid bars of iron."
-
-[door_68_closed]
-id = 2557
-examine = "A secure door."
-
-[prison_door_3_opened]
-id = 1543
-examine = "Solid bars of iron."
-
-[prison_door_3_closed]
-id = 2689
-examine = "There's no getting around it, it's a fairly sturdy prison cell door."
-
-[door_24_opened]
-id = 1545
-examine = "Solid bars of iron."
-
-[door_24_closed]
-id = 1544
 examine = "Solid bars of iron."
 
 [gate_18_opened]
@@ -1239,30 +882,6 @@ id = 1597
 gate = false
 examine = "A wrought-iron gate."
 
-[doors_opened]
-id = 1574
-examine = "A door to a grand place."
-
-[doors_closed]
-id = 1573
-examine = "A door to a grand place."
-
-[doors_3_opened]
-id = 1576
-examine = "A door to a grand place."
-
-[doors_3_closed]
-id = 1575
-examine = "A door to a grand place."
-
-[door_28_opened]
-id = 2033
-examine = "This is someone's bedroom door."
-
-[door_28_closed]
-id = 1805
-examine = "The door to the Champions' Guild."
-
 [candlestick_holder]
 id = 1897
 examine = "Not as nice as some."
@@ -1282,69 +901,6 @@ examine = "A wooden crate for storage."
 [crate_11]
 id = 1999
 examine = "A wooden crate for storage."
-
-[door_29_opened]
-id = 2003
-
-[door_29_closed]
-id = 2002
-examine = "An elf-fashioned door."
-
-[large_door_30_opened]
-id = 2003
-
-[large_door_30_closed]
-id = 4629
-examine = "A large double door."
-
-[large_door_32_opened]
-id = 2003
-
-[large_door_32_closed]
-id = 4631
-examine = "A large double door."
-
-[large_door_33_opened]
-id = 2003
-
-[large_door_33_closed]
-id = 4632
-examine = "A large double door."
-
-[large_door_34_opened]
-id = 2003
-
-[large_door_34_closed]
-id = 4633
-examine = "A large double door."
-
-[door_129_opened]
-id = 2003
-
-[door_129_closed]
-id = 4636
-examine = "An ornately fashioned door."
-
-[door_130_opened]
-id = 2003
-
-[door_130_closed]
-id = 4637
-examine = "An ornately fashioned door."
-
-[door_131_opened]
-id = 2003
-
-[door_131_closed]
-id = 4638
-examine = "An ornately fashioned door."
-
-[door_133_opened]
-id = 2003
-
-[door_133_closed]
-id = 4640
-examine = "An ornately fashioned door."
 
 [pillar]
 id = 2004
@@ -1371,30 +927,6 @@ examine = "An interesting tree with long straight branches."
 [achey_tree_stump]
 id = 3371
 examine = "An Achey tree stump."
-
-[bedroom_door_opened]
-id = 2033
-examine = "This is someone's bedroom door."
-
-[bedroom_door_closed]
-id = 2032
-examine = "This is someone's bedroom door."
-
-[door_30_opened]
-id = 2035
-examine = "It's open."
-
-[door_30_closed]
-id = 2034
-examine = "It's closed."
-
-[door_32_opened]
-id = 2035
-examine = "It's open."
-
-[door_32_closed]
-id = 2036
-examine = "It's closed."
 
 [gate_34_opened]
 id = 2040
@@ -1524,20 +1056,6 @@ id = 2053
 id = 2051
 examine = "A wooden gate."
 
-[door_36_opened]
-id = 2055
-
-[door_36_closed]
-id = 2054
-examine = "It's a door."
-
-[door_67_opened]
-id = 2055
-
-[door_67_closed]
-id = 2556
-examine = "A secure door."
-
 [gate_38_opened]
 id = 2059
 
@@ -1597,13 +1115,6 @@ examine = "An ancient metal gate, but still pretty secure."
 [crate_12]
 id = 2064
 examine = "For storage."
-
-[door_37_opened]
-id = 2070
-
-[door_37_closed]
-id = 2069
-examine = "A closed door."
 
 [crate_13]
 id = 2071
@@ -1784,52 +1295,9 @@ mining = {
 }
 examine = "A rocky outcrop."
 
-[door_38_opened]
-id = 3464
-
-[door_38_closed]
-id = 2112
-examine = "The door is closed."
-
-[unlocked_door_opened]
-id = 2586
-
-[unlocked_door_closed]
-id = 2137
-examine = "Freedom awaits."
-
-[unlocked_door_2_opened]
-id = 2607
-
-[unlocked_door_2_closed]
-id = 2141
-examine = "Freedom awaits."
-
 [restless_ghost_coffin_closed]
 id = 2145
 examine = "Ooooh! Spooky!"
-
-[door_39_opened]
-id = 31809
-examine = "A large single door."
-
-[door_39_closed]
-id = 2184
-examine = "The door is closed."
-
-[tomb_doors_4_opened]
-id = 2251
-
-[tomb_doors_4_closed]
-id = 2249
-examine = "Large carved tomb doors, they look terrifying."
-
-[tomb_doors_5_opened]
-id = 2252
-
-[tomb_doors_5_closed]
-id = 2250
-examine = "Large carved tomb doors, they look terrifying."
 
 [wooden_gate_opened]
 id = 2263
@@ -1866,20 +1334,6 @@ id = 2264
 [gate_56_closed]
 id = 2439
 examine = "A wooden gate."
-
-[blacksmiths_door_opened]
-id = 2340
-
-[blacksmiths_door_closed]
-id = 2266
-examine = "The door is closed."
-
-[blacksmiths_door_2_opened]
-id = 2340
-
-[blacksmiths_door_2_closed]
-id = 2267
-examine = "The door is closed."
 
 [obstacle_net]
 id = 2285
@@ -1919,27 +1373,6 @@ examine = "A wooden gate."
 id = 2320
 examine = "A wooden gate."
 
-[sturdy_door_opened]
-id = 2340
-
-[sturdy_door_closed]
-id = 2337
-examine = "This door is very sturdy looking."
-
-[door_45_opened]
-id = 2340
-
-[door_45_closed]
-id = 2338
-examine = "This door is closed."
-
-[sturdy_door_2_opened]
-id = 2340
-
-[sturdy_door_2_closed]
-id = 2339
-examine = "This door is very sturdy looking."
-
 [crate_15]
 id = 2364
 examine = "A wooden container."
@@ -1971,55 +1404,9 @@ id = 2395
 id = 2394
 examine = "A gate to the Gnomeball pitch."
 
-[door_46_closed]
-id = 24368
-examine = "This door is locked."
-
-[door_46_opened]
-id = 24380
-examine = "A solid looking door."
-
-[door_46_2_closed]
-id = 2397
-examine = "This door is locked."
-
-[door_46_2_opened]
-id = 24379
-examine = "A solid looking door."
-
-[door_47_opened]
-id = 46305
-examine = "A solid looking door."
-
-[door_47_closed]
-id = 2398
-examine = "This door is locked."
-
-[door_48_opened]
-id = 15502
-
-[door_48_closed]
-id = 2399
-examine = "A solid looking door."
-
 [bookcase_shield_of_arrav]
 id = 2402
 examine = "A good source of books!"
-
-[door_49_opened]
-id = 10363
-
-[door_49_closed]
-id = 2406
-examine = "A pretty door."
-
-[magic_door_opened]
-id = 31812
-examine = "A large single door."
-
-[magic_door_closed]
-id = 2407
-examine = "The door is closed."
 
 [tree_13]
 clone = "tree"
@@ -2047,49 +1434,6 @@ examine = "A commonly found tree."
 [tree_15_stump]
 id = 7400
 examine = "This is what is left of a maple tree."
-
-[large_door_17_opened]
-id = 2417
-examine = "A sturdy wooden door."
-
-[large_door_17_closed]
-id = 2416
-examine = "A sturdy wooden door."
-
-[door_50_opened]
-id = 20988
-
-[door_50_closed]
-id = 2427
-examine = "This door is closed by an unknown mechanism."
-
-[door_51_opened]
-id = 20988
-
-[door_51_closed]
-id = 2428
-examine = "This door is closed by an unknown mechanism."
-
-[door_52_opened]
-id = 20988
-
-[door_52_closed]
-id = 2429
-examine = "This door is closed by an unknown mechanism."
-
-[door_53_opened]
-id = 20988
-
-[door_53_closed]
-id = 2430
-examine = "This door is closed by an unknown mechanism."
-
-[door_54_opened]
-id = 20988
-
-[door_54_closed]
-id = 2431
-examine = "This door is closed by an unknown mechanism."
 
 [pillar_2]
 id = 2440
@@ -2140,14 +1484,6 @@ examine = "A wooden gate."
 id = 2495
 examine = "A wooden gate."
 
-[guild_door_opened]
-id = 2529
-examine = "A door."
-
-[guild_door_closed]
-id = 2514
-examine = "The door to the Ranging Guild."
-
 [spooky_stairs]
 id = 2522
 examine = "It's a flight of stairs."
@@ -2156,14 +1492,6 @@ examine = "It's a flight of stairs."
 id = 2523
 examine = "It's a flight of stairs."
 
-[door_55_opened]
-id = 2527
-examine = "The door of a small prison."
-
-[door_55_closed]
-id = 2526
-examine = "The door of a small prison."
-
 [gate_71_opened]
 id = 2527
 examine = "The door of a small prison."
@@ -2171,181 +1499,6 @@ examine = "The door of a small prison."
 [gate_71_closed]
 id = 2866
 examine = "This space reserved for a shockingly bad pun."
-
-[door_57_opened]
-id = 2529
-examine = "A door."
-
-[door_57_closed]
-id = 2528
-examine = "The door is closed."
-
-[door_59_opened]
-id = 2538
-examine = "A door."
-
-[door_59_closed]
-id = 2537
-examine = "The door is closed."
-
-[door_65_opened]
-id = 2538
-examine = "A door."
-
-[door_65_closed]
-id = 2554
-examine = "A secure door."
-
-[door_69_opened]
-id = 2538
-examine = "A door."
-
-[door_69_closed]
-id = 2558
-examine = "A secure door."
-
-[door_71_opened]
-id = 2538
-examine = "A door."
-
-[door_71_closed]
-id = 2595
-examine = "It's closed."
-
-[door_72_opened]
-id = 2538
-examine = "A door."
-
-[door_72_closed]
-id = 2621
-examine = "It's a door."
-
-[door_73_opened]
-id = 2538
-examine = "A door."
-
-[door_73_closed]
-id = 2622
-examine = "It's a door."
-
-[door_76_opened]
-id = 2538
-examine = "A door."
-
-[door_76_closed]
-id = 2626
-examine = "It's a door."
-
-[door_77_opened]
-id = 2538
-examine = "A door."
-
-[door_77_closed]
-id = 2627
-examine = "It's a door."
-
-[door_78_opened]
-id = 2538
-examine = "A door."
-
-[door_78_closed]
-id = 2628
-examine = "It's a door."
-
-[guild_door_2_opened]
-id = 2529
-examine = "A door."
-
-[guild_door_2_closed]
-id = 2647
-examine = "The door to the Crafting Guild."
-
-[door_84_opened]
-id = 2538
-examine = "A door."
-
-[door_84_closed]
-id = 2863
-examine = "Trespassers will be stored."
-
-[door_61_opened]
-id = 2547
-examine = "A door."
-
-[door_61_closed]
-id = 2546
-examine = "A door."
-
-[door_63_opened]
-id = 2549
-examine = "A door."
-
-[door_63_closed]
-id = 2548
-examine = "A door."
-
-[door_66_opened]
-id = 34233
-
-[door_66_closed]
-id = 2555
-examine = "A secure door."
-
-[door_70_opened]
-id = 20988
-
-[door_70_closed]
-id = 2559
-examine = "A secure door."
-
-[red_door_opened]
-id = 9464
-
-[red_door_closed]
-id = 2596
-examine = "A blood-red door."
-
-[orange_door_opened]
-id = 9465
-
-[orange_door_closed]
-id = 2597
-examine = "A lurid orange door."
-
-[yellow_door_opened]
-id = 9466
-
-[yellow_door_closed]
-id = 2598
-examine = "A sickly yellow door."
-
-[blue_door_opened]
-id = 9467
-
-[blue_door_closed]
-id = 2599
-examine = "A gloomy blue door."
-
-[magenta_door_opened]
-id = 9468
-
-[magenta_door_closed]
-id = 2600
-examine = "A groovy magenta door."
-
-[green_door_opened]
-id = 9469
-
-[green_door_closed]
-id = 2601
-examine = "A putrid green door."
-
-[exit_door_opened]
-id = 32969
-
-[exit_door_closed]
-id = 2602
-examine = "Probably the nicest door in this ghastly place."
 
 [gold_rocks_crandor_1]
 clone = "gold_rocks_old_1"
@@ -2403,20 +1556,6 @@ examine = "This fountain suits the garden."
 id = 2704
 examine = "Rocky!"
 
-[door_79_opened]
-id = 34233
-
-[door_79_closed]
-id = 2705
-examine = "It's a door."
-
-[door_80_opened]
-id = 34233
-
-[door_80_closed]
-id = 2706
-examine = "A nicely fitted door."
-
 [crate_18]
 id = 2707
 examine = "A wooden crate for storage."
@@ -2424,13 +1563,6 @@ examine = "A wooden crate for storage."
 [crate_19]
 id = 2708
 examine = "A wooden crate for storage."
-
-[door_81_opened]
-id = 15502
-
-[door_81_closed]
-id = 2712
-examine = "The entrance to the Cooking Guild."
 
 [hopper_controls]
 id = 2718
@@ -2479,22 +1611,6 @@ examine = "An entrance to Gu'Tanoth."
 [crate_20]
 id = 2858
 examine = "A wooden crate."
-
-[door_82_opened]
-id = 24685
-examine = "The door is open."
-
-[door_82_closed]
-id = 2861
-examine = "It's a door."
-
-[door_83_opened]
-id = 24815
-examine = "The door is open."
-
-[door_83_closed]
-id = 2862
-examine = "It's another door."
 
 [fountain_4]
 id = 2864
@@ -2550,20 +1666,6 @@ examine = "A jungle bush, quite common to these areas."
 id = 2894
 examine = "A jungle bush that has been chopped down."
 
-[legends_guild_door_opened]
-id = 2898
-
-[legends_guild_door_closed]
-id = 2896
-examine = "A door to the Legends Guild."
-
-[legends_guild_door_2_opened]
-id = 2899
-
-[legends_guild_door_2_closed]
-id = 2897
-examine = "A door to the Legends Guild."
-
 [legends_guild_totem_pole]
 id = 2938
 examine = "A sculpted trunk of wood."
@@ -2610,22 +1712,6 @@ examine = "A fully grown Yommi tree, it won't get much taller than this."
 id = 2950
 examine = "A felled adult Yommi tree, perhaps you should trim those branches?"
 
-[door_85_opened]
-id = 2998
-examine = "The door is open."
-
-[door_85_closed]
-id = 2997
-examine = "The door is closed."
-
-[door_87_opened]
-id = 3271
-examine = "The door is open."
-
-[door_87_closed]
-id = 3014
-examine = "A nicely fitted door."
-
 [gate_72_opened]
 id = 42002
 examine = "A wooden gate."
@@ -2641,30 +1727,6 @@ examine = "A wooden gate."
 [gate_73_closed]
 id = 3016
 examine = "A wooden gate."
-
-[door_88_opened]
-id = 3271
-examine = "The door is open."
-
-[door_88_closed]
-id = 3017
-examine = "A nicely fitted door."
-
-[door_89_opened]
-id = 3271
-examine = "The door is open."
-
-[door_89_closed]
-id = 3018
-examine = "A nicely fitted door."
-
-[door_90_opened]
-id = 3271
-examine = "The door is open."
-
-[door_90_closed]
-id = 3019
-examine = "A nicely fitted door."
 
 [gate_74_opened]
 id = 26922
@@ -2694,30 +1756,6 @@ id = 3269
 id = 3023
 examine = "A wrought iron gate."
 
-[door_91_opened]
-id = 3271
-examine = "The door is open."
-
-[door_91_closed]
-id = 3024
-examine = "A closed door."
-
-[door_92_opened]
-id = 3271
-examine = "The door is open."
-
-[door_92_closed]
-id = 3025
-examine = "A closed door."
-
-[door_93_opened]
-id = 3271
-examine = "The door is open."
-
-[door_93_closed]
-id = 3026
-examine = "A closed door."
-
 [tree_19]
 clone = "tree"
 id = 3034
@@ -2741,30 +1779,6 @@ examine = "A rocky outcrop."
 id = 3182
 examine = "Wait here for a nurse."
 
-[door_96_opened]
-id = 3271
-examine = "The door is open."
-
-[door_96_closed]
-id = 3270
-examine = "The door is closed."
-
-[door_137_opened]
-id = 3271
-examine = "The door is open."
-
-[door_137_closed]
-id = 4962
-examine = "The door is closed."
-
-[door_105_opened]
-id = 3271
-examine = "The door is open."
-
-[door_105_closed]
-id = 3745
-examine = "The door is closed."
-
 [tomb]
 id = 3353
 examine = "I don't much like the look of that..."
@@ -2785,13 +1799,6 @@ pickable = {
   message = "You pick an onion."
 }
 examine = "Makes you cry."
-
-[prison_door_4_opened]
-id = 5173
-
-[prison_door_4_closed]
-id = 3367
-examine = "Steel bars that are locked securely."
 
 [achey_tree_2]
 clone = "achey_tree"
@@ -2849,13 +1856,6 @@ id = 3446
 id = 3445
 examine = "A sturdy metal gate."
 
-[cell_door_4_opened]
-id = 3464
-
-[cell_door_4_closed]
-id = 3463
-examine = "A hastily constructed yet sturdy prison door."
-
 [border]
 id = 3550
 
@@ -2903,29 +1903,6 @@ examine = "A wooden gate."
 id = 3728
 examine = "A wooden gate."
 
-[large_door_21_opened]
-id = 3744
-
-[large_door_21_closed]
-id = 3743
-examine = "A sturdy wooden door."
-
-[cell_door_5_opened]
-id = 3764
-examine = "The door is open."
-
-[cell_door_5_closed]
-id = 3763
-examine = "The door is closed."
-
-[door_107_opened]
-id = 3777
-examine = "A door in the Stronghold."
-
-[door_107_closed]
-id = 3776
-examine = "A door in the Stronghold."
-
 [corpse_9]
 id = 3797
 examine = "Now that's what I call slimline!"
@@ -2941,13 +1918,6 @@ examine = "Now he's just too thin."
 [chair_14]
 id = 3801
 examine = "The ideal thing to sit on."
-
-[storeroom_door_opened]
-id = 3811
-
-[storeroom_door_closed]
-id = 3810
-examine = "The door to the storeroom."
 
 [crate_30]
 id = 3813
@@ -3080,50 +2050,6 @@ examine = "It's hollow..."
 id = 4061
 examine = "This tree has been cut down."
 
-[solid_bronze_door_opened]
-id = 4110
-
-[solid_bronze_door_closed]
-id = 4106
-examine = "Heavy metal!"
-
-[solid_steel_door_opened]
-id = 4110
-
-[solid_steel_door_closed]
-id = 4107
-examine = "Heavy metal!"
-
-[solid_black_door_opened]
-id = 4110
-
-[solid_black_door_closed]
-id = 4108
-examine = "Heavy metal!"
-
-[solid_silver_door_opened]
-id = 4110
-
-[solid_silver_door_closed]
-id = 4109
-examine = "Heavy metal!"
-
-[door_113_opened]
-id = 4248
-examine = "Doesn't keep the wind out if it's open!"
-
-[door_113_closed]
-id = 4148
-examine = "Allows performers backstage at the long hall."
-
-[trapdoor_10_opened]
-id = 4173
-examine = "I wonder what's down there?"
-
-[trapdoor_10_closed]
-id = 4174
-examine = "I wonder what's under it?"
-
 [crate_34]
 id = 4185
 examine = "A wooden crate for storage."
@@ -3131,22 +2057,6 @@ examine = "A wooden crate for storage."
 [crate_35]
 id = 4186
 examine = "An old crate for storage."
-
-[door_116_opened]
-id = 4248
-examine = "Doesn't keep the wind out if it's open!"
-
-[door_116_closed]
-id = 4247
-examine = "Keeps the cold winds out."
-
-[fur_door_single_opened]
-id = 4251
-examine = "I'm sure the animal is glad its fur was put to good use."
-
-[fur_door_single_closed]
-id = 4250
-examine = "I'm sure the animal is glad its fur was put to good use."
 
 [chair_15]
 id = 4271
@@ -3183,50 +2093,6 @@ id = 4314
 id = 4312
 examine = "A wooden gate."
 
-[large_door_22_opened]
-id = 4425
-examine = "Big and sturdy to keep others out."
-
-[large_door_22_closed]
-id = 4423
-examine = "Big and sturdy to keep others out."
-
-[large_door_23_opened]
-id = 4426
-examine = "Big and sturdy to keep others out."
-
-[large_door_23_closed]
-id = 4424
-examine = "Big and sturdy to keep others out."
-
-[large_door_26_opened]
-id = 4425
-examine = "Big and sturdy to keep others out."
-
-[large_door_26_closed]
-id = 4427
-examine = "Big and sturdy to keep others out."
-
-[large_door_27_opened]
-id = 4426
-examine = "Big and sturdy to keep others out."
-
-[large_door_27_closed]
-id = 4428
-examine = "Big and sturdy to keep others out."
-
-[door_125_opened]
-id = 4491
-
-[door_125_closed]
-id = 4487
-
-[door_126_opened]
-id = 4492
-
-[door_126_closed]
-id = 4490
-
 [corpse_16]
 id = 4518
 examine = "How do you make a skeleton laugh?"
@@ -3238,13 +2104,6 @@ examine = "Tickle his funny bone."
 [corpse_18]
 id = 4520
 examine = "Clearly has been relaxing too long...."
-
-[throne_room_door_opened]
-id = 4673
-
-[throne_room_door_closed]
-id = 4672
-examine = "The door into the throne room."
 
 [maple_tree_2]
 clone = "maple_tree"
@@ -3266,14 +2125,6 @@ examine = "Flag, pole...Yep, it's a flagpole."
 [flagpole_7]
 id = 4693
 examine = "Flag, pole...Yep, it's a flagpole."
-
-[door_134_opened]
-id = 4697
-examine = "The door is open."
-
-[door_134_closed]
-id = 4696
-examine = "The door is closed."
 
 [chair_17]
 id = 4702
@@ -3357,14 +2208,6 @@ examine = "A leafy tree."
 id = 4821
 examine = "This was a fairly tall tree with sparse foliage."
 
-[trapdoor_16_opened]
-id = 4880
-examine = "It's an open trapdoor."
-
-[trapdoor_16_closed]
-id = 4879
-examine = "It's a trapdoor."
-
 [crate_53]
 id = 4944
 examine = "It doesn't look very watertight. Any contents will be ruined."
@@ -3393,66 +2236,6 @@ examine = "Clearly has been relaxing too long...."
 id = 5125
 examine = "He hasn't eaten in a long time."
 
-[door_138_opened]
-id = 5128
-
-[door_138_closed]
-id = 5126
-
-[trapdoor_20_opened]
-id = 5132
-examine = "I wonder what's down there?"
-
-[trapdoor_20_closed]
-id = 5131
-examine = "I wonder what's under it?"
-
-[door_140_opened]
-id = 5173
-
-[door_140_closed]
-id = 5172
-examine = "The door to the Tower."
-
-[door_141_opened]
-id = 5175
-
-[door_141_closed]
-id = 5174
-examine = "The door to the garden shed."
-
-[door_142_opened]
-id = 5187
-examine = "Looks wooden. Feels wooden. I wonder is it wooden?"
-
-[door_142_closed]
-id = 5183
-examine = "Looks wooden. Feels wooden. I wonder is it wooden?"
-
-[door_143_opened]
-id = 5188
-examine = "Looks wooden. Feels wooden. I wonder is it wooden?"
-
-[door_143_closed]
-id = 5186
-examine = "Looks wooden. Feels wooden. I wonder is it wooden?"
-
-[door_146_opened]
-id = 5245
-examine = "Looks a bit tatty..."
-
-[door_146_closed]
-id = 5244
-examine = "Looks a bit tatty..."
-
-[trapdoor_22_opened]
-id = 5268
-examine = "I wonder what's down there."
-
-[trapdoor_22_closed]
-id = 5267
-examine = "I wonder what's under it."
-
 [coffin_11]
 id = 5278
 examine = "The resting place of Necrovarus' mortal body."
@@ -3480,29 +2263,6 @@ examine = "This needs dusting before I'll sit on it."
 [crate_55]
 id = 5355
 examine = "It probably hasn't got anything interesting inside."
-
-[trapdoor_24_opened]
-id = 5491
-examine = "I wonder what's down there?"
-
-[trapdoor_24_closed]
-id = 5490
-examine = "I wonder what's under it?"
-
-[door_148_opened]
-id = 31839
-examine = "A single door."
-
-[door_148_closed]
-id = 5501
-examine = "Stops people getting out."
-
-[door_489_opened]
-id = 5502
-
-[door_489_closed]
-id = 26787
-examine = "Solid bars of iron."
 
 [heather_4]
 id = 5543
@@ -3562,24 +2322,9 @@ examine = "Trinkets and stuff."
 id = 5614
 examine = "The ideal thing to sit on."
 
-[large_door_18_opened]
-id = 26207
-examine = "A sturdy wooden door."
-
 [gudrun_and_dororan]
 id = 5657
 examine = "gudrun and dororan"  
-
-[large_door_18_closed]
-id = 5667
-examine = "A sturdy wooden door."
-
-[large_door_38_opened]
-id = 25803
-
-[large_door_38_closed]
-id = 5667
-examine = "A sturdy wooden door."
 
 [crate_56]
 id = 5700
@@ -3600,13 +2345,6 @@ examine = "Ooooh! Spooky!"
 [restless_ghost_coffin]
 id = 5729
 examine = "Ooooh! Spooky!"
-
-[sturdy_door_3_opened]
-id = 7223
-examine = "This way to the viewing gallery."
-
-[sturdy_door_3_closed]
-id = 5730
 
 [gate_92_opened]
 id = 5731
@@ -3786,69 +2524,6 @@ examine = "It's only useful for hiding behind now."
 id = 6064
 examine = "A stand for hats."
 
-[door_149_opened]
-id = 6101
-examine = "The door is open."
-
-[door_149_closed]
-id = 6100
-examine = "The door is closed."
-
-[door_151_opened]
-id = 6101
-examine = "The door is open."
-
-[door_151_closed]
-id = 6102
-examine = "The door is closed."
-
-[door_153_opened]
-id = 6103
-examine = "The door is open."
-
-[door_153_closed]
-id = 6104
-examine = "The door is closed."
-
-[door_155_opened]
-id = 6107
-examine = "The door is open."
-
-[door_155_closed]
-id = 6106
-examine = "The door is closed."
-
-[door_157_opened]
-id = 6109
-examine = "The door is open."
-
-[door_157_closed]
-id = 6108
-examine = "The door is closed."
-
-[door_159_opened]
-id = 6111
-examine = "The door is open."
-
-[door_159_closed]
-id = 6110
-examine = "The door is closed."
-
-[door_161_opened]
-id = 6980
-
-[door_161_closed]
-id = 6112
-examine = "The door is closed."
-
-[door_163_opened]
-id = 6113
-examine = "The door is open."
-
-[door_163_closed]
-id = 6114
-examine = "The door is closed."
-
 [anvil_keldagrim]
 id = 6150
 examine = "Useful for making weapons."
@@ -3881,34 +2556,12 @@ examine = "Weird looking pillar."
 id = 6286
 examine = "Weird looking pillar."
 
-[trapdoor_draynor_opened]
-id = 6435
-examine = "I wonder what that's there for"
-
-[trapdoor_draynor_closed]
-id = 6434
-examine = "I wonder what that's there for"
-
 [gates_opened]
 id = 6557
 
 [gates_closed]
 id = 10318
 examine = "Ornate metal gates."
-
-[door_172_opened]
-id = 20338
-
-[door_172_closed]
-id = 6624
-examine = "It looks like a door."
-
-[door_173_opened]
-id = 20339
-
-[door_173_closed]
-id = 6625
-examine = "Hmm. A door."
 
 [blurite_rocks_lumbridge_cellar_1]
 id = 6669
@@ -3930,53 +2583,9 @@ clone = "blurite_rocks_lumbridge_cellar_1"
 id = 6671
 examine = "Stone with blue veins."
 
-[door_175_opened]
-id = 6713
-examine = "I wonder what is awaiting me on the other side."
-
-[door_175_closed]
-id = 6714
-examine = "I wonder what is awaiting me on the other side."
-
-[door_178_opened]
-id = 6732
-examine = "I wonder what awaits me on the other side."
-
-[door_178_closed]
-id = 6733
-examine = "I wonder what awaits me on the other side."
-
 [crate_60]
 id = 6839
 examine = "Smells pretty bad!"
-
-[ogre_stone_door_opened]
-id = 6873
-
-[ogre_stone_door_closed]
-id = 6871
-examine = "A bulky door made from solid rock."
-
-[ogre_stone_door_2_opened]
-id = 6874
-
-[ogre_stone_door_2_closed]
-id = 6872
-examine = "A bulky door made from solid rock."
-
-[door_556_opened]
-id = 6874
-
-[door_556_closed]
-id = 33108
-examine = "The door is closed."
-
-[door_557_opened]
-id = 6874
-
-[door_557_closed]
-id = 33109
-examine = "The door is open."
 
 [crate_61]
 id = 6911
@@ -4009,21 +2618,6 @@ examine = "Stoney!"
 [depleted_rocks_lumbridge_cellar_2]
 id = 6948
 examine = "Stoney!"
-
-[door_181_opened]
-id = 6976
-examine = "The door is open."
-
-[door_181_closed]
-id = 6975
-examine = "The door is closed."
-
-[door_567_opened]
-id = 6979
-
-[door_567_closed]
-id = 34046
-examine = "The door is closed."
 
 [pillar_15]
 id = 7016
@@ -4069,64 +2663,6 @@ examine = "He looks very relaxed."
 id = 7208
 examine = "Now he's just too thin."
 
-[door_183_opened]
-id = 7223
-examine = "This way to the viewing gallery."
-
-[door_183_closed]
-id = 7222
-examine = "This way to the viewing gallery."
-
-[door_188_opened]
-id = 7260
-examine = "This way to exit."
-
-[door_188_closed]
-id = 7259
-examine = "This way to exit."
-
-[door_190_opened]
-id = 7503
-
-[door_190_closed]
-id = 7274
-examine = "Lets me walk through walls..."
-
-[door_191_opened]
-id = 7503
-
-[door_191_closed]
-id = 7302
-examine = "Lets me walk through walls..."
-
-[door_192_opened]
-id = 7503
-
-[door_192_closed]
-id = 7317
-examine = "Lets me walk through walls..."
-
-[door_193_opened]
-id = 7503
-
-[door_193_closed]
-id = 7320
-examine = "Lets me walk through walls..."
-
-[door_194_opened]
-id = 7503
-
-[door_194_closed]
-id = 7323
-examine = "Lets me walk through walls..."
-
-[door_195_opened]
-id = 7503
-
-[door_195_closed]
-id = 7326
-examine = "Lets me walk through walls..."
-
 [crate_62]
 id = 7347
 examine = "For storage."
@@ -4138,13 +2674,6 @@ examine = "For storage."
 [crate_64]
 id = 7349
 examine = "For storage."
-
-[door_196_opened]
-id = 7503
-
-[door_196_closed]
-id = 7354
-examine = "Lets me walk through walls..."
 
 [chair_24]
 id = 7385
@@ -4175,14 +2704,6 @@ examine = "I bet this makes good syrup!"
 [maple_tree_3_stump]
 id = 7400
 examine = "This is what is left of a maple tree."
-
-[trapdoor_38_opened]
-id = 7435
-examine = "I wonder what's down there?"
-
-[trapdoor_38_closed]
-id = 7434
-examine = "I wonder what's under it?"
 
 [chair_25]
 id = 7504
@@ -4313,14 +2834,6 @@ examine = "You can uproot this tree stump with a spade."
 id = 8689
 examine = "Fit for milking."
 
-[door_falador_farm_opened]
-id = 8696
-examine = "The door is open."
-
-[door_falador_farm_closed]
-id = 8695
-examine = "The door is closed."
-
 [loom_falador_farm]
 id = 8717
 examine = "A loom."
@@ -4328,38 +2841,6 @@ examine = "A loom."
 [chair_27]
 id = 8770
 examine = "A chair."
-
-[door_199_opened]
-id = 8790
-examine = "The door is open."
-
-[door_199_closed]
-id = 8786
-examine = "The door is closed."
-
-[door_200_opened]
-id = 8790
-examine = "The door is open."
-
-[door_200_closed]
-id = 8787
-examine = "The door is closed."
-
-[door_201_opened]
-id = 8792
-examine = "The door is open."
-
-[door_201_closed]
-id = 8788
-examine = "The door is closed."
-
-[door_202_opened]
-id = 8790
-examine = "The door is open."
-
-[door_202_closed]
-id = 8789
-examine = "The door is closed."
 
 [gate_98_opened]
 id = 8812
@@ -4404,30 +2885,6 @@ examine = "Big mysterious crates. There are some papers on top."
 [crate_71]
 id = 8916
 examine = "Big mysterious crates. There are some papers on top."
-
-[door_207_opened]
-id = 8961
-examine = "It's opening..."
-
-[door_207_closed]
-id = 8958
-examine = "There must be some trick to opening this..."
-
-[door_208_opened]
-id = 8961
-examine = "It's opening..."
-
-[door_208_closed]
-id = 8959
-examine = "There must be some trick to opening this..."
-
-[door_209_opened]
-id = 8961
-examine = "It's opening..."
-
-[door_209_closed]
-id = 8960
-examine = "There must be some trick to opening this..."
 
 [mahogany_tree]
 id = 9034
@@ -4501,20 +2958,6 @@ examine = "A beautiful, old teak tree."
 id = 9037
 examine = "This tree has been cut down."
 
-[hardwood_grove_doors_opened]
-id = 9040
-
-[hardwood_grove_doors_closed]
-id = 9038
-examine = "A set of large, sturdy wooden doors."
-
-[hardwood_grove_doors_2_opened]
-id = 9041
-
-[hardwood_grove_doors_2_closed]
-id = 9039
-examine = "A set of large, sturdy wooden doors."
-
 [crate_72]
 id = 9064
 examine = "A wooden crate."
@@ -4543,13 +2986,6 @@ examine = "Lit to remember the souls of the departed."
 id = 9160
 examine = "Lit to remember the souls of the departed."
 
-[ardougne_wall_door_opened]
-id = 9739
-
-[ardougne_wall_door_closed]
-id = 9330
-examine = "You can walk through these doors."
-
 [crate_76]
 id = 9381
 examine = "A wooden crate."
@@ -4565,30 +3001,6 @@ examine = "A wooden crate."
 [crate_78]
 id = 9534
 examine = "A wooden crate."
-
-[cell_door_9_opened]
-id = 9564
-examine = "A prison cell door."
-
-[cell_door_9_closed]
-id = 9562
-examine = "A prison cell door."
-
-[cell_door_10_opened]
-id = 9564
-examine = "A prison cell door."
-
-[cell_door_10_closed]
-id = 9563
-examine = "A locked prison cell door."
-
-[door_216_opened]
-id = 9564
-examine = "A prison cell door."
-
-[door_216_closed]
-id = 9565
-examine = "Stops people getting out."
 
 [chair_30]
 id = 9621
@@ -4702,13 +3114,6 @@ clone = "tin_rocks_old_1"
 id = 9737
 examine = "A rocky outcrop"
 
-[ardougne_wall_door_2_opened]
-id = 9740
-
-[ardougne_wall_door_2_closed]
-id = 9738
-examine = "You can walk through these doors."
-
 [pillar_17]
 id = 10019
 examine = "An Octagonal Pillar."
@@ -4744,117 +3149,13 @@ examine = "This gate is closed."
 id = 10259
 examine = "Generally used for sitting."
 
-[door_217_opened]
-id = 10261
-examine = "The door is open."
-
-[door_217_closed]
-id = 10260
-examine = "The door is closed."
-
-[door_219_opened]
-id = 10263
-examine = "The door is open."
-
-[door_219_closed]
-id = 10262
-examine = "The door is closed."
-
-[door_221_opened]
-id = 10265
-examine = "The door is open."
-
-[door_221_closed]
-id = 10264
-examine = "The door is closed."
-
 [crate_80]
 id = 10281
 examine = "It's a crate."
 
-[door_223_opened]
-id = 10326
-examine = "A locked door."
-
-[door_223_closed]
-id = 10325
-examine = "A magical device that enables one to walk through walls."
-
-[door_257_opened]
-id = 10361
-examine = "A wonderful device that enables one to walk through walls."
-
-[door_257_closed]
-id = 11196
-examine = "An ornately fashioned door."
-
-[door_258_opened]
-id = 10361
-examine = "A wonderful device that enables one to walk through walls."
-
-[door_258_closed]
-id = 11197
-examine = "An ornately fashioned door."
-
 [crate_81]
 id = 10378
 examine = "Cheaper than using a chest for storage."
-
-[door_227_opened]
-id = 10422
-
-[door_227_closed]
-id = 10419
-examine = "A wooden door."
-
-[door_228_opened]
-id = 10422
-
-[door_228_closed]
-id = 10420
-examine = "A wooden door."
-
-[door_229_opened]
-id = 10422
-
-[door_229_closed]
-id = 10421
-examine = "A wooden door."
-
-[door_230_opened]
-id = 10424
-
-[door_230_closed]
-id = 10423
-examine = "A wooden door."
-
-[door_231_opened]
-id = 10426
-
-[door_231_closed]
-id = 10425
-examine = "A wooden door."
-
-[door_232_opened]
-id = 10428
-
-[door_232_closed]
-id = 10427
-examine = "A wooden door."
-
-[door_233_opened]
-id = 10430
-
-[door_233_closed]
-id = 10429
-examine = "A wooden door."
-
-[door_234_opened]
-id = 10432
-
-[door_234_closed]
-id = 10431
-examine = "A wooden door."
 
 [fountain_6]
 id = 10436
@@ -4887,30 +3188,6 @@ examine = "A nicely potted fern."
 [potted_fern_8]
 id = 10502
 examine = "Better than weeding."
-
-[door_235_opened]
-id = 10528
-examine = "a door."
-
-[door_235_closed]
-id = 10527
-examine = "a door."
-
-[door_237_opened]
-id = 10530
-examine = "a door."
-
-[door_237_closed]
-id = 10529
-examine = "a door."
-
-[trapdoor_44_opened]
-id = 10559
-examine = "I wonder what's down there?"
-
-[trapdoor_44_closed]
-id = 10558
-examine = "I wonder what's beneath it?"
 
 [toll_gate_al_kharid_south_opened]
 id = 35550
@@ -5081,86 +3358,6 @@ examine = "A rocky outcrop."
 [fountain_8]
 id = 11007
 examine = "This fountain is frozen solid."
-
-[door_239_opened]
-id = 11052
-examine = "There's a recess in it in the shape of a Z."
-
-[door_239_closed]
-id = 11051
-examine = "There's a recess in it in the shape of a Z."
-
-[door_241_opened]
-id = 11054
-examine = "There's a recess in it in the shape of an M."
-
-[door_241_closed]
-id = 11053
-examine = "There's a recess in it in the shape of an M."
-
-[door_243_opened]
-id = 11056
-examine = "There's a recess in it in the shape of an R."
-
-[door_243_closed]
-id = 11055
-examine = "There's a recess in it in the shape of an R."
-
-[door_245_opened]
-id = 11058
-examine = "There's a recess in it in the shape of a K."
-
-[door_245_closed]
-id = 11057
-examine = "There's a recess in it in the shape of a K."
-
-[door_247_opened]
-id = 11065
-examine = "There's a recess in it in the shape of a left arm."
-
-[door_247_closed]
-id = 11064
-examine = "There's a recess in it in the shape of a left arm."
-
-[door_255_opened]
-id = 11065
-examine = "There's a recess in it in the shape of a left arm."
-
-[door_255_closed]
-id = 11151
-examine = "There's a recess in it in the shape of an arm."
-
-[door_249_opened]
-id = 11067
-examine = "There's a recess in it in the shape of a right arm."
-
-[door_249_closed]
-id = 11066
-examine = "There's a recess in it in the shape of a right arm."
-
-[door_251_opened]
-id = 11069
-examine = "There's a recess in it in the shape of a left leg."
-
-[door_251_closed]
-id = 11068
-examine = "There's a recess in it in the shape of a left leg."
-
-[door_256_opened]
-id = 11069
-examine = "There's a recess in it in the shape of a left leg."
-
-[door_256_closed]
-id = 11152
-examine = "There's a recess in it in the shape of a leg."
-
-[door_253_opened]
-id = 11071
-examine = "There's a recess in it in the shape of a right leg."
-
-[door_253_closed]
-id = 11070
-examine = "There's a recess in it in the shape of a right leg."
 
 [dead_tree_17]
 id = 11112
@@ -5478,21 +3675,6 @@ examine = "Where did his red leaves go?"
 id = 11915
 examine = "Where did his red leaves go?"
 
-[door_259_opened]
-id = 11459
-
-[door_259_closed]
-id = 11458
-examine = "A prison door."
-
-[door_260_opened]
-id = 11471
-examine = "The door is not closed."
-
-[door_260_closed]
-id = 11470
-examine = "The door is closed."
-
 [candles_8]
 id = 11472
 examine = "Little candles flickering."
@@ -5562,30 +3744,6 @@ examine = "A wooden crate."
 id = 11601
 examine = "Bake your clay pots in here."
 
-[door_263_opened]
-id = 11617
-examine = "It would keep the wind out better if it were closed."
-
-[door_263_closed]
-id = 11616
-examine = "Keeps the wind out."
-
-[long_hall_door_opened]
-id = 11624
-examine = "The entrance to the barbarians' long hall."
-
-[long_hall_door_closed]
-id = 11620
-examine = "The entrance to the barbarians' long hall."
-
-[long_hall_door_2_opened]
-id = 11625
-examine = "The entrance to the barbarians' long hall."
-
-[long_hall_door_2_closed]
-id = 11621
-examine = "The entrance to the barbarians' long hall."
-
 [furnace_al_kharid]
 id = 11666
 examine = "A hot furnace."
@@ -5593,46 +3751,6 @@ examine = "A hot furnace."
 [flagpole_9]
 id = 11699
 examine = "The flag of Asgarnia."
-
-[door_265_opened]
-id = 11708
-examine = "The door is open."
-
-[door_265_closed]
-id = 11707
-examine = "The door is closed."
-
-[door_268_opened]
-id = 11712
-examine = "The door is open."
-
-[door_268_closed]
-id = 11713
-examine = "The door is closed."
-
-[door_269_opened]
-id = 11715
-examine = "The door is open."
-
-[door_269_closed]
-id = 11714
-examine = "The door is closed."
-
-[castle_door_opened]
-id = 11722
-examine = "A grand door."
-
-[castle_door_closed]
-id = 11716
-examine = "A grand door."
-
-[castle_door_6_opened]
-id = 11723
-examine = "A grand door."
-
-[castle_door_6_closed]
-id = 11721
-examine = "A grand door."
 
 [fountain_9]
 id = 11759
@@ -5918,14 +4036,6 @@ clone = "coal_rocks_old_1"
 id = 11965
 examine = "A rocky outcrop."
 
-[door_271_opened]
-id = 11994
-examine = "The door is open."
-
-[door_271_closed]
-id = 11993
-examine = "The door is closed."
-
 [oak_tree_pale]
 clone = "oak"
 id = 11999
@@ -5943,14 +4053,6 @@ examine = "A splendid tree."
 [yew_2_stump]
 id = 12001
 examine = "This is what is left of a yew tree."
-
-[magic_door_2_opened]
-id = 12046
-examine = "A magic door."
-
-[magic_door_2_closed]
-id = 12045
-examine = "A magic door."
 
 [fountain_fairy]
 id = 12089
@@ -6088,27 +4190,6 @@ examine = "It's a seat!"
 id = 12319
 examine = "It's a seat!"
 
-[door_273_opened]
-id = 34233
-
-[door_273_closed]
-id = 12348
-examine = "An ornate door."
-
-[large_door_39_opened]
-id = 34236
-
-[large_door_39_closed]
-id = 12349
-examine = "A large double door."
-
-[large_door_40_opened]
-id = 34233
-
-[large_door_40_closed]
-id = 12350
-examine = "A large double door."
-
 [crate_100]
 id = 12442
 examine = "A large wooden box."
@@ -6116,44 +4197,6 @@ examine = "A large wooden box."
 [crate_101]
 id = 12443
 examine = "A neatly stacked pair of crates."
-
-[door_274_opened]
-id = 12445
-examine = "The door is open."
-
-[door_274_closed]
-id = 12444
-examine = "The door is closed."
-
-[large_door_41_opened]
-id = 12447
-examine = "A large double door."
-
-[large_door_41_closed]
-id = 12446
-examine = "A large double door."
-
-[large_door_43_opened]
-id = 12449
-examine = "A large double door."
-
-[large_door_43_closed]
-id = 12448
-examine = "A large double door."
-
-[pen_door_opened]
-id = 12469
-
-[pen_door_closed]
-id = 12467
-examine = "Ze pen door, a wonderful example of ze underwater craftsmanship."
-
-[pen_door_2_opened]
-id = 12470
-
-[pen_door_2_closed]
-id = 12468
-examine = "Ze pen door, a wonderful example of ze underwater craftsmanship."
 
 [table_old_wizards_tower]
 id = 12544
@@ -6182,22 +4225,6 @@ examine = "A rocky outcrop."
 [dead_tree_19]
 id = 12732
 examine = "This tree has long been dead."
-
-[trapdoor_49_opened]
-id = 12745
-examine = "I wonder what's down there?"
-
-[trapdoor_49_closed]
-id = 12744
-examine = "I wonder what's under it?"
-
-[door_276_opened]
-id = 12856
-examine = "A door barely hanging onto it's hinges."
-
-[door_276_closed]
-id = 12761
-examine = "A rotten looking door."
 
 [tomb_3]
 id = 12802
@@ -6267,217 +4294,9 @@ examine = "A wooden gate."
 id = 12989
 examine = "A wooden gate."
 
-[door_277_opened]
-id = 13002
-examine = "The door is open."
-
-[door_277_closed]
-id = 13001
-examine = "The door is closed."
-
-[door_279_opened]
-id = 13008
-examine = "A desert door."
-
-[door_279_closed]
-id = 13006
-examine = "A desert door."
-
-[door_280_opened]
-id = 13009
-examine = "A desert door."
-
-[door_280_closed]
-id = 13007
-examine = "A desert door."
-
-[door_283_opened]
-id = 13017
-examine = "A timber door."
-
-[door_283_closed]
-id = 13015
-examine = "A timber door."
-
-[door_284_opened]
-id = 13018
-examine = "A timber door."
-
-[door_284_closed]
-id = 13016
-examine = "A timber door."
-
-[large_door_45_opened]
-id = 13095
-examine = "A large double door."
-
-[large_door_45_closed]
-id = 13094
-examine = "A large double door."
-
-[large_door_64_opened]
-id = 13095
-examine = "A large double door."
-
-[large_door_64_closed]
-id = 23342
-examine = "A large double door."
-
-[large_door_47_opened]
-id = 13097
-examine = "A large double door."
-
-[large_door_47_closed]
-id = 13096
-examine = "A large double door."
-
-[large_door_63_opened]
-id = 13097
-examine = "A large double door."
-
-[large_door_63_closed]
-id = 23340
-examine = "A large double door."
-
-[door_287_opened]
-id = 13102
-examine = "A way in to the house."
-
-[door_287_closed]
-id = 13100
-examine = "A way in to the house."
-
-[door_288_opened]
-id = 13103
-examine = "A way in to the house."
-
-[door_288_closed]
-id = 13101
-examine = "A way in to the house."
-
-[door_291_opened]
-id = 13108
-examine = "I'm sure the tree is glad its wood was put to good use."
-
-[door_291_closed]
-id = 13107
-examine = "I'm sure the tree is glad its wood was put to good use."
-
-[door_293_opened]
-id = 13110
-examine = "I'm sure the tree is glad its wood was put to good use."
-
-[door_293_closed]
-id = 13109
-examine = "I'm sure the tree is glad its wood was put to good use."
-
-[door_295_opened]
-id = 13120
-examine = "A posh door."
-
-[door_295_closed]
-id = 13118
-examine = "A posh door."
-
-[door_296_opened]
-id = 13121
-examine = "A posh door."
-
-[door_296_closed]
-id = 13119
-examine = "A posh door."
-
-[door_299_opened]
-id = 13315
-examine = "Sturdy oak bars to keep prisoners in."
-
-[door_299_closed]
-id = 13314
-examine = "Sturdy oak bars to keep prisoners in."
-
-[door_301_opened]
-id = 13318
-examine = "Oak and steel bars to keep prisoners in."
-
-[door_301_closed]
-id = 13317
-examine = "Oak and steel bars to keep prisoners in."
-
-[door_303_opened]
-id = 13321
-examine = "teel bars to keep prisoners in."
-
-[door_303_closed]
-id = 13320
-examine = "Steel bars to keep prisoners in."
-
-[door_305_opened]
-id = 13324
-examine = "Steel bars with spikes!"
-
-[door_305_closed]
-id = 13323
-examine = "Steel bars with spikes!"
-
-[door_307_opened]
-id = 13327
-examine = "A cage of bones. How delightfully macabre."
-
-[door_307_closed]
-id = 13326
-examine = "A cage of bones. How delightfully macabre."
-
 [candle]
 id = 13342
 examine = "Even a dungeon needs light!"
-
-[door_309_opened]
-id = 13350
-examine = "A sturdy oak door."
-
-[door_309_closed]
-id = 13344
-examine = "A sturdy oak door."
-
-[door_310_opened]
-id = 13351
-examine = "A sturdy oak door."
-
-[door_310_closed]
-id = 13345
-examine = "A sturdy oak door."
-
-[door_311_opened]
-id = 13352
-examine = "A formidable steel door."
-
-[door_311_closed]
-id = 13346
-examine = "A formidable steel door."
-
-[door_312_opened]
-id = 13353
-examine = "A formidable steel door."
-
-[door_312_closed]
-id = 13347
-examine = "A formidable steel door."
-
-[door_313_opened]
-id = 13354
-examine = "Could anyone get through a solid marble door?"
-
-[door_313_closed]
-id = 13348
-examine = "Could anyone get through a solid marble door?"
-
-[door_314_opened]
-id = 13355
-examine = "Could anyone get through a solid marble door?"
-
-[door_314_closed]
-id = 13349
-examine = "Could anyone get through a solid marble door?"
 
 [dead_tree_20]
 id = 13411
@@ -6675,46 +4494,6 @@ examine = "A crate of weights."
 id = 14739
 examine = "I wonder what's in it?"
 
-[door_321_opened]
-id = 14750
-examine = "A tatty old door."
-
-[door_321_closed]
-id = 14749
-examine = "A tatty old door."
-
-[door_323_opened]
-id = 14753
-examine = "Ominous."
-
-[door_323_closed]
-id = 14751
-examine = "Ominous."
-
-[door_324_opened]
-id = 14754
-examine = "Ominous."
-
-[door_324_closed]
-id = 14752
-examine = "Ominous."
-
-[barbarian_door_opened]
-id = 14753
-examine = "Ominous."
-
-[barbarian_door_closed]
-id = 20195
-examine = "Your penance awaits..."
-
-[barbarian_door_2_opened]
-id = 14754
-examine = "Ominous."
-
-[barbarian_door_2_closed]
-id = 20196
-examine = "Your penance awaits..."
-
 [depleted_rocks_black_1]
 id = 14832
 examine = "A rocky outcrop."
@@ -6892,14 +4671,6 @@ examine = "A rocky outcrop."
 id = 14916
 examine = "A rocky outcrop."
 
-[door_327_opened]
-id = 14924
-examine = "A simple door, now open."
-
-[door_327_closed]
-id = 14923
-examine = "A simple door."
-
 [colony_gate_opened]
 id = 14930
 
@@ -6914,23 +4685,9 @@ id = 14932
 id = 14931
 examine = "The gate of the Piscatoris Fishing Colony."
 
-[door_339_opened]
-id = 14975
-
-[door_339_closed]
-id = 15759
-examine = "The door is closed."
-
 [control_panel]
 id = 14978
 examine = "Controls the dangling claw."
-
-[door_329_opened]
-id = 14983
-
-[door_329_closed]
-id = 14982
-examine = "The door is closed."
 
 [crate_115]
 id = 14986
@@ -6963,22 +4720,6 @@ examine = "A wooden crate."
 [hat_stand_3]
 id = 15165
 examine = "A stand for hats."
-
-[door_330_opened]
-id = 15205
-examine = "The door is open."
-
-[door_330_closed]
-id = 15204
-examine = "The door is closed."
-
-[door_649_opened]
-id = 15205
-examine = "The door is open."
-
-[door_649_closed]
-id = 37995
-examine = "Looks a bit tatty..."
 
 [crate_121]
 id = 15243
@@ -7114,14 +4855,6 @@ examine = "A wooden gate."
 id = 24561
 examine = "A wooden gate."
 
-[door_333_opened]
-id = 15535
-examine = "The door is open."
-
-[door_333_closed]
-id = 15536
-examine = "The door is closed."
-
 [gold_rocks_tzhaar_1]
 clone = "gold_rocks_old_1"
 id = 15576
@@ -7186,55 +4919,6 @@ examine = "A secure gate."
 id = 15615
 examine = "A wooden crate."
 
-[door_334_opened]
-id = 15643
-
-[door_334_closed]
-id = 15641
-examine = "A door."
-
-[door_335_opened]
-id = 15646
-
-[door_335_closed]
-id = 15644
-examine = "A door."
-
-[door_336_opened]
-id = 15649
-
-[door_336_closed]
-id = 15647
-examine = "A door."
-
-[door_337_opened]
-id = 15652
-
-[door_337_closed]
-id = 15650
-examine = "A door."
-
-[door_338_opened]
-id = 15655
-
-[door_338_closed]
-id = 15653
-examine = "A door."
-
-[heavy_door_opened]
-id = 15659
-
-[heavy_door_closed]
-id = 15658
-examine = "It looks like it's made from lead. Heavy, man."
-
-[heavy_door_2_opened]
-id = 15661
-
-[heavy_door_2_closed]
-id = 15660
-examine = "It looks like it's made from lead. Heavy, man."
-
 [crate_126]
 id = 15692
 examine = "Some wooden crates."
@@ -7282,14 +4966,6 @@ examine = "Who would have thought the Karamja Box Company supports the HAM cult?
 [crack_7]
 id = 15731
 examine = "A cracked wall."
-
-[hidden_trapdoor_opened]
-id = 15756
-examine = "Where does this go?"
-
-[hidden_trapdoor_closed]
-id = 15755
-examine = "You would never have seen this trapdoor if it wasn't for Zanik."
 
 [jungle_tree_7]
 clone = "tree"
@@ -7346,14 +5022,6 @@ examine = "For storage."
 id = 16252
 examine = "A wooden crate."
 
-[door_340_opened]
-id = 16344
-examine = "An open door."
-
-[door_340_closed]
-id = 16343
-examine = "A metal door, firmly shut."
-
 [crate_142]
 id = 16559
 examine = "A large wooden box."
@@ -7399,30 +5067,6 @@ examine = "It's not uncommon for people to sit on these."
 [chair_65]
 id = 16744
 examine = "It's not uncommon for people to sit on these."
-
-[door_342_opened]
-id = 16777
-examine = "Lets you walk through walls."
-
-[door_342_closed]
-id = 16774
-examine = "Lets you walk through walls."
-
-[door_343_opened]
-id = 16777
-examine = "Lets you walk through walls."
-
-[door_343_closed]
-id = 16776
-examine = "Lets you walk through walls."
-
-[door_345_opened]
-id = 16779
-examine = "Lets you walk through walls."
-
-[door_345_closed]
-id = 16778
-examine = "Lets you walk through walls."
 
 [crate_147]
 id = 16862
@@ -7537,30 +5181,6 @@ examine = "Big crate. Probably has crossbow bits inside."
 id = 17073
 examine = "Used for fashioning metal items."
 
-[large_door_51_closed]
-id = 17089
-examine = "A sturdy wooden door."
-
-[large_door_51_opened]
-id = 17090
-examine = "A sturdy wooden door."
-
-[large_door_53_closed]
-id = 17091
-examine = "A large double door."
-
-[large_door_53_opened]
-id = 17092
-examine = "A large double door."
-
-[large_door_55_closed]
-id = 17093
-examine = "A large double door."  
-
-[large_door_55_opened]
-id = 17094
-examine = "A large double door."
-
 [crate_153]
 id = 17100
 examine = "For storage."
@@ -7568,14 +5188,6 @@ examine = "For storage."
 [crate_154]
 id = 17101
 examine = "For storage."
-
-[door_349_opened]
-id = 17115
-examine = "It would keep the wind out better if it were closed."
-
-[door_349_closed]
-id = 17114
-examine = "Keeps the wind out."
 
 [chair_67]
 id = 17146
@@ -7589,22 +5201,6 @@ examine = "A gnome-sized chair."
 id = 17271
 examine = "Useful for transportation of valuable items."
 
-[door_367_opened]
-id = 17284
-examine = "Blocks up a hole in the wall."
-
-[door_367_closed]
-id = 18168
-examine = "Keeps the wind out."
-
-[door_615_opened]
-id = 17284
-examine = "Blocks up a hole in the wall."
-
-[door_615_closed]
-id = 36321
-examine = "Keeps the wind out."
-
 [crate_156]
 id = 17304
 examine = "A wooden crate."
@@ -7616,14 +5212,6 @@ examine = "A wooden crate."
 [chair_69]
 id = 17311
 examine = "A posh looking chair."
-
-[door_352_opened]
-id = 17317
-examine = "A door."
-
-[door_352_closed]
-id = 17316
-examine = "A door."
 
 [candles_14]
 id = 17323
@@ -7708,46 +5296,6 @@ examine = "For storage."
 id = 17908
 examine = "A wooden crate."
 
-[door_519_opened]
-id = 18031
-examine = "Blocking the path."
-
-[door_519_closed]
-id = 30503
-examine = "A crude-looking door fashioned from random bits of wood."
-
-[door_365_opened]
-id = 18032
-examine = "Blocking the path."
-
-[door_365_closed]
-id = 18091
-examine = "A door made from wooden planks."
-
-[door_366_opened]
-id = 18032
-examine = "Blocking the path."
-
-[door_366_closed]
-id = 18092
-examine = "A door made from wooden planks."
-
-[door_361_opened]
-id = 18048
-examine = "A solid-looking wooden door."
-
-[door_361_closed]
-id = 18047
-examine = "A solid-looking wooden door."
-
-[door_363_opened]
-id = 18058
-examine = "This door is made out of very poor looking planks of wood."
-
-[door_363_closed]
-id = 18057
-examine = "This door is made out of very poor looking planks of wood."
-
 [pillar_21]
 id = 18220
 examine = "Stops bits of building falling on me."
@@ -7804,22 +5352,6 @@ examine = "A wooden crate for storage."
 id = 18619
 examine = "A wooden crate for storage."
 
-[mind_door_opened]
-id = 18699
-examine = "Has a mind symbol on it."
-
-[mind_door_closed]
-id = 18698
-examine = "Has a mind symbol on it."
-
-[mind_door_3_opened]
-id = 18701
-examine = "Has a mind symbol on it."
-
-[mind_door_3_closed]
-id = 18700
-examine = "Has a mind symbol on it."
-
 [crate_172]
 id = 18835
 examine = "It looks like somebody's trying to grow it!"
@@ -7855,70 +5387,6 @@ examine = "A rocky outcrop."
 [depleted_rocks_tourist_trap_dark_1]
 id = 18961
 examine = "A rocky outcrop."
-
-[door_379_opened]
-id = 18979
-examine = "The door is open."
-
-[door_379_closed]
-id = 18964
-examine = "The door is closed."
-
-[door_380_opened]
-id = 18979
-examine = "The door is open."
-
-[door_380_closed]
-id = 18965
-examine = "The door is closed."
-
-[door_381_opened]
-id = 18979
-examine = "The door is open."
-
-[door_381_closed]
-id = 18966
-examine = "The door is closed."
-
-[door_382_opened]
-id = 18979
-examine = "The door is open."
-
-[door_382_closed]
-id = 18967
-examine = "The door is closed."
-
-[door_383_opened]
-id = 18979
-examine = "The door is open."
-
-[door_383_closed]
-id = 18968
-examine = "The door is closed."
-
-[door_384_opened]
-id = 18979
-examine = "The door is open."
-
-[door_384_closed]
-id = 18971
-examine = "The door is closed."
-
-[door_385_opened]
-id = 18979
-examine = "The door is open."
-
-[door_385_closed]
-id = 18973
-examine = "The door is closed."
-
-[door_386_opened]
-id = 18979
-examine = "The door is open."
-
-[door_386_closed]
-id = 18978
-examine = "The door is closed."
 
 [crate_177]
 id = 18984
@@ -8368,64 +5836,12 @@ examine = "Empty."
 id = 21055
 examine = "Looks like it controls the doors."
 
-[door_400_opened]
-id = 21161
-examine = "Door-like."
-
-[door_400_closed]
-id = 21065
-examine = "Door-like."
-
-[door_404_opened]
-id = 21161
-examine = "Door-like."
-
-[door_404_closed]
-id = 21160
-examine = "Door-like."
-
-[door_406_opened]
-id = 21161
-examine = "Door-like."
-
-[door_406_closed]
-id = 21162
-examine = "Door-like."
-
-[door_407_opened]
-id = 21163
-
-[door_407_closed]
-id = 21164
-examine = "Door-like."
-
-[door_706_opened]
-id = 21165
-
-[door_706_closed]
-id = 43461
-examine = "A portal to transport people through walls; it's like magic!"
-
-[door_409_opened]
-id = 21168
-
-[door_409_closed]
-id = 21167
-examine = "Door-like."
-
 [gate_152_opened]
 id = 21173
 
 [gate_152_closed]
 id = 21172
 examine = "A gate."
-
-[door_414_opened]
-id = 21244
-
-[door_414_closed]
-id = 21243
-examine = "Door-like."
 
 [arctic_pine]
 id = 21273
@@ -8544,41 +5960,9 @@ examine = "A rocky outcrop."
 id = 21298
 examine = "A rocky outcrop."
 
-[door_415_opened]
-id = 21342
-examine = "Sturdy wooden door."
-
-[door_415_closed]
-id = 21340
-examine = "Sturdy wooden door."
-
-[door_416_opened]
-id = 21342
-examine = "Sturdy wooden door."
-
-[door_416_closed]
-id = 21341
-examine = "Sturdy wooden door."
-
 [chair_88]
 id = 21354
 examine = "The ideal thing to sit on."
-
-[large_door_57_opened]
-id = 21401
-examine = "A sturdy metal door."
-
-[large_door_57_closed]
-id = 21399
-examine = "A sturdy metal door."
-
-[large_door_58_opened]
-id = 21401
-examine = "A sturdy metal door."
-
-[large_door_58_closed]
-id = 21400
-examine = "A sturdy metal door."
 
 [gate_153_opened]
 id = 21404
@@ -8603,22 +5987,6 @@ examine = "A closed, sturdy metal door."
 [gate_156]
 id = 21406
 examine = "An open, sturdy metal door."
-
-[door_419_opened]
-id = 21506
-examine = "Doesn't keep the trolls out if it's open!"
-
-[door_419_closed]
-id = 21505
-examine = "Keeps the trolls out."
-
-[door_421_opened]
-id = 21508
-examine = "Doesn't keep the trolls out if it's open!"
-
-[door_421_closed]
-id = 21507
-examine = "Keeps the trolls out."
 
 [pillar_51]
 id = 21546
@@ -8672,13 +6040,6 @@ examine = "He looks very relaxed."
 id = 21806
 examine = "A wooden crate."
 
-[tower_door_opened]
-id = 21815
-
-[tower_door_closed]
-id = 21814
-examine = "This door is closed."
-
 [crate_195]
 id = 21908
 examine = "Reminds me of a lucky dip."
@@ -8719,14 +6080,6 @@ examine = "Reminds me of a lucky dip."
 id = 21917
 examine = "Reminds me of a lucky dip."
 
-[trapdoor_76_opened]
-id = 21922
-examine = "I wonder what's down there."
-
-[trapdoor_76_closed]
-id = 21921
-examine = "I wonder what's under it?"
-
 [crate_205]
 id = 21938
 examine = "For storage."
@@ -8738,27 +6091,6 @@ examine = "For storage."
 [crate_207]
 id = 21940
 examine = "For storage."
-
-[large_door_61_opened]
-id = 21951
-
-[large_door_61_closed]
-id = 22435
-examine = "A large double door."
-
-[large_door_62_opened]
-id = 21952
-
-[large_door_62_closed]
-id = 22437
-examine = "A large double door."
-
-[door_423_opened]
-id = 21953
-
-[door_423_closed]
-id = 22007
-examine = "Looks like a door to me."
 
 [chair_90]
 id = 22156
@@ -8868,33 +6200,9 @@ examine = "A very well-made chair."
 id = 22860
 examine = "A storage crate."
 
-[door_431_opened]
-id = 22913
-examine = "The door is open."
-
-[door_431_closed]
-id = 22914
-examine = "The door is closed."
-
-[door_433_opened]
-id = 22920
-examine = "The door is open."
-
-[door_433_closed]
-id = 22921
-examine = "The door is closed."
-
 [fountain_11]
 id = 22973
 examine = "A pretty water feature."
-
-[door_434_opened]
-id = 23637
-examine = "The door to the Champions' Guild."
-
-[door_434_closed]
-id = 23056
-examine = "The door is closed."
 
 [crate_217]
 id = 23144
@@ -8916,14 +6224,6 @@ examine = "A rusty gate."
 id = 23283
 examine = "A wooden crate."
 
-[door_436_opened]
-id = 25820
-examine = "The door is open."
-
-[door_436_closed]
-id = 23338
-examine = "The door is closed."
-
 [crate_219]
 id = 23356
 examine = "A wooden crate."
@@ -8935,22 +6235,6 @@ examine = "A wooden crate."
 [crate_221]
 id = 23358
 examine = "A wooden crate."
-
-[door_437_opened]
-id = 25820
-examine = "The door is open."
-
-[door_437_closed]
-id = 23378
-examine = "The door is closed."
-
-[door_675_opened]
-id = 23379
-examine = "The door is open."
-
-[door_675_closed]
-id = 41123
-examine = "The door is closed."
 
 [crate_222]
 id = 23530
@@ -9101,37 +6385,6 @@ examine = "A gate."
 id = 45855
 examine = "A small door in a big gate."
 
-[door_444_opened]
-id = 24375
-examine = "The door is open."
-
-[door_444_closed]
-id = 24376
-examine = "The door is closed."
-
-[door_446_opened]
-id = 24377
-examine = "The door is open."
-
-[door_446_closed]
-id = 24378
-examine = "The door is closed."
-
-[door_448_opened]
-id = 24379
-
-[door_448_closed]
-id = 24381
-examine = "The door is closed."
-
-[door_451_opened]
-id = 24383
-examine = "The door is open."
-
-[door_451_closed]
-id = 24384
-examine = "The door is closed."
-
 [gate_178_opened]
 id = 24562
 examine = "Gap where a gate goes."
@@ -9139,22 +6392,6 @@ examine = "Gap where a gate goes."
 [gate_178_closed]
 id = 24564
 examine = "A beautifully-worked golden gate."
-
-[door_453_opened]
-id = 24566
-examine = "A thick wooden door."
-
-[door_453_closed]
-id = 24565
-examine = "A thick wooden door."
-
-[door_455_opened]
-id = 24568
-examine = "A thick wooden door."
-
-[door_455_closed]
-id = 24567
-examine = "A thick wooden door."
 
 [candles_16]
 id = 24666
@@ -9167,14 +6404,6 @@ examine = "Trinkets and stuff."
 [chair_101]
 id = 24683
 examine = "An elegant chair."
-
-[door_458_opened]
-id = 24685
-examine = "The door is open."
-
-[door_458_closed]
-id = 24686
-examine = "The door is closed."
 
 [beanstalk_2]
 id = 24733
@@ -9192,64 +6421,17 @@ examine = "It's huge."
 id = 24736
 examine = "It's huge."
 
-[door_459_opened]
-id = 24760
-
-[door_459_closed]
-id = 24759
-examine = "A secure door."
-
 [chair_102]
 id = 24814
 examine = "Do I dare sit on this?"
-
-[door_461_opened]
-id = 24815
-examine = "The door is open."
-
-[door_461_closed]
-id = 24816
-examine = "The door is closed."
 
 [crate_229]
 id = 24911
 examine = "An old crate for storage."
 
-[door_463_opened]
-id = 24930
-examine = "The door is open."
-
-[door_463_closed]
-id = 24931
-examine = "The door is closed."
-
-[door_465_opened]
-id = 24932
-examine = "The door is open."
-
-[door_465_closed]
-id = 24933
-examine = "The door is closed."
-
-[door_468_opened]
-id = 24935
-examine = "The door is open."
-
-[door_468_closed]
-id = 24936
-examine = "The door is closed."
-
 [chair_103]
 id = 25048
 examine = "Do I dare sit on this?"
-
-[magic_door_6_opened]
-id = 25116
-examine = "There is something in this door for me to put objects in."
-
-[magic_door_6_closed]
-id = 25115
-examine = "There is something in this door for me to put objects in."
 
 [pillar_54]
 id = 25152
@@ -9295,57 +6477,9 @@ examine = "A rocky outcrop."
 id = 25370
 examine = "A rocky outcrop."
 
-[door_471_opened]
-id = 25417
-examine = "The door is open."
-
-[door_471_closed]
-id = 25418
-examine = "The door is closed."
-
-[large_door_65_opened]
-id = 41134
-examine = "Large double doors."
-
-[large_door_65_closed]
-id = 25594
-examine = "A large double door."
-
-[large_door_66_opened]
-id = 41132
-examine = "Large double doors."
-
-[large_door_66_closed]
-id = 25595
-examine = "A large double door."
-
 [chair_104]
 id = 25616
 examine = "Do I dare sit on this?"
-
-[large_door_67_opened]
-id = 41132
-examine = "Large double doors."
-
-[large_door_67_closed]
-id = 25638
-examine = "A large double door."
-
-[large_door_69_opened]
-id = 41134
-examine = "Large double doors."
-
-[large_door_69_closed]
-id = 25640
-examine = "A large double door."
-
-[door_474_opened]
-id = 25643
-examine = "A nicely-fitted door."
-
-[door_474_closed]
-id = 25642
-examine = "A nicely-fitted door."
 
 [crate_230]
 id = 25644
@@ -9371,39 +6505,9 @@ examine = "A wooden crate."
 id = 25661
 examine = "A wooden crate."
 
-[door_476_opened]
-id = 25717
-examine = "The door is open."
-
-[door_476_closed]
-id = 25716
-examine = "The door is closed."
-
-[door_478_opened]
-id = 25719
-examine = "A nicely-fitted door."
-
-[door_478_closed]
-id = 25718
-examine = "A nicely-fitted door."
-
 [cooking_range_al_kharid]
 id = 25730
 examine = "Ideal for cooking on."
-
-[large_door_71_opened]
-id = 25749
-
-[large_door_71_closed]
-id = 25748
-examine = "A large double door."
-
-[large_door_72_opened]
-id = 25751
-
-[large_door_72_closed]
-id = 25750
-examine = "A large double door."
 
 [chair_105]
 id = 25771
@@ -9421,70 +6525,6 @@ examine = "A comfortable seat."
 id = 52787
 examine = "A plant."
 
-[large_door_73_opened]
-id = 41132
-examine = "Large double doors."
-
-[large_door_73_closed]
-id = 25788
-examine = "A large double door."
-
-[large_door_75_opened]
-id = 41134
-examine = "Large double doors."
-
-[large_door_75_closed]
-id = 25790
-examine = "A large double door."
-
-[door_480_opened]
-id = 25800
-examine = "A nicely-fitted door."
-
-[door_480_closed]
-id = 25799
-examine = "A nicely-fitted door."
-
-[large_door_77_opened]
-id = 25815
-examine = "A sturdy wooden door."
-
-[large_door_77_closed]
-id = 25813
-examine = "A sturdy wooden door."
-
-[large_door_78_opened]
-id = 25816
-examine = "A sturdy wooden door."
-
-[large_door_78_closed]
-id = 25814
-examine = "A sturdy wooden door."
-
-[door_482_opened]
-id = 25820
-examine = "The door is open."
-
-[door_482_closed]
-id = 25819
-examine = "The door is closed."
-
-[door_484_opened]
-id = 25826
-examine = "A door."
-
-[door_484_closed]
-id = 25825
-examine = "A door."
-
-[door_486_opened]
-id = 25828
-examine = "A door."
-
-[door_486_closed]
-id = 25827
-examine = "A door."
-
 [chair_107]
 id = 25832
 examine = "A comfortable seat."
@@ -9496,14 +6536,6 @@ examine = "A wooden crate."
 [crate_237]
 id = 25837
 examine = "A wooden crate."
-
-[metal_door_2_opened]
-id = 29262
-examine = "A strong metal door."
-
-[metal_door_2_closed]
-id = 25876
-examine = "A metal door."
 
 [corpse_40]
 id = 25900
@@ -9563,13 +6595,6 @@ examine = "A wrought iron gate."
 id = 26133
 examine = "A wrought iron gate."
 
-[locked_door_10_opened]
-id = 26187
-
-[locked_door_10_closed]
-id = 26189
-examine = "This doesn't look to be the way out."
-
 [crate_238]
 id = 26241
 examine = "A smashed crate."
@@ -9594,57 +6619,9 @@ examine = "Looks deep."
 id = 26341
 examine = "Looks deep."
 
-[big_door_4_opened]
-id = 26851
-examine = "Looks foreboding!"
-
-[big_door_4_closed]
-id = 26425
-examine = "Looks foreboding!"
-
-[big_door_5_opened]
-id = 26851
-examine = "Looks foreboding!"
-
-[big_door_5_closed]
-id = 26426
-examine = "Looks foreboding!"
-
-[big_door_6_opened]
-id = 26851
-examine = "Looks foreboding!"
-
-[big_door_6_closed]
-id = 26427
-examine = "Looks foreboding!"
-
-[big_door_7_opened]
-id = 26851
-examine = "Looks foreboding!"
-
-[big_door_7_closed]
-id = 26428
-examine = "Looks foreboding!"
-
 [crate_240]
 id = 26440
 examine = "A wooden box."
-
-[metal_door_3_opened]
-id = 26561
-examine = "A strong metal door."
-
-[metal_door_3_closed]
-id = 26560
-examine = "A strong metal door."
-
-[metal_door_5_opened]
-id = 26707
-examine = "A strong metal door."
-
-[metal_door_5_closed]
-id = 26706
-examine = "A strong metal door."
 
 [crate_241]
 id = 26771
@@ -9662,13 +6639,6 @@ examine = "A wooden crate."
 id = 26807
 examine = "handy place for filling in forms and paperwork."
 
-[door_490_opened]
-id = 26811
-
-[door_490_closed]
-id = 26810
-examine = "The door is closed."
-
 [crack_9]
 id = 26844
 examine = "I might be able to squeeze through."
@@ -9676,54 +6646,6 @@ examine = "I might be able to squeeze through."
 [crack_10]
 id = 26845
 examine = "I might be able to squeeze through."
-
-[large_door_82_opened]
-id = 26907
-examine = "A large double door."
-
-[large_door_82_closed]
-id = 26906
-examine = "A large double door."
-
-[large_door_84_opened]
-id = 26909
-examine = "A large double door."
-
-[large_door_84_closed]
-id = 26908
-examine = "A large double door."
-
-[large_door_86_opened]
-id = 26911
-examine = "A large double door."
-
-[large_door_86_closed]
-id = 26910
-examine = "A large double door."
-
-[large_door_88_opened]
-id = 26914
-examine = "A large double door."
-
-[large_door_88_closed]
-id = 26913
-examine = "A large double door."
-
-[door_494_opened]
-id = 27989
-examine = "An open door."
-
-[door_494_closed]
-id = 26917
-examine = "The door is closed."
-
-[trapdoor_80_opened]
-id = 26934
-examine = "I wonder what's down there."
-
-[trapdoor_80_closed]
-id = 26933
-examine = "I wonder what's under it."
 
 [coffin_18]
 id = 26935
@@ -9781,14 +6703,6 @@ examine = "A wooden crate for storage."
 id = 27730
 examine = "torage for all needs and lots of hospital stuff."
 
-[door_497_opened]
-id = 27777
-examine = "The door is open."
-
-[door_497_closed]
-id = 27776
-examine = "The door is closed."
-
 [gate_188_opened]
 id = 27845
 examine = "This allows one to walk through walls."
@@ -9845,30 +6759,6 @@ examine = "A cushioned seat for the bony backside of Death."
 id = 27890
 examine = "Hard and chilly as a gravestone."
 
-[door_499_opened]
-id = 27989
-examine = "An open door."
-
-[door_499_closed]
-id = 27988
-examine = "A shut door."
-
-[door_501_opened]
-id = 28408
-examine = "An old, carved door."
-
-[door_501_closed]
-id = 28407
-examine = "An old, carved door."
-
-[door_503_opened]
-id = 28408
-examine = "An old, carved door."
-
-[door_503_closed]
-id = 28409
-examine = "An old, carved door."
-
 [crate_250]
 id = 28421
 examine = "I wonder what's stored in here."
@@ -9883,14 +6773,6 @@ id = 28517
 [gate_195_closed]
 id = 28514
 examine = "It looks like some kind of back door."
-
-[door_506_opened]
-id = 28588
-examine = "The door is open."
-
-[door_506_closed]
-id = 28589
-examine = "The door is closed."
 
 [crate_251]
 id = 28625
@@ -9915,14 +6797,6 @@ examine = "Holds up the roof."
 [fountain_15]
 id = 28662
 examine = "A pretty water feature."
-
-[trapdoor_83_opened]
-id = 28676
-examine = "Where does it go?"
-
-[trapdoor_83_closed]
-id = 28675
-examine = "Where does it go?"
 
 [gate_197_opened]
 id = 28692
@@ -9949,14 +6823,6 @@ examine = "A thick wooden gate."
 [gate_200]
 id = 28693
 examine = "A thick wooden gate."
-
-[trapdoor_85_opened]
-id = 28742
-examine = "Allows access to the level below."
-
-[trapdoor_85_closed]
-id = 28741
-examine = "The trapdoor is shut tight."
 
 [crate_253]
 id = 28823
@@ -10135,46 +7001,6 @@ clone = "mithril_rocks_old_1"
 id = 29238
 examine = "A rocky outcrop."
 
-[metal_door_7_opened]
-id = 29262
-examine = "A strong metal door."
-
-[metal_door_7_closed]
-id = 29261
-examine = "A strong metal door."
-
-[metal_door_9_opened]
-id = 29317
-examine = "A strong metal door."
-
-[metal_door_9_closed]
-id = 29315
-examine = "A strong metal door."
-
-[metal_door_10_opened]
-id = 29318
-examine = "A strong metal door."
-
-[metal_door_10_closed]
-id = 29316
-examine = "A strong metal door."
-
-[metal_door_13_opened]
-id = 29317
-examine = "A strong metal door."
-
-[metal_door_13_closed]
-id = 29319
-examine = "A strong metal door."
-
-[metal_door_14_opened]
-id = 29318
-examine = "A strong metal door."
-
-[metal_door_14_closed]
-id = 29320
-examine = "A strong metal door."
-
 [corpse_42]
 id = 29340
 examine = "Now that's what I call slimline."
@@ -10201,13 +7027,6 @@ id = 29470
 [chair_120]
 id = 29472
 examine = "It could hold a gnome, but probably not a human."
-
-[door_514_opened]
-id = 29733
-
-[door_514_closed]
-id = 29732
-examine = "The door is closed."
 
 [chair_121]
 id = 29798
@@ -10274,47 +7093,9 @@ examine = "An old coffin - spooky!"
 id = 30566
 examine = "Now he's just too thin."
 
-[cell_door_12_opened]
-id = 31030
-examine = "The door is open."
-
-[cell_door_12_closed]
-id = 30570
-examine = "A hastily constructed yet sturdy prison door."
-
-[trapdoor_87_opened]
-id = 30572
-examine = "Allows access to the level below."
-
-[trapdoor_87_closed]
-id = 30571
-examine = "I wonder what's under it?"
-
-[trapdoor_89_opened]
-id = 30572
-examine = "Allows access to the level below."
-
-[trapdoor_89_closed]
-id = 30573
-examine = "I wonder what's under it?"
-
 [crate_266]
 id = 30652
 examine = "A wooden crate."
-
-[large_door_90_opened]
-id = 30709
-
-[large_door_90_closed]
-id = 30707
-examine = "Sturdy looking door."
-
-[large_door_91_opened]
-id = 30710
-
-[large_door_91_closed]
-id = 30708
-examine = "Sturdy looking door."
 
 [candle_3]
 id = 30727
@@ -10336,25 +7117,9 @@ examine = "Scary lighting apparatus."
 id = 30820
 examine = "A pretty water feature."
 
-[door_525_opened]
-id = 30865
-examine = "A nicely-fitted door."
-
-[door_525_closed]
-id = 30864
-examine = "A nicely-fitted door."
-
 [crate_267]
 id = 30925
 examine = "A wooden crate for storage."
-
-[trapdoor_91_opened]
-id = 31010
-examine = "A ladder leading down below."
-
-[trapdoor_91_closed]
-id = 31011
-examine = "A trapdoor leading to the mines below."
 
 [crate_268]
 id = 31013
@@ -10580,109 +7345,6 @@ examine = "A sealed tomb with subtle signs of tampering."
 id = 31326
 examine = "A sealed tomb with subtle signs of tampering."
 
-[door_528_opened]
-id = 31341
-examine = "An old, carved door."
-
-[door_528_closed]
-id = 31340
-examine = "An old, carved door."
-
-[door_530_opened]
-id = 31343
-examine = "An old, carved door."
-
-[door_530_closed]
-id = 31342
-examine = "An old, carved door."
-
-[large_door_92_opened]
-id = 31809
-examine = "A large single door."
-
-[large_door_92_closed]
-id = 31808
-examine = "A large single door."
-
-[large_door_94_opened]
-id = 31812
-examine = "A large single door."
-
-[large_door_94_closed]
-id = 31811
-examine = "A large single door."
-
-[large_door_97_opened]
-id = 31813
-
-[large_door_97_closed]
-id = 31815
-examine = "A large double door."
-
-[large_door_96_opened]
-id = 31816
-examine = "A large double door."
-
-[large_door_96_closed]
-id = 31814
-examine = "A large double door."
-
-[large_door_100_opened]
-id = 31821
-examine = "A large double door."
-
-[large_door_100_closed]
-id = 31820
-examine = "A large double door."
-
-[large_door_102_opened]
-id = 31823
-examine = "A large double door."
-
-[large_door_102_closed]
-id = 31822
-examine = "A large double door."
-
-[door_540_opened]
-id = 31824
-examine = "A wooden door."
-
-[door_540_closed]
-id = 31825
-examine = "A wooden door."
-
-[door_542_opened]
-id = 31826
-examine = "A wooden door."
-
-[door_542_closed]
-id = 31827
-examine = "A wooden door."
-
-[large_door_105_opened]
-id = 31828
-examine = "A sturdy wooden door."
-
-[large_door_105_closed]
-id = 33060
-examine = "A sturdy wooden door."
-
-[door_544_opened]
-id = 31829
-examine = "The door is open."
-
-[door_544_closed]
-id = 31830
-examine = "The door is open."
-
-[door_546_opened]
-id = 31831
-examine = "The door is open."
-
-[door_546_closed]
-id = 31832
-examine = "The door is open."
-
 [ancient_gate_7_opened]
 id = 31835
 
@@ -10696,28 +7358,6 @@ id = 31836
 [ancient_gate_8_closed]
 id = 31834
 examine = "A huge, strangely constructed doorway, not sure how this opens."
-
-[door_547_opened]
-id = 31839
-examine = "A single door."
-
-[door_547_closed]
-id = 31838
-examine = "A single door."
-
-[door_taverley_1_opened]
-id = 31840
-
-[door_taverley_1_closed]
-id = 31841
-examine = "Stops people getting out."
-
-[door_taverley_2_opened]
-id = 31843
-
-[door_taverley_2_closed]
-id = 31844
-examine = "Stops people getting out."
 
 [pillar_61]
 id = 32003
@@ -10927,13 +7567,6 @@ clone = "iron_rocks_old_1"
 id = 32452
 examine = "A rocky outcrop."
 
-[exit_door_2_opened]
-id = 32969
-
-[exit_door_2_closed]
-id = 32968
-examine = "Probably the nicest door in this ghastly place."
-
 [chair_127]
 id = 33058
 examine = "The ideal thing to sit on."
@@ -11029,22 +7662,6 @@ examine = "This area is closed off."
 [gate_220_closed]
 id = 37507
 
-[door_563_opened]
-id = 34043
-examine = "The door is open."
-
-[door_563_closed]
-id = 34042
-examine = "The door is closed."
-
-[door_565_opened]
-id = 34045
-examine = "The door is open."
-
-[door_565_closed]
-id = 34044
-examine = "The door is closed."
-
 [crate_271]
 id = 34225
 examine = "A wooden crate."
@@ -11053,24 +7670,9 @@ examine = "A wooden crate."
 id = 34227
 examine = "A comfortable seat."
 
-[door_568_opened]
-id = 34236
-
-[door_568_closed]
-id = 34234
-examine = "An ornate-fashioned door."
-
 [burning_tomb]
 id = 34299
 examine = "It's on fire."
-
-[door_575_opened]
-id = 34353
-examine = "The door is open."
-
-[door_575_closed]
-id = 34354
-examine = "The door is closed."
 
 [fountain_20]
 id = 34579
@@ -11118,79 +7720,7 @@ examine = "Used for fashioning clay items."
 
 [pottery_oven_east_ardougne]
 id = 34802
-examine = "Bake your clay items in here."  
-
-[door_576_opened]
-id = 34808
-examine = "The door is open."
-
-[door_576_closed]
-id = 34807
-examine = "The door is closed."
-
-[door_578_opened]
-id = 34810
-examine = "A heavy wooden door."
-
-[door_578_closed]
-id = 34809
-examine = "The door is closed."
-
-[door_580_opened]
-id = 34813
-examine = "The door is open."
-
-[door_580_closed]
-id = 34811
-examine = "The door is closed."
-
-[door_581_opened]
-id = 34813
-examine = "The door is open."
-
-[door_581_closed]
-id = 34812
-examine = "The door is locked."
-
-[door_583_opened]
-id = 34818
-examine = "The door is open."
-
-[door_583_closed]
-id = 34816
-examine = "The door is closed."
-
-[door_585_opened]
-id = 34820
-examine = "A heavy wooden door."
-
-[door_585_closed]
-id = 34819
-examine = "A heavy wooden door."
-
-[door_587_opened]
-id = 34823
-examine = "A heavily built wooden door."
-
-[door_587_closed]
-id = 34822
-examine = "A heavily built wooden door."
-
-[wooden_door_opened]
-id = 34826
-examine = "A heavy wooden door."
-
-[wooden_door_closed]
-id = 34825
-examine = "A heavy wooden door."
-
-[wooden_door_3_opened]
-id = 34828
-examine = "A heavy wooden door."
-
-[wooden_door_3_closed]
-id = 34827
-examine = "A heavy wooden door."
+examine = "Bake your clay items in here."
 
 [crate_274]
 id = 35015
@@ -11203,23 +7733,8 @@ examine = "A tall pillar."
 [pillar_70]
 id = 35141
 
-[door_590_opened]
-id = 35147
-
-[door_590_closed]
-id = 35146
-examine = "The door is closed."
-
 [chair_131]
 id = 35149
-
-[jail_door_8_opened]
-id = 35541
-examine = "This looks sturdier than the rest of the building."
-
-[jail_door_8_closed]
-id = 35401
-examine = "It looks sturdy."
 
 [chair_132]
 id = 35451
@@ -11229,22 +7744,6 @@ examine = "A well-made chair."
 id = 35469
 examine = "Conspicuous consumption of water."
 
-[cell_door_14_opened]
-id = 35541
-examine = "This looks sturdier than the rest of the building."
-
-[cell_door_14_closed]
-id = 35540
-examine = "This looks sturdier than the rest of the building."
-
-[door_593_opened]
-id = 35631
-examine = "An open door."
-
-[door_593_closed]
-id = 35630
-examine = "A shut door."
-
 [rope_swing_2]
 id = 35967
 examine = "An odd-looking rock with a rope tied to it"
@@ -11252,46 +7751,6 @@ examine = "An odd-looking rock with a rope tied to it"
 [tree_branch_4]
 id = 35970
 examine = "I can climb up this."
-
-[door_597_opened]
-id = 35992
-examine = "A door."
-
-[door_597_closed]
-id = 35991
-examine = "The door is closed."
-
-[door_600_opened]
-id = 36021
-examine = "The door is open."
-
-[door_600_closed]
-id = 36022
-examine = "The door is closed."
-
-[door_castle_wars_south_opened]
-id = 36316
-examine = "Big and sturdy to keep others out."
-
-[door_castle_wars_south_closed]
-id = 36315
-examine = "Big and sturdy to keep others out."
-
-[door_castle_wars_north_opened]
-id = 36318
-examine = "Big and sturdy to keep others out."
-
-[door_castle_wars_north_closed]
-id = 36317
-examine = "Big and sturdy to keep others out."
-
-[door_castle_wars_side_opened]
-id = 36319
-examine = "Security seems somewhat lax."
-
-[door_castle_wars_side_closed]
-id = 36320
-examine = "Simple, but secure."
 
 [crate_275]
 id = 36323
@@ -11301,14 +7760,6 @@ examine = "For storage."
 id = 36324
 examine = "For storage."
 
-[door_618_opened]
-id = 36343
-examine = "Security seems somewhat lax."
-
-[door_618_closed]
-id = 36344
-examine = "Simple, but secure."
-
 [crate_277]
 id = 36351
 examine = "For storage."
@@ -11316,14 +7767,6 @@ examine = "For storage."
 [crate_278]
 id = 36352
 examine = "For storage."
-
-[door_620_opened]
-id = 36359
-examine = "Security seems somewhat lax."
-
-[door_620_closed]
-id = 36360
-examine = "Simple, but secure."
 
 [crate_279]
 id = 36369
@@ -11336,22 +7779,6 @@ examine = "For storage."
 [crate_281]
 id = 36375
 examine = "A wooden crate."
-
-[door_621_opened]
-id = 36639
-examine = "A heavy door of dark wood."
-
-[door_621_closed]
-id = 36590
-examine = "A heavy door of dark wood."
-
-[door_622_opened]
-id = 36649
-examine = "A heavy door of dark wood."
-
-[door_622_closed]
-id = 36625
-examine = "A heavy door of dark wood."
 
 [fountain_of_heroes]
 id = 36695
@@ -11412,46 +7839,6 @@ examine = "An elegant chair."
 [chair_136]
 id = 36831
 examine = "A comfortable seat."
-
-[door_625_opened]
-id = 36845
-examine = "The door is open."
-
-[door_625_closed]
-id = 36844
-examine = "The door is closed."
-
-[door_627_opened]
-id = 36848
-examine = "The door is open."
-
-[door_627_closed]
-id = 36846
-examine = "The door is closed."
-
-[door_628_opened]
-id = 36848
-examine = "The door is open."
-
-[door_628_closed]
-id = 36847
-examine = "The door is locked."
-
-[door_630_opened]
-id = 36864
-examine = "The door is open."
-
-[door_630_closed]
-id = 36862
-examine = "The door is closed."
-
-[door_631_opened]
-id = 36865
-examine = "The door is open."
-
-[door_631_closed]
-id = 36863
-examine = "The door is closed."
 
 [flour_bin]
 id = 36878
@@ -11525,22 +7912,6 @@ examine = "Someone's been chopping logs."
 id = 36975
 examine = "Someone's been chopping logs."
 
-[church_door_opened]
-id = 37000
-examine = "A heavy-built wooden door."
-
-[church_door_closed]
-id = 36999
-examine = "A heavy-built wooden door."
-
-[church_door_2_opened]
-id = 37003
-examine = "A heavy-built wooden door."
-
-[church_door_2_closed]
-id = 37002
-examine = "A heavy-built wooden door."
-
 [candle_6]
 id = 37007
 examine = "A burning candle."
@@ -11568,14 +7939,6 @@ examine = "An old crate for storage."
 [crate_286]
 id = 37031
 examine = "An old crate for storage."
-
-[locked_door_11_opened]
-id = 37198
-examine = "A fence door."
-
-[locked_door_11_closed]
-id = 37197
-examine = "A locked fence door."
 
 [pillar_73]
 id = 37204
@@ -11970,22 +8333,6 @@ examine = "It's open."
 id = 38048
 examine = "A wooden storage recepticle"
 
-[door_652_opened]
-id = 38123
-examine = "The door is open."
-
-[door_652_closed]
-id = 38124
-examine = "The door is closed."
-
-[door_653_opened]
-id = 38142
-examine = "The door is open."
-
-[door_653_closed]
-id = 38141
-examine = "The door is closed."
-
 [portal_runecrafting_guild]
 id = 38279
 examine = "Where could this lead?"
@@ -12050,79 +8397,17 @@ examine = "Now that's what I call slimline!"
 id = 39175
 examine = "An elegant chair."
 
-[trapdoor_101_opened]
-id = 39189
-examine = "An open trapdoor."
-
-[trapdoor_101_closed]
-id = 39188
-examine = "A closed trapdoor."
-
-[door_656_opened]
-id = 39197
-
-[door_656_closed]
-id = 39198
-examine = "Looks a bit tatty."
-
-[door_657_opened]
-id = 39197
-
-[door_657_closed]
-id = 39199
-examine = "Looks a bit tatty."
-
 [hat_stand_5]
 id = 39245
 examine = "Home is where you hang your hat!"
-
-[door_658_opened]
-id = 39306
-examine = "This closes when the pit guardian is spawned or activated."
-
-[door_658_closed]
-id = 39272
-examine = "This opens only when the pit guardian is dead or inactive."
-
-[trapdoor_103_opened]
-id = 39275
-examine = "I can climb down this ladder."
-
-[trapdoor_103_closed]
-id = 39274
-examine = "This trapdoor is tightly shut."
-
-[door_659_opened]
-id = 39307
-examine = "This closes when the pit guardian is spawned or activated."
-
-[door_659_closed]
-id = 39305
-examine = "This opens only when the pit guardian is dead or inactive."
 
 [crate_297]
 id = 39323
 examine = "A wooden crate, made for storage."
 
-[trapdoor_105_opened]
-id = 39331
-examine = "There appears to be a basement down here."
-
-[trapdoor_105_closed]
-id = 39330
-examine = "This trapdoor is tightly shut."
-
 [crate_298]
 id = 39349
 examine = "A wooden crate, made for storage."
-
-[large_door_106_opened]
-id = 39470
-examine = "A large door."
-
-[large_door_106_closed]
-id = 39469
-examine = "A large door."
 
 [corpse_58]
 id = 39474
@@ -12142,22 +8427,6 @@ id = 39886
 [crate_301]
 id = 39956
 examine = "A crate of broken climbing hook heads."
-
-[church_door_5_opened]
-id = 39976
-examine = "A heavy-built wooden door."
-
-[church_door_5_closed]
-id = 39975
-examine = "A heavy-built wooden door."
-
-[church_door_7_opened]
-id = 39979
-examine = "A heavy-built wooden door."
-
-[church_door_7_closed]
-id = 39978
-examine = "A heavy-built wooden door."
 
 [crate_302]
 id = 40021
@@ -12187,14 +8456,6 @@ examine = "A candle."
 id = 40075
 examine = "Trinkets and stuff."
 
-[door_668_opened]
-id = 40109
-examine = "A door."
-
-[door_668_closed]
-id = 40108
-examine = "A door."
-
 [coffin_37]
 id = 40172
 examine = "It's been blessed."
@@ -12206,30 +8467,6 @@ examine = "It's been blessed."
 [coffin_39]
 id = 40181
 examine = "It's sealed shut."
-
-[cell_door_16_opened]
-id = 40747
-examine = "The metal bars look strong."
-
-[cell_door_16_closed]
-id = 40184
-examine = "A locked prison cell door."
-
-[cell_door_18_opened]
-id = 40185
-examine = "A prison cell door."
-
-[cell_door_18_closed]
-id = 40186
-examine = "Stops people getting out."
-
-[large_doors_2_opened]
-id = 40361
-examine = "The door is open."
-
-[large_doors_2_closed]
-id = 40362
-examine = "The door is closed."
 
 [crate_304]
 id = 40458
@@ -12265,13 +8502,6 @@ examine = "The metal bars look strong."
 id = 40747
 examine = "The metal bars look strong."
 
-[solid_black_door_2_opened]
-id = 41275
-
-[solid_black_door_2_closed]
-id = 40796
-examine = "It's made mostly out of black metal."
-
 [crate_310]
 id = 40801
 examine = "A wooden crate."
@@ -12283,30 +8513,6 @@ examine = "A wooden crate."
 [crate_312]
 id = 40803
 examine = "A wooden crate."
-
-[door_671_opened]
-id = 40894
-examine = "The door is open."
-
-[door_671_closed]
-id = 40893
-examine = "The door is closed."
-
-[door_673_opened]
-id = 40903
-examine = "The door is open."
-
-[door_673_closed]
-id = 40902
-examine = "The door is closed."
-
-[old_battered_door_2_opened]
-id = 40903
-examine = "The door is open."
-
-[old_battered_door_2_closed]
-id = 40907
-examine = "The door is closed."
 
 [gate_227_opened]
 id = 40905
@@ -12328,72 +8534,9 @@ examine = "The metal bars look strong."
 id = 40931
 examine = "The metal bars look strong."
 
-[cell_door_19_opened]
-id = 40991
-
-[cell_door_19_closed]
-id = 40990
-examine = "A cell door."
-
 [chair_142]
 id = 41116
 examine = "The ideal thing to sit on."
-
-[door_677_opened]
-id = 41124
-examine = "The door is open."
-
-[door_677_closed]
-id = 41125
-examine = "The door is closed."
-
-[door_679_opened]
-id = 41128
-examine = "A nicely fitted door."
-
-[door_679_closed]
-id = 41127
-examine = "A nicely fitted door."
-
-[door_681_opened]
-id = 41130
-examine = "A nicely fitted door."
-
-[door_681_closed]
-id = 41129
-examine = "A nicely fitted door."
-
-[large_door_108_opened]
-id = 41132
-examine = "Large double doors."
-
-[large_door_108_closed]
-id = 41131
-examine = "Large double doors."
-
-[large_door_110_opened]
-id = 41134
-examine = "Large double doors."
-
-[large_door_110_closed]
-id = 41133
-examine = "Large double doors."
-
-[large_door_112_opened]
-id = 41178
-examine = "A large double door."
-
-[large_door_112_closed]
-id = 41174
-examine = "A large double door."
-
-[large_door_113_opened]
-id = 41179
-examine = "A large double door."
-
-[large_door_113_closed]
-id = 41175
-examine = "A large double door."
 
 [crate_313]
 id = 41194
@@ -12427,96 +8570,12 @@ examine = "They are collecting dust."
 id = 42194
 examine = "They are collecting dust."
 
-[solid_black_door_3_opened]
-id = 41275
-
-[solid_black_door_3_closed]
-id = 41273
-examine = "It's made mostly out of black metal."
-
-[solid_black_door_4_opened]
-id = 41275
-
-[solid_black_door_4_closed]
-id = 41274
-examine = "It's made mostly out of black metal."
-
-[cell_door_20_opened]
-id = 41277
-examine = "Stops people getting out."
-
-[cell_door_20_closed]
-id = 41276
-examine = "Stops people getting out."
-
 [chair_143]
 id = 41431
 
 [fountain_22]
 id = 41448
 examine = "A pretty water feature."
-
-[door_684_opened]
-id = 41463
-examine = "The door is open."
-
-[door_684_closed]
-id = 41464
-examine = "The door is closed."
-
-[door_685_opened]
-id = 41510
-examine = "The door is open."
-
-[door_685_closed]
-id = 41509
-examine = "The door is closed."
-
-[door_687_opened]
-id = 41523
-examine = "The door is open."
-
-[door_687_closed]
-id = 41522
-examine = "The door is closed."
-
-[door_689_opened]
-id = 41526
-examine = "A nicely fitted door."
-
-[door_689_closed]
-id = 41524
-examine = "A nicely fitted door."
-
-[door_691_opened]
-id = 41530
-examine = "A magical device that enables one to walk through walls."
-
-[door_691_closed]
-id = 41529
-examine = "A magical device that enables one to walk through walls."
-
-[door_693_opened]
-id = 41530
-examine = "A magical device that enables one to walk through walls."
-
-[door_693_closed]
-id = 42480
-examine = "Stops people getting out."
-
-[pit_door_opened]
-id = 41622
-
-[pit_door_closed]
-id = 41609
-examine = "The door of a dungeon pit."
-
-[pit_door_2_opened]
-id = 41618
-
-[pit_door_2_closed]
-id = 41610
-examine = "The door of a dungeon pit."
 
 [dead_tree_28]
 clone = "tree"
@@ -12552,37 +8611,6 @@ examine = "This tree has long been dead."
 id = 42860
 examine = "This tree has been cut down."
 
-[prison_door_9_opened]
-id = 43046
-
-[prison_door_9_closed]
-id = 43045
-examine = "The door looks very secure."
-
-[door_696_opened]
-id = 43176
-examine = "The door is open."
-
-[door_696_closed]
-id = 43177
-examine = "The door is closed."
-
-[door_698_opened]
-id = 43178
-examine = "The door is open."
-
-[door_698_closed]
-id = 43179
-examine = "The door is closed."
-
-[door_700_opened]
-id = 43180
-examine = "The door is open."
-
-[door_700_closed]
-id = 43181
-examine = "The door is closed."
-
 [crate_323]
 id = 43374
 examine = "An old crate."
@@ -12594,22 +8622,6 @@ examine = "It's slightly smaller on the inside."
 [crate_325]
 id = 43392
 examine = "Has fish on it."
-
-[door_702_opened]
-id = 43402
-examine = "The door is open."
-
-[door_702_closed]
-id = 43401
-examine = "The door is closed."
-
-[door_704_opened]
-id = 43460
-examine = "Door-like."
-
-[door_704_closed]
-id = 43459
-examine = "Door-like."
 
 [rope_swing_4]
 id = 43526
@@ -12679,55 +8691,6 @@ examine = "A wooden crate."
 id = 44106
 examine = "Two large, wooden crates stack on top of each other."
 
-[door_708_opened]
-id = 44213
-
-[door_708_closed]
-id = 44211
-examine = "A secure-looking door."
-
-[door_709_opened]
-id = 44213
-
-[door_709_closed]
-id = 44212
-examine = "A secure-looking door."
-
-[metal_door_17_opened]
-id = 44217
-
-[metal_door_17_closed]
-id = 44215
-examine = "A massive, reinforced metal door."
-
-[metal_door_18_opened]
-id = 44218
-
-[metal_door_18_closed]
-id = 44216
-examine = "A massive, reinforced metal door."
-
-[metal_door_19_opened]
-id = 44226
-
-[metal_door_19_closed]
-id = 44227
-examine = "A solid steel door."
-
-[metal_door_20_opened]
-id = 44226
-
-[metal_door_20_closed]
-id = 44228
-examine = "A solid steel door."
-
-[door_710_opened]
-id = 44235
-
-[door_710_closed]
-id = 44236
-examine = "Looks a bit tatty."
-
 [candle_8]
 id = 44268
 examine = "A burning candle."
@@ -12767,30 +8730,6 @@ examine = "A strengthened pillar."
 [pillar_97]
 id = 44499
 examine = "A strengthened pillar."
-
-[door_715_opened]
-id = 45004
-examine = "The door is open."
-
-[door_715_closed]
-id = 45003
-examine = "The door is closed."
-
-[door_717_opened]
-id = 45019
-examine = "This door is unremarkable."
-
-[door_717_closed]
-id = 45018
-examine = "This door is unremarkable."
-
-[prison_door_10_opened]
-id = 45025
-examine = "It looks like it can be opened pretty easily from the outside."
-
-[prison_door_10_closed]
-id = 45024
-examine = "It looks like it can be opened pretty easily from the outside."
 
 [gold_rocks_dungeon_1]
 clone = "gold_rocks_old_1"
@@ -12939,52 +8878,6 @@ examine = "A hot furnace."
 id = 45319
 examine = "Ideal for cooking on."
 
-[door_719_opened]
-id = 45477
-examine = "The door is open."
-
-[door_719_closed]
-id = 45476
-examine = "The door is closed."
-
-[door_720_opened]
-id = 45477
-examine = "The door is open."
-
-[door_720_closed]
-id = 45476
-examine = "The door is closed."
-
-[door_725_opened]
-id = 45478
-
-[door_725_closed]
-id = 45801
-examine = "The door is closed."
-
-[door_875_opened]
-id = 45479
-
-[door_875_closed]
-id = 52193
-examine = "The front door to the Guild Registry."
-
-[door_721_opened]
-id = 45538
-examine = "Keeps the wind out."
-
-[door_721_closed]
-id = 45537
-examine = "Keeps the wind out."
-
-[door_723_opened]
-id = 45540
-examine = "Keeps the wind out."
-
-[door_723_closed]
-id = 45539
-examine = "Keeps the wind out."
-
 [cupboard_door_opened]
 id = 45790
 examine = "The door of a small cupboard."
@@ -13023,33 +8916,9 @@ raise = "border_guard_raise"
 lower = "border_guard_lower"
 examine = "On guard duty."
 
-[door_729_opened]
-id = 45965
-examine = "The door is open."
-
-[door_729_closed]
-id = 45964
-examine = "The door is closed."
-
-[door_731_opened]
-id = 45967
-examine = "The door is open."
-
-[door_731_closed]
-id = 45966
-examine = "The door is closed."
-
 [crate_342]
 id = 46238
 examine = "An old crate for storage."
-
-[door_733_opened]
-id = 46252
-examine = "The door is open."
-
-[door_733_closed]
-id = 46251
-examine = "The door is closed."
 
 [crate_343]
 id = 46266
@@ -13066,21 +8935,6 @@ examine = "Useful for transportation of delicate items."
 [crate_346]
 id = 46294
 examine = "An old crate for storage."
-
-[door_736_opened]
-id = 46305
-examine = "A door."
-
-[door_736_closed]
-id = 46306
-examine = "A door."
-
-[door_737_opened]
-id = 46308
-
-[door_737_closed]
-id = 46307
-examine = "The entrance to the sawmill training area."
 
 [ivy]
 id = 46318
@@ -13274,30 +9128,6 @@ examine = "It wouldn't take much to collapse this pillar."
 id = 47286
 examine = "It wouldn't take much to collapse this pillar."
 
-[large_door_118_opened]
-id = 47425
-examine = "A large double door."
-
-[large_door_118_closed]
-id = 47424
-examine = "A large double door."
-
-[door_768_opened]
-id = 47444
-examine = "The door is open."
-
-[door_768_closed]
-id = 47443
-examine = "The door is closed."
-
-[door_770_opened]
-id = 47513
-examine = "The door is open."
-
-[door_770_closed]
-id = 47512
-examine = "The door is closed."
-
 [crate_354]
 id = 47559
 examine = "A wooden crate."
@@ -13443,46 +9273,6 @@ id = 48587
 id = 48686
 examine = "The Tomb of Dragith Nurn."
 
-[door_772_opened]
-id = 48939
-examine = "A heavily built wooden door."
-
-[door_772_closed]
-id = 48938
-examine = "A heavily built wooden door."
-
-[door_774_opened]
-id = 48941
-examine = "A heavily built wooden door."
-
-[door_774_closed]
-id = 48940
-examine = "A heavily built wooden door."
-
-[door_776_opened]
-id = 48943
-examine = "A heavily built wooden door."
-
-[door_776_closed]
-id = 48942
-examine = "A heavily built wooden door."
-
-[door_778_opened]
-id = 48945
-examine = "A heavily built wooden door."
-
-[door_778_closed]
-id = 48944
-examine = "A heavily built wooden door."
-
-[door_780_opened]
-id = 48962
-examine = "The door is open."
-
-[door_780_closed]
-id = 48961
-examine = "The door is closed."
-
 [crate_360]
 id = 48998
 examine = "Great for storing things."
@@ -13546,70 +9336,6 @@ examine = "A strange hole in the wall."
 [fountain_30]
 id = 49359
 examine = "A strange hole in the wall."
-
-[locked_door_13_opened]
-id = 49603
-examine = "A fence door."
-
-[locked_door_13_closed]
-id = 49600
-examine = "A locked fence door."
-
-[locked_door_14_opened]
-id = 49604
-examine = "A fence door."
-
-[locked_door_14_closed]
-id = 49601
-examine = "A locked fence door."
-
-[locked_door_15_opened]
-id = 49605
-examine = "A fence door."
-
-[locked_door_15_closed]
-id = 49602
-examine = "A locked fence door."
-
-[door_867_opened]
-id = 49603
-examine = "A fence door."
-
-[door_867_closed]
-id = 51256
-examine = "The door is closed."
-
-[door_978_opened]
-id = 49603
-examine = "A fence door."
-
-[door_978_closed]
-id = 56900
-examine = "The door is now clear of ice."
-
-[door_863_opened]
-id = 49604
-examine = "A fence door."
-
-[door_863_closed]
-id = 50706
-examine = "The door is closed."
-
-[door_833_opened]
-id = 49605
-examine = "A fence door."
-
-[door_833_closed]
-id = 49693
-examine = "A sturdy door."
-
-[door_871_opened]
-id = 49605
-examine = "A fence door."
-
-[door_871_closed]
-id = 51805
-examine = "The door is closed."
 
 [tangle_gum_tree]
 id = 49705
@@ -13921,67 +9647,6 @@ examine = "A broken pillar."
 id = 52009
 examine = "A broken pillar."
 
-[vault_door_opened]
-id = 52199
-examine = "A heavy door with a sturdy lock."
-
-[vault_door_closed]
-id = 52198
-examine = "A heavy door with a sturdy lock."
-
-[door_877_opened]
-id = 52303
-
-[door_877_closed]
-id = 52302
-examine = "A door on which to practise lockpicking technique."
-
-[door_878_opened]
-id = 52303
-
-[door_878_closed]
-id = 52304
-examine = "A securely-locked practice door."
-
-[door_879_opened]
-id = 52313
-examine = "The door is open."
-
-[door_879_closed]
-id = 52312
-examine = "The door is closed."
-
-[door_881_opened]
-id = 52313
-examine = "The door is open."
-
-[door_881_closed]
-id = 52314
-examine = "The door is closed."
-
-[locked_door_18_opened]
-id = 52315
-examine = "The door is open."
-
-[locked_door_18_closed]
-id = 52381
-examine = "The door is locked."
-
-[locked_door_19_opened]
-id = 52315
-examine = "The door is open."
-
-[locked_door_19_closed]
-id = 52382
-examine = "The door is locked."
-
-[door_883_opened]
-id = 52473
-
-[door_883_closed]
-id = 52474
-examine = "It's quite small."
-
 [crate_363]
 id = 52556
 examine = "For storage."
@@ -14001,22 +9666,6 @@ examine = "An old, crumbled pillar."
 [pillar_111]
 id = 52573
 examine = "An old, crumbled pillar."
-
-[door_886_opened]
-id = 52780
-examine = "A heavy door of dark wood."
-
-[door_886_closed]
-id = 52778
-examine = "A heavy door of dark wood."
-
-[door_887_opened]
-id = 52781
-examine = "A heavy door of dark wood."
-
-[door_887_closed]
-id = 52779
-examine = "A heavy door of dark wood."
 
 [dead_tree_41]
 id = 52786
@@ -14314,14 +9963,6 @@ examine = "A candle."
 id = 54964
 examine = "A candle."
 
-[door_952_opened]
-id = 55445
-examine = "A door."
-
-[door_952_closed]
-id = 55444
-examine = "A door."
-
 [coffin_46]
 id = 55451
 examine = "It's open."
@@ -14451,22 +10092,6 @@ examine = "It's probably full of weapons and supplies."
 [chair_189]
 id = 57134
 examine = "Made from rock."
-
-[door_986_opened]
-id = 57138
-examine = "A door."
-
-[door_986_closed]
-id = 57137
-examine = "A door."
-
-[big_door_11_opened]
-id = 57257
-examine = "Looks foreboding!"
-
-[big_door_11_closed]
-id = 57258
-examine = "Looks foreboding!"
 
 [varrock_palace_drain]
 id = 31759
@@ -14772,26 +10397,6 @@ examine = "Step inside for violent fun."
 [fist_of_guthix_stairs]
 id = 30203
 examine = "Warning: leads into the wilderness."
-
-[jalsavrah_door_north]
-id = 16484
-examine = "I wonder where this leads."
-
-[jalsavrah_door_east]
-id = 16487
-examine = "I wonder where this leads."
-
-[jalsavrah_door_south]
-id = 16490
-examine = "I wonder where this leads."
-
-[jalsavrah_door_west]
-id = 16493
-examine = "I wonder where this leads."
-
-[jalsavrah_tomb_door]
-id = 16459
-examine = "Ooh. It glows. Looks like an exit."
 
 [dung]
 id = 6257
@@ -15668,18 +11273,6 @@ examine = "I can climb this."
 id = 38222
 examine = "I can climb down this."
 
-[brimstails_cave_entrance]
-id = 17209
-examine = "A small door in a hillock."
-
-[brimstails_cave_exit_left]
-id = 17223
-examine = "The way out!"
-
-[brimstails_cave_exit_right]
-id = 17222
-examine = "The way out!"
-
 [rune_essence_exit_portal]
 id = 2492
 examine = "A portal from this mystical place."
@@ -15847,22 +11440,6 @@ examine = "That's a massive gap!"
 [barbarian_outpost_roof]
 id = 43532
 examine = "A slanted roof."
-
-[tree_gnome_door_east_closed]
-id = 1968
-examine = "A grand door for a grand tree."
-
-[tree_gnome_door_east_opened]
-id = 1970
-examine = "A grand door for a grand tree."
-
-[tree_gnome_door_west_closed]
-id = 1967
-examine = "A grand door for a grand tree."
-
-[tree_gnome_door_west_opened]
-id = 1969
-examine = "A grand door for a grand tree."
 
 [basic_ladder_bottom]
 id = 1747
