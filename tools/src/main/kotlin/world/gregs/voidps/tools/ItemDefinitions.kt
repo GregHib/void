@@ -20,7 +20,7 @@ object ItemDefinitions {
         val ammo = AmmoDefinitions().load(Settings["definitions.ammoGroups"])
         val parameters = ParameterDefinitions(categories, ammo).load(Settings["definitions.parameters"])
         val files = configFiles()
-        val decoder = ItemDefinitions(ItemDecoder(parameters).load(cache)).load(files.getOrDefault(Settings["definitions.items"], emptyList())
+        val decoder = ItemDefinitions(ItemDecoder(parameters).load(cache)).load(files.getOrDefault(Settings["definitions.items"], emptyList()))
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
             if(def.stringId.contains("anchor"))

@@ -30,7 +30,7 @@ object InventoryConverter {
         val targetDecoder = InventoryDecoder().load(targetCache)
         Settings.load()
         val files = configFiles()
-        val itemDefinitions = ItemDefinitions(ItemDecoder().load(targetCache)).load(files.getOrDefault(Settings["definitions.items"], emptyList())
+        val itemDefinitions = ItemDefinitions(ItemDecoder().load(targetCache)).load(files.getOrDefault(Settings["definitions.items"], emptyList()))
         val encoder = InventoryEncoder()
         val data: MutableMap<String, Any> = mutableMapOf()
 
