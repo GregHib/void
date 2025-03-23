@@ -1,26 +1,26 @@
 package content.entity.item.spawn
 
 import world.gregs.voidps.engine.client.ui.event.adminCommand
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.entity.floorItemDespawn
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.worldSpawn
+import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
+import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.inject
 
 val items: FloorItems by inject()
 val spawns: ItemSpawns by inject()
 val definitions: ItemDefinitions by inject()
 
-worldSpawn {
-    loadItemSpawns(items, spawns)
-}
-
 adminCommand("reload") {
     if (content == "item defs" || content == "items" || content == "floor items") {
+        val files = configFiles()
         items.clear()
-        definitions.load()
-        loadItemSpawns(items, spawns)
+        definitions.load(files.getOrDefault(Settings["definitions.items"], emptyList()))
+        loadItemSpawns(items, spawns, files.getOrDefault(Settings["spawns.items"], emptyList()))
     }
 }
 

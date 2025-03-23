@@ -4,6 +4,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoderFull
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
@@ -11,7 +12,6 @@ import world.gregs.voidps.tools.definition.item.ItemDefinitionPipeline
 import world.gregs.voidps.tools.definition.item.pipe.page.PageCollector
 import world.gregs.voidps.tools.definition.item.pipe.page.UniqueIdentifiers
 import world.gregs.voidps.tools.definition.obj.pipe.*
-import world.gregs.voidps.tools.property
 import world.gregs.yaml.Yaml
 import java.io.File
 import java.util.concurrent.TimeUnit
@@ -49,8 +49,9 @@ private object ObjectDefinitionPipeline {
 
     @JvmStatic
     fun main(args: Array<String>) {
+        Settings.load()
         val start = System.currentTimeMillis()
-        val cache: Cache = CacheDelegate(property("storage.cache.path"))
+        val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
         val decoder = ObjectDecoderFull(members = true, lowDetail = false).load(cache)
         val pages = decoder.indices.mapNotNull {
             val def = decoder.getOrNull(it)

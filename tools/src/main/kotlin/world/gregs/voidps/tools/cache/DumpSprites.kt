@@ -3,7 +3,7 @@ package world.gregs.voidps.tools.cache
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.SpriteDecoder
-import world.gregs.voidps.tools.property
+import world.gregs.voidps.engine.data.Settings
 import java.io.File
 import javax.imageio.ImageIO
 
@@ -11,7 +11,8 @@ object DumpSprites {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("storage.cache.path"))
+        Settings.load()
+        val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
         val decoder = SpriteDecoder().load(cache)
         println(decoder.lastIndex)
         val directory = File("./temp/sprites/")

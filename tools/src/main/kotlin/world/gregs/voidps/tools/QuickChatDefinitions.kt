@@ -7,11 +7,13 @@ import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.cache.definition.decoder.QuickChatOptionDecoder
 import world.gregs.voidps.cache.definition.decoder.QuickChatPhraseDecoder
+import world.gregs.voidps.engine.data.Settings
 
 object QuickChatDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("storage.cache.path"))
+        Settings.load()
+        val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
         val options = QuickChatOptionDecoder()
         val phrases = QuickChatPhraseDecoder().load(cache)
         val enums = EnumDecoder()

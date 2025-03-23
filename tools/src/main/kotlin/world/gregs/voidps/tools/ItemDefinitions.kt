@@ -3,21 +3,24 @@ package world.gregs.voidps.tools
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AmmoDefinitions
 import world.gregs.voidps.engine.data.definition.CategoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.ParameterDefinitions
-import world.gregs.yaml.Yaml
+import world.gregs.voidps.engine.data.configFiles
 
 object ItemDefinitions {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("storage.cache.path"))
-        val categories = CategoryDefinitions().load(property("definitions.categories"))
-        val ammo = AmmoDefinitions().load(property("definitions.ammoGroups"))
-        val parameters = ParameterDefinitions(categories, ammo).load(property("definitions.parameters"))
-        val decoder = ItemDefinitions(ItemDecoder(parameters).load(cache)).load(property("definitions.items"))
+        Settings.load()
+        val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
+        val categories = CategoryDefinitions().load(Settings["definitions.categories"])
+        val ammo = AmmoDefinitions().load(Settings["definitions.ammoGroups"])
+        val parameters = ParameterDefinitions(categories, ammo).load(Settings["definitions.parameters"])
+        val files = configFiles()
+        val decoder = ItemDefinitions(ItemDecoder(parameters).load(cache)).load(files.getOrDefault(Settings["definitions.items"], emptyList()))
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
             if(def.stringId.contains("anchor"))

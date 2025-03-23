@@ -17,5 +17,18 @@ enum class ClanRank(val value: Int, val string: String) {
         fun from(option: String) : ClanRank {
             return entries.firstOrNull { it.string == option } ?: None
         }
+        private val ranks = mapOf(
+            "Anyone" to Anyone,
+            "Friend" to Friend,
+            "Recruit" to Recruit,
+            "Corporeal" to Corporeal,
+            "Sergeant" to Sergeant,
+            "Lieutenant" to Lieutenant,
+            "Captain" to Captain,
+            "General" to General,
+            "Owner" to Owner,
+            "Admin" to Admin,
+        )
+        fun by(name: String) : ClanRank = ranks.getOrDefault(name, None)
     }
 }

@@ -9,9 +9,6 @@ WORKDIR /app/
 COPY ./game/build/libs/void-server-*.jar /app/void-server.jar
 
 # Copy configuration and cache files
-COPY ./data/map/ /app/data/map/
-COPY ./data/spawns/ /app/data/spawns/
-COPY ./data/definitions/ /app/data/definitions/
-COPY ./data/cache/ /app/data/cache/
+COPY ./data/ /app/data/
 
 CMD ["java", "-jar", "void-server.jar"]

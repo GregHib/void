@@ -6,8 +6,8 @@ import world.gregs.voidps.cache.definition.decoder.GraphicDecoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoderFull
 import world.gregs.voidps.cache.definition.decoder.NPCDecoderFull
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoderFull
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
-import world.gregs.voidps.tools.property
 import world.gregs.yaml.Yaml
 
 /**
@@ -20,7 +20,8 @@ object GraphicNames {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("storage.cache.path"))
+        Settings.load()
+        val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
         val models = mutableMapOf<Int, MutableList<String>>()
         addItemModels(cache, models)
         addNPCModels(cache, models)

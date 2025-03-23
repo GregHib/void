@@ -6,6 +6,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.tools.wiki.model.Infobox
 import world.gregs.voidps.tools.wiki.model.Wiki
@@ -20,6 +21,7 @@ object MusicInfoBoxDumper {
 
     @JvmStatic
     fun main(args: Array<String>) {
+        Settings.load()
         val formatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
         val revision = LocalDate.of(2011, Month.OCTOBER, 16)
 
@@ -34,7 +36,7 @@ object MusicInfoBoxDumper {
         val missing = mutableListOf<String>()
         val output = mutableMapOf<String, Any>()
 
-        val cache = CacheDelegate("./data/cache/")
+        val cache = CacheDelegate(Settings["storage.cache.path"])
         val defs = EnumDecoder().load(cache)
         val enum = defs[1345]
         val enumMap = enum.map!!.mapValues { (_, value) -> toIdentifier(value as String) }

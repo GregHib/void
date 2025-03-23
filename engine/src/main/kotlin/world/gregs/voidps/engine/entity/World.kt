@@ -6,7 +6,15 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
+import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.type.Tile
@@ -24,7 +32,10 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
     val members: Boolean
         get() = Settings["world.members", false]
 
-    fun start() {
+    fun start(files: Map<String, List<String>>) {
+        loadItemSpawns(get<FloorItems>(), get<ItemSpawns>(), files.getOrDefault(Settings["spawns.items"], emptyList()))
+        loadObjectSpawns(get<GameObjects>(), files.getOrDefault(Settings["spawns.objects"], emptyList()))
+        loadNpcSpawns(get<NPCs>(), files.getOrDefault(Settings["spawns.npcs"], emptyList()))
         emit(Spawn)
     }
 

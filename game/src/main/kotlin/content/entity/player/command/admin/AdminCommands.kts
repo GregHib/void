@@ -71,8 +71,9 @@ import content.entity.world.music.MusicUnlock
 import content.entity.sound.jingle
 import content.entity.sound.midi
 import content.entity.sound.sound
-import content.entity.npc.spawn.loadNpcSpawns
-import content.entity.obj.spawn.loadObjectSpawns
+import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
+import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
+import world.gregs.voidps.engine.data.configFiles
 import java.util.concurrent.TimeUnit
 import kotlin.collections.set
 import kotlin.system.measureTimeMillis
@@ -431,42 +432,49 @@ modCommand("pos", "print out players current coordinates", listOf("mypos")) {
 }
 
 adminCommand("reload (config-name)", "reload any type of content or file e.g. npcs, object defs, or settings") {
+    val files = configFiles()
     when (content) {
         "book", "books" -> get<Books>().load()
-        "stairs", "tele", "teles", "teleports" -> get<ObjectTeleports>().load()
+        "stairs", "tele", "teles", "teleports" -> get<ObjectTeleports>().load(files.getOrDefault(Settings["map.teleports"], emptyList()))
         "tracks", "songs" -> get<MusicTracks>().load()
         "objects", "objs" -> {
             val defs: ObjectDefinitions = get()
             val custom: GameObjects = get()
-            defs.load()
-            loadObjectSpawns(custom, definitions = defs)
+            defs.load(files.getOrDefault(Settings["definitions.objects"], emptyList()))
+            loadObjectSpawns(custom, files.getOrDefault(Settings["spawns.objects"], emptyList()), defs)
         }
         "nav graph", "ai graph" -> get<NavigationGraph>().load()
         "npcs" -> {
-            get<NPCDefinitions>().load()
+            get<NPCDefinitions>().load(files.getOrDefault(Settings["definitions.npcs"], emptyList()))
             val npcs: NPCs = get()
-            loadNpcSpawns(npcs)
+            loadNpcSpawns(npcs, files.getOrDefault(Settings["spawns.npcs"], emptyList()))
         }
         "areas" -> get<AreaDefinitions>().load()
-        "object defs" -> get<ObjectDefinitions>().load()
+        "object defs" -> get<ObjectDefinitions>().load(files.getOrDefault(Settings["definitions.objects"], emptyList()))
         "emotes", "render anims", "render emotes" -> get<RenderEmoteDefinitions>().load()
-        "anim defs", "anims" -> get<AnimationDefinitions>().load()
-        "container defs", "containers", "inventory defs", "inventories", "inv defs", "invs" -> get<InventoryDefinitions>().load()
-        "graphic defs", "graphics", "gfx" -> get<GraphicDefinitions>().load()
-        "npc defs" -> get<NPCDefinitions>().load()
+        "anim defs", "anims" -> get<AnimationDefinitions>().load(files.getOrDefault(Settings["definitions.animations"], emptyList()))
+        "container defs", "containers", "inventory defs", "inventories", "inv defs", "invs" -> get<InventoryDefinitions>().load(files.getOrDefault(Settings["definitions.inventories"], emptyList()))
+        "graphic defs", "graphics", "gfx" -> get<GraphicDefinitions>().load(files.getOrDefault(Settings["definitions.graphics"], emptyList()))
+        "npc defs" -> get<NPCDefinitions>().load(files.getOrDefault(Settings["definitions.npcs"], emptyList()))
         "item on item", "item-on-item" -> {
-            get<ItemOnItemDefinitions>().load()
+            get<ItemOnItemDefinitions>().load(files.getOrDefault(Settings["definitions.itemOnItem"], emptyList()))
         }
         "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load()
         "quest", "quests" -> get<QuestDefinitions>().load()
         "midi" -> get<MidiDefinitions>().load()
-        "vars", "variables" -> get<VariableDefinitions>().load()
+        "vars", "variables" -> get<VariableDefinitions>().load(
+            files.getOrDefault(Settings["definitions.variables.players"], emptyList()),
+            files.getOrDefault(Settings["definitions.variables.bits"], emptyList()),
+            files.getOrDefault(Settings["definitions.variables.clients"], emptyList()),
+            files.getOrDefault(Settings["definitions.variables.strings"], emptyList()),
+            files.getOrDefault(Settings["definitions.variables.customs"], emptyList())
+        )
         "music", "music effects", "jingles" -> get<JingleDefinitions>().load()
-        "interfaces" -> get<InterfaceDefinitions>().load()
+        "interfaces" -> get<InterfaceDefinitions>().load(files.getOrDefault(Settings["definitions.interfaces"], emptyList()))
         "spells" -> get<SpellDefinitions>().load()
         "patrols", "paths" -> get<PatrolDefinitions>().load()
         "prayers" -> get<PrayerDefinitions>().load()
-        "drops" -> get<DropTables>().load()
+        "drops" -> get<DropTables>().load(files.getOrDefault(Settings["spawns.drops"], emptyList()))
         "cs2", "cs2s", "client scripts" -> get<ClientScriptDefinitions>().load()
         "settings", "setting", "game setting", "game settings", "games settings", "properties", "props" -> {
             Settings.load()

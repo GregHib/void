@@ -4,11 +4,13 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
+import world.gregs.voidps.engine.data.Settings
 
 object ClientScriptDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("storage.cache.path"))
+        Settings.load()
+        val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
         val decoder = ClientScriptDecoder().load(cache)
         for (i in decoder.indices) {
 //            if (i != 1142) {

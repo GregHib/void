@@ -6,8 +6,8 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.data.Instructions
 import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.WeaponStyleDefinition
-import world.gregs.voidps.tools.property
 import java.io.File
 
 object DumpStyles {
@@ -41,7 +41,8 @@ object DumpStyles {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate(property("storage.cache.path"))
+        Settings.load()
+        val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
         val decoder = ClientScriptDecoder().load(cache)
         val clientScript = decoder[1142]
         load(clientScript)

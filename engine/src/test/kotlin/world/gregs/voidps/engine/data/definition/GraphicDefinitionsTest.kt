@@ -24,7 +24,7 @@ internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition
 
     override fun load(definitions: GraphicDefinitions) {
         val uri = GraphicDefinitionsTest::class.java.getResource("test-gfx.toml")!!
-        definitions.load(uri.path)
+        definitions.load(listOf(uri.path))
     }
 
 }

@@ -8,6 +8,10 @@ import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.timedLoad
+import java.nio.file.Files
+import java.nio.file.Path
+import kotlin.io.path.extension
+import kotlin.io.path.pathString
 
 class DropTables {
 
@@ -17,28 +21,30 @@ class DropTables {
 
     fun getValue(key: String) = tables.getValue(key)
 
-    fun load(path: String = Settings["spawns.drops"], itemDefinitions: ItemDefinitions? = null): DropTables {
+    fun load(paths: List<String>, itemDefinitions: ItemDefinitions? = null): DropTables {
         timedLoad("drop table") {
             val tables = Object2ObjectOpenHashMap<String, DropTable>(10, Hash.VERY_FAST_LOAD_FACTOR)
-            Config.fileReader(path) {
-                while (nextSection()) {
-                    val tableName = section()
-                    var roll = 1
-                    var chance = 1
-                    var type = TableType.First
-                    val drops = ObjectArrayList<Drop>()
-                    while (nextPair()) {
-                        when (val key = key()) {
-                            "roll" -> roll = int()
-                            "type" -> type = TableType.byName(string())
-                            "chance" -> chance = int()
-                            "drops" -> while (nextElement()) {
-                                drops.add(readDrops(tables, itemDefinitions))
+            for (path in paths) {
+                Config.fileReader(path) {
+                    while (nextSection()) {
+                        val tableName = section()
+                        var roll = 1
+                        var chance = 1
+                        var type = TableType.First
+                        val drops = ObjectArrayList<Drop>()
+                        while (nextPair()) {
+                            when (val key = key()) {
+                                "roll" -> roll = int()
+                                "type" -> type = TableType.byName(string())
+                                "chance" -> chance = int()
+                                "drops" -> while (nextElement()) {
+                                    drops.add(readDrops(tables, itemDefinitions))
+                                }
+                                else -> throw IllegalArgumentException("Unexpected table key: '$key' ${exception()}")
                             }
-                            else -> throw IllegalArgumentException("Unexpected table key: '$key' ${exception()}")
                         }
+                        tables[tableName] = DropTable(type, roll, drops, chance)
                     }
-                    tables[tableName] = DropTable(type, roll, drops, chance)
                 }
             }
             this.tables = tables

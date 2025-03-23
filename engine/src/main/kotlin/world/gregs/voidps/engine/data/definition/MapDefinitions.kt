@@ -9,6 +9,7 @@ import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -18,7 +19,6 @@ import world.gregs.voidps.engine.map.obj.MapObjectsDecoder
 import world.gregs.voidps.engine.map.obj.MapObjectsRotatedDecoder
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Zone
-import java.io.File
 import kotlin.system.exitProcess
 import kotlin.time.measureTimedValue
 
@@ -98,11 +98,12 @@ class MapDefinitions(
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val properties = Settings.load(File("./game/src/main/resources/game.properties").inputStream())
+            val properties = Settings.load()
 //            properties["storage.cache.path"] = "./data/cache-old/"
             val (cache, duration) = measureTimedValue { FileCache.load(properties) }
             println("Loaded cache in ${duration.inWholeMilliseconds}ms")
-            val definitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(properties.getProperty("definitions.objects"))
+            val files = configFiles()
+            val definitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(files.getOrDefault(Settings["definitions.objects"], emptyList()))
             val collisions = Collisions()
             val add = GameObjectCollisionAdd(collisions)
             val remove = GameObjectCollisionRemove(collisions)

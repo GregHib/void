@@ -6,6 +6,8 @@ import content.bot.interact.navigation.graph.NavigationGraph
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
+import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.MapDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
@@ -15,8 +17,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
 import world.gregs.voidps.tools.map.view.draw.MapView
-import world.gregs.voidps.tools.property
-import world.gregs.yaml.Yaml
 import java.awt.EventQueue
 import javax.swing.JFrame
 
@@ -30,19 +30,20 @@ class MapViewer {
             LafManager.install(LafManager.themeForPreferredStyle(getPreferredThemeStyle()))
             val frame = JFrame("Map viewer")
             frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-            val cache = CacheDelegate("./data/cache/")
+            val cache = CacheDelegate(Settings["storage.cache.path"])
             val decoder = ObjectDecoder(member = false, lowDetail = false).load(cache)
-            val defs = ObjectDefinitions(decoder).load("./data/definitions/objects.toml")
-            val areas = AreaDefinitions().load("./data/map/areas.toml")
-            val nav = NavigationGraph(defs, areas).load("./data/map/nav-graph.toml")
+            val files = configFiles().getValue(Settings["definitions.objects"])
+            val defs = ObjectDefinitions(decoder).load(files)
+            val areas = AreaDefinitions().load(Settings["map.areas"])
+            val nav = NavigationGraph(defs, areas).load(Settings["map.navGraph"])
             val collisions = Collisions()
             if (DISPLAY_AREA_COLLISIONS || DISPLAY_ALL_COLLISIONS) {
                 val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache))
-                    .load(property("definitions.objects"))
+                    .load(files)
                 val objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), objectDefinitions)
                 MapDefinitions(CollisionDecoder(collisions), objectDefinitions, objects, cache).loadCache()
             }
-            frame.add(MapView(nav, collisions, "./data/map/areas.toml"))
+            frame.add(MapView(nav, collisions, Settings["map.areas"]))
             frame.pack()
             frame.setLocationRelativeTo(null)
             frame.isVisible = true
@@ -57,6 +58,7 @@ class MapViewer {
 
         @JvmStatic
         fun main(args: Array<String>) {
+            Settings.load()
             MapViewer()
         }
     }

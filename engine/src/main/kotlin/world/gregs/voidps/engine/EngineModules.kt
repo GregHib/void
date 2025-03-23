@@ -82,20 +82,16 @@ val engineModule = module {
     // Pathfinding
     single { PathFinder(flags = get<Collisions>(), useRouteBlockerFlags = true) }
     single { LineValidator(flags = get<Collisions>()) }
-    // Misc
-    single(createdAtStart = true) { DropTables().load(itemDefinitions = get()) }
     // Definitions
     single(createdAtStart = true) { SoundDefinitions().load() }
     single(createdAtStart = true) { QuestDefinitions().load() }
     single(createdAtStart = true) { RenderEmoteDefinitions().load() }
     single(createdAtStart = true) { MidiDefinitions().load() }
-    single(createdAtStart = true) { VariableDefinitions().load() }
     single(createdAtStart = true) { JingleDefinitions().load() }
     single(createdAtStart = true) { SpellDefinitions().load() }
     single(createdAtStart = true) { PatrolDefinitions().load() }
     single(createdAtStart = true) { PrayerDefinitions().load() }
     single(createdAtStart = true) { GearDefinitions().load() }
-    single(createdAtStart = true) { ItemOnItemDefinitions().load() }
     single(createdAtStart = true) { DiangoCodeDefinitions().load() }
     single(createdAtStart = true) { AccountDefinitions().load() }
     single(createdAtStart = true) { HuntModeDefinitions().load() }

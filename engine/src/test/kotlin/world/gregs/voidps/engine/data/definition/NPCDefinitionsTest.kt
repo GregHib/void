@@ -28,6 +28,6 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
 
     override fun load(definitions: NPCDefinitions) {
         val uri = NPCDefinitionsTest::class.java.getResource("test-npc.toml")!!
-        definitions.load(uri.path)
+        definitions.load(listOf(uri.path))
     }
 }

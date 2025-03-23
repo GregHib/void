@@ -24,8 +24,8 @@ class SafeStorageTest {
         val files = dir.listFiles()
         assertFalse(files.isNullOrEmpty())
         val file = files!!.first()
-        assertTrue(file.name.endsWith("durial_321.json"))
-        val expected = File("./src/test/resources/player.json").readText().replace("\r\n", "\n")
+        assertTrue(file.name.endsWith("durial_321.toml"))
+        val expected = File("./src/test/resources/player.toml").readText().replace("\r\n", "\n")
         assertEquals(expected, file.readText().replace("\r\n", "\n"))
     }
 }

@@ -2,150 +2,84 @@ package world.gregs.config
 
 import java.io.Writer
 
-class ConfigWriter {
+typealias ConfigWriter = Writer
 
-    fun encode(writer: Writer, map: Map<String, Any>) {
-        encodeSection(writer, "", map)
-    }
+fun ConfigWriter.writeSection(name: String) = write("[$name]\n")
 
-    @Suppress("UNCHECKED_CAST")
-    private fun encodeSection(writer: Writer, section: String, map: Map<String, Any>) {
-        var start = true
-        for ((key, value) in map) {
-            if (value is Map<*, *>) {
-                if (!start) {
-                    writer.write("\n")
-                    writer.flush()
-                }
-                encodeSection(writer, if (section.isBlank()) key else "${section}.${key}", value as Map<String, Any>)
-                start = true
+fun ConfigWriter.writePair(key: String, value: Any, escapeKey: Boolean = false) {
+    writeKey(key, escapeKey)
+    writeValue(value)
+    write("\n")
+}
+
+fun ConfigWriter.writeValue(value: Any?, escapeKey: Boolean = false) {
+    when (value) {
+        is String -> {
+            write("\"")
+            write(value)
+            write("\"")
+        }
+        is Double -> {
+            val string = value.toBigDecimal().stripTrailingZeros().toPlainString()
+            if (string.contains('.')) {
+                write(string)
             } else {
-                if (start) {
-                    if (section.isNotBlank()) {
-                        writer.write("[$section]\n")
-                    }
-                    start = false
-                }
-                encodeKeyValue(writer, key, value)
+                write("${string}.0")
             }
         }
-
-        // Add a blank line after each section
-        if (!start) {
-            writer.write("\n")
-            writer.flush()
-        }
-    }
-
-    private fun encodeKeyValue(writer: Writer, key: String, value: Any) {
-        val needsQuotes = key.contains(' ') || key.contains('\t') || key.contains('=')
-
-        // Write key
-        if (needsQuotes) {
-            writer.write("\"${escapeQuotes(key)}\"")
-        } else {
-            writer.write(key)
-        }
-
-        writer.write(" = ")
-
-        // Write value based on type
-        encodeValue(writer, value)
-
-        writer.write("\n")
-    }
-
-    private fun encodeValue(writer: Writer, value: Any?) {
-        when (value) {
-            is String -> encodeString(writer, value)
-            is Long, is Int -> writer.write(value.toString())
-            is Double, is Float -> writer.write(value.toString())
-            is Boolean -> writer.write(value.toString())
-            is List<*> -> encodeList(writer, value)
-            is Array<*> -> encodeArray(writer, value)
-            is Map<*, *> -> encodeMap(writer, value)
-            null -> writer.write("null")
-            else -> writer.write(value.toString())
-        }
-    }
-
-    private fun encodeString(writer: Writer, value: String) {
-        writer.write("\"${escapeQuotes(value)}\"")
-    }
-
-    private fun encodeList(writer: Writer, list: List<*>) {
-        writer.write("[")
-
-        for ((index, item) in list.withIndex()) {
-            if (index > 0) {
-                writer.write(", ")
-            }
-
-            encodeValue(writer, item)
-        }
-
-        writer.write("]")
-    }
-
-    private fun encodeArray(writer: Writer, list: Array<*>) {
-        writer.write("[")
-
-        for ((index, item) in list.withIndex()) {
-            if (index > 0) {
-                writer.write(", ")
-            }
-
-            encodeValue(writer, item)
-        }
-
-        writer.write("]")
-    }
-
-    private fun encodeMap(writer: Writer, map: Map<*, *>) {
-        writer.write("{")
-
-        for ((index, pair) in map.entries.withIndex()) {
-            val (key, value) = pair
-            if (index > 0) {
-                writer.write(", ")
-            }
-
-            // Write key
-            if (key is String) {
-                if (needsQuotes(key)) {
-                    writer.write("\"${escapeQuotes(key)}\"")
-                } else {
-                    writer.write(key)
-                }
+        is Float -> {
+            val string = value.toBigDecimal().stripTrailingZeros().toPlainString()
+            if (string.contains('.')) {
+                write(string)
             } else {
-                writer.write(key.toString())
+                write("${string}.0")
             }
-
-            writer.write(" = ")
-
-            // Write value
-            encodeValue(writer, value)
         }
-
-        writer.write("}")
+        is Number, is Boolean -> write(value.toString())
+        is IntArray -> list(value.size) { writeValue(value[it]) }
+        is DoubleArray -> list(value.size) { writeValue(value[it]) }
+        is List<*> -> list(value.size) { writeValue(value[it]) }
+        is Array<*> -> list(value.size) { writeValue(value[it]) }
+        is Map<*, *> -> map(value.keys, escapeKey) { writeValue(value[it]) }
+        null -> write("null")
+        else -> {
+            write("\"")
+            write(value.toString())
+            write("\"")
+        }
     }
+}
 
-    private fun needsQuotes(str: String): Boolean {
-        return str.isEmpty() ||
-                str.contains(' ') ||
-                str.contains('\t') ||
-                str.contains('=') ||
-                str.contains('[') ||
-                str.contains(']') ||
-                str.contains('{') ||
-                str.contains('}') ||
-                str.contains(',') ||
-                str.contains('\n') ||
-                str.contains('\r') ||
-                str.contains('#')
+fun ConfigWriter.writeKey(key: String, escapeKey: Boolean = key.any { it == ' ' || it == '\t' || it == '=' }) {
+    if (escapeKey) {
+        write("\"${key.replace("\"", "\\\"")}\"")
+    } else {
+        write(key)
     }
+    write(" = ")
+}
 
-    private fun escapeQuotes(str: String): String {
-        return str.replace("\"", "\\\"")
+fun <T> ConfigWriter.map(keys: Set<T>, escapeKey: Boolean = false, block: Writer.(T) -> Unit) {
+    write("{")
+    var remaining = keys.size
+    for (key in keys) {
+        writeKey(key.toString(), escapeKey)
+        block.invoke(this, key)
+        if (--remaining > 0) {
+            write(", ")
+        }
     }
+    write("}")
+}
+
+fun ConfigWriter.list(size: Int, block: Writer.(Int) -> Unit) {
+    write("[")
+    var remaining = size
+    for (index in 0 until size) {
+        block.invoke(this, index)
+        if (--remaining > 0) {
+            write(", ")
+        }
+    }
+    write("]")
 }

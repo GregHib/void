@@ -9,6 +9,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.pipe.extra.ItemDefaults
 import world.gregs.voidps.tools.definition.item.pipe.extra.ItemEquipmentInfo
@@ -19,7 +20,6 @@ import world.gregs.voidps.tools.definition.item.pipe.page.LivePageCollector
 import world.gregs.voidps.tools.definition.item.pipe.page.OfflinePageCollector
 import world.gregs.voidps.tools.definition.item.pipe.page.PageCollector
 import world.gregs.voidps.tools.definition.item.pipe.page.UniqueIdentifiers
-import world.gregs.voidps.tools.property
 import world.gregs.voidps.tools.wiki.model.Wiki
 import world.gregs.voidps.tools.wiki.model.WikiPage
 import world.gregs.voidps.tools.wiki.scrape.RunescapeWiki.export
@@ -53,8 +53,9 @@ object ItemDefinitionPipeline {
         val cache718 = CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\")
         val revisionDate = LocalDate.of(2011, Month.JANUARY, 31)// 634
 
+        Settings.load()
         val start = System.currentTimeMillis()
-        val cache: Cache = CacheDelegate(property("storage.cache.path"))
+        val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
         val decoder = ItemDecoder().load(cache)
 
         val pages = getPages(decoder, rs2Wiki)

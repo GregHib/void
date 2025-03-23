@@ -2,6 +2,7 @@ package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
 import world.gregs.voidps.cache.FileCache
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.tools.convert.DefinitionsParameterConverter
 import world.gregs.voidps.tools.convert.InventoryConverter
 import world.gregs.voidps.tools.map.MapPacker
@@ -15,7 +16,8 @@ object CacheBuilder {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val target = File("./data/cache/")
+        Settings.load()
+        val target = File(Settings["storage.cache.path"])
 
         val cache727 = File("${System.getProperty("user.home")}/Downloads/727 cache with most xteas/")
         if (!cache727.exists()) {

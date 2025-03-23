@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.Tile
 
 class DatabaseStorage : AccountStorage {
+    private val variableNames = setOf("clan_name", "display_name", "clan_join_rank", "clan_talk_rank", "clan_kick_rank", "clan_loot_rank", "coin_share_setting")
 
     override fun names(): Map<String, AccountDefinition> = transaction {
         val display = VariablesTable.alias("display_name")
@@ -38,7 +39,6 @@ class DatabaseStorage : AccountStorage {
     }
 
     override fun clans(): Map<String, Clan> = transaction {
-        val variableNames = setOf("clan_name", "display_name", "clan_join_rank", "clan_talk_rank", "clan_kick_rank", "clan_loot_rank", "coin_share_setting")
         val names = CustomFunction<List<String>>("ARRAY_AGG", ArrayColumnType(VarCharColumnType()), VariablesTable.name).alias("variable_names")
         val strings = CustomFunction<List<String>>("ARRAY_AGG", ArrayColumnType(VarCharColumnType()), VariablesTable.string).alias("string_values")
         val booleans = CustomFunction<List<Boolean>>("ARRAY_AGG", ArrayColumnType(VarCharColumnType()), VariablesTable.boolean).alias("bool_values")
