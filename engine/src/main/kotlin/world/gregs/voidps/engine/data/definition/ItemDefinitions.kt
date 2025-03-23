@@ -7,17 +7,12 @@ import net.pearx.kasechange.toSentenceCase
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.data.*
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import java.nio.file.Files
-import java.nio.file.Path
-import kotlin.io.path.extension
-import kotlin.io.path.pathString
 
 class ItemDefinitions(
     override var definitions: Array<ItemDefinition>
@@ -38,6 +33,7 @@ class ItemDefinitions(
                     equipment[def.id] = index++
                 }
             }
+            val clones = Object2ObjectOpenHashMap<String, String>()
             val ids = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)
             for (path in paths) {
@@ -89,9 +85,12 @@ class ItemDefinitions(
                                 "clone" -> {
                                     val item = string()
                                     val itemId = ids.getInt(item)
-                                    require(itemId != -1) { "Unable to find item id to clone '$item'" }
-                                    val definition = definitions[itemId]
-                                    extras.putAll(definition.extras ?: continue)
+                                    if (itemId == -1) {
+                                        clones[stringId] = item
+                                    } else {
+                                        val definition = definitions[itemId]
+                                        extras.putAll(definition.extras ?: continue)
+                                    }
                                 }
                                 else -> extras[key] = value()
                             }
@@ -105,6 +104,15 @@ class ItemDefinitions(
                         }
                     }
                 }
+            }
+            for ((item, clone) in clones) {
+                val cloneId = ids.getInt(clone)
+                require(cloneId != -1) { "Unable to find item id to clone '$clone'" }
+                val definition = definitions[cloneId]
+                val id = ids.getInt(item)
+                require(id != -1) { "Unable to find item id '$item'" }
+                val extras = definitions[id].extras as MutableMap<String, Any>
+                extras.putAll(definition.extras ?: continue)
             }
             for (definition in definitions) {
                 if (definition.stringId.endsWith("_lent")) {

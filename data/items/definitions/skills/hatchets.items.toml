@@ -1,0 +1,130 @@
+[hatchet_handle]
+id = 492
+weight = 0.1
+slot = "Weapon"
+examine = "Useless."
+use = "Removed"
+
+[hatchet_handle_noted]
+id = 493
+
+[broken_hatchet_bronze]
+id = 494
+weight = 0.907
+slot = "Weapon"
+examine = "Useless."
+use = "Removed"
+
+[broken_hatchet_noted]
+id = 495
+
+[broken_hatchet_iron]
+id = 496
+weight = 0.907
+slot = "Weapon"
+examine = "Useless."
+use = "Removed"
+
+[broken_hatchet_noted_2]
+id = 497
+
+[broken_hatchet_steel]
+id = 498
+weight = 0.907
+slot = "Weapon"
+examine = "Useless."
+use = "Removed"
+
+[broken_hatchet_noted_3]
+id = 499
+
+[broken_hatchet_black]
+id = 500
+weight = 0.907
+slot = "Weapon"
+examine = "Useless."
+use = "Removed"
+
+[broken_hatchet_noted_4]
+id = 501
+
+[broken_hatchet_mithril]
+id = 502
+weight = 0.907
+slot = "Weapon"
+examine = "Useless."
+use = "Removed"
+
+[broken_hatchet_noted_5]
+id = 503
+
+[broken_hatchet_adamant]
+id = 504
+weight = 0.907
+slot = "Weapon"
+examine = "Useless."
+use = "Removed"
+
+[broken_hatchet_noted_6]
+id = 505
+
+[broken_hatchet_rune]
+id = 506
+weight = 0.907
+slot = "Weapon"
+examine = "Useless."
+use = "Removed"
+
+[broken_hatchet_noted_7]
+id = 507
+
+[hatchet_head_bronze]
+id = 508
+weight = 0.1
+examine = "Useless."
+use = "Removed"
+
+[hatchet_head_noted]
+id = 509
+
+[hatchet_head_iron]
+clone = "hatchet_head_bronze"
+id = 510
+
+[hatchet_head_noted_2]
+id = 511
+
+[hatchet_head_steel]
+clone = "hatchet_head_bronze"
+id = 512
+
+[hatchet_head_noted_3]
+id = 513
+
+[hatchet_head_black]
+clone = "hatchet_head_bronze"
+id = 514
+
+[hatchet_head_noted_4]
+id = 515
+
+[hatchet_head_mithril]
+clone = "hatchet_head_bronze"
+id = 516
+
+[hatchet_head_noted_5]
+id = 517
+
+[hatchet_head_adamant]
+clone = "hatchet_head_bronze"
+id = 518
+
+[hatchet_head_noted_6]
+id = 519
+
+[hatchet_head_rune]
+clone = "hatchet_head_bronze"
+id = 520
+
+[hatchet_head_noted_7]
+id = 521

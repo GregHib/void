@@ -1,0 +1,25 @@
+[cadava_berries]
+id = 753
+price = 20
+limit = 100
+weight = 0.007
+examine = "Poisonous berries."
+
+[cadava_berries_noted]
+id = 754
+
+[message_romeo_and_juliet]
+id = 755
+tradeable = false
+weight = 0.02
+examine = "A message from Juliet to Romeo."
+kept = "Vanish"
+use = "Removed"
+
+[cadava_potion]
+id = 756
+tradeable = false
+weight = 0.025
+examine = "This potion will almost certainly almost kill you."
+use = "Quest"
+kept = "Reclaim"

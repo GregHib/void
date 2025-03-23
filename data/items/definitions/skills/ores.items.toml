@@ -1,0 +1,154 @@
+[clay]
+id = 434
+price = 34
+limit = 25000
+weight = 1.0
+mining = {
+xp = 5.0,
+chance = "75-300"
+}
+full = "soft_clay"
+examine = "Some hard dry clay."
+kept = "Wilderness"
+
+[clay_noted]
+id = 435
+
+[copper_ore]
+id = 436
+price = 18
+limit = 25000
+weight = 2.267
+mining = {
+xp = 17.5,
+chance = "40-500",
+}
+examine = "This needs refining."
+kept = "Wilderness"
+
+[copper_ore_noted]
+id = 437
+
+[tin_ore]
+id = 438
+price = 20
+limit = 25000
+weight = 2.267
+mining = {
+xp = 17.5,
+chance = "40-500"
+}
+examine = "This needs refining."
+kept = "Wilderness"
+
+[tin_ore_noted]
+id = 439
+
+[iron_ore]
+id = 440
+price = 95
+limit = 25000
+weight = 2.267
+mining = {
+xp = 35.0,
+chance = "110-350"
+}
+examine = "This needs refining."
+kept = "Wilderness"
+
+[iron_ore_noted]
+id = 441
+
+[silver_ore]
+id = 442
+price = 101
+limit = 25000
+weight = 2.267
+mining = {
+xp = 40.0,
+chance = "25-200"
+}
+examine = "This needs refining."
+
+[silver_ore_noted]
+id = 443
+
+[gold_ore]
+id = 444
+price = 209
+limit = 25000
+weight = 2.267
+mining = {
+xp = 65.0,
+chance = "7-75"
+}
+examine = "This needs refining."
+
+[gold_ore_noted]
+id = 445
+
+[perfect_gold_ore]
+id = 446
+tradeable = false
+weight = 2.267
+examine = "This needs refining."
+use = "Quest"
+kept = "Reclaim"
+
+[mithril_ore]
+id = 447
+price = 137
+limit = 25000
+weight = 1.814
+mining = {
+xp = 80.0,
+chance = "10-75"
+}
+examine = "This needs refining."
+
+[mithril_ore_noted]
+id = 448
+
+[adamantite_ore]
+id = 449
+price = 785
+limit = 25000
+weight = 2.721
+mining = {
+xp = 95.0,
+chance = "5-55"
+}
+aka = ["adamant_ore"]
+examine = "This needs refining."
+
+[adamantite_ore_noted]
+id = 450
+
+[runite_ore]
+id = 451
+price = 10900
+limit = 25000
+weight = 2.267
+mining = {
+xp = 125.0,
+chance = "1-18",
+}
+aka = ["rune_ore"]
+examine = "This needs refining."
+
+[runite_ore_noted]
+id = 452
+
+[coal]
+id = 453
+price = 247
+limit = 25000
+weight = 2.267
+mining = {
+xp = 50.0,
+chance = "20-150"
+}
+examine = "Hmm, a non-renewable energy source!"
+
+[coal_noted]
+id = 454

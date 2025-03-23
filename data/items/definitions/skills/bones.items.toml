@@ -1,0 +1,66 @@
+[bones]
+id = 526
+price = 68
+limit = 10000
+weight = 0.5
+examine = "Bones are for burying."
+kept = "Wilderness"
+prayer_xp = 4.5
+
+[bones_noted]
+id = 527
+
+[burnt_bones]
+id = 528
+price = 174
+limit = 10000
+weight = 0.5
+prayer_xp = 4.5
+examine = "Bones are for burying."
+
+[burnt_bones_noted]
+id = 529
+
+[bat_bones]
+id = 530
+price = 213
+limit = 10000
+weight = 0.3
+prayer_xp = 5.0
+examine = "Ew, it's a pile of bones."
+
+[bat_bones_noted]
+id = 531
+
+[big_bones]
+id = 532
+price = 343
+limit = 10000
+weight = 0.8
+prayer_xp = 5.0
+examine = "Ew, it's a pile of bones. Bury for Prayer XP."
+
+[big_bones_noted]
+id = 533
+
+[baby_dragon_bones]
+id = 534
+price = 1161
+limit = 10000
+weight = 0.8
+prayer_xp = 30.0
+examine = "Ew, it's a pile of bones."
+
+[babydragon_bones_noted]
+id = 535
+
+[dragon_bones]
+id = 536
+price = 3700
+limit = 10000
+weight = 1.5
+prayer_xp = 72.0
+examine = "These would feed a dog for months."
+
+[dragon_bones_noted]
+id = 537

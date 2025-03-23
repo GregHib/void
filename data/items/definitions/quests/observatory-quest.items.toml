@@ -1,0 +1,35 @@
+[astronomy_book]
+id = 600
+price = 590
+limit = 100
+weight = 0.003
+aka = ["the_tale_of_scorpius"]
+examine = "A book on the history of astronomy."
+kept = "Wilderness"
+
+[goblin_kitchen_key]
+id = 601
+tradeable = false
+weight = 0.01
+destroy = "You'll have to find another, down in the dungeon."
+examine = "A small key for a large door."
+use = "Quest"
+kept = "Wilderness"
+
+[lens_mould]
+id = 602
+tradeable = false
+weight = 1.0
+destroy = "You'll have to get another down in the dungeon."
+examine = "An unusual mould in the shape of a disc."
+use = "Quest"
+kept = "Wilderness"
+
+[observatory_lens]
+id = 603
+tradeable = false
+weight = 0.003
+destroy = "You'll have to get another mould and piece of molten glass."
+examine = "A perfectly circular disc of glass."
+use = "Quest"
+kept = "Wilderness"

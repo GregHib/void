@@ -1,0 +1,47 @@
+[tinderbox]
+id = 590
+price = 104
+limit = 5000
+weight = 0.035
+examine = "Useful for lighting a fire."
+kept = "Wilderness"
+
+[tinderbox_noted]
+id = 591
+
+[ashes]
+id = 592
+price = 65
+limit = 10000
+weight = 0.056
+examine = "A heap of ashes."
+
+[ashes_noted]
+id = 593
+
+[lit_torch]
+id = 594
+tradeable = false
+weight = 0.5
+light_source = {
+once_extinguish = "unlit_torch"
+}
+examine = "A lit home-made torch."
+kept = "Wilderness"
+
+[torch]
+id = 595
+
+[unlit_torch]
+id = 596
+price = 1
+limit = 100
+weight = 0.5
+light_source = {
+once_lit = "lit_torch",
+level = 1,
+}
+examine = "An unlit home-made torch."
+
+[unlit_torch_noted]
+id = 597

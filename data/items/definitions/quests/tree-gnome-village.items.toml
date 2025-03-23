@@ -1,0 +1,23 @@
+[orb_of_protection]
+id = 587
+tradeable = false
+weight = 1.0
+examine = "A strange glowing green orb."
+use = "Quest"
+kept = "Wilderness"
+
+[orbs_of_protection]
+id = 588
+tradeable = false
+weight = 2.0
+examine = "Two strange glowing green orbs."
+use = "Quest"
+kept = "Wilderness"
+
+[gnome_amulet]
+id = 589
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+examine = "It's an amulet of protection given to me by the gnomes."
+kept = "Wilderness"

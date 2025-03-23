@@ -1,0 +1,340 @@
+[specimen_jar]
+id = 669
+tradeable = false
+weight = 0.056
+examine = "A receptacle for specimens!"
+use = "Quest"
+kept = "Wilderness"
+
+[specimen_brush]
+id = 670
+tradeable = false
+weight = 0.056
+examine = "A small brush used to clean rock samples."
+use = "Quest"
+kept = "Wilderness"
+
+[animal_skull_the_dig_site]
+id = 671
+tradeable = false
+weight = 0.085
+destroy = "Pickpocket Dig Site workmen to obtain another."
+examine = "A carefully-kept-safe skull sample."
+use = "Quest"
+kept = "Wilderness"
+
+[special_cup]
+id = 672
+tradeable = false
+weight = 0.085
+destroy = "Pan in the river near Varrock Dig Site to obtain another."
+examine = "A special cup."
+use = "Quest"
+kept = "Wilderness"
+
+[teddy_the_dig_site]
+id = 673
+tradeable = false
+weight = 0.085
+destroy = "Pickpocket the female student at Varrock Dig Site to obtain another."
+examine = "A lucky mascot."
+use = "Quest"
+kept = "Wilderness"
+
+[cracked_sample]
+id = 674
+tradeable = false
+weight = 0.085
+examine = "A roughly shaped piece of rock."
+kept = "Wilderness"
+
+[rock_pick]
+id = 675
+tradeable = false
+weight = 0.056
+slot = "Weapon"
+examine = "A small pick for digging."
+kept = "Wilderness"
+
+[trowel]
+id = 676
+tradeable = false
+weight = 0.056
+examine = "Used for digging!"
+use = "Quest"
+kept = "Wilderness"
+
+[panning_tray]
+id = 677
+tradeable = false
+weight = 0.085
+examine = "An empty tray for panning."
+use = "Quest"
+kept = "Wilderness"
+
+[panning_tray_2]
+id = 678
+tradeable = false
+weight = 0.085
+examine = "An empty tray for panning."
+use = "Quest"
+kept = "Wilderness"
+
+[panning_tray_full]
+id = 679
+tradeable = false
+weight = 0.17
+examine = "This tray contains mud."
+use = "Quest"
+kept = "Wilderness"
+
+[nuggets]
+id = 680
+tradeable = false
+examine = "Pure, lovely gold!"
+kept = "Wilderness"
+
+[ancient_talisman]
+id = 681
+tradeable = false
+weight = 0.085
+examine = "An unusual symbol as yet unidentified by archaeological expert Terry Balando."
+use = "Quest"
+kept = "Wilderness"
+
+[unstamped_letter]
+id = 682
+tradeable = false
+weight = 0.02
+examine = "A letter waiting to be stamped."
+use = "Quest"
+kept = "Wilderness"
+
+[sealed_letter]
+id = 683
+tradeable = false
+weight = 0.02
+examine = "A sealed letter of recommendation."
+use = "Quest"
+kept = "Wilderness"
+
+[belt_buckle]
+id = 684
+tradeable = false
+weight = 1.0
+examine = "Used to hold up trousers!"
+kept = "Reclaim"
+
+[old_boot]
+id = 685
+tradeable = false
+weight = 0.056
+examine = "Phew!"
+kept = "Reclaim"
+
+[rusty_sword]
+id = 686
+tradeable = false
+weight = 2.267
+material = "metal"
+examine = "A decent-enough weapon gone rusty."
+kept = "Reclaim"
+
+[broken_arrow]
+id = 687
+tradeable = false
+weight = 0.015
+examine = "This must have been shot at high speed."
+kept = "Reclaim"
+
+[buttons]
+id = 688
+tradeable = false
+weight = 0.001
+examine = "Not Dick Whittington's helper at all!"
+kept = "Reclaim"
+
+[broken_staff]
+id = 689
+tradeable = false
+weight = 1.814
+examine = "I pity the poor person beaten with this!"
+kept = "Reclaim"
+
+[picture_9]
+clone = "picture_6"
+id = 690
+
+[level_1_certificate]
+id = 691
+tradeable = false
+weight = 0.02
+examine = "The owner has passed the Earth Sciences level 1 exam."
+use = "Quest"
+kept = "Wilderness"
+
+[level_2_certificate]
+id = 692
+tradeable = false
+weight = 0.02
+examine = "The owner has passed Earth Sciences level 2 exam."
+use = "Quest"
+kept = "Wilderness"
+
+[level_3_certificate]
+id = 693
+tradeable = false
+weight = 0.02
+examine = "The owner has passed Earth Sciences level 3 exam."
+use = "Quest"
+kept = "Wilderness"
+
+[ceramic_remains]
+id = 694
+tradeable = false
+weight = 0.056
+examine = "Smashing!"
+kept = "Reclaim"
+
+[old_tooth]
+id = 695
+tradeable = false
+weight = 0.001
+examine = "Now, if I can just find a tooth fairy to sell this to."
+use = "Quest"
+kept = "Reclaim"
+
+[invitation_letter]
+id = 696
+tradeable = false
+weight = 0.02
+examine = "A letter inviting me to use the private dig shafts."
+use = "Quest"
+kept = "Wilderness"
+
+[damaged_armour]
+id = 697
+tradeable = false
+weight = 7.711
+examine = "It would be hard to repair this!"
+kept = "Reclaim"
+
+[broken_armour]
+id = 698
+tradeable = false
+weight = 7.711
+examine = "No use to me in this state..."
+kept = "Reclaim"
+
+[stone_tablet_the_dig_site]
+id = 699
+tradeable = false
+weight = 0.8
+examine = "An old stone slab with writing on it."
+use = "Quest"
+kept = "Wilderness"
+
+[chemical_powder]
+id = 700
+tradeable = false
+weight = 0.028
+examine = "An acrid chemical."
+use = "Quest"
+kept = "Wilderness"
+
+[ammonium_nitrate]
+id = 701
+tradeable = false
+weight = 0.015
+examine = "An acrid chemical."
+use = "Quest"
+kept = "Wilderness"
+
+[unidentified_liquid]
+id = 702
+tradeable = false
+weight = 0.025
+empty = "vial"
+examine = "A strong chemical."
+use = "Quest"
+kept = "Wilderness"
+
+[nitroglycerine]
+id = 703
+tradeable = false
+weight = 0.025
+examine = "A strong chemical."
+kept = "Wilderness"
+
+[ground_charcoal]
+id = 704
+tradeable = false
+weight = 0.008
+examine = "Charcoal - crushed to small pieces!"
+use = "Quest"
+kept = "Wilderness"
+
+[mixed_chemicals_step_1]
+id = 705
+tradeable = false
+weight = 0.03
+examine = "A mixture of strong chemicals."
+use = "Quest"
+kept = "Wilderness"
+
+[mixed_chemicals_step_2]
+id = 706
+tradeable = false
+weight = 0.035
+examine = "A mixture of strong chemicals."
+use = "Quest"
+kept = "Wilderness"
+
+[chemical_compound]
+id = 707
+tradeable = false
+weight = 0.035
+examine = "A mixture of strong chemicals."
+kept = "Wilderness"
+
+[arcenia_root]
+id = 708
+tradeable = false
+weight = 0.01
+examine = "The root of an arcenia plant."
+use = "Quest"
+kept = "Reclaim"
+
+[chest_key_the_dig_site]
+id = 709
+tradeable = false
+weight = 0.01
+examine = "This fits a chest."
+use = "Quest"
+kept = "Wilderness"
+
+[vase_dig_site]
+id = 710
+tradeable = false
+weight = 0.5
+examine = "A vessel for holding plants."
+kept = "Reclaim"
+
+[book_on_chemicals]
+id = 711
+tradeable = false
+weight = 0.51
+aka = ["volatile_chemicals_experimental_test_notes"]
+examine = "It's about chemicals, judging from its cover."
+kept = "Wilderness"
+
+[cup_of_tea_discontinued]
+id = 712
+limit = 1000
+heals = 30
+excess = "empty_cup"
+tradeable = false
+weight = 0.15
+examine = "A refreshing cuppa."
+kept = "Wilderness"
+use = "Limited"
