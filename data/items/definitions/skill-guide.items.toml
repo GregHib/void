@@ -178,3 +178,40 @@ id = 6781
 [bandit_3]
 clone = "bandit"
 id = 6782
+
+[killerwatt]
+id = 7160
+examine = "A ball of Electrical energy."
+
+[mutated_zygomite]
+id = 7420
+examine = "A fun guy. No wait, that's awful. Plus it doesn't even make sense."
+
+[evil_dave]
+id = 7499
+
+[dwarf]
+clone = "dwarf_the_giant_dwarf"
+id = 7500
+
+[goblins]
+id = 7501
+
+[lumbridge_sage]
+id = 7502
+
+[monkey_11]
+clone = "monkey"
+id = 7503
+
+[osman]
+id = 7504
+
+[pirate_pete]
+id = 7505
+
+[sir_amik_varze]
+id = 7506
+
+[skrach]
+id = 7507

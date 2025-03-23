@@ -21,3 +21,11 @@ weight = 0.02
 examine = "Pirates don't have the best handwriting..."
 use = "Quest"
 kept = "Wilderness"
+
+[casket_pirates_treasure]
+id = 7956
+tradeable = false
+weight = 5.0
+examine = "I hope there's treasure in it."
+use = "Quest"
+kept = "Wilderness"

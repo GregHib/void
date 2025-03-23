@@ -1,3 +1,7 @@
+[throwing_rope]
+id = 945
+slot = "Weapon"
+
 [ibans_staff]
 id = 1409
 weight = 2.267

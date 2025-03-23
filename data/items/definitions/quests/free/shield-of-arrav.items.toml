@@ -34,6 +34,15 @@ examine = "An intelligence report."
 use = "Quest"
 kept = "Wilderness"
 
+[broken_shield_right]
+id = 763
+tradeable = false
+weight = 2.721
+destroy = "You will need to enter the Phoenix Gang hideout to reclaim this half of the shield."
+examine = "Half of the Shield of Arrav."
+use = "Quest"
+kept = "Wilderness"
+
 [broken_shield_left]
 id = 765
 tradeable = false

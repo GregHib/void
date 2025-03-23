@@ -1,0 +1,17 @@
+[bottle_of_wine]
+id = 7919
+heals = 140
+excess = "empty_wine_bottle"
+weight = 1.0
+examine = "A very good vintage."
+kept = "Wilderness"
+
+[bottle_of_wine_noted]
+id = 7920
+
+[empty_wine_bottle]
+id = 7921
+tradeable = false
+weight = 1.0
+examine = "This one has clearly been taken down and passed around."
+kept = "Wilderness"

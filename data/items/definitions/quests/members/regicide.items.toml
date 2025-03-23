@@ -160,3 +160,37 @@ tradeable = false
 weight = 0.226
 examine = "A book by Mel Achy."
 kept = "Wilderness"
+
+[burnt_rabbit]
+id = 7222
+limit = 1000
+examine = "This could be mistaken for charcoal."
+
+[roast_rabbit]
+id = 7223
+price = 36
+limit = 1000
+heals = 70
+weight = 0.3
+examine = "A delicious looking piece of roast rabbit."
+kept = "Wilderness"
+
+[skewered_rabbit]
+id = 7224
+price = 112
+limit = 1000
+weight = 1.8
+cooking = {
+  level = 16,
+  xp = 72.0,
+  chances = {
+    fire = "160-255",
+  },
+  ticks = 3,
+  type = "roast",
+  cooked = "roast_rabbit",
+  cooked_message = "You roast the skewered rabbit.",
+  burnt = "You accidentally burn the skewered rabbit.",
+}
+examine = "All ready to be used on a fire."
+kept = "Wilderness"

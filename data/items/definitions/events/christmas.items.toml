@@ -1,3 +1,99 @@
+[christmas_cracker]
+id = 962
+price = 1623458489
+limit = 2
+weight = 0.2
+examine = "I need to pull this."
+kept = "Wilderness"
+use = "Limited"
+
+[christmas_cracker_noted]
+id = 963
+
+[red_partyhat]
+id = 1038
+price = 1900000000
+limit = 2
+weight = 0.056
+slot = "Hat"
+examine = "A nice hat from a cracker."
+use = "Limited"
+
+[red_partyhat_noted]
+id = 1039
+
+[yellow_partyhat]
+id = 1040
+price = 1400000000
+limit = 2
+weight = 0.056
+slot = "Hat"
+examine = "A nice hat from a cracker."
+use = "Limited"
+
+[yellow_partyhat_noted]
+id = 1041
+
+[blue_partyhat]
+id = 1042
+price = 2100000000
+limit = 2
+weight = 0.056
+slot = "Hat"
+examine = "A nice hat from a cracker."
+use = "Limited"
+
+[blue_partyhat_noted]
+id = 1043
+
+[green_partyhat]
+id = 1044
+price = 1700000000
+limit = 2
+weight = 0.056
+slot = "Hat"
+examine = "A nice hat from a cracker."
+use = "Limited"
+
+[green_partyhat_noted]
+id = 1045
+
+[purple_partyhat]
+id = 1046
+price = 1300000000
+limit = 2
+weight = 0.056
+slot = "Hat"
+examine = "A nice hat from a cracker."
+use = "Limited"
+
+[purple_partyhat_noted]
+id = 1047
+
+[white_partyhat]
+id = 1048
+price = 2100000000
+limit = 2
+weight = 0.056
+slot = "Hat"
+examine = "A nice hat from a cracker."
+use = "Limited"
+
+[white_partyhat_noted]
+id = 1049
+
+[santa_hat]
+id = 1050
+price = 129300000
+limit = 2
+weight = 0.113
+slot = "Hat"
+examine = "It's a Santa hat."
+use = "Limited"
+
+[santa_hat_noted]
+id = 1051
+
 [yo_yo]
 id = 4079
 tradeable = false
@@ -6,3 +102,497 @@ aka = ["yoyo"]
 examine = "A gift from Santa."
 kept = "Wilderness"
 use = "Limited"
+
+[star_bauble]
+id = 6822
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another can be claimed from Diango's workshop."
+examine = "An unpainted bauble shaped like a star."
+kept = "Reclaim"
+use = "Removed"
+
+[star_bauble_yellow]
+id = 6823
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a star painted yellow."
+kept = "Reclaim"
+use = "Removed"
+
+[star_bauble_red]
+id = 6824
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a star painted red."
+kept = "Reclaim"
+use = "Removed"
+
+[star_bauble_blue]
+id = 6825
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a star painted blue."
+kept = "Reclaim"
+use = "Removed"
+
+[star_bauble_green]
+id = 6826
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a star painted green."
+kept = "Reclaim"
+use = "Removed"
+
+[star_bauble_pink]
+id = 6827
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a star painted pink."
+kept = "Reclaim"
+use = "Removed"
+
+[box_bauble]
+id = 6828
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another can be claimed from Diango's workshop."
+examine = "An unpainted bauble shaped like a gift."
+kept = "Reclaim"
+use = "Removed"
+
+[box_bauble_yellow]
+id = 6829
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a gift painted yellow."
+kept = "Reclaim"
+use = "Removed"
+
+[box_bauble_red]
+id = 6830
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a gift painted red."
+kept = "Reclaim"
+use = "Removed"
+
+[box_bauble_blue]
+id = 6831
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a gift painted blue."
+kept = "Reclaim"
+use = "Removed"
+
+[box_bauble_green]
+id = 6832
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a gift painted green."
+kept = "Reclaim"
+use = "Removed"
+
+[box_bauble_pink]
+id = 6833
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a gift painted pink."
+kept = "Reclaim"
+use = "Removed"
+
+[diamond_bauble]
+id = 6834
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another can be claimed from Diango's workshop."
+examine = "An unpainted bauble shaped like a diamond."
+kept = "Reclaim"
+use = "Removed"
+
+[diamond_bauble_yellow]
+id = 6835
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a diamond painted yellow."
+kept = "Reclaim"
+use = "Removed"
+
+[diamond_bauble_red]
+id = 6836
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a diamond painted red."
+kept = "Reclaim"
+use = "Removed"
+
+[diamond_bauble_blue]
+id = 6837
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a diamond painted blue."
+kept = "Reclaim"
+use = "Removed"
+
+[diamond_bauble_green]
+id = 6838
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a diamond painted green."
+kept = "Reclaim"
+use = "Removed"
+
+[diamond_bauble_pink]
+id = 6839
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a diamond painted pink."
+kept = "Reclaim"
+use = "Removed"
+
+[tree_bauble]
+id = 6840
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another can be claimed from Diango's workshop."
+examine = "An unpainted bauble shaped like a wintumber tree."
+kept = "Reclaim"
+use = "Removed"
+
+[tree_bauble_yellow]
+id = 6841
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a wintumber tree painted yellow."
+kept = "Reclaim"
+use = "Removed"
+
+[tree_bauble_red]
+id = 6842
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a wintumber tree painted red."
+kept = "Reclaim"
+use = "Removed"
+
+[tree_bauble_blue]
+id = 6843
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a wintumber tree painted blue."
+kept = "Reclaim"
+use = "Removed"
+
+[tree_bauble_green]
+id = 6844
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a wintumber tree painted green."
+kept = "Reclaim"
+use = "Removed"
+
+[tree_bauble_pink]
+id = 6845
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a wintumber tree painted pink."
+kept = "Reclaim"
+use = "Removed"
+
+[bell_bauble]
+id = 6846
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another can be claimed from Diango's workshop."
+examine = "An unpainted bauble shaped like a bell."
+kept = "Reclaim"
+use = "Removed"
+
+[bell_bauble_yellow]
+id = 6847
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a bell painted yellow."
+kept = "Reclaim"
+use = "Removed"
+
+[bell_bauble_red]
+id = 6848
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a bell painted red."
+kept = "Reclaim"
+use = "Removed"
+
+[bell_bauble_blue]
+id = 6849
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a bell painted blue."
+kept = "Reclaim"
+use = "Removed"
+
+[bell_bauble_green]
+id = 6850
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a bell painted green."
+kept = "Reclaim"
+use = "Removed"
+
+[bell_bauble_pink]
+id = 6851
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
+examine = "A bauble shaped like a bell painted pink."
+kept = "Reclaim"
+use = "Removed"
+
+[puppet_box]
+id = 6852
+destroy = "Another empty box can be claimed from Rosie in Diango's workshop."
+examine = "A box for storing completed puppets."
+
+[bauble_box]
+id = 6853
+weight = 1.0
+examine = "A box for storing painted baubles."
+
+[puppet_box_2]
+id = 6854
+destroy = "If you destroy this, the marionettes inside will break. Another empty box can be claimed from Rosie in Diango's workshop."
+examine = "A box full of puppets. Bring it to Diango."
+
+[bauble_box_2]
+id = 6855
+tradeable = false
+weight = 2.0
+examine = "A box for storing painted baubles."
+kept = "Reclaim"
+use = "Removed"
+
+[bobble_hat]
+id = 6856
+weight = 2.0
+slot = "Hat"
+examine = "A box full of painted baubles. Give to a Pixie or use to decorate a tree."
+
+[bobble_scarf]
+id = 6857
+tradeable = false
+weight = 0.25
+slot = "Amulet"
+destroy = "You can obtain another scarf from Diango in the Draynor market."
+examine = "A woolly scarf."
+kept = "Wilderness"
+use = "Limited"
+
+[jester_hat]
+id = 6858
+tradeable = false
+weight = 0.25
+slot = "Hat"
+destroy = "You can obtain another hat from Diango in the Draynor Market."
+examine = "A woolly jester hat."
+kept = "Wilderness"
+use = "Limited"
+
+[jester_scarf]
+id = 6859
+tradeable = false
+weight = 0.25
+slot = "Amulet"
+destroy = "You can get another Jester scarf from Diango."
+examine = "A woolly jester scarf."
+kept = "Wilderness"
+use = "Limited"
+
+[tri_jester_hat]
+id = 6860
+tradeable = false
+weight = 0.25
+slot = "Hat"
+destroy = "You can obtain another hat from Diango in the Draynor Market."
+examine = "A woolly triple bobble jester hat."
+kept = "Wilderness"
+use = "Limited"
+
+[tri_jester_scarf]
+id = 6861
+tradeable = false
+weight = 0.25
+slot = "Amulet"
+destroy = "You can obtain another jester scarf from Diango in the Draynor Market."
+examine = "A woolly jester scarf."
+kept = "Wilderness"
+use = "Limited"
+
+[woolly_hat]
+id = 6862
+tradeable = false
+weight = 0.25
+slot = "Hat"
+destroy = "You can obtain another hat from Diango in the Draynor Market."
+examine = "A woolly tobogganing hat."
+kept = "Wilderness"
+use = "Limited"
+
+[woolly_scarf]
+id = 6863
+tradeable = false
+weight = 0.25
+slot = "Amulet"
+destroy = "You can obtain another scarf from Diango in the Draynor market."
+examine = "A woolly tobogganing scarf."
+kept = "Wilderness"
+use = "Limited"
+
+[marionette_handle]
+id = 6864
+tradeable = false
+weight = 0.2
+slot = "Weapon"
+examine = "The controlling part of a marionette."
+kept = "Reclaim"
+use = "Removed"
+
+[blue_marionette]
+id = 6865
+tradeable = false
+weight = 0.907
+destroy = "You can obtain another marionette in Diango's workshop by the trap door."
+examine = "I've got no strings ... oh hang on!"
+kept = "Vanish"
+use = "Limited"
+
+[green_marionette]
+clone = "blue_marionette"
+id = 6866
+
+[red_marionette]
+clone = "blue_marionette"
+id = 6867
+
+[blue_marionette_strung]
+id = 6868
+tradeable = false
+weight = 0.907
+examine = "I want to be a real boy!"
+kept = "Reclaim"
+use = "Removed"
+
+[green_marionette_strung]
+clone = "blue_marionette_strung"
+id = 6869
+
+[red_marionette_strung]
+clone = "blue_marionette_strung"
+id = 6870
+
+[red_marionette_torso]
+id = 6871
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another can be claimed from Diango's workshop."
+examine = "The torso of a marionette."
+kept = "Reclaim"
+use = "Removed"
+
+[red_marionette_head]
+id = 6872
+tradeable = false
+weight = 0.4
+destroy = "If you destroy this, another can be claimed from Diango's workshop."
+examine = "The torso and head of a marionette."
+kept = "Reclaim"
+use = "Removed"
+
+[red_marionette_arms]
+id = 6873
+tradeable = false
+weight = 0.6
+destroy = "If you destroy this, another can be claimed from Diango's workshop."
+examine = "The torso, head and arms of a marionette."
+kept = "Reclaim"
+use = "Removed"
+
+[red_marionette_legs]
+id = 6874
+tradeable = false
+weight = 0.8
+destroy = "If you destroy this, another can be claimed from Diango's workshop."
+examine = "No strings attached."
+kept = "Reclaim"
+use = "Removed"
+
+[blue_marionette_torso]
+id = 6875
+tradeable = false
+weight = 0.2
+destroy = "If you destroy this, another can be claimed from Diango's workshop."
+examine = "Needs a head."
+kept = "Reclaim"
+use = "Removed"
+
+[blue_marionette_head]
+id = 6876
+tradeable = false
+weight = 0.4
+destroy = "If you destroy this, another can be claimed from Diango's workshop."
+examine = "Needs arms."
+kept = "Reclaim"
+use = "Removed"
+
+[blue_marionette_arms]
+id = 6877
+tradeable = false
+weight = 0.6
+destroy = "If you destroy this, another can be claimed from Diango's workshop."
+examine = "Needs legs."
+kept = "Reclaim"
+use = "Removed"
+
+[blue_marionette_legs]
+clone = "red_marionette_legs"
+id = 6878
+
+[green_marionette_torso]
+clone = "blue_marionette_torso"
+id = 6879
+
+[green_marionette_head]
+clone = "blue_marionette_head"
+id = 6880
+
+[green_marionette_arms]
+clone = "blue_marionette_arms"
+id = 6881
+
+[green_marionette_legs]
+clone = "red_marionette_legs"
+id = 6882

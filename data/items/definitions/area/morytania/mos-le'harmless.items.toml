@@ -1,0 +1,179 @@
+[pirate_shirt_white]
+id = 7110
+price = 56
+limit = 100
+weight = 1.0
+slot = "Chest"
+examine = "A sea worthy shirt."
+
+[stripy_pirate_shirt_noted]
+id = 7111
+
+[pirate_bandana_white]
+id = 7112
+price = 723
+limit = 100
+weight = 0.1
+slot = "Hat"
+type = "Hair"
+examine = "Essential pirate wear."
+
+[pirate_bandana_noted]
+id = 7113
+
+[pirate_boots]
+id = 7114
+price = 1089
+limit = 100
+weight = 4.0
+slot = "Feet"
+examine = "Not for land lubbers."
+
+[pirate_boots_noted]
+id = 7115
+
+[pirate_leggings_white]
+id = 7116
+price = 88
+limit = 100
+weight = 1.0
+slot = "Legs"
+examine = "Well, okay, they're beige, but they're part of the white pirate clothing set, so..."
+
+[pirate_leggings_noted]
+id = 7117
+
+[pirate_shirt_red]
+id = 7122
+price = 1054
+limit = 100
+weight = 1.0
+slot = "Chest"
+examine = "A sea worthy shirt."
+
+[stripy_pirate_shirt_noted_2]
+id = 7123
+
+[pirate_bandana_red]
+id = 7124
+price = 290
+limit = 100
+weight = 0.1
+slot = "Hat"
+type = "Hair"
+examine = "Essential pirate wear."
+
+[pirate_bandana_noted_2]
+id = 7125
+
+[pirate_leggings_red]
+id = 7126
+price = 184
+limit = 100
+weight = 1.0
+slot = "Legs"
+examine = "A sea worthy pair of trousers."
+
+[pirate_leggings_noted_2]
+id = 7127
+
+[pirate_shirt_blue]
+id = 7128
+price = 882
+limit = 100
+weight = 1.0
+slot = "Chest"
+examine = "A sea worthy shirt."
+
+[stripy_pirate_shirt_noted_3]
+id = 7129
+
+[pirate_bandana_blue]
+id = 7130
+price = 165
+limit = 100
+weight = 0.1
+slot = "Hat"
+type = "Hair"
+examine = "Essential pirate wear."
+
+[pirate_bandana_noted_3]
+id = 7131
+
+[pirate_leggings_blue]
+id = 7132
+price = 348
+limit = 100
+weight = 1.0
+slot = "Legs"
+examine = "A sea worthy pair of trousers."
+
+[pirate_leggings_noted_3]
+id = 7133
+
+[pirate_shirt_brown]
+id = 7134
+price = 470
+limit = 100
+weight = 1.0
+slot = "Chest"
+examine = "A sea worthy shirt."
+
+[stripy_pirate_shirt_noted_4]
+id = 7135
+
+[pirate_bandana_brown]
+id = 7136
+price = 500
+limit = 100
+weight = 0.1
+slot = "Hat"
+type = "Hair"
+examine = "Essential pirate wear."
+
+[pirate_bandana_noted_4]
+id = 7137
+
+[pirate_leggings_brown]
+id = 7138
+price = 93
+limit = 100
+weight = 1.0
+slot = "Legs"
+examine = "A sea worthy pair of trousers."
+
+[pirate_leggings_noted_4]
+id = 7139
+
+[lucky_cutlass]
+id = 7140
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+examine = "Feels quite lucky."
+kept = "Reclaim"
+
+[harrys_cutlass]
+id = 7141
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+examine = "I hope he doesn't want it back."
+kept = "Reclaim"
+
+[rapier]
+id = 7142
+tradeable = false
+weight = 1.814
+aka = ["gentleman_mallards_rapier"]
+slot = "Weapon"
+examine = "The very butcher of a silk button."
+kept = "Reclaim"
+
+[braindeath_rum]
+id = 7157
+heals = 14
+tradeable = false
+weight = 0.907
+examine = "I think it is eating through the bottle."
+kept = "Reclaim"

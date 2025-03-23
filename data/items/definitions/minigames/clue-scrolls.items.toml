@@ -1139,3 +1139,323 @@ id = 3617
 [clue_scroll_medium_57]
 clone = "clue_scroll_easy_2"
 id = 3618
+
+[clue_scroll_easy_67]
+clone = "clue_scroll_easy"
+id = 7236
+
+[casket_easy_10]
+clone = "casket_easy"
+id = 7237
+
+[clue_scroll_easy_68]
+clone = "clue_scroll_easy_2"
+id = 7238
+
+[clue_scroll_hard_66]
+clone = "clue_scroll_hard"
+id = 7239
+
+[casket_hard_44]
+clone = "casket_easy"
+id = 7240
+
+[clue_scroll_hard_67]
+clone = "clue_scroll_easy_2"
+id = 7241
+
+[casket_hard_45]
+clone = "casket_easy"
+id = 7242
+
+[clue_scroll_hard_68]
+clone = "clue_scroll_hard_3"
+id = 7243
+
+[casket_hard_46]
+clone = "casket_easy"
+id = 7244
+
+[clue_scroll_hard_69]
+clone = "clue_scroll_hard_4"
+id = 7245
+
+[casket_hard_47]
+clone = "casket_easy"
+id = 7246
+
+[clue_scroll_hard_70]
+clone = "clue_scroll_hard"
+id = 7247
+
+[clue_scroll_hard_71]
+clone = "clue_scroll_hard"
+id = 7248
+
+[clue_scroll_hard_72]
+clone = "clue_scroll_easy_2"
+id = 7249
+
+[clue_scroll_hard_73]
+clone = "clue_scroll_hard_3"
+id = 7250
+
+[clue_scroll_hard_74]
+clone = "clue_scroll_hard_4"
+id = 7251
+
+[clue_scroll_hard_75]
+clone = "clue_scroll_hard"
+id = 7252
+
+[clue_scroll_hard_76]
+clone = "clue_scroll_hard"
+id = 7253
+
+[clue_scroll_hard_77]
+clone = "clue_scroll_easy_2"
+id = 7254
+
+[clue_scroll_hard_78]
+clone = "clue_scroll_hard_3"
+id = 7255
+
+[clue_scroll_hard_79]
+clone = "clue_scroll_hard_4"
+id = 7256
+
+[casket_hard_48]
+clone = "casket_easy"
+id = 7257
+
+[clue_scroll_hard_80]
+clone = "clue_scroll_hard"
+id = 7258
+
+[casket_hard_49]
+clone = "casket_easy"
+id = 7259
+
+[clue_scroll_hard_81]
+clone = "clue_scroll_hard"
+id = 7260
+
+[casket_hard_50]
+clone = "casket_easy"
+id = 7261
+
+[clue_scroll_hard_82]
+clone = "clue_scroll_easy_2"
+id = 7262
+
+[casket_hard_51]
+clone = "casket_easy"
+id = 7263
+
+[clue_scroll_hard_83]
+clone = "clue_scroll_hard_3"
+id = 7264
+
+[casket_hard_52]
+clone = "casket_easy"
+id = 7265
+
+[clue_scroll_hard_84]
+clone = "clue_scroll_hard_4"
+id = 7266
+
+[casket_hard_53]
+clone = "casket_easy"
+id = 7267
+
+[clue_scroll_hard_85]
+clone = "clue_scroll_hard"
+id = 7268
+
+[challenge_scroll_5]
+clone = "challenge_scroll"
+id = 7269
+
+[clue_scroll_hard_86]
+clone = "clue_scroll_hard"
+id = 7270
+
+[challenge_scroll_6]
+clone = "challenge_scroll"
+id = 7271
+
+[clue_scroll_hard_87]
+clone = "clue_scroll_easy_2"
+id = 7272
+
+[challenge_scroll_7]
+clone = "challenge_scroll"
+id = 7273
+
+[clue_scroll_medium_58]
+clone = "clue_scroll_hard_3"
+id = 7274
+
+[challenge_scroll_8]
+clone = "challenge_scroll"
+id = 7275
+
+[clue_scroll_medium_59]
+clone = "clue_scroll_hard_4"
+id = 7276
+
+[challenge_scroll_9]
+clone = "challenge_scroll"
+id = 7277
+
+[clue_scroll_medium_60]
+clone = "clue_scroll_easy"
+id = 7278
+
+[challenge_scroll_10]
+clone = "challenge_scroll"
+id = 7279
+
+[clue_scroll_medium_61]
+clone = "clue_scroll_easy"
+id = 7280
+
+[challenge_scroll_11]
+clone = "challenge_scroll"
+id = 7281
+
+[clue_scroll_medium_62]
+clone = "clue_scroll_easy_2"
+id = 7282
+
+[challenge_scroll_12]
+clone = "challenge_scroll"
+id = 7283
+
+[clue_scroll_medium_63]
+clone = "clue_scroll_hard_3"
+id = 7284
+
+[challenge_scroll_13]
+clone = "challenge_scroll"
+id = 7285
+
+[clue_scroll_medium_64]
+clone = "clue_scroll_hard_4"
+id = 7286
+
+[casket_medium_26]
+clone = "casket_easy"
+id = 7287
+
+[clue_scroll_medium_65]
+clone = "clue_scroll_easy"
+id = 7288
+
+[casket_medium_27]
+clone = "casket_easy"
+id = 7289
+
+[clue_scroll_medium_66]
+clone = "clue_scroll_easy"
+id = 7290
+
+[casket_medium_28]
+clone = "casket_easy"
+id = 7291
+
+[clue_scroll_medium_67]
+clone = "clue_scroll_easy_2"
+id = 7292
+
+[casket_medium_29]
+clone = "casket_easy"
+id = 7293
+
+[clue_scroll_medium_68]
+clone = "clue_scroll_hard_3"
+id = 7294
+
+[casket_medium_30]
+clone = "casket_easy"
+id = 7295
+
+[clue_scroll_medium_69]
+clone = "clue_scroll_hard_4"
+id = 7296
+
+[clue_scroll_medium_70]
+clone = "clue_scroll_easy"
+id = 7298
+
+[clue_scroll_medium_71]
+clone = "clue_scroll_easy"
+id = 7300
+
+[clue_scroll_medium_72]
+clone = "clue_scroll_easy_2"
+id = 7301
+
+[clue_scroll_medium_73]
+clone = "clue_scroll_hard_3"
+id = 7303
+
+[clue_scroll_medium_74]
+clone = "clue_scroll_hard_4"
+id = 7304
+
+[clue_scroll_medium_75]
+clone = "clue_scroll_easy"
+id = 7305
+
+[casket_medium_31]
+clone = "casket_easy"
+id = 7306
+
+[clue_scroll_medium_76]
+clone = "clue_scroll_easy"
+id = 7307
+
+[casket_medium_32]
+clone = "casket_easy"
+id = 7308
+
+[clue_scroll_medium_77]
+clone = "clue_scroll_easy_2"
+id = 7309
+
+[casket_medium_33]
+clone = "casket_easy"
+id = 7310
+
+[clue_scroll_medium_78]
+clone = "clue_scroll_hard_3"
+id = 7311
+
+[casket_medium_34]
+clone = "casket_easy"
+id = 7312
+
+[clue_scroll_medium_79]
+clone = "clue_scroll_hard_4"
+id = 7313
+
+[casket_medium_35]
+clone = "casket_easy"
+id = 7314
+
+[clue_scroll_medium_80]
+clone = "clue_scroll_easy"
+id = 7315
+
+[casket_medium_36]
+clone = "casket_easy"
+id = 7316
+
+[clue_scroll_medium_81]
+clone = "clue_scroll_easy"
+id = 7317
+
+[casket_medium_37]
+clone = "casket_easy"
+id = 7318

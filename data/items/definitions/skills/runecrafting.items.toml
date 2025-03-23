@@ -165,11 +165,7 @@ id = 5523
 price = 37
 limit = 100
 weight = 1.0
-silver_jewellery = {
-item = "tiara",
-level = 16,
-xp = 52.5
-}
+silver_jewellery = { item = "tiara", level = 16, xp = 52.5 }
 examine = "A mould for tiaras."
 
 [tiara_mould_noted]
@@ -334,3 +330,14 @@ examine = "A tiara infused with the properties of the soul."
 
 [soul_tiara_noted]
 id = 5552
+[pure_essence]
+id = 7936
+price = 129
+limit = 25000
+weight = 0.002
+mining = { xp = 5.0, chance = "150-350" }
+aka = ["pure_ess", "pure_esse", "p_ess", "p_esse", "p_essence"]
+examine = "An uncharged Rune Stone of extra capability. Used in Runecrafting for training and production."
+
+[pure_essence_noted]
+id = 7937

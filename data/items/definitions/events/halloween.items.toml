@@ -1,3 +1,42 @@
+[green_hween_mask]
+id = 1053
+price = 117800000
+limit = 2
+weight = 0.34
+slot = "Hat"
+type = "FullFace"
+examine = "Aaaarrrghhh ... I'm a monster."
+use = "Limited"
+
+[green_hween_mask_noted]
+id = 1054
+
+[blue_hween_mask]
+id = 1055
+price = 152500000
+limit = 2
+weight = 0.34
+slot = "Hat"
+type = "FullFace"
+examine = "Aaaarrrghhh ... I'm a monster."
+use = "Limited"
+
+[blue_hween_mask_noted]
+id = 1056
+
+[red_hween_mask]
+id = 1057
+price = 208800000
+limit = 2
+weight = 0.34
+slot = "Hat"
+type = "FullFace"
+examine = "Aaaarrrghhh ... I'm a monster."
+use = "Limited"
+
+[red_hween_mask_noted]
+id = 1058
+
 [blue_sweets]
 id = 4558
 tradeable = false

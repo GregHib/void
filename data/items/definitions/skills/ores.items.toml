@@ -122,3 +122,80 @@ examine = "Hmm, a non-renewable energy source!"
 
 [coal_noted]
 id = 454
+
+[sandstone_1kg]
+id = 6971
+price = 7
+limit = 10000
+weight = 1.0
+mining = { xp = 30.0, chance = "25-200" }
+examine = "A tiny chunk of sandstone."
+
+[sandstone_1kg_noted]
+id = 6972
+
+[sandstone_2kg]
+id = 6973
+price = 32
+limit = 10000
+weight = 2.0
+mining = { xp = 40.0, chance = "16-100" }
+examine = "A small chunk of sandstone."
+
+[sandstone_2kg_noted]
+id = 6974
+
+[sandstone_5kg]
+id = 6975
+price = 45
+limit = 10000
+weight = 5.0
+mining = { xp = 50.0, chance = "8-75" }
+examine = "A medium-sized chunk of sandstone."
+
+[sandstone_5kg_noted]
+id = 6976
+
+[sandstone_10kg]
+id = 6977
+price = 185
+limit = 10000
+weight = 10.0
+mining = { xp = 60.0, chance = "4-50" }
+examine = "A large chunk of sandstone."
+
+[sandstone_10kg_noted]
+id = 6978
+
+[granite_500g]
+id = 6979
+price = 280
+limit = 10000
+weight = 0.5
+mining = { xp = 50.0, chance = "16-100" }
+examine = "A tiny chunk of granite."
+
+[granite_500g_noted]
+id = 6980
+
+[granite_2kg]
+id = 6981
+price = 681
+limit = 10000
+weight = 2.0
+mining = { xp = 60.0, chance = "8-75" }
+examine = "A small chunk of granite."
+
+[granite_2kg_noted]
+id = 6982
+
+[granite_5kg]
+id = 6983
+price = 2038
+limit = 10000
+weight = 5.0
+mining = { xp = 75.0, chance = "6-64" }
+examine = "A medium-sized chunk of granite."
+
+[granite_5kg_noted]
+id = 6984

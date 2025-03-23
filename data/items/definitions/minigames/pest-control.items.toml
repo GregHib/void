@@ -1,0 +1,10 @@
+[field_ration]
+id = 7934
+price = 176
+limit = 100
+heals = 10
+weight = 0.001
+examine = "A field ration to help your wounds go away."
+
+[field_ration_noted]
+id = 7935

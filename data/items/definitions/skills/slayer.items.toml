@@ -205,3 +205,104 @@ weight = 0.226
 slot = "Hands"
 examine = "Especially good against diseased arachnids."
 kept = "Reclaim"
+
+[harpie_bug_swarm]
+id = 7050
+examine = "A swarm of bugs."
+
+[unlit_bug_lantern]
+id = 7051
+price = 598
+limit = 100
+weight = 2.267
+slot = "Shield"
+examine = "A lantern to aid attacking Harpie bugs."
+
+[unlit_bug_lantern_noted]
+id = 7052
+
+[lit_bug_lantern]
+id = 7053
+limit = 100
+tradeable = false
+weight = 2.267
+slot = "Shield"
+examine = "A lantern to aid attacking Harpie bugs."
+kept = "Reclaim"
+
+[insulated_boots]
+id = 7159
+price = 295
+limit = 100
+weight = 1.36
+slot = "Feet"
+examine = "They're heavily insulated wellies."
+
+[insulated_boots_noted]
+id = 7161
+
+[fungicide_spray_10]
+id = 7421
+weight = 2.0
+charges = 1
+degrade = "fungicide_spray_9"
+slot = "Weapon"
+examine = "Pumps fungicide."
+
+[fungicide_spray_9]
+clone = "fungicide_spray_10"
+id = 7422
+degrade = "fungicide_spray_8"
+
+[fungicide_spray_8]
+clone = "fungicide_spray_10"
+id = 7423
+degrade = "fungicide_spray_7"
+
+[fungicide_spray_7]
+clone = "fungicide_spray_10"
+id = 7424
+degrade = "fungicide_spray_6"
+
+[fungicide_spray_6]
+clone = "fungicide_spray_10"
+id = 7425
+degrade = "fungicide_spray_5"
+
+[fungicide_spray_5]
+clone = "fungicide_spray_10"
+id = 7426
+degrade = "fungicide_spray_4"
+
+[fungicide_spray_4]
+clone = "fungicide_spray_10"
+id = 7427
+degrade = "fungicide_spray_3"
+
+[fungicide_spray_3]
+clone = "fungicide_spray_10"
+id = 7428
+degrade = "fungicide_spray_2"
+
+[fungicide_spray_2]
+clone = "fungicide_spray_10"
+id = 7429
+degrade = "fungicide_spray_1"
+
+[fungicide_spray_1]
+clone = "fungicide_spray_10"
+id = 7430
+degrade = "fungicide_spray_0"
+
+[fungicide_spray_0]
+id = 7431
+slot = "Weapon"
+examine = "Pumps fungicide."
+weight = 2.0
+
+[fungicide]
+id = 7432
+tradeable = false
+weight = 0.1
+examine = "Does exactly what it says on the tin."
+kept = "Reclaim"

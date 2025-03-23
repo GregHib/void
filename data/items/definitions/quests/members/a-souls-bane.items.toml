@@ -1,0 +1,36 @@
+[anger_sword]
+id = 7806
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+examine = "A heavy duty sword."
+use = "Quest"
+kept = "Vanish"
+
+[anger_battleaxe]
+id = 7807
+tradeable = false
+weight = 2.721
+slot = "Weapon"
+examine = "A heavy duty axe."
+use = "Quest"
+kept = "Vanish"
+
+[anger_maul]
+id = 7808
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+examine = "A heavy duty mace."
+use = "Quest"
+kept = "Vanish"
+
+[anger_spear]
+id = 7809
+tradeable = false
+weight = 0.003
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A heavy duty spear."
+use = "Quest"
+kept = "Vanish"

@@ -1,0 +1,513 @@
+[boxing_gloves_red]
+id = 7671
+tradeable = false
+weight = 0.453
+weapon_type = "boxing_gloves"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "I think they look a bit silly."
+kept = "Reclaim"
+
+[picture_67]
+clone = "picture_6"
+id = 7672
+
+[boxing_gloves_blue]
+id = 7673
+tradeable = false
+weight = 0.453
+weapon_type = "boxing_gloves"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "I think they look a bit silly."
+kept = "Reclaim"
+
+[wooden_sword]
+id = 7675
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+material = "wood"
+examine = "A less-than razor sharp sword."
+kept = "Reclaim"
+
+[wooden_shield_weapons_rack]
+id = 7676
+tradeable = false
+weight = 1.814
+slot = "Shield"
+examine = "A less-than strong shield."
+kept = "Reclaim"
+
+[treasure_stone]
+id = 7677
+tradeable = false
+weight = 1.814
+examine = "It knows where the treasure is."
+kept = "Reclaim"
+
+[prize_key]
+id = 7678
+tradeable = false
+weight = 0.01
+examine = "You can use this to open the prize chest!"
+kept = "Reclaim"
+
+[pugel]
+id = 7679
+weight = 1.36
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A good tool for bashing someone."
+
+[pugel_noted]
+id = 7680
+
+[game_book]
+id = 7681
+tradeable = false
+weight = 1.0
+aka = ["party_petes_bumper_book_of_games"]
+examine = "Party Pete's Bumper Book Of Games"
+kept = "Reclaim"
+
+[hoop]
+id = 7682
+weight = 1.36
+slot = "Weapon"
+examine = "Try to throw it over the stick."
+
+[hoop_noted]
+id = 7683
+
+[dart]
+id = 7684
+weight = 1.36
+slot = "Weapon"
+examine = "Not much good in combat, but perfect for the dart board!"
+use = "Removed"
+
+[dart_noted]
+id = 7685
+
+[bow_and_arrow]
+id = 7686
+weight = 1.36
+slot = "Weapon"
+examine = "A safe arrow for indoor ranging games."
+use = "Removed"
+
+[bow_and_arrow_noted]
+id = 7687
+
+[kettle]
+id = 7688
+weight = 0.001
+examine = "The kettle is empty."
+
+[kettle_noted]
+id = 7689
+
+[full_kettle]
+id = 7690
+tradeable = false
+weight = 0.001
+examine = "It's full of cold water."
+kept = "Reclaim"
+
+[hot_kettle]
+id = 7691
+tradeable = false
+weight = 0.001
+examine = "It's full of boiling water."
+kept = "Reclaim"
+
+[pot_of_tea_clay_4]
+id = 7692
+empty = "teapot_clay"
+examine = "I'd really like a nice cup of tea."
+weight = 1.5
+
+[pot_of_tea_4_noted]
+id = 7693
+
+[pot_of_tea_clay_3]
+clone = "pot_of_tea_clay_4"
+id = 7694
+
+[pot_of_tea_3_noted]
+id = 7695
+
+[pot_of_tea_clay_2]
+clone = "pot_of_tea_clay_4"
+id = 7696
+
+[pot_of_tea_2_noted]
+id = 7697
+
+[pot_of_tea_clay_1]
+clone = "pot_of_tea_clay_4"
+id = 7698
+
+[pot_of_tea_1_noted]
+id = 7699
+
+[teapot_with_leaves_clay]
+id = 7700
+weight = 1.5
+examine = "Add boiling water to make a tea."
+
+[teapot_with_leaves_noted]
+id = 7701
+
+[teapot_clay]
+id = 7702
+weight = 0.453
+examine = "This teapot is empty."
+
+[teapot_noted]
+id = 7703
+
+[pot_of_tea_white_4]
+clone = "pot_of_tea_clay_4"
+id = 7704
+
+[pot_of_tea_4_noted_2]
+id = 7705
+
+[pot_of_tea_white_3]
+clone = "pot_of_tea_clay_4"
+id = 7706
+
+[pot_of_tea_3_noted_2]
+id = 7707
+
+[pot_of_tea_white_2]
+clone = "pot_of_tea_clay_4"
+id = 7708
+
+[pot_of_tea_2_noted_2]
+id = 7709
+
+[pot_of_tea_white_1]
+clone = "pot_of_tea_clay_4"
+id = 7710
+
+[pot_of_tea_1_noted_2]
+id = 7711
+
+[teapot_with_leaves_white]
+clone = "teapot_with_leaves_clay"
+id = 7712
+
+[teapot_with_leaves_noted_2]
+id = 7713
+
+[teapot_white]
+clone = "teapot_clay"
+id = 7714
+
+[teapot_noted_2]
+id = 7715
+
+[pot_of_tea_gold_4]
+clone = "pot_of_tea_clay_4"
+id = 7716
+
+[pot_of_tea_4_noted_3]
+id = 7717
+
+[pot_of_tea_gold_3]
+clone = "pot_of_tea_clay_4"
+id = 7718
+
+[pot_of_tea_3_noted_3]
+id = 7719
+
+[pot_of_tea_gold_2]
+clone = "pot_of_tea_clay_4"
+id = 7720
+
+[pot_of_tea_2_noted_3]
+id = 7721
+
+[pot_of_tea_gold_1]
+clone = "pot_of_tea_clay_4"
+id = 7722
+
+[pot_of_tea_1_noted_3]
+id = 7723
+
+[teapot_with_leaves_gold]
+clone = "teapot_with_leaves_clay"
+id = 7724
+
+[teapot_with_leaves_noted_3]
+id = 7725
+
+[teapot_gold]
+clone = "teapot_clay"
+id = 7726
+
+[teapot_noted_3]
+id = 7727
+
+[empty_cup_player_owned_house]
+id = 7728
+weight = 0.05
+examine = "An empty cup."
+
+[empty_cup_noted_2]
+id = 7729
+
+[cup_of_tea_clay]
+id = 7730
+limit = 1000
+tradeable = false
+weight = 0.15
+empty = "empty_cup_player_owned_house"
+examine = "A nice cup of nettle tea."
+kept = "Reclaim"
+
+[cup_of_tea_clay_milky]
+id = 7731
+limit = 1000
+tradeable = false
+weight = 0.15
+empty = "empty_cup_player_owned_house"
+examine = "A milky cup of nettle tea."
+kept = "Reclaim"
+
+[porcelain_cup_white]
+id = 7732
+tradeable = false
+weight = 0.05
+examine = "A porcelain cup."
+kept = "Reclaim"
+
+[cup_of_tea_white]
+id = 7733
+limit = 1000
+tradeable = false
+weight = 0.15
+empty = "porcelain_cup_white"
+examine = "Some nettle tea in a porcelain cup."
+kept = "Reclaim"
+
+[cup_of_tea_white_milky]
+id = 7734
+limit = 1000
+tradeable = false
+weight = 0.15
+empty = "porcelain_cup_white"
+examine = "Some milky nettle tea in a porcelain cup."
+kept = "Reclaim"
+
+[porcelain_cup_gold]
+id = 7735
+tradeable = false
+weight = 0.05
+examine = "A porcelain cup."
+kept = "Reclaim"
+
+[cup_of_tea_gold]
+id = 7736
+limit = 1000
+tradeable = false
+weight = 0.15
+empty = "porcelain_cup_gold"
+examine = "Some nettle tea in a porcelain cup."
+kept = "Reclaim"
+
+[cup_of_tea_gold_milky]
+id = 7737
+limit = 1000
+tradeable = false
+weight = 0.15
+empty = "porcelain_cup_gold"
+examine = "Some milky nettle tea in a porcelain cup."
+kept = "Reclaim"
+
+[tea_leaves]
+id = 7738
+weight = 0.01
+examine = "Mmm, how about a nice cup of tea?"
+
+[tea_leaves_noted]
+id = 7739
+
+[beer_player_owned_house]
+id = 7740
+limit = 100
+heals = 10
+excess = "beer_glass_player_owned_house"
+weight = 0.55
+examine = "A glass of frothy ale."
+
+[beer_player_owned_house_noted]
+id = 7741
+
+[beer_glass_player_owned_house]
+id = 7742
+limit = 100
+weight = 0.05
+examine = "I need to fill this with beer."
+
+[beer_glass_player_owned_house_noted]
+id = 7743
+
+[asgarnian_ale_player_owned_house]
+id = 7744
+limit = 100
+heals = 20
+excess = "beer_glass_player_owned_house"
+weight = 0.55
+examine = "Probably the finest ale in Asgarnia."
+
+[asgarnian_ale_player_owned_house_noted]
+id = 7745
+
+[greenmans_ale_player_owned_house]
+id = 7746
+limit = 100
+heals = 10
+excess = "beer_glass_player_owned_house"
+weight = 0.55
+examine = "A glass of frothy ale."
+
+[greenmans_ale_player_owned_house_noted]
+id = 7747
+
+[dragon_bitter_player_owned_house]
+id = 7748
+limit = 100
+heals = 10
+excess = "beer_glass_player_owned_house"
+weight = 0.55
+examine = "A glass of bitter."
+
+[dragon_bitter_player_owned_house_noted]
+id = 7749
+
+[moonlight_mead_player_owned_house]
+id = 7750
+limit = 100
+heals = 40
+excess = "beer_glass_player_owned_house"
+eat_message = "You drink the foul smelling brew. It tastes like something just died in your mouth."
+weight = 0.55
+examine = "A foul smelling brew."
+
+[moonlight_mead_player_owned_house_noted]
+id = 7751
+
+[cider_player_owned_house]
+id = 7752
+limit = 100
+heals = 20
+excess = "beer_glass_player_owned_house"
+weight = 0.55
+examine = "A glass of cider."
+
+[cider_player_owned_house_noted]
+id = 7753
+
+[chefs_delight_player_owned_house]
+id = 7754
+limit = 100
+heals = 10
+excess = "beer_glass_player_owned_house"
+weight = 0.55
+examine = "A fruity, full-bodied ale."
+
+[chefs_delight_player_owned_house_noted]
+id = 7755
+
+[paintbrush]
+id = 7756
+slot = "Weapon"
+examine = "Try dipping it in paint and applying it."
+
+[paintbrush_noted]
+id = 7757
+
+[rusty_sword_2]
+id = 7758
+tradeable = false
+weight = 2.267
+slot = "Weapon"
+material = "metal"
+examine = "A decent-enough weapon gone rusty."
+kept = "Reclaim"
+
+[toy_soldier]
+id = 7759
+price = 2626
+limit = 100
+weight = 1.0
+examine = "Nice bit of crafting!"
+
+[toy_soldier_noted]
+id = 7760
+
+[toy_soldier_wound]
+id = 7761
+limit = 100
+weight = 1.0
+destroy = "Release"
+examine = "Nice bit of crafting!"
+
+[toy_soldier_wound_noted]
+id = 7762
+
+[toy_doll]
+id = 7763
+price = 2511
+limit = 100
+weight = 1.0
+aka = ["clockwork_doll"]
+examine = "Nice bit of crafting!"
+
+[toy_doll_noted]
+id = 7764
+
+[toy_doll_wound]
+clone = "toy_soldier_wound"
+id = 7765
+
+[toy_doll_wound_noted]
+id = 7766
+
+[toy_mouse]
+id = 7767
+price = 2883
+limit = 100
+weight = 1.0
+aka = ["clockwork_mouse"]
+examine = "Nice bit of crafting!"
+
+[toy_mouse_noted]
+id = 7768
+
+[toy_mouse_wound]
+id = 7769
+limit = 100
+weight = 1.0
+aka = ["clockwork_mouse"]
+destroy = "Release"
+examine = "Nice bit of crafting!"
+
+[toy_mouse_wound_noted]
+id = 7770
+
+[clockwork_cat]
+id = 7771
+price = 2293
+limit = 100
+weight = 1.0
+food = "None"
+destroy = "Release"
+examine = "Nice bit of crafting!"
+
+[clockwork_cat_noted]
+id = 7772

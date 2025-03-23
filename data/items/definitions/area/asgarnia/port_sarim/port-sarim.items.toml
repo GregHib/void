@@ -1,0 +1,14 @@
+[ahabs_beer]
+id = 6561
+tradeable = false
+weight = 0.55
+examine = "Looks nice."
+kept = "Reclaim"
+
+[white_apron_port_sarim]
+id = 7957
+limit = 100
+tradeable = false
+weight = 0.001
+examine = "A white apron."
+kept = "Wilderness"

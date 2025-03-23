@@ -64,3 +64,7 @@ examine = "A crushed bird's nest."
 
 [crushed_nest_noted]
 id = 6694
+
+[birds_nest_seeds_2]
+clone = "birds_nest_seeds_1"
+id = 7413

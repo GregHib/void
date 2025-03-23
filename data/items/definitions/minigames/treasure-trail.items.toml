@@ -803,3 +803,533 @@ id = 3676
 
 [gilded_plateskirt_noted]
 id = 3677
+
+[red_boater]
+id = 7319
+price = 33400
+limit = 2
+weight = 0.01
+slot = "Hat"
+examine = "Stylish!"
+
+[red_boater_noted]
+id = 7320
+
+[orange_boater]
+id = 7321
+price = 17100
+limit = 2
+weight = 0.01
+slot = "Hat"
+examine = "Stylish!"
+
+[orange_boater_noted]
+id = 7322
+
+[green_boater]
+id = 7323
+price = 45000
+limit = 2
+weight = 0.01
+slot = "Hat"
+examine = "Stylish!"
+
+[green_boater_noted]
+id = 7324
+
+[blue_boater]
+id = 7325
+price = 39000
+limit = 2
+weight = 0.01
+slot = "Hat"
+examine = "Stylish!"
+
+[blue_boater_noted]
+id = 7326
+
+[black_boater]
+id = 7327
+price = 47100
+limit = 2
+weight = 0.01
+slot = "Hat"
+examine = "Stylish!"
+
+[black_boater_noted]
+id = 7328
+
+[red_firelighter]
+id = 7329
+price = 93
+limit = 100
+examine = "Makes firelighting a lot easier."
+kept = "Wilderness"
+
+[green_firelighter]
+id = 7330
+price = 138
+limit = 100
+examine = "Makes firelighting a lot easier."
+kept = "Wilderness"
+
+[blue_firelighter]
+id = 7331
+price = 156
+limit = 100
+examine = "Makes firelighting a lot easier."
+kept = "Wilderness"
+
+[black_shield_h1]
+id = 7332
+price = 14800
+limit = 2
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a heraldic design."
+
+[black_shield_h1_noted]
+id = 7333
+
+[adamant_shield_h1]
+id = 7334
+price = 13400
+limit = 2
+weight = 5.896
+slot = "Shield"
+material = "metal"
+examine = "A shield with a heraldic design."
+
+[adamant_shield_h1_noted]
+id = 7335
+
+[rune_shield_h1]
+id = 7336
+price = 34800
+limit = 2
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a heraldic design."
+
+[rune_shield_h1_noted]
+id = 7337
+
+[black_shield_h2]
+id = 7338
+price = 9766
+limit = 2
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a heraldic design."
+
+[black_shield_h2_noted]
+id = 7339
+
+[adamant_shield_h2]
+id = 7340
+price = 3433
+limit = 2
+weight = 5.896
+slot = "Shield"
+material = "metal"
+examine = "A shield with a heraldic design."
+
+[adamant_shield_h2_noted]
+id = 7341
+
+[rune_shield_h2]
+id = 7342
+price = 34900
+limit = 2
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a heraldic design."
+
+[rune_shield_h2_noted]
+id = 7343
+
+[black_shield_h3]
+id = 7344
+price = 8101
+limit = 2
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a heraldic design."
+
+[black_shield_h3_noted]
+id = 7345
+
+[adamant_shield_h3]
+id = 7346
+price = 5710
+limit = 2
+weight = 5.896
+slot = "Shield"
+material = "metal"
+examine = "A shield with a heraldic design."
+
+[adamant_shield_h3_noted]
+id = 7347
+
+[rune_shield_h3]
+id = 7348
+price = 33100
+limit = 2
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a heraldic design."
+
+[rune_shield_h3_noted]
+id = 7349
+
+[black_shield_h4]
+id = 7350
+price = 6795
+limit = 2
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a heraldic design."
+
+[black_shield_h4_noted]
+id = 7351
+
+[adamant_shield_h4]
+id = 7352
+price = 3755
+limit = 2
+weight = 5.896
+slot = "Shield"
+material = "metal"
+examine = "A shield with a heraldic design."
+
+[adamant_shield_h4_noted]
+id = 7353
+
+[rune_shield_h4]
+id = 7354
+price = 34100
+limit = 2
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a heraldic design."
+
+[rune_shield_h4_noted]
+id = 7355
+
+[black_shield_h5]
+id = 7356
+price = 7974
+limit = 2
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a heraldic design."
+
+[black_shield_h5_noted]
+id = 7357
+
+[adamant_shield_h5]
+id = 7358
+price = 4628
+limit = 2
+weight = 5.896
+slot = "Shield"
+material = "metal"
+examine = "A shield with a heraldic design."
+
+[adamant_shield_h5_noted]
+id = 7359
+
+[rune_shield_h5]
+id = 7360
+price = 32800
+limit = 2
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a heraldic design."
+
+[rune_shield_h5_noted]
+id = 7361
+
+[studded_body_g]
+id = 7362
+price = 99200
+limit = 2
+weight = 5.443
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "Those studs should provide a bit more protection. Nice trim too!"
+
+[studded_body_g_noted]
+id = 7363
+
+[studded_body_t]
+id = 7364
+price = 33200
+limit = 2
+weight = 5.443
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "Those studs should provide a bit more protection. Nice trim too!"
+
+[studded_body_t_noted]
+id = 7365
+
+[studded_chaps_g]
+id = 7366
+price = 105500
+limit = 2
+weight = 4.535
+slot = "Legs"
+material = "leather"
+examine = "Those studs should provide a bit more protection. Nice trim too!"
+
+[studded_chaps_g_noted]
+id = 7367
+
+[studded_chaps_t]
+id = 7368
+price = 35900
+limit = 2
+weight = 4.535
+slot = "Legs"
+material = "leather"
+examine = "Those studs should provide a bit more protection. Nice trim too!"
+
+[studded_chaps_t_noted]
+id = 7369
+
+[green_dragonhide_body_g]
+id = 7370
+price = 168800
+limit = 2
+weight = 6.803
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "Made from 100% real dragonhide, with colourful trim!"
+
+[dragonhide_body_g_noted]
+id = 7371
+
+[green_dragonhide_body_t]
+id = 7372
+price = 38200
+limit = 2
+weight = 6.803
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "Made from 100% real dragonhide, with colourful trim!"
+
+[dragonhide_body_t_noted]
+id = 7373
+
+[blue_dragonhide_body_g]
+id = 7374
+price = 7656
+limit = 2
+weight = 6.803
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "Made from 100% real dragonhide, with colourful trim!"
+
+[dragonhide_body_g_noted_2]
+id = 7375
+
+[blue_dragonhide_body_t]
+id = 7376
+price = 5355
+limit = 2
+weight = 6.803
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "Made from 100% real dragonhide, with colourful trim!"
+
+[dragonhide_body_t_noted_2]
+id = 7377
+
+[green_dragonhide_chaps_g]
+id = 7378
+price = 1100000
+limit = 2
+weight = 5.443
+slot = "Legs"
+material = "leather"
+examine = "Made from 100% real dragonhide, with colourful trim!"
+
+[dragonhide_chaps_g_noted]
+id = 7379
+
+[green_dragonhide_chaps_t]
+id = 7380
+price = 267300
+limit = 2
+weight = 5.443
+slot = "Legs"
+material = "leather"
+examine = "Made from 100% real dragonhide, with colourful trim!"
+
+[dragonhide_chaps_t_noted]
+id = 7381
+
+[blue_dragonhide_chaps_g]
+id = 7382
+price = 31100
+limit = 2
+weight = 5.443
+slot = "Legs"
+material = "leather"
+examine = "Made from 100% real dragonhide, with colourful trim!"
+
+[dragonhide_chaps_g_noted_2]
+id = 7383
+
+[blue_dragonhide_chaps_t]
+id = 7384
+price = 2411
+limit = 2
+weight = 5.443
+slot = "Legs"
+material = "leather"
+examine = "Made from 100% real dragonhide, with colourful trim!"
+
+[dragonhide_chaps_t_noted_2]
+id = 7385
+
+[wizard_robe_skirt_g]
+id = 7386
+price = 327100
+limit = 2
+weight = 0.907
+slot = "Legs"
+examine = "Leg covering favoured by women and wizards, with a colourful trim!"
+
+[blue_skirt_g_noted]
+id = 7387
+
+[wizard_robe_skirt_t]
+id = 7388
+price = 177100
+limit = 2
+weight = 0.907
+slot = "Legs"
+examine = "Leg covering favoured by women and wizards, with a colourful trim!"
+
+[blue_skirt_t_noted]
+id = 7389
+
+[wizard_robe_top_g]
+id = 7390
+price = 2300000
+limit = 2
+weight = 0.907
+slot = "Chest"
+examine = "I can practise magic better in this."
+
+[wizard_robe_g_noted]
+id = 7391
+
+[wizard_robe_top_t]
+id = 7392
+price = 442100
+limit = 2
+weight = 0.907
+slot = "Chest"
+examine = "I can practise magic better in this."
+
+[wizard_robe_t_noted]
+id = 7393
+
+[wizard_hat_g]
+id = 7394
+price = 1900000
+limit = 2
+weight = 0.453
+slot = "Hat"
+examine = "A silly pointed hat, with colourful trim."
+
+[wizard_hat_g_noted]
+id = 7395
+
+[wizard_hat_t]
+id = 7396
+price = 695400
+limit = 2
+weight = 0.453
+slot = "Hat"
+examine = "A silly pointed hat, with colourful trim."
+
+[wizard_hat_t_noted]
+id = 7397
+
+[enchanted_robe]
+id = 7398
+price = 106900
+limit = 2
+weight = 1.814
+slot = "Legs"
+examine = "Enchanted wizard robes."
+
+[enchanted_top]
+id = 7399
+price = 96200
+limit = 2
+weight = 2.721
+slot = "Chest"
+examine = "Enchanted wizard robes."
+
+[enchanted_hat]
+id = 7400
+price = 9267
+limit = 2
+weight = 0.453
+slot = "Hat"
+type = "Hair"
+examine = "A three-pointed hat of magic."
+
+[enchanted_robe_noted]
+id = 7401
+
+[enchanted_top_noted]
+id = 7402
+
+[enchanted_hat_noted]
+id = 7403
+
+[red_logs]
+id = 7404
+tradeable = false
+weight = 2.0
+firemaking = { level = 1, xp = 50.0, chance = "256..256", life = 60, colour = "red" }
+examine = "A number of chemical covered wooden logs."
+kept = "Wilderness"
+
+[green_logs]
+id = 7405
+tradeable = false
+weight = 2.0
+firemaking = { level = 1, xp = 50.0, chance = "256..256", life = 60, colour = "green" }
+examine = "A number of chemical covered wooden logs."
+kept = "Wilderness"
+
+[blue_logs]
+id = 7406
+tradeable = false
+weight = 2.0
+firemaking = { level = 1, xp = 50.0, chance = "256..256", life = 60, colour = "blue" }
+examine = "A number of chemical covered wooden logs."
+kept = "Wilderness"

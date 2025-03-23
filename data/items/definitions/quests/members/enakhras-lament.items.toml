@@ -8,3 +8,172 @@ slot = "Amulet"
 examine = "It's an amulet of camelspeak. It makes vague braying noises."
 kept = "Wilderness"
 
+[sandstone_20kg]
+id = 6985
+tradeable = false
+weight = 20.0
+destroy = "You can make another 20 kg block by giving enough stone to Lazim."
+examine = "A huge twenty-kilo block of sandstone."
+use = "Quest"
+kept = "Reclaim"
+
+[sandstone_32kg]
+id = 6986
+tradeable = false
+weight = 32.0
+destroy = "You can make another 32 kg sandstone block by giving enough stone to Lazim."
+examine = "A huge thirty-two-kilo block of sandstone."
+use = "Quest"
+kept = "Reclaim"
+
+[sandstone_body]
+id = 6987
+tradeable = false
+weight = 30.0
+destroy = "You can make another statue body by giving Lazim 20 kg of stone and then crafting it."
+examine = "The body of a sandstone statue."
+use = "Quest"
+kept = "Wilderness"
+
+[sandstone_base]
+id = 6988
+tradeable = false
+weight = 23.0
+destroy = "You can make another statue base by giving Lazim 32 kg of stone and then crafting it."
+examine = "The base and legs of a sandstone statue."
+use = "Quest"
+kept = "Wilderness"
+
+[stone_head_lazim]
+id = 6989
+tradeable = false
+weight = 0.5
+destroy = "You can get the statue's head back from Lazim."
+examine = "A granite head shaped like the sculptor Lazim."
+use = "Quest"
+kept = "Wilderness"
+
+[stone_head_zamorak]
+id = 6990
+tradeable = false
+weight = 0.5
+examine = "A granite head shaped like the god Zamorak."
+destroy = "You can get the statue's head back from Lazim."
+use = "Quest"
+kept = "Wilderness"
+
+[stone_head_icthlarin]
+id = 6991
+tradeable = false
+weight = 0.5
+destroy = "You can get the statue's head back from Lazim."
+examine = "A granite head shaped like the god Icthlarin."
+use = "Quest"
+kept = "Wilderness"
+
+[stone_head_camel]
+id = 6992
+tradeable = false
+weight = 0.5
+destroy = "You can get the statue's head back from Lazim."
+examine = "A granite head shaped like a camel."
+use = "Quest"
+kept = "Wilderness"
+
+[z_sigil]
+id = 6993
+tradeable = false
+weight = 0.5
+destroy = "You can get another Z sigil from the pedestal with a silver Z on."
+examine = "A metal sigil in the shape of a Z."
+use = "Quest"
+kept = "Wilderness"
+
+[m_sigil]
+id = 6994
+tradeable = false
+weight = 0.5
+destroy = "You can get another M sigil from the pedestal with a silver M on."
+examine = "A metal sigil in the shape of an M."
+use = "Quest"
+kept = "Wilderness"
+
+[r_sigil]
+id = 6995
+tradeable = false
+weight = 0.5
+destroy = "You can get another R sigil from the pedestal with a silver R on."
+examine = "A metal sigil in the shape of an R."
+kept = "Wilderness"
+
+[k_sigil]
+id = 6996
+tradeable = false
+weight = 0.5
+destroy = "You can get another K sigil from the pedestal with a silver K on."
+examine = "A metal sigil in the shape of a K."
+use = "Quest"
+kept = "Wilderness"
+
+[stone_left_arm]
+id = 6997
+tradeable = false
+weight = 9.0
+destroy = "You can get the statue's left arm back from Lazim."
+examine = "The left arm of a large stone statue."
+use = "Quest"
+kept = "Wilderness"
+
+[stone_right_arm]
+id = 6998
+tradeable = false
+weight = 9.0
+destroy = "You can get the statue's right arm back from Lazim."
+examine = "The right arm of a large stone statue."
+use = "Quest"
+kept = "Wilderness"
+
+[stone_left_leg]
+id = 6999
+tradeable = false
+weight = 9.0
+destroy = "You can get the statue's left leg back from Lazim."
+examine = "The left leg of a large stone statue."
+use = "Quest"
+kept = "Wilderness"
+
+[stone_right_leg]
+id = 7000
+tradeable = false
+weight = 9.0
+destroy = "You can get the statue's right leg back from Lazim."
+examine = "The right leg of a large stone statue."
+use = "Quest"
+kept = "Wilderness"
+
+[camel_mould_p]
+id = 7001
+tradeable = false
+weight = 0.5
+destroy = "You can make another positive mould by using soft clay on the pedestal in Enakhra's temple."
+examine = "A positive clay mould of a camel's head."
+use = "Quest"
+kept = "Wilderness"
+
+[stone_head_cavity]
+id = 7002
+tradeable = false
+weight = 0.5
+destroy = "You can make another stone head by crafting some granite with a camel head mould in your inventory."
+examine = "A granite head that will fit exactly into the pedestal."
+use = "Quest"
+kept = "Wilderness"
+
+[camel_mask]
+id = 7003
+tradeable = false
+weight = 0.5
+slot = "Hat"
+type = "Hair"
+examine = "Blend in in the desert."
+kept = "Reclaim"

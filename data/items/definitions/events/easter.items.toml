@@ -1,3 +1,12 @@
+[bunny_ears]
+id = 1037
+tradeable = false
+weight = 0.226
+slot = "Hat"
+examine = "A rabbit-like adornment."
+kept = "Wilderness"
+use = "Limited"
+
 [basket_of_eggs]
 id = 4565
 tradeable = false
@@ -15,3 +24,40 @@ slot = "Weapon"
 examine = "Perhaps not the most powerful weapon in Gielinor."
 kept = "Wilderness"
 use = "Limited"
+
+[easter_ring]
+id = 7927
+tradeable = false
+weight = 0.001
+examine = "A ring given to you by the Easter Bunny."
+kept = "Wilderness"
+use = "Limited"
+
+[easter_egg_2006_easter_event_blue]
+id = 7928
+limit = 2
+tradeable = false
+weight = 0.001
+examine = "Best before 24th April."
+kept = "Wilderness"
+use = "Removed"
+
+[easter_egg_2006_easter_event_blue_and_yellow]
+clone = "easter_egg_2006_easter_event_blue"
+id = 7929
+
+[easter_egg_2006_easter_event_green]
+clone = "easter_egg_2006_easter_event_blue"
+id = 7930
+
+[easter_egg_2006_easter_event_red]
+clone = "easter_egg_2006_easter_event_blue"
+id = 7931
+
+[easter_egg_2006_easter_event_pink]
+clone = "easter_egg_2006_easter_event_blue"
+id = 7932
+
+[easter_egg_2006_easter_event_yellow]
+clone = "easter_egg_2006_easter_event_blue"
+id = 7933

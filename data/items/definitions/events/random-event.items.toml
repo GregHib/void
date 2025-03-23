@@ -218,3 +218,106 @@ weight = 2.267
 slot = "Hat"
 examine = "Examine what?"
 kept = "Wilderness"
+
+[baguette]
+id = 6961
+limit = 1000
+heals = 60
+weight = 0.02
+examine = "A freshly baked baguette."
+
+[triangle_sandwich]
+id = 6962
+price = 80
+limit = 1000
+heals = 60
+weight = 0.02
+examine = "A freshly made triangle sandwich."
+
+[roll]
+id = 6963
+limit = 1000
+heals = 60
+weight = 0.02
+examine = "A freshly made roll."
+
+[square_sandwich]
+id = 6965
+limit = 1000
+heals = 60
+weight = 0.02
+examine = "A freshly made square sandwich."
+
+[prison_key_prison_pete]
+id = 6966
+tradeable = false
+weight = 0.01
+examine = "A key to the prison."
+kept = "Reclaim"
+
+[triangle_sandwich_noted]
+id = 6968
+
+[coffin]
+id = 7587
+tradeable = false
+weight = 0.003
+destroy = "If you drop that item all the bones will fall out!"
+examine = "Filled with items. Like a bank, but spookier!"
+
+[coffin_2]
+clone = "coffin"
+id = 7588
+
+[coffin_3]
+clone = "coffin"
+id = 7589
+
+[coffin_4]
+clone = "coffin"
+id = 7590
+
+[coffin_5]
+clone = "coffin"
+id = 7591
+
+[zombie_shirt]
+id = 7592
+tradeable = false
+weight = 0.003
+slot = "Chest"
+examine = "Aside from the braaaains on the lapel, it's still quite good."
+kept = "Wilderness"
+
+[zombie_trousers]
+id = 7593
+tradeable = false
+weight = 0.003
+slot = "Legs"
+examine = "Good for a shamble about town."
+kept = "Wilderness"
+
+[zombie_mask]
+id = 7594
+tradeable = false
+weight = 0.003
+slot = "Hat"
+type = "FullFace"
+examine = "I look 40,000 years old in this..."
+kept = "Wilderness"
+
+[zombie_gloves]
+id = 7595
+tradeable = false
+weight = 0.003
+slot = "Hands"
+examine = "Smells pretty funky."
+kept = "Wilderness"
+
+[zombie_boots]
+id = 7596
+tradeable = false
+weight = 0.003
+slot = "Feet"
+examine = "Thrilling."
+kept = "Wilderness"

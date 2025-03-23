@@ -1,0 +1,9 @@
+[tortoise_shell]
+id = 7939
+price = 8737
+limit = 5000
+weight = 6.803
+examine = "A word in your shell-like."
+
+[tortoise_shell_noted]
+id = 7940

@@ -1,0 +1,9 @@
+[newcomer_map]
+id = 550
+price = 74
+limit = 100
+weight = 0.51
+examine = "Issued by Gielinor Council to all new citizens."
+
+[newcomer_map_noted]
+id = 551

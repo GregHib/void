@@ -2624,3 +2624,258 @@ examine = "A baked potato with butter and cheese."
 
 [potato_with_cheese_noted]
 id = 6706
+
+[chilli_potato]
+id = 7054
+price = 176
+limit = 10000
+heals = 140
+weight = 0.5
+examine = "A baked potato with chilli con carne."
+
+[chilli_potato_noted]
+id = 7055
+
+[egg_potato]
+id = 7056
+price = 396
+limit = 10000
+heals = 160
+weight = 0.5
+examine = "A baked potato with egg and tomato."
+
+[egg_potato_noted]
+id = 7057
+
+[mushroom_potato]
+id = 7058
+price = 620
+limit = 10000
+heals = 200
+weight = 0.5
+examine = "A baked potato with mushroom and onions."
+
+[mushroom_potato_noted]
+id = 7059
+
+[tuna_potato]
+id = 7060
+price = 1137
+limit = 10000
+heals = 220
+weight = 0.5
+examine = "A baked potato with tuna and sweetcorn."
+
+[tuna_potato_noted]
+id = 7061
+
+[chilli_con_carne]
+id = 7062
+price = 211
+limit = 1000
+heals = 140
+excess = "bowl"
+weight = 0.5
+examine = "A bowl of meat in chilli-con-carne sauce."
+kept = "Wilderness"
+
+[chilli_con_carne_noted]
+id = 7063
+
+[egg_and_tomato]
+id = 7064
+price = 123
+limit = 1000
+heals = 80
+excess = "bowl"
+weight = 0.5
+examine = "A bowl of scrambled eggs and tomato."
+
+[egg_and_tomato_noted]
+id = 7065
+
+[mushroom_and_onion]
+id = 7066
+price = 365
+limit = 1000
+heals = 110
+excess = "bowl"
+weight = 0.5
+examine = "A bowl of fried mushroom and onions."
+
+[mushroom_and_onion_noted]
+id = 7067
+
+[tuna_and_corn]
+id = 7068
+price = 385
+limit = 10000
+heals = 130
+excess = "bowl"
+weight = 0.5
+examine = "A bowl of cooked tuna and sweetcorn."
+
+[tuna_and_corn_noted]
+id = 7069
+
+[minced_meat]
+id = 7070
+price = 21
+limit = 1000
+heals = 20
+excess = "bowl"
+weight = 0.5
+examine = "A bowl of finely minced meat."
+kept = "Wilderness"
+
+[minced_meat_noted]
+id = 7071
+
+[spicy_sauce]
+id = 7072
+price = 64
+limit = 1000
+heals = 20
+excess = "bowl"
+weight = 0.5
+examine = "A bowl of spicy sauce."
+kept = "Wilderness"
+
+[spicy_sauce_noted]
+id = 7073
+
+[chopped_garlic]
+id = 7074
+price = 37
+limit = 1000
+weight = 0.5
+examine = "A bowl of chopped garlic."
+kept = "Wilderness"
+
+[chopped_garlic_noted]
+id = 7075
+
+[uncooked_egg]
+id = 7076
+price = 34
+limit = 1000
+weight = 0.5
+cooking = {
+  level = 13,
+  xp = 50.0,
+  chances = {
+    range = "90-438",
+  },
+  cooked = "scrambled_egg",
+  cooked_message = "You successfully scramble the egg.",
+  burnt = "burnt_egg",
+  burnt_message = "You accidentally burn the egg.",
+  start = 0,
+}
+examine = "A bowl of uncooked egg."
+kept = "Wilderness"
+
+[uncooked_egg_noted]
+id = 7077
+
+[scrambled_egg]
+id = 7078
+price = 25
+limit = 1000
+heals = 50
+excess = "bowl"
+weight = 0.5
+examine = "A bowl of scrambled egg."
+kept = "Wilderness"
+
+[scrambled_egg_noted]
+id = 7079
+
+[sliced_mushrooms]
+id = 7080
+price = 146
+limit = 1000
+weight = 0.5
+cooking = {
+  level = 46,
+  xp = 60.0,
+  chances = {
+    range = "28-300",
+  },
+  cooked = "fried_mushrooms",
+  cooked_message = "You successfully fry the mushroom.",
+  burnt = "burnt_mushroom",
+  burnt_message = "You accidentally burn the mushroom.",
+}
+examine = "A bowl of sliced Bittercap mushrooms."
+
+[sliced_mushrooms_noted]
+id = 7081
+
+[fried_mushrooms]
+id = 7082
+price = 230
+limit = 1000
+heals = 50
+excess = "bowl"
+weight = 0.5
+examine = "A bowl of fried Bittercap mushrooms."
+
+[fried_mushrooms_noted]
+id = 7083
+
+[fried_onions]
+id = 7084
+price = 39
+limit = 1000
+heals = 50
+excess = "bowl"
+weight = 0.5
+examine = "A bowl of sliced, fried onions."
+
+[fried_onions_noted]
+id = 7085
+
+[chopped_tuna]
+id = 7086
+price = 225
+limit = 10000
+heals = 100
+excess = "bowl"
+weight = 0.5
+examine = "A bowl of finely chopped tuna."
+
+[chopped_tuna_noted]
+id = 7087
+
+[sweetcorn_bowl]
+id = 7088
+weight = 0.5
+examine = "A bowl of cooked sweetcorn."
+
+[sweetcorn_noted_2]
+id = 7089
+
+[burnt_egg]
+id = 7090
+empty = "bowl"
+examine = "A bowl of burnt, overcooked egg."
+
+[burnt_egg_noted]
+id = 7091
+
+[burnt_onion]
+id = 7092
+empty = "bowl"
+examine = "A bowl of blackened onions."
+
+[burnt_onion_noted]
+id = 7093
+
+[burnt_mushroom]
+id = 7094
+empty = "bowl"
+examine = "A bowl of burnt sliced mushroom."
+
+[burnt_mushroom_noted]
+id = 7095

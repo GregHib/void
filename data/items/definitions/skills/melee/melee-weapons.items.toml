@@ -1734,3 +1734,19 @@ examine = "A black tipped spear."
 
 ["black_spear_p++_noted"]
 id = 5737
+
+[dragon_2h_sword]
+id = 7158
+price = 1100000
+limit = 10
+weight = 3.628
+aka = ["d2h", "dragon_2h"]
+special_energy = 600
+special = "powerstab"
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "A two-handed Dragon Sword."
+
+[dragon_2h_sword_noted]
+id = 7407

@@ -262,3 +262,51 @@ weight = 0.453
 slot = "Hat"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
+
+[iron_spit]
+id = 7225
+price = 13
+limit = 100
+weight = 1.5
+smithing = { level = 17, xp = 25.0 }
+examine = "An easily-smithed iron spit."
+kept = "Wilderness"
+
+[burnt_chompy]
+id = 7226
+examine = "Overly crispy chompy."
+
+[burnt_chompy_noted]
+id = 7227
+
+[cooked_chompy_roasted]
+id = 7228
+limit = 1000
+weight = 10.0
+examine = "Roasted chompy bird."
+
+[cooked_chompy_noted_2]
+id = 7229
+
+[skewered_chompy]
+id = 7230
+price = 283
+limit = 1000
+weight = 2.5
+cooking = { level = 30, xp = 100.0, chances = { fire = "200-255" }, type = "roast", cooked = "cooked_chompy", burnt = "burnt_chompy" }
+examine = "A skewered chompy bird."
+
+[burnt_rabbit_noted]
+id = 7231
+
+[roast_rabbit_noted]
+id = 7232
+
+[skewered_rabbit_noted]
+id = 7233
+
+[iron_spit_noted]
+id = 7234
+
+[skewered_chompy_noted]
+id = 7235
