@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data
 
+import world.gregs.config.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
@@ -9,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.Inventories
 import world.gregs.voidps.type.Tile
+import java.io.File
 
 data class PlayerSave(
     val name: String,
@@ -39,6 +41,66 @@ data class PlayerSave(
             friends = friends.toMutableMap(),
             ignores = ignores.toMutableList(),
         )
+    }
+
+    fun save(file: File) {
+        Config.fileWriter(file) {
+            writePair("accountName", name)
+            writePair("passwordHash", password)
+            writePair("experience", experience)
+            writePair("blocked_skills", blocked)
+            writePair("levels", levels)
+            writePair("male", male)
+            writePair("looks", looks)
+            writePair("colours", colours)
+
+            write("\n")
+
+            writeSection("tile")
+            writePair("x", tile.x)
+            writePair("y", tile.y)
+            if (tile.level > 0) {
+                writePair("level", tile.level)
+            }
+
+            write("\n")
+            writeSection("variables")
+            for ((key, value) in variables) {
+                writePair(key, value)
+            }
+
+            write("\n")
+            writeSection("inventories")
+            for ((key, value) in inventories) {
+                writeKey(key)
+                list(value.size) {
+                    val item = value[it]
+                    if (item.isEmpty()) {
+                        write("{}")
+                    } else {
+                        write("{")
+                        writeKey("id")
+                        write("\"")
+                        write(item.id)
+                        write("\"")
+                        if (item.amount > 0) {
+                            write(",")
+                            writeKey("amount")
+                            write(item.amount.toString())
+                        }
+                        write("}")
+                    }
+                }
+                write("\n")
+            }
+
+            write("\n")
+            writeSection("social")
+            writeKey("friends")
+            writeValue(friends, escapeKey = true)
+            write("\n")
+            writePair("ignores", ignores)
+        }
     }
 
     override fun equals(other: Any?): Boolean {

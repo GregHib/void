@@ -53,4 +53,16 @@ object Config {
             writer.encode(output, map)
         }
     }
+
+    fun fileWriter(path: String, block: Writer.() -> Unit) {
+        BufferedWriter(FileWriter(path)).use { output ->
+            block.invoke(output)
+        }
+    }
+
+    fun fileWriter(file: File, block: Writer.() -> Unit) {
+        BufferedWriter(FileWriter(file)).use { output ->
+            block.invoke(output)
+        }
+    }
 }
