@@ -1,0 +1,64 @@
+[battered_book]
+id = 2886
+tradeable = false
+weight = 0.113
+aka = ["book_of_the_elemental_shield", "element_shield_book"]
+examine = "Book of the elemental shield."
+kept = "Wilderness"
+
+[battered_key]
+id = 2887
+tradeable = false
+weight = 0.01
+examine = "An old battered key."
+kept = "Wilderness"
+
+[a_stone_bowl]
+id = 2888
+tradeable = false
+weight = 0.141
+slot = "Weapon"
+examine = "This is an empty stone bowl."
+use = "Quest"
+kept = "Wilderness"
+
+[a_stone_bowl_full]
+id = 2889
+tradeable = false
+weight = 0.226
+slot = "Weapon"
+examine = "This is a stone bowl full of lava."
+use = "Quest"
+kept = "Wilderness"
+
+[elemental_shield]
+id = 2890
+price = 1052
+limit = 100
+weight = 0.226
+slot = "Shield"
+examine = "A shield made in the Elemental Workshop."
+kept = "Wilderness"
+
+[elemental_shield_noted]
+id = 2891
+
+[elemental_ore]
+id = 2892
+tradeable = false
+weight = 2.267
+examine = "This needs refining."
+kept = "Wilderness"
+
+[elemental_bar]
+id = 2893
+tradeable = false
+weight = 1.814
+smelting {
+  level = 20,
+  xp = 7.5,
+  items = [{id = "elemental_ore"}, {id = "coal", amount = 4}],
+  message = "You place the elemental ore and four heaps of coal into the furnace.",
+}
+examine = "It's a bar of refined elemental ore."
+kept = "Wilderness"

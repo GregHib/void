@@ -1,0 +1,59 @@
+[warrant]
+id = 1503
+tradeable = false
+weight = 0.01
+examine = "A search warrant for a house in Ardougne."
+use = "Quest"
+kept = "Wilderness"
+
+[hangover_cure]
+id = 1504
+tradeable = false
+weight = 2.2
+examine = "It doesn't look very tasty."
+kept = "Reclaim"
+
+[a_magic_scroll]
+id = 1505
+tradeable = false
+weight = 0.02
+examine = "Maybe I should read it..."
+use = "Quest"
+kept = "Wilderness"
+
+[gas_mask]
+id = 1506
+tradeable = false
+weight = 0.255
+aka = ["deathguard_mask"]
+slot = "Hat"
+type = "FullFace"
+examine = "Stops me from breathing nasty stuff!"
+kept = "Reclaim"
+
+[a_small_key]
+id = 1507
+tradeable = false
+weight = 0.01
+examine = "Quite a small key."
+use = "Quest"
+kept = "Wilderness"
+
+[a_scruffy_note]
+id = 1508
+tradeable = false
+weight = 0.01
+examine = "It seems to say hongorer lure..."
+use = "Quest"
+kept = "Wilderness"
+
+[book_turnip_growing_for_beginners]
+id = 1509
+tradeable = false
+weight = 0.51
+examine = "Turnip growing for beginners."
+kept = "Reclaim"
+
+[picture_plague_city]
+clone = "picture_6"
+id = 1510

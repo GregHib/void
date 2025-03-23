@@ -1,0 +1,458 @@
+[basket]
+id = 5376
+price = 1
+limit = 1000
+weight = 0.028
+examine = "An empty fruit basket."
+
+[basket_noted]
+id = 5377
+
+[apples_1]
+id = 5378
+weight = 0.056
+empty = "basket"
+examine = "A fruit basket filled with apples."
+
+[apples_1_noted]
+id = 5379
+
+[apples_2]
+id = 5380
+weight = 0.085
+empty = "basket"
+examine = "A fruit basket filled with apples."
+
+[apples_2_noted]
+id = 5381
+
+[apples_3]
+id = 5382
+weight = 0.113
+empty = "basket"
+examine = "A fruit basket filled with apples."
+
+[apples_3_noted]
+id = 5383
+
+[apples_4]
+id = 5384
+weight = 0.141
+empty = "basket"
+examine = "A fruit basket filled with apples."
+
+[apples_4_noted]
+id = 5385
+
+[apples_5]
+id = 5386
+price = 2135
+weight = 0.17
+empty = "basket"
+examine = "A fruit basket filled with apples."
+
+[apples_5_noted]
+id = 5387
+
+[oranges_1]
+id = 5388
+weight = 0.056
+empty = "basket"
+examine = "A fruit basket filled with oranges"
+
+[oranges_1_noted]
+id = 5389
+
+[oranges_2]
+id = 5390
+weight = 0.085
+empty = "basket"
+examine = "A fruit basket filled with oranges"
+
+[oranges_2_noted]
+id = 5391
+
+[oranges_3]
+id = 5392
+weight = 0.113
+empty = "basket"
+examine = "A fruit basket filled with oranges"
+
+[oranges_3_noted]
+id = 5393
+
+[oranges_4]
+id = 5394
+weight = 0.141
+empty = "basket"
+examine = "A fruit basket filled with oranges"
+
+[oranges_4_noted]
+id = 5395
+
+[oranges_5]
+id = 5396
+price = 1079
+weight = 0.17
+empty = "basket"
+examine = "A fruit basket filled with oranges"
+
+[oranges_5_noted]
+id = 5397
+
+[strawberries_1]
+id = 5398
+weight = 0.056
+empty = "basket"
+examine = "A fruit basket filled with strawberries."
+
+[strawberries_1_noted]
+id = 5399
+
+[strawberries_2]
+id = 5400
+weight = 0.085
+empty = "basket"
+examine = "A fruit basket filled with strawberries."
+
+[strawberries_2_noted]
+id = 5401
+
+[strawberries_3]
+id = 5402
+weight = 0.113
+empty = "basket"
+examine = "A fruit basket filled with strawberries."
+
+[strawberries_3_noted]
+id = 5403
+
+[strawberries_4]
+id = 5404
+weight = 0.141
+empty = "basket"
+examine = "A fruit basket filled with strawberries."
+
+[strawberries_4_noted]
+id = 5405
+
+[strawberries_5]
+id = 5406
+price = 150
+weight = 0.17
+empty = "basket"
+examine = "A fruit basket filled with strawberries."
+
+[strawberries_5_noted]
+id = 5407
+
+[bananas_1]
+id = 5408
+weight = 0.056
+empty = "basket"
+examine = "A fruit basket filled with bananas."
+
+[bananas_1_noted]
+id = 5409
+
+[bananas_2]
+id = 5410
+weight = 0.085
+empty = "basket"
+examine = "A fruit basket filled with bananas."
+
+[bananas_2_noted]
+id = 5411
+
+[bananas_3]
+id = 5412
+weight = 0.113
+empty = "basket"
+examine = "A fruit basket filled with bananas."
+
+[bananas_3_noted]
+id = 5413
+
+[bananas_4]
+id = 5414
+weight = 0.141
+empty = "basket"
+examine = "A fruit basket filled with bananas."
+
+[bananas_4_noted]
+id = 5415
+
+[bananas_5]
+id = 5416
+price = 564
+weight = 0.17
+empty = "basket"
+examine = "A fruit basket filled with bananas."
+
+[bananas_5_noted]
+id = 5417
+
+[empty_sack]
+id = 5418
+price = 7
+limit = 100
+weight = 0.453
+examine = "An empty vegetable sack."
+kept = "Wilderness"
+
+[empty_sack_noted]
+id = 5419
+
+[potatoes_1]
+id = 5420
+weight = 0.907
+examine = "There is 1 potato in this sack."
+
+[potatoes_1_noted]
+id = 5421
+
+[potatoes_2]
+id = 5422
+weight = 1.36
+examine = "There are 2 potatoes in this sack."
+
+[potatoes_2_noted]
+id = 5423
+
+[potatoes_3]
+id = 5424
+weight = 1.814
+examine = "There are 3 potatoes in this sack."
+
+[potatoes_3_noted]
+id = 5425
+
+[potatoes_4]
+id = 5426
+weight = 2.267
+examine = "There are 4 potatoes in this sack."
+
+[potatoes_4_noted]
+id = 5427
+
+[potatoes_5]
+id = 5428
+weight = 2.721
+examine = "There are 5 potatoes in this sack."
+
+[potatoes_5_noted]
+id = 5429
+
+[potatoes_6]
+id = 5430
+weight = 3.175
+examine = "There are 6 potatoes in this sack."
+
+[potatoes_6_noted]
+id = 5431
+
+[potatoes_7]
+id = 5432
+weight = 3.628
+examine = "There are 7 potatoes in this sack."
+
+[potatoes_7_noted]
+id = 5433
+
+[potatoes_8]
+id = 5434
+weight = 4.082
+examine = "There are 8 potatoes in this sack."
+
+[potatoes_8_noted]
+id = 5435
+
+[potatoes_9]
+id = 5436
+weight = 4.535
+examine = "There are 9 potatoes in this sack."
+
+[potatoes_9_noted]
+id = 5437
+
+[potatoes_10]
+id = 5438
+price = 536
+weight = 4.989
+examine = "There are 10 potatoes in this sack."
+
+[potatoes_10_noted]
+id = 5439
+
+[onions_1]
+id = 5440
+weight = 0.907
+examine = "There is 1 onion in this sack."
+
+[onions_1_noted]
+id = 5441
+
+[onions_2]
+id = 5442
+weight = 1.36
+examine = "There are 2 onions in this sack."
+
+[onions_2_noted]
+id = 5443
+
+[onions_3]
+id = 5444
+weight = 1.814
+examine = "There are 3 onions in this sack."
+
+[onions_3_noted]
+id = 5445
+
+[onions_4]
+id = 5446
+weight = 2.267
+examine = "There are 4 onions in this sack."
+
+[onions_4_noted]
+id = 5447
+
+[onions_5]
+id = 5448
+weight = 2.721
+examine = "There are 5 onions in this sack."
+
+[onions_5_noted]
+id = 5449
+
+[onions_6]
+id = 5450
+weight = 3.175
+examine = "There are 6 onions in this sack."
+
+[onions_6_noted]
+id = 5451
+
+[onions_7]
+id = 5452
+weight = 3.628
+examine = "There are 7 onions in this sack."
+
+[onions_7_noted]
+id = 5453
+
+[onions_8]
+id = 5454
+weight = 4.082
+examine = "There are 8 onions in this sack."
+
+[onions_8_noted]
+id = 5455
+
+[onions_9]
+id = 5456
+weight = 4.535
+examine = "There are 9 onions in this sack."
+
+[onions_9_noted]
+id = 5457
+
+[onions_10]
+id = 5458
+price = 500
+weight = 4.989
+examine = "There are 10 onions in this sack."
+
+[onions_10_noted]
+id = 5459
+
+[cabbages_1]
+id = 5460
+weight = 0.907
+examine = "There is 1 cabbage in this sack."
+
+[cabbages_1_noted]
+id = 5461
+
+[cabbages_2]
+id = 5462
+weight = 1.36
+examine = "There are 2 cabbages in this sack."
+
+[cabbages_2_noted]
+id = 5463
+
+[cabbages_3]
+id = 5464
+weight = 1.814
+examine = "There are 3 cabbages in this sack."
+
+[cabbages_3_noted]
+id = 5465
+
+[cabbages_4]
+id = 5466
+weight = 2.267
+examine = "There are 4 cabbages in this sack."
+
+[cabbages_4_noted]
+id = 5467
+
+[cabbages_5]
+id = 5468
+weight = 2.721
+examine = "There are 5 cabbages in this sack."
+
+[cabbages_5_noted]
+id = 5469
+
+[cabbages_6]
+id = 5470
+weight = 3.175
+examine = "There are 6 cabbages in this sack."
+
+[cabbages_6_noted]
+id = 5471
+
+[cabbages_7]
+id = 5472
+weight = 3.628
+examine = "There are 7 cabbages in this sack."
+
+[cabbages_7_noted]
+id = 5473
+
+[cabbages_8]
+id = 5474
+weight = 4.082
+examine = "There are 8 cabbages in this sack."
+
+[cabbages_8_noted]
+id = 5475
+
+[cabbages_9]
+id = 5476
+weight = 4.535
+examine = "There are 9 cabbages in this sack."
+
+[cabbages_9_noted]
+id = 5477
+
+[cabbages_10]
+id = 5478
+price = 698
+weight = 4.989
+examine = "There are 10 cabbages in this sack."
+
+[cabbages_10_noted]
+id = 5479
+
+[strawberry]
+id = 5504
+price = 12
+limit = 10000
+heals = 60
+weight = 0.028
+examine = "A freshly picked strawberry."
+
+[strawberry_noted]
+id = 5505

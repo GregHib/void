@@ -1,0 +1,14 @@
+[stick]
+id = 4179
+tradeable = false
+weight = 0.01
+examine = "For playing fetch with."
+kept = "Reclaim"
+
+[mouth_grip]
+id = 4181
+tradeable = false
+weight = 0.001
+slot = "Weapon"
+examine = "A holding thingy for the zip line."
+kept = "Reclaim"

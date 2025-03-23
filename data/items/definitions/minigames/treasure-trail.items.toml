@@ -1,0 +1,805 @@
+[sextant]
+id = 2574
+tradeable = false
+weight = 0.2
+examine = "Used by navigators to find their position in Gielinor."
+kept = "Wilderness"
+
+[watch]
+id = 2575
+tradeable = false
+weight = 0.1
+examine = "A fine-looking timepiece."
+kept = "Wilderness"
+
+[chart]
+id = 2576
+tradeable = false
+weight = 0.01
+examine = "A navigator's chart of Gielinor."
+kept = "Wilderness"
+
+[ranger_boots]
+id = 2577
+price = 31300000
+limit = 2
+weight = 0.283
+slot = "Feet"
+examine = "Lightweight boots ideal for rangers."
+
+[ranger_boots_noted]
+id = 2578
+
+[wizard_boots]
+id = 2579
+limit = 2
+weight = 0.453
+slot = "Feet"
+examine = "Slightly magical boots."
+kept = "Wilderness"
+
+[wizard_boots_noted]
+id = 2580
+
+[robin_hood_hat]
+id = 2581
+price = 5200000
+limit = 2
+weight = 0.283
+slot = "Hat"
+examine = "Endorsed by Robin Hood."
+
+[robin_hood_hat_noted]
+id = 2582
+
+[black_platebody_t]
+id = 2583
+price = 88700
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "Black platebody with trim."
+
+[black_platebody_t_noted]
+id = 2584
+
+[black_platelegs_t]
+id = 2585
+price = 84600
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Black platelegs with trim."
+
+[black_platelegs_t_noted]
+id = 2586
+
+[black_full_helm_t]
+id = 2587
+price = 98900
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Black full helmet with trim."
+
+[black_full_helm_t_noted]
+id = 2588
+
+[black_kiteshield_t]
+id = 2589
+price = 125400
+limit = 2
+weight = 5.443
+aka = ["black_kite_t", "black_kite_trimmed", "trimmed_black_kite", "trimmed_black_kiteshield", "black_kiteshield_trimmed"]
+slot = "Shield"
+material = "metal"
+examine = "Black kiteshield with trim."
+
+[black_kiteshield_t_noted]
+id = 2590
+
+[black_platebody_g]
+id = 2591
+price = 648800
+limit = 2
+weight = 9.979
+aka = ["black_plate_g", "black_platebody_gold", "black_plate_gold"]
+slot = "Chest"
+material = "metal"
+examine = "Black platebody with gold trim."
+
+[black_platebody_g_noted]
+id = 2592
+
+[black_platelegs_g]
+id = 2593
+price = 246300
+limit = 2
+weight = 9.071
+aka = ["black_legs_g", "black_platelegs_gold", "black_legs_gold"]
+slot = "Legs"
+material = "metal"
+examine = "Black platelegs with gold trim."
+
+[black_platelegs_g_noted]
+id = 2594
+
+[black_full_helm_g]
+id = 2595
+price = 409500
+limit = 2
+weight = 2.721
+aka = ["black_full_helm_gold"]
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Black full helmet with gold trim."
+
+[black_full_helm_g_noted]
+id = 2596
+
+[black_kiteshield_g]
+id = 2597
+price = 385600
+limit = 2
+weight = 5.443
+aka = ["black_kite_g", "black_kiteshield_gold", "black_kite_gold"]
+slot = "Shield"
+material = "metal"
+examine = "Black kiteshield with gold trim."
+
+[black_kiteshield_g_noted]
+id = 2598
+
+[adamant_platebody_t]
+id = 2599
+price = 72300
+limit = 2
+weight = 11.339
+aka = ["adamant_body_t", "adamant_platebody_trimmed", "adamant_body_trimmed"]
+slot = "Chest"
+material = "metal"
+examine = "Adamant platebody with trim."
+
+[adamant_platebody_t_noted]
+id = 2600
+
+[adamant_platelegs_t]
+id = 2601
+price = 21700
+limit = 2
+weight = 10.432
+aka = ["adamant_legs_t", "adamant_platelegs_trimmed", "adamant_legs_trimmed"]
+slot = "Legs"
+material = "metal"
+examine = "Adamant platelegs with trim."
+
+[adamant_platelegs_t_noted]
+id = 2602
+
+[adamant_kiteshield_t]
+id = 2603
+price = 41000
+limit = 2
+weight = 5.896
+aka = ["adamant_kite_t", "adamant_kiteshield_trimmed", "adamant_kite_trimmed"]
+slot = "Shield"
+material = "metal"
+examine = "Adamant kiteshield with trim."
+
+[adamant_kiteshield_t_noted]
+id = 2604
+
+[adamant_full_helm_t]
+id = 2605
+price = 78100
+limit = 2
+weight = 3.175
+aka = ["adamant_full_helm_trimmed"]
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Adamant full helmet with trim."
+
+[adamant_full_helm_t_noted]
+id = 2606
+
+[adamant_platebody_g]
+id = 2607
+price = 324200
+limit = 2
+weight = 11.339
+aka = ["adamant_body_g", "adamant_platebody_gold", "adamant_body_gold"]
+slot = "Chest"
+material = "metal"
+examine = "Adamant platebody with gold trim."
+
+[adamant_platebody_g_noted]
+id = 2608
+
+[adamant_platelegs_g]
+id = 2609
+price = 71500
+limit = 2
+weight = 10.432
+aka = ["adamant_legs_g", "adamant_platelegs_gold", "adamant_legs_gold"]
+slot = "Legs"
+material = "metal"
+examine = "Adamant platelegs with gold trim."
+
+[adamant_platelegs_g_noted]
+id = 2610
+
+[adamant_kiteshield_g]
+id = 2611
+price = 147600
+limit = 2
+weight = 5.896
+aka = ["adamant_kite_g", "adamant_kiteshield_gold", "adamant_kite_gold"]
+slot = "Shield"
+material = "metal"
+examine = "Adamant kiteshield with gold trim."
+
+[adamant_kiteshield_g_noted]
+id = 2612
+
+[adamant_full_helm_g]
+id = 2613
+price = 261000
+limit = 2
+weight = 3.175
+aka = ["adamant_full_helm_gold"]
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Adamant full helmet with gold trim."
+
+[adamant_full_helm_g_noted]
+id = 2614
+
+[rune_platebody_g]
+id = 2615
+price = 442400
+limit = 2
+weight = 9.979
+aka = ["rune_body_g", "rune_platebody_gold", "rune_body_gold"]
+slot = "Chest"
+material = "metal"
+examine = "Rune platebody with gold trim."
+
+[rune_platebody_g_noted]
+id = 2616
+
+[rune_platelegs_g]
+id = 2617
+price = 231400
+limit = 2
+weight = 9.071
+aka = ["rune_legs_g", "rune_platelegs_gold", "rune_legs_gold"]
+slot = "Legs"
+material = "metal"
+examine = "Rune platelegs with gold trim."
+
+[rune_platelegs_g_noted]
+id = 2618
+
+[rune_full_helm_g]
+id = 2619
+price = 484800
+limit = 2
+weight = 2.721
+aka = ["rune_full_helm_gold"]
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Rune full helmet with gold trim."
+
+[rune_full_helm_g_noted]
+id = 2620
+
+[rune_kiteshield_g]
+id = 2621
+price = 391800
+limit = 2
+weight = 5.443
+aka = ["rune_kite_g", "rune_kiteshield_gold", "rune_kite_gold"]
+slot = "Shield"
+material = "metal"
+examine = "Rune kiteshield with gold trim."
+
+[rune_kiteshield_g_noted]
+id = 2622
+
+[rune_platebody_t]
+id = 2623
+price = 146800
+limit = 2
+weight = 9.979
+aka = ["rune_body_t", "rune_platebody_trimmed", "rune_body_trimmed"]
+slot = "Chest"
+material = "metal"
+examine = "Rune platebody with trim."
+
+[rune_platebody_t_noted]
+id = 2624
+
+[rune_platelegs_t]
+id = 2625
+price = 98200
+limit = 2
+weight = 9.071
+aka = ["rune_legs_t", "rune_platelegs_trimmed", "rune_legs_trimmed"]
+slot = "Legs"
+material = "metal"
+examine = "Rune platelegs with trim."
+
+[rune_platelegs_t_noted]
+id = 2626
+
+[rune_full_helm_t]
+id = 2627
+price = 224400
+limit = 2
+weight = 2.721
+aka = ["rune_full_helm_trimmed"]
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Rune full helmet with trim."
+
+[rune_full_helm_t_noted]
+id = 2628
+
+[rune_kiteshield_t]
+id = 2629
+price = 170400
+limit = 2
+weight = 5.443
+aka = ["rune_kite_t", "rune_kiteshield_trimmed", "rune_kite_trimmed"]
+slot = "Shield"
+material = "metal"
+examine = "Rune kiteshield with trim."
+
+[rune_kiteshield_t_noted]
+id = 2630
+
+[highwayman_mask]
+id = 2631
+price = 114400
+limit = 2
+weight = 0.02
+slot = "Hat"
+examine = "Your money or your life!"
+
+[highwayman_mask_noted]
+id = 2632
+
+[blue_beret]
+id = 2633
+price = 76500
+limit = 2
+weight = 0.04
+slot = "Hat"
+examine = "Parlez-vous Francais?"
+
+[blue_beret_noted]
+id = 2634
+
+[black_beret]
+id = 2635
+price = 201800
+limit = 2
+weight = 0.04
+slot = "Hat"
+examine = "Parlez-vous Francais?"
+
+[black_beret_noted]
+id = 2636
+
+[white_beret]
+id = 2637
+price = 508000
+limit = 2
+weight = 0.04
+slot = "Hat"
+examine = "Parlez-vous Francais?"
+
+[white_beret_noted]
+id = 2638
+
+[tan_cavalier]
+id = 2639
+price = 30500
+limit = 2
+weight = 0.08
+slot = "Hat"
+examine = "All for one, and one for all!"
+
+[tan_cavalier_noted]
+id = 2640
+
+[dark_cavalier]
+id = 2641
+price = 32900
+limit = 2
+weight = 0.001
+slot = "Hat"
+examine = "All for one, and one for all!"
+
+[dark_cavalier_noted]
+id = 2642
+
+[black_cavalier]
+id = 2643
+price = 695300
+limit = 2
+weight = 0.08
+slot = "Hat"
+examine = "All for one, and one for all!"
+
+[black_cavalier_noted]
+id = 2644
+
+[red_headband]
+id = 2645
+price = 50600
+limit = 2
+weight = 0.04
+slot = "Hat"
+examine = "A minimalist's hat."
+
+[red_headband_noted]
+id = 2646
+
+[black_headband]
+id = 2647
+price = 22900
+limit = 2
+weight = 0.04
+slot = "Hat"
+examine = "A minimalist's hat."
+
+[black_headband_noted]
+id = 2648
+
+[brown_headband]
+id = 2649
+price = 16000
+limit = 2
+weight = 0.04
+slot = "Hat"
+examine = "A minimalist's hat."
+
+[brown_headband_noted]
+id = 2650
+
+[pirates_hat]
+id = 2651
+price = 84800
+limit = 2
+weight = 0.001
+slot = "Hat"
+examine = "Shiver me timbers!"
+
+[pirates_hat_noted]
+id = 2652
+
+[rune_platebody_zamorak]
+id = 2653
+price = 870532
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A rune platebody in the colours of Zamorak."
+
+[zamorak_platebody_noted]
+id = 2654
+
+[rune_platelegs_zamorak]
+id = 2655
+price = 236400
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Rune platelegs in the colours of Zamorak."
+
+[zamorak_platelegs_noted]
+id = 2656
+
+[rune_full_helm_zamorak]
+id = 2657
+price = 639900
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A rune full helmet in the colours of Zamorak."
+
+[zamorak_full_helm_noted]
+id = 2658
+
+[rune_kiteshield_zamorak]
+id = 2659
+price = 530500
+limit = 2
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A rune kiteshield in the colours of Zamorak."
+
+[zamorak_kiteshield_noted]
+id = 2660
+
+[rune_platebody_saradomin]
+id = 2661
+price = 1600000
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A rune platebody in the colours of Saradomin."
+
+[saradomin_platebody_noted]
+id = 2662
+
+[rune_platelegs_saradomin]
+id = 2663
+price = 355800
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Rune platelegs in the colours of Saradomin."
+
+[saradomin_platelegs_noted]
+id = 2664
+
+[rune_full_helm_saradomin]
+id = 2665
+price = 1100000
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A rune full helmet in the colours of Saradomin."
+
+[saradomin_full_helm_noted]
+id = 2666
+
+[rune_kiteshield_saradomin]
+id = 2667
+price = 835100
+limit = 2
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A rune kiteshield in the colours of Saradomin."
+
+[saradomin_kiteshield_noted]
+id = 2668
+
+[rune_platebody_guthix]
+id = 2669
+price = 362200
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A rune platebody in the colours of Guthix."
+
+[guthix_platebody_noted]
+id = 2670
+
+[rune_platelegs_guthix]
+id = 2671
+price = 151200
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Rune platelegs in the colours of Guthix."
+
+[guthix_platelegs_noted]
+id = 2672
+
+[rune_full_helm_guthix]
+id = 2673
+price = 332500
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A rune full helmet in the colours of Guthix."
+
+[guthix_full_helm_noted]
+id = 2674
+
+[rune_kiteshield_guthix]
+id = 2675
+price = 290000
+limit = 2
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A rune kiteshield in the colours of Guthix."
+
+[guthix_kiteshield_noted]
+id = 2676
+
+[black_plateskirt_t]
+id = 3472
+price = 4154
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Black plateskirt with trim."
+
+[black_plateskirt_g]
+id = 3473
+price = 12600
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Black plateskirt with gold trim."
+
+[adamant_plateskirt_t]
+id = 3474
+price = 3771
+limit = 2
+weight = 10.432
+slot = "Legs"
+material = "metal"
+examine = "Adamant plateskirt with trim."
+
+[adamant_plateskirt_g]
+id = 3475
+price = 12400
+limit = 2
+weight = 10.432
+slot = "Legs"
+material = "metal"
+examine = "Adamant plateskirt with gold trim."
+
+[rune_plateskirt_g]
+id = 3476
+price = 48100
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Rune plateskirt with gold trim."
+
+[rune_plateskirt_t]
+id = 3477
+price = 38800
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Rune plateskirt with trim."
+
+[rune_plateskirt_zamorak]
+id = 3478
+price = 41200
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A rune plateskirt in the colours of Zamorak."
+
+[rune_plateskirt_saradomin]
+id = 3479
+price = 52800
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A rune plateskirt in the colours of Saradomin."
+
+[rune_plateskirt_guthix]
+id = 3480
+price = 39800
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A rune plateskirt in the colours of Guthix."
+
+[rune_platebody_gilded]
+id = 3481
+price = 2400000
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A rune platebody with gold plate."
+
+[gilded_platebody_noted]
+id = 3482
+
+[rune_platelegs_gilded]
+id = 3483
+price = 3600000
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A pair of rune platelegs with gold plate."
+
+[gilded_platelegs_noted]
+id = 3484
+
+[rune_plateskirt_gilded]
+id = 3485
+price = 234100
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A rune plateskirt with gold plate."
+
+[rune_full_helm_gilded]
+id = 3486
+price = 495600
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A rune full helmet with gold plate."
+
+[gilded_full_helm_noted]
+id = 3487
+
+[rune_kiteshield_gilded]
+id = 3488
+price = 466100
+limit = 2
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A rune kiteshield with gold plate."
+
+[gilded_kiteshield_noted]
+id = 3489
+
+[black_plateskirt_t_noted]
+id = 3668
+
+[black_plateskirt_g_noted]
+id = 3669
+
+[adamant_plateskirt_t_noted]
+id = 3670
+
+[adamant_plateskirt_g_noted]
+id = 3671
+
+[rune_plateskirt_g_noted]
+id = 3672
+
+[rune_plateskirt_t_noted]
+id = 3673
+
+[zamorak_plateskirt_noted]
+id = 3674
+
+[saradomin_plateskirt_noted]
+id = 3675
+
+[guthix_plateskirt_noted]
+id = 3676
+
+[gilded_plateskirt_noted]
+id = 3677

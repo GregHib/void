@@ -1,0 +1,43 @@
+
+[fishing_explosive_2]
+id = 6660
+tradeable = false
+examine = "The jar keeps shaking...I'm scared."
+kept = "Reclaim"
+
+[broken_fishing_rod_mudskipper_point]
+id = 6662
+tradeable = false
+weight = 0.907
+examine = "This fishing rod seems to have been bitten in half..."
+kept = "Reclaim"
+
+[forlorn_boot]
+id = 6663
+tradeable = false
+weight = 0.056
+examine = "It seems someone vacated this boot in a hurry..."
+kept = "Reclaim"
+
+[fishing_explosive]
+id = 6664
+tradeable = false
+examine = "The jar keeps shaking...I'm scared."
+kept = "Reclaim"
+
+[mudskipper_hat]
+id = 6665
+tradeable = false
+weight = 0.453
+slot = "Hat"
+type = "Hair"
+examine = "Fishy, damp and smelly."
+kept = "Reclaim"
+
+[flippers]
+id = 6666
+tradeable = false
+weight = 0.34
+slot = "Feet"
+examine = "Strangely uncomfortable flippers."
+kept = "Reclaim"

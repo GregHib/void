@@ -1,0 +1,267 @@
+[saradomin_flag]
+id = 4037
+weight = 2.267
+aka = ["saradomin_standard"]
+weapon_type = "banner"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "The Saradomin team's flag."
+
+[saradomin_flag_noted]
+id = 4038
+
+[zamorak_flag]
+id = 4039
+weight = 2.267
+aka = ["zamorak_standard"]
+weapon_type = "banner"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "The Zamorak team's flag."
+
+[zamorak_flag_noted]
+id = 4040
+
+[saradomin_cloak_castle_wars]
+id = 4041
+tradeable = false
+weight = 0.001
+slot = "Cape"
+destroy = "You can't remove your team's colours."
+examine = "The colours of Saradomin."
+kept = "Reclaim"
+
+[zamorak_cloak_castle_wars]
+id = 4042
+tradeable = false
+weight = 0.001
+slot = "Cape"
+destroy = "You can't remove your team's colours."
+examine = "The colours of Zamorak."
+kept = "Reclaim"
+
+[rock_castle_wars]
+id = 4043
+weight = 5.0
+examine = "I can use this with the catapult."
+
+[rock_noted]
+id = 4044
+
+[explosive_potion]
+id = 4045
+weight = 0.035
+examine = "I can use this to destroy catapults, ballistas and barricades."
+
+[explosive_potion_noted]
+id = 4046
+
+[climbing_rope]
+id = 4047
+weight = 1.36
+examine = "I can use this to scale castle walls."
+
+[climbing_rope_noted]
+id = 4048
+
+[bandages_castle_wars]
+id = 4049
+heals = 0
+weight = 0.001
+examine = "I can use these to heal myself and others."
+
+[bandages_noted]
+id = 4050
+
+[toolkit_castle_wars]
+id = 4051
+weight = 0.001
+examine = "I can use this to repair catapults and doors."
+
+[toolkit_noted]
+id = 4052
+
+[barricade_castle_wars]
+id = 4053
+weight = 5.0
+examine = "Handy for hindering the enemy team's movement."
+
+[barricade_noted]
+id = 4054
+
+[castle_wars_manual]
+id = 4055
+tradeable = false
+weight = 0.51
+aka = ["castle_wars_handbook"]
+examine = "It's a manual for Castle Wars."
+kept = "Reclaim"
+
+[castle_wars_ticket_gold]
+id = 4067
+tradeable = false
+examine = "I can exchange these for Castle Wars rewards."
+kept = "Wilderness"
+
+[basic_decorative_sword]
+id = 4068
+tradeable = false
+weight = 1.587
+slot = "Weapon"
+material = "metal"
+aka = ["basic_sword"]
+examine = "A sword with simple, basic decoration."
+kept = "Wilderness"
+
+[basic_decorative_platebody]
+id = 4069
+slot = "Chest"
+material = "metal"
+aka = ["basic_platebody"]
+examine = "A platebody with simple and basic decoration."
+weight = 8.618
+
+[basic_decorative_platelegs]
+id = 4070
+slot = "Legs"
+material = "metal"
+aka = ["basic_platelegs"]
+examine = "Some platelegs with simple and basic decoration."
+weight = 9.071
+
+[basic_decorative_helm]
+id = 4071
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+aka = ["basic_helm"]
+examine = "A helm with simple and basic decoration."
+weight = 1.36
+
+[basic_decorative_shield]
+id = 4072
+slot = "Shield"
+material = "metal"
+aka = ["basic_shield"]
+examine = "A shield with simple and basic decoration"
+weight = 4.535
+
+[detailed_decorative_sword]
+id = 4503
+tradeable = false
+weight = 1.587
+slot = "Weapon"
+material = "metal"
+aka = ["detailed_sword"]
+examine = "A sword with finely detailed decoration."
+kept = "Wilderness"
+
+[detailed_decorative_platebody]
+id = 4504
+slot = "Chest"
+material = "metal"
+aka = ["detailed_platebody"]
+examine = "A platebody with finely detailed decoration."
+weight = 8.618
+
+[detailed_decorative_platelegs]
+id = 4505
+slot = "Legs"
+material = "metal"
+aka = ["detailed_platelegs"]
+examine = "Some platelegs with highly detailed decoration."
+weight = 9.071
+
+[detailed_decorative_helm]
+id = 4506
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+aka = ["detailed_helm"]
+examine = "A helm with finely detailed decoration."
+weight = 1.36
+
+[detailed_decorative_shield]
+id = 4507
+slot = "Shield"
+material = "metal"
+aka = ["detailed_shield"]
+examine = "A shield with finely detailed decoration."
+weight = 4.535
+
+[intricate_decorative_sword]
+id = 4508
+tradeable = false
+weight = 1.587
+slot = "Weapon"
+material = "metal"
+aka = ["intricate_sword"]
+examine = "A sword with incredibly intricate decoration."
+kept = "Reclaim"
+
+[intricate_decorative_platebody]
+id = 4509
+slot = "Chest"
+material = "metal"
+aka = ["intricate_platebody"]
+examine = "A platebody with incredibly intricate decoration."
+weight = 8.618
+
+[intricate_decorative_platelegs]
+id = 4510
+slot = "Legs"
+material = "metal"
+aka = ["intricate_platelegs"]
+examine = "Some platelegs with incredibly intricate decoration."
+weight = 9.071
+
+[intricate_decorative_helm]
+id = 4511
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+aka = ["intricate_helm"]
+examine = "A helm with incredibly intricate decoration."
+weight = 1.36
+
+[intricate_decorative_shield]
+id = 4512
+slot = "Shield"
+material = "metal"
+aka = ["intricate_shield"]
+examine = "A shield with incredibly intricate decoration"
+weight = 4.535
+
+[saradomin_team_hood]
+id = 4513
+tradeable = false
+weight = 0.453
+slot = "Hat"
+type = "Hair"
+examine = "A Castle Wars hood in Saradomin blue."
+kept = "Wilderness"
+
+[saradomin_team_cape]
+id = 4514
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "A Castle Wars cape in Saradomin blue."
+kept = "Wilderness"
+
+[zamorak_team_hood]
+id = 4515
+tradeable = false
+weight = 0.453
+slot = "Hat"
+type = "Hair"
+examine = "A Castle Wars hood in Zamorak red."
+kept = "Wilderness"
+
+[zamorak_team_cape]
+id = 4516
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "A Castle Wars cape in Zamorak red."
+kept = "Wilderness"

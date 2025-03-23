@@ -1,0 +1,220 @@
+[mime_mask]
+id = 3057
+tradeable = false
+weight = 0.001
+slot = "Hat"
+examine = "A mime would wear this."
+kept = "Wilderness"
+
+[mime_top]
+id = 3058
+tradeable = false
+weight = 0.001
+slot = "Chest"
+examine = "A mime would wear this."
+kept = "Wilderness"
+
+[mime_legs]
+id = 3059
+tradeable = false
+weight = 0.001
+slot = "Legs"
+examine = "A mime would wear these."
+kept = "Wilderness"
+
+[mime_gloves]
+id = 3060
+tradeable = false
+weight = 0.001
+slot = "Hands"
+examine = "A mime would wear these."
+kept = "Wilderness"
+
+[mime_boots]
+id = 3061
+tradeable = false
+weight = 0.34
+slot = "Feet"
+examine = "A mime would wear these."
+kept = "Wilderness"
+
+[strange_box]
+id = 3062
+tradeable = false
+destroy = "Solve the puzzle inside!"
+examine = "It seems to be humming..."
+kept = "Vanish"
+use = "Removed"
+
+[raw_pheasant]
+id = 6178
+tradeable = false
+weight = 10.0
+examine = "I need to cook this first."
+kept = "Vanish"
+use = "Removed"
+
+[raw_pheasant_incorrect]
+clone = "raw_pheasant"
+id = 6179
+
+[lederhosen_top]
+id = 6180
+tradeable = false
+weight = 2.267
+slot = "Chest"
+examine = "A leather strapped top."
+kept = "Wilderness"
+
+[lederhosen_shorts]
+id = 6181
+tradeable = false
+weight = 2.267
+slot = "Legs"
+examine = "Brown leather shorts with bright white socks?"
+kept = "Wilderness"
+
+[lederhosen_hat]
+id = 6182
+tradeable = false
+weight = 2.267
+slot = "Hat"
+type = "Hair"
+examine = "A hat with a goat's hair attached."
+kept = "Wilderness"
+
+[random_event_gift]
+id = 6183
+tradeable = false
+weight = 2.0
+examine = "Open the box and choose a gift."
+kept = "Reclaim"
+use = "Limited"
+
+[prince_tunic]
+id = 6184
+tradeable = false
+weight = 2.721
+slot = "Chest"
+examine = "Very posh!"
+kept = "Wilderness"
+
+[prince_leggings]
+id = 6185
+tradeable = false
+weight = 2.267
+slot = "Legs"
+examine = "Very posh!"
+kept = "Wilderness"
+
+[princess_blouse]
+id = 6186
+tradeable = false
+weight = 2.721
+slot = "Chest"
+examine = "Very posh!"
+kept = "Wilderness"
+
+[princess_skirt]
+id = 6187
+tradeable = false
+weight = 2.267
+slot = "Legs"
+examine = "Very posh!"
+kept = "Wilderness"
+
+[frog_mask]
+id = 6188
+tradeable = false
+weight = 0.453
+slot = "Hat"
+type = "FullFace"
+examine = "Now that's just silly."
+kept = "Wilderness"
+
+[hex_edit_detected]
+id = 6189
+tradeable = false
+weight = 1.0
+examine = "Your IP has been logged and passed to Customer Support."
+use = "Removed"
+
+[mystery_box]
+id = 6199
+tradeable = false
+weight = 1.0
+examine = "Could there be something valuable in here?"
+kept = "Reclaim"
+use = "Limited"
+
+[raw_fish_like_thing]
+id = 6200
+tradeable = false
+weight = 0.7
+destroy = "A ghastly fish-like thing caught on Evil Bob's Island."
+examine = "A raw...fish? Is this a fish??"
+kept = "Vanish"
+
+[fish_like_thing]
+id = 6202
+tradeable = false
+weight = 0.7
+destroy = "A ghastly fish-like thing caught on Evil Bob's Island."
+examine = "It's a fish-like thing that appears to already be cooked. It looks disgusting."
+kept = "Vanish"
+
+[raw_fish_like_thing_incorrect]
+id = 6204
+tradeable = false
+weight = 0.7
+destroy = "A ghastly fish-like thing caught on Evil Bob's Island."
+examine = "A raw...fish? Is this a fish??"
+kept = "Reclaim"
+
+[fish_like_thing_incorrect]
+id = 6206
+tradeable = false
+weight = 0.7
+destroy = "A ghastly fish-like thing caught on Evil Bob's Island."
+examine = "It's a fish-like thing that appears to already be cooked. It looks disgusting."
+kept = "Reclaim"
+
+[manspeak_amulet]
+id = 6208
+tradeable = false
+weight = 1.36
+slot = "Amulet"
+examine = "It's an Amulet of Manspeak. It makes vague grunting noises."
+kept = "Reclaim"
+use = "Removed"
+
+[small_fishing_net_evil_bobs_island]
+id = 6209
+limit = 100
+weight = 4.535
+examine = "Useful for catching small fish."
+kept = "Wilderness"
+
+[camo_top]
+id = 6654
+tradeable = false
+weight = 2.721
+slot = "Chest"
+examine = "Examine what?"
+kept = "Wilderness"
+
+[camo_bottoms]
+id = 6655
+tradeable = false
+weight = 2.267
+slot = "Legs"
+examine = "Examine what?"
+kept = "Wilderness"
+
+[camo_helmet]
+id = 6656
+tradeable = false
+weight = 2.267
+slot = "Hat"
+examine = "Examine what?"
+kept = "Wilderness"

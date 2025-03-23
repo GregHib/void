@@ -1,0 +1,24 @@
+[agility_arena_ticket]
+id = 2996
+tradeable = false
+examine = "I can exchange these for further experience or items."
+kept = "Reclaim"
+
+[pirate_hook_left]
+id = 2997
+price = 1800000
+limit = 10
+weight = 0.3
+slot = "Hands"
+examine = "You should see the shark..."
+
+[firework_potion]
+id = 3006
+weight = 0.08
+examine = "Keep out of reach of children and familiars."
+
+[firework_noted]
+id = 3007
+
+[pirates_hook_noted]
+id = 3048

@@ -1,0 +1,45 @@
+[grimy_snake_weed]
+id = 1525
+tradeable = false
+weight = 0.007
+examine = "I need to clean this herb before I can use it."
+kept = "Reclaim"
+
+[clean_snake_weed]
+id = 1526
+tradeable = false
+weight = 0.007
+examine = "A fresh herb."
+kept = "Reclaim"
+
+[grimy_ardrigal]
+clone = "grimy_snake_weed"
+id = 1527
+
+[clean_ardrigal]
+clone = "clean_snake_weed"
+id = 1528
+
+[grimy_sito_foil]
+clone = "grimy_snake_weed"
+id = 1529
+
+[clean_sito_foil]
+clone = "clean_snake_weed"
+id = 1530
+
+[grimy_volencia_moss]
+clone = "grimy_snake_weed"
+id = 1531
+
+[clean_volencia_moss]
+clone = "clean_snake_weed"
+id = 1532
+
+[grimy_rogues_purse]
+clone = "grimy_snake_weed"
+id = 1533
+
+[clean_rogues_purse]
+clone = "clean_snake_weed"
+id = 1534

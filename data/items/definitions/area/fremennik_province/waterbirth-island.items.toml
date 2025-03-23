@@ -1,0 +1,342 @@
+[rock_shell_helm]
+id = 6128
+price = 23200
+limit = 100
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "Protective headwear made from crabs. Better than that sounds."
+
+[rock_shell_plate]
+id = 6129
+price = 40400
+limit = 100
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A sturdy body armour made from rock crab pieces."
+
+[rock_shell_legs]
+id = 6130
+price = 38800
+limit = 100
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Some tough leggings made from rock crab parts."
+
+[spined_helm]
+id = 6131
+price = 36800
+limit = 100
+weight = 2.721
+slot = "Hat"
+material = "leather"
+type = "FullFace"
+examine = "A helm fit for any Fremennik ranger."
+
+[spined_helm_noted]
+id = 6132
+
+[spined_body]
+id = 6133
+price = 4557
+limit = 100
+weight = 6.803
+slot = "Chest"
+material = "leather"
+examine = "A constant reminder that I'm above a Dagannoth in the food chain."
+
+[spined_body_noted]
+id = 6134
+
+[spined_chaps]
+id = 6135
+price = 2486
+limit = 100
+weight = 5.443
+slot = "Legs"
+material = "leather"
+examine = "Stylish leg armour for rangers with a lingering smell of raw fish..."
+
+[spined_chaps_noted]
+id = 6136
+
+[skeletal_helm]
+id = 6137
+price = 48200
+limit = 100
+weight = 1.36
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "Make your foes cower by wearing a skull as a helmet!"
+
+[skeletal_helm_noted]
+id = 6138
+
+[skeletal_top]
+id = 6139
+price = 29100
+limit = 100
+weight = 4.989
+slot = "Chest"
+material = "leather"
+examine = "The bones in this armour seem to vibrate with a magical quality..."
+
+[skeletal_top_noted]
+id = 6140
+
+[skeletal_bottoms]
+id = 6141
+price = 23400
+limit = 100
+weight = 4.082
+slot = "Legs"
+material = "leather"
+examine = "A superior set of strengthened slacks for any self respecting seer."
+
+[skeletal_bottoms_noted]
+id = 6142
+
+[spined_boots]
+id = 6143
+price = 2117
+limit = 100
+weight = 3.175
+slot = "Feet"
+material = "leather"
+examine = "Some finely crafted Fremennik boots, made from spined dagannoth hide."
+
+[spined_boots_noted]
+id = 6144
+
+[rock_shell_boots]
+id = 6145
+price = 966
+limit = 100
+weight = 3.175
+slot = "Feet"
+material = "metal"
+examine = "Some Fremennik boots, made from the shards of a rock crabs' shell."
+
+[rock_shell_boots_noted]
+id = 6146
+
+[skeletal_boots]
+id = 6147
+price = 8558
+limit = 100
+weight = 3.175
+slot = "Feet"
+material = "leather"
+examine = "Some finely crafted Fremennik boots, made from the bones of a wallasalki."
+
+[skeletal_boots_noted]
+id = 6148
+
+[spined_gloves]
+id = 6149
+price = 921
+limit = 100
+weight = 3.175
+slot = "Hands"
+material = "leather"
+examine = "Fremennik gloves stitched together from spined dagannoth hide."
+
+[spined_gloves_noted]
+id = 6150
+
+[rock_shell_gloves]
+id = 6151
+price = 1413
+limit = 100
+weight = 3.175
+slot = "Hands"
+material = "metal"
+examine = "Fremennik gloves stitched together from rock crab shell shards."
+
+[rock_shell_gloves_noted]
+id = 6152
+
+[skeletal_gloves]
+id = 6153
+price = 22300
+limit = 100
+weight = 3.175
+slot = "Hands"
+material = "leather"
+examine = "Fremennik gloves stitched together from wallasalki bones fragments."
+
+[skeletal_gloves_noted]
+id = 6154
+
+[dagannoth_hide]
+id = 6155
+price = 3991
+limit = 500
+weight = 3.175
+examine = "A sturdy piece of dagannoth hide."
+
+[dagannoth_hide_noted]
+id = 6156
+
+[rock_shell_chunk]
+id = 6157
+price = 7963
+limit = 100
+weight = 3.175
+examine = "A spherical chunk of rock-shell."
+
+[rock_shell_chunk_noted]
+id = 6158
+
+[rock_shell_shard]
+id = 6159
+price = 13600
+limit = 100
+weight = 3.175
+examine = "A curved piece of rock-shell."
+
+[rock_shell_shard_noted]
+id = 6160
+
+[rock_shell_splinter]
+id = 6161
+price = 15400
+limit = 100
+weight = 3.175
+examine = "A slim piece of rock-shell."
+
+[rock_shell_splinter_noted]
+id = 6162
+
+[skull_piece]
+id = 6163
+price = 8658
+limit = 100
+weight = 3.175
+examine = "A fearsome looking skull."
+
+[skull_piece_noted]
+id = 6164
+
+[ribcage_piece]
+id = 6165
+price = 13600
+limit = 100
+weight = 3.175
+examine = "A slightly damaged ribcage."
+
+[ribcage_piece_noted]
+id = 6166
+
+[fibula_piece]
+id = 6167
+price = 11800
+limit = 100
+weight = 3.175
+examine = "An interesting looking bone shard."
+
+[fibula_piece_noted]
+id = 6168
+
+[circular_hide]
+id = 6169
+price = 24600
+limit = 100
+weight = 3.175
+examine = "A toughened chunk of dagannoth hide."
+
+[circular_hide_noted]
+id = 6170
+
+[flattened_hide]
+id = 6171
+price = 425
+limit = 100
+weight = 3.175
+examine = "A tattered chunk of dagannoth hide."
+
+[flattened_hide_noted]
+id = 6172
+
+[stretched_hide]
+id = 6173
+price = 336
+limit = 100
+weight = 3.175
+examine = "A weathered chunk of dagannoth hide."
+
+[stretched_hide_noted]
+id = 6174
+
+[rock_shell_helm_noted]
+id = 6175
+
+[rock_shell_plate_noted]
+id = 6176
+
+[rock_shell_legs_noted]
+id = 6177
+
+[seercull]
+id = 6724
+price = 22200
+limit = 100
+weight = 1.36
+attack_range = 8
+special_energy = 1000
+special = "soulshot"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "An ancient Fremennik bow that was once used to battle the Moon Clan."
+
+[seercull_noted]
+id = 6725
+
+[seers_ring]
+id = 6731
+price = 366700
+limit = 10
+weight = 0.004
+slot = "Ring"
+examine = "A mysterious ring that can fill the wearer with magical power..."
+
+[seers_ring_noted]
+id = 6732
+
+[archers_ring]
+id = 6733
+price = 1600000
+limit = 10
+weight = 0.004
+slot = "Ring"
+examine = "A fabled ring that improves the wearer's skill with a bow..."
+
+[archers_ring_noted]
+id = 6734
+
+[warrior_ring]
+id = 6735
+price = 306900
+limit = 10
+weight = 0.004
+slot = "Ring"
+examine = "A legendary ring once worn by Fremennik warriors."
+
+[warrior_ring_noted]
+id = 6736
+
+[berserker_ring]
+id = 6737
+price = 3400000
+limit = 10
+weight = 0.004
+aka = ["bring", "b_ring"]
+slot = "Ring"
+examine = "A ring reputed to bring out a berserk fury in its wearer."
+
+[berserker_ring_noted]
+id = 6738

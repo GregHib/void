@@ -1,0 +1,349 @@
+[marigold_seed]
+id = 5096
+price = 6
+limit = 100
+examine = "A marigold seed - plant in a flower patch."
+kept = "Wilderness"
+
+[rosemary_seed]
+id = 5097
+price = 3
+limit = 100
+examine = "A rosemary seed - plant in a flower patch."
+kept = "Wilderness"
+
+[nasturtium_seed]
+id = 5098
+price = 1
+limit = 1000
+examine = "A nasturtium seed - plant in a flower patch."
+
+[woad_seed]
+id = 5099
+price = 1
+limit = 100
+examine = "A woad seed - plant in a flower patch."
+
+[limpwurt_seed]
+id = 5100
+price = 39
+limit = 100
+examine = "A limpwurt seed - plant in a flower patch."
+
+[redberry_seed]
+id = 5101
+price = 1
+limit = 100
+examine = "A redberry bush seed - plant in a bush patch."
+kept = "Wilderness"
+
+[cadavaberry_seed]
+id = 5102
+price = 1
+limit = 100
+examine = "A cadavaberry bush seed - plant in a bush patch."
+
+[dwellberry_seed]
+id = 5103
+price = 1
+limit = 100
+examine = "A dwellberry bush seed - plant in a bush patch."
+
+[jangerberry_seed]
+id = 5104
+price = 1
+limit = 100
+examine = "A jangerberry bush seed - plant in a bush patch."
+
+[whiteberry_seed]
+id = 5105
+price = 6
+limit = 100
+examine = "A whiteberry bush seed - plant in a bush patch."
+
+[poison_ivy_seed]
+id = 5106
+price = 17
+limit = 100
+examine = "A poison ivy bush seed - plant in a bush patch."
+[cactus_seed]
+id = 5280
+price = 7
+limit = 100
+examine = "A Cactus seed - plant in a cactus patch."
+
+[belladonna_seed]
+id = 5281
+price = 19
+limit = 100
+examine = "Also known as Deadly Nightshade - plant in a belladonna patch."
+
+[bittercap_mushroom_spore]
+id = 5282
+price = 1
+limit = 100
+examine = "A bittercap mushroom spore - plant in a mushroom patch."
+
+[apple_tree_seed]
+id = 5283
+price = 5
+limit = 100
+examine = "Plant in a plantpot of soil to grow a sapling."
+
+[banana_tree_seed]
+clone = "apple_tree_seed"
+id = 5284
+
+[orange_tree_seed]
+id = 5285
+price = 15
+limit = 100
+examine = "Plant in a plantpot of soil to grow a sapling."
+
+[curry_tree_seed]
+id = 5286
+price = 240
+limit = 100
+examine = "Plant in a plantpot of soil to grow a sapling."
+
+[pineapple_seed]
+id = 5287
+price = 10400
+limit = 100
+examine = "Plant in a plantpot of soil to grow a sapling."
+
+[papaya_tree_seed]
+id = 5288
+price = 41000
+limit = 100
+examine = "Plant in a plantpot of soil to grow a sapling."
+
+[palm_tree_seed]
+id = 5289
+price = 114900
+limit = 100
+examine = "Plant in a plantpot of soil to grow a sapling."
+
+[calquat_tree_seed]
+id = 5290
+price = 13100
+limit = 100
+examine = "Plant in a plantpot of soil to grow a sapling."
+
+[guam_seed]
+id = 5291
+price = 2
+limit = 100
+examine = "A guam seed - plant in a herb patch."
+kept = "Wilderness"
+
+[marrentill_seed]
+id = 5292
+price = 2
+limit = 100
+examine = "A marrentill seed - plant in a herb patch."
+kept = "Wilderness"
+
+[tarromin_seed]
+id = 5293
+price = 1
+limit = 100
+examine = "A tarromin seed - plant in a herb patch."
+kept = "Wilderness"
+
+[harralander_seed]
+id = 5294
+price = 3
+limit = 100
+examine = "A harralander seed - plant in a herb patch."
+
+[ranarr_seed]
+id = 5295
+price = 1487
+limit = 100
+examine = "A ranarr seed - plant in a herb patch."
+
+[toadflax_seed]
+id = 5296
+price = 366
+limit = 100
+examine = "A toadflax seed - plant in a herb patch."
+
+[irit_seed]
+id = 5297
+price = 68
+limit = 100
+examine = "An irit seed - plant in a herb patch."
+
+[avantoe_seed]
+id = 5298
+price = 227
+limit = 100
+examine = "An avantoe seed - plant in a herb patch."
+
+[kwuarm_seed]
+id = 5299
+price = 118
+limit = 100
+examine = "A kwuarm seed - plant in a herb patch."
+
+[snapdragon_seed]
+id = 5300
+price = 16100
+limit = 100
+examine = "A snapdragon seed - plant in a herb patch."
+
+[cadantine_seed]
+id = 5301
+price = 112
+limit = 100
+examine = "A cadantine seed - plant in a herb patch."
+
+[lantadyme_seed]
+id = 5302
+price = 15700
+limit = 100
+examine = "A lantadyme seed - plant in a herb patch."
+
+[dwarf_weed_seed]
+id = 5303
+price = 11000
+limit = 100
+examine = "A dwarf weed seed - plant in a herb patch."
+
+[torstol_seed]
+id = 5304
+price = 362745
+limit = 100
+examine = "A torstol seed - plant in a herb patch."
+
+[barley_seed]
+id = 5305
+price = 1
+limit = 100
+examine = "A barley seed - plant in a hops patch."
+kept = "Wilderness"
+
+[jute_seed]
+id = 5306
+price = 1
+limit = 100
+examine = "A jute plant seed - plant in a hops patch."
+kept = "Wilderness"
+
+[hammerstone_seed]
+id = 5307
+price = 1
+limit = 100
+examine = "A Hammerstone hop seed - plant in a hops patch."
+kept = "Wilderness"
+
+[asgarnian_seed]
+id = 5308
+price = 1
+limit = 100
+examine = "An Asgarnian hop seed - plant in a hops patch."
+kept = "Wilderness"
+
+[yanillian_seed]
+id = 5309
+price = 9
+limit = 100
+examine = "A Yanillian hop seed - plant in a hops patch."
+kept = "Wilderness"
+
+[krandorian_seed]
+id = 5310
+price = 1
+limit = 100
+examine = "A Krandorian hop seed - plant in a hops patch."
+
+[wildblood_seed]
+id = 5311
+price = 3
+limit = 100
+examine = "A Wildblood hop seed - plant in a hops patch."
+
+[acorn]
+id = 5312
+price = 17
+limit = 100
+examine = "Plant this in a plantpot of soil to grow a sapling."
+kept = "Wilderness"
+
+[willow_seed]
+id = 5313
+price = 761
+limit = 100
+examine = "Plant this in a plantpot of soil to grow a sapling."
+
+[maple_seed]
+id = 5314
+price = 32300
+limit = 100
+examine = "Plant this in a plantpot of soil to grow a sapling."
+
+[yew_seed]
+id = 5315
+price = 88500
+limit = 100
+examine = "Plant this in a plantpot of soil to grow a sapling."
+
+[magic_seed]
+id = 5316
+price = 353000
+limit = 100
+examine = "Plant this in a plantpot of soil to grow a sapling."
+
+[spirit_seed]
+id = 5317
+tradeable = false
+examine = "Plant this in a plantpot of soil to grow a sapling."
+kept = "Reclaim"
+
+[potato_seed]
+id = 5318
+price = 1
+limit = 500
+examine = "A potato seed - plant in an allotment."
+kept = "Wilderness"
+
+[onion_seed]
+id = 5319
+price = 1
+limit = 500
+examine = "An onion seed - plant in an allotment."
+kept = "Wilderness"
+
+[sweetcorn_seed]
+id = 5320
+price = 2
+limit = 500
+examine = "A sweetcorn seed - plant in an allotment."
+kept = "Wilderness"
+
+[watermelon_seed]
+id = 5321
+price = 2023
+limit = 500
+examine = "A watermelon seed - plant in an allotment."
+
+[tomato_seed]
+id = 5322
+price = 1
+limit = 500
+examine = "A tomato seed - plant in an allotment."
+kept = "Wilderness"
+
+[strawberry_seed]
+id = 5323
+price = 113
+limit = 500
+examine = "A strawberry seed - plant in an allotment."
+
+[cabbage_seed]
+id = 5324
+price = 1
+limit = 500
+examine = "A cabbage seed - plant in an allotment."
+kept = "Wilderness"

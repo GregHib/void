@@ -1,0 +1,31 @@
+[blue_sweets]
+id = 4558
+tradeable = false
+weight = 0.01
+examine = "Not likely to last until next Halloween."
+kept = "Reclaim"
+use = "Removed"
+
+[deep_blue_sweets]
+clone = "blue_sweets"
+id = 4559
+
+[white_sweets]
+clone = "blue_sweets"
+id = 4560
+
+[purple_sweets_2005_halloween]
+clone = "blue_sweets"
+id = 4561
+
+[red_sweets]
+clone = "blue_sweets"
+id = 4562
+
+[green_sweets]
+clone = "blue_sweets"
+id = 4563
+
+[pink_sweets]
+clone = "blue_sweets"
+id = 4564

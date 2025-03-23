@@ -1,0 +1,7 @@
+[spadeful_of_coke]
+id = 6448
+tradeable = false
+weight = 1.814
+empty = "spade"
+examine = "A spadeful of refined coal."
+kept = "Reclaim"

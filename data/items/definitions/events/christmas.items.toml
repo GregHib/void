@@ -1,0 +1,8 @@
+[yo_yo]
+id = 4079
+tradeable = false
+weight = 0.01
+aka = ["yoyo"]
+examine = "A gift from Santa."
+kept = "Wilderness"
+use = "Limited"

@@ -1,0 +1,40 @@
+[khazard_helmet]
+id = 74
+tradeable = false
+weight = 2.721
+slot = "Hat"
+type = "Hair"
+material = "metal"
+destroy = "I can borrow another from the armoury near the Fight Arena."
+examine = "A helmet, as worn by the minions of General Khazard."
+use = "Quest"
+kept = "Vanish"
+
+[khazard_armour]
+id = 75
+tradeable = false
+weight = 0.566
+slot = "Chest"
+material = "metal"
+destroy = "I can borrow another from the armoury near the Fight Arena."
+examine = "Armour, as worn by the minions of General Khazard."
+use = "Quest"
+kept = "Vanish"
+
+[khazard_cell_keys]
+id = 76
+tradeable = false
+weight = 0.01
+destroy = "The lazy guard probably has a spare set. You can also reclaim it from the quest storage chest."
+examine = "These keys open the cells at the Khazard Fight Arena."
+use = "Quest"
+kept = "Vanish"
+
+[khali_brew]
+id = 77
+tradeable = false
+weight = 0.113
+destroy = "Angor, the Khazard barman, has a stock of Khali brew."
+examine = "A bottle of Khazard's worst brew."
+use = "Quest"
+kept = "Vanish"

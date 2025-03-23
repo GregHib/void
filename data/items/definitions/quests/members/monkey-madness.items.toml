@@ -1,0 +1,228 @@
+[spare_controls]
+id = 4002
+tradeable = false
+weight = 0.2
+examine = "It looks like some kind of control panel."
+kept = "Reclaim"
+use = "Limited"
+
+[gnome_royal_seal]
+id = 4004
+tradeable = false
+weight = 0.02
+examine = "It's the official Gnome Royal Seal, signed by King Narnode Shareen."
+use = "Quest"
+kept = "Wilderness"
+
+[narnodes_orders]
+id = 4005
+tradeable = false
+weight = 0.02
+examine = "Unreadable orders handwritten by King Narnode Shareen."
+use = "Quest"
+kept = "Wilderness"
+
+[monkey_dentures]
+id = 4006
+tradeable = false
+weight = 0.2
+examine = "Magical monkey talking dentures! What more can we say? Ook!"
+kept = "Wilderness"
+
+[enchanted_bar]
+id = 4007
+tradeable = false
+weight = 1.814
+examine = "A gold bar invested with a talkative monkey spirit."
+use = "Quest"
+kept = "Wilderness"
+
+[eye_of_gnome]
+id = 4008
+tradeable = false
+weight = 0.007
+examine = "It's ... the eye of a gnome! Now what on earth could one do with this?"
+kept = "Wilderness"
+
+[eye_of_gnome_2]
+clone = "eye_of_gnome"
+id = 4009
+
+[monkey_magic]
+id = 4010
+tradeable = false
+weight = 0.007
+examine = "A small sample of monkey magic."
+kept = "Wilderness"
+
+[monkey_nuts]
+id = 4012
+heals = 40
+tradeable = false
+weight = 0.007
+examine = "These are monkey nuts. Yummy."
+kept = "Wilderness"
+
+[monkey_bar]
+id = 4014
+heals = 50
+tradeable = false
+weight = 0.15
+examine = "It's a monkey bar. It looks highly nutritious."
+kept = "Reclaim"
+
+[banana_stew]
+id = 4016
+heals = 110
+tradeable = false
+weight = 0.25
+examine = "It's a bowl full of mushy banana."
+kept = "Reclaim"
+
+[monkey_wrench_monkey_madness]
+id = 4018
+tradeable = false
+weight = 9.525
+examine = "For wrenching monkeys I'd guess."
+kept = "Wilderness"
+
+[monkeyspeak_amulet_mould]
+id = 4020
+tradeable = false
+weight = 0.007
+examine = "It's an amulet mould shaped like a monkey head."
+kept = "Reclaim"
+
+[monkeyspeak_amulet]
+id = 4021
+tradeable = false
+weight = 1.36
+slot = "Amulet"
+examine = "It's an amulet of monkeyspeak. It makes vague chattering noises."
+kept = "Wilderness"
+
+[mspeak_amulet]
+id = 4022
+tradeable = false
+weight = 1.36
+examine = "It's an unstrung amulet of monkeyspeak. It makes vague chattering noises."
+kept = "Reclaim"
+
+[monkey_talisman]
+id = 4023
+tradeable = false
+weight = 0.085
+slot = "Weapon"
+examine = "A magical talisman in the shape of a monkey head."
+kept = "Reclaim"
+
+[small_ninja_monkey_greegree]
+id = 4024
+tradeable = false
+weight = 0.085
+render_emote = 177
+slot = "Weapon"
+examine = "A magical talisman in the shape of a small ninja monkey head."
+kept = "Reclaim"
+
+[medium_ninja_monkey_greegree]
+id = 4025
+tradeable = false
+weight = 0.085
+render_emote = 177
+slot = "Weapon"
+examine = "A magical talisman in the shape of a medium ninja monkey head."
+kept = "Reclaim"
+
+[gorilla_greegree]
+id = 4026
+tradeable = false
+weight = 0.085
+render_emote = 281
+slot = "Weapon"
+examine = "A magical talisman in the shape of a gorilla head."
+kept = "Reclaim"
+
+[bearded_gorilla_greegree]
+id = 4027
+tradeable = false
+weight = 0.085
+render_emote = 281
+slot = "Weapon"
+examine = "A magical talisman in the shape of a bearded gorilla head."
+kept = "Reclaim"
+
+[ancient_gorilla_greegree]
+id = 4028
+tradeable = false
+weight = 0.085
+render_emote = 281
+slot = "Weapon"
+examine = "A magical talisman in the shape of a mysterious monkey head."
+kept = "Reclaim"
+
+[small_zombie_monkey_greegree]
+id = 4029
+tradeable = false
+weight = 0.085
+render_emote = 282
+slot = "Weapon"
+examine = "A magical talisman in the shape of a small zombie monkey head."
+kept = "Reclaim"
+
+[large_zombie_monkey_greegree]
+id = 4030
+tradeable = false
+weight = 0.085
+render_emote = 282
+slot = "Weapon"
+examine = "A magical talisman in the shape of a big zombie monkey head."
+kept = "Reclaim"
+
+[monkey_greegree]
+id = 4031
+tradeable = false
+weight = 0.085
+render_emote = 116
+slot = "Weapon"
+examine = "A magical talisman in the shape of a Karamjan monkey head."
+kept = "Reclaim"
+
+[monkey]
+id = 4033
+tradeable = false
+weight = 15.0
+examine = "It's a monkey in your backpack. As you look it pokes you."
+use = "Quest"
+kept = "Wilderness"
+
+[monkey_skull]
+id = 4034
+tradeable = false
+weight = 0.5
+examine = "It's a very ancient skull from some kind of ape."
+kept = "Reclaim"
+
+["10th_squad_sigil"]
+id = 4035
+tradeable = false
+weight = 0.085
+slot = "Amulet"
+examine = "It's the official sigil of the 10th squad of the Royal Guard."
+kept = "Reclaim"
+
+[dragon_scimitar]
+id = 4587
+price = 85200
+limit = 10
+weight = 1.814
+aka = ["d_scimmy", "dragon_scimmy", "d_scimitar"]
+special_accuracy_mod = 1.15
+special_energy = 550
+special = "sever"
+slot = "Weapon"
+material = "metal"
+examine = "A vicious, curved sword."
+
+[dragon_scimitar_noted]
+id = 4588

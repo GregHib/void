@@ -1,0 +1,95 @@
+[perfect_ring]
+id = 773
+tradeable = false
+weight = 0.007
+slot = "Ring"
+material = "metal"
+examine = "A perfect ruby ring."
+use = "Quest"
+kept = "Wilderness"
+
+[perfect_necklace]
+id = 774
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+material = "metal"
+examine = "A perfect ruby necklace."
+use = "Quest"
+kept = "Wilderness"
+
+[cooking_gauntlets]
+id = 775
+tradeable = false
+weight = 0.226
+slot = "Hands"
+material = "metal"
+destroy = "You can obtain another set of Cooking gauntlets from Dimintheis."
+examine = "These gauntlets empower with a greater ability to cook fish."
+kept = "Vanish"
+
+[goldsmith_gauntlets]
+id = 776
+tradeable = false
+weight = 0.226
+slot = "Hands"
+material = "metal"
+destroy = "You can obtain another set of Goldsmith gauntlets from Dimintheis."
+examine = "These gauntlets empower the bearer whilst making gold."
+kept = "Vanish"
+
+[chaos_gauntlets]
+id = 777
+tradeable = false
+weight = 0.226
+slot = "Hands"
+material = "metal"
+destroy = "You can obtain another set of Chaos gauntlets from Dimintheis."
+examine = "These gauntlets empower spell casters."
+kept = "Vanish"
+
+[family_gauntlets]
+id = 778
+tradeable = false
+weight = 0.226
+slot = "Hands"
+material = "metal"
+destroy = "You can obtain another set of Family Gauntlets from Dimintheis."
+examine = "My reward for assisting the Fitzharmon family."
+kept = "Vanish"
+
+[crest_part_avan]
+id = 779
+tradeable = false
+weight = 1.814
+examine = "A fragment of the Fitzharmon family crest."
+use = "Quest"
+kept = "Wilderness"
+
+[crest_part_caleb]
+id = 780
+tradeable = false
+weight = 1.36
+examine = "A fragment of the Fitzharmon family crest."
+use = "Quest"
+kept = "Wilderness"
+
+[crest_part_johnathon]
+clone = "crest_part_caleb"
+id = 781
+
+[family_crest]
+id = 782
+tradeable = false
+weight = 4.535
+examine = "The Fitzharmon family crest."
+use = "Quest"
+kept = "Wilderness"
+
+[perfect_gold_bar]
+id = 2365
+tradeable = false
+weight = 1.814
+examine = "It's a bar of 'perfect' gold."
+use = "Quest"
+kept = "Reclaim"

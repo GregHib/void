@@ -1,0 +1,1736 @@
+[iron_dagger]
+id = 1203
+price = 6
+limit = 1000
+weight = 0.453
+smithing = { level = 15, xp = 25.0 }
+slot = "Weapon"
+material = "metal"
+examine = "Short but pointy."
+kept = "Wilderness"
+
+[iron_dagger_noted]
+id = 1204
+
+[bronze_dagger]
+id = 1205
+price = 14
+limit = 100
+weight = 0.453
+smithing = { level = 1, xp = 12.5 }
+slot = "Weapon"
+material = "metal"
+examine = "Short but pointy."
+kept = "Wilderness"
+
+[bronze_dagger_noted]
+id = 1206
+
+[steel_dagger]
+id = 1207
+price = 16
+limit = 100
+weight = 0.01
+smithing = { level = 30, xp = 37.5 }
+slot = "Weapon"
+material = "metal"
+examine = "A steel dagger."
+kept = "Wilderness"
+
+[steel_dagger_noted]
+id = 1208
+
+[mithril_dagger]
+id = 1209
+price = 81
+limit = 100
+weight = 0.01
+smithing = { level = 50, xp = 50.0 }
+slot = "Weapon"
+material = "metal"
+examine = "A mithril dagger."
+
+[mithril_dagger_noted]
+id = 1210
+
+[adamant_dagger]
+id = 1211
+price = 361
+limit = 100
+weight = 0.01
+smithing = { level = 70, xp = 62.5 }
+slot = "Weapon"
+material = "metal"
+examine = "An adamant dagger."
+
+[adamant_dagger_noted]
+id = 1212
+
+[rune_dagger]
+id = 1213
+price = 4658
+limit = 100
+weight = 0.01
+smithing = { level = 85, xp = 75.0 }
+slot = "Weapon"
+material = "metal"
+examine = "A rune dagger."
+
+[rune_dagger_noted]
+id = 1214
+
+[dragon_dagger]
+id = 1215
+price = 17400
+limit = 10
+weight = 0.453
+aka = ["dd"]
+special_damage_mod_1 = 1.15
+special_accuracy_mod = 1.15
+special_energy = 250
+special = "puncture"
+weapon_type = "dragon_dagger"
+slot = "Weapon"
+material = "metal"
+examine = "A powerful dagger."
+
+[dragon_dagger_noted]
+id = 1216
+
+[black_dagger]
+id = 1217
+price = 145
+limit = 1000
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+examine = "A vicious black dagger."
+
+[black_dagger_noted]
+id = 1218
+
+[iron_dagger_p]
+id = 1219
+limit = 1000
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+examine = "Short but pointy."
+kept = "Wilderness"
+
+[iron_dagger_p_noted]
+id = 1220
+
+[bronze_dagger_p]
+id = 1221
+limit = 100
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+examine = "Short but pointy."
+kept = "Wilderness"
+
+[bronze_dagger_p_noted]
+id = 1222
+
+[steel_dagger_p]
+id = 1223
+limit = 100
+weight = 0.01
+slot = "Weapon"
+material = "metal"
+examine = "A steel dagger."
+kept = "Wilderness"
+
+[steel_dagger_p_noted]
+id = 1224
+
+[mithril_dagger_p]
+id = 1225
+limit = 100
+weight = 0.01
+slot = "Weapon"
+material = "metal"
+examine = "A mithril dagger."
+
+[mithril_dagger_p_noted]
+id = 1226
+
+[adamant_dagger_p]
+id = 1227
+limit = 100
+weight = 0.01
+slot = "Weapon"
+material = "metal"
+examine = "An adamant dagger."
+
+[adamant_dagger_p_noted]
+id = 1228
+
+[rune_dagger_p]
+id = 1229
+limit = 100
+weight = 0.01
+slot = "Weapon"
+material = "metal"
+examine = "A rune dagger."
+
+[rune_dagger_p_noted]
+id = 1230
+
+[dragon_dagger_p]
+id = 1231
+limit = 10
+weight = 0.453
+aka = ["ddp"]
+special_damage_mod_1 = 1.15
+special_accuracy_mod = 1.15
+special_energy = 250
+special = "puncture"
+weapon_type = "dragon_dagger"
+slot = "Weapon"
+material = "metal"
+examine = "A powerful dagger."
+
+[dragon_dagger_p_noted]
+id = 1232
+
+[black_dagger_p]
+id = 1233
+limit = 1000
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+examine = "A vicious black dagger."
+
+[black_dagger_p_noted]
+id = 1234
+
+[poisoned_dagger_p]
+id = 1235
+slot = "Weapon"
+
+[poisoned_dagger_p_noted]
+id = 1236
+
+[bronze_spear]
+id = 1237
+price = 256
+limit = 1000
+weight = 2.267
+smithing = { level = 5, xp = 25.0 }
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A bronze tipped spear."
+kept = "Wilderness"
+
+[bronze_spear_noted]
+id = 1238
+
+[iron_spear]
+id = 1239
+price = 114
+limit = 1000
+weight = 2.267
+smithing = { level = 20, xp = 50.0 }
+slot = "Weapon"
+type = "TwoHanded"
+examine = "An iron tipped spear."
+kept = "Wilderness"
+
+[iron_spear_noted]
+id = 1240
+
+[steel_spear]
+id = 1241
+price = 107
+limit = 1000
+weight = 2.267
+smithing = { level = 35, xp = 75.0 }
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A steel tipped spear."
+kept = "Wilderness"
+
+[steel_spear_noted]
+id = 1242
+
+[mithril_spear]
+id = 1243
+price = 393
+limit = 1000
+weight = 1.814
+smithing = { level = 55, xp = 100.0 }
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A mithril tipped spear."
+
+[mithril_spear_noted]
+id = 1244
+
+[adamant_spear]
+id = 1245
+price = 1134
+limit = 1000
+weight = 2.721
+smithing = { level = 75, xp = 125.0 }
+slot = "Weapon"
+type = "TwoHanded"
+examine = "An adamantite tipped spear."
+
+[adamant_spear_noted]
+id = 1246
+
+[rune_spear]
+id = 1247
+price = 12500
+limit = 100
+weight = 2.267
+smithing = { level = 90, xp = 150.0 }
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A rune tipped spear."
+
+[rune_spear_noted]
+id = 1248
+
+[dragon_spear]
+id = 1249
+price = 37700
+limit = 10
+weight = 2.267
+special_energy = 250
+special = "shove"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A dragon tipped spear."
+
+[dragon_spear_noted]
+id = 1250
+
+[bronze_spear_p]
+id = 1251
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A bronze tipped spear."
+kept = "Wilderness"
+
+[bronze_spear_p_noted]
+id = 1252
+
+[iron_spear_p]
+id = 1253
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "An iron tipped spear."
+kept = "Wilderness"
+
+[iron_spear_p_noted]
+id = 1254
+
+[steel_spear_p]
+id = 1255
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A steel tipped spear."
+kept = "Wilderness"
+
+[steel_spear_p_noted]
+id = 1256
+
+[mithril_spear_p]
+id = 1257
+limit = 1000
+weight = 1.814
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A mithril tipped spear."
+
+[mithril_spear_p_noted]
+id = 1258
+
+[adamant_spear_p]
+id = 1259
+limit = 1000
+weight = 2.721
+slot = "Weapon"
+type = "TwoHanded"
+examine = "An adamantite tipped spear."
+
+[adamant_spear_p_noted]
+id = 1260
+
+[rune_spear_p]
+id = 1261
+limit = 100
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A rune tipped spear."
+
+[rune_spear_p_noted]
+id = 1262
+
+[dragon_spear_p]
+id = 1263
+limit = 10
+weight = 2.267
+special_energy = 250
+special = "shove"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A dragon tipped spear."
+
+[dragon_spear_p_noted]
+id = 1264
+
+[bronze_sword]
+id = 1277
+price = 7
+limit = 100
+weight = 1.814
+smithing = { level = 4, xp = 12.5 }
+slot = "Weapon"
+material = "metal"
+examine = "A razor-sharp sword."
+kept = "Wilderness"
+
+[bronze_sword_noted]
+id = 1278
+
+[iron_sword]
+id = 1279
+price = 11
+limit = 1000
+weight = 1.814
+smithing = { level = 19, xp = 25.0 }
+slot = "Weapon"
+material = "metal"
+examine = "A razor-sharp sword."
+kept = "Wilderness"
+
+[iron_sword_noted]
+id = 1280
+
+[steel_sword]
+id = 1281
+price = 93
+limit = 100
+weight = 0.01
+smithing = { level = 34, xp = 37.5 }
+slot = "Weapon"
+material = "metal"
+examine = "A steel sword."
+kept = "Wilderness"
+
+[steel_sword_noted]
+id = 1282
+
+[black_sword]
+id = 1283
+price = 262
+limit = 1000
+weight = 1.814
+slot = "Weapon"
+material = "metal"
+examine = "A razor-sharp sword."
+
+[black_sword_noted]
+id = 1284
+
+[mithril_sword]
+id = 1285
+price = 374
+limit = 100
+weight = 0.01
+smithing = { level = 54, xp = 50.0 }
+slot = "Weapon"
+material = "metal"
+examine = "A mithril sword."
+
+[mithril_sword_noted]
+id = 1286
+
+[adamant_sword]
+id = 1287
+price = 1179
+limit = 100
+weight = 0.01
+smithing = { level = 74, xp = 62.5 }
+slot = "Weapon"
+material = "metal"
+examine = "An adamant sword."
+
+[adamant_sword_noted]
+id = 1288
+
+[rune_sword]
+id = 1289
+price = 12300
+limit = 100
+weight = 0.01
+smithing = { level = 89, xp = 75.0 }
+slot = "Weapon"
+material = "metal"
+examine = "A rune sword."
+
+[rune_sword_noted]
+id = 1290
+
+[bronze_longsword]
+id = 1291
+price = 5
+limit = 100
+weight = 1.814
+smithing = { level = 6, xp = 25.0 }
+slot = "Weapon"
+material = "metal"
+examine = "A razor-sharp longsword."
+kept = "Wilderness"
+
+[bronze_longsword_noted]
+id = 1292
+
+[iron_longsword]
+id = 1293
+price = 15
+limit = 1000
+weight = 1.814
+smithing = { level = 21, xp = 50.0 }
+slot = "Weapon"
+material = "metal"
+examine = "A razor-sharp longsword."
+kept = "Wilderness"
+
+[iron_longsword_noted]
+id = 1294
+
+[steel_longsword]
+id = 1295
+price = 182
+limit = 100
+weight = 0.01
+smithing = { level = 36, xp = 75.0 }
+slot = "Weapon"
+material = "metal"
+examine = "A steel longsword."
+kept = "Wilderness"
+
+[steel_longsword_noted]
+id = 1296
+
+[black_longsword]
+id = 1297
+price = 454
+limit = 1000
+weight = 1.814
+slot = "Weapon"
+material = "metal"
+examine = "A razor-sharp longsword."
+
+[black_longsword_noted]
+id = 1298
+
+[mithril_longsword]
+id = 1299
+price = 661
+limit = 100
+weight = 0.01
+smithing = { level = 56, xp = 100.0 }
+slot = "Weapon"
+material = "metal"
+examine = "A mithril longsword."
+
+[mithril_longsword_noted]
+id = 1300
+
+[adamant_longsword]
+id = 1301
+price = 1782
+limit = 100
+weight = 0.01
+smithing = { level = 76, xp = 125.0 }
+slot = "Weapon"
+material = "metal"
+examine = "An adamant longsword."
+
+[adamant_longsword_noted]
+id = 1302
+
+[rune_longsword]
+id = 1303
+price = 19000
+limit = 100
+weight = 0.01
+smithing = { level = 91, xp = 150.0 }
+slot = "Weapon"
+material = "metal"
+examine = "A rune longsword."
+
+[rune_longsword_noted]
+id = 1304
+
+[dragon_longsword]
+id = 1305
+price = 60200
+limit = 10
+weight = 1.814
+special_damage_mod_1 = 1.25
+special_energy = 250
+special = "cleave"
+slot = "Weapon"
+material = "metal"
+examine = "A very powerful sword."
+
+[dragon_longsword_noted]
+id = 1306
+
+[bronze_2h_sword]
+id = 1307
+price = 15
+limit = 1000
+weight = 3.628
+smithing = { level = 14, xp = 37.5 }
+aka = ["bronze_2h"]
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "A two handed sword."
+kept = "Wilderness"
+
+[bronze_2h_sword_noted]
+id = 1308
+
+[iron_2h_sword]
+id = 1309
+price = 52
+limit = 1000
+weight = 3.628
+smithing = { level = 29, xp = 75.0 }
+aka = ["iron_2h"]
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "A two handed sword."
+kept = "Wilderness"
+
+[iron_2h_sword_noted]
+id = 1310
+
+[steel_2h_sword]
+id = 1311
+price = 472
+limit = 100
+weight = 0.02
+smithing = { level = 44, xp = 112.5 }
+aka = ["steel_2h"]
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "A steel 2h sword."
+kept = "Wilderness"
+
+[steel_2h_sword_noted]
+id = 1312
+
+[black_2h_sword]
+id = 1313
+price = 1027
+limit = 1000
+weight = 3.628
+aka = ["black_2h"]
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "A two handed sword."
+
+[black_2h_sword_noted]
+id = 1314
+
+[mithril_2h_sword]
+id = 1315
+price = 1424
+limit = 100
+weight = 0.02
+smithing = { level = 64, xp = 150.0 }
+aka = ["mithril_2h", "mith_2h"]
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "A mithril 2h sword."
+
+[mithril_2h_sword_noted]
+id = 1316
+
+[adamant_2h_sword]
+id = 1317
+price = 3748
+limit = 100
+weight = 0.02
+smithing = { level = 84, xp = 187.5 }
+aka = ["adamant_2h", "addy_2h"]
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "An adamant 2h sword."
+
+[adamant_2h_sword_noted]
+id = 1318
+
+[rune_2h_sword]
+id = 1319
+price = 38334
+limit = 100
+weight = 0.02
+smithing = { level = 99, xp = 225.0 }
+aka = ["rune_2h"]
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "A rune 2h sword."
+
+[rune_2h_sword_noted]
+id = 1320
+
+[bronze_scimitar]
+id = 1321
+price = 12
+limit = 100
+weight = 1.814
+aka = ["bronze_scimmy"]
+smithing = { level = 5, xp = 25.0 }
+slot = "Weapon"
+material = "metal"
+examine = "A vicious, curved sword."
+kept = "Wilderness"
+
+[bronze_scimitar_noted]
+id = 1322
+
+[iron_scimitar]
+id = 1323
+price = 11
+limit = 100
+weight = 1.814
+aka = ["iron_scimmy"]
+smithing = { level = 20, xp = 50.0 }
+slot = "Weapon"
+material = "metal"
+examine = "A vicious, curved sword."
+kept = "Wilderness"
+
+[iron_scimitar_noted]
+id = 1324
+
+[steel_scimitar]
+id = 1325
+price = 120
+limit = 100
+weight = 0.01
+aka = ["steel_scimmy"]
+smithing = { level = 35, xp = 75.0 }
+slot = "Weapon"
+material = "metal"
+examine = "A steel scimitar."
+kept = "Wilderness"
+
+[steel_scimitar_noted]
+id = 1326
+
+[black_scimitar]
+id = 1327
+price = 3505
+limit = 1000
+weight = 1.814
+aka = ["black_scimmy"]
+slot = "Weapon"
+material = "metal"
+examine = "A vicious, curved sword."
+
+[black_scimitar_noted]
+id = 1328
+
+[mithril_scimitar]
+id = 1329
+price = 509
+limit = 100
+weight = 0.01
+aka = ["mith_scimmy", "mithril_scimmy"]
+smithing = { level = 55, xp = 100.0 }
+slot = "Weapon"
+material = "metal"
+examine = "A mithril scimitar."
+
+[mithril_scimitar_noted]
+id = 1330
+
+[adamant_scimitar]
+id = 1331
+price = 1883
+limit = 100
+weight = 0.01
+aka = ["addy_scimmy", "adamant_scimmy"]
+smithing = { level = 75, xp = 125.0 }
+slot = "Weapon"
+material = "metal"
+examine = "An adamant scimitar."
+
+[adamant_scimitar_noted]
+id = 1332
+
+[rune_scimitar]
+id = 1333
+price = 15300
+limit = 100
+weight = 0.01
+aka = ["rune_scimmy"]
+smithing = { level = 90, xp = 150.0 }
+slot = "Weapon"
+material = "metal"
+examine = "A rune scimitar."
+
+[rune_scimitar_noted]
+id = 1334
+
+[iron_warhammer]
+id = 1335
+price = 18
+limit = 1000
+weight = 1.814
+smithing = { level = 24, xp = 75.0 }
+slot = "Weapon"
+examine = "I don't think it's intended for joinery."
+kept = "Wilderness"
+
+[iron_warhammer_noted]
+id = 1336
+
+[bronze_warhammer]
+id = 1337
+price = 6
+limit = 100
+weight = 1.814
+smithing = { level = 9, xp = 37.5 }
+slot = "Weapon"
+examine = "I don't think it's intended for joinery."
+kept = "Wilderness"
+
+[bronze_warhammer_noted]
+id = 1338
+
+[steel_warhammer]
+id = 1339
+price = 367
+limit = 100
+weight = 0.01
+smithing = { level = 39, xp = 112.5 }
+slot = "Weapon"
+examine = "A steel warhammer."
+kept = "Wilderness"
+
+[steel_warhammer_noted]
+id = 1340
+
+[black_warhammer]
+id = 1341
+price = 650
+limit = 1000
+weight = 1.814
+slot = "Weapon"
+examine = "I don't think it's intended for joinery."
+
+[black_warhammer_noted]
+id = 1342
+
+[mithril_warhammer]
+id = 1343
+price = 1127
+limit = 100
+weight = 0.01
+smithing = { level = 59, xp = 150.0 }
+slot = "Weapon"
+examine = "A mithril warhammer."
+
+[mithril_warhammer_noted]
+id = 1344
+
+[adamant_warhammer]
+id = 1345
+price = 3031
+limit = 100
+weight = 0.01
+smithing = { level = 79, xp = 187.5 }
+slot = "Weapon"
+examine = "An adamant warhammer."
+
+[adamant_warhammer_noted]
+id = 1346
+
+[rune_warhammer]
+id = 1347
+price = 24700
+limit = 100
+weight = 1.814
+smithing = { level = 94, xp = 225.0 }
+slot = "Weapon"
+examine = "I don't think it's intended for joinery."
+
+[rune_warhammer_noted]
+id = 1348
+
+[iron_battleaxe]
+id = 1363
+price = 17
+limit = 1000
+weight = 2.721
+smithing = { level = 25, xp = 75.0 }
+slot = "Weapon"
+examine = "A vicious looking axe."
+kept = "Wilderness"
+
+[iron_battleaxe_noted]
+id = 1364
+
+[steel_battleaxe]
+id = 1365
+price = 272
+limit = 100
+weight = 0.01
+smithing = { level = 40, xp = 112.5 }
+slot = "Weapon"
+examine = "A steel battleaxe."
+kept = "Wilderness"
+
+[steel_battleaxe_noted]
+id = 1366
+
+[black_battleaxe]
+id = 1367
+price = 720
+limit = 1000
+weight = 2.721
+slot = "Weapon"
+examine = "A vicious looking axe."
+
+[black_battleaxe_noted]
+id = 1368
+
+[mithril_battleaxe]
+id = 1369
+price = 892
+limit = 100
+weight = 0.01
+smithing = { level = 60, xp = 150.0 }
+slot = "Weapon"
+examine = "A mithril battleaxe."
+
+[mithril_battleaxe_noted]
+id = 1370
+
+[adamant_battleaxe]
+id = 1371
+price = 2375
+limit = 100
+weight = 0.01
+smithing = { level = 80, xp = 187.5 }
+slot = "Weapon"
+examine = "An adamant battleaxe."
+
+[adamant_battleaxe_noted]
+id = 1372
+
+[rune_battleaxe]
+id = 1373
+price = 24900
+limit = 100
+weight = 0.01
+smithing = { level = 95, xp = 225.0 }
+slot = "Weapon"
+examine = "A rune battleaxe."
+
+[rune_battleaxe_noted]
+id = 1374
+
+[bronze_battleaxe]
+id = 1375
+price = 4
+limit = 100
+weight = 2.721
+smithing = { level = 10, xp = 37.5 }
+slot = "Weapon"
+examine = "A vicious looking axe."
+kept = "Wilderness"
+
+[bronze_battleaxe_noted]
+id = 1376
+
+[dragon_battleaxe]
+id = 1377
+price = 122200
+limit = 10
+weight = 2.721
+aka = ["d_baxe", "dragon_baxe"]
+special_energy = 1000
+special = "rampage"
+slot = "Weapon"
+examine = "A vicious looking axe."
+
+[dragon_battleaxe_noted]
+id = 1378
+
+[halberd]
+id = 1413
+weight = 4.535
+examine = "A halberd."
+
+[halberd_noted]
+id = 1414
+
+[warhammer]
+id = 1415
+weight = 1.814
+examine = "A warhammer."
+
+[warhammer_noted]
+id = 1416
+
+[javelin]
+id = 1417
+weight = 1.36
+examine = "A javelin."
+
+[javelin_noted]
+id = 1418
+
+[scythe]
+id = 1419
+tradeable = false
+weight = 3.175
+slot = "Weapon"
+type = "TwoHanded"
+examine = "It's a Scythe."
+kept = "Reclaim"
+use = "Limited"
+
+[iron_mace]
+id = 1420
+price = 4
+limit = 1000
+weight = 1.814
+smithing = { level = 17, xp = 25.0 }
+slot = "Weapon"
+examine = "A spiky mace."
+kept = "Wilderness"
+
+[iron_mace_noted]
+id = 1421
+
+[bronze_mace]
+id = 1422
+price = 4
+limit = 100
+weight = 1.814
+smithing = { level = 2, xp = 12.5 }
+slot = "Weapon"
+examine = "A spiky mace."
+kept = "Wilderness"
+
+[bronze_mace_noted]
+id = 1423
+
+[steel_mace]
+id = 1424
+price = 26
+limit = 100
+weight = 0.01
+smithing = { level = 32, xp = 37.5 }
+slot = "Weapon"
+examine = "A steel mace."
+kept = "Wilderness"
+
+[steel_mace_noted]
+id = 1425
+
+[black_mace]
+id = 1426
+price = 954
+limit = 1000
+weight = 1.814
+slot = "Weapon"
+examine = "A spiky mace."
+
+[black_mace_noted]
+id = 1427
+
+[mithril_mace]
+id = 1428
+price = 225
+limit = 100
+weight = 0.01
+smithing = { level = 52, xp = 50.0 }
+slot = "Weapon"
+examine = "A mithril mace."
+
+[mithril_mace_noted]
+id = 1429
+
+[adamant_mace]
+id = 1430
+price = 741
+limit = 100
+weight = 0.01
+smithing = { level = 72, xp = 62.5 }
+slot = "Weapon"
+examine = "An adamant mace."
+
+[adamant_mace_noted]
+id = 1431
+
+[rune_mace]
+id = 1432
+price = 8497
+limit = 100
+weight = 0.01
+smithing = { level = 87, xp = 75.0 }
+slot = "Weapon"
+examine = "A rune mace."
+
+[rune_mace_noted]
+id = 1433
+
+[dragon_mace]
+id = 1434
+price = 33700
+limit = 10
+weight = 1.814
+special_damage_mod_1 = 1.5
+special_accuracy_mod = 1.25
+special_energy = 250
+special = "shatter"
+slot = "Weapon"
+examine = "A spiky mace."
+
+[dragon_mace_noted]
+id = 1435
+
+[bronze_claws]
+id = 3095
+price = 325
+limit = 100
+weight = 0.907
+smithing = { level = 13, xp = 25.0 }
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A right-hand fighting claw. Melee weapon, requires Attack ."
+kept = "Wilderness"
+
+[iron_claws]
+id = 3096
+price = 6
+limit = 1000
+weight = 0.907
+smithing = { level = 28, xp = 50.0 }
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A right-hand fighting claw."
+kept = "Wilderness"
+
+[steel_claws]
+id = 3097
+price = 22
+weight = 0.01
+smithing = { level = 43, xp = 75.0 }
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A pair of steel claws."
+kept = "Wilderness"
+
+[black_claws]
+id = 3098
+price = 1133
+limit = 1000
+weight = 0.907
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A set of fighting claws."
+
+[mithril_claws]
+id = 3099
+price = 169
+weight = 0.01
+smithing = { level = 63, xp = 100.0 }
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A pair of mithril claws."
+
+[adamant_claws]
+id = 3100
+price = 609
+limit = 100
+weight = 0.01
+smithing = { level = 83, xp = 125.0 }
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A pair of adamant claws."
+
+[rune_claws]
+id = 3101
+price = 7080
+weight = 0.01
+smithing = { level = 98, xp = 150.0 }
+special_damage_mod_1 = 1.1
+special_accuracy_mod = 1.1
+special_energy = 250
+special = "impale"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A pair of rune claws."
+
+[bronze_claws_noted]
+id = 3115
+
+[iron_claws_noted]
+id = 3116
+
+[steel_claws_noted]
+id = 3117
+
+[black_claws_noted]
+id = 3118
+
+[mithril_claws_noted]
+id = 3119
+
+[adamant_claws_noted]
+id = 3120
+
+[rune_claws_noted]
+id = 3121
+
+[bronze_halberd]
+id = 3190
+price = 429
+limit = 1000
+weight = 3.175
+attack_range = 2
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A bronze halberd."
+kept = "Wilderness"
+
+[bronze_halberd_noted]
+id = 3191
+
+[iron_halberd]
+id = 3192
+price = 115
+limit = 1000
+weight = 3.175
+attack_range = 2
+slot = "Weapon"
+type = "TwoHanded"
+examine = "An iron halberd."
+kept = "Wilderness"
+
+[iron_halberd_noted]
+id = 3193
+
+[steel_halberd]
+id = 3194
+price = 650
+limit = 1000
+weight = 3.175
+attack_range = 2
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A steel halberd."
+kept = "Wilderness"
+
+[steel_halberd_noted]
+id = 3195
+
+[black_halberd]
+id = 3196
+price = 4371
+limit = 1000
+weight = 3.175
+attack_range = 2
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A black halberd."
+
+[black_halberd_noted]
+id = 3197
+
+[mithril_halberd]
+id = 3198
+price = 6440
+limit = 1000
+weight = 2.721
+attack_range = 2
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A mithril halberd."
+
+[mithril_halberd_noted]
+id = 3199
+
+[adamant_halberd]
+id = 3200
+price = 4793
+limit = 1000
+weight = 3.628
+attack_range = 2
+slot = "Weapon"
+type = "TwoHanded"
+examine = "An adamant halberd."
+
+[adamant_halberd_noted]
+id = 3201
+
+[rune_halberd]
+id = 3202
+price = 77600
+limit = 100
+weight = 3.175
+attack_range = 2
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A rune halberd."
+
+[rune_halberd_noted]
+id = 3203
+
+[dragon_halberd]
+id = 3204
+price = 214000
+limit = 10
+weight = 3.175
+attack_range = 2
+special_damage_mod_1 = 1.1
+special_energy = 300
+special = "sweep"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A dragon halberd."
+
+[dragon_halberd_noted]
+id = 3205
+
+[black_spear]
+id = 4580
+price = 1620
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A black tipped spear."
+
+[black_spear_noted]
+id = 4581
+
+[black_spear_p]
+id = 4582
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A black tipped spear."
+
+[black_spear_p_noted]
+id = 4583
+
+[black_spear_kp]
+id = 4584
+tradeable = false
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A Karambwan poisoned black tipped spear."
+kept = "Wilderness"
+
+["iron_dagger_p+"]
+id = 5668
+limit = 1000
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+examine = "Short but pointy."
+kept = "Wilderness"
+
+["iron_dagger_p+_noted"]
+id = 5669
+
+["bronze_dagger_p+"]
+id = 5670
+limit = 100
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+examine = "Short but pointy."
+kept = "Wilderness"
+
+["bronze_dagger_p+_noted"]
+id = 5671
+
+["steel_dagger_p+"]
+id = 5672
+limit = 100
+weight = 0.01
+slot = "Weapon"
+material = "metal"
+examine = "A steel dagger."
+kept = "Wilderness"
+
+["steel_dagger_p+_noted"]
+id = 5673
+
+["mithril_dagger_p+"]
+id = 5674
+limit = 100
+weight = 0.01
+slot = "Weapon"
+material = "metal"
+examine = "A mithril dagger."
+
+["mithril_dagger_p+_noted"]
+id = 5675
+
+["adamant_dagger_p+"]
+id = 5676
+limit = 100
+weight = 0.01
+slot = "Weapon"
+material = "metal"
+examine = "An adamant dagger."
+
+["adamant_dagger_p+_noted"]
+id = 5677
+
+["rune_dagger_p+"]
+id = 5678
+limit = 100
+weight = 0.01
+slot = "Weapon"
+material = "metal"
+examine = "A rune dagger."
+
+["rune_dagger_p+_noted"]
+id = 5679
+
+["dragon_dagger_p+"]
+id = 5680
+limit = 10
+weight = 0.453
+aka = ["ddp", "dd+"]
+special_damage_mod_1 = 1.15
+special_accuracy_mod = 1.15
+special_energy = 250
+special = "puncture"
+weapon_type = "dragon_dagger"
+slot = "Weapon"
+material = "metal"
+examine = "A powerful dagger."
+
+["dragon_dagger_p+_noted"]
+id = 5681
+
+["black_dagger_p+"]
+id = 5682
+limit = 1000
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+examine = "A vicious black dagger."
+
+["black_dagger_p+_noted"]
+id = 5683
+
+["iron_dagger_p++"]
+id = 5686
+limit = 1000
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+examine = "Short but pointy."
+kept = "Wilderness"
+
+["iron_dagger_p++_noted"]
+id = 5687
+
+["bronze_dagger_p++"]
+id = 5688
+limit = 100
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+examine = "Short but pointy."
+kept = "Wilderness"
+
+["bronze_dagger_p++_noted"]
+id = 5689
+
+["steel_dagger_p++"]
+id = 5690
+limit = 100
+weight = 0.01
+slot = "Weapon"
+material = "metal"
+examine = "A steel dagger."
+kept = "Wilderness"
+
+["steel_dagger_p++_noted"]
+id = 5691
+
+["mithril_dagger_p++"]
+id = 5692
+limit = 100
+weight = 0.01
+slot = "Weapon"
+material = "metal"
+examine = "A mithril dagger."
+
+["mithril_dagger_p++_noted"]
+id = 5693
+
+["adamant_dagger_p++"]
+id = 5694
+limit = 100
+weight = 0.01
+slot = "Weapon"
+material = "metal"
+examine = "An adamant dagger."
+
+["adamant_dagger_p++_noted"]
+id = 5695
+
+["rune_dagger_p++"]
+id = 5696
+limit = 100
+weight = 0.01
+slot = "Weapon"
+material = "metal"
+examine = "A rune dagger."
+
+["rune_dagger_p++_noted"]
+id = 5697
+
+["dragon_dagger_p++"]
+id = 5698
+limit = 10
+weight = 0.453
+aka = ["dds", "ddpp", "dd++"]
+special_damage_mod_1 = 1.15
+special_accuracy_mod = 1.15
+special_energy = 250
+special = "puncture"
+weapon_type = "dragon_dagger"
+slot = "Weapon"
+material = "metal"
+examine = "A powerful dagger."
+
+["dragon_dagger_p++_noted"]
+id = 5699
+
+["black_dagger_p++"]
+id = 5700
+limit = 1000
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+examine = "A vicious black dagger."
+
+["black_dagger_p++_noted"]
+id = 5701
+
+["bronze_spear_p+"]
+id = 5704
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A bronze tipped spear."
+kept = "Wilderness"
+
+["bronze_spear_p+_noted"]
+id = 5705
+
+["iron_spear_p+"]
+id = 5706
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "An iron tipped spear."
+kept = "Wilderness"
+
+["iron_spear_p+_noted"]
+id = 5707
+
+["steel_spear_p+"]
+id = 5708
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A steel tipped spear."
+kept = "Wilderness"
+
+["steel_spear_p+_noted"]
+id = 5709
+
+["mithril_spear_p+"]
+id = 5710
+limit = 1000
+weight = 1.814
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A mithril tipped spear."
+
+["mithril_spear_p+_noted"]
+id = 5711
+
+["adamant_spear_p+"]
+id = 5712
+limit = 1000
+weight = 2.721
+slot = "Weapon"
+type = "TwoHanded"
+examine = "An adamantite tipped spear."
+
+["adamant_spear_p+_noted"]
+id = 5713
+
+["rune_spear_p+"]
+id = 5714
+limit = 100
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A rune tipped spear."
+
+["rune_spear_p+_noted"]
+id = 5715
+
+["dragon_spear_p+"]
+id = 5716
+limit = 10
+weight = 2.267
+special_energy = 250
+special = "shove"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A dragon tipped spear."
+
+["dragon_spear_p+_noted"]
+id = 5717
+
+["bronze_spear_p++"]
+id = 5718
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A bronze tipped spear."
+kept = "Wilderness"
+
+["bronze_spear_p++_noted"]
+id = 5719
+
+["iron_spear_p++"]
+id = 5720
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "An iron tipped spear."
+kept = "Wilderness"
+
+["iron_spear_p++_noted"]
+id = 5721
+
+["steel_spear_p++"]
+id = 5722
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A steel tipped spear."
+kept = "Wilderness"
+
+["steel_spear_p++_noted"]
+id = 5723
+
+["mithril_spear_p++"]
+id = 5724
+limit = 1000
+weight = 1.814
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A mithril tipped spear."
+
+["mithril_spear_p++_noted"]
+id = 5725
+
+["adamant_spear_p++"]
+id = 5726
+limit = 1000
+weight = 2.721
+slot = "Weapon"
+type = "TwoHanded"
+examine = "An adamantite tipped spear."
+
+["adamant_spear_p++_noted"]
+id = 5727
+
+["rune_spear_p++"]
+id = 5728
+limit = 100
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A rune tipped spear."
+
+["rune_spear_p++_noted"]
+id = 5729
+
+["dragon_spear_p++"]
+id = 5730
+limit = 10
+weight = 2.267
+special_energy = 250
+special = "shove"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A dragon tipped spear."
+
+["dragon_spear_p++_noted"]
+id = 5731
+
+["black_spear_p+"]
+id = 5734
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A black tipped spear."
+
+["black_spear_p+_noted"]
+id = 5735
+
+["black_spear_p++"]
+id = 5736
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A black tipped spear."
+
+["black_spear_p++_noted"]
+id = 5737

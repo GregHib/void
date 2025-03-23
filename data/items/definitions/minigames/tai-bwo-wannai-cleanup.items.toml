@@ -1,0 +1,565 @@
+[broodoo_shield_green_10]
+id = 6215
+price = 1940
+charges = 1
+weight = 5.443
+degrade = "broodoo_shield_green_9"
+slot = "Shield"
+examine = "A scary broodoo shield."
+
+[broodoo_shield_10_noted]
+id = 6216
+
+[broodoo_shield_green_9]
+clone = "broodoo_shield_green_10"
+id = 6217
+degrade = "broodoo_shield_green_8"
+
+[broodoo_shield_9_noted]
+id = 6218
+
+[broodoo_shield_green_8]
+clone = "broodoo_shield_green_10"
+id = 6219
+degrade = "broodoo_shield_green_7"
+
+[broodoo_shield_8_noted]
+id = 6220
+
+[broodoo_shield_green_7]
+clone = "broodoo_shield_green_10"
+id = 6221
+degrade = "broodoo_shield_green_6"
+
+[broodoo_shield_7_noted]
+id = 6222
+
+[broodoo_shield_green_6]
+clone = "broodoo_shield_green_10"
+id = 6223
+degrade = "broodoo_shield_green_5"
+
+[broodoo_shield_6_noted]
+id = 6224
+
+[broodoo_shield_green_5]
+clone = "broodoo_shield_green_10"
+id = 6225
+degrade = "broodoo_shield_green_4"
+
+[broodoo_shield_5_noted]
+id = 6226
+
+[broodoo_shield_green_4]
+clone = "broodoo_shield_green_10"
+id = 6227
+degrade = "broodoo_shield_green_3"
+
+[broodoo_shield_4_noted]
+id = 6228
+
+[broodoo_shield_green_3]
+clone = "broodoo_shield_green_10"
+id = 6229
+degrade = "broodoo_shield_green_2"
+
+[broodoo_shield_3_noted]
+id = 6230
+
+[broodoo_shield_green_2]
+clone = "broodoo_shield_green_10"
+id = 6231
+degrade = "broodoo_shield_green_1"
+
+[broodoo_shield_2_noted]
+id = 6232
+
+[broodoo_shield_green_1]
+clone = "broodoo_shield_green_10"
+id = 6233
+degrade = "broodoo_shield_green"
+
+[broodoo_shield_1_noted]
+id = 6234
+
+[broodoo_shield_green]
+id = 6235
+price = 1907
+limit = 100
+slot = "Shield"
+examine = "A scary broodoo shield."
+weight = 5.443
+
+[broodoo_shield_noted]
+id = 6236
+
+[broodoo_shield_orange_10]
+id = 6237
+price = 2727
+weight = 5.443
+charges = 1
+degrade = "broodoo_shield_orange_9"
+slot = "Shield"
+examine = "A scary broodoo shield."
+
+[broodoo_shield_10_noted_2]
+id = 6238
+
+[broodoo_shield_orange_9]
+clone = "broodoo_shield_orange_10"
+id = 6239
+degrade = "broodoo_shield_orange_8"
+
+[broodoo_shield_9_noted_2]
+id = 6240
+
+[broodoo_shield_orange_8]
+clone = "broodoo_shield_orange_10"
+id = 6241
+degrade = "broodoo_shield_orange_7"
+
+[broodoo_shield_8_noted_2]
+id = 6242
+
+[broodoo_shield_orange_7]
+clone = "broodoo_shield_orange_10"
+id = 6243
+degrade = "broodoo_shield_orange_6"
+
+[broodoo_shield_7_noted_2]
+id = 6244
+
+[broodoo_shield_orange_6]
+clone = "broodoo_shield_orange_10"
+id = 6245
+degrade = "broodoo_shield_orange_5"
+
+[broodoo_shield_6_noted_2]
+id = 6246
+
+[broodoo_shield_orange_5]
+clone = "broodoo_shield_orange_10"
+id = 6247
+degrade = "broodoo_shield_orange_4"
+
+[broodoo_shield_5_noted_2]
+id = 6248
+
+[broodoo_shield_orange_4]
+clone = "broodoo_shield_orange_10"
+id = 6249
+degrade = "broodoo_shield_orange_3"
+
+[broodoo_shield_4_noted_2]
+id = 6250
+
+[broodoo_shield_orange_3]
+clone = "broodoo_shield_orange_10"
+id = 6251
+degrade = "broodoo_shield_orange_2"
+
+[broodoo_shield_3_noted_2]
+id = 6252
+
+[broodoo_shield_orange_2]
+clone = "broodoo_shield_orange_10"
+id = 6253
+degrade = "broodoo_shield_orange_1"
+
+[broodoo_shield_2_noted_2]
+id = 6254
+
+[broodoo_shield_orange_1]
+clone = "broodoo_shield_orange_10"
+id = 6255
+degrade = "broodoo_shield_orange"
+
+[broodoo_shield_1_noted_2]
+id = 6256
+
+[broodoo_shield_orange]
+id = 6257
+price = 3396
+limit = 100
+weight = 5.443
+slot = "Shield"
+examine = "A scary broodoo shield."
+
+[broodoo_shield_noted_2]
+id = 6258
+
+[broodoo_shield_blue_10]
+id = 6259
+price = 1656
+weight = 5.443
+charges = 1
+degrade = "broodoo_shield_blue_9"
+slot = "Shield"
+examine = "A scary broodoo shield."
+
+[broodoo_shield_10_noted_3]
+id = 6260
+
+[broodoo_shield_blue_9]
+clone = "broodoo_shield_blue_10"
+id = 6261
+degrade = "broodoo_shield_blue_8"
+
+[broodoo_shield_9_noted_3]
+id = 6262
+
+[broodoo_shield_blue_8]
+clone = "broodoo_shield_blue_10"
+id = 6263
+degrade = "broodoo_shield_blue_7"
+
+[broodoo_shield_8_noted_3]
+id = 6264
+
+[broodoo_shield_blue_7]
+clone = "broodoo_shield_blue_10"
+id = 6265
+degrade = "broodoo_shield_blue_6"
+
+[broodoo_shield_7_noted_3]
+id = 6266
+
+[broodoo_shield_blue_6]
+clone = "broodoo_shield_blue_10"
+id = 6267
+degrade = "broodoo_shield_blue_5"
+
+[broodoo_shield_6_noted_3]
+id = 6268
+
+[broodoo_shield_blue_5]
+clone = "broodoo_shield_blue_10"
+id = 6269
+degrade = "broodoo_shield_blue_4"
+
+[broodoo_shield_5_noted_3]
+id = 6270
+
+[broodoo_shield_blue_4]
+clone = "broodoo_shield_blue_10"
+id = 6271
+degrade = "broodoo_shield_blue_3"
+
+[broodoo_shield_4_noted_3]
+id = 6272
+
+[broodoo_shield_blue_3]
+clone = "broodoo_shield_blue_10"
+id = 6273
+degrade = "broodoo_shield_blue_2"
+
+[broodoo_shield_3_noted_3]
+id = 6274
+
+[broodoo_shield_blue_2]
+clone = "broodoo_shield_blue_10"
+id = 6275
+degrade = "broodoo_shield_blue_1"
+
+[broodoo_shield_2_noted_3]
+id = 6276
+
+[broodoo_shield_blue_1]
+clone = "broodoo_shield_blue_10"
+id = 6277
+degrade = "broodoo_shield_blue"
+
+[broodoo_shield_1_noted_3]
+id = 6278
+
+[broodoo_shield_blue]
+id = 6279
+price = 3950
+limit = 100
+slot = "Shield"
+examine = "A scary broodoo shield."
+weight = 5.443
+
+[broodoo_shield_noted_3]
+id = 6280
+
+[thatch_spar_light]
+id = 6281
+price = 2
+limit = 100
+weight = 0.1
+slot = "Shield"
+examine = "A wooden pole for use in primitive construction."
+
+[thatch_spar_light_noted]
+id = 6282
+
+[thatch_spar_medium]
+id = 6283
+price = 2
+limit = 100
+weight = 0.1
+slot = "Shield"
+examine = "A wooden pole for use in primitive construction."
+
+[thatch_spar_med_noted]
+id = 6284
+
+[thatch_spar_dense]
+id = 6285
+price = 4
+limit = 100
+weight = 0.1
+slot = "Shield"
+examine = "A wooden pole for use in primitive construction."
+
+[thatch_spar_dense_noted]
+id = 6286
+
+[snake_hide]
+id = 6287
+price = 1086
+limit = 10000
+weight = 0.5
+tanning = [{id = "snakeskin", price = 15}]
+examine = "Scaly but not slimy!"
+
+[snake_hide_noted]
+id = 6288
+
+[snakeskin]
+id = 6289
+price = 1350
+limit = 10000
+weight = 0.5
+examine = "Scaly but not slimy!"
+
+[snakeskin_noted]
+id = 6290
+
+[spider_carcass]
+id = 6291
+price = 664
+limit = 1000
+weight = 0.8
+examine = "Its creeping days are over!"
+
+[spider_carcass_noted]
+id = 6292
+
+[spider_on_stick_raw]
+id = 6293
+price = 199
+limit = 1000
+weight = 0.9
+cooking = { level = 16, xp = 80.0, chances = { fire = "91-438" }, type = "roast", cooked = "spider_on_stick", burnt = "burnt_spider" }
+examine = "A raw spider threaded onto a skewer stick."
+
+[spider_on_stick_noted]
+id = 6294
+
+[spider_on_shaft_raw]
+id = 6295
+price = 103
+limit = 1000
+weight = 0.9
+cooking = { level = 16, xp = 80.0, chances = { fire = "91-438" }, type = "roast", cooked = "spider_on_shaft", burnt = "spider_on_shaft_burnt" }
+examine = "A raw spider threaded onto an arrow shaft."
+
+[spider_on_shaft_noted]
+id = 6296
+
+[spider_on_stick]
+id = 6297
+price = 58
+limit = 1000
+heals = "70-100"
+weight = 0.65
+examine = "A nicely roasted spider threaded onto a skewer stick."
+
+[spider_on_stick_noted_2]
+id = 6298
+
+[spider_on_shaft]
+id = 6299
+price = 80
+limit = 1000
+heals = "70-100"
+weight = 0.9
+examine = "A nicely roasted spider threaded onto an arrow shaft."
+
+[spider_on_shaft_noted_2]
+id = 6300
+
+[burnt_spider]
+id = 6301
+examine = "A badly burnt spider threaded onto a charred skewer stick."
+
+[burnt_spider_noted]
+id = 6302
+
+[spider_on_shaft_burnt]
+id = 6303
+limit = 1000
+examine = "A badly burnt spider threaded onto a charred arrow shaft."
+
+[spider_on_shaft_noted_3]
+id = 6304
+
+[skewer_stick]
+id = 6305
+price = 1
+limit = 1000
+examine = "A sharp pointed stick, quite resistant to fire."
+
+[trading_sticks]
+id = 6306
+price = 7
+limit = 10000
+examine = "Karamja currency."
+
+[gout_tuber]
+id = 6311
+price = 9486
+limit = 100
+weight = 0.2
+examine = "Plant this in a herb patch to grow Goutweed."
+
+[gout_tuber_noted]
+id = 6312
+
+[opal_machete]
+id = 6313
+price = 347
+limit = 100
+weight = 1.36
+slot = "Weapon"
+examine = "A jungle specific slashing device."
+
+[opal_machete_noted]
+id = 6314
+
+[jade_machete]
+id = 6315
+price = 5553
+limit = 100
+weight = 1.36
+slot = "Weapon"
+examine = "A jungle specific slashing device."
+
+[jade_machete_noted]
+id = 6316
+
+[red_topaz_machete]
+id = 6317
+price = 13400
+limit = 100
+weight = 1.36
+slot = "Weapon"
+examine = "A jungle specific slashing device."
+
+[red_topaz_machete_noted]
+id = 6318
+
+[proboscis]
+id = 6319
+price = 9557
+limit = 100
+examine = "aerodynamic, sharp and pointy!"
+
+[snakeskin_body]
+id = 6322
+price = 16100
+limit = 100
+weight = 6.803
+slot = "Chest"
+material = "leather"
+examine = "Made from 100% real snakeskin."
+
+[snakeskin_body_noted]
+id = 6323
+
+[snakeskin_chaps]
+id = 6324
+price = 1337
+limit = 100
+weight = 3.628
+slot = "Legs"
+material = "leather"
+examine = "Made from 100% real snake."
+
+[snakeskin_chaps_noted]
+id = 6325
+
+[snakeskin_bandana]
+id = 6326
+price = 770
+limit = 100
+weight = 0.907
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "Lightweight head protection."
+
+[snakeskin_bandana_noted]
+id = 6327
+
+[snakeskin_boots]
+id = 6328
+price = 5878
+limit = 100
+weight = 0.34
+slot = "Feet"
+material = "leather"
+examine = "Made from snakes."
+
+[snakeskin_boots_noted]
+id = 6329
+
+[snakeskin_vambraces]
+id = 6330
+price = 3170
+limit = 100
+weight = 0.283
+slot = "Hands"
+material = "leather"
+examine = "Made from 100% real snake."
+
+[snakeskin_vambraces_noted]
+id = 6331
+
+[tribal_mask_green]
+id = 6335
+price = 1625
+limit = 100
+weight = 2.0
+aka = ["broodoo_mask_green"]
+slot = "Hat"
+examine = "A ceremonial wooden mask."
+
+[tribal_mask_noted]
+id = 6336
+
+[tribal_mask_orange]
+id = 6337
+price = 1815
+limit = 100
+weight = 2.0
+aka = ["broodoo_mask_orange"]
+slot = "Hat"
+examine = "A ceremonial wooden mask."
+
+[tribal_mask_noted_2]
+id = 6338
+
+[tribal_mask_blue]
+id = 6339
+price = 1263
+limit = 100
+weight = 2.0
+aka = ["broodoo_mask_blue"]
+slot = "Hat"
+examine = "A ceremonial wooden mask."
+
+[tribal_mask_noted_3]
+id = 6340

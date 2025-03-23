@@ -1,0 +1,164 @@
+[woven_top_brown]
+id = 5024
+price = 694
+limit = 100
+weight = 0.07
+slot = "Chest"
+examine = "Far too small to wear."
+
+[woven_top_noted]
+id = 5025
+
+[woven_top_tan]
+id = 5026
+price = 945
+limit = 100
+weight = 0.07
+slot = "Chest"
+examine = "Yellow top, too small for me."
+
+[woven_top_noted_2]
+id = 5027
+
+[woven_top_blue]
+id = 5028
+price = 1457
+limit = 100
+weight = 0.07
+slot = "Chest"
+examine = "Blue top, very tiny."
+
+[woven_top_noted_3]
+id = 5029
+
+[shirt_brown]
+id = 5030
+price = 870
+limit = 100
+weight = 0.07
+slot = "Chest"
+examine = "Tiny!"
+
+[shirt_noted]
+id = 5031
+
+[shirt_tan]
+id = 5032
+price = 1004
+limit = 100
+weight = 0.07
+slot = "Chest"
+examine = "Tiny!"
+
+[shirt_noted_2]
+id = 5033
+
+[shirt_lilac]
+id = 5034
+price = 1316
+limit = 100
+weight = 0.07
+slot = "Chest"
+examine = "Tiny!"
+
+[shirt_noted_3]
+id = 5035
+
+[trousers_brown]
+id = 5036
+price = 752
+limit = 100
+weight = 1.0
+slot = "Legs"
+examine = "A pair of long dwarven trousers... long for dwarves, of course."
+
+[trousers_noted]
+id = 5037
+
+[trousers_lilac]
+id = 5038
+price = 334
+limit = 100
+weight = 1.0
+slot = "Legs"
+examine = "A pair of long dwarven trousers... long for dwarves, of course."
+
+[trousers_noted_2]
+id = 5039
+
+[trousers_blue]
+id = 5040
+price = 454
+limit = 100
+weight = 1.0
+slot = "Legs"
+examine = "A pair of long dwarven trousers... long for dwarves, of course."
+
+[trousers_noted_3]
+id = 5041
+
+[shorts_brown]
+id = 5042
+price = 1108
+limit = 100
+weight = 0.1
+slot = "Legs"
+examine = "These look great, on dwarves!"
+
+[shorts_noted]
+id = 5043
+
+[shorts_tan]
+id = 5044
+price = 1080
+limit = 100
+weight = 0.1
+slot = "Legs"
+examine = "Yellow shorts. Far too small for you."
+
+[shorts_noted_2]
+id = 5045
+
+[shorts_blue]
+id = 5046
+price = 2501
+limit = 100
+weight = 0.1
+slot = "Legs"
+examine = "Blue shorts, these would look great on dwarves!"
+
+[shorts_noted_3]
+id = 5047
+
+[skirt_brown]
+id = 5048
+price = 692
+limit = 100
+weight = 0.08
+slot = "Legs"
+examine = "A brown skirt. Size small!"
+
+[skirt_noted]
+id = 5049
+
+[skirt_lilac]
+id = 5050
+price = 1135
+limit = 100
+weight = 0.08
+slot = "Legs"
+examine = "Lilac skirt."
+
+[skirt_noted_2]
+id = 5051
+
+[skirt_blue]
+id = 5052
+price = 925
+limit = 100
+weight = 0.08
+slot = "Legs"
+examine = "A blue skirt."
+
+[skirt_noted_3]
+id = 5053

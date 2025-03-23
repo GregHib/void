@@ -1,0 +1,23 @@
+[prison_key]
+id = 3135
+tradeable = false
+weight = 0.055
+examine = "The key to the troll prison."
+use = "Quest"
+kept = "Wilderness"
+
+[cell_key_1]
+id = 3136
+tradeable = false
+weight = 0.055
+examine = "The key to Godric's cell in the troll prison."
+use = "Quest"
+kept = "Wilderness"
+
+[cell_key_2]
+id = 3137
+tradeable = false
+weight = 0.055
+examine = "The key to Mad Eadgar's cell in the troll prison."
+use = "Quest"
+kept = "Wilderness"

@@ -1,0 +1,85 @@
+[the_shield_of_arrav_book]
+id = 757
+book = "shield_of_arrav"
+tradeable = false
+weight = 0.2
+aka = ["book_of_arrav"]
+destroy = "You can check this book out at the Varrock palace library."
+examine = "'The Shield of Arrav' by A R Wright."
+kept = "Wilderness"
+
+[phoenix_hq_key]
+id = 758
+tradeable = false
+weight = 0.01
+examine = "The key to get into the Phoenix Gang HQ."
+kept = "Wilderness"
+use = "Removed"
+
+[weapon_store_key]
+id = 759
+weight = 0.01
+examine = "Phoenix Gang weapon store key."
+kept = "Wilderness"
+
+[weapon_store_key_noted]
+id = 760
+
+[intel_report]
+id = 761
+tradeable = false
+weight = 0.02
+destroy = "You'll have to kill Jonny the beard to get another."
+examine = "An intelligence report."
+use = "Quest"
+kept = "Wilderness"
+
+[broken_shield_left]
+id = 765
+tradeable = false
+weight = 2.721
+destroy = "You will need to enter the Black Arm Gang hideout to reclaim this half of the shield."
+examine = "Half of the Shield of Arrav."
+use = "Quest"
+kept = "Wilderness"
+
+[phoenix_crossbow]
+id = 767
+tradeable = false
+weight = 3.628
+attack_range = 7
+slot = "Weapon"
+destroy = "You can get another from the Phoenix Gang's weapon stash."
+examine = "Second-rate crossbow; former property of the Phoenix Gang."
+kept = "Wilderness"
+
+[phoenix_crossbow_noted]
+id = 768
+
+[certificate_shield_of_arrav]
+id = 769
+tradeable = false
+weight = 0.02
+destroy = "Instead of destroying this I should take it to King Roald to claim my reward."
+examine = "I can use this to claim a reward from the King."
+kept = "Wilderness"
+
+[shield_left_half]
+id = 2366
+price = 65600
+limit = 10
+weight = 2.721
+examine = "The left half of a dragon square shield."
+
+[shield_left_half_noted]
+id = 2367
+
+[shield_right_half]
+id = 2368
+price = 755400
+limit = 100
+weight = 2.721
+examine = "The right half of a dragon square shield."
+
+[shield_right_half_noted]
+id = 2369

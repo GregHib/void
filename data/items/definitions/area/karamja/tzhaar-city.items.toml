@@ -1,0 +1,112 @@
+[toktz_xil_ul]
+id = 6522
+price = 149
+limit = 100
+attack_range = 7
+aka = ["obsidian_throwing_ring", "obby_ring", "obby_rings"]
+slot = "Weapon"
+examine = "A razor sharp ring of obsidian."
+
+[toktz_xil_ak]
+id = 6523
+price = 23500
+limit = 10
+weight = 1.814
+aka = ["obsidian_splitsword", "obby_sword"]
+slot = "Weapon"
+material = "metal"
+examine = "A razor sharp sword of obsidian."
+
+[toktz_ket_xil]
+id = 6524
+price = 25700
+limit = 10
+weight = 3.628
+aka = ["obsidian_shield", "obby_shield"]
+slot = "Shield"
+material = "metal"
+examine = "A spiked shield of obsidian."
+
+[toktz_xil_ek]
+id = 6525
+price = 15000
+limit = 10
+weight = 0.453
+aka = ["obsidian_knife", "obby_knife"]
+slot = "Weapon"
+material = "metal"
+examine = "A large knife of obsidian."
+
+[toktz_mej_tal]
+id = 6526
+price = 20900
+limit = 10
+weight = 1.814
+category = "staff"
+aka = ["obsidian_staff", "obby_staff"]
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A staff of obsidian."
+
+[tzhaar_ket_em]
+id = 6527
+price = 19600
+limit = 10
+weight = 1.814
+aka = ["obsidian_mace", "obby_mace"]
+slot = "Weapon"
+examine = "A mace of obsidian."
+
+[tzhaar_ket_om]
+id = 6528
+price = 29400
+limit = 10
+weight = 3.628
+aka = ["obsidian_maul", "obby_maul"]
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A maul of obsidian."
+
+[tokkul]
+id = 6529
+tradeable = false
+examine = "It's a token of some kind made from obsidian."
+kept = "Reclaim"
+
+[toktz_xil_ak_noted]
+id = 6535
+
+[toktz_ket_xil_noted]
+id = 6536
+
+[toktz_xil_ek_noted]
+id = 6537
+
+[toktz_mej_tal_noted]
+id = 6538
+
+[tzhaar_ket_em_noted]
+id = 6539
+
+[tzhaar_ket_om_noted]
+id = 6540
+
+[obsidian_cape]
+id = 6568
+price = 35800
+limit = 100
+weight = 1.814
+slot = "Cape"
+examine = "A cape of woven obsidian plates."
+
+[obsidian_cape_noted]
+id = 6569
+
+[fire_cape]
+id = 6570
+tradeable = false
+weight = 1.814
+aka = ["fcape", "f_cape"]
+slot = "Cape"
+examine = "A cape of fire."
+kept = "Reclaim"

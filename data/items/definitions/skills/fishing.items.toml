@@ -87,11 +87,7 @@ id = 401
 price = 92
 limit = 10000
 weight = 0.2
-fishing = {
-level = 16,
-xp = 1.0,
-chance = "10-10",
-}
+fishing = { level = 16, xp = 1.0, chance = "10-10" }
 examine = "Slightly damp seaweed."
 
 [seaweed_noted]
@@ -113,11 +109,7 @@ id = 405
 price = 1525
 limit = 100
 weight = 5.0
-fishing = {
-level = 16,
-xp = 0.0,
-chance = "1-2",
-}
+fishing = { level = 16, xp = 0.0, chance = "1-2" }
 examine = "I hope there's treasure in it."
 
 [casket_noted]
@@ -128,11 +120,7 @@ id = 407
 price = 24
 limit = 500
 weight = 0.1
-fishing = {
-level = 16,
-xp = 10.0,
-chance = "3-7",
-}
+fishing = { level = 16, xp = 10.0, chance = "3-7" }
 examine = "Maybe there are pearls inside?"
 
 [oyster_noted]

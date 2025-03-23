@@ -1,0 +1,119 @@
+[ethenea]
+id = 415
+tradeable = false
+weight = 0.03
+examine = "An expensive colourless liquid."
+use = "Quest"
+kept = "Wilderness"
+
+[liquid_honey]
+id = 416
+tradeable = false
+weight = 0.03
+examine = "This isn't worth much."
+use = "Quest"
+kept = "Wilderness"
+
+[sulphuric_broline]
+id = 417
+tradeable = false
+weight = 0.03
+examine = "It's highly poisonous."
+use = "Quest"
+kept = "Wilderness"
+
+[plague_sample]
+id = 418
+tradeable = false
+weight = 0.05
+examine = "Probably best I don't keep this too long."
+use = "Quest"
+kept = "Wilderness"
+
+[touch_paper]
+id = 419
+tradeable = false
+weight = 0.01
+examine = "A special kind of paper."
+use = "Quest"
+kept = "Wilderness"
+
+[distillator]
+id = 420
+tradeable = false
+weight = 0.02
+examine = "Apparently it distills."
+use = "Quest"
+kept = "Wilderness"
+
+[lathas_amulet]
+id = 421
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+examine = "Yup. It's an amulet."
+kept = "Wilderness"
+use = "Removed"
+
+[bird_feed]
+id = 422
+tradeable = false
+weight = 0.05
+examine = "Birds love this stuff!"
+use = "Quest"
+kept = "Wilderness"
+
+[key_biohazard]
+id = 423
+tradeable = false
+weight = 0.01
+examine = "Opens things."
+use = "Quest"
+kept = "Wilderness"
+
+[pigeon_cage_full]
+id = 424
+tradeable = false
+weight = 2.0
+examine = "It's full of pigeons."
+kept = "Wilderness"
+
+[pigeon_cage_empty]
+id = 425
+tradeable = false
+weight = 0.5
+examine = "It's empty..."
+use = "Quest"
+kept = "Wilderness"
+
+[priest_gown_top]
+id = 426
+price = 74
+limit = 100
+weight = 1.814
+slot = "Chest"
+examine = "Top half of a priest suit."
+kept = "Wilderness"
+
+[priest_gown_noted]
+id = 427
+
+[priest_gown_bottom]
+id = 428
+price = 20
+limit = 100
+weight = 1.814
+slot = "Legs"
+examine = "Bottom half of a priest suit."
+kept = "Wilderness"
+
+[priest_gown_noted_2]
+id = 429
+
+[doctors_gown]
+id = 430
+tradeable = false
+weight = 1.814
+slot = "Chest"
+examine = "Medical looking."
+kept = "Wilderness"

@@ -1,0 +1,964 @@
+[asgarnian_ale_m]
+id = 5739
+price = 422
+limit = 100
+heals = 20
+excess = "beer_glass"
+weight = 0.55
+examine = "This looks a good deal stronger than normal Asgarnian Ale."
+
+[asgarnian_ale_m_noted]
+id = 5740
+
+[mature_wizards_mind_bomb]
+id = 5741
+price = 1159
+limit = 100
+heals = 10
+excess = "beer_glass"
+weight = 0.55
+examine = "This looks a good deal stronger than normal Wizards Mind Bomb."
+
+[mature_wizards_mind_bomb_noted]
+id = 5742
+
+[greenmans_ale_m]
+id = 5743
+price = 52200
+limit = 100
+heals = 10
+excess = "beer_glass"
+weight = 0.55
+examine = "This looks a good deal stronger than normal Greenman's Ale."
+
+[greenmans_ale_m_noted]
+id = 5744
+
+[dragon_bitter_m]
+id = 5745
+price = 2350
+limit = 100
+heals = 20
+excess = "beer_glass"
+weight = 0.55
+examine = "This looks a good deal stronger than normal Dragon Bitter."
+
+[dragon_bitter_m_noted]
+id = 5746
+
+[dwarven_stout_m]
+id = 5747
+price = 37500
+limit = 100
+heals = 10
+excess = "beer_glass"
+weight = 0.55
+examine = "This looks a good deal stronger than normal Dwarven Stout."
+kept = "Wilderness"
+
+[dwarven_stout_m_noted]
+id = 5748
+
+[moonlight_mead_m]
+id = 5749
+price = 19
+limit = 100
+heals = 60
+excess = "beer_glass"
+eat_message = "You drink the foul smelling brew. It tastes like something just died in your mouth."
+weight = 0.55
+examine = "This looks a good deal stronger than normal Moonlight Mead."
+
+[moonlight_mead_m_noted]
+id = 5750
+
+[axemans_folly]
+id = 5751
+price = 760
+limit = 100
+heals = 10
+excess = "beer_glass"
+weight = 0.55
+examine = "This might help me chop harder."
+
+[axemans_folly_noted]
+id = 5752
+
+[axemans_folly_m]
+id = 5753
+price = 19000
+limit = 100
+heals = 20
+excess = "beer_glass"
+weight = 0.55
+examine = "This looks a good deal stronger than normal Axeman's Folly."
+
+[axemans_folly_m_noted]
+id = 5754
+
+[chefs_delight]
+id = 5755
+price = 5918
+limit = 100
+heals = 10
+excess = "beer_glass"
+weight = 0.55
+examine = "A fruity, full-bodied ale."
+
+[chefs_delight_noted]
+id = 5756
+
+[chefs_delight_m]
+id = 5757
+price = 34000
+limit = 100
+heals = 20
+excess = "beer_glass"
+weight = 0.55
+examine = "This looks a good deal stronger than normal Chef's Delight."
+
+[chefs_delight_m_noted]
+id = 5758
+
+[slayers_respite]
+id = 5759
+price = 32
+limit = 100
+heals = 10
+excess = "beer_glass"
+weight = 0.55
+examine = "Ale with bite."
+
+[slayers_respite_noted]
+id = 5760
+
+[slayers_respite_m]
+id = 5761
+price = 1732
+limit = 100
+heals = 10
+excess = "beer_glass"
+weight = 0.55
+examine = "This looks a good deal stronger than normal Slayer's Respite."
+
+[slayers_respite_m_noted]
+id = 5762
+
+[cider]
+id = 5763
+price = 2348
+limit = 100
+heals = 20
+excess = "beer_glass"
+weight = 0.55
+examine = "A glass of cider."
+kept = "Wilderness"
+
+[cider_noted]
+id = 5764
+
+[mature_cider]
+id = 5765
+price = 3369
+limit = 100
+heals = 20
+excess = "beer_glass"
+weight = 0.55
+examine = "This looks a good deal stronger than normal cider."
+kept = "Wilderness"
+
+[mature_cider_noted]
+id = 5766
+
+[ale_yeast]
+id = 5767
+price = 53
+limit = 100
+weight = 2.834
+examine = "A pot filled with ale yeast."
+
+[ale_yeast_noted]
+id = 5768
+
+[calquat_keg]
+id = 5769
+price = 2
+limit = 100
+weight = 0.028
+examine = "Sliced and hollowed out to form a keg."
+
+[calquat_keg_noted]
+id = 5770
+
+[dwarven_stout_keg_1]
+id = 5771
+price = 1750
+limit = 100
+examine = "This keg contains 1 pint of Dwarven Stout."
+weight = 0.028
+
+[dwarven_stout_1_noted]
+id = 5772
+
+[dwarven_stout_keg_2]
+id = 5773
+price = 3221
+limit = 100
+examine = "This keg contains 2 pints of Dwarven Stout."
+weight = 0.028
+
+[dwarven_stout_2_noted]
+id = 5774
+
+[dwarven_stout_keg_3]
+id = 5775
+price = 4784
+limit = 100
+examine = "This keg contains 3 pints of Dwarven Stout."
+weight = 0.028
+
+[dwarven_stout_3_noted]
+id = 5776
+
+[dwarven_stout_keg_4]
+id = 5777
+price = 5184
+limit = 100
+examine = "This keg contains 4 pints of Dwarven Stout."
+weight = 0.028
+
+[dwarven_stout_4_noted]
+id = 5778
+
+[asgarnian_ale_keg_1]
+id = 5779
+price = 3224
+examine = "This keg contains 1 pint of Asgarnian Ale."
+weight = 0.028
+
+[asgarnian_ale_1_noted]
+id = 5780
+
+[asgarnian_ale_keg_2]
+id = 5781
+price = 6103
+examine = "This keg contains 2 pints of Asgarnian Ale."
+weight = 0.028
+
+[asgarnian_ale_2_noted]
+id = 5782
+
+[asgarnian_ale_keg_3]
+id = 5783
+price = 9111
+examine = "This keg contains 3 pints of Asgarnian Ale."
+weight = 0.028
+
+[asgarnian_ale_3_noted]
+id = 5784
+
+[asgarnian_ale_keg_4]
+id = 5785
+price = 12600
+examine = "This keg contains 4 pints of Asgarnian Ale."
+weight = 0.028
+
+[asgarnian_ale_4_noted]
+id = 5786
+
+[greenmans_ale_keg_1]
+id = 5787
+price = 2952
+limit = 100
+examine = "This keg contains 1 pint of Greenman's Ale."
+weight = 0.028
+
+[greenmans_ale_1_noted]
+id = 5788
+
+[greenmans_ale_keg_2]
+id = 5789
+price = 4722
+limit = 100
+examine = "This keg contains 2 pints of Greenman's Ale."
+weight = 0.028
+
+[greenmans_ale_2_noted]
+id = 5790
+
+[greenmans_ale_keg_3]
+id = 5791
+price = 7462
+limit = 100
+examine = "This keg contains 3 pints of Greenman's Ale."
+weight = 0.028
+
+[greenmans_ale_3_noted]
+id = 5792
+
+[greenmans_ale_keg_4]
+id = 5793
+price = 7199
+examine = "This keg contains 4 pints of Greenman's Ale."
+weight = 0.028
+
+[greenmans_ale_4_noted]
+id = 5794
+
+[mind_bomb_1]
+id = 5795
+price = 1448
+limit = 100
+examine = "This keg contains 1 pint of Wizards Mind Bomb."
+weight = 0.028
+
+[mind_bomb_1_noted]
+id = 5796
+
+[mind_bomb_2]
+id = 5797
+price = 2721
+limit = 100
+examine = "This keg contains 2 pints of Wizards Mind Bomb."
+weight = 0.028
+
+[mind_bomb_2_noted]
+id = 5798
+
+[mind_bomb_3]
+id = 5799
+price = 4038
+limit = 100
+examine = "This keg contains 3 pints of Wizards Mind Bomb."
+weight = 0.028
+
+[mind_bomb_3_noted]
+id = 5800
+
+[mind_bomb_4]
+id = 5801
+price = 5348
+limit = 100
+examine = "This keg contains 4 pints of Wizards Mind Bomb."
+weight = 0.028
+
+[mind_bomb_4_noted]
+id = 5802
+
+[dragon_bitter_keg_1]
+id = 5803
+price = 1673
+limit = 100
+examine = "This keg contains 1 pint of Dragon Bitter."
+weight = 0.028
+
+[dragon_bitter_1_noted]
+id = 5804
+
+[dragon_bitter_keg_2]
+id = 5805
+price = 3259
+limit = 100
+examine = "This keg contains 2 pints of Dragon Bitter."
+weight = 0.028
+
+[dragon_bitter_2_noted]
+id = 5806
+
+[dragon_bitter_keg_3]
+id = 5807
+price = 4845
+limit = 100
+examine = "This keg contains 3 pints of Dragon Bitter."
+weight = 0.028
+
+[dragon_bitter_3_noted]
+id = 5808
+
+[dragon_bitter_keg_4]
+id = 5809
+price = 6056
+limit = 100
+examine = "This keg contains 4 pints of Dragon Bitter."
+weight = 0.028
+
+[dragon_bitter_4_noted]
+id = 5810
+
+[moonlight_mead_keg_1]
+id = 5811
+price = 1298
+limit = 100
+examine = "This keg contains 1 pint of Moonlight Mead."
+weight = 0.028
+
+[moonlight_mead_1_noted]
+id = 5812
+
+[moonlight_mead_keg_2]
+id = 5813
+price = 2510
+limit = 100
+examine = "This keg contains 2 pints of Moonlight Mead."
+weight = 0.028
+
+[moonlight_mead_2_noted]
+id = 5814
+
+[moonlight_mead_keg_3]
+id = 5815
+price = 3721
+limit = 100
+examine = "This keg contains 3 pints of Moonlight Mead."
+weight = 0.028
+
+[moonlight_mead_3_noted]
+id = 5816
+
+[moonlight_mead_keg_4]
+id = 5817
+price = 4934
+limit = 100
+examine = "This keg contains 4 pints of Moonlight Mead."
+weight = 0.028
+
+[moonlight_mead_4_noted]
+id = 5818
+
+[axemans_folly_keg_1]
+id = 5819
+price = 3250
+examine = "This keg contains 1 pint of Axeman's Folly."
+weight = 0.028
+
+[axemans_folly_1_noted]
+id = 5820
+
+[axemans_folly_keg_2]
+id = 5821
+price = 6269
+examine = "This keg contains 2 pints of Axeman's Folly."
+weight = 0.028
+
+[axemans_folly_2_noted]
+id = 5822
+
+[axemans_folly_keg_3]
+id = 5823
+price = 9360
+examine = "This keg contains 3 pints of Axeman's Folly."
+weight = 0.028
+
+[axemans_folly_3_noted]
+id = 5824
+
+[axemans_folly_keg_4]
+id = 5825
+price = 10600
+examine = "This keg contains 4 pints of Axeman's Folly."
+weight = 0.028
+
+[axemans_folly_4_noted]
+id = 5826
+
+[chefs_delight_keg_1]
+id = 5827
+price = 3538
+examine = "This keg contains 1 pint of Chef's Delight."
+weight = 0.028
+
+[chefs_delight_1_noted]
+id = 5828
+
+[chefs_delight_keg_2]
+id = 5829
+price = 6488
+examine = "This keg contains 2 pints of Chef's Delight."
+weight = 0.028
+
+[chefs_delight_2_noted]
+id = 5830
+
+[chefs_delight_keg_3]
+id = 5831
+price = 9599
+examine = "This keg contains 3 pints of Chef's Delight."
+weight = 0.028
+
+[chefs_delight_3_noted]
+id = 5832
+
+[chefs_delight_keg_4]
+id = 5833
+price = 15300
+examine = "This keg contains 4 pints of Chef's Delight."
+weight = 0.028
+
+[chefs_delight_4_noted]
+id = 5834
+
+[slayers_respite_keg_1]
+id = 5835
+price = 1127
+limit = 100
+examine = "This keg contains 1 pint of Slayer's Respite."
+weight = 0.028
+
+[slayers_respite_1_noted]
+id = 5836
+
+[slayers_respite_keg_2]
+id = 5837
+price = 2168
+examine = "This keg contains 2 pints of Slayer's Respite."
+weight = 0.028
+
+[slayers_respite_2_noted]
+id = 5838
+
+[slayers_respite_keg_3]
+id = 5839
+price = 3209
+limit = 100
+examine = "This keg contains 3 pints of Slayer's Respite."
+weight = 0.028
+
+[slayers_respite_3_noted]
+id = 5840
+
+[slayers_respite_keg_4]
+id = 5841
+price = 3796
+limit = 100
+examine = "This keg contains 4 pints of Slayer's Respite."
+weight = 0.028
+
+[slayers_respite_4_noted]
+id = 5842
+
+[cider_keg_1]
+id = 5843
+price = 5874
+limit = 100
+examine = "This keg contains 1 pint of Cider."
+weight = 0.028
+
+[cider_1_noted]
+id = 5844
+
+[cider_keg_2]
+id = 5845
+price = 11000
+limit = 100
+examine = "This keg contains 2 pints of Cider."
+weight = 0.028
+
+[cider_2_noted]
+id = 5846
+
+[cider_keg_3]
+id = 5847
+price = 16100
+limit = 100
+examine = "This keg contains 3 pints of Cider."
+weight = 0.028
+
+[cider_3_noted]
+id = 5848
+
+[cider_keg_4]
+id = 5849
+price = 20900
+limit = 100
+examine = "This keg contains 4 pints of Cider."
+weight = 0.028
+
+[cider_4_noted]
+id = 5850
+
+[dwarven_stout_m_keg_1]
+id = 5851
+price = 33600
+limit = 100
+examine = "This keg contains 1 pint of mature Dwarven Stout."
+weight = 0.028
+
+[dwarven_stout_m1_noted]
+id = 5852
+
+[dwarven_stout_m_keg_2]
+id = 5853
+price = 59000
+limit = 100
+examine = "This keg contains 2 pints of mature Dwarven Stout."
+weight = 0.028
+
+[dwarven_stout_m2_noted]
+id = 5854
+
+[dwarven_stout_m_keg_3]
+id = 5855
+price = 88400
+limit = 100
+examine = "This keg contains 3 pints of mature Dwarven Stout."
+weight = 0.028
+
+[dwarven_stout_m3_noted]
+id = 5856
+
+[dwarven_stout_m_keg_4]
+id = 5857
+price = 160800
+limit = 100
+examine = "This keg contains 4 pints of mature Dwarven Stout."
+weight = 0.028
+
+[dwarven_stout_m4_noted]
+id = 5858
+
+[asgarnian_ale_m_keg_1]
+id = 5859
+price = 1697
+examine = "This keg contains 1 pint of mature Asgarnian Ale."
+weight = 0.028
+
+[asgarnian_ale_m1_noted]
+id = 5860
+
+[asgarnian_ale_m_keg_2]
+id = 5861
+price = 3307
+examine = "This keg contains 2 pints of mature Asgarnian Ale."
+weight = 0.028
+
+[asgarnian_ale_m2_noted]
+id = 5862
+
+[asgarnian_ale_m_keg_3]
+id = 5863
+price = 4917
+examine = "This keg contains 3 pints of mature Asgarnian Ale."
+weight = 0.028
+
+[asgarnian_ale_m3_noted]
+id = 5864
+
+[asgarnian_ale_m_keg_4]
+id = 5865
+price = 6528
+examine = "This keg contains 4 pints of mature Asgarnian Ale."
+weight = 0.028
+
+[asgarnian_ale_m4_noted]
+id = 5866
+
+[greenmans_ale_m_keg_1]
+id = 5867
+price = 49800
+limit = 100
+examine = "This keg contains 1 pint of mature Greenman's Ale."
+weight = 0.028
+
+[greenmans_ale_m1_noted]
+id = 5868
+
+[greenmans_ale_m_keg_2]
+id = 5869
+price = 85900
+limit = 100
+examine = "This keg contains 2 pints of mature Greenman's Ale."
+weight = 0.028
+
+[greenmans_ale_m2_noted]
+id = 5870
+
+[greenmans_ale_m_keg_3]
+id = 5871
+price = 130900
+limit = 100
+examine = "This keg contains 3 pints of mature Greenman's Ale."
+weight = 0.028
+
+[greenmans_ale_m3_noted]
+id = 5872
+
+[greenmans_ale_m_keg_4]
+id = 5873
+price = 238400
+examine = "This keg contains 4 pints of mature Greenman's Ale."
+weight = 0.028
+
+[greenmans_ale_m4_noted]
+id = 5874
+
+[mind_bomb_m_1]
+id = 5875
+price = 3032
+limit = 100
+examine = "This keg contains 1 pint of mature Wizards Mind Bomb."
+weight = 0.028
+
+[mind_bomb_m1_noted]
+id = 5876
+
+[mind_bomb_m_2]
+id = 5877
+price = 5977
+limit = 100
+examine = "This keg contains 2 pints of mature Wizards Mind Bomb."
+weight = 0.028
+
+[mind_bomb_m2_noted]
+id = 5878
+
+[mind_bomb_m_3]
+id = 5879
+price = 8922
+limit = 100
+examine = "This keg contains 3 pints of mature Wizards Mind Bomb."
+weight = 0.028
+
+[mind_bomb_m3_noted]
+id = 5880
+
+[mind_bomb_m_4]
+id = 5881
+price = 12300
+limit = 100
+examine = "This keg contains 4 pints of mature Wizards Mind Bomb."
+weight = 0.028
+
+[mind_bomb_m4_noted]
+id = 5882
+
+[dragon_bitter_m_keg_1]
+id = 5883
+price = 2125
+limit = 100
+examine = "This keg contains 1 pint of mature Dragon Bitter."
+weight = 0.028
+
+[dragon_bitter_m1_noted]
+id = 5884
+
+[dragon_bitter_m_keg_2]
+id = 5885
+price = 4163
+limit = 100
+examine = "This keg contains 2 pints of mature Dragon Bitter."
+weight = 0.028
+
+[dragon_bitter_m2_noted]
+id = 5886
+
+[dragon_bitter_m_keg_3]
+id = 5887
+price = 6201
+limit = 100
+examine = "This keg contains 3 pints of mature Dragon Bitter."
+weight = 0.028
+
+[dragon_bitter_m3_noted]
+id = 5888
+
+[dragon_bitter_m_keg_4]
+id = 5889
+price = 8573
+limit = 100
+examine = "This keg contains 4 pints of mature Dragon Bitter."
+weight = 0.028
+
+[dragon_bitter_m4_noted]
+id = 5890
+
+[moonlight_mead_m_keg_1]
+id = 5891
+price = 1315
+limit = 100
+examine = "This keg contains 1 pint of mature Moonlight Mead."
+weight = 0.028
+
+[mlight_mead_m1_noted]
+id = 5892
+
+[moonlight_mead_m_keg_2]
+id = 5893
+price = 2543
+limit = 100
+examine = "This keg contains 2 pints of mature Moonlight Mead."
+weight = 0.028
+
+[mlight_mead_m2_noted]
+id = 5894
+
+[moonlight_mead_m_keg_3]
+id = 5895
+price = 3771
+limit = 100
+examine = "This keg contains 3 pints of mature Moonlight Mead."
+weight = 0.028
+
+[mlight_mead_m3_noted]
+id = 5896
+
+[moonlight_mead_m_keg_4]
+id = 5897
+price = 5000
+limit = 100
+examine = "This keg contains 4 pints of mature Moonlight Mead."
+weight = 0.028
+
+[mlight_mead_m4_noted]
+id = 5898
+
+[axemans_folly_m_keg_1]
+id = 5899
+price = 12500
+examine = "This keg contains 1 pint of mature Axeman's Folly."
+weight = 0.028
+
+[axemans_folly_m1_noted]
+id = 5900
+
+[axemans_folly_m_keg_2]
+id = 5901
+price = 24000
+examine = "This keg contains 2 pints of mature Axeman's Folly."
+weight = 0.028
+
+[axemans_folly_m2_noted]
+id = 5902
+
+[axemans_folly_m_keg_3]
+id = 5903
+price = 35900
+examine = "This keg contains 3 pints of mature Axeman's Folly."
+weight = 0.028
+
+[axemans_folly_m3_noted]
+id = 5904
+
+[axemans_folly_m_keg_4]
+id = 5905
+price = 53500
+examine = "This keg contains 4 pints of mature Axeman's Folly."
+weight = 0.028
+
+[axemans_folly_m4_noted]
+id = 5906
+
+[chefs_delight_m_keg_1]
+id = 5907
+price = 16800
+examine = "This keg contains 1 pint of mature Chef's Delight."
+weight = 0.028
+
+[chefs_delight_m1_noted]
+id = 5908
+
+[chefs_delight_m_keg_2]
+id = 5909
+price = 32900
+examine = "This keg contains 2 pints of mature Chef's Delight."
+weight = 0.028
+
+[chefs_delight_m2_noted]
+id = 5910
+
+[chefs_delight_m_keg_3]
+id = 5911
+price = 49000
+examine = "This keg contains 3 pints of mature Chef's Delight."
+weight = 0.028
+
+[chefs_delight_m3_noted]
+id = 5912
+
+[chefs_delight_m_keg_4]
+id = 5913
+price = 80400
+examine = "This keg contains 4 pints of mature Chef's Delight."
+weight = 0.028
+
+[chefs_delight_m4_noted]
+id = 5914
+
+[slayer_respite_m_keg_1]
+id = 5915
+price = 3672
+limit = 100
+examine = "This keg contains 1 pint of mature Slayer's Respite."
+weight = 0.028
+
+[slayer_respite_m1_noted]
+id = 5916
+
+[slayer_respite_m_keg_2]
+id = 5917
+price = 7258
+limit = 100
+examine = "This keg contains 2 pints of mature Slayer's Respite."
+weight = 0.028
+
+[slayer_respite_m2_noted]
+id = 5918
+
+[slayer_respite_m_keg_3]
+id = 5919
+price = 10800
+limit = 100
+examine = "This keg contains 3 pints of mature Slayer's Respite."
+weight = 0.028
+
+[slayer_respite_m3_noted]
+id = 5920
+
+[slayer_respite_m_keg_4]
+id = 5921
+price = 14800
+limit = 100
+examine = "This keg contains 4 pints of mature Slayer's Respite."
+weight = 0.028
+
+[slayer_respite_m4_noted]
+id = 5922
+
+[cider_m_keg_1]
+id = 5923
+price = 2966
+limit = 100
+examine = "This keg contains 1 pint of mature Cider."
+weight = 0.028
+
+[cider_m1_noted]
+id = 5924
+
+[cider_m_keg_2]
+id = 5925
+price = 5845
+limit = 100
+examine = "This keg contains 2 pints of mature Cider."
+weight = 0.028
+
+[cider_m2_noted]
+id = 5926
+
+[cider_m_keg_3]
+id = 5927
+price = 8724
+limit = 100
+examine = "This keg contains 3 pints of mature Cider."
+weight = 0.028
+
+[cider_m3_noted]
+id = 5928
+
+[cider_m_keg_4]
+id = 5929
+price = 11600
+limit = 100
+examine = "This keg contains 4 pints of mature Cider."
+weight = 0.028
+
+[cider_m4_noted]
+id = 5930

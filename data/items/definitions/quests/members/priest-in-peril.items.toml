@@ -1,0 +1,89 @@
+[golden_key]
+id = 2944
+tradeable = false
+weight = 0.01
+examine = "A replica key made of solid gold."
+use = "Quest"
+kept = "Wilderness"
+
+[iron_key]
+id = 2945
+tradeable = false
+weight = 0.01
+examine = "A key made of solid Iron."
+use = "Quest"
+kept = "Wilderness"
+
+[golden_tinderbox]
+id = 2946
+tradeable = false
+weight = 0.035
+examine = "A replica tinderbox made of solid gold."
+use = "Quest"
+kept = "Wilderness"
+
+[golden_candle]
+id = 2947
+tradeable = false
+weight = 0.028
+examine = "A replica candle made of solid gold."
+use = "Quest"
+kept = "Wilderness"
+
+[golden_pot]
+id = 2948
+tradeable = false
+weight = 0.453
+examine = "A replica pot made of solid gold."
+use = "Quest"
+kept = "Wilderness"
+
+[golden_hammer_priest_in_peril]
+id = 2949
+tradeable = false
+weight = 0.907
+examine = "A replica hammer made of solid gold."
+use = "Quest"
+kept = "Wilderness"
+
+[golden_feather_priest_in_peril]
+id = 2950
+tradeable = false
+weight = 0.002
+examine = "A replica feather made of solid gold."
+use = "Quest"
+kept = "Wilderness"
+
+[golden_needle]
+id = 2951
+tradeable = false
+weight = 0.001
+examine = "A replica needle made of solid gold."
+use = "Quest"
+kept = "Wilderness"
+
+[wolfbane]
+id = 2952
+tradeable = false
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+destroy = "You can reclaim it from Drezel/Ivan in the Paterdomus mausoleum."
+examine = "A silver dagger that can prevent werewolves changing form."
+kept = "Reclaim"
+
+[bucket_of_water_murky]
+id = 2953
+tradeable = false
+weight = 3.0
+examine = "It's a bucket of murky water."
+use = "Quest"
+kept = "Wilderness"
+
+[bucket_of_water_blessed]
+id = 2954
+tradeable = false
+weight = 3.0
+examine = "It's a bucket of blessed water."
+use = "Quest"
+kept = "Wilderness"

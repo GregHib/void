@@ -1,0 +1,12 @@
+[moonlight_mead]
+id = 2955
+price = 19
+limit = 100
+heals = 40
+excess = "beer_glass"
+eat_message = "You drink the foul smelling brew. It tastes like something just died in your mouth."
+weight = 0.55
+examine = "A foul smelling brew."
+
+[moonlight_mead_noted]
+id = 2956

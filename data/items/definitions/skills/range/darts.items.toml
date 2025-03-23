@@ -1,0 +1,283 @@
+[bronze_dart]
+id = 806
+price = 26
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a bronze tip."
+
+[iron_dart]
+id = 807
+price = 24
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with an iron tip."
+
+[steel_dart]
+id = 808
+price = 25
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a steel tip."
+
+[mithril_dart]
+id = 809
+price = 39
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a mithril tip."
+
+[adamant_dart]
+id = 810
+price = 65
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with an adamant tip."
+
+[rune_dart]
+id = 811
+price = 108
+limit = 1000
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a rune tip."
+
+[bronze_dart_p]
+id = 812
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a bronze tip."
+
+[iron_dart_p]
+id = 813
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with an iron tip."
+
+[steel_dart_p]
+id = 814
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a steel tip."
+
+[mithril_dart_p]
+id = 815
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a mithril tip."
+
+[adamant_dart_p]
+id = 816
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with an adamant tip."
+
+[rune_dart_p]
+id = 817
+limit = 1000
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a rune tip."
+
+[poisoned_dart_p]
+id = 818
+slot = "Weapon"
+weapon_type = "dart"
+
+[bronze_dart_tip]
+id = 819
+price = 28
+limit = 5000
+smithing = { level = 4, xp = 12.5 }
+smithing = { level = 1, xp = 1.8 }
+examine = "A deadly looking dart tip made of bronze - needs feathers for flight."
+
+[iron_dart_tip]
+id = 820
+price = 17
+limit = 5000
+smithing = { level = 19, xp = 25.0 }
+fletch_dart = { level = 22, xp = 3.8 }
+examine = "A deadly looking dart tip made of iron - needs feathers for flight."
+
+[steel_dart_tip]
+id = 821
+price = 56
+limit = 5000
+smithing = { level = 34, xp = 37.5 }
+fletch_dart = { level = 37, xp = 7.5 }
+examine = "A deadly-looking dart tip made of steel - needs feathers for flight."
+
+[mithril_dart_tip]
+id = 822
+price = 92
+limit = 5000
+smithing = { level = 54, xp = 50.0 }
+fletch_dart = { level = 52, xp = 11.2 }
+examine = "A deadly looking dart tip made of mithril - needs feathers for flight."
+
+[adamant_dart_tip]
+id = 823
+price = 215
+limit = 5000
+smithing = { level = 74, xp = 62.5 }
+fletch_dart = { level = 67, xp = 15.0 }
+examine = "A deadly-looking dart tip made of adamant - needs feathers for flight."
+
+[rune_dart_tip]
+id = 824
+price = 457
+limit = 5000
+smithing = { level = 89, xp = 75.0 }
+fletch_dart = { level = 81, xp = 18.8 }
+examine = "A deadly-looking dart tip made of runite - needs feathers for flight."
+
+[black_dart]
+id = 3093
+price = 631
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a black tip."
+
+[black_dart_p]
+id = 3094
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a black tip."
+
+["bronze_dart_p+"]
+id = 5628
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a bronze tip."
+
+["iron_dart_p+"]
+id = 5629
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with an iron tip."
+
+["steel_dart_p+"]
+id = 5630
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a steel tip."
+
+["black_dart_p+"]
+id = 5631
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a black tip."
+
+["mithril_dart_p+"]
+id = 5632
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a mithril tip."
+
+["adamant_dart_p+"]
+id = 5633
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with an adamant tip."
+
+["rune_dart_p+"]
+id = 5634
+limit = 1000
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a rune tip."
+
+["bronze_dart_p++"]
+id = 5635
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a bronze tip."
+
+["iron_dart_p++"]
+id = 5636
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with an iron tip."
+
+["steel_dart_p++"]
+id = 5637
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a steel tip."
+
+["black_dart_p++"]
+id = 5638
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a black tip."
+
+["mithril_dart_p++"]
+id = 5639
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a mithril tip."
+
+["adamant_dart_p++"]
+id = 5640
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with an adamant tip."
+
+["rune_dart_p++"]
+id = 5641
+limit = 1000
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a rune tip."

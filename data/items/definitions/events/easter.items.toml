@@ -1,0 +1,17 @@
+[basket_of_eggs]
+id = 4565
+tradeable = false
+weight = 0.1
+slot = "Weapon"
+examine = "Hand them out to spread the Easter happiness."
+kept = "Reclaim"
+use = "Removed"
+
+[rubber_chicken]
+id = 4566
+tradeable = false
+weight = 0.453
+slot = "Weapon"
+examine = "Perhaps not the most powerful weapon in Gielinor."
+kept = "Wilderness"
+use = "Limited"

@@ -254,7 +254,7 @@ spawns = [
   { id = "pigeon_cage_full", x = 2618, y = 3324, delay = 1, members = true },
   { id = "pigeon_cage_full", x = 2618, y = 3325, delay = 1, members = true },
 # 10292
-  { id = "picture", x = 2576, y = 3334, delay = 1, members = true },
+  { id = "picture_plague_city", x = 2576, y = 3334, delay = 1, members = true },
   { id = "bucket", x = 2564, y = 3332, delay = 100, members = true },
   { id = "spade", x = 2566, y = 3330, delay = 100, members = true },
 # 10293

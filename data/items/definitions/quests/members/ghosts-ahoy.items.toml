@@ -1,0 +1,297 @@
+[signed_oak_bow]
+id = 4236
+tradeable = false
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "This bow has been signed by Robin, Master Bowman."
+use = "Quest"
+kept = "Wilderness"
+
+[nettle_water]
+id = 4237
+heals = 10
+excess = "bowl"
+tradeable = false
+weight = 0.907
+cooking = { level = 20, xp = 52.0, type = "heat", cooked = "nettle_tea", cooked_message = "You boil the water and make nettle tea." }
+empty = "bowl"
+examine = "It's a bowl of water, with some nettles in it."
+kept = "Reclaim"
+
+[puddle_of_slime]
+id = 4238
+tradeable = false
+weight = 0.453
+examine = "It's a puddle of slime."
+kept = "Wilderness"
+
+[nettle_tea]
+id = 4239
+heals = 30
+excess = "bowl"
+tradeable = false
+weight = 0.907
+examine = "It's a bowl of nettle tea."
+kept = "Reclaim"
+
+[milky_nettle_tea]
+id = 4240
+heals = 30
+excess = "bowl"
+tradeable = false
+weight = 0.907
+empty = "bowl"
+examine = "It's a bowl of milky nettle tea."
+kept = "Reclaim"
+
+[nettles]
+id = 4241
+tradeable = false
+weight = 0.007
+examine = "A handful of nettles."
+kept = "Reclaim"
+
+[cup_of_tea_nettle_tea]
+id = 4242
+heals = 30
+excess = "empty_cup"
+tradeable = false
+weight = 0.15
+empty = "empty_cup"
+examine = "A nice cup of nettle tea."
+kept = "Reclaim"
+
+[cup_of_milky_tea]
+id = 4243
+limit = 1000
+heals = 0
+excess = "empty_cup"
+tradeable = false
+weight = 0.15
+empty = "empty_cup"
+examine = "A milky cup of nettle tea."
+kept = "Reclaim"
+
+[porcelain_cup]
+id = 4244
+tradeable = false
+weight = 0.05
+examine = "A porcelain cup."
+use = "Quest"
+kept = "Reclaim"
+
+[cup_of_tea_ghosts_ahoy]
+id = 4245
+tradeable = false
+weight = 0.15
+empty = "porcelain_cup"
+examine = "Some nettle tea in a porcelain cup."
+use = "Quest"
+kept = "Reclaim"
+
+[cup_of_milky_tea_ghosts_ahoy]
+id = 4246
+limit = 1000
+heals = 0
+tradeable = false
+weight = 0.15
+empty = "porcelain_cup"
+examine = "Some milky nettle tea in a porcelain cup."
+kept = "Reclaim"
+
+[mystical_robes]
+id = 4247
+tradeable = false
+weight = 0.907
+examine = "The Robes of Necrovarus."
+use = "Quest"
+kept = "Wilderness"
+
+[book_of_haricanto]
+id = 4248
+tradeable = false
+weight = 1.814
+examine = "The Book of Haricanto."
+use = "Quest"
+kept = "Wilderness"
+
+[translation_manual]
+id = 4249
+tradeable = false
+weight = 0.51
+examine = "A translation manual."
+use = "Quest"
+kept = "Wilderness"
+
+[ghostspeak_amulet_enchanted]
+id = 4250
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+examine = "The amulet of ghostspeak glows green from the crone's enchantment."
+use = "Quest"
+kept = "Wilderness"
+
+[ectophial]
+id = 4251
+tradeable = false
+weight = 0.035
+charges = 1
+degrade = "ectophial_empty"
+destroy = "The Ectophial will smash if you drop it. Velorina can replace it. You can also reclaim it from the quest storage chest."
+examine = "The Ectophial."
+kept = "Wilderness"
+
+[ectophial_empty]
+id = 4252
+tradeable = false
+weight = 0.035
+destroy = "The Ectophial will smash if you drop it. Velorina can replace it."
+examine = "The Ectophial."
+kept = "Wilderness"
+use = "Limited"
+
+[model_ship]
+id = 4253
+tradeable = false
+weight = 0.01
+examine = "A small wooden ship."
+use = "Quest"
+kept = "Wilderness"
+
+[model_ship_silk]
+id = 4254
+tradeable = false
+weight = 0.01
+examine = "A small wooden ship with a silk flag."
+use = "Quest"
+kept = "Wilderness"
+
+[bone_key_ghosts_ahoy]
+id = 4272
+tradeable = false
+weight = 0.01
+examine = "A key dropped by Necrovarus."
+use = "Quest"
+kept = "Wilderness"
+
+[chest_key_ghosts_ahoy]
+id = 4273
+tradeable = false
+weight = 0.01
+examine = "A key to a chest."
+use = "Quest"
+kept = "Wilderness"
+
+[map_scrap_1]
+id = 4274
+tradeable = false
+weight = 0.01
+examine = "A section from some kind of map."
+use = "Quest"
+kept = "Wilderness"
+
+[map_scrap_3]
+clone = "map_scrap_1"
+id = 4275
+
+[map_scrap_2]
+clone = "map_scrap_1"
+id = 4276
+
+[treasure_map]
+id = 4277
+tradeable = false
+weight = 0.01
+examine = "A complete treasure map."
+use = "Quest"
+kept = "Wilderness"
+
+[ecto_token]
+id = 4278
+tradeable = false
+examine = "A token with ectoplasm on it."
+kept = "Reclaim"
+
+[petition_form]
+id = 4283
+tradeable = false
+weight = 0.001
+examine = "A scroll of paper containing signatures."
+use = "Quest"
+kept = "Wilderness"
+
+[bedsheet]
+id = 4284
+tradeable = false
+weight = 1.0
+slot = "Hat"
+type = "FullFace"
+examine = "It's a bedsheet."
+use = "Quest"
+kept = "Wilderness"
+
+[bedsheet_ectoplasm]
+id = 4285
+tradeable = false
+weight = 1.0
+slot = "Hat"
+type = "FullFace"
+examine = "It's an ectoplasm-covered bedsheet."
+use = "Quest"
+kept = "Wilderness"
+
+[bucket_of_slime]
+id = 4286
+tradeable = false
+weight = 3.0
+empty = "bucket"
+examine = "It's a bucket of ectoplasm."
+kept = "Wilderness"
+
+[raw_undead_beef]
+id = 4287
+price = 403
+limit = 1000
+weight = 0.283
+examine = "This raw beef is rancid."
+kept = "Wilderness"
+
+[raw_beef_noted_2]
+id = 4288
+
+[raw_undead_chicken]
+id = 4289
+price = 307
+limit = 1000
+weight = 0.17
+examine = "This raw chicken is rancid."
+kept = "Wilderness"
+
+[raw_chicken_noted_2]
+id = 4290
+
+[cooked_undead_chicken]
+id = 4291
+price = 57
+limit = 1000
+heals = 10
+weight = 0.141
+examine = "This cooked chicken looks disgusting."
+kept = "Wilderness"
+
+[cooked_chicken_noted_2]
+id = 4292
+
+[cooked_undead_meat]
+id = 4293
+price = 69
+limit = 1000
+heals = 10
+weight = 0.283
+examine = "I wouldn't eat that if I were you."
+kept = "Wilderness"
+
+[cooked_meat_noted_2]
+id = 4294

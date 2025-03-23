@@ -1,0 +1,135 @@
+[bonemeal_bones]
+id = 4255
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed bones."
+kept = "Reclaim"
+
+[bat_bonemeal]
+id = 4256
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed bat bones."
+kept = "Reclaim"
+
+[big_bonemeal]
+id = 4257
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed big bones."
+kept = "Reclaim"
+
+[burnt_bonemeal]
+id = 4258
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed burnt bones."
+kept = "Reclaim"
+
+[burnt_jogre_bonemeal]
+id = 4259
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed burnt jogre bones."
+kept = "Reclaim"
+
+[baby_dragon_bonemeal]
+id = 4260
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed baby dragon bones."
+kept = "Reclaim"
+
+[dragon_bonemeal]
+id = 4261
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed dragon bones."
+kept = "Reclaim"
+
+[wolf_bonemeal]
+id = 4262
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed wolf bones."
+kept = "Reclaim"
+
+[small_ninja_monkey_bonemeal]
+id = 4263
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed small ninja monkey bones."
+kept = "Reclaim"
+
+[medium_ninja_monkey_bonemeal]
+id = 4264
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed medium ninja monkey bones."
+kept = "Reclaim"
+
+[gorilla_bonemeal]
+id = 4265
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed gorilla monkey bones."
+kept = "Reclaim"
+
+[bearded_gorilla_bonemeal]
+id = 4266
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed bearded gorilla monkey bones."
+kept = "Reclaim"
+
+[monkey_bonemeal]
+id = 4267
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed monkey bones."
+kept = "Reclaim"
+
+[small_zombie_monkey_bonemeal]
+id = 4268
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed small zombie monkey bones."
+kept = "Reclaim"
+
+[large_zombie_monkey_bonemeal]
+id = 4269
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed large zombie monkey bones."
+kept = "Reclaim"
+
+[skeletal_monkey_bonemeal]
+id = 4270
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed skeleton bones."
+kept = "Reclaim"
+
+[jogre_bonemeal]
+id = 4271
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed jogre bones."
+kept = "Reclaim"

@@ -1,0 +1,89 @@
+[rogue_top]
+id = 5553
+tradeable = false
+weight = 0.453
+slot = "Chest"
+examine = "Black banded leather armour, a rogue's dream!"
+kept = "Reclaim"
+
+[rogue_mask]
+id = 5554
+tradeable = false
+weight = 0.453
+slot = "Hat"
+type = "FullFace"
+examine = "Black banded leather armour, a rogue's dream!"
+kept = "Reclaim"
+
+[rogue_trousers]
+id = 5555
+tradeable = false
+weight = 0.453
+slot = "Legs"
+examine = "Black banded leather armour, a rogue's dream!"
+kept = "Reclaim"
+
+[rogue_gloves]
+id = 5556
+tradeable = false
+weight = 0.453
+slot = "Hands"
+examine = "Black banded leather gloves, a rogue's dream!"
+kept = "Reclaim"
+
+[rogue_boots]
+id = 5557
+tradeable = false
+weight = 0.453
+slot = "Feet"
+examine = "Black banded leather boots, a rogue's dream!"
+kept = "Reclaim"
+
+[rogue_kit]
+id = 5558
+tradeable = false
+examine = "It can do almost anything!"
+kept = "Reclaim"
+
+[flash_powder]
+id = 5559
+tradeable = false
+examine = "A small satchel of bright powder!"
+kept = "Reclaim"
+
+[stethoscope]
+id = 5560
+tradeable = false
+weight = 0.453
+slot = "Shield"
+examine = "A useful hearing aid."
+kept = "Reclaim"
+
+[mystic_jewel]
+id = 5561
+tradeable = false
+weight = 0.002
+examine = "I can escape the Maze with this!"
+destroy2 = "You don't want to lose that in here!"
+kept = "Reclaim"
+use = "Limited"
+
+[picture_correct]
+id = 5568
+tradeable = false
+weight = 0.453
+examine = "For a mosaic."
+kept = "Reclaim"
+use = "Removed"
+
+[picture_flipped_vertically]
+clone = "picture_correct"
+id = 5569
+
+[picture_rotated]
+clone = "picture_correct"
+id = 5570
+
+[picture_flipped_horizontally]
+clone = "picture_correct"
+id = 5571

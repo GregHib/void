@@ -1,0 +1,142 @@
+[disk_of_returning]
+id = 981
+price = 280600000
+limit = 2
+weight = 0.453
+examine = "Used to get out of Thordur's blackhole."
+use = "Limited"
+
+[disk_of_returning_noted]
+id = 982
+
+[bunny_ears]
+id = 1037
+tradeable = false
+weight = 0.226
+slot = "Hat"
+examine = "A rabbit-like adornment."
+kept = "Wilderness"
+use = "Limited"
+
+[red_partyhat]
+id = 1038
+price = 1900000000
+limit = 2
+weight = 0.056
+slot = "Hat"
+examine = "A nice hat from a cracker."
+use = "Limited"
+
+[red_partyhat_noted]
+id = 1039
+
+[yellow_partyhat]
+id = 1040
+price = 1400000000
+limit = 2
+weight = 0.056
+slot = "Hat"
+examine = "A nice hat from a cracker."
+use = "Limited"
+
+[yellow_partyhat_noted]
+id = 1041
+
+[blue_partyhat]
+id = 1042
+price = 2100000000
+limit = 2
+weight = 0.056
+slot = "Hat"
+examine = "A nice hat from a cracker."
+use = "Limited"
+
+[blue_partyhat_noted]
+id = 1043
+
+[green_partyhat]
+id = 1044
+price = 1700000000
+limit = 2
+weight = 0.056
+slot = "Hat"
+examine = "A nice hat from a cracker."
+use = "Limited"
+
+[green_partyhat_noted]
+id = 1045
+
+[purple_partyhat]
+id = 1046
+price = 1300000000
+limit = 2
+weight = 0.056
+slot = "Hat"
+examine = "A nice hat from a cracker."
+use = "Limited"
+
+[purple_partyhat_noted]
+id = 1047
+
+[white_partyhat]
+id = 1048
+price = 2100000000
+limit = 2
+weight = 0.056
+slot = "Hat"
+examine = "A nice hat from a cracker."
+use = "Limited"
+
+[white_partyhat_noted]
+id = 1049
+
+[santa_hat]
+id = 1050
+price = 129300000
+limit = 2
+weight = 0.113
+slot = "Hat"
+examine = "It's a Santa hat."
+use = "Limited"
+
+[santa_hat_noted]
+id = 1051
+
+[green_hween_mask]
+id = 1053
+price = 117800000
+limit = 2
+weight = 0.34
+slot = "Hat"
+type = "FullFace"
+examine = "Aaaarrrghhh ... I'm a monster."
+use = "Limited"
+
+[green_hween_mask_noted]
+id = 1054
+
+[blue_hween_mask]
+id = 1055
+price = 152500000
+limit = 2
+weight = 0.34
+slot = "Hat"
+type = "FullFace"
+examine = "Aaaarrrghhh ... I'm a monster."
+use = "Limited"
+
+[blue_hween_mask_noted]
+id = 1056
+
+[red_hween_mask]
+id = 1057
+price = 208800000
+limit = 2
+weight = 0.34
+slot = "Hat"
+type = "FullFace"
+examine = "Aaaarrrghhh ... I'm a monster."
+use = "Limited"
+
+[red_hween_mask_noted]
+id = 1058

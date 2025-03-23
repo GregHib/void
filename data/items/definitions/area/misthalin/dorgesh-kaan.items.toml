@@ -1,0 +1,44 @@
+[mining_helmet_lit]
+id = 5013
+limit = 100
+tradeable = false
+weight = 0.907
+slot = "Hat"
+type = "Hair"
+light_source = { once_extinguish = "mining_helmet" }
+examine = "A helmet with a lamp on it."
+kept = "Reclaim"
+
+[mining_helmet]
+id = 5014
+price = 414
+limit = 100
+weight = 0.907
+slot = "Hat"
+light_source = { once_lit = "mining_helmet_lit", level = 65 }
+examine = "A helmet with an unlit lamp on it."
+
+[mining_helmet_noted]
+id = 5015
+
+[bone_spear]
+id = 5016
+price = 386
+limit = 100
+weight = 1.36
+slot = "Weapon"
+examine = "Basic but brutal!"
+
+[bone_spear_noted]
+id = 5017
+
+[bone_club]
+id = 5018
+price = 286
+limit = 100
+weight = 0.907
+slot = "Weapon"
+examine = "Basic but brutal!"
+
+[bone_club_noted]
+id = 5019

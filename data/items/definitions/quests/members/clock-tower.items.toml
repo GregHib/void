@@ -1,0 +1,26 @@
+[white_cog]
+id = 20
+tradeable = false
+weight = 1.0
+examine = "A cog from some machinery."
+use = "Quest"
+kept = "Wilderness"
+
+[black_cog]
+clone = "white_cog"
+id = 21
+
+[blue_cog]
+clone = "white_cog"
+id = 22
+
+[red_cog]
+clone = "white_cog"
+id = 23
+
+[rat_poison]
+id = 24
+tradeable = false
+weight = 0.141
+examine = "Doesn't look very tasty."
+kept = "Wilderness"

@@ -1,0 +1,191 @@
+[bandits_brew]
+id = 4627
+price = 984
+limit = 100
+heals = 10
+excess = "beer_glass"
+weight = 0.55
+examine = "A cheeky little lager from the Bandit Camp."
+
+[bandits_brew_noted]
+id = 4628
+
+[fire_desert_treasure]
+id = 4653
+tradeable = false
+weight = 0.028
+examine = "Hot!"
+kept = "Reclaim"
+
+[etchings]
+id = 4654
+tradeable = false
+weight = 0.51
+examine = "A copy of the engravings found on a mysterious stone tablet."
+use = "Quest"
+kept = "Wilderness"
+
+[translation]
+id = 4655
+tradeable = false
+weight = 0.51
+aka = ["four_diamonds_translation_translation_primer"]
+examine = "A rough translation made from archaeological etchings."
+kept = "Wilderness"
+
+[warm_key]
+id = 4656
+tradeable = false
+weight = 0.01
+examine = "This key is unusually warm to the touch."
+use = "Quest"
+kept = "Wilderness"
+
+[ring_of_visibility]
+id = 4657
+tradeable = false
+weight = 0.004
+slot = "Ring"
+destroy = "This item can be reclaimed from Rasolo the merchant. You can also reclaim it from the quest storage chest."
+examine = "A ring that allows you to see things that are normally invisible..."
+kept = "Wilderness"
+
+[silver_pot_empty]
+id = 4658
+tradeable = false
+weight = 0.453
+examine = "A silver pot made by Ruantun."
+use = "Quest"
+kept = "Wilderness"
+
+[blessed_pot_empty]
+id = 4659
+tradeable = false
+weight = 0.453
+examine = "A silver pot made by Ruantun and blessed on Entrana."
+use = "Quest"
+kept = "Wilderness"
+
+[silver_pot_blood]
+id = 4660
+tradeable = false
+weight = 0.453
+examine = "A silver pot made by Ruantun filled with your blood."
+use = "Quest"
+kept = "Wilderness"
+
+[blessed_pot_blood]
+id = 4661
+tradeable = false
+weight = 0.453
+examine = "A blessed silver pot made by Ruantun filled with your blood."
+use = "Quest"
+kept = "Wilderness"
+
+[silver_pot_garlic]
+id = 4662
+tradeable = false
+weight = 0.453
+examine = "A silver pot made by Ruantun filled with blood and garlic."
+use = "Quest"
+kept = "Wilderness"
+
+[blessed_pot_garlic]
+id = 4663
+tradeable = false
+weight = 0.453
+examine = "A blessed silver pot filled with blood and garlic."
+use = "Quest"
+kept = "Wilderness"
+
+[silver_pot_complete]
+id = 4664
+tradeable = false
+weight = 0.453
+examine = "A silver pot made by Ruantun filled with blood, garlic and spices."
+use = "Quest"
+kept = "Wilderness"
+
+[blessed_pot_complete]
+id = 4665
+tradeable = false
+weight = 0.453
+examine = "A blessed silver pot filled with blood, garlic and spices."
+use = "Quest"
+kept = "Wilderness"
+
+[silver_pot_spice]
+id = 4666
+tradeable = false
+weight = 0.453
+examine = "A silver pot made by Ruantun filled with blood and spices."
+use = "Quest"
+kept = "Wilderness"
+
+[blessed_pot_spice]
+id = 4667
+tradeable = false
+weight = 0.453
+examine = "A blessed silver pot filled with blood and spices."
+use = "Quest"
+kept = "Wilderness"
+
+[garlic_powder]
+id = 4668
+tradeable = false
+weight = 0.007
+examine = "Finely ground garlic powder."
+use = "Quest"
+kept = "Wilderness"
+
+[blood_diamond]
+id = 4670
+tradeable = false
+weight = 0.001
+examine = "The Diamond of Blood."
+use = "Quest"
+kept = "Wilderness"
+
+[ice_diamond]
+id = 4671
+tradeable = false
+weight = 0.001
+examine = "The Diamond of Ice."
+use = "Quest"
+kept = "Wilderness"
+
+[smoke_diamond]
+id = 4672
+tradeable = false
+weight = 0.001
+examine = "The Diamond of Smoke."
+use = "Quest"
+kept = "Wilderness"
+
+[shadow_diamond]
+id = 4673
+tradeable = false
+weight = 0.001
+examine = "The Diamond of Shadow."
+use = "Quest"
+kept = "Wilderness"
+
+[gilded_cross]
+id = 4674
+tradeable = false
+weight = 0.01
+examine = "An old and strangely shaped metal cross."
+use = "Quest"
+kept = "Wilderness"
+
+[ancient_staff]
+id = 4675
+price = 80600
+limit = 100
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "A magical staff of ancient origin..."
+
+[ancient_staff_noted]
+id = 4676

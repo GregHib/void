@@ -1,0 +1,61 @@
+[bronze_throwing_axe]
+id = 800
+price = 3
+limit = 1000
+attack_range = 4
+weapon_type = "knife"
+slot = "Weapon"
+aka = ["bronze_thrownaxe", "bronze_thrown_axe"]
+examine = "A finely balanced throwing axe."
+
+[iron_throwing_axe]
+id = 801
+price = 11
+limit = 1000
+attack_range = 4
+weapon_type = "knife"
+slot = "Weapon"
+aka = ["iron_thrownaxe", "iron_thrown_axe"]
+examine = "A finely balanced throwing axe."
+
+[steel_throwing_axe]
+id = 802
+price = 48
+limit = 1000
+attack_range = 4
+weapon_type = "knife"
+slot = "Weapon"
+aka = ["steel_thrownaxe", "steel_thrown_axe"]
+examine = "A finely balanced throwing axe."
+
+[mithril_throwing_axe]
+id = 803
+price = 127
+limit = 1000
+attack_range = 4
+weapon_type = "knife"
+slot = "Weapon"
+aka = ["mithril_thrownaxe", "mithril_thrown_axe", "mith_throwing_axe", "mith_thrownaxe", "mith_thrown_axe"]
+examine = "A finely balanced throwing axe."
+
+[adamant_throwing_axe]
+id = 804
+price = 118
+limit = 1000
+attack_range = 4
+weapon_type = "knife"
+slot = "Weapon"
+aka = ["adamant_thrownaxe", "adamant_thrown_axe", "addy_throwing_axe", "addy_thrownaxe", "addy_thrown_axe"]
+examine = "A finely balanced throwing axe."
+
+[rune_throwing_axe]
+id = 805
+price = 292
+limit = 1000
+attack_range = 4
+weapon_type = "knife"
+special_energy = 100
+special = "chainhit"
+slot = "Weapon"
+aka = ["rune_thrownaxe", "rune_thrown_axe"]
+examine = "A finely balanced throwing axe."

@@ -1,0 +1,48 @@
+[damp_tinderbox]
+id = 4073
+weight = 0.035
+examine = "Not so useful for lighting a fire."
+
+[damp_tinderbox_noted]
+id = 4074
+
+[glowing_fungus]
+id = 4075
+tradeable = false
+weight = 0.056
+examine = "A bizarre fungus.  It glows with a pale blue light."
+use = "Quest"
+kept = "Vanish"
+
+[picture_46]
+clone = "picture_6"
+id = 4076
+
+[crystal_mine_key]
+id = 4077
+tradeable = false
+weight = 0.01
+examine = "A key I found in the lower levels of the Morytanian mines."
+kept = "Wilderness"
+
+[zealots_key]
+id = 4078
+tradeable = false
+weight = 0.01
+examine = "I stole this from a Saradominist I met South of Mort'ton."
+kept = "Wilderness"
+
+[salve_amulet]
+id = 4081
+tradeable = false
+weight = 0.007
+slot = "Amulet"
+examine = "Increases the wearer's damage and accuracy by 15% when fighting the undead."
+kept = "Reclaim"
+
+[salve_shard]
+id = 4082
+tradeable = false
+weight = 0.007
+examine = "An unstrung crystal imbued with the power of Saradomin."
+kept = "Wilderness"

@@ -1,0 +1,15 @@
+[research_package_rune_mysteries]
+id = 290
+tradeable = false
+weight = 0.907
+destroy = "You can obtain another from Sedridor at the Wizards' Tower."
+examine = "This contains some vital research results."
+kept = "Reclaim"
+
+[research_notes_rune_mysteries]
+id = 291
+tradeable = false
+weight = 0.028
+destroy = "You can obtain more from Aubury in Varrock."
+examine = "It's written in code."
+kept = "Reclaim"

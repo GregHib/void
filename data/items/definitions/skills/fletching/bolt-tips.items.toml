@@ -1,0 +1,18 @@
+[opal_bolt_tips]
+id = 45
+price = 1
+limit = 10000
+examine = "Opal bolt tips."
+
+[pearl_bolt_tips]
+id = 46
+price = 4
+limit = 10000
+examine = "Pearl bolt tips."
+
+[barb_bolttips]
+id = 47
+price = 29
+limit = 10000
+destroy = "No"
+examine = "I can make bolts with these."

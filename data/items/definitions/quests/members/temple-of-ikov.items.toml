@@ -1,0 +1,59 @@
+[ice_arrows]
+id = 78
+tradeable = false
+slot = "Ammo"
+examine = "An ice arrow."
+kept = "Reclaim"
+
+[lever_temple_of_ikov]
+id = 83
+tradeable = false
+weight = 0.056
+examine = "A lever to open something perhaps?"
+use = "Quest"
+kept = "Wilderness"
+
+[staff_of_armadyl]
+id = 84
+tradeable = false
+weight = 1.814
+category = "staff"
+destroy = "You found this staff in the Temple of Ikov."
+examine = "The power in this staff causes it to vibrate gently."
+use = "Quest"
+kept = "Vanish"
+
+[shiny_key]
+id = 85
+tradeable = false
+weight = 0.01
+examine = "It catches the light!"
+kept = "Wilderness"
+
+[pendant_of_lucien]
+id = 86
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+examine = "An amulet made by Lucien."
+kept = "Wilderness"
+
+[armadyl_pendant]
+id = 87
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+examine = "Yet another amulet."
+kept = "Wilderness"
+
+[boots_of_lightness]
+id = 88
+weight = 0.34
+slot = "Feet"
+examine = "Magic boots that make you lighter than normal."
+
+[boots_of_lightness_2]
+id = 89
+weight = -4.535
+slot = "Feet"
+examine = "Magic boots that make you lighter than normal."

@@ -1,0 +1,32 @@
+[hazeel_scroll]
+id = 2403
+tradeable = false
+weight = 0.01
+examine = "Scroll containing a powerful enchantment of restoration."
+use = "Quest"
+kept = "Wilderness"
+
+[chest_key_hazeel_cult]
+id = 2404
+tradeable = false
+weight = 0.01
+examine = "This key opens a chest in the Carnillean household."
+kept = "Wilderness"
+
+[carnillean_armour]
+id = 2405
+tradeable = false
+weight = 9.071
+slot = "Chest"
+material = "metal"
+examine = "Decorative armour; an heirloom of the Carnillean family."
+kept = "Wilderness"
+
+[hazeels_mark]
+id = 2406
+tradeable = false
+weight = 0.012
+slot = "Amulet"
+examine = "A sign of my commitment to Hazeel."
+use = "Quest"
+kept = "Wilderness"

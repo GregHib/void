@@ -1,0 +1,293 @@
+[gardening_trowel]
+id = 5325
+price = 275
+limit = 100
+weight = 0.056
+examine = "Not suitable for archaeological digs."
+kept = "Wilderness"
+
+[gardening_trowel_noted]
+id = 5326
+
+[spade_handle]
+id = 5327
+tradeable = false
+weight = 0.907
+examine = "I need to attach this to its head."
+kept = "Reclaim"
+use = "Removed"
+
+[spade_head]
+id = 5328
+tradeable = false
+weight = 0.907
+examine = "I need to attach this to its handle."
+kept = "Reclaim"
+use = "Removed"
+
+[secateurs]
+id = 5329
+price = 143
+limit = 100
+weight = 0.453
+slot = "Weapon"
+examine = "Good for pruning away diseased leaves."
+kept = "Wilderness"
+
+[secateurs_noted]
+id = 5330
+
+[watering_can]
+id = 5331
+price = 481
+limit = 100
+weight = 0.1
+full = "watering_can_8"
+examine = "This watering can is empty."
+
+[watering_can_noted]
+id = 5332
+
+[watering_can_1]
+id = 5333
+limit = 100
+weight = 0.2
+full = "watering_can_8"
+examine = "This watering can is almost empty."
+
+[watering_can_2]
+id = 5334
+limit = 100
+weight = 0.3
+full = "watering_can_8"
+examine = "This watering can is three-quarters empty."
+
+[watering_can_3]
+id = 5335
+limit = 100
+weight = 0.4
+full = "watering_can_8"
+examine = "This watering can is just under half-full."
+
+[watering_can_4]
+id = 5336
+limit = 100
+weight = 0.5
+full = "watering_can_8"
+examine = "Some would say this watering can is half-full, others half-empty."
+
+[watering_can_5]
+id = 5337
+limit = 100
+weight = 0.6
+full = "watering_can_8"
+examine = "This watering can is just over half-full."
+
+[watering_can_6]
+id = 5338
+limit = 100
+weight = 0.7
+full = "watering_can_8"
+examine = "This watering can is three quarters full."
+
+[watering_can_7]
+id = 5339
+limit = 100
+weight = 0.8
+full = "watering_can_8"
+examine = "This watering can is almost completely full."
+
+[watering_can_8]
+id = 5340
+limit = 100
+weight = 0.9
+examine = "This watering can is completely full."
+
+[rake]
+id = 5341
+price = 171
+limit = 100
+weight = 1.36
+examine = "Use this to clear weeds."
+kept = "Wilderness"
+
+[rake_noted]
+id = 5342
+
+[seed_dibber]
+id = 5343
+price = 184
+limit = 100
+weight = 0.002
+examine = "Use this to plant seeds with."
+kept = "Wilderness"
+
+[seed_dibber_noted]
+id = 5344
+
+[gardening_boots]
+id = 5345
+price = 5224
+limit = 100
+weight = 0.34
+slot = "Feet"
+examine = "A pair of gardening boots."
+kept = "Wilderness"
+
+[gardening_boots_noted]
+id = 5346
+
+[rake_handle]
+id = 5347
+tradeable = false
+weight = 0.453
+examine = "I need to reattach this to its head."
+kept = "Wilderness"
+
+[rake_head]
+id = 5348
+tradeable = false
+weight = 0.907
+examine = "I need to reattach this to its handle."
+kept = "Wilderness"
+
+[plant_pot_empty]
+id = 5350
+price = 22
+limit = 100
+weight = 0.907
+examine = "An empty plant pot."
+kept = "Wilderness"
+
+[plant_pot_noted]
+id = 5351
+
+[unfired_plant_pot]
+id = 5352
+price = 7
+limit = 100
+weight = 0.907
+pottery = { plant_pot_empty = { level = 19, xp = 17.5 } }
+kept = "Wilderness"
+examine = "An unfired plant pot."
+
+[unfired_plant_pot_noted]
+id = 5353
+
+[plant_pot]
+id = 5354
+price = 372
+limit = 100
+weight = 0.907
+examine = "A plant pot filled with compost."
+kept = "Wilderness"
+
+[plant_pot_noted_2]
+id = 5355
+
+[plant_pot_supercompost]
+id = 5356
+limit = 100
+tradeable = false
+weight = 0.907
+examine = "A plant pot filled with supercompost."
+kept = "Reclaim"
+use = "Limited"
+
+[plant_pot_noted_3]
+id = 5357
+
+[compost]
+id = 6032
+price = 184
+limit = 10000
+weight = 3.0
+empty = "bucket"
+examine = "Good for plants, helps them grow."
+kept = "Wilderness"
+
+[compost_noted]
+id = 6033
+
+[supercompost]
+id = 6034
+price = 1078
+limit = 10000
+weight = 3.0
+empty = "bucket"
+examine = "Super-good for the smallest or largest of plants."
+
+[supercompost_noted]
+id = 6035
+
+[plant_cure]
+id = 6036
+price = 203
+limit = 100
+weight = 0.035
+empty = "vial"
+examine = "Use this on plants to cure disease."
+kept = "Wilderness"
+
+[plant_cure_noted]
+id = 6037
+
+[magic_string]
+id = 6038
+price = 1679
+limit = 100
+weight = 0.014
+examine = "I could use this to make jewellery."
+
+[magic_string_noted]
+id = 6039
+
+[amulet_of_nature]
+id = 6040
+tradeable = false
+weight = 0.007
+slot = "Amulet"
+destroy = "You will need to create a new amulet if you destroy this one."
+examine = "An amulet of nature."
+kept = "Vanish"
+
+[pre_nature_amulet]
+id = 6041
+price = 3286
+limit = 100
+weight = 0.007
+slot = "Amulet"
+examine = "Strung with the root of a magic tree. If I enchant this it will become an amulet of nature."
+kept = "Vanish"
+
+[pre_nature_amulet_noted]
+id = 6042
+
+[hay_sack]
+id = 6057
+tradeable = false
+weight = 0.113
+examine = "A sack filled with hay."
+kept = "Reclaim"
+
+[hay_sack_spear]
+id = 6058
+tradeable = false
+weight = 0.113
+examine = "This sack of hay has a bronze spear sticking through it."
+kept = "Reclaim"
+
+[scarecrow]
+id = 6059
+tradeable = false
+weight = 0.113
+examine = "This should scare the birds."
+kept = "Reclaim"
+
+[watering_can_0]
+id = 6797
+limit = 100
+tradeable = false
+weight = 0.1
+examine = "See article"
+kept = "Wilderness"

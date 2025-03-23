@@ -3,10 +3,7 @@ id = 434
 price = 34
 limit = 25000
 weight = 1.0
-mining = {
-xp = 5.0,
-chance = "75-300"
-}
+mining = { xp = 5.0, chance = "75-300" }
 full = "soft_clay"
 examine = "Some hard dry clay."
 kept = "Wilderness"
@@ -19,10 +16,7 @@ id = 436
 price = 18
 limit = 25000
 weight = 2.267
-mining = {
-xp = 17.5,
-chance = "40-500",
-}
+mining = { xp = 17.5, chance = "40-500" }
 examine = "This needs refining."
 kept = "Wilderness"
 
@@ -34,10 +28,7 @@ id = 438
 price = 20
 limit = 25000
 weight = 2.267
-mining = {
-xp = 17.5,
-chance = "40-500"
-}
+mining = { xp = 17.5, chance = "40-500" }
 examine = "This needs refining."
 kept = "Wilderness"
 
@@ -49,10 +40,7 @@ id = 440
 price = 95
 limit = 25000
 weight = 2.267
-mining = {
-xp = 35.0,
-chance = "110-350"
-}
+mining = { xp = 35.0, chance = "110-350" }
 examine = "This needs refining."
 kept = "Wilderness"
 
@@ -64,10 +52,7 @@ id = 442
 price = 101
 limit = 25000
 weight = 2.267
-mining = {
-xp = 40.0,
-chance = "25-200"
-}
+mining = { xp = 40.0, chance = "25-200" }
 examine = "This needs refining."
 
 [silver_ore_noted]
@@ -78,10 +63,7 @@ id = 444
 price = 209
 limit = 25000
 weight = 2.267
-mining = {
-xp = 65.0,
-chance = "7-75"
-}
+mining = { xp = 65.0, chance = "7-75" }
 examine = "This needs refining."
 
 [gold_ore_noted]
@@ -100,10 +82,7 @@ id = 447
 price = 137
 limit = 25000
 weight = 1.814
-mining = {
-xp = 80.0,
-chance = "10-75"
-}
+mining = { xp = 80.0, chance = "10-75" }
 examine = "This needs refining."
 
 [mithril_ore_noted]
@@ -114,10 +93,7 @@ id = 449
 price = 785
 limit = 25000
 weight = 2.721
-mining = {
-xp = 95.0,
-chance = "5-55"
-}
+mining = { xp = 95.0, chance = "5-55" }
 aka = ["adamant_ore"]
 examine = "This needs refining."
 
@@ -129,10 +105,7 @@ id = 451
 price = 10900
 limit = 25000
 weight = 2.267
-mining = {
-xp = 125.0,
-chance = "1-18",
-}
+mining = { xp = 125.0, chance = "1-18" }
 aka = ["rune_ore"]
 examine = "This needs refining."
 
@@ -144,10 +117,7 @@ id = 453
 price = 247
 limit = 25000
 weight = 2.267
-mining = {
-xp = 50.0,
-chance = "20-150"
-}
+mining = { xp = 50.0, chance = "20-150" }
 examine = "Hmm, a non-renewable energy source!"
 
 [coal_noted]

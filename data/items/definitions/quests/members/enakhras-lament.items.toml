@@ -1,0 +1,10 @@
+[camulet]
+id = 6707
+charges = 4
+charge = "camulet_charges"
+tradeable = false
+weight = 0.007
+slot = "Amulet"
+examine = "It's an amulet of camelspeak. It makes vague braying noises."
+kept = "Wilderness"
+

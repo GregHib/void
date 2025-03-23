@@ -1,0 +1,169 @@
+[star_amulet]
+id = 4183
+tradeable = false
+weight = 0.01
+examine = "A six-pointed marble and obsidian amulet"
+use = "Quest"
+kept = "Wilderness"
+
+[cavern_key]
+id = 4184
+tradeable = false
+weight = 0.005
+examine = "Upon close examination, this seems to be a key."
+kept = "Wilderness"
+
+[tower_key]
+id = 4185
+tradeable = false
+weight = 0.005
+examine = "Upon close examination, this seems to be a key."
+use = "Quest"
+kept = "Wilderness"
+
+[shed_key]
+clone = "tower_key"
+id = 4186
+
+[marble_amulet]
+id = 4187
+tradeable = false
+weight = 0.005
+examine = "Triangular in shape, made from marble, and as large as your hand."
+use = "Quest"
+kept = "Wilderness"
+
+[obsidian_amulet]
+id = 4188
+tradeable = false
+weight = 0.005
+examine = "Triangular in shape, made from obsidian, and as large as your hand."
+use = "Quest"
+kept = "Wilderness"
+
+[garden_cane]
+id = 4189
+tradeable = false
+weight = 0.1
+examine = "A length of garden cane."
+use = "Quest"
+kept = "Wilderness"
+
+[garden_brush]
+id = 4190
+tradeable = false
+weight = 0.8
+examine = "A typical garden brush."
+use = "Quest"
+kept = "Wilderness"
+
+[extended_brush_1]
+id = 4191
+tradeable = false
+weight = 0.9
+examine = "A typical garden brush, with a cane tied to it."
+use = "Quest"
+kept = "Wilderness"
+
+[extended_brush_2]
+id = 4192
+tradeable = false
+weight = 1.0
+examine = "A typical garden brush, with two canes tied to it."
+use = "Quest"
+kept = "Wilderness"
+
+[extended_brush_3]
+id = 4193
+tradeable = false
+weight = 1.1
+slot = "Weapon"
+examine = "A typical garden brush, with three canes tied to it."
+use = "Quest"
+kept = "Wilderness"
+
+[torso_creature_of_fenkenstrain]
+id = 4194
+tradeable = false
+weight = 19.05
+examine = "A decomposing torso, from which issues the acrid stench of the grave."
+use = "Quest"
+kept = "Wilderness"
+
+[arms]
+id = 4195
+tradeable = false
+weight = 6.35
+examine = "A pair of limp, dead arms."
+use = "Quest"
+kept = "Wilderness"
+
+[legs]
+id = 4196
+tradeable = false
+weight = 6.35
+examine = "A pair of lifeless, rotting legs."
+use = "Quest"
+kept = "Wilderness"
+
+[decapitated_head]
+id = 4197
+tradeable = false
+weight = 2.721
+examine = "A gruesome, decapitated head, whose brain has rotted away."
+use = "Quest"
+kept = "Wilderness"
+
+[decapitated_head_brain]
+id = 4198
+tradeable = false
+weight = 3.628
+examine = "A gruesome, decapitated head - its eyes stare lifelessly at nothing."
+use = "Quest"
+kept = "Wilderness"
+
+[pickled_brain]
+id = 4199
+tradeable = false
+weight = 0.907
+examine = "A pickled brain, submerged inside a jar of vinegar."
+use = "Quest"
+kept = "Wilderness"
+
+[conductor_mould]
+id = 4200
+tradeable = false
+weight = 0.05
+silver_jewellery = { name = "lightning rod mould", item = "conductor", quest = "creature_of_fenkenstrain", level = 20, xp = 50.0 }
+examine = "A mould for making silver lightning conductors."
+use = "Quest"
+kept = "Wilderness"
+
+[conductor]
+id = 4201
+tradeable = false
+weight = 3.628
+examine = "A silver lightning conductor."
+use = "Quest"
+kept = "Wilderness"
+
+[ring_of_charos]
+id = 4202
+tradeable = false
+weight = 0.005
+slot = "Ring"
+destroy = "The ring will return to Fenkenstrain, its owner. You'll have to pick his pocket again. You can also reclaim it from the quest storage chest."
+examine = "The Ring of Charos."
+kept = "Wilderness"
+
+[journal]
+clone = "journal_horror_from_the_deep"
+id = 4203
+
+[letter_creature_of_fenkenstrain]
+id = 4204
+tradeable = false
+weight = 0.001
+examine = "A letter, clearly hastily written."
+use = "Quest"
+kept = "Wilderness"

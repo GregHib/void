@@ -1,0 +1,482 @@
+[fremennik]
+id = 3686
+
+[unstrung_lyre]
+id = 3688
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+examine = "It's almost a musical instrument."
+kept = "Reclaim"
+
+[lyre]
+id = 3689
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+examine = "It's a musical instrument that I don't know how to play."
+kept = "Reclaim"
+
+[enchanted_lyre]
+id = 3690
+slot = "Weapon"
+examine = "A musical instrument that I can magically play."
+weight = 1.814
+
+[enchanted_lyre_1]
+id = 3691
+weight = 1.814
+charges = 1
+degrade = "enchanted_lyre"
+slot = "Weapon"
+examine = "This will teleport me to Rellekka when I play it."
+
+[branch]
+id = 3692
+tradeable = false
+weight = 1.814
+examine = "I can use this to make a lyre."
+kept = "Reclaim"
+
+[golden_fleece]
+id = 3693
+tradeable = false
+weight = 0.012
+examine = "I can spin this into golden wool..."
+kept = "Reclaim"
+
+[golden_wool]
+id = 3694
+tradeable = false
+weight = 0.012
+spinning = { to = "golden_fleece", level = 40, xp = 2.5 }
+examine = "I can use this to make a lyre."
+kept = "Reclaim"
+
+[pet_rock]
+id = 3695
+tradeable = false
+weight = 1.36
+food = "None"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "The lowest maintenance pet you will ever have."
+kept = "Reclaim"
+
+[hunters_talisman_draugen]
+id = 3696
+tradeable = false
+weight = 0.015
+examine = "Talisman to bind the Draugen."
+use = "Quest"
+kept = "Reclaim"
+
+[hunters_talisman]
+clone = "hunters_talisman_draugen"
+id = 3697
+
+[exotic_flower]
+id = 3698
+tradeable = false
+weight = 0.028
+destroy = "You will have to start the trading sequence again to get another!"
+examine = "Some flowers from a distant land."
+use = "Quest"
+kept = "Vanish"
+
+[fremennik_ballad]
+id = 3699
+tradeable = false
+weight = 0.005
+examine = "A hauntingly beautiful love ballad."
+use = "Quest"
+kept = "Reclaim"
+
+[sturdy_boots]
+id = 3700
+tradeable = false
+weight = 0.34
+examine = "A pair of sturdy custom made boots."
+use = "Quest"
+kept = "Reclaim"
+
+[tracking_map]
+id = 3701
+tradeable = false
+weight = 0.51
+examine = "Could probably be a bit clearer!"
+use = "Quest"
+kept = "Reclaim"
+
+[custom_bowstring]
+id = 3702
+tradeable = false
+weight = 0.014
+examine = "A finely crafted string for a custom bow."
+use = "Quest"
+kept = "Reclaim"
+
+[unusual_fish]
+id = 3703
+tradeable = false
+weight = 0.4
+examine = "An extremely odd, non-edible fish."
+use = "Quest"
+kept = "Reclaim"
+
+[sea_fishing_map]
+id = 3704
+tradeable = false
+weight = 0.51
+examine = "Map showing the best fishing spots out at sea."
+use = "Quest"
+kept = "Reclaim"
+
+[weather_forecast]
+id = 3705
+tradeable = false
+weight = 0.005
+examine = "An estimate of expected local weather patterns."
+use = "Quest"
+kept = "Reclaim"
+
+[champions_token]
+id = 3706
+tradeable = false
+weight = 0.004
+examine = "Shows the wearer is worthy of the Champions table."
+use = "Quest"
+kept = "Reclaim"
+
+[legendary_cocktail]
+id = 3707
+tradeable = false
+weight = 0.45
+examine = "Probably the greatest cocktail in the world."
+use = "Quest"
+kept = "Reclaim"
+
+[fiscal_statement]
+id = 3708
+tradeable = false
+weight = 0.005
+examine = "A signed statement promising a reduction on sales tax."
+use = "Quest"
+kept = "Reclaim"
+
+[promissory_note]
+id = 3709
+tradeable = false
+weight = 0.005
+examine = "A legally binding contract promising not to enter the longhall."
+use = "Quest"
+kept = "Reclaim"
+
+[warriors_contract]
+id = 3710
+tradeable = false
+weight = 0.005
+examine = "This employment contract is for a warrior to act as a bodyguard."
+use = "Quest"
+kept = "Reclaim"
+
+[keg_of_beer_the_fremennik_trials]
+id = 3711
+limit = 100
+tradeable = false
+weight = 20.0
+examine = "A lot of beer in a barrel."
+use = "Quest"
+kept = "Reclaim"
+
+[low_alcohol_keg]
+id = 3712
+tradeable = false
+weight = 20.0
+examine = "Suspiciously close to beer, but without the side effects."
+use = "Quest"
+kept = "Reclaim"
+
+[strange_object]
+id = 3713
+tradeable = false
+weight = 0.001
+aka = ["cherry_bomb"]
+examine = "It's some kind of weird little parcel thing."
+use = "Quest"
+kept = "Reclaim"
+
+[lit_strange_object]
+id = 3714
+tradeable = false
+weight = 0.001
+examine = "It's some kind of weird little parcel thing. On fire."
+use = "Quest"
+kept = "Reclaim"
+
+[magnet_the_fremennik_trials]
+id = 3718
+tradeable = false
+weight = 0.02
+destroy = "You'll have to find another from within the building."
+examine = "A very attractive magnet."
+use = "Quest"
+kept = "Vanish"
+
+[blue_thread]
+id = 3719
+limit = 10000
+tradeable = false
+weight = 0.002
+examine = "Some blue thread."
+use = "Dungeoneering"
+kept = "Vanish"
+
+[pick]
+id = 3720
+tradeable = false
+weight = 0.056
+destroy = "You'll have to find another from within the building."
+examine = "A small pick for cracking small objects."
+use = "Quest"
+kept = "Vanish"
+
+[ship_toy]
+id = 3721
+tradeable = false
+weight = 0.4
+destroy = "You'll have to find another from within the building."
+examine = "Might be fun to play with in the bath."
+use = "Quest"
+kept = "Vanish"
+
+[full_bucket_the_fremennik_trials]
+id = 3722
+tradeable = false
+weight = 0.001
+destroy = "You'll have to find another from within the building."
+examine = "This bucket is completely full. It has a 5 painted on its side."
+use = "Quest"
+kept = "Vanish"
+
+[4_5ths_full_bucket]
+id = 3723
+tradeable = false
+weight = 0.001
+destroy = "You'll have to find another from within the building."
+examine = "This bucket is eighty percent full. It has a 5 painted on its side."
+use = "Quest"
+kept = "Vanish"
+
+["3_5ths_full_bucket"]
+id = 3724
+tradeable = false
+weight = 0.001
+destroy = "You'll have to find another from within the building."
+examine = "This bucket is sixty percent full. It has a 5 painted on its side."
+use = "Quest"
+kept = "Vanish"
+
+["2_5ths_full_bucket"]
+id = 3725
+tradeable = false
+weight = 0.001
+destroy = "You'll have to find another from within the building."
+examine = "This bucket is forty percent full. It has a 5 painted on its side."
+use = "Quest"
+kept = "Vanish"
+
+["1_5ths_full_bucket"]
+id = 3726
+tradeable = false
+weight = 0.001
+destroy = "You'll have to find another from within the building."
+examine = "This bucket is twenty percent full. It has a 5 painted on its side."
+use = "Quest"
+kept = "Vanish"
+
+[empty_bucket]
+id = 3727
+tradeable = false
+weight = 0.001
+destroy = "You'll have to find another from within the building."
+examine = "This bucket is completely empty. It has a 5 painted on its side."
+use = "Quest"
+kept = "Vanish"
+
+[frozen_bucket]
+id = 3728
+tradeable = false
+weight = 0.001
+destroy = "You'll have to find another from within the building."
+examine = "This bucket of water is frozen solid."
+use = "Quest"
+kept = "Vanish"
+
+[full_jug]
+id = 3729
+tradeable = false
+weight = 0.001
+destroy = "You'll have to find another from within the building."
+examine = "This jug is completely full. It has a 3 painted on its side."
+use = "Quest"
+kept = "Vanish"
+
+["2_3rds_full_jug"]
+id = 3730
+tradeable = false
+weight = 0.001
+destroy = "You'll have to find another from within the building."
+examine = "This jug is two thirds full. It has a 3 painted on its side."
+use = "Quest"
+kept = "Vanish"
+
+["1_3rds_full_jug"]
+id = 3731
+tradeable = false
+weight = 0.001
+destroy = "You'll have to find another from within the building."
+examine = "This jug is one thirds full. It has a 3 painted on its side."
+use = "Quest"
+kept = "Vanish"
+
+[empty_jug]
+id = 3732
+limit = 10000
+tradeable = false
+weight = 0.001
+destroy = "You'll have to find another from within the building."
+examine = "This jug is completely empty. It has a 3 painted on its side."
+use = "Quest"
+kept = "Vanish"
+
+[frozen_jug]
+id = 3733
+tradeable = false
+weight = 0.453
+destroy = "You'll have to find another from within the building."
+examine = "This jug of water is frozen solid."
+use = "Quest"
+kept = "Vanish"
+
+[vase]
+id = 3734
+tradeable = false
+weight = 0.001
+full = "vase_of_water"
+examine = "An unusually shaped vase. You can see something glinting inside."
+use = "Quest"
+kept = "Vanish"
+
+[vase_of_water]
+id = 3735
+tradeable = false
+weight = 0.001
+examine = "An unusually shaped vase full of water. You can see something glinting inside."
+use = "Quest"
+kept = "Vanish"
+
+[frozen_vase]
+id = 3736
+tradeable = false
+weight = 0.001
+examine = "An unusually shaped vase full of ice. You can see something glinting inside."
+use = "Quest"
+kept = "Vanish"
+
+[vase_lid]
+id = 3737
+tradeable = false
+weight = 0.001
+examine = "This looks like a lid to some kind of container..."
+use = "Quest"
+kept = "Vanish"
+
+[sealed_vase_empty]
+id = 3738
+tradeable = false
+weight = 0.001
+examine = "The lid is screwed on tightly."
+use = "Quest"
+kept = "Vanish"
+
+[sealed_vase_frozen]
+id = 3739
+tradeable = false
+weight = 0.001
+examine = "The lid is screwed on tightly. It is very cold."
+use = "Quest"
+kept = "Vanish"
+
+[sealed_vase_water]
+id = 3740
+tradeable = false
+weight = 0.001
+examine = "The lid is screwed on tightly. It is full of water."
+use = "Quest"
+kept = "Vanish"
+
+[frozen_key_the_fremennik_trials]
+id = 3741
+tradeable = false
+weight = 0.001
+examine = "A key encased in ice."
+use = "Quest"
+kept = "Vanish"
+
+[red_herring]
+id = 3742
+tradeable = false
+weight = 0.5
+examine = "The colouring on it seems to be some kind of sticky goop..."
+use = "Quest"
+kept = "Vanish"
+
+[red_disk]
+id = 3743
+tradeable = false
+weight = 0.002
+examine = "A red coloured disk, apparently made of wood."
+use = "Quest"
+kept = "Vanish"
+
+[wooden_disk]
+id = 3744
+tradeable = false
+weight = 0.002
+examine = "A simple looking disk made of wood."
+use = "Quest"
+kept = "Vanish"
+
+[seers_key]
+id = 3745
+tradeable = false
+weight = 0.01
+examine = "The key to leave the Seer's house."
+use = "Quest"
+kept = "Vanish"
+
+[sticky_red_goop]
+id = 3746
+weight = 0.001
+examine = "Yup, it's sticky, it's red and it's goop."
+use = "Quest"
+kept = "Vanish"
+
+[sticky_red_goop_noted]
+id = 3747
+
+[enchanted_lyre_2]
+clone = "enchanted_lyre_1"
+id = 6125
+degrade = "enchanted_lyre_1"
+
+[enchanted_lyre_3]
+clone = "enchanted_lyre_1"
+id = 6126
+degrade = "enchanted_lyre_2"
+
+[enchanted_lyre_4]
+clone = "enchanted_lyre_1"
+id = 6127
+degrade = "enchanted_lyre_3"

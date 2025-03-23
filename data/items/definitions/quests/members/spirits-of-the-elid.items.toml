@@ -1,0 +1,89 @@
+[statuette_spirits_of_the_elid]
+id = 6785
+tradeable = false
+weight = 0.001
+examine = "A statue of the goddess Elidinis."
+use = "Quest"
+kept = "Wilderness"
+
+[robe_of_elidinis_top]
+id = 6786
+tradeable = false
+weight = 0.005
+slot = "Chest"
+examine = "This looks quite old."
+kept = "Wilderness"
+
+[robe_of_elidinis_bottom]
+id = 6787
+tradeable = false
+weight = 0.005
+slot = "Legs"
+examine = "A patched up robe."
+kept = "Wilderness"
+
+[torn_robe_top]
+id = 6788
+tradeable = false
+weight = 0.005
+examine = "This robe is too torn to wear."
+use = "Quest"
+kept = "Wilderness"
+
+[torn_robe_bottom]
+id = 6789
+tradeable = false
+weight = 0.005
+examine = "This robe is too torn to wear."
+use = "Quest"
+kept = "Wilderness"
+
+[shoes_spirits_of_the_elid]
+id = 6790
+tradeable = false
+weight = 0.226
+slot = "Feet"
+examine = "Awusah's shoes."
+kept = "Wilderness"
+
+[sole]
+id = 6791
+tradeable = false
+weight = 0.001
+examine = "Awusah's sole."
+use = "Quest"
+kept = "Wilderness"
+
+[ancestral_key]
+id = 6792
+tradeable = false
+weight = 0.01
+examine = "An ancient key from the shrine in Nardah."
+kept = "Wilderness"
+
+[ballad]
+id = 6793
+tradeable = false
+weight = 0.005
+examine = "The Ballad of Jareesh."
+use = "Quest"
+kept = "Wilderness"
+
+[choc_ice]
+id = 6794
+price = 130
+limit = 1000
+heals = 70
+weight = 0.001
+examine = "A tasty treat from Nardah - better eat it before it melts!"
+
+[choc_ice_noted]
+id = 6795
+
+[lamp_spirits_of_the_elid]
+id = 6796
+tradeable = false
+weight = 0.1
+examine = "Ooh a nice shiny lamp."
+use = "Quest"
+kept = "Reclaim"

@@ -1,0 +1,8 @@
+[hardy_gout_tuber]
+id = 4001
+tradeable = false
+weight = 0.1
+destroy = "Murcaily will probably give me some more."
+examine = "A hardy gout tuber."
+use = "Quest"
+kept = "Vanish"

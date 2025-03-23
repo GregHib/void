@@ -23,9 +23,7 @@ id = 593
 id = 594
 tradeable = false
 weight = 0.5
-light_source = {
-once_extinguish = "unlit_torch"
-}
+light_source = { once_extinguish = "unlit_torch" }
 examine = "A lit home-made torch."
 kept = "Wilderness"
 
@@ -37,10 +35,7 @@ id = 596
 price = 1
 limit = 100
 weight = 0.5
-light_source = {
-once_lit = "lit_torch",
-level = 1,
-}
+light_source = { once_lit = "lit_torch", level = 1 }
 examine = "An unlit home-made torch."
 
 [unlit_torch_noted]

@@ -1,0 +1,76 @@
+[earth_warrior_champions_scroll]
+id = 6798
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Earth Warrior Champion!"
+kept = "Wilderness"
+
+[ghoul_champions_scroll]
+id = 6799
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Ghoul Champion!"
+kept = "Wilderness"
+
+[giant_champions_scroll]
+id = 6800
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Giant Champion!"
+kept = "Wilderness"
+
+[goblin_champions_scroll]
+id = 6801
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Goblin Champion!"
+kept = "Wilderness"
+
+[hobgoblin_champions_scroll]
+id = 6802
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Hobgoblin Champion!"
+kept = "Wilderness"
+
+[imp_champions_scroll]
+id = 6803
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Imp Champion!"
+kept = "Wilderness"
+
+[jogre_champions_scroll]
+id = 6804
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Jogre Champion!"
+kept = "Wilderness"
+
+[lesser_demon_champions_scroll]
+id = 6805
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Lesser Demon Champion!"
+kept = "Wilderness"
+
+[skeleton_champions_scroll]
+id = 6806
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Skeleton Champion!"
+kept = "Wilderness"
+
+[zombie_champions_scroll]
+id = 6807
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Zombie Champion!"
+kept = "Wilderness"
+
+[human_champions_scroll]
+id = 6808
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Human Champion!"
+kept = "Wilderness"

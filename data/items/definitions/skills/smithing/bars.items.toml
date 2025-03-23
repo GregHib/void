@@ -1,0 +1,132 @@
+[bronze_bar]
+id = 2349
+price = 74
+limit = 10000
+weight = 1.814
+smelting = {
+  level = 1,
+  xp = 6.2,
+  items = [{id = "tin_ore"}, {id = "copper_ore"}],
+  message = "You smelt the copper and tin together in the furnace.",
+}
+examine = "It's a bar of bronze."
+kept = "Wilderness"
+
+[bronze_bar_noted]
+id = 2350
+
+[iron_bar]
+id = 2351
+price = 147
+limit = 10000
+weight = 1.814
+smelting = {
+  level = 15,
+  xp = 12.5,
+  items = [{id = "iron_ore"}],
+  chance = 128,
+  message = "You smelt the iron in the furnace."
+}
+examine = "It's a bar of iron."
+kept = "Wilderness"
+
+[iron_bar_noted]
+id = 2352
+
+[steel_bar]
+id = 2353
+price = 728
+limit = 10000
+weight = 1.814
+smelting = {
+  level = 30,
+  xp = 17.5,
+  items = [{id = "iron_ore"}, {id = "coal", amount = 2}],
+  message = "You place the iron and two heaps of coal into the furnace.",
+}
+examine = "It's a bar of steel."
+
+[steel_bar_noted]
+id = 2354
+
+[silver_bar]
+id = 2355
+price = 123
+limit = 10000
+weight = 1.814
+smelting = {
+  level = 20,
+  xp = 13.7,
+  items = [{id = "silver_ore"}],
+  message = "You place the silver into the furnace.",
+}
+examine = "It's a bar of silver."
+
+[silver_bar_noted]
+id = 2356
+
+[gold_bar]
+id = 2357
+price = 129
+limit = 10000
+weight = 1.814
+smelting = {
+  level = 40,
+  xp = 22.5,
+  items = [{id = "gold_ore"}],
+  message = "You place a lump of gold in the furnace.",
+}
+examine = "It's a bar of gold."
+
+[gold_bar_noted]
+id = 2358
+
+[mithril_bar]
+id = 2359
+price = 1323
+limit = 10000
+weight = 1.586
+smelting = {
+  level = 50,
+  xp = 30.0,
+  items = [{id = "mithril_ore"}, {id = "coal", amount = 4}],
+  message = "You place the mithril and four heaps of coal into the furnace.",
+}
+examine = "It's a bar of mithril."
+
+[mithril_bar_noted]
+id = 2360
+
+[adamant_bar]
+id = 2361
+price = 2465
+limit = 10000
+weight = 2.041
+smelting = {
+  level = 70,
+  xp = 37.5,
+  items = [{id = "adamantite_ore"}, {id = "coal", amount = 6}],
+  message = "You place the adamantite and six heaps of coal into the furnace.",
+}
+aka = ["adamantite_bar"]
+examine = "It's a bar of adamant."
+
+[adamant_bar_noted]
+id = 2362
+
+[rune_bar]
+id = 2363
+price = 13000
+limit = 10000
+weight = 1.814
+smelting = {
+  level = 85,
+  xp = 50.0,
+  items = [{id = "runite_ore"}, {id = "coal", amount = 8}],
+  message = "You place the runite and six heaps of coal into the furnace.",
+}
+aka = ["runite_bar"]
+examine = "It's a bar of rune."
+
+[rune_bar_noted]
+id = 2364

@@ -1,0 +1,169 @@
+[oil_lamp_oil]
+id = 4522
+price = 1241
+limit = 100
+weight = 0.453
+light_source = { once_lit = "oil_lamp", level = 12 }
+examine = "Not the genie sort."
+kept = "Wilderness"
+
+[oil_lamp_noted]
+id = 4523
+
+[oil_lamp]
+id = 4524
+tradeable = false
+weight = 0.453
+light_source = { once_extinguish = "oil_lamp_oil" }
+examine = "Not the genie sort."
+kept = "Wilderness"
+
+[oil_lamp_empty]
+id = 4525
+price = 4
+limit = 100
+weight = 0.453
+examine = "An oil lamp with no oil in it."
+kept = "Wilderness"
+
+[oil_lamp_noted_2]
+id = 4526
+
+[candle_lantern_empty]
+id = 4527
+price = 3
+limit = 100
+weight = 0.907
+examine = "Put a candle in to complete it."
+kept = "Wilderness"
+
+[candle_lantern_noted]
+id = 4528
+
+[candle_lantern_white]
+id = 4529
+price = 621
+limit = 100
+weight = 0.907
+light_source = { once_lit = "candle_lantern_lit_white", level = 4 }
+examine = "A candle in a glass cage."
+kept = "Wilderness"
+
+[candle_lantern_noted_2]
+id = 4530
+
+[candle_lantern_lit_white]
+id = 4531
+tradeable = false
+weight = 0.907
+light_source = { once_extinguish = "candle_lantern_white" }
+examine = "A flickering candle in a glass cage."
+kept = "Wilderness"
+
+[candle_lantern_black]
+id = 4532
+weight = 0.907
+light_source = { once_lit = "candle_lantern_lit_black", level = 4 }
+examine = "A candle in a glass cage."
+kept = "Wilderness"
+
+[candle_lantern_noted_3]
+id = 4533
+
+[candle_lantern_lit_black]
+clone = "candle_lantern_lit_white"
+id = 4534
+light_source = { once_extinguish = "candle_lantern_black" }
+
+[oil_lantern_empty]
+id = 4535
+price = 18
+limit = 100
+weight = 0.907
+examine = "Put oil in to complete it."
+kept = "Wilderness"
+
+[oil_lantern_noted]
+id = 4536
+
+[oil_lantern_oil]
+id = 4537
+price = 549
+limit = 100
+weight = 0.907
+light_source = { once_lit = "oil_lantern", level = 26 }
+examine = "An unlit oil lantern."
+kept = "Wilderness"
+
+[oil_lantern_noted_2]
+id = 4538
+
+[oil_lantern]
+id = 4539
+tradeable = false
+weight = 0.907
+light_source = { once_extinguish = "oil_lantern_oil" }
+examine = "It lights your way through the dark places of the earth."
+kept = "Wilderness"
+
+[oil_lantern_frame]
+id = 4540
+price = 17
+limit = 100
+weight = 0.453
+smithing = { level = 26, xp = 25.0 }
+examine = "Add the glass to complete."
+
+[oil_lantern_frame_noted]
+id = 4541
+
+[lantern_lens]
+id = 4542
+price = 1
+limit = 100
+weight = 0.028
+examine = "A roughly circular disc of glass."
+
+[lantern_lens_noted]
+id = 4543
+
+[bullseye_lantern_frame]
+id = 4544
+price = 67
+limit = 100
+weight = 1.36
+examine = "You need to add a lens before you can use it."
+
+[bullseye_lantern_noted]
+id = 4545
+
+[bullseye_lantern_empty]
+id = 4546
+price = 175
+limit = 100
+weight = 1.36
+examine = "You need to add lamp oil before you can use it."
+kept = "Wilderness"
+
+[bullseye_lantern_noted_2]
+id = 4547
+
+[bullseye_lantern_oil]
+id = 4548
+price = 1568
+limit = 100
+weight = 1.36
+light_source = { once_lit = "bullseye_lantern_lit", level = 49 }
+examine = "A sturdy steel lantern."
+kept = "Wilderness"
+
+[bullseye_lantern_noted_3]
+id = 4549
+
+[bullseye_lantern_lit]
+id = 4550
+tradeable = false
+weight = 1.36
+light_source = { once_extinguish = "bullseye_lantern_oil" }
+examine = "A sturdy steel lantern casting a bright beam."
+kept = "Wilderness"

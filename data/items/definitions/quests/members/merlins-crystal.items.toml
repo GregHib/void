@@ -1,0 +1,63 @@
+[insect_repellent]
+id = 28
+tradeable = false
+weight = 0.028
+examine = "Drives away all known 6 legged creatures."
+kept = "Wilderness"
+
+[bucket_of_wax]
+id = 30
+tradeable = false
+weight = 2.5
+examine = "It's a bucket of wax."
+kept = "Wilderness"
+
+[black_candle_lit]
+id = 32
+tradeable = false
+weight = 0.028
+light_source = { once_extinguish = "black_candle" }
+examine = "A lit spooky candle."
+kept = "Reclaim"
+
+[white_candle_lit]
+id = 33
+tradeable = false
+weight = 0.028
+light_source = { once_extinguish = "white_candle" }
+examine = "A lit candle."
+kept = "Reclaim"
+
+[lit_candle]
+id = 34
+examine = "A candle."
+
+[excalibur]
+id = 35
+tradeable = false
+weight = 2.267
+aka = ["excaliber"]
+special_energy = 1000
+special = "sanctuary"
+slot = "Weapon"
+examine = "This used to belong to King Arthur."
+kept = "Reclaim"
+
+[white_candle]
+id = 36
+price = 270
+limit = 100
+weight = 0.028
+light_source = { once_lit = "white_candle_lit", level = 1 }
+examine = "A candle."
+
+[candle_noted]
+id = 37
+
+[black_candle]
+id = 38
+tradeable = false
+weight = 0.028
+light_source = { once_lit = "black_candle_lit", level = 1 }
+examine = "A spooky candle."
+kept = "Reclaim"

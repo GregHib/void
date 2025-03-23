@@ -1,0 +1,166 @@
+[longbow]
+id = 839
+price = 68
+limit = 5000
+weight = 1.814
+attack_range = 10
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A nice sturdy bow."
+kept = "Wilderness"
+
+[longbow_noted]
+id = 840
+
+[shortbow]
+id = 841
+price = 68
+limit = 5000
+weight = 1.36
+slot = "Weapon"
+type = "TwoHanded"
+attack_range = 7
+examine = "Short but effective."
+kept = "Wilderness"
+
+[shortbow_noted]
+id = 842
+
+[oak_shortbow]
+id = 843
+price = 54
+limit = 5000
+weight = 1.814
+slot = "Weapon"
+type = "TwoHanded"
+attack_range = 7
+examine = "A shortbow made out of oak, still effective."
+kept = "Wilderness"
+
+[oak_shortbow_noted]
+id = 844
+
+[oak_longbow]
+id = 845
+price = 87
+limit = 5000
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+attack_range = 10
+examine = "A nice sturdy bow made out of oak."
+kept = "Wilderness"
+
+[oak_longbow_noted]
+id = 846
+
+[willow_longbow]
+id = 847
+price = 124
+limit = 5000
+weight = 1.814
+slot = "Weapon"
+type = "TwoHanded"
+attack_range = 10
+examine = "A nice sturdy bow made out of willow."
+kept = "Wilderness"
+
+[willow_longbow_noted]
+id = 848
+
+[willow_shortbow]
+id = 849
+price = 78
+limit = 5000
+weight = 1.36
+slot = "Weapon"
+type = "TwoHanded"
+attack_range = 7
+examine = "A shortbow made out of willow, still effective."
+kept = "Wilderness"
+
+[willow_shortbow_noted]
+id = 850
+
+[maple_longbow]
+id = 851
+price = 297
+limit = 5000
+weight = 1.814
+attack_range = 10
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A nice sturdy bow made out of maple."
+
+[maple_longbow_noted]
+id = 852
+
+[maple_shortbow]
+id = 853
+price = 240
+limit = 5000
+weight = 1.36
+slot = "Weapon"
+type = "TwoHanded"
+attack_range = 7
+examine = "A shortbow made out of Maple, still effective."
+
+[maple_shortbow_noted]
+id = 854
+
+[yew_longbow]
+id = 855
+price = 652
+limit = 5000
+weight = 1.814
+attack_range = 10
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A nice sturdy bow made out of yew."
+
+[yew_longbow_noted]
+id = 856
+
+[yew_shortbow]
+id = 857
+price = 375
+limit = 5000
+weight = 1.36
+slot = "Weapon"
+type = "TwoHanded"
+attack_range = 7
+examine = "A shortbow made out of yew, still effective."
+
+[yew_shortbow_noted]
+id = 858
+
+[magic_longbow]
+id = 859
+price = 1420
+limit = 5000
+weight = 1.814
+attack_range = 10
+special_energy = 350
+special = "powershot"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A nice sturdy magical bow."
+
+[magic_longbow_noted]
+id = 860
+
+[magic_shortbow]
+id = 861
+price = 855
+limit = 5000
+weight = 1.36
+slot = "Weapon"
+type = "TwoHanded"
+attack_range = 7
+special_energy = 550
+special = "snapshot"
+aka = ["msb", "magic_sb"]
+examine = "Short and magical, but still effective."
+
+[magic_shortbow_noted]
+id = 862

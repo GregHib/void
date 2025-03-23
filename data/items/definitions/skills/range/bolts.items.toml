@@ -1,0 +1,41 @@
+[bronze_bolts]
+id = 877
+price = 7
+limit = 10000
+slot = "Ammo"
+examine = "Bronze ammunition for crossbows."
+
+[bronze_bolts_p]
+id = 878
+limit = 10000
+slot = "Ammo"
+examine = "Bronze ammunition for crossbows."
+
+[opal_bolts]
+id = 879
+price = 7
+limit = 25000
+slot = "Ammo"
+examine = "Opal tipped Bronze crossbow bolts."
+
+[pearl_bolts]
+id = 880
+price = 40
+limit = 25000
+slot = "Ammo"
+examine = "Pearl tipped Iron crossbow bolts."
+
+[barbed_bolts]
+id = 881
+price = 34
+limit = 10000
+slot = "Ammo"
+examine = "Great if you have a crossbow!"
+
+["bronze_bolts_p+"]
+clone = "bronze_bolts_p"
+id = 6061
+
+["bronze_bolts_p++"]
+clone = "bronze_bolts_p"
+id = 6062

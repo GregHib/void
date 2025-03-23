@@ -1,0 +1,22 @@
+[hammer]
+id = 2347
+price = 24
+limit = 1000
+weight = 0.907
+examine = "Good for hitting things!"
+kept = "Wilderness"
+
+[hammer_noted]
+id = 2348
+
+[steel_studs]
+id = 2370
+price = 529
+limit = 5000
+weight = 1.36
+smithing = { level = 36, xp = 37.5 }
+examine = "A set of studs for leather armour."
+kept = "Wilderness"
+
+[steel_studs_noted]
+id = 2371

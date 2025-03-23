@@ -1,0 +1,219 @@
+[tribal_top_brown]
+id = 6341
+price = 3435
+limit = 100
+weight = 1.0
+slot = "Chest"
+examine = "Local dress."
+
+[tribal_top_noted]
+id = 6342
+
+[villager_robe_brown]
+id = 6343
+price = 1423
+limit = 100
+weight = 2.0
+slot = "Legs"
+examine = "A brightly coloured robe prized by the Tai Bwo Wannai peoples."
+
+[villager_robe_noted]
+id = 6344
+
+[villager_hat_brown]
+id = 6345
+price = 2307
+limit = 100
+weight = 0.907
+slot = "Hat"
+examine = "A brightly coloured hat prized by the Tai Bwo Wannai peoples."
+
+[villager_hat_noted]
+id = 6346
+
+[villager_armband_brown]
+id = 6347
+price = 704
+limit = 100
+weight = 0.68
+slot = "Hands"
+examine = "A brown armband, as worn by the Tai Bwo Wannai locals."
+
+[villager_armband_noted]
+id = 6348
+
+[villager_sandals_brown]
+id = 6349
+price = 2248
+limit = 100
+weight = 0.68
+slot = "Feet"
+examine = "A brightly coloured pair of local sandals."
+
+[villager_sandals_noted]
+id = 6350
+
+[tribal_top_blue]
+id = 6351
+price = 3968
+limit = 100
+weight = 1.0
+slot = "Chest"
+examine = "Local dress."
+
+[tribal_top_noted_2]
+id = 6352
+
+[villager_robe_blue]
+id = 6353
+price = 1468
+limit = 100
+weight = 2.0
+slot = "Legs"
+examine = "A brightly coloured robe prized by the Tai Bwo Wannai peoples."
+
+[villager_robe_noted_2]
+id = 6354
+
+[villager_hat_blue]
+id = 6355
+price = 2579
+limit = 100
+weight = 0.907
+slot = "Hat"
+examine = "A brightly coloured hat prized by the Tai Bwo Wannai peoples."
+
+[villager_hat_noted_2]
+id = 6356
+
+[villager_sandals_blue]
+id = 6357
+price = 900
+limit = 100
+weight = 0.68
+slot = "Feet"
+examine = "A brightly coloured pair of local sandals."
+
+[villager_sandals_noted_2]
+id = 6358
+
+[villager_armband_blue]
+id = 6359
+price = 731
+limit = 100
+weight = 0.68
+slot = "Hands"
+examine = "A light blue armband, as worn by the Tai Bwo Wannai locals."
+
+[villager_armband_noted_2]
+id = 6360
+
+[tribal_top_yellow]
+id = 6361
+price = 2748
+limit = 100
+weight = 1.0
+slot = "Chest"
+examine = "Local dress."
+
+[tribal_top_noted_3]
+id = 6362
+
+[villager_robe_yellow]
+id = 6363
+price = 451
+limit = 100
+weight = 2.0
+slot = "Legs"
+examine = "A brightly coloured robe prized by the Tai Bwo Wannai peoples."
+
+[villager_robe_noted_3]
+id = 6364
+
+[villager_hat_yellow]
+id = 6365
+price = 2277
+limit = 100
+weight = 0.907
+slot = "Hat"
+examine = "A brightly coloured hat prized by the Tai Bwo Wannai peoples."
+
+[villager_hat_noted_3]
+id = 6366
+
+[villager_sandals_yellow]
+id = 6367
+price = 1465
+limit = 100
+weight = 0.68
+slot = "Feet"
+examine = "A brightly coloured pair of local sandals."
+
+[villager_sandals_noted_3]
+id = 6368
+
+[villager_armband_yellow]
+id = 6369
+price = 850
+limit = 100
+weight = 0.68
+slot = "Hands"
+examine = "A dark blue armband, as worn by the Tai Bwo Wannai locals."
+
+[villager_armband_noted_3]
+id = 6370
+
+[tribal_top_pink]
+id = 6371
+price = 3117
+limit = 100
+weight = 1.0
+slot = "Chest"
+examine = "Local dress."
+
+[tribal_top_noted_4]
+id = 6372
+
+[villager_robe_pink]
+id = 6373
+price = 316
+limit = 100
+weight = 2.0
+slot = "Legs"
+examine = "A brightly coloured robe prized by the Tai Bwo Wannai peoples."
+
+[villager_robe_noted_4]
+id = 6374
+
+[villager_hat_pink]
+id = 6375
+price = 2958
+limit = 100
+weight = 0.907
+slot = "Hat"
+examine = "A brightly coloured hat prized by the Tai Bwo Wannai peoples."
+
+[villager_hat_noted_4]
+id = 6376
+
+[villager_sandals_pink]
+id = 6377
+price = 1880
+limit = 100
+weight = 0.68
+slot = "Feet"
+examine = "A brightly coloured pair of local sandals."
+
+[villager_sandals_noted_4]
+id = 6378
+
+[villager_armband_pink]
+id = 6379
+price = 1632
+limit = 100
+weight = 0.68
+slot = "Hands"
+examine = "A white armband, as worn by the Tai Bwo Wannai locals."
+
+[villager_armband_noted_4]
+id = 6380

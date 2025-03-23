@@ -1,0 +1,23 @@
+[karamjan_rum]
+id = 431
+heals = 50
+tradeable = false
+weight = 0.907
+examine = "A very strong spirit brewed in Karamja."
+kept = "Vanish"
+
+[chest_key_pirates_treasure]
+id = 432
+tradeable = false
+weight = 0.01
+examine = "A key to One-Eyed Hector's chest."
+use = "Quest"
+kept = "Wilderness"
+
+[pirate_message]
+id = 433
+tradeable = false
+weight = 0.02
+examine = "Pirates don't have the best handwriting..."
+use = "Quest"
+kept = "Wilderness"

@@ -1,0 +1,70 @@
+[combination]
+id = 3102
+tradeable = false
+weight = 0.005
+examine = "The combination to Burthorpe Castle's equipment room."
+kept = "Reclaim"
+use = "Limited"
+
+[iou]
+id = 3103
+tradeable = false
+weight = 0.005
+examine = "The guard wrote the IOU on the back of some paper."
+kept = "Reclaim"
+
+[secret_way_map]
+id = 3104
+tradeable = false
+weight = 0.005
+examine = "This map shows the secret way up to Death Plateau."
+kept = "Reclaim"
+
+[rock_climbing_boots]
+id = 3105
+price = 47400
+limit = 100
+weight = 0.34
+slot = "Feet"
+examine = "Boots made for general climbing; rocks a specialty."
+
+[rock_climbing_boots_noted]
+id = 3106
+
+[spiked_boots]
+id = 3107
+tradeable = false
+weight = 0.34
+slot = "Feet"
+examine = "Climbing boots with spikes."
+kept = "Reclaim"
+
+[stone_ball_red]
+id = 3109
+tradeable = false
+weight = 3.628
+examine = "Place on the stone mechanism in the right order to open the door."
+kept = "Reclaim"
+
+[stone_ball_blue]
+clone = "stone_ball_red"
+id = 3110
+
+[stone_ball_yellow]
+clone = "stone_ball_red"
+id = 3111
+
+[stone_ball_purple]
+clone = "stone_ball_red"
+id = 3112
+
+[stone_ball_green]
+clone = "stone_ball_red"
+id = 3113
+
+[certificate]
+id = 3114
+tradeable = false
+weight = 0.005
+examine = "Entrance certificate to the Imperial Guard."
+kept = "Reclaim"

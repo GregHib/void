@@ -1,0 +1,1323 @@
+[crumbling_tome]
+id = 4707
+tradeable = false
+weight = 0.51
+aka = ["legend_of_the_brothers"]
+examine = "This book must be really old!"
+kept = "Reclaim"
+
+[ahrims_hood]
+id = 4708
+price = 73000
+limit = 10
+charges = 1
+degrade = "ahrims_hood_100"
+deplete = "combat"
+slot = "Hat"
+type = "Hair"
+examine = "Ahrim The Blighted's Hood."
+weight = 0.907
+
+[ahrims_hood_noted]
+id = 4709
+
+[ahrims_staff]
+id = 4710
+price = 131900
+limit = 10
+charges = 1
+degrade = "ahrims_staff_100"
+deplete = "combat"
+category = "staff"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Ahrim the Blighted's quarterstaff."
+weight = 2.267
+
+[ahrims_staff_noted]
+id = 4711
+
+[ahrims_robe_top]
+id = 4712
+price = 1300000
+limit = 10
+charges = 1
+degrade = "ahrims_robe_top_100"
+deplete = "combat"
+aka = ["ahrims_top"]
+slot = "Chest"
+examine = "Ahrim the Blighted's armoured robe top."
+weight = 4.535
+
+[ahrims_robe_top_noted]
+id = 4713
+
+[ahrims_robe_skirt]
+id = 4714
+price = 2200000
+limit = 10
+charges = 1
+degrade = "ahrims_robe_skirt_100"
+deplete = "combat"
+aka = ["ahrims_skirt", "ahrims_legs", "ahrims_robes"]
+slot = "Legs"
+examine = "Ahrim the Blighted's armoured robe skirt."
+weight = 11.339
+
+[ahrims_robe_skirt_noted]
+id = 4715
+
+[dharoks_helm]
+id = 4716
+price = 3000000
+limit = 10
+charges = 1
+degrade = "dharoks_helm_100"
+deplete = "combat"
+aka = ["dh_helm"]
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "Dharok The Wretched's Helmet"
+weight = 1.814
+
+[dharoks_helm_noted]
+id = 4717
+
+[dharoks_greataxe]
+id = 4718
+price = 711400
+limit = 10
+charges = 1
+degrade = "dharoks_greataxe_100"
+deplete = "combat"
+weapon_type = "dharoks_greataxe"
+aka = ["dhaxe", "dhgaxe", "dh_axe", "dh_gaxe", "dh_g_axe", "dharocks_greataxe", "dharoks_great_axe"]
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Dharok the Wretched's Greataxe."
+weight = 3.175
+
+[dharoks_greataxe_noted]
+id = 4719
+
+[dharoks_platebody]
+id = 4720
+price = 669000
+limit = 10
+tradeable = false
+weight = 9.979
+charges = 1
+degrade = "dharoks_platebody_100"
+deplete = "combat"
+aka = ["dh_body", "dh_plate", "dh_platebody", "dh_plate_body", "dharoks_plate_body"]
+slot = "Chest"
+material = "metal"
+examine = "Dharok the Wretched's platebody armour."
+kept = "Reclaim"
+
+[dharoks_platebody_noted]
+id = 4721
+
+[dharoks_platelegs]
+id = 4722
+price = 1100000
+limit = 10
+charges = 1
+degrade = "dharoks_platelegs_100"
+deplete = "combat"
+aka = ["dh_legs", "dh_platelegs", "dh_plate_legs", "dharoks_plate_legs"]
+slot = "Legs"
+material = "metal"
+examine = "Dharok the wretched's plate leg armour."
+weight = 9.071
+
+[dharoks_platelegs_noted]
+id = 4723
+
+[guthans_helm]
+id = 4724
+price = 714000
+limit = 10
+charges = 1
+degrade = "guthans_helm_100"
+deplete = "combat"
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Guthan the Infested's helm."
+weight = 2.721
+
+[guthans_helm_noted]
+id = 4725
+
+[guthans_warspear]
+id = 4726
+price = 646600
+limit = 10
+charges = 1
+degrade = "guthans_warspear_100"
+deplete = "combat"
+weapon_type = "guthans_warspear"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Guthan The Infested's Warspear."
+weight = 2.267
+
+[guthans_warspear_noted]
+id = 4727
+
+[guthans_platebody]
+id = 4728
+price = 440600
+limit = 10
+charges = 1
+degrade = "guthans_platebody_100"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+destroy = "If you drop this item it will break, are you sure you want to drop it?"
+examine = "Guthan the Infested's platebody armour."
+weight = 9.979
+
+[guthans_platebody_noted]
+id = 4729
+
+[guthans_chainskirt]
+id = 4730
+price = 269100
+limit = 10
+charges = 1
+degrade = "guthans_chainskirt_100"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "Guthan the Infested's chainskirt."
+weight = 8.164
+
+[guthans_chainskirt_noted]
+id = 4731
+
+[karils_coif]
+id = 4732
+price = 33600
+limit = 10
+charges = 1
+degrade = "karils_coif_100"
+deplete = "combat"
+slot = "Hat"
+material = "leather"
+type = "FullFace"
+examine = "Karil the Tainted's coif."
+weight = 0.907
+
+[karils_coif_noted]
+id = 4733
+
+[karils_crossbow]
+id = 4734
+price = 179700
+limit = 10
+attack_range = 8
+charges = 1
+degrade = "karils_crossbow_100"
+deplete = "combat"
+weapon_type = "karils_crossbow"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Karil the Tainted's repeating crossbow."
+weight = 3.628
+
+[karils_crossbow_noted]
+id = 4735
+
+[karils_top]
+id = 4736
+price = 3900000
+limit = 10
+charges = 1
+degrade = "karils_top_100"
+deplete = "combat"
+slot = "Chest"
+material = "leather"
+examine = "Karil the Tainted's leatherbody."
+weight = 6.803
+
+[karils_top_noted]
+id = 4737
+
+[karils_skirt]
+id = 4738
+price = 428700
+limit = 10
+charges = 1
+degrade = "karils_skirt_100"
+deplete = "combat"
+slot = "Legs"
+material = "leather"
+examine = "Karil the Tainted's leather skirt."
+weight = 5.443
+
+[karils_skirt_noted]
+id = 4739
+
+[bolt_rack]
+id = 4740
+price = 200
+limit = 10000
+slot = "Ammo"
+material = "metal"
+examine = "Must need a special type of crossbow to use this."
+
+[torags_helm]
+id = 4745
+price = 217684
+limit = 10
+charges = 1
+degrade = "torags_helm_100"
+deplete = "combat"
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Torag the Corrupted's helm."
+weight = 2.721
+
+[torags_helm_noted]
+id = 4746
+
+[torags_hammers]
+id = 4747
+price = 99900
+limit = 10
+charges = 1
+degrade = "torags_hammers_100"
+deplete = "combat"
+weapon_type = "torags_hammers"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Torag the Corrupted's twin hammers."
+weight = 3.628
+
+[torags_hammers_noted]
+id = 4748
+
+[torags_platebody]
+id = 4749
+price = 524300
+limit = 10
+charges = 1
+degrade = "torags_platebody_100"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+examine = "Torag the Corrupted's plate body armour."
+weight = 9.979
+
+[torags_platebody_noted]
+id = 4750
+
+[torags_platelegs]
+id = 4751
+price = 640500
+limit = 10
+charges = 1
+degrade = "torags_platelegs_100"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "Torag the Corrupted's plate leg armour."
+weight = 9.071
+
+[torags_platelegs_noted]
+id = 4752
+
+[veracs_helm]
+id = 4753
+price = 1800000
+limit = 10
+charges = 1
+degrade = "veracs_helm_100"
+deplete = "combat"
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Verac the Defiled's helm."
+weight = 1.36
+
+[veracs_helm_noted]
+id = 4754
+
+[veracs_flail]
+id = 4755
+price = 161600
+limit = 10
+charges = 1
+degrade = "veracs_flail_100"
+deplete = "combat"
+weapon_type = "veracs_flail"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Verac the Defiled's Flail."
+weight = 2.267
+
+[veracs_flail_noted]
+id = 4756
+
+[veracs_brassard]
+id = 4757
+price = 286600
+limit = 10
+charges = 1
+degrade = "veracs_brassard_100"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+examine = "Verac The Defiled's Brassard."
+weight = 4.989
+
+[veracs_brassard_noted]
+id = 4758
+
+[veracs_plateskirt]
+id = 4759
+price = 679400
+limit = 10
+charges = 1
+degrade = "veracs_plateskirt_100"
+deplete = "combat"
+aka = ["veracs_skirt"]
+slot = "Legs"
+material = "metal"
+examine = "Verac the Defiled's plate skirt."
+weight = 4.535
+
+[veracs_plateskirt_noted]
+id = 4760
+
+[ahrims_hood_100]
+id = 4856
+limit = 10
+weight = 0.907
+charges = 22500
+degrade = "ahrims_hood_75"
+deplete = "combat"
+slot = "Hat"
+type = "Hair"
+examine = "Ahrim The Blighted's Hood."
+
+[ahrims_hood_75]
+clone = "ahrims_hood_100"
+id = 4857
+degrade = "ahrims_hood_50"
+
+[ahrims_hood_50]
+clone = "ahrims_hood_100"
+id = 4858
+degrade = "ahrims_hood_25"
+
+[ahrims_hood_25]
+clone = "ahrims_hood_100"
+id = 4859
+degrade = "ahrims_hood_broken"
+
+[ahrims_hood_broken]
+id = 4860
+price = 45100
+limit = 10
+slot = "Hat"
+type = "Hair"
+examine = "Ahrim The Blighted's Hood."
+weight = 0.907
+
+[ahrims_hood_broken_noted]
+id = 4861
+
+[ahrims_staff_100]
+id = 4862
+limit = 10
+weight = 2.267
+charges = 22500
+degrade = "ahrims_staff_75"
+deplete = "combat"
+slot = "Weapon"
+type = "TwoHanded"
+category = "staff"
+examine = "Ahrim the Blighted's quarterstaff."
+
+[ahrims_staff_75]
+clone = "ahrims_staff_100"
+id = 4863
+degrade = "ahrims_staff_50"
+
+[ahrims_staff_50]
+clone = "ahrims_staff_100"
+id = 4864
+degrade = "ahrims_staff_25"
+
+[ahrims_staff_25]
+clone = "ahrims_staff_100"
+id = 4865
+degrade = "ahrims_staff_broken"
+
+[ahrims_staff_broken]
+id = 4866
+price = 50900
+limit = 10
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Ahrim the Blighted's quarterstaff."
+weight = 2.267
+
+[ahrims_staff_broken_noted]
+id = 4867
+
+[ahrims_robe_top_100]
+id = 4868
+limit = 10
+weight = 4.535
+charges = 22500
+degrade = "ahrims_robe_top_75"
+deplete = "combat"
+slot = "Chest"
+examine = "Ahrim the Blighted's armoured robe top."
+
+[ahrims_robe_top_75]
+clone = "ahrims_robe_top_100"
+id = 4869
+degrade = "ahrims_robe_top_50"
+
+[ahrims_robe_top_50]
+clone = "ahrims_robe_top_100"
+id = 4870
+degrade = "ahrims_robe_top_25"
+
+[ahrims_robe_top_25]
+clone = "ahrims_robe_top_100"
+id = 4871
+degrade = "ahrims_robe_top_broken"
+
+[ahrims_robe_top_broken]
+id = 4872
+price = 1300000
+limit = 10
+weight = 4.535
+slot = "Chest"
+examine = "Ahrim the Blighted's armoured robe top."
+
+[ahrims_robe_top_broken_noted]
+id = 4873
+
+[ahrims_robe_skirt_100]
+id = 4874
+limit = 10
+weight = 11.339
+charges = 22500
+degrade = "ahrims_robe_skirt_75"
+deplete = "combat"
+slot = "Legs"
+examine = "Ahrim the Blighted's armoured robe skirt."
+
+[ahrims_robe_skirt_75]
+clone = "ahrims_robe_skirt_100"
+id = 4875
+degrade = "ahrims_robe_skirt_50"
+
+[ahrims_robe_skirt_50]
+clone = "ahrims_robe_skirt_100"
+id = 4876
+degrade = "ahrims_robe_skirt_25"
+
+[ahrims_robe_skirt_25]
+clone = "ahrims_robe_skirt_100"
+id = 4877
+degrade = "ahrims_robe_skirt_broken"
+
+[ahrims_robe_skirt_broken]
+id = 4878
+price = 2100000
+limit = 10
+weight = 11.339
+slot = "Legs"
+examine = "Ahrim the Blighted's armoured robe skirt."
+
+[ahrims_robe_skirt_broken_noted]
+id = 4879
+
+[dharoks_helm_100]
+id = 4880
+limit = 10
+weight = 1.814
+charges = 22500
+degrade = "dharoks_helm_75"
+deplete = "combat"
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "Dharok The Wretched's Helmet"
+
+[dharoks_helm_75]
+clone = "dharoks_helm_100"
+id = 4881
+degrade = "dharoks_helm_50"
+
+[dharoks_helm_50]
+clone = "dharoks_helm_100"
+id = 4882
+degrade = "dharoks_helm_25"
+
+[dharoks_helm_25]
+clone = "dharoks_helm_100"
+id = 4883
+degrade = "dharoks_helm_broken"
+
+[dharoks_helm_broken]
+id = 4884
+price = 3000000
+limit = 10
+weight = 1.814
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "Dharok The Wretched's Helmet"
+
+[dharoks_helm_broken_noted]
+id = 4885
+
+[dharoks_greataxe_100]
+id = 4886
+limit = 10
+weight = 3.175
+charges = 22500
+degrade = "dharoks_greataxe_75"
+deplete = "combat"
+weapon_type = "dharoks_greataxe"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Dharok the Wretched's Greataxe."
+
+[dharoks_greataxe_75]
+clone = "dharoks_greataxe_100"
+id = 4887
+degrade = "dharoks_greataxe_50"
+
+[dharoks_greataxe_50]
+clone = "dharoks_greataxe_100"
+id = 4888
+degrade = "dharoks_greataxe_25"
+
+[dharoks_greataxe_25]
+clone = "dharoks_greataxe_100"
+id = 4889
+degrade = "dharoks_greataxe_broken"
+
+[dharoks_greataxe_broken]
+id = 4890
+price = 629200
+limit = 10
+tradeable = false
+weight = 3.175
+slot = "Weapon"
+kept = "Reclaim"
+type = "TwoHanded"
+examine = "Dharok the Wretched's greataxe."
+
+[dharoks_greataxe_broken_noted]
+id = 4891
+
+[dharoks_platebody_100]
+id = 4892
+limit = 10
+weight = 9.979
+charges = 22500
+degrade = "dharoks_platebody_75"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+examine = "Dharok the Wretched's platebody."
+
+[dharoks_platebody_75]
+clone = "dharoks_platebody_100"
+id = 4893
+degrade = "dharoks_platebody_50"
+
+[dharoks_platebody_50]
+clone = "dharoks_platebody_100"
+id = 4894
+degrade = "dharoks_platebody_25"
+
+[dharoks_platebody_25]
+clone = "dharoks_platebody_100"
+id = 4895
+degrade = "dharoks_platebody_broken"
+
+[dharoks_platebody_broken]
+id = 4896
+price = 596700
+limit = 10
+bank_stacks = false
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "Dharok the Wretched's platebody."
+
+[dharoks_platebody_broken_noted]
+id = 4897
+
+[dharoks_platelegs_100]
+id = 4898
+limit = 10
+weight = 9.071
+charges = 22500
+degrade = "dharoks_platelegs_75"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "Dharok the wretched's plate leg armour."
+
+[dharoks_platelegs_75]
+clone = "dharoks_platelegs_100"
+id = 4899
+degrade = "dharoks_platelegs_50"
+
+[dharoks_platelegs_50]
+clone = "dharoks_platelegs_100"
+id = 4900
+degrade = "dharoks_platelegs_25"
+
+[dharoks_platelegs_25]
+clone = "dharoks_platelegs_100"
+id = 4901
+degrade = "dharoks_platelegs_broken"
+
+[dharoks_platelegs_broken]
+id = 4902
+price = 1000000
+limit = 10
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Dharok the wretched's plate leg armour."
+
+[dharoks_platelegs_broken_noted]
+id = 4903
+
+[guthans_helm_100]
+id = 4904
+limit = 10
+weight = 2.721
+charges = 22500
+degrade = "guthans_helm_75"
+deplete = "combat"
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Guthan the Infested's helm."
+
+[guthans_helm_75]
+clone = "guthans_helm_100"
+id = 4905
+degrade = "guthans_helm_50"
+
+[guthans_helm_50]
+clone = "guthans_helm_100"
+id = 4906
+degrade = "guthans_helm_25"
+
+[guthans_helm_25]
+clone = "guthans_helm_100"
+id = 4907
+degrade = "guthans_helm_broken"
+
+[guthans_helm_broken]
+id = 4908
+price = 730200
+limit = 10
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Guthan the Infested's helm."
+
+[guthans_helm_broken_noted]
+id = 4909
+
+[guthans_warspear_100]
+id = 4910
+limit = 10
+weight = 2.267
+charges = 22500
+degrade = "guthans_warspear_75"
+deplete = "combat"
+weapon_type = "guthans_warspear"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Guthan The Infested's Warspear."
+
+[guthans_warspear_75]
+clone = "guthans_warspear_100"
+id = 4911
+degrade = "guthans_warspear_50"
+
+[guthans_warspear_50]
+clone = "guthans_warspear_100"
+id = 4912
+degrade = "guthans_warspear_25"
+
+[guthans_warspear_25]
+clone = "guthans_warspear_100"
+id = 4913
+degrade = "guthans_warspear_broken"
+
+[guthans_warspear_broken]
+id = 4914
+price = 590200
+limit = 10
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Guthan The Infested's Warspear."
+weight = 2.267
+
+[guthans_warspear_broken_noted]
+id = 4915
+
+[guthans_platebody_100]
+id = 4916
+limit = 10
+weight = 9.979
+charges = 22500
+degrade = "guthans_platebody_75"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+destroy = "If you drop this item it will break, are you sure you want to drop it?"
+examine = "Guthan the Infested's platebody armour."
+
+[guthans_platebody_75]
+clone = "guthans_platebody_100"
+id = 4917
+degrade = "guthans_platebody_50"
+
+[guthans_platebody_50]
+clone = "guthans_platebody_100"
+id = 4918
+degrade = "guthans_platebody_25"
+
+[guthans_platebody_25]
+clone = "guthans_platebody_100"
+id = 4919
+degrade = "guthans_platebody_broken"
+
+[guthans_platebody_broken]
+id = 4920
+price = 363200
+limit = 10
+weight = 9.979
+slot = "Chest"
+material = "metal"
+destroy = "If you drop this item it will break, are you sure you want to drop it?"
+examine = "Guthan the Infested's platebody armour."
+
+[guthans_platebody_broken_noted]
+id = 4921
+
+[guthans_chainskirt_100]
+id = 4922
+limit = 10
+weight = 8.164
+charges = 22500
+degrade = "guthans_chainskirt_75"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "Guthan the Infested's chainskirt."
+
+[guthans_chainskirt_75]
+clone = "guthans_chainskirt_100"
+id = 4923
+degrade = "guthans_chainskirt_50"
+
+[guthans_chainskirt_50]
+clone = "guthans_chainskirt_100"
+id = 4924
+degrade = "guthans_chainskirt_25"
+
+[guthans_chainskirt_25]
+clone = "guthans_chainskirt_100"
+id = 4925
+degrade = "guthans_chainskirt_broken"
+
+[guthans_chainskirt_broken]
+id = 4926
+price = 179900
+limit = 10
+weight = 8.164
+slot = "Legs"
+material = "metal"
+examine = "Guthan the Infested's chainskirt."
+
+[guthans_chainskirt_broken_noted]
+id = 4927
+
+[karils_coif_100]
+id = 4928
+limit = 10
+weight = 0.907
+charges = 22500
+degrade = "karils_coif_75"
+deplete = "combat"
+slot = "Hat"
+type = "FullFace"
+material = "leather"
+examine = "Karil the Tainted's coif."
+
+[karils_coif_75]
+clone = "karils_coif_100"
+id = 4929
+degrade = "karils_coif_50"
+
+[karils_coif_50]
+clone = "karils_coif_100"
+id = 4930
+degrade = "karils_coif_25"
+
+[karils_coif_25]
+clone = "karils_coif_100"
+id = 4931
+degrade = "karils_coif_broken"
+
+[karils_coif_broken]
+id = 4932
+price = 8114
+limit = 10
+weight = 0.907
+slot = "Hat"
+type = "FullFace"
+material = "leather"
+examine = "Karil the Tainted's coif."
+
+[karils_coif_broken_noted]
+id = 4933
+
+[karils_crossbow_100]
+id = 4934
+limit = 10
+attack_range = 8
+weight = 3.628
+charges = 22500
+degrade = "karils_crossbow_75"
+deplete = "combat"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Karil the Tainted's repeating crossbow."
+
+[karils_crossbow_75]
+clone = "karils_crossbow_100"
+id = 4935
+degrade = "karils_crossbow_50"
+
+[karils_crossbow_50]
+clone = "karils_crossbow_100"
+id = 4936
+degrade = "karils_crossbow_25"
+
+[karils_crossbow_25]
+clone = "karils_crossbow_100"
+id = 4937
+degrade = "karils_crossbow_broken"
+
+[karils_crossbow_broken]
+id = 4938
+price = 102400
+limit = 10
+attack_range = 8
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Karil the Tainted's repeating crossbow."
+weight = 3.628
+
+[karils_crossbow_broken_noted]
+id = 4939
+
+[karils_top_100]
+id = 4940
+limit = 10
+weight = 6.803
+charges = 22500
+degrade = "karils_top_75"
+deplete = "combat"
+slot = "Chest"
+material = "leather"
+examine = "Karil the Tainted's leatherbody."
+
+[karils_top_75]
+clone = "karils_top_100"
+id = 4941
+degrade = "karils_top_50"
+
+[karils_top_50]
+clone = "karils_top_100"
+id = 4942
+degrade = "karils_top_25"
+
+[karils_top_25]
+clone = "karils_top_100"
+id = 4943
+degrade = "karils_top_broken"
+
+[karils_top_broken]
+id = 4944
+price = 3900000
+limit = 10
+weight = 6.803
+slot = "Chest"
+material = "leather"
+examine = "Karil the Tainted's leatherbody."
+
+[karils_top_broken_noted]
+id = 4945
+
+[karils_skirt_100]
+id = 4946
+limit = 10
+weight = 5.443
+charges = 22500
+degrade = "karils_skirt_75"
+deplete = "combat"
+slot = "Legs"
+material = "leather"
+examine = "Karil the Tainted's leather skirt."
+
+[karils_skirt_75]
+clone = "karils_skirt_100"
+id = 4947
+degrade = "karils_skirt_50"
+
+[karils_skirt_50]
+clone = "karils_skirt_100"
+id = 4948
+degrade = "karils_skirt_25"
+
+[karils_skirt_25]
+clone = "karils_skirt_100"
+id = 4949
+degrade = "karils_skirt_broken"
+
+[karils_skirt_broken]
+id = 4950
+price = 376900
+limit = 10
+weight = 5.443
+slot = "Legs"
+material = "leather"
+examine = "Karil the Tainted's leather skirt."
+
+[karils_skirt_broken_noted]
+id = 4951
+
+[torags_helm_100]
+id = 4952
+limit = 10
+weight = 2.721
+charges = 22500
+degrade = "torags_helm_75"
+deplete = "combat"
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Torag the Corrupted's helm."
+
+[torags_helm_75]
+clone = "torags_helm_100"
+id = 4953
+degrade = "torags_helm_50"
+
+[torags_helm_50]
+id = 4954
+degrade = "torags_helm_25"
+
+[torags_helm_25]
+id = 4955
+degrade = "torags_helm_broken"
+
+[torags_helm_broken]
+id = 4956
+price = 165500
+limit = 10
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Torag the Corrupted's helm."
+
+[torags_helm_broken_noted]
+id = 4957
+
+[torags_hammers_100]
+id = 4958
+limit = 10
+weight = 3.628
+charges = 22500
+degrade = "torags_hammers_75"
+deplete = "combat"
+weapon_type = "torags_hammers"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Torag the Corrupted's twin hammers."
+
+[torags_hammers_75]
+clone = "torags_hammers_100"
+id = 4959
+degrade = "torags_hammers_50"
+
+[torags_hammers_50]
+clone = "torags_hammers_100"
+id = 4960
+degrade = "torags_hammers_25"
+
+[torags_hammers_25]
+clone = "torags_hammers_100"
+id = 4961
+degrade = "torags_hammers_broken"
+
+[torags_hammers_broken]
+id = 4962
+price = 95000
+limit = 10
+weight = 3.628
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Torag the Corrupted's twin hammers."
+
+[torags_hammers_broken_noted]
+id = 4963
+
+[torags_platebody_100]
+id = 4964
+limit = 10
+weight = 9.979
+charges = 22500
+degrade = "torags_platebody_75"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+examine = "Torag the Corrupted's plate body armour."
+
+[torags_platebody_75]
+clone = "torags_platebody_100"
+id = 4965
+degrade = "torags_platebody_50"
+
+[torags_platebody_50]
+clone = "torags_platebody_100"
+id = 4966
+degrade = "torags_platebody_25"
+
+[torags_platebody_25]
+clone = "torags_platebody_100"
+id = 4967
+degrade = "torags_platebody_broken"
+
+[torags_platebody_broken]
+id = 4968
+price = 426933
+limit = 10
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "Torag the Corrupted's plate body armour."
+
+[torags_platebody_broken_noted]
+id = 4969
+
+[torags_platelegs_100]
+id = 4970
+limit = 10
+charges = 22500
+degrade = "torags_platelegs_75"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "Torag the Corrupted's plate leg armour."
+weight = 9.071
+
+[torags_platelegs_75]
+clone = "torags_platelegs_100"
+id = 4971
+degrade = "torags_platelegs_50"
+
+[torags_platelegs_50]
+clone = "torags_platelegs_100"
+id = 4972
+degrade = "torags_platelegs_25"
+
+[torags_platelegs_25]
+clone = "torags_platelegs_100"
+id = 4973
+degrade = "torags_platelegs_broken"
+
+[torags_platelegs_broken]
+id = 4974
+price = 575800
+limit = 10
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Torag the Corrupted's plate leg armour."
+
+[torags_platelegs_broken_noted]
+id = 4975
+
+[veracs_helm_100]
+id = 4976
+limit = 10
+weight = 1.36
+charges = 22500
+degrade = "veracs_helm_75"
+deplete = "combat"
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Verac the Defiled's helm."
+
+[veracs_helm_75]
+clone = "veracs_helm_100"
+id = 4977
+degrade = "veracs_helm_50"
+
+[veracs_helm_50]
+clone = "veracs_helm_100"
+id = 4978
+degrade = "veracs_helm_25"
+
+[veracs_helm_25]
+clone = "veracs_helm_100"
+id = 4979
+degrade = "veracs_helm_broken"
+
+[veracs_helm_broken]
+id = 4980
+price = 1700000
+limit = 10
+weight = 1.36
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Verac the Defiled's helm."
+
+[veracs_helm_broken_noted]
+id = 4981
+
+[veracs_flail_100]
+id = 4982
+limit = 10
+weight = 2.267
+charges = 22500
+degrade = "veracs_flail_75"
+deplete = "combat"
+weapon_type = "veracs_flail"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Verac the Defiled's Flail."
+
+[veracs_flail_75]
+clone = "veracs_flail_100"
+id = 4983
+degrade = "veracs_flail_50"
+
+[veracs_flail_50]
+clone = "veracs_flail_100"
+id = 4984
+degrade = "veracs_flail_25"
+
+[veracs_flail_25]
+clone = "veracs_flail_100"
+id = 4985
+degrade = "veracs_flail_broken"
+
+[veracs_flail_broken]
+id = 4986
+price = 97900
+limit = 10
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Verac the Defiled's Flail."
+
+[veracs_flail_0_noted]
+id = 4987
+
+[veracs_brassard_100]
+id = 4988
+limit = 10
+weight = 4.989
+charges = 22500
+degrade = "veracs_brassard_75"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+examine = "Verac The Defiled's Brassard."
+
+[veracs_brassard_75]
+clone = "veracs_brassard_100"
+id = 4989
+degrade = "veracs_brassard_50"
+
+[veracs_brassard_50]
+clone = "veracs_brassard_100"
+id = 4990
+degrade = "veracs_brassard_25"
+
+[veracs_brassard_25]
+clone = "veracs_brassard_100"
+id = 4991
+degrade = "veracs_brassard_broken"
+
+[veracs_brassard_broken]
+id = 4992
+price = 221900
+limit = 10
+weight = 4.989
+slot = "Chest"
+material = "metal"
+examine = "Verac The Defiled's Brassard."
+
+[veracs_brassard_broken_noted]
+id = 4993
+
+[veracs_plateskirt_100]
+id = 4994
+limit = 10
+weight = 4.535
+charges = 22500
+degrade = "veracs_plateskirt_75"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "Verac the Defiled's plate skirt."
+
+[veracs_plateskirt_75]
+clone = "veracs_plateskirt_100"
+id = 4995
+degrade = "veracs_plateskirt_50"
+
+[veracs_plateskirt_50]
+clone = "veracs_plateskirt_100"
+id = 4996
+degrade = "veracs_plateskirt_25"
+
+[veracs_plateskirt_25]
+clone = "veracs_plateskirt_100"
+id = 4997
+degrade = "veracs_plateskirt_broken"
+
+[veracs_plateskirt_broken]
+id = 4998
+price = 620200
+limit = 10
+weight = 4.535
+slot = "Legs"
+material = "metal"
+examine = "Verac the Defiled's plate skirt."
+
+[veracs_plateskirt_broken_noted]
+id = 4999

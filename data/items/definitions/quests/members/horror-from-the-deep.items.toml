@@ -1,0 +1,165 @@
+[saradomin_page_1]
+id = 3827
+price = 1200000
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[saradomin_page_2]
+id = 3828
+price = 651900
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[saradomin_page_3]
+id = 3829
+price = 446900
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[saradomin_page_4]
+id = 3830
+price = 542700
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[zamorak_page_1]
+id = 3831
+price = 5200000
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[zamorak_page_2]
+id = 3832
+price = 3600000
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[zamorak_page_3]
+id = 3833
+price = 3400000
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[zamorak_page_4]
+id = 3834
+price = 5100000
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[guthix_page_1]
+id = 3835
+price = 882900
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[guthix_page_2]
+id = 3836
+price = 940400
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[guthix_page_3]
+id = 3837
+price = 872000
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[guthix_page_4]
+id = 3838
+price = 818400
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[damaged_book_saradomin]
+id = 3839
+tradeable = false
+weight = 1.0
+slot = "Shield"
+destroy = "Talk to Jossik at the lighthouse west of Rellekka for another copy."
+examine = "An incomplete book of Saradomin."
+kept = "Wilderness"
+
+[saradomins_book_of_wisdom]
+id = 3840
+tradeable = false
+bank_stacks = false
+weight = 1.0
+slot = "Shield"
+destroy = "This book can be reclaimed from the bookcase in your player-owned house for a fee, are you sure you wish to destroy it?"
+examine = "The holy book of Saradomin."
+kept = "Reclaim"
+
+[damaged_book_zamorak]
+id = 3841
+tradeable = false
+weight = 1.0
+slot = "Shield"
+destroy = "Talk to Jossik at the lighthouse west of Rellekka for another copy."
+examine = "An incomplete book of Zamorak."
+kept = "Wilderness"
+
+[zamoraks_book_of_chaos]
+id = 3842
+tradeable = false
+bank_stacks = false
+weight = 1.0
+slot = "Shield"
+destroy = "This book can be reclaimed from the bookcase in your player-owned house for a fee, are you sure you wish to destroy it?"
+examine = "The holy book of Zamorak."
+kept = "Reclaim"
+
+[damaged_book_guthix]
+id = 3843
+tradeable = false
+weight = 1.0
+slot = "Shield"
+destroy = "Talk to Jossik at the lighthouse west of Rellekka for another copy."
+examine = "An incomplete book of Guthix."
+kept = "Wilderness"
+
+[guthixs_book_of_balance]
+id = 3844
+tradeable = false
+bank_stacks = false
+weight = 1.0
+slot = "Shield"
+destroy = "This book can be reclaimed from the bookcase in your player-owned house for a fee, are you sure you wish to destroy it?"
+examine = "The holy book of Guthix."
+kept = "Reclaim"
+
+[journal_horror_from_the_deep]
+id = 3845
+tradeable = false
+weight = 0.51
+examine = "A daily journal."
+kept = "Wilderness"
+
+[diary_horror_from_the_deep]
+id = 3846
+tradeable = false
+weight = 0.51
+examine = "Someone's Diary."
+kept = "Wilderness"
+
+[manual]
+id = 3847
+tradeable = false
+weight = 0.51
+examine = "Looks like some kind of manual."
+kept = "Wilderness"
+
+[lighthouse_key]
+id = 3848
+tradeable = false
+weight = 0.01
+examine = "The key to the front door of the lighthouse."
+use = "Quest"
+kept = "Wilderness"
+
+[rusty_casket]
+id = 3849
+tradeable = false
+weight = 5.0
+examine = "Looks old and rusty..."
+use = "Quest"
+kept = "Wilderness"

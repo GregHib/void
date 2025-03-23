@@ -1,0 +1,263 @@
+[oak_seedling]
+id = 5358
+tradeable = false
+weight = 0.907
+examine = "An acorn has been sown in this plant pot."
+kept = "Reclaim"
+
+[willow_seedling]
+id = 5359
+tradeable = false
+weight = 0.907
+examine = "A willow tree seed has been sown in this plant pot."
+kept = "Reclaim"
+
+[maple_seedling]
+id = 5360
+tradeable = false
+weight = 0.907
+examine = "A maple tree seed has been sown in this plant pot."
+kept = "Reclaim"
+
+[yew_seedling]
+id = 5361
+tradeable = false
+weight = 0.907
+examine = "A yew tree seed has been sown in this plant pot."
+kept = "Reclaim"
+
+[magic_seedling]
+id = 5362
+tradeable = false
+weight = 0.907
+examine = "A magic tree seed has been sown in this plant pot."
+kept = "Reclaim"
+
+[spirit_seedling]
+id = 5363
+tradeable = false
+weight = 0.907
+examine = "A spirit tree seed has been sown in this plant pot."
+kept = "Reclaim"
+
+[oak_seedling_w]
+id = 5364
+tradeable = false
+weight = 0.907
+examine = "An acorn has been sown and watered in this plant pot."
+kept = "Reclaim"
+
+[willow_seedling_w]
+id = 5365
+tradeable = false
+weight = 0.907
+examine = "A willow tree seed has been sown and watered in this plant pot."
+kept = "Reclaim"
+
+[maple_seedling_w]
+id = 5366
+tradeable = false
+weight = 0.907
+examine = "A maple tree seed has been sown and watered in this plant pot."
+kept = "Reclaim"
+
+[yew_seedling_w]
+id = 5367
+tradeable = false
+weight = 0.907
+examine = "A yew tree seed has been sown and watered in this plant pot."
+kept = "Reclaim"
+
+[magic_seedling_w]
+id = 5368
+tradeable = false
+weight = 0.907
+examine = "A magic tree seed has been sown and watered in this plant pot."
+kept = "Reclaim"
+
+[spirit_seedling_w]
+id = 5369
+tradeable = false
+weight = 0.907
+examine = "A spirit tree seed has been sown and watered in this plant pot."
+kept = "Reclaim"
+
+[oak_sapling]
+id = 5370
+tradeable = false
+weight = 0.907
+examine = "This sapling is ready to be replanted in a tree patch."
+kept = "Reclaim"
+
+[willow_sapling]
+clone = "oak_sapling"
+id = 5371
+
+[maple_sapling]
+clone = "oak_sapling"
+id = 5372
+
+[yew_sapling]
+clone = "oak_sapling"
+id = 5373
+
+[magic_sapling]
+clone = "oak_sapling"
+id = 5374
+
+[spirit_sapling]
+id = 5375
+tradeable = false
+weight = 0.907
+examine = "This sapling is ready to be replanted in a Spirit patch."
+kept = "Reclaim"
+
+[apple_seedling]
+id = 5480
+tradeable = false
+weight = 0.907
+examine = "An apple tree seed has been sown in this plant pot."
+kept = "Reclaim"
+
+[banana_seedling]
+id = 5481
+tradeable = false
+weight = 0.907
+examine = "A banana tree seed has been sown in this plant pot."
+kept = "Reclaim"
+
+[orange_seedling]
+id = 5482
+tradeable = false
+weight = 0.907
+examine = "An orange tree seed has been sown in this plant pot."
+kept = "Reclaim"
+
+[curry_seedling]
+id = 5483
+tradeable = false
+weight = 0.907
+examine = "A curry tree seed has been sown in this plant pot."
+kept = "Reclaim"
+
+[pineapple_seedling]
+id = 5484
+tradeable = false
+weight = 0.907
+examine = "A pineapple plant seed has been sown in this plant pot."
+kept = "Reclaim"
+
+[papaya_seedling]
+id = 5485
+tradeable = false
+weight = 0.907
+examine = "A papaya tree seed has been sown in this plant pot."
+kept = "Reclaim"
+
+[palm_seedling]
+id = 5486
+tradeable = false
+weight = 0.907
+examine = "A palm tree seed has been sown in this plant pot."
+kept = "Reclaim"
+
+[calquat_seedling]
+id = 5487
+tradeable = false
+weight = 0.907
+examine = "A calquat tree seed has been sown in this plant pot."
+kept = "Reclaim"
+
+[apple_seedling_w]
+id = 5488
+tradeable = false
+weight = 0.907
+examine = "An apple tree seed has been sown and watered in this plant pot."
+kept = "Reclaim"
+
+[banana_seedling_w]
+id = 5489
+tradeable = false
+weight = 0.907
+examine = "A banana tree seed has been sown and watered in this plant pot."
+kept = "Reclaim"
+
+[orange_seedling_w]
+id = 5490
+tradeable = false
+weight = 0.907
+examine = "An orange tree seed has been sown and watered in this plant pot."
+kept = "Reclaim"
+
+[curry_seedling_w]
+id = 5491
+tradeable = false
+weight = 0.907
+examine = "A curry tree seed has been sown and watered in this plant pot."
+kept = "Reclaim"
+
+[pineapple_seedling_w]
+id = 5492
+tradeable = false
+weight = 0.907
+examine = "A pineapple plant seed has been sown and watered in this plant pot."
+kept = "Reclaim"
+
+[papaya_seedling_w]
+id = 5493
+tradeable = false
+weight = 0.907
+examine = "A papaya tree seed has been sown and watered in this plant pot."
+kept = "Reclaim"
+
+[palm_seedling_w]
+id = 5494
+tradeable = false
+weight = 0.907
+examine = "A palm tree seed has been sown and watered in this plant pot."
+kept = "Reclaim"
+
+[calquat_seedling_w]
+id = 5495
+tradeable = false
+weight = 0.907
+examine = "A calquat tree seed has been sown and watered in this plant pot."
+kept = "Reclaim"
+
+[apple_sapling]
+id = 5496
+tradeable = false
+weight = 0.907
+examine = "This sapling is ready to be replanted in a fruit tree patch."
+kept = "Reclaim"
+
+[banana_sapling]
+clone = "apple_sapling"
+id = 5497
+
+[orange_sapling]
+clone = "apple_sapling"
+id = 5498
+
+[curry_sapling]
+clone = "apple_sapling"
+id = 5499
+
+[pineapple_sapling]
+clone = "apple_sapling"
+id = 5500
+
+[papaya_sapling]
+clone = "apple_sapling"
+id = 5501
+
+[palm_sapling]
+clone = "apple_sapling"
+id = 5502
+
+[calquat_sapling]
+id = 5503
+tradeable = false
+weight = 0.907
+examine = "This sapling is ready to be replanted in a calquat tree patch."
+kept = "Reclaim"

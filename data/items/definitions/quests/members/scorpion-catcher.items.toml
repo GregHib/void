@@ -1,0 +1,51 @@
+[scorpion_cage]
+id = 456
+tradeable = false
+weight = 0.15
+destroy = "You will need to speak to Thormac to get another cage."
+examine = "It's empty!"
+use = "Quest"
+kept = "Wilderness"
+
+[scorpion_cage_taverley]
+id = 457
+tradeable = false
+weight = 0.175
+destroy = "You will need to speak to Thormac to get another cage and will have to recapture the scorpion."
+examine = "There is 1 scorpion inside."
+use = "Quest"
+kept = "Wilderness"
+
+[scorpion_cage_taverley_outpost]
+id = 458
+tradeable = false
+weight = 0.2
+destroy = "You will need to speak to Thormac to get another cage and will have to recapture the scorpions."
+examine = "There are 2 scorpions inside."
+use = "Quest"
+kept = "Wilderness"
+
+[scorpion_cage_taverley_monastery]
+clone = "scorpion_cage_taverley_outpost"
+id = 459
+
+[scorpion_cage_outpost]
+clone = "scorpion_cage_taverley"
+id = 460
+
+[scorpion_cage_outpost_monastery]
+clone = "scorpion_cage_taverley_outpost"
+id = 461
+
+[scorpion_cage_monastery]
+clone = "scorpion_cage_taverley"
+id = 462
+
+[scorpion_cage_full]
+id = 463
+tradeable = false
+weight = 0.225
+destroy = "You will need to speak to Thormac to get another cage and will have to recapture all the scorpions."
+examine = "There are 3 scorpions inside."
+use = "Quest"
+kept = "Wilderness"

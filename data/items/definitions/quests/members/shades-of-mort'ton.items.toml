@@ -1,0 +1,116 @@
+[diary_shades_of_mortton]
+id = 3395
+tradeable = false
+weight = 0.51
+examine = "A diary belonging to Herbi Flax."
+kept = "Wilderness"
+
+[loar_remains]
+id = 3396
+price = 37
+limit = 1000
+examine = "The remains of a deadly shade."
+
+[loar_remains_noted]
+id = 3397
+
+[phrin_remains]
+id = 3398
+price = 267
+limit = 1000
+examine = "The remains of a deadly shade."
+
+[phrin_remains_noted]
+id = 3399
+
+[riyl_remains]
+id = 3400
+price = 255
+limit = 1000
+weight = 1.36
+examine = "The remains of a deadly shade."
+
+[riyl_remains_noted]
+id = 3401
+
+[asyn_remains]
+id = 3402
+price = 1505
+limit = 1000
+examine = "The remains of a deadly shade."
+
+[asyn_remains_noted]
+id = 3403
+
+[fiyr_remains]
+id = 3404
+price = 3837
+limit = 1000
+examine = "The remains of a deadly shade."
+
+[fiyr_remains_noted]
+id = 3405
+
+[old_potion]
+id = 3406
+weight = 0.056
+examine = "Old and useless."
+
+[ash_potion_unf_noted]
+id = 3407
+
+[serum_207_4]
+id = 3408
+weight = 0.035
+excess = "serum_207_3"
+empty = "vial"
+examine = "4 doses serum 207 as described in Herbi Flax's diary."
+
+[serum_207_3]
+id = 3410
+weight = 0.03
+excess = "serum_207_2"
+empty = "vial"
+examine = "3 doses serum 207 as described in Herbi Flax's diary."
+
+[serum_207_2]
+id = 3412
+weight = 0.025
+excess = "serum_207_1"
+empty = "vial"
+examine = "2 doses serum 207 as described in Herbi Flax's diary."
+
+[serum_207_1]
+id = 3414
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "1 dose serum 207 as described in Herbi Flax's diary."
+
+[serum_208_4]
+id = 3416
+weight = 0.035
+excess = "serum_208_3"
+empty = "vial"
+examine = "4 doses permanent serum 208 as described in Herbi Flax's diary."
+
+[serum_208_3]
+id = 3417
+weight = 0.03
+excess = "serum_208_2"
+empty = "vial"
+examine = "3 doses permanent serum 208 as described in Herbi Flax's diary."
+
+[serum_208_2]
+id = 3418
+weight = 0.025
+excess = "serum_208_1"
+empty = "vial"
+examine = "2 doses permanent serum 208 as described in Herbi Flax's diary."
+
+[serum_208_1]
+id = 3419
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "1 dose permanent serum 208 as described in Herbi Flax's diary."

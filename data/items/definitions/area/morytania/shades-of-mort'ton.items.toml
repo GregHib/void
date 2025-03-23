@@ -1,0 +1,324 @@
+[limestone_brick]
+id = 3420
+price = 156
+limit = 10000
+weight = 1.36
+examine = "A well carved limestone brick."
+
+[limestone_brick_noted]
+id = 3421
+
+[olive_oil_4]
+id = 3422
+price = 341
+weight = 0.035
+excess = "olive_oil_3"
+empty = "vial"
+examine = "4 doses of olive oil."
+
+[olive_oil_4_noted]
+id = 3423
+
+[olive_oil_3]
+id = 3424
+price = 223
+weight = 0.03
+excess = "olive_oil_2"
+empty = "vial"
+examine = "3 doses of olive oil."
+
+[olive_oil_3_noted]
+id = 3425
+
+[olive_oil_2]
+id = 3426
+price = 156
+weight = 0.025
+excess = "olive_oil_1"
+empty = "vial"
+examine = "2 doses of olive oil."
+
+[olive_oil_2_noted]
+id = 3427
+
+[olive_oil_1]
+id = 3428
+price = 92
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "1 dose of olive oil."
+
+[olive_oil_1_noted]
+id = 3429
+
+[sacred_oil_4]
+id = 3430
+price = 2781
+weight = 0.035
+excess = "sacred_oil_3"
+empty = "vial"
+examine = "4 doses of sacred oil."
+
+[sacred_oil_4_noted]
+id = 3431
+
+[sacred_oil_3]
+id = 3432
+price = 2097
+weight = 0.03
+excess = "sacred_oil_2"
+empty = "vial"
+examine = "3 doses of sacred oil."
+
+[sacred_oil_3_noted]
+id = 3433
+
+[sacred_oil_2]
+id = 3434
+price = 1183
+weight = 0.025
+excess = "sacred_oil_1"
+empty = "vial"
+examine = "2 doses of sacred oil."
+
+[sacred_oil_2_noted]
+id = 3435
+
+[sacred_oil_1]
+id = 3436
+price = 1958
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "1 dose of sacred oil."
+
+[sacred_oil_1_noted]
+id = 3437
+
+[pyre_logs]
+id = 3438
+price = 989
+limit = 25000
+weight = 1.36
+examine = "Logs prepared with sacred oil for a funeral pyre."
+
+[pyre_logs_noted]
+id = 3439
+
+[oak_pyre_logs]
+id = 3440
+price = 931
+limit = 1000
+weight = 1.814
+examine = "Oak logs prepared with sacred oil for a funeral pyre."
+
+[oak_pyre_logs_noted]
+id = 3441
+
+[willow_pyre_logs]
+id = 3442
+price = 1041
+limit = 1000
+weight = 1.36
+examine = "Willow logs prepared with sacred oil for a funeral pyre."
+
+[willow_pyre_logs_noted]
+id = 3443
+
+[maple_pyre_logs]
+id = 3444
+price = 2488
+limit = 1000
+weight = 1.36
+examine = "Maple logs prepared with sacred oil for a funeral pyre."
+
+[maple_pyre_logs_noted]
+id = 3445
+
+[yew_pyre_logs]
+id = 3446
+price = 2723
+limit = 1000
+weight = 1.36
+examine = "Yew logs prepared with sacred oil for a funeral pyre."
+
+[yew_pyre_logs_noted]
+id = 3447
+
+[magic_pyre_logs]
+id = 3448
+price = 3364
+limit = 1000
+weight = 1.36
+examine = "Magic logs prepared with sacred oil for a funeral pyre."
+
+[magic_pyre_logs_noted]
+id = 3449
+
+[bronze_key_red]
+id = 3450
+tradeable = false
+weight = 0.01
+examine = "A bronze key with a blood-red painted eyelet."
+kept = "Reclaim"
+
+[bronze_key_brown]
+id = 3451
+tradeable = false
+weight = 0.01
+examine = "A bronze key with a brown painted eyelet."
+kept = "Reclaim"
+
+[bronze_key_crimson]
+id = 3452
+tradeable = false
+weight = 0.01
+examine = "A bronze key with a crimson painted eyelet."
+kept = "Reclaim"
+
+[bronze_key_black]
+id = 3453
+tradeable = false
+weight = 0.01
+examine = "A bronze key with a black painted eyelet."
+kept = "Reclaim"
+
+[bronze_key_purple]
+id = 3454
+tradeable = false
+weight = 0.01
+examine = "A bronze key with a purple painted eyelet."
+kept = "Reclaim"
+
+[steel_key_red]
+id = 3455
+tradeable = false
+weight = 0.01
+examine = "A steel key with a blood-red painted eyelet."
+kept = "Reclaim"
+
+[steel_key_brown]
+id = 3456
+tradeable = false
+weight = 0.01
+examine = "A steel key with a brown painted eyelet."
+kept = "Reclaim"
+
+[steel_key_crimson]
+id = 3457
+tradeable = false
+weight = 0.01
+examine = "A steel key with a crimson painted eyelet."
+kept = "Reclaim"
+
+[steel_key_black]
+id = 3458
+tradeable = false
+weight = 0.01
+examine = "A steel key with a black painted eyelet."
+kept = "Reclaim"
+
+[steel_key_purple]
+id = 3459
+tradeable = false
+weight = 0.01
+examine = "A steel key with a purple painted eyelet."
+kept = "Reclaim"
+
+[black_key_red]
+id = 3460
+tradeable = false
+weight = 0.01
+examine = "A black key with a blood-red painted eyelet."
+kept = "Reclaim"
+
+[black_key_brown]
+id = 3461
+tradeable = false
+weight = 0.01
+examine = "A black key with a brown painted eyelet."
+kept = "Reclaim"
+
+[black_key_crimson]
+id = 3462
+tradeable = false
+weight = 0.01
+examine = "A black key with a crimson painted eyelet."
+kept = "Reclaim"
+
+[black_key_black]
+id = 3463
+tradeable = false
+weight = 0.01
+examine = "A black key with a black painted eyelet."
+kept = "Reclaim"
+
+[black_key_purple]
+id = 3464
+tradeable = false
+weight = 0.01
+examine = "A black key with a purple painted eyelet."
+kept = "Reclaim"
+
+[silver_key_red]
+id = 3465
+tradeable = false
+weight = 0.01
+examine = "A silver key with a blood-red painted eyelet."
+kept = "Reclaim"
+
+[silver_key_brown]
+id = 3466
+tradeable = false
+weight = 0.01
+examine = "A silver key with a brown painted eyelet."
+kept = "Reclaim"
+
+[silver_key_crimson]
+id = 3467
+tradeable = false
+weight = 0.01
+examine = "A silver key with a crimson painted eyelet."
+kept = "Reclaim"
+
+[silver_key_black]
+id = 3468
+tradeable = false
+weight = 0.01
+examine = "A silver key with a black painted eyelet."
+kept = "Reclaim"
+
+[silver_key_purple]
+id = 3469
+tradeable = false
+weight = 0.01
+examine = "A silver key with a purple painted eyelet."
+kept = "Reclaim"
+
+[flamtaer_hammer]
+id = 3678
+tradeable = false
+weight = 1.36
+examine = "An exquisitely shaped tool specially designed for fixing temples."
+kept = "Reclaim"
+
+[teak_pyre_logs]
+id = 6211
+price = 2858
+limit = 1000
+weight = 1.36
+examine = "Teak logs prepared with sacred oil for a funeral pyre."
+
+[teak_pyre_logs_noted]
+id = 6212
+
+[mahogany_pyre_logs]
+id = 6213
+price = 2733
+limit = 1000
+weight = 1.36
+examine = "Mahogany logs prepared with sacred oil for a funeral pyre."
+
+[mahogany_pyre_logs_noted]
+id = 6214

@@ -1,0 +1,2626 @@
+[raw_ugthanki_meat]
+id = 1859
+price = 529
+limit = 1000
+weight = 0.8
+cooking = {
+  xp = 40.0,
+  chances = {
+    fire = "40-252",
+    range = "30-253",
+  },
+  cooked = "ugthanki_meat",
+}
+examine = "I need to cook this first."
+kept = "Wilderness"
+
+[raw_ugthanki_meat_noted]
+id = 1860
+
+[ugthanki_meat]
+id = 1861
+price = 697
+limit = 1000
+heals = 30
+weight = 0.6
+examine = "Freshly cooked ugthanki meat."
+kept = "Wilderness"
+
+[ugthanki_meat_noted]
+id = 1862
+
+[pitta_dough]
+id = 1863
+price = 89
+limit = 1000
+weight = 0.12
+cooking = {
+  level = 58,
+  xp = 40.0,
+  chances = {
+    range = "118-492"
+  },
+  cooked = "pitta_bread",
+  cooked_message = "You successfully bake some pitta bread.",
+  burnt = "burnt_pitta_bread",
+  burnt_message = "You accidentally burn the pitta dough.",
+}
+examine = "I need to cook this."
+
+[pitta_dough_noted]
+id = 1864
+
+[pitta_bread]
+id = 1865
+price = 24
+limit = 1000
+weight = 0.1
+examine = "Nicely baked pitta bread. Needs more ingredients to make a kebab."
+
+[pitta_bread_noted]
+id = 1866
+
+[burnt_pitta_bread]
+id = 1867
+examine = "It's all burnt."
+
+[burnt_pitta_bread_noted]
+id = 1868
+
+[chopped_tomato]
+id = 1869
+price = 83
+limit = 1000
+heals = 20
+weight = 0.2
+examine = "A mixture of tomatoes in a bowl."
+kept = "Wilderness"
+
+[chopped_tomato_noted]
+id = 1870
+
+[chopped_onion]
+id = 1871
+price = 113
+limit = 1000
+heals = 10
+weight = 0.2
+cooking = {
+  level = 42,
+  xp = 60.0,
+  chances = {
+    range = "35-322"
+  },
+  cooked = "fried_onions",
+  cooked_message = "You successfully fry the onion.",
+  burnt = "burnt_onion",
+  burnt_message = "You accidentally burn the onion.",
+}
+examine = "A mixture of onions in a bowl."
+
+[chopped_onion_noted]
+id = 1872
+
+[chopped_ugthanki]
+id = 1873
+weight = 0.2
+examine = "Strips of ugthanki meat in a bowl."
+
+[chopped_ugthanki_noted]
+id = 1874
+
+[onion_and_tomato]
+id = 1875
+price = 30
+limit = 1000
+heals = 20
+weight = 0.3
+examine = "A mixture of chopped onions and tomatoes in a bowl."
+
+[onion_and_tomato_noted]
+id = 1876
+
+[ugthanki_and_onion]
+id = 1877
+weight = 0.3
+examine = "A mixture of chopped onions and ugthanki meat in a bowl."
+use = "Removed"
+
+[ugthanki_and_onion_noted]
+id = 1878
+
+[ugthanki_and_tomato]
+id = 1879
+weight = 0.3
+examine = "A mixture of chopped tomatoes and ugthanki meat in a bowl."
+
+[ugthanki_and_tomato_noted]
+id = 1880
+
+[kebab_mix]
+id = 1881
+price = 412
+limit = 1000
+weight = 0.4
+examine = "A mixture of chopped tomatoes, onions and ugthanki meat in a bowl."
+
+[kebab_mix_noted]
+id = 1882
+
+[ugthanki_kebab_smelling]
+id = 1883
+price = 1946
+limit = 1000
+heals = 0
+weight = 0.5
+examine = "A strange smelling kebab made from ugthanki meat."
+
+[ugthanki_kebab_noted]
+id = 1884
+
+[ugthanki_kebab]
+id = 1885
+price = 438
+limit = 1000
+heals = 190
+weight = 0.5
+examine = "A fresh kebab made from ugthanki meat."
+
+[ugthanki_kebab_noted_2]
+id = 1886
+
+[cake_tin]
+id = 1887
+price = 39
+limit = 100
+weight = 0.1
+examine = "Useful for baking cakes."
+
+[cake_tin_noted]
+id = 1888
+
+[uncooked_cake]
+id = 1889
+price = 448
+limit = 1000
+weight = 0.5
+cooking = {
+  level = 40,
+  xp = 180.0,
+  chances = {
+    range = "38-332",
+  },
+  cooked = "cake",
+  cooked_message = "You successfully bake a cake.",
+  burnt = "burnt_cake",
+  burnt_message = "You accidentally burn the uncooked cake.",
+  leftover = "cake_tin",
+}
+examine = "Now all I need to do is cook it."
+
+[uncooked_cake_noted]
+id = 1890
+
+[cake]
+id = 1891
+price = 87
+limit = 1000
+weight = 0.3
+heals = 40
+excess = "cake_two_thirds"
+eat_message = "You eat part of the cake."
+examine = "A plain sponge cake."
+
+[cake_noted]
+id = 1892
+
+[cake_two_thirds]
+id = 1893
+price = 35
+limit = 1000
+weight = 0.2
+heals = 40
+excess = "slice_of_cake"
+eat_message = "You eat part of the cake."
+examine = "Someone has eaten a big chunk of this cake."
+
+[cake_two_thirds_noted]
+id = 1894
+
+[slice_of_cake]
+id = 1895
+price = 26
+limit = 1000
+weight = 0.1
+heals = 40
+eat_message = "You eat the remaining part of the cake."
+examine = "I'd rather have a whole cake."
+
+[slice_of_cake_noted]
+id = 1896
+
+[chocolate_cake]
+id = 1897
+price = 413
+limit = 1000
+weight = 0.3
+heals = 50
+excess = "chocolate_cake_two_thirds"
+eat_message = "You eat part of the cake."
+examine = "This looks very tasty."
+
+[chocolate_cake_noted]
+id = 1898
+
+[chocolate_cake_two_thirds]
+id = 1899
+price = 184
+limit = 1000
+weight = 0.2
+heals = 50
+excess = "chocolate_slice"
+eat_message = "You eat part of the cake."
+examine = "Someone has eaten a big chunk of this cake."
+
+[chocolate_cake_two_thirds_noted]
+id = 1900
+
+[chocolate_slice]
+id = 1901
+price = 13
+limit = 1000
+weight = 0.1
+heals = 50
+eat_message = "You eat the remaining part of the cake."
+examine = "I'd rather have a whole cake."
+
+[chocolate_slice_noted]
+id = 1902
+
+[burnt_cake]
+id = 1903
+examine = "Argh, what a mess! This is a terrible failure!"
+
+[burnt_cake_noted]
+id = 1904
+
+[asgarnian_ale]
+id = 1905
+price = 128
+limit = 100
+heals = 20
+excess = "beer_glass"
+weight = 0.55
+examine = "Probably the finest readily-available ale in Asgarnia."
+
+[asgarnian_ale_noted]
+id = 1906
+
+[wizards_mind_bomb]
+id = 1907
+price = 109
+limit = 100
+heals = 10
+excess = "beer_glass"
+weight = 0.55
+examine = "It's got strange bubbles in it."
+
+[wizards_mind_bomb_noted]
+id = 1908
+
+[greenmans_ale]
+id = 1909
+price = 524
+limit = 100
+heals = 10
+excess = "beer_glass"
+weight = 0.55
+examine = "A glass of frothy ale."
+
+[greenmans_ale_noted]
+id = 1910
+
+[dragon_bitter]
+id = 1911
+price = 426
+limit = 100
+heals = 10
+excess = "beer_glass"
+weight = 0.55
+examine = "A glass of bitter."
+
+[dragon_bitter_noted]
+id = 1912
+
+[dwarven_stout]
+id = 1913
+price = 85
+limit = 100
+heals = 10
+excess = "beer_glass"
+weight = 0.55
+examine = "A pint of thick dark beer."
+kept = "Wilderness"
+
+[dwarven_stout_noted]
+id = 1914
+
+[grog]
+id = 1915
+price = 20
+limit = 100
+heals = 30
+excess = "beer_glass"
+weight = 0.55
+examine = "A murky glass full of your average, everyday pirate slosh."
+
+[grog_noted]
+id = 1916
+
+[beer]
+id = 1917
+price = 105
+limit = 100
+weight = 0.55
+heals = 10
+excess = "beer_glass"
+examine = "A glass of frothy ale."
+
+[beer_noted]
+id = 1918
+
+[beer_glass]
+id = 1919
+price = 28
+limit = 100
+weight = 0.05
+examine = "I need to fill this with beer."
+
+[beer_glass_noted]
+id = 1920
+
+[bowl_of_water]
+id = 1921
+price = 61
+limit = 100
+weight = 0.907
+empty = "bowl"
+examine = "It's a bowl of water."
+kept = "Wilderness"
+
+[bowl_of_water_noted]
+id = 1922
+
+[bowl]
+id = 1923
+price = 21
+limit = 100
+weight = 0.453
+full = "bowl_of_water"
+examine = "Useful for mixing things."
+kept = "Wilderness"
+
+[bowl_noted]
+id = 1924
+
+[bucket]
+id = 1925
+price = 60
+limit = 100
+weight = 1.0
+full = "bucket_of_water"
+examine = "It's a wooden bucket."
+kept = "Wilderness"
+
+[bucket_noted]
+id = 1926
+
+[bucket_of_milk]
+id = 1927
+price = 90
+limit = 1000
+weight = 2.2
+empty = "bucket"
+examine = "It's a bucket of milk."
+kept = "Wilderness"
+
+[bucket_of_milk_noted]
+id = 1928
+
+[bucket_of_water]
+id = 1929
+price = 74
+limit = 100
+weight = 3.0
+aka = ["water"]
+empty = "bucket"
+examine = "It's a bucket of water."
+kept = "Wilderness"
+
+[bucket_of_water_noted]
+id = 1930
+
+[empty_pot]
+id = 1931
+price = 1
+limit = 100
+weight = 0.453
+examine = "This pot is empty."
+kept = "Wilderness"
+
+[empty_pot_noted]
+id = 1932
+
+[pot_of_flour]
+id = 1933
+price = 60
+limit = 1000
+weight = 1.36
+empty = "empty_pot"
+examine = "There is flour in this pot."
+kept = "Wilderness"
+
+[pot_of_flour_noted]
+id = 1934
+
+[jug]
+id = 1935
+price = 51
+limit = 10000
+weight = 0.453
+full = "jug_of_water"
+examine = "This jug is empty."
+kept = "Wilderness"
+
+[jug_noted]
+id = 1936
+
+[jug_of_water]
+id = 1937
+price = 84
+limit = 10000
+weight = 1.0
+empty = "jug"
+examine = "It's full of water."
+kept = "Wilderness"
+
+[jug_of_water_noted]
+id = 1938
+
+[swamp_tar]
+id = 1939
+price = 106
+limit = 5000
+examine = "A foul smelling thick tar-like substance."
+
+[raw_swamp_paste]
+id = 1940
+price = 365
+limit = 5000
+examine = "A thick tar-like substance mixed with flour."
+
+[swamp_paste]
+id = 1941
+price = 1
+limit = 100
+examine = "A tar-like substance mixed with flour and warmed."
+kept = "Wilderness"
+
+[raw_potato]
+id = 1942
+price = 42
+limit = 1000
+weight = 0.5
+heals = 10
+cooking = {
+  level = 7,
+  xp = 15.0,
+  chances = {
+    range = "108-472",
+  },
+  cooked = "baked_potato",
+  cooked_message = "You successfully bake a potato.",
+  burnt_message = "You accidentally burn the potato.",
+}
+aka = ["potato"]
+examine = "This could be used to make a good stew."
+kept = "Wilderness"
+
+[potato_noted]
+id = 1943
+
+[egg]
+id = 1944
+price = 74
+limit = 1000
+weight = 0.02
+examine = "A nice fresh egg."
+kept = "Wilderness"
+
+[egg_noted]
+id = 1945
+
+[flour]
+id = 1946
+limit = 1000
+tradeable = false
+weight = 0.5
+examine = "A little heap of flour."
+kept = "Reclaim"
+
+[grain]
+id = 1947
+price = 4
+limit = 1000
+weight = 0.6
+aka = ["wheat"]
+examine = "Some wheat heads."
+kept = "Wilderness"
+
+[grain_noted]
+id = 1948
+
+[chefs_hat]
+id = 1949
+price = 174
+limit = 100
+weight = 0.907
+slot = "Hat"
+examine = "What a silly hat."
+kept = "Wilderness"
+
+[chefs_hat_noted]
+id = 1950
+
+[redberries]
+id = 1951
+price = 180
+limit = 1000
+weight = 0.007
+examine = "Very bright red berries."
+kept = "Wilderness"
+
+[redberries_noted]
+id = 1952
+
+[pastry_dough]
+id = 1953
+price = 264
+limit = 1000
+weight = 0.17
+examine = "Potentially pastry."
+kept = "Wilderness"
+
+[pastry_dough_noted]
+id = 1954
+
+[cooking_apple]
+id = 1955
+price = 365
+limit = 1000
+weight = 0.085
+examine = "Keeps the doctor away."
+
+[cooking_apple_noted]
+id = 1956
+
+[onion]
+id = 1957
+price = 15
+limit = 1000
+heals = 20
+weight = 0.15
+examine = "A strong smelling onion."
+kept = "Wilderness"
+
+[onion_noted]
+id = 1958
+
+[pumpkin]
+id = 1959
+price = 292500000
+limit = 2
+heals = 14
+weight = 0.5
+examine = "Happy Halloween."
+use = "Limited"
+
+[pumpkin_noted]
+id = 1960
+
+[easter_egg]
+id = 1961
+price = 105900000
+limit = 2
+heals = 14
+weight = 0.085
+examine = "Happy Easter."
+use = "Limited"
+
+[easter_egg_noted]
+id = 1962
+
+[banana]
+id = 1963
+price = 55
+limit = 1000
+heals = 20
+weight = 0.028
+slot = "Weapon"
+examine = "Mmm this looks tasty."
+
+[banana_noted]
+id = 1964
+
+[cabbage]
+id = 1965
+price = 13
+limit = 1000
+heals = 20
+weight = 0.453
+examine = "Yuck, I don't like cabbage."
+kept = "Wilderness"
+
+[cabbage_noted]
+id = 1966
+
+[cabbage_draynor_manor]
+id = 1967
+heals = 10
+weight = 0.35
+examine = "Yuck, a cabbage from Draynor Manor. I don't like cabbage."
+kept = "Wilderness"
+
+[cabbage_noted_2]
+id = 1968
+
+[spinach_roll]
+id = 1969
+heals = 10
+tradeable = false
+weight = 0.1
+examine = "A home made spinach thing."
+kept = "Wilderness"
+
+[kebab]
+id = 1971
+price = 36
+limit = 1000
+heals = 40
+weight = 0.25
+examine = "A meaty kebab."
+kept = "Wilderness"
+
+[kebab_noted]
+id = 1972
+
+[chocolate_bar]
+id = 1973
+price = 344
+limit = 10000
+heals = 20
+weight = 0.15
+examine = "Mmmmmmm chocolate."
+kept = "Wilderness"
+
+[chocolate_bar_noted]
+id = 1974
+
+[chocolate_dust]
+id = 1975
+price = 387
+limit = 10000
+weight = 0.15
+examine = "It's ground up chocolate."
+kept = "Wilderness"
+
+[chocolate_dust_noted]
+id = 1976
+
+[chocolatey_milk]
+id = 1977
+heals = 40
+excess = "bucket"
+tradeable = false
+weight = 2.0
+examine = "Milk with chocolate in it."
+kept = "Wilderness"
+
+[cup_of_tea]
+id = 1978
+price = 4
+limit = 1000
+heals = 30
+excess = "empty_cup"
+weight = 0.15
+examine = "A nice cup of tea."
+kept = "Wilderness"
+
+[cup_of_tea_noted]
+id = 1979
+
+[empty_cup]
+id = 1980
+price = 2
+limit = 100
+weight = 0.05
+examine = "An empty cup."
+
+[empty_cup_noted]
+id = 1981
+
+[tomato]
+id = 1982
+price = 40
+limit = 10000
+heals = 20
+weight = 0.08
+examine = "This would make good ketchup."
+kept = "Wilderness"
+
+[tomato_noted]
+id = 1983
+
+[rotten_apple]
+id = 1984
+tradeable = false
+weight = 0.12
+examine = "Rotten to the core!"
+kept = "Reclaim"
+
+[cheese]
+id = 1985
+price = 51
+limit = 10000
+heals = 20
+weight = 0.2
+examine = "It's got holes in it."
+
+[cheese_noted]
+id = 1986
+
+[grapes]
+id = 1987
+price = 510
+limit = 1000
+weight = 0.25
+examine = "Good grapes for wine making."
+
+[grapes_noted]
+id = 1988
+
+[half_full_wine_jug]
+id = 1989
+price = 200900000
+limit = 2
+heals = 70
+excess = "jug"
+weight = 1.0
+examine = "An optimist would say it's half full."
+use = "Limited"
+
+[half_full_wine_jug_noted]
+id = 1990
+
+[jug_of_bad_wine]
+id = 1991
+heals = 0
+excess = "jug"
+tradeable = false
+weight = 1.5
+empty = "jug"
+examine = "Oh dear, this wine is terrible!"
+kept = "Reclaim"
+
+[jug_of_bad_wine_2]
+clone = "jug_of_bad_wine"
+id = 1992
+
+[jug_of_wine]
+id = 1993
+price = 29
+limit = 1000
+heals = 110
+excess = "jug"
+weight = 1.5
+examine = "It's full of wine."
+
+[jug_of_wine_noted]
+id = 1994
+
+[unfermented_wine]
+id = 1995
+tradeable = false
+weight = 1.5
+examine = "This wine needs to ferment for a while before it can be drunk."
+kept = "Reclaim"
+
+[unfermented_wine_2]
+clone = "unfermented_wine"
+id = 1996
+
+[incomplete_stew_potato]
+id = 1997
+price = 180
+limit = 200
+weight = 1.0
+examine = "I need to add some meat too."
+
+[incomplete_stew_noted]
+id = 1998
+
+[incomplete_stew_meat]
+id = 1999
+weight = 1.2
+examine = "I need to add some potato too."
+use = "Removed"
+
+[incomplete_stew_noted_2]
+id = 2000
+
+[uncooked_stew]
+id = 2001
+price = 385
+limit = 200
+weight = 1.5
+cooking = {
+  level = 25,
+  xp = 117.0,
+  chances = {
+    fire = "68-392",
+    cooks_range = "78-412",
+  },
+  cooked = "stew",
+  cooked_message = "You cook some stew.",
+  burnt = "burnt_stew",
+  burnt_message = "You accidentally burn the stew.",
+}
+examine = "I need to cook this."
+
+[uncooked_stew_noted]
+id = 2002
+
+[stew]
+id = 2003
+price = 416
+limit = 200
+heals = 110
+excess = "bowl"
+weight = 1.5
+examine = "It's a meat and potato stew."
+
+[stew_noted]
+id = 2004
+
+[burnt_stew]
+id = 2005
+examine = "Eew, it's horribly burnt."
+
+[burnt_stew_noted]
+id = 2006
+
+[spice]
+id = 2007
+price = 327
+limit = 1000
+weight = 0.2
+examine = "This could liven up an otherwise bland stew."
+
+[spice_noted]
+id = 2008
+
+[uncooked_curry]
+id = 2009
+price = 1417
+limit = 200
+weight = 1.5
+cooking = {
+  level = 60,
+  xp = 280.0,
+  chances = {
+    fire = "38-332",
+  },
+  cooked = "curry",
+  cooked_message = "You cook some curry.",
+  burnt = "burnt_curry",
+  burnt_message = "You accidentally burn the curry.",
+}
+examine = "I need to cook this."
+
+[uncooked_curry_noted]
+id = 2010
+
+[curry]
+id = 2011
+price = 380
+limit = 200
+heals = 190
+excess = "bowl"
+weight = 1.5
+examine = "It's a spicy hot curry."
+
+[curry_noted]
+id = 2012
+
+[burnt_curry]
+clone = "burnt_stew"
+id = 2013
+
+[burnt_curry_noted]
+id = 2014
+
+[vodka]
+id = 2015
+price = 270
+limit = 1000
+heals = 50
+weight = 1.0
+examine = "An absolutely clear spirit sold by well-stocked bars."
+
+[vodka_noted]
+id = 2016
+
+[whisky]
+id = 2017
+price = 86
+limit = 1000
+heals = 50
+weight = 1.0
+examine = "This Draynor malt is sold by well-stocked bars."
+
+[whisky_noted]
+id = 2018
+
+[gin]
+id = 2019
+price = 162
+limit = 1000
+heals = 50
+weight = 1.0
+examine = "A strong spirit that tastes of juniper; sold at well-stocked bars."
+
+[gin_noted]
+id = 2020
+
+[brandy]
+id = 2021
+price = 129
+limit = 1000
+heals = 50
+weight = 1.0
+examine = "A strong spirit sold by well-stocked bars; best served in a large glass."
+
+[brandy_noted]
+id = 2022
+
+[cocktail_guide]
+id = 2023
+weight = 0.51
+aka = ["the_blurberry_cocktail_guide"]
+examine = "A book on tree gnome cocktails."
+
+[cocktail_guide_noted]
+id = 2024
+
+[cocktail_shaker]
+id = 2025
+weight = 0.15
+examine = "Used for mixing cocktails."
+
+[cocktail_glass]
+id = 2026
+weight = 0.1
+examine = "For sipping cocktails."
+
+[cocktail_glass_noted]
+id = 2027
+
+[premade_blurberry_special]
+id = 2028
+price = 41
+limit = 1000
+heals = 70
+excess = "cocktail_glass"
+weight = 0.45
+examine = "A premade Blurberry Special"
+
+[premade_blurb_sp_noted]
+id = 2029
+
+[premade_chocolate_saturday]
+id = 2030
+price = 15
+limit = 1000
+heals = 50
+excess = "cocktail_glass"
+weight = 0.45
+examine = "A premade Chocolate Saturday."
+
+[premade_choc_sdy_noted]
+id = 2031
+
+[premade_drunk_dragon]
+id = 2032
+price = 35
+limit = 1000
+heals = 50
+excess = "cocktail_glass"
+weight = 0.45
+examine = "A premade Drunk Dragon."
+
+[premade_dr_dragon_noted]
+id = 2033
+
+[premade_fruit_blast]
+id = 2034
+price = 50
+limit = 1000
+heals = 30
+excess = "cocktail_glass"
+weight = 0.45
+examine = "A premade Fruit Blast."
+
+[premade_fr_blast_noted]
+id = 2035
+
+[premade_pineapple_punch]
+id = 2036
+price = 40
+limit = 1000
+heals = 90
+excess = "cocktail_glass"
+eat_message = "You drink the cocktail. It tastes great."
+weight = 0.45
+examine = "A premade Pineapple punch."
+
+[premade_p_punch_noted]
+id = 2037
+
+[premade_short_green_guy]
+id = 2038
+price = 30
+limit = 1000
+heals = 50
+excess = "cocktail_glass"
+weight = 0.45
+examine = "A premade Short Green Guy."
+
+[premade_sgg_noted]
+id = 2039
+
+[premade_wizard_blizzard]
+id = 2040
+price = 27
+limit = 1000
+heals = 50
+excess = "cocktail_glass"
+weight = 0.45
+examine = "A Premade Wizard Blizzard."
+
+[premade_wiz_blzd_noted]
+id = 2041
+
+[unfinished_cocktail_pineapple_punch_mixed]
+id = 2042
+weight = 0.4
+examine = "This cocktail is just missing those little finishing touches."
+use = "Removed"
+
+[unfinished_cocktail_pineapple_punch_lime]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2044
+
+[unfinished_cocktail_pineapple_punch_pineapple]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2046
+
+[pineapple_punch]
+id = 2048
+price = 281
+limit = 1000
+heals = 90
+excess = "cocktail_glass"
+eat_message = "You drink the cocktail. It tastes great."
+weight = 0.5
+examine = "A fresh healthy fruit mix."
+kept = "Wilderness"
+
+[pineapple_punch_noted]
+id = 2049
+
+[unfinished_cocktail_wizard_blizzard_mixed]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2050
+
+[unfinished_cocktail_wizard_blizzard_pineapple]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2052
+
+[wizard_blizzard]
+id = 2054
+price = 712
+limit = 1000
+heals = 50
+excess = "cocktail_glass"
+weight = 0.5
+examine = "This looks like a strange mix."
+kept = "Wilderness"
+
+[wizard_blizzard_noted]
+id = 2055
+
+[unfinished_cocktail_blurberry_special_mixed]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2056
+
+[unfinished_cocktail_blurberry_special_orange]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2058
+
+[unfinished_cocktail_blurberry_special_lemon]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2060
+
+[unfinished_cocktail_blurberry_special_lime]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2062
+
+[blurberry_special]
+id = 2064
+price = 2047
+limit = 1000
+heals = 60
+excess = "cocktail_glass"
+weight = 0.5
+examine = "Looks good... smells strong."
+
+[blurberry_special_noted]
+id = 2065
+
+[unfinished_cocktail_choc_saturday_mixed]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2066
+
+[unfinished_cocktail_choc_saturday_chocolate_bar]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2068
+
+[unfinished_cocktail_choc_saturday_heated]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2070
+
+[unfinished_cocktail_choc_saturday_cream]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2072
+
+[chocolate_saturday]
+id = 2074
+price = 265
+limit = 1000
+heals = 50
+excess = "cocktail_glass"
+weight = 0.5
+examine = "A warm creamy alcoholic beverage."
+
+[chocolate_saturday_noted]
+id = 2075
+
+[unfinished_cocktail_short_green_guy_mixed]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2076
+
+[unfinished_cocktail_short_green_guy_lime]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2078
+
+[short_green_guy]
+id = 2080
+price = 557
+limit = 1000
+heals = 50
+excess = "cocktail_glass"
+weight = 0.5
+aka = ["sgg"]
+examine = "A Short Green Guy... looks good."
+kept = "Wilderness"
+
+[short_green_guy_noted]
+id = 2081
+
+[unfinished_cocktail_fruit_blast]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2082
+
+[fruit_blast]
+id = 2084
+price = 1249
+limit = 1000
+heals = 90
+excess = "cocktail_glass"
+weight = 0.5
+examine = "A cool refreshing fruit mix."
+kept = "Wilderness"
+
+[fruit_blast_noted]
+id = 2085
+
+[unfinished_cocktail_drunk_dragon_mixed]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2086
+
+[unfinished_cocktail_drunk_dragon_pineapple]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2088
+
+[unfinished_cocktail_drunk_dragon_cream]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2090
+
+[drunk_dragon]
+id = 2092
+price = 396
+limit = 1000
+heals = 50
+excess = "cocktail_glass"
+weight = 0.5
+examine = "A warm creamy alcoholic beverage."
+
+[drunk_dragon_noted]
+id = 2093
+
+[lemon]
+id = 2102
+price = 16
+limit = 1000
+heals = 20
+weight = 0.1
+examine = "A common fruit, popularly used in cocktails."
+
+[lemon_noted]
+id = 2103
+
+[lemon_chunks]
+id = 2104
+price = 31
+limit = 1000
+heals = 20
+weight = 0.08
+examine = "The not-too-surprising result of using a knife with a lemon!"
+
+[lemon_chunks_noted]
+id = 2105
+
+[lemon_slices]
+id = 2106
+price = 17
+limit = 1000
+heals = 20
+weight = 0.08
+examine = "The not-too-surprising result of using a knife with a lemon!"
+
+[lemon_slices_noted]
+id = 2107
+
+[orange]
+id = 2108
+price = 131
+limit = 1000
+heals = 20
+weight = 0.11
+examine = "A common fruit."
+
+[orange_noted]
+id = 2109
+
+[orange_chunks]
+id = 2110
+price = 45
+limit = 1000
+heals = 20
+weight = 0.09
+examine = "The not-too-surprising result of using a knife with an orange!"
+
+[orange_chunks_noted]
+id = 2111
+
+[orange_slices]
+id = 2112
+price = 216
+limit = 1000
+heals = 20
+weight = 0.09
+examine = "The not-too-surprising result of using a knife with an orange!"
+
+[orange_slices_noted]
+id = 2113
+
+[pineapple]
+id = 2114
+price = 94
+limit = 1000
+weight = 0.15
+examine = "It can be cut up into something more manageable with a knife."
+
+[pineapple_noted]
+id = 2115
+
+[pineapple_chunks]
+id = 2116
+price = 90
+limit = 1000
+heals = 20
+weight = 0.12
+examine = "The not-too-surprising result of using a knife with a pineapple!"
+
+[pineapple_chunks_noted]
+id = 2117
+
+[pineapple_ring]
+id = 2118
+price = 31
+limit = 1000
+heals = 20
+weight = 0.03
+examine = "The not-too-surprising result of using a knife with a pineapple!"
+
+[pineapple_ring_noted]
+id = 2119
+
+[lime]
+id = 2120
+price = 41
+limit = 1000
+heals = 20
+weight = 0.1
+examine = "A common fruit, popularly used in cocktails."
+
+[lime_noted]
+id = 2121
+
+[lime_chunks]
+id = 2122
+price = 13
+limit = 1000
+heals = 20
+weight = 0.08
+examine = "The not-too-surprising result of using a knife with a lime!"
+
+[lime_chunks_noted]
+id = 2123
+
+[lime_slices]
+id = 2124
+price = 17
+limit = 1000
+heals = 20
+weight = 0.08
+examine = "The not-too-surprising result of using a knife with a lime!"
+
+[lime_slices_noted]
+id = 2125
+
+[dwellberries]
+id = 2126
+price = 29
+limit = 10000
+heals = 20
+weight = 0.014
+examine = "Some rather pretty blue berries picked from a dwellberry bush."
+
+[dwellberries_noted]
+id = 2127
+
+[equa_leaves]
+id = 2128
+price = 98
+limit = 1000
+heals = 10
+weight = 0.014
+examine = "A common ingredient in gnome cuisine."
+
+[equa_leaves_noted]
+id = 2129
+
+[pot_of_cream]
+id = 2130
+price = 38
+limit = 10000
+heals = 10
+weight = 0.2
+examine = "Fresh cream."
+
+[pot_of_cream_noted]
+id = 2131
+
+[raw_beef]
+id = 2132
+price = 36
+limit = 1000
+weight = 0.34
+cooking = {
+  xp = 30.0,
+  chances = {
+    fire = "128-512",
+    cooks_range = "138-532",
+  },
+  cooked = "cooked_meat",
+  cooked_message = "You cook a piece of meat.",
+  burnt = "burnt_meat",
+  burnt_message = "You accidentally burn the beef.",
+}
+examine = "I need to cook this first."
+kept = "Wilderness"
+
+[raw_beef_noted]
+id = 2133
+
+[raw_rat_meat]
+id = 2134
+price = 35
+limit = 1000
+weight = 0.141
+cooking = {
+  xp = 30.0,
+  chances = {
+    fire = "128-512",
+    cooks_range = "138-532",
+  },
+  cooked = "cooked_meat",
+  cooked_message = "You cook a piece of meat.",
+  burnt = "burnt_meat",
+  burnt_message = "You accidentally burn the rat meat.",
+}
+examine = "I need to cook this first."
+kept = "Wilderness"
+
+[raw_rat_meat_noted]
+id = 2135
+
+[raw_bear_meat]
+id = 2136
+price = 255
+limit = 1000
+weight = 0.425
+cooking = {
+  xp = 30.0,
+  chances = {
+    fire = "128-512",
+    cooks_range = "138-532",
+  },
+  cooked = "cooked_meat",
+  cooked_message = "You cook a piece of meat.",
+  burnt = "burnt_meat",
+  burnt_message = "You accidentally burn the bear meat.",
+}
+examine = "I need to cook this first."
+kept = "Wilderness"
+
+[raw_bear_meat_noted]
+id = 2137
+
+[raw_chicken]
+id = 2138
+price = 54
+limit = 1000
+weight = 0.17
+cooking = {
+  xp = 30.0,
+  chances = {
+    fire = "128-512",
+    cooks_range = "138-532",
+  },
+  cooked_message = "You cook some chicken.",
+  burnt_message = "You accidentally burn the chicken.",
+}
+examine = "I need to cook this first."
+kept = "Wilderness"
+
+[raw_chicken_noted]
+id = 2139
+
+[cooked_chicken]
+id = 2140
+price = 48
+limit = 1000
+heals = 30
+weight = 0.141
+examine = "Mmm this looks tasty."
+kept = "Wilderness"
+
+[cooked_chicken_noted]
+id = 2141
+
+[cooked_meat]
+id = 2142
+price = 40
+limit = 1000
+heals = 30
+weight = 0.283
+examine = "Mmm this looks tasty."
+kept = "Wilderness"
+
+[cooked_meat_noted]
+id = 2143
+
+[burnt_chicken]
+id = 2144
+examine = "Oh dear, it's totally burnt!"
+
+[burnt_chicken_noted]
+id = 2145
+
+[burnt_meat]
+clone = "burnt_chicken"
+id = 2146
+
+[burnt_meat_noted]
+id = 2147
+
+[raw_lava_eel]
+id = 2148
+tradeable = false
+weight = 0.226
+cooking = {
+    level = 53,
+    xp = 30.0,
+    chances = {
+      fire = "255..255",
+    },
+    cooked = "lava_eel",
+}
+examine = "A very strange eel."
+kept = "Reclaim"
+
+[lava_eel]
+id = 2149
+heals = 110
+tradeable = false
+weight = 0.198
+fishing = {
+  level = 53,
+  xp = 60.0,
+  chance = "16-96",
+}
+examine = "Strange, it looks cooler now it's been cooked."
+kept = "Reclaim"
+
+[swamp_toad]
+id = 2150
+price = 200
+limit = 10000
+weight = 0.5
+examine = "A slippery little blighter."
+
+[swamp_toad_noted]
+id = 2151
+
+[toads_legs]
+id = 2152
+price = 221
+limit = 1000
+heals = 30
+weight = 0.15
+examine = "They're a gnome delicacy apparently."
+
+[toads_legs_noted]
+id = 2153
+
+[equa_toads_legs]
+id = 2154
+weight = 0.15
+examine = "They're a gnome delicacy apparently."
+use = "Removed"
+
+[spicy_toads_legs]
+clone = "equa_toads_legs"
+id = 2156
+
+[spicy_toads_legs_noted]
+id = 2157
+
+[seasoned_legs]
+clone = "equa_toads_legs"
+id = 2158
+
+[seasoned_legs_noted]
+id = 2159
+
+[spicy_worm]
+id = 2160
+weight = 0.1
+examine = "They're a gnome delicacy apparently."
+use = "Removed"
+
+[spicy_worm_noted]
+id = 2161
+
+[king_worm]
+id = 2162
+price = 17
+limit = 100
+heals = 20
+weight = 0.12
+examine = "They're a gnome delicacy apparently."
+
+[king_worm_noted]
+id = 2163
+
+[batta_tin]
+id = 2164
+weight = 0.1
+examine = "A deep tin used for baking gnome battas in."
+
+[crunchy_tray]
+id = 2165
+weight = 0.1
+examine = "A shallow tray used for baking crunchies in."
+
+[gnomebowl_mould]
+id = 2166
+weight = 0.15
+examine = "A large ovenproof bowl."
+
+[giannes_cook_book]
+id = 2167
+weight = 0.51
+examine = "Aluft Gianne's favorite dishes."
+
+[giannes_cook_book_noted]
+id = 2168
+
+[gnome_spice]
+id = 2169
+price = 33
+limit = 1000
+weight = 0.15
+examine = "It's Aluft Gianne's secret mix of spices."
+
+[gnome_spice_noted]
+id = 2170
+
+[gianne_dough]
+id = 2171
+price = 2
+limit = 1000
+weight = 0.5
+examine = "It's made from a secret recipe."
+
+[gianne_dough_noted]
+id = 2172
+
+[odd_gnomebowl]
+id = 2173
+weight = 0.25
+examine = "This gnome bowl doesn't look very appetising."
+use = "Removed"
+
+[burnt_gnomebowl]
+id = 2175
+examine = "This gnome bowl has been burnt to a cinder."
+
+[burnt_gnomebowl_noted]
+id = 2176
+
+[half_baked_bowl]
+id = 2177
+tradeable = false
+weight = 0.275
+examine = "This gnome bowl is in the early stages of preparation."
+kept = "Reclaim"
+
+[raw_gnomebowl]
+id = 2178
+tradeable = false
+weight = 0.3
+examine = "This gnome bowl needs cooking."
+kept = "Reclaim"
+
+[unfinished_bowl_chocolate_bomb_baked]
+id = 2179
+weight = 0.3
+examine = "This dish is just missing those little finishing touches."
+use = "Removed"
+
+[unfinished_bowl_chocolate_bomb_cream]
+clone = "unfinished_bowl_chocolate_bomb_baked"
+id = 2181
+
+[unfinished_bowl_chocolate_bomb_2_cream]
+clone = "unfinished_bowl_chocolate_bomb_baked"
+id = 2183
+
+[chocolate_bomb]
+id = 2185
+price = 2539
+limit = 1000
+heals = 150
+weight = 0.35
+examine = "Full of creamy, chocolately goodness."
+
+[chocolate_bomb_noted]
+id = 2186
+
+[tangled_toads_legs]
+id = 2187
+price = 959
+limit = 1000
+heals = 150
+weight = 0.35
+examine = "It actually smells quite good."
+
+[tangled_toads_legs_noted]
+id = 2188
+
+[unfinished_bowl_worm_hole]
+clone = "unfinished_bowl_chocolate_bomb_baked"
+id = 2189
+
+[worm_hole]
+id = 2191
+price = 390
+limit = 1000
+heals = 120
+weight = 0.35
+examine = "It actually smells quite good."
+
+[worm_hole_noted]
+id = 2192
+
+[unfinished_bowl_veg_ball]
+clone = "unfinished_bowl_chocolate_bomb_baked"
+id = 2193
+
+[veg_ball]
+id = 2195
+price = 420
+limit = 1000
+heals = 120
+weight = 0.35
+examine = "This looks pretty healthy."
+
+[veg_ball_noted]
+id = 2196
+
+[odd_crunchies]
+id = 2197
+weight = 0.3
+examine = "These crunchies don't look very appetising."
+use = "Removed"
+
+[odd_crunchies_noted]
+id = 2198
+
+[burnt_crunchies]
+id = 2199
+examine = "These crunchies have been burnt to a cinder."
+
+[burnt_crunchies_noted]
+id = 2200
+
+[half_baked_crunchy]
+id = 2201
+tradeable = false
+weight = 0.35
+examine = "This crunchy is in the early stages of preparation."
+kept = "Reclaim"
+
+[raw_crunchies]
+id = 2202
+price = 157
+limit = 1000
+weight = 0.4
+examine = "These crunchies need cooking."
+
+[unfinished_crunchy_worm]
+id = 2203
+weight = 0.3
+examine = "These crunchies are just missing those little finishing touches."
+use = "Removed"
+
+[worm_crunchies]
+id = 2205
+price = 235
+limit = 1000
+heals = 80
+weight = 0.25
+examine = "It actually smells quite good."
+
+[worm_crunchies_noted]
+id = 2206
+
+[unfinished_crunchy_chocolate_chip]
+clone = "unfinished_crunchy_worm"
+id = 2207
+
+[chocchip_crunchies]
+id = 2209
+price = 688
+limit = 1000
+heals = 70
+weight = 0.25
+examine = "Yum... smells good."
+
+[chocchip_crunchies_noted]
+id = 2210
+
+[unfinished_crunchy_spicy]
+clone = "unfinished_crunchy_worm"
+id = 2211
+
+[spicy_crunchies]
+id = 2213
+price = 100
+limit = 1000
+heals = 70
+weight = 0.25
+examine = "Yum... smells spicy."
+
+[spicy_crunchies_noted]
+id = 2214
+
+[unfinished_crunchy_toad]
+clone = "unfinished_crunchy_worm"
+id = 2215
+
+[toad_crunchies]
+id = 2217
+price = 262
+limit = 1000
+heals = 80
+weight = 0.25
+examine = "It actually smells quite good."
+
+[toad_crunchies_noted]
+id = 2218
+
+[premade_worm_batta]
+id = 2219
+price = 130
+limit = 1000
+heals = 110
+weight = 0.25
+examine = "A premade Worm Batta."
+
+[premade_wm_batta_noted]
+id = 2220
+
+[premade_toad_batta]
+id = 2221
+price = 127
+limit = 1000
+heals = 110
+weight = 0.25
+examine = "A Premade Toad Batta."
+
+[premade_td_batta_noted]
+id = 2222
+
+[premade_cheese_and_tomato_batta]
+id = 2223
+price = 136
+limit = 1000
+heals = 110
+weight = 0.25
+examine = "A Premade Cheese and Tomato Batta."
+
+[premade_cheese_and_tomato_batta_noted]
+id = 2224
+
+[premade_fruit_batta]
+id = 2225
+price = 131
+limit = 1000
+heals = 110
+weight = 0.25
+examine = "A premade Fruit Batta."
+
+[premade_frt_batta_noted]
+id = 2226
+
+[premade_veg_batta]
+id = 2227
+price = 134
+limit = 1000
+heals = 110
+weight = 0.25
+examine = "A Premade Vegetable Batta."
+
+[premade_veg_batta_noted]
+id = 2228
+
+[premade_choc_bomb]
+id = 2229
+price = 923
+limit = 1000
+heals = 150
+weight = 0.35
+examine = "A premade Chocolate Bomb."
+
+[premade_choc_bomb_noted]
+id = 2230
+
+[premade_ttl]
+id = 2231
+price = 746
+limit = 1000
+heals = 150
+weight = 0.35
+examine = "A premade Tangled Toads Legs."
+
+[premade_ttl_noted]
+id = 2232
+
+[premade_worm_hole]
+id = 2233
+price = 226
+limit = 1000
+heals = 120
+weight = 0.35
+examine = "A premade Worm Hole."
+
+[premade_worm_hole_noted]
+id = 2234
+
+[premade_veg_ball]
+id = 2235
+price = 227
+limit = 1000
+heals = 120
+weight = 0.35
+examine = "A premade Vegetable Ball."
+
+[premade_veg_ball_noted]
+id = 2236
+
+[premade_worm_crunchies]
+id = 2237
+price = 76
+limit = 1000
+heals = 80
+weight = 0.25
+examine = "Some Premade Worm Crunchies."
+
+[premade_wm_crun_noted]
+id = 2238
+
+[premade_chocolate_chip_crunchies]
+id = 2239
+price = 91
+limit = 1000
+heals = 70
+weight = 0.25
+examine = "Some Premade chocchip crunchies."
+
+[premade_ch_crunch_noted]
+id = 2240
+
+[premade_spicy_crunchies]
+id = 2241
+price = 97
+limit = 1000
+heals = 70
+weight = 0.25
+examine = "Some premade Spicy Crunchies."
+
+[premade_sy_crunch_noted]
+id = 2242
+
+[premade_toad_crunchies]
+id = 2243
+price = 42
+limit = 1000
+heals = 70
+weight = 0.25
+examine = "Some premade Toad Crunchies."
+
+[premade_td_crunch_noted]
+id = 2244
+
+[odd_batta]
+id = 2245
+weight = 0.25
+examine = "This batta doesn't look very appetising."
+use = "Removed"
+
+[burnt_batta]
+id = 2247
+examine = "This batta has been burnt to a cinder."
+
+[burnt_batta_noted]
+id = 2248
+
+[half_baked_batta]
+id = 2249
+tradeable = false
+weight = 0.25
+examine = "This gnome batta is in the early stages of preparation."
+kept = "Reclaim"
+
+[raw_batta]
+id = 2250
+tradeable = false
+weight = 0.25
+examine = "This gnome batta needs cooking."
+kept = "Reclaim"
+
+[unfinished_batta_worm]
+id = 2251
+weight = 0.25
+examine = "This batta is just missing those little finishing touches."
+use = "Removed"
+
+[worm_batta]
+id = 2253
+price = 155
+limit = 1000
+heals = 110
+weight = 0.25
+examine = "It actually smells quite good."
+
+[worm_batta_noted]
+id = 2254
+
+[toad_batta]
+id = 2255
+price = 254
+limit = 1000
+heals = 110
+weight = 0.25
+examine = "It actually smells quite good."
+
+[toad_batta_noted]
+id = 2256
+
+[unfinished_batta_cheese_and_tomato]
+clone = "unfinished_batta_worm"
+id = 2257
+
+[cheese_and_tomato_batta]
+id = 2259
+price = 242
+limit = 1000
+heals = 110
+weight = 0.25
+examine = "This smells really good."
+
+[cheese_and_tomato_batta_noted]
+id = 2260
+
+[unfinished_batta_fruit_baked]
+clone = "unfinished_batta_worm"
+id = 2261
+
+[unfinished_batta_noted]
+id = 2262
+
+[unfinished_batta_fruit_lime]
+clone = "unfinished_batta_worm"
+id = 2263
+
+[unfinished_batta_noted_2]
+id = 2264
+
+[unfinished_batta_fruit_orange]
+clone = "unfinished_batta_worm"
+id = 2265
+
+[unfinished_batta_noted_3]
+id = 2266
+
+[unfinished_batta_fruit_pineapple]
+clone = "unfinished_batta_worm"
+id = 2267
+
+[unfinished_batta_noted_4]
+id = 2268
+
+[unfinished_batta_fruit_lime_orange]
+clone = "unfinished_batta_worm"
+id = 2269
+
+[unfinished_batta_noted_5]
+id = 2270
+
+[unfinished_batta_fruit_lime_pineapple]
+clone = "unfinished_batta_worm"
+id = 2271
+
+[unfinished_batta_noted_6]
+id = 2272
+
+[unfinished_batta_fruit_orange_pineapple]
+clone = "unfinished_batta_worm"
+id = 2273
+
+[unfinished_batta_noted_7]
+id = 2274
+
+[unfinished_batta_fruit_lime_orange_pineapple]
+clone = "unfinished_batta_worm"
+id = 2275
+
+[fruit_batta]
+id = 2277
+price = 295
+limit = 1000
+heals = 110
+weight = 0.25
+examine = "It actually smells quite good."
+
+[fruit_batta_noted]
+id = 2278
+
+[unfinished_batta_vegetable]
+clone = "unfinished_batta_worm"
+id = 2279
+
+[vegetable_batta]
+id = 2281
+price = 223
+limit = 1000
+heals = 110
+weight = 0.25
+examine = "Well... it looks healthy."
+
+[vegetable_batta_noted]
+id = 2282
+
+[pizza_base]
+id = 2283
+price = 203
+limit = 1000
+weight = 0.1
+examine = "I need to add some tomato next."
+kept = "Wilderness"
+
+[pizza_base_noted]
+id = 2284
+
+[incomplete_pizza]
+id = 2285
+price = 343
+limit = 1000
+weight = 0.6
+examine = "I need to add some cheese next."
+
+[incomplete_pizza_noted]
+id = 2286
+
+[uncooked_pizza]
+id = 2287
+price = 377
+limit = 1000
+weight = 0.8
+cooking = {
+  level = 35,
+  xp = 143.0,
+  chances = {
+    range = "48-352",
+  },
+  cooked = "plain_pizza",
+  cooked_message = "You successfully bake a pizza.",
+  burnt = "burnt_pizza",
+  burnt_message = "You accidentally burn the uncooked pizza.",
+}
+examine = "This needs cooking."
+
+[uncooked_pizza_noted]
+id = 2288
+
+[plain_pizza]
+id = 2289
+price = 410
+limit = 1000
+weight = 0.8
+heals = 70
+excess = "plain_pizza_half"
+combo = true
+examine = "A cheese and tomato pizza."
+
+[plain_pizza_noted]
+id = 2290
+
+[plain_pizza_half]
+id = 2291
+price = 295
+limit = 1000
+heals = 70
+weight = 0.4
+examine = "Half of this plain pizza has been eaten."
+
+[plain_pizza_half_noted]
+id = 2292
+
+[meat_pizza]
+id = 2293
+price = 385
+limit = 1000
+weight = 0.9
+heals = 80
+excess = "meat_pizza_half"
+combo = true
+examine = "A pizza with bits of meat on it."
+
+[meat_pizza_noted]
+id = 2294
+
+[meat_pizza_half]
+id = 2295
+price = 386
+limit = 1000
+weight = 0.45
+heals = 80
+examine = "Half of this meat pizza has been eaten."
+
+[meat_pizza_half_noted]
+id = 2296
+
+[anchovy_pizza]
+id = 2297
+price = 488
+limit = 1000
+weight = 0.9
+heals = 90
+excess = "anchovy_pizza_half"
+combo = true
+examine = "A pizza with anchovies."
+
+[anchovy_pizza_noted]
+id = 2298
+
+[anchovy_pizza_half]
+id = 2299
+price = 31
+limit = 1000
+weight = 0.45
+heals = 90
+examine = "Half of this anchovy pizza has been eaten."
+
+[anchovy_pizza_half_noted]
+id = 2300
+
+[pineapple_pizza]
+id = 2301
+price = 709
+limit = 1000
+weight = 0.9
+heals = 110
+excess = "pineapple_pizza_half"
+combo = true
+examine = "A tropicana pizza."
+
+[pineapple_pizza_noted]
+id = 2302
+
+[pineapple_pizza_half]
+id = 2303
+price = 205
+limit = 1000
+weight = 0.45
+heals = 110
+examine = "Half of this pineapple pizza has been eaten."
+
+[papple_pizza_half_noted]
+id = 2304
+
+[burnt_pizza]
+id = 2305
+examine = "Oh dear!"
+
+[burnt_pizza_noted]
+id = 2306
+
+[bread_dough]
+id = 2307
+price = 67
+limit = 1000
+weight = 0.6
+cooking = {
+  xp = 40.0,
+  chances = {
+    range = "11-492",
+    cooks_range = "128-512",
+  },
+  cooked = "bread",
+  cooked_message = "You successfully bake some bread.",
+  burnt = "burnt_bread",
+  burnt_message = "You accidentally burn the bread dough.",
+}
+examine = "Some uncooked dough."
+kept = "Wilderness"
+
+[bread_dough_noted]
+id = 2308
+
+[bread]
+id = 2309
+price = 87
+limit = 1000
+heals = 50
+weight = 0.5
+examine = "Nice crispy bread."
+kept = "Wilderness"
+
+[bread_noted]
+id = 2310
+
+[burnt_bread]
+id = 2311
+examine = "Nice crispy bread. Possibly too crispy."
+
+[burnt_bread_noted]
+id = 2312
+
+[pie_dish]
+id = 2313
+price = 153
+limit = 100
+weight = 0.1
+examine = "Deceptively pie shaped."
+kept = "Wilderness"
+
+[pie_dish_noted]
+id = 2314
+
+[pie_shell]
+id = 2315
+price = 655
+limit = 1000
+weight = 0.25
+examine = "I need to find a filling for this pie."
+kept = "Wilderness"
+
+[pie_shell_noted]
+id = 2316
+
+[uncooked_apple_pie]
+id = 2317
+price = 731
+limit = 1000
+weight = 0.5
+cooking = {
+  level = 30,
+  xp = 130.0,
+  chances = {
+    range = "58-372",
+  },
+  cooked = "apple_pie",
+  cooked_message = "You successfully bake a traditional apple pie.",
+  burnt = "burnt_pie",
+  burnt_message = "You accidentally burn the uncooked apple pie.",
+}
+examine = "This would be much tastier cooked."
+
+[uncooked_apple_pie_noted]
+id = 2318
+
+[uncooked_meat_pie]
+id = 2319
+price = 674
+limit = 1000
+weight = 0.5
+cooking = {
+  level = 20,
+  xp = 110.0,
+  chances = {
+    range = "78-412",
+    cooks_range = "88-432",
+  },
+  cooked = "meat_pie",
+  cooked_message = "You successfully bake a tasty meat pie.",
+  burnt = "burnt_pie",
+  burnt_message = "You accidentally burn the uncooked meat pie.",
+}
+examine = "This would be much healthier cooked."
+kept = "Wilderness"
+
+[uncooked_meat_pie_noted]
+id = 2320
+
+[uncooked_berry_pie]
+id = 2321
+price = 708
+limit = 1000
+weight = 0.5
+cooking = {
+  level = 10,
+  xp = 78.0,
+  chances = {
+    range = "98-452",
+    cooks_range = "108-462",
+  },
+  cooked = "redberry_pie",
+  cooked_message = "You successfully bake a delicious redberry pie.",
+  burnt = "burnt_pie",
+  burnt_message = "You accidentally burn the uncooked berry pie.",
+}
+examine = "This would be much more appetising cooked."
+kept = "Wilderness"
+
+[uncooked_berry_pie_noted]
+id = 2322
+
+[apple_pie]
+id = 2323
+price = 104
+limit = 1000
+heals = 70
+excess = "apple_pie_half"
+eat_message = "You eat half of the apple pie."
+weight = 0.45
+examine = "Mmm Apple pie."
+
+[apple_pie_noted]
+id = 2324
+
+[redberry_pie]
+id = 2325
+price = 436
+limit = 1000
+heals = 50
+excess = "redberry_pie_half"
+eat_message = "You eat half of the redberry pie."
+weight = 0.45
+examine = "Looks tasty."
+
+[redberry_pie_noted]
+id = 2326
+
+[meat_pie]
+id = 2327
+price = 123
+limit = 1000
+heals = 60
+excess = "meat_pie_half"
+eat_message = "You eat half of the meat pie."
+weight = 0.45
+examine = "Not for vegetarians."
+
+[meat_pie_noted]
+id = 2328
+
+[burnt_pie]
+id = 2329
+examine = "I think I left it on the stove too long."
+
+[burnt_pie_noted]
+id = 2330
+
+[meat_pie_half]
+id = 2331
+price = 154
+limit = 1000
+heals = 60
+excess = "pie_dish"
+eat_message = "You eat the remaining half of the meat pie."
+weight = 0.225
+examine = "Half of it is suitable for vegetarians."
+
+[half_a_meat_pie_noted]
+id = 2332
+
+[redberry_pie_half]
+id = 2333
+price = 185
+limit = 1000
+heals = 50
+excess = "pie_dish"
+eat_message = "You eat the remaining half of the redberry pie."
+weight = 0.225
+examine = "So tasty I kept some for later."
+
+[half_a_redberry_pie_noted]
+id = 2334
+
+[apple_pie_half]
+id = 2335
+price = 101
+limit = 1000
+heals = 70
+excess = "pie_dish"
+eat_message = "You eat the remaining half of the apple pie."
+weight = 0.225
+examine = "Mmm half an apple pie."
+
+[half_an_apple_pie_noted]
+id = 2336
+
+[raw_oomlie]
+id = 2337
+price = 124
+limit = 1000
+weight = 0.225
+examine = "Raw meat from the oomlie bird."
+
+[raw_oomlie_noted]
+id = 2338
+
+[palm_leaf]
+id = 2339
+tradeable = false
+weight = 0.1
+examine = "A thick green palm leaf used by natives to cook meat in."
+kept = "Reclaim"
+
+[palm_leaf_2]
+clone = "palm_leaf"
+id = 2340
+
+[wrapped_oomlie]
+id = 2341
+price = 619
+limit = 1000
+weight = 0.325
+examine = "Oomlie meat in a palm leaf pouch.  It just needs to be cooked."
+
+[wrapped_oomlie_noted]
+id = 2342
+
+[cooked_oomlie_wrap]
+id = 2343
+price = 1115
+limit = 1000
+heals = 140
+weight = 0.3
+examine = "Deliciously cooked oomlie meat in a palm leaf pouch."
+
+[cooked_oomlie_wrap_noted]
+id = 2344
+
+[burnt_oomlie_wrap]
+id = 2345
+examine = "Burnt oomlie meat in a palm leaf pouch."
+
+[burnt_oomlie_wrap_noted]
+id = 2346
+
+[pat_of_butter]
+id = 6697
+price = 298
+limit = 10000
+weight = 0.2
+examine = "A pat of freshly churned butter."
+
+[pat_of_butter_noted]
+id = 6698
+
+[burnt_potato]
+id = 6699
+examine = "This potato doesn't look edible."
+
+[burnt_potato_noted]
+id = 6700
+
+[baked_potato]
+id = 6701
+price = 181
+limit = 1000
+heals = 40
+weight = 0.5
+examine = "It'd taste even better with some toppings."
+kept = "Wilderness"
+
+[baked_potato_noted]
+id = 6702
+
+[potato_with_butter]
+id = 6703
+price = 550
+limit = 1000
+heals = 140
+weight = 0.5
+examine = "A baked potato with butter."
+
+[potato_with_butter_noted]
+id = 6704
+
+[potato_with_cheese]
+id = 6705
+price = 358
+limit = 10000
+heals = 160
+weight = 0.5
+examine = "A baked potato with butter and cheese."
+
+[potato_with_cheese_noted]
+id = 6706

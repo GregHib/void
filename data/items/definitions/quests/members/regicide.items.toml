@@ -1,0 +1,162 @@
+[kings_message]
+id = 3206
+tradeable = false
+weight = 0.056
+examine = "A summons from King Lathas."
+use = "Quest"
+kept = "Wilderness"
+
+[iorwerths_message]
+id = 3207
+tradeable = false
+weight = 0.056
+examine = "A letter for King Lathas from Lord Iorwerth."
+use = "Quest"
+kept = "Wilderness"
+
+[crystal_pendant]
+id = 3208
+tradeable = false
+weight = 0.005
+slot = "Amulet"
+examine = "Lord Iorwerth's crystal pendant."
+kept = "Wilderness"
+
+[sulphur]
+id = 3209
+tradeable = false
+weight = 0.01
+examine = "A piece of sulphur formation."
+use = "Quest"
+kept = "Wilderness"
+
+[limestone]
+id = 3211
+price = 114
+limit = 10000
+weight = 2.267
+mining = { xp = 26.5, chance = "25-200" }
+examine = "Some limestone."
+
+[limestone_noted]
+id = 3212
+
+[quicklime]
+id = 3213
+tradeable = false
+weight = 2.267
+examine = "Some quicklime."
+use = "Quest"
+kept = "Wilderness"
+
+[pot_of_quicklime]
+id = 3214
+tradeable = false
+weight = 0.453
+examine = "A pot of ground quicklime."
+use = "Quest"
+kept = "Wilderness"
+
+[ground_sulphur]
+id = 3215
+tradeable = false
+weight = 0.056
+examine = "A pile of ground sulphur."
+use = "Quest"
+kept = "Wilderness"
+
+[barrel]
+id = 3216
+price = 199
+limit = 100
+weight = 10.0
+examine = "An empty barrel."
+kept = "Wilderness"
+
+[barrel_noted]
+id = 3217
+
+[barrel_bomb_unfused]
+id = 3218
+tradeable = false
+weight = 32.0
+examine = "A barrel full of fire oil."
+use = "Quest"
+kept = "Wilderness"
+
+[barrel_bomb]
+id = 3219
+tradeable = false
+weight = 32.0
+examine = "A fused barrel full of fire oil."
+use = "Quest"
+kept = "Wilderness"
+
+[barrel_of_coal_tar]
+id = 3220
+tradeable = false
+weight = 32.0
+examine = "A barrel full of coal-tar."
+use = "Quest"
+kept = "Wilderness"
+
+[barrel_of_naphtha]
+id = 3221
+tradeable = false
+weight = 32.0
+examine = "A barrel full of naphtha."
+use = "Quest"
+kept = "Wilderness"
+
+[naphtha_mix_sulphur]
+id = 3222
+tradeable = false
+weight = 32.0
+examine = "A barrel full of naphtha and sulphur."
+use = "Quest"
+kept = "Wilderness"
+
+[naphtha_mix_quicklime]
+id = 3223
+tradeable = false
+weight = 32.0
+examine = "A barrel full of naphtha and quicklime."
+use = "Quest"
+kept = "Wilderness"
+
+[strip_of_cloth]
+id = 3224
+limit = 10000
+weight = 0.34
+examine = "Can be used to craft wizard armour."
+kept = "Wilderness"
+
+[raw_rabbit]
+id = 3226
+price = 583
+limit = 5000
+weight = 0.17
+cooking = { xp = 30.0, chances = { fire = "128-512" }, cooked_message = "You cook the rabbit.", burnt_message = "You accidentally burn the rabbit." }
+examine = "Might taste better cooked."
+
+[raw_rabbit_noted]
+id = 3227
+
+[cooked_rabbit]
+id = 3228
+price = 35
+limit = 1000
+heals = 50
+weight = 0.141
+examine = "Mmm this looks tasty."
+kept = "Wilderness"
+
+[cooked_rabbit_noted]
+id = 3229
+
+[the_big_book_of_bangs]
+id = 3230
+tradeable = false
+weight = 0.226
+examine = "A book by Mel Achy."
+kept = "Wilderness"

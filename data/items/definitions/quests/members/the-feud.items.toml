@@ -1,0 +1,145 @@
+[keys]
+id = 4589
+tradeable = false
+weight = 0.01
+examine = "Keys to the Mayor's house."
+use = "Quest"
+kept = "Wilderness"
+
+[jewels]
+id = 4590
+tradeable = false
+weight = 0.01
+examine = "The Mayor of Pollnivneach's wife's jewels."
+use = "Quest"
+kept = "Wilderness"
+
+[kharidian_headpiece]
+id = 4591
+tradeable = false
+weight = 0.07
+examine = "Wear it on your head."
+kept = "Reclaim"
+
+[fake_beard]
+id = 4593
+tradeable = false
+weight = 0.03
+examine = "Makes me itch."
+kept = "Reclaim"
+
+[note_fibonacci]
+id = 4597
+tradeable = false
+weight = 0.02
+examine = "A note found in the Mayor's bedroom mentioning the word 'Fibonacci'."
+use = "Quest"
+kept = "Wilderness"
+
+[note_numbers]
+id = 4598
+tradeable = false
+weight = 0.02
+examine = "A list of 5 numbers."
+use = "Quest"
+kept = "Wilderness"
+
+[oak_blackjack]
+id = 4599
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+examine = "A handy little club made out of oak."
+kept = "Reclaim"
+
+[willow_blackjack]
+id = 4600
+price = 243
+limit = 100
+weight = 1.814
+slot = "Weapon"
+examine = "A handy little club made out of willow."
+
+[ugthanki_dung]
+id = 4601
+tradeable = false
+weight = 0.4
+empty = "bucket"
+examine = "Dung of the Camelus Horribleus variety."
+kept = "Reclaim"
+
+[ugthanki_dung_2]
+clone = "ugthanki_dung"
+id = 4602
+
+[receipt]
+id = 4603
+tradeable = false
+weight = 0.02
+examine = "A receipt for one 'Camelus Horribleus'."
+use = "Quest"
+kept = "Wilderness"
+
+[hags_poison]
+id = 4604
+tradeable = false
+weight = 0.2
+examine = "A red viscous liquid in a vial."
+use = "Quest"
+kept = "Wilderness"
+
+[snake_charm]
+id = 4605
+tradeable = false
+weight = 0.1
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Makes a hissing sound."
+use = "Quest"
+kept = "Reclaim"
+
+[snake_basket]
+id = 4606
+tradeable = false
+weight = 0.5
+examine = "This is used to hold snakes."
+use = "Quest"
+kept = "Wilderness"
+
+[full_snake_basket]
+id = 4607
+tradeable = false
+weight = 1.0
+examine = "This basket contains a snake."
+use = "Quest"
+kept = "Wilderness"
+
+[super_kebab]
+id = 4608
+price = 334
+limit = 1000
+heals = 30
+weight = 0.25
+examine = "A meaty and very hot kebab."
+
+[super_kebab_noted]
+id = 4609
+
+[red_hot_sauce]
+id = 4610
+tradeable = false
+weight = 0.1
+examine = "The bottle feels warm."
+kept = "Reclaim"
+
+[desert_disguise]
+id = 4611
+tradeable = false
+weight = 0.04
+slot = "Hat"
+type = "FullFace"
+examine = "A disguise suitable for the desert."
+kept = "Wilderness"
+
+[willow_blackjack_noted]
+id = 4612

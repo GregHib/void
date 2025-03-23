@@ -1,0 +1,831 @@
+[druids_robe_bottom]
+id = 538
+price = 163
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "Keeps a druid's knees nice and warm."
+kept = "Wilderness"
+
+[druids_robe_noted]
+id = 539
+
+[druids_robe_top]
+id = 540
+price = 278
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "I feel closer to the gods when I am wearing this."
+kept = "Wilderness"
+
+[druids_robe_noted_2]
+id = 541
+
+[monks_robe_bottom]
+id = 542
+price = 110
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "Keeps a monk's knees nice and warm."
+kept = "Wilderness"
+
+[monks_robe_noted]
+id = 543
+
+[monks_robe_top]
+id = 544
+price = 579
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "I feel closer to the gods when I am wearing this."
+kept = "Wilderness"
+
+[monks_robe_noted_2]
+id = 545
+
+[shade_robe_top]
+id = 546
+tradeable = false
+weight = 0.907
+slot = "Chest"
+examine = "I feel closer to the gods when I am wearing this."
+kept = "Wilderness"
+
+[shade_robe_bottom]
+id = 548
+tradeable = false
+weight = 0.907
+slot = "Legs"
+examine = "If a shade had knees, this would keep them nice and warm."
+kept = "Wilderness"
+
+[wizard_robe_top]
+id = 577
+price = 525
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "I can do magic better in this."
+kept = "Wilderness"
+
+[wizard_robe_noted]
+id = 578
+
+[wizard_hat_blue]
+id = 579
+price = 426
+limit = 100
+weight = 0.453
+slot = "Hat"
+examine = "A silly pointed hat."
+kept = "Wilderness"
+
+[wizard_hat_noted]
+id = 580
+
+[black_wizard_robe_top]
+id = 581
+price = 193
+limit = 100
+weight = 0.907
+aka = ["black_robe", "black_robe_top", "black_wizard_robe"]
+slot = "Chest"
+examine = "I can do magic better in this."
+kept = "Wilderness"
+
+[black_wizard_robe_top_noted]
+id = 582
+
+[pink_boots]
+id = 626
+price = 819
+limit = 100
+weight = 0.34
+slot = "Feet"
+examine = "They're soft, silky and pink."
+
+[pink_boots_noted]
+id = 627
+
+[green_boots]
+id = 628
+price = 459
+limit = 100
+weight = 0.34
+slot = "Feet"
+examine = "They're soft, silky and green."
+
+[green_boots_noted]
+id = 629
+
+[blue_boots]
+id = 630
+price = 632
+limit = 100
+weight = 0.34
+slot = "Feet"
+examine = "They're soft, silky and blue."
+
+[blue_boots_noted]
+id = 631
+
+[cream_boots]
+id = 632
+price = 511
+limit = 100
+weight = 0.34
+slot = "Feet"
+examine = "They're soft, silky and cream."
+
+[cream_boots_noted]
+id = 633
+
+[turquoise_boots]
+id = 634
+price = 300
+limit = 100
+weight = 0.34
+slot = "Feet"
+examine = "They're soft, silky and turquoise."
+
+[turquoise_boots_noted]
+id = 635
+
+[pink_robe_top]
+id = 636
+price = 248
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "The ultimate in gnome design, now in pink."
+
+[pink_robe_top_noted]
+id = 637
+
+[green_robe_top]
+id = 638
+price = 220
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "The ultimate in gnome design, now in green."
+
+[green_robe_top_noted]
+id = 639
+
+[blue_robe_top]
+id = 640
+price = 412
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "The ultimate in gnome design, now in blue."
+
+[blue_robe_top_noted]
+id = 641
+
+[cream_robe_top]
+id = 642
+price = 404
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "The ultimate in gnome design, now in cream."
+
+[cream_robe_top_noted]
+id = 643
+
+[turquoise_robe_top]
+id = 644
+price = 66
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "The ultimate in gnome design, now in turquoise."
+
+[turquoise_robe_top_noted]
+id = 645
+
+[pink_robe_bottoms]
+id = 646
+price = 219
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "Made by tree gnomes with a thing for pink."
+
+[pink_robe_bottoms_noted]
+id = 647
+
+[green_robe_bottoms]
+id = 648
+price = 216
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "Made by tree gnomes with a thing for green."
+
+[green_robe_bottoms_noted]
+id = 649
+
+[blue_robe_bottoms]
+id = 650
+price = 506
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "Made by tree gnomes with a thing for blue."
+
+[blue_robe_bottoms_noted]
+id = 651
+
+[cream_robe_bottoms]
+id = 652
+price = 417
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "Made by tree gnomes with a thing for cream."
+
+[cream_robe_bottoms_noted]
+id = 653
+
+[turquoise_robe_bottoms]
+id = 654
+price = 95
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "Made by tree gnomes with a thing for turquoise."
+
+[turquoise_robe_bottoms_noted]
+id = 655
+
+[pink_hat]
+id = 656
+price = 844
+limit = 100
+weight = 0.453
+slot = "Hat"
+examine = "A silly, pink pointed hat."
+
+[pink_hat_noted]
+id = 657
+
+[green_hat]
+id = 658
+price = 390
+limit = 100
+weight = 0.453
+slot = "Hat"
+examine = "A silly, green pointed hat."
+
+[green_hat_noted]
+id = 659
+
+[blue_hat]
+id = 660
+price = 289
+limit = 100
+weight = 0.453
+slot = "Hat"
+examine = "A silly, blue pointed hat."
+
+[blue_hat_noted]
+id = 661
+
+[cream_hat]
+id = 662
+price = 1022
+limit = 100
+weight = 0.453
+slot = "Hat"
+examine = "A silly, cream pointed hat."
+
+[cream_hat_noted]
+id = 663
+
+[turquoise_hat]
+id = 664
+price = 300
+limit = 100
+weight = 0.453
+slot = "Hat"
+examine = "A silly, turquoise pointed hat."
+
+[turquoise_hat_noted]
+id = 665
+
+[wizard_robe_skirt]
+id = 1011
+price = 185
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "Leg covering favoured by women and wizards."
+kept = "Wilderness"
+
+[blue_skirt_noted]
+id = 1012
+
+[pink_skirt]
+id = 1013
+price = 117
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "A ladies skirt."
+
+[pink_skirt_noted]
+id = 1014
+
+[black_wizard_robe_skirt]
+id = 1015
+price = 12
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "Clothing favoured by women and dark wizards."
+kept = "Wilderness"
+
+[black_skirt_noted]
+id = 1016
+
+[black_wizard_hat]
+id = 1017
+price = 148
+limit = 100
+weight = 0.453
+slot = "Hat"
+examine = "A silly pointed hat."
+
+[wizard_hat_noted_2]
+id = 1018
+
+[zamorak_robe_bottom]
+id = 1033
+price = 2719
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "A robe worn by worshippers of Zamorak."
+
+[zamorak_robe_noted]
+id = 1034
+
+[zamorak_robe_top]
+id = 1035
+price = 1044
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "A robe worn by worshippers of Zamorak."
+
+[zamorak_robe_noted_2]
+id = 1036
+
+[boots_grey]
+id = 2894
+price = 1317
+limit = 100
+weight = 0.34
+slot = "Feet"
+examine = "Very stylish!"
+
+[boots_grey_noted]
+id = 2895
+
+[robe_top_grey]
+id = 2896
+price = 875
+limit = 100
+weight = 1.0
+slot = "Chest"
+examine = "Some fine werewolf clothing."
+
+[robe_top_grey_noted]
+id = 2897
+
+[robe_bottoms_grey]
+id = 2898
+price = 729
+limit = 100
+weight = 1.0
+slot = "Legs"
+examine = "Made by werewolves for werewolves."
+
+[robe_bottoms_grey_noted]
+id = 2899
+
+[hat_grey]
+id = 2900
+price = 975
+limit = 100
+weight = 0.453
+slot = "Hat"
+examine = "A silly pointed hat."
+
+[hat_grey_noted]
+id = 2901
+
+[gloves_grey]
+id = 2902
+price = 774
+limit = 100
+weight = 0.453
+slot = "Hands"
+examine = "These gloves from Canifis will keep my hands warm!"
+
+[gloves_grey_noted]
+id = 2903
+
+[boots_red]
+id = 2904
+price = 1034
+limit = 100
+weight = 0.34
+slot = "Feet"
+examine = "Very stylish!"
+
+[boots_red_noted]
+id = 2905
+
+[robe_top_red]
+id = 2906
+price = 992
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "Some fine werewolf clothing."
+
+[robe_top_red_noted]
+id = 2907
+
+[robe_bottoms_red]
+id = 2908
+price = 586
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "Made by werewolves for werewolves."
+
+[robe_bottoms_red_noted]
+id = 2909
+
+[hat_red]
+id = 2910
+price = 1524
+limit = 100
+weight = 0.453
+slot = "Hat"
+examine = "A silly pointed hat."
+
+[hat_red_noted]
+id = 2911
+
+[gloves_red]
+id = 2912
+price = 1007
+limit = 100
+weight = 0.453
+slot = "Hands"
+examine = "These gloves from Canifis will keep my hands warm!"
+
+[gloves_red_noted]
+id = 2913
+
+[boots_yellow]
+id = 2914
+price = 1065
+limit = 100
+weight = 0.34
+slot = "Feet"
+examine = "Very stylish!"
+
+[boots_yellow_noted]
+id = 2915
+
+[robe_top_yellow]
+id = 2916
+price = 943
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "Some fine werewolf clothing."
+
+[robe_top_yellow_noted]
+id = 2917
+
+[robe_bottoms_yellow]
+id = 2918
+price = 590
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "Made by werewolves for werewolves."
+
+[robe_bottoms_yellow_noted]
+id = 2919
+
+[hat_yellow]
+id = 2920
+price = 880
+limit = 100
+weight = 0.453
+slot = "Hat"
+examine = "A silly pointed hat."
+
+[hat_yellow_noted]
+id = 2921
+
+[gloves_yellow]
+id = 2922
+price = 1827
+limit = 100
+weight = 0.453
+slot = "Hands"
+examine = "These gloves from Canifis will keep my hands warm!"
+
+[gloves_yellow_noted]
+id = 2923
+
+[boots_teal]
+id = 2924
+price = 1094
+limit = 100
+weight = 0.34
+slot = "Feet"
+examine = "Very stylish!"
+
+[boots_teal_noted]
+id = 2925
+
+[robe_top_teal]
+id = 2926
+price = 419
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "Some fine werewolf clothing."
+
+[robe_top_teal_noted]
+id = 2927
+
+[robe_bottoms_teal]
+id = 2928
+price = 672
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "Made by werewolves for werewolves."
+
+[robe_bottoms_teal_noted]
+id = 2929
+
+[hat_teal]
+id = 2930
+price = 1012
+limit = 100
+weight = 0.453
+slot = "Hat"
+examine = "A silly pointed hat."
+
+[hat_teal_noted]
+id = 2931
+
+[gloves_teal]
+id = 2932
+price = 809
+limit = 100
+weight = 0.453
+slot = "Hands"
+examine = "These gloves from Canifis will keep my hands warm!"
+
+[gloves_teal_noted]
+id = 2933
+
+[boots_purple]
+id = 2934
+price = 1204
+limit = 100
+weight = 0.34
+slot = "Feet"
+examine = "Very stylish!"
+
+[boots_purple_noted]
+id = 2935
+
+[robe_top_purple]
+id = 2936
+price = 786
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "Some fine werewolf clothing."
+
+[robe_top_purple_noted]
+id = 2937
+
+[robe_bottoms_purple]
+id = 2938
+price = 994
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "Made by werewolves for werewolves."
+
+[robe_bottoms_purple_noted]
+id = 2939
+
+[hat_purple]
+id = 2940
+price = 1008
+limit = 100
+weight = 0.453
+slot = "Hat"
+examine = "A silly pointed hat."
+
+[hat_purple_noted]
+id = 2941
+
+[gloves_purple]
+id = 2942
+price = 609
+limit = 100
+weight = 0.453
+slot = "Hands"
+examine = "These gloves from Canifis will keep my hands warm!"
+
+[gloves_purple_noted]
+id = 2943
+
+[mystic_hat_blue]
+id = 4089
+price = 15200
+limit = 100
+weight = 0.453
+slot = "Hat"
+type = "Hair"
+examine = "A magical hat."
+
+[mystic_hat_noted]
+id = 4090
+
+[mystic_robe_top_blue]
+id = 4091
+price = 71700
+limit = 100
+weight = 2.721
+slot = "Chest"
+examine = "The upper half of a magical robe."
+
+[mystic_robe_top_noted]
+id = 4092
+
+[mystic_robe_bottom_blue]
+id = 4093
+price = 47900
+limit = 100
+weight = 1.814
+slot = "Legs"
+examine = "The lower half of a magical robe."
+
+[mystic_robe_bottom_noted]
+id = 4094
+
+[mystic_gloves_blue]
+id = 4095
+price = 5905
+limit = 100
+weight = 0.453
+slot = "Hands"
+examine = "Magical gloves."
+
+[mystic_gloves_noted]
+id = 4096
+
+[mystic_boots_blue]
+id = 4097
+price = 5842
+limit = 100
+weight = 0.453
+slot = "Feet"
+examine = "Magical boots."
+
+[mystic_boots_noted]
+id = 4098
+
+[dark_mystic_hat]
+id = 4099
+price = 34300
+limit = 100
+weight = 0.453
+slot = "Hat"
+type = "Hair"
+examine = "A dark magical hat."
+
+[mystic_hat_noted_2]
+id = 4100
+
+[dark_mystic_robe_top]
+id = 4101
+price = 71900
+limit = 100
+weight = 2.721
+slot = "Chest"
+examine = "The upper half of a dark magical robe."
+
+[mystic_robe_top_noted_2]
+id = 4102
+
+[dark_mystic_robe_bottom]
+id = 4103
+price = 47600
+limit = 100
+weight = 1.814
+slot = "Legs"
+examine = "The lower half of a dark magical robe."
+
+[mystic_robe_bottom_noted_2]
+id = 4104
+
+[dark_mystic_gloves]
+id = 4105
+price = 5811
+limit = 100
+weight = 0.453
+slot = "Hands"
+examine = "Dark magical gloves."
+
+[mystic_gloves_noted_2]
+id = 4106
+
+[dark_mystic_boots]
+id = 4107
+price = 103400
+limit = 100
+weight = 0.453
+slot = "Feet"
+examine = "Dark magical boots."
+
+[mystic_boots_noted_2]
+id = 4108
+
+[light_mystic_hat]
+id = 4109
+price = 8845
+limit = 100
+weight = 0.453
+slot = "Hat"
+type = "Hair"
+examine = "A bright magical hat."
+
+[mystic_hat_noted_3]
+id = 4110
+
+[light_mystic_robe_top]
+id = 4111
+price = 74900
+limit = 100
+weight = 2.721
+slot = "Chest"
+examine = "The upper half of a bright magical robe."
+
+[mystic_robe_top_noted_3]
+id = 4112
+
+[light_mystic_robe_bottom]
+id = 4113
+price = 47300
+limit = 100
+weight = 1.814
+slot = "Legs"
+examine = "The lower half of a bright magical robe."
+
+[mystic_robe_bottom_noted_3]
+id = 4114
+
+[light_mystic_gloves]
+id = 4115
+price = 274000
+limit = 100
+weight = 0.453
+slot = "Hands"
+examine = "Bright magical gloves."
+
+[mystic_gloves_noted_3]
+id = 4116
+
+[light_mystic_boots]
+id = 4117
+price = 12300
+limit = 100
+weight = 0.453
+slot = "Feet"
+examine = "Bright magical boots."
+
+[mystic_boots_noted_3]
+id = 4118

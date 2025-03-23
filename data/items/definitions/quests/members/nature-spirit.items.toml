@@ -1,0 +1,121 @@
+[druid_pouch]
+id = 2957
+tradeable = false
+weight = 0.01
+examine = "An empty druid pouch."
+kept = "Reclaim"
+
+[druid_pouch_2]
+clone = "druid_pouch"
+id = 2958
+
+[rotten_food]
+id = 2959
+weight = 0.453
+examine = "Erhhh! It stinks."
+kept = "Vanish"
+
+[rotten_food_noted]
+id = 2960
+
+[silver_sickle]
+id = 2961
+price = 17
+limit = 100
+weight = 1.587
+slot = "Weapon"
+examine = "It's a silver sickle."
+
+[silver_sickle_noted]
+id = 2962
+
+[silver_sickle_b]
+id = 2963
+tradeable = false
+weight = 1.587
+slot = "Weapon"
+examine = "It's a blessed silver sickle."
+kept = "Reclaim"
+
+[washing_bowl]
+id = 2964
+tradeable = false
+weight = 0.453
+examine = "Used for washing your face, amongst other things."
+use = "Quest"
+kept = "Wilderness"
+
+[mirror]
+id = 2966
+tradeable = false
+weight = 0.226
+examine = "A small mirror, probably used for grooming."
+use = "Quest"
+kept = "Wilderness"
+
+[journal_nature_spirit]
+id = 2967
+tradeable = false
+weight = 0.51
+examine = "This must be Filliman Tarlocks personal journal."
+use = "Quest"
+kept = "Wilderness"
+
+[druidic_spell]
+id = 2968
+tradeable = false
+weight = 0.02
+examine = "A druidic spell given to you freely by the spirit of Filliman Tarlock."
+use = "Quest"
+kept = "Wilderness"
+
+[a_used_spell]
+id = 2969
+tradeable = false
+weight = 0.02
+examine = "A used druidic spell given to you freely by the spirit of Filliman Tarlock."
+use = "Quest"
+kept = "Wilderness"
+
+[mort_myre_fungus]
+id = 2970
+price = 710
+limit = 10000
+weight = 0.01
+examine = "A mushroom from the swamps of Mort Myre."
+
+[mort_myre_fungus_noted]
+id = 2971
+
+[mort_myre_stem]
+id = 2972
+price = 265
+limit = 100
+weight = 0.01
+examine = "A cutting from a budding branch."
+kept = "Wilderness"
+
+[mort_myre_stem_noted]
+id = 2973
+
+[mort_myre_pear]
+id = 2974
+price = 822
+limit = 100
+weight = 0.113
+examine = "A pear picked from a dying bush in Mort Myre."
+kept = "Wilderness"
+
+[mort_myre_pear_noted]
+id = 2975
+
+[sickle_mould]
+id = 2976
+price = 212
+limit = 100
+weight = 0.453
+silver_jewellery = { item = "silver_sickle", quest = "nature_spirit", level = 18, xp = 50.0, }
+examine = "Used to make sickles."
+
+[sickle_mould_noted]
+id = 2977

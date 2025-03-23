@@ -1,0 +1,116 @@
+[doogle_sardine]
+id = 1552
+tradeable = false
+weight = 0.12
+examine = "Sardine flavoured with doogle leaves."
+use = "Quest"
+kept = "Wilderness"
+
+[pet_kitten]
+id = 1555
+food = "Fish or milk as a kitten,"
+food2 = "none as an adult"
+examine = "A friendly little pet."
+
+[pet_kitten_2]
+clone = "pet_kitten"
+id = 1556
+
+[pet_kitten_3]
+clone = "pet_kitten"
+id = 1557
+
+[pet_kitten_4]
+clone = "pet_kitten"
+id = 1558
+
+[pet_kitten_5]
+clone = "pet_kitten"
+id = 1559
+
+[pet_kitten_6]
+clone = "pet_kitten"
+id = 1560
+
+[pet_cat]
+id = 1561
+npc = 768
+food = "Fish or milk as a kitten,"
+food2 = "none as an adult"
+examine = "A friendly little pet."
+
+[pet_cat_2]
+id = 1562
+npc = 769
+food = "Fish or milk as a kitten,"
+food2 = "none as an adult"
+examine = "A friendly little pet."
+
+[pet_cat_3]
+id = 1563
+npc = 770
+food = "Fish or milk as a kitten,"
+food2 = "none as an adult"
+examine = "A friendly little pet."
+
+[pet_cat_4]
+id = 1564
+npc = 771
+food = "Fish or milk as a kitten,"
+food2 = "none as an adult"
+examine = "A friendly little pet."
+
+[pet_cat_5]
+id = 1565
+npc = 772
+food = "Fish or milk as a kitten,"
+food2 = "none as an adult"
+examine = "A friendly little pet."
+
+[pet_cat_6]
+id = 1566
+npc = 773
+food = "Fish or milk as a kitten,"
+food2 = "none as an adult"
+examine = "A friendly little pet."
+
+[overgrown_cat]
+id = 1567
+food = "Fish or milk as a kitten,"
+food2 = "none as an adult"
+examine = "A friendly, not-so-little pet."
+
+[overgrown_cat_2]
+clone = "overgrown_cat"
+id = 1568
+
+[overgrown_cat_3]
+clone = "overgrown_cat"
+id = 1569
+
+[overgrown_cat_4]
+clone = "overgrown_cat"
+id = 1570
+
+[overgrown_cat_5]
+clone = "overgrown_cat"
+id = 1571
+
+[overgrown_cat_6]
+clone = "overgrown_cat"
+id = 1572
+
+[doogle_leaves]
+id = 1573
+tradeable = false
+weight = 0.007
+examine = "A tasty herb good for seasoning."
+kept = "Wilderness"
+
+[cat_training_medal]
+id = 1575
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+examine = "For feline training expertise."
+kept = "Wilderness"

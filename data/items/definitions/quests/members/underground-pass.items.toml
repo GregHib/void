@@ -1,0 +1,242 @@
+[ibans_staff]
+id = 1409
+weight = 2.267
+charges = 120
+charge = "ibans_staff_charges"
+degrade = "ibans_staff_broken"
+category = "staff"
+slot = "Weapon"
+examine = "An ancient staff, formerly the property of Iban."
+
+[ibans_staff_broken]
+id = 1410
+weight = 1.814
+examine = "I'll need to get this repaired before I can use it."
+
+[orb_of_light]
+id = 1481
+examine = "A magical sphere that glimmers within."
+weight = 5.0
+
+[orb_of_light_2]
+clone = "orb_of_light"
+id = 1482
+
+[orb_of_light_3]
+clone = "orb_of_light"
+id = 1483
+
+[orb_of_light_4]
+clone = "orb_of_light"
+id = 1484
+
+[damp_cloth]
+id = 1485
+tradeable = false
+weight = 0.012
+examine = "A damp, wet cloth."
+kept = "Wilderness"
+
+[piece_of_railing]
+id = 1486
+tradeable = false
+weight = 2.0
+examine = "A broken piece of railing."
+use = "Quest"
+kept = "Wilderness"
+
+[unicorn_horn_underground_pass]
+id = 1487
+tradeable = false
+weight = 0.007
+examine = "A withered unicorn horn."
+use = "Quest"
+kept = "Wilderness"
+
+[paladins_badge_sir_jerro]
+id = 1488
+tradeable = false
+weight = 0.012
+examine = "A coat of arms of the Ardougne Paladins."
+use = "Quest"
+kept = "Wilderness"
+
+[paladins_badge_sir_carl]
+clone = "paladins_badge_sir_jerro"
+id = 1489
+
+[paladins_badge_sir_harry]
+clone = "paladins_badge_sir_jerro"
+id = 1490
+
+[witchs_cat]
+id = 1491
+tradeable = false
+weight = 1.2
+examine = "A cat."
+use = "Quest"
+kept = "Wilderness"
+
+[doll_of_iban]
+id = 1492
+tradeable = false
+weight = 0.3
+examine = "A simple doll with Iban's likeness."
+use = "Quest"
+kept = "Wilderness"
+
+[old_journal]
+id = 1493
+tradeable = false
+weight = 0.226
+aka = ["the_journal_of_randas"]
+examine = "An account of the last times of someone."
+kept = "Wilderness"
+
+[history_of_iban]
+id = 1494
+tradeable = false
+weight = 0.226
+aka = ["the_tale_of_iban"]
+examine = "The tale of Iban."
+kept = "Wilderness"
+
+[klanks_gauntlets]
+id = 1495
+tradeable = false
+weight = 0.226
+slot = "Hands"
+examine = "Strong dwarvish gloves."
+kept = "Reclaim"
+
+[ibans_dove]
+id = 1496
+tradeable = false
+weight = 0.1
+examine = "I thought you only saw these in pairs?"
+use = "Quest"
+kept = "Wilderness"
+
+[amulet_of_othanian]
+id = 1497
+tradeable = false
+weight = 0.01
+examine = "A mystical demonic amulet."
+use = "Quest"
+kept = "Wilderness"
+
+[amulet_of_doomion]
+clone = "amulet_of_othanian"
+id = 1498
+
+[amulet_of_holthion]
+clone = "amulet_of_othanian"
+id = 1499
+
+[ibans_shadow]
+id = 1500
+tradeable = false
+weight = 0.025
+examine = "A strange dark liquid."
+use = "Quest"
+kept = "Wilderness"
+
+[dwarf_brew]
+id = 1501
+tradeable = false
+weight = 0.15
+examine = "Smells stronger than most spirits."
+use = "Quest"
+kept = "Wilderness"
+
+[ibans_ashes]
+id = 1502
+tradeable = false
+weight = 0.056
+examine = "The burnt remains of Iban."
+use = "Quest"
+kept = "Wilderness"
+
+[bronze_fire_arrows_unlit]
+id = 598
+price = 208
+limit = 10000
+slot = "Ammo"
+examine = "Arrows with bronze heads and oil-soaked cloth."
+
+[bronze_fire_arrows_lit]
+id = 942
+price = 271
+limit = 10000
+slot = "Ammo"
+examine = "An easy to make, bronze-headed fire arrow."
+
+[iron_fire_arrows_unlit]
+id = 2532
+price = 321
+limit = 10000
+slot = "Ammo"
+examine = "Arrows with iron heads and oil-soaked cloth."
+
+[iron_fire_arrows_lit]
+id = 2533
+price = 276
+limit = 10000
+slot = "Ammo"
+examine = "An easy to make, iron-headed fire arrow."
+
+[steel_fire_arrows_unlit]
+id = 2534
+price = 308
+limit = 10000
+slot = "Ammo"
+examine = "Arrows with steel heads and oil-soaked cloth."
+
+[steel_fire_arrows_lit]
+id = 2535
+price = 308
+limit = 10000
+slot = "Ammo"
+examine = "An easy to make, steel-headed fire arrow."
+
+[mithril_fire_arrows_unlit]
+id = 2536
+price = 12
+limit = 10000
+slot = "Ammo"
+examine = "Arrows with mithril heads and oil-soaked cloth."
+
+[mithril_fire_arrows_lit]
+id = 2537
+price = 86
+limit = 10000
+slot = "Ammo"
+examine = "An easy to make, mithril-headed fire arrow."
+
+[adamant_fire_arrows_unlit]
+id = 2538
+price = 102
+limit = 10000
+slot = "Ammo"
+examine = "Arrows with adamant heads and oil-soaked cloth."
+
+[adamant_fire_arrows_lit]
+id = 2539
+price = 108
+limit = 10000
+slot = "Ammo"
+examine = "An easy to make, adamant-headed fire arrow."
+
+[rune_fire_arrows_unlit]
+id = 2540
+price = 415
+limit = 10000
+slot = "Ammo"
+examine = "Arrows with rune heads and oil-soaked cloth."
+
+[rune_fire_arrows_lit]
+id = 2541
+price = 536
+limit = 10000
+slot = "Ammo"
+examine = "An easy to make, rune-headed fire arrow."

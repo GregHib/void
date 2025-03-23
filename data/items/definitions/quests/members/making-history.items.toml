@@ -1,0 +1,93 @@
+[enchanted_key_making_history]
+id = 6754
+tradeable = false
+weight = 0.01
+slot = "Weapon"
+destroy = "Hopefully Erin has a copy!"
+examine = "It seems to change temperature as I walk."
+use = "Quest"
+kept = "Wilderness"
+
+[journal_making_history]
+id = 6755
+tradeable = false
+weight = 0.02
+aka = ["drozals_journal"]
+destroy = "Hopefully there was another in the chest!"
+examine = "Somebody's private journal."
+kept = "Wilderness"
+
+[letter_king_lathas]
+id = 6756
+tradeable = false
+weight = 0.005
+destroy = "Hopefully Jorral will give you another!"
+examine = "A sealed letter to the king."
+use = "Quest"
+kept = "Wilderness"
+
+[letter_jorral]
+id = 6757
+tradeable = false
+weight = 0.005
+destroy = "Hopefully King Lathas will give you another!"
+examine = "A sealed letter to Jorral."
+use = "Quest"
+kept = "Wilderness"
+
+[scroll_making_history]
+id = 6758
+tradeable = false
+weight = 0.005
+destroy = "Hopefully Droalak will give me another!"
+examine = "A timeline of the outpost."
+use = "Quest"
+kept = "Wilderness"
+
+[chest_making_history]
+id = 6759
+tradeable = false
+weight = 0.03
+destroy = "Hopefully there was another in the hole!"
+examine = "A dirty chest."
+use = "Quest"
+kept = "Wilderness"
+
+[guthix_mjolnir]
+id = 6760
+price = 3847
+limit = 100
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Maybe there are more buried around the world?"
+examine = "A Guthix Mjolnir."
+
+[guthix_mjolnir_noted]
+id = 6761
+
+[saradomin_mjolnir]
+id = 6762
+price = 7115
+limit = 100
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Maybe there are more buried around the world?"
+examine = "A Saradomin Mjolnir."
+
+[saradomin_mjolnir_noted]
+id = 6763
+
+[zamorak_mjolnir]
+id = 6764
+price = 5374
+limit = 100
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Maybe there are more buried around the world?"
+examine = "A Zamorak Mjolnir."
+
+[zamorak_mjolnir_noted]
+id = 6765

@@ -1,0 +1,50 @@
+[red_bead]
+id = 1470
+price = 176
+limit = 100
+weight = 0.003
+examine = "A small round red bead."
+
+[red_bead_noted]
+id = 1471
+
+[yellow_bead]
+id = 1472
+price = 245
+limit = 100
+weight = 0.003
+examine = "A small round yellow bead."
+
+[yellow_bead_noted]
+id = 1473
+
+[black_bead]
+id = 1474
+price = 188
+limit = 100
+weight = 0.003
+examine = "A small round black bead."
+
+[black_bead_noted]
+id = 1475
+
+[white_bead]
+id = 1476
+price = 410
+limit = 100
+weight = 0.003
+examine = "A small round white bead."
+
+[white_bead_noted]
+id = 1477
+
+[amulet_of_accuracy]
+id = 1478
+price = 2962
+limit = 100
+weight = 0.01
+slot = "Amulet"
+examine = "Wizard Mizgog sells these aim-enhancing amulets."
+
+[amulet_of_accuracy_noted]
+id = 1479

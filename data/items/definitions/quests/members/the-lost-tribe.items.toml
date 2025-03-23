@@ -1,0 +1,122 @@
+[ham_shirt]
+id = 4298
+price = 22
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "The label says 'Vivid Crimson', but it looks pink to me!"
+kept = "Wilderness"
+
+[ham_shirt_noted]
+id = 4299
+
+[ham_robe]
+id = 4300
+price = 15
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "The label says 'Vivid Crimson', but it looks pink to me!"
+kept = "Wilderness"
+
+[ham_robe_noted]
+id = 4301
+
+[ham_hood]
+id = 4302
+price = 620
+limit = 100
+weight = 0.453
+slot = "Hat"
+type = "Hair"
+examine = "Lightweight head protection and eye shield."
+kept = "Wilderness"
+
+[ham_hood_noted]
+id = 4303
+
+[ham_cloak]
+id = 4304
+price = 342
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "A H.A.M. cape."
+kept = "Wilderness"
+
+[ham_cloak_noted]
+id = 4305
+
+[ham_logo]
+id = 4306
+price = 28
+limit = 100
+weight = 0.01
+slot = "Amulet"
+examine = "A badge for the H.A.M. cult."
+kept = "Wilderness"
+
+[ham_logo_noted]
+id = 4307
+
+[ham_gloves]
+id = 4308
+price = 49
+limit = 100
+weight = 0.453
+slot = "Hands"
+examine = "Gloves worn by the Humans Against Monsters group."
+kept = "Wilderness"
+
+[ham_gloves_noted]
+id = 4309
+
+[ham_boots]
+id = 4310
+price = 155
+limit = 100
+weight = 0.34
+slot = "Feet"
+examine = "Boots worn by the Humans Against Monsters group."
+kept = "Wilderness"
+
+[ham_boots_noted]
+id = 4311
+
+[brooch_the_lost_tribe]
+id = 5008
+tradeable = false
+weight = 0.002
+examine = "A stone brooch with a symbol on it."
+kept = "Wilderness"
+
+[goblin_symbol_book]
+id = 5009
+tradeable = false
+weight = 1.0
+examine = "A book about the ancient goblin tribes."
+kept = "Wilderness"
+
+[key_the_lost_tribe]
+id = 5010
+tradeable = false
+weight = 0.01
+examine = "The key you stole from Sigmund."
+use = "Quest"
+kept = "Wilderness"
+
+[silverware]
+id = 5011
+tradeable = false
+weight = 0.05
+examine = "You found the Lumbridge silverware in the HAM cave."
+use = "Quest"
+kept = "Wilderness"
+
+[peace_treaty]
+id = 5012
+tradeable = false
+weight = 0.028
+examine = "A peace treaty between Lumbridge and the Cave Goblins."
+use = "Quest"
+kept = "Wilderness"

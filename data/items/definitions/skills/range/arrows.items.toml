@@ -1,0 +1,133 @@
+[bronze_arrow]
+id = 882
+price = 11
+limit = 10000
+aka = ["bronze_arrows"]
+slot = "Ammo"
+examine = "Ammunition for shieldbows and shortbows."
+kept = "Wilderness"
+
+[bronze_arrow_p]
+id = 883
+limit = 10000
+slot = "Ammo"
+examine = "Ammunition for shieldbows and shortbows."
+kept = "Wilderness"
+
+[iron_arrow]
+id = 884
+price = 13
+limit = 10000
+aka = ["iron_arrows"]
+slot = "Ammo"
+examine = "Ammunition for shieldbows and shortbows."
+
+[iron_arrow_p]
+id = 885
+limit = 10000
+slot = "Ammo"
+examine = "Ammunition for shieldbows and shortbows."
+
+[steel_arrow]
+id = 886
+price = 20
+limit = 10000
+aka = ["steel_arrows"]
+slot = "Ammo"
+examine = "Ammunition for shieldbows and shortbows."
+
+[steel_arrow_p]
+id = 887
+limit = 10000
+slot = "Ammo"
+examine = "Ammunition for shieldbows and shortbows."
+
+[mithril_arrow]
+id = 888
+price = 27
+limit = 10000
+aka = ["mithril_arrows"]
+slot = "Ammo"
+examine = "Arrows with mithril heads."
+
+[mithril_arrow_p]
+id = 889
+limit = 10000
+slot = "Ammo"
+examine = "Arrows with mithril heads."
+
+[adamant_arrow]
+id = 890
+price = 96
+limit = 10000
+aka = ["adamant_arrows"]
+slot = "Ammo"
+examine = "Arrows with adamant heads."
+
+[adamant_arrow_p]
+id = 891
+limit = 10000
+slot = "Ammo"
+examine = "Arrows with adamant heads."
+
+[rune_arrow]
+id = 892
+price = 184
+limit = 10000
+aka = ["rune_arrows"]
+slot = "Ammo"
+examine = "Arrows with rune heads."
+
+[rune_arrow_p]
+id = 893
+limit = 10000
+slot = "Ammo"
+examine = "Arrows with rune heads."
+
+["bronze_arrow_p+"]
+clone = "bronze_arrow_p"
+id = 5616
+
+["iron_arrow_p+"]
+clone = "iron_arrow_p"
+id = 5617
+
+["steel_arrow_p+"]
+clone = "steel_arrow_p"
+id = 5618
+
+["mithril_arrow_p+"]
+clone = "mithril_arrow_p"
+id = 5619
+
+["adamant_arrow_p+"]
+clone = "adamant_arrow_p"
+id = 5620
+
+["rune_arrow_p+"]
+clone = "rune_arrow_p"
+id = 5621
+
+["bronze_arrow_p++"]
+clone = "bronze_arrow_p"
+id = 5622
+
+["iron_arrow_p++"]
+clone = "iron_arrow_p"
+id = 5623
+
+["steel_arrow_p++"]
+clone = "steel_arrow_p"
+id = 5624
+
+["mithril_arrow_p++"]
+clone = "mithril_arrow_p"
+id = 5625
+
+["adamant_arrow_p++"]
+clone = "adamant_arrow_p"
+id = 5626
+
+["rune_arrow_p++"]
+clone = "rune_arrow_p"
+id = 5627

@@ -1,0 +1,29 @@
+[sea_slug]
+id = 1466
+tradeable = false
+weight = 0.226
+examine = "A rather nasty looking crustacean."
+use = "Quest"
+kept = "Wilderness"
+
+[damp_sticks]
+id = 1467
+tradeable = false
+weight = 0.085
+examine = "Some damp wooden sticks."
+kept = "Wilderness"
+
+[dry_sticks]
+id = 1468
+tradeable = false
+weight = 0.056
+examine = "Some dry wooden sticks."
+use = "Quest"
+kept = "Wilderness"
+
+[broken_glass]
+id = 1469
+tradeable = false
+weight = 0.056
+examine = "Smashed glass."
+kept = "Wilderness"

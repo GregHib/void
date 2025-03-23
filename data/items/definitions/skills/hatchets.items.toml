@@ -128,3 +128,143 @@ id = 520
 
 [hatchet_head_noted_7]
 id = 521
+
+[iron_hatchet]
+id = 1349
+price = 8
+limit = 1000
+weight = 1.36
+rank = 1
+canoe_chance = "48-150"
+smithing = { level = 16, xp = 25.0 }
+aka = ["iron_axe"]
+slot = "Weapon"
+examine = "A woodcutter's hatchet."
+kept = "Wilderness"
+
+[iron_hatchet_noted]
+id = 1350
+
+[bronze_hatchet]
+id = 1351
+price = 15
+limit = 1000
+weight = 1.36
+rank = 0
+canoe_chance = "32-100"
+aka = ["bronze_axe"]
+smithing = { level = 1, xp = 12.5 }
+slot = "Weapon"
+examine = "A woodcutter's hatchet."
+kept = "Wilderness"
+
+[bronze_hatchet_noted]
+id = 1352
+
+[steel_hatchet]
+id = 1353
+price = 23
+limit = 1000
+weight = 1.36
+rank = 2
+canoe_chance = "64-200"
+aka = ["steel_axe"]
+smithing = { level = 31, xp = 37.5 }
+slot = "Weapon"
+examine = "A woodcutter's hatchet."
+kept = "Wilderness"
+
+[steel_hatchet_noted]
+id = 1354
+
+[mithril_hatchet]
+id = 1355
+price = 191
+limit = 1000
+weight = 1.133
+rank = 4
+canoe_chance = "80-250"
+aka = ["mith_axe", "mithril_axe"]
+smithing = { level = 51, xp = 50.0 }
+slot = "Weapon"
+examine = "A powerful hatchet."
+
+[mithril_hatchet_noted]
+id = 1356
+
+[adamant_hatchet]
+id = 1357
+price = 652
+limit = 1000
+weight = 1.587
+rank = 5
+canoe_chance = "96-300"
+aka = ["addy_axe", "adamant_axe"]
+smithing = { level = 71, xp = 62.5 }
+slot = "Weapon"
+examine = "A powerful hatchet."
+
+[adamant_hatchet_noted]
+id = 1358
+
+[rune_hatchet]
+id = 1359
+price = 7587
+limit = 100
+weight = 1.36
+rank = 6
+canoe_chance = "112-350"
+aka = ["rune_axe"]
+smithing = { level = 86, xp = 75.0 }
+slot = "Weapon"
+examine = "A powerful hatchet."
+
+[rune_hatchet_noted]
+id = 1360
+
+[black_hatchet]
+id = 1361
+price = 522
+limit = 1000
+weight = 1.36
+rank = 3
+canoe_chance = "72-225"
+aka = ["black_axe"]
+slot = "Weapon"
+examine = "A sinister looking hatchet."
+
+[black_hatchet_noted]
+id = 1362
+
+[dragon_hatchet]
+id = 6739
+price = 1200000
+limit = 10
+weight = 1.36
+canoe_chance = "112-350"
+aka = ["dragon_axe", "daxe"]
+special_energy = 1000
+special = "clobber"
+rank = 7
+slot = "Weapon"
+examine = "A very powerful hatchet."
+
+[dragon_hatchet_noted]
+id = 6740
+
+[broken_hatchet_dragon]
+id = 6741
+weight = 0.907
+slot = "Weapon"
+examine = "Useless."
+use = "Removed"
+
+[broken_hatchet_noted_8]
+id = 6742
+
+[hatchet_head_dragon]
+clone = "hatchet_head_bronze"
+id = 6743
+
+[hatchet_head_noted_8]
+id = 6744

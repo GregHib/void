@@ -1,0 +1,1327 @@
+[ring_mould]
+id = 1592
+price = 261
+limit = 100
+weight = 0.453
+examine = "Used to make gold rings."
+kept = "Wilderness"
+
+[ring_mould_noted]
+id = 1593
+
+[unholy_mould]
+id = 1594
+tradeable = false
+weight = 0.453
+silver_jewellery = {
+  name = "Unholy Symbol mould",
+  item = "unstrung_emblem",
+  quest = "observatory_quest",
+  level = 17,
+  xp = 50.0,
+}
+examine = "Used to make unholy symbols."
+kept = "Wilderness"
+
+[amulet_unstrung_mould]
+id = 1595
+price = 96
+limit = 100
+weight = 0.453
+examine = "Used to make gold amulets."
+kept = "Wilderness"
+
+[amulet_unstrung_mould_noted]
+id = 1596
+
+[necklace_mould]
+id = 1597
+price = 177
+limit = 100
+weight = 0.453
+examine = "Used to make gold necklaces."
+kept = "Wilderness"
+
+[necklace_mould_noted]
+id = 1598
+
+[holy_mould]
+id = 1599
+price = 40
+limit = 100
+weight = 0.453
+silver_jewellery = {
+  name = "Saradomin Symbol",
+  item = "unstrung_symbol",
+  level = 16,
+  xp = 50.0
+}
+examine = "Used to make holy symbols of Saradomin."
+kept = "Wilderness"
+
+[holy_mould_noted]
+id = 1600
+
+[diamond]
+id = 1601
+price = 7510
+limit = 5000
+weight = 0.002
+examine = "This looks valuable."
+
+[diamond_noted]
+id = 1602
+
+[ruby]
+id = 1603
+price = 1173
+limit = 5000
+weight = 0.002
+examine = "This looks valuable."
+
+[ruby_noted]
+id = 1604
+
+[emerald]
+id = 1605
+price = 590
+limit = 5000
+weight = 0.002
+examine = "This looks valuable."
+
+[emerald_noted]
+id = 1606
+
+[sapphire]
+id = 1607
+price = 342
+limit = 5000
+weight = 0.002
+examine = "This looks valuable."
+
+[sapphire_noted]
+id = 1608
+
+[opal]
+id = 1609
+price = 135
+limit = 5000
+weight = 0.002
+examine = "A semi precious stone."
+
+[opal_noted]
+id = 1610
+
+[jade]
+id = 1611
+price = 305
+limit = 5000
+weight = 0.002
+examine = "A semi precious stone."
+
+[jade_noted]
+id = 1612
+
+[red_topaz]
+id = 1613
+price = 439
+limit = 1000
+weight = 0.002
+examine = "A semi precious stone."
+
+[red_topaz_noted]
+id = 1614
+
+[dragonstone]
+id = 1615
+price = 31100
+limit = 5000
+weight = 0.002
+examine = "This looks valuable."
+
+[dragonstone_noted]
+id = 1616
+
+[uncut_diamond]
+id = 1617
+price = 10122
+limit = 5000
+weight = 0.003
+mining = { xp = 65.0, chance = "8-8" }
+examine = "An uncut diamond."
+
+[uncut_diamond_noted]
+id = 1618
+
+[uncut_ruby]
+id = 1619
+price = 2414
+limit = 5000
+weight = 0.003
+mining = { xp = 65.0, chance = "10-10" }
+examine = "An uncut ruby."
+
+[uncut_ruby_noted]
+id = 1620
+
+[uncut_emerald]
+id = 1621
+price = 1189
+limit = 5000
+weight = 0.003
+mining = { xp = 65.0, chance = "10-10" }
+examine = "An uncut emerald."
+
+[uncut_emerald_noted]
+id = 1622
+
+[uncut_sapphire]
+id = 1623
+price = 657
+limit = 5000
+weight = 0.003
+mining = { xp = 65.0, chance = "18-18" }
+examine = "An uncut sapphire."
+
+[uncut_sapphire_noted]
+id = 1624
+
+[uncut_opal]
+id = 1625
+price = 37
+limit = 5000
+weight = 0.003
+mining = { xp = 65.0, chance = "120-120" }
+examine = "An uncut opal."
+
+[uncut_opal_noted]
+id = 1626
+
+[uncut_jade]
+id = 1627
+price = 129
+limit = 5000
+weight = 0.003
+mining = { xp = 65.0, chance = "60-60" }
+examine = "An uncut jade."
+
+[uncut_jade_noted]
+id = 1628
+
+[uncut_red_topaz]
+id = 1629
+price = 252
+limit = 5000
+weight = 0.003
+mining = { xp = 65.0, chance = "30-30" }
+examine = "An uncut red topaz."
+
+[uncut_red_topaz_noted]
+id = 1630
+
+[uncut_dragonstone]
+id = 1631
+price = 33300
+limit = 5000
+weight = 0.003
+examine = "An uncut dragonstone."
+
+[uncut_dragonstone_noted]
+id = 1632
+
+[crushed_gem]
+id = 1633
+weight = 0.003
+examine = "This gem is crushed and broken."
+
+[crushed_gem_noted]
+id = 1634
+
+[gold_ring]
+id = 1635
+price = 165
+limit = 10000
+weight = 0.004
+jewellery = { level = 5, xp = 15.0 }
+slot = "Ring"
+examine = "A valuable ring."
+kept = "Wilderness"
+
+[gold_ring_noted]
+id = 1636
+
+[sapphire_ring]
+id = 1637
+price = 522
+limit = 5000
+weight = 0.006
+jewellery = { level = 20, xp = 40.0 }
+slot = "Ring"
+examine = "A valuable ring."
+kept = "Wilderness"
+
+[sapphire_ring_noted]
+id = 1638
+
+[emerald_ring]
+id = 1639
+price = 819
+limit = 10000
+weight = 0.006
+jewellery = { level = 27, xp = 55.0 }
+slot = "Ring"
+examine = "A valuable ring."
+
+[emerald_ring_noted]
+id = 1640
+
+[ruby_ring]
+id = 1641
+price = 1168
+limit = 5000
+weight = 0.006
+jewellery = { level = 34, xp = 70.0 }
+slot = "Ring"
+examine = "A valuable ring."
+
+[ruby_ring_noted]
+id = 1642
+
+[diamond_ring]
+id = 1643
+price = 6938
+limit = 5000
+weight = 0.006
+jewellery = { level = 43, xp = 85.0 }
+slot = "Ring"
+examine = "A valuable ring."
+
+[diamond_ring_noted]
+id = 1644
+
+[dragonstone_ring]
+id = 1645
+price = 31400
+limit = 500
+weight = 0.006
+jewellery = { level = 55, xp = 100.0 }
+slot = "Ring"
+examine = "A valuable ring."
+
+[dragonstone_ring_noted]
+id = 1646
+
+[blank_ring]
+id = 1647
+
+[sapphire_ring_2]
+id = 1649
+limit = 5000
+weight = 0.006
+examine = "A valuable ring."
+kept = "Wilderness"
+
+[emerald_ring_2]
+id = 1650
+limit = 10000
+weight = 0.006
+examine = "A valuable ring."
+
+[ruby_ring_2]
+id = 1651
+limit = 5000
+weight = 0.006
+examine = "A valuable ring."
+
+[diamond_ring_2]
+clone = "ruby_ring_2"
+id = 1652
+
+[dragonstone_ring_2]
+id = 1653
+limit = 500
+weight = 0.006
+examine = "A valuable ring."
+
+[gold_necklace]
+id = 1654
+price = 177
+limit = 5000
+weight = 0.007
+jewellery = { level = 6, xp = 20.0 }
+slot = "Amulet"
+examine = "I wonder if this is valuable."
+kept = "Wilderness"
+
+[gold_necklace_noted]
+id = 1655
+
+[sapphire_necklace]
+id = 1656
+price = 533
+limit = 5000
+weight = 0.01
+jewellery = { level = 22, xp = 55.0 }
+slot = "Amulet"
+examine = "I wonder if this is valuable."
+
+[sapphire_necklace_noted]
+id = 1657
+
+[emerald_necklace]
+id = 1658
+price = 750
+limit = 5000
+weight = 0.01
+jewellery = { level = 29, xp = 60.0 }
+slot = "Amulet"
+examine = "I wonder if this is valuable."
+
+[emerald_necklace_noted]
+id = 1659
+
+[ruby_necklace]
+id = 1660
+price = 1212
+limit = 5000
+weight = 0.01
+jewellery = { level = 40, xp = 75.0 }
+slot = "Amulet"
+examine = "I wonder if this is valuable."
+
+[ruby_necklace_noted]
+id = 1661
+
+[diamond_necklace]
+id = 1662
+price = 7557
+limit = 5000
+weight = 0.01
+jewellery = { level = 56, xp = 90.0 }
+slot = "Amulet"
+examine = "I wonder if this is valuable."
+
+[diamond_necklace_noted]
+id = 1663
+
+[dragonstone_necklace]
+id = 1664
+price = 30300
+limit = 500
+weight = 0.01
+jewellery = { level = 72, xp = 105.0 }
+slot = "Amulet"
+examine = "I wonder if this is valuable."
+
+[dragon_necklace_noted]
+id = 1665
+
+[blank_necklace]
+id = 1666
+
+[sapphire_necklace_2]
+id = 1668
+limit = 5000
+weight = 0.01
+examine = "I wonder if this is valuable."
+
+[emerald_necklace_2]
+clone = "sapphire_necklace_2"
+id = 1669
+
+[ruby_necklace_2]
+clone = "sapphire_necklace_2"
+id = 1670
+
+[diamond_necklace_2]
+clone = "sapphire_necklace_2"
+id = 1671
+
+[dragon_necklace]
+id = 1672
+examine = "I wonder if this is valuable."
+
+[gold_amulet_unstrung]
+id = 1673
+price = 172
+limit = 5000
+weight = 0.004
+jewellery = { level = 8, xp = 30.0 }
+aka = ["gold_amulet_u"]
+examine = "It needs a string so I can wear it."
+kept = "Wilderness"
+
+[gold_amulet_unstrung_noted]
+id = 1674
+
+[sapphire_amulet_unstrung]
+id = 1675
+price = 468
+limit = 5000
+weight = 0.004
+jewellery = { level = 24, xp = 65.0 }
+aka = ["sapphire_amulet_u"]
+examine = "It needs a string so I can wear it."
+
+[sapphire_amulet_unstrung_noted]
+id = 1676
+
+[emerald_amulet_unstrung]
+id = 1677
+price = 710
+limit = 5000
+weight = 0.004
+jewellery = { level = 31, xp = 70.0 }
+aka = ["emerald_amulet_u"]
+examine = "It needs a string so I can wear it."
+
+[emerald_amulet_unstrung_noted]
+id = 1678
+
+[ruby_amulet_unstrung]
+id = 1679
+price = 1162
+limit = 5000
+weight = 0.004
+jewellery = { level = 50, xp = 85.0 }
+aka = ["ruby_amulet_u"]
+examine = "It needs a string so I can wear it."
+
+[ruby_amulet_unstrung_noted]
+id = 1680
+
+[diamond_amulet_unstrung]
+id = 1681
+price = 2991
+limit = 5000
+weight = 0.004
+jewellery = { level = 70, xp = 100.0 }
+aka = ["diamond_amulet_u"]
+examine = "It needs a string so I can wear it."
+
+[diamond_amulet_unstrung_noted]
+id = 1682
+
+[dragonstone_amulet_unstrung]
+id = 1683
+price = 41500
+limit = 500
+weight = 0.004
+jewellery = { level = 80, xp = 150.0 }
+aka = ["dragonstone_amulet_u"]
+examine = "It needs a string so I can wear it."
+
+[dragonstone_amulet_unstrung_noted]
+id = 1684
+
+[blank_amulet_unstrung]
+id = 1685
+
+[sapphire_amulet_2]
+id = 1687
+limit = 5000
+weight = 0.007
+examine = "I wonder if I can get this enchanted."
+
+[emerald_amulet_2]
+clone = "sapphire_amulet_2"
+id = 1688
+
+[ruby_amulet_2]
+id = 1689
+limit = 5000
+weight = 0.007
+destroy = "No"
+examine = "I wonder if I can get this enchanted."
+
+[diamond_amulet_2]
+clone = "sapphire_amulet_2"
+id = 1690
+
+[dragonstone_ammy]
+id = 1691
+limit = 100
+examine = "I wonder if I can get this enchanted."
+
+[gold_amulet]
+id = 1692
+price = 135
+limit = 5000
+weight = 0.007
+slot = "Amulet"
+examine = "A plain gold amulet."
+kept = "Wilderness"
+
+[gold_amulet_noted_2]
+id = 1693
+
+[sapphire_amulet]
+id = 1694
+price = 436
+limit = 5000
+weight = 0.007
+slot = "Amulet"
+examine = "I wonder if I can get this enchanted."
+
+[sapphire_amulet_noted_2]
+id = 1695
+
+[emerald_amulet]
+id = 1696
+price = 650
+limit = 5000
+weight = 0.007
+slot = "Amulet"
+examine = "I wonder if I can get this enchanted."
+
+[emerald_amulet_noted_2]
+id = 1697
+
+[ruby_amulet]
+id = 1698
+price = 1125
+limit = 5000
+weight = 0.007
+slot = "Amulet"
+destroy = "No"
+examine = "I wonder if I can get this enchanted."
+
+[ruby_amulet_noted_2]
+id = 1699
+
+[diamond_amulet]
+id = 1700
+price = 2043
+limit = 5000
+weight = 0.007
+slot = "Amulet"
+examine = "I wonder if I can get this enchanted."
+
+[diamond_amulet_noted_2]
+id = 1701
+
+[dragonstone_amulet]
+id = 1702
+price = 32300
+limit = 100
+weight = 0.007
+slot = "Amulet"
+examine = "I wonder if I can get this enchanted."
+
+[dragonstone_ammy_noted_2]
+id = 1703
+
+[amulet_of_glory]
+id = 1704
+price = 33500
+limit = 100
+slot = "Amulet"
+examine = "A very powerful dragonstone amulet."
+weight = 0.01
+
+[amulet_of_glory_noted]
+id = 1705
+
+[amulet_of_glory_1]
+id = 1706
+limit = 100
+weight = 0.01
+charges = 1
+degrade = "amulet_of_glory"
+degrade_message = "You use your amulet's last charge."
+slot = "Amulet"
+examine = "A dragonstone amulet with 1 magic charge."
+
+[amulet_of_glory_1_noted]
+id = 1707
+
+[amulet_of_glory_2]
+clone = "amulet_of_glory_1"
+id = 1708
+degrade = "amulet_of_glory_1"
+degrade_message = "Your amulet has one charge left."
+examine = "A dragonstone amulet with 2 magic charges."
+
+[amulet_of_glory_2_noted]
+id = 1709
+
+[amulet_of_glory_3]
+clone = "amulet_of_glory_1"
+id = 1710
+degrade = "amulet_of_glory_2"
+degrade_message = "Your amulet has two charges left."
+examine = "A dragonstone amulet with 3 magic charges."
+
+[amulet_of_glory_3_noted]
+id = 1711
+
+[amulet_of_glory_4]
+clone = "amulet_of_glory_1"
+id = 1712
+price = 35400
+aka = ["glory", "glory_4"]
+degrade = "amulet_of_glory_3"
+degrade_message = "Your amulet has three charges left."
+examine = "A dragonstone amulet with 4 magic charges."
+
+[amulet_of_glory_4_noted]
+id = 1713
+
+[unstrung_symbol]
+id = 1714
+price = 73
+limit = 5000
+weight = 0.004
+examine = "It needs a string so I can wear it."
+kept = "Wilderness"
+
+[unstrung_symbol_noted]
+id = 1715
+
+[unblessed_symbol]
+id = 1716
+price = 32
+limit = 5000
+weight = 0.007
+slot = "Amulet"
+examine = "A symbol of Saradomin."
+kept = "Wilderness"
+
+[unblessed_symbol_noted]
+id = 1717
+
+[holy_symbol]
+id = 1718
+price = 110
+limit = 5000
+weight = 0.007
+slot = "Amulet"
+examine = "A blessed holy symbol of Saradomin."
+kept = "Wilderness"
+
+[holy_symbol_noted]
+id = 1719
+
+[unstrung_emblem]
+id = 1720
+price = 206
+limit = 5000
+weight = 0.004
+examine = "It needs a string so I can wear it."
+kept = "Wilderness"
+
+[unstrung_emblem_noted]
+id = 1721
+
+[unpowered_symbol]
+id = 1722
+price = 28
+limit = 5000
+weight = 0.007
+slot = "Amulet"
+examine = "An unblessed symbol of Zamorak."
+kept = "Wilderness"
+
+[unpowered_symbol_noted]
+id = 1723
+
+[unholy_symbol]
+id = 1724
+price = 57
+limit = 5000
+weight = 0.007
+slot = "Amulet"
+examine = "An unholy symbol of Zamorak."
+kept = "Wilderness"
+
+[amulet_of_strength]
+id = 1725
+price = 1233
+limit = 5000
+weight = 0.01
+slot = "Amulet"
+examine = "An enchanted ruby amulet."
+
+[amulet_of_strength_noted]
+id = 1726
+
+[amulet_of_magic]
+id = 1727
+price = 462
+limit = 5000
+weight = 0.01
+slot = "Amulet"
+examine = "An enchanted sapphire amulet of Magic."
+
+[amulet_of_magic_noted]
+id = 1728
+
+[amulet_of_defence]
+id = 1729
+price = 677
+limit = 5000
+weight = 0.01
+slot = "Amulet"
+examine = "An enchanted emerald amulet of protection."
+
+[amulet_of_defence_noted]
+id = 1730
+
+[amulet_of_power]
+id = 1731
+price = 2136
+limit = 5000
+weight = 0.01
+slot = "Amulet"
+examine = "An enchanted diamond amulet of power."
+
+[amulet_of_power_noted]
+id = 1732
+
+[needle]
+id = 1733
+price = 1
+limit = 5000
+examine = "Used with a thread to make clothes."
+kept = "Wilderness"
+
+[thread]
+id = 1734
+price = 2
+limit = 10000
+examine = "Used with a needle to make clothes."
+kept = "Wilderness"
+[chisel]
+id = 1755
+price = 94
+limit = 100
+weight = 0.453
+aka = ["chissel", "chissle"]
+examine = "Good for detailed crafting."
+kept = "Wilderness"
+
+[chisel_noted]
+id = 1756
+
+[brown_apron]
+id = 1757
+price = 67
+limit = 100
+weight = 0.453
+slot = "Chest"
+type = "Sleeveless"
+examine = "A mostly clean apron."
+
+[brown_apron_noted]
+id = 1758
+
+[ball_of_wool]
+id = 1759
+price = 59
+limit = 5000
+weight = 0.012
+weaving = { amount = 2, to = "strip_of_cloth", level = 10, xp = 12.0 }
+examine = "Spun from sheeps' wool. You can weave it into cloth at a loom."
+
+[ball_of_wool_noted]
+id = 1760
+
+[soft_clay]
+id = 1761
+price = 67
+limit = 10000
+weight = 0.907
+pottery = {
+  unfired_pot = {
+    level = 1,
+    xp = 6.3
+  },
+  unfired_pie_dish = {
+    level = 7,
+    xp = 15.0
+  },
+  unfired_bowl = {
+    level = 8,
+    xp = 18.0
+  },
+  unfired_plant_pot = {
+    level = 19,
+    xp = 20.0
+  },
+  unfired_pot_lid = {
+    level = 25,
+    xp = 20.0
+  }
+}
+examine = "Clay soft enough to mould."
+
+[soft_clay_noted]
+id = 1762
+
+[molten_glass]
+id = 1775
+price = 394
+limit = 10000
+weight = 0.907
+examine = "Hot glass ready to be blown into useful objects."
+
+[molten_glass_noted]
+id = 1776
+
+[bowstring]
+id = 1777
+price = 145
+limit = 10000
+weight = 0.014
+examine = "I need a bow stave to attach this to."
+kept = "Wilderness"
+
+[bow_string_noted]
+id = 1778
+
+[flax]
+id = 1779
+price = 67
+limit = 25000
+weight = 0.453
+spinning = { to = "bow_string", level = 10, xp = 15.0 }
+weaving = { amount = 5, to = "unfinished_net", level = 52 }
+examine = "I should use this with a spinning wheel."
+
+[flax_noted]
+id = 1780
+
+[soda_ash]
+id = 1781
+price = 184
+limit = 10000
+weight = 0.056
+examine = "One of the components for making glass."
+
+[soda_ash_noted]
+id = 1782
+
+[bucket_of_sand]
+id = 1783
+price = 347
+limit = 10000
+weight = 2.5
+empty = "bucket"
+examine = "One of the components for making glass."
+
+[bucket_of_sand_noted]
+id = 1784
+
+[glassblowing_pipe]
+id = 1785
+price = 119
+limit = 100
+weight = 0.056
+examine = "Used to form molten glass into useful items."
+
+[glassblowing_pipe_noted]
+id = 1786
+
+[unfired_pot]
+id = 1787
+price = 54
+limit = 100
+weight = 0.68
+pottery = { empty_pot = { level = 1, xp = 6.3 } }
+examine = "I need to put this in a pottery oven."
+
+[unfired_pot_noted]
+id = 1788
+
+[unfired_pie_dish]
+id = 1789
+price = 88
+limit = 100
+weight = 0.68
+pottery = { bowl = { level = 8, xp = 15.0 } }
+examine = "I need to put this in a pottery oven."
+
+[unfired_pie_dish_noted]
+id = 1790
+
+[unfired_bowl]
+id = 1791
+price = 60
+limit = 100
+weight = 0.68
+pottery = { bowl = { level = 8, xp = 15.0 } }
+examine = "I need to put this in a pottery oven."
+
+[unfired_bowl_noted]
+id = 1792
+
+[woad_leaf]
+id = 1793
+price = 12
+limit = 100
+examine = "A slightly bluish leaf."
+
+[bronze_wire]
+id = 1794
+price = 100
+limit = 100
+weight = 0.005
+smithing = { level = 4, xp = 12.5 }
+examine = "Useful for crafting items."
+
+[bronze_wire_noted]
+id = 1795
+
+[toy_horsey_brown]
+id = 2520
+weight = 0.05
+examine = "An inexpensive brown toy horse."
+kept = "Wilderness"
+
+[toy_horsey_noted]
+id = 2521
+
+[toy_horsey_white]
+id = 2522
+weight = 0.05
+examine = "An inexpensive white toy horse."
+kept = "Wilderness"
+
+[toy_horsey_noted_2]
+id = 2523
+
+[toy_horsey_black]
+id = 2524
+weight = 0.05
+examine = "An inexpensive black toy horse."
+kept = "Wilderness"
+
+[toy_horsey_noted_3]
+id = 2525
+
+[toy_horsey_grey]
+id = 2526
+weight = 0.05
+examine = "An inexpensive grey toy horse."
+kept = "Wilderness"
+
+[toy_horsey_noted_4]
+id = 2527
+
+
+[ring_of_recoil]
+id = 2550
+price = 841
+limit = 5000
+weight = 0.006
+charges = 400
+charge = "ring_of_recoil_charges"
+degrade = "destroy"
+degrade_message = "Your Ring of Recoil has shattered."
+aka = ["ror", "recoil", "recoil_ring"]
+slot = "Ring"
+examine = "An enchanted ring."
+
+[ring_of_recoil_noted]
+id = 2551
+
+[ring_of_duelling_8]
+id = 2552
+price = 1100
+weight = 0.006
+charges = 1
+degrade = "ring_of_duelling_7"
+degrade_message = "Your ring of duelling has seven uses left."
+aka = ["ring_of_duelling", "duelling_ring"]
+slot = "Ring"
+examine = "An enchanted ring."
+
+[ring_of_duelling_8_noted]
+id = 2553
+
+[ring_of_duelling_7]
+clone = "ring_of_duelling_8"
+id = 2554
+degrade = "ring_of_duelling_6"
+degrade_message = "Your ring of duelling has six uses left."
+
+[ring_of_duelling_7_noted]
+id = 2555
+
+[ring_of_duelling_6]
+clone = "ring_of_duelling_8"
+id = 2556
+degrade = "ring_of_duelling_5"
+degrade_message = "Your ring of duelling has five uses left."
+
+[ring_of_duelling_6_noted]
+id = 2557
+
+[ring_of_duelling_5]
+clone = "ring_of_duelling_8"
+id = 2558
+degrade = "ring_of_duelling_4"
+degrade_message = "Your ring of duelling has four uses left."
+
+[ring_of_duelling_5_noted]
+id = 2559
+
+[ring_of_duelling_4]
+clone = "ring_of_duelling_8"
+id = 2560
+degrade = "ring_of_duelling_3"
+degrade_message = "Your ring of duelling has three uses left."
+
+[ring_of_duelling_4_noted]
+id = 2561
+
+[ring_of_duelling_3]
+clone = "ring_of_duelling_8"
+id = 2562
+degrade = "ring_of_duelling_2"
+degrade_message = "Your ring of duelling has two uses left."
+
+[ring_of_duelling_3_noted]
+id = 2563
+
+[ring_of_duelling_2]
+clone = "ring_of_duelling_8"
+id = 2564
+degrade = "ring_of_duelling_1"
+degrade_message = "Your ring of duelling has one use left."
+
+[ring_of_duelling_2_noted]
+id = 2565
+
+[ring_of_duelling_1]
+id = 2566
+price = 626
+weight = 0.006
+charges = 1
+degrade = "destroy"
+degrade_message = "Your ring of duelling crumbles to dust."
+slot = "Ring"
+examine = "An enchanted ring."
+
+[ring_of_duelling_1_noted]
+id = 2567
+
+[ring_of_forging]
+id = 2568
+price = 1097
+limit = 5000
+weight = 0.006
+slot = "Ring"
+examine = "An enchanted ring."
+
+[ring_of_forging_noted]
+id = 2569
+
+[ring_of_life]
+id = 2570
+price = 7346
+limit = 5000
+weight = 0.006
+aka = ["rol"]
+slot = "Ring"
+examine = "An enchanted ring."
+
+[ring_of_life_noted]
+id = 2571
+
+[ring_of_wealth]
+id = 2572
+price = 28700
+limit = 500
+slot = "Ring"
+aka = ["row"]
+examine = "An enchanted ring."
+weight = 0.006
+
+[ring_of_wealth_noted]
+id = 2573
+
+[unholy_symbol_noted]
+id = 3852
+
+[games_necklace_8]
+id = 3853
+price = 817
+weight = 0.01
+charges = 1
+degrade = "games_necklace_7"
+degrade_message = "Your games necklace has seven uses left."
+slot = "Amulet"
+examine = "An enchanted necklace."
+
+[games_necklace_8_noted]
+id = 3854
+
+[games_necklace_7]
+clone = "games_necklace_8"
+id = 3855
+degrade = "games_necklace_6"
+degrade_message = "Your games necklace has six uses left."
+
+[games_necklace_7_noted]
+id = 3856
+
+[games_necklace_6]
+clone = "games_necklace_8"
+id = 3857
+degrade = "games_necklace_5"
+degrade_message = "Your games necklace has five uses left."
+
+[games_necklace_6_noted]
+id = 3858
+
+[games_necklace_5]
+clone = "games_necklace_8"
+id = 3859
+degrade = "games_necklace_4"
+degrade_message = "Your games necklace has four uses left."
+
+[games_necklace_5_noted]
+id = 3860
+
+[games_necklace_4]
+clone = "games_necklace_8"
+id = 3861
+degrade = "games_necklace_3"
+degrade_message = "Your games necklace has three uses left."
+
+[games_necklace_4_noted]
+id = 3862
+
+[games_necklace_3]
+clone = "games_necklace_8"
+id = 3863
+degrade = "games_necklace_2"
+degrade_message = "Your games necklace has two uses left."
+
+[games_necklace_3_noted]
+id = 3864
+
+[games_necklace_2]
+clone = "games_necklace_8"
+id = 3865
+degrade = "games_necklace_1"
+degrade_message = "Your games necklace has one use left."
+
+[games_necklace_2_noted]
+id = 3866
+
+[games_necklace_1]
+clone = "games_necklace_8"
+id = 3867
+price = 1798
+degrade = "destroy"
+degrade_message = "Your games necklace crumbles to dust."
+
+[games_necklace_1_noted]
+id = 3868
+
+[onyx_ring_2]
+id = 6564
+limit = 100
+weight = 0.006
+examine = "A valuable ring."
+
+[onyx_necklace_2]
+id = 6565
+limit = 100
+weight = 0.01
+examine = "I wonder if this is valuable."
+
+[onyx_amulet_2]
+id = 6566
+limit = 100
+weight = 0.007
+examine = "I wonder if I can get this enchanted."
+
+[uncut_onyx]
+id = 6571
+price = 9800000
+limit = 100
+weight = 0.003
+examine = "An uncut onyx."
+
+[uncut_onyx_noted]
+id = 6572
+
+[onyx]
+id = 6573
+price = 11700000
+limit = 100
+weight = 0.002
+examine = "This looks valuable."
+
+[onyx_noted]
+id = 6574
+
+[onyx_ring]
+id = 6575
+price = 11500000
+limit = 100
+weight = 0.006
+jewellery = { level = 67, xp = 115.0 }
+slot = "Ring"
+examine = "A valuable ring."
+
+[onyx_ring_noted]
+id = 6576
+
+[onyx_necklace]
+id = 6577
+price = 4200000
+limit = 100
+weight = 0.01
+jewellery = { level = 82, xp = 120.0 }
+slot = "Amulet"
+examine = "I wonder if this is valuable."
+
+[onyx_necklace_noted]
+id = 6578
+
+[onyx_amulet_unstrung]
+id = 6579
+weight = 0.004
+jewellery = { level = 90, xp = 165.0 }
+aka = ["onyx_amulet_u"]
+examine = "It needs a string so I can wear it."
+
+[onyx_amulet_unstrung_noted]
+id = 6580
+
+[onyx_amulet]
+id = 6581
+price = 11500000
+limit = 100
+weight = 0.007
+slot = "Amulet"
+examine = "I wonder if I can get this enchanted."
+
+[onyx_amulet_noted_2]
+id = 6582
+
+[ring_of_stone]
+id = 6583
+price = 1400000
+limit = 2
+weight = 0.006
+examine = "A ring that will rock your world."
+
+[ring_of_stone_noted]
+id = 6584
+
+[amulet_of_fury]
+id = 6585
+price = 9400000
+limit = 100
+weight = 0.01
+aka = ["fury"]
+slot = "Amulet"
+examine = "A very powerful onyx amulet."
+
+[amulet_of_fury_noted]
+id = 6586

@@ -1,0 +1,121 @@
+[new_key]
+id = 6104
+tradeable = false
+weight = 0.01
+examine = "This key is newly cut."
+kept = "Wilderness"
+
+[colour_wheel]
+id = 6638
+tradeable = false
+weight = 0.001
+examine = "A key to the nature of light itself."
+kept = "Wilderness"
+
+[hand_mirror]
+id = 6639
+tradeable = false
+weight = 0.01
+destroy = "Resetting the light maze will generate a new mirror."
+examine = "A small hand mirror."
+use = "Quest"
+kept = "Wilderness"
+
+[red_crystal]
+id = 6640
+tradeable = false
+weight = 5.0
+destroy = "If you destroy this, you'll have to transmute some more."
+examine = "Clearly charged with divine potential."
+kept = "Vanish"
+
+[yellow_crystal]
+id = 6641
+tradeable = false
+weight = 0.015
+destroy = "Resetting the light maze will generate a new crystal."
+examine = "A yellow crystal."
+use = "Quest"
+kept = "Wilderness"
+
+[green_crystal]
+clone = "red_crystal"
+id = 6642
+
+[cyan_crystal]
+id = 6643
+tradeable = false
+weight = 0.015
+destroy = "Resetting the light maze will generate a new crystal."
+examine = "A cyan crystal."
+use = "Quest"
+kept = "Wilderness"
+
+[blue_crystal]
+id = 6644
+tradeable = false
+weight = 0.015
+destroy = "Resetting the light maze will generate a new crystal."
+examine = "A blue crystal."
+use = "Quest"
+kept = "Wilderness"
+
+[fractured_crystal_horizontal]
+id = 6646
+tradeable = false
+weight = 0.015
+destroy = "Resetting the light maze will generate a new crystal."
+examine = "A fractured crystal, one of the edges is clear."
+use = "Quest"
+kept = "Wilderness"
+
+[fractured_crystal_vertical]
+clone = "fractured_crystal_horizontal"
+id = 6647
+
+[item_list]
+id = 6648
+tradeable = false
+weight = 0.028
+destroy = "You can obtain another list from Thorgel."
+examine = "It's a list of items I need to collect."
+kept = "Wilderness"
+
+[ederns_journal]
+id = 6649
+tradeable = false
+weight = 0.226
+examine = "The journal of Nissyen Edern."
+kept = "Wilderness"
+
+[blackened_crystal]
+id = 6650
+tradeable = false
+weight = 0.015
+examine = "A blackened crystal sample."
+use = "Quest"
+kept = "Wilderness"
+
+[newly_made_crystal]
+id = 6651
+tradeable = false
+weight = 0.015
+examine = "A newly formed crystal."
+use = "Quest"
+kept = "Wilderness"
+
+[newly_made_crystal_charged]
+id = 6652
+tradeable = false
+weight = 0.015
+examine = "A warm energy radiates from this crystal."
+use = "Quest"
+kept = "Wilderness"
+
+[crystal_trinket]
+id = 6653
+tradeable = false
+weight = 0.01
+destroy = "You can get another Crystal trinket from Arianwyn in Lletya. You can also reclaim it from the quest storage chest."
+examine = "A small Crystal trinket."
+kept = "Wilderness"

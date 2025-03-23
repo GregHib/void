@@ -1,0 +1,20 @@
+[shears]
+id = 1735
+price = 36
+limit = 100
+weight = 0.113
+examine = "For shearing sheep."
+
+[shears_noted]
+id = 1736
+
+[wool]
+id = 1737
+price = 90
+limit = 5000
+weight = 0.003
+spinning = { to = "ball_of_wool", level = 1, xp = 2.5 }
+examine = "This probably came from a sheep. You can spin it into a ball of wool at a spinning wheel."
+
+[wool_noted]
+id = 1738

@@ -1,0 +1,138 @@
+[white_rose_seed]
+id = 6453
+tradeable = false
+destroy = "You can get another white rosebush seed from the Monastery."
+examine = "A white rosebush seed."
+use = "Quest"
+kept = "Wilderness"
+
+[red_rose_seed]
+id = 6454
+tradeable = false
+destroy = "You can get another red rosebush seed from the Monastery."
+examine = "A red rosebush seed."
+use = "Quest"
+kept = "Wilderness"
+
+[pink_rose_seed]
+id = 6455
+tradeable = false
+destroy = "You can get another pink rosebush seed from the Monastery."
+examine = "A pink rosebush seed."
+use = "Quest"
+kept = "Wilderness"
+
+[vine_seed]
+id = 6456
+tradeable = false
+destroy = "You can get more Burthorpe vine seeds from Bernald in Taverley."
+examine = "A grapevine seed."
+use = "Quest"
+kept = "Reclaim"
+
+[delphinium_seed]
+id = 6457
+tradeable = false
+destroy = "You can get more delphinium seeds from Elstan in Falador."
+examine = "A delphinium seed."
+use = "Quest"
+kept = "Wilderness"
+
+[orchid_seed_pink]
+id = 6458
+tradeable = false
+destroy = "You can get more pink orchid seeds from Lyra in Morytania."
+examine = "A pink orchid seed."
+use = "Quest"
+kept = "Reclaim"
+
+[orchid_seed_yellow]
+id = 6459
+tradeable = false
+destroy = "You can get more yellow orchid seeds from Lyra in Morytania."
+examine = "A yellow orchid seed."
+use = "Quest"
+kept = "Wilderness"
+
+[snowdrop_seed]
+id = 6460
+tradeable = false
+destroy = "You can get more snowdrop seeds from Kragen in Ardougne."
+examine = "A snowdrop seed."
+use = "Quest"
+kept = "Reclaim"
+
+[white_tree_shoot]
+id = 6461
+tradeable = false
+weight = 0.001
+destroy = "You can get another shoot from the dying White Tree."
+examine = "A shoot that has been cut from a dying white tree."
+use = "Quest"
+kept = "Wilderness"
+
+[white_tree_shoot_pot]
+id = 6462
+tradeable = false
+weight = 0.907
+destroy = "You can get another shoot from the dying White Tree."
+examine = "A shoot that has been cut from a dying white tree."
+use = "Quest"
+kept = "Wilderness"
+
+[white_tree_shoot_water]
+id = 6463
+tradeable = false
+weight = 0.907
+destroy = "You can get another shoot from the dying White Tree."
+examine = "This shoot from a white tree has been watered and will soon grow."
+use = "Quest"
+kept = "Wilderness"
+
+[white_tree_sapling]
+id = 6464
+tradeable = false
+weight = 0.907
+destroy = "You can get another shoot from the dying White Tree."
+examine = "A white tree sapling."
+use = "Quest"
+kept = "Wilderness"
+
+[ring_of_charos_a]
+id = 6465
+tradeable = false
+weight = 0.005
+slot = "Ring"
+destroy = "The ring will return to Fenkenstrain, its owner. You'll have to pick his pocket again. You can also reclaim it from the quest storage chest."
+examine = "The power within this ring has been activated."
+kept = "Wilderness"
+
+[rune_shards]
+id = 6466
+tradeable = false
+weight = 0.453
+examine = "A rune essence chip that has been broken into shards."
+kept = "Wilderness"
+
+[rune_dust]
+id = 6467
+tradeable = false
+weight = 0.002
+examine = "Crushed rune essence."
+kept = "Wilderness"
+
+[plant_cure_garden_of_tranquillity]
+id = 6468
+tradeable = false
+weight = 0.035
+examine = "This plant cure emits potency."
+use = "Quest"
+kept = "Wilderness"
+
+[white_tree_fruit]
+id = 6469
+heals = 30
+tradeable = false
+weight = 0.028
+examine = "Looks delicious."
+kept = "Reclaim"

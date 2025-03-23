@@ -1,0 +1,53 @@
+[saradomin_cape]
+id = 2412
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "A cape from the almighty god Saradomin."
+kept = "Wilderness"
+
+[guthix_cape]
+id = 2413
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "A cape from the almighty god Guthix."
+kept = "Wilderness"
+
+[zamorak_cape]
+id = 2414
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "A cape from the almighty god Zamorak."
+kept = "Wilderness"
+
+[saradomin_staff]
+id = 2415
+tradeable = false
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+aka = ["sara_staff", "s_staff", "sstaff", "staff_of_saradomin"]
+examine = "A magical staff imbued with the power of Saradomin."
+kept = "Reclaim"
+
+[guthix_staff]
+id = 2416
+tradeable = false
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+aka = ["guth_staff", "g_staff", "gstaff", "staff_of_guthix"]
+examine = "A magical staff imbued with the power of Guthix."
+kept = "Reclaim"
+
+[zamorak_staff]
+id = 2417
+tradeable = false
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+aka = ["zam_staff", "zammy_staff", "z_staff", "zstaff", "staff_of_zamorak"]
+examine = "A magical staff imbued with the power of Zamorak."
+kept = "Reclaim"

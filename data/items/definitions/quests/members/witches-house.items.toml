@@ -1,0 +1,42 @@
+[ball]
+id = 2407
+tradeable = false
+weight = 0.15
+destroy = "This can be found again in the garden shed of the witch's house in Taverley."
+examine = "This ball belongs to Harvey."
+use = "Quest"
+kept = "Wilderness"
+
+[diary_witchs_house]
+id = 2408
+tradeable = false
+weight = 0.51
+aka = ["witchs_diary"]
+destroy = "This can be found again on a table in the witch's house in Taverley."
+examine = "Nora's notebook."
+kept = "Wilderness"
+
+[house_key]
+id = 2409
+tradeable = false
+weight = 0.01
+examine = "A key to the Witch's house's front door."
+kept = "Wilderness"
+
+[magnet]
+id = 2410
+tradeable = false
+weight = 0.02
+destroy = "This can be found again in the cellar of the witch's house in Taverley."
+examine = "A very attractive magnet."
+use = "Quest"
+kept = "Wilderness"
+
+[shed_key_witchs_house]
+id = 2411
+tradeable = false
+weight = 0.01
+destroy = "This can be found again in the garden fountain in the witch's house in Taverley."
+examine = "A key to the Witch's shed."
+use = "Quest"
+kept = "Wilderness"

@@ -1,0 +1,12 @@
+[crossbow]
+id = 837
+price = 194
+limit = 100
+weight = 2.0
+attack_range = 7
+slot = "Weapon"
+examine = "This fires crossbow bolts."
+kept = "Wilderness"
+
+[crossbow_noted]
+id = 838
