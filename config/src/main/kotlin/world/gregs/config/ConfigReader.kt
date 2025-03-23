@@ -4,6 +4,8 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.*
 import java.io.Closeable
 import java.io.InputStream
+import java.math.BigDecimal
+import java.math.MathContext
 
 class ConfigReader(
     private val input: InputStream,
@@ -253,7 +255,7 @@ class ConfigReader(
         var double = long.toDouble()
         byte = input.read() // Skip decimal point
         var decimalFactor = 1.0
-        require(isDigit()) { "Expecting a digit after decimal point." }
+        require(isDigit()) { "Expecting a digit after decimal point. ${exception()}" }
         while (isDigit() || byte == UNDERSCORE) {
             if (byte != UNDERSCORE) {
                 val digit = byte - ZERO
@@ -262,7 +264,40 @@ class ConfigReader(
             }
             byte = input.read()
         }
+//        if (byte == 'E'.code || byte == 'e'.code) {
+//            double = readExponent(double)
+//        }
         return double
+    }
+
+    private fun readExponent(double: Double): Double {
+        byte = input.read() // Skip 'e'
+        val sign = when (byte) {
+            MINUS -> {
+                byte = input.read() // Skip sign
+                require(isDigit()) { "Expecting digits after exponent sign. ${exception()}" }
+                -1
+            }
+            PLUS -> {
+                byte = input.read() // Skip sign
+                require(isDigit()) { "Expecting digits after exponent sign. ${exception()}" }
+                1
+            }
+            ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> 1
+            else -> throw IllegalArgumentException("Expecting a digit or sign after 'E'. ${exception()}")
+        }
+
+        // Read the exponent
+        var exponent = 0
+        while (isDigit() || byte == UNDERSCORE) {
+            if (byte != UNDERSCORE) {
+                exponent = exponent * 10 + (byte - ZERO)
+            }
+            byte = input.read()
+        }
+        val base = BigDecimal(double, MathContext.DECIMAL64)
+        val scaleFactor = BigDecimal.TEN.pow(sign * exponent, MathContext.DECIMAL64)
+        return base.multiply(scaleFactor).toDouble()
     }
 
     private fun isDigit() = byte == ZERO || byte == ONE || byte == TWO || byte == THREE || byte == FOUR || byte == FIVE || byte == SIX || byte == SEVEN || byte == EIGHT || byte == NINE
