@@ -22,54 +22,46 @@ class SafeStorage(
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss")
         val current = LocalDateTime.now().format(formatter)
         for (account in accounts) {
-            val file = directory.resolve("$current-${account.name}.json")
+            val file = directory.resolve("$current-${account.name}.toml")
             file.writeText(toJson(account))
         }
     }
 
     private fun toJson(save: PlayerSave): String {
-        val variables = save.variables.toList().joinToString(",\n    ") { (key, value) ->
-            "\"${key}\": ${
-                when (value) {
-                    is String -> "\"${value}\""
-                    is Collection<*> -> if (value.all { it is String }) value.map { "\"${it}\"" } else value
-                    else -> value
-                }
-            }"
-        }
-        val inventories = save.inventories.toList()
-            .joinToString(",\n    ") { (id, items) -> "\"${id}\": [ ${items.joinToString(", ") { item -> if (item.isEmpty()) "{}" else "{ \"id\": \"${item.id}\", \"amount\": ${item.value} }" }} ]" }
         return buildString {
-            appendLine("{")
-            appendLine("  \"accountName\": \"${save.name}\",")
-            appendLine("  \"passwordHash\": \"${save.password}\",")
-            appendLine("  \"tile\": {")
-            appendLine("    \"x\": ${save.tile.x},")
-            appendLine("    \"y\": ${save.tile.y},")
-            appendLine("    \"level\": ${save.tile.level}")
-            appendLine("  },")
-            appendLine("  \"experience\": {")
-            appendLine("    \"experience\": [ ${save.experience.joinToString(", ")} ],")
-            appendLine("    \"blocked\": [ ${save.blocked.joinToString(", ") { "\"${it.name}\"" }} ]")
-            appendLine("  },")
-            appendLine("  \"levels\": [ ${save.levels.joinToString(", ")} ],")
-            appendLine("  \"male\": ${save.male},")
-            appendLine("  \"looks\": [ ${save.looks.joinToString(", ")} ],")
-            appendLine("  \"colours\": [ ${save.colours.joinToString(", ")} ],")
-            appendLine("  \"variables\": {")
-            append("    ")
-            appendLine(variables)
-            appendLine("  },")
-            appendLine("  \"inventories\": {")
-            append("    ")
-            appendLine(inventories)
-            appendLine("  },")
-            appendLine("  \"friends\": {")
-            append("    ")
-            appendLine(save.friends.toList().joinToString(",") { "\"${it.first}\": \"${it.second}\"" })
-            appendLine("  },")
-            appendLine("  \"ignores\": [ ${save.ignores.joinToString(", ") { "\"${it}\"" }} ]")
-            append("}")
+            appendLine("accountName = \"${save.name}\"")
+            appendLine("passwordHash = \"${save.password}\"")
+            appendLine("experience = [ ${save.experience.joinToString(", ")} ]")
+            appendLine("blocked_skills = [ ${save.blocked.joinToString(", ") { "\"${it.name}\"" }} ]")
+            appendLine("levels = [ ${save.levels.joinToString(", ")} ]")
+            appendLine("male = ${save.male}")
+            appendLine("looks = [ ${save.looks.joinToString(", ")} ]")
+            appendLine("colours = [ ${save.colours.joinToString(", ")} ]")
+            appendLine()
+            appendLine("[tile]")
+            appendLine("x = ${save.tile.x}")
+            appendLine("y = ${save.tile.y}")
+            appendLine("level = ${save.tile.level}")
+            appendLine()
+            appendLine("[variables]")
+            for ((key, value) in save.variables) {
+                appendLine("$key = ${
+                    when (value) {
+                        is String -> "\"${value}\""
+                        is Collection<*> -> "[${value.map { if(it is String)"\"${it}\"" else it }.joinToString(", ")}]"
+                        else -> value
+                    }
+                }")
+            }
+            appendLine()
+            appendLine("[inventories]")
+            for((inv, items) in save.inventories) {
+                appendLine("$inv = [${items.joinToString(", ") { if (it.isEmpty()) "{}" else "{id = \"${it.id}\", amount = ${it.amount}}" }}]")
+            }
+            appendLine()
+            appendLine("[social]")
+            appendLine("friends = {${save.friends.toList().joinToString(", ") { "\"${it.first}\" = \"${it.second}\""}}}")
+            appendLine("ignores = [${save.ignores.joinToString(", ") { "\"${it}\"" }}]")
         }
     }
 

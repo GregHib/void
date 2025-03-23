@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.data
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
@@ -43,6 +45,7 @@ data class PlayerSave(
         )
     }
 
+
     fun save(file: File) {
         Config.fileWriter(file) {
             writePair("accountName", name)
@@ -83,7 +86,7 @@ data class PlayerSave(
                         write("\"")
                         write(item.id)
                         write("\"")
-                        if (item.amount > 0) {
+                        if (item.amount > 1) {
                             write(",")
                             writeKey("amount")
                             write(item.amount.toString())
@@ -141,6 +144,125 @@ data class PlayerSave(
         result = 31 * result + friends.hashCode()
         result = 31 * result + ignores.hashCode()
         return result
+    }
+
+    companion object {
+        fun load(file: File): PlayerSave {
+            var name = ""
+            var password = ""
+            var tile = Tile.EMPTY
+            val experience = DoubleArray(25)
+            val blocked = ObjectArrayList<Skill>(0)
+            val levels = IntArray(25)
+            var male = true
+            val looks = IntArray(7)
+            val colours = IntArray(5)
+            val variables = Object2ObjectOpenHashMap<String, Any>(64)
+            val inventories = Object2ObjectOpenHashMap<String, Array<Item>>(4)
+            val friends = Object2ObjectOpenHashMap<String, ClanRank>()
+            val ignores = ObjectArrayList<String>()
+            Config.fileReader(file) {
+                while (nextPair()) {
+                    when (val key = key()) {
+                        "accountName" -> name = string()
+                        "passwordHash" -> password = string()
+                        "experience" -> {
+                            var index = 0
+                            while (nextElement()) {
+                                experience[index++] = double()
+                            }
+                        }
+                        "blocked_skills" -> while (nextElement()) {
+                            val skill = Skill.of(string())
+                            blocked.add(skill)
+                        }
+                        "levels" -> {
+                            var index = 0
+                            while (nextElement()) {
+                                levels[index++] = int()
+                            }
+                        }
+                        "male" -> male = boolean()
+                        "looks" -> {
+                            var index = 0
+                            while (nextElement()) {
+                                looks[index++] = int()
+                            }
+                        }
+                        "colours" -> {
+                            var index = 0
+                            while (nextElement()) {
+                                colours[index++] = int()
+                            }
+                        }
+                        else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
+                    }
+                }
+                while (nextSection()) {
+                    when (val section = section()) {
+                        "tile" -> {
+                            var x = 0
+                            var y = 0
+                            var level = 0
+                            while (nextPair()) {
+                                when (val k = key()) {
+                                    "x" -> x = int()
+                                    "y" -> y = int()
+                                    "level" -> level = int()
+                                    else -> throw IllegalArgumentException("Unexpected key: '$k' ${exception()}")
+                                }
+                            }
+                            tile = Tile(x, y, level)
+                        }
+                        "variables" -> {
+                            while (nextPair()) {
+                                variables[key()] = value()
+                            }
+                        }
+                        "inventories" -> {
+                            while (nextPair()) {
+                                val inv = key()
+                                val items = ObjectArrayList<Item>()
+                                while (nextElement()) {
+                                    var id = ""
+                                    var amount = 0
+                                    while (nextEntry()) {
+                                        when (val itemKey = key()) {
+                                            "id" -> {
+                                                id = string()
+                                                amount = 1
+                                            }
+                                            "amount" -> amount = int()
+                                            else -> throw IllegalArgumentException("Unexpected key: '$itemKey' ${exception()}")
+                                        }
+                                    }
+                                    items.add(Item(id, amount))
+                                }
+                                inventories[inv] = items.toTypedArray()
+                            }
+                        }
+                        "social" -> {
+                            while (nextPair()) {
+                                when (val socialKey = key()) {
+                                    "friends" -> while (nextEntry()) {
+                                        val friend = key()
+                                        val rank = string()
+                                        friends[friend] = ClanRank.by(rank)
+                                    }
+                                    "ignores" -> while (nextElement()) {
+                                        ignores.add(string())
+                                    }
+                                    else -> throw IllegalArgumentException("Unexpected key: '$socialKey' ${exception()}")
+                                }
+                            }
+
+                        }
+                        else -> throw IllegalArgumentException("Unexpected section: '$section' ${exception()}")
+                    }
+                }
+            }
+            return PlayerSave(name = name, password = password, tile = tile, experience = experience, blocked = blocked, levels = levels, male = male, looks = looks, colours = colours, variables = variables, inventories = inventories, friends = friends, ignores = ignores)
+        }
     }
 }
 

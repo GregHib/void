@@ -7,6 +7,12 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
  * Saves and loads account data
  */
 interface AccountStorage {
+
+    /**
+     * Migrate any old formats to new
+     */
+    fun migrate() {}
+
     /**
      * Loads all players account, display and previous names
      */

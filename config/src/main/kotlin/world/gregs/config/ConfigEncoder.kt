@@ -12,13 +12,29 @@ fun Writer.writePair(key: String, value: Any, escapeKey: Boolean = false) {
 }
 
 fun Writer.writeValue(value: Any?, escapeKey: Boolean = false) {
-    when(value) {
+    when (value) {
         is String -> {
             write("\"")
             write(value)
             write("\"")
         }
         is Boolean -> write(value.toString())
+        is Double -> {
+            val string = value.toBigDecimal().stripTrailingZeros().toPlainString()
+            if (string.contains('.')) {
+                write(string)
+            } else {
+                write("${string}.0")
+            }
+        }
+        is Float -> {
+            val string = value.toBigDecimal().stripTrailingZeros().toPlainString()
+            if (string.contains('.')) {
+                write(string)
+            } else {
+                write("${string}.0")
+            }
+        }
         is Number -> write(value.toString())
         is IntArray -> list(value.size) { writeValue(value[it]) }
         is DoubleArray -> list(value.size) { writeValue(value[it]) }
@@ -55,6 +71,7 @@ fun <T> Writer.writeList(list: List<T>, block: Writer.(T) -> Unit) {
     }
     write("]")
 }
+
 fun Writer.writeArray(array: DoubleArray, block: Writer.(Double) -> Unit) {
     write("[")
     var remaining = array.size
@@ -105,16 +122,17 @@ fun Writer.list(size: Int, block: Writer.(Int) -> Unit) {
 }
 
 private fun needsQuotes(str: String): Boolean {
-    return str.any { it == ' '
-            || it == '\t'
-            || it == '='
-            || it == '['
-            || it == ']'
-            || it == '{'
-            || it == '}'
-            || it == ','
-            || it == '\n'
-            || it == '\r'
-            || it == '#'
+    return str.any {
+        it == ' '
+                || it == '\t'
+                || it == '='
+                || it == '['
+                || it == ']'
+                || it == '{'
+                || it == '}'
+                || it == ','
+                || it == '\n'
+                || it == '\r'
+                || it == '#'
     }
 }
