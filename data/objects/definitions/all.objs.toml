@@ -290,46 +290,6 @@ examine = "A wooden gate."
 id = 907
 examine = "Trinkets and stuff."
 
-[chair]
-id = 1088
-examine = "The ideal thing to sit on."
-
-[chair_2]
-id = 1090
-examine = "A comfortable seat."
-
-[chair_3]
-id = 1091
-examine = "A comfortable seat."
-
-[chair_4]
-id = 1092
-examine = "A comfortable seat."
-
-[chair_5]
-id = 1093
-examine = "Good for sitting on."
-
-[chair_6]
-id = 1094
-examine = "Good for sitting on."
-
-[chair_7]
-id = 1101
-examine = "The perfect way to sit at the bar."
-
-[chair_8]
-id = 1110
-examine = "Used for sitting on."
-
-[chair_9]
-id = 1111
-examine = "Do I dare sit on this?"
-
-[chair_10]
-id = 1115
-examine = "The ideal thing to sit on."
-
 [potted_fern]
 id = 1152
 examine = "A small potted plant."
@@ -885,14 +845,6 @@ examine = "A wrought-iron gate."
 [candlestick_holder]
 id = 1897
 examine = "Not as nice as some."
-
-[chair_11]
-id = 1898
-examine = "This needs dusting before I'll sit on it."
-
-[chair_12]
-id = 1899
-examine = "This needs dusting before I'll sit on it."
 
 [crate_10]
 id = 1990
@@ -1775,10 +1727,6 @@ clone = "tin_rocks_old_1"
 id = 3043
 examine = "A rocky outcrop."
 
-[chair_13]
-id = 3182
-examine = "Wait here for a nurse."
-
 [tomb]
 id = 3353
 examine = "I don't much like the look of that..."
@@ -1914,10 +1862,6 @@ examine = "He looks very relaxed."
 [corpse_11]
 id = 3799
 examine = "Now he's just too thin."
-
-[chair_14]
-id = 3801
-examine = "The ideal thing to sit on."
 
 [crate_30]
 id = 3813
@@ -2058,10 +2002,6 @@ examine = "A wooden crate for storage."
 id = 4186
 examine = "An old crate for storage."
 
-[chair_15]
-id = 4271
-examine = "Generally used for sitting."
-
 [crate_36]
 id = 4300
 examine = "A wooden crate for storage."
@@ -2114,10 +2054,6 @@ examine = "I bet this makes good syrup!"
 id = 7400
 examine = "This is what is left of a maple tree."
 
-[chair_16]
-id = 4690
-examine = "Fancy."
-
 [flagpole_6]
 id = 4692
 examine = "Flag, pole...Yep, it's a flagpole."
@@ -2125,10 +2061,6 @@ examine = "Flag, pole...Yep, it's a flagpole."
 [flagpole_7]
 id = 4693
 examine = "Flag, pole...Yep, it's a flagpole."
-
-[chair_17]
-id = 4702
-examine = "A nicely carved wooden chair."
 
 [crate_38]
 id = 4714
@@ -2248,18 +2180,6 @@ examine = "The resting place of Necrovarus' mortal body."
 id = 5282
 examine = "A ghastly fountain filled with slime and bones, the source of Necrovarus' power."
 
-[chair_18]
-id = 5345
-examine = "The ideal thing to sit on."
-
-[chair_19]
-id = 5346
-examine = "This needs dusting before I'll sit on it."
-
-[chair_20]
-id = 5347
-examine = "This needs dusting before I'll sit on it."
-
 [crate_55]
 id = 5355
 examine = "It probably hasn't got anything interesting inside."
@@ -2317,10 +2237,6 @@ examine = "This is what is left of a willow tree."
 [charms_2]
 id = 5559
 examine = "Trinkets and stuff."
-
-[chair_21]
-id = 5614
-examine = "The ideal thing to sit on."
 
 [gudrun_and_dororan]
 id = 5657
@@ -2532,14 +2448,6 @@ examine = "Useful for making weapons."
 id = 6177
 examine = "Big mysterious crates. You wonder what could be inside."
 
-[chair_22]
-id = 6194
-examine = "Used for sitting."
-
-[chair_23]
-id = 6195
-examine = "Used for sitting."
-
 [fountain_5]
 id = 6232
 examine = "An expensive water feature."
@@ -2675,10 +2583,6 @@ examine = "For storage."
 id = 7349
 examine = "For storage."
 
-[chair_24]
-id = 7385
-examine = "The ideal thing to sit on."
-
 [tree_59]
 id = 14309
 examine = "A commonly found tree."
@@ -2704,14 +2608,6 @@ examine = "I bet this makes good syrup!"
 [maple_tree_3_stump]
 id = 7400
 examine = "This is what is left of a maple tree."
-
-[chair_25]
-id = 7504
-examine = "For sitting."
-
-[chair_26]
-id = 7505
-examine = "For sitting."
 
 [crate_65]
 id = 7513
@@ -2837,10 +2733,6 @@ examine = "Fit for milking."
 [loom_falador_farm]
 id = 8717
 examine = "A loom."
-
-[chair_27]
-id = 8770
-examine = "A chair."
 
 [gate_98_opened]
 id = 8812
@@ -2974,10 +2866,6 @@ examine = "A wooden crate containing fez hats."
 id = 9071
 examine = "A wooden crate containing clothes."
 
-[chair_28]
-id = 9148
-examine = "A nicely carved wooden chair."
-
 [candles_6]
 id = 9159
 examine = "Lit to remember the souls of the departed."
@@ -2990,10 +2878,6 @@ examine = "Lit to remember the souls of the departed."
 id = 9381
 examine = "A wooden crate."
 
-[chair_29]
-id = 9514
-examine = "Betty's chair."
-
 [crate_77]
 id = 9533
 examine = "A wooden crate."
@@ -3002,25 +2886,9 @@ examine = "A wooden crate."
 id = 9534
 examine = "A wooden crate."
 
-[chair_30]
-id = 9621
-examine = "For sitting."
-
-[chair_31]
-id = 9622
-examine = "Fancy."
-
 [candlestick_holder_2]
 id = 9703
 examine = "Not as nice as some."
-
-[chair_32]
-id = 9704
-examine = "This needs dusting before I'll sit on it."
-
-[chair_33]
-id = 9705
-examine = "This needs dusting before I'll sit on it."
 
 [copper_rocks_rimmington_1]
 clone = "copper_rocks_old_1"
@@ -3145,10 +3013,6 @@ id = 10173
 id = 10172
 examine = "This gate is closed."
 
-[chair_34]
-id = 10259
-examine = "Generally used for sitting."
-
 [crate_80]
 id = 10281
 examine = "It's a crate."
@@ -3164,14 +3028,6 @@ examine = "Nardah's main water supply."
 [fountain_7]
 id = 10437
 examine = "There's no water here."
-
-[chair_35]
-id = 10491
-examine = "The ideal thing to sit on."
-
-[chair_36]
-id = 10492
-examine = "Good for sitting on."
 
 [potted_fern_5]
 id = 10499
@@ -3314,10 +3170,6 @@ examine = "A red crate. Probably containing puppets."
 [crate_87]
 id = 10704
 examine = "A large crate. More puppets?"
-
-[chair_37]
-id = 10724
-examine = "A nicely carved wooden chair."
 
 [depleted_rocks_quarry_1]
 id = 10944
@@ -3687,14 +3539,6 @@ examine = "Little candles flickering."
 id = 11485
 examine = "A wooden crate."
 
-[chair_38]
-id = 11489
-examine = "The ideal thing to sit on."
-
-[chair_39]
-id = 11490
-examine = "Do I dare sit on this?"
-
 [cabbage_draynor_manor]
 id = 11494
 pickable = {
@@ -3703,10 +3547,6 @@ pickable = {
   message = "You pick a cabbage."
 }
 examine = "An enigmatic cabbage."
-
-[chair_40]
-id = 11496
-examine = "Did that chair just move?"
 
 [dead_tree_18]
 id = 11510
@@ -3755,18 +3595,6 @@ examine = "The flag of Asgarnia."
 [fountain_9]
 id = 11759
 examine = "Hope springs eternal."
-
-[chair_41]
-id = 11760
-examine = "A comfortable seat."
-
-[chair_42]
-id = 11794
-examine = "Ready for a quick snip?"
-
-[chair_43]
-id = 11795
-examine = "Put your head in my hands."
 
 [crate_94]
 id = 11903
@@ -4166,30 +3994,6 @@ examine = "Little candles flickering."
 id = 12302
 examine = "Little candles flickering."
 
-[chair_44]
-id = 12310
-examine = "Someone should be sitting here."
-
-[chair_45]
-id = 12311
-examine = "Someone should be sitting here."
-
-[chair_46]
-id = 12312
-examine = "Suitable for one."
-
-[chair_47]
-id = 12313
-examine = "Suitable for one."
-
-[chair_48]
-id = 12318
-examine = "It's a seat!"
-
-[chair_49]
-id = 12319
-examine = "It's a seat!"
-
 [crate_100]
 id = 12442
 examine = "A large wooden box."
@@ -4237,18 +4041,6 @@ examine = "For storage."
 [crate_105]
 id = 12879
 examine = "A wooden crate."
-
-[chair_50]
-id = 12885
-examine = "The ideal thing to sit on."
-
-[chair_51]
-id = 12886
-examine = "The ideal thing to sit on."
-
-[chair_52]
-id = 12888
-examine = "This needs dusting before I'll sit on it."
 
 [corpse_26]
 id = 12919
@@ -4326,41 +4118,9 @@ examine = "A sculpture of flowing water."
 id = 13480
 examine = "Two little fishes forever spew water into the pond."
 
-[chair_53]
-id = 13581
-examine = "It's not the best chair but you think it would take your weight."
-
-[chair_54]
-id = 13582
-examine = "The ideal thing to sit on."
-
-[chair_55]
-id = 13583
-examine = "A comfortable seat."
-
-[chair_56]
-id = 13584
-examine = "A comfortable seat."
-
-[chair_57]
-id = 13585
-examine = "A comfortable seat."
-
-[chair_58]
-id = 13586
-examine = "A comfortable seat."
-
-[chair_59]
-id = 13587
-examine = "A comfortable seat."
-
 [infernal_chart]
 id = 13664
 examine = "A spotter's guide to demons."
-
-[chair_60]
-id = 14050
-examine = "For sitting."
 
 [gate_117_opened]
 id = 14234
@@ -4709,10 +4469,6 @@ examine = "A crate of weights."
 id = 15053
 examine = "A crate of weights."
 
-[chair_61]
-id = 15091
-examine = "Generally used for sitting."
-
 [crate_120]
 id = 15107
 examine = "A wooden crate."
@@ -4759,10 +4515,6 @@ examine = "A rocky outcrop."
 [depleted_rocks_misc_expansion_3]
 id = 15251
 examine = "A rocky outcrop."
-
-[chair_62]
-id = 15462
-examine = "A comfortable seat."
 
 [clay_rocks_mud_1]
 clone = "clay_rocks_old_1"
@@ -4994,10 +4746,6 @@ examine = "A native jungle tree."
 id = 15956
 examine = "What's left after the loggers have been."
 
-[chair_63]
-id = 15981
-examine = "The ideal thing to sit on."
-
 [crate_137]
 id = 16001
 examine = "Useful for transportation of valuable items."
@@ -5060,14 +4808,6 @@ examine = "Now that's weird!"
 id = 16605
 examine = "Now that's weird!"
 
-[chair_64]
-id = 16743
-examine = "It's not uncommon for people to sit on these."
-
-[chair_65]
-id = 16744
-examine = "It's not uncommon for people to sit on these."
-
 [crate_147]
 id = 16862
 examine = "A crate."
@@ -5083,10 +4823,6 @@ examine = "A crate."
 [crate_150]
 id = 16865
 examine = "A crate."
-
-[chair_66]
-id = 16900
-examine = "Generally used for sitting."
 
 [crate_151]
 id = 16954
@@ -5189,14 +4925,6 @@ examine = "For storage."
 id = 17101
 examine = "For storage."
 
-[chair_67]
-id = 17146
-examine = "The ideal thing to sit on"
-
-[chair_68]
-id = 17234
-examine = "A gnome-sized chair."
-
 [crate_155]
 id = 17271
 examine = "Useful for transportation of valuable items."
@@ -5208,10 +4936,6 @@ examine = "A wooden crate."
 [crate_157]
 id = 17305
 examine = "A wooden crate."
-
-[chair_69]
-id = 17311
-examine = "A posh looking chair."
 
 [candles_14]
 id = 17323
@@ -5232,30 +4956,6 @@ clone = "silver_rocks_old_1"
 id = 17387
 examine = "A rocky outcrop."
 
-[chair_70]
-id = 17462
-examine = "Where people may put themselves."
-
-[chair_71]
-id = 17463
-examine = "An elegant chair."
-
-[chair_72]
-id = 17547
-examine = "To sit on."
-
-[chair_73]
-id = 17548
-examine = "To sit on."
-
-[chair_74]
-id = 17549
-examine = "To sit on."
-
-[chair_75]
-id = 17550
-examine = "To sit on."
-
 [crate_158]
 id = 17655
 examine = "For storage."
@@ -5263,30 +4963,6 @@ examine = "For storage."
 [crate_159]
 id = 17658
 examine = "A wooden crate."
-
-[chair_76]
-id = 17663
-examine = "Good for sitting on."
-
-[chair_77]
-id = 17757
-examine = "Once an elegant chair"
-
-[chair_78]
-id = 17758
-examine = "A well-used chair."
-
-[chair_79]
-id = 17759
-examine = "An old chair."
-
-[chair_80]
-id = 17760
-examine = "An old chair."
-
-[chair_81]
-id = 17761
-examine = "An old chair."
 
 [crate_160]
 id = 17905
@@ -5307,10 +4983,6 @@ examine = "A ruined old pillar."
 [pillar_23]
 id = 18258
 examine = "A ruined old pillar."
-
-[chair_82]
-id = 18316
-examine = "A poorly made chair."
 
 [crate_162]
 id = 18367
@@ -5604,14 +5276,6 @@ examine = "The almost fractal style of these plants is fascinating."
 id = 19840
 examine = "Some kind of low-lying jungle fern."
 
-[chair_83]
-id = 19929
-examine = "A busted chair."
-
-[chair_84]
-id = 19933
-examine = "A weary chair."
-
 [fire_white]
 id = 20000
 examine = "Hot!"
@@ -5670,10 +5334,6 @@ id = 20092
 id = 20046
 examine = "A gate."
 
-[chair_85]
-id = 20065
-examine = "A chair."
-
 [obstacle_pipe_9]
 id = 20210
 examine = "A pipe I can squeeze through"
@@ -5704,10 +5364,6 @@ examine = "Now he's just too thin."
 [corpse_37]
 id = 20300
 examine = "He hasn't eaten in a long time."
-
-[chair_86]
-id = 20352
-examine = "Good for sitting on."
 
 [crate_184]
 id = 20367
@@ -5819,10 +5475,6 @@ examine = "A pillar I could stand on."
 [pillar_50]
 id = 20889
 examine = "A pillar I could stand on."
-
-[chair_87]
-id = 20999
-examine = "Sit down and chill."
 
 [crate_191]
 id = 21013
@@ -5960,10 +5612,6 @@ examine = "A rocky outcrop."
 id = 21298
 examine = "A rocky outcrop."
 
-[chair_88]
-id = 21354
-examine = "The ideal thing to sit on."
-
 [gate_153_opened]
 id = 21404
 examine = "An open, sturdy metal door."
@@ -6011,10 +5659,6 @@ examine = "A flimsy, wooden gate."
 [gate_158]
 id = 21601
 examine = "An open gate."
-
-[chair_89]
-id = 21607
-examine = "A chair made from stone."
 
 [crate_193]
 id = 21612
@@ -6092,14 +5736,6 @@ examine = "For storage."
 id = 21940
 examine = "For storage."
 
-[chair_90]
-id = 22156
-examine = "A chair."
-
-[chair_91]
-id = 22157
-examine = "A chair."
-
 [crate_208]
 id = 22277
 examine = "A wooden crate."
@@ -6140,22 +5776,6 @@ examine = "A wooden crate."
 id = 22457
 examine = "A wooden crate."
 
-[chair_92]
-id = 22676
-examine = "Looks comfy...for a goblin."
-
-[chair_93]
-id = 22692
-examine = "A stone chair."
-
-[chair_94]
-id = 22703
-examine = "A chair for members of the Dorgeshuun Council."
-
-[chair_95]
-id = 22704
-examine = "A chair for the head of the Dorgeshuun Council."
-
 [gate_163]
 id = 22778
 examine = "Lets the littlest goblins out of their enclosure."
@@ -6191,10 +5811,6 @@ examine = "This plant is flowering."
 [flowering_fern_2]
 id = 22809
 examine = "It has a seed pod."
-
-[chair_96]
-id = 22843
-examine = "A very well-made chair."
 
 [crate_216]
 id = 22860
@@ -6243,10 +5859,6 @@ examine = "A neatly stacked pair of crates."
 [crate_223]
 id = 23533
 examine = "A neatly stacked pair of crates."
-
-[chair_97]
-id = 23624
-examine = "A comfortable seat."
 
 [vtam_plaque]
 id = 23636
@@ -6304,18 +5916,6 @@ examine = "A pretty fountain."
 [fountain_14]
 id = 24265
 examine = "A grand fountain."
-
-[chair_98]
-id = 24304
-examine = "A comfortable seat."
-
-[chair_99]
-id = 24333
-examine = "A poorly made chair."
-
-[chair_100]
-id = 24334
-examine = "A poorly made chair."
 
 [candles_15]
 id = 24348
@@ -6401,10 +6001,6 @@ examine = "Scary lighting apparatus."
 id = 24677
 examine = "Trinkets and stuff."
 
-[chair_101]
-id = 24683
-examine = "An elegant chair."
-
 [beanstalk_2]
 id = 24733
 examine = "It's huge."
@@ -6421,17 +6017,9 @@ examine = "It's huge."
 id = 24736
 examine = "It's huge."
 
-[chair_102]
-id = 24814
-examine = "Do I dare sit on this?"
-
 [crate_229]
 id = 24911
 examine = "An old crate for storage."
-
-[chair_103]
-id = 25048
-examine = "Do I dare sit on this?"
 
 [pillar_54]
 id = 25152
@@ -6477,10 +6065,6 @@ examine = "A rocky outcrop."
 id = 25370
 examine = "A rocky outcrop."
 
-[chair_104]
-id = 25616
-examine = "Do I dare sit on this?"
-
 [crate_230]
 id = 25644
 examine = "An old crate for storage."
@@ -6509,25 +6093,13 @@ examine = "A wooden crate."
 id = 25730
 examine = "Ideal for cooking on."
 
-[chair_105]
-id = 25771
-examine = "The ideal thing to sit on."
-
 [crate_235]
 id = 25775
 examine = "An old crate for storage."
 
-[chair_106]
-id = 25784
-examine = "A comfortable seat."
-
 [fern_16]
 id = 52787
 examine = "A plant."
-
-[chair_107]
-id = 25832
-examine = "A comfortable seat."
 
 [crate_236]
 id = 25836
@@ -6544,18 +6116,6 @@ examine = "Now he's just too thin."
 [corpse_41]
 id = 25903
 examine = "He looks very relaxed."
-
-[chair_108]
-id = 26075
-examine = "A chair."
-
-[chair_109]
-id = 26076
-examine = "A chair."
-
-[chair_110]
-id = 26077
-examine = "A chair."
 
 [gate_180_opened]
 id = 26083
@@ -6683,10 +6243,6 @@ examine = "An old crate for storage."
 id = 27087
 examine = "Wooden crate for storage."
 
-[chair_111]
-id = 27244
-examine = "The civilised way to rest your legs."
-
 [crate_247]
 id = 27305
 examine = "A robust-looking crate."
@@ -6719,10 +6275,6 @@ examine = "This allows one to walk through walls."
 id = 27848
 examine = "This allows one to walk through walls."
 
-[chair_112]
-id = 27849
-examine = "A good place to sit."
-
 [gate_191]
 id = 27851
 examine = "This allows one to walk through walls."
@@ -6747,25 +6299,9 @@ examine = "This allows one to walk through walls."
 id = 27854
 examine = "This allows one to walk through walls."
 
-[chair_113]
-id = 27887
-examine = "Hard and chilly as a gravestone."
-
-[chair_114]
-id = 27888
-examine = "A cushioned seat for the bony backside of Death."
-
-[chair_115]
-id = 27890
-examine = "Hard and chilly as a gravestone."
-
 [crate_250]
 id = 28421
 examine = "I wonder what's stored in here."
-
-[chair_116]
-id = 28504
-examine = "To sit in, for quiet contemplation."
 
 [gate_195_opened]
 id = 28517
@@ -6781,10 +6317,6 @@ examine = "For storage."
 [crate_252]
 id = 28626
 examine = "For storage."
-
-[chair_117]
-id = 28627
-examine = "A place to sit and watch the furniture grow."
 
 [pillar_58]
 id = 28654
@@ -6868,17 +6400,9 @@ examine = "An invasive, stringy-barked tree."
 id = 28956
 examine = "Once a majestic eucalyptus, now a sad little stump."
 
-[chair_118]
-id = 29107
-examine = "Rather rickety."
-
 [crate_255]
 id = 29126
 examine = "For the storage of leather."
-
-[chair_119]
-id = 29137
-examine = "Made from red rock."
 
 [crate_256]
 id = 29149
@@ -7024,23 +6548,11 @@ examine = "Wooden crate for storage."
 [crate_258]
 id = 29470
 
-[chair_120]
-id = 29472
-examine = "It could hold a gnome, but probably not a human."
-
-[chair_121]
-id = 29798
-examine = "It looks a bit rickety."
-
 [crate_259]
 id = 30013
 
 [crate_260]
 id = 30014
-
-[chair_122]
-id = 30080
-examine = "Must be very sturdy to stand up to the weight."
 
 [crate_261]
 id = 30208
@@ -7100,10 +6612,6 @@ examine = "A wooden crate."
 [candle_3]
 id = 30727
 examine = "A candle knocked on the floor."
-
-[chair_123]
-id = 30736
-examine = "Do I dare sit on this?"
 
 [candles_17]
 id = 30752
@@ -7363,10 +6871,6 @@ examine = "A huge, strangely constructed doorway, not sure how this opens."
 id = 32003
 examine = "The pillar has a rune shaped dent in it."
 
-[chair_124]
-id = 32032
-examine = "The ideal thing to sit on."
-
 [corpse_48]
 id = 32072
 examine = "Now that's what I call slimline!"
@@ -7405,14 +6909,6 @@ examine = "Spooky."
 [pillar_66]
 id = 32253
 examine = "A brick pillar."
-
-[chair_125]
-id = 32274
-examine = "This needs dusting before I'll sit on it."
-
-[chair_126]
-id = 32286
-examine = "It's a seat!"
 
 [candle_4]
 id = 32287
@@ -7567,10 +7063,6 @@ clone = "iron_rocks_old_1"
 id = 32452
 examine = "A rocky outcrop."
 
-[chair_127]
-id = 33058
-examine = "The ideal thing to sit on."
-
 [runite_rocks_dirt_1]
 clone = "runite_rocks_old_1"
 id = 33078
@@ -7580,14 +7072,6 @@ examine = "A rocky outcrop."
 clone = "runite_rocks_old_1"
 id = 33079
 examine = "A rocky outcrop."
-
-[chair_128]
-id = 33194
-examine = "A comfortable seat."
-
-[chair_129]
-id = 33196
-examine = "A comfortable seat."
 
 [corpse_52]
 id = 33216
@@ -7666,10 +7150,6 @@ id = 37507
 id = 34225
 examine = "A wooden crate."
 
-[chair_130]
-id = 34227
-examine = "A comfortable seat."
-
 [burning_tomb]
 id = 34299
 examine = "It's on fire."
@@ -7733,13 +7213,6 @@ examine = "A tall pillar."
 [pillar_70]
 id = 35141
 
-[chair_131]
-id = 35149
-
-[chair_132]
-id = 35451
-examine = "A well-made chair."
-
 [fountain_carved]
 id = 35469
 examine = "Conspicuous consumption of water."
@@ -7788,10 +7261,6 @@ examine = "A source of pure water."
 id = 36698
 examine = "An old crumbled pillar."
 
-[chair_133]
-id = 36726
-examine = "Suitable for one."
-
 [coffin_31]
 id = 36736
 examine = "I see dead people."
@@ -7820,10 +7289,6 @@ examine = "An odd-looking rock with a rope tied to it."
 id = 36781
 examine = "A pretty water feature."
 
-[chair_134]
-id = 36783
-examine = "A chair, fit for a king."
-
 [table_lumbridge_kitchen]
 id = 36821
 examine = "Generally used for putting things on."
@@ -7831,14 +7296,6 @@ examine = "Generally used for putting things on."
 [table_large_lumbridge_kitchen]
 id = 36822
 examine = "A nice sturdy-looking table."
-
-[chair_135]
-id = 36830
-examine = "An elegant chair."
-
-[chair_136]
-id = 36831
-examine = "A comfortable seat."
 
 [flour_bin]
 id = 36878
@@ -8016,10 +7473,6 @@ examine = "It's only useful for firewood now."
 [lumbridge_flag]
 id = 37335
 examine = "A flag on a pole."
-
-[chair_137]
-id = 37337
-examine = "The ideal thing to sit on."
 
 [pillar_78]
 id = 37338
@@ -8393,10 +7846,6 @@ examine = "A pillar with a bird nest."
 id = 38810
 examine = "Now that's what I call slimline!"
 
-[chair_138]
-id = 39175
-examine = "An elegant chair."
-
 [hat_stand_5]
 id = 39245
 examine = "Home is where you hang your hat!"
@@ -8435,18 +7884,6 @@ examine = "For storage."
 [crate_303]
 id = 40022
 examine = "For storage."
-
-[chair_139]
-id = 40039
-examine = "A chair."
-
-[chair_140]
-id = 40040
-examine = "Fancy."
-
-[chair_141]
-id = 40041
-examine = "Fancy."
 
 [candle_7]
 id = 40074
@@ -8534,10 +7971,6 @@ examine = "The metal bars look strong."
 id = 40931
 examine = "The metal bars look strong."
 
-[chair_142]
-id = 41116
-examine = "The ideal thing to sit on."
-
 [crate_313]
 id = 41194
 examine = "A wooden crate."
@@ -8570,9 +8003,6 @@ examine = "They are collecting dust."
 id = 42194
 examine = "They are collecting dust."
 
-[chair_143]
-id = 41431
-
 [fountain_22]
 id = 41448
 examine = "A pretty water feature."
@@ -8597,10 +8027,6 @@ examine = "A wooden crate."
 [crate_322]
 id = 42448
 examine = "A wooden crate."
-
-[chair_144]
-id = 42489
-examine = "An elegant chair."
 
 [dead_tree_covered_in_snow]
 clone = "tree"
@@ -8635,26 +8061,6 @@ examine = "It doesn't look finished, but the material is tough enough to grip ho
 id = 43595
 examine = "A slippery log I can walk across."
 
-[chair_145]
-id = 43922
-examine = "Not sure that much slouching occurs here."
-
-[chair_146]
-id = 43936
-examine = "It's quite an honour to sit on these chairs."
-
-[chair_147]
-id = 43942
-examine = "It looks like the officer has the comfortable chair here."
-
-[chair_148]
-id = 43958
-examine = "A cushion of velvet."
-
-[chair_149]
-id = 44042
-examine = "An old chair."
-
 [crate_326]
 id = 44046
 examine = "A wooden crate."
@@ -8667,10 +8073,6 @@ examine = "Two small, wooden crates stacked on top of each other."
 id = 44048
 examine = "Two large, wooden crates stack on top of each other."
 
-[chair_150]
-id = 44055
-examine = "An old chair."
-
 [crate329]
 id = 44058
 examine = "A wooden crate."
@@ -8678,10 +8080,6 @@ examine = "A wooden crate."
 [crate_330]
 id = 44059
 examine = "Two large, wooden crates stack on top of each other."
-
-[chair_151]
-id = 44101
-examine = "An old chair."
 
 [crate_331]
 id = 44105
@@ -8818,10 +8216,6 @@ examine = "Items are for sale here."
 [counter_bobs_shop]
 id = 45238
 examine = "Items are for sale here."
-
-[chair_152]
-id = 45242
-examine = "An elegant chair."
 
 [candles_22]
 id = 45270
@@ -8992,10 +8386,6 @@ examine = "A wooden crate for storage."
 id = 46333
 examine = "An old crate for storage."
 
-[chair_153]
-id = 46569
-examine = "A cushioned seat for the bony backside of Death."
-
 [dead_tree_29]
 id = 46757
 examine = "It's only useful for firewood now."
@@ -9027,66 +8417,6 @@ examine = "It's only useful for firewood now."
 [dead_tree_36]
 id = 46764
 examine = "It's only useful for firewood now."
-
-[chair_154]
-id = 46771
-examine = "A cushioned seat for the bony backside of Death."
-
-[chair_155]
-id = 46772
-examine = "A cushioned seat for the bony backside of Death."
-
-[chair_156]
-id = 46773
-examine = "A cushioned seat for the bony backside of Death."
-
-[chair_157]
-id = 46795
-examine = "Hard and chilly as a gravestone."
-
-[chair_158]
-id = 46796
-examine = "Hard and chilly as a gravestone."
-
-[chair_159]
-id = 46797
-examine = "Hard and chilly as a gravestone."
-
-[chair_160]
-id = 46798
-examine = "Hard and chilly as a gravestone."
-
-[chair_161]
-id = 46799
-examine = "Hard and chilly as a gravestone."
-
-[chair_162]
-id = 46800
-examine = "Hard and chilly as a gravestone."
-
-[chair_163]
-id = 46804
-examine = "A cushioned seat for the bony backside of Death."
-
-[chair_164]
-id = 46805
-examine = "A cushioned seat for the bony backside of Death."
-
-[chair_165]
-id = 46806
-examine = "A cushioned seat for the bony backside of Death."
-
-[chair_166]
-id = 46810
-examine = "Hard and chilly as a gravestone."
-
-[chair_167]
-id = 46811
-examine = "Hard and chilly as a gravestone."
-
-[chair_168]
-id = 46812
-examine = "Hard and chilly as a gravestone."
 
 [crate_350]
 id = 46985
@@ -9176,68 +8506,8 @@ examine = "It's only useful for firewood now."
 id = 47601
 examine = "This tree has been cut down."
 
-[chair_169]
-id = 47612
-examine = "A broken chair."
-
-[chair_170]
-id = 47613
-examine = "A broken chair."
-
-[chair_171]
-id = 47614
-examine = "A broken chair."
-
-[chair_172]
-id = 47615
-examine = "A broken chair."
-
-[chair_173]
-id = 47616
-examine = "A broken chair."
-
-[chair_174]
-id = 47617
-examine = "A broken chair."
-
-[chair_175]
-id = 47618
-examine = "A basic chair."
-
 [fountain_23]
 id = 47662
-
-[chair_176]
-id = 47663
-examine = "A basic chair."
-
-[chair_177]
-id = 47664
-examine = "A basic chair."
-
-[chair_178]
-id = 47665
-examine = "A basic chair."
-
-[chair_179]
-id = 47699
-examine = "A posh chair."
-
-[chair_180]
-id = 47700
-examine = "A posh chair."
-
-[chair_181]
-id = 47701
-examine = "A posh chair."
-
-[chair_182]
-id = 47702
-examine = "A posh chair."
-
-[chair_183]
-id = 47703
-examine = "A posh chair."
 
 [prized_dairy_cow]
 id = 47721
@@ -9246,14 +8516,6 @@ examine = "Produces top-quality milk."
 [fountain_24]
 id = 47747
 examine = "The water looks VERY cold!"
-
-[chair_184]
-id = 47883
-examine = "A stern wooden chair."
-
-[chair_185]
-id = 47884
-examine = "A frumpy-looking chair."
 
 [crate_357]
 id = 47902
@@ -9293,21 +8555,9 @@ id = 49016
 gate = false
 examine = "A gate."
 
-[chair_186]
-id = 49061
-examine = "A comfortable seat."
-
 [crate_361]
 id = 49100
 examine = "A crate filled with cabbages."
-
-[chair_187]
-id = 49204
-examine = "A comfortable seat."
-
-[chair_188]
-id = 49329
-examine = "It will likely stop me from sliding."
 
 [crate_362]
 id = 49330
@@ -10088,10 +9338,6 @@ examine = "It's probably full of weapons and supplies."
 [crate_377]
 id = 57121
 examine = "It's probably full of weapons and supplies."
-
-[chair_189]
-id = 57134
-examine = "Made from rock."
 
 [varrock_palace_drain]
 id = 31759
