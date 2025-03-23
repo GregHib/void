@@ -1112,3 +1112,215 @@ examine = "1 dose of Saradomin brew."
 
 [saradomin_brew_1_noted]
 id = 6692
+
+[combat_potion_4]
+id = 9739
+price = 36
+weight = 0.035
+excess = "combat_potion_3"
+empty = "vial"
+examine = "4 doses of combat potion."
+
+[combat_potion_4_noted]
+id = 9740
+
+[combat_potion_3]
+id = 9741
+price = 18
+weight = 0.03
+excess = "combat_potion_2"
+empty = "vial"
+examine = "3 doses of combat potion."
+
+[combat_potion_3_noted]
+id = 9742
+
+[combat_potion_2]
+id = 9743
+price = 33
+weight = 0.025
+excess = "combat_potion_1"
+empty = "vial"
+examine = "2 doses of combat potion."
+
+[combat_potion_2_noted]
+id = 9744
+
+[combat_potion_1]
+id = 9745
+price = 188
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "1 dose of combat potion."
+
+[combat_potion_1_noted]
+id = 9746
+
+[hunter_potion_4]
+id = 9998
+price = 239
+weight = 0.035
+excess = "hunter_potion_3"
+empty = "vial"
+examine = "4 doses of hunter potion."
+
+[hunter_potion_4_noted]
+id = 9999
+
+[hunter_potion_3]
+id = 10000
+price = 131
+weight = 0.03
+excess = "hunter_potion_2"
+empty = "vial"
+examine = "3 doses of hunter potion."
+
+[hunter_potion_3_noted]
+id = 10001
+
+[hunter_potion_2]
+id = 10002
+price = 141
+weight = 0.025
+excess = "hunter_potion_1"
+empty = "vial"
+examine = "2 doses of hunter potion."
+
+[hunter_potion_2_noted]
+id = 10003
+
+[hunter_potion_1]
+id = 10004
+price = 113
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "1 dose of hunter potion."
+
+[hunter_potion_1_noted]
+id = 10005
+
+[mixture_step_1_4]
+id = 10909
+price = 8665
+weight = 0.035
+empty = "vial"
+examine = "This super restore and unicorn dust potion needs more ingredients."
+
+[mixture_step_1_4_noted]
+id = 10910
+
+[mixture_step_1_3]
+id = 10911
+price = 6500
+weight = 0.03
+empty = "vial"
+examine = "This super restore and unicorn dust potion needs more ingredients."
+
+[mixture_step_1_3_noted]
+id = 10912
+
+[mixture_step_1_2]
+id = 10913
+price = 4335
+weight = 0.025
+empty = "vial"
+examine = "This super restore and unicorn dust potion needs more ingredients."
+
+[mixture_step_1_2_noted]
+id = 10914
+
+[mixture_step_1]
+id = 10915
+price = 2168
+weight = 0.02
+empty = "vial"
+examine = "This super restore and unicorn dust potion needs more ingredients."
+
+[mixture_step_1_1_noted]
+id = 10916
+
+[mixture_step_2_4]
+id = 10917
+price = 8665
+weight = 0.035
+empty = "vial"
+examine = "This super restore, unicorn dust, snake weed potion needs more ingredients."
+
+[mixture_step_2_4_noted]
+id = 10918
+
+[mixture_step_2_3]
+id = 10919
+price = 6500
+weight = 0.03
+empty = "vial"
+examine = "This super restore, unicorn dust, snake weed potion needs more ingredients."
+
+[mixture_step_2_3_noted]
+id = 10920
+
+[mixture_step_2]
+id = 10921
+price = 4335
+weight = 0.025
+empty = "vial"
+examine = "This super restore, unicorn dust, snake weed potion needs more ingredients."
+
+[mixture_step_2_2_noted]
+id = 10922
+
+[mixture_step_2_1]
+id = 10923
+price = 2168
+weight = 0.02
+empty = "vial"
+examine = "This super restore, unicorn dust, snake weed potion needs more ingredients."
+
+[mixture_step_2_1_noted]
+id = 10924
+
+[sanfew_serum_4]
+id = 10925
+price = 23500
+weight = 0.035
+excess = "sanfew_serum_3"
+empty = "vial"
+examine = "A 4 dose Sanfew Serum."
+
+[sanfew_serum_4_noted]
+id = 10926
+
+[sanfew_serum_3]
+id = 10927
+price = 22700
+weight = 0.03
+excess = "sanfew_serum_2"
+empty = "vial"
+examine = "A 3 dose Sanfew Serum."
+
+[sanfew_serum_3_noted]
+id = 10928
+
+[sanfew_serum_2]
+id = 10929
+price = 14300
+weight = 0.025
+excess = "sanfew_serum_1"
+empty = "vial"
+examine = "A 2 dose Sanfew Serum."
+
+[sanfew_serum_2_noted]
+id = 10930
+
+[sanfew_serum_1]
+id = 10931
+price = 7297
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "A 1 dose Sanfew Serum."
+
+[sanfew_serum_1_noted]
+id = 10932

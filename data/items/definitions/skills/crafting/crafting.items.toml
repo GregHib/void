@@ -13,13 +13,7 @@ id = 1593
 id = 1594
 tradeable = false
 weight = 0.453
-silver_jewellery = {
-  name = "Unholy Symbol mould",
-  item = "unstrung_emblem",
-  quest = "observatory_quest",
-  level = 17,
-  xp = 50.0,
-}
+silver_jewellery = { name = "Unholy Symbol mould", item = "unstrung_emblem", quest = "observatory_quest", level = 17, xp = 50.0 }
 examine = "Used to make unholy symbols."
 kept = "Wilderness"
 
@@ -50,12 +44,7 @@ id = 1599
 price = 40
 limit = 100
 weight = 0.453
-silver_jewellery = {
-  name = "Saradomin Symbol",
-  item = "unstrung_symbol",
-  level = 16,
-  xp = 50.0
-}
+silver_jewellery = { name = "Saradomin Symbol", item = "unstrung_symbol", level = 16, xp = 50.0 }
 examine = "Used to make holy symbols of Saradomin."
 kept = "Wilderness"
 
@@ -1325,3 +1314,338 @@ examine = "A very powerful onyx amulet."
 
 [amulet_of_fury_noted]
 id = 6586
+
+[bracelet_mould]
+id = 11065
+price = 416
+limit = 100
+weight = 0.453
+examine = "Used to make gold bracelets."
+kept = "Wilderness"
+
+[bracelet_mould_noted]
+id = 11066
+
+[blank_bracelet]
+id = 11067
+
+[gold_bracelet]
+id = 11069
+price = 221
+limit = 5000
+weight = 0.25
+jewellery = { level = 7, xp = 25.0 }
+slot = "Hands"
+examine = "I wonder if this is valuable."
+kept = "Wilderness"
+
+[gold_bracelet_noted]
+id = 11070
+
+[sapphire_bracelet]
+id = 11072
+price = 567
+limit = 5000
+weight = 0.25
+jewellery = { level = 23, xp = 60.0 }
+slot = "Hands"
+examine = "I wonder if this is valuable."
+
+[sapphire_bracelet_noted]
+id = 11073
+
+[bracelet_of_clay]
+id = 11074
+price = 641
+limit = 5000
+weight = 0.25
+slot = "Hands"
+examine = "Now I can become a potter."
+
+[bracelet_of_clay_noted]
+id = 11075
+
+[emerald_bracelet]
+id = 11076
+price = 787
+limit = 5000
+weight = 0.25
+jewellery = { level = 30, xp = 65.0 }
+slot = "Hands"
+examine = "I wonder if this is valuable."
+
+[emerald_bracelet_noted]
+id = 11077
+
+[castle_wars_brace_3]
+id = 11079
+price = 989
+weight = 0.25
+charges = 1
+degrade = "castle_wars_brace_2"
+slot = "Hands"
+examine = "Must be worn as you enter the game to receive the bonus for that game."
+
+[castle_wars_brace_3_noted]
+id = 11080
+
+[castle_wars_brace_2]
+clone = "castle_wars_brace_3"
+id = 11081
+degrade = "castle_wars_brace_1"
+
+[castle_wars_brace_2_noted]
+id = 11082
+
+[castle_wars_brace_1]
+clone = "castle_wars_brace_3"
+id = 11083
+price = 2873
+degrade = "destroy"
+
+[castle_wars_brace_1_noted]
+id = 11084
+
+[ruby_bracelet]
+id = 11085
+price = 1253
+limit = 5000
+weight = 0.25
+jewellery = { level = 42, xp = 80.0 }
+slot = "Hands"
+examine = "I wonder if this is valuable."
+
+[ruby_bracelet_noted]
+id = 11086
+
+[inoculation_brace]
+id = 11088
+price = 1405
+limit = 5000
+weight = 0.25
+slot = "Hands"
+examine = "It eases poison!"
+
+[inoculation_brace_noted]
+id = 11089
+
+[phoenix_necklace]
+id = 11090
+price = 7798
+limit = 5000
+weight = 0.01
+slot = "Amulet"
+examine = "In case of emergency, wear necklace."
+
+[phoenix_necklace_noted]
+id = 11091
+
+[diamond_bracelet]
+id = 11092
+price = 7431
+limit = 5000
+weight = 0.25
+jewellery = { level = 58, xp = 95.0 }
+slot = "Hands"
+examine = "I wonder if this is valuable."
+
+[diamond_bracelet_noted]
+id = 11093
+
+[forinthry_bracelet_5]
+id = 11095
+price = 8487
+slot = "Hands"
+examine = "It repels revenants and helps you enter the Abyss."
+weight = 0.25
+
+[forinthry_brace_5_noted]
+id = 11096
+
+[forinthry_bracelet_4]
+id = 11097
+slot = "Hands"
+examine = "It repels revenants and helps you enter the Abyss."
+weight = 0.25
+
+[forinthry_brace_4_noted]
+id = 11098
+
+[forinthry_bracelet_3]
+id = 11099
+slot = "Hands"
+examine = "It repels revenants and helps you enter the Abyss."
+weight = 0.25
+
+[forinthry_brace_3_noted]
+id = 11100
+
+[forinthry_bracelet_2]
+id = 11101
+slot = "Hands"
+examine = "It repels revenants and helps you enter the Abyss."
+weight = 0.25
+
+[forinthry_brace_2_noted]
+id = 11102
+
+[forinthry_bracelet_1]
+id = 11103
+price = 2313
+slot = "Hands"
+examine = "It repels revenants and helps you enter the Abyss."
+weight = 0.25
+
+[forinthry_brace_1_noted]
+id = 11104
+
+[skills_necklace_4]
+id = 11105
+price = 22000
+limit = 500
+weight = 0.01
+charges = 1
+degrade = "skills_necklace_3"
+degrade_message = "Your games necklace has three charges left."
+slot = "Amulet"
+examine = "This will help me travel."
+
+[skills_necklace_4_noted]
+id = 11106
+
+[skills_necklace_3]
+clone = "skills_necklace_4"
+id = 11107
+degrade = "skills_necklace_2"
+degrade_message = "Your games necklace has two charges left."
+
+[skills_necklace_3_noted]
+id = 11108
+
+[skills_necklace_2]
+clone = "skills_necklace_4"
+id = 11109
+degrade = "skills_necklace_1"
+degrade_message = "Your games necklace has one charge left."
+
+[skills_necklace_2_noted]
+id = 11110
+
+[skills_necklace_1]
+clone = "skills_necklace_4"
+id = 11111
+degrade = "skills_necklace"
+degrade_message = "You use your skills necklace's last charge."
+
+[skills_necklace_1_noted]
+id = 11112
+
+[skills_necklace]
+id = 11113
+price = 18800
+limit = 500
+slot = "Amulet"
+examine = "You will need to recharge the necklace at the Legends' Guild."
+weight = 0.01
+
+[skills_necklace_noted]
+id = 11114
+
+[dragonstone_bracelet]
+id = 11115
+price = 31700
+limit = 500
+weight = 0.25
+jewellery = { level = 74, xp = 110.0 }
+slot = "Hands"
+examine = "I wonder if this is valuable."
+
+[dragon_bracelet_noted]
+id = 11116
+
+[combat_bracelet_4]
+id = 11118
+price = 32400
+limit = 500
+charges = 1
+degrade = "combat_bracelet_3"
+degrade_message = "Your combat bracelet has three charges left."
+slot = "Hands"
+examine = "A handy way to get around."
+weight = 0.25
+
+[combat_bracelet_4_noted]
+id = 11119
+
+[combat_bracelet_3]
+clone = "combat_bracelet_4"
+id = 11120
+degrade = "combat_bracelet_2"
+degrade_message = "Your combat bracelet has two charges left."
+
+[combat_bracelet_3_noted]
+id = 11121
+
+[combat_bracelet_2]
+clone = "combat_bracelet_4"
+id = 11122
+degrade = "combat_bracelet_1"
+degrade_message = "Your combat bracelet has one charge left."
+
+[combat_bracelet_2_noted]
+id = 11123
+
+[combat_bracelet_1]
+clone = "combat_bracelet_4"
+id = 11124
+degrade = "combat_bracelet"
+degrade_message = "You use your combat bracelet's last charge."
+
+[combat_bracelet_1_noted]
+id = 11125
+
+[combat_bracelet]
+id = 11126
+price = 30600
+limit = 500
+slot = "Hands"
+examine = "You will need to recharge the bracelet at the Legends' Guild."
+weight = 0.25
+
+[combat_bracelet_noted]
+id = 11127
+
+[berserker_necklace]
+id = 11128
+price = 3900000
+limit = 100
+weight = 0.01
+summoning_def = -20.0
+slot = "Amulet"
+examine = "Makes obsidian weapons even stronger!"
+
+[berserker_necklace_noted]
+id = 11129
+
+[onyx_bracelet]
+id = 11130
+price = 884200
+limit = 100
+weight = 0.25
+jewellery = { level = 84, xp = 125.0 }
+slot = "Hands"
+examine = "Yep, this is most definitely valuable!"
+
+[onyx_bracelet_noted]
+id = 11131
+
+[regen_bracelet]
+id = 11133
+price = 150500
+limit = 100
+weight = 0.25
+slot = "Hands"
+examine = "Helps to restore your life points."
+
+[regen_bracelet_noted]
+id = 11134

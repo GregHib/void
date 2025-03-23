@@ -1,0 +1,96 @@
+[armour_shard]
+id = 11048
+tradeable = false
+weight = 0.001
+examine = "A piece of ancient goblin armour."
+use = "Quest"
+kept = "Wilderness"
+
+[artefact_armour]
+id = 11049
+tradeable = false
+weight = 0.001
+examine = "An ancient goblin object encrusted in dirt."
+use = "Quest"
+kept = "Wilderness"
+
+[hatchet_head]
+id = 11050
+tradeable = false
+weight = 0.001
+examine = "A piece of ancient goblin hatchet."
+use = "Quest"
+kept = "Wilderness"
+
+[artefact_hatchet]
+clone = "artefact_armour"
+id = 11051
+
+[helmet_fragment]
+id = 11052
+tradeable = false
+weight = 0.001
+examine = "A piece of ancient goblin helmet."
+use = "Quest"
+kept = "Wilderness"
+
+[artefact_helmet]
+clone = "artefact_armour"
+id = 11053
+
+[shield_fragment]
+id = 11054
+tradeable = false
+weight = 0.001
+examine = "A piece of an ancient goblin shield."
+use = "Quest"
+kept = "Wilderness"
+
+[artefact_shield]
+clone = "artefact_armour"
+id = 11055
+
+[sword_fragment]
+id = 11056
+tradeable = false
+weight = 0.001
+examine = "A piece of an ancient goblin sword."
+use = "Quest"
+kept = "Wilderness"
+
+[artefact_sword]
+clone = "artefact_armour"
+id = 11057
+
+[mace_ham]
+id = 11058
+tradeable = false
+weight = 0.001
+examine = "A powerful looking mace."
+use = "Quest"
+kept = "Wilderness"
+
+[artefact_mace]
+clone = "artefact_armour"
+id = 11059
+
+[goblin_village_sphere]
+clone = "dorgesh_kaan_sphere"
+id = 11060
+
+[ancient_mace]
+id = 11061
+price = 1102
+limit = 100
+weight = 1.814
+special_energy = 1000
+special = "favour_of_the_war_god"
+slot = "Weapon"
+examine = "It has ancient goblin symbols on it."
+
+[zanik_slice]
+clone = "zanik"
+id = 11062
+
+[ancient_mace_noted]
+id = 11064

@@ -260,3 +260,86 @@ examine = "Scaly but not slimy!"
 
 [snake_hide_noted_2]
 id = 7802
+
+[lumberjack_boots]
+id = 10933
+tradeable = false
+weight = 0.907
+slot = "Feet"
+destroy = "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
+examine = "You'll certainly be alright wearing these."
+kept = "Reclaim"
+
+[reward_token_4]
+id = 10934
+tradeable = false
+destroy = "Warning! If you destroy this item, you will lose ALL rewards that it relates to and you will have to make another trek in order to get another one."
+examine = "Blue/Red/Yellow reward token exchanged at Burgh de Rott/Paterdomus."
+kept = "Reclaim"
+
+[reward_token_5]
+clone = "reward_token_4"
+id = 10935
+
+[reward_token_6]
+clone = "reward_token_4"
+id = 10936
+
+[nail_beast_nails]
+id = 10937
+price = 8122
+limit = 100
+weight = 0.02
+examine = "The claws from a nail beast."
+
+[nail_beast_nails_noted]
+id = 10938
+
+[lumberjack_top]
+id = 10939
+tradeable = false
+weight = 1.36
+slot = "Chest"
+destroy = "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
+examine = "You'll certainly be alright wearing this."
+kept = "Reclaim"
+
+[lumberjack_legs]
+id = 10940
+tradeable = false
+weight = 0.907
+slot = "Legs"
+destroy = "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
+examine = "You'll certainly be alright wearing these."
+kept = "Reclaim"
+
+[lumberjack_hat]
+id = 10941
+tradeable = false
+weight = 0.453
+slot = "Hat"
+type = "Hair"
+destroy = "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
+examine = "You'll certainly be alright wearing this."
+kept = "Reclaim"
+
+[reward_token_7]
+clone = "reward_token_4"
+id = 10942
+
+[reward_token_8]
+clone = "reward_token_4"
+id = 10943
+
+[reward_token_9]
+clone = "reward_token_4"
+id = 10944
+
+[lumberjack_top_2]
+id = 10945
+tradeable = false
+weight = 1.36
+slot = "Chest"
+destroy = "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
+examine = "You'll certainly be alright wearing this."
+kept = "Reclaim"

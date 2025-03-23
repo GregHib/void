@@ -131,3 +131,39 @@ id = 5626
 ["rune_arrow_p++"]
 clone = "rune_arrow_p"
 id = 5627
+
+[dragon_arrow]
+id = 11212
+price = 1643
+limit = 10000
+aka = ["darrow", "darrows", "dragon_arrows"]
+slot = "Ammo"
+examine = "An arrow made using a dragon's talon."
+
+[dragon_fire_arrows_unlit]
+id = 11217
+price = 2328
+limit = 10000
+slot = "Ammo"
+examine = "Arrows with dragon heads and oil-soaked cloth."
+
+[dragon_fire_arrows_lit]
+id = 11222
+price = 2445
+limit = 10000
+slot = "Ammo"
+examine = "Dragon-headed fire arrow."
+
+[dragon_arrow_p]
+id = 11227
+limit = 10000
+slot = "Ammo"
+examine = "An arrow made using a dragon's talon."
+
+["dragon_arrow_p+"]
+clone = "dragon_arrow_p"
+id = 11228
+
+["dragon_arrow_p++"]
+clone = "dragon_arrow_p"
+id = 11229

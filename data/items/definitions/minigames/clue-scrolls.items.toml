@@ -1459,3 +1459,403 @@ id = 7317
 [casket_medium_37]
 clone = "casket_easy"
 id = 7318
+
+[clue_scroll_easy_69]
+clone = "clue_scroll_easy"
+id = 10180
+
+[casket_easy_11]
+clone = "casket_easy"
+id = 10181
+
+[clue_scroll_easy_70]
+clone = "clue_scroll_easy"
+id = 10182
+
+[casket_easy_12]
+clone = "casket_easy"
+id = 10183
+
+[clue_scroll_easy_71]
+clone = "clue_scroll_easy_2"
+id = 10184
+
+[casket_easy_13]
+clone = "casket_easy"
+id = 10185
+
+[clue_scroll_easy_72]
+clone = "clue_scroll_easy"
+id = 10186
+
+[casket_easy_14]
+clone = "casket_easy"
+id = 10187
+
+[clue_scroll_easy_73]
+clone = "clue_scroll_easy"
+id = 10188
+
+[casket_easy_15]
+clone = "casket_easy"
+id = 10189
+
+[clue_scroll_easy_74]
+clone = "clue_scroll_easy_2"
+id = 10190
+
+[casket_easy_16]
+clone = "casket_easy"
+id = 10191
+
+[clue_scroll_easy_75]
+clone = "clue_scroll_easy"
+id = 10192
+
+[casket_easy_17]
+clone = "casket_easy"
+id = 10193
+
+[clue_scroll_easy_76]
+clone = "clue_scroll_easy"
+id = 10194
+
+[casket_easy_18]
+clone = "casket_easy"
+id = 10195
+
+[clue_scroll_easy_77]
+clone = "clue_scroll_easy_2"
+id = 10196
+
+[casket_easy_19]
+clone = "casket_easy"
+id = 10197
+
+[clue_scroll_easy_78]
+clone = "clue_scroll_easy"
+id = 10198
+
+[casket_easy_20]
+clone = "casket_easy"
+id = 10199
+
+[clue_scroll_easy_79]
+clone = "clue_scroll_easy"
+id = 10200
+
+[casket_easy_21]
+clone = "casket_easy"
+id = 10201
+
+[clue_scroll_easy_80]
+clone = "clue_scroll_easy_2"
+id = 10202
+
+[casket_easy_22]
+clone = "casket_easy"
+id = 10203
+
+[clue_scroll_easy_81]
+clone = "clue_scroll_easy"
+id = 10204
+
+[casket_easy_23]
+clone = "casket_easy"
+id = 10205
+
+[clue_scroll_easy_82]
+clone = "clue_scroll_easy"
+id = 10206
+
+[casket_easy_24]
+clone = "casket_easy"
+id = 10207
+
+[clue_scroll_easy_83]
+clone = "clue_scroll_easy_2"
+id = 10208
+
+[casket_easy_25]
+clone = "casket_easy"
+id = 10209
+
+[clue_scroll_easy_84]
+clone = "clue_scroll_easy"
+id = 10210
+
+[casket_easy_26]
+clone = "casket_easy"
+id = 10211
+
+[clue_scroll_easy_85]
+clone = "clue_scroll_easy"
+id = 10212
+
+[casket_easy_27]
+clone = "casket_easy"
+id = 10213
+
+[clue_scroll_easy_86]
+clone = "clue_scroll_easy_2"
+id = 10214
+
+[casket_easy_28]
+clone = "casket_easy"
+id = 10215
+
+[clue_scroll_easy_87]
+clone = "clue_scroll_easy"
+id = 10216
+
+[casket_easy_29]
+clone = "casket_easy"
+id = 10217
+
+[clue_scroll_easy_88]
+clone = "clue_scroll_easy"
+id = 10218
+
+[casket_easy_30]
+clone = "casket_easy"
+id = 10219
+
+[clue_scroll_easy_89]
+clone = "clue_scroll_easy_2"
+id = 10220
+
+[casket_easy_31]
+clone = "casket_easy"
+id = 10221
+
+[clue_scroll_easy_90]
+clone = "clue_scroll_easy"
+id = 10222
+
+[casket_easy_32]
+clone = "casket_easy"
+id = 10223
+
+[clue_scroll_easy_91]
+clone = "clue_scroll_easy"
+id = 10224
+
+[casket_easy_33]
+clone = "casket_easy"
+id = 10225
+
+[clue_scroll_easy_92]
+clone = "clue_scroll_easy_2"
+id = 10226
+
+[casket_easy_34]
+clone = "casket_easy"
+id = 10227
+
+[clue_scroll_easy_93]
+clone = "clue_scroll_easy"
+id = 10228
+
+[casket_easy_35]
+clone = "casket_easy"
+id = 10229
+
+[clue_scroll_easy_94]
+clone = "clue_scroll_easy"
+id = 10230
+
+[casket_easy_36]
+clone = "casket_easy"
+id = 10231
+
+[clue_scroll_easy_95]
+clone = "clue_scroll_easy_2"
+id = 10232
+
+[casket_easy_37]
+clone = "casket_easy"
+id = 10233
+
+[clue_scroll_hard_88]
+clone = "clue_scroll_hard_3"
+id = 10234
+
+[casket_hard_54]
+clone = "casket_easy"
+id = 10235
+
+[clue_scroll_hard_89]
+clone = "clue_scroll_hard_4"
+id = 10236
+
+[casket_hard_55]
+clone = "casket_easy"
+id = 10237
+
+[clue_scroll_hard_90]
+clone = "clue_scroll_hard"
+id = 10238
+
+[casket_hard_56]
+clone = "casket_easy"
+id = 10239
+
+[clue_scroll_hard_91]
+clone = "clue_scroll_hard"
+id = 10240
+
+[casket_hard_57]
+clone = "casket_easy"
+id = 10241
+
+[clue_scroll_hard_92]
+clone = "clue_scroll_easy_2"
+id = 10242
+
+[casket_hard_58]
+clone = "casket_easy"
+id = 10243
+
+[clue_scroll_hard_93]
+clone = "clue_scroll_hard_3"
+id = 10244
+
+[casket_hard_59]
+clone = "casket_easy"
+id = 10245
+
+[clue_scroll_hard_94]
+clone = "clue_scroll_hard_4"
+id = 10246
+
+[casket_hard_60]
+clone = "casket_easy"
+id = 10247
+
+[clue_scroll_hard_95]
+clone = "clue_scroll_hard"
+id = 10248
+
+[casket_hard_61]
+clone = "casket_easy"
+id = 10249
+
+[clue_scroll_hard_96]
+clone = "clue_scroll_hard"
+id = 10250
+
+[casket_hard_62]
+clone = "casket_easy"
+id = 10251
+
+[clue_scroll_hard_97]
+clone = "clue_scroll_easy_2"
+id = 10252
+
+[casket_hard_63]
+clone = "casket_easy"
+id = 10253
+
+[clue_scroll_medium_82]
+clone = "clue_scroll_easy_2"
+id = 10254
+
+[casket_medium_38]
+clone = "casket_easy"
+id = 10255
+
+[clue_scroll_medium_83]
+clone = "clue_scroll_hard_3"
+id = 10256
+
+[casket_medium_39]
+clone = "casket_easy"
+id = 10257
+
+[clue_scroll_medium_84]
+clone = "clue_scroll_hard_4"
+id = 10258
+
+[casket_medium_40]
+clone = "casket_easy"
+id = 10259
+
+[clue_scroll_medium_85]
+clone = "clue_scroll_easy"
+id = 10260
+
+[casket_medium_41]
+clone = "casket_easy"
+id = 10261
+
+[clue_scroll_medium_86]
+clone = "clue_scroll_easy"
+id = 10262
+
+[casket_medium_42]
+clone = "casket_easy"
+id = 10263
+
+[clue_scroll_medium_87]
+clone = "clue_scroll_easy_2"
+id = 10264
+
+[casket_medium_43]
+clone = "casket_easy"
+id = 10265
+
+[clue_scroll_medium_88]
+clone = "clue_scroll_hard_3"
+id = 10266
+
+[casket_medium_44]
+clone = "casket_easy"
+id = 10267
+
+[clue_scroll_medium_89]
+clone = "clue_scroll_hard_4"
+id = 10268
+
+[casket_medium_45]
+clone = "casket_easy"
+id = 10269
+
+[clue_scroll_medium_90]
+clone = "clue_scroll_easy"
+id = 10270
+
+[casket_medium_46]
+clone = "casket_easy"
+id = 10271
+
+[clue_scroll_medium_91]
+clone = "clue_scroll_easy"
+id = 10272
+
+[casket_medium_47]
+clone = "casket_easy"
+id = 10273
+
+[clue_scroll_medium_92]
+clone = "clue_scroll_easy_2"
+id = 10274
+
+[casket_medium_48]
+clone = "casket_easy"
+id = 10275
+
+[clue_scroll_medium_93]
+clone = "clue_scroll_hard_3"
+id = 10276
+
+[casket_medium_49]
+clone = "casket_easy"
+id = 10277
+
+[clue_scroll_medium_94]
+clone = "clue_scroll_hard_4"
+id = 10278
+
+[casket_medium_50]
+clone = "casket_easy"
+id = 10279

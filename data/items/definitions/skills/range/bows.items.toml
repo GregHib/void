@@ -164,3 +164,20 @@ examine = "Short and magical, but still effective."
 
 [magic_shortbow_noted]
 id = 862
+
+[dark_bow]
+id = 11235
+price = 279300
+limit = 10
+weight = 1.814
+attack_range = 10
+special_energy = 550
+special = "descent_of_darkness"
+ammo_required = 2
+aka = ["dbow", "d_bow"]
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A bow from a darker dimension."
+
+[dark_bow_noted]
+id = 11236

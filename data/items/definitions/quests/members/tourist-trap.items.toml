@@ -163,3 +163,11 @@ weight = 0.5
 examine = "Looks like a plain rock, must have some ore in it?"
 use = "Quest"
 kept = "Vanish"
+
+[sailing_book]
+id = 9904
+tradeable = false
+weight = 0.001
+examine = "A book for sailors."
+use = "Quest"
+kept = "Reclaim"

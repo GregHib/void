@@ -1750,3 +1750,297 @@ examine = "A two-handed Dragon Sword."
 
 [dragon_2h_sword_noted]
 id = 7407
+
+[bronze_hasta]
+id = 11367
+price = 200
+limit = 1000
+weight = 2.267
+smithing = { level = 5, xp = 25.0 }
+slot = "Weapon"
+examine = "A bronze-tipped, one-handed hasta."
+
+[bronze_hasta_noted]
+id = 11368
+
+[iron_hasta]
+id = 11369
+price = 25
+limit = 1000
+weight = 2.267
+smithing = { level = 20, xp = 50.0 }
+slot = "Weapon"
+examine = "An iron-tipped, one-handed hasta."
+
+[iron_hasta_noted]
+id = 11370
+
+[steel_hasta]
+id = 11371
+price = 87
+limit = 1000
+weight = 2.267
+smithing = { level = 35, xp = 75.0 }
+slot = "Weapon"
+examine = "A steel-tipped, one-handed hasta."
+
+[steel_hasta_noted]
+id = 11372
+
+[mithril_hasta]
+id = 11373
+price = 386
+limit = 1000
+weight = 1.814
+smithing = { level = 55, xp = 100.0 }
+slot = "Weapon"
+examine = "A mithril-tipped, one-handed hasta."
+
+[mithril_hasta_noted]
+id = 11374
+
+[adamant_hasta]
+id = 11375
+price = 1109
+limit = 1000
+weight = 2.721
+smithing = { level = 75, xp = 125.0 }
+slot = "Weapon"
+examine = "An adamant-tipped, one-handed hasta."
+
+[adamant_hasta_noted]
+id = 11376
+
+[rune_hasta]
+id = 11377
+price = 12400
+limit = 100
+weight = 2.267
+smithing = { level = 90, xp = 150.0 }
+slot = "Weapon"
+examine = "A rune-tipped, one-handed hasta."
+
+[rune_hasta_noted]
+id = 11378
+
+[bronze_hasta_p]
+id = 11379
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+examine = "A bronze-tipped, one-handed hasta."
+
+[bronze_hasta_p_noted]
+id = 11380
+
+[bronze_hasta_kp]
+id = 11381
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+examine = "A bronze-tipped, one-handed hasta."
+
+["bronze_hasta_p+"]
+id = 11382
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+examine = "A bronze-tipped, one-handed hasta."
+
+["bronze_hasta_p+_noted"]
+id = 11383
+
+["bronze_hasta_p++"]
+id = 11384
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+examine = "A bronze-tipped, one-handed hasta."
+
+["bronze_hasta_p++_noted"]
+id = 11385
+
+[iron_hasta_p]
+id = 11386
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+examine = "An iron-tipped, one-handed hasta."
+
+[iron_hasta_p_noted]
+id = 11387
+
+[iron_hasta_kp]
+id = 11388
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+examine = "An iron-tipped, one-handed hasta."
+
+["iron_hasta_p+"]
+id = 11389
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+examine = "An iron-tipped, one-handed hasta."
+
+["iron_hasta_p+_noted"]
+id = 11390
+
+["iron_hasta_p++"]
+id = 11391
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+examine = "An iron-tipped, one-handed hasta."
+
+["iron_hasta_p++_noted"]
+id = 11392
+
+[steel_hasta_p]
+id = 11393
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+examine = "A steel-tipped, one-handed hasta."
+
+[steel_hasta_p_noted]
+id = 11394
+
+[steel_hasta_kp]
+id = 11395
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+examine = "A steel-tipped, one-handed hasta."
+
+["steel_hasta_p+"]
+id = 11396
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+examine = "A steel-tipped, one-handed hasta."
+
+["steel_hasta_p+_noted"]
+id = 11397
+
+["steel_hasta_p++"]
+id = 11398
+limit = 1000
+weight = 2.267
+slot = "Weapon"
+examine = "A steel-tipped, one-handed hasta."
+
+["steel_hasta_p++_noted"]
+id = 11399
+
+[mithril_hasta_p]
+id = 11400
+limit = 1000
+weight = 1.814
+slot = "Weapon"
+examine = "A mithril-tipped, one-handed hasta."
+
+[mithril_hasta_p_noted]
+id = 11401
+
+[mithril_hasta_kp]
+id = 11402
+limit = 1000
+weight = 1.814
+slot = "Weapon"
+examine = "A mithril-tipped, one-handed hasta."
+
+["mithril_hasta_p+"]
+id = 11403
+limit = 1000
+weight = 1.814
+slot = "Weapon"
+examine = "A mithril-tipped, one-handed hasta."
+
+["mithril_hasta_p+_noted"]
+id = 11404
+
+["mithril_hasta_p++"]
+id = 11405
+limit = 1000
+weight = 1.814
+slot = "Weapon"
+examine = "A mithril-tipped, one-handed hasta."
+
+["mithril_hasta_p++_noted"]
+id = 11406
+
+[adamant_hasta_p]
+id = 11407
+limit = 1000
+weight = 2.721
+slot = "Weapon"
+examine = "An adamant-tipped, one-handed hasta."
+
+[adamant_hasta_p_noted]
+id = 11408
+
+[adamant_hasta_kp]
+id = 11409
+limit = 1000
+weight = 2.721
+slot = "Weapon"
+examine = "An adamant-tipped, one-handed hasta."
+
+["adamant_hasta_p+"]
+id = 11410
+limit = 1000
+weight = 2.721
+slot = "Weapon"
+examine = "An adamant-tipped, one-handed hasta."
+
+["adamant_hasta_p+_noted"]
+id = 11411
+
+["adamant_hasta_p++"]
+id = 11412
+limit = 1000
+weight = 2.721
+slot = "Weapon"
+examine = "An adamant-tipped, one-handed hasta."
+
+["adamant_hasta_p++_noted"]
+id = 11413
+
+[rune_hasta_p]
+id = 11414
+limit = 100
+weight = 2.267
+slot = "Weapon"
+examine = "A rune-tipped, one-handed hasta."
+
+[rune_hasta_p_noted]
+id = 11415
+
+[rune_hasta_kp]
+id = 11416
+limit = 100
+weight = 2.267
+slot = "Weapon"
+examine = "A rune-tipped, one-handed hasta."
+
+["rune_hasta_p+"]
+id = 11417
+limit = 100
+weight = 2.267
+slot = "Weapon"
+examine = "A rune-tipped, one-handed hasta."
+
+["rune_hasta_p+_noted"]
+id = 11418
+
+["rune_hasta_p++"]
+id = 11419
+limit = 100
+weight = 2.267
+slot = "Weapon"
+examine = "A rune-tipped, one-handed hasta."
+
+["rune_hasta_p++_noted"]
+id = 11420

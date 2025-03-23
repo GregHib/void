@@ -1333,3 +1333,1218 @@ weight = 2.0
 firemaking = { level = 1, xp = 50.0, chance = "256..256", life = 60, colour = "blue" }
 examine = "A number of chemical covered wooden logs."
 kept = "Wilderness"
+
+[willow_composite_bow]
+id = 10280
+price = 102
+limit = 2
+weight = 1.8
+attack_range = 10
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A powerful bow made from willow."
+
+[willow_composite_bow_noted]
+id = 10281
+
+[yew_composite_bow]
+id = 10282
+price = 935
+limit = 2
+weight = 1.8
+attack_range = 10
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A powerful bow made from yew."
+
+[yew_composite_bow_noted]
+id = 10283
+
+[magic_composite_bow]
+id = 10284
+price = 1297
+limit = 2
+weight = 1.8
+attack_range = 10
+special_energy = 350
+special = "powershot"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A powerful bow made from magic logs."
+
+[magic_composite_bow_noted]
+id = 10285
+
+[rune_helm_h1]
+id = 10286
+price = 23000
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A rune helmet with a heraldic design."
+
+[rune_helm_h1_noted]
+id = 10287
+
+[rune_helm_h2]
+id = 10288
+price = 26700
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A rune helmet with a heraldic design."
+
+[rune_helm_h2_noted]
+id = 10289
+
+[rune_helm_h3]
+id = 10290
+price = 21500
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A rune helmet with a heraldic design."
+
+[rune_helm_h3_noted]
+id = 10291
+
+[rune_helm_h4]
+id = 10292
+price = 20900
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A rune helmet with a heraldic design."
+
+[rune_helm_h4_noted]
+id = 10293
+
+[rune_helm_h5]
+id = 10294
+price = 25300
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A rune helmet with a heraldic design."
+
+[rune_helm_h5_noted]
+id = 10295
+
+[adamant_helm_h1]
+id = 10296
+price = 27400
+limit = 2
+weight = 3.175
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "An adamant helmet with a heraldic design."
+
+[adamant_helm_h1_noted]
+id = 10297
+
+[adamant_helm_h2]
+id = 10298
+price = 8613
+limit = 2
+weight = 3.175
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "An adamant helmet with a heraldic design."
+
+[adamant_helm_h2_noted]
+id = 10299
+
+[adamant_helm_h3]
+id = 10300
+price = 8801
+limit = 2
+weight = 3.175
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "An adamant helmet with a heraldic design."
+
+[adamant_helm_h3_noted]
+id = 10301
+
+[adamant_helm_h4]
+id = 10302
+price = 11800
+limit = 2
+weight = 3.175
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "An adamant helmet with a heraldic design."
+
+[adamant_helm_h4_noted]
+id = 10303
+
+[adamant_helm_h5]
+id = 10304
+price = 12400
+limit = 2
+weight = 3.175
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "An adamant helmet with a heraldic design."
+
+[adamant_helm_h5_noted]
+id = 10305
+
+[black_helm_h1]
+id = 10306
+price = 26400
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A black helmet with a heraldic design."
+
+[black_helm_h1_noted]
+id = 10307
+
+[black_helm_h2]
+id = 10308
+price = 10600
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A black helmet with a heraldic design."
+
+[black_helm_h2_noted]
+id = 10309
+
+[black_helm_h3]
+id = 10310
+price = 10800
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A black helmet with a heraldic design."
+
+[black_helm_h3_noted]
+id = 10311
+
+[black_helm_h4]
+id = 10312
+price = 12100
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A black helmet with a heraldic design."
+
+[black_helm_h4_noted]
+id = 10313
+
+[black_helm_h5]
+id = 10314
+price = 12600
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A black helmet with a heraldic design."
+
+[black_helm_h5_noted]
+id = 10315
+
+[bob_shirt_red]
+id = 10316
+price = 11600
+limit = 2
+weight = 1.0
+slot = "Chest"
+examine = "Never give your password out to anyone.'"
+
+[bob_shirt_noted]
+id = 10317
+
+[bob_shirt_blue]
+id = 10318
+price = 21700
+limit = 2
+weight = 1.0
+slot = "Chest"
+examine = "Always check the second trade screen.'"
+
+[bob_shirt_noted_2]
+id = 10319
+
+[bob_shirt_green]
+id = 10320
+price = 11200
+limit = 2
+weight = 1.0
+slot = "Chest"
+examine = "Never trade in the Wilderness!'"
+
+[bob_shirt_noted_3]
+id = 10321
+
+[bob_shirt_black]
+id = 10322
+price = 12400
+limit = 2
+weight = 1.0
+slot = "Chest"
+examine = "A bank PIN will keep your items secure.'"
+
+[bob_shirt_noted_4]
+id = 10323
+
+[bob_shirt_purple]
+id = 10324
+price = 11200
+limit = 2
+weight = 1.0
+slot = "Chest"
+examine = "Keep your computer keylogger-free and virus scanned.'"
+
+[bob_shirt_noted_5]
+id = 10325
+
+[purple_firelighter]
+id = 10326
+price = 254
+limit = 100
+examine = "Makes firelighting a lot easier."
+
+[white_firelighter]
+id = 10327
+price = 301
+limit = 100
+examine = "Makes firelighting a lot easier."
+
+[white_logs]
+id = 10328
+tradeable = false
+weight = 0.003
+firemaking = { level = 1, xp = 50.0, chance = "256..256", life = 60, colour = "white" }
+examine = "A number of chemical-covered wooden logs."
+kept = "Reclaim"
+
+[purple_logs]
+id = 10329
+tradeable = false
+weight = 0.003
+firemaking = { level = 1, xp = 50.0, chance = "256..256", life = 60, colour = "purple" }
+examine = "A number of chemical- covered wooden logs."
+kept = "Reclaim"
+
+[third_age_ranger_body]
+id = 10330
+price = 44100000
+limit = 2
+weight = 4.0
+slot = "Chest"
+material = "leather"
+examine = "Ancient range protection crafted from white dragonhide."
+
+[third_age_range_top_noted]
+id = 10331
+
+[third_age_ranger_chaps]
+id = 10332
+price = 36700000
+limit = 2
+weight = 3.0
+slot = "Legs"
+material = "leather"
+examine = "Ancient range protection crafted from white dragonhide."
+
+[third_age_range_legs_noted]
+id = 10333
+
+[third_age_ranger_coif]
+id = 10334
+price = 6000000
+limit = 2
+weight = 1.0
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "Ancient range protection crafted from white dragonhide."
+
+[third_age_range_coif_noted]
+id = 10335
+
+[third_age_vambraces]
+id = 10336
+price = 4100000
+limit = 2
+weight = 1.0
+slot = "Hands"
+material = "leather"
+examine = "Ancient range protection crafted from white dragonhide."
+
+[third_age_vambraces_noted]
+id = 10337
+
+[third_age_robe_top]
+id = 10338
+price = 106200000
+limit = 2
+weight = 2.7
+slot = "Chest"
+examine = "Ancient mage protection enchanted in the Third-Age."
+
+[third_age_robe_top_noted]
+id = 10339
+
+[third_age_robe]
+id = 10340
+price = 36700000
+limit = 2
+weight = 1.8
+slot = "Legs"
+examine = "Ancient mage protection enchanted in the Third-Age."
+
+[third_age_robe_noted]
+id = 10341
+
+[third_age_mage_hat]
+id = 10342
+price = 23200000
+limit = 2
+weight = 0.4
+slot = "Hat"
+type = "Hair"
+examine = "Ancient mage protection enchanted in the Third-Age."
+
+[third_age_mage_hat_noted]
+id = 10343
+
+[third_age_amulet]
+id = 10344
+price = 14600000
+limit = 2
+weight = 0.003
+slot = "Amulet"
+examine = "Ancient mage protection enchanted in the Third-Age."
+
+[third_age_amulet_noted]
+id = 10345
+
+[third_age_platelegs]
+id = 10346
+price = 154300000
+limit = 2
+weight = 2.721
+slot = "Legs"
+material = "metal"
+examine = "Ancient armour beaten from magical silver."
+
+[third_age_platelegs_noted]
+id = 10347
+
+[third_age_platebody]
+id = 10348
+price = 117900000
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "Ancient armour beaten from magical silver."
+
+[third_age_platebody_noted]
+id = 10349
+
+[third_age_full_helmet]
+id = 10350
+price = 52500000
+limit = 2
+weight = 0.907
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "Ancient armour beaten from magical silver."
+
+[third_age_full_helmet_noted]
+id = 10351
+
+[third_age_kiteshield]
+id = 10352
+price = 81000000
+limit = 2
+weight = 2.721
+slot = "Shield"
+material = "metal"
+examine = "Ancient armour beaten from magical silver."
+
+[third_age_kiteshield_noted]
+id = 10353
+
+[amulet_of_glory_t_4]
+id = 10354
+price = 310200
+limit = 2
+slot = "Amulet"
+examine = "A very powerful dragonstone amulet."
+weight = 0.01
+
+[amulet_of_glory_t4_noted]
+id = 10355
+
+[amulet_of_glory_t_3]
+id = 10356
+limit = 2
+slot = "Amulet"
+examine = "A very powerful dragonstone amulet."
+weight = 0.01
+
+[amulet_of_glory_t3_noted]
+id = 10357
+
+[amulet_of_glory_t_2]
+id = 10358
+limit = 2
+slot = "Amulet"
+examine = "A very powerful dragonstone amulet."
+weight = 0.01
+
+[amulet_of_glory_t2_noted]
+id = 10359
+
+[amulet_of_glory_t_1]
+id = 10360
+limit = 2
+slot = "Amulet"
+examine = "A very powerful dragonstone amulet."
+weight = 0.01
+
+[amulet_of_glory_t1_noted]
+id = 10361
+
+[amulet_of_glory_t]
+id = 10362
+price = 297000
+limit = 2
+slot = "Amulet"
+examine = "A very powerful dragonstone amulet."
+weight = 0.01
+
+[amulet_of_glory_t_noted]
+id = 10363
+
+[strength_amulet_t]
+id = 10364
+price = 782400
+limit = 2
+weight = 0.01
+slot = "Amulet"
+examine = "An enchanted ruby amulet."
+
+[strength_amulet_t_noted]
+id = 10365
+
+[amulet_of_magic_t]
+id = 10366
+price = 186800
+limit = 2
+weight = 0.01
+slot = "Amulet"
+examine = "An enchanted sapphire amulet of magic."
+
+[amulet_of_magic_t_noted]
+id = 10367
+
+[zamorak_vambraces]
+id = 10368
+price = 155400
+limit = 2
+weight = 1.0
+slot = "Hands"
+material = "leather"
+examine = "Zamorak blessed dragonhide vambraces."
+
+[zamorak_vambraces_noted]
+id = 10369
+
+[zamorak_body]
+id = 10370
+price = 351600
+limit = 2
+weight = 6.0
+slot = "Chest"
+material = "leather"
+examine = "Zamorak blessed dragonhide body armour."
+
+[zamorak_body_noted]
+id = 10371
+
+[zamorak_chaps]
+id = 10372
+price = 32700
+limit = 2
+weight = 5.0
+slot = "Legs"
+material = "leather"
+examine = "Zamorak blessed dragonhide chaps."
+
+[zamorak_chaps_noted]
+id = 10373
+
+[zamorak_coif]
+id = 10374
+price = 44600
+limit = 2
+weight = 0.9
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "Zamorak blessed dragonhide coif."
+
+[zamorak_coif_noted]
+id = 10375
+
+[guthix_vambraces]
+id = 10376
+price = 3194
+limit = 2
+weight = 1.0
+slot = "Hands"
+material = "leather"
+examine = "Guthix blessed dragonhide vambraces."
+
+[guthix_vambraces_noted]
+id = 10377
+
+[guthix_body]
+id = 10378
+price = 94900
+limit = 2
+weight = 6.0
+slot = "Chest"
+material = "leather"
+examine = "Guthix blessed dragonhide body armour."
+
+[guthix_body_noted]
+id = 10379
+
+[guthix_chaps]
+id = 10380
+price = 23100
+limit = 2
+weight = 5.0
+slot = "Legs"
+material = "leather"
+examine = "Guthix blessed dragonhide chaps."
+
+[guthix_chaps_noted]
+id = 10381
+
+[guthix_coif]
+id = 10382
+price = 31800
+limit = 2
+weight = 0.9
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "Guthix blessed dragonhide coif."
+
+[guthix_coif_noted]
+id = 10383
+
+[saradomin_vambraces]
+id = 10384
+price = 80700
+limit = 2
+weight = 1.0
+slot = "Hands"
+material = "leather"
+examine = "Saradomin blessed dragonhide vambraces."
+
+[saradomin_vambraces_noted]
+id = 10385
+
+[saradomin_body]
+id = 10386
+price = 237600
+limit = 2
+weight = 6.0
+slot = "Chest"
+material = "leather"
+destroy = "No"
+examine = "Saradomin blessed dragonhide body armour."
+
+[saradomin_body_noted]
+id = 10387
+
+[saradomin_chaps]
+id = 10388
+price = 29300
+limit = 2
+weight = 5.0
+slot = "Legs"
+material = "leather"
+examine = "Saradomin blessed dragonhide chaps."
+
+[saradomin_chaps_noted]
+id = 10389
+
+[saradomin_coif]
+id = 10390
+price = 32900
+limit = 2
+weight = 0.9
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "Saradomin blessed dragonhide coif."
+
+[saradomin_coif_noted]
+id = 10391
+
+[powdered_wig]
+id = 10392
+price = 133300
+limit = 2
+weight = 0.4
+slot = "Hat"
+type = "Hair"
+examine = "A big 'do about nothing."
+
+[a_powdered_wig_noted]
+id = 10393
+
+[flared_trousers]
+id = 10394
+price = 876900
+limit = 2
+weight = 1.0
+slot = "Legs"
+examine = "These'll help me stay alive."
+
+[flared_trousers_noted]
+id = 10395
+
+[pantaloons]
+id = 10396
+price = 9990
+limit = 2
+weight = 1.0
+slot = "Legs"
+examine = "Alas, someone has slashed my pantaloons."
+
+[pantaloons_noted]
+id = 10397
+
+[sleeping_cap]
+id = 10398
+price = 157800
+limit = 2
+weight = 0.4
+slot = "Hat"
+type = "Hair"
+examine = "A cap for wearing whil...zzzzzzzzz"
+
+[sleeping_cap_noted]
+id = 10399
+
+[black_elegant_shirt]
+id = 10400
+price = 1100000
+limit = 2
+weight = 1.0
+slot = "Chest"
+examine = "A well-made elegant men's black shirt."
+
+[black_elegant_shirt_noted]
+id = 10401
+
+[black_elegant_legs]
+id = 10402
+price = 337400
+limit = 2
+weight = 1.0
+slot = "Legs"
+examine = "A rather elegant pair of men's black pantaloons."
+
+[black_elegant_legs_noted]
+id = 10403
+
+[red_elegant_shirt]
+id = 10404
+price = 167700
+limit = 2
+weight = 1.0
+slot = "Chest"
+examine = "A well-made elegant men's red shirt."
+
+[red_elegant_shirt_noted]
+id = 10405
+
+[red_elegant_legs]
+id = 10406
+price = 80400
+limit = 2
+weight = 1.0
+slot = "Legs"
+examine = "A rather elegant pair of men's red pantaloons."
+
+[red_elegant_legs_noted]
+id = 10407
+
+[blue_elegant_shirt]
+id = 10408
+price = 199200
+limit = 2
+weight = 1.0
+slot = "Chest"
+examine = "A well-made elegant men's blue shirt."
+
+[blue_elegant_shirt_noted]
+id = 10409
+
+[blue_elegant_legs]
+id = 10410
+price = 162900
+limit = 2
+weight = 1.0
+slot = "Legs"
+examine = "A rather elegant pair of men's blue pantaloons."
+
+[blue_elegant_legs_noted]
+id = 10411
+
+[green_elegant_shirt]
+id = 10412
+price = 280500
+limit = 2
+weight = 1.0
+slot = "Chest"
+examine = "A well-made elegant men's green shirt."
+
+[green_elegant_shirt_noted]
+id = 10413
+
+[green_elegant_legs]
+id = 10414
+price = 83700
+limit = 2
+weight = 1.0
+slot = "Legs"
+examine = "A rather elegant pair of men's green pantaloons."
+
+[green_elegant_legs_noted]
+id = 10415
+
+[purple_elegant_shirt]
+id = 10416
+price = 109800
+limit = 2
+weight = 1.0
+slot = "Chest"
+examine = "A well-made elegant men's purple shirt."
+
+[purple_elegant_shirt_noted]
+id = 10417
+
+[purple_elegant_legs]
+id = 10418
+price = 97900
+limit = 2
+weight = 1.0
+slot = "Legs"
+examine = "A rather elegant pair of men's purple pantaloons."
+
+[purple_elegant_legs_noted]
+id = 10419
+
+[white_elegant_blouse]
+id = 10420
+price = 530800
+limit = 2
+weight = 1.0
+slot = "Chest"
+examine = "A well-made elegant ladies' white blouse."
+
+[white_elegant_blouse_noted]
+id = 10421
+
+[white_elegant_skirt]
+id = 10422
+price = 38900
+limit = 2
+weight = 1.0
+slot = "Legs"
+examine = "A rather elegant white skirt."
+
+[white_elegant_skirt_noted]
+id = 10423
+
+[red_elegant_blouse]
+id = 10424
+price = 25200
+limit = 2
+weight = 1.0
+slot = "Chest"
+examine = "A well-made elegant ladies' red blouse."
+
+[red_elegant_blouse_noted]
+id = 10425
+
+[red_elegant_skirt]
+id = 10426
+price = 8249
+limit = 2
+weight = 1.0
+slot = "Legs"
+examine = "A rather elegant red skirt."
+
+[red_elegant_skirt_noted]
+id = 10427
+
+[blue_elegant_blouse]
+id = 10428
+price = 38700
+limit = 2
+weight = 1.0
+slot = "Chest"
+examine = "A well-made elegant ladies' blue blouse."
+
+[blue_elegant_blouse_noted]
+id = 10429
+
+[blue_elegant_skirt]
+id = 10430
+price = 17500
+limit = 2
+weight = 1.0
+slot = "Legs"
+examine = "A rather elegant blue skirt."
+
+[blue_elegant_skirt_noted]
+id = 10431
+
+[green_elegant_blouse]
+id = 10432
+price = 25400
+limit = 2
+weight = 1.0
+slot = "Chest"
+examine = "A well-made elegant ladies' green blouse."
+
+[green_elegant_blouse_noted]
+id = 10433
+
+[green_elegant_skirt]
+id = 10434
+price = 16400
+limit = 2
+weight = 1.0
+slot = "Legs"
+examine = "A rather elegant green skirt."
+
+[green_elegant_skirt_noted]
+id = 10435
+
+[purple_elegant_blouse]
+id = 10436
+price = 25900
+limit = 2
+weight = 1.0
+slot = "Chest"
+examine = "A well-made elegant ladies' purple blouse."
+
+[purple_elegant_blouse_noted]
+id = 10437
+
+[purple_elegant_skirt]
+id = 10438
+price = 14400
+limit = 2
+weight = 1.0
+slot = "Legs"
+examine = "A rather elegant purple skirt."
+
+[purple_elegant_skirt_noted]
+id = 10439
+
+[saradomin_crozier]
+id = 10440
+price = 2851
+limit = 2
+weight = 2.0
+slot = "Weapon"
+examine = "A blessed crozier."
+
+[saradomin_crozier_noted]
+id = 10441
+
+[guthix_crozier]
+id = 10442
+price = 2823
+limit = 2
+weight = 2.0
+slot = "Weapon"
+examine = "A blessed crozier."
+
+[guthix_crozier_noted]
+id = 10443
+
+[zamorak_crozier]
+id = 10444
+price = 2911
+limit = 2
+weight = 2.0
+slot = "Weapon"
+examine = "A blessed crozier."
+
+[zamorak_crozier_noted]
+id = 10445
+
+[saradomin_cloak]
+id = 10446
+price = 782100
+limit = 2
+weight = 0.4
+slot = "Cape"
+examine = "A blessed cloak."
+
+[saradomin_cloak_noted]
+id = 10447
+
+[guthix_cloak]
+id = 10448
+price = 268300
+limit = 2
+weight = 0.4
+slot = "Cape"
+examine = "A blessed cloak."
+
+[guthix_cloak_noted]
+id = 10449
+
+[zamorak_cloak]
+id = 10450
+price = 762600
+limit = 2
+weight = 0.4
+slot = "Cape"
+examine = "A blessed cloak."
+
+[zamorak_cloak_noted]
+id = 10451
+
+[saradomin_mitre]
+id = 10452
+price = 106500
+limit = 2
+weight = 0.3
+slot = "Hat"
+type = "Hair"
+examine = "A blessed mitre."
+
+[saradomin_mitre_noted]
+id = 10453
+
+[guthix_mitre]
+id = 10454
+price = 65300
+limit = 2
+weight = 0.3
+slot = "Hat"
+type = "Hair"
+examine = "A blessed mitre."
+
+[guthix_mitre_noted]
+id = 10455
+
+[zamorak_mitre]
+id = 10456
+price = 172100
+limit = 2
+weight = 0.3
+slot = "Hat"
+type = "Hair"
+examine = "A blessed mitre."
+
+[zamorak_mitre_noted]
+id = 10457
+
+[saradomin_robe_top]
+id = 10458
+price = 199800
+limit = 2
+weight = 1.8
+slot = "Chest"
+examine = "Blessed vestments of Saradomin."
+
+[saradomin_robe_top_noted]
+id = 10459
+
+[zamorak_robe_top_2]
+id = 10460
+price = 283500
+limit = 2
+weight = 1.8
+slot = "Chest"
+examine = "Blessed vestments of Zamorak."
+
+[zamorak_robe_top_noted]
+id = 10461
+
+[guthix_robe_top]
+id = 10462
+price = 92300
+limit = 2
+weight = 1.8
+slot = "Chest"
+examine = "Blessed vestments of Guthix."
+
+[guthix_robe_top_noted]
+id = 10463
+
+[saradomin_robe_legs]
+id = 10464
+price = 198100
+limit = 2
+weight = 2.7
+slot = "Legs"
+examine = "Blessed robe bottoms of Saradomin."
+
+[saradomin_robe_legs_noted]
+id = 10465
+
+[guthix_robe_legs]
+id = 10466
+price = 128100
+limit = 2
+weight = 2.7
+slot = "Legs"
+examine = "Blessed robe bottoms of Guthix."
+
+[guthix_robe_legs_noted]
+id = 10467
+
+[zamorak_robe_legs]
+id = 10468
+price = 221200
+limit = 2
+weight = 2.7
+slot = "Legs"
+examine = "Blessed robe bottoms of Zamorak."
+
+[zamorak_robe_legs_noted]
+id = 10469
+
+[saradomin_stole]
+id = 10470
+price = 19100
+limit = 2
+weight = 0.01
+slot = "Amulet"
+examine = "A blessed stole."
+
+[saradomin_stole_noted]
+id = 10471
+
+[guthix_stole]
+id = 10472
+price = 5010
+limit = 2
+weight = 0.01
+slot = "Amulet"
+examine = "A blessed stole."
+
+[guthix_stole_noted]
+id = 10473
+
+[zamorak_stole]
+id = 10474
+price = 24800
+limit = 2
+weight = 0.01
+slot = "Amulet"
+examine = "A blessed stole."
+
+[zamorak_stole_noted]
+id = 10475
+
+[purple_sweets]
+id = 10476
+price = 12400
+limit = 1000
+heals = 30
+examine = "Remember to brush after eating this Treasure Trail treat!"
+
+[a_powdered_wig]
+id = 10740
+limit = 2
+slot = "Hat"
+type = "Hair"
+examine = "A big do about nothing."
+
+[elegant_shirt]
+id = 10748
+slot = "Chest"
+examine = "A well made elegant mans' black shirt."
+
+[zamorak_platebody]
+id = 10776
+limit = 2
+slot = "Chest"
+material = "metal"
+examine = "Rune platebody in the colours of Zamorak."
+
+[saradomin_plate]
+id = 10778
+limit = 2
+slot = "Chest"
+material = "metal"
+examine = "Rune platebody in the colours of Saradomin."
+
+[guthix_platebody]
+id = 10780
+limit = 2
+slot = "Chest"
+material = "metal"
+examine = "Rune platebody in the colours of Guthix."
+
+[gilded_platebody]
+id = 10782
+limit = 2
+slot = "Chest"
+material = "metal"
+examine = "Rune platebody with complete gold trim & plating."
+
+[zamorak_dragonhide]
+id = 10790
+slot = "Chest"
+material = "leather"
+
+[saradomin_dragonhide]
+id = 10792
+slot = "Chest"
+material = "leather"
+
+[guthix_dragonhide]
+id = 10794
+limit = 2
+slot = "Chest"
+material = "leather"
+examine = "Guthix blessed dragonhide body armour."

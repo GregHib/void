@@ -33,3 +33,16 @@ destroy = "You'll have to get another mould and piece of molten glass."
 examine = "A perfectly circular disc of glass."
 use = "Quest"
 kept = "Wilderness"
+
+[astronomy_book_noted]
+id = 11655
+
+[glassblowing_book]
+id = 11656
+price = 260
+limit = 100
+weight = 0.003
+examine = "A book that explains the art of crafting items from glass."
+
+[glassblowing_book_noted]
+id = 11657

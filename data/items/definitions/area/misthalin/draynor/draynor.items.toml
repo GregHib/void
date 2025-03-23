@@ -1,3 +1,19 @@
+[spinning_plate]
+id = 4613
+tradeable = false
+weight = 0.05
+aka = ["dragon_plate"]
+examine = "It has a picture of a dragon on it."
+kept = "Wilderness"
+
+[broken_plate]
+id = 4614
+tradeable = false
+weight = 0.05
+examine = "Alas..."
+kept = "Wilderness"
+use = "Limited"
+
 [bottle_of_wine]
 id = 7919
 heals = 140

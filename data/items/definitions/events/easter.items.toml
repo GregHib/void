@@ -61,3 +61,153 @@ id = 7932
 [easter_egg_2006_easter_event_yellow]
 clone = "easter_egg_2006_easter_event_blue"
 id = 7933
+
+[chicken_head_2]
+id = 11015
+tradeable = false
+weight = 0.25
+destroy = "You will need to speak to Diango to get another chicken head."
+examine = "Cock-a-doodle-do!"
+kept = "Wilderness"
+use = "Limited"
+
+[chicken_feet_2]
+id = 11016
+tradeable = false
+weight = 0.25
+slot = "Feet"
+destroy = "You will need to speak to Diango to get another pair of chicken feet."
+examine = "Perfect for crossing the road."
+kept = "Wilderness"
+use = "Limited"
+
+[chicken_wings_2]
+id = 11017
+tradeable = false
+weight = 0.25
+slot = "Chest"
+destroy = "You will need to speak to Diango to get another set of chicken wings."
+examine = "I look fowl in this."
+kept = "Wilderness"
+use = "Limited"
+
+[chicken_legs_2]
+id = 11018
+tradeable = false
+weight = 0.25
+slot = "Legs"
+destroy = "You will need to speak to Diango to get another set of chicken legs."
+examine = "What's the matter, are you chicken?"
+kept = "Wilderness"
+use = "Limited"
+
+[chicken_feet]
+id = 11019
+tradeable = false
+weight = 0.25
+slot = "Feet"
+destroy = "You will need to speak to Diango to get another pair of chicken feet."
+examine = "Perfect for crossing the road."
+kept = "Wilderness"
+use = "Limited"
+
+[chicken_wings]
+id = 11020
+tradeable = false
+weight = 0.25
+slot = "Chest"
+destroy = "You will need to speak to Diango to get another set of chicken wings."
+examine = "I look fowl in this."
+kept = "Wilderness"
+use = "Limited"
+
+[chicken_head]
+id = 11021
+tradeable = false
+weight = 0.25
+slot = "Hat"
+type = "Hair"
+destroy = "You will need to speak to Diango to get another chicken head."
+examine = "Cock-a-doodle-do!"
+kept = "Wilderness"
+use = "Limited"
+
+[chicken_legs]
+id = 11022
+tradeable = false
+weight = 0.25
+slot = "Legs"
+destroy = "You will need to speak to Diango to get another set of chicken legs."
+examine = "What's the matter, are you chicken?"
+kept = "Wilderness"
+use = "Limited"
+
+[magic_egg]
+id = 11023
+tradeable = false
+weight = 0.01
+examine = "Let's see how far the rabbit hole goes."
+kept = "Vanish"
+use = "Removed"
+
+[rabbit_mould]
+id = 11024
+tradeable = false
+weight = 0.1
+examine = "Used for making chocolate rabbits."
+kept = "Vanish"
+use = "Removed"
+
+[chocolate_chunks]
+id = 11025
+tradeable = false
+examine = "Chocolate kebbit chunks."
+kept = "Reclaim"
+use = "Removed"
+
+[chocolate_kebbit]
+id = 11026
+tradeable = false
+examine = "Chocolatey kebbit goodness."
+kept = "Reclaim"
+use = "Removed"
+
+[easter_egg_2007_easter_event_blue]
+id = 11027
+limit = 2
+tradeable = false
+weight = 0.15
+slot = "Weapon"
+examine = "A rolling egg gathers no moss."
+kept = "Vanish"
+use = "Removed"
+
+[easter_egg_2007_easter_event_yellow]
+id = 11028
+limit = 2
+tradeable = false
+weight = 0.15
+slot = "Weapon"
+examine = "A rolling egg gathers no moss."
+kept = "Vanish"
+use = "Removed"
+
+[easter_egg_2007_easter_event_green]
+id = 11029
+limit = 2
+tradeable = false
+weight = 0.15
+slot = "Weapon"
+examine = "A rolling egg gathers no moss."
+kept = "Vanish"
+use = "Removed"
+
+[easter_egg_2007_easter_event_red]
+id = 11030
+limit = 2
+tradeable = false
+weight = 0.15
+slot = "Weapon"
+examine = "A rolling egg gathers no moss."
+kept = "Vanish"
+use = "Removed"

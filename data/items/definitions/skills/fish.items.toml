@@ -499,3 +499,170 @@ examine = "Burnt octopus."
 
 [burnt_karambwan_noted]
 id = 3149
+
+[burnt_shrimp]
+id = 7954
+examine = "Oops!"
+
+[burnt_shrimp_noted]
+id = 7955
+
+[rainbow_fish]
+id = 10136
+price = 58
+limit = 10000
+heals = 110
+weight = 0.4
+examine = "Well, this would certainly add some colour to a meal."
+
+[rainbow_fish_noted]
+id = 10137
+
+[raw_rainbow_fish]
+id = 10138
+price = 196
+limit = 20000
+weight = 0.45
+fishing = { level = 38, xp = 80.0, chance = "8-64" }
+cooking = { level = 35, xp = 110.0, chances = { fire = "56-370" }, cooked = "rainbow_fish", cooked_message = "You manage to cook a rainbow fish.", burnt_message = "You accidentally burn the rainbow fish." }
+examine = "A colourful fish, attracted to colourful flies."
+
+[raw_rainbow_fish_noted]
+id = 10139
+
+[burnt_rainbow_fish]
+id = 10140
+examine = "Used to be a colourful fish, but now it's burnt!"
+
+[burnt_rainbow_fish_noted]
+id = 10141
+
+[guam_tar]
+id = 10142
+price = 20
+limit = 10000
+slot = "Ammo"
+examine = "A thick, foul-smelling, tar-like substance with a green tinge."
+
+[marrentill_tar]
+id = 10143
+price = 14
+limit = 10000
+slot = "Ammo"
+examine = "A thick, foul-smelling, tar-like substance with an orange tinge."
+
+[tarromin_tar]
+id = 10144
+price = 66
+limit = 10000
+slot = "Ammo"
+examine = "A thick, foul-smelling, tar-like substance with a red tinge."
+
+[harralander_tar]
+id = 10145
+price = 87
+limit = 10000
+slot = "Ammo"
+examine = "A dark, thick, foul-smelling, tar-like substance."
+
+[orange_salamander]
+id = 10146
+price = 12
+limit = 1000
+weight = 4.0
+weapon_type = "salamander"
+attack_range = 1
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Release"
+examine = "Slightly slimy but kind of cute."
+kept = "Vanish"
+
+[red_salamander]
+id = 10147
+price = 27
+limit = 1000
+weight = 4.0
+weapon_type = "salamander"
+attack_range = 1
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Release"
+examine = "Slightly slimy but certainly striking."
+kept = "Vanish"
+
+[black_salamander]
+id = 10148
+price = 93
+limit = 1000
+weight = 4.0
+weapon_type = "salamander"
+attack_range = 1
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Release"
+examine = "Slightly slimy and somewhat menacing."
+
+[green_salamander]
+id = 10149
+price = 957
+limit = 2000
+weight = 4.0
+aka = ["swamp_lizard"]
+weapon_type = "salamander"
+attack_range = 1
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Release"
+examine = "A very slimy and generally disgusting green lizard."
+kept = "Vanish"
+
+[noose_wand]
+id = 10150
+price = 1
+limit = 100
+weight = 1.814
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A noose on a stick."
+
+[noose_wand_noted]
+id = 10151
+
+[hunters_crossbow]
+id = 10156
+price = 1760
+limit = 100
+weight = 5.0
+slot = "Weapon"
+attack_range = 8
+examine = "A weapon made of bone and wood."
+
+[hunters_crossbow_noted]
+id = 10157
+
+[kebbit_bolts]
+id = 10158
+price = 25
+limit = 1000
+slot = "Ammo"
+examine = "Bolts made from the spikes of a prickly kebbit."
+
+[long_kebbit_bolts]
+id = 10159
+price = 233
+limit = 1000
+slot = "Ammo"
+examine = "Bolts made from the spikes of a razor-backed kebbit."
+
+[orange_salamander_noted]
+id = 10160
+
+[red_salamander_noted]
+id = 10161
+
+[black_salamander_noted]
+id = 10162
+
+[green_salamander_noted]
+id = 10163

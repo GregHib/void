@@ -8,3 +8,137 @@ examine = "A field ration to help your wounds go away."
 
 [field_ration_noted]
 id = 7935
+
+[void_knight_top]
+id = 8839
+tradeable = false
+weight = 6.803
+aka = ["vkt", "void_top"]
+slot = "Chest"
+examine = "Torso armour from the order of the Void Knights."
+kept = "Reclaim"
+
+[void_knight_robe]
+id = 8840
+tradeable = false
+weight = 8.164
+aka = ["vkr", "void_robe", "void_robes", "void_legs", "void_knight_legs", "void_knight_bottom", "void_bottom"]
+slot = "Legs"
+examine = "Leg armour of the order of the Void Knights."
+kept = "Reclaim"
+
+[void_knight_mace]
+id = 8841
+tradeable = false
+weight = 1.814
+aka = ["vkm", "void_mace"]
+slot = "Weapon"
+examine = "A mace used by the order of the Void Knights."
+kept = "Reclaim"
+
+[void_knight_gloves]
+id = 8842
+tradeable = false
+weight = 0.453
+aka = ["vkg", "void_gloves"]
+slot = "Hands"
+examine = "Gloves as used by the order of the Void Knights."
+kept = "Reclaim"
+
+[void_mage_helm]
+id = 11663
+tradeable = false
+weight = 0.453
+aka = ["void_helm_mage", "void_helm_magic", "void_magic_helm"]
+slot = "Hat"
+type = "Hair"
+destroy = "No"
+examine = "A mage helm from the order of the Void Knights."
+kept = "Reclaim"
+
+[void_ranger_helm]
+id = 11664
+tradeable = false
+weight = 0.453
+aka = ["void_archer_helm", "void_range_helm", "void_helm_ranged", "void_helm_range"]
+slot = "Hat"
+type = "Hair"
+examine = "A ranger helm from the order of the Void Knights"
+kept = "Reclaim"
+
+[void_melee_helm]
+id = 11665
+tradeable = false
+weight = 0.453
+aka = ["void_helm_melee"]
+slot = "Hat"
+type = "Hair"
+examine = "A melee helm from the order of the Void Knights."
+kept = "Reclaim"
+
+[void_seal_8_8]
+id = 11666
+slot = "Amulet"
+examine = "A seal storing the power of the Void Knights."
+weight = 0.005
+
+[void_seal_7_7]
+id = 11667
+slot = "Amulet"
+examine = "A seal storing the power of the Void Knights."
+weight = 0.005
+
+[void_seal_6_6]
+id = 11668
+slot = "Amulet"
+examine = "A seal storing the power of the Void Knights."
+weight = 0.005
+
+[void_seal_5_5]
+id = 11669
+slot = "Amulet"
+examine = "A seal storing the power of the Void Knights."
+weight = 0.005
+
+[void_seal_4_4]
+id = 11670
+slot = "Amulet"
+examine = "A seal storing the power of the Void Knights."
+weight = 0.005
+
+[void_seal_3_3]
+id = 11671
+slot = "Amulet"
+examine = "A seal storing the power of the Void Knights."
+weight = 0.005
+
+[void_seal_2_2]
+id = 11672
+slot = "Amulet"
+examine = "A seal storing the power of the Void Knights."
+weight = 0.005
+
+[void_seal_1_1]
+id = 11673
+slot = "Amulet"
+examine = "A seal storing the power of the Void Knights."
+weight = 0.005
+
+[void_mage_helm_2]
+id = 11674
+slot = "Hat"
+type = "Hair"
+destroy = "No"
+examine = "A mage helm from the order of the Void Knights."
+
+[void_ranger_helm_2]
+id = 11675
+slot = "Hat"
+type = "Hair"
+examine = "A ranger helm from the order of the Void Knights"
+
+[void_melee_helm_2]
+id = 11676
+slot = "Hat"
+type = "Hair"
+examine = "A melee helm from the order of the Void Knights."

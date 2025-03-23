@@ -322,3 +322,12 @@ examine = "Mahogany logs prepared with sacred oil for a funeral pyre."
 
 [mahogany_pyre_logs_noted]
 id = 6214
+
+[timber_beam]
+id = 8837
+price = 30
+limit = 1000
+examine = "A hefty beam of timber, perfect for building temples."
+
+[timber_beam_noted]
+id = 8838

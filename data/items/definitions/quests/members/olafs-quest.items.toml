@@ -1,0 +1,113 @@
+[damp_planks]
+id = 11031
+tradeable = false
+weight = 0.2
+destroy = "These logs will be destroyed if you drop them and you will need to see Olaf Hradson to get some more."
+examine = "A number of dripping, waterlogged planks."
+use = "Quest"
+kept = "Wilderness"
+
+[crude_carving]
+id = 11032
+tradeable = false
+weight = 0.05
+destroy = "You can reclaim this item from the place you found it."
+examine = "A log with some squiggles carved into it."
+use = "Quest"
+kept = "Wilderness"
+
+[cruder_carving]
+id = 11033
+tradeable = false
+weight = 0.05
+destroy = "You can reclaim this item from the place you found it."
+examine = "Another log with some sort of bird hacked into it."
+use = "Quest"
+kept = "Wilderness"
+
+[svens_last_map]
+id = 11034
+tradeable = false
+weight = 0.01
+destroy = "You can reclaim this from the quest storage chest or you can see Olaf Hradson to get another."
+examine = "A faded map marking a cross next to a section of the landscape."
+use = "Quest"
+kept = "Wilderness"
+
+[windswept_logs]
+id = 11035
+tradeable = false
+weight = 0.05
+destroy = "These logs will be destroyed if you drop them and you will need to chop more from the windswept tree."
+examine = "Logs taken from the exotic-looking windswept tree."
+use = "Quest"
+kept = "Wilderness"
+
+[parchment_olafs_quest]
+id = 11036
+tradeable = false
+weight = 0.453
+destroy = "This note will be destroyed if you drop it and you will need to search the chest in Sven's cave to get another."
+examine = "Brittle. Yellowed. Different."
+use = "Quest"
+kept = "Wilderness"
+
+[brine_sabre]
+id = 11037
+price = 67600
+limit = 100
+weight = 1.814
+special_accuracy_mod = 2.0
+special_energy = 750
+special = "liquify"
+slot = "Weapon"
+material = "metal"
+examine = "A salty sword."
+
+[brine_sabre_noted]
+id = 11038
+
+[key_olafs_quest_cross]
+id = 11039
+tradeable = false
+weight = 0.001
+destroy = "This key will be destroyed if you drop it and you will need to kill another skeletal fremennik to get another."
+examine = "A large rusty key."
+use = "Quest"
+kept = "Wilderness"
+
+[key_olafs_quest_square]
+clone = "key_olafs_quest_cross"
+id = 11040
+
+[key_olafs_quest_triangle]
+clone = "key_olafs_quest_cross"
+id = 11041
+
+[key_olafs_quest_hexagon]
+clone = "key_olafs_quest_cross"
+id = 11042
+
+[key_olafs_quest_star]
+clone = "key_olafs_quest_cross"
+id = 11043
+
+[rotten_barrel_2]
+id = 11044
+tradeable = false
+weight = 0.001
+destroy = "This barrel will be destroyed if you drop it and you will need to pick up another from Sven's cave."
+examine = "Looks like it might still float..."
+use = "Quest"
+kept = "Vanish"
+
+[rotten_barrel]
+clone = "rotten_barrel_2"
+id = 11045
+
+[rope_4]
+id = 11046
+limit = 100
+weight = 1.36
+examine = "A coil of rope."
+kept = "Wilderness"

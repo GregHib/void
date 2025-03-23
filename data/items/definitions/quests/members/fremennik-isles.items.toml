@@ -1,0 +1,240 @@
+[arctic_pyre_logs]
+id = 10808
+price = 2754
+limit = 1000
+weight = 1.36
+examine = "Arctic pine logs prepared with sacred oil for a funeral pyre."
+
+[arctic_pyre_logs_noted]
+id = 10809
+
+[arctic_pine_logs]
+id = 10810
+price = 94
+limit = 25000
+weight = 1.36
+firemaking = { level = 42, xp = 125.0, life = 100 }
+examine = "Log cut from an arctic pine."
+
+[arctic_pine_logs_noted]
+id = 10811
+
+[split_log]
+id = 10812
+price = 29
+limit = 1000
+weight = 1.814
+examine = "Used to repair bridges."
+
+[split_log_noted]
+id = 10813
+
+[yak_hair]
+id = 10814
+price = 85
+limit = 1000
+weight = 0.001
+spinning = { to = "rope", level = 30, xp = 25.0 }
+examine = "I can spin this into rope."
+
+[yak_hair_noted]
+id = 10815
+
+[raw_yak_meat]
+id = 10816
+price = 28
+limit = 1000
+weight = 0.34
+cooking = { xp = 40.0, chances = { fire = "128-512", cooks_range = "138-532" }, cooked = "cooked_meat", burnt = "burnt_meat" }
+examine = "I need to cook this."
+
+[raw_yak_meat_noted]
+id = 10817
+
+[yak_hide]
+id = 10818
+price = 237
+limit = 5000
+weight = 0.453
+examine = "Thakkrad, of Neitiznot, can cure this."
+
+[yak_hide_noted]
+id = 10819
+
+[cured_yak_hide]
+id = 10820
+price = 295
+limit = 5000
+weight = 0.453
+examine = "Ready to be cut and sewn into armour."
+
+[cured_yak_hide_noted]
+id = 10821
+
+[yak_hide_armour_top]
+id = 10822
+price = 173
+limit = 100
+weight = 2.721
+slot = "Chest"
+material = "leather"
+examine = "Smelly yak body armour."
+
+[yak_hide_armour_noted]
+id = 10823
+
+[yak_hide_armour_legs]
+id = 10824
+price = 166
+limit = 100
+weight = 2.721
+slot = "Legs"
+material = "leather"
+examine = "Leg protection, made from smelly yak-hide."
+
+[yak_hide_armour_noted_2]
+id = 10825
+
+[fremennik_round_shield]
+id = 10826
+price = 221
+limit = 100
+weight = 3.628
+slot = "Shield"
+examine = "A wooden shield with a rope rim."
+
+[fremennik_round_shield_noted]
+id = 10827
+
+[helm_of_neitiznot]
+id = 10828
+price = 51200
+limit = 100
+weight = 2.267
+aka = ["nezzy", "nezi", "helm_of_nezzy", "helm_of_nezi", "nezi_helm", "nezzy_helm"]
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A gift from Neitiznot's Burgher."
+
+[documents]
+id = 10829
+tradeable = false
+weight = 0.453
+examine = "To Ali Morrisane of Al Kharid"
+kept = "Wilderness"
+
+[royal_decree]
+id = 10830
+tradeable = false
+weight = 0.453
+destroy = "King Sorvott of Jatizso will give you another one, grudgingly."
+examine = "The document is stamped with King Gjuki Sorvott IV's royal seal."
+use = "Quest"
+kept = "Wilderness"
+
+[empty_tax_bag]
+id = 10831
+tradeable = false
+weight = 0.453
+destroy = "Are you sure? You can replace it by talking to King Sorvott."
+examine = "An empty tax bag."
+use = "Quest"
+kept = "Wilderness"
+
+[light_tax_bag]
+id = 10832
+tradeable = false
+weight = 1.814
+destroy = "Are you sure? You can replace it by talking to King Sorvott."
+examine = "A light tax bag."
+use = "Quest"
+kept = "Wilderness"
+
+[normal_tax_bag]
+id = 10833
+tradeable = false
+weight = 3.628
+destroy = "Are you sure? You can replace it by talking to King Sorvott."
+examine = "A normal tax bag."
+use = "Quest"
+kept = "Wilderness"
+
+[hefty_tax_bag]
+id = 10834
+tradeable = false
+weight = 5.443
+destroy = "Are you sure? You can replace it by talking to King Sorvott."
+examine = "A hefty tax bag."
+use = "Quest"
+kept = "Wilderness"
+
+[bulging_taxbag]
+id = 10835
+tradeable = false
+weight = 7.257
+examine = "A bulging taxbag."
+kept = "Wilderness"
+
+[silly_jester_hat]
+id = 10836
+tradeable = false
+weight = 2.721
+slot = "Hat"
+destroy = "Are you sure? You can find another in King Sorvott's chest."
+examine = "A silly hat with bells."
+kept = "Vanish"
+
+[silly_jester_top]
+id = 10837
+tradeable = false
+weight = 6.803
+slot = "Chest"
+destroy = "Are you sure? You can find another in King Sorvott's chest."
+examine = "A jester's jangly top."
+kept = "Vanish"
+
+[silly_jester_tights]
+id = 10838
+tradeable = false
+weight = 0.907
+slot = "Legs"
+destroy = "Are you sure? You can find another in King Sorvott's chest."
+examine = "Silly jester tights."
+kept = "Vanish"
+
+[silly_jester_boots]
+id = 10839
+tradeable = false
+weight = 1.36
+slot = "Feet"
+destroy = "Are you sure? You can find another in King Sorvott's chest."
+examine = "Silly jester boots."
+kept = "Vanish"
+
+[a_jester_stick]
+id = 10840
+tradeable = false
+weight = 2.721
+slot = "Weapon"
+examine = "A jester stick."
+kept = "Vanish"
+
+[apricot_cream_pie]
+id = 10841
+tradeable = false
+weight = 0.001
+examine = "Apricot cream pie."
+kept = "Reclaim"
+
+[decapitated_head_the_fremennik_isles]
+id = 10842
+tradeable = false
+weight = 3.628
+destroy = "You'll have to go back to the troll caves to get another one."
+examine = "The head of the Troll King...nice!"
+use = "Quest"
+kept = "Wilderness"
+
+[helm_of_neitiznot_noted]
+id = 10843

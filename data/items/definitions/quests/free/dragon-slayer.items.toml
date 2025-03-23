@@ -95,3 +95,13 @@ weight = 0.01
 examine = "A green key from Melzar's Maze."
 use = "Quest"
 kept = "Wilderness"
+
+[elvargs_head]
+id = 11279
+tradeable = false
+weight = 0.01
+slot = "Weapon"
+destroy = "You can complete the quest by speaking to Oziach, even if you do not have the head."
+examine = "The severed head of the great dragon Elvarg!"
+use = "Quest"
+kept = "Wilderness"

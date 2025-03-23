@@ -249,3 +249,9 @@ id = 6925
 
 [bones_to_peaches_spell]
 id = 6926
+
+[coins_mage_training_arena]
+id = 8890
+tradeable = false
+examine = "Lovely money!"
+kept = "Always"

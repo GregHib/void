@@ -1,0 +1,788 @@
+[crawling_hand]
+id = 4133
+examine = "I should get it stuffed!"
+
+[cave_crawler]
+id = 4134
+examine = "A spiky crawling critter."
+
+[banshee]
+id = 4135
+examine = "A tortured screaming soul."
+
+[rock_slug]
+id = 4136
+examine = "The slime of evil."
+
+[cockatrice]
+id = 4137
+examine = "The winged reptile."
+
+[pyrefiend]
+id = 4138
+examine = "A small fire demon."
+
+[basilisk]
+id = 4139
+examine = "The eyes of evil."
+
+[infernal_mage]
+id = 4140
+examine = "An evil magic user."
+
+[bloodveld]
+id = 4141
+examine = "The tongue of evil."
+
+[jelly]
+id = 4142
+
+[turoth]
+id = 4143
+examine = "He's one big leg short!"
+
+[aberrant_spectre]
+id = 4144
+examine = "A very smelly ghost."
+
+[dust_devil]
+id = 4145
+examine = "The vacuumed face of evil."
+
+[kurask]
+id = 4146
+examine = "Large, heavy, with sharp things attached to its head."
+
+[gargoyle]
+id = 4147
+examine = "Flies like a rock."
+
+[nechryael]
+id = 4148
+examine = "An evil death demon."
+
+[abyssal_demon]
+id = 4149
+examine = "A denizen of the Abyss!"
+
+[swamp_wallbeast]
+id = 4519
+examine = "A big, scary hand!"
+
+[swamp_cave_slime]
+id = 4520
+examine = "A foul-smelling blob of protoplasm."
+
+[swamp_cave_bug]
+id = 4521
+examine = "A nasty crawling critter."
+
+[bandit]
+id = 4625
+examine = "A tough-looking criminal."
+
+[minecart_ticket_keldagrim_to_ice_mountain]
+id = 5020
+tradeable = false
+weight = 0.001
+examine = "A ticket to take you from Keldagrim to the dwarven mines under Ice Mountain."
+kept = "Reclaim"
+use = "Removed"
+
+[minecart_ticket_ice_mountain_to_keldagrim]
+id = 5021
+tradeable = false
+weight = 0.001
+examine = "A ticket to take you from the dwarven mines under Ice Mountain to Keldagrim."
+kept = "Reclaim"
+use = "Removed"
+
+[minecart_ticket_keldagrim_to_white_wolf_mountain]
+id = 5022
+tradeable = false
+weight = 0.001
+examine = "A ticket to take you from Keldagrim to the passage under White Wolf Mountain."
+kept = "Reclaim"
+use = "Removed"
+
+[minecart_ticket_white_wolf_mountain_to_keldagrim]
+id = 5023
+tradeable = false
+weight = 0.001
+examine = "A ticket to take you from the passage under White Wolf Mountain to Keldagrim."
+kept = "Reclaim"
+use = "Removed"
+
+[dwarf_the_giant_dwarf]
+id = 5054
+weight = 10.0
+examine = "Petit."
+
+[dwarf_noted]
+id = 5055
+
+[master_farmer]
+id = 5068
+
+[bank_icon]
+id = 5080
+
+[quest_icon]
+id = 5092
+
+[seeds]
+id = 5171
+
+[spirit_tree]
+id = 6063
+
+[elf]
+id = 6105
+
+[dark_beast]
+id = 6637
+examine = "From a darker dimension."
+
+[mogre]
+id = 6661
+examine = "An angry Ogre in a funny hat."
+
+[desert_lizard]
+id = 6695
+examine = "A cold-blooded creature, partial to warmth."
+
+[fever_spider]
+id = 6709
+bank_stacks = false
+weight = 0.001
+destroy = "Are you sure? You cannot reclaim this animal."
+examine = "A spider for your player owned farm."
+kept = "Vanish"
+
+[zombie_head]
+id = 6722
+tradeable = false
+weight = 2.721
+examine = "Alas...I hardly knew him."
+kept = "Wilderness"
+use = "Limited"
+
+[menaphite_thug]
+id = 6780
+examine = "Menaphite thug."
+
+[bandit_2]
+clone = "bandit"
+id = 6781
+
+[bandit_3]
+clone = "bandit"
+id = 6782
+
+[killerwatt]
+id = 7160
+examine = "A ball of Electrical energy."
+
+[mutated_zygomite]
+id = 7420
+examine = "A fun guy. No wait, that's awful. Plus it doesn't even make sense."
+
+[evil_dave]
+id = 7499
+
+[dwarf]
+clone = "dwarf_the_giant_dwarf"
+id = 7500
+
+[goblins]
+id = 7501
+
+[lumbridge_sage]
+id = 7502
+
+[monkey_11]
+clone = "monkey"
+id = 7503
+
+[osman]
+id = 7504
+
+[pirate_pete]
+id = 7505
+
+[sir_amik_varze]
+id = 7506
+
+[skrach]
+id = 7507
+
+[cave_horror]
+id = 8900
+examine = "A horrible, emaciated ape like creature with beady red eyes."
+
+[imp]
+id = 9952
+examine = "A cheeky little imp."
+
+[kebbit]
+id = 9953
+examine = "A little bigger than usual..."
+
+[kebbit_2]
+clone = "kebbit"
+id = 9954
+
+[kebbit_3]
+clone = "kebbit"
+id = 9955
+
+[kebbit_4]
+clone = "kebbit"
+id = 9956
+
+[kebbit_5]
+clone = "kebbit"
+id = 9957
+
+[kebbit_6]
+clone = "kebbit"
+id = 9958
+
+[kebbit_7]
+clone = "kebbit"
+id = 9959
+
+[kebbit_8]
+clone = "kebbit"
+id = 9960
+
+[kebbit_9]
+clone = "kebbit"
+id = 9961
+
+[kebbit_10]
+clone = "kebbit"
+id = 9962
+
+[kebbit_11]
+clone = "kebbit"
+id = 9963
+
+[kebbit_12]
+clone = "kebbit"
+id = 9964
+
+[crimson_swift]
+id = 9965
+
+[copper_longtail]
+id = 9966
+
+[cerulean_twitch]
+id = 9967
+
+[golden_warbler]
+id = 9968
+
+[tropical_wagtail]
+id = 9969
+
+[giant_eagle]
+id = 9974
+
+[rabbit]
+id = 9975
+examine = "Aww, how cute."
+
+[chinchompa_2]
+id = 9976
+limit = 20000
+destroy = "Release"
+examine = "Handle with care."
+kept = "Wilderness"
+
+[red_chinchompa_2]
+id = 9977
+limit = 20000
+destroy = "Release"
+examine = "Even more volatile than its vegetarian counterpart."
+kept = "Wilderness"
+
+[terror_dog]
+id = 10591
+examine = "A terrifying dog beast."
+
+[molanisk]
+id = 10997
+examine = "That white dot looks like an eye!"
+
+[cave_goblin]
+id = 10998
+examine = "One of the many citizens of Dorgesh-Kaan."
+
+[brine_rat]
+id = 11047
+examine = "Eww, a bald rat!"
+
+[grubfoot]
+id = 11792
+
+[zanik_3]
+clone = "zanik"
+id = 11793
+
+[pouch_3]
+clone = "pouch_2"
+id = 12292
+
+[pouch_4]
+clone = "pouch_2"
+id = 12293
+
+[pouch_noted]
+id = 12294
+
+[pouch_5]
+clone = "pouch_2"
+id = 12295
+
+[pouch_noted_2]
+id = 12296
+
+[pouch_6]
+clone = "pouch_2"
+id = 12297
+
+[pouch_noted_3]
+id = 12298
+
+[pouch_7]
+clone = "pouch_2"
+id = 12299
+
+[pouch_noted_4]
+id = 12300
+
+[pouch_8]
+clone = "pouch_2"
+id = 12301
+
+[pouch_noted_5]
+id = 12302
+
+[pouch_9]
+clone = "pouch_2"
+id = 12303
+
+[pouch_noted_6]
+id = 12304
+
+[pouch_10]
+clone = "pouch_2"
+id = 12305
+
+[pouch_noted_7]
+id = 12306
+
+[pouch_11]
+clone = "pouch_2"
+id = 12307
+
+[pouch_noted_8]
+id = 12308
+
+[pouch_12]
+clone = "pouch_2"
+id = 12309
+
+[pouch_noted_9]
+id = 12310
+
+[pouch_13]
+clone = "pouch_2"
+id = 12311
+
+[pouch_noted_10]
+id = 12312
+
+[pouch_14]
+clone = "pouch_2"
+id = 12313
+
+[pouch_noted_11]
+id = 12314
+
+[pouch_15]
+clone = "pouch_2"
+id = 12315
+
+[pouch_noted_12]
+id = 12316
+
+[pouch_16]
+clone = "pouch_2"
+id = 12317
+
+[pouch_noted_13]
+id = 12318
+
+[pouch_17]
+clone = "pouch_2"
+id = 12319
+
+[pouch_noted_14]
+id = 12320
+
+[pouch_18]
+clone = "pouch_2"
+id = 12321
+
+[pouch_noted_15]
+id = 12322
+
+[pouch_19]
+clone = "pouch_2"
+id = 12323
+
+[pouch_noted_16]
+id = 12324
+
+[pouch_20]
+clone = "pouch_2"
+id = 12325
+
+[pouch_noted_17]
+id = 12326
+
+[pouch_21]
+clone = "pouch_2"
+id = 12327
+
+[pouch_noted_18]
+id = 12328
+
+[pouch_22]
+clone = "pouch_2"
+id = 12329
+
+[pouch_noted_19]
+id = 12330
+
+[pouch_23]
+clone = "pouch_2"
+id = 12331
+
+[pouch_noted_20]
+id = 12332
+
+[pouch_24]
+clone = "pouch_2"
+id = 12333
+
+[pouch_noted_21]
+id = 12334
+
+[pouch_25]
+clone = "pouch_2"
+id = 12335
+
+[pouch_noted_22]
+id = 12336
+
+[pouch_26]
+clone = "pouch_2"
+id = 12337
+
+[pouch_noted_23]
+id = 12338
+
+[pouch_27]
+clone = "pouch_2"
+id = 12339
+
+[pouch_noted_24]
+id = 12340
+
+[pouch_28]
+clone = "pouch_2"
+id = 12341
+
+[pouch_noted_25]
+id = 12342
+
+[pouch_29]
+clone = "pouch_2"
+id = 12343
+
+[pouch_noted_26]
+id = 12344
+
+[pouch_30]
+clone = "pouch_2"
+id = 12345
+
+[pouch_noted_27]
+id = 12346
+
+[pouch_31]
+clone = "pouch_2"
+id = 12347
+
+[pouch_noted_28]
+id = 12348
+
+[pouch_32]
+clone = "pouch_2"
+id = 12349
+
+[pouch_noted_29]
+id = 12350
+
+[pouch_33]
+clone = "pouch_2"
+id = 12351
+
+[pouch_noted_30]
+id = 12352
+
+[pouch_34]
+clone = "pouch_2"
+id = 12353
+
+[pouch_noted_31]
+id = 12354
+
+[pouch_35]
+clone = "pouch_2"
+id = 12355
+
+[pouch_noted_32]
+id = 12356
+
+[pouch_36]
+clone = "pouch_2"
+id = 12357
+
+[pouch_noted_33]
+id = 12358
+
+[pouch_37]
+clone = "pouch_2"
+id = 12359
+
+[pouch_noted_34]
+id = 12360
+
+[pouch_38]
+clone = "pouch_2"
+id = 12361
+
+[pouch_noted_35]
+id = 12362
+
+[pouch_39]
+clone = "pouch_2"
+id = 12363
+
+[pouch_noted_36]
+id = 12364
+
+[pouch_40]
+clone = "pouch_2"
+id = 12365
+
+[pouch_noted_37]
+id = 12366
+
+[pouch_41]
+clone = "pouch_2"
+id = 12367
+
+[pouch_noted_38]
+id = 12368
+
+[pouch_42]
+clone = "pouch_2"
+id = 12369
+
+[pouch_noted_39]
+id = 12370
+
+[pouch_43]
+clone = "pouch_2"
+id = 12371
+
+[pouch_noted_40]
+id = 12372
+
+[pouch_44]
+clone = "pouch_2"
+id = 12373
+
+[pouch_noted_41]
+id = 12374
+
+[pouch_45]
+clone = "pouch_2"
+id = 12375
+
+[pouch_noted_42]
+id = 12376
+
+[pouch_46]
+clone = "pouch_2"
+id = 12377
+
+[pouch_noted_43]
+id = 12378
+
+[pouch_47]
+clone = "pouch_2"
+id = 12379
+
+[pouch_noted_44]
+id = 12380
+
+[pouch_48]
+clone = "pouch_2"
+id = 12381
+
+[pouch_noted_45]
+id = 12382
+
+[pouch_49]
+clone = "pouch_2"
+id = 12383
+
+[pouch_noted_46]
+id = 12384
+
+[pouch_50]
+clone = "pouch_2"
+id = 12385
+
+[pouch_noted_47]
+id = 12386
+
+[pouch_51]
+clone = "pouch_2"
+id = 12387
+
+[pouch_noted_48]
+id = 12388
+
+[pouch_52]
+clone = "pouch_2"
+id = 12389
+
+[pouch_noted_49]
+id = 12390
+
+[pouch_53]
+clone = "pouch_2"
+id = 12391
+
+[pouch_noted_50]
+id = 12392
+
+[pouch_54]
+clone = "pouch_2"
+id = 12393
+
+[pouch_noted_51]
+id = 12394
+
+[pouch_55]
+clone = "pouch_2"
+id = 12395
+
+[pouch_noted_52]
+id = 12396
+
+[pouch_56]
+clone = "pouch_2"
+id = 12397
+
+[pouch_noted_53]
+id = 12398
+
+[pouch_57]
+clone = "pouch_2"
+id = 12399
+
+[pouch_noted_54]
+id = 12400
+
+[pouch_58]
+clone = "pouch_2"
+id = 12401
+
+[pouch_noted_55]
+id = 12402
+
+[pouch_59]
+clone = "pouch_2"
+id = 12403
+
+[pouch_noted_56]
+id = 12404
+
+[pouch_60]
+clone = "pouch_2"
+id = 12405
+
+[pouch_noted_57]
+id = 12406
+
+[pouch_61]
+clone = "pouch_2"
+id = 12407
+
+[pouch_noted_58]
+id = 12408
+
+[pouch_62]
+clone = "pouch_2"
+id = 12409
+
+[pouch_noted_59]
+id = 12410
+
+[pouch_63]
+clone = "pouch_2"
+id = 12411
+
+[pouch_noted_60]
+id = 12412
+
+[pouch_64]
+clone = "pouch_2"
+id = 12413
+
+[pouch_noted_61]
+id = 12414
+
+[pouch_65]
+clone = "pouch_2"
+id = 12415
+
+[pouch_noted_62]
+id = 12416
+
+[pouch_66]
+clone = "pouch_2"
+id = 12417
+
+[pouch_noted_63]
+id = 12418
+
+[pouch_67]
+clone = "pouch_2"
+id = 12419
+
+[pouch_noted_64]
+id = 12420
+
+[scroll_2]
+clone = "scroll_barbarian_assault"
+id = 12421

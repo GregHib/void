@@ -68,3 +68,301 @@ id = 4563
 [pink_sweets]
 clone = "blue_sweets"
 id = 4564
+
+[ghost_buster_500_white]
+id = 9906
+tradeable = false
+weight = 0.003
+slot = "Weapon"
+destroy = "The Ghost Buster will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
+examine = "A Ghost Buster 500 loaded with a white destabiliser."
+kept = "Vanish"
+use = "Removed"
+
+[ghost_buster_500_red]
+id = 9907
+tradeable = false
+weight = 0.003
+slot = "Weapon"
+destroy = "The Ghost Buster will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
+examine = "A Ghost Buster 500 loaded with a red destabiliser."
+kept = "Vanish"
+use = "Removed"
+
+[ghost_buster_500_blue]
+id = 9908
+tradeable = false
+weight = 0.003
+slot = "Weapon"
+destroy = "The Ghost Buster will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
+examine = "A Ghost Buster 500 loaded with a blue destabiliser."
+kept = "Vanish"
+use = "Removed"
+
+[ghost_buster_500_green]
+id = 9909
+tradeable = false
+weight = 0.003
+slot = "Weapon"
+destroy = "The Ghost Buster will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
+examine = "A Ghost Buster 500 loaded with a green destabiliser."
+kept = "Vanish"
+use = "Removed"
+
+[ghost_buster_500_yellow]
+id = 9910
+tradeable = false
+weight = 0.003
+slot = "Weapon"
+destroy = "The Ghost Buster will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
+examine = "A Ghost Buster 500 loaded with a yellow destabiliser."
+kept = "Vanish"
+use = "Removed"
+
+[ghost_buster_500_black]
+id = 9911
+tradeable = false
+weight = 0.003
+slot = "Weapon"
+destroy = "The Ghost Buster will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
+examine = "A Ghost Buster 500 loaded with a black destabiliser."
+kept = "Vanish"
+use = "Removed"
+
+[ghost_buster_500]
+id = 9912
+tradeable = false
+weight = 0.003
+slot = "Weapon"
+destroy = "The Ghost Buster will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
+examine = "A Ghost Buster 500 without a destabiliser loaded."
+kept = "Vanish"
+use = "Removed"
+
+[white_destabiliser]
+id = 9913
+tradeable = false
+slot = "Shield"
+destroy = "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
+examine = "A white destabiliser for use in a Ghost Buster."
+kept = "Vanish"
+use = "Removed"
+
+[red_destabiliser]
+id = 9914
+tradeable = false
+slot = "Shield"
+destroy = "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
+examine = "A red destabiliser for use in a Ghost Buster."
+kept = "Vanish"
+use = "Removed"
+
+[blue_destabiliser]
+id = 9915
+tradeable = false
+slot = "Shield"
+destroy = "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
+examine = "A blue destabiliser for use in a Ghost Buster."
+kept = "Vanish"
+use = "Removed"
+
+[green_destabiliser]
+id = 9916
+tradeable = false
+slot = "Shield"
+destroy = "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
+examine = "A green destabiliser for use in a Ghost Buster."
+kept = "Vanish"
+use = "Removed"
+
+[yellow_destabiliser]
+id = 9917
+tradeable = false
+slot = "Shield"
+destroy = "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
+examine = "A yellow destabiliser for use in a Ghost Buster."
+kept = "Vanish"
+use = "Removed"
+
+[black_destabiliser]
+id = 9918
+tradeable = false
+slot = "Shield"
+destroy = "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
+examine = "A black destabiliser for use in a Ghost Buster."
+kept = "Vanish"
+use = "Removed"
+
+[evil_root]
+id = 9919
+tradeable = false
+weight = 0.003
+examine = "A freshly cut root of all evil."
+kept = "Vanish"
+use = "Removed"
+
+[jack_lantern_mask]
+id = 9920
+tradeable = false
+weight = 0.003
+slot = "Hat"
+type = "FullFace"
+destroy = "The Jack O'Lantern head will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
+examine = "Better not light it!"
+kept = "Wilderness"
+use = "Limited"
+
+[skeleton_boots]
+id = 9921
+tradeable = false
+weight = 2.267
+slot = "Feet"
+destroy = "The boots will be destroyed if you put them here, and you will have to get another from Diango when they are gone."
+examine = "Skeleton feet."
+kept = "Wilderness"
+use = "Limited"
+
+[skeleton_gloves]
+id = 9922
+tradeable = false
+weight = 2.267
+slot = "Hands"
+destroy = "The gloves will be destroyed if you put them here, and you will have to get another from Diango when they are gone."
+examine = "Some skeletal gloves."
+kept = "Wilderness"
+use = "Limited"
+
+[skeleton_leggings]
+id = 9923
+tradeable = false
+weight = 2.267
+slot = "Legs"
+destroy = "The legs will be destroyed if you put them here, and you will have to get another from Diango when they are gone."
+examine = "Does my pelvis look big in this?"
+kept = "Wilderness"
+use = "Limited"
+
+[skeleton_shirt]
+id = 9924
+tradeable = false
+weight = 2.267
+slot = "Chest"
+destroy = "The body will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
+examine = "The shirt of a full body skeleton costume."
+kept = "Wilderness"
+use = "Limited"
+
+[skeleton_mask]
+id = 9925
+tradeable = false
+weight = 2.267
+slot = "Hat"
+type = "Hair"
+destroy = "The mask will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
+examine = "A scary skeleton mask."
+kept = "Wilderness"
+use = "Limited"
+
+[the_grim_reapers_diary]
+id = 11780
+tradeable = false
+weight = 0.51
+aka = ["diary_of_death_my_diary_by_grim"]
+destroy = "You'll have to find another from the Grim Reaper's house."
+examine = "Surely this holds many a dark tale..."
+kept = "Vanish"
+use = "Removed"
+
+[grims_robe]
+id = 11781
+tradeable = false
+weight = 0.907
+destroy = "Another can be found in the Grim Reaper's house."
+examine = "Some of the Grim Reaper's garb."
+kept = "Vanish"
+use = "Removed"
+
+[last_will_and_testament]
+id = 11782
+tradeable = false
+weight = 0.005
+destroy = "You'll have to find another from the Grim Reaper's house."
+examine = "Someone's Last Will and Testament."
+kept = "Vanish"
+use = "Removed"
+
+[human_bones]
+id = 11783
+tradeable = false
+weight = 0.5
+destroy = "You'll have to find another from the Grim Reaper's house."
+examine = "A tasty treat for Muncher."
+kept = "Vanish"
+use = "Removed"
+
+[servants_skull]
+id = 11784
+tradeable = false
+weight = 0.08
+destroy = "You'll have to find another from the Grim Reaper's house."
+examine = "What possesses me to carry these things around?"
+kept = "Vanish"
+use = "Removed"
+
+[hourglass_2]
+id = 11785
+tradeable = false
+weight = 0.5
+destroy = "You'll have to find another from the Grim Reaper's house."
+examine = "No matter how I turn it, the sand doesn't seem to move."
+kept = "Vanish"
+use = "Removed"
+
+[scythe_sharpener]
+id = 11786
+tradeable = false
+weight = 0.075
+destroy = "Another can be found in the Grim Reaper's house."
+examine = "Used to sharpen the blade of a scythe."
+kept = "Vanish"
+use = "Removed"
+
+[human_eye]
+id = 11787
+tradeable = false
+weight = 0.003
+destroy = "You'll have to find another from the Grim Reaper's house."
+examine = "That's gross. Why am I carrying it around?"
+kept = "Vanish"
+use = "Removed"
+
+[voice_of_doom_potion]
+id = 11788
+tradeable = false
+weight = 0.003
+destroy = "You'll have to find another from the Grim Reaper's house."
+examine = "A 'Voice of Doom' potion, used to deepen your voice."
+kept = "Vanish"
+use = "Removed"
+
+[grim_reaper_hood]
+id = 11789
+tradeable = false
+weight = 0.003
+slot = "Hat"
+type = "FullFace"
+destroy = "You should be able to get another from Diango in Draynor."
+examine = "Allows me to imitate the harbinger of doom, the stealer of souls, the eternal end..."
+kept = "Wilderness"
+use = "Limited"
+
+[grim_reaper_hood_2]
+id = 11790
+tradeable = false
+weight = 0.003
+slot = "Hat"
+type = "FullFace"
+destroy = "You should be able to get another from Diango in Draynor."
+examine = "Allows me to imitate the harbinger of doom, the stealer of souls, the eternal end..."
+kept = "Wilderness"
+use = "Limited"

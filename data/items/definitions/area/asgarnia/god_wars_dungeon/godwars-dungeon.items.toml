@@ -1,0 +1,352 @@
+[godsword_shards_1_and_2]
+id = 11686
+price = 318300
+weight = 5.0
+destroy = "No"
+examine = "Godsword shards 1 and 2."
+use = "Limited"
+
+[godsword_shards_noted]
+id = 11687
+
+[godsword_shards_1_and_3]
+id = 11688
+price = 323800
+weight = 5.0
+destroy = "No"
+examine = "Godsword shards 1 and 3."
+use = "Limited"
+
+[godsword_shards_noted_2]
+id = 11689
+
+[godsword_blade]
+id = 11690
+price = 498700
+limit = 10
+weight = 7.5
+examine = "The blade for the ultimate weapon."
+
+[godsword_blade_noted]
+id = 11691
+
+[godsword_shards_2_and_3]
+id = 11692
+price = 322800
+weight = 5.0
+destroy = "No"
+examine = "Godsword shards 2 and 3."
+use = "Limited"
+
+[godsword_shards_noted_3]
+id = 11693
+
+[armadyl_godsword]
+id = 11694
+price = 45600000
+limit = 10
+weight = 10.0
+special_damage_mod_1 = 1.1
+special_damage_mod_2 = 1.25
+special_accuracy_mod = 2.0
+special_energy = 500
+special = "the_judgement"
+weapon_type = "godsword"
+aka = ["ags", "arma_gs", "arma_sword", "armadyl_sword", "arma_godsword", "armadyl_god_sword"]
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "A beautiful, heavy sword."
+
+[armadyl_godsword_noted]
+id = 11695
+
+[bandos_godsword]
+id = 11696
+price = 5864002
+limit = 10
+weight = 10.0
+special_damage_mod_1 = 1.1
+special_damage_mod_2 = 1.1
+special_accuracy_mod = 2.0
+special_energy = 500
+special = "warstrike"
+weapon_type = "godsword"
+aka = ["bgs", "bandos_sword", "bandos_god_sword"]
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "A brutally heavy sword."
+
+[bandos_godsword_noted]
+id = 11697
+
+[saradomin_godsword]
+id = 11698
+price = 27900000
+limit = 10
+weight = 10.0
+special_damage_mod_1 = 1.1
+special_accuracy_mod = 2.0
+special_energy = 500
+special = "healing_blade"
+weapon_type = "godsword"
+aka = ["sgs", "sara_gs", "sara_godsword", "saradomin_god_sword"]
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "A gracious, heavy sword."
+
+[saradomin_godsword_noted]
+id = 11699
+
+[zamorak_godsword]
+id = 11700
+price = 8700000
+limit = 10
+weight = 10.0
+special_damage_mod_1 = 1.1
+special_accuracy_mod = 2.0
+special_energy = 500
+special = "ice_cleave"
+weapon_type = "godsword"
+aka = ["zgs", "zammy_godsword", "zammy_gs", "zammy_sword", "zamorak_god_sword"]
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "A terrifying, heavy sword."
+
+[zamorak_godsword_noted]
+id = 11701
+
+[armadyl_hilt]
+id = 11702
+price = 44300000
+limit = 10
+weight = 2.5
+examine = "Brimming with potential."
+
+[armadyl_hilt_noted]
+id = 11703
+
+[bandos_hilt]
+id = 11704
+price = 5300000
+limit = 10
+weight = 2.5
+examine = "Brimming with potential."
+
+[bandos_hilt_noted]
+id = 11705
+
+[saradomin_hilt]
+id = 11706
+price = 28100000
+limit = 10
+weight = 2.5
+examine = "Brimming with potential."
+
+[saradomin_hilt_noted]
+id = 11707
+
+[zamorak_hilt]
+id = 11708
+price = 8700000
+limit = 10
+weight = 2.5
+examine = "Brimming with potential."
+
+[zamorak_hilt_noted]
+id = 11709
+
+[godsword_shard_1]
+id = 11710
+price = 151400
+limit = 10
+weight = 2.5
+examine = "A part of the godsword blade."
+
+[godsword_shard_1_noted]
+id = 11711
+
+[godsword_shard_2]
+id = 11712
+price = 150800
+limit = 10
+weight = 2.5
+destroy = "No"
+examine = "A part of the godsword blade."
+
+[godsword_shard_2_noted]
+id = 11713
+
+[godsword_shard_3]
+id = 11714
+price = 153000
+limit = 10
+weight = 2.5
+examine = "A part of the godsword blade."
+
+[godsword_shard_3_noted]
+id = 11715
+
+[zamorakian_spear]
+id = 11716
+price = 4700000
+limit = 10
+weight = 3.0
+aka = ["zs", "zammy_spear", "zamorak_spear"]
+special_energy = 250
+special = "shove"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A versatile spear wielded by agents of chaos."
+
+[zamorakian_spear_noted]
+id = 11717
+
+[armadyl_helmet]
+id = 11718
+price = 2700000
+limit = 1
+weight = 0.5
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A helmet of great craftsmanship."
+
+[armadyl_helmet_noted]
+id = 11719
+
+[armadyl_chestplate]
+id = 11720
+price = 15600000
+limit = 1
+weight = 4.0
+aka = ["acp", "arma_chest", "arma_chestplate", "armadyl_chest_plate"]
+slot = "Chest"
+material = "metal"
+examine = "Armour of great craftsmanship."
+
+[armadyl_chestplate_noted]
+id = 11721
+
+[armadyl_chainskirt]
+id = 11722
+price = 13100000
+limit = 1
+weight = 1.0
+slot = "Legs"
+material = "metal"
+examine = "A chainskirt of great craftsmanship."
+
+[armadyl_chainskirt_noted]
+id = 11723
+
+[bandos_chestplate]
+id = 11724
+price = 17600000
+limit = 1
+weight = 12.0
+aka = ["bandos_plate", "bcp", "bandos_chest_plate"]
+slot = "Chest"
+material = "metal"
+examine = "A sturdy chestplate."
+
+[bandos_chestplate_noted]
+id = 11725
+
+[bandos_tassets]
+id = 11726
+price = 19099660
+limit = 1
+weight = 8.0
+aka = ["bandos_tasset", "tassy", "tasset", "tassets"]
+slot = "Legs"
+material = "metal"
+examine = "A sturdy pair of tassets."
+
+[bandos_tassets_noted]
+id = 11727
+
+[bandos_boots]
+id = 11728
+price = 193100
+limit = 1
+weight = 6.0
+slot = "Feet"
+material = "metal"
+examine = "Some sturdy boots."
+
+[bandos_boots_noted]
+id = 11729
+
+[saradomin_sword]
+id = 11730
+price = 5498355
+limit = 10
+weight = 3.0
+aka = ["ss", "sara_sword"]
+special_damage_mod_1 = 1.1
+special_accuracy_mod = 2.0
+special_energy = 1000
+special = "saradomins_lightning"
+weapon_type = "godsword"
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "The incredible blade of an Icyene."
+
+[saradomin_sword_noted]
+id = 11731
+
+[dragon_boots]
+id = 11732
+price = 185900
+limit = 10
+weight = 1.0
+aka = ["d_boots", "dboots"]
+slot = "Feet"
+material = "metal"
+examine = "These will protect my feet."
+
+[dragon_boots_noted]
+id = 11733
+
+[knights_notes]
+id = 11734
+tradeable = false
+weight = 0.085
+examine = "A scroll for Sir Tiffy. It is sealed with a wax insignia."
+kept = "Vanish"
+
+[knights_notes_opened]
+id = 11735
+tradeable = false
+weight = 0.085
+examine = "A scroll for Sir Tiffy. The wax seal is broken."
+kept = "Vanish"
+
+[steam_battlestaff]
+id = 11736
+price = 230500
+limit = 10
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+
+[steam_battlestaff_noted]
+id = 11737
+
+[mystic_steam_staff]
+id = 11738
+price = 286600
+limit = 10
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+
+[mystic_steam_staff_noted]
+id = 11739

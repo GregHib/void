@@ -879,3 +879,28 @@ slot = "Hat"
 type = "Hair"
 examine = "Dungeoneering skillcape hood."
 kept = "Reclaim"
+
+[hunter_cape]
+id = 9948
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by master hunters."
+kept = "Reclaim"
+
+[hunter_cape_t]
+id = 9949
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by master hunters."
+kept = "Reclaim"
+
+[hunter_hood]
+id = 9950
+tradeable = false
+weight = 0.453
+slot = "Hat"
+type = "Hair"
+examine = "Hunter skillcape hood."
+kept = "Reclaim"

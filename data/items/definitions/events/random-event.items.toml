@@ -321,3 +321,21 @@ weight = 0.003
 slot = "Feet"
 examine = "Thrilling."
 kept = "Wilderness"
+
+[run]
+id = 10947
+
+[sit_up]
+id = 10948
+
+[star_jump]
+id = 10949
+
+[book_of_knowledge]
+id = 11640
+tradeable = false
+weight = 1.0
+aka = ["tome_of_experience"]
+destroy = "If you drop this book it will be destroyed. You cannot replace it."
+examine = "Educate yourself."
+kept = "Vanish"

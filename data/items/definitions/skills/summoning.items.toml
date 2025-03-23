@@ -1,0 +1,2180 @@
+[raven_egg]
+id = 11964
+tradeable = false
+weight = 0.015
+examine = "I can hatch this in an incubator."
+kept = "Wilderness"
+
+[vulture_egg]
+clone = "raven_egg"
+id = 11965
+
+[birds_nest_raven_egg]
+clone = "birds_nest_red_egg"
+id = 11966
+
+[spirit_terrorbird_pouch]
+id = 12007
+price = 312
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit terrorbird familiar with this."
+
+[spirit_terrorbird_pouch_noted]
+id = 12008
+
+[granite_crab_pouch]
+id = 12009
+price = 241
+limit = 5000
+weight = 0.02
+examine = "I can summon a granite crab familiar with this."
+
+[granite_crab_pouch_noted]
+id = 12010
+
+[praying_mantis_pouch]
+id = 12011
+price = 2935
+limit = 5000
+weight = 0.02
+examine = "I can summon a praying mantis familiar with this."
+
+[praying_mantis_pouch_noted]
+id = 12012
+
+[giant_ent_pouch]
+id = 12013
+price = 2154
+limit = 5000
+weight = 0.02
+examine = "I can summon a giant ent familiar with this."
+
+[giant_ent_pouch_noted]
+id = 12014
+
+[spirit_cobra_pouch]
+id = 12015
+price = 2006
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit cobra familiar with this."
+
+[spirit_cobra_pouch_noted]
+id = 12016
+
+[spirit_dagannoth_pouch]
+id = 12017
+price = 148
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit dagannoth familiar with this."
+
+[spirit_dagannoth_pouch_noted]
+id = 12018
+
+[thorny_snail_pouch]
+id = 12019
+price = 300
+limit = 5000
+weight = 0.02
+examine = "I can summon a thorny snail familiar with this."
+
+[thorny_snail_pouch_noted]
+id = 12020
+
+[beaver_pouch]
+id = 12021
+price = 1263
+limit = 5000
+weight = 0.02
+examine = "I can summon a beaver familiar with this."
+
+[beaver_pouch_noted]
+id = 12022
+
+[karam_overlord_pouch]
+id = 12023
+price = 2508
+limit = 5000
+weight = 0.02
+examine = "I can summon a karamthulhu overlord familiar with this."
+
+[karam_overlord_pouch_noted]
+id = 12024
+
+[hydra_pouch]
+id = 12025
+price = 2242
+limit = 5000
+weight = 0.02
+examine = "I can summon a hydra familiar with this."
+
+[hydra_pouch_noted]
+id = 12026
+
+[spirit_jelly_pouch]
+id = 12027
+price = 2639
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit jelly familiar with this."
+
+[spirit_jelly_pouch_noted]
+id = 12028
+
+[bunyip_pouch]
+id = 12029
+price = 2894
+limit = 5000
+weight = 0.02
+examine = "I can summon a bunyip familiar with this."
+
+[bunyip_pouch_noted]
+id = 12030
+
+[war_tortoise_pouch]
+id = 12031
+price = 9309
+limit = 5000
+weight = 0.02
+examine = "I can summon a war tortoise familiar with this."
+
+[war_tortoise_pouch_noted]
+id = 12032
+
+[fruit_bat_pouch]
+id = 12033
+price = 2535
+limit = 5000
+weight = 0.02
+examine = "I can summon a fruit bat familiar with this."
+
+[fruit_bat_pouch_noted]
+id = 12034
+
+[abyssal_parasite_pouch]
+id = 12035
+price = 5122
+limit = 5000
+weight = 0.02
+examine = "I can summon an abyssal parasite familiar with this."
+
+[abyssal_parasite_pouch_noted]
+id = 12036
+
+[abyssal_lurker_pouch]
+id = 12037
+price = 8885
+limit = 5000
+weight = 0.02
+examine = "I can summon an abyssal lurker familiar with this."
+
+[abyssal_lurker_pouch_noted]
+id = 12038
+
+[unicorn_stallion_pouch]
+id = 12039
+price = 2455
+limit = 5000
+weight = 0.02
+examine = "I can summon a unicorn stallion familiar with this."
+
+[unicorn_stallion_pouch_noted]
+id = 12040
+
+[magpie_pouch]
+id = 12041
+price = 1544
+limit = 5000
+weight = 0.02
+examine = "I can summon a magpie familiar with this."
+
+[magpie_pouch_noted]
+id = 12042
+
+[dreadfowl_pouch]
+id = 12043
+price = 255
+limit = 5000
+weight = 0.02
+examine = "I can summon a dreadfowl familiar with this."
+
+[dreadfowl_pouch_noted]
+id = 12044
+
+[stranger_plant_pouch]
+id = 12045
+price = 2237
+limit = 5000
+weight = 0.02
+examine = "I can summon a stranger plant familiar with this."
+
+[stranger_plant_pouch_noted]
+id = 12046
+
+[spirit_wolf_pouch]
+id = 12047
+price = 261
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit wolf familiar with this."
+
+[spirit_wolf_pouch_noted]
+id = 12048
+
+[desert_wyrm_pouch]
+id = 12049
+price = 820
+limit = 5000
+weight = 0.02
+examine = "I can summon a desert wyrm familiar with this."
+
+[desert_wyrm_pouch_noted]
+id = 12050
+
+[evil_turnip_pouch]
+id = 12051
+price = 1800
+limit = 5000
+weight = 0.02
+examine = "I can summon an evil turnip familiar with this."
+
+[evil_turnip_pouch_noted]
+id = 12052
+
+[vampyre_bat_pouch]
+id = 12053
+price = 1386
+limit = 5000
+weight = 0.02
+examine = "I can summon a vampyre bat familiar with this."
+
+[vampyre_bat_pouch_noted]
+id = 12054
+
+[spirit_scorpion_pouch]
+id = 12055
+price = 980
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit scorpion familiar with this."
+
+[spirit_scorpion_pouch_noted]
+id = 12056
+
+[arctic_bear_pouch]
+id = 12057
+price = 344
+limit = 5000
+weight = 0.02
+examine = "I can summon an arctic bear familiar with this."
+
+[arctic_bear_pouch_noted]
+id = 12058
+
+[spirit_spider_pouch]
+id = 12059
+price = 414
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit spider familiar with this."
+
+[spirit_spider_pouch_noted]
+id = 12060
+
+[bloated_leech_pouch]
+id = 12061
+price = 2042
+limit = 5000
+weight = 0.02
+examine = "I can summon a bloated leech familiar with this."
+
+[bloated_leech_pouch_noted]
+id = 12062
+
+[spirit_kalphite_pouch]
+id = 12063
+price = 3724
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit kalphite familiar with this."
+
+[spirit_kalphite_pouch_noted]
+id = 12064
+
+[honey_badger_pouch]
+id = 12065
+price = 1468
+limit = 5000
+weight = 0.02
+examine = "I can summon a honey badger familiar with this."
+
+[honey_badger_pouch_noted]
+id = 12066
+
+[albino_rat_pouch]
+id = 12067
+price = 1752
+limit = 5000
+weight = 0.02
+examine = "I can summon an albino rat familiar with this."
+
+[albino_rat_pouch_noted]
+id = 12068
+
+[granite_lobster_pouch]
+id = 12069
+price = 2918
+limit = 5000
+weight = 0.02
+examine = "I can summon a granite lobster familiar with this."
+
+[granite_lobster_pouch_noted]
+id = 12070
+
+[macaw_pouch]
+id = 12071
+price = 1368
+limit = 5000
+weight = 0.02
+examine = "I can summon a macaw familiar with this."
+
+[macaw_pouch_noted]
+id = 12072
+
+[bronze_minotaur_pouch]
+id = 12073
+price = 1865
+limit = 5000
+weight = 0.02
+examine = "Summons a level 43 combat familiar."
+
+[bronze_minotaur_pouch_noted]
+id = 12074
+
+[iron_minotaur_pouch]
+id = 12075
+price = 2149
+limit = 5000
+weight = 0.02
+examine = "I can summon an iron minotaur familiar with this."
+
+[iron_minotaur_pouch_noted]
+id = 12076
+
+[steel_minotaur_pouch]
+id = 12077
+price = 2449
+limit = 5000
+weight = 0.02
+examine = "I can summon a steel minotaur familiar with this."
+
+[steel_minotaur_pouch_noted]
+id = 12078
+
+[mithril_minotaur_pouch]
+id = 12079
+price = 2649
+limit = 5000
+weight = 0.02
+examine = "I can summon a mithril minotaur with this."
+
+[mithril_minotaur_pouch_noted]
+id = 12080
+
+[adamant_minotaur_pouch]
+id = 12081
+price = 2513
+limit = 5000
+weight = 0.02
+examine = "I can summon an adamant minotaur familiar with this."
+
+[adamant_minotaur_pouch_noted]
+id = 12082
+
+[rune_minotaur_pouch]
+id = 12083
+price = 394
+limit = 5000
+weight = 0.02
+examine = "I can summon a rune minotaur with this."
+
+[rune_minotaur_pouch_noted]
+id = 12084
+
+[smoke_devil_pouch]
+id = 12085
+price = 2466
+limit = 5000
+weight = 0.02
+examine = "I can summon a smoke devil familiar with this."
+
+[smoke_devil_pouch_noted]
+id = 12086
+
+[bull_ant_pouch]
+id = 12087
+price = 309
+limit = 5000
+weight = 0.02
+examine = "I can summon a bull ant familiar with this."
+
+[bull_ant_pouch_noted]
+id = 12088
+
+[wolpertinger_pouch]
+id = 12089
+price = 3556
+limit = 5000
+weight = 0.02
+examine = "I can summon a wolpertinger familiar with this."
+
+[wolpertinger_pouch_noted]
+id = 12090
+
+[compost_mound_pouch]
+id = 12091
+price = 827
+limit = 5000
+weight = 0.02
+examine = "I can summon a compost mound familiar with this."
+
+[compost_mound_pouch_noted]
+id = 12092
+
+[pack_yak_pouch]
+id = 12093
+price = 3696
+limit = 5000
+weight = 0.02
+examine = "I can summon a pack yak familiar with this."
+
+[pack_yak_pouch_noted]
+id = 12094
+
+[spirit_cockatrice_pouch]
+id = 12095
+price = 1543
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit cockatrice familiar with this."
+
+[sp_cockatrice_pouch_noted]
+id = 12096
+
+[spirit_guthatrice_pouch]
+id = 12097
+price = 1504
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit guthatrice familiar with this."
+
+[sp_guthatrice_pouch_noted]
+id = 12098
+
+[spirit_saratrice_pouch]
+id = 12099
+price = 1506
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit saratrice familiar with this."
+
+[sp_saratrice_pouch_noted]
+id = 12100
+
+[spirit_zamatrice_pouch]
+id = 12101
+price = 1517
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit zamatrice familiar with this."
+
+[sp_zamatrice_pouch_noted]
+id = 12102
+
+[spirit_pengatrice_pouch]
+id = 12103
+price = 1528
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit pengatrice familiar with this."
+
+[sp_pengatrice_pouch_noted]
+id = 12104
+
+[spirit_coraxatrice_pouch]
+id = 12105
+price = 4576
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit coraxatrice familiar with this."
+
+[sp_coraxatrice_pouch_noted]
+id = 12106
+
+[spirit_vulatrice_pouch]
+id = 12107
+price = 4829
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit vulatrice familiar with this."
+
+[sp_vulatrice_pouch_noted]
+id = 12108
+
+[cockatrice_egg]
+id = 12109
+price = 789
+limit = 10000
+weight = 0.02
+examine = "A stripy brown egg."
+
+[cockatrice_egg_noted]
+id = 12110
+
+[guthatrice_egg]
+id = 12111
+price = 1467
+limit = 5000
+weight = 0.02
+examine = "A stripy green egg."
+
+[guthatrice_egg_noted]
+id = 12112
+
+[saratrice_egg]
+id = 12113
+price = 1401
+limit = 5000
+weight = 0.02
+examine = "A stripy blue egg."
+
+[saratrice_egg_noted]
+id = 12114
+
+[zamatrice_egg]
+id = 12115
+price = 1528
+limit = 5000
+weight = 0.02
+examine = "A stripy red egg."
+
+[zamatrice_egg_noted]
+id = 12116
+
+[pengatrice_egg]
+id = 12117
+price = 2825
+limit = 5000
+weight = 0.02
+examine = "A stripy grey egg."
+
+[pengatrice_egg_noted]
+id = 12118
+
+[coraxatrice_egg]
+id = 12119
+price = 4102
+limit = 5000
+weight = 0.02
+examine = "A stripy black egg."
+
+[coraxatrice_egg_noted]
+id = 12120
+
+[vulatrice_egg]
+id = 12121
+price = 16700
+limit = 5000
+weight = 0.02
+examine = "A stripy pink egg."
+
+[vulatrice_egg_noted]
+id = 12122
+
+[barker_toad_pouch]
+id = 12123
+price = 303
+limit = 5000
+weight = 0.02
+examine = "I can summon a barker toad familiar with this."
+
+[barker_toad_pouch_noted]
+id = 12124
+
+[flies]
+id = 12125
+price = 117
+limit = 100
+weight = 0.002
+examine = "A swarm of little flies."
+
+[flies_noted]
+id = 12126
+
+[beetle_bits]
+id = 12127
+price = 210
+limit = 100
+weight = 0.002
+examine = "Some beetle bits."
+
+[beetle_bits_noted]
+id = 12128
+
+[ground_fishing_bait]
+id = 12129
+price = 1
+limit = 100
+examine = "Good for feeding birds."
+
+[nuts]
+id = 12130
+price = 534
+limit = 100
+weight = 0.002
+examine = "Mmmm...nuts."
+
+[nuts_noted]
+id = 12131
+
+[truffle]
+id = 12132
+tradeable = false
+weight = 0.25
+examine = "Makes me want to do a truffle shuffle."
+kept = "Reclaim"
+
+[truffle_noted]
+id = 12133
+
+[evil_turnip]
+id = 12134
+price = 6344
+limit = 5000
+weight = 0.009
+examine = "An evil turnip."
+
+[evil_turnip_noted]
+id = 12135
+
+[evil_turnip_two_thirds]
+id = 12136
+price = 149
+limit = 5000
+weight = 0.007
+examine = "Most of an evil turnip."
+
+[evil_turnip_two_thirds_noted]
+id = 12137
+
+[evil_turnip_one_third]
+id = 12138
+price = 19
+limit = 5000
+weight = 0.005
+examine = "A bit of an evil turnip."
+
+[evil_turnip_one_third_noted]
+id = 12139
+
+[summoning_potion_4]
+id = 12140
+price = 5369
+weight = 0.035
+excess = "summoning_potion_3"
+empty = "vial"
+examine = "4 Doses of Summoning potion."
+
+[summoning_potion_4_noted]
+id = 12141
+
+[summoning_potion_3]
+id = 12142
+price = 4189
+weight = 0.03
+excess = "summoning_potion_2"
+empty = "vial"
+examine = "3 Doses of Summoning potion."
+
+[summoning_potion_3_noted]
+id = 12143
+
+[summoning_potion_2]
+id = 12144
+price = 2685
+weight = 0.025
+excess = "summoning_potion_1"
+empty = "vial"
+examine = "2 Doses of Summoning potion."
+
+[summoning_potion_2_noted]
+id = 12145
+
+[summoning_potion_1]
+id = 12146
+price = 2427
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "A dose of Summoning potion."
+
+[summoning_potion_1_noted]
+id = 12147
+
+[evil_turnip_seed]
+id = 12148
+price = 46
+limit = 100
+examine = "Grows into the root-vegetable of all evil."
+
+[carved_evil_turnip]
+id = 12153
+price = 6733
+limit = 5000
+weight = 0.009
+examine = "Utterly terrifying!"
+
+[carved_evil_turnip_noted]
+id = 12154
+
+[pouch]
+id = 12155
+price = 4
+limit = 10000
+examine = "Can be used to create Summoning pouches."
+kept = "Wilderness"
+
+[honeycomb]
+id = 12156
+price = 104
+limit = 5000
+weight = 0.005
+examine = "This is what bees craft."
+
+[honeycomb_noted]
+id = 12157
+
+[gold_charm]
+id = 12158
+tradeable = false
+examine = "A charm used to summon familiars."
+kept = "Wilderness"
+
+[green_charm]
+id = 12159
+tradeable = false
+examine = "A charm used to summon familiars."
+kept = "Reclaim"
+
+[crimson_charm]
+clone = "green_charm"
+id = 12160
+
+[abyssal_charm]
+id = 12161
+tradeable = false
+weight = 0.005
+examine = "A charm used to summon familiars."
+kept = "Reclaim"
+
+[talon_beast_charm]
+id = 12162
+tradeable = false
+weight = 0.005
+examine = "A charm used to summon talon beasts."
+kept = "Reclaim"
+
+[blue_charm]
+clone = "green_charm"
+id = 12163
+
+[ravager_charm]
+id = 12164
+tradeable = false
+weight = 0.005
+examine = "A charm needed to summon a void ravager."
+kept = "Reclaim"
+
+[shifter_charm]
+id = 12165
+tradeable = false
+weight = 0.005
+examine = "A charm needed to summon a void shifter."
+kept = "Reclaim"
+
+[spinner_charm]
+id = 12166
+tradeable = false
+weight = 0.005
+examine = "A charm needed to summon a void spinner."
+kept = "Reclaim"
+
+[torcher_charm]
+id = 12167
+tradeable = false
+weight = 0.005
+examine = "A charm needed to summon a void torcher."
+kept = "Reclaim"
+
+[obsidian_charm]
+clone = "abyssal_charm"
+id = 12168
+
+[clean_spirit_weed]
+id = 12172
+price = 4694
+limit = 10000
+weight = 0.001
+examine = "A fresh herb."
+
+[clean_spirit_weed_noted]
+id = 12173
+
+[grimy_spirit_weed]
+id = 12174
+price = 4511
+limit = 10000
+cleaning = { level = 35, clean_xp = 7.8 }
+weight = 0.001
+examine = "I need to clean this herb before I can use it."
+
+[grimy_spirit_weed_noted]
+id = 12175
+
+[spirit_weed_seed]
+id = 12176
+price = 555
+limit = 100
+examine = "A seed for spirit weed."
+
+[spirit_weed_potion_unf]
+id = 12181
+price = 4272
+limit = 10000
+weight = 0.907
+empty = "vial"
+examine = "I need another ingredient to finish this spirit weed potion."
+
+[spirit_weed_potion_unf_noted]
+id = 12182
+
+[spirit_shards]
+id = 12183
+price = 24
+limit = 10000
+examine = "Shards of an obelisk."
+kept = "Wilderness"
+
+[gecko_red_2]
+id = 12184
+food = "Flies and Beetle bits"
+examine = "How cute!"
+skill_req = { summoning = 10, hunter = 27 }
+
+[saradomin_owl]
+id = 12185
+npc = 6951
+npc2 = 7816
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "A fantastic saradomin owl."
+skill_req = { summoning = 70 }
+
+[zamorak_hawk]
+id = 12186
+npc = 6954
+npc2 = 9186
+food = "Fishing bait"
+examine = "A stately zamorak hawk."
+
+[guthix_raptor_2]
+id = 12187
+npc = 6957
+npc2 = 9187
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "An impressive Guthix raptor."
+skill_req = { summoning = 70 }
+
+[penguin_grey_2]
+id = 12188
+tradeable = false
+weight = 1.5
+destroy = "Release"
+examine = "A captured penguin."
+kept = "Vanish"
+
+[bird]
+id = 12189
+examine = "It's a brightly coloured bird of the jungle."
+
+[vulture_grey_2]
+id = 12190
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "An adult vulture."
+skill_req = { summoning = 85 }
+
+[terrier_puppy]
+id = 12191
+npc = 6894
+npc2 = 6858
+food = "Raw meat, bones"
+examine = "It's lively and energetic."
+skill_req = { summoning = 4 }
+
+[greyhound_puppy_brown_2]
+id = 12192
+food = "Raw Beef"
+examine = "This is one fast little pooch."
+skill_req = { summoning = 4 }
+
+[labrador_puppy_yellow_2]
+id = 12193
+food = "Raw beef"
+examine = "Soft but strong... and cute."
+skill_req = { summoning = 4 }
+
+[dalmatian_puppy_black_2]
+id = 12194
+food = "Raw meat"
+examine = "Now, if only I could find another hundred..."
+skill_req = { summoning = 4 }
+
+[sheepdog_puppy_black_2]
+id = 12195
+food = "Raw meat"
+examine = "This little puppy is very quiet."
+skill_req = { summoning = 4 }
+
+[bulldog_puppy_white_2]
+id = 12196
+food = "Raw meat"
+examine = "One proud little puppy."
+skill_req = { summoning = 4 }
+
+[dragon_hatchling]
+id = 12197
+food = "Vast amounts of raw meat, fish and chicken"
+examine = "A hatchling  dragon."
+skill_req = { summoning = 99 }
+
+[baby_giant_crab_red]
+id = 12198
+npc = 6947
+food = "Raw fish"
+examine = "Little Nipper"
+skill_req = { summoning = 40, slayer = 32 }
+
+[baby_raccoon_grey_2]
+id = 12199
+food = "Raw meat and fish"
+examine = "A stripy little baby raccoon."
+skill_req = { summoning = 80, hunter = 27 }
+
+[squirrel_light_grey]
+id = 12200
+npc = 6920
+npc2 = 9250
+food = "Nuts"
+examine = "An experienced nut-thief."
+skill_req = { summoning = 60, hunter = 29 }
+
+[monkey_grey_and_beige_2]
+clone = "monkey"
+id = 12201
+
+[chameleon_2]
+id = 12203
+npc = 6923
+npc2 = 9262
+food = "Flies"
+examine = "It's my colour-coordinated lizard!"
+skill_req = { summoning = 90 }
+
+[antlers]
+id = 12204
+price = 35
+limit = 100
+weight = 1.0
+slot = "Hat"
+type = "Hair"
+examine = "Doors could be a problem, wearing these..."
+
+[antlers_noted]
+id = 12205
+
+[antlers_charged]
+id = 12206
+limit = 100
+tradeable = false
+bank_stacks = false
+weight = 1.0
+slot = "Hat"
+type = "Hair"
+examine = "Doors could be a problem, wearing these..."
+kept = "Reclaim"
+
+[lizard_skull]
+id = 12207
+price = 264
+limit = 100
+weight = 3.0
+slot = "Hat"
+type = "FullFace"
+examine = "It's a little smelly in there."
+
+[lizard_skull_noted]
+id = 12208
+
+[lizard_skull_charged]
+id = 12209
+limit = 100
+tradeable = false
+bank_stacks = false
+weight = 3.0
+slot = "Hat"
+type = "FullFace"
+examine = "It's a little smelly in there."
+kept = "Reclaim"
+
+[feather_headdress_blue]
+id = 12210
+price = 208
+limit = 100
+weight = 2.0
+slot = "Hat"
+examine = "It's fun to go to the O-B-E-L-I-S-K!"
+
+[feather_headdress_noted]
+id = 12211
+
+[feather_headdress_charged_blue]
+id = 12212
+tradeable = false
+bank_stacks = false
+weight = 2.0
+slot = "Hat"
+examine = "It's fun to go to the O-B-E-L-I-S-K!"
+kept = "Reclaim"
+
+[feather_headdress_yellow]
+id = 12213
+price = 433
+limit = 100
+weight = 2.0
+slot = "Hat"
+examine = "It's fun to go to the O-B-E-L-I-S-K!"
+
+[feather_headdress_noted_2]
+id = 12214
+
+[feather_headdress_charged_yellow]
+id = 12215
+tradeable = false
+bank_stacks = false
+weight = 2.0
+slot = "Hat"
+examine = "It's fun to go to the O-B-E-L-I-S-K!"
+kept = "Reclaim"
+
+[feather_headdress_red]
+id = 12216
+price = 164
+limit = 100
+weight = 2.0
+slot = "Hat"
+examine = "It's fun to go to the O-B-E-L-I-S-K!"
+
+[feather_headdress_noted_3]
+id = 12217
+
+[feather_headdress_charged_red]
+id = 12218
+tradeable = false
+bank_stacks = false
+weight = 2.0
+slot = "Hat"
+examine = "It's fun to go to the O-B-E-L-I-S-K!"
+kept = "Reclaim"
+
+[feather_headdress_stripy]
+id = 12219
+price = 120
+limit = 100
+weight = 2.0
+slot = "Hat"
+examine = "It's fun to go to the O-B-E-L-I-S-K!"
+
+[feather_headdress_noted_4]
+id = 12220
+
+[feather_headdress_charged_stripy]
+id = 12221
+tradeable = false
+bank_stacks = false
+weight = 2.0
+slot = "Hat"
+examine = "It's fun to go to the O-B-E-L-I-S-K!"
+kept = "Reclaim"
+
+[feather_headdress_orange]
+id = 12222
+price = 203
+limit = 100
+weight = 2.0
+slot = "Hat"
+examine = "It's fun to go to the O-B-E-L-I-S-K!"
+
+[feather_headdress_noted_5]
+id = 12223
+
+[feather_headdress_charged_orange]
+id = 12224
+tradeable = false
+bank_stacks = false
+weight = 2.0
+slot = "Hat"
+examine = "It's fun to go to the O-B-E-L-I-S-K!"
+kept = "Reclaim"
+
+[dreadfowl_pouchu]
+id = 12225
+limit = 10000
+tradeable = false
+weight = 0.02
+destroy = "Are you sure you wish to destroy this item? You will not be able to reclaim it."
+examine = "An uncharged Summoning pouch. Can be converted to its charged counterpart."
+kept = "Vanish"
+use = "Limited"
+
+[granite_crab_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12226
+
+[vampyre_bat_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12227
+
+[macaw_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12228
+
+[evil_turnip_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12229
+
+[fruit_bat_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12230
+
+[wolf_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12231
+
+[beaver_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12232
+
+[ibis_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12233
+
+[abyssal_lurker_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12234
+
+[magpie_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12235
+
+[spirit_spider_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12236
+
+[compost_mound_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12237
+
+[spirit_terrorbird_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12238
+
+[smoke_devil_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12239
+
+[spirit_scorpion_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12240
+
+[spirit_kalphite_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12241
+
+[granite_lobster_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12242
+
+[bull_ant_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12243
+
+[ravenous_locust_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12244
+
+[albino_rat_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12245
+
+[honey_badger_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12246
+
+[praying_mantis_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12247
+
+[pouch_2]
+id = 12248
+limit = 10000
+examine = "Can be used to create Summoning pouches."
+kept = "Wilderness"
+
+[arctic_bear_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12249
+
+[unicorn_stallion_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12250
+
+[pack_yak_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12251
+
+[barker_toad_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12252
+
+[war_tortoise_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12253
+
+[spirit_cobra_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12254
+
+[thorny_snail_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12255
+
+[desert_wyrm_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12256
+
+[spirit_jelly_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12257
+
+[abyssal_parasite_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12258
+
+[bloated_leech_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12259
+
+[spirit_dagannoth_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12260
+
+[talon_beast_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12261
+
+[bunyip_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12262
+
+[hydra_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12263
+
+[bronze_minotaur_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12264
+
+[stranger_plant_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12265
+
+[sp_cockatrice_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12266
+
+[karam_overlord_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12267
+
+[wolpertinger_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12268
+
+[giant_ent_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12269
+
+[swamp_titan_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12270
+
+[fire_titan_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12271
+
+[ice_titan_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12272
+
+[moss_titan_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12273
+
+[spirit_kyatt_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12274
+
+[spirit_graahk_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12275
+
+[giant_chinchompa_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12276
+
+[lava_titan_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12277
+
+[steel_titan_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12278
+
+[obsidian_golem_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12279
+
+[geyser_titan_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12280
+
+[abyssal_titan_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12281
+
+[void_ravager_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12282
+
+[void_shifter_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12283
+
+[void_spinner_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12284
+
+[void_torcher_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12285
+
+[spirit_mosquito_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12286
+
+[iron_titan_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12287
+
+[pyrelord_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12288
+
+[spirit_larupia_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12289
+
+[spirit_tz_kih_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12290
+
+[forge_regent_pouchu]
+clone = "dreadfowl_pouchu"
+id = 12291
+
+[herbcall_scroll]
+id = 12422
+price = 97
+limit = 5000
+examine = "A scroll for a macaw familiar."
+
+[fruitfall_scroll]
+id = 12423
+price = 299
+limit = 5000
+examine = "A scroll for a fruit bat familiar."
+
+[fish_rain_scroll]
+id = 12424
+price = 142
+limit = 5000
+examine = "A scroll for an ibis familiar."
+
+[howl_scroll]
+id = 12425
+price = 7
+limit = 5000
+examine = "A scroll for a spirit wolf familiar."
+
+[thieving_fingers_scroll]
+id = 12426
+price = 94
+limit = 5000
+examine = "A scroll for a magpie familiar."
+
+[abyssal_stealth_scroll]
+id = 12427
+price = 468
+limit = 5000
+examine = "A scroll for an abyssal lurker familiar."
+
+[egg_spawn_scroll]
+id = 12428
+price = 66
+limit = 5000
+examine = "A scroll for a spirit spider familiar."
+
+[multichop_scroll]
+id = 12429
+price = 96
+limit = 5000
+examine = "A scroll for a beaver familiar."
+
+[cheese_feast_scroll]
+id = 12430
+price = 142
+limit = 5000
+examine = "A scroll for an albino rat familiar."
+
+[unburden_scroll]
+id = 12431
+price = 17
+limit = 5000
+examine = "A scroll for a bull ant familiar."
+
+[venom_shot_scroll]
+id = 12432
+price = 70
+limit = 5000
+examine = "A scroll for a spirit scorpion familiar."
+
+[insane_ferocity_scroll]
+id = 12433
+price = 91
+limit = 5000
+examine = "A scroll for a honey badger familiar."
+
+[healing_aura_scroll]
+id = 12434
+price = 272
+limit = 5000
+examine = "A scroll for a unicorn stallion familiar."
+
+[winter_storage_scroll]
+id = 12435
+price = 405
+limit = 5000
+examine = "A scroll for a pack yak familiar."
+
+[ophidian_incubation_scroll]
+id = 12436
+price = 222
+limit = 5000
+examine = "A scroll for a spirit cobra familiar."
+
+[magic_focus_scroll]
+id = 12437
+price = 410
+limit = 5000
+examine = "A scroll for a wolpertinger familiar."
+
+[swallow_whole_scroll]
+id = 12438
+price = 310
+limit = 5000
+examine = "A scroll for a bunyip familiar."
+
+[testudo_scroll]
+id = 12439
+price = 266
+limit = 5000
+examine = "A scroll for a war tortoise familiar."
+
+[generate_compost_scroll]
+id = 12440
+price = 47
+limit = 5000
+examine = "A scroll for a compost mound familiar."
+
+[tireless_run_scroll]
+id = 12441
+price = 37
+limit = 5000
+examine = "A scroll for a spirit terrorbird familiar."
+
+[regrowth_scroll]
+id = 12442
+price = 178
+limit = 5000
+examine = "A scroll for a hydra familiar."
+
+[call_to_arms_scroll]
+id = 12443
+price = 1023
+limit = 5000
+examine = "A scroll for a Pest Control familiar."
+
+[blood_drain_scroll]
+id = 12444
+price = 147
+limit = 5000
+examine = "A scroll for a bloated leech familiar."
+
+[dreadfowl_strike_scroll]
+id = 12445
+price = 6
+limit = 5000
+examine = "A scroll for a dreadfowl familiar."
+
+[sandstorm_scroll]
+id = 12446
+price = 110
+limit = 5000
+examine = "A scroll for a spirit kalphite familiar."
+
+[vampyre_touch_scroll]
+id = 12447
+price = 99
+limit = 5000
+examine = "A scroll for a vampyre bat familiar."
+
+[evil_flames_scroll]
+id = 12448
+price = 118
+limit = 5000
+examine = "A scroll for an evil turnip familiar."
+
+[crushing_claw_scroll]
+id = 12449
+price = 216
+limit = 5000
+examine = "A scroll for a granite lobster familiar."
+
+[mantis_strike_scroll]
+id = 12450
+price = 211
+limit = 5000
+examine = "A scroll for a praying mantis familiar."
+
+[arctic_blast_scroll]
+id = 12451
+price = 9
+limit = 5000
+examine = "A scroll for an arctic bear familiar."
+
+[toad_bark_scroll]
+id = 12452
+price = 10
+limit = 5000
+examine = "A scroll for a barker toad familiar."
+
+[dissolve_scroll]
+id = 12453
+price = 190
+limit = 5000
+examine = "A scroll for a spirit jelly familiar."
+
+[abyssal_drain_scroll]
+id = 12454
+price = 140
+limit = 5000
+examine = "A scroll for an abyssal parasite familiar."
+
+[doomsphere_scroll]
+id = 12455
+price = 188
+limit = 5000
+examine = "A scroll for a karamthulhu overlord familiar."
+
+[spike_shot_scroll]
+id = 12456
+price = 10
+limit = 5000
+examine = "A scroll for a spirit dagannoth familiar."
+
+[acorn_missile_scroll]
+id = 12457
+price = 139
+limit = 5000
+examine = "A scroll for a giant ent familiar."
+
+[petrifying_gaze_scroll]
+id = 12458
+price = 93
+limit = 5000
+examine = "A scroll for a cockatrice variant familiar."
+
+[slime_spray_scroll]
+id = 12459
+price = 11
+limit = 5000
+examine = "A scroll for a thorny snail familiar."
+
+[electric_lash_scroll]
+id = 12460
+price = 46
+limit = 5000
+examine = "A scroll for a desert wyrm familiar."
+
+[bronze_bull_rush_scroll]
+id = 12461
+price = 125
+limit = 5000
+examine = "A scroll for a bronze minotaur familiar."
+
+[iron_bull_rush_scroll]
+id = 12462
+price = 173
+limit = 5000
+examine = "A scroll for an iron minotaur familiar."
+
+[steel_bull_rush_scroll]
+id = 12463
+price = 192
+limit = 5000
+examine = "A scroll for a steel minotaur familiar."
+
+[mithril_bull_rush_scroll]
+id = 12464
+price = 189
+limit = 5000
+examine = "A scroll for a mithril minotaur familiar."
+
+[adamant_bull_rush_scroll]
+id = 12465
+price = 203
+limit = 5000
+examine = "A scroll for an adamant minotaur familiar."
+
+[rune_bull_rush_scroll]
+id = 12466
+price = 85
+limit = 5000
+examine = "A scroll for a rune minotaur familiar."
+
+[poisonous_blast_scroll]
+id = 12467
+price = 167
+limit = 5000
+examine = "A scroll for a stranger plant familiar."
+
+[dust_cloud_scroll]
+id = 12468
+price = 164
+limit = 5000
+examine = "A scroll for a smoke devil familiar."
+
+[hatchling_dragon_red]
+id = 12469
+npc = 6900
+food = "Vast amounts of raw meat, fish and chicken"
+examine = "A hatchling  dragon."
+skill_req = { summoning = 99 }
+
+[baby_dragon_red]
+id = 12470
+npc = 6901
+npc2 = 9208
+food = "Raw meat"
+food2 = "fish"
+examine = "A baby red dragon."
+skill_req = { summoning = 99 }
+
+[hatchling_dragon_blue]
+id = 12471
+npc = 6902
+food = "Vast amounts of raw meat, fish and chicken"
+examine = "A hatchling  dragon."
+skill_req = { summoning = 99 }
+
+[baby_dragon_blue]
+id = 12472
+npc = 6903
+npc2 = 9209
+food = "Raw meat"
+food2 = "fish"
+examine = "A baby blue dragon."
+skill_req = { summoning = 99 }
+
+[hatchling_dragon_green]
+id = 12473
+npc = 6904
+food = "Vast amounts of raw meat, fish and chicken"
+examine = "A hatchling  dragon."
+skill_req = { summoning = 99 }
+
+[baby_dragon_green]
+id = 12474
+npc = 6905
+npc2 = 9210
+food = "Raw meat"
+food2 = "fish"
+examine = "A baby green dragon."
+skill_req = { summoning = 99 }
+
+[hatchling_dragon_black]
+id = 12475
+npc = 6906
+food = "Vast amounts of raw meat, fish and chicken"
+examine = "A hatchling  dragon."
+skill_req = { summoning = 99 }
+
+[baby_dragon_black]
+id = 12476
+npc = 6907
+npc2 = 9211
+food = "Raw meat"
+food2 = "fish"
+examine = "A baby black dragon."
+skill_req = { summoning = 99 }
+
+[red_dragon_egg]
+id = 12477
+tradeable = false
+weight = 0.025
+examine = "This will hatch into a mighty dragon."
+kept = "Wilderness"
+
+[blue_dragon_egg]
+clone = "red_dragon_egg"
+id = 12478
+
+[green_dragon_egg]
+clone = "red_dragon_egg"
+id = 12479
+
+[black_dragon_egg]
+clone = "red_dragon_egg"
+id = 12480
+
+[penguin_grey]
+id = 12482
+npc = 6909
+npc2 = 9233
+npc3 = 6910
+food = "Raw fish"
+destroy = "Release"
+examine = "A captured penguin."
+skill_req = { summoning = 30 }
+
+[penguin_egg]
+id = 12483
+tradeable = false
+weight = 0.907
+examine = "I can hatch this in an incubator."
+kept = "Wilderness"
+
+[raven_chick_blue]
+id = 12484
+npc = 6911
+
+[raven_blue]
+id = 12485
+npc = 6912
+npc2 = 9239
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "An adult raven."
+
+[baby_raccoon_grey]
+id = 12486
+npc = 6913
+npc2 = 6997
+food = "Raw meat and fish"
+examine = "A stripy little baby raccoon."
+skill_req = { summoning = 80, hunter = 27 }
+
+[raccoon_grey]
+id = 12487
+npc = 6914
+npc2 = 9236
+food = "Raw meat, raw fish"
+examine = "He can run with us."
+skill_req = { summoning = 80, hunter = 27 }
+
+[baby_gecko_orange_2]
+id = 12488
+npc = 6915
+npc2 = 6917
+food = "Flies and Beetle bits"
+examine = "It's so adorably tiny!"
+skill_req = { summoning = 10, hunter = 27 }
+
+[gecko_orange_2]
+id = 12489
+npc = 6916
+npc2 = 6918
+food = "Flies and Beetle bits"
+examine = "How cute!"
+skill_req = { summoning = 10, hunter = 27 }
+
+[baby_squirrel]
+id = 12490
+food = "Nuts"
+examine = "A tiny nut-thief."
+skill_req = { summoning = 60, hunter = 29 }
+
+[squirrel_light_brown]
+id = 12491
+npc = 7302
+npc2 = 9251
+food = "Nuts"
+examine = "An experienced nut-thief."
+skill_req = { summoning = 60, hunter = 29 }
+
+[baby_chameleon]
+id = 12492
+npc = 6922
+food = "Flies"
+examine = "It's a colour-coordinated lizard!"
+skill_req = { summoning = 90 }
+
+[chameleon]
+clone = "chameleon_2"
+id = 12493
+
+[chameleon_egg]
+id = 12494
+tradeable = false
+examine = "A lizard's egg."
+kept = "Wilderness"
+
+[chameleon_egg_2]
+clone = "chameleon_egg"
+id = 12495
+
+[baby_monkey_grey_and_beige]
+id = 12496
+npc = 6942
+npc2 = 6944
+food = "Bananas"
+examine = "It's a tiny, cheeky monkey."
+skill_req = { summoning = 95, hunter = 27 }
+
+[monkey_grey_and_beige]
+id = 12497
+npc = 6943
+npc2 = 9223
+food = "Bananas"
+examine = "It's a monkey in your backpack. As you look it pokes you."
+skill_req = { summoning = 95, hunter = 27 }
+
+[vulture_grey]
+id = 12499
+npc = 6946
+npc2 = 9256
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "An adult vulture."
+skill_req = { summoning = 85 }
+
+[baby_giant_crab_beige]
+id = 12500
+npc = 7293
+food = "Raw fish"
+examine = "Little Nipper"
+skill_req = { summoning = 40, slayer = 32 }
+
+[giant_crab_red]
+id = 12501
+npc = 6948
+npc2 = 9218
+food = "Raw fish"
+examine = "Bigger Nipper."
+skill_req = { summoning = 40, slayer = 32 }
+
+[crunchy_claw_token]
+id = 12502
+tradeable = false
+weight = 0.001
+examine = "Apparently, this token is worth one baby giant crab to someone called Nung."
+kept = "Wilderness"
+
+[saradomin_chick]
+id = 12503
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "A fluffy chick."
+skill_req = { summoning = 70 }
+
+[saradomin_bird]
+id = 12504
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "Lovely blue plumage."
+skill_req = { summoning = 70 }
+
+[saradomin_owl_2]
+id = 12505
+npc = 6951
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "A fantastic saradomin owl."
+skill_req = { summoning = 70 }
+
+[zamorak_chick]
+id = 12506
+food = "Fishing bait"
+examine = "A fluffy chick."
+
+[zamorak_bird]
+id = 12507
+food = "Fishing bait"
+examine = "Lovely red plumage."
+
+[zamorak_hawk_2]
+id = 12508
+food = "Fishing bait"
+examine = "A stately zamorak hawk."
+
+[guthix_chick]
+id = 12509
+
+[guthix_bird]
+id = 12510
+
+[guthix_raptor]
+clone = "guthix_raptor_2"
+id = 12511
+
+[terrier_puppy_2]
+clone = "terrier_puppy"
+id = 12512
+
+[terrier]
+id = 12513
+npc = 6959
+npc2 = 9190
+food = "Raw meat, bones"
+examine = "A hyperactive little pup."
+skill_req = { summoning = 4 }
+
+[greyhound_puppy_brown]
+id = 12514
+npc = 6960
+food = "Raw Beef"
+examine = "This is one fast little pooch."
+skill_req = { summoning = 4 }
+
+[greyhound_brown]
+id = 12515
+npc = 6961
+npc2 = 9193
+food = "Raw Beef"
+examine = "An aerodynamic doggy."
+skill_req = { summoning = 4 }
+
+[labrador_puppy_yellow]
+id = 12516
+npc = 6962
+npc2 = 6895
+food = "Raw beef"
+examine = "Soft but strong... and cute."
+skill_req = { summoning = 4 }
+
+[labrador_yellow]
+id = 12517
+npc = 6963
+npc2 = 9196
+food = "Raw meat"
+examine = "My most faithful friend."
+skill_req = { summoning = 4 }
+
+[dalmatian_puppy_black]
+id = 12518
+npc = 6964
+npc2 = 6896
+food = "Raw meat"
+examine = "Now, if only I could find another hundred..."
+skill_req = { summoning = 4 }
+
+[dalmatian_black]
+id = 12519
+npc = 6965
+npc2 = 9199
+food = "Raw meat"
+examine = "A purebred doggy."
+skill_req = { summoning = 4 }
+
+[sheepdog_puppy_black]
+id = 12520
+npc = 6966
+npc2 = 2311
+food = "Raw meat"
+examine = "This little puppy is very quiet."
+skill_req = { summoning = 4 }
+
+[sheepdog_black]
+id = 12521
+npc = 6967
+npc2 = 9202
+food = "Raw meat"
+examine = "Come by! Come by!"
+skill_req = { summoning = 4 }
+
+[bulldog_puppy_white]
+id = 12522
+npc = 6969
+food = "Raw meat"
+examine = "One proud little puppy."
+skill_req = { summoning = 4 }
+
+[bulldog_white]
+id = 12523
+npc = 6968
+npc2 = 9205
+food = "Raw meat"
+examine = "Looks like it's chewing a wasp."
+skill_req = { summoning = 4 }
+
+[pouch_wolf_whistle]
+id = 12525
+limit = 10000
+tradeable = false
+weight = 0.003
+examine = "This can be used to create summoning pouches."
+kept = "Vanish"
+
+[spirit_wolf_pouch_wolf_whistle]
+id = 12526
+limit = 5000
+tradeable = false
+weight = 0.02
+examine = "Contains a spirit wolf familiar."
+kept = "Vanish"
+
+[gold_charm_wolf_whistle]
+id = 12527
+tradeable = false
+weight = 0.005
+examine = "A charm used to summon familiars."
+kept = "Vanish"
+
+[trapdoor_key]
+id = 12528
+tradeable = false
+weight = 0.01
+destroy = "The trapdoor key will be destroyed if you drop it; you will have to speak to Pikkupstix to get another."
+examine = "A key to Pikkupstix's trapdoor."
+kept = "Vanish"
+
+[howl_scroll_wolf_whistle]
+id = 12529
+limit = 5000
+tradeable = false
+examine = "A summoning scroll for a spirit wolf familiar."
+kept = "Vanish"
+
+[spirit_shards_wolf_whistle]
+id = 12530
+limit = 10000
+tradeable = false
+examine = "Shards of an obelisk."
+kept = "Vanish"
+
+[ibis_pouch]
+id = 12531
+price = 1917
+limit = 5000
+weight = 0.02
+examine = "I can summon an ibis familiar with this."
+
+[ibis_pouch_noted]
+id = 12532
+
+[stony_shell_scroll]
+id = 12533
+price = 6
+limit = 5000
+examine = "A scroll for a granite crab familiar."
+
+[platypus_brown_2]
+id = 12547
+food = "Raw fish or Ground fishing bait as a baby. Fishing bait as adult."
+examine = "A most unlikely creature."
+skill_req = { summoning = 10, hunter = 48 }
+
+[platypus_brown]
+id = 12548
+npc = 7015
+npc2 = 7021
+npc3 = 9304
+food = "Raw fish or Ground fishing bait as a baby. Fishing bait as adult."
+examine = "A most unlikely creature."
+skill_req = { summoning = 10, hunter = 48 }
+
+[platypus_tan]
+id = 12549
+npc = 7016
+npc2 = 7022
+npc3 = 9305
+food = "Raw fish or Ground fishing bait as a baby. Fishing bait as adult."
+examine = "A most unlikely creature."
+skill_req = { summoning = 10, hunter = 48 }
+
+[platypus_grey]
+id = 12550
+npc = 7017
+npc2 = 7023
+npc3 = 9306
+food = "Raw fish or Ground fishing bait as a baby. Fishing bait as adult."
+examine = "A most unlikely creature."
+skill_req = { summoning = 10, hunter = 48 }
+
+[baby_platypus_brown]
+id = 12551
+npc = 7018
+npc2 = 7024
+food = "Raw fish or Ground fishing bait as a baby. Fishing bait as adult."
+examine = "A most unlikely creature."
+skill_req = { summoning = 10, hunter = 48 }
+
+[baby_platypus_tan]
+id = 12552
+npc = 7019
+npc2 = 7025
+food = "Raw fish or Ground fishing bait as a baby. Fishing bait as adult."
+examine = "A most unlikely creature."
+skill_req = { summoning = 10, hunter = 48 }
+
+[baby_platypus_grey]
+id = 12553
+npc = 7020
+npc2 = 7026
+food = "Raw fish or Ground fishing bait as a baby. Fishing bait as adult."
+examine = "A most unlikely creature."
+skill_req = { summoning = 10, hunter = 48 }

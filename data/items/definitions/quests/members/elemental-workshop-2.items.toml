@@ -1,0 +1,121 @@
+[beaten_book]
+id = 9717
+tradeable = false
+weight = 0.1
+aka = ["book_of_the_elemental_helm"]
+examine = "Book of the elemental helm."
+kept = "Wilderness"
+
+[crane_schematic]
+id = 9718
+tradeable = false
+weight = 0.1
+examine = "On the subject of lava dippers."
+use = "Quest"
+kept = "Wilderness"
+
+[lever_schematic]
+id = 9719
+tradeable = false
+weight = 0.1
+examine = "A scroll with a lever schematic drawn on it."
+kept = "Wilderness"
+
+[crane_claw]
+id = 9720
+tradeable = false
+weight = 1.814
+examine = "A crane claw."
+use = "Quest"
+kept = "Wilderness"
+
+[scroll_elemental_workshop_ii]
+id = 9721
+tradeable = false
+weight = 0.02
+examine = "A scroll with some writing on it."
+use = "Quest"
+kept = "Wilderness"
+
+[key_elemental_workshop_ii]
+clone = "a_small_key"
+id = 9722
+
+[pipe_elemental_workshop_ii]
+id = 9723
+tradeable = false
+weight = 3.175
+examine = "A spare section of pipe."
+use = "Quest"
+kept = "Wilderness"
+
+[large_cog]
+id = 9724
+tradeable = false
+weight = 2.721
+examine = "A large cog."
+use = "Quest"
+kept = "Wilderness"
+
+[medium_cog]
+id = 9725
+tradeable = false
+weight = 1.814
+examine = "A medium cog."
+use = "Quest"
+kept = "Wilderness"
+
+[small_cog]
+id = 9726
+tradeable = false
+weight = 0.907
+examine = "A small cog."
+use = "Quest"
+kept = "Wilderness"
+
+[primed_bar]
+id = 9727
+tradeable = false
+weight = 1.814
+examine = "A primed elemental ingot."
+kept = "Reclaim"
+
+[mind_bar]
+id = 9728
+tradeable = false
+weight = 1.814
+examine = "An elemental mind ingot."
+kept = "Reclaim"
+
+[elemental_helmet]
+id = 9729
+price = 154
+limit = 100
+weight = 0.113
+slot = "Hat"
+examine = "A helmet made in the Elemental Workshop."
+
+[elemental_helmet_noted]
+id = 9730
+
+[mind_shield]
+id = 9731
+price = 11700
+limit = 100
+weight = 0.226
+slot = "Shield"
+examine = "A shield made in the Elemental Workshop."
+
+[mind_shield_noted]
+id = 9732
+
+[mind_helmet]
+id = 9733
+price = 2106
+limit = 100
+weight = 0.113
+slot = "Hat"
+examine = "A helmet made in the Elemental Workshop."
+
+[mind_helmet_noted]
+id = 9734

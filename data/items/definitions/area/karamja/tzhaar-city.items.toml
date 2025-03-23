@@ -110,3 +110,11 @@ aka = ["fcape", "f_cape"]
 slot = "Cape"
 examine = "A cape of fire."
 kept = "Reclaim"
+
+[fire_cape_2]
+id = 10566
+tradeable = false
+weight = 1.814
+slot = "Cape"
+examine = "A cape of fire."
+kept = "Reclaim"

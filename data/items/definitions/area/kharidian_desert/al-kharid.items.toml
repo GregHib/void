@@ -4,3 +4,23 @@ tradeable = false
 weight = 0.001
 examine = "The money off voucher has expired."
 kept = "Reclaim"
+
+[desert_goat_horn]
+id = 9735
+price = 420
+limit = 10000
+weight = 0.453
+examine = "Not much good for blowing."
+
+[goat_horn_dust]
+id = 9736
+price = 552
+limit = 10000
+weight = 0.453
+examine = "Finely ground desert goat horn."
+
+[goat_horn_dust_noted]
+id = 9737
+
+[desert_goat_horn_noted]
+id = 9738

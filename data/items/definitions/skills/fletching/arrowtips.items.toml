@@ -41,3 +41,9 @@ price = 844
 limit = 10000
 smithing = { level = 90, xp = 75.0 }
 examine = "I can make an arrow with these."
+
+[dragon_arrowtips]
+id = 11237
+price = 1803
+limit = 10000
+examine = "Dragon talons, usable as arrowheads."

@@ -1,0 +1,84 @@
+[gorak_claws]
+id = 9016
+tradeable = false
+weight = 0.001
+examine = "Oversized nail clippings."
+kept = "Reclaim"
+
+[star_flower]
+id = 9017
+tradeable = false
+weight = 0.001
+examine = "A flower with magical properties."
+kept = "Reclaim"
+
+[gorak_claw_powder]
+id = 9018
+tradeable = false
+weight = 0.001
+examine = "Ground-down gorak claws."
+kept = "Reclaim"
+
+[magic_essence_unf]
+id = 9019
+tradeable = false
+weight = 0.001
+empty = "vial"
+examine = "I need another ingredient to finish this Magic essence potion."
+kept = "Reclaim"
+
+[queens_secateurs_a_fairy_tale_ii]
+id = 9020
+tradeable = false
+weight = 0.453
+slot = "Weapon"
+examine = "Contains the Fairy Queen's magical essence."
+use = "Quest"
+kept = "Wilderness"
+
+[magic_essence_4]
+id = 9021
+weight = 0.035
+excess = "magic_essence_3"
+empty = "vial"
+examine = "4 doses of Magic essence potion."
+
+[magic_essence_3]
+id = 9022
+weight = 0.03
+excess = "magic_essence_2"
+empty = "vial"
+examine = "3 doses of Magic essence potion."
+
+[magic_essence_2]
+id = 9023
+weight = 0.025
+excess = "magic_essence_1"
+empty = "vial"
+examine = "2 doses of Magic essence potion."
+
+[magic_essence_1]
+id = 9024
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "1 dose of Magic essence potion."
+
+[nuffs_certificate]
+id = 9025
+tradeable = false
+weight = 0.01
+destroy = "Maybe I can find another in Fairy Nuff's grotto."
+examine = "A scroll that says she's a healer, that's Fairy Nuff."
+use = "Quest"
+kept = "Wilderness"
+
+[ivory_comb]
+id = 9026
+price = 167
+limit = 100
+weight = 0.01
+examine = "Simon Templeton at the Agility Pyramid will give me 50 coins for this."
+
+[ivory_comb_noted]
+id = 9027

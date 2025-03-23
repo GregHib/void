@@ -596,3 +596,151 @@ id = 6881
 [green_marionette_legs]
 clone = "red_marionette_legs"
 id = 6882
+
+[snowball_2006_christmas_event]
+id = 10501
+tradeable = false
+slot = "Weapon"
+examine = "Made from snow."
+kept = "Reclaim"
+use = "Removed"
+
+[gublinch_shards]
+id = 10506
+tradeable = false
+weight = 9.071
+examine = "A gublinch frozen and crumbled into shards."
+kept = "Reclaim"
+use = "Removed"
+
+[reindeer_hat]
+id = 10507
+tradeable = false
+weight = 2.0
+slot = "Hat"
+type = "Hair"
+destroy = "You got this hat from Shanty Claws; you can get another from Diango."
+examine = "A reindeer hat and a matching flashing nose."
+kept = "Wilderness"
+use = "Limited"
+
+[wintumber_tree]
+id = 10508
+tradeable = false
+weight = 10.0
+destroy = "You got this tree from Shanty Claws; you can get another from Diango."
+examine = "A wintumber tree for your player-owned house."
+kept = "Wilderness"
+use = "Limited"
+
+[snowball]
+id = 10509
+tradeable = false
+examine = "Made from snow."
+kept = "Reclaim"
+use = "Removed"
+
+[snowball_noted]
+id = 10510
+
+[zanaris_choir]
+id = 10511
+
+[snow_globe_2]
+id = 11949
+tradeable = false
+weight = 0.001
+slot = "Weapon"
+destroy = "You can get another from Diango in Draynor Village."
+examine = "A tiny model of Lumbridge Castle inside a glass dome."
+kept = "Wilderness"
+
+[snow_globe]
+id = 11950
+tradeable = false
+weight = 0.001
+slot = "Weapon"
+destroy = "You can get another from Diango in Draynor Village."
+examine = "A tiny model of Lumbridge Castle inside a glass dome."
+kept = "Wilderness"
+
+[snowball_2007_christmas_event]
+id = 11951
+tradeable = false
+weight = 0.001
+slot = "Weapon"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "It's a ball made of snow! Uncanny."
+kept = "Vanish"
+
+[ice_sword_2007_christmas_event]
+id = 11952
+tradeable = false
+weight = 0.001
+destroy = "You can claim another from the Queen of Snow."
+examine = "Add this to a snowman to make a snow warrior."
+kept = "Vanish"
+use = "Removed"
+
+[winter_staff]
+id = 11953
+tradeable = false
+weight = 0.001
+destroy = "You can claim another from the Queen of Snow."
+examine = "Add this to a snowman to make a snow mage."
+kept = "Vanish"
+use = "Removed"
+
+[holly_bow]
+id = 11954
+tradeable = false
+weight = 0.001
+destroy = "You can claim another from the Queen of Snow."
+examine = "Add this to a snowman to make a snow ranger."
+kept = "Vanish"
+use = "Removed"
+
+[barbarian_snowman_hat]
+id = 11955
+tradeable = false
+weight = 0.001
+destroy = "You can claim another from the Queen of Snow."
+examine = "Add this to a snowman to make a barbarian snowman."
+kept = "Vanish"
+use = "Removed"
+
+[dragon_snowman_hat]
+id = 11956
+tradeable = false
+weight = 0.001
+destroy = "You can claim another from the Queen of Snow."
+examine = "It's actually made of cardboard, but it looks like a dragon full helm."
+kept = "Vanish"
+use = "Removed"
+
+[dwarf_snowman_hat]
+id = 11957
+tradeable = false
+weight = 0.001
+destroy = "You can claim another from the Queen of Snow."
+examine = "Use this to make your snowman look like a dwarf."
+kept = "Vanish"
+use = "Removed"
+
+[pirate_snowman_hat]
+id = 11958
+tradeable = false
+weight = 0.001
+destroy = "You can claim another from the Queen of Snow."
+examine = "Arr! Shiver me snowman!"
+kept = "Vanish"
+use = "Removed"
+
+[snowman_top_hat]
+id = 11959
+tradeable = false
+weight = 0.001
+destroy = "You can claim another from the Queen of Snow."
+examine = "The most traditional snowman hat."
+kept = "Vanish"
+use = "Removed"

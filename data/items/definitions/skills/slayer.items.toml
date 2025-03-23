@@ -306,3 +306,13 @@ tradeable = false
 weight = 0.1
 examine = "Does exactly what it says on the tin."
 kept = "Reclaim"
+
+[slayer_bell]
+id = 10952
+price = 82
+limit = 100
+weight = 0.028
+examine = "Don't make anyone jump when you ring this!"
+
+[slayer_bell_noted]
+id = 10953

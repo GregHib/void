@@ -97,3 +97,6 @@ examine = "Some well-cut teak logs."
 
 [teak_logs_noted]
 id = 6334
+
+[mahogany_logs_noted]
+id = 8836

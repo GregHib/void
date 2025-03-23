@@ -2879,3 +2879,27 @@ examine = "A bowl of burnt sliced mushroom."
 
 [burnt_mushroom_noted]
 id = 7095
+
+[spicy_tomato]
+id = 9994
+price = 322
+limit = 1000
+heals = 20
+excess = "bowl"
+weight = 0.2
+examine = "A bowl of chopped tomatoes with an extra kick."
+
+[spicy_tomato_noted]
+id = 9995
+
+[spicy_minced_meat]
+id = 9996
+price = 213
+limit = 1000
+heals = 30
+excess = "bowl"
+weight = 0.5
+examine = "A bowl of fiery minced meat."
+
+[spicy_minced_meat_noted]
+id = 9997

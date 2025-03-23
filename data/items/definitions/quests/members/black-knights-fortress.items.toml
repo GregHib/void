@@ -1,0 +1,23 @@
+[dossier]
+id = 9589
+tradeable = false
+weight = 0.003
+destroy = "Speak to Sir Amik Varze at the beginning of the Black Knights' Fortress Quest."
+examine = "A dossier containing info on the Black Knights' plot."
+kept = "Wilderness"
+
+[dossier_2]
+id = 9590
+tradeable = false
+weight = 0.003
+destroy = "Speak to Sir Amik Varze at the beginning of the Black Knights' Fortress Quest."
+examine = "A dossier containing info on the Black Knights' plot."
+kept = "Wilderness"
+
+[broken_cauldron]
+id = 9591
+tradeable = false
+weight = 0.003
+examine = "A broken cauldron."
+kept = "Wilderness"
+use = "Removed"

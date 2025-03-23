@@ -1,0 +1,127 @@
+[empty_sack_animal_magnetism]
+id = 10486
+limit = 100
+tradeable = false
+weight = 0.3
+examine = "A sack with no cows in it."
+kept = "Wilderness"
+
+[undead_chicken]
+id = 10487
+tradeable = false
+weight = 0.453
+slot = "Weapon"
+destroy = "The undead farmer near Port Phasmatys will sell me more of these chickens."
+examine = "It looks at you with beady eyes."
+use = "Quest"
+kept = "Wilderness"
+
+[selected_iron]
+id = 10488
+tradeable = false
+weight = 0.25
+slot = "Weapon"
+destroy = "The Witch in Draynor supplies these bars."
+examine = "An iron bar supplied by an insane old crone."
+use = "Quest"
+kept = "Wilderness"
+
+[bar_magnet]
+id = 10489
+tradeable = false
+weight = 0.25
+destroy = "I can make another magnet using special iron bars. The Witch in Draynor supplies these bars."
+examine = "A magnet designed for undead chicken use."
+use = "Quest"
+kept = "Wilderness"
+
+[undead_twigs]
+id = 10490
+tradeable = false
+weight = 0.453
+destroy = "I can chop more wood from undead trees using my blessed hatchet."
+examine = "Were they trying to escape just then?"
+use = "Quest"
+kept = "Wilderness"
+
+[blessed_hatchet]
+id = 10491
+tradeable = false
+weight = 1.162
+slot = "Weapon"
+destroy = "I can obtain a replacement hatchet from the Taverley Slayer Master."
+examine = "It radiates purity but can still lop off heads."
+use = "Quest"
+kept = "Wilderness"
+
+[research_notes_animal_magnetism]
+id = 10492
+tradeable = false
+weight = 0.2
+destroy = "Ava in Draynor Manor can replace these garbled notes."
+examine = "These make no sense at all."
+use = "Quest"
+kept = "Wilderness"
+
+[translated_notes]
+id = 10493
+tradeable = false
+weight = 0.2
+destroy = "I can translate these notes from a set of garbled notes. Ava in Draynor Manor will supply the garbled notes."
+examine = "They still make no sense, but look more meaningful now."
+use = "Quest"
+kept = "Wilderness"
+
+[a_pattern]
+id = 10494
+tradeable = false
+weight = 0.05
+destroy = "Ava in Draynor Manor supplied this pattern; she can replace it for me."
+examine = "Attach tab A to button B then fold along line C..."
+use = "Quest"
+kept = "Wilderness"
+
+[a_container]
+id = 10495
+tradeable = false
+weight = 0.25
+destroy = "I can make this container using a special pattern, hard leather and polished buttons. Ava in Draynor Manor supplied the pattern."
+examine = "A desirable residence for discerning, undead chickens."
+use = "Quest"
+kept = "Wilderness"
+
+[polished_buttons]
+id = 10496
+tradeable = false
+weight = 0.001
+examine = "Shiny!"
+use = "Quest"
+kept = "Wilderness"
+
+[avas_attractor]
+id = 10498
+tradeable = false
+weight = 4.535
+slot = "Cape"
+destroy = "I can buy a replacement from Ava in Draynor Manor; she will charge me 999 coins for this good."
+examine = "A bagged chicken ready to serve you, magnet in claw."
+kept = "Reclaim"
+
+[avas_accumulator]
+id = 10499
+tradeable = false
+weight = 4.535
+slot = "Cape"
+destroy = "I can obtain a replacement for this from Ava in Draynor Manor. She will need 999 coins to buy the lower-level version."
+examine = "A superior bagged chicken ready to serve you, magnet in claw."
+kept = "Reclaim"
+
+[crone_made_amulet]
+id = 10500
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+destroy = "I can obtain a replacement for this from the crone who lives west of the Port Phasmatys farm."
+examine = "Allows the ghost farmer to talk to Alice - a breakthrough!"
+use = "Quest"
+kept = "Wilderness"

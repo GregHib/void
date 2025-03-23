@@ -1,3 +1,15 @@
+[giant_frog_legs]
+id = 4517
+price = 963
+limit = 1000
+heals = 60
+weight = 0.453
+examine = "This could feed a family of gnomes for a week!"
+kept = "Wilderness"
+
+[giant_frog_legs_noted]
+id = 4518
+
 [raw_cave_eel]
 id = 5001
 price = 333

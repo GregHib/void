@@ -1,0 +1,137 @@
+
+[uncleaned_find]
+id = 11175
+tradeable = false
+weight = 0.085
+destroy = "You can get another find from the pile in the cleaning area of Varrock Museum."
+examine = "A roughly-prepared archaeological find ready for cleaning."
+kept = "Vanish"
+
+[arrowheads_varrock_museum]
+id = 11176
+tradeable = false
+weight = 0.001
+examine = "Rusty and very old."
+kept = "Reclaim"
+
+[jewellery]
+id = 11177
+tradeable = false
+weight = 0.001
+examine = "Jewellery that looks dusty."
+kept = "Reclaim"
+
+[pottery]
+id = 11178
+tradeable = false
+weight = 0.001
+examine = "Bits of ancient pottery."
+kept = "Reclaim"
+
+[old_coin]
+id = 11179
+tradeable = false
+weight = 0.001
+examine = "An old looking coin."
+kept = "Reclaim"
+
+[ancient_coin]
+id = 11180
+tradeable = false
+weight = 0.001
+examine = "A cracked and rusty looking coin."
+kept = "Reclaim"
+
+[ancient_symbol]
+id = 11181
+tradeable = false
+weight = 0.001
+examine = "A very old symbol of Saradomin."
+kept = "Reclaim"
+
+[old_symbol]
+id = 11182
+tradeable = false
+weight = 0.001
+examine = "An old symbol of Saradomin."
+kept = "Reclaim"
+
+[old_chipped_vase]
+id = 11183
+tradeable = false
+weight = 0.001
+examine = "An old vase with Saradominist markings - it has been chipped."
+kept = "Reclaim"
+
+[museum_map]
+id = 11184
+tradeable = false
+weight = 0.001
+examine = "A map of Varrock Museum."
+kept = "Reclaim"
+
+[antique_lamp_varrock_museum]
+id = 11185
+tradeable = false
+weight = 0.1
+examine = "I wonder what happens if I rub it..."
+destroy = "Are you sure you want to destroy the lamp? You won't be able to get another one."
+kept = "Vanish"
+
+[antique_lamp_kudos]
+id = 11186
+tradeable = false
+weight = 0.1
+destroy = "If you destroy this item, you cannot reclaim it."
+examine = "I wonder what happens if I rub it..."
+kept = "Vanish"
+
+[antique_lamp_kudos_2]
+clone = "antique_lamp_kudos"
+id = 11187
+
+[antique_lamp_kudos_3]
+clone = "antique_lamp_kudos"
+id = 11188
+
+[antique_lamp_historian_minas]
+clone = "antique_lamp_varrock_museum"
+id = 11189
+
+[dig_site_pendant_1]
+id = 11190
+weight = 0.01
+charges = 1
+degrade = "destroy"
+slot = "Amulet"
+degrade_message = "Your Dig Site pendant crumbles to dust."
+examine = "An enchanted necklace."
+
+[dig_site_pendant_2]
+clone = "dig_site_pendant_1"
+id = 11191
+degrade = "dig_site_pendant_1"
+
+[dig_site_pendant_3]
+clone = "dig_site_pendant_1"
+id = 11192
+degrade = "dig_site_pendant_2"
+
+[dig_site_pendant_4]
+clone = "dig_site_pendant_1"
+id = 11193
+degrade = "dig_site_pendant_3"
+
+[dig_site_pendant_5]
+clone = "dig_site_pendant_1"
+id = 11194
+degrade = "dig_site_pendant_4"
+aka = ["digsite_pendant", "digsite_necklace", "dig_site_necklace"]
+
+[clean_necklace]
+id = 11195
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+examine = "A recently-cleaned necklace."
+kept = "Reclaim"

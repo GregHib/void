@@ -6,3 +6,30 @@ destroy = "Murcaily will probably give me some more."
 examine = "A hardy gout tuber."
 use = "Quest"
 kept = "Vanish"
+
+[goutweedy_lump]
+id = 9901
+tradeable = false
+weight = 0.1
+destroy = "There's probably another one in the cooking pot on Death Plateau."
+examine = "A lump that might at some point have been a gout tuber."
+use = "Quest"
+kept = "Wilderness"
+
+[hardy_gout_tubers]
+id = 9902
+tradeable = false
+weight = 0.1
+destroy = "Murcaily will probably give me some more."
+examine = "A pile of gout tubers suitable for use in mountainous terrain."
+use = "Quest"
+kept = "Wilderness"
+
+[farming_manual]
+id = 9903
+tradeable = false
+weight = 0.5
+aka = ["farmer_gricollers_farming_manual"]
+destroy = "My Arm will probably have a spare copy."
+examine = "Farmer Gricoller's Farming Manual."
+kept = "Wilderness"

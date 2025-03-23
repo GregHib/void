@@ -1,0 +1,126 @@
+[golden_scarab]
+id = 9028
+price = 496
+limit = 100
+weight = 0.01
+examine = "Simon Templeton at the Agility Pyramid will give me 1000 coins for this."
+
+[golden_scarab_noted]
+id = 9029
+
+[stone_scarab]
+id = 9030
+price = 164
+limit = 100
+weight = 0.01
+examine = "Simon Templeton at the Agility Pyramid will give me 175 coins for this."
+
+[stone_scarab_noted]
+id = 9031
+
+[pottery_scarab]
+id = 9032
+price = 72
+limit = 100
+weight = 0.01
+examine = "Simon Templeton at the Agility Pyramid will give me 75 coins for this."
+
+[pottery_scarab_noted]
+id = 9033
+
+[golden_statuette]
+id = 9034
+price = 847
+limit = 100
+weight = 0.1
+examine = "Simon Templeton at the Agility Pyramid will give me 1250 coins for this."
+
+[golden_statuette_noted]
+id = 9035
+
+[pottery_statuette]
+id = 9036
+price = 92
+limit = 100
+weight = 0.1
+examine = "Simon Templeton at the Agility Pyramid will give me 100 coins for this."
+
+[pottery_statuette_noted]
+id = 9037
+
+[stone_statuette]
+id = 9038
+price = 191
+limit = 100
+weight = 0.1
+examine = "Simon Templeton at the Agility Pyramid will give me 200 coins for this."
+
+[stone_statuette_noted]
+id = 9039
+
+[gold_seal]
+id = 9040
+price = 337
+limit = 100
+weight = 0.01
+examine = "Simon Templeton at the Agility Pyramid will give me 750 coins for this."
+
+[gold_seal_noted]
+id = 9041
+
+[stone_seal]
+id = 9042
+price = 144
+limit = 100
+weight = 0.01
+examine = "Simon Templeton at the Agility Pyramid will give me 150 coins for this."
+
+[stone_seal_noted]
+id = 9043
+
+[pharaohs_sceptre_3]
+id = 9044
+price = 1000000
+limit = 10
+weight = 2.0
+charges = 1
+degrade = "pharaohs_sceptre_2"
+degrade_message = "The sceptre has two charges left."
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "No"
+examine = "This sceptre is fully charged."
+
+[pharaohs_sceptre_3_noted]
+id = 9045
+
+[pharaohs_sceptre_2]
+clone = "pharaohs_sceptre_3"
+id = 9046
+degrade = "pharaohs_sceptre_1"
+degrade_message = "The sceptre has one charge left."
+
+[pharaohs_sceptre_2_noted]
+id = 9047
+
+[pharaohs_sceptre_1]
+clone = "pharaohs_sceptre_3"
+id = 9048
+degrade = "pharaohs_sceptre"
+degrade_message = "The sceptre has run out of charges."
+
+[pharaohs_sceptre_1_noted]
+id = 9049
+
+[pharaohs_sceptre]
+id = 9050
+price = 973636
+limit = 10
+slot = "Weapon"
+type = "TwoHanded"
+examine = "This sceptre has no remaining charges."
+destroy = "No"
+weight = 2.0
+
+[pharaohs_sceptre_noted]
+id = 9051

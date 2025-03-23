@@ -39,3 +39,429 @@ id = 6061
 ["bronze_bolts_p++"]
 clone = "bronze_bolts_p"
 id = 6062
+
+[blurite_bolts]
+id = 9139
+tradeable = false
+aka = ["blurite_bolt"]
+slot = "Ammo"
+material = "metal"
+examine = "Blurite crossbow bolts."
+kept = "Reclaim"
+
+[iron_bolts]
+id = 9140
+price = 40
+limit = 25000
+aka = ["iron_bolt"]
+slot = "Ammo"
+material = "metal"
+examine = "Iron ammunition for crossbows."
+
+[steel_bolts]
+id = 9141
+price = 85
+limit = 10000
+aka = ["steel_bolt"]
+slot = "Ammo"
+material = "metal"
+examine = "Steel ammunition for crossbows."
+
+[mithril_bolts]
+id = 9142
+price = 125
+limit = 10000
+aka = ["mithril_bolt", "mith_bolts", "mith_bolt"]
+slot = "Ammo"
+material = "metal"
+examine = "Mithril crossbow bolts."
+
+[adamant_bolts]
+id = 9143
+price = 202
+limit = 10000
+aka = ["adamant_bolt", "addy_bolts", "addy_bolt"]
+slot = "Ammo"
+material = "metal"
+examine = "Adamantite crossbow bolts."
+
+[runite_bolts]
+id = 9144
+price = 894
+limit = 10000
+aka = ["rune_bolt", "rune_bolts", "runite_bolt"]
+slot = "Ammo"
+material = "metal"
+examine = "Runite crossbow bolts."
+
+[silver_bolts]
+id = 9145
+price = 10
+limit = 10000
+aka = ["silver_bolt"]
+slot = "Ammo"
+material = "metal"
+examine = "Silver crossbow bolts."
+
+[opal_bolts_e]
+id = 9236
+price = 18
+limit = 25000
+slot = "Ammo"
+material = "metal"
+examine = "Enchanted opal-tipped bronze crossbow bolts."
+
+[jade_bolts_e]
+id = 9237
+tradeable = false
+slot = "Ammo"
+material = "metal"
+examine = "Enchanted jade-tipped blurite crossbow bolts."
+kept = "Reclaim"
+
+[pearl_bolts_e]
+id = 9238
+price = 41
+limit = 25000
+slot = "Ammo"
+material = "metal"
+examine = "Enchanted pearl-tipped iron crossbow bolts."
+
+[topaz_bolts_e]
+id = 9239
+price = 57
+limit = 25000
+slot = "Ammo"
+material = "metal"
+examine = "Enchanted red topaz-tipped steel crossbow bolts."
+
+[sapphire_bolts_e]
+id = 9240
+price = 105
+limit = 25000
+slot = "Ammo"
+material = "metal"
+examine = "Enchanted sapphire-tipped mithril crossbow bolts."
+
+[emerald_bolts_e]
+id = 9241
+price = 269
+limit = 25000
+slot = "Ammo"
+material = "metal"
+examine = "Enchanted emerald-tipped mithril crossbow bolts."
+
+[ruby_bolts_e]
+id = 9242
+price = 422
+limit = 25000
+slot = "Ammo"
+material = "metal"
+examine = "Enchanted ruby-tipped adamantite crossbow bolts."
+
+[diamond_bolts_e]
+id = 9243
+price = 983
+limit = 25000
+slot = "Ammo"
+material = "metal"
+examine = "Enchanted diamond-tipped adamantite crossbow bolts."
+
+[dragon_bolts_e]
+id = 9244
+price = 3736
+limit = 25000
+slot = "Ammo"
+material = "metal"
+examine = "Enchanted dragonstone-tipped runite crossbow bolts."
+
+[onyx_bolts_e]
+id = 9245
+price = 8843
+limit = 25000
+slot = "Ammo"
+material = "metal"
+examine = "Enchanted onyx-tipped runite crossbow bolts."
+
+[blurite_bolts_p]
+clone = "blurite_bolts"
+id = 9286
+
+[iron_bolts_p]
+id = 9287
+limit = 25000
+slot = "Ammo"
+material = "metal"
+examine = "Iron ammunition for crossbows."
+
+[steel_bolts_p]
+id = 9288
+limit = 10000
+slot = "Ammo"
+material = "metal"
+examine = "Steel ammunition for crossbows."
+
+[mithril_bolts_p]
+id = 9289
+limit = 10000
+slot = "Ammo"
+material = "metal"
+examine = "Mithril crossbow bolts."
+
+[adamant_bolts_p]
+id = 9290
+limit = 10000
+slot = "Ammo"
+material = "metal"
+examine = "Adamantite crossbow bolts."
+
+[runite_bolts_p]
+id = 9291
+limit = 10000
+slot = "Ammo"
+material = "metal"
+examine = "Runite crossbow bolts."
+
+[silver_bolts_p]
+id = 9292
+limit = 10000
+slot = "Ammo"
+material = "metal"
+examine = "Silver crossbow bolts."
+
+["blurite_bolts_p+"]
+clone = "blurite_bolts"
+id = 9293
+
+["iron_bolts_p+"]
+clone = "iron_bolts_p"
+id = 9294
+
+["steel_bolts_p+"]
+id = 9295
+limit = 10000
+tradeable = false
+slot = "Ammo"
+material = "metal"
+examine = "Some poisoned steel bolts."
+kept = "Reclaim"
+
+["mithril_bolts_p+"]
+clone = "mithril_bolts_p"
+id = 9296
+
+["adamant_bolts_p+"]
+clone = "adamant_bolts_p"
+id = 9297
+
+["runite_bolts_p+"]
+clone = "runite_bolts_p"
+id = 9298
+
+["silver_bolts_p+"]
+clone = "silver_bolts_p"
+id = 9299
+
+["blurite_bolts_p++"]
+clone = "blurite_bolts"
+id = 9300
+
+["iron_bolts_p++"]
+clone = "iron_bolts_p"
+id = 9301
+
+["steel_bolts_p++"]
+clone = "steel_bolts_p"
+id = 9302
+
+["mithril_bolts_p++"]
+clone = "mithril_bolts_p"
+id = 9303
+
+["adamant_bolts_p++"]
+clone = "adamant_bolts_p"
+id = 9304
+
+["runite_bolts_p++"]
+clone = "runite_bolts_p"
+id = 9305
+
+["silver_bolts_p++"]
+clone = "silver_bolts_p"
+id = 9306
+
+[jade_bolts]
+id = 9335
+tradeable = false
+slot = "Ammo"
+material = "metal"
+examine = "Jade tipped Blurite crossbow bolts."
+kept = "Reclaim"
+
+[topaz_bolts]
+id = 9336
+price = 72
+limit = 25000
+slot = "Ammo"
+material = "metal"
+examine = "Topaz tipped Steel crossbow bolts."
+
+[sapphire_bolts]
+id = 9337
+price = 99
+limit = 25000
+slot = "Ammo"
+material = "metal"
+examine = "Sapphire tipped Mithril crossbow bolts."
+
+[emerald_bolts]
+id = 9338
+price = 185
+limit = 25000
+slot = "Ammo"
+material = "metal"
+examine = "Emerald tipped Mithril crossbow bolts."
+
+[ruby_bolts]
+id = 9339
+price = 387
+limit = 25000
+slot = "Ammo"
+material = "metal"
+examine = "Ruby tipped Adamantite crossbow bolts."
+
+[diamond_bolts]
+id = 9340
+price = 923
+limit = 25000
+slot = "Ammo"
+material = "metal"
+examine = "Diamond tipped Adamantite crossbow bolts."
+
+[dragon_bolts]
+id = 9341
+price = 3682
+limit = 25000
+slot = "Ammo"
+material = "metal"
+examine = "Dragonstone tipped Runite crossbow bolts."
+
+[onyx_bolts]
+id = 9342
+price = 8717
+limit = 10000
+slot = "Ammo"
+material = "metal"
+examine = "Onyx tipped Runite crossbow bolts."
+
+[bronze_bolts_unf]
+id = 9375
+price = 3
+limit = 10000
+smithing = { level = 3, xp = 12.5 }
+fletch_bolts = { level = 9, xp = 0.5 }
+examine = "Unfeathered bronze crossbow bolts."
+
+[blurite_bolts_unf]
+id = 9376
+tradeable = false
+fletch_bolts = { level = 24, xp = 1.0 }
+examine = "Unfeathered blurite crossbow bolts."
+kept = "Reclaim"
+
+[iron_bolts_unf]
+id = 9377
+price = 12
+limit = 10000
+smithing = { level = 18, xp = 25.0 }
+fletch_bolts = { level = 39, xp = 1.5 }
+examine = "Unfeathered iron crossbow bolts."
+
+[steel_bolts_unf]
+id = 9378
+price = 58
+limit = 10000
+smithing = { level = 33, xp = 37.5 }
+fletch_bolts = { level = 46, xp = 3.5 }
+examine = "Unfeathered steel crossbow bolts."
+
+[mithril_bolts_unf]
+id = 9379
+price = 107
+limit = 10000
+smithing = { level = 53, xp = 50.0 }
+fletch_bolts = { level = 54, xp = 5.0 }
+examine = "Unfeathered mithril crossbow bolts."
+
+[adamant_bolts_unf]
+id = 9380
+price = 223
+limit = 10000
+smithing = { level = 73, xp = 62.5 }
+fletch_bolts = { level = 61, xp = 7.0 }
+examine = "Unfeathered adamantite crossbow bolts."
+
+[rune_bolts_unf]
+id = 9381
+price = 1283
+limit = 10000
+smithing = { level = 88, xp = 75.0 }
+fletch_bolts = { level = 69, xp = 10.0 }
+examine = "Unfeathered runite crossbow bolts."
+
+[silver_bolts_unf]
+id = 9382
+price = 1
+limit = 10000
+fletch_bolts = { level = 43, xp = 2.5 }
+examine = "Unfeathered silver crossbow bolts."
+
+[grapple]
+id = 9415
+limit = 1000
+examine = "A mithril grapple tipped bolt with a rope."
+
+[mithril_grapple_tip]
+id = 9416
+price = 426
+limit = 100
+weight = 0.001
+smithing = { level = 59, xp = 50.0 }
+examine = "A mithril grapple tip."
+
+[mith_grapple_tip_noted]
+id = 9417
+
+[mithril_grapple_unf]
+id = 9418
+price = 911
+limit = 1000
+weight = 0.001
+examine = "A mithril grapple tipped bolt - needs a rope."
+
+[mithril_grapple]
+id = 9419
+price = 1484
+limit = 1000
+weight = 0.001
+slot = "Ammo"
+examine = "A mithril grapple tipped bolt with a rope."
+
+[bolt_pouch]
+id = 9433
+tradeable = false
+weight = 1.0
+destroy = "If the pouch contains any bolts they will be dropped on the floor. You can get another pouch from Hirko in Keldagrim."
+examine = "A pouch for storing crossbow bolts."
+kept = "Reclaim"
+
+[bolt_mould]
+id = 9434
+price = 83
+limit = 100
+weight = 0.453
+silver_jewellery = { name = "crossbow bolt mould", item = "silver_bolts_unf", amount = 10, level = 21, xp = 50.0 }
+examine = "A mould for creating silver crossbow bolts."
+
+[bolt_mould_noted]
+id = 9435

@@ -177,3 +177,138 @@ tradeable = false
 weight = 0.907
 examine = "I think it is eating through the bottle."
 kept = "Reclaim"
+
+[black_mask_10]
+id = 8901
+price = 357400
+limit = 10
+charges = 1
+degrade = "black_mask_9"
+slot = "Hat"
+material = "metal"
+examine = "A magic cave horror mask."
+weight = 10.0
+
+[black_mask_10_noted]
+id = 8902
+
+[black_mask_9]
+clone = "black_mask_10"
+id = 8903
+degrade = "black_mask_8"
+
+[black_mask_9_noted]
+id = 8904
+
+[black_mask_8]
+clone = "black_mask_10"
+id = 8905
+degrade = "black_mask_7"
+
+[black_mask_8_noted]
+id = 8906
+
+[black_mask_7]
+clone = "black_mask_10"
+id = 8907
+degrade = "black_mask_6"
+
+[black_mask_7_noted]
+id = 8908
+
+[black_mask_6]
+clone = "black_mask_10"
+id = 8909
+degrade = "black_mask_5"
+
+[black_mask_6_noted]
+id = 8910
+
+[black_mask_5]
+clone = "black_mask_10"
+id = 8911
+degrade = "black_mask_4"
+
+[black_mask_5_noted]
+id = 8912
+
+[black_mask_4]
+clone = "black_mask_10"
+id = 8913
+degrade = "black_mask_3"
+
+[black_mask_4_noted]
+id = 8914
+
+[black_mask_3]
+clone = "black_mask_10"
+id = 8915
+degrade = "black_mask_2"
+
+[black_mask_3_noted]
+id = 8916
+
+[black_mask_2]
+clone = "black_mask_10"
+id = 8917
+degrade = "black_mask_1"
+
+[black_mask_2_noted]
+id = 8918
+
+[black_mask_1]
+clone = "black_mask_10"
+id = 8919
+degrade = "black_mask"
+
+[black_mask_1_noted]
+id = 8920
+
+[black_mask]
+id = 8921
+price = 323300
+limit = 10
+slot = "Hat"
+material = "metal"
+examine = "An inert-seeming cave horror mask."
+weight = 10.0
+
+[black_mask_noted]
+id = 8922
+
+[witchwood_icon]
+id = 8923
+tradeable = false
+weight = 0.007
+slot = "Amulet"
+examine = "A stick on a string... pure style."
+kept = "Reclaim"
+
+[cavalier_mask]
+id = 11277
+slot = "Hat"
+examine = "I hope I don't meet any roundheads..."
+
+[beret_mask]
+id = 11278
+slot = "Hat"
+type = "FullFace"
+examine = "Essential mime wear."
+
+[cavalier_and_mask]
+id = 11280
+weight = 1.0
+slot = "Hat"
+type = "Hair"
+examine = "I hope I don't meet any roundheads..."
+
+[cavalier_and_mask_noted]
+id = 11281
+
+[beret_and_mask]
+id = 11282
+tradeable = false
+weight = 1.0
+slot = "Hat"
+examine = "Essential mime wear."
+kept = "Reclaim"

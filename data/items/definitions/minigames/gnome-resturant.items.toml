@@ -1,0 +1,516 @@
+[grand_seed_pod]
+id = 9469
+price = 11600
+limit = 100
+examine = "A seed pod of the Grand Tree."
+
+[gnome_scarf]
+id = 9470
+price = 2400000
+limit = 10
+weight = 0.01
+slot = "Amulet"
+examine = "A scarf. You feel your upper lip stiffening."
+
+[gnome_scarf_noted]
+id = 9471
+
+[gnome_goggles]
+id = 9472
+price = 397300
+limit = 10
+weight = 0.01
+slot = "Hat"
+examine = "Tally Ho!"
+
+[gnome_goggles_noted]
+id = 9473
+
+[reward_token_gnome_restaurant]
+id = 9474
+tradeable = false
+weight = 0.001
+destroy = "Aluft Aloft jnr. will have a replacement - if you earn it!"
+examine = "This entitles you to one free gnome food delivery."
+kept = "Vanish"
+
+[mint_cake]
+id = 9475
+price = 479
+limit = 100
+heals = 0
+weight = 0.1
+examine = "It looks very minty."
+
+[mint_cake_noted]
+id = 9476
+
+[aluft_aloft_box]
+id = 9477
+tradeable = false
+weight = 0.1
+aka = ["delivery_box"]
+examine = "You can check on your delivery details here."
+kept = "Reclaim"
+
+[half_made_fruit_batta]
+id = 9478
+tradeable = false
+weight = 0.25
+examine = "This fruit batta needs baking and garnishing with spice."
+kept = "Reclaim"
+
+[unfinished_fruit_batta]
+id = 9479
+tradeable = false
+weight = 0.25
+examine = "This fruit batta needs garnishing with spice."
+kept = "Reclaim"
+
+[half_made_worm_batta]
+id = 9480
+tradeable = false
+weight = 0.25
+examine = "This worm batta needs baking and garnishing with equa leaves."
+kept = "Reclaim"
+
+[unfinished_worm_batta]
+id = 9481
+tradeable = false
+weight = 0.25
+examine = "This worm batta needs garnishing with equa leaves."
+kept = "Reclaim"
+
+[half_made_toad_batta]
+id = 9482
+tradeable = false
+weight = 0.25
+examine = "This toad batta just requires baking to complete."
+kept = "Reclaim"
+
+[half_made_cheese_and_tom_batta]
+id = 9483
+tradeable = false
+weight = 0.25
+examine = "This cheese and tom batta needs baking and garnishing with equa leaves."
+kept = "Reclaim"
+
+[unfinished_cheese_and_tom_batta]
+id = 9484
+tradeable = false
+weight = 0.25
+examine = "This cheese and tom batta needs garnishing with equa leaves."
+kept = "Reclaim"
+
+[half_made_veg_batta]
+id = 9485
+tradeable = false
+weight = 0.25
+examine = "This veg batta needs baking and garnishing with equa leaves."
+kept = "Reclaim"
+
+[unfinished_veg_batta]
+id = 9486
+tradeable = false
+weight = 0.25
+examine = "This vegetable batta needs garnishing with equa leaves."
+kept = "Reclaim"
+
+[wizard_blizzard_2]
+id = 9487
+weight = 0.5
+empty = "cocktail_glass"
+examine = "This looks like a strange mix."
+kept = "Wilderness"
+
+[wizard_blizzard_noted_2]
+id = 9488
+
+[wizard_blizzard_3]
+clone = "wizard_blizzard_2"
+id = 9489
+
+[wizard_blizzard_4]
+clone = "wizard_blizzard_2"
+id = 9508
+
+[wizard_blizzard_noted_3]
+id = 9509
+
+[short_green_guy_2]
+id = 9510
+limit = 1000
+heals = 50
+excess = "cocktail_glass"
+empty = "cocktail_glass"
+weight = 0.5
+examine = "A Short Green Guy... looks good."
+kept = "Wilderness"
+
+[short_green_guy_noted_2]
+id = 9511
+
+[pineapple_punch_2]
+id = 9512
+limit = 1000
+heals = 90
+excess = "cocktail_glass"
+empty = "cocktail_glass"
+weight = 0.5
+examine = "A fresh healthy fruit mix."
+kept = "Wilderness"
+
+[pineapple_punch_noted_2]
+id = 9513
+
+[fruit_blast_2]
+id = 9514
+limit = 1000
+heals = 90
+excess = "cocktail_glass"
+empty = "cocktail_glass"
+weight = 0.5
+examine = "A cool refreshing fruit mix."
+kept = "Wilderness"
+
+[fruit_blast_noted_2]
+id = 9515
+
+[drunk_dragon_2]
+id = 9516
+limit = 1000
+heals = 50
+excess = "cocktail_glass"
+empty = "cocktail_glass"
+weight = 0.5
+examine = "A warm creamy alcoholic beverage."
+
+[drunk_dragon_noted_2]
+id = 9517
+
+[choc_saturday]
+id = 9518
+heals = 50
+excess = "cocktail_glass"
+empty = "cocktail_glass"
+limit = 1000
+examine = "A warm creamy alcoholic beverage"
+
+[choc_saturday_noted_2]
+id = 9519
+
+[blurberry_special_2]
+id = 9520
+limit = 1000
+heals = 60
+excess = "cocktail_glass"
+empty = "cocktail_glass"
+weight = 0.5
+examine = "Looks good... smells strong."
+
+[blurberry_special_noted_2]
+id = 9521
+
+[batta_tin_2]
+clone = "batta_tin"
+id = 9522
+
+[batta_tin_noted]
+id = 9523
+
+[batta_tin_3]
+clone = "batta_tin"
+id = 9524
+
+[batta_tin_noted_2]
+id = 9525
+
+[fruit_batta_2]
+clone = "fruit_batta"
+id = 9527
+
+[fruit_batta_noted_2]
+id = 9528
+
+[toad_batta_2]
+clone = "toad_batta"
+id = 9529
+
+[toad_batta_noted_2]
+id = 9530
+
+[worm_batta_2]
+clone = "worm_batta"
+id = 9531
+
+[worm_batta_noted_2]
+id = 9532
+
+[vegetable_batta_2]
+clone = "vegetable_batta"
+id = 9533
+
+[vegetable_batta_noted_2]
+id = 9534
+
+[cheese_and_tomato_batta_2]
+clone = "cheese_and_tomato_batta"
+id = 9535
+
+[cheese_and_tomato_batta_noted_2]
+id = 9536
+
+[toad_crunchies_2]
+clone = "toad_crunchies"
+id = 9538
+
+[toad_crunchies_noted_2]
+id = 9539
+
+[spicy_crunchies_2]
+clone = "spicy_crunchies"
+id = 9540
+
+[spicy_crunchies_noted_2]
+id = 9541
+
+[worm_crunchies_2]
+clone = "worm_crunchies"
+id = 9542
+
+[worm_crunchies_noted_2]
+id = 9543
+
+[chocchip_crunchies_2]
+clone = "chocchip_crunchies"
+id = 9544
+
+[chocchip_crunchies_noted_2]
+id = 9545
+
+[worm_hole_2]
+clone = "worm_hole"
+id = 9547
+
+[worm_hole_noted_2]
+id = 9548
+
+[veg_ball_2]
+clone = "veg_ball"
+id = 9549
+
+[veg_ball_noted_2]
+id = 9550
+
+[tangled_toads_legs_2]
+clone = "tangled_toads_legs"
+id = 9551
+
+[tangled_toads_legs_noted_2]
+id = 9552
+
+[chocolate_bomb_2]
+clone = "chocolate_bomb"
+id = 9553
+
+[chocolate_bomb_noted_2]
+id = 9554
+
+[half_made_toad_bowl]
+id = 9558
+tradeable = false
+weight = 0.275
+examine = "This unfinished tangled toads legs requires baking."
+kept = "Reclaim"
+
+[half_made_worm_bowl]
+id = 9559
+tradeable = false
+weight = 0.275
+examine = "This unfinished worm hole needs baking and garnishing with equa leaves."
+kept = "Reclaim"
+
+[unfinished_worm_bowl]
+id = 9560
+tradeable = false
+weight = 0.275
+examine = "This unfinished worm hole needs garnishing with equa leaves."
+kept = "Reclaim"
+
+[half_made_veg_bowl]
+id = 9561
+tradeable = false
+weight = 0.275
+examine = "This unfinished veg ball needs baking and garnishing with equa leaves."
+kept = "Reclaim"
+
+[unfinished_veg_bowl]
+id = 9562
+tradeable = false
+weight = 0.275
+examine = "This unfinished veg ball needs garnishing with equa leaves."
+kept = "Reclaim"
+
+[half_made_choc_bowl]
+id = 9563
+tradeable = false
+weight = 0.275
+examine = "This unfinished choc bomb needs baking, two pots of cream and choc dust."
+kept = "Reclaim"
+
+[unfinished_choc_bowl]
+id = 9564
+tradeable = false
+weight = 0.275
+examine = "This unfinished choc bomb needs two pots of cream and chocolate dust."
+kept = "Reclaim"
+
+[cocktail_shaker_noted]
+id = 9565
+
+[mixed_blizzard]
+id = 9566
+tradeable = false
+weight = 0.15
+examine = "This Wizzard Blizzard needs pouring, a lime slice and pineapple chunks."
+kept = "Reclaim"
+
+[mixed_sgg]
+id = 9567
+tradeable = false
+weight = 0.15
+examine = "This Short Green Guy cocktail needs pouring, a lime slice and equa leaves."
+kept = "Reclaim"
+
+[mixed_blast]
+id = 9568
+tradeable = false
+weight = 0.15
+examine = "This Fruit Blast cocktail needs pouring and a lemon slice."
+kept = "Reclaim"
+
+[mixed_punch]
+id = 9569
+tradeable = false
+weight = 0.15
+examine = "This Pineapple Punch needs pouring, lime and pineapple chunks and an orange slice."
+kept = "Reclaim"
+
+[mixed_blurberry_special]
+id = 9570
+tradeable = false
+weight = 0.15
+examine = "This cocktail needs pouring, orange and lemon chunks, a lime slice and equa leaves."
+kept = "Reclaim"
+
+[mixed_saturday_shaker]
+id = 9571
+tradeable = false
+weight = 0.15
+examine = "This Choc Saturday needs pouring, heating and cream and chocolate dust."
+kept = "Reclaim"
+
+[mixed_saturday_poured]
+id = 9572
+tradeable = false
+weight = 0.15
+cooking = { level = 53, chances = { range = "255-255" }, cooked = "mixed_saturday_heated" }
+examine = "This Choc Saturday needs heating, and cream and chocolate dust."
+kept = "Reclaim"
+
+[mixed_saturday_heated]
+id = 9573
+tradeable = false
+weight = 0.15
+examine = "This Choc Saturday needs cream and chocolate dust to finish."
+kept = "Reclaim"
+
+[mixed_dragon_shaker]
+id = 9574
+tradeable = false
+weight = 0.15
+examine = "This Drunk Dragon needs pouring, pineapple chunks, cream and heating."
+kept = "Reclaim"
+
+[mixed_dragon_poured]
+id = 9575
+tradeable = false
+weight = 0.15
+examine = "This Drunk Dragon needs pineapple chunks, cream and heating."
+kept = "Reclaim"
+
+[mixed_dragon_garnished]
+id = 9576
+tradeable = false
+weight = 0.15
+cooking = { level = 32, xp = 130.0, chances = { range = "255-255" }, cooked = "drunk_dragon" }
+examine = "This Drunk Dragon needs heating to finish."
+kept = "Reclaim"
+
+[half_made_choc_chip_crunchy]
+id = 9577
+tradeable = false
+weight = 0.35
+examine = "This choc chip crunchy needs baking and garnishing with chocolate dust."
+kept = "Reclaim"
+
+[unfinished_choc_chip_crunchy]
+id = 9578
+tradeable = false
+weight = 0.35
+examine = "This choc chip crunchy needs garnishing with chocolate dust."
+kept = "Reclaim"
+
+[half_made_spicy_crunchy]
+id = 9579
+tradeable = false
+weight = 0.35
+examine = "This spicy crunchy needs baking and garnishing with spice."
+kept = "Reclaim"
+
+[unfinished_spicy_crunchy]
+id = 9580
+tradeable = false
+weight = 0.35
+examine = "This spicy crunchy needs garnishing with spice."
+kept = "Reclaim"
+
+[half_made_toad_crunchy]
+id = 9581
+tradeable = false
+weight = 0.35
+examine = "This toad crunchy needs baking and garnishing with equa leaves."
+kept = "Reclaim"
+
+[unfinished_toad_crunchy]
+id = 9582
+tradeable = false
+weight = 0.35
+examine = "This toad crunchy needs garnishing with equa leaves."
+kept = "Reclaim"
+
+[half_made_worm_crunchy]
+id = 9583
+tradeable = false
+weight = 0.35
+examine = "This worm crunchy needs baking and garnishing with gnome spices."
+kept = "Reclaim"
+
+[unfinished_worm_crunchy]
+id = 9584
+tradeable = false
+weight = 0.35
+examine = "This worm crunchy needs garnishing with gnome spices."
+kept = "Reclaim"
+
+[batta_tin_noted_3]
+id = 9585
+
+[crunchy_tray_noted]
+id = 9586
+
+[gnomebowl_mould_noted]
+id = 9587
+
+[raw_crunchies_noted]
+id = 9588

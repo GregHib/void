@@ -281,3 +281,43 @@ attack_range = 3
 weapon_type = "dart"
 slot = "Weapon"
 examine = "A deadly throwing dart with a rune tip."
+
+[dragon_dart]
+id = 11230
+price = 287
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a dragon tip."
+
+[dragon_dart_p]
+id = 11231
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a dragon tip."
+
+[dragon_dart_tip]
+id = 11232
+price = 622
+limit = 1000
+fletch_dart = { level = 95, xp = 25.0 }
+examine = "A deadly looking dragon dart tip - needs feathers for flight."
+
+["dragon_dart_p+"]
+id = 11233
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a dragon tip."
+
+["dragon_dart_p++"]
+id = 11234
+limit = 1500
+attack_range = 3
+weapon_type = "dart"
+slot = "Weapon"
+examine = "A deadly throwing dart with a dragon tip."

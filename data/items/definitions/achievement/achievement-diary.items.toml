@@ -1,0 +1,82 @@
+[karamja_gloves_1]
+id = 11136
+tradeable = false
+weight = 0.226
+slot = "Hands"
+examine = "A pair of pale green Karamja gloves."
+kept = "Wilderness"
+
+[antique_lamp_easy_karamja_tasks]
+id = 11137
+tradeable = false
+weight = 0.1
+destroy = "Are you sure you want to destroy the lamp? You won't be able to get another one."
+examine = "I wonder what happens if I rub it."
+kept = "Wilderness"
+
+[karamja_gloves_2]
+id = 11138
+tradeable = false
+weight = 0.226
+slot = "Hands"
+destroy = "You can claim replacement Karamja gloves from Kaleb Paramaya in Shilo Village."
+examine = "A pair of green Karamja gloves."
+kept = "Wilderness"
+
+[antique_lamp_medium_karamja_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 11139
+
+[karamja_gloves_3]
+id = 11140
+tradeable = false
+weight = 0.226
+slot = "Hands"
+destroy = "You can claim replacement Karamja gloves from a jungle forester near the Kharazi Jungle."
+examine = "A pair of dark green Karamja gloves."
+kept = "Wilderness"
+
+[antique_lamp_hard_karamja_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 11141
+
+[antique_lamp_easy_varrock_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 11753
+
+[antique_lamp_medium_varrock_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 11754
+
+[antique_lamp_hard_varrock_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 11755
+
+[varrock_armour_1]
+id = 11756
+tradeable = false
+weight = 1.0
+slot = "Chest"
+destroy = "You will need to get a new set of armour from Rat Burgiss if you destroy this one."
+examine = "Varrock Smithing armour."
+kept = "Wilderness"
+
+[varrock_armour_2]
+id = 11757
+tradeable = false
+weight = 1.0
+slot = "Chest"
+material = "metal"
+destroy = "You will need to get a new set of armour from Reldo if you destroy this one."
+examine = "Varrock Smithing armour."
+kept = "Wilderness"
+
+[varrock_armour_3]
+id = 11758
+tradeable = false
+weight = 1.0
+slot = "Chest"
+material = "metal"
+destroy = "You will need to get a new set of armour from Vannaka if you destroy this one."
+examine = "Varrock Smithing armour."
+kept = "Wilderness"

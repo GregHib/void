@@ -1,0 +1,70 @@
+[penguin_bongos]
+id = 10592
+tradeable = false
+weight = 2.0
+destroy = "You can make another with tanned leather and a mahogany plank."
+examine = "Small drums."
+kept = "Wilderness"
+
+[cowbells]
+id = 10593
+tradeable = false
+weight = 2.0
+destroy = "You can steal another from a dairy cow."
+examine = "Every song needs a cowbell."
+kept = "Wilderness"
+
+[clockwork_book]
+id = 10594
+tradeable = false
+weight = 1.0
+aka = ["clockwork_toys_a_clockwork_mechanism_chapter_1_0"]
+destroy = "You can get another from Chuck in the Ardougne Zoo."
+examine = "A book about clockwork mechanisms."
+kept = "Wilderness"
+
+[clockwork_suit]
+id = 10595
+destroy = "Before Hunt for Red Raktuber - You'll have to make another one at your house. Speak to Larry to learn how to make one. After Hunt for Red Raktuber - You'll have to make another one at your house. Speak to Chuck to learn how to make one."
+examine = "A clockwork penguin suit."
+weight = 2.0
+
+[clockwork_suit_2]
+clone = "clockwork_suit"
+id = 10596
+
+[mission_report_ardougne]
+id = 10597
+tradeable = false
+weight = 0.001
+destroy = "You can get another from the Ardougne Zoo penguin."
+examine = "Zoo penguin's report."
+use = "Quest"
+kept = "Wilderness"
+
+[mission_report_lumbridge]
+id = 10598
+tradeable = false
+weight = 0.001
+destroy = "You can get another from the Lumbridge penguins."
+examine = "Lumbridge penguin's report."
+use = "Quest"
+kept = "Wilderness"
+
+[mission_report_fake]
+id = 10599
+tradeable = false
+weight = 0.001
+destroy = "You can get another from Noodle."
+examine = "My fake report."
+use = "Quest"
+kept = "Wilderness"
+
+[kgp_id_card]
+id = 10600
+tradeable = false
+weight = 0.001
+destroy = "You can get another from Noodle."
+examine = "So you can be a penguin too!"
+use = "Quest"
+kept = "Wilderness"

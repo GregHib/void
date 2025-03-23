@@ -1,0 +1,28 @@
+[tarns_diary]
+id = 10587
+tradeable = false
+weight = 0.453
+aka = ["the_diary_of_tarn_razorlor"]
+destroy = "I got this diary in Tarn's Lair, perhaps I can get another one there."
+examine = "Tarn Razorlor's diary."
+kept = "Reclaim"
+
+[salve_amulet_e]
+id = 10588
+tradeable = false
+weight = 0.007
+slot = "Amulet"
+examine = "Increases the wearer's damage and accuracy by 20% when fighting the undead."
+kept = "Reclaim"
+
+[granite_helm]
+id = 10589
+price = 28700
+limit = 10
+weight = 4.535
+slot = "Hat"
+type = "Hair"
+examine = "A stone helmet."
+
+[granite_helm_noted]
+id = 10590

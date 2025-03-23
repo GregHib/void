@@ -92,3 +92,13 @@ examine = "The right half of a dragon square shield."
 
 [shield_right_half_noted]
 id = 2369
+
+[half_certificate_right]
+id = 11173
+destroy = "Instead of destroying this I should get a friend to help me retrieve the other half."
+examine = "I can use this to claim a reward from the King, if I get the other half."
+kept = "Wilderness"
+
+[half_certificate_left]
+clone = "half_certificate_right"
+id = 11174

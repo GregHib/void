@@ -162,3 +162,11 @@ examine = "A blue skirt."
 
 [skirt_noted_3]
 id = 5053
+
+[explorers_notes]
+id = 11677
+tradeable = false
+weight = 0.51
+destroy = "I can find another book in the Keldagrim library."
+examine = "A diary of the famous dwarven explorer, Nestor Peregrine."
+kept = "Reclaim"

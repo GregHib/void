@@ -480,3 +480,12 @@ degrade = "enchanted_lyre_2"
 clone = "enchanted_lyre_1"
 id = 6127
 degrade = "enchanted_lyre_3"
+
+[old_red_disk]
+id = 9947
+tradeable = false
+weight = 0.002
+destroy = "Another could perhaps be found in the room..."
+examine = "A red coloured disk that's seen better days."
+use = "Quest"
+kept = "Vanish"

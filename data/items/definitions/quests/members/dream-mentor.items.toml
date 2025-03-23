@@ -1,0 +1,72 @@
+[dream_vial_empty]
+id = 11151
+tradeable = false
+weight = 0.015
+destroy = "You can get another from the Oneiromancer on Lunar Isle."
+examine = "A vessel for holding liquid."
+use = "Quest"
+kept = "Wilderness"
+
+[dream_vial_water]
+id = 11152
+tradeable = false
+weight = 0.02
+destroy = "You can get another from the Oneiromancer on Lunar Isle."
+examine = "A vessel containing water."
+use = "Quest"
+kept = "Wilderness"
+
+[dream_vial_herb]
+id = 11153
+tradeable = false
+weight = 0.025
+destroy = "You can get another from the Oneiromancer on Lunar Isle."
+examine = "A vessel containing water and goutweed."
+use = "Quest"
+kept = "Wilderness"
+
+[dream_potion]
+id = 11154
+tradeable = false
+weight = 0.03
+aka = ["potion_of_shared_dreaming"]
+destroy = "You will have to get another empty vial from the Oneiromancer."
+examine = "Potion of Shared Dreaming. One dream for two!"
+use = "Quest"
+kept = "Wilderness"
+
+[ground_astral_rune]
+id = 11155
+tradeable = false
+weight = 0.004
+destroy = "You'll have to grind an astral rune to get another."
+examine = "A ground astral rune."
+use = "Quest"
+kept = "Wilderness"
+
+[astral_rune_shards]
+id = 11156
+tradeable = false
+weight = 0.453
+destroy = "You'll have to break up another astral rune with a hammer."
+examine = "An astral rune that has been broken into shards."
+use = "Quest"
+kept = "Wilderness"
+
+[dreamy_lamp]
+id = 11157
+tradeable = false
+weight = 0.02
+destroy = "You can get another from the Oneiromancer on Lunar Isle."
+examine = "A lunar-styled lamp. I wonder what's inside?"
+use = "Quest"
+kept = "Wilderness"
+
+[cyrisuss_chest]
+id = 11158
+tradeable = false
+weight = 0.6
+destroy = "Destroy the chest? You'll have to get another from 'Bird's Eye' Jack at the Lunar Isle bank."
+examine = "Perfect for storing heavy things."
+use = "Quest"
+kept = "Wilderness"
