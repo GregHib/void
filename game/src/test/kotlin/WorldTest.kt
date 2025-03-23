@@ -1,4 +1,5 @@
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.obj.ObjectTeleports
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.*
@@ -51,6 +52,7 @@ import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.data.configFiles
+import world.gregs.voidps.engine.entity.item.drop.DropTables
 import java.io.File
 import java.util.*
 import kotlin.system.measureTimeMillis
@@ -71,7 +73,6 @@ abstract class WorldTest : KoinTest {
     private lateinit var accountDefs: AccountDefinitions
     private lateinit var accounts: AccountManager
     private var saves: File? = null
-    private lateinit var properties: Properties
     lateinit var settings: Properties
 
     open var loadNpcs: Boolean = false
@@ -144,18 +145,6 @@ abstract class WorldTest : KoinTest {
 
     @BeforeAll
     fun beforeAll() {
-        properties = Properties()
-        properties.load(WorldTest::class.java.getResourceAsStream("/game.properties")!!)
-        for ((key, value) in properties) {
-            if (value is String && value.startsWith("./")) {
-                properties[key] = value.replace("./", "../")
-            }
-        }
-        properties["storage.players.path"] = "../data/test-saves/"
-        properties["world.npcs.randomWalk"] = false
-        properties["bots.count"] = 0
-        properties.remove("world.id")
-        properties.remove("world.name")
         settings = Settings.load(properties)
         stopKoin()
         startKoin {
@@ -177,6 +166,10 @@ abstract class WorldTest : KoinTest {
                 single(createdAtStart = true) { weaponAnimationDefinitions }
                 single(createdAtStart = true) { enumDefinitions }
                 single(createdAtStart = true) { fontDefinitions }
+                single(createdAtStart = true) { objectTeleports }
+                single(createdAtStart = true) { itemOnItemDefinitions }
+                single(createdAtStart = true) { variableDefinitions }
+                single(createdAtStart = true) { dropTables }
                 single { ammoDefinitions }
                 single { parameterDefinitions }
                 single { gameObjects }
@@ -263,7 +256,25 @@ abstract class WorldTest : KoinTest {
     }
 
     companion object {
-        private val files = configFiles()
+        private val properties: Properties by lazy {
+            val properties = Properties()
+            properties.load(WorldTest::class.java.getResourceAsStream("/game.properties")!!)
+            for ((key, value) in properties) {
+                if (value is String && value.startsWith("./")) {
+                    properties[key] = value.replace("./", "../")
+                }
+            }
+            properties["storage.players.path"] = "../data/test-saves/"
+            properties["world.npcs.randomWalk"] = false
+            properties["bots.count"] = 0
+            properties.remove("world.id")
+            properties.remove("world.name")
+            properties
+        }
+        private val files by lazy {
+            Settings.load(properties)
+            configFiles()
+        }
         private val cache: Cache by lazy { MemoryCache(Settings["storage.cache.path"]) }
         private val huffman: Huffman by lazy { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
         private val ammoDefinitions: AmmoDefinitions by lazy { AmmoDefinitions().load() }
@@ -300,6 +311,18 @@ abstract class WorldTest : KoinTest {
         private val gameObjects: GameObjects by lazy { GameObjects(objectCollisionAdd, objectCollisionRemove, ZoneBatchUpdates(), objectDefinitions, storeUnused = true) }
         private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(collisions), objectDefinitions, gameObjects, cache).loadCache() }
         private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(cache)).load() }
+        private val objectTeleports: ObjectTeleports by lazy { ObjectTeleports().load(files.getOrDefault(Settings["map.teleports"], emptyList())) }
+        private val itemOnItemDefinitions: ItemOnItemDefinitions by lazy { ItemOnItemDefinitions().load(files.getOrDefault(Settings["definitions.itemOnItem"], emptyList())) }
+        private val variableDefinitions: VariableDefinitions by lazy {
+            VariableDefinitions().load(
+                files.getOrDefault(Settings["definitions.variables.players"], emptyList()),
+                files.getOrDefault(Settings["definitions.variables.bits"], emptyList()),
+                files.getOrDefault(Settings["definitions.variables.clients"], emptyList()),
+                files.getOrDefault(Settings["definitions.variables.strings"], emptyList()),
+                files.getOrDefault(Settings["definitions.variables.customs"], emptyList()),
+            )
+        }
+        private val dropTables: DropTables by lazy { DropTables().load(files.getOrDefault(Settings["spawns.drops"], emptyList()), get()) }
         val emptyTile = Tile(2655, 4640)
     }
 }

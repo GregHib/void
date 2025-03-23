@@ -5,9 +5,7 @@ import content.bot.interact.navigation.graph.NavigationGraph
 import content.bot.interact.path.Dijkstra
 import content.bot.interact.path.DijkstraFrontier
 import content.entity.player.modal.book.Books
-import content.entity.obj.ObjectTeleports
 import content.entity.world.music.MusicTracks
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 
 val gameModule = module {
