@@ -35,13 +35,3 @@ private fun walkPath(map: MutableMap<String, MutableList<String>>, dir: Path): I
     }
     return count
 }
-
-fun main() {
-    val start = System.nanoTime()
-//    val file = File("C:\\Users\\Greg\\IdeaProjects\\void\\game\\src\\main\\resources\\configs.txt").readLines()
-//            for (i in 0 until 10) {
-    val lookup = configFiles()
-//            }
-    println("Took ${System.nanoTime() - start}ns")
-    println(lookup.map { it.key to it.value.count() }.toMap())
-}
