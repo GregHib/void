@@ -21,14 +21,11 @@ class DropTables {
 
     fun getValue(key: String) = tables.getValue(key)
 
-    fun load(dir: String = Settings["spawns.drops"], itemDefinitions: ItemDefinitions? = null): DropTables {
+    fun load(paths: List<String>, itemDefinitions: ItemDefinitions? = null): DropTables {
         timedLoad("drop table") {
             val tables = Object2ObjectOpenHashMap<String, DropTable>(10, Hash.VERY_FAST_LOAD_FACTOR)
-            for (path in Files.list(Path.of(dir))) {
-                if (path.extension != "toml") {
-                    continue
-                }
-                Config.fileReader(path.pathString) {
+            for (path in paths) {
+                Config.fileReader(path) {
                     while (nextSection()) {
                         val tableName = section()
                         var roll = 1

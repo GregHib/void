@@ -6,6 +6,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
@@ -23,7 +24,7 @@ object DropTableDefinitions {
                 single { ItemDefinitions(ItemDecoder().load(get())).load(listOf()) }
             })
         }
-        val decoder = DropTables().load()
+        val decoder = DropTables().load(configFiles().getValue(Settings["spawns.drops"]))
         val table = decoder.getValue("goblin_drop_table")
 
         val list = mutableListOf<ItemDrop>()

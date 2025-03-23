@@ -1,4 +1,5 @@
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.obj.ObjectTeleports
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking
 import org.koin.core.context.startKoin
@@ -17,6 +18,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
@@ -119,5 +121,7 @@ object Main {
                 files.getOrDefault(Settings["definitions.variables.customs"], emptyList()),
             )
         }
+        single(createdAtStart = true) { DropTables().load(files.getOrDefault(Settings["spawns.drops"], emptyList()), get()) }
+        single(createdAtStart = true) { ObjectTeleports().load(files.getOrDefault(Settings["map.teleports"], emptyList())) }
     }
 }

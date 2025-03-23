@@ -435,7 +435,7 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
     val files = configFiles()
     when (content) {
         "book", "books" -> get<Books>().load()
-        "stairs", "tele", "teles", "teleports" -> get<ObjectTeleports>().load()
+        "stairs", "tele", "teles", "teleports" -> get<ObjectTeleports>().load(files.getOrDefault(Settings["map.teleports"], emptyList()))
         "tracks", "songs" -> get<MusicTracks>().load()
         "objects", "objs" -> {
             val defs: ObjectDefinitions = get()
@@ -474,7 +474,7 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
         "spells" -> get<SpellDefinitions>().load()
         "patrols", "paths" -> get<PatrolDefinitions>().load()
         "prayers" -> get<PrayerDefinitions>().load()
-        "drops" -> get<DropTables>().load()
+        "drops" -> get<DropTables>().load(files.getOrDefault(Settings["spawns.drops"], emptyList()))
         "cs2", "cs2s", "client scripts" -> get<ClientScriptDefinitions>().load()
         "settings", "setting", "game setting", "game settings", "games settings", "properties", "props" -> {
             Settings.load()

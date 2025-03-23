@@ -82,8 +82,6 @@ val engineModule = module {
     // Pathfinding
     single { PathFinder(flags = get<Collisions>(), useRouteBlockerFlags = true) }
     single { LineValidator(flags = get<Collisions>()) }
-    // Misc
-    single(createdAtStart = true) { DropTables().load(itemDefinitions = get()) }
     // Definitions
     single(createdAtStart = true) { SoundDefinitions().load() }
     single(createdAtStart = true) { QuestDefinitions().load() }

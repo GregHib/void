@@ -72,15 +72,12 @@ class ObjectTeleports {
         return teleports.keys
     }
 
-    fun load(dir: String = Settings["map.teleports"]): ObjectTeleports {
+    fun load(paths: List<String>): ObjectTeleports {
         val teleports = Object2ObjectOpenHashMap<String, Int2ObjectOpenHashMap<TeleportDefinition>>()
         timedLoad("object teleport") {
             var counter = 0
-            for (path in Files.list(Path.of(dir))) {
-                if (path.extension != "toml") {
-                    continue
-                }
-                Config.fileReader(path.pathString) {
+            for (path in paths) {
+                Config.fileReader(path) {
                     while (nextSection()) {
                         val stringId = section()
                         var option = ""
