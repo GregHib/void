@@ -1,7 +1,3 @@
-[lists.one]
-name = "one"
-number = 1
-
-[lists.two]
-name = "two"
-number = 2
+[lists]
+one = {name = "one", number = 1}
+two = {name = "two", number = 2}

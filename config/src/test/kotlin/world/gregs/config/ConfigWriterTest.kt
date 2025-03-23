@@ -27,10 +27,19 @@ class ConfigWriterTest {
     @TestFactory
     fun `Writable configs`() = input.map { (name, input) ->
         dynamicTest(name.toSentenceCase()) {
-            val writer = ConfigWriter()
             val stringWriter = StringWriter()
             BufferedWriter(stringWriter).use { output ->
-                writer.encode(output, input)
+                for ((key, value) in input) {
+                    if (value is Map<*, *>) {
+                        output.writeSection(key)
+                        for ((k, v) in value as Map<String, Any>) {
+                            output.writePair(k, v)
+                        }
+                        output.write("\n")
+                    } else {
+                        output.writePair(key, value)
+                    }
+                }
             }
             val expected = ConfigWriterTest::class.java.getResourceAsStream("write/valid/${name.toKebabCase()}.toml")!!
                 .readBytes()
