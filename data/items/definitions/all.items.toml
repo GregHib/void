@@ -11368,7 +11368,7 @@ id = 1706
 limit = 100
 weight = 0.01
 charges = 1
-degrade "amulet_of_glory"
+degrade = "amulet_of_glory"
 degrade_message = "You use your amulet's last charge."
 slot = "Amulet"
 examine = "A dragonstone amulet with 1 magic charge."
@@ -11379,7 +11379,7 @@ id = 1707
 [amulet_of_glory_2]
 clone = "amulet_of_glory_1"
 id = 1708
-degrade "amulet_of_glory_1"
+degrade = "amulet_of_glory_1"
 degrade_message = "Your amulet has one charge left."
 examine = "A dragonstone amulet with 2 magic charges."
 
@@ -11389,7 +11389,7 @@ id = 1709
 [amulet_of_glory_3]
 clone = "amulet_of_glory_1"
 id = 1710
-degrade "amulet_of_glory_2"
+degrade = "amulet_of_glory_2"
 degrade_message = "Your amulet has two charges left."
 examine = "A dragonstone amulet with 3 magic charges."
 
@@ -11401,7 +11401,7 @@ clone = "amulet_of_glory_1"
 id = 1712
 price = 35400
 aka = ["glory", "glory_4"]
-degrade "amulet_of_glory_3"
+degrade = "amulet_of_glory_3"
 degrade_message = "Your amulet has three charges left."
 examine = "A dragonstone amulet with 4 magic charges."
 
@@ -16363,7 +16363,7 @@ limit = 5000
 weight = 0.006
 charges = 400
 charge = "ring_of_recoil_charges"
-degrade "destroy"
+degrade = "destroy"
 degrade_message = "Your Ring of Recoil has shattered."
 aka = ["ror", "recoil", "recoil_ring"]
 slot = "Ring"
@@ -16377,7 +16377,7 @@ id = 2552
 price = 1100
 weight = 0.006
 charges = 1
-degrade "ring_of_duelling_7"
+degrade = "ring_of_duelling_7"
 degrade_message = "Your ring of duelling has seven uses left."
 aka = ["ring_of_duelling", "duelling_ring"]
 slot = "Ring"
@@ -16389,7 +16389,7 @@ id = 2553
 [ring_of_duelling_7]
 clone = "ring_of_duelling_8"
 id = 2554
-degrade "ring_of_duelling_6"
+degrade = "ring_of_duelling_6"
 degrade_message = "Your ring of duelling has six uses left."
 
 [ring_of_duelling_7_noted]
@@ -16398,7 +16398,7 @@ id = 2555
 [ring_of_duelling_6]
 clone = "ring_of_duelling_8"
 id = 2556
-degrade "ring_of_duelling_5"
+degrade = "ring_of_duelling_5"
 degrade_message = "Your ring of duelling has five uses left."
 
 [ring_of_duelling_6_noted]
@@ -16407,7 +16407,7 @@ id = 2557
 [ring_of_duelling_5]
 clone = "ring_of_duelling_8"
 id = 2558
-degrade "ring_of_duelling_4"
+degrade = "ring_of_duelling_4"
 degrade_message = "Your ring of duelling has four uses left."
 
 [ring_of_duelling_5_noted]
@@ -16416,7 +16416,7 @@ id = 2559
 [ring_of_duelling_4]
 clone = "ring_of_duelling_8"
 id = 2560
-degrade "ring_of_duelling_3"
+degrade = "ring_of_duelling_3"
 degrade_message = "Your ring of duelling has three uses left."
 
 [ring_of_duelling_4_noted]
@@ -16425,7 +16425,7 @@ id = 2561
 [ring_of_duelling_3]
 clone = "ring_of_duelling_8"
 id = 2562
-degrade "ring_of_duelling_2"
+degrade = "ring_of_duelling_2"
 degrade_message = "Your ring of duelling has two uses left."
 
 [ring_of_duelling_3_noted]
@@ -16434,7 +16434,7 @@ id = 2563
 [ring_of_duelling_2]
 clone = "ring_of_duelling_8"
 id = 2564
-degrade "ring_of_duelling_1"
+degrade = "ring_of_duelling_1"
 degrade_message = "Your ring of duelling has one use left."
 
 [ring_of_duelling_2_noted]
@@ -16445,7 +16445,7 @@ id = 2566
 price = 626
 weight = 0.006
 charges = 1
-degrade "destroy"
+degrade = "destroy"
 degrade_message = "Your ring of duelling crumbles to dust."
 slot = "Ring"
 examine = "An enchanted ring."
@@ -21795,7 +21795,7 @@ weight = 1.814
 id = 3691
 weight = 1.814
 charges = 1
-degrade "enchanted_lyre"
+degrade = "enchanted_lyre"
 slot = "Weapon"
 examine = "This will teleport me to Rellekka when I play it."
 
@@ -22764,7 +22764,7 @@ id = 3853
 price = 817
 weight = 0.01
 charges = 1
-degrade "games_necklace_7"
+degrade = "games_necklace_7"
 degrade_message = "Your games necklace has seven uses left."
 slot = "Amulet"
 examine = "An enchanted necklace."
@@ -22775,7 +22775,7 @@ id = 3854
 [games_necklace_7]
 clone = "games_necklace_8"
 id = 3855
-degrade "games_necklace_6"
+degrade = "games_necklace_6"
 degrade_message = "Your games necklace has six uses left."
 
 [games_necklace_7_noted]
@@ -22784,7 +22784,7 @@ id = 3856
 [games_necklace_6]
 clone = "games_necklace_8"
 id = 3857
-degrade "games_necklace_5"
+degrade = "games_necklace_5"
 degrade_message = "Your games necklace has five uses left."
 
 [games_necklace_6_noted]
@@ -22793,7 +22793,7 @@ id = 3858
 [games_necklace_5]
 clone = "games_necklace_8"
 id = 3859
-degrade "games_necklace_4"
+degrade = "games_necklace_4"
 degrade_message = "Your games necklace has four uses left."
 
 [games_necklace_5_noted]
@@ -22802,7 +22802,7 @@ id = 3860
 [games_necklace_4]
 clone = "games_necklace_8"
 id = 3861
-degrade "games_necklace_3"
+degrade = "games_necklace_3"
 degrade_message = "Your games necklace has three uses left."
 
 [games_necklace_4_noted]
@@ -22811,7 +22811,7 @@ id = 3862
 [games_necklace_3]
 clone = "games_necklace_8"
 id = 3863
-degrade "games_necklace_2"
+degrade = "games_necklace_2"
 degrade_message = "Your games necklace has two uses left."
 
 [games_necklace_3_noted]
@@ -22820,7 +22820,7 @@ id = 3864
 [games_necklace_2]
 clone = "games_necklace_8"
 id = 3865
-degrade "games_necklace_1"
+degrade = "games_necklace_1"
 degrade_message = "Your games necklace has one use left."
 
 [games_necklace_2_noted]
@@ -22830,7 +22830,7 @@ id = 3866
 clone = "games_necklace_8"
 id = 3867
 price = 1798
-degrade "destroy"
+degrade = "destroy"
 degrade_message = "Your games necklace crumbles to dust."
 
 [games_necklace_1_noted]
@@ -24187,7 +24187,7 @@ id = 4212
 limit = 2
 attack_range = 10
 charges = 1
-degrade "crystal_bow_full"
+degrade = "crystal_bow_full"
 deplete = "combat"
 slot = "Weapon"
 type = "TwoHanded"
@@ -24202,7 +24202,7 @@ id = 4214
 limit = 2
 attack_range = 10
 charges = 250
-degrade "crystal_bow_9_10"
+degrade = "crystal_bow_9_10"
 deplete = "combat"
 aka = ["crystal_bow"]
 slot = "Weapon"
@@ -24213,54 +24213,54 @@ weight = 1.8
 [crystal_bow_9_10]
 clone = "crystal_bow_full"
 id = 4215
-degrade "crystal_bow_8_10"
+degrade = "crystal_bow_8_10"
 
 [crystal_bow_8_10]
 clone = "crystal_bow_full"
 id = 4216
-degrade "crystal_bow_7_10"
+degrade = "crystal_bow_7_10"
 
 [crystal_bow_7_10]
 clone = "crystal_bow_full"
 id = 4217
-degrade "crystal_bow_6_10"
+degrade = "crystal_bow_6_10"
 
 [crystal_bow_6_10]
 clone = "crystal_bow_full"
 id = 4218
-degrade "crystal_bow_5_10"
+degrade = "crystal_bow_5_10"
 
 [crystal_bow_5_10]
 clone = "crystal_bow_full"
 id = 4219
-degrade "crystal_bow_4_10"
+degrade = "crystal_bow_4_10"
 
 [crystal_bow_4_10]
 clone = "crystal_bow_full"
 id = 4220
-degrade "crystal_bow_3_10"
+degrade = "crystal_bow_3_10"
 
 [crystal_bow_3_10]
 clone = "crystal_bow_full"
 id = 4221
-degrade "crystal_bow_2_10"
+degrade = "crystal_bow_2_10"
 
 [crystal_bow_2_10]
 clone = "crystal_bow_full"
 id = 4222
-degrade "crystal_bow_1_10"
+degrade = "crystal_bow_1_10"
 
 [crystal_bow_1_10]
 clone = "crystal_bow_full"
 id = 4223
-degrade "crystal_seed"
+degrade = "crystal_seed"
 
 [new_crystal_shield]
 id = 4224
 tradeable = false
 weight = 2.7
 charges = 1
-degrade "crystal_shield_full"
+degrade = "crystal_shield_full"
 slot = "Shield"
 material = "metal"
 examine = "A nice sturdy crystal shield."
@@ -24272,7 +24272,7 @@ id = 4225
 tradeable = false
 weight = 2.7
 charges = 2500
-degrade "crystal_shield_9_10"
+degrade = "crystal_shield_9_10"
 slot = "Shield"
 material = "metal"
 examine = "A nice sturdy crystal shield."
@@ -24282,47 +24282,47 @@ use = "Limited"
 [crystal_shield_9_10]
 clone = "crystal_shield_full"
 id = 4226
-degrade "crystal_shield_8_10"
+degrade = "crystal_shield_8_10"
 
 [crystal_shield_8_10]
 clone = "crystal_shield_full"
 id = 4227
-degrade "crystal_shield_7_10"
+degrade = "crystal_shield_7_10"
 
 [crystal_shield_7_10]
 clone = "crystal_shield_full"
 id = 4228
-degrade "crystal_shield_6_10"
+degrade = "crystal_shield_6_10"
 
 [crystal_shield_6_10]
 clone = "crystal_shield_full"
 id = 4229
-degrade "crystal_shield_5_10"
+degrade = "crystal_shield_5_10"
 
 [crystal_shield_5_10]
 clone = "crystal_shield_full"
 id = 4230
-degrade "crystal_shield_4_10"
+degrade = "crystal_shield_4_10"
 
 [crystal_shield_4_10]
 clone = "crystal_shield_full"
 id = 4231
-degrade "crystal_shield_3_10"
+degrade = "crystal_shield_3_10"
 
 [crystal_shield_3_10]
 clone = "crystal_shield_full"
 id = 4232
-degrade "crystal_shield_2_10"
+degrade = "crystal_shield_2_10"
 
 [crystal_shield_2_10]
 clone = "crystal_shield_full"
 id = 4233
-degrade "crystal_shield_1_10"
+degrade = "crystal_shield_1_10"
 
 [crystal_shield_1_10]
 clone = "crystal_shield_full"
 id = 4234
-degrade "crystal_seed"
+degrade = "crystal_seed"
 
 [new_crystal_shield_noted]
 id = 4235
@@ -24473,7 +24473,7 @@ id = 4251
 tradeable = false
 weight = 0.035
 charges = 1
-degrade "ectophial_empty"
+degrade = "ectophial_empty"
 destroy = "The Ectophial will smash if you drop it. Velorina can replace it. You can also reclaim it from the quest storage chest."
 examine = "The Ectophial."
 kept = "Wilderness"
@@ -27229,7 +27229,7 @@ id = 4708
 price = 73000
 limit = 10
 charges = 1
-degrade "ahrims_hood_100"
+degrade = "ahrims_hood_100"
 deplete = "combat"
 slot = "Hat"
 type = "Hair"
@@ -27244,7 +27244,7 @@ id = 4710
 price = 131900
 limit = 10
 charges = 1
-degrade "ahrims_staff_100"
+degrade = "ahrims_staff_100"
 deplete = "combat"
 category = "staff"
 slot = "Weapon"
@@ -27260,7 +27260,7 @@ id = 4712
 price = 1300000
 limit = 10
 charges = 1
-degrade "ahrims_robe_top_100"
+degrade = "ahrims_robe_top_100"
 deplete = "combat"
 aka = ["ahrims_top"]
 slot = "Chest"
@@ -27275,7 +27275,7 @@ id = 4714
 price = 2200000
 limit = 10
 charges = 1
-degrade "ahrims_robe_skirt_100"
+degrade = "ahrims_robe_skirt_100"
 deplete = "combat"
 aka = ["ahrims_skirt", "ahrims_legs", "ahrims_robes"]
 slot = "Legs"
@@ -27290,7 +27290,7 @@ id = 4716
 price = 3000000
 limit = 10
 charges = 1
-degrade "dharoks_helm_100"
+degrade = "dharoks_helm_100"
 deplete = "combat"
 aka = ["dh_helm"]
 slot = "Hat"
@@ -27307,7 +27307,7 @@ id = 4718
 price = 711400
 limit = 10
 charges = 1
-degrade "dharoks_greataxe_100"
+degrade = "dharoks_greataxe_100"
 deplete = "combat"
 weapon_type = "dharoks_greataxe"
 aka = ["dhaxe", "dhgaxe", "dh_axe", "dh_gaxe", "dh_g_axe", "dharocks_greataxe", "dharoks_great_axe"]
@@ -27326,7 +27326,7 @@ limit = 10
 tradeable = false
 weight = 9.979
 charges = 1
-degrade "dharoks_platebody_100"
+degrade = "dharoks_platebody_100"
 deplete = "combat"
 aka = ["dh_body", "dh_plate", "dh_platebody", "dh_plate_body", "dharoks_plate_body"]
 slot = "Chest"
@@ -27342,7 +27342,7 @@ id = 4722
 price = 1100000
 limit = 10
 charges = 1
-degrade "dharoks_platelegs_100"
+degrade = "dharoks_platelegs_100"
 deplete = "combat"
 aka = ["dh_legs", "dh_platelegs", "dh_plate_legs", "dharoks_plate_legs"]
 slot = "Legs"
@@ -27358,7 +27358,7 @@ id = 4724
 price = 714000
 limit = 10
 charges = 1
-degrade "guthans_helm_100"
+degrade = "guthans_helm_100"
 deplete = "combat"
 slot = "Hat"
 material = "metal"
@@ -27374,7 +27374,7 @@ id = 4726
 price = 646600
 limit = 10
 charges = 1
-degrade "guthans_warspear_100"
+degrade = "guthans_warspear_100"
 deplete = "combat"
 weapon_type = "guthans_warspear"
 slot = "Weapon"
@@ -27390,7 +27390,7 @@ id = 4728
 price = 440600
 limit = 10
 charges = 1
-degrade "guthans_platebody_100"
+degrade = "guthans_platebody_100"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -27406,7 +27406,7 @@ id = 4730
 price = 269100
 limit = 10
 charges = 1
-degrade "guthans_chainskirt_100"
+degrade = "guthans_chainskirt_100"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -27421,7 +27421,7 @@ id = 4732
 price = 33600
 limit = 10
 charges = 1
-degrade "karils_coif_100"
+degrade = "karils_coif_100"
 deplete = "combat"
 slot = "Hat"
 material = "leather"
@@ -27438,7 +27438,7 @@ price = 179700
 limit = 10
 attack_range = 8
 charges = 1
-degrade "karils_crossbow_100"
+degrade = "karils_crossbow_100"
 deplete = "combat"
 weapon_type = "karils_crossbow"
 slot = "Weapon"
@@ -27454,7 +27454,7 @@ id = 4736
 price = 3900000
 limit = 10
 charges = 1
-degrade "karils_top_100"
+degrade = "karils_top_100"
 deplete = "combat"
 slot = "Chest"
 material = "leather"
@@ -27469,7 +27469,7 @@ id = 4738
 price = 428700
 limit = 10
 charges = 1
-degrade "karils_skirt_100"
+degrade = "karils_skirt_100"
 deplete = "combat"
 slot = "Legs"
 material = "leather"
@@ -27492,7 +27492,7 @@ id = 4745
 price = 217684
 limit = 10
 charges = 1
-degrade "torags_helm_100"
+degrade = "torags_helm_100"
 deplete = "combat"
 slot = "Hat"
 material = "metal"
@@ -27508,7 +27508,7 @@ id = 4747
 price = 99900
 limit = 10
 charges = 1
-degrade "torags_hammers_100"
+degrade = "torags_hammers_100"
 deplete = "combat"
 weapon_type = "torags_hammers"
 slot = "Weapon"
@@ -27524,7 +27524,7 @@ id = 4749
 price = 524300
 limit = 10
 charges = 1
-degrade "torags_platebody_100"
+degrade = "torags_platebody_100"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -27539,7 +27539,7 @@ id = 4751
 price = 640500
 limit = 10
 charges = 1
-degrade "torags_platelegs_100"
+degrade = "torags_platelegs_100"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -27554,7 +27554,7 @@ id = 4753
 price = 1800000
 limit = 10
 charges = 1
-degrade "veracs_helm_100"
+degrade = "veracs_helm_100"
 deplete = "combat"
 slot = "Hat"
 material = "metal"
@@ -27570,7 +27570,7 @@ id = 4755
 price = 161600
 limit = 10
 charges = 1
-degrade "veracs_flail_100"
+degrade = "veracs_flail_100"
 deplete = "combat"
 weapon_type = "veracs_flail"
 slot = "Weapon"
@@ -27586,7 +27586,7 @@ id = 4757
 price = 286600
 limit = 10
 charges = 1
-degrade "veracs_brassard_100"
+degrade = "veracs_brassard_100"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -27601,7 +27601,7 @@ id = 4759
 price = 679400
 limit = 10
 charges = 1
-degrade "veracs_plateskirt_100"
+degrade = "veracs_plateskirt_100"
 deplete = "combat"
 aka = ["veracs_skirt"]
 slot = "Legs"
@@ -28002,7 +28002,7 @@ id = 4856
 limit = 10
 weight = 0.907
 charges = 22500
-degrade "ahrims_hood_75"
+degrade = "ahrims_hood_75"
 deplete = "combat"
 slot = "Hat"
 type = "Hair"
@@ -28011,17 +28011,17 @@ examine = "Ahrim The Blighted's Hood."
 [ahrims_hood_75]
 clone = "ahrims_hood_100"
 id = 4857
-degrade "ahrims_hood_50"
+degrade = "ahrims_hood_50"
 
 [ahrims_hood_50]
 clone = "ahrims_hood_100"
 id = 4858
-degrade "ahrims_hood_25"
+degrade = "ahrims_hood_25"
 
 [ahrims_hood_25]
 clone = "ahrims_hood_100"
 id = 4859
-degrade "ahrims_hood_broken"
+degrade = "ahrims_hood_broken"
 
 [ahrims_hood_broken]
 id = 4860
@@ -28040,7 +28040,7 @@ id = 4862
 limit = 10
 weight = 2.267
 charges = 22500
-degrade "ahrims_staff_75"
+degrade = "ahrims_staff_75"
 deplete = "combat"
 slot = "Weapon"
 type = "TwoHanded"
@@ -28050,17 +28050,17 @@ examine = "Ahrim the Blighted's quarterstaff."
 [ahrims_staff_75]
 clone = "ahrims_staff_100"
 id = 4863
-degrade "ahrims_staff_50"
+degrade = "ahrims_staff_50"
 
 [ahrims_staff_50]
 clone = "ahrims_staff_100"
 id = 4864
-degrade "ahrims_staff_25"
+degrade = "ahrims_staff_25"
 
 [ahrims_staff_25]
 clone = "ahrims_staff_100"
 id = 4865
-degrade "ahrims_staff_broken"
+degrade = "ahrims_staff_broken"
 
 [ahrims_staff_broken]
 id = 4866
@@ -28079,7 +28079,7 @@ id = 4868
 limit = 10
 weight = 4.535
 charges = 22500
-degrade "ahrims_robe_top_75"
+degrade = "ahrims_robe_top_75"
 deplete = "combat"
 slot = "Chest"
 examine = "Ahrim the Blighted's armoured robe top."
@@ -28087,17 +28087,17 @@ examine = "Ahrim the Blighted's armoured robe top."
 [ahrims_robe_top_75]
 clone = "ahrims_robe_top_100"
 id = 4869
-degrade "ahrims_robe_top_50"
+degrade = "ahrims_robe_top_50"
 
 [ahrims_robe_top_50]
 clone = "ahrims_robe_top_100"
 id = 4870
-degrade "ahrims_robe_top_25"
+degrade = "ahrims_robe_top_25"
 
 [ahrims_robe_top_25]
 clone = "ahrims_robe_top_100"
 id = 4871
-degrade "ahrims_robe_top_broken"
+degrade = "ahrims_robe_top_broken"
 
 [ahrims_robe_top_broken]
 id = 4872
@@ -28115,7 +28115,7 @@ id = 4874
 limit = 10
 weight = 11.339
 charges = 22500
-degrade "ahrims_robe_skirt_75"
+degrade = "ahrims_robe_skirt_75"
 deplete = "combat"
 slot = "Legs"
 examine = "Ahrim the Blighted's armoured robe skirt."
@@ -28123,17 +28123,17 @@ examine = "Ahrim the Blighted's armoured robe skirt."
 [ahrims_robe_skirt_75]
 clone = "ahrims_robe_skirt_100"
 id = 4875
-degrade "ahrims_robe_skirt_50"
+degrade = "ahrims_robe_skirt_50"
 
 [ahrims_robe_skirt_50]
 clone = "ahrims_robe_skirt_100"
 id = 4876
-degrade "ahrims_robe_skirt_25"
+degrade = "ahrims_robe_skirt_25"
 
 [ahrims_robe_skirt_25]
 clone = "ahrims_robe_skirt_100"
 id = 4877
-degrade "ahrims_robe_skirt_broken"
+degrade = "ahrims_robe_skirt_broken"
 
 [ahrims_robe_skirt_broken]
 id = 4878
@@ -28151,7 +28151,7 @@ id = 4880
 limit = 10
 weight = 1.814
 charges = 22500
-degrade "dharoks_helm_75"
+degrade = "dharoks_helm_75"
 deplete = "combat"
 slot = "Hat"
 material = "metal"
@@ -28161,17 +28161,17 @@ examine = "Dharok The Wretched's Helmet"
 [dharoks_helm_75]
 clone = "dharoks_helm_100"
 id = 4881
-degrade "dharoks_helm_50"
+degrade = "dharoks_helm_50"
 
 [dharoks_helm_50]
 clone = "dharoks_helm_100"
 id = 4882
-degrade "dharoks_helm_25"
+degrade = "dharoks_helm_25"
 
 [dharoks_helm_25]
 clone = "dharoks_helm_100"
 id = 4883
-degrade "dharoks_helm_broken"
+degrade = "dharoks_helm_broken"
 
 [dharoks_helm_broken]
 id = 4884
@@ -28191,7 +28191,7 @@ id = 4886
 limit = 10
 weight = 3.175
 charges = 22500
-degrade "dharoks_greataxe_75"
+degrade = "dharoks_greataxe_75"
 deplete = "combat"
 weapon_type = "dharoks_greataxe"
 slot = "Weapon"
@@ -28201,17 +28201,17 @@ examine = "Dharok the Wretched's Greataxe."
 [dharoks_greataxe_75]
 clone = "dharoks_greataxe_100"
 id = 4887
-degrade "dharoks_greataxe_50"
+degrade = "dharoks_greataxe_50"
 
 [dharoks_greataxe_50]
 clone = "dharoks_greataxe_100"
 id = 4888
-degrade "dharoks_greataxe_25"
+degrade = "dharoks_greataxe_25"
 
 [dharoks_greataxe_25]
 clone = "dharoks_greataxe_100"
 id = 4889
-degrade "dharoks_greataxe_broken"
+degrade = "dharoks_greataxe_broken"
 
 [dharoks_greataxe_broken]
 id = 4890
@@ -28232,7 +28232,7 @@ id = 4892
 limit = 10
 weight = 9.979
 charges = 22500
-degrade "dharoks_platebody_75"
+degrade = "dharoks_platebody_75"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -28241,17 +28241,17 @@ examine = "Dharok the Wretched's platebody."
 [dharoks_platebody_75]
 clone = "dharoks_platebody_100"
 id = 4893
-degrade "dharoks_platebody_50"
+degrade = "dharoks_platebody_50"
 
 [dharoks_platebody_50]
 clone = "dharoks_platebody_100"
 id = 4894
-degrade "dharoks_platebody_25"
+degrade = "dharoks_platebody_25"
 
 [dharoks_platebody_25]
 clone = "dharoks_platebody_100"
 id = 4895
-degrade "dharoks_platebody_broken"
+degrade = "dharoks_platebody_broken"
 
 [dharoks_platebody_broken]
 id = 4896
@@ -28271,7 +28271,7 @@ id = 4898
 limit = 10
 weight = 9.071
 charges = 22500
-degrade "dharoks_platelegs_75"
+degrade = "dharoks_platelegs_75"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -28280,17 +28280,17 @@ examine = "Dharok the wretched's plate leg armour."
 [dharoks_platelegs_75]
 clone = "dharoks_platelegs_100"
 id = 4899
-degrade "dharoks_platelegs_50"
+degrade = "dharoks_platelegs_50"
 
 [dharoks_platelegs_50]
 clone = "dharoks_platelegs_100"
 id = 4900
-degrade "dharoks_platelegs_25"
+degrade = "dharoks_platelegs_25"
 
 [dharoks_platelegs_25]
 clone = "dharoks_platelegs_100"
 id = 4901
-degrade "dharoks_platelegs_broken"
+degrade = "dharoks_platelegs_broken"
 
 [dharoks_platelegs_broken]
 id = 4902
@@ -28309,7 +28309,7 @@ id = 4904
 limit = 10
 weight = 2.721
 charges = 22500
-degrade "guthans_helm_75"
+degrade = "guthans_helm_75"
 deplete = "combat"
 slot = "Hat"
 material = "metal"
@@ -28319,17 +28319,17 @@ examine = "Guthan the Infested's helm."
 [guthans_helm_75]
 clone = "guthans_helm_100"
 id = 4905
-degrade "guthans_helm_50"
+degrade = "guthans_helm_50"
 
 [guthans_helm_50]
 clone = "guthans_helm_100"
 id = 4906
-degrade "guthans_helm_25"
+degrade = "guthans_helm_25"
 
 [guthans_helm_25]
 clone = "guthans_helm_100"
 id = 4907
-degrade "guthans_helm_broken"
+degrade = "guthans_helm_broken"
 
 [guthans_helm_broken]
 id = 4908
@@ -28349,7 +28349,7 @@ id = 4910
 limit = 10
 weight = 2.267
 charges = 22500
-degrade "guthans_warspear_75"
+degrade = "guthans_warspear_75"
 deplete = "combat"
 weapon_type = "guthans_warspear"
 slot = "Weapon"
@@ -28359,17 +28359,17 @@ examine = "Guthan The Infested's Warspear."
 [guthans_warspear_75]
 clone = "guthans_warspear_100"
 id = 4911
-degrade "guthans_warspear_50"
+degrade = "guthans_warspear_50"
 
 [guthans_warspear_50]
 clone = "guthans_warspear_100"
 id = 4912
-degrade "guthans_warspear_25"
+degrade = "guthans_warspear_25"
 
 [guthans_warspear_25]
 clone = "guthans_warspear_100"
 id = 4913
-degrade "guthans_warspear_broken"
+degrade = "guthans_warspear_broken"
 
 [guthans_warspear_broken]
 id = 4914
@@ -28388,7 +28388,7 @@ id = 4916
 limit = 10
 weight = 9.979
 charges = 22500
-degrade "guthans_platebody_75"
+degrade = "guthans_platebody_75"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -28398,17 +28398,17 @@ examine = "Guthan the Infested's platebody armour."
 [guthans_platebody_75]
 clone = "guthans_platebody_100"
 id = 4917
-degrade "guthans_platebody_50"
+degrade = "guthans_platebody_50"
 
 [guthans_platebody_50]
 clone = "guthans_platebody_100"
 id = 4918
-degrade "guthans_platebody_25"
+degrade = "guthans_platebody_25"
 
 [guthans_platebody_25]
 clone = "guthans_platebody_100"
 id = 4919
-degrade "guthans_platebody_broken"
+degrade = "guthans_platebody_broken"
 
 [guthans_platebody_broken]
 id = 4920
@@ -28428,7 +28428,7 @@ id = 4922
 limit = 10
 weight = 8.164
 charges = 22500
-degrade "guthans_chainskirt_75"
+degrade = "guthans_chainskirt_75"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -28437,17 +28437,17 @@ examine = "Guthan the Infested's chainskirt."
 [guthans_chainskirt_75]
 clone = "guthans_chainskirt_100"
 id = 4923
-degrade "guthans_chainskirt_50"
+degrade = "guthans_chainskirt_50"
 
 [guthans_chainskirt_50]
 clone = "guthans_chainskirt_100"
 id = 4924
-degrade "guthans_chainskirt_25"
+degrade = "guthans_chainskirt_25"
 
 [guthans_chainskirt_25]
 clone = "guthans_chainskirt_100"
 id = 4925
-degrade "guthans_chainskirt_broken"
+degrade = "guthans_chainskirt_broken"
 
 [guthans_chainskirt_broken]
 id = 4926
@@ -28466,7 +28466,7 @@ id = 4928
 limit = 10
 weight = 0.907
 charges = 22500
-degrade "karils_coif_75"
+degrade = "karils_coif_75"
 deplete = "combat"
 slot = "Hat"
 type = "FullFace"
@@ -28476,17 +28476,17 @@ examine = "Karil the Tainted's coif."
 [karils_coif_75]
 clone = "karils_coif_100"
 id = 4929
-degrade "karils_coif_50"
+degrade = "karils_coif_50"
 
 [karils_coif_50]
 clone = "karils_coif_100"
 id = 4930
-degrade "karils_coif_25"
+degrade = "karils_coif_25"
 
 [karils_coif_25]
 clone = "karils_coif_100"
 id = 4931
-degrade "karils_coif_broken"
+degrade = "karils_coif_broken"
 
 [karils_coif_broken]
 id = 4932
@@ -28507,7 +28507,7 @@ limit = 10
 attack_range = 8
 weight = 3.628
 charges = 22500
-degrade "karils_crossbow_75"
+degrade = "karils_crossbow_75"
 deplete = "combat"
 slot = "Weapon"
 type = "TwoHanded"
@@ -28516,17 +28516,17 @@ examine = "Karil the Tainted's repeating crossbow."
 [karils_crossbow_75]
 clone = "karils_crossbow_100"
 id = 4935
-degrade "karils_crossbow_50"
+degrade = "karils_crossbow_50"
 
 [karils_crossbow_50]
 clone = "karils_crossbow_100"
 id = 4936
-degrade "karils_crossbow_25"
+degrade = "karils_crossbow_25"
 
 [karils_crossbow_25]
 clone = "karils_crossbow_100"
 id = 4937
-degrade "karils_crossbow_broken"
+degrade = "karils_crossbow_broken"
 
 [karils_crossbow_broken]
 id = 4938
@@ -28546,7 +28546,7 @@ id = 4940
 limit = 10
 weight = 6.803
 charges = 22500
-degrade "karils_top_75"
+degrade = "karils_top_75"
 deplete = "combat"
 slot = "Chest"
 material = "leather"
@@ -28555,17 +28555,17 @@ examine = "Karil the Tainted's leatherbody."
 [karils_top_75]
 clone = "karils_top_100"
 id = 4941
-degrade "karils_top_50"
+degrade = "karils_top_50"
 
 [karils_top_50]
 clone = "karils_top_100"
 id = 4942
-degrade "karils_top_25"
+degrade = "karils_top_25"
 
 [karils_top_25]
 clone = "karils_top_100"
 id = 4943
-degrade "karils_top_broken"
+degrade = "karils_top_broken"
 
 [karils_top_broken]
 id = 4944
@@ -28584,7 +28584,7 @@ id = 4946
 limit = 10
 weight = 5.443
 charges = 22500
-degrade "karils_skirt_75"
+degrade = "karils_skirt_75"
 deplete = "combat"
 slot = "Legs"
 material = "leather"
@@ -28593,17 +28593,17 @@ examine = "Karil the Tainted's leather skirt."
 [karils_skirt_75]
 clone = "karils_skirt_100"
 id = 4947
-degrade "karils_skirt_50"
+degrade = "karils_skirt_50"
 
 [karils_skirt_50]
 clone = "karils_skirt_100"
 id = 4948
-degrade "karils_skirt_25"
+degrade = "karils_skirt_25"
 
 [karils_skirt_25]
 clone = "karils_skirt_100"
 id = 4949
-degrade "karils_skirt_broken"
+degrade = "karils_skirt_broken"
 
 [karils_skirt_broken]
 id = 4950
@@ -28622,7 +28622,7 @@ id = 4952
 limit = 10
 weight = 2.721
 charges = 22500
-degrade "torags_helm_75"
+degrade = "torags_helm_75"
 deplete = "combat"
 slot = "Hat"
 material = "metal"
@@ -28632,15 +28632,15 @@ examine = "Torag the Corrupted's helm."
 [torags_helm_75]
 clone = "torags_helm_100"
 id = 4953
-degrade "torags_helm_50"
+degrade = "torags_helm_50"
 
 [torags_helm_50]
 id = 4954
-degrade "torags_helm_25"
+degrade = "torags_helm_25"
 
 [torags_helm_25]
 id = 4955
-degrade "torags_helm_broken"
+degrade = "torags_helm_broken"
 
 [torags_helm_broken]
 id = 4956
@@ -28660,7 +28660,7 @@ id = 4958
 limit = 10
 weight = 3.628
 charges = 22500
-degrade "torags_hammers_75"
+degrade = "torags_hammers_75"
 deplete = "combat"
 weapon_type = "torags_hammers"
 slot = "Weapon"
@@ -28670,17 +28670,17 @@ examine = "Torag the Corrupted's twin hammers."
 [torags_hammers_75]
 clone = "torags_hammers_100"
 id = 4959
-degrade "torags_hammers_50"
+degrade = "torags_hammers_50"
 
 [torags_hammers_50]
 clone = "torags_hammers_100"
 id = 4960
-degrade "torags_hammers_25"
+degrade = "torags_hammers_25"
 
 [torags_hammers_25]
 clone = "torags_hammers_100"
 id = 4961
-degrade "torags_hammers_broken"
+degrade = "torags_hammers_broken"
 
 [torags_hammers_broken]
 id = 4962
@@ -28699,7 +28699,7 @@ id = 4964
 limit = 10
 weight = 9.979
 charges = 22500
-degrade "torags_platebody_75"
+degrade = "torags_platebody_75"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -28708,17 +28708,17 @@ examine = "Torag the Corrupted's plate body armour."
 [torags_platebody_75]
 clone = "torags_platebody_100"
 id = 4965
-degrade "torags_platebody_50"
+degrade = "torags_platebody_50"
 
 [torags_platebody_50]
 clone = "torags_platebody_100"
 id = 4966
-degrade "torags_platebody_25"
+degrade = "torags_platebody_25"
 
 [torags_platebody_25]
 clone = "torags_platebody_100"
 id = 4967
-degrade "torags_platebody_broken"
+degrade = "torags_platebody_broken"
 
 [torags_platebody_broken]
 id = 4968
@@ -28736,7 +28736,7 @@ id = 4969
 id = 4970
 limit = 10
 charges = 22500
-degrade "torags_platelegs_75"
+degrade = "torags_platelegs_75"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -28746,17 +28746,17 @@ weight = 9.071
 [torags_platelegs_75]
 clone = "torags_platelegs_100"
 id = 4971
-degrade "torags_platelegs_50"
+degrade = "torags_platelegs_50"
 
 [torags_platelegs_50]
 clone = "torags_platelegs_100"
 id = 4972
-degrade "torags_platelegs_25"
+degrade = "torags_platelegs_25"
 
 [torags_platelegs_25]
 clone = "torags_platelegs_100"
 id = 4973
-degrade "torags_platelegs_broken"
+degrade = "torags_platelegs_broken"
 
 [torags_platelegs_broken]
 id = 4974
@@ -28775,7 +28775,7 @@ id = 4976
 limit = 10
 weight = 1.36
 charges = 22500
-degrade "veracs_helm_75"
+degrade = "veracs_helm_75"
 deplete = "combat"
 slot = "Hat"
 material = "metal"
@@ -28785,17 +28785,17 @@ examine = "Verac the Defiled's helm."
 [veracs_helm_75]
 clone = "veracs_helm_100"
 id = 4977
-degrade "veracs_helm_50"
+degrade = "veracs_helm_50"
 
 [veracs_helm_50]
 clone = "veracs_helm_100"
 id = 4978
-degrade "veracs_helm_25"
+degrade = "veracs_helm_25"
 
 [veracs_helm_25]
 clone = "veracs_helm_100"
 id = 4979
-degrade "veracs_helm_broken"
+degrade = "veracs_helm_broken"
 
 [veracs_helm_broken]
 id = 4980
@@ -28815,7 +28815,7 @@ id = 4982
 limit = 10
 weight = 2.267
 charges = 22500
-degrade "veracs_flail_75"
+degrade = "veracs_flail_75"
 deplete = "combat"
 weapon_type = "veracs_flail"
 slot = "Weapon"
@@ -28825,17 +28825,17 @@ examine = "Verac the Defiled's Flail."
 [veracs_flail_75]
 clone = "veracs_flail_100"
 id = 4983
-degrade "veracs_flail_50"
+degrade = "veracs_flail_50"
 
 [veracs_flail_50]
 clone = "veracs_flail_100"
 id = 4984
-degrade "veracs_flail_25"
+degrade = "veracs_flail_25"
 
 [veracs_flail_25]
 clone = "veracs_flail_100"
 id = 4985
-degrade "veracs_flail_broken"
+degrade = "veracs_flail_broken"
 
 [veracs_flail_broken]
 id = 4986
@@ -28854,7 +28854,7 @@ id = 4988
 limit = 10
 weight = 4.989
 charges = 22500
-degrade "veracs_brassard_75"
+degrade = "veracs_brassard_75"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -28863,17 +28863,17 @@ examine = "Verac The Defiled's Brassard."
 [veracs_brassard_75]
 clone = "veracs_brassard_100"
 id = 4989
-degrade "veracs_brassard_50"
+degrade = "veracs_brassard_50"
 
 [veracs_brassard_50]
 clone = "veracs_brassard_100"
 id = 4990
-degrade "veracs_brassard_25"
+degrade = "veracs_brassard_25"
 
 [veracs_brassard_25]
 clone = "veracs_brassard_100"
 id = 4991
-degrade "veracs_brassard_broken"
+degrade = "veracs_brassard_broken"
 
 [veracs_brassard_broken]
 id = 4992
@@ -28892,7 +28892,7 @@ id = 4994
 limit = 10
 weight = 4.535
 charges = 22500
-degrade "veracs_plateskirt_75"
+degrade = "veracs_plateskirt_75"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -28901,17 +28901,17 @@ examine = "Verac the Defiled's plate skirt."
 [veracs_plateskirt_75]
 clone = "veracs_plateskirt_100"
 id = 4995
-degrade "veracs_plateskirt_50"
+degrade = "veracs_plateskirt_50"
 
 [veracs_plateskirt_50]
 clone = "veracs_plateskirt_100"
 id = 4996
-degrade "veracs_plateskirt_25"
+degrade = "veracs_plateskirt_25"
 
 [veracs_plateskirt_25]
 clone = "veracs_plateskirt_100"
 id = 4997
-degrade "veracs_plateskirt_broken"
+degrade = "veracs_plateskirt_broken"
 
 [veracs_plateskirt_broken]
 id = 4998
@@ -30756,7 +30756,7 @@ examine = "A small pouch used for storing essence."
 id = 5510
 tradeable = false
 charges = 45
-degrade "medium_pouch_damaged"
+degrade = "medium_pouch_damaged"
 degrade_message = "Your pouch has decayed through use."
 weight = 1.0
 examine = "A medium-sized pouch used for storing essence."
@@ -30765,7 +30765,7 @@ examine = "A medium-sized pouch used for storing essence."
 id = 5511
 tradeable = false
 charges = 20
-degrade "destroy"
+degrade = "destroy"
 degrade_message = "Your pouch has decayed through use."
 weight = 1.0
 examine = "A damaged medium-sized pouch used for storing essence."
@@ -30774,7 +30774,7 @@ examine = "A damaged medium-sized pouch used for storing essence."
 id = 5512
 tradeable = false
 charges = 29
-degrade "large_pouch_damaged"
+degrade = "large_pouch_damaged"
 degrade_message = "Your pouch has decayed through use."
 weight = 1.0
 examine = "A large pouch used for storing essence."
@@ -30783,7 +30783,7 @@ examine = "A large pouch used for storing essence."
 id = 5513
 tradeable = false
 charges = 20
-degrade "destroy"
+degrade = "destroy"
 degrade_message = "Your pouch has decayed through use."
 weight = 1.0
 examine = "A large damaged pouch used for storing essence."
@@ -30792,7 +30792,7 @@ examine = "A large damaged pouch used for storing essence."
 id = 5514
 tradeable = false
 charges = 10
-degrade "giant_pouch_damaged"
+degrade = "giant_pouch_damaged"
 weight = 1.0
 examine = "A giant-sized pouch used for storing essence."
 
@@ -30800,7 +30800,7 @@ examine = "A giant-sized pouch used for storing essence."
 id = 5515
 tradeable = false
 charges = 20
-degrade "destroy"
+degrade = "destroy"
 weight = 1.0
 examine = "A damaged giant-sized pouch used for storing essence."
 
@@ -30846,7 +30846,7 @@ limit = 100
 weight = 0.01
 charges = 16
 charge = "binding_necklace_charges"
-degrade "destroy"
+degrade = "destroy"
 slot = "Amulet"
 examine = "A necklace embedded with mystical power."
 
@@ -34204,23 +34204,23 @@ kept = "Wilderness"
 id = 6099
 weight = 0.001
 charges = 1
-degrade "crystal_teleport_seed_3"
+degrade = "crystal_teleport_seed_3"
 examine = "A tiny crystal enchanted to return the user to Lletya."
 
 [crystal_teleport_seed_3]
 clone = "crystal_teleport_seed_4"
 id = 6100
-degrade "crystal_teleport_seed_2"
+degrade = "crystal_teleport_seed_2"
 
 [crystal_teleport_seed_2]
 clone = "crystal_teleport_seed_4"
 id = 6101
-degrade "crystal_teleport_seed_1"
+degrade = "crystal_teleport_seed_1"
 
 [crystal_teleport_seed_1]
 clone = "crystal_teleport_seed_4"
 id = 6102
-degrade "crystal_teleport_seed_uncharged"
+degrade = "crystal_teleport_seed_uncharged"
 
 [crystal_teleport_seed_uncharged]
 id = 6103
@@ -34359,17 +34359,17 @@ id = 6124
 [enchanted_lyre_2]
 clone = "enchanted_lyre_1"
 id = 6125
-degrade "enchanted_lyre_1"
+degrade = "enchanted_lyre_1"
 
 [enchanted_lyre_3]
 clone = "enchanted_lyre_1"
 id = 6126
-degrade "enchanted_lyre_2"
+degrade = "enchanted_lyre_2"
 
 [enchanted_lyre_4]
 clone = "enchanted_lyre_1"
 id = 6127
-degrade "enchanted_lyre_3"
+degrade = "enchanted_lyre_3"
 
 [rock_shell_helm]
 id = 6128
@@ -34855,7 +34855,7 @@ id = 6215
 price = 1940
 charges = 1
 weight = 5.443
-degrade "broodoo_shield_green_9"
+degrade = "broodoo_shield_green_9"
 slot = "Shield"
 examine = "A scary broodoo shield."
 
@@ -34865,7 +34865,7 @@ id = 6216
 [broodoo_shield_green_9]
 clone = "broodoo_shield_green_10"
 id = 6217
-degrade "broodoo_shield_green_8"
+degrade = "broodoo_shield_green_8"
 
 [broodoo_shield_9_noted]
 id = 6218
@@ -34873,7 +34873,7 @@ id = 6218
 [broodoo_shield_green_8]
 clone = "broodoo_shield_green_10"
 id = 6219
-degrade "broodoo_shield_green_7"
+degrade = "broodoo_shield_green_7"
 
 [broodoo_shield_8_noted]
 id = 6220
@@ -34881,7 +34881,7 @@ id = 6220
 [broodoo_shield_green_7]
 clone = "broodoo_shield_green_10"
 id = 6221
-degrade "broodoo_shield_green_6"
+degrade = "broodoo_shield_green_6"
 
 [broodoo_shield_7_noted]
 id = 6222
@@ -34889,7 +34889,7 @@ id = 6222
 [broodoo_shield_green_6]
 clone = "broodoo_shield_green_10"
 id = 6223
-degrade "broodoo_shield_green_5"
+degrade = "broodoo_shield_green_5"
 
 [broodoo_shield_6_noted]
 id = 6224
@@ -34897,7 +34897,7 @@ id = 6224
 [broodoo_shield_green_5]
 clone = "broodoo_shield_green_10"
 id = 6225
-degrade "broodoo_shield_green_4"
+degrade = "broodoo_shield_green_4"
 
 [broodoo_shield_5_noted]
 id = 6226
@@ -34905,7 +34905,7 @@ id = 6226
 [broodoo_shield_green_4]
 clone = "broodoo_shield_green_10"
 id = 6227
-degrade "broodoo_shield_green_3"
+degrade = "broodoo_shield_green_3"
 
 [broodoo_shield_4_noted]
 id = 6228
@@ -34913,7 +34913,7 @@ id = 6228
 [broodoo_shield_green_3]
 clone = "broodoo_shield_green_10"
 id = 6229
-degrade "broodoo_shield_green_2"
+degrade = "broodoo_shield_green_2"
 
 [broodoo_shield_3_noted]
 id = 6230
@@ -34921,7 +34921,7 @@ id = 6230
 [broodoo_shield_green_2]
 clone = "broodoo_shield_green_10"
 id = 6231
-degrade "broodoo_shield_green_1"
+degrade = "broodoo_shield_green_1"
 
 [broodoo_shield_2_noted]
 id = 6232
@@ -34929,7 +34929,7 @@ id = 6232
 [broodoo_shield_green_1]
 clone = "broodoo_shield_green_10"
 id = 6233
-degrade "broodoo_shield_green"
+degrade = "broodoo_shield_green"
 
 [broodoo_shield_1_noted]
 id = 6234
@@ -34950,7 +34950,7 @@ id = 6237
 price = 2727
 weight = 5.443
 charges = 1
-degrade "broodoo_shield_orange_9"
+degrade = "broodoo_shield_orange_9"
 slot = "Shield"
 examine = "A scary broodoo shield."
 
@@ -34960,7 +34960,7 @@ id = 6238
 [broodoo_shield_orange_9]
 clone = "broodoo_shield_orange_10"
 id = 6239
-degrade "broodoo_shield_orange_8"
+degrade = "broodoo_shield_orange_8"
 
 [broodoo_shield_9_noted_2]
 id = 6240
@@ -34968,7 +34968,7 @@ id = 6240
 [broodoo_shield_orange_8]
 clone = "broodoo_shield_orange_10"
 id = 6241
-degrade "broodoo_shield_orange_7"
+degrade = "broodoo_shield_orange_7"
 
 [broodoo_shield_8_noted_2]
 id = 6242
@@ -34976,7 +34976,7 @@ id = 6242
 [broodoo_shield_orange_7]
 clone = "broodoo_shield_orange_10"
 id = 6243
-degrade "broodoo_shield_orange_6"
+degrade = "broodoo_shield_orange_6"
 
 [broodoo_shield_7_noted_2]
 id = 6244
@@ -34984,7 +34984,7 @@ id = 6244
 [broodoo_shield_orange_6]
 clone = "broodoo_shield_orange_10"
 id = 6245
-degrade "broodoo_shield_orange_5"
+degrade = "broodoo_shield_orange_5"
 
 [broodoo_shield_6_noted_2]
 id = 6246
@@ -34992,7 +34992,7 @@ id = 6246
 [broodoo_shield_orange_5]
 clone = "broodoo_shield_orange_10"
 id = 6247
-degrade "broodoo_shield_orange_4"
+degrade = "broodoo_shield_orange_4"
 
 [broodoo_shield_5_noted_2]
 id = 6248
@@ -35000,7 +35000,7 @@ id = 6248
 [broodoo_shield_orange_4]
 clone = "broodoo_shield_orange_10"
 id = 6249
-degrade "broodoo_shield_orange_3"
+degrade = "broodoo_shield_orange_3"
 
 [broodoo_shield_4_noted_2]
 id = 6250
@@ -35008,7 +35008,7 @@ id = 6250
 [broodoo_shield_orange_3]
 clone = "broodoo_shield_orange_10"
 id = 6251
-degrade "broodoo_shield_orange_2"
+degrade = "broodoo_shield_orange_2"
 
 [broodoo_shield_3_noted_2]
 id = 6252
@@ -35016,7 +35016,7 @@ id = 6252
 [broodoo_shield_orange_2]
 clone = "broodoo_shield_orange_10"
 id = 6253
-degrade "broodoo_shield_orange_1"
+degrade = "broodoo_shield_orange_1"
 
 [broodoo_shield_2_noted_2]
 id = 6254
@@ -35024,7 +35024,7 @@ id = 6254
 [broodoo_shield_orange_1]
 clone = "broodoo_shield_orange_10"
 id = 6255
-degrade "broodoo_shield_orange"
+degrade = "broodoo_shield_orange"
 
 [broodoo_shield_1_noted_2]
 id = 6256
@@ -35045,7 +35045,7 @@ id = 6259
 price = 1656
 weight = 5.443
 charges = 1
-degrade "broodoo_shield_blue_9"
+degrade = "broodoo_shield_blue_9"
 slot = "Shield"
 examine = "A scary broodoo shield."
 
@@ -35055,7 +35055,7 @@ id = 6260
 [broodoo_shield_blue_9]
 clone = "broodoo_shield_blue_10"
 id = 6261
-degrade "broodoo_shield_blue_8"
+degrade = "broodoo_shield_blue_8"
 
 [broodoo_shield_9_noted_3]
 id = 6262
@@ -35063,7 +35063,7 @@ id = 6262
 [broodoo_shield_blue_8]
 clone = "broodoo_shield_blue_10"
 id = 6263
-degrade "broodoo_shield_blue_7"
+degrade = "broodoo_shield_blue_7"
 
 [broodoo_shield_8_noted_3]
 id = 6264
@@ -35071,7 +35071,7 @@ id = 6264
 [broodoo_shield_blue_7]
 clone = "broodoo_shield_blue_10"
 id = 6265
-degrade "broodoo_shield_blue_6"
+degrade = "broodoo_shield_blue_6"
 
 [broodoo_shield_7_noted_3]
 id = 6266
@@ -35079,7 +35079,7 @@ id = 6266
 [broodoo_shield_blue_6]
 clone = "broodoo_shield_blue_10"
 id = 6267
-degrade "broodoo_shield_blue_5"
+degrade = "broodoo_shield_blue_5"
 
 [broodoo_shield_6_noted_3]
 id = 6268
@@ -35087,7 +35087,7 @@ id = 6268
 [broodoo_shield_blue_5]
 clone = "broodoo_shield_blue_10"
 id = 6269
-degrade "broodoo_shield_blue_4"
+degrade = "broodoo_shield_blue_4"
 
 [broodoo_shield_5_noted_3]
 id = 6270
@@ -35095,7 +35095,7 @@ id = 6270
 [broodoo_shield_blue_4]
 clone = "broodoo_shield_blue_10"
 id = 6271
-degrade "broodoo_shield_blue_3"
+degrade = "broodoo_shield_blue_3"
 
 [broodoo_shield_4_noted_3]
 id = 6272
@@ -35103,7 +35103,7 @@ id = 6272
 [broodoo_shield_blue_3]
 clone = "broodoo_shield_blue_10"
 id = 6273
-degrade "broodoo_shield_blue_2"
+degrade = "broodoo_shield_blue_2"
 
 [broodoo_shield_3_noted_3]
 id = 6274
@@ -35111,7 +35111,7 @@ id = 6274
 [broodoo_shield_blue_2]
 clone = "broodoo_shield_blue_10"
 id = 6275
-degrade "broodoo_shield_blue_1"
+degrade = "broodoo_shield_blue_1"
 
 [broodoo_shield_2_noted_3]
 id = 6276
@@ -35119,7 +35119,7 @@ id = 6276
 [broodoo_shield_blue_1]
 clone = "broodoo_shield_blue_10"
 id = 6277
-degrade "broodoo_shield_blue"
+degrade = "broodoo_shield_blue"
 
 [broodoo_shield_1_noted_3]
 id = 6278
@@ -41388,54 +41388,54 @@ examine = "A fun guy. No wait, that's awful. Plus it doesn't even make sense."
 id = 7421
 weight = 2.0
 charges = 1
-degrade "fungicide_spray_9"
+degrade = "fungicide_spray_9"
 slot = "Weapon"
 examine = "Pumps fungicide."
 
 [fungicide_spray_9]
 clone = "fungicide_spray_10"
 id = 7422
-degrade "fungicide_spray_8"
+degrade = "fungicide_spray_8"
 
 [fungicide_spray_8]
 clone = "fungicide_spray_10"
 id = 7423
-degrade "fungicide_spray_7"
+degrade = "fungicide_spray_7"
 
 [fungicide_spray_7]
 clone = "fungicide_spray_10"
 id = 7424
-degrade "fungicide_spray_6"
+degrade = "fungicide_spray_6"
 
 [fungicide_spray_6]
 clone = "fungicide_spray_10"
 id = 7425
-degrade "fungicide_spray_5"
+degrade = "fungicide_spray_5"
 
 [fungicide_spray_5]
 clone = "fungicide_spray_10"
 id = 7426
-degrade "fungicide_spray_4"
+degrade = "fungicide_spray_4"
 
 [fungicide_spray_4]
 clone = "fungicide_spray_10"
 id = 7427
-degrade "fungicide_spray_3"
+degrade = "fungicide_spray_3"
 
 [fungicide_spray_3]
 clone = "fungicide_spray_10"
 id = 7428
-degrade "fungicide_spray_2"
+degrade = "fungicide_spray_2"
 
 [fungicide_spray_2]
 clone = "fungicide_spray_10"
 id = 7429
-degrade "fungicide_spray_1"
+degrade = "fungicide_spray_1"
 
 [fungicide_spray_1]
 clone = "fungicide_spray_10"
 id = 7430
-degrade "fungicide_spray_0"
+degrade = "fungicide_spray_0"
 
 [fungicide_spray_0]
 id = 7431
@@ -42726,7 +42726,7 @@ id = 7640
 tradeable = false
 weight = 2.0
 charges = 1
-degrade "rod_of_ivandis"
+degrade = "rod_of_ivandis"
 slot = "Weapon"
 kept = "Reclaim"
 examine = "A partially charged rod."
@@ -42734,42 +42734,42 @@ examine = "A partially charged rod."
 [rod_of_ivandis_3]
 clone = "rod_of_ivandis_2"
 id = 7641
-degrade "rod_of_ivandis_2"
+degrade = "rod_of_ivandis_2"
 
 [rod_of_ivandis_4]
 clone = "rod_of_ivandis_2"
 id = 7642
-degrade "rod_of_ivandis_3"
+degrade = "rod_of_ivandis_3"
 
 [rod_of_ivandis_5]
 clone = "rod_of_ivandis_2"
 id = 7643
-degrade "rod_of_ivandis_4"
+degrade = "rod_of_ivandis_4"
 
 [rod_of_ivandis_6]
 clone = "rod_of_ivandis_2"
 id = 7644
-degrade "rod_of_ivandis_5"
+degrade = "rod_of_ivandis_5"
 
 [rod_of_ivandis_7]
 clone = "rod_of_ivandis_2"
 id = 7645
-degrade "rod_of_ivandis_6"
+degrade = "rod_of_ivandis_6"
 
 [rod_of_ivandis_8]
 clone = "rod_of_ivandis_2"
 id = 7646
-degrade "rod_of_ivandis_7"
+degrade = "rod_of_ivandis_7"
 
 [rod_of_ivandis_9]
 clone = "rod_of_ivandis_2"
 id = 7647
-degrade "rod_of_ivandis_8"
+degrade = "rod_of_ivandis_8"
 
 [rod_of_ivandis_10]
 clone = "rod_of_ivandis_2"
 id = 7648
-degrade "rod_of_ivandis_9"
+degrade = "rod_of_ivandis_9"
 examine = "A fully charged rod."
 
 [rod_clay_mould]
@@ -48526,7 +48526,7 @@ id = 8901
 price = 357400
 limit = 10
 charges = 1
-degrade "black_mask_9"
+degrade = "black_mask_9"
 slot = "Hat"
 material = "metal"
 examine = "A magic cave horror mask."
@@ -48538,7 +48538,7 @@ id = 8902
 [black_mask_9]
 clone = "black_mask_10"
 id = 8903
-degrade "black_mask_8"
+degrade = "black_mask_8"
 
 [black_mask_9_noted]
 id = 8904
@@ -48546,7 +48546,7 @@ id = 8904
 [black_mask_8]
 clone = "black_mask_10"
 id = 8905
-degrade "black_mask_7"
+degrade = "black_mask_7"
 
 [black_mask_8_noted]
 id = 8906
@@ -48554,7 +48554,7 @@ id = 8906
 [black_mask_7]
 clone = "black_mask_10"
 id = 8907
-degrade "black_mask_6"
+degrade = "black_mask_6"
 
 [black_mask_7_noted]
 id = 8908
@@ -48562,7 +48562,7 @@ id = 8908
 [black_mask_6]
 clone = "black_mask_10"
 id = 8909
-degrade "black_mask_5"
+degrade = "black_mask_5"
 
 [black_mask_6_noted]
 id = 8910
@@ -48570,7 +48570,7 @@ id = 8910
 [black_mask_5]
 clone = "black_mask_10"
 id = 8911
-degrade "black_mask_4"
+degrade = "black_mask_4"
 
 [black_mask_5_noted]
 id = 8912
@@ -48578,7 +48578,7 @@ id = 8912
 [black_mask_4]
 clone = "black_mask_10"
 id = 8913
-degrade "black_mask_3"
+degrade = "black_mask_3"
 
 [black_mask_4_noted]
 id = 8914
@@ -48586,7 +48586,7 @@ id = 8914
 [black_mask_3]
 clone = "black_mask_10"
 id = 8915
-degrade "black_mask_2"
+degrade = "black_mask_2"
 
 [black_mask_3_noted]
 id = 8916
@@ -48594,7 +48594,7 @@ id = 8916
 [black_mask_2]
 clone = "black_mask_10"
 id = 8917
-degrade "black_mask_1"
+degrade = "black_mask_1"
 
 [black_mask_2_noted]
 id = 8918
@@ -48602,7 +48602,7 @@ id = 8918
 [black_mask_1]
 clone = "black_mask_10"
 id = 8919
-degrade "black_mask"
+degrade = "black_mask"
 
 [black_mask_1_noted]
 id = 8920
@@ -49193,7 +49193,7 @@ tradeable = false
 weight = 1.814
 charges = 10
 charge = "skull_sceptre_charges"
-degrade "destroy"
+degrade = "destroy"
 slot = "Weapon"
 destroy = "You can obtain another Sceptre by collecting all four pieces from the Stronghold of Security."
 examine = "A fragile magical Sceptre."
@@ -49376,7 +49376,7 @@ price = 1000000
 limit = 10
 weight = 2.0
 charges = 1
-degrade "pharaohs_sceptre_2"
+degrade = "pharaohs_sceptre_2"
 degrade_message = "The sceptre has two charges left."
 slot = "Weapon"
 type = "TwoHanded"
@@ -49389,7 +49389,7 @@ id = 9045
 [pharaohs_sceptre_2]
 clone = "pharaohs_sceptre_3"
 id = 9046
-degrade "pharaohs_sceptre_1"
+degrade = "pharaohs_sceptre_1"
 degrade_message = "The sceptre has one charge left."
 
 [pharaohs_sceptre_2_noted]
@@ -49398,7 +49398,7 @@ id = 9047
 [pharaohs_sceptre_1]
 clone = "pharaohs_sceptre_3"
 id = 9048
-degrade "pharaohs_sceptre"
+degrade = "pharaohs_sceptre"
 degrade_message = "The sceptre has run out of charges."
 
 [pharaohs_sceptre_1_noted]
@@ -51580,7 +51580,7 @@ tradeable = false
 weight = 1.0
 charges = 28
 charge = "crystal_saw_charges"
-degrade "small_crystal_seed"
+degrade = "small_crystal_seed"
 slot = "Weapon"
 destroy = "Maybe Brimstail will have another..."
 examine = "A magical saw."
@@ -60538,7 +60538,7 @@ id = 11079
 price = 989
 weight = 0.25
 charges = 1
-degrade "castle_wars_brace_2"
+degrade = "castle_wars_brace_2"
 slot = "Hands"
 examine = "Must be worn as you enter the game to receive the bonus for that game."
 
@@ -60548,7 +60548,7 @@ id = 11080
 [castle_wars_brace_2]
 clone = "castle_wars_brace_3"
 id = 11081
-degrade "castle_wars_brace_1"
+degrade = "castle_wars_brace_1"
 
 [castle_wars_brace_2_noted]
 id = 11082
@@ -60557,7 +60557,7 @@ id = 11082
 clone = "castle_wars_brace_3"
 id = 11083
 price = 2873
-degrade "destroy"
+degrade = "destroy"
 
 [castle_wars_brace_1_noted]
 id = 11084
@@ -60667,7 +60667,7 @@ price = 22000
 limit = 500
 weight = 0.01
 charges = 1
-degrade "skills_necklace_3"
+degrade = "skills_necklace_3"
 degrade_message = "Your games necklace has three charges left."
 slot = "Amulet"
 examine = "This will help me travel."
@@ -60678,7 +60678,7 @@ id = 11106
 [skills_necklace_3]
 clone = "skills_necklace_4"
 id = 11107
-degrade "skills_necklace_2"
+degrade = "skills_necklace_2"
 degrade_message = "Your games necklace has two charges left."
 
 [skills_necklace_3_noted]
@@ -60687,7 +60687,7 @@ id = 11108
 [skills_necklace_2]
 clone = "skills_necklace_4"
 id = 11109
-degrade "skills_necklace_1"
+degrade = "skills_necklace_1"
 degrade_message = "Your games necklace has one charge left."
 
 [skills_necklace_2_noted]
@@ -60696,7 +60696,7 @@ id = 11110
 [skills_necklace_1]
 clone = "skills_necklace_4"
 id = 11111
-degrade "skills_necklace"
+degrade = "skills_necklace"
 degrade_message = "You use your skills necklace's last charge."
 
 [skills_necklace_1_noted]
@@ -60733,7 +60733,7 @@ id = 11118
 price = 32400
 limit = 500
 charges = 1
-degrade "combat_bracelet_3"
+degrade = "combat_bracelet_3"
 degrade_message = "Your combat bracelet has three charges left."
 slot = "Hands"
 examine = "A handy way to get around."
@@ -60745,7 +60745,7 @@ id = 11119
 [combat_bracelet_3]
 clone = "combat_bracelet_4"
 id = 11120
-degrade "combat_bracelet_2"
+degrade = "combat_bracelet_2"
 degrade_message = "Your combat bracelet has two charges left."
 
 [combat_bracelet_3_noted]
@@ -60754,7 +60754,7 @@ id = 11121
 [combat_bracelet_2]
 clone = "combat_bracelet_4"
 id = 11122
-degrade "combat_bracelet_1"
+degrade = "combat_bracelet_1"
 degrade_message = "Your combat bracelet has one charge left."
 
 [combat_bracelet_2_noted]
@@ -60763,7 +60763,7 @@ id = 11123
 [combat_bracelet_1]
 clone = "combat_bracelet_4"
 id = 11124
-degrade "combat_bracelet"
+degrade = "combat_bracelet"
 degrade_message = "You use your combat bracelet's last charge."
 
 [combat_bracelet_1_noted]
@@ -61113,7 +61113,7 @@ id = 11189
 id = 11190
 weight = 0.01
 charges = 1
-degrade "destroy"
+degrade = "destroy"
 slot = "Amulet"
 degrade_message = "Your Dig Site pendant crumbles to dust."
 examine = "An enchanted necklace."
@@ -61121,22 +61121,22 @@ examine = "An enchanted necklace."
 [dig_site_pendant_2]
 clone = "dig_site_pendant_1"
 id = 11191
-degrade "dig_site_pendant_1"
+degrade = "dig_site_pendant_1"
 
 [dig_site_pendant_3]
 clone = "dig_site_pendant_1"
 id = 11192
-degrade "dig_site_pendant_2"
+degrade = "dig_site_pendant_2"
 
 [dig_site_pendant_4]
 clone = "dig_site_pendant_1"
 id = 11193
-degrade "dig_site_pendant_3"
+degrade = "dig_site_pendant_3"
 
 [dig_site_pendant_5]
 clone = "dig_site_pendant_1"
 id = 11194
-degrade "dig_site_pendant_4"
+degrade = "dig_site_pendant_4"
 aka = ["digsite_pendant", "digsite_necklace", "dig_site_necklace"]
 
 [clean_necklace]
@@ -61616,7 +61616,7 @@ tradeable = false
 bank_stacks = false
 aka = ["dragonfire_shield", "dfs", "dragon_fire_shield"]
 charges = 0
-degrade "dragonfire_shield_uncharged"
+degrade = "dragonfire_shield_uncharged"
 slot = "Shield"
 material = "metal"
 examine = "A heavy shield with a snarling, draconic visage."
@@ -69999,7 +69999,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 100
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "You can buy a new pair from the druids at the Fist of Guthix minigame."
 examine = "A pair of mystical gloves."
@@ -70011,7 +70011,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 100
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "You can buy a new pair from the druids at Fist of Guthix."
 examine = "A pair of mystical gloves."
@@ -70023,7 +70023,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 100
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "You can buy a new pair from the druids at the Fist of Guthix minigame."
 examine = "A pair of mystical gloves."
@@ -70035,7 +70035,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 100
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 examine = "A pair of mystical gloves."
 kept = "Reclaim"
@@ -70046,7 +70046,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 1000
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "You can buy a new pair from the druids at the Fist of Guthix minigame."
 examine = "A pair of mystical gloves."
@@ -70058,7 +70058,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 1000
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "You can buy a new pair from the druids at the Fist of Guthix minigame."
 examine = "A pair of mystical gloves."
@@ -70070,7 +70070,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 1000
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 examine = "A pair of mystical gloves."
 kept = "Reclaim"
@@ -70081,7 +70081,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 1000
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "You can buy a new pair from the druids at the Fist of Guthix minigame."
 examine = "A pair of mystical gloves."
@@ -70093,7 +70093,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 1000
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "You can buy a new pair from the druids at the Fist of Guthix activity."
 examine = "A pair of mystical gloves."
@@ -70105,7 +70105,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 1000
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "You can buy a new pair from the druids at the Fist of Guthix minigame."
 examine = "A pair of mystical gloves."
@@ -70114,7 +70114,7 @@ kept = "Reclaim"
 [battle_hood_100]
 id = 12866
 charges = 30000
-degrade "battle_hood_80"
+degrade = "battle_hood_80"
 deplete = "combat"
 slot = "Hat"
 type = "Hair"
@@ -70124,22 +70124,22 @@ weight = 0.8
 [battle_hood_80]
 clone = "battle_hood_100"
 id = 12867
-degrade "battle_hood_60"
+degrade = "battle_hood_60"
 
 [battle_hood_60]
 clone = "battle_hood_100"
 id = 12868
-degrade "battle_hood_40"
+degrade = "battle_hood_40"
 
 [battle_hood_40]
 clone = "battle_hood_100"
 id = 12869
-degrade "battle_hood_20"
+degrade = "battle_hood_20"
 
 [battle_hood_20]
 clone = "battle_hood_100"
 id = 12870
-degrade "battle_hood_0"
+degrade = "battle_hood_0"
 
 [battle_hood_0]
 id = 12871
@@ -70155,7 +70155,7 @@ id = 12872
 [battle_robe_top_100]
 id = 12873
 charges = 30000
-degrade "battle_robe_top_80"
+degrade = "battle_robe_top_80"
 deplete = "combat"
 slot = "Chest"
 examine = "Charged - A robe top infused with arcane power, especially created for combat spells. Uncharged - Its arcane power is waning"
@@ -70164,22 +70164,22 @@ weight = 4.0
 [battle_robe_top_80]
 clone = "battle_robe_top_100"
 id = 12874
-degrade "battle_robe_top_60"
+degrade = "battle_robe_top_60"
 
 [battle_robe_top_60]
 clone = "battle_robe_top_100"
 id = 12875
-degrade "battle_robe_top_40"
+degrade = "battle_robe_top_40"
 
 [battle_robe_top_40]
 clone = "battle_robe_top_100"
 id = 12876
-degrade "battle_robe_top_20"
+degrade = "battle_robe_top_20"
 
 [battle_robe_top_20]
 clone = "battle_robe_top_100"
 id = 12877
-degrade "battle_robe_top_0"
+degrade = "battle_robe_top_0"
 
 [battle_robe_top_0]
 id = 12878
@@ -70194,7 +70194,7 @@ id = 12879
 [battle_robe_bottom_100]
 id = 12880
 charges = 30000
-degrade "battle_robe_bottom_80"
+degrade = "battle_robe_bottom_80"
 deplete = "combat"
 slot = "Legs"
 examine = "A robe bottom infused with arcane power, especially created for combat spells."
@@ -70203,22 +70203,22 @@ weight = 3.0
 [battle_robe_bottom_80]
 clone = "battle_robe_bottom_100"
 id = 12881
-degrade "battle_robe_bottom_60"
+degrade = "battle_robe_bottom_60"
 
 [battle_robe_bottom_60]
 clone = "battle_robe_bottom_100"
 id = 12882
-degrade "battle_robe_bottom_40"
+degrade = "battle_robe_bottom_40"
 
 [battle_robe_bottom_40]
 clone = "battle_robe_bottom_100"
 id = 12883
-degrade "battle_robe_bottom_20"
+degrade = "battle_robe_bottom_20"
 
 [battle_robe_bottom_20]
 clone = "battle_robe_bottom_100"
 id = 12884
-degrade "battle_robe_bottom_0"
+degrade = "battle_robe_bottom_0"
 
 [battle_robe_bottom_0]
 id = 12885
@@ -70233,7 +70233,7 @@ id = 12886
 [druidic_mage_hood_100]
 id = 12887
 charges = 30000
-degrade "druidic_mage_hood_80"
+degrade = "druidic_mage_hood_80"
 deplete = "combat"
 slot = "Hat"
 type = "Hair"
@@ -70243,22 +70243,22 @@ weight = 0.8
 [druidic_mage_hood_80]
 clone = "druidic_mage_hood_100"
 id = 12888
-degrade "druidic_mage_hood_60"
+degrade = "druidic_mage_hood_60"
 
 [druidic_mage_hood_60]
 clone = "druidic_mage_hood_100"
 id = 12889
-degrade "druidic_mage_hood_40"
+degrade = "druidic_mage_hood_40"
 
 [druidic_mage_hood_40]
 clone = "druidic_mage_hood_100"
 id = 12890
-degrade "druidic_mage_hood_20"
+degrade = "druidic_mage_hood_20"
 
 [druidic_mage_hood_20]
 clone = "druidic_mage_hood_100"
 id = 12891
-degrade "druidic_mage_hood_0"
+degrade = "druidic_mage_hood_0"
 
 [druidic_mage_hood_0]
 id = 12892
@@ -70274,7 +70274,7 @@ id = 12893
 [druidic_mage_top_100]
 id = 12894
 charges = 30000
-degrade "druidic_mage_top_80"
+degrade = "druidic_mage_top_80"
 deplete = "combat"
 slot = "Chest"
 examine = "A magical robe top worn by followers of Guthix."
@@ -70283,22 +70283,22 @@ weight = 4.0
 [druidic_mage_top_80]
 clone = "druidic_mage_top_100"
 id = 12895
-degrade "druidic_mage_top_60"
+degrade = "druidic_mage_top_60"
 
 [druidic_mage_top_60]
 clone = "druidic_mage_top_100"
 id = 12896
-degrade "druidic_mage_top_40"
+degrade = "druidic_mage_top_40"
 
 [druidic_mage_top_40]
 clone = "druidic_mage_top_100"
 id = 12897
-degrade "druidic_mage_top_20"
+degrade = "druidic_mage_top_20"
 
 [druidic_mage_top_20]
 clone = "druidic_mage_top_100"
 id = 12898
-degrade "druidic_mage_top_0"
+degrade = "druidic_mage_top_0"
 
 [druidic_mage_top_0]
 id = 12899
@@ -70313,7 +70313,7 @@ id = 12900
 [druidic_mage_bottom_100]
 id = 12901
 charges = 30000
-degrade "druidic_mage_bottom_80"
+degrade = "druidic_mage_bottom_80"
 deplete = "combat"
 slot = "Legs"
 examine = "A magical robe bottom worn by a person who follows Guthix."
@@ -70322,22 +70322,22 @@ weight = 3.0
 [druidic_mage_bottom_80]
 clone = "druidic_mage_bottom_100"
 id = 12902
-degrade "druidic_mage_bottom_60"
+degrade = "druidic_mage_bottom_60"
 
 [druidic_mage_bottom_60]
 clone = "druidic_mage_bottom_100"
 id = 12903
-degrade "druidic_mage_bottom_40"
+degrade = "druidic_mage_bottom_40"
 
 [druidic_mage_bottom_40]
 clone = "druidic_mage_bottom_100"
 id = 12904
-degrade "druidic_mage_bottom_20"
+degrade = "druidic_mage_bottom_20"
 
 [druidic_mage_bottom_20]
 clone = "druidic_mage_bottom_100"
 id = 12905
-degrade "druidic_mage_bottom_0"
+degrade = "druidic_mage_bottom_0"
 
 [druidic_mage_bottom_0]
 id = 12906
@@ -70352,7 +70352,7 @@ id = 12907
 [adamant_spikeshield_100]
 id = 12908
 charges = 30000
-degrade "adamant_spikeshield_80"
+degrade = "adamant_spikeshield_80"
 deplete = "combat"
 slot = "Shield"
 material = "metal"
@@ -70362,22 +70362,22 @@ weight = 5.0
 [adamant_spikeshield_80]
 clone = "adamant_spikeshield_100"
 id = 12909
-degrade "adamant_spikeshield_60"
+degrade = "adamant_spikeshield_60"
 
 [adamant_spikeshield_60]
 clone = "adamant_spikeshield_100"
 id = 12910
-degrade "adamant_spikeshield_40"
+degrade = "adamant_spikeshield_40"
 
 [adamant_spikeshield_40]
 clone = "adamant_spikeshield_100"
 id = 12911
-degrade "adamant_spikeshield_20"
+degrade = "adamant_spikeshield_20"
 
 [adamant_spikeshield_20]
 clone = "adamant_spikeshield_100"
 id = 12912
-degrade "adamant_spikeshield_0"
+degrade = "adamant_spikeshield_0"
 
 [adamant_spikeshield_0]
 id = 12913
@@ -70393,7 +70393,7 @@ id = 12914
 [adamant_berserker_shield_100]
 id = 12915
 charges = 30000
-degrade "adamant_berserker_shield_80"
+degrade = "adamant_berserker_shield_80"
 deplete = "combat"
 slot = "Shield"
 material = "metal"
@@ -70403,22 +70403,22 @@ weight = 7.0
 [adamant_berserker_shield_80]
 clone = "adamant_berserker_shield_100"
 id = 12916
-degrade "adamant_berserker_shield_60"
+degrade = "adamant_berserker_shield_60"
 
 [adamant_berserker_shield_60]
 clone = "adamant_berserker_shield_100"
 id = 12917
-degrade "adamant_berserker_shield_40"
+degrade = "adamant_berserker_shield_40"
 
 [adamant_berserker_shield_40]
 clone = "adamant_berserker_shield_100"
 id = 12918
-degrade "adamant_berserker_shield_20"
+degrade = "adamant_berserker_shield_20"
 
 [adamant_berserker_shield_20]
 clone = "adamant_berserker_shield_100"
 id = 12919
-degrade "adamant_berserker_shield_0"
+degrade = "adamant_berserker_shield_0"
 
 [adamant_berserker_shield_0]
 id = 12920
@@ -70434,7 +70434,7 @@ id = 12921
 [rune_spikeshield_100]
 id = 12922
 charges = 30000
-degrade "rune_spikeshield_80"
+degrade = "rune_spikeshield_80"
 deplete = "combat"
 slot = "Shield"
 material = "metal"
@@ -70444,22 +70444,22 @@ weight = 4.0
 [rune_spikeshield_80]
 clone = "rune_spikeshield_100"
 id = 12923
-degrade "rune_spikeshield_60"
+degrade = "rune_spikeshield_60"
 
 [rune_spikeshield_60]
 clone = "rune_spikeshield_100"
 id = 12924
-degrade "rune_spikeshield_40"
+degrade = "rune_spikeshield_40"
 
 [rune_spikeshield_40]
 clone = "rune_spikeshield_100"
 id = 12925
-degrade "rune_spikeshield_20"
+degrade = "rune_spikeshield_20"
 
 [rune_spikeshield_20]
 clone = "rune_spikeshield_100"
 id = 12926
-degrade "rune_spikeshield_0"
+degrade = "rune_spikeshield_0"
 
 [rune_spikeshield_0]
 id = 12927
@@ -70475,7 +70475,7 @@ id = 12928
 [rune_berserker_shield_100]
 id = 12929
 charges = 30000
-degrade "rune_berserker_shield_80"
+degrade = "rune_berserker_shield_80"
 deplete = "combat"
 slot = "Shield"
 material = "metal"
@@ -70485,22 +70485,22 @@ weight = 6.0
 [rune_berserker_shield_80]
 clone = "rune_berserker_shield_100"
 id = 12930
-degrade "rune_berserker_shield_60"
+degrade = "rune_berserker_shield_60"
 
 [rune_berserker_shield_60]
 clone = "rune_berserker_shield_100"
 id = 12931
-degrade "rune_berserker_shield_40"
+degrade = "rune_berserker_shield_40"
 
 [rune_berserker_shield_40]
 clone = "rune_berserker_shield_100"
 id = 12932
-degrade "rune_berserker_shield_20"
+degrade = "rune_berserker_shield_20"
 
 [rune_berserker_shield_20]
 clone = "rune_berserker_shield_100"
 id = 12933
-degrade "rune_berserker_shield_0"
+degrade = "rune_berserker_shield_0"
 
 [rune_berserker_shield_0]
 id = 12934
@@ -70517,7 +70517,7 @@ id = 12935
 id = 12936
 limit = 100
 charges = 30000
-degrade "green_dragonhide_coif_80"
+degrade = "green_dragonhide_coif_80"
 deplete = "combat"
 slot = "Hat"
 material = "leather"
@@ -70528,22 +70528,22 @@ weight = 0.9
 [green_dragonhide_coif_80]
 clone = "green_dragonhide_coif_normal"
 id = 12937
-degrade "green_dragonhide_coif_60"
+degrade = "green_dragonhide_coif_60"
 
 [green_dragonhide_coif_60]
 clone = "green_dragonhide_coif_normal"
 id = 12938
-degrade "green_dragonhide_coif_40"
+degrade = "green_dragonhide_coif_40"
 
 [green_dragonhide_coif_40]
 clone = "green_dragonhide_coif_normal"
 id = 12939
-degrade "green_dragonhide_coif_20"
+degrade = "green_dragonhide_coif_20"
 
 [green_dragonhide_coif_20]
 clone = "green_dragonhide_coif_normal"
 id = 12940
-degrade "green_dragonhide_coif_0"
+degrade = "green_dragonhide_coif_0"
 
 [green_dragonhide_coif_0]
 id = 12941
@@ -70561,7 +70561,7 @@ id = 12942
 id = 12943
 limit = 100
 charges = 30000
-degrade "blue_dragonhide_coif_80"
+degrade = "blue_dragonhide_coif_80"
 deplete = "combat"
 slot = "Hat"
 material = "leather"
@@ -70572,22 +70572,22 @@ weight = 0.9
 [blue_dragonhide_coif_80]
 clone = "blue_dragonhide_coif_normal"
 id = 12944
-degrade "blue_dragonhide_coif_60"
+degrade = "blue_dragonhide_coif_60"
 
 [blue_dragonhide_coif_60]
 clone = "blue_dragonhide_coif_normal"
 id = 12945
-degrade "blue_dragonhide_coif_40"
+degrade = "blue_dragonhide_coif_40"
 
 [blue_dragonhide_coif_40]
 clone = "blue_dragonhide_coif_normal"
 id = 12946
-degrade "blue_dragonhide_coif_20"
+degrade = "blue_dragonhide_coif_20"
 
 [blue_dragonhide_coif_20]
 clone = "blue_dragonhide_coif_normal"
 id = 12947
-degrade "blue_dragonhide_coif_0"
+degrade = "blue_dragonhide_coif_0"
 
 [blue_dragonhide_coif_0]
 id = 12948
@@ -70605,7 +70605,7 @@ id = 12949
 id = 12950
 limit = 100
 charges = 30000
-degrade "red_dragonhide_coif_80"
+degrade = "red_dragonhide_coif_80"
 deplete = "combat"
 slot = "Hat"
 material = "leather"
@@ -70616,22 +70616,22 @@ weight = 0.9
 [red_dragonhide_coif_80]
 clone = "red_dragonhide_coif_normal"
 id = 12951
-degrade "red_dragonhide_coif_60"
+degrade = "red_dragonhide_coif_60"
 
 [red_dragonhide_coif_60]
 clone = "red_dragonhide_coif_normal"
 id = 12952
-degrade "red_dragonhide_coif_40"
+degrade = "red_dragonhide_coif_40"
 
 [red_dragonhide_coif_40]
 clone = "red_dragonhide_coif_normal"
 id = 12953
-degrade "red_dragonhide_coif_20"
+degrade = "red_dragonhide_coif_20"
 
 [red_dragonhide_coif_20]
 clone = "red_dragonhide_coif_normal"
 id = 12954
-degrade "red_dragonhide_coif_0"
+degrade = "red_dragonhide_coif_0"
 
 [red_dragonhide_coif_0]
 id = 12955
@@ -70649,7 +70649,7 @@ id = 12956
 id = 12957
 limit = 100
 charges = 30000
-degrade "black_dragonhide_coif_80"
+degrade = "black_dragonhide_coif_80"
 deplete = "combat"
 slot = "Hat"
 material = "leather"
@@ -70660,22 +70660,22 @@ weight = 0.9
 [black_dragonhide_coif_80]
 clone = "black_dragonhide_coif_normal"
 id = 12958
-degrade "black_dragonhide_coif_60"
+degrade = "black_dragonhide_coif_60"
 
 [black_dragonhide_coif_60]
 clone = "black_dragonhide_coif_normal"
 id = 12959
-degrade "black_dragonhide_coif_40"
+degrade = "black_dragonhide_coif_40"
 
 [black_dragonhide_coif_40]
 clone = "black_dragonhide_coif_normal"
 id = 12960
-degrade "black_dragonhide_coif_20"
+degrade = "black_dragonhide_coif_20"
 
 [black_dragonhide_coif_20]
 clone = "black_dragonhide_coif_normal"
 id = 12961
-degrade "black_dragonhide_coif_0"
+degrade = "black_dragonhide_coif_0"
 
 [black_dragonhide_coif_0]
 id = 12962
@@ -70693,7 +70693,7 @@ id = 12963
 id = 12964
 weight = 0.8
 charges = 30000
-degrade "combat_hood_80"
+degrade = "combat_hood_80"
 deplete = "combat"
 slot = "Hat"
 type = "Hair"
@@ -70702,22 +70702,22 @@ examine = "A magical hood, especially created for combat spells."
 [combat_hood_80]
 clone = "combat_hood_100"
 id = 12965
-degrade "combat_hood_60"
+degrade = "combat_hood_60"
 
 [combat_hood_60]
 clone = "combat_hood_100"
 id = 12966
-degrade "combat_hood_40"
+degrade = "combat_hood_40"
 
 [combat_hood_40]
 clone = "combat_hood_100"
 id = 12967
-degrade "combat_hood_20"
+degrade = "combat_hood_20"
 
 [combat_hood_20]
 clone = "combat_hood_100"
 id = 12968
-degrade "combat_hood_0"
+degrade = "combat_hood_0"
 
 [combat_hood_0]
 id = 12969
@@ -70734,7 +70734,7 @@ id = 12970
 id = 12971
 weight = 4.0
 charges = 30000
-degrade "combat_robe_top_80"
+degrade = "combat_robe_top_80"
 deplete = "combat"
 slot = "Chest"
 examine = "A magical robe top, especially made for combat spells."
@@ -70742,22 +70742,22 @@ examine = "A magical robe top, especially made for combat spells."
 [combat_robe_top_80]
 clone = "combat_robe_top_100"
 id = 12972
-degrade "combat_robe_top_60"
+degrade = "combat_robe_top_60"
 
 [combat_robe_top_60]
 clone = "combat_robe_top_100"
 id = 12973
-degrade "combat_robe_top_40"
+degrade = "combat_robe_top_40"
 
 [combat_robe_top_40]
 clone = "combat_robe_top_100"
 id = 12974
-degrade "combat_robe_top_20"
+degrade = "combat_robe_top_20"
 
 [combat_robe_top_20]
 clone = "combat_robe_top_100"
 id = 12975
-degrade "combat_robe_top_0"
+degrade = "combat_robe_top_0"
 
 [combat_robe_top_0]
 id = 12976
@@ -70773,7 +70773,7 @@ id = 12977
 id = 12978
 weight = 3.0
 charges = 30000
-degrade "combat_robe_bottom_80"
+degrade = "combat_robe_bottom_80"
 deplete = "combat"
 slot = "Legs"
 examine = "A magical robe bottom, especially created for combat spells."
@@ -70781,22 +70781,22 @@ examine = "A magical robe bottom, especially created for combat spells."
 [combat_robe_bottom_80]
 clone = "combat_robe_bottom_100"
 id = 12979
-degrade "combat_robe_bottom_60"
+degrade = "combat_robe_bottom_60"
 
 [combat_robe_bottom_60]
 clone = "combat_robe_bottom_100"
 id = 12980
-degrade "combat_robe_bottom_40"
+degrade = "combat_robe_bottom_40"
 
 [combat_robe_bottom_40]
 clone = "combat_robe_bottom_100"
 id = 12981
-degrade "combat_robe_bottom_20"
+degrade = "combat_robe_bottom_20"
 
 [combat_robe_bottom_20]
 clone = "combat_robe_bottom_100"
 id = 12982
-degrade "combat_robe_bottom_0"
+degrade = "combat_robe_bottom_0"
 
 [combat_robe_bottom_0]
 id = 12983
@@ -70812,7 +70812,7 @@ id = 12984
 id = 12985
 limit = 100
 weight = 0.005
-degrade "worn_out_bronze_gauntlets"
+degrade = "worn_out_bronze_gauntlets"
 slot = "Hands"
 material = "metal"
 kept = "Wilderness"
@@ -70831,7 +70831,7 @@ id = 12987
 [iron_gauntlets]
 id = 12988
 weight = 0.005
-degrade "worn_out_iron_gauntlets"
+degrade = "worn_out_iron_gauntlets"
 slot = "Hands"
 material = "metal"
 examine = "A pair of iron gauntlets."
@@ -70849,7 +70849,7 @@ id = 12990
 [steel_gauntlets]
 id = 12991
 weight = 0.005
-degrade "worn_out_steel_gauntlets"
+degrade = "worn_out_steel_gauntlets"
 slot = "Hands"
 material = "metal"
 examine = "A pair of steel gauntlets."
@@ -70867,7 +70867,7 @@ id = 12993
 [black_gauntlets]
 id = 12994
 limit = 10
-degrade "black_gauntlets_worn_out"
+degrade = "black_gauntlets_worn_out"
 slot = "Hands"
 material = "metal"
 examine = "I have to keep my hands safe!"
@@ -70889,7 +70889,7 @@ id = 12996
 id = 12997
 limit = 100
 weight = 0.005
-degrade "worn_out_mithril_gauntlets"
+degrade = "worn_out_mithril_gauntlets"
 slot = "Hands"
 material = "metal"
 examine = "A pair of mithril gauntlets."
@@ -70908,7 +70908,7 @@ id = 12999
 id = 13000
 limit = 100
 weight = 0.005
-degrade "worn_out_adamant_gauntlets"
+degrade = "worn_out_adamant_gauntlets"
 slot = "Hands"
 material = "metal"
 examine = "A pair of adamant gauntlets."
@@ -70927,7 +70927,7 @@ id = 13002
 id = 13003
 limit = 100
 weight = 0.005
-degrade "worn_out_rune_gauntlets"
+degrade = "worn_out_rune_gauntlets"
 slot = "Hands"
 material = "metal"
 examine = "A pair of rune gauntlets."
@@ -70945,7 +70945,7 @@ id = 13005
 [dragon_gauntlets]
 id = 13006
 limit = 10
-degrade "dragon_gauntlets_worn_out"
+degrade = "dragon_gauntlets_worn_out"
 slot = "Hands"
 material = "metal"
 examine = "I have to keep my hands safe!"
@@ -72257,7 +72257,7 @@ examine = "For use against turoth and kurasks."
 [ring_of_slaying_8]
 id = 13281
 charges = 1
-degrade "ring_of_slaying_7"
+degrade = "ring_of_slaying_7"
 deplete = "teleport"
 jewellery = {
   level = 75,
@@ -72270,7 +72270,7 @@ examine = "An enchanted ring."
 [ring_of_slaying_7]
 id = 13282
 charges = 1
-degrade "ring_of_slaying_6"
+degrade = "ring_of_slaying_6"
 deplete = "teleport"
 weight = 0.006
 slot = "Ring"
@@ -72279,32 +72279,32 @@ examine = "An enchanted ring."
 [ring_of_slaying_6]
 clone = "ring_of_slaying_7"
 id = 13283
-degrade "ring_of_slaying_5"
+degrade = "ring_of_slaying_5"
 
 [ring_of_slaying_5]
 clone = "ring_of_slaying_7"
 id = 13284
-degrade "ring_of_slaying_4"
+degrade = "ring_of_slaying_4"
 
 [ring_of_slaying_4]
 clone = "ring_of_slaying_7"
 id = 13285
-degrade "ring_of_slaying_3"
+degrade = "ring_of_slaying_3"
 
 [ring_of_slaying_3]
 clone = "ring_of_slaying_7"
 id = 13286
-degrade "ring_of_slaying_2"
+degrade = "ring_of_slaying_2"
 
 [ring_of_slaying_2]
 clone = "ring_of_slaying_7"
 id = 13287
-degrade "ring_of_slaying_1"
+degrade = "ring_of_slaying_1"
 
 [ring_of_slaying_1]
 clone = "ring_of_slaying_7"
 id = 13288
-degrade "destroy"
+degrade = "destroy"
 
 [leaf_bladed_sword]
 id = 13290
@@ -75441,7 +75441,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 3188
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
 examine = "Gloves that give you bonus xp in melee combat skills."
@@ -75453,7 +75453,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 797
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
 examine = "A pair of gloves that gives you bonus Ranged xp."
@@ -75465,7 +75465,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 797
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
 examine = "A pair of gloves that gives you bonus Magic xp."
@@ -75477,7 +75477,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 1274
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
 examine = "A pair of gloves that gives you bonus Prayer xp."
@@ -75489,7 +75489,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 439
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
 examine = "A pair of gloves that gives you bonus Agility xp."
@@ -75501,7 +75501,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 832
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
 examine = "A pair of gloves that gives you bonus Woodcutting xp."
@@ -75513,7 +75513,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 1202
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
 examine = "A pair of gloves that gives you bonus Firemaking xp."
@@ -75525,7 +75525,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 678
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
 examine = "A pair of gloves that gives you bonus Mining xp."
@@ -75537,7 +75537,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 336
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
 examine = "A pair of gloves that gives you bonus Hunter xp."
@@ -75549,7 +75549,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 555
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
 examine = "A pair of gloves that gives you bonus Thieving xp."
@@ -75561,7 +75561,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 434
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
 examine = "A pair of gloves that gives you bonus Smithing xp."
@@ -75573,7 +75573,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 442
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
 examine = "A pair of gloves that gives you bonus Fishing xp."
@@ -75585,7 +75585,7 @@ tradeable = false
 bank_stacks = false
 weight = 0.226
 charges = 1202
-degrade "destroy"
+degrade = "destroy"
 slot = "Hands"
 destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
 examine = "A pair of gloves that gives you bonus Cooking xp."
@@ -75795,7 +75795,7 @@ id = 13884
 price = 6000000
 limit = 10
 charges = 1
-degrade "statiuss_platebody_degraded"
+degrade = "statiuss_platebody_degraded"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -75810,7 +75810,7 @@ id = 13886
 limit = 10
 tradeable = false
 charges = 6000
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -75822,7 +75822,7 @@ id = 13887
 price = 9600000
 limit = 10
 charges = 1
-degrade "vestas_chainbody_degraded"
+degrade = "vestas_chainbody_degraded"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -75838,7 +75838,7 @@ id = 13889
 limit = 10
 tradeable = false
 charges = 6000
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -75851,7 +75851,7 @@ id = 13890
 price = 5400000
 limit = 10
 charges = 1
-degrade "statiuss_platelegs_degraded"
+degrade = "statiuss_platelegs_degraded"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -75866,7 +75866,7 @@ id = 13892
 limit = 10
 tradeable = false
 charges = 6000
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -75878,7 +75878,7 @@ id = 13893
 price = 6200000
 limit = 10
 charges = 1
-degrade "vestas_plateskirt_degraded"
+degrade = "vestas_plateskirt_degraded"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -75893,7 +75893,7 @@ id = 13895
 limit = 10
 tradeable = false
 charges = 6000
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -75905,7 +75905,7 @@ id = 13896
 price = 2200000
 limit = 10
 charges = 1
-degrade "statiuss_full_helm_degraded"
+degrade = "statiuss_full_helm_degraded"
 deplete = "combat"
 slot = "Hat"
 material = "metal"
@@ -75921,7 +75921,7 @@ id = 13898
 limit = 10
 tradeable = false
 charges = 6000
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Hat"
 material = "metal"
@@ -75938,7 +75938,7 @@ special_damage_mod_1 = 1.2
 special_energy = 250
 special = "feint"
 charges = 1
-degrade "vestas_longsword_degraded"
+degrade = "vestas_longsword_degraded"
 deplete = "combat"
 weapon_type = "vestas_longsword"
 slot = "Weapon"
@@ -75957,7 +75957,7 @@ special_damage_mod_1 = 1.2
 special_energy = 250
 special = "feint"
 charges = 6000
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 weapon_type = "vestas_longsword"
 slot = "Weapon"
@@ -75974,7 +75974,7 @@ special_damage_mod_1 = 1.25
 special_energy = 350
 special = "smash"
 charges = 1
-degrade "statiuss_warhammer_degraded"
+degrade = "statiuss_warhammer_degraded"
 deplete = "combat"
 slot = "Weapon"
 examine = "This item degrades in combat, and will turn to dust."
@@ -75991,7 +75991,7 @@ special_damage_mod_1 = 1.25
 special_energy = 350
 special = "smash"
 charges = 6000
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Weapon"
 examine = "This item degrades in combat, and will turn to dust."
@@ -76004,7 +76004,7 @@ limit = 10
 special_energy = 500
 special = "spear_wall"
 charges = 1
-degrade "vestas_spear_degraded"
+degrade = "vestas_spear_degraded"
 deplete = "combat"
 slot = "Weapon"
 type = "TwoHanded"
@@ -76021,7 +76021,7 @@ special_energy = 500
 special = "spear_wall"
 tradeable = false
 charges = 6000
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Weapon"
 type = "TwoHanded"
@@ -76033,7 +76033,7 @@ id = 13908
 price = 5200000
 limit = 10
 charges = 1
-degrade "corrupt_statiuss_platebody_degraded"
+degrade = "corrupt_statiuss_platebody_degraded"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -76048,7 +76048,7 @@ id = 13910
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -76060,7 +76060,7 @@ id = 13911
 price = 7600000
 limit = 10
 charges = 1
-degrade "corrupt_vestas_chainbody_degraded"
+degrade = "corrupt_vestas_chainbody_degraded"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -76076,7 +76076,7 @@ id = 13913
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -76089,7 +76089,7 @@ id = 13914
 price = 5200000
 limit = 10
 charges = 1
-degrade "corrupt_statiuss_platelegs_degraded"
+degrade = "corrupt_statiuss_platelegs_degraded"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -76104,7 +76104,7 @@ id = 13916
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -76116,7 +76116,7 @@ id = 13917
 price = 5500000
 limit = 10
 charges = 1
-degrade "corrupt_vestas_plateskirt_degraded"
+degrade = "corrupt_vestas_plateskirt_degraded"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -76131,7 +76131,7 @@ id = 13919
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -76143,7 +76143,7 @@ id = 13920
 price = 1700000
 limit = 10
 charges = 1
-degrade "corrupt_statiuss_full_helm_degraded"
+degrade = "corrupt_statiuss_full_helm_degraded"
 deplete = "combat"
 slot = "Hat"
 material = "metal"
@@ -76159,7 +76159,7 @@ id = 13922
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Hat"
 material = "metal"
@@ -76172,7 +76172,7 @@ id = 13923
 price = 9500000
 limit = 10
 charges = 1
-degrade "corrupt_vestas_longsword_degraded"
+degrade = "corrupt_vestas_longsword_degraded"
 deplete = "combat"
 weapon_type = "vestas_longsword"
 slot = "Weapon"
@@ -76188,7 +76188,7 @@ id = 13925
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 weapon_type = "vestas_longsword"
 slot = "Weapon"
@@ -76201,7 +76201,7 @@ id = 13926
 price = 6100000
 limit = 10
 charges = 1
-degrade "corrupt_statiuss_warhammer_degraded"
+degrade = "corrupt_statiuss_warhammer_degraded"
 deplete = "combat"
 slot = "Weapon"
 examine = "This item degrades while worn, and will turn to dust."
@@ -76215,7 +76215,7 @@ id = 13928
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Weapon"
 examine = "This item degrades while worn, and will turn to dust."
@@ -76226,7 +76226,7 @@ id = 13929
 price = 1100000
 limit = 10
 charges = 1
-degrade "corrupt_vestas_spear_degraded"
+degrade = "corrupt_vestas_spear_degraded"
 deplete = "combat"
 slot = "Weapon"
 type = "TwoHanded"
@@ -76241,7 +76241,7 @@ id = 13931
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Weapon"
 type = "TwoHanded"
@@ -76253,7 +76253,7 @@ id = 13932
 price = 467200
 limit = 10
 charges = 1
-degrade "corrupt_zuriels_robe_top_degraded"
+degrade = "corrupt_zuriels_robe_top_degraded"
 deplete = "combat"
 slot = "Chest"
 examine = "This item degrades while worn, and will turn to dust."
@@ -76267,7 +76267,7 @@ id = 13934
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Chest"
 examine = "This item degrades while worn, and will turn to dust."
@@ -76278,7 +76278,7 @@ id = 13935
 price = 370700
 limit = 10
 charges = 1
-degrade "corrupt_zuriels_robe_bottom_degraded"
+degrade = "corrupt_zuriels_robe_bottom_degraded"
 deplete = "combat"
 slot = "Legs"
 examine = "This item degrades while worn, and will turn to dust."
@@ -76292,7 +76292,7 @@ id = 13937
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Legs"
 examine = "This item degrades while worn, and will turn to dust."
@@ -76303,7 +76303,7 @@ id = 13938
 price = 137400
 limit = 10
 charges = 1
-degrade "corrupt_zuriels_hood_degraded"
+degrade = "corrupt_zuriels_hood_degraded"
 deplete = "combat"
 slot = "Hat"
 type = "Hair"
@@ -76318,7 +76318,7 @@ id = 13940
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Hat"
 type = "Hair"
@@ -76330,7 +76330,7 @@ id = 13941
 price = 1400000
 limit = 10
 charges = 1
-degrade "corrupt_zuriels_staff_degraded"
+degrade = "corrupt_zuriels_staff_degraded"
 deplete = "combat"
 category = "staff"
 slot = "Weapon"
@@ -76345,7 +76345,7 @@ id = 13943
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Weapon"
 examine = "This item degrades while worn, and will turn to dust."
@@ -76356,7 +76356,7 @@ id = 13944
 price = 1000000
 limit = 10
 charges = 1
-degrade "corrupt_morrigans_leather_body_degraded"
+degrade = "corrupt_morrigans_leather_body_degraded"
 deplete = "combat"
 slot = "Chest"
 material = "leather"
@@ -76371,7 +76371,7 @@ id = 13946
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Chest"
 material = "leather"
@@ -76383,7 +76383,7 @@ id = 13947
 price = 203000
 limit = 10
 charges = 1
-degrade "corrupt_morrigans_leather_chaps_degraded"
+degrade = "corrupt_morrigans_leather_chaps_degraded"
 deplete = "combat"
 slot = "Legs"
 material = "leather"
@@ -76398,7 +76398,7 @@ id = 13949
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Legs"
 material = "leather"
@@ -76410,7 +76410,7 @@ id = 13950
 price = 121300
 limit = 10
 charges = 1
-degrade "corrupt_morrigans_coif_degraded"
+degrade = "corrupt_morrigans_coif_degraded"
 deplete = "combat"
 slot = "Hat"
 material = "leather"
@@ -76426,7 +76426,7 @@ id = 13952
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Hat"
 material = "leather"
@@ -76482,7 +76482,7 @@ id = 13958
 price = 355300
 limit = 10
 charges = 1
-degrade "corrupt_dragon_chainbody_degraded"
+degrade = "corrupt_dragon_chainbody_degraded"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -76497,7 +76497,7 @@ id = 13960
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -76509,7 +76509,7 @@ id = 13961
 price = 103800
 limit = 10
 charges = 1
-degrade "corrupt_dragon_helm_degraded"
+degrade = "corrupt_dragon_helm_degraded"
 deplete = "combat"
 slot = "Hat"
 material = "metal"
@@ -76525,7 +76525,7 @@ id = 13963
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Hat"
 material = "metal"
@@ -76538,7 +76538,7 @@ id = 13964
 price = 210600
 limit = 10
 charges = 1
-degrade "corrupt_dragon_sq_shield_degraded"
+degrade = "corrupt_dragon_sq_shield_degraded"
 deplete = "combat"
 slot = "Shield"
 material = "metal"
@@ -76553,7 +76553,7 @@ id = 13966
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Shield"
 material = "metal"
@@ -76565,7 +76565,7 @@ id = 13967
 price = 91900
 limit = 10
 charges = 1
-degrade "corrupt_dragon_plateskirt_degraded"
+degrade = "corrupt_dragon_plateskirt_degraded"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -76580,7 +76580,7 @@ id = 13969
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -76592,7 +76592,7 @@ id = 13970
 price = 120500
 limit = 10
 charges = 1
-degrade "corrupt_dragon_platelegs_degraded"
+degrade = "corrupt_dragon_platelegs_degraded"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -76607,7 +76607,7 @@ id = 13972
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -76619,7 +76619,7 @@ id = 13973
 price = 2600000
 limit = 10
 charges = 1
-degrade "corrupt_dragon_battleaxe_degraded"
+degrade = "corrupt_dragon_battleaxe_degraded"
 deplete = "combat"
 slot = "Weapon"
 examine = "This item degrades while worn, and will turn to dust."
@@ -76633,7 +76633,7 @@ id = 13975
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Weapon"
 examine = "This item degrades while worn, and will turn to dust."
@@ -76644,7 +76644,7 @@ id = 13976
 price = 66700
 limit = 10
 charges = 1
-degrade "corrupt_dragon_dagger_degraded"
+degrade = "corrupt_dragon_dagger_degraded"
 deplete = "combat"
 weapon_type = "dragon_dagger"
 slot = "Weapon"
@@ -76660,7 +76660,7 @@ id = 13978
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 weapon_type = "dragon_dagger"
 slot = "Weapon"
@@ -76674,7 +76674,7 @@ id = 13979
 price = 2899454
 limit = 10
 charges = 1
-degrade "corrupt_dragon_scimitar_degraded"
+degrade = "corrupt_dragon_scimitar_degraded"
 deplete = "combat"
 slot = "Weapon"
 material = "metal"
@@ -76689,7 +76689,7 @@ id = 13981
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Weapon"
 material = "metal"
@@ -76702,7 +76702,7 @@ id = 13982
 price = 979900
 limit = 10
 charges = 1
-degrade "corrupt_dragon_longsword_degraded"
+degrade = "corrupt_dragon_longsword_degraded"
 deplete = "combat"
 slot = "Weapon"
 material = "metal"
@@ -76717,7 +76717,7 @@ id = 13984
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Weapon"
 material = "metal"
@@ -76729,7 +76729,7 @@ id = 13985
 price = 150300
 limit = 10
 charges = 1
-degrade "corrupt_dragon_mace_degraded"
+degrade = "corrupt_dragon_mace_degraded"
 deplete = "combat"
 slot = "Weapon"
 examine = "This item degrades while worn, and will turn to dust."
@@ -76743,7 +76743,7 @@ id = 13987
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Weapon"
 examine = "This item degrades while worn, and will turn to dust."
@@ -76754,7 +76754,7 @@ id = 13988
 price = 104600
 limit = 10
 charges = 1
-degrade "corrupt_dragon_spear_degraded"
+degrade = "corrupt_dragon_spear_degraded"
 deplete = "combat"
 slot = "Weapon"
 type = "TwoHanded"
@@ -76769,7 +76769,7 @@ id = 13990
 limit = 10
 tradeable = false
 charges = 1500
-degrade "destroy"
+degrade = "destroy"
 deplete = "combat"
 slot = "Weapon"
 type = "TwoHanded"
@@ -79412,12 +79412,12 @@ kept = "Reclaim"
 [enchanted_lyre_5]
 clone = "enchanted_lyre_1"
 id = 14590
-degrade "enchanted_lyre_4"
+degrade = "enchanted_lyre_4"
 
 [enchanted_lyre_6]
 clone = "enchanted_lyre_1"
 id = 14591
-degrade "enchanted_lyre_5"
+degrade = "enchanted_lyre_5"
 
 [elite_black_platelegs_lent]
 id = 14592
@@ -99710,7 +99710,7 @@ bank_stacks = false
 aka = ["c_rapier", "rapier"]
 weight = 1.814
 charges = 30000
-degrade "chaotic_rapier_broken"
+degrade = "chaotic_rapier_broken"
 deplete = "combat"
 slot = "Weapon"
 examine = "A razor-sharp rapier."
@@ -99728,7 +99728,7 @@ tradeable = false
 bank_stacks = false
 weight = 2.721
 charges = 30000
-degrade "chaotic_longsword_broken"
+degrade = "chaotic_longsword_broken"
 deplete = "combat"
 aka = ["cls"]
 slot = "Weapon"
@@ -99750,7 +99750,7 @@ bank_stacks = false
 weight = 4.989
 aka = ["cmaul", "c_maul"]
 charges = 30000
-degrade "chaotic_maul_broken"
+degrade = "chaotic_maul_broken"
 deplete = "combat"
 weapon_type = "chaotic_maul"
 slot = "Weapon"
@@ -99772,7 +99772,7 @@ bank_stacks = false
 weight = 1.814
 aka = ["cstaff", "c_staff"]
 charges = 30000
-degrade "chaotic_staff_broken"
+degrade = "chaotic_staff_broken"
 deplete = "combat"
 category = "staff"
 slot = "Weapon"
@@ -99793,7 +99793,7 @@ weight = 1.814
 attack_range = 7
 aka = ["ccb"]
 charges = 30000
-degrade "chaotic_crossbow_broken"
+degrade = "chaotic_crossbow_broken"
 deplete = "combat"
 slot = "Weapon"
 examine = "A small crossbow, only effective at short distance."
@@ -99812,7 +99812,7 @@ bank_stacks = false
 weight = 5.443
 aka = ["chaotic_kite", "chaotic_shield", "dung_shield_melee"]
 charges = 30000
-degrade "chaotic_kiteshield_broken"
+degrade = "chaotic_kiteshield_broken"
 deplete = "combat"
 slot = "Shield"
 material = "metal"
@@ -99833,7 +99833,7 @@ bank_stacks = false
 weight = 5.443
 aka = ["eagle_eye_kite", "eagle_eye_shield", "eagel_eye_kiteshield", "eagel_eye_kite", "eagel_eye_shield", "dung_shield_range", "dung_shield_ranged"]
 charges = 30000
-degrade "eagle_eye_kiteshield_broken"
+degrade = "eagle_eye_kiteshield_broken"
 deplete = "combat"
 slot = "Shield"
 material = "metal"
@@ -99853,7 +99853,7 @@ tradeable = false
 bank_stacks = false
 weight = 5.443
 charges = 30000
-degrade "farseer_kiteshield_broken"
+degrade = "farseer_kiteshield_broken"
 deplete = "combat"
 aka = ["farsear_kiteshield", "farseer_kite", "farseer_shield", "dung_shield_magic", "dung_shield_mage"]
 slot = "Shield"
@@ -99874,7 +99874,7 @@ tradeable = false
 bank_stacks = false
 weight = 1.814
 charges = 30000
-degrade "gravite_rapier_broken"
+degrade = "gravite_rapier_broken"
 deplete = "combat"
 slot = "Weapon"
 examine = "A razor-sharp rapier."
@@ -99892,7 +99892,7 @@ tradeable = false
 bank_stacks = false
 weight = 2.721
 charges = 30000
-degrade "gravite_longsword_broken"
+degrade = "gravite_longsword_broken"
 deplete = "combat"
 slot = "Weapon"
 material = "metal"
@@ -99912,7 +99912,7 @@ tradeable = false
 bank_stacks = false
 weight = 3.628
 charges = 30000
-degrade "gravite_2h_sword_broken"
+degrade = "gravite_2h_sword_broken"
 deplete = "combat"
 slot = "Weapon"
 material = "metal"
@@ -99934,7 +99934,7 @@ tradeable = false
 bank_stacks = false
 weight = 1.814
 charges = 30000
-degrade "gravite_staff_broken"
+degrade = "gravite_staff_broken"
 deplete = "combat"
 category = "staff"
 slot = "Weapon"
@@ -99954,7 +99954,7 @@ bank_stacks = false
 attack_range = 7
 weight = 1.814
 charges = 30000
-degrade "gravite_shortbow_broken"
+degrade = "gravite_shortbow_broken"
 deplete = "combat"
 slot = "Weapon"
 type = "TwoHanded"
@@ -107629,7 +107629,7 @@ limit = 2
 bank_stacks = false
 weight = 2.721
 charges = 1
-degrade "torva_full_helm_used"
+degrade = "torva_full_helm_used"
 deplete = "combat"
 aka = ["torva_helm"]
 slot = "Hat"
@@ -107646,7 +107646,7 @@ limit = 2
 tradeable = false
 weight = 2.721
 charges = 60000
-degrade "torva_full_helm_broken"
+degrade = "torva_full_helm_broken"
 deplete = "combat"
 slot = "Hat"
 material = "metal"
@@ -107669,7 +107669,7 @@ limit = 2
 bank_stacks = false
 weight = 9.979
 charges = 1
-degrade "torva_platebody_used"
+degrade = "torva_platebody_used"
 deplete = "combat"
 aka = ["torva_plate"]
 slot = "Chest"
@@ -107685,7 +107685,7 @@ limit = 2
 tradeable = false
 weight = 9.979
 charges = 60000
-degrade "torva_platebody_broken"
+degrade = "torva_platebody_broken"
 deplete = "combat"
 slot = "Chest"
 material = "metal"
@@ -107706,7 +107706,7 @@ limit = 2
 bank_stacks = false
 weight = 9.071
 charges = 1
-degrade "torva_platelegs_used"
+degrade = "torva_platelegs_used"
 deplete = "combat"
 aka = ["torva_legs"]
 slot = "Legs"
@@ -107722,7 +107722,7 @@ limit = 2
 tradeable = false
 weight = 9.071
 charges = 60000
-degrade "torva_platelegs_broken"
+degrade = "torva_platelegs_broken"
 deplete = "combat"
 slot = "Legs"
 material = "metal"
@@ -107743,7 +107743,7 @@ limit = 2
 bank_stacks = false
 weight = 2.721
 charges = 1
-degrade "pernix_cowl_used"
+degrade = "pernix_cowl_used"
 deplete = "combat"
 aka = ["pernix_helm", "pernix_coif"]
 slot = "Hat"
@@ -107760,7 +107760,7 @@ limit = 2
 tradeable = false
 weight = 2.721
 charges = 60000
-degrade "pernix_cowl_broken"
+degrade = "pernix_cowl_broken"
 deplete = "combat"
 slot = "Hat"
 material = "leather"
@@ -107783,7 +107783,7 @@ limit = 2
 bank_stacks = false
 weight = 9.979
 charges = 1
-degrade "pernix_body_used"
+degrade = "pernix_body_used"
 deplete = "combat"
 aka = ["pernix_top"]
 slot = "Chest"
@@ -107799,7 +107799,7 @@ limit = 2
 tradeable = false
 weight = 9.979
 charges = 60000
-degrade "pernix_body_broken"
+degrade = "pernix_body_broken"
 deplete = "combat"
 slot = "Chest"
 material = "leather"
@@ -107820,7 +107820,7 @@ limit = 2
 bank_stacks = false
 weight = 9.071
 charges = 1
-degrade "pernix_chaps_used"
+degrade = "pernix_chaps_used"
 deplete = "combat"
 aka = ["pernix_legs"]
 slot = "Legs"
@@ -107836,7 +107836,7 @@ limit = 2
 tradeable = false
 weight = 9.071
 charges = 60000
-degrade "pernix_chaps_broken"
+degrade = "pernix_chaps_broken"
 deplete = "combat"
 slot = "Legs"
 material = "leather"
@@ -107857,7 +107857,7 @@ limit = 2
 bank_stacks = false
 weight = 2.721
 charges = 1
-degrade "virtus_mask_used"
+degrade = "virtus_mask_used"
 deplete = "combat"
 aka = ["virtus_hood", "virtus_helm"]
 slot = "Hat"
@@ -107873,7 +107873,7 @@ limit = 2
 tradeable = false
 weight = 2.721
 charges = 60000
-degrade "virtus_mask_broken"
+degrade = "virtus_mask_broken"
 deplete = "combat"
 slot = "Hat"
 type = "FullFace"
@@ -107894,7 +107894,7 @@ limit = 2
 bank_stacks = false
 weight = 9.979
 charges = 1
-degrade "virtus_robe_top_used"
+degrade = "virtus_robe_top_used"
 deplete = "combat"
 aka = ["virtus_top"]
 slot = "Chest"
@@ -107909,7 +107909,7 @@ limit = 2
 tradeable = false
 weight = 9.979
 charges = 60000
-degrade "virtus_robe_top_broken"
+degrade = "virtus_robe_top_broken"
 deplete = "combat"
 slot = "Chest"
 examine = "An ancient mage's robe top."
@@ -107928,7 +107928,7 @@ limit = 2
 bank_stacks = false
 weight = 9.071
 charges = 1
-degrade "virtus_robe_legs_used"
+degrade = "virtus_robe_legs_used"
 deplete = "combat"
 aka = ["virtus_legs", "virtus_robes"]
 slot = "Legs"
@@ -107943,7 +107943,7 @@ limit = 2
 tradeable = false
 weight = 9.071
 charges = 60000
-degrade "virtus_robe_top_broken"
+degrade = "virtus_robe_top_broken"
 deplete = "combat"
 slot = "Legs"
 examine = "An ancient mage's robe legs."
@@ -107963,7 +107963,7 @@ bank_stacks = false
 attack_range = 7
 weight = 1.814
 charges = 1
-degrade "zaryte_bow_used"
+degrade = "zaryte_bow_used"
 deplete = "combat"
 aka = ["zbow", "z_bow"]
 slot = "Weapon"
@@ -107979,7 +107979,7 @@ limit = 2
 tradeable = false
 weight = 1.814
 charges = 60000
-degrade "zaryte_bow_broken"
+degrade = "zaryte_bow_broken"
 deplete = "combat"
 slot = "Weapon"
 type = "TwoHanded"
