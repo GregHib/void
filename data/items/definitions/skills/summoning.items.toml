@@ -2178,3 +2178,1364 @@ npc2 = 7026
 food = "Raw fish or Ground fishing bait as a baby. Fishing bait as adult."
 examine = "A most unlikely creature."
 skill_req = { summoning = 10, hunter = 48 }
+
+[adamant_full_helm_e]
+id = 12658
+limit = 100
+tradeable = false
+weight = 3.175
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A full-face helmet."
+kept = "Reclaim"
+
+[adamant_full_helm_charged]
+id = 12659
+limit = 100
+tradeable = false
+bank_stacks = false
+weight = 3.175
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A full-face helmet."
+kept = "Reclaim"
+
+[snakeskin_bandana_e]
+id = 12660
+limit = 100
+tradeable = false
+weight = 0.907
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "Lightweight head protection."
+kept = "Reclaim"
+
+[snakeskin_bandana_charged]
+id = 12661
+limit = 100
+tradeable = false
+bank_stacks = false
+weight = 0.907
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "Lightweight head protection."
+kept = "Reclaim"
+
+[splitbark_helm_e]
+id = 12662
+limit = 100
+tradeable = false
+weight = 0.907
+slot = "Hat"
+type = "Hair"
+material = "wood"
+examine = "A wooden helmet."
+kept = "Reclaim"
+
+[splitbark_helm_charged]
+id = 12663
+limit = 100
+tradeable = false
+bank_stacks = false
+weight = 0.907
+slot = "Hat"
+type = "Hair"
+material = "wood"
+examine = "A wooden helmet."
+kept = "Reclaim"
+
+[rune_full_helm_e]
+id = 12664
+limit = 100
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A full-face helmet."
+kept = "Reclaim"
+
+[rune_full_helm_charged]
+id = 12665
+limit = 100
+tradeable = false
+bank_stacks = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A full-face helmet."
+kept = "Reclaim"
+
+[dragon_helm_e]
+id = 12666
+limit = 100
+tradeable = false
+weight = 1.36
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "Makes the wearer pretty intimidating."
+kept = "Reclaim"
+
+[dragon_helm_charged]
+id = 12667
+limit = 100
+tradeable = false
+bank_stacks = false
+weight = 1.36
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "Makes the wearer pretty intimidating."
+kept = "Reclaim"
+
+[lunar_helm_e]
+id = 12668
+tradeable = false
+weight = 0.907
+slot = "Hat"
+type = "FullFace"
+destroy = "The Oneiromancer might be able to help you get another."
+examine = "A mystical helmet."
+kept = "Reclaim"
+
+[lunar_helm_charged]
+id = 12669
+tradeable = false
+bank_stacks = false
+weight = 0.907
+slot = "Hat"
+type = "FullFace"
+destroy = "The Oneiromancer might be able to help you get another."
+examine = "A mystical helmet."
+kept = "Reclaim"
+
+[armadyl_helmet_e]
+id = 12670
+limit = 1
+tradeable = false
+weight = 0.5
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A helmet of great craftsmanship."
+kept = "Reclaim"
+
+[armadyl_helmet_charged]
+id = 12671
+limit = 1
+tradeable = false
+bank_stacks = false
+weight = 0.5
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A helmet of great craftsmanship."
+kept = "Reclaim"
+
+[archer_helm_e]
+id = 12672
+limit = 100
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This helmet is worn by archers."
+kept = "Reclaim"
+
+[archer_helm_charged]
+id = 12673
+limit = 100
+tradeable = false
+bank_stacks = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This helmet is worn by archers."
+kept = "Reclaim"
+
+[berserker_helm_e]
+id = 12674
+limit = 100
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This helmet is worn by berserkers."
+kept = "Reclaim"
+
+[berserker_helm_charged]
+id = 12675
+limit = 100
+tradeable = false
+bank_stacks = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This helmet is worn by berserkers."
+kept = "Reclaim"
+
+[warrior_helm_e]
+id = 12676
+limit = 100
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This helmet is worn by warriors."
+kept = "Reclaim"
+
+[warrior_helm_charged]
+id = 12677
+limit = 100
+tradeable = false
+bank_stacks = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This helmet is worn by warriors."
+kept = "Reclaim"
+
+[farseer_helm_e]
+id = 12678
+limit = 100
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This helmet is worn by farseers."
+kept = "Reclaim"
+
+[farseer_helm_charged]
+id = 12679
+limit = 100
+tradeable = false
+bank_stacks = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This helmet is worn by farseers."
+kept = "Reclaim"
+
+[helm_of_neitiznot_e]
+id = 12680
+limit = 100
+tradeable = false
+weight = 2.267
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A gift from Neitiznot's Burgher."
+kept = "Reclaim"
+
+[helm_of_neitiznot_charged]
+id = 12681
+limit = 100
+tradeable = false
+bank_stacks = false
+weight = 2.267
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A gift from Neitiznot's Burgher."
+kept = "Reclaim"
+
+[baby_monkey_brown_and_beige]
+id = 12682
+npc = 7210
+npc2 = 7228
+food = "Bananas"
+examine = "It's a tiny, cheeky monkey."
+skill_req = { summoning = 95, hunter = 27 }
+
+[monkey_brown_and_beige]
+id = 12683
+npc = 7211
+npc2 = 9224
+food = "Bananas"
+examine = "It's a monkey in your backpack. As you look it pokes you."
+skill_req = { summoning = 95, hunter = 27 }
+
+[baby_monkey_black_and_brown]
+id = 12684
+npc = 7212
+npc2 = 7229
+food = "Bananas"
+examine = "It's a tiny, cheeky monkey."
+skill_req = { summoning = 95, hunter = 27 }
+
+[monkey_black_and_brown]
+id = 12685
+npc = 7213
+npc2 = 9225
+food = "Bananas"
+examine = "It's a monkey in your backpack. As you look it pokes you."
+skill_req = { summoning = 95, hunter = 27 }
+
+[baby_monkey_beige]
+id = 12686
+npc = 7214
+npc2 = 7230
+food = "Bananas"
+examine = "It's a tiny, cheeky monkey."
+skill_req = { summoning = 95, hunter = 27 }
+
+[monkey_beige]
+id = 12687
+npc = 7215
+npc2 = 9226
+food = "Bananas"
+examine = "It's a monkey in your backpack. As you look it pokes you."
+skill_req = { summoning = 95, hunter = 27 }
+
+[baby_monkey_tan_and_beige]
+id = 12688
+npc = 7216
+npc2 = 7231
+food = "Bananas"
+examine = "It's a tiny, cheeky monkey."
+skill_req = { summoning = 95, hunter = 27 }
+
+[monkey_tan_and_beige]
+id = 12689
+npc = 7217
+npc2 = 9227
+food = "Bananas"
+examine = "It's a monkey in your backpack. As you look it pokes you."
+skill_req = { summoning = 95, hunter = 27 }
+
+[baby_monkey_grey_and_white]
+id = 12690
+npc = 7218
+npc2 = 7232
+food = "Bananas"
+examine = "It's a tiny, cheeky monkey."
+skill_req = { summoning = 95, hunter = 27 }
+
+[monkey_grey_and_white]
+id = 12691
+npc = 7219
+npc2 = 9228
+food = "Bananas"
+examine = "It's a monkey in your backpack. As you look it pokes you."
+skill_req = { summoning = 95, hunter = 27 }
+
+[baby_monkey_blue_and_grey]
+id = 12692
+npc = 7220
+npc2 = 7233
+food = "Bananas"
+examine = "It's a tiny, cheeky monkey."
+skill_req = { summoning = 95, hunter = 27 }
+
+[monkey_blue_and_grey]
+id = 12693
+npc = 7221
+npc2 = 9229
+food = "Bananas"
+examine = "It's a monkey in your backpack. As you look it pokes you."
+skill_req = { summoning = 95, hunter = 27 }
+
+[baby_monkey_black_and_white]
+id = 12694
+npc = 7222
+npc2 = 7234
+food = "Bananas"
+examine = "It's a tiny, cheeky monkey."
+skill_req = { summoning = 95, hunter = 27 }
+
+[monkey_black_and_white]
+id = 12695
+npc = 7223
+npc2 = 9230
+food = "Bananas"
+examine = "It's a monkey in your backpack. As you look it pokes you."
+skill_req = { summoning = 95, hunter = 27 }
+
+[baby_monkey_orange]
+id = 12696
+npc = 7224
+npc2 = 7235
+food = "Bananas"
+examine = "It's a tiny, cheeky monkey."
+skill_req = { summoning = 95, hunter = 27 }
+
+[monkey_orange]
+id = 12697
+npc = 7225
+npc2 = 9231
+food = "Bananas"
+examine = "It's a monkey in your backpack. As you look it pokes you."
+skill_req = { summoning = 95, hunter = 27 }
+
+[baby_monkey_blue_and_white]
+id = 12698
+npc = 7226
+npc2 = 7236
+food = "Bananas"
+examine = "It's a tiny, cheeky monkey."
+skill_req = { summoning = 95, hunter = 27 }
+
+[monkey_blue_and_white]
+id = 12699
+npc = 7227
+npc2 = 9232
+food = "Bananas"
+examine = "It's a monkey in your backpack. As you look it pokes you."
+skill_req = { summoning = 95, hunter = 27 }
+
+[terrier_puppy_3]
+id = 12700
+npc = 7237
+food = "Raw meat, bones"
+examine = "It's lively and energetic."
+skill_req = { summoning = 4 }
+
+[terrier_2]
+id = 12701
+npc = 7238
+npc2 = 9191
+food = "Raw meat, bones"
+examine = "A hyperactive little pup."
+skill_req = { summoning = 4 }
+
+[terrier_puppy_4]
+id = 12702
+npc = 7239
+food = "Raw meat, bones"
+examine = "It's lively and energetic."
+skill_req = { summoning = 4 }
+
+[terrier_3]
+id = 12703
+npc = 7240
+npc2 = 9192
+food = "Raw meat, bones"
+examine = "A hyperactive little pup."
+skill_req = { summoning = 4 }
+
+[greyhound_puppy_grey]
+id = 12704
+npc = 7241
+food = "Raw Beef"
+examine = "This is one fast little pooch."
+skill_req = { summoning = 4 }
+
+[greyhound_grey]
+id = 12705
+npc = 7242
+npc2 = 9194
+food = "Raw Beef"
+examine = "An aerodynamic doggy."
+skill_req = { summoning = 4 }
+
+[greyhound_puppy_dark]
+id = 12706
+npc = 7243
+food = "Raw Beef"
+examine = "This is one fast little pooch."
+skill_req = { summoning = 4 }
+
+[greyhound_dark]
+id = 12707
+npc = 7244
+npc2 = 9195
+food = "Raw Beef"
+examine = "An aerodynamic doggy."
+skill_req = { summoning = 4 }
+
+[labrador_puppy_black]
+id = 12708
+npc = 7245
+food = "Raw beef"
+examine = "Soft but strong... and cute."
+skill_req = { summoning = 4 }
+
+[labrador_black]
+id = 12709
+npc = 7246
+npc2 = 9197
+food = "Raw meat"
+examine = "My most faithful friend."
+skill_req = { summoning = 4 }
+
+[labrador_puppy_grey]
+id = 12710
+npc = 7247
+food = "Raw beef"
+examine = "Soft but strong... and cute."
+skill_req = { summoning = 4 }
+
+[labrador_grey]
+id = 12711
+npc = 7248
+npc2 = 9198
+food = "Raw meat"
+examine = "My most faithful friend."
+skill_req = { summoning = 4 }
+
+[dalmatian_puppy_blue]
+id = 12712
+npc = 7249
+food = "Raw meat"
+examine = "Now, if only I could find another hundred..."
+skill_req = { summoning = 4 }
+
+[dalmatian_blue]
+id = 12713
+npc = 7250
+npc2 = 9200
+food = "Raw meat"
+examine = "A purebred doggy."
+skill_req = { summoning = 4 }
+
+[dalmatian_puppy_red]
+id = 12714
+npc = 7251
+food = "Raw meat"
+examine = "Now, if only I could find another hundred..."
+skill_req = { summoning = 4 }
+
+[dalmatian_red]
+id = 12715
+npc = 7252
+npc2 = 9201
+food = "Raw meat"
+examine = "A purebred doggy."
+skill_req = { summoning = 4 }
+
+[sheepdog_puppy_grey]
+id = 12716
+npc = 7253
+food = "Raw meat"
+examine = "This little puppy is very quiet."
+skill_req = { summoning = 4 }
+
+[sheepdog_grey]
+id = 12717
+npc = 7254
+npc2 = 9203
+food = "Raw meat"
+examine = "Come by! Come by!"
+skill_req = { summoning = 4 }
+
+[sheepdog_puppy_yellow]
+id = 12718
+npc = 7255
+food = "Raw meat"
+examine = "This little puppy is very quiet."
+skill_req = { summoning = 4 }
+
+[sheepdog_yellow]
+id = 12719
+npc = 7256
+npc2 = 9204
+food = "Raw meat"
+examine = "Come by! Come by!"
+skill_req = { summoning = 4 }
+
+[bulldog_puppy_grey]
+id = 12720
+npc = 7260
+food = "Raw meat"
+examine = "One proud little puppy."
+skill_req = { summoning = 4 }
+
+[bulldog_navy]
+id = 12721
+npc = 7257
+npc2 = 9206
+food = "Raw meat"
+examine = "Looks like it's chewing a wasp."
+skill_req = { summoning = 4 }
+
+[bulldog_puppy_navy]
+id = 12722
+npc = 7259
+food = "Raw meat"
+examine = "One proud little puppy."
+skill_req = { summoning = 4 }
+
+[bulldog_grey]
+id = 12723
+npc = 7258
+npc2 = 9207
+food = "Raw meat"
+examine = "Looks like it's chewing a wasp."
+skill_req = { summoning = 4 }
+
+[raven_chick_blue_crest]
+id = 12724
+npc = 7261
+
+[raven_blue_crest]
+id = 12725
+npc = 7262
+npc2 = 9240
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "An adult raven."
+
+[raven_chick_black]
+id = 12726
+npc = 7263
+
+[raven_black]
+id = 12727
+npc = 7264
+npc2 = 9241
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "An adult raven."
+
+[raven_chick_black_crest]
+id = 12728
+npc = 7265
+
+[raven_black_crest]
+id = 12729
+npc = 7266
+npc2 = 9242
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "An adult raven."
+
+[raven_chick_red]
+id = 12730
+npc = 7267
+
+[raven_red]
+id = 12731
+npc = 7268
+npc2 = 9243
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "An adult raven."
+
+[raven_chick_red_crest]
+id = 12732
+npc = 72694
+
+[raven_red_crest]
+id = 12733
+npc = 7270
+npc2 = 9244
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "An adult raven."
+
+[baby_raccoon_brown]
+id = 12734
+npc = 7271
+npc2 = 7275
+food = "Raw meat and fish"
+examine = "A stripy little baby raccoon."
+skill_req = { summoning = 80, hunter = 27 }
+
+[raccoon_brown]
+id = 12735
+npc = 7272
+npc2 = 9237
+food = "Raw meat, raw fish"
+examine = "He can run with us."
+skill_req = { summoning = 80, hunter = 27 }
+
+[baby_raccoon_red]
+id = 12736
+npc = 7273
+npc2 = 7276
+food = "Raw meat and fish"
+examine = "A stripy little baby raccoon."
+skill_req = { summoning = 80, hunter = 27 }
+
+[raccoon_red]
+id = 12737
+npc = 7274
+npc2 = 9238
+food = "Raw meat, raw fish"
+examine = "He can run with us."
+skill_req = { summoning = 80, hunter = 27 }
+
+[baby_gecko_orange]
+id = 12738
+npc = 7277
+npc2 = 7285
+food = "Flies and Beetle bits"
+examine = "It's so adorably tiny!"
+skill_req = { summoning = 10, hunter = 27 }
+
+[baby_gecko_green]
+id = 12739
+npc = 7278
+npc2 = 7286
+food = "Flies and Beetle bits"
+examine = "It's so adorably tiny!"
+skill_req = { summoning = 10, hunter = 27 }
+
+[baby_gecko_red]
+id = 12740
+npc = 7279
+npc2 = 7287
+food = "Flies and Beetle bits"
+examine = "It's so adorably tiny!"
+skill_req = { summoning = 10, hunter = 27 }
+
+[baby_gecko_blue]
+id = 12741
+npc = 7280
+npc2 = 7288
+food = "Flies and Beetle bits"
+examine = "It's so adorably tiny!"
+skill_req = { summoning = 10, hunter = 27 }
+
+[gecko_orange]
+id = 12742
+npc = 7281
+npc2 = 9214
+npc3 = 7289
+food = "Flies and Beetle bits"
+examine = "How cute!"
+skill_req = { summoning = 10, hunter = 27 }
+
+[gecko_green]
+id = 12743
+npc = 7282
+npc2 = 9215
+npc3 = 7290
+food = "Flies and Beetle bits"
+examine = "How cute!"
+skill_req = { summoning = 10, hunter = 27 }
+
+[gecko_red]
+id = 12744
+npc = 7283
+npc2 = 9216
+food = "Flies and Beetle bits"
+examine = "How cute!"
+skill_req = { summoning = 10, hunter = 27 }
+
+[gecko_blue]
+id = 12745
+npc = 7284
+npc2 = 9217
+npc3 = 7292
+food = "Flies and Beetle bits"
+examine = "How cute!"
+skill_req = { summoning = 10, hunter = 27 }
+
+[baby_giant_crab_grey]
+id = 12746
+npc = 7295
+food = "Raw fish"
+examine = "Little Nipper"
+skill_req = { summoning = 40, slayer = 32 }
+
+[giant_crab_beige]
+id = 12747
+npc = 7294
+npc2 = 9219
+food = "Raw fish"
+examine = "Bigger Nipper."
+skill_req = { summoning = 40, slayer = 32 }
+
+[baby_giant_crab_green]
+id = 12748
+npc = 7297
+food = "Raw fish"
+examine = "Little Nipper"
+skill_req = { summoning = 40, slayer = 32 }
+
+[giant_crab_grey]
+id = 12749
+npc = 7296
+npc2 = 9220
+food = "Raw fish"
+examine = "Bigger Nipper."
+skill_req = { summoning = 40, slayer = 32 }
+
+[baby_giant_crab_yellow]
+id = 12750
+npc = 7299
+food = "Raw fish"
+examine = "Little Nipper"
+skill_req = { summoning = 40, slayer = 32 }
+
+[giant_crab_green]
+id = 12751
+npc = 7298
+npc2 = 9221
+food = "Raw fish"
+examine = "Bigger Nipper."
+skill_req = { summoning = 40, slayer = 32 }
+
+[baby_giant_crab_6]
+id = 12752
+food = "Raw fish"
+examine = "Little Nipper"
+skill_req = { summoning = 40, slayer = 32 }
+
+[giant_crab_yellow]
+id = 12753
+npc = 7300
+npc2 = 9222
+food = "Raw fish"
+examine = "Bigger Nipper."
+skill_req = { summoning = 40, slayer = 32 }
+
+[baby_squirrel_2]
+clone = "baby_squirrel"
+id = 12754
+
+[squirrel_white]
+id = 12755
+npc = 7304
+npc2 = 9252
+food = "Nuts"
+examine = "An experienced nut-thief."
+skill_req = { summoning = 60, hunter = 29 }
+
+[baby_squirrel_3]
+clone = "baby_squirrel"
+id = 12756
+
+[squirrel_dark_grey]
+id = 12757
+npc = 7306
+npc2 = 9253
+food = "Nuts"
+examine = "An experienced nut-thief."
+skill_req = { summoning = 60, hunter = 29 }
+
+[baby_squirrel_4]
+clone = "baby_squirrel"
+id = 12758
+
+[squirrel_dark_brown]
+id = 12759
+npc = 7308
+npc2 = 9254
+food = "Nuts"
+examine = "An experienced nut-thief."
+skill_req = { summoning = 60, hunter = 29 }
+
+[baby_squirrel_5]
+clone = "baby_squirrel"
+id = 12760
+
+[squirrel_6]
+id = 12761
+food = "Nuts"
+examine = "An experienced nut-thief."
+skill_req = { summoning = 60, hunter = 29 }
+
+[penguin_brown]
+id = 12763
+npc = 7314
+npc2 = 9234
+npc3 = 7315
+food = "Raw fish, any type"
+examine = "Emperor of all he surveys."
+skill_req = { summoning = 30 }
+
+[penguin_blue]
+id = 12765
+npc = 7317
+npc2 = 9235
+npc3 = 7318
+food = "Raw fish, any type"
+examine = "Emperor of all he surveys."
+skill_req = { summoning = 30 }
+
+[vulture_grey_striped]
+id = 12767
+npc = 7320
+npc2 = 9257
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "An adult vulture."
+skill_req = { summoning = 85 }
+
+[vulture_brown]
+id = 12769
+npc = 7322
+npc2 = 9258
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "An adult vulture."
+skill_req = { summoning = 85 }
+
+[vulture_brown_striped]
+id = 12771
+npc = 7324
+npc2 = 9259
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "An adult vulture."
+skill_req = { summoning = 85 }
+
+[vulture_pink]
+id = 12773
+npc = 7326
+npc2 = 9260
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "An adult vulture."
+skill_req = { summoning = 85 }
+
+[vulture_pink_striped]
+id = 12775
+npc = 7328
+npc2 = 9261
+food = "Ground fishing bait"
+food2 = "Fishing bait"
+examine = "An adult vulture."
+skill_req = { summoning = 85 }
+
+[swamp_titan_pouch]
+id = 12776
+price = 2614
+limit = 5000
+weight = 0.02
+examine = "I can summon a swamp titan familiar with this."
+
+[swamp_titan_pouch_noted]
+id = 12777
+
+[spirit_mosquito_pouch]
+id = 12778
+price = 154
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit mosquito familiar with this."
+
+[spirit_mosquito_pouch_noted]
+id = 12779
+
+[void_spinner_pouch]
+id = 12780
+price = 15900
+limit = 5000
+weight = 0.02
+examine = "I can summon a void spinner familiar with this."
+
+[void_spinner_pouch_noted]
+id = 12781
+
+[forge_regent_pouch]
+id = 12782
+price = 2458
+limit = 5000
+weight = 0.02
+examine = "I can summon a forge regent familiar with this."
+
+[forge_regent_pouch_noted]
+id = 12783
+
+[spirit_larupia_pouch]
+id = 12784
+price = 2810
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit larupia familiar with this."
+
+[spirit_larupia_pouch_noted]
+id = 12785
+
+[geyser_titan_pouch]
+id = 12786
+price = 3878
+limit = 5000
+weight = 0.02
+examine = "I can summon a geyser titan familiar with this."
+
+[geyser_titan_pouch_noted]
+id = 12787
+
+[lava_titan_pouch]
+id = 12788
+price = 3793
+limit = 5000
+weight = 0.02
+examine = "I can summon a lava titan familiar with this."
+
+[lava_titan_pouch_noted]
+id = 12789
+
+[steel_titan_pouch]
+id = 12790
+price = 4633
+limit = 5000
+weight = 0.02
+examine = "I can summon a steel titan familiar with this."
+
+[steel_titan_pouch_noted]
+id = 12791
+
+[obsidian_golem_pouch]
+id = 12792
+price = 3379
+limit = 5000
+weight = 0.02
+examine = "I can summon an obsidian golem familiar with this."
+
+[obsidian_golem_pouch_noted]
+id = 12793
+
+[talon_beast_pouch]
+id = 12794
+price = 3016
+limit = 5000
+weight = 0.02
+examine = "I can summon a talon beast familiar with this."
+
+[talon_beast_pouch_noted]
+id = 12795
+
+[abyssal_titan_pouch]
+id = 12796
+price = 3907
+limit = 5000
+weight = 0.02
+examine = "I can summon an abyssal titan familiar with this."
+
+[abyssal_titan_pouch_noted]
+id = 12797
+
+[void_torcher_pouch]
+id = 12798
+price = 17900
+limit = 5000
+weight = 0.02
+examine = "I can summon a void torcher familiar with this."
+
+[void_torcher_pouch_noted]
+id = 12799
+
+[giant_chinchompa_pouch]
+id = 12800
+price = 1463
+limit = 5000
+weight = 0.02
+examine = "I can summon a giant chinchompa familiar with this."
+
+[giant_chinchompa_pouch_noted]
+id = 12801
+
+[fire_titan_pouch]
+id = 12802
+price = 3468
+limit = 5000
+weight = 0.02
+examine = "I can summon a fire titan familiar with this."
+
+[fire_titan_pouch_noted]
+id = 12803
+
+[moss_titan_pouch]
+id = 12804
+price = 3549
+limit = 5000
+weight = 0.02
+examine = "I can summon a moss titan familiar with this."
+
+[moss_titan_pouch_noted]
+id = 12805
+
+[ice_titan_pouch]
+id = 12806
+price = 6376
+limit = 5000
+weight = 0.02
+examine = "I can summon an ice titan familiar with this."
+
+[ice_titan_pouch_noted]
+id = 12807
+
+[spirit_tz_kih_pouch]
+id = 12808
+price = 1114
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit Tz-Kih familiar with this."
+
+[spirit_tz_kih_pouch_noted]
+id = 12809
+
+[spirit_graahk_pouch]
+id = 12810
+price = 13200
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit graahk familiar with this."
+
+[spirit_graahk_pouch_noted]
+id = 12811
+
+[spirit_kyatt_pouch]
+id = 12812
+price = 16900
+limit = 5000
+weight = 0.02
+examine = "I can summon a spirit kyatt familiar with this."
+
+[spirit_kyatt_pouch_noted]
+id = 12813
+
+[void_shifter_pouch]
+id = 12814
+price = 18000
+limit = 5000
+weight = 0.02
+examine = "I can summon a void shifter familiar with this."
+
+[void_shifter_pouch_noted]
+id = 12815
+
+[pyrelord_pouch]
+id = 12816
+price = 1943
+limit = 5000
+weight = 0.02
+examine = "I can summon a pyrelord familiar with this."
+
+[pyrelord_pouch_noted]
+id = 12817
+
+[void_ravager_pouch]
+id = 12818
+price = 11400
+limit = 5000
+weight = 0.02
+examine = "I can summon a void ravager familiar with this."
+
+[void_ravager_pouch_noted]
+id = 12819
+
+[ravenous_locust_pouch]
+id = 12820
+price = 1390
+limit = 5000
+weight = 0.02
+examine = "I can summon a ravenous locust familiar with this."
+
+[ravenous_locust_pouch_noted]
+id = 12821
+
+[iron_titan_pouch]
+id = 12822
+price = 3469
+limit = 5000
+weight = 0.02
+examine = "I can summon an iron titan familiar with this."
+
+[iron_titan_pouch_noted]
+id = 12823
+
+[titans_constitution_scroll]
+id = 12824
+price = 322
+limit = 5000
+examine = "A scroll for an elemental titan familiar."
+
+[steel_of_legends_scroll]
+id = 12825
+price = 533
+limit = 5000
+examine = "A scroll for a steel titan familiar."
+
+[volcanic_strength_scroll]
+id = 12826
+price = 265
+limit = 5000
+examine = "A scroll for an obsidian golem familiar."
+
+[essence_shipment_scroll]
+id = 12827
+price = 298
+limit = 5000
+examine = "A scroll for an abyssal titan familiar."
+
+[iron_within_scroll]
+id = 12828
+price = 366
+limit = 5000
+examine = "A scroll for an iron titan familiar."
+
+[immense_heat_scroll]
+id = 12829
+price = 141
+limit = 5000
+examine = "A scroll for a pyrelord familiar."
+
+[famine_scroll]
+id = 12830
+price = 135
+limit = 5000
+examine = "A scroll for a ravenous locust familiar."
+
+[deadly_claw_scroll]
+id = 12831
+price = 267
+limit = 5000
+examine = "A scroll for a talon beast familiar."
+
+[swamp_plague_scroll]
+id = 12832
+price = 187
+limit = 5000
+examine = "A scroll for a swamp titan familiar."
+
+[boil_scroll]
+id = 12833
+price = 302
+limit = 5000
+examine = "A scroll for a geyser titan familiar."
+
+[explode_scroll]
+id = 12834
+price = 94
+limit = 5000
+examine = "A scroll for a giant chinchompa familiar."
+
+[goad_scroll]
+id = 12835
+price = 238
+limit = 5000
+examine = "A scroll for a spirit graahk familiar."
+
+[ambush_scroll]
+id = 12836
+price = 1663
+limit = 5000
+examine = "A scroll for a spirit kyatt familiar."
+
+[ebon_thunder_scroll]
+id = 12837
+price = 299
+limit = 5000
+examine = "A scroll for a lava titan familiar."
+
+[pester_scroll]
+id = 12838
+price = 3
+limit = 5000
+examine = "A scroll for a spirit mosquito familiar."
+
+[fireball_assault_scroll]
+id = 12839
+price = 75
+limit = 5000
+examine = "A scroll for a spirit Tz-Kih familiar."
+
+[rending_scroll]
+id = 12840
+price = 190
+limit = 5000
+examine = "A scroll for a spirit larupia familiar."
+
+[inferno_scroll]
+id = 12841
+price = 166
+limit = 5000
+examine = "A scroll for a forge regent familiar."
+
+[rise_from_the_ashes_scroll]
+id = 14622
+price = 206
+limit = 5000
+examine = "A scroll for a phoenix familiar."
+
+[phoenix_pouch]
+id = 14623
+price = 2865
+limit = 5000
+weight = 0.02
+examine = "I can summon a phoenix familiar with this."
+
+[phoenix_pouch_noted]
+id = 14624
+
+[phoenix_pouchu]
+clone = "dreadfowl_pouchu"
+id = 14625
+
+[phoenix_eggling]
+id = 14626
+food = "Ashes"
+examine = "A baby phoenix and it's as cute as buttons!"
+skill_req = { summoning = 72, slayer = 51 }
+
+[phoenix_eggling_2]
+clone = "phoenix_eggling"
+id = 14627
+
+[phoenix_egg]
+id = 14629
+tradeable = false
+weight = 11.5
+examine = "I found this egg in the phoenix's lair, and clapped at it!"
+kept = "Reclaim"
+
+[cracked_phoenix_egg]
+id = 14630
+tradeable = false
+weight = 11.5
+destroy = "You can reclaim this item from the place you found it."
+examine = "I found this egg in the phoenix's lair, and kicked it!"
+kept = "Reclaim"
+
+[slayer_helmet_e]
+id = 14636
+tradeable = false
+weight = 2.267
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "You don't want to wear it inside-out. This helm has been enchanted to hold Summoning scrolls."
+kept = "Reclaim"
+
+[slayer_helmet_c]
+id = 14637
+tradeable = false
+bank_stacks = false
+weight = 2.267
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "You don't want to wear it inside-out. This helm is charged with Summoning scrolls."
+kept = "Reclaim"
+
+[spirit_shard_pack]
+id = 15262
+tradeable = false
+examine = "A pack of 5,000 spirit shards."
+kept = "Wilderness"
+
+[fetch_casket_scroll]
+id = 19621
+price = 53
+limit = 300
+examine = "A scroll for meerkat familiars."
+
+[meerkats_pouch]
+id = 19622
+price = 1698
+limit = 100
+weight = 0.02
+examine = "I can summon meerkat familiars with this."
+
+[meerkats_pouch_noted]
+id = 19623

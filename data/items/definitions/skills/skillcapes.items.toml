@@ -904,3 +904,19 @@ slot = "Hat"
 type = "Hair"
 examine = "Hunter skillcape hood."
 kept = "Reclaim"
+
+[dungeoneering_master_cape]
+id = 19709
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by the true masters of Daemonheim."
+kept = "Reclaim"
+
+[dungeoneering_master_cape_2]
+id = 19710
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by the true masters of Daemonheim."
+kept = "Reclaim"

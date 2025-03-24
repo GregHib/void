@@ -1,0 +1,542 @@
+[circus_ticket]
+id = 13663
+tradeable = false
+weight = 0.005
+slot = "Weapon"
+destroy = "Tearing this ticket will make you leave the circus. Choose wisely."
+examine = "Tear ticket to exit the circus."
+kept = "Vanish"
+
+[giants_hand]
+id = 13666
+tradeable = false
+weight = 0.5
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "You will need to speak to the ringmaster to get another one."
+examine = "Let's give them a big hand!"
+kept = "Wilderness"
+
+[clown_hat]
+id = 13667
+tradeable = false
+weight = 0.5
+slot = "Hat"
+type = "Hair"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "A clown hat!"
+kept = "Wilderness"
+
+[clown_shirt]
+id = 13668
+tradeable = false
+weight = 0.5
+slot = "Chest"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "Buttoning this up is tricky."
+kept = "Wilderness"
+
+[clown_leggings]
+id = 13669
+tradeable = false
+weight = 0.5
+slot = "Legs"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "These are my funny pants."
+kept = "Wilderness"
+
+[clown_shoes]
+id = 13670
+tradeable = false
+weight = 0.5
+slot = "Feet"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "For helping clowns stay upright."
+kept = "Wilderness"
+
+[tambourine]
+id = 13671
+tradeable = false
+weight = 0.5
+slot = "Weapon"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "For making a happy noise."
+kept = "Wilderness"
+
+[ringmaster_hat]
+id = 13672
+tradeable = false
+weight = 0.5
+slot = "Hat"
+destroy = "You will need to speak to the ringmaster to get another one."
+examine = "Very stylish."
+kept = "Wilderness"
+
+[ringmaster_shirt]
+id = 13673
+tradeable = false
+weight = 0.5
+slot = "Chest"
+destroy = "You will need to speak to the ringmaster to get another one."
+examine = "Fits nicely."
+kept = "Wilderness"
+
+[ringmaster_pants]
+id = 13674
+tradeable = false
+weight = 0.5
+slot = "Legs"
+destroy = "You will need to speak to the ringmaster to get another one."
+examine = "Very stylish."
+kept = "Wilderness"
+
+[ringmaster_boots]
+id = 13675
+tradeable = false
+weight = 0.5
+slot = "Feet"
+destroy = "You will need to speak to the ringmaster to get another one."
+examine = "Shiny."
+kept = "Wilderness"
+
+[mega_phonus]
+id = 13676
+tradeable = false
+weight = 0.5
+slot = "Weapon"
+destroy = "You will need to speak to the ringmaster to get another one."
+examine = "For shouting at people."
+kept = "Wilderness"
+
+[acrobat_shirt]
+id = 13677
+slot = "Chest"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "Stretchy."
+weight = 0.5
+
+[acrobat_pants]
+id = 13678
+slot = "Legs"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "Very tight fitting."
+weight = 0.5
+
+[acrobat_shoes]
+id = 13679
+slot = "Feet"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "These keep your feet off the floor."
+weight = 0.5
+
+[acrobat_hood]
+id = 13680
+slot = "Hat"
+type = "FullFace"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "Oh no, I'm bald! Just kidding."
+weight = 0.5
+
+[acrobat_shirt_2]
+id = 13681
+slot = "Chest"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "Stretchy."
+weight = 0.5
+
+[acrobat_pants_2]
+id = 13682
+slot = "Legs"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "Very tight fitting."
+weight = 0.5
+
+[acrobat_shoes_2]
+id = 13683
+slot = "Feet"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "These keep your feet off the floor."
+weight = 0.5
+
+[acrobat_hood_2]
+id = 13684
+slot = "Hat"
+type = "FullFace"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "Oh no, I'm bald! Just kidding."
+weight = 0.5
+
+[a_stylish_hat_male_green]
+id = 13685
+tradeable = false
+weight = 0.5
+slot = "Hat"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "Very dapper!"
+kept = "Wilderness"
+
+[a_stylish_hat_male_maroon]
+id = 13686
+tradeable = false
+weight = 0.5
+slot = "Hat"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "Very dapper!"
+kept = "Wilderness"
+
+[a_stylish_hat_male_yellow]
+id = 13687
+tradeable = false
+weight = 0.5
+slot = "Hat"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "Very dapper!"
+kept = "Wilderness"
+
+[a_stylish_hat_female_green]
+id = 13688
+tradeable = false
+weight = 0.5
+slot = "Hat"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "Very dapper!"
+kept = "Wilderness"
+
+[a_stylish_hat_female_maroon]
+id = 13689
+tradeable = false
+weight = 0.5
+slot = "Hat"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "Very dapper!"
+kept = "Wilderness"
+
+[a_stylish_hat_female_yellow]
+id = 13690
+tradeable = false
+weight = 0.5
+slot = "Hat"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "Very dapper!"
+kept = "Wilderness"
+
+[shirt_male_green]
+id = 13691
+tradeable = false
+weight = 0.5
+slot = "Chest"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "A stylish top."
+kept = "Wilderness"
+
+[shirt_male_maroon]
+id = 13692
+tradeable = false
+weight = 0.5
+slot = "Chest"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "A stylish top."
+kept = "Wilderness"
+
+[shirt_male_yellow]
+id = 13693
+tradeable = false
+weight = 0.5
+slot = "Chest"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "A stylish top."
+kept = "Wilderness"
+
+[shirt_female_green]
+id = 13694
+tradeable = false
+weight = 0.5
+slot = "Chest"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "A stylish top."
+kept = "Wilderness"
+
+[shirt_female_maroon]
+id = 13695
+tradeable = false
+weight = 0.5
+slot = "Chest"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "A stylish top."
+kept = "Wilderness"
+
+[shirt_female_yellow]
+id = 13696
+tradeable = false
+weight = 0.5
+slot = "Chest"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "A stylish top."
+kept = "Wilderness"
+
+[leggings_green]
+id = 13697
+tradeable = false
+weight = 0.5
+slot = "Legs"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "These are my funny pants."
+kept = "Wilderness"
+
+[leggings_maroon]
+id = 13698
+tradeable = false
+weight = 0.5
+slot = "Legs"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "These are my funny pants."
+kept = "Wilderness"
+
+[leggings_yellow]
+id = 13699
+tradeable = false
+weight = 0.5
+slot = "Legs"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "These are my funny pants."
+kept = "Wilderness"
+
+[skirt_green]
+id = 13700
+tradeable = false
+weight = 0.5
+slot = "Legs"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "These are my funny pants."
+kept = "Wilderness"
+
+[skirt_maroon]
+id = 13701
+tradeable = false
+weight = 0.5
+slot = "Legs"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "These are my funny pants."
+kept = "Wilderness"
+
+[skirt_yellow]
+id = 13702
+tradeable = false
+weight = 0.5
+slot = "Legs"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "These are my funny pants."
+kept = "Wilderness"
+
+[shoes_male_shoes]
+id = 13703
+tradeable = false
+weight = 0.5
+slot = "Feet"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "These keep your feet off the floor."
+kept = "Wilderness"
+
+[shoes_male_boots]
+id = 13704
+tradeable = false
+weight = 0.5
+slot = "Feet"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "These keep your feet off the floor."
+kept = "Wilderness"
+
+[shoes_female_straps]
+id = 13705
+tradeable = false
+weight = 0.5
+slot = "Feet"
+destroy = "You will neez to speak to the ringmaster to get another."
+examine = "These keep your feet off the floor."
+kept = "Wilderness"
+
+[shoes_female_flats]
+id = 13706
+tradeable = false
+weight = 0.5
+slot = "Feet"
+destroy = "You will need to speak to the ringmaster to get another."
+examine = "These keep your feet off the floor."
+kept = "Wilderness"
+
+[tightrope_101]
+id = 13707
+weight = 0.01
+destroy = "You can get another Tightrope 101 by speaking to the Agility assistant."
+examine = "Shows you the moves you need to succeed!"
+kept = "Vanish"
+
+[tightrope_101_noted]
+id = 13708
+
+[balls_level_10_approx]
+id = 13709
+tradeable = false
+weight = 0.5
+slot = "Weapon"
+destroy = "You can get another one from the equipment box for this performance."
+examine = "An Agility level of 10 is advised when juggling these."
+kept = "Vanish"
+use = "Removed"
+
+[plates_level_20_approx]
+id = 13710
+tradeable = false
+weight = 0.5
+slot = "Weapon"
+destroy = "You can get another one from the equipment box for this performance."
+examine = "An Agility level of 20 is advised when juggling these."
+kept = "Vanish"
+use = "Removed"
+
+[eggs_level_30_approx]
+id = 13711
+tradeable = false
+weight = 0.5
+slot = "Weapon"
+destroy = "You can get another one from the equipment box for this performance."
+examine = "An Agility level of 30 is advised when juggling these."
+kept = "Vanish"
+use = "Removed"
+
+[knives_level_40_approx]
+id = 13712
+tradeable = false
+weight = 0.5
+slot = "Weapon"
+destroy = "You can get another one from the equipment box for this performance."
+examine = "An Agility level of 40 is advised when juggling these."
+kept = "Vanish"
+use = "Removed"
+
+[spades_level_50_approx]
+id = 13713
+tradeable = false
+weight = 0.5
+slot = "Weapon"
+destroy = "You can get another one from the equipment box for this performance."
+examine = "An Agility level of 50 is advised when juggling these."
+kept = "Vanish"
+use = "Removed"
+
+[tuna_level_60_approx]
+id = 13714
+tradeable = false
+weight = 0.5
+slot = "Weapon"
+destroy = "You can get another one from the equipment box for this performance."
+examine = "An Agility level of 60 is advised when juggling these."
+kept = "Vanish"
+use = "Removed"
+
+[soap_level_70_approx]
+id = 13715
+tradeable = false
+weight = 0.5
+slot = "Weapon"
+destroy = "You can get another one from the equipment box for this performance."
+examine = "An Agility level of 70 is advised when juggling these."
+kept = "Vanish"
+use = "Removed"
+
+[cannon_balls_level_80_approx]
+id = 13716
+tradeable = false
+weight = 0.5
+slot = "Weapon"
+destroy = "You can get another one from the equipment box for this performance."
+examine = "An Agility level of 80 is advised when juggling these."
+kept = "Vanish"
+use = "Removed"
+
+[torches_level_90_approx]
+id = 13717
+tradeable = false
+weight = 0.5
+slot = "Weapon"
+destroy = "You can get another one from the equipment box for this performance."
+examine = "An Agility level of 90 is advised when juggling these."
+kept = "Vanish"
+use = "Removed"
+
+[chinchompas_level_99_approx]
+id = 13718
+tradeable = false
+weight = 0.5
+slot = "Weapon"
+destroy = "You can get another one from the equipment box for this performance."
+examine = "An Agility level of 99 is advised when juggling these."
+kept = "Vanish"
+use = "Removed"
+
+[performance_shortbow]
+id = 13719
+tradeable = false
+weight = 1.36
+slot = "Weapon"
+type = "TwoHanded"
+attack_range = 7
+destroy = "You can get another one from the equipment box for this performance."
+examine = "Short, but effective."
+kept = "Vanish"
+use = "Removed"
+
+[performance_knife]
+id = 13720
+tradeable = false
+attack_range = 4
+weapon_type = "knife"
+slot = "Weapon"
+destroy = "You can get another one from the equipment box for this performance."
+examine = "A finely balanced throwing knife."
+kept = "Vanish"
+use = "Removed"
+
+[performance_throwing_axe]
+id = 13721
+tradeable = false
+attack_range = 4
+weapon_type = "knife"
+slot = "Weapon"
+destroy = "You can get another one from the equipment box for this performance."
+examine = "A finely balanced throwing axe."
+kept = "Vanish"
+use = "Removed"
+
+[performance_arrow]
+id = 13722
+tradeable = false
+slot = "Ammo"
+destroy = "You can get another one from the equipment box for this performance."
+examine = "Arrows with bronze heads."
+kept = "Vanish"
+use = "Removed"
+
+[teleport_spell]
+id = 13723
+tradeable = false
+destroy = "You can get another one from the equipment box for this performance."
+examine = "A tablet containing a Magic spell."
+kept = "Vanish"
+use = "Removed"
+
+[levitation_spell]
+clone = "teleport_spell"
+id = 13724
+
+[alchemy_spell]
+id = 13725
+tradeable = false
+aka = ["alchemy_tablet"]
+destroy = "You can get another one from the equipment box for this performance."
+examine = "A tablet containing a Magic spell."
+kept = "Vanish"
+
+[elemental_spell]
+clone = "teleport_spell"
+id = 13726

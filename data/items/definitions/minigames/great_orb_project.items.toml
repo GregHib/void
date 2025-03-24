@@ -1,0 +1,451 @@
+[runecrafting_guild_teleport]
+id = 13598
+tradeable = false
+examine = "A tablet containing a magic spell."
+kept = "Reclaim"
+
+[air_altar_teleport]
+clone = "runecrafting_guild_teleport"
+id = 13599
+aka = ["air_teleport", "air_tele", "air_altar_tele", "air_tab", "air_altar_tab", "air_tablet", "air_altar_tablet", "air_altar_tele_tab", "air_altar_teleport_tab", "air_altar_teleport_tablet"]
+
+[mind_altar_teleport]
+clone = "runecrafting_guild_teleport"
+id = 13600
+aka = ["mind_teleport", "mind_tele", "mind_altar_tele", "mind_tab", "mind_altar_tab", "mind_tablet", "mind_altar_tablet", "mind_altar_tele_tab", "mind_altar_teleport_tab", "mind_altar_teleport_tablet"]
+
+[water_altar_teleport]
+clone = "runecrafting_guild_teleport"
+id = 13601
+aka = ["water_teleport", "water_tele", "water_altar_tele", "water_tab", "water_altar_tab", "water_tablet", "water_altar_tablet", "water_altar_tele_tab", "water_altar_teleport_tab", "water_altar_teleport_tablet"]
+
+[earth_altar_teleport]
+clone = "runecrafting_guild_teleport"
+id = 13602
+aka = ["earth_teleport", "earth_tele", "earth_altar_tele", "earth_tab", "earth_altar_tab", "earth_tablet", "earth_altar_tablet", "earth_altar_tele_tab", "earth_altar_teleport_tab", "earth_altar_teleport_tablet"]
+
+[fire_altar_teleport]
+clone = "runecrafting_guild_teleport"
+id = 13603
+aka = ["fire_teleport", "fire_tele", "fire_altar_tele", "fire_tab", "fire_altar_tab", "fire_tablet", "fire_altar_tablet", "fire_altar_tele_tab", "fire_altar_teleport_tab", "fire_altar_teleport_tablet"]
+
+[body_altar_teleport]
+clone = "runecrafting_guild_teleport"
+id = 13604
+aka = ["body_teleport", "body_tele", "body_altar_tele", "body_tab", "body_altar_tab", "body_tablet", "body_altar_tablet", "body_altar_tele_tab", "body_altar_teleport_tab", "body_altar_teleport_tablet"]
+
+[cosmic_altar_teleport]
+clone = "runecrafting_guild_teleport"
+id = 13605
+aka = ["cosmic_teleport", "cosmic_tele", "cosmic_altar_tele", "cosmic_tab", "cosmic_altar_tab", "cosmic_tablet", "cosmic_altar_tablet", "cosmic_altar_tele_tab", "cosmic_altar_teleport_tab", "cosmic_altar_teleport_tablet"]
+
+[chaos_altar_teleport]
+clone = "runecrafting_guild_teleport"
+id = 13606
+aka = ["chaos_teleport", "chaos_tele", "chaos_altar_tele", "chaos_tab", "chaos_altar_tab", "chaos_tablet", "chaos_altar_tablet", "chaos_altar_tele_tab", "chaos_altar_teleport_tab", "chaos_altar_teleport_tablet"]
+
+[nature_altar_teleport]
+clone = "runecrafting_guild_teleport"
+id = 13607
+aka = ["nature_teleport", "nature_tele", "nature_altar_tele", "nature_tab", "nature_altar_tab", "nature_tablet", "nature_altar_tablet", "nature_altar_tele_tab", "nature_altar_teleport_tab", "nature_altar_teleport_tablet"]
+
+[law_altar_teleport]
+clone = "runecrafting_guild_teleport"
+id = 13608
+aka = ["law_teleport", "law_tele", "law_altar_tele", "law_tab", "law_altar_tab", "law_tablet", "law_altar_tablet", "law_altar_tele_tab", "law_altar_teleport_tab", "law_altar_teleport_tablet"]
+
+[death_altar_teleport]
+clone = "runecrafting_guild_teleport"
+id = 13609
+aka = ["death_teleport", "death_tele", "death_altar_tele", "death_tab", "death_altar_tab", "death_tablet", "death_altar_tablet", "death_altar_tele_tab", "death_altar_teleport_tab", "death_altar_teleport_tablet"]
+
+[blood_altar_teleport]
+clone = "runecrafting_guild_teleport"
+id = 13610
+aka = ["blood_teleport", "blood_tele", "blood_altar_tele", "blood_tab", "blood_altar_tab", "blood_tablet", "blood_altar_tablet", "blood_altar_tele_tab", "blood_altar_teleport_tab", "blood_altar_teleport_tablet"]
+
+[astral_altar_teleport]
+clone = "runecrafting_guild_teleport"
+id = 13611
+aka = ["astral_teleport", "astral_tele", "astral_altar_tele", "astral_tab", "astral_altar_tab", "astral_tablet", "astral_altar_tablet", "astral_altar_tele_tab", "astral_altar_teleport_tab", "astral_altar_teleport_tablet"]
+
+[runecrafter_hat_the_great_orb_project_yellow]
+id = 13612
+tradeable = false
+weight = 0.453
+examine = "Comes with goggles, for extra safety while Runecrafting."
+kept = "Vanish"
+
+[runecrafter_hat_the_great_orb_project_green]
+id = 13613
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "Comes with goggles, for extra safety while Runecrafting."
+kept = "Vanish"
+
+[runecrafter_robe_yellow]
+id = 13614
+tradeable = false
+weight = 0.907
+slot = "Chest"
+examine = "A heavy-duty wizard robe."
+kept = "Reclaim"
+
+[runecrafter_hat_yellow_goggles_on]
+id = 13615
+tradeable = false
+weight = 0.453
+slot = "Hat"
+type = "Hair"
+examine = "Comes with goggles, for extra safety while Runecrafting."
+kept = "Reclaim"
+
+[runecrafter_hat_yellow_goggles_off]
+id = 13616
+tradeable = false
+weight = 0.453
+slot = "Hat"
+type = "Hair"
+examine = "Comes with goggles, for extra safety while Runecrafting."
+kept = "Reclaim"
+
+[runecrafter_skirt_yellow]
+id = 13617
+tradeable = false
+weight = 0.907
+slot = "Legs"
+examine = "A heavy-duty wizard robe."
+kept = "Reclaim"
+
+[runecrafter_gloves_yellow]
+id = 13618
+tradeable = false
+weight = 0.453
+slot = "Hands"
+examine = "Essence can be rough on the hands."
+kept = "Reclaim"
+
+[runecrafter_robe_green]
+id = 13619
+tradeable = false
+weight = 0.907
+slot = "Chest"
+examine = "A heavy-duty wizard robe."
+kept = "Reclaim"
+
+[runecrafter_hat_green_goggles_on]
+id = 13620
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "Comes with goggles, for extra safety while Runecrafting."
+kept = "Reclaim"
+
+[runecrafter_hat_green_goggles_off]
+id = 13621
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "Comes with goggles, for extra safety while Runecrafting."
+kept = "Reclaim"
+
+[runecrafter_skirt_green]
+id = 13622
+tradeable = false
+weight = 0.907
+slot = "Legs"
+examine = "A heavy-duty wizard robe."
+kept = "Reclaim"
+
+[runecrafter_gloves_green]
+id = 13623
+tradeable = false
+weight = 0.453
+slot = "Hands"
+examine = "Essence can be rough on the hands."
+kept = "Reclaim"
+
+[runecrafter_robe_blue]
+id = 13624
+tradeable = false
+weight = 0.907
+slot = "Chest"
+examine = "A heavy-duty wizard robe."
+kept = "Reclaim"
+
+[runecrafter_hat_blue_goggles_on]
+id = 13625
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "Comes with goggles, for extra safety while Runecrafting."
+kept = "Reclaim"
+
+[runecrafter_hat_blue_goggles_off]
+id = 13626
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "Comes with goggles, for extra safety while Runecrafting."
+kept = "Reclaim"
+
+[runecrafter_skirt_blue]
+id = 13627
+tradeable = false
+weight = 0.907
+slot = "Legs"
+examine = "A heavy-duty wizard robe."
+kept = "Reclaim"
+
+[runecrafter_gloves_blue]
+id = 13628
+tradeable = false
+weight = 0.453
+slot = "Hands"
+examine = "Essence can be rough on the hands."
+kept = "Reclaim"
+
+[runecrafting_staff]
+id = 13629
+tradeable = false
+weight = 1.814
+category = "staff"
+aka = ["talisman_staff", "tali_staff"]
+examine = "Staff with a holder for a talisman on top."
+kept = "Reclaim"
+
+[air_talisman_staff]
+id = 13630
+tradeable = false
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "A staff with a talisman on top."
+kept = "Reclaim"
+
+[mind_talisman_staff]
+id = 13631
+tradeable = false
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "A staff with a talisman on top."
+kept = "Reclaim"
+
+[water_talisman_staff]
+id = 13632
+tradeable = false
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "A staff with a talisman on top."
+kept = "Reclaim"
+
+[earth_talisman_staff]
+id = 13633
+tradeable = false
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "A staff with a talisman on top."
+kept = "Reclaim"
+
+[fire_talisman_staff]
+id = 13634
+tradeable = false
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "A staff with a talisman on top."
+kept = "Reclaim"
+
+[body_talisman_staff]
+id = 13635
+tradeable = false
+weight = 2.267
+slot = "Weapon"
+examine = "A staff with a talisman on top."
+kept = "Reclaim"
+
+[cosmic_talisman_staff]
+id = 13636
+tradeable = false
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "A staff with a talisman on top."
+kept = "Reclaim"
+
+[chaos_talisman_staff]
+id = 13637
+tradeable = false
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "A staff with a talisman on top."
+kept = "Reclaim"
+
+[nature_talisman_staff]
+id = 13638
+tradeable = false
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+destroy = "No"
+examine = "A staff with a talisman on top."
+kept = "Reclaim"
+
+[law_talisman_staff]
+id = 13639
+tradeable = false
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "A staff with a talisman on top."
+kept = "Reclaim"
+
+[death_talisman_staff]
+id = 13640
+tradeable = false
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "A staff with a talisman on top."
+kept = "Reclaim"
+
+[blood_talisman_staff]
+id = 13641
+tradeable = false
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "A staff with a talisman on top."
+kept = "Reclaim"
+
+[omni_talisman_staff]
+id = 13642
+tradeable = false
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+destroy = "You will have to speak to Wizard Elriss to get another omni-talisman."
+examine = "A staff with a talisman on top."
+kept = "Vanish"
+
+[yellow_attractor]
+id = 13643
+tradeable = false
+weight = 0.283
+slot = "Weapon"
+destroy = "If you destroy this, you will leave the game."
+examine = "Attracts Runecrafting energy orbs in the rune altars."
+kept = "Vanish"
+
+[yellow_repeller]
+id = 13644
+tradeable = false
+weight = 0.255
+slot = "Weapon"
+destroy = "If you destroy this, you will leave the game."
+examine = "Repels Runecrafting energy orbs in the rune altars."
+kept = "Vanish"
+
+[green_attractor]
+id = 13645
+tradeable = false
+weight = 0.226
+slot = "Weapon"
+destroy = "If you destroy this, you will leave the game."
+examine = "Attracts Runecrafting energy orbs in the rune altars."
+kept = "Vanish"
+
+[green_repeller]
+id = 13646
+tradeable = false
+weight = 0.198
+slot = "Weapon"
+destroy = "If you destroy this, you will leave the game."
+examine = "Repels Runecrafting energy orbs in the rune altars."
+kept = "Vanish"
+
+[green_barrier_generator]
+id = 13647
+tradeable = false
+weight = 0.198
+slot = "Weapon"
+destroy = "If you destroy this, you will leave the game."
+examine = "It creates barriers."
+kept = "Vanish"
+
+[yellow_barrier_generator]
+id = 13648
+tradeable = false
+weight = 0.198
+slot = "Weapon"
+destroy = "If you destroy this, you will leave the game."
+examine = "It creates barriers."
+kept = "Vanish"
+
+[omni_talisman]
+id = 13649
+tradeable = false
+weight = 0.015
+destroy = "You will have to speak to Wizard Elriss to get another omni-talisman."
+examine = "Many mysterious powers emanate from the talisman."
+kept = "Vanish"
+
+[runecrafting_guild_token]
+id = 13650
+tradeable = false
+examine = "Wizard Elriss will exchange these for rewards."
+kept = "Reclaim"
+
+[runecrafting_guild_token_2]
+clone = "runecrafting_guild_token"
+id = 13651
+
+[runecrafting_guild_token_3]
+clone = "runecrafting_guild_token"
+id = 13652
+
+[runecrafting_guild_token_4]
+clone = "runecrafting_guild_token"
+id = 13653
+
+[runecrafting_guild_token_5]
+clone = "runecrafting_guild_token"
+id = 13654
+
+[omni_tiara]
+id = 13655
+tradeable = false
+weight = 1.0
+slot = "Hat"
+destroy = "You will have to speak to Wizard Elriss to get another omni-talisman."
+examine = "A tiara infused with the properties of all talismans."
+kept = "Vanish"
+
+[runecrafter_hat]
+id = 13656
+tradeable = false
+weight = 0.453
+examine = "Comes with goggles, for extra safety while Runecrafting."
+kept = "Reclaim"
+
+[runecrafter_hat_2]
+id = 13657
+tradeable = false
+weight = 0.453
+slot = "Hat"
+type = "Hair"
+examine = "Comes with goggles, for extra safety while Runecrafting."
+kept = "Reclaim"
+
+[runecrafter_hat_3]
+id = 13658
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "Comes with goggles, for extra safety while Runecrafting."
+kept = "Reclaim"

@@ -1,0 +1,324 @@
+[burgundy_afro]
+id = 14743
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[burgundy_afro_noted]
+id = 14744
+
+[red_afro]
+id = 14745
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[red_afro_noted]
+id = 14746
+
+[vermilion_afro]
+id = 14747
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[vermilion_afro_noted]
+id = 14748
+
+[pink_afro]
+id = 14749
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[pink_afro_noted]
+id = 14750
+
+[orange_afro]
+id = 14751
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[orange_afro_noted]
+id = 14752
+
+[yellow_afro]
+id = 14753
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[yellow_afro_noted]
+id = 14754
+
+[peach_afro]
+id = 14755
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[peach_afro_noted]
+id = 14756
+
+[brown_afro]
+id = 14757
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[brown_afro_noted]
+id = 14758
+
+[dark_brown_afro]
+id = 14759
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[dark_brown_afro_noted]
+id = 14760
+
+[light_brown_afro]
+id = 14761
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[light_brown_afro_noted]
+id = 14762
+
+[mint_green_afro]
+id = 14763
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[mint_green_afro_noted]
+id = 14764
+
+[green_afro]
+id = 14765
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[green_afro_noted]
+id = 14766
+
+[dark_green_afro]
+id = 14767
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[dark_green_afro_noted]
+id = 14768
+
+[dark_blue_afro]
+id = 14769
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[dark_blue_afro_noted]
+id = 14770
+
+[turquoise_afro]
+id = 14771
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[turquoise_afro_noted]
+id = 14772
+
+[light_blue_afro]
+id = 14773
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[light_blue_afro_noted]
+id = 14774
+
+[purple_afro]
+id = 14775
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[purple_afro_noted]
+id = 14776
+
+[violet_afro]
+id = 14777
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[violet_afro_noted]
+id = 14778
+
+[indigo_afro]
+id = 14779
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[indigo_afro_noted]
+id = 14780
+
+[dark_grey_afro]
+id = 14781
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[dark_grey_afro_noted]
+id = 14782
+
+[military_grey_afro]
+id = 14783
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[military_grey_afro_noted]
+id = 14784
+
+[white_afro]
+id = 14785
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[white_afro_noted]
+id = 14786
+
+[light_grey_afro]
+id = 14787
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[light_grey_afro_noted]
+id = 14788
+
+[taupe_afro]
+id = 14789
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[taupe_afro_noted]
+id = 14790
+
+[black_afro]
+id = 14791
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Perfect for parties!"
+kept = "Wilderness"
+
+[black_afro_noted]
+id = 14792

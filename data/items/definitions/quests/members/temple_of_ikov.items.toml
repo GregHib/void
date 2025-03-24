@@ -57,3 +57,11 @@ id = 89
 weight = -4.535
 slot = "Feet"
 examine = "Magic boots that make you lighter than normal."
+
+[armadyl_communique]
+id = 14085
+tradeable = false
+weight = 0.05
+examine = "An urgent communiqué revealing important information."
+use = "Quest"
+kept = "Vanish"

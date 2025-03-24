@@ -1,0 +1,66 @@
+[living_minerals]
+id = 15263
+price = 141
+limit = 10000
+examine = "These minerals appear to be alive."
+
+[raw_cavefish]
+id = 15264
+price = 656
+limit = 20000
+weight = 0.35
+fishing = { level = 85, xp = 300.0, chance = "2-24" }
+cooking = { level = 88, xp = 214.0, chances = { fire = "4-230", gauntlet = "12-269" }, cooked = "cavefish" }
+examine = "I should try cooking this."
+
+[raw_cavefish_noted]
+id = 15265
+
+[cavefish]
+id = 15266
+price = 654
+limit = 10000
+heals = 200
+weight = 0.3
+examine = "Some nicely cooked cavefish."
+
+[cavefish_noted]
+id = 15267
+
+[burnt_cavefish]
+id = 15268
+examine = "Oops!"
+
+[burnt_cavefish_noted]
+id = 15269
+
+[raw_rocktail]
+id = 15270
+price = 1804
+limit = 20000
+weight = 0.4
+fishing = { level = 90, xp = 380.0, chance = "1-16" }
+cooking = { level = 92, xp = 225.0, chances = { fire = "1-180", gauntlet = "1-269" }, cooked = "rocktail", cooked_message = "You successfully cook a rocktail.", burnt_message = "You accidentally burn the rocktail." }
+examine = "I should try cooking this."
+
+[raw_rocktail_noted]
+id = 15271
+
+[rocktail]
+id = 15272
+price = 1936
+limit = 10000
+heals = 230
+weight = 0.35
+aka = ["rocktails"]
+examine = "Some nicely cooked rocktail."
+
+[rocktail_noted]
+id = 15273
+
+[burnt_rocktail]
+id = 15274
+examine = "Oops!"
+
+[burnt_rocktail_noted]
+id = 15275

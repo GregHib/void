@@ -1,0 +1,59 @@
+[special_teak_log]
+id = 15289
+tradeable = false
+weight = 1.4
+destroy = "You will need to chop down another special log if you destroy this one."
+examine = "The sawmill vendor might be interested in this."
+kept = "Vanish"
+
+[special_mahogany_log]
+clone = "special_teak_log"
+id = 15290
+
+[plank_2]
+id = 15291
+limit = 10000
+weight = 0.8
+examine = "A plank of wood!"
+
+[short_plank]
+id = 15292
+tradeable = false
+weight = 0.8
+examine = "A short plank."
+kept = "Reclaim"
+
+[long_plank]
+id = 15293
+tradeable = false
+weight = 0.8
+examine = "A long plank."
+kept = "Reclaim"
+
+[diagonal_cut_plank]
+id = 15294
+tradeable = false
+weight = 0.8
+examine = "A diagonally-cut plank."
+kept = "Reclaim"
+
+[tooth_plank]
+id = 15295
+tradeable = false
+weight = 0.8
+examine = "A plank with a tooth."
+kept = "Reclaim"
+
+[groove_plank]
+id = 15296
+tradeable = false
+weight = 0.8
+examine = "Groovy!"
+kept = "Reclaim"
+
+[curved_plank]
+id = 15297
+tradeable = false
+weight = 0.8
+examine = "A long plank with a curved end."
+kept = "Reclaim"

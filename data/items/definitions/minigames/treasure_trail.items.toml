@@ -635,6 +635,21 @@ examine = "A rune kiteshield in the colours of Guthix."
 [guthix_kiteshield_noted]
 id = 2676
 
+[key_treasure_trail_1]
+id = 2832
+
+[key_treasure_trail_2]
+id = 2834
+
+[key_treasure_trail_3]
+id = 2836
+
+[key_treasure_trail_4]
+id = 2838
+
+[key_treasure_trail_5]
+id = 2840
+
 [black_plateskirt_t]
 id = 3472
 price = 4154
@@ -2548,3 +2563,2401 @@ limit = 2
 slot = "Chest"
 material = "leather"
 examine = "Guthix blessed dragonhide body armour."
+
+[black_cane]
+id = 13095
+price = 197600
+limit = 2
+weight = 0.5
+slot = "Weapon"
+examine = "A sapphire-topped cane."
+
+[black_cane_noted]
+id = 13096
+
+[adamant_cane]
+id = 13097
+price = 11200
+limit = 2
+weight = 0.5
+slot = "Weapon"
+examine = "A ruby-topped cane."
+
+[adamant_cane_noted]
+id = 13098
+
+[rune_cane]
+id = 13099
+price = 13700
+limit = 2
+weight = 0.5
+slot = "Weapon"
+examine = "A diamond-topped cane."
+
+[rune_cane_noted]
+id = 13100
+
+[top_hat]
+id = 13101
+price = 102200
+limit = 2
+weight = 1.0
+slot = "Hat"
+examine = "Comes with a free rabbit!"
+
+[top_hat_noted]
+id = 13102
+
+[pith_helmet]
+id = 13103
+price = 51700
+limit = 2
+weight = 0.5
+slot = "Hat"
+examine = "Official explorer headgear."
+
+[pith_helmet_noted]
+id = 13104
+
+[spiked_helmet]
+id = 13105
+price = 61300
+limit = 2
+weight = 2.267
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "Spikier than normal."
+
+[spiked_helmet_noted]
+id = 13106
+
+[sheep_mask]
+id = 13107
+price = 318900
+limit = 2
+weight = 1.0
+slot = "Hat"
+type = "Hair"
+examine = "Shear elegance."
+
+[sheep_mask_noted]
+id = 13108
+
+[penguin_mask]
+id = 13109
+price = 555600
+limit = 2
+weight = 1.0
+slot = "Hat"
+type = "Hair"
+examine = "I can get the look right, but can I do the waddle too?"
+
+[penguin_mask_noted]
+id = 13110
+
+[bat_mask]
+id = 13111
+price = 356000
+limit = 2
+weight = 1.0
+slot = "Hat"
+type = "Hair"
+examine = "The bats have left the belltower."
+
+[bat_mask_noted]
+id = 13112
+
+[cat_mask]
+id = 13113
+price = 941800
+limit = 2
+weight = 1.0
+slot = "Hat"
+type = "Hair"
+examine = "It's the year of the cat!"
+
+[cat_mask_noted]
+id = 13114
+
+[wolf_mask]
+id = 13115
+price = 1600000
+limit = 2
+weight = 1.0
+slot = "Hat"
+type = "Hair"
+examine = "I'm hungry like the wolf."
+
+[wolf_mask_noted]
+id = 13116
+
+[saradomin_bow]
+id = 19143
+price = 3300000
+limit = 2
+weight = 1.814
+attack_range = 10
+special_energy = 550
+special = "restorative_shot"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A bow imbued with the power of Saradomin."
+
+[saradomin_bow_noted]
+id = 19144
+
+[saradomin_bow_lent]
+id = 19145
+
+[guthix_bow]
+id = 19146
+price = 2600000
+limit = 2
+weight = 1.814
+attack_range = 10
+special_damage_mod_1 = 1.5
+special_energy = 550
+special = "balanced_shot"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A bow imbued with the power of Guthix."
+
+[guthix_bow_noted]
+id = 19147
+
+[guthix_bow_lent]
+id = 19148
+
+[zamorak_bow]
+id = 19149
+price = 4500000
+limit = 2
+weight = 1.814
+attack_range = 10
+special_energy = 550
+special = "twin_shot"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A bow imbued with the power of Zamorak."
+
+[zamorak_bow_noted]
+id = 19150
+
+[zamorak_bow_lent]
+id = 19151
+
+[saradomin_arrows]
+id = 19152
+price = 745
+limit = 1000
+slot = "Ammo"
+examine = "Arrows imbued with the power of Saradomin."
+
+[guthix_arrows]
+id = 19157
+price = 701
+limit = 1000
+slot = "Ammo"
+examine = "Arrows imbued with the power of Guthix."
+
+[zamorak_arrows]
+id = 19162
+price = 883
+limit = 1000
+slot = "Ammo"
+examine = "Arrows imbued with the power of Zamorak."
+
+[black_platebody_h1]
+id = 19167
+price = 54000
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A platebody with a heraldic design."
+
+[black_platebody_h1_noted]
+id = 19168
+
+[black_platelegs_h1]
+id = 19169
+price = 29000
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Platelegs with a heraldic design."
+
+[black_platelegs_h1_noted]
+id = 19170
+
+[black_plateskirt_h1]
+id = 19171
+price = 9660
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A plateskirt with a heraldic design."
+
+[black_plateskirt_h1_noted]
+id = 19172
+
+[adamant_platebody_h1]
+id = 19173
+price = 65500
+limit = 2
+weight = 11.339
+slot = "Chest"
+material = "metal"
+examine = "A platebody with a heraldic design."
+
+[adamant_platebody_h1_noted]
+id = 19174
+
+[adamant_platelegs_h1]
+id = 19175
+price = 28900
+limit = 2
+weight = 10.432
+slot = "Legs"
+material = "metal"
+examine = "Platelegs with a heraldic design."
+
+[adamant_platelegs_h1_noted]
+id = 19176
+
+[adamant_plateskirt_h1]
+id = 19177
+price = 12500
+limit = 2
+weight = 10.432
+slot = "Legs"
+material = "metal"
+examine = "A plateskirt with a heraldic design."
+
+[adamant_plateskirt_h1_noted]
+id = 19178
+
+[rune_platebody_h1]
+id = 19179
+price = 39500
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A platebody with a heraldic design."
+
+[rune_platebody_h1_noted]
+id = 19180
+
+[rune_platebody_h1_lent]
+id = 19181
+
+[rune_platelegs_h1]
+id = 19182
+price = 41000
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Platelegs with a heraldic design."
+
+[rune_platelegs_h1_noted]
+id = 19183
+
+[rune_platelegs_h1_lent]
+id = 19184
+
+[rune_plateskirt_h1]
+id = 19185
+price = 38300
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A plateskirt with a heraldic design."
+
+[rune_plateskirt_h1_noted]
+id = 19186
+
+[rune_plateskirt_h1_lent]
+id = 19187
+
+[black_platebody_h2]
+id = 19188
+price = 49700
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A platebody with a heraldic design."
+
+[black_platebody_h2_noted]
+id = 19189
+
+[black_platelegs_h2]
+id = 19190
+price = 23500
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Platelegs with a heraldic design."
+
+[black_platelegs_h2_noted]
+id = 19191
+
+[black_plateskirt_h2]
+id = 19192
+price = 9853
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A plateskirt with a heraldic design."
+
+[black_plateskirt_h2_noted]
+id = 19193
+
+[adamant_platebody_h2]
+id = 19194
+price = 46200
+limit = 2
+weight = 11.339
+slot = "Chest"
+material = "metal"
+examine = "A platebody with a heraldic design."
+
+[adamant_platebody_h2_noted]
+id = 19195
+
+[adamant_platelegs_h2]
+id = 19196
+price = 24400
+limit = 2
+weight = 10.432
+slot = "Legs"
+material = "metal"
+examine = "Platelegs with a heraldic design."
+
+[adamant_platelegs_h2_noted]
+id = 19197
+
+[adamant_plateskirt_h2]
+id = 19198
+price = 11200
+limit = 2
+weight = 10.432
+slot = "Legs"
+material = "metal"
+examine = "A plateskirt with a heraldic design."
+
+[adamant_plateskirt_h2_noted]
+id = 19199
+
+[rune_platebody_h2]
+id = 19200
+price = 43100
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A platebody with a heraldic design."
+
+[rune_platebody_h2_noted]
+id = 19201
+
+[rune_platebody_h2_lent]
+id = 19202
+
+[rune_platelegs_h2]
+id = 19203
+price = 41700
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Platelegs with a heraldic design."
+
+[rune_platelegs_h2_noted]
+id = 19204
+
+[rune_platelegs_h2_lent]
+id = 19205
+
+[rune_plateskirt_h2]
+id = 19206
+price = 37900
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A plateskirt with a heraldic design."
+
+[rune_plateskirt_h2_noted]
+id = 19207
+
+[rune_plateskirt_h2_lent]
+id = 19208
+
+[black_platebody_h3]
+id = 19209
+price = 53800
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A platebody with a heraldic design."
+
+[black_platebody_h3_noted]
+id = 19210
+
+[black_platelegs_h3]
+id = 19211
+price = 25900
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Platelegs with a heraldic design."
+
+[black_platelegs_h3_noted]
+id = 19212
+
+[black_plateskirt_h3]
+id = 19213
+price = 10100
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A plateskirt with a heraldic design."
+
+[black_plateskirt_h3_noted]
+id = 19214
+
+[adamant_platebody_h3]
+id = 19215
+price = 47800
+limit = 2
+weight = 11.339
+slot = "Chest"
+material = "metal"
+examine = "A platebody with a heraldic design."
+
+[adamant_platebody_h3_noted]
+id = 19216
+
+[adamant_platelegs_h3]
+id = 19217
+price = 29100
+limit = 2
+weight = 10.432
+slot = "Legs"
+material = "metal"
+examine = "Platelegs with a heraldic design."
+
+[adamant_platelegs_h3_noted]
+id = 19218
+
+[adamant_plateskirt_h3]
+id = 19219
+price = 10800
+limit = 2
+weight = 10.432
+slot = "Legs"
+material = "metal"
+examine = "A plateskirt with a heraldic design."
+
+[adamant_plateskirt_h3_noted]
+id = 19220
+
+[rune_platebody_h3]
+id = 19221
+price = 39300
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A platebody with a heraldic design."
+
+[rune_platebody_h3_noted]
+id = 19222
+
+[rune_platebody_h3_lent]
+id = 19223
+
+[rune_platelegs_h3]
+id = 19224
+price = 37900
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Platelegs with a heraldic design."
+
+[rune_platelegs_h3_noted]
+id = 19225
+
+[rune_platelegs_h3_lent]
+id = 19226
+
+[rune_plateskirt_h3]
+id = 19227
+price = 37400
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A plateskirt with a heraldic design."
+
+[rune_plateskirt_h3_noted]
+id = 19228
+
+[rune_plateskirt_h3_lent]
+id = 19229
+
+[black_platebody_h4]
+id = 19230
+price = 47800
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A platebody with a heraldic design."
+
+[black_platebody_h4_noted]
+id = 19231
+
+[black_platelegs_h4]
+id = 19232
+price = 27000
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Platelegs with a heraldic design."
+
+[black_platelegs_h4_noted]
+id = 19233
+
+[black_plateskirt_h4]
+id = 19234
+price = 9258
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A plateskirt with a heraldic design."
+
+[black_plateskirt_h4_noted]
+id = 19235
+
+[adamant_platebody_h4]
+id = 19236
+price = 49800
+limit = 2
+weight = 11.339
+slot = "Chest"
+material = "metal"
+examine = "A platebody with a heraldic design."
+
+[adamant_platebody_h4_noted]
+id = 19237
+
+[adamant_platelegs_h4]
+id = 19238
+price = 26800
+limit = 2
+weight = 10.432
+slot = "Legs"
+material = "metal"
+examine = "Platelegs with a heraldic design."
+
+[adamant_platelegs_h4_noted]
+id = 19239
+
+[adamant_plateskirt_h4]
+id = 19240
+price = 12200
+limit = 2
+weight = 10.432
+slot = "Legs"
+material = "metal"
+examine = "A plateskirt with a heraldic design."
+
+[adamant_plateskirt_h4_noted]
+id = 19241
+
+[rune_platebody_h4]
+id = 19242
+price = 39800
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A platebody with a heraldic design."
+
+[rune_platebody_h4_noted]
+id = 19243
+
+[rune_platebody_h4_lent]
+id = 19244
+
+[rune_platelegs_h4]
+id = 19245
+price = 37900
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Platelegs with a heraldic design."
+
+[rune_platelegs_h4_noted]
+id = 19246
+
+[rune_platelegs_h4_lent]
+id = 19247
+
+[rune_plateskirt_h4]
+id = 19248
+price = 37900
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A plateskirt with a heraldic design."
+
+[rune_plateskirt_h4_noted]
+id = 19249
+
+[rune_plateskirt_h4_lent]
+id = 19250
+
+[black_platebody_h5]
+id = 19251
+price = 45600
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A platebody with a heraldic design."
+
+[black_platebody_h5_noted]
+id = 19252
+
+[black_platelegs_h5]
+id = 19253
+price = 25100
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Platelegs with a heraldic design."
+
+[black_platelegs_h5_noted]
+id = 19254
+
+[black_plateskirt_h5]
+id = 19255
+price = 9507
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A plateskirt with a heraldic design."
+
+[black_plateskirt_h5_noted]
+id = 19256
+
+[adamant_platebody_h5]
+id = 19257
+price = 54100
+limit = 2
+weight = 11.339
+slot = "Chest"
+material = "metal"
+examine = "A platebody with a heraldic design."
+
+[adamant_platebody_h5_noted]
+id = 19258
+
+[adamant_platelegs_h5]
+id = 19259
+price = 26300
+limit = 2
+weight = 10.432
+slot = "Legs"
+material = "metal"
+examine = "Platelegs with a heraldic design."
+
+[adamant_platelegs_h5_noted]
+id = 19260
+
+[adamant_plateskirt_h5]
+id = 19261
+price = 14300
+limit = 2
+weight = 10.432
+slot = "Legs"
+material = "metal"
+examine = "A plateskirt with a heraldic design."
+
+[adamant_plateskirt_h5_noted]
+id = 19262
+
+[rune_platebody_h5]
+id = 19263
+price = 39000
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A platebody with a heraldic design."
+
+[rune_platebody_h5_noted]
+id = 19264
+
+[rune_platebody_h5_lent]
+id = 19265
+
+[rune_platelegs_h5]
+id = 19266
+price = 39800
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Platelegs with a heraldic design."
+
+[rune_platelegs_h5_noted]
+id = 19267
+
+[rune_platelegs_h5_lent]
+id = 19268
+
+[rune_plateskirt_h5]
+id = 19269
+price = 37900
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A plateskirt with a heraldic design."
+
+[rune_plateskirt_h5_noted]
+id = 19270
+
+[rune_plateskirt_h5_lent]
+id = 19271
+
+[fox_mask]
+id = 19272
+price = 200000
+limit = 2
+weight = 1.0
+slot = "Hat"
+type = "FullFace"
+examine = "A cunning disguise."
+
+[fox_mask_noted]
+id = 19273
+
+[fox_mask_lent]
+id = 19274
+
+[white_unicorn_mask]
+id = 19275
+price = 101500
+limit = 2
+weight = 1.0
+slot = "Hat"
+type = "FullFace"
+examine = "Not to be used in antipoison potions."
+
+[white_unicorn_mask_noted]
+id = 19276
+
+[white_unicorn_mask_lent]
+id = 19277
+
+[black_unicorn_mask]
+id = 19278
+price = 85800
+limit = 2
+weight = 1.0
+slot = "Hat"
+type = "FullFace"
+examine = "Not to be used in antipoison potions."
+
+[black_unicorn_mask_noted]
+id = 19279
+
+[black_unicorn_mask_lent]
+id = 19280
+
+[green_dragon_mask]
+id = 19281
+price = 314400
+limit = 2
+weight = 1.0
+slot = "Hat"
+type = "FullFace"
+examine = "Doesn't let you breathe fire, sadly."
+
+[green_dragon_mask_noted]
+id = 19282
+
+[green_dragon_mask_lent]
+id = 19283
+
+[blue_dragon_mask]
+id = 19284
+price = 505300
+limit = 2
+weight = 1.0
+slot = "Hat"
+type = "FullFace"
+examine = "Doesn't let you breathe fire, sadly."
+
+[blue_dragon_mask_noted]
+id = 19285
+
+[blue_dragon_mask_lent]
+id = 19286
+
+[red_dragon_mask]
+id = 19287
+price = 762100
+limit = 2
+weight = 1.0
+slot = "Hat"
+type = "FullFace"
+examine = "Doesn't let you breathe fire, sadly."
+
+[red_dragon_mask_noted]
+id = 19288
+
+[red_dragon_mask_lent]
+id = 19289
+
+[black_dragon_mask]
+id = 19290
+price = 11700000
+limit = 2
+weight = 1.0
+slot = "Hat"
+type = "FullFace"
+examine = "Doesn't let you breathe fire, sadly."
+
+[black_dragon_mask_noted]
+id = 19291
+
+[black_dragon_mask_lent]
+id = 19292
+
+[frost_dragon_mask]
+id = 19293
+price = 7200000
+limit = 2
+weight = 1.0
+slot = "Hat"
+type = "FullFace"
+examine = "Doesn't let you breathe fire, sadly."
+
+[frost_dragon_mask_noted]
+id = 19294
+
+[frost_dragon_mask_lent]
+id = 19295
+
+[bronze_dragon_mask]
+id = 19296
+price = 4400000
+limit = 2
+weight = 2.267
+slot = "Hat"
+type = "FullFace"
+examine = "Never has bronze looked so impressive."
+
+[bronze_dragon_mask_noted]
+id = 19297
+
+[bronze_dragon_mask_lent]
+id = 19298
+
+[iron_dragon_mask]
+id = 19299
+price = 3800000
+limit = 2
+weight = 2.267
+slot = "Hat"
+type = "FullFace"
+examine = "Never has iron looked so impressive."
+
+[iron_dragon_mask_noted]
+id = 19300
+
+[iron_dragon_mask_lent]
+id = 19301
+
+[steel_dragon_mask]
+id = 19302
+price = 4200000
+limit = 2
+weight = 2.267
+slot = "Hat"
+type = "FullFace"
+examine = "Never has steel looked so impressive."
+
+[steel_dragon_mask_noted]
+id = 19303
+
+[steel_dragon_mask_lent]
+id = 19304
+
+[mithril_dragon_mask]
+id = 19305
+price = 4600000
+limit = 2
+weight = 2.267
+slot = "Hat"
+type = "FullFace"
+examine = "Never has mithril looked so impressive."
+
+[mithril_dragon_mask_noted]
+id = 19306
+
+[mithril_dragon_mask_lent]
+id = 19307
+
+[third_age_druidic_staff]
+id = 19308
+price = 232300000
+limit = 2
+weight = 2.0
+category = "staff"
+slot = "Weapon"
+examine = "A fabulously ancient gnarled staff as used by the druids of old."
+
+[third_age_druidic_staff_noted]
+id = 19309
+
+[third_age_druidic_staff_lent]
+id = 19310
+
+[third_age_druidic_cloak]
+id = 19311
+price = 478800000
+limit = 2
+weight = 0.4
+slot = "Cape"
+examine = "A fabulously ancient vine cloak as worn by the druids of old."
+
+[third_age_druidic_cloak_noted]
+id = 19312
+
+[third_age_druidic_cloak_lent]
+id = 19313
+
+[third_age_druidic_wreath]
+id = 19314
+price = 267500000
+limit = 2
+weight = 0.3
+slot = "Hat"
+examine = "A fabulously ancient wreath of oak as worn by the druids of old."
+
+[third_age_druidic_wreath_noted]
+id = 19315
+
+[third_age_druidic_wreath_lent]
+id = 19316
+
+[third_age_druidic_robe_top]
+id = 19317
+price = 785800000
+limit = 2
+weight = 1.8
+slot = "Chest"
+examine = "A fabulously ancient woven robe top as worn by the druids of old."
+
+[third_age_druidic_robe_top_noted]
+id = 19318
+
+[third_age_druidic_robe_top_lent]
+id = 19319
+
+[third_age_druidic_robe_bottom]
+id = 19320
+price = 473000000
+limit = 2
+weight = 2.7
+slot = "Legs"
+examine = "A fabulously ancient woven robe as worn by the druids of old."
+
+[third_age_druidic_robe_noted]
+id = 19321
+
+[third_age_druidic_robe_lent]
+id = 19322
+
+[dragon_staff]
+id = 19323
+price = 892500
+limit = 2
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "This fire staff displays the carved head of a majestic dragon."
+
+[dragon_staff_noted]
+id = 19324
+
+[penguin_staff]
+id = 19325
+price = 109700
+limit = 2
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "This water staff displays the carved head of a proud penguin."
+
+[penguin_staff_noted]
+id = 19326
+
+[bat_staff]
+id = 19327
+price = 122700
+limit = 2
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "This air staff displays the carved head of a fierce bat."
+
+[bat_staff_noted]
+id = 19328
+
+[wolf_staff]
+id = 19329
+price = 124500
+limit = 2
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "This earth staff displays the carved head of a fearsome wolf."
+
+[wolf_staff_noted]
+id = 19330
+
+[cat_staff]
+id = 19331
+price = 96600
+limit = 2
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "This staff displays the carved head of an inquisitive cat."
+
+[cat_staff_noted]
+id = 19332
+
+[fury_ornament_kit]
+id = 19333
+price = 23100000
+limit = 2
+weight = 0.01
+examine = "Use on an amulet of fury to make it look fancier."
+
+[fury_ornament_kit_noted]
+id = 19334
+
+[amulet_of_fury_or]
+id = 19335
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+examine = "A very powerful and pretty onyx amulet."
+kept = "Reclaim"
+
+[dragon_full_helm_or]
+id = 19336
+tradeable = false
+weight = 2.0
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Dragon full helm with an ornate decoration."
+kept = "Reclaim"
+
+[dragon_platebody_or]
+id = 19337
+tradeable = false
+weight = 9.071
+slot = "Chest"
+material = "metal"
+examine = "Dragon platebody with an ornate decoration."
+kept = "Reclaim"
+
+[dragon_platelegs_or]
+id = 19338
+tradeable = false
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Dragon platelegs with an ornate decoration."
+kept = "Reclaim"
+
+[dragon_plateskirt_or]
+id = 19339
+tradeable = false
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Dragon plateskirt with an ornate decoration."
+kept = "Reclaim"
+
+[dragon_sq_shield_or]
+id = 19340
+tradeable = false
+weight = 3.175
+slot = "Shield"
+material = "metal"
+examine = "Dragon square shield with an ornate decoration."
+kept = "Reclaim"
+
+[dragon_full_helm_sp]
+id = 19341
+tradeable = false
+weight = 2.0
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Dragon full helm with a spiky decoration."
+kept = "Reclaim"
+
+[dragon_platebody_sp]
+id = 19342
+tradeable = false
+weight = 9.071
+slot = "Chest"
+material = "metal"
+examine = "Dragon platebody with a spiky decoration."
+kept = "Reclaim"
+
+[dragon_platelegs_sp]
+id = 19343
+tradeable = false
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Dragon platelegs with a spiky decoration."
+kept = "Reclaim"
+
+[dragon_plateskirt_sp]
+id = 19344
+tradeable = false
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Dragon plateskirt with a spiky decoration."
+kept = "Reclaim"
+
+[dragon_sq_shield_sp]
+id = 19345
+tradeable = false
+weight = 3.175
+slot = "Shield"
+material = "metal"
+examine = "Dragon square shield with a spiky decoration."
+kept = "Reclaim"
+
+[dragon_full_helm_ornament_kit_or]
+id = 19346
+price = 479200
+limit = 2
+weight = 0.01
+examine = "Use on a dragon full helm to make it look fancier."
+
+[dragon_full_helm_ornament_kit_or_noted]
+id = 19347
+
+[dragon_platelegs_skirt_ornament_kit_or]
+id = 19348
+price = 5700000
+limit = 2
+weight = 0.01
+examine = "Use on dragon platelegs or a dragon plateskirt to make them look fancier."
+
+[dragon_platelegs_skirt_ornament_kit_or_noted]
+id = 19349
+
+[dragon_platebody_ornament_kit_or]
+id = 19350
+price = 6900000
+limit = 2
+weight = 0.01
+examine = "Use on a dragon platebody to make it look fancier."
+
+[dragon_platebody_ornament_kit_or_noted]
+id = 19351
+
+[dragon_sq_shield_ornament_kit_or]
+id = 19352
+price = 929400
+limit = 2
+weight = 0.01
+examine = "Use on a dragon square shield to make it look fancier."
+
+[dragon_sq_shield_ornament_kit_or_noted]
+id = 19353
+
+[dragon_full_helm_ornament_kit_sp]
+id = 19354
+price = 64900
+limit = 2
+weight = 0.01
+examine = "Use on a dragon full helm to make it look spikier."
+
+[dragon_full_helm_ornament_kit_sp_noted]
+id = 19355
+
+[dragon_platelegs_skirt_ornament_kit_sp]
+id = 19356
+price = 1600000
+limit = 2
+weight = 0.01
+examine = "Use on dragon platelegs or a dragon plateskirt to make them look spikier."
+
+[dragon_platelegs_skirt_ornament_kit_sp_noted]
+id = 19357
+
+[dragon_platebody_ornament_kit_sp]
+id = 19358
+price = 824500
+limit = 2
+weight = 0.01
+examine = "Use on a dragon platebody to make it look spikier."
+
+[dragon_platebody_ornament_kit_sp_noted]
+id = 19359
+
+[dragon_sq_shield_ornament_kit_sp]
+id = 19360
+price = 168400
+limit = 2
+weight = 0.01
+examine = "Used on a dragon sq shield to make it look spikier."
+
+[dragon_sq_shield_ornament_kit_sp_noted]
+id = 19361
+
+[armadyl_crozier]
+id = 19362
+price = 49700
+limit = 2
+weight = 2.0
+slot = "Weapon"
+examine = "A blessed crozier."
+
+[armadyl_crozier_noted]
+id = 19363
+
+[bandos_crozier]
+id = 19364
+price = 39300
+limit = 2
+weight = 2.0
+slot = "Weapon"
+examine = "A blessed crozier."
+
+[bandos_crozier_noted]
+id = 19365
+
+[ancient_crozier]
+id = 19366
+price = 54500
+limit = 2
+weight = 2.0
+slot = "Weapon"
+examine = "A blessed crozier."
+
+[ancient_crozier_noted]
+id = 19367
+
+[armadyl_cloak]
+id = 19368
+price = 189800
+limit = 2
+weight = 0.4
+slot = "Cape"
+examine = "A blessed cloak."
+
+[armadyl_cloak_noted]
+id = 19369
+
+[bandos_cloak]
+id = 19370
+price = 196000
+limit = 2
+weight = 0.4
+slot = "Cape"
+examine = "A blessed cloak."
+
+[bandos_cloak_noted]
+id = 19371
+
+[ancient_cloak]
+id = 19372
+price = 145800
+limit = 2
+weight = 0.4
+slot = "Cape"
+examine = "A blessed cloak."
+
+[ancient_cloak_noted]
+id = 19373
+
+[armadyl_mitre]
+id = 19374
+price = 34200
+limit = 2
+weight = 0.3
+slot = "Hat"
+type = "Hair"
+examine = "A blessed mitre."
+
+[armadyl_mitre_noted]
+id = 19375
+
+[bandos_mitre]
+id = 19376
+price = 33400
+limit = 2
+weight = 0.3
+slot = "Hat"
+type = "Hair"
+examine = "A blessed mitre."
+
+[bandos_mitre_noted]
+id = 19377
+
+[ancient_mitre]
+id = 19378
+price = 31000
+limit = 2
+weight = 0.3
+aka = ["zaros_mitre"]
+slot = "Hat"
+type = "Hair"
+examine = "A blessed mitre."
+
+[ancient_mitre_noted]
+id = 19379
+
+[armadyl_robe_top]
+id = 19380
+price = 156900
+limit = 2
+weight = 1.8
+slot = "Chest"
+examine = "A vestment of Armadyl."
+
+[armadyl_robe_top_noted]
+id = 19381
+
+[ancient_robe_top]
+id = 19382
+price = 127900
+limit = 2
+weight = 1.8
+slot = "Chest"
+examine = "A vestment of Zaros."
+
+[ancient_robe_top_noted]
+id = 19383
+
+[bandos_robe_top]
+id = 19384
+price = 65100
+limit = 2
+weight = 1.8
+slot = "Chest"
+examine = "A vestment of Bandos."
+
+[bandos_robe_top_noted]
+id = 19385
+
+[armadyl_robe_legs]
+id = 19386
+price = 107000
+limit = 2
+weight = 2.7
+slot = "Legs"
+examine = "Legs that match the Armadyl vestment."
+
+[armadyl_robe_legs_noted]
+id = 19387
+
+[bandos_robe_legs]
+id = 19388
+price = 75600
+limit = 2
+weight = 2.7
+slot = "Legs"
+examine = "Legs that match the Bandos vestment."
+
+[bandos_robe_legs_noted]
+id = 19389
+
+[ancient_robe_legs]
+id = 19390
+price = 128900
+limit = 2
+weight = 2.7
+slot = "Legs"
+examine = "Legs that match the Zaros vestment."
+
+[ancient_robe_legs_noted]
+id = 19391
+
+[armadyl_stole]
+id = 19392
+price = 388400
+limit = 2
+weight = 0.01
+slot = "Amulet"
+examine = "A blessed stole."
+
+[armadyl_stole_noted]
+id = 19393
+
+[bandos_stole]
+id = 19394
+price = 165900
+limit = 2
+weight = 0.01
+slot = "Amulet"
+examine = "A blessed stole."
+
+[bandos_stole_noted]
+id = 19395
+
+[ancient_stole]
+id = 19396
+price = 108100
+limit = 2
+weight = 0.01
+slot = "Amulet"
+examine = "A blessed stole."
+
+[ancient_stole_noted]
+id = 19397
+
+[rune_platebody_ancient]
+id = 19398
+price = 255100
+limit = 2
+weight = 9.979
+aka = ["zaros_platebody"]
+slot = "Chest"
+material = "metal"
+examine = "A rune platebody in the colours of Zaros."
+
+[ancient_platebody_noted]
+id = 19399
+
+[ancient_platebody_lent]
+id = 19400
+
+[rune_platelegs_ancient]
+id = 19401
+price = 62200
+limit = 2
+weight = 9.071
+aka = ["zaros_platelegs"]
+slot = "Legs"
+material = "metal"
+examine = "Rune platelegs in the colours of Zaros."
+
+[ancient_platelegs_noted]
+id = 19402
+
+[ancient_platelegs_lent]
+id = 19403
+
+[rune_plateskirt_ancient]
+id = 19404
+price = 52800
+limit = 2
+weight = 9.071
+aka = ["zaros_plateskirt"]
+slot = "Legs"
+material = "metal"
+examine = "A rune plateskirt in the colours of Zaros."
+
+[ancient_plateskirt_noted]
+id = 19405
+
+[ancient_plateskirt_lent]
+id = 19406
+
+[rune_full_helm_ancient]
+id = 19407
+price = 96400
+limit = 2
+weight = 2.721
+aka = ["zaros_full_helm"]
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A rune full helmet in the colours of Zaros."
+
+[ancient_full_helm_noted]
+id = 19408
+
+[ancient_full_helm_lent]
+id = 19409
+
+[rune_kiteshield_ancient]
+id = 19410
+price = 197600
+limit = 2
+weight = 5.443
+aka = ["zaros_kiteshield"]
+slot = "Shield"
+material = "metal"
+examine = "A rune kiteshield in the colours of Zaros."
+
+[ancient_kiteshield_noted]
+id = 19411
+
+[ancient_kiteshield_lent]
+id = 19412
+
+[rune_platebody_armadyl]
+id = 19413
+price = 217800
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A rune platebody in the colours of Armadyl."
+
+[armadyl_platebody_noted]
+id = 19414
+
+[armadyl_platebody_lent]
+id = 19415
+
+[rune_platelegs_armadyl]
+id = 19416
+price = 122800
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Rune platelegs in the colours of Armadyl."
+
+[armadyl_platelegs_noted]
+id = 19417
+
+[armadyl_platelegs_lent]
+id = 19418
+
+[rune_plateskirt_armadyl]
+id = 19419
+price = 58800
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A rune plateskirt in the colours of Armadyl."
+
+[armadyl_plateskirt_noted]
+id = 19420
+
+[armadyl_plateskirt_lent]
+id = 19421
+
+[rune_full_helm_armadyl]
+id = 19422
+price = 410000
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A rune full helmet in the colours of Armadyl."
+
+[armadyl_full_helm_noted]
+id = 19423
+
+[armadyl_full_helm_lent]
+id = 19424
+
+[rune_kiteshield_armadyl]
+id = 19425
+price = 564800
+limit = 2
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A rune kiteshield in the colours of Armadyl."
+
+[armadyl_kiteshield_noted]
+id = 19426
+
+[armadyl_kiteshield_lent]
+id = 19427
+
+[rune_platebody_bandos]
+id = 19428
+price = 198100
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A rune platebody in the colours of Bandos."
+
+[bandos_platebody_noted]
+id = 19429
+
+[bandos_platebody_lent]
+id = 19430
+
+[rune_platelegs_bandos]
+id = 19431
+price = 73200
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Rune platelegs in the colours of Bandos."
+
+[bandos_platelegs_noted]
+id = 19432
+
+[bandos_platelegs_lent]
+id = 19433
+
+[rune_plateskirt_bandos]
+id = 19434
+price = 44300
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A rune plateskirt in the colours of Bandos."
+
+[bandos_plateskirt_noted]
+id = 19435
+
+[bandos_plateskirt_lent]
+id = 19436
+
+[rune_full_helm_bandos]
+id = 19437
+price = 127000
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A rune full helmet in the colours of Bandos."
+
+[bandos_full_helm_noted]
+id = 19438
+
+[bandos_full_helm_lent]
+id = 19439
+
+[rune_kiteshield_bandos]
+id = 19440
+price = 295100
+limit = 2
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A rune kiteshield in the colours of Bandos."
+
+[bandos_kiteshield_noted]
+id = 19441
+
+[bandos_kiteshield_lent]
+id = 19442
+
+[ancient_vambraces]
+id = 19443
+price = 47500
+limit = 2
+weight = 1.0
+slot = "Hands"
+material = "leather"
+examine = "Blessed dragonhide vambraces."
+
+[ancient_vambraces_noted]
+id = 19444
+
+[ancient_body]
+id = 19445
+price = 516100
+limit = 2
+weight = 6.0
+aka = ["zaros_body"]
+slot = "Chest"
+material = "leather"
+examine = "Blessed dragonhide body armour."
+
+[ancient_body_noted]
+id = 19446
+
+[ancient_chaps]
+id = 19447
+price = 444200
+limit = 2
+weight = 5.0
+slot = "Legs"
+material = "leather"
+examine = "Blessed dragonhide chaps."
+
+[ancient_chaps_noted]
+id = 19448
+
+[ancient_coif]
+id = 19449
+price = 123600
+limit = 2
+weight = 0.9
+aka = ["zaros_coif"]
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "Blessed dragonhide coif."
+
+[ancient_coif_noted]
+id = 19450
+
+[bandos_vambraces]
+id = 19451
+price = 194200
+limit = 2
+weight = 1.0
+slot = "Hands"
+material = "leather"
+examine = "Bandos blessed dragonhide vambraces."
+
+[bandos_vambraces_noted]
+id = 19452
+
+[bandos_body]
+id = 19453
+price = 452800
+limit = 2
+weight = 6.0
+slot = "Chest"
+material = "leather"
+examine = "Blessed dragonhide body armour."
+
+[bandos_body_noted]
+id = 19454
+
+[bandos_chaps]
+id = 19455
+price = 170500
+limit = 2
+weight = 5.0
+slot = "Legs"
+material = "leather"
+examine = "Blessed dragonhide chaps."
+
+[bandos_chaps_noted]
+id = 19456
+
+[bandos_coif]
+id = 19457
+price = 191400
+limit = 2
+weight = 0.9
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "Blessed dragonhide coif."
+
+[bandos_coif_noted]
+id = 19458
+
+[armadyl_vambraces]
+id = 19459
+price = 945547
+limit = 2
+weight = 1.0
+slot = "Hands"
+material = "leather"
+examine = "Armadyl blessed dragonhide vambraces."
+
+[armadyl_vambraces_noted]
+id = 19460
+
+[armadyl_body]
+id = 19461
+price = 1800000
+limit = 2
+weight = 6.0
+slot = "Chest"
+material = "leather"
+examine = "Armadyl blessed dragonhide body armour."
+
+[armadyl_body_noted]
+id = 19462
+
+[armadyl_chaps]
+id = 19463
+price = 1300000
+limit = 2
+weight = 5.0
+slot = "Legs"
+material = "leather"
+examine = "Blessed dragonhide chaps."
+
+[armadyl_chaps_noted]
+id = 19464
+
+[armadyl_coif]
+id = 19465
+price = 761500
+limit = 2
+weight = 0.9
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "Blessed dragonhide coif."
+
+[armadyl_coif_noted]
+id = 19466
+
+[holy_biscuits]
+id = 19467
+limit = 1000
+heals = "10-30"
+tradeable = false
+examine = "These tasty biscuits have god symbols on them."
+kept = "Reclaim"
+
+[pollnivneach_teleport]
+id = 19475
+price = 2535
+limit = 300
+examine = "A one-use scroll containing a teleport spell."
+
+[bandit_camp_teleport]
+id = 19476
+price = 38800
+limit = 300
+examine = "A one-use scroll containing a teleport spell."
+
+[miscellania_teleport]
+id = 19477
+price = 1983
+limit = 300
+examine = "A one-use scroll containing a teleport spell."
+
+[phoenix_lair_teleport]
+id = 19478
+price = 467
+limit = 300
+examine = "A one-use scroll containing a teleport spell."
+
+[tai_bwo_wannai_teleport]
+id = 19479
+price = 5800
+limit = 300
+examine = "A one-use scroll containing a teleport spell."
+
+[lumber_yard_teleport]
+id = 19480
+price = 5974
+limit = 300
+examine = "A one-use scroll containing a teleport spell."
+
+[black_platebody_h1_2]
+id = 19481
+limit = 2
+weight = 9.979
+examine = "A platebody with a heraldic design."
+
+[adamant_platebody_h1_2]
+id = 19482
+limit = 2
+weight = 11.339
+examine = "A platebody with a heraldic design."
+
+[rune_platebody_h1_2]
+id = 19483
+limit = 2
+weight = 9.979
+examine = "A platebody with a heraldic design."
+
+[black_platebody_h2_2]
+clone = "black_platebody_h1_2"
+id = 19484
+
+[adamant_platebody_h2_2]
+clone = "adamant_platebody_h1_2"
+id = 19485
+
+[rune_platebody_h2_2]
+clone = "rune_platebody_h1_2"
+id = 19486
+
+[black_platebody_h3_2]
+clone = "black_platebody_h1_2"
+id = 19487
+
+[adamant_platebody_h3_2]
+clone = "adamant_platebody_h1_2"
+id = 19488
+
+[rune_platebody_h3_2]
+clone = "rune_platebody_h1_2"
+id = 19489
+
+[black_platebody_h4_2]
+clone = "black_platebody_h1_2"
+id = 19490
+
+[adamant_platebody_h4_2]
+clone = "adamant_platebody_h1_2"
+id = 19491
+
+[rune_platebody_h4_2]
+clone = "rune_platebody_h1_2"
+id = 19492
+
+[black_platebody_h5_2]
+clone = "black_platebody_h1_2"
+id = 19493
+
+[adamant_platebody_h5_2]
+clone = "adamant_platebody_h1_2"
+id = 19494
+
+[rune_platebody_h5_2]
+clone = "rune_platebody_h1_2"
+id = 19495
+
+[fox_mask_2]
+id = 19496
+limit = 2
+weight = 1.0
+examine = "A cunning disguise."
+
+[white_unicorn_mask_2]
+id = 19497
+limit = 2
+weight = 1.0
+examine = "Not to be used in antipoison potions."
+
+[black_unicorn_mask_2]
+clone = "white_unicorn_mask_2"
+id = 19498
+
+[green_dragon_mask_2]
+id = 19499
+limit = 2
+weight = 1.0
+examine = "Doesn't let you breathe fire, sadly."
+
+[blue_dragon_mask_2]
+clone = "green_dragon_mask_2"
+id = 19500
+
+[red_dragon_mask_2]
+clone = "green_dragon_mask_2"
+id = 19501
+
+[black_dragon_mask_2]
+clone = "green_dragon_mask_2"
+id = 19502
+
+[frost_dragon_mask_2]
+clone = "green_dragon_mask_2"
+id = 19503
+
+[bronze_dragon_mask_2]
+id = 19504
+limit = 2
+weight = 2.267
+examine = "Never has bronze looked so impressive."
+
+[iron_dragon_mask_2]
+id = 19505
+limit = 2
+weight = 2.267
+examine = "Never has iron looked so impressive."
+
+[steel_dragon_mask_2]
+id = 19506
+limit = 2
+weight = 2.267
+examine = "Never has steel looked so impressive."
+
+[mithril_dragon_mask_2]
+id = 19507
+limit = 2
+weight = 2.267
+examine = "Never has mithril looked so impressive."
+
+[armadyl_robe_top_2]
+id = 19508
+limit = 2
+weight = 1.8
+examine = "A vestment of Armadyl."
+
+[ancient_robe_top_2]
+id = 19509
+limit = 2
+weight = 1.8
+examine = "A vestment of Zaros."
+
+[bandos_robe_top_2]
+id = 19510
+limit = 2
+weight = 1.8
+examine = "A vestment of Bandos."
+
+[dragon_platebody_s]
+id = 19511
+limit = 10
+weight = 9.071
+examine = "Provides excellent protection."
+
+[dragon_platebody_o]
+clone = "dragon_platebody_s"
+id = 19512
+
+[amulet_of_fury_o]
+id = 19513
+limit = 100
+weight = 0.01
+examine = "A very powerful onyx amulet."
+
+[ancient_platebody]
+id = 19514
+limit = 2
+examine = "A rune platebody in the colours of a forgotten god."
+
+[armadyl_platebody]
+id = 19515
+limit = 2
+examine = "A rune platebody in the colours of Armadyl."
+
+[bandos_platebody]
+id = 19516
+limit = 2
+examine = "A rune platebody in the colours of Bandos."
+
+[ancient_dragonhide]
+id = 19517
+limit = 2
+examine = "Blessed dragonhide body armour."
+
+[bandos_dragonhide]
+clone = "ancient_dragonhide"
+id = 19518
+
+[armadyl_dragonhide]
+id = 19519
+examine = "Grand Exchange set containing body, chaps, bracers and coif."
+
+[black_heraldic_armour_set_1_lg]
+clone = "black_trimmed_armour_set_lg"
+id = 19520
+
+[black_heraldic_armour_set_1_lg_noted]
+id = 19521
+
+[black_heraldic_armour_set_2_lg]
+clone = "black_trimmed_armour_set_lg"
+id = 19522
+
+[black_heraldic_armour_set_2_lg_noted]
+id = 19523
+
+[black_heraldic_armour_set_3_lg]
+clone = "black_trimmed_armour_set_lg"
+id = 19524
+
+[black_heraldic_armour_set_3_lg_noted]
+id = 19525
+
+[black_heraldic_armour_set_4_lg]
+clone = "black_trimmed_armour_set_lg"
+id = 19526
+
+[black_heraldic_armour_set_4_lg_noted]
+id = 19527
+
+[black_heraldic_armour_set_5_lg]
+clone = "black_trimmed_armour_set_lg"
+id = 19528
+
+[black_heraldic_armour_set_5_lg_noted]
+id = 19529
+
+[black_heraldic_armour_set_1_sk]
+clone = "black_trimmed_armour_set_sk"
+id = 19530
+
+[black_heraldic_armour_set_1_sk_noted]
+id = 19531
+
+[black_heraldic_armour_set_2_sk]
+clone = "black_trimmed_armour_set_sk"
+id = 19532
+
+[black_heraldic_armour_set_2_sk_noted]
+id = 19533
+
+[black_heraldic_armour_set_3_sk]
+clone = "black_trimmed_armour_set_sk"
+id = 19534
+
+[black_heraldic_armour_set_3_sk_noted]
+id = 19535
+
+[black_heraldic_armour_set_4_sk]
+clone = "black_trimmed_armour_set_sk"
+id = 19536
+
+[black_heraldic_armour_set_4_sk_noted]
+id = 19537
+
+[black_heraldic_armour_set_5_sk]
+clone = "black_trimmed_armour_set_sk"
+id = 19538
+
+[black_heraldic_armour_set_5_sk_noted]
+id = 19539
+
+[adamant_heraldic_armour_set_1_lg]
+id = 19540
+weight = 2.267
+examine = "Grand Exchange set containing a full helm, platebody, legs and kiteshield."
+
+[adamant_heraldic_armour_set_1_lg_noted]
+id = 19541
+
+[adamant_heraldic_armour_set_2_lg]
+clone = "adamant_heraldic_armour_set_1_lg"
+id = 19542
+
+[adamant_heraldic_armour_set_2_lg_noted]
+id = 19543
+
+[adamant_heraldic_armour_set_3_lg]
+clone = "adamant_heraldic_armour_set_1_lg"
+id = 19544
+
+[adamant_heraldic_armour_set_3_lg_noted]
+id = 19545
+
+[adamant_heraldic_armour_set_4_lg]
+clone = "adamant_heraldic_armour_set_1_lg"
+id = 19546
+
+[adamant_heraldic_armour_set_4_lg_noted]
+id = 19547
+
+[adamant_heraldic_armour_set_5_lg]
+clone = "adamant_heraldic_armour_set_1_lg"
+id = 19548
+
+[adamant_heraldic_armour_set_5_lg_noted]
+id = 19549
+
+[adamant_heraldic_armour_set_1_sk]
+id = 19550
+weight = 2.267
+examine = "Grand Exchange set containing a full helm, platebody, skirt and kiteshield."
+
+[adamant_heraldic_armour_set_1_sk_noted]
+id = 19551
+
+[adamant_heraldic_armour_set_2_sk]
+clone = "adamant_heraldic_armour_set_1_sk"
+id = 19552
+
+[adamant_heraldic_armour_set_2_sk_noted]
+id = 19553
+
+[adamant_heraldic_armour_set_3_sk]
+clone = "adamant_heraldic_armour_set_1_sk"
+id = 19554
+
+[adamant_heraldic_armour_set_3_sk_noted]
+id = 19555
+
+[adamant_heraldic_armour_set_4_sk]
+clone = "adamant_heraldic_armour_set_1_sk"
+id = 19556
+
+[adamant_heraldic_armour_set_4_sk_noted]
+id = 19557
+
+[adamant_heraldic_armour_set_5_sk]
+clone = "adamant_heraldic_armour_set_1_sk"
+id = 19558
+
+[adamant_heraldic_armour_set_5_sk_noted]
+id = 19559
+
+[rune_heraldic_armour_set_1_lg]
+clone = "rune_trimmed_armour_set_lg"
+id = 19560
+
+[rune_heraldic_armour_set_1_lg_noted]
+id = 19561
+
+[rune_heraldic_armour_set_2_lg]
+clone = "rune_trimmed_armour_set_lg"
+id = 19562
+
+[rune_heraldic_armour_set_2_lg_noted]
+id = 19563
+
+[rune_heraldic_armour_set_3_lg]
+clone = "rune_trimmed_armour_set_lg"
+id = 19564
+
+[rune_heraldic_armour_set_3_lg_noted]
+id = 19565
+
+[rune_heraldic_armour_set_4_lg]
+clone = "rune_trimmed_armour_set_lg"
+id = 19566
+
+[rune_heraldic_armour_set_4_lg_noted]
+id = 19567
+
+[rune_heraldic_armour_set_5_lg]
+clone = "rune_trimmed_armour_set_lg"
+id = 19568
+
+[rune_heraldic_armour_set_5_lg_noted]
+id = 19569
+
+[rune_heraldic_armour_set_1_sk]
+clone = "rune_trimmed_armour_set_sk"
+id = 19570
+
+[rune_heraldic_armour_set_1_sk_noted]
+id = 19571
+
+[rune_heraldic_armour_set_2_sk]
+clone = "rune_trimmed_armour_set_sk"
+id = 19572
+
+[rune_heraldic_armour_set_2_sk_noted]
+id = 19573
+
+[rune_heraldic_armour_set_3_sk]
+clone = "rune_trimmed_armour_set_sk"
+id = 19574
+
+[rune_heraldic_armour_set_3_sk_noted]
+id = 19575
+
+[rune_heraldic_armour_set_4_sk]
+clone = "rune_trimmed_armour_set_sk"
+id = 19576
+
+[rune_heraldic_armour_set_4_sk_noted]
+id = 19577
+
+[rune_heraldic_armour_set_5_sk]
+clone = "rune_trimmed_armour_set_sk"
+id = 19578
+
+[rune_heraldic_armour_set_5_sk_noted]
+id = 19579
+
+[third_age_prayer_set]
+id = 19580
+weight = 2.267
+aka = ["third_age_druidic_set"]
+examine = "Grand Exchange set containing a cloak, wreath, top and bottoms."
+
+[third_age_prayer_set_noted]
+id = 19581
+
+[bandos_dragonhide_blessed_set]
+id = 19582
+weight = 2.267
+aka = ["bandos_blessed_dragonhide_set"]
+examine = "Grand Exchange set containing a body, chaps, bracers and coif."
+
+[dyed_brown_dhide_blessed_set_noted]
+id = 19583
+
+[ancient_dragonhide_blessed_set]
+clone = "guthix_dragonhide_blessed_set"
+id = 19584
+
+[dyed_purple_dhide_blessed_set_noted]
+id = 19585
+
+[armadyl_dragonhide_blessed_set]
+clone = "guthix_dragonhide_blessed_set"
+id = 19586
+
+[dyed_silver_dhide_blessed_set_noted]
+id = 19587
+
+[armadyl_armour_set_lg]
+clone = "rune_trimmed_armour_set_lg"
+id = 19588
+
+[armadyl_armour_set_lg_noted]
+id = 19589
+
+[armadyl_armour_set_sk]
+clone = "rune_trimmed_armour_set_sk"
+id = 19590
+
+[armadyl_armour_set_sk_noted]
+id = 19591
+
+[bandos_armour_set_lg]
+clone = "rune_trimmed_armour_set_lg"
+id = 19592
+
+[bandos_armour_set_lg_noted]
+id = 19593
+
+[bandos_armour_set_sk]
+clone = "rune_trimmed_armour_set_sk"
+id = 19594
+
+[bandos_armour_set_sk_noted]
+id = 19595
+
+[ancient_armour_set_lg]
+id = 19596
+weight = 2.267
+aka = ["zaros_armour_set_lg"]
+examine = "Grand Exchange set containing a full helm, platebody, legs and kiteshield."
+
+[ancient_armour_set_lg_noted]
+id = 19597
+
+[ancient_armour_set_sk]
+id = 19598
+weight = 2.267
+aka = ["zaros_armour_set_sk"]
+examine = "Grand Exchange set containing a full helm, platebody, skirt and kiteshield."
+
+[ancient_armour_set_sk_noted]
+id = 19599

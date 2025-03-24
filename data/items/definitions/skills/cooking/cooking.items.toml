@@ -2903,3 +2903,13 @@ examine = "A bowl of fiery minced meat."
 
 [spicy_minced_meat_noted]
 id = 9997
+
+[cheese_wheel_whole]
+id = 18789
+weight = 0.3
+examine = "A big wheel of delicious cheese."
+
+[cheese_wheel_sliced]
+id = 18790
+weight = 0.2
+examine = "A wheel of cheese with a bit missing."

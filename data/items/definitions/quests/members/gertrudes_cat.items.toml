@@ -114,3 +114,11 @@ weight = 0.01
 slot = "Amulet"
 examine = "For feline training expertise."
 kept = "Wilderness"
+
+[three_little_kittens]
+id = 13236
+tradeable = false
+weight = 0.003
+examine = "Mew, mew, mew!"
+use = "Quest"
+kept = "Wilderness"

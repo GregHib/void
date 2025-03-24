@@ -1,0 +1,157 @@
+[jade_demon_statuette]
+id = 15584
+tradeable = false
+weight = 0.5
+destroy = "You can get another one from the Lumbridge Catacombs dungeon"
+examine = "An ornate statuette of a demon holding a large jade gem."
+kept = "Vanish"
+
+[topaz_demon_statuette]
+id = 15585
+tradeable = false
+weight = 0.5
+destroy = "You can get another one from the Lumbridge Catacombs dungeon"
+examine = "An ornate statuette of a demon holding a large yellow topaz."
+kept = "Vanish"
+
+[sapphire_demon_statuette]
+id = 15586
+tradeable = false
+weight = 0.5
+destroy = "You can get another one from the Lumbridge Catacombs dungeon"
+examine = "An ornate statuette of a demon holding a large sapphire."
+kept = "Vanish"
+
+[emerald_demon_statuette]
+id = 15587
+tradeable = false
+weight = 0.5
+destroy = "You can get another one from the Lumbridge Catacombs dungeon"
+examine = "An ornate statuette of a demon holding a large emerald."
+kept = "Vanish"
+
+[ruby_demon_statuette]
+id = 15588
+tradeable = false
+weight = 0.5
+destroy = "You can get another one from the Lumbridge Catacombs dungeon"
+examine = "An ornate statuette of a demon holding a large ruby."
+kept = "Vanish"
+
+[diamond_demon_statuette]
+id = 15589
+tradeable = false
+weight = 0.5
+destroy = "You can get another one from the Lumbridge Catacombs dungeon"
+examine = "An ornate statuette of a demon holding a large diamond."
+kept = "Vanish"
+
+[mask_of_dragith_nurn]
+id = 15590
+tradeable = false
+weight = 0.5
+slot = "Hat"
+material = "metal"
+destroy = "You will have to assemble a new one from the parts dropped by the creatures in the Lumbridge Catacombs."
+examine = "The magic mask of the undead necromancer Dragith Nurn."
+kept = "Wilderness"
+
+[mask_part_1]
+id = 15591
+tradeable = false
+weight = 0.1
+destroy = "You will have to fight creatures in the Lumbridge Catacombs until one of them drops another one."
+examine = "One of five parts of the Mask of Dragith Nurn."
+kept = "Vanish"
+
+[mask_part_2]
+clone = "mask_part_1"
+id = 15592
+
+[mask_part_3]
+clone = "mask_part_1"
+id = 15593
+
+[mask_part_4]
+clone = "mask_part_1"
+id = 15594
+
+[mask_part_5]
+clone = "mask_part_1"
+id = 15595
+
+[reeses_sword]
+id = 15596
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+material = "metal"
+destroy = "You can get another from Xenia/Ilona in Lumbridge."
+examine = "Old, battered, and not very sharp."
+kept = "Wilderness"
+
+[kayles_sling]
+id = 15597
+tradeable = false
+weight = 0.25
+attack_range = 4
+weapon_style = 24
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "You can get another from Xenia/Ilona in Lumbridge."
+examine = "A brightly coloured chargebow that fires magical arrows."
+kept = "Wilderness"
+
+[caitlins_staff]
+id = 15598
+tradeable = false
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+destroy = "You can get another from Xenia/Ilona in Lumbridge."
+examine = "A spell-casting aid; barely more than an ornamental stick."
+kept = "Wilderness"
+
+[helmet_of_trials]
+id = 15599
+tradeable = false
+weight = 3.175
+slot = "Hat"
+material = "metal"
+type = "Hair"
+destroy = "You can get another one from Xenia in Lumbridge."
+examine = "A helmet of epic accomplishment for a hero with 300 Quest Points."
+destroy2 = "You can get another one from Ilona in Lumbridge."
+kept = "Vanish"
+
+[helmet_of_trials_2]
+id = 15624
+tradeable = false
+weight = 3.175
+destroy = "You can get another one from Xenia in Lumbridge."
+examine = "A helmet of epic accomplishment for a hero with 300 Quest Points."
+destroy2 = "You can get another one from Ilona in Lumbridge."
+kept = "Vanish"
+
+[mask_of_dragith_nurn_2]
+id = 15625
+tradeable = false
+weight = 0.5
+destroy = "You will have to assemble a new one from the parts dropped by the creatures in the Lumbridge Catacombs."
+examine = "The magic mask of the undead necromancer Dragith Nurn."
+kept = "Wilderness"
+
+[sling]
+id = 19830
+price = 6
+limit = 10
+weight = 0.25
+attack_range = 4
+weapon_style = 24
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A bow to fire magical arrows at your enemies with."
+kept = "Wilderness"
+
+[sling_noted]
+id = 19831

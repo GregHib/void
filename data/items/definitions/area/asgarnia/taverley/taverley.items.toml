@@ -1,0 +1,29 @@
+[tooth_half_of_a_key]
+id = 985
+price = 26300
+limit = 100
+weight = 0.005
+examine = "The tooth end of the mysterious crystal key. Can you find the other half?"
+
+[tooth_half_of_a_key_noted]
+id = 986
+
+[loop_half_of_a_key]
+id = 987
+price = 16600
+limit = 100
+weight = 0.005
+examine = "The loop end of the mysterious crystal key. Can you find the other half?"
+
+[loop_half_of_a_key_noted]
+id = 988
+
+[crystal_key]
+id = 989
+price = 45200
+limit = 100
+weight = 0.01
+examine = "A mysterious key, for a mysterious chest protected by the druids."
+
+[crystal_key_noted]
+id = 990

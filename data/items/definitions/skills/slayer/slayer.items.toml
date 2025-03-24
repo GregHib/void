@@ -316,3 +316,194 @@ examine = "Don't make anyone jump when you ring this!"
 
 [slayer_bell_noted]
 id = 10953
+
+[slayer_helmet]
+id = 13263
+tradeable = false
+weight = 2.267
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+aka = ["slayer_helm"]
+examine = "You don't want to wear it inside-out."
+kept = "Reclaim"
+
+[banshee_voice]
+id = 13276
+tradeable = false
+weight = 0.002
+examine = "The remains of a banshee's scream."
+use = "Quest"
+kept = "Wilderness"
+
+[masked_earmuffs]
+id = 13277
+tradeable = false
+weight = 0.113
+slot = "Hat"
+type = "Mask"
+examine = "More of that crazy Slayer headgear."
+kept = "Reclaim"
+
+[broad_arrow_heads]
+id = 13278
+price = 102
+limit = 10000
+examine = "For use against turoth and kurasks."
+
+[unfinished_broad_bolts]
+id = 13279
+price = 66
+limit = 10000
+examine = "For use against turoth and kurasks."
+
+[broad_tipped_bolts]
+id = 13280
+price = 89
+limit = 10000
+slot = "Ammo"
+material = "metal"
+examine = "For use against turoth and kurasks."
+
+[ring_of_slaying_8]
+id = 13281
+charges = 1
+degrade = "ring_of_slaying_7"
+deplete = "teleport"
+jewellery = { level = 75, xp = 15.0 }
+weight = 0.006
+slot = "Ring"
+examine = "An enchanted ring."
+
+[ring_of_slaying_7]
+id = 13282
+charges = 1
+degrade = "ring_of_slaying_6"
+deplete = "teleport"
+weight = 0.006
+slot = "Ring"
+examine = "An enchanted ring."
+
+[ring_of_slaying_6]
+clone = "ring_of_slaying_7"
+id = 13283
+degrade = "ring_of_slaying_5"
+
+[ring_of_slaying_5]
+clone = "ring_of_slaying_7"
+id = 13284
+degrade = "ring_of_slaying_4"
+
+[ring_of_slaying_4]
+clone = "ring_of_slaying_7"
+id = 13285
+degrade = "ring_of_slaying_3"
+
+[ring_of_slaying_3]
+clone = "ring_of_slaying_7"
+id = 13286
+degrade = "ring_of_slaying_2"
+
+[ring_of_slaying_2]
+clone = "ring_of_slaying_7"
+id = 13287
+degrade = "ring_of_slaying_1"
+
+[ring_of_slaying_1]
+clone = "ring_of_slaying_7"
+id = 13288
+degrade = "destroy"
+
+[leaf_bladed_sword]
+id = 13290
+price = 40200
+limit = 100
+weight = 1.814
+slot = "Weapon"
+material = "metal"
+examine = "A razor-sharp sword."
+
+[leaf_bladed_sword_noted]
+id = 13291
+
+[amulet_of_ranging]
+id = 15126
+price = 567400
+limit = 10
+weight = 0.01
+slot = "Amulet"
+examine = "A sharp fang amulet, which looks good on rangers and surfers alike."
+
+[amulet_of_ranging_noted]
+id = 15127
+
+[staff_of_light]
+id = 15486
+price = 1300000
+limit = 10
+weight = 2.267
+category = "staff"
+special_energy = 1000
+special = "power_of_light"
+aka = ["sol"]
+slot = "Weapon"
+examine = "Humming with power."
+
+[staff_of_light_noted]
+id = 15487
+
+[hexcrest]
+id = 15488
+price = 45300
+limit = 10
+weight = 0.907
+slot = "Hat"
+examine = "It has quite a streamlined look to it."
+
+[hexcrest_noted]
+id = 15489
+
+[focus_sight]
+id = 15490
+price = 333700
+limit = 10
+weight = 0.907
+slot = "Hat"
+examine = "It looks like it'll help my aim."
+
+[focus_sight_noted]
+id = 15491
+
+[full_slayer_helmet]
+id = 15492
+tradeable = false
+weight = 2.267
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "You don't want to wear it inside-out."
+kept = "Reclaim"
+
+[full_slayer_helmet_e]
+id = 15496
+tradeable = false
+weight = 2.267
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "You don't want to wear it inside-out. This helm has been enchanted to hold Summoning scrolls."
+kept = "Reclaim"
+
+[full_slayer_helmet_c]
+id = 15497
+tradeable = false
+bank_stacks = false
+weight = 2.267
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "You don't want to wear it inside-out. This helm can be charged with Summoning scrolls."
+kept = "Reclaim"
+
+[staff_of_light_lent]
+id = 15502

@@ -93,6 +93,16 @@ examine = "The right half of a dragon square shield."
 [shield_right_half_noted]
 id = 2369
 
+[restored_shield]
+id = 11164
+tradeable = false
+weight = 5.443
+aka = ["shield_of_arrav"]
+examine = "Complete Shield of Arrav."
+destroy = "You'll need to get it back from Captain Rovin."
+use = "Quest"
+kept = "Wilderness"
+
 [half_certificate_right]
 id = 11173
 destroy = "Instead of destroying this I should get a friend to help me retrieve the other half."

@@ -1,3 +1,18 @@
+[rock_ore]
+id = 1480
+tradeable = false
+weight = 0.001
+examine = "A chunk of rock."
+kept = "Wilderness"
+
+[rotten_tomato]
+id = 2518
+weight = 0.08
+examine = "Pretty smelly."
+
+[rotten_tomato_noted]
+id = 2519
+
 [wooden_spoon]
 id = 7433
 price = 33

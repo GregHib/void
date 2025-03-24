@@ -366,3 +366,226 @@ destroy = "You should be able to get another from Diango in Draynor."
 examine = "Allows me to imitate the harbinger of doom, the stealer of souls, the eternal end..."
 kept = "Wilderness"
 use = "Limited"
+
+[warlock_top]
+id = 14076
+tradeable = false
+weight = 0.907
+slot = "Chest"
+destroy = "You can get another warlock top from Diango in Draynor Village."
+examine = "The height of warlock fashion."
+kept = "Vanish"
+use = "Limited"
+
+[warlock_legs]
+id = 14077
+tradeable = false
+weight = 0.907
+slot = "Legs"
+destroy = "You can get another set of warlock legs from Diango in Draynor Village."
+examine = "Tattered but trendy."
+kept = "Vanish"
+use = "Limited"
+
+[witch_top]
+id = 14078
+tradeable = false
+weight = 0.907
+slot = "Chest"
+destroy = "You can get another witch top from Diango in Draynor."
+examine = "The height of witchly fashion."
+kept = "Vanish"
+use = "Limited"
+
+[witch_skirt]
+id = 14079
+tradeable = false
+weight = 0.907
+slot = "Legs"
+destroy = "You can get another witch skirt from Diango in Draynor."
+examine = "Tattered but trendy."
+kept = "Vanish"
+use = "Limited"
+
+[witch_cloak]
+id = 14080
+tradeable = false
+weight = 0.907
+slot = "Cape"
+destroy = "You can get another witch cloak from Diango in Draynor."
+examine = "Ragged but rugged."
+kept = "Vanish"
+use = "Limited"
+
+[warlock_cloak]
+id = 14081
+tradeable = false
+weight = 0.907
+slot = "Cape"
+destroy = "You can get another warlock cloak from Diango in Draynor Village."
+examine = "Ragged but rugged."
+kept = "Vanish"
+use = "Limited"
+
+[popcorn_ball]
+id = 14082
+heals = 30
+tradeable = false
+weight = 0.15
+examine = "Sticky orb of popped corn."
+kept = "Reclaim"
+use = "Removed"
+
+[chocolate_drop]
+id = 14083
+heals = 30
+tradeable = false
+weight = 0.15
+examine = "Chocolatey goodness."
+kept = "Reclaim"
+use = "Removed"
+
+[wrapped_candy]
+id = 14084
+heals = 30
+tradeable = false
+weight = 0.15
+examine = "Sugary bliss."
+kept = "Reclaim"
+use = "Removed"
+
+[web_cloak]
+id = 15352
+tradeable = false
+weight = 0.5
+slot = "Cape"
+destroy = "You can get another from Diango in Draynor."
+examine = "A very fancy cloak made from black silk and gossamer."
+kept = "Wilderness"
+use = "Limited"
+
+[eek]
+id = 15353
+tradeable = false
+weight = 0.001
+food = "None"
+slot = "Weapon"
+destroy = "Eek the Spider scurries away. You can pick her up from Diango in Draynor."
+examine = "Eek, a spider!"
+kept = "Wilderness"
+use = "Limited"
+
+[bone_brooch]
+id = 19832
+tradeable = false
+weight = 0.001
+destroy = "You can get this back by speaking to Diango."
+examine = "A sinister brooch that screams occasionally."
+kept = "Wilderness"
+use = "Limited"
+
+[empty_moonshine_vial]
+id = 19833
+tradeable = false
+weight = 0.015
+destroy = "You can get more from the buffet table."
+examine = "A glass vial for storing moonshine."
+kept = "Vanish"
+use = "Removed"
+
+[strained_moonshine_vial]
+id = 19834
+tradeable = false
+weight = 0.015
+destroy = "You'll need to remake this using ingredients from the buffet table."
+examine = "A glass vial with leaves to strain liquids over it."
+kept = "Vanish"
+use = "Removed"
+
+[unfinished_moonshine_blood]
+id = 19835
+tradeable = false
+weight = 0.056
+destroy = "You'll need to remake this using ingredients from the buffet table."
+examine = "Two more ingredients are needed to finish this moonshine."
+kept = "Vanish"
+use = "Removed"
+
+[unfinished_moonshine_blood_and_fear]
+id = 19836
+tradeable = false
+weight = 0.056
+destroy = "You'll need to remake this using ingredients from the buffet table."
+examine = "One more ingredient is needed to finish this moonshine."
+kept = "Vanish"
+use = "Removed"
+
+[pile_of_ground_bones]
+id = 19837
+tradeable = false
+weight = 0.056
+destroy = "You can get more from the buffet table."
+examine = "Bones, ground into powder."
+kept = "Vanish"
+use = "Removed"
+
+[big_bottle_of_blood]
+id = 19838
+tradeable = false
+weight = 0.035
+destroy = "You can get more from the buffet table."
+examine = "A big bottle of sparrow blood."
+kept = "Vanish"
+use = "Removed"
+
+[failed_moonshine]
+id = 19839
+tradeable = false
+weight = 0.035
+empty = "empty_moonshine_vial"
+examine = "It does not smell pleasant."
+kept = "Vanish"
+
+[pile_of_evil_leaves]
+id = 19840
+tradeable = false
+weight = 0.028
+destroy = "You can get more from the buffet table."
+examine = "Leaves from an evil tree."
+kept = "Vanish"
+use = "Removed"
+
+[big_bottle_of_fear]
+id = 19841
+tradeable = false
+weight = 0.056
+destroy = "You can get more from the buffet table."
+examine = "A big bottle of raw fear. Creepy."
+kept = "Vanish"
+use = "Removed"
+
+[moonshine]
+id = 19842
+tradeable = false
+weight = 0.025
+destroy = "You'll need to remake the moonshine using ingredients from the buffet table."
+examine = "A vial of delicious moonshine."
+kept = "Vanish"
+use = "Removed"
+
+[ingredients]
+id = 19843
+tradeable = false
+weight = 0.005
+examine = "Ingredients for making moonshine."
+kept = "Reclaim"
+use = "Removed"
+
+[zabeths_autograph]
+id = 19845
+tradeable = false
+weight = 0.005
+destroy = "You can get this back by speaking to Zabeth Corvid."
+examine = "Grim will be overjoyed to get this."
+kept = "Vanish"
+use = "Removed"

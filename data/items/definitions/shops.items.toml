@@ -1,0 +1,234 @@
+
+[worm]
+id = 943
+weight = 0.003
+examine = "Ugh! It's wriggling!"
+
+[worm_noted]
+id = 944
+
+[knife]
+id = 946
+price = 71
+limit = 100
+weight = 0.453
+examine = "A dangerous looking knife."
+kept = "Wilderness"
+
+[knife_noted]
+id = 947
+
+[bear_fur]
+id = 948
+price = 6
+limit = 100
+weight = 3.0
+examine = "Warm fur from a bear."
+
+[bear_fur_noted]
+id = 949
+
+[silk]
+id = 950
+price = 11
+limit = 100
+weight = 1.0
+examine = "It's a sheet of silk."
+
+[silk_noted]
+id = 951
+
+[spade]
+id = 952
+price = 129
+limit = 100
+weight = 1.814
+examine = "A slightly muddy spade."
+kept = "Wilderness"
+
+[spade_noted]
+id = 953
+
+[rope]
+id = 954
+price = 87
+limit = 100
+weight = 1.36
+examine = "A coil of rope."
+kept = "Wilderness"
+
+[rope_noted]
+id = 955
+
+[flier]
+id = 956
+tradeable = false
+weight = 0.015
+examine = "Get your axes from Bob's Axes."
+kept = "Reclaim"
+
+[grey_wolf_fur]
+id = 958
+price = 26
+limit = 100
+weight = 3.0
+examine = "This would make warm clothing."
+
+[grey_wolf_fur_noted]
+id = 959
+
+[rock_limestone]
+id = 968
+tradeable = false
+weight = 1.0
+examine = "A rock"
+kept = "Reclaim"
+
+[papyrus]
+id = 970
+price = 235
+limit = 100
+weight = 0.02
+examine = "Used for making notes."
+
+[papyrus_noted]
+id = 971
+
+[papyrus_2]
+id = 972
+limit = 100
+weight = 0.02
+examine = "Used for making notes."
+
+[charcoal]
+id = 973
+price = 307
+limit = 100
+weight = 0.005
+examine = "A lump of charcoal."
+
+[charcoal_noted]
+id = 974
+
+[machete]
+id = 975
+price = 314
+limit = 100
+weight = 1.36
+slot = "Weapon"
+examine = "A jungle specific slashing device."
+
+[machete_noted]
+id = 976
+
+[coins]
+id = 995
+aka = ["gold_pieces", "gp"]
+examine = "Lovely money!"
+kept = "Wilderness"
+
+[coins_2]
+clone = "coins"
+id = 996
+
+[coins_3]
+clone = "coins"
+id = 997
+
+[coins_4]
+clone = "coins"
+id = 998
+
+[coins_5]
+clone = "coins"
+id = 999
+
+[coins_6]
+clone = "coins"
+id = 1000
+
+[coins_7]
+clone = "coins"
+id = 1001
+
+[coins_8]
+clone = "coins"
+id = 1002
+
+[coins_9]
+clone = "coins"
+id = 1003
+
+[coins_10]
+clone = "coins"
+id = 1004
+
+[vial_pack]
+id = 15362
+tradeable = false
+examine = "A pack of 50 noted vials."
+kept = "Reclaim"
+
+[vial_of_water_pack]
+id = 15363
+tradeable = false
+examine = "A pack of 50 noted vials of water."
+kept = "Reclaim"
+
+[eye_of_newt_pack]
+id = 15364
+tradeable = false
+examine = "A pack of 50 noted eyes of newt."
+kept = "Reclaim"
+
+[raw_bird_meat_pack]
+id = 15365
+tradeable = false
+examine = "A pack of 50 noted pieces of raw bird meat."
+kept = "Reclaim"
+
+[basket_pack]
+id = 15366
+tradeable = false
+examine = "A pack of 50 noted baskets."
+kept = "Reclaim"
+
+[empty_sack_pack]
+id = 15367
+tradeable = false
+examine = "A pack of 50 noted empty sacks."
+kept = "Reclaim"
+
+[white_apron]
+id = 1005
+price = 115
+limit = 100
+weight = 0.453
+slot = "Chest"
+type = "Sleeveless"
+examine = "A mostly clean apron."
+
+[white_apron_noted]
+id = 1006
+
+[brass_necklace]
+id = 1009
+price = 92
+limit = 100
+weight = 0.01
+slot = "Amulet"
+material = "metal"
+examine = "I'd prefer a gold one."
+
+[brass_necklace_noted]
+id = 1010
+
+[fur]
+id = 6814
+price = 34
+limit = 100
+weight = 3.0
+examine = "This would make warm clothing."
+
+[fur_noted]
+id = 6815

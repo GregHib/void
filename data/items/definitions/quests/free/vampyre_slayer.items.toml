@@ -17,3 +17,13 @@ examine = "Deters vampyres."
 
 [garlic_noted]
 id = 1551
+
+[stake_hammer]
+id = 15417
+tradeable = false
+weight = 0.907
+slot = "Weapon"
+destroy = "You can get another from Dr Harlow in the Blue Moon inn of Varrock."
+examine = "Specially made for driving stakes into vampyres."
+use = "Quest"
+kept = "Wilderness"

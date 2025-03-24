@@ -1,0 +1,276 @@
+[magic_skullball]
+id = 15046
+weight = 0.2
+slot = "Weapon"
+examine = "A magic skull, waiting for questions."
+
+[magic_skullball_noted]
+id = 15047
+
+[magic_skullball_long]
+id = 15048
+weight = 0.2
+slot = "Weapon"
+examine = "A magic skull, mostly able to answer yes or no questions."
+
+[magic_skullball_long_noted]
+id = 15049
+
+[magic_skullball_yes_no]
+id = 15050
+weight = 0.2
+slot = "Weapon"
+examine = "A magic skull, able to give yes or no answers."
+
+[magic_skullball_yes_no_noted]
+id = 15051
+
+[magic_skullball_activities]
+id = 15052
+weight = 0.2
+slot = "Weapon"
+examine = "A magic skull, able to suggest what you could do today."
+
+[magic_skullball_activities_noted]
+id = 15053
+
+[magic_skullball_colours]
+id = 15054
+weight = 0.2
+slot = "Weapon"
+examine = "A magic skull, able to choose random colours."
+
+[magic_skullball_colours_noted]
+id = 15055
+
+[ticker]
+id = 15056
+weight = 0.05
+examine = "It helps you count things."
+
+[ticker_noted]
+id = 15057
+
+[ticker_a]
+id = 15058
+bank_stacks = false
+weight = 0.05
+examine = "It's storing a number for you."
+
+[empty_bag_caller]
+id = 15059
+weight = 0.075
+examine = "Proves to your friends that you aren't carrying anything."
+
+[empty_bag_caller_noted]
+id = 15060
+
+[timepiece_stopped]
+id = 15061
+weight = 0.001
+slot = "Weapon"
+examine = "I have hands but no arms."
+
+[timepiece_stopped_noted]
+id = 15062
+
+[timepiece_running]
+id = 15063
+bank_stacks = false
+weight = 0.001
+slot = "Weapon"
+examine = "I have hands but no arms."
+
+[timepiece_paused]
+id = 15064
+bank_stacks = false
+weight = 0.001
+slot = "Weapon"
+examine = "I have hands but no arms."
+
+[racing_boots]
+id = 15065
+weight = 0.907
+slot = "Feet"
+examine = "No false starts with these on."
+
+[racing_boots_noted]
+id = 15066
+
+[starting_horn]
+id = 15067
+weight = 0.15
+slot = "Weapon"
+examine = "It starts races fairly."
+
+[starting_horn_noted]
+id = 15068
+
+[voting_hat_red]
+id = 15069
+weight = 0.15
+slot = "Hat"
+examine = "Show your support of the red team or turn it inside out for blue."
+
+[voting_hat_red_noted]
+id = 15070
+
+[voting_hat_blue]
+id = 15071
+weight = 0.15
+slot = "Hat"
+examine = "Show your support of the blue team or turn it inside out for red."
+
+[voting_hat_blue_noted]
+id = 15072
+
+[orb_of_counting]
+id = 15073
+weight = 0.2
+slot = "Weapon"
+examine = "A mystical orb with a penchant for counting hats."
+
+[orb_of_counting_noted]
+id = 15074
+
+[marker_seeds]
+id = 15075
+weight = 0.05
+examine = "Seeds for growing marker plants"
+
+[marker_seeds_noted]
+id = 15076
+
+[faruqs_toolonomicon]
+id = 15077
+weight = 0.51
+examine = "The book of the Tools for Games."
+
+[ring_of_seeking_hide]
+id = 15078
+weight = 0.001
+slot = "Ring"
+examine = "Wear it and challenge people to find you."
+
+[ring_of_seeking_hide_noted]
+id = 15079
+
+[ring_of_seeking_seek]
+id = 15080
+weight = 0.006
+slot = "Ring"
+examine = "Wear it to find hiding rings."
+
+[ring_of_seeking_seek_noted]
+id = 15081
+
+[ring_of_seeking_both]
+id = 15082
+weight = 0.006
+slot = "Ring"
+examine = "This ring can find or be found."
+
+[ring_of_seeking_both_noted]
+id = 15083
+
+[dice_bag]
+id = 15084
+tradeable = false
+weight = 0.1
+examine = "It's a bag of dice."
+kept = "Reclaim"
+
+[dice_bag_noted]
+id = 15085
+
+[die_6_sides]
+id = 15086
+tradeable = false
+weight = 0.1
+examine = "A six-sided die."
+kept = "Reclaim"
+
+[die_6_sides_noted]
+id = 15087
+
+[dice_2_6_sides]
+id = 15088
+tradeable = false
+weight = 0.1
+examine = "A pair of six-sided dice."
+kept = "Reclaim"
+
+[dice_2_6_sides_noted]
+id = 15089
+
+[die_8_sides]
+id = 15090
+tradeable = false
+weight = 0.1
+examine = "An eight-sided die."
+kept = "Reclaim"
+
+[die_8_sides_noted]
+id = 15091
+
+[die_10_sides]
+id = 15092
+tradeable = false
+weight = 0.1
+examine = "A ten-sided die."
+kept = "Reclaim"
+
+[die_10_sides_noted]
+id = 15093
+
+[die_12_sides]
+id = 15094
+tradeable = false
+weight = 0.1
+examine = "A twelve-sided die."
+kept = "Reclaim"
+
+[die_12_sides_noted]
+id = 15095
+
+[die_20_sides]
+id = 15096
+tradeable = false
+weight = 0.1
+examine = "A twenty-sided die."
+kept = "Reclaim"
+
+[die_20_sides_noted]
+id = 15097
+
+[dice_up_to_100]
+id = 15098
+tradeable = false
+weight = 0.1
+examine = "A pair of ten-sided dice, for results between 1 and 100."
+kept = "Reclaim"
+
+[dice_up_to_100_noted]
+id = 15099
+
+[die_4_sides]
+id = 15100
+tradeable = false
+weight = 0.1
+examine = "A four-sided die."
+kept = "Reclaim"
+
+[die_4_sides_noted]
+id = 15101
+
+[faruqs_toolonomicon_noted]
+id = 15102
+
+[orb_of_oculus]
+id = 15484
+tradeable = false
+weight = 2.0
+slot = "Weapon"
+type = "TwoHanded"
+examine = "An orb of mystical excellence."
+kept = "Reclaim"

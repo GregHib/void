@@ -68,3 +68,12 @@ tradeable = false
 weight = 0.005
 examine = "Entrance certificate to the Imperial Guard."
 kept = "Reclaim"
+
+[climbing_boots]
+id = 18788
+tradeable = false
+weight = 0.34
+slot = "Feet"
+destroy = "These boots belong to Freda. If you throw them away you will need to ask her for another pair."
+examine = "Boots made for climbing."
+kept = "Wilderness"

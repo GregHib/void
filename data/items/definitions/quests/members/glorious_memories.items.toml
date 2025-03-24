@@ -1,0 +1,144 @@
+[prophecy_tablet_glorious_memories]
+id = 14696
+tradeable = false
+weight = 3.0
+destroy = "If you throw this away, Baba Yaga on Lunar Island will give you another."
+examine = "Apparently, the writing is really important."
+use = "Quest"
+kept = "Wilderness"
+
+[unfinished_astral_rune]
+id = 14697
+tradeable = false
+weight = 0.002
+destroy = "During Glorious Memories"
+examine = "It definitely doesn't belong to any of the adventurers you know about."
+destroy2 = "If you throw this away, you will need to look in the icy cave where you found it."
+destroy3 = "After Glorious Memories"
+destroy4 = "If you need the rune again, speak to Chieftain Brundt of Rellekka."
+use = "Quest"
+kept = "Wilderness"
+
+[nials_throwing_axe]
+id = 14698
+tradeable = false
+weight = 1.36
+destroy = "If you throw this away, you will need to look in the icy cave where you found it."
+examine = "It has 'N.S.' etched into the runite."
+use = "Quest"
+kept = "Wilderness"
+
+[cave_directions]
+id = 14699
+tradeable = false
+weight = 0.002
+destroy = "If you destroy the directions, speak to Cheiftain Brundt of Rellekka, Mawnis Burrogar of Neitiznot or King Vargas of Miscellania for a new copy."
+examine = "Directions to the cave of the ice creature."
+use = "Quest"
+kept = "Wilderness"
+
+[a_scrap_of_paper]
+id = 14700
+tradeable = false
+weight = 0.002
+destroy = "If you destroy the scrap of paper, you will need to look on the icy cave floor where you originally found it."
+examine = "A loose page written in an unsteady hand."
+kept = "Wilderness"
+
+[herb_pouch]
+id = 14701
+tradeable = false
+weight = 0.5
+destroy = "If you throw this away, you will need to look in the icy cave where you found it."
+examine = "It looks to be of Mountain Clan design."
+use = "Quest"
+kept = "Wilderness"
+
+[vial_of_mountain_water]
+id = 14702
+tradeable = false
+weight = 0.02
+empty = "vial"
+destroy = "If you throw this away, you will need to get more water from Asleif's spring."
+examine = "A glass vial, full of Asleif's spring water."
+use = "Quest"
+kept = "Wilderness"
+
+[diamond_root]
+id = 14703
+tradeable = false
+weight = 0.007
+destroy = "If you throw this away, you will need to get more from Asleif's herb pouch, found in the icy yeti cave."
+examine = "The dried root of an extinct plant."
+use = "Quest"
+kept = "Wilderness"
+
+[diamond_root_dust]
+id = 14704
+tradeable = false
+weight = 0.007
+destroy = "If you throw this away, you will need to get some more from Asleif's herb pouch, found in the icy yeti cave."
+examine = "The dust of a finely ground extinct plant."
+use = "Quest"
+kept = "Wilderness"
+
+[enchanted_diamond_root_dust]
+id = 14705
+tradeable = false
+weight = 0.007
+destroy = "If you throw this away, you will need to get more from Asleif's herb pouch, found in the icy yeti cave."
+examine = "The dust of a finely ground extinct plant, enchanted with magic."
+use = "Quest"
+kept = "Wilderness"
+
+[mountain_irit_potion_unf]
+id = 14706
+tradeable = false
+weight = 0.015
+destroy = "If you throw this away, you will need more water from Asleif's spring."
+examine = "A glass vial containing irit and Asleif's spring water."
+kept = "Wilderness"
+
+[diamond_dust_potion_unf]
+id = 14707
+tradeable = false
+weight = 0.015
+destroy = "If you throw this away, you will need to make it again with the diamond root from Asleif's herb pouch, found in the icy yeti cave."
+examine = "A glass vial containing Asleif's spring water, irit and enchanted diamond root dust."
+use = "Quest"
+kept = "Wilderness"
+
+[yeti_curse_cure]
+id = 14708
+tradeable = false
+weight = 0.015
+destroy = "If you throw this away, you will need to make it again with more diamond root from Asleif's herb pouch, found in the icy yeti cave."
+examine = "The cure for the curse affecting King Vargas."
+use = "Quest"
+kept = "Wilderness"
+
+[yeti_hair]
+id = 14709
+tradeable = false
+weight = 0.1
+destroy = "If you throw this away, you will need to kill more small yetis in the yeti's cavern."
+examine = "It's the coarse hair of a yeti."
+use = "Quest"
+kept = "Wilderness"
+
+[tome_of_glorious_deeds]
+id = 14710
+tradeable = false
+weight = 0.226
+examine = "It has been passed down Manni's family."
+use = "Quest"
+kept = "Wilderness"
+
+[antique_lamp_glorious_memories]
+id = 14711
+tradeable = false
+weight = 0.1
+examine = "I wonder what happens if I rub it."
+destroy = "Are you sure you want to destroy the lamp? You won't be able to get another one."
+use = "Quest"
+kept = "Vanish"

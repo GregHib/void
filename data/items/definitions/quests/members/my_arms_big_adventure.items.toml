@@ -1,3 +1,9 @@
+[dragon_chainbody_my_arms_big_adventure]
+id = 2513
+limit = 10
+weight = 6.803
+examine = "A series of connected metal rings."
+
 [hardy_gout_tuber]
 id = 4001
 tradeable = false
@@ -6,6 +12,18 @@ destroy = "Murcaily will probably give me some more."
 examine = "A hardy gout tuber."
 use = "Quest"
 kept = "Vanish"
+
+[dragon_med_helm_my_arms_big_adventure]
+id = 6967
+limit = 100
+examine = "Makes the wearer pretty intimidating."
+
+[shark_my_arms_big_adventure]
+id = 6969
+limit = 10000
+heals = 200
+weight = 0.65
+examine = "I'd better be careful eating this."
 
 [goutweedy_lump]
 id = 9901

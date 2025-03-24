@@ -1,0 +1,51 @@
+[starved_ancient_effigy]
+id = 18778
+tradeable = false
+bank_stacks = false
+weight = 1.0
+destroy = "If you destroy the ancient effigy, you will have to get another from a monster drop."
+examine = "It sounds like something is contained within this relic."
+kept = "Reclaim"
+
+[nourished_ancient_effigy]
+id = 18779
+tradeable = false
+bank_stacks = false
+weight = 1.0
+destroy = "If you destroy the ancient effigy, you will have to get another from a monster drop."
+examine = "It sounds like something is contained within this relic."
+kept = "Reclaim"
+
+[sated_ancient_effigy]
+id = 18780
+tradeable = false
+bank_stacks = false
+weight = 1.0
+destroy = "If you destroy the ancient effigy, you will have to get another from a monster drop."
+examine = "It sounds like something is contained within this relic."
+kept = "Reclaim"
+
+[gorged_ancient_effigy]
+id = 18781
+tradeable = false
+bank_stacks = false
+weight = 1.0
+destroy = "If you destroy the ancient effigy, you will have to get another from a monster drop."
+examine = "It sounds like something is contained within this relic."
+kept = "Reclaim"
+
+[dragonkin_lamp]
+id = 18782
+tradeable = false
+weight = 0.3
+destroy = "Rub this lamp to claim your reward - it will be destroyed in the process. If you choose to destroy it now, you cannot replace it."
+examine = "Glowing from the raging flame contained within."
+kept = "Reclaim"
+
+[antique_lamp_ancient_effigies]
+id = 18783
+tradeable = false
+weight = 0.1
+destroy = "Are you sure you want to destroy this item? If you destroy this item, you cannot reclaim it."
+examine = "I wonder what happens if I rub it..."
+kept = "Vanish"

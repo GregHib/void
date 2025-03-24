@@ -163,3 +163,137 @@ weight = 5.0
 examine = "Looks old and rusty..."
 use = "Quest"
 kept = "Wilderness"
+
+[bandos_page_1]
+id = 19600
+price = 254800
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[bandos_page_2]
+id = 19601
+price = 145500
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[bandos_page_3]
+id = 19602
+price = 270400
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[bandos_page_4]
+id = 19603
+price = 127000
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[armadyl_page_1]
+id = 19604
+price = 340200
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[armadyl_page_2]
+id = 19605
+price = 295800
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[armadyl_page_3]
+id = 19606
+price = 371800
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[armadyl_page_4]
+id = 19607
+price = 289400
+limit = 10
+examine = "This seems to have been torn from a book."
+
+[ancient_page_1_2]
+id = 19608
+price = 399100
+limit = 10
+aka = ["zaros_page_1"]
+examine = "This seems to have been torn from a book."
+
+[ancient_page_2_2]
+id = 19609
+price = 445400
+limit = 10
+aka = ["zaros_page_2"]
+examine = "This seems to have been torn from a book."
+
+[ancient_page_3_2]
+id = 19610
+price = 400900
+limit = 10
+aka = ["zaros_page_3"]
+examine = "This seems to have been torn from a book."
+
+[ancient_page_4_2]
+id = 19611
+price = 676000
+limit = 10
+aka = ["zaros_page_4"]
+examine = "This seems to have been torn from a book."
+
+[damaged_book_bandos]
+id = 19612
+tradeable = false
+weight = 1.0
+slot = "Shield"
+destroy = "Talk to Jossik at the lighthouse west of Rellekka for another copy."
+examine = "An incomplete book of Bandos."
+kept = "Wilderness"
+
+[bandoss_book_of_war]
+id = 19613
+tradeable = false
+bank_stacks = false
+weight = 1.0
+slot = "Shield"
+destroy = "This book can be reclaimed from the bookcase in your player-owned house for a fee, are you sure you wish to destroy it?"
+examine = "The holy book of the Big High War God."
+kept = "Reclaim"
+
+[damaged_book_armadyl]
+id = 19614
+tradeable = false
+weight = 1.0
+slot = "Shield"
+destroy = "Talk to Jossik at the lighthouse west of Rellekka for another copy."
+examine = "An incomplete book of Armadyl."
+kept = "Wilderness"
+
+[armadyls_book_of_law]
+id = 19615
+tradeable = false
+bank_stacks = false
+weight = 1.0
+slot = "Shield"
+destroy = "This book can be reclaimed from the bookcase in your player-owned house for a fee, are you sure you wish to destroy it?"
+examine = "The holy book of Armadyl."
+kept = "Reclaim"
+
+[damaged_book_ancient]
+id = 19616
+tradeable = false
+weight = 1.0
+slot = "Shield"
+destroy = "Talk to Jossik at the lighthouse west of Rellekka for another copy."
+examine = "An incomplete ancient book."
+kept = "Wilderness"
+
+[ancient_book]
+id = 19617
+tradeable = false
+bank_stacks = false
+weight = 1.0
+aka = ["zaros_book"]
+slot = "Shield"
+destroy = "This book can be reclaimed from the bookcase in your player-owned house for a fee, are you sure you wish to destroy it?"
+examine = "The holy book of a forgotten god."
+kept = "Reclaim"

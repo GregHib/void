@@ -1,0 +1,69 @@
+[ring_from_jeffery]
+id = 19770
+tradeable = false
+weight = 0.004
+destroy = "You can ask Dororan if he's seen the ring."
+examine = "A gold ring made by Jeffery of Edgeville. It doesn't look particularly special to you."
+use = "Quest"
+kept = "Wilderness"
+
+[dororans_engraved_ring]
+id = 19771
+tradeable = false
+weight = 0.004
+destroy = "You can ask Dororan if he's seen the ring."
+examine = "This ring is engraved 'Gudrun the Fair, Gudrun the Fiery'."
+use = "Quest"
+kept = "Wilderness"
+
+[gunnars_ground]
+id = 19772
+tradeable = false
+weight = 0.001
+destroy = "You can ask Dororan for a new copy of the poem."
+examine = "A poem to convince Gunthor to settle the barbarians permanently."
+use = "Quest"
+kept = "Wilderness"
+
+[gunnars_ground_post_quest]
+id = 19773
+tradeable = false
+weight = 0.001
+destroy = "You can ask Dororan for a new copy of the poem."
+examine = "A poem to convince Gunthor to settle the barbarians permanently."
+kept = "Wilderness"
+
+[love_poem]
+id = 19774
+tradeable = false
+weight = 0.001
+destroy = "You can ask Dororan for a new poem."
+examine = "Laying everybody low with a love poem that he made."
+use = "Quest"
+kept = "Wilderness"
+
+[antique_lamp_gunnars_ground]
+id = 19775
+tradeable = false
+weight = 0.1
+destroy = "You can not get a replacement for the ancient lamp."
+examine = "I wonder what happens if I rub it."
+use = "Quest"
+kept = "Vanish"
+
+[swanky_boots]
+id = 19776
+tradeable = false
+weight = 0.34
+slot = "Feet"
+destroy = "You can ask Dororan for another pair of boots, but stocks are limited!"
+examine = "You can tell by the way I use my walk I'm too busy for a natter."
+kept = "Vanish"
+
+[swanky_boots_2]
+id = 19777
+tradeable = false
+weight = 0.34
+destroy = "You can ask Dororan for another pair of boots, but stocks are limited!"
+examine = "You can tell by the way I use my walk I'm too busy for a natter."
+kept = "Vanish"

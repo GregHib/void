@@ -1,0 +1,71 @@
+[air_rune_rogue_trader]
+id = 6422
+limit = 25000
+examine = "One of the four basic elemental runes."
+kept = "Wilderness"
+
+[air_rune_rogue_trader_noted]
+id = 6423
+
+[water_rune_rogue_trader]
+clone = "air_rune_2"
+id = 6424
+
+[water_rune_rogue_trader_noted]
+id = 6425
+
+[earth_rune_rogue_trader]
+clone = "air_rune_2"
+id = 6426
+
+[earth_rune_rogue_trader_noted]
+id = 6427
+
+[fire_rune_rogue_trader]
+clone = "air_rune_2"
+id = 6428
+
+[fire_rune_rogue_trader_noted]
+id = 6429
+
+[chaos_rune_rogue_trader]
+id = 6430
+limit = 25000
+examine = "Used for low level missile spells."
+
+[chaos_rune_rogue_trader_noted]
+id = 6431
+
+[death_rune_rogue_trader]
+id = 6432
+limit = 25000
+examine = "Used for medium level missile spells."
+
+[death_rune_rogue_trader_noted]
+id = 6433
+
+[law_rune_rogue_trader]
+id = 6434
+limit = 25000
+examine = "Used for teleport spells."
+
+[law_rune_rogue_trader_noted]
+id = 6435
+
+[mind_rune_rogue_trader]
+id = 6436
+limit = 25000
+examine = "Used for basic level missile spells."
+kept = "Wilderness"
+
+[mind_rune_rogue_trader_noted]
+id = 6437
+
+[body_rune_rogue_trader]
+id = 6438
+limit = 25000
+examine = "Used for Curse spells"
+kept = "Wilderness"
+
+[body_rune_rogue_trader_noted]
+id = 6439

@@ -1,0 +1,51 @@
+[vial_of_stench]
+id = 18661
+tradeable = false
+weight = 0.015
+destroy = "You will have to create another of these if you destroy this one."
+examine = "Better not uncork this!"
+kept = "Wilderness"
+
+[vial_of_stench_a_a_guild_of_our_own]
+id = 18662
+tradeable = false
+weight = 0.015
+destroy = "You will have to have Robin activate another one of these if you destroy this one."
+examine = "Keeps thieves from being recognised inside the Guild Registry."
+use = "Quest"
+kept = "Wilderness"
+
+[vial_of_stench_a]
+id = 18663
+tradeable = false
+weight = 0.015
+destroy = "You will have to have Robin activate another one of these if you destroy this one."
+examine = "No shopkeeper will recognise you if you have this."
+kept = "Wilderness"
+
+[cuckoo_clock_key]
+id = 18664
+tradeable = false
+weight = 0.198
+destroy = "You can acquire a new one from the registrar at the Guild Registry."
+examine = "A key for a cuckoo clock."
+use = "Quest"
+kept = "Wilderness"
+
+[lever_key]
+id = 18665
+tradeable = false
+weight = 0.01
+destroy = "The guard in the Guild Registry will have a spare."
+examine = "This key unlocks the lever controlling the vault access trapdoor."
+use = "Quest"
+kept = "Wilderness"
+
+[bonds_a_guild_of_our_own]
+id = 18666
+tradeable = false
+weight = 0.005
+destroy = "The Guild Registry's coffers will yield a replacement."
+examine = "A large sum of money made out to the Guild Registry."
+use = "Quest"
+kept = "Wilderness"

@@ -105,3 +105,10 @@ tradeable = false
 examine = "Useful for pinning up paintings."
 use = "Quest"
 kept = "Wilderness"
+
+[rope_cabin_fever]
+id = 7155
+limit = 100
+weight = 1.36
+examine = "A coil of rope."
+kept = "Wilderness"

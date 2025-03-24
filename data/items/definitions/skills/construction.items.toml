@@ -1,3 +1,13 @@
+[plank]
+id = 960
+price = 142
+limit = 10000
+weight = 0.8
+examine = "A plank of wood!"
+
+[plank_noted]
+id = 961
+
 [boxing_gloves_red]
 id = 7671
 tradeable = false
@@ -4467,3 +4477,117 @@ id = 9891
 
 [mahogany_cos_box_noted]
 id = 9892
+
+[menagerie]
+id = 15221
+
+[garden_habitat]
+id = 15222
+examine = "A nice garden habitat."
+
+[jungle_habitat]
+id = 15223
+examine = "A nice jungle habitat."
+
+[desert_habitat]
+id = 15224
+examine = "A nice desert habitat."
+
+[polar_habitat]
+id = 15225
+examine = "A nice polar habitat."
+
+[volcanic_habitat]
+id = 15226
+examine = "A sweltering volcanic habitat."
+
+[oak_pet_house]
+id = 15227
+examine = "Examine text of the constructed item."
+
+[teak_pet_house]
+id = 15228
+examine = "A teak pet hosue that can house six pets."
+
+[mahogany_pet_house]
+id = 15229
+examine = "A mahogany pet house than can house ten pets."
+
+[consecrated_pet_house]
+id = 15230
+examine = "A consecrated pet house that can house fifteen pets."
+
+[desecrated_pet_house]
+id = 15231
+examine = "A desecrated pet house that can house fifteen pets."
+
+[natural_pet_house]
+id = 15232
+examine = "A natural pet house that can house fifteen pets."
+
+[oak_pet_feeder]
+id = 15233
+examine = "An oak pet feeder that can feed three pets."
+
+[teak_pet_feeder]
+id = 15234
+examine = "A teak pet feeder that can feed six pets."
+
+[mahogany_pet_feeder]
+id = 15235
+examine = "A mahogany pet feed that can feed fifteen pets."
+
+[mini_obelisk]
+id = 15236
+examine = "Contains traces of Summoning energy."
+
+[bagged_cactus]
+clone = "thorny_hedge"
+id = 15237
+
+[bagged_cactus_noted]
+id = 15238
+
+[bagged_evergreen]
+clone = "thorny_hedge"
+id = 15239
+
+[bagged_evergreen_noted]
+id = 15240
+
+[pit_dog]
+id = 18791
+examine = "Like a wolf, only without the glamour"
+
+[pit_ogre]
+id = 18792
+examine = "It's not very smart, but it knows how to fight."
+
+[pit_rock_protector]
+id = 18793
+examine = "A being of ore and minerals."
+
+[pit_scabarite]
+id = 18794
+examine = "Two legs, four arms, and a very nasty-looking bow."
+
+[pit_black_demon]
+id = 18795
+examine = "A big, scary, jet-black demon."
+
+[pit_iron_dragon]
+id = 18796
+examine = "Its scales are made of iron."
+
+[minor_pit_trap]
+id = 18797
+
+[major_pit_trap]
+id = 18798
+
+[superior_pit_trap]
+id = 18799
+examine = "Extremely painful."
+
+[dungeon_pit]
+id = 18800

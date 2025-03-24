@@ -1,0 +1,35 @@
+[button_mushroom]
+id = 13563
+price = 68
+limit = 100
+heals = 10
+weight = 0.028
+examine = "An occasionally edible mushroom."
+
+[button_mushroom_noted]
+id = 13564
+
+[doll_spirit_of_summer]
+id = 13565
+tradeable = false
+weight = 0.2
+examine = "A very, very old doll in surprisingly good condition."
+kept = "Wilderness"
+
+[jennicas_ring]
+id = 13566
+tradeable = false
+weight = 0.004
+slot = "Ring"
+destroy = "You may be able to find a new ring near where Summer stood outside the wilderness wall."
+examine = "This magical ring once belonged to Summer's mother."
+kept = "Wilderness"
+
+[cursed_magic_logs]
+id = 13567
+weight = 2.0
+firemaking = { level = 82, xp = 303.8, life = 200 }
+examine = "Logs cut from a cursed magic tree."
+
+[cursed_magic_logs_noted]
+id = 13568

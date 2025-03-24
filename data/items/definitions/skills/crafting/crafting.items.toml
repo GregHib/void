@@ -1649,3 +1649,113 @@ examine = "Helps to restore your life points."
 
 [regen_bracelet_noted]
 id = 11134
+
+[amulet_of_farming_1]
+id = 12608
+price = 241
+slot = "Amulet"
+examine = "An amulet of Farming with 1 charge."
+weight = 0.007
+
+[amulet_of_farming_1_noted]
+id = 12609
+
+[amulet_of_farming_2]
+id = 12610
+slot = "Amulet"
+examine = "An amulet of Farming with 2 charges."
+weight = 0.007
+
+[amulet_of_farming_2_noted]
+id = 12611
+
+[amulet_of_farming_3]
+id = 12612
+slot = "Amulet"
+examine = "An amulet of Farming with 3 charges."
+weight = 0.007
+
+[amulet_of_farming_3_noted]
+id = 12613
+
+[amulet_of_farming_4]
+id = 12614
+slot = "Amulet"
+examine = "An amulet of Farming with 4 charges."
+weight = 0.007
+
+[amulet_of_farming_4_noted]
+id = 12615
+
+[amulet_of_farming_5]
+id = 12616
+slot = "Amulet"
+examine = "An amulet of Farming with 5 charges."
+weight = 0.007
+
+[amulet_of_farming_5_noted]
+id = 12617
+
+[amulet_of_farming_6]
+id = 12618
+slot = "Amulet"
+examine = "An amulet of Farming with 6 charges."
+weight = 0.007
+
+[amulet_of_farming_6_noted]
+id = 12619
+
+[amulet_of_farming_7]
+id = 12620
+slot = "Amulet"
+examine = "An amulet of Farming with 7 charges."
+weight = 0.007
+
+[amulet_of_farming_7_noted]
+id = 12621
+
+[amulet_of_farming_8]
+id = 12622
+price = 162
+slot = "Amulet"
+examine = "An amulet of Farming with 8 charges."
+weight = 0.007
+
+[amulet_of_farming_8_noted]
+id = 12623
+
+[unfinished_net]
+id = 14858
+tradeable = false
+weight = 0.623
+examine = "A strong net with no closing wire."
+kept = "Reclaim"
+
+[clay_ring_unfired]
+id = 20052
+price = 17
+limit = 100
+weight = 0.005
+examine = "I need to fire this in a pottery oven."
+
+[clay_ring]
+id = 20053
+price = 90
+limit = 100
+weight = 0.005
+slot = "Ring"
+examine = "I can have this blessed by a priest."
+
+[ring_of_devotion]
+id = 20054
+tradeable = false
+weight = 0.005
+slot = "Ring"
+examine = "This ring is dedicated to Saradomin."
+kept = "Reclaim"
+
+[clay_ring_unfired_noted]
+id = 20055
+
+[clay_ring_noted]
+id = 20056

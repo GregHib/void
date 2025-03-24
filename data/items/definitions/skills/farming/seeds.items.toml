@@ -347,3 +347,9 @@ price = 1
 limit = 500
 examine = "A cabbage seed - plant in an allotment."
 kept = "Wilderness"
+
+[wergali_seed]
+id = 14870
+price = 160
+limit = 100
+examine = "A wergali seed - plant in a herb patch."

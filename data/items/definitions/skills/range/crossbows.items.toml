@@ -353,3 +353,15 @@ examine = "An unstrung runite crossbow."
 
 [rune_crossbow_u_noted]
 id = 9466
+
+[black_crossbow]
+id = 13081
+price = 345
+limit = 2
+weight = 5.0
+attack_range = 7
+slot = "Weapon"
+examine = "A black crossbow."
+
+[black_crossbow_noted]
+id = 13082

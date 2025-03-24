@@ -1,0 +1,36 @@
+[rangers_aid]
+id = 15119
+price = 345
+limit = 100
+heals = 0
+weight = 0.55
+examine = "The honey flavour really hits the spot!"
+kept = "Wilderness"
+
+[rangers_aid_noted]
+id = 15120
+
+[rangers_aid_m]
+id = 15121
+price = 362
+limit = 100
+heals = 0
+weight = 0.55
+examine = "The honey flavour really, really hits the spot!"
+kept = "Wilderness"
+
+[rangers_aid_m_noted]
+id = 15122
+
+[skewered_kebab]
+id = 15123
+price = 85
+limit = 1000
+heals = 90
+excess = "bronze_arrow"
+weight = 0.25
+examine = "Meat and veg run through with an arrow."
+kept = "Wilderness"
+
+[skewered_kebab_noted]
+id = 15124

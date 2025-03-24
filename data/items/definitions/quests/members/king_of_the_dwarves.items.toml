@@ -1,0 +1,86 @@
+[big_rock]
+id = 20091
+tradeable = false
+weight = 32.0
+destroy = "You can get another from the troll settlement near Keldagrim."
+examine = "A big rock."
+kept = "Vanish"
+
+[veldaban]
+id = 20092
+
+[pretty_flower]
+id = 20093
+tradeable = false
+weight = 0.001
+destroy = "You can get another from My Arm in the troll settlement near Keldagrim."
+examine = "How pretty!"
+use = "Quest"
+kept = "Vanish"
+
+[keldagrim_library_key]
+id = 20096
+tradeable = false
+weight = 0.01
+destroy = "You can get another from the librarian in keldagrim."
+examine = "A key to the Keldagrim Library display case."
+use = "Quest"
+kept = "Wilderness"
+
+[keldagrim_key_mould_1]
+id = 20098
+tradeable = false
+weight = 0.01
+destroy = "You can get another from Meike in Keldagrim."
+examine = "A mould of one of the six keys to Keldagrim's records chamber."
+use = "Quest"
+kept = "Wilderness"
+
+[keldagrim_key_mould_2]
+clone = "keldagrim_key_mould_1"
+id = 20099
+
+[keldagrim_key_mould_3]
+clone = "keldagrim_key_mould_1"
+id = 20100
+
+[keldagrim_key_mould_4]
+clone = "keldagrim_key_mould_1"
+id = 20101
+
+[keldagrim_key_mould_5]
+clone = "keldagrim_key_mould_1"
+id = 20102
+
+[keldagrim_key_mould_6]
+clone = "keldagrim_key_mould_1"
+id = 20103
+
+[keldagrim_key_1]
+id = 20104
+tradeable = false
+weight = 0.05
+destroy = "You can make another at a furnace using a mithril bar and a key mould, which you can get from Meike in Keldagrim."
+examine = "A duplicate of one of the six keys to Keldagrim's records chamber."
+use = "Quest"
+kept = "Wilderness"
+
+[keldagrim_key_2]
+clone = "keldagrim_key_1"
+id = 20105
+
+[keldagrim_key_3]
+clone = "keldagrim_key_1"
+id = 20106
+
+[keldagrim_key_4]
+clone = "keldagrim_key_1"
+id = 20107
+
+[keldagrim_key_5]
+clone = "keldagrim_key_1"
+id = 20108
+
+[keldagrim_key_6]
+clone = "keldagrim_key_1"
+id = 20109

@@ -1,0 +1,1518 @@
+[skull]
+id = 964
+tradeable = false
+weight = 0.08
+examine = "Ooooh spooky!"
+kept = "Reclaim"
+
+[skull_2]
+clone = "skull"
+id = 965
+
+[tile]
+id = 966
+tradeable = false
+weight = 0.07
+examine = "A fraction of a roof."
+kept = "Reclaim"
+
+[brawling_gloves_melee]
+id = 13845
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 3188
+degrade = "destroy"
+slot = "Hands"
+destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
+examine = "Gloves that give you bonus xp in melee combat skills."
+kept = "Vanish"
+
+[brawling_gloves_ranged]
+id = 13846
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 797
+degrade = "destroy"
+slot = "Hands"
+destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
+examine = "A pair of gloves that gives you bonus Ranged xp."
+kept = "Vanish"
+
+[brawling_gloves_magic]
+id = 13847
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 797
+degrade = "destroy"
+slot = "Hands"
+destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
+examine = "A pair of gloves that gives you bonus Magic xp."
+kept = "Vanish"
+
+[brawling_gloves_prayer]
+id = 13848
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 1274
+degrade = "destroy"
+slot = "Hands"
+destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
+examine = "A pair of gloves that gives you bonus Prayer xp."
+kept = "Vanish"
+
+[brawling_gloves_agility]
+id = 13849
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 439
+degrade = "destroy"
+slot = "Hands"
+destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
+examine = "A pair of gloves that gives you bonus Agility xp."
+kept = "Vanish"
+
+[brawling_gloves_wc]
+id = 13850
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 832
+degrade = "destroy"
+slot = "Hands"
+destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
+examine = "A pair of gloves that gives you bonus Woodcutting xp."
+kept = "Vanish"
+
+[brawling_gloves_fm]
+id = 13851
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 1202
+degrade = "destroy"
+slot = "Hands"
+destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
+examine = "A pair of gloves that gives you bonus Firemaking xp."
+kept = "Vanish"
+
+[brawling_gloves_mining]
+id = 13852
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 678
+degrade = "destroy"
+slot = "Hands"
+destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
+examine = "A pair of gloves that gives you bonus Mining xp."
+kept = "Vanish"
+
+[brawling_gloves_hunter]
+id = 13853
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 336
+degrade = "destroy"
+slot = "Hands"
+destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
+examine = "A pair of gloves that gives you bonus Hunter xp."
+kept = "Vanish"
+
+[brawling_gloves_thieving]
+id = 13854
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 555
+degrade = "destroy"
+slot = "Hands"
+destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
+examine = "A pair of gloves that gives you bonus Thieving xp."
+kept = "Vanish"
+
+[brawling_gloves_smithing]
+id = 13855
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 434
+degrade = "destroy"
+slot = "Hands"
+destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
+examine = "A pair of gloves that gives you bonus Smithing xp."
+kept = "Vanish"
+
+[brawling_gloves_fishing]
+id = 13856
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 442
+degrade = "destroy"
+slot = "Hands"
+destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
+examine = "A pair of gloves that gives you bonus Fishing xp."
+kept = "Vanish"
+
+[brawling_gloves_cooking]
+id = 13857
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 1202
+degrade = "destroy"
+slot = "Hands"
+destroy = "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
+examine = "A pair of gloves that gives you bonus Cooking xp."
+kept = "Vanish"
+
+[zuriels_robe_top]
+id = 13858
+price = 1200000
+limit = 10
+slot = "Chest"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 4.535
+
+[zuriels_robe_top_noted]
+id = 13859
+
+[zuriels_robe_top_degraded]
+id = 13860
+limit = 10
+tradeable = false
+slot = "Chest"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 4.535
+
+[zuriels_robe_bottom]
+id = 13861
+price = 571100
+limit = 10
+slot = "Legs"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 5.443
+
+[zuriels_robe_bottom_noted]
+id = 13862
+
+[zuriels_robe_bottom_degraded]
+id = 13863
+limit = 10
+tradeable = false
+slot = "Legs"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 5.443
+
+[zuriels_hood]
+id = 13864
+price = 219900
+limit = 10
+slot = "Hat"
+type = "Hair"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 0.907
+
+[zuriels_hood_noted]
+id = 13865
+
+[zuriels_hood_degraded]
+id = 13866
+limit = 10
+tradeable = false
+slot = "Hat"
+type = "Hair"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 0.907
+
+[zuriels_staff]
+id = 13867
+price = 2500000
+limit = 10
+category = "staff"
+slot = "Weapon"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 2.267
+
+[zuriels_staff_noted]
+id = 13868
+
+[zuriels_staff_degraded]
+id = 13869
+limit = 10
+tradeable = false
+slot = "Weapon"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 2.267
+
+[morrigans_leather_body]
+id = 13870
+price = 1800000
+limit = 10
+slot = "Chest"
+material = "leather"
+examine = "This item degrades in combat, and will turn to dust."
+destroy2 = "Destroy, Your leather body is fragile and will disappear if you drop it. Are you sure you want to drop it?"
+weight = 6.803
+
+[morrigans_leather_body_noted]
+id = 13871
+
+[morrigans_leather_body_degraded]
+id = 13872
+limit = 10
+tradeable = false
+slot = "Chest"
+material = "leather"
+examine = "This item degrades in combat, and will turn to dust."
+destroy2 = "Destroy, Your leather body is fragile and will disappear if you drop it. Are you sure you want to drop it?"
+weight = 6.803
+
+[morrigans_leather_chaps]
+id = 13873
+price = 410200
+limit = 10
+slot = "Legs"
+material = "leather"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 5.443
+
+[morrigans_leather_chaps_noted]
+id = 13874
+
+[morrigans_leather_chaps_degraded]
+id = 13875
+limit = 10
+tradeable = false
+slot = "Legs"
+material = "leather"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 5.443
+
+[morrigans_coif]
+id = 13876
+price = 156300
+limit = 10
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 0.907
+
+[morrigans_coif_noted]
+id = 13877
+
+[morrigans_coif_degraded]
+id = 13878
+limit = 10
+tradeable = false
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 0.907
+
+[morrigans_javelin]
+id = 13879
+price = 271900
+limit = 100
+attack_range = 5
+special_energy = 500
+special = "phantom_strike"
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A vicious javelin."
+
+[morrigans_javelin_p]
+id = 13880
+limit = 100
+attack_range = 5
+special_energy = 500
+special = "phantom_strike"
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A vicious javelin."
+
+[morrigans_javelin_p+]
+id = 13881
+limit = 100
+attack_range = 5
+special_energy = 500
+special = "phantom_strike"
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A vicious javelin."
+
+[morrigans_javelin_p++]
+id = 13882
+limit = 100
+attack_range = 5
+special_energy = 500
+special = "phantom_strike"
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A vicious javelin."
+
+[morrigans_throwing_axe]
+id = 13883
+price = 189500
+limit = 500
+attack_range = 4
+weapon_type = "knife"
+special_damage_mod_1 = 1.2
+special_energy = 500
+special = "hamstring"
+slot = "Weapon"
+examine = "A vicious throwing axe."
+
+[statiuss_platebody]
+id = 13884
+price = 6000000
+limit = 10
+charges = 1
+degrade = "statiuss_platebody_degraded"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 9.979
+
+[statiuss_platebody_noted]
+id = 13885
+
+[statiuss_platebody_degraded]
+id = 13886
+limit = 10
+tradeable = false
+charges = 6000
+degrade = "destroy"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 9.979
+
+[vestas_chainbody]
+id = 13887
+price = 9600000
+limit = 10
+charges = 1
+degrade = "vestas_chainbody_degraded"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+type = "Sleeveless"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 6.803
+
+[vestas_chainbody_noted]
+id = 13888
+
+[vestas_chainbody_degraded]
+id = 13889
+limit = 10
+tradeable = false
+charges = 6000
+degrade = "destroy"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+type = "Sleeveless"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 6.803
+
+[statiuss_platelegs]
+id = 13890
+price = 5400000
+limit = 10
+charges = 1
+degrade = "statiuss_platelegs_degraded"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 9.071
+
+[statiuss_platelegs_noted]
+id = 13891
+
+[statiuss_platelegs_degraded]
+id = 13892
+limit = 10
+tradeable = false
+charges = 6000
+degrade = "destroy"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 9.071
+
+[vestas_plateskirt]
+id = 13893
+price = 6200000
+limit = 10
+charges = 1
+degrade = "vestas_plateskirt_degraded"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 8.164
+
+[vestas_plateskirt_noted]
+id = 13894
+
+[vestas_plateskirt_degraded]
+id = 13895
+limit = 10
+tradeable = false
+charges = 6000
+degrade = "destroy"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 8.164
+
+[statiuss_full_helm]
+id = 13896
+price = 2200000
+limit = 10
+charges = 1
+degrade = "statiuss_full_helm_degraded"
+deplete = "combat"
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 2.721
+
+[statiuss_full_helm_noted]
+id = 13897
+
+[statiuss_full_helm_degraded]
+id = 13898
+limit = 10
+tradeable = false
+charges = 6000
+degrade = "destroy"
+deplete = "combat"
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 2.721
+
+[vestas_longsword]
+id = 13899
+price = 38300000
+limit = 10
+aka = ["vls", "vestas_long_sword"]
+special_damage_mod_1 = 1.2
+special_energy = 250
+special = "feint"
+charges = 1
+degrade = "vestas_longsword_degraded"
+deplete = "combat"
+weapon_type = "vestas_longsword"
+slot = "Weapon"
+material = "metal"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 1.814
+
+[vestas_longsword_noted]
+id = 13900
+
+[vestas_longsword_degraded]
+id = 13901
+limit = 10
+tradeable = false
+special_damage_mod_1 = 1.2
+special_energy = 250
+special = "feint"
+charges = 6000
+degrade = "destroy"
+deplete = "combat"
+weapon_type = "vestas_longsword"
+slot = "Weapon"
+material = "metal"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 1.814
+
+[statiuss_warhammer]
+id = 13902
+price = 17300000
+limit = 10
+aka = ["stat_ham", "stat_hammer", "statius_hammer", "statiuss_hammer", "statius_warhammer"]
+special_damage_mod_1 = 1.25
+special_energy = 350
+special = "smash"
+charges = 1
+degrade = "statiuss_warhammer_degraded"
+deplete = "combat"
+slot = "Weapon"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 1.814
+
+[statiuss_warhammer_noted]
+id = 13903
+
+[statiuss_warhammer_degraded]
+id = 13904
+limit = 10
+tradeable = false
+special_damage_mod_1 = 1.25
+special_energy = 350
+special = "smash"
+charges = 6000
+degrade = "destroy"
+deplete = "combat"
+slot = "Weapon"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 1.814
+
+[vestas_spear]
+id = 13905
+price = 4100000
+limit = 10
+special_energy = 500
+special = "spear_wall"
+charges = 1
+degrade = "vestas_spear_degraded"
+deplete = "combat"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 2.267
+
+[vestas_spear_noted]
+id = 13906
+
+[vestas_spear_degraded]
+id = 13907
+limit = 10
+special_energy = 500
+special = "spear_wall"
+tradeable = false
+charges = 6000
+degrade = "destroy"
+deplete = "combat"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "This item degrades in combat, and will turn to dust."
+weight = 2.267
+
+[corrupt_statiuss_platebody]
+id = 13908
+price = 5200000
+limit = 10
+charges = 1
+degrade = "corrupt_statiuss_platebody_degraded"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 9.979
+
+[corrupt_statiuss_platebody_noted]
+id = 13909
+
+[corrupt_statiuss_platebody_degraded]
+id = 13910
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 9.979
+
+[corrupt_vestas_chainbody]
+id = 13911
+price = 7600000
+limit = 10
+charges = 1
+degrade = "corrupt_vestas_chainbody_degraded"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+type = "Sleeveless"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 6.803
+
+[corrupt_vestas_chainbody_noted]
+id = 13912
+
+[corrupt_vestas_chainbody_degraded]
+id = 13913
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+type = "Sleeveless"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 6.803
+
+[corrupt_statiuss_platelegs]
+id = 13914
+price = 5200000
+limit = 10
+charges = 1
+degrade = "corrupt_statiuss_platelegs_degraded"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 9.071
+
+[corrupt_statiuss_platelegs_noted]
+id = 13915
+
+[corrupt_statiuss_platelegs_degraded]
+id = 13916
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 9.071
+
+[corrupt_vestas_plateskirt]
+id = 13917
+price = 5500000
+limit = 10
+charges = 1
+degrade = "corrupt_vestas_plateskirt_degraded"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 8.164
+
+[corrupt_vestas_plateskirt_noted]
+id = 13918
+
+[corrupt_vestas_plateskirt_degraded]
+id = 13919
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 8.164
+
+[corrupt_statiuss_full_helm]
+id = 13920
+price = 1700000
+limit = 10
+charges = 1
+degrade = "corrupt_statiuss_full_helm_degraded"
+deplete = "combat"
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 2.721
+
+[corrupt_statiuss_full_helm_noted]
+id = 13921
+
+[corrupt_statiuss_full_helm_degraded]
+id = 13922
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 2.721
+
+[corrupt_vestas_longsword]
+id = 13923
+price = 9500000
+limit = 10
+charges = 1
+degrade = "corrupt_vestas_longsword_degraded"
+deplete = "combat"
+weapon_type = "vestas_longsword"
+slot = "Weapon"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 1.814
+
+[corrupt_vestas_longsword_noted]
+id = 13924
+
+[corrupt_vestas_longsword_degraded]
+id = 13925
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+weapon_type = "vestas_longsword"
+slot = "Weapon"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 1.814
+
+[corrupt_statiuss_warhammer]
+id = 13926
+price = 6100000
+limit = 10
+charges = 1
+degrade = "corrupt_statiuss_warhammer_degraded"
+deplete = "combat"
+slot = "Weapon"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 1.814
+
+[corrupt_statiuss_warhammer_noted]
+id = 13927
+
+[corrupt_statiuss_warhammer_degraded]
+id = 13928
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Weapon"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 1.814
+
+[corrupt_vestas_spear]
+id = 13929
+price = 1100000
+limit = 10
+charges = 1
+degrade = "corrupt_vestas_spear_degraded"
+deplete = "combat"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 2.267
+
+[corrupt_vestas_spear_noted]
+id = 13930
+
+[corrupt_vestas_spear_degraded]
+id = 13931
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 2.267
+
+[corrupt_zuriels_robe_top]
+id = 13932
+price = 467200
+limit = 10
+charges = 1
+degrade = "corrupt_zuriels_robe_top_degraded"
+deplete = "combat"
+slot = "Chest"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 4.535
+
+[corrupt_zuriels_robe_top_noted]
+id = 13933
+
+[corrupt_zuriels_robe_top_degraded]
+id = 13934
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Chest"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 4.535
+
+[corrupt_zuriels_robe_bottom]
+id = 13935
+price = 370700
+limit = 10
+charges = 1
+degrade = "corrupt_zuriels_robe_bottom_degraded"
+deplete = "combat"
+slot = "Legs"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 5.443
+
+[corrupt_zuriels_robe_bottom_noted]
+id = 13936
+
+[corrupt_zuriels_robe_bottom_degraded]
+id = 13937
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Legs"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 5.443
+
+[corrupt_zuriels_hood]
+id = 13938
+price = 137400
+limit = 10
+charges = 1
+degrade = "corrupt_zuriels_hood_degraded"
+deplete = "combat"
+slot = "Hat"
+type = "Hair"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 0.907
+
+[corrupt_zuriels_hood_noted]
+id = 13939
+
+[corrupt_zuriels_hood_degraded]
+id = 13940
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Hat"
+type = "Hair"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 0.907
+
+[corrupt_zuriels_staff]
+id = 13941
+price = 1400000
+limit = 10
+charges = 1
+degrade = "corrupt_zuriels_staff_degraded"
+deplete = "combat"
+category = "staff"
+slot = "Weapon"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 2.267
+
+[corrupt_zuriels_staff_noted]
+id = 13942
+
+[corrupt_zuriels_staff_degraded]
+id = 13943
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Weapon"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 2.267
+
+[corrupt_morrigans_leather_body]
+id = 13944
+price = 1000000
+limit = 10
+charges = 1
+degrade = "corrupt_morrigans_leather_body_degraded"
+deplete = "combat"
+slot = "Chest"
+material = "leather"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 6.803
+
+[corrupt_morrigans_leather_body_noted]
+id = 13945
+
+[corrupt_morrigans_leather_body_degraded]
+id = 13946
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Chest"
+material = "leather"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 6.803
+
+[corrupt_morrigans_leather_chaps]
+id = 13947
+price = 203000
+limit = 10
+charges = 1
+degrade = "corrupt_morrigans_leather_chaps_degraded"
+deplete = "combat"
+slot = "Legs"
+material = "leather"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 5.443
+
+[corrupt_morrigans_leather_chaps_noted]
+id = 13948
+
+[corrupt_morrigans_leather_chaps_degraded]
+id = 13949
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Legs"
+material = "leather"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 5.443
+
+[corrupt_morrigans_coif]
+id = 13950
+price = 121300
+limit = 10
+charges = 1
+degrade = "corrupt_morrigans_coif_degraded"
+deplete = "combat"
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 0.907
+
+[corrupt_morrigans_coif_noted]
+id = 13951
+
+[corrupt_morrigans_coif_degraded]
+id = 13952
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 0.907
+
+[corrupt_morrigans_javelin]
+id = 13953
+price = 57500
+limit = 100
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A vicious javelin."
+
+[c_morrigans_javelin_p]
+id = 13954
+limit = 100
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A vicious javelin."
+
+[c_morrigans_javelin_p+]
+id = 13955
+limit = 100
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A vicious javelin."
+
+[c_morrigans_javelin_p++]
+id = 13956
+limit = 100
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A vicious javelin."
+
+[corrupt_morrigans_throwing_axe]
+id = 13957
+price = 58800
+limit = 500
+attack_range = 4
+weapon_type = "knife"
+special_energy = 500
+slot = "Weapon"
+examine = "A vicious throwing axe."
+
+[corrupt_dragon_chainbody]
+id = 13958
+price = 355300
+limit = 10
+charges = 1
+degrade = "corrupt_dragon_chainbody_degraded"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 6.803
+
+[corrupt_dragon_chainbody_noted]
+id = 13959
+
+[corrupt_dragon_chainbody_degraded]
+id = 13960
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 6.803
+
+[corrupt_dragon_helm]
+id = 13961
+price = 103800
+limit = 10
+charges = 1
+degrade = "corrupt_dragon_helm_degraded"
+deplete = "combat"
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 1.36
+
+[corrupt_dragon_med_helm_noted]
+id = 13962
+
+[corrupt_dragon_helm_degraded]
+id = 13963
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 1.36
+
+[corrupt_dragon_sq_shield]
+id = 13964
+price = 210600
+limit = 10
+charges = 1
+degrade = "corrupt_dragon_sq_shield_degraded"
+deplete = "combat"
+slot = "Shield"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 3.175
+
+[corrupt_dragon_sq_shield_noted]
+id = 13965
+
+[corrupt_dragon_sq_shield_degraded]
+id = 13966
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Shield"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 3.175
+
+[corrupt_dragon_plateskirt]
+id = 13967
+price = 91900
+limit = 10
+charges = 1
+degrade = "corrupt_dragon_plateskirt_degraded"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 9.071
+
+[corrupt_dragon_plateskirt_noted]
+id = 13968
+
+[corrupt_dragon_plateskirt_degraded]
+id = 13969
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 9.071
+
+[corrupt_dragon_platelegs]
+id = 13970
+price = 120500
+limit = 10
+charges = 1
+degrade = "corrupt_dragon_platelegs_degraded"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 9.071
+
+[corrupt_dragon_platelegs_noted]
+id = 13971
+
+[corrupt_dragon_platelegs_degraded]
+id = 13972
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 9.071
+
+[corrupt_dragon_battleaxe]
+id = 13973
+price = 2600000
+limit = 10
+charges = 1
+degrade = "corrupt_dragon_battleaxe_degraded"
+deplete = "combat"
+slot = "Weapon"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 2.721
+
+[corrupt_dragon_battleaxe_noted]
+id = 13974
+
+[corrupt_dragon_battleaxe_degraded]
+id = 13975
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Weapon"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 2.721
+
+[corrupt_dragon_dagger]
+id = 13976
+price = 66700
+limit = 10
+charges = 1
+degrade = "corrupt_dragon_dagger_degraded"
+deplete = "combat"
+weapon_type = "dragon_dagger"
+slot = "Weapon"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 0.453
+
+[corrupt_dragon_dagger_noted]
+id = 13977
+
+[corrupt_dragon_dagger_degraded]
+id = 13978
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+weapon_type = "dragon_dagger"
+slot = "Weapon"
+material = "metal"
+destroy = "Your dagger is fragile and will disappear if you drop it. Are you sure you want to drop it?"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 0.453
+
+[corrupt_dragon_scimitar]
+id = 13979
+price = 2899454
+limit = 10
+charges = 1
+degrade = "corrupt_dragon_scimitar_degraded"
+deplete = "combat"
+slot = "Weapon"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 1.814
+
+[corrupt_dragon_scimitar_noted]
+id = 13980
+
+[corrupt_dragon_scimitar_degraded]
+id = 13981
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Weapon"
+material = "metal"
+destroy = "Your scimitar is fragile and will disappear if you drop it. Are you sure you want to drop it?"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 1.814
+
+[corrupt_dragon_longsword]
+id = 13982
+price = 979900
+limit = 10
+charges = 1
+degrade = "corrupt_dragon_longsword_degraded"
+deplete = "combat"
+slot = "Weapon"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 1.814
+
+[corrupt_dragon_longsword_noted]
+id = 13983
+
+[corrupt_dragon_longsword_degraded]
+id = 13984
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Weapon"
+material = "metal"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 1.814
+
+[corrupt_dragon_mace]
+id = 13985
+price = 150300
+limit = 10
+charges = 1
+degrade = "corrupt_dragon_mace_degraded"
+deplete = "combat"
+slot = "Weapon"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 1.814
+
+[corrupt_dragon_mace_noted]
+id = 13986
+
+[corrupt_dragon_mace_degraded]
+id = 13987
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Weapon"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 1.814
+
+[corrupt_dragon_spear]
+id = 13988
+price = 104600
+limit = 10
+charges = 1
+degrade = "corrupt_dragon_spear_degraded"
+deplete = "combat"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 2.267
+
+[corrupt_dragon_spear_noted]
+id = 13989
+
+[corrupt_dragon_spear_degraded]
+id = 13990
+limit = 10
+tradeable = false
+charges = 1500
+degrade = "destroy"
+deplete = "combat"
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Your spear is fragile and will disappear if you drop it. Are you sure you want to drop it?"
+examine = "This item degrades while worn, and will turn to dust."
+weight = 2.267
+
+[wilderness_manual_pvp_worlds]
+id = 14056
+tradeable = false
+weight = 0.51
+destroy = "You can get another copy by searching bookshelves around Gielinor."
+examine = "A book about the Wilderness."
+kept = "Vanish"
+
+[wilderness_manual_bounty_worlds]
+clone = "wilderness_manual_pvp_worlds"
+id = 14795
+
+[ancient_statuette]
+id = 14876
+weight = 0.65
+aka = ["zaros_statuette"]
+examine = "A mysterious statuette of ancient times."
+
+[seren_statuette]
+id = 14877
+weight = 0.3
+examine = "A small statuette that appears to be entirely made of crystal."
+
+[armadyl_statuette]
+id = 14878
+weight = 0.8
+examine = "A dedication to Armadyl, carved from the wing bones of his fallen warriors."
+
+[zamorak_statuette]
+id = 14879
+weight = 0.23
+examine = "A small, obsidian statuette in the shape of a black demon."
+
+[saradomin_statuette]
+id = 14880
+weight = 0.95
+examine = "An angel statuette dedicated to Saradomin."
+
+[bandos_statuette]
+id = 14881
+weight = 0.29
+examine = "A statuette resembling an ork-like creature."
+
+[ruby_chalice]
+id = 14882
+weight = 0.11
+examine = "A small, obsidian chalice with a finely cut ruby in it."
+
+[guthixian_brazier]
+id = 14883
+weight = 1.4
+examine = "A bronze ritual brazier, trimmed with jade and emeralds."
+
+[armadyl_totem]
+id = 14884
+weight = 0.28
+examine = "A painted, wooden eagle in fine condition."
+
+[zamorak_medallion]
+id = 14885
+weight = 1.05
+examine = "A black, metal symbol decorated with three blood red rubies."
+
+[saradomin_carving]
+id = 14886
+weight = 0.35
+examine = "A wooden angel icon dedicated to Saradomin."
+
+[bandos_scrimshaw]
+id = 14887
+weight = 0.23
+examine = "A stylised ogre face, crafted out of bone."
+
+[saradomin_amphora]
+id = 14888
+weight = 0.85
+examine = "A ceramic vase with a Saradomin symbol painted on it."
+
+[ancient_psaltery_bridge]
+id = 14889
+weight = 0.15
+examine = "A part of an old instrument."
+
+[bronzed_dragon_claw]
+id = 14890
+weight = 0.45
+examine = "This big claw was once part of a ceremonial necklace."
+
+[third_age_carafe]
+id = 14891
+weight = 1.0
+examine = "A very old clay carafe."
+
+[broken_statue_headdress]
+id = 14892
+weight = 1.8
+examine = "This was once part of a big statue."
+
+[ancient_statuette_noted]
+id = 14893
+
+[seren_statuette_noted]
+id = 14894
+
+[armadyl_statuette_noted]
+id = 14895
+
+[zamorak_statuette_noted]
+id = 14896
+
+[saradomin_statuette_noted]
+id = 14897
+
+[bandos_statuette_noted]
+id = 14898
+
+[ruby_chalice_noted]
+id = 14899
+
+[guthixian_brazier_noted]
+id = 14900
+
+[armadyl_totem_noted]
+id = 14901
+
+[zamorak_medallion_noted]
+id = 14902
+
+[saradomin_carving_noted]
+id = 14903
+
+[bandos_scrimshaw_noted]
+id = 14904
+
+[saradomin_amphora_noted]
+id = 14905
+
+[ancient_psaltery_bridge_noted]
+id = 14906
+
+[bronzed_dragon_claw_noted]
+id = 14907
+
+[third_age_carafe_noted]
+id = 14908
+
+[broken_statue_headdress_noted]
+id = 14909
+
+[muddy_key]
+id = 991
+price = 1991
+limit = 100
+weight = 0.01
+examine = "It looks like the key to a chest."
+
+[muddy_key_noted]
+id = 992

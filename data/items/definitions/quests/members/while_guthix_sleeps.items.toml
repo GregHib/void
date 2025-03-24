@@ -1,0 +1,460 @@
+[vine_flower]
+id = 14458
+tradeable = false
+weight = 0.007
+examine = "A vine flower grown through magical means."
+kept = "Wilderness"
+
+[unconscious_broav]
+id = 14459
+tradeable = false
+weight = 10.0
+destroy = "You caught this broav west of the Hunting Expert's home. You can catch another one with a trap baited with mort Myre Fungus."
+examine = "It's unconscious, poor thing."
+use = "Quest"
+kept = "Wilderness"
+
+[dirty_laundry]
+id = 14460
+tradeable = false
+weight = 2.0
+slot = "Weapon"
+destroy = "You got these clothes from a washerman who lives near the Khazard battle arena."
+examine = "Some dirty clothes that apparently belong to Movario."
+kept = "Wilderness"
+
+[waste_paper_basket]
+id = 14461
+tradeable = false
+weight = 0.5
+destroy = "You found this basket in Movario's base."
+examine = "A receptacle for rubbish."
+use = "Quest"
+kept = "Wilderness"
+
+[ruby_key]
+id = 14462
+tradeable = false
+weight = 0.025
+destroy = "You found this key attached to the bottom of the bin in Movario's base."
+examine = "A superbly made key with a fine ruby inserted into it."
+use = "Quest"
+kept = "Wilderness"
+
+[notes_on_pressure]
+id = 14463
+tradeable = false
+weight = 0.2
+destroy = "You found these notes in Movario's basement. You can also reclaim it from the quest storage chest."
+examine = "A collection of notes made by an absent-minded fellow."
+kept = "Wilderness"
+
+[movarios_notes_volume_1]
+id = 14464
+tradeable = false
+weight = 1.5
+destroy = "You found these notes loosely piled up on Movario's desk, in his base of operations near the Khazard Battlefield."
+examine = "A loose-leaf collection of research notes, found on Movario's study desk."
+kept = "Vanish"
+
+[movarios_notes_volume_2]
+id = 14465
+tradeable = false
+weight = 1.5
+destroy = "You found these notes in Movario's bedchest, in his base of operations near the Khazard Battlefield."
+examine = "A loose-leaf collection of research notes, found in Movario's bed chest."
+kept = "Vanish"
+
+[weight_1kg]
+id = 14466
+tradeable = false
+weight = 1.0
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "A 1kg weight."
+use = "Quest"
+kept = "Wilderness"
+
+[weight_2kg]
+id = 14467
+tradeable = false
+weight = 2.0
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "A 2kg weight."
+use = "Quest"
+kept = "Wilderness"
+
+[weight_5kg]
+id = 14468
+tradeable = false
+weight = 5.0
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "A 5kg weight."
+use = "Quest"
+kept = "Wilderness"
+
+[strange_key_loop]
+id = 14469
+tradeable = false
+weight = 0.5
+destroy = "You can find another under the bed on the top level of Movario's base"
+examine = "The loop half of a strange key."
+use = "Quest"
+kept = "Vanish"
+
+[strange_key_teeth]
+id = 14470
+tradeable = false
+weight = 0.5
+destroy = "You can find another under the bed on the top level of Movario's base"
+examine = "The teeth half of a strange key."
+use = "Quest"
+kept = "Vanish"
+
+[dragonkin_key]
+id = 14471
+tradeable = false
+weight = 1.0
+destroy = "You fused together two parts of a Dragonkin key which you obtained from Movario's base."
+examine = "The completed dragonkin key."
+use = "Quest"
+kept = "Wilderness"
+
+[ruined_dragon_armour_lump]
+id = 14472
+price = 823200
+limit = 10
+weight = 10.0
+examine = "A badly damaged lump of dragon metal."
+
+[ruined_dragon_armour_lump_noted]
+id = 14473
+
+[ruined_dragon_armour_slice]
+id = 14474
+price = 3700000
+limit = 10
+weight = 10.0
+examine = "A badly damaged slice of dragon metal."
+
+[ruined_dragon_armour_slice_noted]
+id = 14475
+
+[ruined_dragon_armour_shard]
+id = 14476
+price = 3200000
+limit = 10
+weight = 10.0
+examine = "A badly damaged shard of dragon metal."
+
+[ruined_dragon_armour_shard_noted]
+id = 14477
+
+[dragon_platebody]
+id = 14479
+price = 8900000
+limit = 10
+weight = 9.071
+slot = "Chest"
+material = "metal"
+examine = "Provides excellent protection."
+
+[dragon_platebody_noted]
+id = 14480
+
+[dragon_platebody_lent]
+id = 14481
+
+[dragon_claws]
+id = 14484
+price = 16970217
+limit = 10
+weight = 5.0
+aka = ["dclaws", "d_claws", "claws"]
+special_energy = 500
+special = "slice_and_dice"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A set of fighting claws."
+
+[dragon_claws_noted]
+id = 14485
+
+[dragon_claws_lent]
+id = 14486
+
+[enriched_snapdragon]
+id = 14487
+tradeable = false
+weight = 0.002
+destroy = "You grew this herb by planting an enriched snapdragon seed in the special herb patch on top of Falador castle."
+examine = "An enriched snapdragon herb."
+use = "Quest"
+kept = "Wilderness"
+
+[super_truth_serum]
+id = 14488
+tradeable = false
+weight = 0.05
+destroy = "You made this serum by mixing an enriched snapdragon into one of Betty's truth serums."
+examine = "Fluid sloshes innocently in this vial."
+use = "Quest"
+kept = "Wilderness"
+
+[suspect_sketch]
+id = 14489
+tradeable = false
+weight = 0.02
+destroy = "You gained this item by having papyrus and charcoal in your inventory while interrogating a spy in Falador castle."
+examine = "A sketch of the suspect known as Dark Squall."
+use = "Quest"
+kept = "Wilderness"
+
+[elite_black_platelegs]
+id = 14490
+price = 50200
+limit = 10
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "These look pretty heavy, but very elite."
+
+[elite_black_platelegs_noted]
+id = 14491
+
+[elite_black_platebody]
+id = 14492
+price = 60200
+limit = 10
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "Provides excellent protection, and is elite."
+
+[elite_black_platebody_noted]
+id = 14493
+
+[elite_black_full_helm]
+id = 14494
+price = 30900
+limit = 10
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A full face helmet, and elite."
+
+[elite_black_full_helm_noted]
+id = 14495
+
+[cell_key]
+id = 14496
+tradeable = false
+weight = 0.2
+destroy = "You got this key from the key rack in Dark Squall's base."
+examine = "Opens the cells beneath the Black Knights' Fortress."
+use = "Quest"
+kept = "Wilderness"
+
+[dagonhai_robe_top]
+id = 14497
+price = 95200
+limit = 10
+weight = 0.907
+slot = "Chest"
+examine = "A robe worn by members of the Dagon'hai."
+
+[dagonhai_robe_top_noted]
+id = 14498
+
+[dagonhai_hat]
+id = 14499
+price = 24500
+limit = 10
+weight = 0.25
+slot = "Hat"
+examine = "A hat worn by members of the Dagon'hai."
+
+[dagonhai_hat_noted]
+id = 14500
+
+[dagonhai_robe_bottom]
+id = 14501
+price = 53600
+limit = 10
+weight = 0.907
+slot = "Legs"
+examine = "A robe worn by members of the Dagon'hai."
+
+[dagonhai_robe_bottom_noted]
+id = 14502
+
+[silif]
+id = 14503
+
+[silif_2]
+id = 14504
+
+[teleorb_while_guthix_sleeps]
+id = 14505
+tradeable = false
+weight = 2.0
+slot = "Shield"
+destroy = "You gained this orb from one of the White Knights."
+examine = "This can be used to remotely teleport people."
+destroy2 = "You gained this orb from Silif in the Black Knight Catacombs while searching Dark Squall's base."
+use = "Quest"
+kept = "Wilderness"
+
+[enriched_snapdragon_seed]
+id = 14506
+tradeable = false
+weight = 0.005
+destroy = "You created this by focusing the light onto a snapdragon seed from a rose tinted lens while in Betty's shop."
+examine = "An enriched snapdragon seed. The herb that grows from this seed will be extra potent!"
+use = "Quest"
+kept = "Wilderness"
+
+[dolmen]
+id = 14507
+tradeable = false
+weight = 1.0
+destroy = "You got this by solving a puzzle in the a Guthixian temple near the Chasm of Tears."
+examine = "Part of a stone circle."
+use = "Quest"
+
+[dolmen_2]
+clone = "dolmen"
+id = 14508
+
+[dolmen_3]
+clone = "dolmen"
+id = 14509
+
+[dolmen_4]
+clone = "dolmen"
+id = 14510
+
+[dolmen_5]
+clone = "dolmen"
+id = 14511
+
+[dolmen_6]
+clone = "dolmen"
+id = 14512
+
+[dolmen_7]
+clone = "dolmen"
+id = 14513
+
+[dolmen_8]
+clone = "dolmen"
+id = 14514
+
+[air_key]
+id = 14515
+tradeable = false
+weight = 1.0
+destroy = "You found this in the Chasm of Tears by using an air-orb on an etched wall section."
+examine = "An elemental key of air."
+use = "Quest"
+kept = "Wilderness"
+
+[earth_key]
+id = 14516
+tradeable = false
+weight = 1.0
+destroy = "You found this in the Chasm of Tears by using an earth-orb on an etched wall section."
+examine = "An elemental key of earth."
+use = "Quest"
+kept = "Wilderness"
+
+[fire_key]
+id = 14517
+tradeable = false
+weight = 1.0
+destroy = "You found this in the Chasm of Tears by using an"
+examine = "An elemental key of fire."
+use = "Quest"
+kept = "Wilderness"
+
+[water_key]
+id = 14518
+tradeable = false
+weight = 1.0
+destroy = "You found this in the Chasm of Tears by using an"
+examine = "An elemental key of water."
+use = "Quest"
+kept = "Wilderness"
+
+[air_key_2]
+clone = "air_key"
+id = 14519
+
+[earth_key_2]
+clone = "earth_key"
+id = 14520
+
+[fire_key_2]
+clone = "fire_key"
+id = 14521
+
+[water_key_2]
+clone = "water_key"
+id = 14522
+
+[dagonhai_robes_set]
+id = 14525
+price = 212381
+limit = 10
+weight = 2.267
+examine = "Grand Exchange set containing a hat, top and bottoms."
+
+[dagonhai_robes_set_noted]
+id = 14526
+
+[elite_black_armour_set]
+id = 14527
+price = 163300
+limit = 10
+weight = 2.267
+examine = "Grand Exchange set containing an elite black full helm, platebody and legs."
+
+[elite_black_armour_set_noted]
+id = 14528
+
+[dragon_plate_armour_set_lg]
+id = 14529
+price = 60200000
+limit = 10
+weight = 2.267
+examine = "Grand Exchange set containing a dragon full helm, platebody, legs."
+
+[dragon_plate_armour_set_lg_noted]
+id = 14530
+
+[dragon_plate_armour_set_sk]
+id = 14531
+price = 51600000
+limit = 10
+weight = 2.267
+examine = "Grand Exchange set containing a dragon full helm, platebody, skirt."
+
+[dragon_plate_armour_set_sk_noted]
+id = 14532
+
+[broav]
+id = 14533
+npc = 8491
+npc2 = 9188
+food = "Mort myre fungus"
+examine = "A Mort Myre mushroom-muncher."
+skill_req = { summoning = 23, hunter = 55 }
+
+[strange_teleorb]
+id = 14534
+tradeable = false
+weight = 2.0
+destroy = "You gained this orb from Dark Squall's base. You can probably get another one from visiting the same place. You can also reclaim it from the quest storage chest."
+examine = "This orb can be used to teleport people...somehow."
+use = "Quest"
+kept = "Wilderness"

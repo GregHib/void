@@ -175,6 +175,13 @@ limit = 10000
 slot = "Ammo"
 examine = "An easy to make, bronze-headed fire arrow."
 
+[orb_of_light_5]
+id = 2529
+tradeable = false
+weight = 5.0
+examine = "A magical sphere that glimmers within."
+use = "Quest"
+
 [iron_fire_arrows_unlit]
 id = 2532
 price = 321

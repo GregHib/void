@@ -44,3 +44,10 @@ slot = "Ammo"
 examine = "Standard training arrows."
 kept = "Reclaim"
 use = "Limited"
+
+[goblin_book]
+id = 10999
+tradeable = false
+weight = 0.1
+examine = "A tattered goblin holy book."
+kept = "Wilderness"

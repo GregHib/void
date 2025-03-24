@@ -1,0 +1,180 @@
+[black_platebody_bugged]
+id = 19781
+tradeable = false
+weight = 9.979
+slot = "Chest"
+material = "metal"
+destroy = "You can get a replacement from Korasi in Falador."
+examine = "This armour has been modified to track your movements."
+use = "Quest"
+kept = "Vanish"
+
+[black_platelegs_bugged]
+id = 19782
+tradeable = false
+weight = 9.071
+slot = "Legs"
+material = "metal"
+destroy = "You can get a replacement from Korasi in Falador."
+examine = "This armour has been modified to track your movements."
+use = "Quest"
+kept = "Vanish"
+
+[black_full_helm_bugged]
+id = 19783
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+destroy = "You can get a replacement from Korasi in Falador."
+examine = "This armour has been modified to track your movements."
+use = "Quest"
+kept = "Vanish"
+
+[korasis_sword]
+id = 19784
+tradeable = false
+weight = 0.907
+aka = ["korasi", "korasi_sword"]
+special_energy = 600
+special = "disrupt"
+weapon_type = "korasis_sword"
+slot = "Weapon"
+material = "metal"
+examine = "The sword of a Void Knight."
+kept = "Reclaim"
+
+[elite_void_knight_top_executioner]
+id = 19785
+tradeable = false
+weight = 8.618
+slot = "Chest"
+examine = "Armour worn by Void Knight Executioners."
+kept = "Reclaim"
+
+[elite_void_knight_robe_executioner]
+id = 19786
+tradeable = false
+weight = 8.618
+slot = "Legs"
+examine = "Armour worn by Void Knight Executioners."
+kept = "Reclaim"
+
+[elite_void_knight_top_justiciar]
+id = 19787
+tradeable = false
+weight = 8.618
+slot = "Chest"
+examine = "Armour worn by Void Knight Justiciars."
+kept = "Reclaim"
+
+[elite_void_knight_robe_justiciar]
+id = 19788
+tradeable = false
+weight = 8.618
+slot = "Legs"
+examine = "Armour worn by Void Knight Justiciars."
+kept = "Reclaim"
+
+[elite_void_knight_top_guardian]
+id = 19789
+tradeable = false
+weight = 8.618
+slot = "Chest"
+examine = "Armour worn by Void Knight Guardians."
+kept = "Reclaim"
+
+[elite_void_knight_robe_guardian]
+id = 19790
+tradeable = false
+weight = 8.618
+slot = "Legs"
+examine = "Armour worn by Void Knight Guardians."
+kept = "Reclaim"
+
+[book_of_equilibrium]
+id = 19791
+tradeable = false
+weight = 0.5
+destroy = "Read it to get your reward; it is destroyed in the process."
+examine = "The secrets of Void Knight combat."
+use = "Quest"
+kept = "Vanish"
+
+[security_block]
+id = 19792
+tradeable = false
+destroy = "You can get a replacement from Captain Gilroy in the storage facility."
+examine = "A section of the Black Knights' security system."
+use = "Quest"
+kept = "Vanish"
+
+[broken_security_block]
+id = 19793
+tradeable = false
+weight = 0.001
+destroy = "You can get a replacement from Captain Gilroy in the storage facility."
+examine = "A shattered section of the Black Knights' security system."
+use = "Quest"
+kept = "Vanish"
+
+[key_block_labelled_2]
+id = 19794
+tradeable = false
+weight = 0.5
+examine = "A stamped block of metal from a box marked 2."
+use = "Quest"
+kept = "Vanish"
+
+[key_block_labelled_3]
+id = 19795
+tradeable = false
+weight = 0.5
+examine = "A stamped block of metal from a box marked 3."
+use = "Quest"
+kept = "Vanish"
+
+[key_block_labelled_4]
+id = 19796
+tradeable = false
+weight = 0.5
+examine = "A stamped block of metal from a box marked 4."
+use = "Quest"
+kept = "Vanish"
+
+[key_block_labelled_5]
+id = 19797
+tradeable = false
+weight = 0.5
+examine = "A stamped block of metal from a box marked 5."
+use = "Quest"
+kept = "Vanish"
+
+[key_block_labelled_6]
+id = 19798
+tradeable = false
+weight = 0.5
+examine = "A stamped block of metal from a box marked 6."
+use = "Quest"
+kept = "Vanish"
+
+[commorb]
+id = 19799
+tradeable = false
+weight = 0.001
+slot = "Weapon"
+destroy = "Your CommOrb will automatically self destruct when dropped. Please speak to your Temple Knight superior to receive another."
+examine = "Use this to stay in touch with Korasi and Jessika."
+use = "Quest"
+kept = "Wilderness"
+
+[elite_void_knight_torso]
+id = 19803
+aka = ["elite_torso", "elite_top", "elite_void_torso", "elite_top"]
+examine = "Armour worn by Void Knight [Guardians/Justiciars/Executioners]."
+
+[elite_void_knight_legs]
+id = 19804
+aka = ["elite_legs", "elite_robes", "elite_void_legs", "elite_void_robes"]
+examine = "Armour worn by Void Knight [Guardians/Justiciars/Executioners]."

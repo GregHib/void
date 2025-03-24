@@ -615,3 +615,35 @@ examine = "How am I supposed to eat that?"
 
 [potato_cactus_noted]
 id = 3139
+
+[grimy_wergali]
+id = 14836
+price = 3146
+limit = 10000
+cleaning = { level = 41, clean_xp = 9.5 }
+weight = 0.007
+examine = "I need to clean this herb before I can use it."
+
+[grimy_wergali_noted]
+id = 14837
+
+[clean_wergali]
+id = 14854
+price = 2970
+limit = 10000
+weight = 0.007
+examine = "A fresh herb."
+
+[clean_wergali_noted]
+id = 14855
+
+[wergali_potion_unf]
+id = 14856
+price = 3256
+limit = 10000
+weight = 0.056
+empty = "vial"
+examine = "I need another ingredient to finish this wergali potion."
+
+[wergali_potion_unf_noted]
+id = 14857

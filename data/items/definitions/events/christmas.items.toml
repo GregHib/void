@@ -744,3 +744,255 @@ destroy = "You can claim another from the Queen of Snow."
 examine = "The most traditional snowman hat."
 kept = "Vanish"
 use = "Removed"
+
+[santa_costume_top_3]
+id = 14595
+tradeable = false
+weight = 0.001
+slot = "Chest"
+destroy = "You can get another from Diango in Draynor Village."
+examine = "A red and jolly top."
+kept = "Wilderness"
+use = "Limited"
+
+[ice_amulet_2]
+id = 14596
+tradeable = false
+weight = 0.05
+slot = "Amulet"
+destroy = "You can get another one from the snow imps near Lumbridge, Rimmington or Falador."
+examine = "A spiky amulet made of ice crystals. It has been enchanted so it will not melt."
+destroy2 = "You can get another from Diango in Draynor Village."
+kept = "Wilderness"
+use = "Limited"
+
+
+[ice_amulet]
+id = 14599
+tradeable = false
+weight = 0.05
+slot = "Amulet"
+destroy = "You can get another one from the snow imps near Lumbridge, Rimmington or Falador."
+examine = "A spiky amulet made of ice crystals. It has been enchanted so it will not melt."
+destroy2 = "You can get another from Diango in Draynor Village."
+kept = "Wilderness"
+use = "Limited"
+
+[santa_costume_top]
+id = 14600
+weight = 0.25
+slot = "Chest"
+examine = "A red and jolly top."
+
+[santa_costume_top_2]
+id = 14601
+weight = 0.001
+slot = "Chest"
+examine = "A red and jolly top."
+
+[santa_costume_gloves]
+id = 14602
+tradeable = false
+weight = 0.25
+slot = "Hands"
+destroy = "You can get another pair from Diango in Draynor Village."
+examine = "Some black and jolly gloves."
+kept = "Wilderness"
+use = "Limited"
+
+[santa_costume_legs]
+id = 14603
+slot = "Legs"
+examine = "Some red and jolly legs."
+weight = 0.25
+
+[santa_costume_legs_2]
+id = 14604
+slot = "Legs"
+examine = "Some red and jolly legs."
+weight = 0.25
+
+[santa_costume_boots]
+id = 14605
+tradeable = false
+weight = 0.25
+slot = "Feet"
+destroy = "You can get another pair from Diango in Draynor Village."
+examine = "Some black and jolly boots."
+kept = "Wilderness"
+use = "Limited"
+
+[bedsheets]
+id = 15419
+tradeable = false
+weight = 0.05
+destroy = "You can get another by searching through the drawers of Scrooge's house."
+examine = "Crisp, cheap bedsheets."
+kept = "Vanish"
+use = "Removed"
+
+[present_2]
+clone = "present"
+id = 15420
+
+[chains]
+id = 15421
+tradeable = false
+weight = 0.05
+examine = "Strong, though slightly rusty, iron chains."
+kept = "Vanish"
+use = "Removed"
+
+[christmas_ghost_hood]
+id = 15422
+tradeable = false
+weight = 0.05
+slot = "Hat"
+type = "FullFace"
+destroy = "You can get another from Diango in Draynor Village."
+examine = "This hood has been hewn from bedsheets."
+kept = "Wilderness"
+use = "Limited"
+
+[christmas_ghost_top]
+id = 15423
+tradeable = false
+weight = 0.05
+slot = "Chest"
+destroy = "You can get another from Diango in Draynor Village."
+examine = "This robe top has been hewn from bedsheets and wrapped in chains."
+kept = "Wilderness"
+use = "Limited"
+
+[christmas_ghost_top_2]
+id = 15424
+tradeable = false
+weight = 0.05
+slot = "Chest"
+destroy = "You can get another from Diango in Draynor Village."
+examine = "This robe top has been hewn from bedsheets and wrapped in chains."
+kept = "Wilderness"
+use = "Limited"
+
+[christmas_ghost_bottoms]
+id = 15425
+tradeable = false
+weight = 0.05
+slot = "Legs"
+destroy = "You can get another from Diango in Draynor Village."
+examine = "These robe bottoms have been hewn from bedsheets and wrapped in chains."
+kept = "Wilderness"
+use = "Limited"
+
+[candy_cane]
+id = 15426
+tradeable = false
+weight = 3.175
+slot = "Weapon"
+destroy = "You can get another from Diango in Draynor Village."
+examine = "A must-have Christmas accessory."
+kept = "Wilderness"
+use = "Limited"
+
+[bucket_of_icy_water]
+id = 15427
+tradeable = false
+weight = 3.0
+empty = "empty_bucket"
+destroy = "You can get another by filling a bucket at the fountain in the Land of Snow."
+examine = "It's a bucket of ice-cold water."
+kept = "Vanish"
+use = "Removed"
+
+[turkey_drumstick_2009_christmas_event]
+id = 15428
+heals = 20
+tradeable = false
+weight = 5.669
+examine = "Mmm, this looks tasty."
+kept = "Reclaim"
+
+[roast_potatoes_2009_christmas_event]
+id = 15429
+heals = 10
+tradeable = false
+weight = 5.669
+examine = "Mmm, these look good."
+kept = "Reclaim"
+
+[yule_log_2009_christmas_event]
+id = 15430
+heals = 10
+tradeable = false
+weight = 1.417
+examine = "Yum, that looks scrumptious."
+kept = "Reclaim"
+
+[mulled_wine_2009_christmas_event]
+id = 15431
+heals = 0
+tradeable = false
+weight = 1.417
+examine = "Nice, mulled wine."
+kept = "Reclaim"
+
+[thorvars_bucket]
+id = 20073
+tradeable = false
+weight = 0.001
+destroy = "Thorvar will have a spare."
+examine = "A very important bucket."
+destroy2 = "You should see Thorvar to get this back."
+kept = "Vanish"
+use = "Removed"
+
+[thorvars_bucket_crab]
+id = 20074
+tradeable = false
+weight = 0.001
+destroy = "You should see Thorvar to get this back."
+examine = "A bucket containing an extremely dangerous creature."
+kept = "Vanish"
+use = "Removed"
+
+[thorvars_bag]
+id = 20075
+tradeable = false
+weight = 0.001
+destroy = "You should ask Thorvar about getting another one."
+examine = "A large bag."
+kept = "Vanish"
+use = "Removed"
+
+[thorvars_bag_2]
+clone = "thorvars_bag"
+id = 20076
+
+[salty_claws_hat]
+id = 20077
+tradeable = false
+weight = 0.1
+slot = "Hat"
+destroy = "You can get another from Diango in Draynor Village."
+examine = "A crab in a hat."
+kept = "Wilderness"
+use = "Limited"
+
+[heimland_games_souvenir]
+id = 20078
+tradeable = false
+weight = 0.001
+destroy = "You can get another from Diango in Draynor Village."
+examine = "A gift from Thorvar Crittersmash."
+kept = "Wilderness"
+use = "Limited"
+
+[hati_head]
+id = 20177
+tradeable = false
+weight = 1.814
+slot = "Hat"
+type = "FullFace"
+destroy = "You can reclaim the hat from Diango in Draynor Village if you destroy it."
+examine = "A hat made from the head of a legendary wolf."
+kept = "Wilderness"

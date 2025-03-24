@@ -1,0 +1,34 @@
+[cook_o_matic_manual]
+id = 15411
+tradeable = false
+weight = 0.01
+destroy = "You will need to speak to the cook in Lumbridge Castle to get another."
+examine = "Everything you've always wanted to know about the Cook-o-Matic 25."
+kept = "Vanish"
+
+[super_large_egg]
+id = 15412
+tradeable = false
+weight = 0.02
+destroy = "You'll have to pick up another from near the chickens."
+examine = "That is pretty big."
+use = "Quest"
+kept = "Vanish"
+
+[top_quality_milk]
+id = 15413
+tradeable = false
+weight = 2.0
+destroy = "You'll have to milk the prized cow again."
+examine = "The best milk from a prize-winning cow."
+use = "Quest"
+kept = "Vanish"
+
+[extra_fine_flour]
+id = 15414
+tradeable = false
+weight = 1.36
+destroy = "You'll have to visit the mill again."
+examine = "The perfect flour for a perfect cake."
+use = "Quest"
+kept = "Vanish"

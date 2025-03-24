@@ -365,3 +365,6 @@ weight = 0.4
 destroy = "You will have to create another using the Lunar Spellbook."
 examine = "A box of equipment for a hunter."
 kept = "Vanish"
+
+[hunter_kit_noted]
+id = 18756

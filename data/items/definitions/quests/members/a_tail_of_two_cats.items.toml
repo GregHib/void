@@ -121,3 +121,25 @@ id = 6559
 [wily_cat_6]
 clone = "wily_cat"
 id = 6560
+
+[pet_kitten_7]
+clone = "pet_kitten"
+id = 14089
+
+[pet_cat_7]
+id = 14090
+npc = 8214
+food = "Fish as a kitten, none for any other stages"
+examine = "A friendly little pet."
+
+[lazy_cat_7]
+clone = "lazy_cat"
+id = 14091
+
+[overgrown_cat_7]
+clone = "overgrown_cat"
+id = 14092
+
+[wily_cat_7]
+clone = "wily_cat"
+id = 14093

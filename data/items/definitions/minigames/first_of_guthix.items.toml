@@ -1,0 +1,1050 @@
+[stone_of_power]
+id = 12845
+tradeable = false
+weight = 30.0
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "You can get a new stone from one of the dispensers at the edge of the arena."
+examine = "A stone used to gather energy."
+
+[stone_of_power_2]
+id = 12846
+tradeable = false
+weight = 30.0
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "You can get a new stone from one of the dispensers at the edge of the arena."
+examine = "A stone used to gather energy."
+
+[stone_of_power_3]
+id = 12847
+tradeable = false
+weight = 30.0
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "You can get a new stone from one of the dispensers at the edge of the arena."
+examine = "A stone used to gather energy."
+
+[stone_of_power_4]
+id = 12848
+tradeable = false
+weight = 30.0
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "You can get a new stone from one of the dispensers at the edge of the arena."
+examine = "A stone used to gather energy."
+
+[stone_of_power_5]
+id = 12849
+tradeable = false
+weight = 30.0
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "You can get a new stone from one of the dispensers at the edge of the arena."
+examine = "A stone used to gather energy."
+
+[elemental_rune]
+id = 12850
+aka = ["elementals", "elemental_runes"]
+destroy = "You will be supplied with more elemental runes when you enter the game again."
+examine = "A generic elemental rune."
+destroy2 = "Drop"
+
+[catalytic_rune]
+id = 12851
+aka = ["catalytics", "catalytic_runes"]
+examine = "A generic non-elemental rune."
+
+[fist_of_guthix_token]
+id = 12852
+tradeable = false
+examine = "A token awarded for taking part in Fist of Guthix."
+kept = "Wilderness"
+
+[bandages_fist_of_guthix]
+id = 12853
+heals = 0
+eat_message = "You feel a bit better."
+tradeable = false
+weight = 0.001
+destroy = "You will be supplied with more bandages when you enter the game again."
+examine = "A box of bandages for healing."
+kept = "Vanish"
+
+[tele_orb]
+id = 12855
+tradeable = false
+weight = 0.001
+destroy = "You will be supplied with another tele-orb when you enter the game again."
+examine = "Teleports you to the centre of the arena."
+kept = "Vanish"
+
+[irit_gloves]
+id = 12856
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 100
+degrade = "destroy"
+slot = "Hands"
+destroy = "You can buy a new pair from the druids at the Fist of Guthix minigame."
+examine = "A pair of mystical gloves."
+kept = "Reclaim"
+
+[avantoe_gloves]
+id = 12857
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 100
+degrade = "destroy"
+slot = "Hands"
+destroy = "You can buy a new pair from the druids at Fist of Guthix."
+examine = "A pair of mystical gloves."
+kept = "Reclaim"
+
+[kwuarm_gloves]
+id = 12858
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 100
+degrade = "destroy"
+slot = "Hands"
+destroy = "You can buy a new pair from the druids at the Fist of Guthix minigame."
+examine = "A pair of mystical gloves."
+kept = "Reclaim"
+
+[cadantine_gloves]
+id = 12859
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 100
+degrade = "destroy"
+slot = "Hands"
+examine = "A pair of mystical gloves."
+kept = "Reclaim"
+
+[swordfish_gloves]
+id = 12860
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 1000
+degrade = "destroy"
+slot = "Hands"
+destroy = "You can buy a new pair from the druids at the Fist of Guthix minigame."
+examine = "A pair of mystical gloves."
+kept = "Reclaim"
+
+[shark_gloves]
+id = 12861
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 1000
+degrade = "destroy"
+slot = "Hands"
+destroy = "You can buy a new pair from the druids at the Fist of Guthix minigame."
+examine = "A pair of mystical gloves."
+kept = "Reclaim"
+
+[dragon_slayer_gloves]
+id = 12862
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 1000
+degrade = "destroy"
+slot = "Hands"
+examine = "A pair of mystical gloves."
+kept = "Reclaim"
+
+[air_runecrafting_gloves]
+id = 12863
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 1000
+degrade = "destroy"
+slot = "Hands"
+destroy = "You can buy a new pair from the druids at the Fist of Guthix minigame."
+examine = "A pair of mystical gloves."
+kept = "Reclaim"
+
+[water_runecrafting_gloves]
+id = 12864
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 1000
+degrade = "destroy"
+slot = "Hands"
+destroy = "You can buy a new pair from the druids at the Fist of Guthix activity."
+examine = "A pair of mystical gloves."
+kept = "Reclaim"
+
+[earth_runecrafting_gloves]
+id = 12865
+tradeable = false
+bank_stacks = false
+weight = 0.226
+charges = 1000
+degrade = "destroy"
+slot = "Hands"
+destroy = "You can buy a new pair from the druids at the Fist of Guthix minigame."
+examine = "A pair of mystical gloves."
+kept = "Reclaim"
+
+[battle_hood_100]
+id = 12866
+charges = 30000
+degrade = "battle_hood_80"
+deplete = "combat"
+slot = "Hat"
+type = "Hair"
+examine = "Its arcane power is waning."
+weight = 0.8
+
+[battle_hood_80]
+clone = "battle_hood_100"
+id = 12867
+degrade = "battle_hood_60"
+
+[battle_hood_60]
+clone = "battle_hood_100"
+id = 12868
+degrade = "battle_hood_40"
+
+[battle_hood_40]
+clone = "battle_hood_100"
+id = 12869
+degrade = "battle_hood_20"
+
+[battle_hood_20]
+clone = "battle_hood_100"
+id = 12870
+degrade = "battle_hood_0"
+
+[battle_hood_0]
+id = 12871
+price = 76100
+slot = "Hat"
+type = "Hair"
+examine = "Its arcane power is waning."
+weight = 0.8
+
+[battle_hood_0_noted]
+id = 12872
+
+[battle_robe_top_100]
+id = 12873
+charges = 30000
+degrade = "battle_robe_top_80"
+deplete = "combat"
+slot = "Chest"
+examine = "Charged - A robe top infused with arcane power, especially created for combat spells. Uncharged - Its arcane power is waning"
+weight = 4.0
+
+[battle_robe_top_80]
+clone = "battle_robe_top_100"
+id = 12874
+degrade = "battle_robe_top_60"
+
+[battle_robe_top_60]
+clone = "battle_robe_top_100"
+id = 12875
+degrade = "battle_robe_top_40"
+
+[battle_robe_top_40]
+clone = "battle_robe_top_100"
+id = 12876
+degrade = "battle_robe_top_20"
+
+[battle_robe_top_20]
+clone = "battle_robe_top_100"
+id = 12877
+degrade = "battle_robe_top_0"
+
+[battle_robe_top_0]
+id = 12878
+price = 715100
+slot = "Chest"
+examine = "Its arcane power is waning."
+weight = 4.0
+
+[battle_robe_top_0_noted]
+id = 12879
+
+[battle_robe_bottom_100]
+id = 12880
+charges = 30000
+degrade = "battle_robe_bottom_80"
+deplete = "combat"
+slot = "Legs"
+examine = "A robe bottom infused with arcane power, especially created for combat spells."
+weight = 3.0
+
+[battle_robe_bottom_80]
+clone = "battle_robe_bottom_100"
+id = 12881
+degrade = "battle_robe_bottom_60"
+
+[battle_robe_bottom_60]
+clone = "battle_robe_bottom_100"
+id = 12882
+degrade = "battle_robe_bottom_40"
+
+[battle_robe_bottom_40]
+clone = "battle_robe_bottom_100"
+id = 12883
+degrade = "battle_robe_bottom_20"
+
+[battle_robe_bottom_20]
+clone = "battle_robe_bottom_100"
+id = 12884
+degrade = "battle_robe_bottom_0"
+
+[battle_robe_bottom_0]
+id = 12885
+price = 247500
+slot = "Legs"
+examine = "Its arcane power is waning."
+weight = 3.0
+
+[battle_robe_bottom_0_noted]
+id = 12886
+
+[druidic_mage_hood_100]
+id = 12887
+charges = 30000
+degrade = "druidic_mage_hood_80"
+deplete = "combat"
+slot = "Hat"
+type = "Hair"
+examine = "A worn-out hood, formerly worn by the followers of Guthix."
+weight = 0.8
+
+[druidic_mage_hood_80]
+clone = "druidic_mage_hood_100"
+id = 12888
+degrade = "druidic_mage_hood_60"
+
+[druidic_mage_hood_60]
+clone = "druidic_mage_hood_100"
+id = 12889
+degrade = "druidic_mage_hood_40"
+
+[druidic_mage_hood_40]
+clone = "druidic_mage_hood_100"
+id = 12890
+degrade = "druidic_mage_hood_20"
+
+[druidic_mage_hood_20]
+clone = "druidic_mage_hood_100"
+id = 12891
+degrade = "druidic_mage_hood_0"
+
+[druidic_mage_hood_0]
+id = 12892
+price = 8990
+slot = "Hat"
+type = "Hair"
+examine = "A worn-out hood, formerly worn by the followers of Guthix."
+weight = 0.8
+
+[druidic_mage_hood_0_noted]
+id = 12893
+
+[druidic_mage_top_100]
+id = 12894
+charges = 30000
+degrade = "druidic_mage_top_80"
+deplete = "combat"
+slot = "Chest"
+examine = "A magical robe top worn by followers of Guthix."
+weight = 4.0
+
+[druidic_mage_top_80]
+clone = "druidic_mage_top_100"
+id = 12895
+degrade = "druidic_mage_top_60"
+
+[druidic_mage_top_60]
+clone = "druidic_mage_top_100"
+id = 12896
+degrade = "druidic_mage_top_40"
+
+[druidic_mage_top_40]
+clone = "druidic_mage_top_100"
+id = 12897
+degrade = "druidic_mage_top_20"
+
+[druidic_mage_top_20]
+clone = "druidic_mage_top_100"
+id = 12898
+degrade = "druidic_mage_top_0"
+
+[druidic_mage_top_0]
+id = 12899
+price = 88000
+slot = "Chest"
+examine = "A worn-out robe top, formerly worn by the followers of Guthix."
+weight = 4.0
+
+[druidic_mage_top_0_noted]
+id = 12900
+
+[druidic_mage_bottom_100]
+id = 12901
+charges = 30000
+degrade = "druidic_mage_bottom_80"
+deplete = "combat"
+slot = "Legs"
+examine = "A magical robe bottom worn by a person who follows Guthix."
+weight = 3.0
+
+[druidic_mage_bottom_80]
+clone = "druidic_mage_bottom_100"
+id = 12902
+degrade = "druidic_mage_bottom_60"
+
+[druidic_mage_bottom_60]
+clone = "druidic_mage_bottom_100"
+id = 12903
+degrade = "druidic_mage_bottom_40"
+
+[druidic_mage_bottom_40]
+clone = "druidic_mage_bottom_100"
+id = 12904
+degrade = "druidic_mage_bottom_20"
+
+[druidic_mage_bottom_20]
+clone = "druidic_mage_bottom_100"
+id = 12905
+degrade = "druidic_mage_bottom_0"
+
+[druidic_mage_bottom_0]
+id = 12906
+price = 77300
+slot = "Legs"
+examine = "A worn-out robe bottom, formerly worn by the followers of Guthix."
+weight = 3.0
+
+[druidic_mage_bottom_0_noted]
+id = 12907
+
+[adamant_spikeshield_100]
+id = 12908
+charges = 30000
+degrade = "adamant_spikeshield_80"
+deplete = "combat"
+slot = "Shield"
+material = "metal"
+examine = "Not so spiky anymore."
+weight = 5.0
+
+[adamant_spikeshield_80]
+clone = "adamant_spikeshield_100"
+id = 12909
+degrade = "adamant_spikeshield_60"
+
+[adamant_spikeshield_60]
+clone = "adamant_spikeshield_100"
+id = 12910
+degrade = "adamant_spikeshield_40"
+
+[adamant_spikeshield_40]
+clone = "adamant_spikeshield_100"
+id = 12911
+degrade = "adamant_spikeshield_20"
+
+[adamant_spikeshield_20]
+clone = "adamant_spikeshield_100"
+id = 12912
+degrade = "adamant_spikeshield_0"
+
+[adamant_spikeshield_0]
+id = 12913
+price = 2257
+weight = 5.0
+slot = "Shield"
+material = "metal"
+examine = "Not so spiky anymore."
+
+[adamant_spikeshield_0_noted]
+id = 12914
+
+[adamant_berserker_shield_100]
+id = 12915
+charges = 30000
+degrade = "adamant_berserker_shield_80"
+deplete = "combat"
+slot = "Shield"
+material = "metal"
+examine = "Not so spiky anymore!"
+weight = 7.0
+
+[adamant_berserker_shield_80]
+clone = "adamant_berserker_shield_100"
+id = 12916
+degrade = "adamant_berserker_shield_60"
+
+[adamant_berserker_shield_60]
+clone = "adamant_berserker_shield_100"
+id = 12917
+degrade = "adamant_berserker_shield_40"
+
+[adamant_berserker_shield_40]
+clone = "adamant_berserker_shield_100"
+id = 12918
+degrade = "adamant_berserker_shield_20"
+
+[adamant_berserker_shield_20]
+clone = "adamant_berserker_shield_100"
+id = 12919
+degrade = "adamant_berserker_shield_0"
+
+[adamant_berserker_shield_0]
+id = 12920
+price = 24800
+slot = "Shield"
+material = "metal"
+examine = "Not so spiky anymore."
+weight = 7.0
+
+[adamant_berserker_shield_0_noted]
+id = 12921
+
+[rune_spikeshield_100]
+id = 12922
+charges = 30000
+degrade = "rune_spikeshield_80"
+deplete = "combat"
+slot = "Shield"
+material = "metal"
+examine = "A spiked, medium square shield."
+weight = 4.0
+
+[rune_spikeshield_80]
+clone = "rune_spikeshield_100"
+id = 12923
+degrade = "rune_spikeshield_60"
+
+[rune_spikeshield_60]
+clone = "rune_spikeshield_100"
+id = 12924
+degrade = "rune_spikeshield_40"
+
+[rune_spikeshield_40]
+clone = "rune_spikeshield_100"
+id = 12925
+degrade = "rune_spikeshield_20"
+
+[rune_spikeshield_20]
+clone = "rune_spikeshield_100"
+id = 12926
+degrade = "rune_spikeshield_0"
+
+[rune_spikeshield_0]
+id = 12927
+price = 36400
+slot = "Shield"
+material = "metal"
+examine = "Not so spiky anymore."
+weight = 4.0
+
+[rune_spikeshield_0_noted]
+id = 12928
+
+[rune_berserker_shield_100]
+id = 12929
+charges = 30000
+degrade = "rune_berserker_shield_80"
+deplete = "combat"
+slot = "Shield"
+material = "metal"
+examine = "Not so spiky anymore."
+weight = 6.0
+
+[rune_berserker_shield_80]
+clone = "rune_berserker_shield_100"
+id = 12930
+degrade = "rune_berserker_shield_60"
+
+[rune_berserker_shield_60]
+clone = "rune_berserker_shield_100"
+id = 12931
+degrade = "rune_berserker_shield_40"
+
+[rune_berserker_shield_40]
+clone = "rune_berserker_shield_100"
+id = 12932
+degrade = "rune_berserker_shield_20"
+
+[rune_berserker_shield_20]
+clone = "rune_berserker_shield_100"
+id = 12933
+degrade = "rune_berserker_shield_0"
+
+[rune_berserker_shield_0]
+id = 12934
+price = 83300
+slot = "Shield"
+material = "metal"
+examine = "Not so spiky anymore."
+weight = 6.0
+
+[rune_berserker_shield_0_noted]
+id = 12935
+
+[green_dragonhide_coif_normal]
+id = 12936
+limit = 100
+charges = 30000
+degrade = "green_dragonhide_coif_80"
+deplete = "combat"
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "A coif made of green dragonhide."
+weight = 0.9
+
+[green_dragonhide_coif_80]
+clone = "green_dragonhide_coif_normal"
+id = 12937
+degrade = "green_dragonhide_coif_60"
+
+[green_dragonhide_coif_60]
+clone = "green_dragonhide_coif_normal"
+id = 12938
+degrade = "green_dragonhide_coif_40"
+
+[green_dragonhide_coif_40]
+clone = "green_dragonhide_coif_normal"
+id = 12939
+degrade = "green_dragonhide_coif_20"
+
+[green_dragonhide_coif_20]
+clone = "green_dragonhide_coif_normal"
+id = 12940
+degrade = "green_dragonhide_coif_0"
+
+[green_dragonhide_coif_0]
+id = 12941
+limit = 100
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "A worn-out coif made of green dragonhide."
+weight = 0.9
+
+[green_dhide_coif_0_noted]
+id = 12942
+
+[blue_dragonhide_coif_normal]
+id = 12943
+limit = 100
+charges = 30000
+degrade = "blue_dragonhide_coif_80"
+deplete = "combat"
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "A coif made of blue dragonhide."
+weight = 0.9
+
+[blue_dragonhide_coif_80]
+clone = "blue_dragonhide_coif_normal"
+id = 12944
+degrade = "blue_dragonhide_coif_60"
+
+[blue_dragonhide_coif_60]
+clone = "blue_dragonhide_coif_normal"
+id = 12945
+degrade = "blue_dragonhide_coif_40"
+
+[blue_dragonhide_coif_40]
+clone = "blue_dragonhide_coif_normal"
+id = 12946
+degrade = "blue_dragonhide_coif_20"
+
+[blue_dragonhide_coif_20]
+clone = "blue_dragonhide_coif_normal"
+id = 12947
+degrade = "blue_dragonhide_coif_0"
+
+[blue_dragonhide_coif_0]
+id = 12948
+limit = 100
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "A worn-out coif made of blue dragonhide."
+weight = 0.9
+
+[blue_dhide_coif_0_noted]
+id = 12949
+
+[red_dragonhide_coif_normal]
+id = 12950
+limit = 100
+charges = 30000
+degrade = "red_dragonhide_coif_80"
+deplete = "combat"
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "A coif made of red dragonhide."
+weight = 0.9
+
+[red_dragonhide_coif_80]
+clone = "red_dragonhide_coif_normal"
+id = 12951
+degrade = "red_dragonhide_coif_60"
+
+[red_dragonhide_coif_60]
+clone = "red_dragonhide_coif_normal"
+id = 12952
+degrade = "red_dragonhide_coif_40"
+
+[red_dragonhide_coif_40]
+clone = "red_dragonhide_coif_normal"
+id = 12953
+degrade = "red_dragonhide_coif_20"
+
+[red_dragonhide_coif_20]
+clone = "red_dragonhide_coif_normal"
+id = 12954
+degrade = "red_dragonhide_coif_0"
+
+[red_dragonhide_coif_0]
+id = 12955
+limit = 100
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "A worn-out coif made of red dragonhide."
+weight = 0.9
+
+[red_dhide_coif_0_noted]
+id = 12956
+
+[black_dragonhide_coif_normal]
+id = 12957
+limit = 100
+charges = 30000
+degrade = "black_dragonhide_coif_80"
+deplete = "combat"
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "A coif made of black dragonhide."
+weight = 0.9
+
+[black_dragonhide_coif_80]
+clone = "black_dragonhide_coif_normal"
+id = 12958
+degrade = "black_dragonhide_coif_60"
+
+[black_dragonhide_coif_60]
+clone = "black_dragonhide_coif_normal"
+id = 12959
+degrade = "black_dragonhide_coif_40"
+
+[black_dragonhide_coif_40]
+clone = "black_dragonhide_coif_normal"
+id = 12960
+degrade = "black_dragonhide_coif_20"
+
+[black_dragonhide_coif_20]
+clone = "black_dragonhide_coif_normal"
+id = 12961
+degrade = "black_dragonhide_coif_0"
+
+[black_dragonhide_coif_0]
+id = 12962
+limit = 100
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "A worn-out coif made of black dragonhide."
+weight = 0.9
+
+[black_dhide_coif_0_noted]
+id = 12963
+
+[combat_hood_100]
+id = 12964
+weight = 0.8
+charges = 30000
+degrade = "combat_hood_80"
+deplete = "combat"
+slot = "Hat"
+type = "Hair"
+examine = "A magical hood, especially created for combat spells."
+
+[combat_hood_80]
+clone = "combat_hood_100"
+id = 12965
+degrade = "combat_hood_60"
+
+[combat_hood_60]
+clone = "combat_hood_100"
+id = 12966
+degrade = "combat_hood_40"
+
+[combat_hood_40]
+clone = "combat_hood_100"
+id = 12967
+degrade = "combat_hood_20"
+
+[combat_hood_20]
+clone = "combat_hood_100"
+id = 12968
+degrade = "combat_hood_0"
+
+[combat_hood_0]
+id = 12969
+price = 7206
+weight = 0.8
+slot = "Hat"
+type = "Hair"
+examine = "A worn-out magical hood, especially created for combat spells."
+
+[combat_hood_0_noted]
+id = 12970
+
+[combat_robe_top_100]
+id = 12971
+weight = 4.0
+charges = 30000
+degrade = "combat_robe_top_80"
+deplete = "combat"
+slot = "Chest"
+examine = "A magical robe top, especially made for combat spells."
+
+[combat_robe_top_80]
+clone = "combat_robe_top_100"
+id = 12972
+degrade = "combat_robe_top_60"
+
+[combat_robe_top_60]
+clone = "combat_robe_top_100"
+id = 12973
+degrade = "combat_robe_top_40"
+
+[combat_robe_top_40]
+clone = "combat_robe_top_100"
+id = 12974
+degrade = "combat_robe_top_20"
+
+[combat_robe_top_20]
+clone = "combat_robe_top_100"
+id = 12975
+degrade = "combat_robe_top_0"
+
+[combat_robe_top_0]
+id = 12976
+price = 58600
+weight = 4.0
+slot = "Chest"
+examine = "A worn-out magical robe top, especially created for combat spells."
+
+[combat_robe_top_0_noted]
+id = 12977
+
+[combat_robe_bottom_100]
+id = 12978
+weight = 3.0
+charges = 30000
+degrade = "combat_robe_bottom_80"
+deplete = "combat"
+slot = "Legs"
+examine = "A magical robe bottom, especially created for combat spells."
+
+[combat_robe_bottom_80]
+clone = "combat_robe_bottom_100"
+id = 12979
+degrade = "combat_robe_bottom_60"
+
+[combat_robe_bottom_60]
+clone = "combat_robe_bottom_100"
+id = 12980
+degrade = "combat_robe_bottom_40"
+
+[combat_robe_bottom_40]
+clone = "combat_robe_bottom_100"
+id = 12981
+degrade = "combat_robe_bottom_20"
+
+[combat_robe_bottom_20]
+clone = "combat_robe_bottom_100"
+id = 12982
+degrade = "combat_robe_bottom_0"
+
+[combat_robe_bottom_0]
+id = 12983
+price = 45100
+weight = 3.0
+slot = "Legs"
+examine = "A worn-out magical robe bottom, especially created for combat spells."
+
+[combat_robe_bottom_0_noted]
+id = 12984
+
+[bronze_gauntlets]
+id = 12985
+limit = 100
+weight = 0.005
+degrade = "worn_out_bronze_gauntlets"
+slot = "Hands"
+material = "metal"
+kept = "Wilderness"
+examine = "A pair of bronze gauntlets."
+
+[worn_out_bronze_gauntlets]
+id = 12986
+limit = 100
+slot = "Hands"
+material = "metal"
+examine = "I have to keep my hands safe!"
+
+[worn_out_bronze_gauntlets_noted]
+id = 12987
+
+[iron_gauntlets]
+id = 12988
+weight = 0.005
+degrade = "worn_out_iron_gauntlets"
+slot = "Hands"
+material = "metal"
+examine = "A pair of iron gauntlets."
+kept = "Wilderness"
+
+[worn_out_iron_gauntlets]
+id = 12989
+slot = "Hands"
+material = "metal"
+examine = "I have to keep my hands safe!"
+
+[worn_out_iron_gauntlets_noted]
+id = 12990
+
+[steel_gauntlets]
+id = 12991
+weight = 0.005
+degrade = "worn_out_steel_gauntlets"
+slot = "Hands"
+material = "metal"
+examine = "A pair of steel gauntlets."
+kept = "Wilderness"
+
+[worn_out_steel_gauntlets]
+id = 12992
+slot = "Hands"
+material = "metal"
+examine = "I have to keep my hands safe!"
+
+[worn_out_steel_gauntlets_noted]
+id = 12993
+
+[black_gauntlets]
+id = 12994
+limit = 10
+degrade = "black_gauntlets_worn_out"
+slot = "Hands"
+material = "metal"
+examine = "I have to keep my hands safe!"
+weight = 0.226
+
+[black_gauntlets_worn_out]
+id = 12995
+limit = 10
+tradeable = false
+slot = "Hands"
+material = "metal"
+examine = "A bit worse for wear."
+weight = 0.226
+
+[worn_out_black_gauntlets_noted]
+id = 12996
+
+[mithril_gauntlets]
+id = 12997
+limit = 100
+weight = 0.005
+degrade = "worn_out_mithril_gauntlets"
+slot = "Hands"
+material = "metal"
+examine = "A pair of mithril gauntlets."
+
+[worn_out_mithril_gauntlets]
+id = 12998
+limit = 100
+slot = "Hands"
+material = "metal"
+examine = "I have to keep my hands safe!"
+
+[worn_out_mithril_gauntlets_noted]
+id = 12999
+
+[adamant_gauntlets]
+id = 13000
+limit = 100
+weight = 0.005
+degrade = "worn_out_adamant_gauntlets"
+slot = "Hands"
+material = "metal"
+examine = "A pair of adamant gauntlets."
+
+[worn_out_adamant_gauntlets]
+id = 13001
+limit = 100
+slot = "Hands"
+material = "metal"
+examine = "A bit worse for wear."
+
+[worn_out_adamant_gauntlets_noted]
+id = 13002
+
+[rune_gauntlets]
+id = 13003
+limit = 100
+weight = 0.005
+degrade = "worn_out_rune_gauntlets"
+slot = "Hands"
+material = "metal"
+examine = "A pair of rune gauntlets."
+
+[worn_out_rune_gauntlets]
+id = 13004
+limit = 100
+slot = "Hands"
+material = "metal"
+examine = "A bit worse for wear"
+
+[worn_out_rune_gauntlets_noted]
+id = 13005
+
+[dragon_gauntlets]
+id = 13006
+limit = 10
+degrade = "dragon_gauntlets_worn_out"
+slot = "Hands"
+material = "metal"
+examine = "I have to keep my hands safe!"
+weight = 0.226
+
+[dragon_gauntlets_worn_out]
+id = 13007
+limit = 10
+tradeable = false
+slot = "Hands"
+material = "metal"
+examine = "A bit worse for wear."
+weight = 0.226
+
+[worn_out_dragon_gauntlets_noted]
+id = 13008

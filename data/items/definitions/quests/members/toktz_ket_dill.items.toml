@@ -1,0 +1,56 @@
+[treated_oak_plank]
+id = 13238
+tradeable = false
+weight = 0.85
+examine = "A plank of oak that has been treated to resist fire."
+use = "Quest"
+kept = "Wilderness"
+
+[treated_plank]
+id = 13241
+examine = "A plank of oak that has been treated to resist fire."
+
+[stone_tablet_toktz_ket_dill]
+id = 13243
+tradeable = false
+weight = 0.5
+examine = "A list of items carved onto a stone tablet."
+use = "Quest"
+kept = "Wilderness"
+
+[tzhaar_tourist_guide]
+id = 13244
+tradeable = false
+weight = 0.2
+examine = "A book for those who want to visit the TzHaar city."
+kept = "Wilderness"
+
+[stone_slab]
+id = 13245
+tradeable = false
+weight = 32.0
+destroy = "You can mine more stone slabs in the TzHaar mine."
+examine = "A flawed block of obsidian from the Karamja volcano."
+use = "Quest"
+kept = "Wilderness"
+
+[pillar]
+id = 13246
+tradeable = false
+weight = 25.0
+destroy = "You can get more pillars by crafting stone slabs from the TzHaar mine."
+examine = "A support pillar."
+use = "Quest"
+kept = "Wilderness"
+
+[splat]
+id = 13247
+
+[splat_2]
+id = 13248
+
+[splat_3]
+id = 13249
+
+[splat_4]
+id = 13250

@@ -80,3 +80,403 @@ material = "metal"
 destroy = "You will need to get a new set of armour from Vannaka if you destroy this one."
 examine = "Varrock Smithing armour."
 kept = "Wilderness"
+
+[antique_lamp_beginner_lumbridge_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 13446
+
+[antique_lamp_easy_lumbridge_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 13447
+
+[antique_lamp_medium_lumbridge_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 13448
+
+[antique_lamp_jobs]
+clone = "antique_lamp_learning_the_ropes"
+id = 13463
+
+[task_list_jobs]
+id = 13464
+tradeable = false
+weight = 0.001
+destroy = "You can get another by talking about jobs with citizens and tutors around Lumbridge."
+examine = "This reminds me of my current job and who set me the task."
+kept = "Vanish"
+use = "Limited"
+
+[explorers_ring_1]
+id = 13560
+tradeable = false
+weight = 0.004
+charges = 1
+charge = "explorers_ring_charges"
+aka = ["lumbridge_ring_1"]
+slot = "Ring"
+destroy = "You will have talk to Explorer Jack in Lumbridge if you destroy this one."
+examine = "A Lumbridge explorer's ring."
+kept = "Wilderness"
+
+[explorers_ring_2]
+id = 13561
+tradeable = false
+weight = 0.004
+charges = 2
+charge = "explorers_ring_charges"
+aka = ["lumbridge_ring_2"]
+slot = "Ring"
+destroy = "You will have talk to Bob in Lumbridge if you destroy this one."
+examine = "A Lumbridge explorer's ring."
+kept = "Wilderness"
+
+[explorers_ring_3]
+id = 13562
+tradeable = false
+weight = 0.004
+charges = 3
+charge = "explorers_ring_charges"
+aka = ["explorers_ring", "lumbridge_ring", "lumbridge_ring_3"]
+slot = "Ring"
+destroy = "You will need to obtain a new ring from Ned in Draynor if you destroy this one."
+examine = "A Lumbridge explorer's ring."
+kept = "Wilderness"
+
+[fremennik_sea_boots_1]
+id = 14571
+tradeable = false
+weight = 0.5
+slot = "Feet"
+destroy = "You can claim replacement Fremennik sea boots from the council workman on the bridge between Seer's Village and Rellekka."
+examine = "Not-so-sturdy boots for northern winters."
+kept = "Wilderness"
+
+[fremennik_sea_boots_2]
+id = 14572
+tradeable = false
+weight = 0.5
+slot = "Feet"
+destroy = "You can claim replacement Fremennik sea boots from Yrsa in Rellekka."
+examine = "Sturdy boots for northern winters."
+kept = "Wilderness"
+
+[fremennik_sea_boots_3]
+id = 14573
+tradeable = false
+weight = 0.5
+slot = "Feet"
+destroy = "You can claim replacement Fremennik sea boots from Advisor Ghrim on Miscellania."
+examine = "Very sturdy boots for northern winters."
+kept = "Wilderness"
+
+[antique_lamp_easy_fremennik_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 14574
+
+[antique_lamp_medium_fremennik_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 14575
+
+[antique_lamp_hard_fremennik_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 14576
+
+[falador_shield_1]
+id = 14577
+tradeable = false
+weight = 3.628
+charges = 1
+charge = "falador_shield_charges"
+slot = "Shield"
+material = "metal"
+destroy = "You will be able to get a replacement shield from Redbeard Frank in Port Sarim."
+examine = "A buckler shield from Falador."
+kept = "Wilderness"
+
+[falador_shield_2]
+id = 14578
+tradeable = false
+weight = 5.443
+charges = 1
+charge = "falador_shield_charges"
+slot = "Shield"
+material = "metal"
+destroy = "You will be able to get replacement shield from the chemist in Rimmington."
+examine = "A kiteshield from Falador."
+kept = "Wilderness"
+
+[falador_shield_3]
+id = 14579
+tradeable = false
+weight = 7.257
+charges = 1
+charge = "falador_shield_charges"
+slot = "Shield"
+material = "metal"
+destroy = "You will be able to get a replacement shield from Sir Vyvin's squire in the White Knights' Castle."
+examine = "A tower shield from Falador."
+kept = "Wilderness"
+
+[antique_lamp_easy_falador_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 14580
+
+[antique_lamp_medium_falador_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 14581
+
+[antique_lamp_hard_falador_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 14582
+
+[white_lily]
+id = 14583
+tradeable = false
+weight = 0.056
+destroy = "Harvest"
+examine = "A beautiful flower."
+kept = "Reclaim"
+
+[money_crest_voucher]
+id = 14584
+tradeable = false
+weight = 0.056
+destroy = "You will not be able to replace this voucher - it is a one-time offer only!"
+examine = "I can take this to the Herald to get my money crest back for free."
+kept = "Vanish"
+
+[white_lily_seed]
+id = 14589
+tradeable = false
+examine = "A white lily seed - plant in a flower patch."
+kept = "Reclaim"
+
+[seers_headband_1]
+id = 14631
+tradeable = false
+weight = 0.453
+slot = "Hat"
+destroy = "A player can get a new one by talking to any seer around Seer's village."
+examine = "A headband with an eye embroidered on it."
+kept = "Wilderness"
+
+[enhanced_excalibur]
+id = 14632
+tradeable = false
+weight = 2.267
+aka = ["ee"]
+special_energy = 1000
+special = "sanctuary"
+slot = "Weapon"
+destroy = "You can retrieve the Enhanced Excalibur from the Lady of the Lake for 500 coins."
+examine = "This used to belong to King Arthur and has since been improved to be held in the off-hand."
+kept = "Reclaim"
+
+[antique_lamp_easy_seers_village_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 14633
+
+[antique_lamp_medium_seers_village_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 14634
+
+[antique_lamp_hard_seers_village_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 14635
+
+[seers_headband_2]
+id = 14662
+tradeable = false
+weight = 0.453
+slot = "Hat"
+destroy = "You can get another headband from Stankers near the Coal Trucks."
+examine = "A headband with an eye embroidered on it."
+kept = "Wilderness"
+
+[seers_headband_3]
+id = 14663
+tradeable = false
+weight = 0.453
+slot = "Hat"
+destroy = "You can get a new one by talking to Sir Kay in Camelot."
+examine = "A headband with an eye embroidered on it."
+kept = "Wilderness"
+
+[ardougne_cloak_1]
+id = 15345
+tradeable = false
+weight = 0.453
+slot = "Cape"
+destroy = "You can get another cloak of this type from Doctor Orbon in Ardougne."
+examine = "A shadowy Ardougne cloak."
+kept = "Wilderness"
+
+[antique_lamp_easy_ardougne_tasks]
+id = 15346
+tradeable = false
+weight = 0.1
+destroy = "Are you sure you want to destroy the lamp? You won't be able to get another one."
+examine = "I wonder what happens if I rub it..."
+kept = "Wilderness"
+
+[ardougne_cloak_2]
+id = 15347
+tradeable = false
+weight = 0.453
+slot = "Cape"
+destroy = "You can get another cloak of this type from the Town Crier in Ardougne."
+examine = "A shadowy Ardougne cloak."
+kept = "Wilderness"
+
+[antique_lamp_medium_ardougne_tasks]
+clone = "antique_lamp_easy_ardougne_tasks"
+id = 15348
+
+[ardougne_cloak_3]
+id = 15349
+tradeable = false
+weight = 0.453
+slot = "Cape"
+destroy = "You can get another cloak of this type from Aleck in Yanille."
+examine = "A shadowy Ardougne cloak."
+kept = "Wilderness"
+
+[antique_lamp_hard_ardougne_tasks]
+clone = "antique_lamp_easy_ardougne_tasks"
+id = 15350
+
+[antique_lamp_elite_ardougne_tasks]
+clone = "antique_lamp_easy_ardougne_tasks"
+id = 15351
+
+[ardougne_cloak_4]
+id = 19748
+tradeable = false
+weight = 0.453
+slot = "Cape"
+destroy = "You can get another cloak of this type from Aleck in Yanille."
+examine = "A shadowy Ardougne cloak."
+kept = "Wilderness"
+
+[falador_shield_4]
+id = 19749
+tradeable = false
+weight = 7.257
+charges = 1
+charge = "falador_shield_charges"
+slot = "Shield"
+material = "metal"
+destroy = "You will be able to get a replacement shield from Sir Vyvin's squire in the White Knights' Castle."
+examine = "An elite kiteshield from Falador."
+kept = "Wilderness"
+
+[antique_lamp_elite_falador_tasks_30k]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 19750
+
+[antique_lamp_elite_falador_tasks_50k_level_72]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 19751
+
+[antique_lamp_elite_falador_tasks_50k_level_84]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 19752
+
+[karamja_gloves_4]
+id = 19754
+tradeable = false
+weight = 0.226
+slot = "Hands"
+destroy = "You can claim replacement Karamja gloves from a jungle forester near the Kharazi Jungle."
+examine = "A pair of greenish-black Karamja gloves."
+kept = "Wilderness"
+
+[antique_lamp_elite_karamja_tasks_30k]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 19755
+
+[antique_lamp_elite_karamja_tasks_55k]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 19756
+
+[varrock_armour_4]
+id = 19757
+tradeable = false
+weight = 1.0
+slot = "Chest"
+material = "leather"
+destroy = "You will need to get a new set of armour from Vannaka if you destroy this one."
+examine = "Varrock Smithing armour."
+kept = "Wilderness"
+
+[antique_lamp_elite_varrock_tasks_30k]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 19758
+
+[antique_lamp_elite_varrock_tasks_40k]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 19759
+
+[explorers_ring_4]
+id = 19760
+tradeable = false
+weight = 0.004
+charges = 3
+charge = "explorers_ring_charges"
+slot = "Ring"
+destroy = "You will need to obtain a new ring from Ned in Draynor if you destroy this one."
+examine = "A Lumbridge explorer's ring."
+kept = "Wilderness"
+
+[antique_lamp_hard_lumbridge_tasks]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 19761
+
+[hamper]
+id = 19762
+tradeable = false
+bank_stacks = false
+weight = 2.267
+destroy = "You'll be able to get another one tomorrow from the Lumbridge Castle Cook."
+examine = "A hamper full of cooked food."
+kept = "Vanish"
+
+[seers_headband_4]
+id = 19763
+tradeable = false
+weight = 0.453
+slot = "Hat"
+destroy = "You can get another headband from Sir Kay in Camelot."
+examine = "A headband with an eye embroidered on it."
+kept = "Wilderness"
+
+[antique_lamp_elite_seers_village_tasks_25k]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 19764
+
+[antique_lamp_elite_seers_village_tasks_30k]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 19765
+
+[fremennik_sea_boots_4]
+id = 19766
+tradeable = false
+weight = 0.5
+slot = "Feet"
+destroy = "You can claim replacement Fremennik sea boots from Advisor Ghrim on Miscellania."
+examine = "Incredibly sturdy boots for northern winters."
+kept = "Wilderness"
+
+[antique_lamp_elite_fremennik_tasks_30k]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 19767
+
+[antique_lamp_elite_fremennik_tasks_40k]
+clone = "antique_lamp_easy_karamja_tasks"
+id = 19768
+
+[mole_nose]
+id = 19769
+limit = 100
+weight = 0.001
+examine = "The nose of a mole."

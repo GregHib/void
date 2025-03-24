@@ -1,0 +1,80 @@
+[catapult_schematics]
+id = 12593
+tradeable = false
+weight = 0.1
+destroy = "If you need to, you can get another from the Tyras Camp catapult engineer."
+examine = "The plans for repairing the Tyras Camp catapult."
+use = "Quest"
+kept = "Wilderness"
+
+[engineers_letter]
+id = 12594
+tradeable = false
+weight = 0.1
+destroy = "If you need to, you can get another from General Hining in the Tyras Camp."
+examine = "General Hining wants me to deliver this to the Catapult Engineer."
+use = "Quest"
+kept = "Wilderness"
+
+[sailors_hat]
+id = 12595
+tradeable = false
+weight = 0.2
+slot = "Hat"
+destroy = "You can always get another from the drunken sailor in Port Sarim."
+examine = "Taken from a drunken sailor in Port Sarim."
+kept = "Vanish"
+
+[metal_catapult_parts]
+id = 12596
+tradeable = false
+weight = 2.0
+destroy = "You can get another set from Thaki the delivery dwarf in Port Sarim."
+examine = "Dwarf-made parts for repairing the Tyras Camp catapult."
+use = "Quest"
+kept = "Wilderness"
+
+[mahogany_catapult_part_1]
+id = 12597
+tradeable = false
+weight = 2.0
+destroy = "If you need to, you can make another from the Tyras Camp catapult engineer's schematics."
+examine = "Used to repair the Tyras Camp catapult."
+use = "Quest"
+kept = "Wilderness"
+
+[mahogany_catapult_part_2]
+clone = "mahogany_catapult_part_1"
+id = 12598
+
+[mahogany_catapult_part_3]
+clone = "mahogany_catapult_part_1"
+id = 12599
+
+[mahogany_catapult_part_4]
+clone = "mahogany_catapult_part_1"
+id = 12600
+
+[mahogany_catapult_part_5]
+clone = "mahogany_catapult_part_1"
+id = 12601
+
+[mahogany_catapult_part_6]
+clone = "mahogany_catapult_part_1"
+id = 12602
+
+[mahogany_catapult_part_7]
+clone = "mahogany_catapult_part_1"
+id = 12603
+
+[mahogany_catapult_part_8]
+clone = "mahogany_catapult_part_1"
+id = 12604
+
+[mahogany_catapult_part_9]
+clone = "mahogany_catapult_part_1"
+id = 12605
+
+[mahogany_catapult_part_10]
+clone = "mahogany_catapult_part_1"
+id = 12606

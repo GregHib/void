@@ -87,3 +87,11 @@ weight = 3.0
 examine = "It's a bucket of blessed water."
 use = "Quest"
 kept = "Wilderness"
+
+[golden_tinderbox_2]
+id = 13403
+tradeable = false
+weight = 0.035
+examine = "A replica tinderbox made of solid gold."
+use = "Quest"
+kept = "Wilderness"

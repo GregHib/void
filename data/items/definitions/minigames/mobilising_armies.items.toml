@@ -1,0 +1,665 @@
+[special_unit_contract]
+id = 14940
+tradeable = false
+bank_stacks = false
+weight = 0.005
+destroy = "You'll have to get another contract from the special unit table."
+examine = "I can use this in battle for extra assistance."
+kept = "Vanish"
+use = "Removed"
+
+[dwarf_squad_light]
+id = 14941
+tradeable = false
+weight = 0.005
+destroy = "You'll have to get another from the recruitment room."
+examine = "A contract for a dwarf squad."
+kept = "Vanish"
+
+[dwarf_squad_level_2_light]
+id = 14942
+destroy = "You'll have to get another contract from the dwarf table."
+examine = "A contract for a dwarf squad."
+
+[dwarf_squad_level_3_light]
+clone = "dwarf_squad_level_2_light"
+id = 14943
+
+[dwarf_squad_level_4_light]
+clone = "dwarf_squad_level_2_light"
+id = 14944
+
+[dwarf_squad_level_5_light]
+clone = "dwarf_squad_level_2_light"
+id = 14945
+
+[dwarf_squad_heavy]
+clone = "dwarf_squad_light"
+id = 14946
+
+[dwarf_squad_level_2_heavy]
+clone = "dwarf_squad_level_2_light"
+id = 14947
+
+[dwarf_squad_level_3_heavy]
+clone = "dwarf_squad_level_2_light"
+id = 14948
+
+[dwarf_squad_level_4_heavy]
+clone = "dwarf_squad_level_2_light"
+id = 14949
+
+[dwarf_squad_level_5_heavy]
+clone = "dwarf_squad_level_2_light"
+id = 14950
+
+[goblin_squad_light]
+id = 14951
+tradeable = false
+weight = 0.005
+destroy = "You'll have to get another from the recruitment room."
+examine = "A contract for a goblin squad."
+kept = "Vanish"
+
+[goblin_squad_level_2_light]
+id = 14952
+destroy = "You'll have to get another contract from the goblin table."
+examine = "A contract for a goblin squad."
+
+[goblin_squad_level_3_light]
+clone = "goblin_squad_level_2_light"
+id = 14953
+
+[goblin_squad_level_4_light]
+clone = "goblin_squad_level_2_light"
+id = 14954
+
+[goblin_squad_level_5_light]
+clone = "goblin_squad_level_2_light"
+id = 14955
+
+[goblin_squad_heavy]
+clone = "goblin_squad_light"
+id = 14956
+
+[goblin_squad_level_2_heavy]
+clone = "goblin_squad_level_2_light"
+id = 14957
+
+[goblin_squad_level_3_heavy]
+clone = "goblin_squad_level_2_light"
+id = 14958
+
+[goblin_squad_level_4_heavy]
+clone = "goblin_squad_level_2_light"
+id = 14959
+
+[goblin_squad_level_5_heavy]
+clone = "goblin_squad_level_2_light"
+id = 14960
+
+[elf_squad_light]
+id = 14961
+tradeable = false
+weight = 0.005
+destroy = "You'll have to get another from the recruitment room."
+examine = "A contract for an elf squad."
+kept = "Vanish"
+
+[elf_squad_level_2_light]
+id = 14962
+destroy = "You'll have to get another contract from the elf table."
+examine = "A contract for an elf squad."
+
+[elf_squad_level_3_light]
+clone = "elf_squad_level_2_light"
+id = 14963
+
+[elf_squad_level_4_light]
+clone = "elf_squad_level_2_light"
+id = 14964
+
+[elf_squad_level_5_light]
+clone = "elf_squad_level_2_light"
+id = 14965
+
+[elf_squad_heavy]
+clone = "elf_squad_light"
+id = 14966
+
+[elf_squad_level_2_heavy]
+clone = "elf_squad_level_2_light"
+id = 14967
+
+[elf_squad_level_3_heavy]
+clone = "elf_squad_level_2_light"
+id = 14968
+
+[elf_squad_level_4_heavy]
+clone = "elf_squad_level_2_light"
+id = 14969
+
+[elf_squad_level_5_heavy]
+clone = "elf_squad_level_2_light"
+id = 14970
+
+[dwarf_squad_light_defeated]
+id = 14971
+tradeable = false
+weight = 0.005
+destroy = "You'll have to get another from the recruitment room."
+examine = "The squad recruiters will resupply this defeated squad contract."
+kept = "Vanish"
+
+[dwarf_squad_level_2_light_defeated]
+id = 14972
+examine = "The squad recruiters will resupply this defeated contract for me."
+
+[dwarf_squad_level_3_light_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14973
+
+[dwarf_squad_level_4_light_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14974
+
+[dwarf_squad_level_5_light_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14975
+
+[dwarf_squad_heavy_defeated]
+clone = "dwarf_squad_light_defeated"
+id = 14976
+
+[dwarf_squad_level_2_heavy_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14977
+
+[dwarf_squad_level_3_heavy_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14978
+
+[dwarf_squad_level_4_heavy_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14979
+
+[dwarf_squad_level_5_heavy_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14980
+
+[goblin_squad_light_defeated]
+clone = "dwarf_squad_light_defeated"
+id = 14981
+
+[goblin_squad_level_2_light_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14982
+
+[goblin_squad_level_3_light_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14983
+
+[goblin_squad_level_4_light_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14984
+
+[goblin_squad_level_5_light_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14985
+
+[goblin_squad_heavy_defeated]
+clone = "dwarf_squad_light_defeated"
+id = 14986
+
+[goblin_squad_level_2_heavy_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14987
+
+[goblin_squad_level_3_heavy_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14988
+
+[goblin_squad_level_4_heavy_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14989
+
+[goblin_squad_level_5_heavy_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14990
+
+[elf_squad_light_defeated]
+clone = "dwarf_squad_light_defeated"
+id = 14991
+
+[elf_squad_level_2_light_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14992
+
+[elf_squad_level_3_light_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14993
+
+[elf_squad_level_4_light_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14994
+
+[elf_squad_level_5_light_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14995
+
+[elf_squad_heavy_defeated]
+clone = "dwarf_squad_light_defeated"
+id = 14996
+
+[elf_squad_level_2_heavy_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14997
+
+[elf_squad_level_3_heavy_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14998
+
+[elf_squad_level_4_heavy_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 14999
+
+[elf_squad_level_5_heavy_defeated]
+clone = "dwarf_squad_level_2_light_defeated"
+id = 15000
+
+[quest_kit_basic]
+id = 15001
+tradeable = false
+bank_stacks = false
+weight = 1.646
+examine = "I can keep my adventuring items in here."
+kept = "Wilderness"
+use = "Limited"
+
+[quest_kit_medium]
+id = 15002
+tradeable = false
+bank_stacks = false
+weight = 3.506
+examine = "I can keep my adventuring items in here."
+kept = "Reclaim"
+use = "Limited"
+
+[quest_kit_advanced]
+id = 15003
+tradeable = false
+bank_stacks = false
+weight = 5.575
+examine = "I can keep my adventuring items in here."
+kept = "Reclaim"
+use = "Limited"
+
+[quest_kit_elite]
+id = 15004
+tradeable = false
+bank_stacks = false
+weight = 7.889
+examine = "I can keep my adventuring items in here."
+kept = "Reclaim"
+use = "Limited"
+
+[inferior_locator]
+id = 15005
+tradeable = false
+bank_stacks = false
+weight = 0.1
+slot = "Weapon"
+destroy = "You can craft another using divination."
+examine = "Helps me to get to useful resources."
+kept = "Reclaim"
+
+[poor_locator]
+id = 15006
+tradeable = false
+bank_stacks = false
+weight = 0.1
+slot = "Weapon"
+destroy = "You can craft another using divination."
+examine = "Helps me to get to useful resources."
+kept = "Reclaim"
+
+[good_locator]
+id = 15007
+tradeable = false
+bank_stacks = false
+weight = 0.1
+slot = "Weapon"
+destroy = "You can craft another using divination."
+examine = "Helps me to get to useful resources."
+kept = "Reclaim"
+
+[superior_locator]
+id = 15008
+tradeable = false
+bank_stacks = false
+weight = 0.1
+slot = "Weapon"
+destroy = "You can craft another using divination."
+examine = "Helps me to get to useful resources."
+kept = "Reclaim"
+
+[gold_ring_i]
+id = 15009
+tradeable = false
+weight = 0.004
+slot = "Ring"
+examine = "A valuable ring, imbued at Soul Wars."
+kept = "Wilderness"
+
+[sapphire_ring_i]
+id = 15010
+tradeable = false
+weight = 0.006
+slot = "Ring"
+examine = "A valuable ring, imbued at Soul Wars."
+kept = "Reclaim"
+
+[emerald_ring_i]
+id = 15011
+tradeable = false
+weight = 0.006
+slot = "Ring"
+examine = "A valuable ring, imbued at Soul Wars."
+kept = "Reclaim"
+
+[ruby_ring_i]
+id = 15012
+tradeable = false
+weight = 0.006
+slot = "Ring"
+examine = "A valuable ring, imbued at Soul Wars."
+kept = "Reclaim"
+
+[diamond_ring_i]
+id = 15013
+tradeable = false
+weight = 0.006
+slot = "Ring"
+examine = "A valuable ring, imbued at Soul Wars."
+kept = "Reclaim"
+
+[dragonstone_ring_i]
+id = 15014
+tradeable = false
+weight = 0.006
+slot = "Ring"
+examine = "A valuable ring, imbued at Soul Wars."
+kept = "Reclaim"
+
+[lunar_ring_i]
+id = 15015
+tradeable = false
+weight = 0.006
+slot = "Ring"
+examine = "A mysterious ring, imbued at Soul Wars."
+kept = "Reclaim"
+
+[ring_of_charos_ai]
+id = 15016
+tradeable = false
+weight = 0.005
+slot = "Ring"
+destroy = "To remove the effect and revert to a ring of Charos, visit the Soul Wars reward shop. Are you sure you wish to destroy the imbued ring of Charos?"
+examine = "This ring has been activated and imbued."
+kept = "Reclaim"
+
+[onyx_ring_i]
+id = 15017
+tradeable = false
+weight = 0.006
+slot = "Ring"
+examine = "A valuable ring, imbued at Soul Wars."
+kept = "Reclaim"
+
+[seers_ring_i]
+id = 15018
+tradeable = false
+weight = 0.004
+slot = "Ring"
+examine = "A mysterious ring that has been imbued at Soul Wars."
+kept = "Reclaim"
+
+[archers_ring_i]
+id = 15019
+tradeable = false
+weight = 0.004
+slot = "Ring"
+examine = "Improves the wearer's skill with a bow. This has been imbued."
+kept = "Reclaim"
+
+[warrior_ring_i]
+id = 15020
+tradeable = false
+weight = 0.004
+slot = "Ring"
+examine = "Once worn by Fremennik warriors. This has been imbued."
+kept = "Reclaim"
+
+[serjeant_cap]
+id = 15021
+tradeable = false
+weight = 0.5
+slot = "Hat"
+destroy = "You'll have to buy another using Thaler."
+examine = "A cap displaying a low rank."
+kept = "Wilderness"
+
+[serjeant_top]
+id = 15022
+tradeable = false
+weight = 0.5
+slot = "Chest"
+destroy = "You'll have to buy another using Thaler."
+examine = "This is my shirt, there are many like it, but this is my own."
+kept = "Wilderness"
+
+[serjeant_trousers]
+id = 15023
+tradeable = false
+weight = 0.5
+slot = "Legs"
+destroy = "You'll have to buy another using Thaler."
+examine = "With creases like knives."
+kept = "Wilderness"
+
+[serjeant_skirt]
+id = 15024
+tradeable = false
+weight = 0.5
+slot = "Legs"
+destroy = "You'll have to buy another using Thaler."
+examine = "For the more feminine army."
+kept = "Wilderness"
+
+[serjeant_boots]
+id = 15025
+tradeable = false
+weight = 0.5
+slot = "Feet"
+destroy = "You'll have to buy another using Thaler."
+examine = "For standing to attention."
+kept = "Wilderness"
+
+[serjeant_gloves]
+id = 15026
+tradeable = false
+weight = 0.226
+slot = "Hands"
+destroy = "You'll have to buy another using Thaler."
+examine = "Smart and functional."
+kept = "Wilderness"
+
+[commander_cap]
+id = 15027
+tradeable = false
+weight = 0.5
+slot = "Hat"
+destroy = "You'll have to buy another using Thaler."
+examine = "A cap displaying a middle rank."
+kept = "Wilderness"
+
+[commander_top]
+id = 15028
+tradeable = false
+weight = 0.5
+slot = "Chest"
+destroy = "You'll have to buy another using Thaler."
+examine = "This is my shirt, there are many like it, but this is my own."
+kept = "Wilderness"
+
+[commander_trousers]
+id = 15029
+tradeable = false
+weight = 0.5
+slot = "Legs"
+destroy = "You'll have to buy another using Thaler."
+examine = "With creases like knives."
+kept = "Wilderness"
+
+[commander_skirt]
+id = 15030
+tradeable = false
+weight = 0.5
+slot = "Legs"
+destroy = "You'll have to buy another using Thaler."
+examine = "For the more feminine army."
+kept = "Wilderness"
+
+[commander_boots]
+id = 15031
+tradeable = false
+weight = 0.5
+slot = "Feet"
+destroy = "You'll have to buy another using Thaler."
+examine = "For standing to attention."
+kept = "Wilderness"
+
+[commander_gloves]
+id = 15032
+tradeable = false
+weight = 0.226
+slot = "Hands"
+destroy = "You'll have to buy another using Thaler."
+examine = "Smart and functional."
+kept = "Wilderness"
+
+[war_chief_cap]
+id = 15033
+tradeable = false
+weight = 0.5
+slot = "Hat"
+destroy = "You'll have to buy another using Thaler."
+examine = "A cap displaying a fairly high rank."
+kept = "Wilderness"
+
+[war_chief_top]
+id = 15034
+tradeable = false
+weight = 0.5
+slot = "Chest"
+destroy = "You'll have to buy another using Thaler."
+examine = "This is my shirt, there are many like it, but this is my own."
+kept = "Wilderness"
+
+[war_chief_trousers]
+id = 15035
+tradeable = false
+weight = 0.5
+slot = "Legs"
+destroy = "You'll have to buy another using Thaler."
+examine = "With creases like knives."
+kept = "Wilderness"
+
+[war_chief_skirt]
+id = 15036
+tradeable = false
+weight = 0.5
+slot = "Legs"
+destroy = "You'll have to buy another using Thaler."
+examine = "For the more feminine army."
+kept = "Wilderness"
+
+[war_chief_boots]
+id = 15037
+tradeable = false
+weight = 0.5
+slot = "Feet"
+destroy = "You'll have to buy another using Thaler."
+examine = "For standing to attention."
+kept = "Wilderness"
+
+[war_chief_gloves]
+id = 15038
+tradeable = false
+weight = 0.226
+slot = "Hands"
+destroy = "You'll have to buy another using Thaler."
+examine = "Smart and functional."
+kept = "Wilderness"
+
+[lord_marshal_cap]
+id = 15039
+tradeable = false
+weight = 0.5
+slot = "Hat"
+destroy = "You'll have to buy another using Thaler."
+examine = "A cap displaying a high rank."
+kept = "Wilderness"
+
+[lord_marshal_top]
+id = 15040
+tradeable = false
+weight = 0.5
+slot = "Chest"
+destroy = "You'll have to buy another using Thaler."
+examine = "This is my shirt, there are many like it, but this is my own."
+kept = "Wilderness"
+
+[lord_marshal_trousers]
+id = 15041
+tradeable = false
+weight = 0.5
+slot = "Legs"
+destroy = "You'll have to buy another using Thaler."
+examine = "With creases like knives."
+kept = "Wilderness"
+
+[lord_marshal_skirt]
+id = 15042
+tradeable = false
+weight = 0.5
+slot = "Legs"
+destroy = "You'll have to buy another using Thaler."
+examine = "For the more feminine army."
+kept = "Wilderness"
+
+[lord_marshal_boots]
+id = 15043
+tradeable = false
+weight = 0.5
+slot = "Feet"
+destroy = "You'll have to buy another using Thaler."
+examine = "For standing to attention."
+kept = "Wilderness"
+
+[lord_marshal_gloves]
+id = 15044
+tradeable = false
+weight = 0.226
+slot = "Hands"
+destroy = "You'll have to buy another using Thaler."
+examine = "Smart and functional."
+kept = "Wilderness"
+
+[berserker_ring_i]
+id = 15220
+tradeable = false
+weight = 0.004
+slot = "Ring"
+examine = "A ring reputed to bring out a berserk fury in its wearer. This has been imbued."
+kept = "Reclaim"

@@ -1,0 +1,180 @@
+[scroll_of_the_dead]
+id = 14796
+tradeable = false
+weight = 0.453
+destroy = "I can obtain another of these from the pyramid near Uzer."
+examine = "Ancient writings recently translated."
+use = "Quest"
+kept = "Wilderness"
+
+[tatty_bag]
+id = 14797
+tradeable = false
+weight = 0.453
+destroy = "I can obtain another of these from the pyramid near Uzer - although I'm not sure why I might want to."
+examine = "AMCE reliable swag bag - maximum load 2 ounces."
+use = "Quest"
+kept = "Wilderness"
+
+[shattered_axes]
+id = 14798
+tradeable = false
+weight = 0.453
+destroy = "I can obtain another of these from the pyramid near Uzer - although I'm not sure why I might want to."
+examine = "AMCE ultra axe - keep point away from eyes."
+use = "Quest"
+kept = "Wilderness"
+
+[defective_spades]
+id = 14799
+tradeable = false
+weight = 0.453
+destroy = "I can obtain another of these from the pyramid near Uzer - although I'm not sure why I might want to."
+examine = "AMCE superior digging tools - remove foot from excavation area."
+use = "Quest"
+kept = "Wilderness"
+
+[suboptimal_flask]
+id = 14800
+tradeable = false
+weight = 0.453
+destroy = "I can obtain another of these from the pyramid near Uzer - although I'm not sure why I might want to."
+examine = "AMCE splendiferous desert beverages - not for external use."
+use = "Quest"
+kept = "Wilderness"
+
+[useless_ration_boxes]
+id = 14801
+tradeable = false
+weight = 0.453
+destroy = "I can obtain another of these from the pyramid near Uzer - although I'm not sure why I might want to."
+examine = "AMCE luxury desert rations - leave room for your desert beverages."
+use = "Quest"
+kept = "Wilderness"
+
+[sub_optimal_lantern]
+id = 14802
+tradeable = false
+weight = 0.453
+destroy = "I can obtain another of these from the pyramid near Uzer - although I'm not sure why I might want to."
+examine = "AMCE indestructible light source - not for underwater use."
+use = "Quest"
+kept = "Wilderness"
+
+[pyramid_journal]
+id = 14803
+tradeable = false
+weight = 0.453
+destroy = "I can obtain this again from the pyramid near Uzer."
+examine = "It belonged to a literate looter."
+kept = "Wilderness"
+
+[canopic_jar_spleen]
+id = 14804
+tradeable = false
+weight = 0.453
+destroy = "I can obtain this again from the pyramid near Uzer."
+examine = "A jar full of spleen?"
+use = "Quest"
+kept = "Wilderness"
+
+[canopic_jar_pancreatic_bile]
+id = 14805
+tradeable = false
+weight = 0.453
+destroy = "I can obtain this again from the pyramid near Uzer."
+examine = "A jar full of pancreatic bile?"
+use = "Quest"
+kept = "Wilderness"
+
+[canopic_jar_tongue_follicles]
+id = 14806
+tradeable = false
+weight = 0.453
+destroy = "I can obtain this again from the pyramid near Uzer."
+examine = "A jar full of tongue follicles?"
+use = "Quest"
+kept = "Wilderness"
+
+[canopic_jar_elbow_marrow]
+id = 14807
+tradeable = false
+weight = 0.453
+destroy = "I can obtain this again from the pyramid near Uzer."
+examine = "A jar full of elbow marrow?"
+use = "Quest"
+kept = "Wilderness"
+
+[scroll_of_praise]
+id = 14808
+tradeable = false
+weight = 0.453
+destroy = "I can obtain another of these from Reldo in Varrock."
+examine = "Written in an ancient language."
+use = "Quest"
+kept = "Wilderness"
+
+[senlitens_mummy]
+id = 14809
+tradeable = false
+weight = 0.453
+destroy = "I can obtain this again, in pieces, from the pyramid near Uzer."
+examine = "Complete and ready for re-burial."
+use = "Quest"
+kept = "Wilderness"
+
+[mummy_hand]
+id = 14810
+tradeable = false
+weight = 0.453
+destroy = "I can obtain this again from the pyramid near Uzer."
+examine = "Just a hand."
+use = "Quest"
+kept = "Wilderness"
+
+[mummy_with_no_hand]
+id = 14811
+tradeable = false
+weight = 0.453
+destroy = "I can obtain this again from the pyramid near Uzer."
+examine = "Give her a hand."
+use = "Quest"
+kept = "Wilderness"
+
+[mummys_name_papyrus]
+id = 14812
+tradeable = false
+weight = 0.005
+destroy = "I can obtain another of these from Ali Morrisane."
+examine = "This is an ancient original."
+use = "Quest"
+kept = "Wilderness"
+
+[copied_name_papyrus]
+id = 14813
+tradeable = false
+weight = 0.005
+destroy = "I can obtain another of these from Ali Morrisane."
+examine = "Is a modern copy."
+use = "Quest"
+kept = "Wilderness"
+
+[spiced_wine]
+id = 14815
+tradeable = false
+weight = 0.453
+empty = "jub"
+destroy = "I can make a new jug of spiced wine using wine and spices."
+examine = "Spiced in a way unpalatable to modern tastes."
+use = "Quest"
+kept = "Wilderness"
+
+[pot_of_wheat]
+id = 14816
+tradeable = false
+weight = 0.453
+empty = "empty_pot"
+destroy = "I can make another pot of wheat using a pot and some wheat."
+examine = "A perfect foodstuff for those long dead."
+use = "Quest"
+kept = "Wilderness"

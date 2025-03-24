@@ -1,3 +1,21 @@
+[strange_fruit]
+id = 464
+price = 581
+limit = 10000
+heals = 0
+weight = 0.085
+examine = "Found on strange plants that grow around Karamja."
+
+[strange_fruit_noted]
+id = 465
+
+[lamp]
+id = 2528
+tradeable = false
+weight = 0.1
+examine = "Wonder what happens if I rub it..."
+kept = "Reclaim"
+
 [mime_mask]
 id = 3057
 tradeable = false
@@ -322,15 +340,6 @@ slot = "Feet"
 examine = "Thrilling."
 kept = "Wilderness"
 
-[run]
-id = 10947
-
-[sit_up]
-id = 10948
-
-[star_jump]
-id = 10949
-
 [book_of_knowledge]
 id = 11640
 tradeable = false
@@ -339,3 +348,14 @@ aka = ["tome_of_experience"]
 destroy = "If you drop this book it will be destroyed. You cannot replace it."
 examine = "Educate yourself."
 kept = "Vanish"
+
+[random_event_gift_2]
+clone = "random_event_gift"
+id = 14664
+
+[doughnut]
+id = 14665
+limit = 1000
+heals = 20
+weight = 0.02
+examine = "A tasty doughnut."

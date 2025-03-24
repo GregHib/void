@@ -1,0 +1,173 @@
+[bones_soul_wars]
+id = 14638
+tradeable = false
+weight = 0.05
+destroy = "You can kill an opposing player to get some more."
+examine = "may contain bones."
+kept = "Reclaim"
+
+[soul_fragment]
+id = 14639
+tradeable = false
+destroy = "You can find more by slaying the creatures in the ruins."
+examine = "Lightly pulsing with energy."
+kept = "Reclaim"
+
+[bandages_soul_wars]
+id = 14640
+tradeable = false
+heals = 120
+eat_message = "You use a bandage."
+weight = 0.001
+destroy = "You can collect more from the supply areas."
+examine = "A box of bandages for healing."
+kept = "Reclaim"
+
+[red_cape_2]
+id = 14641
+limit = 100
+tradeable = false
+weight = 0.453
+aka = ["red_soul_wars_cape", "soul_wars_cape_red"]
+slot = "Cape"
+examine = "It's a cape, and it's red."
+kept = "Reclaim"
+
+[blue_cape_2]
+id = 14642
+limit = 100
+tradeable = false
+weight = 0.453
+aka = ["blue_soul_wars_cape", "soul_wars_cape_blue"]
+slot = "Cape"
+examine = "Like a red cape, but blue."
+kept = "Reclaim"
+
+[barricade_soul_wars]
+clone = "barricade_castle_wars"
+id = 14643
+
+[explosive_potion_soul_wars]
+id = 14644
+tradeable = false
+weight = 0.05
+destroy = "You can get another explosive potion from the supply areas."
+examine = "Handy for destroying barricades."
+kept = "Reclaim"
+
+[blue_cape_tutorial]
+id = 14645
+limit = 100
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "Like a red cape, but blue."
+kept = "Reclaim"
+
+[soul_fragment_tutorial]
+id = 14646
+tradeable = false
+destroy = "You can find another in the western ruins."
+examine = "Pulses with energy."
+kept = "Reclaim"
+
+[soul_wars_guide]
+id = 14647
+tradeable = false
+weight = 0.001
+destroy = "Nomad should be able to give you a new copy."
+examine = "It's full of interesting stuff."
+kept = "Vanish"
+
+[bandages_tutorial]
+id = 14648
+tradeable = false
+weight = 0.001
+destroy = "You can collect more from the supply area."
+examine = "A box of bandages for healing."
+kept = "Always"
+
+[barricade_tutorial]
+id = 14649
+tradeable = false
+weight = 5.0
+destroy = "You can get another barricade from the supply areas."
+examine = "Handy for hindering the enemy team's movement."
+kept = "Always"
+
+[explosive_potion_tutorial]
+id = 14650
+tradeable = false
+weight = 0.035
+destroy = "You can get another explosive potion from the supply areas."
+examine = "Handy for destroying barricades."
+kept = "Always"
+
+[abyssal_minion_2]
+id = 14651
+npc = 8624
+npc2 = 9245
+food = "Ashes"
+examine = "A denizen of the Abyss."
+skill_req = { slayer = 85 }
+
+[creeping_hand_2]
+id = 14652
+npc = 8619
+npc2 = 9246
+food = "Gloves and Leather gloves"
+examine = "Gimme five!"
+skill_req = { slayer = 5 }
+
+[minitrice_2]
+id = 14653
+npc = 8620
+npc2 = 9247
+food = "Limpwurt root"
+examine = "Too small to turn people into boulders."
+skill_req = { slayer = 25 }
+
+[baby_basilisk_2]
+id = 14654
+npc = 8621
+npc2 = 9248
+food = "Eye of newt"
+examine = "Too small to turn people into boulders."
+skill_req = { slayer = 40 }
+
+[baby_kurask_2]
+id = 14655
+npc = 8622
+npc2 = 9249
+food = "Bones"
+examine = "It's small, but still heavy."
+skill_req = { slayer = 70 }
+
+[abyssal_minion]
+clone = "abyssal_minion_2"
+id = 14656
+
+[creeping_hand]
+clone = "creeping_hand_2"
+id = 14657
+
+[minitrice]
+clone = "minitrice_2"
+id = 14658
+
+[baby_basilisk]
+clone = "baby_basilisk_2"
+id = 14659
+
+[baby_kurask]
+clone = "baby_kurask_2"
+id = 14660
+
+[abyssal_whip_fake]
+id = 14661
+limit = 10
+tradeable = false
+weight = 0.453
+destroy = "You'll need to speak to an abyssal minion if you want another."
+examine = "A weapon from the Abyss."
+kept = "Vanish"

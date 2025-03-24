@@ -666,3 +666,33 @@ id = 10162
 
 [green_salamander_noted]
 id = 10163
+
+[crayfish]
+id = 13433
+price = 6
+limit = 10000
+heals = 20
+weight = 0.1
+examine = "Some cooked crayfish. Eat it to heal."
+
+[crayfish_noted]
+id = 13434
+
+[raw_crayfish]
+id = 13435
+price = 17
+limit = 20000
+weight = 0.12
+fishing = { xp = 10.0, chance = "48-256" }
+cooking = { xp = 30.0, chances = { fire = "128-512" }, cooked = "crayfish", cooked_message = "You successfully cook some crayfish.", burnt_message = "You accidentally burn the crayfish." }
+examine = "I should try cooking this."
+
+[raw_crayfish_noted]
+id = 13436
+
+[burnt_crayfish]
+id = 13437
+examine = "A burnt crayfish."
+
+[burnt_crayfish_noted]
+id = 13438

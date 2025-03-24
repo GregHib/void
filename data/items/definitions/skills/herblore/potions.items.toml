@@ -1324,3 +1324,344 @@ examine = "A 1 dose Sanfew Serum."
 
 [sanfew_serum_1_noted]
 id = 10932
+
+[crafting_potion_4]
+id = 14838
+price = 2697
+weight = 0.035
+excess = "crafting_potion_3"
+empty = "vial"
+examine = "4 doses of crafting potion."
+
+[crafting_potion_4_noted]
+id = 14839
+
+[crafting_potion_3]
+id = 14840
+price = 2002
+weight = 0.03
+excess = "crafting_potion_2"
+empty = "vial"
+examine = "3 doses of crafting potion."
+
+[crafting_potion_3_noted]
+id = 14841
+
+[crafting_potion_2]
+id = 14842
+price = 1197
+weight = 0.025
+excess = "crafting_potion_1"
+empty = "vial"
+examine = "2 doses of crafting potion."
+
+[crafting_potion_2_noted]
+id = 14843
+
+[crafting_potion_1]
+id = 14844
+price = 985
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "1 dose of crafting potion."
+
+[crafting_potion_1_noted]
+id = 14845
+
+[fletching_potion_4]
+id = 14846
+price = 31
+weight = 0.035
+excess = "fletching_potion_3"
+empty = "vial"
+examine = "4 doses of fletching potion."
+
+[fletching_potion_4_noted]
+id = 14847
+
+[fletching_potion_3]
+id = 14848
+price = 20
+weight = 0.03
+excess = "fletching_potion_2"
+empty = "vial"
+examine = "3 doses of fletching potion."
+
+[fletching_potion_3_noted]
+id = 14849
+
+[fletching_potion_2]
+id = 14850
+price = 54
+weight = 0.025
+excess = "fletching_potion_1"
+empty = "vial"
+examine = "2 doses of fletching potion."
+
+[fletching_potion_2_noted]
+id = 14851
+
+[fletching_potion_1]
+id = 14852
+price = 72
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "1 dose of fletching potion."
+
+[fletching_potion_1_noted]
+id = 14853
+
+[recover_special_4]
+id = 15300
+weight = 0.035
+excess = "recover_special_3"
+empty = "vial"
+examine = "4 doses of recover special potion."
+
+[recover_special_3]
+id = 15301
+weight = 0.03
+excess = "recover_special_2"
+empty = "vial"
+examine = "3 doses of recover special potion."
+
+[recover_special_2]
+id = 15302
+weight = 0.025
+excess = "recover_special_1"
+empty = "vial"
+examine = "2 doses of recover special potion."
+
+[recover_special_1]
+id = 15303
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "1 dose of recover special potion."
+
+[super_antifire_4]
+id = 15304
+weight = 0.035
+excess = "super_antifire_3"
+empty = "vial"
+examine = "4 doses of super antifire potion."
+
+[super_antifire_3]
+id = 15305
+weight = 0.03
+excess = "super_antifire_2"
+empty = "vial"
+examine = "3 doses of super antifire potion."
+
+[super_antifire_2]
+id = 15306
+weight = 0.025
+excess = "super_antifire_1"
+empty = "vial"
+examine = "2 doses of super antifire potion."
+
+[super_antifire_1]
+id = 15307
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "1 dose of super antifire potion."
+
+[extreme_attack_4]
+id = 15308
+weight = 0.035
+excess = "extreme_attack_3"
+empty = "vial"
+examine = "4 doses of extreme attack potion."
+
+[extreme_attack_3]
+id = 15309
+weight = 0.03
+excess = "extreme_attack_2"
+empty = "vial"
+examine = "3 doses of extreme attack potion."
+
+[extreme_attack_2]
+id = 15310
+weight = 0.025
+excess = "extreme_attack_1"
+empty = "vial"
+examine = "2 doses of extreme attack potion."
+
+[extreme_attack_1]
+id = 15311
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "1 dose of extreme attack potion."
+
+[extreme_strength_4]
+id = 15312
+weight = 0.035
+excess = "extreme_strength_3"
+empty = "vial"
+examine = "4 doses of extreme strength potion."
+
+[extreme_strength_3]
+id = 15313
+weight = 0.03
+excess = "extreme_strength_2"
+empty = "vial"
+examine = "3 doses of extreme strength potion."
+
+[extreme_strength_2]
+id = 15314
+weight = 0.025
+excess = "extreme_strength_1"
+empty = "vial"
+examine = "2 doses of extreme strength potion."
+
+[extreme_strength_1]
+id = 15315
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "1 dose of extreme strength potion."
+
+[extreme_defence_4]
+id = 15316
+weight = 0.035
+excess = "extreme_defence_3"
+empty = "vial"
+examine = "4 doses of extreme defence potion."
+
+[extreme_defence_3]
+id = 15317
+weight = 0.03
+excess = "extreme_defence_2"
+empty = "vial"
+examine = "3 doses of extreme defence potion."
+
+[extreme_defence_2]
+id = 15318
+weight = 0.025
+excess = "extreme_defence_1"
+empty = "vial"
+examine = "2 doses of extreme defence potion."
+
+[extreme_defence_1]
+id = 15319
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "1 dose of extreme defence potion."
+
+[extreme_magic_4]
+id = 15320
+weight = 0.02
+excess = "extreme_magic_3"
+empty = "vial"
+examine = "1 dose of extreme magic potion."
+
+[extreme_magic_3]
+id = 15321
+weight = 0.025
+excess = "extreme_magic_2"
+empty = "vial"
+examine = "2 doses of extreme magic potion."
+
+[extreme_magic_2]
+id = 15322
+weight = 0.03
+excess = "extreme_magic_1"
+empty = "vial"
+examine = "3 doses of extreme magic potion."
+
+[extreme_magic_1]
+id = 15323
+weight = 0.035
+excess = "vial"
+empty = "vial"
+examine = "4 doses of extreme magic potion."
+
+[extreme_ranging_4]
+id = 15324
+weight = 0.035
+excess = "extreme_ranging_3"
+empty = "vial"
+examine = "4 doses of extreme ranging potion."
+
+[extreme_ranging_3]
+id = 15325
+weight = 0.03
+excess = "extreme_ranging_2"
+empty = "vial"
+examine = "3 doses of extreme ranging potion."
+
+[extreme_ranging_2]
+id = 15326
+weight = 0.025
+excess = "extreme_ranging_1"
+empty = "vial"
+examine = "2 doses of extreme ranging potion."
+
+[extreme_ranging_1]
+id = 15327
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "1 dose of extreme ranging potion."
+
+[super_prayer_4]
+id = 15328
+weight = 0.035
+excess = "super_prayer_3"
+empty = "vial"
+examine = "4 doses of super prayer potion."
+
+[super_prayer_3]
+id = 15329
+weight = 0.03
+excess = "super_prayer_2"
+empty = "vial"
+examine = "3 doses of super prayer potion."
+
+[super_prayer_2]
+id = 15330
+weight = 0.025
+excess = "super_prayer_1"
+empty = "vial"
+examine = "2 doses of super prayer potion."
+
+[super_prayer_1]
+id = 15331
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "1 dose of super prayer potion."
+
+[overload_4]
+id = 15332
+weight = 0.035
+excess = "overload_3"
+empty = "vial"
+aka = ["overload", "ovl", "overloads"]
+examine = "4 doses of overload potion."
+
+[overload_3]
+id = 15333
+weight = 0.03
+excess = "overload_2"
+empty = "vial"
+examine = "3 doses of overload potion."
+
+[overload_2]
+id = 15334
+weight = 0.025
+excess = "overload_1"
+empty = "vial"
+examine = "2 doses of overload potion."
+
+[overload_1]
+id = 15335
+weight = 0.02
+excess = "vial"
+empty = "vial"
+examine = "1 dose of overload potion."

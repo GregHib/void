@@ -182,3 +182,112 @@ destroy = "You will have to ask Elnock for another one of these."
 examine = "Lets you easily identify your prey."
 kept = "Vanish"
 use = "Removed"
+
+[pirate_impling_jar]
+id = 13337
+price = 4680
+limit = 1000
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "A pirate impling in a jar."
+kept = "Vanish"
+
+[pirate_impling_jar_noted]
+id = 13338
+
+[spirit_impling_jar]
+id = 15513
+price = 2049
+limit = 1000
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "Spirit impling in a jar."
+kept = "Vanish"
+
+[spirit_impling_jar_noted]
+id = 15514
+
+[zombie_impling_jar]
+id = 15515
+price = 14900
+limit = 500
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "Zombie impling in a jar."
+kept = "Vanish"
+
+[zombie_impling_jar_noted]
+id = 15516
+
+[kingly_impling_jar]
+id = 15517
+price = 442300
+limit = 500
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "Kingly impling in a jar."
+kept = "Vanish"
+
+[kingly_impling_jar_noted]
+id = 15518
+
+[royal_shirt]
+id = 15503
+price = 58700
+limit = 2
+weight = 1.0
+slot = "Chest"
+examine = "The shirt of royalty!"
+
+[royal_shirt_noted]
+id = 15504
+
+[royal_leggings]
+id = 15505
+price = 60100
+limit = 2
+weight = 1.0
+slot = "Legs"
+examine = "The leggings of royalty!"
+
+[royal_leggings_noted]
+id = 15506
+
+[royal_sceptre]
+id = 15507
+price = 60000
+limit = 2
+weight = 2.0
+slot = "Weapon"
+examine = "The sceptre of royalty!"
+
+[royal_sceptre_noted]
+id = 15508
+
+[royal_crown]
+id = 15509
+price = 216100
+limit = 2
+weight = 0.056
+slot = "Hat"
+examine = "The crown of royalty!"
+
+[royal_crown_noted]
+id = 15510
+
+[royal_amulet]
+id = 15511
+price = 60200
+limit = 2
+weight = 0.01
+slot = "Amulet"
+examine = "The amulet of royalty!"
+
+[royal_amulet_noted]
+id = 15512
+
+[royal_shirt_2]
+id = 15519
+limit = 2
+weight = 1.0
+examine = "The shirt of royalty!"

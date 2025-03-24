@@ -1,0 +1,61 @@
+[red_cape_3]
+id = 15432
+limit = 100
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "It's a cape, and it's red."
+kept = "Reclaim"
+
+[blue_cape_3]
+id = 15433
+limit = 100
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "Like a red cape, but blue."
+kept = "Reclaim"
+
+[red_cape]
+id = 15434
+limit = 100
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "It's a cape, and it's red."
+kept = "Reclaim"
+
+[blue_cape]
+id = 15435
+limit = 100
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "Like a red cape, but blue."
+kept = "Reclaim"
+
+[elemental_fuel]
+id = 15436
+tradeable = false
+weight = 0.001
+destroy = "You can get some more from the fuel hopper."
+examine = "Looks to be mainly made from coal."
+use = "Quest"
+kept = "Vanish"
+
+[stone_slab_nomads_requiem]
+id = 15437
+tradeable = false
+weight = 5.0
+destroy = "There may be more slabs in the temple ruins."
+examine = "This looks like it might come in handy."
+use = "Quest"
+kept = "Vanish"
+
+[blue_cape_4]
+id = 15474
+limit = 100
+tradeable = false
+weight = 0.453
+examine = "Like a red cape, but blue."
+kept = "Reclaim"

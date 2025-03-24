@@ -265,3 +265,287 @@ weight = 0.453
 slot = "Cape"
 examine = "A Castle Wars cape in Zamorak red."
 kept = "Wilderness"
+
+[flare]
+id = 18704
+tradeable = false
+weight = 0.028
+examine = "I can use this to signal to a catapult operator."
+kept = "Reclaim"
+
+[profound_decorative_sword]
+id = 18705
+tradeable = false
+weight = 1.587
+slot = "Weapon"
+material = "metal"
+aka = ["profound_sword"]
+examine = "A sword with stunningly profound decoration."
+kept = "Reclaim"
+
+[profound_decorative_platebody]
+id = 18706
+slot = "Chest"
+material = "metal"
+aka = ["profound_platebody"]
+examine = "A platebody with stunningly profound decoration."
+weight = 8.618
+
+[profound_decorative_platelegs]
+id = 18707
+slot = "Legs"
+material = "metal"
+aka = ["profound_platelegs"]
+examine = "Some platelegs with stunningly profound decoration."
+weight = 9.071
+
+[profound_decorative_helm]
+id = 18708
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+aka = ["profound_helm"]
+examine = "A helm with stunningly profound decoration."
+weight = 1.36
+
+[profound_decorative_shield]
+id = 18709
+slot = "Shield"
+material = "metal"
+aka = ["profound_shield"]
+examine = "A shield with stunningly profound decoration."
+weight = 4.535
+
+[ballista_base]
+id = 18710
+tradeable = false
+weight = 4.0
+destroy = "You'll need to buy another from the Castle Wars shop."
+examine = "Heavy struts that help keep the ballista stable."
+kept = "Reclaim"
+
+[ballista_bolt_stack]
+id = 18711
+tradeable = false
+weight = 5.0
+destroy = "You'll need to buy another from the Castle Wars shop."
+examine = "The bolts will be loaded in here, ready to move to the chamber."
+kept = "Reclaim"
+
+[ballista_bow]
+id = 18712
+tradeable = false
+weight = 1.0
+destroy = "You'll need to buy another from the Castle Wars shop."
+examine = "Powerful enough to launch the ballista's large ammo."
+kept = "Reclaim"
+
+[ballista_chamber]
+id = 18713
+tradeable = false
+weight = 4.0
+destroy = "You'll need to buy another from the Castle Wars shop."
+examine = "Helps steady the ammo as it's launched against its target."
+kept = "Reclaim"
+
+[ballista_ammo]
+id = 18714
+tradeable = false
+destroy = "You'll need to buy more from the Castle Wars shop."
+examine = "A projectile made for a ballista."
+kept = "Reclaim"
+
+[cw_super_attack_potion_4]
+id = 18715
+weight = 0.035
+examine = "4 doses of super attack potion."
+
+[cw_super_attack_potion_3]
+id = 18716
+weight = 0.026
+examine = "3 doses of super attack potion."
+
+[cw_super_attack_potion_2]
+id = 18717
+weight = 0.017
+examine = "2 doses of super attack potion."
+
+[cw_super_attack_potion_1]
+id = 18718
+weight = 0.008
+examine = "1 dose of super attack potion."
+
+[cw_super_strength_potion_4]
+id = 18719
+weight = 0.035
+examine = "4 doses of super strength potion."
+
+[cw_super_strength_potion_3]
+id = 18720
+weight = 0.026
+examine = "3 doses of super strength potion."
+
+[cw_super_strength_potion_2]
+id = 18721
+weight = 0.017
+examine = "2 doses of super strength potion."
+
+[cw_super_strength_potion_1]
+id = 18722
+weight = 0.008
+examine = "1 dose of super strength potion."
+
+[cw_super_defence_potion_4]
+id = 18723
+weight = 0.035
+examine = "4 doses of super defence potion."
+
+[cw_super_defence_potion_3]
+id = 18724
+weight = 0.026
+examine = "3 doses of super defence potion."
+
+[cw_super_defence_potion_2]
+id = 18725
+weight = 0.017
+examine = "2 doses of super defence potion."
+
+[cw_super_defence_potion_1]
+id = 18726
+weight = 0.008
+examine = "1 dose of super defence potion."
+
+[cw_super_energy_potion_4]
+id = 18727
+weight = 0.035
+examine = "4 doses of super energy potion."
+
+[cw_super_energy_potion_3]
+id = 18728
+weight = 0.026
+examine = "3 doses of super energy potion."
+
+[cw_super_energy_potion_2]
+id = 18729
+weight = 0.017
+examine = "2 doses of super energy potion."
+
+[cw_super_energy_potion_1]
+id = 18730
+weight = 0.008
+examine = "1 dose of super energy potion."
+
+[cw_super_ranging_potion_4]
+id = 18731
+weight = 0.035
+examine = "4 doses of super ranging potion."
+
+[cw_super_ranging_potion_3]
+id = 18732
+weight = 0.026
+examine = "3 doses of super ranging potion."
+
+[cw_super_ranging_potion_2]
+id = 18733
+weight = 0.017
+examine = "2 doses of super ranging potion."
+
+[cw_super_ranging_potion_1]
+id = 18734
+weight = 0.008
+examine = "1 dose of super ranging potion."
+
+[cw_super_magic_potion_4]
+id = 18735
+weight = 0.035
+examine = "4 doses of super magic potion."
+
+[cw_super_magic_potion_3]
+id = 18736
+weight = 0.026
+examine = "3 doses of super magic potion."
+
+[cw_super_magic_potion_2]
+id = 18737
+weight = 0.017
+examine = "2 doses of super magic potion."
+
+[cw_super_magic_potion_1]
+id = 18738
+weight = 0.008
+examine = "1 dose of super magic potion."
+
+[castle_wars_flag_cape]
+id = 18739
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "For the honour of capturing the most flags in a Castle Wars match."
+kept = "Wilderness"
+
+[castle_wars_kills_cape]
+id = 18740
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "For the honour of killing the most players in a Castle Wars match."
+kept = "Wilderness"
+
+[castle_wars_hobbyist_cape]
+id = 18741
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "For the honour of completing 500 matches."
+kept = "Wilderness"
+
+[castle_wars_enthusiast_cape]
+id = 18742
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "For the honour of completing 1,000 matches."
+kept = "Reclaim"
+
+[castle_wars_professional_cape]
+id = 18743
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "For the honour of completing 5,000 matches."
+kept = "Reclaim"
+
+[guthix_halo]
+id = 18744
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "Halo with the protection of Guthix."
+kept = "Reclaim"
+
+[saradomin_halo]
+id = 18745
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "Halo with the protection of Saradomin."
+kept = "Reclaim"
+
+[zamorak_halo]
+id = 18746
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "Halo with the protection of Zamorak."
+kept = "Reclaim"
+
+[faithful_shield]
+id = 18747
+tradeable = false
+weight = 5.443
+slot = "Shield"
+examine = "A shield for the Castle Wars faithful."
+kept = "Wilderness"
+
+[profound_decorative_armour]
+id = 18755

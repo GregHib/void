@@ -614,3 +614,10 @@ examine = "Grand Exchange set containing a cannon base, stand, barrels and furna
 
 [dwarf_cannon_set_noted]
 id = 11968
+
+[leaflet]
+id = 15287
+tradeable = false
+examine = "A beginner's guide to using a bank."
+kept = "Reclaim"
+use = "Limited"

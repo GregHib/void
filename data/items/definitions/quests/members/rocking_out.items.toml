@@ -1,0 +1,596 @@
+[letter_rocking_out]
+id = 13292
+tradeable = false
+weight = 0.005
+destroy = "If you drop the letter, it will be lost and you will need to see Brother Tranquillity for another."
+examine = "A letter from Brother Tranquillity."
+use = "Quest"
+kept = "Wilderness"
+
+[plans_rocking_out]
+id = 13293
+tradeable = false
+weight = 0.005
+destroy = "If you drop these plans, they will be lost and you will need to see Captain Donnie for a replacement."
+examine = "Half of a set of nefarious plans, recovered from Donnie."
+use = "Quest"
+kept = "Wilderness"
+
+[charcoal_rubbing]
+id = 13294
+tradeable = false
+weight = 0.005
+destroy = "If you drop these plans, they will be lost and you will need to see Captain Donnie for a replacement."
+examine = "A charcoal rubbing taken from 50% Luke."
+use = "Quest"
+kept = "Wilderness"
+
+[franks_mark]
+id = 13295
+tradeable = false
+weight = 0.005
+destroy = "If you drop Frank's mark, you will need to see him to get another."
+examine = "A signature from Frank."
+use = "Quest"
+kept = "Wilderness"
+
+[crude_lockpick]
+id = 13296
+tradeable = false
+weight = 0.03
+destroy = "If you drop these lockpicks, you will need to look under the mattress to get another set."
+examine = "A device for opening locked doors."
+use = "Quest"
+kept = "Wilderness"
+
+[customs_shirt]
+id = 13297
+tradeable = false
+weight = 1.0
+slot = "Chest"
+destroy = "If you drop this shirt you will need to kill another Customs officer for a replacement."
+examine = "The top of a Customs Officer's uniform."
+use = "Quest"
+kept = "Vanish"
+
+[customs_trousers]
+id = 13298
+tradeable = false
+weight = 1.0
+slot = "Legs"
+destroy = "If you drop these trousers you will need to kill another Customs officer for a replacement."
+examine = "The trousers of a Customs Officer's uniform."
+use = "Quest"
+kept = "Vanish"
+
+[customs_hat]
+id = 13299
+tradeable = false
+weight = 0.2
+slot = "Hat"
+destroy = "If you drop this hat you will need to kill another Customs officer for a replacement."
+examine = "The hat of a Customs Officer's uniform."
+use = "Quest"
+kept = "Vanish"
+
+[file_wanda_the_fish]
+id = 13300
+tradeable = false
+weight = 0.05
+destroy = "If you drop this file, you will need to search the files to get another."
+examine = "A folder containing some documents."
+use = "Quest"
+kept = "Wilderness"
+
+[file_useless]
+clone = "file_wanda_the_fish"
+id = 13301
+
+[brooch_rocking_out]
+id = 13302
+tradeable = false
+weight = 0.3
+aka = ["wandas_brooch"]
+destroy = "If you drop this brooch, you will need to check with the Files Officer to see if he has another."
+examine = "A decorative brooch."
+use = "Quest"
+kept = "Wilderness"
+
+[izzys_mark]
+id = 13303
+tradeable = false
+weight = 0.005
+destroy = "If you drop Izzy's No-Beard's mark, you will need to see him to get another."
+examine = "Signature from Izzy No-Beard."
+use = "Quest"
+kept = "Wilderness"
+
+[key_rocking_out]
+id = 13304
+tradeable = false
+weight = 0.05
+destroy = "If you drop this key, you will need to catch the wild karamthulhu for a replacement."
+examine = "A key, once carried by a karamthulhu."
+use = "Quest"
+kept = "Vanish"
+
+[crowbar]
+id = 13305
+tradeable = false
+weight = 3.0
+destroy = "If you drop this crowbar, you will need to get another from the chest on the sunken ship."
+examine = "This could be useful."
+use = "Quest"
+kept = "Vanish"
+
+[idol_of_many_heads]
+id = 13307
+tradeable = false
+weight = 3.0
+destroy = "If you drop the idol, you will need to go diving to get another replacement."
+examine = "An idol. It has many heads."
+use = "Quest"
+kept = "Wilderness"
+
+[bill_teachs_mark]
+id = 13308
+tradeable = false
+weight = 0.005
+destroy = "If you drop Bill Teach's mark, you will need to see him to get another."
+examine = "A signature from Bill Teach."
+use = "Quest"
+kept = "Wilderness"
+
+[paper_prison]
+id = 13309
+tradeable = false
+weight = 0.005
+destroy = "If you drop this paper, you will need to call to the guards for a replacement."
+examine = "This is generally used for writing on."
+use = "Quest"
+kept = "Wilderness"
+
+[confession]
+id = 13310
+tradeable = false
+weight = 0.005
+destroy = "If you drop this note, you'll need to call the guards for replacement paper."
+examine = "A written confession."
+use = "Quest"
+kept = "Wilderness"
+
+[note_rocking_out]
+id = 13311
+tradeable = false
+weight = 0.005
+destroy = "If you drop this note, you'll need to call the guards for replacement paper."
+examine = "A written note."
+use = "Quest"
+kept = "Wilderness"
+
+[ink_bottle]
+id = 13312
+tradeable = false
+weight = 0.02
+destroy = "If you drop this ink, you will need to call to the guards for a replacement."
+examine = "This is full of ink."
+use = "Quest"
+kept = "Wilderness"
+
+[inky_paper]
+id = 13313
+tradeable = false
+weight = 0.006
+destroy = "If you drop this paper you will need to call to the guards to replace it and the ink."
+examine = "It's got ink all over it."
+use = "Quest"
+kept = "Wilderness"
+
+[ink_bottle_empty]
+id = 13314
+tradeable = false
+weight = 0.019
+destroy = "If you drop this ink, you will need to call to the guards for a replacement."
+examine = "An empty ink bottle."
+use = "Quest"
+kept = "Wilderness"
+
+[smashed_bottle]
+id = 13315
+tradeable = false
+weight = 0.016
+destroy = "If you drop this bottle, you will need to call to the guards for a replacement."
+examine = "It's smashed. I should mind my fingers."
+use = "Quest"
+kept = "Wilderness"
+
+[prison_uniform_top]
+id = 13316
+tradeable = false
+weight = 1.0
+slot = "Chest"
+destroy = "If you drop this top, then you will need to speak to the guards to get it replaced."
+examine = "The top part of a prisoner's uniform."
+use = "Quest"
+kept = "Vanish"
+
+[prison_uniform_trousers]
+id = 13317
+tradeable = false
+weight = 1.0
+slot = "Legs"
+destroy = "If you drop these trousers, then you will need to speak to the guards to get it replaced."
+examine = "The bottom part of a prisoner's uniform."
+use = "Quest"
+kept = "Vanish"
+
+[fishy_prison_uniform_top]
+id = 13318
+tradeable = false
+weight = 1.0
+slot = "Chest"
+destroy = "If you drop this top, you will need to speak to the guards to get it replaced, then find a way to get stew on it again."
+examine = "It's covered in fish slop."
+use = "Quest"
+kept = "Wilderness"
+
+[tin_cup]
+id = 13319
+tradeable = false
+weight = 0.3
+slot = "Weapon"
+destroy = "If you drop this cup it will be destroyed and you will have to pick up another."
+examine = "A standard prison-issue tin cup."
+use = "Quest"
+kept = "Wilderness"
+
+[tin_cup_2]
+id = 13320
+tradeable = false
+weight = 0.3
+slot = "Weapon"
+destroy = "If you drop this cup it will be destroyed and you will have to pick up another."
+examine = "A standard prison-issue tin cup."
+use = "Quest"
+kept = "Wilderness"
+
+[pipe_rocking_out]
+id = 13321
+tradeable = false
+weight = 2.0
+destroy = "If you drop this pipe it will be lost and you will need to find a way to get another."
+examine = "A broken pipe."
+use = "Quest"
+kept = "Wilderness"
+
+[accordion_broken]
+id = 13322
+tradeable = false
+weight = 2.0
+destroy = "If you drop this accordion, it will be destroyed and you will have to get another."
+examine = "A musical device."
+use = "Quest"
+kept = "Wilderness"
+
+[accordion_hole]
+id = 13323
+tradeable = false
+weight = 2.0
+destroy = "If you drop this accordion, it will be destroyed and you will have to get another."
+examine = "A musical device with a hole carved into it."
+use = "Quest"
+kept = "Wilderness"
+
+[accordion_pipe]
+id = 13324
+tradeable = false
+weight = 4.0
+destroy = "If you drop this accordion, it will be destroyed and you will have to get another."
+examine = "A musical device with a pipe pushed into it."
+use = "Quest"
+kept = "Wilderness"
+
+[vacuum_pump]
+id = 13325
+tradeable = false
+weight = 4.0
+destroy = "If you drop this accordion, pipe and inky paper, it will all be destroyed and you will need to get all the items back again."
+examine = "A very crude vacuum pump."
+use = "Quest"
+kept = "Wilderness"
+
+[vacuum_pump_and_gull]
+id = 13326
+tradeable = false
+weight = 8.0
+slot = "Weapon"
+destroy = "If you drop this, you will lose all the items you put in it, as well as the seagull."
+examine = "It sounds like a law firm."
+use = "Quest"
+kept = "Wilderness"
+
+[quill]
+id = 13327
+tradeable = false
+weight = 0.001
+destroy = "If you drop this quill, you will need to talk to the guard for a replacement."
+examine = "From a bird - can be used for writing."
+use = "Quest"
+kept = "Wilderness"
+
+[inky_quill]
+id = 13328
+tradeable = false
+weight = 0.001
+destroy = "If you drop this quill, then you will need to call the guards for a replacement."
+examine = "From a bird - can be used for writing. It has some ink on the tip."
+use = "Quest"
+kept = "Wilderness"
+
+[file_empty]
+id = 13329
+tradeable = false
+weight = 0.005
+aka = ["empty_file"]
+destroy = "If you drop this file, you will need to talk to the Customs Officer for a replacement."
+examine = "A folder for storing documents."
+kept = "Wilderness"
+
+[file_marks]
+id = 13330
+tradeable = false
+weight = 0.03
+aka = ["file_with_five_marks"]
+destroy = "If you drop this file, it and all the marks inside it will be destroyed."
+examine = "A folder containing all the marks I have gathered."
+use = "Quest"
+kept = "Wilderness"
+
+[ex_parrot]
+id = 13331
+tradeable = false
+weight = 1.5
+destroy = "If you drop this dead parrot, there is a chance that bad, bad things will happen to you - unless you see 50 Ships Mufassah for a replacement."
+examine = "A very dead rotten parrot."
+kept = "Vanish"
+
+[magical_cage]
+id = 13332
+tradeable = false
+weight = 10.0
+destroy = "If you drop this cage, you will need to see Bill Teach for a replacement."
+examine = "It feels very cold to the touch."
+kept = "Wilderness"
+
+[ex_parrot_in_a_magic_cage]
+id = 13333
+tradeable = false
+weight = 11.5
+destroy = "If you drop this dead parrot in a cage then you will need to see 50 Ships Mufassah and Bill Teach for replacements."
+examine = "A very dead rotten parrot in a magical cage."
+kept = "Wilderness"
+
+[ex_ex_parrot_in_a_magic_cage]
+id = 13334
+tradeable = false
+bank_stacks = false
+weight = 11.5
+destroy = "If you drop the cage, the ex-ex-parrot will escape."
+examine = "A very alive rotten parrot in a magic cage."
+kept = "Wilderness"
+
+[ex_ex_parrot]
+id = 13335
+npc = 7844
+npc2 = 9212
+food = "Rock fragments"
+examine = "This parrot has un-ceased to be."
+skill_req = { summoning = 71 }
+
+[ex_ex_parrot_2]
+clone = "ex_ex_parrot"
+id = 13336
+
+[rock_fragments]
+id = 13379
+tradeable = false
+weight = 0.005
+examine = "Some rock fragments."
+kept = "Wilderness"
+
+[introduction_letter]
+id = 13380
+tradeable = false
+weight = 0.005
+destroy = "If you drop the letter, it will be destroyed and you'll need to see Bill Teach for another."
+examine = "Note from Teach to Brass Hand Harry."
+use = "Quest"
+kept = "Wilderness"
+
+[broken_hand_fingers]
+id = 13381
+tradeable = false
+weight = 5.0
+destroy = "The hand is already broken and dropping it will destroy it completely. You will need to see Brass Hand Harry for a replacement."
+examine = "One of many broken hands."
+use = "Quest"
+kept = "Wilderness"
+
+[broken_hand_thumb]
+clone = "broken_hand_fingers"
+id = 13382
+
+[broken_hand_hand]
+clone = "broken_hand_fingers"
+id = 13383
+
+[broken_hand_wrist]
+clone = "broken_hand_fingers"
+id = 13384
+
+[broken_hand_brace]
+clone = "broken_hand_fingers"
+id = 13385
+
+[fingers_rocking_out]
+id = 13386
+tradeable = false
+weight = 1.0
+destroy = "This hand part is small and delicate, and dropping it here will lose it. If you lose it, you will need to see Brass Hand Harry for a replacement."
+examine = "A few brass fingers."
+use = "Quest"
+kept = "Wilderness"
+
+[thumb]
+id = 13387
+tradeable = false
+weight = 1.0
+destroy = "This hand part is small and delicate, and dropping it here will lose it. If you lose it, you will need to see Brass Hand Harry for a replacement."
+examine = "A brass thumb."
+use = "Quest"
+kept = "Wilderness"
+
+[hand_rocking_out]
+id = 13388
+tradeable = false
+weight = 1.0
+destroy = "This hand part is small and delicate, and dropping it here will lose it. If you lose it, you will need to see Brass Hand Harry for a replacement."
+examine = "A brass hand."
+use = "Quest"
+kept = "Wilderness"
+
+[wrist]
+id = 13389
+tradeable = false
+weight = 1.0
+destroy = "This hand part is small and delicate, and dropping it here will lose it. If you lose it, you will need to see Brass Hand Harry for a replacement."
+examine = "A brass wrist."
+use = "Quest"
+kept = "Wilderness"
+
+[brace]
+id = 13390
+tradeable = false
+weight = 1.0
+destroy = "This hand part is small and delicate, and dropping it here will lose it. If you lose it, you will need to see Brass Hand Harry for a replacement."
+examine = "A brass brace."
+use = "Quest"
+kept = "Wilderness"
+
+[brass_hand]
+id = 13391
+tradeable = false
+weight = 5.0
+destroy = "If you drop this hand, you will destroy it and you will have to remake it from parts that Brass Hand Harry has."
+examine = "A completed brass hand."
+use = "Quest"
+kept = "Wilderness"
+
+[ink_pad]
+id = 13392
+tradeable = false
+weight = 0.1
+destroy = "If you drop this ink pad, you will lose it and will need to see Brass Hand Harry for a replacement."
+examine = "It's soaked with ink."
+use = "Quest"
+kept = "Wilderness"
+
+[inky_hand]
+id = 13393
+tradeable = false
+weight = 5.0
+destroy = "If you drop this hand, you will destroy it and you will have to remake it from parts that Brass Hand Harry has."
+examine = "An inky brass hand."
+use = "Quest"
+kept = "Wilderness"
+
+[paper_brass_hand_harrys_mark]
+id = 13394
+tradeable = false
+weight = 0.005
+destroy = "This paper will be lost if you drop it. You will need to see Brass Hand Harry for a replacement."
+examine = "Generally used for writing on."
+use = "Quest"
+kept = "Wilderness"
+
+[brass_hand_harrys_mark]
+id = 13395
+tradeable = false
+weight = 0.005
+destroy = "If you drop Brass Hand Harry's mark, it will be destroyed and you need to see him to get another."
+examine = "Handprint from Brass Hand Harry."
+use = "Quest"
+kept = "Wilderness"
+
+[fake_beard_rocking_out]
+id = 13396
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Mask"
+destroy = "If you drop this disguise you will need to see Captain Braindeath for a replacement."
+examine = "Not the best fake beard in the world."
+use = "Quest"
+kept = "Vanish"
+
+[fake_moustache_and_nose]
+id = 13397
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Mask"
+destroy = "If you drop this disguise you will need to see Captain Braindeath for a replacement."
+examine = "It looks like someone has sneezed in it."
+use = "Quest"
+kept = "Vanish"
+
+[fake_monocle_moustache_and_nose]
+id = 13398
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Mask"
+destroy = "If you drop this disguise you will need to see Captain Braindeath for a replacement."
+examine = "Why is the monocle nailed to it?"
+use = "Quest"
+kept = "Vanish"
+
+[curly_wig]
+id = 13399
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "If you drop this disguise you will need to see Captain Braindeath for a replacement."
+examine = "You can barely see where it connected to the mop handle."
+use = "Quest"
+kept = "Wilderness"
+
+[straight_wig]
+id = 13400
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "If you drop this disguise you will need to see Captain Braindeath for a replacement."
+examine = "It looks like it is part-dog, part-mould."
+use = "Quest"
+kept = "Wilderness"
+
+[order]
+id = 13401
+tradeable = false
+weight = 0.005
+destroy = "If you drop this order for 'rum' you will need to speak to the Rusty Anchor barman to get another."
+examine = "An order simply for 'rum'."
+use = "Quest"
+kept = "Wilderness"
+
+[braindeaths_mark]
+id = 13402
+tradeable = false
+weight = 0.005
+destroy = "If you drop Captain Braindeath's mark, you will need to speak to him to get another."
+examine = "The signature of Captain Braindeath."
+use = "Quest"
+kept = "Wilderness"

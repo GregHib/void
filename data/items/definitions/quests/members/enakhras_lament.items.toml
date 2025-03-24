@@ -177,3 +177,11 @@ slot = "Hat"
 type = "Hair"
 examine = "Blend in in the desert."
 kept = "Reclaim"
+
+[chisel_animation_item]
+id = 7004
+limit = 100
+weight = 0.453
+slot = "Weapon"
+examine = "Good for detailed crafting."
+kept = "Wilderness"

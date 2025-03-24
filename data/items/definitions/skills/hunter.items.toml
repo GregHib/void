@@ -837,3 +837,56 @@ tradeable = false
 weight = 0.34
 examine = "I don't fancy eating this now."
 kept = "Reclaim"
+
+[sprite_lure]
+id = 19805
+tradeable = false
+weight = 1.0
+destroy = "If you drop the lure it will self-destruct. You will have to talk to Yaktwee to gain another one."
+examine = "A lure used to hunt charm sprites."
+kept = "Vanish"
+
+[sprite_lure_bag]
+id = 19806
+tradeable = false
+weight = 1.0
+destroy = "The sprite lure bag is not much use on its own. You will have to talk to Yaktwee to gain another sprite lure."
+examine = "A bag for holding the sprite lure in."
+kept = "Vanish"
+
+[sprite_lure_2]
+clone = "sprite_lure"
+id = 19807
+
+[yaktwee_stick]
+id = 19808
+tradeable = false
+weight = 1.0
+slot = "Weapon"
+destroy = "Yaktwee sticks are used to transmute charm sprites into charm slices. You will have to talk to Yaktwee to gain another one."
+examine = "A rudimentary tool used to hunt charm sprites."
+kept = "Vanish"
+
+[gold_charm_slice]
+id = 19809
+tradeable = false
+examine = "Ethereal slice of a gold charm."
+kept = "Reclaim"
+
+[green_charm_slice]
+id = 19814
+tradeable = false
+examine = "Ethereal slice of a green charm."
+kept = "Reclaim"
+
+[crimson_charm_slice]
+id = 19819
+tradeable = false
+examine = "Ethereal slice of a crimson charm."
+kept = "Reclaim"
+
+[blue_charm_slice]
+id = 19824
+tradeable = false
+examine = "Ethereal slice of a blue charm."
+kept = "Reclaim"

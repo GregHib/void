@@ -1,0 +1,67 @@
+[edvins_tool]
+id = 15476
+tradeable = false
+weight = 0.453
+destroy = "You can get another from Wizard Edvin in the Mage Training Arena's basement."
+examine = "For making rune guardians."
+use = "Quest"
+kept = "Wilderness"
+
+[enchanted_emerald]
+id = 15477
+tradeable = false
+weight = 0.002
+examine = "An enchanted emerald."
+use = "Quest"
+kept = "Wilderness"
+
+[guardian_head]
+id = 15478
+tradeable = false
+weight = 0.001
+destroy = "You'll have to get another from Clerval in the Mage Training Arena's basement."
+examine = "The head of a rune guardian."
+use = "Quest"
+kept = "Wilderness"
+
+[guardian_body]
+id = 15479
+tradeable = false
+weight = 0.001
+destroy = "You'll have to get another from Clerval in the Mage Training Arena's basement."
+examine = "The body of a rune guardian."
+use = "Quest"
+kept = "Wilderness"
+
+[guardian_arms]
+id = 15480
+tradeable = false
+weight = 0.001
+destroy = "You'll have to get another from Clerval in the Mage Training Arena's basement."
+examine = "The arms of a rune guardian."
+use = "Quest"
+kept = "Wilderness"
+
+[guardian_legs]
+id = 15481
+tradeable = false
+weight = 0.001
+destroy = "You'll have to get another from Clerval in the Mage Training Arena's basement."
+examine = "The legs of a rune guardian."
+use = "Quest"
+kept = "Wilderness"
+
+[rune_essence_rune_mechanics]
+id = 15482
+tradeable = false
+weight = 0.001
+destroy = "You'll have to get another from Clerval in the Mage Training Arena's basement."
+examine = "A lump of rune essence."
+use = "Quest"
+kept = "Wilderness"
+
+[rune_guardian]
+id = 15483
+food = "Energy from Runecrafting Altars"
+examine = "A rune guardian from the Mage Training Arena."
+skill_req = { summoning = 4 }

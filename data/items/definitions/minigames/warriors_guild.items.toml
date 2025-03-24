@@ -144,3 +144,25 @@ tradeable = false
 weight = 0.056
 examine = "A heap of finely ground ashes."
 kept = "Reclaim"
+
+[cyclopean_helmet]
+id = 20070
+price = 1631
+limit = 10
+weight = 3.175
+slot = "Hat"
+type = "FullFace"
+examine = "Eye see you."
+
+[cyclopean_helmet_noted]
+id = 20071
+
+[dragon_defender]
+id = 20072
+tradeable = false
+weight = 0.453
+aka = ["ddef", "d_def", "ddefender", "d_defender"]
+slot = "Shield"
+material = "metal"
+examine = "A defensive weapon that can parry attacks, reducing damage and increases the accuracy of your next hit."
+kept = "Reclaim"

@@ -1,0 +1,9 @@
+[sinister_key]
+id = 993
+price = 55400
+limit = 100
+weight = 0.01
+examine = "You get a sense of dread from this key."
+
+[sinister_key_noted]
+id = 994

@@ -1,3 +1,48 @@
+[cooking_pot]
+id = 977
+
+[cooking_pot_noted]
+id = 978
+
+[man]
+id = 3241
+examine = "One of Gielinor's many citizens."
+
+[farmer]
+id = 3243
+examine = "He grows crops in the area."
+
+[warrior_woman]
+id = 3245
+examine = "Not very fashion conscious."
+
+[rogue]
+id = 3247
+examine = "Rogueish."
+
+[guard]
+id = 3249
+examine = "Varies, refer below."
+
+[knight_of_ardougne]
+id = 3251
+examine = "A member of Ardougne's militia."
+
+[watchman]
+id = 3253
+examine = "The strong arm of the law."
+
+[paladin]
+id = 3255
+examine = "A holy warrior."
+
+[gnome]
+id = 3257
+
+[hero]
+id = 3259
+examine = "Heroic!"
+
 [crawling_hand]
 id = 4133
 examine = "I should get it stuffed!"
@@ -311,6 +356,15 @@ kept = "Wilderness"
 [terror_dog]
 id = 10591
 examine = "A terrifying dog beast."
+
+[run]
+id = 10947
+
+[sit_up]
+id = 10948
+
+[star_jump]
+id = 10949
 
 [molanisk]
 id = 10997
@@ -786,3 +840,173 @@ id = 12420
 [scroll_2]
 clone = "scroll_barbarian_assault"
 id = 12421
+
+[fire_beacon]
+id = 13662
+
+[hartwin]
+id = 13757
+
+[captain_undak]
+id = 14668
+
+[zanik_4]
+clone = "zanik"
+id = 14669
+
+[zanik_5]
+clone = "zanik"
+id = 14670
+
+[erjolf]
+id = 14741
+
+[leela]
+id = 14817
+
+[arrav]
+id = 15118
+
+[aquanite]
+id = 15125
+examine = "It has a light on its forehead. What a pretty light... So shiny!"
+
+[arianwyn]
+id = 15340
+
+[statue]
+id = 15368
+
+[desert_strykewyrm]
+id = 15498
+examine = "I dread to think of how many of these are in the sand."
+
+[jungle_strykewyrm]
+id = 15499
+examine = "Who said worms were small and harmless?"
+
+[ice_strykewyrm]
+id = 15500
+examine = "Now that's just cold."
+
+
+[miner_1]
+id = 20085
+
+[miner_2]
+id = 20086
+
+[miner_3]
+id = 20087
+
+[miner_4]
+id = 20088
+
+[miner_5]
+id = 20089
+
+[miner_6]
+id = 20090
+
+[more]
+id = 10165
+
+[back]
+id = 10166
+
+[globe]
+id = 8341
+examine = "A wooden planet of your very own."
+
+[character_creation_shadow]
+id = 19713
+
+[character_creation_2]
+id = 19714
+
+[character_creation_3]
+id = 19715
+
+[character_creation_4]
+id = 19716
+
+[character_creation_5]
+id = 19717
+
+[character_creation_6]
+id = 19718
+
+[character_creation_7]
+id = 19719
+
+[character_creation_8]
+id = 19720
+
+[character_creation_9]
+id = 19721
+
+[character_creation_10]
+id = 19722
+
+[character_creation_11]
+id = 19723
+
+[character_creation_12]
+id = 19724
+
+[character_creation_13]
+id = 19725
+
+[character_creation_14]
+id = 19726
+
+[character_creation_15]
+id = 19727
+
+[character_creation_16]
+id = 19728
+
+[character_creation_17]
+id = 19729
+
+[character_creation_18]
+id = 19730
+
+[character_creation_19]
+id = 19731
+
+[character_creation_20]
+id = 19732
+
+[character_creation_21]
+id = 19733
+
+[character_creation_22]
+id = 19734
+
+[small_portrait]
+id = 8086
+
+[mounted_sword]
+id = 8090
+
+[small_landscape]
+id = 8091
+
+[guild_trophy]
+id = 8092
+
+[large_portrait]
+id = 8093
+
+[large_landscape]
+id = 8094
+
+[low_level_plants]
+id = 8096
+
+[mid_level_plants]
+id = 8097
+
+[high_level_plants]
+id = 8098

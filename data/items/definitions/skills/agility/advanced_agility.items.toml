@@ -1,0 +1,27 @@
+[agile_top]
+id = 14936
+weight = 0.34
+slot = "Chest"
+destroy = "You can get a replacement from Gunnjorn at the Barbarian Agility Course at the Barbarian Outpost."
+examine = "It seems to be made of incredibly light, but durable materials."
+
+[agile_top_2]
+id = 14937
+weight = -12.0
+slot = "Chest"
+destroy = "You can get a replacement from Gunnjorn at the Barbarian Agility Course at the Barbarian Outpost."
+examine = "It seems to be made of incredibly light, but durable materials."
+
+[agile_legs]
+id = 14938
+weight = 0.34
+slot = "Legs"
+destroy = "You can get replacement from any gnome trainer on the Gnome Agility Course."
+examine = "They seem to be made of incredibly light but durable material."
+
+[agile_legs_2]
+id = 14939
+weight = -10.0
+slot = "Legs"
+destroy = "You can get replacement from any gnome trainer on the Gnome Agility Course."
+examine = "They seem to be made of incredibly light but durable material."

@@ -1,0 +1,126 @@
+[tooth_creature]
+id = 18668
+food = "Milk, Chocolatey milk"
+examine = "A baby tooth creature from Zanaris."
+skill_req = { summoning = 37 }
+
+[tooth_creature_healthy]
+clone = "tooth_creature"
+id = 18669
+
+[tooth_creature_decayed]
+id = 18670
+food = "Milk, Chocolatey milk"
+examine = "A decayed tooth creature from Zanaris."
+skill_req = { summoning = 37 }
+
+[milk_tooth_creature]
+id = 18671
+food = "Milk, Chocolatey milk"
+examine = "A healthy tooth creature from Zanaris."
+skill_req = { summoning = 37 }
+
+[milk_tooth_creature_2]
+clone = "tooth_creature"
+id = 18672
+
+[tooth_extractor]
+id = 18673
+tradeable = false
+weight = 0.453
+slot = "Shield"
+destroy = "If you drop the tooth extractor it will be destroyed. You will have to make another one by using a hammer on a pair of secateurs."
+examine = "Also called a BITE ."
+use = "Quest"
+kept = "Wilderness"
+
+[gnarly]
+id = 18674
+tradeable = false
+weight = 2.0
+destroy = "Let-go"
+examine = "The gruff, mischievous pet of the Tooth Fairy."
+use = "Quest"
+kept = "Wilderness"
+
+[fairy_dossier]
+id = 18675
+tradeable = false
+weight = 0.03
+destroy = "If you drop the dossier, it will self-destruct. You will have to talk to the Tooth Fairy to get another."
+examine = "A dossier detailing battle plans against the Fairy Godfather."
+use = "Quest"
+kept = "Wilderness"
+
+[mango_a_fairy_tale_iii]
+id = 18676
+limit = 10000
+tradeable = false
+weight = 1.0
+destroy = "If you drop this mango it will be destroyed. You can get another on Ape Atoll."
+examine = "A juicy-looking mango, but still quite firm to the touch."
+use = "Quest"
+kept = "Wilderness"
+
+[mango_with_tooth]
+id = 18677
+tradeable = false
+weight = 2.0
+destroy = "If you drop this 'mango with tooth' it will be destroyed. You will have to find another way to get Gromblod's tooth."
+examine = "A juicy-looking mango with a tooth stuck in it."
+use = "Quest"
+kept = "Wilderness"
+
+[breegths_tooth]
+id = 18678
+tradeable = false
+weight = 0.002
+destroy = "If you drop this tooth it will be destroyed. You will need to pickpocket K'Chunk again for another."
+examine = "A gnarled and slightly mushy ork tooth."
+use = "Quest"
+kept = "Wilderness"
+
+[shredfleshs_tooth]
+id = 18679
+tradeable = false
+weight = 0.002
+destroy = "If you drop this tooth it will be destroyed. You will have to see Shredflesh about getting another."
+examine = "A barely identifiable ork tooth. Much like an ork, it's rotten to the core."
+use = "Quest"
+kept = "Wilderness"
+
+[gromblods_tooth]
+id = 18680
+tradeable = false
+weight = 0.002
+destroy = "If you drop this tooth it will be destroyed. You will have to talk to Gromblod to replace it."
+examine = "A disgustingly rotten ork tooth. It hasn't been brushed in a long time...if ever."
+use = "Quest"
+kept = "Wilderness"
+
+[fairy_wand]
+id = 18681
+tradeable = false
+weight = 1.0
+slot = "Weapon"
+destroy = "If you drop the fairy wand it will be destroyed. You will have to get another one from the Tooth Fairy."
+examine = "The '#ZFW1 combat apparatus' - it's a magic wand."
+use = "Quest"
+kept = "Vanish"
+
+[magic_watering_can]
+id = 18682
+tradeable = false
+weight = 0.9
+destroy = "Can be replaced by the fairy queen."
+examine = "This watering can is always completely full."
+kept = "Vanish"
+
+[human_tooth]
+id = 18684
+tradeable = false
+weight = 0.002
+destroy = "If you drop this tooth it will be destroyed. You can find another under the pillow of one Gertrude's children."
+examine = "The tooth of a human child, left with the hope of fiscal remuneration."
+use = "Quest"
+kept = "Vanish"

@@ -9,3 +9,10 @@ use = "Limited"
 [disk_of_returning_noted]
 id = 982
 
+[rotten_potato]
+id = 5733
+tradeable = false
+bank_stacks = false
+weight = 1.814
+examine = "Yuk!"
+kept = "Reclaim"

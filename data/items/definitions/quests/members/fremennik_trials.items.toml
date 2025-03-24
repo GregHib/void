@@ -489,3 +489,13 @@ destroy = "Another could perhaps be found in the room..."
 examine = "A red coloured disk that's seen better days."
 use = "Quest"
 kept = "Vanish"
+
+[enchanted_lyre_5]
+clone = "enchanted_lyre_1"
+id = 14590
+degrade = "enchanted_lyre_4"
+
+[enchanted_lyre_6]
+clone = "enchanted_lyre_1"
+id = 14591
+degrade = "enchanted_lyre_5"

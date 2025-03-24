@@ -155,3 +155,66 @@ examine = "I could work wonders with a chisel on these pearls."
 
 [oyster_pearls_noted]
 id = 414
+
+[crayfish_cage]
+id = 13431
+price = 9
+limit = 100
+weight = 0.141
+cast = "You attempt to catch a crayfish."
+examine = "Useful for catching crayfish."
+kept = "Wilderness"
+
+[crayfish_cage_noted]
+id = 13432
+
+[seaweed_net]
+id = 14859
+price = 66
+weight = 0.68
+examine = "A sturdy net with closing wire."
+
+[seaweed_net_1]
+id = 14860
+empty = "seaweed_net"
+weight = 0.68
+examine = "A sturdy net containing seaweed"
+
+[seaweed_net_2]
+clone = "seaweed_net_1"
+id = 14861
+
+[seaweed_net_3]
+clone = "seaweed_net_1"
+id = 14862
+
+[seaweed_net_4]
+clone = "seaweed_net_1"
+id = 14863
+
+[seaweed_net_5]
+clone = "seaweed_net_1"
+id = 14864
+
+[seaweed_net_6]
+clone = "seaweed_net_1"
+id = 14865
+
+[seaweed_net_7]
+clone = "seaweed_net_1"
+id = 14866
+
+[seaweed_net_8]
+clone = "seaweed_net_1"
+id = 14867
+
+[seaweed_net_9]
+clone = "seaweed_net_1"
+id = 14868
+
+[seaweed_net_10]
+clone = "seaweed_net_1"
+id = 14869
+
+[empty_seaweed_net_noted]
+id = 14875

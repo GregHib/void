@@ -18,3 +18,15 @@ examine = "This probably came from a sheep. You can spin it into a ball of wool 
 
 [wool_noted]
 id = 1738
+
+[black_wool]
+id = 15415
+limit = 5000
+weight = 0.003
+examine = "This probably came from a black sheep. You can spin it into a ball of black wool at a spinning wheel."
+
+[ball_of_black_wool]
+id = 15416
+limit = 5000
+weight = 0.012
+examine = "Spun from black wool. You can weave it into black cloth at a loom."

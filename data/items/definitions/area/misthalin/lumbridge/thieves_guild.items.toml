@@ -1,0 +1,7 @@
+[rubber_blackjack]
+id = 18644
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+examine = "A training cosh."
+kept = "Wilderness"

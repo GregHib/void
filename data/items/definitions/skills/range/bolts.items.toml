@@ -465,3 +465,26 @@ examine = "A mould for creating silver crossbow bolts."
 
 [bolt_mould_noted]
 id = 9435
+
+[black_bolts]
+id = 13083
+price = 78
+limit = 100
+slot = "Ammo"
+material = "metal"
+examine = "Black crossbow bolts."
+
+[black_bolts_p]
+id = 13084
+limit = 100
+slot = "Ammo"
+material = "metal"
+examine = "Black crossbow bolts."
+
+["black_bolts_p+"]
+clone = "black_bolts_p"
+id = 13085
+
+["black_bolts_p++"]
+clone = "black_bolts_p"
+id = 13086

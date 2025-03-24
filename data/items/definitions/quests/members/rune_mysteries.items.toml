@@ -13,3 +13,11 @@ weight = 0.028
 destroy = "You can obtain more from Aubury in Varrock."
 examine = "It's written in code."
 kept = "Reclaim"
+
+[talisman_rune_mysteries]
+id = 15361
+tradeable = false
+weight = 0.015
+examine = "A mysterious power emanates from the talisman..."
+kept = "Reclaim"
+use = "Removed"

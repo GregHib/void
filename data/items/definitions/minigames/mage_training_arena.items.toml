@@ -255,3 +255,162 @@ id = 8890
 tradeable = false
 examine = "Lovely money!"
 kept = "Always"
+
+[combination_runes_book]
+id = 15475
+tradeable = false
+weight = 0.51
+examine = "An introduction to combination runes."
+kept = "Reclaim"
+
+[infinity_top_air]
+id = 15600
+tradeable = false
+weight = 2.267
+slot = "Chest"
+examine = "Mystical air robes."
+kept = "Reclaim"
+
+[infinity_hat_air]
+id = 15602
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A mystical air hat."
+kept = "Reclaim"
+
+[infinity_bottoms_air]
+id = 15604
+tradeable = false
+weight = 1.814
+slot = "Legs"
+examine = "Mystical air robes."
+kept = "Reclaim"
+
+[infinity_top_water]
+id = 15606
+tradeable = false
+weight = 2.267
+slot = "Chest"
+examine = "Mystical water robes."
+kept = "Reclaim"
+
+[infinity_hat_water]
+id = 15608
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A mystical water hat."
+kept = "Reclaim"
+
+[infinity_bottoms_water]
+id = 15610
+tradeable = false
+weight = 1.814
+slot = "Legs"
+examine = "Mystical water robes."
+kept = "Reclaim"
+
+[infinity_top_fire]
+id = 15612
+tradeable = false
+weight = 2.267
+slot = "Chest"
+examine = "Mystical fire robes."
+kept = "Reclaim"
+
+[infinity_hat_fire]
+id = 15614
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A mystical fire hat."
+kept = "Reclaim"
+
+[infinity_bottoms_fire]
+id = 15616
+tradeable = false
+weight = 1.814
+slot = "Legs"
+examine = "Mystical fire robes."
+kept = "Reclaim"
+
+[infinity_top_earth]
+id = 15618
+tradeable = false
+weight = 2.267
+slot = "Chest"
+examine = "Mystical earth robes."
+kept = "Reclaim"
+
+[infinity_hat_earth]
+id = 15620
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A mystical earth hat."
+kept = "Reclaim"
+
+[infinity_bottoms_earth]
+id = 15622
+tradeable = false
+weight = 1.814
+slot = "Legs"
+examine = "Mystical earth robes."
+kept = "Reclaim"
+
+[rune_guardian_2]
+clone = "rune_guardian"
+id = 15626
+
+[rune_guardian_3]
+clone = "rune_guardian"
+id = 15627
+
+[rune_guardian_4]
+clone = "rune_guardian"
+id = 15628
+
+[rune_guardian_5]
+clone = "rune_guardian"
+id = 15629
+
+[rune_guardian_6]
+clone = "rune_guardian"
+id = 15630
+
+[rune_guardian_7]
+clone = "rune_guardian"
+id = 15631
+
+[rune_guardian_8]
+clone = "rune_guardian"
+id = 15632
+
+[rune_guardian_9]
+clone = "rune_guardian"
+id = 15633
+
+[rune_guardian_10]
+clone = "rune_guardian"
+id = 15634
+
+[rune_guardian_11]
+clone = "rune_guardian"
+id = 15635
+
+[rune_guardian_12]
+clone = "rune_guardian"
+id = 15636
+
+[rune_guardian_13]
+clone = "rune_guardian"
+id = 15637
+
+[rune_guardian_14]
+clone = "rune_guardian"
+id = 15638
+
+[rune_guardian_15]
+clone = "rune_guardian"
+id = 15639

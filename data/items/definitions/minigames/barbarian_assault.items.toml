@@ -334,3 +334,318 @@ examine = "Provides excellent protection."
 
 [granite_body_noted]
 id = 10565
+
+[penance_trident]
+id = 15438
+tradeable = false
+weight = 3.175
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A mage weapon made from the carcasses of Penance creatures."
+kept = "Reclaim"
+
+[penance_horn]
+id = 15439
+slot = "Shield"
+destroy = "Yes"
+examine = "An ornate horn with a fading inscription."
+weight = 0.453
+
+[penance_master_horn]
+id = 15440
+slot = "Shield"
+destroy = "You'll have to get another from Commander Connad at Barbarian Assault."
+examine = "An ornate horn with a fading inscription."
+weight = 0.453
+
+[abyssal_whip_yellow]
+clone = "abyssal_whip"
+id = 15441
+tradeable = false
+aka = ["yellow_whip", "whip_yellow", "yellow_abyssal_whip"]
+examine = "A weapon from the Abyss, painted yellow from the yolk of a Penance egg."
+kept = "Reclaim"
+
+[abyssal_whip_blue]
+clone = "abyssal_whip"
+id = 15442
+tradeable = false
+aka = ["blue_whip", "whip_blue", "blue_abyssal_whip"]
+examine = "A weapon from the Abyss, painted blue from the yolk of a Penance egg."
+kept = "Reclaim"
+
+[abyssal_whip_white]
+clone = "abyssal_whip"
+id = 15443
+tradeable = false
+aka = ["white_whip", "whip_white", "white_abyssal_whip"]
+examine = "A weapon from the Abyss, painted white from the egg white of a Penance egg."
+kept = "Reclaim"
+
+[abyssal_whip_green]
+clone = "abyssal_whip"
+id = 15444
+tradeable = false
+aka = ["green_whip", "whip_green", "green_abyssal_whip"]
+examine = "A weapon from the Abyss, painted green from the yolk of a Penance egg."
+kept = "Reclaim"
+
+[attacker_lvl_1]
+id = 15445
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[attacker_lvl_2]
+id = 15446
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[attacker_lvl_3]
+id = 15447
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[attacker_lvl_4]
+id = 15448
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[attacker_lvl_5]
+id = 15449
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[collector_lvl_1]
+id = 15450
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[collector_lvl_2]
+id = 15451
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[collector_lvl_3]
+id = 15452
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[collector_lvl_4]
+id = 15453
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[collector_lvl_5]
+id = 15454
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[defender_lvl_1]
+id = 15455
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[defender_lvl_2]
+id = 15456
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[defender_lvl_3]
+id = 15457
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[defender_lvl_4]
+id = 15458
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[defender_lvl_5]
+id = 15459
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[healer_lvl_1]
+id = 15460
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[healer_lvl_2]
+id = 15461
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[healer_lvl_3]
+id = 15462
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[healer_lvl_4]
+id = 15463
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[healer_lvl_5]
+id = 15464
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Your icon."
+kept = "Vanish"
+
+[barbarian_assault_ticket_wave_2]
+id = 15465
+limit = 10
+destroy = "You will have to reach this level all over again."
+examine = "Grants access to wave 2."
+kept = "Vanish"
+
+[barbarian_assault_ticket_wave_3]
+id = 15466
+limit = 10
+destroy = "You will have to reach this level all over again."
+examine = "Grants access to wave 3."
+kept = "Vanish"
+
+[barbarian_assault_ticket_wave_4]
+id = 15467
+limit = 10
+destroy = "You will have to reach this level all over again."
+examine = "Grants access to wave 4."
+kept = "Vanish"
+
+[barbarian_assault_ticket_wave_5]
+id = 15468
+limit = 10
+destroy = "You will have to reach this level all over again."
+examine = "Grants access to wave 5."
+kept = "Vanish"
+
+[barbarian_assault_ticket_wave_6]
+id = 15469
+limit = 10
+destroy = "You will have to reach this level all over again."
+examine = "Grants access to wave 6."
+kept = "Vanish"
+
+[barbarian_assault_ticket_wave_7]
+id = 15470
+limit = 10
+destroy = "You will have to reach this level all over again."
+examine = "Grants access to wave 7."
+kept = "Vanish"
+
+[barbarian_assault_ticket_wave_8]
+id = 15471
+limit = 10
+destroy = "You will have to reach this level all over again."
+examine = "Grants access to wave 8."
+kept = "Vanish"
+
+[barbarian_assault_ticket_wave_9]
+id = 15472
+limit = 10
+destroy = "You will have to reach this level all over again."
+examine = "Grants access to wave 9."
+kept = "Vanish"
+
+[barbarian_assault_ticket_wave_10]
+id = 15473
+limit = 10
+destroy = "You will have to reach this level all over again."
+examine = "Grants access to wave 10."
+kept = "Vanish"
+
+[penance_master_trident]
+id = 15485
+tradeable = false
+weight = 3.175
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A mage weapon made from the carcasses of Penance creatures ."
+kept = "Reclaim"
+
+[dark_bow_yellow]
+clone = "dark_bow"
+id = 15701
+tradeable = false
+kept = "Reclaim"
+examine = "A bow from a darker dimension, painted yellow from the yolk of a Penance egg."
+
+[dark_bow_blue]
+clone = "dark_bow"
+id = 15702
+tradeable = false
+kept = "Reclaim"
+examine = "A bow from a darker dimension, painted blue from the yolk of a Penance egg."
+
+[dark_bow_white]
+clone = "dark_bow"
+id = 15703
+tradeable = false
+kept = "Reclaim"
+examine = "A bow from a darker dimension, painted white from the egg white of a Penance egg."
+
+[dark_bow_green]
+clone = "dark_bow"
+id = 15704
+tradeable = false
+kept = "Reclaim"
+examine = "A bow from a darker dimension, painted green from the yolk of a Penance egg."

@@ -1,0 +1,101 @@
+[mabels_ring]
+id = 18803
+tradeable = false
+weight = 0.008
+destroy = "Maybe Zenevivia will replace it."
+examine = "It doesn't look very valuable, but Mabel likes it."
+use = "Quest"
+kept = "Wilderness"
+
+[twig]
+id = 18804
+tradeable = false
+weight = 0.01
+destroy = "It should be easy to find another twig in a haystack if you need one."
+examine = "A completely ordinary twig."
+use = "Quest"
+kept = "Wilderness"
+
+[dummy_love_story]
+id = 18805
+tradeable = false
+weight = 2.0
+destroy = "The Wise Old Man may be willing to replace it or help you make another one."
+examine = "Lets you find incredibly dangerous traps without suffering."
+use = "Quest"
+kept = "Wilderness"
+
+[teleport_to_house_chipped]
+id = 18806
+tradeable = false
+weight = 0.001
+destroy = "You can make another by using a chisel on a Teleport to House tablet."
+examine = "The tablet has been chipped and can now be opened."
+kept = "Wilderness"
+
+[teleport_to_house_chipped_complete]
+id = 18807
+tradeable = false
+destroy = "You can make another by using a chisel on a Teleport to House tablet."
+examine = "The spell in this tablet has been modified."
+kept = "Wilderness"
+
+[mabels_lamp]
+id = 18808
+tradeable = false
+weight = 0.1
+destroy = "You will not be able to get a replacement. Are you REALLY sure you wish to destroy it?"
+examine = "A battered lamp that belonged to Mabel."
+use = "Quest"
+kept = "Vanish"
+
+[rimmington_tablet]
+id = 18809
+tradeable = false
+examine = "A Teleport to House tablet that has been redirected to Rimmington."
+kept = "Reclaim"
+
+[taverley_tablet]
+id = 18810
+tradeable = false
+examine = "A Teleport to House tablet that has been redirected to Taverley."
+kept = "Reclaim"
+
+[pollnivneach_tablet]
+id = 18811
+tradeable = false
+examine = "A Teleport to House tablet that has been redirected to Pollnivneach."
+kept = "Reclaim"
+
+[rellekka_tablet]
+id = 18812
+tradeable = false
+examine = "A Teleport to House tablet that has been redirected to Rellekka."
+kept = "Reclaim"
+
+[brimhaven_tablet]
+id = 18813
+tradeable = false
+examine = "A Teleport to House tablet that has been redirected to Brimhaven."
+kept = "Reclaim"
+
+[yanille_tablet]
+id = 18814
+tradeable = false
+examine = "A Teleport to House tablet that has been redirected to Yanille."
+kept = "Reclaim"
+
+[trollheim_tablet]
+id = 20175
+tradeable = false
+aka = ["trollheim_tab"]
+examine = "A Teleport to House tablet that has been redirected to Trollheim."
+kept = "Reclaim"
+
+[miners_diary]
+id = 20176
+tradeable = false
+weight = 0.51
+destroy = "Runvastr, in East Keldagrim, can give you another copy."
+examine = "An extract from the diary of an old dwarven miner."
+kept = "Wilderness"

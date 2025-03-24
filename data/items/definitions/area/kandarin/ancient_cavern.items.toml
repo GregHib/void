@@ -254,3 +254,31 @@ weight = 0.003
 destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
 examine = "The paper glows with some odd mould."
 kept = "Vanish"
+
+[ferocious_ring_5]
+id = 15398
+slot = "Ring"
+examine = "It looks in pretty good condition."
+weight = 0.004
+
+[ferocious_ring_4]
+clone = "ferocious_ring_5"
+id = 15399
+
+[ferocious_ring_3]
+id = 15400
+slot = "Ring"
+examine = "It looks quite worn."
+weight = 0.004
+
+[ferocious_ring_2]
+id = 15401
+slot = "Ring"
+examine = "It looks pretty worn."
+weight = 0.004
+
+[ferocious_ring_1]
+id = 15402
+slot = "Ring"
+examine = "It looks like it's going to break soon."
+weight = 0.004

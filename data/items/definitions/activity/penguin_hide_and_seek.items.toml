@@ -1,0 +1,7 @@
+[spy_notebook]
+id = 13732
+tradeable = false
+weight = 1.0
+destroy = "You will need to speak with Larry/Chuck at Ardougne Zoo to get another."
+examine = "Notes on the locations of penguin spies."
+kept = "Vanish"

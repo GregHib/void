@@ -312,3 +312,255 @@ weight = 1.0
 slot = "Hat"
 examine = "Essential mime wear."
 kept = "Reclaim"
+
+[bandana_and_eyepatch_white_left]
+id = 13339
+weight = 0.15
+slot = "Hat"
+type = "Hair"
+examine = "A white bandana and a patch for the left eye."
+
+[bandana_and_eyepatches_white]
+id = 13340
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+examine = "A white bandana and a patch for both eyes."
+
+[bandana_and_eyepatch_red_left]
+id = 13341
+weight = 0.15
+slot = "Hat"
+type = "Hair"
+examine = "A red bandana and a patch for the left eye."
+
+[bandana_and_eyepatches_red]
+id = 13342
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+examine = "A red bandana and a patch for both eyes."
+
+[bandana_and_eyepatch_blue_left]
+id = 13343
+weight = 0.15
+slot = "Hat"
+type = "Hair"
+examine = "A blue bandana and a patch for the left eye."
+
+[bandana_and_eyepatches_blue]
+id = 13344
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+examine = "A blue bandana and a patch for both eyes."
+
+[bandana_and_eyepatch_brown_left]
+id = 13345
+weight = 0.15
+slot = "Hat"
+type = "Hair"
+examine = "A brown bandana and a patch for the left eye."
+
+[bandana_and_eyepatches_brown]
+id = 13346
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+examine = "A brown bandana and a patch for both eyes."
+
+[bandana_and_eyepatch_grey_left]
+id = 13347
+weight = 0.15
+slot = "Hat"
+type = "Hair"
+examine = "A grey bandana and a patch for the left eye."
+
+[bandana_and_eyepatches_grey]
+id = 13348
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+examine = "A grey bandana and a patch for both eyes."
+
+[bandana_and_eyepatch_purple_left]
+id = 13349
+weight = 0.15
+slot = "Hat"
+type = "Hair"
+examine = "A purple bandana and a patch for the left eye."
+
+[bandana_and_eyepatches_purple]
+id = 13350
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+examine = "A purple bandana and a patch for both eyes."
+
+[bandana_and_eyepatch_orange_left]
+id = 13351
+weight = 0.15
+slot = "Hat"
+type = "Hair"
+examine = "An orange bandana and a patch for the left eye."
+
+[bandana_and_eyepatches_orange]
+id = 13352
+weight = 0.1
+slot = "Hat"
+type = "Hair"
+examine = "An orange bandana and a patch for both eyes."
+
+[double_eyepatches]
+id = 13353
+weight = 0.15
+slot = "Hat"
+examine = "It's dark, and I'm wearing two patches. Hit it!"
+
+[pirate_hat_and_eyepatches]
+id = 13354
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+examine = "Two patches and a hat."
+
+[left_eyepatch]
+id = 13355
+price = 46100
+limit = 100
+weight = 0.15
+slot = "Hat"
+examine = "A patch for the left eye."
+
+[left_eyepatch_noted]
+id = 13356
+
+[pirate_hat_and_eyepatch]
+id = 13357
+weight = 0.15
+slot = "Hat"
+type = "Hair"
+examine = "A hat and a patch."
+
+[pirate_shirt_grey]
+id = 13358
+price = 1827
+limit = 100
+weight = 1.0
+slot = "Chest"
+examine = "A seaworthy grey shirt."
+
+[stripy_pirate_shirt_noted_5]
+id = 13359
+
+[pirate_shirt_purple]
+id = 13360
+price = 4076
+limit = 100
+weight = 1.0
+slot = "Chest"
+examine = "A seaworthy purple shirt."
+
+[stripy_pirate_shirt_noted_6]
+id = 13361
+
+[pirate_shirt_orange]
+id = 13362
+price = 137
+limit = 100
+weight = 1.0
+slot = "Chest"
+examine = "A seaworthy orange shirt."
+
+[stripy_pirate_shirt_noted_7]
+id = 13363
+
+[pirate_leggings_grey]
+id = 13364
+price = 2046
+limit = 100
+weight = 1.0
+slot = "Legs"
+examine = "A seaworthy pair of grey trousers."
+
+[pirate_leggings_noted_5]
+id = 13365
+
+[pirate_leggings_purple]
+id = 13366
+price = 495
+limit = 100
+weight = 1.0
+slot = "Legs"
+examine = "A seaworthy pair of purple trousers."
+
+[pirate_leggings_noted_6]
+id = 13367
+
+[pirate_leggings_orange]
+id = 13368
+price = 160
+limit = 100
+weight = 1.0
+slot = "Legs"
+examine = "A seaworthy pair of orange trousers."
+
+[pirate_leggings_noted_7]
+id = 13369
+
+[pirate_bandana_grey]
+id = 13370
+price = 530
+limit = 100
+weight = 0.1
+slot = "Hat"
+type = "Hair"
+examine = "A grey bandana."
+
+[bandana_noted]
+id = 13371
+
+[pirate_bandana_purple]
+id = 13372
+price = 866
+limit = 100
+weight = 0.1
+slot = "Hat"
+type = "Hair"
+examine = "A purple bandana."
+
+[bandana_noted_2]
+id = 13373
+
+[pirate_bandana_orange]
+id = 13374
+price = 153
+limit = 100
+weight = 0.1
+slot = "Hat"
+type = "Hair"
+examine = "An orange bandana."
+
+[bandana_noted_3]
+id = 13375
+
+[bandana_and_eyepatch_grey]
+id = 13376
+weight = 0.15
+slot = "Hat"
+type = "Hair"
+examine = "A purple bandana and eyepatch."
+
+[bandana_and_eyepatch_purple]
+id = 13377
+weight = 0.15
+slot = "Hat"
+type = "Hair"
+examine = "A purple bandana and eyepatch."
+
+[bandana_and_eyepatch_orange]
+id = 13378
+weight = 0.15
+slot = "Hat"
+type = "Hair"
+examine = "A grey bandana and eyepatch."
