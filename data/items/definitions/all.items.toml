@@ -512,28 +512,28 @@ examine = "Arrows with mithril heads."
 id = 7553
 
 [fire_rune_3]
-clone = "air_rune_2"
+clone = "air_rune_rogue_trader"
 id = 7554
 
 [fire_rune_noted_2]
 id = 7555
 
 [water_rune_3]
-clone = "air_rune_2"
+clone = "air_rune_rogue_trader"
 id = 7556
 
 [water_rune_noted_2]
 id = 7557
 
 [air_rune_3]
-clone = "air_rune_2"
+clone = "air_rune_rogue_trader"
 id = 7558
 
 [air_rune_noted_2]
 id = 7559
 
 [chaos_rune_3]
-clone = "chaos_rune_2"
+clone = "chaos_rune"
 id = 7560
 
 [chaos_rune_noted_2]

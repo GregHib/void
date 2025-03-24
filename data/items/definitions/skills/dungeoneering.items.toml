@@ -2784,31 +2784,31 @@ examine = "A series of connected metal rings."
 weight = 6.803
 
 [air_rune_b]
-clone = "air_rune_2"
+clone = "air_rune_rogue_trader"
 id = 16091
 
 [water_rune_b]
-clone = "air_rune_2"
+clone = "air_rune_rogue_trader"
 id = 16092
 
 [earth_rune_b]
-clone = "air_rune_2"
+clone = "air_rune_rogue_trader"
 id = 16093
 
 [fire_rune_b]
-clone = "air_rune_2"
+clone = "air_rune_rogue_trader"
 id = 16094
 
 [mind_rune_b]
-clone = "mind_rune_2"
+clone = "mind_rune"
 id = 16095
 
 [chaos_rune_b]
-clone = "chaos_rune_2"
+clone = "chaos_rune"
 id = 16096
 
 [death_rune_b]
-clone = "death_rune_2"
+clone = "death_rune"
 id = 16097
 
 [blood_rune_b]
@@ -2817,7 +2817,7 @@ limit = 25000
 examine = "Used for high level missile spells."
 
 [body_rune_b]
-clone = "body_rune_2"
+clone = "body_rune_rogue_trader"
 id = 16099
 
 [cosmic_rune_b]
@@ -2836,7 +2836,7 @@ limit = 25000
 examine = "Used for alchemy spells."
 
 [law_rune_b]
-clone = "law_rune_2"
+clone = "law_rune"
 id = 16103
 
 [soul_rune_b]

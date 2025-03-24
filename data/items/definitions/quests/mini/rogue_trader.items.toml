@@ -8,21 +8,21 @@ kept = "Wilderness"
 id = 6423
 
 [water_rune_rogue_trader]
-clone = "air_rune_2"
+clone = "air_rune_rogue_trader"
 id = 6424
 
 [water_rune_rogue_trader_noted]
 id = 6425
 
 [earth_rune_rogue_trader]
-clone = "air_rune_2"
+clone = "air_rune_rogue_trader"
 id = 6426
 
 [earth_rune_rogue_trader_noted]
 id = 6427
 
 [fire_rune_rogue_trader]
-clone = "air_rune_2"
+clone = "air_rune_rogue_trader"
 id = 6428
 
 [fire_rune_rogue_trader_noted]
