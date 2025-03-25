@@ -216,9 +216,10 @@ material = "metal"
 examine = "A pair of Barrows-themed gloves."
 kept = "Reclaim"
 
-[cornflour]
+[cornflour] # Unobtainable
 id = 7463
-examine = "It's cornflour in a pot."
+tradeable = false
+examine = "A little heap of cornflour. "
 
 [book_on_chickens]
 id = 7464
@@ -237,9 +238,9 @@ examine = "Surprise, it looks like a vanilla pod."
 use = "Quest"
 kept = "Wilderness"
 
-[cornflour_2]
-clone = "cornflour"
+[cornflour] # Unobtainable
 id = 7466
+examine = "It's cornflour."
 
 [pot_of_cornflour]
 id = 7468
@@ -521,9 +522,10 @@ cooking = { level = 21, xp = 100.0, chances = { fire = "57-377" }, cooked = "coo
 examine = "A smelly meat."
 kept = "Wilderness"
 
-[crab_meat_2]
-clone = "crab_meat"
+[crab_meat_free] # Unobtainable
 id = 7519
+members = false
+examine = "A smelly meat."
 
 [burnt_crab_meat]
 id = 7520
@@ -730,6 +732,75 @@ destroy = "Maybe Traiborn will have another."
 examine = "A pot of special flour."
 use = "Quest"
 kept = "Wilderness"
+
+[druid_pouch_recipe_for_disaster]
+id = 7547
+tradable = false
+examine = "An empty druid pouch."
+
+[potato_seed_recipe_for_disaster]
+id = 7548
+tradable = false
+examine = "A potato seed - plant in an allotment."
+
+[potato_seed_recipe_for_disaster_noted]
+id = 7549
+
+[onion_seed_recipe_for_disaster]
+id = 7550
+tradable = false
+examine = "An onion seed - plant in an allotment."
+
+[onion_seed_recipe_for_disaster_noted]
+id = 7551
+
+[mithril_arrow_recipe_for_disaster]
+id = 7552
+tradable = false
+examine = "Arrows with mithril heads."
+
+[mithril_arrow_recipe_for_disaster_noted]
+id = 7553
+
+[fire_rune_recipe_for_disaster]
+id = 7554
+tradable = false
+examine = "One of the four basic elemental runes."
+
+[fire_rune_recipe_for_disaster_noted]
+id = 7555
+
+[water_rune_recipe_for_disaster]
+id = 7556
+tradable = false
+examine = "One of the four basic elemental runes."
+
+[water_rune_recipe_for_disaster_noted]
+id = 7557
+
+[air_rune_recipe_for_disaster]
+id = 7558
+tradable = false
+examine = "One of the four basic elemental runes."
+
+[air_rune_recipe_for_disaster_noted]
+id = 7559
+
+[chaos_rune_recipe_for_disaster]
+id = 7560
+tradable = false
+examine = "Used for low level missile spells."
+
+[chaos_rune_recipe_for_disaster_noted]
+id = 7561
+
+[tomato_seed_recipe_for_disaster]
+id = 7562
+tradable = false
+examine = "A tomato seed - plant in an allotment."
+
+[tomato_seed_recipe_for_disaster_noted]
+id = 7563
 
 [balloon_toad]
 id = 7564

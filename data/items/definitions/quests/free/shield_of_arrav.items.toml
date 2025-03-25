@@ -103,6 +103,30 @@ destroy = "You'll need to get it back from Captain Rovin."
 use = "Quest"
 kept = "Wilderness"
 
+[phoenix_crossbow_2] # Unobtainable
+id = 11165
+tradeable = false
+weight = 3.628
+slot = "Weapon"
+destroy = "You can get another from the Phoenix Gang's weapon stash."
+examine = "Second-rate crossbow; former property of the Phoenix Gang."
+kept = "Wilderness"
+
+[phoenix_crossbow_noted_2]
+id = 11166
+
+[phoenix_crossbow_3] # Unobtainable
+id = 11167
+tradeable = false
+weight = 3.628
+slot = "Weapon"
+destroy = "You can get another from the Phoenix Gang's weapon stash."
+examine = "Second-rate crossbow; former property of the Phoenix Gang."
+kept = "Wilderness"
+
+[phoenix_crossbow_noted_3]
+id = 11168
+
 [half_certificate_right]
 id = 11173
 destroy = "Instead of destroying this I should get a friend to help me retrieve the other half."

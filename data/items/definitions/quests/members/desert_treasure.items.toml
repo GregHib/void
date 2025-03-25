@@ -10,12 +10,11 @@ examine = "A cheeky little lager from the Bandit Camp."
 [bandits_brew_noted]
 id = 4628
 
-[fire_desert_treasure]
+[fire_desert_treasure] # Unobtainable
 id = 4653
 tradeable = false
 weight = 0.028
 examine = "Hot!"
-kept = "Reclaim"
 
 [etchings]
 id = 4654

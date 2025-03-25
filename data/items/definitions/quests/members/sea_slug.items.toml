@@ -27,3 +27,7 @@ tradeable = false
 weight = 0.056
 examine = "Smashed glass."
 kept = "Wilderness"
+
+[torch_sea_slug]
+id = 9665
+slot = "Weapon"

@@ -40,17 +40,17 @@ examine = "A missing page from Rolad's book! It seems to be the third one."
 use = "Quest"
 kept = "Wilderness"
 
-[pages_2]
+[pages_two] # Unobtainable
 id = 4572
 tradeable = false
 weight = 0.002
 examine = "A collection of missing pages from Rolad's book!"
-use = "Quest"
-kept = "Wilderness"
 
 [pages]
-clone = "pages_2"
 id = 4573
+tradeable = false
+weight = 0.002
+examine = "A collection of missing pages from Rolad's book!"
 
 [base_schematics]
 id = 4574

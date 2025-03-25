@@ -89,14 +89,14 @@ id = 8858
 tradeable = false
 weight = 8.164
 examine = "Just landed 18lb shot."
-kept = "Reclaim"
+kept = "Vanish"
 
 ["22lb_shot"]
 id = 8859
 tradeable = false
 weight = 9.979
 examine = "Just landed 22lb shot."
-kept = "Reclaim"
+kept = "Vanish"
 
 [one_barrel]
 id = 8860

@@ -921,12 +921,6 @@ examine = "These will protect my feet."
 [rune_boots_noted]
 id = 4132
 
-[dragon_platelegs_2]
-id = 4180
-limit = 10
-weight = 9.071
-examine = "These look pretty heavy."
-
 [dragon_plateskirt]
 id = 4585
 price = 161900
@@ -960,3 +954,17 @@ examine = "These look pretty heavy."
 
 [granite_legs_noted]
 id = 6813
+
+[tyras_helm]
+id = 9629
+price = 1601
+limit = 100
+weight = 0.907
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "As used by King Tyras' personal guard."
+kept = "Wilderness"
+
+[tyras_helm_noted]
+id = 9630

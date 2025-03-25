@@ -128,10 +128,9 @@ examine = "One skull staple."
 use = "Quest"
 kept = "Wilderness"
 
-[skull_staples]
+[skull_staples] # Unobtainable
 id = 10950
-examine = "One skull staple."
+examine = "Five skull staples. "
 
-[skull_staples_2]
-clone = "skull_staples"
+[skull_staples_2] # Unobtainable
 id = 10951

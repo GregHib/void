@@ -19,12 +19,11 @@ empty = "bowl"
 examine = "It's a bowl of water, with some nettles in it."
 kept = "Reclaim"
 
-[puddle_of_slime]
+[puddle_of_slime] # Unreleased
 id = 4238
 tradeable = false
 weight = 0.453
 examine = "It's a puddle of slime."
-kept = "Wilderness"
 
 [nettle_tea]
 id = 4239

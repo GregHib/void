@@ -43,7 +43,7 @@ id = 3257
 id = 3259
 examine = "Heroic!"
 
-[crawling_hand]
+[crawling_hand_icon]
 id = 4133
 examine = "I should get it stuffed!"
 

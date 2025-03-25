@@ -10,3 +10,8 @@ examine = "A foul smelling brew."
 
 [moonlight_mead_noted]
 id = 2956
+
+[crawling_hand]
+id = 7975
+tradeable = false
+examine = "I should get it stufed!"

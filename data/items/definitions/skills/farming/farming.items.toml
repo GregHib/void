@@ -185,14 +185,11 @@ kept = "Wilderness"
 [plant_pot_noted_2]
 id = 5355
 
-[plant_pot_supercompost]
+[plant_pot_supercompost] # Unobtainable
 id = 5356
-limit = 100
 tradeable = false
 weight = 0.907
 examine = "A plant pot filled with supercompost."
-kept = "Reclaim"
-use = "Limited"
 
 [plant_pot_noted_3]
 id = 5357

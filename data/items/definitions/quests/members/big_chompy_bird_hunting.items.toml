@@ -272,20 +272,20 @@ smithing = { level = 17, xp = 25.0 }
 examine = "An easily-smithed iron spit."
 kept = "Wilderness"
 
-[burnt_chompy]
+[burnt_chompy] # Unreleased
 id = 7226
 examine = "Overly crispy chompy."
 
 [burnt_chompy_noted]
 id = 7227
 
-[cooked_chompy_roasted]
+[cooked_chompy_roasted] # Unreleased
 id = 7228
 limit = 1000
 weight = 10.0
 examine = "Roasted chompy bird."
 
-[cooked_chompy_noted_2]
+[cooked_chompy_roasted_noted]
 id = 7229
 
 [skewered_chompy]

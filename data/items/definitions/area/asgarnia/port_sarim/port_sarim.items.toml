@@ -3,7 +3,7 @@ id = 6561
 tradeable = false
 weight = 0.55
 examine = "Looks nice."
-kept = "Reclaim"
+kept = "Vanish"
 
 [white_apron_port_sarim]
 id = 7957

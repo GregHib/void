@@ -21,7 +21,7 @@ examine = "A small hand mirror."
 use = "Quest"
 kept = "Wilderness"
 
-[red_crystal]
+[red_crystal] # Unobtainable
 id = 6640
 tradeable = false
 weight = 5.0

@@ -97,11 +97,9 @@ kept = "Reclaim"
 
 [gold_leaf_icthlarins_little_helper]
 id = 4692
-limit = 100
 tradeable = false
 weight = 0.02
 examine = "Very delicate thin pressed gold."
-kept = "Reclaim"
 
 [full_bucket]
 id = 4693

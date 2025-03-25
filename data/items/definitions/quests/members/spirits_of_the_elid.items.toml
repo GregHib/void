@@ -86,4 +86,4 @@ tradeable = false
 weight = 0.1
 examine = "Ooh a nice shiny lamp."
 use = "Quest"
-kept = "Reclaim"
+kept = "Vanish"

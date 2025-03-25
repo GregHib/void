@@ -206,13 +206,6 @@ examine = "A vicious black dagger."
 [black_dagger_p_noted]
 id = 1234
 
-[poisoned_dagger_p]
-id = 1235
-slot = "Weapon"
-
-[poisoned_dagger_p_noted]
-id = 1236
-
 [bronze_spear]
 id = 1237
 price = 256
@@ -983,30 +976,6 @@ examine = "A vicious looking axe."
 
 [dragon_battleaxe_noted]
 id = 1378
-
-[halberd]
-id = 1413
-weight = 4.535
-examine = "A halberd."
-
-[halberd_noted]
-id = 1414
-
-[warhammer]
-id = 1415
-weight = 1.814
-examine = "A warhammer."
-
-[warhammer_noted]
-id = 1416
-
-[javelin]
-id = 1417
-weight = 1.36
-examine = "A javelin."
-
-[javelin_noted]
-id = 1418
 
 [scythe]
 id = 1419

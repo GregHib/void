@@ -60,7 +60,7 @@ examine = "Nicely baked pitta bread. Needs more ingredients to make a kebab."
 [pitta_bread_noted]
 id = 1866
 
-[burnt_pitta_bread]
+[burnt_pitta_bread] # Unreleased
 id = 1867
 examine = "It's all burnt."
 

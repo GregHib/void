@@ -165,12 +165,6 @@ id = 4175
 clone = "picture_6"
 id = 4177
 
-[abyssal_whip_2]
-id = 4178
-limit = 10
-weight = 0.453
-examine = "A weapon from the Abyss."
-
 [spiny_helmet]
 id = 4551
 price = 895

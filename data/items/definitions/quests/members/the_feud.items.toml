@@ -68,9 +68,11 @@ empty = "bucket"
 examine = "Dung of the Camelus Horribleus variety."
 kept = "Reclaim"
 
-[ugthanki_dung_2]
-clone = "ugthanki_dung"
+[ugthanki_dung_green]
 id = 4602
+tradeable = false
+weight = 0.4
+examine = "Poor Camel, what have I fed you?"
 
 [receipt]
 id = 4603

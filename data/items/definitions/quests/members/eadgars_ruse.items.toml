@@ -78,7 +78,3 @@ weight = 0.08
 examine = "Pineapple chunks dipped in strong liquor."
 use = "Quest"
 kept = "Wilderness"
-
-[goutweed_2]
-clone = "goutweed"
-id = 4182

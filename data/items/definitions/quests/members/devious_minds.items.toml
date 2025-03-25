@@ -34,7 +34,7 @@ tradeable = false
 weight = 0.001
 examine = "There seems to be bits missing..."
 use = "Quest"
-kept = "Wilderness"
+kept = "Vanish"
 
 [orb_devious_minds]
 id = 6821

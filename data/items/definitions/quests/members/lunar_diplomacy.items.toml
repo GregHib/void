@@ -353,7 +353,7 @@ destroy = "The Oneiromancer might be able to help you get another."
 examine = "A mysterious ring that can fill the wearer with magical power..."
 kept = "Reclaim"
 
-[astral_tiara]
+[astral_tiara] # Unreleased
 id = 9106
 slot = "Hat"
 

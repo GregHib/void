@@ -807,7 +807,7 @@ price = 30
 limit = 200
 examine = "A tablet containing a magic spell."
 
-[telekinetic_grab]
+[telekinetic_grab] # Unobtainable
 id = 8022
 
 [boxing_ring]

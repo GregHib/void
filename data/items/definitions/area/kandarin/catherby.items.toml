@@ -77,7 +77,7 @@ weight = 0.028
 examine = "ground guam and ground seaweed.' Well, I have the guam leaf..."
 kept = "Reclaim"
 
-[guam_in_a_box_2]
+[guam_in_a_box_duplicate] # Unobtainable
 id = 6678
 examine = "Ground Guam and Ground Seaweed.' Well, I have the Guam Leaf..."
 
@@ -88,7 +88,7 @@ weight = 0.028
 examine = "ground guam and ground seaweed.' Well, I have the seaweed..."
 kept = "Reclaim"
 
-[seaweed_in_a_box_2]
+[seaweed_in_a_box_duplicate] # Unobtainable
 id = 6680
 examine = "Ground Guam and Ground Seaweed.' Well, I have the Seaweed..."
 

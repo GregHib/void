@@ -54,7 +54,7 @@ examine = "A sinister looking squid."
 use = "Quest"
 kept = "Wilderness"
 
-[karamthulhu_2]
+[karamthulhu_pet] # Unobtainable
 clone = "karamthulhu"
 id = 6717
 

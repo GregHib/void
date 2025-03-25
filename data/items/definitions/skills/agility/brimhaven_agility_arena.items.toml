@@ -12,7 +12,7 @@ weight = 0.3
 slot = "Hands"
 examine = "You should see the shark..."
 
-[firework_potion]
+[firework_potion] # Unreleased
 id = 3006
 weight = 0.08
 examine = "Keep out of reach of children and familiars."

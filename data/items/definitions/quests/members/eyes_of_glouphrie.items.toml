@@ -21,12 +21,11 @@ limit = 25000
 examine = "Mud runes ground into a powder."
 kept = "Wilderness"
 
-[hazelmeres_book]
+[hazelmeres_book] # Unreleased
 id = 9595
 tradeable = false
 weight = 0.51
 examine = "Looks magical..."
-kept = "Wilderness"
 
 [red_circle]
 id = 9597
@@ -84,7 +83,7 @@ examine = "An orange pentagon-shaped crystalline disc."
 use = "Quest"
 kept = "Wilderness"
 
-[yellow_circle]
+[yellow_circle] # Unobtainable
 id = 9605
 tradeable = false
 examine = "A yellow circular crystalline disc."

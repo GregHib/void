@@ -48,12 +48,11 @@ kept = "Wilderness"
 clone = "eye_of_gnome"
 id = 4009
 
-[monkey_magic]
+[monkey_magic] # Unreleased
 id = 4010
 tradeable = false
 weight = 0.007
 examine = "A small sample of monkey magic."
-kept = "Wilderness"
 
 [monkey_nuts]
 id = 4012
@@ -79,12 +78,11 @@ weight = 0.25
 examine = "It's a bowl full of mushy banana."
 kept = "Reclaim"
 
-[monkey_wrench_monkey_madness]
+[monkey_wrench] # Unreleased
 id = 4018
 tradeable = false
 weight = 9.525
 examine = "For wrenching monkeys I'd guess."
-kept = "Wilderness"
 
 [monkeyspeak_amulet_mould]
 id = 4020

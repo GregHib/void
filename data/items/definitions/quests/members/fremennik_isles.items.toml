@@ -117,12 +117,11 @@ material = "metal"
 type = "Hair"
 examine = "A gift from Neitiznot's Burgher."
 
-[documents]
+[documents] # Unreleased
 id = 10829
 tradeable = false
 weight = 0.453
 examine = "To Ali Morrisane of Al Kharid"
-kept = "Wilderness"
 
 [royal_decree]
 id = 10830

@@ -93,3 +93,10 @@ type = "Hair"
 destroy = "You should split these apart first."
 examine = "For better flying vision."
 kept = "Vanish"
+
+[bomber_jacket_2]
+id = 11135
+tradeable = false
+weight = 0.001
+examine = "For all your flying needs."
+kept = "Vanish"

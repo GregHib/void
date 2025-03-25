@@ -195,7 +195,7 @@ weight = 0.453
 slot = "Hat"
 examine = "A strange blue wizards hat."
 use = "Quest"
-kept = "Wilderness"
+kept = "Vanish"
 
 [chunk_of_crystal]
 id = 741

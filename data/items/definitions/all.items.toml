@@ -34,6 +34,10 @@ id = 766
 [picture_14]
 id = 770
 
+[poisoned_dart_p] # Unreleased
+id = 818
+examine = "A deadly throwing dart with a poisoned tip."
+
 [tinderbox_6]
 id = 957
 
@@ -43,18 +47,55 @@ id = 967
 [tinderbox_8]
 id = 969
 
-[farmers_fork]
+[papyrus_used] # Unobtainable
+id = 972
+examine = "Used papyrus, it has squiggles all over it. "
+
+[poisoned_dagger_p] # Unobtainable
+id = 1235
+examine = "The blade is covered with poison. "
+
+[poisoned_dagger_p_noted]
+id = 1236
+
+[farmers_fork] # Unobtainable
 id = 1411
-tradeable = false
-weight = 2.267
 examine = "A farmer's fork."
-kept = "Reclaim"
 
 [farmers_fork_noted]
 id = 1412
 
-[weapon_poison_2]
+[halberd] # Unobtainable
+id = 1413
+examine = "A halberd."
+
+[halberd_noted]
+id = 1414
+
+[warhammer] # Unobtainable
+id = 1415
+examine = "A warhammer."
+
+[warhammer_noted]
+id = 1416
+
+[javelin] # Unobtainable
+id = 1417
+examine = "A javelin."
+
+[javelin_noted]
+id = 1418
+
+[soul_talisman] # Unobtainable
+id = 1460
+examine = "A mysterious power emanates from the talisman..."
+
+[soul_talisman_noted]
+id = 1461
+
+[weapon_poison_ranging_guild] # Unobtainable
 id = 1465
+examine = "For use on daggers and projectiles. "
 
 [tinderbox_12]
 id = 1970
@@ -266,12 +307,6 @@ id = 3413
 [tinderbox_21]
 id = 3415
 
-[key_6]
-id = 3606
-
-[key_7]
-id = 3608
-
 [picture_26]
 id = 3667
 
@@ -459,21 +494,8 @@ id = 6753
 [tinderbox_32]
 id = 6892
 
-[coins_11]
-clone = "coins"
-id = 6964
-
 [tinderbox_33]
 id = 7156
-
-[key_8]
-id = 7297
-
-[key_9]
-id = 7299
-
-[key_10]
-id = 7302
 
 [tinderbox_34]
 id = 7467
@@ -481,75 +503,7 @@ id = 7467
 [tinderbox_35]
 id = 7469
 
-[druid_pouch_3]
-clone = "druid_pouch"
-id = 7547
-
-[potato_seed_2]
-id = 7548
-limit = 500
-examine = "A potato seed - plant in an allotment."
-kept = "Wilderness"
-
-[potato_seed_noted]
-id = 7549
-
-[onion_seed_2]
-id = 7550
-limit = 500
-examine = "An onion seed - plant in an allotment."
-kept = "Wilderness"
-
-[onion_seed_noted]
-id = 7551
-
-[mithril_arrow_2]
-id = 7552
-limit = 10000
-examine = "Arrows with mithril heads."
-
-[mithril_arrow_noted]
-id = 7553
-
-[fire_rune_3]
-clone = "air_rune_rogue_trader"
-id = 7554
-
-[fire_rune_noted_2]
-id = 7555
-
-[water_rune_3]
-clone = "air_rune_rogue_trader"
-id = 7556
-
-[water_rune_noted_2]
-id = 7557
-
-[air_rune_3]
-clone = "air_rune_rogue_trader"
-id = 7558
-
-[air_rune_noted_2]
-id = 7559
-
-[chaos_rune_3]
-clone = "chaos_rune"
-id = 7560
-
-[chaos_rune_noted_2]
-id = 7561
-
-[tomato_seed_2]
-id = 7562
-limit = 500
-examine = "A tomato seed - plant in an allotment."
-kept = "Wilderness"
-
-[tomato_seed_noted]
-id = 7563
-
 [dummy_2]
-clone = "dummy"
 id = 7586
 
 [item]
@@ -632,32 +586,18 @@ id = 7631
 
 [picture_68]
 id = 7804
-tradeable = false
-weight = 0.453
-slot = "Weapon"
-type = "TwoHanded"
-examine = "A picture of a lady called Elena."
-use = "Quest"
-kept = "Wilderness"
 
 [picture_noted_45]
 id = 7805
 
-[hatchet_handle_2]
+[hatchet_handle_2] # Unobtainable
 id = 7952
-weight = 0.1
-slot = "Weapon"
 examine = "Useless."
-use = "Removed"
 
 [hatchet_handle_noted_2]
 id = 7953
 
-[crawling_hand_2]
-clone = "crawling_hand"
-id = 7975
-
-[thing]
+[thing] # Unobtainable
 id = 8796
 
 [picture_69]
@@ -672,60 +612,26 @@ id = 9490
 [picture_71]
 id = 9596
 
-[tyras_helm]
-id = 9629
-price = 1601
-limit = 100
-weight = 0.907
-slot = "Hat"
-material = "metal"
-type = "FullFace"
-examine = "As used by King Tyras' personal guard."
-kept = "Wilderness"
-
-[tyras_helm_noted]
-id = 9630
-
-[torch_3]
-id = 9665
-slot = "Weapon"
-
 [picture_72]
 id = 9700
 
 [torch_noted]
 id = 9701
 
-[stick_2]
+[stick_2] # Unobtainable
 id = 9702
-tradeable = false
-weight = 0.01
-slot = "Weapon"
-examine = "For playing fetch with."
-kept = "Reclaim"
 
-[rock]
-clone = "rock_castle_wars"
+[rock] # Unobtainable
 id = 9716
+examine = "A chunk of rock. "
 
 [bobble_hat_2]
 id = 9815
 tradeable = false
-weight = 0.25
-destroy = "You can obtain another hat from Diango in the Draynor Market."
-examine = "A woolly bobble hat."
-kept = "Wilderness"
-use = "Limited"
 
 [bobble_scarf_2]
 id = 9816
 tradeable = false
-weight = 0.25
-slot = "Amulet"
-destroy = "You can obtain another scarf from Diango in the Draynor market."
-examine = "A woolly scarf."
-kept = "Wilderness"
-use = "Limited"
 
 [scroll]
 id = 10485
@@ -733,11 +639,9 @@ id = 10485
 [tinderbox_40]
 id = 10497
 
-[thingy]
+[thingy] # Unreleased
 id = 10567
-slot = "Amulet"
 examine = "Mabob."
-use = "Removed"
 
 [picture_noted_46]
 id = 10568
@@ -745,11 +649,6 @@ id = 10568
 [picture_77]
 id = 10569
 tradeable = false
-weight = 0.453
-slot = "Amulet"
-examine = "A picture of a lady called Elena."
-use = "Quest"
-kept = "Wilderness"
 
 [picture_noted_47]
 id = 10570
@@ -757,11 +656,6 @@ id = 10570
 [picture_78]
 id = 10571
 tradeable = false
-weight = 0.453
-slot = "Amulet"
-examine = "A picture of a lady called Elena."
-use = "Quest"
-kept = "Wilderness"
 
 [picture_noted_48]
 id = 10572
@@ -769,11 +663,6 @@ id = 10572
 [picture_79]
 id = 10573
 tradeable = false
-weight = 0.453
-slot = "Amulet"
-examine = "A picture of a lady called Elena."
-use = "Quest"
-kept = "Wilderness"
 
 [picture_noted_49]
 id = 10574
@@ -781,11 +670,6 @@ id = 10574
 [picture_80]
 id = 10575
 tradeable = false
-weight = 0.453
-slot = "Amulet"
-examine = "A picture of a lady called Elena."
-use = "Quest"
-kept = "Wilderness"
 
 [picture_noted_50]
 id = 10576
@@ -793,11 +677,6 @@ id = 10576
 [picture_81]
 id = 10577
 tradeable = false
-weight = 0.453
-slot = "Amulet"
-examine = "A picture of a lady called Elena."
-use = "Quest"
-kept = "Wilderness"
 
 [picture_noted_51]
 id = 10578
@@ -805,894 +684,461 @@ id = 10578
 [picture_82]
 id = 10579
 tradeable = false
-weight = 0.453
-slot = "Amulet"
-examine = "A picture of a lady called Elena."
-use = "Quest"
-kept = "Wilderness"
 
 [picture_noted_52]
 id = 10580
 
-[mystic_hat]
+[mystic_hat_blue_2]
 id = 10601
-weight = 0.453
-slot = "Hat"
-examine = "A magical hat."
+tradeable = false
 
-[mystic_hat_2]
+[dark_mystic_hat_2]
 id = 10602
-weight = 0.453
-slot = "Hat"
-examine = "A magical hat."
+tradeable = false
 
-[mystic_hat_3]
+[light_mystic_hat_3]
 id = 10603
-weight = 0.453
-slot = "Hat"
-examine = "A magical hat."
+tradeable = false
 
 [skeletal_helm_2]
 id = 10604
-limit = 100
-weight = 1.36
-slot = "Hat"
-material = "leather"
-type = "Hair"
-examine = "Make your foes cower by wearing a skull as a helmet!"
+tradeable = false
 
 [infinity_top_2]
 id = 10605
-limit = 10
-weight = 2.267
-slot = "Chest"
-examine = "Mystical robes."
+tradeable = false
 
 [splitbark_helm_2]
 id = 10606
-limit = 100
-weight = 0.907
-slot = "Hat"
-examine = "A wooden helmet."
+tradeable = false
 
 [ghostly_boots_2]
 id = 10607
 tradeable = false
-weight = 0.001
-slot = "Feet"
-examine = "They seem to be not quite of this world..."
-kept = "Reclaim"
 
 [moonclan_hat_2]
 id = 10608
 tradeable = false
-weight = 0.907
-slot = "Hat"
-examine = "A mystical hat."
-kept = "Reclaim"
 
 [lunar_helm_2]
 id = 10609
 tradeable = false
-weight = 0.907
-slot = "Hat"
-type = "FullFace"
-destroy = "The Oneiromancer might be able to help you get another."
-examine = "A mystical helmet."
-kept = "Reclaim"
 
 [basic_decorative_platebody_2]
 id = 10610
 tradeable = false
-weight = 8.618
-slot = "Chest"
-material = "metal"
-examine = "A platebody with simple, basic decoration."
-kept = "Wilderness"
 
 [void_knight_top_2]
 id = 10611
 tradeable = false
-weight = 6.803
-slot = "Chest"
-examine = "Torso armour from the order of the Void Knights."
-kept = "Reclaim"
 
 [rogue_mask_2]
 id = 10612
 tradeable = false
-weight = 0.453
-slot = "Hat"
-type = "FullFace"
-examine = "Black banded leather armour, a rogue's dream!"
-kept = "Reclaim"
 
 [rock_shell_helm_2]
 id = 10613
-limit = 100
-weight = 2.721
-slot = "Hat"
-material = "metal"
-type = "Hair"
-examine = "Protective headwear made from crabs. Better than that sounds."
+tradeable = false
 
 [spined_helm_2]
 id = 10614
-limit = 100
-weight = 2.721
-slot = "Hat"
-material = "leather"
-type = "FullFace"
-examine = "A helm fit for any Fremennik ranger."
+tradeable = false
 
-[tribal_mask]
+[tribal_mask_green_2]
 id = 10615
-slot = "Hat"
-examine = "A ceremonial wooden mask."
+tradeable = false
 
-[tribal_mask_2]
+[tribal_mask_orange_2]
 id = 10616
-slot = "Hat"
-examine = "A ceremonial wooden mask."
+tradeable = false
 
-[tribal_mask_3]
+[tribal_mask_blue_3]
 id = 10617
-slot = "Hat"
-examine = "A ceremonial wooden mask."
+tradeable = false
 
 [white_platebody_2]
 id = 10618
-limit = 100
-weight = 9.979
-slot = "Chest"
-material = "metal"
-examine = "Provides excellent protection."
+tradeable = false
 
 [initiate_hauberk_2]
 id = 10619
-limit = 100
-weight = 8.618
-slot = "Chest"
-material = "metal"
-examine = "An initiate Temple Knight's Armour."
-kept = "Wilderness"
+tradeable = false
 
 [proselyte_hauberk_2]
 id = 10620
-limit = 100
-weight = 8.618
-slot = "Chest"
-material = "metal"
-examine = "A Proselyte Temple Knight's armour."
+tradeable = false
 
 [mourner_top_2]
 id = 10621
 tradeable = false
-weight = 2.721
-aka = ["deathguard_top"]
-slot = "Chest"
-examine = "A thick heavy leather top."
-kept = "Wilderness"
 
 [kyatt_top_2]
 id = 10622
-limit = 100
-weight = 0.226
-slot = "Chest"
-examine = "This should make me harder to spot in polar areas."
+tradeable = false
 
 [larupia_top_2]
 id = 10623
-limit = 100
-weight = 0.226
-slot = "Chest"
-examine = "This should make me harder to spot in woodland and jungle areas."
+tradeable = false
 
 [graahk_top_2]
 id = 10624
-limit = 100
-weight = 0.226
-slot = "Chest"
-examine = "This should make me harder to spot in desert areas."
+tradeable = false
 
 [wood_camo_top_2]
 id = 10625
-limit = 100
-weight = 0.226
-slot = "Chest"
-examine = "This should make me harder to spot in wooded areas."
-kept = "Wilderness"
+tradeable = false
 
 [jungle_camo_top_2]
 id = 10626
-limit = 100
-weight = 0.226
-slot = "Chest"
-examine = "This should make me harder to spot in jungle or swamp areas."
-kept = "Wilderness"
+tradeable = false
 
 [desert_camo_top_2]
 id = 10627
-limit = 100
-weight = 0.226
-slot = "Chest"
-examine = "This should make me harder to spot in desert areas."
-kept = "Wilderness"
+tradeable = false
 
 [polar_camo_top_2]
 id = 10628
-limit = 100
-weight = 0.226
-slot = "Chest"
-examine = "This should make me harder to spot in polar areas."
-kept = "Wilderness"
+tradeable = false
 
 [mime_mask_2]
 id = 10629
 tradeable = false
-weight = 0.001
-slot = "Hat"
-examine = "A mime would wear this."
-kept = "Wilderness"
 
 [princess_blouse_2]
 id = 10630
 tradeable = false
-weight = 2.721
-slot = "Chest"
-examine = "Very posh!"
-kept = "Wilderness"
 
 [zombie_shirt_2]
 id = 10631
 tradeable = false
-weight = 0.003
-slot = "Chest"
-examine = "Aside from the braaaains on the lapel, it's still quite good."
-kept = "Wilderness"
 
 [camo_top_2]
 id = 10632
 tradeable = false
-weight = 2.721
-slot = "Chest"
-examine = "Examine what?"
-kept = "Wilderness"
 
 [lederhosen_top_2]
 id = 10633
 tradeable = false
-weight = 2.267
-slot = "Chest"
-examine = "A leather strapped top."
-kept = "Wilderness"
 
 [shade_robe]
 id = 10634
 tradeable = false
-weight = 0.907
-slot = "Chest"
-examine = "If a shade had knees, this would keep them nice and warm."
-kept = "Wilderness"
 
 [cape_of_legends_3]
 id = 10635
 tradeable = false
-weight = 1.814
-slot = "Cape"
-examine = "The cape worn by members of the Legends' Guild."
-kept = "Wilderness"
 
 [obsidian_cape_2]
 id = 10636
-limit = 100
-weight = 1.814
-slot = "Cape"
-examine = "A cape of woven obsidian plates."
+tradeable = false
 
 [fire_cape_3]
 id = 10637
 tradeable = false
-weight = 1.814
-slot = "Cape"
-examine = "A cape of fire."
-kept = "Reclaim"
 
 [team_1_cape_2]
 id = 10638
-weight = 0.453
-slot = "Cape"
-examine = "Ooohhh look at the pretty colours..."
+tradeable = false
 
 [spotted_cape_3]
 id = 10663
-limit = 100
-weight = -2.267
-slot = "Cape"
-examine = "A surprisingly aerodynamic cape."
-kept = "Reclaim"
+tradeable = false
 
 [spottier_cape_3]
 id = 10664
-limit = 100
-weight = -4.535
-slot = "Cape"
-examine = "A really surprisingly aerodynamic cape."
-kept = "Reclaim"
+tradeable = false
 
 [black_shield_h1_2]
 id = 10665
-limit = 2
-weight = 5.443
-slot = "Shield"
-material = "metal"
-examine = "A shield with a heraldic design."
+tradeable = false
 
 [adamant_shield_h1_2]
 id = 10666
-limit = 2
-weight = 5.896
-slot = "Shield"
-material = "metal"
-examine = "A shield with a heraldic design."
+tradeable = false
 
 [rune_shield_h1_2]
 id = 10667
-limit = 2
-weight = 5.443
-slot = "Shield"
-material = "metal"
-examine = "A shield with a heraldic design."
+tradeable = false
 
 [black_shield_h2_2]
 id = 10668
-limit = 2
-weight = 5.443
-slot = "Shield"
-material = "metal"
-examine = "A shield with a heraldic design."
+tradeable = false
 
 [adamant_shield_h2_2]
 id = 10669
-limit = 2
-weight = 5.896
-slot = "Shield"
-material = "metal"
-examine = "A shield with a heraldic design."
+tradeable = false
 
 [rune_shield_h2_2]
 id = 10670
-limit = 2
-weight = 5.443
-slot = "Shield"
-material = "metal"
-examine = "A shield with a heraldic design."
+tradeable = false
 
 [black_shield_h3_2]
 id = 10671
-limit = 2
-weight = 5.443
-slot = "Shield"
-material = "metal"
-examine = "A shield with a heraldic design."
+tradeable = false
 
 [adamant_shield_h3_2]
 id = 10672
-limit = 2
-weight = 5.896
-slot = "Shield"
-material = "metal"
-examine = "A shield with a heraldic design."
+tradeable = false
 
 [rune_shield_h3_2]
 id = 10673
-limit = 2
-weight = 5.443
-slot = "Shield"
-material = "metal"
-examine = "A shield with a heraldic design."
+tradeable = false
 
 [black_shield_h4_2]
 id = 10674
-limit = 2
-weight = 5.443
-slot = "Shield"
-material = "metal"
-examine = "A shield with a heraldic design."
+tradeable = false
 
 [adamant_shield_h4_2]
 id = 10675
-limit = 2
-weight = 5.896
-slot = "Shield"
-material = "metal"
-examine = "A shield with a heraldic design."
+tradeable = false
 
 [rune_shield_h4_2]
 id = 10676
-limit = 2
-weight = 5.443
-slot = "Shield"
-material = "metal"
-examine = "A shield with a heraldic design."
+tradeable = false
 
 [black_shield_h5_2]
 id = 10677
-limit = 2
-weight = 5.443
-slot = "Shield"
-material = "metal"
-examine = "A shield with a heraldic design."
+tradeable = false
 
 [adamant_shield_h5_2]
 id = 10678
-limit = 2
-weight = 5.896
-slot = "Shield"
-material = "metal"
-examine = "A shield with a heraldic design."
+tradeable = false
 
 [rune_shield_h5_2]
 id = 10679
-limit = 2
-weight = 5.443
-slot = "Shield"
-material = "metal"
-examine = "A shield with a heraldic design."
+tradeable = false
 
 [studded_body_g_2]
 id = 10680
-limit = 2
-weight = 5.443
-slot = "Chest"
-material = "leather"
-type = "Sleeveless"
-examine = "Those studs should provide a bit more protection. Nice trim too!"
+tradeable = false
 
 [studded_body_t_2]
 id = 10681
-limit = 2
-weight = 5.443
-slot = "Chest"
-material = "leather"
-type = "Sleeveless"
-examine = "Those studs should provide a bit more protection. Nice trim too!"
+tradeable = false
 
 [dhide_body_g]
 id = 10682
-slot = "Chest"
-material = "leather"
-type = "Sleeveless"
+tradeable = false
 
 [dhide_body_t]
 id = 10683
-slot = "Chest"
-material = "leather"
-type = "Sleeveless"
+tradeable = false
 
 [dhide_body_g_2]
 id = 10684
-slot = "Chest"
-material = "leather"
-type = "Sleeveless"
+tradeable = false
 
 [dhide_body_t_2]
 id = 10685
-slot = "Chest"
-material = "leather"
-type = "Sleeveless"
+tradeable = false
 
 [wizard_robe_g]
 id = 10686
-limit = 2
-slot = "Chest"
-examine = "I can do magic better in this."
+tradeable = false
 
 [wizard_robe_t]
 id = 10687
-limit = 2
-slot = "Chest"
-examine = "I can do magic better in this."
+tradeable = false
 
 [enchanted_top_2]
 id = 10688
-limit = 2
-weight = 2.721
-slot = "Chest"
-examine = "Enchanted wizard robes."
+tradeable = false
 
 [wizard_boots_2]
 id = 10689
-limit = 2
-weight = 0.453
-slot = "Feet"
-examine = "Slightly magical boots."
-kept = "Wilderness"
+tradeable = false
 
 [black_platebody_t_2]
 id = 10690
-limit = 2
-weight = 9.979
-slot = "Chest"
-material = "metal"
-examine = "Black platebody with trim."
+tradeable = false
 
 [black_platebody_g_2]
 id = 10691
-limit = 2
-weight = 9.979
-slot = "Chest"
-material = "metal"
-examine = "Black platebody with gold trim."
+tradeable = false
 
 [highwayman_mask_2]
 id = 10692
-limit = 2
-weight = 0.02
-slot = "Hat"
-examine = "Your money or your life!"
+tradeable = false
 
 [blue_beret_2]
 id = 10693
-limit = 2
-weight = 0.04
-slot = "Hat"
-examine = "Parlez-vous Francais?"
+tradeable = false
 
 [black_beret_2]
 id = 10694
-limit = 2
-weight = 0.04
-slot = "Hat"
-examine = "Parlez-vous Francais?"
+tradeable = false
 
 [white_beret_2]
 id = 10695
-limit = 2
-weight = 0.04
-slot = "Hat"
-examine = "Parlez-vous Francais?"
+tradeable = false
 
 [ranger_boots_2]
 id = 10696
-limit = 2
-weight = 0.283
-slot = "Feet"
-examine = "Lightweight boots ideal for rangers."
+tradeable = false
 
 [adam_platebody_t]
 id = 10697
-limit = 2
-slot = "Chest"
-material = "metal"
-examine = "Adamant platebody with trim."
+tradeable = false
 
 [adam_platebody_g]
 id = 10698
-limit = 2
-slot = "Chest"
-material = "metal"
-examine = "Adamant platebody with gold trim."
+tradeable = false
 
 [black_helm_h1_2]
 id = 10699
-limit = 2
-weight = 2.721
-slot = "Hat"
-material = "metal"
-type = "Hair"
-examine = "A black helmet with a heraldic design."
+tradeable = false
 
 [black_helm_h2_2]
 id = 10700
-limit = 2
-weight = 2.721
-slot = "Hat"
-material = "metal"
-type = "Hair"
-examine = "A black helmet with a heraldic design."
+tradeable = false
 
 [black_helm_h3_2]
 id = 10701
-limit = 2
-weight = 2.721
-slot = "Hat"
-material = "metal"
-type = "Hair"
-examine = "A black helmet with a heraldic design."
+tradeable = false
 
 [black_helm_h4_2]
 id = 10702
-limit = 2
-weight = 2.721
-slot = "Hat"
-material = "metal"
-type = "Hair"
-examine = "A black helmet with a heraldic design."
+tradeable = false
 
 [black_helm_h5_2]
 id = 10703
-limit = 2
-weight = 2.721
-slot = "Hat"
-material = "metal"
-type = "Hair"
-examine = "A black helmet with a heraldic design."
+tradeable = false
 
 [rune_helm_h1_2]
 id = 10704
-limit = 2
-weight = 2.721
-slot = "Hat"
-material = "metal"
-type = "Hair"
-examine = "A rune helmet with a heraldic design."
+tradeable = false
 
 [rune_helm_h2_2]
 id = 10705
-limit = 2
-weight = 2.721
-slot = "Hat"
-material = "metal"
-type = "Hair"
-examine = "A rune helmet with a heraldic design."
+tradeable = false
 
 [rune_helm_h3_2]
 id = 10706
-limit = 2
-weight = 2.721
-slot = "Hat"
-material = "metal"
-type = "Hair"
-examine = "A rune helmet with a heraldic design."
+tradeable = false
 
 [rune_helm_h4_2]
 id = 10707
-limit = 2
-weight = 2.721
-slot = "Hat"
-material = "metal"
-type = "Hair"
-examine = "A rune helmet with a heraldic design."
+tradeable = false
 
 [rune_helm_h5_2]
 id = 10708
-limit = 2
-weight = 2.721
-slot = "Hat"
-material = "metal"
-type = "Hair"
-examine = "A rune helmet with a heraldic design."
+tradeable = false
 
 [adamant_helm_h1_2]
 id = 10709
-limit = 2
-weight = 3.175
-slot = "Hat"
-material = "metal"
-type = "Hair"
-examine = "An adamant helmet with a heraldic design."
+tradeable = false
 
 [adamant_helm_h2_2]
 id = 10710
-limit = 2
-weight = 3.175
-slot = "Hat"
-material = "metal"
-type = "Hair"
-examine = "An adamant helmet with a heraldic design."
+tradeable = false
 
 [adamant_helm_h3_2]
 id = 10711
-limit = 2
-weight = 3.175
-slot = "Hat"
-material = "metal"
-type = "Hair"
-examine = "An adamant helmet with a heraldic design."
+tradeable = false
 
 [adamant_helm_h4_2]
 id = 10712
-limit = 2
-weight = 3.175
-slot = "Hat"
-material = "metal"
-type = "Hair"
-examine = "An adamant helmet with a heraldic design."
+tradeable = false
 
 [adamant_helm_h5_2]
 id = 10713
-limit = 2
-weight = 3.175
-slot = "Hat"
-material = "metal"
-type = "Hair"
-examine = "An adamant helmet with a heraldic design."
+tradeable = false
 
-[bob_shirt]
+[bob_shirt_red_2]
 id = 10714
-slot = "Chest"
-examine = "See table"
+tradeable = false
 
-[bob_shirt_2]
+[bob_shirt_blue_2]
 id = 10715
-slot = "Chest"
-examine = "See table"
+tradeable = false
 
-[bob_shirt_3]
+[bob_shirt_green_2]
 id = 10716
-slot = "Chest"
-examine = "See table"
+tradeable = false
 
-[bob_shirt_4]
+[bob_shirt_black_2]
 id = 10717
-slot = "Chest"
-examine = "See table"
+tradeable = false
 
-[bob_shirt_5]
+[bob_shirt_purple_2]
 id = 10718
-slot = "Chest"
-examine = "See table"
+tradeable = false
 
 [amulet_of_glory_t_0]
 id = 10719
-limit = 2
-weight = 0.01
-slot = "Amulet"
-examine = "A very powerful dragonstone amulet."
+tradeable = false
 
 [guthix_cape_2]
 id = 10720
 tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "A cape from the almighty god Guthix."
-kept = "Wilderness"
 
 [frog_mask_2]
 id = 10721
 tradeable = false
-weight = 0.453
-slot = "Hat"
-type = "FullFace"
-examine = "Now that's just silly."
-kept = "Wilderness"
 
 [reindeer_hat_2]
 id = 10722
 tradeable = false
-weight = 2.0
-destroy = "You got this hat from Shanty Claws; you can get another from Diango."
-examine = "A reindeer hat and a matching flashing nose."
-kept = "Wilderness"
-use = "Limited"
 
 [jack_lantern_mask_2]
 id = 10723
 tradeable = false
-weight = 0.003
-slot = "Hat"
-type = "FullFace"
-destroy = "The Jack O'Lantern head will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
-examine = "Better not light it!"
-kept = "Wilderness"
-use = "Limited"
 
 [skeleton_boots_2]
 id = 10724
 tradeable = false
-weight = 2.267
-slot = "Feet"
-destroy = "The boots will be destroyed if you put them here, and you will have to get another from Diango when they are gone."
-examine = "Skeleton feet."
-kept = "Wilderness"
-use = "Limited"
 
 [skeleton_gloves_2]
 id = 10725
 tradeable = false
-weight = 2.267
-slot = "Hands"
-destroy = "The gloves will be destroyed if you put them here, and you will have to get another from Diango when they are gone."
-examine = "Some skeletal gloves."
-kept = "Wilderness"
-use = "Limited"
 
 [skeleton_leggings_2]
 id = 10726
 tradeable = false
-weight = 2.267
-slot = "Legs"
-destroy = "The legs will be destroyed if you put them here, and you will have to get another from Diango when they are gone."
-examine = "Does my pelvis look big in this?"
-kept = "Wilderness"
-use = "Limited"
 
 [skeleton_shirt_2]
 id = 10727
 tradeable = false
-weight = 2.267
-slot = "Chest"
-destroy = "The body will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
-examine = "The shirt of a full body skeleton costume."
-kept = "Wilderness"
-use = "Limited"
 
 [skeleton_mask_2]
 id = 10728
 tradeable = false
-weight = 2.267
-slot = "Hat"
-type = "Hair"
-destroy = "The mask will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
-examine = "A scary skeleton mask."
-kept = "Wilderness"
-use = "Limited"
 
 [easter_ring_2]
-clone = "easter_ring"
 id = 10729
 
 [blue_marionette_2]
-clone = "blue_marionette"
 id = 10730
 
 [zombie_head_2]
 id = 10731
 tradeable = false
-weight = 2.721
-examine = "Alas...I hardly knew him."
-kept = "Wilderness"
-use = "Limited"
 
 [rubber_chicken_2]
 id = 10732
 tradeable = false
-weight = 0.453
-slot = "Weapon"
-examine = "Perhaps not the most powerful weapon in Gielinor."
-kept = "Wilderness"
-use = "Limited"
 
 [yo_yo_2]
-clone = "yo_yo"
 id = 10733
 
 [bunny_ears_2]
 id = 10734
 tradeable = false
-weight = 0.226
-slot = "Hat"
-examine = "A rabbit-like adornment."
-kept = "Wilderness"
-use = "Limited"
 
 [scythe_2]
 id = 10735
 tradeable = false
-weight = 3.175
-slot = "Weapon"
-type = "TwoHanded"
-examine = "It's a Scythe."
-kept = "Reclaim"
-use = "Limited"
 
 [strength_amulet_t_2]
 id = 10736
-limit = 2
-weight = 0.01
-slot = "Amulet"
-examine = "An enchanted ruby amulet."
+tradeable = false
 
 [picture_83]
 id = 10737
 
 [amulet_of_magic_t_2]
 id = 10738
-limit = 2
-weight = 0.01
-slot = "Amulet"
-examine = "An enchanted sapphire amulet of magic."
+tradeable = false
 
 [picture_84]
 id = 10739
@@ -1702,31 +1148,21 @@ id = 10741
 
 [flared_trousers_2]
 id = 10742
-limit = 2
-weight = 1.0
-slot = "Legs"
-examine = "These'll help me stay alive."
+tradeable = false
 
 [picture_86]
 id = 10743
 
 [pantaloons_2]
 id = 10744
-limit = 2
-weight = 1.0
-slot = "Legs"
-examine = "Alas, someone has slashed my pantaloons."
+tradeable = false
 
 [picture_87]
 id = 10745
 
 [sleeping_cap_2]
 id = 10746
-limit = 2
-weight = 0.4
-slot = "Hat"
-type = "Hair"
-examine = "A cap for wearing whil...zzzzzzzzz"
+tradeable = false
 
 [picture_88]
 id = 10747
@@ -1736,122 +1172,91 @@ id = 10749
 
 [elegant_shirt_2]
 id = 10750
-slot = "Chest"
-examine = "A well made elegant mans' blue shirt."
+tradeable = false
 
 [picture_90]
 id = 10751
 
 [elegant_shirt_3]
 id = 10752
-slot = "Chest"
-examine = "A well made elegant mans' green shirt."
+tradeable = false
 
 [picture_91]
 id = 10753
 
 [elegant_shirt_4]
 id = 10754
-slot = "Chest"
-examine = "A well made elegant mans' black shirt."
+tradeable = false
 
 [picture_92]
 id = 10755
 
 [elegant_shirt_5]
 id = 10756
-slot = "Chest"
-examine = "A well made elegant mans' black shirt."
+tradeable = false
 
 [picture_93]
 id = 10757
 
 [red_boater_2]
 id = 10758
-limit = 2
-weight = 0.01
-slot = "Hat"
-examine = "Stylish!"
+tradeable = false
 
 [picture_94]
 id = 10759
 
 [orange_boater_2]
 id = 10760
-limit = 2
-weight = 0.01
-slot = "Hat"
-examine = "Stylish!"
+tradeable = false
 
 [picture_95]
 id = 10761
 
 [green_boater_2]
 id = 10762
-limit = 2
-weight = 0.01
-slot = "Hat"
-examine = "Stylish!"
+tradeable = false
 
 [picture_96]
 id = 10763
 
 [blue_boater_2]
 id = 10764
-limit = 2
-weight = 0.01
-slot = "Hat"
-examine = "Stylish!"
+tradeable = false
 
 [picture_97]
 id = 10765
 
 [black_boater_2]
 id = 10766
-limit = 2
-weight = 0.01
-slot = "Hat"
-examine = "Stylish!"
+tradeable = false
 
 [picture_98]
 id = 10767
 
 [red_headband_2]
 id = 10768
-limit = 2
-weight = 0.04
-slot = "Hat"
-examine = "A minimalist's hat."
+tradeable = false
 
 [picture_99]
 id = 10769
 
 [black_headband_2]
 id = 10770
-limit = 2
-weight = 0.04
-slot = "Hat"
-examine = "A minimalist's hat."
+tradeable = false
 
 [picture_100]
 id = 10771
 
 [brown_headband_2]
 id = 10772
-limit = 2
-weight = 0.04
-slot = "Hat"
-examine = "A minimalist's hat."
+tradeable = false
 
 [picture_101]
 id = 10773
 
 [pirates_hat_2]
 id = 10774
-limit = 2
-weight = 0.001
-slot = "Hat"
-examine = "Shiver me timbers!"
+tradeable = false
 
 [picture_102]
 id = 10775
@@ -1870,30 +1275,21 @@ id = 10783
 
 [saradomin_robe_top_2]
 id = 10784
-limit = 2
-weight = 1.8
-slot = "Chest"
-examine = "Blessed vestments of Saradomin."
+tradeable = false
 
 [picture_107]
 id = 10785
 
 [zamorak_robe_top_3]
 id = 10786
-limit = 2
-weight = 1.8
-slot = "Chest"
-examine = "Blessed vestments of Zamorak."
+tradeable = false
 
 [picture_108]
 id = 10787
 
 [guthix_robe_top_2]
 id = 10788
-limit = 2
-weight = 1.8
-slot = "Chest"
-examine = "Blessed vestments of Guthix."
+tradeable = false
 
 [picture_109]
 id = 10789
@@ -1909,116 +1305,48 @@ id = 10795
 
 [robin_hood_hat_2]
 id = 10796
-limit = 2
-weight = 0.283
-slot = "Hat"
-examine = "Endorsed by Robin Hood."
+tradeable = false
 
 [picture_113]
 id = 10797
 
 [rune_platebody_g_2]
 id = 10798
-limit = 2
-weight = 9.979
-slot = "Chest"
-material = "metal"
-examine = "Rune platebody with gold trim."
+tradeable = false
 
 [picture_114]
 id = 10799
 
 [rune_platebody_t_2]
 id = 10800
-limit = 2
-weight = 9.979
-slot = "Chest"
-material = "metal"
-examine = "Rune platebody with trim."
+tradeable = false
 
 [picture_115]
 id = 10801
 
 [tan_cavalier_2]
 id = 10802
-limit = 2
-weight = 0.08
-slot = "Hat"
-examine = "All for one, and one for all!"
+tradeable = false
 
 [picture_116]
 id = 10803
 
 [dark_cavalier_2]
 id = 10804
-limit = 2
-weight = 0.001
-slot = "Hat"
-examine = "All for one, and one for all!"
+tradeable = false
 
 [picture_117]
 id = 10805
 
 [black_cavalier_2]
 id = 10806
-limit = 2
-weight = 0.08
-slot = "Hat"
-examine = "All for one, and one for all!"
+tradeable = false
 
 [picture_118]
 id = 10807
 
 [picture_119]
 id = 11000
-
-[bomber_jacket_2]
-id = 11135
-tradeable = false
-weight = 0.001
-slot = "Chest"
-destroy = "You'll have to visit Auguste on Entrana to get a new jacket."
-examine = "For all your flying needs."
-kept = "Vanish"
-
-[phoenix_crossbow_2]
-id = 11165
-tradeable = false
-weight = 3.628
-slot = "Weapon"
-destroy = "You can get another from the Phoenix Gang's weapon stash."
-examine = "Second-rate crossbow; former property of the Phoenix Gang."
-kept = "Wilderness"
-
-[phoenix_crossbow_noted_2]
-id = 11166
-
-[phoenix_crossbow_3]
-id = 11167
-tradeable = false
-weight = 3.628
-slot = "Weapon"
-destroy = "You can get another from the Phoenix Gang's weapon stash."
-examine = "Second-rate crossbow; former property of the Phoenix Gang."
-kept = "Wilderness"
-
-[phoenix_crossbow_noted_3]
-id = 11168
-
-[newspaper]
-id = 11169
-aka = ["varrock_herald"]
-examine = "A collection of written news on paper!"
-
-[newspaper_noted]
-id = 11170
-
-[newspaper_2]
-clone = "newspaper"
-id = 11171
-
-[newspaper_noted_2]
-id = 11172
 
 [picture_120]
 id = 11267
@@ -2040,21 +1368,13 @@ id = 11272
 
 [ham_shirt_2]
 id = 11274
-limit = 100
-slot = "Chest"
-examine = "The label says 'Vivid Crimson', but it looks like pink to me!"
+tradeable = false
 
 [mith_grapple_noted]
 id = 11275
 
 [mith_grapple_noted_2]
 id = 11276
-
-[wimpy_feather]
-id = 11525
-price = 200
-limit = 5000
-examine = "More fluff than feather."
 
 [picture_124]
 id = 11740
@@ -2092,318 +1412,155 @@ id = 12544
 [picture_noted_59]
 id = 12545
 
-[patrick]
-id = 12554
-
-[penelope]
-id = 12555
-
-[peter]
-id = 12556
-
-[peanut]
-id = 12557
-
 [picture_129]
 id = 12607
 tradeable = false
-weight = 0.453
-slot = "Shield"
-examine = "A picture of a lady called Elena."
-use = "Quest"
-kept = "Wilderness"
 
 [black_cane_2]
 id = 13163
-limit = 2
-weight = 0.5
-slot = "Weapon"
-examine = "A sapphire-topped cane."
+tradeable = false
 
 [adamant_cane_2]
 id = 13164
-limit = 2
-weight = 0.5
-slot = "Weapon"
-examine = "A ruby-topped cane."
+tradeable = false
 
 [rune_cane_2]
 id = 13165
-limit = 2
-weight = 0.5
-slot = "Weapon"
-examine = "A diamond-topped cane."
+tradeable = false
 
 [top_hat_2]
 id = 13166
-limit = 2
-weight = 1.0
-slot = "Hat"
-examine = "Comes with a free rabbit!"
+tradeable = false
 
 [pith_helmet_2]
 id = 13167
-limit = 2
-weight = 0.5
-slot = "Hat"
-examine = "Official explorer headgear."
+tradeable = false
 
 [spiked_helmet_2]
 id = 13168
-limit = 2
-weight = 2.267
-slot = "Hat"
-material = "metal"
-type = "Hair"
-examine = "Spikier than normal."
+tradeable = false
 
 [sheep_mask_2]
 id = 13169
-limit = 2
-weight = 1.0
-slot = "Hat"
-type = "Hair"
-examine = "Shear elegance."
+tradeable = false
 
 [penguin_mask_2]
 id = 13170
-limit = 2
-weight = 1.0
-slot = "Hat"
-type = "Hair"
-examine = "I can get the look right, but can I do the waddle too?"
+tradeable = false
 
 [bat_mask_2]
 id = 13171
-limit = 2
-weight = 1.0
-slot = "Hat"
-type = "Hair"
-examine = "The bats have left the belltower."
+tradeable = false
 
 [cat_mask_2]
 id = 13172
-limit = 2
-weight = 1.0
-slot = "Hat"
-type = "Hair"
-examine = "It's the year of the cat!"
+tradeable = false
 
 [wolf_mask_2]
 id = 13173
-limit = 2
-weight = 1.0
-slot = "Hat"
-type = "Hair"
-examine = "I'm hungry like the wolf."
+tradeable = false
 
 [blue_navy_slacks_2]
 id = 13174
 tradeable = false
-weight = 0.003
-slot = "Legs"
-examine = "Not for slackers."
-kept = "Reclaim"
 
 [green_navy_slacks_2]
 id = 13175
 tradeable = false
-weight = 0.003
-slot = "Legs"
-examine = "Not for slackers."
-kept = "Reclaim"
 
 [red_navy_slacks_2]
 id = 13176
 tradeable = false
-weight = 0.003
-slot = "Legs"
-examine = "Not for slackers."
-kept = "Reclaim"
 
 [brown_navy_slacks_2]
 id = 13177
 tradeable = false
-weight = 0.003
-slot = "Legs"
-examine = "Not for slackers."
-kept = "Reclaim"
 
 [black_navy_slacks_2]
 id = 13178
 tradeable = false
-weight = 0.003
-slot = "Legs"
-examine = "Not for slackers."
-kept = "Reclaim"
 
 [purple_navy_slacks_2]
 id = 13179
 tradeable = false
-weight = 0.003
-slot = "Legs"
-examine = "Not for slackers."
-kept = "Reclaim"
 
 [grey_navy_slacks_2]
 id = 13180
 tradeable = false
-weight = 0.003
-slot = "Legs"
-examine = "Not for slackers."
-kept = "Reclaim"
 
 [blue_naval_shirt_2]
 id = 13181
 tradeable = false
-weight = 0.003
-slot = "Chest"
-examine = "...You can sail the seven seas..."
-kept = "Reclaim"
 
 [green_naval_shirt_2]
 id = 13182
 tradeable = false
-weight = 0.003
-slot = "Chest"
-examine = "...You can sail the seven seas..."
-kept = "Reclaim"
 
 [red_naval_shirt_2]
 id = 13183
 tradeable = false
-weight = 0.003
-slot = "Chest"
-examine = "...You can sail the seven seas..."
-kept = "Reclaim"
 
 [brown_naval_shirt_2]
 id = 13184
 tradeable = false
-weight = 0.003
-slot = "Chest"
-examine = "...You can sail the seven seas..."
-kept = "Reclaim"
 
 [black_naval_shirt_2]
 id = 13185
 tradeable = false
-weight = 0.003
-slot = "Chest"
-examine = "...You can sail the seven seas..."
-kept = "Reclaim"
 
 [purple_naval_shirt_2]
 id = 13186
 tradeable = false
-weight = 0.003
-slot = "Chest"
-examine = "...You can sail the seven seas..."
-kept = "Reclaim"
 
 [grey_naval_shirt_2]
 id = 13187
 tradeable = false
-weight = 0.003
-slot = "Chest"
-examine = "...You can sail the seven seas..."
-kept = "Reclaim"
 
 [blue_tricorn_hat_2]
 id = 13188
 tradeable = false
-weight = 0.003
-slot = "Hat"
-examine = "I could never look square in this."
-kept = "Reclaim"
 
 [green_tricorn_hat_2]
 id = 13189
 tradeable = false
-weight = 0.003
-slot = "Hat"
-examine = "I could never look square in this."
-kept = "Reclaim"
 
 [red_tricorn_hat_2]
 id = 13190
 tradeable = false
-weight = 0.003
-slot = "Hat"
-examine = "I could never look square in this."
-kept = "Reclaim"
 
 [brown_tricorn_hat_2]
 id = 13191
 tradeable = false
-weight = 0.003
-slot = "Hat"
-examine = "I could never look square in this."
-kept = "Reclaim"
 
 [black_tricorn_hat_2]
 id = 13192
 tradeable = false
-weight = 0.003
-slot = "Hat"
-examine = "I could never look square in this."
-kept = "Reclaim"
 
 [purple_tricorn_hat_2]
 id = 13193
 tradeable = false
-weight = 0.003
-slot = "Hat"
-examine = "I could never look square in this."
-kept = "Reclaim"
 
 [grey_tricorn_hat_2]
 id = 13194
 tradeable = false
-weight = 0.003
-slot = "Hat"
-examine = "I could never look square in this."
-kept = "Reclaim"
 
 [chisel_3]
 id = 13239
-limit = 100
-weight = 0.453
-examine = "Good for detailed crafting."
-kept = "Wilderness"
+tradeable = false
 
 [witch_top_2]
 id = 14086
 tradeable = false
-weight = 0.907
-slot = "Chest"
-destroy = "You can get another witch top from Diango in Draynor."
-examine = "The height of witchly fashion."
-kept = "Vanish"
-use = "Limited"
 
 [witch_skirt_2]
 id = 14087
 tradeable = false
-weight = 0.907
-slot = "Legs"
-destroy = "You can get another witch skirt from Diango in Draynor."
-examine = "Tattered but trendy."
-kept = "Vanish"
-use = "Limited"
 
 [witch_cloak_2]
 id = 14088
 tradeable = false
-weight = 0.907
-slot = "Cape"
-destroy = "You can get another witch cloak from Diango in Draynor."
-examine = "Ragged but rugged."
-kept = "Vanish"
-use = "Limited"
 
 [pouch_68]
-clone = "pouch_2"
 id = 14620
 
 [pouch_noted_65]
@@ -2417,57 +1574,31 @@ id = 14712
 
 [elite_black_platelegs_2]
 id = 14729
-limit = 10
-weight = 9.071
-slot = "Legs"
-material = "metal"
-examine = "These look pretty heavy, but very elite."
+tradeable = false
 
 [elite_black_platebody_2]
 id = 14730
-limit = 10
-weight = 9.979
-slot = "Chest"
-material = "metal"
-examine = "Provides excellent protection, and is elite."
+tradeable = false
 
 [elite_black_full_helm_2]
 id = 14731
-limit = 10
-weight = 2.721
-slot = "Hat"
-material = "metal"
-type = "FullFace"
-examine = "A full face helmet, and elite."
+tradeable = false
 
 [dagonhai_robe_top_2]
 id = 14732
-limit = 10
-weight = 0.907
-slot = "Chest"
-examine = "A robe worn by members of the Dagon'hai."
+tradeable = false
 
 [dagonhai_hat_2]
 id = 14733
-limit = 10
-weight = 0.25
-slot = "Hat"
-examine = "A hat worn by members of the Dagon'hai."
+tradeable = false
 
 [dagonhai_robe_bottom_2]
 id = 14734
-limit = 10
-weight = 0.907
-slot = "Legs"
-examine = "A robe worn by members of the Dagon'hai."
+tradeable = false
 
 [iron_hatchet_2]
 id = 15298
-limit = 1000
-weight = 1.36
-slot = "Weapon"
-examine = "A woodcutter's hatchet."
-kept = "Wilderness"
+tradeable = false
 
 [iron_hatchet_noted_2]
 id = 15299
@@ -2475,38 +1606,18 @@ id = 15299
 [serjeant_cap_2]
 id = 15336
 tradeable = false
-weight = 0.5
-slot = "Hat"
-destroy = "You'll have to buy another using Thaler."
-examine = "A cap displaying a low rank."
-kept = "Wilderness"
 
 [commander_cap_2]
 id = 15337
 tradeable = false
-weight = 0.5
-slot = "Hat"
-destroy = "You'll have to buy another using Thaler."
-examine = "A cap displaying a middle rank."
-kept = "Wilderness"
 
 [war_chief_cap_2]
 id = 15338
 tradeable = false
-weight = 0.5
-slot = "Hat"
-destroy = "You'll have to buy another using Thaler."
-examine = "A cap displaying a fairly high rank."
-kept = "Wilderness"
 
 [lord_marshal_cap_2]
 id = 15339
 tradeable = false
-weight = 0.5
-slot = "Hat"
-destroy = "You'll have to buy another using Thaler."
-examine = "A cap displaying a high rank."
-kept = "Wilderness"
 
 [picture_130]
 id = 15376

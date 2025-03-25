@@ -1,3 +1,21 @@
+[wimpy_feather]
+id = 11525
+price = 200
+limit = 5000
+examine = "More fluff than feather."
+
+[patrick]
+id = 12554
+
+[penelope]
+id = 12555
+
+[peter]
+id = 12556
+
+[peanut]
+id = 12557
+
 [mud]
 id = 12558
 tradeable = false

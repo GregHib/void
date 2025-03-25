@@ -29,7 +29,7 @@ id = 6888
 tradeable = false
 weight = 5.0
 examine = "The statue looks like he can be moved."
-kept = "Always"
+kept = "Vanish"
 
 [mages_book]
 id = 6889

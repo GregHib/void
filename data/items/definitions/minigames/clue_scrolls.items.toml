@@ -530,7 +530,7 @@ id = 2827
 clone = "casket_easy"
 id = 2828
 
-[clue_scroll_medium_15]
+[clue_scroll_medium_15] # Unobtainable
 clone = "clue_scroll_easy"
 id = 2829
 
@@ -872,8 +872,7 @@ id = 3548
 clone = "casket_easy"
 id = 3549
 
-[clue_scroll_hard_48]
-clone = "clue_scroll_hard_3"
+[clue_scroll_hard_pollnivneach_west] # Unobtainable
 id = 3550
 
 [casket_hard_36]
@@ -1096,9 +1095,15 @@ id = 3604
 clone = "clue_scroll_easy"
 id = 3605
 
+[key_6]
+id = 3606
+
 [clue_scroll_medium_47]
 clone = "clue_scroll_easy_2"
 id = 3607
+
+[key_7]
+id = 3608
 
 [clue_scroll_medium_48]
 clone = "clue_scroll_hard_3"
@@ -1384,9 +1389,15 @@ id = 7295
 clone = "clue_scroll_hard_4"
 id = 7296
 
+[key_8]
+id = 7297
+
 [clue_scroll_medium_70]
 clone = "clue_scroll_easy"
 id = 7298
+
+[key_9]
+id = 7299
 
 [clue_scroll_medium_71]
 clone = "clue_scroll_easy"
@@ -1395,6 +1406,9 @@ id = 7300
 [clue_scroll_medium_72]
 clone = "clue_scroll_easy_2"
 id = 7301
+
+[key_10]
+id = 7302
 
 [clue_scroll_medium_73]
 clone = "clue_scroll_hard_3"
