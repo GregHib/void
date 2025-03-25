@@ -1416,6 +1416,461 @@ id = 12290
 clone = "dreadfowl_pouch_u"
 id = 12291
 
+[blank_pouch_u]
+clone = "unknown_pouch_u"
+id = 12292
+
+[dreadfowl_strike_scroll_u]
+clone = "unknown_pouch_u"
+id = 12293
+
+[dreadfowl_strike_scroll_u_noted]
+id = 12294
+
+[spike_shot_scroll_u]
+clone = "unknown_pouch_u"
+id = 12295
+
+[spike_shot_scroll_u_noted]
+id = 12296
+
+[abyssal_stealth_scroll_u]
+clone = "unknown_pouch_u"
+id = 12297
+
+[abyssal_stealth_scroll_u_noted]
+id = 12298
+
+[abyssal_drain_scroll_u]
+clone = "unknown_pouch_u"
+id = 12299
+
+[abyssal_drain_scroll_u_noted]
+id = 12300
+
+[unburden_scroll_u]
+clone = "unknown_pouch_u"
+id = 12301
+
+[unburden_scroll_u_noted]
+id = 12302
+
+[multichop_scroll_u]
+clone = "unknown_pouch_u"
+id = 12303
+
+[multichop_scroll_u_noted]
+id = 12304
+
+[blood_drain_scroll_icon_2]
+clone = "unknown_pouch_u"
+id = 12305
+
+[blood_drain_scroll_icon_2_noted]
+id = 12306
+
+[unknown_scroll_u]
+clone = "unknown_pouch_u"
+id = 12307
+
+[unknown_scroll_u_noted]
+id = 12308
+
+[swallow_whole_scroll_u]
+clone = "unknown_pouch_u"
+id = 12309
+
+[swallow_whole_scroll_u_noted]
+id = 12310
+
+[petrifying_gaze_scroll_u]
+clone = "unknown_pouch_u"
+id = 12311
+
+[petrifying_gaze_scroll_u_noted]
+id = 12312
+
+[generate_compost_scroll_u]
+clone = "unknown_pouch_u"
+id = 12313
+
+[generate_compost_scroll_u_noted]
+id = 12314
+
+[spike_shot_scroll_u]
+clone = "unknown_pouch_u"
+id = 12315
+
+[spike_shot_scroll_u_noted]
+id = 12316
+
+[dust_cloud_scroll_u]
+clone = "unknown_pouch_u"
+id = 12317
+
+[dust_cloud_scroll_u_noted]
+id = 12318
+
+[fruitfall_scroll_u]
+clone = "unknown_pouch_u"
+id = 12319
+
+[fruitfall_scroll_u_noted]
+id = 12320
+
+[insane_ferocity_scroll_u]
+clone = "unknown_pouch_u"
+id = 12321
+
+[insane_ferocity_scroll_u_noted]
+id = 12322
+
+[regrowth_scroll_u]
+clone = "unknown_pouch_u"
+id = 12323
+
+[regrowth_scroll_u_noted]
+id = 12324
+
+[dissolve_scroll_u]
+clone = "unknown_pouch_u"
+id = 12325
+
+[dissolve_scroll_u_noted]
+id = 12326
+
+[sandstorm_scroll_u]
+clone = "unknown_pouch_u"
+id = 12327
+
+[sandstorm_scroll_u_noted]
+id = 12328
+
+[doomsphere_scroll_u]
+clone = "unknown_pouch_u"
+id = 12329
+
+[doomsphere_scroll_u_noted]
+id = 12330
+
+[crushing_claw_scroll_u]
+clone = "unknown_pouch_u"
+id = 12331
+
+[crushing_claw_scroll_u_noted]
+id = 12332
+
+[famine_scroll_u]
+clone = "unknown_pouch_u"
+id = 12333
+
+[famine_scroll_u_noted]
+id = 12334
+
+[herbcall_scroll_u]
+clone = "unknown_pouch_u"
+id = 12335
+
+[herbcall_scroll_u_noted]
+id = 12336
+
+[thieving_fingers_scroll_u]
+clone = "unknown_pouch_u"
+id = 12337
+
+[thieving_fingers_scroll_u_noted]
+id = 12338
+
+[mantis_strike_scroll_u]
+clone = "unknown_pouch_u"
+id = 12339
+
+[mantis_strike_scroll_u_noted]
+id = 12340
+
+[bull_rush_scroll_u]
+clone = "unknown_pouch_u"
+id = 12341
+
+[bull_rush_scroll_u_noted]
+id = 12342
+
+[deadly_claw_scroll_u]
+clone = "unknown_pouch_u"
+id = 12343
+
+[deadly_claw_scroll_u_noted]
+id = 12344
+
+[tireless_run_scroll_u]
+clone = "unknown_pouch_u"
+id = 12345
+
+[tireless_run_scroll_u_noted]
+id = 12346
+
+[blood_drain_scroll_u]
+clone = "unknown_pouch_u"
+id = 12347
+
+[blood_drain_scroll_u_noted]
+id = 12348
+
+[arctic_blast_scroll_u]
+clone = "unknown_pouch_u"
+id = 12349
+
+[arctic_blast_scroll_u_noted]
+id = 12350
+
+[cheese_feast_scroll_u]
+clone = "unknown_pouch_u"
+id = 12351
+
+[cheese_feast_scroll_u_noted]
+id = 12352
+
+[egg_spawn_scroll_u]
+clone = "unknown_pouch_u"
+id = 12353
+
+[egg_spawn_scroll_u_noted]
+id = 12354
+
+[stony_shell_scroll_u]
+clone = "unknown_pouch_u"
+id = 12355
+
+[stony_shell_scroll_u_noted]
+id = 12356
+
+[venom_shot_scroll_u]
+clone = "unknown_pouch_u"
+id = 12357
+
+[venom_shot_scroll_u_noted]
+id = 12358
+
+[slime_spray_scroll_u]
+clone = "unknown_pouch_u"
+id = 12359
+
+[slime_spray_scroll_u_noted]
+id = 12360
+
+[ophidian_incubation_scroll_u]
+clone = "unknown_pouch_u"
+id = 12361
+
+[ophidian_incubation_scroll_u_noted]
+id = 12362
+
+[fish_rain_scroll_u]
+clone = "unknown_pouch_u"
+id = 12363
+
+[fish_rain_scroll_u_noted]
+id = 12364
+
+[poisonous_blast_scroll_u]
+clone = "unknown_pouch_u"
+id = 12365
+
+[poisonous_blast_scroll_u_noted]
+id = 12366
+
+[toad_bark_scroll_u]
+clone = "unknown_pouch_u"
+id = 12367
+
+[toad_bark_scroll_u_noted]
+id = 12368
+
+[testudo_scroll_u]
+clone = "unknown_pouch_u"
+id = 12369
+
+[testudo_scroll_u_noted]
+id = 12370
+
+[evil_flames_scroll_u]
+clone = "unknown_pouch_u"
+id = 12371
+
+[evil_flames_scroll_u_noted]
+id = 12372
+
+[healing_aura_scroll_u]
+clone = "unknown_pouch_u"
+id = 12373
+
+[healing_aura_scroll_u_noted]
+id = 12374
+
+[vampyre_touch_scroll_u]
+clone = "unknown_pouch_u"
+id = 12375
+
+[vampyre_touch_scroll_u_noted]
+id = 12376
+
+[howl_scroll_u]
+clone = "unknown_pouch_u"
+id = 12377
+
+[howl_scroll_u_noted]
+id = 12378
+
+[magic_focus_scroll_u]
+clone = "unknown_pouch_u"
+id = 12379
+
+[magic_focus_scroll_u_noted]
+id = 12380
+
+[electric_lash_scroll_u]
+clone = "unknown_pouch_u"
+id = 12381
+
+[electric_lash_scroll_u_noted]
+id = 12382
+
+[winter_storage_scroll_u]
+clone = "unknown_pouch_u"
+id = 12383
+
+[winter_storage_scroll_u_noted]
+id = 12384
+
+[acorn_missile_scroll_u]
+clone = "unknown_pouch_u"
+id = 12385
+
+[acorn_missile_scroll_u_noted]
+id = 12386
+
+[swamp_plague_scroll_u]
+clone = "unknown_pouch_u"
+id = 12387
+
+[swamp_plague_scroll_u_noted]
+id = 12388
+
+[titans_constitution_scroll_u]
+clone = "unknown_pouch_u"
+id = 12389
+
+[titans_constitution_scroll_u_noted]
+id = 12390
+
+[ambush_scroll_u]
+clone = "unknown_pouch_u"
+id = 12391
+
+[ambush_scroll_u_noted]
+id = 12392
+
+[goad_scroll_u]
+clone = "unknown_pouch_u"
+id = 12393
+
+[goad_scroll_u_noted]
+id = 12394
+
+[explode_scroll_u]
+clone = "unknown_pouch_u"
+id = 12395
+
+[explode_scroll_u_noted]
+id = 12396
+
+[ebon_thunder_scroll_u]
+clone = "unknown_pouch_u"
+id = 12397
+
+[ebon_thunder_scroll_u_noted]
+id = 12398
+
+[steel_of_legends_scroll_u]
+clone = "unknown_pouch_u"
+id = 12399
+
+[steel_of_legends_scroll_u_noted]
+id = 12400
+
+[volcanic_strength_scroll_u]
+clone = "unknown_pouch_u"
+id = 12401
+
+[volcanic_strength_scroll_u_noted]
+id = 12402
+
+[essence_shipment_scroll_u]
+clone = "unknown_pouch_u"
+id = 12403
+
+[essence_shipment_scroll_u_noted]
+id = 12404
+
+[boil_scroll_u]
+clone = "unknown_pouch_u"
+id = 12405
+
+[boil_scroll_u_noted]
+id = 12406
+
+[call_to_arms_scroll_u]
+clone = "unknown_pouch_u"
+id = 12407
+
+[call_to_arms_scroll_u_noted]
+id = 12408
+
+[pester_scroll_u]
+clone = "unknown_pouch_u"
+id = 12409
+
+[pester_scroll_u_noted]
+id = 12410
+
+[immense_heat_scroll_u]
+clone = "unknown_pouch_u"
+id = 12411
+
+[immense_heat_scroll_u_noted]
+id = 12412
+
+[iron_within_scroll_u]
+clone = "unknown_pouch_u"
+id = 12413
+
+[iron_within_scroll_u_noted]
+id = 12414
+
+[fireball_assault_scroll_u]
+clone = "unknown_pouch_u"
+id = 12415
+
+[fireball_assault_scroll_u_noted]
+id = 12416
+
+[inferno_scroll_u]
+clone = "unknown_pouch_u"
+id = 12417
+
+[inferno_scroll_u_noted]
+id = 12418
+
+[rending_scroll_u]
+clone = "unknown_pouch_u"
+id = 12419
+
+[rending_scroll_u_noted]
+id = 12420
+
+[blank_scroll_u]
+id = 12421
+
 [herbcall_scroll]
 id = 12422
 price = 97
@@ -3451,6 +3906,12 @@ id = 12841
 price = 166
 limit = 5000
 examine = "A scroll for a forge regent familiar."
+
+[rise_from_the_ashes_scroll_u]
+id = 14620
+
+[rise_from_the_ashes_scroll_u_noted]
+id = 14621
 
 [rise_from_the_ashes_scroll]
 id = 14622
