@@ -46,6 +46,10 @@ fun swing(player: Player, obj: GameObject, delay: Int) {
         }
         player.ammo = ""
         val ammo = player.equipped(EquipSlot.Ammo)
+        if (ammo.id != "training_arrows") {
+            player.message("You can't use that ammo with your bow.")
+            return@weakQueue
+        }
         if (ammo.amount < 1) {
             player.message("There is no ammo left in your quiver.")
             return@weakQueue
