@@ -12,10 +12,6 @@ weight = 0.453
 examine = "A wig that has been dyed slightly blonde."
 kept = "Wilderness"
 
-[picture_16]
-clone = "picture_6"
-id = 2420
-
 [wig_grey]
 id = 2421
 tradeable = false

@@ -14,10 +14,6 @@ examine = "A bizarre fungus.  It glows with a pale blue light."
 use = "Quest"
 kept = "Vanish"
 
-[picture_46]
-clone = "picture_6"
-id = 4076
-
 [crystal_mine_key]
 id = 4077
 tradeable = false

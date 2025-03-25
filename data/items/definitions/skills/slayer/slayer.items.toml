@@ -161,10 +161,6 @@ id = 4174
 clone = "broad_arrows_2"
 id = 4175
 
-[picture_47]
-clone = "picture_6"
-id = 4177
-
 [spiny_helmet]
 id = 4551
 price = 895

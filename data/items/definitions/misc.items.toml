@@ -1,27 +1,3 @@
-[picture_6]
-id = 547
-
-[picture_7]
-id = 549
-
-[picture_8]
-id = 599
-
-[picture_10]
-id = 713
-
-[picture_11]
-id = 762
-
-[picture_12]
-id = 764
-
-[picture_13]
-id = 766
-
-[picture_14]
-id = 770
-
 [poisoned_dart_p] # Unreleased
 id = 818
 examine = "A deadly throwing dart with a poisoned tip."
@@ -75,9 +51,6 @@ id = 1461
 [weapon_poison_ranging_guild] # Unobtainable
 id = 1465
 examine = "For use on daggers and projectiles. "
-
-[picture_15]
-id = 1589
 
 [unfinished_cocktail_pineapple_punch_mixed]
 id = 2042
@@ -161,35 +134,11 @@ id = 2090
 id = 2154
 use = "Removed"
 
-[picture_2]
-id = 2094
-
-[picture_2_noted]
-id = 2095
-
 [odd_batta]
 id = 2245
 weight = 0.25
 examine = "This batta doesn't look very appetising."
 use = "Removed"
-
-[picture_3]
-id = 2096
-
-[picture_3_noted]
-id = 2097
-
-[picture_4]
-id = 2098
-
-[picture_4_noted]
-id = 2099
-
-[picture_5]
-id = 2100
-
-[picture_5_noted]
-id = 2101
 
 [equa_toads_legs_noted]
 id = 2155
@@ -306,158 +255,11 @@ id = 2276
 [unfinished_batta_vegetable_noted]
 id = 2280
 
-[picture_17]
-id = 2425
-
-[picture_18]
-id = 2480
-
-[picture_19]
-id = 2512
-
-[picture_20]
-id = 2965
-
-[picture_21]
-id = 3108
-
 [left_handed_banana_noted]
 id = 3178
 
-[picture_22]
-id = 3231
-
-[picture_22_noted]
-id = 3232
-
-[picture_23]
-id = 3233
-
-[picture_23_noted]
-id = 3234
-
-[picture_24]
-id = 3235
-
-[picture_24_noted]
-id = 3236
-
-[picture_25]
-id = 3237
-
-[picture_25_noted]
-id = 3238
-
-[picture_26]
-id = 3667
-
-[picture_27]
-id = 3679
-
-[picture_28]
-id = 3680
-
-[picture_29]
-id = 3681
-
-[picture_30]
-id = 3682
-
-[picture_31]
-id = 3683
-
-[picture_32]
-id = 3684
-
-[picture_33]
-id = 3685
-
-[picture_34]
-id = 3715
-
-[picture_35]
-id = 3716
-
-[picture_36]
-id = 3900
-
-[picture_37]
-id = 3902
-
-[picture_38]
-id = 3903
-
-[pink_skirt_null_1]
-id = 3941
-
-[pink_skirt_null_2]
-id = 3943
-
-[pink_skirt_null_3]
-id = 3945
-
-[pink_skirt_null_4]
-id = 3947
-
-[pink_skirt_null_5]
-id = 3949
-
-[pink_skirt_null_6]
-id = 3951
-
-[picture_39]
-id = 4000
-
-[picture_40]
-id = 4003
-
-[picture_41]
-id = 4011
-
-[picture_42]
-id = 4013
-
-[picture_43]
-id = 4015
-
-[picture_44]
-id = 4017
-
-[picture_45]
-id = 4019
-
 [dummy]
 id = 4032
-
-[picture_48]
-id = 4592
-
-[picture_49]
-id = 4594
-
-[picture_50]
-id = 4596
-
-[picture_51]
-id = 4685
-
-[picture_52]
-id = 5562
-
-[picture_53]
-id = 5563
-
-[picture_54]
-id = 5564
-
-[picture_55]
-id = 5565
-
-[picture_56]
-id = 5566
-
-[picture_57]
-id = 5567
 
 [dial]
 id = 5572
@@ -468,39 +270,6 @@ tradeable = false
 weight = 0.005
 slot = "Weapon"
 examine = "A flying Magic carpet."
-
-[picture_58]
-id = 6074
-
-[picture_59]
-id = 6076
-
-[picture_60]
-id = 6078
-
-[picture_61]
-id = 6080
-
-[picture_6201]
-id = 6201
-
-[picture_62]
-id = 6203
-
-[picture_6205]
-id = 6205
-
-[picture_63]
-id = 6207
-
-[picture_64]
-id = 6210
-
-[picture_65]
-id = 6381
-
-[picture_66]
-id = 6753
 
 [dummy_2]
 id = 7586
@@ -571,12 +340,6 @@ id = 7617
 [item_22]
 id = 7618
 
-[picture_68]
-id = 7804
-
-[picture_68_noted]
-id = 7805
-
 [hatchet_handle_2] # Unobtainable
 id = 7952
 examine = "Useless."
@@ -587,20 +350,8 @@ id = 7953
 [thing] # Unobtainable
 id = 8796
 
-[picture_69]
-id = 8797
-
 [guthix_staff_dummy]
 id = 8843
-
-[picture_70]
-id = 9490
-
-[picture_71]
-id = 9596
-
-[picture_72]
-id = 9700
 
 [torch_sea_slug_noted]
 id = 9701
@@ -629,48 +380,6 @@ examine = "Mabob."
 
 [thingy_noted]
 id = 10568
-
-[picture_77]
-id = 10569
-tradeable = false
-
-[picture_77_noted]
-id = 10570
-
-[picture_78]
-id = 10571
-tradeable = false
-
-[picture_78_noted]
-id = 10572
-
-[picture_79]
-id = 10573
-tradeable = false
-
-[picture_79_noted]
-id = 10574
-
-[picture_80]
-id = 10575
-tradeable = false
-
-[picture_80_noted]
-id = 10576
-
-[picture_81]
-id = 10577
-tradeable = false
-
-[picture_81_noted]
-id = 10578
-
-[picture_82]
-id = 10579
-tradeable = false
-
-[picture_82_noted]
-id = 10580
 
 [mystic_hat_blue_2]
 id = 10601
@@ -1117,238 +826,109 @@ tradeable = false
 id = 10736
 tradeable = false
 
-[picture_83]
-id = 10737
-
 [amulet_of_magic_t_2]
 id = 10738
 tradeable = false
-
-[picture_84]
-id = 10739
-
-[picture_85]
-id = 10741
 
 [flared_trousers_2]
 id = 10742
 tradeable = false
 
-[picture_86]
-id = 10743
-
 [pantaloons_2]
 id = 10744
 tradeable = false
-
-[picture_87]
-id = 10745
 
 [sleeping_cap_2]
 id = 10746
 tradeable = false
 
-[picture_88]
-id = 10747
-
-[picture_89]
-id = 10749
-
 [elegant_shirt_2]
 id = 10750
 tradeable = false
-
-[picture_90]
-id = 10751
 
 [elegant_shirt_3]
 id = 10752
 tradeable = false
 
-[picture_91]
-id = 10753
-
 [elegant_shirt_4]
 id = 10754
 tradeable = false
-
-[picture_92]
-id = 10755
 
 [elegant_shirt_5]
 id = 10756
 tradeable = false
 
-[picture_93]
-id = 10757
-
 [red_boater_2]
 id = 10758
 tradeable = false
-
-[picture_94]
-id = 10759
 
 [orange_boater_2]
 id = 10760
 tradeable = false
 
-[picture_95]
-id = 10761
-
 [green_boater_2]
 id = 10762
 tradeable = false
-
-[picture_96]
-id = 10763
 
 [blue_boater_2]
 id = 10764
 tradeable = false
 
-[picture_97]
-id = 10765
-
 [black_boater_2]
 id = 10766
 tradeable = false
-
-[picture_98]
-id = 10767
 
 [red_headband_2]
 id = 10768
 tradeable = false
 
-[picture_99]
-id = 10769
-
 [black_headband_2]
 id = 10770
 tradeable = false
-
-[picture_100]
-id = 10771
 
 [brown_headband_2]
 id = 10772
 tradeable = false
 
-[picture_101]
-id = 10773
-
 [pirates_hat_2]
 id = 10774
 tradeable = false
-
-[picture_102]
-id = 10775
-
-[picture_103]
-id = 10777
-
-[picture_104]
-id = 10779
-
-[picture_105]
-id = 10781
-
-[picture_106]
-id = 10783
 
 [saradomin_robe_top_2]
 id = 10784
 tradeable = false
 
-[picture_107]
-id = 10785
-
 [zamorak_robe_top_3]
 id = 10786
 tradeable = false
-
-[picture_108]
-id = 10787
 
 [guthix_robe_top_2]
 id = 10788
 tradeable = false
 
-[picture_109]
-id = 10789
-
-[picture_110]
-id = 10791
-
-[picture_111]
-id = 10793
-
-[picture_112]
-id = 10795
-
 [robin_hood_hat_2]
 id = 10796
 tradeable = false
-
-[picture_113]
-id = 10797
 
 [rune_platebody_g_2]
 id = 10798
 tradeable = false
 
-[picture_114]
-id = 10799
-
 [rune_platebody_t_2]
 id = 10800
 tradeable = false
-
-[picture_115]
-id = 10801
 
 [tan_cavalier_2]
 id = 10802
 tradeable = false
 
-[picture_116]
-id = 10803
-
 [dark_cavalier_2]
 id = 10804
 tradeable = false
 
-[picture_117]
-id = 10805
-
 [black_cavalier_2]
 id = 10806
 tradeable = false
-
-[picture_118]
-id = 10807
-
-[picture_119]
-id = 11000
-
-[picture_120]
-id = 11267
-
-[picture_121]
-id = 11268
-
-[picture_122]
-id = 11269
-
-[picture_122_noted]
-id = 11270
-
-[picture_123]
-id = 11271
-
-[picture_123_noted]
-id = 11272
 
 [ham_shirt_2]
 id = 11274
@@ -1360,42 +940,8 @@ id = 11275
 [mithril_grapple_noted]
 id = 11276
 
-[picture_124]
-id = 11740
-
-[picture_124_noted]
-id = 11741
-
-[picture_125]
-id = 11742
-
-[picture_125_noted]
-id = 11743
-
-[picture_126]
-id = 11744
-
-[picture_126_noted]
-id = 11745
-
 [logs_3]
 id = 11760
-
-[picture_127]
-id = 12537
-
-[picture_127_noted]
-id = 12538
-
-[picture_128]
-id = 12544
-
-[picture_128_noted]
-id = 12545
-
-[picture_129]
-id = 12607
-tradeable = false
 
 [black_cane_2]
 id = 13163
@@ -1600,284 +1146,14 @@ tradeable = false
 id = 15339
 tradeable = false
 
-[picture_130]
-id = 15376
-
-[picture_131]
-id = 15409
-
-[picture_132]
-id = 15601
-
-[picture_133]
-id = 15603
-
-[picture_134]
-id = 15605
-
-[picture_135]
-id = 15607
-
-[picture_136]
-id = 15609
-
-[picture_137]
-id = 15611
-
-[picture_138]
-id = 15613
-
-[picture_139]
-id = 15615
-
-[picture_140]
-id = 15617
-
-[picture_141]
-id = 15619
-
-[picture_142]
-id = 15621
-
-[picture_143]
-id = 15623
-
-[picture_144]
-id = 15640
-
-[picture_145]
-id = 15641
-
-[picture_146]
-id = 15642
-
-[picture_147]
-id = 15643
-
-[picture_148]
-id = 15644
-
-[picture_149]
-id = 15645
-
-[picture_150]
-id = 15646
-
-[picture_151]
-id = 15647
-
-[picture_152]
-id = 18376
-
-[picture_153]
-id = 18378
-
-[picture_154]
-id = 18380
-
-[picture_155]
-id = 18382
-
-[picture_156]
-id = 18384
-
-[picture_157]
-id = 18386
-
-[picture_158]
-id = 18388
-
-[picture_159]
-id = 18390
-
-[picture_160]
-id = 18392
-
-[picture_161]
-id = 18394
-
-[picture_162]
-id = 18396
-
-[picture_163]
-id = 18398
-
-[picture_164]
-id = 18400
-
-[picture_165]
-id = 18402
-
-[picture_166]
-id = 18404
-
-[picture_167]
-id = 18406
-
-[picture_168]
-id = 18408
-
-[picture_169]
-id = 18410
-
-[picture_170]
-id = 18412
-
-[picture_171]
-id = 18414
-
-[picture_172]
-id = 18416
-
-[picture_173]
-id = 18418
-
-[picture_174]
-id = 18420
-
-[picture_175]
-id = 18422
-
-[picture_176]
-id = 18424
-
-[picture_177]
-id = 18426
-
-[picture_178]
-id = 18428
-
-[picture_179]
-id = 18430
-
-[picture_180]
-id = 18432
-
-[picture_181]
-id = 18434
-
-[picture_182]
-id = 18436
-
-[picture_183]
-id = 18438
-
-[picture_184]
-id = 18440
-
-[picture_185]
-id = 18442
-
-[picture_186]
-id = 18444
-
-[picture_187]
-id = 18446
-
-[picture_188]
-id = 18448
-
-[picture_189]
-id = 18450
-
-[picture_190]
-id = 18452
-
-[picture_191]
-id = 18454
-
-[picture_192]
-id = 18456
-
-[picture_193]
-id = 18458
-
-[picture_194]
-id = 18460
-
-[picture_195]
-id = 18462
-
-[picture_196]
-id = 18464
-
-[picture_197]
-id = 18466
-
-[picture_198]
-id = 18468
-
-[picture_199]
-id = 18470
-
-[picture_200]
-id = 18472
-
-[picture_201]
-id = 18474
-
-[picture_202]
-id = 18476
-
-[picture_203]
-id = 18478
-
-[picture_204]
-id = 18480
-
-[picture_205]
-id = 18482
-
-[picture_206]
-id = 18484
-
-[picture_207]
-id = 18486
-
-[picture_208]
-id = 18488
-
-[picture_209]
-id = 18490
-
-[picture_210]
-id = 18492
-
-[picture_211]
-id = 18494
-
-[picture_212]
-id = 18496
-
-[picture_213]
-id = 18498
-
-[picture_214]
-id = 18500
-
-[picture_215]
-id = 18502
-
-[picture_216]
-id = 18787
-
 [junk]
 id = 18815
 
 [junk_2]
 id = 18816
 
-[picture_217]
-id = 19800
-
 [black_helm_2]
 id = 19801
-
-[picture_218]
-id = 19802
-
-[picture_219]
-id = 19844
 
 [poison_dagger_p+]  # Unobtainable
 id = 5684
