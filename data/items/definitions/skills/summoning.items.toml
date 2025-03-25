@@ -1140,7 +1140,7 @@ slot = "Hat"
 examine = "It's fun to go to the O-B-E-L-I-S-K!"
 kept = "Reclaim"
 
-[dreadfowl_pouchu]
+[dreadfowl_pouch_u]
 id = 12225
 limit = 10000
 tradeable = false
@@ -1150,270 +1150,270 @@ examine = "An uncharged Summoning pouch. Can be converted to its charged counter
 kept = "Vanish"
 use = "Limited"
 
-[granite_crab_pouchu]
-clone = "dreadfowl_pouchu"
+[granite_crab_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12226
 
-[vampyre_bat_pouchu]
-clone = "dreadfowl_pouchu"
+[vampyre_bat_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12227
 
-[macaw_pouchu]
-clone = "dreadfowl_pouchu"
+[macaw_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12228
 
-[evil_turnip_pouchu]
-clone = "dreadfowl_pouchu"
+[evil_turnip_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12229
 
-[fruit_bat_pouchu]
-clone = "dreadfowl_pouchu"
+[fruit_bat_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12230
 
-[wolf_pouchu]
-clone = "dreadfowl_pouchu"
+[wolf_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12231
 
-[beaver_pouchu]
-clone = "dreadfowl_pouchu"
+[beaver_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12232
 
-[ibis_pouchu]
-clone = "dreadfowl_pouchu"
+[ibis_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12233
 
-[abyssal_lurker_pouchu]
-clone = "dreadfowl_pouchu"
+[abyssal_lurker_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12234
 
-[magpie_pouchu]
-clone = "dreadfowl_pouchu"
+[magpie_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12235
 
-[spirit_spider_pouchu]
-clone = "dreadfowl_pouchu"
+[spirit_spider_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12236
 
-[compost_mound_pouchu]
-clone = "dreadfowl_pouchu"
+[compost_mound_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12237
 
-[spirit_terrorbird_pouchu]
-clone = "dreadfowl_pouchu"
+[spirit_terrorbird_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12238
 
-[smoke_devil_pouchu]
-clone = "dreadfowl_pouchu"
+[smoke_devil_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12239
 
-[spirit_scorpion_pouchu]
-clone = "dreadfowl_pouchu"
+[spirit_scorpion_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12240
 
-[spirit_kalphite_pouchu]
-clone = "dreadfowl_pouchu"
+[spirit_kalphite_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12241
 
-[granite_lobster_pouchu]
-clone = "dreadfowl_pouchu"
+[granite_lobster_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12242
 
-[bull_ant_pouchu]
-clone = "dreadfowl_pouchu"
+[bull_ant_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12243
 
-[ravenous_locust_pouchu]
-clone = "dreadfowl_pouchu"
+[ravenous_locust_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12244
 
-[albino_rat_pouchu]
-clone = "dreadfowl_pouchu"
+[albino_rat_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12245
 
-[honey_badger_pouchu]
-clone = "dreadfowl_pouchu"
+[honey_badger_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12246
 
-[praying_mantis_pouchu]
-clone = "dreadfowl_pouchu"
+[praying_mantis_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12247
 
-[pouch_2]
+[unknown_pouch_u]
 id = 12248
 limit = 10000
 examine = "Can be used to create Summoning pouches."
 kept = "Wilderness"
 
-[arctic_bear_pouchu]
-clone = "dreadfowl_pouchu"
+[arctic_bear_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12249
 
-[unicorn_stallion_pouchu]
-clone = "dreadfowl_pouchu"
+[unicorn_stallion_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12250
 
-[pack_yak_pouchu]
-clone = "dreadfowl_pouchu"
+[pack_yak_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12251
 
-[barker_toad_pouchu]
-clone = "dreadfowl_pouchu"
+[barker_toad_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12252
 
-[war_tortoise_pouchu]
-clone = "dreadfowl_pouchu"
+[war_tortoise_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12253
 
-[spirit_cobra_pouchu]
-clone = "dreadfowl_pouchu"
+[spirit_cobra_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12254
 
-[thorny_snail_pouchu]
-clone = "dreadfowl_pouchu"
+[thorny_snail_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12255
 
-[desert_wyrm_pouchu]
-clone = "dreadfowl_pouchu"
+[desert_wyrm_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12256
 
-[spirit_jelly_pouchu]
-clone = "dreadfowl_pouchu"
+[spirit_jelly_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12257
 
-[abyssal_parasite_pouchu]
-clone = "dreadfowl_pouchu"
+[abyssal_parasite_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12258
 
-[bloated_leech_pouchu]
-clone = "dreadfowl_pouchu"
+[bloated_leech_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12259
 
-[spirit_dagannoth_pouchu]
-clone = "dreadfowl_pouchu"
+[spirit_dagannoth_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12260
 
-[talon_beast_pouchu]
-clone = "dreadfowl_pouchu"
+[talon_beast_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12261
 
-[bunyip_pouchu]
-clone = "dreadfowl_pouchu"
+[bunyip_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12262
 
-[hydra_pouchu]
-clone = "dreadfowl_pouchu"
+[hydra_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12263
 
-[bronze_minotaur_pouchu]
-clone = "dreadfowl_pouchu"
+[minotaur_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12264
 
-[stranger_plant_pouchu]
-clone = "dreadfowl_pouchu"
+[stranger_plant_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12265
 
-[sp_cockatrice_pouchu]
-clone = "dreadfowl_pouchu"
+[sp_cockatrice_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12266
 
-[karam_overlord_pouchu]
-clone = "dreadfowl_pouchu"
+[karam_overlord_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12267
 
-[wolpertinger_pouchu]
-clone = "dreadfowl_pouchu"
+[wolpertinger_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12268
 
-[giant_ent_pouchu]
-clone = "dreadfowl_pouchu"
+[giant_ent_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12269
 
-[swamp_titan_pouchu]
-clone = "dreadfowl_pouchu"
+[swamp_titan_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12270
 
-[fire_titan_pouchu]
-clone = "dreadfowl_pouchu"
+[fire_titan_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12271
 
-[ice_titan_pouchu]
-clone = "dreadfowl_pouchu"
+[ice_titan_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12272
 
-[moss_titan_pouchu]
-clone = "dreadfowl_pouchu"
+[moss_titan_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12273
 
-[spirit_kyatt_pouchu]
-clone = "dreadfowl_pouchu"
+[spirit_kyatt_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12274
 
-[spirit_graahk_pouchu]
-clone = "dreadfowl_pouchu"
+[spirit_graahk_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12275
 
-[giant_chinchompa_pouchu]
-clone = "dreadfowl_pouchu"
+[giant_chinchompa_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12276
 
-[lava_titan_pouchu]
-clone = "dreadfowl_pouchu"
+[lava_titan_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12277
 
-[steel_titan_pouchu]
-clone = "dreadfowl_pouchu"
+[steel_titan_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12278
 
-[obsidian_golem_pouchu]
-clone = "dreadfowl_pouchu"
+[obsidian_golem_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12279
 
-[geyser_titan_pouchu]
-clone = "dreadfowl_pouchu"
+[geyser_titan_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12280
 
-[abyssal_titan_pouchu]
-clone = "dreadfowl_pouchu"
+[abyssal_titan_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12281
 
-[void_ravager_pouchu]
-clone = "dreadfowl_pouchu"
+[void_ravager_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12282
 
-[void_shifter_pouchu]
-clone = "dreadfowl_pouchu"
+[void_shifter_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12283
 
-[void_spinner_pouchu]
-clone = "dreadfowl_pouchu"
+[void_spinner_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12284
 
-[void_torcher_pouchu]
-clone = "dreadfowl_pouchu"
+[void_torcher_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12285
 
-[spirit_mosquito_pouchu]
-clone = "dreadfowl_pouchu"
+[spirit_mosquito_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12286
 
-[iron_titan_pouchu]
-clone = "dreadfowl_pouchu"
+[iron_titan_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12287
 
-[pyrelord_pouchu]
-clone = "dreadfowl_pouchu"
+[pyrelord_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12288
 
-[spirit_larupia_pouchu]
-clone = "dreadfowl_pouchu"
+[spirit_larupia_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12289
 
-[spirit_tz_kih_pouchu]
-clone = "dreadfowl_pouchu"
+[spirit_tz_kih_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12290
 
-[forge_regent_pouchu]
-clone = "dreadfowl_pouchu"
+[forge_regent_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 12291
 
 [herbcall_scroll]
@@ -3468,8 +3468,8 @@ examine = "I can summon a phoenix familiar with this."
 [phoenix_pouch_noted]
 id = 14624
 
-[phoenix_pouchu]
-clone = "dreadfowl_pouchu"
+[phoenix_pouch_u]
+clone = "dreadfowl_pouch_u"
 id = 14625
 
 [phoenix_eggling]

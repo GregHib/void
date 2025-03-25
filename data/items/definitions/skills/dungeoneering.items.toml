@@ -11637,28 +11637,28 @@ id = 18019
 clone = "gold_charm_dungeoneering"
 id = 18020
 
-[pouch_69]
-clone = "pouch_2"
+[bloodrager_pouch_u]
+clone = "unknown_pouch_u"
 id = 18021
 
-[pouch_70]
-clone = "pouch_2"
+[deathslinger_pouch_u]
+clone = "unknown_pouch_u"
 id = 18022
 
-[pouch_71]
-clone = "pouch_2"
+[stormbringer_pouch_u]
+clone = "unknown_pouch_u"
 id = 18023
 
-[pouch_72]
-clone = "pouch_2"
+[hoardstalker_pouch_u]
+clone = "unknown_pouch_u"
 id = 18024
 
-[pouch_73]
-clone = "pouch_2"
+[worldbearer_pouch_u]
+clone = "unknown_pouch_u"
 id = 18025
 
-[pouch_74]
-clone = "pouch_2"
+[skinweaver_pouch_u]
+clone = "unknown_pouch_u"
 id = 18026
 
 [sundering_strike_tier_1]
@@ -11961,28 +11961,28 @@ id = 18086
 examine = "A scroll for a sachem skinweaver."
 kept = "Always"
 
-[pouch_75]
-clone = "pouch_2"
+[sundering_strike_scroll_u]
+clone = "unknown_pouch_u"
 id = 18087
 
-[pouch_76]
-clone = "pouch_2"
+[poisonous_shot_scroll_u]
+clone = "unknown_pouch_u"
 id = 18088
 
-[pouch_77]
-clone = "pouch_2"
+[snaring_wave_scroll_u]
+clone = "unknown_pouch_u"
 id = 18089
 
-[pouch_78]
-clone = "pouch_2"
+[aptitude_scroll_u]
+clone = "unknown_pouch_u"
 id = 18090
 
-[pouch_79]
-clone = "pouch_2"
+[second_wind_scroll_u]
+clone = "unknown_pouch_u"
 id = 18091
 
-[pouch_80]
-clone = "pouch_2"
+[glimmer_of_light_scroll_u]
+clone = "unknown_pouch_u"
 id = 18092
 
 [baked_cave_potato]
@@ -13803,22 +13803,22 @@ id = 18569
 [sachem_deathslinger_pouch_noted]
 id = 18570
 
-[pouch_75_noted]
+[sundering_strike_scroll_u_noted]
 id = 18571
 
-[pouch_76_noted]
+[poisonous_shot_scroll_u_noted]
 id = 18572
 
-[pouch_77_noted]
+[snaring_wave_scroll_u_noted]
 id = 18573
 
-[pouch_78_noted]
+[aptitude_scroll_u_noted]
 id = 18574
 
-[pouch_79_noted]
+[second_wind_scroll_u_noted]
 id = 18575
 
-[pouch_80_noted]
+[glimmer_of_light_scroll_u_noted]
 id = 18576
 
 [kinship_ring]

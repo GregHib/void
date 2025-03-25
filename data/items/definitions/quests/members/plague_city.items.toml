@@ -55,5 +55,9 @@ examine = "Turnip growing for beginners."
 kept = "Reclaim"
 
 [picture_plague_city]
-clone = "picture_6"
 id = 1510
+tradeable = false
+weight = 0.453
+examine = "A picture of a lady called Elena."
+use = "Quest"
+kept = "Wilderness"

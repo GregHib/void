@@ -271,6 +271,30 @@ weight = 0.005
 slot = "Weapon"
 examine = "A flying Magic carpet."
 
+[poison_dagger_p+]  # Unobtainable
+id = 5684
+
+[poison_dagger_p+_noted]
+id = 5685
+
+[poison_dagger_p++] # Unobtainable
+id = 5702
+
+[poison_dagger_p++_noted]
+id = 5703
+
+[stool_dairy_cow_anim] # Unobtainable
+id = 5732
+
+[stool_dairy_cow_anim_noted]
+id = 6060
+
+[spirit_roots] # Unobtainable
+id = 6053
+
+[spirit_roots_noted]
+id = 6054
+
 [dummy_2]
 id = 7586
 
@@ -346,6 +370,12 @@ examine = "Useless."
 
 [hatchet_handle_2_noted]
 id = 7953
+
+[flatpack_globe] # Unobtainable
+id = 8630
+
+[flatpack_globe_noted]
+id = 8631
 
 [thing] # Unobtainable
 id = 8796
@@ -1087,12 +1117,6 @@ tradeable = false
 id = 14088
 tradeable = false
 
-[pouch_68]
-id = 14620
-
-[pouch_68_noted]
-id = 14621
-
 [bones_3]
 id = 14693
 
@@ -1154,33 +1178,3 @@ id = 18816
 
 [black_helm_2]
 id = 19801
-
-[poison_dagger_p+]  # Unobtainable
-id = 5684
-
-[poison_dagger_p+_noted]
-id = 5685
-
-[poison_dagger_p++] # Unobtainable
-id = 5702
-
-[poison_dagger_p++_noted]
-id = 5703
-
-[stool_dairy_cow_anim] # Unobtainable
-id = 5732
-
-[stool_dairy_cow_anim_noted]
-id = 6060
-
-[spirit_roots] # Unobtainable
-id = 6053
-
-[spirit_roots_noted]
-id = 6054
-
-[flatpack_globe] # Unobtainable
-id = 8630
-
-[flatpack_globe_noted]
-id = 8631
