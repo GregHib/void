@@ -11,7 +11,6 @@ id = 4075
 tradeable = false
 weight = 0.056
 examine = "A bizarre fungus.  It glows with a pale blue light."
-use = "Quest"
 kept = "Vanish"
 
 [crystal_mine_key]

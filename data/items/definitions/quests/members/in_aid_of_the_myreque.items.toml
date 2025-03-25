@@ -7,7 +7,6 @@ id = 7622
 tradeable = false
 weight = 2.5
 examine = "A bucket partially filled with rubble."
-use = "Quest"
 kept = "Wilderness"
 
 [bucket_of_rubble_almost_full]
@@ -15,7 +14,6 @@ id = 7624
 tradeable = false
 weight = 2.5
 examine = "A bucket almost full of rubble."
-use = "Quest"
 kept = "Wilderness"
 
 [bucket_of_rubble_totally_filled]
@@ -23,7 +21,6 @@ id = 7626
 tradeable = false
 weight = 2.5
 examine = "A bucket totally filled with rubble."
-use = "Quest"
 kept = "Wilderness"
 
 [plaster_fragment]
@@ -32,7 +29,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can get another plaster fragment by exploring near the Inn in Burgh de Rott."
 examine = "A fragment of plaster with some impressions on it."
-use = "Quest"
 kept = "Wilderness"
 
 [dusty_scroll]
@@ -41,7 +37,6 @@ tradeable = false
 weight = 0.02
 destroy = "You can get another scroll by exploring near the Inn in Burgh de Rott."
 examine = "An ancient tattered scroll."
-use = "Quest"
 kept = "Wilderness"
 
 [crate_in_aid_of_the_myreque]
@@ -50,7 +45,6 @@ tradeable = false
 weight = 10.0
 destroy = "You can get another crate by talking to the store owner in Burgh de Rott."
 examine = "An old and musty looking crate."
-use = "Quest"
 kept = "Wilderness"
 
 [temple_library_key]
@@ -59,7 +53,6 @@ tradeable = false
 weight = 0.01
 destroy = "You can get another temple key by talking to Drezel."
 examine = "A key for the Temple Library."
-use = "Quest"
 kept = "Wilderness"
 
 [the_sleeping_seven]
@@ -93,7 +86,6 @@ tradeable = false
 weight = 0.05
 examine = "Rod of Ivandis dust."
 kept = "Reclaim"
-use = "Limited"
 
 [silvthril_rod]
 id = 7637

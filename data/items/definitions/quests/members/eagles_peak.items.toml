@@ -34,7 +34,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can obtain another metal feather from the camp-site at the base of Eagles' Peak."
 examine = "A small feather made out of some sort of metal. The detail is exquisite."
-use = "Quest"
 kept = "Wilderness"
 
 [golden_feather_eagles_peak]
@@ -43,7 +42,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can obtain another golden feather from the room with the metal birds in Eagles' Peak."
 examine = "An intricate feather crafted from a gold-coloured metal of some sort."
-use = "Quest"
 kept = "Wilderness"
 
 [silver_feather]
@@ -52,7 +50,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can obtain another silver feather from the kebbit's lair in Eagles' Peak."
 examine = "An intricate feather crafted from a silver-coloured metal of some sort."
-use = "Quest"
 kept = "Wilderness"
 
 [bronze_feather]
@@ -61,7 +58,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can obtain another bronze feather from the room with the net trap in Eagles' Peak."
 examine = "An intricate feather crafted from a bronze-coloured metal of some sort."
-use = "Quest"
 kept = "Wilderness"
 
 [odd_bird_seed]
@@ -69,7 +65,6 @@ id = 10178
 tradeable = false
 destroy = "Your item will be destroyed permanently and it may not be reclaimable."
 examine = "It looks like birdseed, but it's not quite right somehow."
-use = "Quest"
 kept = "Wilderness"
 
 [feathered_journal]

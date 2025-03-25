@@ -74,7 +74,6 @@ id = 5518
 tradeable = false
 weight = 1.0
 examine = "This contains mystical teleport information..."
-use = "Quest"
 kept = "Wilderness"
 
 [scrying_orb]
@@ -82,7 +81,6 @@ id = 5519
 tradeable = false
 weight = 0.05
 examine = "This orb apparently contains a cypher spell."
-use = "Quest"
 kept = "Wilderness"
 
 [abyssal_book]

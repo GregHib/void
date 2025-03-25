@@ -985,7 +985,6 @@ slot = "Weapon"
 type = "TwoHanded"
 examine = "It's a Scythe."
 kept = "Reclaim"
-use = "Limited"
 
 [iron_mace]
 id = 1420

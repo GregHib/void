@@ -15,7 +15,6 @@ weight = 0.01
 aka = ["the_journal_of_sinketh_magis"]
 destroy = "You will need to get another copy from the Varrock Palace Library if you destroy this one."
 examine = "The diary of Sin'keth Magis."
-use = "Quest"
 kept = "Wilderness"
 
 [an_empty_folder]
@@ -24,7 +23,6 @@ tradeable = false
 weight = 0.001
 destroy = "You will need to ask Rat for another empty folder if you destroy this one."
 examine = "A folder for Rat's papers."
-use = "Quest"
 kept = "Wilderness"
 
 [used_folder]
@@ -33,7 +31,6 @@ tradeable = false
 weight = 0.001
 destroy = "You will need to ask Rat for another empty folder if you destroy this one."
 examine = "A folder for Rat's papers. It needs more pages."
-use = "Quest"
 kept = "Wilderness"
 
 [full_folder]
@@ -42,7 +39,6 @@ tradeable = false
 weight = 0.001
 destroy = "You will need to get a new folder from Rat and search for 5 more papers if you destroy this."
 examine = "A full folder. You should take this back to Rat."
-use = "Quest"
 kept = "Wilderness"
 
 [rats_paper]
@@ -51,7 +47,6 @@ tradeable = false
 weight = 0.001
 destroy = "You will need to find more papers about the outlaws if you destroy this."
 examine = "A page of Rat's document."
-use = "Quest"
 kept = "Wilderness"
 
 [rats_letter]
@@ -60,7 +55,6 @@ tradeable = false
 weight = 0.001
 destroy = "You will need to get another copy of the letter from Rat if you destroy this."
 examine = "A letter in a strange language."
-use = "Quest"
 kept = "Wilderness"
 
 [suroks_letter]
@@ -69,7 +63,6 @@ tradeable = false
 weight = 0.001
 destroy = "You will need to ask Surok for another letter to Rat if you destroy this."
 examine = "A letter."
-use = "Quest"
 kept = "Wilderness"
 
 [zaffs_instructions]
@@ -77,7 +70,6 @@ id = 11011
 tradeable = false
 weight = 0.001
 examine = "Instructions for the beacon ring."
-use = "Quest"
 kept = "Wilderness"
 
 [wand_what_lies_below]
@@ -87,7 +79,6 @@ weight = 0.001
 slot = "Weapon"
 destroy = "You will need to get another metal wand from Surok if you destroy this."
 examine = "A wand."
-use = "Quest"
 kept = "Wilderness"
 
 [infused_wand]
@@ -97,7 +88,6 @@ weight = 0.001
 slot = "Weapon"
 destroy = "You will need to get another metal wand from Surok and infuse it once more if you destroy this wand."
 examine = "This wand is glowing with chaos magic."
-use = "Quest"
 kept = "Wilderness"
 
 [beacon_ring]

@@ -3,7 +3,6 @@ id = 6064
 tradeable = false
 weight = 2.721
 examine = "How do I wash blood stains out?"
-use = "Quest"
 kept = "Wilderness"
 
 [mourner_top]
@@ -20,7 +19,6 @@ id = 6066
 tradeable = false
 weight = 2.267
 examine = "These are in need of a good tailor."
-use = "Quest"
 kept = "Wilderness"
 
 [mourner_trousers]
@@ -63,7 +61,6 @@ id = 6071
 tradeable = false
 weight = 0.01
 examine = "A letter of recommendation."
-use = "Quest"
 kept = "Wilderness"
 
 [tegids_soap]
@@ -71,7 +68,6 @@ id = 6072
 tradeable = false
 weight = 0.113
 examine = "A bar of soap taken from Tegid."
-use = "Quest"
 kept = "Wilderness"
 
 [prifddinas_history]
@@ -110,7 +106,6 @@ id = 6081
 tradeable = false
 weight = 4.0
 examine = "A strange broken device of gnomic design."
-use = "Quest"
 kept = "Wilderness"
 
 [fixed_device]
@@ -127,7 +122,6 @@ id = 6083
 tradeable = false
 weight = 0.01
 examine = "This key has seen a lot of use."
-use = "Quest"
 kept = "Wilderness"
 
 [red_dye_bellows]
@@ -142,7 +136,6 @@ id = 6086
 tradeable = false
 weight = 0.538
 examine = "A large pair of ogre bellows filled with blue dye."
-use = "Quest"
 kept = "Wilderness"
 
 [yellow_dye_bellows]
@@ -157,7 +150,6 @@ id = 6088
 tradeable = false
 weight = 0.538
 examine = "A large pair of ogre bellows filled with green dye."
-use = "Quest"
 kept = "Wilderness"
 
 [blue_toad]
@@ -166,7 +158,6 @@ tradeable = false
 weight = 0.75
 destroy = "The toad pops as you drop it on the floor."
 examine = "A blue dye filled toad."
-use = "Quest"
 kept = "Wilderness"
 
 [red_toad]
@@ -191,7 +182,6 @@ tradeable = false
 weight = 0.75
 destroy = "The toad pops as you drop it on the floor."
 examine = "A green dye filled toad."
-use = "Quest"
 kept = "Wilderness"
 
 [rotten_apples]
@@ -213,7 +203,6 @@ id = 6095
 tradeable = false
 weight = 32.0
 examine = "A barrel full of rotten apples and naphtha."
-use = "Quest"
 kept = "Wilderness"
 
 [toxic_naphtha]
@@ -221,7 +210,6 @@ id = 6096
 tradeable = false
 weight = 32.0
 examine = "A barrel full of toxic naphtha."
-use = "Quest"
 kept = "Wilderness"
 
 [sieve]
@@ -236,7 +224,6 @@ id = 6098
 tradeable = false
 weight = 0.056
 examine = "A pile of toxic powder."
-use = "Quest"
 kept = "Wilderness"
 
 [crystal_teleport_seed_4]

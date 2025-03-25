@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.5
 destroy = "Speak to Bert in Yanille to get another sandy hand."
 examine = "A severed hand covered with sand."
-use = "Quest"
 kept = "Wilderness"
 
 [beer_soaked_hand]
@@ -13,7 +12,6 @@ tradeable = false
 weight = 0.5
 destroy = "Speak to the Guard Captain in Yanille to get another beer soaked hand."
 examine = "A severed hand dripping with beer."
-use = "Quest"
 kept = "Wilderness"
 
 [berts_rota]
@@ -22,7 +20,6 @@ tradeable = false
 weight = 0.02
 destroy = "Speak to Bert to replace his Rota."
 examine = "A copy of a work rota."
-use = "Quest"
 kept = "Wilderness"
 
 [sandys_rota]
@@ -31,7 +28,6 @@ tradeable = false
 weight = 0.02
 destroy = "Search Sandy's office in Brimhaven for another Rota."
 examine = "An original work rota."
-use = "Quest"
 kept = "Wilderness"
 
 [a_magic_scroll_the_hand_in_the_sand]
@@ -40,7 +36,6 @@ tradeable = false
 weight = 0.02
 destroy = "Speak to Bert in Yanille to find another magical scroll."
 examine = "This scroll glows with an inner light."
-use = "Quest"
 kept = "Wilderness"
 
 [magical_orb]
@@ -49,7 +44,6 @@ tradeable = false
 weight = 0.02
 destroy = "Speak to Zavistic Rarve to replace your magical orb."
 examine = "An ordinary looking magical scrying orb."
-use = "Quest"
 kept = "Wilderness"
 
 [magical_orb_a]
@@ -58,7 +52,6 @@ tradeable = false
 weight = 0.02
 destroy = "Speak to Zavistic Rarve to replace your magical orb."
 examine = "This magical scrying orb pulsates as it stores information."
-use = "Quest"
 kept = "Wilderness"
 
 [truth_serum]
@@ -67,7 +60,6 @@ tradeable = false
 weight = 0.05
 destroy = "Speak to Betty in Port Sarim to get another bottle of truth serum."
 examine = "Fluid sloshes innocently in this vial."
-use = "Quest"
 kept = "Wilderness"
 
 [bottled_water]
@@ -76,7 +68,6 @@ tradeable = false
 weight = 0.05
 destroy = "Speak to Betty in Port Sarim to get another bottle."
 examine = "A bottle of water."
-use = "Quest"
 kept = "Wilderness"
 
 [redberry_juice]
@@ -85,7 +76,6 @@ tradeable = false
 weight = 0.05
 destroy = "Speak to Betty in Port Sarim to get another bottle to make some more red berry juice."
 examine = "Redberry juice sloshes around in this vial, waiting for white berries to be added."
-use = "Quest"
 kept = "Wilderness"
 
 [pink_dye]
@@ -103,7 +93,6 @@ weight = 0.05
 slot = "Weapon"
 destroy = "Speak to Betty in Port Sarim to get another bottle to make the lens again."
 examine = "This lens has a pinkish tinge to it."
-use = "Quest"
 kept = "Wilderness"
 
 [wizards_head]
@@ -112,7 +101,6 @@ tradeable = false
 weight = 3.628
 destroy = "Speak to Mazion near the sandpit on Entrana to find the Wizard Head again."
 examine = "A disembodied, sand-covered head."
-use = "Quest"
 kept = "Wilderness"
 
 [sand]
@@ -121,7 +109,6 @@ tradeable = false
 weight = 0.001
 destroy = "Pickpocket Sandy in Brimhaven to get more sand."
 examine = "A handful of sand from Sandy's pocket."
-use = "Quest"
 kept = "Wilderness"
 
 [cape_pink]

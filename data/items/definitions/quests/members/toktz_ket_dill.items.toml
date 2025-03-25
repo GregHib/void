@@ -3,7 +3,6 @@ id = 13238
 tradeable = false
 weight = 0.85
 examine = "A plank of oak that has been treated to resist fire."
-use = "Quest"
 kept = "Wilderness"
 
 [treated_plank]
@@ -15,7 +14,6 @@ id = 13243
 tradeable = false
 weight = 0.5
 examine = "A list of items carved onto a stone tablet."
-use = "Quest"
 kept = "Wilderness"
 
 [tzhaar_tourist_guide]
@@ -31,7 +29,6 @@ tradeable = false
 weight = 32.0
 destroy = "You can mine more stone slabs in the TzHaar mine."
 examine = "A flawed block of obsidian from the Karamja volcano."
-use = "Quest"
 kept = "Wilderness"
 
 [pillar]
@@ -40,7 +37,6 @@ tradeable = false
 weight = 25.0
 destroy = "You can get more pillars by crafting stone slabs from the TzHaar mine."
 examine = "A support pillar."
-use = "Quest"
 kept = "Wilderness"
 
 [splat]

@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.453
 destroy = "I can obtain another of these from the pyramid near Uzer."
 examine = "Ancient writings recently translated."
-use = "Quest"
 kept = "Wilderness"
 
 [tatty_bag]
@@ -13,7 +12,6 @@ tradeable = false
 weight = 0.453
 destroy = "I can obtain another of these from the pyramid near Uzer - although I'm not sure why I might want to."
 examine = "AMCE reliable swag bag - maximum load 2 ounces."
-use = "Quest"
 kept = "Wilderness"
 
 [shattered_axes]
@@ -22,7 +20,6 @@ tradeable = false
 weight = 0.453
 destroy = "I can obtain another of these from the pyramid near Uzer - although I'm not sure why I might want to."
 examine = "AMCE ultra axe - keep point away from eyes."
-use = "Quest"
 kept = "Wilderness"
 
 [defective_spades]
@@ -31,7 +28,6 @@ tradeable = false
 weight = 0.453
 destroy = "I can obtain another of these from the pyramid near Uzer - although I'm not sure why I might want to."
 examine = "AMCE superior digging tools - remove foot from excavation area."
-use = "Quest"
 kept = "Wilderness"
 
 [suboptimal_flask]
@@ -40,7 +36,6 @@ tradeable = false
 weight = 0.453
 destroy = "I can obtain another of these from the pyramid near Uzer - although I'm not sure why I might want to."
 examine = "AMCE splendiferous desert beverages - not for external use."
-use = "Quest"
 kept = "Wilderness"
 
 [useless_ration_boxes]
@@ -49,7 +44,6 @@ tradeable = false
 weight = 0.453
 destroy = "I can obtain another of these from the pyramid near Uzer - although I'm not sure why I might want to."
 examine = "AMCE luxury desert rations - leave room for your desert beverages."
-use = "Quest"
 kept = "Wilderness"
 
 [sub_optimal_lantern]
@@ -58,7 +52,6 @@ tradeable = false
 weight = 0.453
 destroy = "I can obtain another of these from the pyramid near Uzer - although I'm not sure why I might want to."
 examine = "AMCE indestructible light source - not for underwater use."
-use = "Quest"
 kept = "Wilderness"
 
 [pyramid_journal]
@@ -75,7 +68,6 @@ tradeable = false
 weight = 0.453
 destroy = "I can obtain this again from the pyramid near Uzer."
 examine = "A jar full of spleen?"
-use = "Quest"
 kept = "Wilderness"
 
 [canopic_jar_pancreatic_bile]
@@ -84,7 +76,6 @@ tradeable = false
 weight = 0.453
 destroy = "I can obtain this again from the pyramid near Uzer."
 examine = "A jar full of pancreatic bile?"
-use = "Quest"
 kept = "Wilderness"
 
 [canopic_jar_tongue_follicles]
@@ -93,7 +84,6 @@ tradeable = false
 weight = 0.453
 destroy = "I can obtain this again from the pyramid near Uzer."
 examine = "A jar full of tongue follicles?"
-use = "Quest"
 kept = "Wilderness"
 
 [canopic_jar_elbow_marrow]
@@ -102,7 +92,6 @@ tradeable = false
 weight = 0.453
 destroy = "I can obtain this again from the pyramid near Uzer."
 examine = "A jar full of elbow marrow?"
-use = "Quest"
 kept = "Wilderness"
 
 [scroll_of_praise]
@@ -111,7 +100,6 @@ tradeable = false
 weight = 0.453
 destroy = "I can obtain another of these from Reldo in Varrock."
 examine = "Written in an ancient language."
-use = "Quest"
 kept = "Wilderness"
 
 [senlitens_mummy]
@@ -120,7 +108,6 @@ tradeable = false
 weight = 0.453
 destroy = "I can obtain this again, in pieces, from the pyramid near Uzer."
 examine = "Complete and ready for re-burial."
-use = "Quest"
 kept = "Wilderness"
 
 [mummy_hand]
@@ -129,7 +116,6 @@ tradeable = false
 weight = 0.453
 destroy = "I can obtain this again from the pyramid near Uzer."
 examine = "Just a hand."
-use = "Quest"
 kept = "Wilderness"
 
 [mummy_with_no_hand]
@@ -138,7 +124,6 @@ tradeable = false
 weight = 0.453
 destroy = "I can obtain this again from the pyramid near Uzer."
 examine = "Give her a hand."
-use = "Quest"
 kept = "Wilderness"
 
 [mummys_name_papyrus]
@@ -147,7 +132,6 @@ tradeable = false
 weight = 0.005
 destroy = "I can obtain another of these from Ali Morrisane."
 examine = "This is an ancient original."
-use = "Quest"
 kept = "Wilderness"
 
 [copied_name_papyrus]
@@ -156,7 +140,6 @@ tradeable = false
 weight = 0.005
 destroy = "I can obtain another of these from Ali Morrisane."
 examine = "Is a modern copy."
-use = "Quest"
 kept = "Wilderness"
 
 [spiced_wine]
@@ -166,7 +149,6 @@ weight = 0.453
 empty = "jub"
 destroy = "I can make a new jug of spiced wine using wine and spices."
 examine = "Spiced in a way unpalatable to modern tastes."
-use = "Quest"
 kept = "Wilderness"
 
 [pot_of_wheat]
@@ -176,5 +158,4 @@ weight = 0.453
 empty = "empty_pot"
 destroy = "I can make another pot of wheat using a pot and some wheat."
 examine = "A perfect foodstuff for those long dead."
-use = "Quest"
 kept = "Wilderness"

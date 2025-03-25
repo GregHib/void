@@ -13,7 +13,6 @@ tradeable = false
 weight = 0.01
 destroy = "You'll have to find another, down in the dungeon."
 examine = "A small key for a large door."
-use = "Quest"
 kept = "Wilderness"
 
 [lens_mould]
@@ -22,7 +21,6 @@ tradeable = false
 weight = 1.0
 destroy = "You'll have to get another down in the dungeon."
 examine = "An unusual mould in the shape of a disc."
-use = "Quest"
 kept = "Wilderness"
 
 [observatory_lens]
@@ -31,7 +29,6 @@ tradeable = false
 weight = 0.003
 destroy = "You'll have to get another mould and piece of molten glass."
 examine = "A perfectly circular disc of glass."
-use = "Quest"
 kept = "Wilderness"
 
 [astronomy_book_noted]

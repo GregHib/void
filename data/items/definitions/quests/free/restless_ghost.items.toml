@@ -12,7 +12,6 @@ tradeable = false
 weight = 0.08
 destroy = "If you get rid of the skull you'll have to search for it again."
 examine = "Ooooh, spooky!"
-use = "Quest"
 kept = "Wilderness"
 
 [ancient_bones_the_restless_ghost]
@@ -21,5 +20,4 @@ tradeable = false
 weight = 0.6
 destroy = "You'll not be able to get these special bones again!"
 examine = "Bones are for burying."
-use = "Quest"
 kept = "Wilderness"

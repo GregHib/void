@@ -5,7 +5,6 @@ weight = 0.01
 slot = "Weapon"
 destroy = "Hopefully Erin has a copy!"
 examine = "It seems to change temperature as I walk."
-use = "Quest"
 kept = "Wilderness"
 
 [journal_making_history]
@@ -23,7 +22,6 @@ tradeable = false
 weight = 0.005
 destroy = "Hopefully Jorral will give you another!"
 examine = "A sealed letter to the king."
-use = "Quest"
 kept = "Wilderness"
 
 [letter_jorral]
@@ -32,7 +30,6 @@ tradeable = false
 weight = 0.005
 destroy = "Hopefully King Lathas will give you another!"
 examine = "A sealed letter to Jorral."
-use = "Quest"
 kept = "Wilderness"
 
 [scroll_making_history]
@@ -41,7 +38,6 @@ tradeable = false
 weight = 0.005
 destroy = "Hopefully Droalak will give me another!"
 examine = "A timeline of the outpost."
-use = "Quest"
 kept = "Wilderness"
 
 [chest_making_history]
@@ -50,7 +46,6 @@ tradeable = false
 weight = 0.03
 destroy = "Hopefully there was another in the hole!"
 examine = "A dirty chest."
-use = "Quest"
 kept = "Wilderness"
 
 [guthix_mjolnir]

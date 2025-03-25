@@ -3,7 +3,6 @@ id = 587
 tradeable = false
 weight = 1.0
 examine = "A strange glowing green orb."
-use = "Quest"
 kept = "Wilderness"
 
 [orbs_of_protection]
@@ -11,7 +10,6 @@ id = 588
 tradeable = false
 weight = 2.0
 examine = "Two strange glowing green orbs."
-use = "Quest"
 kept = "Wilderness"
 
 [gnome_amulet]

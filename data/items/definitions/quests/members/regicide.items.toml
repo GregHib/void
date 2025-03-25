@@ -3,7 +3,6 @@ id = 3206
 tradeable = false
 weight = 0.056
 examine = "A summons from King Lathas."
-use = "Quest"
 kept = "Wilderness"
 
 [iorwerths_message]
@@ -11,7 +10,6 @@ id = 3207
 tradeable = false
 weight = 0.056
 examine = "A letter for King Lathas from Lord Iorwerth."
-use = "Quest"
 kept = "Wilderness"
 
 [crystal_pendant]
@@ -27,7 +25,6 @@ id = 3209
 tradeable = false
 weight = 0.01
 examine = "A piece of sulphur formation."
-use = "Quest"
 kept = "Wilderness"
 
 [limestone]
@@ -46,7 +43,6 @@ id = 3213
 tradeable = false
 weight = 2.267
 examine = "Some quicklime."
-use = "Quest"
 kept = "Wilderness"
 
 [pot_of_quicklime]
@@ -54,7 +50,6 @@ id = 3214
 tradeable = false
 weight = 0.453
 examine = "A pot of ground quicklime."
-use = "Quest"
 kept = "Wilderness"
 
 [ground_sulphur]
@@ -62,7 +57,6 @@ id = 3215
 tradeable = false
 weight = 0.056
 examine = "A pile of ground sulphur."
-use = "Quest"
 kept = "Wilderness"
 
 [barrel]
@@ -81,7 +75,6 @@ id = 3218
 tradeable = false
 weight = 32.0
 examine = "A barrel full of fire oil."
-use = "Quest"
 kept = "Wilderness"
 
 [barrel_bomb]
@@ -89,7 +82,6 @@ id = 3219
 tradeable = false
 weight = 32.0
 examine = "A fused barrel full of fire oil."
-use = "Quest"
 kept = "Wilderness"
 
 [barrel_of_coal_tar]
@@ -97,7 +89,6 @@ id = 3220
 tradeable = false
 weight = 32.0
 examine = "A barrel full of coal-tar."
-use = "Quest"
 kept = "Wilderness"
 
 [barrel_of_naphtha]
@@ -105,7 +96,6 @@ id = 3221
 tradeable = false
 weight = 32.0
 examine = "A barrel full of naphtha."
-use = "Quest"
 kept = "Wilderness"
 
 [naphtha_mix_sulphur]
@@ -113,7 +103,6 @@ id = 3222
 tradeable = false
 weight = 32.0
 examine = "A barrel full of naphtha and sulphur."
-use = "Quest"
 kept = "Wilderness"
 
 [naphtha_mix_quicklime]
@@ -121,7 +110,6 @@ id = 3223
 tradeable = false
 weight = 32.0
 examine = "A barrel full of naphtha and quicklime."
-use = "Quest"
 kept = "Wilderness"
 
 [strip_of_cloth]

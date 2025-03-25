@@ -26,7 +26,6 @@ id = 4703
 tradeable = false
 weight = 2.267
 examine = "Doesn't look very special."
-use = "Quest"
 kept = "Reclaim"
 
 [stone_bowl]
@@ -35,5 +34,4 @@ tradeable = false
 weight = 1.814
 slot = "Weapon"
 examine = "A magic stone bowl for catching the tears of Guthix."
-use = "Quest"
 kept = "Reclaim"

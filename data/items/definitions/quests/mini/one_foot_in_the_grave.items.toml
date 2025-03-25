@@ -5,7 +5,6 @@ weight = 0.001
 aka = ["sandys_diary", "sandys_diary_locked"]
 destroy = "You can get the diary again from Sandy's desk."
 examine = "A locked diary."
-use = "Quest"
 kept = "Wilderness"
 
 [unlocked_diary]
@@ -15,7 +14,6 @@ weight = 0.001
 aka = ["sandys_diary_unlocked"]
 destroy = "You can get the diary again from Sandy's desk."
 examine = "An unlocked diary."
-use = "Quest"
 kept = "Wilderness"
 
 [foot]
@@ -24,7 +22,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can get the foot again from the creatures in the Jade Vine."
 examine = "A wizard's severed foot. You can tell by the robes."
-use = "Quest"
 kept = "Wilderness"
 
 [torso_back_to_my_roots]
@@ -33,7 +30,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can get the torso again from the creatures in the Jade Vine."
 examine = "A wizard's truncated torso. You can tell by the robes."
-use = "Quest"
 kept = "Wilderness"
 
 [left_arm]
@@ -42,7 +38,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can get the arm again from the creatures in the Jade Vine."
 examine = "A wizard's severed arm. You can tell by the robes."
-use = "Quest"
 kept = "Wilderness"
 
 [right_arm]
@@ -55,7 +50,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can get the leg again from the creatures in the Jade Vine."
 examine = "A wizard's severed leg. You can tell by the robes."
-use = "Quest"
 kept = "Wilderness"
 
 [right_leg]

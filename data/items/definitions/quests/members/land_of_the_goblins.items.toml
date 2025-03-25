@@ -32,7 +32,6 @@ tradeable = false
 weight = 3.628
 slot = "Chest"
 examine = "Armour designed to fit goblins."
-use = "Quest"
 kept = "Wilderness"
 
 [plain_of_mud_sphere]
@@ -47,7 +46,6 @@ tradeable = false
 weight = 0.001
 destroy = "The Ekeleshuun priest probably has a spare."
 examine = "The key you stole from the Ekeleshuun priest."
-use = "Quest"
 kept = "Wilderness"
 
 [narogoshuun_key_land_of_the_goblins]
@@ -56,7 +54,6 @@ tradeable = false
 weight = 0.001
 destroy = "The Narogoshuun priest probably has a spare."
 examine = "The key you stole from the Narogoshuun priest."
-use = "Quest"
 kept = "Wilderness"
 
 [huzamogaarb_key_land_of_the_goblins]
@@ -65,7 +62,6 @@ tradeable = false
 weight = 0.001
 destroy = "The Huzamogaarb priest probably has a spare."
 examine = "The key you stole from the Huzamogaarb priest."
-use = "Quest"
 kept = "Wilderness"
 
 [saragorgak_key_land_of_the_goblins]
@@ -74,7 +70,6 @@ tradeable = false
 weight = 0.001
 destroy = "The Saragorgak priest probably has a spare."
 examine = "The key you stole from the Saragorgak priest."
-use = "Quest"
 kept = "Wilderness"
 
 [horogothgar_key_land_of_the_goblins]
@@ -83,7 +78,6 @@ tradeable = false
 weight = 0.001
 destroy = "The Horogothgar priest probably has a spare."
 examine = "The key you stole from the Horogothgar priest."
-use = "Quest"
 kept = "Wilderness"
 
 [yurkolgokh_key_land_of_the_goblins]
@@ -92,7 +86,6 @@ tradeable = false
 weight = 0.001
 destroy = "The Yurkolgokh priest probably has a spare."
 examine = "The key you stole from the Yurkolgokh priest."
-use = "Quest"
 kept = "Wilderness"
 
 [snotheads_bone]
@@ -140,7 +133,6 @@ id = 11807
 tradeable = false
 weight = 0.005
 examine = "You can combine these with a toadflax to make a goblin transformation potion."
-use = "Quest"
 kept = "Wilderness"
 
 [whitefish]
@@ -148,7 +140,6 @@ id = 11808
 tradeable = false
 weight = 0.35
 examine = "An ugly albino fish."
-use = "Quest"
 kept = "Wilderness"
 
 [goblin_potion_4]

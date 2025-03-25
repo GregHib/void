@@ -6,7 +6,6 @@ slot = "Chest"
 material = "metal"
 destroy = "You can get a replacement from Korasi in Falador."
 examine = "This armour has been modified to track your movements."
-use = "Quest"
 kept = "Vanish"
 
 [black_platelegs_bugged]
@@ -17,7 +16,6 @@ slot = "Legs"
 material = "metal"
 destroy = "You can get a replacement from Korasi in Falador."
 examine = "This armour has been modified to track your movements."
-use = "Quest"
 kept = "Vanish"
 
 [black_full_helm_bugged]
@@ -29,7 +27,6 @@ material = "metal"
 type = "FullFace"
 destroy = "You can get a replacement from Korasi in Falador."
 examine = "This armour has been modified to track your movements."
-use = "Quest"
 kept = "Vanish"
 
 [korasis_sword]
@@ -99,7 +96,6 @@ tradeable = false
 weight = 0.5
 destroy = "Read it to get your reward; it is destroyed in the process."
 examine = "The secrets of Void Knight combat."
-use = "Quest"
 kept = "Vanish"
 
 [security_block]
@@ -107,7 +103,6 @@ id = 19792
 tradeable = false
 destroy = "You can get a replacement from Captain Gilroy in the storage facility."
 examine = "A section of the Black Knights' security system."
-use = "Quest"
 kept = "Vanish"
 
 [broken_security_block]
@@ -116,7 +111,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can get a replacement from Captain Gilroy in the storage facility."
 examine = "A shattered section of the Black Knights' security system."
-use = "Quest"
 kept = "Vanish"
 
 [key_block_labelled_2]
@@ -124,7 +118,6 @@ id = 19794
 tradeable = false
 weight = 0.5
 examine = "A stamped block of metal from a box marked 2."
-use = "Quest"
 kept = "Vanish"
 
 [key_block_labelled_3]
@@ -132,7 +125,6 @@ id = 19795
 tradeable = false
 weight = 0.5
 examine = "A stamped block of metal from a box marked 3."
-use = "Quest"
 kept = "Vanish"
 
 [key_block_labelled_4]
@@ -140,7 +132,6 @@ id = 19796
 tradeable = false
 weight = 0.5
 examine = "A stamped block of metal from a box marked 4."
-use = "Quest"
 kept = "Vanish"
 
 [key_block_labelled_5]
@@ -148,7 +139,6 @@ id = 19797
 tradeable = false
 weight = 0.5
 examine = "A stamped block of metal from a box marked 5."
-use = "Quest"
 kept = "Vanish"
 
 [key_block_labelled_6]
@@ -156,7 +146,6 @@ id = 19798
 tradeable = false
 weight = 0.5
 examine = "A stamped block of metal from a box marked 6."
-use = "Quest"
 kept = "Vanish"
 
 [commorb]
@@ -166,7 +155,6 @@ weight = 0.001
 slot = "Weapon"
 destroy = "Your CommOrb will automatically self destruct when dropped. Please speak to your Temple Knight superior to receive another."
 examine = "Use this to stay in touch with Korasi and Jessika."
-use = "Quest"
 kept = "Wilderness"
 
 [elite_void_knight_torso]

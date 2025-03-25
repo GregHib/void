@@ -3,7 +3,6 @@ id = 11048
 tradeable = false
 weight = 0.001
 examine = "A piece of ancient goblin armour."
-use = "Quest"
 kept = "Wilderness"
 
 [artefact_armour]
@@ -11,7 +10,6 @@ id = 11049
 tradeable = false
 weight = 0.001
 examine = "An ancient goblin object encrusted in dirt."
-use = "Quest"
 kept = "Wilderness"
 
 [hatchet_head]
@@ -19,7 +17,6 @@ id = 11050
 tradeable = false
 weight = 0.001
 examine = "A piece of ancient goblin hatchet."
-use = "Quest"
 kept = "Wilderness"
 
 [artefact_hatchet]
@@ -31,7 +28,6 @@ id = 11052
 tradeable = false
 weight = 0.001
 examine = "A piece of ancient goblin helmet."
-use = "Quest"
 kept = "Wilderness"
 
 [artefact_helmet]
@@ -43,7 +39,6 @@ id = 11054
 tradeable = false
 weight = 0.001
 examine = "A piece of an ancient goblin shield."
-use = "Quest"
 kept = "Wilderness"
 
 [artefact_shield]
@@ -55,7 +50,6 @@ id = 11056
 tradeable = false
 weight = 0.001
 examine = "A piece of an ancient goblin sword."
-use = "Quest"
 kept = "Wilderness"
 
 [artefact_sword]
@@ -67,7 +61,6 @@ id = 11058
 tradeable = false
 weight = 0.001
 examine = "A powerful looking mace."
-use = "Quest"
 kept = "Wilderness"
 
 [artefact_mace]

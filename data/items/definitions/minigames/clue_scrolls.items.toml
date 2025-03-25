@@ -2575,7 +2575,6 @@ bank_stacks = false
 weight = 5.0
 examine = "There's treasure in it!"
 kept = "Wilderness"
-use = "Limited"
 
 [puzzle_casket_elite]
 id = 19040

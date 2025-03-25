@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.5
 destroy = "You can buy another from Ali Tist in Falador if you wish."
 examine = "Crack the puzzle to win a fabulous prize!"
-use = "Quest"
 kept = "Wilderness"
 
 [puzzle_box_23]
@@ -19,7 +18,6 @@ tradeable = false
 weight = 0.5
 destroy = "Ali Tist in Falador can provide a spare."
 examine = "The strange scroll that led Ali Tist to a stash of dubious boxes."
-use = "Quest"
 kept = "Wilderness"
 
 [blocks_iron_oxide]
@@ -28,7 +26,6 @@ tradeable = false
 weight = 0.001
 destroy = "No"
 examine = "This chemical can be used to help balance the mixture."
-use = "Quest"
 kept = "Vanish"
 
 [gas_vial_chlorine]
@@ -49,7 +46,6 @@ tradeable = false
 weight = 0.5
 destroy = "You pickpocketed this off one of the Black Knight's indentured workers."
 examine = "Black Knight Industrial Team badge."
-use = "Quest"
 kept = "Vanish"
 
 [rusty_anchor_cellar_key]
@@ -58,7 +54,6 @@ tradeable = false
 weight = 0.5
 destroy = "You will have to find another in the Rusty Anchor."
 examine = "This key allows access to the cellar of the Rusty Anchor."
-use = "Quest"
 kept = "Wilderness"
 
 [search_warrant]
@@ -67,7 +62,6 @@ tradeable = false
 weight = 0.5
 destroy = "If you need a replacement, talk to Sir Amik Varze in Falador."
 examine = "This document entitles the bearer to search the stock of one Ali Tist."
-use = "Quest"
 kept = "Wilderness"
 
 [void_drone_bug]
@@ -76,7 +70,6 @@ tradeable = false
 weight = 1.0
 destroy = "Jessika can summon it again if you have further need of its services."
 examine = "A void drone summoned by Jessika."
-use = "Quest"
 kept = "Vanish"
 
 [void_knight_whistle]
@@ -85,7 +78,6 @@ tradeable = false
 weight = 0.5
 destroy = "Cannot be dropped or destroyed"
 examine = "Blow this if you get into difficulties."
-use = "Quest"
 kept = "Vanish"
 
 [jointed_log]
@@ -94,7 +86,6 @@ tradeable = false
 weight = 0.5
 destroy = "You will have to make another will a chisel and a set of regular log."
 examine = "This log has a tenon joint cut into it."
-use = "Quest"
 kept = "Vanish"
 
 [jointed_plank]
@@ -103,7 +94,6 @@ tradeable = false
 weight = 0.5
 destroy = "You will have to make another will a chisel and a wooden plank."
 examine = "This log has a mortise cut into it."
-use = "Quest"
 kept = "Vanish"
 
 [joist]
@@ -112,7 +102,6 @@ tradeable = false
 weight = 0.5
 destroy = "You will have to make another with a mortise-and-tenon carved log and plank."
 examine = "A sturdy wooden joist."
-use = "Quest"
 kept = "Vanish"
 
 [wood_shards]
@@ -121,7 +110,6 @@ tradeable = false
 weight = 0.5
 destroy = "Jessika may have some more. Find her at Musa Point."
 examine = "Broken bits of tooled, waxy wood."
-use = "Quest"
 kept = "Vanish"
 
 [commorb_tyr]
@@ -130,7 +118,6 @@ tradeable = false
 weight = 0.001
 destroy = "Your CommOrb will automatically self destruct when dropped. Please speak to your Temple Knight superior to receive another."
 examine = "Tyr's CommOrb, given to him by Sir Tiffy."
-use = "Quest"
 kept = "Wilderness"
 
 [commorb_a_void_dance]
@@ -139,7 +126,6 @@ tradeable = false
 weight = 0.001
 destroy = "Your CommOrb will automatically self destruct when dropped. Please speak to your Temple Knight superior to receive another."
 examine = "Use this to stay in touch with Korasi and Jessika."
-use = "Quest"
 kept = "Wilderness"
 
 [void_knight_commendation]
@@ -148,7 +134,6 @@ tradeable = false
 weight = 0.001
 destroy = "This is worth fifty Commendations and cannot be retrieved if destroyed!"
 examine = "Redeem this with a Void Knight for fifty Commendations."
-use = "Quest"
 kept = "Vanish"
 
 [void_pest_research_notes]
@@ -172,7 +157,6 @@ tradeable = false
 weight = 0.02
 destroy = "You may find a spare on the shelf in the Black Knight workshop."
 examine = "A key to the secure area of the Black Knights' workshop."
-use = "Quest"
 kept = "Wilderness"
 
 [curious_tool]
@@ -181,7 +165,6 @@ tradeable = false
 weight = 0.02
 destroy = "You acquired this in the Black Knight workshop."
 examine = "This might come in handy."
-use = "Quest"
 kept = "Vanish"
 
 [metal_strip]
@@ -190,7 +173,6 @@ tradeable = false
 weight = 0.5
 destroy = "You acquired this in the Black Knight workshop."
 examine = "Unscrewed from the frame of a Black Knight workbench."
-use = "Quest"
 kept = "Vanish"
 
 [hook_a_void_dance]
@@ -199,7 +181,6 @@ tradeable = false
 weight = 0.05
 destroy = "You acquired this in the Black Knight workshop."
 examine = "Pried loose from a Black Knight workbench."
-use = "Quest"
 kept = "Vanish"
 
 [gaff]
@@ -208,5 +189,4 @@ tradeable = false
 weight = 0.55
 destroy = "You acquired this in the Black Knight workshop."
 examine = "Jury-rigged, but it might do the job."
-use = "Quest"
 kept = "Vanish"

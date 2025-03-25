@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.907
 destroy = "You'll have to buy another one from Auguste on Entrana."
 examine = "This sapling is ready to be replanted in a tree patch."
-use = "Quest"
 kept = "Wilderness"
 
 [balloon_structure]
@@ -12,7 +11,6 @@ id = 9933
 tradeable = false
 weight = 0.001
 examine = "An incomplete origami balloon."
-use = "Quest"
 kept = "Wilderness"
 
 [origami_balloon]
@@ -62,7 +60,6 @@ weight = 1.5
 empty = "empty_sack"
 slot = "Weapon"
 examine = "A bag full of sand."
-use = "Quest"
 kept = "Wilderness"
 
 [bomber_jacket]

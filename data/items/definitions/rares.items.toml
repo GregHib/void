@@ -4,7 +4,6 @@ price = 280600000
 limit = 2
 weight = 0.453
 examine = "Used to get out of Thordur's blackhole."
-use = "Limited"
 
 [disk_of_returning_noted]
 id = 982

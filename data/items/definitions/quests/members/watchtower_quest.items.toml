@@ -4,7 +4,6 @@ tradeable = false
 weight = 3.0
 destroy = "This item will likely break if you put it down here, and you will have to go looking for another."
 examine = "An old statue of an ogre warrior."
-use = "Quest"
 kept = "Wilderness"
 
 [relic_part_1]
@@ -13,7 +12,6 @@ tradeable = false
 weight = 1.0
 destroy = "This item will likely break if you put it down here, and you will have to go looking for another."
 examine = "Part of an ogre relic."
-use = "Quest"
 kept = "Wilderness"
 
 [relic_part_2]
@@ -38,7 +36,6 @@ tradeable = false
 weight = 0.01
 destroy = "This item will likely break if you put it down here, and you will have to go looking for another."
 examine = "Very tooth-like."
-use = "Quest"
 kept = "Wilderness"
 
 [tobans_key]
@@ -47,7 +44,6 @@ tradeable = false
 weight = 0.01
 destroy = "This item will likely break if you put it down here, and you will have to go looking for another."
 examine = "Formerly the property of the ogre, Toban."
-use = "Quest"
 kept = "Wilderness"
 
 [rock_cake]
@@ -65,7 +61,6 @@ tradeable = false
 weight = 0.907
 destroy = "This item will likely break if you put it down here, and you will have to go looking for another."
 examine = "Powers the Watchtower in Yanille."
-use = "Quest"
 kept = "Wilderness"
 
 [crystal_magenta]
@@ -86,7 +81,6 @@ tradeable = false
 weight = 0.002
 destroy = "This item will likely break if you put it down here, and you will have to go looking for another."
 examine = "Eeeeyeeew!"
-use = "Quest"
 kept = "Wilderness"
 
 [old_robe]
@@ -94,7 +88,6 @@ id = 2385
 tradeable = false
 weight = 1.814
 examine = "I can't wear this old thing."
-use = "Quest"
 kept = "Wilderness"
 
 [unusual_armour]
@@ -102,7 +95,6 @@ id = 2386
 tradeable = false
 weight = 3.628
 examine = "Looks kind of useless."
-use = "Quest"
 kept = "Wilderness"
 
 [damaged_dagger]
@@ -110,7 +102,6 @@ id = 2387
 tradeable = false
 weight = 0.453
 examine = "Pointy."
-use = "Quest"
 kept = "Wilderness"
 
 [tattered_eye_patch]
@@ -118,7 +109,6 @@ id = 2388
 tradeable = false
 weight = 0.006
 examine = "Useless as an eye patch."
-use = "Quest"
 kept = "Wilderness"
 
 [vial_jangerberries]
@@ -128,7 +118,6 @@ tradeable = false
 weight = 0.015
 destroy = "This item will likely break if you put it down here, and you will have to go looking for another."
 examine = "An infusion of water and jangerberries."
-use = "Quest"
 kept = "Reclaim"
 
 [vial_jangerberries_and_guam_leaves]
@@ -138,7 +127,6 @@ tradeable = false
 weight = 0.025
 destroy = "This item will likely break if you put it down here, and you will have to go looking for another."
 examine = "A mixture of jangerberries and a guam leaf in a vial."
-use = "Quest"
 kept = "Reclaim"
 
 [ground_bat_bones]
@@ -157,7 +145,6 @@ tradeable = false
 weight = 1.814
 destroy = "This item will likely break if you put it down here, and you will have to go looking for another."
 examine = "It's a stolen bar of gold."
-use = "Quest"
 kept = "Wilderness"
 
 [potion]
@@ -167,7 +154,6 @@ tradeable = false
 weight = 0.025
 destroy = "This item will likely break if you put it down here, and you will have to go looking for another."
 examine = "A strange brew."
-use = "Quest"
 kept = "Wilderness"
 
 [magic_ogre_potion]
@@ -177,7 +163,6 @@ weight = 0.025
 slot = "Weapon"
 destroy = "This item will likely break if you put it down here, and you will have to go looking for another."
 examine = "A dangerous magical liquid."
-use = "Quest"
 kept = "Wilderness"
 
 [spell_scroll]
@@ -185,7 +170,6 @@ id = 2396
 tradeable = false
 weight = 0.01
 examine = "A spell is written on this parchment."
-use = "Quest"
 kept = "Wilderness"
 
 [shaman_robe]
@@ -193,7 +177,6 @@ id = 2397
 tradeable = false
 weight = 1.814
 examine = "A tattered old robe."
-use = "Quest"
 kept = "Wilderness"
 
 [cave_nightshade]

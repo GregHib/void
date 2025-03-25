@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.005
 examine = "The combination to Burthorpe Castle's equipment room."
 kept = "Reclaim"
-use = "Limited"
 
 [iou]
 id = 3103

@@ -30,7 +30,6 @@ tradeable = false
 weight = 0.001
 examine = "A horn for communicating with your team members."
 kept = "Always"
-use = "Minigame"
 
 [attacker_horn_2]
 clone = "attacker_horn"
@@ -274,7 +273,6 @@ tradeable = false
 weight = 0.453
 slot = "Cape"
 examine = "A picture of a lady called Elena."
-use = "Quest"
 kept = "Wilderness"
 
 [collector_icon]
@@ -283,7 +281,6 @@ tradeable = false
 weight = 0.453
 slot = "Cape"
 examine = "A picture of a lady called Elena."
-use = "Quest"
 kept = "Wilderness"
 
 [defender_icon]
@@ -292,7 +289,6 @@ tradeable = false
 weight = 0.453
 slot = "Cape"
 examine = "A picture of a lady called Elena."
-use = "Quest"
 kept = "Wilderness"
 
 [healer_icon]
@@ -301,7 +297,6 @@ tradeable = false
 weight = 0.453
 slot = "Cape"
 examine = "A picture of a lady called Elena."
-use = "Quest"
 kept = "Wilderness"
 
 [collector_horn]

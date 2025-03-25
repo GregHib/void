@@ -3,7 +3,6 @@ id = 15
 tradeable = false
 weight = 0.028
 examine = "A cloth given to me by Sir Galahad."
-use = "Quest"
 kept = "Wilderness"
 
 [magic_whistle]
@@ -11,7 +10,6 @@ id = 16
 tradeable = false
 weight = 0.005
 examine = "A small tin whistle."
-use = "Quest"
 kept = "Wilderness"
 
 [grail_bell]
@@ -19,7 +17,6 @@ id = 17
 tradeable = false
 weight = 0.028
 examine = "I wonder what happens when I ring it?"
-use = "Quest"
 kept = "Wilderness"
 
 [magic_gold_feather]
@@ -27,7 +24,6 @@ id = 18
 tradeable = false
 weight = 0.005
 examine = "It will point the way for me."
-use = "Quest"
 kept = "Wilderness"
 
 [holy_grail]
@@ -37,5 +33,4 @@ weight = 0.085
 destroy = "You will need to return to the Fisher King's realm to get another."
 examine = "A holy and powerful artefact."
 destroy2 = "You will need to return to Keep Le Faye to get another. You can also reclaim it from the quest storage chest."
-use = "Quest"
 kept = "Wilderness"

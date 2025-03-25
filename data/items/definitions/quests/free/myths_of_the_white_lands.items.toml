@@ -4,7 +4,6 @@ tradeable = false
 weight = 2.0
 destroy = "You can probably get more in the last room of the yeti cave, in the Land of Snow."
 examine = "Explorer Jack's 'riches'. They have a suspicious look to them."
-use = "Quest"
 kept = "Wilderness"
 
 [enchanted_stones]
@@ -13,7 +12,6 @@ tradeable = false
 weight = 2.0
 destroy = "You will have to fetch more in the last room of the yeti cave, then get them enchanted by snow imps."
 examine = "According to the snow imps, this is enchanted, frozen yeti dung."
-use = "Quest"
 kept = "Wilderness"
 
 [ice_amulet09]

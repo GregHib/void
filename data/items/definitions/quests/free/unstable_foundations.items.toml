@@ -5,7 +5,6 @@ weight = 0.001
 slot = "Weapon"
 examine = "A large plank of wood."
 kept = "Reclaim"
-use = "Limited"
 
 [drugged_meat]
 id = 15277
@@ -14,7 +13,6 @@ weight = 0.001
 slot = "Weapon"
 examine = "This meat has been treated with a sleeping potion."
 kept = "Reclaim"
-use = "Limited"
 
 [cloth_unstable_foundations]
 id = 15278
@@ -22,7 +20,6 @@ tradeable = false
 weight = 0.001
 examine = "A tatty old bit of cloth."
 kept = "Reclaim"
-use = "Removed"
 
 [oily_cloth]
 id = 15279
@@ -30,7 +27,6 @@ tradeable = false
 weight = 0.5
 examine = "A tatty old bit of cloth, now soaked in oil."
 kept = "Reclaim"
-use = "Limited"
 
 [rag]
 id = 15280
@@ -38,7 +34,6 @@ tradeable = false
 weight = 0.25
 examine = "A tatty old rag of cloth."
 kept = "Reclaim"
-use = "Limited"
 
 [oily_rag]
 id = 15281
@@ -47,7 +42,6 @@ weight = 0.25
 slot = "Weapon"
 examine = "A tatty old rag of cloth, now soaked in oil."
 kept = "Reclaim"
-use = "Limited"
 
 [fuse]
 id = 15282
@@ -63,28 +57,24 @@ tradeable = false
 weight = 0.028
 examine = "A can of oil belonging to Sir Vant."
 kept = "Reclaim"
-use = "Limited"
 
 [root_chippings]
 id = 15285
 tradeable = false
 examine = "Some root chippings."
 kept = "Reclaim"
-use = "Limited"
 
 [stone_clippings]
 id = 15286
 tradeable = false
 examine = "Fragments of stone."
 kept = "Reclaim"
-use = "Removed"
 
 [manual_unstable_foundations]
 id = 15671
 tradeable = false
 weight = 0.2
 examine = "Roddeck's book about the care of pet dragons."
-use = "Removed"
 kept = "Reclaim"
 
 [roddecks_diary]
@@ -92,5 +82,4 @@ id = 15672
 tradeable = false
 weight = 0.2
 examine = "The diary of an elderly gentleman with eccentric habits."
-use = "Quest"
 kept = "Reclaim"

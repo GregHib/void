@@ -3,5 +3,4 @@ id = 455
 tradeable = false
 weight = 0.014
 examine = "The official Alfred Grimhand bar crawl card."
-use = "Quest"
 kept = "Wilderness"

@@ -11,7 +11,6 @@ tradeable = false
 weight = 10.0
 destroy = "You caught this broav west of the Hunting Expert's home. You can catch another one with a trap baited with mort Myre Fungus."
 examine = "It's unconscious, poor thing."
-use = "Quest"
 kept = "Wilderness"
 
 [dirty_laundry]
@@ -29,7 +28,6 @@ tradeable = false
 weight = 0.5
 destroy = "You found this basket in Movario's base."
 examine = "A receptacle for rubbish."
-use = "Quest"
 kept = "Wilderness"
 
 [ruby_key]
@@ -38,7 +36,6 @@ tradeable = false
 weight = 0.025
 destroy = "You found this key attached to the bottom of the bin in Movario's base."
 examine = "A superbly made key with a fine ruby inserted into it."
-use = "Quest"
 kept = "Wilderness"
 
 [notes_on_pressure]
@@ -71,7 +68,6 @@ tradeable = false
 weight = 1.0
 destroy = "Your item will be destroyed permanently and it may not be reclaimable."
 examine = "A 1kg weight."
-use = "Quest"
 kept = "Wilderness"
 
 [weight_2kg]
@@ -80,7 +76,6 @@ tradeable = false
 weight = 2.0
 destroy = "Your item will be destroyed permanently and it may not be reclaimable."
 examine = "A 2kg weight."
-use = "Quest"
 kept = "Wilderness"
 
 [weight_5kg]
@@ -89,7 +84,6 @@ tradeable = false
 weight = 5.0
 destroy = "Your item will be destroyed permanently and it may not be reclaimable."
 examine = "A 5kg weight."
-use = "Quest"
 kept = "Wilderness"
 
 [strange_key_loop]
@@ -98,7 +92,6 @@ tradeable = false
 weight = 0.5
 destroy = "You can find another under the bed on the top level of Movario's base"
 examine = "The loop half of a strange key."
-use = "Quest"
 kept = "Vanish"
 
 [strange_key_teeth]
@@ -107,7 +100,6 @@ tradeable = false
 weight = 0.5
 destroy = "You can find another under the bed on the top level of Movario's base"
 examine = "The teeth half of a strange key."
-use = "Quest"
 kept = "Vanish"
 
 [dragonkin_key]
@@ -116,7 +108,6 @@ tradeable = false
 weight = 1.0
 destroy = "You fused together two parts of a Dragonkin key which you obtained from Movario's base."
 examine = "The completed dragonkin key."
-use = "Quest"
 kept = "Wilderness"
 
 [ruined_dragon_armour_lump]
@@ -188,7 +179,6 @@ tradeable = false
 weight = 0.002
 destroy = "You grew this herb by planting an enriched snapdragon seed in the special herb patch on top of Falador castle."
 examine = "An enriched snapdragon herb."
-use = "Quest"
 kept = "Wilderness"
 
 [super_truth_serum]
@@ -197,7 +187,6 @@ tradeable = false
 weight = 0.05
 destroy = "You made this serum by mixing an enriched snapdragon into one of Betty's truth serums."
 examine = "Fluid sloshes innocently in this vial."
-use = "Quest"
 kept = "Wilderness"
 
 [suspect_sketch]
@@ -206,7 +195,6 @@ tradeable = false
 weight = 0.02
 destroy = "You gained this item by having papyrus and charcoal in your inventory while interrogating a spy in Falador castle."
 examine = "A sketch of the suspect known as Dark Squall."
-use = "Quest"
 kept = "Wilderness"
 
 [elite_black_platelegs]
@@ -252,7 +240,6 @@ tradeable = false
 weight = 0.2
 destroy = "You got this key from the key rack in Dark Squall's base."
 examine = "Opens the cells beneath the Black Knights' Fortress."
-use = "Quest"
 kept = "Wilderness"
 
 [dagonhai_robe_top]
@@ -302,7 +289,6 @@ slot = "Shield"
 destroy = "You gained this orb from one of the White Knights."
 examine = "This can be used to remotely teleport people."
 destroy2 = "You gained this orb from Silif in the Black Knight Catacombs while searching Dark Squall's base."
-use = "Quest"
 kept = "Wilderness"
 
 [enriched_snapdragon_seed]
@@ -311,7 +297,6 @@ tradeable = false
 weight = 0.005
 destroy = "You created this by focusing the light onto a snapdragon seed from a rose tinted lens while in Betty's shop."
 examine = "An enriched snapdragon seed. The herb that grows from this seed will be extra potent!"
-use = "Quest"
 kept = "Wilderness"
 
 [dolmen]
@@ -320,7 +305,6 @@ tradeable = false
 weight = 1.0
 destroy = "You got this by solving a puzzle in the a Guthixian temple near the Chasm of Tears."
 examine = "Part of a stone circle."
-use = "Quest"
 
 [dolmen_2]
 clone = "dolmen"
@@ -356,7 +340,6 @@ tradeable = false
 weight = 1.0
 destroy = "You found this in the Chasm of Tears by using an air-orb on an etched wall section."
 examine = "An elemental key of air."
-use = "Quest"
 kept = "Wilderness"
 
 [earth_key]
@@ -365,7 +348,6 @@ tradeable = false
 weight = 1.0
 destroy = "You found this in the Chasm of Tears by using an earth-orb on an etched wall section."
 examine = "An elemental key of earth."
-use = "Quest"
 kept = "Wilderness"
 
 [fire_key]
@@ -374,7 +356,6 @@ tradeable = false
 weight = 1.0
 destroy = "You found this in the Chasm of Tears by using an"
 examine = "An elemental key of fire."
-use = "Quest"
 kept = "Wilderness"
 
 [water_key]
@@ -383,7 +364,6 @@ tradeable = false
 weight = 1.0
 destroy = "You found this in the Chasm of Tears by using an"
 examine = "An elemental key of water."
-use = "Quest"
 kept = "Wilderness"
 
 [air_key_2]
@@ -456,5 +436,4 @@ tradeable = false
 weight = 2.0
 destroy = "You gained this orb from Dark Squall's base. You can probably get another one from visiting the same place. You can also reclaim it from the quest storage chest."
 examine = "This orb can be used to teleport people...somehow."
-use = "Quest"
 kept = "Wilderness"

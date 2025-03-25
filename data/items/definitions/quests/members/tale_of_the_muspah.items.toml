@@ -3,7 +3,6 @@ id = 14735
 tradeable = false
 weight = 1.36
 examine = "It's old and weathered, but it could still float."
-use = "Quest"
 kept = "Reclaim"
 
 [fire_raft]
@@ -12,7 +11,6 @@ tradeable = false
 weight = 0.453
 slot = "Weapon"
 examine = "It's not the safest mode of transport."
-use = "Quest"
 kept = "Reclaim"
 
 [log_the_tale_of_the_muspah]
@@ -25,7 +23,6 @@ tradeable = false
 weight = 0.453
 destroy = "You can get another from the cave where Jhallan is hibernating, under the Mahjarrat Ritual Site."
 examine = "It's the tail of the Muspah."
-use = "Quest"
 kept = "Wilderness"
 
 [antique_lamp_the_tale_of_the_muspah]
@@ -34,5 +31,4 @@ tradeable = false
 weight = 0.1
 destroy = "If you destroy this item, you cannot reclaim it."
 examine = "I wonder what happens if I rub it..."
-use = "Quest"
 kept = "Vanish"

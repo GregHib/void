@@ -3,7 +3,6 @@ id = 1552
 tradeable = false
 weight = 0.12
 examine = "Sardine flavoured with doogle leaves."
-use = "Quest"
 kept = "Wilderness"
 
 [pet_kitten]
@@ -120,5 +119,4 @@ id = 13236
 tradeable = false
 weight = 0.003
 examine = "Mew, mew, mew!"
-use = "Quest"
 kept = "Wilderness"

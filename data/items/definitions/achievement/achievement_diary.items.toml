@@ -104,7 +104,6 @@ weight = 0.001
 destroy = "You can get another by talking about jobs with citizens and tutors around Lumbridge."
 examine = "This reminds me of my current job and who set me the task."
 kept = "Vanish"
-use = "Limited"
 
 [explorers_ring_1]
 id = 13560

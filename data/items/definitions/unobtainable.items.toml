@@ -2,143 +2,120 @@
 id = 818
 examine = "A deadly throwing dart with a poisoned tip."
 
-[papyrus_used] # Unobtainable
+[papyrus_used]
 id = 972
 examine = "Used papyrus, it has squiggles all over it. "
 
-[poisoned_dagger_p] # Unobtainable
+[poisoned_dagger_p]
 id = 1235
 examine = "The blade is covered with poison. "
 
 [poisoned_dagger_p_noted]
 id = 1236
 
-[farmers_fork] # Unobtainable
+[farmers_fork]
 id = 1411
 examine = "A farmer's fork."
 
 [farmers_fork_noted]
 id = 1412
 
-[halberd] # Unobtainable
+[halberd]
 id = 1413
 examine = "A halberd."
 
 [halberd_noted]
 id = 1414
 
-[warhammer] # Unobtainable
+[warhammer]
 id = 1415
 examine = "A warhammer."
 
 [warhammer_noted]
 id = 1416
 
-[javelin] # Unobtainable
+[javelin]
 id = 1417
 examine = "A javelin."
 
 [javelin_noted]
 id = 1418
 
-[soul_talisman] # Unobtainable
+[soul_talisman]
 id = 1460
 examine = "A mysterious power emanates from the talisman..."
 
 [soul_talisman_noted]
 id = 1461
 
-[weapon_poison_ranging_guild] # Unobtainable
+[weapon_poison_ranging_guild]
 id = 1465
 examine = "For use on daggers and projectiles. "
 
 [unfinished_cocktail_pineapple_punch_mixed]
 id = 2042
-weight = 0.4
-examine = "This cocktail is just missing those little finishing touches."
-use = "Removed"
 
 [unfinished_cocktail_blurberry_special_mixed]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2056
 
 [unfinished_cocktail_blurberry_special_orange]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2058
 
 [unfinished_cocktail_blurberry_special_lemon]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2060
 
 [unfinished_cocktail_blurberry_special_lime]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2062
 
 [unfinished_cocktail_choc_saturday_mixed]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2066
 
 [unfinished_cocktail_choc_saturday_chocolate_bar]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2068
 
 [unfinished_cocktail_choc_saturday_heated]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2070
 
 [unfinished_cocktail_choc_saturday_cream]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2072
 
 [unfinished_cocktail_short_green_guy_mixed]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2076
 
 [unfinished_cocktail_short_green_guy_lime]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2078
 
 [unfinished_cocktail_fruit_blast]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2082
 
 [unfinished_cocktail_pineapple_punch_lime]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2044
 
 [unfinished_cocktail_pineapple_punch_pineapple]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2046
 
 [unfinished_cocktail_wizard_blizzard_mixed]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2050
 
 [unfinished_cocktail_wizard_blizzard_pineapple]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2052
 
 [unfinished_cocktail_drunk_dragon_mixed]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2086
 
 [unfinished_cocktail_drunk_dragon_pineapple]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2088
 
 [unfinished_cocktail_drunk_dragon_cream]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
 id = 2090
 
 [equa_toads_legs]
 id = 2154
-use = "Removed"
 
 [odd_batta]
 id = 2245
 weight = 0.25
 examine = "This batta doesn't look very appetising."
-use = "Removed"
 
 [equa_toads_legs_noted]
 id = 2155
@@ -174,71 +151,58 @@ id = 2212
 id = 2216
 
 [unfinished_batta_cheese_and_tomato]
-clone = "unfinished_batta_worm"
 id = 2257
 
 [unfinished_batta_fruit_baked]
-clone = "unfinished_batta_worm"
 id = 2261
 
 [unfinished_batta_fruit_baked_noted]
 id = 2262
 
 [unfinished_batta_fruit_lime]
-clone = "unfinished_batta_worm"
 id = 2263
 
 [unfinished_batta_fruit_lime_noted]
 id = 2264
 
 [unfinished_batta_fruit_orange]
-clone = "unfinished_batta_worm"
 id = 2265
 
 [unfinished_batta_fruit_orange_noted]
 id = 2266
 
 [unfinished_batta_fruit_pineapple]
-clone = "unfinished_batta_worm"
 id = 2267
 
 [unfinished_batta_fruit_pineapple_noted]
 id = 2268
 
 [unfinished_batta_fruit_lime_orange]
-clone = "unfinished_batta_worm"
 id = 2269
 
 [unfinished_batta_fruit_lime_orange_noted]
 id = 2270
 
 [unfinished_batta_fruit_lime_pineapple]
-clone = "unfinished_batta_worm"
 id = 2271
 
 [unfinished_batta_fruit_lime_pineapple_noted]
 id = 2272
 
 [unfinished_batta_fruit_orange_pineapple]
-clone = "unfinished_batta_worm"
 id = 2273
 
 [unfinished_batta_fruit_orange_pineapple_noted]
 id = 2274
 
 [unfinished_batta_fruit_lime_orange_pineapple]
-clone = "unfinished_batta_worm"
 id = 2275
 
 [unfinished_batta_vegetable]
-clone = "unfinished_batta_worm"
 id = 2279
 
 [unfinished_batta_worm]
 id = 2251
-weight = 0.25
-examine = "This batta is just missing those little finishing touches."
-use = "Removed"
 
 [odd_batta_noted]
 id = 2246
@@ -271,25 +235,25 @@ weight = 0.005
 slot = "Weapon"
 examine = "A flying Magic carpet."
 
-[poison_dagger_p+]  # Unobtainable
+[poison_dagger_p+] 
 id = 5684
 
 [poison_dagger_p+_noted]
 id = 5685
 
-[poison_dagger_p++] # Unobtainable
+[poison_dagger_p++]
 id = 5702
 
 [poison_dagger_p++_noted]
 id = 5703
 
-[stool_dairy_cow_anim] # Unobtainable
+[stool_dairy_cow_anim]
 id = 5732
 
 [stool_dairy_cow_anim_noted]
 id = 6060
 
-[spirit_roots] # Unobtainable
+[spirit_roots]
 id = 6053
 
 [spirit_roots_noted]
@@ -364,20 +328,20 @@ id = 7617
 [item_22]
 id = 7618
 
-[hatchet_handle_2] # Unobtainable
+[hatchet_handle_2]
 id = 7952
 examine = "Useless."
 
 [hatchet_handle_2_noted]
 id = 7953
 
-[flatpack_globe] # Unobtainable
+[flatpack_globe]
 id = 8630
 
 [flatpack_globe_noted]
 id = 8631
 
-[thing] # Unobtainable
+[thing]
 id = 8796
 
 [guthix_staff_dummy]
@@ -386,10 +350,10 @@ id = 8843
 [torch_sea_slug_noted]
 id = 9701
 
-[stick_2] # Unobtainable
+[stick_2]
 id = 9702
 
-[rock] # Unobtainable
+[rock]
 id = 9716
 examine = "A chunk of rock. "
 
@@ -1169,12 +1133,6 @@ tradeable = false
 [lord_marshal_cap_2]
 id = 15339
 tradeable = false
-
-[junk]
-id = 18815
-
-[junk_2]
-id = 18816
 
 [black_helm_2]
 id = 19801

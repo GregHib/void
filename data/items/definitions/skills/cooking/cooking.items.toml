@@ -124,7 +124,6 @@ id = 1876
 id = 1877
 weight = 0.3
 examine = "A mixture of chopped onions and ugthanki meat in a bowl."
-use = "Removed"
 
 [ugthanki_and_onion_noted]
 id = 1878
@@ -623,7 +622,6 @@ limit = 2
 heals = 14
 weight = 0.5
 examine = "Happy Halloween."
-use = "Limited"
 
 [pumpkin_noted]
 id = 1960
@@ -635,7 +633,6 @@ limit = 2
 heals = 14
 weight = 0.085
 examine = "Happy Easter."
-use = "Limited"
 
 [easter_egg_noted]
 id = 1962
@@ -797,7 +794,6 @@ heals = 70
 excess = "jug"
 weight = 1.0
 examine = "An optimist would say it's half full."
-use = "Limited"
 
 [half_full_wine_jug_noted]
 id = 1990
@@ -853,7 +849,6 @@ id = 1998
 id = 1999
 weight = 1.2
 examine = "I need to add some potato too."
-use = "Removed"
 
 [incomplete_stew_meat_noted]
 id = 2000
@@ -1547,7 +1542,6 @@ id = 2159
 id = 2160
 weight = 0.1
 examine = "They're a gnome delicacy apparently."
-use = "Removed"
 
 [spicy_worm_noted]
 id = 2161
@@ -1610,7 +1604,6 @@ id = 2172
 id = 2173
 weight = 0.25
 examine = "This gnome bowl doesn't look very appetising."
-use = "Removed"
 
 [burnt_gnomebowl]
 id = 2175
@@ -1637,7 +1630,6 @@ kept = "Reclaim"
 id = 2179
 weight = 0.3
 examine = "This dish is just missing those little finishing touches."
-use = "Removed"
 
 [unfinished_bowl_chocolate_bomb_cream]
 clone = "unfinished_bowl_chocolate_bomb_baked"
@@ -1703,7 +1695,6 @@ id = 2196
 id = 2197
 weight = 0.3
 examine = "These crunchies don't look very appetising."
-use = "Removed"
 
 [odd_crunchies_noted]
 id = 2198
@@ -1733,7 +1724,6 @@ examine = "These crunchies need cooking."
 id = 2203
 weight = 0.3
 examine = "These crunchies are just missing those little finishing touches."
-use = "Removed"
 
 [worm_crunchies]
 id = 2205

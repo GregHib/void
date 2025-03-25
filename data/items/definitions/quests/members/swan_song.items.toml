@@ -3,7 +3,6 @@ id = 7941
 tradeable = false
 weight = 1.814
 examine = "A sturdy sheet of iron."
-use = "Quest"
 kept = "Wilderness"
 
 [fresh_monkfish_raw]
@@ -11,7 +10,6 @@ id = 7942
 tradeable = false
 weight = 0.45
 examine = "Freshly caught. Needs cooking."
-use = "Quest"
 kept = "Wilderness"
 
 [fresh_monkfish]
@@ -21,7 +19,6 @@ eat_message = "It's so fresh that it's got no flavour, and it doesn't heal much 
 tradeable = false
 weight = 0.4
 examine = "Freshly caught and cooked - perfect for storing. Not so good for eating."
-use = "Quest"
 kept = "Wilderness"
 
 [raw_monkfish]
@@ -59,7 +56,6 @@ id = 7950
 tradeable = false
 weight = 0.001
 examine = "A highly portable army of skeletal magi."
-use = "Quest"
 kept = "Wilderness"
 
 [hermans_book]

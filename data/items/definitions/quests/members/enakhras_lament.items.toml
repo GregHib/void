@@ -14,7 +14,6 @@ tradeable = false
 weight = 20.0
 destroy = "You can make another 20 kg block by giving enough stone to Lazim."
 examine = "A huge twenty-kilo block of sandstone."
-use = "Quest"
 kept = "Reclaim"
 
 [sandstone_32kg]
@@ -23,7 +22,6 @@ tradeable = false
 weight = 32.0
 destroy = "You can make another 32 kg sandstone block by giving enough stone to Lazim."
 examine = "A huge thirty-two-kilo block of sandstone."
-use = "Quest"
 kept = "Reclaim"
 
 [sandstone_body]
@@ -32,7 +30,6 @@ tradeable = false
 weight = 30.0
 destroy = "You can make another statue body by giving Lazim 20 kg of stone and then crafting it."
 examine = "The body of a sandstone statue."
-use = "Quest"
 kept = "Wilderness"
 
 [sandstone_base]
@@ -41,7 +38,6 @@ tradeable = false
 weight = 23.0
 destroy = "You can make another statue base by giving Lazim 32 kg of stone and then crafting it."
 examine = "The base and legs of a sandstone statue."
-use = "Quest"
 kept = "Wilderness"
 
 [stone_head_lazim]
@@ -50,7 +46,6 @@ tradeable = false
 weight = 0.5
 destroy = "You can get the statue's head back from Lazim."
 examine = "A granite head shaped like the sculptor Lazim."
-use = "Quest"
 kept = "Wilderness"
 
 [stone_head_zamorak]
@@ -59,7 +54,6 @@ tradeable = false
 weight = 0.5
 examine = "A granite head shaped like the god Zamorak."
 destroy = "You can get the statue's head back from Lazim."
-use = "Quest"
 kept = "Wilderness"
 
 [stone_head_icthlarin]
@@ -68,7 +62,6 @@ tradeable = false
 weight = 0.5
 destroy = "You can get the statue's head back from Lazim."
 examine = "A granite head shaped like the god Icthlarin."
-use = "Quest"
 kept = "Wilderness"
 
 [stone_head_camel]
@@ -77,7 +70,6 @@ tradeable = false
 weight = 0.5
 destroy = "You can get the statue's head back from Lazim."
 examine = "A granite head shaped like a camel."
-use = "Quest"
 kept = "Wilderness"
 
 [z_sigil]
@@ -86,7 +78,6 @@ tradeable = false
 weight = 0.5
 destroy = "You can get another Z sigil from the pedestal with a silver Z on."
 examine = "A metal sigil in the shape of a Z."
-use = "Quest"
 kept = "Wilderness"
 
 [m_sigil]
@@ -95,7 +86,6 @@ tradeable = false
 weight = 0.5
 destroy = "You can get another M sigil from the pedestal with a silver M on."
 examine = "A metal sigil in the shape of an M."
-use = "Quest"
 kept = "Wilderness"
 
 [r_sigil]
@@ -112,7 +102,6 @@ tradeable = false
 weight = 0.5
 destroy = "You can get another K sigil from the pedestal with a silver K on."
 examine = "A metal sigil in the shape of a K."
-use = "Quest"
 kept = "Wilderness"
 
 [stone_left_arm]
@@ -121,7 +110,6 @@ tradeable = false
 weight = 9.0
 destroy = "You can get the statue's left arm back from Lazim."
 examine = "The left arm of a large stone statue."
-use = "Quest"
 kept = "Wilderness"
 
 [stone_right_arm]
@@ -130,7 +118,6 @@ tradeable = false
 weight = 9.0
 destroy = "You can get the statue's right arm back from Lazim."
 examine = "The right arm of a large stone statue."
-use = "Quest"
 kept = "Wilderness"
 
 [stone_left_leg]
@@ -139,7 +126,6 @@ tradeable = false
 weight = 9.0
 destroy = "You can get the statue's left leg back from Lazim."
 examine = "The left leg of a large stone statue."
-use = "Quest"
 kept = "Wilderness"
 
 [stone_right_leg]
@@ -148,7 +134,6 @@ tradeable = false
 weight = 9.0
 destroy = "You can get the statue's right leg back from Lazim."
 examine = "The right leg of a large stone statue."
-use = "Quest"
 kept = "Wilderness"
 
 [camel_mould_p]
@@ -157,7 +142,6 @@ tradeable = false
 weight = 0.5
 destroy = "You can make another positive mould by using soft clay on the pedestal in Enakhra's temple."
 examine = "A positive clay mould of a camel's head."
-use = "Quest"
 kept = "Wilderness"
 
 [stone_head_cavity]
@@ -166,7 +150,6 @@ tradeable = false
 weight = 0.5
 destroy = "You can make another stone head by crafting some granite with a camel head mould in your inventory."
 examine = "A granite head that will fit exactly into the pedestal."
-use = "Quest"
 kept = "Wilderness"
 
 [camel_mask]

@@ -85,7 +85,6 @@ tradeable = false
 weight = 0.02
 destroy = "You can get another sketch by using charcoal with papyrus, when on the wall near Castle Drakyn."
 examine = "Northern approach of the castle."
-use = "Quest"
 kept = "Wilderness"
 
 [castle_sketch_2]
@@ -94,7 +93,6 @@ tradeable = false
 weight = 0.02
 destroy = "You can get another sketch by using charcoal with papyrus, when on the wall near Castle Drakyn."
 examine = "Western approach of the castle."
-use = "Quest"
 kept = "Wilderness"
 
 [castle_sketch_3]
@@ -103,7 +101,6 @@ tradeable = false
 weight = 0.02
 destroy = "You can get another sketch by using charcoal with papyrus, when on the wall near Castle Drakyn."
 examine = "Southern approach of the castle."
-use = "Quest"
 kept = "Wilderness"
 
 [message_fireplace]
@@ -127,7 +124,6 @@ tradeable = false
 weight = 2.0
 destroy = "You found this key in a painting in Meiyerditch, north of the Myreque hideout."
 examine = "A key to some large, strange door."
-use = "Quest"
 kept = "Wilderness"
 
 [haemalchemy_vol_1]
@@ -136,7 +132,6 @@ tradeable = false
 weight = 2.0
 destroy = "You found this volume inside a hidden laboratory in Meiyerditch."
 examine = "A book called Haemalchemy Volume 1."
-use = "Quest"
 kept = "Wilderness"
 
 [sealed_message]
@@ -145,7 +140,6 @@ tradeable = false
 weight = 0.001
 destroy = "Safalaan gave you this message; he would probably write out another one for you."
 examine = "A sealed message from Safalaan to Veliaf."
-use = "Quest"
 kept = "Wilderness"
 
 [door_key_darkness_of_hallowvale]
@@ -154,7 +148,6 @@ tradeable = false
 weight = 0.055
 destroy = "You found this key near a door in Meiyerditch; you can probably get another from the same place."
 examine = "A key to some door."
-use = "Quest"
 kept = "Wilderness"
 
 [ladder_top]
@@ -163,7 +156,6 @@ tradeable = false
 weight = 0.001
 destroy = "You found this ladder top on a wall section in the north of Meiyerditch; you can get another one there."
 examine = "The top of a ladder."
-use = "Quest"
 kept = "Wilderness"
 
 [tome_of_xp_3]

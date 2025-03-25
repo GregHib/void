@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.453
 slot = "Weapon"
 examine = "A sharp cattleprod."
-use = "Quest"
 kept = "Wilderness"
 
 [sheep_feed]
@@ -12,7 +11,6 @@ id = 279
 tradeable = false
 weight = 2.267
 examine = "Councillor Halgrive gave me this to kill some sheep."
-use = "Quest"
 kept = "Wilderness"
 
 [sheep_bones_1]
@@ -20,7 +18,6 @@ id = 280
 tradeable = false
 weight = 1.36
 examine = "The suspicious-looking remains of a suspicious-looking sheep."
-use = "Quest"
 kept = "Wilderness"
 
 [sheep_bones_2]

@@ -323,7 +323,6 @@ id = 13276
 tradeable = false
 weight = 0.002
 examine = "The remains of a banshee's scream."
-use = "Quest"
 kept = "Wilderness"
 
 [masked_earmuffs]

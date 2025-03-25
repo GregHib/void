@@ -15,7 +15,6 @@ weight = 1.814
 slot = "Weapon"
 examine = "Basic training sword."
 kept = "Reclaim"
-use = "Limited"
 
 [training_shield]
 id = 9704
@@ -24,7 +23,6 @@ weight = 5.443
 slot = "Shield"
 examine = "Made of flimsy painted wood."
 kept = "Reclaim"
-use = "Limited"
 
 [training_bow]
 id = 9705
@@ -35,7 +33,6 @@ type = "TwoHanded"
 attack_range = 7
 examine = "Light and flexible; good for a beginner."
 kept = "Reclaim"
-use = "Limited"
 
 [training_arrows]
 id = 9706
@@ -43,7 +40,6 @@ tradeable = false
 slot = "Ammo"
 examine = "Standard training arrows."
 kept = "Reclaim"
-use = "Limited"
 
 [goblin_book]
 id = 10999

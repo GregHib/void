@@ -39,7 +39,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can get another from the Ardougne Zoo penguin."
 examine = "Zoo penguin's report."
-use = "Quest"
 kept = "Wilderness"
 
 [mission_report_lumbridge]
@@ -48,7 +47,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can get another from the Lumbridge penguins."
 examine = "Lumbridge penguin's report."
-use = "Quest"
 kept = "Wilderness"
 
 [mission_report_fake]
@@ -57,7 +55,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can get another from Noodle."
 examine = "My fake report."
-use = "Quest"
 kept = "Wilderness"
 
 [kgp_id_card]
@@ -66,5 +63,4 @@ tradeable = false
 weight = 0.001
 destroy = "You can get another from Noodle."
 examine = "So you can be a penguin too!"
-use = "Quest"
 kept = "Wilderness"

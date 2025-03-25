@@ -129,7 +129,6 @@ tradeable = false
 weight = 0.453
 destroy = "King Sorvott of Jatizso will give you another one, grudgingly."
 examine = "The document is stamped with King Gjuki Sorvott IV's royal seal."
-use = "Quest"
 kept = "Wilderness"
 
 [empty_tax_bag]
@@ -138,7 +137,6 @@ tradeable = false
 weight = 0.453
 destroy = "Are you sure? You can replace it by talking to King Sorvott."
 examine = "An empty tax bag."
-use = "Quest"
 kept = "Wilderness"
 
 [light_tax_bag]
@@ -147,7 +145,6 @@ tradeable = false
 weight = 1.814
 destroy = "Are you sure? You can replace it by talking to King Sorvott."
 examine = "A light tax bag."
-use = "Quest"
 kept = "Wilderness"
 
 [normal_tax_bag]
@@ -156,7 +153,6 @@ tradeable = false
 weight = 3.628
 destroy = "Are you sure? You can replace it by talking to King Sorvott."
 examine = "A normal tax bag."
-use = "Quest"
 kept = "Wilderness"
 
 [hefty_tax_bag]
@@ -165,7 +161,6 @@ tradeable = false
 weight = 5.443
 destroy = "Are you sure? You can replace it by talking to King Sorvott."
 examine = "A hefty tax bag."
-use = "Quest"
 kept = "Wilderness"
 
 [bulging_taxbag]
@@ -232,7 +227,6 @@ tradeable = false
 weight = 3.628
 destroy = "You'll have to go back to the troll caves to get another one."
 examine = "The head of the Troll King...nice!"
-use = "Quest"
 kept = "Wilderness"
 
 [helm_of_neitiznot_noted]

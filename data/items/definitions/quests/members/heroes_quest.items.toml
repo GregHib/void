@@ -3,7 +3,6 @@ id = 1577
 weight = 0.5
 destroy = "You will have to get another candlestick from the treasure room in Scarface Pete's mansion in Brimhaven, or from another player."
 examine = "A valuable item stolen from Scarface Pete's mansion in Brimhaven."
-use = "Quest"
 kept = "Wilderness"
 
 [petes_candlestick_noted]
@@ -15,7 +14,6 @@ tradeable = false
 weight = 0.025
 destroy = "You can reclaim the armband from the leader of the Varrock gang who gave it to you."
 examine = "This denotes a master thief."
-use = "Quest"
 kept = "Wilderness"
 
 [ice_gloves]
@@ -32,7 +30,6 @@ id = 1581
 tradeable = false
 weight = 0.025
 examine = "Yuck."
-use = "Quest"
 kept = "Reclaim"
 
 [blamish_oil]
@@ -56,7 +53,6 @@ tradeable = false
 weight = 0.01
 destroy = "You can reclaim the ID papers from Trobert in the Black Arm hideout south-east of the Shrimp and Parrot in Brimhaven."
 examine = "Apparently my name is 'Hartigen'."
-use = "Quest"
 kept = "Wilderness"
 
 [oily_fishing_rod]
@@ -72,7 +68,6 @@ id = 1586
 weight = 0.01
 destroy = "Grip in Scarface Pete's mansion in Brimhaven might be able to replace your key. You can also reclaim it from the quest storage chest."
 examine = "This is of use in completing Heroes' Quest."
-use = "Quest"
 kept = "Wilderness"
 
 [miscellaneous_key_noted]
@@ -84,5 +79,4 @@ tradeable = false
 weight = 0.025
 destroy = "Grip in Scarface Pete's mansion in Brimhaven carries this key."
 examine = "The key I got from Grip."
-use = "Quest"
 kept = "Wilderness"

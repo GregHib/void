@@ -5,7 +5,6 @@ limit = 2
 weight = 0.2
 examine = "I need to pull this."
 kept = "Wilderness"
-use = "Limited"
 
 [christmas_cracker_noted]
 id = 963
@@ -17,7 +16,6 @@ limit = 2
 weight = 0.056
 slot = "Hat"
 examine = "A nice hat from a cracker."
-use = "Limited"
 
 [red_partyhat_noted]
 id = 1039
@@ -29,7 +27,6 @@ limit = 2
 weight = 0.056
 slot = "Hat"
 examine = "A nice hat from a cracker."
-use = "Limited"
 
 [yellow_partyhat_noted]
 id = 1041
@@ -41,7 +38,6 @@ limit = 2
 weight = 0.056
 slot = "Hat"
 examine = "A nice hat from a cracker."
-use = "Limited"
 
 [blue_partyhat_noted]
 id = 1043
@@ -53,7 +49,6 @@ limit = 2
 weight = 0.056
 slot = "Hat"
 examine = "A nice hat from a cracker."
-use = "Limited"
 
 [green_partyhat_noted]
 id = 1045
@@ -65,7 +60,6 @@ limit = 2
 weight = 0.056
 slot = "Hat"
 examine = "A nice hat from a cracker."
-use = "Limited"
 
 [purple_partyhat_noted]
 id = 1047
@@ -77,7 +71,6 @@ limit = 2
 weight = 0.056
 slot = "Hat"
 examine = "A nice hat from a cracker."
-use = "Limited"
 
 [white_partyhat_noted]
 id = 1049
@@ -89,7 +82,6 @@ limit = 2
 weight = 0.113
 slot = "Hat"
 examine = "It's a Santa hat."
-use = "Limited"
 
 [santa_hat_noted]
 id = 1051
@@ -101,7 +93,6 @@ weight = 0.01
 aka = ["yoyo"]
 examine = "A gift from Santa."
 kept = "Wilderness"
-use = "Limited"
 
 [star_bauble]
 id = 6822
@@ -110,7 +101,6 @@ weight = 0.2
 destroy = "If you destroy this, another can be claimed from Diango's workshop."
 examine = "An unpainted bauble shaped like a star."
 kept = "Reclaim"
-use = "Removed"
 
 [star_bauble_yellow]
 id = 6823
@@ -119,7 +109,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a star painted yellow."
 kept = "Reclaim"
-use = "Removed"
 
 [star_bauble_red]
 id = 6824
@@ -128,7 +117,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a star painted red."
 kept = "Reclaim"
-use = "Removed"
 
 [star_bauble_blue]
 id = 6825
@@ -137,7 +125,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a star painted blue."
 kept = "Reclaim"
-use = "Removed"
 
 [star_bauble_green]
 id = 6826
@@ -146,7 +133,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a star painted green."
 kept = "Reclaim"
-use = "Removed"
 
 [star_bauble_pink]
 id = 6827
@@ -155,7 +141,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a star painted pink."
 kept = "Reclaim"
-use = "Removed"
 
 [box_bauble]
 id = 6828
@@ -164,7 +149,6 @@ weight = 0.2
 destroy = "If you destroy this, another can be claimed from Diango's workshop."
 examine = "An unpainted bauble shaped like a gift."
 kept = "Reclaim"
-use = "Removed"
 
 [box_bauble_yellow]
 id = 6829
@@ -173,7 +157,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a gift painted yellow."
 kept = "Reclaim"
-use = "Removed"
 
 [box_bauble_red]
 id = 6830
@@ -182,7 +165,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a gift painted red."
 kept = "Reclaim"
-use = "Removed"
 
 [box_bauble_blue]
 id = 6831
@@ -191,7 +173,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a gift painted blue."
 kept = "Reclaim"
-use = "Removed"
 
 [box_bauble_green]
 id = 6832
@@ -200,7 +181,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a gift painted green."
 kept = "Reclaim"
-use = "Removed"
 
 [box_bauble_pink]
 id = 6833
@@ -209,7 +189,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a gift painted pink."
 kept = "Reclaim"
-use = "Removed"
 
 [diamond_bauble]
 id = 6834
@@ -218,7 +197,6 @@ weight = 0.2
 destroy = "If you destroy this, another can be claimed from Diango's workshop."
 examine = "An unpainted bauble shaped like a diamond."
 kept = "Reclaim"
-use = "Removed"
 
 [diamond_bauble_yellow]
 id = 6835
@@ -227,7 +205,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a diamond painted yellow."
 kept = "Reclaim"
-use = "Removed"
 
 [diamond_bauble_red]
 id = 6836
@@ -236,7 +213,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a diamond painted red."
 kept = "Reclaim"
-use = "Removed"
 
 [diamond_bauble_blue]
 id = 6837
@@ -245,7 +221,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a diamond painted blue."
 kept = "Reclaim"
-use = "Removed"
 
 [diamond_bauble_green]
 id = 6838
@@ -254,7 +229,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a diamond painted green."
 kept = "Reclaim"
-use = "Removed"
 
 [diamond_bauble_pink]
 id = 6839
@@ -263,7 +237,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a diamond painted pink."
 kept = "Reclaim"
-use = "Removed"
 
 [tree_bauble]
 id = 6840
@@ -272,7 +245,6 @@ weight = 0.2
 destroy = "If you destroy this, another can be claimed from Diango's workshop."
 examine = "An unpainted bauble shaped like a wintumber tree."
 kept = "Reclaim"
-use = "Removed"
 
 [tree_bauble_yellow]
 id = 6841
@@ -281,7 +253,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a wintumber tree painted yellow."
 kept = "Reclaim"
-use = "Removed"
 
 [tree_bauble_red]
 id = 6842
@@ -290,7 +261,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a wintumber tree painted red."
 kept = "Reclaim"
-use = "Removed"
 
 [tree_bauble_blue]
 id = 6843
@@ -299,7 +269,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a wintumber tree painted blue."
 kept = "Reclaim"
-use = "Removed"
 
 [tree_bauble_green]
 id = 6844
@@ -308,7 +277,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a wintumber tree painted green."
 kept = "Reclaim"
-use = "Removed"
 
 [tree_bauble_pink]
 id = 6845
@@ -317,7 +285,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a wintumber tree painted pink."
 kept = "Reclaim"
-use = "Removed"
 
 [bell_bauble]
 id = 6846
@@ -326,7 +293,6 @@ weight = 0.2
 destroy = "If you destroy this, another can be claimed from Diango's workshop."
 examine = "An unpainted bauble shaped like a bell."
 kept = "Reclaim"
-use = "Removed"
 
 [bell_bauble_yellow]
 id = 6847
@@ -335,7 +301,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a bell painted yellow."
 kept = "Reclaim"
-use = "Removed"
 
 [bell_bauble_red]
 id = 6848
@@ -344,7 +309,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a bell painted red."
 kept = "Reclaim"
-use = "Removed"
 
 [bell_bauble_blue]
 id = 6849
@@ -353,7 +317,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a bell painted blue."
 kept = "Reclaim"
-use = "Removed"
 
 [bell_bauble_green]
 id = 6850
@@ -362,7 +325,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a bell painted green."
 kept = "Reclaim"
-use = "Removed"
 
 [bell_bauble_pink]
 id = 6851
@@ -371,7 +333,6 @@ weight = 0.2
 destroy = "If you destroy this, another unpainted version can be claimed from Diango's workshop."
 examine = "A bauble shaped like a bell painted pink."
 kept = "Reclaim"
-use = "Removed"
 
 [puppet_box]
 id = 6852
@@ -394,7 +355,6 @@ tradeable = false
 weight = 2.0
 examine = "A box for storing painted baubles."
 kept = "Reclaim"
-use = "Removed"
 
 [bobble_hat]
 id = 6856
@@ -410,7 +370,6 @@ slot = "Amulet"
 destroy = "You can obtain another scarf from Diango in the Draynor market."
 examine = "A woolly scarf."
 kept = "Wilderness"
-use = "Limited"
 
 [jester_hat]
 id = 6858
@@ -420,7 +379,6 @@ slot = "Hat"
 destroy = "You can obtain another hat from Diango in the Draynor Market."
 examine = "A woolly jester hat."
 kept = "Wilderness"
-use = "Limited"
 
 [jester_scarf]
 id = 6859
@@ -430,7 +388,6 @@ slot = "Amulet"
 destroy = "You can get another Jester scarf from Diango."
 examine = "A woolly jester scarf."
 kept = "Wilderness"
-use = "Limited"
 
 [tri_jester_hat]
 id = 6860
@@ -440,7 +397,6 @@ slot = "Hat"
 destroy = "You can obtain another hat from Diango in the Draynor Market."
 examine = "A woolly triple bobble jester hat."
 kept = "Wilderness"
-use = "Limited"
 
 [tri_jester_scarf]
 id = 6861
@@ -450,7 +406,6 @@ slot = "Amulet"
 destroy = "You can obtain another jester scarf from Diango in the Draynor Market."
 examine = "A woolly jester scarf."
 kept = "Wilderness"
-use = "Limited"
 
 [woolly_hat]
 id = 6862
@@ -460,7 +415,6 @@ slot = "Hat"
 destroy = "You can obtain another hat from Diango in the Draynor Market."
 examine = "A woolly tobogganing hat."
 kept = "Wilderness"
-use = "Limited"
 
 [woolly_scarf]
 id = 6863
@@ -470,7 +424,6 @@ slot = "Amulet"
 destroy = "You can obtain another scarf from Diango in the Draynor market."
 examine = "A woolly tobogganing scarf."
 kept = "Wilderness"
-use = "Limited"
 
 [marionette_handle]
 id = 6864
@@ -479,7 +432,6 @@ weight = 0.2
 slot = "Weapon"
 examine = "The controlling part of a marionette."
 kept = "Reclaim"
-use = "Removed"
 
 [blue_marionette]
 id = 6865
@@ -488,7 +440,6 @@ weight = 0.907
 destroy = "You can obtain another marionette in Diango's workshop by the trap door."
 examine = "I've got no strings ... oh hang on!"
 kept = "Vanish"
-use = "Limited"
 
 [green_marionette]
 clone = "blue_marionette"
@@ -504,7 +455,6 @@ tradeable = false
 weight = 0.907
 examine = "I want to be a real boy!"
 kept = "Reclaim"
-use = "Removed"
 
 [green_marionette_strung]
 clone = "blue_marionette_strung"
@@ -521,7 +471,6 @@ weight = 0.2
 destroy = "If you destroy this, another can be claimed from Diango's workshop."
 examine = "The torso of a marionette."
 kept = "Reclaim"
-use = "Removed"
 
 [red_marionette_head]
 id = 6872
@@ -530,7 +479,6 @@ weight = 0.4
 destroy = "If you destroy this, another can be claimed from Diango's workshop."
 examine = "The torso and head of a marionette."
 kept = "Reclaim"
-use = "Removed"
 
 [red_marionette_arms]
 id = 6873
@@ -539,7 +487,6 @@ weight = 0.6
 destroy = "If you destroy this, another can be claimed from Diango's workshop."
 examine = "The torso, head and arms of a marionette."
 kept = "Reclaim"
-use = "Removed"
 
 [red_marionette_legs]
 id = 6874
@@ -548,7 +495,6 @@ weight = 0.8
 destroy = "If you destroy this, another can be claimed from Diango's workshop."
 examine = "No strings attached."
 kept = "Reclaim"
-use = "Removed"
 
 [blue_marionette_torso]
 id = 6875
@@ -557,7 +503,6 @@ weight = 0.2
 destroy = "If you destroy this, another can be claimed from Diango's workshop."
 examine = "Needs a head."
 kept = "Reclaim"
-use = "Removed"
 
 [blue_marionette_head]
 id = 6876
@@ -566,7 +511,6 @@ weight = 0.4
 destroy = "If you destroy this, another can be claimed from Diango's workshop."
 examine = "Needs arms."
 kept = "Reclaim"
-use = "Removed"
 
 [blue_marionette_arms]
 id = 6877
@@ -575,7 +519,6 @@ weight = 0.6
 destroy = "If you destroy this, another can be claimed from Diango's workshop."
 examine = "Needs legs."
 kept = "Reclaim"
-use = "Removed"
 
 [blue_marionette_legs]
 clone = "red_marionette_legs"
@@ -603,7 +546,6 @@ tradeable = false
 slot = "Weapon"
 examine = "Made from snow."
 kept = "Reclaim"
-use = "Removed"
 
 [gublinch_shards]
 id = 10506
@@ -611,7 +553,6 @@ tradeable = false
 weight = 9.071
 examine = "A gublinch frozen and crumbled into shards."
 kept = "Reclaim"
-use = "Removed"
 
 [reindeer_hat]
 id = 10507
@@ -622,7 +563,6 @@ type = "Hair"
 destroy = "You got this hat from Shanty Claws; you can get another from Diango."
 examine = "A reindeer hat and a matching flashing nose."
 kept = "Wilderness"
-use = "Limited"
 
 [wintumber_tree]
 id = 10508
@@ -631,14 +571,12 @@ weight = 10.0
 destroy = "You got this tree from Shanty Claws; you can get another from Diango."
 examine = "A wintumber tree for your player-owned house."
 kept = "Wilderness"
-use = "Limited"
 
 [snowball]
 id = 10509
 tradeable = false
 examine = "Made from snow."
 kept = "Reclaim"
-use = "Removed"
 
 [snowball_noted]
 id = 10510
@@ -680,7 +618,6 @@ weight = 0.001
 destroy = "You can claim another from the Queen of Snow."
 examine = "Add this to a snowman to make a snow warrior."
 kept = "Vanish"
-use = "Removed"
 
 [winter_staff]
 id = 11953
@@ -689,7 +626,6 @@ weight = 0.001
 destroy = "You can claim another from the Queen of Snow."
 examine = "Add this to a snowman to make a snow mage."
 kept = "Vanish"
-use = "Removed"
 
 [holly_bow]
 id = 11954
@@ -698,7 +634,6 @@ weight = 0.001
 destroy = "You can claim another from the Queen of Snow."
 examine = "Add this to a snowman to make a snow ranger."
 kept = "Vanish"
-use = "Removed"
 
 [barbarian_snowman_hat]
 id = 11955
@@ -707,7 +642,6 @@ weight = 0.001
 destroy = "You can claim another from the Queen of Snow."
 examine = "Add this to a snowman to make a barbarian snowman."
 kept = "Vanish"
-use = "Removed"
 
 [dragon_snowman_hat]
 id = 11956
@@ -716,7 +650,6 @@ weight = 0.001
 destroy = "You can claim another from the Queen of Snow."
 examine = "It's actually made of cardboard, but it looks like a dragon full helm."
 kept = "Vanish"
-use = "Removed"
 
 [dwarf_snowman_hat]
 id = 11957
@@ -725,7 +658,6 @@ weight = 0.001
 destroy = "You can claim another from the Queen of Snow."
 examine = "Use this to make your snowman look like a dwarf."
 kept = "Vanish"
-use = "Removed"
 
 [pirate_snowman_hat]
 id = 11958
@@ -734,7 +666,6 @@ weight = 0.001
 destroy = "You can claim another from the Queen of Snow."
 examine = "Arr! Shiver me snowman!"
 kept = "Vanish"
-use = "Removed"
 
 [snowman_top_hat]
 id = 11959
@@ -743,7 +674,6 @@ weight = 0.001
 destroy = "You can claim another from the Queen of Snow."
 examine = "The most traditional snowman hat."
 kept = "Vanish"
-use = "Removed"
 
 [santa_costume_top_3]
 id = 14595
@@ -753,7 +683,6 @@ slot = "Chest"
 destroy = "You can get another from Diango in Draynor Village."
 examine = "A red and jolly top."
 kept = "Wilderness"
-use = "Limited"
 
 [ice_amulet_2]
 id = 14596
@@ -764,7 +693,6 @@ destroy = "You can get another one from the snow imps near Lumbridge, Rimmington
 examine = "A spiky amulet made of ice crystals. It has been enchanted so it will not melt."
 destroy2 = "You can get another from Diango in Draynor Village."
 kept = "Wilderness"
-use = "Limited"
 
 
 [ice_amulet]
@@ -776,7 +704,6 @@ destroy = "You can get another one from the snow imps near Lumbridge, Rimmington
 examine = "A spiky amulet made of ice crystals. It has been enchanted so it will not melt."
 destroy2 = "You can get another from Diango in Draynor Village."
 kept = "Wilderness"
-use = "Limited"
 
 [santa_costume_top]
 id = 14600
@@ -798,7 +725,6 @@ slot = "Hands"
 destroy = "You can get another pair from Diango in Draynor Village."
 examine = "Some black and jolly gloves."
 kept = "Wilderness"
-use = "Limited"
 
 [santa_costume_legs]
 id = 14603
@@ -820,7 +746,6 @@ slot = "Feet"
 destroy = "You can get another pair from Diango in Draynor Village."
 examine = "Some black and jolly boots."
 kept = "Wilderness"
-use = "Limited"
 
 [bedsheets]
 id = 15419
@@ -829,7 +754,6 @@ weight = 0.05
 destroy = "You can get another by searching through the drawers of Scrooge's house."
 examine = "Crisp, cheap bedsheets."
 kept = "Vanish"
-use = "Removed"
 
 [present_2]
 clone = "present"
@@ -841,7 +765,6 @@ tradeable = false
 weight = 0.05
 examine = "Strong, though slightly rusty, iron chains."
 kept = "Vanish"
-use = "Removed"
 
 [christmas_ghost_hood]
 id = 15422
@@ -852,7 +775,6 @@ type = "FullFace"
 destroy = "You can get another from Diango in Draynor Village."
 examine = "This hood has been hewn from bedsheets."
 kept = "Wilderness"
-use = "Limited"
 
 [christmas_ghost_top]
 id = 15423
@@ -862,7 +784,6 @@ slot = "Chest"
 destroy = "You can get another from Diango in Draynor Village."
 examine = "This robe top has been hewn from bedsheets and wrapped in chains."
 kept = "Wilderness"
-use = "Limited"
 
 [christmas_ghost_top_2]
 id = 15424
@@ -872,7 +793,6 @@ slot = "Chest"
 destroy = "You can get another from Diango in Draynor Village."
 examine = "This robe top has been hewn from bedsheets and wrapped in chains."
 kept = "Wilderness"
-use = "Limited"
 
 [christmas_ghost_bottoms]
 id = 15425
@@ -882,7 +802,6 @@ slot = "Legs"
 destroy = "You can get another from Diango in Draynor Village."
 examine = "These robe bottoms have been hewn from bedsheets and wrapped in chains."
 kept = "Wilderness"
-use = "Limited"
 
 [candy_cane]
 id = 15426
@@ -892,7 +811,6 @@ slot = "Weapon"
 destroy = "You can get another from Diango in Draynor Village."
 examine = "A must-have Christmas accessory."
 kept = "Wilderness"
-use = "Limited"
 
 [bucket_of_icy_water]
 id = 15427
@@ -902,7 +820,6 @@ empty = "empty_bucket"
 destroy = "You can get another by filling a bucket at the fountain in the Land of Snow."
 examine = "It's a bucket of ice-cold water."
 kept = "Vanish"
-use = "Removed"
 
 [turkey_drumstick_2009_christmas_event]
 id = 15428
@@ -944,7 +861,6 @@ destroy = "Thorvar will have a spare."
 examine = "A very important bucket."
 destroy2 = "You should see Thorvar to get this back."
 kept = "Vanish"
-use = "Removed"
 
 [thorvars_bucket_crab]
 id = 20074
@@ -953,7 +869,6 @@ weight = 0.001
 destroy = "You should see Thorvar to get this back."
 examine = "A bucket containing an extremely dangerous creature."
 kept = "Vanish"
-use = "Removed"
 
 [thorvars_bag]
 id = 20075
@@ -962,7 +877,6 @@ weight = 0.001
 destroy = "You should ask Thorvar about getting another one."
 examine = "A large bag."
 kept = "Vanish"
-use = "Removed"
 
 [thorvars_bag_2]
 clone = "thorvars_bag"
@@ -976,7 +890,6 @@ slot = "Hat"
 destroy = "You can get another from Diango in Draynor Village."
 examine = "A crab in a hat."
 kept = "Wilderness"
-use = "Limited"
 
 [heimland_games_souvenir]
 id = 20078
@@ -985,7 +898,6 @@ weight = 0.001
 destroy = "You can get another from Diango in Draynor Village."
 examine = "A gift from Thorvar Crittersmash."
 kept = "Wilderness"
-use = "Limited"
 
 [hati_head]
 id = 20177

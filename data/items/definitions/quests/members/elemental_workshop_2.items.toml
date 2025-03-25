@@ -11,7 +11,6 @@ id = 9718
 tradeable = false
 weight = 0.1
 examine = "On the subject of lava dippers."
-use = "Quest"
 kept = "Wilderness"
 
 [lever_schematic]
@@ -26,7 +25,6 @@ id = 9720
 tradeable = false
 weight = 1.814
 examine = "A crane claw."
-use = "Quest"
 kept = "Wilderness"
 
 [scroll_elemental_workshop_ii]
@@ -34,7 +32,6 @@ id = 9721
 tradeable = false
 weight = 0.02
 examine = "A scroll with some writing on it."
-use = "Quest"
 kept = "Wilderness"
 
 [key_elemental_workshop_ii]
@@ -46,7 +43,6 @@ id = 9723
 tradeable = false
 weight = 3.175
 examine = "A spare section of pipe."
-use = "Quest"
 kept = "Wilderness"
 
 [large_cog]
@@ -54,7 +50,6 @@ id = 9724
 tradeable = false
 weight = 2.721
 examine = "A large cog."
-use = "Quest"
 kept = "Wilderness"
 
 [medium_cog]
@@ -62,7 +57,6 @@ id = 9725
 tradeable = false
 weight = 1.814
 examine = "A medium cog."
-use = "Quest"
 kept = "Wilderness"
 
 [small_cog]
@@ -70,7 +64,6 @@ id = 9726
 tradeable = false
 weight = 0.907
 examine = "A small cog."
-use = "Quest"
 kept = "Wilderness"
 
 [primed_bar]

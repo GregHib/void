@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.15
 destroy = "You will need to speak to Thormac to get another cage."
 examine = "It's empty!"
-use = "Quest"
 kept = "Wilderness"
 
 [scorpion_cage_taverley]
@@ -13,7 +12,6 @@ tradeable = false
 weight = 0.175
 destroy = "You will need to speak to Thormac to get another cage and will have to recapture the scorpion."
 examine = "There is 1 scorpion inside."
-use = "Quest"
 kept = "Wilderness"
 
 [scorpion_cage_taverley_outpost]
@@ -22,7 +20,6 @@ tradeable = false
 weight = 0.2
 destroy = "You will need to speak to Thormac to get another cage and will have to recapture the scorpions."
 examine = "There are 2 scorpions inside."
-use = "Quest"
 kept = "Wilderness"
 
 [scorpion_cage_taverley_monastery]
@@ -47,5 +44,4 @@ tradeable = false
 weight = 0.225
 destroy = "You will need to speak to Thormac to get another cage and will have to recapture all the scorpions."
 examine = "There are 3 scorpions inside."
-use = "Quest"
 kept = "Wilderness"

@@ -153,7 +153,6 @@ id = 3848
 tradeable = false
 weight = 0.01
 examine = "The key to the front door of the lighthouse."
-use = "Quest"
 kept = "Wilderness"
 
 [rusty_casket]
@@ -161,7 +160,6 @@ id = 3849
 tradeable = false
 weight = 5.0
 examine = "Looks old and rusty..."
-use = "Quest"
 kept = "Wilderness"
 
 [bandos_page_1]

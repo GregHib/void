@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.01
 destroy = "You will have to steal this from Urist's pocket if you get rid of it."
 examine = "A gem in a gold setting. All craftsdwarfship is of the highest quality."
-use = "Quest"
 kept = "Wilderness"
 
 [craftsmans_monocle]
@@ -22,7 +21,6 @@ tradeable = false
 weight = 3.0
 destroy = "You will have to steal this from Urist's stall if you get rid of it"
 examine = "Looks almost as if it could breathe fire...and it can!"
-use = "Quest"
 kept = "Wilderness"
 
 [bankers_note]
@@ -31,5 +29,4 @@ tradeable = false
 weight = 0.001
 destroy = "You will have to retrieve this from Urist if you get rid of it."
 examine = "A very large sum of money, sadly not made out to you."
-use = "Quest"
 kept = "Wilderness"

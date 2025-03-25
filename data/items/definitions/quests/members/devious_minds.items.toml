@@ -6,7 +6,6 @@ slot = "Weapon"
 type = "TwoHanded"
 destroy = "You can make a replacement."
 examine = "A slender two-handed sword."
-use = "Quest"
 kept = "Vanish"
 
 [bow_sword]
@@ -17,7 +16,6 @@ slot = "Weapon"
 type = "TwoHanded"
 destroy = "You can make a replacement."
 examine = "A sharp sword that can also fire arrows."
-use = "Quest"
 kept = "Wilderness"
 
 [large_pouch_devious_minds]
@@ -25,7 +23,6 @@ id = 6819
 tradeable = false
 weight = 1.0
 examine = "A large pouch used for storing essence."
-use = "Quest"
 kept = "Wilderness"
 
 [relic_devious_minds]
@@ -33,7 +30,6 @@ id = 6820
 tradeable = false
 weight = 0.001
 examine = "There seems to be bits missing..."
-use = "Quest"
 kept = "Vanish"
 
 [orb_devious_minds]
@@ -42,5 +38,4 @@ tradeable = false
 weight = 1.0
 destroy = "You can get another from the monk."
 examine = "A glowing orb."
-use = "Quest"
 kept = "Wilderness"

@@ -4,7 +4,6 @@ tradeable = false
 weight = 1.0
 destroy = "I can get it back from the Strange Old Man at the Barrows."
 examine = "An icon of an unknown deity."
-use = "Quest"
 kept = "Wilderness"
 
 [heat_globe]
@@ -13,7 +12,6 @@ tradeable = false
 destroy = "You can get another from Azzanadra at the temple under the Digsite."
 examine = "In spite of its name it feels cold."
 destroy2 = "I can get it back from the frozen fortress, which is west of the Frozen Waste Plateau."
-use = "Quest"
 kept = "Vanish"
 
 [heat_globe_2]
@@ -34,7 +32,6 @@ tradeable = false
 weight = 0.5
 destroy = "I can find more heat globes in the frozen fortress, on the coast west of the Wilderness."
 examine = "This globe seems to have chunks of rock attached to it."
-use = "Quest"
 kept = "Vanish"
 
 [heat_globe_5]
@@ -47,7 +44,6 @@ tradeable = false
 weight = 0.001
 destroy = "I can get another from the assassin beside the winch that leads down into Senntisten temple."
 examine = "The assassin's plunder from the church on Entrana."
-use = "Quest"
 kept = "Wilderness"
 
 [frostenhorn]
@@ -56,7 +52,6 @@ tradeable = false
 weight = 1.0
 destroy = "I can get it back next to the trapdoor leading down into the frozen fortress, to the west of the Wilderness."
 examine = "Recovered from an icy foe."
-use = "Quest"
 kept = "Wilderness"
 
 [ruined_backpack_the_temple_at_senntisten]
@@ -65,7 +60,6 @@ tradeable = false
 weight = 0.15
 destroy = "You can get another from Azzanadra at the temple under the Digsite."
 examine = "It's about to fall apart"
-use = "Quest"
 kept = "Wilderness"
 
 [battered_letter]
@@ -74,7 +68,6 @@ tradeable = false
 weight = 0.02
 destroy = "You can get another from Azzanadra at the temple under the Digsite."
 examine = "It looks like it's had a few adventures of its own."
-use = "Quest"
 kept = "Wilderness"
 
 [experience_lamp]
@@ -82,7 +75,6 @@ id = 15389
 tradeable = false
 weight = 0.02
 examine = "A mystical lamp engraved with scenes of city life."
-use = "Quest"
 kept = "Vanish"
 
 [combat_lamp_the_temple_at_senntisten]
@@ -91,7 +83,6 @@ tradeable = false
 weight = 0.02
 destroy = "I can get it back from Azzanadra at the temple under the Digsite."
 examine = "A mystical lamp engraved with scenes of carnage."
-use = "Quest"
 kept = "Vanish"
 
 [ancient_hymnal]
@@ -108,7 +99,6 @@ tradeable = false
 weight = 0.02
 destroy = "I can get another from the archaeological expert at the Exam Centre, south of the Digsite."
 examine = "The certificate that Azzanadra asked you to procure."
-use = "Quest"
 kept = "Vanish"
 
 [alis_pendant_1]

@@ -4,7 +4,6 @@ tradeable = false
 weight = 1.36
 light_source = { once_lit = "emerald_lantern_lit", level = 49 }
 examine = "A mystical lantern."
-use = "Quest"
 kept = "Wilderness"
 
 [emerald_lantern_lit]
@@ -14,7 +13,6 @@ weight = 1.36
 slot = "Shield"
 light_source = { once_extinguish = "emerald_lantern" }
 examine = "A mystical lantern casting a green beam."
-use = "Quest"
 kept = "Wilderness"
 
 [emerald_lens]
@@ -22,7 +20,6 @@ id = 9066
 tradeable = false
 weight = 0.028
 examine = "A roughly circular disc of glass."
-use = "Quest"
 kept = "Wilderness"
 
 [dream_log]
@@ -30,7 +27,6 @@ id = 9067
 tradeable = false
 weight = 1.36
 examine = "A log of my thoughts..."
-use = "Quest"
 kept = "Vanish"
 
 [moonclan_helm]
@@ -103,7 +99,6 @@ tradeable = false
 weight = 2.267
 destroy = "You'll have to mine more from the Lunar Isle Mine."
 examine = "This needs refining."
-use = "Quest"
 kept = "Wilderness"
 
 [lunar_bar]
@@ -112,7 +107,6 @@ tradeable = false
 weight = 1.814
 destroy = "You'll have to get more lunar ore to make another bar."
 examine = "It's a bar of magic metal."
-use = "Quest"
 kept = "Wilderness"
 
 [moonclan_manual]
@@ -142,7 +136,6 @@ id = 9081
 tradeable = false
 weight = 3.175
 examine = "A piece of Suqah hide that has been expertly tanned into leather."
-use = "Quest"
 kept = "Wilderness"
 
 [ground_tooth]
@@ -177,7 +170,6 @@ tradeable = false
 weight = 0.5
 destroy = "You'll have to get another from the Oneiromancer."
 examine = "A vessel for holding liquid."
-use = "Quest"
 kept = "Vanish"
 
 [vial_of_water_lunar_diplomacy]
@@ -187,7 +179,6 @@ tradeable = false
 weight = 0.5
 destroy = "You'll have to get an empty one from Baba Yaga."
 examine = "A vessel containing water."
-use = "Quest"
 kept = "Vanish"
 
 [waking_sleep_vial]
@@ -196,7 +187,6 @@ tradeable = false
 weight = 0.5
 destroy = "You'll have to get an empty one from Baba Yaga."
 examine = "A vessel for dreaming while awake!"
-use = "Quest"
 kept = "Vanish"
 
 [guam_vial]
@@ -205,7 +195,6 @@ tradeable = false
 weight = 0.5
 destroy = "You'll have to get an empty one from Baba Yaga."
 examine = "A vessel with water and Guam inside."
-use = "Quest"
 kept = "Vanish"
 
 [marr_vial]
@@ -213,7 +202,6 @@ id = 9089
 tradeable = false
 weight = 0.5
 examine = "A vessel with water and Marrentill inside."
-use = "Quest"
 kept = "Vanish"
 
 [guam_marr_vial]
@@ -222,7 +210,6 @@ tradeable = false
 weight = 0.5
 destroy = "You'll have to get an empty one from Baba Yaga."
 examine = "A vessel with water, Guam and Marrentill inside."
-use = "Quest"
 kept = "Vanish"
 
 [lunar_staff_pt1]
@@ -232,7 +219,6 @@ weight = 1.814
 slot = "Weapon"
 destroy = "You'll have to get another Dramen staff."
 examine = "A staff enchanted by air."
-use = "Quest"
 kept = "Vanish"
 
 [lunar_staff_pt2]
@@ -242,7 +228,6 @@ weight = 1.814
 slot = "Weapon"
 destroy = "You'll have to get another Dramen staff."
 examine = "A staff enchanted by air and fire."
-use = "Quest"
 kept = "Vanish"
 
 [lunar_staff_pt3]
@@ -252,7 +237,6 @@ weight = 1.814
 slot = "Weapon"
 destroy = "You'll have to get another Dramen staff."
 examine = "A staff enchanted by air, fire and water."
-use = "Quest"
 kept = "Vanish"
 
 [kindling]
@@ -260,7 +244,6 @@ id = 9094
 tradeable = false
 weight = 0.5
 examine = "Small bits of wood from the first magic tree!"
-use = "Quest"
 kept = "Wilderness"
 
 [soaked_kindling]
@@ -268,7 +251,6 @@ id = 9095
 tradeable = false
 weight = 0.5
 examine = "Magic wood soaked with a potion of waking sleep. Groovy."
-use = "Quest"
 kept = "Wilderness"
 
 [lunar_helm]
@@ -341,7 +323,6 @@ tradeable = false
 weight = 0.01
 destroy = "The Oneiromancer might be able to help you get another."
 examine = "I'll be the talk of the town with this... maybe."
-use = "Quest"
 kept = "Reclaim"
 
 [lunar_ring]

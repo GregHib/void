@@ -4,7 +4,6 @@ tradeable = false
 weight = 1.0
 destroy = "You will need to return to the Penguin Outpost to get another."
 examine = "Contains information about the submarine."
-use = "Quest"
 kept = "Wilderness"
 
 [conch_shell]
@@ -13,7 +12,6 @@ tradeable = false
 weight = 1.0
 destroy = "You will need to return to the Penguin Outpost to get another."
 examine = "For summoning submarines."
-use = "Quest"
 kept = "Wilderness"
 
 [toolbox]
@@ -22,7 +20,6 @@ tradeable = false
 weight = 1.0
 destroy = "You will need to return to the Penguin Outpost to get another."
 examine = "Where the tools live."
-use = "Quest"
 kept = "Wilderness"
 
 [kgp_id_card_hunt_for_red_raktuber]
@@ -31,7 +28,6 @@ tradeable = false
 weight = 0.001
 destroy = "You will need to speak to Noodle to get another."
 examine = "So you can be a penguin, too!"
-use = "Quest"
 kept = "Wilderness"
 
 [puffer]
@@ -42,7 +38,6 @@ slot = "Hat"
 type = "Hair"
 destroy = "You will need to return to the Penguin Outpost to get another."
 examine = "Puffed up."
-use = "Quest"
 kept = "Vanish"
 
 [octopus]
@@ -53,7 +48,6 @@ slot = "Hat"
 type = "Hair"
 destroy = "You will need to return to the Penguin Outpost to get another."
 examine = "Inky."
-use = "Quest"
 kept = "Vanish"
 
 [monkfish_hunt_for_red_raktuber]
@@ -64,7 +58,6 @@ slot = "Hat"
 type = "Hair"
 destroy = "You will need to return to the Penguin Outpost to get another."
 examine = "Fishy."
-use = "Quest"
 kept = "Vanish"
 
 [ray]
@@ -75,7 +68,6 @@ slot = "Hat"
 type = "Hair"
 destroy = "You will need to return to the Penguin Outpost to get another."
 examine = "Doh ray me."
-use = "Quest"
 kept = "Vanish"
 
 [crab_claw_hunt_for_red_raktuber]
@@ -84,7 +76,6 @@ tradeable = false
 weight = 1.0
 destroy = "You will need to return to the penguin submarine to get another."
 examine = "A claw."
-use = "Quest"
 kept = "Wilderness"
 
 [shark_tooth_hunt_for_red_raktuber]
@@ -93,7 +84,6 @@ tradeable = false
 weight = 1.0
 destroy = "You will need to return to the penguin submarine to get another."
 examine = "Ouch! It's sharp."
-use = "Quest"
 kept = "Wilderness"
 
 [electric_eel]
@@ -102,7 +92,6 @@ tradeable = false
 weight = 1.0
 destroy = "You will need to return to the penguin submarine to get another."
 examine = "Shocking."
-use = "Quest"
 kept = "Wilderness"
 
 [seaweed_hunt_for_red_raktuber]
@@ -111,7 +100,6 @@ tradeable = false
 weight = 1.0
 destroy = "You will need to return to the penguin submarine to get another."
 examine = "Sticky."
-use = "Quest"
 kept = "Wilderness"
 
 [swordfish_hunt_for_red_raktuber]
@@ -120,7 +108,6 @@ tradeable = false
 weight = 1.0
 destroy = "You will need to return to the penguin submarine to get another."
 examine = "En garde."
-use = "Quest"
 kept = "Wilderness"
 
 [penguin]

@@ -3,7 +3,6 @@ id = 10884
 tradeable = false
 weight = 0.007
 examine = "Burns very well."
-use = "Quest"
 kept = "Wilderness"
 
 [keg]
@@ -11,7 +10,6 @@ id = 10885
 tradeable = false
 weight = 12.0
 examine = "A small keg of gunpowder."
-use = "Quest"
 
 [prayer_book_2]
 id = 10886
@@ -49,7 +47,6 @@ tradeable = false
 weight = 0.1
 destroy = "If you drop this lamp it will be destroyed, and you will need to see Brother Tranquillity for another."
 examine = "This will answer my prayers."
-use = "Quest"
 kept = "Wilderness"
 
 [prayer_book]
@@ -75,7 +72,6 @@ id = 10893
 tradeable = false
 weight = 0.01
 examine = "A cranial clamp."
-use = "Quest"
 kept = "Wilderness"
 
 [brain_tongs]
@@ -83,7 +79,6 @@ id = 10894
 tradeable = false
 weight = 0.02
 examine = "Some tongs for use with brains."
-use = "Quest"
 kept = "Wilderness"
 
 [bell_jar]
@@ -91,7 +86,6 @@ id = 10895
 tradeable = false
 weight = 1.0
 examine = "A bell jar for covering things."
-use = "Quest"
 kept = "Wilderness"
 
 [wolf_whistle]
@@ -99,7 +93,6 @@ id = 10896
 tradeable = false
 weight = 0.001
 examine = "A silver whistle."
-use = "Quest"
 kept = "Wilderness"
 
 [shipping_order]
@@ -107,7 +100,6 @@ id = 10897
 tradeable = false
 weight = 0.001
 examine = "A shipping order list."
-use = "Quest"
 kept = "Wilderness"
 
 [keg_2]
@@ -118,14 +110,12 @@ id = 10898
 id = 10899
 tradeable = false
 examine = "Part of a crate."
-use = "Quest"
 kept = "Wilderness"
 
 [skull_staple]
 id = 10904
 tradeable = false
 examine = "One skull staple."
-use = "Quest"
 kept = "Wilderness"
 
 [skull_staples] # Unobtainable

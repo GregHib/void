@@ -3,7 +3,6 @@ id = 1466
 tradeable = false
 weight = 0.226
 examine = "A rather nasty looking crustacean."
-use = "Quest"
 kept = "Wilderness"
 
 [damp_sticks]
@@ -18,7 +17,6 @@ id = 1468
 tradeable = false
 weight = 0.056
 examine = "Some dry wooden sticks."
-use = "Quest"
 kept = "Wilderness"
 
 [broken_glass]

@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.035
 empty = "vial"
 examine = "Antipoison for Pox."
-use = "Quest"
 kept = "Wilderness"
 
 [the_ratpits_manual]
@@ -20,7 +19,6 @@ id = 6768
 tradeable = false
 weight = 0.2
 examine = "A little more smelly than usual."
-use = "Quest"
 kept = "Reclaim"
 
 [music_scroll]
@@ -29,7 +27,6 @@ tradeable = false
 weight = 0.02
 destroy = "You can obtain another sheet of music by talking to the snakecharmer of Pollnivneach."
 examine = "Charming."
-use = "Quest"
 kept = "Wilderness"
 
 [directions]
@@ -38,7 +35,6 @@ tradeable = false
 weight = 0.02
 destroy = "You can obtain another set of directions to the party by talking to Jimmy Dazzler."
 examine = "Jimmy Dazzler's directions."
-use = "Quest"
 kept = "Wilderness"
 
 [pot_of_weeds]
@@ -46,7 +42,6 @@ id = 6771
 tradeable = false
 weight = 0.6
 examine = "Contains garden weeds."
-use = "Quest"
 kept = "Wilderness"
 
 [smouldering_pot]
@@ -54,7 +49,6 @@ id = 6772
 tradeable = false
 weight = 0.5
 examine = "Contains slowly burning garden weeds."
-use = "Quest"
 kept = "Wilderness"
 
 [rat_pole_0]

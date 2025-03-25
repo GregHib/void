@@ -3,7 +3,6 @@ id = 6112
 tradeable = false
 destroy = "Return to the drunken dwarf's drunken relative to get your seeds back."
 examine = "Kelda hop seeds can only be grown underground!"
-use = "Quest"
 kept = "Reclaim"
 
 [kelda_hops]
@@ -12,7 +11,6 @@ tradeable = false
 weight = 0.028
 destroy = "Return to the Keldagrim palace gardener to get your hops back."
 examine = "A handful of Kelda Hops."
-use = "Quest"
 kept = "Reclaim"
 
 [kelda_stout]
@@ -21,21 +19,18 @@ tradeable = false
 weight = 0.55
 destroy = "Return to the Laughing Miner barmaid to get your stout back."
 examine = "A pint of bluish beer."
-use = "Quest"
 kept = "Reclaim"
 
 [square_stone_yellow]
 id = 6119
 tradeable = false
 examine = "There is a strange yellow marking on this stone."
-use = "Quest"
 kept = "Wilderness"
 
 [square_stone_green]
 id = 6120
 tradeable = false
 examine = "There is a strange green marking on this stone."
-use = "Quest"
 kept = "Wilderness"
 
 [letter_forgettable_tale_of_a_drunken_dwarf]
@@ -43,7 +38,6 @@ id = 6121
 tradeable = false
 weight = 0.001
 examine = "A letter addressed to Elstan of Falador."
-use = "Quest"
 kept = "Wilderness"
 
 [a_chair]
@@ -52,7 +46,6 @@ tradeable = false
 weight = 0.001
 slot = "Shield"
 examine = "For sitting on."
-use = "Quest"
 kept = "Reclaim"
 
 [beer_glass_forgettable_tale_of_a_drunken_dwarf]
@@ -62,5 +55,4 @@ tradeable = false
 weight = 0.001
 slot = "Weapon"
 examine = "For drinking... if it were filled."
-use = "Quest"
 kept = "Reclaim"

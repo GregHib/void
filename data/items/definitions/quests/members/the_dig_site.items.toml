@@ -3,7 +3,6 @@ id = 669
 tradeable = false
 weight = 0.056
 examine = "A receptacle for specimens!"
-use = "Quest"
 kept = "Wilderness"
 
 [specimen_brush]
@@ -11,7 +10,6 @@ id = 670
 tradeable = false
 weight = 0.056
 examine = "A small brush used to clean rock samples."
-use = "Quest"
 kept = "Wilderness"
 
 [animal_skull_the_dig_site]
@@ -20,7 +18,6 @@ tradeable = false
 weight = 0.085
 destroy = "Pickpocket Dig Site workmen to obtain another."
 examine = "A carefully-kept-safe skull sample."
-use = "Quest"
 kept = "Wilderness"
 
 [special_cup]
@@ -29,7 +26,6 @@ tradeable = false
 weight = 0.085
 destroy = "Pan in the river near Varrock Dig Site to obtain another."
 examine = "A special cup."
-use = "Quest"
 kept = "Wilderness"
 
 [teddy_the_dig_site]
@@ -38,7 +34,6 @@ tradeable = false
 weight = 0.085
 destroy = "Pickpocket the female student at Varrock Dig Site to obtain another."
 examine = "A lucky mascot."
-use = "Quest"
 kept = "Wilderness"
 
 [cracked_sample]
@@ -61,7 +56,6 @@ id = 676
 tradeable = false
 weight = 0.056
 examine = "Used for digging!"
-use = "Quest"
 kept = "Wilderness"
 
 [panning_tray]
@@ -69,7 +63,6 @@ id = 677
 tradeable = false
 weight = 0.085
 examine = "An empty tray for panning."
-use = "Quest"
 kept = "Wilderness"
 
 [panning_tray_2]
@@ -77,7 +70,6 @@ id = 678
 tradeable = false
 weight = 0.085
 examine = "An empty tray for panning."
-use = "Quest"
 kept = "Wilderness"
 
 [panning_tray_full]
@@ -85,7 +77,6 @@ id = 679
 tradeable = false
 weight = 0.17
 examine = "This tray contains mud."
-use = "Quest"
 kept = "Wilderness"
 
 [nuggets]
@@ -99,7 +90,6 @@ id = 681
 tradeable = false
 weight = 0.085
 examine = "An unusual symbol as yet unidentified by archaeological expert Terry Balando."
-use = "Quest"
 kept = "Wilderness"
 
 [unstamped_letter]
@@ -107,7 +97,6 @@ id = 682
 tradeable = false
 weight = 0.02
 examine = "A letter waiting to be stamped."
-use = "Quest"
 kept = "Wilderness"
 
 [sealed_letter]
@@ -115,7 +104,6 @@ id = 683
 tradeable = false
 weight = 0.02
 examine = "A sealed letter of recommendation."
-use = "Quest"
 kept = "Wilderness"
 
 [belt_buckle]
@@ -169,7 +157,6 @@ id = 691
 tradeable = false
 weight = 0.02
 examine = "The owner has passed the Earth Sciences level 1 exam."
-use = "Quest"
 kept = "Wilderness"
 
 [level_2_certificate]
@@ -177,7 +164,6 @@ id = 692
 tradeable = false
 weight = 0.02
 examine = "The owner has passed Earth Sciences level 2 exam."
-use = "Quest"
 kept = "Wilderness"
 
 [level_3_certificate]
@@ -185,7 +171,6 @@ id = 693
 tradeable = false
 weight = 0.02
 examine = "The owner has passed Earth Sciences level 3 exam."
-use = "Quest"
 kept = "Wilderness"
 
 [ceramic_remains]
@@ -200,7 +185,6 @@ id = 695
 tradeable = false
 weight = 0.001
 examine = "Now, if I can just find a tooth fairy to sell this to."
-use = "Quest"
 kept = "Reclaim"
 
 [invitation_letter]
@@ -208,7 +192,6 @@ id = 696
 tradeable = false
 weight = 0.02
 examine = "A letter inviting me to use the private dig shafts."
-use = "Quest"
 kept = "Wilderness"
 
 [damaged_armour]
@@ -230,7 +213,6 @@ id = 699
 tradeable = false
 weight = 0.8
 examine = "An old stone slab with writing on it."
-use = "Quest"
 kept = "Wilderness"
 
 [chemical_powder]
@@ -238,7 +220,6 @@ id = 700
 tradeable = false
 weight = 0.028
 examine = "An acrid chemical."
-use = "Quest"
 kept = "Wilderness"
 
 [ammonium_nitrate]
@@ -246,7 +227,6 @@ id = 701
 tradeable = false
 weight = 0.015
 examine = "An acrid chemical."
-use = "Quest"
 kept = "Wilderness"
 
 [unidentified_liquid]
@@ -255,7 +235,6 @@ tradeable = false
 weight = 0.025
 empty = "vial"
 examine = "A strong chemical."
-use = "Quest"
 kept = "Wilderness"
 
 [nitroglycerine]
@@ -270,7 +249,6 @@ id = 704
 tradeable = false
 weight = 0.008
 examine = "Charcoal - crushed to small pieces!"
-use = "Quest"
 kept = "Wilderness"
 
 [mixed_chemicals_step_1]
@@ -278,7 +256,6 @@ id = 705
 tradeable = false
 weight = 0.03
 examine = "A mixture of strong chemicals."
-use = "Quest"
 kept = "Wilderness"
 
 [mixed_chemicals_step_2]
@@ -286,7 +263,6 @@ id = 706
 tradeable = false
 weight = 0.035
 examine = "A mixture of strong chemicals."
-use = "Quest"
 kept = "Wilderness"
 
 [chemical_compound]
@@ -301,7 +277,6 @@ id = 708
 tradeable = false
 weight = 0.01
 examine = "The root of an arcenia plant."
-use = "Quest"
 kept = "Reclaim"
 
 [chest_key_the_dig_site]
@@ -309,7 +284,6 @@ id = 709
 tradeable = false
 weight = 0.01
 examine = "This fits a chest."
-use = "Quest"
 kept = "Wilderness"
 
 [vase_dig_site]
@@ -336,4 +310,3 @@ tradeable = false
 weight = 0.15
 examine = "A refreshing cuppa."
 kept = "Wilderness"
-use = "Limited"

@@ -42,7 +42,6 @@ id = 2964
 tradeable = false
 weight = 0.453
 examine = "Used for washing your face, amongst other things."
-use = "Quest"
 kept = "Wilderness"
 
 [mirror]
@@ -50,7 +49,6 @@ id = 2966
 tradeable = false
 weight = 0.226
 examine = "A small mirror, probably used for grooming."
-use = "Quest"
 kept = "Wilderness"
 
 [journal_nature_spirit]
@@ -58,7 +56,6 @@ id = 2967
 tradeable = false
 weight = 0.51
 examine = "This must be Filliman Tarlocks personal journal."
-use = "Quest"
 kept = "Wilderness"
 
 [druidic_spell]
@@ -66,7 +63,6 @@ id = 2968
 tradeable = false
 weight = 0.02
 examine = "A druidic spell given to you freely by the spirit of Filliman Tarlock."
-use = "Quest"
 kept = "Wilderness"
 
 [a_used_spell]
@@ -74,7 +70,6 @@ id = 2969
 tradeable = false
 weight = 0.02
 examine = "A used druidic spell given to you freely by the spirit of Filliman Tarlock."
-use = "Quest"
 kept = "Wilderness"
 
 [mort_myre_fungus]

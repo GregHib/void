@@ -3,7 +3,6 @@ id = 2403
 tradeable = false
 weight = 0.01
 examine = "Scroll containing a powerful enchantment of restoration."
-use = "Quest"
 kept = "Wilderness"
 
 [chest_key_hazeel_cult]
@@ -28,5 +27,4 @@ tradeable = false
 weight = 0.012
 slot = "Amulet"
 examine = "A sign of my commitment to Hazeel."
-use = "Quest"
 kept = "Wilderness"

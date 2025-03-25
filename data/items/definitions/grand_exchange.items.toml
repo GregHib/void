@@ -620,4 +620,3 @@ id = 15287
 tradeable = false
 examine = "A beginner's guide to using a bank."
 kept = "Reclaim"
-use = "Limited"

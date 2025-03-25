@@ -4,14 +4,12 @@ tradeable = false
 weight = 0.2
 examine = "It looks like some kind of control panel."
 kept = "Reclaim"
-use = "Limited"
 
 [gnome_royal_seal]
 id = 4004
 tradeable = false
 weight = 0.02
 examine = "It's the official Gnome Royal Seal, signed by King Narnode Shareen."
-use = "Quest"
 kept = "Wilderness"
 
 [narnodes_orders]
@@ -19,7 +17,6 @@ id = 4005
 tradeable = false
 weight = 0.02
 examine = "Unreadable orders handwritten by King Narnode Shareen."
-use = "Quest"
 kept = "Wilderness"
 
 [monkey_dentures]
@@ -34,7 +31,6 @@ id = 4007
 tradeable = false
 weight = 1.814
 examine = "A gold bar invested with a talkative monkey spirit."
-use = "Quest"
 kept = "Wilderness"
 
 [eye_of_gnome]
@@ -191,7 +187,6 @@ id = 4033
 tradeable = false
 weight = 15.0
 examine = "It's a monkey in your backpack. As you look it pokes you."
-use = "Quest"
 kept = "Wilderness"
 
 [monkey_skull]

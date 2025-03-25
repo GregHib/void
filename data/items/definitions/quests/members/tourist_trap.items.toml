@@ -46,7 +46,6 @@ id = 1840
 tradeable = false
 weight = 0.01
 examine = "A metallic key, usually used by prison guards."
-use = "Quest"
 kept = "Wilderness"
 
 [barrel_the_tourist_trap]
@@ -54,7 +53,6 @@ id = 1841
 tradeable = false
 weight = 9.979
 examine = "An empty mining barrel."
-use = "Quest"
 kept = "Wilderness"
 
 [ana_in_a_barrel]
@@ -62,7 +60,6 @@ id = 1842
 tradeable = false
 weight = 32.0
 examine = "A mining barrel with Ana in it."
-use = "Quest"
 kept = "Vanish"
 
 [wrought_iron_key]
@@ -109,13 +106,11 @@ tradeable = false
 weight = 0.01
 examine = "Very important information."
 kept = "Reclaim"
-use = "Removed"
 
 [prototype_dart]
 id = 1849
 tradeable = false
 examine = "A prototype throwing dart."
-use = "Quest"
 kept = "Wilderness"
 
 [technical_plans]
@@ -123,7 +118,6 @@ id = 1850
 tradeable = false
 weight = 0.015
 examine = "Plans of a technical nature."
-use = "Quest"
 kept = "Wilderness"
 
 [tenti_pineapple]
@@ -131,7 +125,6 @@ id = 1851
 tradeable = false
 weight = 0.907
 examine = "The most delicious of pineapples."
-use = "Quest"
 kept = "Wilderness"
 
 [bedabin_key]
@@ -139,14 +132,12 @@ id = 1852
 tradeable = false
 weight = 0.01
 examine = "A key to the chest in Captain Siad's room."
-use = "Quest"
 kept = "Wilderness"
 
 [prototype_dart_tip]
 id = 1853
 tradeable = false
 examine = "A prototype dart tip - it looks deadly."
-use = "Quest"
 kept = "Wilderness"
 
 [shantay_pass]
@@ -154,14 +145,12 @@ id = 1854
 tradeable = false
 examine = "Allows you to pass through the Shantay pass into the Kharid Desert."
 kept = "Reclaim"
-use = "Limited"
 
 [punishment_rock]
 id = 1855
 tradeable = false
 weight = 0.5
 examine = "Looks like a plain rock, must have some ore in it?"
-use = "Quest"
 kept = "Vanish"
 
 [sailing_book]
@@ -169,5 +158,4 @@ id = 9904
 tradeable = false
 weight = 0.001
 examine = "A book for sailors."
-use = "Quest"
 kept = "Reclaim"

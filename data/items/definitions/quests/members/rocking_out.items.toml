@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.005
 destroy = "If you drop the letter, it will be lost and you will need to see Brother Tranquillity for another."
 examine = "A letter from Brother Tranquillity."
-use = "Quest"
 kept = "Wilderness"
 
 [plans_rocking_out]
@@ -13,7 +12,6 @@ tradeable = false
 weight = 0.005
 destroy = "If you drop these plans, they will be lost and you will need to see Captain Donnie for a replacement."
 examine = "Half of a set of nefarious plans, recovered from Donnie."
-use = "Quest"
 kept = "Wilderness"
 
 [charcoal_rubbing]
@@ -22,7 +20,6 @@ tradeable = false
 weight = 0.005
 destroy = "If you drop these plans, they will be lost and you will need to see Captain Donnie for a replacement."
 examine = "A charcoal rubbing taken from 50% Luke."
-use = "Quest"
 kept = "Wilderness"
 
 [franks_mark]
@@ -31,7 +28,6 @@ tradeable = false
 weight = 0.005
 destroy = "If you drop Frank's mark, you will need to see him to get another."
 examine = "A signature from Frank."
-use = "Quest"
 kept = "Wilderness"
 
 [crude_lockpick]
@@ -40,7 +36,6 @@ tradeable = false
 weight = 0.03
 destroy = "If you drop these lockpicks, you will need to look under the mattress to get another set."
 examine = "A device for opening locked doors."
-use = "Quest"
 kept = "Wilderness"
 
 [customs_shirt]
@@ -50,7 +45,6 @@ weight = 1.0
 slot = "Chest"
 destroy = "If you drop this shirt you will need to kill another Customs officer for a replacement."
 examine = "The top of a Customs Officer's uniform."
-use = "Quest"
 kept = "Vanish"
 
 [customs_trousers]
@@ -60,7 +54,6 @@ weight = 1.0
 slot = "Legs"
 destroy = "If you drop these trousers you will need to kill another Customs officer for a replacement."
 examine = "The trousers of a Customs Officer's uniform."
-use = "Quest"
 kept = "Vanish"
 
 [customs_hat]
@@ -70,7 +63,6 @@ weight = 0.2
 slot = "Hat"
 destroy = "If you drop this hat you will need to kill another Customs officer for a replacement."
 examine = "The hat of a Customs Officer's uniform."
-use = "Quest"
 kept = "Vanish"
 
 [file_wanda_the_fish]
@@ -79,7 +71,6 @@ tradeable = false
 weight = 0.05
 destroy = "If you drop this file, you will need to search the files to get another."
 examine = "A folder containing some documents."
-use = "Quest"
 kept = "Wilderness"
 
 [file_useless]
@@ -93,7 +84,6 @@ weight = 0.3
 aka = ["wandas_brooch"]
 destroy = "If you drop this brooch, you will need to check with the Files Officer to see if he has another."
 examine = "A decorative brooch."
-use = "Quest"
 kept = "Wilderness"
 
 [izzys_mark]
@@ -102,7 +92,6 @@ tradeable = false
 weight = 0.005
 destroy = "If you drop Izzy's No-Beard's mark, you will need to see him to get another."
 examine = "Signature from Izzy No-Beard."
-use = "Quest"
 kept = "Wilderness"
 
 [key_rocking_out]
@@ -111,7 +100,6 @@ tradeable = false
 weight = 0.05
 destroy = "If you drop this key, you will need to catch the wild karamthulhu for a replacement."
 examine = "A key, once carried by a karamthulhu."
-use = "Quest"
 kept = "Vanish"
 
 [crowbar]
@@ -120,7 +108,6 @@ tradeable = false
 weight = 3.0
 destroy = "If you drop this crowbar, you will need to get another from the chest on the sunken ship."
 examine = "This could be useful."
-use = "Quest"
 kept = "Vanish"
 
 [idol_of_many_heads]
@@ -129,7 +116,6 @@ tradeable = false
 weight = 3.0
 destroy = "If you drop the idol, you will need to go diving to get another replacement."
 examine = "An idol. It has many heads."
-use = "Quest"
 kept = "Wilderness"
 
 [bill_teachs_mark]
@@ -138,7 +124,6 @@ tradeable = false
 weight = 0.005
 destroy = "If you drop Bill Teach's mark, you will need to see him to get another."
 examine = "A signature from Bill Teach."
-use = "Quest"
 kept = "Wilderness"
 
 [paper_prison]
@@ -147,7 +132,6 @@ tradeable = false
 weight = 0.005
 destroy = "If you drop this paper, you will need to call to the guards for a replacement."
 examine = "This is generally used for writing on."
-use = "Quest"
 kept = "Wilderness"
 
 [confession]
@@ -156,7 +140,6 @@ tradeable = false
 weight = 0.005
 destroy = "If you drop this note, you'll need to call the guards for replacement paper."
 examine = "A written confession."
-use = "Quest"
 kept = "Wilderness"
 
 [note_rocking_out]
@@ -165,7 +148,6 @@ tradeable = false
 weight = 0.005
 destroy = "If you drop this note, you'll need to call the guards for replacement paper."
 examine = "A written note."
-use = "Quest"
 kept = "Wilderness"
 
 [ink_bottle]
@@ -174,7 +156,6 @@ tradeable = false
 weight = 0.02
 destroy = "If you drop this ink, you will need to call to the guards for a replacement."
 examine = "This is full of ink."
-use = "Quest"
 kept = "Wilderness"
 
 [inky_paper]
@@ -183,7 +164,6 @@ tradeable = false
 weight = 0.006
 destroy = "If you drop this paper you will need to call to the guards to replace it and the ink."
 examine = "It's got ink all over it."
-use = "Quest"
 kept = "Wilderness"
 
 [ink_bottle_empty]
@@ -192,7 +172,6 @@ tradeable = false
 weight = 0.019
 destroy = "If you drop this ink, you will need to call to the guards for a replacement."
 examine = "An empty ink bottle."
-use = "Quest"
 kept = "Wilderness"
 
 [smashed_bottle]
@@ -201,7 +180,6 @@ tradeable = false
 weight = 0.016
 destroy = "If you drop this bottle, you will need to call to the guards for a replacement."
 examine = "It's smashed. I should mind my fingers."
-use = "Quest"
 kept = "Wilderness"
 
 [prison_uniform_top]
@@ -211,7 +189,6 @@ weight = 1.0
 slot = "Chest"
 destroy = "If you drop this top, then you will need to speak to the guards to get it replaced."
 examine = "The top part of a prisoner's uniform."
-use = "Quest"
 kept = "Vanish"
 
 [prison_uniform_trousers]
@@ -221,7 +198,6 @@ weight = 1.0
 slot = "Legs"
 destroy = "If you drop these trousers, then you will need to speak to the guards to get it replaced."
 examine = "The bottom part of a prisoner's uniform."
-use = "Quest"
 kept = "Vanish"
 
 [fishy_prison_uniform_top]
@@ -231,7 +207,6 @@ weight = 1.0
 slot = "Chest"
 destroy = "If you drop this top, you will need to speak to the guards to get it replaced, then find a way to get stew on it again."
 examine = "It's covered in fish slop."
-use = "Quest"
 kept = "Wilderness"
 
 [tin_cup]
@@ -241,7 +216,6 @@ weight = 0.3
 slot = "Weapon"
 destroy = "If you drop this cup it will be destroyed and you will have to pick up another."
 examine = "A standard prison-issue tin cup."
-use = "Quest"
 kept = "Wilderness"
 
 [tin_cup_2]
@@ -251,7 +225,6 @@ weight = 0.3
 slot = "Weapon"
 destroy = "If you drop this cup it will be destroyed and you will have to pick up another."
 examine = "A standard prison-issue tin cup."
-use = "Quest"
 kept = "Wilderness"
 
 [pipe_rocking_out]
@@ -260,7 +233,6 @@ tradeable = false
 weight = 2.0
 destroy = "If you drop this pipe it will be lost and you will need to find a way to get another."
 examine = "A broken pipe."
-use = "Quest"
 kept = "Wilderness"
 
 [accordion_broken]
@@ -269,7 +241,6 @@ tradeable = false
 weight = 2.0
 destroy = "If you drop this accordion, it will be destroyed and you will have to get another."
 examine = "A musical device."
-use = "Quest"
 kept = "Wilderness"
 
 [accordion_hole]
@@ -278,7 +249,6 @@ tradeable = false
 weight = 2.0
 destroy = "If you drop this accordion, it will be destroyed and you will have to get another."
 examine = "A musical device with a hole carved into it."
-use = "Quest"
 kept = "Wilderness"
 
 [accordion_pipe]
@@ -287,7 +257,6 @@ tradeable = false
 weight = 4.0
 destroy = "If you drop this accordion, it will be destroyed and you will have to get another."
 examine = "A musical device with a pipe pushed into it."
-use = "Quest"
 kept = "Wilderness"
 
 [vacuum_pump]
@@ -296,7 +265,6 @@ tradeable = false
 weight = 4.0
 destroy = "If you drop this accordion, pipe and inky paper, it will all be destroyed and you will need to get all the items back again."
 examine = "A very crude vacuum pump."
-use = "Quest"
 kept = "Wilderness"
 
 [vacuum_pump_and_gull]
@@ -306,7 +274,6 @@ weight = 8.0
 slot = "Weapon"
 destroy = "If you drop this, you will lose all the items you put in it, as well as the seagull."
 examine = "It sounds like a law firm."
-use = "Quest"
 kept = "Wilderness"
 
 [quill]
@@ -315,7 +282,6 @@ tradeable = false
 weight = 0.001
 destroy = "If you drop this quill, you will need to talk to the guard for a replacement."
 examine = "From a bird - can be used for writing."
-use = "Quest"
 kept = "Wilderness"
 
 [inky_quill]
@@ -324,7 +290,6 @@ tradeable = false
 weight = 0.001
 destroy = "If you drop this quill, then you will need to call the guards for a replacement."
 examine = "From a bird - can be used for writing. It has some ink on the tip."
-use = "Quest"
 kept = "Wilderness"
 
 [file_empty]
@@ -343,7 +308,6 @@ weight = 0.03
 aka = ["file_with_five_marks"]
 destroy = "If you drop this file, it and all the marks inside it will be destroyed."
 examine = "A folder containing all the marks I have gathered."
-use = "Quest"
 kept = "Wilderness"
 
 [ex_parrot]
@@ -404,7 +368,6 @@ tradeable = false
 weight = 0.005
 destroy = "If you drop the letter, it will be destroyed and you'll need to see Bill Teach for another."
 examine = "Note from Teach to Brass Hand Harry."
-use = "Quest"
 kept = "Wilderness"
 
 [broken_hand_fingers]
@@ -413,7 +376,6 @@ tradeable = false
 weight = 5.0
 destroy = "The hand is already broken and dropping it will destroy it completely. You will need to see Brass Hand Harry for a replacement."
 examine = "One of many broken hands."
-use = "Quest"
 kept = "Wilderness"
 
 [broken_hand_thumb]
@@ -438,7 +400,6 @@ tradeable = false
 weight = 1.0
 destroy = "This hand part is small and delicate, and dropping it here will lose it. If you lose it, you will need to see Brass Hand Harry for a replacement."
 examine = "A few brass fingers."
-use = "Quest"
 kept = "Wilderness"
 
 [thumb]
@@ -447,7 +408,6 @@ tradeable = false
 weight = 1.0
 destroy = "This hand part is small and delicate, and dropping it here will lose it. If you lose it, you will need to see Brass Hand Harry for a replacement."
 examine = "A brass thumb."
-use = "Quest"
 kept = "Wilderness"
 
 [hand_rocking_out]
@@ -456,7 +416,6 @@ tradeable = false
 weight = 1.0
 destroy = "This hand part is small and delicate, and dropping it here will lose it. If you lose it, you will need to see Brass Hand Harry for a replacement."
 examine = "A brass hand."
-use = "Quest"
 kept = "Wilderness"
 
 [wrist]
@@ -465,7 +424,6 @@ tradeable = false
 weight = 1.0
 destroy = "This hand part is small and delicate, and dropping it here will lose it. If you lose it, you will need to see Brass Hand Harry for a replacement."
 examine = "A brass wrist."
-use = "Quest"
 kept = "Wilderness"
 
 [brace]
@@ -474,7 +432,6 @@ tradeable = false
 weight = 1.0
 destroy = "This hand part is small and delicate, and dropping it here will lose it. If you lose it, you will need to see Brass Hand Harry for a replacement."
 examine = "A brass brace."
-use = "Quest"
 kept = "Wilderness"
 
 [brass_hand]
@@ -483,7 +440,6 @@ tradeable = false
 weight = 5.0
 destroy = "If you drop this hand, you will destroy it and you will have to remake it from parts that Brass Hand Harry has."
 examine = "A completed brass hand."
-use = "Quest"
 kept = "Wilderness"
 
 [ink_pad]
@@ -492,7 +448,6 @@ tradeable = false
 weight = 0.1
 destroy = "If you drop this ink pad, you will lose it and will need to see Brass Hand Harry for a replacement."
 examine = "It's soaked with ink."
-use = "Quest"
 kept = "Wilderness"
 
 [inky_hand]
@@ -501,7 +456,6 @@ tradeable = false
 weight = 5.0
 destroy = "If you drop this hand, you will destroy it and you will have to remake it from parts that Brass Hand Harry has."
 examine = "An inky brass hand."
-use = "Quest"
 kept = "Wilderness"
 
 [paper_brass_hand_harrys_mark]
@@ -510,7 +464,6 @@ tradeable = false
 weight = 0.005
 destroy = "This paper will be lost if you drop it. You will need to see Brass Hand Harry for a replacement."
 examine = "Generally used for writing on."
-use = "Quest"
 kept = "Wilderness"
 
 [brass_hand_harrys_mark]
@@ -519,7 +472,6 @@ tradeable = false
 weight = 0.005
 destroy = "If you drop Brass Hand Harry's mark, it will be destroyed and you need to see him to get another."
 examine = "Handprint from Brass Hand Harry."
-use = "Quest"
 kept = "Wilderness"
 
 [fake_beard_rocking_out]
@@ -530,7 +482,6 @@ slot = "Hat"
 type = "Mask"
 destroy = "If you drop this disguise you will need to see Captain Braindeath for a replacement."
 examine = "Not the best fake beard in the world."
-use = "Quest"
 kept = "Vanish"
 
 [fake_moustache_and_nose]
@@ -541,7 +492,6 @@ slot = "Hat"
 type = "Mask"
 destroy = "If you drop this disguise you will need to see Captain Braindeath for a replacement."
 examine = "It looks like someone has sneezed in it."
-use = "Quest"
 kept = "Vanish"
 
 [fake_monocle_moustache_and_nose]
@@ -552,7 +502,6 @@ slot = "Hat"
 type = "Mask"
 destroy = "If you drop this disguise you will need to see Captain Braindeath for a replacement."
 examine = "Why is the monocle nailed to it?"
-use = "Quest"
 kept = "Vanish"
 
 [curly_wig]
@@ -563,7 +512,6 @@ slot = "Hat"
 type = "Hair"
 destroy = "If you drop this disguise you will need to see Captain Braindeath for a replacement."
 examine = "You can barely see where it connected to the mop handle."
-use = "Quest"
 kept = "Wilderness"
 
 [straight_wig]
@@ -574,7 +522,6 @@ slot = "Hat"
 type = "Hair"
 destroy = "If you drop this disguise you will need to see Captain Braindeath for a replacement."
 examine = "It looks like it is part-dog, part-mould."
-use = "Quest"
 kept = "Wilderness"
 
 [order]
@@ -583,7 +530,6 @@ tradeable = false
 weight = 0.005
 destroy = "If you drop this order for 'rum' you will need to speak to the Rusty Anchor barman to get another."
 examine = "An order simply for 'rum'."
-use = "Quest"
 kept = "Wilderness"
 
 [braindeaths_mark]
@@ -592,5 +538,4 @@ tradeable = false
 weight = 0.005
 destroy = "If you drop Captain Braindeath's mark, you will need to speak to him to get another."
 examine = "The signature of Captain Braindeath."
-use = "Quest"
 kept = "Wilderness"

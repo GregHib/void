@@ -10,4 +10,3 @@ weight = 0.07
 destroy = "This is for use with the gnomecopters, north of Lumbridge. Sasquine Huburns will give you another one."
 examine = "It tells the gnomecopters where you wish to go."
 kept = "Vanish"
-use = "Removed"

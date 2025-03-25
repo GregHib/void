@@ -3,7 +3,6 @@ id = 492
 weight = 0.1
 slot = "Weapon"
 examine = "Useless."
-use = "Removed"
 
 [hatchet_handle_noted]
 id = 493
@@ -13,7 +12,6 @@ id = 494
 weight = 0.907
 slot = "Weapon"
 examine = "Useless."
-use = "Removed"
 
 [broken_hatchet_bronze_noted]
 id = 495
@@ -23,7 +21,6 @@ id = 496
 weight = 0.907
 slot = "Weapon"
 examine = "Useless."
-use = "Removed"
 
 [broken_hatchet_iron_noted]
 id = 497
@@ -33,7 +30,6 @@ id = 498
 weight = 0.907
 slot = "Weapon"
 examine = "Useless."
-use = "Removed"
 
 [broken_hatchet_steel_noted]
 id = 499
@@ -43,7 +39,6 @@ id = 500
 weight = 0.907
 slot = "Weapon"
 examine = "Useless."
-use = "Removed"
 
 [broken_hatchet_black_noted]
 id = 501
@@ -53,7 +48,6 @@ id = 502
 weight = 0.907
 slot = "Weapon"
 examine = "Useless."
-use = "Removed"
 
 [broken_hatchet_mithril_noted]
 id = 503
@@ -63,7 +57,6 @@ id = 504
 weight = 0.907
 slot = "Weapon"
 examine = "Useless."
-use = "Removed"
 
 [broken_hatchet_adamant_noted]
 id = 505
@@ -73,7 +66,6 @@ id = 506
 weight = 0.907
 slot = "Weapon"
 examine = "Useless."
-use = "Removed"
 
 [broken_hatchet_rune_noted]
 id = 507
@@ -82,7 +74,6 @@ id = 507
 id = 508
 weight = 0.1
 examine = "Useless."
-use = "Removed"
 
 [hatchet_head_bronze_noted]
 id = 509
@@ -257,7 +248,6 @@ id = 6741
 weight = 0.907
 slot = "Weapon"
 examine = "Useless."
-use = "Removed"
 
 [broken_hatchet_dragon_noted]
 id = 6742

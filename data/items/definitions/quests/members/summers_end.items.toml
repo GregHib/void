@@ -130,5 +130,4 @@ id = 13756
 tradeable = false
 weight = 2.0
 examine = "Logs cut from cursed willow roots."
-use = "Quest"
 kept = "Reclaim"

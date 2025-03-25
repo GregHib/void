@@ -5,7 +5,6 @@ weight = 0.018
 destroy = "You will need to get another exam paper from Professor Henry."
 examine = "Player Safety test."
 kept = "Vanish"
-use = "Removed"
 
 [antique_lamp_misthalin_training_centre_of_excellence]
 id = 12627

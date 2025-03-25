@@ -10,7 +10,6 @@ id = 83
 tradeable = false
 weight = 0.056
 examine = "A lever to open something perhaps?"
-use = "Quest"
 kept = "Wilderness"
 
 [staff_of_armadyl]
@@ -20,7 +19,6 @@ weight = 1.814
 category = "staff"
 destroy = "You found this staff in the Temple of Ikov."
 examine = "The power in this staff causes it to vibrate gently."
-use = "Quest"
 kept = "Vanish"
 
 [shiny_key]
@@ -63,5 +61,4 @@ id = 14085
 tradeable = false
 weight = 0.05
 examine = "An urgent communiqué revealing important information."
-use = "Quest"
 kept = "Vanish"

@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.001
 destroy = "Arianwyn will probably have a replacement one."
 examine = "A tiny unenchanted crystal."
-use = "Quest"
 kept = "Wilderness"
 
 [enchanted_teleport_crystal]
@@ -13,7 +12,6 @@ tradeable = false
 weight = 0.001
 destroy = "Arianwyn will probably have a spare one, but you'll have to chant it again."
 examine = "A tiny enchanted crystal that's bound to the Temple of Light caverns."
-use = "Quest"
 kept = "Wilderness"
 
 [notes_within_the_light]
@@ -22,7 +20,6 @@ tradeable = false
 weight = 0.001
 destroy = "I found this on the corpse within the light temple."
 examine = "There is a lot scribbled down here."
-use = "Quest"
 kept = "Wilderness"
 
 [report]
@@ -31,5 +28,4 @@ tradeable = false
 weight = 0.453
 destroy = "I found this in the Temple of Light on a dead elf."
 examine = "It looks about ready to fall apart."
-use = "Quest"
 kept = "Wilderness"

@@ -7,7 +7,6 @@ destroy = "You can reclaim this book from the Cook's brother in Lumbridge."
 examine = "Notes on the locations of turkeys."
 destroy2 = "You can reclaim this book from a bookcase in your player-owned house."
 kept = "Vanish"
-use = "Limited"
 
 [cornucopia]
 id = 14537
@@ -17,7 +16,6 @@ weight = 0.01
 destroy = "You will lose all food stored in the Cornucopia. You can get another empty one from Diango in Draynor Village."
 examine = "An empty horn of plenty."
 kept = "Wilderness"
-use = "Limited"
 
 [cornucopia_full]
 id = 14538
@@ -27,7 +25,6 @@ weight = 0.02
 destroy = "You will lose all food stored in the Cornucopia. You can get another empty one from Diango in Draynor Village."
 examine = "A horn of plenty."
 kept = "Wilderness"
-use = "Limited"
 
 [raw_turkey]
 id = 14539
@@ -35,7 +32,6 @@ tradeable = false
 weight = 0.255
 examine = "A raw turkey."
 kept = "Vanish"
-use = "Limited"
 
 [cooked_turkey]
 id = 14540
@@ -44,7 +40,6 @@ tradeable = false
 weight = 0.198
 examine = "Mmm, this looks tasty."
 kept = "Vanish"
-use = "Limited"
 
 [burnt_turkey]
 id = 14541

@@ -9,7 +9,6 @@ kept = "Wilderness"
 id = 18646
 tradeable = false
 examine = "Full of useful advice, Thieving XP and handy tips for budding bandits!"
-use = "Quest"
 kept = "Reclaim"
 
 [complex_key]
@@ -18,7 +17,6 @@ tradeable = false
 weight = 0.01
 destroy = "You will have to pickpocket this from Father Urhney again if you get rid of it."
 examine = "A small, complex key to fit a display case."
-use = "Quest"
 kept = "Wilderness"
 
 [golden_chalice]
@@ -27,5 +25,4 @@ tradeable = false
 weight = 0.45
 destroy = "You will have to steal this from Father Urhney's house again if you get rid of it."
 examine = "Very valuable to the right collector."
-use = "Quest"
 kept = "Wilderness"

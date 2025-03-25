@@ -10,7 +10,6 @@ tradeable = false
 weight = 0.1
 destroy = "Murcaily will probably give me some more."
 examine = "A hardy gout tuber."
-use = "Quest"
 kept = "Vanish"
 
 [abyssal_whip_my_arms_big_adventure]
@@ -54,7 +53,6 @@ tradeable = false
 weight = 0.1
 destroy = "There's probably another one in the cooking pot on Death Plateau."
 examine = "A lump that might at some point have been a gout tuber."
-use = "Quest"
 kept = "Wilderness"
 
 [hardy_gout_tubers]
@@ -63,7 +61,6 @@ tradeable = false
 weight = 0.1
 destroy = "Murcaily will probably give me some more."
 examine = "A pile of gout tubers suitable for use in mountainous terrain."
-use = "Quest"
 kept = "Wilderness"
 
 [farming_manual]

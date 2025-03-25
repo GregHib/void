@@ -5,7 +5,6 @@ weight = 0.1
 examine = "I wonder what happens if I rub it."
 destroy = "Are you sure you want to destroy the lamp? You won't be able to get another one."
 kept = "Vanish"
-use = "Limited"
 
 [bag_of_runes]
 id = 13440
@@ -14,4 +13,3 @@ weight = 0.001
 destroy = "You can get another one by talking to Mikasi, the Magic Tutor in Lumbridge."
 examine = "This is a bag of runes for Sir Vant."
 kept = "Vanish"
-use = "Removed"

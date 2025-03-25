@@ -16,7 +16,6 @@ slot = "Weapon"
 destroy = "You can replace this by speaking to Diango in Draynor."
 examine = "A flagstaff celebrating Runefest '10."
 kept = "Wilderness"
-use = "Limited"
 
 [golden_cracker]
 id = 20083
@@ -25,7 +24,6 @@ weight = 0.2
 destroy = "You can get another one by speaking to Diango in Draynor."
 examine = "A cracker to commemorate the winning of the Golden Joystick."
 kept = "Wilderness"
-use = "Limited"
 
 [golden_hammer]
 id = 20084
@@ -37,7 +35,6 @@ type = "TwoHanded"
 destroy = "You can get another one from a cracker by speaking to Diango in Draynor."
 examine = "Celebrating the Golden Joystick awards for Jagex."
 kept = "Wilderness"
-use = "Limited"
 
 [tenth_anniversary_cake_no_candles]
 id = 20111
@@ -46,7 +43,6 @@ tradeable = false
 weight = 0.3
 examine = "Put some 10th Anniversary candles on it."
 kept = "Reclaim"
-use = "Limited"
 
 [tenth_anniversary_cake_unlit]
 id = 20112
@@ -55,7 +51,6 @@ weight = 0.35
 destroy = "You can get another from Diango in Draynor Village."
 examine = "Light the candles."
 kept = "Reclaim"
-use = "Limited"
 
 [tenth_anniversary_cake]
 id = 20113
@@ -64,7 +59,6 @@ weight = 0.35
 destroy = "You can get another from Diango in Draynor Village."
 examine = "Celebrating 10 years of Gielinor."
 kept = "Wilderness"
-use = "Limited"
 
 [tenth_anniversary_candles]
 id = 20114

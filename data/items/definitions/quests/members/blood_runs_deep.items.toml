@@ -14,7 +14,6 @@ id = 15404
 tradeable = false
 weight = 3.0
 examine = "This one was found in Silas's dream lighthouse."
-use = "Quest"
 kept = "Wilderness"
 
 [prophecy_tablet_hatchery]
@@ -23,7 +22,6 @@ tradeable = false
 weight = 3.0
 destroy = "Baba Yaga is keeping track of the prophecy. If you lose a tablet, she will still know what it said."
 examine = "This one was found by King Vargas in the dagannoth hatchery."
-use = "Quest"
 kept = "Wilderness"
 
 [prophecy_tablet_lunar]
@@ -41,5 +39,4 @@ weight = 0.03
 aka = ["letter_of_life"]
 destroy = "If you destroy the note, you can get another from Chieftian brundt."
 examine = "A scroll sent down from the next life."
-use = "Quest"
 kept = "Wilderness"

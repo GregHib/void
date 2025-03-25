@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.453
 destroy = "You can get another from Wizard Edvin in the Mage Training Arena's basement."
 examine = "For making rune guardians."
-use = "Quest"
 kept = "Wilderness"
 
 [enchanted_emerald]
@@ -12,7 +11,6 @@ id = 15477
 tradeable = false
 weight = 0.002
 examine = "An enchanted emerald."
-use = "Quest"
 kept = "Wilderness"
 
 [guardian_head]
@@ -21,7 +19,6 @@ tradeable = false
 weight = 0.001
 destroy = "You'll have to get another from Clerval in the Mage Training Arena's basement."
 examine = "The head of a rune guardian."
-use = "Quest"
 kept = "Wilderness"
 
 [guardian_body]
@@ -30,7 +27,6 @@ tradeable = false
 weight = 0.001
 destroy = "You'll have to get another from Clerval in the Mage Training Arena's basement."
 examine = "The body of a rune guardian."
-use = "Quest"
 kept = "Wilderness"
 
 [guardian_arms]
@@ -39,7 +35,6 @@ tradeable = false
 weight = 0.001
 destroy = "You'll have to get another from Clerval in the Mage Training Arena's basement."
 examine = "The arms of a rune guardian."
-use = "Quest"
 kept = "Wilderness"
 
 [guardian_legs]
@@ -48,7 +43,6 @@ tradeable = false
 weight = 0.001
 destroy = "You'll have to get another from Clerval in the Mage Training Arena's basement."
 examine = "The legs of a rune guardian."
-use = "Quest"
 kept = "Wilderness"
 
 [rune_essence_rune_mechanics]
@@ -57,7 +51,6 @@ tradeable = false
 weight = 0.001
 destroy = "You'll have to get another from Clerval in the Mage Training Arena's basement."
 examine = "A lump of rune essence."
-use = "Quest"
 kept = "Wilderness"
 
 [rune_guardian]

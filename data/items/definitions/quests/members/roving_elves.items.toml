@@ -3,7 +3,6 @@ id = 4205
 tradeable = false
 weight = 0.014
 examine = "This consecration seed looks grey and dead."
-use = "Quest"
 kept = "Reclaim"
 
 [consecration_seed_enchanted]
@@ -11,7 +10,6 @@ id = 4206
 tradeable = false
 weight = 0.014
 examine = "This consecration seed glows with a warm light."
-use = "Quest"
 kept = "Reclaim"
 
 [crystal_seed]
@@ -117,7 +115,6 @@ slot = "Shield"
 material = "metal"
 examine = "A nice sturdy crystal shield."
 kept = "Reclaim"
-use = "Limited"
 
 [crystal_shield_full]
 id = 4225
@@ -129,7 +126,6 @@ slot = "Shield"
 material = "metal"
 examine = "A nice sturdy crystal shield."
 kept = "Reclaim"
-use = "Limited"
 
 [crystal_shield_9_10]
 clone = "crystal_shield_full"

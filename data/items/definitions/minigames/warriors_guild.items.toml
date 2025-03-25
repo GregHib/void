@@ -66,7 +66,6 @@ id = 8851
 tradeable = false
 examine = "Warrior Guild Token."
 kept = "Reclaim"
-use = "Removed"
 
 [defensive_shield]
 id = 8856

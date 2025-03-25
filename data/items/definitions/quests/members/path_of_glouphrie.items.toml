@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.01
 destroy = "There may be another in the chest where you found this."
 examine = "This probably opens a chest in Golrie's caves."
-use = "Quest"
 kept = "Wilderness"
 
 [strongroom_key]
@@ -13,7 +12,6 @@ tradeable = false
 weight = 0.01
 destroy = "There may be another in the chest where you found this."
 examine = "This opens the door into Golrie's strongroom."
-use = "Quest"
 kept = "Wilderness"
 
 [crystal_chime]

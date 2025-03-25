@@ -4,7 +4,6 @@ tradeable = false
 weight = 3.628
 destroy = "You'll have to go to Lamistard's Tunnels to find a new one."
 examine = "An old chipped stone tablet."
-use = "Quest"
 kept = "Wilderness"
 
 [granite_tablet]
@@ -13,7 +12,6 @@ tradeable = false
 weight = 3.628
 destroy = "You'll have to go to Lamistard's Tunnels to find a new one."
 examine = "An old chipped granite tablet."
-use = "Quest"
 kept = "Wilderness"
 
 [slate_tablet]
@@ -22,7 +20,6 @@ tradeable = false
 weight = 3.628
 destroy = "You'll have to go to Lamistard's Tunnels to find a new one."
 examine = "An old chipped slate tablet."
-use = "Quest"
 kept = "Wilderness"
 
 [shale_tablet]
@@ -31,7 +28,6 @@ tradeable = false
 weight = 3.628
 destroy = "You'll have to go to Lamistard's Tunnels to find a new one."
 examine = "An old chipped shale tablet."
-use = "Quest"
 kept = "Wilderness"
 
 [base_plans]
@@ -40,7 +36,6 @@ tradeable = false
 weight = 0.001
 destroy = "You'll have to get a new one behind the tapestry in Zemouregal's fortress."
 examine = "Some rolled up plans."
-use = "Quest"
 kept = "Wilderness"
 
 [base_key]
@@ -49,7 +44,6 @@ tradeable = false
 weight = 0.001
 destroy = "You'll have to get a new one behind the tapestry in Zemouregal's fortress."
 examine = "A key which may be for Zemouregal's base."
-use = "Quest"
 kept = "Wilderness"
 
 [oil_in_a_canopic_jar]
@@ -58,7 +52,6 @@ tradeable = false
 weight = 0.001
 destroy = "You'll have to get a new jar from Senliten and fill it with oil again."
 examine = "A canopic jar full of oil."
-use = "Quest"
 kept = "Wilderness"
 
 [oil_and_berries_in_a_jar]
@@ -67,7 +60,6 @@ tradeable = false
 weight = 0.001
 destroy = "You'll have to get a new jar from Senliten and fill it with ingredients again."
 examine = "A canopic jar full of oil and dwellberries."
-use = "Quest"
 kept = "Wilderness"
 
 [full_canopic_jar]
@@ -76,7 +68,6 @@ tradeable = false
 weight = 0.001
 destroy = "You'll have to get a jar from Senliten and fill it with ingredients again."
 examine = "A canopic jar full of heart-preserving gloop."
-use = "Quest"
 kept = "Wilderness"
 
 [empty_canopic_jar]
@@ -85,7 +76,6 @@ tradeable = false
 weight = 0.001
 destroy = "You'll have to get a new jar from Senliten."
 examine = "An ancient canopic jar, currently empty."
-use = "Quest"
 kept = "Wilderness"
 
 [heart_in_a_canopic_jar]
@@ -94,7 +84,6 @@ tradeable = false
 weight = 0.001
 destroy = "You'll have to get a new jar from Senliten and retrieve the heart from Zemouregal's base again."
 examine = "A heart suspended in fluid within a canopic jar."
-use = "Quest"
 kept = "Wilderness"
 
 [code_key]
@@ -103,7 +92,6 @@ tradeable = false
 weight = 0.001
 destroy = "You'll have to get a replacement from the chest in Zemouregal's base."
 examine = "A card with some sort of code on it."
-use = "Quest"
 kept = "Wilderness"
 
 [decoder_strips]
@@ -112,7 +100,6 @@ tradeable = false
 weight = 0.001
 destroy = "You'll have to get a replacement from the table in Zemouregal's base."
 examine = "A collection of decoder strips."
-use = "Quest"
 kept = "Wilderness"
 
 [notes_a_j]

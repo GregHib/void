@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.1
 destroy = "If you need to, you can get another from the Tyras Camp catapult engineer."
 examine = "The plans for repairing the Tyras Camp catapult."
-use = "Quest"
 kept = "Wilderness"
 
 [engineers_letter]
@@ -13,7 +12,6 @@ tradeable = false
 weight = 0.1
 destroy = "If you need to, you can get another from General Hining in the Tyras Camp."
 examine = "General Hining wants me to deliver this to the Catapult Engineer."
-use = "Quest"
 kept = "Wilderness"
 
 [sailors_hat]
@@ -31,7 +29,6 @@ tradeable = false
 weight = 2.0
 destroy = "You can get another set from Thaki the delivery dwarf in Port Sarim."
 examine = "Dwarf-made parts for repairing the Tyras Camp catapult."
-use = "Quest"
 kept = "Wilderness"
 
 [mahogany_catapult_part_1]
@@ -40,7 +37,6 @@ tradeable = false
 weight = 2.0
 destroy = "If you need to, you can make another from the Tyras Camp catapult engineer's schematics."
 examine = "Used to repair the Tyras Camp catapult."
-use = "Quest"
 kept = "Wilderness"
 
 [mahogany_catapult_part_2]

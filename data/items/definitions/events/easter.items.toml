@@ -5,7 +5,6 @@ weight = 0.226
 slot = "Hat"
 examine = "A rabbit-like adornment."
 kept = "Wilderness"
-use = "Limited"
 
 [basket_of_eggs]
 id = 4565
@@ -14,7 +13,6 @@ weight = 0.1
 slot = "Weapon"
 examine = "Hand them out to spread the Easter happiness."
 kept = "Reclaim"
-use = "Removed"
 
 [rubber_chicken]
 id = 4566
@@ -23,7 +21,6 @@ weight = 0.453
 slot = "Weapon"
 examine = "Perhaps not the most powerful weapon in Gielinor."
 kept = "Wilderness"
-use = "Limited"
 
 [easter_ring]
 id = 7927
@@ -31,7 +28,6 @@ tradeable = false
 weight = 0.001
 examine = "A ring given to you by the Easter Bunny."
 kept = "Wilderness"
-use = "Limited"
 
 [easter_egg_2006_easter_event_blue]
 id = 7928
@@ -40,7 +36,6 @@ tradeable = false
 weight = 0.001
 examine = "Best before 24th April."
 kept = "Wilderness"
-use = "Removed"
 
 [easter_egg_2006_easter_event_blue_and_yellow]
 clone = "easter_egg_2006_easter_event_blue"
@@ -69,7 +64,6 @@ weight = 0.25
 destroy = "You will need to speak to Diango to get another chicken head."
 examine = "Cock-a-doodle-do!"
 kept = "Wilderness"
-use = "Limited"
 
 [chicken_feet_2]
 id = 11016
@@ -79,7 +73,6 @@ slot = "Feet"
 destroy = "You will need to speak to Diango to get another pair of chicken feet."
 examine = "Perfect for crossing the road."
 kept = "Wilderness"
-use = "Limited"
 
 [chicken_wings_2]
 id = 11017
@@ -89,7 +82,6 @@ slot = "Chest"
 destroy = "You will need to speak to Diango to get another set of chicken wings."
 examine = "I look fowl in this."
 kept = "Wilderness"
-use = "Limited"
 
 [chicken_legs_2]
 id = 11018
@@ -99,7 +91,6 @@ slot = "Legs"
 destroy = "You will need to speak to Diango to get another set of chicken legs."
 examine = "What's the matter, are you chicken?"
 kept = "Wilderness"
-use = "Limited"
 
 [chicken_feet]
 id = 11019
@@ -109,7 +100,6 @@ slot = "Feet"
 destroy = "You will need to speak to Diango to get another pair of chicken feet."
 examine = "Perfect for crossing the road."
 kept = "Wilderness"
-use = "Limited"
 
 [chicken_wings]
 id = 11020
@@ -119,7 +109,6 @@ slot = "Chest"
 destroy = "You will need to speak to Diango to get another set of chicken wings."
 examine = "I look fowl in this."
 kept = "Wilderness"
-use = "Limited"
 
 [chicken_head]
 id = 11021
@@ -130,7 +119,6 @@ type = "Hair"
 destroy = "You will need to speak to Diango to get another chicken head."
 examine = "Cock-a-doodle-do!"
 kept = "Wilderness"
-use = "Limited"
 
 [chicken_legs]
 id = 11022
@@ -140,7 +128,6 @@ slot = "Legs"
 destroy = "You will need to speak to Diango to get another set of chicken legs."
 examine = "What's the matter, are you chicken?"
 kept = "Wilderness"
-use = "Limited"
 
 [magic_egg]
 id = 11023
@@ -148,7 +135,6 @@ tradeable = false
 weight = 0.01
 examine = "Let's see how far the rabbit hole goes."
 kept = "Vanish"
-use = "Removed"
 
 [rabbit_mould]
 id = 11024
@@ -156,21 +142,18 @@ tradeable = false
 weight = 0.1
 examine = "Used for making chocolate rabbits."
 kept = "Vanish"
-use = "Removed"
 
 [chocolate_chunks]
 id = 11025
 tradeable = false
 examine = "Chocolate kebbit chunks."
 kept = "Reclaim"
-use = "Removed"
 
 [chocolate_kebbit]
 id = 11026
 tradeable = false
 examine = "Chocolatey kebbit goodness."
 kept = "Reclaim"
-use = "Removed"
 
 [easter_egg_2007_easter_event_blue]
 id = 11027
@@ -180,7 +163,6 @@ weight = 0.15
 slot = "Weapon"
 examine = "A rolling egg gathers no moss."
 kept = "Vanish"
-use = "Removed"
 
 [easter_egg_2007_easter_event_yellow]
 id = 11028
@@ -190,7 +172,6 @@ weight = 0.15
 slot = "Weapon"
 examine = "A rolling egg gathers no moss."
 kept = "Vanish"
-use = "Removed"
 
 [easter_egg_2007_easter_event_green]
 id = 11029
@@ -200,7 +181,6 @@ weight = 0.15
 slot = "Weapon"
 examine = "A rolling egg gathers no moss."
 kept = "Vanish"
-use = "Removed"
 
 [easter_egg_2007_easter_event_red]
 id = 11030
@@ -210,7 +190,6 @@ weight = 0.15
 slot = "Weapon"
 examine = "A rolling egg gathers no moss."
 kept = "Vanish"
-use = "Removed"
 
 [chocatrice_cape_2]
 id = 12634
@@ -220,7 +199,6 @@ slot = "Cape"
 destroy = "You can get another chocatrice cape from Diango in Draynor Village."
 examine = "A thick, orange cape."
 kept = "Wilderness"
-use = "Limited"
 
 [easter_egg_2008_easter_event_pink_1]
 id = 12635
@@ -229,7 +207,6 @@ tradeable = false
 weight = 0.085
 examine = "A chocolate egg wrapped in coloured foil."
 kept = "Vanish"
-use = "Removed"
 
 [easter_egg_2008_easter_event_blue_1]
 clone = "easter_egg_2008_easter_event_pink_1"
@@ -247,7 +224,6 @@ weight = 0.085
 destroy = "You can reclaim this item from the place you found it."
 examine = "A chocolate egg wrapped in coloured foil."
 kept = "Vanish"
-use = "Removed"
 
 [easter_egg_2008_easter_event_yellow]
 clone = "easter_egg_2008_easter_event_pink_1"
@@ -275,7 +251,6 @@ heals = 140
 limit = 2
 weight = 0.085
 examine = "Happy Easter."
-use = "Limited"
 
 [chocatrice_cape]
 id = 12645
@@ -285,7 +260,6 @@ slot = "Cape"
 destroy = "You can get another chocatrice cape from Diango in Draynor Village."
 examine = "A thick, orange cape."
 kept = "Wilderness"
-use = "Limited"
 
 [chocolate_egg_yellow]
 id = 12646
@@ -328,7 +302,6 @@ tradeable = false
 weight = 3.0
 empty = "empty_bucket"
 examine = "It's a bucket of coal from the Easter Bunny's warren."
-use = "Removed"
 
 [bucket_of_coal_2]
 clone = "bucket_of_coal"
@@ -342,7 +315,6 @@ weight = 0.02
 destroy = "Are you sure you want to destroy this object? You can get another in the Easter Bunny's warren."
 examine = "I wouldn't want to be around when this hatches."
 kept = "Vanish"
-use = "Removed"
 
 [chocatrice_egg]
 id = 12655
@@ -353,14 +325,12 @@ destroy = "Are you sure you want to destroy this object?"
 examine = "A cockatrice egg that has been dipped in molten chocolate."
 destroy2 = "You can make another at the Easter Bunny's warren."
 kept = "Vanish"
-use = "Removed"
 
 [chocolate_chunks_2008_easter_event]
 id = 12657
 tradeable = false
 examine = "A victim of the chocatrice."
 kept = "Vanish"
-use = "Removed"
 
 [easter_carrot_2]
 id = 14713
@@ -370,7 +340,6 @@ slot = "Weapon"
 destroy = "You can claim this item from Diango."
 examine = "Spreading carroty goodness since 2009."
 kept = "Wilderness"
-use = "Limited"
 
 [sunflower_seeds]
 id = 14714
@@ -379,7 +348,6 @@ weight = 0.085
 destroy = "I can get another one of these by searching the sacks near the Easter Bird."
 examine = "A small pile of sunflower seeds."
 kept = "Vanish"
-use = "Removed"
 
 [cracker_bits]
 id = 14715
@@ -388,7 +356,6 @@ weight = 0.085
 destroy = "I can get another one of these by searching the sacks near the Easter Bird."
 examine = "A small pile of crumbled crackers."
 kept = "Vanish"
-use = "Removed"
 
 [worm_bits]
 id = 14716
@@ -397,7 +364,6 @@ weight = 0.085
 destroy = "I can get another one of these by searching the sacks near the Easter Bird."
 examine = "A small pile of wriggly worms' bits."
 kept = "Vanish"
-use = "Removed"
 
 [poppy_seeds]
 id = 14717
@@ -406,7 +372,6 @@ weight = 0.085
 destroy = "I can get another one of these by searching the sacks near the Easter Bird."
 examine = "A small pile of poppy seeds."
 kept = "Vanish"
-use = "Removed"
 
 [chimney]
 id = 14718
@@ -414,7 +379,6 @@ tradeable = false
 weight = 0.085
 examine = "A chimney that looks like it will fit on the incubator."
 kept = "Vanish"
-use = "Removed"
 
 [cog_2009_easter_event]
 id = 14719
@@ -423,7 +387,6 @@ weight = 0.085
 destroy = "You can get another cog from the old power station."
 examine = "Looks like this might fit onto the incubator."
 kept = "Vanish"
-use = "Removed"
 
 [pistons]
 id = 14720
@@ -431,7 +394,6 @@ tradeable = false
 weight = 0.085
 examine = "Looks like these might fit onto the incubator."
 kept = "Vanish"
-use = "Removed"
 
 [wet_pipe]
 id = 14721
@@ -439,7 +401,6 @@ tradeable = false
 weight = 0.085
 examine = "Looks like this might fit onto the incubator."
 kept = "Vanish"
-use = "Removed"
 
 [clean_pipe_2009_easter_event]
 id = 14722
@@ -448,7 +409,6 @@ weight = 0.085
 destroy = "You can reclaim this item from the place you found it."
 examine = "Looks like this might fit onto the incubator."
 kept = "Vanish"
-use = "Removed"
 
 [sooty_pipe]
 clone = "wet_pipe"
@@ -462,7 +422,6 @@ destroy = "I can get another one of these from the Easter Bunny's son's bedroom.
 examine = "Instructions on how to build the Incubator 9000."
 destroy2 = "I wont need this again."
 kept = "Vanish"
-use = "Removed"
 
 [impling_net]
 id = 14725
@@ -471,7 +430,6 @@ weight = 0.226
 slot = "Weapon"
 examine = "For catching implings..."
 kept = "Vanish"
-use = "Removed"
 
 [impling_jar_2009_easter_event]
 id = 14726
@@ -480,7 +438,6 @@ tradeable = false
 weight = 0.02
 examine = "It's got little holes in the top."
 kept = "Vanish"
-use = "Removed"
 
 [easter_impling_jar]
 id = 14727
@@ -488,7 +445,6 @@ tradeable = false
 weight = 2.267
 examine = "An Easter impling in a jar. That's a bit cruel."
 kept = "Vanish"
-use = "Removed"
 
 [easter_carrot]
 id = 14728
@@ -500,7 +456,6 @@ type = "TwoHanded"
 destroy = "You can claim this item from Diango."
 examine = "Spreading carroty goodness since 2009."
 kept = "Wilderness"
-use = "Limited"
 
 [squirrel_ears]
 id = 15673
@@ -510,7 +465,6 @@ slot = "Hat"
 destroy = "You can replace this by speaking to Diango."
 examine = "A lovely set of squirrel ears."
 kept = "Wilderness"
-use = "Limited"
 
 [delivery_box_2010_easter_event]
 id = 15674
@@ -519,7 +473,6 @@ weight = 2.0
 destroy = "You can replace this by speaking to the Easter Bunny."
 examine = "A box filled with the deliveries the Easter Bunny has asked you to make."
 kept = "Vanish"
-use = "Removed"
 
 [delivery_map]
 id = 15675
@@ -528,7 +481,6 @@ weight = 0.01
 destroy = "You can replace this by speaking to the Easter Bunny."
 examine = "A map of Gielinor with three locations marked upon it."
 kept = "Vanish"
-use = "Removed"
 
 [clean_cog]
 id = 15676
@@ -537,7 +489,6 @@ weight = 0.085
 destroy = "You can reclaim this item from the place you found it."
 examine = "Looks like this might fit onto the oven."
 kept = "Vanish"
-use = "Removed"
 
 [clean_pipe_2010_easter_event]
 clone = "clean_cog"
@@ -550,7 +501,6 @@ weight = 0.085
 destroy = "You can reclaim this item from the place you found it."
 examine = "Looks like these might fit onto the oven."
 kept = "Vanish"
-use = "Removed"
 
 [dirty_cog]
 id = 15679
@@ -558,7 +508,6 @@ tradeable = false
 weight = 0.085
 examine = "Looks like this might fit onto the oven."
 kept = "Vanish"
-use = "Removed"
 
 [dirty_pipe]
 clone = "dirty_cog"
@@ -570,7 +519,6 @@ tradeable = false
 weight = 0.085
 examine = "Looks like these might fit onto the oven."
 kept = "Vanish"
-use = "Removed"
 
 [glaze_crate]
 id = 15682
@@ -579,7 +527,6 @@ weight = 2.0
 destroy = "You can replace this by speaking to the Impling manager"
 examine = "A crate filled with coloured glazes."
 kept = "Vanish"
-use = "Removed"
 
 [glaze_colour_wheel]
 id = 15683
@@ -588,7 +535,6 @@ weight = 0.001
 destroy = "You can replace this by speaking to the impling manager"
 examine = "A guide to mixing glazes."
 kept = "Vanish"
-use = "Removed"
 
 [vial_of_red_glaze]
 id = 15684
@@ -597,7 +543,6 @@ weight = 0.056
 destroy = "You can replace this by speaking to the impling manager."
 examine = "A vial of red glaze."
 kept = "Vanish"
-use = "Removed"
 
 [vial_of_yellow_glaze]
 id = 15685
@@ -606,7 +551,6 @@ weight = 0.056
 destroy = "You can replace this by speaking to the impling manager."
 examine = "A vial of yellow glaze."
 kept = "Vanish"
-use = "Removed"
 
 [vial_of_blue_glaze]
 id = 15686
@@ -615,7 +559,6 @@ weight = 0.056
 destroy = "You can replace this by speaking to the impling manager."
 examine = "A vial of blue glaze."
 kept = "Vanish"
-use = "Removed"
 
 [bowl_2010_easter_event]
 id = 15687
@@ -625,7 +568,6 @@ weight = 0.453
 destroy = "You can replace this by speaking to the impling manager."
 examine = "Useful for mixing things."
 kept = "Vanish"
-use = "Removed"
 
 [bowl_of_black_mess]
 id = 15688
@@ -635,7 +577,6 @@ empty = "bowl"
 destroy = "You can replace this by speaking to the impling manager."
 examine = "A black, sticky mess."
 kept = "Vanish"
-use = "Removed"
 
 [bowl_of_blue_glaze]
 id = 15689
@@ -645,7 +586,6 @@ empty = "bowl"
 destroy = "You can replace this by speaking to the impling manager."
 examine = "It's a bowl of sticky blue glaze."
 kept = "Vanish"
-use = "Removed"
 
 [bowl_of_red_glaze]
 id = 15690
@@ -655,7 +595,6 @@ empty = "bowl"
 destroy = "You can replace this by speaking to the impling manager."
 examine = "It's a bowl of sticky red glaze."
 kept = "Vanish"
-use = "Removed"
 
 [bowl_of_yellow_glaze]
 id = 15691
@@ -665,7 +604,6 @@ empty = "bowl"
 destroy = "You can replace this by speaking to the impling manager."
 examine = "It's a bowl of sticky yellow glaze."
 kept = "Vanish"
-use = "Removed"
 
 [bowl_of_orange_glaze]
 id = 15692
@@ -675,7 +613,6 @@ empty = "bowl"
 destroy = "You can replace this by speaking to the impling manager."
 examine = "It's a bowl of sticky orange glaze."
 kept = "Vanish"
-use = "Removed"
 
 [bowl_of_green_glaze]
 id = 15693
@@ -685,7 +622,6 @@ empty = "bowl"
 destroy = "You can replace this by speaking to the impling manager."
 examine = "It's a bowl of sticky green glaze."
 kept = "Vanish"
-use = "Removed"
 
 [bowl_of_purple_glaze]
 id = 15694
@@ -695,7 +631,6 @@ empty = "bowl"
 destroy = "You can replace this by speaking to the impling manager."
 examine = "It's a bowl of sticky purple glaze."
 kept = "Vanish"
-use = "Removed"
 
 [bowl_of_vermillion_glaze]
 id = 15695
@@ -705,7 +640,6 @@ empty = "bowl"
 destroy = "You can replace this by speaking to the impling manager."
 examine = "It's a bowl of sticky vermillion glaze."
 kept = "Vanish"
-use = "Removed"
 
 [bowl_of_amber_glaze]
 id = 15696
@@ -715,7 +649,6 @@ empty = "bowl"
 destroy = "You can replace this by speaking to the impling manager."
 examine = "It's a bowl of sticky amber glaze."
 kept = "Vanish"
-use = "Removed"
 
 [bowl_of_chartreuse_glaze]
 id = 15697
@@ -725,7 +658,6 @@ empty = "bowl"
 destroy = "You can replace this by speaking to the impling manager."
 examine = "It's a bowl of sticky chartreuse glaze."
 kept = "Vanish"
-use = "Removed"
 
 [bowl_of_aquamarine_glaze]
 id = 15698
@@ -735,7 +667,6 @@ empty = "bowl"
 destroy = "You can replace this by speaking to the impling manager."
 examine = "It's a bowl of sticky aquamarine glaze."
 kept = "Vanish"
-use = "Removed"
 
 [bowl_of_indigo_glaze]
 id = 15699
@@ -745,7 +676,6 @@ empty = "bowl"
 destroy = "You can replace this by speaking to the impling manager"
 examine = "It's a bowl of sticky indigo glaze."
 kept = "Vanish"
-use = "Removed"
 
 [bowl_of_magenta_glaze]
 id = 15700
@@ -755,4 +685,3 @@ empty = "bowl"
 destroy = "You can replace this by speaking to the impling manager."
 examine = "It's a bowl of sticky magenta glaze."
 kept = "Vanish"
-use = "Removed"

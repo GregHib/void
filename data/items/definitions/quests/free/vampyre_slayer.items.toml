@@ -5,7 +5,6 @@ weight = 0.085
 slot = "Shield"
 destroy = "You can get another from Dr Harlow in the Blue Moon inn of Varrock."
 examine = "A very pointy stick."
-use = "Quest"
 kept = "Wilderness"
 
 [garlic]
@@ -25,5 +24,4 @@ weight = 0.907
 slot = "Weapon"
 destroy = "You can get another from Dr Harlow in the Blue Moon inn of Varrock."
 examine = "Specially made for driving stakes into vampyres."
-use = "Quest"
 kept = "Wilderness"

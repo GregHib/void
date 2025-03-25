@@ -91,7 +91,6 @@ id = 7684
 weight = 1.36
 slot = "Weapon"
 examine = "Not much good in combat, but perfect for the dart board!"
-use = "Removed"
 
 [dart_noted]
 id = 7685
@@ -101,7 +100,6 @@ id = 7686
 weight = 1.36
 slot = "Weapon"
 examine = "A safe arrow for indoor ranging games."
-use = "Removed"
 
 [bow_and_arrow_noted]
 id = 7687

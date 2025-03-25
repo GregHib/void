@@ -2,7 +2,6 @@
 id = 25
 tradeable = false
 examine = "Wormy."
-use = "Quest"
 kept = "Reclaim"
 
 [fishing_trophy]
@@ -11,7 +10,6 @@ tradeable = false
 weight = 0.085
 aka = ["the_golden_mackerel", "golden_mackerel"]
 examine = "Hemenster fishing contest trophy."
-use = "Quest"
 kept = "Wilderness"
 
 [fishing_pass]
@@ -19,7 +17,6 @@ id = 27
 tradeable = false
 weight = 0.006
 examine = "Pass to the Hemenster fishing contest."
-use = "Quest"
 kept = "Wilderness"
 
 [giant_carp]
@@ -29,7 +26,6 @@ tradeable = false
 weight = 0.5
 aka = ["cooked_giant_carp", "carp", "carps", "giant_carps", "cooked_carp"]
 examine = "Some nicely cooked giant carp."
-use = "Quest"
 kept = "Reclaim"
 
 [raw_giant_carp]
@@ -37,5 +33,4 @@ id = 338
 tradeable = false
 weight = 0.55
 examine = "I should try cooking this."
-use = "Quest"
 kept = "Reclaim"

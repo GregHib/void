@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.01
 destroy = "You'll have to keep searching trees near the zombie trails until you find another."
 examine = "A key that was found while tracking zombies."
-use = "Quest"
 kept = "Wilderness"
 
 [scrap_of_paper]
@@ -13,7 +12,6 @@ tradeable = false
 weight = 0.02
 destroy = "You'll have to speak to Thurgo to find another."
 examine = "The location of Camdozaal, given to me by Thurgo."
-use = "Quest"
 kept = "Wilderness"
 
 [bottle]
@@ -21,7 +19,6 @@ id = 13760
 tradeable = false
 weight = 0.04
 examine = "An empty bottle."
-use = "Quest"
 kept = "Reclaim"
 
 [bottle_of_mist]
@@ -29,7 +26,6 @@ id = 13761
 tradeable = false
 weight = 0.04
 examine = "A bottle of red mist."
-use = "Quest"
 kept = "Reclaim"
 
 [list_of_elders]
@@ -38,5 +34,4 @@ tradeable = false
 weight = 0.005
 destroy = "You can get another from Varrock Palace Library."
 examine = "This lists each of the founding elders of the Council of Varrock."
-use = "Quest"
 kept = "Wilderness"

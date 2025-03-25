@@ -33,7 +33,6 @@ tradeable = false
 weight = 0.453
 slot = "Weapon"
 examine = "Contains the Fairy Queen's magical essence."
-use = "Quest"
 kept = "Wilderness"
 
 [magic_essence_4]
@@ -70,7 +69,6 @@ tradeable = false
 weight = 0.01
 destroy = "Maybe I can find another in Fairy Nuff's grotto."
 examine = "A scroll that says she's a healer, that's Fairy Nuff."
-use = "Quest"
 kept = "Wilderness"
 
 [ivory_comb]

@@ -15,7 +15,6 @@ tradeable = false
 weight = 0.056
 destroy = "Hopefully, there's another in the fountain at Draynor Manor."
 examine = "It's part of a machine."
-use = "Quest"
 kept = "Wilderness"
 
 [fish_food]
@@ -41,7 +40,6 @@ tradeable = false
 weight = 0.03
 destroy = "You'll have to make more in Draynor Manor."
 examine = "This isn't good for fish."
-use = "Quest"
 kept = "Wilderness"
 
 [grimy_key]
@@ -50,7 +48,6 @@ tradeable = false
 weight = 0.01
 destroy = "Hopefully, there's another in that compost heap at Draynor Manor."
 examine = "A slightly smelly key."
-use = "Quest"
 kept = "Wilderness"
 
 [rubber_tube]
@@ -59,7 +56,6 @@ tradeable = false
 weight = 0.028
 destroy = "Hopefully, I can find another in Draynor Manor."
 examine = "It's slightly charred."
-use = "Quest"
 kept = "Wilderness"
 
 [oil_can]
@@ -68,7 +64,6 @@ tradeable = false
 weight = 0.028
 destroy = "I'll have to find another in the basement of Draynor Manor."
 examine = "It's pretty full."
-use = "Quest"
 kept = "Wilderness"
 
 [plague_jacket]

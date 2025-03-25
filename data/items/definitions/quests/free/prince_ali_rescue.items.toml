@@ -24,7 +24,6 @@ id = 2422
 limit = 2
 weight = 0.056
 examine = "A nice hat from a cracker."
-use = "Limited"
 
 [key_print]
 id = 2423

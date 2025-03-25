@@ -15,7 +15,6 @@ slot = "Weapon"
 destroy = "You can get another from Diango in Draynor Village."
 examine = "A tool for sleuths."
 kept = "Wilderness"
-use = "Limited"
 
 [mysterious_book]
 id = 19705
@@ -24,7 +23,6 @@ weight = 1.0
 destroy = "You can get another from Diango in Draynor Village."
 examine = "There are some pages missing."
 kept = "Vanish"
-use = "Limited"
 
 [investigators_coat]
 id = 19706

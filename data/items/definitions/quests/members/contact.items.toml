@@ -45,7 +45,6 @@ weight = 0.02
 destroy = "You can reclaim this from the quest storage chest."
 examine = "A bloody, as in 'blood covered', scroll."
 destroy2 = "Your item will be destroyed permanently and it may not be reclaimable."
-use = "Quest"
 kept = "Wilderness"
 
 [combat_lamp]
@@ -54,5 +53,4 @@ tradeable = false
 weight = 0.02
 destroy = "You can obtain a replacement lamp from the high priest in Sophanem."
 examine = "A mystical lamp, engraved with scenes of carnage."
-use = "Quest"
 kept = "Wilderness"

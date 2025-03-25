@@ -3,5 +3,4 @@ id = 90
 tradeable = false
 weight = 0.907
 examine = "It's very soft!"
-use = "Quest"
 kept = "Wilderness"

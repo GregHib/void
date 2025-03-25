@@ -20,7 +20,6 @@ tradeable = false
 weight = 15.0
 destroy = "Why? Why would you do that?"
 examine = "A squealing, rocking barrel of simians."
-use = "Quest"
 kept = "Wilderness"
 
 [monkey_knife]
@@ -29,7 +28,6 @@ tradeable = false
 weight = 0.907
 destroy = "You'll need to steal another from a monkey knife fighter on Ape Atoll. Good luck with that."
 examine = "A small knife, perfect for a monkey."
-use = "Quest"
 kept = "Wilderness"
 
 [metal_crate]
@@ -38,7 +36,6 @@ tradeable = false
 weight = 10.0
 destroy = "You may be able to get another by speaking with Ali Morrisane."
 examine = "A large, metal crate."
-use = "Quest"
 kept = "Wilderness"
 
 [economy_building_for_dummies]
@@ -48,7 +45,6 @@ weight = 0.453
 slot = "Weapon"
 destroy = "You can ask Iwazaru for another."
 examine = "A small book that teaches strong economy building."
-use = "Quest"
 kept = "Wilderness"
 
 [bundle_of_carpets]
@@ -57,7 +53,6 @@ tradeable = false
 weight = 5.0
 destroy = "If you throw them away here, Ali Morrisane might find them."
 examine = "This bundle of magic carpets is an entrepreneur's dream."
-use = "Quest"
 kept = "Wilderness"
 
 [cramulet_monkey_ghost]
@@ -106,5 +101,4 @@ id = 20069
 tradeable = false
 weight = 0.028
 examine = "A nearly ripe banana."
-use = "Quest"
 kept = "Wilderness"

@@ -5,7 +5,6 @@ weight = 0.001
 destroy = "Brian might have a spare."
 examine = "You stole this letter from a H.A.M. agent in Sigmund's H.A.M. base."
 destroy2 = "You tear up the letter as you won't need it any more."
-use = "Quest"
 kept = "Wilderness"
 
 [williams_letter]
@@ -15,7 +14,6 @@ weight = 0.001
 destroy = "William might have a spare."
 examine = "You stole this letter from a H.A.M. agent in Sigmund's H.A.M. base."
 destroy2 = "You tear up the letter as you won't need it any more."
-use = "Quest"
 kept = "Wilderness"
 
 [charless_letter]
@@ -25,7 +23,6 @@ weight = 0.001
 destroy = "Charles might have a spare."
 examine = "You stole this letter from a H.A.M. agent in Sigmund's H.A.M. base."
 destroy2 = "You tear up the letter as you won't need it any more."
-use = "Quest"
 kept = "Wilderness"
 
 [sams_letter]
@@ -35,7 +32,6 @@ weight = 0.001
 destroy = "Sam might have a spare."
 examine = "You stole this letter from a H.A.M. agent in Sigmund's H.A.M. base."
 destroy2 = "You tear up the letter as you won't need it any more."
-use = "Quest"
 kept = "Wilderness"
 
 [christophers_letter]
@@ -45,7 +41,6 @@ weight = 0.001
 destroy = "Christopher might have a spare."
 examine = "You stole this letter from a H.A.M. agent in Sigmund's H.A.M. base."
 destroy2 = "You tear up the letter as you won't need it any more."
-use = "Quest"
 kept = "Wilderness"
 
 [daniels_letter]
@@ -55,7 +50,6 @@ weight = 0.001
 destroy = "Daniel might have a spare."
 examine = "You stole this letter from a H.A.M. agent in Sigmund's H.A.M. base."
 destroy2 = "You tear up the letter as you won't need it any more."
-use = "Quest"
 kept = "Wilderness"
 
 [michaels_letter]
@@ -65,7 +59,6 @@ weight = 0.001
 destroy = "Michael might have a spare."
 examine = "You stole this letter from a H.A.M. agent in Sigmund's H.A.M. base."
 destroy2 = "You tear up the letter as you won't need it any more."
-use = "Quest"
 kept = "Wilderness"
 
 [ham_prison_key]
@@ -74,7 +67,6 @@ tradeable = false
 weight = 0.01
 destroy = "You can find another one in Sigmund's H.A.M. base beneath the windmill north of Ardougne."
 examine = "You found this key in Sigmund's H.A.M. base."
-use = "Quest"
 kept = "Wilderness"
 
 [granite_mace]
@@ -96,7 +88,6 @@ id = 14682
 tradeable = false
 weight = 0.001
 examine = "A glint on the seat of the throne caught my eye."
-use = "Quest"
 kept = "Wilderness"
 
 [pendant]
@@ -105,7 +96,6 @@ tradeable = false
 weight = 0.001
 aka = ["pendant_of_bandos"]
 examine = "It doesn't look so impressive now."
-use = "Quest"
 kept = "Wilderness"
 
 [zaniks_crossbow]
@@ -126,7 +116,6 @@ tradeable = false
 weight = 2.267
 attack_range = 6
 examine = "I noticed my crossbow on a high ledge."
-use = "Quest"
 kept = "Reclaim"
 
 [zaniks_crossbow_upgraded]
@@ -137,7 +126,6 @@ slot = "Weapon"
 attack_range = 7
 destroy = "You can get it back from Oldak in Dorgesh-Kaan."
 examine = "Zanik's crossbow has been upgraded."
-use = "Quest"
 kept = "Vanish"
 
 [energy_projectors]
@@ -146,7 +134,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can get another one from the Dorgesh-Kaan power station."
 examine = "Some magical equipment for Oldak's plan."
-use = "Quest"
 kept = "Wilderness"
 
 [focusing_chamber]
@@ -159,7 +146,6 @@ tradeable = false
 weight = 2.267
 destroy = "Destroying that would make victory over the Bandos avatar impossible."
 examine = "The magical parts have broken off."
-use = "Quest"
 kept = "Wilderness"
 
 [time_capsule]
@@ -168,7 +154,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can get it back from the Dorgeshuun Scribe."
 examine = "The scribe asked you to give this to Mistag."
-use = "Quest"
 kept = "Wilderness"
 
 [box_of_artefacts]
@@ -177,7 +162,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can get it back from Tegdak in Dorgesh-Kaan."
 examine = "Miscellaneous artefacts from Dorgesh-Kaan. You should give it to the scribe."
-use = "Quest"
 kept = "Wilderness"
 
 [bandos_throne_room_sphere]

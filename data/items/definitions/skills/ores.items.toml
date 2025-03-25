@@ -74,7 +74,6 @@ id = 446
 tradeable = false
 weight = 2.267
 examine = "This needs refining."
-use = "Quest"
 kept = "Reclaim"
 
 [mithril_ore]

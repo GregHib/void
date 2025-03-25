@@ -3,7 +3,6 @@ id = 4589
 tradeable = false
 weight = 0.01
 examine = "Keys to the Mayor's house."
-use = "Quest"
 kept = "Wilderness"
 
 [jewels]
@@ -11,7 +10,6 @@ id = 4590
 tradeable = false
 weight = 0.01
 examine = "The Mayor of Pollnivneach's wife's jewels."
-use = "Quest"
 kept = "Wilderness"
 
 [kharidian_headpiece]
@@ -33,7 +31,6 @@ id = 4597
 tradeable = false
 weight = 0.02
 examine = "A note found in the Mayor's bedroom mentioning the word 'Fibonacci'."
-use = "Quest"
 kept = "Wilderness"
 
 [note_numbers]
@@ -41,7 +38,6 @@ id = 4598
 tradeable = false
 weight = 0.02
 examine = "A list of 5 numbers."
-use = "Quest"
 kept = "Wilderness"
 
 [oak_blackjack]
@@ -79,7 +75,6 @@ id = 4603
 tradeable = false
 weight = 0.02
 examine = "A receipt for one 'Camelus Horribleus'."
-use = "Quest"
 kept = "Wilderness"
 
 [hags_poison]
@@ -87,7 +82,6 @@ id = 4604
 tradeable = false
 weight = 0.2
 examine = "A red viscous liquid in a vial."
-use = "Quest"
 kept = "Wilderness"
 
 [snake_charm]
@@ -97,7 +91,6 @@ weight = 0.1
 slot = "Weapon"
 type = "TwoHanded"
 examine = "Makes a hissing sound."
-use = "Quest"
 kept = "Reclaim"
 
 [snake_basket]
@@ -105,7 +98,6 @@ id = 4606
 tradeable = false
 weight = 0.5
 examine = "This is used to hold snakes."
-use = "Quest"
 kept = "Wilderness"
 
 [full_snake_basket]
@@ -113,7 +105,6 @@ id = 4607
 tradeable = false
 weight = 1.0
 examine = "This basket contains a snake."
-use = "Quest"
 kept = "Wilderness"
 
 [super_kebab]

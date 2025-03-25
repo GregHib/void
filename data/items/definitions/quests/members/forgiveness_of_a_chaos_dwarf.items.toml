@@ -28,7 +28,6 @@ tradeable = false
 weight = 0.01
 destroy = "You can get another from Commander Veldaban"
 examine = "The hand cannoneer in the watchtower dropped this slip."
-use = "Quest"
 kept = "Wilderness"
 
 [package]
@@ -37,7 +36,6 @@ tradeable = false
 weight = 13.0
 destroy = "You can get another from the Grand Exchange."
 examine = "A large, oddly shaped package."
-use = "Quest"
 kept = "Wilderness"
 
 [boot_forgiveness_of_a_chaos_dwarf]
@@ -46,7 +44,6 @@ tradeable = false
 weight = 0.5
 destroy = "You can get it back from the package."
 examine = "A military-style boot, sized for a dwarf foot."
-use = "Quest"
 kept = "Wilderness"
 
 [bowl_forgiveness_of_a_chaos_dwarf]
@@ -55,7 +52,6 @@ tradeable = false
 weight = 10.0
 destroy = "You can get it back from the package."
 examine = "A large iron bowl with a thin coating of soot."
-use = "Quest"
 kept = "Wilderness"
 
 [rod]
@@ -64,7 +60,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can get it back from the package."
 examine = "A metal rod with a handle on one end and a square tip on the other."
-use = "Quest"
 kept = "Wilderness"
 
 [yellow_stone]
@@ -72,7 +67,6 @@ id = 15250
 tradeable = false
 destroy = "You can get it back from the package."
 examine = "There is a strange yellow marking on this stone."
-use = "Quest"
 kept = "Wilderness"
 
 [green_stone]
@@ -80,7 +74,6 @@ id = 15251
 tradeable = false
 destroy = "You can get it back from the package."
 examine = "There is a strange green marking on this stone."
-use = "Quest"
 kept = "Wilderness"
 
 [metal_rectangle]
@@ -89,7 +82,6 @@ tradeable = false
 weight = 0.1
 destroy = "You can get it back from the package."
 examine = "A thin but rigid rectangle of steel."
-use = "Quest"
 kept = "Wilderness"
 
 [turnscrew]
@@ -99,7 +91,6 @@ weight = 0.1
 slot = "Weapon"
 destroy = "You can get it back from the package."
 examine = "A device for turning screws."
-use = "Quest"
 kept = "Wilderness"
 
 [guardsmans_stout]
@@ -107,7 +98,6 @@ id = 15254
 tradeable = false
 weight = 0.1
 examine = "A special stout brewed for the dwarven Black Guard."
-use = "Quest"
 kept = "Wilderness"
 
 [dragon_pickaxe]

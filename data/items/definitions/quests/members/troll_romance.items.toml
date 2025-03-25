@@ -21,7 +21,6 @@ tradeable = false
 weight = 0.025
 slot = "Shield"
 examine = "I can use this to wax my sled."
-use = "Quest"
 kept = "Wilderness"
 
 [trollweiss]

@@ -15,7 +15,6 @@ tradeable = false
 weight = 0.907
 examine = "I need to attach this to its head."
 kept = "Reclaim"
-use = "Removed"
 
 [spade_head]
 id = 5328
@@ -23,7 +22,6 @@ tradeable = false
 weight = 0.907
 examine = "I need to attach this to its handle."
 kept = "Reclaim"
-use = "Removed"
 
 [secateurs]
 id = 5329

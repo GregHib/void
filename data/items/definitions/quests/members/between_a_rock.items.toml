@@ -21,7 +21,6 @@ id = 4569
 tradeable = false
 weight = 0.002
 examine = "A missing page from Rolad's book! It seems to be the first one."
-use = "Quest"
 kept = "Wilderness"
 
 [book_page_2]
@@ -29,7 +28,6 @@ id = 4570
 tradeable = false
 weight = 0.002
 examine = "A missing page from Rolad's book! It seems to be the second one."
-use = "Quest"
 kept = "Wilderness"
 
 [book_page_3]
@@ -37,7 +35,6 @@ id = 4571
 tradeable = false
 weight = 0.002
 examine = "A missing page from Rolad's book! It seems to be the third one."
-use = "Quest"
 kept = "Wilderness"
 
 [pages_two] # Unobtainable
@@ -57,7 +54,6 @@ id = 4574
 tradeable = false
 weight = 0.002
 examine = "These are the base schematics of a dwarven multicannon"
-use = "Quest"
 kept = "Wilderness"
 
 [schematic_dondakan]
@@ -65,7 +61,6 @@ id = 4575
 tradeable = false
 weight = 0.004
 examine = "A transparent overlay - details of something?"
-use = "Quest"
 kept = "Wilderness"
 
 [schematics_dwarven_engineer]
@@ -73,7 +68,6 @@ id = 4576
 tradeable = false
 weight = 0.004
 examine = "Transparent overlays - details of something?"
-use = "Quest"
 kept = "Wilderness"
 
 [schematics_khorvak]
@@ -85,7 +79,6 @@ id = 4578
 tradeable = false
 weight = 0.014
 examine = "The assembled schematic for modifying the dwarven multicannon."
-use = "Quest"
 kept = "Wilderness"
 
 [cannon_ball_between_a_rock]
@@ -93,5 +86,4 @@ id = 4579
 tradeable = false
 weight = 20.0
 examine = "A heavy gold metal sphere."
-use = "Quest"
 kept = "Wilderness"

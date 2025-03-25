@@ -6,7 +6,6 @@ weight = 0.34
 slot = "Hat"
 type = "FullFace"
 examine = "Aaaarrrghhh ... I'm a monster."
-use = "Limited"
 
 [green_hween_mask_noted]
 id = 1054
@@ -19,7 +18,6 @@ weight = 0.34
 slot = "Hat"
 type = "FullFace"
 examine = "Aaaarrrghhh ... I'm a monster."
-use = "Limited"
 
 [blue_hween_mask_noted]
 id = 1056
@@ -32,7 +30,6 @@ weight = 0.34
 slot = "Hat"
 type = "FullFace"
 examine = "Aaaarrrghhh ... I'm a monster."
-use = "Limited"
 
 [red_hween_mask_noted]
 id = 1058
@@ -43,7 +40,6 @@ tradeable = false
 weight = 0.01
 examine = "Not likely to last until next Halloween."
 kept = "Reclaim"
-use = "Removed"
 
 [deep_blue_sweets]
 clone = "blue_sweets"
@@ -77,7 +73,6 @@ slot = "Weapon"
 destroy = "The Ghost Buster will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
 examine = "A Ghost Buster 500 loaded with a white destabiliser."
 kept = "Vanish"
-use = "Removed"
 
 [ghost_buster_500_red]
 id = 9907
@@ -87,7 +82,6 @@ slot = "Weapon"
 destroy = "The Ghost Buster will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
 examine = "A Ghost Buster 500 loaded with a red destabiliser."
 kept = "Vanish"
-use = "Removed"
 
 [ghost_buster_500_blue]
 id = 9908
@@ -97,7 +91,6 @@ slot = "Weapon"
 destroy = "The Ghost Buster will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
 examine = "A Ghost Buster 500 loaded with a blue destabiliser."
 kept = "Vanish"
-use = "Removed"
 
 [ghost_buster_500_green]
 id = 9909
@@ -107,7 +100,6 @@ slot = "Weapon"
 destroy = "The Ghost Buster will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
 examine = "A Ghost Buster 500 loaded with a green destabiliser."
 kept = "Vanish"
-use = "Removed"
 
 [ghost_buster_500_yellow]
 id = 9910
@@ -117,7 +109,6 @@ slot = "Weapon"
 destroy = "The Ghost Buster will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
 examine = "A Ghost Buster 500 loaded with a yellow destabiliser."
 kept = "Vanish"
-use = "Removed"
 
 [ghost_buster_500_black]
 id = 9911
@@ -127,7 +118,6 @@ slot = "Weapon"
 destroy = "The Ghost Buster will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
 examine = "A Ghost Buster 500 loaded with a black destabiliser."
 kept = "Vanish"
-use = "Removed"
 
 [ghost_buster_500]
 id = 9912
@@ -137,7 +127,6 @@ slot = "Weapon"
 destroy = "The Ghost Buster will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
 examine = "A Ghost Buster 500 without a destabiliser loaded."
 kept = "Vanish"
-use = "Removed"
 
 [white_destabiliser]
 id = 9913
@@ -146,7 +135,6 @@ slot = "Shield"
 destroy = "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
 examine = "A white destabiliser for use in a Ghost Buster."
 kept = "Vanish"
-use = "Removed"
 
 [red_destabiliser]
 id = 9914
@@ -155,7 +143,6 @@ slot = "Shield"
 destroy = "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
 examine = "A red destabiliser for use in a Ghost Buster."
 kept = "Vanish"
-use = "Removed"
 
 [blue_destabiliser]
 id = 9915
@@ -164,7 +151,6 @@ slot = "Shield"
 destroy = "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
 examine = "A blue destabiliser for use in a Ghost Buster."
 kept = "Vanish"
-use = "Removed"
 
 [green_destabiliser]
 id = 9916
@@ -173,7 +159,6 @@ slot = "Shield"
 destroy = "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
 examine = "A green destabiliser for use in a Ghost Buster."
 kept = "Vanish"
-use = "Removed"
 
 [yellow_destabiliser]
 id = 9917
@@ -182,7 +167,6 @@ slot = "Shield"
 destroy = "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
 examine = "A yellow destabiliser for use in a Ghost Buster."
 kept = "Vanish"
-use = "Removed"
 
 [black_destabiliser]
 id = 9918
@@ -191,7 +175,6 @@ slot = "Shield"
 destroy = "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
 examine = "A black destabiliser for use in a Ghost Buster."
 kept = "Vanish"
-use = "Removed"
 
 [evil_root]
 id = 9919
@@ -199,7 +182,6 @@ tradeable = false
 weight = 0.003
 examine = "A freshly cut root of all evil."
 kept = "Vanish"
-use = "Removed"
 
 [jack_lantern_mask]
 id = 9920
@@ -210,7 +192,6 @@ type = "FullFace"
 destroy = "The Jack O'Lantern head will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
 examine = "Better not light it!"
 kept = "Wilderness"
-use = "Limited"
 
 [skeleton_boots]
 id = 9921
@@ -220,7 +201,6 @@ slot = "Feet"
 destroy = "The boots will be destroyed if you put them here, and you will have to get another from Diango when they are gone."
 examine = "Skeleton feet."
 kept = "Wilderness"
-use = "Limited"
 
 [skeleton_gloves]
 id = 9922
@@ -230,7 +210,6 @@ slot = "Hands"
 destroy = "The gloves will be destroyed if you put them here, and you will have to get another from Diango when they are gone."
 examine = "Some skeletal gloves."
 kept = "Wilderness"
-use = "Limited"
 
 [skeleton_leggings]
 id = 9923
@@ -240,7 +219,6 @@ slot = "Legs"
 destroy = "The legs will be destroyed if you put them here, and you will have to get another from Diango when they are gone."
 examine = "Does my pelvis look big in this?"
 kept = "Wilderness"
-use = "Limited"
 
 [skeleton_shirt]
 id = 9924
@@ -250,7 +228,6 @@ slot = "Chest"
 destroy = "The body will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
 examine = "The shirt of a full body skeleton costume."
 kept = "Wilderness"
-use = "Limited"
 
 [skeleton_mask]
 id = 9925
@@ -261,7 +238,6 @@ type = "Hair"
 destroy = "The mask will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
 examine = "A scary skeleton mask."
 kept = "Wilderness"
-use = "Limited"
 
 [the_grim_reapers_diary]
 id = 11780
@@ -271,7 +247,6 @@ aka = ["diary_of_death_my_diary_by_grim"]
 destroy = "You'll have to find another from the Grim Reaper's house."
 examine = "Surely this holds many a dark tale..."
 kept = "Vanish"
-use = "Removed"
 
 [grims_robe]
 id = 11781
@@ -280,7 +255,6 @@ weight = 0.907
 destroy = "Another can be found in the Grim Reaper's house."
 examine = "Some of the Grim Reaper's garb."
 kept = "Vanish"
-use = "Removed"
 
 [last_will_and_testament]
 id = 11782
@@ -289,7 +263,6 @@ weight = 0.005
 destroy = "You'll have to find another from the Grim Reaper's house."
 examine = "Someone's Last Will and Testament."
 kept = "Vanish"
-use = "Removed"
 
 [human_bones]
 id = 11783
@@ -298,7 +271,6 @@ weight = 0.5
 destroy = "You'll have to find another from the Grim Reaper's house."
 examine = "A tasty treat for Muncher."
 kept = "Vanish"
-use = "Removed"
 
 [servants_skull]
 id = 11784
@@ -307,7 +279,6 @@ weight = 0.08
 destroy = "You'll have to find another from the Grim Reaper's house."
 examine = "What possesses me to carry these things around?"
 kept = "Vanish"
-use = "Removed"
 
 [hourglass_2]
 id = 11785
@@ -316,7 +287,6 @@ weight = 0.5
 destroy = "You'll have to find another from the Grim Reaper's house."
 examine = "No matter how I turn it, the sand doesn't seem to move."
 kept = "Vanish"
-use = "Removed"
 
 [scythe_sharpener]
 id = 11786
@@ -325,7 +295,6 @@ weight = 0.075
 destroy = "Another can be found in the Grim Reaper's house."
 examine = "Used to sharpen the blade of a scythe."
 kept = "Vanish"
-use = "Removed"
 
 [human_eye]
 id = 11787
@@ -334,7 +303,6 @@ weight = 0.003
 destroy = "You'll have to find another from the Grim Reaper's house."
 examine = "That's gross. Why am I carrying it around?"
 kept = "Vanish"
-use = "Removed"
 
 [voice_of_doom_potion]
 id = 11788
@@ -343,7 +311,6 @@ weight = 0.003
 destroy = "You'll have to find another from the Grim Reaper's house."
 examine = "A 'Voice of Doom' potion, used to deepen your voice."
 kept = "Vanish"
-use = "Removed"
 
 [grim_reaper_hood]
 id = 11789
@@ -354,7 +321,6 @@ type = "FullFace"
 destroy = "You should be able to get another from Diango in Draynor."
 examine = "Allows me to imitate the harbinger of doom, the stealer of souls, the eternal end..."
 kept = "Wilderness"
-use = "Limited"
 
 [grim_reaper_hood_2]
 id = 11790
@@ -365,7 +331,6 @@ type = "FullFace"
 destroy = "You should be able to get another from Diango in Draynor."
 examine = "Allows me to imitate the harbinger of doom, the stealer of souls, the eternal end..."
 kept = "Wilderness"
-use = "Limited"
 
 [warlock_top]
 id = 14076
@@ -375,7 +340,6 @@ slot = "Chest"
 destroy = "You can get another warlock top from Diango in Draynor Village."
 examine = "The height of warlock fashion."
 kept = "Vanish"
-use = "Limited"
 
 [warlock_legs]
 id = 14077
@@ -385,7 +349,6 @@ slot = "Legs"
 destroy = "You can get another set of warlock legs from Diango in Draynor Village."
 examine = "Tattered but trendy."
 kept = "Vanish"
-use = "Limited"
 
 [witch_top]
 id = 14078
@@ -395,7 +358,6 @@ slot = "Chest"
 destroy = "You can get another witch top from Diango in Draynor."
 examine = "The height of witchly fashion."
 kept = "Vanish"
-use = "Limited"
 
 [witch_skirt]
 id = 14079
@@ -405,7 +367,6 @@ slot = "Legs"
 destroy = "You can get another witch skirt from Diango in Draynor."
 examine = "Tattered but trendy."
 kept = "Vanish"
-use = "Limited"
 
 [witch_cloak]
 id = 14080
@@ -415,7 +376,6 @@ slot = "Cape"
 destroy = "You can get another witch cloak from Diango in Draynor."
 examine = "Ragged but rugged."
 kept = "Vanish"
-use = "Limited"
 
 [warlock_cloak]
 id = 14081
@@ -425,7 +385,6 @@ slot = "Cape"
 destroy = "You can get another warlock cloak from Diango in Draynor Village."
 examine = "Ragged but rugged."
 kept = "Vanish"
-use = "Limited"
 
 [popcorn_ball]
 id = 14082
@@ -434,7 +393,6 @@ tradeable = false
 weight = 0.15
 examine = "Sticky orb of popped corn."
 kept = "Reclaim"
-use = "Removed"
 
 [chocolate_drop]
 id = 14083
@@ -443,7 +401,6 @@ tradeable = false
 weight = 0.15
 examine = "Chocolatey goodness."
 kept = "Reclaim"
-use = "Removed"
 
 [wrapped_candy]
 id = 14084
@@ -452,7 +409,6 @@ tradeable = false
 weight = 0.15
 examine = "Sugary bliss."
 kept = "Reclaim"
-use = "Removed"
 
 [web_cloak]
 id = 15352
@@ -462,7 +418,6 @@ slot = "Cape"
 destroy = "You can get another from Diango in Draynor."
 examine = "A very fancy cloak made from black silk and gossamer."
 kept = "Wilderness"
-use = "Limited"
 
 [eek]
 id = 15353
@@ -473,7 +428,6 @@ slot = "Weapon"
 destroy = "Eek the Spider scurries away. You can pick her up from Diango in Draynor."
 examine = "Eek, a spider!"
 kept = "Wilderness"
-use = "Limited"
 
 [bone_brooch]
 id = 19832
@@ -482,7 +436,6 @@ weight = 0.001
 destroy = "You can get this back by speaking to Diango."
 examine = "A sinister brooch that screams occasionally."
 kept = "Wilderness"
-use = "Limited"
 
 [empty_moonshine_vial]
 id = 19833
@@ -491,7 +444,6 @@ weight = 0.015
 destroy = "You can get more from the buffet table."
 examine = "A glass vial for storing moonshine."
 kept = "Vanish"
-use = "Removed"
 
 [strained_moonshine_vial]
 id = 19834
@@ -500,7 +452,6 @@ weight = 0.015
 destroy = "You'll need to remake this using ingredients from the buffet table."
 examine = "A glass vial with leaves to strain liquids over it."
 kept = "Vanish"
-use = "Removed"
 
 [unfinished_moonshine_blood]
 id = 19835
@@ -509,7 +460,6 @@ weight = 0.056
 destroy = "You'll need to remake this using ingredients from the buffet table."
 examine = "Two more ingredients are needed to finish this moonshine."
 kept = "Vanish"
-use = "Removed"
 
 [unfinished_moonshine_blood_and_fear]
 id = 19836
@@ -518,7 +468,6 @@ weight = 0.056
 destroy = "You'll need to remake this using ingredients from the buffet table."
 examine = "One more ingredient is needed to finish this moonshine."
 kept = "Vanish"
-use = "Removed"
 
 [pile_of_ground_bones]
 id = 19837
@@ -527,7 +476,6 @@ weight = 0.056
 destroy = "You can get more from the buffet table."
 examine = "Bones, ground into powder."
 kept = "Vanish"
-use = "Removed"
 
 [big_bottle_of_blood]
 id = 19838
@@ -536,7 +484,6 @@ weight = 0.035
 destroy = "You can get more from the buffet table."
 examine = "A big bottle of sparrow blood."
 kept = "Vanish"
-use = "Removed"
 
 [failed_moonshine]
 id = 19839
@@ -553,7 +500,6 @@ weight = 0.028
 destroy = "You can get more from the buffet table."
 examine = "Leaves from an evil tree."
 kept = "Vanish"
-use = "Removed"
 
 [big_bottle_of_fear]
 id = 19841
@@ -562,7 +508,6 @@ weight = 0.056
 destroy = "You can get more from the buffet table."
 examine = "A big bottle of raw fear. Creepy."
 kept = "Vanish"
-use = "Removed"
 
 [moonshine]
 id = 19842
@@ -571,7 +516,6 @@ weight = 0.025
 destroy = "You'll need to remake the moonshine using ingredients from the buffet table."
 examine = "A vial of delicious moonshine."
 kept = "Vanish"
-use = "Removed"
 
 [ingredients]
 id = 19843
@@ -579,7 +523,6 @@ tradeable = false
 weight = 0.005
 examine = "Ingredients for making moonshine."
 kept = "Reclaim"
-use = "Removed"
 
 [zabeths_autograph]
 id = 19845
@@ -588,4 +531,3 @@ weight = 0.005
 destroy = "You can get this back by speaking to Zabeth Corvid."
 examine = "Grim will be overjoyed to get this."
 kept = "Vanish"
-use = "Removed"

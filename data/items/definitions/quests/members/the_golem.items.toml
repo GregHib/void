@@ -3,7 +3,6 @@ id = 4615
 tradeable = false
 weight = 0.005
 examine = "An old faded letter."
-use = "Quest"
 kept = "Wilderness"
 
 [varmens_notes]
@@ -19,7 +18,6 @@ id = 4617
 tradeable = false
 weight = 0.01
 examine = "The museum curator's key."
-use = "Quest"
 kept = "Wilderness"
 
 [statuette_the_golem]
@@ -27,7 +25,6 @@ id = 4618
 tradeable = false
 weight = 0.5
 examine = "A beautifully-carved stone statuette."
-use = "Quest"
 kept = "Wilderness"
 
 [strange_implement]
@@ -35,7 +32,6 @@ id = 4619
 tradeable = false
 weight = 0.01
 examine = "It's pretty, but you wish you knew what it was."
-use = "Quest"
 kept = "Wilderness"
 
 [black_mushroom]
@@ -65,7 +61,6 @@ id = 4623
 tradeable = false
 weight = 0.016
 examine = "A phoenix feather dipped in ink."
-use = "Quest"
 kept = "Wilderness"
 
 [golem_program]
@@ -73,5 +68,4 @@ id = 4624
 tradeable = false
 weight = 0.02
 examine = "It reads 'YOUR TASK IS DONE'."
-use = "Quest"
 kept = "Wilderness"

@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.005
 destroy = "Hopefully, Jorral will be able to return them."
 examine = "Notes on how to use the enchanted key."
-use = "Quest"
 kept = "Wilderness"
 
 [bowl_meeting_history]
@@ -13,7 +12,6 @@ tradeable = false
 weight = 0.453
 destroy = "Hopefully, the family has another."
 examine = "Useful for mixing things."
-use = "Quest"
 kept = "Vanish"
 
 [bucket_of_milk_meeting_history]
@@ -23,7 +21,6 @@ tradeable = false
 weight = 2.2
 destroy = "Hopefully, the family has another."
 examine = "Good for strong bones."
-use = "Quest"
 kept = "Vanish"
 
 [clean_guam_meeting_history]
@@ -33,7 +30,6 @@ tradeable = false
 weight = 0.007
 destroy = "Hopefully, the family has another."
 examine = "A fresh herb."
-use = "Quest"
 kept = "Vanish"
 
 [bowl_of_honey]
@@ -42,7 +38,6 @@ tradeable = false
 weight = 0.453
 destroy = "You'll have to start again from stratch."
 examine = "A bowlful of bees' precious product."
-use = "Quest"
 kept = "Vanish"
 
 [bowl_of_milk_and_honey]
@@ -51,7 +46,6 @@ tradeable = false
 weight = 0.453
 destroy = "You'll have to start again from stratch."
 examine = "A bowlful of milk and honey."
-use = "Quest"
 kept = "Vanish"
 
 [bowl_of_milk_honey_and_guam]
@@ -60,7 +54,6 @@ tradeable = false
 weight = 0.453
 destroy = "You'll have to start again from scratch."
 examine = "A bowl full of milk, honey and guam."
-use = "Quest"
 kept = "Vanish"
 
 [map_of_gielinor]
@@ -69,7 +62,6 @@ tradeable = false
 weight = 0.001
 destroy = "Hopefully, the family has more papyrus and charcoal."
 examine = "Your best impression of a map of Gielinor."
-use = "Quest"
 kept = "Vanish"
 
 [papyrus_meeting_history]
@@ -79,7 +71,6 @@ tradeable = false
 weight = 0.02
 destroy = "Hopefully, the family has more."
 examine = "Used for making notes."
-use = "Quest"
 kept = "Vanish"
 
 [charcoal_meeting_history]
@@ -89,7 +80,6 @@ tradeable = false
 weight = 0.005
 destroy = "Hopefully, the family has more."
 examine = "Quite good for writing with."
-use = "Quest"
 kept = "Vanish"
 
 [spade_meeting_history]
@@ -98,7 +88,6 @@ limit = 100
 tradeable = false
 weight = 1.814
 examine = "A slightly muddy spade."
-use = "Quest"
 kept = "Vanish"
 
 [plant_pot_meeting_history]
@@ -107,7 +96,6 @@ limit = 100
 tradeable = false
 weight = 0.907
 examine = "An empty plant pot."
-use = "Quest"
 kept = "Vanish"
 
 [pear_tree_seedling]
@@ -115,7 +103,6 @@ id = 13581
 tradeable = false
 weight = 1.36
 examine = "A seedling has been sown in this plant pot."
-use = "Quest"
 kept = "Vanish"
 
 [mango_tree_seedling]
@@ -145,7 +132,6 @@ tradeable = false
 weight = 0.056
 destroy = "Hopefully, the family has another."
 examine = "I can grind things in this."
-use = "Quest"
 kept = "Vanish"
 
 [ground_guam_meeting_history]
@@ -155,7 +141,6 @@ tradeable = false
 weight = 0.056
 destroy = "Hopefully, the family has another."
 examine = "A guam ground into paste."
-use = "Quest"
 kept = "Vanish"
 
 [bucket_meeting_history]
@@ -165,7 +150,6 @@ tradeable = false
 weight = 1.0
 destroy = "Hopefully, the family has another."
 examine = "It's an empty bucket."
-use = "Quest"
 kept = "Vanish"
 
 [enchanted_key_meeting_history]
@@ -182,7 +166,6 @@ tradeable = false
 weight = 0.001
 destroy = "Hopefully, you can find another."
 examine = "Some ladies jewellery."
-use = "Quest"
 kept = "Vanish"
 
 [old_tome]
@@ -191,5 +174,4 @@ tradeable = false
 weight = 0.453
 destroy = "You will not get another chance to read the book!"
 examine = "It's falling apart, but full of knowledge."
-use = "Quest"
 kept = "Vanish"

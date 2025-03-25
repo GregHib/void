@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.1
 destroy = "If you destroy this book you can find another on a bookshelf in the Seers' Village chapel."
 examine = "Book of the Elemental Body, there is a raised relief on the front."
-use = "Quest"
 kept = "Wilderness"
 
 [key_mould]
@@ -14,7 +13,6 @@ weight = 0.01
 silver_jewellery = { item = "ragged_silver_key", quest = "elemental_workshop_iii" }
 destroy = "If you destroy this, you can make another by using soft clay on the ragged book."
 examine = "A key mould, made from a ragged book."
-use = "Quest"
 kept = "Wilderness"
 
 [ragged_silver_key]
@@ -23,7 +21,6 @@ tradeable = false
 weight = 0.01
 destroy = "If you destroy this key, you can make another with a silver bar and the key mould."
 examine = "A small silver key."
-use = "Quest"
 kept = "Wilderness"
 
 [ragged_gold_key]
@@ -32,7 +29,6 @@ tradeable = false
 weight = 0.01
 destroy = "If you destroy this key, you can make another with a gold bar and the key mould."
 examine = "A small gold key."
-use = "Quest"
 kept = "Wilderness"
 
 [ragged_elemental_key]
@@ -41,7 +37,6 @@ tradeable = false
 weight = 0.01
 destroy = "If you destroy this key, you can make another with an elemental bar and the key mould."
 examine = "A small elemental key."
-use = "Quest"
 kept = "Wilderness"
 
 [body_bar]
@@ -112,7 +107,6 @@ tradeable = false
 weight = 0.1
 destroy = "If you destroy this scroll, you can find another in the body room of the elemental workshop."
 examine = "A scroll with a diagram drawn on it."
-use = "Quest"
 kept = "Wilderness"
 
 [book_of_knowledge_elemental_workshop_iii]
@@ -121,5 +115,4 @@ tradeable = false
 weight = 1.0
 destroy = "This book is irreplaceable"
 examine = "Educate yourself."
-use = "Quest"
 kept = "Wilderness"

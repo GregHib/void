@@ -292,7 +292,6 @@ tradeable = false
 weight = 0.001
 destroy = "Your CommOrb will automatically self destruct when dropped. Please speak to your Temple Knight superior to receive another."
 examine = "A Temple Knight Communication Orb. Top Secret!"
-use = "Quest"
 kept = "Wilderness"
 
 [soluss_hat]
@@ -300,5 +299,4 @@ id = 6636
 tradeable = false
 weight = 0.001
 examine = "Proof that I have defeated the evil mage Solus."
-use = "Quest"
 kept = "Reclaim"

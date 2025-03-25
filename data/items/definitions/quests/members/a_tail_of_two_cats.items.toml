@@ -14,7 +14,6 @@ tradeable = false
 weight = 2.0
 destroy = "You can not get a replacement for the present. Open it to get your reward."
 examine = "Thanks for all your help! Love, Bob & Neite."
-use = "Quest"
 kept = "Vanish"
 
 [antique_lamp_a_tail_of_two_cats]
@@ -23,7 +22,6 @@ tradeable = false
 weight = 0.1
 destroy = "If you destroy this item, you cannot reclaim it."
 examine = "I wonder what happens if I rub it..."
-use = "Quest"
 kept = "Vanish"
 
 [catspeak_amulet_e]
@@ -42,7 +40,6 @@ weight = 0.005
 destroy = "You can get a replacement list of chores by speaking to your kitten or cat."
 examine = "A list of chores that Bob gave you to do."
 destroy2 = "You have completed the chores; you can safely destroy the list."
-use = "Quest"
 kept = "Wilderness"
 
 [recipe]
@@ -51,7 +48,6 @@ tradeable = false
 weight = 0.005
 destroy = "You found the recipe in Unferth's bookcase, which is in his Burthorpe house, you will be able to get a replacement."
 examine = "It says on the back 'My favourite recipe.'"
-use = "Quest"
 kept = "Wilderness"
 
 [doctors_hat]

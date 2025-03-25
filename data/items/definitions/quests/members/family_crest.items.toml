@@ -5,7 +5,6 @@ weight = 0.007
 slot = "Ring"
 material = "metal"
 examine = "A perfect ruby ring."
-use = "Quest"
 kept = "Wilderness"
 
 [perfect_necklace]
@@ -15,7 +14,6 @@ weight = 0.01
 slot = "Amulet"
 material = "metal"
 examine = "A perfect ruby necklace."
-use = "Quest"
 kept = "Wilderness"
 
 [cooking_gauntlets]
@@ -63,7 +61,6 @@ id = 779
 tradeable = false
 weight = 1.814
 examine = "A fragment of the Fitzharmon family crest."
-use = "Quest"
 kept = "Wilderness"
 
 [crest_part_caleb]
@@ -71,7 +68,6 @@ id = 780
 tradeable = false
 weight = 1.36
 examine = "A fragment of the Fitzharmon family crest."
-use = "Quest"
 kept = "Wilderness"
 
 [crest_part_johnathon]
@@ -83,7 +79,6 @@ id = 782
 tradeable = false
 weight = 4.535
 examine = "The Fitzharmon family crest."
-use = "Quest"
 kept = "Wilderness"
 
 [perfect_gold_bar]
@@ -91,5 +86,4 @@ id = 2365
 tradeable = false
 weight = 1.814
 examine = "It's a bar of 'perfect' gold."
-use = "Quest"
 kept = "Reclaim"

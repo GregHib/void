@@ -15,7 +15,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can get another from My Arm in the troll settlement near Keldagrim."
 examine = "How pretty!"
-use = "Quest"
 kept = "Vanish"
 
 [keldagrim_library_key]
@@ -24,7 +23,6 @@ tradeable = false
 weight = 0.01
 destroy = "You can get another from the librarian in keldagrim."
 examine = "A key to the Keldagrim Library display case."
-use = "Quest"
 kept = "Wilderness"
 
 [keldagrim_key_mould_1]
@@ -33,7 +31,6 @@ tradeable = false
 weight = 0.01
 destroy = "You can get another from Meike in Keldagrim."
 examine = "A mould of one of the six keys to Keldagrim's records chamber."
-use = "Quest"
 kept = "Wilderness"
 
 [keldagrim_key_mould_2]
@@ -62,7 +59,6 @@ tradeable = false
 weight = 0.05
 destroy = "You can make another at a furnace using a mithril bar and a key mould, which you can get from Meike in Keldagrim."
 examine = "A duplicate of one of the six keys to Keldagrim's records chamber."
-use = "Quest"
 kept = "Wilderness"
 
 [keldagrim_key_2]

@@ -13,7 +13,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "Who wrote this?"
-use = "Dungeoneering"
 kept = "Always"
 
 [mysterious_chronicle_part_2]
@@ -27,7 +26,6 @@ weight = 1.0
 aka = ["chronicles_of_bilrach"]
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "Who wrote this?"
-use = "Dungeoneering"
 kept = "Always"
 
 [mysterious_chronicle_part_4]
@@ -96,7 +94,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "A very old journal."
-use = "Dungeoneering"
 kept = "Always"
 
 [troll_scrawlings]
@@ -105,7 +102,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "This was written by a troll."
-use = "Dungeoneering"
 kept = "Always"
 
 [behemoth_notes_part_1]
@@ -114,7 +110,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "An unknown mage's notes on the behemoths."
-use = "Dungeoneering"
 kept = "Always"
 
 [environmental_effects_part_1]
@@ -123,7 +118,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "An unknown mage's notes on the environmental effects of the area."
-use = "Dungeoneering"
 kept = "Always"
 
 [stalker_notes_part_1]
@@ -132,7 +126,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "An unknown mage's notes on the stalkers."
-use = "Dungeoneering"
 kept = "Always"
 
 [kalgerion_notes_part_1]
@@ -141,7 +134,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "An unknown mage's notes on the Kal'Gerion demons."
-use = "Dungeoneering"
 kept = "Always"
 
 [divine_skinweavers_journal]
@@ -150,7 +142,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "The personal journal of a gorajo skinweaver."
-use = "Dungeoneering"
 kept = "Always"
 
 [hobgoblin_scrawlings]
@@ -159,7 +150,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "This was written by a hobgoblin."
-use = "Dungeoneering"
 kept = "Always"
 
 [behemoth_notes_part_2]
@@ -172,7 +162,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "This is written in blood."
-use = "Dungeoneering"
 kept = "Always"
 
 [equipment_requisition_receipts]
@@ -181,7 +170,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "These look quite recent."
-use = "Dungeoneering"
 kept = "Always"
 
 [behemoth_notes_part_3]
@@ -202,7 +190,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "Orders from a sagitarre officer."
-use = "Dungeoneering"
 kept = "Always"
 
 [stalker_notes_part_2]
@@ -223,7 +210,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "A letter left behind by wandering adventurers."
-use = "Dungeoneering"
 kept = "Always"
 
 [m_and_thok_letter_part_2]
@@ -250,7 +236,6 @@ id = 15749
 id = 15750
 weight = 2.0
 examine = "Used to power some ancient device."
-use = "Dungeoneering"
 kept = "Always"
 
 [green_power_crystal]
@@ -920,7 +905,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [novite_dagger_p+_bound]
@@ -929,7 +913,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [novite_dagger_p++_bound]
@@ -938,7 +921,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [bathus_dagger_bound]
@@ -955,7 +937,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [bathus_dagger_p+_bound]
@@ -964,7 +945,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [bathus_dagger_p++_bound]
@@ -973,7 +953,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [marmaros_dagger_bound]
@@ -990,7 +969,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [marmaros_dagger_p+_bound]
@@ -999,7 +977,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [marmaros_dagger_p++_bound]
@@ -1008,7 +985,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [kratonite_dagger_bound]
@@ -1025,7 +1001,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [kratonite_dagger_p+_bound]
@@ -1034,7 +1009,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [kratonite_dagger_p++_bound]
@@ -1043,7 +1017,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [fractite_dagger_bound]
@@ -1060,7 +1033,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [fractite_dagger_p+_bound]
@@ -1069,7 +1041,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [fractite_dagger_p++_bound]
@@ -1078,7 +1049,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [zephyrium_dagger_bound]
@@ -1095,7 +1065,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [zephyrium_dagger_p+_bound]
@@ -1104,7 +1073,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [zephyrium_dagger_p++_bound]
@@ -1113,7 +1081,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [argonite_dagger_bound]
@@ -1130,7 +1097,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [argonite_dagger_p+_bound]
@@ -1139,7 +1105,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [argonite_dagger_p++_bound]
@@ -1148,7 +1113,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [katagon_dagger_bound]
@@ -1165,7 +1129,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [katagon_dagger_p+_bound]
@@ -1174,7 +1137,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [katagon_dagger_p++_bound]
@@ -1183,7 +1145,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [gorgonite_dagger_bound]
@@ -1200,7 +1161,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [gorgonite_dagger_p+_bound]
@@ -1209,7 +1169,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [gorgonite_dagger_p++_bound]
@@ -1218,7 +1177,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [promethium_dagger_bound]
@@ -1235,7 +1193,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [promethium_dagger_p+_bound]
@@ -1244,7 +1201,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [promethium_dagger_p++_bound]
@@ -1253,7 +1209,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [primal_dagger_bound]
@@ -1270,7 +1225,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [primal_dagger_p+_bound]
@@ -1279,7 +1233,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [primal_dagger_p++_bound]
@@ -1288,7 +1241,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [salve_hood_bound]
@@ -1811,77 +1763,66 @@ examine = "Bow ammunition."
 id = 15958
 slot = "Ammo"
 examine = "Bow ammunition."
-use = "Dungeoneering"
 kept = "Always"
 
 [bathus_arrows_p_bound]
 id = 15959
 slot = "Ammo"
 examine = "Bow ammunition."
-use = "Dungeoneering"
 kept = "Always"
 
 [marmaros_arrows_p_bound]
 id = 15960
 slot = "Ammo"
 examine = "Bow ammunition."
-use = "Dungeoneering"
 kept = "Always"
 
 [kratonite_arrows_p_bound]
 id = 15961
 slot = "Ammo"
 examine = "Bow ammunition."
-use = "Dungeoneering"
 kept = "Always"
 
 [fractite_arrows_p_bound]
 id = 15962
 slot = "Ammo"
 examine = "Bow ammunition."
-use = "Dungeoneering"
 kept = "Always"
 
 [zephyrium_arrows_p_bound]
 id = 15963
 slot = "Ammo"
 examine = "Bow ammunition."
-use = "Dungeoneering"
 kept = "Always"
 
 [argonite_arrows_p_bound]
 id = 15964
 slot = "Ammo"
 examine = "Bow ammunition."
-use = "Dungeoneering"
 kept = "Always"
 
 [katagon_arrows_p_bound]
 id = 15965
 slot = "Ammo"
 examine = "Bow ammunition."
-use = "Dungeoneering"
 kept = "Always"
 
 [gorgonite_arrows_p_bound]
 id = 15966
 slot = "Ammo"
 examine = "Bow ammunition."
-use = "Dungeoneering"
 kept = "Always"
 
 [promethium_arrows_p_bound]
 id = 15967
 slot = "Ammo"
 examine = "Bow ammunition."
-use = "Dungeoneering"
 kept = "Always"
 
 [sagittarian_arrows_p_bound]
 id = 15968
 slot = "Ammo"
 examine = "Bow ammunition."
-use = "Dungeoneering"
 kept = "Always"
 
 [novite_arrows_p+_bound]
@@ -3736,7 +3677,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [novite_spear_p+_bound]
@@ -3745,7 +3685,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [novite_spear_p++_bound]
@@ -3754,7 +3693,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [bathus_spear_bound]
@@ -3771,7 +3709,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [bathus_spear_p+_bound]
@@ -3780,7 +3717,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [bathus_spear_p++_bound]
@@ -3789,7 +3725,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [marmaros_spear_bound]
@@ -3806,7 +3741,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [marmaros_spear_p+_bound]
@@ -3815,7 +3749,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [marmaros_spear_p++_bound]
@@ -3824,7 +3757,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [kratonite_spear_bound]
@@ -3841,7 +3773,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [kratonite_spear_p+_bound]
@@ -3850,7 +3781,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [kratonite_spear_p++_bound]
@@ -3859,7 +3789,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [fractite_spear_bound]
@@ -3876,7 +3805,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [fractite_spear_p+_bound]
@@ -3885,7 +3813,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [fractite_spear_p++_bound]
@@ -3894,7 +3821,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [zephyrium_spear_bound]
@@ -3911,7 +3837,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [zephyrium_spear_p+_bound]
@@ -3920,7 +3845,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [zephyrium_spear_p++_bound]
@@ -3929,7 +3853,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [argonite_spear_bound]
@@ -3946,7 +3869,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [argonite_spear_p+_bound]
@@ -3955,7 +3877,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [argonite_spear_p++_bound]
@@ -3964,7 +3885,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [katagon_spear_bound]
@@ -3981,7 +3901,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [katagon_spear_p+_bound]
@@ -3990,7 +3909,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [katagon_spear_p++_bound]
@@ -3999,7 +3917,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [gorgonite_spear_bound]
@@ -4016,7 +3933,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [gorgonite_spear_p+_bound]
@@ -4025,7 +3941,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [gorgonite_spear_p++_bound]
@@ -4034,7 +3949,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [promethium_spear_bound]
@@ -4051,7 +3965,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [promethium_spear_p+_bound]
@@ -4060,7 +3973,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [promethium_spear_p++_bound]
@@ -4069,7 +3981,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [primal_spear_bound]
@@ -4087,7 +3998,6 @@ slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
 kept = "Always"
-use = "Dungeoneering"
 
 [primal_spear_p+_bound]
 id = 16260
@@ -4096,7 +4006,6 @@ slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
 kept = "Always"
-use = "Dungeoneering"
 
 [primal_spear_p++_bound]
 id = 16261
@@ -4105,7 +4014,6 @@ slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
 kept = "Always"
-use = "Dungeoneering"
 
 [novite_boots_bound]
 id = 16262
@@ -5750,7 +5658,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [novite_dagger_p_noted]
@@ -5762,7 +5669,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [novite_dagger_p+_noted]
@@ -5774,7 +5680,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [novite_dagger_p++_noted]
@@ -5796,7 +5701,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [bathus_dagger_p_noted]
@@ -5808,7 +5712,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [bathus_dagger_p+_noted]
@@ -5820,7 +5723,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [bathus_dagger_p++_noted]
@@ -5842,7 +5744,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [marmaros_dagger_p_noted]
@@ -5854,7 +5755,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [marmaros_dagger_p+_noted]
@@ -5866,7 +5766,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [marmaros_dagger_p++_noted]
@@ -5888,7 +5787,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [kratonite_dagger_p_noted]
@@ -5900,7 +5798,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [kratonite_dagger_p+_noted]
@@ -5912,7 +5809,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [kratonite_dagger_p++_noted]
@@ -5934,7 +5830,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [fractite_dagger_p_noted]
@@ -5946,7 +5841,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [fractite_dagger_p+_noted]
@@ -5958,7 +5852,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [fractite_dagger_p++_noted]
@@ -5980,7 +5873,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [zephyrium_dagger_p_noted]
@@ -5992,7 +5884,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [zephyrium_dagger_p+_noted]
@@ -6004,7 +5895,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [zephyrium_dagger_p++_noted]
@@ -6026,7 +5916,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [argonite_dagger_p_noted]
@@ -6038,7 +5927,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [argonite_dagger_p+_noted]
@@ -6050,7 +5938,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [argonite_dagger_p++_noted]
@@ -6072,7 +5959,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [katagon_dagger_p_noted]
@@ -6084,7 +5970,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [katagon_dagger_p+_noted]
@@ -6096,7 +5981,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [katagon_dagger_p++_noted]
@@ -6118,7 +6002,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [gorgonite_dagger_p_noted]
@@ -6130,7 +6013,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [gorgonite_dagger_p+_noted]
@@ -6142,7 +6024,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [gorgonite_dagger_p++_noted]
@@ -6164,7 +6045,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [promethium_dagger_p_noted]
@@ -6176,7 +6056,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [promethium_dagger_p+_noted]
@@ -6188,7 +6067,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [promethium_dagger_p++_noted]
@@ -6210,7 +6088,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [primal_dagger_p_noted]
@@ -6222,7 +6099,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [primal_dagger_p+_noted]
@@ -6234,7 +6110,6 @@ weight = 0.453
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
-use = "Dungeoneering"
 kept = "Always"
 
 [primal_dagger_p++_noted]
@@ -6794,7 +6669,6 @@ id = 16957
 weight = 1.814
 slot = "Weapon"
 examine = "A razor-sharp rapier."
-use = "Dungeoneering"
 kept = "Always"
 
 [fractite_rapier_2_noted]
@@ -6805,7 +6679,6 @@ id = 16959
 weight = 1.814
 slot = "Weapon"
 examine = "A razor-sharp rapier."
-use = "Dungeoneering"
 kept = "Always"
 
 [gorgonite_rapier_2_noted]
@@ -6817,7 +6690,6 @@ weight = 2.721
 slot = "Weapon"
 material = "metal"
 examine = "A razor-sharp longsword."
-use = "Dungeoneering"
 kept = "Always"
 
 [fractite_longsword_2_noted]
@@ -6829,7 +6701,6 @@ weight = 2.721
 slot = "Weapon"
 material = "metal"
 examine = "A razor-sharp longsword."
-use = "Dungeoneering"
 kept = "Always"
 
 [gorgonite_longsword_2_noted]
@@ -6841,7 +6712,6 @@ weight = 4.989
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A maul used to claim life from those who don't deserve it."
-use = "Dungeoneering"
 kept = "Always"
 
 [gorgonite_maul_2_noted]
@@ -6853,7 +6723,6 @@ weight = 1.814
 category = "staff"
 slot = "Weapon"
 examine = "This staff makes destructive spells more powerful."
-use = "Dungeoneering"
 kept = "Always"
 
 [catalytic_staff_noted]
@@ -6885,7 +6754,6 @@ slot = "Weapon"
 material = "metal"
 type = "TwoHanded"
 examine = "A two-handed sword."
-use = "Dungeoneering"
 kept = "Always"
 
 [fractite_2h_sword_2_noted]
@@ -6897,7 +6765,6 @@ weight = 1.814
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A small bow, only effective at short distance."
-use = "Dungeoneering"
 kept = "Always"
 
 [spinebeam_shortbow_2_noted]
@@ -7349,7 +7216,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [novite_spear_p_noted]
@@ -7361,7 +7227,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [novite_spear_p+_noted]
@@ -7373,7 +7238,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [novite_spear_p++_noted]
@@ -7395,7 +7259,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [bathus_spear_p_noted]
@@ -7407,7 +7270,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [bathus_spear_p+_noted]
@@ -7419,7 +7281,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [bathus_spear_p++_noted]
@@ -7441,7 +7302,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [marmaros_spear_p_noted]
@@ -7453,7 +7313,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [marmaros_spear_p+_noted]
@@ -7465,7 +7324,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [marmaros_spear_p++_noted]
@@ -7487,7 +7345,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [kratonite_spear_p_noted]
@@ -7499,7 +7356,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [kratonite_spear_p+_noted]
@@ -7511,7 +7367,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [kratonite_spear_p++_noted]
@@ -7533,7 +7388,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [fractite_spear_p_noted]
@@ -7545,7 +7399,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [fractite_spear_p+_noted]
@@ -7557,7 +7410,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [fractite_spear_p++_noted]
@@ -7579,7 +7431,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [zephyrium_spear_p_noted]
@@ -7591,7 +7442,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [zephyrium_spear_p+_noted]
@@ -7603,7 +7453,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [zephyrium_spear_p++_noted]
@@ -7625,7 +7474,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [argonite_spear_p_noted]
@@ -7637,7 +7485,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [argonite_spear_p+_noted]
@@ -7649,7 +7496,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [argonite_spear_p++_noted]
@@ -7671,7 +7517,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [katagon_spear_p_noted]
@@ -7683,7 +7528,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [katagon_spear_p+_noted]
@@ -7695,7 +7539,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [katagon_spear_p++_noted]
@@ -7717,7 +7560,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [gorgonite_spear_p_noted]
@@ -7729,7 +7571,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [gorgonite_spear_p+_noted]
@@ -7741,7 +7582,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [gorgonite_spear_p++_noted]
@@ -7763,7 +7603,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [promethium_spear_p_noted]
@@ -7775,7 +7614,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [promethium_spear_p+_noted]
@@ -7787,7 +7625,6 @@ weight = 2.267
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
-use = "Dungeoneering"
 kept = "Always"
 
 [promethium_spear_p++_noted]
@@ -7810,7 +7647,6 @@ slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
 kept = "Always"
-use = "Dungeoneering"
 
 [primal_spear_p_noted]
 id = 17146
@@ -7822,7 +7658,6 @@ slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
 kept = "Always"
-use = "Dungeoneering"
 
 [primal_spear_p+_noted]
 id = 17148
@@ -7834,7 +7669,6 @@ slot = "Weapon"
 type = "TwoHanded"
 examine = "A stick made for poking - violent poking."
 kept = "Always"
-use = "Dungeoneering"
 
 [primal_spear_p++_noted]
 id = 17150
@@ -8853,7 +8687,6 @@ weight = 5.443
 slot = "Shield"
 material = "metal"
 examine = "A large metal shield."
-use = "Dungeoneering"
 kept = "Always"
 
 [gorgonite_kiteshield_2_noted]
@@ -8884,7 +8717,6 @@ id = 17363
 bank_stacks = false
 weight = 0.09
 examine = "A key taken from a guard."
-use = "Dungeoneering"
 kept = "Always"
 
 [lump_of_stone_magical_construct]
@@ -8892,7 +8724,6 @@ id = 17364
 bank_stacks = false
 weight = 1.0
 examine = "This appears to be the magic material that the construct is made from."
-use = "Dungeoneering"
 kept = "Always"
 
 [spare_construct_arm_u]
@@ -8900,7 +8731,6 @@ id = 17365
 bank_stacks = false
 weight = 1.0
 examine = "I need to imbue this with rune energy to complete it."
-use = "Dungeoneering"
 kept = "Always"
 
 [spare_construct_leg_u]
@@ -8915,7 +8745,6 @@ id = 17367
 id = 17368
 weight = 1.0
 examine = "A complete replacement part for the construct."
-use = "Dungeoneering"
 kept = "Always"
 
 [spare_construct_arm_noted]
@@ -8958,7 +8787,6 @@ id = 17377
 bank_stacks = false
 weight = 1.997
 examine = "They can't be used for much."
-use = "Dungeoneering"
 kept = "Always"
 
 [simple_trap]
@@ -8967,7 +8795,6 @@ bank_stacks = false
 weight = 0.548
 destroy = "You can make another one from dry logs."
 examine = "A simple trap to catch small creatures."
-use = "Dungeoneering"
 kept = "Always"
 
 [ashes_o]
@@ -8975,7 +8802,6 @@ id = 17379
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "A heap of ashes ."
-use = "Dungeoneering"
 kept = "Always"
 
 [ashes_o_noted]
@@ -8986,7 +8812,6 @@ id = 17381
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "A wooden carving of a banana ."
-use = "Dungeoneering"
 kept = "Always"
 
 [banana_o_noted]
@@ -8997,7 +8822,6 @@ id = 17383
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "An unholy symbol of Zamorak ."
-use = "Dungeoneering"
 kept = "Always"
 
 [unholy_symbol_o_noted]
@@ -9008,7 +8832,6 @@ id = 17385
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "A stone carved to look like a blood rune ."
-use = "Dungeoneering"
 kept = "Always"
 
 [blood_rune_o_noted]
@@ -9019,7 +8842,6 @@ id = 17387
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "Stone-made bones ."
-use = "Dungeoneering"
 kept = "Always"
 
 [bones_o_noted]
@@ -9030,7 +8852,6 @@ id = 17389
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "Pretty useless without the rest of the bow ."
-use = "Dungeoneering"
 kept = "Always"
 
 [bowstring_o_noted]
@@ -9041,7 +8862,6 @@ id = 17391
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "The markings on these coins are unfamiliar ."
-use = "Dungeoneering"
 kept = "Always"
 
 [coins_o_noted]
@@ -9052,7 +8872,6 @@ id = 17393
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "The bird this came from is long gone ."
-use = "Dungeoneering"
 kept = "Always"
 
 [feather_o_noted]
@@ -9063,7 +8882,6 @@ id = 17395
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "It looks like it has a kick ."
-use = "Dungeoneering"
 kept = "Always"
 
 [firebreath_whiskey_o_noted]
@@ -9075,7 +8893,6 @@ limit = 1000
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "A wooden representation of the cave eel ."
-use = "Dungeoneering"
 kept = "Always"
 
 [cave_eel_o_noted]
@@ -9086,7 +8903,6 @@ id = 17399
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "This looks like it belongs in a museum ."
-use = "Dungeoneering"
 kept = "Always"
 
 [fishing_rod_o_noted]
@@ -9097,7 +8913,6 @@ id = 17401
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "Good for hitting things...just not anymore ."
-use = "Dungeoneering"
 kept = "Always"
 
 [hammer_o_noted]
@@ -9108,7 +8923,6 @@ id = 17403
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "A wooden arrow shaft with flights attached ."
-use = "Dungeoneering"
 kept = "Always"
 
 [headless_arrow_o_noted]
@@ -9119,7 +8933,6 @@ id = 17405
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "A rusty metal shield in the shape of a kite ."
-use = "Dungeoneering"
 kept = "Always"
 
 [novite_kiteshield_o_noted]
@@ -9130,7 +8943,6 @@ id = 17407
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "A wooden carving of an edible cave mushroom ."
-use = "Dungeoneering"
 kept = "Always"
 
 [gissel_mushroom_o_noted]
@@ -9141,7 +8953,6 @@ id = 17409
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "Used with thread and cloth to make clothes ."
-use = "Dungeoneering"
 kept = "Always"
 
 [needle_o_noted]
@@ -9152,7 +8963,6 @@ id = 17411
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "A stoppered vial with a big skull on the side ."
-use = "Dungeoneering"
 kept = "Always"
 
 [weapon_poison_o_noted]
@@ -9163,7 +8973,6 @@ id = 17413
 weight = 0.001
 destroy = "You can find more of these items somewhere in the room."
 examine = "An old vial containing some murky water ."
-use = "Dungeoneering"
 kept = "Always"
 
 [vial_of_water_o_noted]
@@ -9174,14 +8983,12 @@ id = 17415
 bank_stacks = false
 weight = 1.0
 examine = "Perfect for carving."
-use = "Dungeoneering"
 kept = "Always"
 
 [stone_sword]
 id = 17416
 weight = 1.0
 examine = "An ornamental sword that's not designed for combat."
-use = "Dungeoneering"
 kept = "Always"
 
 [stone_sword_noted]
@@ -9191,7 +8998,6 @@ id = 17417
 id = 17418
 weight = 1.0
 examine = "An ornamental bow that's not designed for combat."
-use = "Dungeoneering"
 kept = "Always"
 
 [stone_bow_noted]
@@ -9201,7 +9007,6 @@ id = 17419
 id = 17420
 weight = 1.0
 examine = "An ornamental staff that's not designed for combat."
-use = "Dungeoneering"
 kept = "Always"
 
 [stone_staff_noted]
@@ -9211,7 +9016,6 @@ id = 17421
 id = 17422
 weight = 0.8
 examine = "Big but badly broken barrel bits. Brilliant!"
-use = "Dungeoneering"
 kept = "Always"
 
 [broken_barrel_bits_noted]
@@ -9221,7 +9025,6 @@ id = 17423
 id = 17424
 weight = 3.175
 examine = "It's a scaly protomastyx hide."
-use = "Dungeoneering"
 kept = "Always"
 
 [protomastyx_hide_noted]
@@ -9231,7 +9034,6 @@ id = 17425
 id = 17426
 weight = 3.175
 examine = "It's a scaly submastyx hide."
-use = "Dungeoneering"
 kept = "Always"
 
 [submastyx_hide_noted]
@@ -9241,7 +9043,6 @@ id = 17427
 id = 17428
 weight = 3.175
 examine = "It's a scaly paramastyx hide."
-use = "Dungeoneering"
 kept = "Always"
 
 [paramastyx_hide_noted]
@@ -9251,7 +9052,6 @@ id = 17429
 id = 17430
 weight = 3.175
 examine = "It's a scaly archaemastyx hide."
-use = "Dungeoneering"
 kept = "Always"
 
 [archaemastyx_hide_noted]
@@ -9261,7 +9061,6 @@ id = 17431
 id = 17432
 weight = 3.175
 examine = "It's a scaly dromomastyx hide."
-use = "Dungeoneering"
 kept = "Always"
 
 [dromomastyx_hide_noted]
@@ -9271,7 +9070,6 @@ id = 17433
 id = 17434
 weight = 3.175
 examine = "It's a scaly spinomastyx hide."
-use = "Dungeoneering"
 kept = "Always"
 
 [spinomastyx_hide_noted]
@@ -9281,7 +9079,6 @@ id = 17435
 id = 17436
 weight = 3.175
 examine = "It's a scaly gallimastyx hide."
-use = "Dungeoneering"
 kept = "Always"
 
 [gallimastyx_hide_noted]
@@ -9291,7 +9088,6 @@ id = 17437
 id = 17438
 weight = 3.175
 examine = "It's a scaly stegomastyx hide."
-use = "Dungeoneering"
 kept = "Always"
 
 [stegomastyx_hide_noted]
@@ -9301,7 +9097,6 @@ id = 17439
 id = 17440
 weight = 3.175
 examine = "It's a scaly megamastyx hide."
-use = "Dungeoneering"
 kept = "Always"
 
 [megamastyx_hide_noted]
@@ -9311,7 +9106,6 @@ id = 17441
 id = 17442
 weight = 3.175
 examine = "It's a scaly tyrannomastyx hide."
-use = "Dungeoneering"
 kept = "Always"
 
 [tyrannomastyx_hide_noted]
@@ -9322,7 +9116,6 @@ id = 17444
 limit = 100
 weight = 0.453
 examine = "Good for detailed crafting."
-use = "Dungeoneering"
 kept = "Always"
 
 [chisel_dungeoneering_noted]
@@ -9332,7 +9125,6 @@ id = 17445
 id = 17446
 limit = 5000
 examine = "Used with a thread to make clothes."
-use = "Dungeoneering"
 kept = "Always"
 
 [thread_the_fremennik_trials]
@@ -9340,13 +9132,11 @@ id = 17447
 tradeable = false
 destroy = "You'll have to find another from within the building."
 examine = "Some blue thread."
-use = "Quest"
 kept = "Vanish"
 
 [salve_nettles]
 id = 17448
 examine = "This can be spun and woven to form salve cloth."
-use = "Dungeoneering"
 kept = "Always"
 
 [salve_nettles_noted]
@@ -9355,7 +9145,6 @@ id = 17449
 [wildercress]
 id = 17450
 examine = "This can be spun and woven to form wildercress cloth."
-use = "Dungeoneering"
 kept = "Always"
 
 [wildercress_noted]
@@ -9364,7 +9153,6 @@ id = 17451
 [blightleaf]
 id = 17452
 examine = "This can be spun and woven to form blightleaf cloth."
-use = "Dungeoneering"
 kept = "Always"
 
 [blightleaf_noted]
@@ -9373,7 +9161,6 @@ id = 17453
 [roseblood]
 id = 17454
 examine = "This can be spun and woven to form roseblood cloth."
-use = "Dungeoneering"
 kept = "Always"
 
 [roseblood_noted]
@@ -9382,7 +9169,6 @@ id = 17455
 [bryll]
 id = 17456
 examine = "This can be spun and woven to form bryll cloth."
-use = "Dungeoneering"
 kept = "Always"
 
 [bryll_noted]
@@ -9391,7 +9177,6 @@ id = 17457
 [duskweed]
 id = 17458
 examine = "This can be spun and woven to form duskweed cloth."
-use = "Dungeoneering"
 kept = "Always"
 
 [duskweed_noted]
@@ -9400,7 +9185,6 @@ id = 17459
 [soulbell]
 id = 17460
 examine = "This can be spun and woven to form soulbell cloth."
-use = "Dungeoneering"
 kept = "Always"
 
 [soulbell_noted]
@@ -9409,7 +9193,6 @@ id = 17461
 [ectograss]
 id = 17462
 examine = "This can be spun and woven to form ectocloth."
-use = "Dungeoneering"
 kept = "Always"
 
 [ectograss_noted]
@@ -9418,7 +9201,6 @@ id = 17463
 [runeleaf]
 id = 17464
 examine = "This can be spun and woven to form runic cloth."
-use = "Dungeoneering"
 kept = "Always"
 
 [runeleaf_noted]
@@ -9427,7 +9209,6 @@ id = 17465
 [spiritbloom]
 id = 17466
 examine = "This can be spun and woven to form spiritbloom cloth."
-use = "Dungeoneering"
 kept = "Always"
 
 [spiritbloom_noted]
@@ -9437,7 +9218,6 @@ id = 17467
 id = 17468
 weight = 1.0
 examine = "Perfect for mage armour."
-use = "Dungeoneering"
 kept = "Always"
 
 [salve_cloth_noted]
@@ -9447,7 +9227,6 @@ id = 17469
 id = 17470
 weight = 1.0
 examine = "Perfect for mage armour."
-use = "Dungeoneering"
 kept = "Always"
 
 [wildercress_cloth_noted]
@@ -9457,7 +9236,6 @@ id = 17471
 id = 17472
 weight = 1.0
 examine = "Perfect for mage armour."
-use = "Dungeoneering"
 kept = "Always"
 
 [blightleaf_cloth_noted]
@@ -9467,7 +9245,6 @@ id = 17473
 id = 17474
 weight = 1.0
 examine = "Perfect for mage armour."
-use = "Dungeoneering"
 kept = "Always"
 
 [roseblood_cloth_noted]
@@ -9477,7 +9254,6 @@ id = 17475
 id = 17476
 weight = 1.0
 examine = "Perfect for mage armour."
-use = "Dungeoneering"
 kept = "Always"
 
 [bryll_cloth_noted]
@@ -9487,7 +9263,6 @@ id = 17477
 id = 17478
 weight = 1.0
 examine = "Perfect for mage armour."
-use = "Dungeoneering"
 kept = "Always"
 
 [duskweed_cloth_noted]
@@ -9497,7 +9272,6 @@ id = 17479
 id = 17480
 weight = 1.0
 examine = "Perfect for mage armour."
-use = "Dungeoneering"
 kept = "Always"
 
 [soulbell_cloth_noted]
@@ -9507,7 +9281,6 @@ id = 17481
 id = 17482
 weight = 1.0
 examine = "Perfect for mage armour."
-use = "Dungeoneering"
 kept = "Always"
 
 [ectocloth_noted]
@@ -9517,7 +9290,6 @@ id = 17483
 id = 17484
 weight = 1.0
 examine = "Perfect for mage armour."
-use = "Dungeoneering"
 kept = "Always"
 
 [runic_cloth_noted]
@@ -9527,7 +9299,6 @@ id = 17485
 id = 17486
 weight = 1.0
 examine = "Perfect for mage armour."
-use = "Dungeoneering"
 kept = "Always"
 
 [spiritbloom_cloth_noted]
@@ -9538,14 +9309,12 @@ id = 17489
 tradeable = false
 weight = 2.0
 examine = "Drop it and you can teleport back to it."
-use = "Dungeoneering"
 
 [vial_dungeoneering]
 id = 17490
 weight = 0.02
 full = "vial_of_water_dungeoneering"
 examine = "An empty glass vial."
-use = "Dungeoneering"
 kept = "Always"
 
 [vial_dungeoneering_noted]
@@ -9556,7 +9325,6 @@ id = 17492
 weight = 0.1
 empty = "vial_dungeoneering"
 examine = "A glass vial containing water."
-use = "Dungeoneering"
 kept = "Always"
 
 [vial_of_water_dungeoneering_noted]
@@ -9565,7 +9333,6 @@ id = 17493
 [grimy_sagewort]
 id = 17494
 examine = "A fresh herb."
-use = "Dungeoneering"
 kept = "Always"
 
 [grimy_sagewort_noted]
@@ -9631,7 +9398,6 @@ id = 17511
 id = 17512
 weight = 0.007
 examine = "A fresh herb."
-use = "Dungeoneering"
 kept = "Always"
 
 [clean_sagewort_noted]
@@ -9697,7 +9463,6 @@ id = 17529
 id = 17530
 weight = 0.055
 examine = "A strange dust acquired from a demon. Used in potions."
-use = "Dungeoneering"
 kept = "Always"
 
 [void_dust_noted]
@@ -9707,7 +9472,6 @@ id = 17531
 id = 17532
 weight = 0.055
 examine = "The misshapen claw of a beast. Used in potions."
-use = "Dungeoneering"
 kept = "Always"
 
 [misshapen_claw_noted]
@@ -9717,7 +9481,6 @@ id = 17533
 id = 17534
 weight = 0.055
 examine = "Thick, red and strangely glowing moss. Used in potions."
-use = "Dungeoneering"
 kept = "Always"
 
 [red_moss_noted]
@@ -9727,7 +9490,6 @@ id = 17535
 id = 17536
 weight = 0.055
 examine = "A very strong whiskey. Used in potions."
-use = "Dungeoneering"
 kept = "Always"
 
 [firebreath_whiskey_noted]
@@ -9738,7 +9500,6 @@ id = 17538
 weight = 0.467
 empty = "vial_dungeoneering"
 examine = "I need another ingredient to finish this potion."
-use = "Dungeoneering"
 kept = "Always"
 
 [sagewort_potion_unf_noted]
@@ -9807,7 +9568,6 @@ excess = "vial_dungeoneering"
 weight = 0.467
 empty = "vial_dungeoneering"
 examine = "A potion that increases a person's magical abilities."
-use = "Dungeoneering"
 kept = "Always"
 
 [weak_magic_potion_noted]
@@ -9820,7 +9580,6 @@ excess = "vial_dungeoneering"
 weight = 0.467
 empty = "vial_dungeoneering"
 examine = "A potion that increases a person's ranged abilities."
-use = "Dungeoneering"
 kept = "Always"
 
 [weak_ranged_potion_noted]
@@ -9833,7 +9592,6 @@ excess = "vial_dungeoneering"
 weight = 0.467
 empty = "vial_dungeoneering"
 examine = "A potion that increases a person's melee abilities."
-use = "Dungeoneering"
 kept = "Always"
 
 [weak_melee_potion_noted]
@@ -9846,7 +9604,6 @@ excess = "vial_dungeoneering"
 weight = 0.467
 empty = "vial_dungeoneering"
 examine = "A potion that strengthens a person's defences."
-use = "Dungeoneering"
 kept = "Always"
 
 [weak_defence_potion_noted]
@@ -9859,7 +9616,6 @@ excess = "vial_dungeoneering"
 weight = 0.467
 empty = "vial_dungeoneering"
 examine = "This potion restores drained stats."
-use = "Dungeoneering"
 kept = "Always"
 
 [weak_stat_restore_potion_noted]
@@ -9872,7 +9628,6 @@ excess = "vial_dungeoneering"
 weight = 0.467
 empty = "vial_dungeoneering"
 examine = "An antidote to cure common poison."
-use = "Dungeoneering"
 kept = "Always"
 
 [antipoison_dungeoneering_noted]
@@ -9885,7 +9640,6 @@ excess = "vial_dungeoneering"
 weight = 0.467
 empty = "vial_dungeoneering"
 examine = "A potion that protects against poison and dragonfire."
-use = "Dungeoneering"
 kept = "Always"
 
 [weak_cure_potion_noted]
@@ -9898,7 +9652,6 @@ excess = "vial_dungeoneering"
 weight = 0.467
 empty = "vial_dungeoneering"
 examine = "A potion that restores prayer and summoning points."
-use = "Dungeoneering"
 kept = "Always"
 
 [weak_rejuvenation_potion_noted]
@@ -9909,7 +9662,6 @@ id = 17572
 weight = 0.467
 empty = "vial_dungeoneering"
 examine = "A vial of weapon poison."
-use = "Dungeoneering"
 kept = "Always"
 
 [weak_weapon_poison_noted]
@@ -9922,7 +9674,6 @@ excess = "vial_dungeoneering"
 weight = 0.467
 empty = "vial_dungeoneering"
 examine = "A potion that improves a person's gathering skills."
-use = "Dungeoneering"
 kept = "Always"
 
 [weak_gatherers_potion_noted]
@@ -9935,7 +9686,6 @@ excess = "vial_dungeoneering"
 weight = 0.467
 empty = "vial_dungeoneering"
 examine = "A potion that improves a person's creation skills."
-use = "Dungeoneering"
 kept = "Always"
 
 [weak_artisans_potion_noted]
@@ -9948,7 +9698,6 @@ excess = "vial_dungeoneering"
 weight = 0.467
 empty = "vial_dungeoneering"
 examine = "A potion that improves Cooking, Farming, Herblore and Runecrafting."
-use = "Dungeoneering"
 kept = "Always"
 
 [weak_naturalists_potion_noted]
@@ -9961,7 +9710,6 @@ excess = "vial_dungeoneering"
 weight = 0.467
 empty = "vial_dungeoneering"
 examine = "A potion that improves Agility, Thieving, Hunter and Slayer."
-use = "Dungeoneering"
 kept = "Always"
 
 [weak_survivalists_potion_noted]
@@ -9974,7 +9722,6 @@ heals = 0
 excess = "vial_dungeoneering"
 empty = "vial_dungeoneering"
 examine = "A potion that increases a person's magical abilities."
-use = "Dungeoneering"
 kept = "Always"
 
 [magic_potion_dungeoneering_noted]
@@ -9996,7 +9743,6 @@ heals = 0
 excess = "vial_dungeoneering"
 empty = "vial_dungeoneering"
 examine = "A potion that increases a person's melee abilities."
-use = "Dungeoneering"
 kept = "Always"
 
 [melee_potion_noted]
@@ -10042,7 +9788,6 @@ id = 17598
 weight = 0.467
 empty = "vial_dungeoneering"
 examine = "A potion that improves a person's gathering skills."
-use = "Dungeoneering"
 kept = "Always"
 
 [gatherers_potion_noted]
@@ -10156,7 +9901,6 @@ id = 17629
 [novite_ore]
 id = 17630
 examine = "It's a rock now, but there's potential for so much more!"
-use = "Dungeoneering"
 kept = "Always"
 
 [novite_ore_noted]
@@ -10229,7 +9973,6 @@ id = 17649
 id = 17650
 weight = 1.814
 examine = "A solid bar of metal, used for smithing."
-use = "Dungeoneering"
 kept = "Always"
 
 [novite_bar_noted]
@@ -10303,7 +10046,6 @@ id = 17670
 limit = 10000
 weight = 0.5
 examine = "Bones are for burying."
-use = "Dungeoneering"
 kept = "Always"
 
 [bones_dungeoneering_noted]
@@ -10314,7 +10056,6 @@ id = 17672
 limit = 10000
 weight = 0.3
 examine = "Bones are for burying."
-use = "Dungeoneering"
 kept = "Always"
 
 [bat_bones_dungeoneering_noted]
@@ -10325,7 +10066,6 @@ id = 17674
 limit = 10000
 weight = 0.8
 examine = "Bones are for burying."
-use = "Dungeoneering"
 kept = "Always"
 
 [big_bones_dungeoneering_noted]
@@ -10336,7 +10076,6 @@ id = 17676
 limit = 10000
 weight = 1.5
 examine = "Bones are for burying."
-use = "Dungeoneering"
 kept = "Always"
 
 [dragon_bones_dungeoneering_noted]
@@ -10347,7 +10086,6 @@ id = 17678
 limit = 5000
 weight = 0.035
 examine = "Useful for lighting fires."
-use = "Dungeoneering"
 kept = "Always"
 
 [tinderbox_dungeoneering_noted]
@@ -10358,7 +10096,6 @@ id = 17680
 limit = 10000
 weight = 0.056
 examine = "A heap of ashes."
-use = "Dungeoneering"
 kept = "Always"
 
 [ashes_dungeoneering_noted]
@@ -10368,7 +10105,6 @@ id = 17681
 id = 17682
 firemaking = { level = 1, xp = 25.0, life = 60 }
 examine = "There's enough wood here to be of use."
-use = "Dungeoneering"
 kept = "Always"
 
 [tangle_gum_branches_noted]
@@ -10378,7 +10114,6 @@ id = 17683
 id = 17684
 firemaking = { level = 10, xp = 44.5, life = 75 }
 examine = "There's enough wood here to be of use."
-use = "Dungeoneering"
 kept = "Always"
 
 [seeping_elm_branches_noted]
@@ -10388,7 +10123,6 @@ id = 17685
 id = 17686
 firemaking = { level = 20, xp = 65.6, life = 82 }
 examine = "There's enough wood here to be of use."
-use = "Dungeoneering"
 kept = "Always"
 
 [blood_spindle_branches_noted]
@@ -10398,7 +10132,6 @@ id = 17687
 id = 17688
 firemaking = { level = 30, xp = 88.3, life = 90 }
 examine = "There's enough wood here to be of use."
-use = "Dungeoneering"
 kept = "Always"
 
 [utuku_branches_noted]
@@ -10408,7 +10141,6 @@ id = 17689
 id = 17690
 firemaking = { level = 40, xp = 112.6, life = 100 }
 examine = "There's enough wood here to be of use."
-use = "Dungeoneering"
 kept = "Always"
 
 [spinebeam_branches_noted]
@@ -10418,7 +10150,6 @@ id = 17691
 id = 17692
 firemaking = { level = 50, xp = 138.5, life = 120 }
 examine = "There's enough wood here to be of use."
-use = "Dungeoneering"
 kept = "Always"
 
 [bovistrangler_branches_noted]
@@ -10428,7 +10159,6 @@ id = 17693
 id = 17694
 firemaking = { level = 60, xp = 166.0, life = 140 }
 examine = "There's enough wood here to be of use."
-use = "Dungeoneering"
 kept = "Always"
 
 [thigat_branches_noted]
@@ -10438,7 +10168,6 @@ id = 17695
 id = 17696
 firemaking = { level = 70, xp = 195.1, life = 170 }
 examine = "There's enough wood here to be of use."
-use = "Dungeoneering"
 kept = "Always"
 
 [corpsethorn_branches_noted]
@@ -10448,7 +10177,6 @@ id = 17697
 id = 17698
 firemaking = { level = 80, xp = 225.8, life = 185 }
 examine = "There's enough wood here to be of use."
-use = "Dungeoneering"
 kept = "Always"
 
 [entgallow_branches_noted]
@@ -10458,7 +10186,6 @@ id = 17699
 id = 17700
 firemaking = { level = 90, xp = 258.1, life = 200 }
 examine = "There's enough wood here to be of use."
-use = "Dungeoneering"
 kept = "Always"
 
 [grave_creeper_branches_noted]
@@ -10468,7 +10195,6 @@ id = 17701
 id = 17702
 weight = 0.992
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [tangle_gum_shortbow_u_noted]
@@ -10478,7 +10204,6 @@ id = 17703
 id = 17704
 weight = 0.992
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [seeping_elm_shortbow_u_noted]
@@ -10488,7 +10213,6 @@ id = 17705
 id = 17706
 weight = 0.992
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [blood_spindle_shortbow_u_noted]
@@ -10498,7 +10222,6 @@ id = 17707
 id = 17708
 weight = 0.992
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [utuku_shortbow_u_noted]
@@ -10508,7 +10231,6 @@ id = 17709
 id = 17710
 weight = 0.992
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [spinebeam_shortbow_u_noted]
@@ -10518,7 +10240,6 @@ id = 17711
 id = 17712
 weight = 0.992
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [bovistrangler_shortbow_u_noted]
@@ -10528,7 +10249,6 @@ id = 17713
 id = 17714
 weight = 0.992
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [thigat_shortbow_u_noted]
@@ -10538,7 +10258,6 @@ id = 17715
 id = 17716
 weight = 0.992
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [corpsethorn_shortbow_u_noted]
@@ -10548,7 +10267,6 @@ id = 17717
 id = 17718
 weight = 0.992
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [entgallow_shortbow_u_noted]
@@ -10558,7 +10276,6 @@ id = 17719
 id = 17720
 weight = 0.992
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [grave_creeper_shortbow_u_noted]
@@ -10568,7 +10285,6 @@ id = 17721
 id = 17722
 weight = 1.332
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [tangle_gum_longbow_u_noted]
@@ -10578,7 +10294,6 @@ id = 17723
 id = 17724
 weight = 1.332
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [seeping_elm_longbow_u_noted]
@@ -10588,7 +10303,6 @@ id = 17725
 id = 17726
 weight = 1.332
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [blood_spindle_longbow_u_noted]
@@ -10598,7 +10312,6 @@ id = 17727
 id = 17728
 weight = 1.332
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [utuku_longbow_u_noted]
@@ -10608,7 +10321,6 @@ id = 17729
 id = 17730
 weight = 1.332
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [spinebeam_longbow_u_noted]
@@ -10618,7 +10330,6 @@ id = 17731
 id = 17732
 weight = 1.332
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [bovistrangler_longbow_u_noted]
@@ -10628,7 +10339,6 @@ id = 17733
 id = 17734
 weight = 1.332
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [thigat_longbow_u_noted]
@@ -10638,7 +10348,6 @@ id = 17735
 id = 17736
 weight = 1.332
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [corpsethorn_longbow_u_noted]
@@ -10648,7 +10357,6 @@ id = 17737
 id = 17738
 weight = 1.332
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [entgallow_longbow_u_noted]
@@ -10658,7 +10366,6 @@ id = 17739
 id = 17740
 weight = 1.332
 examine = "I need to find a string for this."
-use = "Dungeoneering"
 kept = "Always"
 
 [grave_creeper_longbow_u_noted]
@@ -10667,13 +10374,11 @@ id = 17741
 [arrow_shaft_dungeoneering]
 id = 17742
 examine = "A wooden arrow shaft."
-use = "Dungeoneering"
 kept = "Always"
 
 [headless_arrow_dungeoneering]
 id = 17747
 examine = "A wooden arrow shaft with flights attached."
-use = "Dungeoneering"
 kept = "Always"
 
 [bowstring_dungeoneering]
@@ -10681,7 +10386,6 @@ id = 17752
 limit = 10000
 weight = 0.014
 examine = "I need an unstrung bow to attach this to."
-use = "Dungeoneering"
 
 [bowstring_dungeoneering_noted]
 id = 17753
@@ -10690,7 +10394,6 @@ id = 17753
 id = 17754
 weight = 0.453
 examine = "A dangerous-looking knife."
-use = "Dungeoneering"
 kept = "Always"
 
 [knife_dungeoneering_noted]
@@ -10700,7 +10403,6 @@ id = 17755
 id = 17756
 weight = 0.226
 examine = "Used to trap bovimastyx."
-use = "Dungeoneering"
 kept = "Always"
 
 [tangle_gum_trap_noted]
@@ -10752,7 +10454,6 @@ id = 17769
 id = 17770
 weight = 0.226
 examine = "Used to trap the bovimastyx."
-use = "Dungeoneering"
 kept = "Always"
 
 [corpsethorn_trap_noted]
@@ -10776,105 +10477,90 @@ id = 17775
 id = 17776
 limit = 25000
 examine = "Uncharged runes in a pouch."
-use = "Dungeoneering"
 kept = "Always"
 
 [air_rune_dungeoneering]
 id = 17780
 limit = 25000
 examine = "One of the four basic elemental runes."
-use = "Dungeoneering"
 kept = "Always"
 
 [water_rune_dungeoneering]
 id = 17781
 limit = 25000
 examine = "One of the four basic elemental runes."
-use = "Dungeoneering"
 kept = "Always"
 
 [earth_rune_dungeoneering]
 id = 17782
 limit = 25000
 examine = "One of the four basic elemental runes."
-use = "Dungeoneering"
 kept = "Always"
 
 [fire_rune_dungeoneering]
 id = 17783
 limit = 25000
 examine = "One of the four basic elemental runes."
-use = "Dungeoneering"
 kept = "Always"
 
 [mind_rune_dungeoneering]
 id = 17784
 limit = 25000
 examine = "Used for basic level missile spells."
-use = "Dungeoneering"
 kept = "Always"
 
 [chaos_rune_dungeoneering]
 id = 17785
 limit = 25000
 examine = "Used for low level missile spells."
-use = "Dungeoneering"
 kept = "Always"
 
 [death_rune_dungeoneering]
 id = 17786
 limit = 25000
 examine = "Used for medium level missile spells."
-use = "Dungeoneering"
 kept = "Always"
 
 [blood_rune_dungeoneering]
 id = 17787
 limit = 25000
 examine = "Used for high level missile spells."
-use = "Dungeoneering"
 kept = "Always"
 
 [body_rune_dungeoneering]
 id = 17788
 limit = 25000
 examine = "Used for Curse spells"
-use = "Dungeoneering"
 kept = "Always"
 
 [cosmic_rune_dungeoneering]
 id = 17789
 limit = 25000
 examine = "Used for enchant spells."
-use = "Dungeoneering"
 kept = "Always"
 
 [astral_rune_dungeoneering]
 id = 17790
 limit = 25000
 examine = "Used for Lunar Spells"
-use = "Dungeoneering"
 kept = "Always"
 
 [nature_rune_dungeoneering]
 id = 17791
 limit = 25000
 examine = "Used for alchemy spells."
-use = "Dungeoneering"
 kept = "Always"
 
 [law_rune_dungeoneering]
 id = 17792
 limit = 25000
 examine = "Used for teleport spells."
-use = "Dungeoneering"
 kept = "Always"
 
 [soul_rune_dungeoneering]
 id = 17793
 limit = 25000
 examine = "Used for high level curse spells."
-use = "Dungeoneering"
 kept = "Always"
 
 [fly_fishing_rod_dungeoneering]
@@ -10882,7 +10568,6 @@ id = 17794
 limit = 100
 weight = 1.36
 examine = "Just add feathers."
-use = "Dungeoneering"
 kept = "Always"
 
 [fly_fishing_rod_dungeoneering_noted]
@@ -10892,7 +10577,6 @@ id = 17795
 id = 17796
 limit = 10000
 examine = "Used for fly fishing."
-use = "Dungeoneering"
 kept = "Always"
 
 [raw_heim_crab]
@@ -10981,7 +10665,6 @@ heals = 20
 eat_message = "You eat the raw cave potato. You must really be hungry."
 weight = 0.5
 examine = "Not very tasty raw."
-use = "Dungeoneering"
 kept = "Always"
 
 [raw_cave_potato_noted]
@@ -10992,7 +10675,6 @@ id = 17819
 heals = 30
 weight = 0.5
 examine = "Fungus, but tasty!"
-use = "Dungeoneering"
 kept = "Always"
 
 [gissel_mushroom_noted]
@@ -11003,7 +10685,6 @@ id = 17821
 heals = 90
 weight = 0.5
 examine = "Fungus, but really tasty!"
-use = "Dungeoneering"
 kept = "Always"
 
 [edicap_mushroom_noted]
@@ -11012,7 +10693,6 @@ id = 17822
 [cave_potato_seed]
 id = 17823
 examine = "A seed for making cave potatoes."
-use = "Dungeoneering"
 kept = "Always"
 
 [gissel_mushroom_spore]
@@ -11026,7 +10706,6 @@ id = 17825
 [sagewort_seed]
 id = 17826
 examine = "A seed for making herbs."
-use = "Dungeoneering"
 kept = "Always"
 
 [valerian_seed]
@@ -11065,7 +10744,6 @@ id = 17834
 id = 17883
 weight = 0.907
 examine = "Good for hitting things."
-use = "Dungeoneering"
 kept = "Always"
 
 [hammer_dungeoneering_noted]
@@ -11074,7 +10752,6 @@ id = 17884
 [novite_arrowtips]
 id = 17885
 examine = "I can make some arrows with these."
-use = "Dungeoneering"
 kept = "Always"
 
 [bathus_arrowtips]
@@ -11117,427 +10794,366 @@ id = 17930
 id = 17935
 weight = 0.02
 examine = "I can summon a cub bloodrager with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [little_bloodrager_pouch]
 id = 17936
 weight = 0.02
 examine = "I can summon a little bloodrager with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [naive_bloodrager_pouch]
 id = 17937
 weight = 0.02
 examine = "I can summon a nave bloodrager with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [keen_bloodrager_pouch]
 id = 17938
 weight = 0.02
 examine = "I can summon a keen bloodrager with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [brave_bloodrager_pouch]
 id = 17939
 weight = 0.02
 examine = "I can summon a brave bloodrager with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [brah_bloodrager_pouch]
 id = 17940
 weight = 0.02
 examine = "I can summon a brah bloodrager with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [naabe_bloodrager_pouch]
 id = 17941
 weight = 0.02
 examine = "I can summon a naabe bloodrager with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [wise_bloodrager_pouch]
 id = 17942
 weight = 0.02
 examine = "I can summon a wise bloodrager with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [adept_bloodrager_pouch]
 id = 17943
 weight = 0.02
 examine = "I can summon an adept bloodrager with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [sachem_bloodrager_pouch]
 id = 17944
 weight = 0.02
 examine = "I can summon a sachem bloodrager with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [cub_stormbringer_pouch]
 id = 17945
 weight = 0.02
 examine = "I can summon a cub stormbringer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [little_stormbringer_pouch]
 id = 17946
 weight = 0.02
 examine = "I can summon a little stormbringer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [naive_stormbringer_pouch]
 id = 17947
 weight = 0.02
 examine = "I can summon a nave stormbringer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [keen_stormbringer_pouch]
 id = 17948
 weight = 0.02
 examine = "I can summon a keen stormbringer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [brave_stormbringer_pouch]
 id = 17949
 weight = 0.02
 examine = "I can summon a brave stormbringer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [brah_stormbringer_pouch]
 id = 17950
 weight = 0.02
 examine = "I can summon a brah stormbringer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [naabe_stormbringer_pouch]
 id = 17951
 weight = 0.02
 examine = "I can summon a naabe stormbringer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [wise_stormbringer_pouch]
 id = 17952
 weight = 0.02
 examine = "I can summon a wise stormbringer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [adept_stormbringer_pouch]
 id = 17953
 weight = 0.02
 examine = "I can summon an adept stormbringer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [sachem_stormbringer_pouch]
 id = 17954
 weight = 0.02
 examine = "I can summon a sachem stormbringer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [cub_hoardstalker_pouch]
 id = 17955
 weight = 0.02
 examine = "I can summon a cub hoardstalker with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [little_hoardstalker_pouch]
 id = 17956
 weight = 0.02
 examine = "I can summon a little hoardstalker with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [naive_hoardstalker_pouch]
 id = 17957
 weight = 0.02
 examine = "I can summon a nave hoardstalker with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [keen_hoardstalker_pouch]
 id = 17958
 weight = 0.02
 examine = "I can summon a keen hoardstalker with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [brave_hoardstalker_pouch]
 id = 17959
 weight = 0.02
 examine = "I can summon a brave hoardstalker with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [brah_hoardstalker_pouch]
 id = 17960
 weight = 0.02
 examine = "I can summon a brah hoardstalker with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [naabe_hoardstalker_pouch]
 id = 17961
 weight = 0.02
 examine = "I can summon a naabe hoardstalker with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [wise_hoardstalker_pouch]
 id = 17962
 weight = 0.02
 examine = "I can summon a wise hoardstalker with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [adept_hoardstalker_pouch]
 id = 17963
 weight = 0.02
 examine = "I can summon an adept hoardstalker with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [sachem_hoardstalker_pouch]
 id = 17964
 weight = 0.02
 examine = "I can summon a sachem hoardstalker with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [cub_skinweaver_pouch]
 id = 17965
 weight = 0.02
 examine = "I can summon a cub skinweaver with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [little_skinweaver_pouch]
 id = 17966
 weight = 0.02
 examine = "I can summon a little skinweaver with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [naive_skinweaver_pouch]
 id = 17967
 weight = 0.02
 examine = "I can summon a nave skinweaver with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [keen_skinweaver_pouch]
 id = 17968
 weight = 0.02
 examine = "I can summon a keen skinweaver with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [brave_skinweaver_pouch]
 id = 17969
 weight = 0.02
 examine = "I can summon a brave skinweaver with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [brah_skinweaver_pouch]
 id = 17970
 weight = 0.02
 examine = "I can summon a brah skinweaver with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [naabe_skinweaver_pouch]
 id = 17971
 weight = 0.02
 examine = "I can summon a naabe skinweaver with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [wise_skinweaver_pouch]
 id = 17972
 weight = 0.02
 examine = "I can summon a wise skinweaver with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [adept_skinweaver_pouch]
 id = 17973
 weight = 0.02
 examine = "I can summon an adept skinweaver with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [sachem_skinweaver_pouch]
 id = 17974
 weight = 0.02
 examine = "I can summon a sachem skinweaver with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [cub_worldbearer_pouch]
 id = 17975
 weight = 0.02
 examine = "I can summon a cub worldbearer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [little_worldbearer_pouch]
 id = 17976
 weight = 0.02
 examine = "I can summon a little worldbearer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [naive_worldbearer_pouch]
 id = 17977
 weight = 0.02
 examine = "I can summon a nave worldbearer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [keen_worldbearer_pouch]
 id = 17978
 weight = 0.02
 examine = "I can summon a keen worldbearer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [brave_worldbearer_pouch]
 id = 17979
 weight = 0.02
 examine = "I can summon a brave worldbearer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [brah_worldbearer_pouch]
 id = 17980
 weight = 0.02
 examine = "I can summon a brah worldbearer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [naabe_worldbearer_pouch]
 id = 17981
 weight = 0.02
 examine = "I can summon a naabe worldbearer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [wise_worldbearer_pouch]
 id = 17982
 weight = 0.02
 examine = "I can summon a wise worldbearer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [adept_worldbearer_pouch]
 id = 17983
 weight = 0.02
 examine = "I can summon an adept worldbearer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [sachem_worldbearer_pouch]
 id = 17984
 weight = 0.02
 examine = "I can summon a sachem worldbearer with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [cub_deathslinger_pouch]
 id = 17985
 weight = 0.02
 examine = "I can summon a cub deathslinger with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [little_deathslinger_pouch]
 id = 17986
 weight = 0.02
 examine = "I can summon a little deathslinger with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [naive_deathslinger_pouch]
 id = 17987
 weight = 0.02
 examine = "I can summon a naïve deathslinger with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [keen_deathslinger_pouch]
 id = 17988
 weight = 0.02
 examine = "I can summon a keen deathslinger with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [brave_deathslinger_pouch]
 id = 17989
 weight = 0.02
 examine = "I can summon a brave deathslinger with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [brah_deathslinger_pouch]
 id = 17990
 weight = 0.02
 examine = "I can summon a brah deathslinger with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [naabe_deathslinger_pouch]
 id = 17991
 weight = 0.02
 examine = "I can summon a naabe deathslinger with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [wise_deathslinger_pouch]
 id = 17992
 weight = 0.02
 examine = "I can summon a wise deathslinger with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [adept_deathslinger_pouch]
 id = 17993
 weight = 0.02
 examine = "I can summon an adept deathslinger with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [sachem_deathslinger_pouch]
 id = 17994
 weight = 0.02
 examine = "I can summon a sachem deathslinger with this."
-use = "Dungeoneering"
 kept = "Always"
 
 [protoleather_torn_bag]
 id = 17995
 weight = 3.175
 examine = "Useful to Summoners, and valuable to smugglers."
-use = "Dungeoneering"
 kept = "Always"
 
 [protoleather_torn_bag_noted]
@@ -11610,14 +11226,12 @@ id = 18014
 id = 18015
 limit = 10000
 examine = "Can be used to create summoning pouches."
-use = "Removed"
 kept = "Always"
 
 [spirit_shards_dungeoneering]
 id = 18016
 limit = 10000
 examine = "Shards of an obelisk."
-use = "Removed"
 kept = "Always"
 
 [gold_charm_dungeoneering]
@@ -11990,7 +11604,6 @@ id = 18093
 heals = 20
 weight = 0.5
 examine = "Mmm...smells good."
-use = "Dungeoneering"
 kept = "Always"
 
 [baked_cave_potato_noted]
@@ -12001,7 +11614,6 @@ id = 18095
 heals = 60
 weight = 0.5
 examine = "A potato with a gissel mushroom."
-use = "Dungeoneering"
 kept = "Always"
 
 [gissel_potato_noted]
@@ -12012,7 +11624,6 @@ id = 18097
 heals = 120
 weight = 0.5
 examine = "A potato with a more nutritious edicap mushroom."
-use = "Dungeoneering"
 kept = "Always"
 
 [edicap_potato_noted]
@@ -12023,7 +11634,6 @@ id = 18099
 heals = 50
 weight = 0.5
 examine = "Mmm...a potato full of heim crab."
-use = "Dungeoneering"
 kept = "Always"
 
 [heim_crab_potato_noted]
@@ -12034,7 +11644,6 @@ id = 18101
 heals = 80
 weight = 0.5
 examine = "Mmm...a potato full of red-eye."
-use = "Dungeoneering"
 kept = "Always"
 
 [red_eye_potato_noted]
@@ -12045,7 +11654,6 @@ id = 18103
 heals = 100
 weight = 0.5
 examine = "Mmm...a potato full of dusk eel."
-use = "Dungeoneering"
 kept = "Always"
 
 [dusk_eel_potato_noted]
@@ -12056,7 +11664,6 @@ id = 18105
 heals = 130
 weight = 0.5
 examine = "Mmm...a potato full of flatfish."
-use = "Dungeoneering"
 kept = "Always"
 
 [giant_flatfish_potato_noted]
@@ -12067,7 +11674,6 @@ id = 18107
 heals = 150
 weight = 0.5
 examine = "Mmm...a potato full of short-fin eel."
-use = "Dungeoneering"
 kept = "Always"
 
 [short_fin_eel_potato_noted]
@@ -12078,7 +11684,6 @@ id = 18109
 heals = 180
 weight = 0.5
 examine = "Mmm...a potato full of web-snipper."
-use = "Dungeoneering"
 kept = "Always"
 
 [snipper_potato_noted]
@@ -12089,7 +11694,6 @@ id = 18111
 heals = 200
 weight = 0.5
 examine = "Mmm...a potato full of bouldabass."
-use = "Dungeoneering"
 kept = "Always"
 
 [bouldabass_potato_noted]
@@ -12100,7 +11704,6 @@ id = 18113
 heals = 230
 weight = 0.5
 examine = "Mmm...a potato full of salve eel."
-use = "Dungeoneering"
 kept = "Always"
 
 [salve_eel_potato_noted]
@@ -12111,7 +11714,6 @@ id = 18115
 heals = 250
 weight = 0.5
 examine = "Mmm...a potato full of blue crab."
-use = "Dungeoneering"
 kept = "Always"
 
 [blue_crab_potato_noted]
@@ -12122,7 +11724,6 @@ id = 18117
 heals = 280
 weight = 0.5
 examine = "Mmm...a potato full of cave moray."
-use = "Dungeoneering"
 kept = "Always"
 
 [cave_moray_potato_noted]
@@ -12133,7 +11734,6 @@ id = 18119
 heals = 80
 weight = 0.5
 examine = "Mmm...a gissel potato full of tasty heim crab. Delicious!"
-use = "Dungeoneering"
 kept = "Always"
 
 [heim_crab_and_gissel_potato_noted]
@@ -12144,7 +11744,6 @@ id = 18121
 heals = 110
 weight = 0.5
 examine = "Yum...a gissel potato filled with tasty red-eye fish!"
-use = "Dungeoneering"
 kept = "Always"
 
 [red_eye_and_gissel_potato_noted]
@@ -12155,7 +11754,6 @@ id = 18123
 heals = 130
 weight = 0.5
 examine = "Nice...a gissel potato loaded with delicious dusk eel."
-use = "Dungeoneering"
 kept = "Always"
 
 [dusk_eel_and_gissel_potato_noted]
@@ -12166,7 +11764,6 @@ id = 18125
 heals = 160
 weight = 0.5
 examine = "Yum...a gissel potato filled with some tasty flatfish. Lovely!"
-use = "Dungeoneering"
 kept = "Always"
 
 [flatfish_and_gissel_potato_noted]
@@ -12177,7 +11774,6 @@ id = 18127
 heals = 180
 weight = 0.5
 examine = "Nice...a gissel potato crammed with delicious short-fin. Tasty!"
-use = "Dungeoneering"
 kept = "Always"
 
 [short_fin_and_gissel_potato_noted]
@@ -12188,7 +11784,6 @@ id = 18129
 heals = 210
 weight = 0.5
 examine = "Sweet...a gissel potato loaded with snipper fish. Yummy!"
-use = "Dungeoneering"
 kept = "Always"
 
 [snipper_and_gissel_potato_noted]
@@ -12199,7 +11794,6 @@ id = 18131
 heals = 230
 weight = 0.5
 examine = "Yum...a gissel potato filled with some Bouldabass. Nice!"
-use = "Dungeoneering"
 kept = "Always"
 
 [bouldabass_and_gissel_potato_noted]
@@ -12210,7 +11804,6 @@ id = 18133
 heals = 260
 weight = 0.5
 examine = "Yum...a gissel potato crammed full of salve eel. Tasty!"
-use = "Dungeoneering"
 kept = "Always"
 
 [salve_eel_and_gissel_potato_noted]
@@ -12221,7 +11814,6 @@ id = 18135
 heals = 280
 weight = 0.5
 examine = "Mmm...a gissel potato full of blue crab."
-use = "Dungeoneering"
 kept = "Always"
 
 [blue_crab_and_gissel_potato_noted]
@@ -12232,7 +11824,6 @@ id = 18137
 heals = 310
 weight = 0.5
 examine = "Mmm...a gissel potato fully loaded with delicious Moray."
-use = "Dungeoneering"
 kept = "Always"
 
 [moray_and_gissel_potato_noted]
@@ -12243,7 +11834,6 @@ id = 18139
 heals = 140
 weight = 0.5
 examine = "Mmm...an edicap potato full of tasty heim crab. Delicious!"
-use = "Dungeoneering"
 kept = "Always"
 
 [heim_crab_and_edicap_potato_noted]
@@ -12254,7 +11844,6 @@ id = 18141
 heals = 170
 weight = 0.5
 examine = "Yum...an edicap potato filled with tasty red-eye fish!"
-use = "Dungeoneering"
 kept = "Always"
 
 [red_eye_and_edicap_potato_noted]
@@ -12265,7 +11854,6 @@ id = 18143
 heals = 190
 weight = 0.5
 examine = "Nice...an edicap potato loaded with delicious dusk eel."
-use = "Dungeoneering"
 kept = "Always"
 
 [dusk_eel_and_edicap_potato_noted]
@@ -12276,7 +11864,6 @@ id = 18145
 heals = 220
 weight = 0.5
 examine = "Yum...an edicap potato filled with some tasty flatfish. Lovely!"
-use = "Dungeoneering"
 kept = "Always"
 
 [flatfish_and_edicap_potato_noted]
@@ -12287,7 +11874,6 @@ id = 18147
 heals = 240
 weight = 0.5
 examine = "Nice...an edicap potato crammed with delicious short-fin. Tasty!"
-use = "Dungeoneering"
 kept = "Always"
 
 [short_fin_and_edicap_potato_noted]
@@ -12298,7 +11884,6 @@ id = 18149
 heals = 270
 weight = 0.5
 examine = "Sweet...an edicap potato loaded with snipper fish. Yummy!"
-use = "Dungeoneering"
 kept = "Always"
 
 [snipper_and_edicap_potato_noted]
@@ -12309,7 +11894,6 @@ id = 18151
 heals = 290
 weight = 0.5
 examine = "Yum...an edicap potato filled with some Bouldabass. Nice!"
-use = "Dungeoneering"
 kept = "Always"
 
 [bouldabass_and_edicap_potato_noted]
@@ -12320,7 +11904,6 @@ id = 18153
 heals = 320
 weight = 0.5
 examine = "Yum...an edicap potato crammed full of salve eel. Tasty!"
-use = "Dungeoneering"
 kept = "Always"
 
 [salve_eel_and_edicap_potato_noted]
@@ -12331,7 +11914,6 @@ id = 18155
 heals = 340
 weight = 0.5
 examine = "Mmm...an edicap potato full of blue crab."
-use = "Dungeoneering"
 kept = "Always"
 
 [blue_crab_and_edicap_potato_noted]
@@ -12342,7 +11924,6 @@ id = 18157
 heals = 370
 weight = 0.5
 examine = "Mmm...an edicap potato fully loaded with delicious Moray."
-use = "Dungeoneering"
 kept = "Always"
 
 [moray_and_edicap_potato_noted]
@@ -12353,7 +11934,6 @@ id = 18159
 heals = 20
 weight = 0.45
 examine = "It's not looking so snappy now it's cooked!"
-use = "Dungeoneering"
 kept = "Always"
 
 [heim_crab_noted]
@@ -12365,7 +11945,6 @@ heals = 50
 weight = 0.45
 destroy = "No"
 examine = "I wonder why they call it a Red-eye. Its eyes don't look very red!"
-use = "Dungeoneering"
 kept = "Always"
 
 [red_eye_noted]
@@ -12376,7 +11955,6 @@ id = 18163
 heals = 70
 weight = 0.45
 examine = "It still doesn't look very appetising."
-use = "Dungeoneering"
 kept = "Always"
 
 [dusk_eel_noted]
@@ -12387,7 +11965,6 @@ id = 18165
 heals = 100
 weight = 0.45
 examine = "Wow this fish is giant and very, very flat."
-use = "Dungeoneering"
 kept = "Always"
 
 [giant_flatfish_noted]
@@ -12398,7 +11975,6 @@ id = 18167
 heals = 120
 weight = 0.45
 examine = "This looks only slightly more appetising than a dusk eel."
-use = "Dungeoneering"
 kept = "Always"
 
 [short_finned_eel_noted]
@@ -12409,7 +11985,6 @@ id = 18169
 heals = 150
 weight = 0.45
 examine = "I'd better be careful eating this."
-use = "Dungeoneering"
 kept = "Always"
 
 [web_snipper_noted]
@@ -12420,7 +11995,6 @@ id = 18171
 heals = 170
 weight = 0.45
 examine = "This should make quite the meal!"
-use = "Dungeoneering"
 kept = "Always"
 
 [bouldabass_noted]
@@ -12431,7 +12005,6 @@ id = 18173
 heals = 200
 weight = 0.45
 examine = "This looks only so slightly more tasty than one of those short-finned eels."
-use = "Dungeoneering"
 kept = "Always"
 
 [salve_eel_noted]
@@ -12442,7 +12015,6 @@ id = 18175
 heals = 220
 weight = 0.45
 examine = "I'd better mind the pincers when eating that, they could take my eye out."
-use = "Dungeoneering"
 kept = "Always"
 
 [blue_crab_noted]
@@ -12453,7 +12025,6 @@ id = 18177
 heals = 250
 weight = 0.45
 examine = "It should make quite the feast."
-use = "Dungeoneering"
 kept = "Always"
 
 [cave_moray_noted]
@@ -12534,7 +12105,6 @@ id = 18199
 limit = 1000
 heals = 20
 examine = "Mmm, this looks tasty."
-use = "Dungeoneering"
 kept = "Always"
 
 [banana_dungeoneering_noted]
@@ -12543,14 +12113,12 @@ id = 18200
 [rusty_coins]
 id = 18201
 examine = "They make the world go round."
-use = "Dungeoneering"
 kept = "Always"
 
 [orange_triangle_key]
 id = 18202
 weight = 0.001
 examine = "It's an orange triangle key."
-use = "Dungeoneering"
 kept = "Always"
 
 [orange_triangle_key_noted]
@@ -12560,7 +12128,6 @@ id = 18203
 id = 18204
 weight = 0.001
 examine = "It's an orange diamond key."
-use = "Dungeoneering"
 kept = "Always"
 
 [orange_diamond_key_noted]
@@ -12570,7 +12137,6 @@ id = 18205
 id = 18206
 weight = 0.001
 examine = "It's an orange rectangle key."
-use = "Dungeoneering"
 kept = "Always"
 
 [orange_rectangle_key_noted]
@@ -12580,7 +12146,6 @@ id = 18207
 id = 18208
 weight = 0.001
 examine = "It's an orange pentagon key."
-use = "Dungeoneering"
 kept = "Always"
 
 [orange_pentagon_key_noted]
@@ -12590,7 +12155,6 @@ id = 18209
 id = 18210
 weight = 0.001
 examine = "It's an orange corner key."
-use = "Dungeoneering"
 kept = "Always"
 
 [orange_corner_key_noted]
@@ -12600,7 +12164,6 @@ id = 18211
 id = 18212
 weight = 0.001
 examine = "It's an orange crescent key."
-use = "Dungeoneering"
 kept = "Always"
 
 [orange_crescent_key_noted]
@@ -12610,7 +12173,6 @@ id = 18213
 id = 18214
 weight = 0.001
 examine = "It's an orange wedge key."
-use = "Dungeoneering"
 kept = "Always"
 
 [orange_wedge_key_noted]
@@ -12620,7 +12182,6 @@ id = 18215
 id = 18216
 weight = 0.001
 examine = "It's an orange shield key."
-use = "Dungeoneering"
 kept = "Always"
 
 [orange_shield_key_noted]
@@ -12630,7 +12191,6 @@ id = 18217
 id = 18218
 weight = 0.001
 examine = "It's a silver triangle key."
-use = "Dungeoneering"
 kept = "Always"
 
 [silver_triangle_key_noted]
@@ -12640,7 +12200,6 @@ id = 18219
 id = 18220
 weight = 0.001
 examine = "It's a silver diamond key."
-use = "Dungeoneering"
 kept = "Always"
 
 [silver_diamond_key_noted]
@@ -12650,7 +12209,6 @@ id = 18221
 id = 18222
 weight = 0.001
 examine = "It's a silver rectangle key."
-use = "Dungeoneering"
 kept = "Always"
 
 [silver_rectangle_key_noted]
@@ -12660,7 +12218,6 @@ id = 18223
 id = 18224
 weight = 0.001
 examine = "It's a silver pentagon key."
-use = "Dungeoneering"
 kept = "Always"
 
 [silver_pentagon_key_noted]
@@ -12670,7 +12227,6 @@ id = 18225
 id = 18226
 weight = 0.001
 examine = "It's a silver corner key."
-use = "Dungeoneering"
 kept = "Always"
 
 [silver_corner_key_noted]
@@ -12680,7 +12236,6 @@ id = 18227
 id = 18228
 weight = 0.001
 examine = "It's a silver crescent key."
-use = "Dungeoneering"
 kept = "Always"
 
 [silver_crescent_key_noted]
@@ -12690,7 +12245,6 @@ id = 18229
 id = 18230
 weight = 0.001
 examine = "It's a silver wedge key."
-use = "Dungeoneering"
 kept = "Always"
 
 [silver_wedge_key_noted]
@@ -12700,7 +12254,6 @@ id = 18231
 id = 18232
 weight = 0.001
 examine = "It's a silver shield key."
-use = "Dungeoneering"
 kept = "Always"
 
 [silver_shield_key_noted]
@@ -12710,7 +12263,6 @@ id = 18233
 id = 18234
 weight = 0.001
 examine = "It's a yellow triangle key."
-use = "Dungeoneering"
 kept = "Always"
 
 [yellow_triangle_key_noted]
@@ -12720,7 +12272,6 @@ id = 18235
 id = 18236
 weight = 0.001
 examine = "It's a yellow diamond key."
-use = "Dungeoneering"
 kept = "Always"
 
 [yellow_diamond_key_noted]
@@ -12730,7 +12281,6 @@ id = 18237
 id = 18238
 weight = 0.001
 examine = "It's a yellow rectangle key."
-use = "Dungeoneering"
 kept = "Always"
 
 [yellow_rectangle_key_noted]
@@ -12740,7 +12290,6 @@ id = 18239
 id = 18240
 weight = 0.001
 examine = "It's a yellow pentagon key."
-use = "Dungeoneering"
 kept = "Always"
 
 [yellow_pentagon_key_noted]
@@ -12750,7 +12299,6 @@ id = 18241
 id = 18242
 weight = 0.001
 examine = "It's a yellow corner key."
-use = "Dungeoneering"
 kept = "Always"
 
 [yellow_corner_key_noted]
@@ -12760,7 +12308,6 @@ id = 18243
 id = 18244
 weight = 0.001
 examine = "It's a yellow crescent key."
-use = "Dungeoneering"
 kept = "Always"
 
 [yellow_crescent_key_noted]
@@ -12770,7 +12317,6 @@ id = 18245
 id = 18246
 weight = 0.001
 examine = "It's a yellow wedge key."
-use = "Dungeoneering"
 kept = "Always"
 
 [yellow_wedge_key_noted]
@@ -12780,7 +12326,6 @@ id = 18247
 id = 18248
 weight = 0.001
 examine = "It's a yellow shield key."
-use = "Dungeoneering"
 kept = "Always"
 
 [yellow_shield_key_noted]
@@ -12790,7 +12335,6 @@ id = 18249
 id = 18250
 weight = 0.001
 examine = "It's a green triangle key."
-use = "Dungeoneering"
 kept = "Always"
 
 [green_triangle_key_noted]
@@ -12800,7 +12344,6 @@ id = 18251
 id = 18252
 weight = 0.001
 examine = "It's a green diamond key."
-use = "Dungeoneering"
 kept = "Always"
 
 [green_diamond_key_noted]
@@ -12810,7 +12353,6 @@ id = 18253
 id = 18254
 weight = 0.001
 examine = "It's a green rectangle key."
-use = "Dungeoneering"
 kept = "Always"
 
 [green_rectangle_key_noted]
@@ -12820,7 +12362,6 @@ id = 18255
 id = 18256
 weight = 0.001
 examine = "It's a green pentagon key."
-use = "Dungeoneering"
 kept = "Always"
 
 [green_pentagon_key_noted]
@@ -12830,7 +12371,6 @@ id = 18257
 id = 18258
 weight = 0.001
 examine = "It's a green corner key."
-use = "Dungeoneering"
 kept = "Always"
 
 [green_corner_key_noted]
@@ -12840,7 +12380,6 @@ id = 18259
 id = 18260
 weight = 0.001
 examine = "It's a green crescent key."
-use = "Dungeoneering"
 kept = "Always"
 
 [green_crescent_key_noted]
@@ -12850,7 +12389,6 @@ id = 18261
 id = 18262
 weight = 0.001
 examine = "It's a green wedge key."
-use = "Dungeoneering"
 kept = "Always"
 
 [green_wedge_key_noted]
@@ -12860,7 +12398,6 @@ id = 18263
 id = 18264
 weight = 0.001
 examine = "It's a green shield key."
-use = "Dungeoneering"
 kept = "Always"
 
 [green_shield_key_noted]
@@ -12870,7 +12407,6 @@ id = 18265
 id = 18266
 weight = 0.001
 examine = "It's a blue triangle key."
-use = "Dungeoneering"
 kept = "Always"
 
 [blue_triangle_key_noted]
@@ -12880,7 +12416,6 @@ id = 18267
 id = 18268
 weight = 0.001
 examine = "It's a blue diamond key."
-use = "Dungeoneering"
 kept = "Always"
 
 [blue_diamond_key_noted]
@@ -12890,7 +12425,6 @@ id = 18269
 id = 18270
 weight = 0.001
 examine = "It's a blue rectangle key."
-use = "Dungeoneering"
 kept = "Always"
 
 [blue_rectangle_key_noted]
@@ -12900,7 +12434,6 @@ id = 18271
 id = 18272
 weight = 0.001
 examine = "It's a blue pentagon key."
-use = "Dungeoneering"
 kept = "Always"
 
 [blue_pentagon_key_noted]
@@ -12910,7 +12443,6 @@ id = 18273
 id = 18274
 weight = 0.001
 examine = "It's a blue corner key."
-use = "Dungeoneering"
 kept = "Always"
 
 [blue_corner_key_noted]
@@ -12920,7 +12452,6 @@ id = 18275
 id = 18276
 weight = 0.001
 examine = "It's a blue crescent key."
-use = "Dungeoneering"
 kept = "Always"
 
 [blue_crescent_key_noted]
@@ -12930,7 +12461,6 @@ id = 18277
 id = 18278
 weight = 0.001
 examine = "It's a blue wedge key."
-use = "Dungeoneering"
 kept = "Always"
 
 [blue_wedge_key_noted]
@@ -12940,7 +12470,6 @@ id = 18279
 id = 18280
 weight = 0.001
 examine = "It's a blue shield key."
-use = "Dungeoneering"
 kept = "Always"
 
 [blue_shield_key_noted]
@@ -12950,7 +12479,6 @@ id = 18281
 id = 18282
 weight = 0.001
 examine = "It's a purple triangle key."
-use = "Dungeoneering"
 kept = "Always"
 
 [purple_triangle_key_noted]
@@ -12960,7 +12488,6 @@ id = 18283
 id = 18284
 weight = 0.001
 examine = "It's a purple diamond key."
-use = "Dungeoneering"
 kept = "Always"
 
 [purple_diamond_key_noted]
@@ -12970,7 +12497,6 @@ id = 18285
 id = 18286
 weight = 0.001
 examine = "It's a purple rectangle key."
-use = "Dungeoneering"
 kept = "Always"
 
 [purple_rectangle_key_noted]
@@ -12980,7 +12506,6 @@ id = 18287
 id = 18288
 weight = 0.001
 examine = "It's a purple pentagon key."
-use = "Dungeoneering"
 kept = "Always"
 
 [purple_pentagon_key_noted]
@@ -12990,7 +12515,6 @@ id = 18289
 id = 18290
 weight = 0.001
 examine = "It's a purple corner key."
-use = "Dungeoneering"
 kept = "Always"
 
 [purple_corner_key_noted]
@@ -13000,7 +12524,6 @@ id = 18291
 id = 18292
 weight = 0.001
 examine = "It's a purple crescent key."
-use = "Dungeoneering"
 kept = "Always"
 
 [purple_crescent_key_noted]
@@ -13010,7 +12533,6 @@ id = 18293
 id = 18294
 weight = 0.001
 examine = "It's a purple wedge key."
-use = "Dungeoneering"
 kept = "Always"
 
 [purple_wedge_key_noted]
@@ -13020,7 +12542,6 @@ id = 18295
 id = 18296
 weight = 0.001
 examine = "It's a purple shield key."
-use = "Dungeoneering"
 kept = "Always"
 
 [purple_shield_key_noted]
@@ -13030,7 +12551,6 @@ id = 18297
 id = 18298
 weight = 0.001
 examine = "It's a crimson triangle key."
-use = "Dungeoneering"
 kept = "Always"
 
 [crimson_triangle_key_noted]
@@ -13040,7 +12560,6 @@ id = 18299
 id = 18300
 weight = 0.001
 examine = "It's a crimson diamond key."
-use = "Dungeoneering"
 kept = "Always"
 
 [crimson_diamond_key_noted]
@@ -13050,7 +12569,6 @@ id = 18301
 id = 18302
 weight = 0.001
 examine = "It's a crimson rectangle key."
-use = "Dungeoneering"
 kept = "Always"
 
 [crimson_rectangle_key_noted]
@@ -13060,7 +12578,6 @@ id = 18303
 id = 18304
 weight = 0.001
 examine = "It's a crimson pentagon key."
-use = "Dungeoneering"
 kept = "Always"
 
 [crimson_pentagon_key_noted]
@@ -13070,7 +12587,6 @@ id = 18305
 id = 18306
 weight = 0.001
 examine = "It's a crimson corner key."
-use = "Dungeoneering"
 kept = "Always"
 
 [crimson_corner_key_noted]
@@ -13080,7 +12596,6 @@ id = 18307
 id = 18308
 weight = 0.001
 examine = "It's a crimson crescent key."
-use = "Dungeoneering"
 kept = "Always"
 
 [crimson_crescent_key_noted]
@@ -13090,7 +12605,6 @@ id = 18309
 id = 18310
 weight = 0.001
 examine = "It's a crimson wedge key."
-use = "Dungeoneering"
 kept = "Always"
 
 [crimson_wedge_key_noted]
@@ -13100,7 +12614,6 @@ id = 18311
 id = 18312
 weight = 0.001
 examine = "It's a crimson shield key."
-use = "Dungeoneering"
 kept = "Always"
 
 [crimson_shield_key_noted]
@@ -13110,7 +12623,6 @@ id = 18313
 id = 18314
 weight = 0.001
 examine = "It's a gold triangle key."
-use = "Dungeoneering"
 kept = "Always"
 
 [gold_triangle_key_noted]
@@ -13120,7 +12632,6 @@ id = 18315
 id = 18316
 weight = 0.001
 examine = "It's a gold diamond key."
-use = "Dungeoneering"
 kept = "Always"
 
 [gold_diamond_key_noted]
@@ -13130,7 +12641,6 @@ id = 18317
 id = 18318
 weight = 0.001
 examine = "It's a gold rectangle key."
-use = "Dungeoneering"
 kept = "Always"
 
 [gold_rectangle_key_noted]
@@ -13140,7 +12650,6 @@ id = 18319
 id = 18320
 weight = 0.001
 examine = "It's a gold pentagon key."
-use = "Dungeoneering"
 kept = "Always"
 
 [gold_pentagon_key_noted]
@@ -13150,7 +12659,6 @@ id = 18321
 id = 18322
 weight = 0.001
 examine = "It's a gold corner key."
-use = "Dungeoneering"
 kept = "Always"
 
 [gold_corner_key_noted]
@@ -13160,7 +12668,6 @@ id = 18323
 id = 18324
 weight = 0.001
 examine = "It's a gold crescent key."
-use = "Dungeoneering"
 kept = "Always"
 
 [gold_crescent_key_noted]
@@ -13170,7 +12677,6 @@ id = 18325
 id = 18326
 weight = 0.001
 examine = "It's a gold wedge key."
-use = "Dungeoneering"
 kept = "Always"
 
 [gold_wedge_key_noted]
@@ -13181,7 +12687,6 @@ id = 18328
 weight = 0.001
 examine = "It's a gold shield key."
 kept = "Always"
-use = "Removed"
 
 [gold_shield_key_noted]
 id = 18329
@@ -14028,7 +13533,6 @@ kept = "Vanish"
 id = 18829
 weight = 2.0
 examine = "All members of the party can teleport to this stone from the group gatestone portal."
-use = "Dungeoneering"
 
 [frost_dragon_bones_dungeoneering]
 id = 18830
@@ -14036,7 +13540,6 @@ limit = 10000
 weight = 1.5
 prayer_xp = 180.0
 examine = "I doubt a dog would enjoy eating these."
-use = "Dungeoneering"
 kept = "Always"
 
 [frost_dragon_bones_dungeoneering_noted]
@@ -14078,7 +13581,6 @@ id = 19651
 limit = 10000
 weight = 3.175
 examine = "A rough wooden plank."
-use = "Dungeoneering"
 kept = "Always"
 
 [wooden_plank_noted]
@@ -14089,7 +13591,6 @@ id = 19653
 bank_stacks = false
 weight = 0.001
 examine = "A fierce, motile herb with a penchant for biting people."
-use = "Dungeoneering"
 kept = "Always"
 
 [explosemary]
@@ -14097,7 +13598,6 @@ id = 19654
 bank_stacks = false
 weight = 0.001
 examine = "A highly unstable herb which explodes when handled without care."
-use = "Dungeoneering"
 kept = "Always"
 
 [parslay]
@@ -14105,7 +13605,6 @@ id = 19655
 bank_stacks = false
 weight = 0.001
 examine = "It has whirling spines on the outside and an enchanted gem at its centre."
-use = "Dungeoneering"
 kept = "Always"
 
 [cardamaim]
@@ -14113,7 +13612,6 @@ id = 19656
 bank_stacks = false
 weight = 0.001
 examine = "A herb with wickedly sharp leaves which could easily sever a finger."
-use = "Dungeoneering"
 kept = "Always"
 
 [papreaper]
@@ -14121,7 +13619,6 @@ id = 19657
 bank_stacks = false
 weight = 0.001
 examine = "An ice-cold herb that seems to suck the life force from your body."
-use = "Dungeoneering"
 kept = "Always"
 
 [slaughtercress]
@@ -14129,7 +13626,6 @@ id = 19658
 bank_stacks = false
 weight = 0.001
 examine = "A lethally toxic herb which induces cardiac arrest on skin contact."
-use = "Dungeoneering"
 kept = "Always"
 
 [consecrated_herb]
@@ -14137,7 +13633,6 @@ id = 19659
 bank_stacks = false
 weight = 0.001
 examine = "This once-dangerous herb has been consecrated and is ready for burning in a censer."
-use = "Dungeoneering"
 kept = "Always"
 
 [rock_dungeoneering]
@@ -14145,14 +13640,12 @@ id = 19660
 bank_stacks = false
 weight = 3.175
 examine = "A chunk of mined rock to be used when repairing the bridge."
-use = "Dungeoneering"
 kept = "Always"
 
 [carved_keystone]
 id = 19661
 weight = 3.175
 examine = "The stone has been carved into a bridge-shaped keystone."
-use = "Dungeoneering"
 kept = "Always"
 
 [carved_keystone_noted]
@@ -14172,7 +13665,6 @@ examine = "The head of a climbing hook. Combined with a rope, it could be useful
 id = 19665
 weight = 3.175
 examine = "A tough, almost inedible plant with strong fibres suitable for ropemaking."
-use = "Dungeoneering"
 kept = "Always"
 
 [meatcorn_noted]
@@ -14182,7 +13674,6 @@ id = 19666
 id = 19667
 weight = 1.36
 examine = "A tough rope made from meatcorn fibres."
-use = "Dungeoneering"
 kept = "Always"
 
 [climbing_hook]
@@ -14216,7 +13707,6 @@ charges = 0
 slot = "Shield"
 examine = "It's brimming with power."
 kept = "Reclaim"
-use = "Removed"
 
 [eye_of_the_ranger]
 id = 19672
@@ -14226,7 +13716,6 @@ weight = 0.004
 slot = "Ring"
 destroy = "Not Released"
 examine = "The eye of one who is focused and calm."
-use = "Removed"
 kept = "Always"
 
 [eye_of_the_warrior]
@@ -14236,7 +13725,6 @@ bank_stacks = false
 weight = 0.004
 slot = "Ring"
 examine = "The eye of one who is headstrong and courageous."
-use = "Removed"
 kept = "Always"
 
 [eye_of_the_mage]
@@ -14246,7 +13734,6 @@ bank_stacks = false
 weight = 0.004
 slot = "Ring"
 examine = "The eye of one who is prodigal."
-use = "Removed"
 kept = "Always"
 
 [herbicide]
@@ -14287,7 +13774,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "Written by one of the skeletal trio, before they became skeletons."
-use = "Dungeoneering"
 kept = "Always"
 
 [arch_necrolord_request]
@@ -14296,7 +13782,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "A form sent from the Arch Necrolord."
-use = "Dungeoneering"
 kept = "Always"
 
 [tombstone_transcription]
@@ -14305,7 +13790,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "A transcription of Grave Creeper's tombstone."
-use = "Dungeoneering"
 kept = "Always"
 
 [behemoth_notes_part_4]
@@ -14374,7 +13858,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "Almost-unintelligible scraps of text."
-use = "Dungeoneering"
 kept = "Always"
 
 [gulega_missive]
@@ -14383,7 +13866,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "Notes back to the gorajo plane from a sachem."
-use = "Dungeoneering"
 kept = "Always"
 
 [resource_requisition_orders]
@@ -14392,7 +13874,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "It's covered in goo."
-use = "Dungeoneering"
 kept = "Always"
 
 [behemoth_notes_part_5]
@@ -14421,7 +13902,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "An unknown mage's notes on portals."
-use = "Dungeoneering"
 kept = "Always"
 
 [scrap_of_parchment]
@@ -14430,7 +13910,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "A faded scrap from an old diary of unknown origin."
-use = "Dungeoneering"
 kept = "Always"
 
 [letter_to_an_acolyte]
@@ -14439,7 +13918,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "A strange letter that doesn't seem to belong here."
-use = "Dungeoneering"
 kept = "Always"
 
 [letter_from_brundt]
@@ -14448,7 +13926,6 @@ tradeable = false
 weight = 1.0
 destroy = "You can read this book at any time by visiting the Dungeoneering Tutor."
 examine = "What's this doing here?"
-use = "Dungeoneering"
 kept = "Always"
 
 [strange_token]
@@ -14457,7 +13934,6 @@ tradeable = false
 weight = 0.453
 destroy = "You can view the token at any time by visiting the Dungeoneering Tutor."
 examine = "A token that doesn't seem to belong inside Daemonheim"
-use = "Dungeoneering"
 kept = "Always"
 
 [magical_blastbox_bound]
@@ -14498,7 +13974,6 @@ weight = 0.025
 id = 19869
 weight = 0.2
 examine = "A vial of blue-coloured liquid."
-use = "Dungeoneering"
 kept = "Always"
 
 [blue_vial_noted]
@@ -14508,7 +13983,6 @@ id = 19870
 id = 19871
 weight = 0.2
 examine = "A vial of green-coloured liquid."
-use = "Dungeoneering"
 kept = "Always"
 
 [green_vial_noted]
@@ -14518,7 +13992,6 @@ id = 19872
 id = 19873
 weight = 0.2
 examine = "A vial of yellow-coloured liquid."
-use = "Dungeoneering"
 kept = "Always"
 
 [yellow_vial_noted]
@@ -14528,7 +14001,6 @@ id = 19874
 id = 19875
 weight = 0.2
 examine = "A vial of violet-coloured liquid."
-use = "Dungeoneering"
 kept = "Always"
 
 [violet_vial_noted]
@@ -14538,7 +14010,6 @@ id = 19876
 id = 19877
 weight = 1.0
 examine = "This stone is highly malleable."
-use = "Dungeoneering"
 kept = "Always"
 
 [lump_of_stone_statue_bridge_noted]
@@ -14548,7 +14019,6 @@ id = 19878
 id = 19879
 weight = 0.004
 examine = "It has no real monetary value."
-use = "Dungeoneering"
 kept = "Always"
 
 [twisted_bird_skull_necklace]

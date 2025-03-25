@@ -3,7 +3,6 @@ id = 15128
 tradeable = false
 weight = 0.453
 examine = "This needs a good polish."
-use = "Quest"
 kept = "Wilderness"
 
 [bone_in_vinegar_foot_bone]
@@ -12,7 +11,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is a foot bone in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_foot_bone]
@@ -20,7 +18,6 @@ id = 15130
 tradeable = false
 weight = 0.453
 examine = "This belongs in a museum!"
-use = "Quest"
 kept = "Wilderness"
 
 [sabre_like_teeth]
@@ -28,7 +25,6 @@ id = 15131
 tradeable = false
 weight = 0.453
 examine = "These need a good polish."
-use = "Quest"
 kept = "Wilderness"
 
 [bone_in_vinegar_sabre_like_teeth]
@@ -37,7 +33,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There are some sabre-like teeth in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_sabre_like_teeth]
@@ -45,7 +40,6 @@ id = 15133
 tradeable = false
 weight = 0.453
 examine = "These belong in a museum!"
-use = "Quest"
 kept = "Wilderness"
 
 [long_sharp_claws]
@@ -58,7 +52,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There are long, sharp claws in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_long_sharp_claws]
@@ -75,7 +68,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is a fibula bone in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_fibula_bone]
@@ -92,7 +84,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is a hand bone in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_hand_bone]
@@ -109,7 +100,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is a green dragon tail-bone in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_green_dragon_tail_bone]
@@ -126,7 +116,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is a blue dragon tail-bone in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_blue_dragon_tail_bone]
@@ -143,7 +132,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is a red dragon tail-bone in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_red_dragon_tail_bone]
@@ -160,7 +148,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is a black dragon tail-bone in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_black_dragon_tail_bone]
@@ -177,7 +164,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is a skeletal wyvern tail-bone in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_skeletal_wyvern_tail_bone]
@@ -194,7 +180,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is a bronze dragon tail-bone in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_bronze_dragon_tail_bone]
@@ -211,7 +196,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is an iron dragon tail-bone in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_iron_dragon_tail_bone]
@@ -228,7 +212,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is a steel dragon tail-bone in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_steel_dragon_tail_bone]
@@ -245,7 +228,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is a mithril dragon tail-bone in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_mithril_dragon_tail_bone]
@@ -262,7 +244,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is a neck bone in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_neck_bone]
@@ -279,7 +260,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is a shoulder bone in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_shoulder_bone]
@@ -296,7 +276,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is a giant snake spine in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_giant_snake_spine]
@@ -313,7 +292,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is a pelvis bone in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_pelvis_bone]
@@ -326,7 +304,6 @@ tradeable = false
 weight = 0.453
 prayer_xp = 15.0
 examine = "This needs a good polish."
-use = "Quest"
 kept = "Wilderness"
 
 [bone_in_vinegar_femur_bone]
@@ -335,7 +312,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is a femur bone in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_femur_bone]
@@ -352,7 +328,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "There is a humerus bone in here."
-use = "Quest"
 kept = "Wilderness"
 
 [polished_humerus_bone]
@@ -364,7 +339,6 @@ id = 15188
 tradeable = false
 weight = 2.0
 examine = "This would need to be prepared...in theory."
-use = "Quest"
 kept = "Wilderness"
 
 [scrubbed_rock_crab_carcass]
@@ -372,7 +346,6 @@ id = 15189
 tradeable = false
 weight = 2.0
 examine = "It has been scrubbed with salt."
-use = "Quest"
 kept = "Wilderness"
 
 [fox_pelt]
@@ -380,7 +353,6 @@ id = 15190
 tradeable = false
 weight = 0.6
 examine = "This needs to be prepared."
-use = "Quest"
 kept = "Wilderness"
 
 [scrubbed_fox_pelt]
@@ -388,7 +360,6 @@ id = 15191
 tradeable = false
 weight = 0.6
 examine = "It has been scrubbed with salt."
-use = "Quest"
 kept = "Wilderness"
 
 [tanned_fox_pelt]
@@ -396,7 +367,6 @@ id = 15192
 tradeable = false
 weight = 0.6
 examine = "This fur is ready to be turned into a stuffed animal."
-use = "Quest"
 kept = "Wilderness"
 
 [unicorn_hide]
@@ -412,7 +382,6 @@ id = 15195
 tradeable = false
 weight = 0.6
 examine = "This hide is ready to be turned into a stuffed animal."
-use = "Quest"
 kept = "Wilderness"
 
 [black_unicorn_hide]
@@ -464,7 +433,6 @@ id = 15207
 tradeable = false
 weight = 0.6
 examine = "This skin is ready to be turned into a stuffed animal."
-use = "Quest"
 kept = "Wilderness"
 
 [cockatrice_skin]

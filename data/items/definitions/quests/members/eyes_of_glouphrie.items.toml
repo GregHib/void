@@ -4,7 +4,6 @@ tradeable = false
 weight = 2.5
 empty = "bucket"
 examine = "Glue made from tree sap and ground mud runes."
-use = "Quest"
 kept = "Wilderness"
 
 [weird_gloop]
@@ -31,196 +30,168 @@ examine = "Looks magical..."
 id = 9597
 tradeable = false
 examine = "A red circular crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [red_triangle]
 id = 9598
 tradeable = false
 examine = "A red triangular crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [red_square]
 id = 9599
 tradeable = false
 examine = "A red square-shaped crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [red_pentagon]
 id = 9600
 tradeable = false
 examine = "A red pentagon-shaped crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [orange_circle]
 id = 9601
 tradeable = false
 examine = "An orange circular crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [orange_triangle]
 id = 9602
 tradeable = false
 examine = "An orange triangular crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [orange_square]
 id = 9603
 tradeable = false
 examine = "An orange square-shaped crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [orange_pentagon]
 id = 9604
 tradeable = false
 examine = "An orange pentagon-shaped crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [yellow_circle] # Unobtainable
 id = 9605
 tradeable = false
 examine = "A yellow circular crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [yellow_triangle]
 id = 9606
 tradeable = false
 examine = "A yellow triangular crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [yellow_square]
 id = 9607
 tradeable = false
 examine = "A yellow square-shaped crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [yellow_pentagon]
 id = 9608
 tradeable = false
 examine = "A yellow pentagon-shaped crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [green_circle]
 id = 9609
 tradeable = false
 examine = "A green circular crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [green_triangle]
 id = 9610
 tradeable = false
 examine = "A green triangular crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [green_square]
 id = 9611
 tradeable = false
 examine = "A green square-shaped crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [green_pentagon]
 id = 9612
 tradeable = false
 examine = "A green pentagon-shaped crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [blue_circle]
 id = 9613
 tradeable = false
 examine = "A blue circular crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [blue_triangle]
 id = 9614
 tradeable = false
 examine = "A blue triangular crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [blue_square]
 id = 9615
 tradeable = false
 examine = "A blue square-shaped crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [blue_pentagon]
 id = 9616
 tradeable = false
 examine = "A blue pentagon-shaped crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [indigo_circle]
 id = 9617
 tradeable = false
 examine = "An indigo circular crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [indigo_triangle]
 id = 9618
 tradeable = false
 examine = "An indigo triangular crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [indigo_square]
 id = 9619
 tradeable = false
 examine = "An indigo square-shaped crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [indigo_pentagon]
 id = 9620
 tradeable = false
 examine = "An indigo pentagon-shaped crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [violet_circle]
 id = 9621
 tradeable = false
 examine = "A violet circular crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [violet_triangle]
 id = 9622
 tradeable = false
 examine = "A violet triangular crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [violet_square]
 id = 9623
 tradeable = false
 examine = "A violet square-shaped crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [violet_pentagon]
 id = 9624
 tradeable = false
 examine = "A violet pentagon-shaped crystalline disc."
-use = "Quest"
 kept = "Wilderness"
 
 [crystal_saw]

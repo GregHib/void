@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.08
 destroy = "I found this in a grave at Draynor Manor."
 examine = "I shouldn't joke; this is a grave matter."
-use = "Quest"
 kept = "Wilderness"
 
 [magic_secateurs]
@@ -24,7 +23,6 @@ weight = 0.453
 slot = "Weapon"
 destroy = "I can always find another Tanglefoot if I need more."
 examine = "Contains the Fairy Queen's magic essence."
-use = "Quest"
 kept = "Wilderness"
 
 [symptoms_list]
@@ -33,5 +31,4 @@ tradeable = false
 weight = 0.01
 destroy = "Hopefully Fairy Nuff made a copy of this list."
 examine = "A list of the Fairy Queen's symptoms."
-use = "Quest"
 kept = "Wilderness"

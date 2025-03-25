@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.004
 destroy = "You can ask Dororan if he's seen the ring."
 examine = "A gold ring made by Jeffery of Edgeville. It doesn't look particularly special to you."
-use = "Quest"
 kept = "Wilderness"
 
 [dororans_engraved_ring]
@@ -13,7 +12,6 @@ tradeable = false
 weight = 0.004
 destroy = "You can ask Dororan if he's seen the ring."
 examine = "This ring is engraved 'Gudrun the Fair, Gudrun the Fiery'."
-use = "Quest"
 kept = "Wilderness"
 
 [gunnars_ground]
@@ -22,7 +20,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can ask Dororan for a new copy of the poem."
 examine = "A poem to convince Gunthor to settle the barbarians permanently."
-use = "Quest"
 kept = "Wilderness"
 
 [gunnars_ground_post_quest]
@@ -39,7 +36,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can ask Dororan for a new poem."
 examine = "Laying everybody low with a love poem that he made."
-use = "Quest"
 kept = "Wilderness"
 
 [antique_lamp_gunnars_ground]
@@ -48,7 +44,6 @@ tradeable = false
 weight = 0.1
 destroy = "You can not get a replacement for the ancient lamp."
 examine = "I wonder what happens if I rub it."
-use = "Quest"
 kept = "Vanish"
 
 [swanky_boots]

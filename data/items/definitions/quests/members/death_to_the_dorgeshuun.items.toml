@@ -22,7 +22,6 @@ id = 8870
 tradeable = false
 weight = 30.0
 examine = "She's dead, but the mark on her forehead is glowing brightly."
-use = "Quest"
 kept = "Wilderness"
 
 [crate_with_zanik]
@@ -32,7 +31,6 @@ weight = 32.0
 slot = "Weapon"
 type = "TwoHanded"
 examine = "It's got Zanik in it."
-use = "Quest"
 kept = "Vanish"
 
 [zanik_debug]

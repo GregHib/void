@@ -300,38 +300,6 @@ examine = "A valuable ring."
 [dragonstone_ring_noted]
 id = 1646
 
-[blank_ring]
-id = 1647
-
-[sapphire_ring_2]
-id = 1649
-limit = 5000
-weight = 0.006
-examine = "A valuable ring."
-kept = "Wilderness"
-
-[emerald_ring_2]
-id = 1650
-limit = 10000
-weight = 0.006
-examine = "A valuable ring."
-
-[ruby_ring_2]
-id = 1651
-limit = 5000
-weight = 0.006
-examine = "A valuable ring."
-
-[diamond_ring_2]
-clone = "ruby_ring_2"
-id = 1652
-
-[dragonstone_ring_2]
-id = 1653
-limit = 500
-weight = 0.006
-examine = "A valuable ring."
-
 [gold_necklace]
 id = 1654
 price = 177
@@ -404,27 +372,6 @@ examine = "I wonder if this is valuable."
 
 [dragonstone_necklace_noted]
 id = 1665
-
-[blank_necklace]
-id = 1666
-
-[sapphire_necklace_2]
-id = 1668
-limit = 5000
-weight = 0.01
-examine = "I wonder if this is valuable."
-
-[emerald_necklace_2]
-clone = "sapphire_necklace_2"
-id = 1669
-
-[ruby_necklace_2]
-clone = "sapphire_necklace_2"
-id = 1670
-
-[diamond_necklace_2]
-clone = "sapphire_necklace_2"
-id = 1671
 
 [dragon_necklace]
 id = 1672
@@ -502,35 +449,6 @@ examine = "It needs a string so I can wear it."
 
 [dragonstone_amulet_unstrung_noted]
 id = 1684
-
-[blank_amulet_unstrung]
-id = 1685
-
-[sapphire_amulet_2]
-id = 1687
-limit = 5000
-weight = 0.007
-examine = "I wonder if I can get this enchanted."
-
-[emerald_amulet_2]
-clone = "sapphire_amulet_2"
-id = 1688
-
-[ruby_amulet_2]
-id = 1689
-limit = 5000
-weight = 0.007
-destroy = "No"
-examine = "I wonder if I can get this enchanted."
-
-[diamond_amulet_2]
-clone = "sapphire_amulet_2"
-id = 1690
-
-[dragonstone_ammy]
-id = 1691
-limit = 100
-examine = "I wonder if I can get this enchanted."
 
 [gold_amulet]
 id = 1692

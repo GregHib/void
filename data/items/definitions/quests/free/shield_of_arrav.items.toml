@@ -14,7 +14,6 @@ tradeable = false
 weight = 0.01
 examine = "The key to get into the Phoenix Gang HQ."
 kept = "Wilderness"
-use = "Removed"
 
 [weapon_store_key]
 id = 759
@@ -31,7 +30,6 @@ tradeable = false
 weight = 0.02
 destroy = "You'll have to kill Jonny the beard to get another."
 examine = "An intelligence report."
-use = "Quest"
 kept = "Wilderness"
 
 [broken_shield_right]
@@ -40,7 +38,6 @@ tradeable = false
 weight = 2.721
 destroy = "You will need to enter the Phoenix Gang hideout to reclaim this half of the shield."
 examine = "Half of the Shield of Arrav."
-use = "Quest"
 kept = "Wilderness"
 
 [broken_shield_left]
@@ -49,7 +46,6 @@ tradeable = false
 weight = 2.721
 destroy = "You will need to enter the Black Arm Gang hideout to reclaim this half of the shield."
 examine = "Half of the Shield of Arrav."
-use = "Quest"
 kept = "Wilderness"
 
 [phoenix_crossbow]
@@ -100,7 +96,6 @@ weight = 5.443
 aka = ["shield_of_arrav"]
 examine = "Complete Shield of Arrav."
 destroy = "You'll need to get it back from Captain Rovin."
-use = "Quest"
 kept = "Wilderness"
 
 [phoenix_crossbow_2] # Unobtainable

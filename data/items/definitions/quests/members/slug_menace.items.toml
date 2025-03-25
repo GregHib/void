@@ -82,7 +82,6 @@ id = 9680
 tradeable = false
 weight = 0.01
 examine = "A rendered down baby sea slug."
-use = "Quest"
 kept = "Wilderness"
 
 [commorb_v2]
@@ -91,7 +90,6 @@ tradeable = false
 weight = 0.001
 destroy = "As a security precaution, your CommOrb will automatically self-destruct when dropped."
 examine = "A Temple Knight Communication Orb. Top Secret!"
-use = "Quest"
 kept = "Wilderness"
 
 [door_transcription]
@@ -100,7 +98,6 @@ tradeable = false
 weight = 0.02
 destroy = "You get"
 examine = "A copy of the mysterious glyphs."
-use = "Quest"
 kept = "Wilderness"
 
 [dead_sea_slug]
@@ -108,7 +105,6 @@ id = 9683
 tradeable = false
 weight = 0.01
 examine = "Dead sea slug, very sticky."
-use = "Quest"
 kept = "Wilderness"
 
 [page_1]
@@ -117,7 +113,6 @@ tradeable = false
 weight = 0.01
 destroy = "You can get this page from Mayor Hobb's Desk."
 examine = "A page from Maledict's holy book."
-use = "Quest"
 kept = "Wilderness"
 
 [page_2]
@@ -126,7 +121,6 @@ tradeable = false
 weight = 0.01
 destroy = "You can get this page from Ezekial Lovecraft."
 examine = "A page from Maledict's holy book."
-use = "Quest"
 kept = "Wilderness"
 
 [page_3]
@@ -135,7 +129,6 @@ tradeable = false
 weight = 0.01
 destroy = "You will have to get the torn pieces from Col O'Niall."
 examine = "A page from Maledict's holy book."
-use = "Quest"
 kept = "Wilderness"
 
 [fragment_1]
@@ -152,7 +145,6 @@ tradeable = false
 weight = 0.01
 destroy = "You can get the fragments from Col O'Niall."
 examine = "A piece of a torn page."
-use = "Quest"
 kept = "Wilderness"
 
 [fragment_3]
@@ -165,7 +157,6 @@ tradeable = false
 weight = 0.01
 destroy = "Are you sure you wish to destroy this?"
 examine = "A blank water rune."
-use = "Quest"
 kept = "Wilderness"
 
 [water_rune_the_slug_menace]
@@ -174,7 +165,6 @@ tradeable = false
 weight = 0.01
 destroy = "Are you sure you wish to destroy this?"
 examine = "A water rune."
-use = "Quest"
 kept = "Wilderness"
 
 [blank_air_rune]
@@ -183,7 +173,6 @@ tradeable = false
 weight = 0.01
 destroy = "Are you sure you wish to destroy this?"
 examine = "A blank air rune."
-use = "Quest"
 kept = "Wilderness"
 
 [air_rune_the_slug_menace]
@@ -192,7 +181,6 @@ tradeable = false
 weight = 0.01
 destroy = "Are you sure you wish to destroy this?"
 examine = "An air rune."
-use = "Quest"
 kept = "Wilderness"
 
 [blank_earth_rune]
@@ -201,7 +189,6 @@ tradeable = false
 weight = 0.01
 destroy = "Are you sure you wish to destroy this?"
 examine = "A blank earth rune."
-use = "Quest"
 kept = "Wilderness"
 
 [earth_rune_the_slug_menace]
@@ -210,7 +197,6 @@ tradeable = false
 weight = 0.01
 destroy = "Are you sure you wish to destroy this?"
 examine = "An earth rune."
-use = "Quest"
 kept = "Wilderness"
 
 [blank_mind_rune]
@@ -219,7 +205,6 @@ tradeable = false
 weight = 0.01
 destroy = "Are you sure you wish to destroy this?"
 examine = "A blank mind rune."
-use = "Quest"
 kept = "Wilderness"
 
 [mind_rune_the_slug_menace]
@@ -228,7 +213,6 @@ tradeable = false
 weight = 0.01
 destroy = "Are you sure you wish to destroy this?"
 examine = "A mind rune."
-use = "Quest"
 kept = "Wilderness"
 
 [blank_fire_rune]
@@ -237,7 +221,6 @@ tradeable = false
 weight = 0.01
 destroy = "Are you sure you wish to destroy this?"
 examine = "A blank fire rune."
-use = "Quest"
 kept = "Wilderness"
 
 [fire_rune_the_slug_menace]
@@ -246,5 +229,4 @@ tradeable = false
 weight = 0.01
 destroy = "Are you sure you wish to destroy this?"
 examine = "A fire rune."
-use = "Quest"
 kept = "Wilderness"

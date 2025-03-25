@@ -12,7 +12,6 @@ tradeable = false
 weight = 0.05
 destroy = "The train is tiny - if you drop it you will lose it. You'll be able to find a new train somewhere around Witchaven if you look hard enough."
 examine = "A wooden toy train."
-use = "Quest"
 kept = "Wilderness"
 
 [note_kenniths_concerns]
@@ -21,7 +20,6 @@ tradeable = false
 weight = 0.001
 destroy = "If you drop this note it will be lost. Caroline, however, will probably be able to give you more information on Kent's actions."
 examine = "A note from Kent."
-use = "Quest"
 kept = "Wilderness"
 
 [super_fishing_explosive]

@@ -20,4 +20,3 @@ tradeable = false
 weight = 0.003
 examine = "A broken cauldron."
 kept = "Wilderness"
-use = "Removed"

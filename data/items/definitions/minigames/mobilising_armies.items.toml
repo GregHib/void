@@ -6,7 +6,6 @@ weight = 0.005
 destroy = "You'll have to get another contract from the special unit table."
 examine = "I can use this in battle for extra assistance."
 kept = "Vanish"
-use = "Removed"
 
 [dwarf_squad_light]
 id = 14941
@@ -274,7 +273,6 @@ bank_stacks = false
 weight = 1.646
 examine = "I can keep my adventuring items in here."
 kept = "Wilderness"
-use = "Limited"
 
 [quest_kit_medium]
 id = 15002
@@ -283,7 +281,6 @@ bank_stacks = false
 weight = 3.506
 examine = "I can keep my adventuring items in here."
 kept = "Reclaim"
-use = "Limited"
 
 [quest_kit_advanced]
 id = 15003
@@ -292,7 +289,6 @@ bank_stacks = false
 weight = 5.575
 examine = "I can keep my adventuring items in here."
 kept = "Reclaim"
-use = "Limited"
 
 [quest_kit_elite]
 id = 15004
@@ -301,7 +297,6 @@ bank_stacks = false
 weight = 7.889
 examine = "I can keep my adventuring items in here."
 kept = "Reclaim"
-use = "Limited"
 
 [inferior_locator]
 id = 15005

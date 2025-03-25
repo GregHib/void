@@ -106,7 +106,6 @@ id = 2882
 tradeable = false
 weight = 10.0
 examine = "It has been deliciously seasoned to taste wonderful for ogres."
-use = "Quest"
 kept = "Reclaim"
 
 [ogre_bow]

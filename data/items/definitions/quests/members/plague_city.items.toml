@@ -3,7 +3,6 @@ id = 1503
 tradeable = false
 weight = 0.01
 examine = "A search warrant for a house in Ardougne."
-use = "Quest"
 kept = "Wilderness"
 
 [hangover_cure]
@@ -18,7 +17,6 @@ id = 1505
 tradeable = false
 weight = 0.02
 examine = "Maybe I should read it..."
-use = "Quest"
 kept = "Wilderness"
 
 [gas_mask]
@@ -36,7 +34,6 @@ id = 1507
 tradeable = false
 weight = 0.01
 examine = "Quite a small key."
-use = "Quest"
 kept = "Wilderness"
 
 [a_scruffy_note]
@@ -44,7 +41,6 @@ id = 1508
 tradeable = false
 weight = 0.01
 examine = "It seems to say hongorer lure..."
-use = "Quest"
 kept = "Wilderness"
 
 [book_turnip_growing_for_beginners]
@@ -59,5 +55,4 @@ id = 1510
 tradeable = false
 weight = 0.453
 examine = "A picture of a lady called Elena."
-use = "Quest"
 kept = "Wilderness"

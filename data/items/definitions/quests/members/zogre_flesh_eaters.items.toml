@@ -52,7 +52,6 @@ id = 4808
 tradeable = false
 weight = 0.001
 examine = "A very black prism."
-use = "Quest"
 kept = "Wilderness"
 
 [torn_page]
@@ -60,7 +59,6 @@ id = 4809
 tradeable = false
 weight = 0.005
 examine = "A half torn necromantic page."
-use = "Quest"
 kept = "Wilderness"
 
 [ruined_backpack_zogre_flesh_eaters]
@@ -68,7 +66,6 @@ id = 4810
 tradeable = false
 weight = 0.02
 examine = "A broken and useless looking backpack with the moniker,'B.Vahn' in it."
-use = "Quest"
 kept = "Wilderness"
 
 [dragon_inn_tankard]
@@ -76,7 +73,6 @@ id = 4811
 tradeable = false
 weight = 0.001
 examine = "A white ceramic mug with a dragon insignia."
-use = "Quest"
 kept = "Wilderness"
 
 [zogre_bones]
@@ -95,7 +91,6 @@ id = 4814
 tradeable = false
 weight = 0.02
 examine = "A classic realist charcoal portrait of Sithik."
-use = "Quest"
 kept = "Wilderness"
 
 [sithik_portrait_bad]
@@ -103,7 +98,6 @@ id = 4815
 tradeable = false
 weight = 0.02
 examine = "A semi-nihilistic, pseudo-impressionistic, half-squarist charcoal sketch of Sithik."
-use = "Quest"
 kept = "Wilderness"
 
 [signed_portrait]
@@ -111,7 +105,6 @@ id = 4816
 tradeable = false
 weight = 0.02
 examine = "A signed classic realist charcoal portrait of Sithik."
-use = "Quest"
 kept = "Wilderness"
 
 [book_of_portraiture]
@@ -127,7 +120,6 @@ id = 4818
 tradeable = false
 weight = 0.8
 examine = "An ancient ogre artefact - resembling a heavy large helm."
-use = "Quest"
 kept = "Wilderness"
 
 [bronze_nails]
@@ -200,7 +192,6 @@ tradeable = false
 weight = 1.0
 slot = "Shield"
 examine = "A book of H.A.M affiliation."
-use = "Quest"
 kept = "Wilderness"
 
 [fayrg_bones]
@@ -241,7 +232,6 @@ id = 4836
 tradeable = false
 weight = 0.001
 examine = "Some strange liquid given to you by Zavistic Rarve."
-use = "Quest"
 kept = "Wilderness"
 
 [necromancy_book]
@@ -250,7 +240,6 @@ tradeable = false
 weight = 1.0
 slot = "Shield"
 examine = "A book of necromantic spells."
-use = "Quest"
 kept = "Wilderness"
 
 [cup_of_tea_zogre_flesh_eaters]
@@ -259,7 +248,6 @@ limit = 1000
 tradeable = false
 weight = 0.15
 examine = "Looks like an innocent cup of tea."
-use = "Quest"
 kept = "Wilderness"
 
 [ogre_gate_key]
@@ -267,7 +255,6 @@ id = 4839
 tradeable = false
 weight = 0.055
 examine = "A key to some sort of special tomb area."
-use = "Quest"
 kept = "Wilderness"
 
 [rogues_purse_potion_unf]

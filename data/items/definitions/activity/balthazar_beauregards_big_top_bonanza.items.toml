@@ -382,7 +382,6 @@ slot = "Weapon"
 destroy = "You can get another one from the equipment box for this performance."
 examine = "An Agility level of 10 is advised when juggling these."
 kept = "Vanish"
-use = "Removed"
 
 [plates_level_20_approx]
 id = 13710
@@ -392,7 +391,6 @@ slot = "Weapon"
 destroy = "You can get another one from the equipment box for this performance."
 examine = "An Agility level of 20 is advised when juggling these."
 kept = "Vanish"
-use = "Removed"
 
 [eggs_level_30_approx]
 id = 13711
@@ -402,7 +400,6 @@ slot = "Weapon"
 destroy = "You can get another one from the equipment box for this performance."
 examine = "An Agility level of 30 is advised when juggling these."
 kept = "Vanish"
-use = "Removed"
 
 [knives_level_40_approx]
 id = 13712
@@ -412,7 +409,6 @@ slot = "Weapon"
 destroy = "You can get another one from the equipment box for this performance."
 examine = "An Agility level of 40 is advised when juggling these."
 kept = "Vanish"
-use = "Removed"
 
 [spades_level_50_approx]
 id = 13713
@@ -422,7 +418,6 @@ slot = "Weapon"
 destroy = "You can get another one from the equipment box for this performance."
 examine = "An Agility level of 50 is advised when juggling these."
 kept = "Vanish"
-use = "Removed"
 
 [tuna_level_60_approx]
 id = 13714
@@ -432,7 +427,6 @@ slot = "Weapon"
 destroy = "You can get another one from the equipment box for this performance."
 examine = "An Agility level of 60 is advised when juggling these."
 kept = "Vanish"
-use = "Removed"
 
 [soap_level_70_approx]
 id = 13715
@@ -442,7 +436,6 @@ slot = "Weapon"
 destroy = "You can get another one from the equipment box for this performance."
 examine = "An Agility level of 70 is advised when juggling these."
 kept = "Vanish"
-use = "Removed"
 
 [cannon_balls_level_80_approx]
 id = 13716
@@ -452,7 +445,6 @@ slot = "Weapon"
 destroy = "You can get another one from the equipment box for this performance."
 examine = "An Agility level of 80 is advised when juggling these."
 kept = "Vanish"
-use = "Removed"
 
 [torches_level_90_approx]
 id = 13717
@@ -462,7 +454,6 @@ slot = "Weapon"
 destroy = "You can get another one from the equipment box for this performance."
 examine = "An Agility level of 90 is advised when juggling these."
 kept = "Vanish"
-use = "Removed"
 
 [chinchompas_level_99_approx]
 id = 13718
@@ -472,7 +463,6 @@ slot = "Weapon"
 destroy = "You can get another one from the equipment box for this performance."
 examine = "An Agility level of 99 is advised when juggling these."
 kept = "Vanish"
-use = "Removed"
 
 [performance_shortbow]
 id = 13719
@@ -484,7 +474,6 @@ attack_range = 7
 destroy = "You can get another one from the equipment box for this performance."
 examine = "Short, but effective."
 kept = "Vanish"
-use = "Removed"
 
 [performance_knife]
 id = 13720
@@ -495,7 +484,6 @@ slot = "Weapon"
 destroy = "You can get another one from the equipment box for this performance."
 examine = "A finely balanced throwing knife."
 kept = "Vanish"
-use = "Removed"
 
 [performance_throwing_axe]
 id = 13721
@@ -506,7 +494,6 @@ slot = "Weapon"
 destroy = "You can get another one from the equipment box for this performance."
 examine = "A finely balanced throwing axe."
 kept = "Vanish"
-use = "Removed"
 
 [performance_arrow]
 id = 13722
@@ -515,7 +502,6 @@ slot = "Ammo"
 destroy = "You can get another one from the equipment box for this performance."
 examine = "Arrows with bronze heads."
 kept = "Vanish"
-use = "Removed"
 
 [teleport_spell]
 id = 13723
@@ -523,7 +509,6 @@ tradeable = false
 destroy = "You can get another one from the equipment box for this performance."
 examine = "A tablet containing a Magic spell."
 kept = "Vanish"
-use = "Removed"
 
 [levitation_spell]
 clone = "teleport_spell"

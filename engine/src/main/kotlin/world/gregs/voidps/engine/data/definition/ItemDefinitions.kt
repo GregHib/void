@@ -114,7 +114,13 @@ class ItemDefinitions(
                 val id = ids.getInt(item)
                 require(id != -1) { "Unable to find item id '$item'" }
                 val extras = definitions[id].extras as? MutableMap<String, Any>
-                extras?.putAll(definition.extras ?: continue)
+                if (extras != null) {
+                    for (extra in definition.extras ?: continue) {
+                        if (!extras.containsKey(extra.key)) {
+                            extras[extra.key] = extra.value
+                        }
+                    }
+                }
             }
             for (definition in definitions) {
                 if (definition.stringId.endsWith("_lent")) {

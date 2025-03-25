@@ -235,7 +235,6 @@ tradeable = false
 weight = 0.003
 destroy = "Your item will be destroyed permanently and it may not be reclaimable."
 examine = "Surprise, it looks like a vanilla pod."
-use = "Quest"
 kept = "Wilderness"
 
 [cornflour_tradeable] # Unobtainable
@@ -248,7 +247,6 @@ tradeable = false
 weight = 1.36
 empty = "empty_pot"
 examine = "It's cornflour in a pot."
-use = "Quest"
 kept = "Wilderness"
 
 [cornflour_mixture]
@@ -258,7 +256,6 @@ weight = 1.36
 empty = "empty_pot"
 destroy = "I'll have to get all the ingredients again."
 examine = "A mixture of milk, cream and cornflour."
-use = "Quest"
 kept = "Wilderness"
 
 [milky_mixture]
@@ -268,7 +265,6 @@ weight = 1.36
 empty = "empty_pot"
 destroy = "I'll have to get all the ingredients again."
 examine = "It's a bucket of milk and cream."
-use = "Quest"
 kept = "Wilderness"
 
 [cinnamon]
@@ -277,7 +273,6 @@ tradeable = false
 weight = 0.003
 destroy = "Your item will be destroyed permanently and it may not be reclaimable."
 examine = "Some cinnamon sticks."
-use = "Quest"
 kept = "Wilderness"
 
 [brulee_egg]
@@ -287,7 +282,6 @@ weight = 0.3
 empty = "empty_pot"
 destroy = "I'll have to get all the ingredients again."
 examine = "It's just missing a sprinkling of cinnamon."
-use = "Quest"
 kept = "Wilderness"
 
 [brulee_vanilla]
@@ -297,7 +291,6 @@ weight = 0.3
 empty = "empty_pot"
 destroy = "I'll have to get all the ingredients again."
 examine = "A pot of brulee mixture - needs egg."
-use = "Quest"
 kept = "Wilderness"
 
 [brulee_raw]
@@ -307,7 +300,6 @@ weight = 0.3
 empty = "empty_pot"
 destroy = "I'll have to get all the ingredients again."
 examine = "Perfect, it just needs flambeing."
-use = "Quest"
 kept = "Wilderness"
 
 [brulee_supreme]
@@ -317,7 +309,6 @@ weight = 0.3
 empty = "empty_pot"
 destroy = "I'll have to get all the ingredients again."
 examine = "A pot of brulee supreme."
-use = "Quest"
 kept = "Wilderness"
 
 [evil_chickens_egg]
@@ -326,7 +317,6 @@ tradeable = false
 weight = 0.08
 destroy = "I got this by killing the Evil Chicken. It might be hard to get another one."
 examine = "What came first, the chicken or..."
-use = "Quest"
 kept = "Wilderness"
 
 [dragon_token]
@@ -335,7 +325,6 @@ tradeable = false
 weight = 0.01
 destroy = "I got this by killing a Black Dragon. It might be hard to get another one."
 examine = "It's got a dragon on it."
-use = "Quest"
 kept = "Wilderness"
 
 [spicy_stew]
@@ -425,7 +414,6 @@ id = 7497
 tradeable = false
 weight = 0.5
 examine = "A cool refreshing fruit mix. With ash in for some reason."
-use = "Quest"
 kept = "Wilderness"
 
 [antique_lamp_recipe_for_disaster]
@@ -434,7 +422,6 @@ tradeable = false
 weight = 0.1
 destroy = "You can not get a replacement for the ancient lamp. Rub it to get your reward; it is destroyed in the process."
 examine = "I wonder what happens if I rub it..."
-use = "Quest"
 kept = "Vanish"
 
 [asgoldian_ale]
@@ -443,7 +430,6 @@ tradeable = false
 weight = 0.55
 aka = ["asgoldian_ale_g"]
 examine = "There appears to be a coin in the bottom. Liked by dwarves."
-use = "Quest"
 kept = "Wilderness"
 
 [dwarven_rock_cake]
@@ -466,7 +452,6 @@ id = 7511
 tradeable = false
 weight = 0.001
 examine = "Two out of two goblin generals prefer it!"
-use = "Quest"
 kept = "Wilderness"
 
 [soggy_bread]
@@ -474,7 +459,6 @@ id = 7512
 tradeable = false
 weight = 0.001
 examine = "Previously a nice crispy loaf of bread. Now just kind of icky."
-use = "Quest"
 kept = "Wilderness"
 
 [spicy_maggots]
@@ -482,7 +466,6 @@ id = 7513
 tradeable = false
 weight = 0.001
 examine = "They clearly taste so much better this way!"
-use = "Quest"
 kept = "Wilderness"
 
 [dyed_orange]
@@ -490,7 +473,6 @@ id = 7514
 tradeable = false
 weight = 0.001
 examine = "Orange slices which have been dyed, but it looks more like they died."
-use = "Quest"
 kept = "Wilderness"
 
 [breadcrumbs]
@@ -620,7 +602,6 @@ id = 7532
 tradeable = false
 weight = 0.907
 examine = "Hmmm, what can I use this for?"
-use = "Quest"
 kept = "Wilderness"
 
 [rock_mogre_camp]
@@ -628,7 +609,6 @@ id = 7533
 tradeable = false
 weight = 1.0
 examine = "A rock."
-use = "Quest"
 kept = "Vanish"
 
 [fishbowl_helmet]
@@ -693,7 +673,6 @@ tradeable = false
 weight = 0.3
 destroy = "Maybe Traiborn will have another."
 examine = "Imbued with knowledge itself."
-use = "Quest"
 kept = "Wilderness"
 
 [raw_guide_cake]
@@ -703,7 +682,6 @@ weight = 0.5
 cooking = { level = 40, xp = 60.0, chances = { range = "255-255" }, type = "bake", cooked = "cake_of_guidance", cooked_message = "You successfully bake a Cake of Guidance.", leftover = "cake_tin" }
 destroy = "Maybe Traiborn will have another."
 examine = "Now all I need to do is cook it."
-use = "Quest"
 kept = "Wilderness"
 
 [enchanted_egg]
@@ -712,7 +690,6 @@ tradeable = false
 weight = 0.02
 destroy = "Maybe Traiborn will have another."
 examine = "Egg containing knowledge."
-use = "Quest"
 kept = "Wilderness"
 
 [enchanted_milk]
@@ -721,7 +698,6 @@ tradeable = false
 weight = 2.2
 destroy = "Maybe Traiborn will have another."
 examine = "Guiding milk."
-use = "Quest"
 kept = "Wilderness"
 
 [enchanted_flour]
@@ -730,7 +706,6 @@ tradeable = false
 weight = 1.36
 destroy = "Maybe Traiborn will have another."
 examine = "A pot of special flour."
-use = "Quest"
 kept = "Wilderness"
 
 [druid_pouch_recipe_for_disaster]
@@ -851,7 +826,6 @@ tradeable = false
 weight = 0.028
 slot = "Shield"
 examine = "Like a banana only redder."
-use = "Quest"
 kept = "Wilderness"
 
 [tchiki_monkey_nuts]
@@ -860,7 +834,6 @@ heals = 50
 tradeable = false
 weight = 0.01
 examine = "Like Monkey Nuts only Tchikier."
-use = "Quest"
 kept = "Wilderness"
 
 [sliced_red_banana]
@@ -869,7 +842,6 @@ heals = 50
 tradeable = false
 weight = 0.008
 examine = "Perfect for stuffing snakes."
-use = "Quest"
 kept = "Wilderness"
 
 [tchiki_nut_paste]
@@ -878,7 +850,6 @@ heals = 50
 tradeable = false
 weight = 0.008
 examine = "Mixing this with jam would just be wrong."
-use = "Quest"
 kept = "Wilderness"
 
 [snake_corpse]
@@ -886,7 +857,6 @@ id = 7576
 tradeable = false
 weight = 3.0
 examine = "Like a snake only not alive."
-use = "Quest"
 kept = "Wilderness"
 
 [raw_stuffed_snake]
@@ -894,7 +864,6 @@ id = 7577
 tradeable = false
 weight = 3.0
 examine = "This snake is stuffed right up."
-use = "Quest"
 kept = "Wilderness"
 
 [odd_stuffed_snake]
@@ -902,7 +871,6 @@ id = 7578
 tradeable = false
 weight = 3.0
 examine = "Is this really what you wanted to do?"
-use = "Quest"
 kept = "Wilderness"
 
 [stuffed_snake]
@@ -911,7 +879,6 @@ heals = 70
 tradeable = false
 weight = 3.0
 examine = "Fit for a Monkey King."
-use = "Quest"
 kept = "Wilderness"
 
 [snake_over_cooked]
@@ -919,7 +886,6 @@ id = 7580
 tradeable = false
 weight = 0.004
 examine = "It's a burnt snake."
-use = "Quest"
 kept = "Wilderness"
 
 [overgrown_hellcat]

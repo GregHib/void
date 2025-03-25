@@ -4,6 +4,57 @@ id = 977
 [cooking_pot_noted]
 id = 978
 
+[blank_necklace]
+id = 1666
+
+[sapphire_necklace_icon]
+id = 1668
+
+[emerald_necklace_icon]
+id = 1669
+
+[ruby_necklace_icon]
+id = 1670
+
+[diamond_necklace_icon]
+id = 1671
+
+[blank_amulet_unstrung]
+id = 1685
+
+[sapphire_amulet_icon]
+id = 1687
+
+[emerald_amulet_icon]
+id = 1688
+
+[ruby_amulet_icon]
+id = 1689
+
+[diamond_amulet_icon]
+id = 1690
+
+[dragonstone_ammy_icon]
+id = 1691
+
+[blank_ring]
+id = 1647
+
+[sapphire_ring_icon]
+id = 1649
+
+[emerald_ring_icon]
+id = 1650
+
+[ruby_ring_icon]
+id = 1651
+
+[diamond_ring_icon]
+id = 1652
+
+[dragonstone_ring_icon]
+id = 1653
+
 [man]
 id = 3241
 examine = "One of Gielinor's many citizens."
@@ -132,7 +183,6 @@ tradeable = false
 weight = 0.001
 examine = "A ticket to take you from Keldagrim to the dwarven mines under Ice Mountain."
 kept = "Reclaim"
-use = "Removed"
 
 [minecart_ticket_ice_mountain_to_keldagrim]
 id = 5021
@@ -140,7 +190,6 @@ tradeable = false
 weight = 0.001
 examine = "A ticket to take you from the dwarven mines under Ice Mountain to Keldagrim."
 kept = "Reclaim"
-use = "Removed"
 
 [minecart_ticket_keldagrim_to_white_wolf_mountain]
 id = 5022
@@ -148,7 +197,6 @@ tradeable = false
 weight = 0.001
 examine = "A ticket to take you from Keldagrim to the passage under White Wolf Mountain."
 kept = "Reclaim"
-use = "Removed"
 
 [minecart_ticket_white_wolf_mountain_to_keldagrim]
 id = 5023
@@ -156,7 +204,6 @@ tradeable = false
 weight = 0.001
 examine = "A ticket to take you from the passage under White Wolf Mountain to Keldagrim."
 kept = "Reclaim"
-use = "Removed"
 
 [dwarf_the_giant_dwarf]
 id = 5054
@@ -210,7 +257,6 @@ tradeable = false
 weight = 2.721
 examine = "Alas...I hardly knew him."
 kept = "Wilderness"
-use = "Limited"
 
 [menaphite_thug]
 id = 6780

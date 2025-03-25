@@ -19,7 +19,6 @@ tradeable = false
 weight = 0.141
 slot = "Weapon"
 examine = "This is an empty stone bowl."
-use = "Quest"
 kept = "Wilderness"
 
 [a_stone_bowl_full]
@@ -28,7 +27,6 @@ tradeable = false
 weight = 0.226
 slot = "Weapon"
 examine = "This is a stone bowl full of lava."
-use = "Quest"
 kept = "Wilderness"
 
 [elemental_shield]

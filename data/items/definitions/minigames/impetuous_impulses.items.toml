@@ -181,7 +181,6 @@ weight = 0.003
 destroy = "You will have to ask Elnock for another one of these."
 examine = "Lets you easily identify your prey."
 kept = "Vanish"
-use = "Removed"
 
 [pirate_impling_jar]
 id = 13337

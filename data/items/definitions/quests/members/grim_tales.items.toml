@@ -3,7 +3,6 @@ id = 11196
 tradeable = false
 weight = 0.001
 examine = "One of Grimgnash's feathers."
-use = "Quest"
 kept = "Wilderness"
 
 [miazrqas_pendant]
@@ -12,7 +11,6 @@ tradeable = false
 weight = 0.01
 destroy = "You will need to try and find another pendant in the mouse hole if you destroy this."
 examine = "The pendant belonging to Miazrqa."
-use = "Quest"
 kept = "Wilderness"
 
 [music_sheet]
@@ -21,7 +19,6 @@ tradeable = false
 weight = 0.01
 destroy = "You will need to find another sheet of music in the witch's basement if you destroy this."
 examine = "A sheet of music."
-use = "Quest"
 kept = "Wilderness"
 
 [ruperts_helmet]
@@ -30,7 +27,6 @@ tradeable = false
 weight = 1.9
 destroy = "You will need to obtain another helmet from Rupert the Beard if you destroy this."
 examine = "A sturdy helmet belonging to Rupert the Beard."
-use = "Quest"
 kept = "Wilderness"
 
 [dwarven_helmet]
@@ -52,7 +48,6 @@ tradeable = false
 weight = 0.01
 destroy = "You will need to find another copy in the witch's basement if you destroy this."
 examine = "A recipe for a shrinking potion."
-use = "Quest"
 kept = "Wilderness"
 
 [to_do_list]
@@ -61,7 +56,6 @@ tradeable = false
 weight = 0.01
 destroy = "You will need to find another copy in the witch's basement if you destroy this."
 examine = "A list of tasks for the day."
-use = "Quest"
 kept = "Wilderness"
 
 [shrink_me_quick]
@@ -72,7 +66,6 @@ empty = "vial"
 slot = "Weapon"
 destroy = "You will need to make another shrinking potion if you destroy this."
 examine = "Apparently it shrinks you. Very fast."
-use = "Quest"
 kept = "Wilderness"
 
 [shrunk_ogleroot]
@@ -88,7 +81,6 @@ tradeable = false
 weight = 30.0
 destroy = "You will need to get another Golden Goblin from the cloud area if you destroy this."
 examine = "A shiny golden goblin. Strange!"
-use = "Quest"
 kept = "Wilderness"
 
 [magic_beans_grim_tales]
@@ -97,5 +89,4 @@ tradeable = false
 weight = 0.01
 destroy = "You will need to get another bag of beans from Sylas if you destroy this one."
 examine = "A bag of magic beans."
-use = "Quest"
 kept = "Wilderness"

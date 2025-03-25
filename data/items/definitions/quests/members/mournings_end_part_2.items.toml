@@ -18,7 +18,6 @@ tradeable = false
 weight = 0.01
 destroy = "Resetting the light maze will generate a new mirror."
 examine = "A small hand mirror."
-use = "Quest"
 kept = "Wilderness"
 
 [red_crystal] # Unobtainable
@@ -35,7 +34,6 @@ tradeable = false
 weight = 0.015
 destroy = "Resetting the light maze will generate a new crystal."
 examine = "A yellow crystal."
-use = "Quest"
 kept = "Wilderness"
 
 [green_crystal]
@@ -48,7 +46,6 @@ tradeable = false
 weight = 0.015
 destroy = "Resetting the light maze will generate a new crystal."
 examine = "A cyan crystal."
-use = "Quest"
 kept = "Wilderness"
 
 [blue_crystal]
@@ -57,7 +54,6 @@ tradeable = false
 weight = 0.015
 destroy = "Resetting the light maze will generate a new crystal."
 examine = "A blue crystal."
-use = "Quest"
 kept = "Wilderness"
 
 [fractured_crystal_horizontal]
@@ -66,7 +62,6 @@ tradeable = false
 weight = 0.015
 destroy = "Resetting the light maze will generate a new crystal."
 examine = "A fractured crystal, one of the edges is clear."
-use = "Quest"
 kept = "Wilderness"
 
 [fractured_crystal_vertical]
@@ -93,7 +88,6 @@ id = 6650
 tradeable = false
 weight = 0.015
 examine = "A blackened crystal sample."
-use = "Quest"
 kept = "Wilderness"
 
 [newly_made_crystal]
@@ -101,7 +95,6 @@ id = 6651
 tradeable = false
 weight = 0.015
 examine = "A newly formed crystal."
-use = "Quest"
 kept = "Wilderness"
 
 [newly_made_crystal_charged]
@@ -109,7 +102,6 @@ id = 6652
 tradeable = false
 weight = 0.015
 examine = "A warm energy radiates from this crystal."
-use = "Quest"
 kept = "Wilderness"
 
 [crystal_trinket]

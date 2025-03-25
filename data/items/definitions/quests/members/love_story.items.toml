@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.008
 destroy = "Maybe Zenevivia will replace it."
 examine = "It doesn't look very valuable, but Mabel likes it."
-use = "Quest"
 kept = "Wilderness"
 
 [twig]
@@ -13,7 +12,6 @@ tradeable = false
 weight = 0.01
 destroy = "It should be easy to find another twig in a haystack if you need one."
 examine = "A completely ordinary twig."
-use = "Quest"
 kept = "Wilderness"
 
 [dummy_love_story]
@@ -22,7 +20,6 @@ tradeable = false
 weight = 2.0
 destroy = "The Wise Old Man may be willing to replace it or help you make another one."
 examine = "Lets you find incredibly dangerous traps without suffering."
-use = "Quest"
 kept = "Wilderness"
 
 [teleport_to_house_chipped]
@@ -46,7 +43,6 @@ tradeable = false
 weight = 0.1
 destroy = "You will not be able to get a replacement. Are you REALLY sure you wish to destroy it?"
 examine = "A battered lamp that belonged to Mabel."
-use = "Quest"
 kept = "Vanish"
 
 [rimmington_tablet]

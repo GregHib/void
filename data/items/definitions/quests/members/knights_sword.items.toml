@@ -3,7 +3,6 @@ id = 666
 tradeable = false
 weight = 1.36
 examine = "Picture of a posing Paladin."
-use = "Quest"
 kept = "Wilderness"
 
 [blurite_sword]

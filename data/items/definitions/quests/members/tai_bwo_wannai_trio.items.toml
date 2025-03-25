@@ -10,7 +10,6 @@ id = 3128
 tradeable = false
 weight = 0.8
 examine = "Burnt Jogre bones smothered with raw Karambwanji Paste."
-use = "Quest"
 kept = "Wilderness"
 
 [pasty_jogre_bones_burnt_cooked]
@@ -18,7 +17,6 @@ id = 3129
 tradeable = false
 weight = 0.8
 examine = "Burnt Jogre bones smothered with cooked Karambwanji paste."
-use = "Quest"
 kept = "Wilderness"
 
 [marinated_jogre_bones]
@@ -26,7 +24,6 @@ id = 3130
 tradeable = false
 weight = 0.8
 examine = "Burnt Jogre bones marinated in a lovely Karambwanji sauce. Perfect."
-use = "Quest"
 kept = "Wilderness"
 
 [pasty_jogre_bones_raw]
@@ -34,7 +31,6 @@ id = 3131
 tradeable = false
 weight = 0.8
 examine = "Jogre bones smothered with raw Karambwanji paste."
-use = "Quest"
 kept = "Wilderness"
 
 [pasty_jogre_bones_cooked]
@@ -42,7 +38,6 @@ id = 3132
 tradeable = false
 weight = 0.8
 examine = "Jogre bones smothered with cooked Karambwanji paste."
-use = "Quest"
 kept = "Wilderness"
 
 [marinated_jogre_bones_bad]
@@ -50,7 +45,6 @@ id = 3133
 tradeable = false
 weight = 0.8
 examine = "Jogre Bones marinated in Karambwanji sauce. Not quite right."
-use = "Quest"
 kept = "Wilderness"
 
 [raw_karambwanji]
@@ -74,7 +68,6 @@ id = 3152
 tradeable = false
 weight = 0.01
 examine = "Freshly made octopus paste."
-use = "Quest"
 kept = "Reclaim"
 
 [karambwan_paste_poison]
@@ -82,7 +75,6 @@ id = 3153
 tradeable = false
 weight = 0.01
 examine = "Freshly made octopus paste. This smells quite nauseating."
-use = "Quest"
 kept = "Reclaim"
 
 [karambwan_paste_cooked]
@@ -94,7 +86,6 @@ id = 3155
 tradeable = false
 weight = 0.01
 examine = "This paste smells of raw fish."
-use = "Quest"
 kept = "Reclaim"
 
 [karambwanji_paste_cooked]
@@ -102,7 +93,6 @@ id = 3156
 tradeable = false
 weight = 0.01
 examine = "This paste smells of cooked fish."
-use = "Quest"
 kept = "Reclaim"
 
 [karambwan_vessel]
@@ -121,7 +111,6 @@ id = 3159
 limit = 100
 weight = 3.15
 examine = "This Karambwan Vessel is loaded with Karambwanji."
-use = "Quest"
 
 [karambwan_vessel_full_noted]
 id = 3160
@@ -131,7 +120,6 @@ id = 3161
 tradeable = false
 weight = 0.05
 examine = "A set of instructions explaining how to construct a Karambwan vessel."
-use = "Quest"
 kept = "Wilderness"
 
 [sliced_banana]
@@ -171,7 +159,6 @@ id = 3167
 tradeable = false
 weight = 0.3
 examine = "It's the skin of a dead monkey."
-use = "Quest"
 kept = "Wilderness"
 
 [seaweed_sandwich]
@@ -179,7 +166,6 @@ id = 3168
 tradeable = false
 weight = 0.5
 examine = "A 'Seaweed in Monkey Skin' sandwich. Perfect for statue repair."
-use = "Quest"
 kept = "Wilderness"
 
 [stuffed_monkey]
@@ -187,7 +173,6 @@ id = 3169
 tradeable = false
 weight = 1.2
 examine = "A body of a dead monkey, tastefully stuffed with seaweed."
-use = "Quest"
 kept = "Wilderness"
 
 [bronze_spear_kp]

@@ -1148,7 +1148,6 @@ weight = 0.02
 destroy = "Are you sure you wish to destroy this item? You will not be able to reclaim it."
 examine = "An uncharged Summoning pouch. Can be converted to its charged counterpart."
 kept = "Vanish"
-use = "Limited"
 
 [granite_crab_pouch_u]
 clone = "dreadfowl_pouch_u"

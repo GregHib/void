@@ -46,7 +46,6 @@ id = 1486
 tradeable = false
 weight = 2.0
 examine = "A broken piece of railing."
-use = "Quest"
 kept = "Wilderness"
 
 [unicorn_horn_underground_pass]
@@ -54,7 +53,6 @@ id = 1487
 tradeable = false
 weight = 0.007
 examine = "A withered unicorn horn."
-use = "Quest"
 kept = "Wilderness"
 
 [paladins_badge_sir_jerro]
@@ -62,7 +60,6 @@ id = 1488
 tradeable = false
 weight = 0.012
 examine = "A coat of arms of the Ardougne Paladins."
-use = "Quest"
 kept = "Wilderness"
 
 [paladins_badge_sir_carl]
@@ -78,7 +75,6 @@ id = 1491
 tradeable = false
 weight = 1.2
 examine = "A cat."
-use = "Quest"
 kept = "Wilderness"
 
 [doll_of_iban]
@@ -86,7 +82,6 @@ id = 1492
 tradeable = false
 weight = 0.3
 examine = "A simple doll with Iban's likeness."
-use = "Quest"
 kept = "Wilderness"
 
 [old_journal]
@@ -118,7 +113,6 @@ id = 1496
 tradeable = false
 weight = 0.1
 examine = "I thought you only saw these in pairs?"
-use = "Quest"
 kept = "Wilderness"
 
 [amulet_of_othanian]
@@ -126,7 +120,6 @@ id = 1497
 tradeable = false
 weight = 0.01
 examine = "A mystical demonic amulet."
-use = "Quest"
 kept = "Wilderness"
 
 [amulet_of_doomion]
@@ -142,7 +135,6 @@ id = 1500
 tradeable = false
 weight = 0.025
 examine = "A strange dark liquid."
-use = "Quest"
 kept = "Wilderness"
 
 [dwarf_brew]
@@ -150,7 +142,6 @@ id = 1501
 tradeable = false
 weight = 0.15
 examine = "Smells stronger than most spirits."
-use = "Quest"
 kept = "Wilderness"
 
 [ibans_ashes]
@@ -158,7 +149,6 @@ id = 1502
 tradeable = false
 weight = 0.056
 examine = "The burnt remains of Iban."
-use = "Quest"
 kept = "Wilderness"
 
 [bronze_fire_arrows_unlit]
@@ -180,7 +170,6 @@ id = 2529
 tradeable = false
 weight = 5.0
 examine = "A magical sphere that glimmers within."
-use = "Quest"
 
 [iron_fire_arrows_unlit]
 id = 2532

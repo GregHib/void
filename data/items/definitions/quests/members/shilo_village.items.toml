@@ -3,7 +3,6 @@ id = 604
 tradeable = false
 weight = 0.01
 examine = "A slender bone shard given to you by Zadimus."
-use = "Quest"
 kept = "Wilderness"
 
 [bone_key_shilo_village]
@@ -12,7 +11,6 @@ tradeable = false
 weight = 0.01
 destroy = "This looks quite valuable. As you go to throw the item away Zadimus' words come to you again. 'I am the key, but only kin may approach her'."
 examine = "A key fashioned from a shard of bone."
-use = "Quest"
 kept = "Wilderness"
 
 [stone_plaque]
@@ -20,7 +18,6 @@ id = 606
 tradeable = false
 weight = 0.8
 examine = "A stone plaque with carved letters in it."
-use = "Quest"
 kept = "Wilderness"
 
 [tattered_scroll]
@@ -28,7 +25,6 @@ id = 607
 tradeable = false
 weight = 0.02
 examine = "An ancient tattered scroll."
-use = "Quest"
 kept = "Wilderness"
 
 [crumpled_scroll]
@@ -36,7 +32,6 @@ id = 608
 tradeable = false
 weight = 0.02
 examine = "An ancient crumpled scroll."
-use = "Quest"
 kept = "Wilderness"
 
 [rashiliyia_corpse]
@@ -44,7 +39,6 @@ id = 609
 tradeable = false
 weight = 0.3
 examine = "The remains of the Zombie Queen."
-use = "Quest"
 kept = "Wilderness"
 
 [zadimus_corpse]
@@ -52,7 +46,6 @@ id = 610
 tradeable = false
 weight = 0.5
 examine = "The remains of Zadimus."
-use = "Quest"
 kept = "Wilderness"
 
 [locating_crystal]
@@ -60,7 +53,6 @@ id = 611
 tradeable = false
 weight = 0.907
 examine = "A magical crystal sphere."
-use = "Quest"
 kept = "Wilderness"
 
 [locating_crystal_2]
@@ -100,7 +92,6 @@ id = 618
 tradeable = false
 weight = 0.001
 examine = "Beads carved out of a bone."
-use = "Quest"
 kept = "Reclaim"
 
 [paramaya_ticket]
@@ -126,7 +117,6 @@ id = 623
 tradeable = false
 weight = 0.085
 examine = "An ivory sword pommel."
-use = "Quest"
 kept = "Wilderness"
 
 [bervirius_notes]
@@ -134,7 +124,6 @@ id = 624
 tradeable = false
 weight = 0.02
 examine = "Notes taken from the tomb of Bervirius."
-use = "Quest"
 kept = "Wilderness"
 
 [wampum_belt]
@@ -142,5 +131,4 @@ id = 625
 tradeable = false
 weight = 0.453
 examine = "A decorated belt used to trade information between distant villages."
-use = "Quest"
 kept = "Reclaim"

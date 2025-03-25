@@ -65,7 +65,6 @@ kept = "Vanish"
 id = 10866
 tradeable = false
 examine = "Used to bolt things together."
-use = "Quest"
 kept = "Wilderness"
 
 [binding_fluid]
@@ -73,7 +72,6 @@ id = 10870
 tradeable = false
 weight = 0.01
 examine = "Some magical fluid to bind surfaces."
-use = "Quest"
 kept = "Wilderness"
 
 [pipe_tower_of_life]
@@ -81,7 +79,6 @@ id = 10871
 tradeable = false
 weight = 2.5
 examine = "A section of pipe."
-use = "Quest"
 kept = "Wilderness"
 
 [pipe_ring]
@@ -89,7 +86,6 @@ id = 10872
 tradeable = false
 weight = 0.4
 examine = "A ring used to join two pipes together."
-use = "Quest"
 kept = "Wilderness"
 
 [metal_sheet]
@@ -97,7 +93,6 @@ id = 10873
 tradeable = false
 weight = 0.6
 examine = "A sheet of metal."
-use = "Quest"
 kept = "Wilderness"
 
 [coloured_ball]
@@ -105,7 +100,6 @@ id = 10874
 tradeable = false
 weight = 0.01
 examine = "Bound to have some use."
-use = "Quest"
 kept = "Wilderness"
 
 [valve_wheel]
@@ -113,7 +107,6 @@ id = 10875
 tradeable = false
 weight = 0.32
 examine = "A wheel used to control valves."
-use = "Quest"
 kept = "Wilderness"
 
 [metal_bar]
@@ -121,7 +114,6 @@ id = 10876
 tradeable = false
 weight = 0.92
 examine = "Some unknown metal substance."
-use = "Quest"
 kept = "Wilderness"
 
 [plain_satchel]

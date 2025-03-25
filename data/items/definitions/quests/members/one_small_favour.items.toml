@@ -3,7 +3,6 @@ id = 4415
 tradeable = false
 weight = 1.36
 examine = "A jungle forester's blunt hatchet."
-use = "Quest"
 kept = "Wilderness"
 
 [herbal_tincture]
@@ -11,7 +10,6 @@ id = 4416
 tradeable = false
 weight = 0.15
 examine = "A strong medicinal brew for heavy chests."
-use = "Quest"
 kept = "Wilderness"
 
 [guthix_rest_4]
@@ -71,7 +69,6 @@ id = 4425
 tradeable = false
 weight = 10.0
 examine = "A half-filled feather mattress."
-use = "Quest"
 kept = "Wilderness"
 
 [comfy_mattress]
@@ -79,7 +76,6 @@ id = 4426
 tradeable = false
 weight = 15.0
 examine = "A comfy-looking feather mattress."
-use = "Quest"
 kept = "Wilderness"
 
 [iron_oxide]
@@ -87,7 +83,6 @@ id = 4427
 tradeable = false
 weight = 1.0
 examine = "Looks like a bunch of rust to me."
-use = "Quest"
 kept = "Wilderness"
 
 [animate_rock_scroll]
@@ -95,7 +90,6 @@ id = 4428
 tradeable = false
 weight = 0.01
 examine = "An animate rock spell is written on this parchment."
-use = "Quest"
 kept = "Wilderness"
 
 [broken_vane_part_iron]
@@ -103,7 +97,6 @@ id = 4429
 tradeable = false
 weight = 0.001
 examine = "These weathervane directionals are broken."
-use = "Quest"
 kept = "Wilderness"
 
 [directionals]
@@ -111,7 +104,6 @@ id = 4430
 tradeable = false
 weight = 0.001
 examine = "The weathervane directionals should work now."
-use = "Quest"
 kept = "Wilderness"
 
 [broken_vane_part_bronze]
@@ -119,7 +111,6 @@ id = 4431
 tradeable = false
 weight = 0.001
 examine = "This weathervane ornament is damaged."
-use = "Quest"
 kept = "Wilderness"
 
 [ornament]
@@ -127,7 +118,6 @@ id = 4432
 tradeable = false
 weight = 0.001
 examine = "A fixed Weathervane ornament."
-use = "Quest"
 kept = "Wilderness"
 
 [broken_vane_part_steel]
@@ -135,7 +125,6 @@ id = 4433
 tradeable = false
 weight = 0.001
 examine = "A broken Weathervane pillar."
-use = "Quest"
 kept = "Wilderness"
 
 [weathervane_pillar]
@@ -143,7 +132,6 @@ id = 4434
 tradeable = false
 weight = 0.001
 examine = "A fixed weathervane rotating pillar."
-use = "Quest"
 kept = "Wilderness"
 
 [weather_report]
@@ -151,7 +139,6 @@ id = 4435
 tradeable = false
 weight = 0.03
 examine = "Clear skies ahead, with some chance of showers, thunderstorms, ice and hail."
-use = "Quest"
 kept = "Wilderness"
 
 [airtight_pot]
@@ -193,7 +180,6 @@ id = 4442
 tradeable = false
 weight = 0.001
 examine = "An airtight pot with something inside, most likely breathing salts."
-use = "Quest"
 kept = "Wilderness"
 
 [chicken_cage]
@@ -201,7 +187,6 @@ id = 4443
 tradeable = false
 weight = 1.0
 examine = "A large cage for transporting chickens."
-use = "Quest"
 kept = "Wilderness"
 
 [sharpened_hatchet]
@@ -209,7 +194,6 @@ id = 4444
 tradeable = false
 weight = 1.36
 examine = "A jungle forester's super sharp hatchet."
-use = "Quest"
 kept = "Wilderness"
 
 [red_mahogany_logs]
@@ -217,7 +201,6 @@ id = 4445
 tradeable = false
 weight = 1.36
 examine = "Some mahogany logs which have been professionally cured."
-use = "Quest"
 kept = "Wilderness"
 
 [steel_key_ring]
@@ -233,7 +216,6 @@ id = 4447
 tradeable = false
 weight = 0.1
 examine = "I wonder what happens if I rub it..."
-use = "Quest"
 kept = "Wilderness"
 
 [bowl_of_hot_water]
@@ -275,7 +257,6 @@ id = 4462
 weight = 0.05
 empty = "empty_cup"
 examine = "A ruined herb tea."
-use = "Limited"
 
 [ruined_herb_tea_noted]
 id = 4463
@@ -287,7 +268,6 @@ weight = 0.05
 empty = "empty_cup"
 examine = "An unfinished herb tea made up of water and harralander."
 kept = "Reclaim"
-use = "Limited"
 
 [herb_tea_mix_harralander_noted]
 id = 4465
@@ -299,7 +279,6 @@ weight = 0.05
 empty = "empty_cup"
 examine = "An unfinished herb tea made up of water and guam."
 kept = "Reclaim"
-use = "Limited"
 
 [herb_tea_mix_guam_noted]
 id = 4467
@@ -311,7 +290,6 @@ weight = 0.05
 empty = "empty_cup"
 examine = "An unfinished herb tea made up of water and marrentill."
 kept = "Reclaim"
-use = "Limited"
 
 [herb_tea_mix_marrentill_noted]
 id = 4469
@@ -323,7 +301,6 @@ weight = 0.05
 empty = "empty_cup"
 examine = "An unfinished herb tea made up of water, harralander and marrentill."
 kept = "Reclaim"
-use = "Limited"
 
 [herb_tea_mix_harralander_and_marrentill_noted]
 id = 4471
@@ -335,7 +312,6 @@ weight = 0.05
 empty = "empty_cup"
 examine = "An unfinished herb tea made up of water, harralander and guam."
 kept = "Reclaim"
-use = "Limited"
 
 [herb_tea_mix_harralander_and_guam_noted]
 id = 4473
@@ -347,7 +323,6 @@ weight = 0.05
 empty = "empty_cup"
 examine = "An unfinished herb tea made up of water and 2 doses of guam."
 kept = "Reclaim"
-use = "Limited"
 
 [herb_tea_mix_2_guams_noted]
 id = 4475
@@ -359,7 +334,6 @@ weight = 0.05
 empty = "empty_cup"
 examine = "An unfinished herb tea made up of water, guam and marrentill."
 kept = "Reclaim"
-use = "Limited"
 
 [herb_tea_mix_guam_and_marrentill_noted]
 id = 4477
@@ -371,7 +345,6 @@ weight = 0.05
 empty = "empty_cup"
 examine = "An unfinished herb tea made up of water, harralander, marrentill and guam."
 kept = "Reclaim"
-use = "Limited"
 
 [herb_tea_mix_harralander_marrentill_and_guam_noted]
 id = 4479
@@ -383,7 +356,6 @@ weight = 0.05
 empty = "empty_cup"
 examine = "An unfinished herb tea made up of water, 2 doses of guam and marrentill."
 kept = "Reclaim"
-use = "Limited"
 
 [herb_tea_mix_2_guams_and_marrentill_noted]
 id = 4481
@@ -395,7 +367,6 @@ weight = 0.05
 empty = "empty_cup"
 examine = "An unfinished herb tea made up of water, 2 doses of guam and harralander."
 kept = "Reclaim"
-use = "Limited"
 
 [herb_tea_mix_2_guams_and_harralander_noted]
 id = 4483

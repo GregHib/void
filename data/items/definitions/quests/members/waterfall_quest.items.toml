@@ -32,7 +32,6 @@ id = 296
 tradeable = false
 weight = 0.141
 examine = "An urn containing Glarial's ashes."
-use = "Quest"
 kept = "Wilderness"
 
 [glarials_urn_empty]
@@ -40,7 +39,6 @@ id = 297
 tradeable = false
 weight = 0.085
 examine = "An empty urn made for Glarial's ashes."
-use = "Quest"
 kept = "Wilderness"
 
 [a_key_waterfall_dungeon]

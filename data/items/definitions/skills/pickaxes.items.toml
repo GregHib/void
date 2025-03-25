@@ -3,7 +3,6 @@ id = 466
 weight = 0.1
 slot = "Weapon"
 examine = "Useless without the head."
-use = "Removed"
 
 [pickaxe_handle_noted]
 id = 467
@@ -13,7 +12,6 @@ id = 468
 weight = 1.814
 slot = "Weapon"
 examine = "Useless."
-use = "Removed"
 
 [broken_pickaxe_bronze_noted]
 id = 469
@@ -23,7 +21,6 @@ id = 470
 weight = 1.814
 slot = "Weapon"
 examine = "Useless."
-use = "Removed"
 
 [broken_pickaxe_iron_noted]
 id = 471
@@ -33,7 +30,6 @@ id = 472
 weight = 1.814
 slot = "Weapon"
 examine = "Useless."
-use = "Removed"
 
 [broken_pickaxe_steel_noted]
 id = 473
@@ -43,7 +39,6 @@ id = 474
 weight = 1.814
 slot = "Weapon"
 examine = "Useless."
-use = "Removed"
 
 [broken_pickaxe_mithril_noted]
 id = 475
@@ -53,7 +48,6 @@ id = 476
 weight = 1.814
 slot = "Weapon"
 examine = "Useless."
-use = "Removed"
 
 [broken_pickaxe_adamant_noted]
 id = 477
@@ -63,7 +57,6 @@ id = 478
 weight = 1.814
 slot = "Weapon"
 examine = "Useless."
-use = "Removed"
 
 [broken_pickaxe_rune_noted]
 id = 479
@@ -72,7 +65,6 @@ id = 479
 id = 480
 weight = 1.814
 examine = "Useless."
-use = "Removed"
 
 [pickaxe_head_bronze_noted]
 id = 481

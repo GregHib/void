@@ -11,7 +11,6 @@ id = 4678
 tradeable = false
 weight = 0.1
 examine = "Has a lid shaped like a man. I think it contains someone's liver. Yuck."
-use = "Quest"
 kept = "Vanish"
 
 [canopic_jar_apmeken]
@@ -19,7 +18,6 @@ id = 4679
 tradeable = false
 weight = 0.1
 examine = "Has a lid shaped like an ape. Eeew! I think it contains someone's intestines."
-use = "Quest"
 kept = "Vanish"
 
 [canopic_jar_scabaras]
@@ -27,7 +25,6 @@ id = 4680
 tradeable = false
 weight = 0.1
 examine = "Has a lid shaped like a bug. Disgusting! I think there's a stomach inside."
-use = "Quest"
 kept = "Vanish"
 
 [canopic_jar_crondis]
@@ -35,7 +32,6 @@ id = 4681
 tradeable = false
 weight = 0.1
 examine = "Has a lid shaped like a crocodile. Yuck, I think there are lungs inside."
-use = "Quest"
 kept = "Vanish"
 
 [holy_symbol_icthlarins_little_helper]
@@ -43,7 +39,6 @@ id = 4682
 tradeable = false
 weight = 2.267
 examine = "Menaphite lucky charm."
-use = "Quest"
 kept = "Reclaim"
 
 [unholy_symbol_icthlarins_little_helper]
@@ -52,7 +47,6 @@ tradeable = false
 weight = 2.267
 aka = ["amascuts_symbol"]
 examine = "Sign of the devourer."
-use = "Quest"
 kept = "Vanish"
 
 [linen]
@@ -60,7 +54,6 @@ id = 4684
 tradeable = false
 weight = 0.907
 examine = "One sheet of mummy wrap."
-use = "Quest"
 kept = "Wilderness"
 
 [embalming_manual]
@@ -84,7 +77,6 @@ id = 4689
 tradeable = false
 weight = 0.5
 examine = "A little heap of salt."
-use = "Quest"
 kept = "Wilderness"
 
 [sphinxs_token]
@@ -92,7 +84,6 @@ id = 4691
 tradeable = false
 weight = 0.8
 examine = "Miniature golden statue of a sphinx."
-use = "Quest"
 kept = "Reclaim"
 
 [gold_leaf_icthlarins_little_helper]
@@ -107,5 +98,4 @@ tradeable = false
 weight = 3.0
 empty = "empty_bucket"
 examine = "It's a bucket of salty water."
-use = "Quest"
 kept = "Wilderness"

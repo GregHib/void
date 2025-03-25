@@ -4,7 +4,6 @@ price = 318300
 weight = 5.0
 destroy = "No"
 examine = "Godsword shards 1 and 2."
-use = "Limited"
 
 [godsword_shards_1_and_2_noted]
 id = 11687
@@ -15,7 +14,6 @@ price = 323800
 weight = 5.0
 destroy = "No"
 examine = "Godsword shards 1 and 3."
-use = "Limited"
 
 [godsword_shards_1_and_3_noted]
 id = 11689
@@ -36,7 +34,6 @@ price = 322800
 weight = 5.0
 destroy = "No"
 examine = "Godsword shards 2 and 3."
-use = "Limited"
 
 [godsword_shards_2_and_3_noted]
 id = 11693

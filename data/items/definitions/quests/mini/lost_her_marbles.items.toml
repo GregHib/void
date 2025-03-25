@@ -3,7 +3,6 @@ id = 18653
 tradeable = false
 destroy = "You stole this from a citizen."
 examine = "This fragment of elemental fire pulses as if alive."
-use = "Quest"
 kept = "Wilderness"
 
 [flame_fragment_farmer]
@@ -11,7 +10,6 @@ id = 18654
 tradeable = false
 destroy = "You stole this from a farmer."
 examine = "This fragment of elemental fire pulses as if alive."
-use = "Quest"
 kept = "Wilderness"
 
 [flame_fragment_ham_member]
@@ -19,7 +17,6 @@ id = 18655
 tradeable = false
 destroy = "You stole this from a HAM member."
 examine = "This fragment of elemental fire pulses as if alive."
-use = "Quest"
 kept = "Wilderness"
 
 [flame_fragment_warrior]
@@ -27,7 +24,6 @@ id = 18656
 tradeable = false
 destroy = "You stole this from a warrior."
 examine = "This fragment of elemental fire pulses as if alive."
-use = "Quest"
 kept = "Wilderness"
 
 [flame_fragment_master_farmer]
@@ -35,7 +31,6 @@ id = 18657
 tradeable = false
 destroy = "You stole this from a master farmer."
 examine = "This fragment of elemental fire pulses as if alive."
-use = "Quest"
 kept = "Wilderness"
 
 [flame_fragment_guard]
@@ -43,7 +38,6 @@ id = 18658
 tradeable = false
 destroy = "You stole this from a guard."
 examine = "This fragment of elemental fire pulses as if alive."
-use = "Quest"
 kept = "Wilderness"
 
 [flame_fragment_rogue]
@@ -51,7 +45,6 @@ id = 18659
 tradeable = false
 destroy = "You stole this from a rogue."
 examine = "This fragment of elemental fire pulses as if alive."
-use = "Quest"
 kept = "Wilderness"
 
 [flame_fragment_cave_goblin]
@@ -59,5 +52,4 @@ id = 18660
 tradeable = false
 destroy = "You stole this from a cave goblin."
 examine = "This fragment of elemental fire pulses as if alive."
-use = "Quest"
 kept = "Wilderness"

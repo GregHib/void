@@ -4,7 +4,6 @@ tradeable = false
 weight = 0.001
 destroy = "You can get the hand again from the creatures in the Jade Vine."
 examine = "A wizard's severed hand. You can tell by the robes."
-use = "Quest"
 kept = "Wilderness"
 
 [root_cutting]
@@ -33,7 +32,6 @@ id = 11775
 tradeable = false
 weight = 0.01
 examine = "A floppy root cutting. Quite dead."
-use = "Quest"
 kept = "Wilderness"
 
 [potted_root]
@@ -41,7 +39,6 @@ id = 11776
 tradeable = false
 weight = 0.453
 examine = "A potted root."
-use = "Quest"
 kept = "Wilderness"
 
 [sealed_pot]
@@ -50,7 +47,6 @@ tradeable = false
 weight = 2.267
 destroy = "You can get the sealed pot back by visiting Garth, the farmer on Karamja."
 examine = "This sealed pot contains your vine cutting - hopefully still alive."
-use = "Quest"
 kept = "Wilderness"
 
 [jade_vine_seed]
