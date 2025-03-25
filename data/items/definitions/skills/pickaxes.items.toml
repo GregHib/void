@@ -1,3 +1,117 @@
+[pickaxe_handle]
+id = 466
+weight = 0.1
+slot = "Weapon"
+examine = "Useless without the head."
+use = "Removed"
+
+[pickaxe_handle_noted]
+id = 467
+
+[broken_pickaxe_bronze]
+id = 468
+weight = 1.814
+slot = "Weapon"
+examine = "Useless."
+use = "Removed"
+
+[broken_pickaxe_noted]
+id = 469
+
+[broken_pickaxe_iron]
+id = 470
+weight = 1.814
+slot = "Weapon"
+examine = "Useless."
+use = "Removed"
+
+[broken_pickaxe_noted_2]
+id = 471
+
+[broken_pickaxe_steel]
+id = 472
+weight = 1.814
+slot = "Weapon"
+examine = "Useless."
+use = "Removed"
+
+[broken_pickaxe_noted_3]
+id = 473
+
+[broken_pickaxe_mithril]
+id = 474
+weight = 1.814
+slot = "Weapon"
+examine = "Useless."
+use = "Removed"
+
+[broken_pickaxe_noted_4]
+id = 475
+
+[broken_pickaxe_adamant]
+id = 476
+weight = 1.814
+slot = "Weapon"
+examine = "Useless."
+use = "Removed"
+
+[broken_pickaxe_noted_5]
+id = 477
+
+[broken_pickaxe_rune]
+id = 478
+weight = 1.814
+slot = "Weapon"
+examine = "Useless."
+use = "Removed"
+
+[broken_pickaxe_noted_6]
+id = 479
+
+[pickaxe_head_bronze]
+id = 480
+weight = 1.814
+examine = "Useless."
+use = "Removed"
+
+[pickaxe_head_noted]
+id = 481
+
+[pickaxe_head_iron]
+clone = "pickaxe_head_bronze"
+id = 482
+
+[pickaxe_head_noted_2]
+id = 483
+
+[pickaxe_head_steel]
+clone = "pickaxe_head_bronze"
+id = 484
+
+[pickaxe_head_noted_3]
+id = 485
+
+[pickaxe_head_mithril]
+clone = "pickaxe_head_bronze"
+id = 486
+
+[pickaxe_head_noted_4]
+id = 487
+
+[pickaxe_head_adamant]
+clone = "pickaxe_head_bronze"
+id = 488
+
+[pickaxe_head_noted_5]
+id = 489
+
+[pickaxe_head_rune]
+clone = "pickaxe_head_bronze"
+id = 490
+
+[pickaxe_head_noted_6]
+id = 491
+
 [bronze_pickaxe]
 id = 1265
 price = 17

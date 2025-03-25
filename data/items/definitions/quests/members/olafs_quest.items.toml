@@ -92,7 +92,7 @@ id = 11042
 clone = "key_olafs_quest_cross"
 id = 11043
 
-[rotten_barrel_2]
+[rotten_barrel_olafs_quest]
 id = 11044
 tradeable = false
 weight = 0.001
@@ -102,10 +102,14 @@ use = "Quest"
 kept = "Vanish"
 
 [rotten_barrel]
-clone = "rotten_barrel_2"
 id = 11045
+tradeable = false
+weight = 0.001
+destroy = "This barrel will be destroyed if you drop it and you will need to pick up another from Sven's cave."
+examine = "Looks like it might still float..."
+kept = "Vanish"
 
-[rope_4]
+[rope_olafs_quest]
 id = 11046
 limit = 100
 weight = 1.36

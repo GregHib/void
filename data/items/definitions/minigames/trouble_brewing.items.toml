@@ -409,7 +409,7 @@ weight = 0.001
 examine = "A how-to of brewing and arson."
 kept = "Reclaim"
 
-[brewin_guide_2]
+[brewin_guide_floor]
 clone = "brewin_guide"
 id = 8990
 

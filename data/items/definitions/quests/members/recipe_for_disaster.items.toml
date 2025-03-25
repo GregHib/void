@@ -238,7 +238,7 @@ examine = "Surprise, it looks like a vanilla pod."
 use = "Quest"
 kept = "Wilderness"
 
-[cornflour] # Unobtainable
+[cornflour_tradeable] # Unobtainable
 id = 7466
 examine = "It's cornflour."
 

@@ -35,9 +35,10 @@ examine = "It's got Zanik in it."
 use = "Quest"
 kept = "Vanish"
 
-[zanik_2]
+[zanik_debug]
 clone = "zanik"
 id = 8887
+examine = "You should probably get her out of your pocket."
 
 [zanik_ham]
 clone = "zanik"
