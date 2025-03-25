@@ -1,29 +1,35 @@
 package world.gregs.voidps.tools.convert
 
+import world.gregs.config.*
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
+import world.gregs.voidps.engine.entity.item.drop.Drop
 import world.gregs.voidps.engine.entity.item.drop.DropTable
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.item.drop.TableType
-import world.gregs.yaml.Yaml
 import world.gregs.yaml.write.YamlWriterConfiguration
+import java.util.*
 
 object DropTableConverter {
 
     @JvmStatic
     fun main(args: Array<String>) {
         val string = """
-===Catalytic runes===
-{{DropsTableHead|version=Low level}}
-{{DropsLine|name=Nature rune|quantity=4|rarity=7/128}}
-{{DropsLine|name=Chaos rune|quantity=5|rarity=6/128}}
-{{DropsLine|name=Mind rune|quantity=10|rarity=3/128}}
-{{DropsLine|name=Body rune|quantity=10|rarity=3/128}}
-{{DropsLine|name=Mind rune|quantity=18|rarity=2/128}}
-{{DropsLine|name=Body rune|quantity=18|rarity=2/128}}
-{{DropsLine|name=Blood rune|namenotes={{(m)}}|quantity=2|rarity=2/128}}
-{{DropsLine|name=Cosmic rune|quantity=2|rarity=1/128}}
-{{DropsLine|name=Law rune|quantity=3|rarity=1/128}}
+====Normal mode, P2P world {{Members|yes}}====
+{{DropsTableHead|version=Normal}}
+{{DropsLine|name=Long, sharp claws|quantity=1|rarity=Common|raritynotes={{DropNote|Only during the [[Fur 'n Seek/Wish list|Fur 'n Seek wish list]].}}|gemw=no}}
+{{DropsLine|name=Numbing root|quantity=3-6|rarity=46/520|raritynotes={{DropNote|name=rare unique|There is a 1/10 chance to roll onto the mole's unique items table. The rates listed are the overall rate for each specific item, including the 1/10 chance to receive any rare unique item at all. The drop rates of rare items depends on if players are on free-to-play worlds and if fighting in hard mode.}}|citations={{NamedRef|revealed rates}}}}
+{{DropsLine|name=Clingy mole|quantity=1|rarity=5/520|raritynotes={{DropNote|name=rare unique}}|citations={{NamedRef|revealed rates}}}}
+{{DropsLine|name=Dragon 2h sword|quantity=1|rarity=1/520|raritynotes={{DropNote|name=rare unique}}|citations={{NamedRef|revealed rates}}}}
+{{DropsLine|name=Sealed clue scroll (hard)|quantity=1|rarity=1/128}}
+{{DropsLine|name=Sealed clue scroll (elite)|quantity=1|rarity=99/128000|raritynotes={{DropNote|This drop only attempts to roll should you fail to roll a hard clue. Should you get this item, there's a 1% chance it'll be upgraded to a [[sealed clue scroll (master)]].}}}}
+{{DropsLine|name=Sealed clue scroll (master)|quantity=1|rarity=1/128000}}
+{{DropsLine|name=Long bone|quantity=1|rarity=1/400}}
+{{DropsLine|name=Curved bone|quantity=1|rarity=1/5000}}
+{{DropsLine|name=Starved ancient effigy|quantity=1|rarity=Rare}}
+{{DropsLine|name=Rotten fang|quantity=1|rarity=1/2500|altrarity=10/2500|altraritydash=yes|gemw=no|alch=no|raritynotes={{DropNote|name=threshold|Base drop rate of 1/2,500, with a [[Boss pets#Pets unlocked by drops|threshold of 500]].}}|citations={{CiteForum|author = Mod Ryan|url = http://services.runescape.com/m=forum/a=13/sl=0/forums.ws?373,374,807,65550979,goto,1|archivedate=9 February 2015|archiveurl=https://archive.ph/ZkWyc|title = Boss pets - Drop rates!|forum = Ninja Team|postdate = 9 January 2015|name = "pet drop rate"}}}}
 {{DropsTableBottom}}
+
+
         """.trimIndent()
         val all = mutableListOf<DropTable>()
         var builder = DropTable.Builder()
@@ -44,7 +50,68 @@ object DropTableConverter {
         if (element.drops.isNotEmpty()) {
             all.add(element)
         }
-        println(Yaml().writeToString(mapOf("drop_table" to combine(all)), writer))
+        println(Config.stringWriter {
+            val root = combine(all)
+            val queue = LinkedList<Pair<String, DropTable>>()
+            queue.add("drop_table" to root)
+            var i = 0
+            while (queue.isNotEmpty()) {
+                val (name, table) = queue.poll()
+                writeSection(name)
+                if (table.type == TableType.All) {
+                    writePair("type", "all")
+                }
+                if (table.roll != 1) {
+                    writePair("roll", table.roll)
+                }
+                writeKey("drops")
+                write("[\n")
+                for (drop in table.drops) {
+                    if (drop is ItemDrop) {
+                        write(drop)
+                    } else if (drop is DropTable) {
+                        val sub = "sub_table_${i++}"
+                        write("  { table = \"$sub\"")
+                        if(drop.roll != 1) {
+                            write(", roll = ${drop.roll}")
+                        }
+                        write(" },\n")
+                        queue.add(sub to drop)
+                    }
+                }
+                write("]\n\n")
+            }
+        })
+    }
+
+    private fun ConfigWriter.write(value: ItemDrop) {
+        write("  { ")
+        writeKey("id")
+        writeValue(value.id)
+        if (value.amount != 1..1) {
+            write(", ")
+            if (value.amount.first == value.amount.last) {
+                writeKey("amount")
+                writeValue(value.amount.first)
+            } else {
+                writeKey("min")
+                writeValue(value.amount.first)
+                write(", ")
+                writeKey("max")
+                writeValue(value.amount.last)
+            }
+        }
+        if (value.chance != 1) {
+            write(", ")
+            writeKey("chance")
+            writeValue(value.chance)
+        }
+        if (value.members) {
+            write(", ")
+            writeKey("members")
+            writeValue(true)
+        }
+        write(" },\n")
     }
 
     private fun combine(all: MutableList<DropTable>): DropTable {
@@ -70,47 +137,6 @@ object DropTableConverter {
         }
         parent.addDrop(table.build())
         return parent.build()
-    }
-
-    private val writer = object : YamlWriterConfiguration() {
-        override fun explicit(list: List<*>, indent: Int, parentMap: String?): Boolean {
-            return false
-        }
-
-        override fun write(value: Any?, indent: Int, parentMap: String?): Any? {
-            return when (value) {
-                is ItemDrop -> {
-                    val map = mutableMapOf<String, Any>("id" to value.id)
-                    if (value.chance != 1) {
-                        map["chance"] = value.chance
-                    }
-                    if (value.amount.first == value.amount.last) {
-                        val amount = value.amount.first
-                        if (amount != 1) {
-                            map["amount"] = amount
-                        }
-                    } else {
-                        map["amount"] = value.amount.toString()
-                    }
-                    if (value.members) {
-                        map["members"] = true
-                    }
-                    super.write(map, indent, parentMap)
-                }
-                is DropTable -> {
-                    val map = mutableMapOf<String, Any>()
-                    if (value.type != TableType.First) {
-                        map["type"] = value.type.name.lowercase()
-                    }
-                    if (value.roll != 1) {
-                        map["roll"] = value.roll
-                    }
-                    map["drops"] = value.drops
-                    super.write(map, indent, parentMap)
-                }
-                else -> super.write(value, indent, parentMap)
-            }
-        }
     }
 
     fun process(builder: DropTable.Builder, string: String) {

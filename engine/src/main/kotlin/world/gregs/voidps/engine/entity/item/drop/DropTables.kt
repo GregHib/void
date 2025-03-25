@@ -5,13 +5,8 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.timedLoad
-import java.nio.file.Files
-import java.nio.file.Path
-import kotlin.io.path.extension
-import kotlin.io.path.pathString
 
 class DropTables {
 
@@ -38,12 +33,22 @@ class DropTables {
                                 "type" -> type = TableType.byName(string())
                                 "chance" -> chance = int()
                                 "drops" -> while (nextElement()) {
-                                    drops.add(readDrops(tables, itemDefinitions))
+                                    drops.add(readItemDrop(itemDefinitions))
                                 }
                                 else -> throw IllegalArgumentException("Unexpected table key: '$key' ${exception()}")
                             }
                         }
                         tables[tableName] = DropTable(type, roll, drops, chance)
+                    }
+                }
+            }
+            for (table in tables.values) {
+                for (i in table.drops.indices) {
+                    val drop = table.drops[i]
+                    if (drop is ReferenceTable) {
+                        val dropTable = tables[drop.tableName]
+                        require(dropTable != null) { "Unable to find drop table with name '${drop.tableName}'." }
+                        (table.drops as MutableList<Drop>)[i] = dropTable.copy(roll = drop.roll, chance = drop.chance)
                     }
                 }
             }
@@ -53,8 +58,9 @@ class DropTables {
         return this
     }
 
-    private fun ConfigReader.readDrops(tables: Map<String, DropTable>, itemDefinitions: ItemDefinitions?): Drop {
-        var type = TableType.First
+    private data class ReferenceTable(val tableName: String, val roll: Int, override val chance: Int) : Drop
+
+    private fun ConfigReader.readItemDrop(itemDefinitions: ItemDefinitions?): Drop {
         var table = ""
         var members = false
         var chance: Int? = null
@@ -64,10 +70,8 @@ class DropTables {
         var max = 1
         var owns: String? = null
         var lacks: String? = null
-        val drops = ObjectArrayList<Drop>()
         while (nextEntry()) {
             when (val dropKey = key()) {
-                "type" -> type = TableType.byName(string())
                 "table" -> table = string()
                 "chance" -> chance = int()
                 "id" -> id = string()
@@ -81,23 +85,13 @@ class DropTables {
                 "roll" -> roll = int()
                 "owns" -> owns = string()
                 "members" -> members = boolean()
-                "drops" -> while (nextElement()) {
-                    drops.add(readDrops(tables, itemDefinitions))
-                }
                 else -> throw IllegalArgumentException("Unexpected drop key: '$dropKey' ${exception()}")
             }
         }
-        if (drops.isNotEmpty()) {
-            return DropTable(type, roll, drops, chance ?: -1)
-        } else if (table != "") {
-            val dropTable = tables[table]
-            require(dropTable != null) { "Unable to find drop table with name '${table}'." }
-            return dropTable
-        } else if (id != "") {
-            require(itemDefinitions == null || id == "nothing" || itemDefinitions.getOrNull(id) != null) { "Unable to find item with id '${id}'." }
-            return ItemDrop(id = id, min = min, max = max, chance = chance ?: 1, members = members, owns = owns, lacks = lacks)
-        } else {
-            throw IllegalStateException("Unexpected drop entry. ${exception()}")
+        if (table != "") {
+            return ReferenceTable(table, roll, chance ?: -1)
         }
+        require(itemDefinitions == null || id == "nothing" || itemDefinitions.getOrNull(id) != null) { "Unable to find item with id '${id}'." }
+        return ItemDrop(id = id, min = min, max = max, chance = chance ?: 1, members = members, owns = owns, lacks = lacks)
     }
 }
