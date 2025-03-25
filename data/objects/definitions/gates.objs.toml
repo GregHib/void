@@ -1,0 +1,1482 @@
+[gate_opened]
+id = 2061
+
+[gate_closed]
+id = 37
+examine = "Stops people walking past."
+
+[gate_2_opened]
+id = 1540
+examine = "Solid bars of iron."
+
+[gate_2_closed]
+id = 38
+examine = "Stops people walking past."
+
+[gate_4_opened]
+id = 49
+examine = "A wooden gate."
+
+[gate_4_closed]
+id = 47
+examine = "A wooden gate."
+
+[gate_5_opened]
+id = 50
+examine = "A wooden gate."
+
+[gate_5_closed]
+id = 48
+examine = "A wooden gate."
+
+[gate_10_opened]
+id = 2059
+
+[gate_10_closed]
+id = 89
+examine = "A wrought iron gate."
+
+[gate_11_opened]
+id = 2061
+
+[gate_11_closed]
+id = 90
+examine = "A wrought iron gate."
+
+[gate_12_opened]
+id = 2061
+
+[gate_12_closed]
+id = 94
+examine = "A wrought iron gate."
+
+[gate_13_opened]
+id = 2059
+
+[gate_13_closed]
+id = 95
+examine = "A wrought iron gate."
+
+[gate_14_opened]
+id = 15588
+
+[gate_14_closed]
+id = 166
+examine = "A wooden gate."
+
+[gate_15_opened]
+id = 15589
+
+[gate_15_closed]
+id = 167
+examine = "A wooden gate."
+
+[gate_17_opened]
+id = 23918
+examine = "A wooden gate."
+
+[gate_17_closed]
+id = 883
+examine = "A wooden gate."
+
+[gate_33_opened]
+id = 1543
+examine = "Solid bars of iron."
+
+[gate_33_closed]
+id = 1991
+examine = "Solid bars of iron."
+
+[gate_18_opened]
+id = 1552
+examine = "A wooden gate."
+
+[gate_18_closed]
+id = 1551
+examine = "A wooden gate."
+
+[gate_19]
+id = 1552
+examine = "A wooden gate."
+
+[gate_20_opened]
+id = 1556
+examine = "A wooden gate."
+
+[gate_20_closed]
+id = 1553
+examine = "A wooden gate."
+
+[gate_32_opened]
+id = 1554
+
+[gate_32_closed]
+id = 1599
+examine = "A wooden gate."
+
+[gate_31_opened]
+id = 1555
+
+[gate_31_closed]
+id = 1598
+examine = "A wooden gate."
+
+[gate_21]
+id = 1556
+examine = "A wooden gate."
+
+[gate_22_opened]
+id = 1560
+examine = "A wrought iron gate."
+
+[gate_22_closed]
+id = 1557
+gate = false
+examine = "A wrought iron gate."
+
+[gate_23_opened]
+id = 1561
+examine = "A wrought iron gate."
+
+[gate_23_closed]
+id = 1558
+gate = false
+examine = "A wrought iron gate."
+
+[gate_25]
+id = 1560
+examine = "A wrought iron gate."
+
+[gate_26]
+id = 1561
+examine = "A wrought iron gate."
+
+[gate_27_opened]
+id = 1562
+
+[gate_27_closed]
+id = 1589
+examine = "A wrought-iron gate."
+
+[gate_29_opened]
+id = 1562
+
+[gate_29_closed]
+id = 1596
+gate = false
+examine = "A wrought-iron gate."
+
+[gate_28_opened]
+id = 1563
+
+[gate_28_closed]
+id = 1590
+examine = "A wrought-iron gate."
+
+[gate_30_opened]
+id = 1563
+
+[gate_30_closed]
+id = 1597
+gate = false
+examine = "A wrought-iron gate."
+
+[gate_34_opened]
+id = 2040
+
+[gate_34_closed]
+id = 2039
+examine = "It's closed."
+
+[kitchen_gate_2_opened]
+id = 2040
+
+[kitchen_gate_2_closed]
+id = 2200
+examine = "It keeps greedy goblins away from the food."
+
+[metal_gate_opened]
+id = 2040
+
+[metal_gate_closed]
+id = 2259
+examine = "The gate is closed."
+
+[wilderness_agility_gate_east_opened]
+id = 2040
+
+[wilderness_agility_gate_east_closed]
+id = 2307
+gate = false
+
+[gate_53_opened]
+id = 2040
+
+[gate_53_closed]
+id = 2432
+examine = "This gate is closed."
+
+[gate_64_opened]
+id = 2040
+
+[gate_64_closed]
+id = 2673
+examine = "A solid looking gate."
+
+[gate_80_opened]
+id = 2040
+
+[gate_80_closed]
+id = 3506
+examine = "A wrought iron gate."
+
+[gate_35_opened]
+id = 2042
+
+[gate_35_closed]
+id = 2041
+examine = "It's closed."
+
+[gate_81_opened]
+id = 2042
+
+[gate_81_closed]
+id = 3507
+examine = "A wrought iron gate."
+
+[gate_54_opened]
+id = 2042
+
+[gate_54_closed]
+id = 2433
+examine = "This gate is closed."
+
+[barbarian_outpost_gate_left_opened]
+id = 2040
+
+[barbarian_outpost_gate_left_closed]
+id = 2115
+gate = false
+examine = "The left hand side of the gate."
+
+[barbarian_outpost_gate_right_opened]
+id = 2042
+
+[barbarian_outpost_gate_right_closed]
+id = 2116
+gate = false
+examine = "The right hand side of the gate."
+
+[kitchen_gate_opened]
+id = 2042
+
+[kitchen_gate_closed]
+id = 2199
+examine = "It keeps greedy goblins away from the food."
+
+[metal_gate_2_opened]
+id = 2042
+
+[metal_gate_2_closed]
+id = 2260
+examine = "The gate is closed."
+
+[wilderness_agility_gate_west_opened]
+id = 2042
+
+[wilderness_agility_gate_west_closed]
+id = 2308
+gate = false
+
+[gate_65_opened]
+id = 2042
+
+[gate_65_closed]
+id = 2674
+examine = "A solid looking gate."
+
+[gate_36_opened]
+id = 2052
+
+[gate_36_closed]
+id = 2050
+examine = "A wooden gate."
+
+[gate_37_opened]
+id = 2053
+
+[gate_37_closed]
+id = 2051
+examine = "A wooden gate."
+
+[gate_38_opened]
+id = 2059
+
+[gate_38_closed]
+id = 2058
+examine = "It's closed."
+
+[gate_42_opened]
+id = 2059
+
+[gate_42_closed]
+id = 2154
+examine = "A wrought iron gate."
+
+[ancient_metal_gate_opened]
+id = 2059
+
+[ancient_metal_gate_closed]
+id = 2255
+examine = "An ancient metal gate, but still pretty secure."
+
+[gate_61_opened]
+id = 2059
+
+[gate_61_closed]
+id = 2552
+examine = "A metal gate bars your way."
+
+[gate_39_opened]
+id = 2061
+
+[gate_39_closed]
+id = 2060
+examine = "It's closed."
+
+[gate_62_opened]
+id = 2061
+
+[gate_62_closed]
+id = 2553
+examine = "A metal gate bars your way."
+
+[gate_43_opened]
+id = 2061
+
+[gate_43_closed]
+id = 2155
+examine = "A wrought iron gate."
+
+[ancient_metal_gate_2_opened]
+id = 2061
+
+[ancient_metal_gate_2_closed]
+id = 2256
+examine = "An ancient metal gate, but still pretty secure."
+
+[wooden_gate_opened]
+id = 2263
+
+[wooden_gate_closed]
+id = 2261
+examine = "The gate is closed."
+
+[wooden_gate_2_opened]
+id = 2264
+
+[wooden_gate_2_closed]
+id = 2262
+examine = "The gate is closed."
+
+[gate_55_opened]
+id = 2263
+
+[gate_55_closed]
+id = 2438
+examine = "A wooden gate."
+
+[gate_56_opened]
+id = 2264
+
+[gate_56_closed]
+id = 2439
+examine = "A wooden gate."
+
+[gate_47]
+id = 2313
+examine = "A wooden gate."
+
+[gate_48_opened]
+id = 2344
+examine = "A wooden gate."
+
+[gate_48_closed]
+id = 2320
+examine = "A wooden gate."
+
+[gate_50_opened]
+id = 41504
+
+[gate_50_closed]
+id = 2391
+gate = false
+examine = "A very solid looking gate."
+
+[gate_51_opened]
+id = 41505
+
+[gate_51_closed]
+id = 2392
+gate = false
+examine = "A very solid looking gate."
+
+[gate_52_opened]
+id = 2395
+
+[gate_52_closed]
+id = 2394
+examine = "A gate to the Gnomeball pitch."
+
+[gate_57_opened]
+id = 2499
+examine = "A wooden gate."
+
+[gate_57_closed]
+id = 2489
+examine = "A wooden gate."
+
+[gate_58_opened]
+id = 2502
+examine = "A wooden gate."
+
+[gate_58_closed]
+id = 2495
+examine = "A wooden gate."
+
+[gate_71_opened]
+id = 2527
+examine = "The door of a small prison."
+
+[gate_71_closed]
+id = 2866
+examine = "This space reserved for a shockingly bad pun."
+
+[gate_63_opened]
+id = 31839
+examine = "A single door."
+
+[gate_63_closed]
+id = 2623
+examine = "It's a gate."
+
+[city_gate_opened]
+id = 20091
+
+[city_gate_closed]
+id = 2786
+examine = "An entrance to Gu'Tanoth."
+
+[city_gate_2_opened]
+id = 20092
+
+[city_gate_2_closed]
+id = 2787
+examine = "An entrance to Gu'Tanoth."
+
+[city_gate_3_opened]
+id = 20091
+
+[city_gate_3_closed]
+id = 2788
+examine = "An entrance to Gu'Tanoth."
+
+[city_gate_4_opened]
+id = 20092
+
+[city_gate_4_closed]
+id = 2789
+examine = "An entrance to Gu'Tanoth."
+
+[gate_70_opened]
+id = 26922
+
+[gate_70_closed]
+id = 2865
+examine = "This space reserved for a shockingly bad pun."
+
+[ancient_gate_opened]
+id = 2914
+
+[ancient_gate_closed]
+id = 2912
+examine = "This gate has a horribly complex locking mechanism."
+
+[ancient_gate_2_opened]
+id = 2915
+
+[ancient_gate_2_closed]
+id = 2913
+examine = "This gate has a horribly complex locking mechanism."
+
+[ancient_gate_3_opened]
+id = 2924
+examine = "A heavily constructed, cast-iron, ancient gateway."
+
+[ancient_gate_3_closed]
+id = 2922
+examine = "A heavily constructed, cast-iron, ancient gateway."
+
+[ancient_gate_4_opened]
+id = 2925
+examine = "A heavily constructed, cast-iron, ancient gateway."
+
+[ancient_gate_4_closed]
+id = 2923
+examine = "A heavily constructed, cast-iron, ancient gateway."
+
+[gate_72_opened]
+id = 42002
+examine = "A wooden gate."
+
+[gate_72_closed]
+id = 3015
+examine = "A wooden gate."
+
+[gate_73_opened]
+id = 42003
+examine = "A wooden gate."
+
+[gate_73_closed]
+id = 3016
+examine = "A wooden gate."
+
+[gate_74_opened]
+id = 26922
+
+[gate_74_closed]
+id = 3020
+examine = "A wrought iron gate."
+
+[gate_75_opened]
+id = 3269
+
+[gate_75_closed]
+id = 3021
+examine = "A wrought iron gate."
+
+[gate_76_opened]
+id = 26922
+
+[gate_76_closed]
+id = 3022
+examine = "A wrought iron gate."
+
+[gate_77_opened]
+id = 3269
+
+[gate_77_closed]
+id = 3023
+examine = "A wrought iron gate."
+
+[gate_78_opened]
+id = 3446
+
+[gate_78_closed]
+id = 3444
+examine = "A sturdy metal gate."
+
+[gate_79_opened]
+id = 3446
+
+[gate_79_closed]
+id = 3445
+examine = "A sturdy metal gate."
+
+[gate_82_opened]
+id = 3727
+examine = "A wooden gate."
+
+[gate_82_closed]
+id = 3725
+examine = "A wooden gate."
+
+[gate_83_opened]
+id = 3728
+examine = "A wooden gate."
+
+[gate_83_closed]
+id = 3726
+examine = "A wooden gate."
+
+[gate_84]
+id = 3727
+examine = "A wooden gate."
+
+[gate_85]
+id = 3728
+examine = "A wooden gate."
+
+[gate_243_opened]
+id = 3835
+examine = "The gate appears to be expertly crafted from fine wood."
+
+[gate_243_closed]
+id = 45845
+
+[gate_245_opened]
+id = 3835
+examine = "The gate appears to be expertly crafted from fine wood."
+
+[gate_245_closed]
+id = 45847
+examine = "A gate."
+
+[gate_244_opened]
+id = 3836
+examine = "The gate appears to be expertly crafted from fine wood."
+
+[gate_244_closed]
+id = 45846
+
+[gate_246_opened]
+id = 3836
+examine = "The gate appears to be expertly crafted from fine wood."
+
+[gate_246_closed]
+id = 45848
+examine = "A gate."
+
+[gate_west_varrock_closed]
+id = 45849
+examine = "A wooden gate."
+
+[gate_west_varrock_opened]
+id = 55443
+examine = "A wooden gate."
+
+[gate_88_opened]
+id = 4313
+examine = "A wooden gate."
+
+[gate_88_closed]
+id = 4311
+examine = "A wooden gate."
+
+[gate_89_opened]
+id = 4314
+
+[gate_89_closed]
+id = 4312
+examine = "A wooden gate."
+
+[gate_92_opened]
+id = 5731
+
+[gate_92_closed]
+id = 6451
+examine = "A wrought iron gate."
+
+[gate_93_opened]
+id = 5732
+
+[gate_93_closed]
+id = 6452
+examine = "A wrought iron gate."
+
+[gates_opened]
+id = 6557
+
+[gates_closed]
+id = 10318
+examine = "Ornate metal gates."
+
+[gate_falador_farm_hinge_opened]
+id = 7051
+examine = "A wooden gate."
+
+[gate_falador_farm_hinge_closed]
+id = 7049
+examine = "A wooden gate."
+
+[gate_falador_farm_opened]
+id = 7052
+examine = "A wooden gate."
+
+[gate_falador_farm_closed]
+id = 7050
+examine = "A wooden gate."
+
+[gate_98_opened]
+id = 8812
+examine = "A wooden gate."
+
+[gate_98_closed]
+id = 8810
+examine = "A wooden gate."
+
+[gate_99_opened]
+id = 8813
+examine = "A wooden gate."
+
+[gate_99_closed]
+id = 8811
+examine = "A wooden gate."
+
+[gate_100]
+id = 8812
+examine = "A wooden gate."
+
+[gate_101]
+id = 8813
+examine = "A wooden gate."
+
+[gate_104_opened]
+id = 10173
+
+[gate_104_closed]
+id = 10172
+examine = "This gate is closed."
+
+[toll_gate_al_kharid_south_opened]
+id = 35550
+
+[toll_gate_al_kharid_south_closed]
+id = 35549
+door = true
+
+[toll_gate_al_kharid_south]
+id = 10565
+gate = false
+examine = "Marks the border between Al Kharid and the Kingdom of Misthalin."
+
+[toll_gate_al_kharid_north_opened]
+id = 35552
+
+[toll_gate_al_kharid_north_closed]
+id = 35551
+door = true
+
+[toll_gate_al_kharid_north]
+id = 10566
+gate = false
+examine = "Marks the border between Al Kharid and the Kingdom of Misthalin."
+
+[gate_107_opened]
+id = 35550
+
+[gate_107_closed]
+id = 10567
+examine = "Marks the border between Al Kharid and the Kingdom of Misthalin."
+
+[gate_108_opened]
+id = 35552
+
+[gate_108_closed]
+id = 10568
+examine = "Marks the border between Al Kharid and the Kingdom of Misthalin."
+
+[gate_113_opened]
+id = 12988
+examine = "A wooden gate."
+
+[gate_113_closed]
+id = 12986
+examine = "A wooden gate."
+
+[gate_114_opened]
+id = 12989
+examine = "A wooden gate."
+
+[gate_114_closed]
+id = 12987
+examine = "A wooden gate."
+
+[gate_115]
+id = 12988
+examine = "A wooden gate."
+
+[gate_116]
+id = 12989
+examine = "A wooden gate."
+
+[gate_117_opened]
+id = 14234
+examine = "A strong gate."
+
+[gate_117_closed]
+id = 14233
+examine = "A strong gate."
+
+[gate_118]
+id = 14234
+examine = "A strong gate."
+
+[gate_119_opened]
+id = 14236
+examine = "A strong gate."
+
+[gate_119_closed]
+id = 14235
+examine = "A strong gate."
+
+[gate_120]
+id = 14236
+examine = "A strong gate."
+
+[gate_121_opened]
+id = 14238
+examine = "It should keep the monsters at bay for a little longer."
+
+[gate_121_closed]
+id = 14237
+examine = "It should keep the monsters at bay for a little longer."
+
+[gate_122]
+id = 14238
+examine = "It should keep the monsters at bay for a little longer."
+
+[gate_123_opened]
+id = 14240
+examine = "It should keep the monsters at bay for a little longer."
+
+[gate_123_closed]
+id = 14239
+examine = "It should keep the monsters at bay for a little longer."
+
+[gate_124]
+id = 14240
+examine = "It should keep the monsters at bay for a little longer."
+
+[gate_125_opened]
+id = 14242
+examine = "It's partially damaged."
+
+[gate_125_closed]
+id = 14241
+examine = "It's partially damaged."
+
+[gate_126]
+id = 14242
+examine = "It's partially damaged."
+
+[gate_127_opened]
+id = 14244
+examine = "It's partially damaged."
+
+[gate_127_closed]
+id = 14243
+examine = "It's partially damaged."
+
+[gate_128]
+id = 14244
+examine = "It's partially damaged."
+
+[gate_129_opened]
+id = 14246
+examine = "It's totally destroyed."
+
+[gate_129_closed]
+id = 14245
+examine = "It's totally destroyed."
+
+[gate_130]
+id = 14246
+examine = "It's totally destroyed."
+
+[gate_131_opened]
+id = 14248
+examine = "It's totally destroyed."
+
+[gate_131_closed]
+id = 14247
+examine = "It's totally destroyed."
+
+[gate_132]
+id = 14248
+examine = "It's totally destroyed."
+
+[colony_gate_opened]
+id = 14930
+
+[colony_gate_closed]
+id = 14929
+examine = "The gate of the Piscatoris Fishing Colony."
+
+[colony_gate_2_opened]
+id = 14932
+
+[colony_gate_2_closed]
+id = 14931
+examine = "The gate of the Piscatoris Fishing Colony."
+
+[gate_133_opened]
+id = 15511
+examine = "A wooden gate."
+
+[gate_133_closed]
+id = 15510
+examine = "A wooden gate."
+
+[gate_134]
+id = 15511
+examine = "A wooden gate."
+
+[gate_135_opened]
+id = 15513
+examine = "A wooden gate."
+
+[gate_135_closed]
+id = 15512
+examine = "A wooden gate."
+
+[gate_136]
+id = 15513
+examine = "A wooden gate."
+
+[gate_137_opened]
+id = 15515
+examine = "A wooden gate."
+
+[gate_137_closed]
+id = 15514
+examine = "A wooden gate."
+
+[gate_138]
+id = 15515
+examine = "A wooden gate."
+
+[gate_176_opened]
+id = 15515
+examine = "A wooden gate."
+
+[gate_176_closed]
+id = 24560
+examine = "A wooden gate."
+
+[gate_139_opened]
+id = 15517
+examine = "A wooden gate."
+
+[gate_139_closed]
+id = 15516
+examine = "A wooden gate."
+
+[gate_140]
+id = 15517
+examine = "A wooden gate."
+
+[gate_177_opened]
+id = 15517
+examine = "A wooden gate."
+
+[gate_177_closed]
+id = 24561
+examine = "A wooden gate."
+
+[gate_141_opened]
+id = 15607
+
+[gate_141_closed]
+id = 15604
+examine = "A secure gate."
+
+[gate_142_opened]
+id = 15606
+
+[gate_142_closed]
+id = 15605
+examine = "A secure gate."
+
+[gate_145_opened]
+id = 20091
+
+[gate_145_closed]
+id = 20045
+examine = "A gate."
+
+[gate_146_opened]
+id = 20092
+
+[gate_146_closed]
+id = 20046
+examine = "A gate."
+
+[gate_167_opened]
+id = 20269
+
+[gate_167_closed]
+id = 23274
+examine = "A wrought-iron gate."
+
+[gate_150_opened]
+id = 20392
+
+[gate_150_closed]
+id = 20391
+examine = "The gate of Sophanem."
+
+[gate_152_opened]
+id = 21173
+
+[gate_152_closed]
+id = 21172
+examine = "A gate."
+
+[gate_153_opened]
+id = 21404
+examine = "An open, sturdy metal door."
+
+[gate_153_closed]
+id = 21403
+examine = "A closed, sturdy metal door."
+
+[gate_154]
+id = 21404
+examine = "An open, sturdy metal door."
+
+[gate_155_opened]
+id = 21406
+examine = "An open, sturdy metal door."
+
+[gate_155_closed]
+id = 21405
+examine = "A closed, sturdy metal door."
+
+[gate_156]
+id = 21406
+examine = "An open, sturdy metal door."
+
+[gate_157_opened]
+id = 21601
+examine = "An open gate."
+
+[gate_157_closed]
+id = 21600
+examine = "A flimsy, wooden gate."
+
+[gate_158]
+id = 21601
+examine = "An open gate."
+
+[gate_163]
+id = 22778
+examine = "Lets the littlest goblins out of their enclosure."
+
+[gate_164_opened]
+id = 22778
+examine = "Lets the littlest goblins out of their enclosure."
+
+[gate_164_closed]
+id = 22779
+examine = "Keeps the littlest goblins in their enclosure."
+
+[gate_165_opened]
+id = 23217
+examine = "A rusty gate."
+
+[gate_165_closed]
+id = 23216
+examine = "A rusty gate."
+
+[gate_166]
+id = 23217
+examine = "A rusty gate."
+
+[gate_168_opened]
+id = 23919
+examine = "A wooden gate."
+
+[gate_168_closed]
+id = 23917
+examine = "A wooden gate."
+
+[gate_170]
+id = 23919
+examine = "A wooden gate."
+
+[gate_171_opened]
+id = 24373
+examine = "A gate."
+
+[gate_171_closed]
+id = 24369
+examine = "A gate."
+
+[gate_172_opened]
+id = 24374
+examine = "A gate."
+
+[gate_172_closed]
+id = 24370
+examine = "A gate."
+
+[gate_173]
+id = 24373
+examine = "A gate."
+
+[gate_247_opened]
+id = 24373
+examine = "A gate."
+
+[gate_west_varrock_2_closed]
+id = 45851
+examine = "A wooden gate."
+
+[gate_west_varrock_2_opened]
+id = 55443
+examine = "A wooden gate."
+
+[gate_247_closed]
+id = 45852
+examine = "A wooden gate."
+
+[gate_249_opened]
+id = 24373
+examine = "A gate."
+
+[gate_249_closed]
+id = 45854
+examine = "A small door in a big gate."
+
+[gate_174]
+id = 24374
+examine = "A gate."
+
+[gate_248_opened]
+id = 24374
+examine = "A gate."
+
+[gate_248_closed]
+id = 45853
+examine = "A small door in a big gate."
+
+[gate_250_opened]
+id = 24374
+examine = "A gate."
+
+[gate_250_closed]
+id = 45855
+examine = "A small door in a big gate."
+
+[gate_178_opened]
+id = 24562
+examine = "Gap where a gate goes."
+
+[gate_178_closed]
+id = 24564
+examine = "A beautifully-worked golden gate."
+
+[gate_180_opened]
+id = 26083
+
+[gate_180_closed]
+id = 26081
+examine = "A wrought iron gate."
+
+[gate_181_opened]
+id = 26084
+
+[gate_181_closed]
+id = 26082
+examine = "A wrought iron gate."
+
+[gate_182_opened]
+id = 26132
+examine = "A wrought iron gate."
+
+[gate_182_closed]
+id = 26130
+examine = "A wrought iron gate."
+
+[gate_183_opened]
+id = 26133
+examine = "A wrought iron gate."
+
+[gate_183_closed]
+id = 26131
+examine = "A wrought iron gate."
+
+[gate_184]
+id = 26132
+examine = "A wrought iron gate."
+
+[gate_185]
+id = 26133
+examine = "A wrought iron gate."
+
+[gate_188_opened]
+id = 27845
+examine = "This allows one to walk through walls."
+
+[gate_188_closed]
+id = 27846
+examine = "This allows one to walk through walls."
+
+[gate_190_opened]
+id = 27847
+examine = "This allows one to walk through walls."
+
+[gate_190_closed]
+id = 27848
+examine = "This allows one to walk through walls."
+
+[gate_191]
+id = 27851
+examine = "This allows one to walk through walls."
+
+[gate_192_opened]
+id = 27851
+examine = "This allows one to walk through walls."
+
+[gate_192_closed]
+id = 27852
+examine = "This allows one to walk through walls."
+
+[gate_193]
+id = 27853
+examine = "This allows one to walk through walls."
+
+[gate_194_opened]
+id = 27853
+examine = "This allows one to walk through walls."
+
+[gate_194_closed]
+id = 27854
+examine = "This allows one to walk through walls."
+
+[gate_195_opened]
+id = 28517
+
+[gate_195_closed]
+id = 28514
+examine = "It looks like some kind of back door."
+
+[gate_197_opened]
+id = 28692
+examine = "A thick wooden gate."
+
+[gate_197_closed]
+id = 28690
+gate = false
+examine = "A thick wooden gate."
+
+[gate_198_opened]
+id = 28693
+examine = "A thick wooden gate."
+
+[gate_198_closed]
+id = 28691
+gate = false
+examine = "A thick wooden gate."
+
+[gate_199]
+id = 28692
+examine = "A thick wooden gate."
+
+[gate_200]
+id = 28693
+examine = "A thick wooden gate."
+
+[ancient_gate_7_opened]
+id = 31835
+
+[ancient_gate_7_closed]
+id = 31833
+examine = "A huge, strangely constructed doorway, not sure how this opens."
+
+[ancient_gate_8_opened]
+id = 31836
+
+[ancient_gate_8_closed]
+id = 31834
+examine = "A huge, strangely constructed doorway, not sure how this opens."
+
+[gate_220_opened]
+id = 33850
+examine = "This area is closed off."
+
+[gate_220_closed]
+id = 37507
+
+[gate_202]
+id = 34777
+examine = "A wooden gate."
+
+[gate_204_opened]
+id = 34777
+examine = "A wooden gate."
+
+[gate_204_closed]
+id = 34779
+examine = "A wooden gate."
+
+[gate_203]
+id = 34778
+examine = "A wooden gate."
+
+[gate_205_opened]
+id = 34778
+examine = "A wooden gate."
+
+[gate_205_closed]
+id = 34780
+examine = "A wooden gate."
+
+[gate_206]
+id = 36912
+examine = "A wooden gate."
+
+[gate_207_opened]
+id = 36912
+examine = "A wooden gate."
+
+[gate_207_closed]
+id = 36913
+examine = "A wooden gate."
+
+[gate_211_opened]
+id = 36912
+examine = "A wooden gate."
+
+[gate_211_closed]
+id = 36917
+examine = "A wooden gate."
+
+[gate_208]
+id = 36914
+examine = "A wooden gate."
+
+[gate_209_opened]
+id = 36914
+examine = "A wooden gate."
+
+[gate_209_closed]
+id = 36915
+examine = "A wooden gate."
+
+[gate_213_opened]
+id = 36914
+examine = "A wooden gate."
+
+[gate_213_closed]
+id = 36919
+examine = "A wooden gate."
+
+[gate_214]
+id = 37351
+examine = "A wooden gate."
+
+[gate_215_opened]
+id = 37351
+examine = "A wooden gate."
+
+[gate_215_closed]
+id = 37352
+examine = "A wooden gate."
+
+[gate_216]
+id = 37353
+examine = "A wooden gate."
+
+[gate_217_opened]
+id = 37353
+examine = "A wooden gate."
+
+[gate_217_closed]
+id = 37354
+examine = "A wooden gate."
+
+[gate_225_opened]
+id = 40747
+examine = "The metal bars look strong."
+
+[gate_225_closed]
+id = 40746
+examine = "The metal bars look strong."
+
+[gate_226]
+id = 40747
+examine = "The metal bars look strong."
+
+[gate_227_opened]
+id = 40905
+examine = "The metal bars look strong."
+
+[gate_227_closed]
+id = 40904
+examine = "The metal bars look strong."
+
+[gate_230_opened]
+id = 40931
+examine = "The metal bars look strong."
+
+[gate_230_closed]
+id = 40930
+examine = "The metal bars look strong."
+
+[gate_231]
+id = 40931
+examine = "The metal bars look strong."
+
+[gate_232]
+id = 42002
+examine = "A wooden gate."
+
+[gate_233]
+id = 42003
+examine = "A wooden gate."
+
+[gate_235_opened]
+id = 45207
+examine = "A wooden gate."
+
+[gate_235_closed]
+id = 45206
+examine = "A wooden gate."
+
+[gate_236]
+id = 45207
+examine = "A wooden gate."
+
+[gate_237_opened]
+id = 45209
+examine = "A wooden gate."
+
+[gate_237_closed]
+id = 45208
+examine = "A wooden gate."
+
+[gate_238]
+id = 45209
+examine = "A wooden gate."
+
+[gate_239_opened]
+id = 45211
+examine = "A wooden gate."
+
+[gate_239_closed]
+id = 45210
+examine = "A wooden gate."
+
+[gate_240]
+id = 45211
+examine = "A wooden gate."
+
+[gate_241_opened]
+id = 45213
+examine = "A wooden gate."
+
+[gate_241_closed]
+id = 45212
+examine = "A wooden gate."
+
+[gate_242]
+id = 45213
+examine = "A wooden gate."
+
+[gate_253_opened]
+id = 49015
+
+[gate_253_closed]
+id = 49014
+gate = false
+examine = "A gate."
+
+[gate_254_opened]
+id = 49017
+
+[gate_254_closed]
+id = 49016
+gate = false
+examine = "A gate."

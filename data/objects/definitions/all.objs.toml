@@ -1,7 +1,3 @@
-[crate]
-id = 1
-examine = "Big mysterious crate. You wonder what could be inside."
-
 [railing]
 id = 15
 examine = "A broken rail."
@@ -26,73 +22,6 @@ examine = "A broken rail."
 id = 20
 examine = "A broken rail."
 
-[gate_opened]
-id = 2061
-
-[gate_closed]
-id = 37
-examine = "Stops people walking past."
-
-[gate_2_opened]
-id = 1540
-examine = "Solid bars of iron."
-
-[gate_2_closed]
-id = 38
-examine = "Stops people walking past."
-
-[gate_4_opened]
-id = 49
-examine = "A wooden gate."
-
-[gate_4_closed]
-id = 47
-examine = "A wooden gate."
-
-[gate_5_opened]
-id = 50
-examine = "A wooden gate."
-
-[gate_5_closed]
-id = 48
-examine = "A wooden gate."
-
-[crate_2]
-id = 63
-examine = "Used for storage."
-
-[crate_3]
-id = 64
-examine = "Used for storage."
-
-[gate_10_opened]
-id = 2059
-
-[gate_10_closed]
-id = 89
-examine = "A wrought iron gate."
-
-[gate_11_opened]
-id = 2061
-
-[gate_11_closed]
-id = 90
-examine = "A wrought iron gate."
-
-[gate_12_opened]
-id = 2061
-
-[gate_12_closed]
-id = 94
-examine = "A wrought iron gate."
-
-[gate_13_opened]
-id = 2059
-
-[gate_13_closed]
-id = 95
-examine = "A wrought iron gate."
-
 [cooking_range_lumbridge_castle]
 id = 114
 examine = "Ideal for cooking on."
@@ -116,20 +45,6 @@ examine = "I wonder what's inside it?"
 [coffin_4]
 id = 163
 examine = "An open coffin."
-
-[gate_14_opened]
-id = 15588
-
-[gate_14_closed]
-id = 166
-examine = "A wooden gate."
-
-[gate_15_opened]
-id = 15589
-
-[gate_15_closed]
-id = 167
-examine = "A wooden gate."
 
 [candles]
 id = 202
@@ -168,30 +83,6 @@ pickable = {
   message = "You pick some wheat."
 }
 examine = "Baby bread."
-
-[crate_4]
-id = 354
-examine = "A wooden crate for storage."
-
-[crate_5]
-id = 355
-examine = "A wooden crate for storage."
-
-[crate_6]
-id = 356
-examine = "An old crate for storage."
-
-[crate_7]
-id = 357
-examine = "An old crate for storage."
-
-[crate_8]
-id = 358
-examine = "An old crate for storage."
-
-[crate_9]
-id = 366
-examine = "Useful for transportation of delicate items."
 
 [hat_stand]
 id = 374
@@ -278,14 +169,6 @@ examine = "Everyone needs a water feature."
 id = 880
 examine = "A beautiful water feature."
 
-[gate_17_opened]
-id = 23918
-examine = "A wooden gate."
-
-[gate_17_closed]
-id = 883
-examine = "A wooden gate."
-
 [charms]
 id = 907
 examine = "Trinkets and stuff."
@@ -343,319 +226,13 @@ examine = "Is this a weed?"
 id = 1300
 examine = "A fern is growing here."
 
-[gate_33_opened]
-id = 1543
-examine = "Solid bars of iron."
-
-[gate_33_closed]
-id = 1991
-examine = "Solid bars of iron."
-
-[gate_18_opened]
-id = 1552
-examine = "A wooden gate."
-
-[gate_18_closed]
-id = 1551
-examine = "A wooden gate."
-
-[gate_19]
-id = 1552
-examine = "A wooden gate."
-
-[gate_20_opened]
-id = 1556
-examine = "A wooden gate."
-
-[gate_20_closed]
-id = 1553
-examine = "A wooden gate."
-
-[gate_32_opened]
-id = 1554
-
-[gate_32_closed]
-id = 1599
-examine = "A wooden gate."
-
-[gate_31_opened]
-id = 1555
-
-[gate_31_closed]
-id = 1598
-examine = "A wooden gate."
-
-[gate_21]
-id = 1556
-examine = "A wooden gate."
-
-[gate_22_opened]
-id = 1560
-examine = "A wrought iron gate."
-
-[gate_22_closed]
-id = 1557
-gate = false
-examine = "A wrought iron gate."
-
-[gate_23_opened]
-id = 1561
-examine = "A wrought iron gate."
-
-[gate_23_closed]
-id = 1558
-gate = false
-examine = "A wrought iron gate."
-
-[gate_25]
-id = 1560
-examine = "A wrought iron gate."
-
-[gate_26]
-id = 1561
-examine = "A wrought iron gate."
-
-[gate_27_opened]
-id = 1562
-
-[gate_27_closed]
-id = 1589
-examine = "A wrought-iron gate."
-
-[gate_29_opened]
-id = 1562
-
-[gate_29_closed]
-id = 1596
-gate = false
-examine = "A wrought-iron gate."
-
-[gate_28_opened]
-id = 1563
-
-[gate_28_closed]
-id = 1590
-examine = "A wrought-iron gate."
-
-[gate_30_opened]
-id = 1563
-
-[gate_30_closed]
-id = 1597
-gate = false
-examine = "A wrought-iron gate."
-
 [candlestick_holder]
 id = 1897
 examine = "Not as nice as some."
 
-[crate_10]
-id = 1990
-examine = "A wooden crate for storage."
-
-[crate_11]
-id = 1999
-examine = "A wooden crate for storage."
-
 [pillar]
 id = 2004
 examine = "The pillar has a rune shaped dent in it."
-
-[gate_34_opened]
-id = 2040
-
-[gate_34_closed]
-id = 2039
-examine = "It's closed."
-
-[kitchen_gate_2_opened]
-id = 2040
-
-[kitchen_gate_2_closed]
-id = 2200
-examine = "It keeps greedy goblins away from the food."
-
-[metal_gate_opened]
-id = 2040
-
-[metal_gate_closed]
-id = 2259
-examine = "The gate is closed."
-
-[wilderness_agility_gate_east_opened]
-id = 2040
-
-[wilderness_agility_gate_east_closed]
-id = 2307
-gate = false
-
-[gate_53_opened]
-id = 2040
-
-[gate_53_closed]
-id = 2432
-examine = "This gate is closed."
-
-[gate_64_opened]
-id = 2040
-
-[gate_64_closed]
-id = 2673
-examine = "A solid looking gate."
-
-[gate_80_opened]
-id = 2040
-
-[gate_80_closed]
-id = 3506
-examine = "A wrought iron gate."
-
-[gate_35_opened]
-id = 2042
-
-[gate_35_closed]
-id = 2041
-examine = "It's closed."
-
-[gate_81_opened]
-id = 2042
-
-[gate_81_closed]
-id = 3507
-examine = "A wrought iron gate."
-
-[gate_54_opened]
-id = 2042
-
-[gate_54_closed]
-id = 2433
-examine = "This gate is closed."
-
-[barbarian_outpost_gate_left_opened]
-id = 2040
-
-[barbarian_outpost_gate_left_closed]
-id = 2115
-gate = false
-examine = "The left hand side of the gate."
-
-[barbarian_outpost_gate_right_opened]
-id = 2042
-
-[barbarian_outpost_gate_right_closed]
-id = 2116
-gate = false
-examine = "The right hand side of the gate."
-
-[kitchen_gate_opened]
-id = 2042
-
-[kitchen_gate_closed]
-id = 2199
-examine = "It keeps greedy goblins away from the food."
-
-[metal_gate_2_opened]
-id = 2042
-
-[metal_gate_2_closed]
-id = 2260
-examine = "The gate is closed."
-
-[wilderness_agility_gate_west_opened]
-id = 2042
-
-[wilderness_agility_gate_west_closed]
-id = 2308
-gate = false
-
-[gate_65_opened]
-id = 2042
-
-[gate_65_closed]
-id = 2674
-examine = "A solid looking gate."
-
-[gate_36_opened]
-id = 2052
-
-[gate_36_closed]
-id = 2050
-examine = "A wooden gate."
-
-[gate_37_opened]
-id = 2053
-
-[gate_37_closed]
-id = 2051
-examine = "A wooden gate."
-
-[gate_38_opened]
-id = 2059
-
-[gate_38_closed]
-id = 2058
-examine = "It's closed."
-
-[gate_42_opened]
-id = 2059
-
-[gate_42_closed]
-id = 2154
-examine = "A wrought iron gate."
-
-[ancient_metal_gate_opened]
-id = 2059
-
-[ancient_metal_gate_closed]
-id = 2255
-examine = "An ancient metal gate, but still pretty secure."
-
-[gate_61_opened]
-id = 2059
-
-[gate_61_closed]
-id = 2552
-examine = "A metal gate bars your way."
-
-[gate_39_opened]
-id = 2061
-
-[gate_39_closed]
-id = 2060
-examine = "It's closed."
-
-[gate_62_opened]
-id = 2061
-
-[gate_62_closed]
-id = 2553
-examine = "A metal gate bars your way."
-
-[gate_43_opened]
-id = 2061
-
-[gate_43_closed]
-id = 2155
-examine = "A wrought iron gate."
-
-[ancient_metal_gate_2_opened]
-id = 2061
-
-[ancient_metal_gate_2_closed]
-id = 2256
-examine = "An ancient metal gate, but still pretty secure."
-
-[crate_12]
-id = 2064
-examine = "For storage."
-
-[crate_13]
-id = 2071
-examine = "Used for storage."
-
-[crate_14]
-id = 2072
-examine = "Used for storage."
 
 [copper_rocks_old_1]
 id = 2090
@@ -832,27 +409,6 @@ examine = "A rocky outcrop."
 id = 2145
 examine = "Ooooh! Spooky!"
 
-[wooden_gate_opened]
-id = 2263
-
-[wooden_gate_closed]
-id = 2261
-examine = "The gate is closed."
-
-[wooden_gate_2_opened]
-id = 2264
-
-[wooden_gate_2_closed]
-id = 2262
-examine = "The gate is closed."
-
-[gate_55_opened]
-id = 2263
-
-[gate_55_closed]
-id = 2438
-examine = "A wooden gate."
-
 [cupboard_the_knights_sword_closed]
 id = 2271
 examine = "I wonder what's inside?"
@@ -861,13 +417,6 @@ examine = "I wonder what's inside?"
 id = 2272
 examine = "It's open."
 
-[gate_56_opened]
-id = 2264
-
-[gate_56_closed]
-id = 2439
-examine = "A wooden gate."
-
 [obstacle_net]
 id = 2285
 examine = "This must be climbed over."
@@ -875,49 +424,6 @@ examine = "This must be climbed over."
 [balancing_rope]
 id = 2312
 examine = "I can balance on this rope."
-
-[gate_47]
-id = 2313
-examine = "A wooden gate."
-
-[gate_48_opened]
-id = 2344
-examine = "A wooden gate."
-
-[gate_48_closed]
-id = 2320
-examine = "A wooden gate."
-
-[crate_15]
-id = 2364
-examine = "A wooden container."
-
-[crate_16]
-id = 2365
-examine = "A wooden container."
-
-[gate_50_opened]
-id = 41504
-
-[gate_50_closed]
-id = 2391
-gate = false
-examine = "A very solid looking gate."
-
-[gate_51_opened]
-id = 41505
-
-[gate_51_closed]
-id = 2392
-gate = false
-examine = "A very solid looking gate."
-
-[gate_52_opened]
-id = 2395
-
-[gate_52_closed]
-id = 2394
-examine = "A gate to the Gnomeball pitch."
 
 [bookcase_shield_of_arrav]
 id = 2402
@@ -939,14 +445,6 @@ examine = "Wonder what this pillar is for?"
 id = 2443
 examine = "Wonder what this pillar is for?"
 
-[gate_57_opened]
-id = 2499
-examine = "A wooden gate."
-
-[gate_57_closed]
-id = 2489
-examine = "A wooden gate."
-
 [rune_essence_rocks]
 id = 2491
 mining = {
@@ -963,30 +461,6 @@ examine = "A part of an old temple."
 [pillar_7]
 id = 2494
 examine = "A part of an old temple."
-
-[gate_58_opened]
-id = 2502
-examine = "A wooden gate."
-
-[gate_58_closed]
-id = 2495
-examine = "A wooden gate."
-
-[spooky_stairs]
-id = 2522
-examine = "It's a flight of stairs."
-
-[spooky_stairs_2]
-id = 2523
-examine = "It's a flight of stairs."
-
-[gate_71_opened]
-id = 2527
-examine = "The door of a small prison."
-
-[gate_71_closed]
-id = 2866
-examine = "This space reserved for a shockingly bad pun."
 
 [gold_rocks_crandor_1]
 clone = "gold_rocks_old_1"
@@ -1006,18 +480,6 @@ examine = "A rocky outcrop."
 [coffin_10]
 id = 2614
 examine = "Spooky!"
-
-[crate_17]
-id = 2620
-examine = "An old crate for storage."
-
-[gate_63_opened]
-id = 31839
-examine = "A single door."
-
-[gate_63_closed]
-id = 2623
-examine = "It's a gate."
 
 [potters_wheel]
 id = 2642
@@ -1044,14 +506,6 @@ examine = "This fountain suits the garden."
 id = 2704
 examine = "Rocky!"
 
-[crate_18]
-id = 2707
-examine = "A wooden crate for storage."
-
-[crate_19]
-id = 2708
-examine = "A wooden crate for storage."
-
 [hopper_controls]
 id = 2718
 examine = "These control the flow of wheat from the hopper to the millstones."
@@ -1059,9 +513,6 @@ examine = "These control the flow of wheat from the hopper to the millstones."
 [fire_orange]
 id = 2732
 examine = "Hot!"
-
-[city_gate_opened]
-id = 20091
 
 [anvil_dorics]
 id = 2782
@@ -1071,45 +522,9 @@ examine = "It says 'Property of Doric the dwarf' on the side."
 id = 2783
 examine = "Used for fashioning metal items."
 
-[city_gate_closed]
-id = 2786
-examine = "An entrance to Gu'Tanoth."
-
-[city_gate_2_opened]
-id = 20092
-
-[city_gate_2_closed]
-id = 2787
-examine = "An entrance to Gu'Tanoth."
-
-[city_gate_3_opened]
-id = 20091
-
-[city_gate_3_closed]
-id = 2788
-examine = "An entrance to Gu'Tanoth."
-
-[city_gate_4_opened]
-id = 20092
-
-[city_gate_4_closed]
-id = 2789
-examine = "An entrance to Gu'Tanoth."
-
-[crate_20]
-id = 2858
-examine = "A wooden crate."
-
 [fountain_4]
 id = 2864
 examine = "For all your witch-melting needs."
-
-[gate_70_opened]
-id = 26922
-
-[gate_70_closed]
-id = 2865
-examine = "This space reserved for a shockingly bad pun."
 
 [jungle_bush]
 id = 2892
@@ -1131,84 +546,6 @@ examine = "A jungle bush that has been chopped down."
 id = 2938
 examine = "A sculpted trunk of wood."
 
-[crate_21]
-id = 2905
-examine = "An old crate for storage."
-
-[ancient_gate_opened]
-id = 2914
-
-[ancient_gate_closed]
-id = 2912
-examine = "This gate has a horribly complex locking mechanism."
-
-[ancient_gate_2_opened]
-id = 2915
-
-[ancient_gate_2_closed]
-id = 2913
-examine = "This gate has a horribly complex locking mechanism."
-
-[ancient_gate_3_opened]
-id = 2924
-examine = "A heavily constructed, cast-iron, ancient gateway."
-
-[ancient_gate_3_closed]
-id = 2922
-examine = "A heavily constructed, cast-iron, ancient gateway."
-
-[ancient_gate_4_opened]
-id = 2925
-examine = "A heavily constructed, cast-iron, ancient gateway."
-
-[ancient_gate_4_closed]
-id = 2923
-examine = "A heavily constructed, cast-iron, ancient gateway."
-
-[gate_72_opened]
-id = 42002
-examine = "A wooden gate."
-
-[gate_72_closed]
-id = 3015
-examine = "A wooden gate."
-
-[gate_73_opened]
-id = 42003
-examine = "A wooden gate."
-
-[gate_73_closed]
-id = 3016
-examine = "A wooden gate."
-
-[gate_74_opened]
-id = 26922
-
-[gate_74_closed]
-id = 3020
-examine = "A wrought iron gate."
-
-[gate_75_opened]
-id = 3269
-
-[gate_75_closed]
-id = 3021
-examine = "A wrought iron gate."
-
-[gate_76_opened]
-id = 26922
-
-[gate_76_closed]
-id = 3022
-examine = "A wrought iron gate."
-
-[gate_77_opened]
-id = 3269
-
-[gate_77_closed]
-id = 3023
-examine = "A wrought iron gate."
-
 [copper_rocks_tutorial_island_1]
 clone = "copper_rocks_old_1"
 id = 3042
@@ -1227,10 +564,6 @@ examine = "I don't much like the look of that..."
 id = 3354
 examine = "I don't much like the look of that..."
 
-[crate_22]
-id = 3360
-examine = "A wooden crate for storage."
-
 [onion]
 id = 3366
 pickable = {
@@ -1239,44 +572,6 @@ pickable = {
   message = "You pick an onion."
 }
 examine = "Makes you cry."
-
-[crate_23]
-id = 3394
-examine = "A wooden crate for storage."
-
-[crate_24]
-id = 3395
-examine = "A wooden crate for storage."
-
-[crate_25]
-id = 3398
-examine = "A wooden crate for storage."
-
-[crate_26]
-id = 3399
-examine = "A wooden crate for storage."
-
-[crate_27]
-id = 3400
-examine = "A wooden crate for storage."
-
-[crate_28]
-id = 3401
-examine = "A wooden crate for storage."
-
-[gate_78_opened]
-id = 3446
-
-[gate_78_closed]
-id = 3444
-examine = "A sturdy metal gate."
-
-[gate_79_opened]
-id = 3446
-
-[gate_79_closed]
-id = 3445
-examine = "A sturdy metal gate."
 
 [border]
 id = 3550
@@ -1297,34 +592,6 @@ examine = "It's a small step for a player, a giant leap for player kind."
 id = 3680
 examine = "The flag of Asgarnia."
 
-[crate_29]
-id = 3694
-examine = "Looks like the Imperial Guard's supply of Dual Claws."
-
-[gate_82_opened]
-id = 3727
-examine = "A wooden gate."
-
-[gate_82_closed]
-id = 3725
-examine = "A wooden gate."
-
-[gate_83_opened]
-id = 3728
-examine = "A wooden gate."
-
-[gate_83_closed]
-id = 3726
-examine = "A wooden gate."
-
-[gate_84]
-id = 3727
-examine = "A wooden gate."
-
-[gate_85]
-id = 3728
-examine = "A wooden gate."
-
 [corpse_9]
 id = 3797
 examine = "Now that's what I call slimline!"
@@ -1336,60 +603,6 @@ examine = "He looks very relaxed."
 [corpse_11]
 id = 3799
 examine = "Now he's just too thin."
-
-[crate_30]
-id = 3813
-examine = "It probably hasn't got anything interesting inside."
-
-[gate_243_opened]
-id = 3835
-examine = "The gate appears to be expertly crafted from fine wood."
-
-[gate_243_closed]
-id = 45845
-
-[gate_245_opened]
-id = 3835
-examine = "The gate appears to be expertly crafted from fine wood."
-
-[gate_245_closed]
-id = 45847
-examine = "A gate."
-
-[gate_244_opened]
-id = 3836
-examine = "The gate appears to be expertly crafted from fine wood."
-
-[gate_244_closed]
-id = 45846
-
-[gate_246_opened]
-id = 3836
-examine = "The gate appears to be expertly crafted from fine wood."
-
-[gate_246_closed]
-id = 45848
-examine = "A gate."
-
-[gate_west_varrock_closed]
-id = 45849
-examine = "A wooden gate."
-
-[gate_west_varrock_opened]
-id = 55443
-examine = "A wooden gate."
-
-[crate_31]
-id = 3856
-examine = "It's a half buried crate."
-
-[crate_32]
-id = 3857
-examine = "It's a half buried crate."
-
-[crate_33]
-id = 3861
-examine = "It's full of brightly coloured fish."
 
 [corpse_12]
 id = 3971
@@ -1423,22 +636,6 @@ id = 4030
 id = 4059
 examine = "I can balance on this rope."
 
-[crate_34]
-id = 4185
-examine = "A wooden crate for storage."
-
-[crate_35]
-id = 4186
-examine = "An old crate for storage."
-
-[crate_36]
-id = 4300
-examine = "A wooden crate for storage."
-
-[crate_37]
-id = 4301
-examine = "An old crate for storage."
-
 [pottery_oven_rellekka]
 id = 4308
 examine = "Bake your clay items in here."
@@ -1446,21 +643,6 @@ examine = "Bake your clay items in here."
 [potters_wheel_2]
 id = 4310
 examine = "Used for fashioning clay items."  
-
-[gate_88_opened]
-id = 4313
-examine = "A wooden gate."
-
-[gate_88_closed]
-id = 4311
-examine = "A wooden gate."
-
-[gate_89_opened]
-id = 4314
-
-[gate_89_closed]
-id = 4312
-examine = "A wooden gate."
 
 [corpse_16]
 id = 4518
@@ -1481,74 +663,6 @@ examine = "Flag, pole...Yep, it's a flagpole."
 [flagpole_7]
 id = 4693
 examine = "Flag, pole...Yep, it's a flagpole."
-
-[crate_38]
-id = 4714
-examine = "A wooden crate for storage."
-
-[crate_39]
-id = 4715
-examine = "This crate is making chattering sounds."
-
-[crate_40]
-id = 4716
-examine = "This crate smells slightly nauseous."
-
-[crate_41]
-id = 4717
-examine = "This crate says 'Property of Hamab' on its side."
-
-[crate_42]
-id = 4718
-examine = "This crate says 'Property of Hamab' on its side."
-
-[crate_43]
-id = 4719
-examine = "This crate says 'Property of Ifaba' on its side."
-
-[crate_44]
-id = 4720
-examine = "This crate says 'Property of Daga' on its side."
-
-[crate_45]
-id = 4721
-examine = "This crate says 'Property of Daga' on its side."
-
-[crate_46]
-id = 4722
-examine = "This crate smells slightly of banana."
-
-[crate_47]
-id = 4723
-examine = "This crate smells slightly of banana."
-
-[crate_48]
-id = 4724
-examine = "This crate says 'Property of Hamab' on its side."
-
-[crate_49]
-id = 4725
-examine = "This crate says 'Property of Ifaba' on its side."
-
-[crate_50]
-id = 4726
-examine = "This crate says 'Property of Ifaba' on its side."
-
-[crate_51]
-id = 4727
-examine = "This crate says 'Property of Ifaba' on its side."
-
-[crate_52]
-id = 4746
-examine = "This crate is marked 'Deliver to Glough'..."
-
-[crate_53]
-id = 4944
-examine = "It doesn't look very watertight. Any contents will be ruined."
-
-[crate_54]
-id = 4975
-examine = "An old crate for storage."
 
 [pillar_10]
 id = 5072
@@ -1581,10 +695,6 @@ examine = "The resting place of Necrovarus' mortal body."
 [ectofuntus]
 id = 5282
 examine = "A ghastly fountain filled with slime and bones, the source of Necrovarus' power."
-
-[crate_55]
-id = 5355
-examine = "It probably hasn't got anything interesting inside."
 
 [heather_4]
 id = 5543
@@ -1622,10 +732,6 @@ examine = "Trinkets and stuff."
 id = 5657
 examine = "gudrun and dororan"  
 
-[crate_56]
-id = 5700
-examine = "A wooden crate."
-
 [coffin_restless_ghost]
 id = 5726
 examine = "Ooooh! Spooky!"  
@@ -1641,27 +747,6 @@ examine = "Ooooh! Spooky!"
 [restless_ghost_coffin]
 id = 5729
 examine = "Ooooh! Spooky!"
-
-[gate_92_opened]
-id = 5731
-
-[gate_92_closed]
-id = 6451
-examine = "A wrought iron gate."
-
-[gate_93_opened]
-id = 5732
-
-[gate_93_closed]
-id = 6452
-examine = "A wrought iron gate."
-
-[crate_57]
-id = 5746
-examine = "A wooden crate."
-
-[crate_58]
-id = 5754
 
 [depleted_rocks_falador_mine_1]
 id = 5763
@@ -1812,10 +897,6 @@ examine = "A stand for hats."
 id = 6150
 examine = "Useful for making weapons."
 
-[crate_59]
-id = 6177
-examine = "Big mysterious crates. You wonder what could be inside."
-
 [fountain_5]
 id = 6232
 examine = "An expensive water feature."
@@ -1831,13 +912,6 @@ examine = "Weird looking pillar."
 [pillar_14]
 id = 6286
 examine = "Weird looking pillar."
-
-[gates_opened]
-id = 6557
-
-[gates_closed]
-id = 10318
-examine = "Ornate metal gates."
 
 [blurite_rocks_lumbridge_cellar_1]
 id = 6669
@@ -1858,14 +932,6 @@ examine = "Stone with blue veins."
 clone = "blurite_rocks_lumbridge_cellar_1"
 id = 6671
 examine = "Stone with blue veins."
-
-[crate_60]
-id = 6839
-examine = "Smells pretty bad!"
-
-[crate_61]
-id = 6911
-examine = "Used for storage."
 
 [iron_rocks_lumbridge_cellar_1]
 clone = "iron_rocks_old_1"
@@ -1903,22 +969,6 @@ examine = "A stone carved Pillar."
 id = 7017
 examine = "A stone carved Pillar."
 
-[gate_falador_farm_hinge_opened]
-id = 7051
-examine = "A wooden gate."
-
-[gate_falador_farm_hinge_closed]
-id = 7049
-examine = "A wooden gate."
-
-[gate_falador_farm_opened]
-id = 7052
-examine = "A wooden gate."
-
-[gate_falador_farm_closed]
-id = 7050
-examine = "A wooden gate."
-
 [tendrils]
 id = 7161
 examine = "They don't look that solid; a hatchet could help me chop them down."
@@ -1938,27 +988,6 @@ examine = "He looks very relaxed."
 [corpse_25]
 id = 7208
 examine = "Now he's just too thin."
-
-[crate_62]
-id = 7347
-examine = "For storage."
-
-[crate_63]
-id = 7348
-examine = "For storage."
-
-[crate_64]
-id = 7349
-examine = "For storage."
-
-[crate_65]
-id = 7513
-examine = "For storage."
-
-[crate_66]
-id = 7514
-examine = "For storage."
-
 [pineapple_plant]
 id = 7972
 examine = "A fully grown pineapple plant."
@@ -1975,66 +1004,6 @@ examine = "Fit for milking."
 id = 8717
 examine = "A loom."
 
-[gate_98_opened]
-id = 8812
-examine = "A wooden gate."
-
-[gate_98_closed]
-id = 8810
-examine = "A wooden gate."
-
-[gate_99_opened]
-id = 8813
-examine = "A wooden gate."
-
-[gate_99_closed]
-id = 8811
-examine = "A wooden gate."
-
-[gate_100]
-id = 8812
-examine = "A wooden gate."
-
-[gate_101]
-id = 8813
-examine = "A wooden gate."
-
-[crate_67]
-id = 8911
-examine = "Big mysterious crates. You wonder what could be inside."
-
-[crate_68]
-id = 8913
-examine = "Big mysterious crates. There are some papers on top."
-
-[crate_69]
-id = 8914
-examine = "Big mysterious crates. There are some papers on top."
-
-[crate_70]
-id = 8915
-examine = "Big mysterious crates. There are some papers on top."
-
-[crate_71]
-id = 8916
-examine = "Big mysterious crates. There are some papers on top."
-
-[crate_72]
-id = 9064
-examine = "A wooden crate."
-
-[crate_73]
-id = 9068
-examine = "A wooden crate containing Blackjacks."
-
-[crate_74]
-id = 9070
-examine = "A wooden crate containing fez hats."
-
-[crate_75]
-id = 9071
-examine = "A wooden crate containing clothes."
-
 [candles_6]
 id = 9159
 examine = "Lit to remember the souls of the departed."
@@ -2042,18 +1011,6 @@ examine = "Lit to remember the souls of the departed."
 [candles_7]
 id = 9160
 examine = "Lit to remember the souls of the departed."
-
-[crate_76]
-id = 9381
-examine = "A wooden crate."
-
-[crate_77]
-id = 9533
-examine = "A wooden crate."
-
-[crate_78]
-id = 9534
-examine = "A wooden crate."
 
 [candlestick_holder_2]
 id = 9703
@@ -2171,25 +1128,6 @@ examine = "An Octagonal Pillar."
 id = 10057
 examine = "Flag, pole...Yep, it's a flagpole."
 
-[crate_79]
-id = 10159
-examine = "A wooden crate."
-
-[gate_104_opened]
-id = 10173
-
-[gate_104_closed]
-id = 10172
-examine = "This gate is closed."
-
-[crate_80]
-id = 10281
-examine = "It's a crate."
-
-[crate_81]
-id = 10378
-examine = "Cheaper than using a chest for storage."
-
 [fountain_6]
 id = 10436
 examine = "Nardah's main water supply."
@@ -2213,44 +1151,6 @@ examine = "A nicely potted fern."
 [potted_fern_8]
 id = 10502
 examine = "Better than weeding."
-
-[toll_gate_al_kharid_south_opened]
-id = 35550
-
-[toll_gate_al_kharid_south_closed]
-id = 35549
-door = true
-
-[toll_gate_al_kharid_south]
-id = 10565
-gate = false
-examine = "Marks the border between Al Kharid and the Kingdom of Misthalin."
-
-[toll_gate_al_kharid_north_opened]
-id = 35552
-
-[toll_gate_al_kharid_north_closed]
-id = 35551
-door = true
-
-[toll_gate_al_kharid_north]
-id = 10566
-gate = false
-examine = "Marks the border between Al Kharid and the Kingdom of Misthalin."
-
-[gate_107_opened]
-id = 35550
-
-[gate_107_closed]
-id = 10567
-examine = "Marks the border between Al Kharid and the Kingdom of Misthalin."
-
-[gate_108_opened]
-id = 35552
-
-[gate_108_closed]
-id = 10568
-examine = "Marks the border between Al Kharid and the Kingdom of Misthalin."
 
 [gold_rocks_sand_1]
 clone = "gold_rocks_old_1"
@@ -2315,30 +1215,6 @@ examine = "A rocky outcrop."
 [depleted_rocks_ice_3]
 id = 10587
 examine = "A rocky outcrop."
-
-[crate_82]
-id = 10671
-examine = "Only sawdust..."
-
-[crate_83]
-id = 10672
-examine = "Reclaim your lost puppets!"
-
-[crate_84]
-id = 10701
-examine = "A blue crate. Probably containing puppets."
-
-[crate_85]
-id = 10702
-examine = "A green crate. Probably containing puppets."
-
-[crate_86]
-id = 10703
-examine = "A red crate. Probably containing puppets."
-
-[crate_87]
-id = 10704
-examine = "A large crate. More puppets?"
 
 [depleted_rocks_quarry_1]
 id = 10944
@@ -2466,22 +1342,6 @@ examine = "A rocky outcrop."
 clone = "gem_rocks_old_2"
 id = 11195
 examine = "A rocky outcrop."
-
-[crate_88]
-id = 11228
-examine = "Useful for transportation of valuable items."
-
-[crate_89]
-id = 11229
-examine = "Useful for transportation of valuable items."
-
-[crate_90]
-id = 11330
-examine = "A wooden crate."
-
-[crate_91]
-id = 11331
-examine = "A wooden crate."
 
 [gem_rocks_ingneous_2_3]
 clone = "gem_rocks_old_2"
@@ -2614,10 +1474,6 @@ examine = "Little candles flickering."
 id = 11473
 examine = "Little candles flickering."
 
-[crate_92]
-id = 11485
-examine = "A wooden crate."
-
 [cabbage_draynor_manor]
 id = 11494
 pickable = {
@@ -2651,10 +1507,6 @@ examine = "A rocky outcrop."
 id = 11557
 examine = "A rocky outcrop."
 
-[crate_93]
-id = 11599
-examine = "A wooden crate."
-
 [pottery_oven]
 id = 11601
 examine = "Bake your clay pots in here."
@@ -2670,18 +1522,6 @@ examine = "The flag of Asgarnia."
 [fountain_9]
 id = 11759
 examine = "Hope springs eternal."
-
-[crate_94]
-id = 11903
-examine = "An old storage crate."
-
-[crate_95]
-id = 11904
-examine = "An old storage crate."
-
-[crate_96]
-id = 11905
-examine = "An old storage crate."
 
 [coal_rocks_rock_1]
 clone = "coal_rocks_old_1"
@@ -2867,14 +1707,6 @@ examine = "A rocky outcrop."
 id = 12089
 examine = "A beautiful fairy fountain!"
 
-[crate_97]
-id = 12103
-examine = "For storage."
-
-[crate_98]
-id = 12105
-examine = "A wooden crate."
-
 [juliet]
 id = 12133
 examine = "Probably not dead. Although Romeo is none the wiser."
@@ -2963,10 +1795,6 @@ examine = "You can create a canoe here."
 id = 12158
 examine = "You can create a canoe here."
 
-[crate_99]
-id = 12235
-examine = "A crate of weights."
-
 [candles_10]
 id = 12301
 examine = "Little candles flickering."
@@ -2975,25 +1803,9 @@ examine = "Little candles flickering."
 id = 12302
 examine = "Little candles flickering."
 
-[crate_100]
-id = 12442
-examine = "A large wooden box."
-
-[crate_101]
-id = 12443
-examine = "A neatly stacked pair of crates."
-
 [table_old_wizards_tower]
 id = 12544
 examine = "A small wooden table."
-
-[crate_102]
-id = 12546
-examine = "A wooden crate."
-
-[crate_103]
-id = 12547
-examine = "A wooden crate."
 
 [rock_rocks_feldip_hills_1]
 id = 12564
@@ -3011,14 +1823,6 @@ examine = "A rocky outcrop."
 id = 12802
 examine = "The resting place of an ancient warrior."
 
-[crate_104]
-id = 12876
-examine = "For storage."
-
-[crate_105]
-id = 12879
-examine = "A wooden crate."
-
 [corpse_26]
 id = 12919
 examine = "He looks very relaxed."
@@ -3027,10 +1831,6 @@ examine = "He looks very relaxed."
 id = 12921
 examine = "He looks very relaxed."
 
-[crate_106]
-id = 12963
-examine = "A wooden crate."
-
 [candles_12]
 id = 12980
 examine = "Little candles flickering."
@@ -3038,30 +1838,6 @@ examine = "Little candles flickering."
 [candles_13]
 id = 12981
 examine = "Little candles flickering."
-
-[gate_113_opened]
-id = 12988
-examine = "A wooden gate."
-
-[gate_113_closed]
-id = 12986
-examine = "A wooden gate."
-
-[gate_114_opened]
-id = 12989
-examine = "A wooden gate."
-
-[gate_114_closed]
-id = 12987
-examine = "A wooden gate."
-
-[gate_115]
-id = 12988
-examine = "A wooden gate."
-
-[gate_116]
-id = 12989
-examine = "A wooden gate."
 
 [candle]
 id = 13342
@@ -3095,137 +1871,9 @@ examine = "Two little fishes forever spew water into the pond."
 id = 13664
 examine = "A spotter's guide to demons."
 
-[gate_117_opened]
-id = 14234
-examine = "A strong gate."
-
-[gate_117_closed]
-id = 14233
-examine = "A strong gate."
-
-[gate_118]
-id = 14234
-examine = "A strong gate."
-
-[gate_119_opened]
-id = 14236
-examine = "A strong gate."
-
-[gate_119_closed]
-id = 14235
-examine = "A strong gate."
-
-[gate_120]
-id = 14236
-examine = "A strong gate."
-
-[gate_121_opened]
-id = 14238
-examine = "It should keep the monsters at bay for a little longer."
-
-[gate_121_closed]
-id = 14237
-examine = "It should keep the monsters at bay for a little longer."
-
-[gate_122]
-id = 14238
-examine = "It should keep the monsters at bay for a little longer."
-
-[gate_123_opened]
-id = 14240
-examine = "It should keep the monsters at bay for a little longer."
-
-[gate_123_closed]
-id = 14239
-examine = "It should keep the monsters at bay for a little longer."
-
-[gate_124]
-id = 14240
-examine = "It should keep the monsters at bay for a little longer."
-
-[gate_125_opened]
-id = 14242
-examine = "It's partially damaged."
-
-[gate_125_closed]
-id = 14241
-examine = "It's partially damaged."
-
-[gate_126]
-id = 14242
-examine = "It's partially damaged."
-
-[gate_127_opened]
-id = 14244
-examine = "It's partially damaged."
-
-[gate_127_closed]
-id = 14243
-examine = "It's partially damaged."
-
-[gate_128]
-id = 14244
-examine = "It's partially damaged."
-
-[gate_129_opened]
-id = 14246
-examine = "It's totally destroyed."
-
-[gate_129_closed]
-id = 14245
-examine = "It's totally destroyed."
-
-[gate_130]
-id = 14246
-examine = "It's totally destroyed."
-
-[gate_131_opened]
-id = 14248
-examine = "It's totally destroyed."
-
-[gate_131_closed]
-id = 14247
-examine = "It's totally destroyed."
-
-[gate_132]
-id = 14248
-examine = "It's totally destroyed."
-
 [charms_3]
 id = 14362
 examine = "Trinkets and stuff."
-
-[crate_107]
-id = 14401
-examine = "A crate of weights."
-
-[crate_108]
-id = 14402
-examine = "A crate of weights."
-
-[crate_109]
-id = 14403
-examine = "A crate of weights."
-
-[crate_110]
-id = 14404
-examine = "A crate of weights."
-
-[crate_111]
-id = 14407
-examine = "A crate of weights."
-
-[crate_112]
-id = 14408
-examine = "A crate of weights."
-
-[crate_113]
-id = 14411
-examine = "A crate of weights."
-
-[crate_114]
-id = 14739
-examine = "I wonder what's in it?"
 
 [depleted_rocks_black_1]
 id = 14832
@@ -3404,63 +2052,13 @@ examine = "A rocky outcrop."
 id = 14916
 examine = "A rocky outcrop."
 
-[colony_gate_opened]
-id = 14930
-
-[colony_gate_closed]
-id = 14929
-examine = "The gate of the Piscatoris Fishing Colony."
-
-[colony_gate_2_opened]
-id = 14932
-
-[colony_gate_2_closed]
-id = 14931
-examine = "The gate of the Piscatoris Fishing Colony."
-
 [control_panel]
 id = 14978
 examine = "Controls the dangling claw."
 
-[crate_115]
-id = 14986
-examine = "I'll bet you could fit a smaller crate inside it."
-
-[crate_116]
-id = 15030
-examine = "A wooden crate."
-
-[crate_117]
-id = 15031
-examine = "A wooden crate."
-
-[crate_118]
-id = 15052
-examine = "A crate of weights."
-
-[crate_119]
-id = 15053
-examine = "A crate of weights."
-
-[crate_120]
-id = 15107
-examine = "A wooden crate."
-
 [hat_stand_3]
 id = 15165
 examine = "A stand for hats."
-
-[crate_121]
-id = 15243
-examine = "A crate of AMCE Beams-In-A-Box."
-
-[crate_122]
-id = 15244
-examine = "A crate of AMCE Pulley-Beams-In-A-Box."
-
-[crate_123]
-id = 15245
-examine = "A crate of AMCE Ropes-In-A-Box."
 
 [coal_rocks_misc_expansion_1]
 clone = "coal_rocks_old_1"
@@ -3516,70 +2114,6 @@ id = 15507
 clone = "wheat"
 id = 15508
 
-[gate_133_opened]
-id = 15511
-examine = "A wooden gate."
-
-[gate_133_closed]
-id = 15510
-examine = "A wooden gate."
-
-[gate_134]
-id = 15511
-examine = "A wooden gate."
-
-[gate_135_opened]
-id = 15513
-examine = "A wooden gate."
-
-[gate_135_closed]
-id = 15512
-examine = "A wooden gate."
-
-[gate_136]
-id = 15513
-examine = "A wooden gate."
-
-[gate_137_opened]
-id = 15515
-examine = "A wooden gate."
-
-[gate_137_closed]
-id = 15514
-examine = "A wooden gate."
-
-[gate_138]
-id = 15515
-examine = "A wooden gate."
-
-[gate_176_opened]
-id = 15515
-examine = "A wooden gate."
-
-[gate_176_closed]
-id = 24560
-examine = "A wooden gate."
-
-[gate_139_opened]
-id = 15517
-examine = "A wooden gate."
-
-[gate_139_closed]
-id = 15516
-examine = "A wooden gate."
-
-[gate_140]
-id = 15517
-examine = "A wooden gate."
-
-[gate_177_opened]
-id = 15517
-examine = "A wooden gate."
-
-[gate_177_closed]
-id = 24561
-examine = "A wooden gate."
-
 [gold_rocks_tzhaar_1]
 clone = "gold_rocks_old_1"
 id = 15576
@@ -3610,10 +2144,6 @@ clone = "silver_rocks_old_1"
 id = 15581
 examine = "A rocky outcrop."
 
-[crate_124]
-id = 15599
-examine = "A crate. You wonder what could be inside."
-
 [railing_7]
 id = 15601
 examine = "Intended to keep the goblins away from the mines."
@@ -3626,135 +2156,13 @@ examine = "Intended to keep the goblins away from the mines."
 id = 15603
 examine = "Intended to keep the goblins away from the mines."
 
-[gate_141_opened]
-id = 15607
-
-[gate_141_closed]
-id = 15604
-examine = "A secure gate."
-
-[gate_142_opened]
-id = 15606
-
-[gate_142_closed]
-id = 15605
-examine = "A secure gate."
-
-[crate_125]
-id = 15615
-examine = "A wooden crate."
-
-[crate_126]
-id = 15692
-examine = "Some wooden crates."
-
-[crate_127]
-id = 15695
-examine = "A crate full of machine parts."
-
-[crate_128]
-id = 15696
-examine = "An empty crate."
-
-[crate_129]
-id = 15697
-examine = "A crate full of machine parts."
-
-[crate_130]
-id = 15698
-examine = "An empty machine parts crate."
-
-[crate_131]
-id = 15704
-examine = "A discarded crate with a lid."
-
-[crate_132]
-id = 15705
-examine = "A discarded crate with a lid."
-
-[crate_133]
-id = 15706
-examine = "A discarded crate."
-
-[crate_134]
-id = 15707
-examine = "The crate is closed."
-
-[crate_135]
-id = 15720
-examine = "Who would have thought the Karamja Box Company supports the HAM cult?"
-
-[crate_136]
-id = 15721
-examine = "Who would have thought the Karamja Box Company supports the HAM cult?"
-
 [crack_7]
 id = 15731
 examine = "A cracked wall."
 
-[crate_137]
-id = 16001
-examine = "Useful for transportation of valuable items."
-
-[crate_138]
-id = 16002
-examine = "Useful for transportation of valuable items."
-
 [mizgogs_desk]
 id = 16169
 examine = "A desk belonging to Wizard Mizgog."
-
-[crate_139]
-id = 16249
-examine = "A crate for storing and transporting bows."
-
-[crate_140]
-id = 16250
-examine = "For storage."
-
-[crate_141]
-id = 16252
-examine = "A wooden crate."
-
-[crate_142]
-id = 16559
-examine = "A large wooden box."
-
-[crate_143]
-id = 16560
-examine = "A large wooden box."
-
-[crate_144]
-id = 16561
-examine = "A large wooden box."
-
-[crate_145]
-id = 16564
-examine = "A wooden crate."
-
-[crate_146]
-id = 16565
-examine = "A wooden crate."
-
-[crate_147]
-id = 16862
-examine = "A crate."
-
-[crate_148]
-id = 16863
-examine = "A crate."
-
-[crate_149]
-id = 16864
-examine = "A crate."
-
-[crate_150]
-id = 16865
-examine = "A crate."
-
-[crate_151]
-id = 16954
-examine = "A crate."
 
 [corpse_28]
 id = 16967
@@ -3837,33 +2245,9 @@ examine = "A rocky outcrop."
 id = 17009
 examine = "A rocky outcrop."
 
-[crate_152]
-id = 17033
-examine = "Big crate. Probably has crossbow bits inside."
-
 [anvil_blast_Furnace]
 id = 17073
 examine = "Used for fashioning metal items."
-
-[crate_153]
-id = 17100
-examine = "For storage."
-
-[crate_154]
-id = 17101
-examine = "For storage."
-
-[crate_155]
-id = 17271
-examine = "Useful for transportation of valuable items."
-
-[crate_156]
-id = 17304
-examine = "A wooden crate."
-
-[crate_157]
-id = 17305
-examine = "A wooden crate."
 
 [candles_14]
 id = 17323
@@ -3884,22 +2268,6 @@ clone = "silver_rocks_old_1"
 id = 17387
 examine = "A rocky outcrop."
 
-[crate_158]
-id = 17655
-examine = "For storage."
-
-[crate_159]
-id = 17658
-examine = "A wooden crate."
-
-[crate_160]
-id = 17905
-examine = "For storage."
-
-[crate_161]
-id = 17908
-examine = "A wooden crate."
-
 [pillar_21]
 id = 18220
 examine = "Stops bits of building falling on me."
@@ -3911,66 +2279,6 @@ examine = "A ruined old pillar."
 [pillar_23]
 id = 18258
 examine = "A ruined old pillar."
-
-[crate_162]
-id = 18367
-examine = "A floating crate."
-
-[crate_163]
-id = 18368
-examine = "A floating crate."
-
-[crate_164]
-id = 18502
-examine = "A fishy smelling crate."
-
-[crate_165]
-id = 18506
-examine = "A wooden crate for storage."
-
-[crate_166]
-id = 18507
-examine = "A wooden crate for storage."
-
-[crate_167]
-id = 18612
-examine = "A wooden crate for storage."
-
-[crate_168]
-id = 18613
-examine = "A wooden crate for storage."
-
-[crate_169]
-id = 18616
-examine = "A wooden crate for storage."
-
-[crate_170]
-id = 18618
-examine = "A wooden crate for storage."
-
-[crate_171]
-id = 18619
-examine = "A wooden crate for storage."
-
-[crate_172]
-id = 18835
-examine = "It looks like somebody's trying to grow it!"
-
-[crate_173]
-id = 18889
-examine = "A wooden crate."
-
-[crate_174]
-id = 18890
-examine = "A wooden crate."
-
-[crate_175]
-id = 18918
-examine = "A wooden crate."
-
-[crate_176]
-id = 18919
-examine = "A wooden crate."
 
 [depleted_rocks_tourist_trap_1]
 id = 18952
@@ -3987,14 +2295,6 @@ examine = "A rocky outcrop."
 [depleted_rocks_tourist_trap_dark_1]
 id = 18961
 examine = "A rocky outcrop."
-
-[crate_177]
-id = 18984
-examine = "A wooden crate for storage."
-
-[crate_178]
-id = 18985
-examine = "A wooden crate for storage."
 
 [copper_rocks_sand_1]
 clone = "copper_rocks_old_1"
@@ -4176,22 +2476,6 @@ examine = "A rocky outcrop."
 id = 19029
 examine = "A rocky outcrop."
 
-[crate_179]
-id = 19070
-examine = "A large crate. More puppets?"
-
-[crate_180]
-id = 19072
-examine = "A blue crate. Probably containing puppets."
-
-[crate_181]
-id = 19073
-examine = "A green crate. Probably containing puppets."
-
-[crate_182]
-id = 19074
-examine = "A red crate. Probably containing puppets."
-
 [candles_entrana]
 id = 19127
 examine = "Lit to remember the souls of the departed."
@@ -4248,34 +2532,9 @@ examine = "A crystal is placed here to charge the machine."
 id = 20032
 examine = "A crystal is placed here to charge the machine."
 
-[gate_145_opened]
-id = 20091
-
-[gate_145_closed]
-id = 20045
-examine = "A gate."
-
-[gate_146_opened]
-id = 20092
-
-[gate_146_closed]
-id = 20046
-examine = "A gate."
-
 [obstacle_pipe_9]
 id = 20210
 examine = "A pipe I can squeeze through"
-
-[crate_183]
-id = 20216
-examine = "A wooden crate."
-
-[gate_167_opened]
-id = 20269
-
-[gate_167_closed]
-id = 23274
-examine = "A wrought-iron gate."
 
 [corpse_34]
 id = 20297
@@ -4293,44 +2552,9 @@ examine = "Now he's just too thin."
 id = 20300
 examine = "He hasn't eaten in a long time."
 
-[crate_184]
-id = 20367
-examine = "A wooden crate."
-
-[crate_185]
-id = 20368
-examine = "A wooden crate."
-
 [potters_wheel_3]
 id = 20375
 examine = "Used for fashioning clay items."  
-
-[gate_150_opened]
-id = 20392
-
-[gate_150_closed]
-id = 20391
-examine = "The gate of Sophanem."
-
-[crate_186]
-id = 20429
-examine = "A wooden crate."
-
-[crate_187]
-id = 20430
-examine = "A wooden crate."
-
-[crate_188]
-id = 20463
-examine = "wooden crate."
-
-[crate_189]
-id = 20464
-examine = "wooden crates."
-
-[crate_190]
-id = 20510
-examine = "A floating crate."
 
 [pillar_33]
 id = 20872
@@ -4404,24 +2628,9 @@ examine = "A pillar I could stand on."
 id = 20889
 examine = "A pillar I could stand on."
 
-[crate_191]
-id = 21013
-examine = "A mixture of ice and metal."
-
-[crate_192]
-id = 21014
-examine = "Empty."
-
 [control_panel_2]
 id = 21055
 examine = "Looks like it controls the doors."
-
-[gate_152_opened]
-id = 21173
-
-[gate_152_closed]
-id = 21172
-examine = "A gate."
 
 [adamantite_rocks_crandor_1]
 clone = "adamantite_rocks_old_1"
@@ -4522,30 +2731,6 @@ examine = "A rocky outcrop."
 id = 21298
 examine = "A rocky outcrop."
 
-[gate_153_opened]
-id = 21404
-examine = "An open, sturdy metal door."
-
-[gate_153_closed]
-id = 21403
-examine = "A closed, sturdy metal door."
-
-[gate_154]
-id = 21404
-examine = "An open, sturdy metal door."
-
-[gate_155_opened]
-id = 21406
-examine = "An open, sturdy metal door."
-
-[gate_155_closed]
-id = 21405
-examine = "A closed, sturdy metal door."
-
-[gate_156]
-id = 21406
-examine = "An open, sturdy metal door."
-
 [pillar_51]
 id = 21546
 examine = "A crystal needs to be placed here to charge the machine."
@@ -4557,22 +2742,6 @@ examine = "A crystal is placed here to charge the machine."
 [pillar_53]
 id = 21548
 examine = "A crystal is placed here to charge the machine."
-
-[gate_157_opened]
-id = 21601
-examine = "An open gate."
-
-[gate_157_closed]
-id = 21600
-examine = "A flimsy, wooden gate."
-
-[gate_158]
-id = 21601
-examine = "An open gate."
-
-[crate_193]
-id = 21612
-examine = "A stone crate with some stuff in it."
 
 [fountain_10]
 id = 21764
@@ -4590,66 +2759,6 @@ examine = "Now that's what I call slimline!"
 id = 21803
 examine = "He looks very relaxed."
 
-[crate_194]
-id = 21806
-examine = "A wooden crate."
-
-[crate_195]
-id = 21908
-examine = "Reminds me of a lucky dip."
-
-[crate_196]
-id = 21909
-examine = "Reminds me of a lucky dip."
-
-[crate_197]
-id = 21910
-examine = "Reminds me of a lucky dip."
-
-[crate_198]
-id = 21911
-examine = "Reminds me of a lucky dip."
-
-[crate_199]
-id = 21912
-examine = "Reminds me of a lucky dip."
-
-[crate_200]
-id = 21913
-examine = "Reminds me of a lucky dip."
-
-[crate_201]
-id = 21914
-examine = "Reminds me of a lucky dip."
-
-[crate_202]
-id = 21915
-examine = "Reminds me of a lucky dip."
-
-[crate_203]
-id = 21916
-examine = "Reminds me of a lucky dip."
-
-[crate_204]
-id = 21917
-examine = "Reminds me of a lucky dip."
-
-[crate_205]
-id = 21938
-examine = "For storage."
-
-[crate_206]
-id = 21939
-examine = "For storage."
-
-[crate_207]
-id = 21940
-examine = "For storage."
-
-[crate_208]
-id = 22277
-examine = "A wooden crate."
-
 [wheat_5]
 id = 22300
 examine = "Baby bread."
@@ -4657,46 +2766,6 @@ examine = "Baby bread."
 [cabbage_2]
 clone = "cabbage"
 id = 22301
-
-[crate_209]
-id = 22426
-examine = "A wooden crate."
-
-[crate_210]
-id = 22427
-examine = "A wooden crate."
-
-[crate_211]
-id = 22453
-examine = "A crate with the top off."
-
-[crate_212]
-id = 22454
-examine = "A crate with the top off."
-
-[crate_213]
-id = 22455
-examine = "A crate with the top off."
-
-[crate_214]
-id = 22456
-examine = "A wooden crate."
-
-[crate_215]
-id = 22457
-examine = "A wooden crate."
-
-[gate_163]
-id = 22778
-examine = "Lets the littlest goblins out of their enclosure."
-
-[gate_164_opened]
-id = 22778
-examine = "Lets the littlest goblins out of their enclosure."
-
-[gate_164_closed]
-id = 22779
-examine = "Keeps the littlest goblins in their enclosure."
 
 [fern_8]
 id = 22804
@@ -4722,93 +2791,17 @@ examine = "This plant is flowering."
 id = 22809
 examine = "It has a seed pod."
 
-[crate_216]
-id = 22860
-examine = "A storage crate."
-
 [fountain_11]
 id = 22973
 examine = "A pretty water feature."
-
-[crate_217]
-id = 23144
-examine = "A wooden crate."
-
-[gate_165_opened]
-id = 23217
-examine = "A rusty gate."
-
-[gate_165_closed]
-id = 23216
-examine = "A rusty gate."
-
-[gate_166]
-id = 23217
-examine = "A rusty gate."
-
-[crate_218]
-id = 23283
-examine = "A wooden crate."
-
-[crate_219]
-id = 23356
-examine = "A wooden crate."
-
-[crate_220]
-id = 23357
-examine = "A wooden crate."
-
-[crate_221]
-id = 23358
-examine = "A wooden crate."
-
-[crate_222]
-id = 23530
-examine = "A neatly stacked pair of crates."
-
-[crate_223]
-id = 23533
-examine = "A neatly stacked pair of crates."
 
 [vtam_plaque]
 id = 23636
 examine = "A plaque with some engraved lettering."
 
-[gate_168_opened]
-id = 23919
-examine = "A wooden gate."
-
-[gate_168_closed]
-id = 23917
-examine = "A wooden gate."
-
-[gate_170]
-id = 23919
-examine = "A wooden gate."
-
-[crate_224]
-id = 24139
-examine = "A crate for storing and transporting long items."
-
-[crate_225]
-id = 24140
-examine = "A crate for storing and transporting long items."
-
 [fountain_12]
 id = 24161
 examine = "A pretty water feature."
-
-[crate_226]
-id = 24202
-examine = "An old crate for storage."
-
-[crate_227]
-id = 24205
-examine = "For storage."
-
-[crate_228]
-id = 24208
-examine = "For storage."
 
 [fountain_13]
 id = 24214
@@ -4821,78 +2814,6 @@ examine = "A grand fountain."
 [candles_15]
 id = 24348
 examine = "Lit to remember the souls of the departed."
-
-[gate_171_opened]
-id = 24373
-examine = "A gate."
-
-[gate_171_closed]
-id = 24369
-examine = "A gate."
-
-[gate_172_opened]
-id = 24374
-examine = "A gate."
-
-[gate_172_closed]
-id = 24370
-examine = "A gate."
-
-[gate_173]
-id = 24373
-examine = "A gate."
-
-[gate_247_opened]
-id = 24373
-examine = "A gate."
-
-[gate_west_varrock_2_closed]
-id = 45851
-examine = "A wooden gate."
-
-[gate_west_varrock_2_opened]
-id = 55443
-examine = "A wooden gate."
-
-[gate_247_closed]
-id = 45852
-examine = "A wooden gate."
-
-[gate_249_opened]
-id = 24373
-examine = "A gate."
-
-[gate_249_closed]
-id = 45854
-examine = "A small door in a big gate."
-
-[gate_174]
-id = 24374
-examine = "A gate."
-
-[gate_248_opened]
-id = 24374
-examine = "A gate."
-
-[gate_248_closed]
-id = 45853
-examine = "A small door in a big gate."
-
-[gate_250_opened]
-id = 24374
-examine = "A gate."
-
-[gate_250_closed]
-id = 45855
-examine = "A small door in a big gate."
-
-[gate_178_opened]
-id = 24562
-examine = "Gap where a gate goes."
-
-[gate_178_closed]
-id = 24564
-examine = "A beautifully-worked golden gate."
 
 [candles_16]
 id = 24666
@@ -4917,10 +2838,6 @@ examine = "It's huge."
 [beanstalk_3_stump]
 id = 24736
 examine = "It's huge."
-
-[crate_229]
-id = 24911
-examine = "An old crate for storage."
 
 [pillar_54]
 id = 25152
@@ -4966,49 +2883,17 @@ examine = "A rocky outcrop."
 id = 25370
 examine = "A rocky outcrop."
 
-[crate_230]
-id = 25644
-examine = "An old crate for storage."
-
-[crate_231]
-id = 25645
-examine = "An old crate for storage."
-
 [charms_5]
 id = 25654
 examine = "Trinkets and stuff."
-
-[crate_232]
-id = 25655
-examine = "Used for storage."
-
-[crate_233]
-id = 25660
-examine = "A wooden crate."
-
-[crate_234]
-id = 25661
-examine = "A wooden crate."
 
 [cooking_range_al_kharid]
 id = 25730
 examine = "Ideal for cooking on."
 
-[crate_235]
-id = 25775
-examine = "An old crate for storage."
-
 [fern_16]
 id = 52787
 examine = "A plant."
-
-[crate_236]
-id = 25836
-examine = "A wooden crate."
-
-[crate_237]
-id = 25837
-examine = "A wooden crate."
 
 [corpse_40]
 id = 25900
@@ -5017,52 +2902,6 @@ examine = "Now he's just too thin."
 [corpse_41]
 id = 25903
 examine = "He looks very relaxed."
-
-[gate_180_opened]
-id = 26083
-
-[gate_180_closed]
-id = 26081
-examine = "A wrought iron gate."
-
-[gate_181_opened]
-id = 26084
-
-[gate_181_closed]
-id = 26082
-examine = "A wrought iron gate."
-
-[gate_182_opened]
-id = 26132
-examine = "A wrought iron gate."
-
-[gate_182_closed]
-id = 26130
-examine = "A wrought iron gate."
-
-[gate_183_opened]
-id = 26133
-examine = "A wrought iron gate."
-
-[gate_183_closed]
-id = 26131
-examine = "A wrought iron gate."
-
-[gate_184]
-id = 26132
-examine = "A wrought iron gate."
-
-[gate_185]
-id = 26133
-examine = "A wrought iron gate."
-
-[crate_238]
-id = 26241
-examine = "A smashed crate."
-
-[crate_239]
-id = 26251
-examine = "A crate and broken shield."
 
 [pillar_56]
 id = 26302
@@ -5079,22 +2918,6 @@ examine = "Looks deep."
 [godwars_hole_roped]
 id = 26341
 examine = "Looks deep."
-
-[crate_240]
-id = 26440
-examine = "A wooden box."
-
-[crate_241]
-id = 26771
-examine = "A wooden crate."
-
-[crate_242]
-id = 26772
-examine = "A wooden crate."
-
-[crate_243]
-id = 26773
-examine = "A wooden crate."
 
 [table_j_mod]
 id = 26807
@@ -5132,92 +2955,9 @@ examine = "I hope no one's home."
 id = 26944
 examine = "I see dead people."
 
-[crate_244]
-id = 26961
-examine = "Wooden crates for storing things."
-
-[crate_245]
-id = 27015
-examine = "An old crate for storage."
-
-[crate_246]
-id = 27087
-examine = "Wooden crate for storage."
-
-[crate_247]
-id = 27305
-examine = "A robust-looking crate."
-
 [candle_2]
 id = 27527
 examine = "Adds an air of mystery to the old goblin."
-
-[crate_248]
-id = 27708
-examine = "A wooden crate for storage."
-
-[crate_249]
-id = 27730
-examine = "torage for all needs and lots of hospital stuff."
-
-[gate_188_opened]
-id = 27845
-examine = "This allows one to walk through walls."
-
-[gate_188_closed]
-id = 27846
-examine = "This allows one to walk through walls."
-
-[gate_190_opened]
-id = 27847
-examine = "This allows one to walk through walls."
-
-[gate_190_closed]
-id = 27848
-examine = "This allows one to walk through walls."
-
-[gate_191]
-id = 27851
-examine = "This allows one to walk through walls."
-
-[gate_192_opened]
-id = 27851
-examine = "This allows one to walk through walls."
-
-[gate_192_closed]
-id = 27852
-examine = "This allows one to walk through walls."
-
-[gate_193]
-id = 27853
-examine = "This allows one to walk through walls."
-
-[gate_194_opened]
-id = 27853
-examine = "This allows one to walk through walls."
-
-[gate_194_closed]
-id = 27854
-examine = "This allows one to walk through walls."
-
-[crate_250]
-id = 28421
-examine = "I wonder what's stored in here."
-
-[gate_195_opened]
-id = 28517
-
-[gate_195_closed]
-id = 28514
-examine = "It looks like some kind of back door."
-
-[crate_251]
-id = 28625
-examine = "For storage."
-
-[crate_252]
-id = 28626
-examine = "For storage."
 
 [pillar_58]
 id = 28654
@@ -5230,48 +2970,6 @@ examine = "Holds up the roof."
 [fountain_15]
 id = 28662
 examine = "A pretty water feature."
-
-[gate_197_opened]
-id = 28692
-examine = "A thick wooden gate."
-
-[gate_197_closed]
-id = 28690
-gate = false
-examine = "A thick wooden gate."
-
-[gate_198_opened]
-id = 28693
-examine = "A thick wooden gate."
-
-[gate_198_closed]
-id = 28691
-gate = false
-examine = "A thick wooden gate."
-
-[gate_199]
-id = 28692
-examine = "A thick wooden gate."
-
-[gate_200]
-id = 28693
-examine = "A thick wooden gate."
-
-[crate_253]
-id = 28823
-examine = "A wooden storage crate."
-
-[crate_254]
-id = 28824
-examine = "Used for storage."
-
-[crate_255]
-id = 29126
-examine = "For the storage of leather."
-
-[crate_256]
-id = 29149
-examine = "For storage."
 
 [coal_rocks_dungeon_1]
 clone = "coal_rocks_old_1"
@@ -5406,45 +3104,12 @@ examine = "Now, he's just too thin."
 id = 29343
 examine = "He hasn't eaten in a long time."
 
-[crate_257]
-id = 29352
-examine = "Wooden crate for storage."
-
-[crate_258]
-id = 29470
-
-[crate_259]
-id = 30013
-
-[crate_260]
-id = 30014
-
-[crate_261]
-id = 30208
-examine = "A crate."
-
 [fountain_16]
 id = 30223
 
 [corpse_46]
 id = 30278
 examine = "He looks very relaxed."
-
-[crate_262]
-id = 30288
-examine = "Floating crate."
-
-[crate_263]
-id = 30335
-examine = "Great for storage."
-
-[crate_264]
-id = 30517
-examine = "It contains a mould for making chains."
-
-[crate_265]
-id = 30542
-examine = "A wooden crate, just like many others."
 
 [coffin_24]
 id = 30543
@@ -5470,10 +3135,6 @@ examine = "An old coffin - spooky!"
 id = 30566
 examine = "Now he's just too thin."
 
-[crate_266]
-id = 30652
-examine = "A wooden crate."
-
 [candle_3]
 id = 30727
 examine = "A candle knocked on the floor."
@@ -5489,14 +3150,6 @@ examine = "Scary lighting apparatus."
 [fountain_17]
 id = 30820
 examine = "A pretty water feature."
-
-[crate_267]
-id = 30925
-examine = "A wooden crate for storage."
-
-[crate_268]
-id = 31013
-examine = "A wooden crate for storage."
 
 [depleted_rocks_light_1]
 id = 31059
@@ -5645,14 +3298,6 @@ clone = "mithril_rocks_old_1"
 id = 31088
 examine = "A rocky outcrop."
 
-[crate_269]
-id = 31137
-examine = "An old storage crate."
-
-[crate_270]
-id = 31140
-examine = "A dusty old storage crate."
-
 [coal_rocks_tzhaar_1]
 clone = "coal_rocks_old_1"
 id = 31167
@@ -5717,20 +3362,6 @@ examine = "A sealed tomb with subtle signs of tampering."
 [tomb_7]
 id = 31326
 examine = "A sealed tomb with subtle signs of tampering."
-
-[ancient_gate_7_opened]
-id = 31835
-
-[ancient_gate_7_closed]
-id = 31833
-examine = "A huge, strangely constructed doorway, not sure how this opens."
-
-[ancient_gate_8_opened]
-id = 31836
-
-[ancient_gate_8_closed]
-id = 31834
-examine = "A huge, strangely constructed doorway, not sure how this opens."
 
 [pillar_61]
 id = 32003
@@ -6000,17 +3631,6 @@ examine = "A rocky outcrop."
 id = 33402
 examine = "A rocky outcrop."
 
-[gate_220_opened]
-id = 33850
-examine = "This area is closed off."
-
-[gate_220_closed]
-id = 37507
-
-[crate_271]
-id = 34225
-examine = "A wooden crate."
-
 [burning_tomb]
 id = 34299
 examine = "It's on fire."
@@ -6019,41 +3639,9 @@ examine = "It's on fire."
 id = 34579
 examine = "A pretty water feature."
 
-[crate_272]
-id = 34585
-examine = "A wooden crate."
-
-[crate_273]
-id = 34586
-examine = "A wooden crate."
-
 [candles_20]
 id = 34615
 examine = "Lit to remember the souls of the departed."
-
-[gate_202]
-id = 34777
-examine = "A wooden gate."
-
-[gate_204_opened]
-id = 34777
-examine = "A wooden gate."
-
-[gate_204_closed]
-id = 34779
-examine = "A wooden gate."
-
-[gate_203]
-id = 34778
-examine = "A wooden gate."
-
-[gate_205_opened]
-id = 34778
-examine = "A wooden gate."
-
-[gate_205_closed]
-id = 34780
-examine = "A wooden gate."
 
 [potters_wheel_4]
 id = 34801
@@ -6062,10 +3650,6 @@ examine = "Used for fashioning clay items."
 [pottery_oven_east_ardougne]
 id = 34802
 examine = "Bake your clay items in here."
-
-[crate_274]
-id = 35015
-examine = "A wooden crate."
 
 [pillar_69]
 id = 35140
@@ -6081,34 +3665,6 @@ examine = "Conspicuous consumption of water."
 [rope_swing_2]
 id = 35967
 examine = "An odd-looking rock with a rope tied to it"
-
-[crate_275]
-id = 36323
-examine = "For storage."
-
-[crate_276]
-id = 36324
-examine = "For storage."
-
-[crate_277]
-id = 36351
-examine = "For storage."
-
-[crate_278]
-id = 36352
-examine = "For storage."
-
-[crate_279]
-id = 36369
-examine = "For storage."
-
-[crate_280]
-id = 36370
-examine = "For storage."
-
-[crate_281]
-id = 36375
-examine = "A wooden crate."
 
 [fountain_of_heroes]
 id = 36695
@@ -6174,46 +3730,6 @@ examine = "Grain goes in here."
 id = 36906
 examine = "A stand for hats."
 
-[gate_206]
-id = 36912
-examine = "A wooden gate."
-
-[gate_207_opened]
-id = 36912
-examine = "A wooden gate."
-
-[gate_207_closed]
-id = 36913
-examine = "A wooden gate."
-
-[gate_211_opened]
-id = 36912
-examine = "A wooden gate."
-
-[gate_211_closed]
-id = 36917
-examine = "A wooden gate."
-
-[gate_208]
-id = 36914
-examine = "A wooden gate."
-
-[gate_209_opened]
-id = 36914
-examine = "A wooden gate."
-
-[gate_209_closed]
-id = 36915
-examine = "A wooden gate."
-
-[gate_213_opened]
-id = 36914
-examine = "A wooden gate."
-
-[gate_213_closed]
-id = 36919
-examine = "A wooden gate."
-
 [spinning_wheel_lumbridge]
 id = 36970
 examine = "Used for spinning thread."
@@ -6233,26 +3749,6 @@ examine = "A burning candle."
 [drawers_lumbridge_castle]
 id = 37011
 examine = "A chest of drawers."
-
-[crate_282]
-id = 37015
-examine = "A wooden crate."
-
-[crate_283]
-id = 37016
-examine = "A wooden crate."
-
-[crate_284]
-id = 37029
-examine = "A wooden crate for storage."
-
-[crate_285]
-id = 37030
-examine = "An old crate for storage."
-
-[crate_286]
-id = 37031
-examine = "An old crate for storage."
 
 [pillar_73]
 id = 37204
@@ -6343,42 +3839,6 @@ examine = "A strengthened pillar."
 id = 37341
 examine = "A strengthened pillar."
 
-[gate_214]
-id = 37351
-examine = "A wooden gate."
-
-[gate_215_opened]
-id = 37351
-examine = "A wooden gate."
-
-[gate_215_closed]
-id = 37352
-examine = "A wooden gate."
-
-[gate_216]
-id = 37353
-examine = "A wooden gate."
-
-[gate_217_opened]
-id = 37353
-examine = "A wooden gate."
-
-[gate_217_closed]
-id = 37354
-examine = "A wooden gate."
-
-[crate_287]
-id = 37374
-examine = "A wooden crate."
-
-[crate_288]
-id = 37375
-examine = "A wooden crate."
-
-[crate_289]
-id = 37376
-examine = "A wooden crate."
-
 [pillar_82]
 id = 37451
 examine = "Stops bits of building falling on me."
@@ -6427,17 +3887,6 @@ examine = "A rocky outcrop."
 clone = "gold_rocks_old_1"
 id = 37473
 examine = "A rocky outcrop."
-
-[crate_290]
-id = 37587
-
-[crate_291]
-id = 37588
-examine = "A wooden crate, made for storage."
-
-[crate_292]
-id = 37623
-examine = "It reminds me of a lucky dip."
 
 [copper_rocks_light_3_1]
 clone = "copper_rocks_old_1"
@@ -6591,18 +4040,6 @@ examine = "A rocky outcrop."
 id = 37702
 examine = "A rocky outcrop."
 
-[crate_293]
-id = 37809
-examine = "A wooden crate."
-
-[crate_294]
-id = 37810
-examine = "Two small, wooden crates stacked on top of each other."
-
-[crate_295]
-id = 37811
-examine = "Two large, wooden crates stack on top of each other."
-
 [coffin_35]
 id = 37914
 examine = "It's sealed shut."
@@ -6610,10 +4047,6 @@ examine = "It's sealed shut."
 [coffin_36]
 id = 37915
 examine = "It's open."
-
-[crate_296]
-id = 38048
-examine = "A wooden storage recepticle"
 
 [portal_runecrafting_guild]
 id = 38279
@@ -6679,40 +4112,13 @@ examine = "Now that's what I call slimline!"
 id = 39245
 examine = "Home is where you hang your hat!"
 
-[crate_297]
-id = 39323
-examine = "A wooden crate, made for storage."
-
-[crate_298]
-id = 39349
-examine = "A wooden crate, made for storage."
-
 [corpse_58]
 id = 39474
 examine = "He looks very relaxed."
 
-[crate_299]
-id = 39532
-examine = "The mystics store their worldly belongings in these."
-
 [candles_21]
 id = 39841
 examine = "Lit to remember the souls of the departed."
-
-[crate_300]
-id = 39886
-
-[crate_301]
-id = 39956
-examine = "A crate of broken climbing hook heads."
-
-[crate_302]
-id = 40021
-examine = "For storage."
-
-[crate_303]
-id = 40022
-examine = "For storage."
 
 [candle_7]
 id = 40074
@@ -6734,135 +4140,9 @@ examine = "It's been blessed."
 id = 40181
 examine = "It's sealed shut."
 
-[crate_304]
-id = 40458
-
-[crate_305]
-id = 40459
-
-[crate_306]
-id = 40495
-examine = "A wooden crate."
-
-[crate_307]
-id = 40496
-examine = "A wooden crate."
-
-[crate_308]
-id = 40662
-examine = "A wooden crate."
-
-[crate_309]
-id = 40663
-examine = "A wooden crate."
-
-[gate_225_opened]
-id = 40747
-examine = "The metal bars look strong."
-
-[gate_225_closed]
-id = 40746
-examine = "The metal bars look strong."
-
-[gate_226]
-id = 40747
-examine = "The metal bars look strong."
-
-[crate_310]
-id = 40801
-examine = "A wooden crate."
-
-[crate_311]
-id = 40802
-examine = "A wooden crate."
-
-[crate_312]
-id = 40803
-examine = "A wooden crate."
-
-[gate_227_opened]
-id = 40905
-examine = "The metal bars look strong."
-
-[gate_227_closed]
-id = 40904
-examine = "The metal bars look strong."
-
-[gate_230_opened]
-id = 40931
-examine = "The metal bars look strong."
-
-[gate_230_closed]
-id = 40930
-examine = "The metal bars look strong."
-
-[gate_231]
-id = 40931
-examine = "The metal bars look strong."
-
-[crate_313]
-id = 41194
-examine = "A wooden crate."
-
-[crate_314]
-id = 41195
-examine = "A wooden crate."
-
-[crate_315]
-id = 42138
-examine = "They are collecting dust."
-
-[crate_316]
-id = 42139
-examine = "They are collecting dust."
-
-[crate_317]
-id = 42140
-examine = "They are collecting dust."
-
-[crate_318]
-id = 42141
-examine = "They are collecting dust."
-
-[crate_319]
-id = 42193
-examine = "They are collecting dust."
-
-[crate_320]
-id = 42194
-examine = "They are collecting dust."
-
 [fountain_22]
 id = 41448
 examine = "A pretty water feature."
-
-[gate_232]
-id = 42002
-examine = "A wooden gate."
-
-[gate_233]
-id = 42003
-examine = "A wooden gate."
-
-[crate_321]
-id = 42447
-examine = "A wooden crate."
-
-[crate_322]
-id = 42448
-examine = "A wooden crate."
-
-[crate_323]
-id = 43374
-examine = "An old crate."
-
-[crate_324]
-id = 43391
-examine = "It's slightly smaller on the inside."
-
-[crate_325]
-id = 43392
-examine = "Has fish on it."
 
 [rope_swing_4]
 id = 43526
@@ -6876,34 +4156,6 @@ examine = "It doesn't look finished, but the material is tough enough to grip ho
 id = 43595
 examine = "A slippery log I can walk across."
 
-[crate_326]
-id = 44046
-examine = "A wooden crate."
-
-[crate_327]
-id = 44047
-examine = "Two small, wooden crates stacked on top of each other."
-
-[crate_328]
-id = 44048
-examine = "Two large, wooden crates stack on top of each other."
-
-[crate329]
-id = 44058
-examine = "A wooden crate."
-
-[crate_330]
-id = 44059
-examine = "Two large, wooden crates stack on top of each other."
-
-[crate_331]
-id = 44105
-examine = "A wooden crate."
-
-[crate_332]
-id = 44106
-examine = "Two large, wooden crates stack on top of each other."
-
 [candle_8]
 id = 44268
 examine = "A burning candle."
@@ -6915,26 +4167,6 @@ examine = "A burning candle."
 [candle_10]
 id = 44270
 examine = "A burning candle."
-
-[crate_333]
-id = 44340
-examine = "A wooden box."
-
-[crate_334]
-id = 44419
-examine = "A wooden crate."
-
-[crate_335]
-id = 44420
-examine = "A wooden crate."
-
-[crate_336]
-id = 44421
-examine = "A wooden crate."
-
-[crate_337]
-id = 44422
-examine = "A wooden crate."
 
 [pillar_96]
 id = 44498
@@ -6963,58 +4195,6 @@ examine = "A rocky outcrop."
 clone = "runite_rocks_old_1"
 id = 45070
 examine = "A rocky outcrop."
-
-[crate_338]
-id = 45087
-examine = "A dwarf-sized crate."
-
-[gate_235_opened]
-id = 45207
-examine = "A wooden gate."
-
-[gate_235_closed]
-id = 45206
-examine = "A wooden gate."
-
-[gate_236]
-id = 45207
-examine = "A wooden gate."
-
-[gate_237_opened]
-id = 45209
-examine = "A wooden gate."
-
-[gate_237_closed]
-id = 45208
-examine = "A wooden gate."
-
-[gate_238]
-id = 45209
-examine = "A wooden gate."
-
-[gate_239_opened]
-id = 45211
-examine = "A wooden gate."
-
-[gate_239_closed]
-id = 45210
-examine = "A wooden gate."
-
-[gate_240]
-id = 45211
-examine = "A wooden gate."
-
-[gate_241_opened]
-id = 45213
-examine = "A wooden gate."
-
-[gate_241_closed]
-id = 45212
-examine = "A wooden gate."
-
-[gate_242]
-id = 45213
-examine = "A wooden gate."
 
 [table_large_lumbridge]
 id = 45233
@@ -7063,17 +4243,6 @@ examine = "A wall-mounted candle."
 [candles_25]
 id = 45277
 examine = "A pair of wall-mounted candles."
-
-[crate_339]
-id = 45278
-examine = "A wooden crate."
-
-[crate_340]
-id = 45279
-
-[crate_341]
-id = 45280
-examine = "A wooden crate."
 
 [archery_target]
 id = 45305
@@ -7125,46 +4294,6 @@ raise = "border_guard_raise"
 lower = "border_guard_lower"
 examine = "On guard duty."
 
-[crate_342]
-id = 46238
-examine = "An old crate for storage."
-
-[crate_343]
-id = 46266
-examine = "For storage."
-
-[crate_344]
-id = 46269
-examine = "For storage."
-
-[crate_345]
-id = 46270
-examine = "Useful for transportation of delicate items."
-
-[crate_346]
-id = 46294
-examine = "An old crate for storage."
-
-[crate_347]
-id = 46331
-examine = "A wooden crate for storage."
-
-[crate_348]
-id = 46332
-examine = "A wooden crate for storage."
-
-[crate_349]
-id = 46333
-examine = "An old crate for storage."
-
-[crate_350]
-id = 46985
-examine = "A wooden crate."
-
-[crate_351]
-id = 46986
-examine = "A wooden crate."
-
 [pillar_98]
 id = 47169
 examine = "A large stone pillar."
@@ -7181,14 +4310,6 @@ examine = "A large stone pillar."
 id = 47172
 examine = "A large stone pillar."
 
-[crate_352]
-id = 47202
-examine = "A wooden crate."
-
-[crate_353]
-id = 47203
-examine = "A wooden crate."
-
 [pillar_102]
 id = 47285
 examine = "It wouldn't take much to collapse this pillar."
@@ -7196,18 +4317,6 @@ examine = "It wouldn't take much to collapse this pillar."
 [pillar_103]
 id = 47286
 examine = "It wouldn't take much to collapse this pillar."
-
-[crate_354]
-id = 47559
-examine = "A wooden crate."
-
-[crate_355]
-id = 47560
-examine = "A wooden crate."
-
-[crate_356]
-id = 47561
-examine = "A wooden crate."
 
 [fountain_23]
 id = 47662
@@ -7220,51 +4329,13 @@ examine = "Produces top-quality milk."
 id = 47747
 examine = "The water looks VERY cold!"
 
-[crate_357]
-id = 47902
-examine = "This crate is riddled with holes."
-
 [pillar_104]
 id = 47977
 examine = "Stops bits of building falling on me."
 
-[crate_358]
-id = 48586
-
-[crate_359]
-id = 48587
-
 [tomb_9]
 id = 48686
 examine = "The Tomb of Dragith Nurn."
-
-[crate_360]
-id = 48998
-examine = "Great for storing things."
-
-[gate_253_opened]
-id = 49015
-
-[gate_253_closed]
-id = 49014
-gate = false
-examine = "A gate."
-
-[gate_254_opened]
-id = 49017
-
-[gate_254_closed]
-id = 49016
-gate = false
-examine = "A gate."
-
-[crate_361]
-id = 49100
-examine = "A crate filled with cabbages."
-
-[crate_362]
-id = 49330
-examine = "It will likely stop me from sliding."
 
 [fountain_25]
 id = 49354
@@ -7310,14 +4381,6 @@ examine = "A broken pillar."
 id = 52009
 examine = "A broken pillar."
 
-[crate_363]
-id = 52556
-examine = "For storage."
-
-[crate_364]
-id = 52557
-examine = "For storage."
-
 [fountain_31]
 id = 52568
 examine = "Flowing water."
@@ -7341,24 +4404,6 @@ examine = "A plant."
 [fountain_ornamental_2]
 id = 52800
 examine = "Two little fishes forever spew water into the pond."
-
-[crate_365]
-id = 53657
-examine = "A crude wooden crate."
-
-[crate_366]
-id = 54021
-examine = "It's full of wooden planks."
-
-[crate_367]
-id = 54022
-
-[crate_368]
-id = 54023
-examine = "It's full of wooden planks."
-
-[crate_369]
-id = 54024
 
 [pillar_112]
 id = 54118
@@ -7488,18 +4533,6 @@ examine = "Her..lies .od B.nny.."
 id = 54456
 examine = "Her..lies .od B.nny.."
 
-[crate_370]
-id = 54565
-examine = "A crate of broken climbing hooks."
-
-[crate_371]
-id = 54567
-examine = "A crate of broken climbing hook heads."
-
-[crate_372]
-id = 54569
-examine = "A crate of broken climbing hook heads."
-
 [coffin_40]
 id = 54571
 examine = "It's sealed shut."
@@ -7523,10 +4556,6 @@ examine = "It's sealed shut."
 [coffin_45]
 id = 54594
 examine = "It's open."
-
-[crate_373]
-id = 54645
-examine = "A crate of broken climbing hook heads."
 
 [candle_19]
 id = 54959
@@ -7576,10 +4605,6 @@ examine = "It's open."
 id = 55467
 examine = "It's been blessed."
 
-[crate_374]
-id = 56804
-examine = "A crate of construction materials to make environmental features."
-
 [corpse_59]
 id = 56877
 examine = "A dead monkey."
@@ -7595,18 +4620,6 @@ examine = "A dead monkey."
 [corpse_62]
 id = 56880
 examine = "A dead monkey."
-
-[crate_375]
-id = 56889
-examine = "A wooden crate."
-
-[crate_376]
-id = 57119
-examine = "It's probably full of weapons and supplies."
-
-[crate_377]
-id = 57121
-examine = "It's probably full of weapons and supplies."
 
 [varrock_palace_drain]
 id = 31759
@@ -7887,31 +4900,9 @@ id = 734
 id = 29354
 examine = "It's no common house spider that spun that."
 
-[games_room_stairs_up]
-id = 4627
-
-[games_room_stairs_up_2]
-id = 4626
-
-[games_room_stairs_down]
-id = 4625
-
-[games_room_stairs_down_2]
-id = 4624
-
-[games_room_basement_stairs_up]
-id = 4622
-
-[games_room_basement_stairs_down]
-id = 4620
-
 [fist_of_guthix_cave]
 id = 30204
 examine = "Step inside for violent fun."
-
-[fist_of_guthix_stairs]
-id = 30203
-examine = "Warning: leads into the wilderness."
 
 [dung]
 id = 6257
@@ -8780,25 +5771,9 @@ examine = "I could probably distract these with thievery."
 id = 7170
 examine = "I could probably distract these with thievery."
 
-[chaos_altar_ladder_up]
-id = 38221
-examine = "I can climb this."
-
-[chaos_altar_ladder_down]
-id = 38222
-examine = "I can climb down this."
-
 [rune_essence_exit_portal]
 id = 2492
 examine = "A portal from this mystical place."
-
-[ourania_cave_ladder_down]
-id = 26849
-examine = "Into the darkness..."
-
-[ourania_cave_ladder_up]
-id = 26850
-examine = "Into the light!"
 
 [ourania_crack_enter]
 id = 26844
@@ -8812,10 +5787,6 @@ examine = "I might be able to squeeze through."
 id = 26847
 examine = "An altar upon which to craft runes."
 
-[lumbridge_castle_ladder]
-id = 36771
-examine = "I can climb up this."
-
 [lumbridge_organ]
 id = 36978
 examine = "A church organ."
@@ -8827,10 +5798,6 @@ examine = "I can ring this."
 [fire_barbarian_village]
 id = 5499
 examine = "Hot!"
-
-[wizards_tower_staircase]
-id = 12537
-examine = "I can climb these stairs."
 
 [cauldron_of_thunder]
 id = 2142
@@ -8956,26 +5923,6 @@ examine = "That's a massive gap!"
 id = 43532
 examine = "A slanted roof."
 
-[basic_ladder_bottom]
-id = 1747
-examine = "I can climb this."
-
-[basic_ladder_first]
-id = 1748
-examine = "I can climb this."
-
-[basic_ladder_second]
-id = 2884
-examine = "I can climb this."
-
-[basic_ladder_top]
-id = 1746
-examine = "I can climb down this."
-
-[basic_ladder_up]
-id = 32015
-examine = "I can climb this."
-
 [wilderness_obstacle_pipe]
 id = 2288
 examine = "A pipe I can squeeze through."
@@ -8983,10 +5930,6 @@ examine = "A pipe I can squeeze through."
 [wilderness_rope_swing]
 id = 2283
 examine = "Use this to swing over crevices."
-
-[wilderness_agility_ladder_down]
-id = 14758
-examine = "I can climb down this."
 
 [wilderness_stepping_stone]
 id = 37704
@@ -8999,30 +5942,6 @@ examine = "A slippery log I can walk across."
 [wilderness_agility_rocks]
 id = 2328
 examine = "A rocky outcrop."
-
-[lumbridge_castle_staircase_north]
-id = 36776
-examine = "I can climb up these stairs."
-
-[lumbridge_castle_staircase_north_middle]
-id = 36777
-examine = "I can climb up or down these stairs."
-
-[lumbridge_castle_staircase_north_top]
-id = 36778
-examine = "I can climb down these stairs."
-
-[lumbridge_staircase_top]
-id = 36775
-examine = "I can climb up these stairs."
-
-[lumbridge_castle_staircase_south_middle]
-id = 36774
-examine = "I can climb up or down these stairs."
-
-[lumbridge_staircase]
-id = 36773
-examine = "I can climb up these stairs."
 
 [a_sinking_canoe_log]
 id = 12159

@@ -1,0 +1,1494 @@
+[crate]
+id = 1
+examine = "Big mysterious crate. You wonder what could be inside."
+
+[crate_2]
+id = 63
+examine = "Used for storage."
+
+[crate_3]
+id = 64
+examine = "Used for storage."
+
+[crate_4]
+id = 354
+examine = "A wooden crate for storage."
+
+[crate_5]
+id = 355
+examine = "A wooden crate for storage."
+
+[crate_6]
+id = 356
+examine = "An old crate for storage."
+
+[crate_7]
+id = 357
+examine = "An old crate for storage."
+
+[crate_8]
+id = 358
+examine = "An old crate for storage."
+
+[crate_9]
+id = 366
+examine = "Useful for transportation of delicate items."
+
+[crate_10]
+id = 1990
+examine = "A wooden crate for storage."
+
+[crate_11]
+id = 1999
+examine = "A wooden crate for storage."
+
+[crate_12]
+id = 2064
+examine = "For storage."
+
+[crate_13]
+id = 2071
+examine = "Used for storage."
+
+[crate_14]
+id = 2072
+examine = "Used for storage."
+
+[crate_15]
+id = 2364
+examine = "A wooden container."
+
+[crate_16]
+id = 2365
+examine = "A wooden container."
+
+[crate_17]
+id = 2620
+examine = "An old crate for storage."
+
+[crate_18]
+id = 2707
+examine = "A wooden crate for storage."
+
+[crate_19]
+id = 2708
+examine = "A wooden crate for storage."
+
+[crate_20]
+id = 2858
+examine = "A wooden crate."
+
+[crate_21]
+id = 2905
+examine = "An old crate for storage."
+
+[crate_22]
+id = 3360
+examine = "A wooden crate for storage."
+
+[crate_23]
+id = 3394
+examine = "A wooden crate for storage."
+
+[crate_24]
+id = 3395
+examine = "A wooden crate for storage."
+
+[crate_25]
+id = 3398
+examine = "A wooden crate for storage."
+
+[crate_26]
+id = 3399
+examine = "A wooden crate for storage."
+
+[crate_27]
+id = 3400
+examine = "A wooden crate for storage."
+
+[crate_28]
+id = 3401
+examine = "A wooden crate for storage."
+
+[crate_29]
+id = 3694
+examine = "Looks like the Imperial Guard's supply of Dual Claws."
+
+[crate_30]
+id = 3813
+examine = "It probably hasn't got anything interesting inside."
+
+[crate_31]
+id = 3856
+examine = "It's a half buried crate."
+
+[crate_32]
+id = 3857
+examine = "It's a half buried crate."
+
+[crate_33]
+id = 3861
+examine = "It's full of brightly coloured fish."
+
+[crate_34]
+id = 4185
+examine = "A wooden crate for storage."
+
+[crate_35]
+id = 4186
+examine = "An old crate for storage."
+
+[crate_36]
+id = 4300
+examine = "A wooden crate for storage."
+
+[crate_37]
+id = 4301
+examine = "An old crate for storage."
+
+[crate_38]
+id = 4714
+examine = "A wooden crate for storage."
+
+[crate_39]
+id = 4715
+examine = "This crate is making chattering sounds."
+
+[crate_40]
+id = 4716
+examine = "This crate smells slightly nauseous."
+
+[crate_41]
+id = 4717
+examine = "This crate says 'Property of Hamab' on its side."
+
+[crate_42]
+id = 4718
+examine = "This crate says 'Property of Hamab' on its side."
+
+[crate_43]
+id = 4719
+examine = "This crate says 'Property of Ifaba' on its side."
+
+[crate_44]
+id = 4720
+examine = "This crate says 'Property of Daga' on its side."
+
+[crate_45]
+id = 4721
+examine = "This crate says 'Property of Daga' on its side."
+
+[crate_46]
+id = 4722
+examine = "This crate smells slightly of banana."
+
+[crate_47]
+id = 4723
+examine = "This crate smells slightly of banana."
+
+[crate_48]
+id = 4724
+examine = "This crate says 'Property of Hamab' on its side."
+
+[crate_49]
+id = 4725
+examine = "This crate says 'Property of Ifaba' on its side."
+
+[crate_50]
+id = 4726
+examine = "This crate says 'Property of Ifaba' on its side."
+
+[crate_51]
+id = 4727
+examine = "This crate says 'Property of Ifaba' on its side."
+
+[crate_52]
+id = 4746
+examine = "This crate is marked 'Deliver to Glough'..."
+
+[crate_53]
+id = 4944
+examine = "It doesn't look very watertight. Any contents will be ruined."
+
+[crate_54]
+id = 4975
+examine = "An old crate for storage."
+
+[crate_55]
+id = 5355
+examine = "It probably hasn't got anything interesting inside."
+
+[crate_56]
+id = 5700
+examine = "A wooden crate."
+
+[crate_57]
+id = 5746
+examine = "A wooden crate."
+
+[crate_58]
+id = 5754
+
+[crate_59]
+id = 6177
+examine = "Big mysterious crates. You wonder what could be inside."
+
+[crate_60]
+id = 6839
+examine = "Smells pretty bad!"
+
+[crate_61]
+id = 6911
+examine = "Used for storage."
+
+[crate_62]
+id = 7347
+examine = "For storage."
+
+[crate_63]
+id = 7348
+examine = "For storage."
+
+[crate_64]
+id = 7349
+examine = "For storage."
+
+[crate_65]
+id = 7513
+examine = "For storage."
+
+[crate_66]
+id = 7514
+examine = "For storage."
+
+[crate_67]
+id = 8911
+examine = "Big mysterious crates. You wonder what could be inside."
+
+[crate_68]
+id = 8913
+examine = "Big mysterious crates. There are some papers on top."
+
+[crate_69]
+id = 8914
+examine = "Big mysterious crates. There are some papers on top."
+
+[crate_70]
+id = 8915
+examine = "Big mysterious crates. There are some papers on top."
+
+[crate_71]
+id = 8916
+examine = "Big mysterious crates. There are some papers on top."
+
+[crate_72]
+id = 9064
+examine = "A wooden crate."
+
+[crate_73]
+id = 9068
+examine = "A wooden crate containing Blackjacks."
+
+[crate_74]
+id = 9070
+examine = "A wooden crate containing fez hats."
+
+[crate_75]
+id = 9071
+examine = "A wooden crate containing clothes."
+
+[crate_76]
+id = 9381
+examine = "A wooden crate."
+
+[crate_77]
+id = 9533
+examine = "A wooden crate."
+
+[crate_78]
+id = 9534
+examine = "A wooden crate."
+
+[crate_79]
+id = 10159
+examine = "A wooden crate."
+
+[crate_80]
+id = 10281
+examine = "It's a crate."
+
+[crate_81]
+id = 10378
+examine = "Cheaper than using a chest for storage."
+
+[crate_82]
+id = 10671
+examine = "Only sawdust..."
+
+[crate_83]
+id = 10672
+examine = "Reclaim your lost puppets!"
+
+[crate_84]
+id = 10701
+examine = "A blue crate. Probably containing puppets."
+
+[crate_85]
+id = 10702
+examine = "A green crate. Probably containing puppets."
+
+[crate_86]
+id = 10703
+examine = "A red crate. Probably containing puppets."
+
+[crate_87]
+id = 10704
+examine = "A large crate. More puppets?"
+
+[crate_88]
+id = 11228
+examine = "Useful for transportation of valuable items."
+
+[crate_89]
+id = 11229
+examine = "Useful for transportation of valuable items."
+
+[crate_90]
+id = 11330
+examine = "A wooden crate."
+
+[crate_91]
+id = 11331
+examine = "A wooden crate."
+
+[crate_92]
+id = 11485
+examine = "A wooden crate."
+
+[crate_93]
+id = 11599
+examine = "A wooden crate."
+
+[crate_94]
+id = 11903
+examine = "An old storage crate."
+
+[crate_95]
+id = 11904
+examine = "An old storage crate."
+
+[crate_96]
+id = 11905
+examine = "An old storage crate."
+
+[crate_97]
+id = 12103
+examine = "For storage."
+
+[crate_98]
+id = 12105
+examine = "A wooden crate."
+
+[crate_99]
+id = 12235
+examine = "A crate of weights."
+
+[crate_100]
+id = 12442
+examine = "A large wooden box."
+
+[crate_101]
+id = 12443
+examine = "A neatly stacked pair of crates."
+
+[crate_102]
+id = 12546
+examine = "A wooden crate."
+
+[crate_103]
+id = 12547
+examine = "A wooden crate."
+
+[crate_104]
+id = 12876
+examine = "For storage."
+
+[crate_105]
+id = 12879
+examine = "A wooden crate."
+
+[crate_106]
+id = 12963
+examine = "A wooden crate."
+
+[crate_107]
+id = 14401
+examine = "A crate of weights."
+
+[crate_108]
+id = 14402
+examine = "A crate of weights."
+
+[crate_109]
+id = 14403
+examine = "A crate of weights."
+
+[crate_110]
+id = 14404
+examine = "A crate of weights."
+
+[crate_111]
+id = 14407
+examine = "A crate of weights."
+
+[crate_112]
+id = 14408
+examine = "A crate of weights."
+
+[crate_113]
+id = 14411
+examine = "A crate of weights."
+
+[crate_114]
+id = 14739
+examine = "I wonder what's in it?"
+
+[crate_115]
+id = 14986
+examine = "I'll bet you could fit a smaller crate inside it."
+
+[crate_116]
+id = 15030
+examine = "A wooden crate."
+
+[crate_117]
+id = 15031
+examine = "A wooden crate."
+
+[crate_118]
+id = 15052
+examine = "A crate of weights."
+
+[crate_119]
+id = 15053
+examine = "A crate of weights."
+
+[crate_120]
+id = 15107
+examine = "A wooden crate."
+
+[crate_121]
+id = 15243
+examine = "A crate of AMCE Beams-In-A-Box."
+
+[crate_122]
+id = 15244
+examine = "A crate of AMCE Pulley-Beams-In-A-Box."
+
+[crate_123]
+id = 15245
+examine = "A crate of AMCE Ropes-In-A-Box."
+
+[crate_124]
+id = 15599
+examine = "A crate. You wonder what could be inside."
+
+[crate_125]
+id = 15615
+examine = "A wooden crate."
+
+[crate_126]
+id = 15692
+examine = "Some wooden crates."
+
+[crate_127]
+id = 15695
+examine = "A crate full of machine parts."
+
+[crate_128]
+id = 15696
+examine = "An empty crate."
+
+[crate_129]
+id = 15697
+examine = "A crate full of machine parts."
+
+[crate_130]
+id = 15698
+examine = "An empty machine parts crate."
+
+[crate_131]
+id = 15704
+examine = "A discarded crate with a lid."
+
+[crate_132]
+id = 15705
+examine = "A discarded crate with a lid."
+
+[crate_133]
+id = 15706
+examine = "A discarded crate."
+
+[crate_134]
+id = 15707
+examine = "The crate is closed."
+
+[crate_135]
+id = 15720
+examine = "Who would have thought the Karamja Box Company supports the HAM cult?"
+
+[crate_136]
+id = 15721
+examine = "Who would have thought the Karamja Box Company supports the HAM cult?"
+
+[crate_137]
+id = 16001
+examine = "Useful for transportation of valuable items."
+
+[crate_138]
+id = 16002
+examine = "Useful for transportation of valuable items."
+
+[crate_139]
+id = 16249
+examine = "A crate for storing and transporting bows."
+
+[crate_140]
+id = 16250
+examine = "For storage."
+
+[crate_141]
+id = 16252
+examine = "A wooden crate."
+
+[crate_142]
+id = 16559
+examine = "A large wooden box."
+
+[crate_143]
+id = 16560
+examine = "A large wooden box."
+
+[crate_144]
+id = 16561
+examine = "A large wooden box."
+
+[crate_145]
+id = 16564
+examine = "A wooden crate."
+
+[crate_146]
+id = 16565
+examine = "A wooden crate."
+
+[crate_147]
+id = 16862
+examine = "A crate."
+
+[crate_148]
+id = 16863
+examine = "A crate."
+
+[crate_149]
+id = 16864
+examine = "A crate."
+
+[crate_150]
+id = 16865
+examine = "A crate."
+
+[crate_151]
+id = 16954
+examine = "A crate."
+
+[crate_152]
+id = 17033
+examine = "Big crate. Probably has crossbow bits inside."
+
+[crate_153]
+id = 17100
+examine = "For storage."
+
+[crate_154]
+id = 17101
+examine = "For storage."
+
+[crate_155]
+id = 17271
+examine = "Useful for transportation of valuable items."
+
+[crate_156]
+id = 17304
+examine = "A wooden crate."
+
+[crate_157]
+id = 17305
+examine = "A wooden crate."
+
+[crate_158]
+id = 17655
+examine = "For storage."
+
+[crate_159]
+id = 17658
+examine = "A wooden crate."
+
+[crate_160]
+id = 17905
+examine = "For storage."
+
+[crate_161]
+id = 17908
+examine = "A wooden crate."
+
+[crate_162]
+id = 18367
+examine = "A floating crate."
+
+[crate_163]
+id = 18368
+examine = "A floating crate."
+
+[crate_164]
+id = 18502
+examine = "A fishy smelling crate."
+
+[crate_165]
+id = 18506
+examine = "A wooden crate for storage."
+
+[crate_166]
+id = 18507
+examine = "A wooden crate for storage."
+
+[crate_167]
+id = 18612
+examine = "A wooden crate for storage."
+
+[crate_168]
+id = 18613
+examine = "A wooden crate for storage."
+
+[crate_169]
+id = 18616
+examine = "A wooden crate for storage."
+
+[crate_170]
+id = 18618
+examine = "A wooden crate for storage."
+
+[crate_171]
+id = 18619
+examine = "A wooden crate for storage."
+
+[crate_172]
+id = 18835
+examine = "It looks like somebody's trying to grow it!"
+
+[crate_173]
+id = 18889
+examine = "A wooden crate."
+
+[crate_174]
+id = 18890
+examine = "A wooden crate."
+
+[crate_175]
+id = 18918
+examine = "A wooden crate."
+
+[crate_176]
+id = 18919
+examine = "A wooden crate."
+
+[crate_177]
+id = 18984
+examine = "A wooden crate for storage."
+
+[crate_178]
+id = 18985
+examine = "A wooden crate for storage."
+
+[crate_179]
+id = 19070
+examine = "A large crate. More puppets?"
+
+[crate_180]
+id = 19072
+examine = "A blue crate. Probably containing puppets."
+
+[crate_181]
+id = 19073
+examine = "A green crate. Probably containing puppets."
+
+[crate_182]
+id = 19074
+examine = "A red crate. Probably containing puppets."
+
+[crate_183]
+id = 20216
+examine = "A wooden crate."
+
+[crate_184]
+id = 20367
+examine = "A wooden crate."
+
+[crate_185]
+id = 20368
+examine = "A wooden crate."
+
+[crate_186]
+id = 20429
+examine = "A wooden crate."
+
+[crate_187]
+id = 20430
+examine = "A wooden crate."
+
+[crate_188]
+id = 20463
+examine = "wooden crate."
+
+[crate_189]
+id = 20464
+examine = "wooden crates."
+
+[crate_190]
+id = 20510
+examine = "A floating crate."
+
+[crate_191]
+id = 21013
+examine = "A mixture of ice and metal."
+
+[crate_192]
+id = 21014
+examine = "Empty."
+
+[crate_193]
+id = 21612
+examine = "A stone crate with some stuff in it."
+
+[crate_194]
+id = 21806
+examine = "A wooden crate."
+
+[crate_195]
+id = 21908
+examine = "Reminds me of a lucky dip."
+
+[crate_196]
+id = 21909
+examine = "Reminds me of a lucky dip."
+
+[crate_197]
+id = 21910
+examine = "Reminds me of a lucky dip."
+
+[crate_198]
+id = 21911
+examine = "Reminds me of a lucky dip."
+
+[crate_199]
+id = 21912
+examine = "Reminds me of a lucky dip."
+
+[crate_200]
+id = 21913
+examine = "Reminds me of a lucky dip."
+
+[crate_201]
+id = 21914
+examine = "Reminds me of a lucky dip."
+
+[crate_202]
+id = 21915
+examine = "Reminds me of a lucky dip."
+
+[crate_203]
+id = 21916
+examine = "Reminds me of a lucky dip."
+
+[crate_204]
+id = 21917
+examine = "Reminds me of a lucky dip."
+
+[crate_205]
+id = 21938
+examine = "For storage."
+
+[crate_206]
+id = 21939
+examine = "For storage."
+
+[crate_207]
+id = 21940
+examine = "For storage."
+
+[crate_208]
+id = 22277
+examine = "A wooden crate."
+
+[crate_209]
+id = 22426
+examine = "A wooden crate."
+
+[crate_210]
+id = 22427
+examine = "A wooden crate."
+
+[crate_211]
+id = 22453
+examine = "A crate with the top off."
+
+[crate_212]
+id = 22454
+examine = "A crate with the top off."
+
+[crate_213]
+id = 22455
+examine = "A crate with the top off."
+
+[crate_214]
+id = 22456
+examine = "A wooden crate."
+
+[crate_215]
+id = 22457
+examine = "A wooden crate."
+
+[crate_216]
+id = 22860
+examine = "A storage crate."
+
+[crate_217]
+id = 23144
+examine = "A wooden crate."
+
+[crate_218]
+id = 23283
+examine = "A wooden crate."
+
+[crate_219]
+id = 23356
+examine = "A wooden crate."
+
+[crate_220]
+id = 23357
+examine = "A wooden crate."
+
+[crate_221]
+id = 23358
+examine = "A wooden crate."
+
+[crate_222]
+id = 23530
+examine = "A neatly stacked pair of crates."
+
+[crate_223]
+id = 23533
+examine = "A neatly stacked pair of crates."
+
+[crate_224]
+id = 24139
+examine = "A crate for storing and transporting long items."
+
+[crate_225]
+id = 24140
+examine = "A crate for storing and transporting long items."
+
+[crate_226]
+id = 24202
+examine = "An old crate for storage."
+
+[crate_227]
+id = 24205
+examine = "For storage."
+
+[crate_228]
+id = 24208
+examine = "For storage."
+
+[crate_229]
+id = 24911
+examine = "An old crate for storage."
+
+[crate_230]
+id = 25644
+examine = "An old crate for storage."
+
+[crate_231]
+id = 25645
+examine = "An old crate for storage."
+
+[crate_232]
+id = 25655
+examine = "Used for storage."
+
+[crate_233]
+id = 25660
+examine = "A wooden crate."
+
+[crate_234]
+id = 25661
+examine = "A wooden crate."
+
+[crate_235]
+id = 25775
+examine = "An old crate for storage."
+
+[crate_236]
+id = 25836
+examine = "A wooden crate."
+
+[crate_237]
+id = 25837
+examine = "A wooden crate."
+
+[crate_238]
+id = 26241
+examine = "A smashed crate."
+
+[crate_239]
+id = 26251
+examine = "A crate and broken shield."
+
+[crate_240]
+id = 26440
+examine = "A wooden box."
+
+[crate_241]
+id = 26771
+examine = "A wooden crate."
+
+[crate_242]
+id = 26772
+examine = "A wooden crate."
+
+[crate_243]
+id = 26773
+examine = "A wooden crate."
+
+[crate_244]
+id = 26961
+examine = "Wooden crates for storing things."
+
+[crate_245]
+id = 27015
+examine = "An old crate for storage."
+
+[crate_246]
+id = 27087
+examine = "Wooden crate for storage."
+
+[crate_247]
+id = 27305
+examine = "A robust-looking crate."
+
+[crate_248]
+id = 27708
+examine = "A wooden crate for storage."
+
+[crate_249]
+id = 27730
+examine = "torage for all needs and lots of hospital stuff."
+
+[crate_250]
+id = 28421
+examine = "I wonder what's stored in here."
+
+[crate_251]
+id = 28625
+examine = "For storage."
+
+[crate_252]
+id = 28626
+examine = "For storage."
+
+[crate_253]
+id = 28823
+examine = "A wooden storage crate."
+
+[crate_254]
+id = 28824
+examine = "Used for storage."
+
+[crate_255]
+id = 29126
+examine = "For the storage of leather."
+
+[crate_256]
+id = 29149
+examine = "For storage."
+
+[crate_257]
+id = 29352
+examine = "Wooden crate for storage."
+
+[crate_258]
+id = 29470
+
+[crate_259]
+id = 30013
+
+[crate_260]
+id = 30014
+
+[crate_261]
+id = 30208
+examine = "A crate."
+
+[crate_262]
+id = 30288
+examine = "Floating crate."
+
+[crate_263]
+id = 30335
+examine = "Great for storage."
+
+[crate_264]
+id = 30517
+examine = "It contains a mould for making chains."
+
+[crate_265]
+id = 30542
+examine = "A wooden crate, just like many others."
+
+[crate_266]
+id = 30652
+examine = "A wooden crate."
+
+[crate_267]
+id = 30925
+examine = "A wooden crate for storage."
+
+[crate_268]
+id = 31013
+examine = "A wooden crate for storage."
+
+[crate_269]
+id = 31137
+examine = "An old storage crate."
+
+[crate_270]
+id = 31140
+examine = "A dusty old storage crate."
+
+[crate_271]
+id = 34225
+examine = "A wooden crate."
+
+[crate_272]
+id = 34585
+examine = "A wooden crate."
+
+[crate_273]
+id = 34586
+examine = "A wooden crate."
+
+[crate_274]
+id = 35015
+examine = "A wooden crate."
+
+[crate_275]
+id = 36323
+examine = "For storage."
+
+[crate_276]
+id = 36324
+examine = "For storage."
+
+[crate_277]
+id = 36351
+examine = "For storage."
+
+[crate_278]
+id = 36352
+examine = "For storage."
+
+[crate_279]
+id = 36369
+examine = "For storage."
+
+[crate_280]
+id = 36370
+examine = "For storage."
+
+[crate_281]
+id = 36375
+examine = "A wooden crate."
+
+[crate_282]
+id = 37015
+examine = "A wooden crate."
+
+[crate_283]
+id = 37016
+examine = "A wooden crate."
+
+[crate_284]
+id = 37029
+examine = "A wooden crate for storage."
+
+[crate_285]
+id = 37030
+examine = "An old crate for storage."
+
+[crate_286]
+id = 37031
+examine = "An old crate for storage."
+
+[crate_287]
+id = 37374
+examine = "A wooden crate."
+
+[crate_288]
+id = 37375
+examine = "A wooden crate."
+
+[crate_289]
+id = 37376
+examine = "A wooden crate."
+
+[crate_290]
+id = 37587
+
+[crate_291]
+id = 37588
+examine = "A wooden crate, made for storage."
+
+[crate_292]
+id = 37623
+examine = "It reminds me of a lucky dip."
+
+[crate_293]
+id = 37809
+examine = "A wooden crate."
+
+[crate_294]
+id = 37810
+examine = "Two small, wooden crates stacked on top of each other."
+
+[crate_295]
+id = 37811
+examine = "Two large, wooden crates stack on top of each other."
+
+[crate_296]
+id = 38048
+examine = "A wooden storage recepticle"
+
+[crate_297]
+id = 39323
+examine = "A wooden crate, made for storage."
+
+[crate_298]
+id = 39349
+examine = "A wooden crate, made for storage."
+
+[crate_299]
+id = 39532
+examine = "The mystics store their worldly belongings in these."
+
+[crate_300]
+id = 39886
+
+[crate_301]
+id = 39956
+examine = "A crate of broken climbing hook heads."
+
+[crate_302]
+id = 40021
+examine = "For storage."
+
+[crate_303]
+id = 40022
+examine = "For storage."
+
+[crate_304]
+id = 40458
+
+[crate_305]
+id = 40459
+
+[crate_306]
+id = 40495
+examine = "A wooden crate."
+
+[crate_307]
+id = 40496
+examine = "A wooden crate."
+
+[crate_308]
+id = 40662
+examine = "A wooden crate."
+
+[crate_309]
+id = 40663
+examine = "A wooden crate."
+
+[crate_310]
+id = 40801
+examine = "A wooden crate."
+
+[crate_311]
+id = 40802
+examine = "A wooden crate."
+
+[crate_312]
+id = 40803
+examine = "A wooden crate."
+
+[crate_313]
+id = 41194
+examine = "A wooden crate."
+
+[crate_314]
+id = 41195
+examine = "A wooden crate."
+
+[crate_315]
+id = 42138
+examine = "They are collecting dust."
+
+[crate_316]
+id = 42139
+examine = "They are collecting dust."
+
+[crate_317]
+id = 42140
+examine = "They are collecting dust."
+
+[crate_318]
+id = 42141
+examine = "They are collecting dust."
+
+[crate_319]
+id = 42193
+examine = "They are collecting dust."
+
+[crate_320]
+id = 42194
+examine = "They are collecting dust."
+
+[crate_321]
+id = 42447
+examine = "A wooden crate."
+
+[crate_322]
+id = 42448
+examine = "A wooden crate."
+
+[crate_323]
+id = 43374
+examine = "An old crate."
+
+[crate_324]
+id = 43391
+examine = "It's slightly smaller on the inside."
+
+[crate_325]
+id = 43392
+examine = "Has fish on it."
+
+[crate_326]
+id = 44046
+examine = "A wooden crate."
+
+[crate_327]
+id = 44047
+examine = "Two small, wooden crates stacked on top of each other."
+
+[crate_328]
+id = 44048
+examine = "Two large, wooden crates stack on top of each other."
+
+[crate329]
+id = 44058
+examine = "A wooden crate."
+
+[crate_330]
+id = 44059
+examine = "Two large, wooden crates stack on top of each other."
+
+[crate_331]
+id = 44105
+examine = "A wooden crate."
+
+[crate_332]
+id = 44106
+examine = "Two large, wooden crates stack on top of each other."
+
+[crate_333]
+id = 44340
+examine = "A wooden box."
+
+[crate_334]
+id = 44419
+examine = "A wooden crate."
+
+[crate_335]
+id = 44420
+examine = "A wooden crate."
+
+[crate_336]
+id = 44421
+examine = "A wooden crate."
+
+[crate_337]
+id = 44422
+examine = "A wooden crate."
+
+[crate_338]
+id = 45087
+examine = "A dwarf-sized crate."
+
+[crate_339]
+id = 45278
+examine = "A wooden crate."
+
+[crate_340]
+id = 45279
+
+[crate_341]
+id = 45280
+examine = "A wooden crate."
+
+[crate_342]
+id = 46238
+examine = "An old crate for storage."
+
+[crate_343]
+id = 46266
+examine = "For storage."
+
+[crate_344]
+id = 46269
+examine = "For storage."
+
+[crate_345]
+id = 46270
+examine = "Useful for transportation of delicate items."
+
+[crate_346]
+id = 46294
+examine = "An old crate for storage."
+
+[crate_347]
+id = 46331
+examine = "A wooden crate for storage."
+
+[crate_348]
+id = 46332
+examine = "A wooden crate for storage."
+
+[crate_349]
+id = 46333
+examine = "An old crate for storage."
+
+[crate_350]
+id = 46985
+examine = "A wooden crate."
+
+[crate_351]
+id = 46986
+examine = "A wooden crate."
+
+[crate_352]
+id = 47202
+examine = "A wooden crate."
+
+[crate_353]
+id = 47203
+examine = "A wooden crate."
+
+[crate_354]
+id = 47559
+examine = "A wooden crate."
+
+[crate_355]
+id = 47560
+examine = "A wooden crate."
+
+[crate_356]
+id = 47561
+examine = "A wooden crate."
+
+[crate_357]
+id = 47902
+examine = "This crate is riddled with holes."
+
+[crate_358]
+id = 48586
+
+[crate_359]
+id = 48587
+
+[crate_360]
+id = 48998
+examine = "Great for storing things."
+
+[crate_361]
+id = 49100
+examine = "A crate filled with cabbages."
+
+[crate_362]
+id = 49330
+examine = "It will likely stop me from sliding."
+
+[crate_363]
+id = 52556
+examine = "For storage."
+
+[crate_364]
+id = 52557
+examine = "For storage."
+
+[crate_365]
+id = 53657
+examine = "A crude wooden crate."
+
+[crate_366]
+id = 54021
+examine = "It's full of wooden planks."
+
+[crate_367]
+id = 54022
+
+[crate_368]
+id = 54023
+examine = "It's full of wooden planks."
+
+[crate_369]
+id = 54024
+
+[crate_370]
+id = 54565
+examine = "A crate of broken climbing hooks."
+
+[crate_371]
+id = 54567
+examine = "A crate of broken climbing hook heads."
+
+[crate_372]
+id = 54569
+examine = "A crate of broken climbing hook heads."
+
+[crate_373]
+id = 54645
+examine = "A crate of broken climbing hook heads."
+
+[crate_374]
+id = 56804
+examine = "A crate of construction materials to make environmental features."
+
+[crate_375]
+id = 56889
+examine = "A wooden crate."
+
+[crate_376]
+id = 57119
+examine = "It's probably full of weapons and supplies."
+
+[crate_377]
+id = 57121
+examine = "It's probably full of weapons and supplies."

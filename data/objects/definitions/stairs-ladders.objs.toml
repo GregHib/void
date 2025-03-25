@@ -1,0 +1,101 @@
+[spooky_stairs]
+id = 2522
+examine = "It's a flight of stairs."
+
+[spooky_stairs_2]
+id = 2523
+examine = "It's a flight of stairs."
+
+[games_room_stairs_up]
+id = 4627
+
+[games_room_stairs_up_2]
+id = 4626
+
+[games_room_stairs_down]
+id = 4625
+
+[games_room_stairs_down_2]
+id = 4624
+
+[games_room_basement_stairs_up]
+id = 4622
+
+[games_room_basement_stairs_down]
+id = 4620
+
+[fist_of_guthix_stairs]
+id = 30203
+examine = "Warning: leads into the wilderness."
+
+[wizards_tower_staircase]
+id = 12537
+examine = "I can climb these stairs."
+
+[lumbridge_castle_staircase_north]
+id = 36776
+examine = "I can climb up these stairs."
+
+[lumbridge_castle_staircase_north_middle]
+id = 36777
+examine = "I can climb up or down these stairs."
+
+[lumbridge_castle_staircase_north_top]
+id = 36778
+examine = "I can climb down these stairs."
+
+[lumbridge_staircase_top]
+id = 36775
+examine = "I can climb up these stairs."
+
+[lumbridge_castle_staircase_south_middle]
+id = 36774
+examine = "I can climb up or down these stairs."
+
+[lumbridge_staircase]
+id = 36773
+examine = "I can climb up these stairs."
+
+[chaos_altar_ladder_up]
+id = 38221
+examine = "I can climb this."
+
+[chaos_altar_ladder_down]
+id = 38222
+examine = "I can climb down this."
+
+[ourania_cave_ladder_down]
+id = 26849
+examine = "Into the darkness..."
+
+[ourania_cave_ladder_up]
+id = 26850
+examine = "Into the light!"
+
+[lumbridge_castle_ladder]
+id = 36771
+examine = "I can climb up this."
+
+[basic_ladder_bottom]
+id = 1747
+examine = "I can climb this."
+
+[basic_ladder_first]
+id = 1748
+examine = "I can climb this."
+
+[basic_ladder_second]
+id = 2884
+examine = "I can climb this."
+
+[basic_ladder_top]
+id = 1746
+examine = "I can climb down this."
+
+[basic_ladder_up]
+id = 32015
+examine = "I can climb this."
+
+[wilderness_agility_ladder_down]
+id = 14758
+examine = "I can climb down this."
