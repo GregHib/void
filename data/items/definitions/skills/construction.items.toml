@@ -3113,14 +3113,14 @@ examine = "A ready-to-assemble large teak bed."
 [large_teak_bed_flatpack_noted]
 id = 8585
 
-["4_poster_flatpack"]
+[4_poster_flatpack]
 id = 8586
 price = 1623
 limit = 100
 weight = 1.0
 examine = "A ready-to-assemble four-poster bed."
 
-["4_poster_noted"]
+[4_poster_flatpack_noted]
 id = 8587
 
 [gilded_4_poster_flatpack]

@@ -1995,3 +1995,33 @@ id = 19802
 
 [picture_219]
 id = 19844
+
+[poison_dagger_p+]  # Unobtainable
+id = 5684
+
+[poison_dagger_p+_noted]
+id = 5685
+
+[poison_dagger_p++] # Unobtainable
+id = 5702
+
+[poison_dagger_p++_noted]
+id = 5703
+
+[stool_dairy_cow_anim] # Unobtainable
+id = 5732
+
+[stool_dairy_cow_anim_noted]
+id = 6060
+
+[spirit_roots] # Unobtainable
+id = 6053
+
+[spirit_roots_noted]
+id = 6054
+
+[flatpack_globe] # Unobtainable
+id = 8630
+
+[flatpack_globe_noted]
+id = 8631

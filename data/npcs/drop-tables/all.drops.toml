@@ -977,7 +977,7 @@ drops = [
     { id = "steel_arrow", amount = 10, chance = 2 },
     { id = "mithril_arrow", amount = 10, chance = 2 },
     { id = "mithril_arrow", amount = 20 },
-    { id = "bow_string_noted", amount = 10, chance = 2 }
+    { id = "bowstring_noted", amount = 10, chance = 2 }
   ] },
   { roll = 50, drops = [
     { id = "coins", amount = 100, chance = 40 }

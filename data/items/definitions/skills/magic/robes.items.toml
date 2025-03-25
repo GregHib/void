@@ -384,7 +384,7 @@ weight = 0.907
 slot = "Chest"
 examine = "A robe worn by worshippers of Zamorak."
 
-[zamorak_robe_top_2_noted]
+[zamorak_robe_top_noted]
 id = 1036
 
 [boots_grey]

@@ -13629,6 +13629,9 @@ id = 18511
 [little_bloodrager_pouch_noted]
 id = 18512
 
+[naive_bloodrager_pouch_noted]
+id = 18513
+
 [keen_bloodrager_pouch_noted]
 id = 18514
 
@@ -13655,6 +13658,9 @@ id = 18521
 
 [little_stormbringer_pouch_noted]
 id = 18522
+
+[naive_stormbringer_pouch_noted]
+id = 18523
 
 [keen_stormbringer_pouch_noted]
 id = 18524
@@ -13683,6 +13689,9 @@ id = 18531
 [little_hoardstalker_pouch_noted]
 id = 18532
 
+[naive_hoardstalker_pouch_noted]
+id = 18533
+
 [keen_hoardstalker_pouch_noted]
 id = 18534
 
@@ -13709,6 +13718,9 @@ id = 18541
 
 [little_skinweaver_pouch_noted]
 id = 18542
+
+[naive_skinweaver_pouch_noted]
+id = 18543
 
 [keen_skinweaver_pouch_noted]
 id = 18544
@@ -13737,6 +13749,9 @@ id = 18551
 [little_worldbearer_pouch_noted]
 id = 18552
 
+[naive_worldbearer_pouch_noted]
+id = 18553
+
 [keen_worldbearer_pouch_noted]
 id = 18554
 
@@ -13763,6 +13778,9 @@ id = 18561
 
 [little_deathslinger_pouch_noted]
 id = 18562
+
+[naive_deathslinger_pouch_noted]
+id = 18563
 
 [keen_deathslinger_pouch_noted]
 id = 18564

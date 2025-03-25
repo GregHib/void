@@ -467,7 +467,7 @@ examine = "One dose of fishy super Defence potion."
 [super_defence_mix_1_noted]
 id = 11500
 
-["antipoison+_mix_2"]
+["antidote+_mix_2"]
 id = 11501
 price = 2155
 weight = 0.075
@@ -480,7 +480,7 @@ examine = "Two doses of fishy extra strength antidote potion."
 ["antidote+_mix_2_noted"]
 id = 11502
 
-["antipoison+_mix_1"]
+["antidote+_mix_1"]
 id = 11503
 price = 1208
 weight = 0.045
