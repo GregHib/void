@@ -20,7 +20,7 @@ adminCommand("reload") {
         val files = configFiles()
         items.clear()
         definitions.load(files.getOrDefault(Settings["definitions.items"], emptyList()))
-        loadItemSpawns(items, spawns, files.getOrDefault(Settings["spawns.items"], emptyList()))
+        loadItemSpawns(items, spawns, files.getOrDefault(Settings["spawns.items"], emptyList()), definitions)
     }
 }
 

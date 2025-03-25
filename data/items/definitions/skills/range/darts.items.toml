@@ -105,7 +105,7 @@ id = 819
 price = 28
 limit = 5000
 smithing = { level = 4, xp = 12.5 }
-smithing = { level = 1, xp = 1.8 }
+fletch_dart = { level = 1, xp = 1.8 }
 examine = "A deadly looking dart tip made of bronze - needs feathers for flight."
 
 [iron_dart_tip]

@@ -26,13 +26,6 @@ class ItemDefinitions(
 
     fun load(paths: List<String>): ItemDefinitions {
         timedLoad("item extra") {
-            val equipment = IntArray(definitions.size) { -1 }
-            var index = 0
-            for (def in definitions) {
-                if (def.primaryMaleModel >= 0 || def.primaryFemaleModel >= 0) {
-                    equipment[def.id] = index++
-                }
-            }
             val clones = Object2ObjectOpenHashMap<String, String>(100)
             val ids = Object2IntOpenHashMap<String>(18_000)
             ids.defaultReturnValue(-1)
@@ -44,12 +37,7 @@ class ItemDefinitions(
                         val extras = Object2ObjectOpenHashMap<String, Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
                         while (nextPair()) {
                             when (val key = key()) {
-                                "id" -> {
-                                    id = int()
-                                    if (id in equipment.indices && equipment[id] != -1) {
-                                        extras["equip"] = equipment[id]
-                                    }
-                                }
+                                "id" -> id = int()
                                 "slot" -> extras[key] = EquipSlot.valueOf(string())
                                 "type" -> extras[key] = EquipType.valueOf(string())
                                 "kept" -> extras[key] = ItemKept.by(string())

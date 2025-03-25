@@ -445,9 +445,10 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
         }
         "nav graph", "ai graph" -> get<NavigationGraph>().load()
         "npcs" -> {
-            get<NPCDefinitions>().load(files.getOrDefault(Settings["definitions.npcs"], emptyList()))
+            val npcDefs = get<NPCDefinitions>()
+            npcDefs.load(files.getOrDefault(Settings["definitions.npcs"], emptyList()))
             val npcs: NPCs = get()
-            loadNpcSpawns(npcs, files.getOrDefault(Settings["spawns.npcs"], emptyList()))
+            loadNpcSpawns(npcs, files.getOrDefault(Settings["spawns.npcs"], emptyList()), npcDefs)
         }
         "areas" -> get<AreaDefinitions>().load()
         "object defs" -> get<ObjectDefinitions>().load(files.getOrDefault(Settings["definitions.objects"], emptyList()))

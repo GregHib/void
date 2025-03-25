@@ -1,14 +1,19 @@
 package world.gregs.voidps.engine.entity.character.npc
 
+import com.github.michaelbull.logging.InlineLogger
 import world.gregs.config.Config
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.timedLoad
 
+private val logger = InlineLogger()
+
 fun loadNpcSpawns(
     npcs: NPCs,
-    paths: List<String>
+    paths: List<String>,
+    npcDefinitions: NPCDefinitions
 ) {
     timedLoad("npc spawn") {
         npcs.clear()
@@ -39,6 +44,9 @@ fun loadNpcSpawns(
                         }
                         if (!membersWorld && members) {
                             continue
+                        }
+                        if (npcDefinitions.getOrNull(id) == null) {
+                            logger.warn { "Invalid npc spawn id '$id' in ${path}." }
                         }
                         val tile = Tile(x, y, level)
                         npcs.add(id, tile, direction, delay)

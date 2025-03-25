@@ -33,9 +33,9 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
         get() = Settings["world.members", false]
 
     fun start(files: Map<String, List<String>>) {
-        loadItemSpawns(get<FloorItems>(), get<ItemSpawns>(), files.getOrDefault(Settings["spawns.items"], emptyList()))
-        loadObjectSpawns(get<GameObjects>(), files.getOrDefault(Settings["spawns.objects"], emptyList()))
-        loadNpcSpawns(get<NPCs>(), files.getOrDefault(Settings["spawns.npcs"], emptyList()))
+        loadItemSpawns(get<FloorItems>(), get<ItemSpawns>(), files.getOrDefault(Settings["spawns.items"], emptyList()), get())
+        loadObjectSpawns(get<GameObjects>(), files.getOrDefault(Settings["spawns.objects"], emptyList()), get())
+        loadNpcSpawns(get<NPCs>(), files.getOrDefault(Settings["spawns.npcs"], emptyList()), get())
         emit(Spawn)
     }
 
