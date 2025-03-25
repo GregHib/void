@@ -541,7 +541,7 @@ slot = "Amulet"
 examine = "A plain gold amulet."
 kept = "Wilderness"
 
-[gold_amulet_noted_2]
+[gold_amulet_noted]
 id = 1693
 
 [sapphire_amulet]
@@ -552,7 +552,7 @@ weight = 0.007
 slot = "Amulet"
 examine = "I wonder if I can get this enchanted."
 
-[sapphire_amulet_noted_2]
+[sapphire_amulet_noted]
 id = 1695
 
 [emerald_amulet]
@@ -563,7 +563,7 @@ weight = 0.007
 slot = "Amulet"
 examine = "I wonder if I can get this enchanted."
 
-[emerald_amulet_noted_2]
+[emerald_amulet_noted]
 id = 1697
 
 [ruby_amulet]
@@ -575,7 +575,7 @@ slot = "Amulet"
 destroy = "No"
 examine = "I wonder if I can get this enchanted."
 
-[ruby_amulet_noted_2]
+[ruby_amulet_noted]
 id = 1699
 
 [diamond_amulet]
@@ -586,7 +586,7 @@ weight = 0.007
 slot = "Amulet"
 examine = "I wonder if I can get this enchanted."
 
-[diamond_amulet_noted_2]
+[diamond_amulet_noted]
 id = 1701
 
 [dragonstone_amulet]
@@ -597,7 +597,7 @@ weight = 0.007
 slot = "Amulet"
 examine = "I wonder if I can get this enchanted."
 
-[dragonstone_ammy_noted_2]
+[dragonstone_amulet_noted]
 id = 1703
 
 [amulet_of_glory]
@@ -865,7 +865,7 @@ weight = 0.014
 examine = "I need a bow stave to attach this to."
 kept = "Wilderness"
 
-[bow_string_noted]
+[bowstring_noted]
 id = 1778
 
 [flax]
@@ -967,7 +967,7 @@ weight = 0.05
 examine = "An inexpensive brown toy horse."
 kept = "Wilderness"
 
-[toy_horsey_noted]
+[toy_horsey_brown_noted]
 id = 2521
 
 [toy_horsey_white]
@@ -976,7 +976,7 @@ weight = 0.05
 examine = "An inexpensive white toy horse."
 kept = "Wilderness"
 
-[toy_horsey_noted_2]
+[toy_horsey_white_noted]
 id = 2523
 
 [toy_horsey_black]
@@ -985,7 +985,7 @@ weight = 0.05
 examine = "An inexpensive black toy horse."
 kept = "Wilderness"
 
-[toy_horsey_noted_3]
+[toy_horsey_black_noted]
 id = 2525
 
 [toy_horsey_grey]
@@ -994,9 +994,8 @@ weight = 0.05
 examine = "An inexpensive grey toy horse."
 kept = "Wilderness"
 
-[toy_horsey_noted_4]
+[toy_horsey_grey_noted]
 id = 2527
-
 
 [ring_of_recoil]
 id = 2550

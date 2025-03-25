@@ -10,7 +10,7 @@ limit = 20000
 weight = 0.12
 examine = "I should try cooking this."
 
-[raw_shrimps_noted_tutorial_island]
+[raw_shrimps_tutorial_island_noted]
 id = 2515
 
 [pot_of_flour_tutorial_island]
@@ -20,7 +20,7 @@ weight = 1.36
 examine = "There is flour in this pot."
 kept = "Wilderness"
 
-[pot_of_flour_noted_tutorial_island]
+[pot_of_flour_tutorial_island_noted]
 id = 2517
 
 [bones_tutorial_island]
@@ -30,5 +30,5 @@ weight = 0.5
 examine = "Bones are for burying."
 kept = "Wilderness"
 
-[bones_noted_tutorial_island]
+[bones_tutorial_island_noted]
 id = 2531

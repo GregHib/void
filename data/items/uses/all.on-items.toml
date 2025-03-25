@@ -4092,24 +4092,24 @@ ticks = 3
 animation = "craft_leather"
 message = "You make a pair of leather chaps."
 
-[hard_leather_body]
+[hardleather_body]
 skill = "crafting"
 level = 28
 xp = 35.0
 requires = ["needle", "thread"]
 remove = ["hard_leather"]
-add = ["hard_leather_body"]
+add = ["hardleather_body"]
 ticks = 3
 animation = "craft_leather"
 message = "You make a hard leather body."
 
-[studded_leather_coif]
+[leather_coif]
 skill = "crafting"
 level = 38
 xp = 37.0
 requires = ["needle", "thread"]
 remove = ["leather"]
-add = ["studded_leather_coif"]
+add = ["coif"]
 ticks = 3
 animation = "craft_leather"
 message = "You make a leather coif."
@@ -4780,7 +4780,7 @@ skill = "crafting"
 level = 79
 xp = 50.0
 ticks = 2
-remove = [{ id = "studded_leather_coif" }, { id = "blue_feather", amount = 20 }]
+remove = [{ id = "coif" }, { id = "blue_feather", amount = 20 }]
 add = ["feather_headdress_blue"]
 message = "You add the feathers to the coif to make a feathered headdress."
 
@@ -4789,7 +4789,7 @@ skill = "crafting"
 level = 79
 xp = 50.0
 ticks = 2
-remove = [{ id = "studded_leather_coif" }, { id = "orange_feather", amount = 20 }]
+remove = [{ id = "coif" }, { id = "orange_feather", amount = 20 }]
 add = ["feather_headdress_orange"]
 message = "You add the feathers to the coif to make a feathered headdress."
 
@@ -4798,7 +4798,7 @@ skill = "crafting"
 level = 79
 xp = 50.0
 ticks = 2
-remove = [{ id = "studded_leather_coif" }, { id = "red_feather", amount = 20 }]
+remove = [{ id = "coif" }, { id = "red_feather", amount = 20 }]
 add = ["feather_headdress_red"]
 message = "You add the feathers to the coif to make a feathered headdress."
 
@@ -4807,7 +4807,7 @@ skill = "crafting"
 level = 79
 xp = 50.0
 ticks = 2
-remove = [{ id = "studded_leather_coif" }, { id = "stripy_feather", amount = 20 }]
+remove = [{ id = "coif" }, { id = "stripy_feather", amount = 20 }]
 add = ["feather_headdress_stripy"]
 message = "You add the feathers to the coif to make a feathered headdress."
 
@@ -4816,7 +4816,7 @@ skill = "crafting"
 level = 79
 xp = 50.0
 ticks = 2
-remove = [{ id = "studded_leather_coif" }, { id = "yellow_feather", amount = 20 }]
+remove = [{ id = "coif" }, { id = "yellow_feather", amount = 20 }]
 add = ["feather_headdress_yellow"]
 message = "You add the feathers to the coif to make a feathered headdress."
 

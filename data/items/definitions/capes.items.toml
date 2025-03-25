@@ -6,7 +6,7 @@ weight = 0.453
 slot = "Cape"
 examine = "A bright red cape."
 
-[cape_noted]
+[cape_red_noted]
 id = 1008
 
 [cape_black]
@@ -17,7 +17,7 @@ weight = 0.453
 slot = "Cape"
 examine = "A warm black cape."
 
-[cape_noted_2]
+[cape_black_noted]
 id = 1020
 
 [cape_blue]
@@ -28,7 +28,7 @@ weight = 0.453
 slot = "Cape"
 examine = "A thick blue cape."
 
-[cape_noted_3]
+[cape_blue_noted]
 id = 1022
 
 [cape_yellow]
@@ -39,7 +39,7 @@ weight = 0.453
 slot = "Cape"
 examine = "A thick yellow cape."
 
-[cape_noted_4]
+[cape_yellow_noted]
 id = 1024
 
 [eye_patch]
@@ -61,7 +61,7 @@ weight = 0.453
 slot = "Cape"
 examine = "A thick green cape."
 
-[cape_noted_5]
+[cape_green_noted]
 id = 1028
 
 [cape_purple]
@@ -72,7 +72,7 @@ weight = 0.453
 slot = "Cape"
 examine = "A thick purple cape."
 
-[cape_noted_6]
+[cape_purple_noted]
 id = 1030
 
 [cape_orange]
@@ -83,5 +83,5 @@ weight = 0.453
 slot = "Cape"
 examine = "A thick orange cape."
 
-[cape_noted_7]
+[cape_orange_noted]
 id = 1032

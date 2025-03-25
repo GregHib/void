@@ -15,7 +15,7 @@ slot = "Weapon"
 examine = "Useless."
 use = "Removed"
 
-[broken_hatchet_noted]
+[broken_hatchet_bronze_noted]
 id = 495
 
 [broken_hatchet_iron]
@@ -25,7 +25,7 @@ slot = "Weapon"
 examine = "Useless."
 use = "Removed"
 
-[broken_hatchet_noted_2]
+[broken_hatchet_iron_noted]
 id = 497
 
 [broken_hatchet_steel]
@@ -35,7 +35,7 @@ slot = "Weapon"
 examine = "Useless."
 use = "Removed"
 
-[broken_hatchet_noted_3]
+[broken_hatchet_steel_noted]
 id = 499
 
 [broken_hatchet_black]
@@ -45,7 +45,7 @@ slot = "Weapon"
 examine = "Useless."
 use = "Removed"
 
-[broken_hatchet_noted_4]
+[broken_hatchet_black_noted]
 id = 501
 
 [broken_hatchet_mithril]
@@ -55,7 +55,7 @@ slot = "Weapon"
 examine = "Useless."
 use = "Removed"
 
-[broken_hatchet_noted_5]
+[broken_hatchet_mithril_noted]
 id = 503
 
 [broken_hatchet_adamant]
@@ -65,7 +65,7 @@ slot = "Weapon"
 examine = "Useless."
 use = "Removed"
 
-[broken_hatchet_noted_6]
+[broken_hatchet_adamant_noted]
 id = 505
 
 [broken_hatchet_rune]
@@ -75,7 +75,7 @@ slot = "Weapon"
 examine = "Useless."
 use = "Removed"
 
-[broken_hatchet_noted_7]
+[broken_hatchet_rune_noted]
 id = 507
 
 [hatchet_head_bronze]
@@ -84,49 +84,49 @@ weight = 0.1
 examine = "Useless."
 use = "Removed"
 
-[hatchet_head_noted]
+[hatchet_head_bronze_noted]
 id = 509
 
 [hatchet_head_iron]
 clone = "hatchet_head_bronze"
 id = 510
 
-[hatchet_head_noted_2]
+[hatchet_head_iron_noted]
 id = 511
 
 [hatchet_head_steel]
 clone = "hatchet_head_bronze"
 id = 512
 
-[hatchet_head_noted_3]
+[hatchet_head_steel_noted]
 id = 513
 
 [hatchet_head_black]
 clone = "hatchet_head_bronze"
 id = 514
 
-[hatchet_head_noted_4]
+[hatchet_head_black_noted]
 id = 515
 
 [hatchet_head_mithril]
 clone = "hatchet_head_bronze"
 id = 516
 
-[hatchet_head_noted_5]
+[hatchet_head_mithril_noted]
 id = 517
 
 [hatchet_head_adamant]
 clone = "hatchet_head_bronze"
 id = 518
 
-[hatchet_head_noted_6]
+[hatchet_head_adamant_noted]
 id = 519
 
 [hatchet_head_rune]
 clone = "hatchet_head_bronze"
 id = 520
 
-[hatchet_head_noted_7]
+[hatchet_head_rune_noted]
 id = 521
 
 [iron_hatchet]

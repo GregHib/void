@@ -497,7 +497,7 @@ slot = "Chest"
 material = "metal"
 examine = "A rune platebody in the colours of Zamorak."
 
-[zamorak_platebody_noted]
+[rune_platebody_zamorak_noted]
 id = 2654
 
 [rune_platelegs_zamorak]

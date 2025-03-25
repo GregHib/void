@@ -48,7 +48,7 @@ slot = "Hands"
 material = "leather"
 examine = "Vambraces made from 100% real dragonhide."
 
-[green_dhide_vambraces_noted]
+[green_dragonhide_vambraces_noted]
 id = 1066
 
 [leather_chaps]
@@ -86,7 +86,7 @@ slot = "Legs"
 material = "leather"
 examine = "Made from 100% real dragonhide."
 
-[green_dhide_chaps_noted]
+[green_dragonhide_chaps_noted]
 id = 1100
 
 [leather_body]
@@ -103,7 +103,7 @@ kept = "Wilderness"
 [leather_body_noted]
 id = 1130
 
-[hard_leather_body]
+[hardleather_body]
 id = 1131
 price = 35
 limit = 1000
@@ -142,7 +142,7 @@ material = "leather"
 type = "Sleeveless"
 examine = "Made from 100% real dragonhide."
 
-[green_dhide_body_noted]
+[green_dragonhide_body_noted]
 id = 1136
 
 [leather_cowl]
@@ -159,7 +159,7 @@ kept = "Wilderness"
 [leather_cowl_noted]
 id = 1168
 
-[studded_leather_coif]
+[coif]
 id = 1169
 price = 51
 limit = 5000
@@ -182,7 +182,7 @@ slot = "Hands"
 material = "leather"
 examine = "Vambraces made from 100% real dragonhide."
 
-[blue_dhide_vambraces_noted]
+[blue_dragonhide_vambraces_noted]
 id = 2488
 
 [red_dragonhide_vambraces]
@@ -194,7 +194,7 @@ slot = "Hands"
 material = "leather"
 examine = "Vambraces made from 100% real dragonhide."
 
-[red_dhide_vambraces_noted]
+[red_dragonhide_vambraces_noted]
 id = 2490
 
 [black_dragonhide_vambraces]
@@ -206,7 +206,7 @@ slot = "Hands"
 material = "leather"
 examine = "Vambraces made from 100% real dragonhide."
 
-[black_dhide_vambraces_noted]
+[black_dragonhide_vambraces_noted]
 id = 2492
 
 [blue_dragonhide_chaps]
@@ -218,7 +218,7 @@ slot = "Legs"
 material = "leather"
 examine = "Made from 100% real dragonhide."
 
-[blue_dhide_chaps_noted]
+[blue_dragonhide_chaps_noted]
 id = 2494
 
 [red_dragonhide_chaps]
@@ -230,7 +230,7 @@ slot = "Legs"
 material = "leather"
 examine = "Made from 100% real dragonhide."
 
-[red_dhide_chaps_noted]
+[red_dragonhide_chaps_noted]
 id = 2496
 
 [black_dragonhide_chaps]
@@ -242,7 +242,7 @@ slot = "Legs"
 material = "leather"
 examine = "Made from 100% real dragonhide."
 
-[black_dhide_chaps_noted]
+[black_dragonhide_chaps_noted]
 id = 2498
 
 [blue_dragonhide_body]
@@ -256,7 +256,7 @@ material = "leather"
 type = "Sleeveless"
 examine = "Made from 100% real dragonhide."
 
-[blue_dhide_body_noted]
+[blue_dragonhide_body_noted]
 id = 2500
 
 [red_dragonhide_body]
@@ -270,7 +270,7 @@ material = "leather"
 type = "Sleeveless"
 examine = "Made from 100% real dragonhide."
 
-[red_dhide_body_noted]
+[red_dragonhide_body_noted]
 id = 2502
 
 [black_dragonhide_body]
@@ -284,7 +284,7 @@ material = "leather"
 type = "Sleeveless"
 examine = "Made from 100% real dragonhide."
 
-[black_dhide_body_noted]
+[black_dragonhide_body_noted]
 id = 2504
 
 [blue_dragon_leather]

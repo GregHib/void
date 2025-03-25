@@ -7,7 +7,7 @@ slot = "Legs"
 examine = "Keeps a druid's knees nice and warm."
 kept = "Wilderness"
 
-[druids_robe_noted]
+[druids_robe_bottom_noted]
 id = 539
 
 [druids_robe_top]
@@ -19,7 +19,7 @@ slot = "Chest"
 examine = "I feel closer to the gods when I am wearing this."
 kept = "Wilderness"
 
-[druids_robe_noted_2]
+[druids_robe_top_noted]
 id = 541
 
 [monks_robe_bottom]
@@ -31,7 +31,7 @@ slot = "Legs"
 examine = "Keeps a monk's knees nice and warm."
 kept = "Wilderness"
 
-[monks_robe_noted]
+[monks_robe_bottom_noted]
 id = 543
 
 [monks_robe_top]
@@ -43,7 +43,7 @@ slot = "Chest"
 examine = "I feel closer to the gods when I am wearing this."
 kept = "Wilderness"
 
-[monks_robe_noted_2]
+[monks_robe_top_noted]
 id = 545
 
 [shade_robe_top]
@@ -71,7 +71,7 @@ slot = "Chest"
 examine = "I can do magic better in this."
 kept = "Wilderness"
 
-[wizard_robe_noted]
+[wizard_robe_top_noted]
 id = 578
 
 [wizard_hat_blue]
@@ -83,7 +83,7 @@ slot = "Hat"
 examine = "A silly pointed hat."
 kept = "Wilderness"
 
-[wizard_hat_noted]
+[wizard_hat_blue_noted]
 id = 580
 
 [black_wizard_robe_top]
@@ -328,7 +328,7 @@ slot = "Legs"
 examine = "Leg covering favoured by women and wizards."
 kept = "Wilderness"
 
-[blue_skirt_noted]
+[wizard_robe_skirt_noted]
 id = 1012
 
 [pink_skirt]
@@ -351,7 +351,7 @@ slot = "Legs"
 examine = "Clothing favoured by women and dark wizards."
 kept = "Wilderness"
 
-[black_skirt_noted]
+[black_wizard_robe_skirt_noted]
 id = 1016
 
 [black_wizard_hat]
@@ -362,7 +362,7 @@ weight = 0.453
 slot = "Hat"
 examine = "A silly pointed hat."
 
-[wizard_hat_noted_2]
+[black_wizard_hat_noted]
 id = 1018
 
 [zamorak_robe_bottom]
@@ -373,7 +373,7 @@ weight = 0.907
 slot = "Legs"
 examine = "A robe worn by worshippers of Zamorak."
 
-[zamorak_robe_noted]
+[zamorak_robe_bottom_noted]
 id = 1034
 
 [zamorak_robe_top]
@@ -384,7 +384,7 @@ weight = 0.907
 slot = "Chest"
 examine = "A robe worn by worshippers of Zamorak."
 
-[zamorak_robe_noted_2]
+[zamorak_robe_top_noted]
 id = 1036
 
 [boots_grey]

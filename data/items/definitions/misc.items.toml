@@ -112,68 +112,99 @@ id = 1576
 [picture_15]
 id = 1589
 
-[picture_noted]
-id = 2043
+[unfinished_cocktail_pineapple_punch_mixed]
+id = 2042
+weight = 0.4
+examine = "This cocktail is just missing those little finishing touches."
+use = "Removed"
 
-[picture_noted_2]
-id = 2045
+[unfinished_cocktail_blurberry_special_mixed]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2056
 
-[picture_noted_3]
-id = 2047
+[unfinished_cocktail_blurberry_special_orange]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2058
 
-[picture_noted_4]
-id = 2051
+[unfinished_cocktail_blurberry_special_lemon]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2060
 
-[picture_noted_5]
-id = 2053
+[unfinished_cocktail_blurberry_special_lime]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2062
 
-[picture_noted_6]
-id = 2057
+[unfinished_cocktail_choc_saturday_mixed]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2066
 
-[picture_noted_7]
-id = 2059
+[unfinished_cocktail_choc_saturday_chocolate_bar]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2068
 
-[picture_noted_8]
-id = 2061
+[unfinished_cocktail_choc_saturday_heated]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2070
 
-[picture_noted_9]
-id = 2063
+[unfinished_cocktail_choc_saturday_cream]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2072
 
-[picture_noted_10]
-id = 2067
+[unfinished_cocktail_short_green_guy_mixed]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2076
 
-[picture_noted_11]
-id = 2069
+[unfinished_cocktail_short_green_guy_lime]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2078
 
-[picture_noted_12]
-id = 2071
+[unfinished_cocktail_fruit_blast]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2082
 
-[picture_noted_13]
-id = 2073
+[unfinished_cocktail_pineapple_punch_lime]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2044
 
-[picture_noted_14]
-id = 2077
+[unfinished_cocktail_pineapple_punch_pineapple]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2046
 
-[picture_noted_15]
-id = 2079
+[unfinished_cocktail_wizard_blizzard_mixed]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2050
 
-[picture_noted_16]
-id = 2083
+[unfinished_cocktail_wizard_blizzard_pineapple]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2052
 
-[picture_noted_17]
-id = 2087
+[unfinished_cocktail_drunk_dragon_mixed]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2086
 
-[picture_noted_18]
-id = 2089
+[unfinished_cocktail_drunk_dragon_pineapple]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2088
 
-[picture_noted_19]
-id = 2091
+[unfinished_cocktail_drunk_dragon_cream]
+clone = "unfinished_cocktail_pineapple_punch_mixed"
+id = 2090
+
+[equa_toads_legs]
+id = 2154
+use = "Removed"
 
 [picture_2]
 id = 2094
 
 [picture_noted_20]
 id = 2095
+
+[odd_batta]
+id = 2245
+weight = 0.25
+examine = "This batta doesn't look very appetising."
+use = "Removed"
 
 [picture_3]
 id = 2096
@@ -225,6 +256,73 @@ id = 2212
 
 [picture_noted_34]
 id = 2216
+
+[unfinished_batta_cheese_and_tomato]
+clone = "unfinished_batta_worm"
+id = 2257
+
+[unfinished_batta_fruit_baked]
+clone = "unfinished_batta_worm"
+id = 2261
+
+[unfinished_batta_noted]
+id = 2262
+
+[unfinished_batta_fruit_lime]
+clone = "unfinished_batta_worm"
+id = 2263
+
+[unfinished_batta_noted_2]
+id = 2264
+
+[unfinished_batta_fruit_orange]
+clone = "unfinished_batta_worm"
+id = 2265
+
+[unfinished_batta_noted_3]
+id = 2266
+
+[unfinished_batta_fruit_pineapple]
+clone = "unfinished_batta_worm"
+id = 2267
+
+[unfinished_batta_noted_4]
+id = 2268
+
+[unfinished_batta_fruit_lime_orange]
+clone = "unfinished_batta_worm"
+id = 2269
+
+[unfinished_batta_noted_5]
+id = 2270
+
+[unfinished_batta_fruit_lime_pineapple]
+clone = "unfinished_batta_worm"
+id = 2271
+
+[unfinished_batta_noted_6]
+id = 2272
+
+[unfinished_batta_fruit_orange_pineapple]
+clone = "unfinished_batta_worm"
+id = 2273
+
+[unfinished_batta_noted_7]
+id = 2274
+
+[unfinished_batta_fruit_lime_orange_pineapple]
+clone = "unfinished_batta_worm"
+id = 2275
+
+[unfinished_batta_vegetable]
+clone = "unfinished_batta_worm"
+id = 2279
+
+[unfinished_batta_worm]
+id = 2251
+weight = 0.25
+examine = "This batta is just missing those little finishing touches."
+use = "Removed"
 
 [picture_noted_35]
 id = 2246

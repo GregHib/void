@@ -12,5 +12,5 @@ weight = 5.0
 empty = "bailing_bucket"
 examine = "It's a bailing bucket full of salty water."
 
-[bailing_bucket_noted_2]
+[bailing_bucket_full_noted]
 id = 586

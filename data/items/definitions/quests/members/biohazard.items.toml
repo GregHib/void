@@ -95,7 +95,7 @@ slot = "Chest"
 examine = "Top half of a priest suit."
 kept = "Wilderness"
 
-[priest_gown_noted]
+[priest_gown_top_noted]
 id = 427
 
 [priest_gown_bottom]
@@ -107,7 +107,7 @@ slot = "Legs"
 examine = "Bottom half of a priest suit."
 kept = "Wilderness"
 
-[priest_gown_noted_2]
+[priest_gown_bottom_noted]
 id = 429
 
 [doctors_gown]

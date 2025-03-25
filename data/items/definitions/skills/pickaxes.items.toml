@@ -15,7 +15,7 @@ slot = "Weapon"
 examine = "Useless."
 use = "Removed"
 
-[broken_pickaxe_noted]
+[broken_pickaxe_bronze_noted]
 id = 469
 
 [broken_pickaxe_iron]
@@ -25,7 +25,7 @@ slot = "Weapon"
 examine = "Useless."
 use = "Removed"
 
-[broken_pickaxe_noted_2]
+[broken_pickaxe_iron_noted]
 id = 471
 
 [broken_pickaxe_steel]
@@ -35,7 +35,7 @@ slot = "Weapon"
 examine = "Useless."
 use = "Removed"
 
-[broken_pickaxe_noted_3]
+[broken_pickaxe_steel_noted]
 id = 473
 
 [broken_pickaxe_mithril]
@@ -45,7 +45,7 @@ slot = "Weapon"
 examine = "Useless."
 use = "Removed"
 
-[broken_pickaxe_noted_4]
+[broken_pickaxe_mithril_noted]
 id = 475
 
 [broken_pickaxe_adamant]
@@ -55,7 +55,7 @@ slot = "Weapon"
 examine = "Useless."
 use = "Removed"
 
-[broken_pickaxe_noted_5]
+[broken_pickaxe_adamant_noted]
 id = 477
 
 [broken_pickaxe_rune]
@@ -65,7 +65,7 @@ slot = "Weapon"
 examine = "Useless."
 use = "Removed"
 
-[broken_pickaxe_noted_6]
+[broken_pickaxe_rune_noted]
 id = 479
 
 [pickaxe_head_bronze]
@@ -74,42 +74,42 @@ weight = 1.814
 examine = "Useless."
 use = "Removed"
 
-[pickaxe_head_noted]
+[pickaxe_head_bronze_noted]
 id = 481
 
 [pickaxe_head_iron]
 clone = "pickaxe_head_bronze"
 id = 482
 
-[pickaxe_head_noted_2]
+[pickaxe_head_iron_noted]
 id = 483
 
 [pickaxe_head_steel]
 clone = "pickaxe_head_bronze"
 id = 484
 
-[pickaxe_head_noted_3]
+[pickaxe_head_steel_noted]
 id = 485
 
 [pickaxe_head_mithril]
 clone = "pickaxe_head_bronze"
 id = 486
 
-[pickaxe_head_noted_4]
+[pickaxe_head_mithril_noted]
 id = 487
 
 [pickaxe_head_adamant]
 clone = "pickaxe_head_bronze"
 id = 488
 
-[pickaxe_head_noted_5]
+[pickaxe_head_adamant_noted]
 id = 489
 
 [pickaxe_head_rune]
 clone = "pickaxe_head_bronze"
 id = 490
 
-[pickaxe_head_noted_6]
+[pickaxe_head_rune_noted]
 id = 491
 
 [bronze_pickaxe]

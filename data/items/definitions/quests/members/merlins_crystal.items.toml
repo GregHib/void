@@ -51,7 +51,7 @@ weight = 0.028
 light_source = { once_lit = "white_candle_lit", level = 1 }
 examine = "A candle."
 
-[candle_noted]
+[white_candle_noted]
 id = 37
 
 [black_candle]

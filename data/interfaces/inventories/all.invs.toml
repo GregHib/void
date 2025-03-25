@@ -486,7 +486,7 @@ defaults = {
   rune_sword = 10,
   green_dragonhide_chaps = 10,
   green_dragonhide_vambraces = 10,
-  studded_leather_coif = 10,
+  coif = 10,
 }
 
 [falador_general_store]
@@ -1096,7 +1096,7 @@ defaults = {
   studded_body = 10,
   leather_chaps = 10,
   studded_chaps = 10,
-  studded_leather_coif = 10,
+  coif = 10,
   leather_cowl = 10,
   leather_vambraces = 10,
 }
@@ -2209,7 +2209,7 @@ defaults = {
   barb_bolttips = 30,
   studded_body = 1,
   rune_arrow = 50,
-  studded_leather_coif = 1,
+  coif = 1,
   green_dragonhide_body = 1,
   adamant_javelin = 20,
 }
@@ -5264,7 +5264,7 @@ defaults = {
   studded_body = 10,
   leather_chaps = 10,
   studded_chaps = 10,
-  studded_leather_coif = 10,
+  coif = 10,
   leather_cowl = 10,
   leather_vambraces = 10,
   ranged_cape = 1,
@@ -5278,7 +5278,7 @@ defaults = {
   studded_body = 10,
   leather_chaps = 10,
   studded_chaps = 10,
-  studded_leather_coif = 10,
+  coif = 10,
   leather_cowl = 10,
   leather_vambraces = 10,
   ranged_cape_t = 1,

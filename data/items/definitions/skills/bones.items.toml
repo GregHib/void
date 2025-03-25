@@ -43,7 +43,7 @@ examine = "Ew, it's a pile of bones. Bury for Prayer XP."
 [big_bones_noted]
 id = 533
 
-[baby_dragon_bones]
+[babydragon_bones]
 id = 534
 price = 1161
 limit = 10000

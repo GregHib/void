@@ -313,7 +313,7 @@ excess = "super_ranging_potion_2"
 empty = "vial"
 examine = "3 doses of super ranging potion."
 
-[ranging_potion_3_noted]
+[super_ranging_potion_3_noted]
 id = 170
 
 [super_ranging_potion_2]
@@ -324,7 +324,7 @@ excess = "super_ranging_potion_1"
 empty = "vial"
 examine = "2 doses of super ranging potion."
 
-[ranging_potion_2_noted]
+[super_ranging_potion_2_noted]
 id = 172
 
 [super_ranging_potion_1]
@@ -335,7 +335,7 @@ excess = "vial"
 empty = "vial"
 examine = "1 dose of super ranging potion."
 
-[ranging_potion_1_noted]
+[super_ranging_potion_1_noted]
 id = 174
 
 [antipoison_3]

@@ -155,7 +155,7 @@ heals = 0
 weight = 0.5
 examine = "A strange smelling kebab made from ugthanki meat."
 
-[ugthanki_kebab_noted]
+[ugthanki_kebab_smelling_noted]
 id = 1884
 
 [ugthanki_kebab]
@@ -166,7 +166,7 @@ heals = 190
 weight = 0.5
 examine = "A fresh kebab made from ugthanki meat."
 
-[ugthanki_kebab_noted_2]
+[ugthanki_kebab_noted]
 id = 1886
 
 [cake_tin]
@@ -526,7 +526,7 @@ aka = ["potato"]
 examine = "This could be used to make a good stew."
 kept = "Wilderness"
 
-[potato_noted]
+[raw_potato_noted]
 id = 1943
 
 [egg]
@@ -671,7 +671,7 @@ weight = 0.35
 examine = "Yuck, a cabbage from Draynor Manor. I don't like cabbage."
 kept = "Wilderness"
 
-[cabbage_noted_2]
+[cabbage_draynor_manor_noted]
 id = 1968
 
 [spinach_roll]
@@ -846,7 +846,7 @@ limit = 200
 weight = 1.0
 examine = "I need to add some meat too."
 
-[incomplete_stew_noted]
+[incomplete_stew_potato_noted]
 id = 1998
 
 [incomplete_stew_meat]
@@ -855,7 +855,7 @@ weight = 1.2
 examine = "I need to add some potato too."
 use = "Removed"
 
-[incomplete_stew_noted_2]
+[incomplete_stew_meat_noted]
 id = 2000
 
 [uncooked_stew]
@@ -1024,7 +1024,7 @@ excess = "cocktail_glass"
 weight = 0.45
 examine = "A premade Blurberry Special"
 
-[premade_blurb_sp_noted]
+[premade_blurberry_special_noted]
 id = 2029
 
 [premade_chocolate_saturday]
@@ -1036,7 +1036,7 @@ excess = "cocktail_glass"
 weight = 0.45
 examine = "A premade Chocolate Saturday."
 
-[premade_choc_sdy_noted]
+[premade_chocolate_saturday_noted]
 id = 2031
 
 [premade_drunk_dragon]
@@ -1048,7 +1048,7 @@ excess = "cocktail_glass"
 weight = 0.45
 examine = "A premade Drunk Dragon."
 
-[premade_dr_dragon_noted]
+[premade_drunk_dragon_noted]
 id = 2033
 
 [premade_fruit_blast]
@@ -1060,7 +1060,7 @@ excess = "cocktail_glass"
 weight = 0.45
 examine = "A premade Fruit Blast."
 
-[premade_fr_blast_noted]
+[premade_fruit_blast_noted]
 id = 2035
 
 [premade_pineapple_punch]
@@ -1073,7 +1073,7 @@ eat_message = "You drink the cocktail. It tastes great."
 weight = 0.45
 examine = "A premade Pineapple punch."
 
-[premade_p_punch_noted]
+[premade_pineapple_punch_noted]
 id = 2037
 
 [premade_short_green_guy]
@@ -1085,7 +1085,7 @@ excess = "cocktail_glass"
 weight = 0.45
 examine = "A premade Short Green Guy."
 
-[premade_sgg_noted]
+[premade_short_green_guy_noted]
 id = 2039
 
 [premade_wizard_blizzard]
@@ -1097,22 +1097,8 @@ excess = "cocktail_glass"
 weight = 0.45
 examine = "A Premade Wizard Blizzard."
 
-[premade_wiz_blzd_noted]
+[premade_wizard_blizzard_noted]
 id = 2041
-
-[unfinished_cocktail_pineapple_punch_mixed]
-id = 2042
-weight = 0.4
-examine = "This cocktail is just missing those little finishing touches."
-use = "Removed"
-
-[unfinished_cocktail_pineapple_punch_lime]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2044
-
-[unfinished_cocktail_pineapple_punch_pineapple]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2046
 
 [pineapple_punch]
 id = 2048
@@ -1128,14 +1114,6 @@ kept = "Wilderness"
 [pineapple_punch_noted]
 id = 2049
 
-[unfinished_cocktail_wizard_blizzard_mixed]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2050
-
-[unfinished_cocktail_wizard_blizzard_pineapple]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2052
-
 [wizard_blizzard]
 id = 2054
 price = 712
@@ -1149,22 +1127,6 @@ kept = "Wilderness"
 [wizard_blizzard_noted]
 id = 2055
 
-[unfinished_cocktail_blurberry_special_mixed]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2056
-
-[unfinished_cocktail_blurberry_special_orange]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2058
-
-[unfinished_cocktail_blurberry_special_lemon]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2060
-
-[unfinished_cocktail_blurberry_special_lime]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2062
-
 [blurberry_special]
 id = 2064
 price = 2047
@@ -1177,22 +1139,6 @@ examine = "Looks good... smells strong."
 [blurberry_special_noted]
 id = 2065
 
-[unfinished_cocktail_choc_saturday_mixed]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2066
-
-[unfinished_cocktail_choc_saturday_chocolate_bar]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2068
-
-[unfinished_cocktail_choc_saturday_heated]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2070
-
-[unfinished_cocktail_choc_saturday_cream]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2072
-
 [chocolate_saturday]
 id = 2074
 price = 265
@@ -1204,14 +1150,6 @@ examine = "A warm creamy alcoholic beverage."
 
 [chocolate_saturday_noted]
 id = 2075
-
-[unfinished_cocktail_short_green_guy_mixed]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2076
-
-[unfinished_cocktail_short_green_guy_lime]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2078
 
 [short_green_guy]
 id = 2080
@@ -1227,10 +1165,6 @@ kept = "Wilderness"
 [short_green_guy_noted]
 id = 2081
 
-[unfinished_cocktail_fruit_blast]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2082
-
 [fruit_blast]
 id = 2084
 price = 1249
@@ -1243,18 +1177,6 @@ kept = "Wilderness"
 
 [fruit_blast_noted]
 id = 2085
-
-[unfinished_cocktail_drunk_dragon_mixed]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2086
-
-[unfinished_cocktail_drunk_dragon_pineapple]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2088
-
-[unfinished_cocktail_drunk_dragon_cream]
-clone = "unfinished_cocktail_pineapple_punch_mixed"
-id = 2090
 
 [drunk_dragon]
 id = 2092
@@ -1605,22 +1527,18 @@ examine = "They're a gnome delicacy apparently."
 [toads_legs_noted]
 id = 2153
 
-[equa_toads_legs]
-id = 2154
+[spicy_toads_legs]
+id = 2156
 weight = 0.15
 examine = "They're a gnome delicacy apparently."
-use = "Removed"
-
-[spicy_toads_legs]
-clone = "equa_toads_legs"
-id = 2156
 
 [spicy_toads_legs_noted]
 id = 2157
 
 [seasoned_legs]
-clone = "equa_toads_legs"
 id = 2158
+weight = 0.15
+examine = "They're a gnome delicacy apparently."
 
 [seasoned_legs_noted]
 id = 2159
@@ -2016,12 +1934,6 @@ examine = "Some premade Toad Crunchies."
 [premade_td_crunch_noted]
 id = 2244
 
-[odd_batta]
-id = 2245
-weight = 0.25
-examine = "This batta doesn't look very appetising."
-use = "Removed"
-
 [burnt_batta]
 id = 2247
 examine = "This batta has been burnt to a cinder."
@@ -2042,12 +1954,6 @@ tradeable = false
 weight = 0.25
 examine = "This gnome batta needs cooking."
 kept = "Reclaim"
-
-[unfinished_batta_worm]
-id = 2251
-weight = 0.25
-examine = "This batta is just missing those little finishing touches."
-use = "Removed"
 
 [worm_batta]
 id = 2253
@@ -2071,10 +1977,6 @@ examine = "It actually smells quite good."
 [toad_batta_noted]
 id = 2256
 
-[unfinished_batta_cheese_and_tomato]
-clone = "unfinished_batta_worm"
-id = 2257
-
 [cheese_and_tomato_batta]
 id = 2259
 price = 242
@@ -2086,59 +1988,6 @@ examine = "This smells really good."
 [cheese_and_tomato_batta_noted]
 id = 2260
 
-[unfinished_batta_fruit_baked]
-clone = "unfinished_batta_worm"
-id = 2261
-
-[unfinished_batta_noted]
-id = 2262
-
-[unfinished_batta_fruit_lime]
-clone = "unfinished_batta_worm"
-id = 2263
-
-[unfinished_batta_noted_2]
-id = 2264
-
-[unfinished_batta_fruit_orange]
-clone = "unfinished_batta_worm"
-id = 2265
-
-[unfinished_batta_noted_3]
-id = 2266
-
-[unfinished_batta_fruit_pineapple]
-clone = "unfinished_batta_worm"
-id = 2267
-
-[unfinished_batta_noted_4]
-id = 2268
-
-[unfinished_batta_fruit_lime_orange]
-clone = "unfinished_batta_worm"
-id = 2269
-
-[unfinished_batta_noted_5]
-id = 2270
-
-[unfinished_batta_fruit_lime_pineapple]
-clone = "unfinished_batta_worm"
-id = 2271
-
-[unfinished_batta_noted_6]
-id = 2272
-
-[unfinished_batta_fruit_orange_pineapple]
-clone = "unfinished_batta_worm"
-id = 2273
-
-[unfinished_batta_noted_7]
-id = 2274
-
-[unfinished_batta_fruit_lime_orange_pineapple]
-clone = "unfinished_batta_worm"
-id = 2275
-
 [fruit_batta]
 id = 2277
 price = 295
@@ -2149,10 +1998,6 @@ examine = "It actually smells quite good."
 
 [fruit_batta_noted]
 id = 2278
-
-[unfinished_batta_vegetable]
-clone = "unfinished_batta_worm"
-id = 2279
 
 [vegetable_batta]
 id = 2281

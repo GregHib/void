@@ -184,16 +184,16 @@ id = 13481
 [rune_platebody_lent]
 id = 13482
 
-[green_dhide_body_lent]
+[green_dragonhide_body_lent]
 id = 13483
 
-[blue_dhide_body_lent]
+[blue_dragonhide_body_lent]
 id = 13484
 
-[red_dhide_body_lent]
+[red_dragonhide_body_lent]
 id = 13485
 
-[black_dhide_body_lent]
+[black_dragonhide_body_lent]
 id = 13486
 
 [rune_platelegs_lent]
@@ -208,16 +208,16 @@ id = 13489
 [dragon_plateskirt_lent]
 id = 13490
 
-[green_dhide_chaps_lent]
+[green_dragonhide_chaps_lent]
 id = 13491
 
-[blue_dhide_chaps_lent]
+[blue_dragonhide_chaps_lent]
 id = 13492
 
-[red_dhide_chaps_lent]
+[red_dragonhide_chaps_lent]
 id = 13493
 
-[black_dhide_chaps_lent]
+[black_dragonhide_chaps_lent]
 id = 13494
 
 [dragon_med_helm_lent]
@@ -226,16 +226,16 @@ id = 13495
 [rune_full_helm_lent]
 id = 13496
 
-[green_dhide_vambraces_lent]
+[green_dragonhide_vambraces_lent]
 id = 13497
 
-[blue_dhide_vambraces_lent]
+[blue_dragonhide_vambraces_lent]
 id = 13498
 
-[red_dhide_vambraces_lent]
+[red_dragonhide_vambraces_lent]
 id = 13499
 
-[black_dhide_vambraces_lent]
+[black_dragonhide_vambraces_lent]
 id = 13500
 
 [splitbark_helm_lent]

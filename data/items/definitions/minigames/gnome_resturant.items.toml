@@ -211,18 +211,18 @@ examine = "Looks good... smells strong."
 [blurberry_special_noted_2]
 id = 9521
 
-[batta_tin_2]
+[batta_tin_dough]
 clone = "batta_tin"
 id = 9522
 
-[batta_tin_noted]
+[batta_tin_dough_noted]
 id = 9523
 
-[batta_tin_3]
+[batta_tin_empty]
 clone = "batta_tin"
 id = 9524
 
-[batta_tin_noted_2]
+[batta_tin_empty_noted]
 id = 9525
 
 [fruit_batta_2]
@@ -503,7 +503,7 @@ weight = 0.35
 examine = "This worm crunchy needs garnishing with gnome spices."
 kept = "Reclaim"
 
-[batta_tin_noted_3]
+[batta_tin_noted]
 id = 9585
 
 [crunchy_tray_noted]
