@@ -384,7 +384,7 @@ weight = 0.907
 slot = "Chest"
 examine = "A robe worn by worshippers of Zamorak."
 
-[zamorak_robe_top_noted]
+[zamorak_robe_top_2_noted]
 id = 1036
 
 [boots_grey]
@@ -671,7 +671,7 @@ slot = "Hat"
 type = "Hair"
 examine = "A magical hat."
 
-[mystic_hat_noted]
+[mystic_hat_blue_noted]
 id = 4090
 
 [mystic_robe_top_blue]
@@ -682,7 +682,7 @@ weight = 2.721
 slot = "Chest"
 examine = "The upper half of a magical robe."
 
-[mystic_robe_top_noted]
+[mystic_robe_top_blue_noted]
 id = 4092
 
 [mystic_robe_bottom_blue]
@@ -693,7 +693,7 @@ weight = 1.814
 slot = "Legs"
 examine = "The lower half of a magical robe."
 
-[mystic_robe_bottom_noted]
+[mystic_robe_bottom_blue_noted]
 id = 4094
 
 [mystic_gloves_blue]
@@ -704,7 +704,7 @@ weight = 0.453
 slot = "Hands"
 examine = "Magical gloves."
 
-[mystic_gloves_noted]
+[mystic_gloves_blue_noted]
 id = 4096
 
 [mystic_boots_blue]
@@ -715,7 +715,7 @@ weight = 0.453
 slot = "Feet"
 examine = "Magical boots."
 
-[mystic_boots_noted]
+[mystic_boots_blue_noted]
 id = 4098
 
 [dark_mystic_hat]
@@ -727,7 +727,7 @@ slot = "Hat"
 type = "Hair"
 examine = "A dark magical hat."
 
-[mystic_hat_noted_2]
+[dark_mystic_hat_noted]
 id = 4100
 
 [dark_mystic_robe_top]
@@ -738,7 +738,7 @@ weight = 2.721
 slot = "Chest"
 examine = "The upper half of a dark magical robe."
 
-[mystic_robe_top_noted_2]
+[dark_mystic_robe_top_noted]
 id = 4102
 
 [dark_mystic_robe_bottom]
@@ -749,7 +749,7 @@ weight = 1.814
 slot = "Legs"
 examine = "The lower half of a dark magical robe."
 
-[mystic_robe_bottom_noted_2]
+[dark_mystic_robe_bottom_noted]
 id = 4104
 
 [dark_mystic_gloves]
@@ -760,7 +760,7 @@ weight = 0.453
 slot = "Hands"
 examine = "Dark magical gloves."
 
-[mystic_gloves_noted_2]
+[dark_mystic_gloves_noted]
 id = 4106
 
 [dark_mystic_boots]
@@ -771,7 +771,7 @@ weight = 0.453
 slot = "Feet"
 examine = "Dark magical boots."
 
-[mystic_boots_noted_2]
+[dark_mystic_boots_noted]
 id = 4108
 
 [light_mystic_hat]
@@ -783,7 +783,7 @@ slot = "Hat"
 type = "Hair"
 examine = "A bright magical hat."
 
-[mystic_hat_noted_3]
+[light_mystic_hat_noted]
 id = 4110
 
 [light_mystic_robe_top]
@@ -794,7 +794,7 @@ weight = 2.721
 slot = "Chest"
 examine = "The upper half of a bright magical robe."
 
-[mystic_robe_top_noted_3]
+[light_mystic_robe_top_noted]
 id = 4112
 
 [light_mystic_robe_bottom]
@@ -805,7 +805,7 @@ weight = 1.814
 slot = "Legs"
 examine = "The lower half of a bright magical robe."
 
-[mystic_robe_bottom_noted_3]
+[light_mystic_robe_bottom_noted]
 id = 4114
 
 [light_mystic_gloves]
@@ -816,7 +816,7 @@ weight = 0.453
 slot = "Hands"
 examine = "Bright magical gloves."
 
-[mystic_gloves_noted_3]
+[light_mystic_gloves_noted]
 id = 4116
 
 [light_mystic_boots]
@@ -827,5 +827,5 @@ weight = 0.453
 slot = "Feet"
 examine = "Bright magical boots."
 
-[mystic_boots_noted_3]
+[light_mystic_boots_noted]
 id = 4118

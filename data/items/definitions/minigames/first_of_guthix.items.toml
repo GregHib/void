@@ -640,7 +640,7 @@ type = "Hair"
 examine = "A worn-out coif made of green dragonhide."
 weight = 0.9
 
-[green_dhide_coif_0_noted]
+[green_dragonhide_coif_0_noted]
 id = 12942
 
 [blue_dragonhide_coif_normal]
@@ -684,7 +684,7 @@ type = "Hair"
 examine = "A worn-out coif made of blue dragonhide."
 weight = 0.9
 
-[blue_dhide_coif_0_noted]
+[blue_dragonhide_coif_0_noted]
 id = 12949
 
 [red_dragonhide_coif_normal]
@@ -728,7 +728,7 @@ type = "Hair"
 examine = "A worn-out coif made of red dragonhide."
 weight = 0.9
 
-[red_dhide_coif_0_noted]
+[red_dragonhide_coif_0_noted]
 id = 12956
 
 [black_dragonhide_coif_normal]
@@ -772,7 +772,7 @@ type = "Hair"
 examine = "A worn-out coif made of black dragonhide."
 weight = 0.9
 
-[black_dhide_coif_0_noted]
+[black_dragonhide_coif_0_noted]
 id = 12963
 
 [combat_hood_100]
@@ -968,7 +968,7 @@ material = "metal"
 examine = "A bit worse for wear."
 weight = 0.226
 
-[worn_out_black_gauntlets_noted]
+[black_gauntlets_worn_out_noted]
 id = 12996
 
 [mithril_gauntlets]
@@ -1046,5 +1046,5 @@ material = "metal"
 examine = "A bit worse for wear."
 weight = 0.226
 
-[worn_out_dragon_gauntlets_noted]
+[dragon_gauntlets_worn_out_noted]
 id = 13008

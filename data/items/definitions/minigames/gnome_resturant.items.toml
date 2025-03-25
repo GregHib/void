@@ -123,7 +123,7 @@ empty = "cocktail_glass"
 examine = "This looks like a strange mix."
 kept = "Wilderness"
 
-[wizard_blizzard_noted_2]
+[wizard_blizzard_2_noted]
 id = 9488
 
 [wizard_blizzard_3]
@@ -134,7 +134,7 @@ id = 9489
 clone = "wizard_blizzard_2"
 id = 9508
 
-[wizard_blizzard_noted_3]
+[wizard_blizzard_4_noted]
 id = 9509
 
 [short_green_guy_2]
@@ -147,7 +147,7 @@ weight = 0.5
 examine = "A Short Green Guy... looks good."
 kept = "Wilderness"
 
-[short_green_guy_noted_2]
+[short_green_guy_2_noted]
 id = 9511
 
 [pineapple_punch_2]
@@ -160,7 +160,7 @@ weight = 0.5
 examine = "A fresh healthy fruit mix."
 kept = "Wilderness"
 
-[pineapple_punch_noted_2]
+[pineapple_punch_2_noted]
 id = 9513
 
 [fruit_blast_2]
@@ -173,7 +173,7 @@ weight = 0.5
 examine = "A cool refreshing fruit mix."
 kept = "Wilderness"
 
-[fruit_blast_noted_2]
+[fruit_blast_2_noted]
 id = 9515
 
 [drunk_dragon_2]
@@ -185,7 +185,7 @@ empty = "cocktail_glass"
 weight = 0.5
 examine = "A warm creamy alcoholic beverage."
 
-[drunk_dragon_noted_2]
+[drunk_dragon_2_noted]
 id = 9517
 
 [choc_saturday]
@@ -196,7 +196,7 @@ empty = "cocktail_glass"
 limit = 1000
 examine = "A warm creamy alcoholic beverage"
 
-[choc_saturday_noted_2]
+[choc_saturday_noted]
 id = 9519
 
 [blurberry_special_2]
@@ -208,7 +208,7 @@ empty = "cocktail_glass"
 weight = 0.5
 examine = "Looks good... smells strong."
 
-[blurberry_special_noted_2]
+[blurberry_special_2_noted]
 id = 9521
 
 [batta_tin_dough]
@@ -229,91 +229,91 @@ id = 9525
 clone = "fruit_batta"
 id = 9527
 
-[fruit_batta_noted_2]
+[fruit_batta_2_noted]
 id = 9528
 
 [toad_batta_2]
 clone = "toad_batta"
 id = 9529
 
-[toad_batta_noted_2]
+[toad_batta_2_noted]
 id = 9530
 
 [worm_batta_2]
 clone = "worm_batta"
 id = 9531
 
-[worm_batta_noted_2]
+[worm_batta_2_noted]
 id = 9532
 
 [vegetable_batta_2]
 clone = "vegetable_batta"
 id = 9533
 
-[vegetable_batta_noted_2]
+[vegetable_batta_2_noted]
 id = 9534
 
 [cheese_and_tomato_batta_2]
 clone = "cheese_and_tomato_batta"
 id = 9535
 
-[cheese_and_tomato_batta_noted_2]
+[cheese_and_tomato_batta_2_noted]
 id = 9536
 
 [toad_crunchies_2]
 clone = "toad_crunchies"
 id = 9538
 
-[toad_crunchies_noted_2]
+[toad_crunchies_2_noted]
 id = 9539
 
 [spicy_crunchies_2]
 clone = "spicy_crunchies"
 id = 9540
 
-[spicy_crunchies_noted_2]
+[spicy_crunchies_2_noted]
 id = 9541
 
 [worm_crunchies_2]
 clone = "worm_crunchies"
 id = 9542
 
-[worm_crunchies_noted_2]
+[worm_crunchies_2_noted]
 id = 9543
 
 [chocchip_crunchies_2]
 clone = "chocchip_crunchies"
 id = 9544
 
-[chocchip_crunchies_noted_2]
+[chocchip_crunchies_2_noted]
 id = 9545
 
 [worm_hole_2]
 clone = "worm_hole"
 id = 9547
 
-[worm_hole_noted_2]
+[worm_hole_2_noted]
 id = 9548
 
 [veg_ball_2]
 clone = "veg_ball"
 id = 9549
 
-[veg_ball_noted_2]
+[veg_ball_2_noted]
 id = 9550
 
 [tangled_toads_legs_2]
 clone = "tangled_toads_legs"
 id = 9551
 
-[tangled_toads_legs_noted_2]
+[tangled_toads_legs_2_noted]
 id = 9552
 
 [chocolate_bomb_2]
 clone = "chocolate_bomb"
 id = 9553
 
-[chocolate_bomb_noted_2]
+[chocolate_bomb_2_noted]
 id = 9554
 
 [half_made_toad_bowl]

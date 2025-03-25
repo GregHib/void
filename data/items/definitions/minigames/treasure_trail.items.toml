@@ -509,7 +509,7 @@ slot = "Legs"
 material = "metal"
 examine = "Rune platelegs in the colours of Zamorak."
 
-[zamorak_platelegs_noted]
+[rune_platelegs_zamorak_noted]
 id = 2656
 
 [rune_full_helm_zamorak]
@@ -522,7 +522,7 @@ material = "metal"
 type = "FullFace"
 examine = "A rune full helmet in the colours of Zamorak."
 
-[zamorak_full_helm_noted]
+[rune_full_helm_zamorak_noted]
 id = 2658
 
 [rune_kiteshield_zamorak]
@@ -534,7 +534,7 @@ slot = "Shield"
 material = "metal"
 examine = "A rune kiteshield in the colours of Zamorak."
 
-[zamorak_kiteshield_noted]
+[rune_kiteshield_zamorak_noted]
 id = 2660
 
 [rune_platebody_saradomin]
@@ -546,7 +546,7 @@ slot = "Chest"
 material = "metal"
 examine = "A rune platebody in the colours of Saradomin."
 
-[saradomin_platebody_noted]
+[rune_platebody_saradomin_noted]
 id = 2662
 
 [rune_platelegs_saradomin]
@@ -558,7 +558,7 @@ slot = "Legs"
 material = "metal"
 examine = "Rune platelegs in the colours of Saradomin."
 
-[saradomin_platelegs_noted]
+[rune_platelegs_saradomin_noted]
 id = 2664
 
 [rune_full_helm_saradomin]
@@ -571,7 +571,7 @@ material = "metal"
 type = "FullFace"
 examine = "A rune full helmet in the colours of Saradomin."
 
-[saradomin_full_helm_noted]
+[rune_full_helm_saradomin_noted]
 id = 2666
 
 [rune_kiteshield_saradomin]
@@ -583,7 +583,7 @@ slot = "Shield"
 material = "metal"
 examine = "A rune kiteshield in the colours of Saradomin."
 
-[saradomin_kiteshield_noted]
+[rune_kiteshield_saradomin_noted]
 id = 2668
 
 [rune_platebody_guthix]
@@ -595,7 +595,7 @@ slot = "Chest"
 material = "metal"
 examine = "A rune platebody in the colours of Guthix."
 
-[guthix_platebody_noted]
+[rune_platebody_guthix_noted]
 id = 2670
 
 [rune_platelegs_guthix]
@@ -607,7 +607,7 @@ slot = "Legs"
 material = "metal"
 examine = "Rune platelegs in the colours of Guthix."
 
-[guthix_platelegs_noted]
+[rune_platelegs_guthix_noted]
 id = 2672
 
 [rune_full_helm_guthix]
@@ -620,7 +620,7 @@ material = "metal"
 type = "FullFace"
 examine = "A rune full helmet in the colours of Guthix."
 
-[guthix_full_helm_noted]
+[rune_full_helm_guthix_noted]
 id = 2674
 
 [rune_kiteshield_guthix]
@@ -632,7 +632,7 @@ slot = "Shield"
 material = "metal"
 examine = "A rune kiteshield in the colours of Guthix."
 
-[guthix_kiteshield_noted]
+[rune_kiteshield_guthix_noted]
 id = 2676
 
 [key_treasure_trail_1]
@@ -740,7 +740,7 @@ slot = "Chest"
 material = "metal"
 examine = "A rune platebody with gold plate."
 
-[gilded_platebody_noted]
+[rune_platebody_gilded_noted]
 id = 3482
 
 [rune_platelegs_gilded]
@@ -752,7 +752,7 @@ slot = "Legs"
 material = "metal"
 examine = "A pair of rune platelegs with gold plate."
 
-[gilded_platelegs_noted]
+[rune_platelegs_gilded_noted]
 id = 3484
 
 [rune_plateskirt_gilded]
@@ -774,7 +774,7 @@ material = "metal"
 type = "FullFace"
 examine = "A rune full helmet with gold plate."
 
-[gilded_full_helm_noted]
+[rune_full_helm_gilded_noted]
 id = 3487
 
 [rune_kiteshield_gilded]
@@ -786,7 +786,7 @@ slot = "Shield"
 material = "metal"
 examine = "A rune kiteshield with gold plate."
 
-[gilded_kiteshield_noted]
+[rune_kiteshield_gilded_noted]
 id = 3489
 
 [black_plateskirt_t_noted]
@@ -807,16 +807,16 @@ id = 3672
 [rune_plateskirt_t_noted]
 id = 3673
 
-[zamorak_plateskirt_noted]
+[rune_plateskirt_zamorak_noted]
 id = 3674
 
-[saradomin_plateskirt_noted]
+[rune_plateskirt_saradomin_noted]
 id = 3675
 
-[guthix_plateskirt_noted]
+[rune_plateskirt_guthix_noted]
 id = 3676
 
-[gilded_plateskirt_noted]
+[rune_plateskirt_gilded_noted]
 id = 3677
 
 [red_boater]
@@ -1135,7 +1135,7 @@ material = "leather"
 type = "Sleeveless"
 examine = "Made from 100% real dragonhide, with colourful trim!"
 
-[dragonhide_body_g_noted]
+[green_dragonhide_body_g_noted]
 id = 7371
 
 [green_dragonhide_body_t]
@@ -1148,7 +1148,7 @@ material = "leather"
 type = "Sleeveless"
 examine = "Made from 100% real dragonhide, with colourful trim!"
 
-[dragonhide_body_t_noted]
+[green_dragonhide_body_t_noted]
 id = 7373
 
 [blue_dragonhide_body_g]
@@ -1161,7 +1161,7 @@ material = "leather"
 type = "Sleeveless"
 examine = "Made from 100% real dragonhide, with colourful trim!"
 
-[dragonhide_body_g_noted_2]
+[blue_dragonhide_body_g_noted]
 id = 7375
 
 [blue_dragonhide_body_t]
@@ -1174,7 +1174,7 @@ material = "leather"
 type = "Sleeveless"
 examine = "Made from 100% real dragonhide, with colourful trim!"
 
-[dragonhide_body_t_noted_2]
+[blue_dragonhide_body_t_noted]
 id = 7377
 
 [green_dragonhide_chaps_g]
@@ -1186,7 +1186,7 @@ slot = "Legs"
 material = "leather"
 examine = "Made from 100% real dragonhide, with colourful trim!"
 
-[dragonhide_chaps_g_noted]
+[green_dragonhide_chaps_g_noted]
 id = 7379
 
 [green_dragonhide_chaps_t]
@@ -1198,7 +1198,7 @@ slot = "Legs"
 material = "leather"
 examine = "Made from 100% real dragonhide, with colourful trim!"
 
-[dragonhide_chaps_t_noted]
+[green_dragonhide_chaps_t_noted]
 id = 7381
 
 [blue_dragonhide_chaps_g]
@@ -1210,7 +1210,7 @@ slot = "Legs"
 material = "leather"
 examine = "Made from 100% real dragonhide, with colourful trim!"
 
-[dragonhide_chaps_g_noted_2]
+[blue_dragonhide_chaps_g_noted]
 id = 7383
 
 [blue_dragonhide_chaps_t]
@@ -1222,7 +1222,7 @@ slot = "Legs"
 material = "leather"
 examine = "Made from 100% real dragonhide, with colourful trim!"
 
-[dragonhide_chaps_t_noted_2]
+[blue_dragonhide_chaps_t_noted]
 id = 7385
 
 [wizard_robe_skirt_g]
@@ -1233,7 +1233,7 @@ weight = 0.907
 slot = "Legs"
 examine = "Leg covering favoured by women and wizards, with a colourful trim!"
 
-[blue_skirt_g_noted]
+[wizard_robe_skirt_g_noted]
 id = 7387
 
 [wizard_robe_skirt_t]
@@ -1244,7 +1244,7 @@ weight = 0.907
 slot = "Legs"
 examine = "Leg covering favoured by women and wizards, with a colourful trim!"
 
-[blue_skirt_t_noted]
+[wizard_robe_skirt_t_noted]
 id = 7389
 
 [wizard_robe_top_g]
@@ -1255,7 +1255,7 @@ weight = 0.907
 slot = "Chest"
 examine = "I can practise magic better in this."
 
-[wizard_robe_g_noted]
+[wizard_robe_top_g_noted]
 id = 7391
 
 [wizard_robe_top_t]
@@ -1266,7 +1266,7 @@ weight = 0.907
 slot = "Chest"
 examine = "I can practise magic better in this."
 
-[wizard_robe_t_noted]
+[wizard_robe_top_t_noted]
 id = 7393
 
 [wizard_hat_g]
@@ -1593,7 +1593,7 @@ weight = 1.0
 slot = "Chest"
 examine = "Never give your password out to anyone.'"
 
-[bob_shirt_noted]
+[bob_shirt_red_noted]
 id = 10317
 
 [bob_shirt_blue]
@@ -1604,7 +1604,7 @@ weight = 1.0
 slot = "Chest"
 examine = "Always check the second trade screen.'"
 
-[bob_shirt_noted_2]
+[bob_shirt_blue_noted]
 id = 10319
 
 [bob_shirt_green]
@@ -1615,7 +1615,7 @@ weight = 1.0
 slot = "Chest"
 examine = "Never trade in the Wilderness!'"
 
-[bob_shirt_noted_3]
+[bob_shirt_green_noted]
 id = 10321
 
 [bob_shirt_black]
@@ -1626,7 +1626,7 @@ weight = 1.0
 slot = "Chest"
 examine = "A bank PIN will keep your items secure.'"
 
-[bob_shirt_noted_4]
+[bob_shirt_black_noted]
 id = 10323
 
 [bob_shirt_purple]
@@ -1637,7 +1637,7 @@ weight = 1.0
 slot = "Chest"
 examine = "Keep your computer keylogger-free and virus scanned.'"
 
-[bob_shirt_noted_5]
+[bob_shirt_purple_noted]
 id = 10325
 
 [purple_firelighter]
@@ -1677,7 +1677,7 @@ slot = "Chest"
 material = "leather"
 examine = "Ancient range protection crafted from white dragonhide."
 
-[third_age_range_top_noted]
+[third_age_ranger_body_noted]
 id = 10331
 
 [third_age_ranger_chaps]
@@ -1689,7 +1689,7 @@ slot = "Legs"
 material = "leather"
 examine = "Ancient range protection crafted from white dragonhide."
 
-[third_age_range_legs_noted]
+[third_age_ranger_chaps_noted]
 id = 10333
 
 [third_age_ranger_coif]
@@ -1702,7 +1702,7 @@ material = "leather"
 type = "Hair"
 examine = "Ancient range protection crafted from white dragonhide."
 
-[third_age_range_coif_noted]
+[third_age_ranger_coif_noted]
 id = 10335
 
 [third_age_vambraces]
@@ -1819,7 +1819,7 @@ slot = "Amulet"
 examine = "A very powerful dragonstone amulet."
 weight = 0.01
 
-[amulet_of_glory_t4_noted]
+[amulet_of_glory_t_4_noted]
 id = 10355
 
 [amulet_of_glory_t_3]
@@ -1829,7 +1829,7 @@ slot = "Amulet"
 examine = "A very powerful dragonstone amulet."
 weight = 0.01
 
-[amulet_of_glory_t3_noted]
+[amulet_of_glory_t_3_noted]
 id = 10357
 
 [amulet_of_glory_t_2]
@@ -1839,7 +1839,7 @@ slot = "Amulet"
 examine = "A very powerful dragonstone amulet."
 weight = 0.01
 
-[amulet_of_glory_t2_noted]
+[amulet_of_glory_t_2_noted]
 id = 10359
 
 [amulet_of_glory_t_1]
@@ -1849,7 +1849,7 @@ slot = "Amulet"
 examine = "A very powerful dragonstone amulet."
 weight = 0.01
 
-[amulet_of_glory_t1_noted]
+[amulet_of_glory_t_1_noted]
 id = 10361
 
 [amulet_of_glory_t]
@@ -2042,7 +2042,7 @@ slot = "Hat"
 type = "Hair"
 examine = "A big 'do about nothing."
 
-[a_powdered_wig_noted]
+[powdered_wig_noted]
 id = 10393
 
 [flared_trousers]
@@ -2420,7 +2420,7 @@ weight = 1.8
 slot = "Chest"
 examine = "Blessed vestments of Zamorak."
 
-[zamorak_robe_top_noted]
+[zamorak_robe_top_2_noted]
 id = 10461
 
 [guthix_robe_top]
@@ -3598,10 +3598,10 @@ weight = 2.7
 slot = "Legs"
 examine = "A fabulously ancient woven robe as worn by the druids of old."
 
-[third_age_druidic_robe_noted]
+[third_age_druidic_robe_bottom_noted]
 id = 19321
 
-[third_age_druidic_robe_lent]
+[third_age_druidic_robe_bottom_lent]
 id = 19322
 
 [dragon_staff]
@@ -4066,10 +4066,10 @@ slot = "Chest"
 material = "metal"
 examine = "A rune platebody in the colours of Zaros."
 
-[ancient_platebody_noted]
+[rune_platebody_ancient_noted]
 id = 19399
 
-[ancient_platebody_lent]
+[rune_platebody_ancient_lent]
 id = 19400
 
 [rune_platelegs_ancient]
@@ -4082,10 +4082,10 @@ slot = "Legs"
 material = "metal"
 examine = "Rune platelegs in the colours of Zaros."
 
-[ancient_platelegs_noted]
+[rune_platelegs_ancient_noted]
 id = 19402
 
-[ancient_platelegs_lent]
+[rune_platelegs_ancient_lent]
 id = 19403
 
 [rune_plateskirt_ancient]
@@ -4098,10 +4098,10 @@ slot = "Legs"
 material = "metal"
 examine = "A rune plateskirt in the colours of Zaros."
 
-[ancient_plateskirt_noted]
+[rune_plateskirt_ancient_noted]
 id = 19405
 
-[ancient_plateskirt_lent]
+[rune_plateskirt_ancient_lent]
 id = 19406
 
 [rune_full_helm_ancient]
@@ -4115,10 +4115,10 @@ material = "metal"
 type = "FullFace"
 examine = "A rune full helmet in the colours of Zaros."
 
-[ancient_full_helm_noted]
+[rune_full_helm_ancient_noted]
 id = 19408
 
-[ancient_full_helm_lent]
+[rune_full_helm_ancient_lent]
 id = 19409
 
 [rune_kiteshield_ancient]
@@ -4131,10 +4131,10 @@ slot = "Shield"
 material = "metal"
 examine = "A rune kiteshield in the colours of Zaros."
 
-[ancient_kiteshield_noted]
+[rune_kiteshield_ancient_noted]
 id = 19411
 
-[ancient_kiteshield_lent]
+[rune_kiteshield_ancient_lent]
 id = 19412
 
 [rune_platebody_armadyl]
@@ -4146,10 +4146,10 @@ slot = "Chest"
 material = "metal"
 examine = "A rune platebody in the colours of Armadyl."
 
-[armadyl_platebody_noted]
+[rune_platebody_armadyl_noted]
 id = 19414
 
-[armadyl_platebody_lent]
+[rune_platebody_armadyl_lent]
 id = 19415
 
 [rune_platelegs_armadyl]
@@ -4161,10 +4161,10 @@ slot = "Legs"
 material = "metal"
 examine = "Rune platelegs in the colours of Armadyl."
 
-[armadyl_platelegs_noted]
+[rune_platelegs_armadyl_noted]
 id = 19417
 
-[armadyl_platelegs_lent]
+[rune_platelegs_armadyl_lent]
 id = 19418
 
 [rune_plateskirt_armadyl]
@@ -4176,10 +4176,10 @@ slot = "Legs"
 material = "metal"
 examine = "A rune plateskirt in the colours of Armadyl."
 
-[armadyl_plateskirt_noted]
+[rune_plateskirt_armadyl_noted]
 id = 19420
 
-[armadyl_plateskirt_lent]
+[rune_plateskirt_armadyl_lent]
 id = 19421
 
 [rune_full_helm_armadyl]
@@ -4192,10 +4192,10 @@ material = "metal"
 type = "FullFace"
 examine = "A rune full helmet in the colours of Armadyl."
 
-[armadyl_full_helm_noted]
+[rune_full_helm_armadyl_noted]
 id = 19423
 
-[armadyl_full_helm_lent]
+[rune_full_helm_armadyl_lent]
 id = 19424
 
 [rune_kiteshield_armadyl]
@@ -4207,10 +4207,10 @@ slot = "Shield"
 material = "metal"
 examine = "A rune kiteshield in the colours of Armadyl."
 
-[armadyl_kiteshield_noted]
+[rune_kiteshield_armadyl_noted]
 id = 19426
 
-[armadyl_kiteshield_lent]
+[rune_kiteshield_armadyl_lent]
 id = 19427
 
 [rune_platebody_bandos]
@@ -4222,10 +4222,10 @@ slot = "Chest"
 material = "metal"
 examine = "A rune platebody in the colours of Bandos."
 
-[bandos_platebody_noted]
+[rune_platebody_bandos_noted]
 id = 19429
 
-[bandos_platebody_lent]
+[rune_platebody_bandos_lent]
 id = 19430
 
 [rune_platelegs_bandos]
@@ -4237,10 +4237,10 @@ slot = "Legs"
 material = "metal"
 examine = "Rune platelegs in the colours of Bandos."
 
-[bandos_platelegs_noted]
+[rune_platelegs_bandos_noted]
 id = 19432
 
-[bandos_platelegs_lent]
+[rune_platelegs_bandos_lent]
 id = 19433
 
 [rune_plateskirt_bandos]
@@ -4252,10 +4252,10 @@ slot = "Legs"
 material = "metal"
 examine = "A rune plateskirt in the colours of Bandos."
 
-[bandos_plateskirt_noted]
+[rune_plateskirt_bandos_noted]
 id = 19435
 
-[bandos_plateskirt_lent]
+[rune_plateskirt_bandos_lent]
 id = 19436
 
 [rune_full_helm_bandos]
@@ -4268,10 +4268,10 @@ material = "metal"
 type = "FullFace"
 examine = "A rune full helmet in the colours of Bandos."
 
-[bandos_full_helm_noted]
+[rune_full_helm_bandos_noted]
 id = 19438
 
-[bandos_full_helm_lent]
+[rune_full_helm_bandos_lent]
 id = 19439
 
 [rune_kiteshield_bandos]
@@ -4283,10 +4283,10 @@ slot = "Shield"
 material = "metal"
 examine = "A rune kiteshield in the colours of Bandos."
 
-[bandos_kiteshield_noted]
+[rune_kiteshield_bandos_noted]
 id = 19441
 
-[bandos_kiteshield_lent]
+[rune_kiteshield_bandos_lent]
 id = 19442
 
 [ancient_vambraces]
@@ -4899,21 +4899,21 @@ weight = 2.267
 aka = ["bandos_blessed_dragonhide_set"]
 examine = "Grand Exchange set containing a body, chaps, bracers and coif."
 
-[dyed_brown_dhide_blessed_set_noted]
+[bandos_dragonhide_blessed_set_noted]
 id = 19583
 
 [ancient_dragonhide_blessed_set]
 clone = "guthix_dragonhide_blessed_set"
 id = 19584
 
-[dyed_purple_dhide_blessed_set_noted]
+[ancient_dragonhide_blessed_set_noted]
 id = 19585
 
 [armadyl_dragonhide_blessed_set]
 clone = "guthix_dragonhide_blessed_set"
 id = 19586
 
-[dyed_silver_dhide_blessed_set_noted]
+[armadyl_dragonhide_blessed_set_noted]
 id = 19587
 
 [armadyl_armour_set_lg]

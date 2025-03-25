@@ -62,7 +62,7 @@ weight = 0.028
 slot = "Weapon"
 examine = "A posy of blue and purple flowers."
 
-[flowers_noted]
+[flowers_pastel_noted]
 id = 2461
 
 [red_flowers]
@@ -128,7 +128,7 @@ weight = 0.028
 slot = "Weapon"
 examine = "A posy of red, yellow and blue flowers."
 
-[flowers_noted_2]
+[flowers_mixed_noted]
 id = 2473
 
 [white_flowers]

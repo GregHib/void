@@ -6797,7 +6797,7 @@ examine = "A razor-sharp rapier."
 use = "Dungeoneering"
 kept = "Always"
 
-[fractite_rapier_noted_2]
+[fractite_rapier_2_noted]
 id = 16958
 
 [gorgonite_rapier_2]
@@ -6808,7 +6808,7 @@ examine = "A razor-sharp rapier."
 use = "Dungeoneering"
 kept = "Always"
 
-[gorgonite_rapier_noted_2]
+[gorgonite_rapier_2_noted]
 id = 16960
 
 [fractite_longsword_2]
@@ -6820,7 +6820,7 @@ examine = "A razor-sharp longsword."
 use = "Dungeoneering"
 kept = "Always"
 
-[fractite_longsword_noted_2]
+[fractite_longsword_2_noted]
 id = 16962
 
 [gorgonite_longsword_2]
@@ -6832,7 +6832,7 @@ examine = "A razor-sharp longsword."
 use = "Dungeoneering"
 kept = "Always"
 
-[gorgonite_longsword_noted_2]
+[gorgonite_longsword_2_noted]
 id = 16964
 
 [gorgonite_maul_2]
@@ -6844,7 +6844,7 @@ examine = "A maul used to claim life from those who don't deserve it."
 use = "Dungeoneering"
 kept = "Always"
 
-[gorgonite_maul_noted_2]
+[gorgonite_maul_2_noted]
 id = 16966
 
 [catalytic_staff]
@@ -6888,7 +6888,7 @@ examine = "A two-handed sword."
 use = "Dungeoneering"
 kept = "Always"
 
-[fractite_2h_sword_noted_2]
+[fractite_2h_sword_2_noted]
 id = 16974
 
 [spinebeam_shortbow_2]
@@ -6900,7 +6900,7 @@ examine = "A small bow, only effective at short distance."
 use = "Dungeoneering"
 kept = "Always"
 
-[spinebeam_shortbow_noted_2]
+[spinebeam_shortbow_2_noted]
 id = 16976
 
 [tangle_gum_staff]
@@ -7010,7 +7010,7 @@ slot = "Weapon"
 examine = "A magical staff of water."
 weight = 1.814
 
-[water_staff_noted]
+[water_staff_dungeoneering_noted]
 id = 16998
 
 [empowered_water_staff]
@@ -7030,7 +7030,7 @@ slot = "Weapon"
 examine = "A magical staff of earth."
 weight = 1.814
 
-[earth_staff_noted]
+[earth_staff_dungeoneering_noted]
 id = 17002
 
 [empowered_earth_staff]
@@ -7050,7 +7050,7 @@ slot = "Weapon"
 examine = "A magical staff of fire."
 weight = 1.814
 
-[fire_staff_noted]
+[fire_staff_dungeoneering_noted]
 id = 17006
 
 [empowered_fire_staff]
@@ -7070,7 +7070,7 @@ slot = "Weapon"
 examine = "A magical staff of air."
 weight = 1.814
 
-[air_staff_noted]
+[air_staff_dungeoneering_noted]
 id = 17010
 
 [empowered_air_staff]
@@ -7090,7 +7090,7 @@ slot = "Weapon"
 examine = "This staff makes destructive spells more powerful."
 weight = 1.814
 
-[catalytic_staff_noted_2]
+[catalytic_staff_2_noted]
 id = 17014
 
 [empowered_catalytic_staff]
@@ -8515,7 +8515,7 @@ slot = "Amulet"
 examine = "A pulsating eye attached to a necklace."
 weight = 0.13
 
-[seekers_charm_noted]
+[seekers_charm_dungeoneering_noted]
 id = 17290
 
 [blood_necklace]
@@ -8856,7 +8856,7 @@ examine = "A large metal shield."
 use = "Dungeoneering"
 kept = "Always"
 
-[gorgonite_kiteshield_noted_2]
+[gorgonite_kiteshield_2_noted]
 id = 17358
 
 [promethium_kiteshield]
@@ -9033,7 +9033,7 @@ examine = "Pretty useless without the rest of the bow ."
 use = "Dungeoneering"
 kept = "Always"
 
-[bow_string_o_noted]
+[bowstring_o_noted]
 id = 17390
 
 [coins_o]
@@ -9325,7 +9325,7 @@ examine = "Good for detailed crafting."
 use = "Dungeoneering"
 kept = "Always"
 
-[chisel_noted_2]
+[chisel_dungeoneering_noted]
 id = 17445
 
 [needle_dungeoneering]
@@ -9548,7 +9548,7 @@ examine = "An empty glass vial."
 use = "Dungeoneering"
 kept = "Always"
 
-[vial_noted_2]
+[vial_dungeoneering_noted]
 id = 17491
 
 [vial_of_water_dungeoneering]
@@ -9559,7 +9559,7 @@ examine = "A glass vial containing water."
 use = "Dungeoneering"
 kept = "Always"
 
-[vial_of_water_noted_2]
+[vial_of_water_dungeoneering_noted]
 id = 17493
 
 [grimy_sagewort]
@@ -9875,7 +9875,7 @@ examine = "An antidote to cure common poison."
 use = "Dungeoneering"
 kept = "Always"
 
-[antipoison_noted]
+[antipoison_dungeoneering_noted]
 id = 17567
 
 [weak_cure_potion]
@@ -9977,7 +9977,7 @@ examine = "A potion that increases a person's magical abilities."
 use = "Dungeoneering"
 kept = "Always"
 
-[magic_potion_noted]
+[magic_potion_dungeoneering_noted]
 id = 17583
 
 [ranged_potion_dungeoneering]
@@ -9986,7 +9986,7 @@ id = 17584
 heals = 0
 excess = "vial_dungeoneering"
 
-[ranged_potion_noted]
+[ranged_potion_dungeoneering_noted]
 id = 17585
 
 [melee_potion]
@@ -10006,14 +10006,14 @@ id = 17587
 clone = "weak_defence_potion"
 id = 17588
 
-[defence_potion_noted]
+[defence_potion_dungeoneering_noted]
 id = 17589
 
 [stat_restore_potion_dungeoneering]
 clone = "weak_stat_restore_potion"
 id = 17590
 
-[stat_restore_potion_noted]
+[stat_restore_potion_dungeoneering_noted]
 id = 17591
 
 [cure_potion]
@@ -10034,7 +10034,7 @@ id = 17595
 clone = "weak_weapon_poison"
 id = 17596
 
-[weapon_poison_noted_2]
+[weapon_poison_dungeoneering_noted]
 id = 17597
 
 [gatherers_potion]
@@ -10306,7 +10306,7 @@ examine = "Bones are for burying."
 use = "Dungeoneering"
 kept = "Always"
 
-[bones_noted_3]
+[bones_dungeoneering_noted]
 id = 17671
 
 [bat_bones_dungeoneering]
@@ -10317,7 +10317,7 @@ examine = "Bones are for burying."
 use = "Dungeoneering"
 kept = "Always"
 
-[bat_bones_noted_2]
+[bat_bones_dungeoneering_noted]
 id = 17673
 
 [big_bones_dungeoneering]
@@ -10328,7 +10328,7 @@ examine = "Bones are for burying."
 use = "Dungeoneering"
 kept = "Always"
 
-[big_bones_noted_2]
+[big_bones_dungeoneering_noted]
 id = 17675
 
 [dragon_bones_dungeoneering]
@@ -10339,7 +10339,7 @@ examine = "Bones are for burying."
 use = "Dungeoneering"
 kept = "Always"
 
-[dragon_bones_noted_2]
+[dragon_bones_dungeoneering_noted]
 id = 17677
 
 [tinderbox_dungeoneering]
@@ -10350,7 +10350,7 @@ examine = "Useful for lighting fires."
 use = "Dungeoneering"
 kept = "Always"
 
-[tinderbox_noted_2]
+[tinderbox_dungeoneering_noted]
 id = 17679
 
 [ashes_dungeoneering]
@@ -10361,7 +10361,7 @@ examine = "A heap of ashes."
 use = "Dungeoneering"
 kept = "Always"
 
-[ashes_noted_2]
+[ashes_dungeoneering_noted]
 id = 17681
 
 [tangle_gum_branches]
@@ -10683,7 +10683,7 @@ weight = 0.014
 examine = "I need an unstrung bow to attach this to."
 use = "Dungeoneering"
 
-[bow_string_noted_2]
+[bowstring_dungeoneering_noted]
 id = 17753
 
 [knife_dungeoneering]
@@ -10693,7 +10693,7 @@ examine = "A dangerous-looking knife."
 use = "Dungeoneering"
 kept = "Always"
 
-[knife_noted_2]
+[knife_dungeoneering_noted]
 id = 17755
 
 [tangle_gum_trap]
@@ -10885,7 +10885,7 @@ examine = "Just add feathers."
 use = "Dungeoneering"
 kept = "Always"
 
-[fly_fishing_rod_noted_2]
+[fly_fishing_rod_dungeoneering_noted]
 id = 17795
 
 [feather_dungeoneering]
@@ -11068,7 +11068,7 @@ examine = "Good for hitting things."
 use = "Dungeoneering"
 kept = "Always"
 
-[hammer_noted_2]
+[hammer_dungeoneering_noted]
 id = 17884
 
 [novite_arrowtips]
@@ -12537,7 +12537,7 @@ examine = "Mmm, this looks tasty."
 use = "Dungeoneering"
 kept = "Always"
 
-[banana_noted_2]
+[banana_dungeoneering_noted]
 id = 18200
 
 [rusty_coins]
@@ -13785,22 +13785,22 @@ id = 18569
 [sachem_deathslinger_pouch_noted]
 id = 18570
 
-[pouch_noted_66]
+[pouch_75_noted]
 id = 18571
 
-[pouch_noted_67]
+[pouch_76_noted]
 id = 18572
 
-[pouch_noted_68]
+[pouch_77_noted]
 id = 18573
 
-[pouch_noted_69]
+[pouch_78_noted]
 id = 18574
 
-[pouch_noted_70]
+[pouch_79_noted]
 id = 18575
 
-[pouch_noted_71]
+[pouch_80_noted]
 id = 18576
 
 [kinship_ring]
@@ -14021,7 +14021,7 @@ examine = "I doubt a dog would enjoy eating these."
 use = "Dungeoneering"
 kept = "Always"
 
-[frost_dragon_bones_noted]
+[frost_dragon_bones_dungeoneering_noted]
 id = 18831
 
 [frost_dragon_bones]
@@ -14032,7 +14032,7 @@ weight = 1.5
 prayer_xp = 180.0
 examine = "Hmm. I doubt a dog would enjoy eating these."
 
-[frost_dragon_bones_noted_2]
+[frost_dragon_bones_noted]
 id = 18833
 
 [frost_dragon_bonemeal]
@@ -14523,7 +14523,7 @@ examine = "This stone is highly malleable."
 use = "Dungeoneering"
 kept = "Always"
 
-[lump_of_stone_noted]
+[lump_of_stone_statue_bridge_noted]
 id = 19878
 
 [antique_ring]

@@ -197,7 +197,7 @@ limit = 100
 examine = "This keg contains 1 pint of Dwarven Stout."
 weight = 0.028
 
-[dwarven_stout_1_noted]
+[dwarven_stout_keg_1_noted]
 id = 5772
 
 [dwarven_stout_keg_2]
@@ -207,7 +207,7 @@ limit = 100
 examine = "This keg contains 2 pints of Dwarven Stout."
 weight = 0.028
 
-[dwarven_stout_2_noted]
+[dwarven_stout_keg_2_noted]
 id = 5774
 
 [dwarven_stout_keg_3]
@@ -217,7 +217,7 @@ limit = 100
 examine = "This keg contains 3 pints of Dwarven Stout."
 weight = 0.028
 
-[dwarven_stout_3_noted]
+[dwarven_stout_keg_3_noted]
 id = 5776
 
 [dwarven_stout_keg_4]
@@ -227,7 +227,7 @@ limit = 100
 examine = "This keg contains 4 pints of Dwarven Stout."
 weight = 0.028
 
-[dwarven_stout_4_noted]
+[dwarven_stout_keg_4_noted]
 id = 5778
 
 [asgarnian_ale_keg_1]
@@ -236,7 +236,7 @@ price = 3224
 examine = "This keg contains 1 pint of Asgarnian Ale."
 weight = 0.028
 
-[asgarnian_ale_1_noted]
+[asgarnian_ale_keg_1_noted]
 id = 5780
 
 [asgarnian_ale_keg_2]
@@ -245,7 +245,7 @@ price = 6103
 examine = "This keg contains 2 pints of Asgarnian Ale."
 weight = 0.028
 
-[asgarnian_ale_2_noted]
+[asgarnian_ale_keg_2_noted]
 id = 5782
 
 [asgarnian_ale_keg_3]
@@ -254,7 +254,7 @@ price = 9111
 examine = "This keg contains 3 pints of Asgarnian Ale."
 weight = 0.028
 
-[asgarnian_ale_3_noted]
+[asgarnian_ale_keg_3_noted]
 id = 5784
 
 [asgarnian_ale_keg_4]
@@ -263,7 +263,7 @@ price = 12600
 examine = "This keg contains 4 pints of Asgarnian Ale."
 weight = 0.028
 
-[asgarnian_ale_4_noted]
+[asgarnian_ale_keg_4_noted]
 id = 5786
 
 [greenmans_ale_keg_1]
@@ -273,7 +273,7 @@ limit = 100
 examine = "This keg contains 1 pint of Greenman's Ale."
 weight = 0.028
 
-[greenmans_ale_1_noted]
+[greenmans_ale_keg_1_noted]
 id = 5788
 
 [greenmans_ale_keg_2]
@@ -283,7 +283,7 @@ limit = 100
 examine = "This keg contains 2 pints of Greenman's Ale."
 weight = 0.028
 
-[greenmans_ale_2_noted]
+[greenmans_ale_keg_2_noted]
 id = 5790
 
 [greenmans_ale_keg_3]
@@ -293,7 +293,7 @@ limit = 100
 examine = "This keg contains 3 pints of Greenman's Ale."
 weight = 0.028
 
-[greenmans_ale_3_noted]
+[greenmans_ale_keg_3_noted]
 id = 5792
 
 [greenmans_ale_keg_4]
@@ -302,7 +302,7 @@ price = 7199
 examine = "This keg contains 4 pints of Greenman's Ale."
 weight = 0.028
 
-[greenmans_ale_4_noted]
+[greenmans_ale_keg_4_noted]
 id = 5794
 
 [mind_bomb_1]
@@ -352,7 +352,7 @@ limit = 100
 examine = "This keg contains 1 pint of Dragon Bitter."
 weight = 0.028
 
-[dragon_bitter_1_noted]
+[dragon_bitter_keg_1_noted]
 id = 5804
 
 [dragon_bitter_keg_2]
@@ -362,7 +362,7 @@ limit = 100
 examine = "This keg contains 2 pints of Dragon Bitter."
 weight = 0.028
 
-[dragon_bitter_2_noted]
+[dragon_bitter_keg_2_noted]
 id = 5806
 
 [dragon_bitter_keg_3]
@@ -372,7 +372,7 @@ limit = 100
 examine = "This keg contains 3 pints of Dragon Bitter."
 weight = 0.028
 
-[dragon_bitter_3_noted]
+[dragon_bitter_keg_3_noted]
 id = 5808
 
 [dragon_bitter_keg_4]
@@ -382,7 +382,7 @@ limit = 100
 examine = "This keg contains 4 pints of Dragon Bitter."
 weight = 0.028
 
-[dragon_bitter_4_noted]
+[dragon_bitter_keg_4_noted]
 id = 5810
 
 [moonlight_mead_keg_1]
@@ -392,7 +392,7 @@ limit = 100
 examine = "This keg contains 1 pint of Moonlight Mead."
 weight = 0.028
 
-[moonlight_mead_1_noted]
+[moonlight_mead_keg_1_noted]
 id = 5812
 
 [moonlight_mead_keg_2]
@@ -402,7 +402,7 @@ limit = 100
 examine = "This keg contains 2 pints of Moonlight Mead."
 weight = 0.028
 
-[moonlight_mead_2_noted]
+[moonlight_mead_keg_2_noted]
 id = 5814
 
 [moonlight_mead_keg_3]
@@ -412,7 +412,7 @@ limit = 100
 examine = "This keg contains 3 pints of Moonlight Mead."
 weight = 0.028
 
-[moonlight_mead_3_noted]
+[moonlight_mead_keg_3_noted]
 id = 5816
 
 [moonlight_mead_keg_4]
@@ -422,7 +422,7 @@ limit = 100
 examine = "This keg contains 4 pints of Moonlight Mead."
 weight = 0.028
 
-[moonlight_mead_4_noted]
+[moonlight_mead_keg_4_noted]
 id = 5818
 
 [axemans_folly_keg_1]
@@ -431,7 +431,7 @@ price = 3250
 examine = "This keg contains 1 pint of Axeman's Folly."
 weight = 0.028
 
-[axemans_folly_1_noted]
+[axemans_folly_keg_1_noted]
 id = 5820
 
 [axemans_folly_keg_2]
@@ -440,7 +440,7 @@ price = 6269
 examine = "This keg contains 2 pints of Axeman's Folly."
 weight = 0.028
 
-[axemans_folly_2_noted]
+[axemans_folly_keg_2_noted]
 id = 5822
 
 [axemans_folly_keg_3]
@@ -449,7 +449,7 @@ price = 9360
 examine = "This keg contains 3 pints of Axeman's Folly."
 weight = 0.028
 
-[axemans_folly_3_noted]
+[axemans_folly_keg_3_noted]
 id = 5824
 
 [axemans_folly_keg_4]
@@ -458,7 +458,7 @@ price = 10600
 examine = "This keg contains 4 pints of Axeman's Folly."
 weight = 0.028
 
-[axemans_folly_4_noted]
+[axemans_folly_keg_4_noted]
 id = 5826
 
 [chefs_delight_keg_1]
@@ -467,7 +467,7 @@ price = 3538
 examine = "This keg contains 1 pint of Chef's Delight."
 weight = 0.028
 
-[chefs_delight_1_noted]
+[chefs_delight_keg_1_noted]
 id = 5828
 
 [chefs_delight_keg_2]
@@ -476,7 +476,7 @@ price = 6488
 examine = "This keg contains 2 pints of Chef's Delight."
 weight = 0.028
 
-[chefs_delight_2_noted]
+[chefs_delight_keg_2_noted]
 id = 5830
 
 [chefs_delight_keg_3]
@@ -485,7 +485,7 @@ price = 9599
 examine = "This keg contains 3 pints of Chef's Delight."
 weight = 0.028
 
-[chefs_delight_3_noted]
+[chefs_delight_keg_3_noted]
 id = 5832
 
 [chefs_delight_keg_4]
@@ -494,7 +494,7 @@ price = 15300
 examine = "This keg contains 4 pints of Chef's Delight."
 weight = 0.028
 
-[chefs_delight_4_noted]
+[chefs_delight_keg_4_noted]
 id = 5834
 
 [slayers_respite_keg_1]
@@ -504,7 +504,7 @@ limit = 100
 examine = "This keg contains 1 pint of Slayer's Respite."
 weight = 0.028
 
-[slayers_respite_1_noted]
+[slayers_respite_keg_1_noted]
 id = 5836
 
 [slayers_respite_keg_2]
@@ -513,7 +513,7 @@ price = 2168
 examine = "This keg contains 2 pints of Slayer's Respite."
 weight = 0.028
 
-[slayers_respite_2_noted]
+[slayers_respite_keg_2_noted]
 id = 5838
 
 [slayers_respite_keg_3]
@@ -523,7 +523,7 @@ limit = 100
 examine = "This keg contains 3 pints of Slayer's Respite."
 weight = 0.028
 
-[slayers_respite_3_noted]
+[slayers_respite_keg_3_noted]
 id = 5840
 
 [slayers_respite_keg_4]
@@ -533,7 +533,7 @@ limit = 100
 examine = "This keg contains 4 pints of Slayer's Respite."
 weight = 0.028
 
-[slayers_respite_4_noted]
+[slayers_respite_keg_4_noted]
 id = 5842
 
 [cider_keg_1]
@@ -543,7 +543,7 @@ limit = 100
 examine = "This keg contains 1 pint of Cider."
 weight = 0.028
 
-[cider_1_noted]
+[cider_keg_1_noted]
 id = 5844
 
 [cider_keg_2]
@@ -553,7 +553,7 @@ limit = 100
 examine = "This keg contains 2 pints of Cider."
 weight = 0.028
 
-[cider_2_noted]
+[cider_keg_2_noted]
 id = 5846
 
 [cider_keg_3]
@@ -563,7 +563,7 @@ limit = 100
 examine = "This keg contains 3 pints of Cider."
 weight = 0.028
 
-[cider_3_noted]
+[cider_keg_3_noted]
 id = 5848
 
 [cider_keg_4]
@@ -573,7 +573,7 @@ limit = 100
 examine = "This keg contains 4 pints of Cider."
 weight = 0.028
 
-[cider_4_noted]
+[cider_keg_4_noted]
 id = 5850
 
 [dwarven_stout_m_keg_1]
@@ -583,7 +583,7 @@ limit = 100
 examine = "This keg contains 1 pint of mature Dwarven Stout."
 weight = 0.028
 
-[dwarven_stout_m1_noted]
+[dwarven_stout_m_keg_1_noted]
 id = 5852
 
 [dwarven_stout_m_keg_2]
@@ -593,7 +593,7 @@ limit = 100
 examine = "This keg contains 2 pints of mature Dwarven Stout."
 weight = 0.028
 
-[dwarven_stout_m2_noted]
+[dwarven_stout_m_keg_2_noted]
 id = 5854
 
 [dwarven_stout_m_keg_3]
@@ -603,7 +603,7 @@ limit = 100
 examine = "This keg contains 3 pints of mature Dwarven Stout."
 weight = 0.028
 
-[dwarven_stout_m3_noted]
+[dwarven_stout_m_keg_3_noted]
 id = 5856
 
 [dwarven_stout_m_keg_4]
@@ -613,7 +613,7 @@ limit = 100
 examine = "This keg contains 4 pints of mature Dwarven Stout."
 weight = 0.028
 
-[dwarven_stout_m4_noted]
+[dwarven_stout_m_keg_4_noted]
 id = 5858
 
 [asgarnian_ale_m_keg_1]
@@ -622,7 +622,7 @@ price = 1697
 examine = "This keg contains 1 pint of mature Asgarnian Ale."
 weight = 0.028
 
-[asgarnian_ale_m1_noted]
+[asgarnian_ale_m_keg_1_noted]
 id = 5860
 
 [asgarnian_ale_m_keg_2]
@@ -631,7 +631,7 @@ price = 3307
 examine = "This keg contains 2 pints of mature Asgarnian Ale."
 weight = 0.028
 
-[asgarnian_ale_m2_noted]
+[asgarnian_ale_m_keg_2_noted]
 id = 5862
 
 [asgarnian_ale_m_keg_3]
@@ -640,7 +640,7 @@ price = 4917
 examine = "This keg contains 3 pints of mature Asgarnian Ale."
 weight = 0.028
 
-[asgarnian_ale_m3_noted]
+[asgarnian_ale_m_keg_3_noted]
 id = 5864
 
 [asgarnian_ale_m_keg_4]
@@ -649,7 +649,7 @@ price = 6528
 examine = "This keg contains 4 pints of mature Asgarnian Ale."
 weight = 0.028
 
-[asgarnian_ale_m4_noted]
+[asgarnian_ale_m_keg_4_noted]
 id = 5866
 
 [greenmans_ale_m_keg_1]
@@ -659,7 +659,7 @@ limit = 100
 examine = "This keg contains 1 pint of mature Greenman's Ale."
 weight = 0.028
 
-[greenmans_ale_m1_noted]
+[greenmans_ale_m_keg_1_noted]
 id = 5868
 
 [greenmans_ale_m_keg_2]
@@ -669,7 +669,7 @@ limit = 100
 examine = "This keg contains 2 pints of mature Greenman's Ale."
 weight = 0.028
 
-[greenmans_ale_m2_noted]
+[greenmans_ale_m_keg_2_noted]
 id = 5870
 
 [greenmans_ale_m_keg_3]
@@ -679,7 +679,7 @@ limit = 100
 examine = "This keg contains 3 pints of mature Greenman's Ale."
 weight = 0.028
 
-[greenmans_ale_m3_noted]
+[greenmans_ale_m_keg_3_noted]
 id = 5872
 
 [greenmans_ale_m_keg_4]
@@ -688,7 +688,7 @@ price = 238400
 examine = "This keg contains 4 pints of mature Greenman's Ale."
 weight = 0.028
 
-[greenmans_ale_m4_noted]
+[greenmans_ale_m_keg_4_noted]
 id = 5874
 
 [mind_bomb_m_1]
@@ -698,7 +698,7 @@ limit = 100
 examine = "This keg contains 1 pint of mature Wizards Mind Bomb."
 weight = 0.028
 
-[mind_bomb_m1_noted]
+[mind_bomb_m_1_noted]
 id = 5876
 
 [mind_bomb_m_2]
@@ -708,7 +708,7 @@ limit = 100
 examine = "This keg contains 2 pints of mature Wizards Mind Bomb."
 weight = 0.028
 
-[mind_bomb_m2_noted]
+[mind_bomb_m_2_noted]
 id = 5878
 
 [mind_bomb_m_3]
@@ -718,7 +718,7 @@ limit = 100
 examine = "This keg contains 3 pints of mature Wizards Mind Bomb."
 weight = 0.028
 
-[mind_bomb_m3_noted]
+[mind_bomb_m_3_noted]
 id = 5880
 
 [mind_bomb_m_4]
@@ -728,7 +728,7 @@ limit = 100
 examine = "This keg contains 4 pints of mature Wizards Mind Bomb."
 weight = 0.028
 
-[mind_bomb_m4_noted]
+[mind_bomb_m_4_noted]
 id = 5882
 
 [dragon_bitter_m_keg_1]
@@ -738,7 +738,7 @@ limit = 100
 examine = "This keg contains 1 pint of mature Dragon Bitter."
 weight = 0.028
 
-[dragon_bitter_m1_noted]
+[dragon_bitter_m_keg_1_noted]
 id = 5884
 
 [dragon_bitter_m_keg_2]
@@ -748,7 +748,7 @@ limit = 100
 examine = "This keg contains 2 pints of mature Dragon Bitter."
 weight = 0.028
 
-[dragon_bitter_m2_noted]
+[dragon_bitter_m_keg_2_noted]
 id = 5886
 
 [dragon_bitter_m_keg_3]
@@ -758,7 +758,7 @@ limit = 100
 examine = "This keg contains 3 pints of mature Dragon Bitter."
 weight = 0.028
 
-[dragon_bitter_m3_noted]
+[dragon_bitter_m_keg_3_noted]
 id = 5888
 
 [dragon_bitter_m_keg_4]
@@ -768,7 +768,7 @@ limit = 100
 examine = "This keg contains 4 pints of mature Dragon Bitter."
 weight = 0.028
 
-[dragon_bitter_m4_noted]
+[dragon_bitter_m_keg_4_noted]
 id = 5890
 
 [moonlight_mead_m_keg_1]
@@ -778,7 +778,7 @@ limit = 100
 examine = "This keg contains 1 pint of mature Moonlight Mead."
 weight = 0.028
 
-[mlight_mead_m1_noted]
+[moonlight_mead_m_keg_1_noted]
 id = 5892
 
 [moonlight_mead_m_keg_2]
@@ -788,7 +788,7 @@ limit = 100
 examine = "This keg contains 2 pints of mature Moonlight Mead."
 weight = 0.028
 
-[mlight_mead_m2_noted]
+[moonlight_mead_m_keg_2_noted]
 id = 5894
 
 [moonlight_mead_m_keg_3]
@@ -798,7 +798,7 @@ limit = 100
 examine = "This keg contains 3 pints of mature Moonlight Mead."
 weight = 0.028
 
-[mlight_mead_m3_noted]
+[moonlight_mead_m_keg_3_noted]
 id = 5896
 
 [moonlight_mead_m_keg_4]
@@ -808,7 +808,7 @@ limit = 100
 examine = "This keg contains 4 pints of mature Moonlight Mead."
 weight = 0.028
 
-[mlight_mead_m4_noted]
+[moonlight_mead_m_keg_4_noted]
 id = 5898
 
 [axemans_folly_m_keg_1]
@@ -817,7 +817,7 @@ price = 12500
 examine = "This keg contains 1 pint of mature Axeman's Folly."
 weight = 0.028
 
-[axemans_folly_m1_noted]
+[axemans_folly_m_keg_1_noted]
 id = 5900
 
 [axemans_folly_m_keg_2]
@@ -826,7 +826,7 @@ price = 24000
 examine = "This keg contains 2 pints of mature Axeman's Folly."
 weight = 0.028
 
-[axemans_folly_m2_noted]
+[axemans_folly_m_keg_2_noted]
 id = 5902
 
 [axemans_folly_m_keg_3]
@@ -835,7 +835,7 @@ price = 35900
 examine = "This keg contains 3 pints of mature Axeman's Folly."
 weight = 0.028
 
-[axemans_folly_m3_noted]
+[axemans_folly_m_keg_3_noted]
 id = 5904
 
 [axemans_folly_m_keg_4]
@@ -844,7 +844,7 @@ price = 53500
 examine = "This keg contains 4 pints of mature Axeman's Folly."
 weight = 0.028
 
-[axemans_folly_m4_noted]
+[axemans_folly_m_keg_4_noted]
 id = 5906
 
 [chefs_delight_m_keg_1]
@@ -853,7 +853,7 @@ price = 16800
 examine = "This keg contains 1 pint of mature Chef's Delight."
 weight = 0.028
 
-[chefs_delight_m1_noted]
+[chefs_delight_m_keg_1_noted]
 id = 5908
 
 [chefs_delight_m_keg_2]
@@ -862,7 +862,7 @@ price = 32900
 examine = "This keg contains 2 pints of mature Chef's Delight."
 weight = 0.028
 
-[chefs_delight_m2_noted]
+[chefs_delight_m_keg_2_noted]
 id = 5910
 
 [chefs_delight_m_keg_3]
@@ -871,7 +871,7 @@ price = 49000
 examine = "This keg contains 3 pints of mature Chef's Delight."
 weight = 0.028
 
-[chefs_delight_m3_noted]
+[chefs_delight_m_keg_3_noted]
 id = 5912
 
 [chefs_delight_m_keg_4]
@@ -880,7 +880,7 @@ price = 80400
 examine = "This keg contains 4 pints of mature Chef's Delight."
 weight = 0.028
 
-[chefs_delight_m4_noted]
+[chefs_delight_m_keg_4_noted]
 id = 5914
 
 [slayer_respite_m_keg_1]
@@ -890,7 +890,7 @@ limit = 100
 examine = "This keg contains 1 pint of mature Slayer's Respite."
 weight = 0.028
 
-[slayer_respite_m1_noted]
+[slayer_respite_m_keg_1_noted]
 id = 5916
 
 [slayer_respite_m_keg_2]
@@ -900,7 +900,7 @@ limit = 100
 examine = "This keg contains 2 pints of mature Slayer's Respite."
 weight = 0.028
 
-[slayer_respite_m2_noted]
+[slayer_respite_m_keg_2_noted]
 id = 5918
 
 [slayer_respite_m_keg_3]
@@ -910,7 +910,7 @@ limit = 100
 examine = "This keg contains 3 pints of mature Slayer's Respite."
 weight = 0.028
 
-[slayer_respite_m3_noted]
+[slayer_respite_m_keg_3_noted]
 id = 5920
 
 [slayer_respite_m_keg_4]
@@ -920,7 +920,7 @@ limit = 100
 examine = "This keg contains 4 pints of mature Slayer's Respite."
 weight = 0.028
 
-[slayer_respite_m4_noted]
+[slayer_respite_m_keg_4_noted]
 id = 5922
 
 [cider_m_keg_1]
@@ -930,7 +930,7 @@ limit = 100
 examine = "This keg contains 1 pint of mature Cider."
 weight = 0.028
 
-[cider_m1_noted]
+[cider_m_keg_1_noted]
 id = 5924
 
 [cider_m_keg_2]
@@ -940,7 +940,7 @@ limit = 100
 examine = "This keg contains 2 pints of mature Cider."
 weight = 0.028
 
-[cider_m2_noted]
+[cider_m_keg_2_noted]
 id = 5926
 
 [cider_m_keg_3]
@@ -950,7 +950,7 @@ limit = 100
 examine = "This keg contains 3 pints of mature Cider."
 weight = 0.028
 
-[cider_m3_noted]
+[cider_m_keg_3_noted]
 id = 5928
 
 [cider_m_keg_4]
@@ -960,5 +960,5 @@ limit = 100
 examine = "This keg contains 4 pints of mature Cider."
 weight = 0.028
 
-[cider_m4_noted]
+[cider_m_keg_4_noted]
 id = 5930

@@ -1098,7 +1098,7 @@ type = "Hair"
 examine = "This item degrades while worn, and will turn to dust."
 weight = 1.36
 
-[corrupt_dragon_med_helm_noted]
+[corrupt_dragon_helm_noted]
 id = 13962
 
 [corrupt_dragon_helm_degraded]

@@ -31,7 +31,7 @@ destroy = "If you drop this it will disappear. Are you sure you want to do this?
 examine = "A gourmet impling in a jar."
 kept = "Vanish"
 
-[gourm_impling_jar_noted]
+[gourmet_impling_jar_noted]
 id = 11243
 
 [earth_impling_jar]
@@ -55,7 +55,7 @@ destroy = "If you drop this it will disappear. Are you sure you want to do this?
 examine = "Essence impling in a jar."
 kept = "Vanish"
 
-[ess_impling_jar_noted]
+[essence_impling_jar_noted]
 id = 11247
 
 [eclectic_impling_jar]

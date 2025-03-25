@@ -197,7 +197,7 @@ use = "Removed"
 [picture_2]
 id = 2094
 
-[picture_noted_20]
+[picture_2_noted]
 id = 2095
 
 [odd_batta]
@@ -209,52 +209,52 @@ use = "Removed"
 [picture_3]
 id = 2096
 
-[picture_noted_21]
+[picture_3_noted]
 id = 2097
 
 [picture_4]
 id = 2098
 
-[picture_noted_22]
+[picture_4_noted]
 id = 2099
 
 [picture_5]
 id = 2100
 
-[picture_noted_23]
+[picture_5_noted]
 id = 2101
 
-[picture_noted_24]
+[equa_toads_legs_noted]
 id = 2155
 
-[picture_noted_25]
+[odd_gnomebowl_noted]
 id = 2174
 
-[picture_noted_26]
+[unfinished_bowl_chocolate_bomb_baked_noted]
 id = 2180
 
-[picture_noted_27]
+[unfinished_bowl_chocolate_bomb_cream_noted]
 id = 2182
 
-[picture_noted_28]
+[unfinished_bowl_chocolate_bomb_2_cream_noted]
 id = 2184
 
-[picture_noted_29]
+[unfinished_bowl_worm_hole_noted]
 id = 2190
 
-[picture_noted_30]
+[unfinished_bowl_veg_ball_noted]
 id = 2194
 
-[picture_noted_31]
+[unfinished_crunchy_worm_noted]
 id = 2204
 
-[picture_noted_32]
+[unfinished_crunchy_chocolate_chip_noted]
 id = 2208
 
-[picture_noted_33]
+[unfinished_crunchy_spicy_noted]
 id = 2212
 
-[picture_noted_34]
+[unfinished_crunchy_toad_noted]
 id = 2216
 
 [unfinished_batta_cheese_and_tomato]
@@ -265,49 +265,49 @@ id = 2257
 clone = "unfinished_batta_worm"
 id = 2261
 
-[unfinished_batta_noted]
+[unfinished_batta_fruit_baked_noted]
 id = 2262
 
 [unfinished_batta_fruit_lime]
 clone = "unfinished_batta_worm"
 id = 2263
 
-[unfinished_batta_noted_2]
+[unfinished_batta_fruit_lime_noted]
 id = 2264
 
 [unfinished_batta_fruit_orange]
 clone = "unfinished_batta_worm"
 id = 2265
 
-[unfinished_batta_noted_3]
+[unfinished_batta_fruit_orange_noted]
 id = 2266
 
 [unfinished_batta_fruit_pineapple]
 clone = "unfinished_batta_worm"
 id = 2267
 
-[unfinished_batta_noted_4]
+[unfinished_batta_fruit_pineapple_noted]
 id = 2268
 
 [unfinished_batta_fruit_lime_orange]
 clone = "unfinished_batta_worm"
 id = 2269
 
-[unfinished_batta_noted_5]
+[unfinished_batta_fruit_lime_orange_noted]
 id = 2270
 
 [unfinished_batta_fruit_lime_pineapple]
 clone = "unfinished_batta_worm"
 id = 2271
 
-[unfinished_batta_noted_6]
+[unfinished_batta_fruit_lime_pineapple_noted]
 id = 2272
 
 [unfinished_batta_fruit_orange_pineapple]
 clone = "unfinished_batta_worm"
 id = 2273
 
-[unfinished_batta_noted_7]
+[unfinished_batta_fruit_orange_pineapple_noted]
 id = 2274
 
 [unfinished_batta_fruit_lime_orange_pineapple]
@@ -324,19 +324,19 @@ weight = 0.25
 examine = "This batta is just missing those little finishing touches."
 use = "Removed"
 
-[picture_noted_35]
+[odd_batta_noted]
 id = 2246
 
-[picture_noted_36]
+[unfinished_batta_worm_noted]
 id = 2252
 
-[picture_noted_37]
+[unfinished_batta_cheese_and_tomato_noted]
 id = 2258
 
-[picture_noted_38]
+[unfinished_batta_fruit_lime_orange_pineapple_noted]
 id = 2276
 
-[picture_noted_39]
+[unfinished_batta_vegetable_noted]
 id = 2280
 
 [picture_17]
@@ -360,7 +360,7 @@ id = 2965
 [picture_21]
 id = 3108
 
-[picture_noted_40]
+[left_handed_banana_noted]
 id = 3178
 
 [tinderbox_15]
@@ -372,25 +372,25 @@ id = 3225
 [picture_22]
 id = 3231
 
-[picture_noted_41]
+[picture_22_noted]
 id = 3232
 
 [picture_23]
 id = 3233
 
-[picture_noted_42]
+[picture_23_noted]
 id = 3234
 
 [picture_24]
 id = 3235
 
-[picture_noted_43]
+[picture_24_noted]
 id = 3236
 
 [picture_25]
 id = 3237
 
-[picture_noted_44]
+[picture_25_noted]
 id = 3238
 
 [tinderbox_18]
@@ -685,14 +685,14 @@ id = 7631
 [picture_68]
 id = 7804
 
-[picture_noted_45]
+[picture_68_noted]
 id = 7805
 
 [hatchet_handle_2] # Unobtainable
 id = 7952
 examine = "Useless."
 
-[hatchet_handle_noted_2]
+[hatchet_handle_2_noted]
 id = 7953
 
 [thing] # Unobtainable
@@ -713,7 +713,7 @@ id = 9596
 [picture_72]
 id = 9700
 
-[torch_noted]
+[torch_sea_slug_noted]
 id = 9701
 
 [stick_2] # Unobtainable
@@ -741,49 +741,49 @@ id = 10497
 id = 10567
 examine = "Mabob."
 
-[picture_noted_46]
+[thingy_noted]
 id = 10568
 
 [picture_77]
 id = 10569
 tradeable = false
 
-[picture_noted_47]
+[picture_77_noted]
 id = 10570
 
 [picture_78]
 id = 10571
 tradeable = false
 
-[picture_noted_48]
+[picture_78_noted]
 id = 10572
 
 [picture_79]
 id = 10573
 tradeable = false
 
-[picture_noted_49]
+[picture_79_noted]
 id = 10574
 
 [picture_80]
 id = 10575
 tradeable = false
 
-[picture_noted_50]
+[picture_80_noted]
 id = 10576
 
 [picture_81]
 id = 10577
 tradeable = false
 
-[picture_noted_51]
+[picture_81_noted]
 id = 10578
 
 [picture_82]
 id = 10579
 tradeable = false
 
-[picture_noted_52]
+[picture_82_noted]
 id = 10580
 
 [mystic_hat_blue_2]
@@ -1455,41 +1455,41 @@ id = 11268
 [picture_122]
 id = 11269
 
-[picture_noted_53]
+[picture_122_noted]
 id = 11270
 
 [picture_123]
 id = 11271
 
-[picture_noted_54]
+[picture_123_noted]
 id = 11272
 
 [ham_shirt_2]
 id = 11274
 tradeable = false
 
-[mith_grapple_noted]
+[mithril_grapple_unf_noted]
 id = 11275
 
-[mith_grapple_noted_2]
+[mithril_grapple_noted]
 id = 11276
 
 [picture_124]
 id = 11740
 
-[picture_noted_55]
+[picture_124_noted]
 id = 11741
 
 [picture_125]
 id = 11742
 
-[picture_noted_56]
+[picture_125_noted]
 id = 11743
 
 [picture_126]
 id = 11744
 
-[picture_noted_57]
+[picture_126_noted]
 id = 11745
 
 [logs_3]
@@ -1501,13 +1501,13 @@ id = 11813
 [picture_127]
 id = 12537
 
-[picture_noted_58]
+[picture_127_noted]
 id = 12538
 
 [picture_128]
 id = 12544
 
-[picture_noted_59]
+[picture_128_noted]
 id = 12545
 
 [picture_129]
@@ -1661,7 +1661,7 @@ tradeable = false
 [pouch_68]
 id = 14620
 
-[pouch_noted_65]
+[pouch_68_noted]
 id = 14621
 
 [bones_3]
@@ -1698,7 +1698,7 @@ tradeable = false
 id = 15298
 tradeable = false
 
-[iron_hatchet_noted_2]
+[iron_hatchet_2_noted]
 id = 15299
 
 [serjeant_cap_2]

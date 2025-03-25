@@ -543,7 +543,7 @@ excess = "cooked_crab_meat_4"
 weight = 0.907
 examine = "Nice and Tasty!"
 
-[cooked_crab_meat_noted]
+[cooked_crab_meat_5_noted]
 id = 7522
 
 [cooked_crab_meat_4]

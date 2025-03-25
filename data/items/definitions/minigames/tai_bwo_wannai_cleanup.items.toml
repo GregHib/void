@@ -7,7 +7,7 @@ degrade = "broodoo_shield_green_9"
 slot = "Shield"
 examine = "A scary broodoo shield."
 
-[broodoo_shield_10_noted]
+[broodoo_shield_green_10_noted]
 id = 6216
 
 [broodoo_shield_green_9]
@@ -15,7 +15,7 @@ clone = "broodoo_shield_green_10"
 id = 6217
 degrade = "broodoo_shield_green_8"
 
-[broodoo_shield_9_noted]
+[broodoo_shield_green_9_noted]
 id = 6218
 
 [broodoo_shield_green_8]
@@ -23,7 +23,7 @@ clone = "broodoo_shield_green_10"
 id = 6219
 degrade = "broodoo_shield_green_7"
 
-[broodoo_shield_8_noted]
+[broodoo_shield_green_8_noted]
 id = 6220
 
 [broodoo_shield_green_7]
@@ -31,7 +31,7 @@ clone = "broodoo_shield_green_10"
 id = 6221
 degrade = "broodoo_shield_green_6"
 
-[broodoo_shield_7_noted]
+[broodoo_shield_green_7_noted]
 id = 6222
 
 [broodoo_shield_green_6]
@@ -39,7 +39,7 @@ clone = "broodoo_shield_green_10"
 id = 6223
 degrade = "broodoo_shield_green_5"
 
-[broodoo_shield_6_noted]
+[broodoo_shield_green_6_noted]
 id = 6224
 
 [broodoo_shield_green_5]
@@ -47,7 +47,7 @@ clone = "broodoo_shield_green_10"
 id = 6225
 degrade = "broodoo_shield_green_4"
 
-[broodoo_shield_5_noted]
+[broodoo_shield_green_5_noted]
 id = 6226
 
 [broodoo_shield_green_4]
@@ -55,7 +55,7 @@ clone = "broodoo_shield_green_10"
 id = 6227
 degrade = "broodoo_shield_green_3"
 
-[broodoo_shield_4_noted]
+[broodoo_shield_green_4_noted]
 id = 6228
 
 [broodoo_shield_green_3]
@@ -63,7 +63,7 @@ clone = "broodoo_shield_green_10"
 id = 6229
 degrade = "broodoo_shield_green_2"
 
-[broodoo_shield_3_noted]
+[broodoo_shield_green_3_noted]
 id = 6230
 
 [broodoo_shield_green_2]
@@ -71,7 +71,7 @@ clone = "broodoo_shield_green_10"
 id = 6231
 degrade = "broodoo_shield_green_1"
 
-[broodoo_shield_2_noted]
+[broodoo_shield_green_2_noted]
 id = 6232
 
 [broodoo_shield_green_1]
@@ -79,7 +79,7 @@ clone = "broodoo_shield_green_10"
 id = 6233
 degrade = "broodoo_shield_green"
 
-[broodoo_shield_1_noted]
+[broodoo_shield_green_1_noted]
 id = 6234
 
 [broodoo_shield_green]
@@ -90,7 +90,7 @@ slot = "Shield"
 examine = "A scary broodoo shield."
 weight = 5.443
 
-[broodoo_shield_noted]
+[broodoo_shield_green_noted]
 id = 6236
 
 [broodoo_shield_orange_10]
@@ -102,7 +102,7 @@ degrade = "broodoo_shield_orange_9"
 slot = "Shield"
 examine = "A scary broodoo shield."
 
-[broodoo_shield_10_noted_2]
+[broodoo_shield_orange_10_noted]
 id = 6238
 
 [broodoo_shield_orange_9]
@@ -110,7 +110,7 @@ clone = "broodoo_shield_orange_10"
 id = 6239
 degrade = "broodoo_shield_orange_8"
 
-[broodoo_shield_9_noted_2]
+[broodoo_shield_orange_9_noted]
 id = 6240
 
 [broodoo_shield_orange_8]
@@ -118,7 +118,7 @@ clone = "broodoo_shield_orange_10"
 id = 6241
 degrade = "broodoo_shield_orange_7"
 
-[broodoo_shield_8_noted_2]
+[broodoo_shield_orange_8_noted]
 id = 6242
 
 [broodoo_shield_orange_7]
@@ -126,7 +126,7 @@ clone = "broodoo_shield_orange_10"
 id = 6243
 degrade = "broodoo_shield_orange_6"
 
-[broodoo_shield_7_noted_2]
+[broodoo_shield_orange_7_noted]
 id = 6244
 
 [broodoo_shield_orange_6]
@@ -134,7 +134,7 @@ clone = "broodoo_shield_orange_10"
 id = 6245
 degrade = "broodoo_shield_orange_5"
 
-[broodoo_shield_6_noted_2]
+[broodoo_shield_orange_6_noted]
 id = 6246
 
 [broodoo_shield_orange_5]
@@ -142,7 +142,7 @@ clone = "broodoo_shield_orange_10"
 id = 6247
 degrade = "broodoo_shield_orange_4"
 
-[broodoo_shield_5_noted_2]
+[broodoo_shield_orange_5_noted]
 id = 6248
 
 [broodoo_shield_orange_4]
@@ -150,7 +150,7 @@ clone = "broodoo_shield_orange_10"
 id = 6249
 degrade = "broodoo_shield_orange_3"
 
-[broodoo_shield_4_noted_2]
+[broodoo_shield_orange_4_noted]
 id = 6250
 
 [broodoo_shield_orange_3]
@@ -158,7 +158,7 @@ clone = "broodoo_shield_orange_10"
 id = 6251
 degrade = "broodoo_shield_orange_2"
 
-[broodoo_shield_3_noted_2]
+[broodoo_shield_orange_3_noted]
 id = 6252
 
 [broodoo_shield_orange_2]
@@ -166,7 +166,7 @@ clone = "broodoo_shield_orange_10"
 id = 6253
 degrade = "broodoo_shield_orange_1"
 
-[broodoo_shield_2_noted_2]
+[broodoo_shield_orange_2_noted]
 id = 6254
 
 [broodoo_shield_orange_1]
@@ -174,7 +174,7 @@ clone = "broodoo_shield_orange_10"
 id = 6255
 degrade = "broodoo_shield_orange"
 
-[broodoo_shield_1_noted_2]
+[broodoo_shield_orange_1_noted]
 id = 6256
 
 [broodoo_shield_orange]
@@ -185,7 +185,7 @@ weight = 5.443
 slot = "Shield"
 examine = "A scary broodoo shield."
 
-[broodoo_shield_noted_2]
+[broodoo_shield_orange_noted]
 id = 6258
 
 [broodoo_shield_blue_10]
@@ -197,7 +197,7 @@ degrade = "broodoo_shield_blue_9"
 slot = "Shield"
 examine = "A scary broodoo shield."
 
-[broodoo_shield_10_noted_3]
+[broodoo_shield_blue_10_noted]
 id = 6260
 
 [broodoo_shield_blue_9]
@@ -205,7 +205,7 @@ clone = "broodoo_shield_blue_10"
 id = 6261
 degrade = "broodoo_shield_blue_8"
 
-[broodoo_shield_9_noted_3]
+[broodoo_shield_blue_9_noted]
 id = 6262
 
 [broodoo_shield_blue_8]
@@ -213,7 +213,7 @@ clone = "broodoo_shield_blue_10"
 id = 6263
 degrade = "broodoo_shield_blue_7"
 
-[broodoo_shield_8_noted_3]
+[broodoo_shield_blue_8_noted]
 id = 6264
 
 [broodoo_shield_blue_7]
@@ -221,7 +221,7 @@ clone = "broodoo_shield_blue_10"
 id = 6265
 degrade = "broodoo_shield_blue_6"
 
-[broodoo_shield_7_noted_3]
+[broodoo_shield_blue_7_noted]
 id = 6266
 
 [broodoo_shield_blue_6]
@@ -229,7 +229,7 @@ clone = "broodoo_shield_blue_10"
 id = 6267
 degrade = "broodoo_shield_blue_5"
 
-[broodoo_shield_6_noted_3]
+[broodoo_shield_blue_6_noted]
 id = 6268
 
 [broodoo_shield_blue_5]
@@ -237,7 +237,7 @@ clone = "broodoo_shield_blue_10"
 id = 6269
 degrade = "broodoo_shield_blue_4"
 
-[broodoo_shield_5_noted_3]
+[broodoo_shield_blue_5_noted]
 id = 6270
 
 [broodoo_shield_blue_4]
@@ -245,7 +245,7 @@ clone = "broodoo_shield_blue_10"
 id = 6271
 degrade = "broodoo_shield_blue_3"
 
-[broodoo_shield_4_noted_3]
+[broodoo_shield_blue_4_noted]
 id = 6272
 
 [broodoo_shield_blue_3]
@@ -253,7 +253,7 @@ clone = "broodoo_shield_blue_10"
 id = 6273
 degrade = "broodoo_shield_blue_2"
 
-[broodoo_shield_3_noted_3]
+[broodoo_shield_blue_3_noted]
 id = 6274
 
 [broodoo_shield_blue_2]
@@ -261,7 +261,7 @@ clone = "broodoo_shield_blue_10"
 id = 6275
 degrade = "broodoo_shield_blue_1"
 
-[broodoo_shield_2_noted_3]
+[broodoo_shield_blue_2_noted]
 id = 6276
 
 [broodoo_shield_blue_1]
@@ -269,7 +269,7 @@ clone = "broodoo_shield_blue_10"
 id = 6277
 degrade = "broodoo_shield_blue"
 
-[broodoo_shield_1_noted_3]
+[broodoo_shield_blue_1_noted]
 id = 6278
 
 [broodoo_shield_blue]
@@ -280,7 +280,7 @@ slot = "Shield"
 examine = "A scary broodoo shield."
 weight = 5.443
 
-[broodoo_shield_noted_3]
+[broodoo_shield_blue_noted]
 id = 6280
 
 [thatch_spar_light]
@@ -302,7 +302,7 @@ weight = 0.1
 slot = "Shield"
 examine = "A wooden pole for use in primitive construction."
 
-[thatch_spar_med_noted]
+[thatch_spar_medium_noted]
 id = 6284
 
 [thatch_spar_dense]
@@ -355,7 +355,7 @@ weight = 0.9
 cooking = { level = 16, xp = 80.0, chances = { fire = "91-438" }, type = "roast", cooked = "spider_on_stick", burnt = "burnt_spider" }
 examine = "A raw spider threaded onto a skewer stick."
 
-[spider_on_stick_noted]
+[spider_on_stick_raw_noted]
 id = 6294
 
 [spider_on_shaft_raw]
@@ -366,7 +366,7 @@ weight = 0.9
 cooking = { level = 16, xp = 80.0, chances = { fire = "91-438" }, type = "roast", cooked = "spider_on_shaft", burnt = "spider_on_shaft_burnt" }
 examine = "A raw spider threaded onto an arrow shaft."
 
-[spider_on_shaft_noted]
+[spider_on_shaft_raw_noted]
 id = 6296
 
 [spider_on_stick]
@@ -377,7 +377,7 @@ heals = "70-100"
 weight = 0.65
 examine = "A nicely roasted spider threaded onto a skewer stick."
 
-[spider_on_stick_noted_2]
+[spider_on_stick_noted]
 id = 6298
 
 [spider_on_shaft]
@@ -388,7 +388,7 @@ heals = "70-100"
 weight = 0.9
 examine = "A nicely roasted spider threaded onto an arrow shaft."
 
-[spider_on_shaft_noted_2]
+[spider_on_shaft_noted]
 id = 6300
 
 [burnt_spider]
@@ -403,7 +403,7 @@ id = 6303
 limit = 1000
 examine = "A badly burnt spider threaded onto a charred arrow shaft."
 
-[spider_on_shaft_noted_3]
+[spider_on_shaft_burnt_noted]
 id = 6304
 
 [skewer_stick]
@@ -537,7 +537,7 @@ aka = ["broodoo_mask_green"]
 slot = "Hat"
 examine = "A ceremonial wooden mask."
 
-[tribal_mask_noted]
+[tribal_mask_green_noted]
 id = 6336
 
 [tribal_mask_orange]
@@ -549,7 +549,7 @@ aka = ["broodoo_mask_orange"]
 slot = "Hat"
 examine = "A ceremonial wooden mask."
 
-[tribal_mask_noted_2]
+[tribal_mask_orange_noted]
 id = 6338
 
 [tribal_mask_blue]
@@ -561,5 +561,5 @@ aka = ["broodoo_mask_blue"]
 slot = "Hat"
 examine = "A ceremonial wooden mask."
 
-[tribal_mask_noted_3]
+[tribal_mask_blue_noted]
 id = 6340

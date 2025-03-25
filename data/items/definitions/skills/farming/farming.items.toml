@@ -159,7 +159,7 @@ weight = 0.907
 examine = "An empty plant pot."
 kept = "Wilderness"
 
-[plant_pot_noted]
+[plant_pot_empty_noted]
 id = 5351
 
 [unfired_plant_pot]
@@ -182,7 +182,7 @@ weight = 0.907
 examine = "A plant pot filled with compost."
 kept = "Wilderness"
 
-[plant_pot_noted_2]
+[plant_pot_noted]
 id = 5355
 
 [plant_pot_supercompost] # Unobtainable
@@ -191,7 +191,7 @@ tradeable = false
 weight = 0.907
 examine = "A plant pot filled with supercompost."
 
-[plant_pot_noted_3]
+[plant_pot_supercompost_noted]
 id = 5357
 
 [compost]

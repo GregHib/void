@@ -101,7 +101,7 @@ special = "snipe"
 aka = ["dorg_cb", "dorg_cbow", "dorg_crossbow"]
 examine = "This fires crossbow bolts."
 
-[dorgeshuun_cbow_noted]
+[dorgeshuun_crossbow_noted]
 id = 8881
 
 [bone_bolts]

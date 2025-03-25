@@ -127,7 +127,7 @@ excess = "pie_dish"
 examine = "What I wouldn't give for a good steak about now..."
 weight = 0.001
 
-[half_a_garden_pie_noted]
+[garden_pie_half_noted]
 id = 7181
 
 [part_fish_pie_trout]
@@ -193,7 +193,7 @@ excess = "pie_dish"
 examine = "Bounty of the sea."
 weight = 0.001
 
-[half_a_fish_pie_noted]
+[fish_pie_half_noted]
 id = 7191
 
 [part_admiral_pie_salmon]
@@ -257,7 +257,7 @@ heals = 80
 excess = "pie_dish"
 weight = 0.001
 
-[half_an_admiral_pie_noted]
+[admiral_pie_half_noted]
 id = 7201
 
 [part_wild_pie_raw_bear_meat]
@@ -323,7 +323,7 @@ excess = "pie_dish"
 examine = "A triumph of man over nature."
 weight = 0.001
 
-[half_a_wild_pie_noted]
+[wild_pie_half_noted]
 id = 7211
 
 [part_summer_pie_strawberry]
@@ -389,5 +389,5 @@ excess = "pie_dish"
 examine = "All the fruits of a very small forest."
 weight = 0.001
 
-[half_a_summer_pie_noted]
+[summer_pie_half_noted]
 id = 7221

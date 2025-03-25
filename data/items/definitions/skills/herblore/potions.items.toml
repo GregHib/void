@@ -557,7 +557,7 @@ excess = "super_ranging_potion_3"
 empty = "vial"
 examine = "4 doses of super ranging potion."
 
-[ranging_potion_4_noted]
+[super_ranging_potion_4_noted]
 id = 2445
 
 [antipoison_4]
@@ -824,7 +824,7 @@ excess = "super_magic_potion_3"
 empty = "vial"
 examine = "4 doses of super magic potion."
 
-[magic_potion_4_noted]
+[super_magic_potion_4_noted]
 id = 3041
 
 [super_magic_potion_3]
@@ -835,7 +835,7 @@ excess = "super_magic_potion_2"
 empty = "vial"
 examine = "3 doses of super magic potion."
 
-[magic_potion_3_noted]
+[super_magic_potion_3_noted]
 id = 3043
 
 [super_magic_potion_2]
@@ -846,7 +846,7 @@ excess = "super_magic_potion_1"
 empty = "vial"
 examine = "2 doses of super magic potion."
 
-[magic_potion_2_noted]
+[super_magic_potion_2_noted]
 id = 3045
 
 [super_magic_potion_1]
@@ -857,7 +857,7 @@ excess = "vial"
 empty = "vial"
 examine = "1 dose of super magic potion."
 
-[magic_potion_1_noted]
+[super_magic_potion_1_noted]
 id = 3047
 
 ["weapon_poison+_unf"]
@@ -1238,7 +1238,7 @@ weight = 0.02
 empty = "vial"
 examine = "This super restore and unicorn dust potion needs more ingredients."
 
-[mixture_step_1_1_noted]
+[mixture_step_1_noted]
 id = 10916
 
 [mixture_step_2_4]
@@ -1268,7 +1268,7 @@ weight = 0.025
 empty = "vial"
 examine = "This super restore, unicorn dust, snake weed potion needs more ingredients."
 
-[mixture_step_2_2_noted]
+[mixture_step_2_noted]
 id = 10922
 
 [mixture_step_2_1]

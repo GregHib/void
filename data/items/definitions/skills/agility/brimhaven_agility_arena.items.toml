@@ -17,8 +17,8 @@ id = 3006
 weight = 0.08
 examine = "Keep out of reach of children and familiars."
 
-[firework_noted]
+[firework_potion_noted]
 id = 3007
 
-[pirates_hook_noted]
+[pirate_hook_left_noted]
 id = 3048

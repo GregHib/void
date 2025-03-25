@@ -460,7 +460,7 @@ limit = 5000
 weight = 0.02
 examine = "I can summon a spirit cockatrice familiar with this."
 
-[sp_cockatrice_pouch_noted]
+[spirit_cockatrice_pouch_noted]
 id = 12096
 
 [spirit_guthatrice_pouch]
@@ -470,7 +470,7 @@ limit = 5000
 weight = 0.02
 examine = "I can summon a spirit guthatrice familiar with this."
 
-[sp_guthatrice_pouch_noted]
+[spirit_guthatrice_pouch_noted]
 id = 12098
 
 [spirit_saratrice_pouch]
@@ -480,7 +480,7 @@ limit = 5000
 weight = 0.02
 examine = "I can summon a spirit saratrice familiar with this."
 
-[sp_saratrice_pouch_noted]
+[spirit_saratrice_pouch_noted]
 id = 12100
 
 [spirit_zamatrice_pouch]
@@ -490,7 +490,7 @@ limit = 5000
 weight = 0.02
 examine = "I can summon a spirit zamatrice familiar with this."
 
-[sp_zamatrice_pouch_noted]
+[spirit_zamatrice_pouch_noted]
 id = 12102
 
 [spirit_pengatrice_pouch]
@@ -500,7 +500,7 @@ limit = 5000
 weight = 0.02
 examine = "I can summon a spirit pengatrice familiar with this."
 
-[sp_pengatrice_pouch_noted]
+[spirit_pengatrice_pouch_noted]
 id = 12104
 
 [spirit_coraxatrice_pouch]
@@ -510,7 +510,7 @@ limit = 5000
 weight = 0.02
 examine = "I can summon a spirit coraxatrice familiar with this."
 
-[sp_coraxatrice_pouch_noted]
+[spirit_coraxatrice_pouch_noted]
 id = 12106
 
 [spirit_vulatrice_pouch]
@@ -520,7 +520,7 @@ limit = 5000
 weight = 0.02
 examine = "I can summon a spirit vulatrice familiar with this."
 
-[sp_vulatrice_pouch_noted]
+[spirit_vulatrice_pouch_noted]
 id = 12108
 
 [cockatrice_egg]
@@ -1048,7 +1048,7 @@ weight = 2.0
 slot = "Hat"
 examine = "It's fun to go to the O-B-E-L-I-S-K!"
 
-[feather_headdress_noted]
+[feather_headdress_blue_noted]
 id = 12211
 
 [feather_headdress_charged_blue]
@@ -1068,7 +1068,7 @@ weight = 2.0
 slot = "Hat"
 examine = "It's fun to go to the O-B-E-L-I-S-K!"
 
-[feather_headdress_noted_2]
+[feather_headdress_yellow_noted]
 id = 12214
 
 [feather_headdress_charged_yellow]
@@ -1088,7 +1088,7 @@ weight = 2.0
 slot = "Hat"
 examine = "It's fun to go to the O-B-E-L-I-S-K!"
 
-[feather_headdress_noted_3]
+[feather_headdress_red_noted]
 id = 12217
 
 [feather_headdress_charged_red]
@@ -1108,7 +1108,7 @@ weight = 2.0
 slot = "Hat"
 examine = "It's fun to go to the O-B-E-L-I-S-K!"
 
-[feather_headdress_noted_4]
+[feather_headdress_stripy_noted]
 id = 12220
 
 [feather_headdress_charged_stripy]
@@ -1128,7 +1128,7 @@ weight = 2.0
 slot = "Hat"
 examine = "It's fun to go to the O-B-E-L-I-S-K!"
 
-[feather_headdress_noted_5]
+[feather_headdress_orange_noted]
 id = 12223
 
 [feather_headdress_charged_orange]

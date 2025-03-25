@@ -6,7 +6,7 @@ weight = 1.0
 slot = "Chest"
 examine = "A sea worthy shirt."
 
-[stripy_pirate_shirt_noted]
+[pirate_shirt_white_noted]
 id = 7111
 
 [pirate_bandana_white]
@@ -18,7 +18,7 @@ slot = "Hat"
 type = "Hair"
 examine = "Essential pirate wear."
 
-[pirate_bandana_noted]
+[pirate_bandana_white_noted]
 id = 7113
 
 [pirate_boots]
@@ -40,7 +40,7 @@ weight = 1.0
 slot = "Legs"
 examine = "Well, okay, they're beige, but they're part of the white pirate clothing set, so..."
 
-[pirate_leggings_noted]
+[pirate_leggings_white_noted]
 id = 7117
 
 [pirate_shirt_red]
@@ -51,7 +51,7 @@ weight = 1.0
 slot = "Chest"
 examine = "A sea worthy shirt."
 
-[stripy_pirate_shirt_noted_2]
+[pirate_shirt_red_noted]
 id = 7123
 
 [pirate_bandana_red]
@@ -63,7 +63,7 @@ slot = "Hat"
 type = "Hair"
 examine = "Essential pirate wear."
 
-[pirate_bandana_noted_2]
+[pirate_bandana_red_noted]
 id = 7125
 
 [pirate_leggings_red]
@@ -74,7 +74,7 @@ weight = 1.0
 slot = "Legs"
 examine = "A sea worthy pair of trousers."
 
-[pirate_leggings_noted_2]
+[pirate_leggings_red_noted]
 id = 7127
 
 [pirate_shirt_blue]
@@ -85,7 +85,7 @@ weight = 1.0
 slot = "Chest"
 examine = "A sea worthy shirt."
 
-[stripy_pirate_shirt_noted_3]
+[pirate_shirt_blue_noted]
 id = 7129
 
 [pirate_bandana_blue]
@@ -97,7 +97,7 @@ slot = "Hat"
 type = "Hair"
 examine = "Essential pirate wear."
 
-[pirate_bandana_noted_3]
+[pirate_bandana_blue_noted]
 id = 7131
 
 [pirate_leggings_blue]
@@ -108,7 +108,7 @@ weight = 1.0
 slot = "Legs"
 examine = "A sea worthy pair of trousers."
 
-[pirate_leggings_noted_3]
+[pirate_leggings_blue_noted]
 id = 7133
 
 [pirate_shirt_brown]
@@ -119,7 +119,7 @@ weight = 1.0
 slot = "Chest"
 examine = "A sea worthy shirt."
 
-[stripy_pirate_shirt_noted_4]
+[pirate_shirt_brown_noted]
 id = 7135
 
 [pirate_bandana_brown]
@@ -131,7 +131,7 @@ slot = "Hat"
 type = "Hair"
 examine = "Essential pirate wear."
 
-[pirate_bandana_noted_4]
+[pirate_bandana_brown_noted]
 id = 7137
 
 [pirate_leggings_brown]
@@ -142,7 +142,7 @@ weight = 1.0
 slot = "Legs"
 examine = "A sea worthy pair of trousers."
 
-[pirate_leggings_noted_4]
+[pirate_leggings_brown_noted]
 id = 7139
 
 [lucky_cutlass]
@@ -450,7 +450,7 @@ weight = 1.0
 slot = "Chest"
 examine = "A seaworthy grey shirt."
 
-[stripy_pirate_shirt_noted_5]
+[pirate_shirt_grey_noted]
 id = 13359
 
 [pirate_shirt_purple]
@@ -461,7 +461,7 @@ weight = 1.0
 slot = "Chest"
 examine = "A seaworthy purple shirt."
 
-[stripy_pirate_shirt_noted_6]
+[pirate_shirt_purple_noted]
 id = 13361
 
 [pirate_shirt_orange]
@@ -472,7 +472,7 @@ weight = 1.0
 slot = "Chest"
 examine = "A seaworthy orange shirt."
 
-[stripy_pirate_shirt_noted_7]
+[pirate_shirt_orange_noted]
 id = 13363
 
 [pirate_leggings_grey]
@@ -483,7 +483,7 @@ weight = 1.0
 slot = "Legs"
 examine = "A seaworthy pair of grey trousers."
 
-[pirate_leggings_noted_5]
+[pirate_leggings_grey_noted]
 id = 13365
 
 [pirate_leggings_purple]
@@ -494,7 +494,7 @@ weight = 1.0
 slot = "Legs"
 examine = "A seaworthy pair of purple trousers."
 
-[pirate_leggings_noted_6]
+[pirate_leggings_purple_noted]
 id = 13367
 
 [pirate_leggings_orange]
@@ -505,7 +505,7 @@ weight = 1.0
 slot = "Legs"
 examine = "A seaworthy pair of orange trousers."
 
-[pirate_leggings_noted_7]
+[pirate_leggings_orange_noted]
 id = 13369
 
 [pirate_bandana_grey]
@@ -517,7 +517,7 @@ slot = "Hat"
 type = "Hair"
 examine = "A grey bandana."
 
-[bandana_noted]
+[pirate_bandana_grey_noted]
 id = 13371
 
 [pirate_bandana_purple]
@@ -529,7 +529,7 @@ slot = "Hat"
 type = "Hair"
 examine = "A purple bandana."
 
-[bandana_noted_2]
+[pirate_bandana_purple_noted]
 id = 13373
 
 [pirate_bandana_orange]
@@ -541,7 +541,7 @@ slot = "Hat"
 type = "Hair"
 examine = "An orange bandana."
 
-[bandana_noted_3]
+[pirate_bandana_orange_noted]
 id = 13375
 
 [bandana_and_eyepatch_grey]

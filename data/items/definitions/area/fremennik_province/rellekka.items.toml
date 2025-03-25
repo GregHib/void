@@ -86,7 +86,7 @@ weight = 0.453
 slot = "Cape"
 examine = "The latest fashion in Rellekka."
 
-[fremennik_cloak_noted]
+[fremennik_cloak_cyan_noted]
 id = 3760
 
 [fremennik_cloak_brown]
@@ -97,7 +97,7 @@ weight = 0.453
 slot = "Cape"
 examine = "The latest fashion in Rellekka."
 
-[fremennik_cloak_noted_2]
+[fremennik_cloak_brown_noted]
 id = 3762
 
 [fremennik_cloak_lavender]
@@ -108,7 +108,7 @@ weight = 0.453
 slot = "Cape"
 examine = "The latest fashion in Rellekka."
 
-[fremennik_cloak_noted_3]
+[fremennik_cloak_lavender_noted]
 id = 3764
 
 [fremennik_cloak_green]
@@ -119,7 +119,7 @@ weight = 0.453
 slot = "Cape"
 examine = "The latest fashion in Rellekka."
 
-[fremennik_cloak_noted_4]
+[fremennik_cloak_green_noted]
 id = 3766
 
 [fremennik_shirt_brown]
@@ -130,7 +130,7 @@ weight = 0.907
 slot = "Chest"
 examine = "The latest in Fremennik fashion."
 
-[fremennik_shirt_noted]
+[fremennik_shirt_brown_noted]
 id = 3768
 
 [fremennik_shirt_grey]
@@ -141,7 +141,7 @@ weight = 0.907
 slot = "Chest"
 examine = "The latest in Fremennik fashion."
 
-[fremennik_shirt_noted_2]
+[fremennik_shirt_grey_noted]
 id = 3770
 
 [fremennik_shirt_tan]
@@ -152,7 +152,7 @@ weight = 0.907
 slot = "Chest"
 examine = "The latest in Fremennik fashion."
 
-[fremennik_shirt_noted_3]
+[fremennik_shirt_tan_noted]
 id = 3772
 
 [fremennik_shirt_red]
@@ -163,7 +163,7 @@ weight = 0.907
 slot = "Chest"
 examine = "The latest in Fremennik fashion."
 
-[fremennik_shirt_noted_4]
+[fremennik_shirt_red_noted]
 id = 3774
 
 [fremennik_shirt_blue]
@@ -174,7 +174,7 @@ weight = 0.907
 slot = "Chest"
 examine = "The latest in Fremennik fashion."
 
-[fremennik_shirt_noted_5]
+[fremennik_shirt_blue_noted]
 id = 3776
 
 [fremennik_cloak_red]
@@ -185,7 +185,7 @@ weight = 0.453
 slot = "Cape"
 examine = "The latest fashion in Rellekka."
 
-[fremennik_cloak_noted_5]
+[fremennik_cloak_red_noted]
 id = 3778
 
 [fremennik_cloak_grey]
@@ -196,7 +196,7 @@ weight = 0.453
 slot = "Cape"
 examine = "The latest fashion in Rellekka."
 
-[fremennik_cloak_noted_6]
+[fremennik_cloak_grey_noted]
 id = 3780
 
 [fremennik_cloak_gold]
@@ -207,7 +207,7 @@ weight = 0.453
 slot = "Cape"
 examine = "The latest fashion in Rellekka."
 
-[fremennik_cloak_noted_7]
+[fremennik_cloak_gold_noted]
 id = 3782
 
 [fremennik_cloak_teal]
@@ -218,7 +218,7 @@ weight = 0.453
 slot = "Cape"
 examine = "The latest fashion in Rellekka."
 
-[fremennik_cloak_noted_8]
+[fremennik_cloak_teal_noted]
 id = 3784
 
 [fremennik_cloak_purple]
@@ -229,7 +229,7 @@ weight = 0.453
 slot = "Cape"
 examine = "The latest fashion in Rellekka."
 
-[fremennik_cloak_noted_9]
+[fremennik_cloak_purple_noted]
 id = 3786
 
 [fremennik_cloak_pink]
@@ -240,7 +240,7 @@ weight = 0.453
 slot = "Cape"
 examine = "The latest fashion in Rellekka."
 
-[fremennik_cloak_noted_10]
+[fremennik_cloak_pink_noted]
 id = 3788
 
 [fremennik_cloak_black]
@@ -251,7 +251,7 @@ weight = 0.453
 slot = "Cape"
 examine = "The latest fashion in Rellekka."
 
-[fremennik_cloak_noted_11]
+[fremennik_cloak_black_noted]
 id = 3790
 
 [fremennik_boots]
@@ -306,7 +306,7 @@ weight = 0.453
 slot = "Hands"
 examine = "These will keep my hands warm!"
 
-[gloves_noted_6]
+[gloves_fremennik_noted]
 id = 3800
 
 [keg_of_beer]
@@ -331,7 +331,7 @@ eat_message = "You quaff the beer. You feel slightly reinvigorated... but very d
 weight = 0.55
 examine = "Frothy and alcoholic."
 
-[beer_noted_2]
+[beer_tankard_noted]
 id = 3804
 
 [tankard]

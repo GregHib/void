@@ -257,7 +257,7 @@ weight = 0.283
 examine = "This raw beef is rancid."
 kept = "Wilderness"
 
-[raw_beef_noted_2]
+[raw_undead_beef_noted]
 id = 4288
 
 [raw_undead_chicken]
@@ -268,7 +268,7 @@ weight = 0.17
 examine = "This raw chicken is rancid."
 kept = "Wilderness"
 
-[raw_chicken_noted_2]
+[raw_undead_chicken_noted]
 id = 4290
 
 [cooked_undead_chicken]
@@ -280,7 +280,7 @@ weight = 0.141
 examine = "This cooked chicken looks disgusting."
 kept = "Wilderness"
 
-[cooked_chicken_noted_2]
+[cooked_undead_chicken_noted]
 id = 4292
 
 [cooked_undead_meat]
@@ -292,5 +292,5 @@ weight = 0.283
 examine = "I wouldn't eat that if I were you."
 kept = "Wilderness"
 
-[cooked_meat_noted_2]
+[cooked_undead_meat_noted]
 id = 4294

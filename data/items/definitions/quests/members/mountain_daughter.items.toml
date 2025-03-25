@@ -92,7 +92,7 @@ slot = "Weapon"
 examine = "A coil of rope."
 kept = "Wilderness"
 
-[rope_noted_2]
+[rope_2_noted]
 id = 4499
 
 [pole_3]

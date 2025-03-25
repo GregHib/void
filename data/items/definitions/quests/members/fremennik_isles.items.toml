@@ -80,7 +80,7 @@ slot = "Chest"
 material = "leather"
 examine = "Smelly yak body armour."
 
-[yak_hide_armour_noted]
+[yak_hide_armour_top_noted]
 id = 10823
 
 [yak_hide_armour_legs]
@@ -92,7 +92,7 @@ slot = "Legs"
 material = "leather"
 examine = "Leg protection, made from smelly yak-hide."
 
-[yak_hide_armour_noted_2]
+[yak_hide_armour_legs_noted]
 id = 10825
 
 [fremennik_round_shield]

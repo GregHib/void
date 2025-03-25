@@ -259,49 +259,49 @@ id = 13506
 [rune_kiteshield_lent]
 id = 13507
 
-[mystic_hat_lent]
+[mystic_hat_blue_lent]
 id = 13508
 
-[mystic_robe_top_lent]
+[mystic_robe_top_blue_lent]
 id = 13509
 
-[mystic_robe_bottom_lent]
+[mystic_robe_bottom_blue_lent]
 id = 13510
 
-[mystic_gloves_lent]
+[mystic_gloves_blue_lent]
 id = 13511
 
-[mystic_boots_lent]
+[mystic_boots_blue_lent]
 id = 13512
 
-[mystic_hat_lent_2]
+[dark_mystic_hat_lent]
 id = 13513
 
-[mystic_robe_top_lent_2]
+[dark_mystic_robe_top_lent]
 id = 13514
 
-[mystic_robe_bottom_lent_2]
+[dark_mystic_robe_bottom_lent]
 id = 13515
 
-[mystic_gloves_lent_2]
+[dark_mystic_gloves_lent]
 id = 13516
 
-[mystic_boots_lent_2]
+[dark_mystic_boots_lent]
 id = 13517
 
-[mystic_hat_lent_3]
+[light_mystic_hat_lent]
 id = 13518
 
-[mystic_robe_top_lent_3]
+[light_mystic_robe_top_lent]
 id = 13519
 
-[mystic_robe_bottom_lent_3]
+[light_mystic_robe_bottom_lent]
 id = 13520
 
-[mystic_gloves_lent_3]
+[light_mystic_gloves_lent]
 id = 13521
 
-[mystic_boots_lent_3]
+[light_mystic_boots_lent]
 id = 13522
 
 [maple_longbow_lent]
@@ -367,13 +367,13 @@ id = 13542
 [magic_composite_bow_lent]
 id = 13543
 
-[third_age_range_top_lent]
+[third_age_ranger_body_lent]
 id = 13544
 
-[third_age_range_legs_lent]
+[third_age_ranger_chaps_lent]
 id = 13545
 
-[third_age_range_coif_lent]
+[third_age_ranger_coif_lent]
 id = 13546
 
 [third_age_vambraces_lent]
@@ -490,7 +490,7 @@ id = 13787
 [granite_shield_lent]
 id = 13788
 
-[a_powdered_wig_lent]
+[powdered_wig_lent]
 id = 13789
 
 [flared_trousers_lent]
@@ -583,64 +583,64 @@ id = 13818
 [brown_headband_lent]
 id = 13819
 
-[zamorak_platebody_lent]
+[rune_platebody_zamorak_lent]
 id = 13820
 
-[zamorak_platelegs_lent]
+[rune_platelegs_zamorak_lent]
 id = 13821
 
-[zamorak_plateskirt_lent]
+[rune_plateskirt_zamorak_lent]
 id = 13822
 
-[zamorak_full_helm_lent]
+[rune_full_helm_zamorak_lent]
 id = 13823
 
-[zamorak_kiteshield_lent]
+[rune_kiteshield_zamorak_lent]
 id = 13824
 
-[saradomin_platebody_lent]
+[rune_platebody_saradomin_lent]
 id = 13825
 
-[saradomin_platelegs_lent]
+[rune_platelegs_saradomin_lent]
 id = 13826
 
-[saradomin_plateskirt_lent]
+[rune_plateskirt_saradomin_lent]
 id = 13827
 
-[saradomin_full_helm_lent]
+[rune_full_helm_saradomin_lent]
 id = 13828
 
-[saradomin_kiteshield_lent]
+[rune_kiteshield_saradomin_lent]
 id = 13829
 
-[guthix_platebody_lent]
+[rune_platebody_guthix_lent]
 id = 13830
 
-[guthix_platelegs_lent]
+[rune_platelegs_guthix_lent]
 id = 13831
 
-[guthix_plateskirt_lent]
+[rune_plateskirt_guthix_lent]
 id = 13832
 
-[guthix_full_helm_lent]
+[rune_full_helm_guthix_lent]
 id = 13833
 
-[guthix_kiteshield_lent]
+[rune_kiteshield_guthix_lent]
 id = 13834
 
-[gilded_platebody_lent]
+[rune_platebody_gilded_lent]
 id = 13835
 
-[gilded_platelegs_lent]
+[rune_platelegs_gilded_lent]
 id = 13836
 
-[gilded_plateskirt_lent]
+[rune_plateskirt_gilded_lent]
 id = 13837
 
-[gilded_full_helm_lent]
+[rune_full_helm_gilded_lent]
 id = 13838
 
-[gilded_kiteshield_lent]
+[rune_kiteshield_gilded_lent]
 id = 13839
 
 [elite_black_platelegs_lent]

@@ -74,7 +74,7 @@ weight = 0.003
 examine = "Very blue."
 kept = "Vanish"
 
-[blue_flowers_noted_2]
+[blue_flowers_trouble_brewing_noted]
 id = 8937
 
 [red_flowers_trouble_brewing]
@@ -83,7 +83,7 @@ weight = 0.003
 examine = "Very red."
 kept = "Vanish"
 
-[red_flowers_noted_2]
+[red_flowers_trouble_brewing_noted]
 id = 8939
 
 [rum_red]
@@ -469,16 +469,16 @@ slot = "Legs"
 examine = "Not for slackers."
 kept = "Reclaim"
 
-[bandana_and_eyepatch_noted]
+[bandana_and_eyepatch_white_noted]
 id = 8998
 
-[bandana_and_eyepatch_noted_2]
+[bandana_and_eyepatch_red_noted]
 id = 8999
 
-[bandana_and_eyepatch_noted_3]
+[bandana_and_eyepatch_blue_noted]
 id = 9000
 
-[bandana_and_eyepatch_noted_4]
+[bandana_and_eyepatch_brown_noted]
 id = 9001
 
 [hat_and_eyepatch_noted]

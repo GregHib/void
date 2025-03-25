@@ -138,28 +138,28 @@ empty = "teapot_clay"
 examine = "I'd really like a nice cup of tea."
 weight = 1.5
 
-[pot_of_tea_4_noted]
+[pot_of_tea_clay_4_noted]
 id = 7693
 
 [pot_of_tea_clay_3]
 clone = "pot_of_tea_clay_4"
 id = 7694
 
-[pot_of_tea_3_noted]
+[pot_of_tea_clay_3_noted]
 id = 7695
 
 [pot_of_tea_clay_2]
 clone = "pot_of_tea_clay_4"
 id = 7696
 
-[pot_of_tea_2_noted]
+[pot_of_tea_clay_2_noted]
 id = 7697
 
 [pot_of_tea_clay_1]
 clone = "pot_of_tea_clay_4"
 id = 7698
 
-[pot_of_tea_1_noted]
+[pot_of_tea_clay_1_noted]
 id = 7699
 
 [teapot_with_leaves_clay]
@@ -167,7 +167,7 @@ id = 7700
 weight = 1.5
 examine = "Add boiling water to make a tea."
 
-[teapot_with_leaves_noted]
+[teapot_with_leaves_clay_noted]
 id = 7701
 
 [teapot_clay]
@@ -175,91 +175,91 @@ id = 7702
 weight = 0.453
 examine = "This teapot is empty."
 
-[teapot_noted]
+[teapot_clay_noted]
 id = 7703
 
 [pot_of_tea_white_4]
 clone = "pot_of_tea_clay_4"
 id = 7704
 
-[pot_of_tea_4_noted_2]
+[pot_of_tea_white_4_noted]
 id = 7705
 
 [pot_of_tea_white_3]
 clone = "pot_of_tea_clay_4"
 id = 7706
 
-[pot_of_tea_3_noted_2]
+[pot_of_tea_white_3_noted]
 id = 7707
 
 [pot_of_tea_white_2]
 clone = "pot_of_tea_clay_4"
 id = 7708
 
-[pot_of_tea_2_noted_2]
+[pot_of_tea_white_2_noted]
 id = 7709
 
 [pot_of_tea_white_1]
 clone = "pot_of_tea_clay_4"
 id = 7710
 
-[pot_of_tea_1_noted_2]
+[pot_of_tea_white_1_noted]
 id = 7711
 
 [teapot_with_leaves_white]
 clone = "teapot_with_leaves_clay"
 id = 7712
 
-[teapot_with_leaves_noted_2]
+[teapot_with_leaves_white_noted]
 id = 7713
 
 [teapot_white]
 clone = "teapot_clay"
 id = 7714
 
-[teapot_noted_2]
+[teapot_white_noted]
 id = 7715
 
 [pot_of_tea_gold_4]
 clone = "pot_of_tea_clay_4"
 id = 7716
 
-[pot_of_tea_4_noted_3]
+[pot_of_tea_gold_4_noted]
 id = 7717
 
 [pot_of_tea_gold_3]
 clone = "pot_of_tea_clay_4"
 id = 7718
 
-[pot_of_tea_3_noted_3]
+[pot_of_tea_gold_3_noted]
 id = 7719
 
 [pot_of_tea_gold_2]
 clone = "pot_of_tea_clay_4"
 id = 7720
 
-[pot_of_tea_2_noted_3]
+[pot_of_tea_gold_2_noted]
 id = 7721
 
 [pot_of_tea_gold_1]
 clone = "pot_of_tea_clay_4"
 id = 7722
 
-[pot_of_tea_1_noted_3]
+[pot_of_tea_gold_1_noted]
 id = 7723
 
 [teapot_with_leaves_gold]
 clone = "teapot_with_leaves_clay"
 id = 7724
 
-[teapot_with_leaves_noted_3]
+[teapot_with_leaves_gold_noted]
 id = 7725
 
 [teapot_gold]
 clone = "teapot_clay"
 id = 7726
 
-[teapot_noted_3]
+[teapot_gold_noted]
 id = 7727
 
 [empty_cup_player_owned_house]
@@ -267,7 +267,7 @@ id = 7728
 weight = 0.05
 examine = "An empty cup."
 
-[empty_cup_noted_2]
+[empty_cup_player_owned_house_noted]
 id = 7729
 
 [cup_of_tea_clay]
@@ -2430,49 +2430,49 @@ id = 8436
 clone = "thorny_hedge"
 id = 8437
 
-[thorny_hedge_noted]
+[thorny_hedge_bagged_noted]
 id = 8438
 
 [nice_hedge_bagged]
 clone = "thorny_hedge"
 id = 8439
 
-[nice_hedge_noted]
+[nice_hedge_bagged_noted]
 id = 8440
 
 [small_box_hedge_bagged]
 clone = "thorny_hedge"
 id = 8441
 
-[small_box_hedge_noted]
+[small_box_hedge_bagged_noted]
 id = 8442
 
 [topiary_hedge_bagged]
 clone = "thorny_hedge"
 id = 8443
 
-[topiary_hedge_noted]
+[topiary_hedge_bagged_noted]
 id = 8444
 
 [fancy_hedge_bagged]
 clone = "thorny_hedge"
 id = 8445
 
-[fancy_hedge_noted]
+[fancy_hedge_bagged_noted]
 id = 8446
 
 [tall_fancy_hedge_bagged]
 clone = "thorny_hedge"
 id = 8447
 
-[tall_fancy_hedge_noted]
+[tall_fancy_hedge_bagged_noted]
 id = 8448
 
 [tall_box_hedge_bagged]
 clone = "thorny_hedge"
 id = 8449
 
-[tall_box_hedge_noted]
+[tall_box_hedge_bagged_noted]
 id = 8450
 
 [bagged_rosemary]
@@ -2691,7 +2691,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble crude chair."
 
-[crude_wooden_chair_noted]
+[crude_wooden_chair_flatpack_noted]
 id = 8497
 
 [wooden_chair_flatpack]
@@ -2701,7 +2701,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble wooden chair."
 
-[wooden_chair_noted]
+[wooden_chair_flatpack_noted]
 id = 8499
 
 [rocking_chair_flatpack]
@@ -2711,7 +2711,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble rocking chair."
 
-[rocking_chair_noted]
+[rocking_chair_flatpack_noted]
 id = 8501
 
 [oak_chair_flatpack]
@@ -2721,7 +2721,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble oak chair."
 
-[oak_chair_noted]
+[oak_chair_flatpack_noted]
 id = 8503
 
 [oak_armchair_flatpack]
@@ -2731,7 +2731,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble oak armchair."
 
-[oak_armchair_noted]
+[oak_armchair_flatpack_noted]
 id = 8505
 
 [teak_armchair_flatpack]
@@ -2741,7 +2741,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble teak armchair."
 
-[teak_armchair_noted]
+[teak_armchair_flatpack_noted]
 id = 8507
 
 [mahogany_armchair_flatpack]
@@ -2751,7 +2751,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble mahogany armchair."
 
-[mahogany_armchair_noted]
+[mahogany_armchair_flatpack_noted]
 id = 8509
 
 [wooden_bookcase_flatpack]
@@ -2761,7 +2761,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble wooden bookcase."
 
-[wooden_bookcase_noted]
+[wooden_bookcase_flatpack_noted]
 id = 8511
 
 [oak_bookcase_flatpack]
@@ -2771,7 +2771,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble oak bookcase."
 
-[oak_bookcase_noted]
+[oak_bookcase_flatpack_noted]
 id = 8513
 
 [mahogany_bookcase_flatpack]
@@ -2781,7 +2781,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble mahogany bookcase."
 
-[mahogany_bkcase_noted]
+[mahogany_bookcase_flatpack_noted]
 id = 8515
 
 [beer_barrel_flatpack]
@@ -2851,7 +2851,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble wooden kitchen table."
 
-[wood_kitchen_table_noted]
+[wood_kitchen_table_flatpack_noted]
 id = 8529
 
 [oak_kitchen_table_flatpack]
@@ -2861,7 +2861,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble oak kitchen table."
 
-[oak_kitchen_table_noted]
+[oak_kitchen_table_flatpack_noted]
 id = 8531
 
 [teak_kitchen_table_flatpack]
@@ -2871,56 +2871,56 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble teak kitchen table."
 
-[teak_kitchen_table_noted]
+[teak_kitchen_table_flatpack_noted]
 id = 8533
 
 [oak_lectern_2]
 clone = "oak_lectern"
 id = 8534
 
-[oak_lectern_noted]
+[oak_lectern_2_noted]
 id = 8535
 
 [eagle_lectern_2]
 clone = "eagle_lectern"
 id = 8536
 
-[eagle_lectern_noted]
+[eagle_lectern_2_noted]
 id = 8537
 
 [demon_lectern_2]
 clone = "eagle_lectern"
 id = 8538
 
-[demon_lectern_noted]
+[demon_lectern_2_noted]
 id = 8539
 
 [teak_eagle_lectern_2]
 clone = "eagle_lectern"
 id = 8540
 
-[teak_eagle_lectern_noted]
+[teak_eagle_lectern_2_noted]
 id = 8541
 
 [teak_demon_lectern_2]
 clone = "teak_demon_lectern"
 id = 8542
 
-[teak_demon_lectern_noted]
+[teak_demon_lectern_2_noted]
 id = 8543
 
 [mahogany_eagle_2]
 clone = "eagle_lectern"
 id = 8544
 
-[mahogany_eagle_noted]
+[mahogany_eagle_2_noted]
 id = 8545
 
 [mahogany_demon_2]
 clone = "mahogany_demon"
 id = 8546
 
-[mahogany_demon_noted]
+[mahogany_demon_2_noted]
 id = 8547
 
 [wood_dining_table_flatpack]
@@ -2930,7 +2930,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble wooden dining table."
 
-[wood_dining_table_noted]
+[wood_dining_table_flatpack_noted]
 id = 8549
 
 [oak_dining_table_flatpack]
@@ -2940,7 +2940,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble oak dining table."
 
-[oak_dining_table_noted]
+[oak_dining_table_flatpack_noted]
 id = 8551
 
 [carved_oak_table_flatpack]
@@ -2950,7 +2950,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble carved oak dining table."
 
-[carved_oak_table_noted]
+[carved_oak_table_flatpack_noted]
 id = 8553
 
 [teak_table_flatpack]
@@ -2960,7 +2960,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble teak dining table."
 
-[teak_table_noted]
+[teak_table_flatpack_noted]
 id = 8555
 
 [carved_teak_table_flatpack]
@@ -2970,7 +2970,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble carved teak dining table."
 
-[carved_teak_table_noted]
+[carved_teak_table_flatpack_noted]
 id = 8557
 
 [mahogany_table_flatpack]
@@ -2980,7 +2980,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble mahogany dining table."
 
-[mahogany_table_noted]
+[mahogany_table_flatpack_noted]
 id = 8559
 
 [opulent_table_flatpack]
@@ -2990,7 +2990,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble opulent dining table."
 
-[opulent_table_noted]
+[opulent_table_flatpack_noted]
 id = 8561
 
 [wooden_bench_flatpack]
@@ -3000,7 +3000,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble wooden dining bench."
 
-[wooden_bench_noted]
+[wooden_bench_flatpack_noted]
 id = 8563
 
 [oak_bench_flatpack]
@@ -3010,7 +3010,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble oak dining bench."
 
-[oak_bench_noted]
+[oak_bench_flatpack_noted]
 id = 8565
 
 [carved_oak_bench_flatpack]
@@ -3020,7 +3020,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble carved oak dining bench."
 
-[carved_oak_bench_noted]
+[carved_oak_bench_flatpack_noted]
 id = 8567
 
 [teak_dining_bench_flatpack]
@@ -3030,7 +3030,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble teak dining bench."
 
-[teak_dining_bench_noted]
+[teak_dining_bench_flatpack_noted]
 id = 8569
 
 [carved_teak_bench_flatpack]
@@ -3040,7 +3040,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble carved teak dining bench."
 
-[carved_teak_bench_noted]
+[carved_teak_bench_flatpack_noted]
 id = 8571
 
 [mahogany_bench_flatpack]
@@ -3050,7 +3050,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble mahogany dining bench."
 
-[mahogany_bench_noted]
+[mahogany_bench_flatpack_noted]
 id = 8573
 
 [gilded_bench_flatpack]
@@ -3060,7 +3060,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble gilded mahogany dining bench."
 
-[gilded_bench_noted]
+[gilded_bench_flatpack_noted]
 id = 8575
 
 [wooden_bed_flatpack]
@@ -3070,7 +3070,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble wooden bed."
 
-[wooden_bed_noted]
+[wooden_bed_flatpack_noted]
 id = 8577
 
 [oak_bed_flatpack]
@@ -3080,7 +3080,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble oak bed."
 
-[oak_bed_noted]
+[oak_bed_flatpack_noted]
 id = 8579
 
 [large_oak_bed_flatpack]
@@ -3090,7 +3090,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble large oak bed."
 
-[large_oak_bed_noted]
+[large_oak_bed_flatpack_noted]
 id = 8581
 
 [teak_bed_flatpack]
@@ -3100,7 +3100,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble teak bed."
 
-[teak_bed_noted]
+[teak_bed_flatpack_noted]
 id = 8583
 
 [large_teak_bed_flatpack]
@@ -3110,7 +3110,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble large teak bed."
 
-[large_teak_bed_noted]
+[large_teak_bed_flatpack_noted]
 id = 8585
 
 ["4_poster_flatpack"]
@@ -3130,7 +3130,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble gilded four-poster bed."
 
-[gilded_4_poster_noted]
+[gilded_4_poster_flatpack_noted]
 id = 8589
 
 [oak_clock_flatpack]
@@ -3140,7 +3140,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble oak clock."
 
-[oak_clock_noted]
+[oak_clock_flatpack_noted]
 id = 8591
 
 [teak_clock_flatpack]
@@ -3150,7 +3150,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble teak clock."
 
-[teak_clock_noted]
+[teak_clock_flatpack_noted]
 id = 8593
 
 [gilded_clock_flatpack]
@@ -3160,7 +3160,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble gilded mahogany clock."
 
-[gilded_clock_noted]
+[gilded_clock_flatpack_noted]
 id = 8595
 
 [shaving_stand_flatpack]
@@ -3170,7 +3170,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble shaving stand."
 
-[shaving_stand_noted]
+[shaving_stand_flatpack_noted]
 id = 8597
 
 [oak_shaving_stand_flatpack]
@@ -3180,7 +3180,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble oak shaving stand."
 
-[oak_shaving_stand_noted]
+[oak_shaving_stand_flatpack_noted]
 id = 8599
 
 [oak_dresser_flatpack]
@@ -3190,7 +3190,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble oak dresser."
 
-[oak_dresser_noted]
+[oak_dresser_flatpack_noted]
 id = 8601
 
 [teak_dresser_flatpack]
@@ -3200,7 +3200,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble teak dresser."
 
-[teak_dresser_noted]
+[teak_dresser_flatpack_noted]
 id = 8603
 
 [fancy_teak_dresser_flatpack]
@@ -3210,7 +3210,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble fancy teak dresser."
 
-[fancy_teak_dresser_noted]
+[fancy_teak_dresser_flatpack_noted]
 id = 8605
 
 [mahogany_dresser_flatpack]
@@ -3220,7 +3220,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble mahogany dresser."
 
-[mahogany_dresser_noted]
+[mahogany_dresser_flatpack_noted]
 id = 8607
 
 [gilded_dresser_flatpack]
@@ -3230,7 +3230,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble gilded dresser."
 
-[gilded_dresser_noted]
+[gilded_dresser_flatpack_noted]
 id = 8609
 
 [shoe_box_flatpack]
@@ -3240,7 +3240,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble shoe box."
 
-[shoe_box_noted]
+[shoe_box_flatpack_noted]
 id = 8611
 
 [oak_drawers_flatpack]
@@ -3250,7 +3250,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble oak chest of drawers."
 
-[oak_drawers_noted]
+[oak_drawers_flatpack_noted]
 id = 8613
 
 [oak_wardrobe_flatpack]
@@ -3260,7 +3260,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble oak bedroom wardrobe."
 
-[oak_wardrobe_noted]
+[oak_wardrobe_flatpack_noted]
 id = 8615
 
 [teak_drawers_flatpack]
@@ -3270,7 +3270,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble teak chest of drawers."
 
-[teak_drawers_noted]
+[teak_drawers_flatpack_noted]
 id = 8617
 
 [teak_wardrobe_flatpack]
@@ -3280,7 +3280,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble teak bedroom wardrobe."
 
-[teak_wardrobe_noted]
+[teak_wardrobe_flatpack_noted]
 id = 8619
 
 [mahogany_wardrobe_flatpack]
@@ -3290,7 +3290,7 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble mahogany bedroom wardrobe."
 
-[mahogany_drobe_noted]
+[mahogany_wardrobe_flatpack_noted]
 id = 8621
 
 [gilded_wardrobe_flatpack]
@@ -3300,91 +3300,91 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble gilded mahogany bedroom wardrobe."
 
-[gilded_wardrobe_noted]
+[gilded_wardrobe_flatpack_noted]
 id = 8623
 
 [crystal_ball_2]
 clone = "crystal_ball"
 id = 8624
 
-[crystal_ball_noted]
+[crystal_ball_2_noted]
 id = 8625
 
 [elemental_sphere_2]
 clone = "crystal_ball"
 id = 8626
 
-[elemental_sphere_noted]
+[elemental_sphere_2_noted]
 id = 8627
 
 [crystal_of_power_2]
 clone = "crystal_ball"
 id = 8628
 
-[crystal_of_power_noted]
+[crystal_of_power_2_noted]
 id = 8629
 
 [ornamental_globe_2]
 clone = "ornamental_globe"
 id = 8632
 
-[ornamental_globe_noted]
+[ornamental_globe_2_noted]
 id = 8633
 
 [lunar_globe_2]
 clone = "ornamental_globe"
 id = 8634
 
-[lunar_globe_noted]
+[lunar_globe_2_noted]
 id = 8635
 
 [celestial_globe_2]
 clone = "ornamental_globe"
 id = 8636
 
-[celestial_globe_noted]
+[celestial_globe_2_noted]
 id = 8637
 
 [armillary_sphere_2]
 clone = "ornamental_globe"
 id = 8638
 
-[armillary_sphere_noted]
+[armillary_sphere_2_noted]
 id = 8639
 
 [small_orrery_2]
 clone = "small_orrery"
 id = 8640
 
-[small_orrery_noted]
+[small_orrery_2_noted]
 id = 8641
 
 [large_orrery_2]
 clone = "small_orrery"
 id = 8642
 
-[large_orrery_noted]
+[large_orrery_2_noted]
 id = 8643
 
 [wooden_telescope_2]
 clone = "wooden_telescope"
 id = 8644
 
-[wooden_telescope_noted]
+[wooden_telescope_2_noted]
 id = 8645
 
 [teak_telescope_2]
 clone = "teak_telescope"
 id = 8646
 
-[teak_telescope_noted]
+[teak_telescope_2_noted]
 id = 8647
 
 [mahogany_scope_2]
 clone = "mahogany_scope"
 id = 8648
 
-[mahogany_scope_noted]
+[mahogany_scope_2_noted]
 id = 8649
 
 [banner_arrav]
@@ -4403,79 +4403,79 @@ limit = 100
 weight = 1.0
 examine = "A ready-to-assemble mahogany fancy dress box."
 
-[oak_cape_rack_noted]
+[oak_cape_rack_flatpack_noted]
 id = 9868
 
-[teak_cape_rack_noted]
+[teak_cape_rack_flatpack_noted]
 id = 9869
 
-[mgany_cape_rack_noted]
+[mahogany_cape_rack_flatpack_noted]
 id = 9870
 
-[gilded_cape_rack_noted]
+[gilded_cape_rack_flatpack_noted]
 id = 9871
 
-[marble_cape_rack_noted]
+[marble_cape_rack_flatpack_noted]
 id = 9872
 
-[magical_cape_rack_noted]
+[magical_cape_rack_flatpack_noted]
 id = 9873
 
-[oak_toy_box_noted]
+[oak_toy_box_flatpack_noted]
 id = 9874
 
-[teak_toy_box_noted]
+[teak_toy_box_flatpack_noted]
 id = 9875
 
-[mahogany_toy_box_noted]
+[mahogany_toy_box_flatpack_noted]
 id = 9876
 
-[oak_magic_wardrobe_noted]
+[oak_magic_wardrobe_flatpack_noted]
 id = 9877
 
-[carved_oak_magic_wardrobe_noted]
+[carved_oak_magic_wardrobe_flatpack_noted]
 id = 9878
 
-[teak_magic_wardrobe_noted]
+[teak_magic_wardrobe_flatpack_noted]
 id = 9879
 
-[carved_teak_magic_wardrobe_noted]
+[carved_teak_magic_wardrobe_flatpack_noted]
 id = 9880
 
-[mahogany_magic_wardrobe_noted]
+[mahogany_magic_wardrobe_flatpack_noted]
 id = 9881
 
-[gilded_magic_wardrobe_noted]
+[gilded_magic_wardrobe_flatpack_noted]
 id = 9882
 
-[marble_magic_wardrobe_noted]
+[marble_magic_wardrobe_flatpack_noted]
 id = 9883
 
-[oak_armour_case_noted]
+[oak_armour_case_flatpack_noted]
 id = 9884
 
-[teak_armour_case_noted]
+[teak_armour_case_flatpack_noted]
 id = 9885
 
-[mgany_armr_case_noted]
+[mahogany_armour_case_flatpack_noted]
 id = 9886
 
-[oak_treasure_chest_noted]
+[oak_treasure_chest_flatpack_noted]
 id = 9887
 
-[teak_treas_chest_noted]
+[teak_treasure_chest_flatpack_noted]
 id = 9888
 
-[mgany_treas_chest_noted]
+[mahogany_treasure_chest_flatpack_noted]
 id = 9889
 
-[oak_costume_box_noted]
+[oak_fancy_dress_box_flatpack_noted]
 id = 9890
 
-[teak_costume_box_noted]
+[teak_fancy_dress_box_flatpack_noted]
 id = 9891
 
-[mahogany_cos_box_noted]
+[mahogany_fancy_dress_box_flatpack_noted]
 id = 9892
 
 [menagerie]

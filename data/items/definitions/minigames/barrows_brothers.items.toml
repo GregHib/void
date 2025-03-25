@@ -1243,7 +1243,7 @@ slot = "Weapon"
 type = "TwoHanded"
 examine = "Verac the Defiled's Flail."
 
-[veracs_flail_0_noted]
+[veracs_flail_broken_noted]
 id = 4987
 
 [veracs_brassard_100]

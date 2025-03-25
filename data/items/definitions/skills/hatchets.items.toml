@@ -259,12 +259,12 @@ slot = "Weapon"
 examine = "Useless."
 use = "Removed"
 
-[broken_hatchet_noted_8]
+[broken_hatchet_dragon_noted]
 id = 6742
 
 [hatchet_head_dragon]
 clone = "hatchet_head_bronze"
 id = 6743
 
-[hatchet_head_noted_8]
+[hatchet_head_dragon_noted]
 id = 6744

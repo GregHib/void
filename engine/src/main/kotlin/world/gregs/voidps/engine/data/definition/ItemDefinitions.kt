@@ -97,10 +97,12 @@ class ItemDefinitions(
                         }
                         ids[stringId] = id
                         definitions[id].stringId = stringId
-                        if (definitions[id].extras != null) {
-                            (definitions[id].extras as MutableMap<String, Any>).putAll(extras)
-                        } else {
-                            definitions[id].extras = extras
+                        if (extras.size > 0) {
+                            if (definitions[id].extras != null) {
+                                (definitions[id].extras as MutableMap<String, Any>).putAll(extras)
+                            } else {
+                                definitions[id].extras = extras
+                            }
                         }
                     }
                 }
@@ -111,8 +113,8 @@ class ItemDefinitions(
                 val definition = definitions[cloneId]
                 val id = ids.getInt(item)
                 require(id != -1) { "Unable to find item id '$item'" }
-                val extras = definitions[id].extras as MutableMap<String, Any>
-                extras.putAll(definition.extras ?: continue)
+                val extras = definitions[id].extras as? MutableMap<String, Any>
+                extras?.putAll(definition.extras ?: continue)
             }
             for (definition in definitions) {
                 if (definition.stringId.endsWith("_lent")) {

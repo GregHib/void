@@ -6,7 +6,7 @@ weight = 0.07
 slot = "Chest"
 examine = "Far too small to wear."
 
-[woven_top_noted]
+[woven_top_brown_noted]
 id = 5025
 
 [woven_top_tan]
@@ -17,7 +17,7 @@ weight = 0.07
 slot = "Chest"
 examine = "Yellow top, too small for me."
 
-[woven_top_noted_2]
+[woven_top_tan_noted]
 id = 5027
 
 [woven_top_blue]
@@ -28,7 +28,7 @@ weight = 0.07
 slot = "Chest"
 examine = "Blue top, very tiny."
 
-[woven_top_noted_3]
+[woven_top_blue_noted]
 id = 5029
 
 [shirt_brown]
@@ -39,7 +39,7 @@ weight = 0.07
 slot = "Chest"
 examine = "Tiny!"
 
-[shirt_noted]
+[shirt_brown_noted]
 id = 5031
 
 [shirt_tan]
@@ -50,7 +50,7 @@ weight = 0.07
 slot = "Chest"
 examine = "Tiny!"
 
-[shirt_noted_2]
+[shirt_tan_noted]
 id = 5033
 
 [shirt_lilac]
@@ -61,7 +61,7 @@ weight = 0.07
 slot = "Chest"
 examine = "Tiny!"
 
-[shirt_noted_3]
+[shirt_lilac_noted]
 id = 5035
 
 [trousers_brown]
@@ -72,7 +72,7 @@ weight = 1.0
 slot = "Legs"
 examine = "A pair of long dwarven trousers... long for dwarves, of course."
 
-[trousers_noted]
+[trousers_brown_noted]
 id = 5037
 
 [trousers_lilac]
@@ -83,7 +83,7 @@ weight = 1.0
 slot = "Legs"
 examine = "A pair of long dwarven trousers... long for dwarves, of course."
 
-[trousers_noted_2]
+[trousers_lilac_noted]
 id = 5039
 
 [trousers_blue]
@@ -94,7 +94,7 @@ weight = 1.0
 slot = "Legs"
 examine = "A pair of long dwarven trousers... long for dwarves, of course."
 
-[trousers_noted_3]
+[trousers_blue_noted]
 id = 5041
 
 [shorts_brown]
@@ -105,7 +105,7 @@ weight = 0.1
 slot = "Legs"
 examine = "These look great, on dwarves!"
 
-[shorts_noted]
+[shorts_brown_noted]
 id = 5043
 
 [shorts_tan]
@@ -116,7 +116,7 @@ weight = 0.1
 slot = "Legs"
 examine = "Yellow shorts. Far too small for you."
 
-[shorts_noted_2]
+[shorts_tan_noted]
 id = 5045
 
 [shorts_blue]
@@ -127,7 +127,7 @@ weight = 0.1
 slot = "Legs"
 examine = "Blue shorts, these would look great on dwarves!"
 
-[shorts_noted_3]
+[shorts_blue_noted]
 id = 5047
 
 [skirt_brown]
@@ -138,7 +138,7 @@ weight = 0.08
 slot = "Legs"
 examine = "A brown skirt. Size small!"
 
-[skirt_noted]
+[skirt_brown_noted]
 id = 5049
 
 [skirt_lilac]
@@ -149,7 +149,7 @@ weight = 0.08
 slot = "Legs"
 examine = "Lilac skirt."
 
-[skirt_noted_2]
+[skirt_lilac_noted]
 id = 5051
 
 [skirt_blue]
@@ -160,7 +160,7 @@ weight = 0.08
 slot = "Legs"
 examine = "A blue skirt."
 
-[skirt_noted_3]
+[skirt_blue_noted]
 id = 5053
 
 [explorers_notes]

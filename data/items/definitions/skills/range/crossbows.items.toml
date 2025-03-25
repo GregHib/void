@@ -71,7 +71,7 @@ aka = ["mithril_cbow", "mith_cbow", "mithril_cb", "mith_cb"]
 slot = "Weapon"
 examine = "A mithril crossbow."
 
-[mith_crossbow_noted]
+[mithril_crossbow_noted]
 id = 9182
 
 [adamant_crossbow]
@@ -165,7 +165,7 @@ smithing = { level = 76, xp = 62.5 }
 slot = "Shield"
 examine = "A pair of adamantite crossbow limbs."
 
-[adamantite_limbs_noted]
+[adamant_limbs_noted]
 id = 9430
 
 [rune_limbs]
@@ -294,7 +294,7 @@ limit = 500
 weight = 8.0
 examine = "An unstrung bronze crossbow."
 
-[bronze_cbow_u_noted]
+[bronze_crossbow_u_noted]
 id = 9455
 
 [blurite_crossbow_u]
@@ -311,7 +311,7 @@ limit = 500
 weight = 8.0
 examine = "An unstrung iron crossbow."
 
-[iron_cbow_u_noted]
+[iron_crossbow_u_noted]
 id = 9458
 
 [steel_crossbow_u]
@@ -321,7 +321,7 @@ limit = 500
 weight = 8.0
 examine = "An unstrung steel crossbow."
 
-[steel_cbow_u_noted]
+[steel_crossbow_u_noted]
 id = 9460
 
 [mithril_crossbow_u]
@@ -331,7 +331,7 @@ limit = 500
 weight = 8.0
 examine = "An unstrung mithril crossbow."
 
-[mithril_cbow_u_noted]
+[mithril_crossbow_u_noted]
 id = 9462
 
 [adamant_crossbow_u]
@@ -341,7 +341,7 @@ limit = 500
 weight = 8.0
 examine = "An unstrung adamantite crossbow."
 
-[adamant_cbow_u_noted]
+[adamant_crossbow_u_noted]
 id = 9464
 
 [rune_crossbow_u]

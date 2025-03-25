@@ -5,7 +5,7 @@ limit = 100
 weight = 14.514
 examine = "Proselyte level armour pack."
 
-[prosyte_harness_m_noted]
+[proselyte_harness_m_noted]
 id = 9667
 
 [initiate_harness_m]
@@ -25,7 +25,7 @@ limit = 100
 weight = 14.514
 examine = "Proselyte level armour pack."
 
-[prosyte_harness_f_noted]
+[proselyte_harness_f_noted]
 id = 9671
 
 [proselyte_sallet]

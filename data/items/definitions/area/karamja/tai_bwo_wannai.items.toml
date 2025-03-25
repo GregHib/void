@@ -6,7 +6,7 @@ weight = 1.0
 slot = "Chest"
 examine = "Local dress."
 
-[tribal_top_noted]
+[tribal_top_brown_noted]
 id = 6342
 
 [villager_robe_brown]
@@ -17,7 +17,7 @@ weight = 2.0
 slot = "Legs"
 examine = "A brightly coloured robe prized by the Tai Bwo Wannai peoples."
 
-[villager_robe_noted]
+[villager_robe_brown_noted]
 id = 6344
 
 [villager_hat_brown]
@@ -28,7 +28,7 @@ weight = 0.907
 slot = "Hat"
 examine = "A brightly coloured hat prized by the Tai Bwo Wannai peoples."
 
-[villager_hat_noted]
+[villager_hat_brown_noted]
 id = 6346
 
 [villager_armband_brown]
@@ -39,7 +39,7 @@ weight = 0.68
 slot = "Hands"
 examine = "A brown armband, as worn by the Tai Bwo Wannai locals."
 
-[villager_armband_noted]
+[villager_armband_brown_noted]
 id = 6348
 
 [villager_sandals_brown]
@@ -50,7 +50,7 @@ weight = 0.68
 slot = "Feet"
 examine = "A brightly coloured pair of local sandals."
 
-[villager_sandals_noted]
+[villager_sandals_brown_noted]
 id = 6350
 
 [tribal_top_blue]
@@ -61,7 +61,7 @@ weight = 1.0
 slot = "Chest"
 examine = "Local dress."
 
-[tribal_top_noted_2]
+[tribal_top_blue_noted]
 id = 6352
 
 [villager_robe_blue]
@@ -72,7 +72,7 @@ weight = 2.0
 slot = "Legs"
 examine = "A brightly coloured robe prized by the Tai Bwo Wannai peoples."
 
-[villager_robe_noted_2]
+[villager_robe_blue_noted]
 id = 6354
 
 [villager_hat_blue]
@@ -83,7 +83,7 @@ weight = 0.907
 slot = "Hat"
 examine = "A brightly coloured hat prized by the Tai Bwo Wannai peoples."
 
-[villager_hat_noted_2]
+[villager_hat_blue_noted]
 id = 6356
 
 [villager_sandals_blue]
@@ -94,7 +94,7 @@ weight = 0.68
 slot = "Feet"
 examine = "A brightly coloured pair of local sandals."
 
-[villager_sandals_noted_2]
+[villager_sandals_blue_noted]
 id = 6358
 
 [villager_armband_blue]
@@ -105,7 +105,7 @@ weight = 0.68
 slot = "Hands"
 examine = "A light blue armband, as worn by the Tai Bwo Wannai locals."
 
-[villager_armband_noted_2]
+[villager_armband_blue_noted]
 id = 6360
 
 [tribal_top_yellow]
@@ -116,7 +116,7 @@ weight = 1.0
 slot = "Chest"
 examine = "Local dress."
 
-[tribal_top_noted_3]
+[tribal_top_yellow_noted]
 id = 6362
 
 [villager_robe_yellow]
@@ -127,7 +127,7 @@ weight = 2.0
 slot = "Legs"
 examine = "A brightly coloured robe prized by the Tai Bwo Wannai peoples."
 
-[villager_robe_noted_3]
+[villager_robe_yellow_noted]
 id = 6364
 
 [villager_hat_yellow]
@@ -138,7 +138,7 @@ weight = 0.907
 slot = "Hat"
 examine = "A brightly coloured hat prized by the Tai Bwo Wannai peoples."
 
-[villager_hat_noted_3]
+[villager_hat_yellow_noted]
 id = 6366
 
 [villager_sandals_yellow]
@@ -149,7 +149,7 @@ weight = 0.68
 slot = "Feet"
 examine = "A brightly coloured pair of local sandals."
 
-[villager_sandals_noted_3]
+[villager_sandals_yellow_noted]
 id = 6368
 
 [villager_armband_yellow]
@@ -160,7 +160,7 @@ weight = 0.68
 slot = "Hands"
 examine = "A dark blue armband, as worn by the Tai Bwo Wannai locals."
 
-[villager_armband_noted_3]
+[villager_armband_yellow_noted]
 id = 6370
 
 [tribal_top_pink]
@@ -171,7 +171,7 @@ weight = 1.0
 slot = "Chest"
 examine = "Local dress."
 
-[tribal_top_noted_4]
+[tribal_top_pink_noted]
 id = 6372
 
 [villager_robe_pink]
@@ -182,7 +182,7 @@ weight = 2.0
 slot = "Legs"
 examine = "A brightly coloured robe prized by the Tai Bwo Wannai peoples."
 
-[villager_robe_noted_4]
+[villager_robe_pink_noted]
 id = 6374
 
 [villager_hat_pink]
@@ -193,7 +193,7 @@ weight = 0.907
 slot = "Hat"
 examine = "A brightly coloured hat prized by the Tai Bwo Wannai peoples."
 
-[villager_hat_noted_4]
+[villager_hat_pink_noted]
 id = 6376
 
 [villager_sandals_pink]
@@ -204,7 +204,7 @@ weight = 0.68
 slot = "Feet"
 examine = "A brightly coloured pair of local sandals."
 
-[villager_sandals_noted_4]
+[villager_sandals_pink_noted]
 id = 6378
 
 [villager_armband_pink]
@@ -215,5 +215,5 @@ weight = 0.68
 slot = "Hands"
 examine = "A white armband, as worn by the Tai Bwo Wannai locals."
 
-[villager_armband_noted_4]
+[villager_armband_pink_noted]
 id = 6380

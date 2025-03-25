@@ -205,7 +205,7 @@ empty = "vial"
 examine = "An unfinished potion."
 weight = 0.035
 
-[guthix_balance_unf_noted_2]
+[guthix_balance_unf_2_noted]
 id = 7655
 
 [guthix_balance_unf_3]
@@ -215,7 +215,7 @@ empty = "vial"
 examine = "An unfinished potion."
 weight = 0.035
 
-[guthix_balance_unf_noted_3]
+[guthix_balance_unf_3_noted]
 id = 7657
 
 [guthix_balance_unf_4]
@@ -225,7 +225,7 @@ empty = "vial"
 examine = "An unfinished potion."
 weight = 0.035
 
-[guthix_balance_unf_noted_4]
+[guthix_balance_unf_4_noted]
 id = 7659
 
 [guthix_balance_4]

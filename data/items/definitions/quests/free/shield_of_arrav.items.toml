@@ -112,7 +112,7 @@ destroy = "You can get another from the Phoenix Gang's weapon stash."
 examine = "Second-rate crossbow; former property of the Phoenix Gang."
 kept = "Wilderness"
 
-[phoenix_crossbow_noted_2]
+[phoenix_crossbow_2_noted]
 id = 11166
 
 [phoenix_crossbow_3] # Unobtainable
@@ -124,7 +124,7 @@ destroy = "You can get another from the Phoenix Gang's weapon stash."
 examine = "Second-rate crossbow; former property of the Phoenix Gang."
 kept = "Wilderness"
 
-[phoenix_crossbow_noted_3]
+[phoenix_crossbow_3_noted]
 id = 11168
 
 [half_certificate_right]

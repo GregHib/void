@@ -56,7 +56,7 @@ id = 3406
 weight = 0.056
 examine = "Old and useless."
 
-[ash_potion_unf_noted]
+[old_potion_noted]
 id = 3407
 
 [serum_207_4]

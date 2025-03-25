@@ -295,7 +295,7 @@ empty = "vial"
 eat_message = "You drink the lumpy potion."
 examine = "Two doses of fishy super antipoison potion."
 
-[anti_p_supermix_2_noted]
+[super_antipoison_mix_2_noted]
 id = 11474
 
 [super_antipoison_mix_1]
@@ -308,7 +308,7 @@ empty = "vial"
 eat_message = "You drink the lumpy potion."
 examine = "One dose of fishy super antipoison potion."
 
-[anti_p_supermix_1_noted]
+[super_antipoison_mix_1_noted]
 id = 11476
 
 [fishing_mix_2]
@@ -529,7 +529,7 @@ empty = "vial"
 eat_message = "You drink the lumpy potion."
 examine = "Two doses of fishy super ranging potion."
 
-[ranging_mix_2_noted]
+[super_ranging_mix_2_noted]
 id = 11510
 
 [super_ranging_mix_1]
@@ -542,7 +542,7 @@ empty = "vial"
 eat_message = "You drink the lumpy potion."
 examine = "One dose of fishy super ranging potion."
 
-[ranging_mix_1_noted]
+[super_ranging_mix_1_noted]
 id = 11512
 
 [super_magic_mix_2]
@@ -555,7 +555,7 @@ empty = "vial"
 eat_message = "You drink the lumpy potion."
 examine = "Two doses of fishy super Magic potion."
 
-[magic_mix_2_noted]
+[super_magic_mix_2_noted]
 id = 11514
 
 [super_magic_mix_1]
@@ -568,7 +568,7 @@ empty = "vial"
 eat_message = "You drink the lumpy potion."
 examine = "One dose of fishy super Magic potion."
 
-[magic_mix_1_noted]
+[super_magic_mix_1_noted]
 id = 11516
 
 [hunting_mix_2]

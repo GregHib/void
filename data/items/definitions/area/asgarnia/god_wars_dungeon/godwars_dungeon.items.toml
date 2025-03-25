@@ -6,7 +6,7 @@ destroy = "No"
 examine = "Godsword shards 1 and 2."
 use = "Limited"
 
-[godsword_shards_noted]
+[godsword_shards_1_and_2_noted]
 id = 11687
 
 [godsword_shards_1_and_3]
@@ -17,7 +17,7 @@ destroy = "No"
 examine = "Godsword shards 1 and 3."
 use = "Limited"
 
-[godsword_shards_noted_2]
+[godsword_shards_1_and_3_noted]
 id = 11689
 
 [godsword_blade]
@@ -38,7 +38,7 @@ destroy = "No"
 examine = "Godsword shards 2 and 3."
 use = "Limited"
 
-[godsword_shards_noted_3]
+[godsword_shards_2_and_3_noted]
 id = 11693
 
 [armadyl_godsword]
@@ -359,7 +359,7 @@ weight = 0.8
 prayer_xp = 140.0
 examine = "The bones of a mighty ourg."
 
-[ourg_bones_noted_2]
+[ourg_bones_general_graardor_noted]
 id = 14794
 
 [ancient_ceremonial_hood]

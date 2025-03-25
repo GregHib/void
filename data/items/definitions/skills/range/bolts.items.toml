@@ -429,7 +429,7 @@ weight = 0.001
 smithing = { level = 59, xp = 50.0 }
 examine = "A mithril grapple tip."
 
-[mith_grapple_tip_noted]
+[mithril_grapple_tip_noted]
 id = 9417
 
 [mithril_grapple_unf]

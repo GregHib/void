@@ -20,7 +20,7 @@ material = "metal"
 examine = "A heavy shield with a snarling, draconic visage."
 weight = 7.257
 
-[dragonfire_shield_noted]
+[dragonfire_shield_uncharged_noted]
 id = 11285
 
 [draconic_visage]

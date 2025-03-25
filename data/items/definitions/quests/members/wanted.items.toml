@@ -259,7 +259,7 @@ slot = "Hands"
 material = "metal"
 examine = "These will keep my hands warm!"
 
-[white_gloves_noted]
+[white_gauntlets_noted]
 id = 6630
 
 [white_sq_shield]

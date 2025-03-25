@@ -119,7 +119,7 @@ limit = 1000
 weight = 0.028
 examine = "It's a coconut."
 
-[coconut_noted_2]
+[coconut_open_noted]
 id = 5977
 
 [coconut_shell]
@@ -352,7 +352,7 @@ limit = 100
 weight = 0.028
 examine = "A pile of Oak tree leaves."
 
-[leaves_noted_2]
+[leaves_oak_noted]
 id = 6023
 
 [leaves_willow]
@@ -362,7 +362,7 @@ limit = 100
 weight = 0.028
 examine = "A pile of Willow tree leaves."
 
-[leaves_noted_3]
+[leaves_willow_noted]
 id = 6025
 
 [leaves_yew]
@@ -372,7 +372,7 @@ limit = 100
 weight = 0.028
 examine = "A pile of Yew tree leaves."
 
-[leaves_noted_4]
+[leaves_yew_noted]
 id = 6027
 
 [leaves_maple]
@@ -382,7 +382,7 @@ limit = 100
 weight = 0.028
 examine = "A pile of Maple tree leaves."
 
-[leaves_noted_5]
+[leaves_maple_noted]
 id = 6029
 
 [leaves_magic]
@@ -392,7 +392,7 @@ limit = 100
 weight = 0.028
 examine = "A pile of Magic tree leaves."
 
-[leaves_noted_6]
+[leaves_magic_noted]
 id = 6031
 
 [oak_roots]

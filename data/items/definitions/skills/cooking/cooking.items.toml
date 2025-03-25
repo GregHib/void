@@ -1799,7 +1799,7 @@ heals = 110
 weight = 0.25
 examine = "A premade Worm Batta."
 
-[premade_wm_batta_noted]
+[premade_worm_batta_noted]
 id = 2220
 
 [premade_toad_batta]
@@ -1810,7 +1810,7 @@ heals = 110
 weight = 0.25
 examine = "A Premade Toad Batta."
 
-[premade_td_batta_noted]
+[premade_toad_batta_noted]
 id = 2222
 
 [premade_cheese_and_tomato_batta]
@@ -1832,7 +1832,7 @@ heals = 110
 weight = 0.25
 examine = "A premade Fruit Batta."
 
-[premade_frt_batta_noted]
+[premade_fruit_batta_noted]
 id = 2226
 
 [premade_veg_batta]
@@ -1898,7 +1898,7 @@ heals = 80
 weight = 0.25
 examine = "Some Premade Worm Crunchies."
 
-[premade_wm_crun_noted]
+[premade_worm_crunchies_noted]
 id = 2238
 
 [premade_chocolate_chip_crunchies]
@@ -1909,7 +1909,7 @@ heals = 70
 weight = 0.25
 examine = "Some Premade chocchip crunchies."
 
-[premade_ch_crunch_noted]
+[premade_chocolate_chip_crunchies_noted]
 id = 2240
 
 [premade_spicy_crunchies]
@@ -1920,7 +1920,7 @@ heals = 70
 weight = 0.25
 examine = "Some premade Spicy Crunchies."
 
-[premade_sy_crunch_noted]
+[premade_spicy_crunchies_noted]
 id = 2242
 
 [premade_toad_crunchies]
@@ -1931,7 +1931,7 @@ heals = 70
 weight = 0.25
 examine = "Some premade Toad Crunchies."
 
-[premade_td_crunch_noted]
+[premade_toad_crunchies_noted]
 id = 2244
 
 [burnt_batta]
@@ -2145,7 +2145,7 @@ weight = 0.45
 heals = 110
 examine = "Half of this pineapple pizza has been eaten."
 
-[papple_pizza_half_noted]
+[pineapple_pizza_half_noted]
 id = 2304
 
 [burnt_pizza]
@@ -2341,7 +2341,7 @@ eat_message = "You eat the remaining half of the meat pie."
 weight = 0.225
 examine = "Half of it is suitable for vegetarians."
 
-[half_a_meat_pie_noted]
+[meat_pie_half_noted]
 id = 2332
 
 [redberry_pie_half]
@@ -2354,7 +2354,7 @@ eat_message = "You eat the remaining half of the redberry pie."
 weight = 0.225
 examine = "So tasty I kept some for later."
 
-[half_a_redberry_pie_noted]
+[redberry_pie_half_noted]
 id = 2334
 
 [apple_pie_half]
@@ -2367,7 +2367,7 @@ eat_message = "You eat the remaining half of the apple pie."
 weight = 0.225
 examine = "Mmm half an apple pie."
 
-[half_an_apple_pie_noted]
+[apple_pie_half_noted]
 id = 2336
 
 [raw_oomlie]
@@ -2698,7 +2698,7 @@ id = 7088
 weight = 0.5
 examine = "A bowl of cooked sweetcorn."
 
-[sweetcorn_noted_2]
+[sweetcorn_bowl_noted]
 id = 7089
 
 [burnt_egg]

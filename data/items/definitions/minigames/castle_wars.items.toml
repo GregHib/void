@@ -45,7 +45,7 @@ id = 4043
 weight = 5.0
 examine = "I can use this with the catapult."
 
-[rock_noted]
+[rock_castle_wars_noted]
 id = 4044
 
 [explosive_potion]
@@ -70,7 +70,7 @@ heals = 0
 weight = 0.001
 examine = "I can use these to heal myself and others."
 
-[bandages_noted]
+[bandages_castle_wars_noted]
 id = 4050
 
 [toolkit_castle_wars]
@@ -78,7 +78,7 @@ id = 4051
 weight = 0.001
 examine = "I can use this to repair catapults and doors."
 
-[toolkit_noted]
+[toolkit_castle_wars_noted]
 id = 4052
 
 [barricade_castle_wars]
@@ -86,7 +86,7 @@ id = 4053
 weight = 5.0
 examine = "Handy for hindering the enemy team's movement."
 
-[barricade_noted]
+[barricade_castle_wars_noted]
 id = 4054
 
 [castle_wars_manual]

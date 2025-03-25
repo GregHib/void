@@ -453,28 +453,28 @@ id = 11912
 weight = 2.267
 examine = "Grand Exchange set containing a body and chaps."
 
-[green_dhide_trimmed_set_noted]
+[green_dragonhide_trimmed_set_noted]
 id = 11913
 
 [green_dragonhide_gold_trimmed_set]
 clone = "green_dragonhide_trimmed_set"
 id = 11914
 
-[green_dhide_gold_trimmed_set_noted]
+[green_dragonhide_gold_trimmed_set_noted]
 id = 11915
 
 [blue_dragonhide_trimmed_set]
 clone = "trimmed_leather_armour_set"
 id = 11916
 
-[blue_dhide_trimmed_set_noted]
+[blue_dragonhide_trimmed_set_noted]
 id = 11917
 
 [blue_dragonhide_gold_trimmed_set]
 clone = "trimmed_leather_armour_set"
 id = 11918
 
-[blue_dhide_gold_trimmed_set_noted]
+[blue_dragonhide_gold_trimmed_set_noted]
 id = 11919
 
 [guthix_dragonhide_blessed_set]
@@ -482,21 +482,21 @@ id = 11920
 weight = 2.267
 examine = "Grand Exchange set containing a body, chaps, bracers and coif."
 
-[green_dhide_blessed_set_noted]
+[guthix_dragonhide_blessed_set_noted]
 id = 11921
 
 [saradomin_dragonhide_blessed_set]
 clone = "guthix_dragonhide_blessed_set"
 id = 11922
 
-[blue_dhide_blessed_set_noted]
+[saradomin_dragonhide_blessed_set_noted]
 id = 11923
 
 [zamorak_dragonhide_blessed_set]
 clone = "guthix_dragonhide_blessed_set"
 id = 11924
 
-[red_dhide_blessed_set_noted]
+[zamorak_dragonhide_blessed_set_noted]
 id = 11925
 
 [guthix_armour_set_lg]
