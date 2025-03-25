@@ -1,0 +1,142 @@
+[opal_bronze_bolts]
+skill = "fletching"
+level = 11
+xp = 16.0
+remove = [{ id = "bronze_bolts", amount = 10 }, { id = "opal_bolt_tips", amount = 10 }]
+add = [{ id = "opal_bolts", amount = 10 }]
+message = "You fletch 10 bolts."
+question = "How many set of 10 would you like to tip?"
+maximum = 10
+
+[jade_blurite_bolts]
+skill = "fletching"
+level = 11
+xp = 24.0
+remove = [{ id = "blurite_bolts", amount = 10 }, { id = "jade_bolt_tips", amount = 10 }]
+add = [{ id = "jade_bolts", amount = 10 }]
+message = "You fletch 10 bolts."
+question = "How many set of 10 would you like to tip?"
+maximum = 10
+
+[pearl_iron_bolts]
+skill = "fletching"
+level = 39
+xp = 32.0
+ticks = 2
+remove = [{ id = "iron_bolts", amount = 10 }, { id = "pearl_bolt_tips", amount = 10 }]
+add = [{ id = "pearl_bolts", amount = 10 }]
+message = "You fletch 10 bolts."
+question = "How many set of 10 would you like to tip?"
+maximum = 10
+
+[red_topaz_steel_bolts]
+skill = "fletching"
+level = 48
+xp = 39.0
+ticks = 2
+remove = [{ id = "steel_bolts", amount = 10 }, { id = "topaz_bolt_tips", amount = 10 }]
+add = [{ id = "topaz_bolts", amount = 10 }]
+message = "You fletch 10 bolts."
+question = "How many set of 10 would you like to tip?"
+maximum = 10
+
+[sapphire_mithril_bolts]
+skill = "fletching"
+level = 56
+xp = 47.0
+ticks = 0
+remove = [{ id = "mithril_bolts", amount = 10 }, { id = "sapphire_bolt_tips", amount = 10 }]
+add = [{ id = "sapphire_bolts", amount = 10 }]
+message = "You fletch 10 bolts."
+question = "How many set of 10 would you like to tip?"
+maximum = 10
+
+[emerald_mithril_bolts]
+skill = "fletching"
+level = 58
+xp = 55.0
+ticks = 2
+remove = [{ id = "mithril_bolts", amount = 10 }, { id = "emerald_bolt_tips", amount = 10 }]
+add = [{ id = "emerald_bolts", amount = 10 }]
+message = "You fletch 10 bolts."
+question = "How many set of 10 would you like to tip?"
+maximum = 10
+
+[ruby_adamant_bolts]
+skill = "fletching"
+level = 63
+xp = 63.0
+ticks = 2
+remove = [{ id = "adamant_bolts", amount = 10 }, { id = "ruby_bolt_tips", amount = 10 }]
+add = [{ id = "ruby_bolts", amount = 10 }]
+message = "You fletch 10 bolts."
+question = "How many set of 10 would you like to tip?"
+maximum = 10
+
+[diamond_adamant_bolts]
+skill = "fletching"
+level = 65
+xp = 70.0
+ticks = 2
+remove = [{ id = "adamant_bolts", amount = 10 }, { id = "diamond_bolt_tips", amount = 10 }]
+add = [{ id = "diamond_bolts", amount = 10 }]
+message = "You fletch 10 bolts."
+question = "How many set of 10 would you like to tip?"
+maximum = 10
+
+[dragonstone_runite_bolts]
+skill = "fletching"
+level = 71
+xp = 82.0
+ticks = 2
+remove = [{ id = "runite_bolts", amount = 10 }, { id = "dragon_bolt_tips", amount = 10 }]
+add = [{ id = "dragon_bolts", amount = 10 }]
+message = "You fletch 10 bolts."
+question = "How many set of 10 would you like to tip?"
+maximum = 10
+
+[kebbit_bolts]
+skill = "fletching"
+level = 32
+xp = 5.8
+ticks = 3
+requires = ["chisel"]
+remove = ["kebbit_spike"]
+add = [{ id = "kebbit_bolts", amount = 12 }]
+message = "You fletch 10 bolts."
+question = "How many set of 10 would you like to tip?"
+maximum = 10
+
+[long_kebbit_bolts]
+skill = "fletching"
+level = 42
+xp = 7.9
+ticks = 3
+requires = ["chisel"]
+remove = ["long_kebbit_spike"]
+add = [{ id = "long_kebbit_bolts", amount = 12 }]
+message = "You fletch 10 bolts."
+question = "How many set of 10 would you like to tip?"
+maximum = 10
+
+[mithril_grapple_bolt_unf]
+skill = "fletching"
+level = 59
+xp = 11.0
+ticks = 2
+remove = ["mithril_grapple_tip", "mithril_bolts"]
+add = ["mithril_grapple_unf"]
+message = "You fletch an unfinished mithril grapple."
+question = "How many set of 10 would you like to tip?"
+maximum = 10
+
+[mithril_grapple_bolt_finished]
+skill = "fletching"
+level = 59
+xp = 0.0
+ticks = 1
+remove = ["mithril_grapple_unf", "rope"]
+add = ["mithril_grapple"]
+message = "You fletch a mithril grapple."
+question = "How many set of 10 would you like to tip?"
+maximum = 10

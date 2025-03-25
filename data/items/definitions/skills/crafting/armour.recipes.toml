@@ -1,0 +1,254 @@
+[broodoo_shield_blue]
+skill = "crafting"
+level = 35
+xp = 100.0
+requires = ["hammer"]
+remove = [{ id = "tribal_mask_blue" }, { id = "snakeskin", amount = 2 }]
+one = [
+    { id = "bronze_nails", amount = 8 },
+    { id = "iron_nails", amount = 8 },
+    { id = "steel_nails", amount = 8 },
+    { id = "black_nails", amount = 8 },
+    { id = "mithril_nails", amount = 8 },
+    { id = "adamant_nails", amount = 8 },
+    { id = "rune_nails", amount = 8 },
+]
+add = ["broodoo_shield_blue_10"]
+
+[broodoo_shield_orange]
+skill = "crafting"
+level = 35
+xp = 100.0
+requires = ["hammer"]
+remove = [{ id = "tribal_mask_orange" }, { id = "snakeskin", amount = 2 }]
+one = [
+    { id = "bronze_nails", amount = 8 },
+    { id = "iron_nails", amount = 8 },
+    { id = "steel_nails", amount = 8 },
+    { id = "black_nails", amount = 8 },
+    { id = "mithril_nails", amount = 8 },
+    { id = "adamant_nails", amount = 8 },
+    { id = "rune_nails", amount = 8 },
+]
+add = ["broodoo_shield_orange_10"]
+
+[broodoo_shield_green]
+skill = "crafting"
+level = 35
+xp = 100.0
+requires = ["hammer"]
+remove = [{ id = "tribal_mask_green" }, { id = "snakeskin", amount = 2 }]
+one = [
+    { id = "bronze_nails", amount = 8 },
+    { id = "iron_nails", amount = 8 },
+    { id = "steel_nails", amount = 8 },
+    { id = "black_nails", amount = 8 },
+    { id = "mithril_nails", amount = 8 },
+    { id = "adamant_nails", amount = 8 },
+    { id = "rune_nails", amount = 8 },
+]
+add = ["broodoo_shield_green_10"]
+
+[yak_hide_armour_top]
+skill = "crafting"
+level = 46
+xp = 32.0
+ticks = 3
+animation = "craft_leather"
+requires = ["needle", "thread"]
+remove = [{ id = "cured_yak_hide", amount = 2 }]
+add = ["yak_hide_armour_top"]
+message = "You make a yak hide top."
+
+[yak_hide_armour_legs]
+skill = "crafting"
+level = 43
+xp = 32.0
+ticks = 3
+animation = "craft_leather"
+requires = ["needle", "thread"]
+remove = ["cured_yak_hide"]
+add = ["yak_hide_armour_legs"]
+message = "You make a pair of yak hide legs."
+
+[blood_n_tar_snelm_pointed]
+skill = "crafting"
+level = 15
+xp = 32.5
+ticks = 2
+requires = ["chisel"]
+remove = ["blamish_red_shell_pointed"]
+add = ["bloodntar_snelm_pointed"]
+animation = "cut_shell"
+message = "You chisel the shell into a helmet."
+
+[blood_n_tar_snelm_round]
+skill = "crafting"
+level = 15
+xp = 32.5
+ticks = 2
+requires = ["chisel"]
+remove = ["blamish_red_shell_round"]
+add = ["bloodntar_snelm_round"]
+animation = "cut_shell"
+message = "You chisel the shell into a helmet."
+
+[broken_bark_snelm]
+skill = "crafting"
+level = 15
+xp = 32.5
+ticks = 2
+requires = ["chisel"]
+remove = ["blamish_bark_shell"]
+add = ["broken_bark_snelm"]
+animation = "cut_shell"
+message = "You chisel the shell into a helmet."
+
+[bruise_blue_snelm_pointed]
+skill = "crafting"
+level = 15
+xp = 32.5
+ticks = 2
+requires = ["chisel"]
+remove = ["blamish_blue_shell_pointed"]
+add = ["bruise_blue_snelm_pointed"]
+animation = "cut_shell"
+message = "You chisel the shell into a helmet."
+
+[bruise_blue_snelm_round]
+skill = "crafting"
+level = 15
+xp = 32.5
+ticks = 2
+requires = ["chisel"]
+remove = ["blamish_blue_shell_round"]
+add = ["bruise_blue_snelm_round"]
+animation = "cut_shell"
+message = "You chisel the shell into a helmet."
+
+[myre_snelm_pointed]
+skill = "crafting"
+level = 15
+xp = 32.5
+ticks = 2
+requires = ["chisel"]
+remove = ["blamish_myre_shell_pointed"]
+add = ["myre_snelm_pointed"]
+animation = "cut_shell"
+message = "You chisel the shell into a helmet."
+
+[myre_snelm_round]
+skill = "crafting"
+level = 15
+xp = 32.5
+ticks = 2
+requires = ["chisel"]
+remove = ["blamish_myre_shell_round"]
+add = ["myre_snelm_round"]
+animation = "cut_shell"
+message = "You chisel the shell into a helmet."
+
+[ochre_snelm_pointed]
+skill = "crafting"
+level = 15
+xp = 32.5
+ticks = 2
+requires = ["chisel"]
+remove = ["blamish_ochre_shell_pointed"]
+add = ["ochre_snelm_pointed"]
+animation = "cut_shell"
+message = "You chisel the shell into a helmet."
+
+[ochre_snelm_round]
+skill = "crafting"
+level = 15
+xp = 32.5
+ticks = 2
+requires = ["chisel"]
+remove = ["blamish_ochre_shell_round"]
+add = ["ochre_snelm_round"]
+animation = "cut_shell"
+message = "You chisel the shell into a helmet."
+
+[crab_helm]
+skill = "crafting"
+level = 15
+xp = 32.5
+ticks = 3
+requires = ["chisel"]
+remove = ["fresh_crab_shell"]
+chance = "40-240"
+add = ["crab_helmet"]
+fail = ["broken_crab_shell"]
+animation = "cut_crab"
+message = "You chisel the carapace into a helmet."
+failure = "Oops! You accidentally break the shell."
+
+[crab_claw]
+skill = "crafting"
+level = 15
+xp = 32.5
+ticks = 3
+requires = ["chisel"]
+remove = ["fresh_crab_claw"]
+chance = "40-240"
+add = ["crab_claw"]
+fail = ["broken_crab_claw"]
+animation = "cut_crab"
+message = "You chisel the claw into a gauntlet."
+failure = "Oops! You accidentally break the shell."
+
+[splitbark_gauntlets]
+skill = "crafting"
+level = 60
+xp = 62.0
+ticks = 3
+animation = "craft_leather"
+requires = ["needle", "thread"]
+remove = ["bark", "fine_cloth"]
+add = ["splitbark_gauntlets"]
+message = "You make some splitbark gauntlets."
+
+[splitbark_boots]
+skill = "crafting"
+level = 60
+xp = 62.0
+ticks = 3
+animation = "craft_leather"
+requires = ["needle", "thread"]
+remove = ["bark", "fine_cloth"]
+add = ["splitbark_boots"]
+message = "You make a pair of splitbark boots."
+
+[splitbark_helm]
+skill = "crafting"
+level = 61
+xp = 124.0
+ticks = 3
+animation = "craft_leather"
+requires = ["needle", "thread"]
+remove = [{ id = "bark", amount = 2 }, { id = "fine_cloth", amount = 2 }]
+add = ["splitbark_helm"]
+message = "You make a splitbark helmet."
+
+[splitbark_legs]
+skill = "crafting"
+level = 62
+xp = 186.0
+ticks = 3
+animation = "craft_leather"
+requires = ["needle", "thread"]
+remove = [{ id = "bark", amount = 3 }, { id = "fine_cloth", amount = 3 }]
+add = ["splitbark_legs"]
+message = "You make some splitbark legs."
+
+[splitbark_body]
+skill = "crafting"
+level = 62
+xp = 248.0
+ticks = 3
+animation = "craft_leather"
+requires = ["needle", "thread"]
+remove = [{ id = "bark", amount = 4 }, { id = "fine_cloth", amount = 4 }]
+add = ["splitbark_body"]
+message = "You make a splitbark body."

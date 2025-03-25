@@ -1,0 +1,159 @@
+[part_mud_pie_compost]
+skill = "cooking"
+level = 29
+remove = ["pie_shell", "compost"]
+add = ["part_mud_pie_compost", "bucket"]
+ticks = 2
+message = "You fill the pie with compost."
+
+[part_mud_pie_bucket]
+skill = "cooking"
+level = 29
+remove = ["part_mud_pie_compost", "bucket_of_water"]
+add = ["part_mud_pie_water", "bucket"]
+ticks = 2
+message = "You fill the pie with water."
+
+[part_mud_pie_bowl]
+skill = "cooking"
+level = 29
+remove = ["part_mud_pie_compost", "bowl_of_water"]
+add = ["part_mud_pie_water", "bowl"]
+ticks = 2
+message = "You fill the pie with water."
+
+[part_mud_pie_jug]
+skill = "cooking"
+level = 29
+remove = ["part_mud_pie_compost", "jug_of_water"]
+add = ["part_mud_pie_water", "jug"]
+ticks = 2
+message = "You fill the pie with water."
+
+[raw_mud_pie]
+skill = "cooking"
+level = 29
+remove = ["part_mud_pie_water", "clay"]
+add = ["raw_mud_pie"]
+ticks = 2
+message = "You fill the pie with clay."
+
+[part_garden_pie_tomato]
+skill = "cooking"
+level = 34
+remove = ["pie_shell", "tomato"]
+add = ["part_garden_pie_tomato"]
+ticks = 2
+message = "You fill the pie with tomato."
+
+[part_garden_pie_onion]
+skill = "cooking"
+level = 34
+remove = ["part_garden_pie_tomato", "onion"]
+add = ["part_garden_pie_onion"]
+ticks = 2
+message = "You fill the pie with onion."
+
+[raw_garden_pie]
+skill = "cooking"
+level = 34
+remove = ["part_garden_pie_onion", "cabbage"]
+add = ["raw_garden_pie"]
+ticks = 2
+message = "You fill the pie with cabbage."
+
+[part_fish_pie_trout]
+skill = "cooking"
+level = 47
+remove = ["pie_shell", "trout"]
+add = ["part_fish_pie_trout"]
+ticks = 2
+message = "You fill the pie with trout."
+
+[part_fish_pie_cod]
+skill = "cooking"
+level = 47
+remove = ["part_fish_pie_trout", "cod"]
+add = ["part_fish_pie_cod"]
+ticks = 2
+message = "You fill the pie with cod."
+
+[raw_fish_pie]
+skill = "cooking"
+level = 47
+remove = ["part_fish_pie_cod", "raw_potato"]
+add = ["raw_fish_pie"]
+ticks = 2
+message = "You fill the pie with potato."
+
+[part_admiral_pie_salmon]
+skill = "cooking"
+level = 70
+remove = ["pie_shell", "salmon"]
+add = ["part_admiral_pie_salmon"]
+ticks = 2
+message = "You fill the pie with salmon."
+
+[part_admiral_pie_tuna]
+skill = "cooking"
+level = 70
+remove = ["part_admiral_pie_salmon", "tuna"]
+add = ["part_admiral_pie_tuna"]
+ticks = 2
+message = "You fill the pie with tuna."
+
+[raw_admiral_pie]
+skill = "cooking"
+level = 70
+remove = ["part_admiral_pie_tuna", "raw_potato"]
+add = ["raw_admiral_pie"]
+ticks = 2
+message = "You fill the pie with potato."
+
+[part_wild_pie_raw_bear_meat]
+skill = "cooking"
+level = 85
+remove = ["pie_shell", "raw_bear_meat"]
+add = ["part_wild_pie_raw_bear_meat"]
+ticks = 2
+message = "You fill the pie with bear meat."
+
+[part_wild_pie_raw_chompy]
+skill = "cooking"
+level = 85
+remove = ["part_wild_pie_raw_bear_meat", "raw_chompy"]
+add = ["part_wild_pie_raw_chompy"]
+ticks = 2
+message = "You fill the pie with chompy meat."
+
+[raw_wild_pie]
+skill = "cooking"
+level = 85
+remove = ["part_wild_pie_raw_chompy", "raw_rabbit"]
+add = ["raw_wild_pie"]
+ticks = 2
+message = "You fill the pie with rabbit meat."
+
+[part_summer_pie_strawberry]
+skill = "cooking"
+level = 95
+remove = ["pie_shell", "strawberry"]
+add = ["part_summer_pie_strawberry"]
+ticks = 2
+message = "You fill the pie with strawberry."
+
+[part_summer_pie_watermelon]
+skill = "cooking"
+level = 95
+remove = ["part_summer_pie_strawberry", "watermelon"]
+add = ["part_summer_pie_watermelon"]
+ticks = 2
+message = "You fill the pie with watermelon."
+
+[raw_summer_pie]
+skill = "cooking"
+level = 95
+remove = ["part_summer_pie_watermelon", "cooking_apple"]
+add = ["raw_summer_pie"]
+ticks = 2
+message = "You fill the pie with apple."

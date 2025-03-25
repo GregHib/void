@@ -1,0 +1,106 @@
+[opal]
+skill = "crafting"
+xp = 15.0
+requires = ["chisel"]
+remove = ["uncut_opal"]
+add = ["opal"]
+ticks = 2
+animation = "cut_opal"
+sound = "cut_gem"
+message = "You cut the opal."
+
+[jade]
+skill = "crafting"
+level = 13
+xp = 20.0
+requires = ["chisel"]
+remove = ["uncut_jade"]
+add = ["jade"]
+ticks = 2
+animation = "cut_kade"
+sound = "cut_gem"
+message = "You cut the jade."
+
+[red_topaz]
+skill = "crafting"
+level = 16
+xp = 25.0
+requires = ["chisel"]
+remove = ["uncut_red_topaz"]
+add = ["red_topaz"]
+ticks = 2
+animation = "cut_red_topaz"
+sound = "cut_gem"
+message = "You cut the red topaz."
+
+[sapphire]
+skill = "crafting"
+level = 20
+xp = 50.0
+requires = ["chisel"]
+remove = ["uncut_sapphire"]
+add = ["sapphire"]
+ticks = 2
+animation = "cut_sapphire"
+sound = "cut_gem"
+message = "You cut the sapphire."
+
+[emerald]
+skill = "crafting"
+level = 27
+xp = 67.5
+requires = ["chisel"]
+remove = ["uncut_emerald"]
+add = ["emerald"]
+ticks = 2
+animation = "cut_emerald"
+sound = "cut_gem"
+message = "You cut the emerald."
+
+[ruby]
+skill = "crafting"
+level = 34
+xp = 85.0
+requires = ["chisel"]
+remove = ["uncut_ruby"]
+add = ["ruby"]
+ticks = 2
+animation = "cut_ruby"
+sound = "cut_gem"
+message = "You cut the ruby."
+
+[diamond]
+skill = "crafting"
+level = 43
+xp = 107.5
+requires = ["chisel"]
+remove = ["uncut_diamond"]
+add = ["diamond"]
+ticks = 2
+animation = "cut_diamond"
+sound = "cut_gem"
+message = "You cut the diamond."
+
+[dragonstone]
+skill = "crafting"
+level = 55
+xp = 137.5
+requires = ["chisel"]
+remove = ["uncut_dragonstone"]
+add = ["dragonstone"]
+ticks = 2
+animation = "cut_dragonstone"
+sound = "cut_gem"
+message = "You cut the dragonstone."
+
+[onyx]
+skill = "crafting"
+level = 67
+xp = 167.5
+requires = ["chisel"]
+remove = ["uncut_onyx"]
+add = ["onyx"]
+ticks = 2
+animation = "cut_onyx"
+sound = "cut_gem"
+message = "You cut the onyx."

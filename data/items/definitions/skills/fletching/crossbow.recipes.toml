@@ -1,0 +1,133 @@
+[bronze_crossbow_unfinished]
+skill = "fletching"
+level = 9
+xp = 12.0
+ticks = 2
+remove = ["wooden_stock", "bronze_limbs"]
+add = ["bronze_crossbow_u"]
+message = "You add a limbs to the stock."
+
+[blurite_crossbow_unfinished]
+skill = "fletching"
+level = 24
+xp = 32.0
+ticks = 2
+remove = ["oak_stock", "blurite_limbs"]
+add = ["blurite_crossbow_u"]
+message = "You add a limbs to the stock."
+
+[iron_crossbow_unfinished]
+skill = "fletching"
+level = 24
+xp = 32.0
+ticks = 2
+remove = ["willow_stock", "iron_limbs"]
+add = ["iron_crossbow_u"]
+message = "You add a limbs to the stock."
+
+[steel_crossbow_unfinished]
+skill = "fletching"
+level = 46
+xp = 54.0
+ticks = 2
+remove = ["teak_stock", "steel_limbs"]
+add = ["steel_crossbow_u"]
+message = "You add a limbs to the stock."
+
+[mithril_crossbow_unfinished]
+skill = "fletching"
+level = 54
+xp = 64.0
+ticks = 2
+remove = ["maple_stock", "mithril_limbs"]
+add = ["mithril_crossbow_u"]
+message = "You add a limbs to the stock."
+
+[adamant_crossbow_unfinished]
+skill = "fletching"
+level = 61
+xp = 82.0
+ticks = 2
+remove = ["mahogany_stock", "adamant_limbs"]
+add = ["adamant_crossbow_u"]
+message = "You add a limbs to the stock."
+
+[rune_crossbow_unfinished]
+skill = "fletching"
+level = 69
+xp = 100.0
+ticks = 2
+remove = ["yew_stock", "rune_limbs"]
+add = ["rune_crossbow_u"]
+message = "You add a limbs to the stock."
+#fletching crossbow finished
+
+[bronze_crossbow_finished]
+skill = "fletching"
+level = 9
+xp = 6.0
+ticks = 2
+remove = ["bronze_crossbow_u", "crossbow_string"]
+add = ["bronze_crossbow"]
+message = "You add a string to the stock."
+animation = "fletching_string_bronze_crossbow"
+
+[blurite_crossbow_finished]
+skill = "fletching"
+level = 24
+xp = 16.0
+ticks = 2
+remove = ["blurite_crossbow_u", "crossbow_string"]
+add = ["blurite_crossbow"]
+message = "You add a string to the stock."
+animation = "fletching_string_blurite_crossbow"
+
+[iron_crossbow_finished]
+skill = "fletching"
+level = 39
+xp = 22.0
+ticks = 2
+remove = ["iron_crossbow_u", "crossbow_string"]
+add = ["iron_crossbow"]
+message = "You add a string to the stock."
+animation = "fletching_string_iron_crossbow"
+
+[steel_crossbow_finished]
+skill = "fletching"
+level = 46
+xp = 27.0
+ticks = 2
+remove = ["steel_crossbow_u", "crossbow_string"]
+add = ["steel_crossbow"]
+message = "You add a string to the stock."
+animation = "fletching_string_steel_crossbow"
+
+[mithril_crossbow_finished]
+skill = "fletching"
+level = 54
+xp = 32.0
+ticks = 2
+remove = ["mithril_crossbow_u", "crossbow_string"]
+add = ["mithril_crossbow"]
+message = "You add a string to the stock."
+animation = "fletching_string_mithril_crossbow"
+
+[adamant_crossbow_finished]
+skill = "fletching"
+level = 61
+xp = 41.0
+ticks = 2
+remove = ["adamant_crossbow_u", "crossbow_string"]
+add = ["adamant_crossbow"]
+message = "You add a string to the stock."
+animation = "fletching_string_adamant_crossbow"
+
+[rune_crossbow_finished]
+skill = "fletching"
+level = 69
+xp = 41.0
+ticks = 2
+remove = ["rune_crossbow_u", "crossbow_string"]
+add = ["rune_crossbow"]
+message = "You add a string to the stock."
+animation = "fletching_string_rune_crossbow"

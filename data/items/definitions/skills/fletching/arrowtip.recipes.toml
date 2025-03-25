@@ -1,0 +1,188 @@
+[bronze_arrows]
+skill = "fletching"
+level = 1
+xp = 19.5
+ticks = 2
+remove = [{ id = "headless_arrow", amount = 15 }, { id = "bronze_arrowtips", amount = 15 }]
+add = [{ id = "bronze_arrow", amount = 15 }]
+message = "You attach arrows heads to 15 arrow shafts."
+question = "How many set of 15 would you like to make?"
+maximum = 10
+
+[iron_arrows]
+skill = "fletching"
+level = 15
+xp = 37.5
+ticks = 2
+remove = [{ id = "headless_arrow", amount = 15 }, { id = "iron_arrowtips", amount = 15 }]
+add = [{ id = "iron_arrow", amount = 15 }]
+message = "You attach arrows heads to 15 arrow shafts."
+question = "How many set of 15 would you like to make?"
+maximum = 10
+
+[steel_arrows]
+skill = "fletching"
+level = 30
+xp = 75.0
+ticks = 2
+remove = [{ id = "headless_arrow", amount = 15 }, { id = "steel_arrowtips", amount = 15 }]
+add = [{ id = "steel_arrow", amount = 15 }]
+message = "You attach arrows heads to 15 arrow shafts."
+question = "How many set of 15 would you like to make?"
+maximum = 10
+
+[mithril_arrows]
+skill = "fletching"
+level = 45
+xp = 112.5
+ticks = 2
+remove = [{ id = "headless_arrow", amount = 15 }, { id = "mithril_arrowtips", amount = 15 }]
+add = [{ id = "mithril_arrow", amount = 15 }]
+message = "You attach arrows heads to 15 arrow shafts."
+question = "How many set of 15 would you like to make?"
+maximum = 10
+
+[adamant_arrows]
+skill = "fletching"
+level = 60
+xp = 150.0
+ticks = 2
+remove = [{ id = "headless_arrow", amount = 15 }, { id = "adamant_arrowtips", amount = 15 }]
+add = [{ id = "adamant_arrow", amount = 15 }]
+message = "You attach arrows heads to 15 arrow shafts."
+question = "How many set of 15 would you like to make?"
+maximum = 10
+
+[rune_arrows]
+skill = "fletching"
+level = 75
+xp = 187.5
+ticks = 2
+remove = [{ id = "headless_arrow", amount = 15 }, { id = "rune_arrowtips", amount = 15 }]
+add = [{ id = "rune_arrow", amount = 15 }]
+message = "You attach arrows heads to 15 arrow shafts."
+question = "How many set of 15 would you like to make?"
+maximum = 10
+
+[dragon_arrows]
+skill = "fletching"
+level = 90
+xp = 225.0
+ticks = 2
+remove = [{ id = "headless_arrow", amount = 15 }, { id = "dragon_arrowtips", amount = 15 }]
+add = [{ id = "dragon_arrow", amount = 15 }]
+message = "You attach arrows heads to 15 arrow shafts."
+question = "How many set of 15 would you like to make?"
+maximum = 10
+#fletch tipping special arrows
+
+[ogre_arrow]
+skill = "fletching"
+level = 5
+xp = 6.0
+ticks = 2
+remove = [{ id = "flighted_ogre_arrow", amount = 6 }, { id = "wolfbone_arrowtips", amount = 6 }]
+add = [{ id = "ogre_arrow", amount = 6 }]
+message = "You attach arrows heads to 6 arrow shafts."
+question = "How many set of 6 would you like to make?"
+maximum = 10
+
+[bronze_ogre_arrow]
+skill = "fletching"
+level = 7
+xp = 8.4
+ticks = 2
+remove = [{ id = "flighted_ogre_arrow", amount = 6 }, { id = "bronze_nails", amount = 6 }]
+add = [{ id = "bronze_brutal", amount = 6 }]
+message = "You attach the nails to 6 arrow shafts."
+question = "How many set of 6 would you like to make?"
+maximum = 10
+
+[iron_ogre_arrow]
+skill = "fletching"
+level = 18
+xp = 15.6
+ticks = 2
+remove = [{ id = "flighted_ogre_arrow", amount = 6 }, { id = "iron_nails", amount = 6 }]
+add = [{ id = "iron_brutal", amount = 6 }]
+message = "You attach the nails to 6 arrow shafts."
+question = "How many set of 6 would you like to make?"
+maximum = 10
+
+[steel_ogre_arrow]
+skill = "fletching"
+level = 33
+xp = 30.6
+ticks = 2
+remove = [{ id = "flighted_ogre_arrow", amount = 6 }, { id = "steel_nails", amount = 6 }]
+add = [{ id = "steel_brutal", amount = 6 }]
+message = "You attach the nails to 6 arrow shafts."
+question = "How many set of 6 would you like to make?"
+maximum = 10
+
+[black_ogre_arrow]
+skill = "fletching"
+level = 38
+xp = 39.0
+ticks = 2
+remove = [{ id = "flighted_ogre_arrow", amount = 6 }, { id = "black_nails", amount = 6 }]
+add = [{ id = "black_brutal", amount = 6 }]
+message = "You attach the nails to 6 arrow shafts."
+question = "How many set of 6 would you like to make?"
+maximum = 10
+
+[mithril_ogre_arrow]
+skill = "fletching"
+level = 49
+xp = 45.0
+ticks = 2
+remove = [{ id = "flighted_ogre_arrow", amount = 6 }, { id = "mithril_nails", amount = 6 }]
+add = [{ id = "mithril_brutal", amount = 6 }]
+message = "You attach the nails to 6 arrow shafts."
+question = "How many set of 6 would you like to make?"
+maximum = 10
+
+[adamant_ogre_arrow]
+skill = "fletching"
+level = 62
+xp = 61.2
+ticks = 2
+remove = [{ id = "flighted_ogre_arrow", amount = 6 }, { id = "adamant_nails", amount = 6 }]
+add = [{ id = "adamant_brutal", amount = 6 }]
+message = "You attach the nails to 6 arrow shafts."
+question = "How many set of 6 would you like to make?"
+maximum = 10
+
+[rune_ogre_arrow]
+skill = "fletching"
+level = 77
+xp = 75.0
+ticks = 2
+remove = [{ id = "flighted_ogre_arrow", amount = 6 }, { id = "rune_nails", amount = 6 }]
+add = [{ id = "rune_brutal", amount = 6 }]
+message = "You attach the nails to 6 arrow shafts."
+question = "How many set of 6 would you like to make?"
+maximum = 10
+
+[broad_arrows]
+skill = "fletching"
+level = 52
+xp = 150.0
+ticks = 2
+remove = [{ id = "headless_arrow", amount = 15 }, { id = "broad_arrow_heads", amount = 15 }]
+add = [{ id = "broad_arrow", amount = 15 }]
+message = "You attach arrows heads to 15 arrow shafts."
+question = "How many set of 15 would you like to make?"
+maximum = 10
+
+[unstrung_ogre_comp_bow]
+skill = "fletching"
+level = 30
+xp = 45.0
+ticks = 3
+requires = ["knife"]
+remove = ["achey_tree_logs", "wolf_bones"]
+add = ["unstrung_comp_bow"]
+message = "You carefully cut the wood and add the bones."
+question = "What would you like to fletch?"
+animation = "fletching_bow_log"

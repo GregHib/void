@@ -1,0 +1,499 @@
+[uncooked_cake]
+skill = "cooking"
+level = 40
+remove = ["pot_of_flour", "egg", "bucket_of_milk", "cake_tin"]
+add = ["uncooked_cake", "empty_pot", "bucket"]
+ticks = 2
+message = "You mix the milk, flour and egg together to make a raw cake mix."
+
+[chocolate_cake_dust]
+skill = "cooking"
+level = 50
+xp = 30.0
+remove = ["cake", "chocolate_dust"]
+add = ["chocolate_cake"]
+ticks = 2
+message = "You make a chocolate cake."
+
+[chocolate_cake_bar]
+skill = "cooking"
+level = 50
+xp = 30.0
+remove = ["cake", "chocolate_bar"]
+add = ["chocolate_cake"]
+ticks = 2
+message = "You make a chocolate cake."
+
+[incomplete_stew_potato]
+skill = "cooking"
+level = 25
+remove = ["bowl_of_water", "raw_potato"]
+add = ["incomplete_stew_potato"]
+ticks = 2
+message = "You cut up the potato and put it into the bowl."
+
+[incomplete_stew_meat]
+skill = "cooking"
+level = 25
+remove = ["bowl_of_water", "cooked_meat"]
+add = ["incomplete_stew_meat"]
+ticks = 2
+message = "You cut up the meat and put it into the bowl."
+
+[incomplete_stew_meat_chicken]
+skill = "cooking"
+level = 25
+remove = ["bowl_of_water", "cooked_chicken"]
+add = ["incomplete_stew_meat"]
+ticks = 2
+message = "You cut up the meat and put it into the bowl."
+
+[uncooked_stew]
+skill = "cooking"
+level = 25
+remove = ["incomplete_stew_potato", "cooked_meat"]
+add = ["uncooked_stew"]
+ticks = 2
+message = "You cut up the meat and put it into the stew."
+
+[uncooked_chicken_stew]
+skill = "cooking"
+level = 25
+remove = ["incomplete_stew_potato", "cooked_chicken"]
+add = ["uncooked_stew"]
+ticks = 2
+message = "You cut up the chicken and put it into the stew."
+
+[uncooked_curry]
+skill = "cooking"
+level = 60
+remove = ["uncooked_stew", "spice"]
+add = ["uncooked_curry"]
+ticks = 2
+
+[uncooked_curry_leaf]
+skill = "cooking"
+level = 60
+remove = [{ id = "uncooked_stew" }, { id = "curry_leaf", amount = 3 }]
+add = ["uncooked_curry"]
+ticks = 2
+
+[incomplete_pizza]
+skill = "cooking"
+level = 35
+remove = ["pizza_base", "tomato"]
+add = ["incomplete_pizza"]
+ticks = 2
+message = "You add the tomato to the pizza."
+
+[uncooked_pizza]
+skill = "cooking"
+level = 35
+remove = ["incomplete_pizza", "cheese"]
+add = ["uncooked_pizza"]
+ticks = 2
+message = "You add the cheese to the pizza."
+
+[meat_pizza]
+skill = "cooking"
+level = 45
+xp = 26.0
+remove = ["plain_pizza", "cooked_meat"]
+add = ["meat_pizza"]
+ticks = 2
+message = "You add the meat to the pizza."
+
+[chicken_meat_pizza]
+skill = "cooking"
+level = 45
+xp = 26.0
+remove = ["plain_pizza", "cooked_chicken"]
+add = ["meat_pizza"]
+ticks = 2
+message = "You add the meat to the pizza."
+
+[anchovy_pizza]
+skill = "cooking"
+level = 55
+xp = 39.0
+remove = ["plain_pizza", "anchovies"]
+add = ["anchovy_pizza"]
+ticks = 2
+message = "You add the anchovies to the pizza."
+
+[pineapple_ring_pizza]
+skill = "cooking"
+level = 65
+xp = 45.0
+remove = ["plain_pizza", "pineapple_ring"]
+add = ["pineapple_pizza"]
+ticks = 2
+message = "You add the pineapple to the pizza. Why?"
+
+[pineapple_chunk_pizza]
+skill = "cooking"
+level = 65
+xp = 45.0
+remove = ["plain_pizza", "pineapple_chunks"]
+add = ["pineapple_pizza"]
+ticks = 2
+message = "You add the pineapple to the pizza. Why?"
+
+[bread_dough_bucket]
+skill = "cooking"
+remove = ["bucket_of_water", "pot_of_flour"]
+add = ["bread_dough", "bucket", "empty_pot"]
+ticks = 2
+message = "You mix the water and flour to make some bread dough."
+
+[bread_dough_bowl]
+skill = "cooking"
+remove = ["bowl_of_water", "pot_of_flour"]
+add = ["bread_dough", "bowl", "empty_pot"]
+ticks = 2
+message = "You mix the water and flour to make some bread dough."
+
+[bread_dough_jug]
+skill = "cooking"
+remove = ["jug_of_water", "pot_of_flour"]
+add = ["bread_dough", "jug", "empty_pot"]
+ticks = 2
+message = "You mix the water and flour to make some bread dough."
+
+[pastry_dough_bucket]
+skill = "cooking"
+xp = 1.0
+remove = ["bucket_of_water", "pot_of_flour"]
+add = ["pastry_dough", "bucket", "empty_pot"]
+ticks = 2
+message = "You mix the water and flour to make some pastry dough."
+
+[pastry_dough_bowl]
+skill = "cooking"
+xp = 1.0
+remove = ["bowl_of_water", "pot_of_flour"]
+add = ["pastry_dough", "bowl", "empty_pot"]
+ticks = 2
+message = "You mix the water and flour to make some pastry dough."
+
+[pastry_dough_jug]
+skill = "cooking"
+xp = 1.0
+remove = ["jug_of_water", "pot_of_flour"]
+add = ["pastry_dough", "jug", "empty_pot"]
+ticks = 2
+message = "You mix the water and flour to make some pastry dough."
+
+[pizza_base_bucket]
+skill = "cooking"
+level = 35
+remove = ["bucket_of_water", "pot_of_flour"]
+add = ["pizza_base", "bucket", "empty_pot"]
+ticks = 2
+message = "You mix the water and flour to make a pizza base."
+
+[pizza_base_bowl]
+skill = "cooking"
+level = 35
+remove = ["bowl_of_water", "pot_of_flour"]
+add = ["pizza_base", "bowl", "empty_pot"]
+ticks = 2
+message = "You mix the water and flour to make a pizza base."
+
+[pizza_base_jug]
+skill = "cooking"
+level = 35
+remove = ["jug_of_water", "pot_of_flour"]
+add = ["pizza_base", "jug", "empty_pot"]
+ticks = 2
+message = "You mix the water and flour to make a pizza base."
+
+[pitta_dough_bucket]
+skill = "cooking"
+level = 35
+xp = 1.0
+remove = ["bucket_of_water", "pot_of_flour"]
+add = ["pitta_dough", "bucket", "empty_pot"]
+ticks = 1
+message = "You mix the water and flour to make a pizza base."
+
+[pitta_dough_bowl]
+skill = "cooking"
+level = 35
+xp = 1.0
+remove = ["bowl_of_water", "pot_of_flour"]
+add = ["pitta_dough", "bowl", "empty_pot"]
+ticks = 1
+message = "You mix the water and flour to make a pizza base."
+
+[pitta_dough_jug]
+skill = "cooking"
+level = 35
+xp = 1.0
+remove = ["jug_of_water", "pot_of_flour"]
+add = ["pitta_dough", "jug", "empty_pot"]
+ticks = 1
+message = "You mix the water and flour to make a pizza base."
+
+[pie_shell]
+skill = "cooking"
+remove = ["pastry_dough", "pie_dish"]
+add = ["pie_shell"]
+ticks = 2
+message = "You put the pastry dough into the pie dish to make a pie shell."
+
+[uncooked_apple_pie]
+skill = "cooking"
+level = 30
+remove = ["cooking_apple", "pie_shell"]
+add = ["uncooked_apple_pie"]
+ticks = 2
+message = "You fill the pie with apple."
+
+[uncooked_meat_pie]
+skill = "cooking"
+level = 20
+remove = ["redberries", "pie_shell"]
+add = ["uncooked_meat_pie"]
+ticks = 2
+message = "You fill the pie with meat."
+
+[nettle_water]
+skill = "cooking"
+remove = ["bowl_of_water", "nettles"]
+add = ["nettle_water"]
+ticks = 2
+message = "You place the nettles into the bowl of water."
+
+[milky_nettle_tea]
+skill = "cooking"
+remove = ["nettle_tea", "bucket_of_milk"]
+add = ["milky_nettle_tea", "bucket"]
+ticks = 2
+sound = "drink"
+
+[cup_of_tea_nettle_tea]
+skill = "cooking"
+remove = ["empty_cup", "nettle_tea"]
+add = ["cup_of_tea_nettle_tea", "bowl"]
+ticks = 2
+sound = "drink"
+
+[cup_of_milky_nettle_tea]
+skill = "cooking"
+remove = ["empty_cup", "milky_nettle_tea"]
+add = ["cup_of_milky_tea", "bowl"]
+ticks = 2
+sound = "drink"
+
+[cup_of_milky_tea]
+skill = "cooking"
+remove = ["cup_of_tea_nettle_tea", "bucket_of_milk"]
+add = ["cup_of_milky_tea", "bucket"]
+ticks = 2
+sound = "drink"
+
+[ugthanki_kebab]
+skill = "cooking"
+level = 58
+xp = 40.0
+remove = ["kebab_mix", "pitta_bread"]
+add = ["ugthanki_kebab", "bowl"]
+ticks = 2
+
+[kebab_mix_ugthanki]
+skill = "cooking"
+level = 58
+remove = ["onion_and_tomato", "ugthanki_meat"]
+add = ["kebab_mix"]
+ticks = 2
+
+[kebab_mix_onion]
+skill = "cooking"
+level = 58
+remove = ["onion_and_tomato", "onion"]
+add = ["kebab_mix"]
+ticks = 2
+
+[kebab_mix_tomato]
+skill = "cooking"
+level = 58
+remove = ["onion_and_tomato", "tomato"]
+add = ["kebab_mix"]
+ticks = 2
+
+[super_kebab]
+remove = ["kebab", "red_hot_sauce"]
+add = ["super_kebab"]
+ticks = 2
+
+[super_ugthanki_kebab]
+remove = ["ugthanki_kebab", "red_hot_sauce"]
+add = ["super_kebab"]
+ticks = 2
+
+[super_kebab_smelling]
+remove = ["ugthanki_kebab_smelling", "red_hot_sauce"]
+add = ["super_kebab"]
+ticks = 2
+
+[coconut_milk]
+remove = ["vial", "coconut_open"]
+add = ["coconut_milk", "coconut_shell"]
+ticks = 4
+message = "You fill the vial with coconut milk."
+
+[coconut_open]
+requires = ["hammer"]
+remove = ["coconut"]
+add = ["coconut_open"]
+ticks = 4
+message = "You break the coconut with the hammer."
+
+[potato_with_butter]
+skill = "cooking"
+level = 39
+xp = 40.0
+remove = ["baked_potato", "pat_of_butter"]
+add = ["potato_with_butter"]
+ticks = 2
+message = "You add the butter to the potato."
+
+[potato_with_cheese]
+skill = "cooking"
+level = 47
+xp = 40.0
+remove = ["cheese", "potato_with_butter"]
+add = ["potato_with_cheese"]
+ticks = 2
+message = "You add the cheese to the potato."
+
+[chilli_potato]
+skill = "cooking"
+level = 41
+xp = 15.0
+remove = ["chilli_con_carne", "potato_with_butter"]
+add = ["chilli_potato", "bowl"]
+ticks = 2
+message = "You add the topping to the potato."
+
+[egg_potato]
+skill = "cooking"
+level = 51
+xp = 45.0
+remove = ["egg_and_tomato", "potato_with_butter"]
+add = ["egg_potato", "bowl"]
+ticks = 2
+message = "You add the topping to the potato."
+
+[mushroom_potato]
+skill = "cooking"
+level = 64
+xp = 55.0
+remove = ["mushroom_and_onion", "potato_with_butter"]
+add = ["mushroom_potato", "bowl"]
+ticks = 2
+message = "You add the topping to the potato."
+
+[tuna_potato]
+skill = "cooking"
+level = 68
+xp = 10.0
+remove = ["tuna_and_corn", "potato_with_butter"]
+add = ["tuna_potato", "bowl"]
+ticks = 2
+message = "You add the topping to the potato."
+
+[chilli_con_carne]
+skill = "cooking"
+xp = 25.0
+requires = ["knife"]
+remove = ["cooked_meat", "spicy_sauce"]
+add = ["chilli_con_carne"]
+ticks = 2
+message = "You chop up the meat and add it to the sauce in the bowl."
+
+[egg_and_tomato]
+skill = "cooking"
+level = 23
+remove = ["scrambled_egg", "tomato"]
+add = ["egg_and_tomato"]
+ticks = 2
+message = "You mix the ingredients to make the topping."
+
+[mushroom_and_onion]
+skill = "cooking"
+level = 57
+remove = ["fried_mushrooms", "fried_onions"]
+add = ["mushroom_and_onion", "bowl"]
+ticks = 2
+message = "You mix the ingredients to make the topping."
+
+[tuna_and_corn]
+skill = "cooking"
+level = 67
+requires = ["knife"]
+remove = ["chopped_tuna", "cooked_sweetcorn"]
+add = ["tuna_and_corn"]
+ticks = 2
+message = "You mix the ingredients to make the topping."
+
+[sweetcorn_and_tuna]
+skill = "cooking"
+level = 67
+requires = ["knife"]
+remove = ["sweetcorn_bowl", "tuna"]
+add = ["tuna_and_corn"]
+ticks = 2
+message = "You mix the ingredients to make the topping."
+
+[spicy_sauce]
+skill = "cooking"
+level = 9
+xp = 25.0
+remove = ["chopped_garlic", "gnome_spice"]
+add = ["spicy_sauce"]
+ticks = 2
+message = "You add the spices to the garlic to make a spicy sauce."
+
+[chopped_onion]
+skill = "cooking"
+type = "cut"
+requires = ["knife"]
+remove = ["bowl", "onion"]
+add = ["chopped_onion"]
+ticks = 2
+message = "You cut the onion into the bowl."
+
+[chopped_garlic]
+skill = "cooking"
+type = "cut"
+requires = ["knife"]
+remove = ["bowl", "garlic"]
+add = ["chopped_garlic"]
+ticks = 2
+message = "You chop the onion into the bowl."
+
+[uncooked_egg]
+skill = "cooking"
+remove = ["bowl", "egg"]
+add = ["uncooked_egg"]
+ticks = 2
+message = "You carefully break the egg into the bowl."
+
+[sliced_mushrooms]
+skill = "cooking"
+type = "cut"
+requires = ["knife"]
+remove = ["bowl", "bittercap_mushroom"]
+add = ["sliced_mushrooms"]
+ticks = 2
+message = "You slice the mushroom into the bowl."
+
+[sweetcorn_bowl]
+skill = "cooking"
+type = "cut"
+remove = ["bowl", "cooked_sweetcorn"]
+add = ["sweetcorn_bowl"]
+ticks = 2
+message = "You put the cooked sweetcorn into the bowl."

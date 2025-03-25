@@ -1,0 +1,65 @@
+[unicorn_dust]
+skill = "herblore"
+level = 1
+xp = 1.0
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["unicorn_horn"]
+add = ["unicorn_horn_dust"]
+animation = "pestle_and_mortar"
+message = "You crush the unicorn horn."
+
+[silver_dust]
+skill = "herblore"
+level = 1
+xp = 1.0
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["silver_bar"]
+add = ["silver_dust"]
+animation = "pestle_and_mortar"
+message = "You crush the silver bar."
+
+[kebbit_teeth_dust]
+skill = "herblore"
+level = 1
+xp = 1.0
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["kebbit_teeth"]
+add = ["kebbit_teeth_dust"]
+animation = "pestle_and_mortar"
+message = "You crush the kebbit teeth."
+
+[dragon_scale_dust]
+skill = "herblore"
+level = 1
+xp = 1.0
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["blue_dragon_scale"]
+add = ["dragon_scale_dust"]
+animation = "pestle_and_mortar"
+message = "You crush the blue dragon scales."
+
+[crushed_nest]
+skill = "herblore"
+level = 1
+xp = 1.0
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["birds_nest_empty"]
+add = ["crushed_nest"]
+animation = "pestle_and_mortar"
+message = "You crush the birds nest."
+
+[crushed_gem]
+skill = "herblore"
+level = 1
+xp = 1.0
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["uncut_opal"]
+add = ["crushed_gem"]
+animation = "pestle_and_mortar"
+message = "You crush the uncut opal."

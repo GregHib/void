@@ -1,0 +1,8 @@
+[seaweed_net]
+skill = "crafting"
+level = 52
+xp = 83.0
+remove = ["unfinished_net", "bronze_wire"]
+add = ["seaweed_net"]
+ticks = 2
+message = "You wire the net together to make a sturdy seaweed net."

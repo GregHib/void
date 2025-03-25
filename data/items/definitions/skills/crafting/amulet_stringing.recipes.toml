@@ -1,0 +1,56 @@
+[string_rabbit_foot]
+skill = "crafting"
+level = 37
+xp = 4.0
+ticks = 2
+remove = ["rabbit_foot", "ball_of_wool"]
+add = ["strung_rabbit_foot"]
+message = "You use the wool with the rabbit foot to make a lucky necklace."
+
+[string_gold_amulet]
+skill = "crafting"
+xp = 4.0
+ticks = 2
+remove = ["gold_amulet_unstrung", "ball_of_wool"]
+add = ["gold_amulet"]
+message = "You put some string on your amulet."
+
+[string_emerald_amulet]
+skill = "crafting"
+xp = 4.0
+ticks = 2
+remove = ["emerald_amulet_unstrung", "ball_of_wool"]
+add = ["emerald_amulet"]
+message = "You put some string on your amulet."
+
+[string_ruby_amulet]
+skill = "crafting"
+xp = 4.0
+ticks = 2
+remove = ["ruby_amulet_unstrung", "ball_of_wool"]
+add = ["ruby_amulet"]
+message = "You put some string on your amulet."
+
+[string_diamond_amulet]
+skill = "crafting"
+xp = 4.0
+ticks = 2
+remove = ["diamond_amulet_unstrung", "ball_of_wool"]
+add = ["diamond_amulet"]
+message = "You put some string on your amulet."
+
+[string_dragonstone_amulet]
+skill = "crafting"
+xp = 4.0
+ticks = 2
+remove = ["dragonstone_amulet_unstrung", "ball_of_wool"]
+add = ["dragonstone_amulet"]
+message = "You put some string on your amulet."
+
+[string_onyx_amulet]
+skill = "crafting"
+xp = 4.0
+ticks = 2
+remove = ["onyx_amulet_unstrung", "ball_of_wool"]
+add = ["onyx_amulet"]
+message = "You put some string on your amulet."

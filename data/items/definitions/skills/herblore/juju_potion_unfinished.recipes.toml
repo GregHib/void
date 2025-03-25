@@ -1,0 +1,149 @@
+[erzilla_potion_unf]
+skill = "herblore"
+level = 54
+xp = 1.0
+ticks = 2
+remove = ["juju_vial_of_water", "clean_erzille"]
+add = ["erzille_potion_unf"]
+animation = "mixing_potion"
+message = "You mix the erzille into your vial of water."
+
+[argway_potion_unf]
+skill = "herblore"
+level = 56
+xp = 1.0
+ticks = 2
+remove = ["juju_vial_of_water", "clean_argway"]
+add = ["argway_potion_unf"]
+animation = "mixing_potion"
+message = "You mix the argway into your vial of water."
+
+[ugune_potion_unf]
+skill = "herblore"
+level = 55
+xp = 1.0
+ticks = 2
+remove = ["juju_vial_of_water", "clean_ugune"]
+add = ["ugune_potion_unf"]
+animation = "mixing_potion"
+message = "You mix the ugune into your vial of water."
+
+[shengo_potion_unf]
+skill = "herblore"
+level = 57
+xp = 1.0
+ticks = 2
+remove = ["juju_vial_of_water", "clean_shengo"]
+add = ["shengo_potion_unf"]
+animation = "mixing_potion"
+message = "You mix the shengo into your vial of water."
+
+[samaden_potion_unf]
+skill = "herblore"
+level = 58
+xp = 1.0
+ticks = 2
+remove = ["juju_vial_of_water", "clean_samaden"]
+add = ["samaden_potion_unf"]
+animation = "mixing_potion"
+message = "You mix the samaden into your vial of water."
+
+[juju_mining_potion_finished]
+skill = "herblore"
+level = 74
+xp = 168.0
+ticks = 2
+remove = ["samaden_potion_unf", "draconic_vine"]
+add = ["juju_mining_potion_3"]
+animation = "mixing_potion"
+message = "You mix the draconic vine into your potion."
+
+[juju_guthix_gift_potion_finished]
+skill = "herblore"
+level = 75
+xp = 179.0
+ticks = 2
+remove = ["samaden_potion_unf", "guthix_vine"]
+add = ["guthixs_gift_3"]
+animation = "mixing_potion"
+message = "You mix the guthix vine into your potion."
+
+[juju_zamorak_favour_potion_finished]
+skill = "herblore"
+level = 75
+xp = 179.0
+ticks = 2
+remove = ["samaden_potion_unf", "zamorak_vine"]
+add = ["guthixs_gift_3"]
+animation = "mixing_potion"
+message = "You mix the zamorak vine into your potion."
+
+[juju_saradomin_potion_finished]
+skill = "herblore"
+level = 75
+xp = 179.0
+ticks = 2
+remove = ["samaden_potion_unf", "saradomin_vine"]
+add = ["saradomins_blessing_3"]
+animation = "mixing_potion"
+message = "You mix the saradomin vine into your potion."
+
+[juju_woodcutting_potion_finished]
+skill = "herblore"
+level = 71
+xp = 160.0
+ticks = 2
+remove = ["samaden_potion_unf", "oily_vine"]
+add = ["juju_woodcutting_potion_3"]
+animation = "mixing_potion"
+message = "You mix the oily vine into your potion."
+
+[juju_fishing_potion_finished]
+skill = "herblore"
+level = 70
+xp = 158.0
+ticks = 2
+remove = ["shengo_potion_unf", "aquatic_vine"]
+add = ["juju_fishing_potion_3"]
+animation = "mixing_potion"
+message = "You mix the aquatic vine into your potion."
+
+[juju_cooking_potion_finished]
+skill = "herblore"
+level = 67
+xp = 152.0
+ticks = 2
+remove = ["shengo_potion_unf", "plant_teeth"]
+add = ["juju_cooking_potion_3"]
+animation = "mixing_potion"
+message = "You mix the plant teeth into your potion."
+
+[juju_farming_potion_finished]
+skill = "herblore"
+level = 64
+xp = 146.0
+ticks = 2
+remove = ["ugune_potion_unf", "marble_vine"]
+add = ["juju_farming_potion_3"]
+animation = "mixing_potion"
+message = "You mix the ugune into your potion."
+
+[juju_hunter_potion_finished]
+skill = "herblore"
+level = 54
+xp = 123.0
+ticks = 2
+remove = ["erzille_potion_unf", "corrupt_vine"]
+add = ["juju_hunter_potion_3"]
+animation = "mixing_potion"
+message = "You mix the corrupt vine into your potion."
+
+[juju_scentless_potion_finished]
+skill = "herblore"
+level = 54
+xp = 123.0
+ticks = 2
+remove = ["argway_potion_unf", "shadow_vine"]
+add = ["scentless_potion_3"]
+animation = "mixing_potion"
+message = "You mix the erzille into your potion."

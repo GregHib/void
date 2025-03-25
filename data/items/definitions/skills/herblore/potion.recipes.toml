@@ -1,0 +1,469 @@
+[attack_potion_finished]
+skill = "herblore"
+level = 3
+xp = 1.0
+ticks = 2
+remove = ["guam_potion_unf", "eye_of_newt"]
+add = ["attack_potion_3"]
+animation = "mixing_potion"
+message = "You mix the eye of newt into your potion."
+
+[anti_poison_finished]
+skill = "herblore"
+level = 5
+xp = 37.5
+ticks = 2
+remove = ["marrentill_potion_unf", "unicorn_horn_dust"]
+add = ["antipoison_3"]
+animation = "mixing_potion"
+message = "You mix the unicorn dust into your potion."
+
+[strength_potion_finished]
+skill = "herblore"
+level = 12
+xp = 50.0
+ticks = 2
+remove = ["tarromin_potion_unf", "limpwurt_root"]
+add = ["strength_potion_3"]
+animation = "mixing_potion"
+message = "You mix the limpwurt root into your potion."
+
+[stat_restore_potion_finished]
+skill = "herblore"
+level = 12
+xp = 50.0
+ticks = 2
+remove = ["harralander_potion_unf", "red_spiders_eggs"]
+add = ["strength_potion_3"]
+animation = "mixing_potion"
+message = "You mix the limpwurt root into your potion."
+
+[guthix_balance_potion_finished]
+skill = "herblore"
+level = 22
+xp = 25.0
+ticks = 2
+remove = ["guthix_balance_unf_3", "silver_dust"]
+add = ["guthix_balance_3"]
+animation = "mixing_potion"
+message = "You mix the silver dust into your potion."
+
+[blamish_oil_finished]
+skill = "herblore"
+level = 25
+xp = 80.0
+ticks = 2
+remove = ["harralander_potion_unf", "blamish_snail_slime"]
+add = ["blamish_oil"]
+animation = "mixing_potion"
+message = "You mix the blamish snail slime into your potion."
+
+[energy_potion_finished]
+skill = "herblore"
+level = 26
+xp = 67.5
+ticks = 2
+remove = ["harralander_potion_unf", "chocolate_dust"]
+add = ["energy_potion_3"]
+animation = "mixing_potion"
+message = "You mix the chocolate dust into your potion."
+
+[defence_potion_finished]
+skill = "herblore"
+level = 30
+xp = 75.0
+ticks = 2
+remove = ["ranarr_potion_unf", "white_berries"]
+add = ["defence_potion_3"]
+animation = "mixing_potion"
+message = "You mix the white berries into your potion."
+
+[super_fishing_explosive_finished]
+skill = "herblore"
+level = 31
+xp = 55.0
+ticks = 2
+remove = ["guam_potion_unf", "rubium"]
+add = ["super_fishing_explosive"]
+animation = "mixing_potion"
+message = "You mix the rubium into your potion."
+
+[agility_potion_finished]
+skill = "herblore"
+level = 34
+xp = 80.0
+ticks = 2
+remove = ["toadflax_potion_unf", "toads_legs"]
+add = ["agility_potion_3"]
+animation = "mixing_potion"
+message = "You mix the toads legs into your potion."
+
+[combat_potion_finished_finished]
+skill = "herblore"
+level = 36
+xp = 84.0
+ticks = 2
+remove = ["harralander_potion_unf", "desert_goat_horn"]
+add = ["combat_potion_3"]
+animation = "mixing_potion"
+message = "You mix the desert goat horn into your potion."
+
+[prayer_potion_finished]
+skill = "herblore"
+level = 38
+xp = 87.5
+ticks = 2
+remove = ["ranarr_potion_unf", "snape_grass"]
+add = ["prayer_potion_3"]
+animation = "mixing_potion"
+message = "You mix the snape grass into your potion."
+
+[summoning_potion_finished]
+skill = "herblore"
+level = 40
+xp = 92.0
+ticks = 2
+remove = ["spirit_weed_potion_unf", "cockatrice_egg"]
+add = ["summoning_potion_3"]
+animation = "mixing_potion"
+message = "You mix the cockatrice egg into your potion."
+
+[crafting_potion_finished]
+skill = "herblore"
+level = 42
+xp = 95.0
+ticks = 2
+remove = ["wergali_potion_unf", "frog_spawn"]
+add = ["summoning_potion_3"]
+animation = "mixing_potion"
+message = "You mix the frog spawn into your potion."
+
+[super_attack_potion_finished]
+skill = "herblore"
+level = 45
+xp = 100.0
+ticks = 2
+remove = ["irit_potion_unf", "eye_of_newt"]
+add = ["super_attack_potion_3"]
+animation = "mixing_potion"
+message = "You mix the eye of newt into your potion."
+
+[vial_of_stench_finished]
+skill = "herblore"
+level = 46
+xp = 0.0
+ticks = 2
+remove = ["irit_potion_unf", "chopped_onion"]
+add = ["vial_of_stench"]
+animation = "mixing_potion"
+message = "You mix the chopped onion into your potion."
+
+[super_antipoison_potion_finished]
+skill = "herblore"
+level = 48
+xp = 106.3
+ticks = 2
+remove = ["irit_potion_unf", "unicorn_horn_dust"]
+add = ["super_antipoison_3"]
+animation = "mixing_potion"
+message = "You mix the unicorn horn dust into your potion."
+
+[fishing_potion_finished]
+skill = "herblore"
+level = 50
+xp = 112.5
+ticks = 2
+remove = ["avantoe_potion_unf", "snape_grass"]
+add = ["fishing_potion_3"]
+animation = "mixing_potion"
+message = "You mix the snape grass into your potion."
+
+[super_energy_potion_finished]
+skill = "herblore"
+level = 52
+xp = 117.5
+ticks = 2
+remove = ["avantoe_potion_unf", "mort_myre_fungus"]
+add = ["super_energy_potion_3"]
+animation = "mixing_potion"
+message = "You mix the mort myre fungus into your potion."
+
+[hunter_potion_finished]
+skill = "herblore"
+level = 53
+xp = 120.0
+ticks = 2
+remove = ["avantoe_potion_unf", "kebbit_teeth_dust"]
+add = ["hunter_potion_3"]
+animation = "mixing_potion"
+message = "You mix the kebbit teeth dust into your potion."
+
+[super_strength_potion_finished]
+skill = "herblore"
+level = 55
+xp = 125.0
+ticks = 2
+remove = ["kwuarm_potion_unf", "limpwurt_root"]
+add = ["super_strength_potion_3"]
+animation = "mixing_potion"
+message = "You mix the limpwurt root into your potion."
+
+[magic_essence_finished]
+skill = "herblore"
+level = 57
+xp = 130.0
+ticks = 2
+remove = ["magic_essence_unf", "gorak_claw_powder"]
+add = ["magic_essence_3"]
+animation = "mixing_potion"
+message = "You mix the gorak claw powder into your potion."
+
+[fletching_potion_finished_finished]
+skill = "herblore"
+level = 58
+xp = 132.0
+ticks = 2
+remove = ["wergali_potion_unf", "wimpy_feather"]
+add = ["fletching_potion_3"]
+animation = "mixing_potion"
+message = "You mix the wimpy feather into your potion."
+
+[weapon_poison_finished]
+skill = "herblore"
+level = 60
+xp = 137.5
+ticks = 2
+remove = ["kwuarm_potion_unf", "dragon_scale_dust"]
+add = ["weapon_poison_3"]
+animation = "mixing_potion"
+message = "You mix the dragon scale dust into your potion."
+
+[super_restore_finished]
+skill = "herblore"
+level = 63
+xp = 142.5
+ticks = 2
+remove = ["snapdragon_potion_unf", "red_spiders_eggs"]
+add = ["super_restore_3"]
+animation = "mixing_potion"
+message = "You mix the red spiderss eggs into your potion."
+
+[sanfew_mixture_1_of_4_finished]
+skill = "herblore"
+level = 65
+xp = 57.0
+ticks = 2
+remove = ["super_restore_4", "unicorn_horn_dust"]
+add = ["mixture_step_1_4"]
+animation = "mixing_potion"
+message = "You mix the unicorn horn dust into your potion."
+
+[sanfew_serum_1_finished]
+skill = "herblore"
+level = 65
+xp = 36.0
+ticks = 2
+remove = ["mixture_step_2_1", "nail_beast_nails"]
+add = ["sanfew_serum_1"]
+animation = "mixing_potion"
+message = "You mix the nail beast nails into your potion"
+
+[sanfew_serum_2_finished]
+skill = "herblore"
+level = 65
+xp = 48.0
+ticks = 2
+remove = ["mixture_step_2_2", "nail_beast_nails"]
+add = ["sanfew_serum_2"]
+animation = "mixing_potion"
+message = "You mix the nail beast nails into your potion"
+
+[sanfew_serum_3_finished]
+skill = "herblore"
+level = 65
+xp = 48.0
+ticks = 2
+remove = ["mixture_step_2_3", "nail_beast_nails"]
+add = ["sanfew_serum_3"]
+animation = "mixing_potion"
+message = "You mix the nail beast nails into your potion"
+
+[super_defence_potion_finished]
+skill = "herblore"
+level = 66
+xp = 150.0
+ticks = 2
+remove = ["cadantine_potion_unf", "white_berries"]
+add = ["cw_super_defence_potion_3"]
+animation = "mixing_potion"
+message = "You mix the white berries into your potion"
+
+["antipoison+_potion_finished"]
+skill = "herblore"
+level = 68
+xp = 155.0
+ticks = 2
+remove = ["antipoison+_unf", "yew_roots"]
+add = ["antipoison+_3"]
+animation = "mixing_potion"
+message = "You mix the yew roots into your potion"
+
+[anti_fire_potion_finished]
+skill = "herblore"
+level = 69
+xp = 157.5
+ticks = 2
+remove = ["lantadyme_potion_unf", "dragon_scale_dust"]
+add = ["anti_fire_potion_3"]
+animation = "mixing_potion"
+message = "You mix the dragon scale dust into your potion."
+
+[ranging_potion_finished]
+skill = "herblore"
+level = 72
+xp = 162.5
+ticks = 2
+remove = ["dwarf_weed_potion_unf", "wine_of_zamorak"]
+add = ["ranging_potion_3"]
+animation = "mixing_potion"
+message = "You mix the wine of zamorak into your potion"
+
+["weapon_poison+_finished"]
+skill = "herblore"
+level = 73
+xp = 137.5
+ticks = 2
+remove = ["weapon_poison+_unf", "red_spiders_eggs"]
+add = ["weapon_poison+_3"]
+animation = "mixing_potion"
+message = "You mix the wine of red spiders eggs into your potion"
+
+[magic_potion_finished]
+skill = "herblore"
+level = 76
+xp = 172.5
+ticks = 2
+remove = ["lantadyme_potion_unf", "potato_cactus"]
+add = ["magic_potion_3"]
+animation = "mixing_potion"
+message = "You mix the potato cactus into your potion"
+
+[zamorak_brew_finished]
+skill = "herblore"
+level = 78
+xp = 175.0
+ticks = 2
+remove = ["torstol_potion_unf", "jangerberries"]
+add = ["zamorak_brew_3"]
+animation = "mixing_potion"
+message = "You mix the janger berries into your potion"
+
+[saradomin_brew_finished]
+skill = "herblore"
+level = 81
+xp = 180.0
+ticks = 2
+remove = ["toadflax_potion_unf", "crushed_nest"]
+add = ["saradomin_brew_3"]
+animation = "mixing_potion"
+message = "You mix the crushed nest into your potion"
+
+["weapon_poison++_finished"]
+skill = "herblore"
+level = 82
+xp = 190.0
+ticks = 2
+remove = ["weapon_poison++_unf", "poison_ivy_berries"]
+add = ["saradomin_brew_3"]
+animation = "mixing_potion"
+message = "You mix the poison ivy berries into your potion"
+
+[recover_special_potion_finished]
+skill = "herblore"
+level = 84
+xp = 200.0
+ticks = 2
+remove = ["cw_super_energy_potion_3", "papaya_fruit"]
+add = ["recover_special_3"]
+animation = "mixing_potion"
+message = "You mix the papaya fruit into your potion"
+
+[super_anti_fire_finished]
+skill = "herblore"
+level = 85
+xp = 200.0
+ticks = 2
+remove = ["antifire_3", "phoenix_feather"]
+add = ["super_antifire_3"]
+animation = "mixing_potion"
+message = "You mix the phoenix feather into your potion"
+
+[extreme_attack_potion_finished]
+skill = "herblore"
+level = 88
+xp = 220.0
+ticks = 2
+remove = ["super_attack_3", "clean_avantoe"]
+add = ["extreme_attack_3"]
+animation = "mixing_potion"
+message = "You mix the avantoe leaf into your potion"
+
+[extreme_strength_potion_finished]
+skill = "herblore"
+level = 89
+xp = 230.0
+ticks = 2
+remove = ["super_strength_3", "clean_dwarf_weed"]
+add = ["extreme_strength_3"]
+animation = "mixing_potion"
+message = "You mix the dwarf weed into your potion"
+
+[extreme_defence_potion_finished]
+skill = "herblore"
+level = 90
+xp = 240.0
+ticks = 2
+remove = ["super_defence_3", "clean_lantadyme"]
+add = ["extreme_defence_3"]
+animation = "mixing_potion"
+message = "You mix the lantadyme leaf into your potion"
+
+[extreme_magic_potion_finished]
+skill = "herblore"
+level = 91
+xp = 250.0
+ticks = 2
+remove = ["super_magic_3", "ground_mud_runes"]
+add = ["extreme_magic_3"]
+animation = "mixing_potion"
+message = "You mix the ground mud runes into your potion"
+
+[extreme_ranging_potion_finished]
+skill = "herblore"
+level = 92
+xp = 250.0
+ticks = 2
+remove = ["super_ranging_3", "grenwall_spikes"]
+add = ["extreme_ranging_3"]
+animation = "mixing_potion"
+message = "You mix the grenwall spikes into your potion"
+
+[super_prayer_potion_finished]
+skill = "herblore"
+level = 94
+xp = 270.0
+ticks = 2
+remove = ["prayer_potion_3", "wyvern_bonemeal"]
+add = ["super_prayer_3"]
+animation = "mixing_potion"
+message = "You mix the wyvern bonemeal into your potion"
+
+[overload_potion_finished]
+skill = "herblore"
+level = 96
+xp = 1000.0
+ticks = 2
+remove = ["extreme_attack_3", "extreme_strength_3", "extreme_defence_3", "extreme_magic_3", "extreme_ranging_3", "clean_torstol"]
+add = ["overload_3"]
+animation = "mixing_potion"
+message = "You combine all of your potions together to make an overload potion"

@@ -1,0 +1,329 @@
+[agility_mix]
+skill = "herblore"
+level = 37
+xp = 27.0
+ticks = 2
+remove = ["agility_potion_2", "caviar"]
+add = ["agility_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your agility potion."
+
+[antifire_mix]
+skill = "herblore"
+level = 75
+xp = 53.0
+ticks = 2
+remove = ["antifire_potion_2", "caviar"]
+add = ["antifire_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your antifire potion."
+
+[antipoison_mix_r]
+skill = "herblore"
+level = 15
+xp = 1.2
+ticks = 2
+remove = ["antipoison_potion_2", "roe"]
+add = ["antipoison_mix_2"]
+animation = "mixing_potion"
+message = "You mix the roe into your antipoison potion."
+
+[antipoison_mix_c]
+skill = "herblore"
+level = 15
+xp = 1.2
+ticks = 2
+remove = ["antipoison_potion_2", "caviar"]
+add = ["antipoison_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your antipoison potion."
+
+[antipoison_plus_mix]
+skill = "herblore"
+level = 74
+xp = 52.0
+ticks = 2
+remove = ["antipoison_plus_potion_2", "caviar"]
+add = ["antipoison_plus_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your antipoison+ potion."
+
+[attack_mix_r]
+skill = "herblore"
+level = 4
+xp = 8.0
+ticks = 2
+remove = ["attack_potion_2", "roe"]
+add = ["attack_mix_2"]
+animation = "mixing_potion"
+message = "You mix the roe into your attack potion."
+
+[attack_mix_c]
+skill = "herblore"
+level = 4
+xp = 8.0
+ticks = 2
+remove = ["attack_potion_2", "caviar"]
+add = ["attack_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your attack potion."
+
+[combat_mix]
+skill = "herblore"
+level = 40
+xp = 28.0
+ticks = 2
+remove = ["combat_potion_2", "caviar"]
+add = ["combat_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your combat potion."
+
+[defence_mix]
+skill = "herblore"
+level = 11
+xp = 25.0
+ticks = 2
+remove = ["defence_potion_2", "caviar"]
+add = ["defence_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your defence potion."
+
+[energy_mix]
+skill = "herblore"
+level = 29
+xp = 23.0
+ticks = 2
+remove = ["energy_potion_2", "caviar"]
+add = ["energy_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your energy potion."
+
+[fishing_mix]
+skill = "herblore"
+level = 53
+xp = 38.0
+ticks = 2
+remove = ["fishing_potion_2", "caviar"]
+add = ["fishing_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your fishing potion."
+
+[hunting_mix]
+skill = "herblore"
+level = 58
+xp = 40.0
+ticks = 2
+remove = ["hunting_potion_2", "caviar"]
+add = ["hunting_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your hunting potion."
+
+[magic_mix_r]
+skill = "herblore"
+level = 7
+xp = 8.0
+ticks = 2
+remove = ["magic_potion_2", "roe"]
+add = ["magic_mix_2"]
+animation = "mixing_potion"
+message = "You mix the roe into your magic potion."
+
+[magic_mix_c]
+skill = "herblore"
+level = 7
+xp = 8.0
+ticks = 2
+remove = ["magic_potion_2", "caviar"]
+add = ["magic_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your magic potion."
+
+[magic_essence_mix]
+skill = "herblore"
+level = 61
+xp = 43.0
+ticks = 2
+remove = ["magic_essence_potion", "caviar"]
+add = ["magic_essence_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your magic essence potion."
+
+[ranging_mix_c]
+skill = "herblore"
+level = 5
+xp = 8.0
+ticks = 2
+remove = ["ranging_potion_2", "caviar"]
+add = ["ranging_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your ranging potion."
+
+[ranging_mix_r]
+skill = "herblore"
+level = 5
+xp = 8.0
+ticks = 2
+remove = ["ranging_potion_2", "roe"]
+add = ["ranging_mix_2"]
+animation = "mixing_potion"
+message = "You mix the roe into your ranging potion."
+
+[relicyms_mix_r]
+skill = "herblore"
+level = 9
+xp = 14.0
+ticks = 2
+remove = ["relicyms_potion_2", "roe"]
+add = ["relicyms_mix_2"]
+animation = "mixing_potion"
+message = "You mix the roe into your Relicym's potion."
+
+[relicyms_mix_c]
+skill = "herblore"
+level = 9
+xp = 14.0
+ticks = 2
+remove = ["relicyms_potion_2", "caviar"]
+add = ["relicyms_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your Relicym's potion."
+
+[restore_mix_r]
+skill = "herblore"
+level = 24
+xp = 21.0
+ticks = 2
+remove = ["restore_potion_2", "roe"]
+add = ["restore_mix_2"]
+animation = "mixing_potion"
+message = "You mix the roe into your restore potion."
+
+[restore_mix_c]
+skill = "herblore"
+level = 24
+xp = 21.0
+ticks = 2
+remove = ["restore_potion_2", "caviar"]
+add = ["restore_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your restore potion."
+
+[strength_mix_r]
+skill = "herblore"
+level = 9
+xp = 17.0
+ticks = 2
+remove = ["strength_potion_2", "roe"]
+add = ["strength_mix_2"]
+animation = "mixing_potion"
+message = "You mix the roe into your strength potion."
+
+[strength_mix_c]
+skill = "herblore"
+level = 9
+xp = 17.0
+ticks = 2
+remove = ["strength_potion_2", "caviar"]
+add = ["strength_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your strength potion."
+
+[prayer_mix]
+skill = "herblore"
+level = 42
+xp = 29.0
+ticks = 2
+remove = ["prayer_potion_2", "caviar"]
+add = ["prayer_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your prayer potion."
+
+[super_antipoison_mix]
+skill = "herblore"
+level = 51
+xp = 35.0
+ticks = 2
+remove = ["super_antipoison_potion_2", "caviar"]
+add = ["super_antipoison_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your super antipoison potion."
+
+[super_attack_mix]
+skill = "herblore"
+level = 47
+xp = 33.0
+ticks = 2
+remove = ["super_attack_potion_2", "caviar"]
+add = ["super_attack_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your super attack potion."
+
+[super_defence_mix]
+skill = "herblore"
+level = 71
+xp = 50.0
+ticks = 2
+remove = ["super_defence_potion_2", "caviar"]
+add = ["super_defence_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your super defence potion."
+
+[super_energy_mix]
+skill = "herblore"
+level = 56
+xp = 39.0
+ticks = 2
+remove = ["super_energy_potion_2", "caviar"]
+add = ["super_energy_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your super energy potion."
+
+[super_magic_mix]
+skill = "herblore"
+level = 83
+xp = 57.0
+ticks = 2
+remove = ["super_magic_potion_2", "caviar"]
+add = ["super_magic_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your super magic potion."
+
+[super_ranging_mix]
+skill = "herblore"
+level = 80
+xp = 54.0
+ticks = 2
+remove = ["super_ranging_potion_2", "caviar"]
+add = ["super_ranging_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your super ranging potion."
+
+[super_restore_mix]
+skill = "herblore"
+level = 67
+xp = 48.0
+ticks = 2
+remove = ["super_restore_potion_2", "caviar"]
+add = ["super_restore_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your super restore potion."
+
+[super_strength_mix]
+skill = "herblore"
+level = 59
+xp = 42.0
+ticks = 2
+remove = ["super_strength_potion_2", "caviar"]
+add = ["super_strength_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your super strength potion."
+
+[zamorak_mix]
+skill = "herblore"
+level = 85
+xp = 58.0
+ticks = 2
+remove = ["zamorak_potion_2", "caviar"]
+add = ["zamorak_mix_2"]
+animation = "mixing_potion"
+message = "You mix the caviar into your Zamorak potion."

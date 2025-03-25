@@ -1,0 +1,43 @@
+[guam_tar]
+skill = "herblore"
+level = 19
+xp = 30.0
+ticks = 3
+requires = ["pestle_and_mortar"]
+remove = [{ id = "clean_guam" }, { id = "swamp_tar", amount = 15 }]
+add = [{ id = "guam_tar", amount = 15 }]
+animation = "pestle_and_mortar"
+message = "You mix the guam leaf into the swamp tar."
+
+[marrentill_tar]
+skill = "herblore"
+level = 31
+xp = 42.5
+ticks = 3
+requires = ["pestle_and_mortar"]
+remove = [{ id = "clean_marrentill" }, { id = "swamp_tar", amount = 15 }]
+add = [{ id = "marrentill_tar", amount = 15 }]
+animation = "pestle_and_mortar"
+message = "You mix the marrentill leaf into the swamp tar."
+
+[tarromin_tar]
+skill = "herblore"
+level = 39
+xp = 55.0
+ticks = 3
+requires = ["pestle_and_mortar"]
+remove = [{ id = "clean_tarromin" }, { id = "swamp_tar", amount = 15 }]
+add = [{ id = "tarromin_tar", amount = 15 }]
+animation = "pestle_and_mortar"
+message = "You mix the tarromin leaf into the swamp tar."
+
+[harralander_tar]
+skill = "herblore"
+level = 44
+xp = 72.5
+ticks = 3
+requires = ["pestle_and_mortar"]
+remove = [{ id = "clean_harralander" }, { id = "swamp_tar", amount = 15 }]
+add = [{ id = "harralander_tar", amount = 15 }]
+animation = "pestle_and_mortar"
+message = "You mix the harralander leaf into the swamp tar."
