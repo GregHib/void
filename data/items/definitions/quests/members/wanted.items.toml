@@ -44,7 +44,7 @@ examine = "A vicious white dagger."
 [white_dagger_p_noted]
 id = 6594
 
-["white_dagger_p+"]
+[white_dagger_p+]
 id = 6595
 limit = 100
 weight = 0.453
@@ -52,10 +52,10 @@ slot = "Weapon"
 material = "metal"
 examine = "A vicious white dagger."
 
-["white_dagger_p+_noted"]
+[white_dagger_p+_noted]
 id = 6596
 
-["white_dagger_p++"]
+[white_dagger_p++]
 id = 6597
 limit = 100
 weight = 0.453
@@ -63,7 +63,7 @@ slot = "Weapon"
 material = "metal"
 examine = "A vicious white dagger."
 
-["white_dagger_p++_noted"]
+[white_dagger_p++_noted]
 id = 6598
 
 [white_halberd]

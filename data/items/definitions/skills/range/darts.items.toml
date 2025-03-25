@@ -165,7 +165,7 @@ weapon_type = "dart"
 slot = "Weapon"
 examine = "A deadly throwing dart with a black tip."
 
-["bronze_dart_p+"]
+[bronze_dart_p+]
 id = 5628
 limit = 1500
 attack_range = 3
@@ -173,7 +173,7 @@ weapon_type = "dart"
 slot = "Weapon"
 examine = "A deadly throwing dart with a bronze tip."
 
-["iron_dart_p+"]
+[iron_dart_p+]
 id = 5629
 limit = 1500
 attack_range = 3
@@ -181,7 +181,7 @@ weapon_type = "dart"
 slot = "Weapon"
 examine = "A deadly throwing dart with an iron tip."
 
-["steel_dart_p+"]
+[steel_dart_p+]
 id = 5630
 limit = 1500
 attack_range = 3
@@ -189,7 +189,7 @@ weapon_type = "dart"
 slot = "Weapon"
 examine = "A deadly throwing dart with a steel tip."
 
-["black_dart_p+"]
+[black_dart_p+]
 id = 5631
 limit = 1500
 attack_range = 3
@@ -197,7 +197,7 @@ weapon_type = "dart"
 slot = "Weapon"
 examine = "A deadly throwing dart with a black tip."
 
-["mithril_dart_p+"]
+[mithril_dart_p+]
 id = 5632
 limit = 1500
 attack_range = 3
@@ -205,7 +205,7 @@ weapon_type = "dart"
 slot = "Weapon"
 examine = "A deadly throwing dart with a mithril tip."
 
-["adamant_dart_p+"]
+[adamant_dart_p+]
 id = 5633
 limit = 1500
 attack_range = 3
@@ -213,7 +213,7 @@ weapon_type = "dart"
 slot = "Weapon"
 examine = "A deadly throwing dart with an adamant tip."
 
-["rune_dart_p+"]
+[rune_dart_p+]
 id = 5634
 limit = 1000
 attack_range = 3
@@ -221,7 +221,7 @@ weapon_type = "dart"
 slot = "Weapon"
 examine = "A deadly throwing dart with a rune tip."
 
-["bronze_dart_p++"]
+[bronze_dart_p++]
 id = 5635
 limit = 1500
 attack_range = 3
@@ -229,7 +229,7 @@ weapon_type = "dart"
 slot = "Weapon"
 examine = "A deadly throwing dart with a bronze tip."
 
-["iron_dart_p++"]
+[iron_dart_p++]
 id = 5636
 limit = 1500
 attack_range = 3
@@ -237,7 +237,7 @@ weapon_type = "dart"
 slot = "Weapon"
 examine = "A deadly throwing dart with an iron tip."
 
-["steel_dart_p++"]
+[steel_dart_p++]
 id = 5637
 limit = 1500
 attack_range = 3
@@ -245,7 +245,7 @@ weapon_type = "dart"
 slot = "Weapon"
 examine = "A deadly throwing dart with a steel tip."
 
-["black_dart_p++"]
+[black_dart_p++]
 id = 5638
 limit = 1500
 attack_range = 3
@@ -253,7 +253,7 @@ weapon_type = "dart"
 slot = "Weapon"
 examine = "A deadly throwing dart with a black tip."
 
-["mithril_dart_p++"]
+[mithril_dart_p++]
 id = 5639
 limit = 1500
 attack_range = 3
@@ -261,7 +261,7 @@ weapon_type = "dart"
 slot = "Weapon"
 examine = "A deadly throwing dart with a mithril tip."
 
-["adamant_dart_p++"]
+[adamant_dart_p++]
 id = 5640
 limit = 1500
 attack_range = 3
@@ -269,7 +269,7 @@ weapon_type = "dart"
 slot = "Weapon"
 examine = "A deadly throwing dart with an adamant tip."
 
-["rune_dart_p++"]
+[rune_dart_p++]
 id = 5641
 limit = 1000
 attack_range = 3
@@ -301,7 +301,7 @@ limit = 1000
 fletch_dart = { level = 95, xp = 25.0 }
 examine = "A deadly looking dragon dart tip - needs feathers for flight."
 
-["dragon_dart_p+"]
+[dragon_dart_p+]
 id = 11233
 limit = 1500
 attack_range = 3
@@ -309,7 +309,7 @@ weapon_type = "dart"
 slot = "Weapon"
 examine = "A deadly throwing dart with a dragon tip."
 
-["dragon_dart_p++"]
+[dragon_dart_p++]
 id = 11234
 limit = 1500
 attack_range = 3

@@ -32,11 +32,11 @@ limit = 10000
 slot = "Ammo"
 examine = "Great if you have a crossbow!"
 
-["bronze_bolts_p+"]
+[bronze_bolts_p+]
 clone = "bronze_bolts_p"
 id = 6061
 
-["bronze_bolts_p++"]
+[bronze_bolts_p++]
 clone = "bronze_bolts_p"
 id = 6062
 
@@ -229,15 +229,15 @@ slot = "Ammo"
 material = "metal"
 examine = "Silver crossbow bolts."
 
-["blurite_bolts_p+"]
+[blurite_bolts_p+]
 clone = "blurite_bolts"
 id = 9293
 
-["iron_bolts_p+"]
+[iron_bolts_p+]
 clone = "iron_bolts_p"
 id = 9294
 
-["steel_bolts_p+"]
+[steel_bolts_p+]
 id = 9295
 limit = 10000
 tradeable = false
@@ -246,47 +246,47 @@ material = "metal"
 examine = "Some poisoned steel bolts."
 kept = "Reclaim"
 
-["mithril_bolts_p+"]
+[mithril_bolts_p+]
 clone = "mithril_bolts_p"
 id = 9296
 
-["adamant_bolts_p+"]
+[adamant_bolts_p+]
 clone = "adamant_bolts_p"
 id = 9297
 
-["runite_bolts_p+"]
+[runite_bolts_p+]
 clone = "runite_bolts_p"
 id = 9298
 
-["silver_bolts_p+"]
+[silver_bolts_p+]
 clone = "silver_bolts_p"
 id = 9299
 
-["blurite_bolts_p++"]
+[blurite_bolts_p++]
 clone = "blurite_bolts"
 id = 9300
 
-["iron_bolts_p++"]
+[iron_bolts_p++]
 clone = "iron_bolts_p"
 id = 9301
 
-["steel_bolts_p++"]
+[steel_bolts_p++]
 clone = "steel_bolts_p"
 id = 9302
 
-["mithril_bolts_p++"]
+[mithril_bolts_p++]
 clone = "mithril_bolts_p"
 id = 9303
 
-["adamant_bolts_p++"]
+[adamant_bolts_p++]
 clone = "adamant_bolts_p"
 id = 9304
 
-["runite_bolts_p++"]
+[runite_bolts_p++]
 clone = "runite_bolts_p"
 id = 9305
 
-["silver_bolts_p++"]
+[silver_bolts_p++]
 clone = "silver_bolts_p"
 id = 9306
 
@@ -481,10 +481,10 @@ slot = "Ammo"
 material = "metal"
 examine = "Black crossbow bolts."
 
-["black_bolts_p+"]
+[black_bolts_p+]
 clone = "black_bolts_p"
 id = 13085
 
-["black_bolts_p++"]
+[black_bolts_p++]
 clone = "black_bolts_p"
 id = 13086

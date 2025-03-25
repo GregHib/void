@@ -18,7 +18,7 @@ destroy = "You can obtain another from Osman, or from Emir Ali Mirza after compl
 examine = "A mystical-feeling dagger."
 kept = "Reclaim"
 
-["keris_p+"]
+[keris_p+]
 id = 10583
 tradeable = false
 weight = 0.453
@@ -28,7 +28,7 @@ destroy = "You can obtain another from Osman, or from Emir Ali Mirza after compl
 examine = "A mystical-feeling dagger."
 kept = "Reclaim"
 
-["keris_p++"]
+[keris_p++]
 id = 10584
 tradeable = false
 weight = 0.453

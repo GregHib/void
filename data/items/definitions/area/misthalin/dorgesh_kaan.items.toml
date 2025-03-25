@@ -67,7 +67,7 @@ examine = "A powerful dagger."
 [bone_dagger_p_noted]
 id = 8875
 
-["bone_dagger_p+"]
+[bone_dagger_p+]
 id = 8876
 limit = 100
 weight = 0.453
@@ -78,7 +78,7 @@ examine = "A powerful dagger."
 [bone_dagger_p+_noted]
 id = 8877
 
-["bone_dagger_p++"]
+[bone_dagger_p++]
 id = 8878
 limit = 100
 weight = 0.453

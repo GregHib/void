@@ -84,51 +84,51 @@ limit = 10000
 slot = "Ammo"
 examine = "Arrows with rune heads."
 
-["bronze_arrow_p+"]
+[bronze_arrow_p+]
 clone = "bronze_arrow_p"
 id = 5616
 
-["iron_arrow_p+"]
+[iron_arrow_p+]
 clone = "iron_arrow_p"
 id = 5617
 
-["steel_arrow_p+"]
+[steel_arrow_p+]
 clone = "steel_arrow_p"
 id = 5618
 
-["mithril_arrow_p+"]
+[mithril_arrow_p+]
 clone = "mithril_arrow_p"
 id = 5619
 
-["adamant_arrow_p+"]
+[adamant_arrow_p+]
 clone = "adamant_arrow_p"
 id = 5620
 
-["rune_arrow_p+"]
+[rune_arrow_p+]
 clone = "rune_arrow_p"
 id = 5621
 
-["bronze_arrow_p++"]
+[bronze_arrow_p++]
 clone = "bronze_arrow_p"
 id = 5622
 
-["iron_arrow_p++"]
+[iron_arrow_p++]
 clone = "iron_arrow_p"
 id = 5623
 
-["steel_arrow_p++"]
+[steel_arrow_p++]
 clone = "steel_arrow_p"
 id = 5624
 
-["mithril_arrow_p++"]
+[mithril_arrow_p++]
 clone = "mithril_arrow_p"
 id = 5625
 
-["adamant_arrow_p++"]
+[adamant_arrow_p++]
 clone = "adamant_arrow_p"
 id = 5626
 
-["rune_arrow_p++"]
+[rune_arrow_p++]
 clone = "rune_arrow_p"
 id = 5627
 
@@ -160,10 +160,10 @@ limit = 10000
 slot = "Ammo"
 examine = "An arrow made using a dragon's talon."
 
-["dragon_arrow_p+"]
+[dragon_arrow_p+]
 clone = "dragon_arrow_p"
 id = 11228
 
-["dragon_arrow_p++"]
+[dragon_arrow_p++]
 clone = "dragon_arrow_p"
 id = 11229

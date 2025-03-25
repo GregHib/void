@@ -33,13 +33,13 @@ class ItemDefinitions(
                     equipment[def.id] = index++
                 }
             }
-            val clones = Object2ObjectOpenHashMap<String, String>()
-            val ids = Object2IntOpenHashMap<String>()
+            val clones = Object2ObjectOpenHashMap<String, String>(100)
+            val ids = Object2IntOpenHashMap<String>(18_000)
             ids.defaultReturnValue(-1)
             for (path in paths) {
                 Config.fileReader(path, 256) {
                     while (nextSection()) {
-                        val stringId = section().trim('"')
+                        val stringId = section()
                         var id = -1
                         val extras = Object2ObjectOpenHashMap<String, Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
                         while (nextPair()) {
@@ -52,7 +52,7 @@ class ItemDefinitions(
                                 }
                                 "slot" -> extras[key] = EquipSlot.valueOf(string())
                                 "type" -> extras[key] = EquipType.valueOf(string())
-                                "kept" -> extras[key] = ItemKept.valueOf(string())
+                                "kept" -> extras[key] = ItemKept.by(string())
                                 "smelting" -> extras[key] = Smelting(this)
                                 "smithing" -> extras[key] = Smithing(this)
                                 "fishing" -> extras[key] = Catch(this)

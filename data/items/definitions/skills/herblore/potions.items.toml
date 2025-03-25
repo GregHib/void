@@ -860,7 +860,7 @@ examine = "1 dose of super magic potion."
 [super_magic_potion_1_noted]
 id = 3047
 
-["weapon_poison+_unf"]
+[weapon_poison+_unf]
 id = 5936
 tradeable = false
 weight = 0.035
@@ -868,16 +868,16 @@ empty = "vial"
 examine = "A vial of coconut milk and a cactus spine."
 kept = "Reclaim"
 
-["weapon_poison+"]
+[weapon_poison+]
 id = 5937
 weight = 0.035
 empty = "vial"
 examine = "A vial of extra-strong weapon poison."
 
-["weapon_poison+_noted"]
+[weapon_poison+_noted]
 id = 5938
 
-["weapon_poison++_unf"]
+[weapon_poison++_unf]
 id = 5939
 tradeable = false
 weight = 0.035
@@ -885,16 +885,16 @@ empty = "vial"
 examine = "A vial of coconut milk and some deadly nightshade."
 kept = "Reclaim"
 
-["weapon_poison++"]
+[weapon_poison++]
 id = 5940
 weight = 0.035
 empty = "vial"
 examine = "A vial of super-strong weapon poison."
 
-["weapon_poison++_noted"]
+[weapon_poison++_noted]
 id = 5941
 
-["antipoison+_unf"]
+[antipoison+_unf]
 id = 5942
 tradeable = false
 weight = 0.035
@@ -902,7 +902,7 @@ empty = "vial"
 examine = "A vial of coconut milk and a toadflax."
 kept = "Reclaim"
 
-["antipoison+_4"]
+[antipoison+_4]
 id = 5943
 price = 1773
 excess = "antipoison+_3"
@@ -910,10 +910,10 @@ empty = "vial"
 examine = "4 doses of extra-strong antipoison potion."
 weight = 0.035
 
-["antipoison+_4_noted"]
+[antipoison+_4_noted]
 id = 5944
 
-["antipoison+_3"]
+[antipoison+_3]
 id = 5945
 price = 2312
 excess = "antipoison+_2"
@@ -921,10 +921,10 @@ empty = "vial"
 examine = "3 doses of extra-strong antipoison potion."
 weight = 0.035
 
-["antipoison+_3_noted"]
+[antipoison+_3_noted]
 id = 5946
 
-["antipoison+_2"]
+[antipoison+_2]
 id = 5947
 price = 1852
 excess = "antipoison+_1"
@@ -932,10 +932,10 @@ empty = "vial"
 examine = "2 doses of extra-strong antipoison potion."
 weight = 0.035
 
-["antipoison+_2_noted"]
+[antipoison+_2_noted]
 id = 5948
 
-["antipoison+_1"]
+[antipoison+_1]
 id = 5949
 price = 1685
 excess = "vial"
@@ -943,10 +943,10 @@ empty = "vial"
 examine = "1 dose of extra-strong antipoison potion."
 weight = 0.035
 
-["antipoison+_1_noted"]
+[antipoison+_1_noted]
 id = 5950
 
-["antipoison++_unf"]
+[antipoison++_unf]
 id = 5951
 tradeable = false
 weight = 0.035
@@ -954,7 +954,7 @@ empty = "vial"
 examine = "A vial of coconut milk and an irit."
 kept = "Reclaim"
 
-["antipoison++_4"]
+[antipoison++_4]
 id = 5952
 price = 2995
 excess = "antipoison++_3"
@@ -962,10 +962,10 @@ empty = "vial"
 examine = "4 doses of super-strong antipoison potion."
 weight = 0.035
 
-["antipoison++_4_noted"]
+[antipoison++_4_noted]
 id = 5953
 
-["antipoison++_3"]
+[antipoison++_3]
 id = 5954
 price = 2690
 excess = "antipoison++_2"
@@ -973,10 +973,10 @@ empty = "vial"
 examine = "3 doses of super-strong antipoison potion."
 weight = 0.035
 
-["antipoison++_3_noted"]
+[antipoison++_3_noted]
 id = 5955
 
-["antipoison++_2"]
+[antipoison++_2]
 id = 5956
 price = 1011
 excess = "antipoison++_1"
@@ -984,10 +984,10 @@ empty = "vial"
 examine = "2 doses of super-strong antipoison potion."
 weight = 0.035
 
-["antipoison++_2_noted"]
+[antipoison++_2_noted]
 id = 5957
 
-["antipoison++_1"]
+[antipoison++_1]
 id = 5958
 price = 940
 excess = "vial"
@@ -995,7 +995,7 @@ empty = "vial"
 examine = "1 dose of super-strong antipoison potion."
 weight = 0.035
 
-["antipoison++_1_noted"]
+[antipoison++_1_noted]
 id = 5959
 
 [compost_potion_4]

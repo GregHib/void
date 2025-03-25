@@ -83,14 +83,14 @@ weight = 0.453
 examine = "Just landed shot."
 kept = "Reclaim"
 
-["18lb_shot"]
+[18lb_shot]
 id = 8858
 tradeable = false
 weight = 8.164
 examine = "Just landed 18lb shot."
 kept = "Vanish"
 
-["22lb_shot"]
+[22lb_shot]
 id = 8859
 tradeable = false
 weight = 9.979

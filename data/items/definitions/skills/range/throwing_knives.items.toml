@@ -130,7 +130,7 @@ weapon_type = "knife"
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
 
-["bronze_knife_p+"]
+[bronze_knife_p+]
 id = 5654
 limit = 10000
 attack_range = 4
@@ -138,7 +138,7 @@ weapon_type = "knife"
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
 
-["iron_knife_p+"]
+[iron_knife_p+]
 id = 5655
 limit = 10000
 attack_range = 4
@@ -146,7 +146,7 @@ weapon_type = "knife"
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
 
-["steel_knife_p+"]
+[steel_knife_p+]
 id = 5656
 limit = 10000
 attack_range = 4
@@ -154,7 +154,7 @@ weapon_type = "knife"
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
 
-["mithril_knife_p+"]
+[mithril_knife_p+]
 id = 5657
 limit = 10000
 attack_range = 4
@@ -162,7 +162,7 @@ weapon_type = "knife"
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
 
-["black_knife_p+"]
+[black_knife_p+]
 id = 5658
 limit = 10000
 attack_range = 4
@@ -170,7 +170,7 @@ weapon_type = "knife"
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
 
-["adamant_knife_p+"]
+[adamant_knife_p+]
 id = 5659
 limit = 10000
 attack_range = 4
@@ -178,7 +178,7 @@ weapon_type = "knife"
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
 
-["rune_knife_p+"]
+[rune_knife_p+]
 id = 5660
 limit = 10000
 attack_range = 4
@@ -186,7 +186,7 @@ weapon_type = "knife"
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
 
-["bronze_knife_p++"]
+[bronze_knife_p++]
 id = 5661
 limit = 10000
 attack_range = 4
@@ -194,7 +194,7 @@ weapon_type = "knife"
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
 
-["iron_knife_p++"]
+[iron_knife_p++]
 id = 5662
 limit = 10000
 attack_range = 4
@@ -202,7 +202,7 @@ weapon_type = "knife"
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
 
-["steel_knife_p++"]
+[steel_knife_p++]
 id = 5663
 limit = 10000
 attack_range = 4
@@ -210,7 +210,7 @@ weapon_type = "knife"
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
 
-["mithril_knife_p++"]
+[mithril_knife_p++]
 id = 5664
 limit = 10000
 attack_range = 4
@@ -218,7 +218,7 @@ weapon_type = "knife"
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
 
-["black_knife_p++"]
+[black_knife_p++]
 id = 5665
 limit = 10000
 attack_range = 4
@@ -226,7 +226,7 @@ weapon_type = "knife"
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
 
-["adamant_knife_p++"]
+[adamant_knife_p++]
 id = 5666
 limit = 10000
 attack_range = 4
@@ -234,7 +234,7 @@ weapon_type = "knife"
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
 
-["rune_knife_p++"]
+[rune_knife_p++]
 id = 5667
 limit = 10000
 attack_range = 4

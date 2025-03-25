@@ -196,7 +196,7 @@ weight = 0.5
 examine = "It's a very ancient skull from some kind of ape."
 kept = "Reclaim"
 
-["10th_squad_sigil"]
+[10th_squad_sigil]
 id = 4035
 tradeable = false
 weight = 0.085
