@@ -8,11 +8,11 @@ import java.io.*
 object Config {
 
     fun fileReader(path: String, maxStringLength: Int = 100, block: ConfigReader.() -> Unit) {
-        ConfigReader(BufferedInputStream(FileInputStream(path)), maxStringLength).use(block)
+        ConfigReader(BufferedInputStream(FileInputStream(path)), maxStringLength, path).use(block)
     }
 
     fun fileReader(file: File, maxStringLength: Int = 100, block: ConfigReader.() -> Unit) {
-        ConfigReader(BufferedInputStream(FileInputStream(file)), maxStringLength).use(block)
+        ConfigReader(BufferedInputStream(FileInputStream(file)), maxStringLength, file.path).use(block)
     }
 
     fun stringReader(string: String, maxStringLength: Int = 100, block: ConfigReader.() -> Unit) {
