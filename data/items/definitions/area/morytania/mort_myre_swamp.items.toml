@@ -328,10 +328,6 @@ tradeable = false
 examine = "It looks like it's seen one too many fires."
 kept = "Reclaim"
 
-[tinderbox_17]
-clone = "tinderbox_2"
-id = 3384
-
 [splitbark_helm]
 id = 3385
 price = 6203
