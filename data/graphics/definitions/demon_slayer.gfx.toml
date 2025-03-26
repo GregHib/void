@@ -1,0 +1,16 @@
+[traiborn_bone_spell]
+id = 777
+
+[demon_slayer_spell]
+id = 782
+height = 0
+flight_time = [ -1, -1, 30, 30 ]
+
+[demon_slayer_spell_impact]
+id = 783
+
+[silverlight_sparkle]
+id = 778
+
+[toss_water]
+id = 779

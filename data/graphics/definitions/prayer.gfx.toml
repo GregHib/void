@@ -1,0 +1,13 @@
+[retribution]
+id = 437
+
+[retribution_splash]
+id = 438
+flight_time = [ 10 ]
+delay = 10
+
+[redemption]
+id = 436
+
+[activate_protect_item]
+id = 2213

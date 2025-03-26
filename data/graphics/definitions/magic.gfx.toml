@@ -1,0 +1,622 @@
+[wind_spell_cast]
+id = 457
+
+[wind_rush]
+id = 458
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[wind_rush_impact]
+id = 463
+height = 60
+
+[wind_strike]
+id = 458
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[wind_strike_impact]
+id = 463
+height = 60
+
+[wind_bolt]
+id = 459
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[wind_bolt_impact]
+id = 464
+height = 60
+
+[wind_blast]
+id = 460
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[wind_blast_impact]
+id = 1863
+height = 60
+
+[wind_wave]
+id = 461
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[wind_wave_impact]
+id = 2699
+height = 60
+
+[wind_surge]
+id = 461
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[wind_surge_impact]
+id = 2700
+height = 60
+
+[water_spell_cast]
+id = 2701
+
+[water_spell_staff_cast]
+id = 2702
+
+[water_strike]
+id = 2703
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[water_strike_impact]
+id = 2708
+height = 60
+
+[water_bolt]
+id = 2704
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[water_bolt_impact]
+id = 2709
+height = 60
+
+[water_blast]
+id = 2705
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[water_blast_impact]
+id = 2710
+height = 60
+
+[water_wave]
+id = 2706
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[water_wave_impact]
+id = 2711
+height = 60
+
+[water_surge]
+id = 2707
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[water_surge_impact]
+id = 2711
+height = 60
+
+[earth_strike_cast]
+id = 2713
+
+[earth_strike]
+id = 2718
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[earth_strike_impact]
+id = 2723
+height = 60
+
+[earth_bolt_cast]
+id = 2714
+
+[earth_bolt]
+id = 2719
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[earth_bolt_impact]
+id = 2724
+height = 60
+
+[earth_blast_cast]
+id = 2715
+
+[earth_blast]
+id = 2720
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[earth_blast_impact]
+id = 2725
+height = 60
+
+[earth_wave_cast]
+id = 2716
+
+[earth_wave]
+id = 2721
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[earth_wave_impact]
+id = 2726
+height = 60
+
+[earth_surge_cast]
+id = 2717
+
+[earth_surge]
+id = 2722
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[earth_surge_impact]
+id = 2727
+height = 60
+
+[fire_spell_cast]
+id = 2728
+
+[fire_strike]
+id = 2729
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[fire_strike_impact]
+id = 2737
+height = 60
+
+[fire_bolt]
+id = 2730
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[fire_bolt_impact]
+id = 2738
+height = 60
+
+[fire_blast_1]
+id = 2732
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[fire_blast_2]
+id = 2733
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[fire_blast_impact]
+id = 2739
+height = 60
+
+[fire_wave_1]
+id = 2734
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[fire_wave_2]
+id = 2735
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[fire_wave_impact]
+id = 2740
+height = 60
+
+[fire_surge_1]
+id = 2736
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[fire_surge_2]
+id = 2735
+delay = 51
+height = -4
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[fire_surge_impact]
+id = 2741
+height = 60
+
+[crumble_undead_cast]
+id = 145
+height = 60
+
+[crumble_undead]
+id = 146
+delay = 46
+height = 4
+end_height = 4
+curve = 16
+flight_time = [ 5, 10, 15, 20, 25, 30, 35 ]
+
+[crumble_undead_impact]
+id = 147
+height = 60
+
+[iban_blast_cast]
+id = 87
+height = 60
+
+[iban_blast]
+id = 88
+delay = 60
+height = 14
+end_height = 2
+offset = 1
+curve = 16
+flight_time = [ -1, 6, 16, 26, 36, 46, 56, 66, 76, 86 ]
+
+[iban_blast_impact]
+id = 89
+height = 60
+
+[magic_dart_cast]
+id = 327
+height = 60
+
+[magic_dart]
+id = 328
+delay = 51
+height = 4
+end_height = -4
+curve = 16
+offset = 1
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[magic_dart_impact]
+id = 329
+height = 60
+
+[saradomin_strike_impact]
+id = 76
+height = 60
+
+[claws_of_guthix_impact]
+id = 77
+height = 60
+
+[flames_of_zamorak_impact]
+id = 78
+height = 60
+
+[confuse_cast]
+id = 102
+height = 60
+
+[confuse]
+id = 103
+delay = 61
+height = 3
+curve = 16
+flight_time = [ -1, 5, 15, 25, 35, 45, 55, 65, 75, 85 ]
+
+[confuse_impact]
+id = 104
+height = 60
+
+[weaken_cast]
+id = 105
+height = 60
+
+[weaken]
+id = 106
+delay = 44
+height = 3
+end_height = -2
+curve = 16
+flight_time = [ 12, 22, 32, 42, 52, 62, 72, 82, 92, 102 ]
+
+[weaken_impact]
+id = 107
+height = 60
+
+[curse_cast]
+id = 108
+height = 60
+
+[curse]
+id = 109
+delay = 51
+height = 4
+curve = 16
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[curse_impact]
+id = 110
+height = 60
+
+[bind_cast]
+id = 177
+height = 60
+
+[bind]
+id = 178
+delay = 75
+height = 4
+curve = 16
+flight_time = [ -1, -1, 1, 11, 21, 31, 41, 51, 61, 71 ]
+
+[bind_impact]
+id = 181
+height = 60
+
+[snare_impact]
+id = 180
+height = 60
+
+[entangle_impact]
+id = 179
+height = 60
+
+[vulnerability_cast]
+id = 167
+height = 60
+
+[vulnerability]
+id = 168
+delay = 34
+height = 4
+curve = 16
+flight_time = [ 22, 32, 42, 52, 62, 72, 82, 92, 102, 112 ]
+
+[vulnerability_impact]
+id = 169
+height = 60
+
+[enfeeble_cast]
+id = 170
+height = 60
+
+[enfeeble]
+id = 171
+delay = 48
+end_height = -4
+curve = 16
+flight_time = [ 8, 18, 28, 38, 48, 58, 68, 78, 88, 98 ]
+
+[enfeeble_impact]
+id = 172
+height = 60
+
+[stun_cast]
+id = 173
+height = 60
+
+[stun]
+id = 174
+delay = 52
+height = -2
+end_height = 4
+curve = 16
+flight_time = [ 4, 14, 24, 34, 44, 54, 64, 74, 84, 94 ]
+
+[stun_impact]
+id = 348
+height = 60
+
+[stun_long]
+id = 245
+height = 60
+
+[teleport_block_cast]
+id = 1841
+
+[teleport_block]
+id = 1842
+delay = 52
+end_height = -4
+curve = 16
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[teleport_block_impact]
+id = 1843
+height = 60
+
+[smoke_rush]
+id = 384
+delay = 51
+curve = 16
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[smoke_rush_impact]
+id = 385
+
+[smoke_burst_impact]
+id = 389
+
+[smoke_blitz]
+id = 386
+delay = 51
+curve = 16
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[smoke_blitz_impact]
+id = 387
+
+[smoke_barrage_impact]
+id = 391
+
+[shadow_rush]
+id = 378
+delay = 51
+curve = 16
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[shadow_rush_impact]
+id = 379
+
+[shadow_burst_impact]
+id = 382
+
+[shadow_blitz]
+id = 380
+delay = 51
+curve = 16
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[shadow_blitz_impact]
+id = 381
+
+[shadow_barrage_impact]
+id = 383
+
+[blood_rush]
+id = 372
+delay = 51
+curve = 16
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[blood_rush_impact]
+id = 373
+
+[blood_burst_impact]
+id = 376
+
+[blood_blitz]
+id = 375
+delay = 51
+curve = 16
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[blood_blitz_impact]
+id = 374
+
+[blood_barrage_impact]
+id = 377
+
+[ice_rush]
+id = 360
+delay = 51
+curve = 16
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[ice_rush_impact]
+id = 361
+
+[ice_burst_impact]
+id = 363
+
+[ice_blitz]
+id = 368
+delay = 51
+curve = 16
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[ice_blitz_impact]
+id = 367
+
+[ice_barrage_impact]
+id = 369
+
+[miasmic_rush_cast]
+id = 1845
+
+[miasmic_rush]
+id = 1846
+delay = 51
+curve = 16
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[miasmic_rush_impact]
+id = 1847
+
+[miasmic_burst_cast]
+id = 1848
+
+[miasmic_burst_impact]
+id = 1849
+
+[miasmic_blitz_cast]
+id = 1850
+
+[miasmic_blitz]
+id = 1852
+delay = 51
+curve = 16
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[miasmic_blitz_impact]
+id = 1851
+
+[miasmic_barrage_cast]
+id = 1853
+
+[miasmic_barrage_impact]
+id = 1854
+
+[bone_offering]
+id = 624
+
+[vengeance]
+id = 726
+height = 60
+
+[vengeance_other]
+id = 725
+height = 60
+
+[cure_other]
+id = 745
+height = 60
+
+[cure_me]
+id = 748
+height = 60
+
+[cure_group]
+id = 744
+height = 60
+
+[heal_other]
+id = 734
+height = 60
+
+[heal_group]
+id = 736
+height = 60
+
+[energy_transfer]
+id = 738
+height = 60
+
+[telekinetic_grab]
+id = 143
+delay = 48
+curve = 16
+flight_time = [ 8, 18, 28, 38, 48, 58, 68, 78, 88, 98 ]

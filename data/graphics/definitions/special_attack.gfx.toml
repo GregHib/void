@@ -1,0 +1,165 @@
+[seercull_special_shoot]
+id = 472
+height = 60
+
+[seercull_special_arrow]
+id = 473
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40 ]
+
+[seercull_special_impact]
+id = 474
+
+[zamorak_bow_special_impact]
+id = 127
+
+[saradomin_bow_special_impact]
+id = 128
+
+[guthix_bow_special_impact]
+id = 129
+
+[saradomin_bow_restoration]
+id = 93
+
+[energy_drain_impact]
+id = 2108
+height = 60
+
+[smash_special]
+id = 1840
+
+[rampage_special]
+id = 246
+
+[slice_and_dice_special]
+id = 1950
+
+[puncture_special]
+id = 252
+height = 60
+
+[cleave_special]
+id = 2117
+height = 60
+
+[shatter_special]
+id = 251
+height = 60
+
+[the_judgement_special]
+id = 2113
+
+[sanctuary_special]
+id = 247
+
+[sever_special]
+id = 2118
+height = 60
+
+[saradomins_lightning_impact]
+id = 1194
+
+[favour_of_the_war_god_special]
+id = 1052
+
+[liquify_special]
+id = 1048
+height = 60
+
+[backstab_special]
+id = 704
+
+[sunder_special]
+id = 1027
+
+[warstrike_special]
+id = 2114
+
+[healing_blade_special]
+id = 2109
+
+[ice_cleave_special]
+id = 1221
+
+[ice_cleave_impact]
+id = 2104
+
+[sweep_special]
+id = 282
+height = 60
+
+[powerstab_special]
+id = 1225
+
+[shove_special]
+id = 253
+height = 60
+
+[dragon_spear_stun]
+id = 254
+
+[quick_smash_special]
+id = 340
+height = 60
+
+[clobber_special]
+id = 479
+
+[disrupt_special]
+id = 1729
+
+[disrupt_impact]
+id = 1730
+
+[weaken_special]
+id = 483
+
+[impale_special]
+id = 274
+height = 60
+
+[spear_wall_special]
+id = 1835
+
+[power_of_light_special]
+id = 2319
+
+[power_of_light_impact]
+id = 2320
+
+[dragonfire_shield_discharge]
+id = 1166
+delay = 80
+curve = 0
+flight_time = [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 ]
+
+[guthans_effect]
+id = 398
+height = 50
+
+[torags_effect]
+id = 399
+height = 50
+
+[ahrims_effect]
+id = 400
+height = 50
+
+[karils_effect]
+id = 401
+height = 50
+
+[salamander_scorch]
+id = 953
+height = 40
+
+[salamander_flare]
+id = 953
+height = 40
+
+[salamander_blaze]
+id = 953
+height = 40
