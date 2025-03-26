@@ -44,7 +44,7 @@ defaults = [
     { id = "hammer", amount = 10 },
 ]
 
-[dagas_scimitar_smithy]
+[dagas_scimitar_smithy_monkey_madness]
 id = 251
 defaults = [
     { id = "bronze_scimitar", amount = 10 },
@@ -52,4 +52,13 @@ defaults = [
     { id = "steel_scimitar", amount = 10 },
     { id = "mithril_scimitar", amount = 10 },
     { id = "dragon_scimitar", amount = 10 },
+]
+
+[dagas_scimitar_smithy]
+id = 224
+defaults = [
+    { id = "bronze_scimitar", amount = 10 },
+    { id = "iron_scimitar", amount = 10 },
+    { id = "steel_scimitar", amount = 10 },
+    { id = "mithril_scimitar", amount = 10 },
 ]

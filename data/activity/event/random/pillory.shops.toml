@@ -1,0 +1,5 @@
+[pelters_veg_stall]
+id = 135
+defaults = [
+    { id = "rotten_tomato", amount = 100 },
+]

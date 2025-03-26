@@ -1,0 +1,14 @@
+[trade_offer]
+id = 90
+width = 4
+height = 7
+
+[returned_lent_items]
+id = 540
+width = 0
+height = 1
+
+[item_loan]
+id = 541
+width = 0
+height = 1

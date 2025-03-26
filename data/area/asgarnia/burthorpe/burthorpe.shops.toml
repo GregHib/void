@@ -19,7 +19,40 @@ defaults = [
     { id = "empty_cup", amount = 10 },
 ]
 
+[toad_and_chicken]
+id = 149
+defaults = [
+    { id = "asgarnian_ale", amount = 10 },
+    { id = "wizards_mind_bomb", amount = 10 },
+    { id = "dwarven_stout", amount = 10 },
+]
+
 [slayer_equipment]
+id = 231
+defaults = [
+    { id = "enchanted_gem", amount = 300 },
+    { id = "mirror_shield", amount = 10 },
+    { id = "leaf_bladed_spear", amount = 10 },
+    { id = "broad_arrow", amount = 3000 },
+    { id = "bag_of_salt", amount = 1000 },
+    { id = "rock_hammer", amount = 10 },
+    { id = "face_mask", amount = 10 },
+    { id = "earmuffs", amount = 10 },
+    { id = "nose_peg", amount = 10 },
+    { id = "slayers_staff", amount = 10 },
+    { id = "spiny_helmet", amount = 10 },
+    { id = "fishing_explosive", amount = 1000 },
+    { id = "ice_cooler", amount = 1000 },
+    { id = "slayer_gloves", amount = 10 },
+    { id = "unlit_bug_lantern", amount = 10 },
+    { id = "insulated_boots", amount = 10 },
+    { id = "fungicide_spray_10", amount = 10 },
+    { id = "fungicide", amount = 1000 },
+    { id = "witchwood_icon", amount = 10 },
+    { id = "slayer_bell", amount = 10 },
+]
+
+[slayer_equipment_broads]
 id = 538
 defaults = [
     { id = "enchanted_gem", amount = 300 },

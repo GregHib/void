@@ -1,0 +1,5 @@
+[fredas_boots]
+id = 569
+defaults = [
+    { id = "rock_climbing_boots", amount = 30 },
+]

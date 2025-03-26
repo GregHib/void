@@ -32,3 +32,18 @@ defaults = [
     { id = "choc_ice", amount = 10 },
     { id = "chocolate_bar", amount = 10 },
 ]
+
+[nardah_hunter_shop]
+id = 484
+defaults = [
+    { id = "butterfly_net", amount = 10 },
+    { id = "butterfly_jar", amount = 300 },
+    { id = "magic_box", amount = 300 },
+    { id = "noose_wand", amount = 10 },
+    { id = "bird_snare", amount = 30 },
+    { id = "box_trap", amount = 30 },
+    { id = "teasing_stick", amount = 10 },
+    { id = "unlit_torch", amount = 10 },
+    { id = "rabbit_snare", amount = 30 },
+    { id = "grenwall_spikes", amount = 0 },
+]

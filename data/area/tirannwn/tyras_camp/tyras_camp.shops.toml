@@ -1,4 +1,4 @@
-[quartermasters_stores]
+[quartermasters_stores_regicide]
 id = 160
 defaults = [
     { id = "empty_pot", amount = 30 },
@@ -14,4 +14,21 @@ defaults = [
     { id = "adamant_halberd", amount = 10 },
     { id = "rune_halberd", amount = 10 },
     { id = "dragon_halberd", amount = 10 },
+]
+
+[quartermasters_stores]
+id = 159
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "shears", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "bread", amount = 10 },
+    { id = "bronze_halberd", amount = 10 },
+    { id = "iron_halberd", amount = 10 },
+    { id = "steel_halberd", amount = 10 },
+    { id = "black_halberd", amount = 10 },
+    { id = "mithril_halberd", amount = 10 },
+    { id = "adamant_halberd", amount = 10 },
+    { id = "rune_halberd", amount = 10 },
 ]

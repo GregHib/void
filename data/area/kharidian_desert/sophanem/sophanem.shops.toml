@@ -1,5 +1,5 @@
 [jamilas_craft_stall]
-id = 32
+id = 491
 defaults = [
     { id = "chisel", amount = 10 },
     { id = "ring_mould", amount = 10 },
@@ -10,7 +10,6 @@ defaults = [
     { id = "holy_mould", amount = 10 },
     { id = "sickle_mould", amount = 10 },
     { id = "tiara_mould", amount = 10 },
-    { id = "bolt_mould", amount = 10 },
     { id = "bracelet_mould", amount = 10 },
 ]
 
@@ -48,13 +47,24 @@ defaults = [
     { id = "antipoison_3", amount = 10 },
 ]
 
-[raetul_and_cos_cloth_store]
+[raetul_and_cos_cloth_store_contact]
 id = 495
 defaults = [
     { id = "linen", amount = 10 },
     { id = "desert_shirt", amount = 10 },
     { id = "desert_robe", amount = 10 },
     { id = "desert_boots", amount = 10 },
+    { id = "silk", amount = 10 },
+    { id = "thread", amount = 1000 },
+    { id = "needle", amount = 10 },
+]
+
+[raetul_and_cos_cloth_store]
+id = 258
+defaults = [
+    { id = "linen", amount = 10 },
+    { id = "desert_shirt", amount = 10 },
+    { id = "desert_robe", amount = 10 },
     { id = "silk", amount = 10 },
     { id = "thread", amount = 1000 },
     { id = "needle", amount = 10 },

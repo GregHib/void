@@ -54,6 +54,13 @@ defaults = [
     { id = "adamant_dagger", amount = 10 },
 ]
 
+[varrock_sword_shop_sample]
+id = 555
+defaults = [
+    { id = "bronze_sword", amount = 1 },
+]
+
+
 [lowes_archery_emporium]
 id = 7
 defaults = [
@@ -210,6 +217,31 @@ defaults = [
     { id = "summer_pie", amount = 0 },
     { id = "pot_of_flour", amount = 100 },
     { id = "pie_dish", amount = 100 },
+]
+
+[custom_fur_clothing]
+id = 482
+defaults = [
+    { id = "polar_camo_top", amount = 1 },
+    { id = "polar_camo_legs", amount = 1 },
+    { id = "wood_camo_top", amount = 1 },
+    { id = "wood_camo_legs", amount = 1 },
+    { id = "jungle_camo_top", amount = 1 },
+    { id = "jungle_camo_legs", amount = 1 },
+    { id = "desert_camo_top", amount = 1 },
+    { id = "desert_camo_legs", amount = 1 },
+    { id = "gloves_of_silence", amount = 1 },
+    { id = "spotted_cape", amount = 1 },
+    { id = "larupia_hat", amount = 1 },
+    { id = "larupia_top", amount = 1 },
+    { id = "larupia_legs", amount = 1 },
+    { id = "graahk_headdress", amount = 1 },
+    { id = "graahk_top", amount = 1 },
+    { id = "graahk_legs", amount = 1 },
+    { id = "kyatt_hat", amount = 1 },
+    { id = "kyatt_top", amount = 1 },
+    { id = "kyatt_legs", amount = 1 },
+    { id = "spottier_cape", amount = 1 },
 ]
 
 [lowes_archery_emporium_sample]

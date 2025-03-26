@@ -1,0 +1,76 @@
+[lumbridge_guide_quiz_1]
+id = 377
+width = 5
+height = 2
+defaults = [
+    { id = "wolfbane", amount = 1 },
+    { id = "bloated_toad", amount = 1 },
+    { id = "distillator", amount = 1 },
+    { id = "cider", amount = 1 },
+    { id = "dwarven_stout", amount = 1 },
+    { id = "chefs_delight", amount = 1 },
+    { id = "jade", amount = 1 },
+    { id = "opal", amount = 1 },
+    { id = "chaos_talisman", amount = 1 },
+    { id = "mind_talisman", amount = 1 },
+]
+
+[lumbridge_guide_quiz_2]
+id = 378
+defaults = [
+    { id = "silverlight", amount = 1 },
+    { id = "druid_pouch_recipe_for_disaster", amount = 1 },
+    { id = "ghostspeak_amulet", amount = 1 },
+    { id = "moonlight_mead", amount = 1 },
+    { id = "guthixs_book_of_balance", amount = 1 },
+    { id = "trout", amount = 1 },
+    { id = "pike", amount = 1 },
+    { id = "yew_logs", amount = 1 },
+    { id = "death_talisman", amount = 1 },
+    { id = "magic_logs", amount = 1 },
+]
+
+[lumbridge_guide_quiz_3]
+id = 379
+defaults = [
+    { id = "ball", amount = 1 },
+    { id = "flypaper", amount = 1 },
+    { id = "potato_seed_recipe_for_disaster", amount = 1 },
+    { id = "onion_seed_recipe_for_disaster", amount = 1 },
+    { id = "cadava_berries", amount = 1 },
+    { id = "jangerberries", amount = 1 },
+    { id = "herring", amount = 1 },
+    { id = "salmon", amount = 1 },
+    { id = "dwellberries", amount = 1 },
+    { id = "mithril_arrow_recipe_for_disaster", amount = 1 },
+]
+
+[lumbridge_guide_quiz_4]
+id = 380
+defaults = [
+    { id = "fire_rune_recipe_for_disaster", amount = 1 },
+    { id = "yew_shortbow", amount = 1 },
+    { id = "tin_ore", amount = 1 },
+    { id = "iron_ore", amount = 1 },
+    { id = "saradomins_book_of_wisdom", amount = 1 },
+    { id = "dwellberries", amount = 1 },
+    { id = "mithril_arrow_recipe_for_disaster", amount = 1 },
+    { id = "trout", amount = 1 },
+    { id = "silver_ore", amount = 1 },
+    { id = "chaos_rune_recipe_for_disaster", amount = 1 },
+]
+
+[lumbridge_guide_quiz_5]
+id = 381
+defaults = [
+    { id = "air_rune_recipe_for_disaster", amount = 1 },
+    { id = "maple_longbow", amount = 1 },
+    { id = "magic_shortbow", amount = 1 },
+    { id = "tomato_seed_recipe_for_disaster", amount = 1 },
+    { id = "zamoraks_book_of_chaos", amount = 1 },
+    { id = "poison_ivy_berries", amount = 1 },
+    { id = "coconut", amount = 1 },
+    { id = "water_rune_recipe_for_disaster", amount = 1 },
+    { id = "logs", amount = 1 },
+    { id = "black_longsword", amount = 1 },
+]

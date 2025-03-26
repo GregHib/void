@@ -108,6 +108,15 @@ defaults = [
     { id = "shirt_lilac", amount = 10 },
 ]
 
+[the_esoterican_arms]
+id = 393
+defaults = [
+    { id = "beer", amount = 10 },
+    { id = "cider", amount = 10 },
+    { id = "jug_of_wine", amount = 10 },
+    { id = "cup_of_tea", amount = 10 },
+]
+
 [miscellanian_food_shop]
 id = 394
 defaults = [

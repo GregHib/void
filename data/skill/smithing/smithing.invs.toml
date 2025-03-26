@@ -1,0 +1,429 @@
+[inventory_101]
+id = 101
+defaults = [
+    { id = "bronze_dagger", amount = 1 },
+    { id = "bronze_sword", amount = 1 },
+    { id = "bronze_scimitar", amount = 1 },
+    { id = "bronze_longsword", amount = 1 },
+    { id = "bronze_2h_sword", amount = 1 },
+]
+
+[inventory_102]
+id = 102
+defaults = [
+    { id = "bronze_hatchet", amount = 1 },
+    { id = "bronze_mace", amount = 1 },
+    { id = "bronze_warhammer", amount = 1 },
+    { id = "bronze_battleaxe", amount = 1 },
+]
+
+[inventory_103]
+id = 103
+defaults = [
+    { id = "bronze_chainbody", amount = 1 },
+    { id = "bronze_platelegs", amount = 1 },
+    { id = "bronze_plateskirt", amount = 1 },
+    { id = "bronze_platebody", amount = 1 },
+]
+
+[inventory_104]
+id = 104
+defaults = [
+    { id = "bronze_med_helm", amount = 1 },
+    { id = "bronze_full_helm", amount = 1 },
+    { id = "bronze_sq_shield", amount = 1 },
+    { id = "bronze_kiteshield", amount = 1 },
+    { id = "bronze_nails", amount = 15 },
+]
+
+[inventory_105]
+id = 105
+defaults = [
+    { id = "bronze_dart_tip", amount = 10 },
+    { id = "bronze_arrowtips", amount = 15 },
+    { id = "bronze_knife", amount = 5 },
+    { id = "bronze_wire", amount = 1 },
+]
+
+[inventory_106]
+id = 106
+defaults = [
+    { id = "iron_dagger", amount = 1 },
+    { id = "iron_sword", amount = 1 },
+    { id = "iron_scimitar", amount = 1 },
+    { id = "iron_longsword", amount = 1 },
+    { id = "iron_2h_sword", amount = 1 },
+]
+
+[inventory_107]
+id = 107
+defaults = [
+    { id = "iron_hatchet", amount = 1 },
+    { id = "iron_mace", amount = 1 },
+    { id = "iron_warhammer", amount = 1 },
+    { id = "iron_battleaxe", amount = 1 },
+]
+
+[inventory_108]
+id = 108
+defaults = [
+    { id = "iron_chainbody", amount = 1 },
+    { id = "iron_platelegs", amount = 1 },
+    { id = "iron_plateskirt", amount = 1 },
+    { id = "iron_platebody", amount = 1 },
+]
+
+[inventory_109]
+id = 109
+defaults = [
+    { id = "iron_med_helm", amount = 1 },
+    { id = "iron_full_helm", amount = 1 },
+    { id = "iron_sq_shield", amount = 1 },
+    { id = "iron_kiteshield", amount = 1 },
+    { id = "iron_nails", amount = 15 },
+]
+
+[inventory_110]
+id = 110
+defaults = [
+    { id = "iron_dart_tip", amount = 10 },
+    { id = "iron_arrowtips", amount = 15 },
+    { id = "iron_knife", amount = 5 },
+    { id = "iron_spit", amount = 1 },
+]
+
+[inventory_111]
+id = 111
+defaults = [
+    { id = "steel_dagger", amount = 1 },
+    { id = "steel_sword", amount = 1 },
+    { id = "steel_scimitar", amount = 1 },
+    { id = "steel_longsword", amount = 1 },
+    { id = "steel_2h_sword", amount = 1 },
+]
+
+[inventory_112]
+id = 112
+defaults = [
+    { id = "steel_hatchet", amount = 1 },
+    { id = "steel_mace", amount = 1 },
+    { id = "steel_warhammer", amount = 1 },
+    { id = "steel_battleaxe", amount = 1 },
+]
+
+[inventory_113]
+id = 113
+defaults = [
+    { id = "steel_chainbody", amount = 1 },
+    { id = "steel_platelegs", amount = 1 },
+    { id = "steel_plateskirt", amount = 1 },
+    { id = "steel_platebody", amount = 1 },
+]
+
+[inventory_114]
+id = 114
+defaults = [
+    { id = "steel_med_helm", amount = 1 },
+    { id = "steel_full_helm", amount = 1 },
+    { id = "steel_sq_shield", amount = 1 },
+    { id = "steel_kiteshield", amount = 1 },
+    { id = "steel_nails", amount = 15 },
+]
+
+[inventory_115]
+id = 115
+defaults = [
+    { id = "steel_dart_tip", amount = 10 },
+    { id = "steel_arrowtips", amount = 15 },
+    { id = "steel_knife", amount = 5 },
+    { id = "steel_studs", amount = 1 },
+]
+
+[inventory_116]
+id = 116
+defaults = [
+    { id = "mithril_dagger", amount = 1 },
+    { id = "mithril_sword", amount = 1 },
+    { id = "mithril_scimitar", amount = 1 },
+    { id = "mithril_longsword", amount = 1 },
+    { id = "mithril_2h_sword", amount = 1 },
+]
+
+[inventory_117]
+id = 117
+defaults = [
+    { id = "mithril_hatchet", amount = 1 },
+    { id = "mithril_mace", amount = 1 },
+    { id = "mithril_warhammer", amount = 1 },
+    { id = "mithril_battleaxe", amount = 1 },
+]
+
+[inventory_118]
+id = 118
+defaults = [
+    { id = "mithril_chainbody", amount = 1 },
+    { id = "mithril_platelegs", amount = 1 },
+    { id = "mithril_plateskirt", amount = 1 },
+    { id = "mithril_platebody", amount = 1 },
+]
+
+[inventory_119]
+id = 119
+defaults = [
+    { id = "mithril_med_helm", amount = 1 },
+    { id = "mithril_full_helm", amount = 1 },
+    { id = "mithril_sq_shield", amount = 1 },
+    { id = "mithril_kiteshield", amount = 1 },
+    { id = "mithril_nails", amount = 15 },
+]
+
+[inventory_120]
+id = 120
+defaults = [
+    { id = "mithril_dart_tip", amount = 10 },
+    { id = "mithril_arrowtips", amount = 15 },
+    { id = "mithril_knife", amount = 5 },
+]
+
+[inventory_121]
+id = 121
+defaults = [
+    { id = "adamant_dagger", amount = 1 },
+    { id = "adamant_sword", amount = 1 },
+    { id = "adamant_scimitar", amount = 1 },
+    { id = "adamant_longsword", amount = 1 },
+    { id = "adamant_2h_sword", amount = 1 },
+]
+
+[inventory_122]
+id = 122
+defaults = [
+    { id = "adamant_hatchet", amount = 1 },
+    { id = "adamant_mace", amount = 1 },
+    { id = "adamant_warhammer", amount = 1 },
+    { id = "adamant_battleaxe", amount = 1 },
+]
+
+[inventory_123]
+id = 123
+defaults = [
+    { id = "adamant_chainbody", amount = 1 },
+    { id = "adamant_platelegs", amount = 1 },
+    { id = "adamant_plateskirt", amount = 1 },
+    { id = "adamant_platebody", amount = 1 },
+]
+
+[inventory_124]
+id = 124
+defaults = [
+    { id = "adamant_med_helm", amount = 1 },
+    { id = "adamant_full_helm", amount = 1 },
+    { id = "adamant_sq_shield", amount = 1 },
+    { id = "adamant_kiteshield", amount = 1 },
+    { id = "adamant_nails", amount = 15 },
+]
+
+[inventory_125]
+id = 125
+defaults = [
+    { id = "adamant_dart_tip", amount = 10 },
+    { id = "adamant_arrowtips", amount = 15 },
+    { id = "adamant_knife", amount = 5 },
+]
+
+[inventory_126]
+id = 126
+defaults = [
+    { id = "rune_dagger", amount = 1 },
+    { id = "rune_sword", amount = 1 },
+    { id = "rune_scimitar", amount = 1 },
+    { id = "rune_longsword", amount = 1 },
+    { id = "rune_2h_sword", amount = 1 },
+]
+
+[inventory_127]
+id = 127
+defaults = [
+    { id = "rune_hatchet", amount = 1 },
+    { id = "rune_mace", amount = 1 },
+    { id = "rune_warhammer", amount = 1 },
+    { id = "rune_battleaxe", amount = 1 },
+]
+
+[inventory_128]
+id = 128
+defaults = [
+    { id = "rune_chainbody", amount = 1 },
+    { id = "rune_platelegs", amount = 1 },
+    { id = "rune_plateskirt", amount = 1 },
+    { id = "rune_platebody", amount = 1 },
+]
+
+[inventory_129]
+id = 129
+defaults = [
+    { id = "rune_med_helm", amount = 1 },
+    { id = "rune_full_helm", amount = 1 },
+    { id = "rune_sq_shield", amount = 1 },
+    { id = "rune_kiteshield", amount = 1 },
+    { id = "rune_nails", amount = 15 },
+]
+
+[inventory_130]
+id = 130
+defaults = [
+    { id = "rune_dart_tip", amount = 10 },
+    { id = "rune_arrowtips", amount = 15 },
+    { id = "rune_knife", amount = 5 },
+]
+
+[inventory_150]
+id = 150
+defaults = [
+    { id = "bronze_claws", amount = 1 },
+]
+
+[inventory_151]
+id = 151
+defaults = [
+    { id = "iron_claws", amount = 1 },
+]
+
+[inventory_152]
+id = 152
+defaults = [
+    { id = "steel_claws", amount = 1 },
+]
+
+[inventory_153]
+id = 153
+defaults = [
+    { id = "mithril_claws", amount = 1 },
+]
+
+[inventory_154]
+id = 154
+defaults = [
+    { id = "adamant_claws", amount = 1 },
+]
+
+[inventory_155]
+id = 155
+defaults = [
+    { id = "rune_claws", amount = 1 },
+]
+
+[inventory_248]
+id = 248
+defaults = [
+    { id = "oil_lantern_frame", amount = 1 },
+]
+
+[inventory_249]
+id = 249
+defaults = [
+    { id = "bullseye_lantern_frame", amount = 1 },
+]
+
+[inventory_337]
+id = 337
+defaults = [
+    { id = "unstrung_symbol", amount = 1 },
+]
+
+[inventory_338]
+id = 338
+defaults = [
+    { id = "unstrung_emblem", amount = 1 },
+]
+
+[inventory_339]
+id = 339
+defaults = [
+    { id = "silver_sickle", amount = 1 },
+]
+
+[inventory_340]
+id = 340
+defaults = [
+    { id = "conductor", amount = 1 },
+]
+
+[inventory_341]
+id = 341
+defaults = [
+    { id = "tiara", amount = 1 },
+]
+
+[inventory_342]
+id = 342
+defaults = [
+    { id = "demonic_sigil", amount = 1 },
+]
+
+[inventory_382]
+id = 382
+defaults = [
+    { id = "silvthrill_rod", amount = 1 },
+]
+
+[inventory_386]
+id = 386
+defaults = [
+    { id = "jug_of_wine", amount = 10 },
+    { id = "jug", amount = 10 },
+]
+
+[inventory_429]
+id = 429
+defaults = [
+    { id = "silver_bolts_unf", amount = 10 },
+]
+
+[inventory_430]
+id = 430
+defaults = [
+    { id = "bronze_bolts_unf", amount = 10 },
+    { id = "bronze_limbs", amount = 1 },
+]
+
+[inventory_431]
+id = 431
+defaults = [
+    { id = "iron_bolts_unf", amount = 10 },
+    { id = "iron_limbs", amount = 1 },
+]
+
+[inventory_432]
+id = 432
+defaults = [
+    { id = "steel_bolts_unf", amount = 10 },
+    { id = "steel_limbs", amount = 1 },
+]
+
+[inventory_433]
+id = 433
+defaults = [
+    { id = "mithril_bolts_unf", amount = 10 },
+    { id = "mithril_limbs", amount = 1 },
+]
+
+[inventory_434]
+id = 434
+defaults = [
+    { id = "mithril_grapple_tip", amount = 1 },
+]
+
+[inventory_435]
+id = 435
+defaults = [
+    { id = "adamant_bolts_unf", amount = 10 },
+    { id = "adamant_limbs", amount = 1 },
+]
+
+[inventory_436]
+id = 436
+defaults = [
+    { id = "rune_bolts_unf", amount = 10 },
+    { id = "rune_limbs", amount = 1 },
+]

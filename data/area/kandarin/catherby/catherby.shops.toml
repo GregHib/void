@@ -74,6 +74,75 @@ defaults = [
     { id = "studded_chaps", amount = 10 },
 ]
 
+[hicktons_archery_emporium_skillcape]
+id = 466
+defaults = [
+    { id = "bronze_bolts", amount = 300 },
+    { id = "bronze_arrow", amount = 1000 },
+    { id = "iron_arrow", amount = 100 },
+    { id = "steel_arrow", amount = 0 },
+    { id = "mithril_arrow", amount = 0 },
+    { id = "adamant_arrow", amount = 0 },
+    { id = "rune_arrow", amount = 0 },
+    { id = "bronze_brutal", amount = 0 },
+    { id = "iron_brutal", amount = 0 },
+    { id = "steel_brutal", amount = 0 },
+    { id = "black_brutal", amount = 0 },
+    { id = "mithril_brutal", amount = 0 },
+    { id = "adamant_brutal", amount = 0 },
+    { id = "rune_brutal", amount = 0 },
+    { id = "bronze_arrowtips", amount = 100 },
+    { id = "iron_arrowtips", amount = 100 },
+    { id = "steel_arrowtips", amount = 100 },
+    { id = "mithril_arrowtips", amount = 100 },
+    { id = "adamant_arrowtips", amount = 30 },
+    { id = "rune_arrowtips", amount = 10 },
+    { id = "shortbow", amount = 10 },
+    { id = "longbow", amount = 10 },
+    { id = "crossbow", amount = 10 },
+    { id = "oak_shortbow", amount = 10 },
+    { id = "oak_longbow", amount = 10 },
+    { id = "comp_ogre_bow", amount = 10 },
+    { id = "studded_body", amount = 10 },
+    { id = "studded_chaps", amount = 10 },
+    { id = "fletching_cape", amount = 1 },
+]
+
+[hicktons_archery_emporium_trimmed]
+id = 467
+defaults = [
+    { id = "bronze_bolts", amount = 300 },
+    { id = "bronze_arrow", amount = 1000 },
+    { id = "iron_arrow", amount = 100 },
+    { id = "steel_arrow", amount = 0 },
+    { id = "mithril_arrow", amount = 0 },
+    { id = "adamant_arrow", amount = 0 },
+    { id = "rune_arrow", amount = 0 },
+    { id = "bronze_brutal", amount = 0 },
+    { id = "iron_brutal", amount = 0 },
+    { id = "steel_brutal", amount = 0 },
+    { id = "black_brutal", amount = 0 },
+    { id = "mithril_brutal", amount = 0 },
+    { id = "adamant_brutal", amount = 0 },
+    { id = "rune_brutal", amount = 0 },
+    { id = "bronze_arrowtips", amount = 100 },
+    { id = "iron_arrowtips", amount = 100 },
+    { id = "steel_arrowtips", amount = 100 },
+    { id = "mithril_arrowtips", amount = 100 },
+    { id = "adamant_arrowtips", amount = 30 },
+    { id = "rune_arrowtips", amount = 10 },
+    { id = "shortbow", amount = 10 },
+    { id = "longbow", amount = 10 },
+    { id = "crossbow", amount = 10 },
+    { id = "oak_shortbow", amount = 10 },
+    { id = "oak_longbow", amount = 10 },
+    { id = "comp_ogre_bow", amount = 10 },
+    { id = "studded_body", amount = 10 },
+    { id = "studded_chaps", amount = 10 },
+    { id = "fletching_cape_t", amount = 1 },
+]
+
+
 [candle_shop_merlins_crystal]
 id = 547
 defaults = [

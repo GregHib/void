@@ -1,0 +1,15 @@
+[hunting_supplies_feldip_sample]
+id = 565
+defaults = [
+    { id = "noose_wand", amount = 1 },
+    { id = "bird_snare", amount = 1 },
+]
+
+[hunting_supplies_feldip]
+id = 567
+defaults = [
+    { id = "butterfly_net", amount = 5 },
+    { id = "butterfly_jar", amount = 30 },
+    { id = "noose_wand", amount = 5 },
+    { id = "bird_snare", amount = 20 },
+]

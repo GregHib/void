@@ -26,7 +26,223 @@ defaults = [
     { id = "security_book", amount = 10 },
 ]
 
-[culinaromancers_chest_food]
+[culinaromancers_chest_food_0]
+id = 356
+defaults = [
+    { id = "chocolate_bar", amount = 30 },
+    { id = "cheese", amount = 1 },
+    { id = "tomato", amount = 1 },
+    { id = "cooking_apple", amount = 5 },
+    { id = "grapes", amount = 1 },
+    { id = "pot_of_flour", amount = 10 },
+    { id = "pizza_base", amount = 1 },
+    { id = "egg", amount = 1 },
+    { id = "bucket_of_milk", amount = 1 },
+    { id = "pot_of_cream", amount = 1 },
+    { id = "pat_of_butter", amount = 1 },
+    { id = "spice", amount = 1 },
+    { id = "pie_dish", amount = 1 },
+    { id = "cake_tin", amount = 1 },
+    { id = "bowl", amount = 1 },
+    { id = "jug", amount = 1 },
+    { id = "empty_pot", amount = 1 },
+    { id = "empty_cup", amount = 1 },
+    { id = "bucket", amount = 1 },
+]
+
+[culinaromancers_chest_food_1]
+id = 357
+defaults = [
+    { id = "chocolate_bar", amount = 60 },
+    { id = "cheese", amount = 2 },
+    { id = "tomato", amount = 2 },
+    { id = "cooking_apple", amount = 10 },
+    { id = "grapes", amount = 1 },
+    { id = "pot_of_flour", amount = 20 },
+    { id = "pizza_base", amount = 1 },
+    { id = "egg", amount = 2 },
+    { id = "bucket_of_milk", amount = 2 },
+    { id = "pot_of_cream", amount = 2 },
+    { id = "pat_of_butter", amount = 2 },
+    { id = "spice", amount = 2 },
+    { id = "pie_dish", amount = 2 },
+    { id = "cake_tin", amount = 2 },
+    { id = "bowl", amount = 2 },
+    { id = "jug", amount = 2 },
+    { id = "empty_pot", amount = 2 },
+    { id = "empty_cup", amount = 2 },
+    { id = "bucket", amount = 2 },
+]
+
+[culinaromancers_chest_food_2]
+id = 358
+defaults = [
+    { id = "chocolate_bar", amount = 90 },
+    { id = "cheese", amount = 3 },
+    { id = "tomato", amount = 3 },
+    { id = "cooking_apple", amount = 15 },
+    { id = "grapes", amount = 2 },
+    { id = "pot_of_flour", amount = 30 },
+    { id = "pizza_base", amount = 1 },
+    { id = "egg", amount = 3 },
+    { id = "bucket_of_milk", amount = 3 },
+    { id = "pot_of_cream", amount = 3 },
+    { id = "pat_of_butter", amount = 3 },
+    { id = "spice", amount = 3 },
+    { id = "pie_dish", amount = 3 },
+    { id = "cake_tin", amount = 3 },
+    { id = "bowl", amount = 3 },
+    { id = "jug", amount = 3 },
+    { id = "empty_pot", amount = 3 },
+    { id = "empty_cup", amount = 3 },
+    { id = "bucket", amount = 3 },
+]
+
+[culinaromancers_chest_food_3]
+id = 359
+defaults = [
+    { id = "chocolate_bar", amount = 120 },
+    { id = "cheese", amount = 4 },
+    { id = "tomato", amount = 4 },
+    { id = "cooking_apple", amount = 20 },
+    { id = "grapes", amount = 2 },
+    { id = "pot_of_flour", amount = 40 },
+    { id = "pizza_base", amount = 1 },
+    { id = "egg", amount = 4 },
+    { id = "bucket_of_milk", amount = 4 },
+    { id = "pot_of_cream", amount = 4 },
+    { id = "pat_of_butter", amount = 4 },
+    { id = "spice", amount = 4 },
+    { id = "pie_dish", amount = 4 },
+    { id = "cake_tin", amount = 4 },
+    { id = "bowl", amount = 4 },
+    { id = "jug", amount = 4 },
+    { id = "empty_pot", amount = 4 },
+    { id = "empty_cup", amount = 4 },
+    { id = "bucket", amount = 4 },
+]
+
+[culinaromancers_chest_food_4]
+id = 360
+defaults = [
+    { id = "chocolate_bar", amount = 150 },
+    { id = "cheese", amount = 5 },
+    { id = "tomato", amount = 5 },
+    { id = "cooking_apple", amount = 25 },
+    { id = "grapes", amount = 3 },
+    { id = "pot_of_flour", amount = 50 },
+    { id = "pizza_base", amount = 1 },
+    { id = "egg", amount = 5 },
+    { id = "bucket_of_milk", amount = 5 },
+    { id = "pot_of_cream", amount = 5 },
+    { id = "pat_of_butter", amount = 5 },
+    { id = "spice", amount = 5 },
+    { id = "pie_dish", amount = 5 },
+    { id = "cake_tin", amount = 5 },
+    { id = "bowl", amount = 5 },
+    { id = "jug", amount = 5 },
+    { id = "empty_pot", amount = 5 },
+    { id = "empty_cup", amount = 5 },
+    { id = "bucket", amount = 5 },
+]
+
+[culinaromancers_chest_food_5]
+id = 361
+defaults = [
+    { id = "chocolate_bar", amount = 180 },
+    { id = "cheese", amount = 6 },
+    { id = "tomato", amount = 6 },
+    { id = "cooking_apple", amount = 30 },
+    { id = "grapes", amount = 4 },
+    { id = "pot_of_flour", amount = 60 },
+    { id = "pizza_base", amount = 1 },
+    { id = "egg", amount = 6 },
+    { id = "bucket_of_milk", amount = 6 },
+    { id = "pot_of_cream", amount = 6 },
+    { id = "pat_of_butter", amount = 6 },
+    { id = "spice", amount = 6 },
+    { id = "pie_dish", amount = 6 },
+    { id = "cake_tin", amount = 6 },
+    { id = "bowl", amount = 6 },
+    { id = "jug", amount = 6 },
+    { id = "empty_pot", amount = 6 },
+    { id = "empty_cup", amount = 6 },
+    { id = "bucket", amount = 6 },
+]
+
+[culinaromancers_chest_food_6]
+id = 362
+defaults = [
+    { id = "chocolate_bar", amount = 210 },
+    { id = "cheese", amount = 7 },
+    { id = "tomato", amount = 7 },
+    { id = "cooking_apple", amount = 35 },
+    { id = "grapes", amount = 4 },
+    { id = "pot_of_flour", amount = 70 },
+    { id = "pizza_base", amount = 1 },
+    { id = "egg", amount = 7 },
+    { id = "bucket_of_milk", amount = 7 },
+    { id = "pot_of_cream", amount = 7 },
+    { id = "pat_of_butter", amount = 7 },
+    { id = "spice", amount = 7 },
+    { id = "pie_dish", amount = 7 },
+    { id = "cake_tin", amount = 7 },
+    { id = "bowl", amount = 7 },
+    { id = "jug", amount = 7 },
+    { id = "empty_pot", amount = 7 },
+    { id = "empty_cup", amount = 7 },
+    { id = "bucket", amount = 7 },
+]
+
+[culinaromancers_chest_food_7]
+id = 363
+defaults = [
+    { id = "chocolate_bar", amount = 240 },
+    { id = "cheese", amount = 8 },
+    { id = "tomato", amount = 8 },
+    { id = "cooking_apple", amount = 40 },
+    { id = "grapes", amount = 4 },
+    { id = "pot_of_flour", amount = 80 },
+    { id = "pizza_base", amount = 1 },
+    { id = "egg", amount = 8 },
+    { id = "bucket_of_milk", amount = 8 },
+    { id = "pot_of_cream", amount = 8 },
+    { id = "pat_of_butter", amount = 8 },
+    { id = "spice", amount = 8 },
+    { id = "pie_dish", amount = 8 },
+    { id = "cake_tin", amount = 8 },
+    { id = "bowl", amount = 8 },
+    { id = "jug", amount = 8 },
+    { id = "empty_pot", amount = 8 },
+    { id = "empty_cup", amount = 8 },
+    { id = "bucket", amount = 8 },
+]
+
+[culinaromancers_chest_food_8]
+id = 364
+defaults = [
+    { id = "chocolate_bar", amount = 270 },
+    { id = "cheese", amount = 9 },
+    { id = "tomato", amount = 9 },
+    { id = "cooking_apple", amount = 45 },
+    { id = "grapes", amount = 5 },
+    { id = "pot_of_flour", amount = 90 },
+    { id = "pizza_base", amount = 1 },
+    { id = "egg", amount = 9 },
+    { id = "bucket_of_milk", amount = 9 },
+    { id = "pot_of_cream", amount = 9 },
+    { id = "pat_of_butter", amount = 9 },
+    { id = "spice", amount = 9 },
+    { id = "pie_dish", amount = 9 },
+    { id = "cake_tin", amount = 9 },
+    { id = "bowl", amount = 9 },
+    { id = "jug", amount = 9 },
+    { id = "empty_pot", amount = 9 },
+    { id = "empty_cup", amount = 9 },
+    { id = "bucket", amount = 9 },
+]
+
+[culinaromancers_chest_food_9]
 id = 365
 defaults = [
     { id = "chocolate_bar", amount = 300 },

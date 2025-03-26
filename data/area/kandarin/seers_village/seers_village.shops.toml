@@ -23,3 +23,15 @@ defaults = [
     { id = "bronze_hatchet", amount = 10 },
     { id = "firemaking_cape_t", amount = 1 },
 ]
+
+[stankers_bronze_pickaxes]
+id = 570
+defaults = [
+    { id = "bronze_pickaxe", amount = 5 },
+]
+
+[stankers_bronze_pickaxes_sample]
+id = 571
+defaults = [
+    { id = "poison_chalice", amount = 30 },
+]

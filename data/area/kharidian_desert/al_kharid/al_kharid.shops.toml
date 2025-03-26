@@ -46,8 +46,12 @@ defaults = [
 ]
 
 [gem_trader]
-id = 73
+id = 26
 defaults = [
+    { id = "uncut_sapphire", amount = 0 },
+    { id = "uncut_emerald", amount = 0 },
+    { id = "uncut_ruby", amount = 0 },
+    { id = "uncut_diamond", amount = 0 },
     { id = "sapphire", amount = 0 },
     { id = "emerald", amount = 0 },
     { id = "ruby", amount = 0 },
@@ -55,7 +59,7 @@ defaults = [
 ]
 
 [dommiks_crafting_store]
-id = 146
+id = 32
 defaults = [
     { id = "chisel", amount = 10 },
     { id = "ring_mould", amount = 10 },
@@ -64,7 +68,10 @@ defaults = [
     { id = "needle", amount = 10 },
     { id = "thread", amount = 1000 },
     { id = "holy_mould", amount = 10 },
+    { id = "sickle_mould", amount = 10 },
     { id = "tiara_mould", amount = 10 },
+    { id = "bolt_mould", amount = 10 },
+    { id = "bracelet_mould", amount = 10 },
 ]
 
 [alis_discount_wares]
@@ -83,6 +90,72 @@ defaults = [
     { id = "tinderbox", amount = 10 },
     { id = "bronze_pickaxe", amount = 10 },
     { id = "raw_chicken", amount = 10 },
+]
+
+[alis_discount_wares_blackjacks_o]
+id = 309
+defaults = [
+    { id = "oak_blackjack_o", amount = 30 },
+    { id = "willow_blackjack_o", amount = 30 },
+    { id = "maple_blackjack_o", amount = 30 },
+    { id = "maple_blackjack", amount = 30 },
+    { id = "willow_blackjack", amount = 30 },
+]
+
+[alis_discount_wares_blackjacks_d]
+id = 310
+defaults = [
+    { id = "oak_blackjack_d", amount = 30 },
+    { id = "willow_blackjack_d", amount = 30 },
+    { id = "maple_blackjack_d", amount = 30 },
+    { id = "maple_blackjack", amount = 30 },
+    { id = "willow_blackjack", amount = 30 },
+]
+
+[alis_discount_wares_menaphite]
+id = 311
+defaults = [
+    { id = "menap_headgear_purple", amount = 30 },
+    { id = "menaphite_top_purple", amount = 30 },
+    { id = "menaphite_robe_purple", amount = 30 },
+    { id = "menap_action_kilt_purple", amount = 30 },
+    { id = "menap_headgear_red", amount = 30 },
+    { id = "menaphite_top_red", amount = 30 },
+    { id = "menaphite_robe_red", amount = 30 },
+    { id = "menap_action_kilt_red", amount = 30 },
+]
+
+[alis_discount_wares_desert]
+id = 312
+defaults = [
+    { id = "fez", amount = 30 },
+    { id = "desert_top", amount = 30 },
+    { id = "desert_robes", amount = 30 },
+    { id = "desert_top_overcoat", amount = 30 },
+    { id = "desert_legs", amount = 30 },
+]
+
+[alis_discount_wares_elemental]
+id = 313
+defaults = [
+    { id = "fire_rune", amount = 300 },
+    { id = "water_rune", amount = 300 },
+    { id = "air_rune", amount = 300 },
+    { id = "earth_rune", amount = 300 },
+]
+
+[alis_discount_wares_catalytic]
+id = 314
+defaults = [
+    { id = "nature_rune", amount = 300 },
+    { id = "law_rune", amount = 300 },
+    { id = "chaos_rune", amount = 300 },
+    { id = "death_rune", amount = 100 },
+    { id = "mind_rune", amount = 300 },
+    { id = "body_rune", amount = 300 },
+    { id = "blood_rune", amount = 100 },
+    { id = "cosmic_rune", amount = 300 },
+    { id = "soul_rune", amount = 100 },
 ]
 
 [faruqs_tools_for_games]

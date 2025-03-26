@@ -8,8 +8,26 @@ defaults = [
     { id = "mithril_platebody", amount = 10 },
 ]
 
-[bakery_stall_sample]
+[ardougne_bakers_stall_east]
 id = 54
+defaults = [
+    { id = "bread", amount = 10 },
+    { id = "cake", amount = 10 },
+    { id = "chocolate_slice", amount = 10 },
+    { id = "chocolate_bar", amount = 100 },
+]
+
+[ardougne_gem_stall]
+id = 73
+defaults = [
+    { id = "sapphire", amount = 0 },
+    { id = "emerald", amount = 0 },
+    { id = "ruby", amount = 0 },
+    { id = "diamond", amount = 0 },
+]
+
+[ardougne_bakers_stall_west]
+id = 346
 defaults = [
     { id = "bread", amount = 10 },
     { id = "cake", amount = 10 },
@@ -82,6 +100,14 @@ defaults = [
     { id = "graahk_fur", amount = 0 },
     { id = "tatty_kyatt_fur", amount = 0 },
     { id = "kyatt_fur", amount = 0 },
+]
+
+[ardougne_silver_stall]
+id = 270
+defaults = [
+    { id = "unstrung_symbol", amount = 10 },
+    { id = "silver_ore", amount = 0 },
+    { id = "silver_bar", amount = 0 },
 ]
 
 [richards_farming_shop]

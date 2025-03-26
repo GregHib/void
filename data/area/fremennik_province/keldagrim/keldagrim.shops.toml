@@ -1,21 +1,18 @@
-[green_gemstone_gems]
-id = 26
-defaults = [
-    { id = "uncut_sapphire", amount = 0 },
-    { id = "uncut_emerald", amount = 0 },
-    { id = "uncut_ruby", amount = 0 },
-    { id = "uncut_diamond", amount = 0 },
-    { id = "sapphire", amount = 0 },
-    { id = "emerald", amount = 0 },
-    { id = "ruby", amount = 0 },
-    { id = "diamond", amount = 0 },
-]
-
-[pickaxe_is_mine]
+[pickaxe_is_mine_iron]
 id = 68
 defaults = [
     { id = "bronze_pickaxe", amount = 10 },
     { id = "iron_pickaxe", amount = 10 },
+    { id = "steel_pickaxe", amount = 10 },
+    { id = "mithril_pickaxe", amount = 10 },
+    { id = "adamant_pickaxe", amount = 10 },
+    { id = "rune_pickaxe", amount = 10 },
+]
+
+[pickaxe_is_mine]
+id = 265
+defaults = [
+    { id = "bronze_pickaxe", amount = 10 },
     { id = "steel_pickaxe", amount = 10 },
     { id = "mithril_pickaxe", amount = 10 },
     { id = "adamant_pickaxe", amount = 10 },
@@ -39,6 +36,22 @@ defaults = [
     { id = "black_warhammer", amount = 10 },
     { id = "mithril_warhammer", amount = 10 },
     { id = "adamant_warhammer", amount = 10 },
+]
+
+[quality_weapons_shop]
+id = 262
+defaults = [
+    { id = "steel_battleaxe", amount = 10 },
+    { id = "mithril_battleaxe", amount = 10 },
+    { id = "mithril_sword", amount = 10 },
+    { id = "adamant_sword", amount = 10 },
+    { id = "steel_scimitar", amount = 10 },
+    { id = "black_longsword", amount = 10 },
+    { id = "rune_longsword", amount = 10 },
+    { id = "maple_shortbow", amount = 10 },
+    { id = "maple_longbow", amount = 10 },
+    { id = "mithril_arrow", amount = 100 },
+    { id = "adamant_arrow", amount = 100 },
 ]
 
 [quality_armour_shop]
@@ -106,6 +119,14 @@ defaults = [
     { id = "ball_of_wool", amount = 100 },
 ]
 
+[green_gemstone_gems]
+id = 269
+defaults = [
+    { id = "sapphire", amount = 0 },
+    { id = "emerald", amount = 0 },
+    { id = "ruby", amount = 0 },
+    { id = "diamond", amount = 0 },
+]
 [vermundis_clothes_stall]
 id = 271
 defaults = [

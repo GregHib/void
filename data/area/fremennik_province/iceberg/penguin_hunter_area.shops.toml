@@ -1,0 +1,8 @@
+[ruined_boat]
+id = 464
+defaults = [
+    { id = "driftwood_hunter", amount = 150 },
+    { id = "rope", amount = 120 },
+    { id = "small_fishing_net", amount = 120 },
+    { id = "knife", amount = 100 },
+]

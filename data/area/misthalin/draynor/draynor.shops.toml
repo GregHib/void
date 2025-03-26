@@ -18,6 +18,14 @@ defaults = [
     { id = "jug", amount = 10 },
 ]
 
+[wine_stall]
+id = 384
+defaults = [
+    { id = "jug_of_wine", amount = 10 },
+    { id = "jug", amount = 10 },
+    { id = "bottle_of_wine", amount = 10 },
+]
+
 [avas_odds_and_ends]
 id = 489
 defaults = [
@@ -26,4 +34,25 @@ defaults = [
     { id = "steel_arrow", amount = 1000 },
     { id = "iron_arrowtips", amount = 1000 },
     { id = "steel_arrowtips", amount = 1000 },
+]
+
+[draynor_seed_market]
+id = 273
+defaults = [
+    { id = "potato_seed", amount = 10 },
+    { id = "onion_seed", amount = 10 },
+    { id = "cabbage_seed", amount = 10 },
+    { id = "tomato_seed", amount = 0 },
+    { id = "sweetcorn_seed", amount = 0 },
+    { id = "strawberry_seed", amount = 0 },
+    { id = "watermelon_seed", amount = 0 },
+    { id = "barley_seed", amount = 10 },
+    { id = "jute_seed", amount = 10 },
+    { id = "rosemary_seed", amount = 10 },
+    { id = "marigold_seed", amount = 10 },
+    { id = "hammerstone_seed", amount = 10 },
+    { id = "asgarnian_seed", amount = 10 },
+    { id = "yanillian_seed", amount = 10 },
+    { id = "krandorian_seed", amount = 10 },
+    { id = "wildblood_seed", amount = 10 },
 ]
