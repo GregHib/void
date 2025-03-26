@@ -1,0 +1,16 @@
+[easy_clue_scroll]
+drops = [
+    { id = "clue_scroll_easy", lacks = "clue_scroll_easy*" }
+]
+
+[medium_clue_scroll]
+roll = 256
+drops = [
+    { id = "clue_scroll_medium", lacks = "clue_scroll_medium*" }
+]
+
+[hard_clue_scroll]
+type = "all"
+drops = [
+    { id = "clue_scroll_hard", lacks = "clue_scroll_hard*" }
+]

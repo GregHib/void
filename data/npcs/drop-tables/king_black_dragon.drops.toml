@@ -1,0 +1,57 @@
+[king_black_dragon_drop_table]
+type = "all"
+drops = [
+    { table = "king_black_dragon_primary" },
+    { table = "king_black_dragon_secondary" },
+    { table = "king_black_dragon_tertiary" }
+]
+
+[king_black_dragon_primary]
+type = "all"
+drops = [
+    { id = "dragon_bones" },
+    { id = "black_dragonhide", amount = 2 }
+]
+
+[king_black_dragon_secondary]
+roll = 128
+drops = [
+    { id = "rune_longsword", chance = 10 },
+    { id = "adamant_platebody", chance = 9 },
+    { id = "adamant_kiteshield", chance = 3 },
+    { id = "dragon_med_helm" },
+    { id = "fire_rune", amount = 300, chance = 5 },
+    { id = "air_rune", amount = 300, chance = 10 },
+    { id = "iron_arrow", amount = 690, chance = 10 },
+    { id = "runite_bolts", min = 10, max = 20, chance = 10 },
+    { id = "law_rune", amount = 30, chance = 5 },
+    { id = "blood_rune", amount = 30, chance = 5 },
+    { id = "yew_logs_noted", amount = 150, chance = 10 },
+    { id = "adamant_bar", amount = 3, chance = 5 },
+    { id = "rune_bar", chance = 3 },
+    { id = "gold_ore_noted", amount = 100, chance = 2 },
+    { id = "amulet_of_power", chance = 7 },
+    { id = "dragon_arrowtips", min = 5, max = 14, chance = 5 },
+    { id = "dragon_dart_tip", min = 5, max = 14, chance = 5 },
+    { id = "rune_limbs", chance = 4 },
+    { id = "shark", amount = 4, chance = 4 },
+    { table = "rare_drop_table", chance = 8 }
+]
+
+[king_black_dragon_tertiary]
+roll = 5120
+drops = [
+    { id = "black_dragon_tail_bone", chance = 80 },
+    { id = "kbd_heads", chance = 40 },
+    { id = "starved_ancient_effigy", chance = 20 },
+    { id = "court_summons", chance = 20 },
+    { id = "draconic_visage" },
+    { table = "king_black_dragon_clues", chance = 40 }
+]
+
+[king_black_dragon_clues]
+roll = 10
+drops = [
+    { id = "clue_scroll_elite", chance = 4, lacks = "clue_scroll_elite*" },
+    { table = "hard_clue_scroll" }
+]

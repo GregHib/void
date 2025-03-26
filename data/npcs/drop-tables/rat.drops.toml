@@ -1,0 +1,26 @@
+[rat_tertiary]
+roll = 4
+drops = [
+    { id = "rat_bone", chance = 1 }
+]
+
+[rat_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "rat_tertiary" }
+]
+
+[giant_rat_primary]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "raw_rat_meat" }
+]
+
+[giant_rat_drop_table]
+type = "all"
+drops = [
+    { table = "giant_rat_primary" },
+    { table = "easy_clue_scroll", roll = 128 }
+]

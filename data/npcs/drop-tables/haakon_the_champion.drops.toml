@@ -1,0 +1,24 @@
+[haakon_the_champion_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "haakon_the_champion_secondary" }
+]
+
+[haakon_the_champion_secondary]
+roll = 512
+drops = [
+    { id = "coins", min = 5, max = 32, chance = 32 },
+    { id = "cooked_meat", chance = 32 },
+    { id = "necklace_mould", chance = 8 },
+    { id = "bear_fur", chance = 8 },
+    { id = "beer", chance = 8 },
+    { id = "flier", chance = 8 },
+    { id = "clue_scroll_easy", chance = 2, lacks = "clue_scroll_easy*" },
+    { id = "uncut_sapphire", chance = 2 },
+    { id = "uncut_emerald", chance = 2 },
+    { id = "uncut_ruby", chance = 2 },
+    { id = "uncut_diamond", chance = 2 },
+    { id = "uncut_dragonstone", chance = 2 },
+    { id = "loop_half_of_a_key" }
+]

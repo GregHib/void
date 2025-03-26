@@ -1,0 +1,21 @@
+[chicken_drop_table]
+type = "all"
+drops = [
+    { table = "chicken_primary" },
+    { table = "chicken_secondary" },
+    { table = "easy_clue_scroll", roll = 300 }
+]
+
+[chicken_primary]
+type = "all"
+drops = [
+    { id = "raw_chicken" },
+    { id = "bones" }
+]
+
+[chicken_secondary]
+roll = 128
+drops = [
+    { id = "feather", amount = 5, chance = 64 },
+    { id = "feather", amount = 15, chance = 32 }
+]
