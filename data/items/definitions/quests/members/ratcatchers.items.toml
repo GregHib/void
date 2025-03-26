@@ -1,0 +1,108 @@
+[cat_antipoison]
+id = 6766
+tradeable = false
+weight = 0.035
+empty = "vial"
+examine = "Antipoison for Pox."
+kept = "Wilderness"
+
+[the_ratpits_manual]
+id = 6767
+tradeable = false
+weight = 0.04
+aka = ["the_ratpits_manual"]
+examine = "The rules of the ratpits."
+kept = "Reclaim"
+
+[poisoned_cheese]
+id = 6768
+tradeable = false
+weight = 0.2
+examine = "A little more smelly than usual."
+kept = "Reclaim"
+
+[music_scroll]
+id = 6769
+tradeable = false
+weight = 0.02
+destroy = "You can obtain another sheet of music by talking to the snakecharmer of Pollnivneach."
+examine = "Charming."
+kept = "Wilderness"
+
+[directions]
+id = 6770
+tradeable = false
+weight = 0.02
+destroy = "You can obtain another set of directions to the party by talking to Jimmy Dazzler."
+examine = "Jimmy Dazzler's directions."
+kept = "Wilderness"
+
+[pot_of_weeds]
+id = 6771
+tradeable = false
+weight = 0.6
+examine = "Contains garden weeds."
+kept = "Wilderness"
+
+[smouldering_pot]
+id = 6772
+tradeable = false
+weight = 0.5
+examine = "Contains slowly burning garden weeds."
+kept = "Wilderness"
+
+[rat_pole_0]
+id = 6773
+weapon_type = "banner"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A pole for putting rats on."
+weight = 2.267
+
+[rat_pole_1]
+id = 6774
+weapon_type = "banner"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A pole with one rat on it."
+weight = 2.267
+
+[rat_pole_2]
+id = 6775
+weapon_type = "banner"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A pole with two rats on it."
+weight = 2.267
+
+[rat_pole_3]
+id = 6776
+weapon_type = "banner"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A pole with three rats on it."
+weight = 2.267
+
+[rat_pole_4]
+id = 6777
+weapon_type = "banner"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A pole with four rats on it."
+weight = 2.267
+
+[rat_pole_5]
+id = 6778
+weapon_type = "banner"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A pole with five rats on it."
+weight = 2.267
+
+[rat_pole_6]
+id = 6779
+weapon_type = "banner"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A pole with six rats on it."
+weight = 2.267

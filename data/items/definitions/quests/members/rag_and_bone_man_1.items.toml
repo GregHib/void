@@ -1,0 +1,608 @@
+[jug_of_vinegar]
+id = 7810
+tradeable = false
+weight = 1.0
+empty = "jug"
+examine = "This wine clearly did not age well."
+kept = "Wilderness"
+
+[pot_of_vinegar]
+id = 7811
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "Well, this pot is certainly full of vinegar, and no mistake."
+kept = "Wilderness"
+
+[goblin_skull]
+id = 7812
+tradeable = false
+weight = 0.003
+examine = "This needs a good polish."
+kept = "Wilderness"
+
+[bone_in_vinegar_goblin_skull]
+id = 7813
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a goblin bone in here."
+kept = "Wilderness"
+
+[polished_goblin_skull]
+id = 7814
+tradeable = false
+weight = 0.003
+examine = "This belongs in a museum!"
+kept = "Wilderness"
+
+[bear_ribs]
+id = 7815
+tradeable = false
+weight = 0.003
+examine = "These need a good polish."
+kept = "Wilderness"
+
+[bone_in_vinegar_bear_ribs]
+id = 7816
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a bear bone in here."
+kept = "Wilderness"
+
+[polished_bear_ribs]
+clone = "polished_goblin_skull"
+id = 7817
+
+[ram_skull]
+clone = "goblin_skull"
+id = 7818
+
+[bone_in_vinegar_ram_skull]
+id = 7819
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a ram skull in here."
+kept = "Wilderness"
+
+[polished_ram_skull]
+id = 7820
+tradeable = false
+weight = 0.907
+examine = "This belongs in a museum!"
+kept = "Wilderness"
+
+[unicorn_bone]
+clone = "goblin_skull"
+id = 7821
+
+[bone_in_vinegar_unicorn_bone]
+id = 7822
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a unicorn bone in here."
+kept = "Wilderness"
+
+[polished_unicorn_bone]
+clone = "polished_ram_skull"
+id = 7823
+
+[giant_rat_bone]
+clone = "goblin_skull"
+id = 7824
+
+[bone_in_vinegar_giant_rat_bone]
+id = 7825
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a giant rat bone in here."
+kept = "Wilderness"
+
+[polished_giant_rat_bone]
+clone = "polished_goblin_skull"
+id = 7826
+
+[giant_bat_wing]
+id = 7827
+tradeable = false
+weight = 0.907
+examine = "This needs a good polish."
+kept = "Wilderness"
+
+[bone_in_vinegar_giant_bat_wing]
+id = 7828
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a giant bat bone in here."
+kept = "Wilderness"
+
+[polished_giant_bat_wing]
+clone = "polished_ram_skull"
+id = 7829
+
+[wolf_bone]
+clone = "giant_bat_wing"
+id = 7830
+
+[bone_in_vinegar_wolf_bone]
+id = 7831
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a wolf bone in here."
+kept = "Wilderness"
+
+[polished_wolf_bone]
+clone = "polished_ram_skull"
+id = 7832
+
+[bat_wing]
+clone = "giant_bat_wing"
+id = 7833
+
+[bone_in_vinegar_bat_wing]
+id = 7834
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a bat bone in here."
+kept = "Wilderness"
+
+[polished_bat_wing]
+clone = "polished_ram_skull"
+id = 7835
+
+[rat_bone]
+clone = "goblin_skull"
+id = 7836
+
+[bone_in_vinegar_rat_bone]
+id = 7837
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a rat bone in here."
+kept = "Wilderness"
+
+[polished_rat_bone]
+clone = "polished_goblin_skull"
+id = 7838
+
+[baby_blue_dragon_bone]
+clone = "giant_bat_wing"
+id = 7839
+
+[bone_in_vinegar_baby_blue_dragon_bone]
+id = 7840
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a baby blue dragon bone in here."
+kept = "Wilderness"
+
+[polished_baby_blue_dragon_bone]
+clone = "polished_ram_skull"
+id = 7841
+
+[ogre_ribs]
+clone = "giant_bat_wing"
+id = 7842
+
+[bone_in_vinegar_ogre_ribs]
+id = 7843
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is an ogre bone in here."
+kept = "Wilderness"
+
+[polished_ogre_ribs]
+clone = "polished_ram_skull"
+id = 7844
+
+[jogre_bone]
+clone = "giant_bat_wing"
+id = 7845
+
+[bone_in_vinegar_jogre_bone]
+id = 7846
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a jogre bone in here."
+kept = "Wilderness"
+
+[polished_jogre_bone]
+clone = "polished_ram_skull"
+id = 7847
+
+[zogre_bone]
+clone = "giant_bat_wing"
+id = 7848
+
+[bone_in_vinegar_zogre_bone]
+id = 7849
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a zogre bone in here."
+kept = "Wilderness"
+
+[polished_zogre_bone]
+clone = "polished_ram_skull"
+id = 7850
+
+[mogre_bone]
+clone = "giant_bat_wing"
+id = 7851
+
+[bone_in_vinegar_mogre_bone]
+id = 7852
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a mogre bone in here."
+kept = "Wilderness"
+
+[polished_mogre_bone]
+clone = "polished_ram_skull"
+id = 7853
+
+[monkey_paw]
+clone = "goblin_skull"
+id = 7854
+
+[bone_in_vinegar_monkey_paw]
+id = 7855
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a monkey bone in here."
+kept = "Wilderness"
+
+[polished_monkey_paw]
+clone = "polished_goblin_skull"
+id = 7856
+
+[dagannoth_ribs]
+clone = "giant_bat_wing"
+id = 7857
+
+[bone_in_vinegar_dagannoth_ribs]
+id = 7858
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a dagannoth bone in here."
+kept = "Wilderness"
+
+[polished_dagannoth_ribs]
+clone = "polished_ram_skull"
+id = 7859
+
+[snake_spine]
+clone = "giant_bat_wing"
+id = 7860
+
+[bone_in_vinegar_snake_spine]
+id = 7861
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a snake bone in here."
+kept = "Wilderness"
+
+[polished_snake_spine]
+clone = "polished_ram_skull"
+id = 7862
+
+[zombie_bone]
+clone = "giant_bat_wing"
+id = 7863
+
+[bone_in_vinegar_zombie_bone]
+id = 7864
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a zombie bone in here."
+kept = "Wilderness"
+
+[polished_zombie_bone]
+clone = "polished_ram_skull"
+id = 7865
+
+[werewolf_bone]
+clone = "giant_bat_wing"
+id = 7866
+
+[bone_in_vinegar_werewolf_bone]
+id = 7867
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a werewolf bone in here."
+kept = "Wilderness"
+
+[polished_werewolf_bone]
+clone = "polished_ram_skull"
+id = 7868
+
+[moss_giant_bone]
+clone = "goblin_skull"
+id = 7869
+
+[bone_in_vinegar_moss_giant_bone]
+id = 7870
+tradeable = false
+weight = 0.907
+empty = "empty_pot"
+examine = "There is a moss giant bone in here."
+kept = "Wilderness"
+
+[polished_moss_giant_bone]
+clone = "polished_goblin_skull"
+id = 7871
+
+[fire_giant_bone]
+clone = "giant_bat_wing"
+id = 7872
+
+[bone_in_vinegar_fire_giant_bone]
+id = 7873
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a fire giant bone in here."
+kept = "Wilderness"
+
+[polished_fire_giant_bone]
+clone = "polished_ram_skull"
+id = 7874
+
+[ice_giant_ribs]
+clone = "giant_bat_wing"
+id = 7875
+
+[bone_in_vinegar_ice_giant_ribs]
+id = 7876
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is an ice giant bone in here."
+kept = "Wilderness"
+
+[polished_ice_giant_ribs]
+clone = "polished_ram_skull"
+id = 7877
+
+[terrorbird_wing]
+clone = "giant_bat_wing"
+id = 7878
+
+[bone_in_vinegar_terrorbird_wing]
+id = 7879
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a terrorbird bone in here."
+kept = "Wilderness"
+
+[polished_terrorbird_wing]
+clone = "polished_ram_skull"
+id = 7880
+
+[ghoul_bone]
+clone = "giant_bat_wing"
+id = 7881
+
+[bone_in_vinegar_ghoul_bone]
+id = 7882
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a ghoul bone in here."
+kept = "Wilderness"
+
+[polished_ghoul_bone]
+clone = "polished_ram_skull"
+id = 7883
+
+[troll_bone]
+clone = "giant_bat_wing"
+id = 7884
+
+[bone_in_vinegar_troll_bone]
+id = 7885
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a troll bone in here."
+kept = "Wilderness"
+
+[polished_troll_bone]
+clone = "polished_ram_skull"
+id = 7886
+
+[seagull_wing]
+clone = "giant_bat_wing"
+id = 7887
+
+[bone_in_vinegar_seagull_wing]
+id = 7888
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a seagull bone in here."
+kept = "Wilderness"
+
+[polished_seagull_wing]
+clone = "polished_ram_skull"
+id = 7889
+
+[undead_cow_ribs]
+clone = "giant_bat_wing"
+id = 7890
+
+[bone_in_vinegar_undead_cow_ribs]
+id = 7891
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is an undead cow bone in here."
+kept = "Wilderness"
+
+[polished_undead_cow_ribs]
+clone = "polished_ram_skull"
+id = 7892
+
+[experiment_bone]
+clone = "giant_bat_wing"
+id = 7893
+
+[bone_in_vinegar_experiment_bone]
+id = 7894
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is an experiment bone in here."
+kept = "Wilderness"
+
+[polished_experiment_bone]
+clone = "polished_ram_skull"
+id = 7895
+
+[rabbit_bone]
+clone = "giant_bat_wing"
+id = 7896
+
+[bone_in_vinegar_rabbit_bone]
+id = 7897
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a rabbit bone in here."
+kept = "Wilderness"
+
+[polished_rabbit_bone]
+clone = "polished_ram_skull"
+id = 7898
+
+[basilisk_bone]
+clone = "giant_bat_wing"
+id = 7899
+
+[bone_in_vinegar_basilisk_bone]
+id = 7900
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a basilisk bone in here."
+kept = "Wilderness"
+
+[polished_basilisk_bone]
+clone = "polished_ram_skull"
+id = 7901
+
+[desert_lizard_bone]
+clone = "giant_bat_wing"
+id = 7902
+
+[bone_in_vinegar_desert_lizard_bone]
+id = 7903
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a desert lizard bone in here."
+kept = "Wilderness"
+
+[polished_desert_lizard_bone]
+clone = "polished_ram_skull"
+id = 7904
+
+[cave_goblin_skull]
+clone = "giant_bat_wing"
+id = 7905
+
+[bone_in_vinegar_cave_goblin_skull]
+id = 7906
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a cave goblin bone in here."
+kept = "Wilderness"
+
+[polished_cave_goblin_skull]
+clone = "polished_ram_skull"
+id = 7907
+
+[big_frog_leg]
+clone = "giant_bat_wing"
+id = 7908
+
+[bone_in_vinegar_big_frog_leg]
+id = 7909
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a big frog bone in here."
+kept = "Wilderness"
+
+[polished_big_frog_leg]
+clone = "polished_ram_skull"
+id = 7910
+
+[vulture_wing]
+clone = "giant_bat_wing"
+id = 7911
+
+[bone_in_vinegar_vulture_wing]
+id = 7912
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a vulture bone in here."
+kept = "Wilderness"
+
+[polished_vulture_wing]
+clone = "polished_ram_skull"
+id = 7913
+
+[jackal_bone]
+clone = "goblin_skull"
+id = 7914
+
+[bone_in_vinegar_jackal_bone]
+id = 7915
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a jackal bone in here."
+kept = "Wilderness"
+
+[polished_jackal_bone]
+clone = "polished_ram_skull"
+id = 7916
+
+[ram_skull_helm]
+id = 7917
+tradeable = false
+weight = 3.175
+slot = "Hat"
+destroy = "The ram skull helm looks like it will fall apart if you drop it. You would have to go to the Odd Old Man for a replacement."
+examine = "Makes me feel baaad to the bone."
+kept = "Vanish"
+
+[bonesack]
+id = 7918
+tradeable = false
+weight = 0.003
+slot = "Cape"
+destroy = "The bonesack looks like it will fall apart if you drop it. You would have to go to the Odd Old Man for a replacement."
+examine = "The bonesack is a little old item that protects like leather."
+kept = "Vanish"

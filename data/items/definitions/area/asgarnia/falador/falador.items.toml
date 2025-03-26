@@ -1,0 +1,7 @@
+[yin_yang_amulet]
+id = 7803
+tradeable = false
+weight = 0.001
+slot = "Amulet"
+examine = "A non-magical copy of the make-over mage's amulet."
+kept = "Reclaim"

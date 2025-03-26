@@ -1,0 +1,100 @@
+[barbarian_rod]
+id = 11323
+tradeable = false
+weight = 1.36
+cast = "You cast out your line..."
+examine = "A heavy barbarian Fishing rod."
+kept = "Reclaim"
+
+[roe]
+id = 11324
+price = 17
+limit = 5000
+heals = 30
+weight = 0.05
+examine = "Roe, or cheap fishy eggs."
+
+[roe_noted]
+id = 11325
+
+[caviar]
+id = 11326
+price = 231
+limit = 5000
+heals = 50
+weight = 0.05
+examine = "Caviar, or expensive fishy eggs."
+
+[caviar_noted]
+id = 11327
+
+[leaping_trout]
+id = 11328
+price = 5
+limit = 5000
+weight = 0.5
+fishing = { level = 48, xp = 50.0, chance = "32-192" }
+examine = "A sad-looking trout."
+
+[leaping_trout_noted]
+id = 11329
+
+[leaping_salmon]
+id = 11330
+price = 8
+limit = 5000
+weight = 0.5
+fishing = { level = 58, xp = 70.0, chance = "16-96" }
+examine = "Some non-tasty salmon."
+
+[leaping_salmon_noted]
+id = 11331
+
+[leaping_sturgeon]
+id = 11332
+price = 90
+limit = 5000
+weight = 1.0
+fishing = { level = 70, xp = 80.0, chance = "8-64" }
+examine = "A bloated sturgeon."
+
+[leaping_sturgeon_noted]
+id = 11333
+
+[fish_offcuts]
+id = 11334
+price = 1
+limit = 100
+examine = "Slices of inedible fish."
+
+[mangled_bones]
+id = 11337
+tradeable = false
+weight = 12.0
+destroy = "I can gather more from the caverns below the Baxtorian Lake."
+examine = "The bones of a barbarian warrior, slain by his fellow adventurers."
+kept = "Reclaim"
+
+[chewed_bones]
+id = 11338
+tradeable = false
+weight = 12.0
+destroy = "I can gather more from the caverns below the Baxtorian Lake."
+examine = "The bones of a barbarian warrior, slain by vile dragons."
+kept = "Reclaim"
+
+[my_notes]
+id = 11339
+tradeable = false
+weight = 0.01
+destroy = "I can obtain another from Otto."
+examine = "Records from my discoveries beneath the lake."
+kept = "Vanish"
+
+[barbarian_skills]
+id = 11340
+tradeable = false
+weight = 0.01
+destroy = "I can obtain another from Otto."
+examine = "A record of Otto's instructions to me."
+kept = "Vanish"

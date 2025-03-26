@@ -10,6 +10,7 @@ import java.math.MathContext
 class ConfigReader(
     private val input: InputStream,
     private val stringBuffer: ByteArray = ByteArray(100), // Maximum string length
+    private val debug: String = "",
 ) : Closeable {
     private var byte: Int = input.read()
     private var lastSection = ""
@@ -18,7 +19,7 @@ class ConfigReader(
     val peek: Char
         get() = byte.toChar()
 
-    constructor(input: InputStream, maxStringLength: Int) : this(input, ByteArray(maxStringLength))
+    constructor(input: InputStream, maxStringLength: Int, debug: String = "") : this(input, ByteArray(maxStringLength), debug)
 
     init {
         nextLine()
@@ -456,7 +457,7 @@ class ConfigReader(
         input.close()
     }
 
-    fun exception(): String = "line=$line char='${charType(byte)}'"
+    fun exception(): String = "line=$line char='${charType(byte)}'${if (debug.isBlank()) "" else ", in=$debug"}"
 
     companion object {
 

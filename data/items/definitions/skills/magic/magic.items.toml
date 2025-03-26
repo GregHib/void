@@ -1,0 +1,49 @@
+[unpowered_orb]
+id = 567
+price = 202
+limit = 5000
+weight = 0.453
+examine = "I'd prefer it if it was powered."
+
+[unpowered_orb_noted]
+id = 568
+
+[fire_orb]
+id = 569
+price = 1364
+limit = 5000
+weight = 0.453
+examine = "A magic glowing orb."
+
+[fire_orb_noted]
+id = 570
+
+[water_orb]
+id = 571
+price = 733
+limit = 5000
+weight = 0.453
+examine = "A magic glowing orb."
+
+[water_orb_noted]
+id = 572
+
+[air_orb]
+id = 573
+price = 1183
+limit = 5000
+weight = 0.453
+examine = "A magic glowing orb."
+
+[air_orb_noted]
+id = 574
+
+[earth_orb]
+id = 575
+price = 1373
+limit = 5000
+weight = 0.453
+examine = "A magic glowing orb."
+
+[earth_orb_noted]
+id = 576

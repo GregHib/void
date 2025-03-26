@@ -20,7 +20,7 @@ internal class EquipTest : WorldTest() {
     fun `Equip item`() {
         val player = createPlayer("player")
         player.inventory.add("bronze_sword")
-        player.inventory.add("junk", 27)
+        player.inventory.add("shark", 27)
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("bronze_sword"), 0)
 
@@ -33,7 +33,7 @@ internal class EquipTest : WorldTest() {
         val player = createPlayer("player")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_sword")
         player.inventory.add("bronze_2h_sword")
-        player.inventory.add("junk", 27)
+        player.inventory.add("shark", 27)
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("bronze_2h_sword"), 0)
 
@@ -46,7 +46,7 @@ internal class EquipTest : WorldTest() {
         val player = createPlayer("player")
         player.equipment.set(EquipSlot.Shield.index, "bronze_sq_shield")
         player.inventory.add("bronze_2h_sword")
-        player.inventory.add("junk", 27)
+        player.inventory.add("shark", 27)
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("bronze_2h_sword"), 0)
 
@@ -61,7 +61,7 @@ internal class EquipTest : WorldTest() {
         player.equipment.set(EquipSlot.Weapon.index, "bronze_sword")
         player.equipment.set(EquipSlot.Shield.index, "bronze_sq_shield")
         player.inventory.add("bronze_2h_sword")
-        player.inventory.add("junk", 26)
+        player.inventory.add("shark", 26)
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("bronze_2h_sword"), 0)
 
@@ -77,7 +77,7 @@ internal class EquipTest : WorldTest() {
         player.equipment.set(EquipSlot.Weapon.index, "bronze_sword")
         player.equipment.set(EquipSlot.Shield.index, "bronze_sq_shield")
         player.inventory.add("bronze_2h_sword")
-        player.inventory.add("junk", 27)
+        player.inventory.add("shark", 27)
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("bronze_2h_sword"), 0)
 
@@ -91,7 +91,7 @@ internal class EquipTest : WorldTest() {
         val player = createPlayer("player")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_2h_sword")
         player.inventory.add("bronze_sword")
-        player.inventory.add("junk", 27)
+        player.inventory.add("shark", 27)
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("bronze_sword"), 0)
 
@@ -104,7 +104,7 @@ internal class EquipTest : WorldTest() {
         val player = createPlayer("player")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_2h_sword")
         player.inventory.add("bronze_sq_shield")
-        player.inventory.add("junk", 27)
+        player.inventory.add("shark", 27)
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("bronze_sq_shield"), 0)
 

@@ -1,0 +1,20 @@
+[soft_clay_jug]
+skill = "crafting"
+remove = ["clay", "jug_of_water"]
+add = ["soft_clay", "jug"]
+ticks = 2
+message = "You mix the clay and water."
+
+[soft_clay_bucket]
+skill = "crafting"
+remove = ["clay", "bucket_of_water"]
+add = ["soft_clay", "bucket"]
+ticks = 2
+message = "You mix the clay and water."
+
+[soft_clay_bowl]
+skill = "crafting"
+remove = ["clay", "bowl_of_water"]
+add = ["soft_clay", "bowl"]
+ticks = 2
+message = "You mix the clay and water."

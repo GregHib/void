@@ -1,0 +1,1138 @@
+[poisoned_dart_p] # Unreleased
+id = 818
+examine = "A deadly throwing dart with a poisoned tip."
+
+[papyrus_used]
+id = 972
+examine = "Used papyrus, it has squiggles all over it. "
+
+[poisoned_dagger_p]
+id = 1235
+examine = "The blade is covered with poison. "
+
+[poisoned_dagger_p_noted]
+id = 1236
+
+[farmers_fork]
+id = 1411
+examine = "A farmer's fork."
+
+[farmers_fork_noted]
+id = 1412
+
+[halberd]
+id = 1413
+examine = "A halberd."
+
+[halberd_noted]
+id = 1414
+
+[warhammer]
+id = 1415
+examine = "A warhammer."
+
+[warhammer_noted]
+id = 1416
+
+[javelin]
+id = 1417
+examine = "A javelin."
+
+[javelin_noted]
+id = 1418
+
+[soul_talisman]
+id = 1460
+examine = "A mysterious power emanates from the talisman..."
+
+[soul_talisman_noted]
+id = 1461
+
+[weapon_poison_ranging_guild]
+id = 1465
+examine = "For use on daggers and projectiles. "
+
+[unfinished_cocktail_pineapple_punch_mixed]
+id = 2042
+
+[unfinished_cocktail_blurberry_special_mixed]
+id = 2056
+
+[unfinished_cocktail_blurberry_special_orange]
+id = 2058
+
+[unfinished_cocktail_blurberry_special_lemon]
+id = 2060
+
+[unfinished_cocktail_blurberry_special_lime]
+id = 2062
+
+[unfinished_cocktail_choc_saturday_mixed]
+id = 2066
+
+[unfinished_cocktail_choc_saturday_chocolate_bar]
+id = 2068
+
+[unfinished_cocktail_choc_saturday_heated]
+id = 2070
+
+[unfinished_cocktail_choc_saturday_cream]
+id = 2072
+
+[unfinished_cocktail_short_green_guy_mixed]
+id = 2076
+
+[unfinished_cocktail_short_green_guy_lime]
+id = 2078
+
+[unfinished_cocktail_fruit_blast]
+id = 2082
+
+[unfinished_cocktail_pineapple_punch_lime]
+id = 2044
+
+[unfinished_cocktail_pineapple_punch_pineapple]
+id = 2046
+
+[unfinished_cocktail_wizard_blizzard_mixed]
+id = 2050
+
+[unfinished_cocktail_wizard_blizzard_pineapple]
+id = 2052
+
+[unfinished_cocktail_drunk_dragon_mixed]
+id = 2086
+
+[unfinished_cocktail_drunk_dragon_pineapple]
+id = 2088
+
+[unfinished_cocktail_drunk_dragon_cream]
+id = 2090
+
+[equa_toads_legs]
+id = 2154
+
+[odd_batta]
+id = 2245
+weight = 0.25
+examine = "This batta doesn't look very appetising."
+
+[equa_toads_legs_noted]
+id = 2155
+
+[odd_gnomebowl_noted]
+id = 2174
+
+[unfinished_bowl_chocolate_bomb_baked_noted]
+id = 2180
+
+[unfinished_bowl_chocolate_bomb_cream_noted]
+id = 2182
+
+[unfinished_bowl_chocolate_bomb_2_cream_noted]
+id = 2184
+
+[unfinished_bowl_worm_hole_noted]
+id = 2190
+
+[unfinished_bowl_veg_ball_noted]
+id = 2194
+
+[unfinished_crunchy_worm_noted]
+id = 2204
+
+[unfinished_crunchy_chocolate_chip_noted]
+id = 2208
+
+[unfinished_crunchy_spicy_noted]
+id = 2212
+
+[unfinished_crunchy_toad_noted]
+id = 2216
+
+[unfinished_batta_cheese_and_tomato]
+id = 2257
+
+[unfinished_batta_fruit_baked]
+id = 2261
+
+[unfinished_batta_fruit_baked_noted]
+id = 2262
+
+[unfinished_batta_fruit_lime]
+id = 2263
+
+[unfinished_batta_fruit_lime_noted]
+id = 2264
+
+[unfinished_batta_fruit_orange]
+id = 2265
+
+[unfinished_batta_fruit_orange_noted]
+id = 2266
+
+[unfinished_batta_fruit_pineapple]
+id = 2267
+
+[unfinished_batta_fruit_pineapple_noted]
+id = 2268
+
+[unfinished_batta_fruit_lime_orange]
+id = 2269
+
+[unfinished_batta_fruit_lime_orange_noted]
+id = 2270
+
+[unfinished_batta_fruit_lime_pineapple]
+id = 2271
+
+[unfinished_batta_fruit_lime_pineapple_noted]
+id = 2272
+
+[unfinished_batta_fruit_orange_pineapple]
+id = 2273
+
+[unfinished_batta_fruit_orange_pineapple_noted]
+id = 2274
+
+[unfinished_batta_fruit_lime_orange_pineapple]
+id = 2275
+
+[unfinished_batta_vegetable]
+id = 2279
+
+[unfinished_batta_worm]
+id = 2251
+
+[odd_batta_noted]
+id = 2246
+
+[unfinished_batta_worm_noted]
+id = 2252
+
+[unfinished_batta_cheese_and_tomato_noted]
+id = 2258
+
+[unfinished_batta_fruit_lime_orange_pineapple_noted]
+id = 2276
+
+[unfinished_batta_vegetable_noted]
+id = 2280
+
+[left_handed_banana_noted]
+id = 3178
+
+[dummy]
+id = 4032
+
+[dial]
+id = 5572
+
+[magic_carpet]
+id = 5614
+tradeable = false
+weight = 0.005
+slot = "Weapon"
+examine = "A flying Magic carpet."
+
+[poison_dagger_p+] 
+id = 5684
+
+[poison_dagger_p+_noted]
+id = 5685
+
+[poison_dagger_p++]
+id = 5702
+
+[poison_dagger_p++_noted]
+id = 5703
+
+[stool_dairy_cow_anim]
+id = 5732
+
+[stool_dairy_cow_anim_noted]
+id = 6060
+
+[spirit_roots]
+id = 6053
+
+[spirit_roots_noted]
+id = 6054
+
+[dummy_2]
+id = 7586
+
+[item]
+id = 7597
+
+[item_2]
+id = 7598
+
+[item_3]
+id = 7599
+
+[item_4]
+id = 7600
+
+[item_5]
+id = 7601
+
+[item_6]
+id = 7602
+
+[item_7]
+id = 7603
+
+[item_8]
+id = 7604
+
+[item_9]
+id = 7605
+
+[item_10]
+id = 7606
+
+[item_11]
+id = 7607
+
+[item_12]
+id = 7608
+
+[item_13]
+id = 7609
+
+[item_14]
+id = 7610
+
+[item_15]
+id = 7611
+
+[item_16]
+id = 7612
+
+[item_17]
+id = 7613
+
+[item_18]
+id = 7614
+
+[item_19]
+id = 7615
+
+[item_20]
+id = 7616
+
+[item_21]
+id = 7617
+
+[item_22]
+id = 7618
+
+[hatchet_handle_2]
+id = 7952
+examine = "Useless."
+
+[hatchet_handle_2_noted]
+id = 7953
+
+[flatpack_globe]
+id = 8630
+
+[flatpack_globe_noted]
+id = 8631
+
+[thing]
+id = 8796
+
+[guthix_staff_dummy]
+id = 8843
+
+[torch_sea_slug_noted]
+id = 9701
+
+[stick_2]
+id = 9702
+
+[rock]
+id = 9716
+examine = "A chunk of rock. "
+
+[bobble_hat_2]
+id = 9815
+tradeable = false
+
+[bobble_scarf_2]
+id = 9816
+tradeable = false
+
+[scroll]
+id = 10485
+
+[thingy] # Unreleased
+id = 10567
+examine = "Mabob."
+
+[thingy_noted]
+id = 10568
+
+[mystic_hat_blue_2]
+id = 10601
+tradeable = false
+
+[dark_mystic_hat_2]
+id = 10602
+tradeable = false
+
+[light_mystic_hat_3]
+id = 10603
+tradeable = false
+
+[skeletal_helm_2]
+id = 10604
+tradeable = false
+
+[infinity_top_2]
+id = 10605
+tradeable = false
+
+[splitbark_helm_2]
+id = 10606
+tradeable = false
+
+[ghostly_boots_2]
+id = 10607
+tradeable = false
+
+[moonclan_hat_2]
+id = 10608
+tradeable = false
+
+[lunar_helm_2]
+id = 10609
+tradeable = false
+
+[basic_decorative_platebody_2]
+id = 10610
+tradeable = false
+
+[void_knight_top_2]
+id = 10611
+tradeable = false
+
+[rogue_mask_2]
+id = 10612
+tradeable = false
+
+[rock_shell_helm_2]
+id = 10613
+tradeable = false
+
+[spined_helm_2]
+id = 10614
+tradeable = false
+
+[tribal_mask_green_2]
+id = 10615
+tradeable = false
+
+[tribal_mask_orange_2]
+id = 10616
+tradeable = false
+
+[tribal_mask_blue_3]
+id = 10617
+tradeable = false
+
+[white_platebody_2]
+id = 10618
+tradeable = false
+
+[initiate_hauberk_2]
+id = 10619
+tradeable = false
+
+[proselyte_hauberk_2]
+id = 10620
+tradeable = false
+
+[mourner_top_2]
+id = 10621
+tradeable = false
+
+[kyatt_top_2]
+id = 10622
+tradeable = false
+
+[larupia_top_2]
+id = 10623
+tradeable = false
+
+[graahk_top_2]
+id = 10624
+tradeable = false
+
+[wood_camo_top_2]
+id = 10625
+tradeable = false
+
+[jungle_camo_top_2]
+id = 10626
+tradeable = false
+
+[desert_camo_top_2]
+id = 10627
+tradeable = false
+
+[polar_camo_top_2]
+id = 10628
+tradeable = false
+
+[mime_mask_2]
+id = 10629
+tradeable = false
+
+[princess_blouse_2]
+id = 10630
+tradeable = false
+
+[zombie_shirt_2]
+id = 10631
+tradeable = false
+
+[camo_top_2]
+id = 10632
+tradeable = false
+
+[lederhosen_top_2]
+id = 10633
+tradeable = false
+
+[shade_robe]
+id = 10634
+tradeable = false
+
+[cape_of_legends_3]
+id = 10635
+tradeable = false
+
+[obsidian_cape_2]
+id = 10636
+tradeable = false
+
+[fire_cape_3]
+id = 10637
+tradeable = false
+
+[team_1_cape_2]
+id = 10638
+tradeable = false
+
+[spotted_cape_3]
+id = 10663
+tradeable = false
+
+[spottier_cape_3]
+id = 10664
+tradeable = false
+
+[black_shield_h1_2]
+id = 10665
+tradeable = false
+
+[adamant_shield_h1_2]
+id = 10666
+tradeable = false
+
+[rune_shield_h1_2]
+id = 10667
+tradeable = false
+
+[black_shield_h2_2]
+id = 10668
+tradeable = false
+
+[adamant_shield_h2_2]
+id = 10669
+tradeable = false
+
+[rune_shield_h2_2]
+id = 10670
+tradeable = false
+
+[black_shield_h3_2]
+id = 10671
+tradeable = false
+
+[adamant_shield_h3_2]
+id = 10672
+tradeable = false
+
+[rune_shield_h3_2]
+id = 10673
+tradeable = false
+
+[black_shield_h4_2]
+id = 10674
+tradeable = false
+
+[adamant_shield_h4_2]
+id = 10675
+tradeable = false
+
+[rune_shield_h4_2]
+id = 10676
+tradeable = false
+
+[black_shield_h5_2]
+id = 10677
+tradeable = false
+
+[adamant_shield_h5_2]
+id = 10678
+tradeable = false
+
+[rune_shield_h5_2]
+id = 10679
+tradeable = false
+
+[studded_body_g_2]
+id = 10680
+tradeable = false
+
+[studded_body_t_2]
+id = 10681
+tradeable = false
+
+[dhide_body_g]
+id = 10682
+tradeable = false
+
+[dhide_body_t]
+id = 10683
+tradeable = false
+
+[dhide_body_g_2]
+id = 10684
+tradeable = false
+
+[dhide_body_t_2]
+id = 10685
+tradeable = false
+
+[wizard_robe_g]
+id = 10686
+tradeable = false
+
+[wizard_robe_t]
+id = 10687
+tradeable = false
+
+[enchanted_top_2]
+id = 10688
+tradeable = false
+
+[wizard_boots_2]
+id = 10689
+tradeable = false
+
+[black_platebody_t_2]
+id = 10690
+tradeable = false
+
+[black_platebody_g_2]
+id = 10691
+tradeable = false
+
+[highwayman_mask_2]
+id = 10692
+tradeable = false
+
+[blue_beret_2]
+id = 10693
+tradeable = false
+
+[black_beret_2]
+id = 10694
+tradeable = false
+
+[white_beret_2]
+id = 10695
+tradeable = false
+
+[ranger_boots_2]
+id = 10696
+tradeable = false
+
+[adam_platebody_t]
+id = 10697
+tradeable = false
+
+[adam_platebody_g]
+id = 10698
+tradeable = false
+
+[black_helm_h1_2]
+id = 10699
+tradeable = false
+
+[black_helm_h2_2]
+id = 10700
+tradeable = false
+
+[black_helm_h3_2]
+id = 10701
+tradeable = false
+
+[black_helm_h4_2]
+id = 10702
+tradeable = false
+
+[black_helm_h5_2]
+id = 10703
+tradeable = false
+
+[rune_helm_h1_2]
+id = 10704
+tradeable = false
+
+[rune_helm_h2_2]
+id = 10705
+tradeable = false
+
+[rune_helm_h3_2]
+id = 10706
+tradeable = false
+
+[rune_helm_h4_2]
+id = 10707
+tradeable = false
+
+[rune_helm_h5_2]
+id = 10708
+tradeable = false
+
+[adamant_helm_h1_2]
+id = 10709
+tradeable = false
+
+[adamant_helm_h2_2]
+id = 10710
+tradeable = false
+
+[adamant_helm_h3_2]
+id = 10711
+tradeable = false
+
+[adamant_helm_h4_2]
+id = 10712
+tradeable = false
+
+[adamant_helm_h5_2]
+id = 10713
+tradeable = false
+
+[bob_shirt_red_2]
+id = 10714
+tradeable = false
+
+[bob_shirt_blue_2]
+id = 10715
+tradeable = false
+
+[bob_shirt_green_2]
+id = 10716
+tradeable = false
+
+[bob_shirt_black_2]
+id = 10717
+tradeable = false
+
+[bob_shirt_purple_2]
+id = 10718
+tradeable = false
+
+[amulet_of_glory_t_0]
+id = 10719
+tradeable = false
+
+[guthix_cape_2]
+id = 10720
+tradeable = false
+
+[frog_mask_2]
+id = 10721
+tradeable = false
+
+[reindeer_hat_2]
+id = 10722
+tradeable = false
+
+[jack_lantern_mask_2]
+id = 10723
+tradeable = false
+
+[skeleton_boots_2]
+id = 10724
+tradeable = false
+
+[skeleton_gloves_2]
+id = 10725
+tradeable = false
+
+[skeleton_leggings_2]
+id = 10726
+tradeable = false
+
+[skeleton_shirt_2]
+id = 10727
+tradeable = false
+
+[skeleton_mask_2]
+id = 10728
+tradeable = false
+
+[easter_ring_2]
+id = 10729
+
+[blue_marionette_2]
+id = 10730
+
+[zombie_head_2]
+id = 10731
+tradeable = false
+
+[rubber_chicken_2]
+id = 10732
+tradeable = false
+
+[yo_yo_2]
+id = 10733
+
+[bunny_ears_2]
+id = 10734
+tradeable = false
+
+[scythe_2]
+id = 10735
+tradeable = false
+
+[strength_amulet_t_2]
+id = 10736
+tradeable = false
+
+[amulet_of_magic_t_2]
+id = 10738
+tradeable = false
+
+[flared_trousers_2]
+id = 10742
+tradeable = false
+
+[pantaloons_2]
+id = 10744
+tradeable = false
+
+[sleeping_cap_2]
+id = 10746
+tradeable = false
+
+[elegant_shirt_2]
+id = 10750
+tradeable = false
+
+[elegant_shirt_3]
+id = 10752
+tradeable = false
+
+[elegant_shirt_4]
+id = 10754
+tradeable = false
+
+[elegant_shirt_5]
+id = 10756
+tradeable = false
+
+[red_boater_2]
+id = 10758
+tradeable = false
+
+[orange_boater_2]
+id = 10760
+tradeable = false
+
+[green_boater_2]
+id = 10762
+tradeable = false
+
+[blue_boater_2]
+id = 10764
+tradeable = false
+
+[black_boater_2]
+id = 10766
+tradeable = false
+
+[red_headband_2]
+id = 10768
+tradeable = false
+
+[black_headband_2]
+id = 10770
+tradeable = false
+
+[brown_headband_2]
+id = 10772
+tradeable = false
+
+[pirates_hat_2]
+id = 10774
+tradeable = false
+
+[saradomin_robe_top_2]
+id = 10784
+tradeable = false
+
+[zamorak_robe_top_3]
+id = 10786
+tradeable = false
+
+[guthix_robe_top_2]
+id = 10788
+tradeable = false
+
+[robin_hood_hat_2]
+id = 10796
+tradeable = false
+
+[rune_platebody_g_2]
+id = 10798
+tradeable = false
+
+[rune_platebody_t_2]
+id = 10800
+tradeable = false
+
+[tan_cavalier_2]
+id = 10802
+tradeable = false
+
+[dark_cavalier_2]
+id = 10804
+tradeable = false
+
+[black_cavalier_2]
+id = 10806
+tradeable = false
+
+[ham_shirt_2]
+id = 11274
+tradeable = false
+
+[mithril_grapple_unf_noted]
+id = 11275
+
+[mithril_grapple_noted]
+id = 11276
+
+[logs_3]
+id = 11760
+
+[black_cane_2]
+id = 13163
+tradeable = false
+
+[adamant_cane_2]
+id = 13164
+tradeable = false
+
+[rune_cane_2]
+id = 13165
+tradeable = false
+
+[top_hat_2]
+id = 13166
+tradeable = false
+
+[pith_helmet_2]
+id = 13167
+tradeable = false
+
+[spiked_helmet_2]
+id = 13168
+tradeable = false
+
+[sheep_mask_2]
+id = 13169
+tradeable = false
+
+[penguin_mask_2]
+id = 13170
+tradeable = false
+
+[bat_mask_2]
+id = 13171
+tradeable = false
+
+[cat_mask_2]
+id = 13172
+tradeable = false
+
+[wolf_mask_2]
+id = 13173
+tradeable = false
+
+[blue_navy_slacks_2]
+id = 13174
+tradeable = false
+
+[green_navy_slacks_2]
+id = 13175
+tradeable = false
+
+[red_navy_slacks_2]
+id = 13176
+tradeable = false
+
+[brown_navy_slacks_2]
+id = 13177
+tradeable = false
+
+[black_navy_slacks_2]
+id = 13178
+tradeable = false
+
+[purple_navy_slacks_2]
+id = 13179
+tradeable = false
+
+[grey_navy_slacks_2]
+id = 13180
+tradeable = false
+
+[blue_naval_shirt_2]
+id = 13181
+tradeable = false
+
+[green_naval_shirt_2]
+id = 13182
+tradeable = false
+
+[red_naval_shirt_2]
+id = 13183
+tradeable = false
+
+[brown_naval_shirt_2]
+id = 13184
+tradeable = false
+
+[black_naval_shirt_2]
+id = 13185
+tradeable = false
+
+[purple_naval_shirt_2]
+id = 13186
+tradeable = false
+
+[grey_naval_shirt_2]
+id = 13187
+tradeable = false
+
+[blue_tricorn_hat_2]
+id = 13188
+tradeable = false
+
+[green_tricorn_hat_2]
+id = 13189
+tradeable = false
+
+[red_tricorn_hat_2]
+id = 13190
+tradeable = false
+
+[brown_tricorn_hat_2]
+id = 13191
+tradeable = false
+
+[black_tricorn_hat_2]
+id = 13192
+tradeable = false
+
+[purple_tricorn_hat_2]
+id = 13193
+tradeable = false
+
+[grey_tricorn_hat_2]
+id = 13194
+tradeable = false
+
+[chisel_3]
+id = 13239
+tradeable = false
+
+[witch_top_2]
+id = 14086
+tradeable = false
+
+[witch_skirt_2]
+id = 14087
+tradeable = false
+
+[witch_cloak_2]
+id = 14088
+tradeable = false
+
+[bones_3]
+id = 14693
+
+[beer_2]
+id = 14712
+
+[elite_black_platelegs_2]
+id = 14729
+tradeable = false
+
+[elite_black_platebody_2]
+id = 14730
+tradeable = false
+
+[elite_black_full_helm_2]
+id = 14731
+tradeable = false
+
+[dagonhai_robe_top_2]
+id = 14732
+tradeable = false
+
+[dagonhai_hat_2]
+id = 14733
+tradeable = false
+
+[dagonhai_robe_bottom_2]
+id = 14734
+tradeable = false
+
+[iron_hatchet_2]
+id = 15298
+tradeable = false
+
+[iron_hatchet_2_noted]
+id = 15299
+
+[serjeant_cap_2]
+id = 15336
+tradeable = false
+
+[commander_cap_2]
+id = 15337
+tradeable = false
+
+[war_chief_cap_2]
+id = 15338
+tradeable = false
+
+[lord_marshal_cap_2]
+id = 15339
+tradeable = false
+
+[black_helm_2]
+id = 19801

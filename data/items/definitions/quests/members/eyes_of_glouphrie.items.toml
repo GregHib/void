@@ -1,0 +1,223 @@
+[magic_glue]
+id = 9592
+tradeable = false
+weight = 2.5
+empty = "bucket"
+examine = "Glue made from tree sap and ground mud runes."
+kept = "Wilderness"
+
+[weird_gloop]
+id = 9593
+tradeable = false
+weight = 2.5
+empty = "bucket"
+examine = "This doesn't look like it will do anything interesting."
+kept = "Wilderness"
+
+[ground_mud_runes]
+id = 9594
+limit = 25000
+examine = "Mud runes ground into a powder."
+kept = "Wilderness"
+
+[hazelmeres_book] # Unreleased
+id = 9595
+tradeable = false
+weight = 0.51
+examine = "Looks magical..."
+
+[red_circle]
+id = 9597
+tradeable = false
+examine = "A red circular crystalline disc."
+kept = "Wilderness"
+
+[red_triangle]
+id = 9598
+tradeable = false
+examine = "A red triangular crystalline disc."
+kept = "Wilderness"
+
+[red_square]
+id = 9599
+tradeable = false
+examine = "A red square-shaped crystalline disc."
+kept = "Wilderness"
+
+[red_pentagon]
+id = 9600
+tradeable = false
+examine = "A red pentagon-shaped crystalline disc."
+kept = "Wilderness"
+
+[orange_circle]
+id = 9601
+tradeable = false
+examine = "An orange circular crystalline disc."
+kept = "Wilderness"
+
+[orange_triangle]
+id = 9602
+tradeable = false
+examine = "An orange triangular crystalline disc."
+kept = "Wilderness"
+
+[orange_square]
+id = 9603
+tradeable = false
+examine = "An orange square-shaped crystalline disc."
+kept = "Wilderness"
+
+[orange_pentagon]
+id = 9604
+tradeable = false
+examine = "An orange pentagon-shaped crystalline disc."
+kept = "Wilderness"
+
+[yellow_circle] # Unobtainable
+id = 9605
+tradeable = false
+examine = "A yellow circular crystalline disc."
+kept = "Wilderness"
+
+[yellow_triangle]
+id = 9606
+tradeable = false
+examine = "A yellow triangular crystalline disc."
+kept = "Wilderness"
+
+[yellow_square]
+id = 9607
+tradeable = false
+examine = "A yellow square-shaped crystalline disc."
+kept = "Wilderness"
+
+[yellow_pentagon]
+id = 9608
+tradeable = false
+examine = "A yellow pentagon-shaped crystalline disc."
+kept = "Wilderness"
+
+[green_circle]
+id = 9609
+tradeable = false
+examine = "A green circular crystalline disc."
+kept = "Wilderness"
+
+[green_triangle]
+id = 9610
+tradeable = false
+examine = "A green triangular crystalline disc."
+kept = "Wilderness"
+
+[green_square]
+id = 9611
+tradeable = false
+examine = "A green square-shaped crystalline disc."
+kept = "Wilderness"
+
+[green_pentagon]
+id = 9612
+tradeable = false
+examine = "A green pentagon-shaped crystalline disc."
+kept = "Wilderness"
+
+[blue_circle]
+id = 9613
+tradeable = false
+examine = "A blue circular crystalline disc."
+kept = "Wilderness"
+
+[blue_triangle]
+id = 9614
+tradeable = false
+examine = "A blue triangular crystalline disc."
+kept = "Wilderness"
+
+[blue_square]
+id = 9615
+tradeable = false
+examine = "A blue square-shaped crystalline disc."
+kept = "Wilderness"
+
+[blue_pentagon]
+id = 9616
+tradeable = false
+examine = "A blue pentagon-shaped crystalline disc."
+kept = "Wilderness"
+
+[indigo_circle]
+id = 9617
+tradeable = false
+examine = "An indigo circular crystalline disc."
+kept = "Wilderness"
+
+[indigo_triangle]
+id = 9618
+tradeable = false
+examine = "An indigo triangular crystalline disc."
+kept = "Wilderness"
+
+[indigo_square]
+id = 9619
+tradeable = false
+examine = "An indigo square-shaped crystalline disc."
+kept = "Wilderness"
+
+[indigo_pentagon]
+id = 9620
+tradeable = false
+examine = "An indigo pentagon-shaped crystalline disc."
+kept = "Wilderness"
+
+[violet_circle]
+id = 9621
+tradeable = false
+examine = "A violet circular crystalline disc."
+kept = "Wilderness"
+
+[violet_triangle]
+id = 9622
+tradeable = false
+examine = "A violet triangular crystalline disc."
+kept = "Wilderness"
+
+[violet_square]
+id = 9623
+tradeable = false
+examine = "A violet square-shaped crystalline disc."
+kept = "Wilderness"
+
+[violet_pentagon]
+id = 9624
+tradeable = false
+examine = "A violet pentagon-shaped crystalline disc."
+kept = "Wilderness"
+
+[crystal_saw]
+id = 9625
+tradeable = false
+weight = 1.0
+charges = 28
+charge = "crystal_saw_charges"
+degrade = "small_crystal_seed"
+slot = "Weapon"
+destroy = "Maybe Brimstail will have another..."
+examine = "A magical saw."
+kept = "Vanish"
+
+[small_crystal_seed]
+id = 9626
+tradeable = false
+weight = 0.01
+destroy = "Maybe Brimstail will have another..."
+examine = "This small crystal seed looks grey and dead."
+kept = "Vanish"
+
+[a_handwritten_book_the_eyes_of_glouphrie]
+id = 9627
+tradeable = false
+weight = 0.51
+aka = ["crystal_singing_for_beginners_trans_oaknock"]
+examine = "A book on elven crystal."
+kept = "Wilderness"

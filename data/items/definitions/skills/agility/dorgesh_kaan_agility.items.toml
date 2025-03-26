@@ -1,0 +1,102 @@
+
+[cog]
+id = 10983
+tradeable = false
+bank_stacks = false
+weight = 3.0
+destroy = "You can get another cog from the old power station."
+examine = "A cog."
+kept = "Vanish"
+
+[cog_broken]
+id = 10984
+tradeable = false
+weight = 3.0
+destroy = "You destroy it."
+examine = "A broken cog."
+kept = "Vanish"
+
+[fuse_dorgesh_kaan_agility_course]
+id = 10985
+tradeable = false
+bank_stacks = false
+weight = 1.0
+destroy = "You can get another fuse from the old power station."
+examine = "A fuse."
+kept = "Vanish"
+
+[fuse_broken]
+id = 10986
+tradeable = false
+weight = 1.0
+destroy = "You destroy it."
+examine = "A broken fuse."
+kept = "Vanish"
+
+[meter]
+id = 10987
+tradeable = false
+bank_stacks = false
+weight = 1.0
+destroy = "You can get another meter from the old power station."
+examine = "A meter."
+kept = "Vanish"
+
+[meter_broken]
+id = 10988
+tradeable = false
+weight = 1.0
+destroy = "You destroy it."
+examine = "A broken meter."
+kept = "Vanish"
+
+[capacitor]
+id = 10989
+tradeable = false
+bank_stacks = false
+weight = 1.0
+destroy = "You can get another capacitor from the old power station."
+examine = "A capacitor."
+kept = "Vanish"
+
+[capacitor_broken]
+id = 10990
+tradeable = false
+weight = 1.0
+destroy = "You destroy it."
+examine = "A broken capacitor."
+kept = "Vanish"
+
+[lever_dorgesh_kaan_agility_course]
+id = 10991
+tradeable = false
+bank_stacks = false
+weight = 3.0
+destroy = "You can get another lever from the old power station."
+examine = "A lever."
+kept = "Vanish"
+
+[lever_broken]
+id = 10992
+tradeable = false
+weight = 3.0
+destroy = "You destroy it."
+examine = "A broken lever."
+kept = "Vanish"
+
+[power_box]
+id = 10993
+tradeable = false
+bank_stacks = false
+weight = 3.0
+destroy = "You can get another power box from the old power station."
+examine = "A power box."
+kept = "Vanish"
+
+[powerbox]
+id = 10994
+tradeable = false
+weight = 3.0
+destroy = "You destroy it."
+examine = "A broken powerbox."
+kept = "Vanish"

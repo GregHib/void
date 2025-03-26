@@ -38,6 +38,7 @@ class WeaponStyleDefinitions : DefinitionsDecoder<WeaponStyleDefinition> {
                             }
                         }
                     }
+                    require(!ids.containsKey(stringId)) { "Duplicate weapon style id found '$stringId' at $path." }
                     ids[stringId] = id
                     definitions[id] = WeaponStyleDefinition(stringId = stringId, attackTypes = attackTypes.toTypedArray(), attackStyles = attackStyles.toTypedArray(), combatStyles = combatStyles.toTypedArray())
                 }

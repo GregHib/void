@@ -1,0 +1,98 @@
+[map_part_1]
+id = 1535
+tradeable = false
+weight = 0.005
+examine = "A piece of the map to Crandor."
+kept = "Wilderness"
+
+[map_part_3]
+clone = "map_part_1"
+id = 1536
+
+[map_part_2]
+clone = "map_part_1"
+id = 1537
+
+[crandor_map]
+id = 1538
+tradeable = false
+weight = 0.015
+examine = "A map of the route to Crandor."
+kept = "Wilderness"
+
+[steel_nails]
+id = 1539
+price = 34
+limit = 10000
+smithing = { level = 34, xp = 37.5 }
+examine = "Keeps things in place fairly permanently."
+
+[anti_dragon_shield]
+id = 1540
+price = 141
+limit = 100
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "This provides partial protection from dragonbreath attacks."
+
+[anti_dragon_shield_noted]
+id = 1541
+
+[maze_key]
+id = 1542
+tradeable = false
+weight = 0.01
+examine = "A key to Melzar's Maze."
+kept = "Wilderness"
+
+[key_red]
+id = 1543
+tradeable = false
+weight = 0.01
+examine = "A red key from Melzar's Maze."
+kept = "Wilderness"
+
+[key_orange]
+id = 1544
+tradeable = false
+weight = 0.01
+examine = "An orange key from Melzar's Maze."
+kept = "Wilderness"
+
+[key_yellow]
+id = 1545
+tradeable = false
+weight = 0.01
+examine = "A yellow key from Melzar's Maze."
+kept = "Wilderness"
+
+[key_blue]
+id = 1546
+tradeable = false
+weight = 0.01
+examine = "A blue key from Melzar's Maze."
+kept = "Wilderness"
+
+[key_magenta]
+id = 1547
+tradeable = false
+weight = 0.01
+examine = "A magenta key from Melzar's Maze."
+kept = "Wilderness"
+
+[key_green]
+id = 1548
+tradeable = false
+weight = 0.01
+examine = "A green key from Melzar's Maze."
+kept = "Wilderness"
+
+[elvargs_head]
+id = 11279
+tradeable = false
+weight = 0.01
+slot = "Weapon"
+destroy = "You can complete the quest by speaking to Oziach, even if you do not have the head."
+examine = "The severed head of the great dragon Elvarg!"
+kept = "Wilderness"

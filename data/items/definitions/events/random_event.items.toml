@@ -1,0 +1,355 @@
+[strange_fruit]
+id = 464
+price = 581
+limit = 10000
+heals = 0
+weight = 0.085
+examine = "Found on strange plants that grow around Karamja."
+
+[strange_fruit_noted]
+id = 465
+
+[lamp]
+id = 2528
+tradeable = false
+weight = 0.1
+examine = "Wonder what happens if I rub it..."
+kept = "Reclaim"
+
+[mime_mask]
+id = 3057
+tradeable = false
+weight = 0.001
+slot = "Hat"
+examine = "A mime would wear this."
+kept = "Wilderness"
+
+[mime_top]
+id = 3058
+tradeable = false
+weight = 0.001
+slot = "Chest"
+examine = "A mime would wear this."
+kept = "Wilderness"
+
+[mime_legs]
+id = 3059
+tradeable = false
+weight = 0.001
+slot = "Legs"
+examine = "A mime would wear these."
+kept = "Wilderness"
+
+[mime_gloves]
+id = 3060
+tradeable = false
+weight = 0.001
+slot = "Hands"
+examine = "A mime would wear these."
+kept = "Wilderness"
+
+[mime_boots]
+id = 3061
+tradeable = false
+weight = 0.34
+slot = "Feet"
+examine = "A mime would wear these."
+kept = "Wilderness"
+
+[strange_box]
+id = 3062
+tradeable = false
+destroy = "Solve the puzzle inside!"
+examine = "It seems to be humming..."
+kept = "Vanish"
+
+[raw_pheasant]
+id = 6178
+tradeable = false
+weight = 10.0
+examine = "I need to cook this first."
+kept = "Vanish"
+
+[raw_pheasant_incorrect]
+clone = "raw_pheasant"
+id = 6179
+
+[lederhosen_top]
+id = 6180
+tradeable = false
+weight = 2.267
+slot = "Chest"
+examine = "A leather strapped top."
+kept = "Wilderness"
+
+[lederhosen_shorts]
+id = 6181
+tradeable = false
+weight = 2.267
+slot = "Legs"
+examine = "Brown leather shorts with bright white socks?"
+kept = "Wilderness"
+
+[lederhosen_hat]
+id = 6182
+tradeable = false
+weight = 2.267
+slot = "Hat"
+type = "Hair"
+examine = "A hat with a goat's hair attached."
+kept = "Wilderness"
+
+[random_event_gift]
+id = 6183
+tradeable = false
+weight = 2.0
+examine = "Open the box and choose a gift."
+kept = "Reclaim"
+
+[prince_tunic]
+id = 6184
+tradeable = false
+weight = 2.721
+slot = "Chest"
+examine = "Very posh!"
+kept = "Wilderness"
+
+[prince_leggings]
+id = 6185
+tradeable = false
+weight = 2.267
+slot = "Legs"
+examine = "Very posh!"
+kept = "Wilderness"
+
+[princess_blouse]
+id = 6186
+tradeable = false
+weight = 2.721
+slot = "Chest"
+examine = "Very posh!"
+kept = "Wilderness"
+
+[princess_skirt]
+id = 6187
+tradeable = false
+weight = 2.267
+slot = "Legs"
+examine = "Very posh!"
+kept = "Wilderness"
+
+[frog_mask]
+id = 6188
+tradeable = false
+weight = 0.453
+slot = "Hat"
+type = "FullFace"
+examine = "Now that's just silly."
+kept = "Wilderness"
+
+[hex_edit_detected]
+id = 6189
+tradeable = false
+weight = 1.0
+examine = "Your IP has been logged and passed to Customer Support."
+
+[mystery_box]
+id = 6199
+tradeable = false
+weight = 1.0
+examine = "Could there be something valuable in here?"
+kept = "Reclaim"
+
+[raw_fish_like_thing]
+id = 6200
+tradeable = false
+weight = 0.7
+destroy = "A ghastly fish-like thing caught on Evil Bob's Island."
+examine = "A raw...fish? Is this a fish??"
+kept = "Vanish"
+
+[fish_like_thing]
+id = 6202
+tradeable = false
+weight = 0.7
+destroy = "A ghastly fish-like thing caught on Evil Bob's Island."
+examine = "It's a fish-like thing that appears to already be cooked. It looks disgusting."
+kept = "Vanish"
+
+[raw_fish_like_thing_incorrect]
+id = 6204
+tradeable = false
+weight = 0.7
+destroy = "A ghastly fish-like thing caught on Evil Bob's Island."
+examine = "A raw...fish? Is this a fish??"
+kept = "Reclaim"
+
+[fish_like_thing_incorrect]
+id = 6206
+tradeable = false
+weight = 0.7
+destroy = "A ghastly fish-like thing caught on Evil Bob's Island."
+examine = "It's a fish-like thing that appears to already be cooked. It looks disgusting."
+kept = "Reclaim"
+
+[manspeak_amulet]
+id = 6208
+tradeable = false
+weight = 1.36
+slot = "Amulet"
+examine = "It's an Amulet of Manspeak. It makes vague grunting noises."
+kept = "Reclaim"
+
+[small_fishing_net_evil_bobs_island]
+id = 6209
+limit = 100
+weight = 4.535
+examine = "Useful for catching small fish."
+kept = "Wilderness"
+
+[camo_top]
+id = 6654
+tradeable = false
+weight = 2.721
+slot = "Chest"
+examine = "Examine what?"
+kept = "Wilderness"
+
+[camo_bottoms]
+id = 6655
+tradeable = false
+weight = 2.267
+slot = "Legs"
+examine = "Examine what?"
+kept = "Wilderness"
+
+[camo_helmet]
+id = 6656
+tradeable = false
+weight = 2.267
+slot = "Hat"
+examine = "Examine what?"
+kept = "Wilderness"
+
+[baguette]
+id = 6961
+limit = 1000
+heals = 60
+weight = 0.02
+examine = "A freshly baked baguette."
+
+[triangle_sandwich]
+id = 6962
+price = 80
+limit = 1000
+heals = 60
+weight = 0.02
+examine = "A freshly made triangle sandwich."
+
+[roll]
+id = 6963
+limit = 1000
+heals = 60
+weight = 0.02
+examine = "A freshly made roll."
+
+[square_sandwich]
+id = 6965
+limit = 1000
+heals = 60
+weight = 0.02
+examine = "A freshly made square sandwich."
+
+[prison_key_prison_pete]
+id = 6966
+tradeable = false
+weight = 0.01
+examine = "A key to the prison."
+kept = "Reclaim"
+
+[triangle_sandwich_noted]
+id = 6968
+
+[coffin]
+id = 7587
+tradeable = false
+weight = 0.003
+destroy = "If you drop that item all the bones will fall out!"
+examine = "Filled with items. Like a bank, but spookier!"
+
+[coffin_2]
+clone = "coffin"
+id = 7588
+
+[coffin_3]
+clone = "coffin"
+id = 7589
+
+[coffin_4]
+clone = "coffin"
+id = 7590
+
+[coffin_5]
+clone = "coffin"
+id = 7591
+
+[zombie_shirt]
+id = 7592
+tradeable = false
+weight = 0.003
+slot = "Chest"
+examine = "Aside from the braaaains on the lapel, it's still quite good."
+kept = "Wilderness"
+
+[zombie_trousers]
+id = 7593
+tradeable = false
+weight = 0.003
+slot = "Legs"
+examine = "Good for a shamble about town."
+kept = "Wilderness"
+
+[zombie_mask]
+id = 7594
+tradeable = false
+weight = 0.003
+slot = "Hat"
+type = "FullFace"
+examine = "I look 40,000 years old in this..."
+kept = "Wilderness"
+
+[zombie_gloves]
+id = 7595
+tradeable = false
+weight = 0.003
+slot = "Hands"
+examine = "Smells pretty funky."
+kept = "Wilderness"
+
+[zombie_boots]
+id = 7596
+tradeable = false
+weight = 0.003
+slot = "Feet"
+examine = "Thrilling."
+kept = "Wilderness"
+
+[book_of_knowledge]
+id = 11640
+tradeable = false
+weight = 1.0
+aka = ["tome_of_experience"]
+destroy = "If you drop this book it will be destroyed. You cannot replace it."
+examine = "Educate yourself."
+kept = "Vanish"
+
+[random_event_gift_2]
+clone = "random_event_gift"
+id = 14664
+
+[doughnut]
+id = 14665
+limit = 1000
+heals = 20
+weight = 0.02
+examine = "A tasty doughnut."

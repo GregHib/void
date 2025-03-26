@@ -1,0 +1,32 @@
+[spinning_plate]
+id = 4613
+tradeable = false
+weight = 0.05
+aka = ["dragon_plate"]
+examine = "It has a picture of a dragon on it."
+kept = "Wilderness"
+
+[broken_plate]
+id = 4614
+tradeable = false
+weight = 0.05
+examine = "Alas..."
+kept = "Wilderness"
+
+[bottle_of_wine]
+id = 7919
+heals = 140
+excess = "empty_wine_bottle"
+weight = 1.0
+examine = "A very good vintage."
+kept = "Wilderness"
+
+[bottle_of_wine_noted]
+id = 7920
+
+[empty_wine_bottle]
+id = 7921
+tradeable = false
+weight = 1.0
+examine = "This one has clearly been taken down and passed around."
+kept = "Wilderness"

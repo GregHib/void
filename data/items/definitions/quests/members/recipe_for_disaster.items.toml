@@ -1,0 +1,915 @@
+[rock_ore]
+id = 1480
+tradeable = false
+weight = 0.001
+examine = "A chunk of rock."
+kept = "Wilderness"
+
+[rotten_tomato]
+id = 2518
+weight = 0.08
+examine = "Pretty smelly."
+
+[rotten_tomato_noted]
+id = 2519
+
+[wooden_spoon]
+id = 7433
+price = 33
+limit = 100
+weight = 0.453
+slot = "Weapon"
+material = "wood"
+examine = "Spoooooon!"
+
+[wooden_spoon_noted]
+id = 7434
+
+[egg_whisk]
+id = 7435
+price = 12
+limit = 100
+weight = 0.453
+slot = "Weapon"
+examine = "A large whisk of death."
+
+[egg_whisk_noted]
+id = 7436
+
+[spork]
+id = 7437
+price = 203
+limit = 100
+weight = 1.814
+slot = "Weapon"
+examine = "Use the spork."
+
+[spork_noted]
+id = 7438
+
+[spatula]
+id = 7439
+price = 1020
+limit = 100
+weight = 3.628
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A large spatula... of doom!"
+
+[spatula_noted]
+id = 7440
+
+[frying_pan]
+id = 7441
+price = 874
+limit = 100
+weight = 1.587
+slot = "Weapon"
+examine = "Looks like it's non-stick too!"
+
+[frying_pan_noted]
+id = 7442
+
+[skewer]
+id = 7443
+price = 1793
+limit = 100
+weight = 2.041
+slot = "Weapon"
+examine = "Generally used for impaling fresh meat."
+
+[skewer_noted]
+id = 7444
+
+[rolling_pin]
+id = 7445
+price = 8481
+limit = 100
+weight = 1.814
+slot = "Weapon"
+examine = "That's how I roll!"
+
+[rolling_pin_noted]
+id = 7446
+
+[kitchen_knife]
+id = 7447
+price = 4693
+limit = 100
+weight = 0.453
+slot = "Weapon"
+examine = "A sharp, dependable knife, for filleting meat."
+
+[kitchen_knife_noted]
+id = 7448
+
+[meat_tenderiser]
+id = 7449
+price = 24700
+limit = 100
+weight = 1.814
+slot = "Weapon"
+examine = "Often used to soften tough meat up."
+
+[meat_tenderiser_noted]
+id = 7450
+
+[cleaver]
+id = 7451
+price = 15100
+limit = 100
+weight = 1.814
+slot = "Weapon"
+examine = "An effective tool for chopping tough meat."
+
+[cleaver_noted]
+id = 7452
+
+[culinaromancers_gloves_1]
+id = 7453
+tradeable = false
+weight = 0.226
+slot = "Hands"
+material = "metal"
+examine = "A pair of plain gloves."
+kept = "Reclaim"
+
+[culinaromancers_gloves_2]
+id = 7454
+tradeable = false
+weight = 0.226
+slot = "Hands"
+material = "metal"
+examine = "A pair of bronze-coloured gloves."
+kept = "Reclaim"
+
+[culinaromancers_gloves_3]
+id = 7455
+tradeable = false
+weight = 0.226
+slot = "Hands"
+material = "metal"
+examine = "A pair of iron-coloured gloves."
+kept = "Reclaim"
+
+[culinaromancers_gloves_4]
+id = 7456
+tradeable = false
+weight = 0.226
+slot = "Hands"
+material = "metal"
+examine = "A pair of steel-coloured gloves."
+kept = "Reclaim"
+
+[culinaromancers_gloves_5]
+id = 7457
+tradeable = false
+weight = 0.226
+slot = "Hands"
+material = "metal"
+examine = "A pair of black-coloured gloves."
+kept = "Reclaim"
+
+[culinaromancers_gloves_6]
+id = 7458
+tradeable = false
+weight = 0.226
+slot = "Hands"
+material = "metal"
+examine = "A pair of mithril-coloured gloves."
+kept = "Reclaim"
+
+[culinaromancers_gloves_7]
+id = 7459
+tradeable = false
+weight = 0.226
+slot = "Hands"
+material = "metal"
+examine = "A pair of adamant-coloured gloves."
+kept = "Reclaim"
+
+[culinaromancers_gloves_8]
+id = 7460
+tradeable = false
+weight = 0.226
+slot = "Hands"
+material = "metal"
+examine = "A pair of rune-coloured gloves."
+kept = "Reclaim"
+
+[culinaromancers_gloves_9]
+id = 7461
+tradeable = false
+weight = 0.226
+slot = "Hands"
+material = "metal"
+examine = "A pair of dragon-coloured gloves."
+kept = "Reclaim"
+
+[culinaromancers_gloves_10]
+id = 7462
+tradeable = false
+weight = 0.226
+aka = ["barrows_gloves"]
+slot = "Hands"
+material = "metal"
+examine = "A pair of Barrows-themed gloves."
+kept = "Reclaim"
+
+[cornflour] # Unobtainable
+id = 7463
+tradeable = false
+examine = "A little heap of cornflour. "
+
+[book_on_chickens]
+id = 7464
+tradeable = false
+weight = 0.07
+aka = ["the_origins_of_the_bird_of_evil"]
+examine = "A tatty old book belonging to the Wise Old Man of Draynor Village."
+kept = "Wilderness"
+
+[vanilla_pod]
+id = 7465
+tradeable = false
+weight = 0.003
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Surprise, it looks like a vanilla pod."
+kept = "Wilderness"
+
+[cornflour_tradeable] # Unobtainable
+id = 7466
+examine = "It's cornflour."
+
+[pot_of_cornflour]
+id = 7468
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "It's cornflour in a pot."
+kept = "Wilderness"
+
+[cornflour_mixture]
+id = 7470
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+destroy = "I'll have to get all the ingredients again."
+examine = "A mixture of milk, cream and cornflour."
+kept = "Wilderness"
+
+[milky_mixture]
+id = 7471
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+destroy = "I'll have to get all the ingredients again."
+examine = "It's a bucket of milk and cream."
+kept = "Wilderness"
+
+[cinnamon]
+id = 7472
+tradeable = false
+weight = 0.003
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "Some cinnamon sticks."
+kept = "Wilderness"
+
+[brulee_egg]
+id = 7473
+tradeable = false
+weight = 0.3
+empty = "empty_pot"
+destroy = "I'll have to get all the ingredients again."
+examine = "It's just missing a sprinkling of cinnamon."
+kept = "Wilderness"
+
+[brulee_vanilla]
+id = 7474
+tradeable = false
+weight = 0.3
+empty = "empty_pot"
+destroy = "I'll have to get all the ingredients again."
+examine = "A pot of brulee mixture - needs egg."
+kept = "Wilderness"
+
+[brulee_raw]
+id = 7475
+tradeable = false
+weight = 0.3
+empty = "empty_pot"
+destroy = "I'll have to get all the ingredients again."
+examine = "Perfect, it just needs flambeing."
+kept = "Wilderness"
+
+[brulee_supreme]
+id = 7476
+tradeable = false
+weight = 0.3
+empty = "empty_pot"
+destroy = "I'll have to get all the ingredients again."
+examine = "A pot of brulee supreme."
+kept = "Wilderness"
+
+[evil_chickens_egg]
+id = 7477
+tradeable = false
+weight = 0.08
+destroy = "I got this by killing the Evil Chicken. It might be hard to get another one."
+examine = "What came first, the chicken or..."
+kept = "Wilderness"
+
+[dragon_token]
+id = 7478
+tradeable = false
+weight = 0.01
+destroy = "I got this by killing a Black Dragon. It might be hard to get another one."
+examine = "It's got a dragon on it."
+kept = "Wilderness"
+
+[spicy_stew]
+id = 7479
+tradeable = false
+weight = 1.5
+heals = 110
+excess = "bowl"
+aka = ["evil_stew_of_doom"]
+examine = "It's a meat and potato stew with fancy seasoning. Give it a whiff to see how hot it is."
+kept = "Wilderness"
+
+[red_spice_4]
+id = 7480
+examine = "Allows for equal distribution of spice."
+weight = 0.001
+
+[red_spice_3]
+clone = "red_spice_4"
+id = 7481
+
+[red_spice_2]
+clone = "red_spice_4"
+id = 7482
+
+[red_spice_1]
+clone = "red_spice_4"
+id = 7483
+
+[orange_spice_4]
+clone = "red_spice_4"
+id = 7484
+
+[orange_spice_3]
+clone = "red_spice_4"
+id = 7485
+
+[orange_spice_2]
+clone = "red_spice_4"
+id = 7486
+
+[orange_spice_1]
+clone = "red_spice_4"
+id = 7487
+
+[brown_spice_4]
+clone = "red_spice_4"
+id = 7488
+
+[brown_spice_3]
+clone = "red_spice_4"
+id = 7489
+
+[brown_spice_2]
+clone = "red_spice_4"
+id = 7490
+
+[brown_spice_1]
+clone = "red_spice_4"
+id = 7491
+
+[yellow_spice_4]
+clone = "red_spice_4"
+id = 7492
+
+[yellow_spice_3]
+clone = "red_spice_4"
+id = 7493
+
+[yellow_spice_2]
+clone = "red_spice_4"
+id = 7494
+
+[yellow_spice_1]
+clone = "red_spice_4"
+id = 7495
+
+[empty_spice_shaker]
+id = 7496
+tradeable = false
+weight = 0.001
+examine = "Allows for equal distribution of spice."
+kept = "Wilderness"
+
+[dirty_blast]
+id = 7497
+tradeable = false
+weight = 0.5
+examine = "A cool refreshing fruit mix. With ash in for some reason."
+kept = "Wilderness"
+
+[antique_lamp_recipe_for_disaster]
+id = 7498
+tradeable = false
+weight = 0.1
+destroy = "You can not get a replacement for the ancient lamp. Rub it to get your reward; it is destroyed in the process."
+examine = "I wonder what happens if I rub it..."
+kept = "Vanish"
+
+[asgoldian_ale]
+id = 7508
+tradeable = false
+weight = 0.55
+aka = ["asgoldian_ale_g"]
+examine = "There appears to be a coin in the bottom. Liked by dwarves."
+kept = "Wilderness"
+
+[dwarven_rock_cake]
+id = 7509
+heals = 0
+tradeable = false
+weight = 0.453
+examine = "Red hot and glowing, ouch! Only for dwarf consumption."
+kept = "Wilderness"
+
+[dwarven_rock_cake_cooled]
+id = 7510
+tradeable = false
+weight = 0.453
+examine = "Cool and heavy as a brick. Only for dwarf consumption."
+kept = "Wilderness"
+
+[slop_of_compromise]
+id = 7511
+tradeable = false
+weight = 0.001
+examine = "Two out of two goblin generals prefer it!"
+kept = "Wilderness"
+
+[soggy_bread]
+id = 7512
+tradeable = false
+weight = 0.001
+examine = "Previously a nice crispy loaf of bread. Now just kind of icky."
+kept = "Wilderness"
+
+[spicy_maggots]
+id = 7513
+tradeable = false
+weight = 0.001
+examine = "They clearly taste so much better this way!"
+kept = "Wilderness"
+
+[dyed_orange]
+id = 7514
+tradeable = false
+weight = 0.001
+examine = "Orange slices which have been dyed, but it looks more like they died."
+kept = "Wilderness"
+
+[breadcrumbs]
+id = 7515
+tradeable = false
+weight = 0.907
+examine = "Glad these aren't in my bed."
+kept = "Wilderness"
+
+[kelp_mogre_camp]
+id = 7516
+tradeable = false
+weight = 0.907
+examine = "Slightly damp seaweed."
+kept = "Wilderness"
+
+[ground_kelp]
+id = 7517
+tradeable = false
+weight = 0.056
+examine = "Kelp flakes. Smells of the sea."
+kept = "Wilderness"
+
+[crab_meat]
+id = 7518
+tradeable = false
+weight = 0.907
+cooking = { level = 21, xp = 100.0, chances = { fire = "57-377" }, cooked = "cooked_crab_meat_5", burnt = "burnt_crab_meat" }
+examine = "A smelly meat."
+kept = "Wilderness"
+
+[crab_meat_free] # Unobtainable
+id = 7519
+members = false
+examine = "A smelly meat."
+
+[burnt_crab_meat]
+id = 7520
+tradeable = false
+weight = 0.907
+examine = "Oh dear, it's burnt."
+kept = "Wilderness"
+
+[cooked_crab_meat_5]
+id = 7521
+price = 217
+limit = 100
+heals = 20
+excess = "cooked_crab_meat_4"
+weight = 0.907
+examine = "Nice and Tasty!"
+
+[cooked_crab_meat_5_noted]
+id = 7522
+
+[cooked_crab_meat_4]
+id = 7523
+price = 167
+limit = 100
+heals = 20
+excess = "cooked_crab_meat_3"
+weight = 0.907
+examine = "Nice and Tasty!"
+
+[cooked_crab_meat_3]
+id = 7524
+price = 147
+limit = 100
+heals = 20
+excess = "cooked_crab_meat_2"
+weight = 0.907
+examine = "Nice and Tasty!"
+
+[cooked_crab_meat_2]
+id = 7525
+price = 127
+limit = 100
+heals = 20
+excess = "cooked_crab_meat_1"
+weight = 0.907
+examine = "Nice and Tasty!"
+
+[cooked_crab_meat_1]
+id = 7526
+price = 107
+limit = 100
+heals = 20
+weight = 0.907
+examine = "Nice and Tasty!"
+
+[ground_crab_meat]
+id = 7527
+tradeable = false
+weight = 0.907
+examine = "A smelly paste."
+kept = "Wilderness"
+
+[ground_cod]
+clone = "ground_crab_meat"
+id = 7528
+
+[raw_fishcake]
+id = 7529
+tradeable = false
+weight = 0.907
+cooking = { level = 31, xp = 100.0, chances = { fire = "57-377" }, cooked_message = "You manage to cook a fishcake.", burnt_message = "You accidentally burn the uncooked cake." }
+examine = "Would taste nicer if I cooked it."
+kept = "Wilderness"
+
+[cooked_fishcake]
+id = 7530
+heals = 110
+tradeable = false
+weight = 0.907
+examine = "Mmmm, reminds me of the seaside."
+kept = "Wilderness"
+
+[burnt_fishcake]
+id = 7531
+tradeable = false
+weight = 0.907
+examine = "Darn thing's all burnt!"
+kept = "Wilderness"
+
+[mudskipper_hide]
+id = 7532
+tradeable = false
+weight = 0.907
+examine = "Hmmm, what can I use this for?"
+kept = "Wilderness"
+
+[rock_mogre_camp]
+id = 7533
+tradeable = false
+weight = 1.0
+examine = "A rock."
+kept = "Vanish"
+
+[fishbowl_helmet]
+id = 7534
+tradeable = false
+weight = 5.0
+slot = "Hat"
+type = "FullFace"
+examine = "You'll look daft, but at least you won't drown!"
+kept = "Wilderness"
+
+[diving_apparatus]
+id = 7535
+tradeable = false
+weight = 10.0
+slot = "Cape"
+examine = "I'll need a helmet to make this work."
+kept = "Wilderness"
+
+[fresh_crab_claw]
+id = 7536
+tradeable = false
+weight = 0.907
+examine = "Fresh off the crab itself."
+kept = "Reclaim"
+
+[crab_claw]
+id = 7537
+tradeable = false
+weight = 0.907
+slot = "Hands"
+examine = "If it's good enough for crabs, it's good enough for me!"
+kept = "Reclaim"
+
+[fresh_crab_shell]
+clone = "fresh_crab_claw"
+id = 7538
+
+[crab_helmet]
+id = 7539
+tradeable = false
+weight = 0.907
+slot = "Hat"
+type = "Hair"
+examine = "If it's good enough for crabs, it's good enough for me!"
+kept = "Reclaim"
+
+[broken_crab_claw]
+id = 7540
+tradeable = false
+weight = 0.005
+examine = "Darn, it's useless now."
+kept = "Wilderness"
+
+[broken_crab_shell]
+clone = "broken_crab_claw"
+id = 7541
+
+[cake_of_guidance]
+id = 7542
+tradeable = false
+weight = 0.3
+destroy = "Maybe Traiborn will have another."
+examine = "Imbued with knowledge itself."
+kept = "Wilderness"
+
+[raw_guide_cake]
+id = 7543
+tradeable = false
+weight = 0.5
+cooking = { level = 40, xp = 60.0, chances = { range = "255-255" }, type = "bake", cooked = "cake_of_guidance", cooked_message = "You successfully bake a Cake of Guidance.", leftover = "cake_tin" }
+destroy = "Maybe Traiborn will have another."
+examine = "Now all I need to do is cook it."
+kept = "Wilderness"
+
+[enchanted_egg]
+id = 7544
+tradeable = false
+weight = 0.02
+destroy = "Maybe Traiborn will have another."
+examine = "Egg containing knowledge."
+kept = "Wilderness"
+
+[enchanted_milk]
+id = 7545
+tradeable = false
+weight = 2.2
+destroy = "Maybe Traiborn will have another."
+examine = "Guiding milk."
+kept = "Wilderness"
+
+[enchanted_flour]
+id = 7546
+tradeable = false
+weight = 1.36
+destroy = "Maybe Traiborn will have another."
+examine = "A pot of special flour."
+kept = "Wilderness"
+
+[druid_pouch_recipe_for_disaster]
+id = 7547
+tradable = false
+examine = "An empty druid pouch."
+
+[potato_seed_recipe_for_disaster]
+id = 7548
+tradable = false
+examine = "A potato seed - plant in an allotment."
+
+[potato_seed_recipe_for_disaster_noted]
+id = 7549
+
+[onion_seed_recipe_for_disaster]
+id = 7550
+tradable = false
+examine = "An onion seed - plant in an allotment."
+
+[onion_seed_recipe_for_disaster_noted]
+id = 7551
+
+[mithril_arrow_recipe_for_disaster]
+id = 7552
+tradable = false
+examine = "Arrows with mithril heads."
+
+[mithril_arrow_recipe_for_disaster_noted]
+id = 7553
+
+[fire_rune_recipe_for_disaster]
+id = 7554
+tradable = false
+examine = "One of the four basic elemental runes."
+
+[fire_rune_recipe_for_disaster_noted]
+id = 7555
+
+[water_rune_recipe_for_disaster]
+id = 7556
+tradable = false
+examine = "One of the four basic elemental runes."
+
+[water_rune_recipe_for_disaster_noted]
+id = 7557
+
+[air_rune_recipe_for_disaster]
+id = 7558
+tradable = false
+examine = "One of the four basic elemental runes."
+
+[air_rune_recipe_for_disaster_noted]
+id = 7559
+
+[chaos_rune_recipe_for_disaster]
+id = 7560
+tradable = false
+examine = "Used for low level missile spells."
+
+[chaos_rune_recipe_for_disaster_noted]
+id = 7561
+
+[tomato_seed_recipe_for_disaster]
+id = 7562
+tradable = false
+examine = "A tomato seed - plant in an allotment."
+
+[tomato_seed_recipe_for_disaster_noted]
+id = 7563
+
+[balloon_toad]
+id = 7564
+tradeable = false
+weight = 4.0
+destroy = "Release"
+examine = "An inflated toad tied to a rock like a balloon."
+kept = "Reclaim"
+
+[balloon_toad_grey]
+clone = "balloon_toad"
+id = 7565
+
+[raw_jubbly]
+id = 7566
+price = 426
+limit = 100
+weight = 10.0
+cooking = { level = 41, xp = 160.0, chances = { fire = "50-260" }, ticks = 6 }
+examine = "The uncooked meat of a Jubbly bird."
+
+[raw_jubbly_noted]
+id = 7567
+
+[cooked_jubbly]
+id = 7568
+price = 923
+limit = 100
+heals = 150
+weight = 10.0
+examine = "Lovely Jubbly!"
+
+[cooked_jubbly_noted]
+id = 7569
+
+[burnt_jubbly]
+id = 7570
+weight = 8.0
+examine = "The burnt meat of a Jubbly bird."
+
+[burnt_jubbly_noted]
+id = 7571
+
+[red_banana]
+id = 7572
+heals = 50
+tradeable = false
+weight = 0.028
+slot = "Shield"
+examine = "Like a banana only redder."
+kept = "Wilderness"
+
+[tchiki_monkey_nuts]
+id = 7573
+heals = 50
+tradeable = false
+weight = 0.01
+examine = "Like Monkey Nuts only Tchikier."
+kept = "Wilderness"
+
+[sliced_red_banana]
+id = 7574
+heals = 50
+tradeable = false
+weight = 0.008
+examine = "Perfect for stuffing snakes."
+kept = "Wilderness"
+
+[tchiki_nut_paste]
+id = 7575
+heals = 50
+tradeable = false
+weight = 0.008
+examine = "Mixing this with jam would just be wrong."
+kept = "Wilderness"
+
+[snake_corpse]
+id = 7576
+tradeable = false
+weight = 3.0
+examine = "Like a snake only not alive."
+kept = "Wilderness"
+
+[raw_stuffed_snake]
+id = 7577
+tradeable = false
+weight = 3.0
+examine = "This snake is stuffed right up."
+kept = "Wilderness"
+
+[odd_stuffed_snake]
+id = 7578
+tradeable = false
+weight = 3.0
+examine = "Is this really what you wanted to do?"
+kept = "Wilderness"
+
+[stuffed_snake]
+id = 7579
+heals = 70
+tradeable = false
+weight = 3.0
+examine = "Fit for a Monkey King."
+kept = "Wilderness"
+
+[snake_over_cooked]
+id = 7580
+tradeable = false
+weight = 0.004
+examine = "It's a burnt snake."
+kept = "Wilderness"
+
+[overgrown_hellcat]
+id = 7581
+food = "Fish as a kitten, none for any other stages"
+examine = "A hellish not-so-little pet."
+
+[hellcat]
+id = 7582
+npc = 3504
+npc2 = 9278
+food = "Fish as a kitten, none for any other stages"
+examine = "A hellish pet cat!"
+
+[hell_kitten]
+id = 7583
+food = "Fish as a kitten, none for any other stages"
+examine = "A hellish little pet."
+
+[lazy_hellcat]
+clone = "overgrown_hellcat"
+id = 7584
+
+[wily_hellcat]
+id = 7585
+food = "Fish as a kitten, none for any other stages"
+examine = "Wily and hellish."

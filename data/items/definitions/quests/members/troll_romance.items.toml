@@ -1,0 +1,32 @@
+[sled]
+id = 4083
+tradeable = false
+weight = 0.018
+slot = "Weapon"
+examine = "It needs waxing before I can use it."
+kept = "Wilderness"
+
+[sled_waxed]
+id = 4084
+tradeable = false
+weight = 0.018
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A waxed sled."
+kept = "Wilderness"
+
+[wax]
+id = 4085
+tradeable = false
+weight = 0.025
+slot = "Shield"
+examine = "I can use this to wax my sled."
+kept = "Wilderness"
+
+[trollweiss]
+id = 4086
+tradeable = false
+weight = 0.028
+slot = "Weapon"
+examine = "These pale flowers have a pungent odour."
+kept = "Wilderness"

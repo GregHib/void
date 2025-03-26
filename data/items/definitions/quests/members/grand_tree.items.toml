@@ -1,0 +1,107 @@
+[bark_sample]
+id = 783
+tradeable = false
+weight = 0.015
+destroy = "King Narnode will give you another sample."
+examine = "A sample of the bark from the Grand Tree."
+kept = "Wilderness"
+
+[translation_book]
+id = 784
+tradeable = false
+weight = 0.51
+aka = ["gnome_english_translation_dictionary"]
+destroy = "King Narnode will replace this book if you need one."
+examine = "A book to translate the ancient gnome language into English."
+kept = "Wilderness"
+
+[gloughs_journal]
+id = 785
+tradeable = false
+weight = 0.51
+examine = "Perhaps I should read it and see what Glough is up to!"
+kept = "Wilderness"
+
+[hazelmeres_scroll]
+id = 786
+tradeable = false
+weight = 0.02
+destroy = "Hazelmere will give you another copy of his message."
+examine = "Hazelmere wrote something down on this scroll."
+destroy2 = "You don't need this anymore."
+kept = "Wilderness"
+
+[lumber_order]
+id = 787
+tradeable = false
+weight = 0.02
+destroy = "You can get another invoice from the foreman at the shipyard."
+examine = "An order from the Karamja shipyard."
+destroy2 = "You don't need this anymore."
+kept = "Wilderness"
+
+[gloughs_key]
+id = 788
+tradeable = false
+weight = 0.01
+destroy = "You can get another key from Anita, in the Gnome Stronghold."
+examine = "The key to Glough's chest."
+destroy2 = "You can also reclaim this from the quest storage chest."
+kept = "Wilderness"
+
+[twigs_t]
+id = 789
+tradeable = false
+weight = 0.02
+destroy = "You can get another twig from King Narnode."
+examine = "Twigs bound together in the shape of a T."
+kept = "Wilderness"
+
+[twigs_u]
+id = 790
+tradeable = false
+weight = 0.02
+destroy = "You can get another twig from King Narnode."
+examine = "Twigs bound together in the shape of a U."
+kept = "Wilderness"
+
+[twigs_z]
+id = 791
+tradeable = false
+weight = 0.02
+destroy = "You can get another twig from King Narnode."
+examine = "Twigs bound together in the shape of a Z."
+kept = "Wilderness"
+
+[twigs_o]
+id = 792
+tradeable = false
+weight = 0.02
+destroy = "You can get another twig from King Narnode."
+examine = "Twigs bound together in the shape of a O."
+kept = "Wilderness"
+
+[daconia_rock]
+id = 793
+tradeable = false
+weight = 0.907
+destroy = "Search the roots of the Grand Tree to find another rock."
+examine = "An ancient rock with strange magical properties."
+destroy2 = "You don't need this."
+kept = "Wilderness"
+
+[invasion_plans]
+id = 794
+tradeable = false
+weight = 0.02
+destroy = "Search the chest in Glough's house to find another copy of his plans."
+examine = "These are plans for an invasion!"
+kept = "Wilderness"
+
+[war_ship]
+id = 795
+tradeable = false
+weight = 0.4
+destroy = "If you destroy this, you will not be able to get a replacement."
+examine = "A model of a Karamja warship."
+kept = "Wilderness"

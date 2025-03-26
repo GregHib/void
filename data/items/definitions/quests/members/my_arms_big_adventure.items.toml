@@ -1,0 +1,73 @@
+[dragon_chainbody_my_arms_big_adventure]
+id = 2513
+limit = 10
+weight = 6.803
+examine = "A series of connected metal rings."
+
+[hardy_gout_tuber]
+id = 4001
+tradeable = false
+weight = 0.1
+destroy = "Murcaily will probably give me some more."
+examine = "A hardy gout tuber."
+kept = "Vanish"
+
+[abyssal_whip_my_arms_big_adventure]
+id = 4178
+tradeable = false
+weight = 0.453
+examine = "A weapon from the Abyss."
+
+[dragon_platelegs_my_arms_big_adventure]
+id = 4180
+tradeable = false
+weight = 9.071
+examine = "These look pretty heavy."
+
+[goutweed_my_arms_big_adventure]
+id = 4182
+tradeable = false
+weight = 0.007
+examine = "A pale, tough looking herb."
+
+[coins_my_arms_big_adventure]
+id = 6964
+tradeable = false
+examine = "Lovely money."
+
+[dragon_med_helm_my_arms_big_adventure]
+id = 6967
+tradeable = false
+examine = "Makes the wearer pretty intimidating."
+
+[shark_my_arms_big_adventure]
+id = 6969
+tradeable = false
+heals = 200
+weight = 0.65
+examine = "I'd better be careful eating this."
+
+[goutweedy_lump]
+id = 9901
+tradeable = false
+weight = 0.1
+destroy = "There's probably another one in the cooking pot on Death Plateau."
+examine = "A lump that might at some point have been a gout tuber."
+kept = "Wilderness"
+
+[hardy_gout_tubers]
+id = 9902
+tradeable = false
+weight = 0.1
+destroy = "Murcaily will probably give me some more."
+examine = "A pile of gout tubers suitable for use in mountainous terrain."
+kept = "Wilderness"
+
+[farming_manual]
+id = 9903
+tradeable = false
+weight = 0.5
+aka = ["farmer_gricollers_farming_manual"]
+destroy = "My Arm will probably have a spare copy."
+examine = "Farmer Gricoller's Farming Manual."
+kept = "Wilderness"

@@ -1,0 +1,126 @@
+[fuse_the_great_brain_robbery]
+id = 10884
+tradeable = false
+weight = 0.007
+examine = "Burns very well."
+kept = "Wilderness"
+
+[keg]
+id = 10885
+tradeable = false
+weight = 12.0
+examine = "A small keg of gunpowder."
+
+[prayer_book_2]
+id = 10886
+tradeable = false
+weight = 0.05
+destroy = "You can reclaim this from the quest storage chest or you can search the Edgeville Monastery bookcase for another."
+examine = "Used to cure poison through prayer."
+kept = "Wilderness"
+
+[barrelchest_anchor]
+id = 10887
+slot = "Weapon"
+type = "TwoHanded"
+special_damage_mod_1 = 1.1
+special_accuracy_mod = 2.0
+special_energy = 500
+special = "sunder"
+aka = ["anchor", "bchest_anchor", "barrel_chest_anchor"]
+weapon_type = "anchor"
+examine = "This is likely to put my back out..."
+destroy2 = "If you drop the Anchor it will be destroyed, and you will need to get a new one from Brother Tranquillity, then pay Smith to re-forge it."
+kept = "Reclaim"
+weight = 30.0
+
+[barrelchest_anchor_2]
+id = 10888
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "It's broken. I should see if a pirate smith can fix it."
+kept = "Wilderness"
+weight = 30.0
+
+[blessed_lamp]
+id = 10889
+tradeable = false
+weight = 0.1
+destroy = "If you drop this lamp it will be destroyed, and you will need to see Brother Tranquillity for another."
+examine = "This will answer my prayers."
+kept = "Wilderness"
+
+[prayer_book]
+id = 10890
+tradeable = false
+weight = 0.05
+destroy = "You can reclaim this from the quest storage chest or you can search the Edgeville Monastery bookcase for another."
+examine = "Used to cure poison through prayer."
+kept = "Wilderness"
+
+[wooden_cat]
+id = 10891
+price = 786
+limit = 100
+weight = 0.03
+examine = "A wooden cat toy."
+
+[wooden_cat_noted]
+id = 10892
+
+[cranial_clamp]
+id = 10893
+tradeable = false
+weight = 0.01
+examine = "A cranial clamp."
+kept = "Wilderness"
+
+[brain_tongs]
+id = 10894
+tradeable = false
+weight = 0.02
+examine = "Some tongs for use with brains."
+kept = "Wilderness"
+
+[bell_jar]
+id = 10895
+tradeable = false
+weight = 1.0
+examine = "A bell jar for covering things."
+kept = "Wilderness"
+
+[wolf_whistle]
+id = 10896
+tradeable = false
+weight = 0.001
+examine = "A silver whistle."
+kept = "Wilderness"
+
+[shipping_order]
+id = 10897
+tradeable = false
+weight = 0.001
+examine = "A shipping order list."
+kept = "Wilderness"
+
+[keg_2]
+clone = "keg"
+id = 10898
+
+[crate_part]
+id = 10899
+tradeable = false
+examine = "Part of a crate."
+kept = "Wilderness"
+
+[skull_staple]
+id = 10904
+tradeable = false
+examine = "One skull staple."
+kept = "Wilderness"
+
+[skull_staples] # Unobtainable
+id = 10950
+examine = "Five skull staples. "
+
+[skull_staples_2] # Unobtainable
+id = 10951

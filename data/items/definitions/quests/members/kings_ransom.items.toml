@@ -1,0 +1,38 @@
+[black_knight_helm]
+id = 11678
+tradeable = false
+weight = 2.721
+destroy = "You'll need to visit the Sinclair Mansion to get another one."
+examine = "A black helm, too small for your head."
+kept = "Wilderness"
+
+[antique_lamp_kings_ransom]
+id = 11679
+tradeable = false
+weight = 0.1
+destroy = "If you drop this lamp it will be destroyed. Rub the lamp to gain the XP reward - the lamp will be destroyed in the process."
+examine = "I wonder what happens if I rub it..."
+kept = "Vanish"
+
+[address_form]
+id = 11680
+tradeable = false
+weight = 0.001
+destroy = "You'll need to visit the Sinclair Mansion to get another one."
+examine = "A change of address form."
+kept = "Wilderness"
+
+[scrap_paper]
+id = 11681
+tradeable = false
+weight = 0.001
+destroy = "You'll need to visit the Sinclair Mansion to get another one."
+examine = "It has something written on it."
+kept = "Wilderness"
+
+[hair_clip]
+id = 11682
+tradeable = false
+weight = 0.001
+examine = "I could use this to pick the lock."
+kept = "Wilderness"

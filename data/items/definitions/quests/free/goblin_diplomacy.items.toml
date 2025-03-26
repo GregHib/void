@@ -1,0 +1,89 @@
+[orange_goblin_mail]
+id = 286
+tradeable = false
+weight = 3.628
+slot = "Chest"
+material = "metal"
+examine = "Armour designed to fit goblins."
+kept = "Wilderness"
+
+[blue_goblin_mail]
+id = 287
+tradeable = false
+weight = 3.628
+slot = "Chest"
+material = "metal"
+examine = "Armour designed to fit goblins."
+kept = "Wilderness"
+
+[goblin_mail]
+id = 288
+price = 114
+limit = 100
+weight = 3.628
+slot = "Chest"
+material = "metal"
+examine = "Armour designed to fit goblins."
+kept = "Wilderness"
+
+[goblin_mail_noted]
+id = 289
+[red_dye]
+id = 1763
+price = 777
+limit = 100
+weight = 0.02
+examine = "A little bottle of red dye."
+
+[red_dye_noted]
+id = 1764
+
+[yellow_dye]
+id = 1765
+price = 188
+limit = 100
+weight = 0.02
+examine = "A little bottle of yellow dye."
+
+[yellow_dye_noted]
+id = 1766
+
+[blue_dye]
+id = 1767
+price = 257
+limit = 100
+weight = 0.02
+examine = "A little bottle of blue dye."
+
+[blue_dye_noted]
+id = 1768
+
+[orange_dye]
+id = 1769
+price = 780
+limit = 100
+weight = 0.02
+examine = "A little bottle of orange dye."
+
+[orange_dye_noted]
+id = 1770
+
+[green_dye]
+id = 1771
+price = 301
+limit = 100
+weight = 0.02
+examine = "A little bottle of green dye."
+
+[green_dye_noted]
+id = 1772
+
+[purple_dye]
+id = 1773
+price = 242
+limit = 100
+weight = 0.02
+examine = "A little bottle of purple dye."
+
+[purple_dye_noted]
+id = 1774

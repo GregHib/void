@@ -1,0 +1,459 @@
+[woad_leaf_2]
+id = 5738
+limit = 100
+examine = "A slightly bluish leaf."
+
+[jute_fibre]
+id = 5931
+price = 365
+limit = 5000
+weight = 0.226
+weaving = { amount = 4, to = "empty_sack", level = 21, xp = 38.0 }
+examine = "I can weave this to make sacks."
+
+[jute_fibre_noted]
+id = 5932
+
+[willow_branch]
+id = 5933
+price = 986
+limit = 200
+weight = 0.907
+weaving = { amount = 6, to = "basket", level = 36, xp = 56.0 }
+examine = "A branch from a willow tree."
+
+[willow_branch_noted]
+id = 5934
+
+[coconut_milk]
+id = 5935
+price = 1610
+limit = 10000
+weight = 0.035
+empty = "vial"
+examine = "A vial filled with coconut milk"
+
+[coconut_milk_noted]
+id = 6124
+
+[tomatoes_1]
+id = 5960
+weight = 0.056
+examine = "A basket filled with tomatoes."
+
+[tomatoes_1_noted]
+id = 5961
+
+[tomatoes_2]
+id = 5962
+weight = 0.085
+empty = "basket"
+examine = "A basket filled with tomatoes."
+
+[tomatoes_2_noted]
+id = 5963
+
+[tomatoes_3]
+id = 5964
+weight = 0.113
+empty = "basket"
+examine = "A basket filled with tomatoes."
+
+[tomatoes_3_noted]
+id = 5965
+
+[tomatoes_4]
+id = 5966
+weight = 0.141
+empty = "basket"
+examine = "A basket filled with tomatoes."
+
+[tomatoes_4_noted]
+id = 5967
+
+[tomatoes_5]
+id = 5968
+price = 192
+weight = 0.17
+empty = "basket"
+examine = "A basket filled with tomatoes."
+
+[tomatoes_5_noted]
+id = 5969
+
+[curry_leaf]
+id = 5970
+price = 333
+limit = 5000
+weight = 0.028
+examine = "I could make a spicy curry with this."
+
+[curry_leaf_noted]
+id = 5971
+
+[papaya_fruit]
+id = 5972
+price = 1422
+limit = 5000
+heals = 50
+weight = 0.028
+examine = "Looks delicious."
+
+[papaya_fruit_noted]
+id = 5973
+
+[coconut]
+id = 5974
+price = 1771
+limit = 5000
+weight = 0.028
+examine = "It's a coconut."
+
+[coconut_noted]
+id = 5975
+
+[coconut_open]
+id = 5976
+price = 1136
+limit = 1000
+weight = 0.028
+examine = "It's a coconut."
+
+[coconut_open_noted]
+id = 5977
+
+[coconut_shell]
+id = 5978
+price = 55
+limit = 1000
+weight = 0.028
+examine = "All the milk has been removed."
+
+[coconut_shell_noted]
+id = 5979
+
+[calquat_fruit]
+id = 5980
+price = 46
+limit = 100
+weight = 0.028
+examine = "This is the largest fruit I've ever seen."
+
+[calquat_fruit_noted]
+id = 5981
+
+[watermelon]
+id = 5982
+price = 57
+limit = 10000
+weight = 0.113
+examine = "A juicy watermelon."
+
+[watermelon_noted]
+id = 5983
+
+[watermelon_slice]
+id = 5984
+price = 38
+limit = 1000
+heals = 50
+weight = 0.028
+examine = "A slice of watermelon."
+
+[watermelon_slice_noted]
+id = 5985
+
+[sweetcorn]
+id = 5986
+price = 24
+limit = 10000
+weight = 0.028
+cooking = { level = 28, xp = 104.0, chances = { range = "65-382" }, cooked = "cooked_sweetcorn", cooked_message = "You cook some sweetcorn.", burnt = "burnt_sweetcorn", burnt_message = "You accidentally burn the sweetcorn." }
+examine = "Raw sweetcorn."
+
+[sweetcorn_noted]
+id = 5987
+
+[cooked_sweetcorn]
+id = 5988
+price = 6
+limit = 10000
+heals = 10
+weight = 0.028
+examine = "Delicious cooked sweetcorn."
+
+[cooked_sweetcorn_noted]
+id = 5989
+
+[burnt_sweetcorn]
+id = 5990
+examine = "This sweetcorn has been cooked for too long."
+
+[burnt_sweetcorn_noted]
+id = 5991
+
+[apple_mush]
+id = 5992
+price = 396
+limit = 100
+weight = 1.1
+empty = "bucket"
+examine = "A bucket of apple mush."
+kept = "Wilderness"
+
+[apple_mush_noted]
+id = 5993
+
+[hammerstone_hops]
+id = 5994
+price = 11
+limit = 1000
+weight = 0.028
+examine = "A handful of Hammerstone Hops."
+
+[hammerstone_hops_noted]
+id = 5995
+
+[asgarnian_hops]
+id = 5996
+price = 7
+limit = 1000
+weight = 0.028
+examine = "A handful of Asgarnian Hops."
+
+[asgarnian_hops_noted]
+id = 5997
+
+[yanillian_hops]
+id = 5998
+price = 1
+limit = 1000
+weight = 0.028
+examine = "A handful of Yanillian Hops."
+
+[yanillian_hops_noted]
+id = 5999
+
+[krandorian_hops]
+id = 6000
+price = 4
+limit = 1000
+weight = 0.028
+examine = "A handful of Krandorian Hops."
+
+[krandorian_hops_noted]
+id = 6001
+
+[wildblood_hops]
+id = 6002
+price = 28
+limit = 1000
+weight = 0.028
+examine = "A handful of Wildblood Hops."
+
+[wildblood_hops_noted]
+id = 6003
+
+[bittercap_mushroom]
+id = 6004
+price = 59
+limit = 10000
+weight = 0.028
+examine = "A bittercap mushroom"
+
+[bittercap_mushroom_noted]
+id = 6005
+
+[barley]
+id = 6006
+price = 207
+limit = 1000
+weight = 0.028
+examine = "A handful of Barley."
+kept = "Wilderness"
+
+[barley_noted]
+id = 6007
+
+[barley_malt]
+id = 6008
+price = 269
+limit = 1000
+weight = 0.028
+examine = "A handful of barley malt."
+
+[barley_malt_noted]
+id = 6009
+
+[marigolds]
+id = 6010
+price = 4226
+limit = 1000
+weight = 0.028
+examine = "A bunch of marigolds."
+
+[marigolds_noted]
+id = 6011
+
+[nasturtiums]
+id = 6012
+price = 145
+limit = 1000
+weight = 0.028
+examine = "A bunch of nasturtiums."
+
+[nasturtiums_noted]
+id = 6013
+
+[rosemary]
+id = 6014
+price = 84
+limit = 1000
+weight = 0.028
+examine = "Some rosemary."
+
+[rosemary_noted]
+id = 6015
+
+[cactus_spine]
+id = 6016
+price = 6934
+limit = 10000
+weight = 0.028
+examine = "Don't prick yourself with this."
+
+[cactus_spine_noted]
+id = 6017
+
+[poison_ivy_berries]
+id = 6018
+price = 507
+limit = 10000
+weight = 0.007
+examine = "They look sweet and juicy, but only a fool would eat them."
+
+[poison_ivy_berries_noted]
+id = 6019
+
+[leaves]
+id = 6020
+price = 119
+limit = 100
+weight = 0.028
+examine = "A pile of leaves."
+
+[leaves_noted]
+id = 6021
+
+[leaves_oak]
+id = 6022
+price = 23
+limit = 100
+weight = 0.028
+examine = "A pile of Oak tree leaves."
+
+[leaves_oak_noted]
+id = 6023
+
+[leaves_willow]
+id = 6024
+price = 19
+limit = 100
+weight = 0.028
+examine = "A pile of Willow tree leaves."
+
+[leaves_willow_noted]
+id = 6025
+
+[leaves_yew]
+id = 6026
+price = 6
+limit = 100
+weight = 0.028
+examine = "A pile of Yew tree leaves."
+
+[leaves_yew_noted]
+id = 6027
+
+[leaves_maple]
+id = 6028
+price = 10
+limit = 100
+weight = 0.028
+examine = "A pile of Maple tree leaves."
+
+[leaves_maple_noted]
+id = 6029
+
+[leaves_magic]
+id = 6030
+price = 3
+limit = 100
+weight = 0.028
+examine = "A pile of Magic tree leaves."
+
+[leaves_magic_noted]
+id = 6031
+
+[oak_roots]
+id = 6043
+price = 78
+limit = 100
+weight = 0.001
+spinning = { to = "crossbow_string", level = 10, xp = 15.0 }
+examine = "The roots of the Oak tree."
+
+[oak_roots_noted]
+id = 6044
+
+[willow_roots]
+id = 6045
+price = 40
+limit = 100
+weight = 0.001
+spinning = { to = "crossbow_string", level = 10, xp = 15.0 }
+examine = "The roots of the Willow tree."
+
+[willow_roots_noted]
+id = 6046
+
+[maple_roots]
+id = 6047
+price = 32
+limit = 100
+weight = 0.001
+spinning = { to = "crossbow_string", level = 10, xp = 15.0 }
+examine = "The roots of the Maple tree."
+
+[maple_roots_noted]
+id = 6048
+
+[yew_roots]
+id = 6049
+price = 533
+limit = 100
+weight = 0.001
+spinning = { to = "crossbow_string", level = 10, xp = 15.0 }
+examine = "The roots of the Yew tree."
+
+[yew_roots_noted]
+id = 6050
+
+[magic_roots]
+id = 6051
+price = 6629
+limit = 100
+weight = 0.001
+spinning = { to = "magic_string", level = 19, xp = 30.0 }
+examine = "The roots of the Magic tree."
+
+[magic_roots_noted]
+id = 6052
+
+[weeds]
+id = 6055
+examine = "A handful of weeds."
+kept = "Wilderness"
+
+[weeds_noted]
+id = 6056

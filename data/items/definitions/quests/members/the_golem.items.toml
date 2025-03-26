@@ -1,0 +1,71 @@
+[letter_the_golem]
+id = 4615
+tradeable = false
+weight = 0.005
+examine = "An old faded letter."
+kept = "Wilderness"
+
+[varmens_notes]
+id = 4616
+tradeable = false
+weight = 1.0
+aka = ["the_ruins_of_uzer"]
+examine = "An archaeologist's notes."
+kept = "Wilderness"
+
+[display_cabinet_key]
+id = 4617
+tradeable = false
+weight = 0.01
+examine = "The museum curator's key."
+kept = "Wilderness"
+
+[statuette_the_golem]
+id = 4618
+tradeable = false
+weight = 0.5
+examine = "A beautifully-carved stone statuette."
+kept = "Wilderness"
+
+[strange_implement]
+id = 4619
+tradeable = false
+weight = 0.01
+examine = "It's pretty, but you wish you knew what it was."
+kept = "Wilderness"
+
+[black_mushroom]
+id = 4620
+tradeable = false
+weight = 0.01
+examine = "It looks horrible."
+kept = "Wilderness"
+
+[phoenix_feather]
+id = 4621
+tradeable = false
+weight = 0.002
+examine = "A long feather patterned like a flame."
+kept = "Wilderness"
+
+[black_mushroom_ink]
+id = 4622
+tradeable = false
+weight = 0.01
+empty = "vial"
+examine = "Black ink made out of mushrooms."
+kept = "Wilderness"
+
+[phoenix_quill_pen]
+id = 4623
+tradeable = false
+weight = 0.016
+examine = "A phoenix feather dipped in ink."
+kept = "Wilderness"
+
+[golem_program]
+id = 4624
+tradeable = false
+weight = 0.02
+examine = "It reads 'YOUR TASK IS DONE'."
+kept = "Wilderness"

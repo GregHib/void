@@ -1,0 +1,48 @@
+[ghostly_boots]
+id = 6106
+tradeable = false
+weight = 0.001
+slot = "Feet"
+examine = "They seem to be not quite of this world..."
+kept = "Reclaim"
+
+[ghostly_robe_top]
+id = 6107
+tradeable = false
+weight = 0.001
+slot = "Chest"
+examine = "A particularly spooky robe top."
+kept = "Reclaim"
+
+[ghostly_robe_bottom]
+id = 6108
+tradeable = false
+weight = 0.001
+slot = "Legs"
+examine = "An unearthly set of robe bottoms."
+kept = "Reclaim"
+
+[ghostly_hood]
+id = 6109
+tradeable = false
+weight = 0.001
+slot = "Hat"
+type = "Hair"
+examine = "A ghostly hood, fit for a ghostly head."
+kept = "Reclaim"
+
+[ghostly_gloves]
+id = 6110
+tradeable = false
+weight = 0.001
+slot = "Hands"
+examine = "They seem to fade in and out of existence..."
+kept = "Reclaim"
+
+[ghostly_cloak]
+id = 6111
+tradeable = false
+weight = 0.001
+slot = "Cape"
+examine = "Made of a strange ghostly material..."
+kept = "Reclaim"

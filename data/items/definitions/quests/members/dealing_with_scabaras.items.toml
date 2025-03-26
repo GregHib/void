@@ -1,0 +1,307 @@
+[enchanted_water_tiara]
+id = 11969
+tradeable = false
+bank_stacks = false
+weight = 1.0
+slot = "Hat"
+destroy = "If I destroy this it will disintegrate into its component parts and drop to the floor."
+examine = "A water tiara infused with water runes. Protects from the hot desert sun."
+kept = "Reclaim"
+
+[smelly_crate]
+id = 11970
+tradeable = false
+weight = 30.0
+destroy = "I can obtain and fill another one from the archaeologists near Sophanem."
+examine = "A crate full of distressed gear."
+kept = "Wilderness"
+
+[full_crate]
+id = 11971
+tradeable = false
+weight = 30.0
+empty = "empty_crate"
+destroy = "I can obtain another one from the archaeologists near Sophanem."
+examine = "A crate full of gear."
+kept = "Wilderness"
+
+[empty_crate]
+id = 11972
+tradeable = false
+weight = 2.0
+destroy = "I can obtain another one from the archaeologists near Sophanem."
+examine = "An empty crate, ready for bronze gear."
+kept = "Wilderness"
+
+[scabaras_research]
+id = 11973
+tradeable = false
+weight = 1.0
+aka = ["my_notes_archaeological_exploration_and_the_cult_of_scabaras"]
+destroy = "I can obtain another one from the archaeologist near Sophanem."
+examine = "A book of research on Scabarite history."
+kept = "Wilderness"
+
+[artefact_receipt]
+id = 11974
+tradeable = false
+weight = 0.02
+destroy = "I can obtain another one from Simon Templeton."
+examine = "Issued by Simon Templeton."
+kept = "Wilderness"
+
+[scabarite_notes_1]
+id = 11975
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Tattered papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_2]
+id = 11976
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Shabby papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_3]
+id = 11977
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Smelly papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_4]
+id = 11978
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Fine papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_5]
+id = 11979
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Cheap papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_6]
+id = 11980
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Well-made papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_7]
+id = 11981
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "High-grade papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_8]
+id = 11982
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Greasy papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_9]
+id = 11983
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Damp papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_10]
+id = 11984
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Oily papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_11]
+id = 11985
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Scented papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_12]
+id = 11986
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Soft papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_13]
+id = 11987
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Brittle papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_14]
+id = 11988
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Recent papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_15]
+id = 11989
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Well-preserved papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_16]
+id = 11990
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Exquisite papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_17]
+id = 11991
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Hastily-written papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_18]
+id = 11992
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Tatty papyrus."
+kept = "Wilderness"
+
+[scabarite_notes_19]
+id = 11993
+tradeable = false
+weight = 0.02
+destroy = "I can loot another one from the monsters in the areas east of Sophanem."
+examine = "Creased papyrus."
+kept = "Wilderness"
+
+[scabarite_key]
+id = 11994
+tradeable = false
+weight = 0.1
+destroy = "I can obtain another one from the archaeologists near Sophanem."
+examine = "Newly made, but to an ancient pattern."
+kept = "Wilderness"
+
+[oxidised_dagger]
+id = 11995
+tradeable = false
+weight = 0.453
+destroy = "I can make another one by using camel dung on a bronze dagger."
+examine = "It has been oxidised."
+kept = "Wilderness"
+
+[oxidised_medium_helm]
+id = 11996
+tradeable = false
+weight = 1.814
+destroy = "I can make another one by using camel dung on a bronze medium helmet."
+examine = "It has been oxidised."
+kept = "Wilderness"
+
+[oxidised_sword]
+id = 11997
+tradeable = false
+weight = 1.814
+destroy = "I can make another one by using camel dung on a bronze sword."
+examine = "It has been oxidised."
+kept = "Wilderness"
+
+[oxidised_scimitar]
+id = 11998
+tradeable = false
+weight = 1.814
+destroy = "I can make another one by using camel dung on a bronze scimitar."
+examine = "It has been oxidised."
+kept = "Wilderness"
+
+[oxidised_longsword]
+id = 11999
+tradeable = false
+weight = 1.814
+destroy = "I can make another one by using camel dung on a bronze longsword."
+examine = "It has been oxidised."
+kept = "Wilderness"
+
+[oxidised_full_helm]
+id = 12000
+tradeable = false
+weight = 2.721
+destroy = "I can make another one by using camel dung on a bronze full helmet."
+examine = "It has been oxidised."
+kept = "Wilderness"
+
+[oxidised_square_shield]
+id = 12001
+tradeable = false
+weight = 3.628
+destroy = "I can make another one by using camel dung on a bronze square shield."
+examine = "It has been oxidised."
+kept = "Wilderness"
+
+[oxidised_chainbody]
+id = 12002
+tradeable = false
+weight = 6.803
+destroy = "I can make another one by using camel dung on a bronze chainbody."
+examine = "It has been oxidised."
+kept = "Wilderness"
+
+[oxidised_kiteshield]
+id = 12003
+tradeable = false
+weight = 5.443
+destroy = "I can make another one by using camel dung on a bronze kiteshield."
+examine = "It has been oxidised."
+kept = "Wilderness"
+
+[oxidised_two_handed_sword]
+id = 12004
+tradeable = false
+weight = 3.628
+destroy = "I can make another one by using camel dung on a bronze two-handed sword."
+examine = "It has been oxidised."
+kept = "Wilderness"
+
+[oxidised_platelegs]
+id = 12005
+tradeable = false
+weight = 9.071
+destroy = "I can make another one by using camel dung on some bronze platelegs."
+examine = "It has been oxidised."
+kept = "Wilderness"
+
+[oxidised_plateskirt]
+id = 12006
+tradeable = false
+weight = 8.164
+destroy = "I can make another one by using camel dung on a bronze plateskirt."
+examine = "It has been oxidised."
+kept = "Wilderness"

@@ -1,0 +1,85 @@
+[plank_unstable_foundations]
+id = 15276
+tradeable = false
+weight = 0.001
+slot = "Weapon"
+examine = "A large plank of wood."
+kept = "Reclaim"
+
+[drugged_meat]
+id = 15277
+tradeable = false
+weight = 0.001
+slot = "Weapon"
+examine = "This meat has been treated with a sleeping potion."
+kept = "Reclaim"
+
+[cloth_unstable_foundations]
+id = 15278
+tradeable = false
+weight = 0.001
+examine = "A tatty old bit of cloth."
+kept = "Reclaim"
+
+[oily_cloth]
+id = 15279
+tradeable = false
+weight = 0.5
+examine = "A tatty old bit of cloth, now soaked in oil."
+kept = "Reclaim"
+
+[rag]
+id = 15280
+tradeable = false
+weight = 0.25
+examine = "A tatty old rag of cloth."
+kept = "Reclaim"
+
+[oily_rag]
+id = 15281
+tradeable = false
+weight = 0.25
+slot = "Weapon"
+examine = "A tatty old rag of cloth, now soaked in oil."
+kept = "Reclaim"
+
+[fuse]
+id = 15282
+examine = "A piece of inflammable string."
+
+[fuse_2]
+clone = "fuse"
+id = 15283
+
+[sir_vants_oil_can]
+id = 15284
+tradeable = false
+weight = 0.028
+examine = "A can of oil belonging to Sir Vant."
+kept = "Reclaim"
+
+[root_chippings]
+id = 15285
+tradeable = false
+examine = "Some root chippings."
+kept = "Reclaim"
+
+[stone_clippings]
+id = 15286
+tradeable = false
+examine = "Fragments of stone."
+kept = "Reclaim"
+
+[manual_unstable_foundations]
+id = 15671
+tradeable = false
+weight = 0.2
+examine = "Roddeck's book about the care of pet dragons."
+kept = "Reclaim"
+
+[roddecks_diary]
+id = 15672
+tradeable = false
+weight = 0.2
+examine = "The diary of an elderly gentleman with eccentric habits."
+kept = "Reclaim"

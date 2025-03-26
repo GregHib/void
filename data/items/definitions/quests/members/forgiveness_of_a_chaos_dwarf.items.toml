@@ -1,0 +1,117 @@
+[hand_cannon]
+id = 15241
+price = 85000
+limit = 50
+weight = 3.628
+slot = "Weapon"
+type = "TwoHanded"
+attack_range = 9
+special_energy = 500
+examine = "A miniature dwarven cannon."
+
+[hand_cannon_noted]
+id = 15242
+
+[hand_cannon_shot]
+id = 15243
+price = 181
+limit = 10000
+slot = "Ammo"
+examine = "The bag contains shot and powder for the hand cannon."
+
+[commander_veldaban]
+id = 15244
+
+[mysterious_slip]
+id = 15245
+tradeable = false
+weight = 0.01
+destroy = "You can get another from Commander Veldaban"
+examine = "The hand cannoneer in the watchtower dropped this slip."
+kept = "Wilderness"
+
+[package]
+id = 15246
+tradeable = false
+weight = 13.0
+destroy = "You can get another from the Grand Exchange."
+examine = "A large, oddly shaped package."
+kept = "Wilderness"
+
+[boot_forgiveness_of_a_chaos_dwarf]
+id = 15247
+tradeable = false
+weight = 0.5
+destroy = "You can get it back from the package."
+examine = "A military-style boot, sized for a dwarf foot."
+kept = "Wilderness"
+
+[bowl_forgiveness_of_a_chaos_dwarf]
+id = 15248
+tradeable = false
+weight = 10.0
+destroy = "You can get it back from the package."
+examine = "A large iron bowl with a thin coating of soot."
+kept = "Wilderness"
+
+[rod]
+id = 15249
+tradeable = false
+weight = 1.0
+destroy = "You can get it back from the package."
+examine = "A metal rod with a handle on one end and a square tip on the other."
+kept = "Wilderness"
+
+[yellow_stone]
+id = 15250
+tradeable = false
+destroy = "You can get it back from the package."
+examine = "There is a strange yellow marking on this stone."
+kept = "Wilderness"
+
+[green_stone]
+id = 15251
+tradeable = false
+destroy = "You can get it back from the package."
+examine = "There is a strange green marking on this stone."
+kept = "Wilderness"
+
+[metal_rectangle]
+id = 15252
+tradeable = false
+weight = 0.1
+destroy = "You can get it back from the package."
+examine = "A thin but rigid rectangle of steel."
+kept = "Wilderness"
+
+[turnscrew]
+id = 15253
+tradeable = false
+weight = 0.1
+slot = "Weapon"
+destroy = "You can get it back from the package."
+examine = "A device for turning screws."
+kept = "Wilderness"
+
+[guardsmans_stout]
+id = 15254
+tradeable = false
+weight = 0.1
+examine = "A special stout brewed for the dwarven Black Guard."
+kept = "Wilderness"
+
+[dragon_pickaxe]
+id = 15259
+price = 10700000
+limit = 10
+weight = 2.267
+slot = "Weapon"
+mining_delay = 3
+aka = ["dragon_pick"]
+examine = "Used for mining."
+
+[dragon_pickaxe_noted]
+id = 15260
+
+[dragon_pickaxe_lent]
+id = 15261

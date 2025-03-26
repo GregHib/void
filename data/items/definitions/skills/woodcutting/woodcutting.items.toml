@@ -1,0 +1,70 @@
+[birds_nest_red_egg]
+id = 5070
+tradeable = false
+weight = 0.002
+examine = "It's a bird's nest with an egg in it."
+kept = "Reclaim"
+
+[birds_nest_green_egg]
+clone = "birds_nest_red_egg"
+id = 5071
+
+[birds_nest_blue_egg]
+clone = "birds_nest_red_egg"
+id = 5072
+
+[birds_nest_seeds_1]
+id = 5073
+tradeable = false
+weight = 0.002
+examine = "It's a bird's nest with some seeds in it."
+kept = "Reclaim"
+
+[birds_nest_ring]
+id = 5074
+tradeable = false
+weight = 0.002
+examine = "It's a bird's nest with a ring in it."
+kept = "Reclaim"
+
+[birds_nest_empty]
+id = 5075
+tradeable = false
+weight = 0.002
+examine = "It's an empty bird's nest."
+kept = "Reclaim"
+
+[birds_egg_red]
+id = 5076
+tradeable = false
+weight = 0.002
+examine = "A red bird's egg."
+kept = "Wilderness"
+
+[birds_egg_blue]
+id = 5077
+tradeable = false
+weight = 0.002
+examine = "A blue bird's egg."
+kept = "Wilderness"
+
+[birds_egg_green]
+id = 5078
+tradeable = false
+weight = 0.002
+examine = "A green bird's egg."
+kept = "Wilderness"
+
+[crushed_nest]
+id = 6693
+price = 9118
+limit = 10000
+weight = 0.002
+examine = "A crushed bird's nest."
+
+[crushed_nest_noted]
+id = 6694
+
+[birds_nest_seeds_2]
+clone = "birds_nest_seeds_1"
+id = 7413

@@ -1,0 +1,77 @@
+[eagle_feather]
+id = 10167
+tradeable = false
+examine = "Probably a bit too big for fly fishing."
+kept = "Wilderness"
+
+[eagle_cape]
+id = 10171
+tradeable = false
+weight = 0.226
+slot = "Cape"
+examine = "A cape made from giant eagle feathers."
+kept = "Wilderness"
+
+[fake_beak]
+id = 10172
+tradeable = false
+weight = 0.01
+slot = "Hat"
+examine = "A cheaply made fake beak."
+kept = "Wilderness"
+
+[bird_book]
+id = 10173
+tradeable = false
+weight = 0.01
+aka = ["william_odditys_guide_to_the_avian"]
+examine = "The title reads 'William Oddity's Guide to the Avian.'"
+kept = "Wilderness"
+
+[metal_feather]
+id = 10174
+tradeable = false
+weight = 0.001
+destroy = "You can obtain another metal feather from the camp-site at the base of Eagles' Peak."
+examine = "A small feather made out of some sort of metal. The detail is exquisite."
+kept = "Wilderness"
+
+[golden_feather_eagles_peak]
+id = 10175
+tradeable = false
+weight = 0.001
+destroy = "You can obtain another golden feather from the room with the metal birds in Eagles' Peak."
+examine = "An intricate feather crafted from a gold-coloured metal of some sort."
+kept = "Wilderness"
+
+[silver_feather]
+id = 10176
+tradeable = false
+weight = 0.001
+destroy = "You can obtain another silver feather from the kebbit's lair in Eagles' Peak."
+examine = "An intricate feather crafted from a silver-coloured metal of some sort."
+kept = "Wilderness"
+
+[bronze_feather]
+id = 10177
+tradeable = false
+weight = 0.001
+destroy = "You can obtain another bronze feather from the room with the net trap in Eagles' Peak."
+examine = "An intricate feather crafted from a bronze-coloured metal of some sort."
+kept = "Wilderness"
+
+[odd_bird_seed]
+id = 10178
+tradeable = false
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "It looks like birdseed, but it's not quite right somehow."
+kept = "Wilderness"
+
+[feathered_journal]
+id = 10179
+tradeable = false
+weight = 0.01
+aka = ["journal_of_arthur_artimus"]
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "There's a feather glued to the front. Property of Arthur Artimus."
+kept = "Wilderness"

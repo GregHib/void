@@ -1,0 +1,87 @@
+[cape_red]
+id = 1007
+price = 222
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "A bright red cape."
+
+[cape_red_noted]
+id = 1008
+
+[cape_black]
+id = 1019
+price = 197
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "A warm black cape."
+
+[cape_black_noted]
+id = 1020
+
+[cape_blue]
+id = 1021
+price = 234
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "A thick blue cape."
+
+[cape_blue_noted]
+id = 1022
+
+[cape_yellow]
+id = 1023
+price = 435
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "A thick yellow cape."
+
+[cape_yellow_noted]
+id = 1024
+
+[eye_patch]
+id = 1025
+price = 86
+limit = 100
+weight = 0.006
+slot = "Hat"
+examine = "A worthless piece of black cloth on a string."
+
+[eye_patch_noted]
+id = 1026
+
+[cape_green]
+id = 1027
+price = 768
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "A thick green cape."
+
+[cape_green_noted]
+id = 1028
+
+[cape_purple]
+id = 1029
+price = 807
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "A thick purple cape."
+
+[cape_purple_noted]
+id = 1030
+
+[cape_orange]
+id = 1031
+price = 1019
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "A thick orange cape."
+
+[cape_orange_noted]
+id = 1032

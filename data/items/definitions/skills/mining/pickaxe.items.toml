@@ -1,0 +1,192 @@
+[pickaxe_handle]
+id = 466
+weight = 0.1
+slot = "Weapon"
+examine = "Useless without the head."
+
+[pickaxe_handle_noted]
+id = 467
+
+[broken_pickaxe_bronze]
+id = 468
+weight = 1.814
+slot = "Weapon"
+examine = "Useless."
+
+[broken_pickaxe_bronze_noted]
+id = 469
+
+[broken_pickaxe_iron]
+id = 470
+weight = 1.814
+slot = "Weapon"
+examine = "Useless."
+
+[broken_pickaxe_iron_noted]
+id = 471
+
+[broken_pickaxe_steel]
+id = 472
+weight = 1.814
+slot = "Weapon"
+examine = "Useless."
+
+[broken_pickaxe_steel_noted]
+id = 473
+
+[broken_pickaxe_mithril]
+id = 474
+weight = 1.814
+slot = "Weapon"
+examine = "Useless."
+
+[broken_pickaxe_mithril_noted]
+id = 475
+
+[broken_pickaxe_adamant]
+id = 476
+weight = 1.814
+slot = "Weapon"
+examine = "Useless."
+
+[broken_pickaxe_adamant_noted]
+id = 477
+
+[broken_pickaxe_rune]
+id = 478
+weight = 1.814
+slot = "Weapon"
+examine = "Useless."
+
+[broken_pickaxe_rune_noted]
+id = 479
+
+[pickaxe_head_bronze]
+id = 480
+weight = 1.814
+examine = "Useless."
+
+[pickaxe_head_bronze_noted]
+id = 481
+
+[pickaxe_head_iron]
+clone = "pickaxe_head_bronze"
+id = 482
+
+[pickaxe_head_iron_noted]
+id = 483
+
+[pickaxe_head_steel]
+clone = "pickaxe_head_bronze"
+id = 484
+
+[pickaxe_head_steel_noted]
+id = 485
+
+[pickaxe_head_mithril]
+clone = "pickaxe_head_bronze"
+id = 486
+
+[pickaxe_head_mithril_noted]
+id = 487
+
+[pickaxe_head_adamant]
+clone = "pickaxe_head_bronze"
+id = 488
+
+[pickaxe_head_adamant_noted]
+id = 489
+
+[pickaxe_head_rune]
+clone = "pickaxe_head_bronze"
+id = 490
+
+[pickaxe_head_rune_noted]
+id = 491
+
+[bronze_pickaxe]
+id = 1265
+price = 17
+limit = 100
+weight = 2.267
+mining_delay = 8
+smithing = { level = 5, xp = 25.0 }
+aka = ["bronze_pick"]
+slot = "Weapon"
+examine = "Used for mining."
+kept = "Wilderness"
+
+[bronze_pickaxe_noted]
+id = 1266
+
+[iron_pickaxe]
+id = 1267
+price = 238
+limit = 100
+weight = 2.267
+mining_delay = 7
+smithing = { level = 35, xp = 50.0 }
+aka = ["iron_pick"]
+slot = "Weapon"
+examine = "Used for mining."
+kept = "Wilderness"
+
+[iron_pickaxe_noted]
+id = 1268
+
+[steel_pickaxe]
+id = 1269
+price = 569
+limit = 100
+weight = 0.01
+mining_delay = 6
+smithing = { level = 35, xp = 75.0 }
+aka = ["steel_pick"]
+slot = "Weapon"
+examine = "Used for mining."
+kept = "Wilderness"
+
+[steel_pickaxe_noted]
+id = 1270
+
+[adamant_pickaxe]
+id = 1271
+price = 1781
+limit = 100
+weight = 0.01
+mining_delay = 4
+smithing = { level = 55, xp = 100.0 }
+aka = ["adamant_pick", "addy_pick", "addy_pickaxe"]
+slot = "Weapon"
+examine = "Used for mining."
+
+[adamant_pickaxe_noted]
+id = 1272
+
+[mithril_pickaxe]
+id = 1273
+price = 669
+limit = 100
+weight = 0.01
+mining_delay = 5
+smithing = { level = 75, xp = 125.0 }
+aka = ["mithril_pick", "mith_pick", "mith_pickaxe"]
+slot = "Weapon"
+examine = "Used for mining."
+
+[mithril_pickaxe_noted]
+id = 1274
+
+[rune_pickaxe]
+id = 1275
+price = 19000
+limit = 100
+weight = 0.01
+mining_delay = 3
+smithing = { level = 91, xp = 150.0 }
+aka = ["rune_pick"]
+slot = "Weapon"
+examine = "Used for mining."
+
+[rune_pickaxe_noted]
+id = 1276

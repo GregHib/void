@@ -1,0 +1,22 @@
+[stones]
+id = 14597
+tradeable = false
+weight = 2.0
+destroy = "You can probably get more in the last room of the yeti cave, in the Land of Snow."
+examine = "Explorer Jack's 'riches'. They have a suspicious look to them."
+kept = "Wilderness"
+
+[enchanted_stones]
+id = 14598
+tradeable = false
+weight = 2.0
+destroy = "You will have to fetch more in the last room of the yeti cave, then get them enchanted by snow imps."
+examine = "According to the snow imps, this is enchanted, frozen yeti dung."
+kept = "Wilderness"
+
+[ice_amulet09]
+id = 15418
+slot = "Amulet"
+destroy = "You can get another one of the snow imps near Lumbridge, Rimmington or Falador."
+examine = "A spikey amulet made of ice crystals. It has been enchanted so it will not melt."
+destroy2 = "You can get another one from Diango in Draynor Village."

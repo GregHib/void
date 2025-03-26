@@ -1,0 +1,263 @@
+[radimus_notes_partially_complete]
+id = 714
+tradeable = false
+weight = 0.02
+examine = "Notes given to you by Radimus Erkle. They include a partially completed map."
+kept = "Wilderness"
+
+[radimus_notes_complete]
+id = 715
+tradeable = false
+weight = 0.02
+examine = "Notes given to you by Radimus Erkle. They include a completed map."
+kept = "Wilderness"
+
+[bull_roarer]
+id = 716
+tradeable = false
+weight = 0.02
+examine = "It makes a loud but interesting sound when swung in the air."
+kept = "Wilderness"
+
+[scrawled_note]
+id = 717
+tradeable = false
+weight = 0.02
+examine = "A scrawled note with spidery writing on it."
+kept = "Wilderness"
+
+[a_scribbled_note]
+id = 718
+tradeable = false
+weight = 0.02
+examine = "A scrawled note with spidery writing on it."
+kept = "Wilderness"
+
+[scrumpled_note]
+id = 719
+tradeable = false
+weight = 0.02
+examine = "A scrawled note with spidery writing on it."
+kept = "Wilderness"
+
+[sketch]
+id = 720
+tradeable = false
+weight = 0.02
+examine = "A rough sketch of a bowl shaped vessel given to you by Gujuo."
+kept = "Wilderness"
+
+[gold_bowl]
+id = 721
+tradeable = false
+weight = 0.8
+examine = "A specially made bowl constructed out of pure gold."
+kept = "Wilderness"
+
+[blessed_gold_bowl]
+id = 722
+tradeable = false
+weight = 0.8
+examine = "A specially made bowl constructed out of pure gold and blessed."
+kept = "Wilderness"
+
+[golden_bowl_water]
+id = 723
+tradeable = false
+weight = 1.0
+empty = "gold_bowl"
+examine = "A specially made golden bowl with water."
+kept = "Wilderness"
+
+[golden_bowl_pure_water]
+id = 724
+tradeable = false
+weight = 1.0
+empty = "gold_bowl"
+examine = "A specially made bowl constructed out of pure gold. It has pure water in it."
+kept = "Wilderness"
+
+[golden_bowl_blessed_water]
+id = 725
+tradeable = false
+weight = 1.0
+empty = "blessed_gold_bowl"
+examine = "A blessed golden bowl. It has water in it."
+kept = "Wilderness"
+
+[golden_bowl]
+id = 726
+tradeable = false
+weight = 1.0
+empty = "blessed_gold_bowl"
+examine = "A blessed golden bowl. It has pure sacred water in it."
+kept = "Wilderness"
+
+[hollow_reed]
+id = 727
+tradeable = false
+weight = 0.012
+examine = "One of nature's pipes."
+kept = "Wilderness"
+
+[hollow_reed_2]
+id = 728
+tradeable = false
+weight = 0.012
+examine = "One of nature's pipes."
+kept = "Wilderness"
+
+[shamans_tome]
+id = 729
+tradeable = false
+weight = 0.51
+examine = "It looks like the Shaman's personal notes..."
+kept = "Wilderness"
+
+[binding_book]
+id = 730
+tradeable = false
+weight = 0.51
+examine = "An ancient tome on Demonology."
+kept = "Wilderness"
+
+[enchanted_vial]
+id = 731
+tradeable = false
+weight = 0.01
+examine = "An enchanted empty glass vial."
+kept = "Wilderness"
+
+[holy_water]
+id = 732
+tradeable = false
+slot = "Weapon"
+examine = "A vial of holy water, good against certain demons."
+kept = "Wilderness"
+
+[smashed_glass]
+id = 733
+tradeable = false
+weight = 0.002
+examine = "Fragments of a broken container."
+kept = "Wilderness"
+
+[yommi_tree_seeds]
+id = 735
+tradeable = false
+examine = "These need to be germinated before they can be used."
+kept = "Wilderness"
+
+[yommi_tree_seeds_germinated]
+id = 736
+tradeable = false
+examine = "These are germinated and ready to be planted in fertile soil."
+kept = "Wilderness"
+
+[snakeweed_mixture]
+id = 737
+tradeable = false
+weight = 0.025
+examine = "It's a mixture of Snakeweed and water. Needs another ingredient."
+kept = "Reclaim"
+
+[ardrigal_mixture]
+id = 738
+tradeable = false
+weight = 0.025
+examine = "It's a mixture of ardrigal and water. Needs another ingredient."
+kept = "Reclaim"
+
+[bravery_potion]
+id = 739
+heals = 0
+tradeable = false
+weight = 0.025
+examine = "A bravery potion for which Gujuo gave you the details, let's hope it works."
+kept = "Wilderness"
+
+[blue_hat_legends_quest]
+id = 740
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A strange blue wizards hat."
+kept = "Vanish"
+
+[chunk_of_crystal]
+id = 741
+tradeable = false
+weight = 0.05
+examine = "It looks like it's been snapped off of something."
+kept = "Wilderness"
+
+[hunk_of_crystal]
+clone = "chunk_of_crystal"
+id = 742
+
+[lump_of_crystal]
+clone = "chunk_of_crystal"
+id = 743
+
+[heart_crystal]
+id = 744
+tradeable = false
+weight = 0.15
+examine = "A heart shaped crystal."
+kept = "Wilderness"
+
+[heart_crystal_activated]
+clone = "heart_crystal"
+id = 745
+
+[dark_dagger]
+id = 746
+tradeable = false
+weight = 0.453
+slot = "Weapon"
+examine = "A black obsidian dagger, it has a strange aura about it."
+kept = "Reclaim"
+
+[glowing_dagger]
+id = 747
+tradeable = false
+weight = 0.453
+slot = "Weapon"
+examine = "A black obsidian dagger, it has a strange aura about it - it seems to be glowing."
+kept = "Reclaim"
+
+[holy_force]
+id = 748
+tradeable = false
+weight = 0.02
+examine = "A powerful spell for good."
+kept = "Wilderness"
+
+[yommi_totem]
+id = 749
+tradeable = false
+weight = 3.0
+examine = "A well carved totem pole made from the trunk of a Yommi tree."
+kept = "Wilderness"
+
+[gilded_totem]
+id = 750
+tradeable = false
+weight = 3.0
+examine = "A gilded totem pole from the Kharazi tribe."
+kept = "Wilderness"
+
+[cape_of_legends]
+id = 1052
+tradeable = false
+weight = 1.814
+slot = "Cape"
+examine = "The cape worn by members of the Legends' Guild."
+kept = "Wilderness"
+
+[burnt_oomlie]
+clone = "burnt_chicken"
+id = 2426
+
+[burnt_oomlie_noted]
+id = 2427

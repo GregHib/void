@@ -1,0 +1,94 @@
+[beer_glass]
+skill = "crafting"
+xp = 17.5
+requires = ["glassblowing_pipe"]
+remove = ["molten_glass"]
+add = ["beer_glass"]
+ticks = 3
+animation = "glassblowing"
+sound = "glassblowing"
+message = "You make a beer glass."
+
+[candle_lantern_empty]
+skill = "crafting"
+level = 4
+xp = 19.0
+requires = ["glassblowing_pipe"]
+remove = ["molten_glass"]
+add = ["candle_lantern_empty"]
+ticks = 3
+animation = "glassblowing"
+sound = "glassblowing"
+message = "You make a candle lantern."
+
+[oil_lamp_oil]
+skill = "crafting"
+level = 12
+xp = 25.0
+requires = ["glassblowing_pipe"]
+remove = ["molten_glass"]
+add = ["oil_lamp_oil"]
+ticks = 3
+animation = "glassblowing"
+sound = "glassblowing"
+message = "You make a oil lamp."
+
+[vial]
+skill = "crafting"
+level = 33
+xp = 35.0
+requires = ["glassblowing_pipe"]
+remove = ["molten_glass"]
+add = ["vial"]
+ticks = 3
+animation = "glassblowing"
+sound = "glassblowing"
+message = "You make a vial."
+
+[fishbowl]
+skill = "crafting"
+level = 42
+xp = 42.5
+requires = ["glassblowing_pipe"]
+remove = ["molten_glass"]
+add = ["fishbowl"]
+ticks = 3
+animation = "glassblowing"
+sound = "glassblowing"
+message = "You make a fishbowl."
+
+[unpowered_orb]
+skill = "crafting"
+level = 46
+xp = 52.5
+requires = ["glassblowing_pipe"]
+remove = ["molten_glass"]
+add = ["unpowered_orb"]
+ticks = 3
+animation = "glassblowing"
+sound = "glassblowing"
+message = "You make an orb."
+
+[lantern_lens]
+skill = "crafting"
+level = 49
+xp = 55.0
+requires = ["glassblowing_pipe"]
+remove = ["molten_glass"]
+add = ["lantern_lens"]
+ticks = 3
+animation = "glassblowing"
+sound = "glassblowing"
+message = "You make a lantern lens."
+
+[light_orb]
+skill = "crafting"
+level = 87
+xp = 70.0
+requires = ["glassblowing_pipe"]
+remove = ["molten_glass"]
+add = ["light_orb"]
+ticks = 3
+animation = "glassblowing"
+sound = "glassblowing"
+message = "You make a light orb."

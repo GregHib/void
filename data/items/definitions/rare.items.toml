@@ -1,0 +1,17 @@
+[disk_of_returning]
+id = 981
+price = 280600000
+limit = 2
+weight = 0.453
+examine = "Used to get out of Thordur's blackhole."
+
+[disk_of_returning_noted]
+id = 982
+
+[rotten_potato]
+id = 5733
+tradeable = false
+bank_stacks = false
+weight = 1.814
+examine = "Yuk!"
+kept = "Reclaim"

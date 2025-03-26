@@ -1,0 +1,273 @@
+[leather_gloves]
+skill = "crafting"
+xp = 13.8
+requires = ["needle", "thread"]
+remove = ["leather"]
+add = ["leather_gloves"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a pair of leather gloves."
+
+[leather_boots]
+skill = "crafting"
+level = 7
+xp = 16.25
+requires = ["needle", "thread"]
+remove = ["leather"]
+add = ["leather_boots"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a pair of leather boots."
+
+[leather_cowl]
+skill = "crafting"
+level = 9
+xp = 18.5
+requires = ["needle", "thread"]
+remove = ["leather"]
+add = ["leather_cowl"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a leather cowl."
+
+[leather_vambraces]
+skill = "crafting"
+level = 11
+xp = 22.0
+requires = ["needle", "thread"]
+remove = ["leather"]
+add = ["leather_vambraces"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a pair of leather vambraces."
+
+[leather_body]
+skill = "crafting"
+level = 14
+xp = 25.0
+requires = ["needle", "thread"]
+remove = ["leather"]
+add = ["leather_body"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a leather body."
+
+[leather_chaps]
+skill = "crafting"
+level = 18
+xp = 27.0
+requires = ["needle", "thread"]
+remove = ["leather"]
+add = ["leather_chaps"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a pair of leather chaps."
+
+[hardleather_body]
+skill = "crafting"
+level = 28
+xp = 35.0
+requires = ["needle", "thread"]
+remove = ["hard_leather"]
+add = ["hardleather_body"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a hard leather body."
+
+[leather_coif]
+skill = "crafting"
+level = 38
+xp = 37.0
+requires = ["needle", "thread"]
+remove = ["leather"]
+add = ["coif"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a leather coif."
+
+[snakeskin_boots]
+skill = "crafting"
+level = 45
+xp = 30.0
+requires = ["needle", "thread"]
+remove = [{ id = "snakeskin", amount = 6 }]
+add = ["snakeskin_boots"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a pair of snakeskin boots."
+
+[snakeskin_vambraces]
+skill = "crafting"
+level = 47
+xp = 35.0
+requires = ["needle", "thread"]
+remove = [{ id = "snakeskin", amount = 8 }]
+add = ["snakeskin_vambraces"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a pair of snakeskin vambraces."
+
+[snakeskin_bandana]
+skill = "crafting"
+level = 48
+xp = 45.0
+requires = ["needle", "thread"]
+remove = [{ id = "snakeskin", amount = 5 }]
+add = ["snakeskin_bandana"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a snakeskin bandana."
+
+[snakeskin_chaps]
+skill = "crafting"
+level = 51
+xp = 50.0
+requires = ["needle", "thread"]
+remove = [{ id = "snakeskin", amount = 12 }]
+add = ["snakeskin_chaps"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a pair of snakeskin chaps."
+
+[snakeskin_body]
+skill = "crafting"
+level = 53
+xp = 55.0
+requires = ["needle", "thread"]
+remove = [{ id = "snakeskin", amount = 15 }]
+add = ["snakeskin_body"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a snakeskin body."
+
+[green_dragonhide_vambraces]
+skill = "crafting"
+level = 57
+xp = 62.0
+requires = ["needle", "thread"]
+remove = ["green_dragon_leather"]
+add = ["green_dragonhide_vambraces"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a pair of green dragonhide vambraces."
+
+[green_dragonhide_chaps]
+skill = "crafting"
+level = 60
+xp = 124.0
+requires = ["needle", "thread"]
+remove = [{ id = "green_dragon_leather", amount = 2 }]
+add = ["green_dragonhide_chaps"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a pair of green dragonhide chaps."
+
+[green_dragonhide_body]
+skill = "crafting"
+level = 63
+xp = 186.0
+requires = ["needle", "thread"]
+remove = [{ id = "green_dragon_leather", amount = 3 }]
+add = ["green_dragonhide_body"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a green dragonhide body."
+
+[blue_dragonhide_vambraces]
+skill = "crafting"
+level = 66
+xp = 70.0
+requires = ["needle", "thread"]
+remove = ["blue_dragon_leather"]
+add = ["blue_dragonhide_vambraces"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a pair of blue dragonhide vambraces."
+
+[blue_dragonhide_chaps]
+skill = "crafting"
+level = 68
+xp = 140.0
+requires = ["needle", "thread"]
+remove = [{ id = "blue_dragon_leather", amount = 2 }]
+add = ["blue_dragonhide_chaps"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a pair of blue dragonhide chaps."
+
+[blue_dragonhide_body]
+skill = "crafting"
+level = 71
+xp = 210.0
+requires = ["needle", "thread"]
+remove = [{ id = "blue_dragon_leather", amount = 3 }]
+add = ["blue_dragonhide_body"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a blue dragonhide body."
+
+[red_dragonhide_vambraces]
+skill = "crafting"
+level = 73
+xp = 78.0
+requires = ["needle", "thread"]
+remove = ["red_dragon_leather"]
+add = ["red_dragonhide_vambraces"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a pair of red dragonhide vambraces."
+
+[red_dragonhide_chaps]
+skill = "crafting"
+level = 75
+xp = 156.0
+requires = ["needle", "thread"]
+remove = [{ id = "red_dragon_leather", amount = 2 }]
+add = ["red_dragonhide_chaps"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a pair of red dragonhide chaps."
+
+[red_dragonhide_body]
+skill = "crafting"
+level = 77
+xp = 234.0
+requires = ["needle", "thread"]
+remove = [{ id = "red_dragon_leather", amount = 3 }]
+add = ["red_dragonhide_body"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a red dragonhide body."
+
+[black_dragonhide_vambraces]
+skill = "crafting"
+level = 79
+xp = 86.0
+requires = ["needle", "thread"]
+remove = ["black_dragon_leather"]
+add = ["black_dragonhide_vambraces"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a pair of black dragonhide vambraces."
+
+[black_dragonhide_chaps]
+skill = "crafting"
+level = 82
+xp = 172.0
+requires = ["needle", "thread"]
+remove = [{ id = "black_dragon_leather", amount = 2 }]
+add = ["black_dragonhide_chaps"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a pair of black dragonhide chaps."
+
+[black_dragonhide_body]
+skill = "crafting"
+level = 84
+xp = 234.0
+requires = ["needle", "thread"]
+remove = [{ id = "black_dragon_leather", amount = 3 }]
+add = ["black_dragonhide_body"]
+ticks = 3
+animation = "craft_leather"
+message = "You make a black dragonhide body."

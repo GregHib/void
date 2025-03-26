@@ -1,0 +1,14 @@
+[void_knight_deflector_2]
+id = 19711
+tradeable = false
+weight = 0.453
+examine = "A deft void knight shield."
+kept = "Reclaim"
+
+[void_knight_deflector]
+id = 19712
+tradeable = false
+weight = 0.453
+slot = "Shield"
+examine = "A deft void knight shield."
+kept = "Reclaim"

@@ -1,0 +1,15 @@
+[spadeful_of_coke]
+id = 6448
+tradeable = false
+weight = 1.814
+empty = "spade"
+examine = "A spadeful of refined coal."
+kept = "Reclaim"
+
+[blast_fusion_hammer]
+id = 14478
+tradeable = false
+weight = 10.0
+slot = "Weapon"
+examine = "A very powerful Smithing hammer."
+kept = "Wilderness"

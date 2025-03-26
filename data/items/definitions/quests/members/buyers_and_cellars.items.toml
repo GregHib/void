@@ -1,0 +1,28 @@
+[dodgy_flyer]
+id = 18645
+tradeable = false
+weight = 0.001
+examine = "Someone has put a great deal of effort into this handwritten flyer."
+kept = "Wilderness"
+
+[thieves_guild_pamphlet]
+id = 18646
+tradeable = false
+examine = "Full of useful advice, Thieving XP and handy tips for budding bandits!"
+kept = "Reclaim"
+
+[complex_key]
+id = 18647
+tradeable = false
+weight = 0.01
+destroy = "You will have to pickpocket this from Father Urhney again if you get rid of it."
+examine = "A small, complex key to fit a display case."
+kept = "Wilderness"
+
+[golden_chalice]
+id = 18648
+tradeable = false
+weight = 0.45
+destroy = "You will have to steal this from Father Urhney's house again if you get rid of it."
+examine = "Very valuable to the right collector."
+kept = "Wilderness"

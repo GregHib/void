@@ -1,0 +1,71 @@
+
+[goutweed]
+id = 3261
+tradeable = false
+weight = 0.007
+examine = "A pale, tough looking herb."
+kept = "Reclaim"
+
+[troll_thistle]
+id = 3262
+tradeable = false
+weight = 0.001
+cooking = { start = 4, type = "heat", cooked = "dried_thistle", cooked_message = "You dry the troll thistle over the fire." }
+examine = "It's tough and spiky."
+kept = "Wilderness"
+
+[dried_thistle]
+id = 3263
+tradeable = false
+weight = 0.001
+examine = "It'll be easier to grind now."
+kept = "Wilderness"
+
+[ground_thistle]
+id = 3264
+tradeable = false
+weight = 0.028
+examine = "It's ready for mixing."
+kept = "Wilderness"
+
+[troll_potion]
+id = 3265
+tradeable = false
+weight = 0.056
+examine = "It's part of Eadgar's plan."
+kept = "Wilderness"
+
+[drunk_parrot]
+id = 3266
+tradeable = false
+weight = 0.001
+examine = "It's rather drunk."
+kept = "Wilderness"
+
+[dirty_robe]
+id = 3267
+tradeable = false
+weight = 0.001
+examine = "It's dirty and smelly."
+kept = "Wilderness"
+
+[fake_man]
+id = 3268
+tradeable = false
+weight = 0.001
+examine = "It's good enough to fool a troll."
+kept = "Wilderness"
+
+[storeroom_key]
+id = 3269
+tradeable = false
+weight = 0.055
+examine = "The key to the Troll storeroom."
+kept = "Wilderness"
+
+[alco_chunks]
+id = 3270
+tradeable = false
+weight = 0.08
+examine = "Pineapple chunks dipped in strong liquor."
+kept = "Wilderness"

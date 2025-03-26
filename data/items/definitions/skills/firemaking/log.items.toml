@@ -1,0 +1,102 @@
+[logs]
+id = 1511
+price = 30
+limit = 25000
+weight = 2.0
+fletchables = ["arrow_shaft", "shortbow_u", "longbow_u", "wooden_stock"]
+firemaking = { level = 1, xp = 40.0, life = 60 }
+examine = "A number of wooden logs."
+kept = "Wilderness"
+
+[logs_noted]
+id = 1512
+
+[magic_logs]
+id = 1513
+price = 1323
+limit = 25000
+weight = 2.0
+fletchables = ["arrow_shaft", "magic_shortbow_u", "magic_longbow_u"]
+firemaking = { level = 75, xp = 303.8, life = 180 }
+aka = ["magic_log"]
+examine = "Logs cut from a magic tree."
+
+[magic_logs_noted]
+id = 1514
+
+[yew_logs]
+id = 1515
+price = 410
+limit = 25000
+weight = 2.0
+fletchables = ["arrow_shaft", "yew_shortbow_u", "yew_longbow_u", "yew_stock"]
+firemaking = { level = 60, xp = 202.5, life = 160 }
+aka = ["yew_log"]
+examine = "Logs cut from a yew tree."
+
+[yew_logs_noted]
+id = 1516
+
+[maple_logs]
+id = 1517
+price = 51
+limit = 25000
+weight = 2.0
+fletchables = ["arrow_shaft", "maple_shortbow_u", "maple_longbow_u", "maple_stock"]
+firemaking = { level = 45, xp = 135.0, life = 100 }
+aka = ["maple_log"]
+examine = "Logs cut from a maple tree."
+
+[maple_logs_noted]
+id = 1518
+
+[willow_logs]
+id = 1519
+price = 16
+limit = 25000
+weight = 2.0
+fletchables = ["arrow_shaft", "willow_shortbow_u", "willow_ongbow_u", "willow_stock"]
+firemaking = { level = 30, xp = 90.0, life = 90 }
+aka = ["willow_log"]
+examine = "Logs cut from a willow tree."
+
+[willow_logs_noted]
+id = 1520
+
+[oak_logs]
+id = 1521
+price = 29
+limit = 25000
+weight = 2.0
+fletchables = ["arrow_shaft", "oak_shortbow_u", "oak_longbow_u", "oak_stock"]
+firemaking = { level = 15, xp = 60.0, life = 90 }
+aka = ["oak_log"]
+examine = "Logs cut from an oak tree."
+kept = "Wilderness"
+
+[oak_logs_noted]
+id = 1522
+
+[mahogany_logs]
+id = 6332
+price = 512
+limit = 25000
+weight = 1.36
+fletchables = ["arrow_shaft", "mahogany_stock"]
+firemaking = { level = 50, xp = 157.5, life = 140 }
+examine = "Some well-cut mahogany logs."
+
+[teak_logs]
+id = 6333
+price = 88
+limit = 25000
+weight = 1.36
+fletchables = ["arrow_shaft", "teak_stock"]
+firemaking = { level = 35, xp = 105.0, life = 90 }
+examine = "Some well-cut teak logs."
+
+[teak_logs_noted]
+id = 6334
+
+[mahogany_logs_noted]
+id = 8836

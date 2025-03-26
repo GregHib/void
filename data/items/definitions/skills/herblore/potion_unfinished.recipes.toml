@@ -1,0 +1,249 @@
+[guam_unf_potion]
+skill = "herblore"
+level = 3
+xp = 0.0
+ticks = 1
+remove = ["clean_guam", "vial_of_water"]
+add = ["guam_potion_unf"]
+animation = "mixing_potion"
+message = "You put the Guam leaf into the vial of water."
+
+[ardrigal_mixture_unf_potion]
+skill = "herblore"
+level = 3
+xp = 0.0
+ticks = 1
+remove = ["clean_ardrigal", "vial_of_water"]
+add = ["ardrigal_mixture"]
+animation = "mixing_potion"
+message = "You put the Ardrigal leaf into the vial of water."
+
+[snakeweed_unf_potion]
+skill = "herblore"
+level = 3
+xp = 0.0
+ticks = 1
+remove = ["clean_snake_weed", "vial_of_water"]
+add = ["snakeweed_mixture"]
+animation = "mixing_potion"
+message = "You put the Snake weed leaf into the vial of water."
+
+[tarromin_unf_potion]
+skill = "herblore"
+level = 12
+xp = 0.0
+ticks = 1
+remove = ["clean_tarromin", "vial_of_water"]
+add = ["tarromin_potion_unf"]
+animation = "mixing_potion"
+message = "You put the Tarromin leaf into the vial of water."
+
+[rogues_purse_unf_potion]
+skill = "herblore"
+level = 5
+xp = 1.0
+ticks = 1
+remove = ["clean_rogues_purse", "vial_of_water"]
+add = ["rogues_purse_potion_unf"]
+animation = "mixing_potion"
+message = "You put the Rogues purse leaf into the vial of water."
+
+[marrentill_unf_potion]
+skill = "herblore"
+level = 5
+xp = 0.0
+ticks = 1
+remove = ["clean_marrentill", "vial_of_water"]
+add = ["marrentill_potion_unf"]
+animation = "mixing_potion"
+message = "You put the Marrentill leaf into the vial of water."
+
+[harralander_unf_potion]
+skill = "herblore"
+level = 22
+xp = 0.0
+ticks = 1
+remove = ["clean_harralander", "vial_of_water"]
+add = ["harralander_potion_unf"]
+animation = "mixing_potion"
+message = "You put the Harralander leaf into the vial of water."
+
+[ranarr_unf_potion]
+skill = "herblore"
+level = 30
+xp = 0.0
+ticks = 1
+remove = ["clean_ranarr", "vial_of_water"]
+add = ["ranarr_potion_unf"]
+animation = "mixing_potion"
+message = "You put the Ranarr leaf into the vial of water."
+
+[toadflax_unf_potion]
+skill = "herblore"
+level = 34
+xp = 0.0
+ticks = 1
+remove = ["clean_toadflax", "vial_of_water"]
+add = ["toadflax_potion_unf"]
+animation = "mixing_potion"
+message = "You put the Toadflax leaf into the vial of water."
+
+[spirit_weed_unf_potion]
+skill = "herblore"
+level = 35
+xp = 0.0
+ticks = 1
+remove = ["clean_spirit_weed", "vial_of_water"]
+add = ["spirit_weed_potion_unf"]
+animation = "mixing_potion"
+message = "You put the Spirit weed leaf into the vial of water."
+
+[irit_unf_potion]
+skill = "herblore"
+level = 45
+xp = 0.0
+ticks = 1
+remove = ["clean_irit", "vial_of_water"]
+add = ["irit_potion_unf"]
+animation = "mixing_potion"
+message = "You put the Irit leaf into the vial of water."
+
+[wergali_unf_potion]
+skill = "herblore"
+level = 5
+xp = 1.0
+ticks = 1
+remove = ["clean_wergali", "vial_of_water"]
+add = ["wergali_potion_unf"]
+animation = "mixing_potion"
+message = "You put the Wergali leaf into the vial of water."
+
+[avantoe_unf_potion]
+skill = "herblore"
+level = 50
+xp = 0.0
+ticks = 1
+remove = ["clean_avantoe", "vial_of_water"]
+add = ["avantoe_potion_unf"]
+animation = "mixing_potion"
+message = "You put the Avantoe leaf into the vial of water."
+
+[kwuarm_unf_potion]
+skill = "herblore"
+level = 55
+xp = 0.0
+ticks = 1
+remove = ["clean_kwuarm", "vial_of_water"]
+add = ["kwuarm_potion_unf"]
+animation = "mixing_potion"
+message = "You put the Kwuarm leaf into the vial of water."
+
+[magic_essence_unf_potion]
+skill = "herblore"
+level = 57
+xp = 1.0
+ticks = 1
+remove = ["star_flower", "vial_of_water"]
+add = ["magic_essence_unf"]
+animation = "mixing_potion"
+message = "You put the Star flower into the vial of water."
+
+[snapdragon_unf_potion]
+skill = "herblore"
+level = 30
+xp = 0.0
+ticks = 1
+remove = ["clean_snapdragon", "vial_of_water"]
+add = ["snapdragon_potion_unf"]
+animation = "mixing_potion"
+message = "You put the Snapdragon leaf into the vial of water."
+
+[cadantine_unf_potion]
+skill = "herblore"
+level = 66
+xp = 0.0
+ticks = 1
+remove = ["clean_cadantine", "vial_of_water"]
+add = ["cadantine_potion_unf"]
+animation = "mixing_potion"
+message = "You put the Cadantine leaf into the vial of water."
+
+[lantadyme_unf_potion]
+skill = "herblore"
+level = 69
+xp = 0.0
+ticks = 1
+remove = ["clean_lantadyme", "vial_of_water"]
+add = ["lantadyme_potion_unf"]
+animation = "mixing_potion"
+message = "You put the Lantadyme leaf into the vial of water."
+
+[dwarf_weed_unf_potion]
+skill = "herblore"
+level = 72
+xp = 0.0
+ticks = 1
+remove = ["clean_dwarf_weed", "vial_of_water"]
+add = ["dwarf_weed_potion_unf"]
+animation = "mixing_potion"
+message = "You put the Dwarf weed leaf into the vial of water."
+
+[torstol_unf_potion]
+skill = "herblore"
+level = 78
+xp = 0.0
+ticks = 1
+remove = ["clean_torstol", "vial_of_water"]
+add = ["torstol_potion_unf"]
+animation = "mixing_potion"
+message = "You put the Torstol leaf into the vial of water."
+
+[guthix_balance_potion_unf]
+skill = "herblore"
+level = 22
+xp = 25.0
+ticks = 2
+remove = ["restore_potion_3", "garlic", "silver_dust"]
+add = ["guthix_balance_unf_3"]
+animation = "mixing_potion"
+message = "You mix the garlic into your potion."
+
+["antipoison+_potion_unf"]
+skill = "herblore"
+level = 68
+xp = 1.0
+ticks = 2
+remove = ["coconut_milk", "clean_toadflax"]
+add = ["antipoison+_unf"]
+animation = "mixing_potion"
+message = "You mix the toadflax leaf into your potion."
+
+["antipoison++_potion_unf"]
+skill = "herblore"
+level = 79
+xp = 1.0
+ticks = 2
+remove = ["coconut_milk", "clean_irit"]
+add = ["antipoison++_unf"]
+animation = "mixing_potion"
+message = "You mix the irit leaf into your potion."
+
+["weaponpoison+_potion_unf"]
+skill = "herblore"
+level = 73
+xp = 1.0
+ticks = 2
+remove = ["coconut_milk", "cactus_spine"]
+add = ["weapon_poison+_unf"]
+animation = "mixing_potion"
+message = "You mix the cactus spine into your potion."
+
+["weaponpoison++_potion_unf"]
+skill = "herblore"
+level = 73
+xp = 1.0
+ticks = 2
+remove = ["coconut_milk", "cave_nightshade"]
+add = ["weapon_poison++_unf"]
+animation = "mixing_potion"
+message = "You mix the cave nightshade into your potion."

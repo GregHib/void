@@ -33,6 +33,7 @@ class ParameterDefinitions(
                 while (nextPair()) {
                     val stringId = key()
                     val id = int()
+                    require(!ids.containsKey(stringId)) { "Duplicate parameter id found '$stringId' at $path." }
                     ids[stringId] = id
                     definitions[id].stringId = stringId
                     parameters[id] = stringId

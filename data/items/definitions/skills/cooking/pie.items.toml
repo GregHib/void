@@ -1,0 +1,393 @@
+
+[pie_recipe_book]
+id = 7162
+price = 38
+limit = 100
+weight = 0.001
+aka = ["pie_recipes"]
+examine = "Lots of pie recipes for me to try."
+
+[pie_recipe_book_noted]
+id = 7163
+
+[part_mud_pie_compost]
+id = 7164
+price = 74
+limit = 1000
+weight = 0.001
+examine = "Still needs two more ingredients."
+
+[part_mud_pie_compost_noted]
+id = 7165
+
+[part_mud_pie_water]
+id = 7166
+price = 284
+limit = 1000
+weight = 0.001
+examine = "Still needs one more ingredient."
+
+[part_mud_pie_water_noted]
+id = 7167
+
+[raw_mud_pie]
+id = 7168
+price = 1625
+limit = 1000
+weight = 0.001
+cooking = {
+  level = 29,
+  xp = 128.0,
+  chances = {
+    range = "58-372",
+  },
+  type = "bake",
+  cooked = "mud_pie",
+  cooked_message = "You successfully bake a mucky mud pie.",
+  burnt = "burnt_pie",
+  burnt_message = "You accidentally burn the mud pie.",
+}
+examine = "Needs to be baked before I can use it."
+
+[raw_mud_pie_noted]
+id = 7169
+
+[mud_pie]
+id = 7170
+price = 1304
+limit = 1000
+weight = 0.001
+weapon_type = "pie"
+slot = "Weapon"
+examine = "All the good of the earth."
+
+[mud_pie_noted]
+id = 7171
+
+[part_garden_pie_tomato]
+id = 7172
+price = 99
+limit = 1000
+weight = 0.001
+examine = "Still needs two more ingredients."
+
+[part_garden_pie_tomato_noted]
+id = 7173
+
+[part_garden_pie_onion]
+id = 7174
+price = 131
+limit = 1000
+weight = 0.001
+examine = "Still needs one more ingredient."
+
+[part_garden_pie_onion_noted]
+id = 7175
+
+[raw_garden_pie]
+id = 7176
+price = 839
+limit = 1000
+weight = 0.001
+cooking = {
+  level = 34,
+  xp = 138.0,
+  chances = {
+    range = "48-352",
+  },
+  type = "bake",
+  cooked = "garden_pie",
+  cooked_message = "You successfully bake a tasty garden pie.",
+  burnt = "burnt_pie",
+  burnt_message = "You accidentally burn the garden pie.",
+}
+examine = "Needs cooking before I eat it."
+
+[raw_garden_pie_noted]
+id = 7177
+
+[garden_pie]
+id = 7178
+price = 898
+limit = 1000
+heals = 60
+excess = "garden_pie_half"
+examine = "What I wouldn't give for a good steak about now..."
+weight = 0.001
+
+[garden_pie_noted]
+id = 7179
+
+[garden_pie_half]
+id = 7180
+price = 322
+limit = 1000
+heals = 60
+excess = "pie_dish"
+examine = "What I wouldn't give for a good steak about now..."
+weight = 0.001
+
+[garden_pie_half_noted]
+id = 7181
+
+[part_fish_pie_trout]
+id = 7182
+price = 54
+limit = 1000
+weight = 0.001
+examine = "Still needs two more ingredients."
+
+[part_fish_pie_trout_noted]
+id = 7183
+
+[part_fish_pie_cod]
+id = 7184
+price = 712
+limit = 1000
+weight = 0.001
+examine = "Still needs one more ingredient."
+
+[part_fish_pie_cod_noted]
+id = 7185
+
+[raw_fish_pie]
+id = 7186
+price = 1046
+limit = 1000
+weight = 0.001
+cooking = {
+  level = 47,
+  xp = 164.0,
+  chances = {
+    range = "38-332",
+  },
+  type = "bake",
+  cooked = "fish_pie",
+  cooked_message = "You successfully bake a tasty fish pie.",
+  burnt = "burnt_pie",
+  burnt_message = "You accidentally burn the fish pie.",
+}
+examine = "Raw fish is risky, better cook it."
+
+[raw_fish_pie_noted]
+id = 7187
+
+[fish_pie]
+id = 7188
+price = 76
+limit = 1000
+heals = 60
+excess = "fish_pie_half"
+examine = "Bounty of the sea."
+weight = 0.001
+
+[fish_pie_noted]
+id = 7189
+
+[fish_pie_half]
+id = 7190
+price = 52
+limit = 1000
+heals = 60
+excess = "pie_dish"
+examine = "Bounty of the sea."
+weight = 0.001
+
+[fish_pie_half_noted]
+id = 7191
+
+[part_admiral_pie_salmon]
+id = 7192
+price = 153
+limit = 1000
+weight = 0.001
+examine = "Still needs two more ingredients."
+
+[part_admiral_pie_salmon_noted]
+id = 7193
+
+[part_admiral_pie_tuna]
+id = 7194
+price = 560
+limit = 1000
+weight = 0.001
+examine = "Still needs one more ingredient."
+
+[part_admiral_pie_tuna_noted]
+id = 7195
+
+[raw_admiral_pie]
+id = 7196
+price = 1689
+limit = 1000
+weight = 0.001
+cooking = {
+  level = 70,
+  xp = 210.0,
+  chances = {
+    range = "15-270",
+  },
+  type = "bake",
+  cooked = "admiral_pie",
+  cooked_message = "You successfully bake a tasty fish pie.",
+  burnt = "burnt_pie",
+  burnt_message = "You accidentally burn the admiral pie.",
+}
+examine = "This would taste a lot better cooked."
+
+[raw_admiral_pie_noted]
+id = 7197
+
+[admiral_pie]
+id = 7198
+price = 144
+limit = 1000
+heals = 80
+excess = "admiral_pie_half"
+weight = 0.001
+
+[admiral_pie_noted]
+id = 7199
+
+[admiral_pie_half]
+id = 7200
+price = 106
+limit = 1000
+heals = 80
+excess = "pie_dish"
+weight = 0.001
+
+[admiral_pie_half_noted]
+id = 7201
+
+[part_wild_pie_raw_bear_meat]
+id = 7202
+price = 102
+limit = 1000
+weight = 0.001
+examine = "Still needs two more ingredients."
+
+[part_wild_pie_raw_bear_meat_noted]
+id = 7203
+
+[part_wild_pie_raw_chompy]
+id = 7204
+price = 1013
+limit = 1000
+weight = 0.001
+examine = "Still needs one more ingredient."
+
+[part_wild_pie_raw_chompy_noted]
+id = 7205
+
+[raw_wild_pie]
+id = 7206
+price = 3687
+limit = 1000
+weight = 0.001
+cooking = {
+  level = 85,
+  xp = 240.0,
+  chances = {
+    range = "1-222",
+  },
+  type = "bake",
+  cooked = "wild_pie",
+  cooked_message = "You successfully bake a tasty wild pie.",
+  burnt = "burnt_pie",
+  burnt_message = "You accidentally burn the wild pie.",
+}
+examine = "Good as it looks, I'd better cook it."
+
+[raw_wild_pie_noted]
+id = 7207
+
+[wild_pie]
+id = 7208
+price = 604
+limit = 1000
+heals = 110
+excess = "wild_pie_half"
+examine = "A triumph of man over nature."
+weight = 0.001
+
+[wild_pie_noted]
+id = 7209
+
+[wild_pie_half]
+id = 7210
+price = 113
+limit = 1000
+heals = 110
+excess = "pie_dish"
+examine = "A triumph of man over nature."
+weight = 0.001
+
+[wild_pie_half_noted]
+id = 7211
+
+[part_summer_pie_strawberry]
+id = 7212
+price = 517
+limit = 1000
+weight = 0.001
+examine = "Still needs two more ingredients."
+
+[part_summer_pie_strawberry_noted]
+id = 7213
+
+[part_summer_pie_watermelon]
+id = 7214
+price = 867
+limit = 1000
+weight = 0.001
+examine = "Still needs one more ingredient."
+
+[part_summer_pie_watermelon_noted]
+id = 7215
+
+[raw_summer_pie]
+id = 7216
+price = 1844
+limit = 1000
+weight = 0.001
+cooking = {
+  level = 95,
+  xp = 260.0,
+  chances = {
+    range = "1-212",
+  },
+  type = "bake",
+  cooked = "summer_pie",
+  cooked_message = "You successfully bake a tasty summer pie.",
+  burnt = "burnt_pie",
+  burnt_message = "You accidentally burn the summer pie.",
+}
+examine = "Fresh fruit may be good for you, but I should really cook this."
+
+[raw_summer_pie_noted]
+id = 7217
+
+[summer_pie]
+id = 7218
+price = 499
+limit = 1000
+heals = 110
+excess = "summer_pie_half"
+examine = "All the fruits of a very small forest."
+weight = 0.001
+
+[summer_pie_noted]
+id = 7219
+
+[summer_pie_half]
+id = 7220
+price = 256
+limit = 1000
+heals = 110
+excess = "pie_dish"
+examine = "All the fruits of a very small forest."
+weight = 0.001
+
+[summer_pie_half_noted]
+id = 7221

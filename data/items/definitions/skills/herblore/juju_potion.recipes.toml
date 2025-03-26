@@ -1,0 +1,539 @@
+[zamoraks_favour_combine_1]
+remove = ["zamoraks_favour_1", "zamoraks_favour_1"]
+add = ["zamoraks_favour_2", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[zamoraks_favour_combine_2]
+remove = ["zamoraks_favour_2", "zamoraks_favour_1"]
+add = ["zamoraks_favour_3", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[zamoraks_favour_combine_3]
+remove = ["zamoraks_favour_3", "zamoraks_favour_1"]
+add = ["zamoraks_favour_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[zamoraks_favour_combine_4]
+remove = ["zamoraks_favour_2", "zamoraks_favour_2"]
+add = ["zamoraks_favour_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[zamoraks_favour_combine_5]
+remove = ["zamoraks_favour_3", "zamoraks_favour_2"]
+add = ["zamoraks_favour_4", "zamoraks_favour_1"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[zamoraks_favour_combine_6]
+remove = ["zamoraks_favour_3", "zamoraks_favour_3"]
+add = ["zamoraks_favour_4", "zamoraks_favour_2"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[zamoraks_favour_split_1]
+remove = ["zamoraks_favour_2", "juju_vial"]
+add = ["zamoraks_favour_1", "zamoraks_favour_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[zamoraks_favour_split_2]
+remove = ["zamoraks_favour_3", "juju_vial"]
+add = ["zamoraks_favour_2", "zamoraks_favour_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[zamoraks_favour_split_3]
+remove = ["zamoraks_favour_4", "juju_vial"]
+add = ["zamoraks_favour_2", "zamoraks_favour_2"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_mining_potion_combine_1]
+remove = ["juju_mining_potion_1", "juju_mining_potion_1"]
+add = ["juju_mining_potion_2", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_mining_potion_combine_2]
+remove = ["juju_mining_potion_2", "juju_mining_potion_1"]
+add = ["juju_mining_potion_3", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_mining_potion_combine_3]
+remove = ["juju_mining_potion_3", "juju_mining_potion_1"]
+add = ["juju_mining_potion_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_mining_potion_combine_4]
+remove = ["juju_mining_potion_2", "juju_mining_potion_2"]
+add = ["juju_mining_potion_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_mining_potion_combine_5]
+remove = ["juju_mining_potion_3", "juju_mining_potion_2"]
+add = ["juju_mining_potion_4", "juju_mining_potion_1"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_mining_potion_combine_6]
+remove = ["juju_mining_potion_3", "juju_mining_potion_3"]
+add = ["juju_mining_potion_4", "juju_mining_potion_2"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_mining_potion_split_1]
+remove = ["juju_mining_potion_2", "juju_vial"]
+add = ["juju_mining_potion_1", "juju_mining_potion_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_mining_potion_split_2]
+remove = ["juju_mining_potion_3", "juju_vial"]
+add = ["juju_mining_potion_2", "juju_mining_potion_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_mining_potion_split_3]
+remove = ["juju_mining_potion_4", "juju_vial"]
+add = ["juju_mining_potion_2", "juju_mining_potion_2"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_cooking_potion_combine_1]
+remove = ["juju_cooking_potion_1", "juju_cooking_potion_1"]
+add = ["juju_cooking_potion_2", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_cooking_potion_combine_2]
+remove = ["juju_cooking_potion_2", "juju_cooking_potion_1"]
+add = ["juju_cooking_potion_3", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_cooking_potion_combine_3]
+remove = ["juju_cooking_potion_3", "juju_cooking_potion_1"]
+add = ["juju_cooking_potion_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_cooking_potion_combine_4]
+remove = ["juju_cooking_potion_2", "juju_cooking_potion_2"]
+add = ["juju_cooking_potion_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_cooking_potion_combine_5]
+remove = ["juju_cooking_potion_3", "juju_cooking_potion_2"]
+add = ["juju_cooking_potion_4", "juju_cooking_potion_1"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_cooking_potion_combine_6]
+remove = ["juju_cooking_potion_3", "juju_cooking_potion_3"]
+add = ["juju_cooking_potion_4", "juju_cooking_potion_2"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_cooking_potion_split_1]
+remove = ["juju_cooking_potion_2", "juju_vial"]
+add = ["juju_cooking_potion_1", "juju_cooking_potion_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_cooking_potion_split_2]
+remove = ["juju_cooking_potion_3", "juju_vial"]
+add = ["juju_cooking_potion_2", "juju_cooking_potion_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_cooking_potion_split_3]
+remove = ["juju_cooking_potion_4", "juju_vial"]
+add = ["juju_cooking_potion_2", "juju_cooking_potion_2"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_farming_potion_combine_1]
+remove = ["juju_farming_potion_1", "juju_farming_potion_1"]
+add = ["juju_farming_potion_2", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_farming_potion_combine_2]
+remove = ["juju_farming_potion_2", "juju_farming_potion_1"]
+add = ["juju_farming_potion_3", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_farming_potion_combine_3]
+remove = ["juju_farming_potion_3", "juju_farming_potion_1"]
+add = ["juju_farming_potion_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_farming_potion_combine_4]
+remove = ["juju_farming_potion_2", "juju_farming_potion_2"]
+add = ["juju_farming_potion_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_farming_potion_combine_5]
+remove = ["juju_farming_potion_3", "juju_farming_potion_2"]
+add = ["juju_farming_potion_4", "juju_farming_potion_1"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_farming_potion_combine_6]
+remove = ["juju_farming_potion_3", "juju_farming_potion_3"]
+add = ["juju_farming_potion_4", "juju_farming_potion_2"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_farming_potion_split_1]
+remove = ["juju_farming_potion_2", "juju_vial"]
+add = ["juju_farming_potion_1", "juju_farming_potion_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_farming_potion_split_2]
+remove = ["juju_farming_potion_3", "juju_vial"]
+add = ["juju_farming_potion_2", "juju_farming_potion_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_farming_potion_split_3]
+remove = ["juju_farming_potion_4", "juju_vial"]
+add = ["juju_farming_potion_2", "juju_farming_potion_2"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_woodcutting_potion_combine_1]
+remove = ["juju_woodcutting_potion_1", "juju_woodcutting_potion_1"]
+add = ["juju_woodcutting_potion_2", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_woodcutting_potion_combine_2]
+remove = ["juju_woodcutting_potion_2", "juju_woodcutting_potion_1"]
+add = ["juju_woodcutting_potion_3", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_woodcutting_potion_combine_3]
+remove = ["juju_woodcutting_potion_3", "juju_woodcutting_potion_1"]
+add = ["juju_woodcutting_potion_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_woodcutting_potion_combine_4]
+remove = ["juju_woodcutting_potion_2", "juju_woodcutting_potion_2"]
+add = ["juju_woodcutting_potion_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_woodcutting_potion_combine_5]
+remove = ["juju_woodcutting_potion_3", "juju_woodcutting_potion_2"]
+add = ["juju_woodcutting_potion_4", "juju_woodcutting_potion_1"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_woodcutting_potion_combine_6]
+remove = ["juju_woodcutting_potion_3", "juju_woodcutting_potion_3"]
+add = ["juju_woodcutting_potion_4", "juju_woodcutting_potion_2"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_woodcutting_potion_split_1]
+remove = ["juju_woodcutting_potion_2", "juju_vial"]
+add = ["juju_woodcutting_potion_1", "juju_woodcutting_potion_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_woodcutting_potion_split_2]
+remove = ["juju_woodcutting_potion_3", "juju_vial"]
+add = ["juju_woodcutting_potion_2", "juju_woodcutting_potion_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_woodcutting_potion_split_3]
+remove = ["juju_woodcutting_potion_4", "juju_vial"]
+add = ["juju_woodcutting_potion_2", "juju_woodcutting_potion_2"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_fishing_potion_combine_1]
+remove = ["juju_fishing_potion_1", "juju_fishing_potion_1"]
+add = ["juju_fishing_potion_2", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_fishing_potion_combine_2]
+remove = ["juju_fishing_potion_2", "juju_fishing_potion_1"]
+add = ["juju_fishing_potion_3", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_fishing_potion_combine_3]
+remove = ["juju_fishing_potion_3", "juju_fishing_potion_1"]
+add = ["juju_fishing_potion_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_fishing_potion_combine_4]
+remove = ["juju_fishing_potion_2", "juju_fishing_potion_2"]
+add = ["juju_fishing_potion_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_fishing_potion_combine_5]
+remove = ["juju_fishing_potion_3", "juju_fishing_potion_2"]
+add = ["juju_fishing_potion_4", "juju_fishing_potion_1"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_fishing_potion_combine_6]
+remove = ["juju_fishing_potion_3", "juju_fishing_potion_3"]
+add = ["juju_fishing_potion_4", "juju_fishing_potion_2"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_fishing_potion_split_1]
+remove = ["juju_fishing_potion_2", "juju_vial"]
+add = ["juju_fishing_potion_1", "juju_fishing_potion_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_fishing_potion_split_2]
+remove = ["juju_fishing_potion_3", "juju_vial"]
+add = ["juju_fishing_potion_2", "juju_fishing_potion_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_fishing_potion_split_3]
+remove = ["juju_fishing_potion_4", "juju_vial"]
+add = ["juju_fishing_potion_2", "juju_fishing_potion_2"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_hunter_potion_combine_1]
+remove = ["juju_hunter_potion_1", "juju_hunter_potion_1"]
+add = ["juju_hunter_potion_2", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_hunter_potion_combine_2]
+remove = ["juju_hunter_potion_2", "juju_hunter_potion_1"]
+add = ["juju_hunter_potion_3", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_hunter_potion_combine_3]
+remove = ["juju_hunter_potion_3", "juju_hunter_potion_1"]
+add = ["juju_hunter_potion_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_hunter_potion_combine_4]
+remove = ["juju_hunter_potion_2", "juju_hunter_potion_2"]
+add = ["juju_hunter_potion_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_hunter_potion_combine_5]
+remove = ["juju_hunter_potion_3", "juju_hunter_potion_2"]
+add = ["juju_hunter_potion_4", "juju_hunter_potion_1"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_hunter_potion_combine_6]
+remove = ["juju_hunter_potion_3", "juju_hunter_potion_3"]
+add = ["juju_hunter_potion_4", "juju_hunter_potion_2"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[juju_hunter_potion_split_1]
+remove = ["juju_hunter_potion_2", "juju_vial"]
+add = ["juju_hunter_potion_1", "juju_hunter_potion_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_hunter_potion_split_2]
+remove = ["juju_hunter_potion_3", "juju_vial"]
+add = ["juju_hunter_potion_2", "juju_hunter_potion_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[juju_hunter_potion_split_3]
+remove = ["juju_hunter_potion_4", "juju_vial"]
+add = ["juju_hunter_potion_2", "juju_hunter_potion_2"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[scentless_potion_combine_1]
+remove = ["scentless_potion_1", "scentless_potion_1"]
+add = ["scentless_potion_2", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[scentless_potion_combine_2]
+remove = ["scentless_potion_2", "scentless_potion_1"]
+add = ["scentless_potion_3", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[scentless_potion_combine_3]
+remove = ["scentless_potion_3", "scentless_potion_1"]
+add = ["scentless_potion_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[scentless_potion_combine_4]
+remove = ["scentless_potion_2", "scentless_potion_2"]
+add = ["scentless_potion_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[scentless_potion_combine_5]
+remove = ["scentless_potion_3", "scentless_potion_2"]
+add = ["scentless_potion_4", "scentless_potion_1"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[scentless_potion_combine_6]
+remove = ["scentless_potion_3", "scentless_potion_3"]
+add = ["scentless_potion_4", "scentless_potion_2"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[scentless_potion_split_1]
+remove = ["scentless_potion_2", "juju_vial"]
+add = ["scentless_potion_1", "scentless_potion_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[scentless_potion_split_2]
+remove = ["scentless_potion_3", "juju_vial"]
+add = ["scentless_potion_2", "scentless_potion_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[scentless_potion_split_3]
+remove = ["scentless_potion_4", "juju_vial"]
+add = ["scentless_potion_2", "scentless_potion_2"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[saradomins_blessing_combine_1]
+remove = ["saradomins_blessing_1", "saradomins_blessing_1"]
+add = ["saradomins_blessing_2", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[saradomins_blessing_combine_2]
+remove = ["saradomins_blessing_2", "saradomins_blessing_1"]
+add = ["saradomins_blessing_3", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[saradomins_blessing_combine_3]
+remove = ["saradomins_blessing_3", "saradomins_blessing_1"]
+add = ["saradomins_blessing_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[saradomins_blessing_combine_4]
+remove = ["saradomins_blessing_2", "saradomins_blessing_2"]
+add = ["saradomins_blessing_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[saradomins_blessing_combine_5]
+remove = ["saradomins_blessing_3", "saradomins_blessing_2"]
+add = ["saradomins_blessing_4", "saradomins_blessing_1"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[saradomins_blessing_combine_6]
+remove = ["saradomins_blessing_3", "saradomins_blessing_3"]
+add = ["saradomins_blessing_4", "saradomins_blessing_2"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[saradomins_blessing_split_1]
+remove = ["saradomins_blessing_2", "juju_vial"]
+add = ["saradomins_blessing_1", "saradomins_blessing_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[saradomins_blessing_split_2]
+remove = ["saradomins_blessing_3", "juju_vial"]
+add = ["saradomins_blessing_2", "saradomins_blessing_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[saradomins_blessing_split_3]
+remove = ["saradomins_blessing_4", "juju_vial"]
+add = ["saradomins_blessing_2", "saradomins_blessing_2"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[guthixs_gift_combine_1]
+remove = ["guthixs_gift_1", "guthixs_gift_1"]
+add = ["guthixs_gift_2", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[guthixs_gift_combine_2]
+remove = ["guthixs_gift_2", "guthixs_gift_1"]
+add = ["guthixs_gift_3", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[guthixs_gift_combine_3]
+remove = ["guthixs_gift_3", "guthixs_gift_1"]
+add = ["guthixs_gift_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[guthixs_gift_combine_4]
+remove = ["guthixs_gift_2", "guthixs_gift_2"]
+add = ["guthixs_gift_4", "juju_vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[guthixs_gift_combine_5]
+remove = ["guthixs_gift_3", "guthixs_gift_2"]
+add = ["guthixs_gift_4", "guthixs_gift_1"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[guthixs_gift_combine_6]
+remove = ["guthixs_gift_3", "guthixs_gift_3"]
+add = ["guthixs_gift_4", "guthixs_gift_2"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[guthixs_gift_split_1]
+remove = ["guthixs_gift_2", "juju_vial"]
+add = ["guthixs_gift_1", "guthixs_gift_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[guthixs_gift_split_2]
+remove = ["guthixs_gift_3", "juju_vial"]
+add = ["guthixs_gift_2", "guthixs_gift_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[guthixs_gift_split_3]
+remove = ["guthixs_gift_4", "juju_vial"]
+add = ["guthixs_gift_2", "guthixs_gift_2"]
+ticks = 1
+message = "You split the potion between the two vials."

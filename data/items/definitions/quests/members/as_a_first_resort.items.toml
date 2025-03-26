@@ -1,0 +1,206 @@
+[wimpy_feather]
+id = 11525
+price = 200
+limit = 5000
+examine = "More fluff than feather."
+
+[patrick]
+id = 12554
+
+[penelope]
+id = 12555
+
+[peter]
+id = 12556
+
+[peanut]
+id = 12557
+
+[mud]
+id = 12558
+tradeable = false
+weight = 0.001
+slot = "Hat"
+examine = "Marginally better than egg on the face."
+kept = "Reclaim"
+
+[ogre_wig]
+id = 12559
+price = 827
+limit = 100
+weight = 1.0
+slot = "Hat"
+type = "Hair"
+examine = "The height of style?"
+
+[ogre_wig_noted]
+id = 12560
+
+[ogre_kilt]
+id = 12561
+price = 286
+limit = 100
+weight = 1.0
+slot = "Legs"
+examine = "It's a little big on me."
+
+[ogre_kilt_noted]
+id = 12562
+
+[ogre_top]
+id = 12563
+price = 727
+limit = 100
+weight = 1.0
+slot = "Chest"
+examine = "It's a little big on me."
+
+[ogre_top_noted]
+id = 12564
+
+[ogre_boots]
+id = 12565
+price = 375
+limit = 100
+weight = 3.0
+slot = "Feet"
+examine = "Good for stomping."
+
+[ogre_boots_noted]
+id = 12566
+
+[diseased_kebbit_fur]
+id = 12567
+price = 1083
+limit = 100
+weight = 2.0
+examine = "It's a slightly sickly-looking fur."
+
+[davy_kebbit_hat]
+id = 12568
+price = 2837
+limit = 100
+weight = 1.0
+slot = "Hat"
+type = "Hair"
+examine = "A furry hat with an unnerving tail."
+
+[davy_kebbit_hat_noted]
+id = 12569
+
+[ogre_club]
+id = 12570
+price = 52
+limit = 100
+weight = 10.0
+slot = "Weapon"
+examine = "A big piece of tree."
+
+[ogre_club_noted]
+id = 12571
+
+[lavender]
+id = 12572
+price = 10
+limit = 100
+weight = 0.01
+examine = "A delicate, sweet-smelling flower."
+kept = "Wilderness"
+
+[lavender_noted]
+id = 12573
+
+[fever_grass]
+id = 12574
+price = 19
+limit = 100
+weight = 0.01
+examine = "A stiff, pungent grass."
+kept = "Wilderness"
+
+[fever_grass_noted]
+id = 12575
+
+[tansymum]
+id = 12576
+price = 7
+limit = 100
+weight = 0.01
+examine = "A cheerful, aromatic flower."
+kept = "Wilderness"
+
+[tansymum_noted]
+id = 12577
+
+[smouldering_fever_grass]
+id = 12578
+limit = 100
+tradeable = false
+weight = 0.01
+slot = "Weapon"
+examine = "A slowly-burning, acrid-smelling fever grass."
+kept = "Vanish"
+
+[smouldering_lavender]
+id = 12579
+limit = 100
+tradeable = false
+weight = 0.01
+slot = "Weapon"
+examine = "Slowly-burning, sweet-smelling lavender."
+kept = "Vanish"
+
+[smouldering_tansymum]
+id = 12580
+limit = 100
+tradeable = false
+weight = 0.01
+slot = "Weapon"
+examine = "Slowly-burning, spicy-smelling tansymum."
+kept = "Vanish"
+
+[eucalyptus_logs]
+id = 12581
+price = 367
+limit = 25000
+weight = 0.001
+firemaking = { level = 58, xp = 193.5, life = 140 }
+examine = "Logs cut from a eucalyptus tree."
+
+[eucalyptus_logs_noted]
+id = 12582
+
+[eucalyptus_pyre_logs]
+id = 12583
+price = 2485
+limit = 1000
+weight = 2.0
+examine = "Logs cut from a eucalyptus tree."
+
+[eucalyptus_pyre_logs_noted]
+id = 12584
+
+[primweed]
+id = 12588
+price = 13
+limit = 100
+weight = 0.028
+examine = "A modest and mild plant."
+kept = "Wilderness"
+
+[primweed_noted]
+id = 12589
+
+[stinkbloom]
+id = 12590
+price = 10
+limit = 100
+weight = 0.028
+examine = "A pretty but putrid flower."
+kept = "Wilderness"
+
+[stinkbloom_noted]
+id = 12591
+
+[diseased_kebbit_fur_noted]
+id = 12592

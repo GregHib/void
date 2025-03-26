@@ -1,0 +1,192 @@
+[puzzle_box_a_void_dance]
+id = 19624
+tradeable = false
+weight = 0.5
+destroy = "You can buy another from Ali Tist in Falador if you wish."
+examine = "Crack the puzzle to win a fabulous prize!"
+kept = "Wilderness"
+
+[puzzle_box_23]
+id = 19625
+tradeable = false
+examine = "I need to solve this!"
+kept = "Wilderness"
+
+[mysterious_clue_scroll]
+id = 19626
+tradeable = false
+weight = 0.5
+destroy = "Ali Tist in Falador can provide a spare."
+examine = "The strange scroll that led Ali Tist to a stash of dubious boxes."
+kept = "Wilderness"
+
+[blocks_iron_oxide]
+id = 19627
+tradeable = false
+weight = 0.001
+destroy = "No"
+examine = "This chemical can be used to help balance the mixture."
+kept = "Vanish"
+
+[gas_vial_chlorine]
+clone = "blocks_iron_oxide"
+id = 19628
+
+[powder_copper_sulphate]
+clone = "blocks_iron_oxide"
+id = 19629
+
+[liquid_uric_acid]
+clone = "blocks_iron_oxide"
+id = 19630
+
+[black_knight_access_insignia]
+id = 19631
+tradeable = false
+weight = 0.5
+destroy = "You pickpocketed this off one of the Black Knight's indentured workers."
+examine = "Black Knight Industrial Team badge."
+kept = "Vanish"
+
+[rusty_anchor_cellar_key]
+id = 19632
+tradeable = false
+weight = 0.5
+destroy = "You will have to find another in the Rusty Anchor."
+examine = "This key allows access to the cellar of the Rusty Anchor."
+kept = "Wilderness"
+
+[search_warrant]
+id = 19633
+tradeable = false
+weight = 0.5
+destroy = "If you need a replacement, talk to Sir Amik Varze in Falador."
+examine = "This document entitles the bearer to search the stock of one Ali Tist."
+kept = "Wilderness"
+
+[void_drone_bug]
+id = 19634
+tradeable = false
+weight = 1.0
+destroy = "Jessika can summon it again if you have further need of its services."
+examine = "A void drone summoned by Jessika."
+kept = "Vanish"
+
+[void_knight_whistle]
+id = 19635
+tradeable = false
+weight = 0.5
+destroy = "Cannot be dropped or destroyed"
+examine = "Blow this if you get into difficulties."
+kept = "Vanish"
+
+[jointed_log]
+id = 19636
+tradeable = false
+weight = 0.5
+destroy = "You will have to make another will a chisel and a set of regular log."
+examine = "This log has a tenon joint cut into it."
+kept = "Vanish"
+
+[jointed_plank]
+id = 19637
+tradeable = false
+weight = 0.5
+destroy = "You will have to make another will a chisel and a wooden plank."
+examine = "This log has a mortise cut into it."
+kept = "Vanish"
+
+[joist]
+id = 19638
+tradeable = false
+weight = 0.5
+destroy = "You will have to make another with a mortise-and-tenon carved log and plank."
+examine = "A sturdy wooden joist."
+kept = "Vanish"
+
+[wood_shards]
+id = 19639
+tradeable = false
+weight = 0.5
+destroy = "Jessika may have some more. Find her at Musa Point."
+examine = "Broken bits of tooled, waxy wood."
+kept = "Vanish"
+
+[commorb_tyr]
+id = 19640
+tradeable = false
+weight = 0.001
+destroy = "Your CommOrb will automatically self destruct when dropped. Please speak to your Temple Knight superior to receive another."
+examine = "Tyr's CommOrb, given to him by Sir Tiffy."
+kept = "Wilderness"
+
+[commorb_a_void_dance]
+id = 19641
+tradeable = false
+weight = 0.001
+destroy = "Your CommOrb will automatically self destruct when dropped. Please speak to your Temple Knight superior to receive another."
+examine = "Use this to stay in touch with Korasi and Jessika."
+kept = "Wilderness"
+
+[void_knight_commendation]
+id = 19642
+tradeable = false
+weight = 0.001
+destroy = "This is worth fifty Commendations and cannot be retrieved if destroyed!"
+examine = "Redeem this with a Void Knight for fifty Commendations."
+kept = "Vanish"
+
+[void_pest_research_notes]
+id = 19643
+tradeable = false
+weight = 0.5
+examine = "Jessika's collected notes on void pests."
+kept = "Wilderness"
+
+[void_knight_book]
+id = 19644
+tradeable = false
+weight = 0.5
+aka = ["history_and_tenets_of_the_void_knights_the_void_knights_creed"]
+examine = "A definitive account of the Void Knight order."
+kept = "Wilderness"
+
+[black_knight_workshop_key]
+id = 19645
+tradeable = false
+weight = 0.02
+destroy = "You may find a spare on the shelf in the Black Knight workshop."
+examine = "A key to the secure area of the Black Knights' workshop."
+kept = "Wilderness"
+
+[curious_tool]
+id = 19646
+tradeable = false
+weight = 0.02
+destroy = "You acquired this in the Black Knight workshop."
+examine = "This might come in handy."
+kept = "Vanish"
+
+[metal_strip]
+id = 19647
+tradeable = false
+weight = 0.5
+destroy = "You acquired this in the Black Knight workshop."
+examine = "Unscrewed from the frame of a Black Knight workbench."
+kept = "Vanish"
+
+[hook_a_void_dance]
+id = 19648
+tradeable = false
+weight = 0.05
+destroy = "You acquired this in the Black Knight workshop."
+examine = "Pried loose from a Black Knight workbench."
+kept = "Vanish"
+
+[gaff]
+id = 19649
+tradeable = false
+weight = 0.55
+destroy = "You acquired this in the Black Knight workshop."
+examine = "Jury-rigged, but it might do the job."
+kept = "Vanish"

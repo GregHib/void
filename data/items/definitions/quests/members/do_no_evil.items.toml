@@ -1,0 +1,104 @@
+[chimp_ice]
+id = 20057
+tradeable = false
+weight = 0.001
+destroy = "You can commission another from Rokuh, the choc ice seller, for 1000 coins."
+examine = "Mmm, this looks tasty."
+kept = "Wilderness"
+
+[chocolatey_goop]
+id = 20058
+tradeable = false
+weight = 0.001
+destroy = "You destroy the pile of chocolatey goop."
+examine = "A sticky mess of chocolate."
+kept = "Wilderness"
+
+[barrel_of_monkeys]
+id = 20059
+tradeable = false
+weight = 15.0
+destroy = "Why? Why would you do that?"
+examine = "A squealing, rocking barrel of simians."
+kept = "Wilderness"
+
+[monkey_knife]
+id = 20060
+tradeable = false
+weight = 0.907
+destroy = "You'll need to steal another from a monkey knife fighter on Ape Atoll. Good luck with that."
+examine = "A small knife, perfect for a monkey."
+kept = "Wilderness"
+
+[metal_crate]
+id = 20061
+tradeable = false
+weight = 10.0
+destroy = "You may be able to get another by speaking with Ali Morrisane."
+examine = "A large, metal crate."
+kept = "Wilderness"
+
+[economy_building_for_dummies]
+id = 20062
+tradeable = false
+weight = 0.453
+slot = "Weapon"
+destroy = "You can ask Iwazaru for another."
+examine = "A small book that teaches strong economy building."
+kept = "Wilderness"
+
+[bundle_of_carpets]
+id = 20063
+tradeable = false
+weight = 5.0
+destroy = "If you throw them away here, Ali Morrisane might find them."
+examine = "This bundle of magic carpets is an entrepreneur's dream."
+kept = "Wilderness"
+
+[cramulet_monkey_ghost]
+id = 20064
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+examine = "The cramulet allows you to speak with monkeys and ghosts."
+kept = "Wilderness"
+
+[cramulet_monkey_ghost_camel]
+id = 20065
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+examine = "The cramulet allows you to speak with monkeys, ghosts and camels."
+kept = "Wilderness"
+
+[cramulet_monkey_ghost_cat]
+id = 20066
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+examine = "The cramulet allows you to speak with monkeys, ghosts and cats."
+kept = "Wilderness"
+
+[cramulet_monkey_ghost_cat_camel]
+id = 20067
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+examine = "The cramulet allows you to speak with monkeys, ghosts, cats and camels."
+kept = "Wilderness"
+
+[avas_alerter]
+id = 20068
+tradeable = false
+weight = 4.535
+slot = "Cape"
+destroy = "I can obtain a replacement for this from Ava in Draynor Manor. She will need 999 gold coins and 75 steel arrows to buy the lower-level version."
+examine = "A superior bagged chicken with a magnet in its claw, ready to serve and detect."
+kept = "Reclaim"
+
+[green_banana]
+id = 20069
+tradeable = false
+weight = 0.028
+examine = "A nearly ripe banana."
+kept = "Wilderness"

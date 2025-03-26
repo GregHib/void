@@ -1,0 +1,141 @@
+[mouse_toy]
+id = 6541
+tradeable = false
+weight = 0.1
+weapon_type = "mouse_toy"
+slot = "Weapon"
+destroy = "You can get a replacement mouse toy by speaking to Bob, the Jagex cat. You can also reclaim it from the quest storage chest."
+examine = "An Advanced Combat Training Device."
+kept = "Wilderness"
+
+[present]
+id = 6542
+tradeable = false
+weight = 2.0
+destroy = "You can not get a replacement for the present. Open it to get your reward."
+examine = "Thanks for all your help! Love, Bob & Neite."
+kept = "Vanish"
+
+[antique_lamp_a_tail_of_two_cats]
+id = 6543
+tradeable = false
+weight = 0.1
+destroy = "If you destroy this item, you cannot reclaim it."
+examine = "I wonder what happens if I rub it..."
+kept = "Vanish"
+
+[catspeak_amulet_e]
+id = 6544
+tradeable = false
+weight = 1.36
+slot = "Amulet"
+destroy = "You can get another Amulet of Catspeak from the Sphinx in Sophanem. Bring a cat or kitten with you."
+examine = "It's an amulet of cat speak. It makes vague purring noises."
+kept = "Wilderness"
+
+[chores]
+id = 6545
+tradeable = false
+weight = 0.005
+destroy = "You can get a replacement list of chores by speaking to your kitten or cat."
+examine = "A list of chores that Bob gave you to do."
+destroy2 = "You have completed the chores; you can safely destroy the list."
+kept = "Wilderness"
+
+[recipe]
+id = 6546
+tradeable = false
+weight = 0.005
+destroy = "You found the recipe in Unferth's bookcase, which is in his Burthorpe house, you will be able to get a replacement."
+examine = "It says on the back 'My favourite recipe.'"
+kept = "Wilderness"
+
+[doctors_hat]
+id = 6547
+tradeable = false
+weight = 0.3
+slot = "Hat"
+destroy = "You can get another Doctor's hat from the Apothecary in Varrock."
+examine = "A mirror helps reflect light on the subject."
+kept = "Vanish"
+
+[nurse_hat]
+id = 6548
+tradeable = false
+weight = 0.2
+slot = "Hat"
+destroy = "You can get another Nurse's hat from the Apothecary in Varrock."
+examine = "A nurse's hat, but does it have healing powers?"
+kept = "Vanish"
+
+[lazy_cat]
+id = 6549
+food = "None"
+examine = "A friendly not so little pet."
+
+[lazy_cat_2]
+clone = "lazy_cat"
+id = 6550
+
+[lazy_cat_3]
+clone = "lazy_cat"
+id = 6551
+
+[lazy_cat_4]
+clone = "lazy_cat"
+id = 6552
+
+[lazy_cat_5]
+clone = "lazy_cat"
+id = 6553
+
+[lazy_cat_6]
+clone = "lazy_cat"
+id = 6554
+
+[wily_cat]
+id = 6555
+food = "None"
+examine = "Wild."
+
+[wily_cat_2]
+clone = "wily_cat"
+id = 6556
+
+[wily_cat_3]
+clone = "wily_cat"
+id = 6557
+
+[wily_cat_4]
+clone = "wily_cat"
+id = 6558
+
+[wily_cat_5]
+clone = "wily_cat"
+id = 6559
+
+[wily_cat_6]
+clone = "wily_cat"
+id = 6560
+
+[pet_kitten_7]
+clone = "pet_kitten"
+id = 14089
+
+[pet_cat_7]
+id = 14090
+npc = 8214
+food = "Fish as a kitten, none for any other stages"
+examine = "A friendly little pet."
+
+[lazy_cat_7]
+clone = "lazy_cat"
+id = 14091
+
+[overgrown_cat_7]
+clone = "overgrown_cat"
+id = 14092
+
+[wily_cat_7]
+clone = "wily_cat"
+id = 14093

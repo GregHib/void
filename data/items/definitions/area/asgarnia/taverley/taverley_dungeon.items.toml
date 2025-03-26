@@ -1,0 +1,13 @@
+[dusty_key]
+id = 1590
+tradeable = false
+weight = 0.01
+examine = "I wonder what this unlocks."
+kept = "Wilderness"
+
+[jail_key]
+id = 1591
+tradeable = false
+weight = 0.01
+examine = "Key to a cell."
+kept = "Wilderness"

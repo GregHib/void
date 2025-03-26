@@ -1,0 +1,351 @@
+[emerald_lantern]
+id = 9064
+tradeable = false
+weight = 1.36
+light_source = { once_lit = "emerald_lantern_lit", level = 49 }
+examine = "A mystical lantern."
+kept = "Wilderness"
+
+[emerald_lantern_lit]
+id = 9065
+tradeable = false
+weight = 1.36
+slot = "Shield"
+light_source = { once_extinguish = "emerald_lantern" }
+examine = "A mystical lantern casting a green beam."
+kept = "Wilderness"
+
+[emerald_lens]
+id = 9066
+tradeable = false
+weight = 0.028
+examine = "A roughly circular disc of glass."
+kept = "Wilderness"
+
+[dream_log]
+id = 9067
+tradeable = false
+weight = 1.36
+examine = "A log of my thoughts..."
+kept = "Vanish"
+
+[moonclan_helm]
+id = 9068
+tradeable = false
+weight = 0.907
+slot = "Hat"
+examine = "Mystical headgear."
+kept = "Reclaim"
+
+[moonclan_hat]
+id = 9069
+tradeable = false
+weight = 0.907
+slot = "Hat"
+examine = "A mystical hat."
+kept = "Reclaim"
+
+[moonclan_armour]
+id = 9070
+tradeable = false
+weight = 4.535
+slot = "Chest"
+examine = "Provides good protection."
+kept = "Reclaim"
+
+[moonclan_skirt]
+id = 9071
+tradeable = false
+weight = 3.628
+slot = "Legs"
+examine = "This should protect my legs."
+kept = "Reclaim"
+
+[moonclan_gloves]
+id = 9072
+tradeable = false
+weight = 0.907
+slot = "Hands"
+examine = "These should keep my hands safe."
+kept = "Reclaim"
+
+[moonclan_boots]
+id = 9073
+tradeable = false
+weight = 0.907
+slot = "Feet"
+examine = "Groovy foot protection."
+kept = "Reclaim"
+
+[moonclan_cape]
+id = 9074
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "A mystical cape."
+kept = "Reclaim"
+
+[astral_rune]
+id = 9075
+price = 136
+limit = 25000
+runecrafting = { xp = 8.7, levels = [40, 82], pure = true }
+aka = ["astral_runes", "astral", "astrals"]
+examine = "Used for Lunar Spells"
+
+[lunar_ore]
+id = 9076
+tradeable = false
+weight = 2.267
+destroy = "You'll have to mine more from the Lunar Isle Mine."
+examine = "This needs refining."
+kept = "Wilderness"
+
+[lunar_bar]
+id = 9077
+tradeable = false
+weight = 1.814
+destroy = "You'll have to get more lunar ore to make another bar."
+examine = "It's a bar of magic metal."
+kept = "Wilderness"
+
+[moonclan_manual]
+id = 9078
+tradeable = false
+weight = 0.51
+aka = ["basics_of_magic"]
+examine = "A book of Moonclan history"
+kept = "Reclaim"
+
+[suqah_tooth]
+id = 9079
+tradeable = false
+weight = 0.01
+examine = "The tooth, the whole tooth, and nothing but the tooth."
+kept = "Wilderness"
+
+[suqah_hide]
+id = 9080
+tradeable = false
+weight = 3.175
+examine = "An untanned piece of Suqah hide."
+kept = "Wilderness"
+
+[suqah_leather]
+id = 9081
+tradeable = false
+weight = 3.175
+examine = "A piece of Suqah hide that has been expertly tanned into leather."
+kept = "Wilderness"
+
+[ground_tooth]
+id = 9082
+tradeable = false
+weight = 0.007
+examine = "A ground Suqah tooth."
+kept = "Wilderness"
+
+[seal_of_passage]
+id = 9083
+tradeable = false
+weight = 4.535
+slot = "Amulet"
+destroy = "Brundt the Chieftain will probably have another lying around somewhere anyway... You can also reclaim it from the quest storage chest."
+examine = "A seal of passage issued by Brundt the Chieftain of the Fremennik."
+kept = "Vanish"
+
+[lunar_staff]
+id = 9084
+tradeable = false
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+destroy = "The Oneiromancer might be able to help you get another."
+examine = "A Moonclan staff."
+kept = "Reclaim"
+
+[empty_vial]
+id = 9085
+tradeable = false
+weight = 0.5
+destroy = "You'll have to get another from the Oneiromancer."
+examine = "A vessel for holding liquid."
+kept = "Vanish"
+
+[vial_of_water_lunar_diplomacy]
+id = 9086
+limit = 10000
+tradeable = false
+weight = 0.5
+destroy = "You'll have to get an empty one from Baba Yaga."
+examine = "A vessel containing water."
+kept = "Vanish"
+
+[waking_sleep_vial]
+id = 9087
+tradeable = false
+weight = 0.5
+destroy = "You'll have to get an empty one from Baba Yaga."
+examine = "A vessel for dreaming while awake!"
+kept = "Vanish"
+
+[guam_vial]
+id = 9088
+tradeable = false
+weight = 0.5
+destroy = "You'll have to get an empty one from Baba Yaga."
+examine = "A vessel with water and Guam inside."
+kept = "Vanish"
+
+[marr_vial]
+id = 9089
+tradeable = false
+weight = 0.5
+examine = "A vessel with water and Marrentill inside."
+kept = "Vanish"
+
+[guam_marr_vial]
+id = 9090
+tradeable = false
+weight = 0.5
+destroy = "You'll have to get an empty one from Baba Yaga."
+examine = "A vessel with water, Guam and Marrentill inside."
+kept = "Vanish"
+
+[lunar_staff_pt1]
+id = 9091
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+destroy = "You'll have to get another Dramen staff."
+examine = "A staff enchanted by air."
+kept = "Vanish"
+
+[lunar_staff_pt2]
+id = 9092
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+destroy = "You'll have to get another Dramen staff."
+examine = "A staff enchanted by air and fire."
+kept = "Vanish"
+
+[lunar_staff_pt3]
+id = 9093
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+destroy = "You'll have to get another Dramen staff."
+examine = "A staff enchanted by air, fire and water."
+kept = "Vanish"
+
+[kindling]
+id = 9094
+tradeable = false
+weight = 0.5
+examine = "Small bits of wood from the first magic tree!"
+kept = "Wilderness"
+
+[soaked_kindling]
+id = 9095
+tradeable = false
+weight = 0.5
+examine = "Magic wood soaked with a potion of waking sleep. Groovy."
+kept = "Wilderness"
+
+[lunar_helm]
+id = 9096
+tradeable = false
+weight = 0.907
+slot = "Hat"
+type = "FullFace"
+destroy = "The Oneiromancer might be able to help you get another."
+examine = "A mystical helmet."
+kept = "Reclaim"
+
+[lunar_torso]
+id = 9097
+tradeable = false
+weight = 4.535
+slot = "Chest"
+destroy = "The Oneiromancer might be able to help you get another."
+examine = "Provides good protection."
+kept = "Reclaim"
+
+[lunar_legs]
+id = 9098
+tradeable = false
+weight = 3.628
+slot = "Legs"
+destroy = "The Oneiromancer might be able to help you get another."
+examine = "These should protect my legs."
+kept = "Reclaim"
+
+[lunar_gloves]
+id = 9099
+tradeable = false
+weight = 0.907
+slot = "Hands"
+destroy = "The Oneiromancer might be able to help you get another."
+examine = "These should keep my hands safe."
+kept = "Reclaim"
+
+[lunar_boots]
+id = 9100
+tradeable = false
+weight = 0.907
+slot = "Feet"
+destroy = "The Oneiromancer might be able to help you get another."
+examine = "Mystical foot protection."
+kept = "Reclaim"
+
+[lunar_cape]
+id = 9101
+tradeable = false
+weight = 0.453
+slot = "Cape"
+destroy = "The Oneiromancer might be able to help you get another."
+examine = "Oooo pretty!"
+kept = "Reclaim"
+
+[lunar_amulet]
+id = 9102
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+destroy = "The Oneiromancer might be able to help you get another."
+examine = "Awesome."
+kept = "Reclaim"
+
+[a_special_tiara]
+id = 9103
+tradeable = false
+weight = 0.01
+destroy = "The Oneiromancer might be able to help you get another."
+examine = "I'll be the talk of the town with this... maybe."
+kept = "Reclaim"
+
+[lunar_ring]
+id = 9104
+tradeable = false
+weight = 0.006
+slot = "Ring"
+destroy = "The Oneiromancer might be able to help you get another."
+examine = "A mysterious ring that can fill the wearer with magical power..."
+kept = "Reclaim"
+
+[astral_tiara] # Unreleased
+id = 9106
+slot = "Hat"
+
+[hunter_kit]
+id = 11159
+price = 1
+limit = 100
+weight = 0.4
+destroy = "You will have to create another using the Lunar Spellbook."
+examine = "A box of equipment for a hunter."
+kept = "Vanish"
+
+[hunter_kit_noted]
+id = 18756

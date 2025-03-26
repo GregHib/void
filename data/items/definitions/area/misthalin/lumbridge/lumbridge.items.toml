@@ -1,0 +1,49 @@
+[newcomer_map]
+id = 550
+price = 74
+limit = 100
+weight = 0.51
+examine = "Issued by Gielinor Council to all new citizens."
+
+[newcomer_map_noted]
+id = 551
+
+[training_sword]
+id = 9703
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+examine = "Basic training sword."
+kept = "Reclaim"
+
+[training_shield]
+id = 9704
+tradeable = false
+weight = 5.443
+slot = "Shield"
+examine = "Made of flimsy painted wood."
+kept = "Reclaim"
+
+[training_bow]
+id = 9705
+tradeable = false
+weight = 1.36
+slot = "Weapon"
+type = "TwoHanded"
+attack_range = 7
+examine = "Light and flexible; good for a beginner."
+kept = "Reclaim"
+
+[training_arrows]
+id = 9706
+tradeable = false
+slot = "Ammo"
+examine = "Standard training arrows."
+kept = "Reclaim"
+
+[goblin_book]
+id = 10999
+tradeable = false
+weight = 0.1
+examine = "A tattered goblin holy book."
+kept = "Wilderness"

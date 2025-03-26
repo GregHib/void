@@ -1,0 +1,118 @@
+[ragged_book]
+id = 18685
+tradeable = false
+weight = 0.1
+destroy = "If you destroy this book you can find another on a bookshelf in the Seers' Village chapel."
+examine = "Book of the Elemental Body, there is a raised relief on the front."
+kept = "Wilderness"
+
+[key_mould]
+id = 18686
+tradeable = false
+weight = 0.01
+silver_jewellery = { item = "ragged_silver_key", quest = "elemental_workshop_iii" }
+destroy = "If you destroy this, you can make another by using soft clay on the ragged book."
+examine = "A key mould, made from a ragged book."
+kept = "Wilderness"
+
+[ragged_silver_key]
+id = 18687
+tradeable = false
+weight = 0.01
+destroy = "If you destroy this key, you can make another with a silver bar and the key mould."
+examine = "A small silver key."
+kept = "Wilderness"
+
+[ragged_gold_key]
+id = 18688
+tradeable = false
+weight = 0.01
+destroy = "If you destroy this key, you can make another with a gold bar and the key mould."
+examine = "A small gold key."
+kept = "Wilderness"
+
+[ragged_elemental_key]
+id = 18689
+tradeable = false
+weight = 0.01
+destroy = "If you destroy this key, you can make another with an elemental bar and the key mould."
+examine = "A small elemental key."
+kept = "Wilderness"
+
+[body_bar]
+id = 18690
+tradeable = false
+weight = 1.814
+examine = "An elemental body bar."
+kept = "Reclaim"
+
+[body_shield]
+id = 18691
+price = 8050
+limit = 100
+weight = 0.226
+slot = "Shield"
+examine = "A shield made in the Elemental Workshop."
+
+[body_shield_noted]
+id = 18692
+
+[body_helmet]
+id = 18693
+price = 4359
+limit = 100
+weight = 0.113
+slot = "Hat"
+examine = "A helmet made in the Elemental Workshop."
+
+[body_helmet_noted]
+id = 18694
+
+[body_body]
+id = 18695
+price = 2681
+limit = 100
+weight = 0.708
+slot = "Chest"
+examine = "A body made in the Elemental Workshop."
+
+[body_body_noted]
+id = 18696
+
+[mind_body]
+id = 18697
+price = 41000
+limit = 100
+weight = 0.708
+slot = "Chest"
+examine = "A body made in the Elemental Workshop."
+
+[mind_body_noted]
+id = 18698
+
+[elemental_body]
+id = 18699
+price = 6165
+limit = 100
+weight = 0.708
+slot = "Chest"
+examine = "A body made in the Elemental Workshop."
+
+[elemental_body_noted]
+id = 18700
+
+[diagram]
+id = 18701
+tradeable = false
+weight = 0.1
+destroy = "If you destroy this scroll, you can find another in the body room of the elemental workshop."
+examine = "A scroll with a diagram drawn on it."
+kept = "Wilderness"
+
+[book_of_knowledge_elemental_workshop_iii]
+id = 18702
+tradeable = false
+weight = 1.0
+destroy = "This book is irreplaceable"
+examine = "Educate yourself."
+kept = "Wilderness"

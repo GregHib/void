@@ -1,0 +1,124 @@
+[earth_warrior_champions_scroll]
+id = 6798
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Earth Warrior Champion!"
+kept = "Wilderness"
+
+[ghoul_champions_scroll]
+id = 6799
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Ghoul Champion!"
+kept = "Wilderness"
+
+[giant_champions_scroll]
+id = 6800
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Giant Champion!"
+kept = "Wilderness"
+
+[goblin_champions_scroll]
+id = 6801
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Goblin Champion!"
+kept = "Wilderness"
+
+[hobgoblin_champions_scroll]
+id = 6802
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Hobgoblin Champion!"
+kept = "Wilderness"
+
+[imp_champions_scroll]
+id = 6803
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Imp Champion!"
+kept = "Wilderness"
+
+[jogre_champions_scroll]
+id = 6804
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Jogre Champion!"
+kept = "Wilderness"
+
+[lesser_demon_champions_scroll]
+id = 6805
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Lesser Demon Champion!"
+kept = "Wilderness"
+
+[skeleton_champions_scroll]
+id = 6806
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Skeleton Champion!"
+kept = "Wilderness"
+
+[zombie_champions_scroll]
+id = 6807
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Zombie Champion!"
+kept = "Wilderness"
+
+[human_champions_scroll]
+id = 6808
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Human Champion!"
+kept = "Wilderness"
+
+[calling_beads]
+id = 15354
+tradeable = false
+weight = 0.001
+destroy = "If I lose it, I can get another one from Larxus in the basement of the Champions' Guild."
+examine = "This should call your loyal, banner-carrying follower."
+kept = "Wilderness"
+
+[banshee_champions_scroll]
+id = 15355
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Banshee Champion!"
+kept = "Wilderness"
+
+[aberrant_spectre_champions_scroll]
+id = 15356
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Aberrant Spectre Champion!"
+kept = "Wilderness"
+
+[mummy_champions_scroll]
+id = 15357
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Mummy Champion!"
+kept = "Wilderness"
+
+[gnome_champions_scroll]
+id = 15358
+tradeable = false
+weight = 0.001
+examine = "It's a challenge from the Gnome Champion!"
+kept = "Wilderness"
+
+[champions_scroll]
+id = 15359
+examine = "A scroll once used by a champion."
+
+[scroll_of_knowledge]
+id = 15360
+tradeable = false
+weight = 0.02
+destroy = "If I lose it, I can get another one from Larxus in the basement of the Champions' Guild."
+examine = "Contains a fair amount of useful knowledge about combat."
+kept = "Vanish"

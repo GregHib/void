@@ -1,0 +1,100 @@
+
+[dagonhai_history]
+id = 11001
+tradeable = false
+weight = 0.01
+aka = ["the_fall_of_the_dagonhai"]
+destroy = "You will need to get another copy from the Varrock Palace Library if you destroy this one."
+examine = "The History of the Dagon'hai."
+kept = "Wilderness"
+
+[sinkeths_diary]
+id = 11002
+tradeable = false
+weight = 0.01
+aka = ["the_journal_of_sinketh_magis"]
+destroy = "You will need to get another copy from the Varrock Palace Library if you destroy this one."
+examine = "The diary of Sin'keth Magis."
+kept = "Wilderness"
+
+[an_empty_folder]
+id = 11003
+tradeable = false
+weight = 0.001
+destroy = "You will need to ask Rat for another empty folder if you destroy this one."
+examine = "A folder for Rat's papers."
+kept = "Wilderness"
+
+[used_folder]
+id = 11006
+tradeable = false
+weight = 0.001
+destroy = "You will need to ask Rat for another empty folder if you destroy this one."
+examine = "A folder for Rat's papers. It needs more pages."
+kept = "Wilderness"
+
+[full_folder]
+id = 11007
+tradeable = false
+weight = 0.001
+destroy = "You will need to get a new folder from Rat and search for 5 more papers if you destroy this."
+examine = "A full folder. You should take this back to Rat."
+kept = "Wilderness"
+
+[rats_paper]
+id = 11008
+tradeable = false
+weight = 0.001
+destroy = "You will need to find more papers about the outlaws if you destroy this."
+examine = "A page of Rat's document."
+kept = "Wilderness"
+
+[rats_letter]
+id = 11009
+tradeable = false
+weight = 0.001
+destroy = "You will need to get another copy of the letter from Rat if you destroy this."
+examine = "A letter in a strange language."
+kept = "Wilderness"
+
+[suroks_letter]
+id = 11010
+tradeable = false
+weight = 0.001
+destroy = "You will need to ask Surok for another letter to Rat if you destroy this."
+examine = "A letter."
+kept = "Wilderness"
+
+[zaffs_instructions]
+id = 11011
+tradeable = false
+weight = 0.001
+examine = "Instructions for the beacon ring."
+kept = "Wilderness"
+
+[wand_what_lies_below]
+id = 11012
+tradeable = false
+weight = 0.001
+slot = "Weapon"
+destroy = "You will need to get another metal wand from Surok if you destroy this."
+examine = "A wand."
+kept = "Wilderness"
+
+[infused_wand]
+id = 11013
+tradeable = false
+weight = 0.001
+slot = "Weapon"
+destroy = "You will need to get another metal wand from Surok and infuse it once more if you destroy this wand."
+examine = "This wand is glowing with chaos magic."
+kept = "Wilderness"
+
+[beacon_ring]
+id = 11014
+tradeable = false
+weight = 0.006
+slot = "Ring"
+destroy = "You will need to get another ring from Zaff if you destroy this one."
+examine = "A magical ring."
+kept = "Wilderness"

@@ -1,0 +1,10 @@
+[lockpick]
+id = 1523
+price = 1637
+limit = 100
+weight = 0.01
+examine = "For picking tough locks."
+kept = "Wilderness"
+
+[lockpick_noted]
+id = 1524

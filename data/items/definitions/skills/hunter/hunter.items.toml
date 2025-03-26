@@ -1,0 +1,892 @@
+[raw_bird_meat]
+id = 9978
+price = 309
+limit = 10000
+weight = 0.15
+cooking = { level = 11, xp = 62.5, chances = { fire = "155-255" }, type = "roast", cooked = "roast_bird_meat" }
+examine = "This certainly needs cooking!"
+kept = "Wilderness"
+
+[raw_bird_meat_noted]
+id = 9979
+
+[roast_bird_meat]
+id = 9980
+price = 20
+limit = 1000
+heals = 60
+weight = 0.15
+examine = "A nicely roasted bird."
+kept = "Wilderness"
+
+[roast_bird_meat_noted]
+id = 9981
+
+[burnt_bird_meat]
+id = 9982
+examine = "Extremely well done bird."
+
+[burnt_bird_meat_noted]
+id = 9983
+
+[skewered_bird_meat]
+id = 9984
+price = 130
+limit = 1000
+weight = 1.65
+examine = "Skewered bird meat."
+kept = "Wilderness"
+
+[skewered_bird_meat_noted]
+id = 9985
+
+[raw_beast_meat]
+id = 9986
+price = 17
+limit = 1000
+weight = 2.0
+cooking = { level = 21, xp = 62.0, chances = { fire = "180-255" }, type = "roast", cooked = "roast_beast_meat" }
+examine = "A slab of raw beast meat."
+
+[raw_beast_meat_noted]
+id = 9987
+
+[roast_beast_meat]
+id = 9988
+price = 45
+limit = 1000
+heals = 80
+weight = 2.0
+examine = "A delicious looking slab of roast beast."
+
+[roast_beast_meat_noted]
+id = 9989
+
+[burnt_beast_meat]
+id = 9990
+examine = "It's a bit over-cooked."
+
+[burnt_beast_meat_noted]
+id = 9991
+
+[skewered_beast]
+id = 9992
+price = 97
+limit = 1000
+weight = 3.5
+examine = "Beast meat on a spit."
+
+[skewered_beast_noted]
+id = 9993
+
+[bird_snare]
+id = 10006
+price = 1
+limit = 100
+weight = 0.453
+examine = "A simple bird catcher."
+kept = "Wilderness"
+
+[bird_snare_noted]
+id = 10007
+
+[box_trap]
+id = 10008
+price = 299
+limit = 100
+weight = 0.226
+examine = "If a creature goes inside, the box should then slam shut."
+
+[box_trap_noted]
+id = 10009
+
+[butterfly_net]
+id = 10010
+price = 1
+limit = 100
+weight = 0.226
+slot = "Weapon"
+examine = "For catching butterflies..."
+kept = "Wilderness"
+
+[butterfly_net_noted]
+id = 10011
+
+[butterfly_jar]
+id = 10012
+price = 238
+limit = 100
+weight = 0.02
+examine = "It's got little holes in the top."
+kept = "Wilderness"
+
+[butterfly_jar_noted]
+id = 10013
+
+[black_warlock]
+id = 10014
+price = 183
+limit = 5000
+weight = 0.02
+examine = "There's a black warlock butterfly in here."
+
+[black_warlock_noted]
+id = 10015
+
+[snowy_knight]
+id = 10016
+price = 261
+limit = 5000
+weight = 0.02
+examine = "There's a snowy knight butterfly in here."
+
+[snowy_knight_noted]
+id = 10017
+
+[sapphire_glacialis]
+id = 10018
+price = 192
+limit = 5000
+weight = 0.02
+examine = "There's a sapphire glacialis butterfly in here."
+
+[sapphire_glacialis_noted]
+id = 10019
+
+[ruby_harvest]
+id = 10020
+price = 1104
+limit = 5000
+weight = 0.02
+examine = "There's a ruby harvest butterfly in here."
+
+[ruby_harvest_noted]
+id = 10021
+
+[falconers_glove]
+id = 10023
+tradeable = false
+weight = 0.907
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A very large, single leather glove."
+kept = "Vanish"
+
+[falconers_glove_2]
+id = 10024
+tradeable = false
+weight = 0.907
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A very large, single leather glove."
+kept = "Vanish"
+
+[magic_box]
+id = 10025
+price = 855
+limit = 100
+weight = 1.0
+examine = "A magical catching box."
+
+[magic_box_noted]
+id = 10026
+
+[imp_in_a_box_2]
+id = 10027
+examine = "A full magical catching box."
+weight = 1.0
+
+[imp_in_a_box_1]
+id = 10028
+examine = "A half-full magical catching box."
+weight = 1.0
+
+[teasing_stick]
+id = 10029
+price = 1
+limit = 100
+weight = 0.453
+slot = "Weapon"
+examine = "Reduces the risk of hand severage when poking large, vicious carnivores."
+
+[teasing_stick_noted]
+id = 10030
+
+[rabbit_snare]
+id = 10031
+price = 1
+limit = 100
+weight = 0.02
+examine = "The snare will tighten around animals passing through."
+
+[rabbit_snare_noted]
+id = 10032
+
+[chinchompa]
+id = 10033
+price = 322
+limit = 20000
+aka = ["grey_chinchompa", "grey_chin", "chin", "chins"]
+weapon_type = "chinchompa"
+slot = "Weapon"
+destroy = "Release"
+attack_range = 9
+examine = "Handle with care."
+kept = "Wilderness"
+
+[red_chinchompa]
+id = 10034
+price = 665
+limit = 20000
+aka = ["red_chin", "red_chin", "red_chins"]
+weapon_type = "chinchompa"
+slot = "Weapon"
+destroy = "Release"
+attack_range = 9
+examine = "Even more volatile than its vegetarian counterpart."
+kept = "Wilderness"
+
+[kyatt_legs]
+id = 10035
+price = 276
+limit = 100
+weight = 0.226
+slot = "Legs"
+examine = "These should make me harder to spot in polar areas."
+
+[kyatt_legs_noted]
+id = 10036
+
+[kyatt_top]
+id = 10037
+price = 271
+limit = 100
+weight = 0.226
+slot = "Chest"
+examine = "This should make me harder to spot in polar areas."
+
+[kyatt_top_noted]
+id = 10038
+
+[kyatt_hat]
+id = 10039
+price = 9029
+limit = 100
+weight = 0.226
+slot = "Hat"
+type = "Hair"
+examine = "This should make me harder to spot in polar areas."
+
+[kyatt_hat_noted]
+id = 10040
+
+[larupia_legs]
+id = 10041
+price = 1804
+limit = 100
+weight = 0.226
+slot = "Legs"
+examine = "These should make me harder to spot in woodland and jungle areas."
+
+[larupia_legs_noted]
+id = 10042
+
+[larupia_top]
+id = 10043
+price = 1782
+limit = 100
+weight = 0.226
+slot = "Chest"
+examine = "This should make me harder to spot in woodland and jungle areas."
+
+[larupia_top_noted]
+id = 10044
+
+[larupia_hat]
+id = 10045
+price = 3578
+limit = 100
+weight = 0.226
+slot = "Hat"
+type = "Hair"
+examine = "This should make me harder to spot in woodland and jungle areas."
+
+[larupia_hat_noted]
+id = 10046
+
+[graahk_legs]
+id = 10047
+price = 312
+limit = 100
+weight = 0.226
+slot = "Legs"
+examine = "These should make me harder to spot in desert areas."
+
+[graahk_legs_noted]
+id = 10048
+
+[graahk_top]
+id = 10049
+price = 380
+limit = 100
+weight = 0.226
+slot = "Chest"
+examine = "This should make me harder to spot in desert areas."
+
+[graahk_top_noted]
+id = 10050
+
+[graahk_headdress]
+id = 10051
+price = 8165
+limit = 100
+weight = 0.226
+slot = "Hat"
+type = "FullFace"
+examine = "This should make me harder to spot in desert areas."
+
+[graahk_headdress_noted]
+id = 10052
+
+[wood_camo_top]
+id = 10053
+price = 4527
+limit = 100
+weight = 0.226
+slot = "Chest"
+examine = "This should make me harder to spot in wooded areas."
+kept = "Wilderness"
+
+[wood_camo_top_noted]
+id = 10054
+
+[wood_camo_legs]
+id = 10055
+price = 2722
+limit = 100
+weight = 0.226
+slot = "Legs"
+examine = "These should make me harder to spot in wooded areas."
+kept = "Wilderness"
+
+[wood_camo_legs_noted]
+id = 10056
+
+[jungle_camo_top]
+id = 10057
+price = 329
+limit = 100
+weight = 0.226
+slot = "Chest"
+examine = "This should make me harder to spot in jungle or swamp areas."
+kept = "Wilderness"
+
+[jungle_camo_top_noted]
+id = 10058
+
+[jungle_camo_legs]
+id = 10059
+price = 354
+limit = 100
+weight = 0.226
+slot = "Legs"
+examine = "These should make me harder to spot in jungle or swamp areas."
+kept = "Wilderness"
+
+[jungle_camo_legs_noted]
+id = 10060
+
+[desert_camo_top]
+id = 10061
+price = 625
+limit = 100
+weight = 0.226
+slot = "Chest"
+examine = "This should make me harder to spot in desert areas."
+kept = "Wilderness"
+
+[desert_camo_top_noted]
+id = 10062
+
+[desert_camo_legs]
+id = 10063
+price = 999
+limit = 100
+weight = 0.226
+slot = "Legs"
+examine = "These should make me harder to spot in desert areas."
+kept = "Wilderness"
+
+[desert_camo_legs_noted]
+id = 10064
+
+[polar_camo_top]
+id = 10065
+price = 4385
+limit = 100
+weight = 0.226
+slot = "Chest"
+examine = "This should make me harder to spot in polar areas."
+kept = "Wilderness"
+
+[polar_camo_top_noted]
+id = 10066
+
+[polar_camo_legs]
+id = 10067
+price = 5925
+limit = 100
+weight = 0.226
+slot = "Legs"
+examine = "These should make me harder to spot in polar areas."
+kept = "Wilderness"
+
+[polar_camo_legs_noted]
+id = 10068
+
+[spotted_cape]
+id = 10069
+price = 971
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "A surprisingly aerodynamic cape."
+
+[spotted_cape_noted]
+id = 10070
+
+[spottier_cape]
+id = 10071
+price = 1825
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "A really surprisingly aerodynamic cape."
+
+[spottier_cape_noted]
+id = 10072
+
+[spotted_cape_2]
+id = 10073
+limit = 100
+tradeable = false
+weight = -2.267
+slot = "Cape"
+examine = "A surprisingly aerodynamic cape."
+
+[spottier_cape_2]
+id = 10074
+limit = 100
+tradeable = false
+weight = -4.535
+slot = "Cape"
+examine = "A really surprisingly aerodynamic cape."
+
+[gloves_of_silence]
+id = 10075
+price = 2554
+limit = 100
+weight = 0.226
+slot = "Hands"
+examine = "Made from dark kebbit fur, these are perfect for tasks of a stealthier nature."
+
+[gloves_of_silence_noted]
+id = 10076
+
+[spiky_vambraces]
+id = 10077
+price = 83
+limit = 100
+weight = 0.226
+slot = "Hands"
+material = "leather"
+examine = "Attack at your own risk."
+
+[spiky_vambraces_noted]
+id = 10078
+
+[green_spiky_vambraces]
+id = 10079
+price = 1478
+limit = 100
+weight = 0.283
+slot = "Hands"
+material = "leather"
+examine = "Vambraces made from 100% real dragonhide. Now with added spikiness."
+
+[green_spiky_vambraces_noted]
+id = 10080
+
+[blue_spiky_vambraces]
+id = 10081
+price = 1756
+limit = 100
+weight = 0.283
+slot = "Hands"
+material = "leather"
+examine = "Vambraces made from 100% real dragonhide. Now with added spikiness."
+
+[blue_spiky_vambraces_noted]
+id = 10082
+
+[red_spiky_vambraces]
+id = 10083
+price = 1979
+limit = 100
+weight = 0.283
+slot = "Hands"
+material = "leather"
+examine = "Vambraces made from 100% real dragonhide. Now with added spikiness."
+
+[red_spiky_vambraces_noted]
+id = 10084
+
+[black_spiky_vambraces]
+id = 10085
+price = 3295
+limit = 100
+weight = 0.283
+slot = "Hands"
+material = "leather"
+examine = "Vambraces made from 100% real dragonhide. Now with added spikiness."
+
+[black_spiky_vambraces_noted]
+id = 10086
+
+[stripy_feather]
+id = 10087
+price = 13
+limit = 5000
+examine = "Attractive to other birds and hunters alike."
+kept = "Wilderness"
+
+[red_feather]
+id = 10088
+price = 14
+limit = 5000
+examine = "A vivid red feather."
+kept = "Wilderness"
+
+[blue_feather]
+id = 10089
+price = 17
+limit = 5000
+examine = "A cool blue feather."
+kept = "Wilderness"
+
+[yellow_feather]
+id = 10090
+price = 22
+limit = 5000
+examine = "A bright yellow feather."
+kept = "Wilderness"
+
+[orange_feather]
+id = 10091
+price = 15
+limit = 5000
+examine = "A fairly plain feather."
+kept = "Wilderness"
+
+[ferret]
+id = 10092
+tradeable = false
+weight = 1.5
+destroy = "Release"
+examine = "It likes ferreting around."
+kept = "Vanish"
+
+[tatty_larupia_fur]
+id = 10093
+price = 727
+limit = 100
+weight = 2.0
+examine = "It's a shabby-looking larupia fur."
+
+[tatty_larupia_fur_noted]
+id = 10094
+
+[larupia_fur]
+id = 10095
+price = 1898
+limit = 100
+weight = 2.0
+examine = "It's a perfect-looking larupia fur."
+
+[larupia_fur_noted]
+id = 10096
+
+[tatty_graahk_fur]
+id = 10097
+price = 37
+limit = 100
+weight = 2.0
+examine = "It's a shabby-looking graahk fur."
+
+[tatty_graahk_fur_noted]
+id = 10098
+
+[graahk_fur]
+id = 10099
+price = 8010
+limit = 100
+weight = 2.0
+examine = "It's a perfect-looking graahk fur."
+
+[graahk_fur_noted]
+id = 10100
+
+[tatty_kyatt_fur]
+id = 10101
+price = 34
+limit = 100
+weight = 2.0
+examine = "It's a shabby-looking kyatt fur."
+
+[tatty_kyatt_fur_noted]
+id = 10102
+
+[kyatt_fur]
+id = 10103
+price = 11000
+limit = 100
+weight = 2.0
+examine = "It's a perfect-looking kyatt fur."
+
+[kyatt_fur_noted]
+id = 10104
+
+[kebbit_spike]
+id = 10105
+price = 154
+limit = 5000
+weight = 0.02
+examine = "These bone spikes are both very tough and very sharp."
+
+[kebbit_spike_noted]
+id = 10106
+
+[long_kebbit_spike]
+id = 10107
+price = 1674
+limit = 5000
+weight = 0.04
+examine = "These bone spikes are both very tough and very sharp."
+
+[long_kebbit_spike_noted]
+id = 10108
+
+[kebbit_teeth]
+id = 10109
+price = 756
+limit = 5000
+weight = 0.02
+examine = "A kebbit-sized set of dentures."
+
+[kebbit_teeth_noted]
+id = 10110
+
+[kebbit_teeth_dust]
+id = 10111
+price = 844
+limit = 5000
+weight = 0.02
+examine = "Previously a kebbit-sized set of dentures."
+
+[kebbit_teeth_dust_noted]
+id = 10112
+
+[kebbit_claws]
+id = 10113
+price = 54
+limit = 5000
+weight = 0.02
+examine = "More menacing when attached to the owner."
+
+[kebbit_claws_noted]
+id = 10114
+
+[dark_kebbit_fur]
+id = 10115
+price = 594
+limit = 100
+weight = 0.453
+examine = "Sleek, silent and furry."
+
+[dark_kebbit_fur_noted]
+id = 10116
+
+[polar_kebbit_fur]
+id = 10117
+price = 2822
+limit = 175
+weight = 0.453
+examine = "A thick fur for a cold climate."
+kept = "Wilderness"
+
+[polar_kebbit_fur_noted]
+id = 10118
+
+[feldip_weasel_fur]
+id = 10119
+price = 2
+limit = 100
+weight = 0.453
+examine = "Not actually from a weasel, but it is, at least, furry."
+kept = "Wilderness"
+
+[feldip_weasel_fur_noted]
+id = 10120
+
+[common_kebbit_fur]
+id = 10121
+price = 1513
+limit = 100
+weight = 0.453
+examine = "Common fur from a common kebbit."
+kept = "Wilderness"
+
+[common_kebbit_fur_noted]
+id = 10122
+
+[desert_devil_fur]
+id = 10123
+price = 133
+limit = 100
+weight = 0.453
+examine = "Sandy coloured kebbit fur."
+kept = "Wilderness"
+
+[desert_devil_fur_noted]
+id = 10124
+
+[spotted_kebbit_fur]
+id = 10125
+price = 8
+limit = 100
+weight = 0.453
+examine = "Maybe this is why people think furry dice make you go faster."
+
+[spotted_kebbit_fur_noted]
+id = 10126
+
+[dashing_kebbit_fur]
+id = 10127
+price = 119
+limit = 100
+weight = 0.453
+examine = "Nature's equivalent of go-faster stripes."
+
+[dashing_kebbit_fur_noted]
+id = 10128
+
+[barb_tail_harpoon]
+id = 10129
+price = 47
+limit = 100
+weight = 1.36
+cast = "You start harpooning fish."
+slot = "Weapon"
+examine = "A mighty Hunter weapon. One previous owner."
+
+[barb_tail_harpoon_noted]
+id = 10130
+
+[strung_rabbit_foot]
+id = 10132
+price = 817
+limit = 100
+weight = 0.03
+aka = ["lucky_rabbit_foot"]
+slot = "Amulet"
+examine = "Not so lucky for the rabbit."
+
+[strung_rabbit_foot_noted]
+id = 10133
+
+[rabbit_foot]
+id = 10134
+price = 736
+limit = 100
+weight = 0.03
+examine = "This could be put on a string and worn for luck."
+
+[rabbit_foot_noted]
+id = 10135
+
+[raw_pawya_meat]
+id = 12535
+price = 8893
+limit = 5000
+weight = 0.34
+cooking = { xp = 30.0, chances = { fire = "128-512", cooks_range = "138-532" }, cooked = "cooked_meat", burnt = "burnt_meat" }
+examine = "Meat from a creature that can be hunted in Isafdar."
+
+[raw_pawya_meat_noted]
+id = 12536
+
+[grenwall_spikes]
+id = 12539
+price = 1302
+limit = 5000
+examine = "Spikes from a grenwall."
+
+[enchanted_pawya_meat]
+id = 12546
+tradeable = false
+weight = 0.34
+examine = "I don't fancy eating this now."
+kept = "Reclaim"
+
+[sprite_lure]
+id = 19805
+tradeable = false
+weight = 1.0
+destroy = "If you drop the lure it will self-destruct. You will have to talk to Yaktwee to gain another one."
+examine = "A lure used to hunt charm sprites."
+kept = "Vanish"
+
+[sprite_lure_bag]
+id = 19806
+tradeable = false
+weight = 1.0
+destroy = "The sprite lure bag is not much use on its own. You will have to talk to Yaktwee to gain another sprite lure."
+examine = "A bag for holding the sprite lure in."
+kept = "Vanish"
+
+[sprite_lure_2]
+clone = "sprite_lure"
+id = 19807
+
+[yaktwee_stick]
+id = 19808
+tradeable = false
+weight = 1.0
+slot = "Weapon"
+destroy = "Yaktwee sticks are used to transmute charm sprites into charm slices. You will have to talk to Yaktwee to gain another one."
+examine = "A rudimentary tool used to hunt charm sprites."
+kept = "Vanish"
+
+[gold_charm_slice]
+id = 19809
+tradeable = false
+examine = "Ethereal slice of a gold charm."
+kept = "Reclaim"
+
+[green_charm_slice]
+id = 19814
+tradeable = false
+examine = "Ethereal slice of a green charm."
+kept = "Reclaim"
+
+[crimson_charm_slice]
+id = 19819
+tradeable = false
+examine = "Ethereal slice of a crimson charm."
+kept = "Reclaim"
+
+[blue_charm_slice]
+id = 19824
+tradeable = false
+examine = "Ethereal slice of a blue charm."
+kept = "Reclaim"

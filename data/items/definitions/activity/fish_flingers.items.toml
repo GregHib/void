@@ -1,0 +1,35 @@
+[fish_flingers_scorecard]
+id = 15648
+tradeable = false
+weight = 0.02
+destroy = "I can get a replacement - free of charge - from one of the fishermen throughout Gielinor, such as at Catherby beach, Lumbridge Swamp, and inside the Fishing Guild."
+examine = "Contains details about your Fish Flingers results."
+kept = "Wilderness"
+
+[beginners_tackle_box]
+id = 15666
+tradeable = false
+weight = 0.001
+destroy = "I can get a replacement - free of charge - from one of the fishermen throughout Gielinor, such as at Catherby beach, Lumbridge Swamp, and inside the Fishing Guild."
+examine = "Stores fishing equipment and bait."
+kept = "Wilderness"
+
+[basic_tackle_box]
+clone = "beginners_tackle_box"
+id = 15667
+
+[standard_tackle_box]
+clone = "beginners_tackle_box"
+id = 15668
+
+[professional_tackle_box]
+id = 15669
+tradeable = false
+weight = 0.001
+destroy = "I can get a replacement - free of charge - from one of the fishermen throughout Gielinor, such as at Catherby beach, Lumbridge Swamp, and inside the Fishing Guild."
+examine = "Stores fishing equipment, bait and gloves."
+kept = "Wilderness"
+
+[champions_tackle_box]
+clone = "professional_tackle_box"
+id = 15670

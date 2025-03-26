@@ -1,0 +1,95 @@
+[cowhide]
+id = 1739
+price = 119
+limit = 10000
+weight = 2.721
+tanning = [
+    { id = "leather", price = 1 },
+    { id = "hard_leather", price = 3 }
+]
+examine = "I should take this to the tannery."
+
+[cowhide_noted]
+id = 1740
+
+[leather]
+id = 1741
+price = 140
+limit = 10000
+weight = 2.267
+examine = "It's a piece of leather."
+
+[leather_noted]
+id = 1742
+
+[hard_leather]
+id = 1743
+price = 149
+limit = 10000
+weight = 3.175
+examine = "It's a piece of hard leather."
+
+[hard_leather_noted]
+id = 1744
+
+[green_dragon_leather]
+id = 1745
+price = 2003
+limit = 10000
+weight = 3.175
+examine = "It's a piece of prepared green dragonhide."
+
+[green_dragon_leather_noted]
+id = 1746
+
+[black_dragonhide]
+id = 1747
+price = 4268
+limit = 10000
+weight = 3.175
+tanning = [
+    { id = "black_dragon_leather", price = 20 }
+]
+examine = "The scaly rough hide from a black dragon."
+
+[black_dragonhide_noted]
+id = 1748
+
+[red_dragonhide]
+id = 1749
+price = 2611
+limit = 10000
+weight = 3.175
+tanning = [
+    { id = "red_dragon_leather", price = 20 }
+]
+examine = "The scaly rough hide from a red dragon."
+
+[red_dragonhide_noted]
+id = 1750
+
+[blue_dragonhide]
+id = 1751
+price = 2177
+limit = 10000
+weight = 3.175
+tanning = [
+    { id = "blue_dragon_leather", price = 20 }
+]
+examine = "The scaly rough hide from a blue dragon."
+
+[blue_dragonhide_noted]
+id = 1752
+
+[green_dragonhide]
+id = 1753
+price = 1815
+limit = 10000
+weight = 3.175
+tanning = [
+    { id = "green_dragon_leather", price = 20 }
+]
+examine = "The scaly rough hide from a green dragon."
+
+[green_dragonhide_noted]
+id = 1754

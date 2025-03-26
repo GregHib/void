@@ -1,0 +1,6 @@
+[childs_blanket]
+id = 90
+tradeable = false
+weight = 0.907
+examine = "It's very soft!"
+kept = "Wilderness"

@@ -1,0 +1,52 @@
+[roddecks_pipe]
+id = 15373
+tradeable = false
+weight = 0.05
+slot = "Hat"
+destroy = "You can get another from Diango in Draynor Village."
+examine = "A pipe of distinction."
+kept = "Wilderness"
+
+[magnifying_glass]
+id = 15374
+tradeable = false
+weight = 0.001
+slot = "Weapon"
+destroy = "You can get another from Diango in Draynor Village."
+examine = "A tool for sleuths."
+kept = "Wilderness"
+
+[mysterious_book]
+id = 19705
+tradeable = false
+weight = 1.0
+destroy = "You can get another from Diango in Draynor Village."
+examine = "There are some pages missing."
+kept = "Vanish"
+
+[investigators_coat]
+id = 19706
+tradeable = false
+weight = 1.0
+slot = "Chest"
+destroy = "You can get another from Diango in Draynor Village."
+examine = "A coat that conveys your investigative abilities."
+kept = "Wilderness"
+
+[investigators_trousers]
+id = 19707
+tradeable = false
+weight = 1.0
+slot = "Legs"
+destroy = "You can get another from Diango in Draynor Village."
+examine = "Some trousers that convey your investigative abilities."
+kept = "Wilderness"
+
+[investigators_hat]
+id = 19708
+tradeable = false
+weight = 1.0
+slot = "Hat"
+destroy = "You can get another from Diango in Draynor Village."
+examine = "A hat that conveys your investigative abilities."
+kept = "Wilderness"

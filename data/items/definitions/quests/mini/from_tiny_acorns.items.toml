@@ -1,0 +1,32 @@
+[urists_talisman]
+id = 18649
+tradeable = false
+weight = 0.01
+destroy = "You will have to steal this from Urist's pocket if you get rid of it."
+examine = "A gem in a gold setting. All craftsdwarfship is of the highest quality."
+kept = "Wilderness"
+
+[craftsmans_monocle]
+id = 18650
+tradeable = false
+weight = 0.015
+slot = "Hat"
+destroy = "You will have to steal this from Urist's pocket if you get rid of it."
+examine = "A powerful, well-made monocle for delicate crafting work."
+kept = "Wilderness"
+
+[toy_baby_dragon]
+id = 18651
+tradeable = false
+weight = 3.0
+destroy = "You will have to steal this from Urist's stall if you get rid of it"
+examine = "Looks almost as if it could breathe fire...and it can!"
+kept = "Wilderness"
+
+[bankers_note]
+id = 18652
+tradeable = false
+weight = 0.001
+destroy = "You will have to retrieve this from Urist if you get rid of it."
+examine = "A very large sum of money, sadly not made out to you."
+kept = "Wilderness"

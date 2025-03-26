@@ -1,0 +1,25 @@
+[sin_seers_note]
+id = 10856
+tradeable = false
+weight = 0.028
+destroy = "You will need to speak to Sin Seer in Seers' Village to get another one."
+examine = "Her writing is too scrawled to make out what it says."
+kept = "Wilderness"
+
+[severed_leg]
+id = 10857
+tradeable = false
+weight = 1.814
+destroy = "You will need to speak to General Khazard, near the Fremennik Province, to get another."
+examine = "A severed human leg."
+kept = "Wilderness"
+
+[shadow_sword]
+id = 10858
+tradeable = false
+weight = 3.628
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "You can get another one by visiting the cave near the Fishing Guild. A friendly ghost will replace it for you. You can also reclaim it from the quest storage chest."
+examine = "A shadow sword."
+kept = "Vanish"

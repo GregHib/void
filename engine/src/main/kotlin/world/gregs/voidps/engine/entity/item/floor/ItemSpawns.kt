@@ -1,7 +1,9 @@
 package world.gregs.voidps.engine.entity.item.floor
 
+import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.config.Config
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.timedLoad
@@ -23,10 +25,13 @@ class ItemSpawns(
     }
 }
 
+private val logger = InlineLogger()
+
 fun loadItemSpawns(
     items: FloorItems,
     spawns: ItemSpawns,
-    paths: List<String>
+    paths: List<String>,
+    itemDefinitions: ItemDefinitions
 ) {
     timedLoad("item spawn") {
         spawns.clear()
@@ -59,6 +64,9 @@ fun loadItemSpawns(
                             continue
                         }
                         val tile = Tile(x, y, level)
+                        if (itemDefinitions.getOrNull(id) == null) {
+                            logger.warn { "Invalid item spawn id '$id' in ${path}." }
+                        }
                         spawns.set(tile, ItemSpawn(id, amount, delay))
                         items.add(tile, id, amount)
                     }

@@ -1,0 +1,549 @@
+[team_1_cape]
+id = 4315
+price = 1672
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_1_cape_noted]
+id = 4316
+
+[team_2_cape]
+id = 4317
+price = 899
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_2_cape_noted]
+id = 4318
+
+[team_3_cape]
+id = 4319
+price = 158
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_3_cape_noted]
+id = 4320
+
+[team_4_cape]
+id = 4321
+price = 645
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_4_cape_noted]
+id = 4322
+
+[team_5_cape]
+id = 4323
+price = 1194
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_5_cape_noted]
+id = 4324
+
+[team_6_cape]
+id = 4325
+price = 93
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_6_cape_noted]
+id = 4326
+
+[team_7_cape]
+id = 4327
+price = 953
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_7_cape_noted]
+id = 4328
+
+[team_8_cape]
+id = 4329
+price = 1594
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_8_cape_noted]
+id = 4330
+
+[team_9_cape]
+id = 4331
+price = 577
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_9_cape_noted]
+id = 4332
+
+[team_10_cape]
+id = 4333
+price = 726
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_10_cape_noted]
+id = 4334
+
+[team_11_cape]
+id = 4335
+price = 1152
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_11_cape_noted]
+id = 4336
+
+[team_12_cape]
+id = 4337
+price = 1027
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_12_cape_noted]
+id = 4338
+
+[team_13_cape]
+id = 4339
+price = 359
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_13_cape_noted]
+id = 4340
+
+[team_14_cape]
+id = 4341
+price = 982
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_14_cape_noted]
+id = 4342
+
+[team_15_cape]
+id = 4343
+price = 1363
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_15_cape_noted]
+id = 4344
+
+[team_16_cape]
+id = 4345
+price = 252
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_16_cape_noted]
+id = 4346
+
+[team_17_cape]
+id = 4347
+price = 862
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_17_cape_noted]
+id = 4348
+
+[team_18_cape]
+id = 4349
+price = 1510
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_18_cape_noted]
+id = 4350
+
+[team_19_cape]
+id = 4351
+price = 652
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_19_cape_noted]
+id = 4352
+
+[team_20_cape]
+id = 4353
+price = 408
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_20_cape_noted]
+id = 4354
+
+[team_21_cape]
+id = 4355
+price = 1007
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_21_cape_noted]
+id = 4356
+
+[team_22_cape]
+id = 4357
+price = 1006
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_22_cape_noted]
+id = 4358
+
+[team_23_cape]
+id = 4359
+price = 204
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_23_cape_noted]
+id = 4360
+
+[team_24_cape]
+id = 4361
+price = 1234
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_24_cape_noted]
+id = 4362
+
+[team_25_cape]
+id = 4363
+price = 1113
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_25_cape_noted]
+id = 4364
+
+[team_26_cape]
+id = 4365
+price = 214
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_26_cape_noted]
+id = 4366
+
+[team_27_cape]
+id = 4367
+price = 974
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_27_cape_noted]
+id = 4368
+
+[team_28_cape]
+id = 4369
+price = 1318
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_28_cape_noted]
+id = 4370
+
+[team_29_cape]
+id = 4371
+price = 764
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_29_cape_noted]
+id = 4372
+
+[team_30_cape]
+id = 4373
+price = 367
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_30_cape_noted]
+id = 4374
+
+[team_31_cape]
+id = 4375
+price = 1108
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_31_cape_noted]
+id = 4376
+
+[team_32_cape]
+id = 4377
+price = 930
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_32_cape_noted]
+id = 4378
+
+[team_33_cape]
+id = 4379
+price = 113
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_33_cape_noted]
+id = 4380
+
+[team_34_cape]
+id = 4381
+price = 731
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_34_cape_noted]
+id = 4382
+
+[team_35_cape]
+id = 4383
+price = 1010
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_35_cape_noted]
+id = 4384
+
+[team_36_cape]
+id = 4385
+price = 66
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_36_cape_noted]
+id = 4386
+
+[team_37_cape]
+id = 4387
+price = 820
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_37_cape_noted]
+id = 4388
+
+[team_38_cape]
+id = 4389
+price = 1330
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_38_cape_noted]
+id = 4390
+
+[team_39_cape]
+id = 4391
+price = 593
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_39_cape_noted]
+id = 4392
+
+[team_40_cape]
+id = 4393
+price = 665
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_40_cape_noted]
+id = 4394
+
+[team_41_cape]
+id = 4395
+price = 1162
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_41_cape_noted]
+id = 4396
+
+[team_42_cape]
+id = 4397
+price = 995
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_42_cape_noted]
+id = 4398
+
+[team_43_cape]
+id = 4399
+price = 234
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_43_cape_noted]
+id = 4400
+
+[team_44_cape]
+id = 4401
+price = 1018
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_44_cape_noted]
+id = 4402
+
+[team_45_cape]
+id = 4403
+price = 1011
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_45_cape_noted]
+id = 4404
+
+[team_46_cape]
+id = 4405
+price = 89
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_46_cape_noted]
+id = 4406
+
+[team_47_cape]
+id = 4407
+price = 930
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_47_cape_noted]
+id = 4408
+
+[team_48_cape]
+id = 4409
+price = 1380
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_48_cape_noted]
+id = 4410
+
+[team_49_cape]
+id = 4411
+price = 673
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_49_cape_noted]
+id = 4412
+
+[team_50_cape]
+id = 4413
+price = 517
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "Ooohhh look at the pretty colours..."
+
+[team_50_cape_noted]
+id = 4414

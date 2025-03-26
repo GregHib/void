@@ -68,7 +68,7 @@ data class BodyParts(
         val item = if (skip) Item.EMPTY else equipment[part.slot.index]
         val before = parts[part.ordinal]
         parts[part.ordinal] = when {
-            showItem(part, item) -> if (item.def.contains("equip")) item.def["equip", -1] or 0x8000 else 0
+            showItem(part, item) -> if (item.def.equipIndex != -1) item.def.equipIndex or 0x8000 else 0
             showBodyPart(part, item) -> looks[part.index] + 0x100
             !skip && showDefault(part) ->
                 (if (male) DEFAULT_LOOK_MALE else DEFAULT_LOOK_FEMALE)[part.index] + 0x100

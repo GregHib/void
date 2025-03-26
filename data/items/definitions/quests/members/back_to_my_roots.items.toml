@@ -1,0 +1,58 @@
+[hand_back_to_my_roots]
+id = 11763
+tradeable = false
+weight = 0.001
+destroy = "You can get the hand again from the creatures in the Jade Vine."
+examine = "A wizard's severed hand. You can tell by the robes."
+kept = "Wilderness"
+
+[root_cutting]
+id = 11770
+examine = "A root cutting."
+weight = 0.01
+
+[root_cutting_2]
+clone = "root_cutting"
+id = 11771
+
+[root_cutting_3]
+clone = "root_cutting"
+id = 11772
+
+[root_cutting_4]
+clone = "root_cutting"
+id = 11773
+
+[root_cutting_5]
+clone = "root_cutting"
+id = 11774
+
+[wilted_cutting]
+id = 11775
+tradeable = false
+weight = 0.01
+examine = "A floppy root cutting. Quite dead."
+kept = "Wilderness"
+
+[potted_root]
+id = 11776
+tradeable = false
+weight = 0.453
+examine = "A potted root."
+kept = "Wilderness"
+
+[sealed_pot]
+id = 11777
+tradeable = false
+weight = 2.267
+destroy = "You can get the sealed pot back by visiting Garth, the farmer on Karamja."
+examine = "This sealed pot contains your vine cutting - hopefully still alive."
+kept = "Wilderness"
+
+[jade_vine_seed]
+id = 11778
+tradeable = false
+weight = 0.001
+destroy = "You can get another seed from Horacio, at Handelmort Mansion."
+examine = "A large seed."
+kept = "Wilderness"

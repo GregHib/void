@@ -1,0 +1,277 @@
+[silvthrill_rod]
+id = 7620
+examine = "A silvery rod of mithril and silver with sapphire on top."
+
+[bucket_of_rubble_partially_filled]
+id = 7622
+tradeable = false
+weight = 2.5
+examine = "A bucket partially filled with rubble."
+kept = "Wilderness"
+
+[bucket_of_rubble_almost_full]
+id = 7624
+tradeable = false
+weight = 2.5
+examine = "A bucket almost full of rubble."
+kept = "Wilderness"
+
+[bucket_of_rubble_totally_filled]
+id = 7626
+tradeable = false
+weight = 2.5
+examine = "A bucket totally filled with rubble."
+kept = "Wilderness"
+
+[plaster_fragment]
+id = 7628
+tradeable = false
+weight = 1.0
+destroy = "You can get another plaster fragment by exploring near the Inn in Burgh de Rott."
+examine = "A fragment of plaster with some impressions on it."
+kept = "Wilderness"
+
+[dusty_scroll]
+id = 7629
+tradeable = false
+weight = 0.02
+destroy = "You can get another scroll by exploring near the Inn in Burgh de Rott."
+examine = "An ancient tattered scroll."
+kept = "Wilderness"
+
+[crate_in_aid_of_the_myreque]
+id = 7630
+tradeable = false
+weight = 10.0
+destroy = "You can get another crate by talking to the store owner in Burgh de Rott."
+examine = "An old and musty looking crate."
+kept = "Wilderness"
+
+[temple_library_key]
+id = 7632
+tradeable = false
+weight = 0.01
+destroy = "You can get another temple key by talking to Drezel."
+examine = "A key for the Temple Library."
+kept = "Wilderness"
+
+[the_sleeping_seven]
+id = 7633
+tradeable = false
+weight = 0.01
+aka = ["the_sleeping_seven_seven_warriors"]
+destroy = "You can get another ancient tome by searching the library in the temple on the Salve."
+examine = "A book about seven warrior priests, written about 200 years ago."
+kept = "Wilderness"
+
+[histories_of_the_hallowland]
+id = 7634
+tradeable = false
+weight = 0.51
+destroy = "You can get another battered tome by searching the library in the temple on the Salve."
+examine = "An ancient history book."
+kept = "Wilderness"
+
+[modern_day_morytania]
+id = 7635
+tradeable = false
+weight = 0.51
+destroy = "You can get another leather book by searching the library in the temple on the Salve."
+examine = "An ancient leather-bound tome about Morytania today."
+kept = "Wilderness"
+
+[rod_dust]
+id = 7636
+tradeable = false
+weight = 0.05
+examine = "Rod of Ivandis dust."
+kept = "Reclaim"
+
+[silvthril_rod]
+id = 7637
+tradeable = false
+weight = 0.001
+slot = "Weapon"
+examine = "A silvery rod of mithril and silver with a sapphire on the top."
+kept = "Wilderness"
+
+[silvthril_rod_enchanted]
+id = 7638
+tradeable = false
+weight = 0.001
+examine = "An enchanted rod of mithril and silver with a sapphire on the top."
+kept = "Wilderness"
+
+[rod_of_ivandis]
+id = 7639
+tradeable = false
+weight = 2.0
+slot = "Weapon"
+kept = "Reclaim"
+examine = "A fully charged rod."
+
+[rod_of_ivandis_2]
+id = 7640
+tradeable = false
+weight = 2.0
+charges = 1
+degrade = "rod_of_ivandis"
+slot = "Weapon"
+kept = "Reclaim"
+examine = "A partially charged rod."
+
+[rod_of_ivandis_3]
+clone = "rod_of_ivandis_2"
+id = 7641
+degrade = "rod_of_ivandis_2"
+
+[rod_of_ivandis_4]
+clone = "rod_of_ivandis_2"
+id = 7642
+degrade = "rod_of_ivandis_3"
+
+[rod_of_ivandis_5]
+clone = "rod_of_ivandis_2"
+id = 7643
+degrade = "rod_of_ivandis_4"
+
+[rod_of_ivandis_6]
+clone = "rod_of_ivandis_2"
+id = 7644
+degrade = "rod_of_ivandis_5"
+
+[rod_of_ivandis_7]
+clone = "rod_of_ivandis_2"
+id = 7645
+degrade = "rod_of_ivandis_6"
+
+[rod_of_ivandis_8]
+clone = "rod_of_ivandis_2"
+id = 7646
+degrade = "rod_of_ivandis_7"
+
+[rod_of_ivandis_9]
+clone = "rod_of_ivandis_2"
+id = 7647
+degrade = "rod_of_ivandis_8"
+
+[rod_of_ivandis_10]
+clone = "rod_of_ivandis_2"
+id = 7648
+degrade = "rod_of_ivandis_9"
+examine = "A fully charged rod."
+
+[rod_clay_mould]
+id = 7649
+tradeable = false
+weight = 0.05
+silver_jewellery = { item = "silvthril_rod", quest = "in_aid_of_the_myreque", level = 25, xp = 55.0 }
+destroy = "You can make another one of these by using clay on Ivandis' coffin."
+examine = "Rod of Ivandis mould."
+kept = "Reclaim"
+
+[silver_dust]
+id = 7650
+price = 371
+limit = 1000
+weight = 0.15
+examine = "It's ground up silver."
+
+[silver_dust_noted]
+id = 7651
+
+[guthix_balance_unf]
+id = 7652
+price = 106
+empty = "vial"
+examine = "An unfinished potion."
+weight = 0.035
+
+[guthix_balance_unf_noted]
+id = 7653
+
+[guthix_balance_unf_2]
+id = 7654
+price = 81
+empty = "vial"
+examine = "An unfinished potion."
+weight = 0.035
+
+[guthix_balance_unf_2_noted]
+id = 7655
+
+[guthix_balance_unf_3]
+id = 7656
+price = 58
+empty = "vial"
+examine = "An unfinished potion."
+weight = 0.035
+
+[guthix_balance_unf_3_noted]
+id = 7657
+
+[guthix_balance_unf_4]
+id = 7658
+price = 30
+empty = "vial"
+examine = "An unfinished potion."
+weight = 0.035
+
+[guthix_balance_unf_4_noted]
+id = 7659
+
+[guthix_balance_4]
+id = 7660
+price = 168
+excess = "guthix_balance_3"
+empty = "vial"
+examine = "A potion of harralander, red spiders eggs, garlic and silver dust."
+weight = 0.035
+
+[guthix_balance_4_noted]
+id = 7661
+
+[guthix_balance_3]
+id = 7662
+price = 174
+excess = "guthix_balance_2"
+empty = "vial"
+examine = "A potion of harralander, red spiders eggs, garlic and silver dust."
+weight = 0.035
+
+[guthix_balance_3_noted]
+id = 7663
+
+[guthix_balance_2]
+id = 7664
+price = 132
+excess = "guthix_balance_1"
+empty = "vial"
+examine = "A potion of harralander, red spiders eggs, garlic and silver dust."
+weight = 0.035
+
+[guthix_balance_2_noted]
+id = 7665
+
+[guthix_balance_1]
+id = 7666
+price = 69
+excess = "vial"
+empty = "vial"
+examine = "A potion of harralander, red spiders eggs, garlic and silver dust."
+weight = 0.035
+
+[guthix_balance_1_noted]
+id = 7667
+
+[gadderhammer]
+id = 7668
+price = 1670
+limit = 100
+weight = 1.814
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A specially crafted hammer with strange markings on it."
+
+[gadderhammer_noted]
+id = 7669

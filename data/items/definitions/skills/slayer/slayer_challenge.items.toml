@@ -1,0 +1,39 @@
+[perfect_blue_dragon_scale]
+id = 18639
+tradeable = false
+weight = 0.01
+destroy = "You will need to slay a blue dragon to find another one."
+examine = "A perfect example of a blue dragon scale."
+kept = "Vanish"
+
+[perfect_green_dragon_scale]
+id = 18640
+tradeable = false
+weight = 0.01
+destroy = "You will need to slay a green dragon to find another one."
+examine = "A perfect example of a green dragon scale."
+kept = "Vanish"
+
+[perfect_red_dragon_scale]
+id = 18641
+tradeable = false
+weight = 0.01
+destroy = "You will need to slay a red dragon to find another one."
+examine = "A perfect example of a red dragon scale."
+kept = "Vanish"
+
+[perfect_black_dragon_scale]
+id = 18642
+tradeable = false
+weight = 0.01
+destroy = "You will need to slay a black dragon to find another one."
+examine = "A perfect example of a black dragon scale."
+kept = "Vanish"
+
+[experimental_spray]
+id = 18643
+tradeable = false
+weight = 2.0
+slot = "Weapon"
+examine = "Chaeldar's experimental fungicide."
+kept = "Reclaim"

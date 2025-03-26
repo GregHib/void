@@ -1,0 +1,36 @@
+[silverlight_key_wizard_traiborn]
+id = 2399
+tradeable = false
+weight = 1.0
+aka = ["traiborns_key"]
+destroy = "You can get another one from the wizard Traiborn."
+examine = "The Wizard Traiborn gave me this key to Silverlight's case."
+kept = "Wilderness"
+
+[silverlight_key_captain_rovin]
+id = 2400
+tradeable = false
+weight = 1.0
+aka = ["rovins_key"]
+destroy = "You can get another one from Captain Rovin."
+examine = "Captain Rovin gave me this key to Silverlight's case."
+kept = "Wilderness"
+
+[silverlight_key_sir_prysin]
+id = 2401
+tradeable = false
+weight = 1.0
+aka = ["sir_prysins_key"]
+destroy = "You can get another one from the drain outside the Varrock Palace<br>kitchen."
+examine = "Sir Prysin dropped this key down the drain."
+kept = "Wilderness"
+
+[silverlight]
+id = 2402
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+material = "metal"
+destroy = "You can obtain it from Gideon Bede in the Saradominist church in north-east Varrock. You can also reclaim it from the quest storage chest."
+examine = "The magical sword Silverlight."
+kept = "Reclaim"

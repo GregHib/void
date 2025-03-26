@@ -1,0 +1,24 @@
+[enchanted_beef]
+id = 522
+tradeable = false
+weight = 0.5
+examine = "I don't fancy eating this now."
+kept = "Reclaim"
+
+[enchanted_rat_meat]
+id = 523
+tradeable = false
+weight = 0.2
+examine = "I don't fancy eating this now."
+kept = "Wilderness"
+
+[enchanted_bear_meat]
+clone = "enchanted_beef"
+id = 524
+
+[enchanted_chicken]
+id = 525
+tradeable = false
+weight = 0.3
+examine = "I don't fancy eating this now."
+kept = "Reclaim"

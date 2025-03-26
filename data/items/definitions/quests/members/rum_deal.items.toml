@@ -1,0 +1,75 @@
+
+[blindweed_seed]
+id = 6710
+tradeable = false
+examine = "A Blindweed seed - plant in a Blindweed patch."
+kept = "Wilderness"
+
+[blindweed]
+id = 6711
+tradeable = false
+weight = 0.007
+examine = "An inedible, foul smelling herb."
+kept = "Wilderness"
+
+[bucket_of_water_stagnant]
+id = 6712
+tradeable = false
+weight = 3.0
+empty = "bucket"
+examine = "It's a bucket of... water?"
+kept = "Wilderness"
+
+[wrench]
+id = 6713
+tradeable = false
+weight = 0.005
+examine = "A heavy metal wrench."
+kept = "Wilderness"
+
+[holy_wrench]
+id = 6714
+tradeable = false
+weight = 0.005
+examine = "A shining paragon of wrenchly virtue."
+kept = "Wilderness"
+
+[sluglings]
+id = 6715
+tradeable = false
+weight = 3.0
+examine = "They look at you balefully. 'Feed us...'"
+kept = "Wilderness"
+
+[karamthulhu]
+id = 6716
+tradeable = false
+weight = 0.001
+examine = "A sinister looking squid."
+kept = "Wilderness"
+
+[karamthulhu_pet] # Unobtainable
+clone = "karamthulhu"
+id = 6717
+
+[fever_spider_body]
+id = 6718
+tradeable = false
+weight = 0.8
+examine = "A diseased deceased Fever Spider. Handle with care."
+kept = "Wilderness"
+
+[unsanitary_swill]
+id = 6719
+tradeable = false
+weight = 0.007
+destroy = "Yes"
+examine = "Sorry, I mean a bucket of 'rum'."
+kept = "Wilderness"
+
+[rusty_scimitar]
+id = 6721
+tradeable = false
+weight = 2.267
+examine = "A decent enough weapon gone rusty."
+kept = "Reclaim"

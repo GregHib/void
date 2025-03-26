@@ -1,0 +1,232 @@
+[proselyte_harness_m]
+id = 9666
+price = 27900
+limit = 100
+weight = 14.514
+examine = "Proselyte level armour pack."
+
+[proselyte_harness_m_noted]
+id = 9667
+
+[initiate_harness_m]
+id = 9668
+price = 23100
+limit = 100
+weight = 14.514
+examine = "Initiate level armour pack."
+
+[initiate_harness_m_noted]
+id = 9669
+
+[proselyte_harness_f]
+id = 9670
+price = 29000
+limit = 100
+weight = 14.514
+examine = "Proselyte level armour pack."
+
+[proselyte_harness_f_noted]
+id = 9671
+
+[proselyte_sallet]
+id = 9672
+price = 4686
+limit = 100
+weight = 2.267
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A Proselyte Temple Knight's helm."
+
+[proselyte_sallet_noted]
+id = 9673
+
+[proselyte_hauberk]
+id = 9674
+price = 7080
+limit = 100
+weight = 8.618
+slot = "Chest"
+material = "metal"
+examine = "A Proselyte Temple Knight's armour."
+
+[proselyte_hauberk_noted]
+id = 9675
+
+[proselyte_cuisse]
+id = 9676
+price = 5857
+limit = 100
+weight = 7.711
+slot = "Legs"
+material = "metal"
+examine = "A Proselyte Temple Knight's leg armour."
+
+[proselyte_cuisse_noted]
+id = 9677
+
+[proselyte_tasset]
+id = 9678
+price = 5769
+limit = 100
+weight = 8.164
+slot = "Legs"
+material = "metal"
+examine = "A Proselyte Temple Knight's leg armour."
+
+[proselyte_tasset_noted]
+id = 9679
+
+[sea_slug_glue]
+id = 9680
+tradeable = false
+weight = 0.01
+examine = "A rendered down baby sea slug."
+kept = "Wilderness"
+
+[commorb_v2]
+id = 9681
+tradeable = false
+weight = 0.001
+destroy = "As a security precaution, your CommOrb will automatically self-destruct when dropped."
+examine = "A Temple Knight Communication Orb. Top Secret!"
+kept = "Wilderness"
+
+[door_transcription]
+id = 9682
+tradeable = false
+weight = 0.02
+destroy = "You get"
+examine = "A copy of the mysterious glyphs."
+kept = "Wilderness"
+
+[dead_sea_slug]
+id = 9683
+tradeable = false
+weight = 0.01
+examine = "Dead sea slug, very sticky."
+kept = "Wilderness"
+
+[page_1]
+id = 9684
+tradeable = false
+weight = 0.01
+destroy = "You can get this page from Mayor Hobb's Desk."
+examine = "A page from Maledict's holy book."
+kept = "Wilderness"
+
+[page_2]
+id = 9685
+tradeable = false
+weight = 0.01
+destroy = "You can get this page from Ezekial Lovecraft."
+examine = "A page from Maledict's holy book."
+kept = "Wilderness"
+
+[page_3]
+id = 9686
+tradeable = false
+weight = 0.01
+destroy = "You will have to get the torn pieces from Col O'Niall."
+examine = "A page from Maledict's holy book."
+kept = "Wilderness"
+
+[fragment_1]
+id = 9687
+tradeable = false
+weight = 0.01
+destroy = "You can get the fragments from Col O'Niall."
+examine = "A piece of a torn page."
+kept = "Wilderness"
+
+[fragment_2]
+id = 9688
+tradeable = false
+weight = 0.01
+destroy = "You can get the fragments from Col O'Niall."
+examine = "A piece of a torn page."
+kept = "Wilderness"
+
+[fragment_3]
+clone = "fragment_2"
+id = 9689
+
+[blank_water_rune]
+id = 9690
+tradeable = false
+weight = 0.01
+destroy = "Are you sure you wish to destroy this?"
+examine = "A blank water rune."
+kept = "Wilderness"
+
+[water_rune_the_slug_menace]
+id = 9691
+tradeable = false
+weight = 0.01
+destroy = "Are you sure you wish to destroy this?"
+examine = "A water rune."
+kept = "Wilderness"
+
+[blank_air_rune]
+id = 9692
+tradeable = false
+weight = 0.01
+destroy = "Are you sure you wish to destroy this?"
+examine = "A blank air rune."
+kept = "Wilderness"
+
+[air_rune_the_slug_menace]
+id = 9693
+tradeable = false
+weight = 0.01
+destroy = "Are you sure you wish to destroy this?"
+examine = "An air rune."
+kept = "Wilderness"
+
+[blank_earth_rune]
+id = 9694
+tradeable = false
+weight = 0.01
+destroy = "Are you sure you wish to destroy this?"
+examine = "A blank earth rune."
+kept = "Wilderness"
+
+[earth_rune_the_slug_menace]
+id = 9695
+tradeable = false
+weight = 0.01
+destroy = "Are you sure you wish to destroy this?"
+examine = "An earth rune."
+kept = "Wilderness"
+
+[blank_mind_rune]
+id = 9696
+tradeable = false
+weight = 0.01
+destroy = "Are you sure you wish to destroy this?"
+examine = "A blank mind rune."
+kept = "Wilderness"
+
+[mind_rune_the_slug_menace]
+id = 9697
+tradeable = false
+weight = 0.01
+destroy = "Are you sure you wish to destroy this?"
+examine = "A mind rune."
+kept = "Wilderness"
+
+[blank_fire_rune]
+id = 9698
+tradeable = false
+weight = 0.01
+destroy = "Are you sure you wish to destroy this?"
+examine = "A blank fire rune."
+kept = "Wilderness"
+
+[fire_rune_the_slug_menace]
+id = 9699
+tradeable = false
+weight = 0.01
+destroy = "Are you sure you wish to destroy this?"
+examine = "A fire rune."
+kept = "Wilderness"

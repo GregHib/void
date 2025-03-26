@@ -1,0 +1,240 @@
+[branch_temple_trekking]
+id = 7773
+tradeable = false
+weight = 0.5
+slot = "Weapon"
+examine = "Leafless bush branch."
+kept = "Reclaim"
+
+[reward_token]
+id = 7774
+destroy = "Warning! If you destroy this item, you will lose ALL rewards that it relates to and you will have to make another trek in order to get another one."
+examine = "Blue/Red/Yellow reward token exchanged at Burgh de Rott/Paterdomus."
+
+[reward_token_2]
+clone = "reward_token"
+id = 7775
+
+[reward_token_3]
+clone = "reward_token"
+id = 7776
+
+[long_vine]
+id = 7777
+tradeable = false
+weight = 1.36
+examine = "A long section of vine made up of lots of shorter sections."
+kept = "Reclaim"
+
+[short_vine]
+id = 7778
+tradeable = false
+weight = 0.453
+examine = "A short section of vines."
+kept = "Reclaim"
+
+[fishing_tome_blue]
+id = 7779
+tradeable = false
+weight = 1.0
+examine = "A tome of learning which focuses on Fishing."
+kept = "Reclaim"
+
+[fishing_tome_yellow]
+clone = "fishing_tome_blue"
+id = 7780
+
+[fishing_tome_red]
+clone = "fishing_tome_blue"
+id = 7781
+
+[agility_tome_blue]
+id = 7782
+tradeable = false
+weight = 1.0
+examine = "A tome of learning which focuses on Agility."
+kept = "Reclaim"
+
+[agility_tome_yellow]
+clone = "agility_tome_blue"
+id = 7783
+
+[agility_tome_red]
+clone = "agility_tome_blue"
+id = 7784
+
+[thieving_tome_blue]
+id = 7785
+tradeable = false
+weight = 1.0
+examine = "A tome of learning which focuses on Thieving."
+kept = "Reclaim"
+
+[thieving_tome_yellow]
+clone = "thieving_tome_blue"
+id = 7786
+
+[thieving_tome_red]
+clone = "thieving_tome_blue"
+id = 7787
+
+[slayer_tome_blue]
+id = 7788
+tradeable = false
+weight = 1.0
+examine = "A tome of learning which focuses on the Slayer skill."
+kept = "Reclaim"
+
+[slayer_tome_yellow]
+clone = "slayer_tome_blue"
+id = 7789
+
+[slayer_tome_red]
+clone = "slayer_tome_blue"
+id = 7790
+
+[mining_tome_blue]
+id = 7791
+tradeable = false
+weight = 1.0
+examine = "A tome of learning which focuses on the Mining skill."
+kept = "Reclaim"
+
+[mining_tome_yellow]
+clone = "mining_tome_blue"
+id = 7792
+
+[mining_tome_red]
+clone = "mining_tome_blue"
+id = 7793
+
+[firemaking_tome_blue]
+id = 7794
+tradeable = false
+weight = 1.0
+examine = "A tome of learning which focuses on the Firemaking skill."
+kept = "Reclaim"
+
+[firemaking_tome_yellow]
+clone = "firemaking_tome_blue"
+id = 7795
+
+[firemaking_tome_red]
+clone = "firemaking_tome_blue"
+id = 7796
+
+[woodcutting_tome_blue]
+id = 7797
+tradeable = false
+weight = 1.0
+examine = "A tome of learning which focuses on the Woodcutting skill."
+kept = "Reclaim"
+
+[woodcutting_tome_yellow]
+clone = "woodcutting_tome_blue"
+id = 7798
+
+[woodcutting_tome_red]
+clone = "woodcutting_tome_blue"
+id = 7799
+
+[snail_shell]
+id = 7800
+tradeable = false
+weight = 7.0
+examine = "A shell from a giant snail."
+kept = "Reclaim"
+
+[snake_hide_swamp]
+id = 7801
+price = 3249
+limit = 10000
+weight = 1.0
+tanning = [{ id = "snakeskin", price = 20}]
+examine = "Scaly but not slimy!"
+
+[snake_hide_swamp_noted]
+id = 7802
+
+[lumberjack_boots]
+id = 10933
+tradeable = false
+weight = 0.907
+slot = "Feet"
+destroy = "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
+examine = "You'll certainly be alright wearing these."
+kept = "Reclaim"
+
+[reward_token_4]
+id = 10934
+tradeable = false
+destroy = "Warning! If you destroy this item, you will lose ALL rewards that it relates to and you will have to make another trek in order to get another one."
+examine = "Blue/Red/Yellow reward token exchanged at Burgh de Rott/Paterdomus."
+kept = "Reclaim"
+
+[reward_token_5]
+clone = "reward_token_4"
+id = 10935
+
+[reward_token_6]
+clone = "reward_token_4"
+id = 10936
+
+[nail_beast_nails]
+id = 10937
+price = 8122
+limit = 100
+weight = 0.02
+examine = "The claws from a nail beast."
+
+[nail_beast_nails_noted]
+id = 10938
+
+[lumberjack_top]
+id = 10939
+tradeable = false
+weight = 1.36
+slot = "Chest"
+destroy = "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
+examine = "You'll certainly be alright wearing this."
+kept = "Reclaim"
+
+[lumberjack_legs]
+id = 10940
+tradeable = false
+weight = 0.907
+slot = "Legs"
+destroy = "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
+examine = "You'll certainly be alright wearing these."
+kept = "Reclaim"
+
+[lumberjack_hat]
+id = 10941
+tradeable = false
+weight = 0.453
+slot = "Hat"
+type = "Hair"
+destroy = "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
+examine = "You'll certainly be alright wearing this."
+kept = "Reclaim"
+
+[reward_token_7]
+clone = "reward_token_4"
+id = 10942
+
+[reward_token_8]
+clone = "reward_token_4"
+id = 10943
+
+[reward_token_9]
+clone = "reward_token_4"
+id = 10944
+
+[lumberjack_top_2]
+id = 10945
+tradeable = false
+weight = 1.36
+slot = "Chest"
+destroy = "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
+examine = "You'll certainly be alright wearing this."
+kept = "Reclaim"

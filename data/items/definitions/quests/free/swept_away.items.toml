@@ -1,0 +1,132 @@
+[broomstick]
+id = 14057
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+destroy = "You can obtain another by talking to Maggie the witch."
+examine = "A threat to dusty corners everywhere."
+kept = "Wilderness"
+
+[goulash]
+id = 14058
+tradeable = false
+weight = 0.453
+slot = "Weapon"
+destroy = "If you drop the goulash, it will be destroyed. You can get some more by dipping a bowl into Maggie's cauldron."
+examine = "What a curious and ghoulish smell!"
+kept = "Wilderness"
+
+[magic_unguent]
+id = 14061
+tradeable = false
+weight = 0.005
+empty = "vial"
+destroy = "You can get another flask of magic unguent from the chest in Betty's basement."
+examine = "Purple and pungent."
+kept = "Wilderness"
+
+[broom_ointment]
+id = 14062
+tradeable = false
+weight = 0.005
+empty = "vial"
+destroy = "You can get another flask of broom ointment from Hetty in Rimmington."
+examine = "To be used on brooms."
+kept = "Wilderness"
+
+[newt]
+id = 14064
+tradeable = false
+weight = 0.01
+slot = "Weapon"
+destroy = "If you release this newt, you can get another from the crate in Hetty's basement in Rimmington."
+examine = "A newt from Hetty's basement."
+kept = "Vanish"
+
+[newt_label]
+id = 14065
+tradeable = false
+weight = 0.001
+destroy = "You can get another newt label from Gus in Hetty's basement in Rimmington."
+examine = "A label for a shipping crate."
+kept = "Vanish"
+
+[toad_label]
+id = 14066
+tradeable = false
+weight = 0.001
+destroy = "You can get another toad label from Gus in Hetty's basement in Rimmington."
+examine = "A label for a shipping crate."
+kept = "Vanish"
+
+[newts_and_toads_label]
+id = 14067
+tradeable = false
+weight = 0.001
+destroy = "You can get another newt-and-toad label from Gus in Hetty's basement in Rimmington."
+examine = "A label for a shipping crate."
+kept = "Vanish"
+
+[bettys_wand]
+id = 14068
+tradeable = false
+weight = 0.453
+destroy = "You can obtain another wand from the chest in Betty's basement."
+examine = "Warm to the touch."
+kept = "Wilderness"
+
+[magic_slate]
+id = 14069
+tradeable = false
+weight = 0.453
+destroy = "If you destroy this item, you can get another from Lottie in Betty's basement."
+examine = "What a view!"
+kept = "Wilderness"
+
+[reptile]
+id = 14070
+tradeable = false
+weight = 0.907
+destroy = "If you release this creature, you will have to restart the puzzle in Betty's basement."
+examine = "Desert dweller."
+kept = "Vanish"
+
+[blackbird]
+id = 14071
+tradeable = false
+weight = 0.907
+destroy = "If you release this creature, you will have to restart the puzzle in Betty's basement."
+examine = "Bleak and beaky."
+kept = "Vanish"
+
+[bat_swept_away]
+id = 14072
+tradeable = false
+weight = 0.907
+destroy = "If you release this creature, you will have to restart the puzzle in Betty's basement."
+examine = "Most at home in a dead tree."
+kept = "Vanish"
+
+[spider_swept_away]
+id = 14073
+tradeable = false
+weight = 0.907
+destroy = "If you release this creature, you will have to restart the puzzle in Betty's basement."
+examine = "Isn't eight legs rather excessive?"
+kept = "Vanish"
+
+[rat_swept_away]
+id = 14074
+tradeable = false
+weight = 0.907
+destroy = "If you release this creature, you will have to restart the puzzle in Betty's basement."
+examine = "Cheese-eater."
+kept = "Vanish"
+
+[snail]
+id = 14075
+tradeable = false
+weight = 0.907
+destroy = "If you release this creature, you will have to restart the puzzle in Betty's basement."
+examine = "Rather quick, considering."
+kept = "Vanish"

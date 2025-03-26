@@ -1,0 +1,11 @@
+[ranged_path_key]
+id = 13259
+tradeable = false
+weight = 0.002
+destroy = "You can obtain another from the mummy guardian in the undead slayer's tomb."
+examine = "A key obtained in Catolax's tomb."
+kept = "Wilderness"
+
+[magic_path_key]
+clone = "ranged_path_key"
+id = 13260

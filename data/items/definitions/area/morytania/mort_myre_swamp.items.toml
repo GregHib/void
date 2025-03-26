@@ -1,0 +1,400 @@
+[bark]
+id = 3239
+price = 17
+limit = 100
+weight = 1.0
+examine = "Bark that's obtained from hollow trees in Morytania."
+
+[bark_noted]
+id = 3240
+
+[vampyre_dust]
+id = 3325
+price = 295
+limit = 5000
+weight = 0.056
+examine = "That used to be a vampyre!"
+
+[vampyre_dust_noted]
+id = 3326
+
+[myre_snelm_round]
+id = 3327
+price = 63
+limit = 100
+weight = 2.0
+slot = "Hat"
+type = "Hair"
+examine = "An easy-to-make, marshy-coloured, Mort Myre snail shell helmet."
+
+[myre_snelm_round_noted]
+id = 3328
+
+[bloodntar_snelm_round]
+id = 3329
+price = 358
+limit = 100
+weight = 2.0
+slot = "Hat"
+type = "Hair"
+examine = "An easy-to-make, red-and-black, Mort Myre snail shell helmet."
+
+[bloodntar_snelm_round_noted]
+id = 3330
+
+[ochre_snelm_round]
+id = 3331
+price = 72
+limit = 100
+weight = 2.0
+slot = "Hat"
+type = "Hair"
+examine = "An easy-to-make, muddy-yellow, Mort Myre snail shell helmet."
+
+[ochre_snelm_round_noted]
+id = 3332
+
+[bruise_blue_snelm_round]
+id = 3333
+price = 72
+limit = 100
+weight = 2.0
+slot = "Hat"
+type = "Hair"
+examine = "An easy-to-make, moody-blue, Mort Myre snail shell helmet."
+
+[bruise_blue_snelm_round_noted]
+id = 3334
+
+[broken_bark_snelm]
+id = 3335
+price = 69
+limit = 100
+weight = 2.0
+slot = "Hat"
+type = "Hair"
+examine = "An easy-to-make, orange-and-bark-coloured, Mort Myre snail shell helmet."
+
+[broken_bark_snelm_noted]
+id = 3336
+
+[myre_snelm_pointed]
+id = 3337
+price = 68
+limit = 100
+weight = 2.0
+slot = "Hat"
+type = "Hair"
+examine = "An easy-to-make, pointed, swamp-coloured, Mort Myre snail shell helmet."
+
+[myre_snelm_pointed_noted]
+id = 3338
+
+[bloodntar_snelm_pointed]
+id = 3339
+price = 1004
+limit = 100
+weight = 2.0
+slot = "Hat"
+type = "Hair"
+examine = "An easy-to-make, pointed, red-and-black, Mort Myre snail shell helmet."
+
+[bloodntar_snelm_pointed_noted]
+id = 3340
+
+[ochre_snelm_pointed]
+id = 3341
+price = 65
+limit = 100
+weight = 2.0
+slot = "Hat"
+type = "Hair"
+examine = "An easy-to-make, pointed, muddy-yellow, Mort Myre snail shell helmet."
+
+[ochre_snelm_pointed_noted]
+id = 3342
+
+[bruise_blue_snelm_pointed]
+id = 3343
+price = 259
+limit = 100
+weight = 2.0
+slot = "Hat"
+type = "Hair"
+examine = "A pointed, moody-blue, Mort Myre snail shell helmet."
+
+[bruise_blue_snelm_pointed_noted]
+id = 3344
+
+[blamish_myre_shell_round]
+id = 3345
+price = 135
+limit = 100
+weight = 10.0
+examine = "An easy-to-make, 'myre'-coloured, Mort Myre snail shell; looks protective."
+
+[blamish_myre_shell_round_noted]
+id = 3346
+
+[blamish_red_shell_round]
+id = 3347
+price = 462
+limit = 100
+weight = 10.0
+examine = "An easy-to-make, red-and-black, Mort Myre snail shell; looks protective."
+
+[blamish_red_shell_round_noted]
+id = 3348
+
+[blamish_ochre_shell_round]
+id = 3349
+price = 142
+limit = 100
+weight = 10.0
+examine = "An easy-to-make, muddy-yellow, Mort Myre snail shell; looks protective."
+
+[blamish_ochre_shell_round_noted]
+id = 3350
+
+[blamish_blue_shell_round]
+id = 3351
+price = 251
+limit = 100
+weight = 10.0
+examine = "An easy-to-make, blue, Mort Myre snail shell; looks protective."
+
+[blamish_blue_shell_round_noted]
+id = 3352
+
+[blamish_bark_shell]
+id = 3353
+price = 169
+limit = 100
+weight = 10.0
+examine = "An easy-to-make, bark-coloured, Mort Myre snail shell; looks protective."
+
+[blamish_bark_shell_noted]
+id = 3354
+
+[blamish_myre_shell_pointed]
+id = 3355
+price = 144
+limit = 100
+weight = 10.0
+examine = "An easy-to-make, 'myre'-coloured, Mort Myre snail shell; looks protective."
+
+[blamish_myre_shell_pointed_noted]
+id = 3356
+
+[blamish_red_shell_pointed]
+id = 3357
+price = 900
+limit = 100
+weight = 10.0
+examine = "An easy-to-make, red, Mort Myre snail shell; looks protective."
+
+[blamish_red_shell_pointed_noted]
+id = 3358
+
+[blamish_ochre_shell_pointed]
+id = 3359
+price = 173
+limit = 100
+weight = 10.0
+examine = "An easy-to-make, ochre, Mort Myre snail shell; looks protective."
+
+[blamish_ochre_shell_pointed_noted]
+id = 3360
+
+[blamish_blue_shell_pointed]
+id = 3361
+price = 1259
+limit = 100
+weight = 10.0
+examine = "An easy-to-make, blue, Mort Myre snail shell; looks protective."
+
+[blamish_blue_shell_pointed_noted]
+id = 3362
+
+[thin_snail]
+id = 3363
+price = 648
+limit = 10000
+weight = 2.0
+cooking = { level = 12, xp = 70.0, chances = { fire = "93-444", cooks_range = "103-464" }, cooked = "thin_snail_meat", cooked_message = "You cook the thin snail.", burnt = "burnt_snail", burnt_message = "You accidentally burn the thin snail." }
+examine = "The thin, slimy corpse of a deceased giant snail."
+
+[thin_snail_noted]
+id = 3364
+
+[lean_snail]
+id = 3365
+price = 764
+limit = 1000
+weight = 2.0
+cooking = { level = 17, xp = 80.0, chances = { fire = "93-444", range = "85-428", cooks_range = "95-448" }, cooked = "lean_snail_meat", cooked_message = "You cook the lean snail.", burnt = "burnt_snail", burnt_message = "You accidentally burn the lean snail." }
+examine = "The lean, slimy corpse of a deceased giant snail."
+
+[lean_snail_noted]
+id = 3366
+
+[fat_snail]
+id = 3367
+price = 634
+limit = 10000
+weight = 2.0
+cooking = { level = 22, xp = 95.0, chances = { fire = "73-402", cooks_range = "83-422" }, cooked = "fat_snail_meat", cooked_message = "You cook the fat snail.", burnt = "burnt_snail", burnt_message = "You accidentally burn the fat snail." }
+examine = "The fat, slimy corpse of a deceased giant snail."
+
+[fat_snail_noted]
+id = 3368
+
+[thin_snail_meat]
+id = 3369
+price = 1003
+limit = 10000
+heals = "50-70"
+weight = 3.0
+examine = "A succulently slimy slice of sumptuous snail."
+
+[thin_snail_meat_noted]
+id = 3370
+
+[lean_snail_meat]
+id = 3371
+price = 213
+limit = 10000
+heals = 70
+weight = 4.0
+examine = "A succulently slimy slice of sumptuous snail."
+
+[lean_snail_meat_noted]
+id = 3372
+
+[fat_snail_meat]
+id = 3373
+price = 744
+limit = 10000
+heals = "70-90"
+weight = 5.0
+examine = "A succulently slimy slice of sumptuous snail."
+
+[fat_snail_meat_noted]
+id = 3374
+
+[burnt_snail]
+id = 3375
+examine = "A slightly super-saute'ed snail."
+
+[burnt_snail_noted]
+id = 3376
+
+[sample_bottle]
+id = 3377
+price = 10
+limit = 100
+weight = 0.02
+examine = "An empty sample bottle."
+
+[sample_bottle_noted]
+id = 3378
+
+[slimy_eel]
+id = 3379
+price = 307
+limit = 1000
+weight = 2.0
+fishing = { level = 28, xp = 65.0, chance = "10-80" }
+cooking = { level = 28, xp = 95.0, chances = { fire = "63-382" }, cooked = "cooked_slimy_eel", cooked_message = "You cook an eel.", burnt = "burnt_eel", burnt_message = "You accidentally burn the slimy eel." }
+examine = "A slime covered eel - yuck!"
+
+[slimy_eel_noted]
+id = 3380
+
+[cooked_slimy_eel]
+id = 3381
+price = 292
+limit = 1000
+heals = "60-100"
+weight = 2.0
+examine = "A cooked slimy eel - not delicious, but pretty nutritious."
+
+[cooked_slimy_eel_noted]
+id = 3382
+
+[burnt_eel]
+id = 3383
+tradeable = false
+examine = "It looks like it's seen one too many fires."
+kept = "Reclaim"
+
+[splitbark_helm]
+id = 3385
+price = 6203
+limit = 100
+weight = 0.907
+slot = "Hat"
+type = "Hair"
+material = "wood"
+examine = "A wooden helmet."
+
+[splitbark_helm_noted]
+id = 3386
+
+[splitbark_body]
+id = 3387
+price = 56100
+limit = 100
+weight = 4.535
+slot = "Chest"
+material = "wood"
+examine = "Provides good protection."
+
+[splitbark_body_noted]
+id = 3388
+
+[splitbark_legs]
+id = 3389
+price = 55700
+limit = 100
+weight = 3.628
+slot = "Legs"
+material = "wood"
+examine = "These should protect my legs."
+
+[splitbark_legs_noted]
+id = 3390
+
+[splitbark_gauntlets]
+id = 3391
+price = 2852
+limit = 100
+weight = 0.907
+slot = "Hands"
+material = "wood"
+examine = "These should keep my hands safe."
+
+[splitbark_gauntlets_noted]
+id = 3392
+
+[splitbark_boots]
+id = 3393
+price = 8283
+limit = 100
+weight = 0.907
+slot = "Feet"
+material = "wood"
+examine = "Wooden foot protection."
+
+[splitbark_boots_noted]
+id = 3394
+
+[fine_cloth]
+id = 3470
+price = 7395
+limit = 1000
+weight = 1.0
+examine = "Amazingly untouched by time."
+
+[fine_cloth_noted]
+id = 3471

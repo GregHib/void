@@ -1,0 +1,474 @@
+
+[uncleaned_find]
+id = 11175
+tradeable = false
+weight = 0.085
+destroy = "You can get another find from the pile in the cleaning area of Varrock Museum."
+examine = "A roughly-prepared archaeological find ready for cleaning."
+kept = "Vanish"
+
+[arrowheads_varrock_museum]
+id = 11176
+tradeable = false
+weight = 0.001
+examine = "Rusty and very old."
+kept = "Reclaim"
+
+[jewellery]
+id = 11177
+tradeable = false
+weight = 0.001
+examine = "Jewellery that looks dusty."
+kept = "Reclaim"
+
+[pottery]
+id = 11178
+tradeable = false
+weight = 0.001
+examine = "Bits of ancient pottery."
+kept = "Reclaim"
+
+[old_coin]
+id = 11179
+tradeable = false
+weight = 0.001
+examine = "An old looking coin."
+kept = "Reclaim"
+
+[ancient_coin]
+id = 11180
+tradeable = false
+weight = 0.001
+examine = "A cracked and rusty looking coin."
+kept = "Reclaim"
+
+[ancient_symbol]
+id = 11181
+tradeable = false
+weight = 0.001
+examine = "A very old symbol of Saradomin."
+kept = "Reclaim"
+
+[old_symbol]
+id = 11182
+tradeable = false
+weight = 0.001
+examine = "An old symbol of Saradomin."
+kept = "Reclaim"
+
+[old_chipped_vase]
+id = 11183
+tradeable = false
+weight = 0.001
+examine = "An old vase with Saradominist markings - it has been chipped."
+kept = "Reclaim"
+
+[museum_map]
+id = 11184
+tradeable = false
+weight = 0.001
+examine = "A map of Varrock Museum."
+kept = "Reclaim"
+
+[antique_lamp_varrock_museum]
+id = 11185
+tradeable = false
+weight = 0.1
+examine = "I wonder what happens if I rub it..."
+destroy = "Are you sure you want to destroy the lamp? You won't be able to get another one."
+kept = "Vanish"
+
+[antique_lamp_kudos]
+id = 11186
+tradeable = false
+weight = 0.1
+destroy = "If you destroy this item, you cannot reclaim it."
+examine = "I wonder what happens if I rub it..."
+kept = "Vanish"
+
+[antique_lamp_kudos_2]
+clone = "antique_lamp_kudos"
+id = 11187
+
+[antique_lamp_kudos_3]
+clone = "antique_lamp_kudos"
+id = 11188
+
+[antique_lamp_historian_minas]
+clone = "antique_lamp_varrock_museum"
+id = 11189
+
+[dig_site_pendant_1]
+id = 11190
+weight = 0.01
+charges = 1
+degrade = "destroy"
+slot = "Amulet"
+degrade_message = "Your Dig Site pendant crumbles to dust."
+examine = "An enchanted necklace."
+
+[dig_site_pendant_2]
+clone = "dig_site_pendant_1"
+id = 11191
+degrade = "dig_site_pendant_1"
+
+[dig_site_pendant_3]
+clone = "dig_site_pendant_1"
+id = 11192
+degrade = "dig_site_pendant_2"
+
+[dig_site_pendant_4]
+clone = "dig_site_pendant_1"
+id = 11193
+degrade = "dig_site_pendant_3"
+
+[dig_site_pendant_5]
+clone = "dig_site_pendant_1"
+id = 11194
+degrade = "dig_site_pendant_4"
+aka = ["digsite_pendant", "digsite_necklace", "dig_site_necklace"]
+
+[clean_necklace]
+id = 11195
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+examine = "A recently-cleaned necklace."
+kept = "Reclaim"
+
+[statue_of_dahmaroc_list]
+id = 15520
+tradeable = false
+weight = 0.005
+examine = "A list of the pieces I've added to the strange statue in Varrock Museum."
+kept = "Reclaim"
+
+[statue_plinth]
+id = 15521
+tradeable = false
+weight = 10.0
+destroy = "When needed, you can get another plinth from Varrock Museum's archaeologists."
+examine = "Statue plinth from Varrock Museum."
+kept = "Wilderness"
+
+[strange_rock_agility]
+id = 15522
+tradeable = false
+weight = 1.0
+destroy = "You will need to practice your non-combat skills to regain a piece of rock."
+examine = "A rock found while practising agility."
+kept = "Wilderness"
+
+[strange_rock]
+clone = "strange_rock_agility"
+id = 15523
+
+[strange_rock_herblore]
+id = 15524
+tradeable = false
+weight = 1.0
+destroy = "You will need to practice your non-combat skills to regain a piece of rock."
+examine = "A rock found when making potions."
+kept = "Wilderness"
+
+[strange_rock_2]
+clone = "strange_rock_agility"
+id = 15525
+
+[strange_rock_3]
+clone = "strange_rock_agility"
+id = 15526
+
+[strange_rock_thieving]
+id = 15527
+tradeable = false
+weight = 1.0
+destroy = "You will need to practice your non-combat skills to regain a piece of rock."
+examine = "A rock 'borrowed' from a pocket."
+kept = "Wilderness"
+
+[strange_rock_crafting]
+id = 15528
+tradeable = false
+weight = 1.0
+destroy = "You will need to practice your non-combat skills to regain a piece of rock."
+examine = "A rock found while crafting."
+kept = "Wilderness"
+
+[strange_rock_4]
+clone = "strange_rock_agility"
+id = 15529
+
+[strange_rock_runecrafting]
+id = 15530
+tradeable = false
+weight = 1.0
+destroy = "You will need to practice your non-combat skills to regain a piece of rock."
+examine = "A rock found while binding runes."
+kept = "Wilderness"
+
+[strange_rock_5]
+clone = "strange_rock_agility"
+id = 15531
+
+[strange_rock_mining]
+id = 15532
+tradeable = false
+weight = 1.0
+destroy = "You will need to practice your non-combat skills to regain a piece of rock."
+examine = "A rock found while mining."
+kept = "Wilderness"
+
+[strange_rock_6]
+clone = "strange_rock_agility"
+id = 15533
+
+[strange_rock_smithing]
+id = 15534
+tradeable = false
+weight = 1.0
+destroy = "You will need to practice your non-combat skills to regain a piece of rock."
+examine = "A rock found while smithing."
+kept = "Wilderness"
+
+[strange_rock_7]
+clone = "strange_rock_agility"
+id = 15535
+
+[strange_rock_fishing]
+id = 15536
+tradeable = false
+weight = 1.0
+destroy = "You will need to practice your non-combat skills to regain a piece of rock."
+examine = "A rock fished up from the waters."
+kept = "Wilderness"
+
+[strange_rock_8]
+clone = "strange_rock_agility"
+id = 15537
+
+[strange_rock_cooking]
+id = 15538
+tradeable = false
+weight = 1.0
+destroy = "You will need to practice your non-combat skills to regain a piece of rock."
+examine = "A rock found while cooking."
+kept = "Wilderness"
+
+[strange_rock_9]
+clone = "strange_rock_agility"
+id = 15539
+
+[strange_rock_firemaking]
+id = 15540
+tradeable = false
+weight = 1.0
+destroy = "You will need to practice your non-combat skills to regain a piece of rock."
+examine = "A rock found while lighting fires."
+kept = "Wilderness"
+
+[strange_rock_10]
+clone = "strange_rock_agility"
+id = 15541
+
+[strange_rock_woodcutting]
+id = 15542
+tradeable = false
+weight = 1.0
+destroy = "You will need to practice your non-combat skills to regain a piece of rock."
+examine = "A rock found while cutting trees."
+kept = "Wilderness"
+
+[strange_rock_11]
+clone = "strange_rock_agility"
+id = 15543
+
+[strange_rock_fletching]
+id = 15544
+tradeable = false
+weight = 1.0
+destroy = "You will need to practice your non-combat skills to regain a piece of rock."
+examine = "A rock found while fletching bows, crossbows and stocks."
+kept = "Wilderness"
+
+[strange_rock_12]
+clone = "strange_rock_agility"
+id = 15545
+
+[strange_rock_farming]
+id = 15546
+tradeable = false
+weight = 1.0
+destroy = "You will need to practice your non-combat skills to regain a piece of rock."
+examine = "A rock found while harvesting produce."
+kept = "Wilderness"
+
+[strange_rock_13]
+clone = "strange_rock_agility"
+id = 15547
+
+[strange_rock_construction]
+id = 15548
+tradeable = false
+weight = 1.0
+destroy = "You will need to practice your non-combat skills to regain a piece of rock."
+examine = "A rock found while constructing furniture."
+kept = "Wilderness"
+
+[strange_rock_14]
+clone = "strange_rock_agility"
+id = 15549
+
+[strange_rock_hunter]
+id = 15550
+tradeable = false
+weight = 1.0
+destroy = "You will need to practice your non-combat skills to regain a piece of rock."
+examine = "A rock found in a hunter trap."
+kept = "Wilderness"
+
+[strange_rock_15]
+clone = "strange_rock_agility"
+id = 15551
+
+[replica_statue_piece_agility]
+id = 15552
+tradeable = false
+weight = 1.0
+destroy = "You must complete the entire statue of Dahmaroc to regain a replica piece."
+examine = "An intricately carved replica statue piece."
+kept = "Vanish"
+
+[replica_statue_piece]
+clone = "replica_statue_piece_agility"
+id = 15553
+
+[replica_statue_piece_herblore]
+clone = "replica_statue_piece_agility"
+id = 15554
+
+[replica_statue_piece_2]
+clone = "replica_statue_piece_agility"
+id = 15555
+
+[replica_statue_piece_3]
+clone = "replica_statue_piece_agility"
+id = 15556
+
+[replica_statue_piece_thieving]
+clone = "replica_statue_piece_agility"
+id = 15557
+
+[replica_statue_piece_crafting]
+clone = "replica_statue_piece_agility"
+id = 15558
+
+[replica_statue_piece_4]
+clone = "replica_statue_piece_agility"
+id = 15559
+
+[replica_statue_piece_runecrafting]
+clone = "replica_statue_piece_agility"
+id = 15560
+
+[replica_statue_piece_5]
+clone = "replica_statue_piece_agility"
+id = 15561
+
+[replica_statue_piece_mining]
+clone = "replica_statue_piece_agility"
+id = 15562
+
+[replica_statue_piece_6]
+clone = "replica_statue_piece_agility"
+id = 15563
+
+[replica_statue_piece_smithing]
+clone = "replica_statue_piece_agility"
+id = 15564
+
+[replica_statue_piece_7]
+clone = "replica_statue_piece_agility"
+id = 15565
+
+[replica_statue_piece_fishing]
+clone = "replica_statue_piece_agility"
+id = 15566
+
+[replica_statue_piece_8]
+clone = "replica_statue_piece_agility"
+id = 15567
+
+[replica_statue_piece_cooking]
+clone = "replica_statue_piece_agility"
+id = 15568
+
+[replica_statue_piece_9]
+clone = "replica_statue_piece_agility"
+id = 15569
+
+[replica_statue_piece_firemaking]
+clone = "replica_statue_piece_agility"
+id = 15570
+
+[replica_statue_piece_10]
+clone = "replica_statue_piece_agility"
+id = 15571
+
+[replica_statue_piece_woodcutting]
+clone = "replica_statue_piece_agility"
+id = 15572
+
+[replica_statue_piece_11]
+clone = "replica_statue_piece_agility"
+id = 15573
+
+[replica_statue_piece_fletching]
+clone = "replica_statue_piece_agility"
+id = 15574
+
+[replica_statue_piece_12]
+clone = "replica_statue_piece_agility"
+id = 15575
+
+[replica_statue_piece_farming]
+clone = "replica_statue_piece_agility"
+id = 15576
+
+[replica_statue_piece_13]
+clone = "replica_statue_piece_agility"
+id = 15577
+
+[replica_statue_piece_construction]
+clone = "replica_statue_piece_agility"
+id = 15578
+
+[replica_statue_piece_14]
+clone = "replica_statue_piece_agility"
+id = 15579
+
+[replica_statue_piece_hunter]
+clone = "replica_statue_piece_agility"
+id = 15580
+
+[replica_statue_piece_15]
+clone = "replica_statue_piece_agility"
+id = 15581
+
+[statue_piece]
+id = 15582
+slot = "Weapon"
+destroy = "You must complete the entire statue of Dahmaroc to regain a replica piece."
+examine = "An intricately carved replica statue piece."
+
+[statue_2]
+id = 15583
+
+[statue_collection_bag]
+id = 19704
+tradeable = false
+bank_stacks = false
+weight = 10.0
+destroy = "I will lose all the rocks in the bag if I destroy it. I can get another bag from Barnabus Hurma in the Varrock Museum or Auron Ithell in the Tower of Voices in Prifddinas."
+examine = "A large bag for collecting statue pieces."
+kept = "Wilderness"

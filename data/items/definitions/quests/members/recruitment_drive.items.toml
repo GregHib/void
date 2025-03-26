@@ -1,0 +1,286 @@
+[initiate_sallet]
+id = 5574
+price = 3490
+limit = 100
+weight = 2.267
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "An initiate Temple Knight's helm."
+kept = "Wilderness"
+
+[initiate_hauberk]
+id = 5575
+price = 5925
+limit = 100
+weight = 8.618
+slot = "Chest"
+material = "metal"
+examine = "An initiate Temple Knight's Armour."
+kept = "Wilderness"
+
+[initiate_cuisse]
+id = 5576
+price = 4672
+limit = 100
+weight = 7.711
+slot = "Legs"
+material = "metal"
+examine = "An initiate Temple Knight's leg armour."
+kept = "Wilderness"
+
+[cupric_sulphate]
+id = 5577
+tradeable = false
+weight = 0.056
+examine = "A vial of something labelled 'Cupric Sulphate'."
+kept = "Vanish"
+
+[acetic_acid]
+id = 5578
+tradeable = false
+weight = 0.056
+examine = "A vial of something labelled 'Acetic Acid'."
+kept = "Vanish"
+
+[gypsum]
+id = 5579
+tradeable = false
+weight = 0.056
+examine = "A vial of something labelled 'Gypsum'."
+kept = "Vanish"
+
+[sodium_chloride]
+id = 5580
+tradeable = false
+weight = 0.056
+examine = "A vial of something labelled 'Sodium Chloride'."
+kept = "Vanish"
+
+[nitrous_oxide]
+id = 5581
+tradeable = false
+weight = 0.056
+examine = "A vial of something labelled 'Nitrous Oxide'."
+kept = "Vanish"
+
+[vial_of_liquid]
+id = 5582
+tradeable = false
+weight = 0.056
+aka = ["dihydrogen_monoxide"]
+examine = "A vial of something labelled 'Dihydrogen Monoxide'."
+kept = "Vanish"
+
+[tin_ore_powder]
+id = 5583
+tradeable = false
+weight = 0.056
+examine = "A vial of something labelled 'Powdered Tin Ore'."
+kept = "Vanish"
+
+[cupric_ore_powder]
+id = 5584
+tradeable = false
+weight = 0.056
+examine = "A vial of something labelled 'Powdered Cupric Ore'."
+kept = "Vanish"
+
+[bronze_key_recruitment_drive]
+id = 5585
+tradeable = false
+weight = 0.01
+examine = "I hope the mould was accurate enough..."
+kept = "Vanish"
+
+[metal_spade]
+id = 5586
+tradeable = false
+weight = 1.814
+examine = "It's a metal spade with a wooden handle."
+kept = "Vanish"
+
+[metal_spade_head]
+id = 5587
+tradeable = false
+weight = 1.814
+examine = "It's a metal spade without a handle."
+kept = "Vanish"
+
+[alchemical_notes]
+id = 5588
+tradeable = false
+weight = 0.51
+examine = "Looks like a pretty boring read."
+kept = "Vanish"
+
+[mixture_hot]
+id = 5589
+tradeable = false
+weight = 0.056
+examine = "A very hot vial of something or other. The label says 'Cupric Sulphate'."
+kept = "Vanish"
+
+[mixture_warm]
+id = 5590
+tradeable = false
+weight = 0.056
+examine = "A very warm vial of something or other. It's a bit lumpy."
+kept = "Vanish"
+
+[mixture_horrible]
+id = 5591
+tradeable = false
+weight = 0.056
+examine = "It looks horrible. I think I messed something up."
+kept = "Vanish"
+
+[tin_empty]
+id = 5592
+tradeable = false
+weight = 0.1
+examine = "I could probably pour something into this."
+kept = "Vanish"
+
+[tin_hardening]
+id = 5593
+tradeable = false
+weight = 0.101
+examine = "It's full of a white lumpy mixture that seems to be hardening."
+kept = "Vanish"
+
+[tin_impression]
+id = 5594
+tradeable = false
+weight = 0.101
+examine = "There is an impression of a key embedded in it."
+kept = "Vanish"
+
+[tin_tin]
+id = 5595
+tradeable = false
+weight = 0.101
+examine = "There is an impression of a key, filled with tin ore."
+kept = "Vanish"
+
+[tin_copper]
+id = 5596
+tradeable = false
+weight = 0.101
+examine = "There is an impression of a key, filled with copper ore."
+kept = "Vanish"
+
+[tin_tin_and_copper]
+id = 5597
+tradeable = false
+weight = 0.101
+examine = "There is an impression of a key, filled with tin and copper ore."
+kept = "Vanish"
+
+[tin_key]
+id = 5598
+tradeable = false
+weight = 0.101
+examine = "There is a bronze key surrounded by plaster in this tin."
+kept = "Vanish"
+
+[tin_strange]
+id = 5599
+tradeable = false
+weight = 0.101
+examine = "There is a strange concoction filling this tin."
+kept = "Vanish"
+
+[tin_gypsum]
+id = 5600
+tradeable = false
+weight = 0.101
+examine = "A tin layered with some stuff from a vial."
+kept = "Vanish"
+
+[chisel_recruitment_drive]
+id = 5601
+limit = 100
+tradeable = false
+weight = 0.453
+examine = "Good for detailed crafting."
+kept = "Vanish"
+
+[bronze_wire_recruitment_drive]
+id = 5602
+limit = 100
+tradeable = false
+weight = 0.005
+examine = "Useful for crafting items."
+kept = "Vanish"
+
+[shears_recruitment_drive]
+id = 5603
+limit = 100
+tradeable = false
+weight = 0.113
+examine = "For shearing sheep."
+kept = "Vanish"
+
+[magnet_recruitment_drive]
+id = 5604
+tradeable = false
+weight = 0.02
+examine = "A very attractive magnet."
+kept = "Vanish"
+
+[knife_recruitment_drive]
+id = 5605
+limit = 100
+tradeable = false
+weight = 0.02
+examine = "A dangerous looking knife."
+kept = "Vanish"
+
+[makeover_voucher]
+id = 5606
+tradeable = false
+weight = 0.005
+examine = "I can exchange this for one free makeover with the makeover mage."
+kept = "Wilderness"
+
+[grain_recruitment_drive]
+id = 5607
+tradeable = false
+weight = 5.0
+slot = "Cape"
+examine = "A sack full of wheat."
+kept = "Vanish"
+
+[fox_recruitment_drive]
+id = 5608
+tradeable = false
+weight = 5.0
+slot = "Weapon"
+examine = "I don't think he likes being carried."
+kept = "Vanish"
+
+[chicken_recruitment_drive]
+id = 5609
+tradeable = false
+weight = 5.0
+slot = "Shield"
+examine = "He'd be easier to carry if I cooked and ate him first..."
+kept = "Vanish"
+
+[hourglass]
+id = 5610
+tradeable = false
+weight = 0.1
+destroy = "You'll have to find another from the Grim Reaper's house."
+examine = "No matter how I turn it, the sand doesn't seem to move."
+kept = "Vanish"
+
+[initiate_sallet_noted]
+id = 5611
+
+[initiate_hauberk_noted]
+id = 5612
+
+[initiate_cuisse_noted]
+id = 5613

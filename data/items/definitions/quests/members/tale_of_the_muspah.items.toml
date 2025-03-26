@@ -1,0 +1,34 @@
+[driftwood_the_tale_of_the_muspah]
+id = 14735
+tradeable = false
+weight = 1.36
+examine = "It's old and weathered, but it could still float."
+kept = "Reclaim"
+
+[fire_raft]
+id = 14736
+tradeable = false
+weight = 0.453
+slot = "Weapon"
+examine = "It's not the safest mode of transport."
+kept = "Reclaim"
+
+[log_the_tale_of_the_muspah]
+id = 14737
+examine = "A number of wooden logs."
+
+[muspah_tail]
+id = 14739
+tradeable = false
+weight = 0.453
+destroy = "You can get another from the cave where Jhallan is hibernating, under the Mahjarrat Ritual Site."
+examine = "It's the tail of the Muspah."
+kept = "Wilderness"
+
+[antique_lamp_the_tale_of_the_muspah]
+id = 14740
+tradeable = false
+weight = 0.1
+destroy = "If you destroy this item, you cannot reclaim it."
+examine = "I wonder what happens if I rub it..."
+kept = "Vanish"

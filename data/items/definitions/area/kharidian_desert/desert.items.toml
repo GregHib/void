@@ -1,0 +1,267 @@
+[waterskin_4]
+id = 1823
+price = 345
+weight = 1.1
+examine = "A full waterskin with four portions of water."
+
+[waterskin_4_noted]
+id = 1824
+
+[waterskin_3]
+id = 1825
+weight = 0.85
+full = "waterskin_4"
+examine = "A nearly full waterskin with three portions of water."
+
+[waterskin_3_noted]
+id = 1826
+
+[waterskin_2]
+id = 1827
+weight = 0.6
+full = "waterskin_4"
+examine = "A half empty waterskin with two portions of water."
+
+[waterskin_2_noted]
+id = 1828
+
+[waterskin_1]
+id = 1829
+weight = 0.35
+full = "waterskin_4"
+examine = "A nearly empty waterskin with one portion of water."
+
+[waterskin_1_noted]
+id = 1830
+
+[waterskin_0]
+id = 1831
+price = 215
+weight = 0.1
+full = "waterskin_4"
+examine = "A completely empty waterskin - you'll need to fill it up."
+
+[waterskin_0_noted]
+id = 1832
+
+[fez]
+id = 6382
+price = 845
+limit = 100
+weight = 0.005
+slot = "Hat"
+examine = "A Fez hat. Juss like that."
+
+[fez_noted]
+id = 6383
+
+[desert_top]
+id = 6384
+price = 514
+limit = 100
+weight = 0.005
+slot = "Chest"
+examine = "A bit itchy."
+
+[desert_top_noted]
+id = 6385
+
+[desert_robes]
+id = 6386
+price = 491
+limit = 100
+weight = 0.005
+slot = "Legs"
+examine = "Has a coarse hard wearing texture."
+
+[desert_robes_noted]
+id = 6387
+
+[desert_top_overcoat]
+id = 6388
+price = 956
+limit = 100
+weight = 0.005
+slot = "Chest"
+examine = "Good for those cold desert nights."
+
+[desert_top_overcoat_noted]
+id = 6389
+
+[desert_legs]
+id = 6390
+price = 424
+limit = 100
+weight = 0.005
+slot = "Legs"
+examine = "Better than factor 50 sun cream."
+
+[desert_legs_noted]
+id = 6391
+
+[menap_headgear_purple]
+id = 6392
+price = 475
+limit = 100
+weight = 0.005
+slot = "Hat"
+type = "Hair"
+examine = "Good for keeping the sun off my neck."
+
+[menap_headgear_purple_noted]
+id = 6393
+
+[menaphite_top_purple]
+id = 6394
+price = 528
+limit = 100
+weight = 0.005
+slot = "Chest"
+examine = "Colourful."
+
+[menaphite_top_purple_noted]
+id = 6395
+
+[menaphite_robe_purple]
+id = 6396
+price = 476
+limit = 100
+weight = 0.005
+slot = "Legs"
+examine = "A cool light Menaphite robe."
+
+[menaphite_robe_purple_noted]
+id = 6397
+
+[menap_action_kilt_purple]
+id = 6398
+price = 265
+limit = 100
+weight = 0.005
+slot = "Legs"
+examine = "Look at those nobbily knees."
+
+[menap_action_kilt_purple_noted]
+id = 6399
+
+[menap_headgear_red]
+id = 6400
+price = 443
+limit = 100
+weight = 0.005
+slot = "Hat"
+type = "Hair"
+examine = "Good for keeping the sun off my neck."
+
+[menap_headgear_red_noted]
+id = 6401
+
+[menaphite_top_red]
+id = 6402
+price = 482
+limit = 100
+weight = 0.005
+slot = "Chest"
+examine = "Colourful."
+
+[menaphite_top_red_noted]
+id = 6403
+
+[menaphite_robe_red]
+id = 6404
+price = 441
+limit = 100
+weight = 0.005
+slot = "Legs"
+examine = "A cool light Menaphite robe."
+
+[menaphite_robe_red_noted]
+id = 6405
+
+[menap_action_kilt_red]
+id = 6406
+price = 249
+limit = 100
+weight = 0.005
+slot = "Legs"
+examine = "Look at those nobbily knees."
+
+[menap_action_kilt_red_noted]
+id = 6407
+
+[oak_blackjack_o]
+id = 6408
+price = 793
+limit = 100
+weight = 1.814
+slot = "Weapon"
+examine = "An offensive blackjack."
+
+[oak_blackjack_o_noted]
+id = 6409
+
+[oak_blackjack_d]
+id = 6410
+price = 764
+limit = 100
+weight = 1.814
+slot = "Weapon"
+examine = "A defensive blackjack."
+
+[oak_blackjack_d_noted]
+id = 6411
+
+[willow_blackjack_o]
+id = 6412
+price = 1277
+limit = 100
+weight = 1.814
+slot = "Weapon"
+examine = "An offensive blackjack."
+
+[willow_blackjack_o_noted]
+id = 6413
+
+[willow_blackjack_d]
+id = 6414
+price = 1208
+limit = 100
+weight = 1.814
+slot = "Weapon"
+examine = "A defensive blackjack."
+
+[willow_blackjack_d_noted]
+id = 6415
+
+[maple_blackjack]
+id = 6416
+price = 1829
+limit = 100
+weight = 1.814
+slot = "Weapon"
+examine = "A solid bit of maple."
+
+[maple_blackjack_noted]
+id = 6417
+
+[maple_blackjack_o]
+id = 6418
+price = 1936
+limit = 100
+weight = 1.814
+slot = "Weapon"
+examine = "An offensive blackjack."
+
+[maple_blackjack_o_noted]
+id = 6419
+
+[maple_blackjack_d]
+id = 6420
+price = 2229
+limit = 100
+weight = 1.814
+slot = "Weapon"
+examine = "A defensive blackjack."
+
+[maple_blackjack_d_noted]
+id = 6421

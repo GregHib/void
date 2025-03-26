@@ -1,0 +1,16 @@
+[dramen_branch]
+id = 771
+tradeable = false
+weight = 2.267
+destroy = "You can get another branch if you chop the dramen tree underneath Entrana again."
+examine = "A limb of the fabled Dramen tree."
+kept = "Vanish"
+
+[dramen_staff]
+id = 772
+tradeable = false
+weight = 1.814
+category = "staff"
+slot = "Weapon"
+examine = "Crafted from a Dramen tree branch."
+kept = "Reclaim"

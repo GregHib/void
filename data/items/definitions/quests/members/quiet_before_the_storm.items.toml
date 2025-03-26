@@ -1,0 +1,9 @@
+[korasis_sword_quiet_before_the_swarm]
+id = 18786
+tradeable = false
+weight = 1.814
+weapon_type = "korasis_sword"
+slot = "Weapon"
+material = "metal"
+examine = "A sword of a Void Knight."
+kept = "Vanish"

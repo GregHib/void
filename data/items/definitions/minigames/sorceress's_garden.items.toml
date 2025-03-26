@@ -1,0 +1,66 @@
+[spring_sqirk]
+id = 10844
+tradeable = false
+weight = 0.01
+examine = "A slightly sq'irky, I mean quirky, fruit."
+kept = "Reclaim"
+
+[summer_sqirk]
+clone = "spring_sqirk"
+id = 10845
+
+[autumn_sqirk]
+clone = "spring_sqirk"
+id = 10846
+
+[winter_sqirk]
+clone = "spring_sqirk"
+id = 10847
+
+[spring_sqirkjuice]
+id = 10848
+heals = 0
+excess = "beer_glass"
+tradeable = false
+weight = 0.05
+examine = "Made from 4 spring sq'irks."
+kept = "Reclaim"
+
+[summer_sqirkjuice]
+id = 10849
+heals = 0
+excess = "beer_glass"
+tradeable = false
+weight = 0.05
+examine = "Made from 2 summer sq'irks."
+kept = "Reclaim"
+
+[autumn_sqirkjuice]
+id = 10850
+heals = 0
+excess = "beer_glass"
+tradeable = false
+weight = 0.05
+examine = "Made from 3 autumn sq'irks."
+kept = "Reclaim"
+
+[winter_sqirkjuice]
+id = 10851
+heals = 0
+excess = "beer_glass"
+tradeable = false
+weight = 0.05
+examine = "Made from 5 winter sq'irks."
+kept = "Reclaim"
+
+[summer_garden]
+id = 10852
+
+[spring_garden]
+id = 10853
+
+[autumn_garden]
+id = 10854
+
+[winter_garden]
+id = 10855

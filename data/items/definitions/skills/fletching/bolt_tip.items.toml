@@ -1,0 +1,66 @@
+[opal_bolt_tips]
+id = 45
+price = 1
+limit = 10000
+examine = "Opal bolt tips."
+
+[pearl_bolt_tips]
+id = 46
+price = 4
+limit = 10000
+examine = "Pearl bolt tips."
+
+[barb_bolttips]
+id = 47
+price = 29
+limit = 10000
+destroy = "No"
+examine = "I can make bolts with these."
+
+[jade_bolt_tips]
+id = 9187
+price = 1
+limit = 10000
+examine = "Jade bolt tips."
+
+[topaz_bolt_tips]
+id = 9188
+price = 2
+limit = 10000
+examine = "Red Topaz bolt tips."
+
+[sapphire_bolt_tips]
+id = 9189
+price = 6
+limit = 10000
+examine = "Sapphire bolt tips."
+
+[emerald_bolt_tips]
+id = 9190
+price = 60
+limit = 10000
+examine = "Emerald bolt tips."
+
+[ruby_bolt_tips]
+id = 9191
+price = 127
+limit = 10000
+examine = "Ruby bolt tips."
+
+[diamond_bolt_tips]
+id = 9192
+price = 669
+limit = 10000
+examine = "Diamond bolt tips."
+
+[dragon_bolt_tips]
+id = 9193
+price = 2682
+limit = 10000
+examine = "Dragonstone bolt tips."
+
+[onyx_bolt_tips]
+id = 9194
+price = 7722
+limit = 10000
+examine = "Onyx bolt tips."

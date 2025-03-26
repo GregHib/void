@@ -1,0 +1,14 @@
+[cow_drop_table]
+type = "all"
+drops = [
+    { table = "cow_primary" },
+    { table = "easy_clue_scroll", roll = 128 }
+]
+
+[cow_primary]
+type = "all"
+drops = [
+    { id = "cowhide" },
+    { id = "raw_beef" },
+    { id = "bones" }
+]

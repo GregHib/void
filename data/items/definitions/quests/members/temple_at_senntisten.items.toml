@@ -1,0 +1,132 @@
+[barrows_icon]
+id = 15378
+tradeable = false
+weight = 1.0
+destroy = "I can get it back from the Strange Old Man at the Barrows."
+examine = "An icon of an unknown deity."
+kept = "Wilderness"
+
+[heat_globe]
+id = 15379
+tradeable = false
+destroy = "You can get another from Azzanadra at the temple under the Digsite."
+examine = "In spite of its name it feels cold."
+destroy2 = "I can get it back from the frozen fortress, which is west of the Frozen Waste Plateau."
+kept = "Vanish"
+
+[heat_globe_2]
+clone = "heat_globe"
+id = 15380
+
+[heat_globe_3]
+clone = "heat_globe"
+id = 15381
+
+[heat_globe_4]
+clone = "heat_globe"
+id = 15382
+
+[imperfect_heat_globe]
+id = 15383
+tradeable = false
+weight = 0.5
+destroy = "I can find more heat globes in the frozen fortress, on the coast west of the Wilderness."
+examine = "This globe seems to have chunks of rock attached to it."
+kept = "Vanish"
+
+[heat_globe_5]
+clone = "heat_globe"
+id = 15384
+
+[relic_the_temple_at_senntisten]
+id = 15385
+tradeable = false
+weight = 0.001
+destroy = "I can get another from the assassin beside the winch that leads down into Senntisten temple."
+examine = "The assassin's plunder from the church on Entrana."
+kept = "Wilderness"
+
+[frostenhorn]
+id = 15386
+tradeable = false
+weight = 1.0
+destroy = "I can get it back next to the trapdoor leading down into the frozen fortress, to the west of the Wilderness."
+examine = "Recovered from an icy foe."
+kept = "Wilderness"
+
+[ruined_backpack_the_temple_at_senntisten]
+id = 15387
+tradeable = false
+weight = 0.15
+destroy = "You can get another from Azzanadra at the temple under the Digsite."
+examine = "It's about to fall apart"
+kept = "Wilderness"
+
+[battered_letter]
+id = 15388
+tradeable = false
+weight = 0.02
+destroy = "You can get another from Azzanadra at the temple under the Digsite."
+examine = "It looks like it's had a few adventures of its own."
+kept = "Wilderness"
+
+[experience_lamp]
+id = 15389
+tradeable = false
+weight = 0.02
+examine = "A mystical lamp engraved with scenes of city life."
+kept = "Vanish"
+
+[combat_lamp_the_temple_at_senntisten]
+id = 15390
+tradeable = false
+weight = 0.02
+destroy = "I can get it back from Azzanadra at the temple under the Digsite."
+examine = "A mystical lamp engraved with scenes of carnage."
+kept = "Vanish"
+
+[ancient_hymnal]
+id = 15391
+tradeable = false
+weight = 1.0
+destroy = "I can get it back from Azzanadra at the temple under the Digsite."
+examine = "A tome of Zarosian curses."
+kept = "Vanish"
+
+[restoration_certificate]
+id = 15392
+tradeable = false
+weight = 0.02
+destroy = "I can get another from the archaeological expert at the Exam Centre, south of the Digsite."
+examine = "The certificate that Azzanadra asked you to procure."
+kept = "Vanish"
+
+[alis_pendant_1]
+id = 15393
+slot = "Amulet"
+examine = "An enchanted necklace."
+weight = 0.01
+
+[alis_pendant_2]
+id = 15394
+slot = "Amulet"
+examine = "An enchanted necklace."
+weight = 0.01
+
+[alis_pendant_3]
+id = 15395
+slot = "Amulet"
+examine = "An enchanted necklace."
+weight = 0.01
+
+[alis_pendant_4]
+id = 15396
+slot = "Amulet"
+examine = "An enchanted necklace."
+weight = 0.01
+
+[alis_pendant_5]
+id = 15397
+slot = "Amulet"
+examine = "An enchanted necklace."
+weight = 0.01

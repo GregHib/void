@@ -1,0 +1,4587 @@
+[plank]
+id = 960
+price = 142
+limit = 10000
+weight = 0.8
+examine = "A plank of wood!"
+
+[plank_noted]
+id = 961
+
+[boxing_gloves_red]
+id = 7671
+tradeable = false
+weight = 0.453
+weapon_type = "boxing_gloves"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "I think they look a bit silly."
+kept = "Reclaim"
+
+[boxing_gloves_blue]
+id = 7673
+tradeable = false
+weight = 0.453
+weapon_type = "boxing_gloves"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "I think they look a bit silly."
+kept = "Reclaim"
+
+[wooden_sword]
+id = 7675
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+material = "wood"
+examine = "A less-than razor sharp sword."
+kept = "Reclaim"
+
+[wooden_shield_weapons_rack]
+id = 7676
+tradeable = false
+weight = 1.814
+slot = "Shield"
+examine = "A less-than strong shield."
+kept = "Reclaim"
+
+[treasure_stone]
+id = 7677
+tradeable = false
+weight = 1.814
+examine = "It knows where the treasure is."
+kept = "Reclaim"
+
+[prize_key]
+id = 7678
+tradeable = false
+weight = 0.01
+examine = "You can use this to open the prize chest!"
+kept = "Reclaim"
+
+[pugel]
+id = 7679
+weight = 1.36
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A good tool for bashing someone."
+
+[pugel_noted]
+id = 7680
+
+[game_book]
+id = 7681
+tradeable = false
+weight = 1.0
+aka = ["party_petes_bumper_book_of_games"]
+examine = "Party Pete's Bumper Book Of Games"
+kept = "Reclaim"
+
+[hoop]
+id = 7682
+weight = 1.36
+slot = "Weapon"
+examine = "Try to throw it over the stick."
+
+[hoop_noted]
+id = 7683
+
+[dart]
+id = 7684
+weight = 1.36
+slot = "Weapon"
+examine = "Not much good in combat, but perfect for the dart board!"
+
+[dart_noted]
+id = 7685
+
+[bow_and_arrow]
+id = 7686
+weight = 1.36
+slot = "Weapon"
+examine = "A safe arrow for indoor ranging games."
+
+[bow_and_arrow_noted]
+id = 7687
+
+[kettle]
+id = 7688
+weight = 0.001
+examine = "The kettle is empty."
+
+[kettle_noted]
+id = 7689
+
+[full_kettle]
+id = 7690
+tradeable = false
+weight = 0.001
+examine = "It's full of cold water."
+kept = "Reclaim"
+
+[hot_kettle]
+id = 7691
+tradeable = false
+weight = 0.001
+examine = "It's full of boiling water."
+kept = "Reclaim"
+
+[pot_of_tea_clay_4]
+id = 7692
+empty = "teapot_clay"
+examine = "I'd really like a nice cup of tea."
+weight = 1.5
+
+[pot_of_tea_clay_4_noted]
+id = 7693
+
+[pot_of_tea_clay_3]
+clone = "pot_of_tea_clay_4"
+id = 7694
+
+[pot_of_tea_clay_3_noted]
+id = 7695
+
+[pot_of_tea_clay_2]
+clone = "pot_of_tea_clay_4"
+id = 7696
+
+[pot_of_tea_clay_2_noted]
+id = 7697
+
+[pot_of_tea_clay_1]
+clone = "pot_of_tea_clay_4"
+id = 7698
+
+[pot_of_tea_clay_1_noted]
+id = 7699
+
+[teapot_with_leaves_clay]
+id = 7700
+weight = 1.5
+examine = "Add boiling water to make a tea."
+
+[teapot_with_leaves_clay_noted]
+id = 7701
+
+[teapot_clay]
+id = 7702
+weight = 0.453
+examine = "This teapot is empty."
+
+[teapot_clay_noted]
+id = 7703
+
+[pot_of_tea_white_4]
+clone = "pot_of_tea_clay_4"
+id = 7704
+
+[pot_of_tea_white_4_noted]
+id = 7705
+
+[pot_of_tea_white_3]
+clone = "pot_of_tea_clay_4"
+id = 7706
+
+[pot_of_tea_white_3_noted]
+id = 7707
+
+[pot_of_tea_white_2]
+clone = "pot_of_tea_clay_4"
+id = 7708
+
+[pot_of_tea_white_2_noted]
+id = 7709
+
+[pot_of_tea_white_1]
+clone = "pot_of_tea_clay_4"
+id = 7710
+
+[pot_of_tea_white_1_noted]
+id = 7711
+
+[teapot_with_leaves_white]
+clone = "teapot_with_leaves_clay"
+id = 7712
+
+[teapot_with_leaves_white_noted]
+id = 7713
+
+[teapot_white]
+clone = "teapot_clay"
+id = 7714
+
+[teapot_white_noted]
+id = 7715
+
+[pot_of_tea_gold_4]
+clone = "pot_of_tea_clay_4"
+id = 7716
+
+[pot_of_tea_gold_4_noted]
+id = 7717
+
+[pot_of_tea_gold_3]
+clone = "pot_of_tea_clay_4"
+id = 7718
+
+[pot_of_tea_gold_3_noted]
+id = 7719
+
+[pot_of_tea_gold_2]
+clone = "pot_of_tea_clay_4"
+id = 7720
+
+[pot_of_tea_gold_2_noted]
+id = 7721
+
+[pot_of_tea_gold_1]
+clone = "pot_of_tea_clay_4"
+id = 7722
+
+[pot_of_tea_gold_1_noted]
+id = 7723
+
+[teapot_with_leaves_gold]
+clone = "teapot_with_leaves_clay"
+id = 7724
+
+[teapot_with_leaves_gold_noted]
+id = 7725
+
+[teapot_gold]
+clone = "teapot_clay"
+id = 7726
+
+[teapot_gold_noted]
+id = 7727
+
+[empty_cup_player_owned_house]
+id = 7728
+weight = 0.05
+examine = "An empty cup."
+
+[empty_cup_player_owned_house_noted]
+id = 7729
+
+[cup_of_tea_clay]
+id = 7730
+limit = 1000
+tradeable = false
+weight = 0.15
+empty = "empty_cup_player_owned_house"
+examine = "A nice cup of nettle tea."
+kept = "Reclaim"
+
+[cup_of_tea_clay_milky]
+id = 7731
+limit = 1000
+tradeable = false
+weight = 0.15
+empty = "empty_cup_player_owned_house"
+examine = "A milky cup of nettle tea."
+kept = "Reclaim"
+
+[porcelain_cup_white]
+id = 7732
+tradeable = false
+weight = 0.05
+examine = "A porcelain cup."
+kept = "Reclaim"
+
+[cup_of_tea_white]
+id = 7733
+limit = 1000
+tradeable = false
+weight = 0.15
+empty = "porcelain_cup_white"
+examine = "Some nettle tea in a porcelain cup."
+kept = "Reclaim"
+
+[cup_of_tea_white_milky]
+id = 7734
+limit = 1000
+tradeable = false
+weight = 0.15
+empty = "porcelain_cup_white"
+examine = "Some milky nettle tea in a porcelain cup."
+kept = "Reclaim"
+
+[porcelain_cup_gold]
+id = 7735
+tradeable = false
+weight = 0.05
+examine = "A porcelain cup."
+kept = "Reclaim"
+
+[cup_of_tea_gold]
+id = 7736
+limit = 1000
+tradeable = false
+weight = 0.15
+empty = "porcelain_cup_gold"
+examine = "Some nettle tea in a porcelain cup."
+kept = "Reclaim"
+
+[cup_of_tea_gold_milky]
+id = 7737
+limit = 1000
+tradeable = false
+weight = 0.15
+empty = "porcelain_cup_gold"
+examine = "Some milky nettle tea in a porcelain cup."
+kept = "Reclaim"
+
+[tea_leaves]
+id = 7738
+weight = 0.01
+examine = "Mmm, how about a nice cup of tea?"
+
+[tea_leaves_noted]
+id = 7739
+
+[beer_player_owned_house]
+id = 7740
+limit = 100
+heals = 10
+excess = "beer_glass_player_owned_house"
+weight = 0.55
+examine = "A glass of frothy ale."
+
+[beer_player_owned_house_noted]
+id = 7741
+
+[beer_glass_player_owned_house]
+id = 7742
+limit = 100
+weight = 0.05
+examine = "I need to fill this with beer."
+
+[beer_glass_player_owned_house_noted]
+id = 7743
+
+[asgarnian_ale_player_owned_house]
+id = 7744
+limit = 100
+heals = 20
+excess = "beer_glass_player_owned_house"
+weight = 0.55
+examine = "Probably the finest ale in Asgarnia."
+
+[asgarnian_ale_player_owned_house_noted]
+id = 7745
+
+[greenmans_ale_player_owned_house]
+id = 7746
+limit = 100
+heals = 10
+excess = "beer_glass_player_owned_house"
+weight = 0.55
+examine = "A glass of frothy ale."
+
+[greenmans_ale_player_owned_house_noted]
+id = 7747
+
+[dragon_bitter_player_owned_house]
+id = 7748
+limit = 100
+heals = 10
+excess = "beer_glass_player_owned_house"
+weight = 0.55
+examine = "A glass of bitter."
+
+[dragon_bitter_player_owned_house_noted]
+id = 7749
+
+[moonlight_mead_player_owned_house]
+id = 7750
+limit = 100
+heals = 40
+excess = "beer_glass_player_owned_house"
+eat_message = "You drink the foul smelling brew. It tastes like something just died in your mouth."
+weight = 0.55
+examine = "A foul smelling brew."
+
+[moonlight_mead_player_owned_house_noted]
+id = 7751
+
+[cider_player_owned_house]
+id = 7752
+limit = 100
+heals = 20
+excess = "beer_glass_player_owned_house"
+weight = 0.55
+examine = "A glass of cider."
+
+[cider_player_owned_house_noted]
+id = 7753
+
+[chefs_delight_player_owned_house]
+id = 7754
+limit = 100
+heals = 10
+excess = "beer_glass_player_owned_house"
+weight = 0.55
+examine = "A fruity, full-bodied ale."
+
+[chefs_delight_player_owned_house_noted]
+id = 7755
+
+[paintbrush]
+id = 7756
+slot = "Weapon"
+examine = "Try dipping it in paint and applying it."
+
+[paintbrush_noted]
+id = 7757
+
+[rusty_sword_2]
+id = 7758
+tradeable = false
+weight = 2.267
+slot = "Weapon"
+material = "metal"
+examine = "A decent-enough weapon gone rusty."
+kept = "Reclaim"
+
+[toy_soldier]
+id = 7759
+price = 2626
+limit = 100
+weight = 1.0
+examine = "Nice bit of crafting!"
+
+[toy_soldier_noted]
+id = 7760
+
+[toy_soldier_wound]
+id = 7761
+limit = 100
+weight = 1.0
+destroy = "Release"
+examine = "Nice bit of crafting!"
+
+[toy_soldier_wound_noted]
+id = 7762
+
+[toy_doll]
+id = 7763
+price = 2511
+limit = 100
+weight = 1.0
+aka = ["clockwork_doll"]
+examine = "Nice bit of crafting!"
+
+[toy_doll_noted]
+id = 7764
+
+[toy_doll_wound]
+clone = "toy_soldier_wound"
+id = 7765
+
+[toy_doll_wound_noted]
+id = 7766
+
+[toy_mouse]
+id = 7767
+price = 2883
+limit = 100
+weight = 1.0
+aka = ["clockwork_mouse"]
+examine = "Nice bit of crafting!"
+
+[toy_mouse_noted]
+id = 7768
+
+[toy_mouse_wound]
+id = 7769
+limit = 100
+weight = 1.0
+aka = ["clockwork_mouse"]
+destroy = "Release"
+examine = "Nice bit of crafting!"
+
+[toy_mouse_wound_noted]
+id = 7770
+
+[clockwork_cat]
+id = 7771
+price = 2293
+limit = 100
+weight = 1.0
+food = "None"
+destroy = "Release"
+examine = "Nice bit of crafting!"
+
+[clockwork_cat_noted]
+id = 7772
+
+[cockatrice_head]
+clone = "crawling_hand"
+id = 7976
+
+[basilisk_head]
+clone = "crawling_hand"
+id = 7977
+
+[kurask_head]
+clone = "crawling_hand"
+id = 7978
+
+[abyssal_head]
+clone = "crawling_hand"
+id = 7979
+
+[king_black_dragon_head]
+id = 7980
+tradeable = false
+weight = 10.0
+examine = "I should get them stuffed!"
+kept = "Reclaim"
+
+[kalphite_queen_head]
+clone = "crawling_hand"
+id = 7981
+
+[crawling_hand_stuffed]
+id = 7982
+tradeable = false
+weight = 10.0
+examine = "I could mount this on my wall!"
+kept = "Reclaim"
+
+[cockatrice_head_stuffed]
+clone = "crawling_hand_stuffed"
+id = 7983
+
+[basilisk_head_stuffed]
+clone = "crawling_hand_stuffed"
+id = 7984
+
+[kurask_head_stuffed]
+clone = "crawling_hand_stuffed"
+id = 7985
+
+[abyssal_head_stuffed]
+clone = "crawling_hand_stuffed"
+id = 7986
+
+[king_black_dragon_head_stuffed]
+id = 7987
+tradeable = false
+weight = 10.0
+examine = "I could mount these on my wall!"
+kept = "Reclaim"
+
+[kalphite_queen_head_stuffed]
+clone = "crawling_hand_stuffed"
+id = 7988
+
+[big_bass]
+id = 7989
+tradeable = false
+weight = 0.4
+examine = "Whopper! I should get this stuffed!"
+kept = "Reclaim"
+
+[big_bass_stuffed]
+id = 7990
+tradeable = false
+weight = 0.35
+examine = "I should mount this on my wall!"
+kept = "Reclaim"
+
+[big_swordfish]
+id = 7991
+tradeable = false
+weight = 0.5
+examine = "Whopper! I should get this stuffed!"
+kept = "Reclaim"
+
+[big_swordfish_stuffed]
+id = 7992
+tradeable = false
+weight = 0.45
+examine = "I should mount this on my wall!"
+kept = "Reclaim"
+
+[big_shark]
+id = 7993
+tradeable = false
+weight = 0.7
+examine = "It's a monster! I should get this stuffed!"
+kept = "Reclaim"
+
+[big_shark_stuffed]
+id = 7994
+tradeable = false
+weight = 0.65
+examine = "I should mount this on my wall!"
+kept = "Reclaim"
+
+[arthur_portrait]
+id = 7995
+tradeable = false
+weight = 1.0
+examine = "A portrait of King Arthur."
+kept = "Reclaim"
+
+[elena_portrait]
+id = 7996
+tradeable = false
+weight = 1.0
+examine = "A portrait of Elena."
+kept = "Reclaim"
+
+[keldagrim_portrait]
+id = 7997
+tradeable = false
+weight = 1.0
+examine = "A painting of the statue of King Alvis of Keldagrim."
+kept = "Reclaim"
+
+[misc_portrait]
+id = 7998
+tradeable = false
+weight = 1.0
+examine = "A portrait of Prince Brand and Princess Astrid of Miscellania."
+kept = "Reclaim"
+
+[desert_painting]
+id = 7999
+tradeable = false
+weight = 1.0
+examine = "The searing Kharid Desert."
+kept = "Reclaim"
+
+[isafdar_painting]
+id = 8000
+tradeable = false
+weight = 1.0
+examine = "The exotic land of the Elves."
+kept = "Reclaim"
+
+[karamja_painting]
+id = 8001
+tradeable = false
+weight = 1.0
+examine = "The tropical coast of Karamja."
+kept = "Reclaim"
+
+[lumbridge_painting]
+id = 8002
+tradeable = false
+weight = 1.0
+examine = "Oxtable's famous painting of the Lumbridge water mill."
+kept = "Reclaim"
+
+[morytania_painting]
+id = 8003
+tradeable = false
+weight = 1.0
+examine = "A painting of the spooky forests of Morytania."
+kept = "Reclaim"
+
+[small_map]
+id = 8004
+tradeable = false
+weight = 1.0
+examine = "A small map of Gielinor."
+kept = "Reclaim"
+
+[medium_map]
+id = 8005
+tradeable = false
+weight = 1.0
+examine = "A medium map of Gielinor."
+kept = "Reclaim"
+
+[large_map]
+id = 8006
+tradeable = false
+weight = 1.0
+examine = "A large map of Gielinor."
+kept = "Reclaim"
+
+[varrock_teleport]
+id = 8007
+price = 592
+limit = 1000
+aka = ["varrock_tab", "varrock_tabs", "varrock_tablet", "varrock_tele_tab", "varrock_tele_tabs", "varrock_tele", "varrock_teleport_tablet"]
+examine = "A tablet containing a magic spell."
+
+[lumbridge_teleport]
+id = 8008
+price = 606
+limit = 1000
+aka = ["lumb_tab", "lummy_tab", "lumbridge_tab", "lumb_tabs", "lummy_tabs", "lumbridge_tabs", "lumb_tele", "lummy_tele", "lumbridge_tele", "lumbridge_tele_tab", "lumbridge_tele_tabs", "lumbridge_teleport_tablet"]
+examine = "A tablet containing a magic spell."
+
+[falador_teleport]
+id = 8009
+price = 590
+limit = 1000
+aka = ["fally_tab", "falador_tab", "fally_tabs", "falador_tabs", "falador_tele", "falador_tele_tab", "falador_tele_tabs", "falador_teleport_tablet"]
+examine = "A tablet containing a magic spell."
+
+[camelot_teleport]
+id = 8010
+price = 536
+limit = 1000
+aka = ["cammy_tab", "camelot_tab", "cammy_tabs", "camelot_tabs", "camelot_tele", "camelot_tele_tab", "camelot_tele_tabs", "camelot_teleport_tablet"]
+examine = "A tablet containing a magic spell."
+
+[ardougne_teleport]
+id = 8011
+price = 715
+limit = 1000
+aka = ["ardy_tab", "ardougne_tab", "ardy_tabs", "ardougne_tabs", "ardougne_tele", "ardougne_tele_tab", "ardougne_tele_tabs", "ardougne_teleport_tablet"]
+examine = "A tablet containing a magic spell."
+
+[watchtower_teleport]
+id = 8012
+price = 676
+limit = 1000
+examine = "A tablet containing a magic spell."
+
+[teleport_to_house]
+id = 8013
+price = 579
+limit = 1000
+aka = ["house_tab", "house_tabs", "house_tele", "house_tele_tab", "house_tele_tabs", "house_teleport_tablet"]
+examine = "A tablet containing a magic spell."
+
+[bones_to_bananas]
+id = 8014
+price = 366
+limit = 200
+aka = ["btb", "btb_tab", "btb_tabs", "banana_tab", "banana_tabs", "banana_tablet", "bones_to_bananas_tab", "bones_to_bananas_tabs", "bones_to_bananas_tablet"]
+examine = "A tablet containing a magic spell."
+
+[bones_to_peaches]
+id = 8015
+price = 700
+limit = 200
+aka = ["btp", "btp_tab", "btp_tabs", "peach_tab", "peaches_tab", "peach_tabs", "peaches_tabs", "peach_tablet", "peaches_tablet", "bones_to_peaches_tab", "bones_to_peaches_tabs", "bones_to_peaches_tablet"]
+examine = "A tablet containing a magic spell."
+
+[enchant_sapphire]
+id = 8016
+price = 333
+limit = 200
+examine = "A tablet containing a magic spell."
+
+[enchant_emerald]
+id = 8017
+price = 409
+limit = 200
+examine = "A tablet containing a magic spell."
+
+[enchant_ruby]
+id = 8018
+price = 284
+limit = 200
+examine = "A tablet containing a magic spell."
+
+[enchant_diamond]
+id = 8019
+price = 369
+limit = 200
+examine = "A tablet containing a magic spell."
+
+[enchant_dragonstn]
+id = 8020
+price = 296
+limit = 200
+examine = "A tablet containing a magic spell."
+
+[enchant_onyx]
+id = 8021
+price = 30
+limit = 200
+examine = "A tablet containing a magic spell."
+
+[telekinetic_grab] # Unobtainable
+id = 8022
+
+[boxing_ring]
+id = 8023
+examine = "A place to train unarmed combat with your friends."
+
+[fencing_ring]
+id = 8024
+examine = "A place to train weapon skills with your friends."
+
+[combat_ring]
+id = 8025
+examine = "Anything-goes combat in here!"
+
+[ranging_pedestals]
+id = 8026
+examine = "Stand here to fight with projectiles or spells"
+
+[balance_beam]
+id = 8027
+examine = "You should knock someone off."
+
+[glove_rack]
+id = 8028
+examine = "A place to hang your boxing gloves."
+
+[weapons_rack]
+id = 8029
+examine = "Some equipment for practicing combat."
+
+[extra_weapons_rack]
+id = 8030
+examine = "Lots of equipment for practicing combat."
+
+[wooden_bed]
+id = 8031
+weight = 1.0
+examine = "A ready-to-assemble wooden bed."
+
+[oak_bed]
+id = 8032
+weight = 1.0
+examine = "A ready-to-assemble oak bed."
+
+[large_oak_bed]
+id = 8033
+weight = 1.0
+examine = "A ready-to-assemble large oak bed."
+
+[teak_bed]
+id = 8034
+weight = 1.0
+examine = "A ready-to-assemble teak bed."
+
+[large_teak_bed]
+id = 8035
+weight = 1.0
+examine = "A ready-to-assemble large teak bed."
+
+[four_poster]
+id = 8036
+weight = 1.0
+examine = "A ready-to-assemble four-poster bed."
+
+[gilded_4_poster]
+id = 8037
+weight = 1.0
+examine = "A ready-to-assemble gilded four-poster bed."
+
+[shoe_box]
+id = 8038
+weight = 1.0
+examine = "A ready-to-assemble shoe box."
+
+[oak_drawers]
+id = 8039
+weight = 1.0
+examine = "A ready-to-assemble oak chest of drawers."
+
+[oak_wardrobe]
+id = 8040
+weight = 1.0
+examine = "A ready-to-assemble oak bedroom wardrobe."
+
+[teak_drawers]
+id = 8041
+weight = 1.0
+examine = "A ready-to-assemble teak chest of drawers."
+
+[teak_wardrobe]
+id = 8042
+weight = 1.0
+examine = "A ready-to-assemble teak bedroom wardrobe."
+
+[mahogany_drobe]
+id = 8043
+examine = "A ready-to-assemble mahogany bedroom wardrobe."
+
+[gilded_wardrobe]
+id = 8044
+weight = 1.0
+examine = "A ready-to-assemble gilded mahogany bedroom wardrobe."
+
+[shaving_stand]
+id = 8045
+weight = 1.0
+examine = "A ready-to-assemble shaving stand."
+
+[oak_shaving_stand]
+id = 8046
+weight = 1.0
+examine = "A ready-to-assemble oak shaving stand."
+
+[oak_dresser]
+id = 8047
+weight = 1.0
+examine = "A ready-to-assemble oak dresser."
+
+[teak_dresser]
+id = 8048
+weight = 1.0
+examine = "A ready-to-assemble teak dresser."
+
+[fancy_teak_dresser]
+id = 8049
+weight = 1.0
+examine = "A ready-to-assemble fancy teak dresser."
+
+[mahogany_dresser]
+id = 8050
+weight = 1.0
+examine = "A ready-to-assemble mahogany dresser."
+
+[gilded_dresser]
+id = 8051
+weight = 1.0
+examine = "A ready-to-assemble gilded dresser."
+
+[oak_clock]
+id = 8052
+weight = 1.0
+examine = "A ready-to-assemble oak clock."
+
+[teak_clock]
+id = 8053
+weight = 1.0
+examine = "A ready-to-assemble teak clock."
+
+[gilded_clock]
+id = 8054
+weight = 1.0
+examine = "A ready-to-assemble gilded mahogany clock."
+
+[saradomin_symbol]
+id = 8055
+examine = "The holy symbol of the god of light."
+
+[zamorak_symbol]
+id = 8056
+examine = "The holy symbol of the god of chaos."
+
+[guthix_symbol]
+id = 8057
+examine = "The holy symbol of the god of balance."
+
+[saradomin_icon]
+id = 8058
+examine = "The golden star reminds you of the glory of Saradomin."
+
+[zamorak_icon]
+id = 8059
+examine = "A fitting symbol of the bloodthirsty Zamorak!"
+
+[guthix_icon]
+id = 8060
+examine = "A serene icon to the lord of balance."
+
+[icon_of_bob]
+id = 8061
+examine = "An icon of the mysterious Bob."
+
+[oak_altar]
+id = 8062
+examine = "An oak altar with a symbol of Saradomin/Zamorak/Guthix."
+
+[teak_altar]
+id = 8063
+examine = "A teak altar with a symbol of Saradomin/Guthix/Zamorak."
+
+[cloth_coverd_altar]
+id = 8064
+examine = "A cloth-covered teak altar with a symbol of Saradomin."
+
+[mahogany_altar]
+id = 8065
+examine = "A mahogany altar with a symbol of Saradomin/Zamorak/Guthix."
+
+[limestone_altar]
+id = 8066
+examine = "A limestone altar with a symbol of Zamorak/Saradomin/Guthix/Bob"
+
+[marble_altar]
+id = 8067
+examine = "A marble altar with a symbol of"
+
+[gilded_altar]
+id = 8068
+examine = "A Gilded marble altar with a symbol of Saradomin/Zamorak/Guthix."
+
+[wooden_torches]
+id = 8069
+examine = "The smoke goes up to the gods."
+
+[steel_torches]
+clone = "wooden_torches"
+id = 8070
+
+[steel_candlesticks]
+clone = "wooden_torches"
+id = 8071
+
+[gold_candlesticks]
+clone = "wooden_torches"
+id = 8072
+
+[incense_burners]
+clone = "wooden_torches"
+id = 8073
+
+[mahogany_burners]
+clone = "wooden_torches"
+id = 8074
+
+[marble_burners]
+clone = "wooden_torches"
+id = 8075
+
+[shuttered_window]
+id = 8076
+examine = "A basic chapel window."
+
+[decorative_window]
+id = 8077
+examine = "What nice shapes you can make out of glass!"
+
+[stained_glass]
+id = 8078
+examine = "It fills the room with coloured light."
+
+[windchimes]
+id = 8079
+examine = "They tinkle delightfully."
+
+[bells]
+id = 8080
+examine = "Oh, from out the sounding cells, what a gush of euphony voluminously wells!"
+
+[organ]
+id = 8081
+examine = "A delightful sound."
+
+[small_statues]
+id = 8082
+examine = "depends on Icon"
+
+[medium_statues]
+clone = "small_statues"
+id = 8083
+
+[large_statues]
+id = 8084
+examine = "Changes according to Icon"
+
+[suit_of_armour]
+id = 8085
+examine = "A dusty old suit of armour."
+
+[minor_head]
+id = 8087
+
+[medium_head]
+id = 8088
+
+[major_head]
+id = 8089
+
+[rune_display_case]
+id = 8095
+
+[rope_bell_pull]
+id = 8099
+examine = "Can summon your servant."
+
+[bell_pull]
+clone = "rope_bell_pull"
+id = 8100
+
+[posh_bell_pull]
+clone = "rope_bell_pull"
+id = 8101
+
+[oak_decoration]
+id = 8102
+examine = "The symbol of ."
+
+[teak_decoration]
+id = 8103
+examine = "A teak decoration to make the room more grand."
+
+[gilded_decoration]
+id = 8104
+examine = "Unknown"
+
+[round_shield]
+id = 8105
+examine = "A shield with a family crest icon on it."
+
+[square_shield]
+id = 8106
+
+[kite_shield]
+id = 8107
+examine = "A shield with a picture of ... the examine depends on the crest displayed on the shield, for example, the money crest would have A shield with a picture of a money bag."
+
+[wooden_bench]
+id = 8108
+weight = 1.0
+examine = "A ready-to-assemble wooden dining bench."
+
+[oak_bench]
+id = 8109
+weight = 1.0
+examine = "A ready-to-assemble oak dining bench."
+
+[carved_oak_bench]
+id = 8110
+weight = 1.0
+examine = "A ready-to-assemble carved oak dining bench."
+
+[teak_dining_bench]
+id = 8111
+weight = 1.0
+examine = "A ready-to-assemble teak dining bench."
+
+[carved_teak_bench]
+id = 8112
+weight = 1.0
+examine = "A ready-to-assemble carved teak dining bench."
+
+[mahogany_bench]
+id = 8113
+weight = 1.0
+examine = "A ready-to-assemble mahogany dining bench."
+
+[gilded_bench]
+id = 8114
+weight = 1.0
+examine = "A ready-to-assemble gilded mahogany dining bench."
+
+[wood_dining_table]
+id = 8115
+weight = 1.0
+examine = "A ready-to-assemble wooden dining table."
+
+[oak_dining_table]
+id = 8116
+weight = 1.0
+examine = "A ready-to-assemble oak dining table."
+
+[carved_oak_table]
+id = 8117
+weight = 1.0
+examine = "A ready-to-assemble carved oak dining table."
+
+[teak_table]
+id = 8118
+weight = 1.0
+examine = "A ready-to-assemble teak dining table."
+
+[carved_teak_table]
+id = 8119
+weight = 1.0
+examine = "A ready-to-assemble carved teak dining table."
+
+[mahogany_table]
+id = 8120
+weight = 1.0
+examine = "A ready-to-assemble mahogany dining table."
+
+[opulent_table]
+id = 8121
+weight = 1.0
+examine = "A ready-to-assemble opulent dining table."
+
+[oak_door]
+id = 8122
+examine = "A sturdy oak door."
+
+[steel_plated_door]
+id = 8123
+examine = "A formidable steel door."
+
+[marble_door]
+id = 8124
+examine = "Could anyone get through a solid marble door?"
+
+[decorative_blood]
+id = 8125
+examine = "Nothing makes a dungeon looks ominous like some dried blood."
+
+[decorative_pipe]
+id = 8126
+examine = "It doesnt go anywhere, it's just for show."
+
+[hanging_skeleton]
+id = 8127
+examine = "A rather macabre decoration."
+
+[candles]
+id = 8128
+
+[torches]
+id = 8129
+
+[skull_torches]
+id = 8130
+examine = "Even a dungeon needs light!"
+
+[skeleton_guard]
+id = 8131
+
+[guard_dog]
+id = 8132
+examine = "He doesn't seem pleased to see me."
+
+[hobgoblin_guard]
+id = 8133
+
+[baby_red_dragon]
+id = 8134
+examine = "Young but still dangerous."
+
+[huge_spider]
+id = 8135
+
+[troll_guard]
+id = 8136
+
+[hellhound]
+id = 8137
+examine = "Good doggie..."
+
+[demon]
+id = 8138
+
+[kalphite_soldier]
+id = 8139
+examine = "I don't think insect repellent will work..."
+
+[tok_xil]
+id = 8140
+examine = "I don't like the look of those spines..."
+
+[dagannoth]
+id = 8141
+
+[steel_dragon]
+id = 8142
+examine = "Its scales seem to be made of steel."
+
+[spike_trap]
+id = 8143
+examine = "Spiky!"
+
+[man_trap]
+id = 8144
+examine = "Watch out!"
+
+[tangle_vine]
+id = 8145
+
+[marble_trap]
+clone = "man_trap"
+id = 8146
+
+[teleport_trap]
+clone = "man_trap"
+id = 8147
+
+[wooden_crate]
+id = 8148
+examine = "Is there treasure inside?"
+
+[oak_chest]
+id = 8149
+examine = "Is there a prize inside?"
+
+[teak_chest]
+clone = "oak_chest"
+id = 8150
+
+[mahogany_chest]
+clone = "oak_chest"
+id = 8151
+
+[magic_chest]
+id = 8152
+examine = "Could the magic be guarding some treasure?"
+
+[clay_attack_stone]
+id = 8153
+examine = "See how much damage you can do to it!"
+
+[attack_stone]
+id = 8154
+
+[marble_att_stone]
+id = 8155
+examine = "Try to damage it!"
+
+[magical_balance_1]
+id = 8156
+
+[magical_balance_2]
+id = 8157
+
+[magical_balance_3]
+id = 8158
+
+[jester]
+id = 8159
+examine = "A private jester."
+
+[treasure_hunt]
+id = 8160
+examine = "Activate the mushroom and see what happens!"
+
+[hangman_game]
+id = 8161
+examine = "A letter-guessing game with a subtext of death."
+
+[hoop_and_stick]
+id = 8162
+examine = "You can try to get a hoop over this."
+
+[dartboard]
+id = 8163
+examine = "More humane than using an actual bull's eye."
+
+[archery_target]
+id = 8164
+examine = "Can you hit it? Yes, you can."
+
+[oak_prize_chest]
+clone = "oak_chest"
+id = 8165
+
+[teak_prize_chest]
+clone = "oak_chest"
+id = 8166
+
+[mahogany_chest_2]
+clone = "oak_chest"
+id = 8167
+
+[exit_portal]
+id = 8168
+examine = "Use this to leave the house."
+
+[decorative_rock]
+id = 8169
+examine = "Rocky!"
+
+[pond]
+id = 8170
+examine = "A home for tiny fish and frogs."
+
+[imp_statue]
+id = 8171
+examine = "What a naughty little imp!"
+
+[dungeon_entrance]
+id = 8172
+examine = "What horrors lurk below?"
+
+[tree]
+id = 8173
+
+[nice_tree]
+id = 8174
+examine = "A lovely addition to the garden."
+
+[oak_tree]
+id = 8175
+examine = "A beautiful old Oak tree."
+
+[willow_tree]
+clone = "nice_tree"
+id = 8176
+
+[maple_tree]
+clone = "nice_tree"
+id = 8177
+
+[yew_tree]
+clone = "nice_tree"
+id = 8178
+
+[magic_tree]
+id = 8179
+examine = "The tree shimmers with a magical force."
+
+[plant]
+id = 8180
+examine = "A plant, A leafy shrub"
+
+[small_fern]
+id = 8181
+examine = "A plant."
+
+[fern]
+clone = "small_fern"
+id = 8182
+
+[dock_leaf]
+clone = "small_fern"
+id = 8183
+
+[thistle]
+clone = "small_fern"
+id = 8184
+
+[reeds]
+clone = "small_fern"
+id = 8185
+
+[fern_2]
+clone = "small_fern"
+id = 8186
+
+[bush]
+clone = "small_fern"
+id = 8187
+
+[tall_plant]
+clone = "small_fern"
+id = 8188
+
+[short_plant]
+clone = "small_fern"
+id = 8189
+
+[large_leaf_plant]
+clone = "small_fern"
+id = 8190
+
+[huge_plant]
+clone = "small_fern"
+id = 8191
+
+[gazebo]
+id = 8192
+examine = "Run for it! It's a gazebo!"
+
+[small_fountain]
+id = 8193
+examine = "Like a tiny private waterfall."
+
+[large_fountain]
+id = 8194
+examine = "A sculpture of flowing water."
+
+[posh_fountain]
+id = 8195
+examine = "Two little fishes forever spew water into the pond."
+
+[boundary_stones]
+id = 8196
+examine = "They mark a square."
+
+[wooden_fence]
+id = 8197
+examine = "Won't stop a charging rhinoceros!"
+
+[stone_wall]
+id = 8198
+examine = "Very rural."
+
+[iron_railings]
+id = 8199
+examine = "A little bleak."
+
+[picket_fence]
+id = 8200
+examine = "Marks the boundary of the garden."
+
+[garden_fence]
+id = 8201
+examine = "Just like in Varrock palace!"
+
+[marble_wall]
+id = 8202
+examine = "Very posh!"
+
+[thorny_hedge]
+id = 8203
+weight = 10.0
+examine = "You can plant this in your garden."
+
+[nice_hedge]
+clone = "thorny_hedge"
+id = 8204
+
+[small_box_hedge]
+clone = "thorny_hedge"
+id = 8205
+
+[topiary_hedge]
+clone = "thorny_hedge"
+id = 8206
+
+[fancy_hedge]
+clone = "thorny_hedge"
+id = 8207
+
+[tall_fancy_hedge]
+clone = "thorny_hedge"
+id = 8208
+
+[tall_box_hedge]
+clone = "thorny_hedge"
+id = 8209
+
+[rosemary_2]
+id = 8210
+weight = 0.028
+examine = "Some rosemary."
+
+[daffodils]
+id = 8211
+examine = "Lonely as a cloud."
+
+[bluebells]
+id = 8212
+examine = "The bluebells are coming!"
+
+[sunflower]
+id = 8213
+examine = "Great big sunny flowers."
+
+[marigolds_2]
+id = 8214
+limit = 1000
+weight = 0.028
+examine = "A bunch of marigolds."
+
+[roses]
+id = 8215
+examine = "They smell lovely."
+
+[firepit]
+id = 8216
+examine = "A basic cooking fire."
+
+[firepit_with_hook]
+id = 8217
+examine = "A cooking fire."
+
+[firepit_with_pot]
+id = 8218
+examine = "A cooking fire with a pot."
+
+[small_oven]
+id = 8219
+examine = "You can cook bread here."
+
+[large_oven]
+id = 8220
+examine = "You can cook pizza here"
+
+[steel_range]
+id = 8221
+examine = "You can cook here."
+
+[fancy_range]
+clone = "steel_range"
+id = 8222
+
+[wooden_shelves_1]
+id = 8223
+examine = "Shelves full of kitchen utensils."
+
+[wooden_shelves_2]
+clone = "wooden_shelves_1"
+id = 8224
+
+[wooden_shelves_3]
+id = 8225
+examine = "Shelves full of plates and tea cups."
+
+[oak_shelves_1]
+clone = "wooden_shelves_1"
+id = 8226
+
+[oak_shelves_2]
+clone = "wooden_shelves_1"
+id = 8227
+
+[teak_shelves_1]
+clone = "wooden_shelves_1"
+id = 8228
+
+[teak_shelves_2]
+clone = "wooden_shelves_1"
+id = 8229
+
+[pump_and_drain]
+id = 8230
+examine = "Running water in your own home! Luxury!"
+
+[pump_and_tub]
+clone = "pump_and_drain"
+id = 8231
+
+[sink]
+clone = "pump_and_drain"
+id = 8232
+
+[wooden_larder]
+id = 8233
+examine = "A wooden larder to keep food cool."
+
+[oak_larder]
+id = 8234
+examine = "An oak larder to keep food cool."
+
+[teak_larder]
+id = 8235
+examine = "A nicely carved teak larder to keep food cool."
+
+[cat_blanket]
+id = 8236
+examine = "A place for your pet to sleep"
+
+[cat_basket]
+id = 8237
+examine = "Your pet would love to sleep here."
+
+[cushioned_basket]
+id = 8238
+examine = "A luxurious sleeping place for your pet."
+
+[beer_barrel]
+id = 8239
+weight = 1.0
+examine = "A ready-to-assemble beer barrel."
+
+[cider_barrel]
+id = 8240
+weight = 1.0
+examine = "A ready-to-assemble cider barrel."
+
+[asgarnian_ale_barrel]
+id = 8241
+examine = "An oak barrel of Asgarnian ale."
+
+[greenmans_ale_barrel]
+id = 8242
+examine = "An oak barrel of Greenman's ale."
+
+[dragon_bitter_barrel]
+id = 8243
+examine = "An oak barrel of Dragon Bitter."
+
+[chefs_delight_barrel]
+id = 8244
+examine = "An oak barrel of Chef's Delight."
+
+[wood_kitchen_table]
+id = 8246
+weight = 1.0
+examine = "A ready-to-assemble wooden kitchen table."
+
+[oak_kitchen_table]
+id = 8247
+weight = 1.0
+examine = "A ready-to-assemble oak kitchen table."
+
+[teak_kitchen_table]
+id = 8248
+weight = 1.0
+examine = "A ready-to-assemble teak kitchen table."
+
+[oak_staircase]
+id = 8249
+examine = "I can climb these stairs."
+
+[oak_staircase_2]
+clone = "oak_staircase"
+id = 8250
+
+[oak_staircase_3]
+clone = "oak_staircase"
+id = 8251
+
+[teak_staircase]
+clone = "oak_staircase"
+id = 8252
+
+[teak_staircase_2]
+clone = "oak_staircase"
+id = 8253
+
+[teak_staircase_3]
+clone = "oak_staircase"
+id = 8254
+
+[marble_staircase]
+id = 8255
+
+[marble_staircase_2]
+id = 8256
+
+[marble_staircase_3]
+id = 8257
+
+[spiral_staircase]
+id = 8258
+examine = "I can climb up or go down these stairs."
+
+[marble_spiral]
+id = 8259
+
+[crawling_hand_3]
+clone = "crawling_hand"
+id = 8260
+
+[cockatrice_head_2]
+clone = "crawling_hand"
+id = 8261
+
+[basilisk_head_2]
+clone = "crawling_hand"
+id = 8262
+
+[kurask_head_2]
+clone = "crawling_hand"
+id = 8263
+
+[abyssal_head_2]
+clone = "crawling_hand"
+id = 8264
+
+[kbd_heads]
+id = 8265
+destroy = "No"
+examine = "I should get it stuffed!"
+
+[kq_head]
+id = 8266
+examine = "I should get it stuffed!"
+
+[mounted_bass]
+id = 8267
+examine = "A trophy of a master fisher."
+
+[mounted_swordfish]
+clone = "mounted_bass"
+id = 8268
+
+[mounted_shark]
+clone = "mounted_bass"
+id = 8269
+
+[mithril_armour]
+id = 8270
+examine = "Armour crafted by a master smith."
+
+[adamant_armour]
+clone = "mithril_armour"
+id = 8271
+
+[rune_armour]
+id = 8272
+examine = "Only the finest smiths can work runite."
+
+[basic_decorative_armour]
+id = 8273
+examine = "A basic decorative ."
+
+[detailed_decorative_armour]
+id = 8274
+examine = "Varies between item - A[item name] with finely detailed decoration"
+
+[intricate_decorative_armour]
+id = 8275
+
+[rune_case_1]
+id = 8276
+examine = "Elemental runes made by a skilled runecrafter."
+
+[rune_case_2]
+id = 8277
+examine = "Body, Cosmic, Chaos and Nature runes made by a skilled runecrafter."
+
+[silverlight_2]
+id = 8279
+tradeable = false
+weight = 1.814
+destroy = "You can obtain it from Gideon Bede in the Saradominist church in north-east Varrock. You can also reclaim it from the quest storage chest."
+examine = "The magical sword Silverlight."
+kept = "Reclaim"
+
+[excalibur_2]
+id = 8280
+tradeable = false
+weight = 2.267
+examine = "This used to belong to King Arthur."
+kept = "Reclaim"
+
+[darklight_2]
+id = 8281
+tradeable = false
+weight = 1.814
+destroy = "You can reclaim it from Gideon Bede in the Saradomin churchist"
+examine = "The magical sword 'Silverlight', enhanced with the blood of Agrith Naar."
+kept = "Reclaim"
+
+[anti_dragon_shield_mounted]
+id = 8282
+limit = 100
+weight = 5.443
+examine = "This provides partial protection from dragonbreath attacks."
+
+[amulet_of_glory_mounted]
+id = 8283
+limit = 100
+weight = 0.01
+examine = "A very powerful dragonstone amulet."
+
+[cape_of_legends_2]
+id = 8284
+tradeable = false
+weight = 1.814
+examine = "The cape worn by members of the Legends' Guild."
+kept = "Wilderness"
+
+[king_arthur]
+id = 8285
+
+[elena]
+id = 8286
+
+[giant_dwarf]
+id = 8287
+examine = "A painting of the statue of King Alvis of Keldagrim."
+
+[miscellanians]
+id = 8288
+examine = "A portrait of Prince Brand and Princess Astrid of Miscellania."
+
+[lumbridge]
+id = 8289
+
+[the_desert]
+id = 8290
+examine = "The Deserts of Kharidian."
+
+[morytania]
+id = 8291
+
+[karamja]
+id = 8292
+
+[isafdar]
+id = 8293
+
+[small_map_2]
+clone = "small_map"
+id = 8294
+
+[medium_map_2]
+clone = "medium_map"
+id = 8295
+
+[large_map_2]
+clone = "large_map"
+id = 8296
+
+[oak_cage]
+id = 8297
+examine = "A cage made a of sturdy oak."
+
+[oak_and_steel_cage]
+id = 8298
+examine = "Oak and steel bars to keep prisoners in."
+
+[steel_cage]
+id = 8299
+examine = "Keeps your victims in place."
+
+[spiked_cage]
+id = 8300
+examine = "Steel bars with spikes!"
+
+[bone_cage]
+id = 8301
+examine = "A cage of bones. How delightfully macabre."
+
+[spikes]
+id = 8302
+tradeable = false
+weight = 0.001
+examine = "I can attach these to poisoned yellow eggs."
+kept = "Reclaim"
+
+[tentacle_pool]
+id = 8303
+examine = "Yuck!"
+
+[flame_pit]
+id = 8304
+examine = "Not very pleasant."
+
+[rocnar]
+id = 8305
+
+[oak_ladder]
+id = 8306
+examine = "An oak ladder."
+
+[teak_ladder]
+id = 8307
+
+[mahogany_ladder]
+id = 8308
+examine = "A mahogany ladder."
+
+[crude_wooden_chair]
+id = 8309
+weight = 1.0
+examine = "A ready-to-assemble crude chair."
+
+[wooden_chair]
+id = 8310
+weight = 1.0
+examine = "A ready-to-assemble wooden chair."
+
+[rocking_chair]
+id = 8311
+weight = 1.0
+examine = "A ready-to-assemble rocking chair."
+
+[oak_chair]
+id = 8312
+weight = 1.0
+examine = "A ready-to-assemble oak chair."
+
+[oak_armchair]
+id = 8313
+weight = 1.0
+examine = "A ready-to-assemble oak armchair."
+
+[teak_armchair]
+id = 8314
+weight = 1.0
+examine = "A ready-to-assemble teak armchair."
+
+[mahogany_armchair]
+id = 8315
+weight = 1.0
+examine = "A ready-to-assemble mahogany armchair."
+
+[brown_rug]
+id = 8316
+examine = "It's an ugly rug, but better than a bare floor."
+
+[rug]
+id = 8317
+examine = "The handkerchief of giants!"
+
+[opulent_rug]
+id = 8318
+examine = "An opulent rug woven with gold leaf."
+
+[wooden_bookcase]
+id = 8319
+weight = 1.0
+examine = "A ready-to-assemble wooden bookcase."
+
+[oak_bookcase]
+id = 8320
+weight = 1.0
+examine = "A ready-to-assemble oak bookcase."
+
+[mahogany_bkcase]
+id = 8321
+examine = "A good source of books!"
+
+[torn_curtains]
+id = 8322
+examine = "The curtain is open."
+
+[curtains]
+clone = "torn_curtains"
+id = 8323
+
+[opulent_curtains]
+clone = "torn_curtains"
+id = 8324
+
+[clay_fireplace]
+id = 8325
+examine = "You can build a fire here."
+
+[stone_fireplace]
+id = 8326
+examine = "You can light a fire here."
+
+[marble_fireplace]
+clone = "stone_fireplace"
+id = 8327
+
+[teak_portal]
+id = 8328
+examine = "A gateway to . or An un-directed teak portal frame."
+
+[mahogany_portal]
+id = 8329
+examine = "A gateway to ."
+
+[marble_portal]
+id = 8330
+examine = "A gateway to . or An un-directed marble portal frame."
+
+[teleport_focus]
+id = 8331
+examine = "It controls the portals."
+
+[greater_focus]
+clone = "teleport_focus"
+id = 8332
+
+[scrying_pool]
+id = 8333
+examine = "It harnesses the power of something or other!"
+
+[oak_lectern]
+id = 8334
+examine = "A book of arcane knowledge."
+
+[eagle_lectern]
+id = 8335
+examine = "A book full of arcane knowledge."
+
+[demon_lectern]
+clone = "eagle_lectern"
+id = 8336
+
+[teak_eagle_lectern]
+clone = "eagle_lectern"
+id = 8337
+
+[teak_demon_lectern]
+id = 8338
+examine = "A book full of arcane knowledge"
+
+[mahogany_eagle]
+clone = "eagle_lectern"
+id = 8339
+
+[mahogany_demon]
+id = 8340
+examine = "A book full of arcane knowledge..."
+
+[ornamental_globe]
+id = 8342
+examine = "A wooden planet of your very own."
+
+[lunar_globe]
+clone = "ornamental_globe"
+id = 8343
+
+[celestial_globe]
+clone = "ornamental_globe"
+id = 8344
+
+[armillary_sphere]
+clone = "ornamental_globe"
+id = 8345
+
+[small_orrery]
+id = 8346
+examine = "A wooden solar system of your very own."
+
+[large_orrery]
+clone = "small_orrery"
+id = 8347
+
+[wooden_telescope]
+id = 8348
+examine = "Used for examining heavenly bodies."
+
+[teak_telescope]
+id = 8349
+examine = "Useful for observing heavenly bodies."
+
+[mahogany_scope]
+id = 8350
+examine = "Used for observing heavenly bodies."
+
+[crystal_ball]
+id = 8351
+examine = "Use an elemental staff on it."
+
+[elemental_sphere]
+clone = "crystal_ball"
+id = 8352
+
+[crystal_of_power]
+clone = "crystal_ball"
+id = 8353
+
+[alchemical_chart]
+id = 8354
+examine = "If there's a recipe for the philosopher's stone there, you can't see it."
+
+[astronomical_chart]
+id = 8355
+examine = "If you want to look at the stars during the daytime, you can see them here!"
+
+[infernal_chart]
+id = 8356
+examine = "A spotter's guide to demons."
+
+[oak_throne]
+id = 8357
+examine = "Sit here and rule all you survey."
+
+[teak_throne]
+clone = "oak_throne"
+id = 8358
+
+[mahogany_throne]
+clone = "oak_throne"
+id = 8359
+
+[gilded_throne]
+clone = "oak_throne"
+id = 8360
+
+[skeleton_throne]
+clone = "oak_throne"
+id = 8361
+
+[crystal_throne]
+id = 8362
+examine = "A crystal Throne."
+
+[demonic_throne]
+clone = "oak_throne"
+id = 8363
+
+[oak_lever]
+id = 8364
+examine = "Pull this to activate your machinery of doom!"
+
+[teak_lever]
+clone = "oak_lever"
+id = 8365
+
+[mahogany_lever]
+clone = "oak_lever"
+id = 8366
+
+[trapdoor]
+id = 8367
+examine = "What could happen on this spot?"
+
+[trapdoor_2]
+clone = "trapdoor"
+id = 8368
+
+[trapdoor_3]
+clone = "trapdoor"
+id = 8369
+
+[floor_decoration]
+clone = "trapdoor"
+id = 8370
+
+[steel_cage_2]
+clone = "steel_cage"
+id = 8371
+
+[trapdoor_4]
+clone = "trapdoor"
+id = 8372
+
+[lesser_magic_cage]
+id = 8373
+examine = "Keeps your victims trapped."
+
+[greater_magic_cage]
+clone = "lesser_magic_cage"
+id = 8374
+
+[wooden_workbench]
+id = 8375
+examine = "A workbench for making and repairing bows."
+
+[oak_workbench]
+id = 8376
+examine = "You can make furniture here."
+
+[steel_framed_bench]
+clone = "oak_workbench"
+id = 8377
+
+[bench_with_vice]
+clone = "oak_workbench"
+id = 8378
+
+[bench_with_lathe]
+clone = "oak_workbench"
+id = 8379
+
+[crafting_table_1]
+id = 8380
+examine = "You can do delicate crafting here."
+
+[crafting_table_2]
+clone = "crafting_table_1"
+id = 8381
+
+[crafting_table_3]
+clone = "crafting_table_1"
+id = 8382
+
+[crafting_table_4]
+clone = "crafting_table_1"
+id = 8383
+
+[tool_store_1]
+id = 8384
+examine = "Hammer, chisel, saw and shears."
+
+[tool_store_2]
+id = 8385
+examine = "Bucket, spade, tinderbox and knife."
+
+[tool_store_3]
+id = 8386
+examine = "Needle, apron and glassblowing pipe."
+
+[tool_store_4]
+id = 8387
+examine = "A selection of jewellery moulds."
+
+[tool_store_5]
+id = 8388
+examine = "Farming tools."
+
+[repair_bench]
+id = 8389
+examine = "You can repair broken staffs and arrows here."
+
+[whetstone]
+id = 8390
+destroy = "You must manufacture another one at an Invention workbench."
+examine = "Used to repair items which are in a degraded or broken state."
+
+[armour_stand]
+id = 8391
+examine = "You can repair armour here."
+
+[pluming_stand]
+id = 8392
+examine = "You can add a plume to your helmet here."
+
+[shield_easel]
+id = 8393
+examine = "You can paint your logo onto your heraldic shield here."
+
+[banner_easel]
+id = 8394
+examine = "You can make a banner with your logo on here."
+
+[parlour]
+id = 8395
+
+[kitchen]
+id = 8396
+
+[dining_room]
+id = 8397
+
+[bedroom]
+id = 8398
+
+[games_room]
+id = 8399
+
+[combat_room]
+id = 8400
+
+[hall]
+id = 8401
+
+[hall_2]
+id = 8402
+
+[hall_3]
+id = 8403
+
+[hall_4]
+id = 8404
+
+[chapel]
+id = 8405
+
+[workshop]
+id = 8406
+
+[study]
+id = 8407
+
+[portal_chamber]
+id = 8408
+
+[throne_room]
+id = 8409
+
+[oubliette]
+id = 8410
+
+[treasure_room]
+id = 8414
+
+[garden]
+id = 8415
+
+[formal_garden]
+id = 8416
+
+[bagged_dead_tree]
+clone = "thorny_hedge"
+id = 8417
+
+[bagged_dead_tree_noted]
+id = 8418
+
+[bagged_nice_tree]
+clone = "thorny_hedge"
+id = 8419
+
+[bagged_nice_tree_noted]
+id = 8420
+
+[bagged_oak_tree]
+clone = "thorny_hedge"
+id = 8421
+
+[bagged_oak_tree_noted]
+id = 8422
+
+[bagged_willow_tree]
+clone = "thorny_hedge"
+id = 8423
+
+[bagged_willow_tree_noted]
+id = 8424
+
+[bagged_maple_tree]
+clone = "thorny_hedge"
+id = 8425
+
+[bagged_maple_tree_noted]
+id = 8426
+
+[bagged_yew_tree]
+clone = "thorny_hedge"
+id = 8427
+
+[bagged_yew_tree_noted]
+id = 8428
+
+[bagged_magic_tree]
+clone = "thorny_hedge"
+id = 8429
+
+[bagged_magic_tree_noted]
+id = 8430
+
+[bagged_plant_1]
+id = 8431
+price = 1258
+limit = 5000
+weight = 10.0
+examine = "You can plant this in your garden."
+
+[bagged_plant_1_noted]
+id = 8432
+
+[bagged_plant_2]
+clone = "thorny_hedge"
+id = 8433
+
+[bagged_plant_2_noted]
+id = 8434
+
+[bagged_plant_3]
+clone = "thorny_hedge"
+id = 8435
+
+[bagged_plant_3_noted]
+id = 8436
+
+[thorny_hedge_bagged]
+clone = "thorny_hedge"
+id = 8437
+
+[thorny_hedge_bagged_noted]
+id = 8438
+
+[nice_hedge_bagged]
+clone = "thorny_hedge"
+id = 8439
+
+[nice_hedge_bagged_noted]
+id = 8440
+
+[small_box_hedge_bagged]
+clone = "thorny_hedge"
+id = 8441
+
+[small_box_hedge_bagged_noted]
+id = 8442
+
+[topiary_hedge_bagged]
+clone = "thorny_hedge"
+id = 8443
+
+[topiary_hedge_bagged_noted]
+id = 8444
+
+[fancy_hedge_bagged]
+clone = "thorny_hedge"
+id = 8445
+
+[fancy_hedge_bagged_noted]
+id = 8446
+
+[tall_fancy_hedge_bagged]
+clone = "thorny_hedge"
+id = 8447
+
+[tall_fancy_hedge_bagged_noted]
+id = 8448
+
+[tall_box_hedge_bagged]
+clone = "thorny_hedge"
+id = 8449
+
+[tall_box_hedge_bagged_noted]
+id = 8450
+
+[bagged_rosemary]
+clone = "thorny_hedge"
+id = 8451
+
+[bagged_rosemary_noted]
+id = 8452
+
+[bagged_daffodils]
+clone = "thorny_hedge"
+id = 8453
+
+[bagged_daffodils_noted]
+id = 8454
+
+[bagged_bluebells]
+clone = "thorny_hedge"
+id = 8455
+
+[bagged_bluebells_noted]
+id = 8456
+
+[bagged_sunflower]
+clone = "thorny_hedge"
+id = 8457
+
+[bagged_sunflower_noted]
+id = 8458
+
+[bagged_marigolds]
+clone = "thorny_hedge"
+id = 8459
+
+[bagged_marigolds_noted]
+id = 8460
+
+[bagged_roses]
+clone = "thorny_hedge"
+id = 8461
+
+[bagged_roses_noted]
+id = 8462
+
+[construction_guide]
+id = 8463
+tradeable = false
+weight = 1.0
+examine = "How to build a house."
+kept = "Reclaim"
+
+[rune_heraldic_helm_arrav]
+id = 8464
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent the symbol of Arrav."
+kept = "Reclaim"
+
+[rune_heraldic_helm_asgarnia]
+id = 8466
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent Asgarnia."
+kept = "Reclaim"
+
+[rune_heraldic_helm_dorgeshuun]
+id = 8468
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent the Dorgeshuun brooch."
+kept = "Reclaim"
+
+[rune_heraldic_helm_dragon]
+id = 8470
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent a dragon."
+kept = "Reclaim"
+
+[rune_heraldic_helm_fairy]
+id = 8472
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent a fairy."
+kept = "Reclaim"
+
+[rune_heraldic_helm_guthix]
+id = 8474
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent Guthix."
+kept = "Reclaim"
+
+[rune_heraldic_helm_ham]
+id = 8476
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent the HAM cult."
+kept = "Reclaim"
+
+[rune_heraldic_helm_horse]
+id = 8478
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent the mythical 'horse'."
+kept = "Reclaim"
+
+[rune_heraldic_helm_jogre]
+id = 8480
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent a Jogre."
+kept = "Reclaim"
+
+[rune_heraldic_helm_kandarin]
+id = 8482
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent Kandarin."
+kept = "Reclaim"
+
+[rune_heraldic_helm_misthalin]
+id = 8484
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent Misthalin."
+kept = "Reclaim"
+
+[rune_heraldic_helm_money]
+id = 8486
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent money."
+kept = "Reclaim"
+
+[rune_heraldic_helm_saradomin]
+id = 8488
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent Saradomin."
+kept = "Reclaim"
+
+[rune_heraldic_helm_skull]
+id = 8490
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent a skull."
+kept = "Reclaim"
+
+[rune_heraldic_helm_varrock]
+id = 8492
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent Varrock."
+kept = "Reclaim"
+
+[rune_heraldic_helm_zamorak]
+id = 8494
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent Zamorak."
+kept = "Reclaim"
+
+[crude_wooden_chair_flatpack]
+id = 8496
+price = 1
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble crude chair."
+
+[crude_wooden_chair_flatpack_noted]
+id = 8497
+
+[wooden_chair_flatpack]
+id = 8498
+price = 57
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble wooden chair."
+
+[wooden_chair_flatpack_noted]
+id = 8499
+
+[rocking_chair_flatpack]
+id = 8500
+price = 1
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble rocking chair."
+
+[rocking_chair_flatpack_noted]
+id = 8501
+
+[oak_chair_flatpack]
+id = 8502
+price = 2
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak chair."
+
+[oak_chair_flatpack_noted]
+id = 8503
+
+[oak_armchair_flatpack]
+id = 8504
+price = 1
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak armchair."
+
+[oak_armchair_flatpack_noted]
+id = 8505
+
+[teak_armchair_flatpack]
+id = 8506
+price = 1
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble teak armchair."
+
+[teak_armchair_flatpack_noted]
+id = 8507
+
+[mahogany_armchair_flatpack]
+id = 8508
+price = 6
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble mahogany armchair."
+
+[mahogany_armchair_flatpack_noted]
+id = 8509
+
+[wooden_bookcase_flatpack]
+id = 8510
+price = 1
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble wooden bookcase."
+
+[wooden_bookcase_flatpack_noted]
+id = 8511
+
+[oak_bookcase_flatpack]
+id = 8512
+price = 1
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak bookcase."
+
+[oak_bookcase_flatpack_noted]
+id = 8513
+
+[mahogany_bookcase_flatpack]
+id = 8514
+price = 31
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble mahogany bookcase."
+
+[mahogany_bookcase_flatpack_noted]
+id = 8515
+
+[beer_barrel_flatpack]
+id = 8516
+price = 1
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble beer barrel."
+
+[beer_barrel_flatpack_noted]
+id = 8517
+
+[cider_barrel_flatpack]
+id = 8518
+price = 16600
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble cider barrel."
+
+[cider_barrel_flatpack_noted]
+id = 8519
+
+[asgarnian_ale_barrel_flatpack]
+id = 8520
+price = 4613
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble barrel of Asgarnian Ale."
+
+[asgarnian_ale_barrel_flatpack_noted]
+id = 8521
+
+[greenmans_ale_barrel_flatpack]
+id = 8522
+price = 10600
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble barrel of Greenman's Ale."
+
+[greenmans_ale_barrel_flatpack_noted]
+id = 8523
+
+[dragon_bitter_barrel_flatpack]
+id = 8524
+price = 10700
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble barrel of Dragon Bitter."
+
+[dragon_bitter_barrel_flatpack_noted]
+id = 8525
+
+[chefs_delight_barrel_flatpack]
+id = 8526
+price = 55100
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble barrel of Chef's Delight."
+
+[chefs_delight_barrel_flatpack_noted]
+id = 8527
+
+[wood_kitchen_table_flatpack]
+id = 8528
+price = 1
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble wooden kitchen table."
+
+[wood_kitchen_table_flatpack_noted]
+id = 8529
+
+[oak_kitchen_table_flatpack]
+id = 8530
+price = 1
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak kitchen table."
+
+[oak_kitchen_table_flatpack_noted]
+id = 8531
+
+[teak_kitchen_table_flatpack]
+id = 8532
+price = 1
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble teak kitchen table."
+
+[teak_kitchen_table_flatpack_noted]
+id = 8533
+
+[oak_lectern_2]
+clone = "oak_lectern"
+id = 8534
+
+[oak_lectern_2_noted]
+id = 8535
+
+[eagle_lectern_2]
+clone = "eagle_lectern"
+id = 8536
+
+[eagle_lectern_2_noted]
+id = 8537
+
+[demon_lectern_2]
+clone = "eagle_lectern"
+id = 8538
+
+[demon_lectern_2_noted]
+id = 8539
+
+[teak_eagle_lectern_2]
+clone = "eagle_lectern"
+id = 8540
+
+[teak_eagle_lectern_2_noted]
+id = 8541
+
+[teak_demon_lectern_2]
+clone = "teak_demon_lectern"
+id = 8542
+
+[teak_demon_lectern_2_noted]
+id = 8543
+
+[mahogany_eagle_2]
+clone = "eagle_lectern"
+id = 8544
+
+[mahogany_eagle_2_noted]
+id = 8545
+
+[mahogany_demon_2]
+clone = "mahogany_demon"
+id = 8546
+
+[mahogany_demon_2_noted]
+id = 8547
+
+[wood_dining_table_flatpack]
+id = 8548
+price = 1
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble wooden dining table."
+
+[wood_dining_table_flatpack_noted]
+id = 8549
+
+[oak_dining_table_flatpack]
+id = 8550
+price = 1
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak dining table."
+
+[oak_dining_table_flatpack_noted]
+id = 8551
+
+[carved_oak_table_flatpack]
+id = 8552
+price = 1
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble carved oak dining table."
+
+[carved_oak_table_flatpack_noted]
+id = 8553
+
+[teak_table_flatpack]
+id = 8554
+price = 2
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble teak dining table."
+
+[teak_table_flatpack_noted]
+id = 8555
+
+[carved_teak_table_flatpack]
+id = 8556
+price = 234
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble carved teak dining table."
+
+[carved_teak_table_flatpack_noted]
+id = 8557
+
+[mahogany_table_flatpack]
+id = 8558
+price = 549
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble mahogany dining table."
+
+[mahogany_table_flatpack_noted]
+id = 8559
+
+[opulent_table_flatpack]
+id = 8560
+price = 378600
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble opulent dining table."
+
+[opulent_table_flatpack_noted]
+id = 8561
+
+[wooden_bench_flatpack]
+id = 8562
+price = 18
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble wooden dining bench."
+
+[wooden_bench_flatpack_noted]
+id = 8563
+
+[oak_bench_flatpack]
+id = 8564
+price = 144
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak dining bench."
+
+[oak_bench_flatpack_noted]
+id = 8565
+
+[carved_oak_bench_flatpack]
+id = 8566
+price = 1
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble carved oak dining bench."
+
+[carved_oak_bench_flatpack_noted]
+id = 8567
+
+[teak_dining_bench_flatpack]
+id = 8568
+price = 26
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble teak dining bench."
+
+[teak_dining_bench_flatpack_noted]
+id = 8569
+
+[carved_teak_bench_flatpack]
+id = 8570
+price = 2
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble carved teak dining bench."
+
+[carved_teak_bench_flatpack_noted]
+id = 8571
+
+[mahogany_bench_flatpack]
+id = 8572
+price = 103
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble mahogany dining bench."
+
+[mahogany_bench_flatpack_noted]
+id = 8573
+
+[gilded_bench_flatpack]
+id = 8574
+price = 500500
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble gilded mahogany dining bench."
+
+[gilded_bench_flatpack_noted]
+id = 8575
+
+[wooden_bed_flatpack]
+id = 8576
+price = 2028
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble wooden bed."
+
+[wooden_bed_flatpack_noted]
+id = 8577
+
+[oak_bed_flatpack]
+id = 8578
+price = 1920
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak bed."
+
+[oak_bed_flatpack_noted]
+id = 8579
+
+[large_oak_bed_flatpack]
+id = 8580
+price = 1570
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble large oak bed."
+
+[large_oak_bed_flatpack_noted]
+id = 8581
+
+[teak_bed_flatpack]
+id = 8582
+price = 1561
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble teak bed."
+
+[teak_bed_flatpack_noted]
+id = 8583
+
+[large_teak_bed_flatpack]
+id = 8584
+price = 2223
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble large teak bed."
+
+[large_teak_bed_flatpack_noted]
+id = 8585
+
+[4_poster_flatpack]
+id = 8586
+price = 1623
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble four-poster bed."
+
+[4_poster_flatpack_noted]
+id = 8587
+
+[gilded_4_poster_flatpack]
+id = 8588
+price = 304000
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble gilded four-poster bed."
+
+[gilded_4_poster_flatpack_noted]
+id = 8589
+
+[oak_clock_flatpack]
+id = 8590
+price = 452
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak clock."
+
+[oak_clock_flatpack_noted]
+id = 8591
+
+[teak_clock_flatpack]
+id = 8592
+price = 707
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble teak clock."
+
+[teak_clock_flatpack_noted]
+id = 8593
+
+[gilded_clock_flatpack]
+id = 8594
+price = 151100
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble gilded mahogany clock."
+
+[gilded_clock_flatpack_noted]
+id = 8595
+
+[shaving_stand_flatpack]
+id = 8596
+price = 528
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble shaving stand."
+
+[shaving_stand_flatpack_noted]
+id = 8597
+
+[oak_shaving_stand_flatpack]
+id = 8598
+price = 474
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak shaving stand."
+
+[oak_shaving_stand_flatpack_noted]
+id = 8599
+
+[oak_dresser_flatpack]
+id = 8600
+price = 158
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak dresser."
+
+[oak_dresser_flatpack_noted]
+id = 8601
+
+[teak_dresser_flatpack]
+id = 8602
+price = 519
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble teak dresser."
+
+[teak_dresser_flatpack_noted]
+id = 8603
+
+[fancy_teak_dresser_flatpack]
+id = 8604
+price = 502
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble fancy teak dresser."
+
+[fancy_teak_dresser_flatpack_noted]
+id = 8605
+
+[mahogany_dresser_flatpack]
+id = 8606
+price = 418
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble mahogany dresser."
+
+[mahogany_dresser_flatpack_noted]
+id = 8607
+
+[gilded_dresser_flatpack]
+id = 8608
+price = 126100
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble gilded dresser."
+
+[gilded_dresser_flatpack_noted]
+id = 8609
+
+[shoe_box_flatpack]
+id = 8610
+price = 25
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble shoe box."
+
+[shoe_box_flatpack_noted]
+id = 8611
+
+[oak_drawers_flatpack]
+id = 8612
+price = 53
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak chest of drawers."
+
+[oak_drawers_flatpack_noted]
+id = 8613
+
+[oak_wardrobe_flatpack]
+id = 8614
+price = 1
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak bedroom wardrobe."
+
+[oak_wardrobe_flatpack_noted]
+id = 8615
+
+[teak_drawers_flatpack]
+id = 8616
+price = 158
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble teak chest of drawers."
+
+[teak_drawers_flatpack_noted]
+id = 8617
+
+[teak_wardrobe_flatpack]
+id = 8618
+price = 17
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble teak bedroom wardrobe."
+
+[teak_wardrobe_flatpack_noted]
+id = 8619
+
+[mahogany_wardrobe_flatpack]
+id = 8620
+price = 100
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble mahogany bedroom wardrobe."
+
+[mahogany_wardrobe_flatpack_noted]
+id = 8621
+
+[gilded_wardrobe_flatpack]
+id = 8622
+price = 131300
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble gilded mahogany bedroom wardrobe."
+
+[gilded_wardrobe_flatpack_noted]
+id = 8623
+
+[crystal_ball_2]
+clone = "crystal_ball"
+id = 8624
+
+[crystal_ball_2_noted]
+id = 8625
+
+[elemental_sphere_2]
+clone = "crystal_ball"
+id = 8626
+
+[elemental_sphere_2_noted]
+id = 8627
+
+[crystal_of_power_2]
+clone = "crystal_ball"
+id = 8628
+
+[crystal_of_power_2_noted]
+id = 8629
+
+[ornamental_globe_2]
+clone = "ornamental_globe"
+id = 8632
+
+[ornamental_globe_2_noted]
+id = 8633
+
+[lunar_globe_2]
+clone = "ornamental_globe"
+id = 8634
+
+[lunar_globe_2_noted]
+id = 8635
+
+[celestial_globe_2]
+clone = "ornamental_globe"
+id = 8636
+
+[celestial_globe_2_noted]
+id = 8637
+
+[armillary_sphere_2]
+clone = "ornamental_globe"
+id = 8638
+
+[armillary_sphere_2_noted]
+id = 8639
+
+[small_orrery_2]
+clone = "small_orrery"
+id = 8640
+
+[small_orrery_2_noted]
+id = 8641
+
+[large_orrery_2]
+clone = "small_orrery"
+id = 8642
+
+[large_orrery_2_noted]
+id = 8643
+
+[wooden_telescope_2]
+clone = "wooden_telescope"
+id = 8644
+
+[wooden_telescope_2_noted]
+id = 8645
+
+[teak_telescope_2]
+clone = "teak_telescope"
+id = 8646
+
+[teak_telescope_2_noted]
+id = 8647
+
+[mahogany_scope_2]
+clone = "mahogany_scope"
+id = 8648
+
+[mahogany_scope_2_noted]
+id = 8649
+
+[banner_arrav]
+id = 8650
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+examine = "A banner with the symbol of Arrav."
+kept = "Reclaim"
+
+[banner_asgarnia]
+id = 8652
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+examine = "A banner with the symbol of Asgarnia."
+kept = "Reclaim"
+
+[banner_dorgeshuun]
+id = 8654
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+examine = "A banner with a picture of the Dorgeshuun brooch."
+kept = "Reclaim"
+
+[banner_dragon]
+id = 8656
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+examine = "A banner with a picture of a dragon."
+kept = "Reclaim"
+
+[banner_fairy]
+id = 8658
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+examine = "A banner with a picture of a fairy."
+kept = "Reclaim"
+
+[banner_guthix]
+id = 8660
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+examine = "A banner with the symbol of Guthix."
+kept = "Reclaim"
+
+[banner_ham]
+id = 8662
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+examine = "A banner with the symbol of the HAM cult."
+kept = "Reclaim"
+
+[banner_horse]
+id = 8664
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+examine = "A banner with a picture of the mythical 'horse'."
+kept = "Reclaim"
+
+[banner_jogre]
+id = 8666
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+examine = "A banner with a picture of a Jogre."
+kept = "Reclaim"
+
+[banner_kandarin]
+id = 8668
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+examine = "A banner with the symbol of Kandarin."
+kept = "Reclaim"
+
+[banner_misthalin]
+id = 8670
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+examine = "A banner with the symbol of Misthalin."
+kept = "Reclaim"
+
+[banner_money]
+id = 8672
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+examine = "A banner with a picture of a money-bag."
+kept = "Reclaim"
+
+[banner_saradomin]
+id = 8674
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+examine = "A banner with the symbol of Saradomin."
+kept = "Reclaim"
+
+[banner_skull]
+id = 8676
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+examine = "A banner with a picture of a skull."
+kept = "Reclaim"
+
+[banner_varrock]
+id = 8678
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+examine = "A banner with the symbol of Varrock."
+kept = "Reclaim"
+
+[banner_zamorak]
+id = 8680
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+examine = "A banner with the symbol of Zamorak."
+kept = "Reclaim"
+
+[steel_heraldic_helm_arrav]
+id = 8682
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent the symbol of Arrav."
+kept = "Reclaim"
+
+[steel_heraldic_helm_asgarnia]
+id = 8684
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent Asgarnia."
+kept = "Reclaim"
+
+[steel_heraldic_helm_dorgeshuun]
+id = 8686
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent the Dorgeshuun brooch."
+kept = "Reclaim"
+
+[steel_heraldic_helm_dragon]
+id = 8688
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent a dragon."
+kept = "Reclaim"
+
+[steel_heraldic_helm_fairy]
+id = 8690
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent a fairy."
+kept = "Reclaim"
+
+[steel_heraldic_helm_guthix]
+id = 8692
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent Guthix."
+kept = "Reclaim"
+
+[steel_heraldic_helm_ham]
+id = 8694
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent the HAM cult."
+kept = "Reclaim"
+
+[steel_heraldic_helm_horse]
+id = 8696
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent the mythical 'horse'."
+kept = "Reclaim"
+
+[steel_heraldic_helm_jogre]
+id = 8698
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent a Jogre."
+kept = "Reclaim"
+
+[steel_heraldic_helm_kandarin]
+id = 8700
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent Kandarin."
+kept = "Reclaim"
+
+[steel_heraldic_helm_misthalin]
+id = 8702
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent Misthalin."
+kept = "Reclaim"
+
+[steel_heraldic_helm_money]
+id = 8704
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent money."
+kept = "Reclaim"
+
+[steel_heraldic_helm_saradomin]
+id = 8706
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent Saradomin."
+kept = "Reclaim"
+
+[steel_heraldic_helm_skull]
+id = 8708
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent a skull."
+kept = "Reclaim"
+
+[steel_heraldic_helm_varrock]
+id = 8710
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent Varrock."
+kept = "Reclaim"
+
+[steel_heraldic_helm_zamorak]
+id = 8712
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "The colours represent Zamorak."
+kept = "Reclaim"
+
+[rune_kiteshield_arrav]
+id = 8714
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of Arrav."
+kept = "Reclaim"
+
+[rune_kiteshield_asgarnia]
+id = 8716
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of Asgarnia."
+kept = "Reclaim"
+
+[rune_kiteshield_dorgeshuun]
+id = 8718
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a picture of the Dorgeshuun brooch."
+kept = "Reclaim"
+
+[rune_kiteshield_dragon]
+id = 8720
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a picture of a dragon."
+kept = "Reclaim"
+
+[rune_kiteshield_fairy]
+id = 8722
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a picture of a fairy."
+kept = "Reclaim"
+
+[rune_kiteshield_guthix_heraldic]
+id = 8724
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of Guthix."
+kept = "Reclaim"
+
+[rune_kiteshield_ham]
+id = 8726
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of the HAM cult."
+kept = "Reclaim"
+
+[rune_kiteshield_horse]
+id = 8728
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a picture of the mythical 'horse'."
+kept = "Reclaim"
+
+[rune_kiteshield_jogre]
+id = 8730
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a picture of a Jogre."
+kept = "Reclaim"
+
+[rune_kiteshield_kandarin]
+id = 8732
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of Kandarin."
+kept = "Reclaim"
+
+[rune_kiteshield_misthalin]
+id = 8734
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of Misthalin."
+kept = "Reclaim"
+
+[rune_kiteshield_money]
+id = 8736
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a picture of a money-bag."
+kept = "Reclaim"
+
+[rune_kiteshield_saradomin_heraldic]
+id = 8738
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of Saradomin."
+kept = "Reclaim"
+
+[rune_kiteshield_skull]
+id = 8740
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a picture of a skull."
+kept = "Reclaim"
+
+[rune_kiteshield_varrock]
+id = 8742
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of Varrock."
+kept = "Reclaim"
+
+[rune_kiteshield_zamorak_heraldic]
+id = 8744
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of Zamorak."
+kept = "Reclaim"
+
+[steel_kiteshield_arrav]
+id = 8746
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of Arrav."
+kept = "Reclaim"
+
+[steel_kiteshield_asgarnia]
+id = 8748
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of Asgarnia."
+kept = "Reclaim"
+
+[steel_kiteshield_dorgeshuun]
+id = 8750
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a picture of the Dorgeshuun brooch."
+kept = "Reclaim"
+
+[steel_kiteshield_dragon]
+id = 8752
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a picture of a dragon."
+kept = "Reclaim"
+
+[steel_kiteshield_fairy]
+id = 8754
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a picture of a fairy."
+kept = "Reclaim"
+
+[steel_kiteshield_guthix]
+id = 8756
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of Guthix."
+kept = "Reclaim"
+
+[steel_kiteshield_ham]
+id = 8758
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of the HAM cult."
+kept = "Reclaim"
+
+[steel_kiteshield_horse]
+id = 8760
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a picture of the mythical 'horse'."
+kept = "Reclaim"
+
+[steel_kiteshield_jogre]
+id = 8762
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a picture of a Jogre."
+kept = "Reclaim"
+
+[steel_kiteshield_kandarin]
+id = 8764
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of Kandarin."
+kept = "Reclaim"
+
+[steel_kiteshield_misthalin]
+id = 8766
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of Misthalin."
+kept = "Reclaim"
+
+[steel_kiteshield_money]
+id = 8768
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a picture of a money-bag."
+kept = "Reclaim"
+
+[steel_kiteshield_saradomin]
+id = 8770
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of Saradomin."
+kept = "Reclaim"
+
+[steel_kiteshield_skull]
+id = 8772
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with a picture of a skull."
+kept = "Reclaim"
+
+[steel_kiteshield_varrock]
+id = 8774
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of Varrock."
+kept = "Reclaim"
+
+[steel_kiteshield_zamorak]
+id = 8776
+limit = 100
+tradeable = false
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A shield with the symbol of Zamorak."
+kept = "Reclaim"
+
+[oak_plank]
+id = 8778
+price = 402
+limit = 10000
+weight = 0.8
+examine = "A plank of sturdy oak."
+
+[oak_plank_noted]
+id = 8779
+
+[teak_plank]
+id = 8780
+price = 668
+limit = 10000
+weight = 0.8
+examine = "A plank of fine teak."
+
+[teak_plank_noted]
+id = 8781
+
+[mahogany_plank]
+id = 8782
+price = 2083
+limit = 10000
+weight = 0.8
+examine = "A plank of expensive mahogany."
+
+[mahogany_plank_noted]
+id = 8783
+
+[gold_leaf]
+id = 8784
+price = 133100
+limit = 100
+weight = 1.0
+examine = "A very delicate sheet of gold."
+
+[gold_leaf_noted]
+id = 8785
+
+[marble_block]
+id = 8786
+price = 331700
+limit = 100
+weight = 13.607
+examine = "A beautifully carved marble block."
+
+[marble_block_noted]
+id = 8787
+
+[magic_stone]
+id = 8788
+price = 976300
+limit = 100
+weight = 1.0
+examine = "A magic stone to make high-level furniture."
+
+[magic_stone_noted]
+id = 8789
+
+[bolt_of_cloth]
+id = 8790
+price = 1038
+limit = 100
+weight = 1.0
+examine = "A bolt of ordinary cloth."
+
+[bolt_of_cloth_noted]
+id = 8791
+
+[clockwork]
+id = 8792
+price = 926
+limit = 5000
+weight = 1.0
+examine = "A clockwork mechanism."
+
+[clockwork_noted]
+id = 8793
+
+[saw]
+id = 8794
+price = 108
+limit = 100
+weight = 1.0
+slot = "Weapon"
+examine = "Good for cutting wood."
+
+[saw_noted]
+id = 8795
+
+[sawdust]
+id = 9468
+tradeable = false
+weight = 0.561
+examine = "What is left over when a log is made into a plank."
+kept = "Reclaim"
+
+[oak_cape_rack]
+id = 9817
+weight = 1.0
+examine = "A ready-to-assemble oak cape rack."
+
+[teak_cape_rack]
+id = 9818
+weight = 1.0
+examine = "A ready-to-assemble teak cape rack.."
+
+[mgany_cape_rack]
+id = 9819
+
+[gilded_cape_rack]
+id = 9820
+weight = 1.0
+examine = "A ready-to-assemble gilded mahogany rack."
+
+[marble_cape_rack]
+id = 9821
+weight = 1.0
+examine = "A ready-to-assemble marble cape rack."
+
+[magical_cape_rack]
+id = 9822
+weight = 1.0
+examine = "A ready-to-assemble magic cape rack."
+
+[oak_costume_box]
+id = 9823
+examine = "A box for you to keep clothing."
+
+[teak_costume_box]
+clone = "oak_costume_box"
+id = 9824
+
+[mahogany_cos_box]
+id = 9825
+
+[oak_armour_case]
+id = 9826
+weight = 1.0
+examine = "A ready-to-assemble oak armour case."
+
+[teak_armour_case]
+id = 9827
+weight = 1.0
+examine = "A ready-to-assemble teak armour case."
+
+[mgany_armr_case]
+id = 9828
+examine = "A case for you to keep you armour in."
+
+[oak_magic_wardrobe]
+id = 9829
+weight = 1.0
+examine = "A ready-to-assemble oak magic wardrobe."
+
+[carved_oak_magic_wardrobe]
+id = 9830
+weight = 1.0
+examine = "A ready-to-assemble carved oak magic wardrobe."
+
+[teak_magic_wardrobe]
+id = 9831
+weight = 1.0
+examine = "A ready-to-assemble teak magic wardrobe."
+
+[carved_teak_magic_wardrobe]
+id = 9832
+weight = 1.0
+examine = "A ready-to-assemble carved teak magic wardrobe."
+
+[mahogany_magic_wardrobe]
+id = 9833
+weight = 1.0
+examine = "A ready-to-assemble mahogany magic wardrobe."
+
+[gilded_magic_wardrobe]
+id = 9834
+weight = 1.0
+examine = "A ready-to-assemble gilded mahogany magic wardrobe."
+
+[marble_magic_wardrobe]
+id = 9835
+weight = 1.0
+examine = "A ready-to-assemble marble magic wardrobe."
+
+[oak_toy_box]
+id = 9836
+weight = 1.0
+examine = "A ready-to-assemble oak toy box."
+
+[teak_toy_box]
+id = 9837
+weight = 1.0
+examine = "A ready-to-assemble teak toy box."
+
+[mahogany_toy_box]
+id = 9838
+weight = 1.0
+examine = "A ready-to-assemble mahogany toy box."
+
+[oak_treasure_chest]
+id = 9839
+weight = 1.0
+examine = "A ready-to-assemble oak treasure chest."
+
+[teak_treas_chest]
+id = 9840
+examine = "Stores your precious belongings."
+
+[mgany_treas_chest]
+clone = "teak_treas_chest"
+id = 9841
+
+[costume_room]
+id = 9842
+
+[oak_cape_rack_flatpack]
+id = 9843
+price = 8
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak cape rack."
+
+[teak_cape_rack_flatpack]
+id = 9844
+price = 111
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble teak cape rack.."
+
+[mahogany_cape_rack_flatpack]
+id = 9845
+price = 86
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble mahogany cape rack."
+
+[gilded_cape_rack_flatpack]
+id = 9846
+price = 118400
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble gilded mahogany rack."
+
+[marble_cape_rack_flatpack]
+id = 9847
+price = 323700
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble marble cape rack."
+
+[magical_cape_rack_flatpack]
+id = 9848
+price = 1000000
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble magic cape rack."
+
+[oak_toy_box_flatpack]
+id = 9849
+price = 32
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak toy box."
+
+[teak_toy_box_flatpack]
+id = 9850
+price = 205
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble teak toy box."
+
+[mahogany_toy_box_flatpack]
+id = 9851
+price = 21
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble mahogany toy box."
+
+[oak_magic_wardrobe_flatpack]
+id = 9852
+price = 132
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak magic wardrobe."
+
+[carved_oak_magic_wardrobe_flatpack]
+id = 9853
+price = 1
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble carved oak magic wardrobe."
+
+[teak_magic_wardrobe_flatpack]
+id = 9854
+price = 160
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble teak magic wardrobe."
+
+[carved_teak_magic_wardrobe_flatpack]
+id = 9855
+price = 20
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble carved teak magic wardrobe."
+
+[mahogany_magic_wardrobe_flatpack]
+id = 9856
+price = 106
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble mahogany magic wardrobe."
+
+[gilded_magic_wardrobe_flatpack]
+id = 9857
+price = 131400
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble gilded mahogany magic wardrobe."
+
+[marble_magic_wardrobe_flatpack]
+id = 9858
+price = 332800
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble marble magic wardrobe."
+
+[oak_armour_case_flatpack]
+id = 9859
+price = 21
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak armour case."
+
+[teak_armour_case_flatpack]
+id = 9860
+price = 38
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble teak armour case."
+
+[mahogany_armour_case_flatpack]
+id = 9861
+price = 75
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble mahogany armour case."
+
+[oak_treasure_chest_flatpack]
+id = 9862
+price = 30
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak treasure chest."
+
+[teak_treasure_chest_flatpack]
+id = 9863
+price = 186
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble teak treasure chest."
+
+[mahogany_treasure_chest_flatpack]
+id = 9864
+price = 49
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble mahogany treasure chest."
+
+[oak_fancy_dress_box_flatpack]
+id = 9865
+price = 71
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble oak fancy dress box."
+
+[teak_fancy_dress_box_flatpack]
+id = 9866
+price = 152
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble teak fancy dress box."
+
+[mahogany_fancy_dress_box_flatpack]
+id = 9867
+price = 55
+limit = 100
+weight = 1.0
+examine = "A ready-to-assemble mahogany fancy dress box."
+
+[oak_cape_rack_flatpack_noted]
+id = 9868
+
+[teak_cape_rack_flatpack_noted]
+id = 9869
+
+[mahogany_cape_rack_flatpack_noted]
+id = 9870
+
+[gilded_cape_rack_flatpack_noted]
+id = 9871
+
+[marble_cape_rack_flatpack_noted]
+id = 9872
+
+[magical_cape_rack_flatpack_noted]
+id = 9873
+
+[oak_toy_box_flatpack_noted]
+id = 9874
+
+[teak_toy_box_flatpack_noted]
+id = 9875
+
+[mahogany_toy_box_flatpack_noted]
+id = 9876
+
+[oak_magic_wardrobe_flatpack_noted]
+id = 9877
+
+[carved_oak_magic_wardrobe_flatpack_noted]
+id = 9878
+
+[teak_magic_wardrobe_flatpack_noted]
+id = 9879
+
+[carved_teak_magic_wardrobe_flatpack_noted]
+id = 9880
+
+[mahogany_magic_wardrobe_flatpack_noted]
+id = 9881
+
+[gilded_magic_wardrobe_flatpack_noted]
+id = 9882
+
+[marble_magic_wardrobe_flatpack_noted]
+id = 9883
+
+[oak_armour_case_flatpack_noted]
+id = 9884
+
+[teak_armour_case_flatpack_noted]
+id = 9885
+
+[mahogany_armour_case_flatpack_noted]
+id = 9886
+
+[oak_treasure_chest_flatpack_noted]
+id = 9887
+
+[teak_treasure_chest_flatpack_noted]
+id = 9888
+
+[mahogany_treasure_chest_flatpack_noted]
+id = 9889
+
+[oak_fancy_dress_box_flatpack_noted]
+id = 9890
+
+[teak_fancy_dress_box_flatpack_noted]
+id = 9891
+
+[mahogany_fancy_dress_box_flatpack_noted]
+id = 9892
+
+[menagerie]
+id = 15221
+
+[garden_habitat]
+id = 15222
+examine = "A nice garden habitat."
+
+[jungle_habitat]
+id = 15223
+examine = "A nice jungle habitat."
+
+[desert_habitat]
+id = 15224
+examine = "A nice desert habitat."
+
+[polar_habitat]
+id = 15225
+examine = "A nice polar habitat."
+
+[volcanic_habitat]
+id = 15226
+examine = "A sweltering volcanic habitat."
+
+[oak_pet_house]
+id = 15227
+examine = "Examine text of the constructed item."
+
+[teak_pet_house]
+id = 15228
+examine = "A teak pet hosue that can house six pets."
+
+[mahogany_pet_house]
+id = 15229
+examine = "A mahogany pet house than can house ten pets."
+
+[consecrated_pet_house]
+id = 15230
+examine = "A consecrated pet house that can house fifteen pets."
+
+[desecrated_pet_house]
+id = 15231
+examine = "A desecrated pet house that can house fifteen pets."
+
+[natural_pet_house]
+id = 15232
+examine = "A natural pet house that can house fifteen pets."
+
+[oak_pet_feeder]
+id = 15233
+examine = "An oak pet feeder that can feed three pets."
+
+[teak_pet_feeder]
+id = 15234
+examine = "A teak pet feeder that can feed six pets."
+
+[mahogany_pet_feeder]
+id = 15235
+examine = "A mahogany pet feed that can feed fifteen pets."
+
+[mini_obelisk]
+id = 15236
+examine = "Contains traces of Summoning energy."
+
+[bagged_cactus]
+clone = "thorny_hedge"
+id = 15237
+
+[bagged_cactus_noted]
+id = 15238
+
+[bagged_evergreen]
+clone = "thorny_hedge"
+id = 15239
+
+[bagged_evergreen_noted]
+id = 15240
+
+[pit_dog]
+id = 18791
+examine = "Like a wolf, only without the glamour"
+
+[pit_ogre]
+id = 18792
+examine = "It's not very smart, but it knows how to fight."
+
+[pit_rock_protector]
+id = 18793
+examine = "A being of ore and minerals."
+
+[pit_scabarite]
+id = 18794
+examine = "Two legs, four arms, and a very nasty-looking bow."
+
+[pit_black_demon]
+id = 18795
+examine = "A big, scary, jet-black demon."
+
+[pit_iron_dragon]
+id = 18796
+examine = "Its scales are made of iron."
+
+[minor_pit_trap]
+id = 18797
+
+[major_pit_trap]
+id = 18798
+
+[superior_pit_trap]
+id = 18799
+examine = "Extremely painful."
+
+[dungeon_pit]
+id = 18800

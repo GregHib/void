@@ -1,0 +1,8 @@
+[box_of_summoning_ingredients]
+id = 15501
+tradeable = false
+bank_stacks = false
+weight = 2.0
+destroy = "You can get another reward box by completing the Familiarisation Distraction and Diversion again then talking to Pikkenmix."
+examine = "Open the box and find summoning pouch components."
+kept = "Vanish"

@@ -1,0 +1,8 @@
+[lily_of_the_valley]
+id = 14742
+tradeable = false
+weight = 0.001
+slot = "Weapon"
+destroy = "I can pick more from just about everywhere."
+examine = "A little and fragrant, bell-shaped spring flower. It will vanish with the next update."
+kept = "Vanish"

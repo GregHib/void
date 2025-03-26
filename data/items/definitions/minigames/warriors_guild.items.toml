@@ -1,0 +1,167 @@
+[bronze_defender]
+id = 8844
+tradeable = false
+weight = 0.453
+slot = "Shield"
+material = "metal"
+examine = "A defensive weapon that can parry attacks, reducing damage and increases the accuracy of your next hit."
+kept = "Reclaim"
+
+[iron_defender]
+id = 8845
+tradeable = false
+weight = 0.453
+slot = "Shield"
+material = "metal"
+examine = "A defensive weapon that can parry attacks, reducing damage and increases the accuracy of your next hit."
+kept = "Reclaim"
+
+[steel_defender]
+id = 8846
+tradeable = false
+weight = 0.453
+slot = "Shield"
+material = "metal"
+examine = "A defensive weapon that can parry attacks, reducing damage and increases the accuracy of your next hit."
+kept = "Reclaim"
+
+[black_defender]
+id = 8847
+tradeable = false
+weight = 0.453
+slot = "Shield"
+material = "metal"
+examine = "A defensive weapon that can parry attacks, reducing damage and increases the accuracy of your next hit."
+kept = "Reclaim"
+
+[mithril_defender]
+id = 8848
+tradeable = false
+weight = 0.453
+slot = "Shield"
+material = "metal"
+examine = "A defensive weapon that can parry attacks, reducing damage and increases the accuracy of your next hit."
+kept = "Reclaim"
+
+[adamant_defender]
+id = 8849
+tradeable = false
+weight = 0.453
+slot = "Shield"
+material = "metal"
+examine = "A defensive weapon that can parry attacks, reducing damage and increases the accuracy of your next hit."
+kept = "Reclaim"
+
+[rune_defender]
+id = 8850
+tradeable = false
+weight = 0.453
+slot = "Shield"
+material = "metal"
+examine = "A defensive weapon that can parry attacks, reducing damage and increases the accuracy of your next hit."
+kept = "Reclaim"
+
+[warrior_guild_token]
+id = 8851
+tradeable = false
+examine = "Warrior Guild Token."
+kept = "Reclaim"
+
+[defensive_shield]
+id = 8856
+tradeable = false
+weight = 3.628
+slot = "Shield"
+material = "metal"
+examine = "Large, round, heavy shield."
+kept = "Reclaim"
+
+[shot]
+id = 8857
+tradeable = false
+weight = 0.453
+examine = "Just landed shot."
+kept = "Reclaim"
+
+[18lb_shot]
+id = 8858
+tradeable = false
+weight = 8.164
+examine = "Just landed 18lb shot."
+kept = "Vanish"
+
+[22lb_shot]
+id = 8859
+tradeable = false
+weight = 9.979
+examine = "Just landed 22lb shot."
+kept = "Vanish"
+
+[one_barrel]
+id = 8860
+tradeable = false
+weight = 4.535
+slot = "Hat"
+examine = "To put on your head."
+kept = "Reclaim"
+
+[two_barrels]
+id = 8861
+tradeable = false
+weight = 9.071
+slot = "Hat"
+examine = "To put on your head."
+kept = "Reclaim"
+
+[three_barrels]
+id = 8862
+tradeable = false
+weight = 13.607
+slot = "Hat"
+examine = "To put on your head."
+kept = "Reclaim"
+
+[four_barrels]
+id = 8863
+tradeable = false
+weight = 18.143
+slot = "Hat"
+examine = "To put on your head."
+kept = "Reclaim"
+
+[five_barrels]
+id = 8864
+tradeable = false
+weight = 22.679
+slot = "Hat"
+examine = "To put on your head."
+kept = "Reclaim"
+
+[ground_ashes]
+id = 8865
+tradeable = false
+weight = 0.056
+examine = "A heap of finely ground ashes."
+kept = "Reclaim"
+
+[cyclopean_helmet]
+id = 20070
+price = 1631
+limit = 10
+weight = 3.175
+slot = "Hat"
+type = "FullFace"
+examine = "Eye see you."
+
+[cyclopean_helmet_noted]
+id = 20071
+
+[dragon_defender]
+id = 20072
+tradeable = false
+weight = 0.453
+aka = ["ddef", "d_def", "ddefender", "d_defender"]
+slot = "Shield"
+material = "metal"
+examine = "A defensive weapon that can parry attacks, reducing damage and increases the accuracy of your next hit."
+kept = "Reclaim"

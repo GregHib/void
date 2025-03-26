@@ -1,0 +1,343 @@
+[fremennik_helm]
+id = 3748
+tradeable = false
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A sturdy helm worn only by Fremennik clan members."
+kept = "Reclaim"
+
+[archer_helm]
+id = 3749
+price = 49900
+limit = 100
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This helmet is worn by archers."
+
+[archer_helm_noted]
+id = 3750
+
+[berserker_helm]
+id = 3751
+price = 83500
+limit = 100
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This helmet is worn by berserkers."
+
+[berserker_helm_noted]
+id = 3752
+
+[warrior_helm]
+id = 3753
+price = 53000
+limit = 100
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This helmet is worn by warriors."
+
+[warrior_helm_noted]
+id = 3754
+
+[farseer_helm]
+id = 3755
+price = 48000
+limit = 100
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "This helmet is worn by farseers."
+
+[farseer_helm_noted]
+id = 3756
+
+[fremennik_blade]
+id = 3757
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+material = "metal"
+examine = "A sword used only by Fremennik warriors."
+kept = "Reclaim"
+
+[fremennik_shield]
+id = 3758
+tradeable = false
+weight = 2.267
+slot = "Shield"
+destroy = "No"
+examine = "A shield worn by Fremennik warriors."
+kept = "Reclaim"
+
+[fremennik_cloak_cyan]
+id = 3759
+price = 841
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "The latest fashion in Rellekka."
+
+[fremennik_cloak_cyan_noted]
+id = 3760
+
+[fremennik_cloak_brown]
+id = 3761
+price = 83
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "The latest fashion in Rellekka."
+
+[fremennik_cloak_brown_noted]
+id = 3762
+
+[fremennik_cloak_lavender]
+id = 3763
+price = 554
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "The latest fashion in Rellekka."
+
+[fremennik_cloak_lavender_noted]
+id = 3764
+
+[fremennik_cloak_green]
+id = 3765
+price = 995
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "The latest fashion in Rellekka."
+
+[fremennik_cloak_green_noted]
+id = 3766
+
+[fremennik_shirt_brown]
+id = 3767
+price = 98
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "The latest in Fremennik fashion."
+
+[fremennik_shirt_brown_noted]
+id = 3768
+
+[fremennik_shirt_grey]
+id = 3769
+price = 489
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "The latest in Fremennik fashion."
+
+[fremennik_shirt_grey_noted]
+id = 3770
+
+[fremennik_shirt_tan]
+id = 3771
+price = 247
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "The latest in Fremennik fashion."
+
+[fremennik_shirt_tan_noted]
+id = 3772
+
+[fremennik_shirt_red]
+id = 3773
+price = 518
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "The latest in Fremennik fashion."
+
+[fremennik_shirt_red_noted]
+id = 3774
+
+[fremennik_shirt_blue]
+id = 3775
+price = 457
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "The latest in Fremennik fashion."
+
+[fremennik_shirt_blue_noted]
+id = 3776
+
+[fremennik_cloak_red]
+id = 3777
+price = 736
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "The latest fashion in Rellekka."
+
+[fremennik_cloak_red_noted]
+id = 3778
+
+[fremennik_cloak_grey]
+id = 3779
+price = 784
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "The latest fashion in Rellekka."
+
+[fremennik_cloak_grey_noted]
+id = 3780
+
+[fremennik_cloak_gold]
+id = 3781
+price = 621
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "The latest fashion in Rellekka."
+
+[fremennik_cloak_gold_noted]
+id = 3782
+
+[fremennik_cloak_teal]
+id = 3783
+price = 518
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "The latest fashion in Rellekka."
+
+[fremennik_cloak_teal_noted]
+id = 3784
+
+[fremennik_cloak_purple]
+id = 3785
+price = 451
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "The latest fashion in Rellekka."
+
+[fremennik_cloak_purple_noted]
+id = 3786
+
+[fremennik_cloak_pink]
+id = 3787
+price = 463
+limit = 1000
+weight = 0.453
+slot = "Cape"
+examine = "The latest fashion in Rellekka."
+
+[fremennik_cloak_pink_noted]
+id = 3788
+
+[fremennik_cloak_black]
+id = 3789
+price = 954
+limit = 100
+weight = 0.453
+slot = "Cape"
+examine = "The latest fashion in Rellekka."
+
+[fremennik_cloak_black_noted]
+id = 3790
+
+[fremennik_boots]
+id = 3791
+price = 296
+limit = 100
+weight = 0.34
+slot = "Feet"
+examine = "Very stylish!"
+
+[fremennik_boots_noted]
+id = 3792
+
+[fremennik_robe]
+id = 3793
+price = 1291
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "The latest fashion in Rellekka."
+
+[fremennik_robe_noted]
+id = 3794
+
+[fremennik_skirt]
+id = 3795
+price = 869
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "The latest fashion in Rellekka."
+
+[fremennik_skirt_noted]
+id = 3796
+
+[fremennik_hat]
+id = 3797
+price = 2960
+limit = 100
+weight = 0.453
+slot = "Hat"
+examine = "A silly pointed hat."
+
+[fremennik_hat_noted]
+id = 3798
+
+[gloves_fremennik]
+id = 3799
+price = 261
+limit = 100
+weight = 0.453
+slot = "Hands"
+examine = "These will keep my hands warm!"
+
+[gloves_fremennik_noted]
+id = 3800
+
+[keg_of_beer]
+id = 3801
+price = 2048
+limit = 100
+heals = 150
+eat_message = "You chug the keg. You feel reinvigorated... ...but extremely drunk, too."
+weight = 20.0
+examine = "Beer in a barrel - a specialty of the Fremennik Province."
+
+[keg_of_beer_noted]
+id = 3802
+
+[beer_tankard]
+id = 3803
+price = 361
+limit = 100
+heals = 40
+excess = "tankard"
+eat_message = "You quaff the beer. You feel slightly reinvigorated... but very dizzy too."
+weight = 0.55
+examine = "Frothy and alcoholic."
+
+[beer_tankard_noted]
+id = 3804
+
+[tankard]
+id = 3805
+weight = 0.05
+examine = "A big cup for a big thirst."
+
+[tankard_noted]
+id = 3806

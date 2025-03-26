@@ -1,0 +1,52 @@
+[awful_anthem]
+id = 3894
+tradeable = false
+weight = 0.005
+destroy = "The anthem is caught by a gust of wind and flies out of sight."
+examine = "It's not very good."
+kept = "Wilderness"
+
+[good_anthem]
+id = 3895
+tradeable = false
+weight = 0.005
+destroy = "The anthem is caught by a gust of wind and flies out of sight."
+examine = "Much better."
+kept = "Wilderness"
+
+[treaty]
+id = 3896
+tradeable = false
+weight = 0.005
+examine = "Just needs the King's signature."
+kept = "Wilderness"
+
+[giant_nib]
+id = 3897
+tradeable = false
+weight = 0.035
+examine = "For making a giant pen."
+kept = "Wilderness"
+
+[giant_pen]
+id = 3898
+tradeable = false
+weight = 0.035
+examine = "The King should be able to use this."
+kept = "Wilderness"
+
+[iron_sickle]
+id = 3899
+tradeable = false
+weight = 1.587
+slot = "Weapon"
+examine = "Not as good as a pet frog."
+kept = "Reclaim"
+
+[ghrims_book]
+id = 3901
+tradeable = false
+weight = 1.0
+aka = ["managing_thine_kingdom_for_noobes"]
+examine = "Managing Thine Kingdom for Noobes by A. Ghrim."
+kept = "Reclaim"

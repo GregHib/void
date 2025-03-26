@@ -1,0 +1,193 @@
+[tea_flask]
+id = 10859
+heals = 30
+tradeable = false
+bank_stacks = false
+weight = 0.1
+charges = 0
+charges_max = 5
+examine = "You can put nice, hot tea in it."
+kept = "Wilderness"
+
+[tea_flask_2]
+id = 10860
+tradeable = false
+bank_stacks = false
+weight = 0.1
+examine = "You can put nice, hot tea in it."
+kept = "Wilderness"
+
+[tea_flask_3]
+id = 10861
+tradeable = false
+bank_stacks = false
+weight = 0.1
+examine = "You can put nice, hot tea in it."
+kept = "Wilderness"
+
+[hard_hat]
+id = 10862
+tradeable = false
+weight = 2.0
+slot = "Hat"
+destroy = "You'll have to find another within the Tower of Life!"
+examine = "Can't get any safer than this."
+kept = "Vanish"
+
+[builders_shirt]
+id = 10863
+tradeable = false
+weight = 0.9
+slot = "Chest"
+destroy = "You'll have to find another within the Tower of Life!"
+examine = "Very fetching."
+kept = "Vanish"
+
+[builders_trousers]
+id = 10864
+tradeable = false
+weight = 1.0
+slot = "Legs"
+destroy = "You'll have to find another within the Tower of Life!"
+examine = "Slightly tatty in my opinion."
+kept = "Vanish"
+
+[builders_boots]
+id = 10865
+tradeable = false
+weight = 0.45
+slot = "Feet"
+destroy = "You'll have to find another within the Tower of Life!"
+examine = "They'll offer good protection for my toes."
+kept = "Vanish"
+
+[rivets]
+id = 10866
+tradeable = false
+examine = "Used to bolt things together."
+kept = "Wilderness"
+
+[binding_fluid]
+id = 10870
+tradeable = false
+weight = 0.01
+examine = "Some magical fluid to bind surfaces."
+kept = "Wilderness"
+
+[pipe_tower_of_life]
+id = 10871
+tradeable = false
+weight = 2.5
+examine = "A section of pipe."
+kept = "Wilderness"
+
+[pipe_ring]
+id = 10872
+tradeable = false
+weight = 0.4
+examine = "A ring used to join two pipes together."
+kept = "Wilderness"
+
+[metal_sheet]
+id = 10873
+tradeable = false
+weight = 0.6
+examine = "A sheet of metal."
+kept = "Wilderness"
+
+[coloured_ball]
+id = 10874
+tradeable = false
+weight = 0.01
+examine = "Bound to have some use."
+kept = "Wilderness"
+
+[valve_wheel]
+id = 10875
+tradeable = false
+weight = 0.32
+examine = "A wheel used to control valves."
+kept = "Wilderness"
+
+[metal_bar]
+id = 10876
+tradeable = false
+weight = 0.92
+examine = "Some unknown metal substance."
+kept = "Wilderness"
+
+[plain_satchel]
+id = 10877
+tradeable = false
+bank_stacks = false
+weight = 0.15
+charges = 0
+charges_max = 7
+slot = "Shield"
+examine = "I can keep my grub in here!"
+kept = "Reclaim"
+
+[green_satchel]
+id = 10878
+tradeable = false
+bank_stacks = false
+weight = 0.15
+charges = 0
+charges_max = 7
+aka = ["adamant_satchel"]
+slot = "Shield"
+examine = "I can keep my grub in here!"
+kept = "Reclaim"
+
+[red_satchel]
+id = 10879
+tradeable = false
+bank_stacks = false
+charges = 0
+charges_max = 7
+weight = 0.15
+slot = "Shield"
+examine = "I can keep my grub in here!"
+kept = "Reclaim"
+
+[black_satchel]
+id = 10880
+tradeable = false
+bank_stacks = false
+charges = 0
+charges_max = 7
+weight = 0.15
+slot = "Shield"
+examine = "I can keep my grub in here!"
+kept = "Reclaim"
+
+[gold_satchel]
+id = 10881
+tradeable = false
+bank_stacks = false
+charges = 0
+charges_max = 7
+weight = 0.15
+slot = "Shield"
+examine = "I can keep my grub in here!"
+kept = "Reclaim"
+
+[rune_satchel]
+id = 10882
+tradeable = false
+bank_stacks = false
+charges = 0
+charges_max = 7
+weight = 0.15
+slot = "Shield"
+examine = "I can keep my grub in here!"
+kept = "Reclaim"
+
+[hard_hat_2]
+id = 10883
+tradeable = false
+weight = 2.0
+slot = "Hat"
+destroy = "You'll have to find another within the Tower of Life!"
+examine = "Can't get any safer than this."
+kept = "Vanish"

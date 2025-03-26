@@ -1,0 +1,507 @@
+[foot_bone]
+id = 15128
+tradeable = false
+weight = 0.453
+examine = "This needs a good polish."
+kept = "Wilderness"
+
+[bone_in_vinegar_foot_bone]
+id = 15129
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a foot bone in here."
+kept = "Wilderness"
+
+[polished_foot_bone]
+id = 15130
+tradeable = false
+weight = 0.453
+examine = "This belongs in a museum!"
+kept = "Wilderness"
+
+[sabre_like_teeth]
+id = 15131
+tradeable = false
+weight = 0.453
+examine = "These need a good polish."
+kept = "Wilderness"
+
+[bone_in_vinegar_sabre_like_teeth]
+id = 15132
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There are some sabre-like teeth in here."
+kept = "Wilderness"
+
+[polished_sabre_like_teeth]
+id = 15133
+tradeable = false
+weight = 0.453
+examine = "These belong in a museum!"
+kept = "Wilderness"
+
+[long_sharp_claws]
+clone = "sabre_like_teeth"
+id = 15134
+
+[bone_in_vinegar_long_sharp_claws]
+id = 15135
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There are long, sharp claws in here."
+kept = "Wilderness"
+
+[polished_long_sharp_claws]
+clone = "polished_sabre_like_teeth"
+id = 15136
+
+[fibula_bone]
+clone = "foot_bone"
+id = 15137
+
+[bone_in_vinegar_fibula_bone]
+id = 15138
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a fibula bone in here."
+kept = "Wilderness"
+
+[polished_fibula_bone]
+clone = "polished_foot_bone"
+id = 15139
+
+[hand_bone]
+clone = "foot_bone"
+id = 15140
+
+[bone_in_vinegar_hand_bone]
+id = 15141
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a hand bone in here."
+kept = "Wilderness"
+
+[polished_hand_bone]
+clone = "polished_foot_bone"
+id = 15142
+
+[green_dragon_tail_bone]
+clone = "foot_bone"
+id = 15143
+
+[bone_in_vinegar_green_dragon_tail_bone]
+id = 15144
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a green dragon tail-bone in here."
+kept = "Wilderness"
+
+[polished_green_dragon_tail_bone]
+clone = "polished_foot_bone"
+id = 15145
+
+[blue_dragon_tail_bone]
+clone = "foot_bone"
+id = 15146
+
+[bone_in_vinegar_blue_dragon_tail_bone]
+id = 15147
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a blue dragon tail-bone in here."
+kept = "Wilderness"
+
+[polished_blue_dragon_tail_bone]
+clone = "polished_foot_bone"
+id = 15148
+
+[red_dragon_tail_bone]
+clone = "foot_bone"
+id = 15149
+
+[bone_in_vinegar_red_dragon_tail_bone]
+id = 15150
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a red dragon tail-bone in here."
+kept = "Wilderness"
+
+[polished_red_dragon_tail_bone]
+clone = "polished_foot_bone"
+id = 15151
+
+[black_dragon_tail_bone]
+clone = "foot_bone"
+id = 15152
+
+[bone_in_vinegar_black_dragon_tail_bone]
+id = 15153
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a black dragon tail-bone in here."
+kept = "Wilderness"
+
+[polished_black_dragon_tail_bone]
+clone = "polished_foot_bone"
+id = 15154
+
+[skeletal_wyvern_tail_bone]
+clone = "foot_bone"
+id = 15155
+
+[bone_in_vinegar_skeletal_wyvern_tail_bone]
+id = 15156
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a skeletal wyvern tail-bone in here."
+kept = "Wilderness"
+
+[polished_skeletal_wyvern_tail_bone]
+clone = "polished_foot_bone"
+id = 15157
+
+[bronze_dragon_tail_bone]
+clone = "foot_bone"
+id = 15158
+
+[bone_in_vinegar_bronze_dragon_tail_bone]
+id = 15159
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a bronze dragon tail-bone in here."
+kept = "Wilderness"
+
+[polished_bronze_dragon_tail_bone]
+clone = "polished_foot_bone"
+id = 15160
+
+[iron_dragon_tail_bone]
+clone = "foot_bone"
+id = 15161
+
+[bone_in_vinegar_iron_dragon_tail_bone]
+id = 15162
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is an iron dragon tail-bone in here."
+kept = "Wilderness"
+
+[polished_iron_dragon_tail_bone]
+clone = "polished_foot_bone"
+id = 15163
+
+[steel_dragon_tail_bone]
+clone = "foot_bone"
+id = 15164
+
+[bone_in_vinegar_steel_dragon_tail_bone]
+id = 15165
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a steel dragon tail-bone in here."
+kept = "Wilderness"
+
+[polished_steel_dragon_tail_bone]
+clone = "polished_foot_bone"
+id = 15166
+
+[mithril_dragon_tail_bone]
+clone = "foot_bone"
+id = 15167
+
+[bone_in_vinegar_mithril_dragon_tail_bone]
+id = 15168
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a mithril dragon tail-bone in here."
+kept = "Wilderness"
+
+[polished_mithril_dragon_tail_bone]
+clone = "polished_foot_bone"
+id = 15169
+
+[neck_bone]
+clone = "foot_bone"
+id = 15170
+
+[bone_in_vinegar_neck_bone]
+id = 15171
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a neck bone in here."
+kept = "Wilderness"
+
+[polished_neck_bone]
+clone = "polished_foot_bone"
+id = 15172
+
+[shoulder_bone]
+clone = "foot_bone"
+id = 15173
+
+[bone_in_vinegar_shoulder_bone]
+id = 15174
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a shoulder bone in here."
+kept = "Wilderness"
+
+[polished_shoulder_bone]
+clone = "polished_foot_bone"
+id = 15175
+
+[giant_snake_spine]
+clone = "foot_bone"
+id = 15176
+
+[bone_in_vinegar_giant_snake_spine]
+id = 15177
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a giant snake spine in here."
+kept = "Wilderness"
+
+[polished_giant_snake_spine]
+clone = "polished_foot_bone"
+id = 15178
+
+[pelvis_bone]
+clone = "foot_bone"
+id = 15179
+
+[bone_in_vinegar_pelvis_bone]
+id = 15180
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a pelvis bone in here."
+kept = "Wilderness"
+
+[polished_pelvis_bone]
+clone = "polished_foot_bone"
+id = 15181
+
+[femur_bone]
+id = 15182
+tradeable = false
+weight = 0.453
+prayer_xp = 15.0
+examine = "This needs a good polish."
+kept = "Wilderness"
+
+[bone_in_vinegar_femur_bone]
+id = 15183
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a femur bone in here."
+kept = "Wilderness"
+
+[polished_femur_bone]
+clone = "polished_foot_bone"
+id = 15184
+
+[humerus_bone]
+clone = "foot_bone"
+id = 15185
+
+[bone_in_vinegar_humerus_bone]
+id = 15186
+tradeable = false
+weight = 1.36
+empty = "empty_pot"
+examine = "There is a humerus bone in here."
+kept = "Wilderness"
+
+[polished_humerus_bone]
+clone = "polished_foot_bone"
+id = 15187
+
+[rock_crab_carcass]
+id = 15188
+tradeable = false
+weight = 2.0
+examine = "This would need to be prepared...in theory."
+kept = "Wilderness"
+
+[scrubbed_rock_crab_carcass]
+id = 15189
+tradeable = false
+weight = 2.0
+examine = "It has been scrubbed with salt."
+kept = "Wilderness"
+
+[fox_pelt]
+id = 15190
+tradeable = false
+weight = 0.6
+examine = "This needs to be prepared."
+kept = "Wilderness"
+
+[scrubbed_fox_pelt]
+id = 15191
+tradeable = false
+weight = 0.6
+examine = "It has been scrubbed with salt."
+kept = "Wilderness"
+
+[tanned_fox_pelt]
+id = 15192
+tradeable = false
+weight = 0.6
+examine = "This fur is ready to be turned into a stuffed animal."
+kept = "Wilderness"
+
+[unicorn_hide]
+clone = "fox_pelt"
+id = 15193
+
+[scrubbed_unicorn_hide]
+clone = "scrubbed_fox_pelt"
+id = 15194
+
+[tanned_unicorn_hide]
+id = 15195
+tradeable = false
+weight = 0.6
+examine = "This hide is ready to be turned into a stuffed animal."
+kept = "Wilderness"
+
+[black_unicorn_hide]
+clone = "fox_pelt"
+id = 15196
+
+[scrubbed_black_unicorn_hide]
+clone = "scrubbed_fox_pelt"
+id = 15197
+
+[tanned_black_unicorn_hide]
+clone = "tanned_unicorn_hide"
+id = 15198
+
+[bear_pelt]
+clone = "fox_pelt"
+id = 15199
+
+[scrubbed_bear_pelt]
+clone = "scrubbed_fox_pelt"
+id = 15200
+
+[tanned_bear_pelt]
+clone = "tanned_fox_pelt"
+id = 15201
+
+[fenris_wolf_pelt]
+clone = "fox_pelt"
+id = 15202
+
+[scrubbed_fenris_wolf_pelt]
+clone = "scrubbed_fox_pelt"
+id = 15203
+
+[tanned_fenris_wolf_pelt]
+clone = "tanned_fox_pelt"
+id = 15204
+
+[cave_crawler_skin]
+clone = "fox_pelt"
+id = 15205
+
+[scrubbed_cave_crawler_skin]
+clone = "scrubbed_fox_pelt"
+id = 15206
+
+[tanned_cave_crawler_skin]
+id = 15207
+tradeable = false
+weight = 0.6
+examine = "This skin is ready to be turned into a stuffed animal."
+kept = "Wilderness"
+
+[cockatrice_skin]
+clone = "fox_pelt"
+id = 15208
+
+[scrubbed_cockatrice_skin]
+clone = "scrubbed_fox_pelt"
+id = 15209
+
+[tanned_cockatrice_skin]
+clone = "tanned_cave_crawler_skin"
+id = 15210
+
+[hobgoblin_skin]
+clone = "fox_pelt"
+id = 15211
+
+[scrubbed_hobgoblin_skin]
+clone = "scrubbed_fox_pelt"
+id = 15212
+
+[tanned_hobgoblin_skin]
+clone = "tanned_cave_crawler_skin"
+id = 15213
+
+[ram_skull_helm_e]
+id = 15214
+tradeable = false
+weight = 3.175
+slot = "Hat"
+destroy = "The ram skull helm looks like it will fall apart if you drop it. You would have to go to the Odd Old Man for a replacement."
+examine = "This will allow me to teleport to the skeletal horror once a week."
+kept = "Vanish"
+
+[bonesacke]
+id = 15215
+tradeable = false
+weight = 0.003
+slot = "Cape"
+destroy = "The bonesack looks like it will fall apart if you drop it. You would have to go to the Odd Old Man for a replacement."
+examine = "This will allow me to teleport to the skeletal horror once a week."
+kept = "Vanish"
+
+[old_diary]
+id = 15216
+tradeable = false
+weight = 0.07
+destroy = "Destroy - You will have to find another one in the crate in the Odd Old man's shack."
+examine = "A tattered old diary - property of the Odd Old man."
+kept = "Wilderness"
+
+[arm_right]
+id = 15217
+tradeable = false
+weight = 1.0
+examine = "It has a manacle on it. And it's wriggling."
+kept = "Vanish"
+
+[arm_left]
+id = 15218
+tradeable = false
+weight = 1.0
+examine = "What is it with me and picking up severed hands?"
+kept = "Vanish"
+
+[tail]
+id = 15219
+tradeable = false
+weight = 1.0
+examine = "A sad, sorry but fairly restless tail."
+kept = "Vanish"

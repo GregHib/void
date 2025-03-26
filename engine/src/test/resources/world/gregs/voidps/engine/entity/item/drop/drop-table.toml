@@ -1,10 +1,14 @@
+[sub_table]
+roll = 5
+drops = [
+  { id = "coins", amount = 10, chance = 1 }, # basic
+  { id = "coins" }, # default
+  { id = "coins", min = 1, max = 5, chance = 1 } # range
+]
+
 [test_drop_table]
 type = "all"
 drops = [
   { id = "bones" },
-  { roll = 4, drops = [
-    { id = "coins", amount = 10, chance = 1 }, # basic
-    { id = "coins" }, # default
-    { id = "coins", min = 1, max = 5, chance = 1 } # range
-  ]}
+  { table = "sub_table", roll = 4 } # overrides roll
 ]

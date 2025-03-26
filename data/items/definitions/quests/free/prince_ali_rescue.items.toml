@@ -1,0 +1,40 @@
+[bronze_key_prince_ali_rescue]
+id = 2418
+tradeable = false
+weight = 0.01
+examine = "A heavy key made of bronze."
+kept = "Wilderness"
+
+[wig_blonde]
+id = 2419
+tradeable = false
+weight = 0.453
+examine = "A wig that has been dyed slightly blonde."
+kept = "Wilderness"
+
+[wig_grey]
+id = 2421
+tradeable = false
+weight = 0.01
+examine = "A grey woollen wig."
+kept = "Wilderness"
+
+[blue_partyhat_2]
+id = 2422
+limit = 2
+weight = 0.056
+examine = "A nice hat from a cracker."
+
+[key_print]
+id = 2423
+tradeable = false
+weight = 0.01
+examine = "An imprint of a key in a lump of clay."
+kept = "Wilderness"
+
+[paste]
+id = 2424
+tradeable = false
+weight = 0.015
+examine = "A bottle of skin coloured paste."
+kept = "Wilderness"

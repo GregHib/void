@@ -1,0 +1,30 @@
+[ring_of_fire]
+id = 13659
+tradeable = false
+weight = 0.004
+slot = "Ring"
+destroy = "If you destroy your last one, you can reclaim your Ring of Fire by talking to King Roald."
+examine = "It burns, burns, burns..."
+kept = "Wilderness"
+
+[flame_gloves]
+id = 13660
+tradeable = false
+weight = 0.226
+slot = "Hands"
+destroy = "If you destroy your last pair, you can reclaim your Flame Gloves by talking to King Roald."
+examine = "The hottest gloves in town."
+kept = "Wilderness"
+
+[inferno_adze]
+id = 13661
+tradeable = false
+weight = 2.267
+rank = 7
+mining_delay = 2
+canoe_chance = "112-350"
+skill_req = { mining = 41, woodcutting = 61, firemaking = 92 }
+slot = "Weapon"
+destroy = "If you destroy your last one, you can reclaim your Inferno Adze by talking to King Roald."
+examine = "risk of fire."
+kept = "Wilderness"

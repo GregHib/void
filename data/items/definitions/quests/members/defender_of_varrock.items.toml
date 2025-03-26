@@ -1,0 +1,37 @@
+[grubby_key]
+id = 13758
+tradeable = false
+weight = 0.01
+destroy = "You'll have to keep searching trees near the zombie trails until you find another."
+examine = "A key that was found while tracking zombies."
+kept = "Wilderness"
+
+[scrap_of_paper]
+id = 13759
+tradeable = false
+weight = 0.02
+destroy = "You'll have to speak to Thurgo to find another."
+examine = "The location of Camdozaal, given to me by Thurgo."
+kept = "Wilderness"
+
+[bottle]
+id = 13760
+tradeable = false
+weight = 0.04
+examine = "An empty bottle."
+kept = "Reclaim"
+
+[bottle_of_mist]
+id = 13761
+tradeable = false
+weight = 0.04
+examine = "A bottle of red mist."
+kept = "Reclaim"
+
+[list_of_elders]
+id = 13762
+tradeable = false
+weight = 0.005
+destroy = "You can get another from Varrock Palace Library."
+examine = "This lists each of the founding elders of the Council of Varrock."
+kept = "Wilderness"

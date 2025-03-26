@@ -1,0 +1,1652 @@
+[sacred_clay_platebody]
+id = 14094
+bank_stacks = false
+slot = "Chest"
+material = "metal"
+examine = "The sacred clay top has transformed into a spiked, platemail body."
+weight = 2.0
+
+[sacred_clay_platelegs]
+id = 14095
+bank_stacks = false
+slot = "Legs"
+material = "metal"
+examine = "The sacred clay bottom has transformed into spiked, platemail legs."
+weight = 2.0
+
+[sacred_clay_helm]
+id = 14096
+bank_stacks = false
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "The sacred clay hat has transformed into a spined helm."
+weight = 2.0
+
+[sacred_clay_scimitar]
+id = 14097
+bank_stacks = false
+slot = "Weapon"
+examine = "The sacred clay weapon has transformed into a sharp scimitar."
+weight = 2.0
+
+[volatile_clay_tool]
+id = 14098
+bank_stacks = false
+examine = "This can turn into a variety of tools."
+weight = 2.0
+
+[volatile_clay_pickaxe]
+id = 14099
+bank_stacks = false
+slot = "Weapon"
+mining_delay = 3
+skill_req = { mining = 50 }
+charges = 29340
+aka = ["volatile_pickaxe", "volatile_pick"]
+examine = "Your volatile tool wants to mine some rocks."
+weight = 2.0
+
+[volatile_clay_hatchet]
+id = 14100
+bank_stacks = false
+rank = 6
+canoe_chance = "112-350"
+skill_req = { woodcutting = 50 }
+charges = 29340
+slot = "Weapon"
+examine = "Your volatile tool wants to cut some wood."
+weight = 2.0
+
+[volatile_clay_harpoon]
+id = 14101
+bank_stacks = false
+charges = 29340
+slot = "Weapon"
+examine = "Your volatile tool wants to spear some big fish."
+weight = 2.0
+
+[volatile_clay_butterfly_net]
+id = 14102
+bank_stacks = false
+charges = 29340
+slot = "Weapon"
+examine = "Your volatile tool wants to catch some butterflies."
+weight = 2.0
+
+[volatile_clay_fletching_knife]
+id = 14103
+bank_stacks = false
+charges = 29340
+slot = "Weapon"
+examine = "Your volatile tool wants to make some bows or arrows."
+weight = 2.0
+
+[volatile_clay_hammer]
+id = 14104
+bank_stacks = false
+charges = 29340
+slot = "Weapon"
+examine = "Your volatile tool wants to work metal or build furniture."
+weight = 2.0
+
+[volatile_clay_needle]
+id = 14105
+bank_stacks = false
+charges = 29340
+examine = "Your volatile tool wants to make some leather armour."
+weight = 2.0
+
+[proto_tool]
+clone = "volatile_clay_tool"
+id = 14106
+
+[sacred_clay_pickaxe]
+id = 14107
+bank_stacks = false
+slot = "Weapon"
+mining_delay = 3
+skill_req = { mining = 50 }
+charges = 24450
+aka = ["sacred_pickaxe", "sacred_pick"]
+examine = "Your sacred clay tool has transformed into a pickaxe."
+weight = 2.0
+
+[sacred_clay_hatchet]
+id = 14108
+bank_stacks = false
+rank = 6
+canoe_chance = "112-350"
+skill_req = { woodcutting = 50 }
+charges = 24450
+slot = "Weapon"
+examine = "Your sacred clay tool has transformed into a hatchet."
+weight = 2.0
+
+[sacred_clay_harpoon]
+id = 14109
+bank_stacks = false
+charges = 24450
+slot = "Weapon"
+examine = "Your sacred clay tool has transformed into a harpoon."
+weight = 2.0
+
+[sacred_clay_butterfly_net]
+id = 14110
+bank_stacks = false
+charges = 24450
+slot = "Weapon"
+examine = "Your sacred clay tool has transformed into a butterfly net."
+weight = 2.0
+
+[sacred_clay_fletching_knife]
+id = 14111
+bank_stacks = false
+charges = 24450
+slot = "Weapon"
+examine = "The sacred clay has transformed into a knife."
+weight = 2.0
+
+[sacred_clay_hammer]
+id = 14112
+bank_stacks = false
+charges = 24450
+slot = "Weapon"
+examine = "Your sacred clay tool has transformed into a hammer."
+weight = 2.0
+
+[sacred_clay_needle]
+id = 14113
+bank_stacks = false
+charges = 24450
+examine = "The sacred clay has transformed into a needle."
+weight = 2.0
+
+[sacred_clay_robe_top]
+id = 14114
+bank_stacks = false
+charges = 24450
+slot = "Chest"
+examine = "The sacred clay top has transformed into a heavy, magical robe."
+weight = 2.0
+
+[sacred_clay_robe_bottom]
+id = 14115
+bank_stacks = false
+charges = 24450
+slot = "Legs"
+examine = "The sacred clay bottom has transformed into a heavy, magical robe."
+weight = 2.0
+
+[sacred_clay_hat]
+id = 14116
+bank_stacks = false
+charges = 24450
+slot = "Hat"
+examine = "The sacred clay hat has transformed into a wizard hat."
+weight = 2.0
+
+[sacred_clay_staff]
+id = 14117
+bank_stacks = false
+charges = 24450
+category = "staff"
+slot = "Weapon"
+examine = "The sacred clay weapon has transformed into a magical staff."
+weight = 2.0
+
+[sacred_clay_body]
+id = 14118
+bank_stacks = false
+charges = 24450
+slot = "Chest"
+material = "leather"
+examine = "The sacred clay top has transformed into a leather body."
+weight = 2.0
+
+[sacred_clay_chaps]
+id = 14119
+bank_stacks = false
+charges = 24450
+slot = "Legs"
+material = "leather"
+examine = "The sacred clay bottom has been transformed into a set of chaps."
+weight = 2.0
+
+[sacred_clay_coif]
+id = 14120
+bank_stacks = false
+charges = 24450
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "The sacred clay hat has transformed into a coif."
+weight = 2.0
+
+[sacred_clay_bow]
+id = 14121
+bank_stacks = false
+charges = 24450
+slot = "Weapon"
+type = "TwoHanded"
+examine = "The sacred clay weapon has transformed into a bow."
+weight = 2.0
+
+[pickaxe_class_1]
+id = 14122
+weight = 0.1
+slot = "Weapon"
+mining_delay = 6
+examine = "The sacred clay has become hard enough to chip stone."
+
+[pickaxe_class_1_noted]
+id = 14123
+
+[pickaxe_class_2]
+id = 14124
+weight = 0.2
+slot = "Weapon"
+mining_delay = 5
+skill_req = { mining = 20 }
+examine = "The sacred clay has become hard enough to chip stone."
+
+[pickaxe_class_2_noted]
+id = 14125
+
+[pickaxe_class_3]
+id = 14126
+weight = 0.3
+slot = "Weapon"
+mining_delay = 4
+skill_req = { mining = 40 }
+examine = "The sacred clay has become hard enough to chip stone."
+
+[pickaxe_class_3_noted]
+id = 14127
+
+[pickaxe_class_4]
+id = 14128
+weight = 0.4
+slot = "Weapon"
+mining_delay = 3
+skill_req = { mining = 60 }
+examine = "The sacred clay has become hard enough to chip stone."
+
+[pickaxe_class_4_noted]
+id = 14129
+
+[pickaxe_class_5]
+id = 14130
+weight = 0.5
+slot = "Weapon"
+mining_delay = 2
+skill_req = { mining = 80 }
+examine = "The sacred clay has become hard enough to chip stone."
+
+[pickaxe_class_5_noted]
+id = 14131
+
+[hatchet_class_1]
+id = 14132
+weight = 0.1
+rank = 0
+slot = "Weapon"
+examine = "The sacred clay has become sharp enough to cut through wood."
+
+[hatchet_class_1_noted]
+id = 14133
+
+[hatchet_class_2]
+id = 14134
+weight = 0.2
+rank = 1
+slot = "Weapon"
+examine = "The sacred clay has become sharp enough to cut through wood."
+
+[hatchet_class_2_noted]
+id = 14135
+
+[hatchet_class_3]
+id = 14136
+weight = 0.3
+rank = 2
+slot = "Weapon"
+examine = "The sacred clay has become sharp enough to cut through wood."
+
+[hatchet_class_3_noted]
+id = 14137
+
+[hatchet_class_4]
+id = 14138
+weight = 0.4
+rank = 3
+slot = "Weapon"
+examine = "The sacred clay has become sharp enough to cut through wood."
+
+[hatchet_class_4_noted]
+id = 14139
+
+[hatchet_class_5]
+id = 14140
+weight = 0.5
+rank = 4
+slot = "Weapon"
+examine = "The sacred clay has become sharp enough to cut through wood."
+
+[hatchet_class_5_noted]
+id = 14141
+
+[harpoon_class_1]
+id = 14142
+weight = 0.1
+slot = "Weapon"
+examine = "The sacred clay has become long enough to reach into the depths of pools."
+
+[harpoon_class_1_noted]
+id = 14143
+
+[harpoon_class_2]
+id = 14144
+weight = 0.2
+slot = "Weapon"
+examine = "The sacred clay has become long enough to reach into the depths of pools."
+
+[harpoon_class_2_noted]
+id = 14145
+
+[harpoon_class_3]
+id = 14146
+weight = 0.3
+slot = "Weapon"
+examine = "The sacred clay has become long enough to reach into the depths of pools."
+
+[harpoon_class_3_noted]
+id = 14147
+
+[harpoon_class_4]
+id = 14148
+weight = 0.4
+slot = "Weapon"
+examine = "The sacred clay has become long enough to reach into the depths of pools."
+
+[harpoon_class_4_noted]
+id = 14149
+
+[harpoon_class_5]
+id = 14150
+weight = 0.5
+slot = "Weapon"
+examine = "The sacred clay has become long enough to reach into the depths of pools."
+
+[harpoon_class_5_noted]
+id = 14151
+
+[butterfly_net_class_1]
+id = 14152
+weight = 0.1
+slot = "Weapon"
+examine = "The sacred clay has become light enough to swing at floating shards."
+
+[butterfly_net_class_1_noted]
+id = 14153
+
+[butterfly_net_class_2]
+id = 14154
+weight = 0.2
+slot = "Weapon"
+examine = "The sacred clay has become light enough to swing at floating shards."
+
+[butterfly_net_class_2_noted]
+id = 14155
+
+[butterfly_net_class_3]
+id = 14156
+weight = 0.3
+slot = "Weapon"
+examine = "The sacred clay has become light enough to swing at floating shards."
+
+[butterfly_net_class_3_noted]
+id = 14157
+
+[butterfly_net_class_4]
+id = 14158
+weight = 0.4
+slot = "Weapon"
+examine = "The sacred clay has become light enough to swing at floating shards."
+
+[butterfly_net_class_4_noted]
+id = 14159
+
+[butterfly_net_class_5]
+id = 14160
+weight = 0.5
+slot = "Weapon"
+examine = "The sacred clay has become light enough to swing at floating shards."
+
+[butterfly_net_class_5_noted]
+id = 14161
+
+[food_class_1]
+id = 14162
+heals = 40
+weight = 0.1
+examine = "The sacred clay has transformed into something bland, but edible."
+
+[food_class_1_noted]
+id = 14163
+
+[food_class_2]
+id = 14164
+heals = 80
+weight = 0.2
+examine = "The sacred clay has transformed into something bland, but edible."
+
+[food_class_2_noted]
+id = 14165
+
+[food_class_3]
+id = 14166
+heals = 120
+weight = 0.3
+examine = "The sacred clay has transformed into something bland, but edible."
+
+[food_class_3_noted]
+id = 14167
+
+[food_class_4]
+id = 14168
+heals = 160
+weight = 0.4
+examine = "The sacred clay has transformed into something bland, but edible."
+
+[food_class_4_noted]
+id = 14169
+
+[food_class_5]
+id = 14170
+heals = 200
+weight = 0.5
+examine = "The sacred clay has transformed into something bland, but edible."
+
+[food_class_5_noted]
+id = 14171
+
+[barrier_class_1]
+id = 14172
+weight = 0.1
+examine = "The clay has transformed into an expandable wall."
+
+[barrier_class_1_noted]
+id = 14173
+
+[barrier_class_2]
+id = 14174
+weight = 0.2
+examine = "The clay has transformed into an expandable wall."
+
+[barrier_class_2_noted]
+id = 14175
+
+[barrier_class_3]
+id = 14176
+weight = 0.3
+examine = "The clay has transformed into an expandable wall."
+
+[barrier_class_3_noted]
+id = 14177
+
+[barrier_class_4]
+id = 14178
+weight = 0.4
+examine = "The clay has transformed into an expandable wall."
+
+[barrier_class_4_noted]
+id = 14179
+
+[barrier_class_5]
+id = 14180
+weight = 0.5
+examine = "The clay has transformed into an expandable wall."
+
+[barrier_class_5_noted]
+id = 14181
+
+[sacred_clay_class_1]
+id = 14182
+weight = 0.1
+examine = "Very low quality sacred clay."
+
+[sacred_clay_class_1_noted]
+id = 14183
+
+[sacred_clay_class_2]
+id = 14184
+weight = 0.2
+examine = "Low quality sacred clay."
+
+[sacred_clay_class_2_noted]
+id = 14185
+
+[sacred_clay_class_3]
+id = 14186
+weight = 0.3
+examine = "Medium quality sacred clay."
+
+[sacred_clay_class_3_noted]
+id = 14187
+
+[sacred_clay_class_4]
+id = 14188
+weight = 0.4
+examine = "High quality sacred clay."
+
+[sacred_clay_class_4_noted]
+id = 14189
+
+[sacred_clay_class_5]
+id = 14190
+weight = 0.5
+examine = "Very high quality sacred clay."
+
+[sacred_clay_class_5_noted]
+id = 14191
+
+[bow_class_1]
+id = 14192
+weight = 0.1
+slot = "Weapon"
+type = "TwoHanded"
+examine = "The sacred clay has transformed into a wood-like substance."
+
+[bow_class_1_noted]
+id = 14193
+
+[bow_class_2]
+id = 14194
+weight = 0.2
+slot = "Weapon"
+type = "TwoHanded"
+examine = "The sacred clay has transformed into a wood-like substance."
+
+[bow_class_2_noted]
+id = 14195
+
+[bow_class_3]
+id = 14196
+weight = 0.3
+slot = "Weapon"
+type = "TwoHanded"
+examine = "The sacred clay has transformed into a wood-like substance."
+
+[bow_class_3_noted]
+id = 14197
+
+[bow_class_4]
+id = 14198
+weight = 0.4
+slot = "Weapon"
+type = "TwoHanded"
+examine = "The sacred clay has transformed into a wood-like substance."
+
+[bow_class_4_noted]
+id = 14199
+
+[bow_class_5]
+id = 14200
+weight = 0.5
+slot = "Weapon"
+type = "TwoHanded"
+examine = "The sacred clay has transformed into a wood-like substance."
+
+[bow_class_5_noted]
+id = 14201
+
+[arrows_class_1]
+id = 14202
+slot = "Ammo"
+examine = "The sacred clay has transformed into a wood-like substance."
+
+[arrows_class_2]
+id = 14203
+slot = "Ammo"
+examine = "The sacred clay has transformed into a wood-like substance."
+
+[arrows_class_3]
+id = 14204
+slot = "Ammo"
+examine = "The sacred clay has transformed into a wood-like substance."
+
+[arrows_class_4]
+id = 14205
+slot = "Ammo"
+examine = "The sacred clay has transformed into a wood-like substance."
+
+[arrows_class_5]
+id = 14206
+slot = "Ammo"
+examine = "The sacred clay has transformed into a wood-like substance."
+
+[prayer_potion_stealing_creation_5]
+id = 14207
+weight = 0.5
+examine = "Five doses of Prayer restore potion."
+
+[prayer_potion_stealing_creation_5_noted]
+id = 14208
+
+[prayer_potion_stealing_creation_4]
+id = 14209
+weight = 0.4
+examine = "Four doses of Prayer restore potion."
+
+[prayer_potion_stealing_creation_4_noted]
+id = 14210
+
+[prayer_potion_stealing_creation_3]
+id = 14211
+weight = 0.3
+examine = "Three doses of Prayer restore potion."
+
+[prayer_potion_stealing_creation_3_noted]
+id = 14212
+
+[prayer_potion_stealing_creation_2]
+id = 14213
+weight = 0.2
+examine = "Two doses of Prayer restore potion."
+
+[prayer_potion_stealing_creation_2_noted]
+id = 14214
+
+[prayer_potion_stealing_creation_1]
+id = 14215
+weight = 0.1
+examine = "One dose of Prayer restore potion."
+
+[prayer_potion_stealing_creation_1_noted]
+id = 14216
+
+[energy_potion_stealing_creation_5]
+id = 14217
+weight = 0.5
+examine = "Five doses of energy potion."
+
+[energy_potion_stealing_creation_5_noted]
+id = 14218
+
+[energy_potion_stealing_creation_4]
+id = 14219
+weight = 0.4
+examine = "Four doses of energy potion."
+
+[energy_potion_stealing_creation_4_noted]
+id = 14220
+
+[energy_potion_stealing_creation_3]
+id = 14221
+weight = 0.3
+examine = "Three doses of energy potion."
+
+[energy_potion_stealing_creation_3_noted]
+id = 14222
+
+[energy_potion_stealing_creation_2]
+id = 14223
+weight = 0.2
+examine = "Two doses of energy potion."
+
+[energy_potion_stealing_creation_2_noted]
+id = 14224
+
+[energy_potion_stealing_creation_1]
+id = 14225
+weight = 0.1
+examine = "One dose of energy potion."
+
+[energy_potion_stealing_creation_1_noted]
+id = 14226
+
+[super_attack_potion_stealing_creation_5]
+id = 14227
+weight = 0.5
+examine = "Five doses of super Attack potion."
+
+[super_attack_potion_stealing_creation_5_noted]
+id = 14228
+
+[super_attack_potion_stealing_creation_4]
+id = 14229
+weight = 0.4
+examine = "Four doses of super Attack potion."
+
+[super_attack_potion_stealing_creation_4_noted]
+id = 14230
+
+[super_attack_potion_stealing_creation_3]
+id = 14231
+weight = 0.3
+examine = "Three doses of super Attack potion."
+
+[super_attack_potion_stealing_creation_3_noted]
+id = 14232
+
+[super_attack_potion_stealing_creation_2]
+id = 14233
+weight = 0.2
+examine = "Two doses of super Attack potion."
+
+[super_attack_potion_stealing_creation_2_noted]
+id = 14234
+
+[super_attack_potion_stealing_creation_1]
+id = 14235
+weight = 0.1
+examine = "One dose of super Attack potion."
+
+[super_attack_potion_stealing_creation_1_noted]
+id = 14236
+
+[super_strength_potion_stealing_creation_5]
+id = 14237
+weight = 0.5
+examine = "Five doses of super Strength potion."
+
+[super_strength_potion_stealing_creation_5_noted]
+id = 14238
+
+[super_strength_potion_stealing_creation_4]
+id = 14239
+weight = 0.4
+examine = "Four doses of super Strength potion."
+
+[super_strength_potion_stealing_creation_4_noted]
+id = 14240
+
+[super_strength_potion_stealing_creation_3]
+id = 14241
+weight = 0.3
+examine = "Three doses of super Strength potion."
+
+[super_strength_potion_stealing_creation_3_noted]
+id = 14242
+
+[super_strength_potion_stealing_creation_2]
+id = 14243
+weight = 0.2
+examine = "Two doses of super Strength potion."
+
+[super_strength_potion_stealing_creation_2_noted]
+id = 14244
+
+[super_strength_potion_stealing_creation_1]
+id = 14245
+weight = 0.1
+examine = "One dose of super Strength potion."
+
+[super_strength_potion_stealing_creation_1_noted]
+id = 14246
+
+[ranging_potion_stealing_creation_5]
+id = 14247
+weight = 0.5
+examine = "Five doses of ranging potion."
+
+[ranging_potion_stealing_creation_5_noted]
+id = 14248
+
+[ranging_potion_stealing_creation_4]
+id = 14249
+weight = 0.4
+examine = "Four doses of ranging potion."
+
+[ranging_potion_stealing_creation_4_noted]
+id = 14250
+
+[ranging_potion_stealing_creation_3]
+id = 14251
+weight = 0.3
+examine = "Three doses of ranging potion."
+
+[ranging_potion_stealing_creation_3_noted]
+id = 14252
+
+[ranging_potion_stealing_creation_2]
+id = 14253
+weight = 0.2
+examine = "Two doses of ranging potion."
+
+[ranging_potion_stealing_creation_2_noted]
+id = 14254
+
+[ranging_potion_stealing_creation_1]
+id = 14255
+weight = 0.1
+examine = "One dose of ranging potion."
+
+[ranging_potion_stealing_creation_1_noted]
+id = 14256
+
+[defence_potion_stealing_creation_5]
+id = 14257
+weight = 0.5
+examine = "Five doses of Defence potion."
+
+[defence_potion_stealing_creation_5_noted]
+id = 14258
+
+[defence_potion_stealing_creation_4]
+id = 14259
+weight = 0.4
+examine = "Four doses of Defence potion."
+
+[defence_potion_stealing_creation_4_noted]
+id = 14260
+
+[defence_potion_stealing_creation_3]
+id = 14261
+weight = 0.3
+examine = "Three doses of Defence potion."
+
+[defence_potion_stealing_creation_3_noted]
+id = 14262
+
+[defence_potion_stealing_creation_2]
+id = 14263
+weight = 0.2
+examine = "Two doses of Defence potion."
+
+[defence_potion_stealing_creation_2_noted]
+id = 14264
+
+[defence_potion_stealing_creation_1]
+id = 14265
+weight = 0.1
+examine = "One dose of Defence potion."
+
+[defence_potion_stealing_creation_1_noted]
+id = 14266
+
+[magic_potion_stealing_creation_5]
+id = 14267
+weight = 0.5
+examine = "Five doses of Magic potion."
+
+[magic_potion_stealing_creation_5_noted]
+id = 14268
+
+[magic_potion_stealing_creation_4]
+id = 14269
+weight = 0.4
+examine = "Four doses of Magic potion."
+
+[magic_potion_stealing_creation_4_noted]
+id = 14270
+
+[magic_potion_stealing_creation_3]
+id = 14271
+weight = 0.3
+examine = "Three doses of Magic potion."
+
+[magic_potion_stealing_creation_3_noted]
+id = 14272
+
+[magic_potion_stealing_creation_2]
+id = 14273
+weight = 0.2
+examine = "Two doses of Magic potion."
+
+[magic_potion_stealing_creation_2_noted]
+id = 14274
+
+[magic_potion_stealing_creation_1]
+id = 14275
+weight = 0.1
+examine = "One dose of Magic potion."
+
+[magic_potion_stealing_creation_1_noted]
+id = 14276
+
+[summoning_potion_stealing_creation_5]
+id = 14277
+weight = 0.5
+examine = "Five doses of Summoning potion."
+
+[summoning_potion_stealing_creation_5_noted]
+id = 14278
+
+[summoning_potion_stealing_creation_4]
+id = 14279
+weight = 0.4
+examine = "Four doses of Summoning potion."
+
+[summoning_potion_stealing_creation_4_noted]
+id = 14280
+
+[summoning_potion_stealing_creation_3]
+id = 14281
+weight = 0.3
+examine = "Three doses of Summoning potion."
+
+[summoning_potion_stealing_creation_3_noted]
+id = 14282
+
+[summoning_potion_stealing_creation_2]
+id = 14283
+weight = 0.2
+examine = "Two doses of Summoning potion."
+
+[summoning_potion_stealing_creation_2_noted]
+id = 14284
+
+[summoning_potion_stealing_creation_1]
+id = 14285
+weight = 0.1
+examine = "One dose of Summoning potion."
+
+[summoning_potion_stealing_creation_1_noted]
+id = 14286
+
+[scimitar_class_1]
+id = 14287
+weight = 0.05
+slot = "Weapon"
+material = "metal"
+examine = "The sacred clay has transformed into a vicious, curved sword."
+
+[scimitar_class_1_noted]
+id = 14288
+
+[scimitar_class_2]
+id = 14289
+weight = 0.1
+slot = "Weapon"
+material = "metal"
+examine = "The sacred clay has transformed into a vicious, curved sword."
+
+[scimitar_class_2_noted]
+id = 14290
+
+[scimitar_class_3]
+id = 14291
+weight = 0.15
+slot = "Weapon"
+material = "metal"
+examine = "The sacred clay has transformed into a vicious, curved sword."
+
+[scimitar_class_3_noted]
+id = 14292
+
+[scimitar_class_4]
+id = 14293
+weight = 0.2
+slot = "Weapon"
+material = "metal"
+examine = "The sacred clay has transformed into a vicious, curved sword."
+
+[scimitar_class_4_noted]
+id = 14294
+
+[scimitar_class_5]
+id = 14295
+weight = 0.25
+slot = "Weapon"
+material = "metal"
+examine = "The sacred clay has transformed into a vicious, curved sword."
+
+[scimitar_class_5_noted]
+id = 14296
+
+[dagger_class_1]
+id = 14297
+weight = 0.05
+slot = "Weapon"
+material = "metal"
+examine = "The sacred clay has transformed into a sharp dagger."
+
+[dagger_class_1_noted]
+id = 14298
+
+[dagger_class_2]
+id = 14299
+weight = 0.1
+slot = "Weapon"
+material = "metal"
+examine = "The sacred clay has transformed into a sharp dagger."
+
+[dagger_class_2_noted]
+id = 14300
+
+[dagger_class_3]
+id = 14301
+weight = 0.15
+slot = "Weapon"
+material = "metal"
+examine = "The sacred clay has transformed into a sharp dagger."
+
+[dagger_class_3_noted]
+id = 14302
+
+[dagger_class_4]
+id = 14303
+weight = 0.2
+slot = "Weapon"
+material = "metal"
+examine = "The sacred clay has transformed into a sharp dagger."
+
+[dagger_class_4_noted]
+id = 14304
+
+[dagger_class_5]
+id = 14305
+weight = 0.25
+slot = "Weapon"
+material = "metal"
+examine = "The sacred clay has transformed into a sharp dagger."
+
+[dagger_class_5_noted]
+id = 14306
+
+[warhammer_class_1]
+id = 14307
+weight = 0.05
+slot = "Weapon"
+examine = "The sacred clay has transformed into a heavy warhammer."
+
+[warhammer_class_1_noted]
+id = 14308
+
+[warhammer_class_2]
+id = 14309
+weight = 0.1
+slot = "Weapon"
+examine = "The sacred clay has transformed into a heavy warhammer."
+
+[warhammer_class_2_noted]
+id = 14310
+
+[warhammer_class_3]
+id = 14311
+weight = 0.15
+slot = "Weapon"
+examine = "The sacred clay has transformed into a heavy warhammer."
+
+[warhammer_class_3_noted]
+id = 14312
+
+[warhammer_class_4]
+id = 14313
+weight = 0.2
+slot = "Weapon"
+examine = "The sacred clay has transformed into a heavy warhammer."
+
+[warhammer_class_4_noted]
+id = 14314
+
+[warhammer_class_5]
+id = 14315
+weight = 0.25
+slot = "Weapon"
+examine = "The sacred clay has transformed into a heavy warhammer."
+
+[warhammer_class_5_noted]
+id = 14316
+
+[robe_top_class_1]
+id = 14317
+weight = 0.1
+slot = "Chest"
+examine = "The sacred clay has transformed into a light, cloth-like material."
+
+[robe_top_class_1_noted]
+id = 14318
+
+[robe_top_class_2]
+id = 14319
+weight = 0.2
+slot = "Chest"
+examine = "The sacred clay has transformed into a light, cloth-like material."
+
+[robe_top_class_2_noted]
+id = 14320
+
+[robe_top_class_3]
+id = 14321
+weight = 0.3
+slot = "Chest"
+examine = "The sacred clay has transformed into a light, cloth-like material."
+
+[robe_top_class_3_noted]
+id = 14322
+
+[robe_top_class_4]
+id = 14323
+weight = 0.4
+slot = "Chest"
+examine = "The sacred clay has transformed into a light, cloth-like material."
+
+[robe_top_class_4_noted]
+id = 14324
+
+[robe_top_class_5]
+id = 14325
+weight = 0.5
+slot = "Chest"
+examine = "The sacred clay has transformed into a light, cloth-like material."
+
+[robe_top_class_5_noted]
+id = 14326
+
+[robe_bottom_class_1]
+id = 14327
+weight = 0.1
+slot = "Legs"
+examine = "The sacred clay has transformed into a light, cloth-like material."
+
+[robe_bottom_class_1_noted]
+id = 14328
+
+[robe_bottom_class_2]
+id = 14329
+weight = 0.2
+slot = "Legs"
+examine = "The sacred clay has transformed into a light, cloth-like material."
+
+[robe_bottom_class_2_noted]
+id = 14330
+
+[robe_bottom_class_3]
+id = 14331
+weight = 0.3
+slot = "Legs"
+examine = "The sacred clay has transformed into a light, cloth-like material."
+
+[robe_bottom_class_3_noted]
+id = 14332
+
+[robe_bottom_class_4]
+id = 14333
+weight = 0.4
+slot = "Legs"
+examine = "The sacred clay has transformed into a light, cloth-like material."
+
+[robe_bottom_class_4_noted]
+id = 14334
+
+[robe_bottom_class_5]
+id = 14335
+weight = 0.5
+slot = "Legs"
+examine = "The sacred clay has transformed into a light, cloth-like material."
+
+[robe_bottom_class_5_noted]
+id = 14336
+
+[hat_class_1]
+id = 14337
+weight = 0.1
+slot = "Hat"
+examine = "The sacred clay has transformed into a light, cloth-like material."
+
+[hat_class_1_noted]
+id = 14338
+
+[hat_class_2]
+id = 14339
+weight = 0.2
+slot = "Hat"
+examine = "The sacred clay has transformed into a light, cloth-like material."
+
+[hat_class_2_noted]
+id = 14340
+
+[hat_class_3]
+id = 14341
+weight = 0.3
+slot = "Hat"
+examine = "The sacred clay has transformed into a light, cloth-like material."
+
+[hat_class_3_noted]
+id = 14342
+
+[hat_class_4]
+id = 14343
+weight = 0.4
+slot = "Hat"
+examine = "The sacred clay has transformed into a light, cloth-like material."
+
+[hat_class_4_noted]
+id = 14344
+
+[hat_class_5]
+id = 14345
+weight = 0.5
+slot = "Hat"
+examine = "The sacred clay has transformed into a light, cloth-like material."
+
+[hat_class_5_noted]
+id = 14346
+
+[platebody_class_1]
+id = 14347
+weight = 0.1
+slot = "Chest"
+material = "metal"
+examine = "The sacred clay has transformed into a hard, metallic substance."
+
+[platebody_class_1_noted]
+id = 14348
+
+[platebody_class_2]
+id = 14349
+weight = 0.2
+slot = "Chest"
+material = "metal"
+examine = "The sacred clay has transformed into a hard, metallic substance."
+
+[platebody_class_2_noted]
+id = 14350
+
+[platebody_class_3]
+id = 14351
+weight = 0.3
+slot = "Chest"
+material = "metal"
+examine = "The sacred clay has transformed into a hard, metallic substance."
+
+[platebody_class_3_noted]
+id = 14352
+
+[platebody_class_4]
+id = 14353
+weight = 0.4
+slot = "Chest"
+material = "metal"
+examine = "The sacred clay has transformed into a hard, metallic substance."
+
+[platebody_class_4_noted]
+id = 14354
+
+[platebody_class_5]
+id = 14355
+weight = 0.5
+slot = "Chest"
+material = "metal"
+examine = "The sacred clay has transformed into a hard, metallic substance."
+
+[platebody_class_5_noted]
+id = 14356
+
+[platelegs_class_1]
+id = 14357
+weight = 0.1
+slot = "Legs"
+material = "metal"
+examine = "The sacred clay has transformed into a hard, metallic substance."
+
+[platelegs_class_1_noted]
+id = 14358
+
+[platelegs_class_2]
+id = 14359
+weight = 0.2
+slot = "Legs"
+material = "metal"
+examine = "The sacred clay has transformed into a hard, metallic substance."
+
+[platelegs_class_2_noted]
+id = 14360
+
+[platelegs_class_3]
+id = 14361
+weight = 0.3
+slot = "Legs"
+material = "metal"
+examine = "The sacred clay has transformed into a hard, metallic substance."
+
+[platelegs_class_3_noted]
+id = 14362
+
+[platelegs_class_4]
+id = 14363
+weight = 0.4
+slot = "Legs"
+material = "metal"
+examine = "The sacred clay has transformed into a hard, metallic substance."
+
+[platelegs_class_4_noted]
+id = 14364
+
+[platelegs_class_5]
+id = 14365
+weight = 0.5
+slot = "Legs"
+material = "metal"
+examine = "The sacred clay has transformed into a hard, metallic substance."
+
+[platelegs_class_5_noted]
+id = 14366
+
+[helm_class_1]
+id = 14367
+weight = 0.1
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "The sacred clay has transformed into a hard, metallic substance."
+
+[helm_class_1_noted]
+id = 14368
+
+[helm_class_2]
+id = 14369
+weight = 0.2
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "The sacred clay has transformed into a hard, metallic substance."
+
+[helm_class_2_noted]
+id = 14370
+
+[helm_class_3]
+id = 14371
+weight = 0.3
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "The sacred clay has transformed into a hard, metallic substance."
+
+[helm_class_3_noted]
+id = 14372
+
+[helm_class_4]
+id = 14373
+weight = 0.4
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "The sacred clay has transformed into a hard, metallic substance."
+
+[helm_class_4_noted]
+id = 14374
+
+[helm_class_5]
+id = 14375
+weight = 0.5
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "The sacred clay has transformed into a hard, metallic substance."
+
+[helm_class_5_noted]
+id = 14376
+
+[staff_class_1]
+id = 14377
+weight = 0.1
+category = "staff"
+slot = "Weapon"
+examine = "The sacred clay has transformed into a lightweight, magical stick."
+
+[staff_class_1_noted]
+id = 14378
+
+[staff_class_2]
+id = 14379
+weight = 0.2
+category = "staff"
+slot = "Weapon"
+examine = "The sacred clay has transformed into a lightweight, magical stick."
+
+[staff_class_2_noted]
+id = 14380
+
+[staff_class_3]
+id = 14381
+weight = 0.3
+category = "staff"
+slot = "Weapon"
+examine = "The sacred clay has transformed into a lightweight, magical stick."
+
+[staff_class_3_noted]
+id = 14382
+
+[staff_class_4]
+id = 14383
+weight = 0.4
+category = "staff"
+slot = "Weapon"
+examine = "The sacred clay has transformed into a lightweight, magical stick."
+
+[staff_class_4_noted]
+id = 14384
+
+[staff_class_5]
+id = 14385
+weight = 0.5
+category = "staff"
+slot = "Weapon"
+examine = "The sacred clay has transformed into a lightweight, magical stick."
+
+[staff_class_5_noted]
+id = 14386
+
+[cape_stealing_creation_blue]
+id = 14387
+tradeable = false
+weight = 0.02
+slot = "Cape"
+examine = "A thick, blue cape."
+kept = "Vanish"
+
+[cape_stealing_creation_red]
+id = 14389
+tradeable = false
+weight = 0.02
+slot = "Cape"
+examine = "A thick, red cape."
+kept = "Vanish"
+
+[leather_body_class_1]
+id = 14391
+weight = 0.1
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "The sacred clay has transformed into a flexible mesh."
+
+[leather_body_class_1_noted]
+id = 14392
+
+[leather_body_class_2]
+id = 14393
+weight = 0.2
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "The sacred clay has transformed into a flexible mesh."
+
+[leather_body_class_2_noted]
+id = 14394
+
+[leather_body_class_3]
+id = 14395
+weight = 0.3
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "The sacred clay has transformed into a flexible mesh."
+
+[leather_body_class_3_noted]
+id = 14396
+
+[leather_body_class_4]
+id = 14397
+weight = 0.4
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "The sacred clay has transformed into a flexible mesh."
+
+[leather_body_class_4_noted]
+id = 14398
+
+[leather_body_class_5]
+id = 14399
+weight = 0.5
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "The sacred clay has transformed into a flexible mesh."
+
+[leather_body_class_5_noted]
+id = 14400
+
+[chaps_class_1]
+id = 14401
+weight = 0.1
+slot = "Legs"
+material = "leather"
+examine = "The sacred clay has transformed into a flexible mesh."
+
+[chaps_class_1_noted]
+id = 14402
+
+[chaps_class_2]
+id = 14403
+weight = 0.2
+slot = "Legs"
+material = "leather"
+examine = "The sacred clay has transformed into a flexible mesh."
+
+[chaps_class_2_noted]
+id = 14404
+
+[chaps_class_3]
+id = 14405
+weight = 0.3
+slot = "Legs"
+material = "leather"
+examine = "The sacred clay has transformed into a flexible mesh."
+
+[chaps_class_3_noted]
+id = 14406
+
+[chaps_class_4]
+id = 14407
+weight = 0.4
+slot = "Legs"
+material = "leather"
+examine = "The sacred clay has transformed into a flexible mesh."
+
+[chaps_class_4_noted]
+id = 14408
+
+[chaps_class_5]
+id = 14409
+weight = 0.5
+slot = "Legs"
+material = "leather"
+examine = "The sacred clay has transformed into a flexible mesh."
+
+[chaps_class_5_noted]
+id = 14410
+
+[coif_class_1]
+id = 14411
+weight = 0.1
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "The sacred clay has transformed into a flexible, protective mesh."
+
+[coif_class_1_noted]
+id = 14412
+
+[coif_class_2]
+id = 14413
+weight = 0.2
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "The sacred clay has transformed into a flexible, protective mesh."
+
+[coif_class_2_noted]
+id = 14414
+
+[coif_class_3]
+id = 14415
+weight = 0.3
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "The sacred clay has transformed into a flexible, protective mesh."
+
+[coif_class_3_noted]
+id = 14416
+
+[coif_class_4]
+id = 14417
+weight = 0.4
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "The sacred clay has transformed into a flexible, protective mesh."
+
+[coif_class_4_noted]
+id = 14418
+
+[coif_class_5]
+id = 14419
+weight = 0.5
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "The sacred clay has transformed into a flexible, protective mesh."
+
+[coif_class_5_noted]
+id = 14420
+
+[clay_deposit_scroll]
+id = 14421
+examine = "This scroll will make your familiar deposit its items at your base."
+
+[sacred_clay_pouch_class_1]
+id = 14422
+weight = 0.1
+examine = "I can summon a very low quality clay familiar with this."
+
+[sacred_clay_pouch_class_1_noted]
+id = 14423
+
+[sacred_clay_pouch_class_2]
+id = 14424
+weight = 0.2
+examine = "I can summon a low quality clay familiar with this."
+
+[sacred_clay_pouch_class_2_noted]
+id = 14425
+
+[sacred_clay_pouch_class_3]
+id = 14426
+weight = 0.3
+examine = "I can summon a medium quality clay familiar with this."
+
+[sacred_clay_pouch_class_3_noted]
+id = 14427
+
+[sacred_clay_pouch_class_4]
+id = 14428
+weight = 0.4
+examine = "I can summon a high quality clay familiar with this."
+
+[sacred_clay_pouch_class_4_noted]
+id = 14429
+
+[sacred_clay_pouch_class_5]
+id = 14430
+weight = 0.5
+examine = "I can summon a very high quality clay familiar with this."
+
+[sacred_clay_pouch_class_5_noted]
+id = 14431

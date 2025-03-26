@@ -1,0 +1,108 @@
+[zamorak_warrior_secondary]
+roll = 50
+drops = [
+    { id = "rune_dagger", chance = 2 },
+    { id = "adamant_longsword" },
+    { id = "steel_scimitar", chance = 2 },
+    { id = "steel_dagger", chance = 2 },
+    { id = "rune_scimitar" }
+]
+
+[zamorak_warrior_tertiary]
+roll = 50
+drops = [
+    { id = "coins", amount = 100, chance = 40 },
+    { id = "lobster", amount = 3, chance = 2 }
+]
+
+[zamorak_warrior_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "zamorak_warrior_secondary" },
+    { table = "zamorak_warrior_tertiary" }
+]
+
+[zamorak_coins]
+roll = 50
+drops = [
+    { id = "coins", amount = 100, chance = 40 }
+]
+
+[zamorak_mage_secondary]
+roll = 50
+drops = [
+    { id = "fire_rune", amount = 7, chance = 2 },
+    { id = "water_rune", amount = 6, chance = 2 },
+    { id = "air_rune", amount = 5, chance = 2 },
+    { id = "nature_rune", amount = 2, chance = 2 },
+    { id = "law_rune", amount = 2 },
+    { id = "blood_rune" }
+]
+
+[zamorak_mage_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "zamorak_mage_secondary" },
+    { table = "zamorak_coins" }
+]
+
+[zamorak_ranger_secondary]
+roll = 50
+drops = [
+    { id = "willow_shortbow", chance = 2 },
+    { id = "willow_longbow" },
+    { id = "steel_arrow", amount = 10, chance = 2 },
+    { id = "mithril_arrow", amount = 10, chance = 2 },
+    { id = "mithril_arrow", amount = 20 },
+    { id = "bowstring_noted", amount = 10, chance = 2 }
+]
+
+[zamorak_ranger_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "zamorak_ranger_secondary" },
+    { table = "zamorak_coins" }
+]
+
+[zamorak_crafter_secondary]
+roll = 70
+drops = [
+    { id = "air_rune", amount = 5, chance = 10 },
+    { id = "body_rune", amount = 3, chance = 5 },
+    { id = "blood_rune", amount = 4, chance = 2 },
+    { id = "chaos_rune", amount = 4, chance = 5 },
+    { id = "death_rune", amount = 3, chance = 2 },
+    { id = "earth_rune", amount = 6, chance = 5 },
+    { id = "water_rune", amount = 5, chance = 10 },
+    { id = "soul_rune", amount = 3, chance = 2 },
+    { id = "fire_rune", amount = 2, chance = 10 },
+    { id = "law_rune", amount = 3 },
+    { id = "nature_rune", amount = 2, chance = 2 },
+    { id = "pure_essence", amount = 3, chance = 5 },
+    { id = "pure_essence", amount = 10 },
+    { id = "coins", amount = 50, chance = 10 }
+]
+
+[zamorak_crafter_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "zamorak_crafter_secondary" }
+]
+
+[monk_of_zamorak_secondary]
+roll = 20
+drops = [
+    { id = "zamorak_robe_bottom" },
+    { id = "zamorak_robe_top" }
+]
+
+[monk_of_zamorak_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "monk_of_zamorak_secondary" }
+]

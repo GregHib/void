@@ -229,11 +229,11 @@ abstract class WorldTest : KoinTest {
     @BeforeEach
     fun beforeEach() {
         settings = Settings.load(properties)
-        loadItemSpawns(floorItems, get(), files.getOrDefault(Settings["spawns.items"], emptyList()))
+        loadItemSpawns(floorItems, get(), files.getOrDefault(Settings["spawns.items"], emptyList()), itemDefinitions)
         if (loadNpcs) {
-            loadNpcSpawns(npcs, files.getOrDefault(Settings["spawns.npcs"], emptyList()))
+            loadNpcSpawns(npcs, files.getOrDefault(Settings["spawns.npcs"], emptyList()), npcDefinitions)
         }
-        loadObjectSpawns(objects, files.getOrDefault(Settings["spawns.objects"], emptyList()))
+        loadObjectSpawns(objects, files.getOrDefault(Settings["spawns.objects"], emptyList()), objectDefinitions)
         setRandom(FakeRandom())
     }
 

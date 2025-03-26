@@ -1,0 +1,121 @@
+[stone_tablet_curse_of_arrav]
+id = 15103
+tradeable = false
+weight = 3.628
+destroy = "You'll have to go to Lamistard's Tunnels to find a new one."
+examine = "An old chipped stone tablet."
+kept = "Wilderness"
+
+[granite_tablet]
+id = 15104
+tradeable = false
+weight = 3.628
+destroy = "You'll have to go to Lamistard's Tunnels to find a new one."
+examine = "An old chipped granite tablet."
+kept = "Wilderness"
+
+[slate_tablet]
+id = 15105
+tradeable = false
+weight = 3.628
+destroy = "You'll have to go to Lamistard's Tunnels to find a new one."
+examine = "An old chipped slate tablet."
+kept = "Wilderness"
+
+[shale_tablet]
+id = 15106
+tradeable = false
+weight = 3.628
+destroy = "You'll have to go to Lamistard's Tunnels to find a new one."
+examine = "An old chipped shale tablet."
+kept = "Wilderness"
+
+[base_plans]
+id = 15107
+tradeable = false
+weight = 0.001
+destroy = "You'll have to get a new one behind the tapestry in Zemouregal's fortress."
+examine = "Some rolled up plans."
+kept = "Wilderness"
+
+[base_key]
+id = 15108
+tradeable = false
+weight = 0.001
+destroy = "You'll have to get a new one behind the tapestry in Zemouregal's fortress."
+examine = "A key which may be for Zemouregal's base."
+kept = "Wilderness"
+
+[oil_in_a_canopic_jar]
+id = 15109
+tradeable = false
+weight = 0.001
+destroy = "You'll have to get a new jar from Senliten and fill it with oil again."
+examine = "A canopic jar full of oil."
+kept = "Wilderness"
+
+[oil_and_berries_in_a_jar]
+id = 15110
+tradeable = false
+weight = 0.001
+destroy = "You'll have to get a new jar from Senliten and fill it with ingredients again."
+examine = "A canopic jar full of oil and dwellberries."
+kept = "Wilderness"
+
+[full_canopic_jar]
+id = 15111
+tradeable = false
+weight = 0.001
+destroy = "You'll have to get a jar from Senliten and fill it with ingredients again."
+examine = "A canopic jar full of heart-preserving gloop."
+kept = "Wilderness"
+
+[empty_canopic_jar]
+id = 15112
+tradeable = false
+weight = 0.001
+destroy = "You'll have to get a new jar from Senliten."
+examine = "An ancient canopic jar, currently empty."
+kept = "Wilderness"
+
+[heart_in_a_canopic_jar]
+id = 15113
+tradeable = false
+weight = 0.001
+destroy = "You'll have to get a new jar from Senliten and retrieve the heart from Zemouregal's base again."
+examine = "A heart suspended in fluid within a canopic jar."
+kept = "Wilderness"
+
+[code_key]
+id = 15114
+tradeable = false
+weight = 0.001
+destroy = "You'll have to get a replacement from the chest in Zemouregal's base."
+examine = "A card with some sort of code on it."
+kept = "Wilderness"
+
+[decoder_strips]
+id = 15115
+tradeable = false
+weight = 0.001
+destroy = "You'll have to get a replacement from the table in Zemouregal's base."
+examine = "A collection of decoder strips."
+kept = "Wilderness"
+
+[notes_a_j]
+id = 15116
+tradeable = false
+weight = 0.005
+aka = ["zemouregals_notes_part_i"]
+destroy = "You can get a replacement from the bookcase in Zemouregal's fort."
+examine = "Some notes about various Mahjarrat."
+kept = "Wilderness"
+
+[notes_k_z]
+id = 15117
+tradeable = false
+weight = 0.005
+aka = ["zemouregals_notes_part_ii"]
+destroy = "You will have to get a replacement from Zemouregal's base"
+examine = "Some notes about various Mahjarrat."
+kept = "Wilderness"

@@ -1,0 +1,292 @@
+[baby_impling_jar]
+id = 11238
+price = 1668
+limit = 1000
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "Baby impling in a jar. That's a bit cruel."
+kept = "Vanish"
+
+[baby_impling_jar_noted]
+id = 11239
+
+[young_impling_jar]
+id = 11240
+price = 1578
+limit = 1000
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "A young impling in a jar. Don't trap me, man."
+kept = "Vanish"
+
+[young_impling_jar_noted]
+id = 11241
+
+[gourmet_impling_jar]
+id = 11242
+price = 1560
+limit = 1000
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "A gourmet impling in a jar."
+kept = "Vanish"
+
+[gourmet_impling_jar_noted]
+id = 11243
+
+[earth_impling_jar]
+id = 11244
+price = 1525
+limit = 1000
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "Earth impling in a jar."
+kept = "Vanish"
+
+[earth_impling_jar_noted]
+id = 11245
+
+[essence_impling_jar]
+id = 11246
+price = 1542
+limit = 1000
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "Essence impling in a jar."
+kept = "Vanish"
+
+[essence_impling_jar_noted]
+id = 11247
+
+[eclectic_impling_jar]
+id = 11248
+price = 1831
+limit = 1000
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "Eclectic impling in a jar."
+kept = "Vanish"
+
+[eclectic_impling_jar_noted]
+id = 11249
+
+[nature_impling_jar]
+id = 11250
+price = 6428
+limit = 1000
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "Nature impling in a jar."
+kept = "Vanish"
+
+[nature_impling_jar_noted]
+id = 11251
+
+[magpie_impling_jar]
+id = 11252
+price = 18300
+limit = 1000
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "Magpie impling in a jar."
+kept = "Vanish"
+
+[magpie_impling_jar_noted]
+id = 11253
+
+[ninja_impling_jar]
+id = 11254
+price = 16700
+limit = 1000
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "Ninja impling in a jar."
+kept = "Vanish"
+
+[ninja_impling_jar_noted]
+id = 11255
+
+[dragon_impling_jar]
+id = 11256
+price = 247800
+limit = 500
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "Dragon impling in a jar."
+kept = "Vanish"
+
+[dragon_impling_jar_noted]
+id = 11257
+
+[jar_generator]
+id = 11258
+tradeable = false
+bank_stacks = false
+weight = 1.0
+destroy = "You will have to trade with Elnock to get a new jar generator."
+examine = "Creates butterfly and impling jars."
+kept = "Vanish"
+
+[magic_butterfly_net]
+id = 11259
+tradeable = false
+weight = 0.226
+slot = "Weapon"
+destroy = "You will have to trade with Elnock to get a new magic butterfly net."
+examine = "For catching butterflies."
+kept = "Vanish"
+
+[impling_jar]
+id = 11260
+price = 806
+limit = 1000
+weight = 0.02
+examine = "It's got little holes in the top."
+
+[impling_jar_noted]
+id = 11261
+
+[imp_repellent]
+id = 11262
+price = 1222
+limit = 100
+weight = 2.267
+empty = "vial"
+examine = "Imps seem to hate this stuff. Can't say I blame them."
+
+[imp_repellent_noted]
+id = 11263
+
+[anchovy_oil]
+id = 11264
+price = 774
+limit = 100
+weight = 0.035
+empty = "vial"
+examine = "Omega 3 oil. Good for the brain, not so for the nose."
+
+[anchovy_oil_noted]
+id = 11265
+
+[anchovy_paste]
+id = 11266
+price = 66
+limit = 100
+examine = "Fish paste. Urk."
+
+[impling_scroll]
+id = 11273
+tradeable = false
+weight = 0.003
+destroy = "You will have to ask Elnock for another one of these."
+examine = "Lets you easily identify your prey."
+kept = "Vanish"
+
+[pirate_impling_jar]
+id = 13337
+price = 4680
+limit = 1000
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "A pirate impling in a jar."
+kept = "Vanish"
+
+[pirate_impling_jar_noted]
+id = 13338
+
+[spirit_impling_jar]
+id = 15513
+price = 2049
+limit = 1000
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "Spirit impling in a jar."
+kept = "Vanish"
+
+[spirit_impling_jar_noted]
+id = 15514
+
+[zombie_impling_jar]
+id = 15515
+price = 14900
+limit = 500
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "Zombie impling in a jar."
+kept = "Vanish"
+
+[zombie_impling_jar_noted]
+id = 15516
+
+[kingly_impling_jar]
+id = 15517
+price = 442300
+limit = 500
+weight = 2.267
+destroy = "If you drop this it will disappear. Are you sure you want to do this?"
+examine = "Kingly impling in a jar."
+kept = "Vanish"
+
+[kingly_impling_jar_noted]
+id = 15518
+
+[royal_shirt]
+id = 15503
+price = 58700
+limit = 2
+weight = 1.0
+slot = "Chest"
+examine = "The shirt of royalty!"
+
+[royal_shirt_noted]
+id = 15504
+
+[royal_leggings]
+id = 15505
+price = 60100
+limit = 2
+weight = 1.0
+slot = "Legs"
+examine = "The leggings of royalty!"
+
+[royal_leggings_noted]
+id = 15506
+
+[royal_sceptre]
+id = 15507
+price = 60000
+limit = 2
+weight = 2.0
+slot = "Weapon"
+examine = "The sceptre of royalty!"
+
+[royal_sceptre_noted]
+id = 15508
+
+[royal_crown]
+id = 15509
+price = 216100
+limit = 2
+weight = 0.056
+slot = "Hat"
+examine = "The crown of royalty!"
+
+[royal_crown_noted]
+id = 15510
+
+[royal_amulet]
+id = 15511
+price = 60200
+limit = 2
+weight = 0.01
+slot = "Amulet"
+examine = "The amulet of royalty!"
+
+[royal_amulet_noted]
+id = 15512
+
+[royal_shirt_2]
+id = 15519
+limit = 2
+weight = 1.0
+examine = "The shirt of royalty!"

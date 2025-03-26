@@ -1,0 +1,89 @@
+
+[dwarven_battleaxe_rusty]
+id = 5056
+tradeable = false
+weight = 2.0
+examine = "This looks very rusty and worn."
+kept = "Wilderness"
+
+[dwarven_battleaxe_sharp]
+id = 5057
+tradeable = false
+weight = 2.0
+examine = "This axe blade has been sharpened."
+kept = "Wilderness"
+
+[dwarven_battleaxe_sapphires]
+id = 5058
+tradeable = false
+weight = 2.0
+examine = "Three sapphires have been crafted onto the hilt."
+kept = "Wilderness"
+
+[dwarven_battleaxe_repaired]
+id = 5059
+tradeable = false
+weight = 2.0
+examine = "This axe has a sharp blade and there are sapphires in the hilt."
+kept = "Wilderness"
+
+[dwarven_battleaxe]
+id = 5060
+tradeable = false
+weight = 2.0
+slot = "Weapon"
+examine = "This axe has a sharp blade and there are sapphires in the hilt."
+kept = "Wilderness"
+
+[dwarven_battleaxe_2]
+id = 5061
+tradeable = false
+weight = 2.0
+slot = "Weapon"
+examine = "This axe has a sharp blade and there are sapphires in the hilt."
+kept = "Wilderness"
+
+[left_boot]
+id = 5062
+tradeable = false
+weight = 0.5
+destroy = "You drop the boot on the ground and lose sight of it."
+examine = "One of a pair I assume."
+kept = "Wilderness"
+
+[right_boot]
+id = 5063
+tradeable = false
+weight = 0.5
+destroy = "You drop the boot on the ground and lose sight of it."
+examine = "A good looking boot, for the right foot. Literally."
+kept = "Wilderness"
+
+[exquisite_boots]
+id = 5064
+tradeable = false
+weight = 1.0
+destroy = "You drop one boot, but then the other shoe falls... you've lost them both!"
+examine = "A lovely pair of boots."
+kept = "Wilderness"
+
+[book_on_costumes]
+id = 5065
+tradeable = false
+weight = 0.08
+examine = "An old library book. It bears the title 'Scholars Guide to Dwarven Costumes'."
+kept = "Wilderness"
+
+[meeting_notes]
+id = 5066
+tradeable = false
+weight = 0.002
+examine = "These notes are from a meeting of the Keldagrim Consortium."
+kept = "Wilderness"
+
+[exquisite_clothes]
+id = 5067
+tradeable = false
+weight = 0.05
+examine = "Clothes for the sculptor's model."
+kept = "Wilderness"

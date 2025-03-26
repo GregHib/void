@@ -1,0 +1,318 @@
+[leather_gloves]
+id = 1059
+price = 13
+limit = 5000
+weight = 0.226
+slot = "Hands"
+material = "leather"
+fishing = { level = 16, xp = 1.0, chance = "10-10" }
+examine = "These will keep my hands warm!"
+kept = "Wilderness"
+
+[leather_gloves_noted]
+id = 1060
+
+[leather_boots]
+id = 1061
+price = 110
+limit = 5000
+weight = 0.34
+slot = "Feet"
+material = "leather"
+fishing = { level = 16, xp = 1.0, chance = "10-10" }
+examine = "Comfortable leather boots."
+kept = "Wilderness"
+
+[leather_boots_noted]
+id = 1062
+
+[leather_vambraces]
+id = 1063
+price = 7
+limit = 5000
+weight = 0.226
+slot = "Hands"
+material = "leather"
+examine = "Better than no armour!"
+kept = "Wilderness"
+
+[leather_vambraces_noted]
+id = 1064
+
+[green_dragonhide_vambraces]
+id = 1065
+price = 1387
+limit = 5000
+weight = 0.283
+slot = "Hands"
+material = "leather"
+examine = "Vambraces made from 100% real dragonhide."
+
+[green_dragonhide_vambraces_noted]
+id = 1066
+
+[leather_chaps]
+id = 1095
+price = 5
+limit = 5000
+weight = 2.721
+slot = "Legs"
+material = "leather"
+examine = "Better than no armour!"
+kept = "Wilderness"
+
+[leather_chaps_noted]
+id = 1096
+
+[studded_chaps]
+id = 1097
+price = 482
+limit = 5000
+weight = 4.535
+slot = "Legs"
+material = "leather"
+examine = "Those studs should provide a bit more protection."
+kept = "Wilderness"
+
+[studded_chaps_noted]
+id = 1098
+
+[green_dragonhide_chaps]
+id = 1099
+price = 2227
+limit = 5000
+weight = 5.443
+slot = "Legs"
+material = "leather"
+examine = "Made from 100% real dragonhide."
+
+[green_dragonhide_chaps_noted]
+id = 1100
+
+[leather_body]
+id = 1129
+price = 28
+limit = 1000
+weight = 2.721
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "Better than no armour!"
+kept = "Wilderness"
+
+[leather_body_noted]
+id = 1130
+
+[hardleather_body]
+id = 1131
+price = 35
+limit = 1000
+weight = 3.628
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "Harder than normal leather."
+kept = "Wilderness"
+
+[hardleather_body_noted]
+id = 1132
+
+[studded_body]
+id = 1133
+price = 515
+limit = 1000
+weight = 5.443
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "Those studs should provide a bit more protection."
+kept = "Wilderness"
+
+[studded_body_noted]
+id = 1134
+
+[green_dragonhide_body]
+id = 1135
+price = 4565
+limit = 5000
+weight = 6.803
+aka = ["green_dhide_body"]
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "Made from 100% real dragonhide."
+
+[green_dragonhide_body_noted]
+id = 1136
+
+[leather_cowl]
+id = 1167
+price = 12
+limit = 5000
+weight = 0.907
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "Better than no armour!"
+kept = "Wilderness"
+
+[leather_cowl_noted]
+id = 1168
+
+[coif]
+id = 1169
+price = 51
+limit = 5000
+weight = 0.907
+slot = "Hat"
+material = "leather"
+type = "Hair"
+examine = "Light weight head protection."
+kept = "Wilderness"
+
+[coif_noted]
+id = 1170
+
+[blue_dragonhide_vambraces]
+id = 2487
+price = 1670
+limit = 5000
+weight = 0.283
+slot = "Hands"
+material = "leather"
+examine = "Vambraces made from 100% real dragonhide."
+
+[blue_dragonhide_vambraces_noted]
+id = 2488
+
+[red_dragonhide_vambraces]
+id = 2489
+price = 2044
+limit = 5000
+weight = 0.283
+slot = "Hands"
+material = "leather"
+examine = "Vambraces made from 100% real dragonhide."
+
+[red_dragonhide_vambraces_noted]
+id = 2490
+
+[black_dragonhide_vambraces]
+id = 2491
+price = 2738
+limit = 5000
+weight = 0.283
+slot = "Hands"
+material = "leather"
+examine = "Vambraces made from 100% real dragonhide."
+
+[black_dragonhide_vambraces_noted]
+id = 2492
+
+[blue_dragonhide_chaps]
+id = 2493
+price = 2406
+limit = 5000
+weight = 5.443
+slot = "Legs"
+material = "leather"
+examine = "Made from 100% real dragonhide."
+
+[blue_dragonhide_chaps_noted]
+id = 2494
+
+[red_dragonhide_chaps]
+id = 2495
+price = 3048
+limit = 5000
+weight = 5.443
+slot = "Legs"
+material = "leather"
+examine = "Made from 100% real dragonhide."
+
+[red_dragonhide_chaps_noted]
+id = 2496
+
+[black_dragonhide_chaps]
+id = 2497
+price = 6606
+limit = 5000
+weight = 5.443
+slot = "Legs"
+material = "leather"
+examine = "Made from 100% real dragonhide."
+
+[black_dragonhide_chaps_noted]
+id = 2498
+
+[blue_dragonhide_body]
+id = 2499
+price = 5471
+limit = 5000
+weight = 6.803
+aka = ["blue_dhide_body"]
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "Made from 100% real dragonhide."
+
+[blue_dragonhide_body_noted]
+id = 2500
+
+[red_dragonhide_body]
+id = 2501
+price = 6509
+limit = 5000
+weight = 6.803
+aka = ["red_dhide_body"]
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "Made from 100% real dragonhide."
+
+[red_dragonhide_body_noted]
+id = 2502
+
+[black_dragonhide_body]
+id = 2503
+price = 7949
+limit = 5000
+weight = 6.803
+aka = ["black_dhide_body"]
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "Made from 100% real dragonhide."
+
+[black_dragonhide_body_noted]
+id = 2504
+
+[blue_dragon_leather]
+id = 2505
+price = 2365
+limit = 10000
+weight = 3.175
+examine = "It's a piece of prepared blue dragonhide."
+
+[blue_dragon_leather_noted]
+id = 2506
+
+[red_dragon_leather]
+id = 2507
+price = 2798
+limit = 10000
+weight = 3.175
+examine = "It's a piece of prepared red dragonhide."
+
+[red_dragon_leather_noted]
+id = 2508
+
+[black_dragon_leather]
+id = 2509
+price = 4484
+limit = 10000
+weight = 3.175
+examine = "It's a piece of prepared black dragonhide."
+
+[black_dragon_leather_noted]
+id = 2510

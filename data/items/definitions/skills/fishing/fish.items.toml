@@ -1,0 +1,698 @@
+[shrimps]
+id = 315
+price = 5
+limit = 10000
+heals = 30
+weight = 0.1
+aka = ["cooked_shrimp", "shrimp", "cooked_shrimps"]
+examine = "Some nicely cooked shrimp."
+
+[shrimps_noted]
+id = 316
+
+[raw_shrimps]
+id = 317
+price = 5
+limit = 20000
+weight = 0.12
+fishing = { xp = 10.0, chance = "48-256" }
+cooking = { xp = 30.0, chances = { fire = "128-512", cooks_range = "138-532" }, cooked = "shrimps", burnt = "burnt_shrimp", cooked_message = "You successfully cook some shrimps.", burnt_message = "You accidentally burn the shrimps." }
+aka = ["raw_shrimp"]
+examine = "I should try cooking this."
+
+[raw_shrimps_noted]
+id = 318
+
+[anchovies]
+id = 319
+price = 6
+limit = 10000
+heals = 10
+weight = 0.1
+aka = ["cooked_anchovies"]
+examine = "Some nicely cooked anchovies."
+
+[anchovies_noted]
+id = 320
+
+[raw_anchovies]
+id = 321
+price = 3
+limit = 20000
+weight = 0.12
+fishing = { level = 15, xp = 40.0, chance = "24-128" }
+cooking = { xp = 30.0, chances = { fire = "128-512", cooks_range = "138-532" }, cooked = "anchovies", cooked_message = "You successfully cook some anchovies.", burnt_message = "You accidentally burn the anchovies." }
+examine = "I should try cooking this."
+
+[raw_anchovies_noted]
+id = 322
+
+[burnt_anchovies]
+id = 323
+examine = "Oops!"
+
+[burnt_anchovies_noted]
+id = 324
+
+[sardine]
+id = 325
+price = 5
+limit = 10000
+heals = 30
+weight = 0.12
+aka = ["cooked_sardine", "sardines", "sards"]
+examine = "Some nicely cooked sardines."
+
+[sardine_noted]
+id = 326
+
+[raw_sardine]
+id = 327
+price = 18
+limit = 20000
+weight = 0.14
+fishing = { level = 5, xp = 20.0, chance = "32-192" }
+cooking = { level = 1, xp = 40.0, chances = { fire = "118-492", cooks_range = "128-512" }, cooked = "sardine", cooked_message = "You successfully cook a sardine.", burnt_message = "You accidentally burn the sardine." }
+examine = "I should try cooking this."
+
+[raw_sardine_noted]
+id = 328
+
+[salmon]
+id = 329
+price = 45
+limit = 10000
+heals = 90
+weight = 0.5
+aka = ["cooked_salmon", "salmons"]
+examine = "Some nicely cooked salmon. Eat it to restore health."
+
+[salmon_noted]
+id = 330
+
+[raw_salmon]
+id = 331
+price = 39
+limit = 20000
+weight = 0.55
+fishing = { level = 30, xp = 70.0, chance = "16-96" }
+cooking = { level = 25, xp = 90.0, chances = { fire = "68-392", cooks_range = "78-402" }, cooked = "salmon", cooked_message = "You successfully cook a salmon.", burnt_message = "You accidentally burn the salmon." }
+examine = "I should try cooking this."
+
+[raw_salmon_noted]
+id = 332
+
+[trout]
+id = 333
+price = 16
+limit = 10000
+heals = 70
+weight = 0.4
+aka = ["cooked_trout", "trouts"]
+examine = "Some nicely cooked trout."
+
+[trout_noted]
+id = 334
+
+[raw_trout]
+id = 335
+price = 12
+limit = 20000
+weight = 0.45
+fishing = { level = 20, xp = 50.0, chance = "32-192" }
+cooking = { level = 15, xp = 70.0, chances = { fire = "88-432", cooks_range = "98-452" }, cooked = "trout", cooked_message = "You successfully cook a trout.", burnt_message = "You accidentally burn the trout." }
+examine = "I should try cooking this."
+
+[raw_trout_noted]
+id = 336
+
+[cod]
+id = 339
+price = 8
+limit = 10000
+heals = 70
+weight = 0.4
+aka = ["cooked_cod", "cods"]
+examine = "Some nicely cooked cod. Eat it to restore health."
+
+[cod_noted]
+id = 340
+
+[raw_cod]
+id = 341
+price = 21
+limit = 20000
+weight = 0.45
+fishing = { level = 23, xp = 45.0, chance = "4-55" }
+cooking = { level = 18, xp = 75.0, chances = { fire = "83-422", range = "88-432", cooks_range = "93-442" }, cooked = "cod", cooked_message = "You successfully cook a cod.", burnt_message = "You accidentally burn the cod." }
+examine = "I should try cooking this."
+
+[raw_cod_noted]
+id = 342
+
+[burnt_trout]
+id = 343
+examine = "Oops!"
+
+[burnt_trout_noted]
+id = 344
+
+[raw_herring]
+id = 345
+price = 32
+limit = 20000
+weight = 0.55
+fishing = { level = 10, xp = 30.0, chance = "24-128" }
+cooking = { level = 5, xp = 50.0, chances = { fire = "108-472", cooks_range = "118-492" }, cooked = "herring", cooked_message = "You successfully cook a herring.", burnt_message = "You accidentally burn the herring." }
+examine = "I should try cooking this."
+
+[raw_herring_noted]
+id = 346
+
+[herring]
+id = 347
+price = 7
+limit = 10000
+heals = 50
+weight = 0.5
+aka = ["cooked_herring", "herrings"]
+examine = "Some nicely cooked herring."
+
+[herring_noted]
+id = 348
+
+[raw_pike]
+id = 349
+price = 32
+limit = 20000
+weight = 0.55
+fishing = { level = 25, xp = 60.0, chance = "16-96" }
+cooking = { level = 20, xp = 80.0, chances = { fire = "78-412", cooks_range = "88-432" }, cooked = "pike", cooked_message = "You successfully cook a pike.", burnt_message = "You accidentally burn the pike." }
+examine = "I should try cooking this."
+
+[raw_pike_noted]
+id = 350
+
+[pike]
+id = 351
+price = 22
+limit = 10000
+heals = 80
+weight = 0.5
+aka = ["cooked_pike", "pikes"]
+examine = "Some nicely cooked pike."
+
+[pike_noted]
+id = 352
+
+[raw_mackerel]
+id = 353
+price = 12
+limit = 20000
+weight = 0.35
+fishing = { level = 16, xp = 20.0, chance = "5-65" }
+cooking = { level = 10, xp = 60.0, chances = { fire = "98-452", cooks_range = "108-472" }, cooked = "mackerel", cooked_message = "You successfully cook a mackerel.", burnt_message = "You accidentally burn the mackerel." }
+examine = "I should try cooking this."
+
+[raw_mackerel_noted]
+id = 354
+
+[mackerel]
+id = 355
+price = 9
+limit = 10000
+heals = 60
+weight = 0.3
+aka = ["cooked_mackerel"]
+examine = "Some nicely cooked mackerel."
+
+[mackerel_noted]
+id = 356
+
+[burnt_herring]
+id = 357
+examine = "Oops!"
+
+[burnt_herring_noted]
+id = 358
+
+[raw_tuna]
+id = 359
+price = 67
+limit = 20000
+weight = 0.45
+fishing = { level = 35, xp = 80.0, chance = "8-64" }
+cooking = { level = 30, xp = 100.0, chances = { fire = "58-372" }, cooked = "tuna", cooked_message = "You manage to cook a tuna.", burnt_message = "You accidentally burn the tuna." }
+examine = "I should try cooking this."
+
+[raw_tuna_noted]
+id = 360
+
+[tuna]
+id = 361
+price = 73
+limit = 10000
+heals = 100
+weight = 0.4
+aka = ["cooked_tuna"]
+examine = "Wow, this is a big fish."
+
+[tuna_noted]
+id = 362
+
+[raw_bass]
+id = 363
+price = 235
+limit = 20000
+weight = 0.4
+fishing = { level = 46, xp = 100.0, chance = "3-40" }
+cooking = { level = 43, xp = 130.0, chances = { fire = "33-312" }, cooked = "bass", cooked_message = "You cook a bass.", burnt_message = "You accidentally burn the bass." }
+examine = "I should try cooking this."
+
+[raw_bass_noted]
+id = 364
+
+[bass]
+id = 365
+price = 163
+limit = 10000
+heals = 130
+weight = 0.35
+aka = ["cooked_bass"]
+examine = "Wow, this is a big fish."
+
+[bass_noted]
+id = 366
+
+[burnt_tuna]
+id = 367
+examine = "Oops!"
+
+[burnt_tuna_noted]
+id = 368
+
+[burnt_sardine]
+id = 369
+examine = "Oops!"
+
+[burnt_sardine_noted]
+id = 370
+
+[raw_swordfish]
+id = 371
+price = 176
+limit = 20000
+weight = 0.5
+fishing = { level = 50, xp = 100.0, chance = "4-48" }
+cooking = { level = 45, xp = 140.0, chances = { fire = "18-292", range = "30-310" }, cooked = "swordfish", cooked_message = "You successfully cook a swordfish.", burnt_message = "You accidentally burn the swordfish." }
+examine = "I should try cooking this."
+
+[raw_swordfish_noted]
+id = 372
+
+[swordfish]
+id = 373
+price = 155
+limit = 10000
+heals = 140
+weight = 0.45
+aka = ["swordfishes", "swordfishs", "cooked_swordfish"]
+examine = "I'd better be careful eating this!"
+
+[swordfish_noted]
+id = 374
+
+[burnt_swordfish]
+id = 375
+examine = "Oops!"
+
+[burnt_swordfish_noted]
+id = 376
+
+[raw_lobster]
+id = 377
+price = 107
+limit = 20000
+weight = 0.4
+fishing = { level = 40, xp = 90.0, chance = "6-95" }
+cooking = { level = 40, xp = 120.0, chances = { fire = "38-332", gauntlet = "55-368" }, type = "roast", cooked = "lobster", cooked_message = "You roast a lobster.", burnt_message = "You accidentally burn the lobster." }
+examine = "I should try cooking this."
+
+[raw_lobster_noted]
+id = 378
+
+[lobster]
+id = 379
+price = 94
+limit = 10000
+heals = 120
+weight = 0.35
+aka = ["lob", "lobs", "lobsters"]
+examine = "This looks tricky to eat."
+
+[lobster_noted]
+id = 380
+
+[burnt_lobster]
+id = 381
+examine = "Oops!"
+
+[burnt_lobster_noted]
+id = 382
+
+[raw_shark]
+id = 383
+price = 611
+limit = 20000
+weight = 0.7
+fishing = { level = 76, xp = 110.0, chance = "3-40" }
+cooking = { level = 80, xp = 210.0, chances = { fire = "1-202", range = "1-232", gauntlet = "15-270" }, cooked = "shark", cooked_message = "You successfully cook a shark.", burnt_message = "You accidentally burn the shark." }
+examine = "I should try cooking this."
+
+[raw_shark_noted]
+id = 384
+
+[shark]
+id = 385
+price = 619
+limit = 10000
+heals = 200
+weight = 0.65
+aka = ["sharks", "cooked_shark", "cooked_sharks"]
+examine = "I'd better be careful eating this."
+
+[shark_noted]
+id = 386
+
+[burnt_shark]
+id = 387
+examine = "Oops!"
+
+[burnt_shark_noted]
+id = 388
+
+[raw_manta_ray]
+id = 389
+price = 2206
+limit = 20000
+weight = 0.45
+fishing = { level = 81, xp = 46.0, chance = "2-30" }
+cooking = { level = 91, xp = 216.3, chances = { fire = "1-202", range = "1-222" }, cooked = "manta_ray", cooked_message = "You successfully cook a manta ray.", burnt_message = "You accidentally burn the manta ray." }
+examine = "Tastier when cooked."
+
+[raw_manta_ray_noted]
+id = 390
+
+[manta_ray]
+id = 391
+price = 2434
+limit = 10000
+heals = 220
+weight = 0.4
+aka = ["mantas", "manta_rays", "cooked_manta_ray"]
+examine = "Mmmm...this looks tasty!"
+
+[manta_ray_noted]
+id = 392
+
+[burnt_manta_ray]
+id = 393
+examine = "Oops!"
+
+[burnt_manta_ray_noted]
+id = 394
+
+[raw_sea_turtle]
+id = 395
+price = 2230
+limit = 20000
+weight = 0.4
+fishing = { level = 79, xp = 38.0, chance = "3-30" }
+cooking = { level = 82, xp = 211.3, chances = { fire = "1-202", range = "1-222" }, cooked = "sea_turtle", cooked_message = "You successfully cook a sea turtle.", burnt_message = "You accidentally burn the sea turtle." }
+examine = "Looks wrinkly."
+
+[raw_sea_turtle_noted]
+id = 396
+
+[sea_turtle]
+id = 397
+price = 2418
+limit = 10000
+heals = 210
+weight = 0.35
+aka = ["turtle", "turtles", "sea_turtles", "cooked_sea_turtle"]
+examine = "Tasty!"
+
+[sea_turtle_noted]
+id = 398
+
+[burnt_sea_turtle]
+id = 399
+examine = "Oops!"
+
+[burnt_sea_turtle_noted]
+id = 400
+
+[raw_karambwan]
+id = 3142
+price = 1994
+limit = 20000
+weight = 0.7
+fishing = { level = 65, xp = 50.0, chance = "5-160" }
+cooking = { level = 30, xp = 190.0, chances = { fire = "70-255" }, cooked_message = "You cook the karambwan. It looks delicious.", burnt_message = "You accidentally burn the karambwan." }
+examine = "A raw green octopus."
+
+[raw_karambwan_noted]
+id = 3143
+
+[cooked_karambwan]
+id = 3144
+price = 867
+limit = 10000
+heals = 180
+combo = true
+weight = 0.65
+examine = "Cooked octopus. It looks very nutritious."
+
+[cooked_karambwan_noted]
+id = 3145
+
+[poison_karambwan]
+id = 3146
+heals = 0
+combo = true
+tradeable = false
+weight = 0.65
+examine = "Cooked octopus. It looks poorly cooked and quite dangerous."
+kept = "Reclaim"
+
+[cooked_karambwan_2]
+id = 3147
+limit = 10000
+heals = 180
+weight = 0.65
+examine = "Cooked octopus. It looks very nutritious."
+
+[burnt_karambwan]
+id = 3148
+examine = "Burnt octopus."
+
+[burnt_karambwan_noted]
+id = 3149
+
+[burnt_shrimp]
+id = 7954
+examine = "Oops!"
+
+[burnt_shrimp_noted]
+id = 7955
+
+[rainbow_fish]
+id = 10136
+price = 58
+limit = 10000
+heals = 110
+weight = 0.4
+examine = "Well, this would certainly add some colour to a meal."
+
+[rainbow_fish_noted]
+id = 10137
+
+[raw_rainbow_fish]
+id = 10138
+price = 196
+limit = 20000
+weight = 0.45
+fishing = { level = 38, xp = 80.0, chance = "8-64" }
+cooking = { level = 35, xp = 110.0, chances = { fire = "56-370" }, cooked = "rainbow_fish", cooked_message = "You manage to cook a rainbow fish.", burnt_message = "You accidentally burn the rainbow fish." }
+examine = "A colourful fish, attracted to colourful flies."
+
+[raw_rainbow_fish_noted]
+id = 10139
+
+[burnt_rainbow_fish]
+id = 10140
+examine = "Used to be a colourful fish, but now it's burnt!"
+
+[burnt_rainbow_fish_noted]
+id = 10141
+
+[guam_tar]
+id = 10142
+price = 20
+limit = 10000
+slot = "Ammo"
+examine = "A thick, foul-smelling, tar-like substance with a green tinge."
+
+[marrentill_tar]
+id = 10143
+price = 14
+limit = 10000
+slot = "Ammo"
+examine = "A thick, foul-smelling, tar-like substance with an orange tinge."
+
+[tarromin_tar]
+id = 10144
+price = 66
+limit = 10000
+slot = "Ammo"
+examine = "A thick, foul-smelling, tar-like substance with a red tinge."
+
+[harralander_tar]
+id = 10145
+price = 87
+limit = 10000
+slot = "Ammo"
+examine = "A dark, thick, foul-smelling, tar-like substance."
+
+[orange_salamander]
+id = 10146
+price = 12
+limit = 1000
+weight = 4.0
+weapon_type = "salamander"
+attack_range = 1
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Release"
+examine = "Slightly slimy but kind of cute."
+kept = "Vanish"
+
+[red_salamander]
+id = 10147
+price = 27
+limit = 1000
+weight = 4.0
+weapon_type = "salamander"
+attack_range = 1
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Release"
+examine = "Slightly slimy but certainly striking."
+kept = "Vanish"
+
+[black_salamander]
+id = 10148
+price = 93
+limit = 1000
+weight = 4.0
+weapon_type = "salamander"
+attack_range = 1
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Release"
+examine = "Slightly slimy and somewhat menacing."
+
+[green_salamander]
+id = 10149
+price = 957
+limit = 2000
+weight = 4.0
+aka = ["swamp_lizard"]
+weapon_type = "salamander"
+attack_range = 1
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Release"
+examine = "A very slimy and generally disgusting green lizard."
+kept = "Vanish"
+
+[noose_wand]
+id = 10150
+price = 1
+limit = 100
+weight = 1.814
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A noose on a stick."
+
+[noose_wand_noted]
+id = 10151
+
+[hunters_crossbow]
+id = 10156
+price = 1760
+limit = 100
+weight = 5.0
+slot = "Weapon"
+attack_range = 8
+examine = "A weapon made of bone and wood."
+
+[hunters_crossbow_noted]
+id = 10157
+
+[kebbit_bolts]
+id = 10158
+price = 25
+limit = 1000
+slot = "Ammo"
+examine = "Bolts made from the spikes of a prickly kebbit."
+
+[long_kebbit_bolts]
+id = 10159
+price = 233
+limit = 1000
+slot = "Ammo"
+examine = "Bolts made from the spikes of a razor-backed kebbit."
+
+[orange_salamander_noted]
+id = 10160
+
+[red_salamander_noted]
+id = 10161
+
+[black_salamander_noted]
+id = 10162
+
+[green_salamander_noted]
+id = 10163
+
+[crayfish]
+id = 13433
+price = 6
+limit = 10000
+heals = 20
+weight = 0.1
+examine = "Some cooked crayfish. Eat it to heal."
+
+[crayfish_noted]
+id = 13434
+
+[raw_crayfish]
+id = 13435
+price = 17
+limit = 20000
+weight = 0.12
+fishing = { xp = 10.0, chance = "48-256" }
+cooking = { xp = 30.0, chances = { fire = "128-512" }, cooked = "crayfish", cooked_message = "You successfully cook some crayfish.", burnt_message = "You accidentally burn the crayfish." }
+examine = "I should try cooking this."
+
+[raw_crayfish_noted]
+id = 13436
+
+[burnt_crayfish]
+id = 13437
+examine = "A burnt crayfish."
+
+[burnt_crayfish_noted]
+id = 13438

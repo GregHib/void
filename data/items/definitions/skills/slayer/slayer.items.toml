@@ -1,0 +1,498 @@
+[broad_arrows]
+id = 4150
+examine = "Arrows with a wider than normal tip."
+
+[abyssal_whip]
+id = 4151
+price = 865326
+limit = 10
+weight = 0.453
+aka = ["whip", "abby_whip", "red_whip", "whip_red", "red_abyssal_whip", "abyssal_whip_red"]
+special_accuracy_mod = 1.25
+special_energy = 500
+special = "energy_drain"
+slot = "Weapon"
+examine = "A weapon from the Abyss."
+
+[abyssal_whip_noted]
+id = 4152
+
+[granite_maul]
+id = 4153
+price = 30100
+limit = 10
+weight = 4.535
+aka = ["gmaul"]
+special_energy = 500
+special = "quick_smash"
+weapon_type = "granite_maul"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "Simplicity is the best weapon."
+
+[granite_maul_noted]
+id = 4154
+
+[enchanted_gem]
+id = 4155
+tradeable = false
+weight = 0.002
+examine = "I can contact the Slayer Masters with this."
+kept = "Wilderness"
+
+[mirror_shield]
+id = 4156
+price = 3610
+limit = 100
+weight = 2.267
+slot = "Shield"
+material = "metal"
+examine = "I can just about see things in this shield's reflection."
+
+[mirror_shield_noted]
+id = 4157
+
+[leaf_bladed_spear]
+id = 4158
+tradeable = false
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A spear with a leaf-shaped point."
+kept = "Reclaim"
+
+[leaf_bladed_spear_2]
+id = 4159
+tradeable = false
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A spear with a leaf-shaped point."
+kept = "Reclaim"
+
+[broad_arrow]
+id = 4160
+tradeable = false
+slot = "Ammo"
+examine = "Arrow with a wider than normal tip."
+kept = "Reclaim"
+
+[bag_of_salt]
+id = 4161
+price = 1
+limit = 100
+examine = "A bag of salt."
+kept = "Wilderness"
+
+[rock_hammer]
+id = 4162
+price = 185
+limit = 100
+weight = 2.267
+slot = "Weapon"
+examine = "I can even smash stone with this."
+
+[rock_hammer_noted]
+id = 4163
+
+[face_mask]
+id = 4164
+price = 1019
+limit = 100
+weight = 0.113
+slot = "Hat"
+type = "Mask"
+examine = "Stops me breathing in too much dust."
+kept = "Wilderness"
+
+[face_mask_noted]
+id = 4165
+
+[earmuffs]
+id = 4166
+price = 656
+limit = 100
+weight = 0.113
+slot = "Hat"
+examine = "These will protect my ears from loud noise."
+kept = "Wilderness"
+
+[earmuffs_noted]
+id = 4167
+
+[nose_peg]
+id = 4168
+price = 463
+limit = 100
+weight = 0.001
+slot = "Hat"
+examine = "Protects me from any bad smells."
+
+[nose_peg_noted]
+id = 4169
+
+[slayers_staff]
+id = 4170
+price = 12400
+limit = 100
+weight = 1.814
+aka = ["slayer_staff"]
+category = "staff"
+slot = "Weapon"
+examine = "An old and magical staff."
+
+[slayers_staff_noted]
+id = 4171
+
+[broad_arrows_2]
+id = 4172
+slot = "Ammo"
+examine = "Arrows with a wider than normal tip."
+
+[broad_arrows_3]
+clone = "broad_arrows_2"
+id = 4173
+
+[broad_arrows_4]
+clone = "broad_arrows_2"
+id = 4174
+
+[broad_arrows_5]
+clone = "broad_arrows_2"
+id = 4175
+
+[spiny_helmet]
+id = 4551
+price = 895
+limit = 100
+weight = 2.267
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "You don't want to wear it inside-out."
+kept = "Wilderness"
+
+[spiny_helmet_noted]
+id = 4552
+
+[ice_cooler]
+id = 6696
+tradeable = false
+examine = "Contains ice-cold water."
+kept = "Reclaim"
+
+[slayer_gloves_2]
+id = 6708
+tradeable = false
+weight = 0.226
+examine = "Especially good against diseased arachnids."
+kept = "Reclaim"
+
+[slayer_gloves]
+id = 6720
+tradeable = false
+weight = 0.226
+slot = "Hands"
+examine = "Especially good against diseased arachnids."
+kept = "Reclaim"
+
+[harpie_bug_swarm]
+id = 7050
+examine = "A swarm of bugs."
+
+[unlit_bug_lantern]
+id = 7051
+price = 598
+limit = 100
+weight = 2.267
+slot = "Shield"
+examine = "A lantern to aid attacking Harpie bugs."
+
+[unlit_bug_lantern_noted]
+id = 7052
+
+[lit_bug_lantern]
+id = 7053
+limit = 100
+tradeable = false
+weight = 2.267
+slot = "Shield"
+examine = "A lantern to aid attacking Harpie bugs."
+kept = "Reclaim"
+
+[insulated_boots]
+id = 7159
+price = 295
+limit = 100
+weight = 1.36
+slot = "Feet"
+examine = "They're heavily insulated wellies."
+
+[insulated_boots_noted]
+id = 7161
+
+[fungicide_spray_10]
+id = 7421
+weight = 2.0
+charges = 1
+degrade = "fungicide_spray_9"
+slot = "Weapon"
+examine = "Pumps fungicide."
+
+[fungicide_spray_9]
+clone = "fungicide_spray_10"
+id = 7422
+degrade = "fungicide_spray_8"
+
+[fungicide_spray_8]
+clone = "fungicide_spray_10"
+id = 7423
+degrade = "fungicide_spray_7"
+
+[fungicide_spray_7]
+clone = "fungicide_spray_10"
+id = 7424
+degrade = "fungicide_spray_6"
+
+[fungicide_spray_6]
+clone = "fungicide_spray_10"
+id = 7425
+degrade = "fungicide_spray_5"
+
+[fungicide_spray_5]
+clone = "fungicide_spray_10"
+id = 7426
+degrade = "fungicide_spray_4"
+
+[fungicide_spray_4]
+clone = "fungicide_spray_10"
+id = 7427
+degrade = "fungicide_spray_3"
+
+[fungicide_spray_3]
+clone = "fungicide_spray_10"
+id = 7428
+degrade = "fungicide_spray_2"
+
+[fungicide_spray_2]
+clone = "fungicide_spray_10"
+id = 7429
+degrade = "fungicide_spray_1"
+
+[fungicide_spray_1]
+clone = "fungicide_spray_10"
+id = 7430
+degrade = "fungicide_spray_0"
+
+[fungicide_spray_0]
+id = 7431
+slot = "Weapon"
+examine = "Pumps fungicide."
+weight = 2.0
+
+[fungicide]
+id = 7432
+tradeable = false
+weight = 0.1
+examine = "Does exactly what it says on the tin."
+kept = "Reclaim"
+
+[slayer_bell]
+id = 10952
+price = 82
+limit = 100
+weight = 0.028
+examine = "Don't make anyone jump when you ring this!"
+
+[slayer_bell_noted]
+id = 10953
+
+[slayer_helmet]
+id = 13263
+tradeable = false
+weight = 2.267
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+aka = ["slayer_helm"]
+examine = "You don't want to wear it inside-out."
+kept = "Reclaim"
+
+[banshee_voice]
+id = 13276
+tradeable = false
+weight = 0.002
+examine = "The remains of a banshee's scream."
+kept = "Wilderness"
+
+[masked_earmuffs]
+id = 13277
+tradeable = false
+weight = 0.113
+slot = "Hat"
+type = "Mask"
+examine = "More of that crazy Slayer headgear."
+kept = "Reclaim"
+
+[broad_arrow_heads]
+id = 13278
+price = 102
+limit = 10000
+examine = "For use against turoth and kurasks."
+
+[unfinished_broad_bolts]
+id = 13279
+price = 66
+limit = 10000
+examine = "For use against turoth and kurasks."
+
+[broad_tipped_bolts]
+id = 13280
+price = 89
+limit = 10000
+slot = "Ammo"
+material = "metal"
+examine = "For use against turoth and kurasks."
+
+[ring_of_slaying_8]
+id = 13281
+charges = 1
+degrade = "ring_of_slaying_7"
+deplete = "teleport"
+jewellery = { level = 75, xp = 15.0 }
+weight = 0.006
+slot = "Ring"
+examine = "An enchanted ring."
+
+[ring_of_slaying_7]
+id = 13282
+charges = 1
+degrade = "ring_of_slaying_6"
+deplete = "teleport"
+weight = 0.006
+slot = "Ring"
+examine = "An enchanted ring."
+
+[ring_of_slaying_6]
+clone = "ring_of_slaying_7"
+id = 13283
+degrade = "ring_of_slaying_5"
+
+[ring_of_slaying_5]
+clone = "ring_of_slaying_7"
+id = 13284
+degrade = "ring_of_slaying_4"
+
+[ring_of_slaying_4]
+clone = "ring_of_slaying_7"
+id = 13285
+degrade = "ring_of_slaying_3"
+
+[ring_of_slaying_3]
+clone = "ring_of_slaying_7"
+id = 13286
+degrade = "ring_of_slaying_2"
+
+[ring_of_slaying_2]
+clone = "ring_of_slaying_7"
+id = 13287
+degrade = "ring_of_slaying_1"
+
+[ring_of_slaying_1]
+clone = "ring_of_slaying_7"
+id = 13288
+degrade = "destroy"
+
+[leaf_bladed_sword]
+id = 13290
+price = 40200
+limit = 100
+weight = 1.814
+slot = "Weapon"
+material = "metal"
+examine = "A razor-sharp sword."
+
+[leaf_bladed_sword_noted]
+id = 13291
+
+[amulet_of_ranging]
+id = 15126
+price = 567400
+limit = 10
+weight = 0.01
+slot = "Amulet"
+examine = "A sharp fang amulet, which looks good on rangers and surfers alike."
+
+[amulet_of_ranging_noted]
+id = 15127
+
+[staff_of_light]
+id = 15486
+price = 1300000
+limit = 10
+weight = 2.267
+category = "staff"
+special_energy = 1000
+special = "power_of_light"
+aka = ["sol"]
+slot = "Weapon"
+examine = "Humming with power."
+
+[staff_of_light_noted]
+id = 15487
+
+[hexcrest]
+id = 15488
+price = 45300
+limit = 10
+weight = 0.907
+slot = "Hat"
+examine = "It has quite a streamlined look to it."
+
+[hexcrest_noted]
+id = 15489
+
+[focus_sight]
+id = 15490
+price = 333700
+limit = 10
+weight = 0.907
+slot = "Hat"
+examine = "It looks like it'll help my aim."
+
+[focus_sight_noted]
+id = 15491
+
+[full_slayer_helmet]
+id = 15492
+tradeable = false
+weight = 2.267
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "You don't want to wear it inside-out."
+kept = "Reclaim"
+
+[full_slayer_helmet_e]
+id = 15496
+tradeable = false
+weight = 2.267
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "You don't want to wear it inside-out. This helm has been enchanted to hold Summoning scrolls."
+kept = "Reclaim"
+
+[full_slayer_helmet_c]
+id = 15497
+tradeable = false
+bank_stacks = false
+weight = 2.267
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "You don't want to wear it inside-out. This helm can be charged with Summoning scrolls."
+kept = "Reclaim"
+
+[staff_of_light_lent]
+id = 15502

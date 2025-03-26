@@ -1,0 +1,47 @@
+[steel_key_ham]
+id = 8866
+tradeable = false
+weight = 0.01
+examine = "You stole this key from a guard in the HAM cave."
+kept = "Wilderness"
+
+[bronze_key_ham]
+clone = "steel_key_ham"
+id = 8867
+
+[silver_key_ham]
+clone = "steel_key_ham"
+id = 8868
+
+[iron_key_ham]
+clone = "steel_key_ham"
+id = 8869
+
+[zanik]
+id = 8870
+tradeable = false
+weight = 30.0
+examine = "She's dead, but the mark on her forehead is glowing brightly."
+kept = "Wilderness"
+
+[crate_with_zanik]
+id = 8871
+tradeable = false
+weight = 32.0
+slot = "Weapon"
+type = "TwoHanded"
+examine = "It's got Zanik in it."
+kept = "Vanish"
+
+[zanik_debug]
+clone = "zanik"
+id = 8887
+examine = "You should probably get her out of your pocket."
+
+[zanik_ham]
+clone = "zanik"
+id = 8888
+
+[zanik_showdown]
+clone = "zanik"
+id = 8889

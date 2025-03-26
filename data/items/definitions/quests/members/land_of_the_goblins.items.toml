@@ -1,0 +1,168 @@
+[red_goblin_mail]
+id = 9054
+tradeable = false
+weight = 3.628
+slot = "Chest"
+examine = "Armour designed to fit goblins."
+kept = "Wilderness"
+
+[black_goblin_mail]
+clone = "red_goblin_mail"
+id = 9055
+
+[yellow_goblin_mail]
+clone = "red_goblin_mail"
+id = 9056
+
+[green_goblin_mail]
+clone = "red_goblin_mail"
+id = 9057
+
+[purple_goblin_mail]
+clone = "red_goblin_mail"
+id = 9058
+
+[pink_goblin_mail]
+clone = "red_goblin_mail"
+id = 9059
+
+[white_goblin_mail]
+id = 11791
+tradeable = false
+weight = 3.628
+slot = "Chest"
+examine = "Armour designed to fit goblins."
+kept = "Wilderness"
+
+[plain_of_mud_sphere]
+id = 11794
+tradeable = false
+examine = "Oldak's Marvellous Moving-Over-Distance Sphere."
+kept = "Wilderness"
+
+[ekeleshuun_key_land_of_the_goblins]
+id = 11795
+tradeable = false
+weight = 0.001
+destroy = "The Ekeleshuun priest probably has a spare."
+examine = "The key you stole from the Ekeleshuun priest."
+kept = "Wilderness"
+
+[narogoshuun_key_land_of_the_goblins]
+id = 11796
+tradeable = false
+weight = 0.001
+destroy = "The Narogoshuun priest probably has a spare."
+examine = "The key you stole from the Narogoshuun priest."
+kept = "Wilderness"
+
+[huzamogaarb_key_land_of_the_goblins]
+id = 11797
+tradeable = false
+weight = 0.001
+destroy = "The Huzamogaarb priest probably has a spare."
+examine = "The key you stole from the Huzamogaarb priest."
+kept = "Wilderness"
+
+[saragorgak_key_land_of_the_goblins]
+id = 11798
+tradeable = false
+weight = 0.001
+destroy = "The Saragorgak priest probably has a spare."
+examine = "The key you stole from the Saragorgak priest."
+kept = "Wilderness"
+
+[horogothgar_key_land_of_the_goblins]
+id = 11799
+tradeable = false
+weight = 0.001
+destroy = "The Horogothgar priest probably has a spare."
+examine = "The key you stole from the Horogothgar priest."
+kept = "Wilderness"
+
+[yurkolgokh_key_land_of_the_goblins]
+id = 11800
+tradeable = false
+weight = 0.001
+destroy = "The Yurkolgokh priest probably has a spare."
+examine = "The key you stole from the Yurkolgokh priest."
+kept = "Wilderness"
+
+[snotheads_bone]
+id = 11802
+tradeable = false
+weight = 0.001
+destroy = "You may be able to raise Snothead and fight him again."
+examine = "An ancient goblin bone wrapped in fragments of priestly robes."
+kept = "Vanish"
+
+[snailfeets_bone]
+id = 11803
+tradeable = false
+weight = 0.001
+destroy = "You may be able to raise Snailfeet and fight him again."
+examine = "An ancient goblin bone wrapped in fragments of priestly robes."
+kept = "Vanish"
+
+[mosschins_bone]
+id = 11804
+tradeable = false
+weight = 0.001
+destroy = "You may be able to raise Mosschin and fight him again."
+examine = "An ancient goblin bone wrapped in fragments of priestly robes."
+kept = "Vanish"
+
+[redeyess_bone]
+id = 11805
+tradeable = false
+weight = 0.001
+destroy = "You may be able to raise Redeyes and fight him again."
+examine = "An ancient goblin bone wrapped in fragments of priestly robes."
+kept = "Vanish"
+
+[strongboness_bone]
+id = 11806
+tradeable = false
+weight = 0.001
+destroy = "You may be able to raise Strongbones and fight him again."
+examine = "An ancient goblin bone wrapped in fragments of priestly robes."
+kept = "Vanish"
+
+[pharmakos_berries]
+id = 11807
+tradeable = false
+weight = 0.005
+examine = "You can combine these with a toadflax to make a goblin transformation potion."
+kept = "Wilderness"
+
+[whitefish]
+id = 11808
+tradeable = false
+weight = 0.35
+examine = "An ugly albino fish."
+kept = "Wilderness"
+
+[goblin_potion_4]
+id = 11809
+weight = 0.035
+empty = "vial"
+slot = "Shield"
+examine = "Four doses of goblin transmogrification potion."
+
+[goblin_potion_3]
+id = 11810
+weight = 0.03
+empty = "vial"
+examine = "Three doses of goblin transmogrification potion."
+
+[goblin_potion_2]
+id = 11811
+weight = 0.025
+empty = "vial"
+examine = "Two doses of goblin transmogrification potion."
+
+[goblin_potion_1]
+id = 11812
+weight = 0.02
+empty = "vial"
+examine = "One dose of goblin transmogrification potion."

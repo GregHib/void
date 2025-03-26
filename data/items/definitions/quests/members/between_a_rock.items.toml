@@ -1,0 +1,89 @@
+[gold_helmet]
+id = 4567
+tradeable = false
+weight = 31.751
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "Made of gold and white gold."
+kept = "Wilderness"
+
+[dwarven_lore]
+id = 4568
+tradeable = false
+weight = 0.08
+aka = ["the_arzinian_being_of_bordanzan"]
+examine = "The book is almost falling apart, you'll have to handle it quite carefully."
+kept = "Wilderness"
+
+[book_page_1]
+id = 4569
+tradeable = false
+weight = 0.002
+examine = "A missing page from Rolad's book! It seems to be the first one."
+kept = "Wilderness"
+
+[book_page_2]
+id = 4570
+tradeable = false
+weight = 0.002
+examine = "A missing page from Rolad's book! It seems to be the second one."
+kept = "Wilderness"
+
+[book_page_3]
+id = 4571
+tradeable = false
+weight = 0.002
+examine = "A missing page from Rolad's book! It seems to be the third one."
+kept = "Wilderness"
+
+[pages_two] # Unobtainable
+id = 4572
+tradeable = false
+weight = 0.002
+examine = "A collection of missing pages from Rolad's book!"
+
+[pages]
+id = 4573
+tradeable = false
+weight = 0.002
+examine = "A collection of missing pages from Rolad's book!"
+
+[base_schematics]
+id = 4574
+tradeable = false
+weight = 0.002
+examine = "These are the base schematics of a dwarven multicannon"
+kept = "Wilderness"
+
+[schematic_dondakan]
+id = 4575
+tradeable = false
+weight = 0.004
+examine = "A transparent overlay - details of something?"
+kept = "Wilderness"
+
+[schematics_dwarven_engineer]
+id = 4576
+tradeable = false
+weight = 0.004
+examine = "Transparent overlays - details of something?"
+kept = "Wilderness"
+
+[schematics_khorvak]
+clone = "schematics_dwarven_engineer"
+id = 4577
+
+[schematic_complete]
+id = 4578
+tradeable = false
+weight = 0.014
+examine = "The assembled schematic for modifying the dwarven multicannon."
+kept = "Wilderness"
+
+[cannon_ball_between_a_rock]
+id = 4579
+tradeable = false
+weight = 20.0
+examine = "A heavy gold metal sphere."
+kept = "Wilderness"

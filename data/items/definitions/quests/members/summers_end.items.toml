@@ -1,0 +1,133 @@
+[spirit_shield]
+id = 13734
+price = 58300
+limit = 1
+weight = 2.5
+slot = "Shield"
+material = "metal"
+examine = "An ethereal shield."
+
+[spirit_shield_noted]
+id = 13735
+
+[blessed_spirit_shield]
+id = 13736
+price = 1100000
+limit = 1
+weight = 2.5
+aka = ["bss", "blessed_ss", "blessed_spiritshield"]
+slot = "Shield"
+material = "metal"
+examine = "An ethereal shield that has been blessed with holy powers."
+
+[blessed_spirit_shield_noted]
+id = 13737
+
+[arcane_spirit_shield]
+id = 13738
+price = 53800000
+limit = 1
+weight = 2.68
+aka = ["arcane", "arcane_ss"]
+slot = "Shield"
+material = "metal"
+examine = "An ethereal shield with an arcane sigil attached to it."
+
+[arcane_spirit_shield_noted]
+id = 13739
+
+[divine_spirit_shield]
+id = 13740
+price = 722200000
+limit = 1
+weight = 2.68
+aka = ["divine", "divine_ss"]
+slot = "Shield"
+material = "metal"
+examine = "An ethereal shield with a divine sigil attached to it."
+
+[divine_spirit_shield_noted]
+id = 13741
+
+[elysian_spirit_shield]
+id = 13742
+price = 423300000
+limit = 1
+weight = 2.68
+aka = ["ely", "elysian", "elysian_ss"]
+slot = "Shield"
+material = "metal"
+examine = "An ethereal shield with an elysian sigil attached to it."
+
+[elysian_spirit_shield_noted]
+id = 13743
+
+[spectral_spirit_shield]
+id = 13744
+price = 46600000
+limit = 1
+weight = 2.68
+aka = ["spectral", "spectral_ss"]
+slot = "Shield"
+material = "metal"
+examine = "An ethereal shield with a spectral sigil attached to it."
+
+[spectral_spirit_shield_noted]
+id = 13745
+
+[arcane_sigil]
+id = 13746
+price = 51800000
+limit = 1
+weight = 0.2
+examine = "A sigil in the shape of an arcane rune."
+
+[arcane_sigil_noted]
+id = 13747
+
+[divine_sigil]
+id = 13748
+price = 752600000
+limit = 1
+weight = 0.2
+examine = "A sigil in the shape of a divine symbol."
+
+[divine_sigil_noted]
+id = 13749
+
+[elysian_sigil]
+id = 13750
+price = 468600000
+limit = 1
+weight = 0.2
+examine = "A sigil marked with elysian signs."
+
+[elysian_sigil_noted]
+id = 13751
+
+[spectral_sigil]
+id = 13752
+price = 48000000
+limit = 1
+weight = 0.2
+examine = "A sigil tempered with spectral powers."
+
+[spectral_sigil_noted]
+id = 13753
+
+[holy_elixir]
+id = 13754
+price = 1100000
+limit = 1
+weight = 0.2
+examine = "A bottle of holy elixir."
+
+[holy_elixir_noted]
+id = 13755
+
+[cursed_willow_logs]
+id = 13756
+tradeable = false
+weight = 2.0
+examine = "Logs cut from cursed willow roots."
+kept = "Reclaim"

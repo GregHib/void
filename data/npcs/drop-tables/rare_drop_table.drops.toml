@@ -1,0 +1,48 @@
+[rare_drop_table]
+roll = 128
+drops = [
+    { id = "nature_rune", amount = 67, chance = 3 },
+    { id = "adamant_javelin", amount = 20, chance = 2 },
+    { id = "death_rune", amount = 45, chance = 2 },
+    { id = "law_rune", amount = 45, chance = 2 },
+    { id = "rune_arrow", amount = 42, chance = 2 },
+    { id = "steel_arrow", amount = 150, chance = 2 },
+    { id = "rune_2h_sword", chance = 3 },
+    { id = "rune_battleaxe", chance = 3 },
+    { id = "rune_sq_shield", chance = 2 },
+    { id = "dragon_med_helm" },
+    { id = "rune_kiteshield" },
+    { id = "coins", amount = 3000, chance = 21 },
+    { id = "loop_half_of_a_key", chance = 20 },
+    { id = "tooth_half_of_a_key", chance = 20 },
+    { id = "rune_bar", chance = 5 },
+    { id = "dragonstone", chance = 2 },
+    { id = "silver_ore_noted", amount = 100, chance = 2 },
+    { table = "gem_drop_table", chance = 20 },
+    { table = "mega_rare_drop_table", chance = 15 }
+]
+
+[gem_drop_table]
+roll = 128
+drops = [
+    { id = "nothing", amount = 0, chance = 63 },
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "uncut_emerald", chance = 16 },
+    { id = "uncut_ruby", chance = 8 },
+    { id = "chaos_talisman", chance = 3 },
+    { id = "nature_talisman", chance = 3 },
+    { id = "uncut_diamond", chance = 2 },
+    { id = "rune_javelin", amount = 5, chance = 1 },
+    { id = "loop_half_of_a_key", chance = 1 },
+    { id = "tooth_half_of_a_key", chance = 1 },
+    { table = "mega_rare_drop_table", chance = 1 }
+]
+
+[mega_rare_drop_table]
+roll = 128
+drops = [
+    { id = "nothing", amount = 0, chance = 113 },
+    { id = "rune_spear", chance = 8 },
+    { id = "shield_left_half", chance = 4 },
+    { id = "dragon_spear", chance = 3 }
+]

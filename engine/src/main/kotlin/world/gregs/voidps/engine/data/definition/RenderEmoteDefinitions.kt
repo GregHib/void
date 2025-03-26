@@ -20,6 +20,7 @@ class RenderEmoteDefinitions : DefinitionsDecoder<RenderEmoteDefinition> {
                 while (nextPair()) {
                     val stringId = key()
                     val id = int()
+                    require(!ids.containsKey(stringId)) { "Duplicate render emote id found '$stringId' at $path." }
                     ids[stringId] = id
                     definitions[id] = RenderEmoteDefinition(id = id, stringId = stringId)
                 }

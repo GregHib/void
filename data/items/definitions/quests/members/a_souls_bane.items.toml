@@ -1,0 +1,32 @@
+[anger_sword]
+id = 7806
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+examine = "A heavy duty sword."
+kept = "Vanish"
+
+[anger_battleaxe]
+id = 7807
+tradeable = false
+weight = 2.721
+slot = "Weapon"
+examine = "A heavy duty axe."
+kept = "Vanish"
+
+[anger_maul]
+id = 7808
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+examine = "A heavy duty mace."
+kept = "Vanish"
+
+[anger_spear]
+id = 7809
+tradeable = false
+weight = 0.003
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A heavy duty spear."
+kept = "Vanish"

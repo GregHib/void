@@ -1,0 +1,254 @@
+[bloody_mourner_top]
+id = 6064
+tradeable = false
+weight = 2.721
+examine = "How do I wash blood stains out?"
+kept = "Wilderness"
+
+[mourner_top]
+id = 6065
+tradeable = false
+weight = 2.721
+aka = ["deathguard_top"]
+slot = "Chest"
+examine = "A thick heavy leather top."
+kept = "Wilderness"
+
+[mourner_trousers_damaged]
+id = 6066
+tradeable = false
+weight = 2.267
+examine = "These are in need of a good tailor."
+kept = "Wilderness"
+
+[mourner_trousers]
+id = 6067
+tradeable = false
+weight = 2.267
+slot = "Legs"
+examine = "A pair of mourner trousers."
+kept = "Wilderness"
+
+[mourner_gloves]
+id = 6068
+tradeable = false
+weight = 0.226
+aka = ["deathguard_gloves"]
+slot = "Hands"
+examine = "These will keep my hands warm!"
+kept = "Wilderness"
+
+[mourner_boots]
+id = 6069
+tradeable = false
+weight = 1.36
+aka = ["deathguard_boots"]
+slot = "Feet"
+examine = "Comfortable leather boots."
+kept = "Wilderness"
+
+[mourner_cloak]
+id = 6070
+tradeable = false
+weight = 2.267
+aka = ["deathguard_cloak"]
+slot = "Cape"
+examine = "A dull brown cape."
+kept = "Wilderness"
+
+[mourner_letter]
+id = 6071
+tradeable = false
+weight = 0.01
+examine = "A letter of recommendation."
+kept = "Wilderness"
+
+[tegids_soap]
+id = 6072
+tradeable = false
+weight = 0.113
+examine = "A bar of soap taken from Tegid."
+kept = "Wilderness"
+
+[prifddinas_history]
+id = 6073
+tradeable = false
+weight = 0.51
+aka = ["the_creation_of_prifddinas"]
+examine = "A book on the history of Prifddinas."
+kept = "Wilderness"
+
+[eastern_discovery]
+id = 6075
+tradeable = false
+weight = 0.51
+aka = ["exploration_of_the_eastern_lands"]
+examine = "A book on the exploration of the eastern realm."
+kept = "Wilderness"
+
+[eastern_settlement]
+id = 6077
+tradeable = false
+weight = 0.51
+aka = ["settlement_of_the_east"]
+examine = "A book on the settlement of the eastern realm."
+kept = "Wilderness"
+
+[the_great_divide]
+id = 6079
+tradeable = false
+weight = 0.51
+examine = "A book about the great divide."
+kept = "Wilderness"
+
+[broken_device]
+id = 6081
+tradeable = false
+weight = 4.0
+examine = "A strange broken device of gnomic design."
+kept = "Wilderness"
+
+[fixed_device]
+id = 6082
+tradeable = false
+weight = 4.0
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A device for firing dye."
+kept = "Reclaim"
+
+[tarnished_key]
+id = 6083
+tradeable = false
+weight = 0.01
+examine = "This key has seen a lot of use."
+kept = "Wilderness"
+
+[red_dye_bellows]
+id = 6085
+tradeable = false
+weight = 0.538
+examine = "A large pair of ogre bellows filled with red dye."
+kept = "Wilderness"
+
+[blue_dye_bellows]
+id = 6086
+tradeable = false
+weight = 0.538
+examine = "A large pair of ogre bellows filled with blue dye."
+kept = "Wilderness"
+
+[yellow_dye_bellows]
+id = 6087
+tradeable = false
+weight = 0.538
+examine = "A large pair of ogre bellows filled with yellow dye."
+kept = "Wilderness"
+
+[green_dye_bellows]
+id = 6088
+tradeable = false
+weight = 0.538
+examine = "A large pair of ogre bellows filled with green dye."
+kept = "Wilderness"
+
+[blue_toad]
+id = 6089
+tradeable = false
+weight = 0.75
+destroy = "The toad pops as you drop it on the floor."
+examine = "A blue dye filled toad."
+kept = "Wilderness"
+
+[red_toad]
+id = 6090
+tradeable = false
+weight = 0.75
+destroy = "The toad pops as you drop it on the floor."
+examine = "A red dye filled toad."
+kept = "Wilderness"
+
+[yellow_toad]
+id = 6091
+tradeable = false
+weight = 0.75
+destroy = "The toad pops as you drop it on the floor."
+examine = "A yellow dye filled toad."
+kept = "Wilderness"
+
+[green_toad]
+id = 6092
+tradeable = false
+weight = 0.75
+destroy = "The toad pops as you drop it on the floor."
+examine = "A green dye filled toad."
+kept = "Wilderness"
+
+[rotten_apples]
+id = 6093
+tradeable = false
+weight = 15.0
+examine = "A barrel full of rotten apples."
+kept = "Wilderness"
+
+[apple_barrel]
+id = 6094
+tradeable = false
+weight = 15.0
+examine = "A barrel full of mushed apples."
+kept = "Wilderness"
+
+[naphtha_apple_mix]
+id = 6095
+tradeable = false
+weight = 32.0
+examine = "A barrel full of rotten apples and naphtha."
+kept = "Wilderness"
+
+[toxic_naphtha]
+id = 6096
+tradeable = false
+weight = 32.0
+examine = "A barrel full of toxic naphtha."
+kept = "Wilderness"
+
+[sieve]
+id = 6097
+tradeable = false
+weight = 0.001
+examine = "It's a sieve."
+kept = "Wilderness"
+
+[toxic_powder]
+id = 6098
+tradeable = false
+weight = 0.056
+examine = "A pile of toxic powder."
+kept = "Wilderness"
+
+[crystal_teleport_seed_4]
+id = 6099
+weight = 0.001
+charges = 1
+degrade = "crystal_teleport_seed_3"
+examine = "A tiny crystal enchanted to return the user to Lletya."
+
+[crystal_teleport_seed_3]
+clone = "crystal_teleport_seed_4"
+id = 6100
+degrade = "crystal_teleport_seed_2"
+
+[crystal_teleport_seed_2]
+clone = "crystal_teleport_seed_4"
+id = 6101
+degrade = "crystal_teleport_seed_1"
+
+[crystal_teleport_seed_1]
+clone = "crystal_teleport_seed_4"
+id = 6102
+degrade = "crystal_teleport_seed_uncharged"
+
+[crystal_teleport_seed_uncharged]
+id = 6103
+weight = 0.001
+examine = "This teleport seed needs to be re-enchanted."

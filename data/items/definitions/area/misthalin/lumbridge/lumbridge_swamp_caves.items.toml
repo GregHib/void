@@ -1,0 +1,50 @@
+[giant_frog_legs]
+id = 4517
+price = 963
+limit = 1000
+heals = 60
+weight = 0.453
+examine = "This could feed a family of gnomes for a week!"
+kept = "Wilderness"
+
+[giant_frog_legs_noted]
+id = 4518
+
+[raw_cave_eel]
+id = 5001
+price = 333
+limit = 1000
+weight = 0.5
+cooking = { level = 38, xp = 115.0, chances = { fire = "38-332" }, cooked = "cave_eel", cooked_message = "You successfully cook a slimy cave eel.", burnt_message = "You accidentally burn the cave eel." }
+examine = "It's incredibly slimy."
+
+[burnt_cave_eel]
+id = 5002
+examine = "It's no longer slimy, or edible."
+
+[cave_eel]
+id = 5003
+price = 186
+limit = 1000
+heals = "70-100"
+weight = 0.5
+fishing = { level = 38, xp = 80.0, chance = "10-80" }
+examine = "It's a bit slimy."
+
+[frog_spawn]
+id = 5004
+heals = "30-60"
+tradeable = false
+weight = 0.5
+fishing = { level = 33, xp = 75.0, chance = "16-96" }
+examine = "That's disgusting!"
+kept = "Reclaim"
+
+[raw_cave_eel_noted]
+id = 5005
+
+[burnt_cave_eel_noted]
+id = 5006
+
+[cave_eel_noted]
+id = 5007

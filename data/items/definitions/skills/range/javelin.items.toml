@@ -1,0 +1,197 @@
+[bronze_javelin]
+id = 825
+price = 3
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A bronze tipped javelin."
+
+[iron_javelin]
+id = 826
+price = 3
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "An iron tipped javelin."
+
+[steel_javelin]
+id = 827
+price = 20
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A steel tipped javelin."
+
+[mithril_javelin]
+id = 828
+price = 22
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A mithril tipped javelin."
+
+[adamant_javelin]
+id = 829
+price = 22
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "An adamant tipped javelin."
+
+[rune_javelin]
+id = 830
+price = 249
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A rune tipped javelin."
+
+[bronze_javelin_p]
+id = 831
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A bronze tipped javelin."
+
+[iron_javelin_p]
+id = 832
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "An iron tipped javelin."
+
+[steel_javelin_p]
+id = 833
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A steel tipped javelin."
+
+[mithril_javelin_p]
+id = 834
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A mithril tipped javelin."
+
+[adamant_javelin_p]
+id = 835
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "An adamant tipped javelin."
+
+[rune_javelin_p]
+id = 836
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A rune tipped javelin."
+
+[bronze_javelin_p+]
+id = 5642
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A bronze tipped javelin."
+
+[iron_javelin_p+]
+id = 5643
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "An iron tipped javelin."
+
+[steel_javelin_p+]
+id = 5644
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A steel tipped javelin."
+
+[mithril_javelin_p+]
+id = 5645
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A mithril tipped javelin."
+
+[adamant_javelin_p+]
+id = 5646
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "An adamant tipped javelin."
+
+[rune_javelin_p+]
+id = 5647
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A rune tipped javelin."
+
+[bronze_javelin_p++]
+id = 5648
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A bronze-tipped javelin."
+
+[iron_javelin_p++]
+id = 5649
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "An iron tipped javelin."
+
+[steel_javelin_p++]
+id = 5650
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A steel tipped javelin."
+
+[mithril_javelin_p++]
+id = 5651
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A mithril tipped javelin."
+
+[adamant_javelin_p++]
+id = 5652
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "An adamant tipped javelin."
+
+[rune_javelin_p++]
+id = 5653
+limit = 1000
+attack_range = 5
+weapon_type = "javelin"
+slot = "Weapon"
+examine = "A rune tipped javelin."

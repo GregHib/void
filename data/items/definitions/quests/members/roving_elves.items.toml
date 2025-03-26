@@ -1,0 +1,184 @@
+[consecration_seed]
+id = 4205
+tradeable = false
+weight = 0.014
+examine = "This consecration seed looks grey and dead."
+kept = "Reclaim"
+
+[consecration_seed_enchanted]
+id = 4206
+tradeable = false
+weight = 0.014
+examine = "This consecration seed glows with a warm light."
+kept = "Reclaim"
+
+[crystal_seed]
+id = 4207
+tradeable = false
+weight = 0.014
+examine = "This crystal seed looks grey and dead."
+kept = "Reclaim"
+
+[crystal_seed_noted]
+id = 4208
+
+[cadarn_lineage]
+id = 4209
+tradeable = false
+weight = 0.51
+examine = "A book on Cadarn clan history."
+kept = "Reclaim"
+
+[elf_crystal]
+id = 4211
+
+[new_crystal_bow]
+id = 4212
+limit = 2
+attack_range = 10
+charges = 1
+degrade = "crystal_bow_full"
+deplete = "combat"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A nice sturdy magical bow."
+weight = 1.8
+
+[new_crystal_bow_noted]
+id = 4213
+
+[crystal_bow_full]
+id = 4214
+limit = 2
+attack_range = 10
+charges = 250
+degrade = "crystal_bow_9_10"
+deplete = "combat"
+aka = ["crystal_bow"]
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A nice sturdy magical bow."
+weight = 1.8
+
+[crystal_bow_9_10]
+clone = "crystal_bow_full"
+id = 4215
+degrade = "crystal_bow_8_10"
+
+[crystal_bow_8_10]
+clone = "crystal_bow_full"
+id = 4216
+degrade = "crystal_bow_7_10"
+
+[crystal_bow_7_10]
+clone = "crystal_bow_full"
+id = 4217
+degrade = "crystal_bow_6_10"
+
+[crystal_bow_6_10]
+clone = "crystal_bow_full"
+id = 4218
+degrade = "crystal_bow_5_10"
+
+[crystal_bow_5_10]
+clone = "crystal_bow_full"
+id = 4219
+degrade = "crystal_bow_4_10"
+
+[crystal_bow_4_10]
+clone = "crystal_bow_full"
+id = 4220
+degrade = "crystal_bow_3_10"
+
+[crystal_bow_3_10]
+clone = "crystal_bow_full"
+id = 4221
+degrade = "crystal_bow_2_10"
+
+[crystal_bow_2_10]
+clone = "crystal_bow_full"
+id = 4222
+degrade = "crystal_bow_1_10"
+
+[crystal_bow_1_10]
+clone = "crystal_bow_full"
+id = 4223
+degrade = "crystal_seed"
+
+[new_crystal_shield]
+id = 4224
+tradeable = false
+weight = 2.7
+charges = 1
+degrade = "crystal_shield_full"
+slot = "Shield"
+material = "metal"
+examine = "A nice sturdy crystal shield."
+kept = "Reclaim"
+
+[crystal_shield_full]
+id = 4225
+tradeable = false
+weight = 2.7
+charges = 2500
+degrade = "crystal_shield_9_10"
+slot = "Shield"
+material = "metal"
+examine = "A nice sturdy crystal shield."
+kept = "Reclaim"
+
+[crystal_shield_9_10]
+clone = "crystal_shield_full"
+id = 4226
+degrade = "crystal_shield_8_10"
+
+[crystal_shield_8_10]
+clone = "crystal_shield_full"
+id = 4227
+degrade = "crystal_shield_7_10"
+
+[crystal_shield_7_10]
+clone = "crystal_shield_full"
+id = 4228
+degrade = "crystal_shield_6_10"
+
+[crystal_shield_6_10]
+clone = "crystal_shield_full"
+id = 4229
+degrade = "crystal_shield_5_10"
+
+[crystal_shield_5_10]
+clone = "crystal_shield_full"
+id = 4230
+degrade = "crystal_shield_4_10"
+
+[crystal_shield_4_10]
+clone = "crystal_shield_full"
+id = 4231
+degrade = "crystal_shield_3_10"
+
+[crystal_shield_3_10]
+clone = "crystal_shield_full"
+id = 4232
+degrade = "crystal_shield_2_10"
+
+[crystal_shield_2_10]
+clone = "crystal_shield_full"
+id = 4233
+degrade = "crystal_shield_1_10"
+
+[crystal_shield_1_10]
+clone = "crystal_shield_full"
+id = 4234
+degrade = "crystal_seed"
+
+[new_crystal_shield_noted]
+id = 4235
+
+[crystal_of_seren]
+id = 4313
+tradeable = false
+weight = 0.51
+aka = ["crystal_singing_for_beginners"]
+examine = "A book on elven crystal."
+kept = "Reclaim"

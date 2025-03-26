@@ -1,0 +1,9 @@
+[brass_key]
+id = 983
+price = 264
+limit = 100
+weight = 0.01
+examine = "A key found on the floor of Edgeville Dungeon."
+
+[brass_key_noted]
+id = 984

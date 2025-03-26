@@ -1,0 +1,11 @@
+[ogleroot]
+id = 12624
+examine = "An ogleroot. How odd."
+kept = "Vanish"
+
+[flag]
+id = 12625
+tradeable = false
+destroy = "You will need to obtain more flags from Mrs. Winkin or Farmer Blinkin if you have lost all of the flags you have."
+examine = "A flag to put in the ground."
+kept = "Vanish"

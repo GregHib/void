@@ -1,0 +1,93 @@
+[blue_cape]
+skill = "crafting"
+xp = 2.5
+one = ["cape_black", "cape_yellow", "cape_green", "cape_orange", "cape_purple", "cape_red"]
+remove = ["blue_dye"]
+add = ["cape_blue"]
+
+[black_cape]
+skill = "crafting"
+xp = 2.5
+one = ["cape_blue", "cape_yellow", "cape_green", "cape_orange", "cape_purple", "cape_red"]
+remove = ["black_mushroom_ink"]
+add = ["cape_black"]
+
+[yellow_cape]
+skill = "crafting"
+xp = 2.5
+one = ["cape_black", "cape_blue", "cape_green", "cape_orange", "cape_purple", "cape_red"]
+remove = ["yellow_dye"]
+add = ["cape_yellow"]
+
+[green_cape]
+skill = "crafting"
+xp = 2.5
+one = ["cape_black", "cape_blue", "cape_yellow", "cape_orange", "cape_purple", "cape_red"]
+remove = ["green_dye"]
+add = ["cape_green"]
+
+[orange_cape]
+skill = "crafting"
+xp = 2.5
+one = ["cape_black", "cape_blue", "cape_yellow", "cape_green", "cape_purple", "cape_red"]
+remove = ["orange_dye"]
+add = ["cape_orange"]
+
+[purple_cape]
+skill = "crafting"
+xp = 2.5
+one = ["cape_black", "cape_blue", "cape_yellow", "cape_green", "cape_orange", "cape_red"]
+remove = ["purple_dye"]
+add = ["cape_purple"]
+
+[red_cape]
+skill = "crafting"
+xp = 2.5
+one = ["cape_black", "cape_blue", "cape_yellow", "cape_green", "cape_orange", "cape_purple"]
+remove = ["red_dye"]
+add = ["cape_red"]
+
+[feather_headdress_blue]
+skill = "crafting"
+level = 79
+xp = 50.0
+ticks = 2
+remove = [{ id = "coif" }, { id = "blue_feather", amount = 20 }]
+add = ["feather_headdress_blue"]
+message = "You add the feathers to the coif to make a feathered headdress."
+
+[feather_headdress_orange]
+skill = "crafting"
+level = 79
+xp = 50.0
+ticks = 2
+remove = [{ id = "coif" }, { id = "orange_feather", amount = 20 }]
+add = ["feather_headdress_orange"]
+message = "You add the feathers to the coif to make a feathered headdress."
+
+[feather_headdress_red]
+skill = "crafting"
+level = 79
+xp = 50.0
+ticks = 2
+remove = [{ id = "coif" }, { id = "red_feather", amount = 20 }]
+add = ["feather_headdress_red"]
+message = "You add the feathers to the coif to make a feathered headdress."
+
+[feather_headdress_stripy]
+skill = "crafting"
+level = 79
+xp = 50.0
+ticks = 2
+remove = [{ id = "coif" }, { id = "stripy_feather", amount = 20 }]
+add = ["feather_headdress_stripy"]
+message = "You add the feathers to the coif to make a feathered headdress."
+
+[feather_headdress_yellow]
+skill = "crafting"
+level = 79
+xp = 50.0
+ticks = 2
+remove = [{ id = "coif" }, { id = "yellow_feather", amount = 20 }]
+add = ["feather_headdress_yellow"]
+message = "You add the feathers to the coif to make a feathered headdress."

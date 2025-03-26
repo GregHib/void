@@ -1,0 +1,34 @@
+[logs_tutorial_island]
+id = 2511
+limit = 25000
+weight = 2.0
+examine = "A number of wooden logs."
+
+[raw_shrimps_tutorial_island]
+id = 2514
+limit = 20000
+weight = 0.12
+examine = "I should try cooking this."
+
+[raw_shrimps_tutorial_island_noted]
+id = 2515
+
+[pot_of_flour_tutorial_island]
+id = 2516
+limit = 1000
+weight = 1.36
+examine = "There is flour in this pot."
+kept = "Wilderness"
+
+[pot_of_flour_tutorial_island_noted]
+id = 2517
+
+[bones_tutorial_island]
+id = 2530
+limit = 10000
+weight = 0.5
+examine = "Bones are for burying."
+kept = "Wilderness"
+
+[bones_tutorial_island_noted]
+id = 2531

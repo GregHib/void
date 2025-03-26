@@ -52,7 +52,7 @@ data class Uncooked(
             var start = 1
             var ticks = 4
             var type = "cook"
-            val chances = Object2ObjectOpenHashMap<String, IntRange>(0, Hash.VERY_FAST_LOAD_FACTOR)
+            val chances = Object2ObjectOpenHashMap<String, IntRange>(4, Hash.VERY_FAST_LOAD_FACTOR)
             while (reader.nextEntry()) {
                 when (val key = reader.key()) {
                     "level" -> level = reader.int()

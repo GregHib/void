@@ -1,0 +1,190 @@
+[silver_necklace]
+id = 1796
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+examine = "Anna's shiny silver coated necklace."
+kept = "Wilderness"
+
+[silver_necklace_dusted]
+id = 1797
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+examine = "Anna's shiny silver coated necklace coated with a thin layer of flour."
+kept = "Wilderness"
+
+[silver_cup]
+id = 1798
+tradeable = false
+weight = 0.07
+examine = "Bob's shiny silver coated tea cup."
+kept = "Wilderness"
+
+[silver_cup_dusted]
+id = 1799
+tradeable = false
+weight = 0.07
+examine = "Bob's shiny silver coated tea cup coated with a thin layer of flour."
+kept = "Wilderness"
+
+[silver_bottle]
+id = 1800
+tradeable = false
+weight = 0.09
+examine = "Carol's shiny silver coated bottle."
+kept = "Wilderness"
+
+[silver_bottle_dusted]
+id = 1801
+tradeable = false
+weight = 0.09
+examine = "Carol's shiny silver coated bottle coated with a thin layer of flour."
+kept = "Wilderness"
+
+[silver_book]
+id = 1802
+tradeable = false
+weight = 0.226
+examine = "David's shiny silver coated book."
+kept = "Wilderness"
+
+[silver_book_dusted]
+id = 1803
+tradeable = false
+weight = 0.226
+examine = "David's shiny silver coated book coated with a thin layer of flour."
+kept = "Wilderness"
+
+[silver_needle]
+id = 1804
+tradeable = false
+weight = 0.001
+examine = "Elizabeth's shiny silver coated needle."
+kept = "Wilderness"
+
+[silver_needle_dusted]
+id = 1805
+tradeable = false
+weight = 0.001
+examine = "Elizabeth's shiny silver coated needle coated with a thin layer of flour."
+kept = "Wilderness"
+
+[silver_pot]
+id = 1806
+tradeable = false
+weight = 0.907
+examine = "Frank's shiny silver coated pot."
+kept = "Wilderness"
+
+[silver_pot_dusted]
+id = 1807
+tradeable = false
+weight = 0.907
+examine = "Frank's shiny silver coated pot coated with a thin layer of flour."
+kept = "Wilderness"
+
+[criminals_thread_red]
+id = 1808
+tradeable = false
+weight = 0.002
+examine = "Some red thread found at the murder scene."
+kept = "Wilderness"
+
+[criminals_thread_green]
+id = 1809
+tradeable = false
+weight = 0.002
+examine = "Some green thread found at the murder scene."
+kept = "Wilderness"
+
+[criminals_thread_blue]
+id = 1810
+tradeable = false
+weight = 0.002
+examine = "Some blue thread found at the murder scene."
+kept = "Wilderness"
+
+[flypaper]
+id = 1811
+tradeable = false
+weight = 0.01
+examine = "A piece of fly paper. It's sticky."
+kept = "Wilderness"
+
+[pungent_pot]
+id = 1812
+tradeable = false
+weight = 0.907
+examine = "A pot found at the murder scene, with a sickly odour."
+kept = "Wilderness"
+
+[criminals_dagger]
+id = 1813
+tradeable = false
+weight = 0.453
+examine = "A flimsy-looking dagger found at the crime scene."
+kept = "Wilderness"
+
+[criminals_dagger_dusted]
+id = 1814
+tradeable = false
+weight = 0.453
+examine = "A flimsy-looking dagger found at the crime scene coated with a thin layer of flour."
+kept = "Wilderness"
+
+[killers_print]
+id = 1815
+tradeable = false
+weight = 0.01
+examine = "The fingerprints of the murderer."
+kept = "Wilderness"
+
+[annas_print]
+id = 1816
+tradeable = false
+weight = 0.01
+examine = "An imprint of Anna's fingerprint."
+kept = "Wilderness"
+
+[bobs_print]
+id = 1817
+tradeable = false
+weight = 0.01
+examine = "An imprint of Bob's fingerprint."
+kept = "Wilderness"
+
+[carols_print]
+id = 1818
+tradeable = false
+weight = 0.01
+examine = "An imprint of Carol's fingerprint."
+kept = "Wilderness"
+
+[davids_print]
+id = 1819
+tradeable = false
+weight = 0.01
+examine = "An imprint of David's fingerprint."
+kept = "Wilderness"
+
+[elizabeths_print]
+id = 1820
+tradeable = false
+weight = 0.01
+examine = "An imprint of Elizabeth's fingerprint."
+kept = "Wilderness"
+
+[franks_print]
+id = 1821
+tradeable = false
+weight = 0.01
+examine = "An imprint of Frank's fingerprint."
+kept = "Wilderness"
+
+[unknown_print]
+id = 1822
+tradeable = false
+weight = 0.01
+examine = "An unidentified fingerprint taken from the murder weapon."
+kept = "Wilderness"

@@ -1,0 +1,41 @@
+[slender_blade]
+id = 6817
+tradeable = false
+weight = 3.175
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "You can make a replacement."
+examine = "A slender two-handed sword."
+kept = "Vanish"
+
+[bow_sword]
+id = 6818
+tradeable = false
+weight = 3.175
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "You can make a replacement."
+examine = "A sharp sword that can also fire arrows."
+kept = "Wilderness"
+
+[large_pouch_devious_minds]
+id = 6819
+tradeable = false
+weight = 1.0
+examine = "A large pouch used for storing essence."
+kept = "Wilderness"
+
+[relic_devious_minds]
+id = 6820
+tradeable = false
+weight = 0.001
+examine = "There seems to be bits missing..."
+kept = "Vanish"
+
+[orb_devious_minds]
+id = 6821
+tradeable = false
+weight = 1.0
+destroy = "You can get another from the monk."
+examine = "A glowing orb."
+kept = "Wilderness"

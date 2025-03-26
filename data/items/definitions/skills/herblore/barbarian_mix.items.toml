@@ -1,0 +1,623 @@
+[attack_mix_2]
+id = 11429
+price = 19
+weight = 0.075
+heals = 30
+excess = "attack_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy Attack potion."
+
+[attack_mix_2_noted]
+id = 11430
+
+[attack_mix_1]
+id = 11431
+price = 18
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy Attack potion."
+
+[attack_mix_1_noted]
+id = 11432
+
+[antipoison_mix_2]
+id = 11433
+price = 702
+weight = 0.075
+heals = 30
+excess = "antipoison_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy antipoison potion."
+
+[antipoison_mix_2_noted]
+id = 11434
+
+[antipoison_mix_1]
+id = 11435
+price = 566
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy antipoison potion."
+
+[antipoison_mix_1_noted]
+id = 11436
+
+[relicyms_mix_2]
+id = 11437
+price = 268
+weight = 0.075
+heals = 30
+excess = "relicyms_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy Relicym's balm."
+
+[relicyms_mix_2_noted]
+id = 11438
+
+[relicyms_mix_1]
+id = 11439
+price = 131
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy Relicym's balm."
+
+[relicyms_mix_1_noted]
+id = 11440
+
+[strength_mix_1]
+id = 11441
+price = 167
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy strength potion."
+
+[strength_mix_1_noted]
+id = 11442
+
+[strength_mix_2]
+id = 11443
+price = 215
+weight = 0.075
+heals = 30
+excess = "strength_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy strength potion."
+
+[strength_mix_2_noted]
+id = 11444
+
+[combat_mix_2]
+id = 11445
+price = 458
+weight = 0.075
+heals = 30
+excess = "combat_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy combat potion."
+
+[combat_mix_2_noted]
+id = 11446
+
+[combat_mix_1]
+id = 11447
+price = 326
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy combat potion."
+
+[combat_mix_1_noted]
+id = 11448
+
+[restore_mix_2]
+id = 11449
+price = 23
+weight = 0.075
+heals = 30
+excess = "restore_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy restore potion."
+
+[restore_mix_2_noted]
+id = 11450
+
+[restore_mix_1]
+id = 11451
+price = 23
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy restore potion."
+
+[restore_mix_1_noted]
+id = 11452
+
+[energy_mix_2]
+id = 11453
+price = 304
+weight = 0.075
+heals = 30
+excess = "energy_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy energy potion."
+
+[energy_mix_2_noted]
+id = 11454
+
+[energy_mix_1]
+id = 11455
+price = 209
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy energy potion."
+
+[energy_mix_1_noted]
+id = 11456
+
+[defence_mix_2]
+id = 11457
+price = 1104
+weight = 0.075
+heals = 30
+excess = "defence_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy Defence potion."
+
+[defence_mix_2_noted]
+id = 11458
+
+[defence_mix_1]
+id = 11459
+price = 786
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy Defence potion."
+
+[defence_mix_1_noted]
+id = 11460
+
+[agility_mix_2]
+id = 11461
+price = 453
+weight = 0.075
+heals = 30
+excess = "agility_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy Agility potion."
+
+[agility_mix_2_noted]
+id = 11462
+
+[agility_mix_1]
+id = 11463
+price = 425
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy Agility potion."
+
+[agility_mix_1_noted]
+id = 11464
+
+[prayer_mix_2]
+id = 11465
+price = 1882
+weight = 0.075
+heals = 30
+excess = "prayer_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy Prayer potion."
+
+[prayer_mix_2_noted]
+id = 11466
+
+[prayer_mix_1]
+id = 11467
+price = 1841
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy Prayer potion."
+
+[prayer_mix_1_noted]
+id = 11468
+
+[super_attack_mix_2]
+id = 11469
+price = 560
+weight = 0.075
+heals = 30
+excess = "super_attack_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy super Attack potion."
+
+[super_attack_mix_2_noted]
+id = 11470
+
+[super_attack_mix_1]
+id = 11471
+price = 522
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy super Attack potion."
+
+[super_attack_mix_1_noted]
+id = 11472
+
+[super_antipoison_mix_2]
+id = 11473
+price = 1040
+weight = 0.075
+heals = 30
+excess = "super_antipoison_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy super antipoison potion."
+
+[super_antipoison_mix_2_noted]
+id = 11474
+
+[super_antipoison_mix_1]
+id = 11475
+price = 1232
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy super antipoison potion."
+
+[super_antipoison_mix_1_noted]
+id = 11476
+
+[fishing_mix_2]
+id = 11477
+price = 140
+weight = 0.075
+heals = 30
+excess = "fishing_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy Fishing potion."
+
+[fishing_mix_2_noted]
+id = 11478
+
+[fishing_mix_1]
+id = 11479
+price = 86
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy Fishing potion."
+
+[fishing_mix_1_noted]
+id = 11480
+
+[super_energy_mix_2]
+id = 11481
+price = 1149
+weight = 0.075
+heals = 30
+excess = "super_energy_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy super energy potion."
+
+[super_energy_mix_2_noted]
+id = 11482
+
+[super_energy_mix_1]
+id = 11483
+price = 549
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy super energy potion."
+
+[super_energy_mix_1_noted]
+id = 11484
+
+[super_strength_mix_2]
+id = 11485
+price = 772
+weight = 0.075
+heals = 30
+excess = "super_strength_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy super Strength potion."
+
+[super_strength_mix_2_noted]
+id = 11486
+
+[super_strength_mix_1]
+id = 11487
+price = 1023
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy super Strength potion."
+
+[super_strength_mix_1_noted]
+id = 11488
+
+[magic_essence_mix_2]
+id = 11489
+price = 852
+weight = 0.075
+heals = 30
+excess = "magic_essence_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy Magic essence."
+
+[magic_essence_mix_2_noted]
+id = 11490
+
+[magic_essence_mix_1]
+id = 11491
+price = 435
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy Magic essence."
+
+[magic_essence_mix_1_noted]
+id = 11492
+
+[super_restore_mix_2]
+id = 11493
+price = 4663
+weight = 0.075
+heals = 30
+excess = "super_restore_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy super restore potion."
+
+[super_restore_mix_2_noted]
+id = 11494
+
+[super_restore_mix_1]
+id = 11495
+price = 3020
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy super restore potion."
+
+[super_restore_mix_1_noted]
+id = 11496
+
+[super_defence_mix_2]
+id = 11497
+price = 52
+weight = 0.075
+heals = 30
+excess = "super_defence_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy super Defence potion."
+
+[super_defence_mix_2_noted]
+id = 11498
+
+[super_defence_mix_1]
+id = 11499
+price = 68
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy super Defence potion."
+
+[super_defence_mix_1_noted]
+id = 11500
+
+[antidote+_mix_2]
+id = 11501
+price = 2155
+weight = 0.075
+heals = 30
+excess = "antipoison+_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy extra strength antidote potion."
+
+[antidote+_mix_2_noted]
+id = 11502
+
+[antidote+_mix_1]
+id = 11503
+price = 1208
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy extra strength antidote potion."
+
+[antidote+_mix_1_noted]
+id = 11504
+
+[antifire_mix_2]
+id = 11505
+price = 2958
+weight = 0.075
+heals = 30
+excess = "antifire_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy anti-firebreath potion."
+
+[antifire_mix_2_noted]
+id = 11506
+
+[antifire_mix_1]
+id = 11507
+price = 1524
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy anti-firebreath potion."
+
+[antifire_mix_1_noted]
+id = 11508
+
+[super_ranging_mix_2]
+id = 11509
+price = 2810
+weight = 0.075
+heals = 30
+excess = "super_ranging_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy super ranging potion."
+
+[super_ranging_mix_2_noted]
+id = 11510
+
+[super_ranging_mix_1]
+id = 11511
+price = 1621
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy super ranging potion."
+
+[super_ranging_mix_1_noted]
+id = 11512
+
+[super_magic_mix_2]
+id = 11513
+price = 1128
+weight = 0.075
+heals = 30
+excess = "super_magic_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy super Magic potion."
+
+[super_magic_mix_2_noted]
+id = 11514
+
+[super_magic_mix_1]
+id = 11515
+price = 1446
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy super Magic potion."
+
+[super_magic_mix_1_noted]
+id = 11516
+
+[hunting_mix_2]
+id = 11517
+price = 150
+weight = 0.075
+heals = 30
+excess = "hunting_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy Hunter potion."
+
+[hunting_mix_2_noted]
+id = 11518
+
+[hunting_mix_1]
+id = 11519
+price = 84
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy Hunter potion."
+
+[hunting_mix_1_noted]
+id = 11520
+
+[zamorak_mix_2]
+id = 11521
+price = 682
+weight = 0.075
+heals = 30
+excess = "zamorak_mix_1"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "Two doses of fishy Zamorak brew."
+
+[zamorak_mix_2_noted]
+id = 11522
+
+[zamorak_mix_1]
+id = 11523
+price = 339
+weight = 0.045
+heals = 30
+excess = "vial"
+empty = "vial"
+eat_message = "You drink the lumpy potion."
+examine = "One dose of fishy Zamorak brew."
+
+[zamorak_mix_1_noted]
+id = 11524

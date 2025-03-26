@@ -1,0 +1,16 @@
+[bailing_bucket]
+id = 583
+weight = 1.0
+examine = "It's a bailing bucket."
+
+[bailing_bucket_noted]
+id = 584
+
+[bailing_bucket_full]
+id = 585
+weight = 5.0
+empty = "bailing_bucket"
+examine = "It's a bailing bucket full of salty water."
+
+[bailing_bucket_full_noted]
+id = 586

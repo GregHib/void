@@ -1,0 +1,49 @@
+[bronze_arrowtips]
+id = 39
+price = 10
+limit = 10000
+smithing = { level = 5, xp = 12.5 }
+examine = "I can make an arrow with these."
+kept = "Wilderness"
+
+[iron_arrowtips]
+id = 40
+price = 8
+limit = 10000
+smithing = { level = 20, xp = 25.0 }
+examine = "I can make an arrow with these."
+kept = "Wilderness"
+
+[steel_arrowtips]
+id = 41
+price = 41
+limit = 10000
+smithing = { level = 35, xp = 37.5 }
+examine = "I can make an arrow with these."
+
+[mithril_arrowtips]
+id = 42
+price = 67
+limit = 10000
+smithing = { level = 55, xp = 50.0 }
+examine = "I can make an arrow with these."
+
+[adamant_arrowtips]
+id = 43
+price = 150
+limit = 10000
+smithing = { level = 75, xp = 62.5 }
+examine = "I can make an arrow with these."
+
+[rune_arrowtips]
+id = 44
+price = 844
+limit = 10000
+smithing = { level = 90, xp = 75.0 }
+examine = "I can make an arrow with these."
+
+[dragon_arrowtips]
+id = 11237
+price = 1803
+limit = 10000
+examine = "Dragon talons, usable as arrowheads."

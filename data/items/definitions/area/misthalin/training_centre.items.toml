@@ -1,0 +1,28 @@
+[test_paper]
+id = 12626
+tradeable = false
+weight = 0.018
+destroy = "You will need to get another exam paper from Professor Henry."
+examine = "Player Safety test."
+kept = "Vanish"
+
+[antique_lamp_misthalin_training_centre_of_excellence]
+id = 12627
+tradeable = false
+weight = 0.1
+destroy = "You will not be able to get another lamp if you destroy this one."
+examine = "I wonder what happens if I rub it."
+kept = "Vanish"
+
+[antique_lamp_misthalin_training_centre_of_excellence_2]
+clone = "antique_lamp_misthalin_training_centre_of_excellence"
+id = 12628
+
+[safety_gloves]
+id = 12629
+tradeable = false
+weight = 0.453
+slot = "Hands"
+destroy = "You will need to get another pair of gloves from the chest in the Stronghold of Player Safety if you destroy this one."
+examine = "Gloves from the Stronghold of Player Safety."
+kept = "Reclaim"

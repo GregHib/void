@@ -1,0 +1,99 @@
+[augustes_sapling]
+id = 9932
+tradeable = false
+weight = 0.907
+destroy = "You'll have to buy another one from Auguste on Entrana."
+examine = "This sapling is ready to be replanted in a tree patch."
+kept = "Wilderness"
+
+[balloon_structure]
+id = 9933
+tradeable = false
+weight = 0.001
+examine = "An incomplete origami balloon."
+kept = "Wilderness"
+
+[origami_balloon]
+id = 9934
+tradeable = false
+weight = 0.001
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "An origami balloon."
+kept = "Wilderness"
+
+[yellow_balloon]
+clone = "origami_balloon"
+id = 9935
+
+[blue_balloon]
+clone = "origami_balloon"
+id = 9936
+
+[red_balloon]
+clone = "origami_balloon"
+id = 9937
+
+[orange_balloon]
+clone = "origami_balloon"
+id = 9938
+
+[green_balloon]
+clone = "origami_balloon"
+id = 9939
+
+[purple_balloon]
+clone = "origami_balloon"
+id = 9940
+
+[pink_balloon]
+clone = "origami_balloon"
+id = 9941
+
+[black_balloon]
+clone = "origami_balloon"
+id = 9942
+
+[sandbag]
+id = 9943
+tradeable = false
+weight = 1.5
+empty = "empty_sack"
+slot = "Weapon"
+examine = "A bag full of sand."
+kept = "Wilderness"
+
+[bomber_jacket]
+id = 9944
+tradeable = false
+weight = 0.001
+slot = "Chest"
+destroy = "You'll have to visit Auguste on Entrana to get a new jacket."
+examine = "For all your flying needs."
+kept = "Vanish"
+
+[bomber_cap]
+id = 9945
+tradeable = false
+weight = 0.001
+slot = "Hat"
+type = "Hair"
+destroy = "You'll have to visit Auguste on Entrana to get a new cap."
+examine = "The red baron would be jealous."
+kept = "Vanish"
+
+[cap_and_goggles]
+id = 9946
+tradeable = false
+weight = 0.001
+slot = "Hat"
+type = "Hair"
+destroy = "You should split these apart first."
+examine = "For better flying vision."
+kept = "Vanish"
+
+[bomber_jacket_2]
+id = 11135
+tradeable = false
+weight = 0.001
+examine = "For all your flying needs."
+kept = "Vanish"

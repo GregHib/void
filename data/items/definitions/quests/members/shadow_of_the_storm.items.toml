@@ -1,0 +1,59 @@
+[silverlight_dyed]
+id = 6745
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+destroy = "You can obtain another one from Gideon Bede in the Saradominist church in Varrock."
+examine = "The magical sword 'Silverlight', stained black with mushroom ink."
+kept = "Reclaim"
+
+[darklight]
+id = 6746
+tradeable = false
+weight = 1.814
+special_energy = 500
+special = "weaken"
+slot = "Weapon"
+material = "metal"
+destroy = "You can reclaim it from Gideon Bede in the Saradomin churchist"
+examine = "The magical sword 'Silverlight', enhanced with the blood of Agrith Naar."
+kept = "Reclaim"
+
+[demonic_sigil_mould]
+id = 6747
+tradeable = false
+weight = 0.453
+silver_jewellery = { item = "demonic_sigil", quest = "shadow_of_the_storm", level = 30, xp = 50.0 }
+examine = "Used to make the sigil of the demon Agrith-Naar."
+kept = "Wilderness"
+
+[demonic_sigil]
+id = 6748
+tradeable = false
+weight = 1.814
+examine = "A sigil used for the summoning of the demon Agrith Naar."
+kept = "Wilderness"
+
+[demonic_tome]
+id = 6749
+tradeable = false
+weight = 0.453
+aka = ["the_confession_of_ellemar"]
+examine = "Will this book help in summoning Agrith Naar?"
+kept = "Wilderness"
+
+[black_desert_shirt]
+id = 6750
+tradeable = false
+weight = 0.907
+slot = "Chest"
+examine = "A desert shirt stained black with mushroom ink."
+kept = "Reclaim"
+
+[black_desert_robe]
+id = 6752
+tradeable = false
+weight = 0.907
+slot = "Legs"
+examine = "A desert robe stained black with mushroom ink."
+kept = "Reclaim"

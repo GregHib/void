@@ -1,0 +1,11 @@
+[locust_meat]
+id = 9052
+price = 63
+limit = 1000
+heals = 30
+eat_message = "Juices spurt into your mouth as you chew. It's tastier than it looks."
+weight = 0.003
+examine = "Delicious and nutritious. Well, nutritious anyway."
+
+[locust_meat_noted]
+id = 9053

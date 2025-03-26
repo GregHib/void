@@ -1,0 +1,67 @@
+[iron_sheet]
+id = 7941
+tradeable = false
+weight = 1.814
+examine = "A sturdy sheet of iron."
+kept = "Wilderness"
+
+[fresh_monkfish_raw]
+id = 7942
+tradeable = false
+weight = 0.45
+examine = "Freshly caught. Needs cooking."
+kept = "Wilderness"
+
+[fresh_monkfish]
+id = 7943
+heals = 10
+eat_message = "It's so fresh that it's got no flavour, and it doesn't heal much health either."
+tradeable = false
+weight = 0.4
+examine = "Freshly caught and cooked - perfect for storing. Not so good for eating."
+kept = "Wilderness"
+
+[raw_monkfish]
+id = 7944
+price = 339
+limit = 20000
+weight = 0.45
+fishing = { level = 62, xp = 120.0, chance = "48-90" }
+cooking = { level = 62, xp = 150.0, chances = { fire = "11-275", range = "13-280", gauntlet = "24-290" }, cooked = "monkfish", cooked_message = "You successfully cook a monkfish.", burnt_message = "You accidentally burn the monkfish." }
+examine = "I should try cooking this."
+
+[raw_monkfish_noted]
+id = 7945
+
+[monkfish]
+id = 7946
+price = 277
+limit = 10000
+heals = 160
+weight = 0.4
+examine = "A tasty fish."
+
+[monkfish_noted]
+id = 7947
+
+[burnt_monkfish]
+id = 7948
+examine = "Maybe a little less heat next time."
+
+[burnt_monkfish_noted]
+id = 7949
+
+[bone_seeds]
+id = 7950
+tradeable = false
+weight = 0.001
+examine = "A highly portable army of skeletal magi."
+kept = "Wilderness"
+
+[hermans_book]
+id = 7951
+tradeable = false
+weight = 0.07
+aka = ["dionysius_a_legend_in_his_own_lifetime"]
+examine = "A book taken from the desk of Herman Caranos."
+kept = "Wilderness"

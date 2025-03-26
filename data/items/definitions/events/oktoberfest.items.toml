@@ -1,0 +1,20 @@
+[oktoberfest_pretzel]
+id = 19778
+heals = 120
+weight = 0.003
+examine = "A tasty pretzel. It won't last after the next update!"
+
+[oktoberfest_pretzel_noted]
+id = 19779
+
+[korasis_sword_the_void_stares_back]
+id = 19780
+tradeable = false
+weight = 1.814
+special_energy = 600
+special = "disrupt"
+weapon_type = "korasis_sword"
+slot = "Weapon"
+material = "metal"
+examine = "The sword of a Void Knight."
+kept = "Vanish"

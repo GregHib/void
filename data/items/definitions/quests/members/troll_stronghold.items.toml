@@ -1,0 +1,28 @@
+[prison_key]
+id = 3135
+tradeable = false
+weight = 0.055
+examine = "The key to the troll prison."
+kept = "Wilderness"
+
+[cell_key_1]
+id = 3136
+tradeable = false
+weight = 0.055
+examine = "The key to Godric's cell in the troll prison."
+kept = "Wilderness"
+
+[cell_key_2]
+id = 3137
+tradeable = false
+weight = 0.055
+examine = "The key to Mad Eadgar's cell in the troll prison."
+kept = "Wilderness"
+
+[mysterious_lamp]
+id = 13227
+tradeable = false
+weight = 0.1
+destroy = "If you drop this lamp, it will be destroyed. You can obtain another from Dunstan."
+examine = "I wonder what happens if I rub it."
+kept = "Vanish"

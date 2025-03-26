@@ -1,0 +1,12 @@
+[gnomecopter]
+id = 12842
+slot = "Cape"
+
+[gnomecopter_ticket]
+id = 12843
+tradeable = false
+bank_stacks = false
+weight = 0.07
+destroy = "This is for use with the gnomecopters, north of Lumbridge. Sasquine Huburns will give you another one."
+examine = "It tells the gnomecopters where you wish to go."
+kept = "Vanish"

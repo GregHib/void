@@ -1,0 +1,102 @@
+[gunpowder_cabin_fever]
+id = 7108
+tradeable = false
+weight = 0.001
+examine = "Best keep this away from naked flames."
+kept = "Reclaim"
+
+[fuse_cabin_fever]
+id = 7109
+tradeable = false
+weight = 0.007
+examine = "Burns very well."
+kept = "Reclaim"
+
+[canister_2]
+id = 7118
+tradeable = false
+weight = 0.005
+examine = "A canister holding shrapnel."
+kept = "Wilderness"
+
+[cannon_ball_cabin_fever]
+id = 7119
+tradeable = false
+weight = 20.0
+examine = "A heavy metal ball."
+kept = "Wilderness"
+
+[ramrod]
+id = 7120
+tradeable = false
+weight = 2.0
+examine = "For cleaning and packing the cannon."
+kept = "Wilderness"
+
+[repair_plank_2]
+id = 7121
+tradeable = false
+weight = 0.005
+examine = "A plank of wood to repair the hull with."
+kept = "Wilderness"
+
+[little_book_o_piracy]
+id = 7144
+tradeable = false
+weight = 0.001
+destroy = "Are you sure you want to destroy this? You can get a replacement from Bill Teach or from your player-owned house bookcase."
+examine = "By Cap'n Hook-Hand Morrisane."
+kept = "Wilderness"
+
+[plunder]
+id = 7143
+tradeable = false
+weight = 0.005
+examine = "Looks valuable."
+kept = "Wilderness"
+
+[cannon_barrel]
+id = 7145
+tradeable = false
+weight = 32.0
+examine = "A working cannon barrel."
+kept = "Wilderness"
+
+[broken_cannon]
+id = 7146
+tradeable = false
+weight = 32.0
+examine = "Not likely to work again."
+kept = "Wilderness"
+
+[cannon_balls]
+id = 7147
+limit = 10000
+examine = "Ammo for the Dwarf Cannon."
+
+[repair_plank]
+id = 7148
+tradeable = false
+weight = 0.005
+examine = "A plank of wood to repair the hull with."
+kept = "Wilderness"
+
+[canister]
+id = 7149
+tradeable = false
+weight = 0.005
+examine = "A canister holding shrapnel."
+kept = "Wilderness"
+
+[tacks]
+id = 7150
+tradeable = false
+examine = "Useful for pinning up paintings."
+kept = "Wilderness"
+
+[rope_cabin_fever]
+id = 7155
+limit = 100
+weight = 1.36
+examine = "A coil of rope."
+kept = "Wilderness"

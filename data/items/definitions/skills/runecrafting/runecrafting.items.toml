@@ -1,0 +1,334 @@
+[rune_essence]
+id = 1436
+price = 19
+limit = 25000
+weight = 0.002
+mining = { xp = 5.0, chance = "200-400" }
+aka = ["rune_ess", "rune_esse", "essence"]
+examine = "An uncharged Rune Stone."
+kept = "Wilderness"
+
+[rune_essence_noted]
+id = 1437
+
+[air_talisman]
+id = 1438
+price = 188
+limit = 500
+weight = 0.015
+examine = "A mysterious power emanates from the talisman..."
+kept = "Wilderness"
+
+[air_talisman_noted]
+id = 1439
+
+[earth_talisman]
+id = 1440
+price = 312
+limit = 500
+weight = 0.015
+examine = "A mysterious power emanates from the talisman..."
+kept = "Wilderness"
+
+[earth_talisman_noted]
+id = 1441
+
+[fire_talisman]
+id = 1442
+price = 1424
+limit = 500
+weight = 0.015
+examine = "A mysterious power emanates from the talisman..."
+kept = "Wilderness"
+
+[fire_talisman_noted]
+id = 1443
+
+[water_talisman]
+id = 1444
+price = 3781
+limit = 500
+weight = 0.015
+examine = "A mysterious power emanates from the talisman..."
+kept = "Wilderness"
+
+[water_talisman_noted]
+id = 1445
+
+[body_talisman]
+id = 1446
+price = 348
+limit = 500
+weight = 0.015
+examine = "A mysterious power emanates from the talisman..."
+kept = "Wilderness"
+
+[body_talisman_noted]
+id = 1447
+
+[mind_talisman]
+id = 1448
+price = 158
+limit = 500
+weight = 0.015
+examine = "A mysterious power emanates from the talisman..."
+kept = "Wilderness"
+
+[mind_talisman_noted]
+id = 1449
+
+[blood_talisman]
+id = 1450
+price = 11700
+limit = 500
+weight = 0.015
+examine = "A mysterious power emanates from the talisman..."
+
+[blood_talisman_noted]
+id = 1451
+
+[chaos_talisman]
+id = 1452
+price = 167
+limit = 500
+weight = 0.015
+examine = "A mysterious power emanates from the talisman..."
+
+[chaos_talisman_noted]
+id = 1453
+
+[cosmic_talisman]
+id = 1454
+price = 454
+limit = 500
+weight = 0.015
+examine = "A mysterious power emanates from the talisman..."
+
+[cosmic_talisman_noted]
+id = 1455
+
+[death_talisman]
+id = 1456
+price = 1062
+limit = 500
+weight = 0.015
+examine = "A mysterious power emanates from the talisman..."
+
+[death_talisman_noted]
+id = 1457
+
+[law_talisman]
+id = 1458
+price = 372
+limit = 500
+weight = 0.015
+examine = "A mysterious power emanates from the talisman..."
+
+[law_talisman_noted]
+id = 1459
+
+[nature_talisman]
+id = 1462
+price = 808
+limit = 500
+weight = 0.015
+examine = "A mysterious power emanates from the talisman..."
+
+[nature_talisman_noted]
+id = 1463
+
+[binding_necklace]
+id = 5521
+price = 759
+limit = 100
+weight = 0.01
+charges = 16
+charge = "binding_necklace_charges"
+degrade = "destroy"
+slot = "Amulet"
+examine = "A necklace embedded with mystical power."
+
+[binding_necklace_noted]
+id = 5522
+
+[tiara_mould]
+id = 5523
+price = 37
+limit = 100
+weight = 1.0
+silver_jewellery = { item = "tiara", level = 16, xp = 52.5 }
+examine = "A mould for tiaras."
+
+[tiara_mould_noted]
+id = 5524
+
+[tiara]
+id = 5525
+price = 16
+limit = 1000
+weight = 1.0
+slot = "Hat"
+examine = "Makes me feel like a Princess."
+kept = "Wilderness"
+
+[tiara_noted]
+id = 5526
+
+[air_tiara]
+id = 5527
+price = 3
+limit = 100
+weight = 1.0
+slot = "Hat"
+examine = "A tiara infused with the properties of air."
+kept = "Wilderness"
+
+[air_tiara_noted]
+id = 5528
+
+[mind_tiara]
+id = 5529
+price = 14
+limit = 100
+weight = 1.0
+slot = "Hat"
+examine = "A tiara infused with the properties of the mind."
+kept = "Wilderness"
+
+[mind_tiara_noted]
+id = 5530
+
+[water_tiara]
+id = 5531
+price = 2481
+limit = 100
+weight = 1.0
+slot = "Hat"
+examine = "A tiara infused with the properties of water."
+kept = "Wilderness"
+
+[water_tiara_noted]
+id = 5532
+
+[body_tiara]
+id = 5533
+price = 3
+limit = 100
+weight = 1.0
+slot = "Hat"
+examine = "A tiara infused with the properties of the body."
+kept = "Wilderness"
+
+[body_tiara_noted]
+id = 5534
+
+[earth_tiara]
+id = 5535
+price = 4
+limit = 100
+weight = 1.0
+slot = "Hat"
+examine = "A tiara infused with the properties of the earth."
+kept = "Wilderness"
+
+[earth_tiara_noted]
+id = 5536
+
+[fire_tiara]
+id = 5537
+price = 10
+limit = 100
+weight = 1.0
+slot = "Hat"
+examine = "A tiara infused with the properties of fire."
+kept = "Wilderness"
+
+[fire_tiara_noted]
+id = 5538
+
+[cosmic_tiara]
+id = 5539
+price = 4
+limit = 100
+weight = 1.0
+slot = "Hat"
+examine = "A tiara infused with the properties of the cosmos."
+
+[cosmic_tiara_noted]
+id = 5540
+
+[nature_tiara]
+id = 5541
+price = 8
+limit = 100
+weight = 1.0
+slot = "Hat"
+examine = "A tiara infused with the properties of nature."
+
+[nature_tiara_noted]
+id = 5542
+
+[chaos_tiara]
+id = 5543
+price = 5
+limit = 100
+weight = 1.0
+slot = "Hat"
+examine = "A tiara infused with the properties of chaos."
+
+[chaos_tiara_noted]
+id = 5544
+
+[law_tiara]
+id = 5545
+price = 3
+limit = 100
+weight = 1.0
+slot = "Hat"
+examine = "A tiara infused with the properties of law."
+
+[law_tiara_noted]
+id = 5546
+
+[death_tiara]
+id = 5547
+price = 213
+limit = 100
+weight = 1.0
+slot = "Hat"
+examine = "A tiara infused with the properties of death."
+
+[death_tiara_noted]
+id = 5548
+
+[blood_tiara]
+id = 5549
+price = 11900
+limit = 100
+weight = 1.0
+slot = "Hat"
+examine = "A tiara infused with the properties of blood."
+
+[blood_tiara_noted]
+id = 5550
+
+[soul_tiara] # Unobtainable
+id = 5551
+weight = 1.0
+slot = "Hat"
+examine = "A tiara infused with the properties of the soul."
+
+[soul_tiara_noted]
+id = 5552
+
+[pure_essence]
+id = 7936
+price = 129
+limit = 25000
+weight = 0.002
+mining = { xp = 5.0, chance = "150-350" }
+aka = ["pure_ess", "pure_esse", "p_ess", "p_esse", "p_essence"]
+examine = "An uncharged Rune Stone of extra capability. Used in Runecrafting for training and production."
+
+[pure_essence_noted]
+id = 7937

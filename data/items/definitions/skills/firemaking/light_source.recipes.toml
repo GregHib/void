@@ -1,0 +1,71 @@
+[white_lantern_make]
+skill = "firemaking"
+level = 1
+xp = 0.0
+ticks = 1
+remove = ["white_candle", "candle_lantern_empty"]
+add = ["candle_lantern_white"]
+message = "You add the candle to the empty lantern frame."
+
+[black_lantern_make]
+skill = "firemaking"
+level = 1
+xp = 0.0
+ticks = 1
+remove = ["black_candle", "candle_lantern_empty"]
+add = ["candle_lantern_black"]
+message = "You add the candle to the empty lantern frame."
+
+[default_bullseye_lantern_make]
+skill = "crafting"
+level = 49
+xp = 0.0
+ticks = 1
+remove = ["bullseye_lantern_frame", "lantern_lens"]
+add = ["bullseye_lantern_empty"]
+message = "You add the lens to the bullseye lantern frame."
+
+[emerald_bullseye_lantern_make]
+skill = "crafting"
+level = 1
+xp = 0.0
+ticks = 1
+remove = ["bullseye_lantern_frame", "emerald_lens"]
+add = ["emerald_lantern"]
+message = "You add the lens to the bullseye lantern frame."
+
+[sapphire_bullseye_lantern_make]
+skill = "crafting"
+level = 1
+xp = 0.0
+ticks = 1
+remove = ["bullseye_lantern_frame", "sapphire"]
+add = ["sapphire_lantern_empty"]
+message = "You add the lens to the bullseye lantern frame."
+
+[default_bullseye_lantern_oiled_make]
+skill = "crafting"
+level = 1
+xp = 0.0
+ticks = 2
+remove = ["swamp_tar", "bullseye_lantern_empty"]
+add = ["bullseye_lantern_oil"]
+message = "You add the swamp tar to the empty lantern."
+
+[oil_lamp_fill]
+skill = "firemaking"
+level = 12
+xp = 0.0
+ticks = 2
+remove = ["swamp_tar", "oil_lamp_empty"]
+add = ["oil_lamp_oil"]
+message = "You add the swamp tar to the empty lantern."
+
+[oil_lantern_fill]
+skill = "firemaking"
+level = 26
+xp = 0.0
+ticks = 2
+remove = ["swamp_tar", "oil_lantern_empty"]
+add = ["oil_lantern_oil"]
+message = "You add the swamp tar to the empty lantern."

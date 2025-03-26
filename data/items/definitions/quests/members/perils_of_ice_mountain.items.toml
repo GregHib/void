@@ -1,0 +1,57 @@
+[crate_perils_of_ice_mountain]
+id = 13228
+tradeable = false
+weight = 20.0
+destroy = "You can get the crate again from the bush where you found it."
+examine = "This needs to be delivered to the power station at the foot of Ice Mountain."
+kept = "Wilderness"
+
+[letter_perils_of_ice_mountain]
+id = 13229
+tradeable = false
+weight = 0.005
+destroy = "Drorkar can give you another copy."
+examine = "You should deliver this to Brother Bordiss in the Monastery near Ice Mountain."
+kept = "Wilderness"
+
+[icefiend_net]
+id = 13230
+tradeable = false
+weight = 0.1
+slot = "Weapon"
+destroy = "You can get another net from Professor Arblenap on Ice Mountain."
+examine = "Professor Arblenap gave you this net to catch the baby icefiends on Ice Mountain."
+kept = "Wilderness"
+
+[baby_icefiend]
+id = 13231
+tradeable = false
+weight = 1.0
+slot = "Weapon"
+destroy = "Release"
+examine = "You should give this to Professor Arblenap."
+kept = "Wilderness"
+
+[tent]
+id = 13232
+tradeable = false
+weight = 30.0
+destroy = "It will reappear at the bottom of Ice Mountain."
+examine = "The remains of the Oracle's tent on Ice Mountain."
+kept = "Wilderness"
+
+[plans_perils_of_ice_mountain]
+id = 13233
+tradeable = false
+weight = 0.01
+destroy = "You can get another copy from Bordiss's chest."
+examine = "Bordiss's plans for an alternative power station."
+kept = "Wilderness"
+
+[dwarven_key]
+id = 13234
+tradeable = false
+weight = 0.005
+destroy = "You can get it back by pickpocketing Drorkar again."
+examine = "You took this from Drorkar's pocket in the power station."
+kept = "Wilderness"

@@ -1,0 +1,220 @@
+[lobster_pot]
+id = 301
+price = 127
+limit = 100
+weight = 0.255
+cast = "You attempt to catch a lobster."
+examine = "Useful for catching lobsters."
+
+[lobster_pot_noted]
+id = 302
+
+[small_fishing_net]
+id = 303
+price = 445
+limit = 100
+weight = 4.535
+aka = ["small_net", "fishing_net"]
+cast = "You cast out your net..."
+examine = "Useful for catching small fish."
+kept = "Wilderness"
+
+[small_fishing_net_noted]
+id = 304
+
+[big_fishing_net]
+id = 305
+price = 112
+limit = 100
+weight = 8.164
+cast = "You cast out your net..."
+examine = "Useful for catching lots of fish."
+kept = "Wilderness"
+
+[big_fishing_net_noted]
+id = 306
+
+[fishing_rod]
+id = 307
+price = 69
+limit = 100
+weight = 1.36
+cast = "You cast out your line..."
+examine = "Useful for catching sardine or herring."
+kept = "Wilderness"
+
+[fishing_rod_noted]
+id = 308
+
+[fly_fishing_rod]
+id = 309
+price = 74
+limit = 100
+weight = 1.36
+cast = "You cast out your line..."
+examine = "Useful for catching salmon or trout."
+kept = "Wilderness"
+
+[fly_fishing_rod_noted]
+id = 310
+
+[harpoon]
+id = 311
+price = 138
+limit = 5000
+weight = 1.36
+cast = "You start harpooning fish."
+examine = "Useful for catching really big fish."
+
+[harpoon_noted]
+id = 312
+
+[fishing_bait]
+id = 313
+price = 2
+limit = 10000
+examine = "For use with a fishing rod."
+kept = "Wilderness"
+
+[feather]
+id = 314
+price = 18
+limit = 10000
+examine = "Used for fly fishing."
+
+[seaweed]
+id = 401
+price = 92
+limit = 10000
+weight = 0.2
+fishing = { level = 16, xp = 1.0, chance = "10-10" }
+examine = "Slightly damp seaweed."
+
+[seaweed_noted]
+id = 402
+
+[edible_seaweed]
+id = 403
+price = 201
+limit = 10000
+heals = 40
+weight = 0.25
+examine = "Slightly damp seaweed."
+
+[edible_seaweed_noted]
+id = 404
+
+[casket]
+id = 405
+price = 1525
+limit = 100
+weight = 5.0
+fishing = { level = 16, xp = 0.0, chance = "1-2" }
+examine = "I hope there's treasure in it."
+
+[casket_noted]
+id = 406
+
+[oyster]
+id = 407
+price = 24
+limit = 500
+weight = 0.1
+fishing = { level = 16, xp = 10.0, chance = "3-7" }
+examine = "Maybe there are pearls inside?"
+
+[oyster_noted]
+id = 408
+
+[empty_oyster]
+id = 409
+weight = 0.08
+examine = "Aww, it's empty."
+
+[empty_oyster_noted]
+id = 410
+
+[oyster_pearl]
+id = 411
+price = 10
+limit = 500
+weight = 0.002
+slot = "Shield"
+examine = "I could work wonders with a chisel on this pearl."
+
+[oyster_pearl_noted]
+id = 412
+
+[oyster_pearls]
+id = 413
+price = 708
+limit = 500
+weight = 0.004
+slot = "Shield"
+examine = "I could work wonders with a chisel on these pearls."
+
+[oyster_pearls_noted]
+id = 414
+
+[crayfish_cage]
+id = 13431
+price = 9
+limit = 100
+weight = 0.141
+cast = "You attempt to catch a crayfish."
+examine = "Useful for catching crayfish."
+kept = "Wilderness"
+
+[crayfish_cage_noted]
+id = 13432
+
+[seaweed_net]
+id = 14859
+price = 66
+weight = 0.68
+examine = "A sturdy net with closing wire."
+
+[seaweed_net_1]
+id = 14860
+empty = "seaweed_net"
+weight = 0.68
+examine = "A sturdy net containing seaweed"
+
+[seaweed_net_2]
+clone = "seaweed_net_1"
+id = 14861
+
+[seaweed_net_3]
+clone = "seaweed_net_1"
+id = 14862
+
+[seaweed_net_4]
+clone = "seaweed_net_1"
+id = 14863
+
+[seaweed_net_5]
+clone = "seaweed_net_1"
+id = 14864
+
+[seaweed_net_6]
+clone = "seaweed_net_1"
+id = 14865
+
+[seaweed_net_7]
+clone = "seaweed_net_1"
+id = 14866
+
+[seaweed_net_8]
+clone = "seaweed_net_1"
+id = 14867
+
+[seaweed_net_9]
+clone = "seaweed_net_1"
+id = 14868
+
+[seaweed_net_10]
+clone = "seaweed_net_1"
+id = 14869
+
+[seaweed_net_noted]
+id = 14875

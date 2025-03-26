@@ -1,0 +1,9 @@
+
+[paddle]
+id = 7414
+weight = 0.02
+slot = "Weapon"
+examine = "With it, you row."
+
+[paddle_noted]
+id = 7415

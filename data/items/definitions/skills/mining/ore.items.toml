@@ -1,0 +1,200 @@
+[clay]
+id = 434
+price = 34
+limit = 25000
+weight = 1.0
+mining = { xp = 5.0, chance = "75-300" }
+full = "soft_clay"
+examine = "Some hard dry clay."
+kept = "Wilderness"
+
+[clay_noted]
+id = 435
+
+[copper_ore]
+id = 436
+price = 18
+limit = 25000
+weight = 2.267
+mining = { xp = 17.5, chance = "40-500" }
+examine = "This needs refining."
+kept = "Wilderness"
+
+[copper_ore_noted]
+id = 437
+
+[tin_ore]
+id = 438
+price = 20
+limit = 25000
+weight = 2.267
+mining = { xp = 17.5, chance = "40-500" }
+examine = "This needs refining."
+kept = "Wilderness"
+
+[tin_ore_noted]
+id = 439
+
+[iron_ore]
+id = 440
+price = 95
+limit = 25000
+weight = 2.267
+mining = { xp = 35.0, chance = "110-350" }
+examine = "This needs refining."
+kept = "Wilderness"
+
+[iron_ore_noted]
+id = 441
+
+[silver_ore]
+id = 442
+price = 101
+limit = 25000
+weight = 2.267
+mining = { xp = 40.0, chance = "25-200" }
+examine = "This needs refining."
+
+[silver_ore_noted]
+id = 443
+
+[gold_ore]
+id = 444
+price = 209
+limit = 25000
+weight = 2.267
+mining = { xp = 65.0, chance = "7-75" }
+examine = "This needs refining."
+
+[gold_ore_noted]
+id = 445
+
+[perfect_gold_ore]
+id = 446
+tradeable = false
+weight = 2.267
+examine = "This needs refining."
+kept = "Reclaim"
+
+[mithril_ore]
+id = 447
+price = 137
+limit = 25000
+weight = 1.814
+mining = { xp = 80.0, chance = "10-75" }
+examine = "This needs refining."
+
+[mithril_ore_noted]
+id = 448
+
+[adamantite_ore]
+id = 449
+price = 785
+limit = 25000
+weight = 2.721
+mining = { xp = 95.0, chance = "5-55" }
+aka = ["adamant_ore"]
+examine = "This needs refining."
+
+[adamantite_ore_noted]
+id = 450
+
+[runite_ore]
+id = 451
+price = 10900
+limit = 25000
+weight = 2.267
+mining = { xp = 125.0, chance = "1-18" }
+aka = ["rune_ore"]
+examine = "This needs refining."
+
+[runite_ore_noted]
+id = 452
+
+[coal]
+id = 453
+price = 247
+limit = 25000
+weight = 2.267
+mining = { xp = 50.0, chance = "20-150" }
+examine = "Hmm, a non-renewable energy source!"
+
+[coal_noted]
+id = 454
+
+[sandstone_1kg]
+id = 6971
+price = 7
+limit = 10000
+weight = 1.0
+mining = { xp = 30.0, chance = "25-200" }
+examine = "A tiny chunk of sandstone."
+
+[sandstone_1kg_noted]
+id = 6972
+
+[sandstone_2kg]
+id = 6973
+price = 32
+limit = 10000
+weight = 2.0
+mining = { xp = 40.0, chance = "16-100" }
+examine = "A small chunk of sandstone."
+
+[sandstone_2kg_noted]
+id = 6974
+
+[sandstone_5kg]
+id = 6975
+price = 45
+limit = 10000
+weight = 5.0
+mining = { xp = 50.0, chance = "8-75" }
+examine = "A medium-sized chunk of sandstone."
+
+[sandstone_5kg_noted]
+id = 6976
+
+[sandstone_10kg]
+id = 6977
+price = 185
+limit = 10000
+weight = 10.0
+mining = { xp = 60.0, chance = "4-50" }
+examine = "A large chunk of sandstone."
+
+[sandstone_10kg_noted]
+id = 6978
+
+[granite_500g]
+id = 6979
+price = 280
+limit = 10000
+weight = 0.5
+mining = { xp = 50.0, chance = "16-100" }
+examine = "A tiny chunk of granite."
+
+[granite_500g_noted]
+id = 6980
+
+[granite_2kg]
+id = 6981
+price = 681
+limit = 10000
+weight = 2.0
+mining = { xp = 60.0, chance = "8-75" }
+examine = "A small chunk of granite."
+
+[granite_2kg_noted]
+id = 6982
+
+[granite_5kg]
+id = 6983
+price = 2038
+limit = 10000
+weight = 5.0
+mining = { xp = 75.0, chance = "6-64" }
+examine = "A medium-sized chunk of granite."
+
+[granite_5kg_noted]
+id = 6984

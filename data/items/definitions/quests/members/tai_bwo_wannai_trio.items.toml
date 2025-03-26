@@ -1,0 +1,273 @@
+[burnt_jogre_bones]
+id = 3127
+tradeable = false
+weight = 0.8
+examine = "These blackened Jogre bones have been somehow burnt."
+kept = "Wilderness"
+
+[pasty_jogre_bones_burnt_raw]
+id = 3128
+tradeable = false
+weight = 0.8
+examine = "Burnt Jogre bones smothered with raw Karambwanji Paste."
+kept = "Wilderness"
+
+[pasty_jogre_bones_burnt_cooked]
+id = 3129
+tradeable = false
+weight = 0.8
+examine = "Burnt Jogre bones smothered with cooked Karambwanji paste."
+kept = "Wilderness"
+
+[marinated_jogre_bones]
+id = 3130
+tradeable = false
+weight = 0.8
+examine = "Burnt Jogre bones marinated in a lovely Karambwanji sauce. Perfect."
+kept = "Wilderness"
+
+[pasty_jogre_bones_raw]
+id = 3131
+tradeable = false
+weight = 0.8
+examine = "Jogre bones smothered with raw Karambwanji paste."
+kept = "Wilderness"
+
+[pasty_jogre_bones_cooked]
+id = 3132
+tradeable = false
+weight = 0.8
+examine = "Jogre bones smothered with cooked Karambwanji paste."
+kept = "Wilderness"
+
+[marinated_jogre_bones_bad]
+id = 3133
+tradeable = false
+weight = 0.8
+examine = "Jogre Bones marinated in Karambwanji sauce. Not quite right."
+kept = "Wilderness"
+
+[raw_karambwanji]
+id = 3150
+tradeable = false
+weight = 0.14
+fishing = { level = 5, xp = 5.0, chance = "100-250" }
+examine = "Small brightly coloured tropical fish."
+kept = "Reclaim"
+
+[karambwanji]
+id = 3151
+heals = 30
+tradeable = false
+weight = 0.12
+examine = "Small brightly coloured tropical fish. Looks tasty."
+kept = "Reclaim"
+
+[karambwan_paste_raw]
+id = 3152
+tradeable = false
+weight = 0.01
+examine = "Freshly made octopus paste."
+kept = "Reclaim"
+
+[karambwan_paste_poison]
+id = 3153
+tradeable = false
+weight = 0.01
+examine = "Freshly made octopus paste. This smells quite nauseating."
+kept = "Reclaim"
+
+[karambwan_paste_cooked]
+clone = "karambwan_paste_raw"
+id = 3154
+
+[karambwanji_paste_raw]
+id = 3155
+tradeable = false
+weight = 0.01
+examine = "This paste smells of raw fish."
+kept = "Reclaim"
+
+[karambwanji_paste_cooked]
+id = 3156
+tradeable = false
+weight = 0.01
+examine = "This paste smells of cooked fish."
+kept = "Reclaim"
+
+[karambwan_vessel]
+id = 3157
+price = 182
+limit = 100
+weight = 3.0
+slot = "Weapon"
+examine = "A wide bodied and thin necked vessel, encrusted with sea salt."
+
+[karambwan_vessel_noted]
+id = 3158
+
+[karambwan_vessel_full]
+id = 3159
+limit = 100
+weight = 3.15
+examine = "This Karambwan Vessel is loaded with Karambwanji."
+
+[karambwan_vessel_full_noted]
+id = 3160
+
+[crafting_manual]
+id = 3161
+tradeable = false
+weight = 0.05
+examine = "A set of instructions explaining how to construct a Karambwan vessel."
+kept = "Wilderness"
+
+[sliced_banana]
+id = 3162
+price = 27
+limit = 100
+heals = 20
+weight = 0.028
+examine = "You swear you had more than three slices before."
+
+[sliced_banana_noted]
+id = 3163
+
+[karamjan_rum_sliced_banana]
+id = 3164
+tradeable = false
+weight = 0.907
+examine = "The Karamjan rum has slices of banana floating in it."
+kept = "Wilderness"
+
+[karamjan_rum_banana]
+id = 3165
+tradeable = false
+weight = 0.907
+examine = "A banana has been stuffed into the neck of this bottle."
+kept = "Wilderness"
+
+[monkey_corpse]
+id = 3166
+tradeable = false
+weight = 1.0
+examine = "It's the body of a dead monkey."
+kept = "Wilderness"
+
+[monkey_skin]
+id = 3167
+tradeable = false
+weight = 0.3
+examine = "It's the skin of a dead monkey."
+kept = "Wilderness"
+
+[seaweed_sandwich]
+id = 3168
+tradeable = false
+weight = 0.5
+examine = "A 'Seaweed in Monkey Skin' sandwich. Perfect for statue repair."
+kept = "Wilderness"
+
+[stuffed_monkey]
+id = 3169
+tradeable = false
+weight = 1.2
+examine = "A body of a dead monkey, tastefully stuffed with seaweed."
+kept = "Wilderness"
+
+[bronze_spear_kp]
+id = 3170
+limit = 1000
+tradeable = false
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "A Karambwan poisoned bronze tipped spear."
+kept = "Wilderness"
+
+[iron_spear_kp]
+id = 3171
+limit = 1000
+tradeable = false
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "A Karambwan poisoned iron tipped spear."
+kept = "Wilderness"
+
+[steel_spear_kp]
+id = 3172
+limit = 1000
+tradeable = false
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "A Karambwan poisoned steel tipped spear."
+kept = "Wilderness"
+
+[mithril_spear_kp]
+id = 3173
+limit = 1000
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "A Karambwan poisoned mithril tipped spear."
+kept = "Wilderness"
+
+[adamant_spear_kp]
+id = 3174
+limit = 1000
+tradeable = false
+weight = 2.721
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "A Karambwan poisoned adamant tipped spear."
+kept = "Vanish"
+
+[rune_spear_kp]
+id = 3175
+limit = 100
+tradeable = false
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "A Karambwan poisoned rune tipped spear."
+kept = "Vanish"
+
+[dragon_spear_kp]
+id = 3176
+limit = 10
+tradeable = false
+special_energy = 250
+special = "shove"
+weight = 2.267
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+examine = "A Karambwan poisoned dragon tipped spear."
+kept = "Vanish"
+
+[left_handed_banana]
+id = 3177
+tradeable = false
+weight = 0.028
+slot = "Shield"
+examine = "Mmm this looks tasty."
+kept = "Reclaim"
+
+[cleaning_cloth]
+id = 3188
+price = 310
+limit = 100
+weight = 1.0
+examine = "A piece of silk which can be used to remove paint from weapons."
+
+[cleaning_cloth_noted]
+id = 3189

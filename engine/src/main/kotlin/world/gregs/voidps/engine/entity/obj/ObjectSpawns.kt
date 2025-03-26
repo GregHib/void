@@ -1,16 +1,18 @@
 package world.gregs.voidps.engine.entity.obj
 
+import com.github.michaelbull.logging.InlineLogger
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.timedLoad
+
+private val logger = InlineLogger()
 
 fun loadObjectSpawns(
     objects: GameObjects,
     paths: List<String>,
-    definitions: ObjectDefinitions = get(),
+    definitions: ObjectDefinitions,
 ) = timedLoad("object spawn") {
     objects.reset()
     val membersWorld = World.members
@@ -43,8 +45,13 @@ fun loadObjectSpawns(
                         continue
                     }
                     val tile = Tile(x, y, level)
-                    objects.add(GameObject(definitions.get(id).id, tile.x, tile.y, tile.level, type, rotation))
-                    count++
+                    val definition = definitions.getOrNull(id)
+                    if (definition == null) {
+                        logger.warn { "Invalid object spawn id '$id' in ${path}." }
+                    } else {
+                        objects.add(GameObject(definition.id, tile.x, tile.y, tile.level, type, rotation))
+                        count++
+                    }
                 }
             }
         }

@@ -1,0 +1,485 @@
+[bandana_and_eyepatch_white]
+id = 8924
+weight = 0.15
+slot = "Hat"
+type = "Hair"
+examine = "A white bandana and a patch for the right eye."
+
+[bandana_and_eyepatch_red]
+id = 8925
+weight = 0.15
+slot = "Hat"
+type = "Hair"
+examine = "A red bandana and a patch for the right eye."
+
+[bandana_and_eyepatch_blue]
+id = 8926
+weight = 0.15
+slot = "Hat"
+type = "Hair"
+examine = "A blue bandana and a patch for the right eye."
+
+[bandana_and_eyepatch_brown]
+id = 8927
+weight = 0.15
+slot = "Hat"
+type = "Hair"
+examine = "A brown bandana and a patch for the right eye."
+
+[hat_and_eyepatch]
+id = 8928
+weight = 0.15
+slot = "Hat"
+type = "Hair"
+examine = "A pirate hat and a patch for the right eye."
+
+[crabclaw_and_hook]
+id = 8929
+tradeable = false
+weight = 1.0
+slot = "Hands"
+examine = "Tied together so they don't come apart."
+kept = "Reclaim"
+
+[pipe_section]
+id = 8930
+weight = 0.003
+examine = "Crude wooden pipe section."
+kept = "Vanish"
+
+[pipe_section_noted]
+id = 8931
+
+[lumber_patch]
+id = 8932
+weight = 0.003
+examine = "Repairs made with this will be patchy at best."
+kept = "Vanish"
+
+[lumber_patch_noted]
+id = 8933
+
+[scrapey_tree_logs]
+id = 8934
+weight = 0.003
+examine = "Slimy logs from the Scrapey tree."
+kept = "Vanish"
+
+[scrapey_tree_logs_noted]
+id = 8935
+
+[blue_flowers_trouble_brewing]
+id = 8936
+weight = 0.003
+examine = "Very blue."
+kept = "Vanish"
+
+[blue_flowers_trouble_brewing_noted]
+id = 8937
+
+[red_flowers_trouble_brewing]
+id = 8938
+weight = 0.003
+examine = "Very red."
+kept = "Vanish"
+
+[red_flowers_trouble_brewing_noted]
+id = 8939
+
+[rum_red]
+id = 8940
+tradeable = false
+weight = 0.003
+examine = "Alcohol in the loosest sense of the word."
+kept = "Reclaim"
+
+[rum_blue]
+id = 8941
+tradeable = false
+weight = 0.003
+examine = "Alcohol in the loosest sense of the word."
+kept = "Reclaim"
+
+[monkey_trouble_brewing]
+id = 8942
+tradeable = false
+weight = 0.003
+examine = "A confused looking monkey."
+kept = "Vanish"
+
+[blue_monkey]
+id = 8943
+tradeable = false
+weight = 0.003
+examine = "Bluuuuuuuue Monkeeeeeey!"
+
+[blue_monkey_2]
+clone = "blue_monkey"
+id = 8944
+
+[blue_monkey_3]
+clone = "blue_monkey"
+id = 8945
+
+[red_monkey]
+id = 8946
+tradeable = false
+weight = 0.003
+examine = "A well red monkey."
+
+[red_monkey_2]
+clone = "red_monkey"
+id = 8947
+
+[red_monkey_3]
+clone = "red_monkey"
+id = 8948
+
+[pirate_bandana_trouble_brewing]
+id = 8949
+tradeable = false
+weight = 0.003
+slot = "Hat"
+type = "Hair"
+examine = "A blue bandana."
+kept = "Vanish"
+
+[pirate_hat]
+id = 8950
+limit = 2
+tradeable = false
+weight = 0.003
+slot = "Hat"
+destroy = "You cannot remove your team's hat."
+examine = "A red pirate hat."
+kept = "Vanish"
+
+[pieces_of_eight]
+id = 8951
+tradeable = false
+examine = "Piratical currency."
+kept = "Reclaim"
+
+[blue_naval_shirt]
+id = 8952
+tradeable = false
+weight = 0.003
+slot = "Chest"
+examine = "...You can sail the seven seas..."
+kept = "Reclaim"
+
+[green_naval_shirt]
+id = 8953
+tradeable = false
+weight = 0.003
+slot = "Chest"
+examine = "...You can sail the seven seas..."
+kept = "Reclaim"
+
+[red_naval_shirt]
+id = 8954
+tradeable = false
+weight = 0.003
+slot = "Chest"
+examine = "...You can sail the seven seas..."
+kept = "Reclaim"
+
+[brown_naval_shirt]
+id = 8955
+tradeable = false
+weight = 0.003
+slot = "Chest"
+examine = "...You can sail the seven seas..."
+kept = "Reclaim"
+
+[black_naval_shirt]
+id = 8956
+tradeable = false
+weight = 0.003
+slot = "Chest"
+examine = "...You can sail the seven seas..."
+kept = "Reclaim"
+
+[purple_naval_shirt]
+id = 8957
+tradeable = false
+weight = 0.003
+slot = "Chest"
+examine = "...You can sail the seven seas..."
+kept = "Reclaim"
+
+[grey_naval_shirt]
+id = 8958
+tradeable = false
+weight = 0.003
+slot = "Chest"
+examine = "...You can sail the seven seas..."
+kept = "Reclaim"
+
+[blue_tricorn_hat]
+id = 8959
+tradeable = false
+weight = 0.003
+slot = "Hat"
+examine = "I could never look square in this."
+kept = "Reclaim"
+
+[green_tricorn_hat]
+id = 8960
+tradeable = false
+weight = 0.003
+slot = "Hat"
+examine = "I could never look square in this."
+kept = "Reclaim"
+
+[red_tricorn_hat]
+id = 8961
+tradeable = false
+weight = 0.003
+slot = "Hat"
+examine = "I could never look square in this."
+kept = "Reclaim"
+
+[brown_tricorn_hat]
+id = 8962
+tradeable = false
+weight = 0.003
+slot = "Hat"
+examine = "I could never look square in this."
+kept = "Reclaim"
+
+[black_tricorn_hat]
+id = 8963
+tradeable = false
+weight = 0.003
+slot = "Hat"
+examine = "I could never look square in this."
+kept = "Reclaim"
+
+[purple_tricorn_hat]
+id = 8964
+tradeable = false
+weight = 0.003
+slot = "Hat"
+examine = "I could never look square in this."
+kept = "Reclaim"
+
+[grey_tricorn_hat]
+id = 8965
+tradeable = false
+weight = 0.003
+slot = "Hat"
+examine = "I could never look square in this."
+kept = "Reclaim"
+
+[cutthroat_flag]
+id = 8966
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "The flag of The Cutthroat."
+kept = "Reclaim"
+
+[guilded_smile_flag]
+id = 8967
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "The flag of The Guilded Smile."
+kept = "Reclaim"
+
+[bronze_fist_flag]
+id = 8968
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "The flag of The Bronze Fist."
+kept = "Reclaim"
+
+[lucky_shot_flag]
+id = 8969
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "The flag of The Lucky Shot."
+kept = "Reclaim"
+
+[treasure_flag]
+id = 8970
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "The flag of The Treasure Trove."
+kept = "Reclaim"
+
+[phasmatys_flag]
+id = 8971
+tradeable = false
+weight = 2.267
+weapon_type = "banner"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "The flag of The Phasmatys Pride."
+kept = "Reclaim"
+
+[bowl_of_red_water]
+id = 8972
+weight = 0.003
+examine = "A bowl of red water."
+kept = "Vanish"
+
+[bowl_of_red_water_noted]
+id = 8973
+
+[bowl_of_blue_water]
+id = 8974
+weight = 0.003
+examine = "A bowl of blue water."
+kept = "Vanish"
+
+[bowl_of_blue_water_noted]
+id = 8975
+
+[bitternut]
+id = 8976
+tradeable = false
+weight = 0.003
+examine = "Monkeys seem to like throwing these."
+kept = "Vanish"
+
+[scrapey_bark]
+id = 8977
+weight = 0.003
+examine = "Greasy bark from the Scrapey Tree."
+kept = "Vanish"
+
+[scrapey_bark_noted]
+id = 8978
+
+[bridge_section]
+id = 8979
+weight = 0.003
+examine = "Caution; not for use over troubled water."
+kept = "Vanish"
+
+[bridge_section_noted]
+id = 8980
+
+[sweetgrubs]
+id = 8981
+weight = 0.003
+examine = "Well, at least they aren't trying mind-control."
+kept = "Vanish"
+
+[sweetgrubs_noted]
+id = 8982
+
+[bucket_2]
+id = 8986
+limit = 100
+weight = 1.0
+examine = "It's a wooden bucket."
+kept = "Wilderness"
+
+[torch_2]
+id = 8987
+slot = "Weapon"
+
+[the_stuff]
+id = 8988
+tradeable = false
+weight = 0.001
+examine = "Apparently good for brewing."
+kept = "Reclaim"
+
+[brewin_guide]
+id = 8989
+tradeable = false
+weight = 0.001
+examine = "A how-to of brewing and arson."
+kept = "Reclaim"
+
+[brewin_guide_floor]
+clone = "brewin_guide"
+id = 8990
+
+[blue_navy_slacks]
+id = 8991
+tradeable = false
+weight = 0.003
+slot = "Legs"
+examine = "Not for slackers."
+kept = "Reclaim"
+
+[green_navy_slacks]
+id = 8992
+tradeable = false
+weight = 0.003
+slot = "Legs"
+examine = "Not for slackers."
+kept = "Reclaim"
+
+[red_navy_slacks]
+id = 8993
+tradeable = false
+weight = 0.003
+slot = "Legs"
+examine = "Not for slackers."
+kept = "Reclaim"
+
+[brown_navy_slacks]
+id = 8994
+tradeable = false
+weight = 0.003
+slot = "Legs"
+examine = "Not for slackers."
+kept = "Reclaim"
+
+[black_navy_slacks]
+id = 8995
+tradeable = false
+weight = 0.003
+slot = "Legs"
+examine = "Not for slackers."
+kept = "Reclaim"
+
+[purple_navy_slacks]
+id = 8996
+tradeable = false
+weight = 0.003
+slot = "Legs"
+examine = "Not for slackers."
+kept = "Reclaim"
+
+[grey_navy_slacks]
+id = 8997
+tradeable = false
+weight = 0.003
+slot = "Legs"
+examine = "Not for slackers."
+kept = "Reclaim"
+
+[bandana_and_eyepatch_white_noted]
+id = 8998
+
+[bandana_and_eyepatch_red_noted]
+id = 8999
+
+[bandana_and_eyepatch_blue_noted]
+id = 9000
+
+[bandana_and_eyepatch_brown_noted]
+id = 9001
+
+[hat_and_eyepatch_noted]
+id = 9002

@@ -1,0 +1,47 @@
+[giant_mole_drop_table]
+type = "all"
+drops = [
+    { table = "giant_mole_primary" },
+    { table = "giant_mole_secondary" },
+    { table = "giant_mole_tertiary" },
+]
+
+[giant_mole_primary]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { id = "mole_claw" },
+    { id = "mole_skin", min = 1, max = 3 }
+]
+
+[giant_mole_secondary]
+roll = 128
+drops = [
+    { id = "adamant_longsword", chance = 10 },
+    { id = "mithril_platebody", chance = 9 },
+    { id = "amulet_of_strength", chance = 7 },
+    { id = "mithril_hatchet", chance = 2 },
+    { id = "mithril_battleaxe" },
+    { id = "rune_med_helm" },
+    { id = "air_rune", amount = 105, chance = 20 },
+    { id = "blood_rune", amount = 15, chance = 19 },
+    { id = "fire_rune", amount = 105, chance = 11 },
+    { id = "iron_arrow", amount = 690, chance = 10 },
+    { id = "law_rune", amount = 15, chance = 5 },
+    { id = "death_rune", amount = 7, chance = 3 },
+    { id = "yew_logs_noted", amount = 100, chance = 10 },
+    { id = "shark", amount = 4, chance = 4 },
+    { id = "mithril_bar", chance = 3 },
+    { id = "iron_ore_noted", amount = 100, chance = 2 },
+    { id = "oyster_pearls" },
+    { table = "rare_drop_table", chance = 4 },
+    { table = "gem_drop_table", chance = 6 },
+]
+
+[giant_mole_tertiary]
+roll = 10000
+drops = [
+    { id = "long_bone", chance = 25 },
+    { id = "clue_scroll_elite", lacks = "clue_scroll_elite*", chance = 20 },
+    { id = "curved_bone", chance = 2},
+]

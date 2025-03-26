@@ -1,0 +1,92 @@
+[dwarf_remains]
+id = 0
+tradeable = false
+weight = 0.453
+destroy = "These are the remains of the dwarf who was stationed in the Guard Tower."
+examine = "The body of a Dwarf savaged by Goblins."
+kept = "Wilderness"
+
+[toolkit]
+id = 1
+tradeable = false
+weight = 0.453
+destroy = "I got this from Captain Lawgof."
+examine = "Good for repairing broken cannons."
+kept = "Wilderness"
+
+[cannonball]
+id = 2
+price = 259
+limit = 10000
+smithing = { level = 35, xp = 25.6 }
+examine = "Ammo for the Dwarf Cannon."
+
+[nulodions_notes]
+id = 3
+tradeable = false
+weight = 0.028
+destroy = "I hope Nulodion has copies of these notes."
+examine = "Construction notes for Dwarf cannon ammo."
+kept = "Wilderness"
+
+[ammo_mould]
+id = 4
+tradeable = false
+weight = 4.535
+aka = ["cannonball_mould", "cannon_mould"]
+examine = "Used to make cannon ammunition."
+kept = "Reclaim"
+
+[instruction_manual]
+id = 5
+tradeable = false
+weight = 0.51
+aka = ["dwarf_multicannon_manual", "cannon_manual"]
+examine = "An old note book."
+kept = "Wilderness"
+
+[cannon_base]
+id = 6
+price = 170700
+limit = 10
+weight = 10.0
+examine = "The cannon is built on this."
+
+[cannon_base_noted]
+id = 7
+
+[cannon_stand]
+id = 8
+price = 166800
+limit = 10
+weight = 0.907
+examine = "The mounting for the multicannon."
+
+[cannon_stand_noted]
+id = 9
+
+[cannon_barrels]
+id = 10
+price = 166500
+limit = 10
+weight = 15.0
+examine = "The barrels of the multicannon."
+
+[cannon_barrels_noted]
+id = 11
+
+[cannon_furnace]
+id = 12
+price = 167900
+limit = 10
+weight = 5.0
+examine = "This powers the multicannon."
+
+[cannon_furnace_noted]
+id = 13
+
+[railing]
+id = 14
+tradeable = false
+examine = "A metal railing replacement."
+kept = "Wilderness"

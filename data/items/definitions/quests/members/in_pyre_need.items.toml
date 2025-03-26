@@ -1,0 +1,89 @@
+[cinnamon_twigs]
+id = 14606
+tradeable = false
+weight = 0.02
+destroy = "You harvested these from a tree in the phoenix's lair. You need one to complete the dungeon."
+examine = "Aromatic twigs from a cinnamon tree."
+kept = "Wilderness"
+
+[sassafras_twigs]
+id = 14607
+tradeable = false
+weight = 0.02
+destroy = "You harvested these from a tree in the phoenix's lair. You need one to complete the dungeon."
+examine = "Aromatic twigs from a sassafras tree."
+kept = "Wilderness"
+
+[ailanthus_twigs]
+id = 14608
+tradeable = false
+weight = 0.02
+destroy = "You harvested these from a tree in the phoenix's lair. You need one to complete the dungeon."
+examine = "Aromatic twigs from an ailanthus tree."
+kept = "Wilderness"
+
+[cedar_twigs]
+id = 14609
+tradeable = false
+weight = 0.02
+destroy = "You harvested these from a tree in the phoenix's lair. You need one to complete the dungeon."
+examine = "Aromatic twigs from a cedar tree."
+kept = "Wilderness"
+
+[mastic_twigs]
+id = 14610
+tradeable = false
+weight = 0.02
+destroy = "You harvested these from a tree in the phoenix's lair. You need one to complete the dungeon."
+examine = "Aromatic twigs from a mastic tree."
+kept = "Wilderness"
+
+[cinnamon_weaving_ribbon]
+id = 14611
+tradeable = false
+weight = 0.02
+destroy = "You fletched this from twigs found in the phoenix's lair. You need one to complete the dungeon."
+examine = "Cinnamon twigs, fletched into ribbons of wood and ready to be woven."
+kept = "Wilderness"
+
+[sassafras_weaving_ribbon]
+id = 14612
+tradeable = false
+weight = 0.02
+destroy = "You fletched this from twigs found in the phoenix's lair. You need one to complete the dungeon."
+examine = "Sassafras twigs, fletched into ribbons of wood and ready to be woven."
+kept = "Wilderness"
+
+[ailanthus_weaving_ribbon]
+id = 14613
+tradeable = false
+weight = 0.02
+destroy = "You fletched this from twigs found in the phoenix's lair. You need one to complete the dungeon."
+examine = "Ailanthus twigs, fletched into ribbons of wood and ready to be woven."
+kept = "Wilderness"
+
+[cedar_weaving_ribbon]
+id = 14614
+tradeable = false
+weight = 0.02
+destroy = "You fletched this from twigs found in the phoenix's lair. You need one to complete the dungeon."
+examine = "Cedar twigs, fletched into ribbons of wood and ready to be woven."
+kept = "Wilderness"
+
+[mastic_weaving_ribbon]
+id = 14615
+tradeable = false
+weight = 0.02
+destroy = "You fletched this from twigs found in the phoenix's lair. You need one to complete the dungeon."
+examine = "Mastic twigs, fletched into ribbons of wood and ready to be woven."
+kept = "Wilderness"
+
+[phoenix_quill]
+id = 14616
+price = 4697
+limit = 10000
+weight = 0.002
+examine = "A feather from a phoenix."
+
+[phoenix_quill_noted]
+id = 14617

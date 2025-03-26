@@ -1,0 +1,82 @@
+[petes_candlestick]
+id = 1577
+weight = 0.5
+destroy = "You will have to get another candlestick from the treasure room in Scarface Pete's mansion in Brimhaven, or from another player."
+examine = "A valuable item stolen from Scarface Pete's mansion in Brimhaven."
+kept = "Wilderness"
+
+[petes_candlestick_noted]
+id = 1578
+
+[master_thiefs_armband]
+id = 1579
+tradeable = false
+weight = 0.025
+destroy = "You can reclaim the armband from the leader of the Varrock gang who gave it to you."
+examine = "This denotes a master thief."
+kept = "Wilderness"
+
+[ice_gloves]
+id = 1580
+tradeable = false
+weight = 0.226
+slot = "Hands"
+destroy = "You can reclaim them from the high priest of Entrana, or defeat the ice queen again. You can also reclaim it from the quest storage chest."
+examine = "These will keep my hands cold!"
+kept = "Reclaim"
+
+[blamish_snail_slime]
+id = 1581
+tradeable = false
+weight = 0.025
+examine = "Yuck."
+kept = "Reclaim"
+
+[blamish_oil]
+id = 1582
+tradeable = false
+weight = 0.025
+examine = "Made from the finest snail slime."
+kept = "Reclaim"
+
+[entranan_firebird_feather]
+id = 1583
+tradeable = false
+weight = 0.002
+destroy = "You will have to defeat the firebird on Entrana again."
+examine = "A feather retrieved from a firebird found on Entrana."
+kept = "Wilderness"
+
+[id_papers]
+id = 1584
+tradeable = false
+weight = 0.01
+destroy = "You can reclaim the ID papers from Trobert in the Black Arm hideout south-east of the Shrimp and Parrot in Brimhaven."
+examine = "Apparently my name is 'Hartigen'."
+kept = "Wilderness"
+
+[oily_fishing_rod]
+id = 1585
+tradeable = false
+weight = 1.36
+destroy = "You can claim a free oily fishing rod from Gerrant."
+examine = "Useful for catching lava eels."
+kept = "Reclaim"
+
+[miscellaneous_key]
+id = 1586
+weight = 0.01
+destroy = "Grip in Scarface Pete's mansion in Brimhaven might be able to replace your key. You can also reclaim it from the quest storage chest."
+examine = "This is of use in completing Heroes' Quest."
+kept = "Wilderness"
+
+[miscellaneous_key_noted]
+id = 1587
+
+[grips_key]
+id = 1588
+tradeable = false
+weight = 0.025
+destroy = "Grip in Scarface Pete's mansion in Brimhaven carries this key."
+examine = "The key I got from Grip."
+kept = "Wilderness"

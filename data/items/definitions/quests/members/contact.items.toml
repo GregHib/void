@@ -1,0 +1,56 @@
+[keris]
+id = 10581
+tradeable = false
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+destroy = "You can obtain another from Osman, or from Emir Ali Mirza after completing the 'Phite Club quest."
+examine = "A mystical-feeling dagger."
+kept = "Reclaim"
+
+[keris_p]
+id = 10582
+tradeable = false
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+destroy = "You can obtain another from Osman, or from Emir Ali Mirza after completing the 'Phite Club quest."
+examine = "A mystical-feeling dagger."
+kept = "Reclaim"
+
+[keris_p+]
+id = 10583
+tradeable = false
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+destroy = "You can obtain another from Osman, or from Emir Ali Mirza after completing the 'Phite Club quest."
+examine = "A mystical-feeling dagger."
+kept = "Reclaim"
+
+[keris_p++]
+id = 10584
+tradeable = false
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+destroy = "You can obtain another from Osman, or from Emir Ali Mirza after completing the 'Phite Club quest."
+examine = "A mystical-feeling dagger."
+kept = "Reclaim"
+
+[parchment_contact]
+id = 10585
+tradeable = false
+weight = 0.02
+destroy = "You can reclaim this from the quest storage chest."
+examine = "A bloody, as in 'blood covered', scroll."
+destroy2 = "Your item will be destroyed permanently and it may not be reclaimable."
+kept = "Wilderness"
+
+[combat_lamp]
+id = 10586
+tradeable = false
+weight = 0.02
+destroy = "You can obtain a replacement lamp from the high priest in Sophanem."
+examine = "A mystical lamp, engraved with scenes of carnage."
+kept = "Wilderness"

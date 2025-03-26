@@ -1,0 +1,83 @@
+[poison_chalice]
+id = 197
+price = 139
+limit = 100
+heals = 0
+weight = 0.056
+examine = "Stankers gives out these strange cocktails for free."
+
+[poison_chalice_noted]
+id = 198
+
+[pressure_gauge]
+id = 271
+tradeable = false
+weight = 0.056
+destroy = "Hopefully, there's another in the fountain at Draynor Manor."
+examine = "It's part of a machine."
+kept = "Wilderness"
+
+[fish_food]
+id = 272
+tradeable = false
+weight = 0.028
+slot = "Shield"
+destroy = "Hopefully, there is some more in Draynor Manor."
+examine = "Keeps pet fish strong and healthy."
+kept = "Wilderness"
+
+[poison]
+id = 273
+tradeable = false
+weight = 0.02
+destroy = "Hopefully, there is some more in Draynor Manor."
+examine = "This stuff looks nasty."
+kept = "Wilderness"
+
+[poisoned_fish_food]
+id = 274
+tradeable = false
+weight = 0.03
+destroy = "You'll have to make more in Draynor Manor."
+examine = "This isn't good for fish."
+kept = "Wilderness"
+
+[grimy_key]
+id = 275
+tradeable = false
+weight = 0.01
+destroy = "Hopefully, there's another in that compost heap at Draynor Manor."
+examine = "A slightly smelly key."
+kept = "Wilderness"
+
+[rubber_tube]
+id = 276
+tradeable = false
+weight = 0.028
+destroy = "Hopefully, I can find another in Draynor Manor."
+examine = "It's slightly charred."
+kept = "Wilderness"
+
+[oil_can]
+id = 277
+tradeable = false
+weight = 0.028
+destroy = "I'll have to find another in the basement of Draynor Manor."
+examine = "It's pretty full."
+kept = "Wilderness"
+
+[plague_jacket]
+id = 284
+tradeable = false
+weight = 2.721
+slot = "Chest"
+examine = "This should protect me from the plague, I hope!"
+kept = "Wilderness"
+
+[plague_trousers]
+id = 285
+tradeable = false
+weight = 2.267
+slot = "Legs"
+examine = "These should protect me from the plague, I hope!"
+kept = "Wilderness"

@@ -1,0 +1,91 @@
+[security_book]
+id = 9003
+price = 152
+limit = 100
+weight = 0.01
+aka = ["runescape_account_security"]
+examine = "Contains information which could make your account secure!"
+
+[stronghold_notes]
+id = 9004
+price = 14
+limit = 100
+weight = 0.01
+examine = "Information regarding the Stronghold of Security."
+
+[fancy_boots]
+id = 9005
+tradeable = false
+weight = 0.01
+slot = "Feet"
+destroy = "You can get another pair of Fancy boots from the Stronghold of Security."
+examine = "Very nice boots from the Stronghold of Security."
+kept = "Vanish"
+
+[fighting_boots]
+id = 9006
+tradeable = false
+weight = 0.01
+slot = "Feet"
+material = "metal"
+destroy = "You can get another pair of Fighting Boots from the Stronghold of Security."
+examine = "Very nice boots from the Stronghold of Security."
+kept = "Vanish"
+
+[right_skull_half]
+clone = "skull"
+id = 9007
+
+[left_skull_half]
+id = 9008
+tradeable = false
+weight = 0.08
+destroy = "No"
+examine = "Ooooh spooky!"
+kept = "Reclaim"
+
+[strange_skull]
+id = 9009
+tradeable = false
+weight = 0.08
+examine = "Seems to be for use with a staff or sceptre of some sort."
+kept = "Reclaim"
+
+[top_of_sceptre]
+id = 9010
+tradeable = false
+weight = 1.814
+examine = "Top half of a broken Sceptre."
+kept = "Reclaim"
+
+[bottom_of_sceptre]
+id = 9011
+tradeable = false
+weight = 1.814
+examine = "Bottom half of a broken Sceptre."
+kept = "Reclaim"
+
+[runed_sceptre]
+id = 9012
+tradeable = false
+weight = 3.628
+examine = "Sceptre with runes on, it appears to be missing something."
+kept = "Reclaim"
+
+[skull_sceptre]
+id = 9013
+tradeable = false
+weight = 1.814
+charges = 10
+charge = "skull_sceptre_charges"
+degrade = "destroy"
+slot = "Weapon"
+destroy = "You can obtain another Sceptre by collecting all four pieces from the Stronghold of Security."
+examine = "A fragile magical Sceptre."
+kept = "Reclaim"
+
+[security_book_noted]
+id = 9014
+
+[stronghold_notes_noted]
+id = 9015

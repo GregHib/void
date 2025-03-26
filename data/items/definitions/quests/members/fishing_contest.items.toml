@@ -1,0 +1,36 @@
+[red_vine_worm]
+id = 25
+tradeable = false
+examine = "Wormy."
+kept = "Reclaim"
+
+[fishing_trophy]
+id = 26
+tradeable = false
+weight = 0.085
+aka = ["the_golden_mackerel", "golden_mackerel"]
+examine = "Hemenster fishing contest trophy."
+kept = "Wilderness"
+
+[fishing_pass]
+id = 27
+tradeable = false
+weight = 0.006
+examine = "Pass to the Hemenster fishing contest."
+kept = "Wilderness"
+
+[giant_carp]
+id = 337
+heals = 60
+tradeable = false
+weight = 0.5
+aka = ["cooked_giant_carp", "carp", "carps", "giant_carps", "cooked_carp"]
+examine = "Some nicely cooked giant carp."
+kept = "Reclaim"
+
+[raw_giant_carp]
+id = 338
+tradeable = false
+weight = 0.55
+examine = "I should try cooking this."
+kept = "Reclaim"

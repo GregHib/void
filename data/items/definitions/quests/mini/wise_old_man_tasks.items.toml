@@ -1,0 +1,21 @@
+[old_mans_message]
+id = 5506
+tradeable = false
+weight = 0.07
+examine = "The Wise Old Man of Draynor Village asked you to take this to someone."
+kept = "Reclaim"
+
+[strange_book]
+id = 5507
+tradeable = false
+weight = 0.07
+examine = "A tatty old book belonging to the Wise Old Man of Draynor Village."
+kept = "Reclaim"
+
+[book_of_folklore]
+id = 5508
+tradeable = false
+weight = 0.07
+aka = ["the_myth_of_the_elder_dragons"]
+examine = "A tatty old book belonging to the Wise Old Man of Draynor Village."
+kept = "Reclaim"

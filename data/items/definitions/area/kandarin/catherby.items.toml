@@ -1,0 +1,115 @@
+[fishbowl]
+id = 6667
+price = 252
+limit = 10000
+weight = 1.36
+full = "fishbowl_water"
+examine = "An empty fishbowl."
+
+[fishbowl_water]
+id = 6668
+limit = 10000
+tradeable = false
+weight = 2.267
+empty = "fishbowl"
+examine = "A fishless fishbowl."
+kept = "Reclaim"
+
+[fishbowl_seaweed]
+id = 6669
+limit = 10000
+tradeable = false
+weight = 2.267
+empty = "fishbowl"
+examine = "A fishless fishbowl with some seaweed."
+kept = "Reclaim"
+
+[fishbowl_blue]
+id = 6670
+npc = 8737
+limit = 10000
+food = "Fish food"
+slot = "Weapon"
+examine = "An empty fishbowl."
+
+[fishbowl_green]
+id = 6671
+npc = 8738
+limit = 10000
+food = "Fish food"
+slot = "Weapon"
+examine = "An empty fishbowl."
+
+[fishbowl_red]
+id = 6672
+npc = 8739
+limit = 10000
+food = "Fish food"
+slot = "Weapon"
+examine = "An empty fishbowl."
+
+[fishbowl_and_net]
+id = 6673
+tradeable = false
+weight = 2.267
+examine = "An empty fishbowl in a net."
+kept = "Reclaim"
+
+[tiny_net]
+id = 6674
+tradeable = false
+weight = 0.02
+examine = "A tiny net for catching tiny fish."
+kept = "Reclaim"
+
+[empty_box_fish]
+id = 6675
+tradeable = false
+weight = 0.028
+examine = "ground guam and ground seaweed.'"
+kept = "Reclaim"
+
+[guam_in_a_box]
+id = 6677
+tradeable = false
+weight = 0.028
+examine = "ground guam and ground seaweed.' Well, I have the guam leaf..."
+kept = "Reclaim"
+
+[guam_in_a_box_duplicate] # Unobtainable
+id = 6678
+examine = "Ground Guam and Ground Seaweed.' Well, I have the Guam Leaf..."
+
+[seaweed_in_a_box]
+id = 6679
+tradeable = false
+weight = 0.028
+examine = "ground guam and ground seaweed.' Well, I have the seaweed..."
+kept = "Reclaim"
+
+[seaweed_in_a_box_duplicate] # Unobtainable
+id = 6680
+examine = "Ground Guam and Ground Seaweed.' Well, I have the Seaweed..."
+
+[ground_guam]
+id = 6681
+price = 1
+limit = 100
+weight = 0.056
+examine = "One of the ingredients for making fish food."
+
+[ground_guam_noted]
+id = 6682
+
+[ground_seaweed]
+id = 6683
+price = 18
+limit = 100
+weight = 0.056
+examine = "One of the ingredients for making fish food."
+
+[ground_seaweed_noted]
+id = 6684
+
+[fishbowl_noted]
+id = 6723

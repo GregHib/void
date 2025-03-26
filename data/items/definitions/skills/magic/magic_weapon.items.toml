@@ -1,0 +1,237 @@
+[staff]
+id = 1379
+price = 33
+limit = 1000
+weight = 1.814
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+kept = "Wilderness"
+
+[staff_noted]
+id = 1380
+
+[staff_of_air]
+id = 1381
+price = 790
+limit = 1000
+weight = 2.267
+aka = ["air_staff"]
+category = "staff"
+slot = "Weapon"
+examine = "A Magical staff."
+kept = "Wilderness"
+
+[staff_of_air_noted]
+id = 1382
+
+[staff_of_water]
+id = 1383
+price = 861
+limit = 1000
+weight = 2.267
+aka = ["water_staff"]
+category = "staff"
+slot = "Weapon"
+examine = "A Magical staff."
+kept = "Wilderness"
+
+[staff_of_water_noted]
+id = 1384
+
+[staff_of_earth]
+id = 1385
+price = 1030
+limit = 1000
+weight = 2.267
+aka = ["earth_staff"]
+category = "staff"
+slot = "Weapon"
+examine = "A Magical staff."
+kept = "Wilderness"
+
+[staff_of_earth_noted]
+id = 1386
+
+[staff_of_fire]
+id = 1387
+price = 1009
+limit = 1000
+weight = 2.267
+aka = ["fire_staff"]
+category = "staff"
+slot = "Weapon"
+examine = "A Magical staff."
+kept = "Wilderness"
+
+[staff_of_fire_noted]
+id = 1388
+
+[magic_staff]
+id = 1389
+price = 63
+limit = 1000
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "A Magical staff."
+kept = "Wilderness"
+
+[magic_staff_noted]
+id = 1390
+
+[battlestaff]
+id = 1391
+price = 8446
+limit = 1000
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+
+[battlestaff_noted]
+id = 1392
+
+[fire_battlestaff]
+id = 1393
+price = 9216
+limit = 1000
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+
+[fire_battlestaff_noted]
+id = 1394
+
+[water_battlestaff]
+id = 1395
+price = 9033
+limit = 1000
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+
+[water_battlestaff_noted]
+id = 1396
+
+[air_battlestaff]
+id = 1397
+price = 9005
+limit = 1000
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+
+[air_battlestaff_noted]
+id = 1398
+
+[earth_battlestaff]
+id = 1399
+price = 9225
+limit = 1000
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+
+[earth_battlestaff_noted]
+id = 1400
+
+[mystic_fire_staff]
+id = 1401
+price = 25600
+limit = 1000
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+
+[mystic_fire_staff_noted]
+id = 1402
+
+[mystic_water_staff]
+id = 1403
+price = 25300
+limit = 1000
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+
+[mystic_water_staff_noted]
+id = 1404
+
+[mystic_air_staff]
+id = 1405
+price = 25700
+limit = 1000
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+
+[mystic_air_staff_noted]
+id = 1406
+
+[mystic_earth_staff]
+id = 1407
+price = 25000
+limit = 1000
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+
+[mystic_earth_staff_noted]
+id = 1408
+
+[lava_battlestaff]
+id = 3053
+price = 10000
+limit = 1000
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+
+[mystic_lava_staff]
+id = 3054
+price = 34200
+limit = 1000
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+
+[lava_battlestaff_noted]
+id = 3055
+
+[mystic_lava_staff_noted]
+id = 3056
+
+[mud_battlestaff]
+id = 6562
+price = 758700
+limit = 10
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+
+[mystic_mud_staff]
+id = 6563
+price = 770700
+limit = 10
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+
+[mud_battlestaff_noted]
+id = 6726
+
+[mystic_mud_staff_noted]
+id = 6727

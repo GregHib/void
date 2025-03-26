@@ -1,0 +1,36 @@
+[holy_table_napkin]
+id = 15
+tradeable = false
+weight = 0.028
+examine = "A cloth given to me by Sir Galahad."
+kept = "Wilderness"
+
+[magic_whistle]
+id = 16
+tradeable = false
+weight = 0.005
+examine = "A small tin whistle."
+kept = "Wilderness"
+
+[grail_bell]
+id = 17
+tradeable = false
+weight = 0.028
+examine = "I wonder what happens when I ring it?"
+kept = "Wilderness"
+
+[magic_gold_feather]
+id = 18
+tradeable = false
+weight = 0.005
+examine = "It will point the way for me."
+kept = "Wilderness"
+
+[holy_grail]
+id = 19
+tradeable = false
+weight = 0.085
+destroy = "You will need to return to the Fisher King's realm to get another."
+examine = "A holy and powerful artefact."
+destroy2 = "You will need to return to Keep Le Faye to get another. You can also reclaim it from the quest storage chest."
+kept = "Wilderness"

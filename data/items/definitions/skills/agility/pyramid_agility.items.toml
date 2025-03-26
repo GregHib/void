@@ -1,0 +1,6 @@
+[pyramid_top]
+id = 6970
+tradeable = false
+weight = 11.339
+examine = "It's a solid gold pyramid!"
+kept = "Reclaim"

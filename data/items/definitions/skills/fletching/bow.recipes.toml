@@ -1,0 +1,128 @@
+[shortbow_finished]
+skill = "fletching"
+level = 5
+xp = 5.0
+ticks = 2
+remove = ["bowstring", "shortbow_u"]
+add = ["shortbow"]
+message = "You add a string to the bow."
+animation = "fletching_string_normal_shortbow"
+
+[longbow_finished]
+skill = "fletching"
+level = 10
+xp = 10.0
+ticks = 2
+remove = ["bowstring", "longbow_u"]
+add = ["longbow"]
+message = "You add a string to the bow."
+animation = "fletching_string_normal_longbow"
+
+[oak_shortbow_finished]
+skill = "fletching"
+level = 20
+xp = 16.5
+ticks = 2
+remove = ["bowstring", "oak_shortbow_u"]
+add = ["oak_shortbow"]
+message = "You add a string to the bow."
+animation = "fletching_string_oak_shortbow"
+
+[oak_longbow_finished]
+skill = "fletching"
+level = 25
+xp = 25.0
+ticks = 2
+remove = ["bowstring", "oak_longbow_u"]
+add = ["oak_longbow"]
+message = "You add a string to the bow."
+animation = "fletching_string_oak_longbow"
+
+[ogre_comp_finished]
+skill = "fletching"
+level = 30
+xp = 45.0
+ticks = 2
+remove = ["bowstring", "unstrung_comp_bow"]
+add = ["comp_ogre_bow"]
+message = "You add a string to the bow."
+
+[willow_shortbow_finished]
+skill = "fletching"
+level = 35
+xp = 33.2
+ticks = 2
+remove = ["bowstring", "willow_shortbow_u"]
+add = ["willow_shortbow"]
+message = "You add a string to the bow."
+animation = "fletching_string_willow_shortbow"
+
+[willow_longbow_finished]
+skill = "fletching"
+level = 40
+xp = 41.5
+ticks = 2
+remove = ["bowstring", "willow_longbow_u"]
+add = ["willow_longbow"]
+message = "You add a string to the bow."
+animation = "fletching_string_willow_longbow"
+
+[maple_shortbow_finished]
+skill = "fletching"
+level = 50
+xp = 50.0
+ticks = 2
+remove = ["bowstring", "maple_shortbow_u"]
+add = ["maple_shortbow"]
+message = "You add a string to the bow."
+animation = "fletching_string_maple_shortbow"
+
+[maple_longbow_finished]
+skill = "fletching"
+level = 55
+xp = 58.2
+ticks = 2
+remove = ["bowstring", "maple_longbow_u"]
+add = ["maple_longbow"]
+message = "You add a string to the bow."
+animation = "fletching_string_maple_longbow"
+
+[yew_shortbow_finished]
+skill = "fletching"
+level = 65
+xp = 67.4
+ticks = 2
+remove = ["bowstring", "yew_shortbow_u"]
+add = ["yew_shortbow"]
+message = "You add a string to the bow."
+animation = "fletching_string_yew_shortbow"
+
+[yew_longbow_finished]
+skill = "fletching"
+level = 70
+xp = 75.0
+ticks = 2
+remove = ["bowstring", "yew_longbow_u"]
+add = ["yew_longbow"]
+message = "You add a string to the bow."
+animation = "fletching_string_yew_longbow"
+
+[magic_shortbow_finished]
+skill = "fletching"
+level = 80
+xp = 83.2
+ticks = 2
+remove = ["bowstring", "magic_shortbow_u"]
+add = ["magic_shortbow"]
+message = "You add a string to the bow."
+animation = "fletching_string_magic_shortbow"
+
+[magic_longbow_finished]
+skill = "fletching"
+level = 85
+xp = 91.5
+ticks = 2
+remove = ["bowstring", "magic_longbow_u"]
+add = ["magic_longbow"]
+message = "You add a string to the bow."
+animation = "fletching_string_magic_longbow"

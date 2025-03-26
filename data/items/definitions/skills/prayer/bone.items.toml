@@ -1,0 +1,205 @@
+[bones]
+id = 526
+price = 68
+limit = 10000
+weight = 0.5
+examine = "Bones are for burying."
+kept = "Wilderness"
+prayer_xp = 4.5
+
+[bones_noted]
+id = 527
+
+[burnt_bones]
+id = 528
+price = 174
+limit = 10000
+weight = 0.5
+prayer_xp = 4.5
+examine = "Bones are for burying."
+
+[burnt_bones_noted]
+id = 529
+
+[bat_bones]
+id = 530
+price = 213
+limit = 10000
+weight = 0.3
+prayer_xp = 5.0
+examine = "Ew, it's a pile of bones."
+
+[bat_bones_noted]
+id = 531
+
+[big_bones]
+id = 532
+price = 343
+limit = 10000
+weight = 0.8
+prayer_xp = 5.0
+examine = "Ew, it's a pile of bones. Bury for Prayer XP."
+
+[big_bones_noted]
+id = 533
+
+[babydragon_bones]
+id = 534
+price = 1161
+limit = 10000
+weight = 0.8
+prayer_xp = 30.0
+examine = "Ew, it's a pile of bones."
+
+[babydragon_bones_noted]
+id = 535
+
+[dragon_bones]
+id = 536
+price = 3700
+limit = 10000
+weight = 1.5
+prayer_xp = 72.0
+examine = "These would feed a dog for months."
+
+[dragon_bones_noted]
+id = 537
+
+[shaikahan_bones]
+id = 3123
+price = 1485
+limit = 10000
+weight = 1.5
+prayer_xp = 25.0
+examine = "Large glistening bones which glow with a pale yellow aura."
+kept = "Wilderness"
+
+[shaikahan_bones_noted]
+id = 3124
+
+[jogre_bones]
+id = 3125
+price = 691
+limit = 10000
+weight = 0.8
+prayer_xp = 15.0
+examine = "Fairly big bones which smell distinctly of Jogre."
+kept = "Wilderness"
+
+[jogre_bones_noted]
+id = 3126
+
+[small_ninja_monkey_bones]
+id = 3179
+limit = 100
+tradeable = false
+weight = 0.5
+examine = "These are smallish monkey bones."
+kept = "Reclaim"
+
+[medium_ninja_monkey_bones]
+id = 3180
+limit = 100
+tradeable = false
+weight = 0.5
+examine = "These are medium sized monkey bones."
+kept = "Reclaim"
+
+[gorilla_bones]
+id = 3181
+tradeable = false
+weight = 0.8
+examine = "These are quite large monkey bones."
+kept = "Reclaim"
+
+[bearded_gorilla_bones]
+id = 3182
+limit = 100
+tradeable = false
+weight = 0.8
+examine = "These are quite large monkey bones."
+kept = "Reclaim"
+
+[monkey_bones]
+id = 3183
+price = 320
+limit = 100
+weight = 0.5
+prayer_xp = 5.0
+examine = "These are small monkey bones."
+
+[monkey_bones_noted]
+id = 3184
+
+[small_zombie_monkey_bones]
+id = 3185
+limit = 100
+tradeable = false
+weight = 0.5
+examine = "These are smallish monkey bones. They smell extremely nauseating."
+kept = "Reclaim"
+
+[large_zombie_monkey_bones]
+id = 3186
+tradeable = false
+weight = 0.5
+examine = "These are large monkey bones. They smell extremely nauseating."
+kept = "Reclaim"
+
+[skeletal_monkey_bones]
+id = 3187
+limit = 10000
+tradeable = false
+weight = 0.5
+examine = "They seem to shake slightly... It might be a good idea to bury them."
+kept = "Reclaim"
+
+[shaikahan_bonemeal]
+id = 5615
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed Shaikahan bones."
+kept = "Reclaim"
+
+[dagannoth_bonemeal]
+id = 6728
+tradeable = false
+weight = 1.5
+empty = "empty_pot"
+examine = "A pot of crushed Dagannoth-king bones."
+kept = "Reclaim"
+
+[dagannoth_bones]
+id = 6729
+price = 7969
+limit = 10000
+weight = 1.5
+prayer_xp = 125.0
+examine = "These would feed a dogfish for months!"
+
+[dagannoth_bones_noted]
+id = 6730
+
+[wyvern_bonemeal]
+id = 6810
+tradeable = false
+weight = 0.5
+empty = "empty_pot"
+examine = "A pot of crushed wyvern bones."
+kept = "Reclaim"
+
+[skeletal_wyvern]
+id = 6811
+examine = "A very dangerous pile of animated Wyvern bones."
+
+[wyvern_bones]
+id = 6812
+price = 7214
+limit = 10000
+weight = 0.5
+prayer_xp = 50.0
+examine = "Bones of a large flying creature."
+
+[wyvern_bones_noted]
+id = 6816

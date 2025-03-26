@@ -1,0 +1,640 @@
+[erzille_seed]
+id = 19897
+tradeable = false
+examine = "Plant in a vine herb patch."
+kept = "Reclaim"
+
+[ugune_seed]
+clone = "erzille_seed"
+id = 19902
+
+[argway_seed]
+clone = "erzille_seed"
+id = 19907
+
+[shengo_seed]
+clone = "erzille_seed"
+id = 19912
+
+[samaden_seed]
+clone = "erzille_seed"
+id = 19917
+
+[red_blossom_seed]
+id = 19922
+price = 47
+limit = 1000
+examine = "Plant in a vine flower patch."
+
+[blue_blossom_seed]
+id = 19927
+price = 42
+limit = 1000
+examine = "Plant in a vine flower patch."
+
+[green_blossom_seed]
+id = 19932
+price = 33
+limit = 1000
+examine = "Plant in a vine flower patch."
+
+[lergberry_seed]
+id = 19937
+tradeable = false
+examine = "Plant in a vine bush patch."
+kept = "Reclaim"
+
+[kalferberry_seed]
+clone = "lergberry_seed"
+id = 19942
+
+[raw_baron_shark]
+id = 19947
+tradeable = false
+weight = 0.7
+examine = "A hearty meal when cooked."
+kept = "Reclaim"
+
+[baron_shark]
+id = 19948
+heals = 200
+tradeable = false
+weight = 0.65
+examine = "Shimmering with juju magic."
+kept = "Reclaim"
+
+[juju_gumbo]
+id = 19949
+heals = 220
+tradeable = false
+weight = 1.5
+examine = "A strange stew."
+kept = "Reclaim"
+
+[strange_potato]
+id = 19950
+tradeable = false
+weight = 0.5
+examine = "Oddly seasoned and wriggling."
+kept = "Reclaim"
+
+[red_vine_blossom]
+id = 19962
+tradeable = false
+examine = "A beautiful vine blossom."
+kept = "Reclaim"
+
+[blue_vine_blossom]
+clone = "red_vine_blossom"
+id = 19963
+
+[green_vine_blossom]
+clone = "red_vine_blossom"
+id = 19964
+
+[marasamaw_plant]
+id = 19965
+price = 54
+limit = 100
+weight = 0.001
+examine = "Used to trap jadinkos."
+
+[marasamaw_plant_noted]
+id = 19966
+
+[juju_teleport_spiritbag]
+id = 19967
+price = 2210
+limit = 100
+weight = 0.001
+examine = "A small bag that carries a teleport spell within it."
+
+[juju_teleport_spiritbag_noted]
+id = 19968
+
+[lergberries]
+id = 19969
+tradeable = false
+examine = "Berries grown from vine plants."
+kept = "Reclaim"
+
+[kalferberries]
+clone = "lergberries"
+id = 19970
+
+[withered_vine]
+id = 19971
+tradeable = false
+examine = "Jadinkos seem to find this vine tasty."
+kept = "Reclaim"
+
+[oily_vine]
+id = 19972
+tradeable = false
+examine = "An oily vine from a jadinko."
+kept = "Reclaim"
+
+[draconic_vine]
+id = 19973
+tradeable = false
+examine = "A scaled vine from a jadinko."
+kept = "Reclaim"
+
+[pungent_vine]
+id = 19974
+tradeable = false
+examine = "A smelly vine from a jadinko."
+kept = "Reclaim"
+
+[plant_teeth]
+id = 19975
+tradeable = false
+examine = "Teeth from a plant?"
+kept = "Reclaim"
+
+[aquatic_vine]
+id = 19976
+tradeable = false
+examine = "A wet vine from a jadinko."
+kept = "Reclaim"
+
+[shadow_vine]
+id = 19977
+tradeable = false
+examine = "A shaded vine from a jadinko."
+kept = "Reclaim"
+
+[striped_vine]
+id = 19978
+tradeable = false
+examine = "A striped vine from a jadinko."
+kept = "Reclaim"
+
+[corrupt_vine]
+id = 19979
+tradeable = false
+examine = "A corrupted vine from a jadinko."
+kept = "Reclaim"
+
+[marble_vine]
+id = 19980
+tradeable = false
+examine = "A stone vine from a jadinko."
+kept = "Reclaim"
+
+[saradomin_vine]
+id = 19981
+tradeable = false
+examine = "A pure vine from a jadinko."
+kept = "Reclaim"
+
+[guthix_vine]
+id = 19982
+tradeable = false
+examine = "A soothing vine from a jadinko."
+kept = "Reclaim"
+
+[zamorak_vine]
+id = 19983
+tradeable = false
+examine = "A sinister vine from a jadinko."
+kept = "Reclaim"
+
+[grimy_erzille]
+id = 19984
+tradeable = false
+weight = 0.007
+examine = "Needs to be cleaned before it can be used."
+kept = "Reclaim"
+
+[grimy_argway]
+clone = "grimy_erzille"
+id = 19985
+
+[grimy_ugune]
+clone = "grimy_erzille"
+id = 19986
+
+[grimy_shengo]
+clone = "grimy_erzille"
+id = 19987
+
+[grimy_samaden]
+clone = "grimy_erzille"
+id = 19988
+
+[clean_erzille]
+id = 19989
+tradeable = false
+weight = 0.007
+examine = "An unnatural herb."
+kept = "Reclaim"
+
+[clean_argway]
+clone = "clean_erzille"
+id = 19990
+
+[clean_ugune]
+clone = "clean_erzille"
+id = 19991
+
+[clean_shengo]
+clone = "clean_erzille"
+id = 19992
+
+[clean_samaden]
+clone = "clean_erzille"
+id = 19993
+
+[juju_vial_of_water]
+id = 19994
+price = 1
+limit = 5000
+weight = 0.02
+empty = "juju_vial"
+examine = "A juju vial with water inside."
+
+[juju_vial_of_water_noted]
+id = 19995
+
+[juju_vial]
+id = 19996
+price = 8
+limit = 500
+weight = 0.015
+examine = "An empty, glass juju vial."
+
+[juju_vial_noted]
+id = 19997
+
+[erzille_potion_unf]
+id = 19998
+limit = 1000
+weight = 0.056
+empty = "juju_vial"
+examine = "Water mixed with erzille herbs."
+
+[ugune_potion_unf]
+id = 19999
+limit = 1000
+weight = 0.056
+empty = "juju_vial"
+examine = "Water mixed with ugune herbs."
+
+[argway_potion_unf]
+id = 20000
+limit = 1000
+weight = 0.056
+empty = "juju_vial"
+examine = "Water mixed with argway herbs"
+
+[shengo_potion_unf]
+id = 20001
+limit = 1000
+weight = 0.056
+empty = "juju_vial"
+examine = "Water mixed with shengo herbs."
+
+[samaden_potion_unf]
+id = 20002
+limit = 1000
+weight = 0.056
+empty = "juju_vial"
+examine = "Water mixed with samaden herbs"
+
+[juju_mining_potion_4]
+id = 20003
+weight = 0.035
+excess = "juju_mining_potion_3"
+empty = "juju_vial"
+examine = "4 doses of juju mining potion."
+
+[juju_mining_potion_3]
+id = 20004
+weight = 0.03
+excess = "juju_mining_potion_2"
+empty = "juju_vial"
+examine = "3 doses of juju mining potion."
+
+[juju_mining_potion_2]
+id = 20005
+weight = 0.025
+excess = "juju_mining_potion_1"
+empty = "juju_vial"
+examine = "2 doses of juju mining potion."
+
+[juju_mining_potion_1]
+id = 20006
+weight = 0.02
+excess = "juju_vial"
+empty = "juju_vial"
+examine = "1 dose of juju mining potion."
+
+[juju_cooking_potion_4]
+id = 20007
+weight = 0.035
+excess = "juju_cooking_potion_3"
+empty = "juju_vial"
+examine = "4 doses of juju cooking potion."
+
+[juju_cooking_potion_3]
+id = 20008
+weight = 0.03
+excess = "juju_cooking_potion_2"
+empty = "juju_vial"
+examine = "3 doses of juju cooking potion."
+
+[juju_cooking_potion_2]
+id = 20009
+weight = 0.025
+excess = "juju_cooking_potion_1"
+empty = "juju_vial"
+examine = "2 doses of juju cooking potion."
+
+[juju_cooking_potion_1]
+id = 20010
+weight = 0.02
+excess = "juju_vial"
+empty = "juju_vial"
+examine = "1 dose of juju cooking potion."
+
+[juju_farming_potion_4]
+id = 20011
+weight = 0.035
+excess = "juju_farming_potion_3"
+empty = "juju_vial"
+examine = "4 doses of juju farming potion."
+
+[juju_farming_potion_3]
+id = 20012
+weight = 0.03
+excess = "juju_farming_potion_2"
+empty = "juju_vial"
+examine = "3 doses of juju farming potion."
+
+[juju_farming_potion_2]
+id = 20013
+weight = 0.025
+excess = "juju_farming_potion_1"
+empty = "juju_vial"
+examine = "2 doses of juju farming potion."
+
+[juju_farming_potion_1]
+id = 20014
+weight = 0.02
+excess = "juju_vial"
+empty = "juju_vial"
+examine = "1 dose of juju farming potion."
+
+[juju_woodcutting_potion_4]
+id = 20015
+weight = 0.035
+excess = "juju_woodcutting_potion_3"
+empty = "juju_vial"
+examine = "4 doses of juju woodcutting potion."
+
+[juju_woodcutting_potion_3]
+id = 20016
+weight = 0.03
+excess = "juju_woodcutting_potion_2"
+empty = "juju_vial"
+examine = "3 doses of juju woodcutting potion."
+
+[juju_woodcutting_potion_2]
+id = 20017
+weight = 0.025
+excess = "juju_woodcutting_potion_1"
+empty = "juju_vial"
+examine = "2 doses of juju woodcutting potion."
+
+[juju_woodcutting_potion_1]
+id = 20018
+weight = 0.02
+excess = "juju_vial"
+empty = "juju_vial"
+examine = "1 dose of juju woodcutting potion."
+
+[juju_fishing_potion_4]
+id = 20019
+weight = 0.035
+excess = "juju_fishing_potion_3"
+empty = "juju_vial"
+examine = "4 doses of juju fishing potion."
+
+[juju_fishing_potion_3]
+id = 20020
+weight = 0.03
+excess = "juju_fishing_potion_2"
+empty = "juju_vial"
+examine = "3 doses of juju fishing potion."
+
+[juju_fishing_potion_2]
+id = 20021
+weight = 0.025
+excess = "juju_fishing_potion_1"
+empty = "juju_vial"
+examine = "2 doses of juju fishing potion."
+
+[juju_fishing_potion_1]
+id = 20022
+weight = 0.02
+excess = "juju_vial"
+empty = "juju_vial"
+examine = "1 dose of juju fishing potion."
+
+[juju_hunter_potion_4]
+id = 20023
+weight = 0.035
+excess = "juju_hunter_potion_3"
+empty = "juju_vial"
+examine = "4 doses of juju hunter potion."
+
+[juju_hunter_potion_3]
+id = 20024
+weight = 0.03
+excess = "juju_hunter_potion_2"
+empty = "juju_vial"
+examine = "3 doses of juju hunter potion."
+
+[juju_hunter_potion_2]
+id = 20025
+weight = 0.025
+excess = "juju_hunter_potion_1"
+empty = "juju_vial"
+examine = "2 doses of juju hunter potion."
+
+[juju_hunter_potion_1]
+id = 20026
+weight = 0.02
+excess = "juju_vial"
+empty = "juju_vial"
+examine = "1 dose of juju hunter potion."
+
+[scentless_potion_4]
+id = 20027
+weight = 0.035
+excess = "scentless_potion_3"
+empty = "juju_vial"
+examine = "4 doses of scentless potion."
+
+[scentless_potion_3]
+id = 20028
+weight = 0.03
+excess = "scentless_potion_2"
+empty = "juju_vial"
+examine = "3 doses of scentless potion."
+
+[scentless_potion_2]
+id = 20029
+weight = 0.025
+excess = "scentless_potion_1"
+empty = "juju_vial"
+examine = "2 doses of scentless potion."
+
+[scentless_potion_1]
+id = 20030
+weight = 0.02
+excess = "juju_vial"
+empty = "juju_vial"
+examine = "1 dose of scentless potion."
+
+[saradomins_blessing_4]
+id = 20031
+weight = 0.035
+excess = "saradomins_blessing_3"
+empty = "juju_vial"
+examine = "4 doses of Saradomin's blessing."
+
+[saradomins_blessing_3]
+id = 20032
+weight = 0.03
+excess = "saradomins_blessing_2"
+empty = "juju_vial"
+examine = "3 doses of Saradomin's blessing."
+
+[saradomins_blessing_2]
+id = 20033
+weight = 0.025
+excess = "saradomins_blessing_1"
+empty = "juju_vial"
+examine = "2 doses of Saradomin's blessing."
+
+[saradomins_blessing_1]
+id = 20034
+weight = 0.02
+excess = "juju_vial"
+empty = "juju_vial"
+examine = "1 dose of Saradomin's blessing."
+
+[guthixs_gift_4]
+id = 20035
+weight = 0.035
+excess = "guthixs_gift_3"
+empty = "juju_vial"
+examine = "4 doses of Guthix's gift."
+
+[guthixs_gift_3]
+id = 20036
+weight = 0.03
+excess = "guthixs_gift_2"
+empty = "juju_vial"
+examine = "3 doses of Guthix's gift."
+
+[guthixs_gift_2]
+id = 20037
+weight = 0.025
+excess = "guthixs_gift_1"
+empty = "juju_vial"
+examine = "2 doses of Guthix's gift."
+
+[guthixs_gift_1]
+id = 20038
+weight = 0.02
+excess = "juju_vial"
+empty = "juju_vial"
+examine = "1 dose of Guthix's gift."
+
+[zamoraks_favour_4]
+id = 20039
+weight = 0.035
+excess = "zamoraks_favour_3"
+empty = "juju_vial"
+examine = "4 doses of Zamorak's favour."
+
+[zamoraks_favour_3]
+id = 20040
+weight = 0.03
+excess = "zamoraks_favour_2"
+empty = "juju_vial"
+examine = "3 doses of Zamorak's favour."
+
+[zamoraks_favour_2]
+id = 20041
+weight = 0.025
+excess = "zamoraks_favour_1"
+empty = "juju_vial"
+examine = "2 doses of Zamorak's favour."
+
+[zamoraks_favour_1]
+id = 20042
+weight = 0.02
+excess = "juju_vial"
+empty = "juju_vial"
+examine = "1 dose of Zamorak's favour."
+
+[juju_hunter_potion_4_2]
+id = 20043
+weight = 0.035
+examine = "X doses of juju hunter potion."
+
+[witchdoctor_robes]
+id = 20044
+tradeable = false
+weight = 0.226
+slot = "Chest"
+examine = "Camouflage for the herblore habitat."
+kept = "Reclaim"
+
+[witchdoctor_legs]
+id = 20045
+tradeable = false
+weight = 0.226
+slot = "Legs"
+examine = "Camouflage for the herblore habitat."
+kept = "Reclaim"
+
+[witchdoctor_mask]
+id = 20046
+tradeable = false
+weight = 0.226
+slot = "Hat"
+examine = "Camouflage for the herblore habitat."
+kept = "Reclaim"
+
+[juju_vial_pack]
+clone = "vial_pack"
+id = 20047
+
+[witchdoctor_robes_2]
+id = 20048
+tradeable = false
+weight = 0.226
+slot = "Chest"
+examine = "Camouflage for the herblore habitat."
+kept = "Reclaim"
+
+[witchdoctor_legs_2]
+id = 20049
+tradeable = false
+weight = 0.226
+slot = "Legs"
+examine = "Camouflage for the herblore habitat."
+kept = "Reclaim"
+
+[witchdoctor_mask_2]
+id = 20050
+tradeable = false
+weight = 0.226
+slot = "Hat"
+examine = "Camouflage for the herblore habitat."
+kept = "Reclaim"

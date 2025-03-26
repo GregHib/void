@@ -1,0 +1,302 @@
+[white_claws]
+id = 6587
+price = 827
+limit = 100
+weight = 0.907
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A right-hand fighting claw."
+
+[white_claws_noted]
+id = 6588
+
+[white_battleaxe]
+id = 6589
+price = 1451
+limit = 100
+weight = 2.721
+slot = "Weapon"
+examine = "A vicious looking axe."
+
+[white_battleaxe_noted]
+id = 6590
+
+[white_dagger]
+id = 6591
+price = 450
+limit = 100
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+examine = "A vicious white dagger."
+
+[white_dagger_noted]
+id = 6592
+
+[white_dagger_p]
+id = 6593
+limit = 100
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+examine = "A vicious white dagger."
+
+[white_dagger_p_noted]
+id = 6594
+
+[white_dagger_p+]
+id = 6595
+limit = 100
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+examine = "A vicious white dagger."
+
+[white_dagger_p+_noted]
+id = 6596
+
+[white_dagger_p++]
+id = 6597
+limit = 100
+weight = 0.453
+slot = "Weapon"
+material = "metal"
+examine = "A vicious white dagger."
+
+[white_dagger_p++_noted]
+id = 6598
+
+[white_halberd]
+id = 6599
+price = 1823
+limit = 100
+weight = 3.175
+attack_range = 2
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A white halberd."
+
+[white_halberd_noted]
+id = 6600
+
+[white_mace]
+id = 6601
+price = 485
+limit = 100
+weight = 1.814
+slot = "Weapon"
+examine = "A spiky mace."
+
+[white_mace_noted]
+id = 6602
+
+[white_magic_staff]
+id = 6603
+price = 759
+limit = 100
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "A Magical staff."
+kept = "Wilderness"
+
+[white_magic_staff_noted]
+id = 6604
+
+[white_sword]
+id = 6605
+price = 1035
+limit = 100
+weight = 1.814
+slot = "Weapon"
+material = "metal"
+examine = "A razor sharp sword."
+
+[white_sword_noted]
+id = 6606
+
+[white_longsword]
+id = 6607
+price = 1483
+limit = 100
+weight = 1.814
+slot = "Weapon"
+material = "metal"
+examine = "A razor sharp longsword."
+
+[white_longsword_noted]
+id = 6608
+
+[white_2h_sword]
+id = 6609
+price = 4660
+limit = 100
+weight = 3.628
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "A two handed sword."
+
+[white_2h_sword_noted]
+id = 6610
+
+[white_scimitar]
+id = 6611
+price = 1179
+limit = 100
+weight = 1.814
+slot = "Weapon"
+material = "metal"
+examine = "A vicious, curved sword."
+
+[white_scimitar_noted]
+id = 6612
+
+[white_warhammer]
+id = 6613
+price = 1150
+limit = 100
+weight = 1.814
+slot = "Weapon"
+examine = "I don't think it's intended for joinery."
+
+[white_warhammer_noted]
+id = 6614
+
+[white_chainbody]
+id = 6615
+price = 743
+limit = 100
+weight = 6.803
+slot = "Chest"
+material = "metal"
+type = "Sleeveless"
+examine = "A series of connected metal rings."
+
+[white_chainbody_noted]
+id = 6616
+
+[white_platebody]
+id = 6617
+price = 5729
+limit = 100
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "Provides excellent protection."
+
+[white_platebody_noted]
+id = 6618
+
+[white_boots]
+id = 6619
+price = 1731
+limit = 100
+weight = 1.36
+slot = "Feet"
+material = "metal"
+examine = "These will protect my feet."
+
+[white_boots_noted]
+id = 6620
+
+[white_med_helm]
+id = 6621
+price = 796
+limit = 100
+weight = 1.814
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A medium sized helmet."
+
+[white_med_helm_noted]
+id = 6622
+
+[white_full_helm]
+id = 6623
+price = 2163
+limit = 100
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A full face helmet."
+
+[white_full_helm_noted]
+id = 6624
+
+[white_platelegs]
+id = 6625
+price = 1428
+limit = 100
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "Big, white and heavy looking."
+
+[white_platelegs_noted]
+id = 6626
+
+[white_plateskirt]
+id = 6627
+price = 1892
+limit = 100
+weight = 8.164
+slot = "Legs"
+material = "metal"
+examine = "Big, white and heavy looking."
+
+[white_plateskirt_noted]
+id = 6628
+
+[white_gauntlets]
+id = 6629
+price = 1230
+limit = 100
+weight = 0.226
+slot = "Hands"
+material = "metal"
+examine = "These will keep my hands warm!"
+
+[white_gauntlets_noted]
+id = 6630
+
+[white_sq_shield]
+id = 6631
+price = 1376
+limit = 100
+weight = 3.628
+slot = "Shield"
+material = "metal"
+examine = "A medium square shield."
+
+[white_sq_shield_noted]
+id = 6632
+
+[white_kiteshield]
+id = 6633
+price = 2337
+limit = 100
+weight = 5.443
+slot = "Shield"
+material = "metal"
+examine = "A large metal shield."
+
+[white_kiteshield_noted]
+id = 6634
+
+[commorb_wanted]
+id = 6635
+tradeable = false
+weight = 0.001
+destroy = "Your CommOrb will automatically self destruct when dropped. Please speak to your Temple Knight superior to receive another."
+examine = "A Temple Knight Communication Orb. Top Secret!"
+kept = "Wilderness"
+
+[soluss_hat]
+id = 6636
+tradeable = false
+weight = 0.001
+examine = "Proof that I have defeated the evil mage Solus."
+kept = "Reclaim"

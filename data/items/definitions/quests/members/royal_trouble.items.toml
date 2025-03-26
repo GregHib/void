@@ -1,0 +1,106 @@
+[mining_prop]
+id = 7958
+tradeable = false
+weight = 0.01
+destroy = "You can get another mining prop from Donal in the inn under Miscellania."
+examine = "A prop for holding up a tunnel roof."
+kept = "Wilderness"
+
+[heavy_box]
+id = 7959
+tradeable = false
+weight = 0.01
+destroy = "You can get your box back by talking to the guard by the dungeon entrance in Etceteria."
+examine = "A box full of stolen Etceterian items."
+kept = "Wilderness"
+
+[empty_box]
+id = 7960
+tradeable = false
+weight = 0.01
+examine = "It says 'To the dungeons' on the side."
+kept = "Reclaim"
+
+[burnt_diary]
+id = 7961
+examine = "A diary with one page."
+weight = 0.01
+
+[burnt_diary_2]
+id = 7962
+examine = "A diary with two pages."
+weight = 0.01
+
+[burnt_diary_3]
+id = 7963
+examine = "A diary with three pages."
+weight = 0.01
+
+[burnt_diary_4]
+id = 7964
+examine = "A diary with four pages."
+weight = 0.01
+
+[burnt_diary_5]
+id = 7965
+examine = "A diary with five pages."
+weight = 0.01
+
+[letter_royal_trouble]
+id = 7966
+tradeable = false
+weight = 0.01
+destroy = "You can get another letter by asking Queen Sigrid of Etceteria to write one."
+examine = "Sigrid's letter to Vargas."
+kept = "Wilderness"
+
+[engine]
+id = 7967
+tradeable = false
+weight = 1.0
+examine = "A dwarf-made coal engine. It looks very sturdy."
+kept = "Wilderness"
+
+[scroll_royal_trouble]
+id = 7968
+tradeable = false
+weight = 0.01
+destroy = "You can get another scroll by asking King Vargas of Miscellania to write one."
+examine = "An official-looking scroll."
+kept = "Wilderness"
+
+[pulley_beam]
+id = 7969
+tradeable = false
+weight = 0.01
+examine = "A beam with a pulley attached."
+kept = "Wilderness"
+
+[long_pulley_beam]
+id = 7970
+tradeable = false
+weight = 0.01
+examine = "A long beam with a pulley attached."
+kept = "Wilderness"
+
+[longer_pulley_beam]
+id = 7971
+tradeable = false
+weight = 0.01
+examine = "A very long beam with a pulley attached."
+kept = "Wilderness"
+
+[lift_manual]
+id = 7972
+tradeable = false
+weight = 0.01
+aka = ["amce_lift_in_a_box_user_manual"]
+examine = "The manual for an AMCE Lift-In-A-Box™."
+kept = "Wilderness"
+
+[beam]
+id = 7973
+tradeable = false
+weight = 0.01
+examine = "A wooden beam."
+kept = "Wilderness"

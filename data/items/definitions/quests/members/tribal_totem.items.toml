@@ -1,0 +1,21 @@
+[guide_book]
+id = 1856
+tradeable = false
+weight = 7.257
+aka = ["tourist_guide_to_ardougne"]
+examine = "A Tourist's Guide To Ardougne."
+kept = "Wilderness"
+
+[totem_tribal_totem]
+id = 1857
+tradeable = false
+weight = 3.0
+examine = "The Rantuki tribe's totem."
+kept = "Wilderness"
+
+[address_label]
+id = 1858
+tradeable = false
+weight = 0.01
+examine = "It says 'To Lord Handelmort, Handelmort Mansion'."
+kept = "Wilderness"

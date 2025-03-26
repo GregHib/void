@@ -1,0 +1,275 @@
+[potatoes_1]
+remove = ["empty_sack", "raw_potato"]
+add = ["potatoes_1"]
+message = "You put a potato in the vegetable sack."
+
+[potatoes_2]
+remove = ["potatoes_1", "raw_potato"]
+add = ["potatoes_2"]
+message = "You put a potato in the vegetable sack."
+
+[potatoes_3]
+remove = ["potatoes_2", "raw_potato"]
+add = ["potatoes_3"]
+message = "You put a potato in the vegetable sack."
+
+[potatoes_4]
+remove = ["potatoes_3", "raw_potato"]
+add = ["potatoes_4"]
+message = "You put a potato in the vegetable sack."
+
+[potatoes_5]
+remove = ["potatoes_4", "raw_potato"]
+add = ["potatoes_5"]
+message = "You put a potato in the vegetable sack."
+
+[potatoes_6]
+remove = ["potatoes_5", "raw_potato"]
+add = ["potatoes_6"]
+message = "You put a potato in the vegetable sack."
+
+[potatoes_7]
+remove = ["potatoes_6", "raw_potato"]
+add = ["potatoes_7"]
+message = "You put a potato in the vegetable sack."
+
+[potatoes_8]
+remove = ["potatoes_7", "raw_potato"]
+add = ["potatoes_8"]
+message = "You put a potato in the vegetable sack."
+
+[potatoes_9]
+remove = ["potatoes_8", "raw_potato"]
+add = ["potatoes_9"]
+message = "You put a potato in the vegetable sack."
+
+[potatoes_10]
+remove = ["potatoes_9", "raw_potato"]
+add = ["potatoes_10"]
+message = "You put a potato in the vegetable sack."
+
+[onions_1]
+remove = ["empty_sack", "onion"]
+add = ["onions_1"]
+message = "You put an onion in the vegetable sack."
+
+[onions_2]
+remove = ["onions_1", "onion"]
+add = ["onions_2"]
+message = "You put an onion in the vegetable sack."
+
+[onions_3]
+remove = ["onions_2", "onion"]
+add = ["onions_3"]
+message = "You put an onion in the vegetable sack."
+
+[onions_4]
+remove = ["onions_3", "onion"]
+add = ["onions_4"]
+message = "You put an onion in the vegetable sack."
+
+[onions_5]
+remove = ["onions_4", "onion"]
+add = ["onions_5"]
+message = "You put an onion in the vegetable sack."
+
+[onions_6]
+remove = ["onions_5", "onion"]
+add = ["onions_6"]
+message = "You put an onion in the vegetable sack."
+
+[onions_7]
+remove = ["onions_6", "onion"]
+add = ["onions_7"]
+message = "You put an onion in the vegetable sack."
+
+[onions_8]
+remove = ["onions_7", "onion"]
+add = ["onions_8"]
+message = "You put an onion in the vegetable sack."
+
+[onions_9]
+remove = ["onions_8", "onion"]
+add = ["onions_9"]
+message = "You put an onion in the vegetable sack."
+
+[onions_10]
+remove = ["onions_9", "onion"]
+add = ["onions_10"]
+message = "You put an onion in the vegetable sack."
+
+[cabbages_1]
+remove = ["empty_sack", "cabbage"]
+add = ["cabbages_1"]
+message = "You put a cabbage in the vegetable sack."
+
+[cabbages_2]
+remove = ["cabbages_1", "cabbage"]
+add = ["cabbages_2"]
+message = "You put a cabbage in the vegetable sack."
+
+[cabbages_3]
+remove = ["cabbages_2", "cabbage"]
+add = ["cabbages_3"]
+message = "You put a cabbage in the vegetable sack."
+
+[cabbages_4]
+remove = ["cabbages_3", "cabbage"]
+add = ["cabbages_4"]
+message = "You put a cabbage in the vegetable sack."
+
+[cabbages_5]
+remove = ["cabbages_4", "cabbage"]
+add = ["cabbages_5"]
+message = "You put a cabbage in the vegetable sack."
+
+[cabbages_6]
+remove = ["cabbages_5", "cabbage"]
+add = ["cabbages_6"]
+message = "You put a cabbage in the vegetable sack."
+
+[cabbages_7]
+remove = ["cabbages_6", "cabbage"]
+add = ["cabbages_7"]
+message = "You put a cabbage in the vegetable sack."
+
+[cabbages_8]
+remove = ["cabbages_7", "cabbage"]
+add = ["cabbages_8"]
+message = "You put a cabbage in the vegetable sack."
+
+[cabbages_9]
+remove = ["cabbages_8", "cabbage"]
+add = ["cabbages_9"]
+message = "You put a cabbage in the vegetable sack."
+
+[cabbages_10]
+remove = ["cabbages_9", "cabbage"]
+add = ["cabbages_10"]
+message = "You put a cabbage in the vegetable sack."
+# Fruit Baskets
+
+[strawberries_1]
+remove = ["basket", "strawberry"]
+add = ["strawberries_1"]
+message = "You put a strawberry in the fruit basket."
+
+[strawberries_2]
+remove = ["strawberries_1", "strawberry"]
+add = ["strawberries_2"]
+message = "You put a strawberry in the fruit basket."
+
+[strawberries_3]
+remove = ["strawberries_2", "strawberry"]
+add = ["strawberries_3"]
+message = "You put a strawberry in the fruit basket."
+
+[strawberries_4]
+remove = ["strawberries_3", "strawberry"]
+add = ["strawberries_4"]
+message = "You put a strawberry in the fruit basket."
+
+[strawberries_5]
+remove = ["strawberries_4", "strawberry"]
+add = ["strawberries_5"]
+message = "You put a strawberry in the fruit basket."
+
+[oranges_1]
+remove = ["basket", "orange"]
+add = ["oranges_1"]
+message = "You put an orange in the fruit basket."
+
+[oranges_2]
+remove = ["oranges_1", "orange"]
+add = ["oranges_2"]
+message = "You put an orange in the fruit basket."
+
+[oranges_3]
+remove = ["oranges_2", "orange"]
+add = ["oranges_3"]
+message = "You put an orange in the fruit basket."
+
+[oranges_4]
+remove = ["oranges_3", "orange"]
+add = ["oranges_4"]
+message = "You put an orange in the fruit basket."
+
+[oranges_5]
+remove = ["oranges_4", "orange"]
+add = ["oranges_5"]
+message = "You put an orange in the fruit basket."
+
+[bananas_1]
+remove = ["basket", "banana"]
+add = ["bananas_1"]
+message = "You put a banana in the fruit basket."
+
+[bananas_2]
+remove = ["bananas_1", "banana"]
+add = ["bananas_2"]
+message = "You put a banana in the fruit basket."
+
+[bananas_3]
+remove = ["bananas_2", "banana"]
+add = ["bananas_3"]
+message = "You put a banana in the fruit basket."
+
+[bananas_4]
+remove = ["bananas_3", "banana"]
+add = ["bananas_4"]
+message = "You put a banana in the fruit basket."
+
+[bananas_5]
+remove = ["bananas_4", "banana"]
+add = ["bananas_5"]
+message = "You put a banana in the fruit basket."
+
+[apples_1]
+remove = ["basket", "cooking_apple"]
+add = ["apples_1"]
+message = "You put an apple in the fruit basket."
+
+[apples_2]
+remove = ["apples_1", "cooking_apple"]
+add = ["apples_2"]
+message = "You put an apple in the fruit basket."
+
+[apples_3]
+remove = ["apples_2", "cooking_apple"]
+add = ["apples_3"]
+message = "You put an apple in the fruit basket."
+
+[apples_4]
+remove = ["apples_3", "cooking_apple"]
+add = ["apples_4"]
+message = "You put an apple in the fruit basket."
+
+[apples_5]
+remove = ["apples_4", "cooking_apple"]
+add = ["apples_5"]
+message = "You put an apple in the fruit basket."
+
+[tomatoes_1]
+remove = ["basket", "tomato"]
+add = ["tomatoes_1"]
+message = "You put a tomato in the fruit basket."
+
+[tomatoes_2]
+remove = ["tomatoes_1", "tomato"]
+add = ["tomatoes_2"]
+message = "You put a tomato in the fruit basket."
+
+[tomatoes_3]
+remove = ["tomatoes_2", "tomato"]
+add = ["tomatoes_3"]
+message = "You put a tomato in the fruit basket."
+
+[tomatoes_4]
+remove = ["tomatoes_3", "tomato"]
+add = ["tomatoes_4"]
+message = "You put a tomato in the fruit basket."
+
+[tomatoes_5]
+remove = ["tomatoes_4", "tomato"]
+add = ["tomatoes_5"]
+message = "You put a tomato in the fruit basket."

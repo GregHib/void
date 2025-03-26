@@ -1,0 +1,123 @@
+[court_summons]
+id = 18757
+tradeable = false
+weight = 0.02
+destroy = "Destroying this scroll will clear all the work you've done on the case. You won't be able to access the case again unless you get another court summons."
+examine = "A summons to the Seers' Village courthouse."
+kept = "Wilderness"
+
+[case_report_1]
+id = 18758
+tradeable = false
+weight = 0.001
+destroy = "You can get another from the filing cabinet in the Seers' Village courthouse."
+examine = "The first report on the case I'm investigating."
+kept = "Vanish"
+
+[case_report_2]
+id = 18759
+tradeable = false
+weight = 0.001
+destroy = "You can get another from the filing cabinet in the Seers' Village courthouse."
+examine = "The second report on the case I'm investigating."
+kept = "Vanish"
+
+[case_report_3]
+id = 18760
+tradeable = false
+weight = 0.001
+destroy = "You can get another from the filing cabinet in the Seers' Village courthouse."
+examine = "The third report on the case I'm investigating."
+kept = "Vanish"
+
+[crime_scene_viewing_orb]
+id = 18761
+tradeable = false
+weight = 0.05
+destroy = "You can get another from the filing cabinet in Seer's Village courthouse."
+examine = "This orb lets me investigate the scene as it was at the time of the crime."
+kept = "Vanish"
+
+[magnifying_glass_court_cases]
+id = 18762
+tradeable = false
+weight = 0.002
+destroy = "If you destroy this you will leave the crime scene."
+examine = "Zoom in, zoom out."
+kept = "Vanish"
+
+[mission_machine]
+id = 18763
+tradeable = false
+weight = 0.001
+examine = "A machine."
+kept = "Reclaim"
+
+[bat_in_a_box]
+id = 18765
+tradeable = false
+weight = 0.001
+destroy = "If you destroy this you will leave the crime scene."
+examine = "A bat in a box."
+kept = "Vanish"
+
+[nightstick]
+id = 18766
+tradeable = false
+weight = 1.0
+examine = "A handy little club made out of wood."
+kept = "Reclaim"
+
+[humble_pie]
+id = 18767
+tradeable = false
+weight = 0.45
+destroy = "If you destroy this, you will not be able to get another one."
+examine = "Mmm pie."
+kept = "Wilderness"
+
+[mystery_box_court_cases]
+id = 18768
+tradeable = false
+weight = 1.0
+destroy = "If you destroy this, you will not be able to get another one."
+examine = "Could there be something valuable in here?"
+kept = "Wilderness"
+
+[barrister_wig]
+id = 18776
+tradeable = false
+weight = 0.4
+slot = "Hat"
+type = "Hair"
+destroy = "You can get another from the court clerk in Seers' Village courthouse."
+examine = "Who would have an objection to this wig?"
+kept = "Wilderness"
+
+[gavel]
+id = 18777
+tradeable = false
+weight = 0.8
+slot = "Weapon"
+destroy = "You can get another from the court clerk in Seers' Village courthouse."
+examine = "For pounding justice into delinquents!"
+kept = "Wilderness"
+
+[barrister_top]
+id = 19735
+tradeable = false
+weight = 0.453
+slot = "Chest"
+destroy = "You can get another from the court clerk in Seers' Village courthouse."
+examine = "Top half of a barrister suit."
+kept = "Wilderness"
+
+[rainbow_afro]
+id = 19747
+tradeable = false
+weight = 0.2
+slot = "Hat"
+type = "Hair"
+destroy = "You can get another from the court clerk in the Seers' Village courthouse."
+examine = "A gift from Party Pete."
+kept = "Wilderness"

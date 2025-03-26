@@ -1,0 +1,601 @@
+[cooking_pot]
+id = 977
+
+[cooking_pot_noted]
+id = 978
+
+[blank_necklace]
+id = 1666
+
+[sapphire_necklace_icon]
+id = 1668
+
+[emerald_necklace_icon]
+id = 1669
+
+[ruby_necklace_icon]
+id = 1670
+
+[diamond_necklace_icon]
+id = 1671
+
+[blank_amulet_unstrung]
+id = 1685
+
+[sapphire_amulet_icon]
+id = 1687
+
+[emerald_amulet_icon]
+id = 1688
+
+[ruby_amulet_icon]
+id = 1689
+
+[diamond_amulet_icon]
+id = 1690
+
+[dragonstone_ammy_icon]
+id = 1691
+
+[blank_ring]
+id = 1647
+
+[sapphire_ring_icon]
+id = 1649
+
+[emerald_ring_icon]
+id = 1650
+
+[ruby_ring_icon]
+id = 1651
+
+[diamond_ring_icon]
+id = 1652
+
+[dragonstone_ring_icon]
+id = 1653
+
+[man]
+id = 3241
+examine = "One of Gielinor's many citizens."
+
+[farmer]
+id = 3243
+examine = "He grows crops in the area."
+
+[warrior_woman]
+id = 3245
+examine = "Not very fashion conscious."
+
+[rogue]
+id = 3247
+examine = "Rogueish."
+
+[guard]
+id = 3249
+examine = "Varies, refer below."
+
+[knight_of_ardougne]
+id = 3251
+examine = "A member of Ardougne's militia."
+
+[watchman]
+id = 3253
+examine = "The strong arm of the law."
+
+[paladin]
+id = 3255
+examine = "A holy warrior."
+
+[gnome]
+id = 3257
+
+[hero]
+id = 3259
+examine = "Heroic!"
+
+[crawling_hand_icon]
+id = 4133
+examine = "I should get it stuffed!"
+
+[cave_crawler]
+id = 4134
+examine = "A spiky crawling critter."
+
+[banshee]
+id = 4135
+examine = "A tortured screaming soul."
+
+[rock_slug]
+id = 4136
+examine = "The slime of evil."
+
+[cockatrice]
+id = 4137
+examine = "The winged reptile."
+
+[pyrefiend]
+id = 4138
+examine = "A small fire demon."
+
+[basilisk]
+id = 4139
+examine = "The eyes of evil."
+
+[infernal_mage]
+id = 4140
+examine = "An evil magic user."
+
+[bloodveld]
+id = 4141
+examine = "The tongue of evil."
+
+[jelly]
+id = 4142
+
+[turoth]
+id = 4143
+examine = "He's one big leg short!"
+
+[aberrant_spectre]
+id = 4144
+examine = "A very smelly ghost."
+
+[dust_devil]
+id = 4145
+examine = "The vacuumed face of evil."
+
+[kurask]
+id = 4146
+examine = "Large, heavy, with sharp things attached to its head."
+
+[gargoyle]
+id = 4147
+examine = "Flies like a rock."
+
+[nechryael]
+id = 4148
+examine = "An evil death demon."
+
+[abyssal_demon]
+id = 4149
+examine = "A denizen of the Abyss!"
+
+[swamp_wallbeast]
+id = 4519
+examine = "A big, scary hand!"
+
+[swamp_cave_slime]
+id = 4520
+examine = "A foul-smelling blob of protoplasm."
+
+[swamp_cave_bug]
+id = 4521
+examine = "A nasty crawling critter."
+
+[bandit]
+id = 4625
+examine = "A tough-looking criminal."
+
+[minecart_ticket_keldagrim_to_ice_mountain]
+id = 5020
+tradeable = false
+weight = 0.001
+examine = "A ticket to take you from Keldagrim to the dwarven mines under Ice Mountain."
+kept = "Reclaim"
+
+[minecart_ticket_ice_mountain_to_keldagrim]
+id = 5021
+tradeable = false
+weight = 0.001
+examine = "A ticket to take you from the dwarven mines under Ice Mountain to Keldagrim."
+kept = "Reclaim"
+
+[minecart_ticket_keldagrim_to_white_wolf_mountain]
+id = 5022
+tradeable = false
+weight = 0.001
+examine = "A ticket to take you from Keldagrim to the passage under White Wolf Mountain."
+kept = "Reclaim"
+
+[minecart_ticket_white_wolf_mountain_to_keldagrim]
+id = 5023
+tradeable = false
+weight = 0.001
+examine = "A ticket to take you from the passage under White Wolf Mountain to Keldagrim."
+kept = "Reclaim"
+
+[dwarf_the_giant_dwarf]
+id = 5054
+weight = 10.0
+examine = "Petit."
+
+[dwarf_the_giant_dwarf_noted]
+id = 5055
+
+[master_farmer]
+id = 5068
+
+[bank_icon]
+id = 5080
+
+[quest_icon]
+id = 5092
+
+[seeds]
+id = 5171
+
+[spirit_tree]
+id = 6063
+
+[elf]
+id = 6105
+
+[dark_beast]
+id = 6637
+examine = "From a darker dimension."
+
+[mogre]
+id = 6661
+examine = "An angry Ogre in a funny hat."
+
+[desert_lizard]
+id = 6695
+examine = "A cold-blooded creature, partial to warmth."
+
+[fever_spider]
+id = 6709
+bank_stacks = false
+weight = 0.001
+destroy = "Are you sure? You cannot reclaim this animal."
+examine = "A spider for your player owned farm."
+kept = "Vanish"
+
+[zombie_head]
+id = 6722
+tradeable = false
+weight = 2.721
+examine = "Alas...I hardly knew him."
+kept = "Wilderness"
+
+[menaphite_thug]
+id = 6780
+examine = "Menaphite thug."
+
+[bandit_2]
+clone = "bandit"
+id = 6781
+
+[bandit_3]
+clone = "bandit"
+id = 6782
+
+[killerwatt]
+id = 7160
+examine = "A ball of Electrical energy."
+
+[mutated_zygomite]
+id = 7420
+examine = "A fun guy. No wait, that's awful. Plus it doesn't even make sense."
+
+[evil_dave]
+id = 7499
+
+[dwarf]
+clone = "dwarf_the_giant_dwarf"
+id = 7500
+
+[goblins]
+id = 7501
+
+[lumbridge_sage]
+id = 7502
+
+[monkey_11]
+clone = "monkey"
+id = 7503
+
+[osman]
+id = 7504
+
+[pirate_pete]
+id = 7505
+
+[sir_amik_varze]
+id = 7506
+
+[skrach]
+id = 7507
+
+[cave_horror]
+id = 8900
+examine = "A horrible, emaciated ape like creature with beady red eyes."
+
+[imp]
+id = 9952
+examine = "A cheeky little imp."
+
+[kebbit]
+id = 9953
+examine = "A little bigger than usual..."
+
+[kebbit_2]
+clone = "kebbit"
+id = 9954
+
+[kebbit_3]
+clone = "kebbit"
+id = 9955
+
+[kebbit_4]
+clone = "kebbit"
+id = 9956
+
+[kebbit_5]
+clone = "kebbit"
+id = 9957
+
+[kebbit_6]
+clone = "kebbit"
+id = 9958
+
+[kebbit_7]
+clone = "kebbit"
+id = 9959
+
+[kebbit_8]
+clone = "kebbit"
+id = 9960
+
+[kebbit_9]
+clone = "kebbit"
+id = 9961
+
+[kebbit_10]
+clone = "kebbit"
+id = 9962
+
+[kebbit_11]
+clone = "kebbit"
+id = 9963
+
+[kebbit_12]
+clone = "kebbit"
+id = 9964
+
+[crimson_swift]
+id = 9965
+
+[copper_longtail]
+id = 9966
+
+[cerulean_twitch]
+id = 9967
+
+[golden_warbler]
+id = 9968
+
+[tropical_wagtail]
+id = 9969
+
+[giant_eagle]
+id = 9974
+
+[rabbit]
+id = 9975
+examine = "Aww, how cute."
+
+[chinchompa_2]
+id = 9976
+limit = 20000
+destroy = "Release"
+examine = "Handle with care."
+kept = "Wilderness"
+
+[red_chinchompa_2]
+id = 9977
+limit = 20000
+destroy = "Release"
+examine = "Even more volatile than its vegetarian counterpart."
+kept = "Wilderness"
+
+[terror_dog]
+id = 10591
+examine = "A terrifying dog beast."
+
+[run]
+id = 10947
+
+[sit_up]
+id = 10948
+
+[star_jump]
+id = 10949
+
+[molanisk]
+id = 10997
+examine = "That white dot looks like an eye!"
+
+[cave_goblin]
+id = 10998
+examine = "One of the many citizens of Dorgesh-Kaan."
+
+[brine_rat]
+id = 11047
+examine = "Eww, a bald rat!"
+
+[grubfoot]
+id = 11792
+
+[zanik_3]
+clone = "zanik"
+id = 11793
+
+[fire_beacon]
+id = 13662
+
+[hartwin]
+id = 13757
+
+[captain_undak]
+id = 14668
+
+[zanik_4]
+clone = "zanik"
+id = 14669
+
+[zanik_5]
+clone = "zanik"
+id = 14670
+
+[erjolf]
+id = 14741
+
+[leela]
+id = 14817
+
+[arrav]
+id = 15118
+
+[aquanite]
+id = 15125
+examine = "It has a light on its forehead. What a pretty light... So shiny!"
+
+[arianwyn]
+id = 15340
+
+[statue]
+id = 15368
+
+[desert_strykewyrm]
+id = 15498
+examine = "I dread to think of how many of these are in the sand."
+
+[jungle_strykewyrm]
+id = 15499
+examine = "Who said worms were small and harmless?"
+
+[ice_strykewyrm]
+id = 15500
+examine = "Now that's just cold."
+
+[miner_1]
+id = 20085
+
+[miner_2]
+id = 20086
+
+[miner_3]
+id = 20087
+
+[miner_4]
+id = 20088
+
+[miner_5]
+id = 20089
+
+[miner_6]
+id = 20090
+
+[more]
+id = 10165
+
+[back]
+id = 10166
+
+[globe]
+id = 8341
+examine = "A wooden planet of your very own."
+
+[character_creation_shadow]
+id = 19713
+
+[character_creation_2]
+id = 19714
+
+[character_creation_3]
+id = 19715
+
+[character_creation_4]
+id = 19716
+
+[character_creation_5]
+id = 19717
+
+[character_creation_6]
+id = 19718
+
+[character_creation_7]
+id = 19719
+
+[character_creation_8]
+id = 19720
+
+[character_creation_9]
+id = 19721
+
+[character_creation_10]
+id = 19722
+
+[character_creation_11]
+id = 19723
+
+[character_creation_12]
+id = 19724
+
+[character_creation_13]
+id = 19725
+
+[character_creation_14]
+id = 19726
+
+[character_creation_15]
+id = 19727
+
+[character_creation_16]
+id = 19728
+
+[character_creation_17]
+id = 19729
+
+[character_creation_18]
+id = 19730
+
+[character_creation_19]
+id = 19731
+
+[character_creation_20]
+id = 19732
+
+[character_creation_21]
+id = 19733
+
+[character_creation_22]
+id = 19734
+
+[small_portrait]
+id = 8086
+
+[mounted_sword]
+id = 8090
+
+[small_landscape]
+id = 8091
+
+[guild_trophy]
+id = 8092
+
+[large_portrait]
+id = 8093
+
+[large_landscape]
+id = 8094
+
+[low_level_plants]
+id = 8096
+
+[mid_level_plants]
+id = 8097
+
+[high_level_plants]
+id = 8098

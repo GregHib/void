@@ -1,0 +1,23 @@
+[ghostspeak_amulet]
+id = 552
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+examine = "It's an amulet of ghostspeak. It makes vague spooky noises."
+kept = "Wilderness"
+
+[muddy_skull]
+id = 553
+tradeable = false
+weight = 0.08
+destroy = "If you get rid of the skull you'll have to search for it again."
+examine = "Ooooh, spooky!"
+kept = "Wilderness"
+
+[ancient_bones_the_restless_ghost]
+id = 15410
+tradeable = false
+weight = 0.6
+destroy = "You'll not be able to get these special bones again!"
+examine = "Bones are for burying."
+kept = "Wilderness"

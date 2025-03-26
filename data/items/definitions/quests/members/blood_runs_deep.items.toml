@@ -1,0 +1,42 @@
+[balmung]
+id = 15403
+tradeable = false
+weight = 2.721
+weapon_type = "dharoks_greataxe"
+slot = "Weapon"
+type = "TwoHanded"
+destroy = "If you destroy Balmung, perhaps Brundt the Chieftain, Queen Sigrid, or Kharshai can help you."
+examine = "A raiding axe from an island kingdom."
+kept = "Reclaim"
+
+[prophecy_tablet_lighthouse]
+id = 15404
+tradeable = false
+weight = 3.0
+examine = "This one was found in Silas's dream lighthouse."
+kept = "Wilderness"
+
+[prophecy_tablet_hatchery]
+id = 15405
+tradeable = false
+weight = 3.0
+destroy = "Baba Yaga is keeping track of the prophecy. If you lose a tablet, she will still know what it said."
+examine = "This one was found by King Vargas in the dagannoth hatchery."
+kept = "Wilderness"
+
+[prophecy_tablet_lunar]
+clone = "prophecy_tablet_glorious_memories"
+id = 15406
+
+[prophecy_tablet_caves]
+clone = "prophecy_tablet_glorious_memories"
+id = 15407
+
+[letter_blood_runs_deep]
+id = 15408
+tradeable = false
+weight = 0.03
+aka = ["letter_of_life"]
+destroy = "If you destroy the note, you can get another from Chieftian brundt."
+examine = "A scroll sent down from the next life."
+kept = "Wilderness"

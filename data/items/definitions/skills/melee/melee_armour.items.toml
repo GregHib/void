@@ -1,0 +1,970 @@
+[iron_platelegs]
+id = 1067
+price = 58
+limit = 1000
+weight = 9.071
+aka = ["iron_legs"]
+smithing = { level = 31, xp = 75.0 }
+slot = "Legs"
+material = "metal"
+examine = "These look pretty heavy."
+kept = "Wilderness"
+
+[iron_platelegs_noted]
+id = 1068
+
+[steel_platelegs]
+id = 1069
+price = 477
+limit = 100
+weight = 0.015
+aka = ["steel_legs"]
+smithing = { level = 46, xp = 112.5 }
+slot = "Legs"
+material = "metal"
+examine = "A pair of steel platelegs."
+kept = "Wilderness"
+
+[steel_platelegs_noted]
+id = 1070
+
+[mithril_platelegs]
+id = 1071
+price = 1400
+limit = 100
+weight = 0.015
+aka = ["mithril_legs", "mith_legs"]
+smithing = { level = 66, xp = 150.0 }
+slot = "Legs"
+material = "metal"
+examine = "A pair of mithril platelegs."
+
+[mithril_platelegs_noted]
+id = 1072
+
+[adamant_platelegs]
+id = 1073
+price = 3685
+limit = 100
+weight = 0.015
+aka = ["adamant_legs"]
+smithing = { level = 86, xp = 187.5 }
+slot = "Legs"
+material = "metal"
+examine = "A pair of adamant platelegs."
+
+[adamant_platelegs_noted]
+id = 1074
+
+[bronze_platelegs]
+id = 1075
+price = 23
+limit = 100
+weight = 9.071
+aka = ["bronze_legs"]
+smithing = { level = 16, xp = 37.5 }
+slot = "Legs"
+material = "metal"
+examine = "These look pretty heavy."
+kept = "Wilderness"
+
+[bronze_platelegs_noted]
+id = 1076
+
+[black_platelegs]
+id = 1077
+price = 3328
+limit = 1000
+weight = 9.071
+aka = ["black_legs"]
+slot = "Legs"
+material = "metal"
+examine = "These look pretty heavy."
+
+[black_platelegs_noted]
+id = 1078
+
+[rune_platelegs]
+id = 1079
+price = 38231
+limit = 100
+weight = 0.015
+aka = ["rune_legs"]
+smithing = { level = 99, xp = 225.0 }
+slot = "Legs"
+material = "metal"
+examine = "A pair of rune platelegs."
+
+[rune_platelegs_noted]
+id = 1080
+
+[iron_plateskirt]
+id = 1081
+price = 79
+limit = 1000
+weight = 8.164
+aka = ["iron_skirt"]
+smithing = { level = 31, xp = 75.0 }
+slot = "Legs"
+material = "metal"
+examine = "Designer leg protection."
+kept = "Wilderness"
+
+[iron_plateskirt_noted]
+id = 1082
+
+[steel_plateskirt]
+id = 1083
+price = 485
+limit = 100
+weight = 0.015
+aka = ["steel_skirt"]
+smithing = { level = 46, xp = 112.5 }
+slot = "Legs"
+material = "metal"
+examine = "A steel plateskirt."
+kept = "Wilderness"
+
+[steel_plateskirt_noted]
+id = 1084
+
+[mithril_plateskirt]
+id = 1085
+price = 1410
+limit = 100
+weight = 0.015
+aka = ["mithril_skirt", "mith_skirt"]
+smithing = { level = 66, xp = 150.0 }
+slot = "Legs"
+material = "metal"
+examine = "A mithril plateskirt."
+
+[mithril_plateskirt_noted]
+id = 1086
+
+[bronze_plateskirt]
+id = 1087
+price = 31
+limit = 100
+weight = 8.164
+aka = ["bronze_skirt"]
+smithing = { level = 16, xp = 37.5 }
+slot = "Legs"
+material = "metal"
+examine = "Designer leg protection."
+kept = "Wilderness"
+
+[bronze_plateskirt_noted]
+id = 1088
+
+[black_plateskirt]
+id = 1089
+price = 2242
+limit = 1000
+weight = 8.164
+aka = ["black_skirt"]
+slot = "Legs"
+material = "metal"
+examine = "Designer leg protection."
+
+[black_plateskirt_noted]
+id = 1090
+
+[adamant_plateskirt]
+id = 1091
+price = 3691
+limit = 100
+weight = 0.015
+aka = ["adamant_skirt", "addy_skirt"]
+smithing = { level = 86, xp = 187.5 }
+slot = "Legs"
+material = "metal"
+examine = "An adamant plateskirt."
+
+[adamant_plateskirt_noted]
+id = 1092
+
+[rune_plateskirt]
+id = 1093
+price = 38300
+limit = 100
+weight = 0.015
+aka = ["rune_skirt"]
+smithing = { level = 99, xp = 225.0 }
+slot = "Legs"
+material = "metal"
+examine = "A rune plateskirt."
+
+[rune_plateskirt_noted]
+id = 1094
+
+[iron_chainbody]
+id = 1101
+price = 81
+limit = 1000
+weight = 6.803
+smithing = { level = 26, xp = 75.0 }
+slot = "Chest"
+material = "metal"
+type = "Sleeveless"
+examine = "A series of connected metal rings."
+kept = "Wilderness"
+
+[iron_chainbody_noted]
+id = 1102
+
+[bronze_chainbody]
+id = 1103
+price = 10
+limit = 100
+weight = 6.803
+smithing = { level = 11, xp = 37.5 }
+slot = "Chest"
+material = "metal"
+type = "Sleeveless"
+examine = "A series of connected metal rings."
+kept = "Wilderness"
+
+[bronze_chainbody_noted]
+id = 1104
+
+[steel_chainbody]
+id = 1105
+price = 330
+limit = 100
+weight = 0.025
+smithing = { level = 41, xp = 112.5 }
+slot = "Chest"
+material = "metal"
+type = "Sleeveless"
+examine = "A steel chainbody."
+kept = "Wilderness"
+
+[steel_chainbody_noted]
+id = 1106
+
+[black_chainbody]
+id = 1107
+price = 796
+limit = 1000
+weight = 6.803
+slot = "Chest"
+material = "metal"
+type = "Sleeveless"
+examine = "A series of connected metal rings."
+
+[black_chainbody_noted]
+id = 1108
+
+[mithril_chainbody]
+id = 1109
+price = 1043
+limit = 100
+weight = 0.025
+smithing = { level = 61, xp = 150.0 }
+slot = "Chest"
+material = "metal"
+type = "Sleeveless"
+examine = "A mithril chainbody."
+
+[mithril_chainbody_noted]
+id = 1110
+
+[adamant_chainbody]
+id = 1111
+price = 2745
+limit = 100
+weight = 0.025
+smithing = { level = 81, xp = 187.5 }
+slot = "Chest"
+material = "metal"
+type = "Sleeveless"
+examine = "An adamant chainbody."
+
+[adamant_chainbody_noted]
+id = 1112
+
+[rune_chainbody]
+id = 1113
+price = 29800
+limit = 100
+weight = 0.025
+smithing = { level = 96, xp = 225.0 }
+slot = "Chest"
+material = "metal"
+type = "Sleeveless"
+examine = "A rune chainbody."
+
+[rune_chainbody_noted]
+id = 1114
+
+[iron_platebody]
+id = 1115
+price = 223
+limit = 100
+weight = 9.979
+aka = ["iron_plate"]
+smithing = { level = 33, xp = 125.0 }
+slot = "Chest"
+material = "metal"
+examine = "Provides excellent protection."
+kept = "Wilderness"
+
+[iron_platebody_noted]
+id = 1116
+
+[bronze_platebody]
+id = 1117
+price = 21
+limit = 100
+weight = 9.979
+aka = ["bronze_plate"]
+smithing = { level = 18, xp = 62.5 }
+slot = "Chest"
+material = "metal"
+examine = "Provides excellent protection."
+kept = "Wilderness"
+
+[bronze_platebody_noted]
+id = 1118
+
+[steel_platebody]
+id = 1119
+price = 1084
+limit = 100
+weight = 0.025
+aka = ["steel_plate"]
+smithing = { level = 48, xp = 187.5 }
+slot = "Chest"
+material = "metal"
+examine = "A steel platebody."
+kept = "Wilderness"
+
+[steel_platebody_noted]
+id = 1120
+
+[mithril_platebody]
+id = 1121
+price = 2960
+limit = 100
+weight = 0.025
+aka = ["mithril_plate", "mith_plate"]
+smithing = { level = 68, xp = 250.0 }
+slot = "Chest"
+material = "metal"
+examine = "A mithril platebody."
+
+[mithril_platebody_noted]
+id = 1122
+
+[adamant_platebody]
+id = 1123
+price = 9842
+limit = 100
+weight = 0.025
+aka = ["adamant_plate", "addy_plate"]
+smithing = { level = 88, xp = 312.5 }
+slot = "Chest"
+material = "metal"
+examine = "An adamant platebody."
+
+[adamant_platebody_noted]
+id = 1124
+
+[black_platebody]
+id = 1125
+price = 4553
+limit = 1000
+weight = 9.979
+aka = ["black_plate"]
+slot = "Chest"
+material = "metal"
+examine = "Provides excellent protection."
+
+[black_platebody_noted]
+id = 1126
+
+[rune_platebody]
+id = 1127
+price = 38900
+limit = 100
+weight = 0.025
+aka = ["rune_plate"]
+smithing = { level = 99, xp = 375.0 }
+slot = "Chest"
+material = "metal"
+examine = "A rune platebody."
+
+[rune_platebody_noted]
+id = 1128
+
+[iron_med_helm]
+id = 1137
+price = 12
+limit = 1000
+weight = 1.814
+smithing = { level = 18, xp = 25.0 }
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A medium sized helmet."
+kept = "Wilderness"
+
+[iron_med_helm_noted]
+id = 1138
+
+[bronze_med_helm]
+id = 1139
+price = 51
+limit = 100
+weight = 1.814
+smithing = { level = 3, xp = 12.5 }
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A medium sized helmet."
+kept = "Wilderness"
+
+[bronze_med_helm_noted]
+id = 1140
+
+[steel_med_helm]
+id = 1141
+price = 75
+limit = 100
+weight = 0.01
+smithing = { level = 33, xp = 37.5 }
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A steel med helm."
+kept = "Wilderness"
+
+[steel_med_helm_noted]
+id = 1142
+
+[mithril_med_helm]
+id = 1143
+price = 349
+weight = 0.01
+smithing = { level = 53, xp = 50.0 }
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A mithril med helm."
+
+[mithril_med_helm_noted]
+id = 1144
+
+[adamant_med_helm]
+id = 1145
+price = 1031
+weight = 0.01
+smithing = { level = 73, xp = 62.5 }
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "An adamant med helm."
+
+[adamant_med_helm_noted]
+id = 1146
+
+[rune_med_helm]
+id = 1147
+price = 11300
+weight = 0.01
+smithing = { level = 88, xp = 75.0 }
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A rune med helm."
+
+[rune_med_helm_noted]
+id = 1148
+
+[dragon_med_helm]
+id = 1149
+price = 61000
+limit = 100
+weight = 1.36
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "Makes the wearer pretty intimidating."
+
+[dragon_med_helm_noted]
+id = 1150
+
+[black_med_helm]
+id = 1151
+price = 337
+limit = 1000
+weight = 1.814
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A medium sized helmet."
+
+[black_med_helm_noted]
+id = 1152
+
+[iron_full_helm]
+id = 1153
+price = 45
+limit = 1000
+weight = 2.721
+smithing = { level = 22, xp = 50.0 }
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A full face helmet."
+kept = "Wilderness"
+
+[iron_full_helm_noted]
+id = 1154
+
+[bronze_full_helm]
+id = 1155
+price = 12
+limit = 100
+weight = 2.721
+smithing = { level = 7, xp = 25.0 }
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A full face helmet."
+kept = "Wilderness"
+
+[bronze_full_helm_noted]
+id = 1156
+
+[steel_full_helm]
+id = 1157
+price = 204
+limit = 100
+weight = 0.01
+smithing = { level = 37, xp = 75.0 }
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A steel full helm."
+kept = "Wilderness"
+
+[steel_full_helm_noted]
+id = 1158
+
+[mithril_full_helm]
+id = 1159
+price = 739
+limit = 100
+weight = 0.01
+smithing = { level = 57, xp = 100.0 }
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A mithril full helm."
+
+[mithril_full_helm_noted]
+id = 1160
+
+[adamant_full_helm]
+id = 1161
+price = 1934
+limit = 100
+weight = 0.01
+smithing = { level = 77, xp = 125.0 }
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "An adamant full helm."
+
+[adamant_full_helm_noted]
+id = 1162
+
+[rune_full_helm]
+id = 1163
+price = 21000
+limit = 100
+weight = 0.01
+smithing = { level = 92, xp = 150.0 }
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A rune full helm."
+
+[rune_full_helm_noted]
+id = 1164
+
+[black_full_helm]
+id = 1165
+price = 691
+limit = 1000
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A full face helmet."
+
+[black_full_helm_noted]
+id = 1166
+
+[wooden_shield]
+id = 1171
+price = 343
+limit = 100
+weight = 2.267
+slot = "Shield"
+material = "wood"
+examine = "A solid wooden shield."
+kept = "Wilderness"
+
+[wooden_shield_noted]
+id = 1172
+
+[bronze_sq_shield]
+id = 1173
+price = 6
+limit = 100
+weight = 3.628
+smithing = { level = 8, xp = 25.0 }
+slot = "Shield"
+material = "metal"
+examine = "A medium square shield."
+kept = "Wilderness"
+
+[bronze_sq_shield_noted]
+id = 1174
+
+[iron_sq_shield]
+id = 1175
+price = 19
+limit = 1000
+weight = 3.628
+smithing = { level = 23, xp = 50.0 }
+slot = "Shield"
+material = "metal"
+examine = "An iron square shield."
+kept = "Wilderness"
+
+[iron_sq_shield_noted]
+id = 1176
+
+[steel_sq_shield]
+id = 1177
+price = 234
+smithing = { level = 38, xp = 75.0 }
+slot = "Shield"
+material = "metal"
+examine = "A medium square shield."
+
+[steel_sq_shield_noted]
+id = 1178
+
+[black_sq_shield]
+id = 1179
+price = 559
+limit = 1000
+weight = 3.628
+slot = "Shield"
+material = "metal"
+examine = "A medium square shield."
+
+[black_sq_shield_noted]
+id = 1180
+
+[mithril_sq_shield]
+id = 1181
+price = 799
+smithing = { level = 58, xp = 100.0 }
+slot = "Shield"
+material = "metal"
+examine = "A medium square shield."
+
+[mithril_sq_shield_noted]
+id = 1182
+
+[adamant_sq_shield]
+id = 1183
+price = 2168
+smithing = { level = 78, xp = 125.0 }
+slot = "Shield"
+material = "metal"
+examine = "A medium square shield."
+
+[adamant_sq_shield_noted]
+id = 1184
+
+[rune_sq_shield]
+id = 1185
+price = 22900
+smithing = { level = 93, xp = 150.0 }
+slot = "Shield"
+material = "metal"
+examine = "A medium square shield."
+
+[rune_sq_shield_noted]
+id = 1186
+
+[dragon_sq_shield]
+id = 1187
+price = 317100
+limit = 10
+weight = 3.175
+aka = ["dsquare", "d_square", "dragon_square", "dragon_sq", "dragon_shield"]
+slot = "Shield"
+material = "metal"
+examine = "An ancient and powerful looking Dragon Square shield."
+
+[dragon_sq_shield_noted]
+id = 1188
+
+[bronze_kiteshield]
+id = 1189
+price = 11
+limit = 100
+weight = 5.443
+aka = ["bronze_kite"]
+smithing = { level = 12, xp = 37.5 }
+slot = "Shield"
+material = "metal"
+examine = "A large metal shield."
+kept = "Wilderness"
+
+[bronze_kiteshield_noted]
+id = 1190
+
+[iron_kiteshield]
+id = 1191
+price = 54
+limit = 1000
+weight = 5.443
+aka = ["iron_kite"]
+smithing = { level = 27, xp = 75.0 }
+slot = "Shield"
+material = "metal"
+examine = "A large metal shield."
+kept = "Wilderness"
+
+[iron_kiteshield_noted]
+id = 1192
+
+[steel_kiteshield]
+id = 1193
+price = 377
+limit = 100
+weight = 0.01
+aka = ["steel_kite"]
+smithing = { level = 42, xp = 112.5 }
+slot = "Shield"
+material = "metal"
+examine = "A steel kiteshield."
+kept = "Wilderness"
+
+[steel_kiteshield_noted]
+id = 1194
+
+[black_kiteshield]
+id = 1195
+price = 1155
+limit = 1000
+weight = 5.443
+aka = ["black_kite"]
+slot = "Shield"
+material = "metal"
+examine = "A large metal shield."
+
+[black_kiteshield_noted]
+id = 1196
+
+[mithril_kiteshield]
+id = 1197
+price = 1146
+limit = 100
+weight = 0.01
+aka = ["mithril_kite"]
+smithing = { level = 62, xp = 150.0 }
+slot = "Shield"
+material = "metal"
+examine = "A mithril kiteshield."
+
+[mithril_kiteshield_noted]
+id = 1198
+
+[adamant_kiteshield]
+id = 1199
+price = 3157
+limit = 100
+weight = 0.01
+aka = ["adamant_kite"]
+smithing = { level = 82, xp = 187.5 }
+slot = "Shield"
+material = "metal"
+examine = "An adamant kiteshield."
+
+[adamant_kiteshield_noted]
+id = 1200
+
+[rune_kiteshield]
+id = 1201
+price = 36900
+limit = 100
+weight = 0.01
+aka = ["rune_kite"]
+smithing = { level = 97, xp = 225.0 }
+slot = "Shield"
+material = "metal"
+examine = "A rune kiteshield."
+
+[rune_kiteshield_noted]
+id = 1202
+
+[dragon_chainbody]
+id = 3140
+price = 4900000
+limit = 10
+weight = 6.803
+slot = "Chest"
+material = "metal"
+examine = "A series of connected metal rings."
+
+[dragon_chainbody_noted]
+id = 3141
+
+[dragon_platelegs]
+id = 4087
+price = 171236
+limit = 10
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "These look pretty heavy."
+
+[dragon_platelegs_noted]
+id = 4088
+
+[bronze_boots]
+id = 4119
+price = 130
+limit = 100
+weight = 1.36
+slot = "Feet"
+material = "metal"
+examine = "These will protect my feet."
+kept = "Wilderness"
+
+[bronze_boots_noted]
+id = 4120
+
+[iron_boots]
+id = 4121
+price = 7679
+limit = 1000
+weight = 1.36
+slot = "Feet"
+material = "metal"
+examine = "These will protect my feet."
+kept = "Wilderness"
+
+[iron_boots_noted]
+id = 4122
+
+[steel_boots]
+id = 4123
+price = 141
+slot = "Feet"
+material = "metal"
+examine = "These will protect my feet."
+
+[steel_boots_noted]
+id = 4124
+
+[black_boots]
+id = 4125
+price = 257
+limit = 1000
+weight = 1.36
+slot = "Feet"
+material = "metal"
+examine = "These will protect my feet."
+kept = "Wilderness"
+
+[black_boots_noted]
+id = 4126
+
+[mithril_boots]
+id = 4127
+price = 626
+slot = "Feet"
+material = "metal"
+examine = "These will protect my feet."
+
+[mithril_boots_noted]
+id = 4128
+
+[adamant_boots]
+id = 4129
+price = 1813
+slot = "Feet"
+material = "metal"
+examine = "These will protect my feet."
+
+[adamant_boots_noted]
+id = 4130
+
+[rune_boots]
+id = 4131
+price = 11200
+slot = "Feet"
+material = "metal"
+examine = "These will protect my feet."
+
+[rune_boots_noted]
+id = 4132
+
+[dragon_plateskirt]
+id = 4585
+price = 161900
+limit = 100
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "This looks pretty heavy."
+
+[dragon_plateskirt_noted]
+id = 4586
+
+[granite_shield]
+id = 3122
+price = 34100
+limit = 10
+weight = 6.803
+slot = "Shield"
+examine = "A solid stone shield."
+
+[granite_shield_noted]
+id = 3134
+
+[granite_legs]
+id = 6809
+price = 39700
+limit = 10
+weight = 15.875
+slot = "Legs"
+examine = "These look pretty heavy."
+
+[granite_legs_noted]
+id = 6813
+
+[tyras_helm]
+id = 9629
+price = 1601
+limit = 100
+weight = 0.907
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "As used by King Tyras' personal guard."
+kept = "Wilderness"
+
+[tyras_helm_noted]
+id = 9630

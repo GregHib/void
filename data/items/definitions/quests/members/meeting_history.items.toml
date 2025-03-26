@@ -1,0 +1,177 @@
+[enchanted_key_notes]
+id = 13569
+tradeable = false
+weight = 0.005
+destroy = "Hopefully, Jorral will be able to return them."
+examine = "Notes on how to use the enchanted key."
+kept = "Wilderness"
+
+[bowl_meeting_history]
+id = 13570
+tradeable = false
+weight = 0.453
+destroy = "Hopefully, the family has another."
+examine = "Useful for mixing things."
+kept = "Vanish"
+
+[bucket_of_milk_meeting_history]
+id = 13571
+limit = 1000
+tradeable = false
+weight = 2.2
+destroy = "Hopefully, the family has another."
+examine = "Good for strong bones."
+kept = "Vanish"
+
+[clean_guam_meeting_history]
+id = 13572
+limit = 10000
+tradeable = false
+weight = 0.007
+destroy = "Hopefully, the family has another."
+examine = "A fresh herb."
+kept = "Vanish"
+
+[bowl_of_honey]
+id = 13573
+tradeable = false
+weight = 0.453
+destroy = "You'll have to start again from stratch."
+examine = "A bowlful of bees' precious product."
+kept = "Vanish"
+
+[bowl_of_milk_and_honey]
+id = 13574
+tradeable = false
+weight = 0.453
+destroy = "You'll have to start again from stratch."
+examine = "A bowlful of milk and honey."
+kept = "Vanish"
+
+[bowl_of_milk_honey_and_guam]
+id = 13575
+tradeable = false
+weight = 0.453
+destroy = "You'll have to start again from scratch."
+examine = "A bowl full of milk, honey and guam."
+kept = "Vanish"
+
+[map_of_gielinor]
+id = 13576
+tradeable = false
+weight = 0.001
+destroy = "Hopefully, the family has more papyrus and charcoal."
+examine = "Your best impression of a map of Gielinor."
+kept = "Vanish"
+
+[papyrus_meeting_history]
+id = 13577
+limit = 100
+tradeable = false
+weight = 0.02
+destroy = "Hopefully, the family has more."
+examine = "Used for making notes."
+kept = "Vanish"
+
+[charcoal_meeting_history]
+id = 13578
+limit = 100
+tradeable = false
+weight = 0.005
+destroy = "Hopefully, the family has more."
+examine = "Quite good for writing with."
+kept = "Vanish"
+
+[spade_meeting_history]
+id = 13579
+limit = 100
+tradeable = false
+weight = 1.814
+examine = "A slightly muddy spade."
+kept = "Vanish"
+
+[plant_pot_meeting_history]
+id = 13580
+limit = 100
+tradeable = false
+weight = 0.907
+examine = "An empty plant pot."
+kept = "Vanish"
+
+[pear_tree_seedling]
+id = 13581
+tradeable = false
+weight = 1.36
+examine = "A seedling has been sown in this plant pot."
+kept = "Vanish"
+
+[mango_tree_seedling]
+clone = "pear_tree_seedling"
+id = 13582
+
+[quince_tree_seedling]
+clone = "pear_tree_seedling"
+id = 13583
+
+[lemon_tree_seedling]
+clone = "pear_tree_seedling"
+id = 13584
+
+[avocado_tree_seedling]
+clone = "pear_tree_seedling"
+id = 13585
+
+[plum_tree_seedling]
+clone = "pear_tree_seedling"
+id = 13586
+
+[pestle_and_mortar_meeting_history]
+id = 13587
+limit = 1000
+tradeable = false
+weight = 0.056
+destroy = "Hopefully, the family has another."
+examine = "I can grind things in this."
+kept = "Vanish"
+
+[ground_guam_meeting_history]
+id = 13588
+limit = 100
+tradeable = false
+weight = 0.056
+destroy = "Hopefully, the family has another."
+examine = "A guam ground into paste."
+kept = "Vanish"
+
+[bucket_meeting_history]
+id = 13589
+limit = 100
+tradeable = false
+weight = 1.0
+destroy = "Hopefully, the family has another."
+examine = "It's an empty bucket."
+kept = "Vanish"
+
+[enchanted_key_meeting_history]
+id = 13591
+tradeable = false
+weight = 0.01
+destroy = "Hopefully, Jorral will be able to return it."
+examine = "It changes temperature as I walk."
+kept = "Wilderness"
+
+[a_brooch]
+id = 13592
+tradeable = false
+weight = 0.001
+destroy = "Hopefully, you can find another."
+examine = "Some ladies jewellery."
+kept = "Vanish"
+
+[old_tome]
+id = 13593
+tradeable = false
+weight = 0.453
+destroy = "You will not get another chance to read the book!"
+examine = "It's falling apart, but full of knowledge."
+kept = "Vanish"

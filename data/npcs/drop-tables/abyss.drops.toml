@@ -1,0 +1,48 @@
+[abyssal_walker_drop_table]
+type = "all"
+drops = [
+    { table = "ashes" },
+    { table = "abyssal_secondary" },
+    { table = "medium_clue_scroll" }
+]
+
+[abyssal_guardian_drop_table]
+type = "all"
+drops = [
+    { table = "ashes" },
+    { table = "abyssal_secondary" },
+    { table = "medium_clue_scroll" }
+]
+
+[abyssal_leech_drop_table]
+type = "all"
+drops = [
+    { table = "ashes" },
+    { table = "abyssal_secondary" },
+    { table = "medium_clue_scroll" }
+]
+
+[abyssal_secondary]
+roll = 256
+drops = [
+    { id = "air_talisman", chance = 5 },
+    { id = "water_talisman", chance = 5 },
+    { id = "earth_talisman", chance = 5 },
+    { id = "fire_talisman", chance = 5 },
+    { id = "mind_talisman", chance = 5 },
+    { id = "body_talisman", chance = 5 },
+    { id = "cosmic_talisman", chance = 2 },
+    { id = "chaos_talisman", chance = 2 },
+    { id = "nature_talisman", chance = 2 },
+    { id = "elemental_talisman" },
+    { id = "small_pouch", chance = 6, lacks = "small_pouch" },
+    { id = "medium_pouch", chance = 6, charges = 45, owns = "small_pouch", lacks = "medium_pouch*" },
+    { id = "large_pouch", chance = 6, charges = 29, owns = "medium_pouch*", lacks = "large_pouch*" },
+    { id = "giant_pouch", chance = 6, charges = 10, owns = "large_pouch*", lacks = "giant_pouch*" },
+    { id = "pure_essence_noted", chance = 36 },
+    { id = "pure_essence", chance = 34 },
+    { id = "pure_essence_noted", amount = 5, chance = 4 },
+    { id = "pure_essence_noted", amount = 10, chance = 4 },
+    { id = "pure_essence_noted", amount = 15, chance = 4 },
+    { id = "binding_necklace", chance = 3 }
+]

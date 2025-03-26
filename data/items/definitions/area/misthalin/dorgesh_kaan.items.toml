@@ -1,0 +1,327 @@
+[mining_helmet_lit]
+id = 5013
+limit = 100
+tradeable = false
+weight = 0.907
+slot = "Hat"
+type = "Hair"
+light_source = { once_extinguish = "mining_helmet" }
+examine = "A helmet with a lamp on it."
+kept = "Reclaim"
+
+[mining_helmet]
+id = 5014
+price = 414
+limit = 100
+weight = 0.907
+slot = "Hat"
+light_source = { once_lit = "mining_helmet_lit", level = 65 }
+examine = "A helmet with an unlit lamp on it."
+
+[mining_helmet_noted]
+id = 5015
+
+[bone_spear]
+id = 5016
+price = 386
+limit = 100
+weight = 1.36
+slot = "Weapon"
+examine = "Basic but brutal!"
+
+[bone_spear_noted]
+id = 5017
+
+[bone_club]
+id = 5018
+price = 286
+limit = 100
+weight = 0.907
+slot = "Weapon"
+examine = "Basic but brutal!"
+
+[bone_club_noted]
+id = 5019
+
+[bone_dagger]
+id = 8872
+price = 2662
+limit = 100
+weight = 0.453
+special_energy = 750
+special = "backstab"
+slot = "Weapon"
+examine = "A powerful dagger."
+
+[bone_dagger_noted]
+id = 8873
+
+[bone_dagger_p]
+id = 8874
+limit = 100
+weight = 0.453
+special_energy = 750
+slot = "Weapon"
+examine = "A powerful dagger."
+
+[bone_dagger_p_noted]
+id = 8875
+
+[bone_dagger_p+]
+id = 8876
+limit = 100
+weight = 0.453
+special_energy = 750
+slot = "Weapon"
+examine = "A powerful dagger."
+
+[bone_dagger_p+_noted]
+id = 8877
+
+[bone_dagger_p++]
+id = 8878
+limit = 100
+weight = 0.453
+special_energy = 750
+slot = "Weapon"
+examine = "A powerful dagger."
+
+[bone_dagger_p++_noted]
+id = 8879
+
+[dorgeshuun_crossbow]
+id = 8880
+price = 2382
+limit = 100
+weight = 2.267
+attack_range = 6
+slot = "Weapon"
+special_energy = 750
+special = "snipe"
+aka = ["dorg_cb", "dorg_cbow", "dorg_crossbow"]
+examine = "This fires crossbow bolts."
+
+[dorgeshuun_crossbow_noted]
+id = 8881
+
+[bone_bolts]
+id = 8882
+price = 13
+limit = 10000
+slot = "Ammo"
+examine = "Good if you have a bone crossbow!"
+
+[frog_leather_body]
+id = 10954
+price = 3293
+limit = 100
+weight = 5.0
+slot = "Chest"
+material = "leather"
+type = "Sleeveless"
+examine = "Armour made out of frog hide."
+
+[frog_leather_body_noted]
+id = 10955
+
+[frog_leather_chaps]
+id = 10956
+price = 419
+limit = 100
+weight = 3.0
+slot = "Legs"
+material = "leather"
+examine = "Chaps made out of frog hide."
+
+[frog_leather_chaps_noted]
+id = 10957
+
+[frog_leather_boots]
+id = 10958
+price = 1385
+limit = 100
+weight = 1.0
+slot = "Feet"
+material = "leather"
+examine = "Boots made out of frog hide."
+
+[frog_leather_boots_noted]
+id = 10959
+
+[green_gloop_soup]
+id = 10960
+heals = 20
+tradeable = false
+weight = 0.001
+examine = "Thick and tasty soup."
+kept = "Reclaim"
+
+[frogspawn_gumbo]
+id = 10961
+heals = 20
+tradeable = false
+weight = 0.001
+examine = "A big bowl of frogspawn gumbo."
+kept = "Reclaim"
+
+[frogburger]
+id = 10962
+heals = 20
+tradeable = false
+weight = 0.001
+examine = "A juicy frogburger."
+kept = "Reclaim"
+
+[coated_frogs_legs]
+id = 10963
+heals = 20
+tradeable = false
+weight = 0.001
+examine = "Nice and crunchy."
+kept = "Reclaim"
+
+[bat_shish]
+id = 10964
+heals = 20
+tradeable = false
+weight = 0.001
+examine = "Bat shish kebab."
+kept = "Reclaim"
+
+[fingers]
+id = 10965
+heals = 20
+tradeable = false
+weight = 0.001
+examine = "Wall beast fingers in a white fern sauce."
+kept = "Reclaim"
+
+[grubs_a_la_mode]
+id = 10966
+heals = 20
+tradeable = false
+weight = 0.001
+examine = "Juicy, tasty grubs."
+kept = "Reclaim"
+
+[roast_frog]
+id = 10967
+heals = 20
+tradeable = false
+weight = 0.001
+examine = "A whole roasted frog."
+kept = "Reclaim"
+
+[mushrooms]
+id = 10968
+heals = 20
+tradeable = false
+weight = 0.001
+examine = "Tasty sautéed mushrooms."
+kept = "Reclaim"
+
+[fillets]
+id = 10969
+heals = 20
+tradeable = false
+weight = 0.001
+examine = "Chunky cave-crawler fillets."
+kept = "Reclaim"
+
+[loach]
+id = 10970
+heals = 30
+tradeable = false
+weight = 0.001
+aka = ["goblin_fish"]
+examine = "Steamed cave pond loach."
+kept = "Reclaim"
+
+[eel_sushi]
+id = 10971
+heals = 10
+tradeable = false
+weight = 0.001
+examine = "Cave-eel sushi."
+kept = "Reclaim"
+
+[dorgesh_kaan_sphere]
+id = 10972
+tradeable = false
+examine = "Oldak's Marvellous Moving-Over-Distance Sphere."
+kept = "Reclaim"
+
+[light_orb]
+id = 10973
+price = 98
+limit = 1000
+weight = 0.001
+examine = "A component of cave goblin Magic."
+
+[light_orb_noted]
+id = 10974
+
+[spanner]
+id = 10975
+tradeable = false
+weight = 1.0
+examine = "A goblin wrench."
+kept = "Reclaim"
+
+[long_bone]
+id = 10976
+tradeable = false
+weight = 1.0
+prayer_xp = 15.0
+examine = "A Construction bone."
+kept = "Reclaim"
+
+[curved_bone]
+id = 10977
+tradeable = false
+weight = 1.0
+prayer_xp = 15.0
+examine = "A curved Construction bone."
+kept = "Reclaim"
+
+[swamp_weed]
+id = 10978
+price = 270
+limit = 500
+weight = 0.2
+fishing = { level = 33, xp = 1.0, chance = "10-10" }
+examine = "Swamp weed found in the caves near Dorgesh-Kaan."
+
+[swamp_weed_noted]
+id = 10979
+
+[empty_light_orb]
+id = 10980
+tradeable = false
+weight = 0.001
+examine = "Add a wire to complete it."
+kept = "Reclaim"
+
+[cave_goblin_wire]
+id = 10981
+price = 651
+limit = 1000
+weight = 1.0
+examine = "Wire found in Dorgesh-Kaan."
+
+[cave_goblin_wire_noted]
+id = 10982
+
+[perfect_shell]
+id = 10995
+tradeable = false
+weight = 6.803
+examine = "A perfect example of a tortoise shell."
+kept = "Reclaim"
+
+[perfect_snail_shell]
+id = 10996
+tradeable = false
+weight = 7.0
+examine = "A perfect example of a snail shell."
+kept = "Reclaim"

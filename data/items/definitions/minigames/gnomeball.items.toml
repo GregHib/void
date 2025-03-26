@@ -1,0 +1,9 @@
+
+[gnomeball]
+id = 751
+weight = 0.5
+slot = "Weapon"
+examine = "A common gnomeball, obtained by playing gnomeball."
+
+[gnomeball_noted]
+id = 752

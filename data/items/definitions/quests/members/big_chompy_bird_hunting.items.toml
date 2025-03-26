@@ -1,0 +1,311 @@
+[wolf_bones]
+id = 2859
+price = 334
+limit = 1000
+weight = 0.5
+prayer_xp = 4.5
+examine = "Bones of a recently slain wolf."
+
+[wolf_bones_noted]
+id = 2860
+
+[wolfbone_arrowtips]
+id = 2861
+price = 12
+limit = 1000
+examine = "I can make an ogre arrow with these."
+
+[achey_tree_logs]
+id = 2862
+price = 116
+limit = 1000
+weight = 1.36
+firemaking = { level = 1, xp = 40.0, life = 60 }
+examine = "These logs are longer than normal."
+
+[achey_tree_logs_noted]
+id = 2863
+
+[ogre_arrow_shaft]
+id = 2864
+price = 38
+limit = 1000
+examine = "A wooden arrow shaft."
+
+[flighted_ogre_arrow]
+id = 2865
+price = 136
+limit = 1000
+examine = "A wooden arrow shaft with four flights attached."
+
+[ogre_arrow]
+id = 2866
+price = 192
+limit = 1000
+slot = "Ammo"
+examine = "A large ogre arrow with a bone tip."
+
+[ogre_bellows]
+id = 2871
+examine = "A large pair of ogre bellows."
+weight = 0.51
+
+[ogre_bellows_3]
+id = 2872
+examine = "A large pair of ogre bellows, it has three loads of swamp gas in it."
+weight = 0.51
+
+[ogre_bellows_2]
+id = 2873
+examine = "A large pair of ogre bellows, it has two loads of swamp gas in it."
+weight = 0.51
+
+[ogre_bellows_1]
+id = 2874
+examine = "A large pair of ogre bellows, it has one load of swamp gas in it."
+weight = 0.51
+
+[bloated_toad]
+id = 2875
+tradeable = false
+weight = 0.75
+destroy = "Release"
+examine = "An inflated toad."
+kept = "Vanish"
+
+[raw_chompy]
+id = 2876
+price = 1008
+limit = 10000
+weight = 10.0
+examine = "I need to cook this first."
+
+[raw_chompy_noted]
+id = 2877
+
+[cooked_chompy]
+id = 2878
+price = 148
+limit = 1000
+heals = 100
+weight = 10.0
+examine = "It might look delicious to an ogre."
+
+[cooked_chompy_noted]
+id = 2879
+
+[ruined_chompy]
+id = 2880
+examine = "It's really burnt."
+
+[ruined_chompy_noted]
+id = 2881
+
+[seasoned_chompy]
+id = 2882
+tradeable = false
+weight = 10.0
+examine = "It has been deliciously seasoned to taste wonderful for ogres."
+kept = "Reclaim"
+
+[ogre_bow]
+id = 2883
+tradeable = false
+weight = 1.814
+slot = "Weapon"
+type = "TwoHanded"
+attack_range = 10
+examine = "More powerful than a normal bow, useful against large game birds."
+kept = "Reclaim"
+
+[ogre_bowman_hat]
+id = 2978
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[bowman_hat]
+id = 2979
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[ogre_yeoman_hat]
+id = 2980
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[yeoman_hat]
+id = 2981
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[ogre_marksman_hat]
+id = 2982
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[marksman_hat]
+id = 2983
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[ogre_woodsman_hat]
+id = 2984
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[woodsman_hat]
+id = 2985
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[ogre_forester_hat]
+id = 2986
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[forester_hat]
+id = 2987
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[ogre_bowmaster_hat]
+id = 2988
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[bowmaster_hat]
+id = 2989
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[ogre_expert_hat]
+id = 2990
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[expert_hat]
+id = 2991
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[ogre_dragon_archer_hat]
+id = 2992
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[dragon_archer_hat]
+id = 2993
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[expert_ogre_dragon_archer_hat]
+id = 2994
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[expert_dragon_archer_hat]
+id = 2995
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A symbol of your chompy bird hunting prowess."
+kept = "Reclaim"
+
+[iron_spit]
+id = 7225
+price = 13
+limit = 100
+weight = 1.5
+smithing = { level = 17, xp = 25.0 }
+examine = "An easily-smithed iron spit."
+kept = "Wilderness"
+
+[burnt_chompy] # Unreleased
+id = 7226
+examine = "Overly crispy chompy."
+
+[burnt_chompy_noted]
+id = 7227
+
+[cooked_chompy_roasted] # Unreleased
+id = 7228
+limit = 1000
+weight = 10.0
+examine = "Roasted chompy bird."
+
+[cooked_chompy_roasted_noted]
+id = 7229
+
+[skewered_chompy]
+id = 7230
+price = 283
+limit = 1000
+weight = 2.5
+cooking = { level = 30, xp = 100.0, chances = { fire = "200-255" }, type = "roast", cooked = "cooked_chompy", burnt = "burnt_chompy" }
+examine = "A skewered chompy bird."
+
+[burnt_rabbit_noted]
+id = 7231
+
+[roast_rabbit_noted]
+id = 7232
+
+[skewered_rabbit_noted]
+id = 7233
+
+[iron_spit_noted]
+id = 7234
+
+[skewered_chompy_noted]
+id = 7235

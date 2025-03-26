@@ -1,0 +1,113 @@
+[safety_guarantee]
+id = 4484
+tradeable = false
+weight = 0.3
+examine = "The strange characters supposedly grant Svidi safe passage into Rellekka."
+kept = "Wilderness"
+
+[white_pearl]
+id = 4485
+heals = 20
+excess = "white_pearl_seed"
+eat_message = "You eat the White Pearl and spit out the seed when you're done. Mmm, tasty."
+tradeable = false
+weight = 0.75
+examine = "This fruit is known as White Pearl. Should taste good."
+kept = "Wilderness"
+
+[white_pearl_seed]
+id = 4486
+tradeable = false
+weight = 0.025
+examine = "You can grow this seed even in cold mountain ranges!"
+kept = "Wilderness"
+
+[half_a_rock]
+id = 4487
+tradeable = false
+weight = 1.25
+examine = "It's a piece of the Ancient Rock of the mountain people. It's still just a stone."
+kept = "Wilderness"
+
+[corpse_of_woman]
+id = 4488
+tradeable = false
+weight = 1.0
+examine = "The corpse of a woman who died long ago."
+kept = "Wilderness"
+
+[asleifs_necklace]
+id = 4489
+tradeable = false
+weight = 0.1
+examine = "This used to belong to Asleif, daughter of the mountain camp chieftain."
+kept = "Wilderness"
+
+[mud_mountain_daughter]
+id = 4490
+tradeable = false
+weight = 0.03
+examine = "Yuck, it's sticky, dirty mud."
+kept = "Wilderness"
+
+[muddy_rock]
+id = 4492
+tradeable = false
+weight = 1.0
+examine = "A muddy rock."
+kept = "Wilderness"
+
+[pole]
+id = 4494
+tradeable = false
+weight = 0.01
+examine = "It's just a long stick, really."
+kept = "Wilderness"
+
+[pole_2]
+clone = "pole"
+id = 4495
+
+[broken_pole]
+id = 4496
+tradeable = false
+weight = 0.01
+examine = "Splintered into pieces, it has become completely useless to you."
+kept = "Reclaim"
+
+[rope_2]
+id = 4498
+limit = 100
+weight = 1.36
+slot = "Weapon"
+examine = "A coil of rope."
+kept = "Wilderness"
+
+[rope_2_noted]
+id = 4499
+
+[pole_3]
+id = 4500
+tradeable = false
+weight = 0.01
+slot = "Weapon"
+examine = "It's just a long stick, really."
+kept = "Wilderness"
+
+[pole_4]
+id = 4501
+tradeable = false
+weight = 0.01
+slot = "Weapon"
+examine = "It's just a long stick, really."
+kept = "Wilderness"
+
+[bearhead]
+id = 4502
+tradeable = false
+weight = 0.453
+slot = "Hat"
+type = "Hair"
+destroy = "Hamal, the Chieftain of the Mountain Camp, can replace this. You can also reclaim it from the quest storage chest."
+examine = "Quite ferocious looking."
+kept = "Vanish"

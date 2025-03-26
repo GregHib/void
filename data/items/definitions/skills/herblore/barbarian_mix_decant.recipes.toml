@@ -1,0 +1,287 @@
+[attack_mix_combine]
+remove = ["attack_mix_1", "attack_mix_1"]
+add = ["attack_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[attack_mix_split]
+remove = ["attack_mix_2", "vial"]
+add = ["attack_mix_1", "attack_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[antipoison_mix_combine]
+remove = ["antipoison_mix_1", "antipoison_mix_1"]
+add = ["antipoison_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[antipoison_mix_split]
+remove = ["antipoison_mix_2", "vial"]
+add = ["antipoison_mix_1", "antipoison_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[relicyms_mix_combine]
+remove = ["relicyms_mix_1", "relicyms_mix_1"]
+add = ["relicyms_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[relicyms_mix_split]
+remove = ["relicyms_mix_2", "vial"]
+add = ["relicyms_mix_1", "relicyms_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[strength_mix_combine]
+remove = ["strength_mix_1", "strength_mix_1"]
+add = ["strength_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[strength_mix_split]
+remove = ["strength_mix_2", "vial"]
+add = ["strength_mix_1", "strength_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[combat_mix_combine]
+remove = ["combat_mix_1", "combat_mix_1"]
+add = ["combat_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[combat_mix_split]
+remove = ["combat_mix_2", "vial"]
+add = ["combat_mix_1", "combat_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[restore_mix_combine]
+remove = ["restore_mix_1", "restore_mix_1"]
+add = ["restore_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[restore_mix_split]
+remove = ["restore_mix_2", "vial"]
+add = ["restore_mix_1", "restore_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[energy_mix_combine]
+remove = ["energy_mix_1", "energy_mix_1"]
+add = ["energy_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[energy_mix_split]
+remove = ["energy_mix_2", "vial"]
+add = ["energy_mix_1", "energy_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[defence_mix_combine]
+remove = ["defence_mix_1", "defence_mix_1"]
+add = ["defence_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[defence_mix_split]
+remove = ["defence_mix_2", "vial"]
+add = ["defence_mix_1", "defence_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[agility_mix_combine]
+remove = ["agility_mix_1", "agility_mix_1"]
+add = ["agility_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[agility_mix_split]
+remove = ["agility_mix_2", "vial"]
+add = ["agility_mix_1", "agility_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[prayer_mix_combine]
+remove = ["prayer_mix_1", "prayer_mix_1"]
+add = ["prayer_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[prayer_mix_split]
+remove = ["prayer_mix_2", "vial"]
+add = ["prayer_mix_1", "prayer_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[super_attack_mix_combine]
+remove = ["super_attack_mix_1", "super_attack_mix_1"]
+add = ["super_attack_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[super_attack_mix_split]
+remove = ["super_attack_mix_2", "vial"]
+add = ["super_attack_mix_1", "super_attack_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[super_antipoison_mix_combine]
+remove = ["super_antipoison_mix_1", "super_antipoison_mix_1"]
+add = ["super_antipoison_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[super_antipoison_mix_split]
+remove = ["super_antipoison_mix_2", "vial"]
+add = ["super_antipoison_mix_1", "super_antipoison_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[fishing_mix_combine]
+remove = ["fishing_mix_1", "fishing_mix_1"]
+add = ["fishing_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[fishing_mix_split]
+remove = ["fishing_mix_2", "vial"]
+add = ["fishing_mix_1", "fishing_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[super_energy_mix_combine]
+remove = ["super_energy_mix_1", "super_energy_mix_1"]
+add = ["super_energy_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[super_energy_mix_split]
+remove = ["super_energy_mix_2", "vial"]
+add = ["super_energy_mix_1", "super_energy_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[super_strength_mix_combine]
+remove = ["super_strength_mix_1", "super_strength_mix_1"]
+add = ["super_strength_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[super_strength_mix_split]
+remove = ["super_strength_mix_2", "vial"]
+add = ["super_strength_mix_1", "super_strength_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[magic_essence_mix_combine]
+remove = ["magic_essence_mix_1", "magic_essence_mix_1"]
+add = ["magic_essence_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[magic_essence_mix_split]
+remove = ["magic_essence_mix_2", "vial"]
+add = ["magic_essence_mix_1", "magic_essence_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[super_restore_mix_combine]
+remove = ["super_restore_mix_1", "super_restore_mix_1"]
+add = ["super_restore_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[super_restore_mix_split]
+remove = ["super_restore_mix_2", "vial"]
+add = ["super_restore_mix_1", "super_restore_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[super_defence_mix_combine]
+remove = ["super_defence_mix_1", "super_defence_mix_1"]
+add = ["super_defence_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[super_defence_mix_split]
+remove = ["super_defence_mix_2", "vial"]
+add = ["super_defence_mix_1", "super_defence_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+["antipoison+_mix_combine"]
+remove = ["antipoison+_mix_1", "antipoison+_mix_1"]
+add = ["antipoison+_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+["antipoison+_mix_split"]
+remove = ["antipoison+_mix_2", "vial"]
+add = ["antipoison+_mix_1", "antipoison+_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[antifire_mix_combine]
+remove = ["antifire_mix_1", "antifire_mix_1"]
+add = ["antifire_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[antifire_mix_split]
+remove = ["antifire_mix_2", "vial"]
+add = ["antifire_mix_1", "antifire_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[super_ranging_mix_combine]
+remove = ["super_ranging_mix_1", "super_ranging_mix_1"]
+add = ["super_ranging_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[super_ranging_mix_split]
+remove = ["super_ranging_mix_2", "vial"]
+add = ["super_ranging_mix_1", "super_ranging_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[super_magic_mix_combine]
+remove = ["super_magic_mix_1", "super_magic_mix_1"]
+add = ["super_magic_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[super_magic_mix_split]
+remove = ["super_magic_mix_2", "vial"]
+add = ["super_magic_mix_1", "super_magic_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[hunting_mix_combine]
+remove = ["hunting_mix_1", "hunting_mix_1"]
+add = ["hunting_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[hunting_mix_split]
+remove = ["hunting_mix_2", "vial"]
+add = ["hunting_mix_1", "hunting_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[zamorak_mix_combine]
+remove = ["zamorak_mix_1", "zamorak_mix_1"]
+add = ["zamorak_mix_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[zamorak_mix_split]
+remove = ["zamorak_mix_2", "vial"]
+add = ["zamorak_mix_1", "zamorak_mix_1"]
+ticks = 1
+message = "You split the potion between the two vials."

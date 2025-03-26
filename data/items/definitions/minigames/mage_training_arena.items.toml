@@ -1,0 +1,416 @@
+[peach]
+id = 6883
+heals = 80
+tradeable = false
+weight = 0.01
+examine = "A tasty fruit."
+kept = "Reclaim"
+
+[progress_hat]
+id = 6885
+slot = "Hat"
+destroy = "Yes"
+examine = "A magic training arena progress hat"
+
+[progress_hat_2]
+id = 6886
+slot = "Hat"
+destroy = "Yes"
+examine = "A magic training arena progress hat"
+
+[progress_hat_3]
+id = 6887
+slot = "Hat"
+destroy = "Yes"
+examine = "A magic training arena progress hat"
+
+[guardian_statue]
+id = 6888
+tradeable = false
+weight = 5.0
+examine = "The statue looks like he can be moved."
+kept = "Vanish"
+
+[mages_book]
+id = 6889
+price = 2731033
+limit = 10
+weight = 1.0
+slot = "Shield"
+examine = "The magical book of the Mage."
+
+[mages_book_noted]
+id = 6890
+
+[arena_book]
+id = 6891
+tradeable = false
+weight = 1.0
+aka = ["magic_training_arena_lore_book"]
+examine = "A book about the Training Arena."
+kept = "Reclaim"
+
+[leather_boots_mage_training_arena]
+id = 6893
+limit = 5000
+tradeable = false
+weight = 0.34
+examine = "Comfortable leather boots."
+kept = "Always"
+
+[adamant_kiteshield_mage_training_arena]
+id = 6894
+limit = 100
+tradeable = false
+weight = 5.896
+examine = "A large metal shield."
+kept = "Always"
+
+[adamant_helm_mage_training_arena]
+id = 6895
+tradeable = false
+weight = 2.267
+examine = "A medium sized helmet."
+kept = "Always"
+
+[emerald_mage_training_arena]
+id = 6896
+limit = 5000
+tradeable = false
+weight = 0.002
+examine = "This looks valuable."
+kept = "Always"
+
+[rune_longsword_mage_training_arena]
+id = 6897
+limit = 100
+tradeable = false
+weight = 1.814
+material = "metal"
+examine = "A razor sharp longsword."
+kept = "Always"
+
+[cylinder]
+id = 6898
+tradeable = false
+weight = 0.001
+examine = "A green cylinder."
+kept = "Always"
+
+[cube]
+id = 6899
+tradeable = false
+weight = 0.001
+examine = "A yellow cube."
+kept = "Always"
+
+[icosahedron]
+id = 6900
+tradeable = false
+weight = 0.001
+examine = "A blue icosahedron."
+kept = "Always"
+
+[pentamid]
+id = 6901
+tradeable = false
+weight = 0.001
+examine = "A red pentamid."
+kept = "Always"
+
+[orb]
+id = 6902
+tradeable = false
+weight = 0.001
+examine = "A white sphere."
+kept = "Always"
+
+[dragonstone_mage_training_arena]
+clone = "emerald_mage_training_arena"
+id = 6903
+
+[animals_bones_1]
+id = 6904
+tradeable = false
+weight = 0.001
+examine = "Various animals' bones."
+kept = "Always"
+
+[animals_bones_2]
+clone = "animals_bones_1"
+id = 6905
+
+[animals_bones_3]
+clone = "animals_bones_1"
+id = 6906
+
+[animals_bones_4]
+clone = "animals_bones_1"
+id = 6907
+
+[beginner_wand]
+id = 6908
+price = 12700
+limit = 10
+weight = 0.283
+slot = "Weapon"
+examine = "A beginner level wand."
+
+[beginner_wand_noted]
+id = 6909
+
+[apprentice_wand]
+id = 6910
+price = 113800
+limit = 10
+weight = 0.255
+slot = "Weapon"
+examine = "An apprentice level wand."
+
+[apprentice_wand_noted]
+id = 6911
+
+[teacher_wand]
+id = 6912
+price = 1500000
+limit = 10
+weight = 0.226
+slot = "Weapon"
+examine = "A teacher level wand."
+
+[teacher_wand_noted]
+id = 6913
+
+[master_wand]
+id = 6914
+price = 3100000
+limit = 10
+weight = 0.198
+slot = "Weapon"
+examine = "A master level wand."
+
+[master_wand_noted]
+id = 6915
+
+[infinity_top]
+id = 6916
+price = 2600000
+limit = 10
+weight = 2.267
+slot = "Chest"
+examine = "Mystical robes."
+
+[infinity_top_noted]
+id = 6917
+
+[infinity_hat]
+id = 6918
+price = 1800000
+limit = 10
+weight = 0.453
+slot = "Hat"
+examine = "A mystic hat."
+
+[infinity_hat_noted]
+id = 6919
+
+[infinity_boots]
+id = 6920
+price = 680000
+limit = 10
+weight = 0.453
+slot = "Feet"
+examine = "Mystical boots."
+
+[infinity_boots_noted]
+id = 6921
+
+[infinity_gloves]
+id = 6922
+price = 1100000
+limit = 10
+weight = 0.453
+slot = "Hands"
+examine = "Mystical gloves."
+
+[infinity_gloves_noted]
+id = 6923
+
+[infinity_bottoms]
+id = 6924
+price = 2400000
+limit = 10
+weight = 1.814
+slot = "Legs"
+examine = "Mystical robes."
+
+[infinity_bottoms_noted]
+id = 6925
+
+[bones_to_peaches_spell]
+id = 6926
+
+[coins_mage_training_arena]
+id = 8890
+tradeable = false
+examine = "Lovely money!"
+kept = "Always"
+
+[combination_runes_book]
+id = 15475
+tradeable = false
+weight = 0.51
+examine = "An introduction to combination runes."
+kept = "Reclaim"
+
+[infinity_top_air]
+id = 15600
+tradeable = false
+weight = 2.267
+slot = "Chest"
+examine = "Mystical air robes."
+kept = "Reclaim"
+
+[infinity_hat_air]
+id = 15602
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A mystical air hat."
+kept = "Reclaim"
+
+[infinity_bottoms_air]
+id = 15604
+tradeable = false
+weight = 1.814
+slot = "Legs"
+examine = "Mystical air robes."
+kept = "Reclaim"
+
+[infinity_top_water]
+id = 15606
+tradeable = false
+weight = 2.267
+slot = "Chest"
+examine = "Mystical water robes."
+kept = "Reclaim"
+
+[infinity_hat_water]
+id = 15608
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A mystical water hat."
+kept = "Reclaim"
+
+[infinity_bottoms_water]
+id = 15610
+tradeable = false
+weight = 1.814
+slot = "Legs"
+examine = "Mystical water robes."
+kept = "Reclaim"
+
+[infinity_top_fire]
+id = 15612
+tradeable = false
+weight = 2.267
+slot = "Chest"
+examine = "Mystical fire robes."
+kept = "Reclaim"
+
+[infinity_hat_fire]
+id = 15614
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A mystical fire hat."
+kept = "Reclaim"
+
+[infinity_bottoms_fire]
+id = 15616
+tradeable = false
+weight = 1.814
+slot = "Legs"
+examine = "Mystical fire robes."
+kept = "Reclaim"
+
+[infinity_top_earth]
+id = 15618
+tradeable = false
+weight = 2.267
+slot = "Chest"
+examine = "Mystical earth robes."
+kept = "Reclaim"
+
+[infinity_hat_earth]
+id = 15620
+tradeable = false
+weight = 0.453
+slot = "Hat"
+examine = "A mystical earth hat."
+kept = "Reclaim"
+
+[infinity_bottoms_earth]
+id = 15622
+tradeable = false
+weight = 1.814
+slot = "Legs"
+examine = "Mystical earth robes."
+kept = "Reclaim"
+
+[rune_guardian_2]
+clone = "rune_guardian"
+id = 15626
+
+[rune_guardian_3]
+clone = "rune_guardian"
+id = 15627
+
+[rune_guardian_4]
+clone = "rune_guardian"
+id = 15628
+
+[rune_guardian_5]
+clone = "rune_guardian"
+id = 15629
+
+[rune_guardian_6]
+clone = "rune_guardian"
+id = 15630
+
+[rune_guardian_7]
+clone = "rune_guardian"
+id = 15631
+
+[rune_guardian_8]
+clone = "rune_guardian"
+id = 15632
+
+[rune_guardian_9]
+clone = "rune_guardian"
+id = 15633
+
+[rune_guardian_10]
+clone = "rune_guardian"
+id = 15634
+
+[rune_guardian_11]
+clone = "rune_guardian"
+id = 15635
+
+[rune_guardian_12]
+clone = "rune_guardian"
+id = 15636
+
+[rune_guardian_13]
+clone = "rune_guardian"
+id = 15637
+
+[rune_guardian_14]
+clone = "rune_guardian"
+id = 15638
+
+[rune_guardian_15]
+clone = "rune_guardian"
+id = 15639

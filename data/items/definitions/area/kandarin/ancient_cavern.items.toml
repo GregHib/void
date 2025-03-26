@@ -1,0 +1,284 @@
+[dragonfire_shield_charged]
+id = 11283
+limit = 10
+tradeable = false
+bank_stacks = false
+aka = ["dragonfire_shield", "dfs", "dragon_fire_shield"]
+charges = 0
+degrade = "dragonfire_shield_uncharged"
+slot = "Shield"
+material = "metal"
+examine = "A heavy shield with a snarling, draconic visage."
+weight = 7.257
+
+[dragonfire_shield_uncharged]
+id = 11284
+price = 10200000
+limit = 10
+slot = "Shield"
+material = "metal"
+examine = "A heavy shield with a snarling, draconic visage."
+weight = 7.257
+
+[dragonfire_shield_uncharged_noted]
+id = 11285
+
+[draconic_visage]
+id = 11286
+price = 10900000
+limit = 10
+weight = 1.814
+examine = "It looks like this could be attached to a shield somehow."
+
+[draconic_visage_noted]
+id = 11287
+
+[dragon_full_helm]
+id = 11335
+price = 48171291
+limit = 10
+weight = 2.0
+aka = ["dfh", "dragon_fullhelm"]
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "Protects your head and looks impressive too."
+
+[dragon_full_helm_noted]
+id = 11336
+
+[ancient_page_1]
+id = 11341
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "This seems to have been torn from a book..."
+kept = "Vanish"
+
+[ancient_page_2]
+id = 11342
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "This seems to have been torn from a tome..."
+kept = "Vanish"
+
+[ancient_page_3]
+id = 11343
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "This seems to have been ripped from a diary..."
+kept = "Vanish"
+
+[ancient_page_4]
+id = 11344
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "Was this once a shopping list?"
+kept = "Vanish"
+
+[ancient_page_5]
+id = 11345
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "A tatty scrap of vellum."
+kept = "Vanish"
+
+[ancient_page_6]
+id = 11346
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "A historic document or just junk?"
+kept = "Vanish"
+
+[ancient_page_7]
+id = 11347
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "An incomplete record."
+kept = "Vanish"
+
+[ancient_page_8]
+id = 11348
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "Vital or useless?"
+kept = "Vanish"
+
+[ancient_page_9]
+id = 11349
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "Some information."
+kept = "Vanish"
+
+[ancient_page_10]
+id = 11350
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "Written hastily."
+kept = "Vanish"
+
+[ancient_page_11]
+id = 11351
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "Fragile parchment."
+kept = "Vanish"
+
+[ancient_page_12]
+id = 11352
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "Neatly noted."
+kept = "Vanish"
+
+[ancient_page_13]
+id = 11353
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "Hastily scrawled."
+kept = "Vanish"
+
+[ancient_page_14]
+id = 11354
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "The writer needed spelling lessons."
+kept = "Vanish"
+
+[ancient_page_15]
+id = 11355
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "I wonder who dropped this."
+kept = "Vanish"
+
+[ancient_page_16]
+id = 11356
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "It may have had an important seal once."
+kept = "Vanish"
+
+[ancient_page_17]
+id = 11357
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "Part of someone's homework?"
+kept = "Vanish"
+
+[ancient_page_18]
+id = 11358
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "Damp and close to disintegration."
+kept = "Vanish"
+
+[ancient_page_19]
+id = 11359
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "It looks pretty old."
+kept = "Vanish"
+
+[ancient_page_20]
+id = 11360
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "Lucky they used waterproof ink."
+kept = "Vanish"
+
+[ancient_page_21]
+id = 11361
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "Could a dragon have written this?"
+kept = "Vanish"
+
+[ancient_page_22]
+id = 11362
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "Tatty."
+kept = "Vanish"
+
+[ancient_page_23]
+id = 11363
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "Has both sorts of watermark."
+kept = "Vanish"
+
+[ancient_page_24]
+id = 11364
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "Smells disgusting."
+kept = "Vanish"
+
+[ancient_page_25]
+id = 11365
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "Tiny writing."
+kept = "Vanish"
+
+[ancient_page_26]
+id = 11366
+tradeable = false
+weight = 0.003
+destroy = "I can loot another from the caverns beneath the Baxtorian Lake."
+examine = "The paper glows with some odd mould."
+kept = "Vanish"
+
+[ferocious_ring_5]
+id = 15398
+slot = "Ring"
+examine = "It looks in pretty good condition."
+weight = 0.004
+
+[ferocious_ring_4]
+clone = "ferocious_ring_5"
+id = 15399
+
+[ferocious_ring_3]
+id = 15400
+slot = "Ring"
+examine = "It looks quite worn."
+weight = 0.004
+
+[ferocious_ring_2]
+id = 15401
+slot = "Ring"
+examine = "It looks pretty worn."
+weight = 0.004
+
+[ferocious_ring_1]
+id = 15402
+slot = "Ring"
+examine = "It looks like it's going to break soon."
+weight = 0.004

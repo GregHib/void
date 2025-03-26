@@ -1,0 +1,152 @@
+[book_on_baxtorian]
+id = 292
+tradeable = false
+weight = 0.51
+examine = "A book on elven history in northern Gielinor."
+kept = "Wilderness"
+
+[a_key]
+id = 293
+tradeable = false
+weight = 0.01
+examine = "This will unlock something."
+kept = "Wilderness"
+
+[glarials_pebble]
+id = 294
+tradeable = false
+weight = 0.01
+examine = "A small pebble with elven inscription."
+kept = "Wilderness"
+
+[glarials_amulet]
+id = 295
+tradeable = false
+weight = 0.01
+slot = "Amulet"
+examine = "A bright green gem set in a necklace."
+kept = "Wilderness"
+
+[glarials_urn]
+id = 296
+tradeable = false
+weight = 0.141
+examine = "An urn containing Glarial's ashes."
+kept = "Wilderness"
+
+[glarials_urn_empty]
+id = 297
+tradeable = false
+weight = 0.085
+examine = "An empty urn made for Glarial's ashes."
+kept = "Wilderness"
+
+[a_key_waterfall_dungeon]
+clone = "a_key"
+id = 298
+
+[mithril_seeds]
+id = 299
+price = 454
+limit = 5000
+examine = "Magical seeds in a mithril case."
+kept = "Wilderness"
+
+[flowers_pastel]
+id = 2460
+price = 860
+limit = 1000
+weight = 0.028
+slot = "Weapon"
+examine = "A posy of blue and purple flowers."
+
+[flowers_pastel_noted]
+id = 2461
+
+[red_flowers]
+id = 2462
+price = 1054
+limit = 1000
+weight = 0.028
+slot = "Weapon"
+examine = "A posy of red flowers."
+
+[red_flowers_noted]
+id = 2463
+
+[blue_flowers]
+id = 2464
+price = 885
+limit = 1000
+weight = 0.028
+slot = "Weapon"
+examine = "A posy of blue flowers."
+
+[blue_flowers_noted]
+id = 2465
+
+[yellow_flowers]
+id = 2466
+price = 788
+limit = 1000
+weight = 0.028
+slot = "Weapon"
+examine = "A posy of yellow flowers."
+
+[yellow_flowers_noted]
+id = 2467
+
+[purple_flowers]
+id = 2468
+price = 834
+limit = 1000
+weight = 0.028
+slot = "Weapon"
+examine = "A posy of purple flowers."
+
+[purple_flowers_noted]
+id = 2469
+
+[orange_flowers]
+id = 2470
+price = 800
+limit = 1000
+weight = 0.028
+slot = "Weapon"
+examine = "A posy of orange flowers."
+
+[orange_flowers_noted]
+id = 2471
+
+[flowers_mixed]
+id = 2472
+price = 888
+limit = 1000
+weight = 0.028
+slot = "Weapon"
+examine = "A posy of red, yellow and blue flowers."
+
+[flowers_mixed_noted]
+id = 2473
+
+[white_flowers]
+id = 2474
+price = 21000
+limit = 100
+weight = 0.028
+slot = "Weapon"
+examine = "A posy of white flowers."
+
+[white_flowers_noted]
+id = 2475
+
+[black_flowers]
+id = 2476
+price = 1537
+limit = 100
+weight = 0.028
+slot = "Weapon"
+examine = "A posy of black flowers."
+
+[black_flowers_noted]
+id = 2477

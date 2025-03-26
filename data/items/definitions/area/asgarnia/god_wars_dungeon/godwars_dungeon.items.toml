@@ -1,0 +1,851 @@
+[godsword_shards_1_and_2]
+id = 11686
+price = 318300
+weight = 5.0
+destroy = "No"
+examine = "Godsword shards 1 and 2."
+
+[godsword_shards_1_and_2_noted]
+id = 11687
+
+[godsword_shards_1_and_3]
+id = 11688
+price = 323800
+weight = 5.0
+destroy = "No"
+examine = "Godsword shards 1 and 3."
+
+[godsword_shards_1_and_3_noted]
+id = 11689
+
+[godsword_blade]
+id = 11690
+price = 498700
+limit = 10
+weight = 7.5
+examine = "The blade for the ultimate weapon."
+
+[godsword_blade_noted]
+id = 11691
+
+[godsword_shards_2_and_3]
+id = 11692
+price = 322800
+weight = 5.0
+destroy = "No"
+examine = "Godsword shards 2 and 3."
+
+[godsword_shards_2_and_3_noted]
+id = 11693
+
+[armadyl_godsword]
+id = 11694
+price = 45600000
+limit = 10
+weight = 10.0
+special_damage_mod_1 = 1.1
+special_damage_mod_2 = 1.25
+special_accuracy_mod = 2.0
+special_energy = 500
+special = "the_judgement"
+weapon_type = "godsword"
+aka = ["ags", "arma_gs", "arma_sword", "armadyl_sword", "arma_godsword", "armadyl_god_sword"]
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "A beautiful, heavy sword."
+
+[armadyl_godsword_noted]
+id = 11695
+
+[bandos_godsword]
+id = 11696
+price = 5864002
+limit = 10
+weight = 10.0
+special_damage_mod_1 = 1.1
+special_damage_mod_2 = 1.1
+special_accuracy_mod = 2.0
+special_energy = 500
+special = "warstrike"
+weapon_type = "godsword"
+aka = ["bgs", "bandos_sword", "bandos_god_sword"]
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "A brutally heavy sword."
+
+[bandos_godsword_noted]
+id = 11697
+
+[saradomin_godsword]
+id = 11698
+price = 27900000
+limit = 10
+weight = 10.0
+special_damage_mod_1 = 1.1
+special_accuracy_mod = 2.0
+special_energy = 500
+special = "healing_blade"
+weapon_type = "godsword"
+aka = ["sgs", "sara_gs", "sara_godsword", "saradomin_god_sword"]
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "A gracious, heavy sword."
+
+[saradomin_godsword_noted]
+id = 11699
+
+[zamorak_godsword]
+id = 11700
+price = 8700000
+limit = 10
+weight = 10.0
+special_damage_mod_1 = 1.1
+special_accuracy_mod = 2.0
+special_energy = 500
+special = "ice_cleave"
+weapon_type = "godsword"
+aka = ["zgs", "zammy_godsword", "zammy_gs", "zammy_sword", "zamorak_god_sword"]
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "A terrifying, heavy sword."
+
+[zamorak_godsword_noted]
+id = 11701
+
+[armadyl_hilt]
+id = 11702
+price = 44300000
+limit = 10
+weight = 2.5
+examine = "Brimming with potential."
+
+[armadyl_hilt_noted]
+id = 11703
+
+[bandos_hilt]
+id = 11704
+price = 5300000
+limit = 10
+weight = 2.5
+examine = "Brimming with potential."
+
+[bandos_hilt_noted]
+id = 11705
+
+[saradomin_hilt]
+id = 11706
+price = 28100000
+limit = 10
+weight = 2.5
+examine = "Brimming with potential."
+
+[saradomin_hilt_noted]
+id = 11707
+
+[zamorak_hilt]
+id = 11708
+price = 8700000
+limit = 10
+weight = 2.5
+examine = "Brimming with potential."
+
+[zamorak_hilt_noted]
+id = 11709
+
+[godsword_shard_1]
+id = 11710
+price = 151400
+limit = 10
+weight = 2.5
+examine = "A part of the godsword blade."
+
+[godsword_shard_1_noted]
+id = 11711
+
+[godsword_shard_2]
+id = 11712
+price = 150800
+limit = 10
+weight = 2.5
+destroy = "No"
+examine = "A part of the godsword blade."
+
+[godsword_shard_2_noted]
+id = 11713
+
+[godsword_shard_3]
+id = 11714
+price = 153000
+limit = 10
+weight = 2.5
+examine = "A part of the godsword blade."
+
+[godsword_shard_3_noted]
+id = 11715
+
+[zamorakian_spear]
+id = 11716
+price = 4700000
+limit = 10
+weight = 3.0
+aka = ["zs", "zammy_spear", "zamorak_spear"]
+special_energy = 250
+special = "shove"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A versatile spear wielded by agents of chaos."
+
+[zamorakian_spear_noted]
+id = 11717
+
+[armadyl_helmet]
+id = 11718
+price = 2700000
+limit = 1
+weight = 0.5
+slot = "Hat"
+material = "metal"
+type = "Hair"
+examine = "A helmet of great craftsmanship."
+
+[armadyl_helmet_noted]
+id = 11719
+
+[armadyl_chestplate]
+id = 11720
+price = 15600000
+limit = 1
+weight = 4.0
+aka = ["acp", "arma_chest", "arma_chestplate", "armadyl_chest_plate"]
+slot = "Chest"
+material = "metal"
+examine = "Armour of great craftsmanship."
+
+[armadyl_chestplate_noted]
+id = 11721
+
+[armadyl_chainskirt]
+id = 11722
+price = 13100000
+limit = 1
+weight = 1.0
+slot = "Legs"
+material = "metal"
+examine = "A chainskirt of great craftsmanship."
+
+[armadyl_chainskirt_noted]
+id = 11723
+
+[bandos_chestplate]
+id = 11724
+price = 17600000
+limit = 1
+weight = 12.0
+aka = ["bandos_plate", "bcp", "bandos_chest_plate"]
+slot = "Chest"
+material = "metal"
+examine = "A sturdy chestplate."
+
+[bandos_chestplate_noted]
+id = 11725
+
+[bandos_tassets]
+id = 11726
+price = 19099660
+limit = 1
+weight = 8.0
+aka = ["bandos_tasset", "tassy", "tasset", "tassets"]
+slot = "Legs"
+material = "metal"
+examine = "A sturdy pair of tassets."
+
+[bandos_tassets_noted]
+id = 11727
+
+[bandos_boots]
+id = 11728
+price = 193100
+limit = 1
+weight = 6.0
+slot = "Feet"
+material = "metal"
+examine = "Some sturdy boots."
+
+[bandos_boots_noted]
+id = 11729
+
+[saradomin_sword]
+id = 11730
+price = 5498355
+limit = 10
+weight = 3.0
+aka = ["ss", "sara_sword"]
+special_damage_mod_1 = 1.1
+special_accuracy_mod = 2.0
+special_energy = 1000
+special = "saradomins_lightning"
+weapon_type = "godsword"
+slot = "Weapon"
+material = "metal"
+type = "TwoHanded"
+examine = "The incredible blade of an Icyene."
+
+[saradomin_sword_noted]
+id = 11731
+
+[dragon_boots]
+id = 11732
+price = 185900
+limit = 10
+weight = 1.0
+aka = ["d_boots", "dboots"]
+slot = "Feet"
+material = "metal"
+examine = "These will protect my feet."
+
+[dragon_boots_noted]
+id = 11733
+
+[knights_notes]
+id = 11734
+tradeable = false
+weight = 0.085
+examine = "A scroll for Sir Tiffy. It is sealed with a wax insignia."
+kept = "Vanish"
+
+[knights_notes_opened]
+id = 11735
+tradeable = false
+weight = 0.085
+examine = "A scroll for Sir Tiffy. The wax seal is broken."
+kept = "Vanish"
+
+[steam_battlestaff]
+id = 11736
+price = 230500
+limit = 10
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+
+[steam_battlestaff_noted]
+id = 11737
+
+[mystic_steam_staff]
+id = 11738
+price = 286600
+limit = 10
+weight = 2.267
+category = "staff"
+slot = "Weapon"
+examine = "It's a slightly magical stick."
+
+[mystic_steam_staff_noted]
+id = 11739
+
+[ourg_bones_general_graardor]
+id = 14793
+price = 9269
+limit = 10000
+weight = 0.8
+prayer_xp = 140.0
+examine = "The bones of a mighty ourg."
+
+[ourg_bones_general_graardor_noted]
+id = 14794
+
+[ancient_ceremonial_hood]
+id = 20115
+limit = 2
+slot = "Hat"
+type = "FullFace"
+examine = "A ceremonial mask dedicated to an ancient god."
+
+[ancient_ceremonial_top_2]
+id = 20116
+limit = 2
+weight = 2.721
+slot = "Chest"
+examine = "The top half of ceremonial robes dedicated to an ancient god."
+
+[ancient_ceremonial_legs_2]
+id = 20117
+limit = 2
+weight = 1.814
+slot = "Legs"
+examine = "The bottom half of ceremonial robes dedicated to an ancient god."
+
+[ancient_ceremonial_gloves_2]
+id = 20118
+limit = 2
+weight = 0.453
+slot = "Hands"
+examine = "Ceremonial gloves dedicated to an ancient god."
+
+[ancient_ceremonial_boots_2]
+id = 20119
+limit = 2
+weight = 0.453
+slot = "Feet"
+examine = "Ceremonial boots dedicated to an ancient god."
+
+[frozen_key]
+id = 20120
+tradeable = false
+bank_stacks = false
+weight = 0.04
+charges = 4
+destroy = "This key is very fragile and will break if dropped."
+examine = "A small, cold key."
+kept = "Wilderness"
+
+[frozen_key_piece_armadyl]
+id = 20121
+tradeable = false
+weight = 0.01
+examine = "One of four parts of a mysterious frozen key."
+kept = "Reclaim"
+
+[frozen_key_piece_bandos]
+clone = "frozen_key_piece_armadyl"
+id = 20122
+
+[frozen_key_piece_zamorak]
+clone = "frozen_key_piece_armadyl"
+id = 20123
+
+[frozen_key_piece_saradomin]
+clone = "frozen_key_piece_armadyl"
+id = 20124
+
+[ancient_ceremonial_mask]
+id = 20125
+price = 529600
+limit = 2
+weight = 0.453
+slot = "Hat"
+type = "FullFace"
+examine = "A ceremonial mask dedicated to an ancient god."
+
+[ancient_ceremonial_mask_noted]
+id = 20126
+
+[ancient_ceremonial_top]
+id = 20127
+price = 282900
+limit = 2
+weight = 2.721
+slot = "Chest"
+examine = "The top half of ceremonial robes dedicated to an ancient god."
+
+[ancient_ceremonial_top_noted]
+id = 20128
+
+[ancient_ceremonial_legs]
+id = 20129
+price = 157300
+limit = 2
+weight = 1.814
+slot = "Legs"
+examine = "The bottom half of ceremonial robes dedicated to an ancient god."
+
+[ancient_ceremonial_legs_noted]
+id = 20130
+
+[ancient_ceremonial_gloves]
+id = 20131
+price = 185000
+limit = 2
+weight = 0.453
+slot = "Hands"
+examine = "Ceremonial gloves dedicated to an ancient god."
+
+[ancient_ceremonial_gloves_noted]
+id = 20132
+
+[ancient_ceremonial_boots]
+id = 20133
+price = 84800
+limit = 2
+weight = 0.453
+slot = "Feet"
+examine = "Ceremonial boots dedicated to an ancient god."
+
+[ancient_ceremonial_boots_noted]
+id = 20134
+
+[torva_full_helm]
+id = 20135
+price = 204000000
+limit = 2
+bank_stacks = false
+weight = 2.721
+charges = 1
+degrade = "torva_full_helm_used"
+deplete = "combat"
+aka = ["torva_helm"]
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "An ancient warrior's full helm."
+
+[torva_full_helm_noted]
+id = 20136
+
+[torva_full_helm_used]
+id = 20137
+limit = 2
+tradeable = false
+weight = 2.721
+charges = 60000
+degrade = "torva_full_helm_broken"
+deplete = "combat"
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "An ancient warrior's full helm."
+
+[torva_full_helm_broken]
+id = 20138
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "metal"
+type = "FullFace"
+examine = "A broken ancient warrior's full helm."
+
+[torva_platebody]
+id = 20139
+price = 366000000
+limit = 2
+bank_stacks = false
+weight = 9.979
+charges = 1
+degrade = "torva_platebody_used"
+deplete = "combat"
+aka = ["torva_plate"]
+slot = "Chest"
+material = "metal"
+examine = "An Ancient warrior's Platebody."
+
+[torva_platebody_noted]
+id = 20140
+
+[torva_platebody_used]
+id = 20141
+limit = 2
+tradeable = false
+weight = 9.979
+charges = 60000
+degrade = "torva_platebody_broken"
+deplete = "combat"
+slot = "Chest"
+material = "metal"
+examine = "An Ancient warrior's Platebody."
+
+[torva_platebody_broken]
+id = 20142
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "metal"
+examine = "A broken ancient warrior's platebody."
+
+[torva_platelegs]
+id = 20143
+price = 378300000
+limit = 2
+bank_stacks = false
+weight = 9.071
+charges = 1
+degrade = "torva_platelegs_used"
+deplete = "combat"
+aka = ["torva_legs"]
+slot = "Legs"
+material = "metal"
+examine = "An ancient warrior's platelegs."
+
+[torva_platelegs_noted]
+id = 20144
+
+[torva_platelegs_used]
+id = 20145
+limit = 2
+tradeable = false
+weight = 9.071
+charges = 60000
+degrade = "torva_platelegs_broken"
+deplete = "combat"
+slot = "Legs"
+material = "metal"
+examine = "An ancient warrior's platelegs."
+
+[torva_platelegs_broken]
+id = 20146
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "metal"
+examine = "A broken ancient warrior's platelegs."
+
+[pernix_cowl]
+id = 20147
+price = 108200000
+limit = 2
+bank_stacks = false
+weight = 2.721
+charges = 1
+degrade = "pernix_cowl_used"
+deplete = "combat"
+aka = ["pernix_helm", "pernix_coif"]
+slot = "Hat"
+material = "leather"
+type = "FullFace"
+examine = "An ancient ranger's cowl."
+
+[pernix_cowl_noted]
+id = 20148
+
+[pernix_cowl_used]
+id = 20149
+limit = 2
+tradeable = false
+weight = 2.721
+charges = 60000
+degrade = "pernix_cowl_broken"
+deplete = "combat"
+slot = "Hat"
+material = "leather"
+type = "FullFace"
+examine = "An ancient ranger's cowl."
+
+[pernix_cowl_broken]
+id = 20150
+limit = 2
+weight = 2.721
+slot = "Hat"
+material = "leather"
+type = "FullFace"
+examine = "A broken ancient ranger's cowl."
+
+[pernix_body]
+id = 20151
+price = 566700000
+limit = 2
+bank_stacks = false
+weight = 9.979
+charges = 1
+degrade = "pernix_body_used"
+deplete = "combat"
+aka = ["pernix_top"]
+slot = "Chest"
+material = "leather"
+examine = "An ancient ranger's body armour."
+
+[pernix_body_noted]
+id = 20152
+
+[pernix_body_used]
+id = 20153
+limit = 2
+tradeable = false
+weight = 9.979
+charges = 60000
+degrade = "pernix_body_broken"
+deplete = "combat"
+slot = "Chest"
+material = "leather"
+examine = "An ancient ranger's body armour."
+
+[pernix_body_broken]
+id = 20154
+limit = 2
+weight = 9.979
+slot = "Chest"
+material = "leather"
+examine = "A broken ancient ranger's body armour."
+
+[pernix_chaps]
+id = 20155
+price = 317100000
+limit = 2
+bank_stacks = false
+weight = 9.071
+charges = 1
+degrade = "pernix_chaps_used"
+deplete = "combat"
+aka = ["pernix_legs"]
+slot = "Legs"
+material = "leather"
+examine = "An ancient ranger's chaps."
+
+[pernix_chaps_noted]
+id = 20156
+
+[pernix_chaps_used]
+id = 20157
+limit = 2
+tradeable = false
+weight = 9.071
+charges = 60000
+degrade = "pernix_chaps_broken"
+deplete = "combat"
+slot = "Legs"
+material = "leather"
+examine = "An ancient ranger's chaps."
+
+[pernix_chaps_broken]
+id = 20158
+limit = 2
+weight = 9.071
+slot = "Legs"
+material = "leather"
+examine = "A broken ancient ranger's chaps."
+
+[virtus_mask]
+id = 20159
+price = 50400000
+limit = 2
+bank_stacks = false
+weight = 2.721
+charges = 1
+degrade = "virtus_mask_used"
+deplete = "combat"
+aka = ["virtus_hood", "virtus_helm"]
+slot = "Hat"
+type = "FullFace"
+examine = "An ancient mage's mask."
+
+[virtus_mask_noted]
+id = 20160
+
+[virtus_mask_used]
+id = 20161
+limit = 2
+tradeable = false
+weight = 2.721
+charges = 60000
+degrade = "virtus_mask_broken"
+deplete = "combat"
+slot = "Hat"
+type = "FullFace"
+examine = "An ancient mage's mask."
+
+[virtus_mask_broken]
+id = 20162
+limit = 2
+weight = 2.721
+slot = "Hat"
+type = "FullFace"
+examine = "A broken ancient mage's mask."
+
+[virtus_robe_top]
+id = 20163
+price = 190200000
+limit = 2
+bank_stacks = false
+weight = 9.979
+charges = 1
+degrade = "virtus_robe_top_used"
+deplete = "combat"
+aka = ["virtus_top"]
+slot = "Chest"
+examine = "An ancient mage's robe top."
+
+[virtus_robe_top_noted]
+id = 20164
+
+[virtus_robe_top_used]
+id = 20165
+limit = 2
+tradeable = false
+weight = 9.979
+charges = 60000
+degrade = "virtus_robe_top_broken"
+deplete = "combat"
+slot = "Chest"
+examine = "An ancient mage's robe top."
+
+[virtus_robe_top_broken]
+id = 20166
+limit = 2
+weight = 9.979
+slot = "Chest"
+examine = "A broken ancient mage's robe top."
+
+[virtus_robe_legs]
+id = 20167
+price = 116200000
+limit = 2
+bank_stacks = false
+weight = 9.071
+charges = 1
+degrade = "virtus_robe_legs_used"
+deplete = "combat"
+aka = ["virtus_legs", "virtus_robes"]
+slot = "Legs"
+examine = "An ancient mage's robe legs."
+
+[virtus_robe_legs_noted]
+id = 20168
+
+[virtus_robe_legs_used]
+id = 20169
+limit = 2
+tradeable = false
+weight = 9.071
+charges = 60000
+degrade = "virtus_robe_top_broken"
+deplete = "combat"
+slot = "Legs"
+examine = "An ancient mage's robe legs."
+
+[virtus_robe_legs_broken]
+id = 20170
+limit = 2
+weight = 9.071
+slot = "Legs"
+examine = "A broken ancient mage's robe legs."
+
+[zaryte_bow]
+id = 20171
+price = 108200000
+limit = 2
+bank_stacks = false
+attack_range = 7
+weight = 1.814
+charges = 1
+degrade = "zaryte_bow_used"
+deplete = "combat"
+aka = ["zbow", "z_bow"]
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A powerful bow imbued with the fury of Zaros."
+
+[zaryte_bow_noted]
+id = 20172
+
+[zaryte_bow_used]
+id = 20173
+limit = 2
+tradeable = false
+weight = 1.814
+charges = 60000
+degrade = "zaryte_bow_broken"
+deplete = "combat"
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A powerful bow imbued with the fury of Zaros."
+
+[zaryte_bow_broken]
+id = 20174
+limit = 2
+weight = 1.814
+slot = "Weapon"
+type = "TwoHanded"
+examine = "A broken bow imbued with the fury of Zaros."

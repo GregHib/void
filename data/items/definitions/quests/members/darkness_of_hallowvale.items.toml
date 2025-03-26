@@ -1,0 +1,198 @@
+
+[daeyalt_ore]
+id = 9632
+tradeable = false
+examine = "This needs refining."
+kept = "Reclaim"
+
+[message_vertida]
+id = 9633
+tradeable = false
+weight = 0.02
+destroy = "You got this message from Vertida in Meiyerditch; you can get another one from him. You can also reclaim it from the quest storage chest."
+examine = "A message for Veliaf."
+kept = "Wilderness"
+
+[vyrewatch_top]
+id = 9634
+price = 3027
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "Dressing like the Vyrewatch could be a useful disguise in the ghetto of Meiyerditch."
+
+[vyrewatch_top_noted]
+id = 9635
+
+[vyrewatch_legs]
+id = 9636
+price = 1691
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "Dressing like the Vyrewatch could be a useful disguise in the ghetto of Meiyerditch."
+
+[vyrewatch_legs_noted]
+id = 9637
+
+[vyrewatch_shoes]
+id = 9638
+price = 2948
+limit = 100
+weight = 0.907
+slot = "Feet"
+examine = "Dressing like the Vyrewatch could be a useful disguise in the ghetto of Meiyerditch."
+
+[vyrewatch_shoes_noted]
+id = 9639
+
+[citizen_top]
+id = 9640
+price = 487
+limit = 100
+weight = 0.907
+slot = "Chest"
+examine = "Could be used as a disguise in the ghetto of Meiyerditch."
+
+[citizen_top_noted]
+id = 9641
+
+[citizen_trousers]
+id = 9642
+price = 404
+limit = 100
+weight = 0.907
+slot = "Legs"
+examine = "Could be used as a disguise in the ghetto of Meiyerditch."
+
+[citizen_trousers_noted]
+id = 9643
+
+[citizen_shoes]
+id = 9644
+price = 392
+limit = 100
+weight = 0.907
+slot = "Feet"
+examine = "Could be used as a disguise in the ghetto of Meiyerditch."
+
+[citizen_shoes_noted]
+id = 9645
+
+[castle_sketch_1]
+id = 9646
+tradeable = false
+weight = 0.02
+destroy = "You can get another sketch by using charcoal with papyrus, when on the wall near Castle Drakyn."
+examine = "Northern approach of the castle."
+kept = "Wilderness"
+
+[castle_sketch_2]
+id = 9647
+tradeable = false
+weight = 0.02
+destroy = "You can get another sketch by using charcoal with papyrus, when on the wall near Castle Drakyn."
+examine = "Western approach of the castle."
+kept = "Wilderness"
+
+[castle_sketch_3]
+id = 9648
+tradeable = false
+weight = 0.02
+destroy = "You can get another sketch by using charcoal with papyrus, when on the wall near Castle Drakyn."
+examine = "Southern approach of the castle."
+kept = "Wilderness"
+
+[message_fireplace]
+id = 9649
+tradeable = false
+weight = 0.001
+destroy = "You found this message in the fireplace in Meiyerditch, north of the Myreque hideout."
+examine = "A message found behind a loose tile."
+kept = "Wilderness"
+
+[blood_tithe_pouch]
+id = 9650
+tradeable = false
+weight = 0.001
+examine = "A pouch filled with blood."
+kept = "Wilderness"
+
+[large_ornate_key]
+id = 9651
+tradeable = false
+weight = 2.0
+destroy = "You found this key in a painting in Meiyerditch, north of the Myreque hideout."
+examine = "A key to some large, strange door."
+kept = "Wilderness"
+
+[haemalchemy_vol_1]
+id = 9652
+tradeable = false
+weight = 2.0
+destroy = "You found this volume inside a hidden laboratory in Meiyerditch."
+examine = "A book called Haemalchemy Volume 1."
+kept = "Wilderness"
+
+[sealed_message]
+id = 9653
+tradeable = false
+weight = 0.001
+destroy = "Safalaan gave you this message; he would probably write out another one for you."
+examine = "A sealed message from Safalaan to Veliaf."
+kept = "Wilderness"
+
+[door_key_darkness_of_hallowvale]
+id = 9654
+tradeable = false
+weight = 0.055
+destroy = "You found this key near a door in Meiyerditch; you can probably get another from the same place."
+examine = "A key to some door."
+kept = "Wilderness"
+
+[ladder_top]
+id = 9655
+tradeable = false
+weight = 0.001
+destroy = "You found this ladder top on a wall section in the north of Meiyerditch; you can get another one there."
+examine = "The top of a ladder."
+kept = "Wilderness"
+
+[tome_of_xp_3]
+id = 9656
+destroy = "You can get another Tome of Experience from Veliaf in Burgh de Rott."
+examine = "A tome of experience that awards 2000 XP per chapter."
+weight = 1.0
+
+[tome_of_xp_2]
+clone = "tome_of_xp_3"
+id = 9657
+
+[tome_of_xp_1]
+clone = "tome_of_xp_3"
+id = 9658
+
+[bucket_of_water_meiyerditch]
+id = 9659
+limit = 100
+tradeable = false
+weight = 3.0
+empty = "bucket_meiyerditch"
+examine = "It's a bucket of water."
+kept = "Vanish"
+
+[bucket_meiyerditch]
+id = 9660
+limit = 100
+tradeable = false
+weight = 1.0
+examine = "It's a wooden bucket."
+kept = "Vanish"
+
+[shortcut_key]
+id = 9662
+tradeable = false
+weight = 0.055
+destroy = "Safalaan gave you this key as a reward for helping out in Meiyerditch, you can get another key from him."
+examine = "A key allowing a shortcut into the Sanguinesti region."
+kept = "Wilderness"

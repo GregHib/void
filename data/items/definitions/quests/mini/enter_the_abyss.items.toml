@@ -1,0 +1,92 @@
+[small_pouch]
+id = 5509
+tradeable = false
+weight = 1.0
+destroy = "Your item will be destroyed permanently and it may not be reclaimable."
+kept = "Vanish"
+examine = "A small pouch used for storing essence."
+
+[medium_pouch]
+id = 5510
+tradeable = false
+charges = 45
+degrade = "medium_pouch_damaged"
+degrade_message = "Your pouch has decayed through use."
+weight = 1.0
+examine = "A medium-sized pouch used for storing essence."
+
+[medium_pouch_damaged]
+id = 5511
+tradeable = false
+charges = 20
+degrade = "destroy"
+degrade_message = "Your pouch has decayed through use."
+weight = 1.0
+examine = "A damaged medium-sized pouch used for storing essence."
+
+[large_pouch]
+id = 5512
+tradeable = false
+charges = 29
+degrade = "large_pouch_damaged"
+degrade_message = "Your pouch has decayed through use."
+weight = 1.0
+examine = "A large pouch used for storing essence."
+
+[large_pouch_damaged]
+id = 5513
+tradeable = false
+charges = 20
+degrade = "destroy"
+degrade_message = "Your pouch has decayed through use."
+weight = 1.0
+examine = "A large damaged pouch used for storing essence."
+
+[giant_pouch]
+id = 5514
+tradeable = false
+charges = 10
+degrade = "giant_pouch_damaged"
+weight = 1.0
+examine = "A giant-sized pouch used for storing essence."
+
+[giant_pouch_damaged]
+id = 5515
+tradeable = false
+charges = 20
+degrade = "destroy"
+weight = 1.0
+examine = "A damaged giant-sized pouch used for storing essence."
+
+[elemental_talisman]
+id = 5516
+price = 22700
+limit = 500
+weight = 0.015
+examine = "A mysterious power emanates from the talisman..."
+kept = "Wilderness"
+
+[elemental_talisman_noted]
+id = 5517
+
+[scrying_orb_full]
+id = 5518
+tradeable = false
+weight = 1.0
+examine = "This contains mystical teleport information..."
+kept = "Wilderness"
+
+[scrying_orb]
+id = 5519
+tradeable = false
+weight = 0.05
+examine = "This orb apparently contains a cypher spell."
+kept = "Wilderness"
+
+[abyssal_book]
+id = 5520
+tradeable = false
+weight = 0.01
+aka = ["abyssal_research_notes"]
+examine = "Some research notes on abyssal space."
+kept = "Wilderness"
