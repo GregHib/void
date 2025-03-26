@@ -149,7 +149,7 @@ weight = 1.814
 examine = "I pity the poor person beaten with this!"
 kept = "Reclaim"
 
-[broken_glass] # Unobtainable
+[broken_glass_the_dig_site] # Unobtainable
 id = 690
 
 [level_1_certificate]

@@ -48,6 +48,7 @@ class EnumDefinitions(
                         when (val key = key()) {
                             "id" -> {
                                 id = int()
+                                require(!ids.containsKey(stringId)) { "Duplicate enum id found '$stringId' at $path." }
                                 ids[stringId] = id
                                 definitions[id].stringId = stringId
                             }

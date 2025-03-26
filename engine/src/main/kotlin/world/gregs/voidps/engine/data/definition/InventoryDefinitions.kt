@@ -49,6 +49,7 @@ class InventoryDefinitions(
                             }
                         }
                         if (id > -1) {
+                            require(!ids.containsKey(stringId)) { "Duplicate inventory found '$stringId' at $path." }
                             ids[stringId] = id
                             definitions[id].extras = extras
                             definitions[id].stringId = stringId

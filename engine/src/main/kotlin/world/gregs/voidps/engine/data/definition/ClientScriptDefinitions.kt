@@ -29,6 +29,7 @@ class ClientScriptDefinitions : DefinitionsDecoder<ClientScriptDefinition> {
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
+                    require(!ids.containsKey(stringId)) { "Duplicate client script id found '$stringId' at $path." }
                     ids[stringId] = id
                     definitions[id] = ClientScriptDefinition(id = id, stringId = stringId)
                 }

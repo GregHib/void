@@ -55,6 +55,7 @@ class NPCDefinitions(
                                 else -> extras[key] = value()
                             }
                         }
+                        require(!ids.containsKey(stringId)) { "Duplicate npc id found '$stringId' at $path." }
                         ids[stringId] = id
                         definitions[id].stringId = stringId
                         if (extras.isNotEmpty()) {

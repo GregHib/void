@@ -83,6 +83,7 @@ class ItemDefinitions(
                                 else -> extras[key] = value()
                             }
                         }
+                        require(!ids.containsKey(stringId)) { "Duplicate item id found '$stringId' at $path." }
                         ids[stringId] = id
                         definitions[id].stringId = stringId
                         if (extras.size > 0) {

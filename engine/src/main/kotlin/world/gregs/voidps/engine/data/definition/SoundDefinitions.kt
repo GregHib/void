@@ -20,6 +20,7 @@ class SoundDefinitions : DefinitionsDecoder<SoundDefinition> {
                 while (nextPair()) {
                     val stringId = key()
                     val id = int()
+                    require(!ids.containsKey(stringId)) { "Duplicate sound id found '$stringId' at $path." }
                     ids[stringId] = id
                     definitions[id] = SoundDefinition(id = id, stringId = stringId)
                 }

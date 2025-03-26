@@ -30,6 +30,7 @@ class GraphicDefinitions(
                                 else -> extras[key] = value()
                             }
                         }
+                        require(!ids.containsKey(stringId)) { "Duplicate graphics id found '$stringId' at $path." }
                         ids[stringId] = id
                         definitions[id].stringId = stringId
                         definitions[id].extras = extras.ifEmpty { null }

@@ -51,6 +51,7 @@ class ObjectDefinitions(
                                 else -> extras[key] = value()
                             }
                         }
+                        require(!ids.containsKey(stringId)) { "Duplicate object id found '$stringId' at $path." }
                         ids[stringId] = id
                         definitions[id].stringId = stringId
                         if (extras.isNotEmpty()) {

@@ -28,6 +28,7 @@ class QuestDefinitions : DefinitionsDecoder<QuestDefinition> {
                             else -> extras[key] = value()
                         }
                     }
+                    require(!ids.containsKey(stringId)) { "Duplicate quest id found '$stringId' at $path." }
                     ids[stringId] = id
                     if (extras.isNotEmpty()) {
                         definitions[id] = QuestDefinition(id = id, stringId = stringId, extras = extras)

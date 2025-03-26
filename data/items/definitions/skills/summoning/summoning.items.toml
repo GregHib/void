@@ -1496,11 +1496,11 @@ id = 12313
 [generate_compost_scroll_u_noted]
 id = 12314
 
-[spike_shot_scroll_u]
+[spike_shot_scroll_u_duplicate]
 clone = "unknown_pouch_u"
 id = 12315
 
-[spike_shot_scroll_u_noted]
+[spike_shot_scroll_u_duplicate_noted]
 id = 12316
 
 [dust_cloud_scroll_u]
