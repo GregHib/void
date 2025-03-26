@@ -1,0 +1,45 @@
+[nardoks_bone_weapons]
+id = 413
+defaults = [
+    { id = "bone_club", amount = 10 },
+    { id = "bone_spear", amount = 10 },
+    { id = "bone_dagger", amount = 10 },
+    { id = "dorgeshuun_crossbow", amount = 10 },
+    { id = "bone_bolts", amount = 300 },
+]
+
+[miltogs_lamps]
+id = 511
+defaults = [
+    { id = "unlit_torch", amount = 10 },
+    { id = "oil_lamp_empty", amount = 0 },
+    { id = "oil_lantern_empty", amount = 0 },
+    { id = "bullseye_lantern_empty", amount = 0 },
+    { id = "mining_helmet", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "light_orb", amount = 0 },
+    { id = "oil_lamp_oil", amount = 0 },
+    { id = "oil_lantern_oil", amount = 0 },
+    { id = "bullseye_lantern_oil", amount = 0 },
+]
+
+[reldaks_leather_armour]
+id = 512
+defaults = [
+    { id = "frog_leather_body", amount = 10 },
+    { id = "frog_leather_chaps", amount = 10 },
+    { id = "frog_leather_boots", amount = 10 },
+]
+
+[dorgesh_kaan_general_supplies]
+id = 513
+defaults = [
+    { id = "unlit_torch", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "bowl", amount = 10 },
+    { id = "cake_tin", amount = 10 },
+    { id = "rope", amount = 10 },
+    { id = "glassblowing_pipe", amount = 10 },
+]

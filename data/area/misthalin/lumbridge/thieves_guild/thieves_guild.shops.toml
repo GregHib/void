@@ -1,0 +1,9 @@
+[dodgy_dereks_dirty_deals]
+id = 575
+defaults = [
+    { id = "lockpick", amount = 2 },
+    { id = "willow_blackjack", amount = 5 },
+    { id = "rubber_blackjack", amount = 100 },
+    { id = "tinderbox", amount = 10 },
+    { id = "rope", amount = 10 },
+]

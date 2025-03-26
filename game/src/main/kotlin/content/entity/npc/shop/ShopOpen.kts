@@ -81,12 +81,10 @@ fun fillShop(inventory: Inventory, shopId: String) {
     if (!def.contains("shop")) {
         logger.warn { "Invalid shop definition $shopId" }
     }
-    val list = def.getOrNull<List<Map<String, Int>>>("defaults") ?: return
+    val list = def.getOrNull<List<Item>>("defaults") ?: return
     for (index in 0 until def.length) {
-        val map = list.getOrNull(index) ?: continue
-        val id = map.keys.firstOrNull() ?: continue
-        val amount = map.values.firstOrNull() ?: 0
-        inventory.transaction { set(index, Item(id, amount)) }
+        val item = list.getOrNull(index) ?: continue
+        inventory.transaction { set(index, item) }
     }
 }
 

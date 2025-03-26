@@ -1,0 +1,26 @@
+[fish_stall]
+id = 212
+defaults = [
+    { id = "small_fishing_net", amount = 10 },
+    { id = "fishing_rod", amount = 10 },
+    { id = "fly_fishing_rod", amount = 10 },
+    { id = "harpoon", amount = 30 },
+    { id = "lobster_pot", amount = 10 },
+    { id = "fishing_bait", amount = 1000 },
+    { id = "feather", amount = 1000 },
+    { id = "big_fishing_net", amount = 10 },
+    { id = "raw_shrimps", amount = 10 },
+    { id = "raw_sardine", amount = 10 },
+    { id = "raw_herring", amount = 0 },
+    { id = "raw_mackerel", amount = 0 },
+    { id = "raw_cod", amount = 0 },
+    { id = "raw_anchovies", amount = 0 },
+    { id = "raw_trout", amount = 0 },
+    { id = "raw_pike", amount = 0 },
+    { id = "raw_salmon", amount = 0 },
+    { id = "raw_tuna", amount = 0 },
+    { id = "raw_lobster", amount = 0 },
+    { id = "raw_bass", amount = 0 },
+    { id = "raw_swordfish", amount = 0 },
+    { id = "raw_shark", amount = 0 },
+]

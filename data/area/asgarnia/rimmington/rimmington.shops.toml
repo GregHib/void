@@ -1,0 +1,45 @@
+[rommiks_crafty_supplies]
+id = 27
+defaults = [
+    { id = "chisel", amount = 10 },
+    { id = "ring_mould", amount = 10 },
+    { id = "necklace_mould", amount = 10 },
+    { id = "amulet_unstrung_mould", amount = 10 },
+    { id = "needle", amount = 10 },
+    { id = "thread", amount = 1000 },
+    { id = "holy_mould", amount = 10 },
+    { id = "sickle_mould", amount = 10 },
+    { id = "tiara_mould", amount = 10 },
+    { id = "bolt_mould", amount = 10 },
+    { id = "bracelet_mould", amount = 10 },
+]
+
+[rimmington_general_store]
+id = 31
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "shears", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "bowl", amount = 10 },
+    { id = "cake_tin", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "newcomer_map", amount = 10 },
+    { id = "security_book", amount = 10 },
+]
+
+[brians_archery_supplies]
+id = 250
+defaults = [
+    { id = "steel_arrow", amount = 100 },
+    { id = "mithril_arrow", amount = 30 },
+    { id = "adamant_arrow", amount = 0 },
+    { id = "oak_shortbow", amount = 10 },
+    { id = "oak_longbow", amount = 10 },
+    { id = "willow_shortbow", amount = 10 },
+    { id = "willow_longbow", amount = 10 },
+    { id = "maple_shortbow", amount = 10 },
+    { id = "maple_longbow", amount = 10 },
+]

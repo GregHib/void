@@ -1,0 +1,60 @@
+[karamja_wines_spirits_and_beers]
+id = 29
+defaults = [
+    { id = "beer", amount = 10 },
+    { id = "karamjan_rum", amount = 10 },
+    { id = "jug_of_wine", amount = 10 },
+]
+
+[davons_amulet_store]
+id = 46
+defaults = [
+    { id = "holy_symbol", amount = 0 },
+    { id = "amulet_of_magic", amount = 0 },
+    { id = "amulet_of_defence", amount = 0 },
+    { id = "amulet_of_strength", amount = 0 },
+    { id = "amulet_of_power", amount = 0 },
+]
+
+[jiminuas_jungle_store]
+id = 65
+defaults = [
+    { id = "tinderbox", amount = 10 },
+    { id = "white_candle", amount = 10 },
+    { id = "unlit_torch", amount = 10 },
+    { id = "empty_pot", amount = 30 },
+    { id = "rope", amount = 10 },
+    { id = "leather_body", amount = 10 },
+    { id = "leather_gloves", amount = 10 },
+    { id = "leather_boots", amount = 10 },
+    { id = "cooked_meat", amount = 10 },
+    { id = "bread", amount = 10 },
+    { id = "vial", amount = 300 },
+    { id = "vial_of_water", amount = 300 },
+    { id = "pestle_and_mortar", amount = 10 },
+    { id = "antipoison_3", amount = 10 },
+    { id = "papyrus", amount = 10 },
+    { id = "charcoal", amount = 10 },
+    { id = "knife", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "machete", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "spade", amount = 10 },
+    { id = "bronze_hatchet", amount = 10 },
+    { id = "bronze_pickaxe", amount = 10 },
+    { id = "iron_hatchet", amount = 10 },
+]
+
+[karamja_general_store]
+id = 391
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "shears", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "bowl", amount = 10 },
+    { id = "cake_tin", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+]

@@ -1,0 +1,17 @@
+[west_ardougne_general_store]
+id = 139
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "rope", amount = 10 },
+    { id = "bronze_pickaxe", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "tinderbox", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "leather_boots", amount = 10 },
+    { id = "longbow", amount = 10 },
+    { id = "bronze_arrow", amount = 100 },
+    { id = "salmon", amount = 10 },
+    { id = "meat_pie", amount = 10 },
+    { id = "bread", amount = 10 },
+    { id = "cooked_meat", amount = 10 },
+]

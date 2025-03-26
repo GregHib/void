@@ -451,7 +451,9 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
         "object defs" -> get<ObjectDefinitions>().load(files.list(Settings["definitions.objects"]))
         "emotes", "render anims", "render emotes" -> get<RenderEmoteDefinitions>().load(files.find(Settings["definitions.renderEmotes"]))
         "anim defs", "anims" -> get<AnimationDefinitions>().load(files.list(Settings["definitions.animations"]))
-        "container defs", "containers", "inventory defs", "inventories", "inv defs", "invs" -> get<InventoryDefinitions>().load(files.list(Settings["definitions.inventories"]))
+        "container defs", "containers", "inventory defs", "inventories", "inv defs", "invs", "shop", "shops" -> {
+            get<InventoryDefinitions>().load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"]))
+        }
         "graphic defs", "graphics", "gfx" -> get<GraphicDefinitions>().load(files.list(Settings["definitions.graphics"]))
         "npc defs" -> get<NPCDefinitions>().load(files.list(Settings["definitions.npcs"]))
         "item on item", "item-on-item" -> {

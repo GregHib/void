@@ -1,0 +1,29 @@
+[diangos_toy_store]
+id = 137
+defaults = [
+    { id = "toy_horsey_brown", amount = 10 },
+    { id = "toy_horsey_white", amount = 10 },
+    { id = "toy_horsey_black", amount = 10 },
+    { id = "toy_horsey_grey", amount = 10 },
+    { id = "spinning_plate", amount = 10 },
+    { id = "toy_kite", amount = 10 },
+]
+
+[fortunatos_fine_wine]
+id = 385
+defaults = [
+    { id = "jug_of_wine", amount = 10 },
+    { id = "jug_of_vinegar", amount = 10 },
+    { id = "bottle_of_wine", amount = 10 },
+    { id = "jug", amount = 10 },
+]
+
+[avas_odds_and_ends]
+id = 489
+defaults = [
+    { id = "feather", amount = 1000 },
+    { id = "iron_arrow", amount = 1000 },
+    { id = "steel_arrow", amount = 1000 },
+    { id = "iron_arrowtips", amount = 1000 },
+    { id = "steel_arrowtips", amount = 1000 },
+]

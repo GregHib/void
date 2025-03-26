@@ -1,0 +1,21 @@
+[monkey_colony_general_store]
+id = 605
+defaults = [
+    { id = "waterskin_4", amount = 3 },
+    { id = "knife", amount = 3 },
+    { id = "desert_shirt", amount = 1 },
+    { id = "desert_robe", amount = 1 },
+    { id = "desert_boots", amount = 1 },
+]
+
+[monkey_colony_gem_store]
+id = 606
+defaults = [
+    { id = "uncut_sapphire", amount = 1 },
+    { id = "uncut_emerald", amount = 1 },
+    { id = "uncut_ruby", amount = 0 },
+    { id = "uncut_diamond", amount = 0 },
+]
+
+[banana_store]
+id = 607

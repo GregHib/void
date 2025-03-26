@@ -1,0 +1,93 @@
+[magic_guild_store_runes_and_staves]
+id = 64
+defaults = [
+    { id = "air_rune", amount = 1000 },
+    { id = "water_rune", amount = 1000 },
+    { id = "earth_rune", amount = 1000 },
+    { id = "fire_rune", amount = 1000 },
+    { id = "mind_rune", amount = 1000 },
+    { id = "body_rune", amount = 1000 },
+    { id = "chaos_rune", amount = 300 },
+    { id = "nature_rune", amount = 300 },
+    { id = "death_rune", amount = 1000 },
+    { id = "law_rune", amount = 100 },
+    { id = "blood_rune", amount = 100 },
+    { id = "soul_rune", amount = 100 },
+    { id = "staff_of_fire", amount = 10 },
+    { id = "staff_of_water", amount = 10 },
+    { id = "staff_of_air", amount = 10 },
+    { id = "staff_of_earth", amount = 10 },
+]
+
+[frenitas_cookery_shop]
+id = 67
+defaults = [
+    { id = "pie_dish", amount = 10 },
+    { id = "cooking_apple", amount = 0 },
+    { id = "cake_tin", amount = 10 },
+    { id = "bowl", amount = 10 },
+    { id = "raw_potato", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "jug", amount = 10 },
+    { id = "empty_pot", amount = 30 },
+    { id = "chocolate_bar", amount = 10 },
+    { id = "pot_of_flour", amount = 500 },
+    { id = "empty_cup", amount = 10 },
+]
+
+[magic_guild_store_mystic_robes]
+id = 232
+defaults = [
+    { id = "mystic_hat_blue", amount = 10 },
+    { id = "mystic_robe_top_blue", amount = 10 },
+    { id = "mystic_robe_bottom_blue", amount = 10 },
+    { id = "mystic_gloves_blue", amount = 10 },
+    { id = "mystic_boots_blue", amount = 10 },
+]
+
+[magic_guild_store_mystic_robes_skillcape]
+id = 461
+defaults = [
+    { id = "mystic_hat_blue", amount = 10 },
+    { id = "mystic_robe_top_blue", amount = 10 },
+    { id = "mystic_robe_bottom_blue", amount = 10 },
+    { id = "mystic_gloves_blue", amount = 10 },
+    { id = "mystic_boots_blue", amount = 10 },
+    { id = "magic_cape", amount = 1 },
+]
+
+[magic_guild_store_mystic_robes_trimmed]
+id = 462
+defaults = [
+    { id = "mystic_hat_blue", amount = 10 },
+    { id = "mystic_robe_top_blue", amount = 10 },
+    { id = "mystic_robe_bottom_blue", amount = 10 },
+    { id = "mystic_gloves_blue", amount = 10 },
+    { id = "mystic_boots_blue", amount = 10 },
+    { id = "magic_cape_t", amount = 1 },
+]
+
+[alecks_hunter_emporium]
+id = 483
+defaults = [
+    { id = "butterfly_net", amount = 10 },
+    { id = "butterfly_jar", amount = 300 },
+    { id = "magic_box", amount = 300 },
+    { id = "noose_wand", amount = 10 },
+    { id = "bird_snare", amount = 30 },
+    { id = "box_trap", amount = 30 },
+    { id = "teasing_stick", amount = 10 },
+    { id = "unlit_torch", amount = 10 },
+    { id = "rabbit_snare", amount = 30 },
+    { id = "grenwall_spikes", amount = 0 },
+]
+
+[pet_shop]
+id = 531
+defaults = [
+    { id = "nuts", amount = 10 },
+    { id = "flies", amount = 1000 },
+    { id = "beetle_bits", amount = 10 },
+    { id = "spirit_shards", amount = 65000 },
+    { id = "spirit_shard_pack", amount = 65000 },
+]

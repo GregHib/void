@@ -1,0 +1,5 @@
+[elnocks_backup_supply]
+id = 564
+defaults = [
+    { id = "impling_jar", amount = 10 },
+]

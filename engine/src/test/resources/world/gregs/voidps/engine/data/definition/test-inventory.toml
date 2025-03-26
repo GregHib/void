@@ -1,6 +1,5 @@
 [bobs_brilliant_axes]
 id = 1
-shop = true
 defaults = {
   bronze_pickaxe = 10,
   bronze_hatchet = 10,

@@ -1,0 +1,19 @@
+[uglugs_stuffsies]
+id = 260
+defaults = [
+    { id = "relicyms_balm_3", amount = 10 },
+    { id = "sanfew_serum_3", amount = 0 },
+    { id = "bowstring", amount = 0 },
+    { id = "raw_chompy", amount = 0 },
+    { id = "cooked_chompy", amount = 10 },
+    { id = "ogre_coffin_key", amount = 0 },
+    { id = "knife", amount = 10 },
+    { id = "bronze_brutal", amount = 0 },
+    { id = "iron_brutal", amount = 0 },
+    { id = "steel_brutal", amount = 0 },
+    { id = "black_brutal", amount = 0 },
+    { id = "mithril_brutal", amount = 0 },
+    { id = "adamant_brutal", amount = 0 },
+    { id = "rune_brutal", amount = 0 },
+    { id = "comp_ogre_bow", amount = 10 },
+]

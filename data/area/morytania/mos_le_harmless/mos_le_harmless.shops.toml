@@ -1,0 +1,51 @@
+[smithing_smiths_shop]
+id = 348
+defaults = [
+    { id = "bronze_scimitar", amount = 10 },
+    { id = "iron_scimitar", amount = 10 },
+    { id = "steel_scimitar", amount = 10 },
+    { id = "mithril_scimitar", amount = 10 },
+    { id = "hammer", amount = 10 },
+]
+
+[harpoon_joes_house_of_rum]
+id = 349
+defaults = [
+    { id = "beer", amount = 10 },
+    { id = "braindeath_rum", amount = 10 },
+    { id = "jug_of_wine", amount = 10 },
+    { id = "stew", amount = 10 },
+]
+
+[two_feet_charleys_fish_shop]
+id = 350
+defaults = [
+    { id = "raw_shrimps", amount = 10 },
+    { id = "raw_sardine", amount = 10 },
+    { id = "raw_herring", amount = 10 },
+    { id = "raw_mackerel", amount = 10 },
+    { id = "raw_cod", amount = 10 },
+    { id = "raw_anchovies", amount = 10 },
+    { id = "raw_tuna", amount = 0 },
+    { id = "raw_lobster", amount = 0 },
+    { id = "raw_bass", amount = 0 },
+    { id = "raw_swordfish", amount = 0 },
+]
+
+[dodgy_mikes_second_hand_clothing]
+id = 351
+defaults = [
+    { id = "pirate_boots", amount = 10 },
+    { id = "pirate_shirt_white", amount = 10 },
+    { id = "pirate_bandana_white", amount = 10 },
+    { id = "pirate_leggings_white", amount = 10 },
+    { id = "pirate_shirt_red", amount = 10 },
+    { id = "pirate_bandana_red", amount = 10 },
+    { id = "pirate_leggings_red", amount = 10 },
+    { id = "pirate_shirt_blue", amount = 10 },
+    { id = "pirate_bandana_blue", amount = 10 },
+    { id = "pirate_leggings_blue", amount = 10 },
+    { id = "pirate_shirt_brown", amount = 10 },
+    { id = "pirate_bandana_brown", amount = 10 },
+    { id = "pirate_leggings_brown", amount = 10 },
+]

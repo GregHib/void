@@ -1,0 +1,49 @@
+[gift_shop]
+id = 533
+defaults = [
+    { id = "tinderbox", amount = 10 },
+    { id = "ogre_arrow", amount = 100 },
+    { id = "cooked_chompy", amount = 10 },
+    { id = "feather", amount = 1000 },
+    { id = "bronze_hatchet", amount = 10 },
+    { id = "rope", amount = 10 },
+    { id = "empty_pot", amount = 30 },
+    { id = "bucket", amount = 30 },
+    { id = "hammer", amount = 10 },
+    { id = "knife", amount = 10 },
+    { id = "ogre_kilt", amount = 10 },
+    { id = "ogre_top", amount = 10 },
+    { id = "ogre_boots", amount = 10 },
+    { id = "diseased_kebbit_fur", amount = 0 },
+    { id = "davy_kebbit_hat", amount = 0 },
+    { id = "ogre_wig", amount = 0 },
+    { id = "ogre_club", amount = 0 },
+]
+
+[fresh_meat]
+id = 534
+defaults = [
+    { id = "raw_rat_meat", amount = 10 },
+    { id = "raw_beef", amount = 300 },
+    { id = "raw_bear_meat", amount = 10 },
+    { id = "cooked_meat", amount = 10 },
+    { id = "raw_chicken", amount = 10 },
+    { id = "cooked_chicken", amount = 10 },
+    { id = "raw_rabbit", amount = 100 },
+    { id = "skewered_rabbit", amount = 0 },
+    { id = "roast_rabbit", amount = 0 },
+    { id = "cooked_rabbit", amount = 10 },
+    { id = "raw_chompy", amount = 0 },
+    { id = "skewered_chompy", amount = 0 },
+    { id = "cooked_chompy", amount = 0 },
+    { id = "cooked_chompy_roasted", amount = 0 },
+    { id = "raw_jubbly", amount = 0 },
+    { id = "raw_oomlie", amount = 0 },
+    { id = "raw_bird_meat", amount = 10 },
+    { id = "raw_bird_meat_pack", amount = 6 },
+    { id = "skewered_bird_meat", amount = 0 },
+    { id = "roast_bird_meat", amount = 0 },
+    { id = "raw_beast_meat", amount = 0 },
+    { id = "skewered_beast", amount = 0 },
+    { id = "roast_beast_meat", amount = 0 },
+]

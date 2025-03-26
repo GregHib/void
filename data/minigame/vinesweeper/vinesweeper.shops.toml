@@ -1,0 +1,20 @@
+[mrs_winkins_world_of_seeds]
+id = 273
+defaults = [
+    { id = "potato_seed", amount = 10 },
+    { id = "onion_seed", amount = 10 },
+    { id = "cabbage_seed", amount = 10 },
+    { id = "tomato_seed", amount = 0 },
+    { id = "sweetcorn_seed", amount = 0 },
+    { id = "strawberry_seed", amount = 0 },
+    { id = "watermelon_seed", amount = 0 },
+    { id = "barley_seed", amount = 10 },
+    { id = "jute_seed", amount = 10 },
+    { id = "rosemary_seed", amount = 10 },
+    { id = "marigold_seed", amount = 10 },
+    { id = "hammerstone_seed", amount = 10 },
+    { id = "asgarnian_seed", amount = 10 },
+    { id = "yanillian_seed", amount = 10 },
+    { id = "krandorian_seed", amount = 10 },
+    { id = "wildblood_seed", amount = 10 },
+]

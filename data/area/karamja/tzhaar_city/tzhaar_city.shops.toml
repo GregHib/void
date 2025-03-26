@@ -1,0 +1,40 @@
+[tzhaar_hur_tels_equipment_store]
+id = 325
+currency = "tokkul"
+defaults = [
+    { id = "toktz_xil_ul", amount = 10 },
+    { id = "toktz_xil_ak", amount = 10 },
+    { id = "toktz_ket_xil", amount = 10 },
+    { id = "toktz_xil_ek", amount = 10 },
+    { id = "toktz_mej_tal", amount = 10 },
+    { id = "tzhaar_ket_em", amount = 10 },
+    { id = "tzhaar_ket_om", amount = 10 },
+    { id = "obsidian_cape", amount = 10 },
+]
+
+[tzhaar_hur_leks_ore_and_gem_store]
+id = 326
+currency = "tokkul"
+defaults = [
+    { id = "tin_ore", amount = 5 },
+    { id = "copper_ore", amount = 5 },
+    { id = "iron_ore", amount = 2 },
+    { id = "uncut_sapphire", amount = 1 },
+    { id = "uncut_emerald", amount = 1 },
+    { id = "uncut_onyx", amount = 1 },
+    { id = "onyx_bolt_tips", amount = 50 },
+]
+
+[tzhaar_mej_rohs_rune_store]
+id = 327
+currency = "tokkul"
+defaults = [
+    { id = "fire_rune", amount = 1000 },
+    { id = "water_rune", amount = 1000 },
+    { id = "air_rune", amount = 1000 },
+    { id = "earth_rune", amount = 1000 },
+    { id = "mind_rune", amount = 1000 },
+    { id = "body_rune", amount = 1000 },
+    { id = "chaos_rune", amount = 300 },
+    { id = "death_rune", amount = 100 },
+]

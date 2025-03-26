@@ -1,0 +1,122 @@
+[island_fishmonger]
+id = 217
+defaults = [
+    { id = "small_fishing_net", amount = 10 },
+    { id = "fishing_rod", amount = 10 },
+    { id = "fly_fishing_rod", amount = 10 },
+    { id = "harpoon", amount = 30 },
+    { id = "lobster_pot", amount = 10 },
+    { id = "fishing_bait", amount = 1000 },
+    { id = "feather", amount = 1000 },
+    { id = "big_fishing_net", amount = 10 },
+    { id = "raw_shrimps", amount = 0 },
+    { id = "raw_sardine", amount = 10 },
+    { id = "raw_herring", amount = 0 },
+    { id = "raw_mackerel", amount = 0 },
+    { id = "raw_cod", amount = 0 },
+    { id = "raw_anchovies", amount = 0 },
+    { id = "raw_trout", amount = 0 },
+    { id = "raw_pike", amount = 0 },
+    { id = "raw_salmon", amount = 0 },
+    { id = "raw_tuna", amount = 0 },
+    { id = "raw_lobster", amount = 0 },
+    { id = "raw_bass", amount = 0 },
+    { id = "raw_swordfish", amount = 0 },
+    { id = "raw_shark", amount = 0 },
+]
+
+[greengrocer_of_miscellania]
+id = 218
+defaults = [
+    { id = "cabbage", amount = 10 },
+    { id = "raw_potato", amount = 10 },
+    { id = "onion", amount = 10 },
+    { id = "tomato", amount = 10 },
+    { id = "garlic", amount = 10 },
+]
+
+[etceteria_fish]
+id = 219
+defaults = [
+    { id = "small_fishing_net", amount = 10 },
+    { id = "fishing_rod", amount = 10 },
+    { id = "fly_fishing_rod", amount = 10 },
+    { id = "harpoon", amount = 30 },
+    { id = "lobster_pot", amount = 10 },
+    { id = "fishing_bait", amount = 1000 },
+    { id = "feather", amount = 1000 },
+    { id = "big_fishing_net", amount = 10 },
+    { id = "raw_shrimps", amount = 0 },
+    { id = "raw_sardine", amount = 10 },
+    { id = "raw_herring", amount = 0 },
+    { id = "raw_mackerel", amount = 0 },
+    { id = "raw_cod", amount = 0 },
+    { id = "raw_anchovies", amount = 0 },
+    { id = "raw_trout", amount = 0 },
+    { id = "raw_pike", amount = 0 },
+    { id = "raw_salmon", amount = 0 },
+    { id = "raw_tuna", amount = 0 },
+    { id = "raw_lobster", amount = 0 },
+    { id = "raw_bass", amount = 0 },
+    { id = "raw_swordfish", amount = 0 },
+    { id = "raw_shark", amount = 0 },
+]
+
+[island_greengrocer]
+id = 220
+defaults = [
+    { id = "cabbage", amount = 0 },
+    { id = "raw_potato", amount = 0 },
+    { id = "onion", amount = 0 },
+    { id = "tomato", amount = 0 },
+    { id = "garlic", amount = 0 },
+]
+
+[miscellanian_general_store]
+id = 343
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "shears", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "bowl", amount = 10 },
+    { id = "cake_tin", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+]
+
+[miscellanian_clothes_shop]
+id = 392
+defaults = [
+    { id = "fremennik_shirt_brown", amount = 10 },
+    { id = "fremennik_shirt_grey", amount = 10 },
+    { id = "fremennik_shirt_tan", amount = 10 },
+    { id = "fremennik_shirt_red", amount = 10 },
+    { id = "fremennik_shirt_blue", amount = 10 },
+    { id = "fremennik_robe", amount = 10 },
+    { id = "fremennik_skirt", amount = 10 },
+    { id = "skirt_lilac", amount = 10 },
+    { id = "skirt_blue", amount = 10 },
+    { id = "trousers_lilac", amount = 10 },
+    { id = "trousers_blue", amount = 10 },
+    { id = "shorts_tan", amount = 10 },
+    { id = "shorts_blue", amount = 10 },
+    { id = "woven_top_tan", amount = 10 },
+    { id = "woven_top_blue", amount = 10 },
+    { id = "shirt_tan", amount = 10 },
+    { id = "shirt_lilac", amount = 10 },
+]
+
+[miscellanian_food_shop]
+id = 394
+defaults = [
+    { id = "bread", amount = 10 },
+    { id = "cheese", amount = 10 },
+    { id = "cabbage", amount = 10 },
+    { id = "raw_potato", amount = 10 },
+    { id = "onion", amount = 10 },
+    { id = "pot_of_flour", amount = 10 },
+    { id = "chocolate_bar", amount = 10 },
+    { id = "bucket_of_milk", amount = 10 },
+]

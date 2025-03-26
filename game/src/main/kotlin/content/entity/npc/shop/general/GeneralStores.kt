@@ -17,16 +17,12 @@ object GeneralStores {
     fun get(key: String) = stores.getOrPut(key) {
         val definition = get<InventoryDefinitions>().get(key)
         val minimumQuantities = IntArray(definition.length) {
-            if (definition.getOrNull<List<Map<String, Int>>>("defaults")?.getOrNull(it) != null) -1 else 0
+            if (definition.getOrNull<List<Item>>("defaults")?.getOrNull(it) != null) -1 else 0
         }
         val checker = ItemIndexAmountBounds(minimumQuantities, 0)
         Inventory(
             data = Array(definition.length) {
-                val map = definition.getOrNull<List<Map<String, Int>>>("defaults")?.getOrNull(it)
-                Item(
-                    id = map?.keys?.firstOrNull() ?: "",
-                    amount = map?.values?.firstOrNull() ?: 0
-                )
+                definition.getOrNull<List<Item>>("defaults")?.getOrNull(it) ?: Item.EMPTY
             },
             id = key,
             itemRule = GeneralStoreRestrictions(get<ItemDefinitions>()),

@@ -105,7 +105,7 @@ object Main {
         single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(cache), get()).load(files.find(Settings["definitions.enums"])) }
         single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"])) }
         single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(cache)).load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"])) }
-        single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().load(cache)).load(files.list(Settings["definitions.inventories"])) }
+        single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().load(cache)).load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"])) }
         single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).load(cache)).load(files.find(Settings["definitions.structs"])) }
         single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
         single(createdAtStart = true) { WeaponStyleDefinitions().load(files.find(Settings["definitions.weapons.styles"])) }

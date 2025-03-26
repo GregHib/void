@@ -1,0 +1,10 @@
+[the_shrimp_and_parrot]
+id = 157
+defaults = [
+    { id = "herring", amount = 10 },
+    { id = "cod", amount = 10 },
+    { id = "tuna", amount = 10 },
+    { id = "lobster", amount = 10 },
+    { id = "swordfish", amount = 10 },
+    { id = "cooked_karambwan", amount = 10 },
+]

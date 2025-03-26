@@ -1,0 +1,101 @@
+[dargauds_bows_and_arrows]
+id = 80
+defaults = [
+    { id = "arrow_shaft", amount = 1000 },
+    { id = "bronze_arrowtips", amount = 300 },
+    { id = "iron_arrowtips", amount = 300 },
+    { id = "steel_arrowtips", amount = 100 },
+    { id = "mithril_arrowtips", amount = 100 },
+    { id = "adamant_arrowtips", amount = 100 },
+    { id = "rune_arrowtips", amount = 30 },
+    { id = "bronze_arrow", amount = 1000 },
+    { id = "iron_arrow", amount = 300 },
+    { id = "steel_arrow", amount = 300 },
+    { id = "mithril_arrow", amount = 100 },
+    { id = "adamant_arrow", amount = 100 },
+    { id = "rune_arrow", amount = 100 },
+    { id = "bronze_brutal", amount = 0 },
+    { id = "iron_brutal", amount = 0 },
+    { id = "steel_brutal", amount = 0 },
+    { id = "black_brutal", amount = 0 },
+    { id = "mithril_brutal", amount = 0 },
+    { id = "adamant_brutal", amount = 0 },
+    { id = "rune_brutal", amount = 0 },
+    { id = "shortbow", amount = 10 },
+    { id = "oak_shortbow", amount = 10 },
+    { id = "willow_shortbow", amount = 10 },
+    { id = "longbow", amount = 10 },
+    { id = "oak_longbow", amount = 10 },
+    { id = "willow_longbow", amount = 10 },
+    { id = "comp_ogre_bow", amount = 10 },
+]
+
+[aarons_archery_appendages]
+id = 81
+defaults = [
+    { id = "leather_body", amount = 10 },
+    { id = "hardleather_body", amount = 10 },
+    { id = "studded_body", amount = 10 },
+    { id = "leather_chaps", amount = 10 },
+    { id = "studded_chaps", amount = 10 },
+    { id = "coif", amount = 10 },
+    { id = "leather_cowl", amount = 10 },
+    { id = "leather_vambraces", amount = 10 },
+]
+
+[authentic_throwing_weapons]
+id = 82
+defaults = [
+    { id = "bronze_javelin", amount = 1000 },
+    { id = "iron_javelin", amount = 1000 },
+    { id = "steel_javelin", amount = 300 },
+    { id = "mithril_javelin", amount = 300 },
+    { id = "adamant_javelin", amount = 100 },
+    { id = "rune_javelin", amount = 100 },
+    { id = "bronze_throwing_axe", amount = 1000 },
+    { id = "iron_throwing_axe", amount = 1000 },
+    { id = "steel_throwing_axe", amount = 300 },
+    { id = "mithril_throwing_axe", amount = 300 },
+    { id = "adamant_throwing_axe", amount = 100 },
+    { id = "rune_throwing_axe", amount = 100 },
+]
+
+[ranging_guild_ticket_exchange]
+id = 228
+currency = "archery_ticket"
+defaults = [
+    { id = "barb_bolttips", amount = 30 },
+    { id = "studded_body", amount = 1 },
+    { id = "rune_arrow", amount = 50 },
+    { id = "coif", amount = 1 },
+    { id = "green_dragonhide_body", amount = 1 },
+    { id = "adamant_javelin", amount = 20 },
+]
+
+[aarons_archery_appendages_skillcape]
+id = 457
+defaults = [
+    { id = "leather_body", amount = 10 },
+    { id = "hardleather_body", amount = 10 },
+    { id = "studded_body", amount = 10 },
+    { id = "leather_chaps", amount = 10 },
+    { id = "studded_chaps", amount = 10 },
+    { id = "coif", amount = 10 },
+    { id = "leather_cowl", amount = 10 },
+    { id = "leather_vambraces", amount = 10 },
+    { id = "ranged_cape", amount = 1 },
+]
+
+[aarons_archery_appendages_trimmed]
+id = 458
+defaults = [
+    { id = "leather_body", amount = 10 },
+    { id = "hardleather_body", amount = 10 },
+    { id = "studded_body", amount = 10 },
+    { id = "leather_chaps", amount = 10 },
+    { id = "studded_chaps", amount = 10 },
+    { id = "coif", amount = 10 },
+    { id = "leather_cowl", amount = 10 },
+    { id = "leather_vambraces", amount = 10 },
+    { id = "ranged_cape_t", amount = 1 },
+]

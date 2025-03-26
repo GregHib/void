@@ -1,0 +1,17 @@
+[khazard_general_store]
+id = 61
+defaults = [
+    { id = "bronze_pickaxe", amount = 10 },
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "shears", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "rope", amount = 10 },
+    { id = "pot_of_flour", amount = 500 },
+    { id = "bailing_bucket", amount = 30 },
+    { id = "swamp_paste", amount = 1000 },
+    { id = "knife", amount = 10 },
+]

@@ -1,0 +1,22 @@
+[bandit_bargains]
+id = 255
+defaults = [
+    { id = "waterskin_4", amount = 30 },
+    { id = "waterskin_0", amount = 30 },
+    { id = "jug_of_water", amount = 10 },
+    { id = "bowl_of_water", amount = 10 },
+    { id = "bucket_of_water", amount = 10 },
+    { id = "jug", amount = 10 },
+    { id = "bowl", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "desert_boots", amount = 10 },
+    { id = "desert_shirt", amount = 10 },
+    { id = "desert_robe", amount = 10 },
+    { id = "knife", amount = 10 },
+]
+
+[the_big_heist_lodge]
+id = 257
+defaults = [
+    { id = "bandits_brew", amount = 10 },
+]

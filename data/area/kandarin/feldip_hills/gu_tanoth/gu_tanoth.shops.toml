@@ -1,0 +1,36 @@
+[gruds_herblore_stall]
+id = 50
+defaults = [
+    { id = "vial", amount = 10 },
+    { id = "vial_pack", amount = 6 },
+    { id = "pestle_and_mortar", amount = 10 },
+    { id = "eye_of_newt", amount = 10 },
+    { id = "eye_of_newt_pack", amount = 20 },
+]
+
+[dals_general_ogre_supplies]
+id = 70
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "knife", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+]
+
+[summoning_supplies]
+id = 532
+defaults = [
+    { id = "antlers", amount = 10 },
+    { id = "lizard_skull", amount = 10 },
+    { id = "feather_headdress_blue", amount = 0 },
+    { id = "feather_headdress_yellow", amount = 0 },
+    { id = "feather_headdress_red", amount = 0 },
+    { id = "feather_headdress_stripy", amount = 0 },
+    { id = "feather_headdress_orange", amount = 0 },
+    { id = "spirit_shards", amount = 65000 },
+    { id = "pouch", amount = 5000 },
+    { id = "spirit_shard_pack", amount = 65000 },
+]

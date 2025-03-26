@@ -1,0 +1,5 @@
+[shop_of_distaste]
+id = 334
+defaults = [
+    { id = "rotten_tomato", amount = 100 },
+]

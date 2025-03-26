@@ -1,0 +1,14 @@
+[bolkoys_village_shop]
+id = 62
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "bronze_pickaxe", amount = 10 },
+    { id = "jug", amount = 10 },
+    { id = "shears", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "bronze_arrow", amount = 1000 },
+    { id = "cooked_meat", amount = 10 },
+]

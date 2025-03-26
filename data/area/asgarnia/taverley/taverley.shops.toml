@@ -1,0 +1,26 @@
+[gaiuss_two_handed_shop]
+id = 39
+defaults = [
+    { id = "bronze_2h_sword", amount = 10 },
+    { id = "iron_2h_sword", amount = 10 },
+    { id = "steel_2h_sword", amount = 10 },
+    { id = "black_2h_sword", amount = 10 },
+    { id = "mithril_2h_sword", amount = 10 },
+    { id = "adamant_2h_sword", amount = 10 },
+]
+
+[jatixs_herblore_shop]
+id = 40
+defaults = [
+    { id = "vial", amount = 10 },
+    { id = "vial_pack", amount = 6 },
+    { id = "pestle_and_mortar", amount = 10 },
+    { id = "eye_of_newt", amount = 10 },
+    { id = "eye_of_newt_pack", amount = 20 },
+]
+
+[bettamaxs_shop]
+id = 604
+defaults = [
+    { id = "juju_teleport_spiritbag", amount = 100 },
+]

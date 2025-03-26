@@ -1,0 +1,10 @@
+[trader_svens_black_market_goods]
+id = 442
+defaults = [
+    { id = "citizen_top", amount = 10 },
+    { id = "citizen_trousers", amount = 10 },
+    { id = "citizen_shoes", amount = 10 },
+    { id = "vyrewatch_top", amount = 10 },
+    { id = "vyrewatch_legs", amount = 10 },
+    { id = "vyrewatch_shoes", amount = 10 },
+]

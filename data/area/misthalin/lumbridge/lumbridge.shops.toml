@@ -1,0 +1,271 @@
+[bobs_brilliant_axes]
+id = 1
+defaults = [
+    { id = "bronze_pickaxe", amount = 10 },
+    { id = "bronze_hatchet", amount = 10 },
+    { id = "iron_hatchet", amount = 10 },
+    { id = "steel_hatchet", amount = 10 },
+    { id = "iron_battleaxe", amount = 10 },
+    { id = "steel_battleaxe", amount = 10 },
+    { id = "mithril_battleaxe", amount = 10 },
+]
+
+[lumbridge_general_store]
+id = 24
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "shears", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "bowl", amount = 10 },
+    { id = "cake_tin", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "newcomer_map", amount = 10 },
+    { id = "security_book", amount = 10 },
+]
+
+[culinaromancers_chest_food]
+id = 365
+defaults = [
+    { id = "chocolate_bar", amount = 300 },
+    { id = "cheese", amount = 10 },
+    { id = "tomato", amount = 10 },
+    { id = "cooking_apple", amount = 50 },
+    { id = "grapes", amount = 5 },
+    { id = "pot_of_flour", amount = 100 },
+    { id = "pizza_base", amount = 1 },
+    { id = "egg", amount = 10 },
+    { id = "bucket_of_milk", amount = 10 },
+    { id = "pot_of_cream", amount = 10 },
+    { id = "pat_of_butter", amount = 10 },
+    { id = "spice", amount = 10 },
+    { id = "pie_dish", amount = 10 },
+    { id = "cake_tin", amount = 10 },
+    { id = "bowl", amount = 10 },
+    { id = "jug", amount = 10 },
+    { id = "empty_pot", amount = 10 },
+    { id = "empty_cup", amount = 10 },
+    { id = "bucket", amount = 10 },
+]
+
+[culinaromancers_chest_0]
+id = 366
+defaults = [
+    { id = "culinaromancers_gloves_1", amount = 10 },
+    { id = "wooden_spoon", amount = 10 },
+]
+
+[culinaromancers_chest_1]
+id = 367
+defaults = [
+    { id = "culinaromancers_gloves_1", amount = 10 },
+    { id = "culinaromancers_gloves_2", amount = 10 },
+    { id = "wooden_spoon", amount = 10 },
+    { id = "egg_whisk", amount = 10 },
+]
+
+[culinaromancers_chest_2]
+id = 368
+defaults = [
+    { id = "culinaromancers_gloves_1", amount = 10 },
+    { id = "culinaromancers_gloves_2", amount = 10 },
+    { id = "culinaromancers_gloves_3", amount = 10 },
+    { id = "wooden_spoon", amount = 10 },
+    { id = "egg_whisk", amount = 10 },
+    { id = "spork", amount = 10 },
+]
+
+[culinaromancers_chest_3]
+id = 369
+defaults = [
+    { id = "culinaromancers_gloves_1", amount = 10 },
+    { id = "culinaromancers_gloves_2", amount = 10 },
+    { id = "culinaromancers_gloves_3", amount = 10 },
+    { id = "culinaromancers_gloves_4", amount = 10 },
+    { id = "wooden_spoon", amount = 10 },
+    { id = "egg_whisk", amount = 10 },
+    { id = "spork", amount = 10 },
+    { id = "spatula", amount = 10 },
+]
+
+[culinaromancers_chest_4]
+id = 370
+defaults = [
+    { id = "culinaromancers_gloves_1", amount = 10 },
+    { id = "culinaromancers_gloves_2", amount = 10 },
+    { id = "culinaromancers_gloves_3", amount = 10 },
+    { id = "culinaromancers_gloves_4", amount = 10 },
+    { id = "culinaromancers_gloves_5", amount = 10 },
+    { id = "wooden_spoon", amount = 10 },
+    { id = "egg_whisk", amount = 10 },
+    { id = "spork", amount = 10 },
+    { id = "spatula", amount = 10 },
+    { id = "frying_pan", amount = 10 },
+]
+
+[culinaromancers_chest_5]
+id = 371
+defaults = [
+    { id = "culinaromancers_gloves_1", amount = 10 },
+    { id = "culinaromancers_gloves_2", amount = 10 },
+    { id = "culinaromancers_gloves_3", amount = 10 },
+    { id = "culinaromancers_gloves_4", amount = 10 },
+    { id = "culinaromancers_gloves_5", amount = 10 },
+    { id = "culinaromancers_gloves_6", amount = 10 },
+    { id = "wooden_spoon", amount = 10 },
+    { id = "egg_whisk", amount = 10 },
+    { id = "spork", amount = 10 },
+    { id = "spatula", amount = 10 },
+    { id = "frying_pan", amount = 10 },
+    { id = "skewer", amount = 10 },
+]
+
+[culinaromancers_chest_6]
+id = 372
+defaults = [
+    { id = "culinaromancers_gloves_1", amount = 10 },
+    { id = "culinaromancers_gloves_2", amount = 10 },
+    { id = "culinaromancers_gloves_3", amount = 10 },
+    { id = "culinaromancers_gloves_4", amount = 10 },
+    { id = "culinaromancers_gloves_5", amount = 10 },
+    { id = "culinaromancers_gloves_6", amount = 10 },
+    { id = "culinaromancers_gloves_7", amount = 10 },
+    { id = "wooden_spoon", amount = 10 },
+    { id = "egg_whisk", amount = 10 },
+    { id = "spork", amount = 10 },
+    { id = "spatula", amount = 10 },
+    { id = "frying_pan", amount = 10 },
+    { id = "skewer", amount = 10 },
+    { id = "rolling_pin", amount = 10 },
+]
+
+[culinaromancers_chest_7]
+id = 373
+defaults = [
+    { id = "culinaromancers_gloves_1", amount = 10 },
+    { id = "culinaromancers_gloves_2", amount = 10 },
+    { id = "culinaromancers_gloves_3", amount = 10 },
+    { id = "culinaromancers_gloves_4", amount = 10 },
+    { id = "culinaromancers_gloves_5", amount = 10 },
+    { id = "culinaromancers_gloves_6", amount = 10 },
+    { id = "culinaromancers_gloves_7", amount = 10 },
+    { id = "culinaromancers_gloves_8", amount = 10 },
+    { id = "wooden_spoon", amount = 10 },
+    { id = "egg_whisk", amount = 10 },
+    { id = "spork", amount = 10 },
+    { id = "spatula", amount = 10 },
+    { id = "frying_pan", amount = 10 },
+    { id = "skewer", amount = 10 },
+    { id = "rolling_pin", amount = 10 },
+    { id = "kitchen_knife", amount = 10 },
+]
+
+[culinaromancers_chest_8]
+id = 374
+defaults = [
+    { id = "culinaromancers_gloves_1", amount = 10 },
+    { id = "culinaromancers_gloves_2", amount = 10 },
+    { id = "culinaromancers_gloves_3", amount = 10 },
+    { id = "culinaromancers_gloves_4", amount = 10 },
+    { id = "culinaromancers_gloves_5", amount = 10 },
+    { id = "culinaromancers_gloves_6", amount = 10 },
+    { id = "culinaromancers_gloves_7", amount = 10 },
+    { id = "culinaromancers_gloves_8", amount = 10 },
+    { id = "culinaromancers_gloves_9", amount = 10 },
+    { id = "wooden_spoon", amount = 10 },
+    { id = "egg_whisk", amount = 10 },
+    { id = "spork", amount = 10 },
+    { id = "spatula", amount = 10 },
+    { id = "frying_pan", amount = 10 },
+    { id = "skewer", amount = 10 },
+    { id = "rolling_pin", amount = 10 },
+    { id = "kitchen_knife", amount = 10 },
+    { id = "meat_tenderiser", amount = 10 },
+]
+
+[culinaromancers_chest_9]
+id = 375
+defaults = [
+    { id = "culinaromancers_gloves_1", amount = 10 },
+    { id = "culinaromancers_gloves_2", amount = 10 },
+    { id = "culinaromancers_gloves_3", amount = 10 },
+    { id = "culinaromancers_gloves_4", amount = 10 },
+    { id = "culinaromancers_gloves_5", amount = 10 },
+    { id = "culinaromancers_gloves_6", amount = 10 },
+    { id = "culinaromancers_gloves_7", amount = 10 },
+    { id = "culinaromancers_gloves_8", amount = 10 },
+    { id = "culinaromancers_gloves_9", amount = 10 },
+    { id = "culinaromancers_gloves_10", amount = 10 },
+    { id = "wooden_spoon", amount = 10 },
+    { id = "egg_whisk", amount = 10 },
+    { id = "spork", amount = 10 },
+    { id = "spatula", amount = 10 },
+    { id = "frying_pan", amount = 10 },
+    { id = "skewer", amount = 10 },
+    { id = "rolling_pin", amount = 10 },
+    { id = "kitchen_knife", amount = 10 },
+    { id = "meat_tenderiser", amount = 10 },
+    { id = "cleaver", amount = 10 },
+]
+
+[beefy_bills_supplies]
+id = 536
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "bucket_of_water", amount = 10 },
+    { id = "jug_of_water", amount = 10 },
+    { id = "pie_dish", amount = 10 },
+    { id = "cake_tin", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "shears", amount = 10 },
+    { id = "redberries", amount = 10 },
+    { id = "spinach_roll", amount = 10 },
+    { id = "chefs_hat", amount = 10 },
+    { id = "bronze_sword", amount = 10 },
+    { id = "bronze_sq_shield", amount = 10 },
+    { id = "shortbow", amount = 10 },
+    { id = "bronze_arrow", amount = 30 },
+]
+
+[lumbridge_general_store_sample]
+id = 553
+defaults = [
+    { id = "tinderbox", amount = 1 },
+    { id = "hammer", amount = 1 },
+    { id = "bronze_dagger", amount = 1 },
+]
+
+[bobs_brilliant_axes_sample]
+id = 554
+defaults = [
+    { id = "bronze_pickaxe", amount = 1 },
+    { id = "bronze_hatchet", amount = 1 },
+]
+
+[lumbridge_fishing_supplies_sample]
+id = 561
+defaults = [
+    { id = "small_fishing_net", amount = 1 },
+    { id = "crayfish_cage", amount = 1 },
+]
+
+[lumbridge_fishing_supplies]
+id = 562
+defaults = [
+    { id = "small_fishing_net", amount = 5 },
+    { id = "fishing_rod", amount = 10 },
+    { id = "fly_fishing_rod", amount = 10 },
+    { id = "crayfish_cage", amount = 10 },
+    { id = "fishing_bait", amount = 1000 },
+    { id = "feather", amount = 1000 },
+    { id = "raw_shrimps", amount = 0 },
+    { id = "raw_sardine", amount = 0 },
+    { id = "raw_herring", amount = 0 },
+    { id = "raw_anchovies", amount = 0 },
+    { id = "raw_trout", amount = 0 },
+    { id = "raw_pike", amount = 0 },
+    { id = "raw_salmon", amount = 0 },
+    { id = "raw_crayfish", amount = 0 },
+]

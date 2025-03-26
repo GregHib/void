@@ -1,0 +1,28 @@
+[jukats_dragon_sword_shop]
+id = 36
+defaults = [
+    { id = "dragon_longsword", amount = 10 },
+    { id = "dragon_dagger", amount = 30 },
+]
+
+[irksols_ruby_rings]
+id = 37
+defaults = [
+    { id = "ruby_ring", amount = 10 },
+]
+
+[zanaris_general_store]
+id = 38
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "shears", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "bowl", amount = 10 },
+    { id = "cake_tin", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "newcomer_map", amount = 10 },
+    { id = "security_book", amount = 10 },
+]

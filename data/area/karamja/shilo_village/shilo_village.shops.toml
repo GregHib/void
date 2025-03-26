@@ -1,0 +1,40 @@
+[fernaheis_fishing_hut]
+id = 85
+defaults = [
+    { id = "fishing_rod", amount = 10 },
+    { id = "fly_fishing_rod", amount = 10 },
+    { id = "fishing_bait", amount = 1000 },
+    { id = "feather", amount = 1000 },
+    { id = "raw_trout", amount = 0 },
+    { id = "raw_pike", amount = 0 },
+    { id = "raw_salmon", amount = 0 },
+]
+
+[oblis_general_store]
+id = 138
+defaults = [
+    { id = "tinderbox", amount = 10 },
+    { id = "vial", amount = 10 },
+    { id = "vial_pack", amount = 20 },
+    { id = "pestle_and_mortar", amount = 10 },
+    { id = "empty_pot", amount = 30 },
+    { id = "bronze_hatchet", amount = 10 },
+    { id = "bronze_pickaxe", amount = 10 },
+    { id = "iron_hatchet", amount = 10 },
+    { id = "leather_body", amount = 10 },
+    { id = "leather_gloves", amount = 10 },
+    { id = "leather_boots", amount = 10 },
+    { id = "cooked_meat", amount = 10 },
+    { id = "bread", amount = 10 },
+    { id = "spade", amount = 10 },
+    { id = "white_candle", amount = 10 },
+    { id = "unlit_torch", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "papyrus", amount = 10 },
+    { id = "charcoal", amount = 10 },
+    { id = "vial_of_water", amount = 10 },
+    { id = "vial_of_water_pack", amount = 20 },
+    { id = "machete", amount = 10 },
+    { id = "rope", amount = 10 },
+]
