@@ -1,0 +1,120 @@
+[novite_hatchet_chop]
+id = 13118
+walk = false
+run = false
+
+[bathus_hatchet_chop]
+id = 13119
+walk = false
+run = false
+
+[marmaros_hatchet_chop]
+id = 13120
+walk = false
+run = false
+
+[kratonite_hatchet_chop]
+id = 13121
+walk = false
+run = false
+
+[fractite_hatchet_chop]
+id = 13122
+walk = false
+run = false
+
+[zephyrium_hatchet_chop]
+id = 13123
+walk = false
+run = false
+
+[argonite_hatchet_chop]
+id = 13124
+walk = false
+run = false
+
+[katagon_hatchet_chop]
+id = 13125
+walk = false
+run = false
+
+[gorgonite_hatchet_chop]
+id = 13126
+walk = false
+run = false
+
+[promethium_hatchet_chop]
+id = 13127
+walk = false
+run = false
+
+[primal_hatchet_chop]
+id = 13128
+walk = false
+run = false
+
+[novite_hatchet_barricade]
+id = 13129
+
+[bathus_hatchet_barricade]
+id = 13130
+
+[marmaros_hatchet_barricade]
+id = 13131
+
+[kratonite_hatchet_barricade]
+id = 13132
+
+[fractite_hatchet_barricade]
+id = 13133
+
+[zephyrium_hatchet_barricade]
+id = 13134
+
+[argonite_hatchet_barricade]
+id = 13135
+
+[katagon_hatchet_barricade]
+id = 13136
+
+[gorgonite_hatchet_barricade]
+id = 13137
+
+[promethium_hatchet_barricade]
+id = 13138
+
+[primal_hatchet_barricade]
+id = 13139
+
+[novite_hatchet_fail]
+id = 13140
+
+[bathus_hatchet_fail]
+id = 13141
+
+[marmaros_hatchet_fail]
+id = 13142
+
+[kratonite_hatchet_fail]
+id = 13143
+
+[fractite_hatchet_fail]
+id = 13144
+
+[zephyrium_hatchet_fail]
+id = 13145
+
+[argonite_hatchet_fail]
+id = 13146
+
+[katagon_hatchet_fail]
+id = 13147
+
+[gorgonite_hatchet_fail]
+id = 13148
+
+[promethium_hatchet_fail]
+id = 13149
+
+[primal_hatchet_fail]
+id = 13150

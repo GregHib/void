@@ -1,0 +1,41 @@
+[distract_eyes]
+id = 1835
+
+[stomp_eyes]
+id = 794
+
+[abyss_kneel]
+id = 1331
+
+[stand]
+id = 1332
+
+[crawling_cave]
+id = 844
+
+[abyssal_leech_defend]
+id = 2182
+
+[abyssal_leech_attack]
+id = 2181
+
+[abyssal_leech_death]
+id = 2183
+
+[abyssal_guardian_defend]
+id = 2188
+
+[abyssal_guardian_attack]
+id = 2186
+
+[abyssal_guardian_death]
+id = 2189
+
+[abyssal_walker_defend]
+id = 2192
+
+[abyssal_walker_attack]
+id = 2193
+
+[abyssal_walker_death]
+id = 2194

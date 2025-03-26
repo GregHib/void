@@ -1,0 +1,109 @@
+[wind_spell]
+id = 10546
+
+[wind_spell_staff]
+id = 14221
+
+[water_spell]
+id = 10542
+
+[water_spell_staff]
+id = 14220
+
+[earth_spell]
+id = 14209
+
+[earth_spell_staff]
+id = 14222
+
+[fire_spell]
+id = 2791
+
+[fire_spell_staff]
+id = 14223
+
+[crumble_undead]
+id = 724
+
+[iban_blast]
+id = 708
+
+[magic_dart]
+id = 1575
+
+[cast_god_spell]
+id = 811
+
+[weaken]
+id = 717
+
+[weaken_staff]
+id = 1164
+
+[confuse]
+id = 716
+
+[confuse_staff]
+id = 1163
+
+[curse]
+id = 718
+
+[curse_staff]
+id = 1165
+
+[bind]
+id = 724
+
+[bind_staff]
+id = 1161
+
+[vulnerability]
+id = 718
+
+[vulnerability_staff]
+id = 1165
+
+[enfeeble]
+id = 728
+
+[enfeeble_staff]
+id = 1168
+
+[stun]
+id = 729
+
+[stun_staff]
+id = 1166
+
+[teleport_block_cast]
+id = 10503
+
+[ancient_spell]
+id = 1978
+
+[ancient_spell_multi]
+id = 1979
+
+[miasmic_rush_cast]
+id = 10513
+
+[miasmic_burst_cast]
+id = 10516
+
+[miasmic_blitz_cast]
+id = 10524
+
+[miasmic_barrage_cast]
+id = 10518
+
+[charge]
+id = 811
+[lunar_cast_group]
+id = 4409
+
+[vengeance]
+id = 4410
+
+[lunar_cast]
+id = 4411

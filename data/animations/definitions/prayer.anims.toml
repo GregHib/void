@@ -1,0 +1,23 @@
+[activate_protect_item]
+id = 12567
+
+[activate_berserker]
+id = 12589
+
+[activate_turmoil]
+id = 12565
+
+[sap]
+id = 12569
+
+[leech]
+id = 12575
+
+[deflect]
+id = 12573
+
+[offer_bones]
+id = 3705
+
+[altar_pray]
+id = 645

@@ -1,0 +1,608 @@
+[expression_no]
+id = 9740
+
+[expression_yes]
+id = 9741
+
+[expression_amazed1]
+id = 9742
+
+[expression_amazed2]
+id = 9743
+
+[expression_amazed3]
+id = 9744
+
+[expression_amazed4]
+id = 9745
+
+[expression_surprised1]
+id = 9746
+
+[expression_surprised2]
+id = 9747
+
+[expression_surprised3]
+id = 9748
+
+[expression_surprised4]
+id = 9749
+
+[expression_surprised_old1]
+id = 571
+
+[expression_surprised_old2]
+id = 572
+
+[expression_surprised_old3]
+id = 573
+
+[expression_surprised_old4]
+id = 574
+
+[expression_shock1]
+id = 9750
+
+[expression_shock2]
+id = 9751
+
+[expression_shock3]
+id = 9752
+
+[expression_shock4]
+id = 9753
+
+[expression_sad1]
+id = 9757
+
+[expression_sad2]
+id = 9758
+
+[expression_sad3]
+id = 9759
+
+[expression_sad4]
+id = 9760
+
+[expression_sad_old1]
+id = 610
+
+[expression_sad_old2]
+id = 611
+
+[expression_sad_old3]
+id = 612
+
+[expression_sad_old4]
+id = 613
+
+[expression_upset1]
+id = 9761
+
+[expression_upset2]
+id = 9762
+
+[expression_upset3]
+id = 9763
+
+[expression_upset4]
+id = 9764
+
+[expression_cry1]
+id = 9765
+
+[expression_cry2]
+id = 9766
+
+[expression_cry3]
+id = 9767
+
+[expression_cry4]
+id = 9768
+
+[expression_teary1]
+id = 9769
+
+[expression_teary2]
+id = 9770
+
+[expression_teary3]
+id = 9771
+
+[expression_teary4]
+id = 9772
+
+[expression_afraid1]
+id = 9773
+
+[expression_afraid2]
+id = 9774
+
+[expression_afraid3]
+id = 9775
+
+[expression_afraid4]
+id = 9776
+
+[expression_afraid_old1]
+id = 596
+
+[expression_afraid_old2]
+id = 597
+
+[expression_afraid_old3]
+id = 598
+
+[expression_afraid_old4]
+id = 599
+
+[expression_scared1]
+id = 9777
+
+[expression_scared2]
+id = 9778
+
+[expression_scared3]
+id = 9779
+
+[expression_scared4]
+id = 9780
+
+[expression_frustrated1]
+id = 9781
+
+[expression_frustrated2]
+id = 9782
+
+[expression_frustrated3]
+id = 9783
+
+[expression_frustrated4]
+id = 9784
+
+[expression_angry_old1]
+id = 614
+
+[expression_angry_old2]
+id = 615
+
+[expression_angry_old3]
+id = 616
+
+[expression_angry_old4]
+id = 617
+
+[expression_angry1]
+id = 9785
+
+[expression_angry2]
+id = 9786
+
+[expression_angry3]
+id = 9787
+
+[expression_angry4]
+id = 9788
+
+[expression_mad1]
+id = 9789
+
+[expression_mad2]
+id = 9790
+
+[expression_mad3]
+id = 9791
+
+[expression_mad4]
+id = 9792
+
+[expression_chicken]
+id = 9793
+
+[expression_evil1]
+id = 9794
+
+[expression_evil2]
+id = 9795
+
+[expression_evil3]
+id = 9796
+
+[expression_evil4]
+id = 9797
+
+[expression_evil_grin1]
+id = 9798
+
+[expression_evil_grin2]
+id = 9799
+
+[expression_evil_grin3]
+id = 9800
+
+[expression_evil_grin4]
+id = 9801
+
+[expression_asleep]
+id = 9802
+
+[expression_neutral1]
+id = 9803
+
+[expression_neutral2]
+id = 9804
+
+[expression_neutral3]
+id = 9805
+
+[expression_neutral4]
+id = 9806
+
+[expression_neutral_old1]
+id = 588
+
+[expression_neutral_old2]
+id = 589
+
+[expression_neutral_old3]
+id = 590
+
+[expression_neutral_old4]
+id = 591
+
+[expression_talk1]
+id = 9807
+
+[expression_talk2]
+id = 9808
+
+[expression_talk3]
+id = 9809
+
+[expression_talk4]
+id = 9810
+
+[expression_uncertain1]
+id = 9811
+
+[expression_uncertain2]
+id = 9812
+
+[expression_uncertain3]
+id = 9813
+
+[expression_uncertain4]
+id = 9814
+
+[expression_uncertain_old1]
+id = 575
+
+[expression_uncertain_old2]
+id = 576
+
+[expression_uncertain_old3]
+id = 577
+
+[expression_uncertain_old4]
+id = 578
+
+[expression_admit1]
+id = 9815
+
+[expression_admit2]
+id = 9816
+
+[expression_admit3]
+id = 9817
+
+[expression_admit4]
+id = 9818
+
+[expression_talk_old]
+id = 579
+
+[expression_sneer1]
+id = 9819
+
+[expression_sneer2]
+id = 9820
+
+[expression_sneer3]
+id = 9821
+
+[expression_sneer4]
+id = 9822
+
+[expression_no_disgust1]
+id = 9823
+
+[expression_no_disgust2]
+id = 9824
+
+[expression_no_disgust3]
+id = 9825
+
+[expression_no_disgust4]
+id = 9826
+
+[expression_quiz1]
+id = 9827
+
+[expression_quiz2]
+id = 9828
+
+[expression_quiz3]
+id = 9829
+
+[expression_quiz4]
+id = 9830
+
+[expression_quiz_old1]
+id = 554
+
+[expression_quiz_old2]
+id = 555
+
+[expression_quiz_old3]
+id = 556
+
+[expression_quiz_old4]
+id = 557
+
+[expression_roll_eyes1]
+id = 9831
+
+[expression_roll_eyes2]
+id = 9832
+
+[expression_roll_eyes3]
+id = 9833
+
+[expression_roll_eyes4]
+id = 9834
+
+[expression_roll_eyes_old1]
+id = 562
+
+[expression_roll_eyes_old2]
+id = 563
+
+[expression_roll_eyes_old3]
+id = 564
+
+[expression_roll_eyes_old4]
+id = 565
+
+[expression_drunk]
+id = 9835
+
+[expression_drunk_old1]
+id = 600
+
+[expression_drunk_old2]
+id = 601
+
+[expression_drunk_old3]
+id = 602
+
+[expression_drunk_old4]
+id = 603
+
+[expression_shifty1]
+id = 9836
+
+[expression_shifty2]
+id = 9837
+
+[expression_shifty3]
+id = 9838
+
+[expression_shifty4]
+id = 9839
+
+[expression_shifty_old1]
+id = 592
+
+[expression_shifty_old2]
+id = 593
+
+[expression_shifty_old3]
+id = 594
+
+[expression_shifty_old4]
+id = 595
+
+[expression_chuckle]
+id = 9840
+
+[expression_hysterics]
+id = 9841
+
+[expression_evil_laugh]
+id = 9842
+
+[expression_evil_laugh_old]
+id = 609
+
+[expression_pleased1]
+id = 9843
+
+[expression_pleased2]
+id = 9844
+
+[expression_pleased3]
+id = 9845
+
+[expression_pleased4]
+id = 9846
+
+[expression_happy1]
+id = 9847
+
+[expression_happy2]
+id = 9848
+
+[expression_happy3]
+id = 9849
+
+[expression_happy4]
+id = 9850
+
+[expression_happy_old1]
+id = 567
+
+[expression_happy_old2]
+id = 568
+
+[expression_happy_old3]
+id = 569
+
+[expression_happy_old4]
+id = 570
+
+[expression_laugh1]
+id = 9851
+
+[expression_laugh2]
+id = 9852
+
+[expression_laugh3]
+id = 9853
+
+[expression_laugh4]
+id = 9854
+
+[expression_chuckle_old1]
+id = 605
+
+[expression_chuckle_old2]
+id = 606
+
+[expression_chuckle_old3]
+id = 607
+
+[expression_chuckle_old4]
+id = 608
+
+[expression_unamused1]
+id = 9855
+
+[expression_unamused2]
+id = 9856
+
+[expression_unamused3]
+id = 9857
+
+[expression_unamused4]
+id = 9858
+
+[expression_unimpressed1]
+id = 9859
+
+[expression_unimpressed2]
+id = 9860
+
+[expression_unimpressed3]
+id = 9861
+
+[expression_unimpressed4]
+id = 9862
+
+[expression_condescending1]
+id = 9863
+
+[expression_condescending2]
+id = 9864
+
+[expression_condescending3]
+id = 9865
+
+[expression_condescending4]
+id = 9866
+
+[expression_eyes_closed_cry]
+id = 9877
+
+[expression_goofy]
+id = 9878
+
+[expression_eyes_closed_nod]
+id = 11009
+
+[expression_look_down]
+id = 12287
+
+[expression_angry_fade_in]
+id = 12554
+
+[expression_cursing]
+id = 12648
+
+[expression_giggles]
+id = 12649
+
+[expression_unstable]
+id = 12650
+
+[expression_shaking]
+id = 13656
+
+[expression_sob1]
+id = 14004
+
+[expression_sob2]
+id = 14005
+
+[expression_sob3]
+id = 14006
+
+[expression_sob4]
+id = 14007
+
+[expression_gatekeeper_happy]
+id = 14074
+
+[expression_gatekeeper_sad]
+id = 14075
+
+[expression_gatekeeper_suspicious]
+id = 14076
+
+[expression_gatekeeper_tired]
+id = 14077
+
+[expression_gatekeeper_cry]
+id = 14078
+
+[expression_angry]
+id = 14079
+
+[expression_blink1]
+id = 14701
+
+[expression_blink2]
+id = 14702
+
+[expression_blink3]
+id = 14704
+
+[expression_blink4]
+id = 14705
+
+[expression_look_down1]
+id = 14706
+
+[expression_look_down2]
+id = 14707
+
+[expression_look_down3]
+id = 14708
+
+[expression_look_down4]
+id = 14709
+
+[expression_look_down5]
+id = 14710
+
+[expression_blinking]
+id = 14711

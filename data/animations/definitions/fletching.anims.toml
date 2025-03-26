@@ -1,0 +1,59 @@
+[fletching_log]
+id = 1248
+
+[fletching_string_normal_shortbow]
+id = 6678
+
+[fletching_string_normal_longbow]
+id = 6684
+
+[fletching_string_oak_shortbow]
+id = 6679
+
+[fletching_string_oak_longbow]
+id = 6685
+
+[fletching_string_willow_shortbow]
+id = 6680
+
+[fletching_string_willow_longbow]
+id = 6686
+
+[fletching_string_maple_shortbow]
+id = 6681
+
+[fletching_string_maple_longbow]
+id = 6687
+
+[fletching_string_yew_shortbow]
+id = 6682
+
+[fletching_string_yew_longbow]
+id = 6688
+
+[fletching_string_magic_shortbow]
+id = 6683
+
+[fletching_string_magic_longbow]
+id = 6689
+
+[fletching_string_bronze_crossbow]
+id = 6671
+
+[fletching_string_blurite_crossbow]
+id = 6672
+
+[fletching_string_iron_crossbow]
+id = 6673
+
+[fletching_string_steel_crossbow]
+id = 6674
+
+[fletching_string_mithril_crossbow]
+id = 6675
+
+[fletching_string_adamant_crossbow]
+id = 6676
+
+[fletching_string_rune_crossbow]
+id = 6677

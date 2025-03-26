@@ -1,0 +1,26 @@
+[climb_through_pipe]
+id = 10580
+
+[gnome_wall_run]
+id = 2922
+
+[gnome_wall_fail]
+id = 11793
+
+[gnome_wall_stand]
+id = 11794
+
+[gnome_run_up]
+id = 11784
+
+[gnome_jump]
+id = 11785
+
+[gnome_swing]
+id = 11789
+
+[gnome_jump_barrier]
+id = 2923
+
+[gnome_pipe_land]
+id = 2924

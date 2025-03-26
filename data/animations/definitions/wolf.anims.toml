@@ -1,0 +1,8 @@
+[wolves_defend]
+id = 6557
+
+[wolves_attack]
+id = 6559
+
+[wolves_death]
+id = 6558

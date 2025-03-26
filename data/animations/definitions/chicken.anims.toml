@@ -1,0 +1,8 @@
+[chicken_attack]
+id = 5387
+
+[chicken_defend]
+id = 5388
+
+[chicken_death]
+id = 5389

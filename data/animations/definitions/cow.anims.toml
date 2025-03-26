@@ -1,0 +1,20 @@
+[cow_defend]
+id = 5850
+
+[cow_death]
+id = 5851
+
+[cow_attack]
+id = 5849
+
+[cow_eat_grass]
+id = 5854
+
+[calf_defend]
+id = 150
+
+[calf_death]
+id = 244
+
+[calf_attack]
+id = 245

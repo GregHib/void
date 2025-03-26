@@ -1,0 +1,26 @@
+[fall_right]
+id = 760
+
+[rope_walk_fall_down]
+id = 764
+
+[rope_walk_fall_left]
+id = 770
+
+[rope_walk_fall_right]
+id = 771
+
+[fall_off_log_left]
+id = 2581
+
+[fall_off_log_right]
+id = 2582
+
+[fall_on_floor]
+id = 767
+
+[stepping_stone_step]
+id = 769
+
+[stepping_stone_jump]
+id = 741

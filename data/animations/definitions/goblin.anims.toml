@@ -1,0 +1,8 @@
+[goblin_attack]
+id = 6184
+
+[goblin_defend]
+id = 6183
+
+[goblin_death]
+id = 6182

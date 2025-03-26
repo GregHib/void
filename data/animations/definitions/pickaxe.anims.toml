@@ -1,0 +1,324 @@
+[rune_pickaxe_swing_low]
+id = 624
+walk = false
+run = false
+
+[bronze_pickaxe_swing_low]
+id = 625
+walk = false
+run = false
+
+[iron_pickaxe_swing_low]
+id = 626
+walk = false
+run = false
+
+[steel_pickaxe_swing_low]
+id = 627
+walk = false
+run = false
+
+[adamant_pickaxe_swing_low]
+id = 628
+walk = false
+run = false
+
+[mithril_pickaxe_swing_low]
+id = 629
+walk = false
+run = false
+
+[bronze_pickaxe_chop]
+id = 1511
+walk = false
+run = false
+
+[rune_pickaxe_stuck]
+id = 4760
+
+[bronze_pickaxe_stuck]
+id = 4761
+
+[iron_pickaxe_stuck]
+id = 4762
+
+[steel_pickaxe_stuck]
+id = 4763
+
+[adamant_pickaxe_stuck]
+id = 4764
+
+[mithril_pickaxe_stuck]
+id = 4765
+
+[dragon_pickaxe_stuck]
+id = 4766
+
+[bronze_pickaxe_quick]
+id = 6102
+
+[rune_pickaxe_smash_low_old]
+id = 6746
+
+[bronze_pickaxe_smash_low_old]
+id = 6747
+
+[iron_pickaxe_smash_low_old]
+id = 6748
+
+[steel_pickaxe_smash_low_old]
+id = 6749
+
+[adamant_pickaxe_smash_low_old]
+id = 6750
+
+[mithril_pickaxe_smash_low_old]
+id = 6751
+
+[rune_pickaxe_fail]
+id = 6752
+
+[bronze_pickaxe_fail]
+id = 6753
+
+[iron_pickaxe_fail]
+id = 6754
+
+[steel_pickaxe_fail]
+id = 6755
+
+[adamant_pickaxe_fail]
+id = 6756
+
+[mithril_pickaxe_fail]
+id = 6757
+
+[dragon_pickaxe_fail]
+id = 6758
+
+[bronze_pickaxe_fast]
+id = 8836
+
+[iron_pickaxe_fast]
+id = 8837
+
+[steel_pickaxe_fast]
+id = 8838
+
+[adamant_pickaxe_fast]
+id = 8839
+
+[mithril_pickaxe_fast]
+id = 8840
+
+[rune_pickaxe_fast]
+id = 8841
+
+[bronze_pickaxe_explode]
+id = 9360
+
+[iron_pickaxe_explode]
+id = 9361
+
+[steel_pickaxe_explode]
+id = 9362
+
+[mithril_pickaxe_explode]
+id = 9363
+
+[adamant_pickaxe_explode]
+id = 9364
+
+[rune_pickaxe_explode]
+id = 9365
+
+[bronze_pickaxe_smash_low]
+id = 10001
+
+[iron_pickaxe_smash_low]
+id = 10002
+
+[steel_pickaxe_smash_low]
+id = 10003
+
+[mithril_pickaxe_smash_low]
+id = 10004
+
+[adamant_pickaxe_smash_low]
+id = 10005
+
+[rune_pickaxe_smash_low]
+id = 10006
+
+[dragon_pickaxe_smash_low]
+id = 10007
+
+[rune_pickaxe_swing_medium]
+id = 10335
+
+[bronze_pickaxe_swing_medium]
+id = 10336
+
+[iron_pickaxe_swing_medium]
+id = 10337
+
+[steel_pickaxe_swing_medium]
+id = 10338
+
+[mithril_pickaxe_swing_medium]
+id = 10339
+
+[adamant_pickaxe_swing_medium]
+id = 10340
+
+[inferno_adze_swing_medium]
+id = 10341
+
+[rune_pickaxe_swing_high]
+id = 10342
+
+[bronze_pickaxe_swing_high]
+id = 10343
+
+[iron_pickaxe_swing_high]
+id = 10344
+
+[steel_pickaxe_swing_high]
+id = 10345
+
+[mithril_pickaxe_swing_high]
+id = 10346
+
+[adamant_pickaxe_swing_high]
+id = 10347
+
+[inferno_adze_swing_high]
+id = 10348
+
+[pickaxe_class_1_swing]
+id = 10608
+
+[pickaxe_class_2_swing]
+id = 10609
+
+[pickaxe_class_3_swing]
+id = 10610
+
+[pickaxe_class_4_swing]
+id = 10611
+
+[pickaxe_class_5_swing]
+id = 10612
+
+[sacred_clay_pickaxe_2]
+id = 11019
+
+[sacred_clay_pickaxe_3]
+id = 11020
+
+[sacred_clay_pickaxe_4]
+id = 11021
+
+[sacred_clay_pickaxe_5]
+id = 11022
+
+[sacred_clay_pickaxe_6]
+id = 11023
+
+[sacred_clay_pickaxe_7]
+id = 11024
+
+[sacred_clay_pickaxe_8]
+id = 11025
+
+[sacred_clay_pickaxe_9]
+id = 11026
+
+[sacred_clay_pickaxe_explode]
+id = 11068
+
+[volatile_clay_pickaxe_explode]
+id = 11069
+
+[dragon_pickaxe_6]
+id = 12169
+
+[dragon_pickaxe_explode]
+id = 12187
+
+[dragon_pickaxe_8]
+id = 12188
+
+[dragon_pickaxe_swing_low]
+id = 12189
+walk = false
+run = false
+
+[dragon_pickaxe_swing_medium]
+id = 12190
+
+[dragon_pickaxe_swing_high]
+id = 12191
+
+[bronze_pickaxe_random]
+id = 12278
+
+[steel_pickaxe_12]
+id = 12455
+
+[rune_pickaxe_chip_right]
+id = 14358
+
+[bronze_pickaxe_chip_right]
+id = 14359
+
+[iron_pickaxe_chip_right]
+id = 14360
+
+[steel_pickaxe_chip_right]
+id = 14361
+
+[adamant_pickaxe_chip_right]
+id = 14362
+
+[mithril_pickaxe_chip_right]
+id = 14363
+
+[dragon_pickaxe_chip_right]
+id = 14364
+
+[sacred_clay_pickaxe_chip_right]
+id = 14365
+
+[inferno_adze_chip_right]
+id = 14366
+
+[bronze_pickaxe_smash]
+id = 15242
+
+[iron_pickaxe_smash]
+id = 15243
+
+[steel_pickaxe_smash]
+id = 15244
+
+[mithril_pickaxe_smash]
+id = 15245
+
+[adamant_pickaxe_smash]
+id = 15246
+
+[rune_pickaxe_smash]
+id = 15247
+
+[dragon_pickaxe_smash]
+id = 15248
+
+[sacred_clay_pickaxe_smash]
+id = 15249
+
+[inferno_adze_smash]
+id = 15250
+
+[rune_pickaxe_4]
+id = 4941

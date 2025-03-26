@@ -1,0 +1,221 @@
+[hand_cannon_shoot]
+id = 12152
+
+[hand_cannon_special]
+id = 12174
+
+[hand_cannon_explode]
+id = 12175
+
+[guthans_spear_attack]
+id = 2080
+
+[guthans_spear_swipe]
+id = 2081
+
+[guthans_spear_defend]
+id = 12008
+
+[veracs_flail_attack]
+id = 2062
+
+[veracs_flail_defend]
+id = 2063
+
+[torags_hammers_attack]
+id = 2068
+
+[dharoks_greataxe_attack]
+id = 2066
+
+[dharoks_greataxe_smash]
+id = 2067
+
+[dharoks_greataxe_defend]
+id = 2063
+
+[boxing_gloves_attack]
+id = 3678
+
+[boxing_gloves_defend]
+id = 3679
+
+[anchor_attack]
+id = 5865
+
+[anchor_defend]
+id = 5866
+
+[granite_maul_attack]
+id = 1665
+
+[granite_maul_block]
+id = 1666
+
+[godsword_chop]
+id = 11978
+
+[godsword_slash]
+id = 11979
+
+[godsword_smash]
+id = 11980
+
+[godsword_block]
+id = 11981
+
+[godsword_defend]
+id = 12022
+
+[zamorakian_spear_pound]
+id = 12005
+
+[zamorakian_spear_swipe]
+id = 12006
+
+[zamorakian_spear_lunge]
+id = 12007
+
+[zamorakian_spear_defend]
+id = 12008
+
+[maul_attack]
+id = 13691
+
+[maul_block]
+id = 1666
+
+[vestas_longsword_attack]
+id = 12311
+
+[vestas_longsword_lunge]
+id = 12310
+
+[vestas_longsword_defend]
+id = 388
+
+[korasis_sword_chop]
+id = 12028
+
+[korasis_sword_slash]
+id = 12029
+
+[korasis_sword_defend]
+id = 12030
+
+[dragon_dagger_attack]
+id = 376
+
+[dragon_dagger_slash]
+id = 377
+
+[dragon_dagger_defend]
+id = 403
+
+[puncture_special]
+id = 1062
+
+[defender_block]
+id = 4177
+
+[book_block]
+id = 420
+
+[shield_block]
+id = 1156
+
+[smash_special]
+id = 10505
+
+[feint_special]
+id = 10502
+
+[rampage_special]
+id = 1056
+
+[slice_and_dice_special]
+id = 10961
+
+[cleave_special]
+id = 12033
+
+[shatter_special]
+id = 1060
+
+[the_judgement_special]
+id = 11989
+
+[sanctuary_special]
+id = 1168
+
+[sever_special]
+id = 12031
+
+[saradomins_lightning_special]
+id = 11993
+
+[favour_of_the_war_god_special]
+id = 6147
+
+[liquify_special]
+id = 6118
+
+[backstab_special]
+id = 4198
+
+[sunder_special]
+id = 5870
+
+[warstrike_special]
+id = 11991
+
+[healing_blade_special]
+id = 12019
+
+[ice_cleave_special]
+id = 7070
+
+[sweep_special]
+id = 1203
+
+[powerstab_special]
+id = 7078
+
+[shove_special]
+id = 1064
+
+[fall_back_on_butt]
+id = 4172
+
+[step_back_startled]
+id = 4835
+
+[quick_smash_special]
+id = 1667
+
+[clobber_special]
+id = 2876
+
+[disrupt_special]
+id = 14788
+
+[weaken_special]
+id = 2890
+
+[impale_special]
+id = 923
+
+[spear_wall_special]
+id = 10499
+
+[banner_attack]
+id = 1428
+
+[banner_defend]
+id = 1429
+
+[mouse_toy_attack]
+id = 1658
+
+[power_of_light_special]
+id = 12804

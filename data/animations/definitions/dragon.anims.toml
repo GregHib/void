@@ -1,0 +1,11 @@
+[dragon_breath]
+id = 81
+
+[dragon_attack]
+id = 91
+
+[dragon_defend]
+id = 89
+
+[dragon_death]
+id = 92

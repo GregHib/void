@@ -1,0 +1,11 @@
+[skeleton_defend]
+id = 5489
+
+[skeleton_death]
+id = 5491
+
+[skeleton_crush]
+id = 5485
+
+[skeleton_slash]
+id = 5487

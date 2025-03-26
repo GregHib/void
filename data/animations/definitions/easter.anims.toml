@@ -1,0 +1,11 @@
+[rubber_chicken_whack]
+id = 1833
+ticks = 2
+walk = false
+run = false
+
+[easter_carrot_whack]
+id = 11547
+ticks = 2
+walk = false
+run = false
