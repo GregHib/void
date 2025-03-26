@@ -431,7 +431,7 @@ modCommand("pos", "print out players current coordinates", listOf("mypos")) {
 adminCommand("reload (config-name)", "reload any type of content or file e.g. npcs, object defs, or settings") {
     val files = configFiles()
     when (content) {
-        "book", "books" -> get<Books>().load(files.find(Settings["definitions.books"]))
+        "book", "books" -> get<Books>().load(files.list(Settings["definitions.books"]))
         "stairs", "tele", "teles", "teleports" -> get<ObjectTeleports>().load(files.list(Settings["map.teleports"]))
         "tracks", "songs" -> get<MusicTracks>().load(files.find(Settings["map.music"]))
         "objects", "objs" -> {
@@ -470,7 +470,7 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
         "music", "music effects", "jingles" -> get<JingleDefinitions>().load(files.find(Settings["definitions.jingles"]))
         "interfaces" -> get<InterfaceDefinitions>().load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"]))
         "spells" -> get<SpellDefinitions>().load(files.find(Settings["definitions.spells"]))
-        "patrols", "paths" -> get<PatrolDefinitions>().load(files.find(Settings["definitions.patrols"]))
+        "patrols", "paths" -> get<PatrolDefinitions>().load(files.list(Settings["definitions.patrols"]))
         "prayers" -> get<PrayerDefinitions>().load(files.find(Settings["definitions.prayers"]))
         "drops" -> get<DropTables>().load(files.list(Settings["spawns.drops"]))
         "cs2", "cs2s", "client scripts" -> get<ClientScriptDefinitions>().load(files.find(Settings["definitions.clientScripts"]))

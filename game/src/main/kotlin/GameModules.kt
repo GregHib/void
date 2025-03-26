@@ -9,6 +9,7 @@ import content.entity.world.music.MusicTracks
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.find
+import world.gregs.voidps.engine.data.list
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 
 fun gameModule(files: ConfigFiles) = module {
@@ -24,6 +25,6 @@ fun gameModule(files: ConfigFiles) = module {
         )
     }
     single(createdAtStart = true) { NavigationGraph(get(), get()).load(files.find(Settings["map.navGraph"])) }
-    single(createdAtStart = true) { Books().load(files.find(Settings["definitions.books"])) }
+    single(createdAtStart = true) { Books().load(files.list(Settings["definitions.books"])) }
     single(createdAtStart = true) { MusicTracks().load(files.find(Settings["map.music"])) }
 }
