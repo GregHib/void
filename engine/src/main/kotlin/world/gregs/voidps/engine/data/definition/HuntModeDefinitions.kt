@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.HuntModeDefinition
 import world.gregs.voidps.engine.timedLoad
 
@@ -15,7 +14,7 @@ class HuntModeDefinitions {
         return modes.getValue(name)
     }
 
-    fun load(path: String = Settings["definitions.huntModes"]): HuntModeDefinitions {
+    fun load(path: String): HuntModeDefinitions {
         timedLoad("hunt mode") {
             val modes = Object2ObjectOpenHashMap<String, HuntModeDefinition>(10, Hash.VERY_FAST_LOAD_FACTOR)
             Config.fileReader(path) {

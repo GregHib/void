@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.CanoeDefinition
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Tile
 
@@ -17,7 +16,7 @@ class CanoeDefinitions {
 
     fun empty() = CanoeDefinition.EMPTY
 
-    fun load(path: String = Settings["map.canoes"]): CanoeDefinitions {
+    fun load(path: String): CanoeDefinitions {
         timedLoad("canoe station") {
             val canoes = Object2ObjectOpenHashMap<String, CanoeDefinition>()
             Config.fileReader(path, 165) {

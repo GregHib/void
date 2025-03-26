@@ -11,6 +11,7 @@ import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.configFiles
+import world.gregs.voidps.engine.data.list
 import java.io.File
 import kotlin.collections.component1
 import kotlin.collections.component2
@@ -30,7 +31,7 @@ object InventoryConverter {
         val targetDecoder = InventoryDecoder().load(targetCache)
         Settings.load()
         val files = configFiles()
-        val itemDefinitions = ItemDefinitions(ItemDecoder().load(targetCache)).load(files.getOrDefault(Settings["definitions.items"], emptyList()))
+        val itemDefinitions = ItemDefinitions(ItemDecoder().load(targetCache)).load(files.list(Settings["definitions.items"]))
         val encoder = InventoryEncoder()
         val data: MutableMap<String, Any> = mutableMapOf()
 

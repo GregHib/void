@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.SpellDefinition
 import world.gregs.voidps.engine.timedLoad
 
@@ -13,7 +12,7 @@ class SpellDefinitions {
 
     fun get(key: String) = definitions[key] ?: SpellDefinition()
 
-    fun load(path: String = Settings["definitions.spells"]): SpellDefinitions {
+    fun load(path: String): SpellDefinitions {
         timedLoad("spell definition") {
             val definitions = Object2ObjectOpenHashMap<String, SpellDefinition>()
             Config.fileReader(path) {

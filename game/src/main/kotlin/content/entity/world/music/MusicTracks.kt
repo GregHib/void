@@ -25,7 +25,7 @@ class MusicTracks {
         return tracks[region.id] ?: emptyList()
     }
 
-    fun load(path: String = Settings["map.music"]): MusicTracks {
+    fun load(path: String): MusicTracks {
         timedLoad("music track") {
             val tracks = Int2ObjectOpenHashMap<MutableList<Track>>(900)
             val names = Object2IntOpenHashMap<String>(650)

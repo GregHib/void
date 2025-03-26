@@ -21,8 +21,7 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.data.AccountManager
-import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.engineModule
 import world.gregs.voidps.engine.entity.World
@@ -51,7 +50,6 @@ import world.gregs.voidps.type.setRandom
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
-import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import java.io.File
 import java.util.*
@@ -150,7 +148,7 @@ abstract class WorldTest : KoinTest {
         startKoin {
             printLogger(Level.ERROR)
             allowOverride(true)
-            modules(engineModule, gameModule, module {
+            modules(engineModule(files), gameModule(files), module {
                 single(createdAtStart = true) { cache }
                 single(createdAtStart = true) { huffman }
                 single(createdAtStart = true) { objectDefinitions }
@@ -229,11 +227,11 @@ abstract class WorldTest : KoinTest {
     @BeforeEach
     fun beforeEach() {
         settings = Settings.load(properties)
-        loadItemSpawns(floorItems, get(), files.getOrDefault(Settings["spawns.items"], emptyList()), itemDefinitions)
+        loadItemSpawns(floorItems, get(), files.list(Settings["spawns.items"]), itemDefinitions)
         if (loadNpcs) {
-            loadNpcSpawns(npcs, files.getOrDefault(Settings["spawns.npcs"], emptyList()), npcDefinitions)
+            loadNpcSpawns(npcs, files.list(Settings["spawns.npcs"]), npcDefinitions)
         }
-        loadObjectSpawns(objects, files.getOrDefault(Settings["spawns.objects"], emptyList()), objectDefinitions)
+        loadObjectSpawns(objects, files.list(Settings["spawns.objects"]), objectDefinitions)
         setRandom(FakeRandom())
     }
 
@@ -277,52 +275,52 @@ abstract class WorldTest : KoinTest {
         }
         private val cache: Cache by lazy { MemoryCache(Settings["storage.cache.path"]) }
         private val huffman: Huffman by lazy { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
-        private val ammoDefinitions: AmmoDefinitions by lazy { AmmoDefinitions().load() }
-        private val parameterDefinitions: ParameterDefinitions by lazy { ParameterDefinitions(CategoryDefinitions().load(), ammoDefinitions).load() }
+        private val ammoDefinitions: AmmoDefinitions by lazy { AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"])) }
+        private val parameterDefinitions: ParameterDefinitions by lazy { ParameterDefinitions(CategoryDefinitions().load(files.find(Settings["definitions.categories"])), ammoDefinitions).load(files.find(Settings["definitions.parameters"])) }
         private val objectDefinitions: ObjectDefinitions by lazy {
-            ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).load(cache)).load(files.getOrDefault(Settings["definitions.objects"], emptyList()))
+            ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).load(cache)).load(files.list(Settings["definitions.objects"]))
         }
         private val npcDefinitions: NPCDefinitions by lazy {
-            NPCDefinitions(NPCDecoder(member = true, parameterDefinitions).load(cache)).load(files.getOrDefault(Settings["definitions.npcs"], emptyList()))
+            NPCDefinitions(NPCDecoder(member = true, parameterDefinitions).load(cache)).load(files.list(Settings["definitions.npcs"]))
         }
         private val itemDefinitions: ItemDefinitions by lazy {
-            ItemDefinitions(ItemDecoder(parameterDefinitions).load(cache)).load(files.getOrDefault(Settings["definitions.items"], emptyList()))
+            ItemDefinitions(ItemDecoder(parameterDefinitions).load(cache)).load(files.list(Settings["definitions.items"]))
         }
         private val animationDefinitions: AnimationDefinitions by lazy {
-            AnimationDefinitions(AnimationDecoder().load(cache)).load(files.getOrDefault(Settings["definitions.animations"], emptyList()))
+            AnimationDefinitions(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"]))
         }
         private val graphicDefinitions: GraphicDefinitions by lazy {
-            GraphicDefinitions(GraphicDecoder().load(cache)).load(files.getOrDefault(Settings["definitions.graphics"], emptyList()))
+            GraphicDefinitions(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"]))
         }
         private val interfaceDefinitions: InterfaceDefinitions by lazy {
-            InterfaceDefinitions(InterfaceDecoder().load(cache)).load(files.getOrDefault(Settings["definitions.interfaces"], emptyList()))
+            InterfaceDefinitions(InterfaceDecoder().load(cache)).load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"]))
         }
         private val inventoryDefinitions: InventoryDefinitions by lazy {
-            InventoryDefinitions(InventoryDecoder().load(cache)).load(files.getOrDefault(Settings["definitions.inventories"], emptyList()))
+            InventoryDefinitions(InventoryDecoder().load(cache)).load(files.list(Settings["definitions.inventories"]))
         }
-        private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(parameterDefinitions).load(cache)).load() }
+        private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(parameterDefinitions).load(cache)).load(files.find(Settings["definitions.structs"])) }
         private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
-        private val weaponStyleDefinitions: WeaponStyleDefinitions by lazy { WeaponStyleDefinitions().load() }
-        private val weaponAnimationDefinitions: WeaponAnimationDefinitions by lazy { WeaponAnimationDefinitions().load() }
-        private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(cache), structDefinitions).load() }
+        private val weaponStyleDefinitions: WeaponStyleDefinitions by lazy { WeaponStyleDefinitions().load(files.find(Settings["definitions.weapons.styles"])) }
+        private val weaponAnimationDefinitions: WeaponAnimationDefinitions by lazy { WeaponAnimationDefinitions().load(files.find(Settings["definitions.weapons.animations"])) }
+        private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(cache), structDefinitions).load(files.find(Settings["definitions.enums"])) }
         private val collisions: Collisions by lazy { Collisions() }
         private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd(collisions) }
         private val objectCollisionRemove: GameObjectCollisionRemove by lazy { GameObjectCollisionRemove(collisions) }
         private val gameObjects: GameObjects by lazy { GameObjects(objectCollisionAdd, objectCollisionRemove, ZoneBatchUpdates(), objectDefinitions, storeUnused = true) }
         private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(collisions), objectDefinitions, gameObjects, cache).loadCache() }
-        private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(cache)).load() }
-        private val objectTeleports: ObjectTeleports by lazy { ObjectTeleports().load(files.getOrDefault(Settings["map.teleports"], emptyList())) }
-        private val itemOnItemDefinitions: ItemOnItemDefinitions by lazy { ItemOnItemDefinitions().load(files.getOrDefault(Settings["definitions.itemOnItem"], emptyList())) }
+        private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(cache)).load(files.find(Settings["definitions.fonts"])) }
+        private val objectTeleports: ObjectTeleports by lazy { ObjectTeleports().load(files.list(Settings["map.teleports"])) }
+        private val itemOnItemDefinitions: ItemOnItemDefinitions by lazy { ItemOnItemDefinitions().load(files.list(Settings["definitions.itemOnItem"])) }
         private val variableDefinitions: VariableDefinitions by lazy {
             VariableDefinitions().load(
-                files.getOrDefault(Settings["definitions.variables.players"], emptyList()),
-                files.getOrDefault(Settings["definitions.variables.bits"], emptyList()),
-                files.getOrDefault(Settings["definitions.variables.clients"], emptyList()),
-                files.getOrDefault(Settings["definitions.variables.strings"], emptyList()),
-                files.getOrDefault(Settings["definitions.variables.customs"], emptyList()),
+                files.list(Settings["definitions.variables.players"]),
+                files.list(Settings["definitions.variables.bits"]),
+                files.list(Settings["definitions.variables.clients"]),
+                files.list(Settings["definitions.variables.strings"]),
+                files.list(Settings["definitions.variables.customs"]),
             )
         }
-        private val dropTables: DropTables by lazy { DropTables().load(files.getOrDefault(Settings["spawns.drops"], emptyList()), get()) }
+        private val dropTables: DropTables by lazy { DropTables().load(files.list(Settings["spawns.drops"]), get()) }
         val emptyTile = Tile(2655, 4640)
     }
 }

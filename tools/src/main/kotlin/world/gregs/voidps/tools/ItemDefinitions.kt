@@ -9,6 +9,8 @@ import world.gregs.voidps.engine.data.definition.CategoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.ParameterDefinitions
 import world.gregs.voidps.engine.data.configFiles
+import world.gregs.voidps.engine.data.find
+import world.gregs.voidps.engine.data.list
 
 object ItemDefinitions {
 
@@ -16,11 +18,11 @@ object ItemDefinitions {
     fun main(args: Array<String>) {
         Settings.load()
         val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
-        val categories = CategoryDefinitions().load(Settings["definitions.categories"])
-        val ammo = AmmoDefinitions().load(Settings["definitions.ammoGroups"])
-        val parameters = ParameterDefinitions(categories, ammo).load(Settings["definitions.parameters"])
         val files = configFiles()
-        val decoder = ItemDefinitions(ItemDecoder(parameters).load(cache)).load(files.getOrDefault(Settings["definitions.items"], emptyList()))
+        val categories = CategoryDefinitions().load(files.find(Settings["definitions.categories"]))
+        val ammo = AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"]))
+        val parameters = ParameterDefinitions(categories, ammo).load(files.find(Settings["definitions.parameters"]))
+        val decoder = ItemDefinitions(ItemDecoder(parameters).load(cache)).load(files.list(Settings["definitions.items"]))
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
             if(def.stringId.contains("anchor"))

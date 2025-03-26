@@ -7,17 +7,13 @@ import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
-import world.gregs.voidps.engine.data.AccountManager
-import world.gregs.voidps.engine.data.SafeStorage
-import world.gregs.voidps.engine.data.SaveQueue
-import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.data.json.FileStorage
 import world.gregs.voidps.engine.data.sql.DatabaseStorage
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -31,7 +27,7 @@ import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
 import java.io.File
 
-val engineModule = module {
+fun engineModule(files: ConfigFiles) = module {
     // Entities
     single { NPCs(get(), get(), get(), get()) }
     single { Players() }
@@ -67,8 +63,8 @@ val engineModule = module {
     // Map
     single { ZoneBatchUpdates() }
     single { DynamicZones(get(), get(), get()) }
-    single(createdAtStart = true) { AreaDefinitions().load() }
-    single(createdAtStart = true) { CanoeDefinitions().load() }
+    single(createdAtStart = true) { AreaDefinitions().load(files.find(Settings["map.areas"])) }
+    single(createdAtStart = true) { CanoeDefinitions().load(files.find(Settings["map.canoes"])) }
     // Network
     single {
         ConnectionQueue(Settings["network.maxLoginsPerTick", 1])
@@ -83,18 +79,18 @@ val engineModule = module {
     single { PathFinder(flags = get<Collisions>(), useRouteBlockerFlags = true) }
     single { LineValidator(flags = get<Collisions>()) }
     // Definitions
-    single(createdAtStart = true) { SoundDefinitions().load() }
-    single(createdAtStart = true) { QuestDefinitions().load() }
-    single(createdAtStart = true) { RenderEmoteDefinitions().load() }
-    single(createdAtStart = true) { MidiDefinitions().load() }
-    single(createdAtStart = true) { JingleDefinitions().load() }
-    single(createdAtStart = true) { SpellDefinitions().load() }
-    single(createdAtStart = true) { PatrolDefinitions().load() }
-    single(createdAtStart = true) { PrayerDefinitions().load() }
-    single(createdAtStart = true) { GearDefinitions().load() }
-    single(createdAtStart = true) { DiangoCodeDefinitions().load() }
+    single(createdAtStart = true) { SoundDefinitions().load(files.find(Settings["definitions.sounds"])) }
+    single(createdAtStart = true) { QuestDefinitions().load(files.find(Settings["definitions.quests"])) }
+    single(createdAtStart = true) { RenderEmoteDefinitions().load(files.find(Settings["definitions.renderEmotes"])) }
+    single(createdAtStart = true) { MidiDefinitions().load(files.find(Settings["definitions.midis"])) }
+    single(createdAtStart = true) { JingleDefinitions().load(files.find(Settings["definitions.jingles"])) }
+    single(createdAtStart = true) { SpellDefinitions().load(files.find(Settings["definitions.spells"])) }
+    single(createdAtStart = true) { PatrolDefinitions().load(files.find(Settings["definitions.patrols"])) }
+    single(createdAtStart = true) { PrayerDefinitions().load(files.find(Settings["definitions.prayers"])) }
+    single(createdAtStart = true) { GearDefinitions().load(files.find(Settings["definitions.gearSets"])) }
+    single(createdAtStart = true) { DiangoCodeDefinitions().load(files.find(Settings["definitions.diangoCodes"])) }
     single(createdAtStart = true) { AccountDefinitions().load() }
-    single(createdAtStart = true) { HuntModeDefinitions().load() }
-    single(createdAtStart = true) { CategoryDefinitions().load() }
-    single(createdAtStart = true) { ClientScriptDefinitions().load() }
+    single(createdAtStart = true) { HuntModeDefinitions().load(files.find(Settings["definitions.huntModes"])) }
+    single(createdAtStart = true) { CategoryDefinitions().load(files.find(Settings["definitions.categories"])) }
+    single(createdAtStart = true) { ClientScriptDefinitions().load(files.find(Settings["definitions.clientScripts"])) }
 }

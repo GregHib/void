@@ -14,9 +14,8 @@ import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.PlayerAccountLoader
-import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
-import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
@@ -81,47 +80,50 @@ object Main {
         return@timed properties
     }
 
-    private fun preload(cache: Cache, configFiles: Map<String, List<String>>) {
-        val module = cache(cache, configFiles)
+    private fun preload(cache: Cache, configFiles: ConfigFiles) {
         startKoin {
             slf4jLogger(level = Level.ERROR)
-            modules(engineModule, gameModule, module)
+            modules(
+                engineModule(configFiles),
+                gameModule(configFiles),
+                cache(cache, configFiles)
+            )
         }
         ContentLoader.load()
     }
 
-    private fun cache(cache: Cache, files: Map<String, List<String>>) = module {
+    private fun cache(cache: Cache, files: ConfigFiles) = module {
         val members = Settings["world.members", false]
         single(createdAtStart = true) { MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache() }
         single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
         single(createdAtStart = true) {
-            ObjectDefinitions(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load(files.getOrDefault(Settings["definitions.objects"], emptyList()))
+            ObjectDefinitions(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.objects"]))
         }
-        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(members, get<ParameterDefinitions>()).load(cache)).load(files.getOrDefault(Settings["definitions.npcs"], emptyList())) }
-        single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).load(cache)).load(files.getOrDefault(Settings["definitions.items"], emptyList())) }
-        single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(cache)).load(files.getOrDefault(Settings["definitions.animations"], emptyList())) }
-        single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(cache), get()).load() }
-        single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(cache)).load(files.getOrDefault(Settings["definitions.graphics"], emptyList())) }
-        single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(cache)).load(files.getOrDefault(Settings["definitions.interfaces"], emptyList())) }
-        single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().load(cache)).load(files.getOrDefault(Settings["definitions.inventories"], emptyList())) }
-        single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).load(cache)).load() }
+        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(members, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.npcs"])) }
+        single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.items"])) }
+        single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"])) }
+        single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(cache), get()).load(files.find(Settings["definitions.enums"])) }
+        single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"])) }
+        single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(cache)).load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"])) }
+        single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().load(cache)).load(files.list(Settings["definitions.inventories"])) }
+        single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).load(cache)).load(files.find(Settings["definitions.structs"])) }
         single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
-        single(createdAtStart = true) { WeaponStyleDefinitions().load() }
-        single(createdAtStart = true) { WeaponAnimationDefinitions().load() }
-        single(createdAtStart = true) { AmmoDefinitions().load() }
-        single(createdAtStart = true) { ParameterDefinitions(get(), get()).load() }
-        single(createdAtStart = true) { FontDefinitions(FontDecoder().load(cache)).load() }
-        single(createdAtStart = true) { ItemOnItemDefinitions().load(files.getOrDefault(Settings["definitions.itemOnItem"], emptyList())) }
+        single(createdAtStart = true) { WeaponStyleDefinitions().load(files.find(Settings["definitions.weapons.styles"])) }
+        single(createdAtStart = true) { WeaponAnimationDefinitions().load(files.find(Settings["definitions.weapons.animations"])) }
+        single(createdAtStart = true) { AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"])) }
+        single(createdAtStart = true) { ParameterDefinitions(get(), get()).load(files.find(Settings["definitions.parameters"])) }
+        single(createdAtStart = true) { FontDefinitions(FontDecoder().load(cache)).load(files.find(Settings["definitions.fonts"])) }
+        single(createdAtStart = true) { ItemOnItemDefinitions().load(files.list(Settings["definitions.itemOnItem"])) }
         single(createdAtStart = true) {
             VariableDefinitions().load(
-                files.getOrDefault(Settings["definitions.variables.players"], emptyList()),
-                files.getOrDefault(Settings["definitions.variables.bits"], emptyList()),
-                files.getOrDefault(Settings["definitions.variables.clients"], emptyList()),
-                files.getOrDefault(Settings["definitions.variables.strings"], emptyList()),
-                files.getOrDefault(Settings["definitions.variables.customs"], emptyList()),
+                files.list(Settings["definitions.variables.players"]),
+                files.list(Settings["definitions.variables.bits"]),
+                files.list(Settings["definitions.variables.clients"]),
+                files.list(Settings["definitions.variables.strings"]),
+                files.list(Settings["definitions.variables.customs"]),
             )
         }
-        single(createdAtStart = true) { DropTables().load(files.getOrDefault(Settings["spawns.drops"], emptyList()), get()) }
-        single(createdAtStart = true) { ObjectTeleports().load(files.getOrDefault(Settings["map.teleports"], emptyList())) }
+        single(createdAtStart = true) { DropTables().load(files.list(Settings["spawns.drops"]), get()) }
+        single(createdAtStart = true) { ObjectTeleports().load(files.list(Settings["map.teleports"])) }
     }
 }

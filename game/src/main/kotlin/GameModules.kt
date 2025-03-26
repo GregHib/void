@@ -6,9 +6,12 @@ import content.bot.interact.path.Dijkstra
 import content.bot.interact.path.DijkstraFrontier
 import content.entity.player.modal.book.Books
 import content.entity.world.music.MusicTracks
+import world.gregs.voidps.engine.data.ConfigFiles
+import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.find
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 
-val gameModule = module {
+fun gameModule(files: ConfigFiles) = module {
     single { ItemSpawns() }
     single { TaskManager() }
     single {
@@ -20,7 +23,7 @@ val gameModule = module {
             }
         )
     }
-    single(createdAtStart = true) { NavigationGraph(get(), get()).load() }
-    single(createdAtStart = true) { Books().load() }
-    single(createdAtStart = true) { MusicTracks().load() }
+    single(createdAtStart = true) { NavigationGraph(get(), get()).load(files.find(Settings["map.navGraph"])) }
+    single(createdAtStart = true) { Books().load(files.find(Settings["definitions.books"])) }
+    single(createdAtStart = true) { MusicTracks().load(files.find(Settings["map.music"])) }
 }

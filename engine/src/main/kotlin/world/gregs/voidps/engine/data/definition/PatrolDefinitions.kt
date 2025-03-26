@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.PatrolDefinition
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Tile
@@ -14,7 +13,7 @@ class PatrolDefinitions {
 
     fun get(key: String) = definitions[key] ?: PatrolDefinition()
 
-    fun load(path: String = Settings["definitions.patrols"]): PatrolDefinitions {
+    fun load(path: String): PatrolDefinitions {
         timedLoad("patrol definition") {
             val definitions = Object2ObjectOpenHashMap<String, PatrolDefinition>()
             Config.fileReader(path) {

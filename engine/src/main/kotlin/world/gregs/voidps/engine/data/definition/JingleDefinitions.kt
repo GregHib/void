@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.config.Config
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.JingleDefinition
 import world.gregs.voidps.engine.timedLoad
 
@@ -12,7 +11,7 @@ class JingleDefinitions : DefinitionsDecoder<JingleDefinition> {
     override lateinit var definitions: Array<JingleDefinition>
     override lateinit var ids: Map<String, Int>
 
-    fun load(path: String = Settings["definitions.jingles"]): JingleDefinitions {
+    fun load(path: String): JingleDefinitions {
         timedLoad("jingle definition") {
             val ids = Object2IntOpenHashMap<String>(200, Hash.VERY_FAST_LOAD_FACTOR)
             val definitions = Array(500) { JingleDefinition.EMPTY }

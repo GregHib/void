@@ -4,18 +4,14 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.ints.IntArrayList
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.config.Config
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Cuboid
 import world.gregs.voidps.type.area.Polygon
 import world.gregs.voidps.type.area.Rectangle
-import world.gregs.yaml.read.YamlReaderConfiguration
 
 class AreaDefinitions(
     private var named: Map<String, AreaDefinition> = Object2ObjectOpenHashMap(),
@@ -39,7 +35,7 @@ class AreaDefinitions(
         return tagged[tag] ?: emptySet()
     }
 
-    fun load(path: String = Settings["map.areas"]): AreaDefinitions {
+    fun load(path: String): AreaDefinitions {
         timedLoad("map area") {
             val named = Object2ObjectOpenHashMap<String, AreaDefinition>()
             val tagged = Object2ObjectOpenHashMap<String, MutableSet<AreaDefinition>>()

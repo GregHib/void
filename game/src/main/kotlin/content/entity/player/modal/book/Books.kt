@@ -6,7 +6,6 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.config.Config
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
@@ -23,7 +22,7 @@ class Books {
 
     fun title(name: String) = titles.getOrDefault(name, "")
 
-    fun load(path: String = Settings["definitions.books"]): Books {
+    fun load(path: String): Books {
         timedLoad("book") {
             val longBooks = ObjectOpenHashSet<String>(10, Hash.VERY_FAST_LOAD_FACTOR)
             val titles = Object2ObjectOpenHashMap<String, String>(10, Hash.VERY_FAST_LOAD_FACTOR)

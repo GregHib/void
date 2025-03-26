@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.WeaponAnimationDefinition
 import world.gregs.voidps.engine.timedLoad
 
@@ -15,7 +14,7 @@ class WeaponAnimationDefinitions {
 
     fun getOrNull(key: String) = definitions[key]
 
-    fun load(path: String = Settings["definitions.weapons.animations"]): WeaponAnimationDefinitions {
+    fun load(path: String): WeaponAnimationDefinitions {
         timedLoad("weapon animation definition") {
             val definitions = Object2ObjectOpenHashMap<String, WeaponAnimationDefinition>()
             Config.fileReader(path) {

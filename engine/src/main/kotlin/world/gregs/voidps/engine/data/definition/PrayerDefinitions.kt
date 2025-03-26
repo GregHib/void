@@ -7,7 +7,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArraySet
 import world.gregs.config.Config
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.PrayerDefinition
 import world.gregs.voidps.engine.timedLoad
 
@@ -28,7 +27,7 @@ class PrayerDefinitions {
 
     fun getGroup(group: Int) = groups[group]
 
-    fun load(path: String = Settings["definitions.prayers"]): PrayerDefinitions {
+    fun load(path: String): PrayerDefinitions {
         timedLoad("prayer definition") {
             val definitions = Object2ObjectOpenHashMap<String, PrayerDefinition>()
             val prayers = Int2ObjectArrayMap<PrayerDefinition>()

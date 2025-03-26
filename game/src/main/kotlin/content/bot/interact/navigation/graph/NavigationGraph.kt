@@ -46,7 +46,7 @@ class NavigationGraph(
         adjacencyList.remove(node)
     }
 
-    fun load(path: String = Settings["map.navGraph"]): NavigationGraph {
+    fun load(path: String): NavigationGraph {
         timedLoad("ai nav graph edge") {
             val map = Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>>()
             var count = 0

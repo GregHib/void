@@ -4,7 +4,6 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.StructDefinition
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.timedLoad
 
 /**
@@ -18,7 +17,7 @@ class StructDefinitions(
 
     override fun empty() = StructDefinition.EMPTY
 
-    fun load(path: String = Settings["definitions.structs"]): StructDefinitions {
+    fun load(path: String): StructDefinitions {
         timedLoad("struct extra") {
             val ids = Object2IntOpenHashMap<String>(512, Hash.VERY_FAST_LOAD_FACTOR)
             Config.fileReader(path) {
