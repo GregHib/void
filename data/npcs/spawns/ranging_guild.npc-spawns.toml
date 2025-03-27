@@ -1,0 +1,7 @@
+spawns = [
+# 10549
+  { id = "goblin_metal_hat_brown", x = 2631, y = 3392, members = true },
+  { id = "goblin_mohawk_dark", x = 2631, y = 3398, members = true },
+  { id = "chicken", x = 2650, y = 3442, members = true },
+  { id = "chicken", x = 2651, y = 3441, members = true },
+]

@@ -1,0 +1,18 @@
+spawns = [
+# 12088
+  { id = "skeleton_helmet", x = 3008, y = 3595 },
+  { id = "skeleton_unarmed", x = 3010, y = 3597 },
+  { id = "skeleton_shield_helmet", x = 3011, y = 3590 },
+  { id = "skeleton_shield", x = 3012, y = 3592 },
+  { id = "skeleton_shield", x = 3012, y = 3597 },
+  { id = "skeleton_unarmed", x = 3013, y = 3602 },
+  { id = "skeleton_helmet", x = 3016, y = 3589 },
+  { id = "skeleton_shield_helmet", x = 3016, y = 3596 },
+  { id = "skeleton_shield", x = 3018, y = 3592 },
+  { id = "skeleton_shield", x = 3018, y = 3599 },
+  { id = "skeleton_helmet", x = 3019, y = 3590 },
+  { id = "skeleton_shield_helmet", x = 3021, y = 3593 },
+# 12089
+  { id = "giant_rat", x = 3049, y = 3691 },
+  { id = "giant_rat_dark_injured", x = 3049, y = 3695 },
+]

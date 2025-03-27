@@ -1,0 +1,4 @@
+spawns = [
+# 10034
+  { id = "iron_med_helm", x = 2540, y = 3249, delay = 500 },
+]

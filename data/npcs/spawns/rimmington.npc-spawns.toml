@@ -1,0 +1,22 @@
+spawns = [
+# 11570
+  { id = "rat", x = 2923, y = 3251 },
+  { id = "rat", x = 2939, y = 3242 },
+  { id = "rat", x = 2932, y = 3242, level = 1 },
+  { id = "rat", x = 2934, y = 3240, level = 1 },
+  { id = "rat", x = 2923, y = 3245, level = 2 },
+  { id = "rat", x = 2924, y = 3240, level = 2 },
+# 11826
+  { id = "shopkeeper_rimmington", x = 2947, y = 3217 },
+  { id = "shop_assistant_rimmington", x = 2948, y = 3217 },
+  { id = "butterfly_1", x = 2954, y = 3227 },
+  { id = "butterfly_1", x = 2958, y = 3213 },
+  { id = "goblin_light_grey_bald", x = 2997, y = 3216 },
+  { id = "goblin_turquoise_topless_mohawk", x = 2995, y = 3209 },
+  { id = "goblin_light_brown_bald", x = 2996, y = 3201 },
+  { id = "goblin_turquoise_grey_ponytail", x = 2998, y = 3205 },
+  { id = "goblin_light_grey_helmet", x = 2999, y = 3208 },
+  { id = "goblin_light_grey_hat", x = 2999, y = 3211 },
+  { id = "goblin_light_brown_mohawk", x = 3002, y = 3210 },
+  { id = "goblin_light_topless_spiked", x = 3002, y = 3206 },
+]

@@ -1,0 +1,7 @@
+spawns = [
+# 10388
+  { id = "knife", x = 2567, y = 9526, delay = 100, members = true },
+  { id = "herring", x = 2563, y = 9511, delay = 100, members = true },
+# 10389
+  { id = "lockpick", x = 2615, y = 9569, delay = 100, members = true },
+]

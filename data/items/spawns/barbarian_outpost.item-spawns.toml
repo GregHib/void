@@ -1,0 +1,7 @@
+spawns = [
+# 10039
+  { id = "plank", x = 2550, y = 3575, delay = 100, members = true },
+  { id = "plank", x = 2553, y = 3576, delay = 100, members = true },
+  { id = "plank", x = 2554, y = 3575, delay = 100, members = true },
+  { id = "plank", x = 2556, y = 3573, delay = 100, members = true },
+]

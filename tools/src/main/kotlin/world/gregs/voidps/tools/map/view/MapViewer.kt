@@ -45,7 +45,7 @@ class MapViewer {
                 val objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), objectDefinitions)
                 MapDefinitions(CollisionDecoder(collisions), objectDefinitions, objects, cache).loadCache()
             }
-            frame.add(MapView(nav, collisions, Settings["map.areas"]))
+            frame.add(MapView(nav, collisions, files.find(Settings["map.areas"])))
             frame.pack()
             frame.setLocationRelativeTo(null)
             frame.isVisible = true

@@ -1,0 +1,8 @@
+spawns = [
+# 10550
+  { id = "dwellberries", x = 2664, y = 3476, delay = 100, members = true },
+  { id = "dwellberries", x = 2667, y = 3494, delay = 100, members = true },
+  { id = "dwellberries", x = 2638, y = 3479, delay = 100, members = true },
+  { id = "dwellberries", x = 2633, y = 3496, delay = 100, members = true },
+  { id = "dwellberries", x = 2645, y = 3498, delay = 100, members = true },
+]

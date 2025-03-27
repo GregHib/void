@@ -1,0 +1,27 @@
+spawns = [
+# 10030
+  { id = "bones", x = 2542, y = 2983, delay = 100, members = true },
+  { id = "bones", x = 2552, y = 2986, delay = 100, members = true },
+  { id = "bones", x = 2552, y = 2984, delay = 100, members = true },
+  { id = "bones", x = 2522, y = 2983, delay = 100, members = true },
+  { id = "bones", x = 2512, y = 2982, delay = 100, members = true },
+  { id = "bones", x = 2508, y = 2982, delay = 100, members = true },
+  { id = "death_rune", x = 2501, y = 2967, delay = 200, members = true },
+  { id = "bones", x = 2499, y = 2958, delay = 100, members = true },
+  { id = "bones", x = 2496, y = 2954, delay = 100, members = true },
+  { id = "bones", x = 2506, y = 2952, delay = 100, members = true },
+# 10286
+  { id = "bones", x = 2607, y = 2964, delay = 100, members = true },
+  { id = "bones", x = 2603, y = 2964, delay = 100, members = true },
+  { id = "bones", x = 2603, y = 2968, delay = 100, members = true },
+  { id = "bones", x = 2601, y = 2959, delay = 100, members = true },
+  { id = "tomato", x = 2581, y = 2965, delay = 100, members = true },
+  { id = "doogle_leaves", x = 2565, y = 2972, delay = 100, members = true },
+  { id = "doogle_leaves", x = 2562, y = 2973, delay = 100, members = true },
+  { id = "doogle_leaves", x = 2560, y = 2971, delay = 100, members = true },
+  { id = "doogle_leaves", x = 2563, y = 2971, delay = 100, members = true },
+# 10542
+  { id = "equa_leaves", x = 2639, y = 2952, delay = 100, members = true },
+  { id = "equa_leaves", x = 2648, y = 2963, delay = 100, members = true },
+  { id = "equa_leaves", x = 2649, y = 2956, delay = 100, members = true },
+]

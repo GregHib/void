@@ -1,0 +1,5 @@
+spawns = [
+# 13613
+  { id = "shoes_spirits_of_the_elid", x = 3439, y = 2913, delay = 4, members = true },
+  { id = "ancestral_key", x = 3432, y = 2928, delay = 4, members = true },
+]

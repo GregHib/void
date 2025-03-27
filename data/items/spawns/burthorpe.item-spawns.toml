@@ -1,0 +1,10 @@
+spawns = [
+# 11575
+  { id = "stone_ball_red", x = 2893, y = 3565, delay = 10, members = true },
+  { id = "stone_ball_blue", x = 2893, y = 3564, delay = 10, members = true },
+  { id = "stone_ball_purple", x = 2893, y = 3563, delay = 10, members = true },
+  { id = "stone_ball_green", x = 2893, y = 3562, delay = 10, members = true },
+  { id = "stone_ball_yellow", x = 2893, y = 3561, delay = 10, members = true },
+  { id = "beer_glass", x = 2907, y = 3538, delay = 100, members = true },
+  { id = "asgarnian_ale", x = 2906, y = 3538, delay = 100, members = true },
+]

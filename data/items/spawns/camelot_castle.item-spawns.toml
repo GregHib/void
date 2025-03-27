@@ -1,0 +1,4 @@
+spawns = [
+# 11062
+  { id = "fire_rune", amount = 2, x = 2767, y = 3504,level = 1, delay = 100, members = true },
+]

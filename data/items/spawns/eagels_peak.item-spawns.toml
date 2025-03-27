@@ -1,0 +1,9 @@
+spawns = [
+# 8013
+  { id = "feathered_journal", x = 2004, y = 4983, level = 3, delay = 60, members = true },
+  { id = "coins", x = 2020, y = 4948, level = 3, delay = 100, members = true },
+  { id = "coins", x = 2017, y = 4949, level = 3, delay = 100, members = true },
+# 10911
+  { id = "rope", x = 2731, y = 10202, delay = 100, members = true },
+  { id = "rope", x = 2728, y = 10220, delay = 100, members = true },
+]

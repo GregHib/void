@@ -1,0 +1,28 @@
+spawns = [
+# 12594
+  { id = "air_rune", x = 3150, y = 3247, delay = 100 },
+# 12850
+  { id = "knife", x = 3224, y = 3202, delay = 100 },
+  { id = "knife", x = 3205, y = 3212, delay = 100 },
+  { id = "bronze_pickaxe", x = 3229, y = 3215, level = 2, delay = 228 },
+  { id = "bronze_pickaxe", x = 3229, y = 3223, level = 2, delay = 228 },
+  { id = "mind_rune", x = 3206, y = 3208, delay = 100 },
+  { id = "bowl", x = 3208, y = 3214, delay = 100 },
+  { id = "empty_pot", x = 3209, y = 3214, delay = 100 },
+  { id = "jug", x = 3211, y = 3212, delay = 100 },
+  { id = "bronze_arrow", x = 3205, y = 3227, delay = 100 },
+  { id = "bronze_dagger", x = 3213, y = 3216, level = 1, delay = 230 },
+  { id = "logs", x = 3209, y = 3224, level = 2, delay = 100 },
+  { id = "logs", x = 3208, y = 3225, level = 2, delay = 100 },
+  { id = "logs", x = 3205, y = 3225, level = 2, delay = 100 },
+  { id = "logs", x = 3205, y = 3226, level = 2, delay = 100 },
+  { id = "iron_dagger", x = 3248, y = 3245, delay = 500 },
+# 12851
+  { id = "bucket", x = 3263, y = 3277, delay = 100 },
+  { id = "bucket", x = 3225, y = 3294, delay = 100 },
+  { id = "egg", x = 3226, y = 3301, delay = 30 },
+  { id = "egg", x = 3233, y = 3300, delay = 30 },
+  { id = "egg", x = 3230, y = 3299, delay = 30 },
+  { id = "egg", x = 3229, y = 3300, delay = 30 },
+  { id = "super_large_egg", x = 3227, y = 3299, delay = 100 },
+]

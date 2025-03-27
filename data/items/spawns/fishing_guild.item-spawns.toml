@@ -1,0 +1,6 @@
+spawns = [
+# 10293
+  { id = "harpoon", x = 2606, y = 3394, delay = 100, members = true },
+  { id = "big_fishing_net", x = 2607, y = 3394, delay = 100, members = true },
+  { id = "lobster_pot", x = 2605, y = 3401, delay = 100, members = true },
+]

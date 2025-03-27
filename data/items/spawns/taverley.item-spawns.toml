@@ -1,0 +1,10 @@
+spawns = [
+# 11573
+  { id = "shortbow", x = 2914, y = 3439, level = 1, delay = 200, members = true },
+  { id = "cup_of_tea", x = 2903, y = 3441, delay = 100, members = true },
+  { id = "cup_of_tea", x = 2886, y = 3412, delay = 100, members = true },
+  { id = "king_worm", x = 2896, y = 3414, delay = 100, members = true },
+  { id = "swamp_toad", x = 2908, y = 3410, delay = 100, members = true },
+  { id = "swamp_toad", x = 2903, y = 3400, delay = 100, members = true },
+  { id = "swamp_toad", x = 2907, y = 3394, delay = 100, members = true },
+]

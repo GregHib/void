@@ -1,0 +1,7 @@
+spawns = [
+# 10804
+  { id = "banker_3", x = 2732, y = 3381, level = 2, members = true },
+  { id = "banker_3", x = 2731, y = 3377, level = 2, members = true },
+  { id = "banker_4", x = 2732, y = 3379, level = 2, members = true },
+  { id = "banker_4", x = 2733, y = 3377, level = 2, members = true },
+]

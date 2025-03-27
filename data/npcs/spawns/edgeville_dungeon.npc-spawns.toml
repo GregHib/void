@@ -1,0 +1,13 @@
+spawns = [
+# 12442
+  { id = "rat", x = 3112, y = 9884 },
+  { id = "rat", x = 3124, y = 9882 },
+  { id = "giant_spider", x = 3096, y = 9878 },
+  { id = "giant_spider", x = 3097, y = 9878 },
+  { id = "giant_rat", x = 3091, y = 9897 },
+  { id = "giant_rat", x = 3102, y = 9880 },
+  { id = "giant_rat", x = 3121, y = 9893 },
+  { id = "giant_rat_dark", x = 3089, y = 9895 },
+  { id = "giant_rat_dark", x = 3122, y = 9889 },
+  { id = "giant_rat_dark_injured", x = 3117, y = 9889 },
+]

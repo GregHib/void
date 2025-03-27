@@ -1,0 +1,4 @@
+spawns = [
+# 13636
+  { id = "a_scrap_of_paper", x = 3428, y = 4403, delay = 10, members = true },
+]

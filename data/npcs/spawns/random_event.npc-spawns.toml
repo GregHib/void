@@ -1,0 +1,27 @@
+spawns = [
+# 7754
+  { id = "quiz_master", x = 1952, y = 4768, level = 1, direction = "SOUTH" },
+# 8261
+  { id = "prison_pete", x = 2084, y = 4460, direction = "NORTH" },
+  { id = "balloon_animal_dog", x = 2078, y = 4462 },
+  { id = "balloon_animal_dog", x = 2090, y = 4464 },
+  { id = "balloon_animal_dog", x = 2091, y = 4461 },
+  { id = "balloon_animal_dog", x = 2082, y = 4466 },
+  { id = "balloon_animal_dog", x = 2087, y = 4470 },
+  { id = "balloon_animal_cat", x = 2082, y = 4472 },
+  { id = "balloon_animal_cat", x = 2083, y = 4462 },
+  { id = "balloon_animal_cat", x = 2083, y = 4463 },
+  { id = "balloon_animal_cat", x = 2088, y = 4464 },
+  { id = "balloon_animal_cat", x = 2080, y = 4464 },
+  { id = "balloon_animal_cat", x = 2084, y = 4468 },
+  { id = "balloon_animal_sheep", x = 2078, y = 4466 },
+  { id = "balloon_animal_sheep", x = 2080, y = 4470 },
+  { id = "balloon_animal_sheep", x = 2085, y = 4463 },
+  { id = "balloon_animal_sheep", x = 2086, y = 4467 },
+  { id = "balloon_animal_sheep", x = 2091, y = 4470 },
+  { id = "balloon_animal_goat", x = 2087, y = 4462 },
+  { id = "balloon_animal_goat", x = 2089, y = 4466 },
+  { id = "balloon_animal_goat", x = 2084, y = 4465 },
+  { id = "balloon_animal_goat", x = 2084, y = 4470 },
+  { id = "balloon_animal_goat", x = 2080, y = 4467 },
+]

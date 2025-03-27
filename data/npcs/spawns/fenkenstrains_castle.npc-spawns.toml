@@ -1,0 +1,4 @@
+spawns = [
+# 14135
+  { id = "musician_fenkenstrains_castle", x = 3582, y = 3524, direction = "SOUTH", members = true },
+]

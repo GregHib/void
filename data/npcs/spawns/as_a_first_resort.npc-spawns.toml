@@ -1,0 +1,11 @@
+spawns = [
+# 10326
+  { id = "diseased_kebbit_2", x = 2617, y = 5539, members = true },
+  { id = "diseased_kebbit_3", x = 2616, y = 5540, members = true },
+  { id = "diseased_kebbit_4", x = 2605, y = 5540, members = true },
+  { id = "diseased_kebbit_5", x = 2607, y = 5539, members = true },
+  { id = "patrick_platypus_2", x = 2579, y = 5529, members = true },
+  { id = "penelope_platypus_2", x = 2580, y = 5531, members = true },
+  { id = "peter_platypus_2", x = 2581, y = 5530, members = true },
+  { id = "peanut_platypus_2", x = 2581, y = 5528, members = true },
+]

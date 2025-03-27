@@ -1,0 +1,18 @@
+spawns = [
+# 11057
+  { id = "beer_glass", x = 2795, y = 3165, delay = 100, members = true },
+  { id = "beer_glass", x = 2794, y = 3165, delay = 100, members = true },
+  { id = "beer_glass", x = 2798, y = 3161, delay = 100, members = true },
+  { id = "beer_glass", x = 2798, y = 3160, delay = 100, members = true },
+  { id = "beer_glass", x = 2795, y = 3160, delay = 100, members = true },
+  { id = "beer_glass", x = 2799, y = 3155, delay = 100, members = true },
+  { id = "beer_glass", x = 2798, y = 3156, delay = 100, members = true },
+  { id = "beer", x = 2796, y = 3165, delay = 100, members = true },
+  { id = "beer", x = 2799, y = 3156, delay = 100, members = true },
+  { id = "bronze_hatchet", x = 2795, y = 3161, delay = 100, members = true },
+  { id = "coins", amount = 5, x = 2772, y = 3197, delay = 100, members = true },
+  { id = "coins", amount = 5, x = 2767, y = 3197, delay = 100, members = true },
+  { id = "coins", amount = 2, x = 2767, y = 3199, delay = 100, members = true },
+  { id = "coins", amount = 4, x = 2768, y = 3198, delay = 100, members = true },
+  { id = "coins", amount = 2, x = 2765, y = 3198, delay = 100, members = true },
+]

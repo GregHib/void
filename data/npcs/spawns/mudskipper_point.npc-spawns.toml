@@ -1,0 +1,5 @@
+spawns = [
+# 11825
+  { id = "a_pile_of_broken_glass", x = 2981, y = 3190 },
+  { id = "thurgo", x = 3001, y = 3144 },
+]

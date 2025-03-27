@@ -1,0 +1,4 @@
+spawns = [
+# 13720
+  { id = "druid_pouch", x = 3443, y = 9741, delay = 100, members = true },
+]

@@ -1,0 +1,6 @@
+spawns = [
+# 11573
+  { id = "sanfew", x = 2897, y = 3426, level = 1, members = true },
+  { id = "pikkupstix_spawn", x = 2925, y = 3443 },
+  { id = "pikkupstix_spawn_2", x = 2925, y = 3443 },
+]

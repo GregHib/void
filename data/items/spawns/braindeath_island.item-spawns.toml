@@ -1,0 +1,5 @@
+spawns = [
+# 8527
+  { id = "bucket", x = 2146, y = 5107, level = 1, delay = 100, members = true },
+  { id = "bucket", x = 2160, y = 5091, delay = 100, members = true },
+]

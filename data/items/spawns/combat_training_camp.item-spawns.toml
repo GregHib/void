@@ -1,0 +1,7 @@
+spawns = [
+# 10036
+  { id = "beer", x = 2525, y = 3365, delay = 100, members = true },
+  { id = "beer", x = 2517, y = 3378, delay = 100, members = true },
+  { id = "beer", x = 2521, y = 3379, delay = 100, members = true },
+  { id = "rotten_apple", x = 2535, y = 3333, delay = 100, members = true },
+]

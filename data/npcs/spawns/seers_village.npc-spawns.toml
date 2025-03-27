@@ -1,0 +1,14 @@
+spawns = [
+# 10806
+  { id = "man", x = 2694, y = 3497, members = true },
+  { id = "man", x = 2713, y = 3480, members = true },
+  { id = "man_2", x = 2693, y = 3489, members = true },
+  { id = "man_3", x = 2698, y = 3491, members = true },
+  { id = "banker_3", x = 2721, y = 3495, direction = "SOUTH", members = true },
+  { id = "banker_3", x = 2724, y = 3495, direction = "SOUTH", members = true },
+  { id = "banker_3", x = 2729, y = 3495, direction = "SOUTH", members = true },
+  { id = "banker_4", x = 2722, y = 3495, direction = "SOUTH", members = true },
+  { id = "banker_4", x = 2727, y = 3495, direction = "SOUTH", members = true },
+  { id = "banker_4", x = 2728, y = 3495, direction = "SOUTH", members = true },
+  { id = "bartender_foresters_arms", x = 2690, y = 3493, members = true },
+]

@@ -1,0 +1,11 @@
+spawns = [
+# 11413
+  { id = "bones", x = 2829, y = 9564, delay = 100 },
+  { id = "bones", x = 2830, y = 9565, delay = 100 },
+  { id = "red_spiders_eggs", x = 2832, y = 9586, delay = 100 },
+  { id = "fire_rune", x = 2836, y = 9566, delay = 100 },
+  { id = "fire_rune", x = 2833, y = 9561, delay = 100 },
+  { id = "fire_rune", x = 2843, y = 9560, delay = 100 },
+  { id = "fire_rune", x = 2838, y = 9552, delay = 100 },
+  { id = "fire_rune", x = 2842, y = 9552, delay = 100 },
+]

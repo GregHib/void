@@ -1,0 +1,20 @@
+spawns = [
+# 11318
+  { id = "white_wolf_2", x = 2844, y = 3507, members = true },
+  { id = "white_wolf_2", x = 2839, y = 3506, members = true },
+  { id = "white_wolf_2", x = 2842, y = 3504, members = true },
+  { id = "white_wolf_2", x = 2839, y = 3502, members = true },
+  { id = "white_wolf_2", x = 2837, y = 3499, members = true },
+  { id = "white_wolf_2", x = 2836, y = 3495, members = true },
+  { id = "big_wolf_2", x = 2840, y = 3497, members = true },
+  { id = "white_wolf", x = 2866, y = 3498, members = true },
+  { id = "white_wolf", x = 2860, y = 3492, members = true },
+  { id = "white_wolf", x = 2866, y = 3498, members = true },
+  { id = "white_wolf", x = 2846, y = 3477, members = true },
+  { id = "white_wolf_2", x = 2831, y = 3515, members = true },
+  { id = "white_wolf_2", x = 2833, y = 3513, members = true },
+  { id = "white_wolf_2", x = 2854, y = 3509, members = true },
+  { id = "white_wolf_2", x = 2856, y = 3508, members = true },
+  { id = "white_wolf_2", x = 2848, y = 3487, members = true },
+  { id = "white_wolf_2", x = 2850, y = 3484, members = true },
+]

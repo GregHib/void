@@ -1,0 +1,13 @@
+spawns = [
+# 11423
+  { id = "rake", x = 2852, y = 10191, delay = 100, members = true },
+# 11679
+  { id = "broken_glass", x = 2916, y = 10222, delay = 100, members = true },
+  { id = "broken_glass", x = 2913, y = 10222, delay = 100, members = true },
+  { id = "broken_glass", x = 2913, y = 10225, delay = 100, members = true },
+  { id = "broken_glass", x = 2912, y = 10221, delay = 100, members = true },
+  { id = "broken_glass", x = 2911, y = 10223, delay = 100, members = true },
+  { id = "broken_glass", x = 2915, y = 10220, delay = 100, members = true },
+  { id = "broken_glass", x = 2915, y = 10224, delay = 100, members = true },
+  { id = "broken_glass", x = 2914, y = 10225, delay = 100, members = true },
+]

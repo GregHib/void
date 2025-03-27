@@ -1,0 +1,24 @@
+spawns = [
+# 12593
+  { id = "swamp_tar", x = 3194, y = 3168, delay = 100, members = true },
+  { id = "swamp_tar", x = 3194, y = 3162, delay = 100, members = true },
+  { id = "swamp_tar", x = 3189, y = 3163, delay = 100, members = true },
+  { id = "swamp_tar", x = 3185, y = 3161, delay = 100, members = true },
+  { id = "swamp_tar", x = 3182, y = 3165, delay = 100, members = true },
+  { id = "swamp_tar", x = 3173, y = 3166, delay = 100, members = true },
+  { id = "swamp_tar", x = 3170, y = 3167, delay = 100, members = true },
+  { id = "swamp_tar", x = 3164, y = 3169, delay = 100, members = true },
+  { id = "swamp_tar", x = 3171, y = 3177, delay = 100, members = true },
+  { id = "swamp_tar", x = 3171, y = 3178, delay = 100, members = true },
+  { id = "swamp_tar", x = 3164, y = 3180, delay = 100, members = true },
+  { id = "swamp_tar", x = 3164, y = 3187, delay = 100, members = true },
+  { id = "swamp_tar", x = 3171, y = 3191, delay = 100, members = true },
+  { id = "swamp_tar", x = 3179, y = 3190, delay = 100, members = true },
+  { id = "swamp_tar", x = 3181, y = 3193, delay = 100, members = true },
+  { id = "swamp_tar", x = 3183, y = 3180, delay = 100, members = true },
+  { id = "swamp_tar", x = 3193, y = 3181, delay = 100, members = true },
+# 12849
+  { id = "small_fishing_net", x = 3244, y = 3157, delay = 10 },
+  { id = "small_fishing_net", x = 3244, y = 3160, delay = 10 },
+  { id = "leather_gloves", x = 3206, y = 3147, delay = 100 },
+]

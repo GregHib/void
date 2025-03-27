@@ -1,0 +1,7 @@
+spawns = [
+# 11055
+  { id = "chicken", x = 2780, y = 3064, members = true },
+  { id = "chicken", x = 2808, y = 3067, members = true },
+# 11056
+  { id = "musician_tai_bwo_wannai", x = 2771, y = 3131, direction = "SOUTH", members = true },
+]

@@ -1,0 +1,10 @@
+spawns = [
+# 13362
+  { id = "ima", x = 3329, y = 3234 },
+  { id = "sabeil", x = 3360, y = 3242 },
+  { id = "jadid", x = 3359, y = 3222 },
+  { id = "dalal", x = 3329, y = 3233 },
+  { id = "afrah", x = 3385, y = 3204 },
+  { id = "jeed", x = 3361, y = 3242 },
+  { id = "captain_daerkin", x = 3362, y = 3222 },
+]

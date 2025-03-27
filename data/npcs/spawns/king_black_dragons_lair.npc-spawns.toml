@@ -1,0 +1,4 @@
+spawns = [
+# 9033
+  { id = "king_black_dragon", x = 2272, y = 4698, members = true },
+]

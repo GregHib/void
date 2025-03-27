@@ -1,0 +1,4 @@
+spawns = [
+# 7749
+  { id = "guardian_mummy", x = 1934, y = 4427, level = 3, direction = "SOUTH" },
+]

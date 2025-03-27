@@ -1,0 +1,10 @@
+spawns = [
+# 11079
+  { id = "bronze_pickaxe", x = 2795, y = 4579, delay = 228, members = true },
+  { id = "bronze_pickaxe", x = 2811, y = 4572, delay = 228, members = true },
+  { id = "steel_pickaxe", x = 2812, y = 4571, delay = 1000, members = true },
+  { id = "bronze_dagger", x = 2801, y = 4572, delay = 230, members = true },
+  { id = "bronze_dagger", x = 2806, y = 4569, delay = 230, members = true },
+  { id = "bronze_spear", x = 2808, y = 4572, delay = 100, members = true },
+  { id = "steel_longsword", x = 2812, y = 4566, delay = 1000, members = true },
+]

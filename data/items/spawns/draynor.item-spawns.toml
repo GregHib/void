@@ -1,0 +1,16 @@
+spawns = [
+# 12338
+  { id = "cheese", x = 3083, y = 3260, delay = 100 },
+  { id = "tomato", x = 3085, y = 3261, delay = 100 },
+# 12340
+  { id = "logs", x = 3089, y = 3365, delay = 100 },
+  { id = "logs", x = 3089, y = 3366, delay = 100 },
+  { id = "poison", x = 3100, y = 3364, delay = 100 },
+  { id = "shears", x = 3126, y = 3358, delay = 6 },
+  { id = "spade", x = 3121, y = 3361, delay = 100 },
+  { id = "bronze_med_helm", x = 3120, y = 3361, delay = 230 },
+  { id = "bucket", x = 3120, y = 3360, delay = 100 },
+  { id = "rubber_tube", x = 3112, y = 3368, delay = 100 },
+  { id = "fish_food", x = 3107, y = 3356, level = 1, delay = 100 },
+  { id = "tinderbox", x = 3112, y = 3369, level = 2, delay = 100 },
+]

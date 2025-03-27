@@ -1,0 +1,16 @@
+spawns = [
+# 10794
+  { id = "plank", x = 2704, y = 2718, delay = 100, members = true },
+  { id = "plank", x = 2701, y = 2717, delay = 100, members = true },
+# 10894
+  { id = "bones", x = 2729, y = 9116, delay = 100, members = true },
+  { id = "bones", x = 2719, y = 9120, delay = 100, members = true },
+  { id = "bones", x = 2709, y = 9116, delay = 100, members = true },
+  { id = "bones", x = 2722, y = 9110, delay = 100, members = true },
+  { id = "bones", x = 2730, y = 9106, delay = 100, members = true },
+  { id = "bones", x = 2739, y = 9097, delay = 100, members = true },
+  { id = "bones", x = 2732, y = 9093, delay = 100, members = true },
+  { id = "bones", x = 2719, y = 9097, delay = 100, members = true },
+# 11151
+  { id = "monkey_skull", x = 2769, y = 9203, delay = 200, members = true },
+]

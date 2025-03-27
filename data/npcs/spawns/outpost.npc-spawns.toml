@@ -1,0 +1,12 @@
+spawns = [
+# 9780
+  { id = "butterfly_1", x = 2481, y = 3384, members = true },
+  { id = "butterfly_1", x = 2479, y = 3381, members = true },
+  { id = "butterfly_1", x = 2478, y = 3373, members = true },
+  { id = "butterfly_1", x = 2490, y = 3371, members = true },
+  { id = "wolf", x = 2437, y = 3336, members = true },
+  { id = "wolf", x = 2439, y = 3335, members = true },
+  { id = "wolf", x = 2440, y = 3335, members = true },
+  { id = "wolf", x = 2439, y = 3333, members = true },
+  { id = "wolf", x = 2440, y = 3333, members = true },
+]

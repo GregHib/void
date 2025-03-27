@@ -1,0 +1,8 @@
+spawns = [
+# 13875
+  { id = "smashed_glass", x = 3482, y = 3276, delay = 100, members = true },
+  { id = "smashed_glass", x = 3481, y = 3277, delay = 100, members = true },
+  { id = "smashed_glass", x = 3482, y = 3279, delay = 100, members = true },
+  { id = "vial", x = 3481, y = 3278, delay = 100, members = true },
+  { id = "vial", x = 3481, y = 3279, delay = 100, members = true },
+]

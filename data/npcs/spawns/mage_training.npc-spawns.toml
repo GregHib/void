@@ -1,0 +1,10 @@
+spawns = [
+# 13363
+  { id = "fadli", x = 3383, y = 3269 },
+  { id = "a_abla", x = 3362, y = 3273 },
+  { id = "sabreen", x = 3368, y = 3278 },
+  { id = "surgeon_general_tafani", x = 3373, y = 3272 },
+  { id = "jaraah", x = 3358, y = 3276 },
+  { id = "zahwa", x = 3372, y = 3277 },
+  { id = "hamid", x = 3383, y = 3277 },
+]

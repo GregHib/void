@@ -1,0 +1,8 @@
+spawns = [
+# 11823
+  { id = "seaweed", x = 2947, y = 3067, delay = 100, members = true },
+  { id = "hammer", x = 2954, y = 3060, delay = 100, members = true },
+  { id = "hammer", x = 2963, y = 3058, delay = 100, members = true },
+  { id = "hammer", x = 2989, y = 3061, delay = 100, members = true },
+  { id = "hammer", x = 2986, y = 3048, delay = 100, members = true },
+]

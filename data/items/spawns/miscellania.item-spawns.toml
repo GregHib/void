@@ -1,0 +1,6 @@
+spawns = [
+# 10144
+  { id = "plank", x = 2509, y = 10290, level = 1, delay = 100, members = true },
+  { id = "engine", x = 2504, y = 10287, delay = 1, members = true },
+  { id = "lift_manual", x = 2506, y = 10289, delay = 1, members = true },
+]

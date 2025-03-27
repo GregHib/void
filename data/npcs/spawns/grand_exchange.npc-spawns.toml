@@ -1,0 +1,4 @@
+spawns = [
+# 12598
+  { id = "bob_barter_herbs", x = 3156, y = 3481 },
+]

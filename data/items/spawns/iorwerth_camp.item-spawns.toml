@@ -1,0 +1,4 @@
+spawns = [
+# 8754
+  { id = "empty_pot", x = 2202, y = 3258, delay = 100, members = true },
+]

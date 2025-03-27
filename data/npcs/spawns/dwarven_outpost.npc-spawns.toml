@@ -1,0 +1,6 @@
+spawns = [
+# 10294
+  { id = "rat", x = 2610, y = 3479, members = true },
+  { id = "rat", x = 2614, y = 3478, members = true },
+  { id = "rat", x = 2611, y = 3475, members = true },
+]

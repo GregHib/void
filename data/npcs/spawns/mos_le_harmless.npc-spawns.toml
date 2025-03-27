@@ -1,0 +1,9 @@
+spawns = [
+# 14638
+  { id = "banker_mos_le_harmless", x = 3682, y = 2983, direction = "WEST", members = true },
+  { id = "banker_mos_le_harmless", x = 3682, y = 2981, direction = "WEST", members = true },
+  { id = "banker_mos_le_harmless_2", x = 3682, y = 2982, direction = "WEST", members = true },
+  { id = "rat", x = 3679, y = 2949, level = 1, members = true },
+  { id = "rat", x = 3682, y = 2948, members = true },
+  { id = "rat", x = 3688, y = 2947, members = true },
+]

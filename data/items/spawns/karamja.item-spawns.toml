@@ -1,0 +1,29 @@
+spawns = [
+# 10802
+  { id = "gold_ore", x = 2733, y = 3225, delay = 500, members = true },
+# 11054
+  { id = "seaweed", x = 2762, y = 3001, delay = 100, members = true },
+  { id = "seaweed", x = 2771, y = 2995, delay = 100, members = true },
+  { id = "seaweed", x = 2782, y = 2987, delay = 100, members = true },
+  { id = "seaweed", x = 2786, y = 2960, delay = 100, members = true },
+  { id = "seaweed", x = 2755, y = 2952, delay = 100, members = true },
+  { id = "seaweed", x = 2757, y = 2947, delay = 100, members = true },
+  { id = "chameleon_egg", x = 2766, y = 2986, delay = 100, members = true },
+  { id = "chameleon_egg", x = 2760, y = 2981, delay = 100, members = true },
+  { id = "chameleon_egg", x = 2762, y = 2973, delay = 100, members = true },
+# 11312
+  { id = "bronze_hatchet", x = 2825, y = 3088, delay = 100, members = true },
+  { id = "bronze_hatchet", x = 2826, y = 3083, delay = 100, members = true },
+  { id = "iron_hatchet", x = 2821, y = 3086, delay = 500, members = true },
+  { id = "iron_hatchet", x = 2822, y = 3079, delay = 500, members = true },
+# 11568
+  { id = "seaweed", x = 2896, y = 3119, delay = 100, members = true },
+  { id = "seaweed", x = 2913, y = 3110, delay = 100, members = true },
+  { id = "seaweed", x = 2927, y = 3111, delay = 100, members = true },
+  { id = "seaweed", x = 2940, y = 3102, delay = 100, members = true },
+  { id = "seaweed", x = 2939, y = 3073, delay = 100, members = true },
+# 11822
+  { id = "seaweed", x = 2952, y = 2951, delay = 100, members = true },
+  { id = "seaweed", x = 2960, y = 2959, delay = 100, members = true },
+  { id = "premade_blurberry_special", x = 2972, y = 2972, delay = 100, members = true },
+]

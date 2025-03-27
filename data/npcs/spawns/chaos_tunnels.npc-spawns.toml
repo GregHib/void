@@ -1,0 +1,10 @@
+spawns = [
+# 13142
+  { id = "big_wolf", x = 3288, y = 5529, members = true },
+  { id = "big_wolf", x = 3297, y = 5518, members = true },
+  { id = "big_wolf", x = 3304, y = 5509, members = true },
+  { id = "big_wolf", x = 3322, y = 5517, members = true },
+  { id = "big_wolf_2", x = 3285, y = 5512, members = true },
+  { id = "big_wolf_2", x = 3312, y = 5509, members = true },
+  { id = "big_wolf_2", x = 3324, y = 5513, members = true },
+]

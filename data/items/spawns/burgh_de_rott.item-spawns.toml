@@ -1,0 +1,8 @@
+spawns = [
+# 13874
+  { id = "bucket", x = 3478, y = 3234, delay = 100, members = true },
+  { id = "empty_pot", x = 3479, y = 3221, level = 1, delay = 100, members = true },
+  { id = "hammer", x = 3492, y = 3242, level = 1, delay = 100, members = true },
+# 14130
+  { id = "bronze_pickaxe", x = 3556, y = 3236, delay = 228, members = true },
+]

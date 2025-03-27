@@ -1,0 +1,23 @@
+spawns = [
+# 9265
+  { id = "butterfly_1", x = 2323, y = 3175, members = true },
+  { id = "butterfly_1", x = 2323, y = 3175, members = true },
+  { id = "butterfly_1", x = 2327, y = 3171, members = true },
+  { id = "butterfly_1", x = 2322, y = 3168, members = true },
+  { id = "butterfly_1", x = 2342, y = 3181, members = true },
+  { id = "butterfly_1", x = 2339, y = 3169, members = true },
+  { id = "butterfly_1", x = 2345, y = 3168, members = true },
+  { id = "butterfly_1", x = 2345, y = 3165, members = true },
+  { id = "butterfly_1", x = 2340, y = 3161, members = true },
+  { id = "butterfly_1", x = 2350, y = 3157, members = true },
+  { id = "butterfly_1", x = 2345, y = 3183, level = 1, members = true },
+  { id = "butterfly_1", x = 2347, y = 3181, level = 1, members = true },
+  { id = "butterfly_1", x = 2336, y = 3169, level = 1, members = true },
+  { id = "butterfly_1", x = 2334, y = 3167, level = 1, members = true },
+  { id = "butterfly_1", x = 2347, y = 3153, level = 1, members = true },
+  { id = "butterfly_1", x = 2349, y = 3151, level = 1, members = true },
+  { id = "sheep", x = 2319, y = 3191, members = true },
+  { id = "sheep_2", x = 2322, y = 3192, members = true },
+  { id = "banker_lletya", x = 2352, y = 3166, direction = "SOUTH", members = true },
+  { id = "banker_lletya_2", x = 2354, y = 3166, direction = "SOUTH", members = true },
+]

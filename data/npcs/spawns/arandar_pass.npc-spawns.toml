@@ -1,0 +1,18 @@
+spawns = [
+# 9524
+  { id = "giant_spider", x = 2402, y = 3386, members = true },
+  { id = "giant_spider", x = 2407, y = 3387, members = true },
+  { id = "giant_spider", x = 2412, y = 3384, members = true },
+  { id = "giant_spider", x = 2405, y = 3381, members = true },
+  { id = "giant_spider", x = 2372, y = 3379, members = true },
+  { id = "giant_spider", x = 2379, y = 3378, members = true },
+  { id = "giant_spider", x = 2369, y = 3374, members = true },
+  { id = "giant_spider", x = 2387, y = 3370, members = true },
+  { id = "giant_spider", x = 2378, y = 3366, members = true },
+  { id = "giant_spider", x = 2394, y = 3365, members = true },
+  { id = "goblin_light_grey_bald_spear", x = 2387, y = 3345 },
+  { id = "goblin_light_grey_bald_spear", x = 2385, y = 3339 },
+  { id = "goblin_light_grey_bald_spear", x = 2387, y = 3337 },
+  { id = "wolf", x = 2379, y = 3344, members = true },
+  { id = "wolf", x = 2395, y = 3340, members = true },
+]

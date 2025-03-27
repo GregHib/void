@@ -1,0 +1,4 @@
+spawns = [
+# 6743
+  { id = "banker_fist_of_guthix", x = 1705, y = 5599 },
+]

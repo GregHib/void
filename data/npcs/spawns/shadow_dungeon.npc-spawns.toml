@@ -1,0 +1,17 @@
+spawns = [
+# 10831
+  { id = "rat", x = 2693, y = 5111, members = true },
+  { id = "rat", x = 2706, y = 5114, members = true },
+  { id = "rat", x = 2712, y = 5110, members = true },
+  { id = "rat", x = 2724, y = 5113, members = true },
+  { id = "rat", x = 2739, y = 5112, members = true },
+  { id = "rat", x = 2707, y = 5079, members = true },
+  { id = "rat", x = 2721, y = 5076, members = true },
+  { id = "rat", x = 2741, y = 5077, members = true },
+  { id = "rat", x = 2699, y = 5069, members = true },
+  { id = "rat", x = 2708, y = 5070, members = true },
+  { id = "rat", x = 2700, y = 5061, members = true },
+  { id = "rat", x = 2713, y = 5061, members = true },
+  { id = "giant_rat", x = 2721, y = 5102, members = true },
+  { id = "giant_rat_dark_injured", x = 2737, y = 5062, members = true },
+]

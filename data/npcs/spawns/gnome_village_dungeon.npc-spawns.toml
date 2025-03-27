@@ -1,0 +1,4 @@
+spawns = [
+# 10133
+  { id = "zombie", x = 2541, y = 9569, members = true },
+]

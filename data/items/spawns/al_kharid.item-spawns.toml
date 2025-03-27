@@ -1,0 +1,12 @@
+spawns = [
+# 13105
+  { id = "bronze_mace", x = 3320, y = 3137, delay = 230 },
+  { id = "bucket", x = 3306, y = 3195, delay = 100 },
+  { id = "leather_boots", x = 3303, y = 3189, delay = 100 },
+  { id = "body_rune", x = 3289, y = 3191, level = 1, delay = 100 },
+  { id = "cabbage", x = 3285, y = 3175, delay = 100 },
+  { id = "jug_of_water", x = 3302, y = 3170, delay = 100 },
+# 13107
+  { id = "fire_rune", amount = 3, x = 3304, y = 3311, delay = 100 },
+  { id = "water_rune", x = 3298, y = 3315, delay = 100 },
+]

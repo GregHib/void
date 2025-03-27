@@ -1,0 +1,37 @@
+spawns = [
+# 10291
+  { id = "wolf", x = 2616, y = 3283, members = true },
+  { id = "wolf", x = 2620, y = 3283, members = true },
+  { id = "bartender_flying_horse_inn", x = 2574, y = 3319, members = true },
+# 10292
+  { id = "banker_3", x = 2614, y = 3330, direction = "NORTH", members = true },
+  { id = "banker_4", x = 2618, y = 3330, direction = "NORTH", members = true },
+  { id = "banker_4", x = 2619, y = 3330, direction = "NORTH", members = true },
+  { id = "musician_fishing_guild", x = 2605, y = 3385, direction = "SOUTH", members = true },
+# 10547
+  { id = "banker_3", x = 2657, y = 3286, direction = "WEST", members = true },
+  { id = "banker_3", x = 2657, y = 3283, direction = "WEST", members = true },
+  { id = "banker_4", x = 2657, y = 3280, direction = "WEST", members = true },
+  { id = "wizard_cromperty", x = 2681, y = 3325, members = true },
+# 10548
+  { id = "sheep", x = 2656, y = 3378, members = true },
+  { id = "sheep", x = 2650, y = 3375, members = true },
+  { id = "sheep", x = 2652, y = 3373, members = true },
+  { id = "sheep", x = 2656, y = 3371, members = true },
+  { id = "sheep", x = 2655, y = 3368, members = true },
+  { id = "sheep", x = 2650, y = 3366, members = true },
+  { id = "sheep", x = 2656, y = 3364, members = true },
+  { id = "sheep", x = 2653, y = 3362, members = true },
+  { id = "sheep", x = 2651, y = 3360, members = true },
+  { id = "sheep", x = 2654, y = 3357, members = true },
+  { id = "cow", x = 2658, y = 3351, members = true },
+  { id = "cow", x = 2664, y = 3352, members = true },
+  { id = "cow", x = 2672, y = 3354, members = true },
+  { id = "cow", x = 2664, y = 3348, members = true },
+  { id = "cow", x = 2670, y = 3348, members = true },
+  { id = "cow", x = 2660, y = 3344, members = true },
+  { id = "cow", x = 2666, y = 3344, members = true },
+  { id = "cow", x = 2657, y = 3341, members = true },
+  { id = "cow", x = 2664, y = 3341, members = true },
+  { id = "cow", x = 2671, y = 3342, members = true },
+]

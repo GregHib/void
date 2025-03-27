@@ -1,0 +1,4 @@
+spawns = [
+# 12082
+  { id = "white_apron_port_sarim", x = 3016, y = 3229, delay = 100 },
+]
