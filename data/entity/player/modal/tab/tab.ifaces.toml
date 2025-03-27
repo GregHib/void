@@ -1,0 +1,189 @@
+[options]
+id = 261
+type = "options_tab"
+components = {
+  graphics = 16,
+  audio = 18,
+  run = 3,
+  mouse = 6,
+  effects = 4,
+  chat = 5,
+  aid = 7,
+  house = 8,
+}
+
+
+[prayer_list]
+id = 271
+type = "prayer_list_tab"
+components = {
+  stat_adjustments = 12,
+  quick_prayers = {
+    id = 42,
+    options = {
+      Select = 0,
+    },
+  },
+  regular_prayers = {
+    id = 8,
+    options = {
+      Activate = 0,
+    },
+  },
+  confirm = 43,
+}
+
+[achievements]
+id = 259
+
+[worn_equipment]
+id = 387
+type = "worn_equipment_tab"
+components = {
+  bonuses = 39,
+  price = 42,
+  items = 45,
+  hat_slot = {
+    id = 8,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  cape_slot = {
+    id = 11,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  amulet_slot = {
+    id = 14,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  weapon_slot = {
+    id = 17,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  chest_slot = {
+    id = 20,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  shield_slot = {
+    id = 23,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  legs_slot = {
+    id = 26,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  hands_slot = {
+    id = 29,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  feet_slot = {
+    id = 32,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  ring_slot = {
+    id = 35,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  ammo_slot = {
+    id = 38,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+}

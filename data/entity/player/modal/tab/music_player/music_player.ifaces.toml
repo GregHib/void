@@ -1,0 +1,16 @@
+[music_player]
+id = 187
+type = "music_player_tab"
+components = {
+  tracks = {
+    id = 1,
+    options = {
+      Play = 0,
+      Unlock = 1,
+      "Add to playlist" = 2,
+      Cancel = 3,
+    }
+  },
+  currently_playing = 4,
+  playlist = 9,
+}

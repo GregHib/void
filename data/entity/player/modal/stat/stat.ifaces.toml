@@ -1,0 +1,63 @@
+[skill_stat_advance]
+id = 134
+type = "main_screen"
+components = {
+  confirm = 2,
+  close = 29,
+  attack = 30,
+  strength = 31,
+  defence = 32,
+  ranged = 33,
+  prayer = 34,
+  constitution = 35,
+  magic = 36,
+  agility = 37,
+  herblore = 38,
+  thieving = 39,
+  crafting = 40,
+  fletching = 41,
+  mining = 42,
+  smithing = 43,
+  fishing = 44,
+  firemaking = 45,
+  cooking = 46,
+  woodcutting = 47,
+  runecrafting = 48,
+  slayer = 49,
+  hunter = 50,
+  farming = 51,
+  construction = 52,
+  summoning = 53,
+  dungeoneering = 54,
+}
+
+[stats]
+id = 320
+type = "stats_tab"
+components = {
+  strength = 11,
+  agility = 19,
+  defence = 28,
+  herblore = 36,
+  fishing = 44,
+  ranged = 52,
+  thieving = 60,
+  cooking = 68,
+  prayer = 76,
+  crafting = 84,
+  magic = 93,
+  fletching = 101,
+  runecrafting = 110,
+  slayer = 118,
+  farming = 126,
+  construction = 134,
+  hunter = 142,
+  summoning = 150,
+  dungeoneering = 158,
+  woodcutting = 165,
+  firemaking = 172,
+  smithing = 179,
+  mining = 186,
+  constitution = 193,
+  attack = 200,
+}

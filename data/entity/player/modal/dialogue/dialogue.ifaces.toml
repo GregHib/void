@@ -1,0 +1,575 @@
+# Player
+[dialogue_chat1]
+id = 64
+type = "dialogue_box"
+components = {
+  head_large = 1,
+  head = 2,
+  title = 3,
+  line1 = 4,
+  continue = 5,
+}
+
+[dialogue_chat2]
+id = 65
+type = "dialogue_box"
+components = {
+  head_large = 1,
+  head = 2,
+  title = 3,
+  line1 = 4,
+  line2 = 5,
+  continue = 6,
+}
+
+[dialogue_chat3]
+id = 66
+type = "dialogue_box"
+components = {
+  head_large = 1,
+  head = 2,
+  title = 3,
+  line1 = 4,
+  line2 = 5,
+  line3 = 6,
+  continue = 7,
+}
+
+[dialogue_chat4]
+id = 67
+type = "dialogue_box"
+components = {
+  head_large = 1,
+  head = 2,
+  title = 3,
+  line1 = 4,
+  line2 = 5,
+  line3 = 6,
+  line4 = 7,
+  continue = 8,
+}
+
+[dialogue_chat_np1]
+id = 68
+type = "dialogue_box"
+components = {
+  head_large = 1,
+  head = 2,
+  title = 3,
+  line1 = 4,
+  continue = 5,
+}
+
+[dialogue_chat_np2]
+id = 69
+type = "dialogue_box"
+components = {
+  head_large = 1,
+  head = 2,
+  title = 3,
+  line1 = 4,
+  line2 = 5,
+  continue = 6,
+}
+
+[dialogue_chat_np3]
+id = 70
+type = "dialogue_box"
+components = {
+  head_large = 1,
+  head = 2,
+  title = 3,
+  line1 = 4,
+  line2 = 5,
+  line3 = 6,
+  continue = 7,
+}
+
+[dialogue_chat_np4]
+id = 71
+type = "dialogue_box"
+components = {
+  head_large = 1,
+  head = 2,
+  title = 3,
+  line1 = 4,
+  line2 = 5,
+  line3 = 6,
+  line4 = 7,
+  continue = 8,
+}
+
+# Un-contained
+[dialogue_npc_chat_np4u]
+id = 90
+type = "dialogue_box"
+
+[dialogue_npc_chat_np3u]
+id = 91
+type = "dialogue_box"
+
+[dialogue_npc_chat_np1u]
+id = 92
+type = "dialogue_box"
+
+[dialogue_npc_chat_np2u]
+id = 93
+type = "dialogue_box"
+
+[dialogue_confirm_destroy]
+id = 94
+type = "dialogue_box"
+components = {
+  confirm = 3,
+  decline = 4,
+  line1 = 7,
+  item_name = 8,
+  item_slot = 9,
+}
+
+# Item
+[dialogue_double_obj_box]
+id = 131
+type = "dialogue_box_small"
+components = {
+  model1 = 0,
+  line1 = 1,
+  model2 = 2,
+  continue = 3,
+}
+
+[dialogue_garden_quiz]
+id = 133
+type = "dialogue_box"
+
+[dialogue_chat_both]
+id = 136
+type = "dialogue_box"
+
+[chat_background]
+id = 137
+type = "chat_background"
+quick_chat = 54
+help_quick_chat = 5
+close_quick_chat = 4
+
+[dialogue_select2_models]
+id = 140
+type = "dialogue_box"
+
+[dialogue_text_box_model]
+id = 148
+type = "dialogue_box"
+
+[dialogue_macro_mime_emotes]
+id = 188
+type = "dialogue_box"
+
+[dialogue_macro_quiz_show]
+id = 191
+type = "dialogue_box"
+
+[chat1_double_model]
+id = 173
+
+[dialogue_container_continue]
+id = 200
+type = "dialogue_box"
+
+[dialogue_price_check_box_title]
+id = 208
+type = "dialogue_box"
+
+# Statements
+[dialogue_message1]
+id = 210
+type = "dialogue_box"
+components = {
+  line1 = 1,
+  continue = 2,
+}
+
+[dialogue_message2]
+id = 211
+type = "dialogue_box"
+components = {
+  line1 = 1,
+  line2 = 2,
+  continue = 3,
+}
+
+[dialogue_message3]
+id = 212
+type = "dialogue_box"
+components = {
+  line1 = 1,
+  line2 = 2,
+  line3 = 3,
+  continue = 4,
+}
+
+[dialogue_message4]
+id = 213
+type = "dialogue_box"
+components = {
+  line1 = 1,
+  line2 = 2,
+  line3 = 3,
+  line4 = 4,
+  continue = 5,
+}
+
+[dialogue_message5]
+id = 214
+type = "dialogue_box"
+components = {
+  line1 = 1,
+  line2 = 2,
+  line3 = 3,
+  line4 = 4,
+  line5 = 5,
+  continue = 6,
+}
+
+[dialogue_message_np1]
+id = 215
+type = "dialogue_box"
+components = {
+  line1 = 1,
+}
+
+[dialogue_message_np2]
+id = 216
+type = "dialogue_box"
+components = {
+  line1 = 1,
+  line2 = 2,
+}
+
+[dialogue_message_np3]
+id = 217
+type = "dialogue_box"
+components = {
+  line1 = 1,
+  line2 = 2,
+  line3 = 3,
+}
+
+[dialogue_message_np4]
+id = 218
+type = "dialogue_box"
+components = {
+  line1 = 1,
+  line2 = 2,
+  line3 = 3,
+  line4 = 4,
+}
+
+[dialogue_message_np5]
+id = 219
+type = "dialogue_box"
+components = {
+  line1 = 1,
+  line2 = 2,
+  line3 = 3,
+  line4 = 4,
+  line5 = 5,
+}
+
+
+# Choice
+[dialogue_multi2]
+id = 228
+type = "dialogue_box"
+components = {
+  title = 1,
+  thin_swords = 6,
+  wide_swords = 9,
+  line1 = 2,
+  line2 = 3,
+}
+
+[dialogue_multi2_chat]
+id = 229
+type = "dialogue_box"
+components = {
+  title = 1,
+  thin_swords = 6,
+  wide_swords = 9,
+  line1 = 2,
+  line2 = 3,
+}
+
+[dialogue_multi3]
+id = 230
+type = "dialogue_box"
+components = {
+  title = 1,
+  thin_swords = 7,
+  wide_swords = 10,
+  line1 = 2,
+  line2 = 3,
+  line3 = 4,
+}
+
+[dialogue_multi3_chat]
+id = 231
+type = "dialogue_box"
+components = {
+  title = 1,
+  thin_swords = 7,
+  wide_swords = 10,
+  line1 = 2,
+  line2 = 3,
+  line3 = 4,
+}
+
+[dialogue_multi4]
+id = 232
+type = "dialogue_box"
+components = {
+  title = 1,
+  thin_swords = 8,
+  wide_swords = 9,
+  line1 = 2,
+  line2 = 3,
+  line3 = 4,
+  line4 = 5,
+}
+
+[dialogue_multi4_chat]
+id = 233
+type = "dialogue_box"
+components = {
+  title = 1,
+  thin_swords = 8,
+  wide_swords = 9,
+  line1 = 2,
+  line2 = 3,
+  line3 = 4,
+  line4 = 5,
+}
+
+[dialogue_multi5]
+id = 234
+type = "dialogue_box"
+components = {
+  title = 1,
+  thin_swords = 9,
+  wide_swords = 10,
+  line1 = 2,
+  line2 = 3,
+  line3 = 4,
+  line4 = 5,
+  line5 = 6,
+}
+
+[dialogue_multi5_chat]
+id = 235
+type = "dialogue_box"
+components = {
+  title = 1,
+  thin_swords = 9,
+  wide_swords = 10,
+  line1 = 2,
+  line2 = 3,
+  line3 = 4,
+  line4 = 5,
+  line5 = 6,
+}
+
+[dialogue_multi_var2]
+id = 236
+type = "dialogue_box"
+components = {
+  title = 0,
+  thin_swords = 5,
+  wide_swords = 6,
+  line1 = 1,
+  line2 = 2,
+}
+
+[dialogue_multi_var4]
+id = 237
+type = "dialogue_box"
+components = {
+  title = 0,
+  thin_swords = 7,
+  wide_swords = 8,
+  line1 = 1,
+  line2 = 2,
+  line3 = 3,
+  line4 = 4,
+}
+
+[dialogue_multi_var5]
+id = 238
+type = "dialogue_box"
+components = {
+  title = 0,
+  thin_swords = 8,
+  wide_swords = 9,
+  line1 = 1,
+  line2 = 2,
+  line3 = 3,
+  line4 = 4,
+  line5 = 5,
+}
+
+# NPC
+[dialogue_npc_chat1]
+id = 241
+type = "dialogue_box"
+components = {
+  head_large = 1,
+  head = 2,
+  title = 3,
+  line1 = 4,
+  continue = 5,
+}
+
+[dialogue_npc_chat2]
+id = 242
+type = "dialogue_box"
+components = {
+  head_large = 1,
+  head = 2,
+  title = 3,
+  line1 = 4,
+  line2 = 5,
+  continue = 6,
+}
+
+[dialogue_npc_chat3]
+id = 243
+type = "dialogue_box"
+components = {
+  head_large = 1,
+  head = 2,
+  title = 3,
+  line1 = 4,
+  line2 = 5,
+  line3 = 6,
+  continue = 7,
+}
+
+[dialogue_npc_chat4]
+id = 244
+type = "dialogue_box"
+components = {
+  head_large = 1,
+  head = 2,
+  title = 3,
+  line1 = 4,
+  line2 = 5,
+  line3 = 6,
+  line4 = 7,
+  continue = 8,
+}
+
+[dialogue_npc_chat_np1]
+id = 245
+type = "dialogue_box"
+components = {
+  head_large = 1,
+  head = 2,
+  title = 3,
+  line1 = 4,
+}
+
+[dialogue_npc_chat_np2]
+id = 246
+type = "dialogue_box"
+components = {
+  head_large = 1,
+  head = 2,
+  title = 3,
+  line1 = 4,
+  line2 = 5,
+}
+
+[dialogue_npc_chat_np3]
+id = 247
+type = "dialogue_box"
+components = {
+  head_large = 1,
+  head = 2,
+  title = 3,
+  line1 = 4,
+  line2 = 5,
+  line3 = 6,
+}
+
+[dialogue_npc_chat_np4]
+id = 248
+type = "dialogue_box"
+components = {
+  head_large = 1,
+  head = 2,
+  title = 3,
+  line1 = 4,
+  line2 = 5,
+  line3 = 6,
+  line4 = 7,
+}
+
+[dialogue_multi_var3]
+id = 451
+type = "dialogue_box"
+components = {
+  title = 0,
+  thin_swords = 6,
+  wide_swords = 7,
+  line1 = 1,
+  line2 = 2,
+  line3 = 3,
+}
+
+[dialogue_multi3_off_centre]
+id = 458
+type = "dialogue_box"
+
+[chat3_models]
+id = 314
+
+# 6 lines
+[dialogue_tutorial_text]
+id = 372
+type = "dialogue_box"
+
+[dialogue_poh_hangman]
+id = 393
+type = "dialogue_box"
+
+[dialogue_obj_dialog]
+id = 389
+type = "dialogue_box"
+
+# 12 lines
+[dialogue_tutorial_text2]
+id = 421
+type = "dialogue_box"
+
+[dialogue_open_url]
+id = 445
+type = "dialogue_box"
+
+[dialogue_poh_hangman_german]
+id = 507
+type = "dialogue_box"
+
+[dialogue_chat4_model]
+id = 554
+type = "dialogue_box"
+
+[dialogue_chat6_model]
+id = 555
+type = "dialogue_box"
+
+[dialogue_chat7_model]
+id = 556
+type = "dialogue_box"
+
+[dialogue_multi2_mes]
+id = 557
+type = "dialogue_box"

@@ -1,0 +1,8 @@
+[pest_control_rewards]
+id = 267
+
+[pest_control_waiting]
+id = 407
+
+[pest_control_playing]
+id = 408
