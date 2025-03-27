@@ -1,0 +1,87 @@
+[turkey]
+id = 8499
+examine = "It's huge and delicious!"
+
+[primal_warrior]
+id = 11227
+
+[celestial_mage]
+id = 11228
+
+[sagittarian_ranger]
+id = 11229
+
+[seal]
+id = 13255
+wander_radius = 2
+examine = "Arf arf."
+
+[seal_2]
+id = 13256
+wander_radius = 2
+examine = "Arf arf."
+
+[seal_3]
+id = 13257
+wander_radius = 2
+examine = "Arf arf."
+
+[seal_4]
+id = 13258
+wander_radius = 2
+examine = "Arf arf."
+
+[seal_5]
+id = 13259
+wander_radius = 2
+examine = "Arf arf."
+
+[seal_6]
+id = 13260
+wander_radius = 2
+examine = "Arf arf."
+
+[ring_of_stone]
+id = 2626
+
+[easter_egg_0]
+id = 3689
+
+[easter_egg_1]
+id = 3690
+
+[easter_egg_2]
+id = 3691
+
+[easter_egg_3]
+id = 3692
+
+[easter_egg_4]
+id = 3693
+
+[easter_egg_5]
+id = 3694
+
+[small_ninja_monkey]
+id = 1480
+
+[medium_ninja_monkey]
+id = 1481
+
+[gorilla]
+id = 1482
+
+[bearded_gorilla]
+id = 1483
+
+[ancient_gorilla]
+id = 1484
+
+[small_zombie_monkey]
+id = 1485
+
+[large_zombie_monkey]
+id = 1486
+
+[monkey]
+id = 1487
