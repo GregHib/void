@@ -5,7 +5,6 @@ import it.unimi.dsi.fastutil.ints.IntArrayList
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Region
