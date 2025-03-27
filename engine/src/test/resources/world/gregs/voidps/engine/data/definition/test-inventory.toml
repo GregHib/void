@@ -1,11 +1,11 @@
 [bobs_brilliant_axes]
 id = 1
-defaults = {
-  bronze_pickaxe = 10,
-  bronze_hatchet = 10,
-  iron_hatchet = 10,
-  steel_hatchet = 10,
-  iron_battleaxe = 10,
-  steel_battleaxe = 10,
-  mithril_battleaxe = 10,
-}
+defaults = [
+  { id = "bronze_pickaxe", amount = 10 },
+  { id = "bronze_hatchet", amount = 10 },
+  { id = "iron_hatchet", amount = 10 },
+  { id = "steel_hatchet", amount = 10 },
+  { id = "iron_battleaxe", amount = 10 },
+  { id = "steel_battleaxe", amount = 10 },
+  { id = "mithril_battleaxe", amount = 10 },
+]
