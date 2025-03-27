@@ -1,3 +1,11 @@
+[obstacle_net]
+id = 2285
+examine = "This must be climbed over."
+
+[balancing_rope]
+id = 2312
+examine = "I can balance on this rope."
+
 [gnome_log_balance]
 id = 2295
 examine = "A slippery log I can walk across."
@@ -5,6 +13,10 @@ examine = "A slippery log I can walk across."
 [gnome_obstacle_net]
 id = 2285
 examine = "This must be climbed over."
+
+[rope_swing]
+id = 3566
+examine = "Use this to swing over to the next platform."
 
 [gnome_tree_branch_up]
 id = 35970

@@ -1,0 +1,7 @@
+[pottery_oven_east_ardougne]
+id = 34802
+examine = "Bake your clay items in here."
+
+[bank_booth_ardougne]
+id = 34752
+examine = "The bank teller will serve you from here."

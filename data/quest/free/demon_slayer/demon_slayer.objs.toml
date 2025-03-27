@@ -1,0 +1,36 @@
+[demon_slayer_rusty_key]
+id = 17429
+examine = "An old rusty key in a puddle of mud."
+
+[demon_slayer_mud]
+id = 12972
+examine = "A puddle of mud. Ooh, how exciting."
+
+[demon_slayer_spell_wardrobe]
+id = 17434
+examine = "A wardrobe brought forth by magic."
+
+[silverlight_sword_case_closed]
+id = 12982
+examine = "A sword case containing silverlight."
+
+[silverlight_sword_case_open]
+id = 12984
+examine = "A sword case containing silverlight."
+
+[silverlight_sword_case_empty]
+id = 12985
+examine = "This case used to contain silverlight."
+
+[demon_slayer_stone_table]
+id = 17454
+examine = "An evil presence seems to rest in the stone table."
+
+[demon_slayer_stone_table_summoning]
+id = 17436
+examine = "An evil presence seems to rest in the stone table."
+
+[demon_slayer_stone_table_shattered]
+id = 17438
+examine = "The stone table has been shattered."
+demon_slayer_energy_barrier = 14874

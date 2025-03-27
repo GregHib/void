@@ -1,0 +1,63 @@
+[cooking_range_lumbridge_castle]
+id = 114
+examine = "Ideal for cooking on."
+
+[table_lumbridge_kitchen]
+id = 36821
+examine = "Generally used for putting things on."
+
+[table_large_lumbridge_kitchen]
+id = 36822
+examine = "A nice sturdy-looking table."
+
+[spinning_wheel_lumbridge]
+id = 36970
+examine = "Used for spinning thread."
+
+[drawers_lumbridge_castle]
+id = 37011
+examine = "A chest of drawers."
+
+[lumbridge_flag]
+id = 37335
+examine = "A flag on a pole."
+
+[table_large_lumbridge]
+id = 45233
+examine = "A nice sturdy-looking table."
+
+[table_lumbridge]
+id = 45234
+examine = "It's a small table."
+
+[counter_lumbridge_shops]
+id = 45237
+examine = "Items are for sale here."
+
+[furnace_lumbridge]
+id = 45310
+examine = "A hot furnace."
+
+[cooking_range_lumbridge]
+id = 45319
+examine = "Ideal for cooking on."
+
+[bank_booth_lumbridge]
+id = 36786
+examine = "Used to access your bank account."
+
+[bank_booth_lumbridge_instance]
+id = 37474
+examine = "For accessing your bank account."
+
+[lumbridge_organ]
+id = 36978
+examine = "A church organ."
+
+[lumbridge_church_bell]
+id = 36976
+examine = "I can ring this."
+
+[counter_bobs_shop]
+id = 45238
+examine = "Items are for sale here."

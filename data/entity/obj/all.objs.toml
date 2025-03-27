@@ -22,10 +22,6 @@ examine = "A broken rail."
 id = 20
 examine = "A broken rail."
 
-[cooking_range_lumbridge_castle]
-id = 114
-examine = "Ideal for cooking on."
-
 [fountain]
 id = 153
 examine = "An ornate fountain."
@@ -225,26 +221,6 @@ examine = "Not as nice as some."
 id = 2004
 examine = "The pillar has a rune shaped dent in it."
 
-[cupboard_the_knights_sword_closed]
-id = 2271
-examine = "I wonder what's inside?"
-
-[cupboard_the_knights_sword_opened]
-id = 2272
-examine = "It's open."
-
-[obstacle_net]
-id = 2285
-examine = "This must be climbed over."
-
-[balancing_rope]
-id = 2312
-examine = "I can balance on this rope."
-
-[bookcase_shield_of_arrav]
-id = 2402
-examine = "A good source of books!"
-
 [pillar_2]
 id = 2440
 examine = "Wonder what this pillar is for?"
@@ -277,10 +253,6 @@ examine = "Spooky!"
 id = 2642
 examine = "Used for fashioning clay items."
 
-[pottery_oven_crafting_guild]
-id = 2643
-examine = "Bake your clay items in here."  
-
 [flax]
 id = 2646
 pickable = {
@@ -289,10 +261,6 @@ pickable = {
   message = "You pick some flax."
 }
 examine = "A plant cultivated for fibres."
-
-[fountain_sinclair_family]
-id = 2654
-examine = "This fountain suits the garden."
 
 [hopper_controls]
 id = 2718
@@ -322,10 +290,6 @@ examine = "A jungle bush, quite common to these areas."
 id = 2894
 examine = "A jungle bush that has been chopped down."
 
-[legends_guild_totem_pole]
-id = 2938
-examine = "A sculpted trunk of wood."
-
 [tomb]
 id = 3353
 examine = "I don't much like the look of that..."
@@ -345,10 +309,6 @@ examine = "Makes you cry."
 
 [border]
 id = 3550
-
-[rope_swing]
-id = 3566
-examine = "Use this to swing over to the next platform."
 
 [pillar_8]
 id = 3578
@@ -393,10 +353,6 @@ examine = "He hasn't eaten in a long time."
 [balancing_rope_4]
 id = 4059
 examine = "I can balance on this rope."
-
-[pottery_oven_rellekka]
-id = 4308
-examine = "Bake your clay items in here."
 
 [potters_wheel_2]
 id = 4310
@@ -450,10 +406,6 @@ examine = "The resting place of Necrovarus' mortal body."
 id = 5279
 examine = "The resting place of Necrovarus' mortal body."
 
-[ectofuntus]
-id = 5282
-examine = "A ghastly fountain filled with slime and bones, the source of Necrovarus' power."
-
 [heather_4]
 id = 5543
 examine = "Isn't Heather a girls' name?"
@@ -485,10 +437,6 @@ examine = "I wonder why it's purple?"
 [charms_2]
 id = 5559
 examine = "Trinkets and stuff."
-
-[gudrun_and_dororan]
-id = 5657
-examine = "gudrun and dororan"   
 
 [crack]
 id = 5793
@@ -573,10 +521,6 @@ examine = "This pineapple plant has been cut down."
 id = 8689
 examine = "Fit for milking."
 
-[loom_falador_farm]
-id = 8717
-examine = "A loom."
-
 [candles_6]
 id = 9159
 examine = "Lit to remember the souls of the departed."
@@ -657,22 +601,9 @@ examine = "Little candles flickering."
 id = 11473
 examine = "Little candles flickering."
 
-[cabbage_draynor_manor]
-id = 11494
-pickable = {
-  item = "cabbage",
-  delay = 45,
-  message = "You pick a cabbage."
-}
-examine = "An enigmatic cabbage."
-
 [pottery_oven]
 id = 11601
 examine = "Bake your clay pots in here."
-
-[furnace_al_kharid]
-id = 11666
-examine = "A hot furnace."
 
 [flagpole_9]
 id = 11699
@@ -698,82 +629,6 @@ examine = "Contains dead people."
 id = 12135
 examine = "Contains dead people."
 
-[canoe_station_lumbridge]
-id = 12163
-examine = "You can create a canoe here."
-
-[canoe_station_champions_guild]
-id = 12164
-examine = "You can create a canoe here."
-
-[canoe_station_barbarian_village]
-id = 12165
-examine = "You can create a canoe here."
-
-[canoe_station_edgeville]
-id = 12166
-examine = "You can create a canoe here."
-
-[canoe_station]
-id = 12144
-examine = "You can create a canoe here."
-
-[canoe_station_2]
-id = 12145
-examine = "You can create a canoe here."
-
-[canoe_station_fallen]
-id = 12146
-examine = "You can create a canoe here."
-
-[canoe_station_log]
-id = 12147
-examine = "You can create a canoe here."
-
-[canoe_station_dugout]
-id = 12148
-examine = "You can create a canoe here."
-
-[canoe_station_stable_dugout]
-id = 12149
-examine = "You can create a canoe here."
-
-[canoe_station_waka]
-id = 12150
-examine = "You can create a canoe here."
-
-[canoe_station_8]
-id = 12151
-examine = "You can create a canoe here."
-
-[canoe_station_9]
-id = 12152
-examine = "You can create a canoe here."
-
-[canoe_station_10]
-id = 12153
-examine = "You can create a canoe here."
-
-[canoe_station_11]
-id = 12154
-examine = "You can create a canoe here."
-
-[canoe_station_water_log]
-id = 12155
-examine = "You can create a canoe here."
-
-[canoe_station_water_dugout]
-id = 12156
-examine = "You can create a canoe here."
-
-[canoe_station_water_stable_dugout]
-id = 12157
-examine = "You can create a canoe here."
-
-[canoe_station_water_waka]
-id = 12158
-examine = "You can create a canoe here."
-
 [candles_10]
 id = 12301
 examine = "Little candles flickering."
@@ -781,10 +636,6 @@ examine = "Little candles flickering."
 [candles_11]
 id = 12302
 examine = "Little candles flickering."
-
-[table_old_wizards_tower]
-id = 12544
-examine = "A small wooden table."
 
 [tomb_3]
 id = 12802
@@ -878,10 +729,6 @@ examine = "Intended to keep the goblins away from the mines."
 id = 15731
 examine = "A cracked wall."
 
-[mizgogs_desk]
-id = 16169
-examine = "A desk belonging to Wizard Mizgog."
-
 [corpse_28]
 id = 16967
 examine = "Now that's what I call slimline!"
@@ -921,10 +768,6 @@ examine = "A ruined old pillar."
 [pillar_23]
 id = 18258
 examine = "A ruined old pillar."
-
-[candles_entrana]
-id = 19127
-examine = "Lit to remember the souls of the departed."
 
 [fern_6]
 id = 19839
@@ -1222,10 +1065,6 @@ examine = "It has a seed pod."
 id = 25654
 examine = "Trinkets and stuff."
 
-[cooking_range_al_kharid]
-id = 25730
-examine = "Ideal for cooking on."
-
 [fern_16]
 id = 52787
 examine = "A plant."
@@ -1245,14 +1084,6 @@ examine = "I could fire a grapple to that."
 [pillar_57]
 id = 26303
 examine = "A pillar leans over the chasm."
-
-[godwars_hole]
-id = 26340
-examine = "Looks deep."
-
-[godwars_hole_roped]
-id = 26341
-examine = "Looks deep."
 
 [table_j_mod]
 id = 26807
@@ -1500,10 +1331,6 @@ examine = "Lit to remember the souls of the departed."
 id = 34801
 examine = "Used for fashioning clay items."
 
-[pottery_oven_east_ardougne]
-id = 34802
-examine = "Bake your clay items in here."
-
 [pillar_69]
 id = 35140
 examine = "A tall pillar."
@@ -1518,10 +1345,6 @@ examine = "Conspicuous consumption of water."
 [rope_swing_2]
 id = 35967
 examine = "An odd-looking rock with a rope tied to it"
-
-[fountain_of_heroes]
-id = 36695
-examine = "A source of pure water."
 
 [pillar_71]
 id = 36698
@@ -1555,14 +1378,6 @@ examine = "An odd-looking rock with a rope tied to it."
 id = 36781
 examine = "A pretty water feature."
 
-[table_lumbridge_kitchen]
-id = 36821
-examine = "Generally used for putting things on."
-
-[table_large_lumbridge_kitchen]
-id = 36822
-examine = "A nice sturdy-looking table."
-
 [flour_bin]
 id = 36878
 examine = "I'll need an empty pot so I can collect my flour."
@@ -1583,10 +1398,6 @@ examine = "Grain goes in here."
 id = 36906
 examine = "A stand for hats."
 
-[spinning_wheel_lumbridge]
-id = 36970
-examine = "Used for spinning thread."
-
 [hatchet_logs]
 id = 36974
 examine = "Someone's been chopping logs."
@@ -1598,10 +1409,6 @@ examine = "Someone's been chopping logs."
 [candle_6]
 id = 37007
 examine = "A burning candle."
-
-[drawers_lumbridge_castle]
-id = 37011
-examine = "A chest of drawers."
 
 [pillar_73]
 id = 37204
@@ -1626,10 +1433,6 @@ examine = "A strengthened pillar."
 [pillar_77]
 id = 37317
 examine = "A strengthened pillar."
-
-[lumbridge_flag]
-id = 37335
-examine = "A flag on a pole."
 
 [pillar_78]
 id = 37338
@@ -1662,10 +1465,6 @@ examine = "It's sealed shut."
 [coffin_36]
 id = 37915
 examine = "It's open."
-
-[portal_runecrafting_guild]
-id = 38279
-examine = "Where could this lead?"
 
 [pillar_83]
 id = 38352
@@ -1787,22 +1586,6 @@ examine = "A strengthened pillar."
 id = 44499
 examine = "A strengthened pillar."
 
-[table_large_lumbridge]
-id = 45233
-examine = "A nice sturdy-looking table."
-
-[table_lumbridge]
-id = 45234
-examine = "It's a small table."
-
-[counter_lumbridge_shops]
-id = 45237
-examine = "Items are for sale here."
-
-[counter_bobs_shop]
-id = 45238
-examine = "Items are for sale here."
-
 [candles_22]
 id = 45270
 examine = "Some burning candles."
@@ -1835,15 +1618,6 @@ examine = "A wall-mounted candle."
 id = 45277
 examine = "A pair of wall-mounted candles."
 
-
-[furnace_lumbridge]
-id = 45310
-examine = "A hot furnace."
-
-[cooking_range_lumbridge]
-id = 45319
-examine = "Ideal for cooking on."
-
 [cupboard_door_opened]
 id = 45790
 examine = "The door of a small cupboard."
@@ -1851,36 +1625,6 @@ examine = "The door of a small cupboard."
 [cupboard_door_closed]
 id = 45789
 examine = "The door of a small cupboard."
-
-[border_guard_al_kharid]
-id = 45857
-raise = "border_guard_raise"
-lower = "border_guard_lower"
-examine = "On guard duty."
-
-[border_guard_varrock_2]
-id = 45858
-raise = "border_guard_raise"
-lower = "border_guard_lower"
-examine = "On guard duty."
-
-[border_guard_varrock]
-id = 45859
-raise = "border_guard_raise"
-lower = "border_guard_lower"
-examine = "On guard duty."
-
-[border_guard_draynor]
-id = 45861
-raise = "border_guard_draynor_raise"
-lower = "border_guard_draynor_lower"
-examine = "On guard duty."
-
-[border_guard_barbarian]
-id = 45863
-raise = "border_guard_raise"
-lower = "border_guard_lower"
-examine = "On guard duty."
 
 [pillar_98]
 id = 47169
@@ -1908,10 +1652,6 @@ examine = "It wouldn't take much to collapse this pillar."
 
 [fountain_23]
 id = 47662
-
-[prized_dairy_cow]
-id = 47721
-examine = "Produces top-quality milk."
 
 [fountain_24]
 id = 47747
@@ -2209,78 +1949,6 @@ examine = "A dead monkey."
 id = 56880
 examine = "A dead monkey."
 
-[varrock_palace_drain]
-id = 31759
-examine = "This drain leads from the sink to the sewers below."
-
-[varrock_manhole]
-id = 881
-examine = "There's a cover over this manhole."
-
-[varrock_manhole_open]
-id = 882
-
-[demon_slayer_rusty_key]
-id = 17429
-examine = "An old rusty key in a puddle of mud."
-
-[demon_slayer_mud]
-id = 12972
-examine = "A puddle of mud. Ooh, how exciting."
-
-[demon_slayer_spell_wardrobe]
-id = 17434
-examine = "A wardrobe brought forth by magic."
-
-[silverlight_sword_case_closed]
-id = 12982
-examine = "A sword case containing silverlight."
-
-[silverlight_sword_case_open]
-id = 12984
-examine = "A sword case containing silverlight."
-
-[silverlight_sword_case_empty]
-id = 12985
-examine = "This case used to contain silverlight."
-
-[demon_slayer_stone_table]
-id = 17454
-examine = "An evil presence seems to rest in the stone table."
-
-[demon_slayer_stone_table_summoning]
-id = 17436
-examine = "An evil presence seems to rest in the stone table."
-
-[demon_slayer_stone_table_shattered]
-id = 17438
-examine = "The stone table has been shattered."
-demon_slayer_energy_barrier = 14874
-
-[furnace_edgeville]
-id = 26814
-examine = "A hot furnace."
-
-[lever_ardougne_edgeville]
-id = 1814
-land_message = "... and teleport into the Wilderness."
-examine = "I wonder what this does."
-
-[lever_deserted_keep]
-id = 1815
-land_message = "... and teleport out of the Wilderness."
-examine = "I wonder what this does."
-
-[lever_poison_spiders]
-id = 1816
-land_message = "... and teleport into the lair of the King Black Dragon!"
-examine = "I wonder what this does."
-
-[lever_kbd_lair]
-id = 1817
-land_message = "... and teleport out of the dragon's lair."
-examine = "I wonder what this does."
-
 [web]
 id = 733
 examine = "This huge web blocks your path."
@@ -2292,124 +1960,12 @@ id = 734
 id = 29354
 examine = "It's no common house spider that spun that."
 
-[fist_of_guthix_cave]
-id = 30204
-examine = "Step inside for violent fun."
-
 [dung]
 id = 6257
 examine = "Lovely... Fresh."
 
 [bank_booth_classic]
 id = 2213
-examine = "The bank teller will serve you from here."
-
-[bank_booth_tutorial_island]
-id = 3045
-examine = "The bank teller will serve you from here."
-
-[bank_chest_castle_wars]
-id = 4483
-examine = "The bank teller will serve you from here."
-
-[bank_booth_port_phasmatys]
-id = 5276
-examine = "The bank teller will serve you from here."
-
-[bank_booth_keldagrim]
-id = 6084
-examine = "The bank teller will serve you from here."
-
-[bank_booth_nardah]
-id = 10517
-examine = "The bank teller will serve you from here."
-
-[bank_booth_mos_le_harmless]
-id = 11338
-examine = "The bank teller will serve you from here."
-
-[bank_booth_varrock]
-id = 11402
-examine = "The bank teller will serve you from here."
-
-[bank_booth_falador]
-id = 11758
-examine = "The bank teller will serve you from here."
-
-[bank_booth_burgh_de_rott]
-id = 12798
-examine = "The bank teller will serve you from here."
-
-[bank_booth_void_knights_outpost]
-id = 14369
-examine = "The bank teller will serve you from here."
-
-[bank_booth_lunar_isle]
-id = 16700
-examine = "The bank teller will serve you from here."
-
-[bank_booth_living_rock_cavern]
-id = 18491
-examine = "The bank teller will serve you from here."
-
-[bank_booth_sophanem]
-id = 20325
-examine = "The bank teller will serve you from here."
-
-[bank_chest_neitiznot]
-id = 21301
-examine = "An open bank chest."
-
-[bank_booth_dorgesh_kaan]
-id = 22819
-examine = "Deposit your monies here."
-
-[bank_booth_canifis]
-id = 24914
-examine = "The bank teller will serve you from here."
-
-[bank_booth_seers_village]
-id = 25808
-examine = "The bank teller will serve you from here."
-
-[bank_booth_edgeville]
-id = 26972
-examine = "For accessing your bank account."
-
-[bank_booth_oo_glog]
-id = 29085
-examine = "The bank teller will serve you from here."
-
-[bank_booth_ardougne]
-id = 34752
-examine = "The bank teller will serve you from here."
-
-[bank_booth_al_kharid]
-id = 35647
-examine = "Open for business."
-
-[bank_booth_lumbridge]
-id = 36786
-examine = "Used to access your bank account."
-
-[bank_booth_lumbridge_instance]
-id = 37474
-examine = "For accessing your bank account."
-
-[bank_chest_soul_wars]
-id = 42192
-examine = "I can store my items safely here."
-
-[bank_booth_fishing_guild]
-id = 49018
-examine = "The bank teller will serve you from here."
-
-[bank_booth_thieves_guild]
-id = 52397
-examine = "The bank teller will serve you from here."
-
-[bank_booth_zanaris]
-id = 52589
 examine = "The bank teller will serve you from here."
 
 [sink]
@@ -2679,61 +2235,6 @@ examine = "A handy source of water."
 [water_trough_12]
 id = 55841
 examine = "A handy source of water."
-
-[giant_mole_lair_escape_rope]
-id = 12230
-
-[rune_essence_exit_portal]
-id = 2492
-examine = "A portal from this mystical place."
-
-[ourania_crack_enter]
-id = 26844
-examine = "I might be able to squeeze through."
-
-[ourania_crack_exit]
-id = 26845
-examine = "I might be able to squeeze through."
-
-[lumbridge_organ]
-id = 36978
-examine = "A church organ."
-
-[lumbridge_church_bell]
-id = 36976
-examine = "I can ring this."
-
-[fire_barbarian_village]
-id = 5499
-examine = "Hot!"
-
-[cauldron_of_thunder]
-id = 2142
-examine = "An eerie glow permeates the cauldron."
-
-[suit_of_armour]
-id = 32292
-examine = "A dusty old suit of armour."
-
-[railing_wizards_tower]
-id = 37668
-examine = "A sturdy metal railing."
-
-[a_sinking_canoe_log]
-id = 12159
-examine = "Glug, glug, glug."
-
-[a_sinking_canoe_dugout]
-id = 12160
-examine = "Glug, glug, glug."
-
-[a_sinking_canoe_stable_dugout]
-id = 12161
-examine = "Glug, glug, glug."
-
-[a_sinking_canoe_waka]
-id = 12162
-examine = "Glug, glug, glug."
 
 [nettles]
 id = 1181

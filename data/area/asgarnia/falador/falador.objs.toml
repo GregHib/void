@@ -1,0 +1,11 @@
+[pottery_oven_crafting_guild]
+id = 2643
+examine = "Bake your clay items in here."
+
+[loom_falador_farm]
+id = 8717
+examine = "A loom."
+
+[bank_booth_falador]
+id = 11758
+examine = "The bank teller will serve you from here."

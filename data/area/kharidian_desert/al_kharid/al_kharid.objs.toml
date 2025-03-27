@@ -1,0 +1,11 @@
+[furnace_al_kharid]
+id = 11666
+examine = "A hot furnace."
+
+[cooking_range_al_kharid]
+id = 25730
+examine = "Ideal for cooking on."
+
+[bank_booth_al_kharid]
+id = 35647
+examine = "Open for business."

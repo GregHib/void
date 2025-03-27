@@ -1,0 +1,8 @@
+[cabbage_draynor_manor]
+id = 11494
+pickable = {
+item = "cabbage",
+delay = 45,
+message = "You pick a cabbage."
+}
+examine = "An enigmatic cabbage."

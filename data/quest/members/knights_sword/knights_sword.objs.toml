@@ -1,0 +1,7 @@
+[cupboard_the_knights_sword_closed]
+id = 2271
+examine = "I wonder what's inside?"
+
+[cupboard_the_knights_sword_opened]
+id = 2272
+examine = "It's open."
