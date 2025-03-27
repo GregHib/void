@@ -1,0 +1,41 @@
+[shopkeeper_al_kharid]
+id = 524
+race = "human"
+shop = "al_kharid_general_store"
+wander_radius = 2
+examine = "A product of a consumerist society."
+
+[shop_assistant_al_kharid]
+id = 525
+race = "human"
+shop = "al_kharid_general_store"
+wander_radius = 2
+examine = "Likes you more, the more you spend."
+
+[zeke]
+id = 541
+race = "human"
+shop = "zekes_superior_scimitars"
+wander_radius = 3
+examine = "Sells superior scimitars."
+
+[louie_legs]
+id = 542
+wander_radius = 4
+shop = "louies_armoured_legs_bazaar"
+race = "human"
+examine = "For the finest in armoured legware."
+
+[ranael]
+id = 544
+wander_radius = 4
+shop = "ranaels_super_skirt_store"
+race = "human"
+examine = "She's an expert on armoured skirts!"
+
+[dommik]
+id = 545
+wander_radius = 4
+shop = "dommiks_crafting_store"
+race = "human"
+examine = "If Crafting's your thing, he's your man."

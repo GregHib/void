@@ -1,0 +1,13 @@
+[shopkeeper_edgeville]
+id = 528
+race = "human"
+shop = "edgeville_general_store"
+wander_radius = 2
+examine = "If he doesn't have it, he can't sell it."
+
+[shop_assistant_edgeville]
+id = 529
+race = "human"
+shop = "edgeville_general_store"
+wander_radius = 2
+examine = "She's here on work experience."

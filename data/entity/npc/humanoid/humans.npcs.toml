@@ -171,11 +171,6 @@ id = 647
 race = "human"
 wander_radius = 4
 
-[harlan]
-id = 705
-race = "human"
-examine = "Harlan, master of defence."
-
 [bartender_jolly_boar_inn]
 id = 731
 bar_crawl = {
@@ -422,11 +417,6 @@ race = "human"
 wander_radius = 3
 examine = "A holy man."
 
-[nemarti]
-id = 1861
-race = "human"
-examine = "Nemarti looks ready to teach you about ranged combat."
-
 [dark_mage]
 id = 2262
 faces = false
@@ -613,11 +603,6 @@ examine = "A practicer of dark arts."
 [wally]
 id = 4664
 examine = "Wally."
-
-[mikasi]
-id = 4707
-race = "human"
-examine = "Mikasi looks ready to teach you about magic."
 
 [thakkrad_sigmundson_cutscene]
 id = 5466

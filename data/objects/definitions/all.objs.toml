@@ -1835,9 +1835,6 @@ examine = "A wall-mounted candle."
 id = 45277
 examine = "A pair of wall-mounted candles."
 
-[archery_target]
-id = 45305
-examine = "Can you hit it?"
 
 [furnace_lumbridge]
 id = 45310
