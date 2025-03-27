@@ -1,0 +1,110 @@
+[frog_frogland]
+id = 390
+wander_radius = 3
+examine = "A frog."
+
+[frog_2_frogland]
+clone = "frog_frogland"
+id = 391
+
+[frog_3_frogland]
+clone = "frog_frogland"
+id = 392
+
+[frog_4_frogland]
+clone = "frog_frogland"
+id = 393
+
+[frog_5_frogland]
+clone = "frog_frogland"
+id = 394
+
+[frog_6_frogland]
+clone = "frog_frogland"
+id = 395
+
+[frog_7_frogland]
+clone = "frog_frogland"
+id = 396
+
+[frog_8_frogland]
+clone = "frog_frogland"
+id = 403
+
+[giant_surprise_exam]
+id = 487
+examine = "I guess he wants to be more than just the muscle."
+
+[mummy_surprise_exam]
+id = 490
+examine = "If the mummy is at school, where are the kids?"
+
+[frog_herald]
+id = 2472
+examine = "Speaks on behalf of His and Her Royal Frogness."
+
+[quiz_master]
+id = 2477
+interact_distance = 4
+race = "human"
+examine = "Apparently a master of quizzes!"
+
+[prison_pete]
+id = 3118
+examine = "He wants to escape!"
+
+[frog_9_frogland]
+clone = "frog_frogland"
+id = 3300
+
+[mr_mordau]
+id = 6117
+examine = "Professor of Unnatural History."
+
+[zombie_surprise_exam]
+id = 6131
+examine = "Brains!"
+
+[goblin_surprise_exam]
+id = 6132
+examine = "The studious one."
+
+[goblin_2_surprise_exam]
+id = 6133
+examine = "He looks bored."
+
+[dunce_surprise_exam]
+id = 6134
+examine = "This imp is clearly the class clown."
+
+[sandwich_lady]
+id = 8629
+examine = "The sandwich lady."
+
+[frog_10_frogland]
+clone = "frog_frogland"
+id = 8636
+
+[frog_11_frogland]
+clone = "frog_frogland"
+id = 8637
+
+[balloon_animal_dog]
+id = 11232
+wander_radius = 3
+examine = "It looks like an animal."
+
+[balloon_animal_cat]
+id = 11233
+wander_radius = 3
+examine = "It looks like an animal."
+
+[balloon_animal_sheep]
+id = 11234
+wander_radius = 3
+examine = "It looks like an animal."
+
+[balloon_animal_goat]
+id = 11235
+wander_radius = 3
+examine = "It looks like an animal."

@@ -1,0 +1,29 @@
+[butterfly_1]
+id = 153
+race = "butterfly"
+wander_radius = 4
+examine = "These look much better in the wild."
+
+[butterfly_2]
+id = 154
+race = "butterfly"
+wander_radius = 4
+examine = "I love butterflies."
+
+[butterfly_3]
+id = 155
+race = "butterfly"
+wander_radius = 4
+examine = "It's a Blue Morpho Butterfly."
+
+[butterfly_4]
+id = 156
+race = "butterfly"
+wander_radius = 4
+examine = "It's a Tiger Swallowtail Butterfly."
+
+[butterfly_5]
+id = 157
+race = "butterfly"
+wander_radius = 4
+examine = "It's a Viceroy Butterfly."

@@ -1,0 +1,159 @@
+[trapdoor_10_opened]
+id = 4173
+examine = "I wonder what's down there?"
+
+[trapdoor_10_closed]
+id = 4174
+examine = "I wonder what's under it?"
+
+[trapdoor_16_opened]
+id = 4880
+examine = "It's an open trapdoor."
+
+[trapdoor_16_closed]
+id = 4879
+examine = "It's a trapdoor."
+
+[trapdoor_20_opened]
+id = 5132
+examine = "I wonder what's down there?"
+
+[trapdoor_20_closed]
+id = 5131
+examine = "I wonder what's under it?"
+
+[trapdoor_22_opened]
+id = 5268
+examine = "I wonder what's down there."
+
+[trapdoor_22_closed]
+id = 5267
+examine = "I wonder what's under it."
+
+[trapdoor_24_opened]
+id = 5491
+examine = "I wonder what's down there?"
+
+[trapdoor_24_closed]
+id = 5490
+examine = "I wonder what's under it?"
+
+[trapdoor_draynor_opened]
+id = 6435
+examine = "I wonder what that's there for"
+
+[trapdoor_draynor_closed]
+id = 6434
+examine = "I wonder what that's there for"
+
+[trapdoor_38_opened]
+id = 7435
+examine = "I wonder what's down there?"
+
+[trapdoor_38_closed]
+id = 7434
+examine = "I wonder what's under it?"
+
+[trapdoor_44_opened]
+id = 10559
+examine = "I wonder what's down there?"
+
+[trapdoor_44_closed]
+id = 10558
+examine = "I wonder what's beneath it?"
+
+[trapdoor_49_opened]
+id = 12745
+examine = "I wonder what's down there?"
+
+[trapdoor_49_closed]
+id = 12744
+examine = "I wonder what's under it?"
+
+[hidden_trapdoor_opened]
+id = 15756
+examine = "Where does this go?"
+
+[hidden_trapdoor_closed]
+id = 15755
+examine = "You would never have seen this trapdoor if it wasn't for Zanik."
+
+[trapdoor_76_opened]
+id = 21922
+examine = "I wonder what's down there."
+
+[trapdoor_76_closed]
+id = 21921
+examine = "I wonder what's under it?"
+
+[trapdoor_80_opened]
+id = 26934
+examine = "I wonder what's down there."
+
+[trapdoor_80_closed]
+id = 26933
+examine = "I wonder what's under it."
+
+[trapdoor_83_opened]
+id = 28676
+examine = "Where does it go?"
+
+[trapdoor_83_closed]
+id = 28675
+examine = "Where does it go?"
+
+[trapdoor_85_opened]
+id = 28742
+examine = "Allows access to the level below."
+
+[trapdoor_85_closed]
+id = 28741
+examine = "The trapdoor is shut tight."
+
+[trapdoor_87_opened]
+id = 30572
+examine = "Allows access to the level below."
+
+[trapdoor_87_closed]
+id = 30571
+examine = "I wonder what's under it?"
+
+[trapdoor_89_opened]
+id = 30572
+examine = "Allows access to the level below."
+
+[trapdoor_89_closed]
+id = 30573
+examine = "I wonder what's under it?"
+
+[trapdoor_91_opened]
+id = 31010
+examine = "A ladder leading down below."
+
+[trapdoor_91_closed]
+id = 31011
+examine = "A trapdoor leading to the mines below."
+
+[trapdoor_101_opened]
+id = 39189
+examine = "An open trapdoor."
+
+[trapdoor_101_closed]
+id = 39188
+examine = "A closed trapdoor."
+
+[trapdoor_103_opened]
+id = 39275
+examine = "I can climb down this ladder."
+
+[trapdoor_103_closed]
+id = 39274
+examine = "This trapdoor is tightly shut."
+
+[trapdoor_105_opened]
+id = 39331
+examine = "There appears to be a basement down here."
+
+[trapdoor_105_closed]
+id = 39330
+examine = "This trapdoor is tightly shut."

@@ -1,0 +1,47 @@
+[fluffy]
+id = 7413
+race = "squirrel"
+examine = "A cute, cuddly, little squirrel - with teeth."
+
+[charlie_the_squirrel_pet]
+id = 9681
+race = "squirrel"
+examine = "A squirrel wearing weird face paint."
+
+[fluffy_pet]
+id = 9682
+race = "squirrel"
+examine = "A cute, cuddly, little squirrel - with teeth."
+
+[goblin_courier]
+id = 9683
+race = "goblin"
+examine = "An ugly green creature. He seems to be waiting for something."
+
+[a_strange_courier]
+id = 9684
+race = "elf"
+examine = "An odd-looking person. Seems to be waiting for something."
+
+[courier]
+id = 9685
+race = "human"
+examine = "One of RuneScape's many citizens. He seems to be waiting for something."
+
+[charlie_the_squirrel]
+id = 9686
+race = "squirrel"
+examine = "A squirrel wearing weird face paint."
+
+[easter_bunny_2010]
+id = 9687
+race = "bird"
+examine = "The loveable protector of Easter."
+
+[easta_buni_spawn]
+id = 9688
+
+[easter_bird_2010]
+id = 9696
+race = "bird"
+examine = "The bird looks awake and alert."

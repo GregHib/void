@@ -1,0 +1,29 @@
+[gnome_trainer]
+id = 162
+race = "gnome"
+wander_radius = 4
+examine = "He can advise on training."
+
+[brimstail]
+id = 171
+old_model = true
+examine = "Small but wise, he is."
+
+[blurberry]
+id = 848
+bar_crawl = {
+  id = "fire_toad_blast",
+  price = 10,
+  insufficient = "I don't have 10 coins right now.",
+  give = "You buy a Fire Toad Blast.",
+  drink = "Your mouth and throat burn as you gulp it down.",
+  effect = "Blurberry signs your card."
+}
+race = "gnome"
+wander_radius = 3
+examine = "He seems to run the cocktail bar."
+
+[captain_daerkin]
+id = 4595
+wander_radius = 3
+examine = "A gnome pilot off duty, he looks a bit drunk."

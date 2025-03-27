@@ -1,0 +1,131 @@
+[nature_rift]
+id = 7133
+examine = "A tear in the dimensional weave of the Abyss."
+
+[cosmic_rift]
+id = 7132
+examine = "A tear in the dimensional weave of the Abyss."
+
+[blood_rift]
+id = 7141
+examine = "A tear in the dimensional weave of the Abyss."
+
+[fire_rift]
+id = 7129
+examine = "A tear in the dimensional weave of the Abyss."
+
+[earth_rift]
+id = 7130
+examine = "A tear in the dimensional weave of the Abyss."
+
+[body_rift]
+id = 7131
+examine = "A tear in the dimensional weave of the Abyss."
+
+[mind_rift]
+id = 7140
+examine = "A tear in the dimensional weave of the Abyss."
+
+[air_rift]
+id = 7139
+examine = "A tear in the dimensional weave of the Abyss."
+
+[soul_rift]
+id = 7138
+examine = "A tear in the dimensional weave of the Abyss."
+
+[water_rift]
+id = 7137
+examine = "A tear in the dimensional weave of the Abyss."
+
+[death_rift]
+id = 7136
+examine = "A tear in the dimensional weave of the Abyss."
+
+[law_rift]
+id = 7135
+examine = "A tear in the dimensional weave of the Abyss."
+
+[abyss_obstacle]
+id = 7142
+
+[abyss_obstacle_2]
+id = 7143
+
+[abyss_obstacle_3]
+id = 7144
+
+[abyss_obstacle_4]
+id = 7145
+
+[abyss_obstacle_5]
+id = 7146
+
+[abyss_obstacle_6]
+id = 7147
+
+[abyss_obstacle_7]
+id = 7148
+
+[abyss_obstacle_8]
+id = 7153
+
+[abyss_passage]
+id = 7154
+examine = "A tunnel through the Abyss."
+
+[abyss_blockage]
+id = 7156
+examine = "This seems to be blocking the exit..."
+
+[abyss_rock]
+id = 7158
+examine = "I could probably break this up with a pickaxe."
+
+[abyss_rock_mined]
+id = 7159
+examine = "I could probably break this up with a pickaxe. Oh wait, I just did."
+
+[broken_rock]
+id = 7160
+examine = "Pickaxe power!"
+
+[abyss_tendrils]
+id = 7161
+examine = "They don't look that solid, an axe could help me chop them down."
+
+[abyss_tendrils_chopped]
+id = 7162
+examine = "They don't look that solid, an axe could help me chop them down."
+
+[chopped_tendrils]
+id = 7163
+examine = "I cannot tell a lie. I chopped them down."
+
+[abyss_gap]
+id = 7164
+examine = "If I'm agile enough I might be able to squeeze through..."
+
+[abyss_boil]
+id = 7165
+examine = "I could probably burn this away with a tinderbox."
+
+[abyss_boil_burned]
+id = 7166
+examine = "I could probably burn this with fire."
+
+[abyss_boil_burst]
+id = 7167
+examine = "Burnt open."
+
+[abyss_eyes]
+id = 7168
+examine = "I could probably distract these with thievery."
+
+[abyss_eyes_looking]
+id = 7169
+examine = "I could probably distract these with thievery."
+
+[abyss_eyes_distracted]
+id = 7170
+examine = "I could probably distract these with thievery."

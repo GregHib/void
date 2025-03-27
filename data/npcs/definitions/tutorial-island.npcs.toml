@@ -1,0 +1,68 @@
+[banker_tutorial_island]
+id = 953
+race = "human"
+examine = "He can look after my money."
+
+[master_chef]
+id = 942
+race = "human"
+examine = "An expert on all things culinary."
+
+[survival_expert]
+id = 943
+race = "human"
+examine = "Very much an outdoors type."
+
+[combat_instructor]
+id = 944
+race = "human"
+examine = "An expert on all forms of combat."
+
+[runescape_guide]
+id = 945
+race = "human"
+examine = "Your introduction to the world of RuneScape."
+
+[magic_instructor]
+id = 946
+race = "human"
+examine = "A Master of Magic."
+
+[financial_advisor]
+id = 947
+race = "human"
+examine = "A professional when it comes to accounts."
+
+[mining_instructor]
+id = 948
+race = "human"
+examine = "An expert on Mining-related skills."
+
+[quest_guide]
+id = 949
+race = "human"
+examine = "Your introduction to the world of Gielinor."
+
+[giant_rat_tutorial_island]
+id = 950
+race = "giant_rat"
+style = "stab"
+hitpoints = 30
+wander_radius = 2
+respawn_delay = 30
+examine = "Overgrown vermin."
+
+[chicken_tutorial_island]
+id = 951
+race = "bird"
+wander_radius = 2
+examine = "Yep. Definitely a chicken."
+
+[fishing_spot_tutorial_island]
+id = 952
+examine = "I can see fish swimming in the water."
+
+[brother_brace]
+id = 954
+race = "human"
+examine = "A holy man."

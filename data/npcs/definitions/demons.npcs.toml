@@ -1,0 +1,32 @@
+[delrith]
+id = 879
+max_hit_melee = 90
+hitpoints = 70
+att = 11
+str = 10
+def = 5
+magic = 1
+attack_speed = 6
+race = "demon"
+examine = "A freshly summoned demon."
+
+[delrith_weakened]
+id = 880
+examine = "The demon doesn't look so strong now."
+
+[greater_demon]
+id = 83
+att = 76
+str = 78
+def = 81
+attack_range = 5
+attack_radius = 11
+hitpoints = 870
+slayer_xp = 87
+max_hit_melee = 90
+style = "slash"
+race = "demon"
+respawn_delay = 15
+hunt_mode = "aggressive"
+height = 60
+examine = "Big, red, and incredibly evil."

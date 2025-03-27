@@ -1,0 +1,1726 @@
+[tree]
+id = 1276
+woodcutting = {
+  log = "logs",
+  level = 1,
+  xp = 25.0,
+  deplete_rate = 1.0,
+  chance = "64-200",
+  hatchet_low_dif = "16-32",
+  hatchet_high_dif = "50-100",
+  respawn = "30-60"
+}
+examine = "One of the most common trees in Gielinor."
+
+[tree_stump]
+id = 1342
+examine = "This tree has been cut down."
+
+[tree_3]
+clone = "tree"
+id = 1277
+examine = "A healthy young tree."
+
+[tree_3_stump]
+id = 1343
+examine = "This tree has been cut down."
+
+[tree_4]
+clone = "tree"
+id = 1278
+examine = "A commonly found tree."
+
+[tree_4_stump]
+id = 7400
+examine = "This is what is left of a maple tree."
+
+[tree_5]
+clone = "tree"
+id = 1280
+examine = "A healthy young tree."
+
+[tree_5_stump]
+id = 7400
+examine = "This is what is left of a maple tree."
+
+[oak]
+id = 1281
+woodcutting = {
+  log = "oak_logs",
+  level = 15,
+  xp = 37.5,
+  deplete_rate = 0.125,
+  chance = "32-100",
+  hatchet_low_dif = "8-16",
+  hatchet_high_dif = "25-50",
+  respawn = "23-45"
+}
+examine = "A beautiful old oak."
+
+[oak_stump]
+id = 1356
+examine = "This tree has been cut down."
+
+[dead_tree]
+clone = "tree"
+id = 1282
+examine = "This tree has long been dead."
+
+[dead_tree_stump]
+id = 1347
+examine = "This tree has been cut down."
+
+[dead_tree_2]
+clone = "tree"
+id = 1283
+examine = "This tree has long been dead."
+
+[dead_tree_2_stump]
+id = 1347
+examine = "This tree has been cut down."
+
+[dead_tree_3]
+clone = "tree"
+id = 1284
+examine = "This tree has long been dead."
+
+[dead_tree_3_stump]
+id = 6212
+examine = "This tree has been cut down."
+
+[dead_tree_4]
+clone = "tree"
+id = 1285
+examine = "An old weather beaten tree."
+
+[dead_tree_4_stump]
+id = 1347
+examine = "This tree has been cut down."
+
+[dead_tree_5]
+clone = "tree"
+id = 1286
+examine = "It's only useful for firewood now."
+
+[dead_tree_5_stump]
+id = 1351
+examine = "This tree has been cut down."
+
+[dead_tree_6]
+id = 1287
+examine = "It's only useful for firewood now."
+
+[dead_tree_7]
+id = 1288
+examine = "It's only useful for firewood now."
+
+[dead_tree_8]
+clone = "tree"
+id = 1289
+examine = "It's only useful for firewood now."
+
+[dead_tree_8_stump]
+id = 1353
+examine = "This tree has been cut down."
+
+[dead_tree_9]
+clone = "tree"
+id = 1291
+examine = "It's only useful for firewood now."
+
+[dead_tree_9_stump]
+id = 23054
+examine = "This tree has been cut down."
+
+[magic_tree]
+id = 1306
+woodcutting = {
+  log = "magic_logs",
+  level = 75,
+  xp = 250.0,
+  deplete_rate = 0.125,
+  chance = "2-6",
+  hatchet_low_dif = "0-1",
+  hatchet_high_dif = "2-3",
+  respawn = "200-387"
+}
+examine = "The tree shimmers with a magical force."
+
+[magic_tree_stump]
+id = 7401
+examine = "This is what is left of a magic tree."
+
+[maple_tree]
+id = 1307
+woodcutting = {
+  log = "maple_logs",
+  level = 45,
+  xp = 100.0,
+  deplete_rate = 0.125,
+  chance = "8-25",
+  hatchet_low_dif = "2-4",
+  hatchet_high_dif = "6-12",
+  respawn = "58-125"
+}
+examine = "I bet this makes good syrup!"
+
+[maple_tree_stump]
+id = 7400
+examine = "This is what is left of a maple tree."
+
+[yew]
+id = 1309
+woodcutting = {
+  log = "yew_logs",
+  level = 60,
+  xp = 175.0,
+  deplete_rate = 0.125,
+  chance = "4-12",
+  hatchet_low_dif = "1-2",
+  hatchet_high_dif = "3-7",
+  respawn = "100-200",
+}
+examine = "A splendid tree."
+
+[yew_stump]
+id = 7402
+examine = "This is what is left of a yew tree."
+
+[evergreen]
+clone = "tree"
+id = 1315
+examine = "A hardy evergreen tree."
+
+[evergreen_stump]
+id = 1342
+examine = "This tree has been cut down."
+
+[evergreen_2]
+clone = "tree"
+id = 1316
+examine = "A hardy evergreen tree."
+
+[evergreen_2_stump]
+id = 1355
+examine = "This tree has been cut down."
+
+[evergreen_3]
+clone = "tree"
+id = 1318
+examine = "This would make good firewood."
+
+[evergreen_3_stump]
+id = 1355
+examine = "This tree has been cut down."
+
+[evergreen_4]
+clone = "tree"
+id = 1319
+examine = "This would make good firewood."
+
+[evergreen_4_stump]
+id = 1355
+examine = "This tree has been cut down."
+
+[tree_10]
+clone = "tree"
+id = 1330
+examine = "It's thick with snow."
+
+[tree_10_stump]
+id = 1355
+examine = "This tree has been cut down."
+
+[tree_11]
+clone = "tree"
+id = 1331
+examine = "It's thick with snow."
+
+[tree_11_stump]
+id = 1355
+examine = "This tree has been cut down."
+
+[tree_12]
+clone = "tree"
+id = 1332
+examine = "It's thick with snow."
+
+[tree_12_stump]
+id = 1355
+examine = "This tree has been cut down."
+
+[tree_18]
+clone = "tree"
+id = 3033
+examine = "One of the most common trees in Gielinor."
+
+[tree_18_stump]
+id = 1342
+examine = "This tree has been cut down."
+
+[tree_58]
+id = 14308
+examine = "One of the most common trees in Gielinor."
+
+[tree_58_stump]
+id = 1342
+examine = "This tree has been cut down."
+
+[tree_96]
+clone = "tree"
+id = 37477
+examine = "One of the most common trees in Gielinor."
+
+[tree_96_stump]
+id = 1342
+examine = "This tree has been cut down."
+
+[tree_97]
+clone = "tree"
+id = 37478
+examine = "A commonly-found tree."
+
+[tree_97_stump]
+id = 1342
+examine = "This tree has been cut down."
+
+[dead_tree_25]
+clone = "tree"
+id = 37481
+examine = "This tree has long been dead."
+
+[dead_tree_25_stump]
+id = 1347
+examine = "This tree has been cut down."
+
+[willow]
+id = 5551
+woodcutting = {
+  log = "willow_logs",
+  level = 30,
+  xp = 67.5,
+  deplete_rate = 0.125,
+  chance = "16-50",
+  hatchet_low_dif = "4-8",
+  hatchet_high_dif = "13-25",
+  respawn = "23-45"
+}
+examine = "A droopy tree."
+
+[willow_5]
+clone = "willow"
+id = 37480
+examine = "These trees are found near water."
+
+[willow_5_stump]
+id = 1350
+examine = "This tree has been cut down."
+
+[dead_tree_21]
+id = 13418
+examine = "A spooky addition to the garden."
+
+[dead_tree_21_stump]
+id = 1351
+examine = "This tree has been cut down."
+
+[dead_tree_26]
+clone = "tree"
+id = 37482
+examine = "It's only useful for firewood now."
+
+[dead_tree_26_stump]
+id = 1351
+examine = "This tree has been cut down."
+
+[dead_tree_10]
+clone = "tree"
+id = 1365
+examine = "It's only useful for firewood now."
+
+[dead_tree_10_stump]
+id = 1352
+examine = "This tree has been cut down."
+
+[oak_tree_dark]
+clone = "oak"
+id = 3037
+examine = "A beautiful old oak."
+
+[oak_tree_dark_stump]
+id = 1355
+examine = "This tree has been cut down."
+
+[oak_tree_3]
+clone = "oak"
+id = 37479
+examine = "A beautiful old oak."
+
+[oak_tree_3_stump]
+id = 1356
+examine = "This tree has been cut down."
+
+[dead_tree_11]
+clone = "tree"
+id = 1383
+examine = "This tree has long been dead."
+
+[dead_tree_11_stump]
+id = 1358
+examine = "This tree has been cut down."
+
+[dead_tree_22]
+id = 23381
+examine = "It's only useful for firewood now."
+
+[dead_tree_22_stump]
+id = 1358
+examine = "This tree has been cut down."
+
+[dead_tree_27]
+clone = "tree"
+id = 37483
+examine = "This tree has long been dead."
+
+[dead_tree_27_stump]
+id = 1358
+examine = "This tree has been cut down."
+
+[dead_tree_12]
+clone = "tree"
+id = 1384
+examine = "It's only useful for firewood now."
+
+[dead_tree_12_stump]
+id = 1359
+examine = "This tree has been cut down."
+
+[dead_tree_13]
+id = 2020
+examine = "It's too wet for firewood."
+
+[achey_tree]
+id = 2023
+woodcutting = {
+  log = "achey_tree_logs",
+  level = 1,
+  xp = 25.0,
+  deplete_rate = 1.0,
+  chance = "64-200",
+  hatchet_low_dif = "16-32",
+  hatchet_high_dif = "50-100",
+  respawn = "30-60",
+}
+examine = "An interesting tree with long straight branches."
+
+[achey_tree_stump]
+id = 3371
+examine = "An Achey tree stump."
+
+[hollow_tree]
+id = 2289
+woodcutting = {
+  log = "bark",
+  level = 45,
+  xp = 82.5,
+  deplete_rate = 0.125,
+  chance = "18-26",
+  hatchet_low_dif = "4-10",
+  hatchet_high_dif = "11-14",
+  respawn = "75-150",
+}
+examine = "It's hollow..."
+
+[hollow_tree_stump]
+id = 2310
+examine = "This tree has been cut down."
+
+[tree_13]
+clone = "tree"
+id = 2409
+examine = "A gnarly swamp tree."
+
+[tree_13_stump]
+id = 40355
+examine = "This tree has been cut down."
+
+[tree_14]
+clone = "tree"
+id = 2410
+examine = "One of the most common trees in Gielinor."
+
+[tree_14_stump]
+id = 12004
+examine = "This tree has been cut down."
+
+[tree_15]
+clone = "tree"
+id = 2411
+examine = "A commonly found tree."
+
+[tree_15_stump]
+id = 7400
+examine = "This is what is left of a maple tree."
+
+[jungle_tree]
+clone = "tree"
+id = 2887
+examine = "Looks good for logging."
+
+[jungle_tree_stump]
+id = 17493
+examine = "It looked good for logging."
+
+[jungle_tree_2]
+clone = "tree"
+id = 2889
+examine = "Home to many unusual creatures."
+
+[jungle_tree_2_stump]
+id = 4819
+examine = "This was a fairly tall tree with sparse foliage."
+
+[jungle_tree_3]
+clone = "tree"
+id = 2890
+examine = "A leafy tree."
+
+[jungle_tree_3_stump]
+id = 4821
+examine = "This was a fairly tall tree with sparse foliage."
+
+[adult_yommi_tree]
+id = 2948
+examine = "A fully grown Yommi tree, it won't get much taller than this."
+
+[adult_yommi_tree_stump]
+id = 2950
+examine = "A felled adult Yommi tree, perhaps you should trim those branches?"
+
+[tree_19]
+clone = "tree"
+id = 3034
+examine = "One of the most common trees in Gielinor."
+
+[tree_19_stump]
+id = 7400
+examine = "This is what is left of a maple tree."
+
+[achey_tree_2]
+clone = "achey_tree"
+id = 29088
+examine = "A big tree for a big spit."
+
+[achey_tree_2_stump]
+id = 3371
+examine = "An Achey tree stump."
+
+[achey_tree_3]
+clone = "achey_tree"
+id = 29089
+examine = "A big tree for a big spit."
+
+[achey_tree_3_stump]
+id = 3371
+examine = "An Achey tree stump."
+
+[tree_21]
+clone = "tree"
+id = 3879
+examine = "A tree."
+
+[tree_21_stump]
+id = 3880
+examine = "It's a tree stump."
+
+[tree_22]
+clone = "tree"
+id = 3881
+examine = "A tree."
+
+[tree_22_stump]
+id = 3880
+examine = "It's a tree stump."
+
+[tree_23]
+clone = "tree"
+id = 3882
+examine = "A tree."
+
+[tree_23_stump]
+id = 3880
+examine = "It's a tree stump."
+
+[tree_24]
+clone = "tree"
+id = 3883
+examine = "A tree."
+
+[tree_24_stump]
+id = 3880
+examine = "It's a tree stump."
+
+[hollow_tree_2]
+clone = "hollow_tree"
+id = 4060
+examine = "It's hollow..."
+
+[hollow_tree_2_stump]
+id = 4061
+examine = "This tree has been cut down."
+
+[maple_tree_2]
+clone = "maple_tree"
+id = 4674
+examine = "I bet this makes good syrup!"
+
+[maple_tree_2_stump]
+id = 7400
+examine = "This is what is left of a maple tree."
+
+[jungle_tree_5]
+clone = "tree"
+id = 4818
+examine = "This is a fairly tall tree with sparse foliage."
+
+[jungle_tree_5_stump]
+id = 4819
+examine = "This was a fairly tall tree with sparse foliage."
+
+[jungle_tree_6]
+clone = "tree"
+id = 4820
+examine = "A leafy tree."
+
+[jungle_tree_6_stump]
+id = 4821
+examine = "This was a fairly tall tree with sparse foliage."
+
+[willow_stump]
+id = 5554
+examine = "This is what is left of a willow tree."
+
+[willow_2]
+clone = "willow"
+id = 5552
+examine = "These trees are found near water."
+
+[willow_2_stump]
+id = 5554
+examine = "This is what is left of a willow tree."
+
+[willow_3]
+clone = "willow"
+id = 5553
+examine = "These trees are found near water."
+
+[willow_3_stump]
+id = 5554
+examine = "This is what is left of a willow tree."
+
+[dead_tree_14]
+id = 5902
+examine = "It's only useful for hiding behind now."
+
+[dead_tree_15]
+id = 5903
+examine = "It's only useful for hiding behind now."
+
+[dead_tree_16]
+id = 5904
+examine = "It's only useful for hiding behind now."
+
+[tree_59]
+id = 14309
+examine = "A commonly found tree."
+
+[tree_59_stump]
+id = 7400
+examine = "This is what is left of a maple tree."
+
+[tree_98]
+clone = "tree"
+id = 37652
+examine = "A commonly-found tree."
+
+[tree_98_stump]
+id = 7400
+examine = "This is what is left of a maple tree."
+
+[maple_tree_3]
+clone = "maple_tree"
+id = 46277
+examine = "I bet this makes good syrup!"
+
+[maple_tree_3_stump]
+id = 7400
+examine = "This is what is left of a maple tree."
+
+[apple_tree]
+id = 7941
+examine = "A fully grown apple tree."
+
+[apple_tree_stump]
+id = 7961
+examine = "This apple tree has been cut down."
+
+[banana_tree]
+id = 8000
+examine = "A fully grown banana tree."
+
+[banana_tree_stump]
+id = 8019
+examine = "This banana tree has been cut down."
+
+[curry_tree]
+id = 8026
+examine = "A fully grown curry tree."
+
+[curry_tree_stump]
+id = 8046
+examine = "This curry tree has been cut down."
+
+[orange_tree]
+id = 8057
+examine = "A fully grown orange tree."
+
+[orange_tree_stump]
+id = 8077
+examine = "This orange tree has been cut down."
+
+[diseased_orange_tree]
+id = 8070
+examine = "This orange tree looks like it could do with pruning with secateurs."
+
+[diseased_orange_tree_stump]
+id = 8077
+examine = "This orange tree has been cut down."
+
+[palm_tree]
+id = 8084
+examine = "A fully grown palm tree."
+
+[palm_tree_stump]
+id = 8104
+examine = "This palm tree has been cut down."
+
+[papaya_tree]
+id = 8111
+examine = "A fully grown papaya tree."
+
+[papaya_tree_stump]
+id = 8131
+examine = "This papaya tree has been cut down."
+
+[magic_tree_farming]
+clone = "magic_tree"
+id = 8409
+examine = "A fully grown Magic Tree."
+
+[magic_tree_farming_stump]
+id = 8410
+examine = "You can uproot this stump with a spade."
+
+[maple_tree_farming]
+clone = "maple_tree"
+id = 8444
+examine = "A fully grown Maple tree."
+
+[maple_tree_farming_stump]
+id = 8445
+examine = "You can uproot this stump with a spade."
+
+[oak_tree_farming]
+clone = "oak"
+id = 8467
+examine = "A fully grown Oak tree."
+
+[oak_tree_farming_stump]
+id = 8468
+examine = "You can uproot this stump with a spade."
+
+[willow_tree_farming]
+clone = "willow"
+id = 8488
+examine = "A fully grown Willow tree."
+
+[willow_tree_farming_stump]
+id = 8489
+examine = "You can uproot this stump with a spade."
+
+[yew_tree_farming]
+clone = "yew"
+id = 8513
+examine = "A fully grown Yew tree."
+
+[yew_tree_farming_stump]
+id = 8514
+examine = "You can uproot this tree stump with a spade."
+
+[mahogany_tree]
+id = 9034
+woodcutting = {
+  log = "mahogany_logs",
+  level = 50,
+  xp = 125.0,
+  deplete_rate = 0.125,
+  chance = "8-25",
+  hatchet_low_dif = "2-4",
+  hatchet_high_dif = "9-13",
+  respawn = "70-140"
+}
+examine = "A beautiful, old mahogany tree."
+
+[mahogany_tree_stump]
+id = 9035
+examine = "This once was a beautiful tree."
+
+[tree_66]
+clone = "tree"
+id = 16265
+examine = "An ancient pine tree."
+
+[tree_66_stump]
+id = 9035
+examine = "This once was a beautiful tree."
+
+[mahogany_tree_2]
+clone = "mahogany_tree"
+id = 46274
+examine = "A beautiful, old mahogany tree."
+
+[mahogany_tree_2_stump]
+id = 9035
+examine = "This once was a beautiful tree."
+
+[teak]
+id = 9036
+woodcutting = {
+  log = "teak_logs",
+  level = 35,
+  xp = 85.0,
+  deplete_rate = 0.125,
+  chance = "15-46",
+  hatchet_low_dif = "4-8",
+  hatchet_high_dif = "15-24",
+  respawn = "40-80"
+}
+examine = "A beautiful, old teak tree."
+
+[teak_stump]
+id = 9037
+examine = "This tree has been cut down."
+
+[teak_2]
+clone = "teak"
+id = 15062
+examine = "A beautiful old teak tree."
+
+[teak_2_stump]
+id = 9037
+examine = "This tree has been cut down."
+
+[teak_3]
+clone = "teak"
+id = 46275
+examine = "A beautiful, old teak tree."
+
+[teak_3_stump]
+id = 9037
+examine = "This tree has been cut down."
+
+[dead_tree_17]
+id = 11112
+examine = "This tree has long been dead."
+
+[evil_tree]
+id = 11434
+upgrade_time = 50
+examine = "This looks like a challenge anyone can deal with."
+
+[evil_tree_stump]
+id = 11435
+examine = "This looks like a challenge anyone can deal with."
+
+[evil_tree_2]
+id = 11435
+examine = "This looks like a challenge anyone can deal with."
+
+[evil_tree_2_stump]
+id = 11436
+examine = "This looks like a challenge anyone can deal with."
+
+[evil_tree_3]
+id = 11436
+examine = "This looks like a challenge anyone can deal with."
+
+[evil_tree_3_stump]
+id = 11925
+
+[evil_oak_tree]
+id = 11437
+examine = "His bite looks tougher than his bark."
+
+[evil_oak_tree_stump]
+id = 11438
+examine = "His bite looks tougher than his bark."
+
+[evil_oak_tree_2]
+id = 11438
+examine = "His bite looks tougher than his bark."
+
+[evil_oak_tree_2_stump]
+id = 11439
+examine = "His bite looks tougher than his bark."
+
+[evil_oak_tree_3]
+id = 11439
+examine = "His bite looks tougher than his bark."
+
+[evil_oak_tree_3_stump]
+id = 11926
+
+[evil_willow_tree]
+id = 11440
+examine = "He'll weep when he's done being evil!"
+
+[evil_willow_tree_stump]
+id = 11441
+examine = "He'll weep when he's done being evil!"
+
+[evil_willow_tree_2]
+id = 11441
+examine = "He'll weep when he's done being evil!"
+
+[evil_willow_tree_2_stump]
+id = 11442
+examine = "He'll weep when he's done being evil!"
+
+[evil_willow_tree_3]
+id = 11442
+examine = "He'll weep when he's done being evil!"
+
+[evil_willow_tree_3_stump]
+id = 11927
+
+[evil_maple_tree]
+id = 11443
+examine = "Where did his red leaves go?"
+
+[evil_maple_tree_stump]
+id = 11444
+examine = "Where did his red leaves go?"
+
+[evil_maple_tree_2]
+id = 11444
+examine = "Where did his red leaves go?"
+
+[evil_maple_tree_2_stump]
+id = 11915
+examine = "Where did his red leaves go?"
+
+[dead_tree_18]
+id = 11510
+examine = "This tree has long been dead."
+
+[evil_maple_tree_3]
+id = 11915
+examine = "Where did his red leaves go?"
+
+[evil_maple_tree_3_stump]
+id = 11928
+
+[evil_yew_tree]
+id = 11916
+examine = "A tough evil tree!"
+
+[evil_yew_tree_stump]
+id = 11917
+examine = "A tough evil tree!"
+
+[evil_yew_tree_2]
+id = 11917
+examine = "A tough evil tree!"
+
+[evil_yew_tree_2_stump]
+id = 11918
+examine = "A tough evil tree!"
+
+[evil_yew_tree_3]
+id = 11918
+examine = "A tough evil tree!"
+
+[evil_yew_tree_3_stump]
+id = 11929
+
+[evil_magic_tree]
+id = 11919
+examine = "An incredibly tough challenge!"
+
+[evil_magic_tree_stump]
+id = 11920
+examine = "An incredibly tough challenge!"
+
+[evil_magic_tree_2]
+id = 11920
+examine = "An incredibly tough challenge!"
+
+[evil_magic_tree_2_stump]
+id = 11921
+examine = "An incredibly tough challenge!"
+
+[evil_magic_tree_3]
+id = 11921
+examine = "An incredibly tough challenge!"
+
+[evil_magic_tree_3_stump]
+id = 12711
+
+[elder_evil_tree]
+id = 11922
+examine = "The most fearsome of evil trees!"
+
+[elder_evil_tree_stump]
+id = 11923
+examine = "The most fearsome of evil trees!"
+
+[elder_evil_tree_2]
+id = 11923
+examine = "The most fearsome of evil trees!"
+
+[elder_evil_tree_2_stump]
+id = 11924
+examine = "The most fearsome of evil trees!"
+
+[elder_evil_tree_3]
+id = 11924
+examine = "The most fearsome of evil trees!"
+
+[elder_evil_tree_3_stump]
+id = 12712
+
+[oak_tree_pale]
+clone = "oak"
+id = 11999
+examine = "A beautiful, old oak."
+
+[oak_tree_pale_stump]
+id = 12007
+examine = "This tree has been cut down."
+
+[yew_2]
+clone = "yew"
+id = 12000
+examine = "A splendid tree."
+
+[yew_2_stump]
+id = 12001
+examine = "This is what is left of a yew tree."
+
+[dead_tree_19]
+id = 12732
+examine = "This tree has long been dead."
+
+[dead_tree_20]
+id = 13411
+examine = "One of the most common trees in Gielinor."
+
+[jungle_tree_7]
+clone = "tree"
+id = 15948
+examine = "A native jungle tree."
+
+[jungle_tree_7_stump]
+id = 15950
+examine = "Precisely one tenth of a tree."
+
+[jungle_tree_8]
+clone = "tree"
+id = 15951
+examine = "A native jungle tree."
+
+[jungle_tree_8_stump]
+id = 15953
+examine = "'Paul Bunion was here.'"
+
+[jungle_tree_9]
+clone = "tree"
+id = 15954
+examine = "A native jungle tree."
+
+[jungle_tree_9_stump]
+id = 15956
+examine = "What's left after the loggers have been."
+
+[dream_tree]
+id = 16604
+woodcutting = {
+  log = "dream_log",
+  level = 55,
+  xp = 0.0,
+  deplete_rate = 1.0,
+  chance = "64-200",
+  hatchet_low_dif = "16-32",
+  hatchet_high_dif = "50-100",
+  respawn = "30-60"
+}
+examine = "Now that's weird!"
+
+[dream_tree_stump]
+id = 16605
+examine = "Now that's weird!"
+
+[arctic_pine]
+id = 21273
+woodcutting = {
+  log = "arctic_pine_logs",
+  level = 56,
+  xp = 140.0,
+  deplete_rate = 0.125,
+  chance = "6-30",
+  hatchet_low_dif = "1-2",
+  hatchet_high_dif = "7-14",
+  respawn = "80-160"
+}
+examine = "A hardy evergreen pine."
+
+[arctic_pine_stump]
+id = 21274
+examine = "The stump of a pine tree."
+
+[dying_tree]
+clone = "tree"
+id = 24168
+examine = "Living in the big city isn't easy."
+
+[dying_tree_stump]
+id = 24169
+examine = "Count the rings and see how long it lived."
+
+[eucalyptus_tree]
+id = 28951
+woodcutting = {
+  log = "eucalyptus_logs",
+  level = 58,
+  xp = 165.0,
+  deplete_rate = 0.125,
+  chance = "5-16",
+  hatchet_low_dif = "1-3",
+  hatchet_high_dif = "4-9",
+  respawn = "90-180"
+}
+examine = "An invasive, stringy-barked tree."
+
+[eucalyptus_tree_stump]
+id = 28954
+examine = "Once a majestic eucalyptus, now a sad little stump."
+
+[eucalyptus_tree_2]
+clone = "eucalyptus_tree"
+id = 28952
+examine = "An invasive, stringy-barked tree."
+
+[eucalyptus_tree_2_stump]
+id = 28955
+examine = "Once a majestic eucalyptus, now a sad little stump."
+
+[eucalyptus_tree_3]
+clone = "eucalyptus_tree"
+id = 28953
+examine = "An invasive, stringy-barked tree."
+
+[eucalyptus_tree_3_stump]
+id = 28956
+examine = "Once a majestic eucalyptus, now a sad little stump."
+
+[dead_tree_23]
+id = 32294
+examine = "This tree has long been dead."
+
+[dead_tree_24]
+id = 37334
+examine = "It's only useful for firewood now."
+
+[cursed_magic_tree]
+id = 37821
+woodcutting = {
+  log = "cursed_magic_logs",
+  level = 82,
+  xp = 275.0,
+  deplete_rate = 0.125,
+  respawn = "150-300"
+}
+examine = "The tree is corrupted by a dark energy."
+
+[cursed_magic_tree_stump]
+id = 37822
+examine = "This is what is left of a cursed magic tree."
+
+[magic_tree_2]
+clone = "magic_tree"
+id = 37823
+examine = "The tree shimmers with a magical force."
+
+[magic_tree_2_stump]
+id = 37824
+examine = "This is what is left of a magic tree."
+
+[dead_tree_28]
+clone = "tree"
+id = 41713
+examine = "It's only useful for firewood now."
+
+[dead_tree_covered_in_snow]
+clone = "tree"
+id = 42893
+examine = "This tree has long been dead."
+
+[dead_tree_covered_in_snow_stump]
+id = 42860
+examine = "This tree has been cut down."
+
+[ivy]
+id = 46318
+woodcutting = {
+  level = 68,
+  xp = 332.5,
+  deplete_rate = 0.125,
+  chance = "7-11",
+  hatchet_low_dif = "2-2",
+  hatchet_high_dif = "2-6",
+  respawn = "60-60"
+}
+examine = "Choking ivy, ready to be cut down."
+
+[ivy_stump]
+id = 46319
+examine = "The remains of some choking ivy."
+
+[ivy_2]
+clone = "ivy"
+id = 46320
+examine = "Choking ivy, ready to be cut down."
+
+[ivy_2_stump]
+id = 46321
+examine = "The remains of some choking ivy."
+
+[ivy_3]
+clone = "ivy"
+id = 46322
+examine = "Choking ivy, ready to be cut down."
+
+[ivy_3_stump]
+id = 46323
+examine = "The remains of some choking ivy."
+
+[ivy_4]
+clone = "ivy"
+id = 46324
+examine = "Choking ivy, ready to be cut down."
+
+[ivy_4_stump]
+id = 46325
+examine = "The remains of some choking ivy."
+
+[dead_tree_29]
+id = 46757
+examine = "It's only useful for firewood now."
+
+[dead_tree_30]
+id = 46758
+examine = "It's only useful for firewood now."
+
+[dead_tree_31]
+id = 46759
+examine = "It's only useful for firewood now."
+
+[dead_tree_32]
+id = 46760
+examine = "It's only useful for firewood now."
+
+[dead_tree_33]
+id = 46761
+examine = "It's only useful for firewood now."
+
+[dead_tree_34]
+id = 46762
+examine = "It's only useful for firewood now."
+
+[dead_tree_35]
+id = 46763
+examine = "It's only useful for firewood now."
+
+[dead_tree_36]
+id = 46764
+examine = "It's only useful for firewood now."
+
+[dead_tree_37]
+clone = "tree"
+id = 47594
+examine = "It's only useful for firewood now."
+
+[dead_tree_37_stump]
+id = 47595
+examine = "This tree has been cut down."
+
+[dead_tree_38]
+clone = "tree"
+id = 47596
+examine = "It's only useful for firewood now."
+
+[dead_tree_38_stump]
+id = 47597
+examine = "This tree has been cut down."
+
+[dead_tree_39]
+clone = "tree"
+id = 47598
+examine = "It's only useful for firewood now."
+
+[dead_tree_39_stump]
+id = 47599
+examine = "This tree has been cut down."
+
+[dead_tree_40]
+clone = "tree"
+id = 47600
+examine = "It's only useful for firewood now."
+
+[dead_tree_40_stump]
+id = 47601
+examine = "This tree has been cut down."
+
+[tangle_gum_tree]
+id = 49705
+woodcutting = {
+  log = "tangle_gum_branches",
+  level = 1,
+  xp = 35.0,
+  deplete_rate = 0.125
+}
+examine = "It's some kind of subterranean tree. (Tier 1)"
+
+[tangle_gum_tree_stump]
+id = 49706
+
+[seeping_elm_tree]
+id = 49707
+woodcutting = {
+  log = "seeping_elm_branches",
+  level = 10,
+  xp = 60.0,
+  deplete_rate = 0.125
+}
+examine = "It's some kind of subterranean tree. (Tier 2)"
+
+[seeping_elm_tree_stump]
+id = 49708
+
+[blood_spindle_tree]
+id = 49709
+woodcutting = {
+  log = "blood_spindle_branches",
+  level = 20,
+  xp = 85.0,
+  deplete_rate = 0.125
+}
+examine = "It's some kind of subterranean tree. (Tier 3)"
+
+[blood_spindle_tree_stump]
+id = 49710
+
+[utuku_tree]
+id = 49711
+woodcutting = {
+  log = "utuku_branches",
+  level = 30,
+  xp = 115.0,
+  deplete_rate = 0.125
+}
+examine = "It's some kind of subterranean tree. (Tier 4)"
+
+[utuku_tree_stump]
+id = 49712
+
+[spinebeam_tree]
+id = 49713
+woodcutting = {
+  log = "spinebeam_branches",
+  level = 40,
+  xp = 145.0,
+  deplete_rate = 0.125,
+}
+examine = "It's some kind of subterranean tree. (Tier 5)"
+
+[spinebeam_tree_stump]
+id = 49714
+
+[bovistrangler_tree]
+id = 49715
+woodcutting = {
+  log = "bovistrangler_branches",
+  level = 50,
+  xp = 175.0,
+  deplete_rate = 0.125
+}
+examine = "It's some kind of subterranean tree. (Tier 6)"
+
+[bovistrangler_tree_stump]
+id = 49716
+
+[thigat_tree]
+id = 49717
+woodcutting = {
+  log = "thigat_branches",
+  level = 60,
+  xp = 210.0,
+  deplete_rate = 0.125
+}
+examine = "It's some kind of subterranean tree. (Tier 7)"
+
+[thigat_tree_stump]
+id = 49718
+
+[corpsethorn_tree]
+id = 49719
+woodcutting = {
+  log = "corpsethorn_branches",
+  level = 70,
+  xp = 245.0,
+  deplete_rate = 0.125
+}
+examine = "It's some kind of subterranean tree. (Tier 8)"
+
+[corpsethorn_tree_stump]
+id = 49720
+
+[entgallow_tree]
+id = 49721
+woodcutting = {
+  log = "entgallow_branches",
+  level = 80,
+  xp = 285.0,
+  deplete_rate = 0.125
+}
+examine = "It's some kind of subterranean tree. (Tier 9)"
+
+[entgallow_tree_stump]
+id = 49722
+
+[grave_creeper_tree]
+id = 49723
+woodcutting = {
+  log = "grave_creeper_branches",
+  level = 90,
+  xp = 330.0,
+  deplete_rate = 0.125
+}
+examine = "It's some kind of subterranean tree. (Tier 10)"
+
+[grave_creeper_tree_stump]
+id = 49724
+
+[tangle_gum_tree_2]
+clone = "tangle_gum_tree"
+id = 49725
+examine = "It's some kind of subterranean tree. (Tier 1)"
+
+[tangle_gum_tree_2_stump]
+id = 49726
+
+[seeping_elm_tree_2]
+clone = "seeping_elm_tree"
+id = 49727
+examine = "It's some kind of subterranean tree. (Tier 2)"
+
+[seeping_elm_tree_2_stump]
+id = 49728
+
+[blood_spindle_tree_2]
+clone = "blood_spindle_tree"
+id = 49729
+examine = "It's some kind of subterranean tree. (Tier 3)"
+
+[blood_spindle_tree_2_stump]
+id = 49730
+
+[utuku_tree_2]
+clone = "utuku_tree"
+id = 49731
+examine = "It's some kind of subterranean tree. (Tier 4)"
+
+[utuku_tree_2_stump]
+id = 49732
+
+[spinebeam_tree_2]
+clone = "spinebeam_tree"
+id = 49733
+examine = "It's some kind of subterranean tree. (Tier 5)"
+
+[spinebeam_tree_2_stump]
+id = 49734
+
+[bovistrangler_tree_2]
+clone = "bovistrangler_tree"
+id = 49735
+examine = "It's some kind of subterranean tree. (Tier 6)"
+
+[bovistrangler_tree_2_stump]
+id = 49736
+
+[thigat_tree_2]
+clone = "thigat_tree"
+id = 49737
+examine = "It's some kind of subterranean tree. (Tier 7)"
+
+[thigat_tree_2_stump]
+id = 49738
+
+[corpsethorn_tree_2]
+clone = "corpsethorn_tree"
+id = 49739
+examine = "It's some kind of subterranean tree. (Tier 8)"
+
+[corpsethorn_tree_2_stump]
+id = 49740
+
+[entgallow_tree_2]
+clone = "entgallow_tree"
+id = 49741
+examine = "It's some kind of subterranean tree. (Tier 9)"
+
+[entgallow_tree_2_stump]
+id = 49742
+
+[grave_creeper_tree_2]
+clone = "grave_creeper_tree"
+id = 49743
+examine = "It's some kind of subterranean tree. (Tier 10)"
+
+[grave_creeper_tree_2_stump]
+id = 49744
+
+[tangle_gum_tree_3]
+clone = "tangle_gum_tree"
+id = 49745
+examine = "It's some kind of subterranean tree. (Tier 1)"
+
+[tangle_gum_tree_3_stump]
+id = 49746
+
+[seeping_elm_tree_3]
+clone = "seeping_elm_tree"
+id = 49747
+examine = "It's some kind of subterranean tree. (Tier 2)"
+
+[seeping_elm_tree_3_stump]
+id = 49748
+
+[blood_spindle_tree_3]
+clone = "blood_spindle_tree"
+id = 49749
+examine = "It's some kind of subterranean tree. (Tier 3)"
+
+[blood_spindle_tree_3_stump]
+id = 49750
+
+[utuku_tree_3]
+clone = "utuku_tree"
+id = 49751
+examine = "It's some kind of subterranean tree. (Tier 4)"
+
+[utuku_tree_3_stump]
+id = 49752
+
+[spinebeam_tree_3]
+clone = "spinebeam_tree"
+id = 49753
+examine = "It's some kind of subterranean tree. (Tier 5)"
+
+[spinebeam_tree_3_stump]
+id = 49754
+
+[bovistrangler_tree_3]
+clone = "bovistrangler_tree"
+id = 49755
+examine = "It's some kind of subterranean tree. (Tier 6)"
+
+[bovistrangler_tree_3_stump]
+id = 49756
+
+[thigat_tree_3]
+clone = "thigat_tree"
+id = 49757
+examine = "It's some kind of subterranean tree. (Tier 7)"
+
+[thigat_tree_3_stump]
+id = 49758
+
+[corpsethorn_tree_3]
+clone = "corpsethorn_tree"
+id = 49759
+examine = "It's some kind of subterranean tree. (Tier 8)"
+
+[corpsethorn_tree_3_stump]
+id = 49760
+
+[entgallow_tree_3]
+clone = "entgallow_tree"
+id = 49761
+examine = "It's some kind of subterranean tree. (Tier 9)"
+
+[entgallow_tree_3_stump]
+id = 49762
+
+[grave_creeper_tree_3]
+clone = "grave_creeper_tree"
+id = 49763
+examine = "It's some kind of subterranean tree. (Tier 10)"
+
+[grave_creeper_tree_3_stump]
+id = 49764
+
+[dead_tree_41]
+id = 52786
+examine = "It makes this place look very sad."
+
+[tangle_gum_tree_4]
+id = 53751
+examine = "It's some kind of subterranean tree. (Tier 1)"
+
+[tangle_gum_tree_4_stump]
+id = 53752
+
+[seeping_elm_tree_4]
+id = 53753
+examine = "It's some kind of subterranean tree. (Tier 2)"
+
+[seeping_elm_tree_4_stump]
+id = 53754
+
+[blood_spindle_tree_4]
+id = 53755
+examine = "It's some kind of subterranean tree. (Tier 3)"
+
+[blood_spindle_tree_4_stump]
+id = 53756
+
+[utuku_tree_4]
+id = 53757
+examine = "It's some kind of subterranean tree. (Tier 4)"
+
+[utuku_tree_4_stump]
+id = 53758
+
+[spinebeam_tree_4]
+id = 53759
+examine = "It's some kind of subterranean tree. (Tier 5)"
+
+[spinebeam_tree_4_stump]
+id = 53760
+
+[bovistrangler_tree_4]
+id = 53761
+examine = "It's some kind of subterranean tree. (Tier 6)"
+
+[bovistrangler_tree_4_stump]
+id = 53762
+
+[thigat_tree_4]
+id = 53763
+examine = "It's some kind of subterranean tree. (Tier 7)"
+
+[thigat_tree_4_stump]
+id = 53764
+
+[corpsethorn_tree_4]
+id = 53765
+examine = "It's some kind of subterranean tree. (Tier 8)"
+
+[corpsethorn_tree_4_stump]
+id = 53766
+
+[entgallow_tree_4]
+id = 53767
+examine = "It's some kind of subterranean tree. (Tier 9)"
+
+[entgallow_tree_4_stump]
+id = 53768
+
+[grave_creeper_tree_4]
+id = 53769
+examine = "It's some kind of subterranean tree. (Tier 10)"
+
+[grave_creeper_tree_4_stump]
+id = 53770
+
+[tangle_gum_tree_5]
+id = 55494
+examine = "It's some kind of subterranean tree. (Tier 1)"
+
+[tangle_gum_tree_5_stump]
+id = 55495
+
+[seeping_elm_tree_5]
+id = 55496
+examine = "It's some kind of subterranean tree. (Tier 2)"
+
+[seeping_elm_tree_5_stump]
+id = 55497
+
+[blood_spindle_tree_5]
+id = 55498
+examine = "It's some kind of subterranean tree. (Tier 3)"
+
+[blood_spindle_tree_5_stump]
+id = 55499
+
+[utuku_tree_5]
+id = 55500
+examine = "It's some kind of subterranean tree. (Tier 4)"
+
+[utuku_tree_5_stump]
+id = 55501
+
+[spinebeam_tree_5]
+id = 55502
+examine = "It's some kind of subterranean tree. (Tier 5)"
+
+[spinebeam_tree_5_stump]
+id = 55503
+
+[bovistrangler_tree_5]
+id = 55504
+examine = "It's some kind of subterranean tree. (Tier 6)"
+
+[bovistrangler_tree_5_stump]
+id = 55505
+
+[thigat_tree_5]
+id = 55506
+examine = "It's some kind of subterranean tree. (Tier 7)"
+
+[thigat_tree_5_stump]
+id = 55507
+
+[corpsethorn_tree_5]
+id = 55508
+examine = "It's some kind of subterranean tree. (Tier 8)"
+
+[corpsethorn_tree_5_stump]
+id = 55509
+
+[entgallow_tree_5]
+id = 55510
+examine = "It's some kind of subterranean tree. (Tier 9)"
+
+[entgallow_tree_5_stump]
+id = 55511
+
+[grave_creeper_tree_5]
+id = 55512
+examine = "It's some kind of subterranean tree. (Tier 10)"
+
+[grave_creeper_tree_5_stump]
+id = 55513

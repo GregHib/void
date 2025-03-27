@@ -1,0 +1,753 @@
+[chair]
+id = 1088
+examine = "The ideal thing to sit on."
+
+[chair_2]
+id = 1090
+examine = "A comfortable seat."
+
+[chair_3]
+id = 1091
+examine = "A comfortable seat."
+
+[chair_4]
+id = 1092
+examine = "A comfortable seat."
+
+[chair_5]
+id = 1093
+examine = "Good for sitting on."
+
+[chair_6]
+id = 1094
+examine = "Good for sitting on."
+
+[chair_7]
+id = 1101
+examine = "The perfect way to sit at the bar."
+
+[chair_8]
+id = 1110
+examine = "Used for sitting on."
+
+[chair_9]
+id = 1111
+examine = "Do I dare sit on this?"
+
+[chair_10]
+id = 1115
+examine = "The ideal thing to sit on."
+
+[chair_11]
+id = 1898
+examine = "This needs dusting before I'll sit on it."
+
+[chair_12]
+id = 1899
+examine = "This needs dusting before I'll sit on it."
+
+[chair_13]
+id = 3182
+examine = "Wait here for a nurse."
+
+[chair_14]
+id = 3801
+examine = "The ideal thing to sit on."
+
+[chair_15]
+id = 4271
+examine = "Generally used for sitting."
+
+[chair_16]
+id = 4690
+examine = "Fancy."
+
+[chair_17]
+id = 4702
+examine = "A nicely carved wooden chair."
+
+[chair_18]
+id = 5345
+examine = "The ideal thing to sit on."
+
+[chair_19]
+id = 5346
+examine = "This needs dusting before I'll sit on it."
+
+[chair_20]
+id = 5347
+examine = "This needs dusting before I'll sit on it."
+
+[chair_21]
+id = 5614
+examine = "The ideal thing to sit on."
+
+[chair_22]
+id = 6194
+examine = "Used for sitting."
+
+[chair_23]
+id = 6195
+examine = "Used for sitting."
+
+[chair_24]
+id = 7385
+examine = "The ideal thing to sit on."
+
+[chair_25]
+id = 7504
+examine = "For sitting."
+
+[chair_26]
+id = 7505
+examine = "For sitting."
+
+[chair_27]
+id = 8770
+examine = "A chair."
+
+[chair_28]
+id = 9148
+examine = "A nicely carved wooden chair."
+
+[chair_29]
+id = 9514
+examine = "Betty's chair."
+
+[chair_30]
+id = 9621
+examine = "For sitting."
+
+[chair_31]
+id = 9622
+examine = "Fancy."
+
+[chair_32]
+id = 9704
+examine = "This needs dusting before I'll sit on it."
+
+[chair_33]
+id = 9705
+examine = "This needs dusting before I'll sit on it."
+
+[chair_34]
+id = 10259
+examine = "Generally used for sitting."
+
+[chair_35]
+id = 10491
+examine = "The ideal thing to sit on."
+
+[chair_36]
+id = 10492
+examine = "Good for sitting on."
+
+[chair_37]
+id = 10724
+examine = "A nicely carved wooden chair."
+
+[chair_38]
+id = 11489
+examine = "The ideal thing to sit on."
+
+[chair_39]
+id = 11490
+examine = "Do I dare sit on this?"
+
+[chair_40]
+id = 11496
+examine = "Did that chair just move?"
+
+[chair_41]
+id = 11760
+examine = "A comfortable seat."
+
+[chair_42]
+id = 11794
+examine = "Ready for a quick snip?"
+
+[chair_43]
+id = 11795
+examine = "Put your head in my hands."
+
+[chair_44]
+id = 12310
+examine = "Someone should be sitting here."
+
+[chair_45]
+id = 12311
+examine = "Someone should be sitting here."
+
+[chair_46]
+id = 12312
+examine = "Suitable for one."
+
+[chair_47]
+id = 12313
+examine = "Suitable for one."
+
+[chair_48]
+id = 12318
+examine = "It's a seat!"
+
+[chair_49]
+id = 12319
+examine = "It's a seat!"
+
+[chair_50]
+id = 12885
+examine = "The ideal thing to sit on."
+
+[chair_51]
+id = 12886
+examine = "The ideal thing to sit on."
+
+[chair_52]
+id = 12888
+examine = "This needs dusting before I'll sit on it."
+
+[chair_53]
+id = 13581
+examine = "It's not the best chair but you think it would take your weight."
+
+[chair_54]
+id = 13582
+examine = "The ideal thing to sit on."
+
+[chair_55]
+id = 13583
+examine = "A comfortable seat."
+
+[chair_56]
+id = 13584
+examine = "A comfortable seat."
+
+[chair_57]
+id = 13585
+examine = "A comfortable seat."
+
+[chair_58]
+id = 13586
+examine = "A comfortable seat."
+
+[chair_59]
+id = 13587
+examine = "A comfortable seat."
+
+[chair_60]
+id = 14050
+examine = "For sitting."
+
+[chair_61]
+id = 15091
+examine = "Generally used for sitting."
+
+[chair_62]
+id = 15462
+examine = "A comfortable seat."
+
+[chair_63]
+id = 15981
+examine = "The ideal thing to sit on."
+
+[chair_64]
+id = 16743
+examine = "It's not uncommon for people to sit on these."
+
+[chair_65]
+id = 16744
+examine = "It's not uncommon for people to sit on these."
+
+[chair_66]
+id = 16900
+examine = "Generally used for sitting."
+
+[chair_67]
+id = 17146
+examine = "The ideal thing to sit on"
+
+[chair_68]
+id = 17234
+examine = "A gnome-sized chair."
+
+[chair_69]
+id = 17311
+examine = "A posh looking chair."
+
+[chair_70]
+id = 17462
+examine = "Where people may put themselves."
+
+[chair_71]
+id = 17463
+examine = "An elegant chair."
+
+[chair_72]
+id = 17547
+examine = "To sit on."
+
+[chair_73]
+id = 17548
+examine = "To sit on."
+
+[chair_74]
+id = 17549
+examine = "To sit on."
+
+[chair_75]
+id = 17550
+examine = "To sit on."
+
+[chair_76]
+id = 17663
+examine = "Good for sitting on."
+
+[chair_77]
+id = 17757
+examine = "Once an elegant chair"
+
+[chair_78]
+id = 17758
+examine = "A well-used chair."
+
+[chair_79]
+id = 17759
+examine = "An old chair."
+
+[chair_80]
+id = 17760
+examine = "An old chair."
+
+[chair_81]
+id = 17761
+examine = "An old chair."
+
+[chair_82]
+id = 18316
+examine = "A poorly made chair."
+
+[chair_83]
+id = 19929
+examine = "A busted chair."
+
+[chair_84]
+id = 19933
+examine = "A weary chair."
+
+[chair_85]
+id = 20065
+examine = "A chair."
+
+[chair_86]
+id = 20352
+examine = "Good for sitting on."
+
+[chair_87]
+id = 20999
+examine = "Sit down and chill."
+
+[chair_88]
+id = 21354
+examine = "The ideal thing to sit on."
+
+[chair_89]
+id = 21607
+examine = "A chair made from stone."
+
+[chair_90]
+id = 22156
+examine = "A chair."
+
+[chair_91]
+id = 22157
+examine = "A chair."
+
+[chair_92]
+id = 22676
+examine = "Looks comfy...for a goblin."
+
+[chair_93]
+id = 22692
+examine = "A stone chair."
+
+[chair_94]
+id = 22703
+examine = "A chair for members of the Dorgeshuun Council."
+
+[chair_95]
+id = 22704
+examine = "A chair for the head of the Dorgeshuun Council."
+
+[chair_96]
+id = 22843
+examine = "A very well-made chair."
+
+[chair_97]
+id = 23624
+examine = "A comfortable seat."
+
+[chair_98]
+id = 24304
+examine = "A comfortable seat."
+
+[chair_99]
+id = 24333
+examine = "A poorly made chair."
+
+[chair_100]
+id = 24334
+examine = "A poorly made chair."
+
+[chair_101]
+id = 24683
+examine = "An elegant chair."
+
+[chair_102]
+id = 24814
+examine = "Do I dare sit on this?"
+
+[chair_103]
+id = 25048
+examine = "Do I dare sit on this?"
+
+[chair_104]
+id = 25616
+examine = "Do I dare sit on this?"
+
+[chair_105]
+id = 25771
+examine = "The ideal thing to sit on."
+
+[chair_106]
+id = 25784
+examine = "A comfortable seat."
+
+[chair_107]
+id = 25832
+examine = "A comfortable seat."
+
+[chair_108]
+id = 26075
+examine = "A chair."
+
+[chair_109]
+id = 26076
+examine = "A chair."
+
+[chair_110]
+id = 26077
+examine = "A chair."
+
+[chair_111]
+id = 27244
+examine = "The civilised way to rest your legs."
+
+[chair_112]
+id = 27849
+examine = "A good place to sit."
+
+[chair_113]
+id = 27887
+examine = "Hard and chilly as a gravestone."
+
+[chair_114]
+id = 27888
+examine = "A cushioned seat for the bony backside of Death."
+
+[chair_115]
+id = 27890
+examine = "Hard and chilly as a gravestone."
+
+[chair_116]
+id = 28504
+examine = "To sit in, for quiet contemplation."
+
+[chair_117]
+id = 28627
+examine = "A place to sit and watch the furniture grow."
+
+[chair_118]
+id = 29107
+examine = "Rather rickety."
+
+[chair_119]
+id = 29137
+examine = "Made from red rock."
+
+[chair_120]
+id = 29472
+examine = "It could hold a gnome, but probably not a human."
+
+[chair_121]
+id = 29798
+examine = "It looks a bit rickety."
+
+[chair_122]
+id = 30080
+examine = "Must be very sturdy to stand up to the weight."
+
+[chair_123]
+id = 30736
+examine = "Do I dare sit on this?"
+
+[chair_124]
+id = 32032
+examine = "The ideal thing to sit on."
+
+[chair_125]
+id = 32274
+examine = "This needs dusting before I'll sit on it."
+
+[chair_126]
+id = 32286
+examine = "It's a seat!"
+
+[chair_127]
+id = 33058
+examine = "The ideal thing to sit on."
+
+[chair_128]
+id = 33194
+examine = "A comfortable seat."
+
+[chair_129]
+id = 33196
+examine = "A comfortable seat."
+
+[chair_130]
+id = 34227
+examine = "A comfortable seat."
+
+[chair_131]
+id = 35149
+
+[chair_132]
+id = 35451
+examine = "A well-made chair."
+
+[chair_133]
+id = 36726
+examine = "Suitable for one."
+
+[chair_134]
+id = 36783
+examine = "A chair, fit for a king."
+
+[chair_135]
+id = 36830
+examine = "An elegant chair."
+
+[chair_136]
+id = 36831
+examine = "A comfortable seat."
+
+[chair_137]
+id = 37337
+examine = "The ideal thing to sit on."
+
+[chair_138]
+id = 39175
+examine = "An elegant chair."
+
+[chair_139]
+id = 40039
+examine = "A chair."
+
+[chair_140]
+id = 40040
+examine = "Fancy."
+
+[chair_141]
+id = 40041
+examine = "Fancy."
+
+[chair_142]
+id = 41116
+examine = "The ideal thing to sit on."
+
+[chair_143]
+id = 41431
+
+[chair_144]
+id = 42489
+examine = "An elegant chair."
+
+[chair_145]
+id = 43922
+examine = "Not sure that much slouching occurs here."
+
+[chair_146]
+id = 43936
+examine = "It's quite an honour to sit on these chairs."
+
+[chair_147]
+id = 43942
+examine = "It looks like the officer has the comfortable chair here."
+
+[chair_148]
+id = 43958
+examine = "A cushion of velvet."
+
+[chair_149]
+id = 44042
+examine = "An old chair."
+
+[chair_150]
+id = 44055
+examine = "An old chair."
+
+[chair_151]
+id = 44101
+examine = "An old chair."
+
+[chair_152]
+id = 45242
+examine = "An elegant chair."
+
+[chair_153]
+id = 46569
+examine = "A cushioned seat for the bony backside of Death."
+
+[chair_154]
+id = 46771
+examine = "A cushioned seat for the bony backside of Death."
+
+[chair_155]
+id = 46772
+examine = "A cushioned seat for the bony backside of Death."
+
+[chair_156]
+id = 46773
+examine = "A cushioned seat for the bony backside of Death."
+
+[chair_157]
+id = 46795
+examine = "Hard and chilly as a gravestone."
+
+[chair_158]
+id = 46796
+examine = "Hard and chilly as a gravestone."
+
+[chair_159]
+id = 46797
+examine = "Hard and chilly as a gravestone."
+
+[chair_160]
+id = 46798
+examine = "Hard and chilly as a gravestone."
+
+[chair_161]
+id = 46799
+examine = "Hard and chilly as a gravestone."
+
+[chair_162]
+id = 46800
+examine = "Hard and chilly as a gravestone."
+
+[chair_163]
+id = 46804
+examine = "A cushioned seat for the bony backside of Death."
+
+[chair_164]
+id = 46805
+examine = "A cushioned seat for the bony backside of Death."
+
+[chair_165]
+id = 46806
+examine = "A cushioned seat for the bony backside of Death."
+
+[chair_166]
+id = 46810
+examine = "Hard and chilly as a gravestone."
+
+[chair_167]
+id = 46811
+examine = "Hard and chilly as a gravestone."
+
+[chair_168]
+id = 46812
+examine = "Hard and chilly as a gravestone."
+
+[chair_169]
+id = 47612
+examine = "A broken chair."
+
+[chair_170]
+id = 47613
+examine = "A broken chair."
+
+[chair_171]
+id = 47614
+examine = "A broken chair."
+
+[chair_172]
+id = 47615
+examine = "A broken chair."
+
+[chair_173]
+id = 47616
+examine = "A broken chair."
+
+[chair_174]
+id = 47617
+examine = "A broken chair."
+
+[chair_175]
+id = 47618
+examine = "A basic chair."
+
+[chair_176]
+id = 47663
+examine = "A basic chair."
+
+[chair_177]
+id = 47664
+examine = "A basic chair."
+
+[chair_178]
+id = 47665
+examine = "A basic chair."
+
+[chair_179]
+id = 47699
+examine = "A posh chair."
+
+[chair_180]
+id = 47700
+examine = "A posh chair."
+
+[chair_181]
+id = 47701
+examine = "A posh chair."
+
+[chair_182]
+id = 47702
+examine = "A posh chair."
+
+[chair_183]
+id = 47703
+examine = "A posh chair."
+
+[chair_184]
+id = 47883
+examine = "A stern wooden chair."
+
+[chair_185]
+id = 47884
+examine = "A frumpy-looking chair."
+
+[chair_186]
+id = 49061
+examine = "A comfortable seat."
+
+[chair_187]
+id = 49204
+examine = "A comfortable seat."
+
+[chair_188]
+id = 49329
+examine = "It will likely stop me from sliding."
+
+[chair_189]
+id = 57134
+examine = "Made from rock."

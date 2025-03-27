@@ -1,0 +1,63 @@
+[stones]
+id = 446
+examine = "Some small stones."
+
+[stones_2]
+clone = "stones"
+id = 447
+
+[stones_3]
+clone = "stones"
+id = 37364
+
+[stones_4]
+clone = "stones"
+id = 37365
+
+[stones_5]
+clone = "stones"
+id = 37366
+
+[stones_6]
+clone = "stones"
+id = 37367
+
+[stones_7]
+clone = "stones"
+id = 37881
+
+[stones_8]
+clone = "stones"
+id = 37882
+
+[stones_9]
+clone = "stones"
+id = 37883
+
+[stones_10]
+clone = "stones"
+id = 37884
+
+[stones_11]
+clone = "stones"
+id = 37892
+
+[stones_12]
+clone = "stones"
+id = 37893
+
+[stones_myths_of_the_white_lands]
+id = 41683
+examine = "These rocks look a bit suspicious."
+
+[stones_13]
+id = 52677
+examine = "A stone border to a farming patch."
+
+[stones_14]
+clone = "stones_13"
+id = 52678
+
+[stones_15]
+clone = "stones"
+id = 53517

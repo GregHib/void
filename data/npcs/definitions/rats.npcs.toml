@@ -1,0 +1,73 @@
+[rat]
+id = 47
+hitpoints = 20
+attack_bonus = -47
+wander_radius = 8
+attack_radius = 18
+slayer_xp = 2.0
+max_hit_melee = 1
+style = "crush"
+respawn_delay = 1
+race = "rat"
+height = 5
+examine = "A popular dwarven delicacy."
+
+[giant_rat]
+id = 86
+att = 2
+str = 3
+def = 2
+wander_radius = 10
+hitpoints = 50
+slayer_xp = 5.0
+max_hit_melee = 10
+style = "stab"
+respawn_delay = 30
+examine = "Overgrown vermin."
+race = "giant_rat"
+
+[giant_rat_dark]
+clone = "giant_rat"
+id = 8828
+att = 6
+str = 5
+def = 2
+hitpoints = 100
+slayer_xp = 10.0
+
+[giant_rat_dark_injured]
+clone = "giant_rat_dark"
+id = 8829
+
+[rat_ratcatchers]
+id = 2974
+wander_radius = 4
+
+[rat_ratcatchers_2]
+id = 2975
+wander_radius = 4
+
+[rat_ratcatchers_3]
+id = 2976
+wander_radius = 4
+
+[rat_ratcatchers_4]
+id = 2977
+wander_radius = 4
+
+[rat_ratcatchers_5]
+id = 2978
+wander_radius = 4
+
+[rat_ratcatchers_6]
+id = 2979
+wander_radius = 4
+
+[rat_ratcatchers_7]
+id = 2980
+wander_radius = 4
+examine = "A popular dwarven delicacy."
+
+[rat_swept_away]
+id = 8209
+examine = "Cheese-eater."

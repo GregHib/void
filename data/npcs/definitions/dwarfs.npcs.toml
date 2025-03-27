@@ -1,0 +1,44 @@
+[doric]
+id = 284
+race = "dwarf"
+wander_radius = 2
+examine = "A dwarf smith. Quite handy with a hammer."
+
+[thurgo]
+id = 604
+race = "dwarf"
+wander_radius = 4
+examine = "Dwarvish."
+
+[dororan]
+id = 1168
+race = "dwarf"
+examine = "A dwarf in anguish."
+
+[dororan_after_cutscene]
+id = 2646
+
+[dororan_after_cutscene2]
+id = 2647
+examine = "A dwarf on top of the world."
+
+[dororan_after_quest]
+id = 2648
+race = "dwarf"
+examine = "A dwarf on top of the world."
+
+[dororan_after_quest2]
+clone = "dororan_after_quest"
+id = 2651
+
+[thorgel]
+id = 2788
+
+[thorgel_normal]
+id = 2789
+race = "dwarf"
+examine = "A short angry guy."
+
+[dororan_cutscene]
+id = 2863
+examine = "A dwarf in suspense."

@@ -1,0 +1,122 @@
+[sheep]
+id = 43
+wander_radius = 10
+race = "sheep"
+examine = "White and fluffy."
+
+[sheep_shorn]
+clone = "sheep"
+id = 42
+examine = "Freshly sheared."
+
+[sheep_black_feet_shorn]
+clone = "sheep"
+id = 1762
+examine = "Freshly sheared."
+
+[sheep_black_feet]
+clone = "sheep"
+id = 1763
+
+[sheep_2_shorn]
+clone = "sheep"
+id = 1764
+examine = "Freshly sheared."
+
+[sheep_2]
+clone = "sheep"
+id = 1765
+
+[sheep_penguin]
+clone = "sheep"
+id = 3579
+examine = "Is it a sheep?"
+
+[lil_lamb]
+clone = "sheep"
+id = 5146
+examine = "How cute!"
+
+[sheep_light_1_shorn]
+clone = "sheep"
+id = 5148
+examine = "Freshly sheared."
+
+[sheep_light_1]
+clone = "sheep"
+id = 5156
+
+[sheep_light_2_shorn]
+clone = "sheep"
+id = 5149
+examine = "Freshly sheared."
+
+[sheep_light_2]
+clone = "sheep"
+id = 5157
+
+[sheep_light_3_shorn]
+clone = "sheep"
+id = 5150
+examine = "Freshly sheared."
+
+[sheep_light_3]
+clone = "sheep"
+id = 5158
+
+[sheep_light_4_shorn]
+clone = "sheep"
+id = 5151
+examine = "Freshly sheared."
+
+[sheep_light_4]
+clone = "sheep"
+id = 5159
+
+[sheep_light_5_shorn]
+clone = "sheep"
+id = 5152
+examine = "Freshly sheared."
+
+[sheep_light_5]
+clone = "sheep"
+id = 5160
+
+[sheep_light_6_shorn]
+clone = "sheep"
+id = 5153
+examine = "Freshly sheared."
+
+[sheep_light_6]
+clone = "sheep"
+id = 5161
+
+[sheep_light_monastery_1_shorn]
+clone = "sheep"
+id = 5154
+examine = "White and shaggy."
+
+[sheep_light_monastery_1]
+clone = "sheep"
+id = 5162
+examine = "White and shaggy."
+
+[sheep_light_monastery_2_shorn]
+clone = "sheep"
+id = 5155
+examine = "White and shaggy."
+
+[sheep_light_monastery_2]
+clone = "sheep"
+id = 5163
+examine = "White and shaggy."
+
+[sheep_black]
+clone = "sheep"
+id = 8876
+examine = "It's sporting the height of wool-based fashion."
+
+[sheep_black_shorn]
+clone = "sheep"
+id = 8877
+examine = "Freshly sheared."
