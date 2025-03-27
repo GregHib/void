@@ -1,0 +1,171 @@
+[gnome_log_balance]
+id = 2295
+examine = "A slippery log I can walk across."
+
+[gnome_obstacle_net]
+id = 2285
+examine = "This must be climbed over."
+
+[gnome_tree_branch_up]
+id = 35970
+examine = "I can climb up this."
+
+[gnome_tree_branch_down]
+id = 2314
+examine = "I can climb down this."
+
+[gnome_balancing_rope]
+id = 2312
+examine = "I can balance on this rope."
+
+[gnome_balancing_rope_end]
+id = 4059
+examine = "I can balance on this rope."
+
+[gnome_obstacle_net_free_standing]
+id = 2286
+examine = "This must be climbed over."
+
+[gnome_obstacle_pipe_east]
+id = 43543
+examine = "A pipe I can squeeze through."
+
+[gnome_obstacle_pipe_west]
+id = 43544
+examine = "A pipe I can squeeze through."
+
+[gnome_tree_branch_advanced]
+id = 43528
+examine = "I can climb up this."
+
+[gnome_sign_post_advanced]
+id = 43581
+examine = "It doesn't look finished, but the material is tough enough to grip hold of."
+
+[gnome_pole_advanced]
+id = 43529
+examine = "A long metal pole."
+
+[gnome_barrier_advanced]
+id = 43539
+examine = "It might be possible to vault over it."
+
+[barbarian_outpost_entrance]
+id = 20210
+examine = "A pipe I can squeeze through."
+
+[barbarian_outpost_rope_swing]
+id = 43526
+examine = "I can use this to swing over crevices."
+
+[barbarian_outpost_log_balance]
+id = 43595
+examine = "A slippery log I can walk across."
+
+[barbarian_outpost_obstacle_net]
+id = 20211
+examine = "This must be climbed over."
+
+[barbarian_outpost_balancing_ledge]
+id = 2302
+examine = "Tread carefully!"
+
+[barbarian_outpost_crumbling_wall]
+id = 1948
+examine = "It looks like I might be able to climb over this piece of the wall..."
+
+[barbarian_outpost_run_wall]
+id = 43533
+examine = "It looks pretty well built."
+
+[barbarian_outpost_climb_wall]
+id = 43597
+examine = "It looks sturdy enough to climb up."
+
+[barbarian_outpost_spring]
+id = 43587
+examine = "Small, but powerful-looking."
+
+[barbarian_outpost_balance_beam]
+id = 43527
+examine = "A strong-looking beam. It could hold a person's weight."
+
+[barbarian_outpost_gap]
+id = 43531
+examine = "That's a massive gap!"
+
+[barbarian_outpost_roof]
+id = 43532
+examine = "A slanted roof."
+
+[wilderness_obstacle_pipe]
+id = 2288
+examine = "A pipe I can squeeze through."
+
+[wilderness_rope_swing]
+id = 2283
+examine = "Use this to swing over crevices."
+
+[wilderness_stepping_stone]
+id = 37704
+examine = "Hop, hop, hoppity hop, and then you fall in molten lava."
+
+[wilderness_log_balance]
+id = 2297
+examine = "A slippery log I can walk across."
+
+[wilderness_agility_rocks]
+id = 2328
+examine = "A rocky outcrop."
+
+[ape_atoll_stepping_stones]
+id = 12568
+examine = "A very slippery stepping stone."
+
+[ape_atoll_tropical_tree]
+id = 12570
+examine = "A terribly tall tropical tree."
+
+[ape_atoll_monkeybars]
+id = 12573
+examine = "I can traverse these."
+
+[ape_atoll_monkeybars_2]
+id = 12575
+examine = "I can traverse these."
+
+[ape_atoll_skull_slope]
+id = 12576
+examine = "A climbing wall made from skulls."
+
+[ape_atoll_rope_swing]
+id = 12578
+examine = "For swinging on."
+
+[ape_atoll_hole]
+id = 12581
+examine = "A vine-choked hole."
+
+[ape_atoll_tropical_tree_rope]
+id = 12618
+examine = "A terribly tall tropical tree."
+
+[ape_atoll_signpost]
+id = 12661
+examine = "Entrance to the monkey agility arena."
+
+[ape_atoll_hole_rope]
+id = 12616
+examine = "I can see the surface."
+
+[ape_atoll_monkey_nut_bush]
+id = 12615
+examine = "A Bush with monkey nuts growing on it."
+
+[tree_branch_4]
+id = 35970
+examine = "I can climb up this."
+
+[rope_swing_4]
+id = 43526
+examine = "I can use this to swing over crevices."

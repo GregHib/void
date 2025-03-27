@@ -1,0 +1,347 @@
+[prayer_altar_chaos_varrock]
+id = 61
+examine = "Shrine to the glory of Zamorak."
+
+[prayer_altar_normal]
+id = 409
+examine = "Shrine to the glory of Saradomin."
+
+[prayer_altar_chaos_ourania]
+id = 411
+examine = "Shrine to the glory of Zamorak."
+
+[prayer_altar_chaos_yanille_agility_dungeon]
+id = 412
+examine = "Shrine to the glory of Zamorak."
+
+[prayer_altar_edgeville]
+id = 2640
+examine = "A shrine for the faithful to worship at."
+
+[prayer_altar_nature]
+id = 3521
+examine = "A grotto transformed into an altar of nature."
+
+[prayer_altar_well_of_voyage]
+id = 4008
+examine = "Shrine to the glory of Saradomin."
+
+[prayer_altar_gorilla_statue]
+id = 4859
+examine = "It's a huge statue of some kind of gorilla."
+
+[altar_dessert_treasure]
+id = 6552
+examine = "A mysterious ancient altar to some forgotten god..."
+
+[prayer_altar_lletya]
+id = 8749
+examine = "A shrine to the glory of Seren."
+
+[prayer_altar_entrana]
+id = 10638
+examine = "Shrine to the glory of Saradomin."
+
+[prayer_altar_entrana_bag]
+id = 10639
+examine = "Shrine to the glory of Saradomin."
+
+[prayer_altar_entrana_star]
+id = 10640
+examine = "Shrine to the glory of Saradomin."
+
+[prayer_altar_oak_saradomin]
+id = 13179
+examine = "An oak altar with a symbol of Saradomin."
+
+[prayer_altar_oak_zamorak]
+id = 13180
+examine = "An oak altar with a symbol of Zamorak."
+
+[prayer_altar_oak_guthix]
+id = 13181
+examine = "An oak altar with a symbol of Guthix."
+
+[prayer_altar_teak_saradomin]
+id = 13182
+examine = "A teak altar with a symbol of Saradomin."
+
+[prayer_altar_teak_zamorak]
+id = 13183
+examine = "A teak altar with a symbol of Zamorak."
+
+[prayer_altar_teak_guthix]
+id = 13184
+examine = "A teak altar with a symbol of Guthix."
+
+[prayer_altar_cloth_saradomin]
+id = 13185
+examine = "A cloth-covered teak altar with a symbol of Saradomin."
+
+[prayer_altar_cloth_zamorak]
+id = 13186
+examine = "A cloth-covered teak altar with a symbol of Zamorak."
+
+[prayer_altar_cloth_guthix]
+id = 13187
+examine = "A cloth-covered teak altar with a symbol of Guthix."
+
+[prayer_altar_mahogany_saradomin]
+id = 13188
+examine = "A mahogany altar with a symbol of Saradomin."
+
+[prayer_altar_mahogany_zamorak]
+id = 13189
+examine = "A mahogany altar with a symbol of Zamorak."
+
+[prayer_altar_mahogany_guthix]
+id = 13190
+examine = "A mahogany altar with a symbol of Guthix."
+
+[prayer_altar_limestone_saradomin]
+id = 13191
+examine = "A limestone altar with a symbol of Saradomin."
+
+[prayer_altar_limestone_zamorak]
+id = 13192
+examine = "A limestone altar with a symbol of Zamorak."
+
+[prayer_altar_limestone_guthix]
+id = 13193
+examine = "A limestone altar with a symbol of Guthix."
+
+[prayer_altar_marble_saradomin]
+id = 13194
+examine = "A marble altar with a symbol of Saradomin."
+
+[prayer_altar_marble_zamorak]
+id = 13195
+examine = "A marble altar with a symbol of Zamorak."
+
+[prayer_altar_marble_guthix]
+id = 13196
+examine = "A marble altar with a symbol of Guthix."
+
+[prayer_altar_gilded_saradomin]
+id = 13197
+examine = "A gilded marble altar with a symbol of Saradomin."
+
+[prayer_altar_gilded_zamorak]
+id = 13198
+examine = "A gilded marble altar with a symbol of Zamorak."
+
+[prayer_altar_gilded_guthix]
+id = 13199
+examine = "A gilded marble altar with a symbol of Guthix."
+
+[prayer_altar_witchaven]
+id = 18254
+examine = "An altar with a symbol of Saradomin."
+
+[prayer_altar_camelot]
+id = 19145
+examine = "Shrine to the glory of Saradomin."
+
+[prayer_altar_sophanem_large]
+id = 20377
+examine = "An altar."
+
+[prayer_altar_sophanem]
+id = 20378
+examine = "An altar."
+
+[prayer_altar_varrock_church]
+id = 24343
+examine = "A cloth-covered altar with a symbol of Saradomin."
+
+[prayer_zamorak_altar_godwars]
+id = 26286
+examine = "An altar to Zamorak."
+
+[prayer_saradomin_altar_godwars]
+id = 26287
+examine = "An altar to Saradomin."
+
+[prayer_armadyl_altar_godwars]
+id = 26288
+examine = "The last remaining holy place of the aviantese."
+
+[prayer_bandos_altar_godwars]
+id = 26289
+examine = "Altar to the goblin god."
+
+[prayer_altar_goblin_temple]
+id = 27306
+examine = "An altar to the Big High War God."
+
+[prayer_altar_goblin_temple_corner]
+id = 27338
+examine = "An altar to the Big High War God."
+
+[prayer_altar_goblin_temple_base]
+id = 27339
+examine = "An altar to the Big High War God."
+
+[prayer_altar_duel_arena]
+id = 27661
+examine = "Shrine to the glory of Saradomin."
+
+[altar_of_guthix_druidic_ritual]
+id = 28698
+examine = "An ancient altar to the glory of Guthix."
+
+[prayer_altar_paterdomus_temple]
+id = 30726
+examine = "A broken altar."
+
+[prayer_altar_chaos_underground_pass]
+id = 32079
+examine = "Shrine to the glory of Zamorak."
+
+[prayer_altar_ardougne]
+id = 34616
+examine = "A shrine to the glory of Saradomin."
+
+[prayer_altar_lumbridge]
+id = 36972
+examine = "A shrine to the glory of Saradomin."
+
+[prayer_altar_lumbridge_copy]
+id = 37630
+examine = "A shrine to Saradomin."
+
+[prayer_altar_chaos_wilderness]
+id = 37990
+examine = "Shrine to the glory of Zamorak."
+
+[prayer_altar_stealing_creation]
+id = 39547
+examine = "You can recharge your Prayer points here."
+
+[prayer_altar_port_sarim_church]
+id = 39842
+examine = "A shrine to the glory of Saradomin."
+
+[prayer_altar_oak_saradomin_offer]
+id = 44926
+examine = "An oak altar with a symbol of Saradomin."
+
+[prayer_altar_oak_zamorak_offer]
+id = 44927
+examine = "An oak altar with a symbol of Zamorak."
+
+[prayer_altar_oak_guthix_offer]
+id = 44928
+examine = "An oak altar with a symbol of Guthix."
+
+[prayer_altar_teak_saradomin_offer]
+id = 44929
+examine = "A teak altar with a symbol of Saradomin."
+
+[prayer_altar_teak_zamorak_offer]
+id = 44930
+examine = "A teak altar with a symbol of Zamorak."
+
+[prayer_altar_teak_guthix_offer]
+id = 44931
+examine = "A teak altar with a symbol of Guthix."
+
+[prayer_altar_cloth_saradomin_offer]
+id = 44932
+examine = "A cloth-covered teak altar with a symbol of Saradomin."
+
+[prayer_altar_cloth_zamorak_offer]
+id = 44933
+examine = "A cloth-covered teak altar with a symbol of Zamorak."
+
+[prayer_altar_cloth_guthix_offer]
+id = 44934
+examine = "A cloth-covered teak altar with a symbol of Guthix."
+
+[prayer_altar_mahogany_saradomin_offer]
+id = 44935
+examine = "A mahogany altar with a symbol of Saradomin."
+
+[prayer_altar_mahogany_zamorak_offer]
+id = 44936
+examine = "A mahogany altar with a symbol of Zamorak."
+
+[prayer_altar_mahogany_guthix_offer]
+id = 44937
+examine = "A mahogany altar with a symbol of Guthix."
+
+[prayer_altar_limestone_saradomin_offer]
+id = 44938
+examine = "A limestone altar with a symbol of Saradomin."
+
+[prayer_altar_limestone_zamorak_offer]
+id = 44939
+examine = "A limestone altar with a symbol of Zamorak."
+
+[prayer_altar_limestone_guthix_offer]
+id = 44940
+examine = "A limestone altar with a symbol of Guthix."
+
+[prayer_altar_marble_saradomin_offer]
+id = 44941
+examine = "A marble altar with a symbol of Saradomin."
+
+[prayer_altar_marble_zamorak_offer]
+id = 44942
+examine = "A marble altar with a symbol of Zamorak."
+
+[prayer_altar_marble_guthix_offer]
+id = 44943
+examine = "A marble altar with a symbol of Guthix."
+
+[prayer_altar_guilded_saradomin_offer]
+id = 44944
+examine = "A gilded marble altar with a symbol of Saradomin."
+
+[prayer_altar_guilded_zamorak_offer]
+id = 44945
+examine = "A gilded marble altar with a symbol of Zamorak."
+
+[prayer_altar_guilded_guthix_offer]
+id = 44946
+examine = "A gilded marble altar with a symbol of Guthix."
+
+[prayer_altar_abandoned]
+id = 51061
+examine = "A shrine for the faithful to worship at."
+
+[prayer_altar_frozen]
+id = 51609
+examine = "A shrine for the faithful to worship at."
+
+[prayer_altar_furnished]
+id = 52154
+examine = "A shrine for the faithful to worship at."
+
+[altar_love_story]
+id = 52825
+examine = "A gilded marble altar with a symbol of Zamorak."
+
+[prayer_altar_frozen_construction]
+id = 53368
+examine = "A shrine for the faithful to worship at."
+
+[prayer_altar_abandoned_construction]
+id = 53376
+examine = "A shrine for the faithful to worship at."
+
+[prayer_altar_furnished_construction]
+id = 53384
+examine = "A shrine for the faithful to worship at."
+
+[prayer_altar_occult_construction]
+id = 53739
+examine = "A shrine for the faithful to worship at."
+
+[prayer_altar_zaros]
+id = 55340
+examine = "Shrine to the glory of Zaros."
+
+[prayer_altar_warped_construction]
+id = 55667
+examine = "A shrine for the faithful to worship at."

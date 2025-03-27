@@ -1,0 +1,195 @@
+[air_altar_ruins]
+id = 2452
+examine = "There is a powerful presence about these ruins..."
+
+[mind_altar_ruins]
+id = 2453
+examine = "There is a powerful presence about these ruins..."
+
+[water_altar_ruins]
+id = 2454
+examine = "There is a powerful presence about these ruins..."
+
+[earth_altar_ruins]
+id = 2455
+examine = "There is a powerful presence about these ruins..."
+
+[fire_altar_ruins]
+id = 2456
+examine = "There is a powerful presence about these ruins..."
+
+[body_altar_ruins]
+id = 2457
+examine = "There is a powerful presence about these ruins..."
+
+[cosmic_altar_ruins]
+id = 2458
+examine = "There is a powerful presence about these ruins..."
+
+[law_altar_ruins]
+id = 2459
+examine = "There is a powerful presence about these ruins..."
+
+[nature_altar_ruins]
+id = 2460
+examine = "There is a powerful presence about these ruins..."
+
+[chaos_altar_ruins]
+id = 2461
+examine = "There is a powerful presence about these ruins..."
+
+[death_altar_ruins]
+id = 2462
+examine = "There is a powerful presence about these ruins..."
+
+[blood_altar_ruins]
+id = 2464
+examine = "A pile of stones crafted into skulls, it seems to emanate magical energy."
+
+[air_altar_ruins_enter]
+id = 7104
+examine = "There is a powerful presence about these ruins..."
+
+[mind_altar_ruins_enter]
+id = 7106
+examine = "There is a powerful presence about these ruins..."
+
+[water_altar_ruins_enter]
+id = 7108
+examine = "There is a powerful presence about these ruins..."
+
+[earth_altar_ruins_enter]
+id = 7110
+examine = "There is a powerful presence about these ruins..."
+
+[fire_altar_ruins_enter]
+id = 7112
+examine = "There is a powerful presence about these ruins..."
+
+[body_altar_ruins_enter]
+id = 7114
+examine = "There is a powerful presence about these ruins..."
+
+[cosmic_altar_ruins_enter]
+id = 7116
+examine = "There is a powerful presence about these ruins..."
+
+[law_altar_ruins_enter]
+id = 7118
+examine = "There is a powerful presence about these ruins..."
+
+[nature_altar_ruins_enter]
+id = 7120
+examine = "There is a powerful presence about these ruins..."
+
+[chaos_altar_ruins_enter]
+id = 7122
+examine = "There is a powerful presence about these ruins..."
+
+[death_altar_ruins_enter]
+id = 7124
+examine = "There is a powerful presence about these ruins..."
+
+[blood_altar_ruins_enter]
+id = 30530
+examine = "A pile of stones crafted into skulls, it seems to emanate magical energy."
+
+[air_altar_portal]
+id = 2465
+examine = "A portal from this mystical place."
+
+[mind_altar_portal]
+id = 2466
+examine = "A portal from this mystical place."
+
+[water_altar_portal]
+id = 2467
+examine = "A portal from this mystical place."
+
+[earth_altar_portal]
+id = 2468
+examine = "A portal from this mystical place."
+
+[fire_altar_portal]
+id = 2469
+examine = "A portal from this mystical place."
+
+[body_altar_portal]
+id = 2470
+examine = "A portal from this mystical place."
+
+[cosmic_altar_portal]
+id = 2471
+examine = "A portal from this mystical place."
+
+[law_altar_portal]
+id = 2472
+examine = "A portal from this mystical place."
+
+[nature_altar_portal]
+id = 2473
+examine = "A portal from this mystical place."
+
+[chaos_altar_portal]
+id = 2474
+examine = "A portal from this mystical place."
+
+[death_altar_portal]
+id = 2475
+examine = "A portal from this mystical place."
+
+[blood_altar_portal]
+id = 2477
+examine = "A portal from this mystical place."
+
+[air_altar]
+id = 2478
+examine = "A mysterious power emanates from this shrine."
+
+[mind_altar]
+id = 2479
+examine = "A mysterious power emanates from this shrine."
+
+[water_altar]
+id = 2480
+examine = "A mysterious power emanates from this shrine."
+
+[earth_altar]
+id = 2481
+examine = "A mysterious power emanates from this shrine."
+
+[fire_altar]
+id = 2482
+examine = "A mysterious power emanates from this shrine."
+
+[body_altar]
+id = 2483
+examine = "A mysterious power emanates from this shrine."
+
+[cosmic_altar]
+id = 2484
+examine = "A mysterious power emanates from this shrine."
+
+[law_altar]
+id = 2485
+examine = "A mysterious power emanates from this shrine."
+
+[nature_altar]
+id = 2486
+examine = "A mysterious power emanates from this shrine."
+
+[chaos_altar]
+id = 2487
+examine = "A mysterious power emanates from this shrine."
+
+[death_altar]
+id = 2488
+examine = "A mysterious power emanates from this shrine."
+
+[blood_altar]
+id = 30624
+examine = "A mysterious power emanates from this shrine."
+
+[ourania_altar]
+id = 26847
+examine = "An altar upon which to craft runes."

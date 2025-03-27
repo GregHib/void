@@ -1,0 +1,19 @@
+[anvil_dorics]
+id = 2782
+examine = "It says 'Property of Doric the dwarf' on the side."
+
+[anvil]
+id = 2783
+examine = "Used for fashioning metal items."
+
+[anvil_keldagrim]
+id = 6150
+examine = "Useful for making weapons."
+
+[anvil_blast_Furnace]
+id = 17073
+examine = "Used for fashioning metal items."
+
+[anvil_lumbridge]
+id = 12692
+examine = "Used for fashioning metal items."

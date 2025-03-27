@@ -1,0 +1,31 @@
+[restless_ghost_coffin_closed]
+id = 2145
+examine = "Ooooh! Spooky!"
+
+[coffin_restless_ghost]
+id = 5726
+examine = "Ooooh! Spooky!" 
+
+[coffin_13]
+id = 5727
+examine = "Ooooh! Spooky!"
+
+[restless_ghost_coffin_headless]
+id = 5728
+examine = "Ooooh! Spooky!"
+
+[restless_ghost_coffin]
+id = 5729
+examine = "Ooooh! Spooky!"
+
+[rocks_skull_restless_ghost_quest]
+id = 47714
+examine = "A haven for all manner of creepy crawlies, no doubt."
+
+[rocks_no_skull_restless_ghost_quest]
+id = 47715
+examine = "A haven for all manner of creepy crawlies, no doubt."
+
+[coffin_restless_ghost_2]
+id = 15061
+examine = "Ooooh! Spooky!"
