@@ -216,7 +216,7 @@ object SpawnSorter {
         13618, 11078, 11079 -> "abandoned_mine"
         13362 -> "duel_arena"
         11088 -> "sophanem_dungeon"
-        13363 -> "mage_training"
+        13363 -> "mage_training_arena"
         14131, 14231 -> "barrows"
         13619, 13620, 13876, 13621, 13877 -> "mort_myre_swamp"
         13878 -> "canifis"

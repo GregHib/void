@@ -1,3 +1,4 @@
 spawns = [
+  # Example
   { id = "crate", x = 3081, y = 3488, type = 10, rotation = 1 },
 ]

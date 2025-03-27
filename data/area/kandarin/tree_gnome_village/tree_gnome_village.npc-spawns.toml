@@ -1,5 +1,5 @@
 spawns = [
-# 10033
+  # 10033
   { id = "butterfly_5", x = 2540, y = 3167, members = true },
   { id = "butterfly_1", x = 2549, y = 3139, members = true },
   { id = "rat", x = 2509, y = 3191, members = true },
@@ -21,4 +21,6 @@ spawns = [
   { id = "goblin_light_grey_bald_spear", x = 2519, y = 3145 },
   { id = "wolf", x = 2516, y = 3197, members = true },
   { id = "wolf", x = 2548, y = 3179, members = true },
+# 10133
+  { id = "zombie", x = 2541, y = 9569, members = true },
 ]

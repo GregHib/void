@@ -1,7 +1,0 @@
-spawns = [
-# 11671
-  { id = "rat", x = 2930, y = 9701, members = true },
-  { id = "rat", x = 2932, y = 9697, members = true },
-  { id = "rat", x = 2932, y = 9692, members = true },
-  { id = "rat", x = 2932, y = 9687, members = true },
-]

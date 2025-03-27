@@ -22,4 +22,9 @@ spawns = [
   { id = "rat", x = 3128, y = 3485 },
   { id = "hari", x = 3133, y = 3509 },
   { id = "jeffery", x = 3108, y = 3500 },
+# 11671
+  { id = "rat", x = 2930, y = 9701, members = true },
+  { id = "rat", x = 2932, y = 9697, members = true },
+  { id = "rat", x = 2932, y = 9692, members = true },
+  { id = "rat", x = 2932, y = 9687, members = true },
 ]
