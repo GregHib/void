@@ -1,0 +1,9 @@
+[construction_supplies]
+id = 395
+defaults = [
+    { id = "saw", amount = 10 },
+    { id = "bolt_of_cloth", amount = 300 },
+    { id = "bronze_nails", amount = 300 },
+    { id = "iron_nails", amount = 300 },
+    { id = "steel_nails", amount = 300 },
+]

@@ -1,0 +1,128 @@
+[home_tele_1]
+id = 1722
+ticks = 2
+
+[home_tele_2]
+id = 1723
+ticks = 1
+
+[home_tele_3]
+id = 1724
+ticks = 1
+
+[home_tele_4]
+id = 1725
+ticks = 1
+
+[home_tele_5]
+id = 2798
+ticks = 1
+
+[home_tele_6]
+id = 2799
+ticks = 1
+
+[home_tele_7]
+id = 2800
+ticks = 1
+
+[home_tele_8]
+id = 3195
+ticks = 1
+
+[home_tele_9]
+id = 4643
+ticks = 1
+
+[home_tele_10]
+id = 4645
+ticks = 1
+
+[home_tele_11]
+id = 4646
+ticks = 1
+
+[home_tele_12]
+id = 4847
+ticks = 1
+
+[home_tele_13]
+id = 4848
+ticks = 1
+
+[home_tele_14]
+id = 4849
+ticks = 1
+
+[home_tele_15]
+id = 4850
+ticks = 1
+
+[home_tele_16]
+id = 4851
+ticks = 1
+
+[home_tele_17]
+id = 4852
+ticks = 1
+
+[teleport_modern]
+id = 8939
+ticks = 3
+
+[teleport_land_modern]
+id = 8941
+ticks = 2
+
+[teleport_ancient]
+id = 9599
+ticks = 5
+
+[teleport_lunar]
+id = 9606
+ticks = 4
+
+[teleport_land_lunar]
+id = 9013
+ticks = 2
+
+[teleport_tablet]
+id = 9597
+ticks = 2
+
+[teleport_land]
+id = 9598
+ticks = 1
+
+[teleport_scroll]
+id = 14293
+ticks = 2
+
+[teleport_ectophial]
+id = 8939
+ticks = 2
+
+[teleport_land_ectophial]
+id = 8941
+ticks = 2
+
+[empty_ectophial]
+id = 9609
+ticks = 4
+
+[pull_lever]
+id = 2140
+
+[teleport_jewellery]
+id = 9603
+ticks = 4
+
+[teleport_pharaohs_sceptre]
+id = 9596
+ticks = 3
+
+[tele_other]
+id = 1818
+
+[lunar_teleport]
+id = 1816

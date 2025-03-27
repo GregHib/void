@@ -1,0 +1,199 @@
+[emote_enhanced_yawn]
+id = 277
+
+[emote_blow_kiss]
+id = 1702
+
+[emote_idea]
+id = 712
+
+[emote_zombie_hand]
+id = 1244
+
+[emote_air_guitar]
+id = 1537
+
+[emote_safety_first]
+id = 1553
+
+[emote_explore]
+id = 1734
+
+[emote_trick]
+id = 1864
+
+[emote_freeze]
+id = 1973
+
+[emote_give_thanks]
+id = 86
+
+[emote_around_the_world_in_eggty_days]
+id = 2037
+
+[emote_dramatic_point]
+id = 780
+
+[emote_puppet_master]
+id = 2837
+
+[emote_seal_of_approval]
+id = 1287
+
+[emote_taskmaster]
+id = 2930
+
+[emote_dungeoneering_start]
+id = 2442
+
+[emote_attack]
+id = 823
+
+[emote_defence]
+id = 824
+
+[emote_strength]
+id = 828
+
+[emote_constitution]
+id = 2745
+
+[emote_range]
+id = 832
+
+[emote_prayer]
+id = 829
+
+[emote_magic]
+id = 813
+
+[emote_cooking]
+id = 821
+
+[emote_woodcutting]
+id = 822
+
+[emote_fletching]
+id = 812
+
+[emote_fishing]
+id = 819
+
+[emote_firemaking]
+id = 831
+
+[emote_crafting]
+id = 818
+
+[emote_smithing]
+id = 815
+
+[emote_mining]
+id = 814
+
+[emote_herblore]
+id = 835
+
+[emote_agility]
+id = 830
+
+[emote_thieving]
+id = 826
+
+[emote_slayer]
+id = 1656
+
+[emote_farming]
+id = 825
+
+[emote_runecrafting]
+id = 817
+
+[emote_hunter]
+id = 907
+
+[emote_construction]
+id = 820
+
+[emote_summoning]
+id = 1515
+
+[emote_quest_point]
+id = 816
+
+[emote_dung_master_bow]
+id = 2781
+height = 60
+
+[emote_dung_master_spell]
+id = 2782
+
+[emote_dung_master_return]
+id = 2783
+delay = 60
+
+[emote_dung_master_hobgoblin]
+id = 2777
+
+[emote_dung_master_gravecreeper]
+id = 2778
+
+[emote_dung_master_flesh_spoiler]
+id = 2779
+
+[emote_dung_master_cursebearer]
+id = 2780
+
+[emote_reindeer]
+id = 859
+
+[emote_reindeer_2]
+id = 263
+
+[emote_snow_globe_flurry]
+id = 1284
+
+[emote_golden_hammer_spin]
+id = 2953
+
+[emote_red_marionette_jump]
+id = 507
+
+[emote_red_marionette_walk]
+id = 508
+
+[emote_red_marionette_bow]
+id = 509
+
+[emote_red_marionette_dance]
+id = 510
+
+[emote_blue_marionette_jump]
+id = 511
+
+[emote_blue_marionette_walk]
+id = 512
+
+[emote_blue_marionette_bow]
+id = 513
+
+[emote_blue_marionette_dance]
+id = 514
+
+[emote_green_marionette_jump]
+id = 515
+
+[emote_green_marionette_walk]
+id = 516
+
+[emote_green_marionette_bow]
+id = 517
+
+[emote_green_marionette_dance]
+id = 518
+
+[emote_chocatrice_cape]
+id = 1566
+
+[emote_squirrel_ears]
+id = 2145

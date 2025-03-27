@@ -1,0 +1,64 @@
+[tutabs_magical_market]
+id = 223
+defaults = [
+    { id = "fire_rune", amount = 1000 },
+    { id = "water_rune", amount = 1000 },
+    { id = "air_rune", amount = 1000 },
+    { id = "earth_rune", amount = 1000 },
+    { id = "law_rune", amount = 100 },
+    { id = "eye_of_gnome", amount = 10 },
+    { id = "monkey_dentures", amount = 10 },
+    { id = "monkey_talisman", amount = 10 },
+]
+
+[solihibs_food_stall]
+id = 225
+defaults = [
+    { id = "monkey_nuts", amount = 100 },
+    { id = "banana", amount = 10 },
+    { id = "banana_stew", amount = 10 },
+    { id = "monkey_bar", amount = 100 },
+]
+
+[hamabs_crafting_emporium]
+id = 226
+defaults = [
+    { id = "chisel", amount = 10 },
+    { id = "ring_mould", amount = 10 },
+    { id = "necklace_mould", amount = 10 },
+    { id = "monkeyspeak_amulet_mould", amount = 10 },
+    { id = "needle", amount = 10 },
+    { id = "thread", amount = 1000 },
+    { id = "ball_of_wool", amount = 100 },
+    { id = "bracelet_mould", amount = 10 },
+]
+
+[ifabas_general_store]
+id = 227
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "rope", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "tinderbox", amount = 10 },
+    { id = "hammer", amount = 10 },
+]
+
+[dagas_scimitar_smithy_monkey_madness]
+id = 251
+defaults = [
+    { id = "bronze_scimitar", amount = 10 },
+    { id = "iron_scimitar", amount = 10 },
+    { id = "steel_scimitar", amount = 10 },
+    { id = "mithril_scimitar", amount = 10 },
+    { id = "dragon_scimitar", amount = 10 },
+]
+
+[dagas_scimitar_smithy]
+id = 224
+defaults = [
+    { id = "bronze_scimitar", amount = 10 },
+    { id = "iron_scimitar", amount = 10 },
+    { id = "steel_scimitar", amount = 10 },
+    { id = "mithril_scimitar", amount = 10 },
+]

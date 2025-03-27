@@ -1,0 +1,48 @@
+[fish_harpoon]
+id = 618
+
+[fish_lobster_pot]
+id = 619
+
+[fish_big_fishing_net]
+id = 620
+
+[fish_small_fishing_net]
+id = 621
+
+[fish_fishing_rod]
+id = 622
+walk = false
+run = false
+
+[fish_rod]
+id = 623
+walk = false
+run = false
+
+[fish_karambwan_vessel]
+id = 1193
+
+[fish_barb_tail_harpoon]
+id = 5108
+
+[barehand_shark]
+id = 6705
+
+[barehand_shark_2]
+id = 6706
+
+[barehand_swordfish]
+id = 6707
+
+[barehand_swordfish_2]
+id = 6708
+
+[barehand_tuna]
+id = 6710
+
+[barehand_tuna_2]
+id = 6711
+
+[fish_crayfish_cage]
+id = 10009

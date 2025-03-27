@@ -1,0 +1,145 @@
+[zeneshas_platebody_shop]
+id = 53
+defaults = [
+    { id = "bronze_platebody", amount = 10 },
+    { id = "iron_platebody", amount = 10 },
+    { id = "steel_platebody", amount = 10 },
+    { id = "black_platebody", amount = 10 },
+    { id = "mithril_platebody", amount = 10 },
+]
+
+[ardougne_bakers_stall_east]
+id = 54
+defaults = [
+    { id = "bread", amount = 10 },
+    { id = "cake", amount = 10 },
+    { id = "chocolate_slice", amount = 10 },
+    { id = "chocolate_bar", amount = 100 },
+]
+
+[ardougne_gem_stall]
+id = 73
+defaults = [
+    { id = "sapphire", amount = 0 },
+    { id = "emerald", amount = 0 },
+    { id = "ruby", amount = 0 },
+    { id = "diamond", amount = 0 },
+]
+
+[ardougne_bakers_stall_west]
+id = 346
+defaults = [
+    { id = "bread", amount = 10 },
+    { id = "cake", amount = 10 },
+    { id = "chocolate_slice", amount = 10 },
+    { id = "chocolate_bar", amount = 100 },
+]
+
+[aemads_adventuring_supplies]
+id = 57
+defaults = [
+    { id = "vial_of_water", amount = 10 },
+    { id = "vial_of_water_pack", amount = 6 },
+    { id = "bronze_pickaxe", amount = 10 },
+    { id = "iron_hatchet", amount = 10 },
+    { id = "cooked_meat", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "ball_of_wool", amount = 100 },
+    { id = "bronze_arrow", amount = 1000 },
+    { id = "rope", amount = 10 },
+    { id = "papyrus", amount = 10 },
+    { id = "knife", amount = 10 },
+    { id = "jug", amount = 10 },
+]
+
+[king_lathass_armoury]
+id = 66
+defaults = [
+    { id = "bronze_arrow", amount = 1000 },
+    { id = "bronze_bolts", amount = 1000 },
+    { id = "shortbow", amount = 10 },
+    { id = "longbow", amount = 10 },
+    { id = "crossbow", amount = 10 },
+    { id = "bronze_arrowtips", amount = 300 },
+    { id = "iron_arrowtips", amount = 300 },
+    { id = "steel_arrowtips", amount = 100 },
+    { id = "mithril_arrowtips", amount = 100 },
+    { id = "iron_hatchet", amount = 10 },
+    { id = "steel_hatchet", amount = 10 },
+    { id = "iron_battleaxe", amount = 10 },
+    { id = "steel_battleaxe", amount = 10 },
+    { id = "mithril_battleaxe", amount = 10 },
+    { id = "bronze_2h_sword", amount = 10 },
+    { id = "iron_2h_sword", amount = 10 },
+    { id = "steel_2h_sword", amount = 10 },
+    { id = "black_2h_sword", amount = 10 },
+    { id = "mithril_2h_sword", amount = 10 },
+    { id = "adamant_2h_sword", amount = 10 },
+]
+
+[ardougne_spice_stall]
+id = 74
+defaults = [
+    { id = "spice", amount = 10 },
+    { id = "knife", amount = 10 },
+    { id = "garlic", amount = 10 },
+]
+
+[ardougne_fur_stall]
+id = 213
+defaults = [
+    { id = "bear_fur", amount = 10 },
+    { id = "grey_wolf_fur", amount = 10 },
+    { id = "polar_kebbit_fur", amount = 0 },
+    { id = "common_kebbit_fur", amount = 0 },
+    { id = "feldip_weasel_fur", amount = 0 },
+    { id = "desert_devil_fur", amount = 0 },
+    { id = "tatty_larupia_fur", amount = 0 },
+    { id = "larupia_fur", amount = 0 },
+    { id = "tatty_graahk_fur", amount = 0 },
+    { id = "graahk_fur", amount = 0 },
+    { id = "tatty_kyatt_fur", amount = 0 },
+    { id = "kyatt_fur", amount = 0 },
+]
+
+[ardougne_silver_stall]
+id = 270
+defaults = [
+    { id = "unstrung_symbol", amount = 10 },
+    { id = "silver_ore", amount = 0 },
+    { id = "silver_bar", amount = 0 },
+]
+
+[richards_farming_shop]
+id = 281
+defaults = [
+    { id = "rake", amount = 10 },
+    { id = "seed_dibber", amount = 10 },
+    { id = "secateurs", amount = 10 },
+    { id = "spade", amount = 10 },
+    { id = "gardening_trowel", amount = 10 },
+    { id = "watering_can", amount = 30 },
+    { id = "plant_pot", amount = 100 },
+    { id = "compost", amount = 300 },
+    { id = "bucket", amount = 100 },
+    { id = "empty_sack", amount = 10 },
+    { id = "empty_sack_pack", amount = 1 },
+    { id = "basket", amount = 10 },
+    { id = "basket_pack", amount = 1 },
+    { id = "raw_potato", amount = 0 },
+    { id = "onion", amount = 0 },
+    { id = "cabbage", amount = 0 },
+    { id = "tomato", amount = 0 },
+    { id = "sweetcorn", amount = 0 },
+    { id = "strawberry", amount = 0 },
+    { id = "watermelon", amount = 0 },
+    { id = "hammerstone_hops", amount = 0 },
+    { id = "asgarnian_hops", amount = 0 },
+    { id = "yanillian_hops", amount = 0 },
+    { id = "krandorian_hops", amount = 0 },
+    { id = "wildblood_hops", amount = 0 },
+    { id = "jute_fibre", amount = 0 },
+    { id = "barley", amount = 0 },
+    { id = "plant_cure", amount = 10 },
+    { id = "amulet_of_farming_8", amount = 10 },
+]

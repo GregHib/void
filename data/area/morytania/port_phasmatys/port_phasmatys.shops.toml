@@ -1,0 +1,51 @@
+[port_phasmatys_general_store]
+id = 235
+defaults = [
+    { id = "empty_pot", amount = 300 },
+    { id = "bucket", amount = 300 },
+    { id = "shears", amount = 10 },
+    { id = "jug", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+]
+
+[ak_haranus_exotic_shop]
+id = 259
+defaults = [
+    { id = "bolt_rack", amount = 100 },
+]
+
+[alices_farming_shop]
+id = 280
+defaults = [
+    { id = "rake", amount = 10 },
+    { id = "seed_dibber", amount = 10 },
+    { id = "secateurs", amount = 10 },
+    { id = "spade", amount = 10 },
+    { id = "gardening_trowel", amount = 10 },
+    { id = "watering_can", amount = 30 },
+    { id = "plant_pot", amount = 100 },
+    { id = "compost", amount = 300 },
+    { id = "bucket", amount = 100 },
+    { id = "empty_sack", amount = 10 },
+    { id = "empty_sack_pack", amount = 1 },
+    { id = "basket", amount = 10 },
+    { id = "basket_pack", amount = 1 },
+    { id = "raw_potato", amount = 0 },
+    { id = "onion", amount = 0 },
+    { id = "cabbage", amount = 0 },
+    { id = "tomato", amount = 0 },
+    { id = "sweetcorn", amount = 0 },
+    { id = "strawberry", amount = 0 },
+    { id = "watermelon", amount = 0 },
+    { id = "hammerstone_hops", amount = 0 },
+    { id = "asgarnian_hops", amount = 0 },
+    { id = "yanillian_hops", amount = 0 },
+    { id = "krandorian_hops", amount = 0 },
+    { id = "wildblood_hops", amount = 0 },
+    { id = "jute_fibre", amount = 0 },
+    { id = "barley", amount = 0 },
+    { id = "plant_cure", amount = 10 },
+    { id = "amulet_of_farming_8", amount = 10 },
+]

@@ -10,12 +10,7 @@ import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.timedLoad
-import java.nio.file.Files
-import java.nio.file.Path
-import kotlin.io.path.extension
-import kotlin.io.path.pathString
 
 private const val DEFAULT_TYPE = "main_screen"
 private const val DEFAULT_FIXED_PARENT = Interfaces.GAME_FRAME_NAME
@@ -41,10 +36,7 @@ class InterfaceDefinitions(
 
     override fun empty() = InterfaceDefinition.EMPTY
 
-    fun load(
-        paths: List<String>,
-        typePath: String = Settings["definitions.interfaces.types"]
-    ): InterfaceDefinitions {
+    fun load(paths: List<String>, typePath: String): InterfaceDefinitions {
         timedLoad("interface extra") {
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids

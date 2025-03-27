@@ -3,9 +3,7 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.config.Config
-import world.gregs.config.ConfigReader
 import world.gregs.voidps.cache.definition.data.FontDefinition
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.timedLoad
 
 class FontDefinitions(
@@ -16,7 +14,7 @@ class FontDefinitions(
 
     override fun empty() = FontDefinition.EMPTY
 
-    fun load(path: String = Settings["definitions.fonts"]): FontDefinitions {
+    fun load(path: String): FontDefinitions {
         timedLoad("font extra") {
             val ids = Object2IntOpenHashMap<String>(20, Hash.VERY_FAST_LOAD_FACTOR)
             Config.fileReader(path) {

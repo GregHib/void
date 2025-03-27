@@ -1,0 +1,9 @@
+[close_chest]
+id = 535
+
+[open_chest]
+id = 536
+
+[pick_pocket]
+id = 881
+ticks = 4

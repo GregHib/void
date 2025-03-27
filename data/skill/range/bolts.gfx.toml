@@ -1,0 +1,60 @@
+[crossbow_bolt]
+id = 27
+delay = 41
+height = 3
+curve = 5
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[bone_bolts]
+id = 696
+delay = 41
+height = 3
+curve = 5
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[barbed_bolts]
+id = 696
+delay = 41
+height = 3
+curve = 5
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[zaniks_crossbow_special]
+id = 1714
+
+[zaniks_crossbow_bolt]
+id = 1497
+delay = 80
+height = 3
+curve = 5
+flight_time = [ 22, 25, 28, 31, 34, 37, 40, 43 ]
+
+[armour_piercing]
+id = 758
+
+[blood_forfeit]
+id = 754
+
+[clear_mind]
+id = 751
+
+[down_to_earth]
+id = 757
+
+[dragons_breath]
+id = 756
+
+[earths_fury]
+id = 755
+
+[life_leech]
+id = 753
+
+[lucky_lightning]
+id = 749
+
+[magical_poison]
+id = 752
+
+[sea_curse]
+id = 750

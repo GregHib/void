@@ -1,0 +1,22 @@
+[milk_cow]
+id = 2305
+
+[pull_hopper_controls]
+id = 3571
+
+[fill_hopper]
+id = 3572
+
+[lumbridge_flag_raise]
+id = 9977
+ticks = 16
+
+[lumbridge_flag_stop_raise]
+id = 9978
+ticks = 2
+
+[lumbridge_flag]
+id = 9979
+
+[play_organ]
+id = 3675

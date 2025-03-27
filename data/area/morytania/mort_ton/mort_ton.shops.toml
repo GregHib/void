@@ -1,0 +1,25 @@
+[razmire_general_store]
+id = 204
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "shears", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "olive_oil_3", amount = 500 },
+    { id = "vial_of_water", amount = 300 },
+    { id = "pot_of_flour", amount = 10 },
+    { id = "flamtaer_hammer", amount = 10 },
+]
+
+[razmire_builders_merchants]
+id = 205
+defaults = [
+    { id = "limestone", amount = 1000 },
+    { id = "limestone_brick", amount = 1000 },
+    { id = "timber_beam", amount = 1000 },
+    { id = "swamp_paste", amount = 1500 },
+    { id = "plank", amount = 50 },
+]

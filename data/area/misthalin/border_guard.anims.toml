@@ -1,0 +1,32 @@
+[border_guard_open]
+id = 87
+
+[border_guard_closed]
+id = 88
+
+[border_guard_raise]
+id = 4633
+
+[border_guard_lower]
+id = 4632
+
+[border_guard_arm_out_open]
+id = 4634
+
+[border_guard_arm_out_closed]
+id = 4636
+
+[border_guard_arm_out_raise]
+id = 4639
+
+[border_guard_arm_out_lower]
+id = 4637
+
+[border_guard_draynor_open]
+id = 24
+
+[border_guard_draynor_raise]
+id = 23
+
+[border_guard_draynor_lower]
+id = 22

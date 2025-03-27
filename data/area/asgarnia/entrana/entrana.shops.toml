@@ -1,0 +1,9 @@
+[frincoss_fabulous_herb_store]
+id = 71
+defaults = [
+    { id = "vial", amount = 10 },
+    { id = "vial_pack", amount = 6 },
+    { id = "pestle_and_mortar", amount = 10 },
+    { id = "eye_of_newt", amount = 10 },
+    { id = "eye_of_newt_pack", amount = 20 },
+]

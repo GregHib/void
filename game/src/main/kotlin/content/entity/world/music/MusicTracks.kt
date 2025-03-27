@@ -5,7 +5,6 @@ import it.unimi.dsi.fastutil.ints.IntArrayList
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Region
@@ -25,7 +24,7 @@ class MusicTracks {
         return tracks[region.id] ?: emptyList()
     }
 
-    fun load(path: String = Settings["map.music"]): MusicTracks {
+    fun load(path: String): MusicTracks {
         timedLoad("music track") {
             val tracks = Int2ObjectOpenHashMap<MutableList<Track>>(900)
             val names = Object2IntOpenHashMap<String>(650)

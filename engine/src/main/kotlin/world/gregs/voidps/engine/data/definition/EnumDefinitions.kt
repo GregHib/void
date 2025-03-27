@@ -5,7 +5,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.EnumDefinition
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.timedLoad
 
 /**
@@ -36,7 +35,7 @@ class EnumDefinitions(
         return structs.get(struct)[param, default]
     }
 
-    fun load(path: String = Settings["definitions.enums"]): EnumDefinitions {
+    fun load(path: String): EnumDefinitions {
         timedLoad("enum extra") {
             val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
             Config.fileReader(path, 50) {

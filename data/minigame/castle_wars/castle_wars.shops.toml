@@ -1,0 +1,33 @@
+[castle_wars_ticket_exchange]
+id = 447
+currency = "castle_wars_ticket"
+defaults = [
+    { id = "basic_decorative_platebody_2", amount = 1 },
+    { id = "void_knight_top_2", amount = 1 },
+    { id = "rogue_mask_2", amount = 1 },
+    { id = "spined_helm_2", amount = 1 },
+    { id = "rock_shell_helm_2", amount = 1 },
+    { id = "tribal_mask_green_2", amount = 1 },
+    { id = "tribal_mask_orange_2", amount = 1 },
+    { id = "tribal_mask_blue_3", amount = 1 },
+    { id = "white_platebody_2", amount = 1 },
+    { id = "initiate_hauberk_2", amount = 1 },
+    { id = "proselyte_hauberk_2", amount = 1 },
+    { id = "mourner_top_2", amount = 1 },
+    { id = "graahk_top_2", amount = 1 },
+    { id = "larupia_top_2", amount = 1 },
+    { id = "kyatt_top_2", amount = 1 },
+    { id = "polar_camo_top_2", amount = 1 },
+    { id = "jungle_camo_top_2", amount = 1 },
+    { id = "wood_camo_top_2", amount = 1 },
+    { id = "desert_camo_top_2", amount = 1 },
+    { id = "witchdoctor_mask_2", amount = 1 },
+    { id = "hard_hat_2", amount = 1 },
+    { id = "lumberjack_top_2", amount = 1 },
+    { id = "bomber_jacket_2", amount = 1 },
+    { id = "ham_shirt_2", amount = 1 },
+    { id = "void_melee_helm_2", amount = 1 },
+    { id = "void_ranger_helm_2", amount = 1 },
+    { id = "void_mage_helm_2", amount = 1 },
+    { id = "more", amount = 1 },
+]

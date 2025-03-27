@@ -1,0 +1,54 @@
+[moon_clan_general_store]
+id = 416
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "shears", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "bowl", amount = 10 },
+    { id = "cake_tin", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "security_book", amount = 10 },
+    { id = "vial", amount = 10 },
+    { id = "vial_pack", amount = 20 },
+]
+
+[moon_clan_fine_clothes]
+id = 417
+defaults = [
+    { id = "moonclan_helm", amount = 10 },
+    { id = "moonclan_hat", amount = 10 },
+    { id = "moonclan_armour", amount = 10 },
+    { id = "moonclan_skirt", amount = 10 },
+    { id = "moonclan_gloves", amount = 10 },
+    { id = "moonclan_boots", amount = 10 },
+    { id = "moonclan_cape", amount = 10 },
+    { id = "needle", amount = 10 },
+    { id = "thread", amount = 1000 },
+]
+
+[baba_yagas_magic_shop]
+id = 419
+defaults = [
+    { id = "air_rune", amount = 1000 },
+    { id = "water_rune", amount = 1000 },
+    { id = "earth_rune", amount = 1000 },
+    { id = "fire_rune", amount = 1000 },
+    { id = "mind_rune", amount = 1000 },
+    { id = "body_rune", amount = 1000 },
+    { id = "chaos_rune", amount = 300 },
+    { id = "nature_rune", amount = 300 },
+    { id = "death_rune", amount = 300 },
+    { id = "law_rune", amount = 100 },
+    { id = "blood_rune", amount = 100 },
+    { id = "soul_rune", amount = 100 },
+    { id = "astral_rune", amount = 100 },
+    { id = "battlestaff", amount = 20 },
+    { id = "staff_of_fire", amount = 10 },
+    { id = "staff_of_water", amount = 10 },
+    { id = "staff_of_air", amount = 10 },
+    { id = "staff_of_earth", amount = 10 },
+    { id = "moonclan_manual", amount = 10 },
+]

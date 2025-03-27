@@ -1,0 +1,15 @@
+[hand_cannon_shoot]
+id = 2138
+
+[hand_cannon_explode]
+id = 2140
+
+[hand_cannon_special]
+id = 2141
+
+[hand_cannon_shot]
+id = 2143
+delay = 40
+height = -19
+curve = 8
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]

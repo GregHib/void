@@ -5,7 +5,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.QuestDefinition
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.timedLoad
 
 class QuestDefinitions : DefinitionsDecoder<QuestDefinition> {
@@ -13,7 +12,7 @@ class QuestDefinitions : DefinitionsDecoder<QuestDefinition> {
     override lateinit var definitions: Array<QuestDefinition>
     override lateinit var ids: Map<String, Int>
 
-    fun load(path: String = Settings["definitions.quests"]): QuestDefinitions {
+    fun load(path: String): QuestDefinitions {
         timedLoad("quest definition") {
             val definitions = Array(300) { QuestDefinition.EMPTY }
             val ids = Object2IntOpenHashMap<String>(256, Hash.VERY_FAST_LOAD_FACTOR)

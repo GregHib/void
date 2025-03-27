@@ -1,0 +1,26 @@
+[engrave]
+id = 14736
+
+[dororan_lean_on_door]
+id = 14725
+
+[player_lean_on_door_start]
+id = 6706
+
+[player_lean_on_door]
+id = 14724
+
+[player_calm_doroan]
+id = 6709
+
+[gunthor_announcement]
+id = 14734
+
+[kjell_cheer]
+id = 1531
+
+[haakon_cheer]
+id = 14739
+
+[gudrun_hugging]
+id = 14733

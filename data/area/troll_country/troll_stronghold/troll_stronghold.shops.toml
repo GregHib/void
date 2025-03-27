@@ -1,0 +1,14 @@
+[leprechaun_larrys_farming_supplies]
+id = 465
+defaults = [
+    { id = "rake", amount = 10 },
+    { id = "seed_dibber", amount = 10 },
+    { id = "secateurs", amount = 10 },
+    { id = "spade", amount = 10 },
+    { id = "gardening_trowel", amount = 10 },
+    { id = "watering_can", amount = 10 },
+    { id = "compost", amount = 10 },
+    { id = "plant_cure", amount = 10 },
+    { id = "cocktail_glass", amount = 10 },
+    { id = "rock_ore", amount = 10 },
+]

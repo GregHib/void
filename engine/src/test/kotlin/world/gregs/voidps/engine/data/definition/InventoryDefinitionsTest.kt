@@ -5,6 +5,7 @@ import io.mockk.mockk
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.entity.item.Item
 
 internal class InventoryDefinitionsTest : DefinitionsDecoderTest<InventoryDefinition, InventoryDecoder, InventoryDefinitions>() {
 
@@ -21,13 +22,13 @@ internal class InventoryDefinitionsTest : DefinitionsDecoderTest<InventoryDefini
             amounts = IntArray(0),
             extras = mapOf(
                 "defaults" to listOf(
-                    mapOf("bronze_pickaxe" to 10),
-                    mapOf("bronze_hatchet" to 10),
-                    mapOf("iron_hatchet" to 10),
-                    mapOf("steel_hatchet" to 10),
-                    mapOf("iron_battleaxe" to 10),
-                    mapOf("steel_battleaxe" to 10),
-                    mapOf("mithril_battleaxe" to 10)
+                    Item("bronze_pickaxe", 10),
+                    Item("bronze_hatchet", 10),
+                    Item("iron_hatchet", 10),
+                    Item("steel_hatchet", 10),
+                    Item("iron_battleaxe", 10),
+                    Item("steel_battleaxe", 10),
+                    Item("mithril_battleaxe", 10)
                 ),
                 "shop" to true
             )
@@ -46,6 +47,7 @@ internal class InventoryDefinitionsTest : DefinitionsDecoderTest<InventoryDefini
         val uri = InventoryDefinitionsTest::class.java.getResource("test-inventory.toml")!!
         val itemDefs = mockk<ItemDefinitions>(relaxed = true)
         every { itemDefs.get(any<String>()) }.returns(ItemDefinition(1))
-        definitions.load(listOf(uri.path), itemDefs)
+        every { itemDefs.contains(any<String>()) }.returns(true)
+        definitions.load(emptyList(), listOf(uri.path), itemDefs)
     }
 }

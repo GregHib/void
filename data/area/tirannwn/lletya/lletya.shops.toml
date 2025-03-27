@@ -1,0 +1,53 @@
+[lletya_general_store]
+id = 301
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "shears", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "spade", amount = 10 },
+    { id = "knife", amount = 10 },
+]
+
+[lletya_seamstress]
+id = 302
+defaults = [
+    { id = "thread", amount = 1000 },
+    { id = "needle", amount = 10 },
+    { id = "ball_of_wool", amount = 100 },
+    { id = "red_dye", amount = 10 },
+    { id = "yellow_dye", amount = 10 },
+    { id = "blue_dye", amount = 10 },
+    { id = "orange_dye", amount = 10 },
+    { id = "green_dye", amount = 10 },
+    { id = "purple_dye", amount = 10 },
+]
+
+[lletya_archery_shop]
+id = 303
+defaults = [
+    { id = "iron_arrow", amount = 1000 },
+    { id = "steel_arrow", amount = 300 },
+    { id = "mithril_arrow", amount = 100 },
+    { id = "adamant_arrow", amount = 100 },
+    { id = "rune_arrow", amount = 30 },
+    { id = "bronze_bolts", amount = 1000 },
+    { id = "oak_shortbow", amount = 10 },
+    { id = "oak_longbow", amount = 10 },
+    { id = "crossbow", amount = 10 },
+    { id = "willow_shortbow", amount = 10 },
+    { id = "willow_longbow", amount = 10 },
+]
+
+[lletya_food_store]
+id = 304
+defaults = [
+    { id = "bread", amount = 10 },
+    { id = "lobster", amount = 10 },
+    { id = "jug_of_wine", amount = 10 },
+    { id = "cheese", amount = 10 },
+    { id = "cake", amount = 10 },
+]

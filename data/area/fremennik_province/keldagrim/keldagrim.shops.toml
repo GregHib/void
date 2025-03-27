@@ -1,0 +1,213 @@
+[pickaxe_is_mine_iron]
+id = 68
+defaults = [
+    { id = "bronze_pickaxe", amount = 10 },
+    { id = "iron_pickaxe", amount = 10 },
+    { id = "steel_pickaxe", amount = 10 },
+    { id = "mithril_pickaxe", amount = 10 },
+    { id = "adamant_pickaxe", amount = 10 },
+    { id = "rune_pickaxe", amount = 10 },
+]
+
+[pickaxe_is_mine]
+id = 265
+defaults = [
+    { id = "bronze_pickaxe", amount = 10 },
+    { id = "steel_pickaxe", amount = 10 },
+    { id = "mithril_pickaxe", amount = 10 },
+    { id = "adamant_pickaxe", amount = 10 },
+    { id = "rune_pickaxe", amount = 10 },
+]
+
+[silver_cog_silver_stall]
+id = 72
+defaults = [
+    { id = "unstrung_symbol", amount = 10 },
+    { id = "silver_ore", amount = 0 },
+    { id = "silver_bar", amount = 0 },
+]
+
+[vigrs_warhammers]
+id = 261
+defaults = [
+    { id = "bronze_warhammer", amount = 10 },
+    { id = "iron_warhammer", amount = 10 },
+    { id = "steel_warhammer", amount = 10 },
+    { id = "black_warhammer", amount = 10 },
+    { id = "mithril_warhammer", amount = 10 },
+    { id = "adamant_warhammer", amount = 10 },
+]
+
+[quality_weapons_shop]
+id = 262
+defaults = [
+    { id = "steel_battleaxe", amount = 10 },
+    { id = "mithril_battleaxe", amount = 10 },
+    { id = "mithril_sword", amount = 10 },
+    { id = "adamant_sword", amount = 10 },
+    { id = "steel_scimitar", amount = 10 },
+    { id = "black_longsword", amount = 10 },
+    { id = "rune_longsword", amount = 10 },
+    { id = "maple_shortbow", amount = 10 },
+    { id = "maple_longbow", amount = 10 },
+    { id = "mithril_arrow", amount = 100 },
+    { id = "adamant_arrow", amount = 100 },
+]
+
+[quality_armour_shop]
+id = 263
+defaults = [
+    { id = "steel_chainbody", amount = 10 },
+    { id = "mithril_chainbody", amount = 10 },
+    { id = "black_chainbody", amount = 10 },
+    { id = "adamant_chainbody", amount = 10 },
+    { id = "steel_med_helm", amount = 10 },
+    { id = "mithril_med_helm", amount = 10 },
+    { id = "adamant_med_helm", amount = 10 },
+    { id = "steel_sq_shield", amount = 10 },
+    { id = "black_kiteshield", amount = 10 },
+]
+
+[gunsliks_assorted_items]
+id = 264
+defaults = [
+    { id = "jug", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "white_candle", amount = 10 },
+    { id = "unlit_torch", amount = 10 },
+    { id = "charcoal", amount = 10 },
+    { id = "leather_gloves", amount = 10 },
+    { id = "vial", amount = 300 },
+    { id = "pestle_and_mortar", amount = 10 },
+    { id = "rope", amount = 10 },
+]
+
+[agmundi_quality_clothes]
+id = 266
+defaults = [
+    { id = "skirt_lilac", amount = 10 },
+    { id = "skirt_blue", amount = 10 },
+    { id = "trousers_lilac", amount = 10 },
+    { id = "trousers_blue", amount = 10 },
+    { id = "shorts_tan", amount = 10 },
+    { id = "shorts_blue", amount = 10 },
+    { id = "woven_top_tan", amount = 10 },
+    { id = "woven_top_blue", amount = 10 },
+    { id = "shirt_tan", amount = 10 },
+    { id = "shirt_lilac", amount = 10 },
+]
+
+[keldagrims_best_bread]
+id = 267
+defaults = [
+    { id = "bread", amount = 10 },
+    { id = "cake", amount = 10 },
+    { id = "chocolate_slice", amount = 10 },
+]
+
+[carefree_crafting_stall]
+id = 268
+defaults = [
+    { id = "chisel", amount = 10 },
+    { id = "ring_mould", amount = 10 },
+    { id = "necklace_mould", amount = 10 },
+    { id = "needle", amount = 10 },
+    { id = "thread", amount = 1000 },
+    { id = "ball_of_wool", amount = 100 },
+]
+
+[green_gemstone_gems]
+id = 269
+defaults = [
+    { id = "sapphire", amount = 0 },
+    { id = "emerald", amount = 0 },
+    { id = "ruby", amount = 0 },
+    { id = "diamond", amount = 0 },
+]
+[vermundis_clothes_stall]
+id = 271
+defaults = [
+    { id = "skirt_brown", amount = 10 },
+    { id = "trousers_brown", amount = 10 },
+    { id = "shorts_brown", amount = 10 },
+    { id = "woven_top_brown", amount = 10 },
+    { id = "shirt_brown", amount = 10 },
+    { id = "silk", amount = 10 },
+]
+
+[ore_seller]
+id = 318
+defaults = [
+    { id = "copper_ore", amount = 100 },
+    { id = "tin_ore", amount = 100 },
+    { id = "iron_ore", amount = 100 },
+    { id = "mithril_ore", amount = 100 },
+    { id = "silver_ore", amount = 100 },
+    { id = "gold_ore", amount = 100 },
+    { id = "coal", amount = 100 },
+]
+
+[armour_store]
+id = 319
+defaults = [
+    { id = "rune_med_helm", amount = 0 },
+    { id = "rune_full_helm", amount = 0 },
+    { id = "rune_platebody", amount = 0 },
+    { id = "rune_platelegs", amount = 0 },
+    { id = "rune_plateskirt", amount = 0 },
+    { id = "rune_sq_shield", amount = 0 },
+    { id = "rune_kiteshield", amount = 0 },
+    { id = "rune_chainbody", amount = 0 },
+    { id = "adamant_med_helm", amount = 0 },
+    { id = "adamant_full_helm", amount = 0 },
+    { id = "adamant_platebody", amount = 0 },
+    { id = "adamant_platelegs", amount = 0 },
+    { id = "adamant_plateskirt", amount = 0 },
+    { id = "adamant_sq_shield", amount = 0 },
+    { id = "adamant_kiteshield", amount = 0 },
+    { id = "adamant_chainbody", amount = 0 },
+    { id = "mithril_med_helm", amount = 0 },
+    { id = "mithril_full_helm", amount = 0 },
+    { id = "mithril_platebody", amount = 0 },
+    { id = "mithril_platelegs", amount = 0 },
+    { id = "mithril_plateskirt", amount = 0 },
+    { id = "mithril_sq_shield", amount = 0 },
+    { id = "mithril_kiteshield", amount = 0 },
+    { id = "mithril_chainbody", amount = 0 },
+]
+
+[keldagrim_stonemason]
+id = 396
+defaults = [
+    { id = "limestone_brick", amount = 500 },
+    { id = "marble_block", amount = 30 },
+    { id = "gold_leaf", amount = 30 },
+    { id = "magic_stone", amount = 30 },
+]
+
+[crossbow_shop_keldagrim]
+id = 428
+defaults = [
+    { id = "wooden_stock", amount = 10 },
+    { id = "oak_stock", amount = 10 },
+    { id = "willow_stock", amount = 10 },
+    { id = "teak_stock", amount = 10 },
+    { id = "maple_stock", amount = 10 },
+    { id = "mahogany_stock", amount = 10 },
+    { id = "yew_stock", amount = 0 },
+    { id = "bronze_limbs", amount = 10 },
+    { id = "iron_limbs", amount = 10 },
+    { id = "steel_limbs", amount = 10 },
+    { id = "mithril_limbs", amount = 10 },
+    { id = "adamant_limbs", amount = 10 },
+    { id = "rune_limbs", amount = 0 },
+    { id = "bronze_crossbow", amount = 0 },
+    { id = "iron_crossbow", amount = 0 },
+    { id = "steel_crossbow", amount = 0 },
+    { id = "mithril_crossbow", amount = 0 },
+    { id = "adamant_crossbow", amount = 0 },
+    { id = "rune_crossbow", amount = 0 },
+]

@@ -1,0 +1,120 @@
+[novite_arrows_shoot]
+id = 2466
+height = 60
+
+[novite_arrows]
+id = 2467
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[bathus_arrows_shoot]
+id = 2468
+height = 60
+
+[bathus_arrows]
+id = 2469
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[marmaros_arrows_shoot]
+id = 2470
+height = 60
+
+[marmaros_arrows]
+id = 2471
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[kratonite_arrows_shoot]
+id = 2472
+height = 60
+
+[kratonite_arrows]
+id = 2473
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[fractite_arrows_shoot]
+id = 2474
+height = 60
+
+[fractite_arrows]
+id = 2475
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[zephyrium_arrows_shoot]
+id = 2476
+height = 60
+
+[zephyrium_arrows]
+id = 2477
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[argonite_arrows_shoot]
+id = 2478
+height = 60
+
+[argonite_arrows]
+id = 2479
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[katagon_arrows_shoot]
+id = 2480
+height = 60
+
+[katagon_arrows]
+id = 2481
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[gorgonite_arrows_shoot]
+id = 2482
+height = 60
+
+[gorgonite_arrows]
+id = 2483
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[promethium_arrows_shoot]
+id = 2484
+height = 60
+
+[promethium_arrows]
+id = 2485
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[sagittarian_arrows_shoot]
+id = 2486
+height = 60
+
+[sagittarian_arrows]
+id = 2487
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]

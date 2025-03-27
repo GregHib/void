@@ -1,0 +1,76 @@
+[bronze_dart_throw]
+id = 1234
+height = 60
+
+[bronze_dart]
+id = 226
+delay = 32
+height = 5
+curve = 15
+flight_time = [ 5, 10, 15, 20, 25 ]
+
+[iron_dart_throw]
+id = 1235
+height = 60
+
+[iron_dart]
+id = 227
+delay = 32
+height = 5
+curve = 15
+flight_time = [ 5, 10, 15, 20, 25 ]
+
+[steel_dart_throw]
+id = 1236
+height = 60
+
+[steel_dart]
+id = 228
+delay = 32
+height = 5
+curve = 15
+flight_time = [ 5, 10, 15, 20, 25 ]
+
+[mithril_dart_throw]
+id = 1238
+height = 60
+
+[mithril_dart]
+id = 229
+delay = 32
+height = 5
+curve = 15
+flight_time = [ 5, 10, 15, 20, 25 ]
+
+[adamant_dart_throw]
+id = 1239
+height = 60
+
+[adamant_dart]
+id = 230
+delay = 32
+height = 5
+curve = 15
+flight_time = [ 5, 10, 15, 20, 25 ]
+
+[rune_dart_throw]
+id = 1240
+height = 60
+
+[rune_dart]
+id = 231
+delay = 32
+height = 5
+curve = 15
+flight_time = [ 5, 10, 15, 20, 25 ]
+
+[dragon_dart_throw]
+id = 1242
+height = 60
+
+[dragon_dart]
+id = 1122
+delay = 32
+height = 5
+curve = 15
+flight_time = [ 5, 10, 15, 20, 25 ]

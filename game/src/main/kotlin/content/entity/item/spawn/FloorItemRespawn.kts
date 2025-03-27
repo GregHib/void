@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.configFiles
+import world.gregs.voidps.engine.data.list
 import world.gregs.voidps.engine.entity.floorItemDespawn
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -19,8 +20,8 @@ adminCommand("reload") {
     if (content == "item defs" || content == "items" || content == "floor items") {
         val files = configFiles()
         items.clear()
-        definitions.load(files.getOrDefault(Settings["definitions.items"], emptyList()))
-        loadItemSpawns(items, spawns, files.getOrDefault(Settings["spawns.items"], emptyList()), definitions)
+        definitions.load(files.list(Settings["definitions.items"]))
+        loadItemSpawns(items, spawns, files.list(Settings["spawns.items"]), definitions)
     }
 }
 

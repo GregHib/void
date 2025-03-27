@@ -1,0 +1,23 @@
+[crossbow_shop_white_wolf_mountain]
+id = 427
+defaults = [
+    { id = "wooden_stock", amount = 10 },
+    { id = "oak_stock", amount = 10 },
+    { id = "willow_stock", amount = 10 },
+    { id = "teak_stock", amount = 10 },
+    { id = "maple_stock", amount = 10 },
+    { id = "mahogany_stock", amount = 0 },
+    { id = "yew_stock", amount = 0 },
+    { id = "bronze_limbs", amount = 10 },
+    { id = "iron_limbs", amount = 10 },
+    { id = "steel_limbs", amount = 10 },
+    { id = "mithril_limbs", amount = 10 },
+    { id = "adamant_limbs", amount = 0 },
+    { id = "rune_limbs", amount = 0 },
+    { id = "bronze_crossbow", amount = 0 },
+    { id = "iron_crossbow", amount = 0 },
+    { id = "steel_crossbow", amount = 0 },
+    { id = "mithril_crossbow", amount = 0 },
+    { id = "adamant_crossbow", amount = 0 },
+    { id = "rune_crossbow", amount = 0 },
+]

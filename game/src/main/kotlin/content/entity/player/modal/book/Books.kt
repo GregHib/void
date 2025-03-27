@@ -6,7 +6,6 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.config.Config
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
@@ -23,29 +22,31 @@ class Books {
 
     fun title(name: String) = titles.getOrDefault(name, "")
 
-    fun load(path: String = Settings["definitions.books"]): Books {
+    fun load(paths: List<String>): Books {
         timedLoad("book") {
             val longBooks = ObjectOpenHashSet<String>(10, Hash.VERY_FAST_LOAD_FACTOR)
             val titles = Object2ObjectOpenHashMap<String, String>(10, Hash.VERY_FAST_LOAD_FACTOR)
             val books = Object2ObjectOpenHashMap<String, List<List<String>>>(10, Hash.VERY_FAST_LOAD_FACTOR)
-            Config.fileReader(path, 50) {
-                while (nextSection()) {
-                    val book = section()
-                    while (nextPair()) {
-                        val key = key()
-                        when (key) {
-                            "long" -> if (boolean()) longBooks.add(book)
-                            "title" -> titles[book] = string()
-                            "pages" -> {
-                                val pages = ObjectArrayList<List<String>>(4)
-                                while (nextElement()) {
-                                    val lines = ObjectArrayList<String>(20)
+            for (path in paths) {
+                Config.fileReader(path, 50) {
+                    while (nextSection()) {
+                        val book = section()
+                        while (nextPair()) {
+                            val key = key()
+                            when (key) {
+                                "long" -> if (boolean()) longBooks.add(book)
+                                "title" -> titles[book] = string()
+                                "pages" -> {
+                                    val pages = ObjectArrayList<List<String>>(4)
                                     while (nextElement()) {
-                                        lines.add(string())
+                                        val lines = ObjectArrayList<String>(20)
+                                        while (nextElement()) {
+                                            lines.add(string())
+                                        }
+                                        pages.add(lines)
                                     }
-                                    pages.add(lines)
+                                    books[book] = pages
                                 }
-                                books[book] = pages
                             }
                         }
                     }

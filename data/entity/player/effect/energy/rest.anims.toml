@@ -1,0 +1,29 @@
+[rest_legs_out]
+id = 2716
+ticks = 4
+infinite = true
+
+[stand_legs_out]
+id = 2921
+ticks = 2
+
+[rest_arms_back]
+id = 5713
+ticks = 4
+infinite = true
+
+[stand_arms_back]
+id = 5748
+ticks = 2
+
+[rest_arms_crossed]
+id = 11786
+ticks = 4
+infinite = true
+
+[stand_arms_crossed]
+id = 11788
+ticks = 2
+
+[run_replenish]
+id = 9988

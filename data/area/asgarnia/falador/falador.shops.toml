@@ -1,0 +1,340 @@
+[cassies_shield_shop]
+id = 15
+defaults = [
+    { id = "wooden_shield", amount = 10 },
+    { id = "bronze_sq_shield", amount = 10 },
+    { id = "bronze_kiteshield", amount = 10 },
+    { id = "iron_sq_shield", amount = 10 },
+    { id = "iron_kiteshield", amount = 10 },
+    { id = "steel_sq_shield", amount = 10 },
+    { id = "steel_kiteshield", amount = 10 },
+    { id = "mithril_sq_shield", amount = 10 },
+]
+
+[flynns_mace_market]
+id = 19
+defaults = [
+    { id = "bronze_mace", amount = 10 },
+    { id = "iron_mace", amount = 10 },
+    { id = "steel_mace", amount = 10 },
+    { id = "mithril_mace", amount = 10 },
+    { id = "adamant_mace", amount = 10 },
+]
+
+[waynes_chains_chainmail_specialist]
+id = 22
+defaults = [
+    { id = "bronze_chainbody", amount = 10 },
+    { id = "iron_chainbody", amount = 10 },
+    { id = "steel_chainbody", amount = 10 },
+    { id = "black_chainbody", amount = 10 },
+    { id = "mithril_chainbody", amount = 10 },
+    { id = "adamant_chainbody", amount = 10 },
+]
+
+[falador_general_store]
+id = 34
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "shears", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "bowl", amount = 10 },
+    { id = "cake_tin", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+]
+
+[herquins_gems]
+id = 52
+defaults = [
+    { id = "uncut_sapphire", amount = 0 },
+    { id = "uncut_emerald", amount = 0 },
+    { id = "uncut_ruby", amount = 0 },
+    { id = "uncut_diamond", amount = 0 },
+    { id = "sapphire", amount = 0 },
+    { id = "emerald", amount = 0 },
+    { id = "ruby", amount = 0 },
+    { id = "diamond", amount = 0 },
+]
+
+[sarahs_farming_shop]
+id = 282
+defaults = [
+    { id = "rake", amount = 10 },
+    { id = "seed_dibber", amount = 10 },
+    { id = "secateurs", amount = 10 },
+    { id = "spade", amount = 10 },
+    { id = "gardening_trowel", amount = 10 },
+    { id = "watering_can", amount = 30 },
+    { id = "plant_pot", amount = 100 },
+    { id = "compost", amount = 300 },
+    { id = "bucket", amount = 100 },
+    { id = "empty_sack", amount = 10 },
+    { id = "empty_sack_pack", amount = 1 },
+    { id = "basket", amount = 10 },
+    { id = "basket_pack", amount = 1 },
+    { id = "raw_potato", amount = 0 },
+    { id = "onion", amount = 0 },
+    { id = "cabbage", amount = 0 },
+    { id = "tomato", amount = 0 },
+    { id = "sweetcorn", amount = 0 },
+    { id = "strawberry", amount = 0 },
+    { id = "watermelon", amount = 0 },
+    { id = "hammerstone_hops", amount = 0 },
+    { id = "asgarnian_hops", amount = 0 },
+    { id = "yanillian_hops", amount = 0 },
+    { id = "krandorian_hops", amount = 0 },
+    { id = "wildblood_hops", amount = 0 },
+    { id = "jute_fibre", amount = 0 },
+    { id = "barley", amount = 0 },
+    { id = "plant_cure", amount = 10 },
+    { id = "amulet_of_farming_8", amount = 10 },
+]
+
+[white_knight_novice_armoury]
+id = 328
+defaults = [
+    { id = "white_chainbody", amount = 10 },
+    { id = "white_platelegs", amount = 10 },
+    { id = "white_plateskirt", amount = 0 },
+    { id = "white_med_helm", amount = 0 },
+    { id = "white_sq_shield", amount = 0 },
+    { id = "white_full_helm", amount = 0 },
+    { id = "white_kiteshield", amount = 0 },
+    { id = "white_platebody", amount = 0 },
+    { id = "white_boots", amount = 0 },
+    { id = "white_gauntlets", amount = 0 },
+    { id = "white_dagger", amount = 0 },
+    { id = "white_sword", amount = 0 },
+    { id = "white_mace", amount = 0 },
+    { id = "white_magic_staff", amount = 0 },
+    { id = "white_longsword", amount = 0 },
+    { id = "white_warhammer", amount = 0 },
+    { id = "white_battleaxe", amount = 0 },
+    { id = "white_scimitar", amount = 0 },
+    { id = "white_claws", amount = 0 },
+    { id = "white_2h_sword", amount = 0 },
+    { id = "white_halberd", amount = 0 },
+]
+
+[white_knight_peon_armoury]
+id = 329
+defaults = [
+    { id = "white_chainbody", amount = 10 },
+    { id = "white_platelegs", amount = 10 },
+    { id = "white_plateskirt", amount = 0 },
+    { id = "white_med_helm", amount = 0 },
+    { id = "white_sq_shield", amount = 0 },
+    { id = "white_full_helm", amount = 0 },
+    { id = "white_kiteshield", amount = 0 },
+    { id = "white_platebody", amount = 0 },
+    { id = "white_boots", amount = 0 },
+    { id = "white_gauntlets", amount = 0 },
+    { id = "white_dagger", amount = 10 },
+    { id = "white_sword", amount = 10 },
+    { id = "white_mace", amount = 0 },
+    { id = "white_magic_staff", amount = 0 },
+    { id = "white_longsword", amount = 0 },
+    { id = "white_warhammer", amount = 0 },
+    { id = "white_battleaxe", amount = 0 },
+    { id = "white_scimitar", amount = 0 },
+    { id = "white_claws", amount = 0 },
+    { id = "white_2h_sword", amount = 0 },
+    { id = "white_halberd", amount = 0 },
+]
+
+[white_knight_page_armoury]
+id = 330
+defaults = [
+    { id = "white_chainbody", amount = 10 },
+    { id = "white_platelegs", amount = 10 },
+    { id = "white_plateskirt", amount = 10 },
+    { id = "white_med_helm", amount = 10 },
+    { id = "white_sq_shield", amount = 10 },
+    { id = "white_full_helm", amount = 0 },
+    { id = "white_kiteshield", amount = 0 },
+    { id = "white_platebody", amount = 0 },
+    { id = "white_boots", amount = 0 },
+    { id = "white_gauntlets", amount = 0 },
+    { id = "white_dagger", amount = 10 },
+    { id = "white_sword", amount = 10 },
+    { id = "white_mace", amount = 0 },
+    { id = "white_magic_staff", amount = 0 },
+    { id = "white_longsword", amount = 0 },
+    { id = "white_warhammer", amount = 0 },
+    { id = "white_battleaxe", amount = 0 },
+    { id = "white_scimitar", amount = 0 },
+    { id = "white_claws", amount = 0 },
+    { id = "white_2h_sword", amount = 0 },
+    { id = "white_halberd", amount = 0 },
+]
+
+[white_knight_noble_armoury]
+id = 331
+defaults = [
+    { id = "white_chainbody", amount = 10 },
+    { id = "white_platelegs", amount = 10 },
+    { id = "white_plateskirt", amount = 10 },
+    { id = "white_med_helm", amount = 10 },
+    { id = "white_sq_shield", amount = 10 },
+    { id = "white_full_helm", amount = 0 },
+    { id = "white_kiteshield", amount = 0 },
+    { id = "white_platebody", amount = 0 },
+    { id = "white_boots", amount = 0 },
+    { id = "white_gauntlets", amount = 0 },
+    { id = "white_dagger", amount = 10 },
+    { id = "white_sword", amount = 10 },
+    { id = "white_mace", amount = 10 },
+    { id = "white_magic_staff", amount = 10 },
+    { id = "white_longsword", amount = 10 },
+    { id = "white_warhammer", amount = 0 },
+    { id = "white_battleaxe", amount = 0 },
+    { id = "white_scimitar", amount = 0 },
+    { id = "white_claws", amount = 0 },
+    { id = "white_2h_sword", amount = 0 },
+    { id = "white_halberd", amount = 0 },
+]
+
+[white_knight_adept_armoury]
+id = 332
+defaults = [
+    { id = "white_chainbody", amount = 10 },
+    { id = "white_platelegs", amount = 10 },
+    { id = "white_plateskirt", amount = 10 },
+    { id = "white_med_helm", amount = 10 },
+    { id = "white_sq_shield", amount = 10 },
+    { id = "white_full_helm", amount = 10 },
+    { id = "white_kiteshield", amount = 10 },
+    { id = "white_platebody", amount = 10 },
+    { id = "white_boots", amount = 10 },
+    { id = "white_gauntlets", amount = 10 },
+    { id = "white_dagger", amount = 10 },
+    { id = "white_sword", amount = 10 },
+    { id = "white_mace", amount = 10 },
+    { id = "white_magic_staff", amount = 10 },
+    { id = "white_longsword", amount = 10 },
+    { id = "white_warhammer", amount = 0 },
+    { id = "white_battleaxe", amount = 0 },
+    { id = "white_scimitar", amount = 0 },
+    { id = "white_claws", amount = 0 },
+    { id = "white_2h_sword", amount = 0 },
+    { id = "white_halberd", amount = 0 },
+]
+
+[white_knight_master_armoury]
+id = 333
+defaults = [
+    { id = "white_chainbody", amount = 10 },
+    { id = "white_platelegs", amount = 10 },
+    { id = "white_plateskirt", amount = 10 },
+    { id = "white_med_helm", amount = 10 },
+    { id = "white_sq_shield", amount = 10 },
+    { id = "white_full_helm", amount = 10 },
+    { id = "white_kiteshield", amount = 10 },
+    { id = "white_platebody", amount = 10 },
+    { id = "white_boots", amount = 10 },
+    { id = "white_gauntlets", amount = 10 },
+    { id = "white_dagger", amount = 10 },
+    { id = "white_sword", amount = 10 },
+    { id = "white_mace", amount = 10 },
+    { id = "white_magic_staff", amount = 10 },
+    { id = "white_longsword", amount = 10 },
+    { id = "white_warhammer", amount = 10 },
+    { id = "white_battleaxe", amount = 10 },
+    { id = "white_scimitar", amount = 10 },
+    { id = "white_claws", amount = 10 },
+    { id = "white_2h_sword", amount = 10 },
+    { id = "white_halberd", amount = 10 },
+]
+
+[garden_centre]
+id = 397
+defaults = [
+    { id = "bagged_dead_tree", amount = 10 },
+    { id = "bagged_nice_tree", amount = 10 },
+    { id = "bagged_oak_tree", amount = 10 },
+    { id = "bagged_willow_tree", amount = 10 },
+    { id = "bagged_maple_tree", amount = 10 },
+    { id = "bagged_cactus", amount = 10 },
+    { id = "bagged_yew_tree", amount = 10 },
+    { id = "bagged_evergreen", amount = 10 },
+    { id = "bagged_magic_tree", amount = 10 },
+    { id = "bagged_plant_1", amount = 1000 },
+    { id = "bagged_plant_2", amount = 10 },
+    { id = "bagged_plant_3", amount = 10 },
+    { id = "thorny_hedge_bagged", amount = 10 },
+    { id = "nice_hedge_bagged", amount = 10 },
+    { id = "small_box_hedge_bagged", amount = 10 },
+    { id = "topiary_hedge_bagged", amount = 10 },
+    { id = "fancy_hedge_bagged", amount = 10 },
+    { id = "tall_fancy_hedge_bagged", amount = 10 },
+    { id = "tall_box_hedge_bagged", amount = 10 },
+    { id = "bagged_rosemary", amount = 10 },
+    { id = "bagged_daffodils", amount = 10 },
+    { id = "bagged_bluebells", amount = 10 },
+    { id = "bagged_sunflower", amount = 10 },
+    { id = "bagged_marigolds", amount = 10 },
+    { id = "bagged_roses", amount = 10 },
+]
+
+[initiate_temple_knight_armoury]
+id = 443
+defaults = [
+    { id = "initiate_sallet", amount = 10 },
+    { id = "initiate_cuisse", amount = 10 },
+    { id = "initiate_hauberk", amount = 10 },
+    { id = "initiate_harness_m", amount = 10 },
+]
+
+[proselyte_temple_knight_armoury]
+id = 444
+defaults = [
+    { id = "initiate_sallet", amount = 10 },
+    { id = "initiate_cuisse", amount = 10 },
+    { id = "initiate_hauberk", amount = 10 },
+    { id = "initiate_harness_m", amount = 10 },
+    { id = "proselyte_sallet", amount = 10 },
+    { id = "proselyte_cuisse", amount = 10 },
+    { id = "proselyte_hauberk", amount = 10 },
+    { id = "proselyte_tasset", amount = 10 },
+    { id = "proselyte_harness_m", amount = 10 },
+    { id = "proselyte_harness_f", amount = 10 },
+]
+
+[party_petes_emporium]
+id = 549
+defaults = [
+    { id = "burgundy_afro", amount = 10 },
+    { id = "red_afro", amount = 10 },
+    { id = "vermilion_afro", amount = 10 },
+    { id = "pink_afro", amount = 10 },
+    { id = "orange_afro", amount = 10 },
+    { id = "yellow_afro", amount = 10 },
+    { id = "peach_afro", amount = 10 },
+    { id = "brown_afro", amount = 10 },
+    { id = "dark_brown_afro", amount = 10 },
+    { id = "light_brown_afro", amount = 10 },
+    { id = "mint_green_afro", amount = 10 },
+    { id = "green_afro", amount = 10 },
+    { id = "dark_green_afro", amount = 10 },
+    { id = "dark_blue_afro", amount = 10 },
+    { id = "turquoise_afro", amount = 10 },
+    { id = "light_blue_afro", amount = 10 },
+    { id = "purple_afro", amount = 10 },
+    { id = "violet_afro", amount = 10 },
+    { id = "indigo_afro", amount = 10 },
+    { id = "dark_grey_afro", amount = 10 },
+    { id = "military_grey_afro", amount = 10 },
+    { id = "white_afro", amount = 10 },
+    { id = "light_grey_afro", amount = 10 },
+    { id = "taupe_afro", amount = 10 },
+    { id = "black_afro", amount = 10 },
+]
+
+[the_milk_shop]
+id = 580
+defaults = [
+    { id = "bucket_of_milk", amount = 200 },
+]

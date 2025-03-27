@@ -3,8 +3,6 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.config.Config
-import world.gregs.config.ConfigReader
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.CategoryDefinition
 import world.gregs.voidps.engine.timedLoad
 
@@ -16,7 +14,7 @@ class CategoryDefinitions : DefinitionsDecoder<CategoryDefinition> {
     override lateinit var definitions: Array<CategoryDefinition>
     override lateinit var ids: Map<String, Int>
 
-    fun load(path: String = Settings["definitions.categories"]): CategoryDefinitions {
+    fun load(path: String): CategoryDefinitions {
         timedLoad("category definition") {
             val ids = Object2IntOpenHashMap<String>(38, Hash.VERY_FAST_LOAD_FACTOR)
             val definitions = Array(38) { CategoryDefinition.EMPTY }

@@ -1,0 +1,25 @@
+[battle_runes]
+id = 276
+defaults = [
+    { id = "fire_rune", amount = 100 },
+    { id = "water_rune", amount = 100 },
+    { id = "air_rune", amount = 100 },
+    { id = "earth_rune", amount = 100 },
+    { id = "mind_rune", amount = 100 },
+    { id = "body_rune", amount = 100 },
+    { id = "chaos_rune", amount = 30 },
+    { id = "death_rune", amount = 30 },
+]
+
+[battle_runes_enter_the_abyss]
+id = 277
+defaults = [
+    { id = "fire_rune", amount = 1000 },
+    { id = "water_rune", amount = 1000 },
+    { id = "air_rune", amount = 1000 },
+    { id = "earth_rune", amount = 1000 },
+    { id = "mind_rune", amount = 1000 },
+    { id = "chaos_rune", amount = 300 },
+    { id = "death_rune", amount = 100 },
+    { id = "blood_rune", amount = 100 },
+]

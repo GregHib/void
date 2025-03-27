@@ -1,0 +1,14 @@
+[arnolds_eclectic_supplies]
+id = 174
+defaults = [
+    { id = "small_fishing_net", amount = 10 },
+    { id = "harpoon", amount = 10 },
+    { id = "bread", amount = 10 },
+    { id = "empty_pot", amount = 30 },
+    { id = "bucket_of_milk", amount = 10 },
+    { id = "needle", amount = 10 },
+    { id = "thread", amount = 1000 },
+    { id = "beer", amount = 10 },
+    { id = "glassblowing_pipe", amount = 10 },
+    { id = "knife", amount = 10 },
+]

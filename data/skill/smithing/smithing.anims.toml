@@ -1,0 +1,8 @@
+[furnace_smelt]
+id = 899
+
+[superheat_item]
+id = 725
+
+[smith_item]
+id = 898

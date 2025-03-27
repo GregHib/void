@@ -1,0 +1,106 @@
+[fremennik_fur_trader]
+id = 59
+defaults = [
+    { id = "bear_fur", amount = 10 },
+    { id = "grey_wolf_fur", amount = 10 },
+    { id = "polar_kebbit_fur", amount = 0 },
+    { id = "common_kebbit_fur", amount = 0 },
+    { id = "feldip_weasel_fur", amount = 0 },
+    { id = "desert_devil_fur", amount = 0 },
+    { id = "tatty_larupia_fur", amount = 0 },
+    { id = "larupia_fur", amount = 0 },
+    { id = "tatty_graahk_fur", amount = 0 },
+    { id = "graahk_fur", amount = 0 },
+    { id = "tatty_kyatt_fur", amount = 0 },
+    { id = "kyatt_fur", amount = 0 },
+]
+
+[yrsas_shoe_store]
+id = 208
+defaults = [
+    { id = "fremennik_shirt_blue", amount = 10 },
+    { id = "fremennik_shirt_red", amount = 10 },
+    { id = "fremennik_shirt_brown", amount = 10 },
+    { id = "fremennik_shirt_grey", amount = 10 },
+    { id = "fremennik_shirt_tan", amount = 10 },
+    { id = "fremennik_robe", amount = 10 },
+    { id = "fremennik_skirt", amount = 10 },
+    { id = "fremennik_hat", amount = 10 },
+    { id = "gloves_fremennik", amount = 10 },
+    { id = "fremennik_boots", amount = 10 },
+    { id = "fremennik_cloak_green", amount = 10 },
+    { id = "fremennik_cloak_lavender", amount = 10 },
+    { id = "fremennik_cloak_brown", amount = 10 },
+    { id = "fremennik_cloak_cyan", amount = 10 },
+    { id = "fremennik_cloak_red", amount = 10 },
+    { id = "fremennik_cloak_grey", amount = 10 },
+    { id = "fremennik_cloak_gold", amount = 10 },
+    { id = "fremennik_cloak_teal", amount = 10 },
+    { id = "fremennik_cloak_purple", amount = 10 },
+    { id = "fremennik_cloak_pink", amount = 10 },
+    { id = "fremennik_cloak_black", amount = 10 },
+]
+
+[rellekka_longhall_bar]
+id = 209
+defaults = [
+    { id = "beer", amount = 10 },
+    { id = "beer_tankard", amount = 10 },
+    { id = "keg_of_beer", amount = 10 },
+]
+
+[skulgrimens_battle_gear]
+id = 210
+defaults = [
+    { id = "bronze_warhammer", amount = 10 },
+    { id = "iron_warhammer", amount = 10 },
+    { id = "steel_warhammer", amount = 10 },
+    { id = "black_warhammer", amount = 10 },
+    { id = "mithril_warhammer", amount = 10 },
+    { id = "adamant_warhammer", amount = 10 },
+    { id = "rune_warhammer", amount = 0 },
+    { id = "archer_helm", amount = 10 },
+    { id = "berserker_helm", amount = 10 },
+    { id = "warrior_helm", amount = 10 },
+    { id = "farseer_helm", amount = 10 },
+]
+
+[sigmund_the_merchant]
+id = 211
+defaults = [
+    { id = "tinderbox", amount = 10 },
+    { id = "rope", amount = 10 },
+    { id = "pestle_and_mortar", amount = 10 },
+    { id = "empty_pot", amount = 30 },
+    { id = "cooked_meat", amount = 10 },
+    { id = "bread", amount = 10 },
+    { id = "spade", amount = 10 },
+    { id = "white_candle", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "vial", amount = 10 },
+    { id = "vial_pack", amount = 6 },
+    { id = "vial_of_water", amount = 10 },
+    { id = "vial_of_water_pack", amount = 6 },
+    { id = "bucket", amount = 30 },
+    { id = "bucket_of_water", amount = 10 },
+    { id = "egg", amount = 10 },
+    { id = "raw_potato", amount = 10 },
+    { id = "cabbage", amount = 10 },
+]
+
+[hunting_supplies_rellekka_sample]
+id = 566
+defaults = [
+    { id = "noose_wand", amount = 1 },
+    { id = "bird_snare", amount = 1 },
+]
+
+[hunting_supplies_rellekka]
+id = 568
+defaults = [
+    { id = "butterfly_net", amount = 5 },
+    { id = "butterfly_jar", amount = 30 },
+    { id = "noose_wand", amount = 5 },
+    { id = "bird_snare", amount = 20 },
+]

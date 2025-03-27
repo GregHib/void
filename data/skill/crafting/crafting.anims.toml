@@ -1,0 +1,44 @@
+[cut_opal]
+id = 890
+
+[cut_jade]
+id = 891
+
+[cut_red_topaz]
+id = 892
+
+[cut_sapphire]
+id = 888
+
+[cut_emerald]
+id = 889
+
+[cut_ruby]
+id = 887
+
+[cut_diamond]
+id = 886
+
+[cut_dragonstone]
+id = 885
+
+[cut_onyx]
+id = 2717
+
+[cut_shell]
+id = 1280
+
+[cut_crab]
+id = 1309
+
+[craft_leather]
+id = 1249
+
+[glassblowing]
+id = 884
+
+[spinning]
+id = 896
+
+[weaving]
+id = 2270

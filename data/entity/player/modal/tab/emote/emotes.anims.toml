@@ -1,0 +1,731 @@
+[emote_yes]
+id = 855
+ticks = 4
+walk = false
+run = false
+
+[emote_no]
+id = 856
+ticks = 4
+walk = false
+run = false
+
+[emote_bow]
+id = 858
+ticks = 4
+walk = false
+run = false
+
+[emote_enhanced_bow]
+id = 5312
+ticks = 6
+walk = false
+run = false
+
+[emote_angry]
+id = 859
+ticks = 4
+walk = false
+run = false
+
+[emote_enhanced_angry]
+id = 5315
+ticks = 7
+walk = false
+run = false
+
+[emote_think]
+id = 857
+ticks = 4
+walk = false
+run = false
+
+[emote_wave]
+id = 863
+ticks = 4
+walk = false
+run = false
+
+[emote_shrug]
+id = 2113
+ticks = 3
+walk = false
+run = false
+
+[emote_cheer]
+id = 862
+ticks = 4
+walk = false
+run = false
+
+[emote_beckon]
+id = 864
+ticks = 4
+walk = false
+run = false
+
+[emote_laugh]
+id = 861
+ticks = 4
+walk = false
+run = false
+
+[emote_jump_for_joy]
+id = 2109
+ticks = 3
+walk = false
+run = false
+
+[emote_yawn]
+id = 2111
+ticks = 5
+walk = false
+run = false
+
+[emote_enhanced_yawn]
+id = 5313
+ticks = 12
+walk = false
+run = false
+
+[emote_dance]
+id = 866
+ticks = 8
+walk = false
+run = false
+
+[emote_enhanced_dance]
+id = 5316
+ticks = 8
+walk = false
+run = false
+
+[emote_jig]
+id = 2106
+ticks = 7
+walk = false
+run = false
+
+[emote_twirl]
+id = 2107
+ticks = 3
+walk = false
+run = false
+
+[emote_headbang]
+id = 2108
+ticks = 6
+walk = false
+run = false
+
+[emote_cry]
+id = 860
+ticks = 4
+walk = false
+run = false
+
+[emote_blow_kiss]
+id = 1374
+ticks = 4
+walk = false
+run = false
+
+[emote_panic]
+id = 2105
+ticks = 4
+walk = false
+run = false
+
+[emote_raspberry]
+id = 2110
+ticks = 4
+walk = false
+run = false
+
+[emote_clap]
+id = 865
+ticks = 6
+walk = false
+run = false
+
+[emote_salute]
+id = 2112
+ticks = 3
+walk = false
+run = false
+
+[emote_goblin_bow]
+id = 2127
+ticks = 3
+walk = false
+run = false
+
+[emote_goblin_salute]
+id = 2128
+ticks = 5
+walk = false
+run = false
+
+[emote_glass_box]
+id = 1131
+ticks = 5
+walk = false
+run = false
+
+[emote_climb_rope]
+id = 1130
+ticks = 7
+walk = false
+run = false
+
+[emote_lean]
+id = 1129
+ticks = 6
+walk = false
+run = false
+
+[emote_glass_wall]
+id = 1128
+ticks = 8
+walk = false
+run = false
+
+[emote_idea]
+id = 4276
+ticks = 3
+walk = false
+run = false
+
+[emote_stomp]
+id = 4278
+ticks = 3
+walk = false
+run = false
+
+[emote_flap]
+id = 4280
+ticks = 3
+walk = false
+run = false
+
+[emote_enhanced_flap]
+id = 3859
+ticks = 3
+walk = false
+run = false
+
+[emote_slap_head]
+id = 4275
+ticks = 3
+walk = false
+run = false
+
+[emote_zombie_walk]
+id = 3544
+ticks = 12
+walk = false
+run = false
+
+[emote_zombie_dance]
+id = 3543
+ticks = 7
+walk = false
+run = false
+
+[emote_zombie_hand]
+id = 7272
+ticks = 4
+walk = false
+run = false
+
+[emote_scared]
+id = 2836
+ticks = 5
+walk = false
+run = false
+
+[emote_bunny_hop]
+id = 6111
+ticks = 8
+walk = false
+run = false
+
+[emote_snowman_dance]
+id = 7531
+ticks = 6
+walk = false
+run = false
+
+[emote_air_guitar]
+id = 2414
+ticks = 7
+walk = false
+run = false
+
+[emote_safety_first]
+id = 8770
+ticks = 5
+walk = false
+run = false
+
+[emote_explore]
+id = 9990
+ticks = 10
+walk = false
+run = false
+
+[emote_trick]
+id = 10530
+ticks = 6
+walk = false
+run = false
+
+[emote_freeze]
+id = 11044
+ticks = 8
+walk = false
+run = false
+
+[emote_turkey_transform]
+id = 10994
+ticks = 2
+walk = false
+run = false
+
+[emote_turkey_return]
+id = 10995
+ticks = 3
+walk = false
+run = false
+
+[emote_turkey_dance]
+id = 10996
+ticks = 13
+walk = false
+run = false
+
+[emote_around_the_world_in_eggty_days]
+id = 11542
+ticks = 11
+walk = false
+run = false
+
+[emote_dramatic_point]
+id = 12658
+ticks = 5
+walk = false
+run = false
+
+[emote_faint]
+id = 14165
+ticks = 9
+walk = false
+run = false
+
+[emote_puppet_master]
+id = 14869
+ticks = 8
+walk = false
+run = false
+
+[emote_seal_of_approval]
+id = 15104
+ticks = 2
+walk = false
+run = false
+
+[emote_seal_stand]
+id = 15105
+ticks = 2
+walk = false
+run = false
+
+[emote_seal_clap]
+id = 15106
+ticks = 4
+walk = false
+run = false
+
+[emote_seal_clap_short]
+id = 15107
+ticks = 3
+walk = false
+run = false
+
+[emote_seal_return]
+id = 15108
+ticks = 3
+walk = false
+run = false
+
+[emote_taskmaster]
+id = 15033
+ticks = 16
+walk = false
+run = false
+
+[emote_dungeoneering_start]
+id = 13190
+ticks = 2
+walk = false
+run = false
+
+[emote_dungeoneering_melee]
+id = 13192
+ticks = 5
+walk = false
+run = false
+
+[emote_dungeoneering_mage]
+id = 13193
+ticks = 5
+walk = false
+run = false
+
+[emote_dungeoneering_range]
+id = 13194
+ticks = 5
+walk = false
+run = false
+
+[emote_attack]
+id = 4959
+ticks = 7
+walk = false
+run = false
+
+[emote_defence]
+id = 4961
+ticks = 7
+walk = false
+run = false
+
+[emote_strength]
+id = 4981
+ticks = 18
+walk = false
+run = false
+
+[emote_constitution]
+id = 14242
+ticks = 10
+walk = false
+run = false
+
+[emote_range]
+id = 4973
+ticks = 10
+walk = false
+run = false
+
+[emote_prayer]
+id = 4979
+ticks = 11
+walk = false
+run = false
+
+[emote_magic]
+id = 4939
+ticks = 6
+walk = false
+run = false
+
+[emote_cooking]
+id = 4955
+ticks = 26
+walk = false
+run = false
+
+[emote_woodcutting]
+id = 4957
+ticks = 22
+walk = false
+run = false
+
+[emote_fletching]
+id = 4937
+ticks = 15
+walk = false
+run = false
+
+[emote_fishing]
+id = 4951
+ticks = 13
+walk = false
+run = false
+
+[emote_firemaking]
+id = 4975
+ticks = 9
+walk = false
+run = false
+
+[emote_crafting]
+id = 4949
+ticks = 13
+walk = false
+run = false
+
+[emote_smithing]
+id = 4943
+ticks = 19
+walk = false
+run = false
+
+[emote_mining]
+id = 4941
+ticks = 7
+walk = false
+run = false
+
+[emote_herblore]
+id = 4969
+ticks = 15
+walk = false
+run = false
+
+[emote_agility]
+id = 4977
+ticks = 8
+walk = false
+run = false
+
+[emote_thieving]
+id = 4965
+ticks = 14
+walk = false
+run = false
+
+[emote_slayer]
+id = 4967
+ticks = 8
+walk = false
+run = false
+
+[emote_farming]
+id = 4963
+ticks = 12
+walk = false
+run = false
+
+[emote_runecrafting]
+id = 4947
+ticks = 10
+walk = false
+run = false
+
+[emote_hunter]
+id = 5158
+ticks = 13
+walk = false
+run = false
+
+[emote_construction]
+id = 4953
+ticks = 11
+walk = false
+run = false
+
+[emote_summoning]
+id = 8525
+ticks = 9
+walk = false
+run = false
+
+[emote_quest_point]
+id = 4945
+ticks = 15
+walk = false
+run = false
+
+[emote_dung_master_bow]
+id = 14588
+ticks = 3
+walk = false
+run = false
+
+[emote_dung_master_spell]
+id = 14609
+ticks = 2
+walk = false
+run = false
+
+[emote_dung_master_sword]
+id = 14610
+ticks = 3
+walk = false
+run = false
+
+[emote_fly_kite]
+id = 8990
+ticks = 4
+walk = false
+run = false
+
+[emote_reindeer]
+id = 5059
+ticks = 7
+walk = false
+run = false
+
+[emote_recite_prayer]
+id = 5864
+ticks = 9
+walk = false
+run = false
+
+[emote_chicken_dance]
+id = 1835
+ticks = 8
+walk = false
+run = false
+
+[emote_spinning_plate]
+id = 1902
+ticks = 2
+walk = false
+run = false
+
+[emote_spinning_plate_take]
+id = 1904
+ticks = 1
+walk = false
+run = false
+
+[emote_spinning_plate_drop]
+id = 1906
+ticks = 1
+walk = false
+run = false
+
+[emote_yoyo_play]
+id = 1457
+ticks = 8
+walk = false
+run = false
+
+[emote_yoyo_loop]
+id = 1458
+ticks = 3
+walk = false
+run = false
+
+[emote_yoyo_walk]
+id = 1459
+ticks = 3
+walk = false
+run = false
+
+[emote_yoyo_crazy]
+id = 1460
+ticks = 4
+walk = false
+run = false
+
+[emote_shake_snow_globe]
+id = 2926
+ticks = 5
+walk = false
+run = false
+
+[emote_trample_snow]
+id = 7528
+ticks = 4
+walk = false
+run = false
+
+[emote_candy_cane_spin]
+id = 12664
+ticks = 2
+walk = false
+run = false
+
+[emote_salty_claws_hat_dance]
+id = 329
+ticks = 2
+walk = false
+run = false
+
+[emote_golden_hammer_spin]
+id = 15149
+ticks = 7
+walk = false
+run = false
+
+[emote_golden_hammer_brandish]
+id = 15150
+ticks = 4
+walk = false
+run = false
+
+[emote_10th_anniversary_cake]
+id = 6292
+ticks = 8
+walk = false
+run = false
+
+[emote_marionette_jump]
+id = 3003
+ticks = 8
+walk = false
+run = false
+
+[emote_marionette_walk]
+id = 3004
+ticks = 10
+walk = false
+run = false
+
+[emote_marionette_bow]
+id = 3005
+ticks = 4
+walk = false
+run = false
+
+[emote_marionette_dance]
+id = 3006
+ticks = 10
+walk = false
+run = false
+
+[emote_magnifying_glass_sleuth]
+id = 2936
+ticks = 8
+walk = false
+run = false
+
+[emote_chocatrice_cape]
+id = 8903
+ticks = 6
+walk = false
+run = false
+
+[emote_squirrel_ears]
+id = 12265
+ticks = 6
+walk = false
+run = false
+
+[emote_toy_horsey_brown]
+id = 918
+ticks = 3
+walk = false
+run = false
+
+[emote_toy_horsey_white]
+id = 919
+ticks = 3
+walk = false
+run = false
+
+[emote_toy_horsey_black]
+id = 920
+ticks = 3
+walk = false
+run = false
+
+[emote_toy_horsey_grey]
+id = 921
+ticks = 3
+walk = false
+run = false

@@ -1,0 +1,117 @@
+[bandit_duty_free]
+id = 41
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "bronze_pickaxe", amount = 10 },
+    { id = "bronze_hatchet", amount = 10 },
+]
+
+[tonys_pizza_bases]
+id = 42
+defaults = [
+    { id = "pizza_base", amount = 10 },
+]
+
+[williams_wilderness_cape_shop]
+id = 236
+defaults = [
+    { id = "team_1_cape", amount = 10 },
+    { id = "team_11_cape", amount = 10 },
+    { id = "team_21_cape", amount = 10 },
+    { id = "team_31_cape", amount = 10 },
+    { id = "team_41_cape", amount = 10 },
+]
+
+[ians_wilderness_cape_shop]
+id = 237
+defaults = [
+    { id = "team_2_cape", amount = 10 },
+    { id = "team_12_cape", amount = 10 },
+    { id = "team_22_cape", amount = 10 },
+    { id = "team_32_cape", amount = 10 },
+    { id = "team_42_cape", amount = 10 },
+]
+
+[larrys_wilderness_cape_shop]
+id = 238
+defaults = [
+    { id = "team_3_cape", amount = 10 },
+    { id = "team_13_cape", amount = 10 },
+    { id = "team_23_cape", amount = 10 },
+    { id = "team_33_cape", amount = 10 },
+    { id = "team_43_cape", amount = 10 },
+]
+
+[darrens_wilderness_cape_shop]
+id = 239
+defaults = [
+    { id = "team_4_cape", amount = 10 },
+    { id = "team_14_cape", amount = 10 },
+    { id = "team_24_cape", amount = 10 },
+    { id = "team_34_cape", amount = 10 },
+    { id = "team_44_cape", amount = 10 },
+]
+
+[edwards_wilderness_cape_shop]
+id = 240
+defaults = [
+    { id = "team_5_cape", amount = 10 },
+    { id = "team_15_cape", amount = 10 },
+    { id = "team_25_cape", amount = 10 },
+    { id = "team_35_cape", amount = 10 },
+    { id = "team_45_cape", amount = 10 },
+]
+
+[richards_wilderness_cape_shop]
+id = 241
+defaults = [
+    { id = "team_6_cape", amount = 10 },
+    { id = "team_16_cape", amount = 10 },
+    { id = "team_26_cape", amount = 10 },
+    { id = "team_36_cape", amount = 10 },
+    { id = "team_46_cape", amount = 10 },
+]
+
+[neils_wilderness_cape_shop]
+id = 242
+defaults = [
+    { id = "team_7_cape", amount = 10 },
+    { id = "team_17_cape", amount = 10 },
+    { id = "team_27_cape", amount = 10 },
+    { id = "team_37_cape", amount = 10 },
+    { id = "team_47_cape", amount = 10 },
+]
+
+[edmonds_wilderness_cape_shop]
+id = 243
+defaults = [
+    { id = "team_8_cape", amount = 10 },
+    { id = "team_18_cape", amount = 10 },
+    { id = "team_28_cape", amount = 10 },
+    { id = "team_38_cape", amount = 10 },
+    { id = "team_48_cape", amount = 10 },
+]
+
+[simons_wilderness_cape_shop]
+id = 244
+defaults = [
+    { id = "team_9_cape", amount = 10 },
+    { id = "team_19_cape", amount = 10 },
+    { id = "team_29_cape", amount = 10 },
+    { id = "team_39_cape", amount = 10 },
+    { id = "team_49_cape", amount = 10 },
+]
+
+[sams_wilderness_cape_shop]
+id = 245
+defaults = [
+    { id = "team_10_cape", amount = 10 },
+    { id = "team_20_cape", amount = 10 },
+    { id = "team_30_cape", amount = 10 },
+    { id = "team_40_cape", amount = 10 },
+    { id = "team_50_cape", amount = 10 },
+]

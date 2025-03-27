@@ -1,0 +1,11 @@
+[neitiznot_supplies]
+id = 502
+defaults = [
+    { id = "knife", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "thread", amount = 1000 },
+    { id = "needle", amount = 10 },
+    { id = "bronze_nails", amount = 10 },
+    { id = "bronze_hatchet", amount = 10 },
+    { id = "ball_of_wool", amount = 100 },
+]

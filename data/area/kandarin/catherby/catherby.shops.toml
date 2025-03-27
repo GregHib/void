@@ -1,0 +1,185 @@
+[harrys_fishing_shop]
+id = 43
+defaults = [
+    { id = "small_fishing_net", amount = 10 },
+    { id = "fishing_rod", amount = 10 },
+    { id = "harpoon", amount = 1000 },
+    { id = "lobster_pot", amount = 10 },
+    { id = "fishing_bait", amount = 1000 },
+    { id = "big_fishing_net", amount = 10 },
+    { id = "raw_shrimps", amount = 0 },
+    { id = "raw_sardine", amount = 0 },
+    { id = "raw_herring", amount = 0 },
+    { id = "raw_mackerel", amount = 0 },
+    { id = "raw_cod", amount = 0 },
+    { id = "raw_anchovies", amount = 0 },
+    { id = "raw_tuna", amount = 0 },
+    { id = "raw_lobster", amount = 0 },
+    { id = "raw_bass", amount = 0 },
+    { id = "raw_swordfish", amount = 0 },
+    { id = "raw_shark", amount = 0 },
+]
+
+[arheins_store]
+id = 47
+defaults = [
+    { id = "bucket", amount = 30 },
+    { id = "bronze_pickaxe", amount = 10 },
+    { id = "bowl", amount = 10 },
+    { id = "cake_tin", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "rope", amount = 10 },
+    { id = "empty_pot", amount = 30 },
+    { id = "knife", amount = 10 },
+]
+
+[candle_shop]
+id = 48
+defaults = [
+    { id = "white_candle", amount = 10 },
+]
+
+[hicktons_archery_emporium]
+id = 49
+defaults = [
+    { id = "bronze_bolts", amount = 300 },
+    { id = "bronze_arrow", amount = 1000 },
+    { id = "iron_arrow", amount = 100 },
+    { id = "steel_arrow", amount = 0 },
+    { id = "mithril_arrow", amount = 0 },
+    { id = "adamant_arrow", amount = 0 },
+    { id = "rune_arrow", amount = 0 },
+    { id = "bronze_brutal", amount = 0 },
+    { id = "iron_brutal", amount = 0 },
+    { id = "steel_brutal", amount = 0 },
+    { id = "black_brutal", amount = 0 },
+    { id = "mithril_brutal", amount = 0 },
+    { id = "adamant_brutal", amount = 0 },
+    { id = "rune_brutal", amount = 0 },
+    { id = "bronze_arrowtips", amount = 100 },
+    { id = "iron_arrowtips", amount = 100 },
+    { id = "steel_arrowtips", amount = 100 },
+    { id = "mithril_arrowtips", amount = 100 },
+    { id = "adamant_arrowtips", amount = 30 },
+    { id = "rune_arrowtips", amount = 10 },
+    { id = "shortbow", amount = 10 },
+    { id = "longbow", amount = 10 },
+    { id = "crossbow", amount = 10 },
+    { id = "oak_shortbow", amount = 10 },
+    { id = "oak_longbow", amount = 10 },
+    { id = "comp_ogre_bow", amount = 10 },
+    { id = "studded_body", amount = 10 },
+    { id = "studded_chaps", amount = 10 },
+]
+
+[hicktons_archery_emporium_skillcape]
+id = 466
+defaults = [
+    { id = "bronze_bolts", amount = 300 },
+    { id = "bronze_arrow", amount = 1000 },
+    { id = "iron_arrow", amount = 100 },
+    { id = "steel_arrow", amount = 0 },
+    { id = "mithril_arrow", amount = 0 },
+    { id = "adamant_arrow", amount = 0 },
+    { id = "rune_arrow", amount = 0 },
+    { id = "bronze_brutal", amount = 0 },
+    { id = "iron_brutal", amount = 0 },
+    { id = "steel_brutal", amount = 0 },
+    { id = "black_brutal", amount = 0 },
+    { id = "mithril_brutal", amount = 0 },
+    { id = "adamant_brutal", amount = 0 },
+    { id = "rune_brutal", amount = 0 },
+    { id = "bronze_arrowtips", amount = 100 },
+    { id = "iron_arrowtips", amount = 100 },
+    { id = "steel_arrowtips", amount = 100 },
+    { id = "mithril_arrowtips", amount = 100 },
+    { id = "adamant_arrowtips", amount = 30 },
+    { id = "rune_arrowtips", amount = 10 },
+    { id = "shortbow", amount = 10 },
+    { id = "longbow", amount = 10 },
+    { id = "crossbow", amount = 10 },
+    { id = "oak_shortbow", amount = 10 },
+    { id = "oak_longbow", amount = 10 },
+    { id = "comp_ogre_bow", amount = 10 },
+    { id = "studded_body", amount = 10 },
+    { id = "studded_chaps", amount = 10 },
+    { id = "fletching_cape", amount = 1 },
+]
+
+[hicktons_archery_emporium_trimmed]
+id = 467
+defaults = [
+    { id = "bronze_bolts", amount = 300 },
+    { id = "bronze_arrow", amount = 1000 },
+    { id = "iron_arrow", amount = 100 },
+    { id = "steel_arrow", amount = 0 },
+    { id = "mithril_arrow", amount = 0 },
+    { id = "adamant_arrow", amount = 0 },
+    { id = "rune_arrow", amount = 0 },
+    { id = "bronze_brutal", amount = 0 },
+    { id = "iron_brutal", amount = 0 },
+    { id = "steel_brutal", amount = 0 },
+    { id = "black_brutal", amount = 0 },
+    { id = "mithril_brutal", amount = 0 },
+    { id = "adamant_brutal", amount = 0 },
+    { id = "rune_brutal", amount = 0 },
+    { id = "bronze_arrowtips", amount = 100 },
+    { id = "iron_arrowtips", amount = 100 },
+    { id = "steel_arrowtips", amount = 100 },
+    { id = "mithril_arrowtips", amount = 100 },
+    { id = "adamant_arrowtips", amount = 30 },
+    { id = "rune_arrowtips", amount = 10 },
+    { id = "shortbow", amount = 10 },
+    { id = "longbow", amount = 10 },
+    { id = "crossbow", amount = 10 },
+    { id = "oak_shortbow", amount = 10 },
+    { id = "oak_longbow", amount = 10 },
+    { id = "comp_ogre_bow", amount = 10 },
+    { id = "studded_body", amount = 10 },
+    { id = "studded_chaps", amount = 10 },
+    { id = "fletching_cape_t", amount = 1 },
+]
+
+
+[candle_shop_merlins_crystal]
+id = 547
+defaults = [
+    { id = "white_candle", amount = 10 },
+    { id = "black_candle", amount = 10 },
+]
+
+[vanessas_farming_shop]
+id = 283
+defaults = [
+    { id = "rake", amount = 10 },
+    { id = "seed_dibber", amount = 10 },
+    { id = "secateurs", amount = 10 },
+    { id = "spade", amount = 10 },
+    { id = "gardening_trowel", amount = 10 },
+    { id = "watering_can", amount = 30 },
+    { id = "plant_pot", amount = 100 },
+    { id = "compost", amount = 300 },
+    { id = "bucket", amount = 100 },
+    { id = "empty_sack", amount = 10 },
+    { id = "empty_sack_pack", amount = 1 },
+    { id = "basket", amount = 10 },
+    { id = "basket_pack", amount = 1 },
+    { id = "raw_potato", amount = 0 },
+    { id = "onion", amount = 0 },
+    { id = "cabbage", amount = 0 },
+    { id = "tomato", amount = 0 },
+    { id = "sweetcorn", amount = 0 },
+    { id = "strawberry", amount = 0 },
+    { id = "watermelon", amount = 0 },
+    { id = "hammerstone_hops", amount = 0 },
+    { id = "asgarnian_hops", amount = 0 },
+    { id = "yanillian_hops", amount = 0 },
+    { id = "krandorian_hops", amount = 0 },
+    { id = "wildblood_hops", amount = 0 },
+    { id = "jute_fibre", amount = 0 },
+    { id = "barley", amount = 0 },
+    { id = "plant_cure", amount = 10 },
+    { id = "amulet_of_farming_8", amount = 10 },
+]

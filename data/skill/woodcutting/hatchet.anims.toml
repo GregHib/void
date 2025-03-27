@@ -1,0 +1,271 @@
+[bronze_hatchet_chop]
+id = 879
+walk = false
+run = false
+
+[bronze_hatchet_chop_ivy]
+id = 12282
+walk = false
+run = false
+
+[iron_hatchet_chop]
+id = 877
+walk = false
+run = false
+
+[iron_hatchet_chop_ivy]
+id = 2847
+walk = false
+run = false
+
+[steel_hatchet_chop]
+id = 875
+walk = false
+run = false
+
+[steel_hatchet_chop_ivy]
+id = 880
+walk = false
+run = false
+
+[black_hatchet_chop]
+id = 873
+walk = false
+run = false
+
+[black_hatchet_chop_ivy]
+id = 878
+walk = false
+run = false
+
+[mithril_hatchet_chop]
+id = 871
+walk = false
+run = false
+
+[mithril_hatchet_chop_ivy]
+id = 876
+walk = false
+run = false
+
+[adamant_hatchet_chop]
+id = 869
+walk = false
+run = false
+
+[adamant_hatchet_chop_ivy]
+id = 874
+walk = false
+run = false
+
+[rune_hatchet_chop]
+id = 867
+walk = false
+run = false
+
+[rune_hatchet_chop_ivy]
+id = 872
+walk = false
+run = false
+
+[dragon_hatchet_chop]
+id = 2846
+walk = false
+run = false
+
+[dragon_hatchet_chop_ivy]
+id = 870
+walk = false
+run = false
+
+[sacred_clay_hatchet_chop]
+id = 1905
+walk = false
+run = false
+
+[volatile_clay_hatchet_chop]
+id = 1907
+walk = false
+run = false
+
+[dragon_hatchet_chop_ivy_stop]
+id = 3260
+
+[rune_hatchet_chop_ivy_stop]
+id = 3261
+
+[adamant_hatchet_chop_ivy_stop]
+id = 3262
+
+[mithril_hatchet_chop_ivy_stop]
+id = 3263
+
+[black_hatchet_chop_ivy_stop]
+id = 3284
+
+[steel_hatchet_chop_ivy_stop]
+id = 3292
+
+[iron_hatchet_chop_ivy_stop]
+id = 3323
+
+[bronze_hatchet_chop_ivy_stop]
+id = 3324
+
+[inferno_adze_chop_ivy_stop]
+id = 3325
+
+[sacred_clay_hatchet_chop_ivy_stop]
+id = 3326
+
+[volatile_clay_hatchet_chop_ivy_stop]
+id = 3394
+
+[blessed_hatchet_chop]
+id = 5383
+
+[rune_hatchet_chop_floor]
+id = 5781
+
+[black_hatchet_chop_log]
+id = 6364
+
+[inferno_adze_chop_ivy]
+id = 12323
+walk = false
+run = false
+
+[dragon_hatchet_chop_canoe_tree]
+id = 9992
+
+[rune_hatchet_chop_canoe_tree]
+id = 9993
+
+[adamant_hatchet_chop_canoe_tree]
+id = 9994
+
+[mithril_hatchet_chop_canoe_tree]
+id = 9995
+
+[black_hatchet_chop_canoe_tree]
+id = 9996
+
+[steel_hatchet_chop_canoe_tree]
+id = 9997
+
+[iron_hatchet_chop_canoe_tree]
+id = 9998
+
+[bronze_hatchet_chop_canoe_tree]
+id = 9999
+
+[inferno_adze_chop_one_hand]
+id = 10249
+
+[inferno_adze_chop_canoe_tree]
+id = 10250
+
+[inferno_adze_chop]
+id = 10251
+walk = false
+run = false
+sacred_clay_hatchet_chop_canoe_tree = 11617
+volatile_clay_hatchet_chop_canoe_tree = 11618
+
+[sacred_clay_hatchet_chop_ivy]
+id = 12324
+walk = false
+run = false
+
+[volatile_clay_hatchet_chop_ivy]
+id = 12325
+walk = false
+run = false
+
+[bronze_hatchet_chop_tired]
+id = 12329
+
+[iron_hatchet_chop_tired]
+id = 12330
+
+[steel_hatchet_chop_tired]
+id = 12331
+
+[black_hatchet_chop_tired]
+id = 12332
+
+[mithril_hatchet_chop_tired]
+id = 12333
+
+[adamant_hatchet_chop_tired]
+id = 12334
+
+[rune_hatchet_chop_tired]
+id = 12335
+
+[dragon_hatchet_chop_tired]
+id = 12336
+
+[inferno_adze_chop_tired]
+id = 12337
+
+[sacred_clay_hatchet_chop_tired]
+id = 12338
+
+[volatile_clay_hatchet_chop_tired]
+id = 12339
+
+[rune_hatchet_chop_2h_tired]
+id = 12340
+
+[adamant_hatchet_chop_2h_tired]
+id = 12341
+
+[mithril_hatchet_chop_2h_tired]
+id = 12342
+
+[steel_hatchet_chop_2h_tired]
+id = 12343
+
+[iron_hatchet_chop_2h_tired]
+id = 12344
+
+[bronze_hatchet_chop_2h_tired1]
+id = 12345
+
+[dragon_hatchet_chop_2h_tired]
+id = 12346
+
+[inferno_adze_chop_2h_tired]
+id = 12347
+
+[sacred_clay_hatchet_chop_2h_tired]
+id = 12348
+
+[volatile_clay_hatchet_chop_2h_tired]
+id = 12349
+
+[hatchet_class_1_chop]
+id = 10603
+walk = false
+run = false
+
+[hatchet_class_2_chop]
+id = 10604
+walk = false
+run = false
+
+[hatchet_class_3_chop]
+id = 10605
+walk = false
+run = false
+
+[hatchet_class_4_chop]
+id = 10606
+walk = false
+run = false
+
+[hatchet_class_5_chop]
+id = 10607
+walk = false
+run = false

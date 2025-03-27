@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
+import world.gregs.voidps.engine.data.list
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -103,7 +104,7 @@ class MapDefinitions(
             val (cache, duration) = measureTimedValue { FileCache.load(properties) }
             println("Loaded cache in ${duration.inWholeMilliseconds}ms")
             val files = configFiles()
-            val definitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(files.getOrDefault(Settings["definitions.objects"], emptyList()))
+            val definitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(files.list(Settings["definitions.objects"]))
             val collisions = Collisions()
             val add = GameObjectCollisionAdd(collisions)
             val remove = GameObjectCollisionRemove(collisions)

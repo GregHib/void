@@ -1,0 +1,71 @@
+[jamilas_craft_stall]
+id = 491
+defaults = [
+    { id = "chisel", amount = 10 },
+    { id = "ring_mould", amount = 10 },
+    { id = "necklace_mould", amount = 10 },
+    { id = "amulet_unstrung_mould", amount = 10 },
+    { id = "needle", amount = 10 },
+    { id = "thread", amount = 1000 },
+    { id = "holy_mould", amount = 10 },
+    { id = "sickle_mould", amount = 10 },
+    { id = "tiara_mould", amount = 10 },
+    { id = "bracelet_mould", amount = 10 },
+]
+
+[nathifas_bake_stall]
+id = 492
+defaults = [
+    { id = "bread", amount = 10 },
+    { id = "cake", amount = 10 },
+    { id = "chocolate_slice", amount = 10 },
+    { id = "waterskin_4", amount = 30 },
+]
+
+[blades_by_urbi]
+id = 493
+defaults = [
+    { id = "bronze_dagger", amount = 10 },
+    { id = "iron_dagger", amount = 10 },
+    { id = "steel_dagger", amount = 10 },
+    { id = "black_dagger", amount = 0 },
+    { id = "mithril_dagger", amount = 10 },
+    { id = "adamant_dagger", amount = 10 },
+    { id = "rune_dagger", amount = 10 },
+    { id = "dragon_dagger", amount = 0 },
+    { id = "bronze_scimitar", amount = 10 },
+    { id = "iron_scimitar", amount = 10 },
+    { id = "steel_scimitar", amount = 10 },
+]
+
+[the_spice_is_right]
+id = 494
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "gnome_spice", amount = 10 },
+    { id = "curry_leaf", amount = 0 },
+    { id = "antipoison_3", amount = 10 },
+]
+
+[raetul_and_cos_cloth_store_contact]
+id = 495
+defaults = [
+    { id = "linen", amount = 10 },
+    { id = "desert_shirt", amount = 10 },
+    { id = "desert_robe", amount = 10 },
+    { id = "desert_boots", amount = 10 },
+    { id = "silk", amount = 10 },
+    { id = "thread", amount = 1000 },
+    { id = "needle", amount = 10 },
+]
+
+[raetul_and_cos_cloth_store]
+id = 258
+defaults = [
+    { id = "linen", amount = 10 },
+    { id = "desert_shirt", amount = 10 },
+    { id = "desert_robe", amount = 10 },
+    { id = "silk", amount = 10 },
+    { id = "thread", amount = 1000 },
+    { id = "needle", amount = 10 },
+]

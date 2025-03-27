@@ -1,0 +1,53 @@
+[rope_swing]
+id = 751
+
+[swing_rope]
+id = 497
+
+[ledge_stand_right]
+id = 753
+
+[ledge_stand_away_right]
+id = 759
+
+[climb_over_wall]
+id = 4853
+
+[barbarian_wall_jump_climb]
+id = 10492
+
+[barbarian_wall_jump]
+id = 10493
+
+[barbarian_wall_climb]
+id = 10023
+
+[barbarian_wall_stand_up]
+id = 11794
+
+[barbarian_spring_shoot]
+id = 4189
+
+[barbarian_spring_fire]
+id = 11819
+
+[barbarian_spring_reset]
+id = 11820
+
+[circus_cartwheel]
+id = 10295
+
+[barbarian_gap_jump]
+id = 2586
+
+[barbarian_jump_land]
+id = 2588
+
+[barbarian_slide_start]
+id = 11792
+
+[barbarian_slide]
+id = 11790
+
+[barbarian_slide_jump]
+id = 11791

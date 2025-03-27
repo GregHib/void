@@ -4,7 +4,6 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.DiangoCodeDefinition
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.timedLoad
@@ -17,7 +16,7 @@ class DiangoCodeDefinitions {
 
     fun getOrNull(code: String) = definitions[code]
 
-    fun load(path: String = Settings["definitions.diangoCodes"], itemDefinitions: ItemDefinitions? = null): DiangoCodeDefinitions {
+    fun load(path: String, itemDefinitions: ItemDefinitions? = null): DiangoCodeDefinitions {
         timedLoad("diango code definition") {
             val definitions = Object2ObjectOpenHashMap<String, DiangoCodeDefinition>(1, Hash.VERY_FAST_LOAD_FACTOR)
             Config.fileReader(path, 50) {

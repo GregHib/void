@@ -1,0 +1,27 @@
+[papa_mambos_shop]
+id = 603
+defaults = [
+    { id = "marasamaw_plant", amount = 30 },
+    { id = "noose_wand", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "unlit_torch", amount = 10 },
+    { id = "juju_vial_of_water", amount = 100 },
+    { id = "juju_vial_pack", amount = 100 },
+    { id = "rake", amount = 10 },
+    { id = "spade", amount = 10 },
+    { id = "seed_dibber", amount = 10 },
+    { id = "red_blossom_seed", amount = 10 },
+    { id = "blue_blossom_seed", amount = 10 },
+    { id = "green_blossom_seed", amount = 10 },
+    { id = "plant_pot_empty", amount = 10 },
+    { id = "gardening_trowel", amount = 10 },
+    { id = "plant_cure", amount = 20 },
+    { id = "secateurs", amount = 10 },
+    { id = "watering_can_8", amount = 10 },
+    { id = "bucket", amount = 100 },
+    { id = "basket", amount = 100 },
+    { id = "basket_pack", amount = 100 },
+    { id = "witchdoctor_robes", amount = 0 },
+    { id = "witchdoctor_legs", amount = 0 },
+    { id = "juju_teleport_spiritbag", amount = 100 },
+]

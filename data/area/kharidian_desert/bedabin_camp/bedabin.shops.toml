@@ -1,0 +1,11 @@
+[bedabin_village_bartering]
+id = 77
+defaults = [
+    { id = "waterskin_4", amount = 30 },
+    { id = "waterskin_0", amount = 30 },
+    { id = "jug_of_water", amount = 10 },
+    { id = "bowl_of_water", amount = 10 },
+    { id = "bucket_of_water", amount = 10 },
+    { id = "knife", amount = 10 },
+    { id = "hammer", amount = 10 },
+]

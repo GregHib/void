@@ -1,0 +1,349 @@
+[staff_bash]
+id = 419
+
+[staff_pound]
+id = 419
+
+[staff_focus]
+id = 419
+
+[staff_defend]
+id = 420
+
+[axe_chop]
+id = 395
+
+[axe_hack]
+id = 395
+
+[axe_smash]
+id = 401
+
+[axe_block]
+id = 395
+
+[axe_defend]
+id = 397
+
+[sceptre_bash]
+id = 414
+
+[sceptre_pound]
+id = 414
+
+[sceptre_block]
+id = 414
+
+[sceptre_defend]
+id = 430
+
+[pickaxe_spike]
+id = 401
+
+[pickaxe_impale]
+id = 401
+
+[pickaxe_smash]
+id = 400
+
+[pickaxe_block]
+id = 401
+
+[pickaxe_defend]
+id = 397
+
+[dagger_stab]
+id = 386
+
+[dagger_lunge]
+id = 386
+
+[dagger_slash]
+id = 390
+
+[dagger_block]
+id = 386
+
+[dagger_defend]
+id = 388
+
+[sword_chop]
+id = 390
+
+[sword_slash]
+id = 390
+
+[sword_lunge]
+id = 386
+
+[sword_block]
+id = 390
+
+[sword_defend]
+id = 388
+
+[2h_chop]
+id = 7041
+
+[2h_slash]
+id = 7041
+
+[2h_smash]
+id = 7042
+
+[2h_block]
+id = 7041
+
+[2h_defend]
+id = 7050
+
+[mace_pound]
+id = 401
+
+[mace_pummel]
+id = 401
+
+[mace_spike]
+id = 400
+
+[mace_block]
+id = 401
+
+[mace_defend]
+id = 403
+
+[claws_chop]
+id = 393
+
+[claws_slash]
+id = 393
+
+[claws_lunge]
+id = 1067
+
+[claws_block]
+id = 393
+
+[claws_defend]
+id = 397
+
+[hammer_pound]
+id = 401
+
+[hammer_pummel]
+id = 401
+
+[hammer_block]
+id = 401
+
+[hammer_defend]
+id = 403
+
+[whip_flick]
+id = 11968 # needs verification
+
+[whip_lash]
+id = 11969 # needs verification
+
+[whip_deflect]
+id = 11970 # needs verification
+
+[energy_drain_special]
+id = 11971 # needs verification
+
+[whip_defend]
+id = 11974 # needs verification
+
+[fun_pound]
+id = 400
+
+[fun_pummel]
+id = 400
+
+[fun_block]
+id = 400
+
+[fun_defend]
+id = 424
+
+[pie_accurate]
+id = 2779
+
+[pie_rapid]
+id = 2779
+
+[pie_long_range]
+id = 2779
+
+[pie_defend]
+id = 3176
+
+[spear_lunge]
+id = 428
+
+[spear_swipe]
+id = 440
+
+[spear_pound]
+id = 428
+
+[spear_block]
+id = 429
+
+[spear_defend]
+id = 430
+
+[halberd_jab]
+id = 428
+
+[halberd_swipe]
+id = 440
+
+[halberd_fend]
+id = 428
+
+[halberd_defend]
+id = 430
+
+[bow_accurate]
+id = 426
+
+[bow_rapid]
+id = 426
+
+[bow_long_range]
+id = 426
+
+[bow_defend]
+id = 424
+
+[crossbow_accurate]
+id = 4230
+
+[crossbow_rapid]
+id = 4230
+
+[crossbow_long_range]
+id = 4230
+
+[crossbow_defend]
+id = 424
+
+[snapshot_special]
+id = 1074
+
+[karils_crossbow_shoot]
+id = 2075
+
+[zaniks_crossbow_special]
+id = 11359
+
+[thrown_accurate]
+id = 929
+
+[thrown_rapid]
+id = 929
+
+[thrown_long_range]
+id = 929
+
+[thrown_defend]
+id = 424
+
+[throw_dart]
+id = 582
+
+[toktz_xil_ul]
+id = 3353
+
+[throw_javelin]
+id = 10501
+
+[rune_throwing_axe_special]
+id = 1068
+
+[throw_morrigans_throwing_axe]
+id = 10501
+
+[throw_morrigans_throwing_axe_special]
+id = 10504
+
+[chinchompa_short_fuse]
+id = 2779
+
+[chinchompa_medium_fuse]
+id = 2779
+
+[chinchompa_long_fuse]
+id = 2779
+
+[chinchompa_defend]
+id = 3176
+
+#[fixed_device_aim_and_fire] # needs verification
+
+[salamander_scorch]
+id = 5247
+
+[salamander_defend]
+id = 388
+
+[scythe_reap]
+id = 440
+
+[scythe_chop]
+id = 440
+
+[scythe_jab]
+id = 438
+
+[scythe_block]
+id = 440
+
+[scythe_defend]
+id = 435
+
+[ivandis_flail_slash]
+id = 9047
+
+[ivandis_flail_crush]
+id = 9047
+
+[ivandis_flail_defend]
+id = 9048
+
+[sling_rock]
+id = 14867 # needs verification
+
+[sling_sling]
+id = 14867 # needs verification
+
+[sling_chuck]
+id = 14867 # needs verification
+
+[sling_lob]
+id = 14867 # needs verification
+
+#[sling_defend]
+#[trident_jab] # needs verification
+#[trident_swipe] # needs verification
+#[trident_fend] # needs verification
+#[trident_defend] # needs verification
+
+[staff_of_light_jab]
+id = 15072
+
+[staff_of_light_swipe]
+id = 15071
+
+[staff_of_light_fend]
+id = 414
+
+[staff_of_light_defend]
+id = 12806
+
+[chaotic_maul_attack]
+id = 13055
+
+[chaotic_maul_defend]
+id = 13054

@@ -1,0 +1,91 @@
+[brians_battleaxe_bazaar]
+id = 21
+defaults = [
+    { id = "bronze_battleaxe", amount = 10 },
+    { id = "iron_battleaxe", amount = 10 },
+    { id = "steel_battleaxe", amount = 10 },
+    { id = "black_battleaxe", amount = 10 },
+    { id = "mithril_battleaxe", amount = 10 },
+    { id = "adamant_battleaxe", amount = 10 },
+]
+
+[bettys_magic_emporium]
+id = 25
+defaults = [
+    { id = "fire_rune", amount = 300 },
+    { id = "water_rune", amount = 300 },
+    { id = "air_rune", amount = 300 },
+    { id = "earth_rune", amount = 300 },
+    { id = "mind_rune", amount = 100 },
+    { id = "body_rune", amount = 100 },
+    { id = "chaos_rune", amount = 30 },
+    { id = "death_rune", amount = 10 },
+    { id = "eye_of_newt", amount = 300 },
+    { id = "wizard_hat_blue", amount = 10 },
+    { id = "black_wizard_hat", amount = 10 },
+]
+
+[grums_gold_exchange]
+id = 28
+defaults = [
+    { id = "gold_ring", amount = 0 },
+    { id = "sapphire_ring", amount = 0 },
+    { id = "emerald_ring", amount = 0 },
+    { id = "ruby_ring", amount = 0 },
+    { id = "diamond_ring", amount = 0 },
+    { id = "gold_necklace", amount = 0 },
+    { id = "sapphire_necklace", amount = 0 },
+    { id = "emerald_necklace", amount = 0 },
+    { id = "ruby_necklace", amount = 0 },
+    { id = "diamond_necklace", amount = 0 },
+    { id = "gold_amulet", amount = 0 },
+    { id = "sapphire_amulet", amount = 0 },
+    { id = "emerald_amulet", amount = 0 },
+    { id = "ruby_amulet", amount = 0 },
+    { id = "diamond_amulet", amount = 0 },
+    { id = "gold_bracelet", amount = 0 },
+    { id = "emerald_bracelet", amount = 0 },
+    { id = "ruby_bracelet", amount = 0 },
+    { id = "sapphire_bracelet", amount = 0 },
+    { id = "diamond_bracelet", amount = 0 },
+]
+
+[gerrants_fishy_business]
+id = 30
+defaults = [
+    { id = "small_fishing_net", amount = 10 },
+    { id = "fishing_rod", amount = 10 },
+    { id = "fly_fishing_rod", amount = 10 },
+    { id = "harpoon", amount = 1000 },
+    { id = "lobster_pot", amount = 10 },
+    { id = "crayfish_cage", amount = 10 },
+    { id = "fishing_bait", amount = 1000 },
+    { id = "feather", amount = 1000 },
+    { id = "raw_shrimps", amount = 0 },
+    { id = "raw_sardine", amount = 10 },
+    { id = "raw_herring", amount = 0 },
+    { id = "raw_anchovies", amount = 0 },
+    { id = "raw_trout", amount = 0 },
+    { id = "raw_pike", amount = 0 },
+    { id = "raw_salmon", amount = 0 },
+    { id = "raw_tuna", amount = 0 },
+    { id = "raw_lobster", amount = 0 },
+    { id = "raw_swordfish", amount = 0 },
+]
+
+[wydins_food_store]
+id = 76
+defaults = [
+    { id = "pot_of_flour", amount = 500 },
+    { id = "raw_beef", amount = 10 },
+    { id = "raw_chicken", amount = 10 },
+    { id = "cabbage", amount = 10 },
+    { id = "banana", amount = 0 },
+    { id = "redberries", amount = 0 },
+    { id = "bread", amount = 10 },
+    { id = "chocolate_bar", amount = 10 },
+    { id = "cheese", amount = 10 },
+    { id = "tomato", amount = 10 },
+    { id = "raw_potato", amount = 10 },
+    { id = "garlic", amount = 10 },
+]

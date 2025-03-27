@@ -1,0 +1,18 @@
+[legends_guild_general_store]
+id = 83
+defaults = [
+    { id = "swordfish", amount = 10 },
+    { id = "apple_pie", amount = 10 },
+    { id = "attack_potion_3", amount = 10 },
+    { id = "steel_arrow", amount = 10 },
+]
+
+[legends_guild_shop_of_useful_items]
+id = 84
+defaults = [
+    { id = "mithril_seeds", amount = 500 },
+    { id = "dusty_key", amount = 10 },
+    { id = "maze_key", amount = 10 },
+    { id = "shield_right_half", amount = 10 },
+    { id = "cape_of_legends", amount = 10 },
+]

@@ -1,0 +1,141 @@
+[romettis_fine_fashions]
+id = 86
+defaults = [
+    { id = "pink_robe_bottoms", amount = 30 },
+    { id = "green_robe_bottoms", amount = 30 },
+    { id = "blue_robe_bottoms", amount = 30 },
+    { id = "cream_robe_bottoms", amount = 30 },
+    { id = "turquoise_robe_bottoms", amount = 30 },
+    { id = "pink_hat", amount = 30 },
+    { id = "green_hat", amount = 30 },
+    { id = "blue_hat", amount = 30 },
+    { id = "cream_hat", amount = 30 },
+    { id = "turquoise_hat", amount = 30 },
+    { id = "pink_robe_top", amount = 30 },
+    { id = "green_robe_top", amount = 30 },
+    { id = "blue_robe_top", amount = 30 },
+    { id = "cream_robe_top", amount = 30 },
+    { id = "turquoise_robe_top", amount = 30 },
+    { id = "pink_boots", amount = 30 },
+    { id = "green_boots", amount = 30 },
+    { id = "blue_boots", amount = 30 },
+    { id = "cream_boots", amount = 30 },
+    { id = "turquoise_boots", amount = 30 },
+]
+
+[gulluck_and_sons]
+id = 87
+defaults = [
+    { id = "bronze_arrow", amount = 1000 },
+    { id = "bronze_bolts", amount = 300 },
+    { id = "pearl_bolts", amount = 0 },
+    { id = "shortbow", amount = 10 },
+    { id = "longbow", amount = 10 },
+    { id = "crossbow", amount = 10 },
+    { id = "bronze_arrowtips", amount = 100 },
+    { id = "iron_arrowtips", amount = 100 },
+    { id = "steel_arrowtips", amount = 100 },
+    { id = "mithril_arrowtips", amount = 100 },
+    { id = "iron_hatchet", amount = 10 },
+    { id = "steel_hatchet", amount = 10 },
+    { id = "iron_battleaxe", amount = 10 },
+    { id = "steel_battleaxe", amount = 10 },
+    { id = "mithril_battleaxe", amount = 10 },
+    { id = "bronze_2h_sword", amount = 10 },
+    { id = "iron_2h_sword", amount = 10 },
+    { id = "steel_2h_sword", amount = 10 },
+    { id = "black_2h_sword", amount = 10 },
+    { id = "mithril_2h_sword", amount = 10 },
+    { id = "adamant_2h_sword", amount = 10 },
+]
+
+[funchs_fine_groceries]
+id = 88
+defaults = [
+    { id = "brandy", amount = 10 },
+    { id = "gin", amount = 10 },
+    { id = "vodka", amount = 10 },
+    { id = "whisky", amount = 10 },
+    { id = "pineapple", amount = 10 },
+    { id = "equa_leaves", amount = 10 },
+    { id = "orange", amount = 10 },
+    { id = "lemon", amount = 10 },
+    { id = "lime", amount = 10 },
+    { id = "dwellberries", amount = 10 },
+    { id = "cocktail_shaker", amount = 10 },
+    { id = "chocolate_bar", amount = 10 },
+    { id = "chocolate_dust", amount = 10 },
+    { id = "pot_of_cream", amount = 10 },
+    { id = "bucket_of_milk", amount = 10 },
+    { id = "knife", amount = 10 },
+    { id = "cocktail_guide", amount = 10 },
+    { id = "cocktail_glass", amount = 10 },
+]
+
+[grand_tree_groceries]
+id = 89
+defaults = [
+    { id = "gianne_dough", amount = 10 },
+    { id = "equa_leaves", amount = 10 },
+    { id = "pot_of_flour", amount = 10 },
+    { id = "gnome_spice", amount = 10 },
+    { id = "onion", amount = 10 },
+    { id = "raw_potato", amount = 10 },
+    { id = "cabbage", amount = 10 },
+    { id = "tomato", amount = 10 },
+    { id = "cheese", amount = 10 },
+    { id = "spider_on_stick", amount = 10 },
+    { id = "spider_on_shaft", amount = 10 },
+    { id = "lime", amount = 10 },
+    { id = "orange", amount = 10 },
+    { id = "lemon", amount = 10 },
+    { id = "pineapple", amount = 10 },
+    { id = "dwellberries", amount = 10 },
+    { id = "cocktail_shaker", amount = 10 },
+    { id = "chocolate_bar", amount = 10 },
+    { id = "chocolate_dust", amount = 10 },
+    { id = "pot_of_cream", amount = 10 },
+    { id = "bucket_of_milk", amount = 10 },
+    { id = "knife", amount = 10 },
+    { id = "giannes_cook_book", amount = 10 },
+    { id = "batta_tin", amount = 10 },
+    { id = "crunchy_tray", amount = 10 },
+    { id = "gnomebowl_mould", amount = 10 },
+]
+
+[blurberrys_bar]
+id = 99
+defaults = [
+    { id = "premade_blurberry_special", amount = 10 },
+    { id = "premade_chocolate_saturday", amount = 10 },
+    { id = "premade_drunk_dragon", amount = 10 },
+    { id = "premade_fruit_blast", amount = 10 },
+    { id = "premade_pineapple_punch", amount = 10 },
+    { id = "premade_short_green_guy", amount = 10 },
+    { id = "premade_wizard_blizzard", amount = 10 },
+]
+
+[giannes_restaurant]
+id = 100
+defaults = [
+    { id = "premade_veg_batta", amount = 10 },
+    { id = "premade_worm_batta", amount = 10 },
+    { id = "premade_toad_batta", amount = 10 },
+    { id = "premade_fruit_batta", amount = 10 },
+    { id = "premade_cheese_and_tomato_batta", amount = 10 },
+    { id = "premade_worm_hole", amount = 10 },
+    { id = "premade_ttl", amount = 10 },
+    { id = "premade_veg_ball", amount = 10 },
+    { id = "premade_choc_bomb", amount = 10 },
+    { id = "premade_worm_crunchies", amount = 10 },
+    { id = "premade_toad_crunchies", amount = 10 },
+    { id = "premade_chocolate_chip_crunchies", amount = 10 },
+    { id = "premade_spicy_crunchies", amount = 10 },
+]
+
+[yaktwees_invizzy_critters_stall]
+id = 601
+defaults = [
+    { id = "sprite_lure", amount = 1 },
+    { id = "yaktwee_stick", amount = 1 },
+]

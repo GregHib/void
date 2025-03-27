@@ -1,0 +1,18 @@
+[fishing_guild_shop]
+id = 60
+defaults = [
+    { id = "fishing_bait", amount = 1000 },
+    { id = "feather", amount = 1000 },
+    { id = "raw_cod", amount = 0 },
+    { id = "raw_mackerel", amount = 0 },
+    { id = "raw_bass", amount = 0 },
+    { id = "raw_tuna", amount = 0 },
+    { id = "raw_lobster", amount = 0 },
+    { id = "raw_swordfish", amount = 0 },
+    { id = "cod", amount = 0 },
+    { id = "mackerel", amount = 0 },
+    { id = "bass", amount = 0 },
+    { id = "tuna", amount = 0 },
+    { id = "lobster", amount = 0 },
+    { id = "swordfish", amount = 0 },
+]

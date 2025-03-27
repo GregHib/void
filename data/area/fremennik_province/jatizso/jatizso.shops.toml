@@ -1,0 +1,65 @@
+[flosis_fishmongers]
+id = 503
+defaults = [
+    { id = "raw_lobster", amount = 0 },
+    { id = "raw_tuna", amount = 0 },
+    { id = "raw_salmon", amount = 10 },
+    { id = "raw_cod", amount = 10 },
+    { id = "raw_swordfish", amount = 0 },
+    { id = "raw_shark", amount = 0 },
+]
+
+[keepa_kettilons_store]
+id = 504
+defaults = [
+    { id = "tuna", amount = 0 },
+    { id = "salmon", amount = 10 },
+    { id = "cod", amount = 10 },
+    { id = "lobster", amount = 0 },
+    { id = "swordfish", amount = 0 },
+    { id = "shark", amount = 0 },
+]
+
+[armour_shop]
+id = 505
+defaults = [
+    { id = "mithril_chainbody", amount = 10 },
+    { id = "mithril_med_helm", amount = 10 },
+    { id = "mithril_full_helm", amount = 10 },
+    { id = "mithril_sq_shield", amount = 10 },
+    { id = "mithril_kiteshield", amount = 10 },
+    { id = "mithril_platelegs", amount = 10 },
+    { id = "mithril_plateskirt", amount = 10 },
+    { id = "mithril_platebody", amount = 10 },
+]
+
+[weapons_galore]
+id = 506
+defaults = [
+    { id = "mithril_longsword", amount = 10 },
+    { id = "mithril_warhammer", amount = 10 },
+    { id = "mithril_battleaxe", amount = 10 },
+    { id = "mithril_claws", amount = 10 },
+    { id = "mithril_2h_sword", amount = 10 },
+]
+
+[ore_store]
+id = 507
+defaults = [
+    { id = "copper_ore", amount = 10 },
+    { id = "tin_ore", amount = 10 },
+    { id = "iron_ore", amount = 0 },
+    { id = "silver_ore", amount = 0 },
+    { id = "coal", amount = 0 },
+    { id = "gold_ore", amount = 0 },
+    { id = "mithril_ore", amount = 0 },
+    { id = "adamantite_ore", amount = 0 },
+]
+
+[contraband_yak_produce]
+id = 508
+defaults = [
+    { id = "yak_hide", amount = 1000 },
+    { id = "raw_yak_meat", amount = 10 },
+    { id = "yak_hair", amount = 10 },
+]

@@ -1,0 +1,15 @@
+[peksas_helmet_shop]
+id = 10
+defaults = [
+    { id = "bronze_med_helm", amount = 10 },
+    { id = "iron_med_helm", amount = 10 },
+    { id = "steel_med_helm", amount = 10 },
+    { id = "mithril_med_helm", amount = 10 },
+    { id = "adamant_med_helm", amount = 10 },
+    { id = "bronze_full_helm", amount = 10 },
+    { id = "iron_full_helm", amount = 10 },
+    { id = "steel_full_helm", amount = 10 },
+    { id = "black_full_helm", amount = 10 },
+    { id = "mithril_full_helm", amount = 10 },
+    { id = "adamant_full_helm", amount = 10 },
+]

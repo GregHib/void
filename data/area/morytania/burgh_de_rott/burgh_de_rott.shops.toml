@@ -1,0 +1,9 @@
+[aurels_supplies]
+id = 383
+defaults = [
+    { id = "bronze_hatchet", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "thin_snail", amount = 10 },
+    { id = "raw_mackerel", amount = 10 },
+    { id = "spade", amount = 10 },
+]

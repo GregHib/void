@@ -1,0 +1,38 @@
+[unknown_crafting_store] # Perhaps used for crafting stores before nature spirit?
+id = 146
+defaults = [
+    { id = "chisel", amount = 10 },
+    { id = "ring_mould", amount = 10 },
+    { id = "necklace_mould", amount = 10 },
+    { id = "amulet_unstrung_mould", amount = 10 },
+    { id = "needle", amount = 10 },
+    { id = "thread", amount = 1000 },
+    { id = "holy_mould", amount = 10 },
+    { id = "tiara_mould", amount = 10 },
+]
+
+[unknown_crafting_store_2]
+id = 147
+defaults = [
+    { id = "chisel", amount = 10 },
+    { id = "ring_mould", amount = 10 },
+    { id = "necklace_mould", amount = 10 },
+    { id = "amulet_unstrung_mould", amount = 10 },
+    { id = "needle", amount = 10 },
+    { id = "thread", amount = 1000 },
+    { id = "holy_mould", amount = 10 },
+    { id = "tiara_mould", amount = 10 },
+]
+
+[inventory_572]
+id = 572
+defaults = [
+    { id = "air_rune", amount = 300 },
+]
+
+[inventory_578]
+id = 578
+defaults = [
+    { id = "tinderbox", amount = 10 },
+    { id = "rope", amount = 10 },
+]

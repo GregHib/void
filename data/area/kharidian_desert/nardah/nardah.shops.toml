@@ -1,0 +1,49 @@
+[nardah_general_store]
+id = 17
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "shears", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "bowl", amount = 10 },
+    { id = "cake_tin", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "newcomer_map", amount = 10 },
+    { id = "security_book", amount = 10 },
+]
+
+[seddus_adventurers_store]
+id = 344
+defaults = [
+    { id = "rune_plateskirt", amount = 10 },
+    { id = "rune_platelegs", amount = 10 },
+    { id = "rune_chainbody", amount = 10 },
+    { id = "green_dragonhide_chaps", amount = 10 },
+    { id = "green_dragonhide_vambraces", amount = 10 },
+    { id = "steel_kiteshield", amount = 10 },
+    { id = "black_med_helm", amount = 10 },
+]
+
+[roks_chocs_box]
+id = 345
+defaults = [
+    { id = "choc_ice", amount = 10 },
+    { id = "chocolate_bar", amount = 10 },
+]
+
+[nardah_hunter_shop]
+id = 484
+defaults = [
+    { id = "butterfly_net", amount = 10 },
+    { id = "butterfly_jar", amount = 300 },
+    { id = "magic_box", amount = 300 },
+    { id = "noose_wand", amount = 10 },
+    { id = "bird_snare", amount = 30 },
+    { id = "box_trap", amount = 30 },
+    { id = "teasing_stick", amount = 10 },
+    { id = "unlit_torch", amount = 10 },
+    { id = "rabbit_snare", amount = 30 },
+    { id = "grenwall_spikes", amount = 0 },
+]

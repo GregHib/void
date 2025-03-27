@@ -1,0 +1,22 @@
+[bank]
+id = 95
+stack = "Always"
+
+[collection_box_1]
+id = 523
+
+[collection_box_2]
+id = 524
+
+[collection_box_3]
+id = 525
+
+[collection_box_4]
+id = 526
+
+[collection_box_5]
+id = 527
+
+[collection_box_6]
+id = 528
+

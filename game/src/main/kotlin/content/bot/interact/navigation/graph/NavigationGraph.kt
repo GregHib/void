@@ -5,7 +5,6 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
@@ -46,7 +45,7 @@ class NavigationGraph(
         adjacencyList.remove(node)
     }
 
-    fun load(path: String = Settings["map.navGraph"]): NavigationGraph {
+    fun load(path: String): NavigationGraph {
         timedLoad("ai nav graph edge") {
             val map = Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>>()
             var count = 0

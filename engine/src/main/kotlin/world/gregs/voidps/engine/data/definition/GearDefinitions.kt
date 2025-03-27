@@ -7,9 +7,7 @@ import net.pearx.kasechange.toSentenceCase
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.GearDefinition
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
@@ -20,7 +18,7 @@ class GearDefinitions {
 
     fun get(style: String): List<GearDefinition> = definitions[style] ?: emptyList()
 
-    fun load(path: String = Settings["definitions.gearSets"]): GearDefinitions {
+    fun load(path: String): GearDefinitions {
         timedLoad("gear definition") {
             val definitions = Object2ObjectOpenHashMap<String, MutableList<GearDefinition>>(100, Hash.VERY_FAST_LOAD_FACTOR)
             Config.fileReader(path) {

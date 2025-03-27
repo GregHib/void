@@ -1,0 +1,27 @@
+[dragon_breath]
+id = 393
+height = 43
+curve = 15
+delay = 51
+flight_time = [ 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 ]
+
+[dragon_breath_toxic]
+id = 394
+height = 43
+curve = 15
+delay = 51
+flight_time = [ 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 ]
+
+[dragon_breath_ice]
+id = 395
+height = 43
+curve = 15
+delay = 51
+flight_time = [ 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 ]
+
+[dragon_breath_shock]
+id = 396
+height = 43
+curve = 15
+delay = 51
+flight_time = [ 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 ]

@@ -1,0 +1,178 @@
+[al_kharid_general_store]
+id = 3
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "shears", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "bowl", amount = 10 },
+    { id = "cake_tin", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "newcomer_map", amount = 10 },
+    { id = "security_book", amount = 10 },
+]
+
+[zekes_superior_scimitars]
+id = 11
+defaults = [
+    { id = "bronze_scimitar", amount = 10 },
+    { id = "iron_scimitar", amount = 10 },
+    { id = "steel_scimitar", amount = 10 },
+    { id = "mithril_scimitar", amount = 10 },
+]
+
+[louies_armoured_legs_bazaar]
+id = 12
+defaults = [
+    { id = "bronze_platelegs", amount = 10 },
+    { id = "iron_platelegs", amount = 10 },
+    { id = "steel_platelegs", amount = 10 },
+    { id = "black_platelegs", amount = 10 },
+    { id = "mithril_platelegs", amount = 10 },
+    { id = "adamant_platelegs", amount = 10 },
+]
+
+[ranaels_super_skirt_store]
+id = 16
+defaults = [
+    { id = "bronze_plateskirt", amount = 10 },
+    { id = "iron_plateskirt", amount = 10 },
+    { id = "steel_plateskirt", amount = 10 },
+    { id = "black_plateskirt", amount = 10 },
+    { id = "mithril_plateskirt", amount = 10 },
+    { id = "adamant_plateskirt", amount = 10 },
+]
+
+[gem_trader]
+id = 26
+defaults = [
+    { id = "uncut_sapphire", amount = 0 },
+    { id = "uncut_emerald", amount = 0 },
+    { id = "uncut_ruby", amount = 0 },
+    { id = "uncut_diamond", amount = 0 },
+    { id = "sapphire", amount = 0 },
+    { id = "emerald", amount = 0 },
+    { id = "ruby", amount = 0 },
+    { id = "diamond", amount = 0 },
+]
+
+[dommiks_crafting_store]
+id = 32
+defaults = [
+    { id = "chisel", amount = 10 },
+    { id = "ring_mould", amount = 10 },
+    { id = "necklace_mould", amount = 10 },
+    { id = "amulet_unstrung_mould", amount = 10 },
+    { id = "needle", amount = 10 },
+    { id = "thread", amount = 1000 },
+    { id = "holy_mould", amount = 10 },
+    { id = "sickle_mould", amount = 10 },
+    { id = "tiara_mould", amount = 10 },
+    { id = "bolt_mould", amount = 10 },
+    { id = "bracelet_mould", amount = 10 },
+]
+
+[alis_discount_wares]
+id = 252
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "waterskin_3", amount = 30 },
+    { id = "desert_shirt", amount = 10 },
+    { id = "desert_boots", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "fake_beard", amount = 10 },
+    { id = "kharidian_headpiece", amount = 10 },
+    { id = "papyrus", amount = 10 },
+    { id = "knife", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "bronze_pickaxe", amount = 10 },
+    { id = "raw_chicken", amount = 10 },
+]
+
+[alis_discount_wares_blackjacks_o]
+id = 309
+defaults = [
+    { id = "oak_blackjack_o", amount = 30 },
+    { id = "willow_blackjack_o", amount = 30 },
+    { id = "maple_blackjack_o", amount = 30 },
+    { id = "maple_blackjack", amount = 30 },
+    { id = "willow_blackjack", amount = 30 },
+]
+
+[alis_discount_wares_blackjacks_d]
+id = 310
+defaults = [
+    { id = "oak_blackjack_d", amount = 30 },
+    { id = "willow_blackjack_d", amount = 30 },
+    { id = "maple_blackjack_d", amount = 30 },
+    { id = "maple_blackjack", amount = 30 },
+    { id = "willow_blackjack", amount = 30 },
+]
+
+[alis_discount_wares_menaphite]
+id = 311
+defaults = [
+    { id = "menap_headgear_purple", amount = 30 },
+    { id = "menaphite_top_purple", amount = 30 },
+    { id = "menaphite_robe_purple", amount = 30 },
+    { id = "menap_action_kilt_purple", amount = 30 },
+    { id = "menap_headgear_red", amount = 30 },
+    { id = "menaphite_top_red", amount = 30 },
+    { id = "menaphite_robe_red", amount = 30 },
+    { id = "menap_action_kilt_red", amount = 30 },
+]
+
+[alis_discount_wares_desert]
+id = 312
+defaults = [
+    { id = "fez", amount = 30 },
+    { id = "desert_top", amount = 30 },
+    { id = "desert_robes", amount = 30 },
+    { id = "desert_top_overcoat", amount = 30 },
+    { id = "desert_legs", amount = 30 },
+]
+
+[alis_discount_wares_elemental]
+id = 313
+defaults = [
+    { id = "fire_rune", amount = 300 },
+    { id = "water_rune", amount = 300 },
+    { id = "air_rune", amount = 300 },
+    { id = "earth_rune", amount = 300 },
+]
+
+[alis_discount_wares_catalytic]
+id = 314
+defaults = [
+    { id = "nature_rune", amount = 300 },
+    { id = "law_rune", amount = 300 },
+    { id = "chaos_rune", amount = 300 },
+    { id = "death_rune", amount = 100 },
+    { id = "mind_rune", amount = 300 },
+    { id = "body_rune", amount = 300 },
+    { id = "blood_rune", amount = 100 },
+    { id = "cosmic_rune", amount = 300 },
+    { id = "soul_rune", amount = 100 },
+]
+
+[faruqs_tools_for_games]
+id = 551
+defaults = [
+    { id = "magic_skullball", amount = 10 },
+    { id = "ring_of_seeking_hide", amount = 10 },
+    { id = "ring_of_seeking_seek", amount = 10 },
+    { id = "ring_of_seeking_both", amount = 10 },
+    { id = "marker_seeds", amount = 10 },
+    { id = "ticker", amount = 10 },
+    { id = "empty_bag_caller", amount = 10 },
+    { id = "timepiece_stopped", amount = 10 },
+    { id = "racing_boots", amount = 10 },
+    { id = "starting_horn", amount = 10 },
+    { id = "voting_hat_red", amount = 10 },
+    { id = "orb_of_counting", amount = 10 },
+    { id = "faruqs_toolonomicon", amount = 10 },
+    { id = "orb_of_oculus", amount = 10 },
+]

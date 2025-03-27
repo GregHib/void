@@ -1,0 +1,87 @@
+[home_tele_1]
+id = 775
+
+[home_tele_2]
+id = 800
+
+[home_tele_3]
+id = 801
+
+[home_tele_4]
+id = 803
+
+[home_tele_5]
+id = 804
+
+[home_tele_6]
+id = 1703
+
+[home_tele_7]
+id = 1704
+
+[home_tele_9]
+id = 1705
+
+[home_tele_10]
+id = 1706
+
+[home_tele_11]
+id = 1707
+
+[home_tele_12]
+id = 1708
+
+[home_tele_13]
+id = 1709
+
+[home_tele_14]
+id = 1710
+
+[home_tele_15]
+id = 1711
+
+[home_tele_16]
+id = 1712
+
+[home_tele_17]
+id = 1713
+
+[teleport_modern]
+id = 1576
+
+[teleport_land_modern]
+id = 1577
+
+[teleport_ancient]
+id = 1681
+
+[teleport_lunar]
+id = 1685
+
+[teleport_tablet]
+id = 1680
+
+[teleport_scroll]
+id = 94
+
+[teleport_ectophial]
+id = 1678
+
+[teleport_land_ectophial]
+id = 1679
+
+[empty_ectophial]
+id = 1688
+
+[teleport_jewellery]
+id = 1684
+
+[teleport_pharaohs_sceptre]
+id = 715
+
+[tele_other]
+id = 343
+
+[tele_other_receive]
+id = 342
+height = 52

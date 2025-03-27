@@ -1,0 +1,59 @@
+[climb_down]
+id = 827
+
+[climb_up]
+id = 828
+
+[assist]
+id = 7299
+
+[human_death]
+id = 836
+
+[bend_down]
+id = 827
+
+[eat_drink]
+id = 829
+
+[take]
+id = 832
+
+[unarmed_punch]
+id = 422
+
+[unarmed_kick]
+id = 423
+
+[unarmed_block]
+id = 422
+
+[unarmed_defend]
+id = 424
+
+[human_attack]
+id = 422
+
+[human_block]
+id = 422
+
+[human_defend]
+id = 424
+
+[hand_over_item]
+id = 14737
+
+[pocket_item]
+id = 14738
+
+[dig_with_spade]
+id = 830
+
+[open_map]
+id = 5354
+
+[shear_sheep]
+id = 893
+
+[pick_plant]
+id = 2282

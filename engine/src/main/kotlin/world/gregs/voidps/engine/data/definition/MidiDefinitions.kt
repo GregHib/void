@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.config.Config
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.MidiDefinition
 import world.gregs.voidps.engine.timedLoad
 
@@ -12,7 +11,7 @@ class MidiDefinitions : DefinitionsDecoder<MidiDefinition> {
     override lateinit var definitions: Array<MidiDefinition>
     override lateinit var ids: Map<String, Int>
 
-    fun load(path: String = Settings["definitions.midis"]): MidiDefinitions {
+    fun load(path: String): MidiDefinitions {
         timedLoad("midi definition") {
             val ids = Object2IntOpenHashMap<String>(50, Hash.VERY_FAST_LOAD_FACTOR)
             val definitions = Array(4000) { MidiDefinition.EMPTY }

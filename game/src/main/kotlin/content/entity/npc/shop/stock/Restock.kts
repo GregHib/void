@@ -4,6 +4,7 @@ import content.entity.npc.shop.general.GeneralStores
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.entity.worldSpawn
@@ -74,11 +75,11 @@ worldTimerTick("general_store_restock") {
 }
 
 fun restock(def: InventoryDefinition, inventory: Inventory) {
-    val defaults = def.getOrNull<List<Map<String, Int>>>("defaults")
+    val defaults = def.getOrNull<List<Item>>("defaults")
     for (index in 0 until def.length) {
-        val map = defaults?.getOrNull(index)
-        var maximum = map?.values?.firstOrNull()
-        val id = map?.keys?.firstOrNull()
+        val i = defaults?.getOrNull(index)
+        val id = i?.id
+        var maximum = i?.amount
         val item = inventory[index]
         if (id == null || maximum == null) {
             maximum = 0

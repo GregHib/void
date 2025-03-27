@@ -1,0 +1,35 @@
+[jump_onto_monkey_bars]
+id = 742
+
+[ninja_monkey_jump]
+id = 3481
+
+[ninja_monkey_bars_jump]
+id = 3482
+
+[ninja_monkey_bars_fail]
+id = 3493
+
+[ninja_monkey_jump_off]
+id = 3484
+
+[ninja_monkey_climb_tree]
+id = 3487
+
+[ninja_monkey_climb_tree_fail]
+id = 3492
+
+[ninja_monkey_fall]
+id = 3486
+
+[rocks_climb_up_fail]
+id = 739
+
+[ninja_monkey_swing]
+id = 3488
+
+[ape_atol_rope_swing]
+id = 3123
+
+[fail_rope_swing]
+id = 3131

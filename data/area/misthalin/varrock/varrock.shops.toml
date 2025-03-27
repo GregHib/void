@@ -1,0 +1,287 @@
+[horviks_armour_shop]
+id = 2
+defaults = [
+    { id = "bronze_chainbody", amount = 10 },
+    { id = "iron_chainbody", amount = 10 },
+    { id = "bronze_med_helm", amount = 10 },
+    { id = "iron_med_helm", amount = 10 },
+    { id = "bronze_platebody", amount = 10 },
+    { id = "iron_platebody", amount = 10 },
+    { id = "bronze_sq_shield", amount = 10 },
+    { id = "iron_sq_shield", amount = 10 },
+    { id = "bronze_platelegs", amount = 10 },
+    { id = "iron_platelegs", amount = 10 },
+    { id = "bronze_plateskirt", amount = 10 },
+    { id = "iron_plateskirt", amount = 10 },
+    { id = "steel_platebody", amount = 10 },
+    { id = "black_platebody", amount = 10 },
+    { id = "mithril_platebody", amount = 10 },
+]
+
+[auburys_rune_shop]
+id = 5
+defaults = [
+    { id = "fire_rune", amount = 300 },
+    { id = "water_rune", amount = 300 },
+    { id = "air_rune", amount = 300 },
+    { id = "earth_rune", amount = 300 },
+    { id = "mind_rune", amount = 100 },
+    { id = "body_rune", amount = 100 },
+    { id = "chaos_rune", amount = 30 },
+    { id = "death_rune", amount = 10 },
+]
+
+[varrock_sword_shop]
+id = 6
+defaults = [
+    { id = "bronze_sword", amount = 10 },
+    { id = "iron_sword", amount = 10 },
+    { id = "steel_sword", amount = 10 },
+    { id = "black_sword", amount = 10 },
+    { id = "mithril_sword", amount = 10 },
+    { id = "adamant_sword", amount = 10 },
+    { id = "bronze_longsword", amount = 10 },
+    { id = "iron_longsword", amount = 10 },
+    { id = "steel_longsword", amount = 10 },
+    { id = "black_longsword", amount = 10 },
+    { id = "mithril_longsword", amount = 10 },
+    { id = "adamant_longsword", amount = 10 },
+    { id = "bronze_dagger", amount = 10 },
+    { id = "iron_dagger", amount = 10 },
+    { id = "steel_dagger", amount = 10 },
+    { id = "black_dagger", amount = 10 },
+    { id = "mithril_dagger", amount = 10 },
+    { id = "adamant_dagger", amount = 10 },
+]
+
+[varrock_sword_shop_sample]
+id = 555
+defaults = [
+    { id = "bronze_sword", amount = 1 },
+]
+
+
+[lowes_archery_emporium]
+id = 7
+defaults = [
+    { id = "bronze_arrow", amount = 1000 },
+    { id = "iron_arrow", amount = 100 },
+    { id = "steel_arrow", amount = 100 },
+    { id = "mithril_arrow", amount = 100 },
+    { id = "adamant_arrow", amount = 30 },
+    { id = "bronze_bolts", amount = 300 },
+    { id = "shortbow", amount = 10 },
+    { id = "longbow", amount = 10 },
+    { id = "oak_shortbow", amount = 10 },
+    { id = "oak_longbow", amount = 10 },
+    { id = "willow_shortbow", amount = 10 },
+    { id = "willow_longbow", amount = 10 },
+    { id = "maple_shortbow", amount = 10 },
+    { id = "maple_longbow", amount = 10 },
+    { id = "crossbow", amount = 10 },
+    { id = "leather_body", amount = 10 },
+    { id = "leather_gloves", amount = 10 },
+    { id = "leather_boots", amount = 10 },
+    { id = "leather_chaps", amount = 10 },
+    { id = "studded_body", amount = 10 },
+    { id = "studded_chaps", amount = 10 },
+    { id = "hardleather_body", amount = 10 },
+]
+
+[thessalias_fine_clothes]
+id = 8
+defaults = [
+    { id = "white_apron", amount = 10 },
+    { id = "leather_body", amount = 10 },
+    { id = "leather_gloves", amount = 10 },
+    { id = "leather_boots", amount = 10 },
+    { id = "brown_apron", amount = 10 },
+    { id = "pink_skirt", amount = 10 },
+    { id = "black_wizard_robe_skirt", amount = 10 },
+    { id = "wizard_robe_skirt", amount = 10 },
+    { id = "cape_red", amount = 10 },
+    { id = "silk", amount = 10 },
+    { id = "priest_gown_bottom", amount = 10 },
+    { id = "priest_gown_top", amount = 10 },
+    { id = "needle", amount = 10 },
+    { id = "thread", amount = 1000 },
+]
+
+[zaffs_superior_spellcasting]
+id = 9
+defaults = [
+    { id = "staff", amount = 10 },
+    { id = "magic_staff", amount = 10 },
+    { id = "staff_of_air", amount = 10 },
+    { id = "staff_of_water", amount = 10 },
+    { id = "staff_of_earth", amount = 10 },
+    { id = "staff_of_fire", amount = 10 },
+]
+
+[varrock_general_store]
+id = 13
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "shears", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "bowl", amount = 10 },
+    { id = "cake_tin", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "newcomer_map", amount = 10 },
+    { id = "security_book", amount = 10 },
+]
+
+[valaines_shop_of_champions]
+id = 18
+defaults = [
+    { id = "cape_blue", amount = 10 },
+    { id = "black_full_helm", amount = 10 },
+    { id = "black_platelegs", amount = 10 },
+    { id = "adamant_platebody", amount = 10 },
+]
+
+[scavvos_rune_store]
+id = 33
+defaults = [
+    { id = "rune_plateskirt", amount = 10 },
+    { id = "rune_platelegs", amount = 10 },
+    { id = "rune_mace", amount = 10 },
+    { id = "rune_chainbody", amount = 10 },
+    { id = "rune_longsword", amount = 10 },
+    { id = "rune_sword", amount = 10 },
+    { id = "green_dragonhide_chaps", amount = 10 },
+    { id = "green_dragonhide_vambraces", amount = 10 },
+    { id = "coif", amount = 10 },
+]
+
+[zaffs_superior_spellcasting_duplicate]
+id = 51
+defaults = [
+    { id = "staff", amount = 10 },
+    { id = "magic_staff", amount = 10 },
+    { id = "staff_of_air", amount = 10 },
+    { id = "staff_of_water", amount = 10 },
+    { id = "staff_of_earth", amount = 10 },
+    { id = "staff_of_fire", amount = 10 },
+]
+
+[fancy_clothes_store]
+id = 63
+defaults = [
+    { id = "chefs_hat", amount = 10 },
+    { id = "wizard_hat_blue", amount = 10 },
+    { id = "cape_yellow", amount = 10 },
+    { id = "grey_wolf_fur", amount = 10 },
+    { id = "bear_fur", amount = 10 },
+    { id = "needle", amount = 10 },
+    { id = "thread", amount = 1000 },
+    { id = "leather_gloves", amount = 10 },
+    { id = "leather_boots", amount = 10 },
+    { id = "priest_gown_bottom", amount = 10 },
+    { id = "priest_gown_top", amount = 10 },
+    { id = "brown_apron", amount = 10 },
+    { id = "pink_skirt", amount = 10 },
+    { id = "black_wizard_robe_skirt", amount = 10 },
+    { id = "wizard_robe_skirt", amount = 10 },
+    { id = "cape_red", amount = 10 },
+    { id = "eye_patch", amount = 10 },
+    { id = "red_feather", amount = 0 },
+    { id = "yellow_feather", amount = 0 },
+    { id = "orange_feather", amount = 0 },
+    { id = "blue_feather", amount = 0 },
+    { id = "stripy_feather", amount = 0 },
+    { id = "wimpy_feather", amount = 0 },
+]
+
+[ye_olde_tea_shoppe]
+id = 69
+defaults = [
+    { id = "cup_of_tea", amount = 10 },
+]
+
+[pie_shop]
+id = 352
+defaults = [
+    { id = "pie_recipe_book", amount = 10 },
+    { id = "redberry_pie", amount = 0 },
+    { id = "meat_pie", amount = 0 },
+    { id = "mud_pie", amount = 0 },
+    { id = "apple_pie", amount = 0 },
+    { id = "garden_pie", amount = 0 },
+    { id = "fish_pie", amount = 0 },
+    { id = "admiral_pie", amount = 0 },
+    { id = "wild_pie", amount = 0 },
+    { id = "summer_pie", amount = 0 },
+    { id = "pot_of_flour", amount = 100 },
+    { id = "pie_dish", amount = 100 },
+]
+
+[custom_fur_clothing]
+id = 482
+defaults = [
+    { id = "polar_camo_top", amount = 1 },
+    { id = "polar_camo_legs", amount = 1 },
+    { id = "wood_camo_top", amount = 1 },
+    { id = "wood_camo_legs", amount = 1 },
+    { id = "jungle_camo_top", amount = 1 },
+    { id = "jungle_camo_legs", amount = 1 },
+    { id = "desert_camo_top", amount = 1 },
+    { id = "desert_camo_legs", amount = 1 },
+    { id = "gloves_of_silence", amount = 1 },
+    { id = "spotted_cape", amount = 1 },
+    { id = "larupia_hat", amount = 1 },
+    { id = "larupia_top", amount = 1 },
+    { id = "larupia_legs", amount = 1 },
+    { id = "graahk_headdress", amount = 1 },
+    { id = "graahk_top", amount = 1 },
+    { id = "graahk_legs", amount = 1 },
+    { id = "kyatt_hat", amount = 1 },
+    { id = "kyatt_top", amount = 1 },
+    { id = "kyatt_legs", amount = 1 },
+    { id = "spottier_cape", amount = 1 },
+]
+
+[lowes_archery_emporium_sample]
+id = 556
+defaults = [
+    { id = "bronze_arrow", amount = 30 },
+    { id = "shortbow", amount = 1 },
+    { id = "longbow", amount = 1 },
+]
+
+[auburys_rune_shop_sample]
+id = 557
+defaults = [
+    { id = "air_rune", amount = 30 },
+    { id = "mind_rune", amount = 30 },
+]
+
+[urists_crafting_supplies]
+id = 574
+defaults = [
+    { id = "chisel", amount = 10 },
+    { id = "ring_mould", amount = 10 },
+    { id = "necklace_mould", amount = 10 },
+    { id = "amulet_unstrung_mould", amount = 10 },
+    { id = "needle", amount = 10 },
+    { id = "holy_mould", amount = 10 },
+    { id = "sickle_mould", amount = 10 },
+    { id = "tiara_mould", amount = 10 },
+    { id = "bolt_mould", amount = 10 },
+    { id = "bracelet_mould", amount = 10 },
+]
+
+[dealgas_scimitar_emporium]
+id = 579
+defaults = [
+    { id = "dragon_scimitar", amount = 10 },
+]
+
+[naffs_knockoff_staves]
+id = 600
+defaults = [
+    { id = "battlestaff", amount = 80 },
+]

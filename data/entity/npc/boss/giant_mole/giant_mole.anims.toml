@@ -1,0 +1,17 @@
+[giant_mole_burrow]
+id = 3314
+
+[giant_mole_attack]
+id = 3312
+
+[giant_mole_defend]
+id = 3311
+
+[giant_mole_death]
+id = 3310
+
+[dirt_projectile]
+id = 570
+
+[giant_mole_burrow_up]
+id = 1664

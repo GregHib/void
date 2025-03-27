@@ -1,0 +1,271 @@
+[bronze_arrow_shoot]
+id = 19
+height = 60
+
+[bronze_arrow]
+id = 10
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[iron_arrow_shoot]
+id = 18
+height = 60
+
+[iron_arrow]
+id = 9
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[steel_arrow_shoot]
+id = 18
+height = 60
+
+[steel_arrow]
+id = 9
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[mithril_arrow_shoot]
+id = 21
+height = 60
+
+[mithril_arrow]
+id = 12
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[adamant_arrow_shoot]
+id = 22
+height = 60
+
+[adamant_arrow]
+id = 13
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[rune_arrow_shoot]
+id = 24
+height = 60
+
+[rune_arrow]
+id = 15
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[ice_arrow_shoot]
+id = 25
+height = 60
+
+[ice_arrow]
+id = 16
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[broad_arrow_shoot]
+id = 325
+height = 60
+
+[broad_arrow]
+id = 326
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[dragon_arrow]
+id = 1115
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[training_arrows_shoot]
+id = 806
+height = 60
+
+[training_arrows]
+id = 805
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[brutal_shoot]
+id = 403
+height = 35
+
+[brutal_arrow]
+id = 404
+delay = 41
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[ogre_arrow_shoot]
+id = 243
+height = 20
+
+[ogre_arrow]
+id = 242
+delay = 41
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[guthix_arrows_shoot]
+id = 95
+height = 60
+
+[guthix_arrows]
+id = 98
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[saradomin_arrows_shoot]
+id = 96
+height = 60
+
+[saradomin_arrows]
+id = 99
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[zamorak_arrows_shoot]
+id = 97
+height = 60
+
+[zamorak_arrows]
+id = 100
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[fire_arrows_unlit_shoot]
+id = 26
+height = 60
+
+[fire_arrows_unlit]
+id = 17
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[fire_arrows_lit_shoot]
+id = 26
+height = 60
+
+[fire_arrows_lit]
+id = 17
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[special_arrow_shoot]
+id = 250
+height = 60
+
+[special_arrow]
+id = 249
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[snapshot_special]
+id = 256
+height = 60
+
+[bronze_arrow_double_shot]
+id = 1104
+height = 60
+
+[iron_arrow_double_shot]
+id = 1105
+height = 60
+
+[steel_arrow_double_shot]
+id = 1106
+height = 60
+
+[mithril_arrow_double_shot]
+id = 1107
+height = 60
+
+[adamant_arrow_double_shot]
+id = 1108
+height = 60
+
+[rune_arrow_double_shot]
+id = 1109
+height = 60
+
+[ice_arrow_double_shot]
+id = 1110
+height = 60
+
+[dragon_arrow_double_shot]
+id = 1111
+height = 60
+
+[broad_arrow_double_shot]
+id = 1112
+height = 60
+
+[fire_arrows_unlit_double_shot]
+id = 1113
+height = 60
+
+[fire_arrows_lit_double_shot]
+id = 1114
+height = 60
+
+[descent_of_arrow]
+id = 1120
+
+[descent_of_dragons_head]
+id = 1099
+
+[arrow_smoke]
+id = 1101
+
+[arrow_smoke_2]
+id = 1101
+
+[zaryte_arrow]
+id = 1066
+delay = 41
+height = 3
+curve = 15
+flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+
+[descent_of_darkness_impact]
+id = 1103
+
+[descent_of_dragons_impact]
+id = 1100
+
+[snipe_special]
+id = 698
+delay = 41
+height = 3
+curve = 5
+flight_time = [ 22, 25, 28, 31, 34, 37, 40, 43 ]

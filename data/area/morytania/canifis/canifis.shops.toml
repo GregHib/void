@@ -1,0 +1,62 @@
+[rufuss_meat_emporium]
+id = 143
+defaults = [
+    { id = "raw_beef", amount = 100 },
+    { id = "raw_chicken", amount = 30 },
+    { id = "raw_rat_meat", amount = 10 },
+    { id = "raw_bear_meat", amount = 10 },
+    { id = "raw_trout", amount = 0 },
+    { id = "raw_pike", amount = 0 },
+    { id = "raw_salmon", amount = 0 },
+    { id = "raw_shark", amount = 0 },
+]
+
+[barkers_haberdashery]
+id = 144
+defaults = [
+    { id = "boots_grey", amount = 10 },
+    { id = "robe_top_grey", amount = 10 },
+    { id = "robe_bottoms_grey", amount = 10 },
+    { id = "hat_grey", amount = 10 },
+    { id = "gloves_grey", amount = 10 },
+    { id = "boots_red", amount = 10 },
+    { id = "robe_top_red", amount = 10 },
+    { id = "robe_bottoms_red", amount = 10 },
+    { id = "hat_red", amount = 10 },
+    { id = "gloves_red", amount = 10 },
+    { id = "boots_yellow", amount = 10 },
+    { id = "robe_top_yellow", amount = 10 },
+    { id = "robe_bottoms_yellow", amount = 10 },
+    { id = "hat_yellow", amount = 10 },
+    { id = "gloves_yellow", amount = 10 },
+    { id = "boots_teal", amount = 10 },
+    { id = "robe_top_teal", amount = 10 },
+    { id = "robe_bottoms_teal", amount = 10 },
+    { id = "hat_teal", amount = 10 },
+    { id = "gloves_teal", amount = 10 },
+    { id = "boots_purple", amount = 10 },
+    { id = "robe_top_purple", amount = 10 },
+    { id = "robe_bottoms_purple", amount = 10 },
+    { id = "hat_purple", amount = 10 },
+    { id = "gloves_purple", amount = 10 },
+    { id = "cape_red", amount = 10 },
+    { id = "cape_black", amount = 10 },
+    { id = "cape_blue", amount = 10 },
+    { id = "cape_yellow", amount = 10 },
+    { id = "cape_green", amount = 10 },
+]
+
+[canifis_general_store]
+id = 145
+defaults = [
+    { id = "needle", amount = 10 },
+    { id = "thread", amount = 1000 },
+    { id = "empty_pot", amount = 30 },
+    { id = "bucket", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "sample_bottle", amount = 10 },
+    { id = "knife", amount = 10 },
+]

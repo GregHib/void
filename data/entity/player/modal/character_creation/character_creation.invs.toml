@@ -1,0 +1,128 @@
+[character_creation_3]
+id = 463
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+    { id = "character_creation_14", amount = 1 },
+    { id = "character_creation_15", amount = 1 },
+]
+
+[character_creation_7]
+id = 486
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+    { id = "character_creation_11", amount = 1 },
+    { id = "character_creation_10", amount = 1 },
+]
+
+[character_creation_12]
+id = 499
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+    { id = "character_creation_12", amount = 1 },
+]
+
+[inventory_585]
+id = 585
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+]
+
+[character_creation_2]
+id = 586
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+    { id = "character_creation_2", amount = 1 },
+]
+
+[character_creation_8]
+id = 587
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+    { id = "character_creation_3", amount = 1 },
+]
+
+[character_creation_15]
+id = 588
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+    { id = "character_creation_4", amount = 1 },
+]
+
+[character_creation_16]
+id = 589
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+    { id = "character_creation_6", amount = 1 },
+    { id = "character_creation_7", amount = 1 },
+]
+
+[character_creation_17]
+id = 590
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+    { id = "character_creation_8", amount = 1 },
+    { id = "character_creation_9", amount = 1 },
+]
+
+[character_creation_9]
+id = 591
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+    { id = "character_creation_13", amount = 1 },
+]
+
+[character_creation_4]
+id = 592
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+    { id = "character_creation_16", amount = 1 },
+]
+
+[character_creation_14]
+id = 593
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+    { id = "character_creation_17", amount = 1 },
+]
+
+[character_creation_1]
+id = 594
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+    { id = "character_creation_18", amount = 1 },
+]
+
+[character_creation_11]
+id = 595
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+    { id = "character_creation_19", amount = 1 },
+]
+
+[character_creation_10]
+id = 596
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+    { id = "character_creation_20", amount = 1 },
+]
+
+[character_creation_13]
+id = 597
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+    { id = "character_creation_5", amount = 1 },
+]
+
+[character_creation_18]
+id = 598
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+    { id = "character_creation_21", amount = 1 },
+]
+
+[character_creation_19]
+id = 599
+defaults = [
+    { id = "character_creation_shadow", amount = 1 },
+    { id = "character_creation_22", amount = 1 },
+]

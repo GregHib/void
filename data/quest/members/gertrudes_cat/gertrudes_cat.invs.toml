@@ -1,0 +1,10 @@
+[gertrudes_cats]
+id = 320
+defaults = [
+    { id = "pet_kitten", amount = 1 },
+    { id = "pet_kitten_2", amount = 1 },
+    { id = "pet_kitten_3", amount = 1 },
+    { id = "pet_kitten_4", amount = 1 },
+    { id = "pet_kitten_5", amount = 1 },
+    { id = "pet_kitten_6", amount = 1 },
+]

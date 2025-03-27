@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.list
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -33,9 +34,9 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
         get() = Settings["world.members", false]
 
     fun start(files: Map<String, List<String>>) {
-        loadItemSpawns(get<FloorItems>(), get<ItemSpawns>(), files.getOrDefault(Settings["spawns.items"], emptyList()), get())
-        loadObjectSpawns(get<GameObjects>(), files.getOrDefault(Settings["spawns.objects"], emptyList()), get())
-        loadNpcSpawns(get<NPCs>(), files.getOrDefault(Settings["spawns.npcs"], emptyList()), get())
+        loadItemSpawns(get<FloorItems>(), get<ItemSpawns>(), files.list(Settings["spawns.items"]), get())
+        loadObjectSpawns(get<GameObjects>(), files.list(Settings["spawns.objects"]), get())
+        loadNpcSpawns(get<NPCs>(), files.list(Settings["spawns.npcs"]), get())
         emit(Spawn)
     }
 

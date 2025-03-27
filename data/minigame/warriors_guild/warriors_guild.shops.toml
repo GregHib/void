@@ -1,0 +1,60 @@
+[warriors_guild_food_shop]
+id = 410
+defaults = [
+    { id = "trout", amount = 10 },
+    { id = "bass", amount = 10 },
+    { id = "plain_pizza", amount = 10 },
+    { id = "potato_with_cheese", amount = 10 },
+    { id = "stew", amount = 10 },
+]
+
+[warriors_guild_armoury]
+id = 411
+defaults = [
+    { id = "iron_battleaxe", amount = 10 },
+    { id = "steel_battleaxe", amount = 10 },
+    { id = "mithril_battleaxe", amount = 10 },
+    { id = "bronze_sword", amount = 10 },
+    { id = "iron_sword", amount = 10 },
+    { id = "steel_sword", amount = 10 },
+    { id = "black_sword", amount = 10 },
+    { id = "mithril_sword", amount = 10 },
+    { id = "adamant_sword", amount = 10 },
+    { id = "bronze_longsword", amount = 10 },
+    { id = "iron_longsword", amount = 10 },
+    { id = "steel_longsword", amount = 10 },
+    { id = "black_longsword", amount = 10 },
+    { id = "mithril_longsword", amount = 10 },
+    { id = "adamant_longsword", amount = 10 },
+    { id = "bronze_dagger", amount = 10 },
+    { id = "iron_dagger", amount = 10 },
+    { id = "steel_dagger", amount = 10 },
+    { id = "black_dagger", amount = 10 },
+    { id = "mithril_dagger", amount = 10 },
+    { id = "adamant_dagger", amount = 10 },
+    { id = "bronze_mace", amount = 10 },
+    { id = "iron_mace", amount = 10 },
+    { id = "steel_mace", amount = 10 },
+    { id = "mithril_mace", amount = 10 },
+    { id = "adamant_mace", amount = 10 },
+    { id = "bronze_2h_sword", amount = 10 },
+    { id = "iron_2h_sword", amount = 10 },
+    { id = "steel_2h_sword", amount = 10 },
+    { id = "black_2h_sword", amount = 10 },
+    { id = "mithril_2h_sword", amount = 10 },
+    { id = "adamant_2h_sword", amount = 10 },
+    { id = "bronze_chainbody", amount = 10 },
+    { id = "iron_chainbody", amount = 10 },
+    { id = "steel_chainbody", amount = 10 },
+    { id = "bronze_med_helm", amount = 10 },
+    { id = "iron_med_helm", amount = 10 },
+    { id = "steel_med_helm", amount = 10 },
+]
+
+[warrior_guild_potion_shop]
+id = 412
+defaults = [
+    { id = "strength_potion_3", amount = 10 },
+    { id = "attack_potion_3", amount = 10 },
+    { id = "defence_potion_3", amount = 10 },
+]

@@ -1,0 +1,67 @@
+[tiadeches_karambwan_stall]
+id = 156
+defaults = [
+    { id = "raw_karambwan", amount = 10 },
+    { id = "karambwan_vessel", amount = 10 },
+]
+
+[tamayus_spear_stall]
+id = 158
+defaults = [
+    { id = "bronze_spear_kp", amount = 10 },
+    { id = "iron_spear_kp", amount = 10 },
+    { id = "steel_spear_kp", amount = 10 },
+    { id = "mithril_spear_kp", amount = 10 },
+    { id = "adamant_spear_kp", amount = 10 },
+    { id = "rune_spear_kp", amount = 10 },
+    { id = "cleaning_cloth", amount = 10 },
+]
+
+[gabootys_tai_bwo_wannai_cooperative]
+id = 305
+currency = "trading_sticks"
+defaults = [
+    { id = "tribal_top_brown", amount = 10 },
+    { id = "villager_robe_brown", amount = 10 },
+    { id = "villager_hat_brown", amount = 10 },
+    { id = "villager_sandals_brown", amount = 10 },
+    { id = "villager_armband_brown", amount = 10 },
+    { id = "opal_machete", amount = 10 },
+    { id = "jade_machete", amount = 10 },
+    { id = "red_topaz_machete", amount = 10 },
+    { id = "tribal_top_blue", amount = 10 },
+    { id = "villager_robe_blue", amount = 10 },
+    { id = "villager_hat_blue", amount = 10 },
+    { id = "villager_sandals_blue", amount = 10 },
+    { id = "villager_armband_blue", amount = 10 },
+    { id = "uncut_opal", amount = 0 },
+    { id = "uncut_jade", amount = 0 },
+    { id = "uncut_red_topaz", amount = 0 },
+    { id = "tribal_top_yellow", amount = 10 },
+    { id = "villager_robe_yellow", amount = 10 },
+    { id = "villager_hat_yellow", amount = 10 },
+    { id = "villager_sandals_yellow", amount = 10 },
+    { id = "villager_armband_yellow", amount = 10 },
+    { id = "opal", amount = 0 },
+    { id = "jade", amount = 0 },
+    { id = "red_topaz", amount = 0 },
+    { id = "tribal_top_pink", amount = 10 },
+    { id = "villager_robe_pink", amount = 10 },
+    { id = "villager_hat_pink", amount = 10 },
+    { id = "villager_sandals_pink", amount = 10 },
+    { id = "villager_armband_pink", amount = 10 },
+    { id = "gout_tuber", amount = 0 },
+]
+
+[gabootys_tai_bwo_wannai_drinky_store]
+id = 306
+currency = "trading_sticks"
+defaults = [
+    { id = "fruit_blast", amount = 0 },
+    { id = "drunk_dragon", amount = 0 },
+    { id = "pineapple_punch", amount = 0 },
+    { id = "wizard_blizzard", amount = 0 },
+    { id = "blurberry_special", amount = 0 },
+    { id = "chocolate_saturday", amount = 0 },
+    { id = "short_green_guy", amount = 0 },
+]

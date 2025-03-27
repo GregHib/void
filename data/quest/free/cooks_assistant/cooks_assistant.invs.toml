@@ -1,0 +1,23 @@
+[cooks_assistant_cooking_range]
+id = 509
+defaults = [
+    { id = "thin_snail_meat", amount = 1 },
+    { id = "lean_snail_meat", amount = 1 },
+    { id = "fat_snail_meat", amount = 1 },
+    { id = "salmon", amount = 1 },
+    { id = "stew", amount = 1 },
+    { id = "cooked_slimy_eel", amount = 1 },
+    { id = "cooked_meat", amount = 1 },
+    { id = "tuna", amount = 1 },
+    { id = "cooked_fishcake", amount = 1 },
+    { id = "lobster", amount = 1 },
+    { id = "bass", amount = 1 },
+    { id = "redberry_pie", amount = 1 },
+    { id = "apple_pie", amount = 1 },
+    { id = "garden_pie", amount = 1 },
+    { id = "fish_pie", amount = 1 },
+    { id = "cake", amount = 1 },
+    { id = "chocolate_cake", amount = 1 },
+    { id = "cooked_sweetcorn", amount = 1 },
+    { id = "potato_with_butter", amount = 1 },
+]

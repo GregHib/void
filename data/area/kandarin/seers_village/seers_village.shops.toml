@@ -1,0 +1,37 @@
+[ignatiuss_hot_deals]
+id = 558
+defaults = [
+    { id = "tinderbox", amount = 60000 },
+    { id = "unlit_torch", amount = 10 },
+    { id = "bronze_hatchet", amount = 10 },
+]
+
+[ignatiuss_hot_deals_skillcape]
+id = 559
+defaults = [
+    { id = "tinderbox", amount = 60000 },
+    { id = "unlit_torch", amount = 10 },
+    { id = "bronze_hatchet", amount = 10 },
+    { id = "firemaking_cape", amount = 1 },
+]
+
+[ignatiuss_hot_deals_trimmed]
+id = 560
+defaults = [
+    { id = "tinderbox", amount = 60000 },
+    { id = "unlit_torch", amount = 10 },
+    { id = "bronze_hatchet", amount = 10 },
+    { id = "firemaking_cape_t", amount = 1 },
+]
+
+[stankers_bronze_pickaxes]
+id = 570
+defaults = [
+    { id = "bronze_pickaxe", amount = 5 },
+]
+
+[stankers_bronze_pickaxes_sample]
+id = 571
+defaults = [
+    { id = "poison_chalice", amount = 30 },
+]

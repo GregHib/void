@@ -1,0 +1,62 @@
+[aris_orb]
+id = 4614
+
+[demon_slayer_cupboard_disappear]
+id = 4600
+
+[traiborn_bone_spell]
+id = 4602
+
+[summon_demon]
+id = 4617
+
+[demon_attack]
+id = 64
+
+[demon_defend]
+id = 65
+
+[demon_death]
+id = 67
+
+[delrith_continue]
+id = 4620
+
+[delrith_appear]
+id = 4623
+
+[delrith_death]
+id = 4624
+
+[wally_demon_slay]
+id = 4603
+
+[silverlight_sword_case_open]
+id = 12630
+
+[silverlight_unlock_sword_case]
+id = 12629
+
+[silverlight_open_sword_case]
+id = 12616
+
+[silverlight_remove_sword]
+id = 12628
+
+[silverlight_sword_removed]
+id = 12617
+
+[silverlight_hand_over]
+id = 12618
+
+[silverlight_take]
+id = 12615
+
+[silverlight_showoff]
+id = 12625
+
+[demon_slayer_table_light]
+id = 12609
+
+[toss_water]
+id = 12643

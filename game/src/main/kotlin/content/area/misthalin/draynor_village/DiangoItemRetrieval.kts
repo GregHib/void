@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 import content.entity.player.bank.ownsItem
+import world.gregs.voidps.engine.entity.item.Item
 
 val itemLimit = 48
 val container = InterfaceDefinition.pack(468, 2)
@@ -48,7 +49,7 @@ fun refreshItems(player: Player) {
     val more: Boolean = player["retrieve_more", false]
     player.inventories.clear("diangos_item_retrieval")
     val inventory = player.inventories.inventory("diangos_item_retrieval")
-    val defaults = inventoryDefinitions.get("diangos_item_retrieval").getOrNull<List<Map<String, Int>>>("defaults") ?: return
+    val defaults = inventoryDefinitions.get("diangos_item_retrieval").getOrNull<List<Item>>("defaults") ?: return
     var displayMore = false
     inventory.transaction {
         clear()
@@ -58,10 +59,9 @@ fun refreshItems(player: Player) {
         }
         var skipped = 0
         for (index in 0 until inventory.size) {
-            val map = defaults.getOrNull(index) ?: continue
-            val id = map.keys.firstOrNull() ?: continue
-            val event: String? = itemDefinitions.get(id).getOrNull("event")
-            if ((event == null || player[event, false]) && !player.ownsItem(id)) {
+            val item = defaults.getOrNull(index) ?: continue
+            val event: String? = itemDefinitions.get(item.id).getOrNull("event")
+            if ((event == null || player[event, false]) && !player.ownsItem(item.id)) {
                 // Add second screen if itemLimit is reached
                 if (!more && inventory.count >= itemLimit) {
                     displayMore = true
@@ -71,7 +71,7 @@ fun refreshItems(player: Player) {
                 if (more && skipped++ < itemLimit) {
                     continue
                 }
-                add(id)
+                add(item.id)
             }
         }
         // Add more "button" when too many to display

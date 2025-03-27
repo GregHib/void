@@ -1,0 +1,22 @@
+[edgeville_general_store]
+id = 4
+defaults = [
+    { id = "empty_pot", amount = 30 },
+    { id = "jug", amount = 10 },
+    { id = "shears", amount = 10 },
+    { id = "bucket", amount = 30 },
+    { id = "bowl", amount = 10 },
+    { id = "cake_tin", amount = 10 },
+    { id = "tinderbox", amount = 10 },
+    { id = "chisel", amount = 10 },
+    { id = "hammer", amount = 10 },
+    { id = "newcomer_map", amount = 10 },
+    { id = "security_book", amount = 10 },
+]
+
+[oziachs_armour]
+id = 35
+defaults = [
+    { id = "rune_platebody", amount = 10 },
+    { id = "green_dragonhide_body", amount = 10 },
+]

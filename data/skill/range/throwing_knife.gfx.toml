@@ -1,0 +1,69 @@
+[bronze_knife_throw]
+id = 219
+height = 60
+
+[bronze_knife]
+id = 212
+delay = 32
+curve = 0
+flight_time = [ 5, 10, 15, 20, 25, 30 ]
+
+[iron_knife_throw]
+id = 220
+height = 60
+
+[iron_knife]
+id = 213
+delay = 32
+curve = 15
+flight_time = [ 5, 10, 15, 20, 25, 30 ]
+
+[steel_knife_throw]
+id = 221
+height = 60
+
+[steel_knife]
+id = 214
+delay = 32
+curve = 15
+flight_time = [ 5, 10, 15, 20, 25, 30 ]
+
+[black_knife_throw]
+id = 222
+height = 60
+
+[black_knife]
+id = 215
+delay = 32
+curve = 15
+flight_time = [ 5, 10, 15, 20, 25, 30 ]
+
+[mithril_knife_throw]
+id = 223
+height = 60
+
+[mithril_knife]
+id = 216
+delay = 32
+curve = 15
+flight_time = [ 5, 10, 15, 20, 25, 30 ]
+
+[adamant_knife_throw]
+id = 224
+height = 60
+
+[adamant_knife]
+id = 217
+delay = 32
+curve = 15
+flight_time = [ 5, 10, 15, 20, 25, 30 ]
+
+[rune_knife_throw]
+id = 225
+height = 60
+
+[rune_knife]
+id = 218
+delay = 32
+curve = 15
+flight_time = [ 5, 10, 15, 20, 25, 30 ]

@@ -1,0 +1,146 @@
+[rune_hatchet_dugout_canoe]
+id = 6738
+
+[adamant_hatchet_dugout_canoe]
+id = 6739
+
+[mithril_hatchet_dugout_canoe]
+id = 6740
+
+[black_hatchet_dugout_canoe]
+id = 6741
+
+[steel_hatchet_dugout_canoe]
+id = 6742
+
+[iron_hatchet_dugout_canoe]
+id = 6743
+
+[bronze_hatchet_dugout_canoe]
+id = 6744
+
+[dragon_hatchet_dugout_canoe]
+id = 6745
+
+[bronze_hatchet_log_canoe]
+id = 10071
+
+[iron_hatchet_log_canoe]
+id = 10072
+
+[steel_hatchet_log_canoe]
+id = 10073
+
+[black_hatchet_log_canoe]
+id = 10074
+
+[mithril_hatchet_log_canoe]
+id = 10075
+
+[adamant_hatchet_log_canoe]
+id = 10076
+
+[rune_hatchet_log_canoe]
+id = 10077
+
+[dragon_hatchet_log_canoe]
+id = 10078
+
+[sacred_clay_hatchet_dugout_canoe]
+id = 11060
+
+[volatile_clay_hatchet_dugout_canoe]
+id = 11061
+
+[sacred_clay_hatchet_log_canoe]
+id = 12318
+
+[volatile_clay_hatchet_log_canoe]
+id = 12319
+
+[bronze_hatchet_shape_canoe]
+id = 11594
+
+[rune_hatchet_shape_canoe]
+id = 11595
+
+[adamant_hatchet_shape_canoe]
+id = 11596
+
+[mithril_hatchet_shape_canoe]
+id = 11597
+
+[black_hatchet_shape_canoe]
+id = 11598
+
+[steel_hatchet_shape_canoe]
+id = 11599
+
+[iron_hatchet_shape_canoe]
+id = 11600
+
+[dragon_hatchet_shape_canoe]
+id = 11601
+
+[sacred_clay_hatchet_shape_canoe]
+id = 11602
+
+[volatile_clay_hatchet_shape_canoe]
+id = 11603
+
+[inferno_adze_shape_canoe]
+id = 11604
+
+[canoe_push]
+id = 3301
+
+[canoe_fall]
+id = 3304
+
+[lumbridge_to_wilderness_pond]
+id = 9887
+
+[lumbridge_to_edgeville]
+id = 9888
+
+[lumbridge_to_barbarian_village]
+id = 9889
+
+[lumbridge_to_champions_guild]
+id = 9890
+
+[champions_guild_to_wilderness_pond]
+id = 9891
+
+[champions_guild_to_edgeville]
+id = 9892
+
+[champions_guild_to_barbarian_village]
+id = 9893
+
+[barbarian_village_to_wilderness_pond]
+id = 9894
+
+[barbarian_village_to_edgeville]
+id = 9895
+
+[edgeville_to_wilderness_pond]
+id = 9896
+
+[edgeville_to_lumbridge]
+id = 9901
+
+[edgeville_to_champions_guild]
+id = 9902
+
+[edgeville_to_barbarian_village]
+id = 9903
+
+[barbarian_village_to_lumbridge]
+id = 9904
+
+[barbarian_village_to_champions_guild]
+id = 9904
+
+[champions_guild_to_lumbridge]
+id = 9904
