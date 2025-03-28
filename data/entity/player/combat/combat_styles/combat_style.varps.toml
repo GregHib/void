@@ -1,0 +1,19 @@
+[attack_style_index]
+id = 43
+format = "int"
+
+[auto_retaliate]
+id = 172
+persist = true
+format = "map"
+default = false
+values = { "false" = 1, "true" = 0 }
+
+[special_attack]
+id = 301
+format = "boolean"
+
+[special_attack_energy]
+id = 300
+persist = true
+default = 1000

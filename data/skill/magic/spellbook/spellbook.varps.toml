@@ -1,0 +1,40 @@
+[autocast]
+id = 108
+format = "int"
+
+[spellbook_sort]
+id = 1376
+format = "bitwise"
+persist = true
+values = [
+  "modern_spellbook_sort_combat",
+  "modern_spellbook_sort_teleport",
+  "",
+  "ancient_spellbook_sort_combat",
+  "ancient_spellbook_sort_teleport",
+  "",
+  "lunar_spellbook_sort_combat",
+  "lunar_spellbook_sort_teleport",
+  "",
+  "modern_spellbook_filter_combat",
+  "modern_spellbook_filter_skill",
+  "modern_spellbook_filter_misc",
+  "modern_spellbook_filter_teleport",
+  "lunar_spellbook_filter_combat",
+  "lunar_spellbook_filter_misc",
+  "lunar_spellbook_filter_teleport",
+  "ancient_spellbook_filter_combat",
+  "ancient_spellbook_filter_teleport",
+  "dungeoneering_spellbook_sort_combat",
+  "dungeoneering_spellbook_sort_teleport",
+  "",
+  "dungeoneering_spellbook_filter_combat",
+  "dungeoneering_spellbook_filter_skill",
+  "dungeoneering_spellbook_filter_misc",
+  "dungeoneering_spellbook_filter_teleport",
+]
+
+[spellbook_config]
+id = 439
+format = "int"
+persist = true

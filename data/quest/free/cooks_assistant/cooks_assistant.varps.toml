@@ -1,0 +1,6 @@
+[cooks_assistant]
+id = 29
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1, completed = 2 }

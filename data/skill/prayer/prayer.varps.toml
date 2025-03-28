@@ -1,0 +1,27 @@
+[prayers]
+id = 1584
+persist = true
+format = "list"
+values = ["normal", "curses"]
+
+[activated_prayers]
+id = 1395
+format = "bitwise"
+values = ["thick_skin", "burst_of_strength", "clarity_of_thought", "rock_skin", "superhuman_strength", "improved_reflexes", "rapid_restore", "rapid_heal", "protect_item", "steel_skin", "ultimate_strength", "incredible_reflexes", "protect_from_magic", "protect_from_missiles", "protect_from_melee", "retribution", "redemption", "smite", "sharp_eye", "mystic_will", "hawk_eye", "mystic_lore", "eagle_eye", "mystic_might", "protect_from_summoning", "chivalry", "piety", "rapid_renewal", "augury", "rigour"]
+
+[quick_prayers]
+id = 1397
+persist = true
+format = "bitwise"
+values = ["thick_skin", "burst_of_strength", "clarity_of_thought", "rock_skin", "superhuman_strength", "improved_reflexes", "rapid_restore", "rapid_heal", "protect_item", "steel_skin", "ultimate_strength", "incredible_reflexes", "protect_from_magic", "protect_from_missiles", "protect_from_melee", "retribution", "redemption", "smite", "sharp_eye", "mystic_will", "hawk_eye", "mystic_lore", "eagle_eye", "mystic_might", "protect_from_summoning", "chivalry", "piety", "rapid_renewal", "augury", "rigour"]
+
+[activated_curses]
+id = 1582
+format = "bitwise"
+values = ["protect_item", "sap_warrior", "sap_ranger", "sap_mage", "sap_spirit", "berserker", "deflect_summoning", "deflect_magic", "deflect_missiles", "deflect_melee", "leech_attack", "leech_ranged", "leech_magic", "leech_defence", "leech_strength", "leech_energy", "leech_special_attack", "wrath", "soul_split", "turmoil"]
+
+[quick_curses]
+id = 1587
+persist = true
+format = "bitwise"
+values = ["protect_item", "sap_warrior", "sap_ranger", "sap_mage", "sap_spirit", "berserker", "deflect_summoning", "deflect_magic", "deflect_missiles", "deflect_melee", "leech_attack", "leech_ranged", "leech_magic", "leech_defence", "leech_strength", "leech_energy", "leech_special_attack", "wrath", "soul_split", "turmoil"]

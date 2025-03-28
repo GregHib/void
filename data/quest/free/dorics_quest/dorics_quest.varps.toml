@@ -1,0 +1,6 @@
+[dorics_quest]
+id = 31
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 10, completed = 100 }

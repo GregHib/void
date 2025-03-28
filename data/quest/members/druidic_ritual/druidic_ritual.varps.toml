@@ -1,0 +1,12 @@
+[druidic_ritual]
+id = 80
+persist = true
+format = "map"
+default = "unstarted"
+values = {
+  unstarted = 0,
+  started = 1,
+  cauldron = 2,
+  kaqemeex = 3,
+  completed = 4,
+}

@@ -1,0 +1,11 @@
+[assist_status]
+id = 1055
+persist = true
+format = "list"
+values = [ "on", "friends", "off" ]
+
+[clan_status]
+id = 1054
+persist = true
+format = "list"
+values = [ "on", "friends", "off" ]

@@ -1,0 +1,24 @@
+[main_inventory]
+id = 118
+default = -1
+
+[free_inventory]
+id = 1496
+default = -1
+
+[shop_currency]
+id = 532
+format = "map"
+default = "coins"
+values = {
+  coins = 995,
+  tokkul = 6529,
+  trading_sticks = 6306,
+  archery_ticket = 1464,
+  pieces_of_eight = 8951,
+  agility_arena_ticket = 2996,
+  castle_wars_ticket = 4067,
+  runecrafting_guild_token = 13650,
+  fist_of_guthix_token = 12852,
+}
+

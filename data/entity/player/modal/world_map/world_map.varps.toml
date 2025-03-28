@@ -1,0 +1,4 @@
+[world_map_marker_custom]
+id = 1159
+format = "int"
+persist = true
