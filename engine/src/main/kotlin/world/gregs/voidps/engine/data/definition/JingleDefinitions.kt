@@ -11,16 +11,18 @@ class JingleDefinitions : DefinitionsDecoder<JingleDefinition> {
     override lateinit var definitions: Array<JingleDefinition>
     override lateinit var ids: Map<String, Int>
 
-    fun load(path: String): JingleDefinitions {
+    fun load(paths: List<String>): JingleDefinitions {
         timedLoad("jingle definition") {
             val ids = Object2IntOpenHashMap<String>(200, Hash.VERY_FAST_LOAD_FACTOR)
             val definitions = Array(500) { JingleDefinition.EMPTY }
-            Config.fileReader(path) {
-                while (nextPair()) {
-                    val key = key()
-                    val id = int()
-                    ids[key] = id
-                    definitions[id] = JingleDefinition(id = id, stringId = key)
+            for (path in paths) {
+                Config.fileReader(path) {
+                    while (nextPair()) {
+                        val key = key()
+                        val id = int()
+                        ids[key] = id
+                        definitions[id] = JingleDefinition(id = id, stringId = key)
+                    }
                 }
             }
             this.definitions = definitions

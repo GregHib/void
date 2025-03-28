@@ -469,7 +469,7 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
             files.list(Settings["definitions.variables.strings"]),
             files.list(Settings["definitions.variables.customs"])
         )
-        "music", "music effects", "jingles" -> get<JingleDefinitions>().load(files.find(Settings["definitions.jingles"]))
+        "music", "music effects", "jingles" -> get<JingleDefinitions>().load(files.list(Settings["definitions.jingles"]))
         "interfaces" -> get<InterfaceDefinitions>().load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"]))
         "spells" -> get<SpellDefinitions>().load(files.find(Settings["definitions.spells"]))
         "patrols", "paths" -> get<PatrolDefinitions>().load(files.list(Settings["definitions.patrols"]))
