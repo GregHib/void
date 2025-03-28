@@ -1,0 +1,7 @@
+chest_open = 52
+casket_open = 50
+cupboard_close = 57
+cupboard_open = 58
+destroy_object = 2381
+lever = 2400
+coffin_open = 54

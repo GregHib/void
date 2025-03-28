@@ -1,0 +1,13 @@
+human_defend = 14
+male_defend_0 = 518
+male_defend_1 = 519
+male_defend_2 = 520
+male_defend_3 = 521
+female_defend_0 = 509
+female_defend_1 = 510
+drop_item = 2739
+take_item = 2582
+cook = 2577
+drink = 2401
+eat = 2393
+jump = 2461

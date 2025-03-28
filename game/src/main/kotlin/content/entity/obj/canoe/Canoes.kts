@@ -59,7 +59,7 @@ objectOperate("Chop-down", "canoe_station") {
     delay()
     target.anim("canoe_fall")
     player.clearAnim()
-    player.sound("tree_fall")
+    player.sound("fell_tree")
     player["canoe_state_${location}"] = "falling"
     delay()
     player["canoe_state_${location}"] = "fallen"

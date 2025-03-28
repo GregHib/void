@@ -1,0 +1,7 @@
+calf_attack = 366
+calf_death = 367
+calf_defend = 368
+cow_attack = 369
+cow_death = 370
+cow_defend = 371
+milk_cow = 372

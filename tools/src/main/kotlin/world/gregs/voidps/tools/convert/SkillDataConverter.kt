@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.data.find
+import world.gregs.voidps.engine.data.list
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
@@ -41,7 +42,7 @@ object SkillDataConverter {
         val storage: Yaml = get()
         val items: ItemDefinitions = get()
         val files = configFiles()
-        val sounds = SoundDefinitions().load(files.find(Settings["definitions.sounds"]))
+        val sounds = SoundDefinitions().load(files.list(Settings["definitions.sounds"]))
         val animations = AnimationDefinitions(AnimationDecoder().load(cache)).load(listOf(Settings["definitions.animations"]))
 //        var decoder = InventoryDecoder(koin.get())
         val mapper = ObjectMapper()

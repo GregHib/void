@@ -459,7 +459,7 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
         "item on item", "item-on-item" -> {
             get<ItemOnItemDefinitions>().load(files.list(Settings["definitions.itemOnItem"]))
         }
-        "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load(files.find(Settings["definitions.sounds"]))
+        "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load(files.list(Settings["definitions.sounds"]))
         "quest", "quests" -> get<QuestDefinitions>().load(files.find(Settings["definitions.quests"]))
         "midi" -> get<MidiDefinitions>().load(files.find(Settings["definitions.midis"]))
         "vars", "variables" -> get<VariableDefinitions>().load(

@@ -79,7 +79,7 @@ fun engineModule(files: ConfigFiles) = module {
     single { PathFinder(flags = get<Collisions>(), useRouteBlockerFlags = true) }
     single { LineValidator(flags = get<Collisions>()) }
     // Definitions
-    single(createdAtStart = true) { SoundDefinitions().load(files.find(Settings["definitions.sounds"])) }
+    single(createdAtStart = true) { SoundDefinitions().load(files.list(Settings["definitions.sounds"])) }
     single(createdAtStart = true) { QuestDefinitions().load(files.find(Settings["definitions.quests"])) }
     single(createdAtStart = true) { RenderEmoteDefinitions().load(files.find(Settings["definitions.renderEmotes"])) }
     single(createdAtStart = true) { MidiDefinitions().load(files.find(Settings["definitions.midis"])) }
