@@ -1,0 +1,7 @@
+spawns = [
+# 11414
+  { id = "coins", x = 2861, y = 9644, delay = 100 },
+  { id = "coins", x = 2856, y = 9645, delay = 100 },
+  { id = "coins", x = 2863, y = 9629, delay = 100 },
+  { id = "coins", x = 2861, y = 9628, delay = 100 },
+]

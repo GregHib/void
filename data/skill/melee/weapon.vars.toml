@@ -1,0 +1,4 @@
+[power_of_light]
+format = "int"
+persist = true
+

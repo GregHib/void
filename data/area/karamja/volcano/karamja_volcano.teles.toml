@@ -1,0 +1,6 @@
+# 11313 karamja_volcano
+[nature_altar_ruins_enter]
+option = "Enter"
+tile = { x = 2868, y = 3018 }
+to = { x = 2400, y = 4835 }
+

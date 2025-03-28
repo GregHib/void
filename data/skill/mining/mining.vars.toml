@@ -1,0 +1,51 @@
+[small_pouch_essence]
+format = "int"
+persist = true
+
+[small_pouch_pure]
+format = "boolean"
+persist = true
+
+[medium_pouch_essence]
+format = "int"
+persist = true
+
+[medium_pouch_pure]
+format = "boolean"
+persist = true
+
+[large_pouch_essence]
+format = "int"
+persist = true
+
+[large_pouch_pure]
+format = "boolean"
+persist = true
+
+[giant_pouch_essence]
+format = "int"
+persist = true
+
+[giant_pouch_pure]
+format = "boolean"
+persist = true
+
+[coal_bag_coal]
+format = "int"
+persist = true
+
+[gem_bag_sapphire]
+format = "int"
+persist = true
+
+[gem_bag_emerald]
+format = "int"
+persist = true
+
+[gem_bag_ruby]
+format = "int"
+persist = true
+
+[gem_bag_diamond]
+format = "int"
+persist = true

@@ -1,0 +1,9 @@
+[barbarian_teleport]
+x = [2541, 2543]
+y = [3570, 3572]
+tags = ["teleport"]
+
+[barbarian_outpost_teleport]
+x = [2519, 2521]
+y = [3572, 3574]
+tags = ["teleport"]

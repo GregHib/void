@@ -1,0 +1,22 @@
+spawns = [
+# 10549
+  { id = "glassblowing_pipe", x = 2652, y = 3454, delay = 100, members = true },
+  { id = "damaged_armour", x = 2679, y = 3425, delay = 100, members = true },
+  { id = "mithril_arrow", x = 2681, y = 3426, delay = 100, members = true },
+  { id = "longbow", x = 2678, y = 3427, delay = 200, members = true },
+  { id = "bronze_arrow", x = 2678, y = 3426, delay = 100, members = true },
+  { id = "bronze_arrow", x = 2680, y = 3424, delay = 100, members = true },
+  { id = "bronze_arrowtips", x = 2672, y = 3433, delay = 100, members = true },
+  { id = "broken_arrow", x = 2677, y = 3425, delay = 100, members = true },
+  { id = "broken_arrow", x = 2677, y = 3423, delay = 100, members = true },
+  { id = "broken_arrow", x = 2672, y = 3421, delay = 100, members = true },
+  { id = "broken_arrow", x = 2670, y = 3424, delay = 100, members = true },
+  { id = "broken_arrow", x = 2673, y = 3428, delay = 100, members = true },
+  { id = "broken_arrow", x = 2676, y = 3431, delay = 100, members = true },
+  { id = "broken_arrow", x = 2668, y = 3419, delay = 100, members = true },
+  { id = "broken_arrow", x = 2655, y = 3424, delay = 100, members = true },
+  { id = "broken_arrow", x = 2670, y = 3437, delay = 100, members = true },
+  { id = "broken_arrow", x = 2667, y = 3425, level = 2, delay = 100, members = true },
+  { id = "broken_arrow", x = 2669, y = 3431, level = 2, delay = 100, members = true },
+  { id = "broken_arrow", x = 2667, y = 3427, level = 2, delay = 100, members = true },
+]

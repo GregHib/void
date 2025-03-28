@@ -1,0 +1,15 @@
+[lunar_home_teleport]
+x = [2096, 2098]
+y = [3912, 3914]
+tags = ["teleport"]
+
+[moonclan_teleport]
+x = [2111, 2113]
+y = [3915, 3917]
+tags = ["teleport"]
+
+[lunar_isle_multi_area]
+x = [2048, 2175]
+y = [3840, 3967]
+level = 0
+tags = ["multi_combat"]

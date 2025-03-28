@@ -1,0 +1,16 @@
+spawns = [
+# 10032
+  { id = "musician_yanille", x = 2526, y = 3096, direction = "SOUTH", members = true },
+  { id = "bartender_dragon_inn", x = 2556, y = 3078, members = true },
+# 10288
+  { id = "man", x = 2596, y = 3104, members = true },
+  { id = "man_3", x = 2596, y = 3106, members = true },
+  { id = "banker_3", x = 2615, y = 3094, direction = "WEST", members = true },
+  { id = "banker_3", x = 2615, y = 3092, direction = "WEST", members = true },
+  { id = "banker_4", x = 2615, y = 3091, direction = "WEST", members = true },
+  { id = "cow", x = 2582, y = 3122, members = true },
+  { id = "cow", x = 2580, y = 3117, members = true },
+  { id = "cow", x = 2588, y = 3119, members = true },
+  { id = "cow", x = 2604, y = 3114, members = true },
+  { id = "wizard_distentor", x = 2594, y = 3089, members = true },
+]

@@ -1,0 +1,18 @@
+[cave_lizard]
+id = 6369
+hitpoints = 200
+att = 38
+str = 36
+def = 35
+race = "gecko"
+style = "crush"
+height = 15
+hunt_range = 2
+attack_range = 1
+attack_radius = 11
+wander_radius = 5
+max_hit_melee = 50
+hunt_mode = "aggressive"
+drop_table = "empty"
+respawn_delay = 50
+examine = "A cave dweller."

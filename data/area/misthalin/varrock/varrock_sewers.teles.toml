@@ -1,0 +1,11 @@
+# 12954 varrock_sewers
+[24364]
+option = "Climb-up"
+tile = { x = 3231, y = 9801 }
+delta = { y = -6400 }
+
+[29355]
+option = "Climb-up"
+tile = { x = 3230, y = 9904 }
+delta = { y = -6400 }
+

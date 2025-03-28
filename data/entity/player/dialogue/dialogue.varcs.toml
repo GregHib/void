@@ -1,0 +1,44 @@
+[skill_creation_type]
+id = 754
+format = "list"
+values = [ "Make", "Make sets", "Cook", "Roast", "Offer", "Sell", "Bake", "Cut", "Deposit", "Make2", "Teleport", "Select", "Make sets2", "Take", "Return", "Heat", "Add" ]
+
+[skill_creation_item_0]
+id = 755
+default = -1
+
+[skill_creation_item_1]
+id = 756
+default = -1
+
+[skill_creation_item_2]
+id = 757
+default = -1
+
+[skill_creation_item_3]
+id = 758
+default = -1
+
+[skill_creation_item_4]
+id = 759
+default = -1
+
+[skill_creation_item_5]
+id = 760
+default = -1
+
+[skill_creation_item_6]
+id = 1139
+default = -1
+
+[skill_creation_item_7]
+id = 1140
+default = -1
+
+[skill_creation_item_8]
+id = 1141
+default = -1
+
+[skill_creation_item_9]
+id = 1142
+default = -1

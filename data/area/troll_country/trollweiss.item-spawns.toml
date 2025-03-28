@@ -1,0 +1,6 @@
+spawns = [
+# 11068
+  { id = "uncut_sapphire", x = 2788, y = 3870, delay = 500, members = true },
+  { id = "chaos_rune", x = 2761, y = 3845, delay = 200, members = true },
+  { id = "big_bones", x = 2766, y = 3855, delay = 50, members = true },
+]

@@ -1,0 +1,4 @@
+[dorgesh_kaan_entrance_multi_area]
+x = [3328, 3312, 3312, 3304, 3304, 3328]
+y = [9600, 9600, 9640, 9640, 9664, 9664]
+tags = ["multi_combat"]

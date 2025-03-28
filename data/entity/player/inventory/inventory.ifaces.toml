@@ -1,0 +1,25 @@
+[inventory]
+id = 149
+type = "inventory_tab"
+components = {
+  inventory = {
+    id = 0,
+    inventory = "inventory",
+    options = {
+      Option1 = 0,
+      Equip = 1,
+      Option3 = 2,
+      Option4 = 6,
+      Drop = 7,
+      Examine = 9,
+      Option7 = 10,
+      Option8 = 11,
+      Option9 = 12,
+      Option10 = 13,
+      Option11 = 15,
+      Option12 = 17,
+      Drag = 20,
+      Option13 = 21,
+    }
+  }
+}

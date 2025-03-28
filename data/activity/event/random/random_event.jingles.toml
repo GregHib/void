@@ -1,0 +1,8 @@
+twin_is_caught = 101
+maze_complete = 117
+postie_pete = 148
+prison_pete_failure = 149
+speedy_gnome_failure = 185
+speedy_gnome_success = 186
+surprise_exam_passed = 269
+surprise_exam_failure = 270

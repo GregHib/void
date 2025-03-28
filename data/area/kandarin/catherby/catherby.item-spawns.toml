@@ -1,0 +1,13 @@
+spawns = [
+# 11061
+  { id = "bucket", x = 2766, y = 3441, delay = 100, members = true },
+  { id = "pie_dish", x = 2813, y = 3449, level = 1, delay = 100, members = true },
+  { id = "insect_repellent", x = 2807, y = 3450, delay = 100, members = true },
+  { id = "jug_of_wine", x = 2806, y = 3449, level = 1, delay = 100, members = true },
+# 11317
+  { id = "bucket_of_water", x = 2823, y = 3449, delay = 100, members = true },
+  { id = "bucket_of_water", x = 2820, y = 3452, delay = 100, members = true },
+  { id = "knife", x = 2820, y = 3450, delay = 100, members = true },
+  { id = "burnt_herring", x = 2820, y = 3453, delay = 100, members = true },
+  { id = "pie_dish", x = 2820, y = 3455, delay = 100, members = true },
+]

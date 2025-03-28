@@ -1,0 +1,25 @@
+[bob]
+id = 519
+race = "human"
+shop = "bobs_brilliant_axes"
+examine = "An expert on axes."
+
+[shopkeeper_lumbridge]
+id = 520
+race = "human"
+shop = "lumbridge_general_store"
+wander_radius = 2
+examine = "Sells stuff."
+
+[shop_assistant_lumbridge]
+id = 521
+race = "human"
+shop = "lumbridge_general_store"
+wander_radius = 2
+examine = "Helps sell stuff."
+
+[hank]
+id = 8864
+race = "human"
+shop = "lumbridge_fishing_supplies"
+examine = "A product of a consumerist society."

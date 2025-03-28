@@ -1,0 +1,6 @@
+spawns = [
+# 9782
+  { id = "cocktail_shaker", x = 2449, y = 3510, level = 1, delay = 100, members = true },
+  { id = "cocktail_glass", x = 2489, y = 3489, level = 1, delay = 100, members = true },
+  { id = "cocktail_glass", x = 2483, y = 3482, level = 1, delay = 100, members = true },
+]

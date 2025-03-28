@@ -1,0 +1,6 @@
+# 8787 summoning
+[16115]
+option = "Climb-down"
+tile = { x = 2148, y = 5284 }
+to = { x = 2358, y = 5215 }
+

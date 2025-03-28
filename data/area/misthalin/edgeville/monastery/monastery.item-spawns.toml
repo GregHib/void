@@ -1,0 +1,6 @@
+spawns = [
+# 10290
+  { id = "purple_dye", x = 2563, y = 3261, delay = 100, members = true },
+  { id = "bucket", x = 2616, y = 3255, delay = 100, members = true },
+  { id = "lit_candle", x = 2598, y = 3211, delay = 100, members = true },
+]

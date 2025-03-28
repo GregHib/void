@@ -1,0 +1,5 @@
+spawns = [
+# 11310
+  { id = "banker_shilo_village", x = 2851, y = 2954, members = true },
+  { id = "banker_shilo_village", x = 2853, y = 2955, members = true },
+]

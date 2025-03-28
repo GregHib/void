@@ -1,0 +1,12 @@
+# 12614 swept_away
+[29671]
+option = "Climb-down"
+tile = { x = 3171, y = 4272, level = 3 }
+to = { x = 3174, y = 4273, level = 2 }
+
+# 12870 swept_away
+[fist_of_guthix_stairs]
+option = "Exit"
+tile = { x = 1673, y = 5598 }
+to = { x = 3242, y = 3574 }
+

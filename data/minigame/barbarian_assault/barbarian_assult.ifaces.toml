@@ -1,0 +1,23 @@
+[barbarian_assault_team]
+id = 256
+
+[barbarian_assult_rewards]
+id = 473
+
+[barbarian_assult_horn]
+id = 484
+
+[barbarian_assult_attacker]
+id = 485
+
+[barbarian_assult_collector]
+id = 486
+
+[barbarian_assult_defender]
+id = 487
+
+[barbarian_assult_healer]
+id = 488
+
+[barbarian_assult_waiting]
+id = 489

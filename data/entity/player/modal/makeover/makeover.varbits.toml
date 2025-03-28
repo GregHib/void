@@ -1,0 +1,16 @@
+[makeover_body_part]
+id = 6091
+format = "list"
+values = [ "top", "arms", "wrists", "legs" ]
+
+[makeover_facial_hair]
+id = 6084
+format = "boolean"
+
+[makeover_colour_skin]
+id = 6099
+format = "int"
+
+[makeover_female]
+id = 6098
+format = "boolean"

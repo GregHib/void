@@ -1,0 +1,4 @@
+[shooting_star_bonus_ore]
+format = "int"
+default = 0
+persist = true

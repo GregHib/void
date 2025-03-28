@@ -1,0 +1,5 @@
+[enter_the_abyss]
+id = 492
+persist = true
+format = "list"
+values = ["unstarted", "started", "scrying", "orb_inspect", "completed"]

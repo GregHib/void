@@ -1,0 +1,10 @@
+[minigame_format]
+id = 4540
+format = "map"
+default = "none"
+values = {
+  none = 0,
+  barbarian_assault = 1,
+  stealing_creation = 2,
+  fist_of_guthix = 3,
+}

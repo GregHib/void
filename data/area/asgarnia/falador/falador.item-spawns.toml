@@ -1,0 +1,12 @@
+spawns = [
+# 11571
+  { id = "amulet_unstrung_mould", x = 2928, y = 3290, delay = 200 },
+  { id = "jug", x = 2936, y = 3292, delay = 100 },
+  { id = "hammer", x = 2934, y = 3286, delay = 100 },
+  { id = "chisel", x = 2935, y = 3286, delay = 100 },
+  { id = "shears", x = 2930, y = 3285, level = 1, delay = 100 },
+  { id = "holy_mould", x = 2931, y = 3287, level = 1, delay = 200 },
+  { id = "necklace_mould", x = 2932, y = 3287, level = 1, delay = 200 },
+  { id = "ring_mould", x = 2935, y = 3283, level = 1, delay = 200 },
+  { id = "tiara_mould", x = 2935, y = 3282, level = 1, delay = 100 },
+]

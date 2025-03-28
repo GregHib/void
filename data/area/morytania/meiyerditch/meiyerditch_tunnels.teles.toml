@@ -1,0 +1,6 @@
+# 14232 meiyerditch_tunnels
+[death_altar_portal]
+option = "Enter"
+tile = { x = 2208, y = 4829 }
+to = { x = 1863, y = 4639 }
+

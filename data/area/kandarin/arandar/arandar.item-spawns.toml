@@ -1,0 +1,6 @@
+spawns = [
+# 9267
+  { id = "red_spiders_eggs", x = 2339, y = 3309, delay = 65, members = true },
+  { id = "red_spiders_eggs", x = 2340, y = 3312, delay = 65, members = true },
+  { id = "red_spiders_eggs", x = 2336, y = 3316, delay = 65, members = true },
+]

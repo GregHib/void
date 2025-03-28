@@ -1,0 +1,54 @@
+[gnome_course_stage]
+persist = true
+format = "int"
+
+[gnome_course_laps]
+persist = true
+format = "int"
+
+[gnome_course_advanced_laps]
+persist = true
+format = "int"
+
+[agility_course_rewards_claimed]
+persist = true
+format = "bitwise"
+values = ["agile_top", "agile_legs"]
+
+[agility_course]
+format = "list"
+persist = true
+values = ["gnome", "barbarian", "wilderness"]
+
+[barbarian_course_stage]
+persist = true
+format = "int"
+
+[barbarian_course_laps]
+persist = true
+format = "int"
+
+[barbarian_course_advanced_laps]
+persist = true
+format = "int"
+
+[wilderness_course_stage]
+persist = true
+format = "int"
+
+[wilderness_course_laps]
+persist = true
+format = "int"
+
+[wilderness_canoe_warning]
+format = "boolean"
+persist = true
+default = true
+
+[ape_atoll_course_stage]
+persist = true
+format = "int"
+
+[ape_atoll_course_laps]
+persist = true
+format = "int"

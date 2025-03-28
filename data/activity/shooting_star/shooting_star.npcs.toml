@@ -1,0 +1,7 @@
+[star_sprite]
+id = 8091
+examine = "A shiny, happy star sprite."
+
+[shooting_star_shadow]
+id = 8092
+examine = "The shadow of a shooting star"

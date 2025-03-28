@@ -1,0 +1,6 @@
+# 11673 taverley_dungeon
+[25038]
+option = "Climb-up"
+tile = { x = 2928, y = 9658 }
+delta = { y = -6400 }
+

@@ -1,0 +1,200 @@
+# Seers' Village Easy
+
+[reflax_actions_task]
+id = 5782
+format = "boolean"
+persist = true
+
+[why_task]
+id = 5783
+format = "boolean"
+persist = true
+
+[stir_galahad_task]
+id = 5785
+format = "boolean"
+persist = true
+
+[la_morte_darthur_task]
+id = 5786
+format = "boolean"
+persist = true
+
+[bunch_of_flours_task]
+id = 5788
+format = "boolean"
+persist = true
+
+[happy_hour_task]
+id = 5789
+format = "boolean"
+persist = true
+
+[jute_alors_task]
+id = 5784
+format = "boolean"
+persist = true
+
+[sinclair_swirling_task]
+id = 5790
+format = "boolean"
+persist = true
+
+[grand_candle_task]
+id = 5791
+format = "boolean"
+persist = true
+
+[a_seer_ing_light_task]
+id = 5792
+format = "boolean"
+persist = true
+
+[mack_rolled_task]
+id = 5793
+format = "boolean"
+persist = true
+# Seers' Village Medium
+
+[fleeing_the_scene_task]
+id = 5794
+format = "boolean"
+persist = true
+
+[its_a_slightly_magical_stick_task]
+id = 5795
+format = "boolean"
+persist = true
+
+[king_coal_task]
+id = 5796
+format = "boolean"
+persist = true
+
+[i_can_seer_my_house_from_here_task]
+id = 5801
+format = "boolean"
+persist = true
+
+[mastering_the_elements_task]
+id = 5797
+format = "boolean"
+persist = true
+
+[its_only_a_model_task]
+id = 5798
+format = "boolean"
+persist = true
+
+[sniper_training_task]
+id = 5805
+format = "boolean"
+persist = true
+
+[arch_archer_task]
+id = 5799
+format = "boolean"
+persist = true
+
+[what_no_cuddly_toy_task]
+id = 5800
+format = "boolean"
+persist = true
+
+[familiar_fire_familiarity_task]
+id = 5802
+format = "boolean"
+persist = true
+
+[at_least_it_doesnt_need_walking_task]
+id = 5803
+format = "boolean"
+persist = true
+
+[all_your_bass_task]
+id = 5804
+format = "boolean"
+persist = true
+# Seers' Village Hard
+
+[at_home_on_the_range_task]
+id = 5806
+format = "boolean"
+persist = true
+
+[see_yew_at_five_task]
+id = 5807
+format = "boolean"
+persist = true
+
+[the_short_of_it_task]
+id = 5808
+format = "boolean"
+persist = true
+
+[prayer_of_attorney_task]
+id = 5809
+format = "boolean"
+persist = true
+
+[beware_of_the_dog_task]
+id = 5810
+format = "boolean"
+persist = true
+
+[twisted_fire_starter_task]
+id = 5811
+format = "boolean"
+persist = true
+
+[alch_aholic_task]
+id = 5812
+format = "boolean"
+persist = true
+
+[gonna_need_a_bigger_boat_task]
+id = 5814
+format = "boolean"
+persist = true
+
+[gonna_need_a_bigger_range_task]
+id = 5815
+format = "boolean"
+persist = true
+
+[water_palaver_task]
+id = 5816
+format = "boolean"
+persist = true
+
+[island_hopper_task]
+id = 5813
+format = "boolean"
+persist = true
+# Seers' Village Elite
+
+[its_a_trap_no_wait_its_a_pie_task]
+id = 8205
+format = "boolean"
+persist = true
+
+[make_a_bolt_for_it_task]
+id = 8212
+format = "boolean"
+persist = true
+
+[the_long_of_it_task]
+id = 8217
+format = "boolean"
+persist = true
+
+[plentypotionentiary_task]
+id = 8221
+format = "boolean"
+persist = true
+
+[moon_raker_task]
+id = 8224
+format = "boolean"
+persist = true
+# Elsewhere... None

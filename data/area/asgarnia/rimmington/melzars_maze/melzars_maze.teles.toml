@@ -1,0 +1,16 @@
+# 11670 melzars_maze
+[basic_ladder_up]
+option = "Climb-up"
+tile = { x = 2895, y = 5097 }
+to = { x = 3268, y = 3400 }
+
+[basic_ladder_up]
+option = "Climb-up"
+tile = { x = 2924, y = 9650 }
+delta = { y = -6400 }
+
+[basic_ladder_up]
+option = "Climb-up"
+tile = { x = 2939, y = 9657 }
+delta = { y = -6400 }
+

@@ -1,0 +1,5 @@
+[quick_chat_type]
+id = 128
+persist = true
+format = "list"
+values = [ "normal", "private", "clan" ]

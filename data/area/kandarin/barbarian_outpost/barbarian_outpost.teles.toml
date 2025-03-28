@@ -1,0 +1,21 @@
+# 10039 barbarian_outpost
+[law_altar_portal]
+option = "Enter"
+tile = { x = 2464, y = 4817 }
+to = { x = 2859, y = 3379 }
+
+[3205]
+option = "Climb-down"
+tile = { x = 2532, y = 3545, level = 1 }
+delta = { level = -1 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2532, y = 3545 }
+delta = { level = 1 }
+
+[20987]
+option = "Climb-down"
+tile = { x = 2547, y = 3551 }
+delta = { y = 6400 }
+

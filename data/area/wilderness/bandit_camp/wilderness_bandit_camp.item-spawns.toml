@@ -1,0 +1,13 @@
+spawns = [
+# 12088
+  { id = "chaos_rune", amount = 5, x = 3021, y = 3640, delay = 200 },
+  { id = "mind_rune", amount = 5, x = 3023, y = 3640, delay = 100 },
+  { id = "body_rune", amount = 5, x = 3021, y = 3637, delay = 100 },
+  { id = "fire_rune", amount = 5, x = 3026, y = 3637, delay = 100 },
+  { id = "water_rune", amount = 5, x = 3028, y = 3637, delay = 100 },
+  { id = "air_rune", amount = 5, x = 3030, y = 3637, delay = 100 },
+  { id = "earth_rune", amount = 5, x = 3032, y = 3637, delay = 100 },
+# 12089
+  { id = "tomato", x = 3039, y = 3706, delay = 100 },
+  { id = "cheese", x = 3039, y = 3707, delay = 100 },
+]

@@ -1,0 +1,17 @@
+[skill_stat_flash]
+id = 1179
+persist = true
+format = "bitwise"
+values = [ "attack", "strength", "defence", "ranged", "prayer", "magic", "constitution", "agility", "herblore", "thieving", "crafting", "fletching", "mining", "smithing", "fishing", "cooking", "firemaking", "woodcutting", "runecrafting", "slayer", "farming", "construction", "hunter", "summoning", "dungeoneering" ]
+
+[level_up_details]
+id = 1230
+format = "int"
+
+[skill_guide]
+id = 965
+format = "int"
+
+[stat_advance_selected_skill]
+id = 261
+format = "int"

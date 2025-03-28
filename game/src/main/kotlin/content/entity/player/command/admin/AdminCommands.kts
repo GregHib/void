@@ -447,7 +447,7 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
             val npcs: NPCs = get()
             loadNpcSpawns(npcs, files.list(Settings["spawns.npcs"]), npcDefs)
         }
-        "areas" -> get<AreaDefinitions>().load(files.find(Settings["map.areas"]))
+        "areas" -> get<AreaDefinitions>().load(files.list(Settings["map.areas"]))
         "object defs" -> get<ObjectDefinitions>().load(files.list(Settings["definitions.objects"]))
         "emotes", "render anims", "render emotes" -> get<RenderEmoteDefinitions>().load(files.find(Settings["definitions.renderEmotes"]))
         "anim defs", "anims" -> get<AnimationDefinitions>().load(files.list(Settings["definitions.animations"]))
@@ -459,9 +459,9 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
         "item on item", "item-on-item" -> {
             get<ItemOnItemDefinitions>().load(files.list(Settings["definitions.itemOnItem"]))
         }
-        "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load(files.find(Settings["definitions.sounds"]))
+        "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load(files.list(Settings["definitions.sounds"]))
         "quest", "quests" -> get<QuestDefinitions>().load(files.find(Settings["definitions.quests"]))
-        "midi" -> get<MidiDefinitions>().load(files.find(Settings["definitions.midis"]))
+        "midi" -> get<MidiDefinitions>().load(files.list(Settings["definitions.midis"]))
         "vars", "variables" -> get<VariableDefinitions>().load(
             files.list(Settings["definitions.variables.players"]),
             files.list(Settings["definitions.variables.bits"]),
@@ -469,7 +469,7 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
             files.list(Settings["definitions.variables.strings"]),
             files.list(Settings["definitions.variables.customs"])
         )
-        "music", "music effects", "jingles" -> get<JingleDefinitions>().load(files.find(Settings["definitions.jingles"]))
+        "music", "music effects", "jingles" -> get<JingleDefinitions>().load(files.list(Settings["definitions.jingles"]))
         "interfaces" -> get<InterfaceDefinitions>().load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"]))
         "spells" -> get<SpellDefinitions>().load(files.find(Settings["definitions.spells"]))
         "patrols", "paths" -> get<PatrolDefinitions>().load(files.list(Settings["definitions.patrols"]))

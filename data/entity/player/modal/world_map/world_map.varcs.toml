@@ -1,0 +1,31 @@
+[world_map_zoom_level]
+id = 172
+format = "int"
+
+[world_map_centre]
+id = 622
+format = "int"
+
+[world_map_marker_player]
+id = 674
+format = "int"
+
+[world_map_marker_1]
+id = 623
+format = "int"
+
+[world_map_marker_2]
+id = 625
+format = "int"
+
+[world_map_marker_3]
+id = 627
+format = "int"
+
+[world_map_marker_4]
+id = 629
+format = "int"
+
+[world_map_marker_5]
+id = 940
+format = "int"

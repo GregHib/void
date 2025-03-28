@@ -1,0 +1,29 @@
+[border_guard_al_kharid]
+id = 45857
+raise = "border_guard_raise"
+lower = "border_guard_lower"
+examine = "On guard duty."
+
+[border_guard_varrock_2]
+id = 45858
+raise = "border_guard_raise"
+lower = "border_guard_lower"
+examine = "On guard duty."
+
+[border_guard_varrock]
+id = 45859
+raise = "border_guard_raise"
+lower = "border_guard_lower"
+examine = "On guard duty."
+
+[border_guard_draynor]
+id = 45861
+raise = "border_guard_draynor_raise"
+lower = "border_guard_draynor_lower"
+examine = "On guard duty."
+
+[border_guard_barbarian]
+id = 45863
+raise = "border_guard_raise"
+lower = "border_guard_lower"
+examine = "On guard duty."

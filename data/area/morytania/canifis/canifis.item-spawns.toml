@@ -1,0 +1,4 @@
+spawns = [
+# 13878
+  { id = "pickled_brain", x = 3492, y = 3474, delay = 100, members = true },
+]

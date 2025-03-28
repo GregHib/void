@@ -1,0 +1,13 @@
+spawns = [
+# 12341
+  { id = "goblin_orange_hat_spear", x = 3126, y = 3450 },
+  { id = "goblin_orange_hat_spear", x = 3121, y = 3422 },
+  { id = "sigurd", x = 3113, y = 3413 },
+  { id = "dororan_after_cutscene", x = 3083, y = 3417, direction = "SOUTH_WEST" },
+  { id = "gudrun_after_cutscene", x = 3082, y = 3417, direction = "SOUTH" },
+  { id = "dororan", x = 3098, y = 3422, direction = "EAST" },
+  { id = "gudrun", x = 3082, y = 3417 },
+  { id = "chieftain_gunthor", x = 3078, y = 3444 },
+  { id = "haakon_the_champion", x = 3081, y = 3444 },
+  { id = "kjell", x = 3079, y = 3414, direction = "NORTH_EAST" },
+]

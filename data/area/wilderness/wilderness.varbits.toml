@@ -1,0 +1,7 @@
+[decrease_combat_attack_range]
+id = 5447
+format = "boolean"
+
+[no_pvp_zone]
+id = 6448
+format = "boolean"

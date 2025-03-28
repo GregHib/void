@@ -1,0 +1,8 @@
+[stun_immunity]
+format = "int"
+persist = true
+
+[bind_immunity]
+format = "int"
+persist = true
+

@@ -1,0 +1,8 @@
+spawns = [
+# 9369
+  { id = "bucket", x = 2309, y = 9801, delay = 100, members = true },
+# 9623
+  { id = "old_journal", x = 2417, y = 9673, delay = 100, members = true },
+# 9879
+  { id = "plank", x = 2435, y = 9726, delay = 100, members = true },
+]

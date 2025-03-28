@@ -1,0 +1,5 @@
+spawns = [
+# 11423
+  { id = "banker_keldagrim", x = 2836, y = 10205, direction = "NORTH", members = true },
+  { id = "banker_keldagrim_2", x = 2838, y = 10205, direction = "NORTH", members = true },
+]

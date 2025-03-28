@@ -1,0 +1,74 @@
+# 6475 halloween
+# 6731 halloween
+[10699]
+option = "Climb-up"
+tile = { x = 1693, y = 4510, level = 1 }
+to = { x = 3091, y = 3275 }
+
+# 14930 halloween
+[45784]
+option = "Climb"
+tile = { x = 3654, y = 4949 }
+delta = { x = -447, y = -1708 }
+
+[46936]
+option = "Climb-down"
+tile = { x = 3744, y = 5288 }
+to = { x = 3936, y = 5372, level = 2 }
+
+# 15184 halloween
+[46938]
+option = "Climb-up"
+tile = { x = 3744, y = 5275 }
+delta = { x = 65, y = 1 }
+
+[27866]
+option = "Climb-up"
+tile = { x = 3807, y = 5154 }
+delta = { x = -5, level = 1 }
+
+# 15186 halloween
+[27870]
+option = "Climb-down"
+tile = { x = 3804, y = 5155, level = 1 }
+delta = { x = 5, level = -1 }
+
+# 15696 halloween
+[48688]
+option = "Climb-down"
+tile = { x = 3865, y = 5524 }
+to = { x = 3972, y = 5565 }
+
+# 15699 halloween
+[46731]
+option = "Climb"
+tile = { x = 3936, y = 5151, level = 2 }
+delta = { y = 165 }
+
+[46939]
+option = "Climb-down"
+tile = { x = 3936, y = 5314, level = 2 }
+delta = { y = -165 }
+
+# 17235 halloween
+[48683]
+option = "Climb-up"
+tile = { x = 3972, y = 5566 }
+to = { x = 3868, y = 5524 }
+
+[27866]
+option = "Climb-up"
+tile = { x = 4319, y = 5346 }
+delta = { x = -5, level = 1 }
+
+# 17237 halloween
+[27870]
+option = "Climb-down"
+tile = { x = 4316, y = 5347, level = 1 }
+delta = { x = 5, level = -1 }
+
+[27866]
+option = "Climb-up"
+tile = { x = 4319, y = 5474 }
+delta = { x = -5, level = 1 }
+

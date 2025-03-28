@@ -1,0 +1,34 @@
+[attack_style]
+id = 664
+
+[combat_styles]
+id = 884
+type = "combat_styles_tab"
+components = {
+  style1 = {
+    id = 11,
+    options = {
+      Select = 0,
+    },
+  },
+  style2 = {
+    id = 12,
+    options = {
+      Select = 0,
+    },
+  },
+  style3 = {
+    id = 13,
+    options = {
+      Select = 0,
+    },
+  },
+  style4 = {
+    id = 14,
+    options = {
+      Select = 0,
+    },
+  },
+  retaliate = 15,
+  special_attack_bar = 4,
+}

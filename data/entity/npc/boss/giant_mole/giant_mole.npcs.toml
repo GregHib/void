@@ -1,0 +1,30 @@
+[giant_mole]
+id = 3340
+hitpoints = 2000
+att = 200
+str = 200
+def = 200
+mage = 200
+range = 1
+max_hit_melee = 210
+attack_speed = 4
+style = "crush"
+race = "mole"
+respawn_delay = 16
+wander_radius = 8
+examine = "Holy Mole-y!"
+
+[baby_mole]
+id = 3341
+wander_radius = 6
+examine = "I will call him, Mini Mole."
+
+[baby_mole_2]
+id = 3342
+wander_radius = 6
+examine = "Mooooooooooooole."
+
+[baby_mole_3]
+id = 3343
+wander_radius = 6
+examine = "Moley, moley, moley!"

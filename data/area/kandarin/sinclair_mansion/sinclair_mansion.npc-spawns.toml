@@ -1,0 +1,13 @@
+spawns = [
+# 10807
+  { id = "cow", x = 2733, y = 3561, members = true },
+  { id = "rat", x = 2720, y = 3583, members = true },
+  { id = "rat", x = 2728, y = 3580, members = true },
+  { id = "rat", x = 2725, y = 3576, members = true },
+  { id = "rat", x = 2730, y = 3574, members = true },
+  { id = "rat", x = 2730, y = 3571, members = true },
+  { id = "chicken", x = 2736, y = 3562, members = true },
+  { id = "chicken", x = 2735, y = 3559, members = true },
+  { id = "wolf", x = 2706, y = 3580, members = true },
+  { id = "wolf", x = 2717, y = 3569, members = true },
+]

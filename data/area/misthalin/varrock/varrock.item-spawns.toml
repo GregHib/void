@@ -1,0 +1,15 @@
+spawns = [
+# 12697
+  { id = "brass_necklace", x = 3191, y = 9820, delay = 100 },
+  { id = "gold_necklace", x = 3192, y = 9821, delay = 500 },
+  { id = "gold_ore", x = 3195, y = 9821, delay = 500 },
+  { id = "gold_bar", x = 3192, y = 9822, delay = 1450 },
+  { id = "ruby_ring", x = 3196, y = 9822, delay = 500 },
+  { id = "coins", amount = 42, x = 3188, y = 9820, delay = 100 },
+  { id = "coins", amount = 26, x = 3188, y = 9819, delay = 100 },
+  { id = "coins", amount = 35, x = 3189, y = 9819, delay = 100 },
+  { id = "coins", amount = 56, x = 3190, y = 9819, delay = 100 },
+  { id = "coins", amount = 66, x = 3191, y = 9821, delay = 100 },
+  { id = "coins", amount = 4, x = 3195, y = 9820, delay = 100 },
+  { id = "coins", amount = 3, x = 3195, y = 9834, delay = 100 },
+]

@@ -1,0 +1,18 @@
+spawns = [
+# 11061
+  { id = "man", x = 2803, y = 3431, members = true },
+  { id = "man", x = 2805, y = 3428, members = true },
+  { id = "banker_3", x = 2807, y = 3443, direction = "SOUTH", members = true },
+  { id = "banker_3", x = 2810, y = 3443, direction = "SOUTH", members = true },
+  { id = "banker_4", x = 2809, y = 3443, direction = "SOUTH", members = true },
+  { id = "banker_4", x = 2811, y = 3443, direction = "SOUTH", members = true },
+# 11317
+  { id = "musician_catherby", x = 2849, y = 3439, direction = "SOUTH", members = true },
+  { id = "fishing_spot_big_net_harpoon_catherby", x = 2846, y = 3429, direction = "SOUTH", members = true },
+  { id = "fishing_spot_big_net_harpoon_catherby", x = 2855, y = 3423, direction = "SOUTH", members = true },
+  { id = "fishing_spot_big_net_harpoon_catherby", x = 2859, y = 3426, direction = "SOUTH", members = true },
+  { id = "white_wolf", x = 2842, y = 3450, members = true },
+  { id = "white_wolf", x = 2864, y = 3453, members = true },
+  { id = "white_wolf", x = 2872, y = 3445, members = true },
+  { id = "white_wolf", x = 2870, y = 3438, members = true },
+]

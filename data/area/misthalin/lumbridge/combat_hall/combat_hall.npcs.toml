@@ -1,0 +1,34 @@
+[magic_dummy]
+id = 4474
+hitpoints = 150
+immune_poison = true
+immune_deflect = true
+immune_stun = true
+immune_drain = true
+retaliates = false
+examine = "This is ready for you to cast magic at it."
+
+[melee_dummy]
+id = 7891
+hitpoints = 150
+immune_poison = true
+immune_deflect = true
+immune_stun = true
+immune_drain = true
+retaliates = false
+examine = "Ready for all you can swing at it."
+
+[mikasi]
+id = 4707
+race = "human"
+examine = "Mikasi looks ready to teach you about magic."
+
+[harlan]
+id = 705
+race = "human"
+examine = "Harlan, master of defence."
+
+[nemarti]
+id = 1861
+race = "human"
+examine = "Nemarti looks ready to teach you about ranged combat."

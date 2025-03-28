@@ -1,0 +1,304 @@
+[modern_spellbook]
+id = 192
+type = "spellbook_tab"
+components = {
+  defensive_cast = 2,
+  filter_combat = 7,
+  filter_teleport = 9,
+  filter_misc = 11,
+  filter_skill = 13,
+  sort_level = 15,
+  sort_combat = 16,
+  sort_teleport = 17,
+  lumbridge_home_teleport = 24,
+  wind_rush = {
+    id = 98,
+    cast_id = 143,
+  },
+  wind_strike = {
+    id = 25,
+    cast_id = 3,
+  },
+  confuse = 26,
+  enchant_crossbow_bolt = 27,
+  water_strike = {
+    id = 28,
+    cast_id = 5,
+  },
+  earth_strike = {
+    id = 30,
+    cast_id = 7,
+  },
+  mobilising_armies_teleport = 37,
+  weaken = 31,
+  fire_strike = {
+    id = 32,
+    cast_id = 9,
+  },
+  bones_to_bananas = 33,
+  wind_bolt = {
+    id = 34,
+    cast_id = 11,
+  },
+  curse = 35,
+  bind = 36,
+  water_bolt = {
+    id = 39,
+    cast_id = 13,
+  },
+  varrock_teleport = 40,
+  earth_bolt = {
+    id = 42,
+    cast_id = 15,
+  },
+  lumbridge_teleport = 43,
+  telekinetic_grab = 44,
+  fire_bolt = {
+    id = 45,
+    cast_id = 17,
+  },
+  falador_teleport = 46,
+  crumble_undead = {
+    id = 47,
+    cast_id = 35,
+  },
+  teleport_to_house = 48,
+  wind_blast = {
+    id = 49,
+    cast_id = 19,
+  },
+  superheat_item = {
+    id = 50,
+    inventory = "inventory",
+  },
+  camelot_teleport = 51,
+  water_blast = {
+    id = 52,
+    cast_id = 21,
+  },
+  iban_blast = {
+    id = 54,
+    cast_id = 45,
+  },
+  snare = 55,
+  magic_dart = {
+    id = 56,
+    cast_id = 37,
+  },
+  ardougne_teleport = 57,
+  earth_blast = {
+    id = 58,
+    cast_id = 23,
+  },
+  watchtower_teleport = 62,
+  fire_blast = {
+    id = 63,
+    cast_id = 25,
+  },
+  bones_to_peaches = 65,
+  saradomin_strike = {
+    id = 66,
+    cast_id = 41,
+  },
+  claws_of_guthix = {
+    id = 67,
+    cast_id = 39,
+  },
+  flames_of_zamorak = {
+    id = 68,
+    cast_id = 43,
+  },
+  trollheim_teleport = 69,
+  wind_wave = {
+    id = 70,
+    cast_id = 27,
+  },
+  water_wave = {
+    id = 73,
+    cast_id = 29,
+  },
+  vulnerability = 75,
+  earth_wave = {
+    id = 77,
+    cast_id = 31,
+  },
+  enfeeble = 78,
+  fire_wave = {
+    id = 80,
+    cast_id = 33,
+  },
+  entangle = 81,
+  stun = 82,
+  charge = 83,
+  wind_surge = {
+    id = 84,
+    cast_id = 47,
+  },
+  teleport_block = 86,
+  water_surge = {
+    id = 87,
+    cast_id = 49,
+  },
+  earth_surge = {
+    id = 89,
+    cast_id = 51,
+  },
+  fire_surge = {
+    id = 91,
+    cast_id = 53,
+  }
+}
+
+[ancient_spellbook]
+id = 193
+type = "spellbook_tab"
+components = {
+  filter_defensiv = 18,
+  filter_combat = 5,
+  filter_teleport = 7,
+  sort_level = 9,
+  sort_combat = 10,
+  sort_teleport = 11,
+  edgeville_home_teleport = 48,
+  smoke_rush = {
+    id = 28,
+    cast_id = 63,
+  },
+  shadow_rush = {
+    id = 32,
+    cast_id = 65,
+  },
+  paddewwa_teleport = 40,
+  blood_rush = {
+    id = 24,
+    cast_id = 67,
+  },
+  ice_rush = {
+    id = 20,
+    cast_id = 69,
+  },
+  senntisten_teleport = 41,
+  miasmic_rush = {
+    id = 36,
+    cast_id = 95,
+  },
+  smoke_burst = {
+    id = 30,
+    cast_id = 71,
+  },
+  shadow_burst = {
+    id = 34,
+    cast_id = 73,
+  },
+  kharyrll_teleport = 42,
+  blood_burst = {
+    id = 26,
+    cast_id = 75,
+  },
+  ice_burst = {
+    id = 22,
+    cast_id = 77,
+  },
+  lassar_teleport = 43,
+  miasmic_burst = {
+    id = 38,
+    cast_id = 97,
+  },
+  smoke_blitz = {
+    id = 29,
+    cast_id = 79,
+  },
+  shadow_blitz = {
+    id = 33,
+    cast_id = 81,
+  },
+  dareeyak_teleport = 44,
+  blood_blitz = {
+    id = 25,
+    cast_id = 83,
+  },
+  ice_blitz = {
+    id = 21,
+    cast_id = 85,
+  },
+  carrallanger_teleport = 45,
+  miasmic_blitz = {
+    id = 37,
+    cast_id = 99,
+  },
+  smoke_barrage = {
+    id = 31,
+    cast_id = 87,
+  },
+  shadow_barrage = {
+    id = 35,
+    cast_id = 89,
+  },
+  annakarl_teleport = 46,
+  blood_barrage = {
+    id = 27,
+    cast_id = 91,
+  },
+  ice_barrage = {
+    id = 23,
+    cast_id = 93,
+  },
+  ghorrock_teleport = 47,
+  miasmic_barrage = {
+    id = 39,
+    cast_id = 101,
+  }
+}
+
+
+[lunar_spellbook]
+id = 430
+type = "spellbook_tab"
+components = {
+  defensive_cast = 20,
+  filter_combat = 5,
+  filter_teleport = 7,
+  filter_misc = 9,
+  sort_level = 11,
+  sort_combat = 12,
+  sort_teleport = 13,
+  lunar_home_teleport = 38,
+  bake_pie = 37,
+  cure_plant = 54,
+  monster_examine = 28,
+  npc_contact = 26,
+  cure_other = 23,
+  humidify = 29,
+  moonclan_teleport = 42,
+  tele_group_moonclan = 55,
+  ourania_teleport = 53,
+  cure_me = 45,
+  hunter_kit = 30,
+  waterbirth_teleport = 46,
+  tele_group_waterbirth = 56,
+  cure_group = 25,
+  stat_spy = 31,
+  barbarian_teleport = 22,
+  tele_group_barbarian = 57,
+  superglass_make = 47,
+  khazard_teleport = 40,
+  tele_group_khazard = 58,
+  dream = 32,
+  string_jewellery = 44,
+  stat_restore_pot_share = 49,
+  magic_imbue = 35,
+  fertile_soil = 24,
+  boost_potion_share = 48,
+  fishing_guild_teleport = 39,
+  tele_group_fishing_guild = 59,
+  plank_make = 33,
+  catherby_teleport = 43,
+  tele_group_catherby = 60,
+  ice_plateau_teleport = 50,
+  energy_transfer = 27,
+  heal_other = 51,
+  vengeance_other = 41,
+  vengeance = 36,
+  heal_group = 52,
+  spellbook_swap = 34,
+}

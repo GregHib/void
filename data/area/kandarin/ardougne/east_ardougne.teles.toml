@@ -1,0 +1,6 @@
+# 10291 east_ardougne
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2466, y = 3495, level = 3 }
+delta = { level = -1 }
+

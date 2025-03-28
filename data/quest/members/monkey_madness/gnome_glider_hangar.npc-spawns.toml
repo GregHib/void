@@ -1,0 +1,12 @@
+spawns = [
+# 12440
+  { id = "rat", x = 3099, y = 9765, members = true },
+  { id = "rat", x = 3103, y = 9764, members = true },
+  { id = "rat", x = 3104, y = 9760, members = true },
+  { id = "rat", x = 3093, y = 9754, members = true },
+  { id = "rat", x = 3099, y = 9755, members = true },
+  { id = "rat", x = 3113, y = 9754, members = true },
+  { id = "rat", x = 3116, y = 9754, members = true },
+  { id = "rat", x = 3111, y = 9752, members = true },
+  { id = "rat", x = 3101, y = 9748, members = true },
+]

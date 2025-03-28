@@ -1,0 +1,95 @@
+[air_altar_teleport]
+x = [3124, 3125]
+y = [3406, 3407]
+tags = ["teleport"]
+
+[mind_altar_teleport]
+x = [2979, 2980]
+y = [3512, 3513]
+tags = ["teleport"]
+
+[water_altar_teleport]
+x = [3182, 3183]
+y = [3162, 3163]
+tags = ["teleport"]
+
+[earth_altar_teleport]
+x = [3304, 3304]
+y = [3475, 3476]
+tags = ["teleport"]
+
+[fire_altar_teleport]
+x = [3309, 3311]
+y = [3251, 3253]
+tags = ["teleport"]
+
+[body_altar_teleport]
+x = [3050, 3051]
+y = [3442, 3443]
+tags = ["teleport"]
+
+[cosmic_altar_teleport]
+x = [2406, 2408]
+y = [4382, 4384]
+tags = ["teleport"]
+
+[nature_altar_teleport]
+x = [2864, 2866]
+y = [3022, 3024]
+tags = ["teleport"]
+
+[law_altar_teleport]
+x = [2856, 2857]
+y = [3378, 3379]
+tags = ["teleport"]
+
+[death_altar_teleport]
+x = [1863, 1864]
+y = [4637, 4640]
+tags = ["teleport"]
+
+[blood_altar_teleport]
+x = [3558, 3559]
+y = [9777, 9778]
+tags = ["teleport"]
+
+[astral_altar_teleport]
+x = [2150, 2152]
+y = [3860, 3863]
+tags = ["teleport"]
+
+[chaos_altar_teleport]
+x = [3057, 3058]
+y = [3588, 3589]
+tags = ["teleport"]
+
+[zmi_alter_multi_area]
+x = [3264, 3327]
+y = [4800, 4863]
+tags = ["multi_combat"]
+
+[earth_altar_ruins]
+x = [3304, 3308]
+y = [3472, 3476]
+tags = ["ruins", "earth"]
+
+[air_altar_ruins]
+x = [3125, 3129]
+y = [3403, 3407]
+tags = ["ruins", "air"]
+
+[air_altar]
+x = [2816, 2879]
+y = [4800, 4863]
+tags = ["altar"]
+type = "air"
+spaces = 3
+levels = "1-9"
+
+[earth_altar]
+x = [2624, 2687]
+y = [4800, 4863]
+tags = ["altar"]
+type = "earth"
+spaces = 3
+levels = "9-14"

@@ -1,0 +1,17 @@
+[xp_counter]
+id = 1801
+persist = true
+format = "double"
+
+[movement]
+id = 173
+persist = true
+format = "map"
+default = "walk"
+values = { walk = 0, run = 1, rest = 3, music = 4 }
+
+[show_summoning_orb]
+id = 1160
+format = "map"
+default = true
+values = { "true" = -1, "false" = 0 }

@@ -1,0 +1,23 @@
+spawns = [
+# 10032
+  { id = "jangerberries", x = 2512, y = 3080, delay = 100, members = true },
+  { id = "jangerberries", x = 2517, y = 3082, delay = 100, members = true },
+  { id = "jangerberries", x = 2516, y = 3086, delay = 100, members = true },
+  { id = "jangerberries", x = 2510, y = 3090, delay = 100, members = true },
+  { id = "bones", x = 2510, y = 3088, delay = 100, members = true },
+  { id = "bones", x = 2508, y = 3086, delay = 100, members = true },
+  { id = "bones", x = 2509, y = 3084, delay = 100, members = true },
+  { id = "bones", x = 2513, y = 3085, delay = 100, members = true },
+  { id = "bones", x = 2516, y = 3084, delay = 100, members = true },
+  { id = "bones", x = 2510, y = 3080, delay = 100, members = true },
+  { id = "bones", x = 2511, y = 3114, delay = 100, members = true },
+  { id = "bones", x = 2505, y = 3114, delay = 100, members = true },
+  { id = "bones", x = 2507, y = 3116, delay = 100, members = true },
+  { id = "bones", x = 2503, y = 3118, delay = 100, members = true },
+  { id = "lit_candle", x = 2547, y = 3114, delay = 100, members = true },
+# 10288
+  { id = "jug_of_water", x = 2568, y = 3102, delay = 100, members = true },
+  { id = "cup_of_tea_zogre_flesh_eaters", x = 2594, y = 3103, level = 1, delay = 100, members = true },
+  { id = "vial", x = 2587, y = 3090, level = 2, delay = 100, members = true },
+  { id = "vial", x = 2588, y = 3090, level = 2, delay = 100, members = true },
+]

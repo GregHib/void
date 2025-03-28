@@ -1,0 +1,7 @@
+spawns = [
+# 10039
+  { id = "chicken", x = 2554, y = 3563, members = true },
+  { id = "gunnjorn", x = 2540, y = 3548, members = true },
+  { id = "barbarian_guard", x = 2544, y = 3567, members = true },
+  { id = "barbarian_guard", x = 2544, y = 3571, members = true },
+]

@@ -1,0 +1,56 @@
+[defensive_cast]
+id = 2668
+persist = true
+format = "boolean"
+
+[regular_spellbook_filter_combat]
+id = 6459
+format = "boolean"
+
+[regular_spellbook_filter_teleport]
+id = 6462
+format = "boolean"
+
+[regular_spellbook_filter_misc]
+id = 6461
+format = "boolean"
+
+[regular_spellbook_filter_skill]
+id = 6460
+format = "boolean"
+
+[lunar_spellbook_filter_combat]
+id = 6463
+format = "boolean"
+
+[lunar_spellbook_filter_teleport]
+id = 6464
+format = "boolean"
+
+[lunar_spellbook_filter_misc]
+id = 6465
+format = "boolean"
+
+[ancient_spellbook_filter_combat]
+id = 6466
+format = "boolean"
+
+[ancient_spellbook_filter_teleport]
+id = 6467
+format = "boolean"
+
+[dungeoneering_spellbook_filter_combat]
+id = 7348
+format = "boolean"
+
+[dungeoneering_spellbook_filter_teleport]
+id = 7351
+format = "boolean"
+
+[dungeoneering_spellbook_filter_misc]
+id = 7350
+format = "boolean"
+
+[dungeoneering_spellbook_filter_skill]
+id = 7349
+format = "boolean"

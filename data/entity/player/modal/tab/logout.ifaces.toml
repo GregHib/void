@@ -1,0 +1,7 @@
+[logout]
+id = 182
+type = "logout_tab"
+components = {
+  lobby = 5,
+  login = 10,
+}

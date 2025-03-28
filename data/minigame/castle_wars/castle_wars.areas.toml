@@ -1,0 +1,10 @@
+[castle_wars_multi_area]
+x = [2368, 2431]
+y = [3072, 3135]
+level = 0
+tags = ["multi_combat"]
+
+[castle_wars_teleport]
+x = [2440, 2444]
+y = [3087, 3091]
+tags = ["teleport"]

@@ -1,0 +1,5 @@
+spawns = [
+# 7507
+  { id = "general_wartface_rfd", x = 1862, y = 5351, direction = "SOUTH", members = true },
+  { id = "general_bentnoze_rfd", x = 1862, y = 5349, direction = "NORTH", members = true },
+]

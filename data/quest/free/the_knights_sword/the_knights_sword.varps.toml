@@ -1,0 +1,5 @@
+[the_knights_sword]
+id = 122
+persist = true
+format = "list"
+values = [ "unstarted", "started", "find_thurgo", "happy_thurgo", "picture", "cupboard", "blurite_sword", "completed" ]

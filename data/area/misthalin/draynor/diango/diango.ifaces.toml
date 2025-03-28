@@ -1,0 +1,13 @@
+[diangos_item_retrieval]
+id = 468
+type = "main_screen"
+components = {
+  items = {
+    id = 2,
+    inventory = "diangos_item_retrieval",
+    options = {
+      Claim = 0,
+      Examine = 9,
+    }
+  }
+}

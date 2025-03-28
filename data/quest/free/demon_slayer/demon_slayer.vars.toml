@@ -1,0 +1,4 @@
+[demon_slayer_bones]
+format = "int"
+persist = true
+default = -1

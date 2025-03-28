@@ -1,0 +1,12 @@
+[furnace_edgeville]
+id = 26814
+examine = "A hot furnace."
+
+[lever_ardougne_edgeville]
+id = 1814
+land_message = "... and teleport into the Wilderness."
+examine = "I wonder what this does."
+
+[bank_booth_edgeville]
+id = 26972
+examine = "For accessing your bank account."

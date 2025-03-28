@@ -1,0 +1,31 @@
+[summoning_trade_in]
+id = 78
+
+[summoning_creation]
+id = 79
+
+[pet_details]
+id = 662
+
+[pet_hunger_details]
+id = 663
+
+[summoning_scroll_creation]
+id = 666
+
+[beast_of_burden]
+id = 671
+
+[summoning_pouch_creation]
+id = 672
+
+[dialogue_pick_a_puppy]
+id = 668
+type = "dialogue_box"
+
+[dialogue_pick_a_kitten]
+id = 737
+type = "dialogue_box"
+
+[familiar_options]
+id = 880

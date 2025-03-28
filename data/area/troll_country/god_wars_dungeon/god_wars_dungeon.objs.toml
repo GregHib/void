@@ -1,0 +1,7 @@
+[godwars_hole]
+id = 26340
+examine = "Looks deep."
+
+[godwars_hole_roped]
+id = 26341
+examine = "Looks deep."

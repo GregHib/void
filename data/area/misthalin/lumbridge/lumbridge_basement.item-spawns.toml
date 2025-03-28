@@ -1,0 +1,9 @@
+spawns = [
+# 12950
+  { id = "jug", x = 3211, y = 9625, delay = 100 },
+  { id = "knife", x = 3215, y = 9625, delay = 100 },
+  { id = "bucket", x = 3216, y = 9625, delay = 100 },
+  { id = "cabbage", x = 3217, y = 9622, delay = 100 },
+  { id = "leather_boots", x = 3208, y = 9620, delay = 100 },
+  { id = "leather_boots", x = 3210, y = 9615, delay = 100 },
+]

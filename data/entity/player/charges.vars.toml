@@ -1,0 +1,20 @@
+[binding_necklace_charges]
+format = "int"
+persist = true
+
+[camulet_charges]
+format = "int"
+persist = true
+
+[crystal_saw_charges]
+format = "int"
+persist = true
+
+[ring_of_recoil_charges]
+format = "int"
+persist = true
+
+[skull_sceptre_charges]
+format = "int"
+persist = true
+

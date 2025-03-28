@@ -1,0 +1,5 @@
+spawns = [
+# 12193
+  { id = "attack_potion_1", x = 3026, y = 10325, delay = 100, members = true },
+  { id = "grimy_guam", x = 3044, y = 10313, delay = 200, members = true },
+]

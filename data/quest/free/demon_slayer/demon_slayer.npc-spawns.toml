@@ -1,0 +1,5 @@
+spawns = [
+# 7510
+  { id = "gypsy_aris", x = 1878, y = 5542 },
+  { id = "captain_rovin", x = 1880, y = 5614, level = 2 },
+]

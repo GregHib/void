@@ -1,0 +1,5 @@
+# 13131 ourania_cave
+[ourania_cave_ladder_down]
+option = "Climb"
+tile = { x = 2452, y = 3231 }
+to = { x = 3271, y = 4861 }

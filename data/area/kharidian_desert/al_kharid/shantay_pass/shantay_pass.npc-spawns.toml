@@ -1,0 +1,4 @@
+spawns = [
+# 13104
+  { id = "musician_shantay_pass", x = 3309, y = 3126, direction = "WEST" },
+]

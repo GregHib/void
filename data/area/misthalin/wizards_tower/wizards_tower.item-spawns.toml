@@ -1,0 +1,8 @@
+spawns = [
+# 12337
+  { id = "leather_boots", x = 3111, y = 3159, delay = 100 },
+  { id = "leather_boots", x = 3112, y = 3155, level = 1, delay = 100 },
+  { id = "logs", x = 3105, y = 3159, delay = 100 },
+  { id = "logs", x = 3106, y = 3159, delay = 100 },
+  { id = "logs", x = 3106, y = 3160, delay = 100 },
+]

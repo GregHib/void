@@ -1,0 +1,31 @@
+# 13363 mage_training_arena
+[37684]
+option = "Climb-up"
+tile = { x = 3290, y = 4935 }
+delta = { x = -60, y = -1696 }
+
+[27669]
+option = "Climb-down"
+tile = { x = 3366, y = 3268 }
+to = { x = 3231, y = 5091 }
+
+[10775]
+option = "Climb-up"
+tile = { x = 3357, y = 3306 }
+to = { x = 3357, y = 3307, level = 1 }
+
+[10776]
+option = "Climb-down"
+tile = { x = 3357, y = 3306, level = 1 }
+to = { x = 3360, y = 3306 }
+
+[10771]
+option = "Climb-up"
+tile = { x = 3367, y = 3306 }
+to = { x = 3369, y = 3307, level = 1 }
+
+[10773]
+option = "Climb-down"
+tile = { x = 3367, y = 3306, level = 1 }
+to = { x = 3366, y = 3306 }
+

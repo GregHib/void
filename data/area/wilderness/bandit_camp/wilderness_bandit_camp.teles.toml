@@ -1,0 +1,121 @@
+# 12088 wilderness_bandit_camp
+[30863]
+option = "Climb-down"
+tile = { x = 3046, y = 3483, level = 1 }
+delta = { level = -1 }
+
+[chaos_altar_ruins_enter]
+option = "Enter"
+tile = { x = 3059, y = 3590 }
+to = { x = 2275, y = 4847, level = 3 }
+
+[14745]
+option = "Climb-up"
+tile = { x = 3022, y = 3625 }
+delta = { level = 1 }
+
+[14747]
+option = "Climb-down"
+tile = { x = 3022, y = 3625, level = 1 }
+delta = { level = -1 }
+
+[14747]
+option = "Climb-up"
+tile = { x = 3022, y = 3625, level = 1 }
+delta = { level = 1 }
+
+[14747]
+option = "Climb-down"
+tile = { x = 3022, y = 3625, level = 2 }
+delta = { level = -1 }
+
+[14747]
+option = "Climb-up"
+tile = { x = 3022, y = 3625, level = 2 }
+delta = { level = 1 }
+
+[14746]
+option = "Climb-down"
+tile = { x = 3022, y = 3625, level = 3 }
+delta = { level = -1 }
+
+[14745]
+option = "Climb-up"
+tile = { x = 3036, y = 3625 }
+delta = { level = 1 }
+
+[14747]
+option = "Climb-down"
+tile = { x = 3036, y = 3625, level = 1 }
+delta = { level = -1 }
+
+[14747]
+option = "Climb-up"
+tile = { x = 3036, y = 3625, level = 1 }
+delta = { level = 1 }
+
+[14747]
+option = "Climb-down"
+tile = { x = 3036, y = 3625, level = 2 }
+delta = { level = -1 }
+
+[14747]
+option = "Climb-up"
+tile = { x = 3036, y = 3625, level = 2 }
+delta = { level = 1 }
+
+[14746]
+option = "Climb-down"
+tile = { x = 3036, y = 3625, level = 3 }
+delta = { level = -1 }
+
+[14745]
+option = "Climb-up"
+tile = { x = 3036, y = 3638 }
+delta = { level = 1 }
+
+[14747]
+option = "Climb-down"
+tile = { x = 3036, y = 3638, level = 1 }
+delta = { level = -1 }
+
+[14747]
+option = "Climb-up"
+tile = { x = 3036, y = 3638, level = 1 }
+delta = { level = 1 }
+
+[14747]
+option = "Climb-down"
+tile = { x = 3036, y = 3638, level = 2 }
+delta = { level = -1 }
+
+[14747]
+option = "Climb-up"
+tile = { x = 3036, y = 3638, level = 2 }
+delta = { level = 1 }
+
+[14746]
+option = "Climb-down"
+tile = { x = 3036, y = 3638, level = 3 }
+delta = { level = -1 }
+
+[14747]
+option = "Climb-down"
+tile = { x = 3022, y = 3638, level = 1 }
+delta = { level = -1 }
+
+[14747]
+option = "Climb-up"
+tile = { x = 3022, y = 3638, level = 1 }
+delta = { level = 1 }
+
+[14747]
+option = "Climb-down"
+tile = { x = 3022, y = 3638, level = 2 }
+delta = { level = -1 }
+
+[14747]
+option = "Climb-up"
+tile = { x = 3022, y = 3638, level = 2 }
+delta = { level = 1 }
+

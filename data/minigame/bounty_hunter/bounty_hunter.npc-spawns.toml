@@ -1,0 +1,13 @@
+spawns = [
+# 12346
+  { id = "skeleton_axe_shield_85", x = 3092, y = 3717 },
+  { id = "skeleton_sword_shield_85", x = 3096, y = 3738 },
+  { id = "skeleton_hammer_shield", x = 3097, y = 3728 },
+  { id = "skeleton_sword_shield_85", x = 3102, y = 3716 },
+  { id = "skeleton_axe_shield_85", x = 3105, y = 3721 },
+  { id = "skeleton_axe_shield_85", x = 3113, y = 3740 },
+  { id = "skeleton_sword_shield_85", x = 3118, y = 3733 },
+  { id = "skeleton_hammer_shield", x = 3128, y = 3719 },
+  { id = "skeleton_sword_shield_85", x = 3128, y = 3741 },
+  { id = "skeleton_hammer_shield", x = 3130, y = 3754 },
+]

@@ -1,0 +1,5 @@
+spawns = [
+# 10807
+  { id = "scrap_paper", x = 2746, y = 3580, delay = 10, members = true },
+  { id = "address_form", x = 2739, y = 3581, level = 1, delay = 10, members = true },
+]

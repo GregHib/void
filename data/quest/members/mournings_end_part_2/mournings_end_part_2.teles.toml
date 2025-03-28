@@ -1,0 +1,6 @@
+# 7496 mournings_end_part_2
+[cosmic_altar_portal]
+option = "Enter"
+tile = { x = 2163, y = 4833 }
+to = { x = 2407, y = 4379 }
+

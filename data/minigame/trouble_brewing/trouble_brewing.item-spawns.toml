@@ -1,0 +1,12 @@
+spawns = [
+# 15151
+  { id = "edible_seaweed", x = 3834, y = 3065, delay = 100, members = true },
+  { id = "edible_seaweed", x = 3834, y = 3068, delay = 100, members = true },
+  { id = "edible_seaweed", x = 3828, y = 3060, delay = 100, members = true },
+  { id = "seaweed", x = 3829, y = 3052, delay = 100, members = true },
+  { id = "seaweed", x = 3815, y = 3064, delay = 100, members = true },
+  { id = "seaweed", x = 3814, y = 3065, delay = 100, members = true },
+  { id = "seaweed", x = 3808, y = 3060, delay = 100, members = true },
+  { id = "edible_seaweed", x = 3813, y = 3058, delay = 100, members = true },
+  { id = "edible_seaweed", x = 3811, y = 3056, delay = 100, members = true },
+]

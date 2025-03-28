@@ -1,0 +1,207 @@
+[info_item]
+id = 741
+format = "int"
+
+[info_last_line]
+id = 742
+format = "int"
+
+[item_info_currency]
+id = 743
+format = "map"
+default = "coins"
+values = {
+  coins = 995,
+  tokkul = 6529,
+  trading_sticks = 6306,
+  archery_ticket = 1464,
+  pieces_of_eight = 8951,
+  agility_arena_ticket = 2996,
+  castle_wars_ticket = 4067,
+  runecrafting_guild_token = 13650,
+  fist_of_guthix_token = 12852
+}
+
+[item_info_price]
+id = 744
+format = "int"
+
+[info_item_ranged]
+id = 746
+format = "int"
+
+[info_colour]
+id = 1242
+format = "int"
+
+[info_title_colour]
+id = 1241
+format = "int"
+
+[amount_0]
+id = 946
+format = "int"
+
+[amount_1]
+id = 947
+format = "int"
+
+[amount_2]
+id = 948
+format = "int"
+
+[amount_3]
+id = 949
+format = "int"
+
+[amount_4]
+id = 950
+format = "int"
+
+[amount_5]
+id = 951
+format = "int"
+
+[amount_6]
+id = 952
+format = "int"
+
+[amount_7]
+id = 953
+format = "int"
+
+[amount_8]
+id = 954
+format = "int"
+
+[amount_9]
+id = 955
+format = "int"
+
+[amount_10]
+id = 956
+format = "int"
+
+[amount_11]
+id = 957
+format = "int"
+
+[amount_12]
+id = 958
+format = "int"
+
+[amount_13]
+id = 959
+format = "int"
+
+[amount_14]
+id = 960
+format = "int"
+
+[amount_15]
+id = 961
+format = "int"
+
+[amount_16]
+id = 962
+format = "int"
+
+[amount_17]
+id = 963
+format = "int"
+
+[amount_18]
+id = 964
+format = "int"
+
+[amount_19]
+id = 965
+format = "int"
+
+[amount_20]
+id = 966
+format = "int"
+
+[amount_21]
+id = 967
+format = "int"
+
+[amount_22]
+id = 968
+format = "int"
+
+[amount_23]
+id = 969
+format = "int"
+
+[amount_24]
+id = 970
+format = "int"
+
+[amount_25]
+id = 971
+format = "int"
+
+[amount_26]
+id = 972
+format = "int"
+
+[amount_27]
+id = 973
+format = "int"
+
+[amount_28]
+id = 974
+format = "int"
+
+[amount_29]
+id = 975
+format = "int"
+
+[amount_30]
+id = 976
+format = "int"
+
+[amount_31]
+id = 977
+format = "int"
+
+[amount_32]
+id = 978
+format = "int"
+
+[amount_33]
+id = 979
+format = "int"
+
+[amount_34]
+id = 980
+format = "int"
+
+[amount_35]
+id = 981
+format = "int"
+
+[amount_36]
+id = 982
+format = "int"
+
+[amount_37]
+id = 983
+format = "int"
+
+[amount_38]
+id = 984
+format = "int"
+
+[amount_39]
+id = 985
+format = "int"
+
+[offer_value]
+id = 729
+format = "int"
+
+[other_offer_value]
+id = 697
+format = "int"

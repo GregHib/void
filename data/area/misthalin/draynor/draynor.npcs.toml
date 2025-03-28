@@ -1,0 +1,10 @@
+[diango]
+id = 970
+wander_radius = 4
+shop = "diangos_toy_store"
+race = "human"
+examine = "A toy-seller who looks after people's toys for them."
+
+[armour_draynor_manor]
+id = 9354
+examine = "A suit of armour."

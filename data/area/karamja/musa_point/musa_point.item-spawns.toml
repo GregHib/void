@@ -1,0 +1,8 @@
+spawns = [
+# 11569
+  { id = "air_rune", x = 2938, y = 3158, delay = 100 },
+  { id = "banana", x = 2907, y = 3146, delay = 100 },
+  { id = "jug", x = 2905, y = 3146, delay = 100 },
+  { id = "rope", x = 2904, y = 3152, delay = 100},
+  { id = "knife", x = 2903, y = 3148, delay = 100 },
+]

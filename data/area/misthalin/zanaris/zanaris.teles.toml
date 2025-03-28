@@ -1,0 +1,6 @@
+# 9540 zanaris
+[27870]
+option = "Climb-down"
+tile = { x = 4316, y = 5475, level = 1 }
+delta = { x = 5, level = -1 }
+

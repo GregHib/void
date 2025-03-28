@@ -1,0 +1,10 @@
+[dialogue_castlewars_score]
+id = 55
+type = "dialogue_box"
+
+[castlewars_shopside]
+id = 56
+
+[castlewars_status_overlay]
+id = 57
+type = "dialogue_box"

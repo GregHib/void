@@ -1,0 +1,7 @@
+spawns = [
+# 11929
+  { id = "pie_dish", x = 2993, y = 9847, delay = 100 },
+  { id = "bronze_chainbody", x = 2985, y = 9817, delay = 250 },
+  { id = "coins", x = 3001, y = 9798, delay = 100 },
+  { id = "coins", x = 3003, y = 9801, delay = 100 },
+]

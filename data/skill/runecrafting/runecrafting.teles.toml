@@ -1,0 +1,132 @@
+# 9035 runecrafting
+[lever_kbd_lair]
+option = "Pull"
+tile = { x = 2273, y = 4680 }
+to = { x = 3067, y = 10254 }
+
+[chaos_altar_portal]
+option = "Enter"
+tile = { x = 2276, y = 4847, level = 3 }
+to = { x = 3060, y = 3585 }
+
+[chaos_altar_portal]
+option = "Enter"
+tile = { x = 2273, y = 4856, level = 3 }
+to = { x = 3060, y = 3585 }
+
+[chaos_altar_ladder_down]
+option = "Climb-down"
+tile = { x = 2255, y = 4829, level = 3 }
+delta = { level = -1 }
+
+[chaos_altar_ladder_up]
+option = "Climb-up"
+tile = { x = 2255, y = 4829, level = 2 }
+delta = { level = 1 }
+
+[chaos_altar_ladder_down]
+option = "Climb-down"
+tile = { x = 2282, y = 4853, level = 2 }
+delta = { level = -1 }
+
+[chaos_altar_ladder_up]
+option = "Climb-up"
+tile = { x = 2282, y = 4853, level = 1 }
+delta = { level = 1 }
+
+[chaos_altar_ladder_down]
+option = "Climb-down"
+tile = { x = 2275, y = 4834, level = 2 }
+delta = { level = -1 }
+
+[chaos_altar_ladder_up]
+option = "Climb-up"
+tile = { x = 2275, y = 4834, level = 1 }
+delta = { level = 1 }
+
+[chaos_altar_ladder_down]
+option = "Climb-down"
+tile = { x = 2254, y = 4849, level = 1 }
+delta = { level = -1 }
+
+[chaos_altar_ladder_up]
+option = "Climb-up"
+tile = { x = 2254, y = 4849 }
+delta = { level = 1 }
+
+[chaos_altar_ladder_down]
+option = "Climb-down"
+tile = { x = 2259, y = 4845, level = 1 }
+delta = { level = -1 }
+
+[chaos_altar_ladder_up]
+option = "Climb-up"
+tile = { x = 2259, y = 4845 }
+delta = { level = 1 }
+
+# 9547 runecrafting
+[16048]
+option = "Climb-up"
+tile = { x = 2350, y = 5215 }
+to = { x = 3081, y = 3421 }
+
+# 9803 runecrafting
+[273]
+option = "Climb-down"
+tile = { x = 2847, y = 3235, level = 1 }
+delta = { level = -1 }
+
+# 11083 runecrafting
+[ape_atoll_hole]
+option = "Enter"
+tile = { x = 2758, y = 2729 }
+to = { x = 3024, y = 5457 }
+
+# 10059 runecrafting
+[body_altar_ruins_enter]
+option = "Enter"
+tile = { x = 3052, y = 3444 }
+to = { x = 2521, y = 4834 }
+
+# 11339 runecrafting
+[133]
+option = "Climb-down"
+tile = { x = 3092, y = 3362 }
+delta = { x = 25, y = 6392 }
+
+# 13899 runecrafting
+[36770]
+option = "Climb-down"
+tile = { x = 3139, y = 3078, level = 1 }
+delta = { level = -1 }
+
+# 10315 runecrafting
+[35645]
+option = "Climb-down"
+tile = { x = 3325, y = 3139, level = 1 }
+to = { x = 3325, y = 3143 }
+
+# 10571 runecrafting
+[10321]
+option = "Climb-down"
+tile = { x = 3267, y = 3400 }
+to = { x = 2894, y = 5097 }
+
+# 8523 runecrafting
+[cosmic_altar_ruins_enter]
+option = "Enter"
+tile = { x = 2407, y = 4376 }
+to = { x = 2162, y = 4833 }
+
+# 8779 runecrafting
+[death_altar_ruins_enter]
+option = "Enter"
+tile = { x = 1860, y = 4638 }
+to = { x = 2208, y = 4830 }
+
+# 9804 runecrafting
+[blood_altar_ruins_enter]
+option = "Enter"
+tile = { x = 3560, y = 9780 }
+to = { x = 2468, y = 4889, level = 1 }
+

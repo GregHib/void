@@ -1,0 +1,13 @@
+spawns = [
+# 9778
+  { id = "mage_of_zamorak_ourania", x = 2455, y = 3233, members = true },
+  { id = "monk_of_zamorak_ourania", x = 2454, y = 3247, members = true },
+  { id = "monk_of_zamorak_ourania", x = 2455, y = 3240, members = true },
+  { id = "monk_of_zamorak_ourania", x = 2465, y = 3248, members = true },
+  { id = "monk_of_zamorak_ourania", x = 2468, y = 3243, members = true },
+  { id = "monk_of_zamorak_ourania", x = 2470, y = 3243, members = true },
+  { id = "monk_of_zamorak_ourania", x = 2473, y = 3241, members = true },
+  { id = "monk_of_zamorak_ourania", x = 2474, y = 3248, members = true },
+  { id = "monk_of_zamorak_ourania", x = 2477, y = 3238, members = true },
+  { id = "monk_of_zamorak_ourania", x = 2477, y = 3244, members = true },
+]

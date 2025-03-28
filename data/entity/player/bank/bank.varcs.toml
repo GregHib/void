@@ -1,0 +1,7 @@
+[bank_spaces_used_free]
+id = 1038
+format = "int"
+
+[bank_spaces_used_member]
+id = 192
+format = "int"

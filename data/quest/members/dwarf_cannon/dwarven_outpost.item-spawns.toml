@@ -1,0 +1,4 @@
+spawns = [
+# 10294
+  { id = "hammer", x = 2579, y = 3463, delay = 100, members = true },
+]

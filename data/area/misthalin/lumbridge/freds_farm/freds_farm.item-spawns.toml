@@ -1,0 +1,9 @@
+spawns = [
+# 12595
+  { id = "empty_pot", x = 3167, y = 3310, delay = 100 },
+  { id = "egg", x = 3187, y = 3276, delay = 30 },
+  { id = "egg", x = 3191, y = 3277, delay = 30 },
+  { id = "egg", x = 3185, y = 3278, delay = 30 },
+  { id = "shears", x = 3192, y = 3272, delay = 6 },
+  { id = "shears", x = 3152, y = 3306, delay = 6 },
+]

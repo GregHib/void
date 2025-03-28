@@ -1,0 +1,5 @@
+teleport = 200
+teleport_land = 201
+teleport_tablet = 965
+tele_other_cast = 199
+teleport_all = 200

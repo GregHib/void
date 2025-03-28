@@ -1,0 +1,5 @@
+[guardian_mummy]
+id = 4476
+race = "mummy"
+large_head = true
+examine = "Who's your mummy?"

@@ -1,0 +1,15 @@
+spawns = [
+# 10551
+  { id = "musician_rellekka", x = 2657, y = 3570, direction = "EAST", members = true },
+# 10552
+  { id = "wolf", x = 2647, y = 3584, members = true },
+  { id = "wolf", x = 2682, y = 3592, members = true },
+  { id = "wolf", x = 2680, y = 3585, members = true },
+# 10553
+  { id = "yrsa", x = 2625, y = 3675, members = true },
+  { id = "musician_rellekka", x = 2655, y = 3694, direction = "SOUTH", members = true },
+  { id = "chicken", x = 2679, y = 3665, members = true },
+  { id = "chicken", x = 2680, y = 3664, members = true },
+# 11064
+  { id = "musician_mountain_camp", x = 2760, y = 3645, direction = "SOUTH", members = true },
+]

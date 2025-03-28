@@ -1,0 +1,7 @@
+spawns = [
+# 11088
+  { id = "banker_sophanem_dungeon", x = 2798, y = 5171, direction = "SOUTH", members = true },
+  { id = "banker_sophanem_dungeon", x = 2801, y = 5171, direction = "SOUTH", members = true },
+  { id = "banker_sophanem_dungeon_2", x = 2799, y = 5171, direction = "SOUTH", members = true },
+  { id = "banker_sophanem_dungeon_2", x = 2800, y = 5171, direction = "SOUTH", members = true },
+]

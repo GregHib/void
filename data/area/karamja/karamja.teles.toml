@@ -1,0 +1,6 @@
+# 11311 karamja
+[lever_ardougne_edgeville]
+option = "Pull"
+tile = { x = 2561, y = 3311 }
+to = { x = 3154, y = 3924 }
+

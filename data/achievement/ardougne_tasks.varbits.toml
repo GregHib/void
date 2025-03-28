@@ -1,0 +1,309 @@
+# Ardougne Easy
+
+[the_essence_of_magic_task]
+id = 6598
+format = "boolean"
+persist = true
+
+[yoink_task]
+id = 6599
+format = "boolean"
+persist = true
+
+[silky_smooth_task]
+id = 6600
+format = "boolean"
+persist = true
+
+[preaching_to_the_infected_task]
+id = 6601
+format = "boolean"
+persist = true
+
+[playing_the_waiting_game_task]
+id = 6602
+format = "boolean"
+persist = true
+
+[gone_fishing_task]
+id = 6603
+format = "boolean"
+persist = true
+
+[boot_camp_task]
+id = 6604
+format = "boolean"
+persist = true
+
+[a_cat_is_for_life_task]
+id = 6605
+format = "boolean"
+persist = true
+
+[creator_and_destroyer_task]
+id = 6606
+format = "boolean"
+persist = true
+
+[red_revolution_task]
+id = 6607
+format = "boolean"
+persist = true
+
+[going_on_a_summer_holiday_task]
+id = 6608
+format = "boolean"
+persist = true
+
+[breaking_and_entering_task]
+id = 6609
+format = "boolean"
+persist = true
+
+[p_p_p_pick_up_some_prizes_task]
+id = 1421
+format = "boolean"
+persist = true
+
+[a_gift_from_khazard_task]
+id = 6611
+format = "boolean"
+persist = true
+
+[party_pooper_task]
+id = 6612
+format = "boolean"
+persist = true
+
+[vial_deeds_task]
+id = 6613
+format = "boolean"
+persist = true
+
+[star_seeker_task]
+id = 6614
+format = "boolean"
+persist = true
+
+[dukes_of_khazard_task]
+id = 6615
+format = "boolean"
+persist = true
+
+[dont_eat_the_pointy_bit_task]
+id = 6616
+format = "boolean"
+persist = true
+
+[bargain_hunter_task]
+id = 6617
+format = "boolean"
+persist = true
+
+[are_you_being_served_task]
+id = 6618
+format = "boolean"
+persist = true
+
+[no_time_to_lose_task]
+id = 6619
+format = "boolean"
+persist = true
+
+[theyre_long_and_pointy_task]
+id = 6620
+format = "boolean"
+persist = true
+# Ardougne Medium
+
+[a_visit_to_charlie_task]
+id = 6622
+format = "boolean"
+persist = true
+
+[i_wonder_what_this_does_task]
+id = 6623
+format = "boolean"
+persist = true
+
+[sandys_secret_getaway_task]
+id = 6624
+format = "boolean"
+persist = true
+
+[i_know_a_shortcut_task]
+id = 6625
+format = "boolean"
+persist = true
+
+[volatile_valuables_task]
+id = 6626
+format = "boolean"
+persist = true
+
+[what_a_melon_task]
+id = 6627
+format = "boolean"
+persist = true
+
+[ardougne_express_task]
+id = 6650
+format = "boolean"
+persist = true
+
+[arriving_in_style_task]
+id = 6629
+format = "boolean"
+persist = true
+
+[by_the_bucketload_task]
+id = 6630
+format = "boolean"
+persist = true
+
+[meeting_history_again_task]
+id = 6631
+format = "boolean"
+persist = true
+
+[fearless_fishing_task]
+id = 6632
+format = "boolean"
+persist = true
+
+[water_logged_task]
+id = 6633
+format = "boolean"
+persist = true
+
+[green_fingers_task]
+id = 6634
+format = "boolean"
+persist = true
+
+[a_natural_thief_task]
+id = 6635
+format = "boolean"
+persist = true
+
+[the_coal_train_task]
+id = 6636
+format = "boolean"
+persist = true
+
+[are_you_chicken_task]
+id = 6637
+format = "boolean"
+persist = true
+# Ardougne Hard
+
+[brace_yourself_task]
+id = 6639
+format = "boolean"
+persist = true
+
+[shadow_boxing_task]
+id = 6640
+format = "boolean"
+persist = true
+
+[just_like_that_task]
+id = 6641
+format = "boolean"
+persist = true
+
+[nice_view_task]
+id = 6642
+format = "boolean"
+persist = true
+
+[youre_the_dirty_rascal_task]
+id = 6643
+format = "boolean"
+persist = true
+
+[ourania_mania_task]
+id = 6644
+format = "boolean"
+persist = true
+
+[not_on_my_watch_task]
+id = 6645
+format = "boolean"
+persist = true
+
+[it_just_croaked_task]
+id = 6646
+format = "boolean"
+persist = true
+
+[get_your_stinking_hands_off_me_task]
+id = 6647
+format = "boolean"
+persist = true
+
+[vine_detta_task]
+id = 6648
+format = "boolean"
+persist = true
+
+[living_on_a_prayer_task]
+id = 6649
+format = "boolean"
+persist = true
+
+[who_wants_to_watch_the_watchtower_task]
+id = 6628
+format = "boolean"
+persist = true
+
+[monkey_business_task]
+id = 6651
+format = "boolean"
+persist = true
+
+[its_my_newt_task]
+id = 6652
+format = "boolean"
+persist = true
+
+[a_taste_of_the_exotic_task]
+id = 6653
+format = "boolean"
+persist = true
+
+[blood_bank_withdrawal_task]
+id = 6654
+format = "boolean"
+persist = true
+
+[artillery_strike_task]
+id = 6655
+format = "boolean"
+persist = true
+# Ardougne Elite
+
+[catching_some_rays_task]
+id = 6658
+format = "boolean"
+persist = true
+
+[abyssal_valet_task]
+id = 6659
+format = "boolean"
+persist = true
+
+[you_could_just_knock_task]
+id = 6660
+format = "boolean"
+persist = true
+
+[honestly_its_not_a_purse_task]
+id = 6661
+format = "boolean"
+persist = true
+
+[almost_made_in_ardougne_task]
+id = 6662
+format = "boolean"
+persist = true

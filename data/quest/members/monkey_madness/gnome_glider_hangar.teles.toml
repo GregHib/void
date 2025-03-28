@@ -1,0 +1,11 @@
+# 12440 gnome_glider_hangar
+[basic_ladder_up]
+option = "Climb-up"
+tile = { x = 3084, y = 9672 }
+delta = { y = -6400 }
+
+[164]
+option = "Climb-up"
+tile = { x = 3080, y = 9772 }
+delta = { x = 35, y = -6421 }
+

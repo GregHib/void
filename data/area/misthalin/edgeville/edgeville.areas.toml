@@ -1,0 +1,24 @@
+[edgeville_home_teleport]
+x = [3086, 3088]
+y = [3501, 3503]
+tags = ["teleport"]
+
+[paddewwa_teleport]
+x = [3096, 3098]
+y = [9883, 9885]
+tags = ["teleport"]
+
+[lassar_teleport]
+x = [3005, 3007]
+y = [3471, 3473]
+tags = ["teleport"]
+
+[monastery_teleport]
+x = [3050, 3053]
+y = [3486, 3489]
+tags = ["teleport"]
+
+[edgeville_teleport]
+x = [3085, 3089]
+y = [3494, 3498]
+tags = ["teleport"]

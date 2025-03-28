@@ -1,0 +1,19 @@
+[home_teleport_timeout]
+format = "int"
+persist = true
+
+[charge]
+format = "int"
+persist = true
+
+[charge_delay]
+format = "int"
+persist = true
+
+[vengeance_delay]
+format = "int"
+persist = true
+
+[ibans_staff_charges]
+format = "int"
+default = 120

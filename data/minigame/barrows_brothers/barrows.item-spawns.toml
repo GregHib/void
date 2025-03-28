@@ -1,0 +1,4 @@
+spawns = [
+# 14131
+  { id = "crumbling_tome", x = 3571, y = 3312, delay = 100, members = true },
+]

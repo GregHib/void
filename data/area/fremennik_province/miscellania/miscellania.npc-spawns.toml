@@ -1,0 +1,6 @@
+spawns = [
+# 10044
+  { id = "musician_miscellania", x = 2536, y = 3861, direction = "NORTH", members = true },
+# 10300
+  { id = "banker_etceteria", x = 2621, y = 3895, direction = "WEST", members = true },
+]

@@ -1,0 +1,23 @@
+spawns = [
+# 11837
+  { id = "white_wolf_2", x = 2991, y = 3924, members = true },
+  { id = "white_wolf_2", x = 2988, y = 3921, members = true },
+  { id = "white_wolf_2", x = 2994, y = 3921, members = true },
+  { id = "white_wolf_2", x = 2992, y = 3917, members = true },
+  { id = "white_wolf_2", x = 3005, y = 3926, members = true },
+  { id = "white_wolf_2", x = 3002, y = 3924, members = true },
+  { id = "white_wolf_2", x = 3006, y = 3921, members = true },
+  { id = "white_wolf_2", x = 3004, y = 3917, members = true },
+  { id = "skeleton_flail", x = 2982, y = 3947 },
+  { id = "skeleton_sword_shield", x = 2989, y = 3944 },
+  { id = "skeleton_mace_shield", x = 2992, y = 3942 },
+# 11937
+  { id = "skeleton_axe_shield", x = 2994, y = 10346 },
+  { id = "skeleton_mace_shield", x = 2998, y = 10342 },
+  { id = "skeleton_longsword", x = 2998, y = 10350 },
+  { id = "skeleton_mace_shield", x = 3002, y = 10356 },
+  { id = "skeleton_sword_shield", x = 3003, y = 10347 },
+  { id = "skeleton_sword_shield", x = 3004, y = 10362 },
+  { id = "skeleton_flail", x = 3005, y = 10352 },
+  { id = "skeleton_axe_shield", x = 3006, y = 10357 },
+]

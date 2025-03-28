@@ -1,0 +1,12 @@
+# 11837 wilderness_agility_course
+[16556]
+option = "Climb-down"
+tile = { x = 2954, y = 3497, level = 2 }
+to = { x = 2955, y = 3497 }
+
+# 11937 wilderness_agility_course
+[31002]
+option = "Climb-up"
+tile = { x = 2996, y = 9846 }
+delta = { x = 2, y = -6393 }
+

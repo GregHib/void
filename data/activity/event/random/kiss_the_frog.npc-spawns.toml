@@ -1,0 +1,17 @@
+spawns = [
+# 9802
+  { id = "frog_frogland", x = 2456, y = 4787 },
+  { id = "frog_2_frogland", x = 2454, y = 4783 },
+  { id = "frog_3_frogland", x = 2455, y = 4777 },
+  { id = "frog_4_frogland", x = 2458, y = 4774 },
+  { id = "frog_5_frogland", x = 2463, y = 4774 },
+  { id = "frog_6_frogland", x = 2464, y = 4782 },
+  { id = "frog_7_frogland", x = 2470, y = 4774 },
+  { id = "frog_8_frogland", x = 2474, y = 4781 },
+  { id = "frog_11_frogland", x = 2444, y = 4774 },
+  { id = "frog_11_frogland", x = 2445, y = 4771 },
+  { id = "frog_11_frogland", x = 2442, y = 4770 },
+  { id = "frog_11_frogland", x = 2441, y = 4766 },
+  { id = "frog_herald", x = 2446, y = 4770, direction = "WEST" },
+  { id = "frog_9_frogland", x = 2440, y = 4774 },
+]

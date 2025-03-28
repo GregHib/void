@@ -1,0 +1,7 @@
+spawns = [
+# 9273
+  { id = "fishing_spot_harpoon_small_net_piscatoris", x = 2311, y = 3704, members = true },
+  { id = "fishing_spot_harpoon_small_net_piscatoris", x = 2326, y = 3700, members = true },
+  { id = "fishing_spot_harpoon_small_net_piscatoris", x = 2343, y = 3702, members = true },
+  { id = "fishing_spot_harpoon_small_net_piscatoris", x = 2347, y = 3702, members = true },
+]

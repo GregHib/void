@@ -1,0 +1,12 @@
+spawns = [
+# 7243
+  { id = "rat", x = 1816, y = 4836, level = 1, members = true },
+  { id = "rat", x = 1815, y = 4832, members = true },
+  { id = "rat", x = 1814, y = 4826, members = true },
+  { id = "rat", x = 1824, y = 4839, members = true },
+  { id = "rat", x = 1823, y = 4837, members = true },
+  { id = "rat", x = 1825, y = 4831, members = true },
+  { id = "rat", x = 1823, y = 4829, members = true },
+  { id = "rat", x = 1826, y = 4829, level = 1, members = true },
+  { id = "rat", x = 1823, y = 4828, level = 1, members = true },
+]

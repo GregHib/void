@@ -1,0 +1,10 @@
+spawns = [
+# 13103
+  { id = "bowl_of_water", x = 3291, y = 3034, delay = 100, members = true },
+  { id = "papyrus", x = 3290, y = 3033, level = 1, delay = 100, members = true },
+  { id = "jug_of_wine", x = 3291, y = 3033, level = 1, delay = 100, members = true },
+  { id = "beer", x = 3286, y = 3033, level = 1, delay = 100, members = true },
+# 13203
+  { id = "bronze_pickaxe", x = 3288, y = 9431, delay = 228, members = true },
+  { id = "bronze_pickaxe", x = 3288, y = 9442, delay = 228, members = true },
+]

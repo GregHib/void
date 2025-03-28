@@ -1,0 +1,199 @@
+# Fremennik Easy
+
+[bring_the_antipoisons_task]
+id = 5648
+format = "boolean"
+persist = true
+
+[why_wont_you_die_task]
+id = 5649
+format = "boolean"
+persist = true
+
+[king_conifer_task]
+id = 5650
+format = "boolean"
+persist = true
+
+[assaulted_goodies_task]
+id = 5651
+format = "boolean"
+persist = true
+
+[oxymoron_incarnate_task]
+id = 5652
+format = "boolean"
+persist = true
+
+[why_did_the_lobster_blush_task]
+id = 5653
+format = "boolean"
+persist = true
+
+[hunting_the_hunter_task]
+id = 5654
+format = "boolean"
+persist = true
+
+[peer_off_the_pier_task]
+id = 5655
+format = "boolean"
+persist = true
+
+[a_familiar_feeling_task]
+id = 5656
+format = "boolean"
+persist = true
+
+[endangered_species_task]
+id = 5657
+format = "boolean"
+persist = true
+# Fremennik Medium
+
+[fremennik_history_101_task]
+id = 5658
+format = "boolean"
+persist = true
+
+[cool_story_bro_task]
+id = 5659
+format = "boolean"
+persist = true
+
+[whos_a_good_boy_task]
+id = 5660
+format = "boolean"
+persist = true
+
+[only_takes_a_little_vial_task]
+id = 5661
+format = "boolean"
+persist = true
+
+[you_know_you_want_it_task]
+id = 5662
+format = "boolean"
+persist = true
+
+[yak_attack_task]
+id = 5666
+format = "boolean"
+persist = true
+
+[fremmental_task]
+id = 5667
+format = "boolean"
+persist = true
+
+[fairy_mountaineering_task]
+id = 5663
+format = "boolean"
+persist = true
+
+[you_really_dont_need_any_more_shoes_task]
+id = 5664
+format = "boolean"
+persist = true
+
+[big_game_hunter_task]
+id = 5665
+format = "boolean"
+persist = true
+
+[grand_theft_fish_task]
+id = 5668
+format = "boolean"
+persist = true
+# Fremennik Hard
+
+[defeating_deadly_dagannoths_task]
+id = 5669
+format = "boolean"
+persist = true
+
+[dress_to_impress_task]
+id = 5670
+format = "boolean"
+persist = true
+
+[the_graceful_barbarian_task]
+id = 5671
+format = "boolean"
+persist = true
+
+[runes_on_the_moon_task]
+id = 5672
+format = "boolean"
+persist = true
+
+[pyre_at_will_task]
+id = 5673
+format = "boolean"
+persist = true
+
+[fish_fingers_task]
+id = 5674
+format = "boolean"
+persist = true
+
+[easy_as_pie_task]
+id = 5675
+format = "boolean"
+persist = true
+
+[how_to_maim_your_dragon_task]
+id = 5676
+format = "boolean"
+persist = true
+
+[a_periodic_table_task]
+id = 5677
+format = "boolean"
+persist = true
+# Fremennik Elite
+
+[jaws_breaker_task]
+id = 8231
+format = "boolean"
+persist = true
+
+[limber_lumber_jumper_task]
+id = 8232
+format = "boolean"
+persist = true
+
+[astronomical_task]
+id = 8233
+format = "boolean"
+persist = true
+
+[first_stryke_task]
+id = 8234
+format = "boolean"
+persist = true
+
+[leap_of_faith_task]
+id = 8235
+format = "boolean"
+persist = true
+
+[no_smoke_without_pyre_task]
+id = 8236
+format = "boolean"
+persist = true
+
+[this_hasta_work_task]
+id = 8237
+format = "boolean"
+persist = true
+
+[potting_with_otto_task]
+id = 8238
+format = "boolean"
+persist = true
+
+[axell_grease_task]
+id = 8239
+format = "boolean"
+persist = true

@@ -63,7 +63,7 @@ fun engineModule(files: ConfigFiles) = module {
     // Map
     single { ZoneBatchUpdates() }
     single { DynamicZones(get(), get(), get()) }
-    single(createdAtStart = true) { AreaDefinitions().load(files.find(Settings["map.areas"])) }
+    single(createdAtStart = true) { AreaDefinitions().load(files.list(Settings["map.areas"])) }
     single(createdAtStart = true) { CanoeDefinitions().load(files.find(Settings["map.canoes"])) }
     // Network
     single {
@@ -79,11 +79,11 @@ fun engineModule(files: ConfigFiles) = module {
     single { PathFinder(flags = get<Collisions>(), useRouteBlockerFlags = true) }
     single { LineValidator(flags = get<Collisions>()) }
     // Definitions
-    single(createdAtStart = true) { SoundDefinitions().load(files.find(Settings["definitions.sounds"])) }
+    single(createdAtStart = true) { SoundDefinitions().load(files.list(Settings["definitions.sounds"])) }
     single(createdAtStart = true) { QuestDefinitions().load(files.find(Settings["definitions.quests"])) }
     single(createdAtStart = true) { RenderEmoteDefinitions().load(files.find(Settings["definitions.renderEmotes"])) }
-    single(createdAtStart = true) { MidiDefinitions().load(files.find(Settings["definitions.midis"])) }
-    single(createdAtStart = true) { JingleDefinitions().load(files.find(Settings["definitions.jingles"])) }
+    single(createdAtStart = true) { MidiDefinitions().load(files.list(Settings["definitions.midis"])) }
+    single(createdAtStart = true) { JingleDefinitions().load(files.list(Settings["definitions.jingles"])) }
     single(createdAtStart = true) { SpellDefinitions().load(files.find(Settings["definitions.spells"])) }
     single(createdAtStart = true) { PatrolDefinitions().load(files.list(Settings["definitions.patrols"])) }
     single(createdAtStart = true) { PrayerDefinitions().load(files.find(Settings["definitions.prayers"])) }

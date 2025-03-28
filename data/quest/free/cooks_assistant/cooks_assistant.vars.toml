@@ -1,0 +1,15 @@
+[cooks_assistant_milk]
+format = "boolean"
+persist = true
+
+[cooks_assistant_egg]
+format = "boolean"
+persist = true
+
+[cooks_assistant_flour]
+format = "boolean"
+persist = true
+
+[cooks_assistant_talked_to_millie]
+format = "boolean"
+persist = true

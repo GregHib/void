@@ -1,0 +1,119 @@
+[price_checker_total]
+id = 728
+format = "int"
+
+[price_checker_limit]
+id = 729
+format = "int"
+
+[value_0]
+id = 700
+format = "int"
+
+[value_1]
+id = 701
+format = "int"
+
+[value_2]
+id = 702
+format = "int"
+
+[value_3]
+id = 703
+format = "int"
+
+[value_4]
+id = 704
+format = "int"
+
+[value_5]
+id = 705
+format = "int"
+
+[value_6]
+id = 706
+format = "int"
+
+[value_7]
+id = 707
+format = "int"
+
+[value_8]
+id = 708
+format = "int"
+
+[value_9]
+id = 709
+format = "int"
+
+[value_10]
+id = 710
+format = "int"
+
+[value_11]
+id = 711
+format = "int"
+
+[value_12]
+id = 712
+format = "int"
+
+[value_13]
+id = 713
+format = "int"
+
+[value_14]
+id = 714
+format = "int"
+
+[value_15]
+id = 715
+format = "int"
+
+[value_16]
+id = 716
+format = "int"
+
+[value_17]
+id = 717
+format = "int"
+
+[value_18]
+id = 718
+format = "int"
+
+[value_19]
+id = 719
+format = "int"
+
+[value_20]
+id = 720
+format = "int"
+
+[value_21]
+id = 721
+format = "int"
+
+[value_22]
+id = 722
+format = "int"
+
+[value_23]
+id = 723
+format = "int"
+
+[value_24]
+id = 724
+format = "int"
+
+[value_25]
+id = 725
+format = "int"
+
+[value_26]
+id = 726
+format = "int"
+
+[value_27]
+id = 727
+format = "int"

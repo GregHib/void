@@ -1,0 +1,63 @@
+# 12338 draynor
+[12538]
+option = "Climb-down"
+tile = { x = 3104, y = 3160, level = 2 }
+delta = { level = -1 }
+
+[7057]
+option = "Climb-up"
+tile = { x = 3090, y = 3251 }
+delta = { x = 4, level = 1 }
+
+[7056]
+option = "Climb-down"
+tile = { x = 3091, y = 3251, level = 1 }
+delta = { x = -4, level = -1 }
+
+# 12339 draynor
+[trapdoor_draynor_opened]
+option = "Climb-down"
+tile = { x = 3118, y = 3244 }
+to = { x = 3118, y = 9644 }
+
+[trapdoor_draynor_opened]
+option = "Climb-down"
+tile = { x = 3084, y = 3272 }
+delta = { y = 6400 }
+
+[46244]
+option = "Climb-up"
+tile = { x = 3099, y = 3266 }
+delta = { x = 4, level = 1 }
+
+# 12340 draynor
+[46245]
+option = "Climb-down"
+tile = { x = 3100, y = 3266, level = 1 }
+delta = { x = -4, level = -1 }
+
+[47364]
+option = "Climb-up"
+tile = { x = 3107, y = 3362 }
+delta = { y = 5, level = 1 }
+
+[47657]
+option = "Climb-down"
+tile = { x = 3108, y = 3364, level = 1 }
+delta = { y = -5, level = -1 }
+
+[47574]
+option = "Climb-up"
+tile = { x = 3105, y = 3363, level = 1 }
+delta = { y = -2, level = 1 }
+
+[47575]
+option = "Climb-down"
+tile = { x = 3105, y = 3363, level = 2 }
+delta = { y = 2, level = -1 }
+
+[47643]
+option = "Walk-down"
+tile = { x = 3115, y = 3356 }
+delta = { x = -35, y = 6421 }
+

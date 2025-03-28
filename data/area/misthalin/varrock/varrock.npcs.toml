@@ -1,0 +1,27 @@
+[shopkeeper_varrock]
+id = 522
+race = "human"
+shop = "varrock_general_store"
+wander_radius = 2
+examine = "Likes people spending money."
+
+[shop_assistant_varrock]
+id = 523
+race = "human"
+shop = "varrock_general_store"
+wander_radius = 2
+examine = "Likes helping sell stuff."
+
+[thessalia]
+id = 548
+shop = "thessalias_fine_clothes"
+race = "human"
+wander_radius = 3
+examine = "Interesting assortment of clothes on offer..."
+
+[aubury]
+id = 553
+shop = "auburys_rune_shop"
+race = "human"
+wander_radius = 3
+examine = "Runes are his passion."

@@ -1,0 +1,4 @@
+spawns = [
+# 9625
+  { id = "premade_chocolate_saturday", x = 2411, y = 9818, delay = 100, members = true },
+]

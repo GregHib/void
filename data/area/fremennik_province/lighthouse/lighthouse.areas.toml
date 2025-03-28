@@ -1,0 +1,9 @@
+[lighthouse_dungeon_multi_area]
+x = [2496, 2559]
+y = [9984, 10047]
+tags = ["multi_combat"]
+
+[dagannoth_kings_multi_area]
+x = [2880, 2943]
+y = [4416, 4479]
+tags = ["multi_combat"]

@@ -1,0 +1,6 @@
+# 11316 entrana
+[basic_ladder_up]
+option = "Climb-up"
+tile = { x = 2547, y = 9951 }
+delta = { y = -6400 }
+

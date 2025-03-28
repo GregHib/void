@@ -1,0 +1,21 @@
+[filter_buttons]
+id = 751
+type = "chat_settings"
+components = {
+  all = 30,
+  game = 27,
+  public = 24,
+  private = 21,
+  clan = 18,
+  trade = 15,
+  assist = 12,
+  report = 9,
+}
+
+[chat_box]
+id = 752
+type = "chat_box"
+
+[private_chat]
+id = 754
+type = "private_chat"

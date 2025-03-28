@@ -1,0 +1,5 @@
+spawns = [
+# 10390
+  { id = "rat_poison", x = 2564, y = 9662, delay = 100, members = true },
+  { id = "childs_blanket", x = 2570, y = 9604, delay = 50, members = true },
+]

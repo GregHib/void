@@ -1,0 +1,4 @@
+door_close = 80
+door_open = 81
+gate_close = 70
+gate_open = 71

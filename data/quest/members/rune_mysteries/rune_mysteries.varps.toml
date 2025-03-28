@@ -1,0 +1,6 @@
+[rune_mysteries]
+id = 63
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1, talisman_delivered = 2, research_package = 3, package_delivered = 4, research_notes = 5, completed = 6 }

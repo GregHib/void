@@ -1,0 +1,5 @@
+[task_reward_items]
+id = 1959
+format = "bitwise"
+persist = true
+values = [ "magic_staff", "red_dye" ]

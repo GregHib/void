@@ -1,0 +1,12 @@
+# 12181 asgarnian_ice_dungeon
+[chaos_rift]
+option = "Exit-through"
+tile = { x = 3044, y = 4842 }
+to = { x = 2269, y = 4840 }
+
+# 12181 asgarnian_ice_dungeon
+[ape_atoll_hole_rope]
+option = "Climb-up"
+tile = { x = 3025, y = 5457 }
+to = { x = 2758, y = 2730 }
+

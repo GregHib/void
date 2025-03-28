@@ -1,0 +1,47 @@
+# 15446 the_blood_pact
+[46936]
+option = "Climb-down"
+tile = { x = 3809, y = 5276 }
+delta = { x = -65, y = -1 }
+
+[48798]
+option = "Climb-up"
+tile = { x = 3877, y = 5525, level = 1 }
+delta = { x = -631, y = -2328, level = -1 }
+
+[48680]
+option = "Climb-down"
+tile = { x = 3874, y = 5527, level = 1 }
+to = { x = 3869, y = 5524 }
+
+[48679]
+option = "Climb-up"
+tile = { x = 3870, y = 5524 }
+to = { x = 3875, y = 5527, level = 1 }
+
+[48677]
+option = "Climb-up"
+tile = { x = 3858, y = 5533 }
+delta = { x = -4, level = 1 }
+
+[48678]
+option = "Climb-down"
+tile = { x = 3858, y = 5533, level = 1 }
+delta = { x = 4, level = -1 }
+
+[48677]
+option = "Climb-up"
+tile = { x = 3858, y = 5543 }
+delta = { x = -4, level = 1 }
+
+[48678]
+option = "Climb-down"
+tile = { x = 3858, y = 5543, level = 1 }
+delta = { x = 4, level = -1 }
+
+# 15958 the_blood_pact
+[46731]
+option = "Climb"
+tile = { x = 3936, y = 5373, level = 2 }
+to = { x = 3744, y = 5287 }
+

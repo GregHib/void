@@ -1,0 +1,6 @@
+spawns = [
+# 10828
+  { id = "strange_implement", x = 2713, y = 4913, delay = 10, members = true },
+# 13872
+  { id = "letter_the_golem", x = 3479, y = 3092, delay = 10, members = true },
+]

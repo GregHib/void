@@ -1,0 +1,26 @@
+[coin_share_setting]
+id = 4466
+persist = true
+format = "boolean"
+
+[loading_loot_share]
+id = 4072
+format = "boolean"
+
+[loading_coin_share]
+id = 4073
+format = "boolean"
+
+[loot_share]
+id = 4071
+persist = true
+format = "boolean"
+
+[coin_share]
+id = 4465
+format = "boolean"
+
+[clan_chat_colour]
+id = 3612
+persist = true
+format = "int"

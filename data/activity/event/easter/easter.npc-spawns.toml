@@ -1,0 +1,9 @@
+spawns = [
+# 9811
+  { id = "fluffy", x = 2451, y = 5338 },
+# 10067
+  { id = "easter_bunny_2010", x = 2528, y = 5355 },
+  { id = "easta_buni_spawn", x = 2526, y = 5353, direction = "NORTH_EAST" },
+  { id = "easter_bird_2010", x = 2524, y = 5331 },
+  { id = "fluffy", x = 2515, y = 5338 },
+]

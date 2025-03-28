@@ -1,0 +1,14 @@
+[ardougne_teleport]
+x = [2660, 2664]
+y = [3304, 3308]
+tags = ["teleport"]
+
+[wizard_cromperty_return]
+x = [2684, 2685]
+y = [3321, 3321]
+
+[necromancer_house_multi_area]
+x = [2656, 2680, 2680, 2664, 2664, 2656]
+y = [3256, 3256, 3216, 3216, 3232, 3232]
+level = 0
+tags = ["multi_combat"]

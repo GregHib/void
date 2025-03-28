@@ -1,0 +1,6 @@
+spawns = [
+# 9777
+  { id = "astronomy_book", x = 2438, y = 3187, delay = 100, members = true },
+  { id = "glassblowing_book", x = 2438, y = 3185, delay = 100, members = true },
+  { id = "super_antipoison_1", x = 2467, y = 3176, delay = 100, members = true },
+]

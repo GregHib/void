@@ -1,0 +1,21 @@
+spawns = [
+# 10131
+  { id = "rat", x = 2509, y = 9464, members = true },
+  { id = "rat", x = 2505, y = 9461, members = true },
+  { id = "rat", x = 2509, y = 9457, members = true },
+  { id = "rat", x = 2514, y = 9462, members = true },
+  { id = "rat", x = 2543, y = 9460, members = true },
+  { id = "rat", x = 2547, y = 9461, members = true },
+  { id = "rat", x = 2533, y = 9451, members = true },
+  { id = "rat", x = 2534, y = 9441, members = true },
+  { id = "rat", x = 2524, y = 9437, members = true },
+  { id = "rat", x = 2540, y = 9425, members = true },
+  { id = "rat", x = 2548, y = 9421, members = true },
+  { id = "rat", x = 2546, y = 9418, members = true },
+  { id = "rat", x = 2543, y = 9415, members = true },
+  { id = "rat", x = 2548, y = 9413, members = true },
+  { id = "rat", x = 2519, y = 9454, members = true },
+  { id = "rat", x = 2502, y = 9437, members = true },
+  { id = "rat", x = 2501, y = 9430, members = true },
+  { id = "rat", x = 2527, y = 9412, members = true },
+]

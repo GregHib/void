@@ -1,0 +1,17 @@
+[stealing_creation]
+id = 804
+
+[stealing_creation_trade]
+id = 805
+
+[stealing_creation_trade_side]
+id = 807
+
+[stealing_creation_victory]
+id = 810
+
+[stealing_creation_rewards]
+id = 811
+
+[stealing_creation_kiln]
+id = 813

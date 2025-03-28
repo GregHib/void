@@ -1,0 +1,18 @@
+[lever_deserted_keep]
+id = 1815
+land_message = "... and teleport out of the Wilderness."
+examine = "I wonder what this does."
+
+[lever_poison_spiders]
+id = 1816
+land_message = "... and teleport into the lair of the King Black Dragon!"
+examine = "I wonder what this does."
+
+[lever_kbd_lair]
+id = 1817
+land_message = "... and teleport out of the dragon's lair."
+examine = "I wonder what this does."
+
+[fist_of_guthix_cave]
+id = 30204
+examine = "Step inside for violent fun."

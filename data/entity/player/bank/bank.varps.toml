@@ -1,0 +1,15 @@
+[last_bank_amount]
+id = 1249
+format = "int"
+persist = true
+
+[bank_item_mode]
+id = 304
+persist = true
+format = "list"
+values = ["swap", "insert"]
+
+[bank_notes]
+id = 115
+persist = true
+format = "boolean"

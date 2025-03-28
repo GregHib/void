@@ -1,0 +1,10 @@
+spawns = [
+# 12870
+  { id = "holding_pen_swept_away", x = 3231, y = 4523 },
+  { id = "bat_pen_swept_away", x = 3222, y = 4513 },
+  { id = "blackbird_pen_swept_away", x = 3231, y = 4513 },
+  { id = "rat_pen_swept_away", x = 3240, y = 4513 },
+  { id = "snail_pen_swept_away", x = 3222, y = 4504 },
+  { id = "spider_pen_swept_away", x = 3231, y = 4504 },
+  { id = "reptile_pen_swept_away", x = 3240, y = 4503 },
+]

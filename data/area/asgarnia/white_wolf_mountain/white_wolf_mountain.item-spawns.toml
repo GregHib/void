@@ -1,0 +1,6 @@
+spawns = [
+# 11418
+  { id = "dwarven_stout", x = 2861, y = 9878, delay = 100, members = true },
+  { id = "dwarven_stout", x = 2863, y = 9875, delay = 100, members = true },
+  { id = "dwarven_stout", x = 2870, y = 9878, delay = 100, members = true },
+]

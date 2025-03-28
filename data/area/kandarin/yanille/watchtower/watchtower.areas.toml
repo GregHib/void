@@ -1,0 +1,4 @@
+[watchtower_teleport]
+x = [2545, 2548]
+y = [3113, 3116]
+tags = ["teleport"]

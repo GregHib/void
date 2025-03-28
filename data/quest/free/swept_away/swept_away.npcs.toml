@@ -1,0 +1,40 @@
+[bat_swept_away]
+id = 8208
+examine = "Most at home in a dead tree."
+
+[lizard_swept_away]
+id = 8210
+examine = "Desert-dweller."
+
+[blackbird_swept_away]
+id = 8211
+examine = "Bleak and beaky."
+
+[spider_swept_away]
+id = 8212
+examine = "Isn't eight legs rather excessive?"
+
+[snail_swept_away]
+id = 8213
+examine = "Rather quick, considering."
+
+[holding_pen_swept_away]
+id = 8219
+
+[bat_pen_swept_away]
+id = 8220
+
+[blackbird_pen_swept_away]
+id = 8221
+
+[rat_pen_swept_away]
+id = 8222
+
+[snail_pen_swept_away]
+id = 8223
+
+[spider_pen_swept_away]
+id = 8224
+
+[reptile_pen_swept_away]
+id = 8225

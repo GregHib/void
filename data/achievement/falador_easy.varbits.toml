@@ -1,0 +1,224 @@
+# Falador Easy
+
+[amulet_of_weedspeak_task]
+id = 5691
+format = "boolean"
+persist = true
+
+[the_good_stuff_task]
+id = 5692
+format = "boolean"
+persist = true
+
+[chain_store_task]
+id = 5705
+format = "boolean"
+persist = true
+
+[sir_mitt_task]
+id = 5693
+format = "boolean"
+persist = true
+
+[family_values_task]
+id = 5694
+format = "boolean"
+persist = true
+
+[sniffing_out_the_mole_task]
+id = 5695
+format = "boolean"
+persist = true
+
+[chinchompa_powered_task]
+id = 5696
+format = "boolean"
+persist = true
+
+[fill_yer_bucket_task]
+id = 5697
+format = "boolean"
+persist = true
+
+[elementary_medicine_task]
+id = 5698
+format = "boolean"
+persist = true
+
+[its_not_wabbit_season_task]
+id = 5699
+format = "boolean"
+persist = true
+
+[stand_and_deliver_task]
+id = 5700
+format = "boolean"
+persist = true
+
+[making_my_mind_up_task]
+id = 5701
+format = "boolean"
+persist = true
+
+[mudskip_the_light_fantastic_task]
+id = 5703
+format = "boolean"
+persist = true
+
+[disarm_and_embark_task]
+id = 5704
+format = "boolean"
+persist = true
+
+[going_along_with_the_fro_task]
+id = 5702
+format = "boolean"
+persist = true
+# Falador Medium
+
+[fruit_of_the_loom_task]
+id = 5706
+format = "boolean"
+persist = true
+
+[is_it_so_hard_to_walk_round_task]
+id = 5707
+format = "boolean"
+persist = true
+
+[climbing_the_walls_task]
+id = 5709
+format = "boolean"
+persist = true
+
+[its_nothing_personal_task]
+id = 5710
+format = "boolean"
+persist = true
+
+[ice_the_icy_task]
+id = 5711
+format = "boolean"
+persist = true
+
+[blinded_with_science_task]
+id = 5712
+format = "boolean"
+persist = true
+
+[they_have_families_to_feed_task]
+id = 5713
+format = "boolean"
+persist = true
+
+[stoic_sweetcorn_guardian_task]
+id = 5714
+format = "boolean"
+persist = true
+
+[look_spiffy_for_tiffy_task]
+id = 5717
+format = "boolean"
+persist = true
+
+[do_they_come_in_other_colours_task]
+id = 5715
+format = "boolean"
+persist = true
+
+[these_arent_the_coins_youre_looking_for_task]
+id = 5723
+format = "boolean"
+persist = true
+
+[fun_for_the_whole_family_task]
+id = 5716
+format = "boolean"
+persist = true
+# Falador Hard
+
+[a_knight_in_the_darkness_task]
+id = 5727
+format = "boolean"
+persist = true
+
+[child_of_saradomin_task]
+id = 5719
+format = "boolean"
+persist = true
+
+[mass_production_task]
+id = 5720
+format = "boolean"
+persist = true
+
+[it_spoiled_my_view_task]
+id = 5721
+format = "boolean"
+persist = true
+
+[i_heard_you_like_mudskips_task]
+id = 5708
+format = "boolean"
+persist = true
+
+[it_matches_my_eyes_task]
+id = 5718
+format = "boolean"
+persist = true
+
+[the_stonemasons_task]
+id = 5722
+format = "boolean"
+persist = true
+
+[the_mogre_mash_task]
+id = 5724
+format = "boolean"
+persist = true
+
+[why_oh_wyvern_task]
+id = 5725
+format = "boolean"
+persist = true
+
+[banned_for_life_task]
+id = 5726
+format = "boolean"
+persist = true
+# Falador Elite
+
+[when_this_caverns_rockin_task]
+id = 8114
+format = "boolean"
+persist = true
+
+[youd_best_come_a_cookin_task]
+id = 8115
+format = "boolean"
+persist = true
+
+[concentration_is_key_task]
+id = 8116
+format = "boolean"
+persist = true
+
+[i_swear_i_heard_it_scream_task]
+id = 8117
+format = "boolean"
+persist = true
+
+[ive_changed_my_mind_task]
+id = 8118
+format = "boolean"
+persist = true
+
+[a_string_and_a_flare_task]
+id = 8119
+format = "boolean"
+persist = true
+
+[altar_ed_state_task]
+id = 8120
+format = "boolean"
+persist = true

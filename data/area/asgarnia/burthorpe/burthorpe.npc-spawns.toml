@@ -1,0 +1,8 @@
+spawns = [
+# 11319
+  { id = "chicken", x = 2816, y = 3561, members = true },
+  { id = "chicken", x = 2819, y = 3561, members = true },
+# 11574
+  { id = "nora_t_hagg", x = 2904, y = 3463 },
+  { id = "kaqemeex", x = 2925, y = 3486, members = true },
+]

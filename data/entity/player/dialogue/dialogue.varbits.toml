@@ -1,0 +1,13 @@
+[level_up_icon]
+id = 4757
+format = "list"
+values = [ -1, "Attack", "Strength", "Ranged", "Magic", "Defence", "Constitution", "Prayer", "Agility", "Herblore", "Thieving", "Crafting", "Runecrafting", "Mining", "Smithing", "Fishing", "Cooking", "Firemaking", "Woodcutting", "Fletching", "Slayer", "Farming", "Construction", "Hunter", "Summoning", "Dungeoneering" ]
+
+[skill_creation_maximum]
+id = 8094
+default = 1
+
+[skill_creation_amount]
+id = 8095
+persist = true
+default = 1

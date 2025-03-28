@@ -1,0 +1,11 @@
+[dororan_ruby_bracelet]
+format = "boolean"
+persist = true
+
+[dororan_dragonstone_necklace]
+format = "boolean"
+persist = true
+
+[dororan_onyx_amulet]
+format = "boolean"
+persist = true

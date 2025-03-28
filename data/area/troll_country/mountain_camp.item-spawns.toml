@@ -1,0 +1,10 @@
+spawns = [
+# 11065
+  { id = "muddy_rock", x = 2804, y = 3660, delay = 10, members = true },
+  { id = "muddy_rock", x = 2809, y = 3679, delay = 10, members = true },
+  { id = "muddy_rock", x = 2812, y = 3680, delay = 10, members = true },
+  { id = "muddy_rock", x = 2812, y = 3687, delay = 10, members = true },
+  { id = "plank", x = 2811, y = 3377, delay = 100, members = true },
+  { id = "pole", x = 2813, y = 3685, delay = 10, members = true },
+  { id = "broken_pole", x = 2770, y = 3677, delay = 30, members = true },
+]

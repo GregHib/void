@@ -1,0 +1,144 @@
+[dungeon_complete]
+id = 933
+
+[dungeoneering_smithing]
+id = 934
+
+[teammate_stats]
+id = 936
+
+[dungeon_complexity]
+id = 938
+
+[dungeoneering_party]
+id = 939
+
+[dungeoneering_rewards]
+id = 940
+
+[dungeoneering_smelt]
+id = 941
+
+[dungeon_floor]
+id = 947
+
+[dungeon_party_invite]
+id = 949
+
+[dungeoneering_spellbook]
+id = 950
+type = "spellbook_tab"
+components = {
+  defensive_cast = 2,
+  filter_combat = 7,
+  filter_teleport = 9,
+  filter_misc = 11,
+  filter_skill = 13,
+  sort_level = 15,
+  sort_combat = 16,
+  sort_teleport = 17,
+  wind_strike = {
+    id = 25,
+    cast_id = 103,
+  },
+  confuse = 26,
+  water_strike = {
+    id = 27,
+    cast_id = 105,
+  },
+  earth_strike = {
+    id = 28,
+    cast_id = 107,
+  },
+  weaken = 29,
+  fire_strike = {
+    id = 30,
+    cast_id = 109,
+  },
+  bones_to_bananas = 31,
+  wind_bolt = {
+    id = 32,
+    cast_id = 111,
+  },
+  curse = 33,
+  bind = 34,
+  low_level_alchemy = 35,
+  water_bolt = {
+    id = 36,
+    cast_id = 113,
+  },
+  earth_bolt = {
+    id = 37,
+    cast_id = 115,
+  },
+  create_gatestone = 38,
+  gatestone_teleport = 39,
+  fire_bolt = {
+    id = 41,
+    cast_id = 117,
+  },
+  wind_blast = {
+    id = 42,
+    cast_id = 119,
+  },
+  water_blast = {
+    id = 43,
+    cast_id = 121,
+  },
+  snare = 44,
+  earth_blast = {
+    id = 45,
+    cast_id = 123,
+  },
+  high_level_alchemy = 46,
+  fire_blast = {
+    id = 47,
+    cast_id = 125,
+  },
+  wind_wave = {
+    id = 48,
+    cast_id = 127,
+  },
+  group_gatestone_teleport = 40,
+  water_wave = {
+    id = 49,
+    cast_id = 129,
+  },
+  vulnerability = 50,
+  monster_examine = 51,
+  cure_other = 52,
+  humidify = 53,
+  earth_wave = {
+    id = 54,
+    cast_id = 131,
+  },
+  enfeeble = 55,
+  cure_group = 57,
+  fire_wave = {
+    id = 58,
+    cast_id = 133,
+  },
+  entangle = 59,
+  stun = 60,
+  wind_surge = {
+    id = 61,
+    cast_id = 135,
+  },
+  water_surge = {
+    id = 62,
+    cast_id = 137,
+  },
+  earth_surge = {
+    id = 63,
+    cast_id = 139,
+  },
+  vengeance_other = 64,
+  vengeance = 65,
+  fire_surge = {
+    id = 66,
+    cast_id = 141,
+  }
+}
+
+[herbicide]
+id = 1006

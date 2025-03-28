@@ -1,0 +1,25 @@
+[nature_staff_charges]
+id = 1234
+format = "int"
+persist = true
+
+[law_staff_charges]
+id = 1235
+format = "int"
+persist = true
+
+[magical_blastbox_bolt]
+id = 1334
+format = "int"
+
+[magical_blastbox_blast]
+id = 1335
+format = "int"
+
+[celestial_surgebox_wave]
+id = 1402
+format = "int"
+
+[celestial_surgebox_surge]
+id = 1403
+format = "int"

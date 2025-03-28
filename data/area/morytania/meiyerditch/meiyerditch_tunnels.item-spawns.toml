@@ -1,0 +1,9 @@
+spawns = [
+# 14487
+  { id = "haemalchemy_vol_1", x = 3624, y = 9690, delay = 15, members = true },
+# 14488
+  { id = "logs", x = 3591, y = 9743, delay = 100, members = true },
+  { id = "logs", x = 3592, y = 9739, delay = 100, members = true },
+  { id = "logs", x = 3593, y = 9741, delay = 100, members = true },
+  { id = "tinderbox", x = 3592, y = 9742, delay = 100, members = true },
+]

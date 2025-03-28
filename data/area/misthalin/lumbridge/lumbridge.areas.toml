@@ -1,0 +1,204 @@
+[lumbridge]
+x = [3252, 3136, 3136, 3153, 3153, 3156, 3173, 3180, 3201, 3209, 3224, 3227, 3233, 3238, 3247, 3253, 3270, 3270, 3266, 3266, 3265, 3264, 3264, 3265, 3265, 3266, 3266, 3267, 3267, 3266, 3266, 3265, 3265, 3262, 3253, 3253]
+y = [3136, 3136, 3336, 3336, 3346, 3349, 3347, 3347, 3337, 3333, 3333, 3330, 3330, 3334, 3334, 3329, 3329, 3326, 3322, 3272, 3255, 3254, 3247, 3246, 3238, 3237, 3232, 3231, 3211, 3210, 3208, 3207, 3202, 3200, 3175, 3166]
+
+[lumbridge_north_trees]
+x = [3220, 3234]
+y = [3244, 3249]
+tags = ["trees"]
+trees = ["tree", "oak"]
+levels = "0-30"
+
+[lumbridge_west_yew_tree]
+x = [3164, 3168]
+y = [3218, 3222]
+tags = ["trees"]
+trees = ["tree", "yew"]
+levels = "60-68"
+
+[lumbridge_north_west_yew_tree]
+x = [3183, 3187]
+y = [3225, 3229]
+tags = ["trees"]
+trees = ["tree", "yew"]
+levels = "60-68"
+
+[lumbridge_west_trees]
+x = [3186, 3197]
+y = [3238, 3250]
+tags = ["trees"]
+trees = ["tree", "oak"]
+spaces = 2
+levels = "0-30"
+
+[lumbridge_east_trees]
+x = [3260, 3267]
+y = [3214, 3226]
+tags = ["trees"]
+trees = ["tree", "oak"]
+levels = "0-30"
+
+[lumbridge_cow_trees]
+x = [3254, 3264]
+y = [3249, 3254]
+tags = ["trees"]
+trees = ["tree", "oak"]
+levels = "0-30"
+
+[bobs_axe_shop]
+x = [3227, 3233]
+y = [3201, 3205]
+tags = ["shop"]
+items = ["bronze_pickaxe", "bronze_hatchet", "iron_hatchet", "steel_hatchet", "iron_battleaxe", "steel_battleaxe", "mithril_battleaxe"]
+
+[lumbridge_castle_bank]
+x = [3207, 3210]
+y = [3215, 3222]
+level = 2
+tags = ["bank"]
+
+[lumbridge_castle_portcullis]
+x = [3227, 3230]
+y = [3212, 3225]
+level = 2
+tags = ["high"]
+
+[lumbridge_swamp_east_copper_mine]
+x = [3227, 3231]
+y = [3143, 3149]
+tags = ["mine"]
+rocks = ["copper"]
+levels = "1-15"
+spaces = 2
+
+[lumbridge_swamp_east_tin_mine]
+x = [3222, 3226]
+y = [3145, 3149]
+tags = ["mine"]
+rocks = ["tin"]
+levels = "1-15"
+spaces = 2
+
+[lumbridge_swamp_west_coal_mine]
+x = [3143, 3147]
+y = [3148, 3154]
+tags = ["mine", "coal"]
+rocks = ["coal"]
+levels = "30-40"
+spaces = 2
+
+[lumbridge_swamp_west_mithril_mine]
+x = [3143, 3149]
+y = [3143, 3147]
+tags = ["mine"]
+rocks = ["mithril"]
+levels = "55-70"
+
+[lumbridge_swamp_west_adamantite_mine]
+x = [3147, 3149]
+y = [3145, 3149]
+tags = ["mine"]
+rocks = ["adamantite"]
+levels = "70-85"
+
+[lumbridge_east_cow_field]
+x = [3253, 3253, 3251, 3251, 3249, 3246, 3244, 3244, 3240, 3240, 3242, 3242, 3240, 3240, 3241, 3256, 3257, 3260, 3261, 3263, 3265, 3265, 3266, 3266, 3265, 3265, 3266, 3266, 3265, 3265, 3264]
+y = [3255, 3272, 3274, 3276, 3278, 3278, 3280, 3281, 3285, 3286, 3288, 3294, 3296, 3297, 3298, 3298, 3299, 3299, 3298, 3298, 3296, 3293, 3292, 3286, 3285, 3276, 3275, 3272, 3271, 3256, 3255]
+tags = ["combat_training"]
+npcs = ["cow"]
+spaces = 7
+levels = "10-20"
+
+[lumbridge_east_goblin_settlement]
+x = [3262, 3259, 3253, 3251, 3251, 3249, 3245, 3242, 3242, 3240, 3240, 3239, 3239, 3252, 3252, 3264, 3264, 3265, 3265, 3266, 3266, 3267, 3267, 3266, 3266]
+y = [3215, 3218, 3222, 3223, 3227, 3228, 3232, 3235, 3239, 3241, 3249, 3251, 3256, 3256, 3254, 3254, 3247, 3246, 3238, 3237, 3226, 3225, 3220, 3219, 3215]
+tags = ["combat_training"]
+npcs = ["goblin", "giant_spider"]
+spaces = 6
+levels = "5-15"
+
+[lumbridge_chicken_pen]
+x = [3225, 3225, 3237, 3237]
+y = [3287, 3301, 3301, 3287]
+tags = ["combat_training"]
+npcs = ["chicken"]
+spaces = 5
+levels = "1-10"
+
+[lumbridge_castle_courtyard]
+x = [3218, 3224, 3224, 3218]
+y = [3208, 3208, 3229, 3229]
+
+[lumbridge_general_store]
+x = [3211, 3218]
+y = [3239, 3243]
+
+[lumbridge_swamp_fishing_area]
+x = [3240, 3247]
+y = [3142, 3157]
+tags = ["fish"]
+type = "small_net_bait"
+spaces = 8
+
+[lumbridge_river_fishing_area]
+x = [3238, 3240]
+y = [3241, 3255]
+tags = ["fish"]
+type = "lure_bait"
+spaces = 3
+
+[hanks_fishing_shop]
+x = [3191, 3198]
+y = [3251, 3255]
+tags = ["shop"]
+items = ["small_fishing_net", "fishing_rod", "fly_fishing_rod", "crayfish_cage", "fishing_bait", "feather"]
+
+[lumbridge_south_river_fishing_area]
+x = [3258, 3259]
+y = [3203, 3207]
+tags = ["fish"]
+type = "crayfish"
+spaces = 2
+
+[lumbridge_teleport]
+x = [3221, 3222]
+y = [3217, 3220]
+tags = ["teleport"]
+
+[lumbridge_combat_tutors]
+x = [3202, 3214]
+y = [3250, 3256]
+
+[lumbridge_swamp_giant_rats]
+x = [3212, 3232]
+y = [3173, 3190]
+tags = ["combat_training"]
+npcs = ["giant_rat"]
+spaces = 2
+levels = "10-14"
+
+[lumbridge_firemaking_spot]
+x = [3219, 3219]
+y = [3247, 3248]
+tags = ["fire_making", "spaces_2"]
+
+[lumbridge_kitchen]
+x = [3205, 3212]
+y = [3212, 3217]
+type = "range"
+tags = ["cooking", "spaces_2"]
+
+[lumbridge_south_cooking_range]
+x = [3230, 3237]
+y = [3195, 3198]
+type = "range"
+tags = ["cooking", "spaces_2"]
+
+[lumbridge_furnace]
+x = [3222, 3229]
+y = [3252, 3257]
+tags = ["smithing", "smelting", "spaces_2"]
+
+[freds_farmhouse]
+x = [3184, 3192]
+y = [3270, 3275]

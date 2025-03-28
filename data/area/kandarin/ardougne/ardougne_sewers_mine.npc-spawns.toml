@@ -1,0 +1,11 @@
+spawns = [
+# 10647
+  { id = "rat", x = 2645, y = 9711, members = true },
+  { id = "rat", x = 2641, y = 9698, members = true },
+  { id = "rat", x = 2680, y = 9701, members = true },
+  { id = "rat", x = 2669, y = 9681, members = true },
+  { id = "rat", x = 2673, y = 9678, members = true },
+  { id = "giant_rat", x = 2647, y = 9716, members = true },
+  { id = "giant_rat", x = 2647, y = 9701, members = true },
+  { id = "giant_rat", x = 2631, y = 9695, members = true },
+]

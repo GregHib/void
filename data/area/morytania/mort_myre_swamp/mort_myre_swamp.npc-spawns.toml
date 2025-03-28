@@ -1,0 +1,4 @@
+spawns = [
+# 13619
+  { id = "bill_blakey", x = 3424, y = 3320, direction = "EAST", members = true },
+]

@@ -1,0 +1,47 @@
+[air_altar_ruins]
+id = 607
+format = "boolean"
+
+[mind_altar_ruins]
+id = 608
+format = "boolean"
+
+[water_altar_ruins]
+id = 609
+format = "boolean"
+
+[earth_altar_ruins]
+id = 610
+format = "boolean"
+
+[fire_altar_ruins]
+id = 611
+format = "boolean"
+
+[body_altar_ruins]
+id = 612
+format = "boolean"
+
+[cosmic_altar_ruins]
+id = 613
+format = "boolean"
+
+[law_altar_ruins]
+id = 614
+format = "boolean"
+
+[nature_altar_ruins]
+id = 615
+format = "boolean"
+
+[chaos_altar_ruins]
+id = 616
+format = "boolean"
+
+[death_altar_ruins]
+id = 617
+format = "boolean"
+
+[blood_altar_ruins]
+id = 619
+format = "boolean"

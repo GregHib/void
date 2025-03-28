@@ -1,0 +1,154 @@
+[unlocked_emote_flap]
+id = 2309
+persist = true
+format = "boolean"
+
+[unlocked_emote_slap_head]
+id = 2310
+persist = true
+format = "boolean"
+
+[unlocked_emote_idea]
+id = 2311
+persist = true
+format = "boolean"
+
+[unlocked_emote_stomp]
+id = 2312
+persist = true
+format = "boolean"
+
+[unlocked_emote_lost_tribe]
+id = 532
+persist = true
+format = "map"
+default = "false"
+values = {
+  false = 0,
+  true = 7
+}
+
+[unlocked_emote_glass_wall]
+id = 1367
+persist = true
+format = "boolean"
+
+[unlocked_emote_glass_box]
+id = 1368
+persist = true
+format = "boolean"
+
+[unlocked_emote_climb_rope]
+id = 1369
+persist = true
+format = "boolean"
+
+[unlocked_emote_lean]
+id = 1370
+persist = true
+format = "boolean"
+
+[unlocked_emote_scared]
+id = 1371
+persist = true
+format = "boolean"
+
+[unlocked_emote_zombie_dance]
+id = 1920
+persist = true
+format = "boolean"
+
+[unlocked_emote_zombie_walk]
+id = 1921
+persist = true
+format = "boolean"
+
+[unlocked_emote_bunny_hop]
+id = 2055
+persist = true
+format = "boolean"
+
+[unlocked_emote_skillcape]
+id = 2787
+persist = true
+format = "boolean"
+
+[unlocked_emote_zombie_hand]
+id = 4075
+persist = true
+format = "map"
+default = "false"
+values = {
+  false = 0,
+  true = 12,
+}
+
+[unlocked_emote_snowman_dance]
+id = 4202
+persist = true
+format = "boolean"
+
+[unlocked_emote_air_guitar]
+id = 4394
+persist = true
+format = "boolean"
+
+[unlocked_emote_safety_first]
+id = 4476
+persist = true
+format = "boolean"
+
+[unlocked_emote_explore]
+id = 4884
+persist = true
+format = "boolean"
+
+[unlocked_emote_trick]
+id = 5490
+persist = true
+format = "boolean"
+
+[unlocked_emote_freeze]
+id = 5732
+persist = true
+format = "boolean"
+
+[unlocked_emote_give_thanks]
+id = 5641
+persist = true
+format = "boolean"
+
+[unlocked_emote_around_the_world_in_eggty_days]
+id = 6014
+persist = true
+format = "map"
+default = "false"
+values = {
+  false = 0,
+  true = 85,
+}
+
+[unlocked_emote_dramatic_point]
+id = 6936
+persist = true
+format = "boolean"
+
+[unlocked_emote_faint]
+id = 6095
+persist = true
+format = "boolean"
+
+[unlocked_emote_puppet_master]
+id = 8300
+persist = true
+format = "map"
+default = "false"
+values = {
+  false = 0,
+  true = 20,
+}
+
+[unlocked_emote_seal_of_approval]
+id = 8688
+persist = true
+format = "boolean"

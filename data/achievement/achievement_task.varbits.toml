@@ -1,0 +1,95 @@
+[task_slot_1]
+id = 8587
+format = "int"
+
+[task_slot_2]
+id = 8588
+format = "int"
+
+[task_slot_3]
+id = 8589
+format = "int"
+
+[task_slot_4]
+id = 8590
+format = "int"
+
+[task_slot_5]
+id = 8591
+format = "int"
+
+[task_slot_6]
+id = 8592
+format = "int"
+
+[task_pinned]
+id = 8576
+format = "int"
+default = 4091
+persist = true
+
+[task_pin_slot]
+id = 8577
+format = "int"
+persist = true
+
+[task_area]
+id = 8575
+format = "map"
+default = "empty"
+values = {
+  dnd_activities = 0,
+  lumbridge_draynor = 1,
+  varrock = 2,
+  falador = 3,
+  seers_village = 4,
+  ardougne = 5,
+  karamja = 6,
+  fremennik = 7,
+  unstable_foundations = 60,
+  empty = 61,
+  elsewhere = 63,
+}
+
+[task_progress_overall]
+id = 8601
+format = "int"
+
+[task_list_area]
+id = 8582
+format = "map"
+persist = true
+default = "unstable_foundations"
+values = {
+  dnd_activities = 0,
+  lumbridge_draynor = 1,
+  varrock = 2,
+  falador = 3,
+  seers_village = 4,
+  ardougne = 5,
+  karamja = 6,
+  fremennik = 7,
+  unstable_foundations = 60,
+  empty = 61,
+  elsewhere = 63,
+}
+
+[task_hide_completed]
+id = 8579
+format = "boolean"
+persist = true
+
+[task_filter_sets]
+id = 8580
+format = "boolean"
+persist = true
+
+[introducing_explorer_jack_task]
+id = 6494
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 3
+}

@@ -1,0 +1,20 @@
+[runecrafting_guild_teleport]
+x = [1695, 1697]
+y = [5463, 5465]
+tags = ["teleport"]
+
+[wizards_tower_multi_area]
+x = [3094, 3125]
+y = [3144, 3176]
+level = 0
+tags = ["multi_combat"]
+
+[wizards_tower_top_floor]
+x = [3094, 3125]
+y = [3144, 3176]
+level = 2
+tags = ["multi_combat"]
+
+[sedridor_return]
+x = [3105, 3106]
+y = [9572, 9573]

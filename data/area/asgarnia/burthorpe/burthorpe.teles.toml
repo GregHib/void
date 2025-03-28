@@ -1,0 +1,82 @@
+# 11574 burthorpe
+[trapdoor_83_opened]
+option = "Climb-down"
+tile = { x = 2927, y = 3444 }
+to = { x = 2209, y = 5348 }
+
+[1738]
+option = "Climb-up"
+tile = { x = 2895, y = 3513 }
+to = { x = 2897, y = 3513, level = 1 }
+
+[1740]
+option = "Climb-down"
+tile = { x = 2896, y = 3513, level = 1 }
+to = { x = 2896, y = 3512 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2895, y = 3516, level = 1 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2895, y = 3516, level = 2 }
+delta = { level = -1 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2890, y = 3508, level = 1 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2890, y = 3508, level = 2 }
+delta = { level = -1 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2895, y = 3505, level = 1 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2895, y = 3505, level = 2 }
+delta = { level = -1 }
+
+[1754]
+option = "Climb-down"
+tile = { x = 2892, y = 3507 }
+delta = { y = 6400 }
+
+[24672]
+option = "Walk-up"
+tile = { x = 2906, y = 3469 }
+delta = { y = 4, level = 1 }
+
+[24673]
+option = "Walk-down"
+tile = { x = 2906, y = 3470, level = 1 }
+delta = { y = -4, level = -1 }
+
+[24718]
+option = "Climb-down"
+tile = { x = 2907, y = 3476 }
+delta = { y = 6400 }
+
+# 11575 burthorpe
+[brimstails_cave_entrance]
+option = "Enter"
+tile = { x = 2403, y = 3418 }
+to = { x = 2409, y = 9812 }
+
+[games_room_stairs_up_2]
+option = "Climb-up"
+tile = { x = 2897, y = 3566, level = 0 }
+delta = { y = 4, level = 1 }
+
+[games_room_stairs_down]
+option = "Climb-down"
+tile = { x = 2897, y = 3567, level = 1 }
+delta = { y = -4, level = -1 }
+

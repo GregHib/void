@@ -1,0 +1,52 @@
+# 12085 barbarian_village
+[11728]
+option = "Climb-down"
+tile = { x = 3058, y = 3356, level = 1 }
+delta = { level = -1 }
+
+[30942]
+option = "Climb-down"
+tile = { x = 3019, y = 3450 }
+delta = { y = 6400 }
+
+# 12341 barbarian_village
+[air_altar_portal]
+option = "Enter"
+tile = { x = 2841, y = 4828 }
+to = { x = 3129, y = 3406 }
+
+[air_altar_ruins_enter]
+option = "Enter"
+tile = { x = 3126, y = 3404 }
+to = { x = 2841, y = 4829 }
+
+[16154]
+option = "Climb-down"
+tile = { x = 3081, y = 3420 }
+to = { x = 1859, y = 5243 }
+
+[1750]
+option = "Climb-up"
+tile = { x = 3096, y = 3433 }
+delta = { level = 1 }
+
+[1749]
+option = "Climb-down"
+tile = { x = 3096, y = 3433, level = 1 }
+delta = { level = -1 }
+
+[1750]
+option = "Climb-up"
+tile = { x = 3097, y = 3433, level = 1 }
+delta = { level = 1 }
+
+[1749]
+option = "Climb-down"
+tile = { x = 3097, y = 3433, level = 2 }
+delta = { level = -1 }
+
+[12389]
+option = "Climb-Down"
+tile = { x = 3116, y = 3452 }
+delta = { y = 6400 }
+

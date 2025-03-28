@@ -1,0 +1,4 @@
+spawns = [
+# 9625
+  { id = "brimstail", x = 2409, y = 9816, members = true },
+]

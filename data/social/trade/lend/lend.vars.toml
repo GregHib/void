@@ -1,0 +1,15 @@
+[lend_timeout]
+format = "int"
+persist = true
+
+[borrow_timeout]
+format = "int"
+persist = true
+
+[borrowed_item]
+format = "string"
+persist = true
+
+[lent_item]
+format = "string"
+persist = true

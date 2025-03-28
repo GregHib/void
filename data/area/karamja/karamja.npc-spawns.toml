@@ -1,0 +1,4 @@
+spawns = [
+# 11054
+  { id = "musician_shilo_village", x = 2811, y = 2946, direction = "SOUTH", members = true },
+]

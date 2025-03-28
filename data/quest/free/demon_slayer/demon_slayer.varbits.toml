@@ -1,0 +1,55 @@
+[demon_slayer]
+id = 2561
+persist = true
+format = "list"
+values = [ "unstarted", "sir_prysin", "key_hunt", "completed" ]
+
+[demon_slayer_aber]
+id = 2562
+persist = true
+format = "int"
+
+[demon_slayer_camerinthum]
+id = 2563
+persist = true
+format = "int"
+
+[demon_slayer_carlem]
+id = 2564
+persist = true
+format = "int"
+
+[demon_slayer_gabindo]
+id = 2565
+persist = true
+format = "int"
+
+[demon_slayer_purchai]
+id = 2566
+persist = true
+format = "int"
+
+[demon_slayer_silverlight]
+id = 2567
+persist = true
+format = "boolean"
+
+[demon_slayer_drain_dislodged]
+id = 2568
+persist = true
+format = "boolean"
+
+[demon_slayer_summoned]
+id = 2569
+persist = true
+format = "boolean"
+
+[demon_slayer_silverlight_case]
+id = 6922
+persist = true
+format = "list"
+values = [ "closed", "open", "empty" ]
+
+[demon_slayer_sir_prysin_sword]
+id = 6923
+format = "boolean"

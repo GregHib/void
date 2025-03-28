@@ -1,0 +1,11 @@
+[stock_side]
+id = 107
+
+[exchange_history]
+id = 643
+
+[exchange_sets_side]
+id = 644
+
+[exchange_item_sets]
+id = 645

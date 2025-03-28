@@ -1,0 +1,5 @@
+spawns = [
+# 13358
+  { id = "bucket", x = 3351, y = 2966, delay = 100, members = true },
+  { id = "beer_glass", x = 3358, y = 2955, delay = 100, members = true },
+]

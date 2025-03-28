@@ -1,0 +1,4 @@
+[wilderness_lever_warning]
+format = "boolean"
+persist = true
+default = true

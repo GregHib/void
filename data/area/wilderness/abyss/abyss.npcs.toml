@@ -1,0 +1,48 @@
+[abyssal_leech]
+id = 2263
+hitpoints = 100
+att = 95
+str = 5
+def = 25
+attack_bonus = 100
+wander_radius = 6
+attack_radius = 6
+max_hit_melee = 20
+hunt_mode = "aggressive"
+style = "slash"
+height = 15
+respawn_delay = 5
+examine = "A blood-drinking denizen of the Abyss."
+
+[abyssal_guardian]
+id = 2264
+hitpoints = 500
+att = 30
+str = 90
+def = 30
+attack_bonus = 15
+wander_radius = 8
+attack_radius = 4
+max_hit_melee = 110
+hunt_mode = "aggressive"
+style = "stab"
+height = 30
+respawn_delay = 5
+examine = "It seems to have eyes in the back of its head..."
+
+[abyssal_walker]
+id = 2265
+hitpoints = 950
+att = 5
+str = 100
+def = 95
+attack_bonus = 5
+wander_radius = 6
+attack_radius = 2
+max_hit_melee = 130
+hunt_mode = "aggressive"
+style = "crush"
+height = 50
+attack_speed = 5
+respawn_delay = 5
+examine = "Apparently walks the Abyss."

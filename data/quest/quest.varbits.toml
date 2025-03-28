@@ -1,0 +1,309 @@
+[tower_of_life]
+id = 3337
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 18,
+}
+
+[wolf_whistle]
+id = 4302
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 110,
+}
+
+[fairy_rings_unlocked]
+id = 2328
+format = "boolean"
+persist = true
+
+[kenniths_concerns]
+id = 4505
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 100,
+}
+
+[enlightened_journey]
+id = 2866
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 200
+}
+
+[hand_in_the_sand]
+id = 1527
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 160
+}
+
+[meeting_history]
+id = 5075
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 20
+}
+
+[lunar_diplomacy]
+id = 2448
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 190
+}
+
+[back_to_my_roots]
+id = 4055
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 65
+}
+
+[catapult_construction]
+id = 4396
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 60
+}
+
+[dragon_slayer_received_shield]
+id = 3746
+format = "boolean"
+persist = true
+
+[garden_of_tranquillity]
+id = 961
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 60
+}
+
+[wanted]
+id = 1051
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 10
+}
+
+[rat_catchers]
+id = 1404
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 127
+}
+
+[recruitment_drive]
+id = 657
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 2
+}
+
+[temple_at_senntisten]
+id = 6775
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 90
+}
+
+[slug_menace]
+id = 2610
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 14
+}
+
+[barbarian_training_fishing_unlocked]
+id = 3757
+format = "boolean"
+persist = true
+
+[barbarian_training_mix_unlocked]
+id = 3761
+format = "boolean"
+persist = true
+
+[barbarian_training_hasta_unlocked]
+id = 3763
+format = "boolean"
+persist = true
+
+[barbarian_training_pyre_unlocked]
+id = 3764
+format = "boolean"
+persist = true
+
+[royal_trouble]
+id = 2140
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 30
+}
+
+[blood_runs_deep]
+id = 6883
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 147
+}
+
+[while_guthix_sleeps]
+id = 5491
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 910
+}
+
+[elemental_workshop_i]
+id = 2067
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 1
+}
+
+[knights_waves]
+id = 3909
+format = "int"
+persist = true
+
+[what_lies_below]
+id = 3523
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 150
+}
+
+[souls_bane]
+id = 2011
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 13
+}
+
+[teleport_to_digsite_with_pendant]
+id = 3639
+format = "boolean"
+persist = true
+
+[desert_treasure]
+id = 358
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 15
+}
+
+[nomads_requiem]
+id = 6962
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 12
+}
+
+[all_fired_up]
+id = 5133
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 90
+}
+
+[fur_n_seek]
+id = 6307
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 12
+}
+
+[skeletal_horror_respawn_minute]
+id = 6305
+format = "int"
+persist = true
+
+[kings_ransom]
+id = 3888
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+  unstarted = 0,
+  completed = 90
+}
+
+[quest_intro_unmark_map]
+id = 6924
+persist = true
+format = "boolean"

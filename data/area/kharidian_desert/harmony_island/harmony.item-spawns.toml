@@ -1,0 +1,8 @@
+spawns = [
+# 15148
+  { id = "keg", x = 3803, y = 2870, level = 1, delay = 100, members = true },
+  { id = "keg", x = 3801, y = 2870, level = 1, delay = 100, members = true },
+  { id = "keg", x = 3801, y = 2876, level = 1, delay = 100, members = true },
+  { id = "keg", x = 3803, y = 2876, level = 1, delay = 100, members = true },
+  { id = "keg", x = 3793, y = 2872, level = 2, delay = 100, members = true },
+]

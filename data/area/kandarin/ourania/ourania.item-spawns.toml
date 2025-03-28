@@ -1,0 +1,13 @@
+spawns = [
+# 9778
+  { id = "bones", x = 2453, y = 3230, delay = 100, members = true },
+  { id = "bones", x = 2455, y = 3234, delay = 100, members = true },
+  { id = "bones", x = 2455, y = 3220, delay = 100, members = true },
+  { id = "bones", x = 2459, y = 3222, delay = 100, members = true },
+  { id = "bones", x = 2466, y = 3226, delay = 100, members = true },
+  { id = "bones", x = 2470, y = 3217, delay = 100, members = true },
+  { id = "bones", x = 2470, y = 3223, delay = 100, members = true },
+  { id = "bones", x = 2476, y = 3224, delay = 100, members = true },
+  { id = "bones", x = 2480, y = 3219, delay = 100, members = true },
+  { id = "bones", x = 2484, y = 3221, delay = 100, members = true },
+]

@@ -1,0 +1,132 @@
+[trade_confirm]
+id = 334
+type = "main_screen"
+components = {
+  close = 8,
+  accept = 20,
+  decline = 21,
+  status = 33,
+  modified = 47,
+  give_middle = 37,
+  give_left = 38,
+  give_right = 39,
+  receive_middle = 41,
+  receive_left = 42,
+  receive_right = 43,
+  lend_container = 40,
+  lend_text = 2,
+  other_lend_container = 44,
+  other_lend_text = 1,
+}
+
+[trade_main]
+id = 335
+type = "main_screen"
+components = {
+  close = 12,
+  title = 15,
+  accept = 16,
+  decline = 18,
+  slots = 21,
+  name = 22,
+  offer_options = {
+    id = 31,
+    inventory = "trade_offer",
+    options = {
+      Remove = 0,
+      Remove-5 = 1,
+      Remove-10 = 2,
+      Remove-All = 3,
+      Remove-X = 4,
+      Value = 5,
+      Examine = 9,
+    },
+  },
+  offer_warning = {
+    id = 32,
+    inventory = "trade_offer",
+  },
+  other_items = 33,
+  other_options = {
+    id = 34,
+    inventory = "trade_offer",
+    primary = false,
+    options = {
+      "Value<col=FF9040>" = 0,
+      "Examine<col=FF9040>" = 8,
+    },
+  },
+  other_warning = {
+    id = 35,
+    inventory = "trade_offer",
+    primary = false,
+  },
+  status = 38,
+  modified = 40,
+  other_modified = 41,
+  loan = 88,
+  loan_item = {
+    id = 89,
+    inventory = "item_loan",
+    options = {
+      Remove = 0,
+      Examine = 9,
+    },
+  },
+  loan_time = {
+    id = 90,
+    inventory = "item_loan",
+    options = {
+      "‘Until Logout‘" = 0,
+      Specify = 1,
+    },
+  },
+  other_loan_item = {
+    id = 85,
+    inventory = "item_loan",
+    primary = false,
+    options = {
+      Examine = 9,
+    },
+  },
+  other_loan_time = 86,
+}
+
+[trade_side]
+id = 336
+type = "inventory_tab"
+components = {
+  offer = {
+    id = 0,
+    inventory = "inventory",
+    options = {
+      Offer = 0,
+      Offer-5 = 1,
+      Offer-10 = 2,
+      Offer-All = 3,
+      Offer-X = 4,
+      Value = 5,
+      Lend = 6,
+      Examine = 9,
+    },
+  },
+}
+
+[item_info]
+id = 449
+type = "overlay_tab"
+components = {
+  exit = 1,
+  info = 12,
+  sprite = 13,
+  name = 14,
+  button = {
+    id = 21,
+    options = {
+      Buy-1 = 0,
+      Buy-5 = 1,
+      Buy-10 = 2,
+      Buy-50 = 3,
+    }
+  }
+}

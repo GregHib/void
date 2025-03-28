@@ -1,0 +1,51 @@
+# 11573 taverley
+[11890]
+option = "Climb-down"
+tile = { x = 2908, y = 3335, level = 2 }
+delta = { level = -1 }
+
+[55404]
+option = "Climb-down"
+tile = { x = 2884, y = 3397 }
+delta = { y = 6398 }
+
+[35125]
+option = "Climb-up"
+tile = { x = 2898, y = 3428 }
+delta = { level = 1 }
+
+[28652]
+option = "Climb-down"
+tile = { x = 2898, y = 3428, level = 1 }
+delta = { level = -1 }
+
+[35125]
+option = "Climb-up"
+tile = { x = 2914, y = 3441 }
+delta = { level = 1 }
+
+[28652]
+option = "Climb-down"
+tile = { x = 2914, y = 3441, level = 1 }
+delta = { level = -1 }
+
+[35125]
+option = "Climb-up"
+tile = { x = 2915, y = 3450 }
+delta = { level = 1 }
+
+[28652]
+option = "Climb-down"
+tile = { x = 2915, y = 3450, level = 1 }
+delta = { level = -1 }
+
+[28572]
+option = "Climb-up"
+tile = { x = 2925, y = 3442 }
+delta = { x = 2, level = 1 }
+
+[28653]
+option = "Climb-down"
+tile = { x = 2925, y = 3442, level = 1 }
+delta = { x = -2, level = -1 }
+

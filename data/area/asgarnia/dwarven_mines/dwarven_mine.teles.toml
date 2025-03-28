@@ -1,0 +1,38 @@
+# 11929 dwarven_mine
+[basic_ladder_up]
+option = "Climb-up"
+tile = { x = 2962, y = 9651 }
+to = { x = 3018, y = 3231 }
+
+# 12184 dwarven_mine
+[basic_ladder_up]
+option = "Climb-up"
+tile = { x = 3008, y = 9550 }
+delta = { y = -6400 }
+
+[30943]
+option = "Climb-up"
+tile = { x = 3059, y = 9776 }
+delta = { x = 3, y = -6400 }
+
+[6226]
+option = "Climb-up"
+tile = { x = 3018, y = 9739 }
+delta = { y = -6400 }
+
+[6226]
+option = "Climb-up"
+tile = { x = 3019, y = 9738 }
+delta = { y = -6400 }
+
+[6226]
+option = "Climb-up"
+tile = { x = 3020, y = 9739 }
+delta = { y = -6400 }
+
+# 12185 dwarven_mine
+[6226]
+option = "Climb-up"
+tile = { x = 3019, y = 9740 }
+delta = { y = -6400 }
+

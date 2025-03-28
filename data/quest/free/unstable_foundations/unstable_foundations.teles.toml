@@ -1,0 +1,12 @@
+# 13133 unstable_foundations
+[38856]
+option = "Climb-down"
+tile = { x = 3280, y = 3936, level = 3 }
+to = { x = 3281, y = 3935, level = 2 }
+
+# 14669 unstable_foundations
+[528]
+option = "Climb-up"
+tile = { x = 3618, y = 4814 }
+to = { x = 3358, y = 3305 }
+

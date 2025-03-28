@@ -1,0 +1,13 @@
+[shopkeeper_falador]
+id = 526
+race = "human"
+shop = "falador_general_store"
+wander_radius = 2
+examine = "A product of a consumerist society."
+
+[shop_assistant_falador]
+id = 527
+race = "human"
+shop = "falador_general_store"
+wander_radius = 2
+examine = "Likes you more, the more you spend."

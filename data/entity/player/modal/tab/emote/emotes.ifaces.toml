@@ -1,0 +1,80 @@
+[morph]
+id = 375
+type = "overlay_tab"
+components = {
+  unmorph = 3,
+}
+
+[emotes]
+id = 464
+type = "emotes_tab"
+components = {
+  emotes = {
+    id = 1,
+    options = {
+      Select = 0,
+      Option2 = 1,
+      Option3 = 4,
+      Option4 = 5,
+      Option6 = 10,
+    },
+  },
+  yes = 2,
+  no = 3,
+  bow = 4,
+  angry = 5,
+  think = 6,
+  wave = 7,
+  shrug = 8,
+  cheer = 9,
+  beckon = 10,
+  laugh = 11,
+  jump_for_joy = 12,
+  yawn = 13,
+  dance = 14,
+  jig = 15,
+  twirl = 16,
+  headbang = 17,
+  cry = 18,
+  blow_kiss = 19,
+  panic = 20,
+  raspberry = 21,
+  clap = 22,
+  salute = 23,
+  goblin_bow = 24,
+  goblin_salute = 25,
+  glass_box = 26,
+  climb_rope = 27,
+  lean = 28,
+  glass_wall = 29,
+  idea = 30,
+  stomp = 31,
+  flap = 32,
+  slap_head = 33,
+  zombie_walk = 34,
+  zombie_dance = 35,
+  zombie_hand = 36,
+  scared = 37,
+  bunny_hop = 38,
+  skillcape = 39,
+  snowman_dance = 40,
+  air_guitar = 41,
+  safety_first = 42,
+  explore = 43,
+  trick = 44,
+  freeze = 45,
+  give_thanks = 46,
+  around_the_world_in_eggty_days = 47,
+  dramatic_point = 48,
+  faint = 49,
+  puppet_master = 50,
+  taskmaster = 51,
+  seal_of_approval = 52,
+}
+
+[snow_globe]
+id = 659
+type = "main_screen"
+components = {
+  continue = 2,
+}

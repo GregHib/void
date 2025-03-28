@@ -1,0 +1,4 @@
+spawns = [
+# 9270
+  { id = "musician_piscatoris", x = 2363, y = 3492, direction = "WEST", members = true },
+]
