@@ -1,0 +1,20 @@
+[item_info_examine]
+id = 25
+
+[item_info_requirement]
+id = 26
+
+[item_info_requirement_title]
+id = 34
+
+[info_left]
+id = 35
+
+[info_middle]
+id = 36
+
+[info_right]
+id = 52
+
+[other_trader_name]
+id = 203

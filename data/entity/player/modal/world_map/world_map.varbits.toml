@@ -22,11 +22,7 @@ persist = true
 id = 5367
 format = "map"
 default = "categorised"
-values = {
-  categorised = 0,
-  traditional = 1,
-  alphabetical = 2,
-}
+values = { categorised = 0, traditional = 1, alphabetical = 2 }
 
 [show_daemonheim_map]
 id = 6090
