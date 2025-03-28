@@ -1,0 +1,7 @@
+[disease_damage]
+format = "int"
+persist = true
+
+[poison_damage]
+format = "int"
+persist = true

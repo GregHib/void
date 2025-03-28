@@ -1,0 +1,3 @@
+[collect_junk]
+format = "boolean"
+persist = true

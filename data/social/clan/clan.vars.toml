@@ -1,0 +1,31 @@
+[clan_join_spam]
+format = "int"
+persist = true
+
+[clan_name]
+persist = true
+default = ""
+
+[clan_chat]
+persist = true
+default = ""
+
+[clan_join_rank]
+format = "string"
+persist = true
+
+[clan_talk_rank]
+format = "string"
+persist = true
+
+[clan_kick_rank]
+format = "string"
+persist = true
+
+[clan_loot_rank]
+format = "string"
+persist = true
+
+[loot_share_potential]
+format = "int"
+persist = true

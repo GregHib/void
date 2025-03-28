@@ -1,0 +1,15 @@
+[magical_blastbox_mode]
+format = "boolean"
+persist = true
+
+[magical_blastbox_mode_dungeoneering]
+format = "boolean"
+persist = true
+
+[celestial_surgebox_mode]
+format = "boolean"
+persist = true
+
+[celestial_surgebox_mode_dungeoneering]
+format = "boolean"
+persist = true

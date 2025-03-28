@@ -1,0 +1,14 @@
+[public_status]
+format = "list"
+persist = true
+values = [ "on", "friends", "off", "hide" ]
+
+[private_status]
+format = "list"
+persist = true
+values = [ "on", "friends", "off" ]
+
+[trade_status]
+format = "list"
+persist = true
+values = [ "on", "friends", "off" ]

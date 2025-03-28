@@ -1,0 +1,4 @@
+[energy]
+format = "int"
+persist = true
+default = 10000

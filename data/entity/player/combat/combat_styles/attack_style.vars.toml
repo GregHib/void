@@ -1,0 +1,107 @@
+[attack_style_default]
+format = "int"
+persist = true
+
+[attack_style_staff]
+format = "int"
+persist = true
+
+[attack_style_axe]
+format = "int"
+persist = true
+
+[attack_style_sceptre]
+format = "int"
+persist = true
+
+[attack_style_pickaxe]
+format = "int"
+persist = true
+
+[attack_style_dagger]
+format = "int"
+persist = true
+
+[attack_style_sword]
+format = "int"
+persist = true
+
+[attack_style_2h]
+format = "int"
+persist = true
+
+[attack_style_mace]
+format = "int"
+persist = true
+
+[attack_style_claws]
+format = "int"
+persist = true
+
+[attack_style_hammer]
+format = "int"
+persist = true
+
+[attack_style_whip]
+format = "int"
+persist = true
+
+[attack_style_fun]
+format = "int"
+persist = true
+
+[attack_style_pie]
+format = "int"
+persist = true
+
+[attack_style_spear]
+format = "int"
+persist = true
+
+[attack_style_halberd]
+format = "int"
+persist = true
+
+[attack_style_bow]
+format = "int"
+persist = true
+
+[attack_style_crossbow]
+format = "int"
+persist = true
+
+[attack_style_thrown]
+format = "int"
+persist = true
+
+[attack_style_chinchompa]
+format = "int"
+persist = true
+
+[attack_style_fixed_device]
+format = "int"
+persist = true
+
+[attack_style_salamander]
+format = "int"
+persist = true
+
+[attack_style_scythe]
+format = "int"
+persist = true
+
+[attack_style_flail]
+format = "int"
+persist = true
+
+[attack_style_]
+format = "int"
+persist = true
+
+[attack_style_trident]
+format = "int"
+persist = true
+
+[attack_style_sol]
+format = "int"
+persist = true

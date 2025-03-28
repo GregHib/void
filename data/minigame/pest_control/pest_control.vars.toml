@@ -1,0 +1,5 @@
+[void_set_effect]
+format = "boolean"
+
+[elite_void_set_effect]
+format = "boolean"

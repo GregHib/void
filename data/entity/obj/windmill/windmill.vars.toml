@@ -1,0 +1,3 @@
+[hopper_bin]
+format = "boolean"
+persist = true

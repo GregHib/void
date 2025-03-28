@@ -1,0 +1,20 @@
+[creation]
+format = "int"
+persist = true
+
+[rights]
+format = "list"
+persist = true
+values = [ "None", "Mod", "Admin" ]
+
+[display_name]
+format = "string"
+persist = true
+
+[lifetime_xp]
+format = "double"
+persist = true
+
+[debug]
+format = "boolean"
+persist = true
