@@ -1,0 +1,37 @@
+[letter_scroll]
+id = 156
+type = "wide_screen"
+components = {
+  title = 5,
+  line0 = "7-106",
+}
+
+[message_scroll]
+id = 220
+type = "wide_screen"
+components = {
+  line0 = "1-15",
+  close = 16,
+}
+
+[message_scroll_handwriting]
+id = 222
+type = "wide_screen"
+components = {
+  line0 = "1-11",
+  close = 12,
+}
+
+[reward_scroll]
+id = 463
+
+[scroll]
+id = 726
+
+[wise_old_man_scroll]
+id = 174
+type = "main_screen"
+components = {
+  close = 17,
+  line0 = "1-16",
+}

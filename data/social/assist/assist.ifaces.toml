@@ -1,0 +1,16 @@
+[assist_xp]
+id = 301
+type = "main_screen"
+components = {
+  description = 10,
+  title = 73,
+  runecrafting = 74,
+  crafting = 75,
+  fletching = 76,
+  construction = 77,
+  farming = 78,
+  magic = 79,
+  smithing = 80,
+  cooking = 81,
+  herblore = 82,
+}

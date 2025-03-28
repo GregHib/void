@@ -1,0 +1,54 @@
+[book]
+id = 959
+type = "main_screen"
+components = {
+  close = 4,
+  title = 5,
+  turn_page_left = 28,
+  turn_page_right = 29,
+  line1 = "30-51",
+  page_number_left = 52,
+  page_number_right = 53,
+}
+
+[book_long]
+id = 960
+type = "main_screen"
+components = {
+  line1 = 19,
+  line2 = 26,
+  line3 = 31,
+  line4 = 32,
+  line5 = 24,
+  line6 = 33,
+  line7 = 25,
+  line8 = 21,
+  line9 = 30,
+  line10 = 28,
+  line11 = 23,
+  line12 = 20,
+  line13 = 27,
+  line14 = 29,
+  line15 = 22,
+  line16 = 3,
+  line17 = 9,
+  line18 = 6,
+  line19 = 14,
+  line20 = 7,
+  line21 = 16,
+  line22 = 10,
+  line23 = 12,
+  line24 = 4,
+  line25 = 5,
+  line26 = 8,
+  line27 = 13,
+  line28 = 17,
+  line29 = 15,
+  line30 = 11,
+  page_number_left = 70,
+  page_number_right = 71,
+  turn_page_left = 72,
+  turn_page_right = 73,
+  close = 74,
+  title = 39,
+}

@@ -1,0 +1,91 @@
+[warning_cold]
+id = 327
+
+[warning_spiders]
+id = 560
+
+[warning_kalphite_queen]
+id = 561
+
+[warning_dark]
+id = 562
+type = "main_screen"
+components = {
+  proceed = 17,
+  stayout = 18,
+}
+
+[warning_building_mode]
+id = 563
+
+[warning_archers]
+id = 564
+
+[warning_desert]
+id = 565
+
+[warning_collect_items]
+id = 566
+
+[warning_light_source]
+id = 567
+
+[warning_dark_regardless]
+id = 568
+
+[warning_light_source2]
+id = 569
+
+[warning_dark_scared]
+id = 570
+
+[warning_dark_tunnel]
+id = 571
+
+[warning_tinderbox]
+id = 572
+
+[warning_run_past]
+id = 573
+
+[warning_dangerous_area]
+id = 574
+
+[warning_one_way_wilderness]
+id = 576
+
+[warning_light_source_3]
+id = 577
+
+[warning_dark_fairy_ring]
+id = 578
+
+[warning_climb_down]
+id = 579
+
+[warning_mort_myre]
+id = 580
+
+[warning_death_plateau]
+id = 580
+
+[warning_messages]
+id = 583
+
+[warning_wilderness2]
+id = 600
+
+[warning_death]
+id = 676
+
+[warning_death2]
+id = 677
+
+[warning_death3]
+id = 678
+
+[warning_lots_of_items]
+id = 798
+
+[warning_death4]
+id = 892

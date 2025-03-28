@@ -111,3 +111,22 @@ components = {
     },
   },
 }
+
+[item_info]
+id = 449
+type = "overlay_tab"
+components = {
+  exit = 1,
+  info = 12,
+  sprite = 13,
+  name = 14,
+  button = {
+    id = 21,
+    options = {
+      Buy-1 = 0,
+      Buy-5 = 1,
+      Buy-10 = 2,
+      Buy-50 = 3,
+    }
+  }
+}

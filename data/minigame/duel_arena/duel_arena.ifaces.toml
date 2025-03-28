@@ -1,0 +1,26 @@
+[stake_confirm]
+id = 626
+
+[warning_duel]
+id = 627
+
+[duel2_side]
+id = 628
+
+[stake]
+id = 631
+
+[duel_victory]
+id = 633
+
+[stake_victory]
+id = 634
+
+[duel_confirm]
+id = 637
+
+[duel_rules_confirm]
+id = 639
+
+[duel_request]
+id = 640

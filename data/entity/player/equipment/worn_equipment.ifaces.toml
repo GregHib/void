@@ -1,0 +1,203 @@
+[worn_equipment]
+id = 387
+type = "worn_equipment_tab"
+components = {
+  bonuses = 39,
+  price = 42,
+  items = 45,
+  hat_slot = {
+    id = 8,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  cape_slot = {
+    id = 11,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  amulet_slot = {
+    id = 14,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  weapon_slot = {
+    id = 17,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  chest_slot = {
+    id = 20,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  shield_slot = {
+    id = 23,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  legs_slot = {
+    id = 26,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  hands_slot = {
+    id = 29,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  feet_slot = {
+    id = 32,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  ring_slot = {
+    id = 35,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+  ammo_slot = {
+    id = 38,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Option2 = 1,
+      Option3 = 2,
+      Option4 = 3,
+      Option5 = 4,
+      Option6 = 5,
+      Examine = 9,
+    },
+  },
+}
+
+[equipment_bonuses]
+id = 667
+type = "main_screen"
+components = {
+  inventory = {
+    id = 7,
+    inventory = "worn_equipment",
+    options = {
+      Remove = 0,
+      Stats = 8,
+      Examine = 9,
+    },
+  },
+  stab_attack = 30,
+  slash_attack = 31,
+  crush_attack = 32,
+  magic_attack = 33,
+  range_attack = 34,
+  stab_defence = 35,
+  slash_defence = 36,
+  crush_defence = 37,
+  magic_defence = 38,
+  range_defence = 39,
+  summoning_defence = 40,
+  absorb_melee = 41,
+  absorb_magic = 42,
+  absorb_range = 43,
+  strength = 44,
+  ranged_strength = 45,
+  prayer_bonus = 46,
+  magic_damage = 47,
+  bank = 49,
+  stats = 52,
+  stats_done = 64,
+  close = 75,
+}
+
+[equipment_side]
+id = 670
+type = "inventory_tab"
+components = {
+  inventory = {
+    id = 0,
+    inventory = "inventory",
+    options = {
+      Equip = 0,
+      Stats = 2,
+      Examine = 9,
+    }
+  }
+}

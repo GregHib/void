@@ -34,3 +34,9 @@ components = {
   travel_champions_guild = 48,
   travel_wilderness_pond = 49,
 }
+
+[canoe_travel]
+id = 758
+components = {
+  model = 3,
+}

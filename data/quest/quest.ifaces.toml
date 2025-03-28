@@ -59,3 +59,9 @@ components = {
 
 [quest_complete_wide]
 id = 380
+
+[quest_list]
+id = 868
+
+[quest_scroll2]
+id = 877

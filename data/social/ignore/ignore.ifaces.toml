@@ -1,0 +1,7 @@
+[ignores_list]
+id = 551
+type = "ignores_list_tab"
+components = {
+  add = 4,
+  delete = 5,
+}

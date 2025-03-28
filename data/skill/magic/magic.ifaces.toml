@@ -1,0 +1,23 @@
+[spells_blast]
+id = 310
+
+[spells_elements]
+id = 319
+
+[teleport_other]
+id = 326
+
+[spells_ancient_elements]
+id = 389
+
+[enchant_crossbow_bolts]
+id = 432
+
+[monster_stat_spy]
+id = 522
+
+[player_stat_spy]
+id = 523
+
+[spells_ancient]
+id = 797
