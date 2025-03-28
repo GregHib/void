@@ -1,0 +1,83 @@
+# 12336 tutorial_island
+[32048]
+option = "Climb-up"
+tile = { x = 3043, y = 10328 }
+delta = { y = -6400 }
+
+[36768]
+option = "Climb-up"
+tile = { x = 3126, y = 3124, level = 1 }
+delta = { level = 1 }
+
+[36770]
+option = "Climb-down"
+tile = { x = 3126, y = 3124, level = 2 }
+delta = { level = -1 }
+
+[36945]
+option = "Climb-up"
+tile = { x = 3123, y = 3128 }
+delta = { level = 1 }
+
+[36770]
+option = "Climb-down"
+tile = { x = 3123, y = 3128, level = 1 }
+delta = { level = -1 }
+
+[36770]
+option = "Climb-down"
+tile = { x = 3116, y = 3126, level = 1 }
+delta = { level = -1 }
+
+[36945]
+option = "Climb-up"
+tile = { x = 3116, y = 3126 }
+delta = { level = 1 }
+
+[3031]
+option = "Climb-down"
+tile = { x = 3111, y = 3126 }
+delta = { y = 6400 }
+
+[lumbridge_staircase]
+option = "Climb-up"
+tile = { x = 3115, y = 3107 }
+delta = { level = 1 }
+
+[lumbridge_staircase_top]
+option = "Climb-down"
+tile = { x = 3115, y = 3107, level = 1 }
+delta = { level = -1 }
+
+[lumbridge_staircase]
+option = "Climb-up"
+tile = { x = 3082, y = 3124 }
+delta = { level = 1 }
+
+[lumbridge_staircase_top]
+option = "Climb-down"
+tile = { x = 3082, y = 3124, level = 1 }
+delta = { level = -1 }
+
+# 12436 tutorial_island
+[29602]
+option = "Leave"
+tile = { x = 3082, y = 4228 }
+to = { x = 3074, y = 3456 }
+
+[3028]
+option = "Climb-up"
+tile = { x = 3088, y = 9519 }
+delta = { y = -6400 }
+
+# 12592 tutorial_island
+[29355]
+option = "Climb-up"
+tile = { x = 3088, y = 9971 }
+to = { x = 3089, y = 3571 }
+
+[36768]
+option = "Climb-up"
+tile = { x = 3139, y = 3078 }
+delta = { level = 1 }
+

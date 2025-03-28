@@ -1,0 +1,22 @@
+# 12593 lumbridge_swamp
+[water_altar_portal]
+option = "Enter"
+tile = { x = 3495, y = 4832 }
+to = { x = 3183, y = 3163 }
+
+# 12849 lumbridge_swamp
+[24365]
+option = "Climb-up"
+tile = { x = 3187, y = 9833 }
+delta = { x = -2, y = -6401 }
+
+[45481]
+option = "Climb-up"
+tile = { x = 3237, y = 3196 }
+delta = { y = -3, level = 1 }
+
+[45482]
+option = "Climb-down"
+tile = { x = 3237, y = 3196, level = 1 }
+delta = { y = 3, level = -1 }
+

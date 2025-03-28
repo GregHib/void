@@ -1,0 +1,6 @@
+# 9033 king_black_dragons_lair
+[28714]
+option = "Climb"
+tile = { x = 2209, y = 5349 }
+to = { x = 2926, y = 3444 }
+

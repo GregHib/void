@@ -1,0 +1,16 @@
+# 8781 burthorpe_games_room
+[games_room_stairs_down_2]
+option = "Climb-down"
+tile = { x = 2899, y = 3566 }
+delta = { x = -694, y = 1369, level = 1 }
+
+[games_room_basement_stairs_up]
+option = "Climb-up"
+tile = { x = 2207, y = 4935 }
+delta = { y = -4, level = 1 }
+
+[games_room_basement_stairs_down]
+option = "Climb-down"
+tile = { x = 2207, y = 4935, level = 1 }
+delta = { y = 4, level = -1 }
+

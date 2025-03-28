@@ -1,0 +1,253 @@
+# 12594 lumbridge
+[water_altar_ruins_enter]
+option = "Enter"
+tile = { x = 3184, y = 3164 }
+to = { x = 3494, y = 4832 }
+
+[36768]
+option = "Climb-up"
+tile = { x = 3198, y = 3219 }
+delta = { level = 1 }
+
+[36769]
+option = "Climb-up"
+tile = { x = 3198, y = 3219, level = 1 }
+delta = { level = 1 }
+
+[36769]
+option = "Climb-down"
+tile = { x = 3198, y = 3219, level = 1 }
+delta = { level = -1 }
+
+[36770]
+option = "Climb-down"
+tile = { x = 3198, y = 3219, level = 2 }
+delta = { level = -1 }
+
+[45481]
+option = "Climb-up"
+tile = { x = 3193, y = 3255 }
+delta = { x = 3, level = 1 }
+
+# 12850 lumbridge
+[48797]
+option = "Climb-down"
+tile = { x = 3247, y = 3197 }
+to = { x = 3877, y = 5526, level = 1 }
+
+[36687]
+option = "Climb-down"
+tile = { x = 3209, y = 3216 }
+delta = { x = -2, y = 6400 }
+
+[lumbridge_staircase]
+option = "Climb-up"
+tile = { x = 3204, y = 3207 }
+delta = { level = 1 }
+
+[lumbridge_castle_staircase_south_middle]
+option = "Climb-up"
+tile = { x = 3204, y = 3207, level = 1 }
+delta = { level = 1 }
+
+[lumbridge_castle_staircase_south_middle]
+option = "Climb-down"
+tile = { x = 3204, y = 3207, level = 1 }
+delta = { level = -1 }
+
+[lumbridge_staircase_top]
+option = "Climb-down"
+tile = { x = 3204, y = 3207, level = 2 }
+delta = { level = -1 }
+
+[lumbridge_castle_staircase_north]
+option = "Climb-up"
+tile = { x = 3204, y = 3229 }
+delta = { level = 1 }
+
+[lumbridge_castle_staircase_north_top]
+option = "Climb-down"
+tile = { x = 3204, y = 3229, level = 2 }
+delta = { level = -1 }
+
+[lumbridge_castle_staircase_north_middle]
+option = "Climb-up"
+tile = { x = 3204, y = 3229, level = 1 }
+delta = { level = 1 }
+
+[lumbridge_castle_staircase_north_middle]
+option = "Climb-down"
+tile = { x = 3204, y = 3229, level = 1 }
+delta = { level = -1 }
+
+[lumbridge_castle_ladder]
+option = "Climb-up"
+tile = { x = 3207, y = 3223, level = 2 }
+delta = { y = -2, level = 1 }
+
+[36772]
+option = "Climb-down"
+tile = { x = 3207, y = 3223, level = 3 }
+delta = { y = 2, level = -1 }
+
+[36768]
+option = "Climb-up"
+tile = { x = 3229, y = 3213 }
+delta = { level = 1 }
+
+[36769]
+option = "Climb-up"
+tile = { x = 3229, y = 3213, level = 1 }
+delta = { level = 1 }
+
+[36769]
+option = "Climb-down"
+tile = { x = 3229, y = 3213, level = 1 }
+delta = { level = -1 }
+
+[36770]
+option = "Climb-down"
+tile = { x = 3229, y = 3213, level = 2 }
+delta = { level = -1 }
+
+[36768]
+option = "Climb-up"
+tile = { x = 3229, y = 3224 }
+delta = { level = 1 }
+
+[36769]
+option = "Climb-up"
+tile = { x = 3229, y = 3224, level = 1 }
+delta = { level = 1 }
+
+[36769]
+option = "Climb-down"
+tile = { x = 3229, y = 3224, level = 1 }
+delta = { level = -1 }
+
+[36770]
+option = "Climb-down"
+tile = { x = 3229, y = 3224, level = 2 }
+delta = { level = -1 }
+
+[45483]
+option = "Climb-up"
+tile = { x = 3230, y = 3205 }
+delta = { x = -3, level = 1 }
+
+[45484]
+option = "Climb-down"
+tile = { x = 3230, y = 3205, level = 1 }
+delta = { x = 3, level = -1 }
+
+[45483]
+option = "Climb-up"
+tile = { x = 3230, y = 3209 }
+delta = { x = -3, level = 1 }
+
+[45484]
+option = "Climb-down"
+tile = { x = 3230, y = 3209, level = 1 }
+delta = { x = 3, level = -1 }
+
+[36984]
+option = "Climb-up"
+tile = { x = 3241, y = 3213 }
+delta = { x = -2, level = 1 }
+
+[36985]
+option = "Climb-down"
+tile = { x = 3241, y = 3213, level = 1 }
+delta = { x = 2, level = -1 }
+
+[36986]
+option = "Climb-up"
+tile = { x = 3246, y = 3213 }
+delta = { x = 2, level = 1 }
+
+[36987]
+option = "Climb-down"
+tile = { x = 3246, y = 3213, level = 1 }
+delta = { x = -2, level = -1 }
+
+[36989]
+option = "Climb-up"
+tile = { x = 3242, y = 3207, level = 1 }
+delta = { x = 1, y = -1, level = 1 }
+
+[36991]
+option = "Climb-down"
+tile = { x = 3242, y = 3207, level = 2 }
+delta = { x = -1, y = 1, level = -1 }
+
+[36988]
+option = "Climb-up"
+tile = { x = 3245, y = 3207, level = 1 }
+delta = { x = -1, y = -1, level = 1 }
+
+[36990]
+option = "Climb-down"
+tile = { x = 3245, y = 3207, level = 2 }
+delta = { x = 1, y = 1, level = -1 }
+
+[37683]
+option = "Climb-down"
+tile = { x = 3230, y = 3241 }
+delta = { x = 60, y = 1696 }
+
+[45483]
+option = "Climb-up"
+tile = { x = 3232, y = 3239 }
+delta = { y = 3, level = 1 }
+
+[45484]
+option = "Climb-down"
+tile = { x = 3232, y = 3239, level = 1 }
+delta = { y = -3, level = -1 }
+
+[45481]
+option = "Climb-up"
+tile = { x = 3215, y = 3239 }
+delta = { x = -3, level = 1 }
+
+[45482]
+option = "Climb-down"
+tile = { x = 3215, y = 3239, level = 1 }
+delta = { x = 3, level = -1 }
+
+[45481]
+option = "Climb-up"
+tile = { x = 3200, y = 3243 }
+delta = { y = -3, level = 1 }
+
+[45482]
+option = "Climb-down"
+tile = { x = 3200, y = 3243, level = 1 }
+delta = { y = 3, level = -1 }
+
+[45481]
+option = "Climb-up"
+tile = { x = 3212, y = 3256 }
+delta = { x = 3, level = 1 }
+
+# 12851 lumbridge
+[45482]
+option = "Climb-down"
+tile = { x = 3212, y = 3256, level = 1 }
+delta = { x = -3, level = -1 }
+
+[45481]
+option = "Climb-up"
+tile = { x = 3225, y = 3265 }
+delta = { y = -3, level = 1 }
+
+[45482]
+option = "Climb-down"
+tile = { x = 3225, y = 3265, level = 1 }
+delta = { y = 3, level = -1 }
+
+[45483]
+option = "Climb-up"
+tile = { x = 3225, y = 3288 }
+delta = { y = -3, level = 1 }
+

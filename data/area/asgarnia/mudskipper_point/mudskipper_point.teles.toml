@@ -1,0 +1,31 @@
+# 11825 mudskipper_point
+[24687]
+option = "Climb-up"
+tile = { x = 2898, y = 9867 }
+to = { x = 2898, y = 3469 }
+
+[273]
+option = "Climb-down"
+tile = { x = 2953, y = 3141, level = 1 }
+delta = { level = -1 }
+
+[272]
+option = "Climb-up"
+tile = { x = 2953, y = 3141 }
+delta = { level = 1 }
+
+[273]
+option = "Climb-down"
+tile = { x = 2957, y = 3141, level = 1 }
+delta = { level = -1 }
+
+[272]
+option = "Climb-up"
+tile = { x = 2957, y = 3141 }
+delta = { level = 1 }
+
+[273]
+option = "Climb-down"
+tile = { x = 2961, y = 3141, level = 1 }
+delta = { level = -1 }
+

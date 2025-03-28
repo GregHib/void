@@ -1,0 +1,67 @@
+# 13105 al_kharid
+[24366]
+option = "Climb-up"
+tile = { x = 3237, y = 9858 }
+to = { x = 3238, y = 3458 }
+
+[35533]
+option = "Climb-up"
+tile = { x = 3284, y = 3165 }
+to = { x = 3285, y = 3164, level = 1 }
+
+[35534]
+option = "Climb-down"
+tile = { x = 3284, y = 3165, level = 1 }
+to = { x = 3284, y = 3164 }
+
+[35516]
+option = "Climb-up"
+tile = { x = 3292, y = 3169, level = 1 }
+delta = { y = -1, level = 1 }
+
+[35518]
+option = "Climb-down"
+tile = { x = 3292, y = 3168, level = 2 }
+delta = { y = 1, level = -1 }
+
+[35646]
+option = "Climb-up"
+tile = { x = 3311, y = 3187 }
+to = { x = 3314, y = 3187, level = 1 }
+
+[35645]
+option = "Climb-down"
+tile = { x = 3314, y = 3187, level = 1 }
+to = { x = 3310, y = 3187 }
+
+[35646]
+option = "Climb-up"
+tile = { x = 3284, y = 3187 }
+to = { x = 3284, y = 3190, level = 1 }
+
+[35645]
+option = "Climb-down"
+tile = { x = 3284, y = 3190, level = 1 }
+to = { x = 3284, y = 3186 }
+
+[35672]
+option = "Climb-up"
+tile = { x = 3286, y = 3192, level = 1 }
+delta = { level = 1 }
+
+[35673]
+option = "Climb-down"
+tile = { x = 3286, y = 3192, level = 2 }
+delta = { level = -1 }
+
+[35646]
+option = "Climb-up"
+tile = { x = 3325, y = 3142 }
+to = { x = 3324, y = 3139, level = 1 }
+
+# 13106 al_kharid
+[fire_altar_portal]
+option = "Enter"
+tile = { x = 2576, y = 4846 }
+to = { x = 3311, y = 3253 }
+

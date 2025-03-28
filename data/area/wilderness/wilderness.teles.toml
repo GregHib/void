@@ -1,0 +1,87 @@
+# 12092 wilderness
+[14746]
+option = "Climb-down"
+tile = { x = 3022, y = 3638, level = 3 }
+delta = { level = -1 }
+
+[1765]
+option = "Climb-down"
+tile = { x = 3017, y = 3849 }
+delta = { x = 52, y = 6407 }
+
+# 12093 wilderness
+[1767]
+option = "Climb-down"
+tile = { x = 3069, y = 3857 }
+delta = { x = -52, y = 6392 }
+
+# 12192 wilderness
+[6226]
+option = "Climb-up"
+tile = { x = 3019, y = 9850 }
+delta = { y = -6400 }
+
+[lever_poison_spiders]
+option = "Pull"
+tile = { x = 3067, y = 10252 }
+to = { x = 2271, y = 4680 }
+
+[basic_ladder_up]
+option = "Climb-up"
+tile = { x = 3017, y = 10249 }
+delta = { x = 52, y = -6392 }
+
+# 12343 wilderness
+[26983]
+option = "Climb-down"
+tile = { x = 3096, y = 3511, level = 1 }
+delta = { level = -1 }
+
+# 12605 wilderness
+[24360]
+option = "Climb-down"
+tile = { x = 3189, y = 3432 }
+delta = { x = 2, y = 6401 }
+
+# 12855 wilderness
+[varrock_manhole_open]
+option = "Climb-down"
+tile = { x = 3237, y = 3458 }
+delta = { x = -1, y = 6400 }
+
+[fist_of_guthix_cave]
+option = "Enter"
+tile = { x = 3240, y = 3575 }
+to = { x = 1675, y = 5599 }
+
+# 13117 wilderness
+[24355]
+option = "Climb-down"
+tile = { x = 3310, y = 3509, level = 1 }
+delta = { level = -1 }
+
+[38854]
+option = "Climb-up"
+tile = { x = 3280, y = 3936 }
+to = { x = 3281, y = 3935, level = 1 }
+
+[38855]
+option = "Climb-down"
+tile = { x = 3280, y = 3936, level = 1 }
+delta = { level = -1 }
+
+[38855]
+option = "Climb-up"
+tile = { x = 3280, y = 3936, level = 1 }
+delta = { level = 1 }
+
+[38855]
+option = "Climb-down"
+tile = { x = 3280, y = 3936, level = 2 }
+delta = { level = -1 }
+
+[38855]
+option = "Climb-up"
+tile = { x = 3280, y = 3936, level = 2 }
+to = { x = 3282, y = 3936, level = 3 }
+

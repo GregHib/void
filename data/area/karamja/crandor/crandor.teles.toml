@@ -1,0 +1,16 @@
+# 11314 crandor
+[492]
+option = "Climb-down"
+tile = { x = 2856, y = 3168 }
+to = { x = 2857, y = 9569 }
+
+[25154]
+option = "Enter"
+tile = { x = 2833, y = 3255 }
+to = { x = 2833, y = 9658 }
+
+[272]
+option = "Climb-up"
+tile = { x = 2847, y = 3235 }
+delta = { level = 1 }
+

@@ -1,0 +1,6 @@
+# 9778 ourania
+[jalsavrah_door_west]
+option = "Search"
+tile = { x = 3283, y = 2794 }
+to = { x = 1934, y = 4420, level = 3 }
+

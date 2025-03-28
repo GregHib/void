@@ -1,0 +1,21 @@
+# 13099 sophanem
+[jalsavrah_tomb_door]
+option = "Leave Tomb"
+tile = { x = 1934, y = 4419, level = 3 }
+to = { x = 3288, y = 2801 }
+
+[jalsavrah_door_north]
+option = "Search"
+tile = { x = 3288, y = 2799 }
+to = { x = 1934, y = 4420, level = 3 }
+
+[jalsavrah_door_east]
+option = "Search"
+tile = { x = 3293, y = 2794 }
+to = { x = 1934, y = 4420, level = 3 }
+
+[jalsavrah_door_south]
+option = "Search"
+tile = { x = 3288, y = 2789 }
+to = { x = 1934, y = 4420, level = 3 }
+

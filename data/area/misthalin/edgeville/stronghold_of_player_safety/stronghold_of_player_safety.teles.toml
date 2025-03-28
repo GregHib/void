@@ -1,0 +1,67 @@
+# 12354 stronghold_of_player_safety
+[29358]
+option = "Climb-down"
+tile = { x = 3088, y = 3571 }
+to = { x = 3089, y = 9971 }
+
+[29589]
+option = "Climb-up"
+tile = { x = 3086, y = 4244 }
+to = { x = 3083, y = 3452 }
+
+# 12610 stronghold_of_player_safety
+[lever_deserted_keep]
+option = "Pull"
+tile = { x = 3153, y = 3923 }
+to = { x = 2562, y = 3311 }
+
+[29729]
+option = "Climb"
+tile = { x = 3159, y = 4280, level = 3 }
+to = { x = 3077, y = 3462 }
+
+[29660]
+option = "Climb-up"
+tile = { x = 3147, y = 4249, level = 1 }
+delta = { x = 3, y = 2, level = 1 }
+
+[29659]
+option = "Climb-down"
+tile = { x = 3149, y = 4250, level = 2 }
+delta = { x = -3, y = -2, level = -1 }
+
+[29656]
+option = "Climb-up"
+tile = { x = 3147, y = 4246, level = 1 }
+delta = { x = 3, y = -2, level = 1 }
+
+[29655]
+option = "Climb-down"
+tile = { x = 3149, y = 4245, level = 2 }
+delta = { x = -3, y = 2, level = -1 }
+
+[29664]
+option = "Climb-up"
+tile = { x = 3157, y = 4246, level = 1 }
+delta = { x = -3, y = -2, level = 1 }
+
+[29663]
+option = "Climb-down"
+tile = { x = 3157, y = 4245, level = 2 }
+delta = { x = 3, y = 2, level = -1 }
+
+[29668]
+option = "Climb-up"
+tile = { x = 3157, y = 4249, level = 1 }
+delta = { x = -3, y = 2, level = 1 }
+
+[29667]
+option = "Climb-down"
+tile = { x = 3157, y = 4250, level = 2 }
+delta = { x = 3, y = -2, level = -1 }
+
+[29672]
+option = "Climb-up"
+tile = { x = 3171, y = 4273, level = 2 }
+delta = { x = -3, y = -2, level = 1 }
+

@@ -1,0 +1,12 @@
+# 11599 rat_pits
+[24842]
+option = "Enter"
+tile = { x = 2899, y = 3469 }
+to = { x = 2901, y = 9867 }
+
+# 11926 rat_pits
+[wilderness_agility_ladder_down]
+option = "Climb-down"
+tile = { x = 3005, y = 3963 }
+delta = { y = 6400 }
+

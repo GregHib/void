@@ -1,0 +1,41 @@
+# 12595 freds_farm
+[45482]
+option = "Climb-down"
+tile = { x = 3193, y = 3255, level = 1 }
+delta = { x = -3, level = -1 }
+
+[45483]
+option = "Climb-up"
+tile = { x = 3186, y = 3270 }
+delta = { x = 3, level = 1 }
+
+[45484]
+option = "Climb-down"
+tile = { x = 3186, y = 3270, level = 1 }
+delta = { x = -3, level = -1 }
+
+[36795]
+option = "Climb-up"
+tile = { x = 3164, y = 3307 }
+delta = { level = 1 }
+
+[36796]
+option = "Climb-up"
+tile = { x = 3164, y = 3307, level = 1 }
+delta = { level = 1 }
+
+[36796]
+option = "Climb-down"
+tile = { x = 3164, y = 3307, level = 1 }
+delta = { level = -1 }
+
+[36797]
+option = "Climb-down"
+tile = { x = 3164, y = 3307, level = 2 }
+delta = { level = -1 }
+
+[52833]
+option = "Climb-up"
+tile = { x = 3140, y = 3305 }
+delta = { level = 1 }
+

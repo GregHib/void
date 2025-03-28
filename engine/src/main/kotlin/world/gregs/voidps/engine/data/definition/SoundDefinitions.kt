@@ -6,6 +6,9 @@ import world.gregs.config.Config
 import world.gregs.voidps.engine.data.config.SoundDefinition
 import world.gregs.voidps.engine.timedLoad
 
+/**
+ * Officially known as Synths
+ */
 class SoundDefinitions : DefinitionsDecoder<SoundDefinition> {
 
     override lateinit var definitions: Array<SoundDefinition>

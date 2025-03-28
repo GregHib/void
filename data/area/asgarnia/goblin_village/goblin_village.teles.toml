@@ -1,0 +1,16 @@
+# 11830 goblin_village
+[mind_altar_portal]
+option = "Enter"
+tile = { x = 2793, y = 4827 }
+to = { x = 2984, y = 3516 }
+
+[mind_altar_ruins_enter]
+option = "Enter"
+tile = { x = 2981, y = 3513 }
+to = { x = 2793, y = 4828 }
+
+[16450]
+option = "Climb-up"
+tile = { x = 2954, y = 3497 }
+to = { x = 2955, y = 3497, level = 2 }
+

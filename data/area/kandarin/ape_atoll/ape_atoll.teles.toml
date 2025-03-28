@@ -1,0 +1,6 @@
+# 11050 ape_atoll
+[trapdoor_91_opened]
+option = "Climb-down"
+tile = { x = 2998, y = 3453 }
+delta = { x = -2, y = 6393 }
+

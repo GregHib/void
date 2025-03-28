@@ -1,0 +1,61 @@
+# 12107 abyss
+[1733]
+option = "Climb-down"
+tile = { x = 3044, y = 3924 }
+delta = { y = 6400 }
+
+[nature_rift]
+option = "Exit-through"
+tile = { x = 3035, y = 4842 }
+to = { x = 2400, y = 4844 }
+
+[cosmic_rift]
+option = "Exit-through"
+tile = { x = 3028, y = 4837 }
+to = { x = 2142, y = 4836 }
+
+[blood_rift]
+option = "Exit-through"
+tile = { x = 3027, y = 4834 }
+to = { x = 2464, y = 4892, level = 1 }
+
+[fire_rift]
+option = "Exit-through"
+tile = { x = 3029, y = 4830 }
+to = { x = 2587, y = 4836 }
+
+[earth_rift]
+option = "Exit-through"
+tile = { x = 3031, y = 4825 }
+to = { x = 2660, y = 4843 }
+
+[body_rift]
+option = "Exit-through"
+tile = { x = 3039, y = 4821 }
+to = { x = 2520, y = 4848 }
+
+[mind_rift]
+option = "Exit-through"
+tile = { x = 3044, y = 4822 }
+to = { x = 2784, y = 4843 }
+
+[air_rift]
+option = "Exit-through"
+tile = { x = 3047, y = 4825 }
+to = { x = 2846, y = 4836 }
+
+[water_rift]
+option = "Exit-through"
+tile = { x = 3051, y = 4833 }
+to = { x = 3482, y = 4838 }
+
+[death_rift]
+option = "Exit-through"
+tile = { x = 3050, y = 4837 }
+to = { x = 2205, y = 4838 }
+
+[law_rift]
+option = "Exit-through"
+tile = { x = 3049, y = 4839 }
+to = { x = 2464, y = 4826 }
+

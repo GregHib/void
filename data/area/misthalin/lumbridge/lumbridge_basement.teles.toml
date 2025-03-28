@@ -1,0 +1,6 @@
+# 12950 lumbridge_basement
+[27668]
+option = "Climb-up"
+tile = { x = 3232, y = 5091 }
+to = { x = 3368, y = 3268 }
+

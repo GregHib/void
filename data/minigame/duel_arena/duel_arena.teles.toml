@@ -1,0 +1,6 @@
+# 12879 duel_arena
+[39273]
+option = "Climb-up"
+tile = { x = 3220, y = 4522 }
+to = { x = 3014, y = 3257 }
+

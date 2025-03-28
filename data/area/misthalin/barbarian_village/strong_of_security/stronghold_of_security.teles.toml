@@ -1,0 +1,84 @@
+# 7505 stronghold_of_security
+[24427]
+option = "Walk-up"
+tile = { x = 1758, y = 4959 }
+delta = { x = 1500, y = -1505 }
+
+[16148]
+option = "Climb-up"
+tile = { x = 1859, y = 5244 }
+to = { x = 3081, y = 3421 }
+
+[16146]
+option = "Climb-up"
+tile = { x = 1881, y = 5232 }
+to = { x = 1859, y = 5243 }
+
+[16148]
+option = "Climb-up"
+tile = { x = 1913, y = 5226 }
+to = { x = 3081, y = 3421 }
+
+# 8017 stronghold_of_security
+[10699]
+option = "Climb-up"
+tile = { x = 2004, y = 4426, level = 1 }
+to = { x = 3091, y = 3275 }
+
+[16080]
+option = "Climb-up"
+tile = { x = 2042, y = 5246 }
+to = { x = 1859, y = 5243 }
+
+[16078]
+option = "Climb-up"
+tile = { x = 2040, y = 5208 }
+to = { x = 2042, y = 5245 }
+
+[16078]
+option = "Climb-up"
+tile = { x = 2031, y = 5189 }
+to = { x = 2042, y = 5245 }
+
+[16078]
+option = "Climb-up"
+tile = { x = 2011, y = 5192 }
+to = { x = 2042, y = 5245 }
+
+[16078]
+option = "Climb-up"
+tile = { x = 2017, y = 5210 }
+to = { x = 2042, y = 5245 }
+
+# 8530 stronghold_of_security
+[16081]
+option = "Climb-down"
+tile = { x = 2026, y = 5218 }
+to = { x = 2123, y = 5252 }
+
+[16114]
+option = "Climb-up"
+tile = { x = 2123, y = 5251 }
+to = { x = 2042, y = 5245 }
+
+[16112]
+option = "Climb-up"
+tile = { x = 2150, y = 5278 }
+to = { x = 2123, y = 5252 }
+
+# 9297 stronghold_of_security
+[chaos_altar_portal]
+option = "Enter"
+tile = { x = 2282, y = 4837 }
+to = { x = 3060, y = 3585 }
+
+[16049]
+option = "Climb-up"
+tile = { x = 2358, y = 5216 }
+to = { x = 2123, y = 5252 }
+
+[16048]
+option = "Climb-up"
+tile = { x = 2309, y = 5240 }
+to = { x = 3081, y = 3421 }
+

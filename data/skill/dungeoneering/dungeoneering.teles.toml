@@ -1,0 +1,6 @@
+# 14411 dungeoneering
+[527]
+option = "Climb-down"
+tile = { x = 3357, y = 3305 }
+to = { x = 3619, y = 4814 }
+

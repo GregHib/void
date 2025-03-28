@@ -1,0 +1,6 @@
+# 11414 crandor_dungeon
+[1764]
+option = "Climb"
+tile = { x = 2856, y = 9569 }
+to = { x = 2856, y = 3167 }
+

@@ -1,0 +1,23 @@
+# 12441 edgeville_dungeon
+[basic_ladder_up]
+option = "Climb-up"
+tile = { x = 3117, y = 9754 }
+delta = { x = -25, y = -6392 }
+
+# 12442 edgeville_dungeon
+[29355]
+option = "Climb-up"
+tile = { x = 3116, y = 9852 }
+delta = { y = -6400 }
+
+[29355]
+option = "Climb-up"
+tile = { x = 3097, y = 9867 }
+delta = { y = -6399 }
+
+# 12443 edgeville_dungeon
+[12265]
+option = "Climb"
+tile = { x = 3076, y = 9893 }
+delta = { x = 1, y = -6400 }
+

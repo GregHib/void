@@ -1,0 +1,6 @@
+# 7749 pyramid_plunder
+[games_room_stairs_up]
+option = "Climb-up"
+tile = { x = 2205, y = 4935, level = 1 }
+delta = { x = 694, y = -1369, level = -1 }
+

@@ -8,8 +8,8 @@ import java.io.File
 object SpawnSorter {
     @JvmStatic
     fun main(args: Array<String>) {
-        val type = ".npc-spawns.toml"
-        val file = File("../void/data/npcs/spawns/all${type}")
+        val type = ".teles.toml"
+        val file = File("../void/data/objects/teleports/all${type}")
 
         val lines = file.readLines()
         val directory = file.parentFile
@@ -17,39 +17,40 @@ object SpawnSorter {
         val files = mutableSetOf<File>()
         for (line in lines) {
             if (line.trim(' ').startsWith("#")) {
-                region = line.trim('#').trim().toInt()
+                region = line.trim('#', ' ').toInt()
                 val file = directory.resolve("${regionName(region)}$type")
                 if (file.exists()) {
-                    file.appendText("# ${region}\n")
+                    append(file, "# $region ${regionName(region)}\n")
                 } else {
                     file.createNewFile()
-                    file.appendText("spawns = [\n# $region\n")
+                    append(file, "# $region ${regionName(region)}\n")
                     files.add(file)
                 }
                 continue
             }
-            if (!line.startsWith(" ")) {
-                continue
-            }
-            val line = line.trim(' ')
-            if (line.startsWith("{")) {
-                val parts = line.trimStart('{').trimEnd('}').split(",", "=").map { it.trim() }
-                val name = regionName(region)
-                val file = directory.resolve("${name}$type")
-                if (file.exists()) {
-                    file.appendText("  ${line}\n")
-                } else {
-                    println("Not found!")
-                }
-                println("${regionName(region)} $parts")
-            }
-        }
-        for (file in files) {
-            file.appendText("]")
+            val name = regionName(region)
+            val file = directory.resolve("${name}$type")
+            append(file, "${line.trim()}\n")
         }
     }
 
+    private fun append(file: File, text: String) {
+        file.appendText(text)
+//        print("[${file.name}]$text")
+    }
+
     private fun regionName(region: Int): String = when (region) {
+        8005, 6726 -> "christmas"
+        6989 -> "varrock"
+        8787 -> "summoning"
+        12610, 12354 -> "stronghold_of_player_safety"
+        15958, 15446 -> "the_blood_pact"
+        12192 -> "wilderness"
+        8523, 8779, 9804, 10571, 10315, 13899, 11339, 10059, 11083, 9803, 9547, 9035 -> "runecrafting"
+        8781 -> "burthorpe_games_room"
+        14411 -> "dungeoneering"
+        14669, 13133 -> "unstable_foundations"
+        6475, 15696, 15184, 14930, 17237, 17235, 15699, 15186, 6731 -> "halloween"
         9882 -> "grand_tree_tunnels"
         9516 -> "mobilising_armies"
         10390 -> "clocktower_dungeon"
@@ -60,6 +61,7 @@ object SpawnSorter {
         11065 -> "mountain_camp"
         10569 -> "fisher_realm"
         10803 -> "witchaven"
+        11674 -> "heroes_guild"
         10804 -> "legends_guild"
         10805 -> "sorcerers_tower"
         10835, 10834 -> "dorgesh_kaan"
@@ -128,7 +130,7 @@ object SpawnSorter {
         12849, 12593 -> "lumbridge_swamp"
         13105, 13106, 13107 -> "al_kharid"
         12193 -> "deep_wilderness_dungeon"
-        13108, 12852, 12596, 13109, 12853, 12597, 13110, 12854, 12697 -> "varrock"
+        13108, 12852, 12596, 13109, 12853, 12597, 13110, 12854, 12697, 12953, 12952 -> "varrock"
         12598 -> "grand_exchange"
         15148 -> "harmony"
         13720 -> "nature_spirit"
@@ -136,7 +138,7 @@ object SpawnSorter {
         11925, 12181 -> "asgarnian_ice_dungeon"
         14132, 14388 -> "darkmeyer"
         14387, 14385, 14386 -> "meiyerditch"
-        12341 -> "barbarian_village"
+        12341, 12085 -> "barbarian_village"
         12342, 12086 -> "edgeville"
         10133 -> "gnome_village_dungeon"
         12089, 12088 -> "wilderness_bandit_camp"
@@ -157,7 +159,7 @@ object SpawnSorter {
         11601, 11317, 11061 -> "catherby"
         10806 -> "seers_village"
         11830 -> "goblin_village"
-        11926 -> "rat_pits"
+        11926, 11599 -> "rat_pits"
         12436 -> "tutorial_island"
         11423, 11422, 11679, 11678 -> "keldagrim"
         13104 -> "shantay_pass"
@@ -214,7 +216,7 @@ object SpawnSorter {
         13874, 13873, 14129, 14130 -> "burgh_de_rott"
         13875 -> "mort_ton"
         13618, 11078, 11079 -> "abandoned_mine"
-        13362 -> "duel_arena"
+        13362, 12879 -> "duel_arena"
         11088 -> "sophanem_dungeon"
         13363 -> "mage_training_arena"
         14131, 14231 -> "barrows"
@@ -244,8 +246,9 @@ object SpawnSorter {
         12954, 13210, 12698 -> "varrock_sewers"
         12444, 12443, 12442, 12441 -> "edgeville_dungeon"
         11929, 12185, 12184 -> "dwarven_mine"
-        12870 -> "swept_away"
+        12870, 12614 -> "swept_away"
         9625 -> "brimstails_home"
+        12696 -> "champions_challenge"
         else -> region.toString()
     }
 }

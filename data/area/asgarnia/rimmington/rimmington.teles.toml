@@ -1,0 +1,167 @@
+# 11570 rimmington
+[25213]
+option = "Climb"
+tile = { x = 2833, y = 9657 }
+to = { x = 2834, y = 3258 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2928, y = 3256 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2928, y = 3256, level = 1 }
+delta = { level = -1 }
+
+[25045]
+option = "Climb-down"
+tile = { x = 2925, y = 3258, level = 1 }
+delta = { level = -1 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2923, y = 3248 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2923, y = 3248, level = 1 }
+delta = { level = -1 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2923, y = 3240 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2923, y = 3240, level = 1 }
+delta = { level = -1 }
+
+[2605]
+option = "Climb-down"
+tile = { x = 2932, y = 3240 }
+delta = { y = 6400 }
+
+[1754]
+option = "Climb-down"
+tile = { x = 2924, y = 3250 }
+delta = { y = 6400 }
+
+[1754]
+option = "Climb-down"
+tile = { x = 2939, y = 3257 }
+delta = { y = 6400 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2929, y = 3240, level = 1 }
+delta = { level = -1 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2934, y = 3254, level = 1 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2934, y = 3254, level = 2 }
+delta = { level = -1 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2932, y = 3244, level = 1 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2932, y = 3244, level = 2 }
+delta = { level = -1 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2934, y = 3244, level = 1 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2934, y = 3244, level = 2 }
+delta = { level = -1 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2940, y = 3257, level = 1 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2940, y = 3257, level = 2 }
+delta = { level = -1 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2938, y = 3250, level = 1 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2938, y = 3250, level = 2 }
+delta = { level = -1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2937, y = 3240, level = 1 }
+delta = { level = -1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2930, y = 3258, level = 2 }
+delta = { level = -1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2929, y = 3245, level = 2 }
+delta = { level = -1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2934, y = 3243, level = 2 }
+delta = { level = -1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2940, y = 3240, level = 2 }
+delta = { level = -1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2937, y = 3247, level = 2 }
+delta = { level = -1 }
+
+# 11826 rimmington
+[272]
+option = "Climb-up"
+tile = { x = 2961, y = 3141 }
+delta = { level = 1 }
+
+[9470]
+option = "Climb-up"
+tile = { x = 2965, y = 3215 }
+delta = { x = 4, level = 1 }
+
+[9471]
+option = "Climb-down"
+tile = { x = 2966, y = 3215, level = 1 }
+delta = { x = -4, level = -1 }
+
+[9558]
+option = "Climb-up"
+tile = { x = 2948, y = 3213 }
+delta = { level = 1 }
+
+[9559]
+option = "Climb-down"
+tile = { x = 2948, y = 3213, level = 1 }
+delta = { level = -1 }
+
