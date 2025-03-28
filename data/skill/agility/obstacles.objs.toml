@@ -1,11 +1,3 @@
-[obstacle_net]
-id = 2285
-examine = "This must be climbed over."
-
-[balancing_rope]
-id = 2312
-examine = "I can balance on this rope."
-
 [gnome_log_balance]
 id = 2295
 examine = "A slippery log I can walk across."

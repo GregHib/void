@@ -350,10 +350,6 @@ examine = "Now he's just too thin."
 id = 3974
 examine = "He hasn't eaten in a long time."
 
-[balancing_rope_4]
-id = 4059
-examine = "I can balance on this rope."
-
 [potters_wheel_2]
 id = 4310
 examine = "Used for fashioning clay items."  
@@ -820,10 +816,6 @@ examine = "A crystal is placed here to charge the machine."
 [pillar_32]
 id = 20032
 examine = "A crystal is placed here to charge the machine."
-
-[obstacle_pipe_9]
-id = 20210
-examine = "A pipe I can squeeze through"
 
 [corpse_34]
 id = 20297
@@ -1557,14 +1549,6 @@ examine = "It's sealed shut."
 [fountain_22]
 id = 41448
 examine = "A pretty water feature."
-
-[signpost_18]
-id = 43581
-examine = "It doesn't look finished, but the material is tough enough to grip hold of."
-
-[log_balance_22]
-id = 43595
-examine = "A slippery log I can walk across."
 
 [candle_8]
 id = 44268
