@@ -173,11 +173,3 @@ examine = "I can see the surface."
 [ape_atoll_monkey_nut_bush]
 id = 12615
 examine = "A Bush with monkey nuts growing on it."
-
-[tree_branch_4]
-id = 35970
-examine = "I can climb up this."
-
-[rope_swing_4]
-id = 43526
-examine = "I can use this to swing over crevices."
