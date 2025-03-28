@@ -1,0 +1,33 @@
+[task_progress_total]
+id = 1423
+format = "int"
+
+[task_progress_current]
+id = 1424
+format = "int"
+
+[task_dont_show_again]
+id = 1421
+format = "boolean"
+persist = true
+
+[task_popup]
+id = 1425
+format = "int"
+
+[task_previous_popup]
+id = 1426
+format = "int"
+
+[task_fade_in_cycle]
+id = 1427
+format = "int"
+
+[task_popup_summary]
+id = 1428
+format = "boolean"
+
+[task_disable_popups]
+id = 1429
+format = "boolean"
+persist = true

@@ -1,0 +1,43 @@
+[makeover_top]
+id = 1010
+format = "int"
+
+[makeover_arms]
+id = 1011
+format = "int"
+
+[makeover_wrists]
+id = 1012
+format = "int"
+
+[makeover_legs]
+id = 1013
+format = "int"
+
+[makeover_hair]
+id = 1008
+format = "int"
+
+[makeover_beard]
+id = 1009
+format = "int"
+
+[makeover_shoes]
+id = 1014
+format = "int"
+
+[makeover_colour_hair]
+id = 1015
+format = "int"
+
+[makeover_colour_top]
+id = 1016
+format = "int"
+
+[makeover_colour_legs]
+id = 1017
+format = "int"
+
+[makeover_colour_shoes]
+id = 1018
+format = "int"

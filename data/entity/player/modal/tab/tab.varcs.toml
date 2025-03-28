@@ -1,0 +1,5 @@
+[tab]
+id = 168
+format = "list"
+default = "Inventory"
+values = [ "CombatStyles", "TaskSystem", "Stats", "QuestJournals", "Inventory", "WornEquipment", "PrayerList", "MagicSpellbook", "FriendsList", "FriendsChat", "ClanChat", "Options", "Emotes", "MusicPlayer", "Notes" ]
