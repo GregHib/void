@@ -35,56 +35,58 @@ class AreaDefinitions(
         return tagged[tag] ?: emptySet()
     }
 
-    fun load(path: String): AreaDefinitions {
+    fun load(paths: List<String>): AreaDefinitions {
         timedLoad("map area") {
             val named = Object2ObjectOpenHashMap<String, AreaDefinition>()
             val tagged = Object2ObjectOpenHashMap<String, MutableSet<AreaDefinition>>()
             val areas = Int2ObjectOpenHashMap<MutableSet<AreaDefinition>>()
-            Config.fileReader(path) {
-                val x = IntArrayList()
-                val y = IntArrayList()
-                while (nextSection()) {
-                    val name = section()
-                    x.clear()
-                    y.clear()
-                    var level: Int? = null
-                    val tags = ObjectOpenHashSet<String>()
-                    val extras = Object2ObjectOpenHashMap<String, Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
-                    while (nextPair()) {
-                        when (val key = key()) {
-                            "x" -> while (nextElement()) {
-                                x.add(int())
+            for (path in paths) {
+                Config.fileReader(path) {
+                    val x = IntArrayList()
+                    val y = IntArrayList()
+                    while (nextSection()) {
+                        val name = section()
+                        x.clear()
+                        y.clear()
+                        var level: Int? = null
+                        val tags = ObjectOpenHashSet<String>()
+                        val extras = Object2ObjectOpenHashMap<String, Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
+                        while (nextPair()) {
+                            when (val key = key()) {
+                                "x" -> while (nextElement()) {
+                                    x.add(int())
+                                }
+                                "y" -> while (nextElement()) {
+                                    y.add(int())
+                                }
+                                "level" -> level = int()
+                                "tags" -> while (nextElement()) {
+                                    tags.add(string())
+                                }
+                                else -> extras[key] = value()
                             }
-                            "y" -> while (nextElement()) {
-                                y.add(int())
-                            }
-                            "level" -> level = int()
-                            "tags" -> while (nextElement()) {
-                                tags.add(string())
-                            }
-                            else -> extras[key] = value()
                         }
-                    }
-                    val area: Area = if (x.size <= 2) {
-                        if (level == null) {
-                            Rectangle(x.first(), y.first(), x.last(), y.last())
+                        val area: Area = if (x.size <= 2) {
+                            if (level == null) {
+                                Rectangle(x.first(), y.first(), x.last(), y.last())
+                            } else {
+                                Cuboid(x.first(), y.first(), x.last(), y.last(), level, level)
+                            }
                         } else {
-                            Cuboid(x.first(), y.first(), x.last(), y.last(), level, level)
+                            Polygon(x.toIntArray(), y.toIntArray(), level ?: 0, level ?: 3)
                         }
-                    } else {
-                        Polygon(x.toIntArray(), y.toIntArray(), level ?: 0, level ?: 3)
-                    }
-                    val definition = if (extras.isEmpty()) {
-                        AreaDefinition(name = name, area = area, tags = tags, stringId = name)
-                    } else {
-                        AreaDefinition(name = name, area = area, tags = tags, stringId = name, extras = extras)
-                    }
-                    named[name] = definition
-                    for (tag in tags) {
-                        tagged.getOrPut(tag) { ObjectOpenHashSet(2) }.add(definition)
-                    }
-                    for (zone in area.toZones()) {
-                        areas.getOrPut(zone.id) { ObjectOpenHashSet(2) }.add(definition)
+                        val definition = if (extras.isEmpty()) {
+                            AreaDefinition(name = name, area = area, tags = tags, stringId = name)
+                        } else {
+                            AreaDefinition(name = name, area = area, tags = tags, stringId = name, extras = extras)
+                        }
+                        named[name] = definition
+                        for (tag in tags) {
+                            tagged.getOrPut(tag) { ObjectOpenHashSet(2) }.add(definition)
+                        }
+                        for (zone in area.toZones()) {
+                            areas.getOrPut(zone.id) { ObjectOpenHashSet(2) }.add(definition)
+                        }
                     }
                 }
             }

@@ -447,7 +447,7 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
             val npcs: NPCs = get()
             loadNpcSpawns(npcs, files.list(Settings["spawns.npcs"]), npcDefs)
         }
-        "areas" -> get<AreaDefinitions>().load(files.find(Settings["map.areas"]))
+        "areas" -> get<AreaDefinitions>().load(files.list(Settings["map.areas"]))
         "object defs" -> get<ObjectDefinitions>().load(files.list(Settings["definitions.objects"]))
         "emotes", "render anims", "render emotes" -> get<RenderEmoteDefinitions>().load(files.find(Settings["definitions.renderEmotes"]))
         "anim defs", "anims" -> get<AnimationDefinitions>().load(files.list(Settings["definitions.animations"]))

@@ -1,0 +1,4 @@
+[duel_arena_teleport]
+x = [3313, 3317]
+y = [3233, 3237]
+tags = ["teleport"]

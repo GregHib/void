@@ -1,0 +1,10 @@
+[white_wolf_mountain_multi_area]
+x = [2816, 2879]
+y = [3456, 3519]
+level = 0
+tags = ["multi_combat"]
+
+[white_wolf_mountain_ice_queen_multi_area]
+x = [2856, 2879]
+y = [9928, 9967]
+tags = ["multi_combat"]

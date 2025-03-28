@@ -1,0 +1,5 @@
+[battlefield_multi_area]
+x = [2504, 2544, 2544, 2552, 2552, 2504]
+y = [3248, 3248, 3232, 3232, 3208, 3208]
+level = 0
+tags = ["multi_combat"]

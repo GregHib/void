@@ -1,0 +1,51 @@
+[varrock_teleport]
+x = [3212, 3213]
+y = [3428, 3429]
+tags = ["teleport"]
+
+[senntisten_teleport]
+x = [3373, 3375]
+y = [3403, 3405]
+tags = ["teleport"]
+
+[varrock_sewers_multi_area]
+x = [3152, 3287]
+y = [9856, 9919]
+tags = ["multi_combat"]
+
+[varrock_south_east_mine]
+x = [3281, 3290]
+y = [3360, 3371]
+tags = ["mine"]
+rocks = ["copper", "tin", "iron"]
+levels = "1-45"
+spaces = 4
+
+[varrock_east_bank]
+x = [3250, 3257]
+y = [3416, 3424]
+tags = ["bank"]
+
+[varrock_west_bank]
+x = [3179, 3194]
+y = [3432, 3446]
+tags = ["bank"]
+
+[lumber_yard_teleport]
+x = [3300, 3302]
+y = [3485, 3487]
+tags = ["teleport", "scroll"]
+
+[aubury_return]
+x = [3252, 3253]
+y = [3401, 3402]
+
+[champions_guild_teleport]
+x = [3189, 3193]
+y = [3363, 3367]
+tags = ["teleport"]
+
+[cooking_guild_teleport]
+x = [3140, 3143]
+y = [3440, 3443]
+tags = ["teleport"]

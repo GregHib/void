@@ -1,0 +1,35 @@
+[al_kharid_bank]
+x = [3265, 3272]
+y = [3161, 3173]
+tags = ["bank"]
+
+[zekes_scimitar_shop]
+x = [3285, 3290]
+y = [3187, 3192]
+tags = ["shop"]
+items = ["bronze_scimitar", "iron_scimitar", "steel_scimitar", "mithril_scimitar"]
+
+[al_kharid_kebab_shop]
+x = [3271, 3275]
+y = [3179, 3183]
+type = "range"
+tags = ["cooking", "spaces_2"]
+
+[al_kharid_multi_area]
+x = [3264, 3327]
+y = [3136, 3199]
+level = 0
+tags = ["multi_combat"]
+
+[al_kharid_teleport]
+x = [3292, 3295]
+y = [3162, 3163]
+tags = ["teleport"]
+
+[al_kharid_prison]
+x = [3297, 3299]
+y = [3121, 3125]
+
+[al_kharid_mine]
+x = [3291, 3308]
+y = [3281, 3320]

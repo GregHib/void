@@ -1,0 +1,14 @@
+[giant_mole_multi_area]
+x = [1728, 1791]
+y = [5120, 5239]
+tags = ["multi_combat"]
+
+[giant_mole_lair]
+x = [1717, 1801]
+y = [5123, 5252]
+tags = ["boss"]
+
+[giant_mole_spawn_area]
+x = [1733, 1788]
+y = [5150, 5223]
+tags = ["boss"]

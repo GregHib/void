@@ -1,0 +1,10 @@
+[norther_fremennik_isles_multi_area]
+x = [2304, 2432, 2432, 2368, 2368, 2352, 2352, 2304]
+y = [3904, 3904, 3840, 3840, 3816, 3816, 3824, 3824]
+level = 0
+tags = ["multi_combat"]
+
+[fremennik_isles_dungeon_multi_area]
+x = [2368, 2431]
+y = [10240, 10303]
+tags = ["multi_combat"]

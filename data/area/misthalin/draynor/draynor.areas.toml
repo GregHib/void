@@ -1,0 +1,63 @@
+[draynor]
+x = [3072, 3135]
+y = [3136, 3391]
+
+[draynor_willow_trees]
+x = [3083, 3090]
+y = [3227, 3238]
+tags = ["trees"]
+trees = ["willow"]
+levels = "30-45"
+spaces = 6
+
+[draynor_oak_trees]
+x = [3098, 3103]
+y = [3241, 3253]
+tags = ["trees"]
+trees = ["tree", "oak"]
+levels = "0-30"
+
+[draynor_west_oak_trees]
+x = [3068, 3072]
+y = [3248, 3260]
+tags = ["trees"]
+trees = ["tree", "oak"]
+levels = "0-30"
+
+[draynor_north_trees]
+x = [3075, 3085]
+y = [3265, 3274]
+tags = ["trees"]
+trees = ["tree", "oak"]
+levels = "0-30"
+
+[draynor_bank]
+x = [3088, 3097]
+y = [3240, 3246]
+tags = ["bank"]
+
+[draynor_fishing_area]
+x = [3085, 3086]
+y = [3227, 3231]
+tags = ["fish"]
+type = "lure_bait"
+spaces = 5
+
+[draynor_village_multi_area]
+x = [3112, 3136, 3136, 3104, 3104, 3112]
+y = [3264, 3264, 3232, 3232, 3256, 3256]
+level = 0
+tags = ["multi_combat"]
+
+[draynor_village_teleport]
+x = [3078, 3082]
+y = [3248, 3252]
+tags = ["teleport"]
+
+[draynor_manor_courtyard]
+x = [3084, 3084, 3129, 3129, 3124, 3115, 3114, 3105, 3104, 3089]
+y = [3335, 3353, 3353, 3335, 3330, 3330, 3331, 3331, 3330, 3330]
+
+[draynor_village_market]
+x = [3074, 3074, 3082, 3082, 3086, 3086]
+y = [3246, 3257, 3257, 3255, 3255, 3246]

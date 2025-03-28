@@ -1,0 +1,14 @@
+[waterbirth_teleport]
+x = [2546, 2548]
+y = [3753, 3755]
+tags = ["teleport"]
+
+[waterbirth_island_axes_multi_area]
+x = [2536, 2551]
+y = [10136, 10151]
+tags = ["multi_combat"]
+
+[waterbirth_island_multi_area]
+x = [1792, 1983]
+y = [4352, 4415]
+tags = ["multi_combat"]

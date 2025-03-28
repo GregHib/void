@@ -1,0 +1,32 @@
+[falador_teleport]
+x = [2963, 2967]
+y = [3379, 3383]
+tags = ["teleport"]
+
+[chaos_temple_multi_area]
+x = [2928, 2943]
+y = [3512, 3519]
+level = 0
+tags = ["multi_combat"]
+
+[falador_multi_area]
+x = [2944, 3008, 3008, 3016, 3016, 2944]
+y = [3456, 3456, 3328, 3328, 3304, 3304]
+level = 0
+tags = ["multi_combat"]
+
+[fally_castle_non_combat_multi_area]
+x = [2960, 2967]
+y = [3328, 3335]
+level = 0
+tags = ["single_combat"]
+
+[mining_guild_teleport]
+x = [3014, 3017]
+y = [3336, 3339]
+tags = ["teleport"]
+
+[crafting_guild_teleport]
+x = [2931, 2933]
+y = [3296, 3299]
+tags = ["teleport"]

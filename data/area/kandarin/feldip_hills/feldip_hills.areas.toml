@@ -1,0 +1,5 @@
+[east_feldip_hills_multi_area]
+x = [2648, 2655]
+y = [2952, 2975]
+level = 0
+tags = ["multi_combat"]

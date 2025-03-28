@@ -1,0 +1,9 @@
+[haunted_mine_boss_multi_area]
+x = [2752, 2815]
+y = [4416, 4479]
+tags = ["multi_combat"]
+
+[tarns_lair_multi_area]
+x = [3136, 3199]
+y = [4544, 4663]
+tags = ["multi_combat"]

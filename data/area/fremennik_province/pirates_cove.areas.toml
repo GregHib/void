@@ -1,0 +1,5 @@
+[pirates_cove_multi_area]
+x = [2176, 2239]
+y = [3776, 3839]
+level = 0
+tags = ["multi_combat"]

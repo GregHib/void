@@ -1,0 +1,15 @@
+[jalsavrah_teleport]
+x = [1934]
+y = [4428]
+level = 3
+tags = ["teleport"]
+
+[jaleustrophos_teleport]
+x = [3341]
+y = [2827]
+tags = ["teleport"]
+
+[jaldraocht_teleport]
+x = [3232]
+y = [2897]
+tags = ["teleport"]

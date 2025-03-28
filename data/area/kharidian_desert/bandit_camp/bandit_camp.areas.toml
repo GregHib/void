@@ -1,0 +1,15 @@
+[desert_bandit_camp_multi_area]
+x = [3152, 3191]
+y = [2960, 2999]
+level = 0
+tags = ["multi_combat"]
+
+[bandit_camp_teleport]
+x = [3170, 3174]
+y = [2981, 2985]
+tags = ["teleport", "scroll"]
+
+[camulet_teleport]
+x = [3192, 3194]
+y = [2924, 2926]
+tags = ["teleport"]

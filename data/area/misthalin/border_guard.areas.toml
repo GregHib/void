@@ -1,0 +1,34 @@
+[border_guard_edgeville_varrock]
+x = [3138, 3139]
+y = [3466, 3468]
+tags = ["border"]
+
+[border_guard_al_kharid_varrock]
+x = [3283, 3284]
+y = [3329, 3331]
+tags = ["border"]
+
+[border_guard_port_sarim_draynor]
+x = [3069, 3071]
+y = [3276, 3277]
+tags = ["border"]
+
+[border_guard_barbarian_village_varrock]
+x = [3108, 3110]
+y = [3420, 3421]
+tags = ["border"]
+
+[border_guard_varrock_south]
+x = [3292, 3293]
+y = [3384, 3386]
+tags = ["border"]
+
+[border_guard_draynor_barbarian_village]
+x = [3146, 3147]
+y = [3335, 3337]
+tags = ["border"]
+
+[border_guard_draynor_falador]
+x = [3077, 3078]
+y = [3332, 3334]
+tags = ["border"]

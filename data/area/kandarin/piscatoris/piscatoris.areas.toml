@@ -1,0 +1,10 @@
+[piscatoris_multi_area]
+x = [2304, 2367]
+y = [3648, 3711]
+level = 0
+tags = ["multi_combat"]
+
+[phoenix_lair_teleport]
+x = [2290, 2294]
+y = [3618, 3622]
+tags = ["teleport", "scroll"]
