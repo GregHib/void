@@ -1,0 +1,5 @@
+[game_status]
+id = 6161
+persist = true
+format = "list"
+values = [ "all", "filter" ]

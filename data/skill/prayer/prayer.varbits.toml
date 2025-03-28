@@ -1,0 +1,39 @@
+[attack_bonus]
+id = 6857
+default = 30
+
+[strength_bonus]
+id = 6858
+default = 30
+
+[defence_bonus]
+id = 6859
+default = 30
+
+[ranged_bonus]
+id = 6860
+default = 30
+
+[magic_bonus]
+id = 6861
+default = 30
+
+[turmoil]
+id = 6839
+format = "boolean"
+
+[turmoil_attack_bonus]
+id = 6844
+format = "int"
+
+[turmoil_strength_bonus]
+id = 6845
+format = "int"
+
+[turmoil_defence_bonus]
+id = 6846
+format = "int"
+
+[items_on_death_curses]
+id = 6840
+format = "boolean"

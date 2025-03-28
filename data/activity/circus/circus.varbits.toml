@@ -1,0 +1,14 @@
+[circus_magic]
+id = 5251
+format = "boolean"
+persist = true
+
+[circus_agility]
+id = 5252
+format = "boolean"
+persist = true
+
+[circus_ranged]
+id = 5253
+format = "boolean"
+persist = true

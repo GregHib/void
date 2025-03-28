@@ -1,0 +1,313 @@
+# Varrock Easy
+[strike_a_pose_task]
+id = 3986
+format = "boolean"
+persist = true
+
+[essential_facilitator_task]
+id = 3987
+format = "boolean"
+persist = true
+
+[doing_the_ironing_task]
+id = 3988
+format = "boolean"
+persist = true
+
+[plank_you_very_much_task]
+id = 3989
+format = "boolean"
+persist = true
+
+[making_learning_fun_task]
+id = 3990
+format = "boolean"
+persist = true
+
+[jumping_off_point_task]
+id = 3991
+format = "boolean"
+persist = true
+
+[lumbering_around_task]
+id = 3992
+format = "boolean"
+persist = true
+
+[read_all_about_it_task]
+id = 3993
+format = "boolean"
+persist = true
+
+[dog_and_bone_task]
+id = 3994
+format = "boolean"
+persist = true
+
+[pot_stop_task]
+id = 3995
+format = "boolean"
+persist = true
+
+[on_the_ragged_edge_task]
+id = 3996
+format = "boolean"
+persist = true
+
+[relocation_relocation_relocation_task]
+id = 3997
+format = "boolean"
+persist = true
+
+[it_belongs_in_a_museum_task]
+id = 3998
+format = "boolean"
+persist = true
+
+[journey_to_the_centre_of_the_earth_altar_task]
+id = 3999
+format = "boolean"
+persist = true
+
+[jackanory_task]
+id = 4000
+format = "boolean"
+persist = true
+
+[limey_task]
+id = 4001
+format = "boolean"
+persist = true
+
+[sherpas_delight_task]
+id = 4002
+format = "boolean"
+persist = true
+
+[king_of_the_castle_task]
+id = 4004
+format = "boolean"
+persist = true
+
+[stick_the_knife_in_task]
+id = 4005
+format = "boolean"
+persist = true
+# Varrock Medium
+
+[double_strength_weaksauce_task]
+id = 4003
+format = "boolean"
+persist = true
+
+[champion_task]
+id = 4007
+format = "boolean"
+persist = true
+
+[what_lies_below_task]
+id = 4008
+format = "boolean"
+persist = true
+
+[with_a_ten_foot_pole_task]
+id = 4009
+format = "boolean"
+persist = true
+
+[cant_make_an_omelette_task]
+id = 4010
+format = "boolean"
+persist = true
+
+[point_of_en_tree_task]
+id = 4011
+format = "boolean"
+persist = true
+
+[unlocking_your_emotions_task]
+id = 4012
+format = "boolean"
+persist = true
+
+[a_lick_of_paint_task]
+id = 4013
+format = "boolean"
+persist = true
+
+[for_fast_transactions_task]
+id = 4014
+format = "boolean"
+persist = true
+
+[you_wouldnt_like_me_when_im_angry_task]
+id = 4015
+format = "boolean"
+persist = true
+
+[return_to_senntisten_task]
+id = 4016
+format = "boolean"
+persist = true
+
+[promised_the_earth_task]
+id = 4017
+format = "boolean"
+persist = true
+
+[royale_with_thieve_task]
+id = 4018
+format = "boolean"
+persist = true
+
+[like_a_varrocket_task]
+id = 4019
+format = "boolean"
+persist = true
+
+[challenge_vannaka_task]
+id = 4020
+format = "boolean"
+persist = true
+
+[flatpack_backpack_task]
+id = 4021
+format = "boolean"
+persist = true
+
+[master_scrumper_task]
+id = 4022
+format = "boolean"
+persist = true
+
+[engage_task]
+id = 4023
+format = "boolean"
+persist = true
+
+[faster_pussycat_kill_kill_task]
+id = 4024
+format = "boolean"
+persist = true
+
+[dial_v_for_varrock_task]
+id = 4025
+format = "boolean"
+persist = true
+
+[the_body_shop_task]
+id = 4026
+format = "boolean"
+persist = true
+# Varrock Hard
+
+[burning_bush_task]
+id = 4027
+format = "boolean"
+persist = true
+
+[but_it_wont_warp_you_anywhere_task]
+id = 4028
+format = "boolean"
+persist = true
+
+[lighten_up_task]
+id = 4029
+format = "boolean"
+persist = true
+
+[put_your_smithing_hat_on_task]
+id = 4030
+format = "boolean"
+persist = true
+
+[kudos_on_the_kudos_task]
+id = 4031
+format = "boolean"
+persist = true
+
+[who_ate_all_the_pie_task]
+id = 4032
+format = "boolean"
+persist = true
+
+[battle_of_the_elements_task]
+id = 4033
+format = "boolean"
+persist = true
+
+[changing_rooms_task]
+id = 4035
+format = "boolean"
+persist = true
+
+[keeping_tabs_on_varrock_task]
+id = 4036
+format = "boolean"
+persist = true
+
+[hand_me_downs_task]
+id = 4037
+format = "boolean"
+persist = true
+
+[waka_waka_waka_task]
+id = 4038
+format = "boolean"
+persist = true
+
+[living_on_the_edge_task]
+id = 4039
+format = "boolean"
+persist = true
+
+[intersceptre_task]
+id = 4034
+format = "boolean"
+persist = true
+# Varrock Elite
+
+[stick_a_bork_in_him_hes_done_task]
+id = 8136
+format = "boolean"
+persist = true
+
+[nomadness_task]
+id = 8137
+format = "boolean"
+persist = true
+
+[double_jointed_task]
+id = 8138
+format = "boolean"
+persist = true
+
+[it_all_adze_up_task]
+id = 8139
+format = "boolean"
+persist = true
+
+[mind_your_back_task]
+id = 8140
+format = "boolean"
+persist = true
+
+[red_red_pies_of_summer_task]
+id = 8141
+format = "boolean"
+persist = true
+
+[splitting_headache_task]
+id = 8145
+format = "boolean"
+persist = true
+
+[a_bolt_from_the_blue_task]
+id = 8146
+format = "boolean"
+persist = true
+
+[a_ton_of_earth_task]
+id = 8148
+format = "boolean"
+persist = true

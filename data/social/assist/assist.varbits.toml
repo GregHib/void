@@ -1,0 +1,49 @@
+[assist_toggle_runecrafting]
+id = 4090
+persist = true
+format = "boolean"
+
+[assist_toggle_crafting]
+id = 4091
+persist = true
+format = "boolean"
+
+[assist_toggle_fletching]
+id = 4093
+persist = true
+format = "boolean"
+
+[assist_toggle_construction]
+id = 4095
+persist = true
+format = "boolean"
+
+[assist_toggle_farming]
+id = 4096
+persist = true
+format = "boolean"
+
+[assist_toggle_magic]
+id = 4098
+persist = true
+format = "boolean"
+
+[assist_toggle_smithing]
+id = 4100
+persist = true
+format = "boolean"
+
+[assist_toggle_cooking]
+id = 4101
+persist = true
+format = "boolean"
+
+[assist_toggle_herblore]
+id = 4102
+persist = true
+format = "boolean"
+
+[total_xp_earned]
+id = 4103
+persist = true
+format = "int"

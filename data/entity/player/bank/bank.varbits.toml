@@ -1,0 +1,44 @@
+[open_bank_tab]
+id = 4893
+persist = true
+default = 1
+
+[bank_tab_1]
+id = 4885
+format = "int"
+persist = true
+
+[bank_tab_2]
+id = 4886
+format = "int"
+persist = true
+
+[bank_tab_3]
+id = 4887
+format = "int"
+persist = true
+
+[bank_tab_4]
+id = 4888
+format = "int"
+persist = true
+
+[bank_tab_5]
+id = 4889
+format = "int"
+persist = true
+
+[bank_tab_6]
+id = 4890
+format = "int"
+persist = true
+
+[bank_tab_7]
+id = 4891
+format = "int"
+persist = true
+
+[bank_tab_8]
+id = 4892
+format = "int"
+persist = true

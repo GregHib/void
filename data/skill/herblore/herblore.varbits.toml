@@ -1,0 +1,17 @@
+[overload_refreshes_remaining]
+id = 26037 # rs3
+format = "int"
+persist = true
+transmit = false
+
+[antifire]
+id = 497 # osrs
+format = "int"
+persist = true
+transmit = false
+
+[super_antifire]
+id = 498 # osrs
+format = "int"
+persist = true
+transmit = false

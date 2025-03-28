@@ -1,0 +1,239 @@
+# Karamja Easy
+
+[five_a_day_task]
+id = 3566
+format = "boolean"
+persist = true
+
+[im_lichen_this_task]
+id = 3567
+format = "boolean"
+persist = true
+
+[golden_shores_task]
+id = 3568
+format = "boolean"
+persist = true
+
+[put_to_port_in_port_sarim_task]
+id = 3569
+format = "boolean"
+persist = true
+
+[avast_ardougne_task]
+id = 3570
+format = "boolean"
+persist = true
+
+[show_that_you_cairn_task]
+id = 3571
+format = "boolean"
+persist = true
+
+[fruity_catch_task]
+id = 3572
+format = "boolean"
+persist = true
+
+[beachcomber_task]
+id = 3573
+format = "boolean"
+persist = true
+
+[tzhaar_wars_task]
+id = 3574
+format = "boolean"
+persist = true
+
+[its_a_jungle_ogre_task]
+id = 3575
+format = "boolean"
+persist = true
+# Karamja Medium
+
+[just_the_ticket_task]
+id = 3579
+format = "boolean"
+persist = true
+
+[back_cran_door_task]
+id = 3580
+format = "boolean"
+persist = true
+
+[dungeons_and_dragons_task]
+id = 3581
+format = "boolean"
+persist = true
+
+[horseless_carriage_task]
+id = 3582
+format = "boolean"
+persist = true
+
+[they_like_me_they_really_like_me_task]
+id = 3583
+format = "boolean"
+persist = true
+
+[arachnophagia_task]
+id = 3584
+format = "boolean"
+persist = true
+
+[romancing_the_stone_task]
+id = 3585
+format = "boolean"
+persist = true
+
+[im_a_lumberjack_and_im_okay_task]
+id = 3586
+format = "boolean"
+persist = true
+
+[i_sleep_all_night_and_i_work_all_day_task]
+id = 3587
+format = "boolean"
+persist = true
+
+[to_catch_a_karambwan_task]
+id = 3588
+format = "boolean"
+persist = true
+
+[thats_not_a_knife_task]
+id = 3589
+format = "boolean"
+persist = true
+
+[falling_with_style_task]
+id = 3590
+format = "boolean"
+persist = true
+
+[scourge_of_scurvy_task]
+id = 3591
+format = "boolean"
+persist = true
+
+[hunters_of_the_horned_graahk_task]
+id = 3592
+format = "boolean"
+persist = true
+
+[the_roots_of_all_evil_task]
+id = 3593
+format = "boolean"
+persist = true
+
+[hotfooting_it_task]
+id = 3594
+format = "boolean"
+persist = true
+
+[stairway_to_haven_task]
+id = 3595
+format = "boolean"
+persist = true
+
+[thank_you_madam_task]
+id = 3596
+format = "boolean"
+persist = true
+
+[shipping_out_from_the_shipyard_task]
+id = 3597
+format = "boolean"
+persist = true
+# Karamja Hard
+
+[flawless_victory_task]
+id = 3600
+format = "boolean"
+persist = true
+
+[play_dead_doggy_task]
+id = 3601
+format = "boolean"
+persist = true
+
+[id_be_kharazi_to_eat_this_task]
+id = 3602
+format = "boolean"
+persist = true
+
+[at_one_with_nature_task]
+id = 3603
+format = "boolean"
+persist = true
+
+[drop_it_like_its_hot_task]
+id = 3604
+format = "boolean"
+persist = true
+
+[deadwing_task]
+id = 3605
+format = "boolean"
+persist = true
+
+[quick_as_a_shot_task]
+id = 3606
+format = "boolean"
+persist = true
+
+[a_palm_for_each_finger_task]
+id = 3607
+format = "boolean"
+persist = true
+
+[yes_my_master_task]
+id = 3608
+format = "boolean"
+persist = true
+
+[can_opener_task]
+id = 3609
+format = "boolean"
+persist = true
+# Karamja Elite
+
+[at_one_plus_fifty_five_with_nature_task]
+id = 8121
+format = "boolean"
+persist = true
+
+[the_power_of_lava_task]
+id = 8122
+format = "boolean"
+persist = true
+
+[boxing_clever_task]
+id = 8123
+format = "boolean"
+persist = true
+
+[its_a_snap_task]
+id = 8124
+format = "boolean"
+persist = true
+
+[crunchy_coating_task]
+id = 8125
+format = "boolean"
+persist = true
+
+[walkies_task]
+id = 8126
+format = "boolean"
+persist = true
+
+[tread_carefully_task]
+id = 8127
+format = "boolean"
+persist = true
+
+[ten_in_a_row_task]
+id = 8128
+format = "boolean"
+persist = true

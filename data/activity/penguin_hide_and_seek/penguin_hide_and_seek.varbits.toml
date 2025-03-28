@@ -1,0 +1,14 @@
+[penguin_points]
+id = 5275
+format = "int"
+persist = true
+
+[penguins_found_weekly]
+id = 5276
+format = "int"
+persist = true
+
+[penguin_hide_and_seek_explained]
+id = 5277
+format = "boolean"
+persist = true

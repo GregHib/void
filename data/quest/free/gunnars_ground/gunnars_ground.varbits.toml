@@ -1,0 +1,74 @@
+[gunnars_ground]
+id = 5730
+persist = true
+format = "map"
+default = "unstarted"
+values = {
+  unstarted = 0,
+  started = 1,
+  love_poem = 2,
+  jeffery_ring = 3,
+  engrave = 4,
+  engraved_ring = 5,
+  show_gudrun = 6,
+  meet_chieftain = 7,
+  tell_gudrun = 8,
+  tell_dororan = 9,
+  write_poem = 10,
+  more_poem = 11,
+  one_more_poem = 12,
+  poem_done = 13,
+  poem = 14,
+  recital = 15,
+  gunnars_ground = 16,
+  completed = 100,
+}
+
+[kjell]
+id = 5819
+persist = true
+format = "list"
+default = "sword"
+values = [ "sword", "guitar" ]
+
+[dororan]
+id = 5820
+persist = true
+format = "list"
+default = "shown"
+values = [ "shown", "hidden" ]
+
+[gudrun]
+id = 6664
+persist = true
+format = "list"
+default = "shown"
+values = [ "shown", "hidden" ]
+
+[dororan_after_quest]
+id = 6665
+persist = true
+format = "list"
+default = "hidden"
+values = [ "hidden", "shown" ]
+
+[gudrun_after_quest]
+id = 6666
+persist = true
+format = "list"
+default = "hidden"
+values = [ "hidden", "shown" ]
+
+[dororan_after_cutscene]
+id = 8242
+persist = true
+format = "list"
+default = "hidden"
+values = [ "hidden", "shown" ]
+
+[gudrun_after_cutscene]
+id = 8243
+persist = true
+format = "list"
+default = "hidden"
+values = [ "hidden", "shown" ]
