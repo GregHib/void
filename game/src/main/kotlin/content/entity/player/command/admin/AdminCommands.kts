@@ -461,7 +461,7 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
         }
         "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load(files.list(Settings["definitions.sounds"]))
         "quest", "quests" -> get<QuestDefinitions>().load(files.find(Settings["definitions.quests"]))
-        "midi" -> get<MidiDefinitions>().load(files.find(Settings["definitions.midis"]))
+        "midi" -> get<MidiDefinitions>().load(files.list(Settings["definitions.midis"]))
         "vars", "variables" -> get<VariableDefinitions>().load(
             files.list(Settings["definitions.variables.players"]),
             files.list(Settings["definitions.variables.bits"]),
