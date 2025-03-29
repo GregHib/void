@@ -15,17 +15,17 @@ import world.gregs.voidps.type.Tile
 import world.gregs.yaml.Yaml
 import java.io.File
 
-@Suppress("UNCHECKED_CAST")
 class FileStorage(
-    private val yaml: Yaml,
     private val directory: File
 ) : AccountStorage {
 
     private val logger = InlineLogger()
-    private val readerConfig = PlayerYamlReaderConfig()
 
+    @Suppress("UNCHECKED_CAST")
     override fun migrate() {
         val files = directory.listFiles { _, b -> b.endsWith(".json") } ?: return
+        val yaml = Yaml()
+        val readerConfig = PlayerYamlReaderConfig()
         for (file in files) {
             val target = directory.resolve("${file.nameWithoutExtension}.toml")
             if (target.exists()) {
