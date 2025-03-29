@@ -1,5 +1,6 @@
 package content.entity.npc.shop.stock
 
+import com.github.michaelbull.logging.InlineLogger
 import content.entity.npc.shop.general.GeneralStores
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
@@ -22,6 +23,7 @@ import kotlin.math.max
  */
 val inventoryDefinitions: InventoryDefinitions by inject()
 val restockTimeTicks = TimeUnit.SECONDS.toTicks(60)
+val logger = InlineLogger()
 
 playerSpawn { player ->
     player.softTimers.restart("shop_restock")
@@ -32,6 +34,7 @@ timerStart("shop_restock") {
 }
 
 timerTick("shop_restock") { player ->
+    logger.debug { "Restocking shops." }
     for ((name, inventory) in player.inventories.instances) {
         val def = inventoryDefinitions.get(name)
         if (!def["shop", false]) {
@@ -68,6 +71,7 @@ worldTimerStart("general_store_restock") {
 }
 
 worldTimerTick("general_store_restock") {
+    logger.debug { "Restocking general stores." }
     for ((key, inventory) in GeneralStores.stores) {
         val def = inventoryDefinitions.get(key)
         restock(def, inventory)
@@ -75,11 +79,9 @@ worldTimerTick("general_store_restock") {
 }
 
 fun restock(def: InventoryDefinition, inventory: Inventory) {
-    val defaults = def.getOrNull<List<Item>>("defaults")
     for (index in 0 until def.length) {
-        val i = defaults?.getOrNull(index)
-        val id = i?.id
-        var maximum = i?.amount
+        val id = def.ids?.getOrNull(index)
+        var maximum = def.amounts?.getOrNull(index)
         val item = inventory[index]
         if (id == null || maximum == null) {
             maximum = 0

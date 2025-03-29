@@ -3,10 +3,8 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.InventoryDefinition
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
 
@@ -42,11 +40,16 @@ class InventoryDefinitions(
                 if (shop) {
                     extras["shop"] = true
                 }
+                var itemIds: IntArray? = null
+                var amounts: IntArray? = null
                 while (nextPair()) {
                     when (val key = key()) {
                         "id" -> invId = int()
                         "defaults" -> {
-                            val defaults = ObjectArrayList<Item>()
+                            var index = 0
+                            val definition = definitions[invId]
+                            itemIds = IntArray(definition.length) { -1 }
+                            amounts = IntArray(definition.length)
                             while (nextElement()) {
                                 var id = ""
                                 var amount = 0
@@ -58,14 +61,9 @@ class InventoryDefinitions(
                                     }
                                 }
                                 require(itemDefs.contains(id)) { "Unable to find inventory item with id '$id' at $path." }
-                                val item = Item(id, amount)
-                                defaults.add(item)
+                                itemIds[index] = itemDefs.get(id).id
+                                amounts[index++] = amount
                             }
-                            extras[key] = defaults
-                        }
-                        "shop" -> {
-                            boolean()
-                            println("TODO remove shop at ${exception()}")
                         }
                         "stack", "currency" -> extras[key] = string()
                         "width", "height" -> extras[key] = int()
@@ -75,7 +73,15 @@ class InventoryDefinitions(
                 if (invId > -1) {
                     require(!ids.containsKey(stringId)) { "Duplicate inventory found '$stringId' at $path." }
                     ids[stringId] = invId
-                    definitions[invId].extras = extras
+                    if (extras.isNotEmpty()) {
+                        definitions[invId].extras = extras
+                    }
+                    if (itemIds != null) {
+                        definitions[invId].ids = itemIds
+                    }
+                    if (amounts != null) {
+                        definitions[invId].amounts = amounts
+                    }
                     definitions[invId].stringId = stringId
                 }
             }

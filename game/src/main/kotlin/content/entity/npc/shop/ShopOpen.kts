@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -15,6 +16,7 @@ import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.engine.inv.sendInventory
 
+val itemDefinitions: ItemDefinitions by inject()
 val inventoryDefinitions: InventoryDefinitions by inject()
 val logger = InlineLogger()
 
@@ -77,14 +79,15 @@ fun openShopInventory(player: Player, id: String): Inventory {
 }
 
 fun fillShop(inventory: Inventory, shopId: String) {
-    val def = inventoryDefinitions.get(shopId)
-    if (!def.contains("shop")) {
+    val definition = inventoryDefinitions.get(shopId)
+    if (!definition.contains("shop")) {
         logger.warn { "Invalid shop definition $shopId" }
     }
-    val list = def.getOrNull<List<Item>>("defaults") ?: return
-    for (index in 0 until def.length) {
-        val item = list.getOrNull(index) ?: continue
-        inventory.transaction { set(index, item) }
+    for (index in 0 until definition.length) {
+        val id = definition.ids?.getOrNull(index) ?: continue
+        val amount = definition.amounts?.getOrNull(index) ?: continue
+        val itemDefinition = itemDefinitions.get(id)
+        inventory.transaction { set(index, Item(itemDefinition.stringId, amount)) }
     }
 }
 

@@ -18,18 +18,9 @@ internal class InventoryDefinitionsTest : DefinitionsDecoderTest<InventoryDefini
         return InventoryDefinition(
             intId,
             stringId = id,
-            ids = IntArray(0),
-            amounts = IntArray(0),
+            ids = intArrayOf(1, 2, 3, 4, 5, 6, 7),
+            amounts = intArrayOf(10, 10, 10, 10, 10, 10, 10),
             extras = mapOf(
-                "defaults" to listOf(
-                    Item("bronze_pickaxe", 10),
-                    Item("bronze_hatchet", 10),
-                    Item("iron_hatchet", 10),
-                    Item("steel_hatchet", 10),
-                    Item("iron_battleaxe", 10),
-                    Item("steel_battleaxe", 10),
-                    Item("mithril_battleaxe", 10)
-                ),
                 "shop" to true
             )
         )
@@ -46,7 +37,14 @@ internal class InventoryDefinitionsTest : DefinitionsDecoderTest<InventoryDefini
     override fun load(definitions: InventoryDefinitions) {
         val uri = InventoryDefinitionsTest::class.java.getResource("test-inventory.toml")!!
         val itemDefs = mockk<ItemDefinitions>(relaxed = true)
-        every { itemDefs.get(any<String>()) }.returns(ItemDefinition(1))
+        every { itemDefs.get(any<String>()) }.returns(ItemDefinition(0))
+        every { itemDefs.get("bronze_pickaxe") }.returns(ItemDefinition(1))
+        every { itemDefs.get("bronze_hatchet") }.returns(ItemDefinition(2))
+        every { itemDefs.get("iron_hatchet") }.returns(ItemDefinition(3))
+        every { itemDefs.get("steel_hatchet") }.returns(ItemDefinition(4))
+        every { itemDefs.get("iron_battleaxe") }.returns(ItemDefinition(5))
+        every { itemDefs.get("steel_battleaxe") }.returns(ItemDefinition(6))
+        every { itemDefs.get("mithril_battleaxe") }.returns(ItemDefinition(7))
         every { itemDefs.contains(any<String>()) }.returns(true)
         definitions.load(emptyList(), listOf(uri.path), itemDefs)
     }

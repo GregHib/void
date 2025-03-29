@@ -49,7 +49,7 @@ fun refreshItems(player: Player) {
     val more: Boolean = player["retrieve_more", false]
     player.inventories.clear("diangos_item_retrieval")
     val inventory = player.inventories.inventory("diangos_item_retrieval")
-    val defaults = inventoryDefinitions.get("diangos_item_retrieval").getOrNull<List<Item>>("defaults") ?: return
+    val definition = inventoryDefinitions.get("diangos_item_retrieval")
     var displayMore = false
     inventory.transaction {
         clear()
@@ -59,9 +59,10 @@ fun refreshItems(player: Player) {
         }
         var skipped = 0
         for (index in 0 until inventory.size) {
-            val item = defaults.getOrNull(index) ?: continue
-            val event: String? = itemDefinitions.get(item.id).getOrNull("event")
-            if ((event == null || player[event, false]) && !player.ownsItem(item.id)) {
+            val id = definition.ids?.getOrNull(index) ?: continue
+            val itemDefinition = itemDefinitions.get(id)
+            val event: String? = itemDefinition.getOrNull("event")
+            if ((event == null || player[event, false]) && !player.ownsItem(itemDefinition.stringId)) {
                 // Add second screen if itemLimit is reached
                 if (!more && inventory.count >= itemLimit) {
                     displayMore = true
@@ -71,7 +72,7 @@ fun refreshItems(player: Player) {
                 if (more && skipped++ < itemLimit) {
                     continue
                 }
-                add(item.id)
+                add(itemDefinition.stringId)
             }
         }
         // Add more "button" when too many to display
