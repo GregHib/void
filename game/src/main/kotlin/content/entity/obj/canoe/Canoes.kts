@@ -113,7 +113,9 @@ objectOperate("Shape-canoe", "canoe_station_fallen") {
         return@objectOperate
     }
     val level = player.levels.get(Skill.Woodcutting)
-    val chance: IntRange = hatchet.def.getOrNull<String>("canoe_chance")?.toIntRange() ?: return@objectOperate
+    val min = hatchet.def.getOrNull<Int>("canoe_chance_min") ?: return@objectOperate
+    val max = hatchet.def.getOrNull<Int>("canoe_chance_max") ?: return@objectOperate
+    val chance: IntRange = min until max
     var count = 0
     while (count++ < 50) {
         player.anim("${hatchet.id}_shape_canoe")
