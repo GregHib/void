@@ -44,5 +44,5 @@ private fun getInterfaceId(lines: Int, prompt: Boolean): String {
 private fun sendPlayerHead(player: Player, id: String, component: String) {
     val definitions: InterfaceDefinitions = get()
     val comp = definitions.getComponent(id, component) ?: return
-    player.client?.playerDialogueHead(comp["parent", -1], comp.id)
+    player.client?.playerDialogueHead(comp.id)
 }

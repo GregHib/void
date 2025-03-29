@@ -35,7 +35,7 @@ internal class InterfacesMultipleTest : InterfaceTest() {
         assertFalse(interfaces.open(one))
 
         verify(exactly = 0) {
-            client.openInterface(any(), any(), any(), any())
+            client.openInterface(any(), any(), any())
             events.emit(InterfaceOpened(one))
         }
     }
@@ -49,9 +49,9 @@ internal class InterfacesMultipleTest : InterfaceTest() {
         verifyOrder {
             client.updateInterface(2, 0)
             events.emit(InterfaceOpened(two))
-            client.openInterface(false, 2, 0, 1)
+            client.openInterface(false, InterfaceDefinition.pack(2, 0), 1)
             events.emit(InterfaceOpened(one))
-            client.openInterface(false, 1, 0, 0)
+            client.openInterface(false, InterfaceDefinition.pack(1, 0), 0)
             events.emit(InterfaceOpened(zero))
         }
     }
@@ -70,13 +70,13 @@ internal class InterfacesMultipleTest : InterfaceTest() {
         assertTrue(interfaces.contains(zero))
 
         verifyOrder {
-            client.closeInterface(0, 0)
+            client.closeInterface(InterfaceDefinition.pack(0, 0))
             events.emit(InterfaceClosed(two))
         }
         verify(exactly = 0) {
-            client.closeInterface(2, 0)
+            client.closeInterface(InterfaceDefinition.pack(2, 0))
             events.emit(InterfaceClosed(one))
-            client.closeInterface(1, 0)
+            client.closeInterface(InterfaceDefinition.pack(1, 0))
             events.emit(InterfaceClosed(zero))
         }
     }
@@ -93,13 +93,13 @@ internal class InterfacesMultipleTest : InterfaceTest() {
         assertFalse(interfaces.contains(one))
         assertFalse(interfaces.contains(zero))
         verifyOrder {
-            client.closeInterface(2, 0)
+            client.closeInterface(InterfaceDefinition.pack(2, 0))
             events.emit(InterfaceClosed(one))
-            client.closeInterface(1, 0)
+            client.closeInterface(InterfaceDefinition.pack(1, 0))
             events.emit(InterfaceClosed(zero))
         }
         verify(exactly = 0) {
-            client.closeInterface(0, 0)
+            client.closeInterface(InterfaceDefinition.pack(0, 0))
             events.emit(InterfaceClosed(two))
         }
     }
@@ -117,11 +117,11 @@ internal class InterfacesMultipleTest : InterfaceTest() {
         assertFalse(interfaces.contains(one))
         assertFalse(interfaces.contains(zero))
         verifyOrder {
-            client.closeInterface(0, 0)
+            client.closeInterface(InterfaceDefinition.pack(0, 0))
             events.emit(InterfaceClosed(two))
-            client.closeInterface(2, 0)
+            client.closeInterface(InterfaceDefinition.pack(2, 0))
             events.emit(InterfaceClosed(one))
-            client.closeInterface(1, 0)
+            client.closeInterface(InterfaceDefinition.pack(1, 0))
             events.emit(InterfaceClosed(zero))
         }
     }

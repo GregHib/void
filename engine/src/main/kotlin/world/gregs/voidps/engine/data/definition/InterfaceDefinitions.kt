@@ -32,8 +32,6 @@ class InterfaceDefinitions(
 
     fun getComponent(id: String, component: Int) = get(id).components?.get(component)
 
-    fun getComponent(id: Int, component: Int) = get(id).components?.get(component)
-
     override fun empty() = InterfaceDefinition.EMPTY
 
     fun load(paths: List<String>, typePath: String): InterfaceDefinitions {
@@ -126,7 +124,7 @@ class InterfaceDefinitions(
         return this
     }
 
-    private fun ConfigReader.components(componentIds: Object2IntOpenHashMap<String>, interfaceId: String, intId: Int, extras: Object2ObjectOpenHashMap<String, Any>) {
+    private fun ConfigReader.components(componentIds: Object2IntOpenHashMap<String>, interfaceId: String, interfaceIntId: Int, extras: Object2ObjectOpenHashMap<String, Any>) {
         while (nextEntry()) {
             val key = key()
             when (peek) {
@@ -161,10 +159,9 @@ class InterfaceDefinitions(
                         throw IllegalArgumentException("Invalid component id.")
                     }
                     componentIds["${interfaceId}_$key"] = componentId
-                    val componentDefinition = getOrPut(intId, componentId)
+                    val componentDefinition = getOrPut(interfaceIntId, componentId)
                     componentDefinition.stringId = key
                     componentExtras["id"] = componentId
-                    componentExtras["parent"] = intId
                     if (optionsArray.isNotEmpty()) {
                         componentExtras["options"] = optionsArray
                     }
@@ -182,21 +179,15 @@ class InterfaceDefinitions(
                         val name = "$prefix${startDigit + index}"
                         extras[name] = id
                         componentIds["${interfaceId}_$name"] = id
-                        val componentDefinition = getOrPut(intId, id)
+                        val componentDefinition = getOrPut(interfaceIntId, id)
                         componentDefinition.stringId = name
-                        componentDefinition.extras = Object2ObjectOpenHashMap<String, Any>(1).apply {
-                            put("parent", intId)
-                        }
                     }
                 }
                 else -> {
                     val value = int()
                     componentIds["${interfaceId}_$key"] = value
-                    val componentDefinition = getOrPut(intId, value)
+                    val componentDefinition = getOrPut(interfaceIntId, value)
                     componentDefinition.stringId = key
-                    componentDefinition.extras = Object2ObjectOpenHashMap<String, Any>(1).apply {
-                        put("parent", intId)
-                    }
                 }
             }
         }

@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.ui
 
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.playMusicTrack
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.Colours
@@ -147,8 +148,7 @@ class Interfaces(
         } else {
             client?.openInterface(
                 permanent = getPermanent(id),
-                parent = definitions.get(parent).id,
-                component = getIndex(id),
+                interfaceComponent = InterfaceDefinition.pack(definitions.get(parent).id, getIndex(id)),
                 id = definitions.get(id).id
             )
         }
@@ -156,7 +156,7 @@ class Interfaces(
 
     private fun sendClose(id: String) {
         val parent = getParent(id)
-        client?.closeInterface(definitions.get(parent).id, getIndex(id))
+        client?.closeInterface(InterfaceDefinition.pack(definitions.get(parent).id, getIndex(id)))
     }
 
     private fun notifyRefresh(id: String) {
@@ -165,45 +165,45 @@ class Interfaces(
 
     fun sendAnimation(id: String, component: String, animation: Int): Boolean {
         val comp = definitions.getComponent(id, component) ?: return false
-        client?.animateInterface(comp["parent", -1], comp.id, animation)
+        client?.animateInterface(comp.id, animation)
         return true
     }
 
     fun sendAnimation(id: String, component: String, animation: String): Boolean {
         val comp = definitions.getComponent(id, component) ?: return false
         val definitions: AnimationDefinitions = get()
-        client?.animateInterface(comp["parent", -1], comp.id, definitions.get(animation).id)
+        client?.animateInterface(comp.id, definitions.get(animation).id)
         return true
     }
 
     fun sendText(id: String, component: String, text: String): Boolean {
         val comp = definitions.getComponent(id, component) ?: return false
-        client?.interfaceText(comp["parent", -1], comp.id, Colours.replaceCustomTags(text))
+        client?.interfaceText(comp.id, Colours.replaceCustomTags(text))
         return true
     }
 
     fun sendVisibility(id: String, component: String, visible: Boolean): Boolean {
         val componentId = definitions.getComponentId(id, component) ?: return false
         val comp = definitions.getComponent(id, componentId) ?: return false
-        client?.interfaceVisibility(comp["parent", -1], componentId, !visible)
+        client?.interfaceVisibility(comp.id, !visible)
         return true
     }
 
     fun sendSprite(id: String, component: String, sprite: Int): Boolean {
         val comp = definitions.getComponent(id, component) ?: return false
-        client?.interfaceSprite(comp["parent", -1], comp.id, sprite)
+        client?.interfaceSprite(comp.id, sprite)
         return true
     }
 
     fun sendColour(id: String, component: String, colour: Int): Boolean {
         val comp = definitions.getComponent(id, component) ?: return false
-        client?.colourInterface(comp["parent", -1], comp.id, colour)
+        client?.colourInterface(comp.id, colour)
         return true
     }
 
     fun sendColour(id: String, component: String, red: Int, green: Int, blue: Int): Boolean {
         val comp = definitions.getComponent(id, component) ?: return false
-        client?.colourInterface(comp["parent", -1], comp.id, red, green, blue)
+        client?.colourInterface(comp.id, red, green, blue)
         return true
     }
 
@@ -213,7 +213,7 @@ class Interfaces(
 
     fun sendItem(id: String, component: String, item: Int, amount: Int = 1): Boolean {
         val comp = definitions.getComponent(id, component) ?: return false
-        client?.interfaceItem(comp["parent", -1], comp.id, item, amount)
+        client?.interfaceItem(comp.id, item, amount)
         return true
     }
 

@@ -13,6 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
@@ -129,13 +130,13 @@ internal class NPCChatTest : DialogueTest() {
         mockkStatic("world.gregs.voidps.network.login.protocol.encode.InterfaceEncodersKt")
         val client: Client = mockk(relaxed = true)
         player.client = client
-        every { interfaceDefinitions.getComponent("dialogue_npc_chat1", any<String>()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
+        every { interfaceDefinitions.getComponent("dialogue_npc_chat1", any<String>()) } returns InterfaceComponentDefinition(id = InterfaceDefinition.pack(4, 123))
         npc = NPC(id = "john")
         dialogue {
             npc<Talk>(text = "Text", largeHead = large)
         }
         verify {
-            client.npcDialogueHead(4, 321, 123)
+            client.npcDialogueHead(InterfaceDefinition.pack(4, 321), 123)
             interfaces.sendAnimation("dialogue_npc_chat1", if (large) "head_large" else "head", 9803)
         }
     }
@@ -184,14 +185,14 @@ internal class NPCChatTest : DialogueTest() {
         mockkStatic("world.gregs.voidps.engine.data.definition.InterfaceDefinitionsKt")
         val client: Client = mockk(relaxed = true)
         player.client = client
-        every { interfaceDefinitions.getComponent("dialogue_npc_chat1", any<String>()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
+        every { interfaceDefinitions.getComponent("dialogue_npc_chat1", any<String>()) } returns InterfaceComponentDefinition(id = InterfaceDefinition.pack(4, 321))
         npc = NPC("bill")
         dialogue {
             npc<Talk>(npcId = "jim", title = "Bill", text = "text")
         }
         coVerify {
             interfaces.sendText("dialogue_npc_chat1", "title", "Bill")
-            client.npcDialogueHead(4, 321, 123)
+            client.npcDialogueHead(InterfaceDefinition.pack(4, 321), 123)
             interfaces.sendText("dialogue_npc_chat1", "line1", "text")
         }
     }

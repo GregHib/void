@@ -192,9 +192,9 @@ adminCommand("expr (animation-id)", "display dialogue head with an animation exp
         val npc = id < 1000
         if (player.open("dialogue_${if (npc) "npc_" else ""}chat1")) {
             if (npc) {
-                player.client?.npcDialogueHead(241, 15794178, 2176)
+                player.client?.npcDialogueHead(15794178, 2176)
             } else {
-                player.client?.playerDialogueHead(64, 4194306)
+                player.client?.playerDialogueHead(4194306)
             }
             player.interfaces.sendAnimation("dialogue_${if (npc) "npc_" else ""}chat1", "head", id)
             player.interfaces.sendText("dialogue_${if (npc) "npc_" else ""}chat1", "title", "title")

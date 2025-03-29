@@ -76,21 +76,18 @@ fun Player.sendInterfaceItemUpdate(
 
 /**
  * Sends settings to an interface's component(s)
- * @param id The id of the parent window
- * @param component The index of the component
+ * @param interfaceComponent Packed component index and id of the parent window
  * @param fromSlot The start slot index
  * @param toSlot The end slot index
  * @param settings The settings hash
  */
 fun Player.sendInterfaceSettings(
-    id: Int,
-    component: Int,
+    interfaceComponent: Int,
     fromSlot: Int,
     toSlot: Int,
     settings: Int
 ) = client?.sendInterfaceSettings(
-    id,
-    component,
+    interfaceComponent,
     fromSlot,
     toSlot,
     settings
@@ -98,15 +95,13 @@ fun Player.sendInterfaceSettings(
 
 /**
  * Sends vertical height to an interfaces' component
- * @param id The id of the parent window
- * @param component The index of the component
+ * @param interfaceComponent Packed component index and id of the parent window
  * @param settings The settings hash
  */
 fun Player.sendInterfaceScroll(
-    id: Int,
-    component: Int,
+    interfaceComponent: Int,
     settings: Int
-) = client?.sendInterfaceScroll(id, component, settings) ?: Unit
+) = client?.sendInterfaceScroll(interfaceComponent, settings) ?: Unit
 
 /**
  * Sends run energy

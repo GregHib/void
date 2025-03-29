@@ -1,5 +1,6 @@
 package content.entity.player.command.debug
 
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendInterfaceSettings
 import world.gregs.voidps.engine.client.sendInventoryItems
@@ -37,10 +38,10 @@ adminCommand("inter (interface-id)", "open an interface with int or string id") 
             index = inter["index_${if (player.interfaces.resizable) "resize" else "fixed"}", -1]
         }
         if (id == -1) {
-            player.client?.closeInterface(parent, index)
+            player.client?.closeInterface(InterfaceDefinition.pack(parent, index))
         } else {
             println("Open $parent $index $id")
-            player.client?.openInterface(false, parent, index, id)
+            player.client?.openInterface(false, InterfaceDefinition.pack(parent, index), id)
         }
     }
 }
@@ -52,12 +53,12 @@ fun closeInterface(player: Player): Boolean {
 
 adminCommand("show (interface-id) (interface-component-id) (visibility)", "set the visibility of an interface component") {
     val parts = content.split(" ")
-    player.client?.interfaceVisibility(parts[0].toInt(), parts[1].toInt(), !parts[2].toBoolean())
+    player.client?.interfaceVisibility(InterfaceDefinition.pack(parts[0].toInt(), parts[1].toInt()), !parts[2].toBoolean())
 }
 
 adminCommand("colour (interface-id) (interface-component-id) (red) (green) (blue)", "set colour of interface component") {
     val parts = content.split(" ")
-    player.client?.colourInterface(parts[0].toInt(), parts[1].toInt(), parts[2].toInt(), parts[3].toInt(), parts[4].toInt())
+    player.client?.colourInterface(InterfaceDefinition.pack(parts[0].toInt(), parts[1].toInt()), parts[2].toInt(), parts[3].toInt(), parts[4].toInt())
 }
 
 adminCommand("sendItem (interface) (interface-component) (item-id) [item-amount]", "send an item to an interface component") {
@@ -74,7 +75,7 @@ adminCommand("setting (interface) (component-id) (from-slot) (to-slot) (settings
     val parts = content.split(" ")
     val remainder = parts.subList(4, parts.size).map { it.toIntOrNull() }.requireNoNulls().toIntArray()
     player.message("Settings sent ${remainder.toList()}", ChatType.Console)
-    player.sendInterfaceSettings(parts[0].toInt(), parts[1].toInt(), parts[2].toInt(), parts[3].toInt(), getHash(*remainder))
+    player.sendInterfaceSettings(InterfaceDefinition.pack(parts[0].toInt(), parts[1].toInt()), parts[2].toInt(), parts[3].toInt(), getHash(*remainder))
 }
 
 adminCommand("script (script-id) [params...]", "run a client script with any number of parameters") {

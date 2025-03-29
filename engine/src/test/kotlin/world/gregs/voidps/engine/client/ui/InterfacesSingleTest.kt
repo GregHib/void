@@ -61,7 +61,7 @@ internal class InterfacesSingleTest : InterfaceTest() {
         assertFalse(interfaces.contains(name))
 
         verifyOrder {
-            client.closeInterface(2, 0)
+            client.closeInterface(InterfaceDefinition.pack(2, 0))
             events.emit(InterfaceClosed(name))
         }
     }

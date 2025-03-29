@@ -270,13 +270,12 @@ adminCommand("unlock [activity-type]", "unlock everything or of a type (music, t
         player.message("All tasks completed.")
     }
     if (type == "" || type == "emotes") {
-        val defs = get<InterfaceDefinitions>()
-        for (compId in 26..52) {
-            if (compId == 39) {
-                continue
-            }
-            val component = defs.getComponent("emotes", compId) ?: continue
-            player["unlocked_emote_${component.stringId}"] = true
+        for (component in listOf(
+            "glass_box", "climb_rope", "lean", "glass_wall", "idea", "stomp", "flap", "slap_head", "zombie_walk", "zombie_dance",
+            "zombie_hand", "scared", "bunny_hop", "snowman_dance", "air_guitar", "safety_first", "explore", "trick", "freeze", "give_thanks",
+            "around_the_world_in_eggty_days", "dramatic_point", "faint", "puppet_master", "taskmaster", "seal_of_approval",
+        )) {
+            player["unlocked_emote_${component}"] = true
         }
         player["unlocked_emote_lost_tribe"] = true
         player.message("All emotes unlocked.")
