@@ -26,8 +26,8 @@ data class NPCs(
     override val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)
     private val logger = InlineLogger()
     private val map: CharacterMap = CharacterMap()
-    private val spawnQueue: Array<NPC?> = arrayOfNulls(MAX_NPCS)
-    private val despawnQueue: Array<NPC?> = arrayOfNulls(MAX_NPCS)
+    private val spawnQueue: Array<NPC?> = arrayOfNulls(MAX_NPCS / 4)
+    private val despawnQueue: Array<NPC?> = arrayOfNulls(MAX_NPCS / 4)
     private var spawnIndex = 0
     private var despawnIndex = 0
 
@@ -37,6 +37,8 @@ data class NPCs(
             if (!despawn(npc)) {
                 logger.warn { "Failed to despawn $npc" }
             }
+            removeIndex(npc)
+            super.remove(npc)
             npc.index = -1
             despawnQueue[i] = null
         }
@@ -90,14 +92,20 @@ data class NPCs(
         }
     }
 
-    // TODO separate delete from remove
+    fun hide(npc: NPC) = removeIndex(npc)
+
+    fun show(npc: NPC) = index(npc)
 
     override fun remove(element: NPC): Boolean {
         if (element.index == -1) {
             logger.warn { "Unable to remove npc ${element}." }
+            return false
         }
-        despawnQueue[despawnIndex++] = element
-        return true
+        if (despawnIndex < despawnQueue.size) {
+            despawnQueue[despawnIndex++] = element
+            return true
+        }
+        return false
     }
 
     fun getDirect(region: RegionLevel): List<Int>? = this.map[region]
@@ -109,7 +117,9 @@ data class NPCs(
             return null
         }
         val npc = NPC(id, tile, def)
-        spawnQueue[spawnIndex++] = npc
+        if (spawnIndex < spawnQueue.size) {
+            spawnQueue[spawnIndex++] = npc
+        }
         val dir = if (direction == Direction.NONE) Direction.all.random() else direction
         npc.face(dir)
         return npc
