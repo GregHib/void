@@ -49,8 +49,8 @@ interfaceOption(id = "emotes") {
         return@interfaceOption
     }
     val id = option.toSnakeCase()
-    val componentId = definitions.getComponentId(this.id, component)!!
-    if (componentId > 23 && !unlocked(id, option)) {
+    val componentId = definitions.getComponent(this.id, component)!!
+    if (componentId.index > 23 && !unlocked(id, option)) {
         return@interfaceOption
     }
     player.strongQueue("emote") {

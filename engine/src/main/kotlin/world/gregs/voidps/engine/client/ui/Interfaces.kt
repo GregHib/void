@@ -92,8 +92,8 @@ class Interfaces(
     }
 
     private fun hasOpenOrRootParent(id: String): Boolean {
-        val parent = getParent(id)
-        return parent == ROOT_ID || contains(parent)
+        val parent = definitions.get(id).parent(resizable)
+        return if (parent == -1) true else contains(definitions.get(InterfaceDefinition.id(parent)).stringId)
     }
 
     private fun sendIfOpened(id: String): Boolean {
@@ -126,37 +126,35 @@ class Interfaces(
     }
 
     private fun getParent(id: String): String {
-        return definitions.get(id)[if (resizable) "parent_resize" else "parent_fixed", ""]
-    }
-
-    private fun getIndex(id: String): Int {
-        return definitions.get(id)[if (resizable) "index_resize" else "index_fixed", -1]
+        val parent = definitions.get(id).parent(resizable)
+        return if (parent == -1) {
+            ROOT_ID
+        } else {
+            definitions.get(InterfaceDefinition.id(parent)).stringId
+        }
     }
 
     private fun getType(id: String): String {
-        return definitions.get(id)["type", "main_screen"]
-    }
-
-    private fun getPermanent(id: String): Boolean {
-        return definitions.get(id)["permanent", true]
+        return definitions.get(id).type ?: DEFAULT_TYPE
     }
 
     private fun sendOpen(id: String) {
-        val parent = getParent(id)
-        if (parent == ROOT_ID) {
-            client?.updateInterface(definitions.get(id).id, 0)
+        val definition = definitions.get(id)
+        val parent = definition.parent(resizable)
+        if (parent == -1) { // root
+            client?.updateInterface(definition.id, 0)
         } else {
             client?.openInterface(
-                permanent = getPermanent(id),
-                interfaceComponent = InterfaceDefinition.pack(definitions.get(parent).id, getIndex(id)),
-                id = definitions.get(id).id
+                permanent = definition.permanent,
+                interfaceComponent = parent,
+                id = definition.id
             )
         }
     }
 
     private fun sendClose(id: String) {
-        val parent = getParent(id)
-        client?.closeInterface(InterfaceDefinition.pack(definitions.get(parent).id, getIndex(id)))
+        val parent = definitions.get(id).parent(resizable)
+        client?.closeInterface(parent)
     }
 
     private fun notifyRefresh(id: String) {
@@ -183,8 +181,7 @@ class Interfaces(
     }
 
     fun sendVisibility(id: String, component: String, visible: Boolean): Boolean {
-        val componentId = definitions.getComponentId(id, component) ?: return false
-        val comp = definitions.getComponent(id, componentId) ?: return false
+        val comp = definitions.getComponent(id, component) ?: return false
         client?.interfaceVisibility(comp.id, !visible)
         return true
     }
@@ -237,6 +234,7 @@ class Interfaces(
         const val GAME_FRAME_NAME = "toplevel"
         const val GAME_FRAME_RESIZE_NAME = "toplevel_full"
         const val ROOT_ID = "root"
+        const val DEFAULT_TYPE = "main_screen"
         const val ROOT_INDEX = 0
     }
 }
@@ -246,8 +244,8 @@ class Interfaces(
  */
 fun Player.open(interfaceId: String, close: Boolean = true): Boolean {
     val defs: InterfaceDefinitions = get()
-    val type = defs.get(interfaceId)["type", ""]
-    if (close && type.isNotEmpty()) {
+    val type = defs.get(interfaceId).type
+    if (close && type != null) {
         interfaces.get(type)?.let {
             interfaces.close(it)
         }

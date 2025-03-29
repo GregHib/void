@@ -7,9 +7,6 @@ id = 319
 [teleport_other]
 id = 326
 
-[spells_ancient_elements]
-id = 389
-
 [enchant_crossbow_bolts]
 id = 432
 

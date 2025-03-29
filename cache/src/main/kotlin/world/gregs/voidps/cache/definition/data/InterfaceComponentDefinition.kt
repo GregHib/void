@@ -10,6 +10,13 @@ data class InterfaceComponentDefinition(
     override var stringId: String = "",
     override var extras: Map<String, Any>? = null
 ) : Definition, Extra {
+
+    val parent: Int
+        get() = InterfaceDefinition.id(id)
+
+    val index: Int
+        get() = InterfaceDefinition.componentId(id)
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

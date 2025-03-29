@@ -79,7 +79,7 @@ type = "summoning_orb"
 [health_orb]
 id = 748
 type = "health_orb"
-component = {
+components = {
   poison = 2,
 }
 

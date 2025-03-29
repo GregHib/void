@@ -39,7 +39,7 @@ interfaceOption("View", id = "stats") {
 }
 
 interfaceOption("Open subsection", id = "skill_guide") {
-    val index = (definitions.getComponentId(id, component) ?: 0) - 10
+    val index = (definitions.getComponent(id, component)?.index ?: 0) - 10
     val menuIndex = player["active_skill_guide", 1]
     player["skill_guide"] = menuIndex + index * 1024
 }
