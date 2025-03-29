@@ -7,17 +7,12 @@ import net.pearx.kasechange.toSentenceCase
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
-import java.nio.file.Files
-import java.nio.file.Path
-import kotlin.io.path.extension
-import kotlin.io.path.pathString
 
 class ItemOnItemDefinitions {
 
@@ -103,14 +98,13 @@ class ItemOnItemDefinitions {
                             question = question ?: "How many would you like to $type?",
                             maximum = maximum
                         )
-                        val usable = definition.requires.toMutableList()
-                        usable.addAll(definition.one)
-                        usable.addAll(definition.remove)
-                        for (a in usable.indices) {
-                            for (b in usable.indices) {
+                        requires.addAll(definition.one)
+                        requires.addAll(definition.remove)
+                        for (a in requires.indices) {
+                            for (b in requires.indices) {
                                 if (a != b) {
-                                    val one = usable[a]
-                                    val two = usable[b]
+                                    val one = requires[a]
+                                    val two = requires[b]
                                     val list = definitions.getOrPut(id(one, two)) { ObjectArrayList(2) }
                                     if (!list.contains(definition)) {
                                         list.add(definition)
