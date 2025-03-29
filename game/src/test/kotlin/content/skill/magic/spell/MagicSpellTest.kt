@@ -38,11 +38,11 @@ abstract class MagicSpellTest : KoinTest {
         interfaceDefinitions = InterfaceDefinitions(arrayOf(InterfaceDefinition(0, components = mutableMapOf(0 to InterfaceComponentDefinition(0, information = information)))))
         interfaceDefinitions.ids = mapOf("unknown_spellbook" to 0)
         interfaceDefinitions.componentIds = mapOf(
-            "unknown_spellbook_spell" to 0,
-            "unknown_spellbook_spell_bolt" to 0,
-            "unknown_spellbook_spell_blast" to 0,
-            "unknown_spellbook_spell_surge" to 0,
-            "unknown_spellbook_spell_wave" to 0,
+            "unknown_spellbook:spell" to 0,
+            "unknown_spellbook:spell_bolt" to 0,
+            "unknown_spellbook:spell_blast" to 0,
+            "unknown_spellbook:spell_surge" to 0,
+            "unknown_spellbook:spell_wave" to 0,
         )
         inventoryDefinitions = InventoryDefinitions(emptyArray())
         inventoryDefinitions.ids = emptyMap()
