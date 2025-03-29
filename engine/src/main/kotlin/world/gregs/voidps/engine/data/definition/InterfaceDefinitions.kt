@@ -100,7 +100,7 @@ class InterfaceDefinitions(
                 }
             }
             for (definition in definitions) {
-                val type = definition.type ?: continue
+                val type = definition.type ?: Interfaces.DEFAULT_TYPE
                 val data = typeData[type] ?: continue
                 definition.fixed = data.fixed
                 definition.resizable = data.resize
