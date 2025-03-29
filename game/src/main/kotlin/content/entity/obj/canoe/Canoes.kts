@@ -5,7 +5,6 @@ import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
 import content.skill.woodcutting.Hatchet
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
