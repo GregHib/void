@@ -12,9 +12,6 @@ import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.timedLoad
 
-private const val DEFAULT_TYPE = "main_screen"
-private const val DEFAULT_PERMANENT = true
-
 class InterfaceDefinitions(
     override var definitions: Array<InterfaceDefinition>
 ) : DefinitionsDecoder<InterfaceDefinition> {
@@ -90,7 +87,7 @@ class InterfaceDefinitions(
                             }
                             "fixedIndex" -> indexFixed = int()
                             "resizeIndex" -> indexResize = int()
-                            "permanent" -> if (boolean() != DEFAULT_PERMANENT) {
+                            "permanent" -> if (!boolean()) {
                                 permanent = false
                             }
                         }
