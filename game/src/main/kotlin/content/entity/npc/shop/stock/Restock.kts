@@ -5,7 +5,6 @@ import content.entity.npc.shop.general.GeneralStores
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.entity.worldSpawn

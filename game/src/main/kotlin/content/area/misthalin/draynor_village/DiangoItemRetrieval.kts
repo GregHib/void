@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 import content.entity.player.bank.ownsItem
-import world.gregs.voidps.engine.entity.item.Item
 
 val itemLimit = 48
 val container = InterfaceDefinition.pack(468, 2)
