@@ -5,7 +5,6 @@ import io.mockk.mockk
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.entity.item.Item
 
 internal class InventoryDefinitionsTest : DefinitionsDecoderTest<InventoryDefinition, InventoryDecoder, InventoryDefinitions>() {
 
@@ -18,6 +17,7 @@ internal class InventoryDefinitionsTest : DefinitionsDecoderTest<InventoryDefini
         return InventoryDefinition(
             intId,
             stringId = id,
+            length = 7,
             ids = intArrayOf(1, 2, 3, 4, 5, 6, 7),
             amounts = intArrayOf(10, 10, 10, 10, 10, 10, 10),
             extras = mapOf(
