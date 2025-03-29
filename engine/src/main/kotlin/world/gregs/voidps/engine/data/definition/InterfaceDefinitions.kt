@@ -24,7 +24,7 @@ class InterfaceDefinitions(
     override lateinit var ids: Map<String, Int>
     lateinit var componentIds: Map<String, Int>
 
-    fun getComponentId(id: String, component: String) = componentIds["${id}_$component"]
+    fun getComponentId(id: String, component: String) = componentIds["${id}:$component"]
 
     fun getComponent(id: String, component: String): InterfaceComponentDefinition? {
         return get(id).components?.get(getComponentId(id, component) ?: return null)
@@ -158,7 +158,7 @@ class InterfaceDefinitions(
                     if (componentId == -1) {
                         throw IllegalArgumentException("Invalid component id.")
                     }
-                    componentIds["${interfaceId}_$key"] = componentId
+                    componentIds["${interfaceId}:$key"] = componentId
                     val componentDefinition = getOrPut(interfaceIntId, componentId)
                     componentDefinition.stringId = key
                     componentExtras["id"] = componentId
@@ -178,14 +178,14 @@ class InterfaceDefinitions(
                     for ((index, id) in range.withIndex()) {
                         val name = "$prefix${startDigit + index}"
                         extras[name] = id
-                        componentIds["${interfaceId}_$name"] = id
+                        componentIds["${interfaceId}:$name"] = id
                         val componentDefinition = getOrPut(interfaceIntId, id)
                         componentDefinition.stringId = name
                     }
                 }
                 else -> {
                     val value = int()
-                    componentIds["${interfaceId}_$key"] = value
+                    componentIds["${interfaceId}:$key"] = value
                     val componentDefinition = getOrPut(interfaceIntId, value)
                     componentDefinition.stringId = key
                 }
