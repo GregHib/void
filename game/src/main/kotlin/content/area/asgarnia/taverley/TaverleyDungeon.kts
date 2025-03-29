@@ -42,7 +42,6 @@ fun spawn(player: Player, tile: Tile): Boolean {
     suit.softQueue("despawn", TimeUnit.MINUTES.toTicks(5)) {
         World.queue("despawn_${suit.index}") {
             npcs.remove(suit)
-            npcs.removeIndex(suit)
         }
     }
     return true

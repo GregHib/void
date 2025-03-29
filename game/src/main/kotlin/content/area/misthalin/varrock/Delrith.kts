@@ -126,7 +126,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     val wizard3 = npcs.add("dark_wizard_earth", Tile(3226, 3368).add(offset), Direction.NORTH_EAST) ?: return
     val denath = npcs.add("denath", Tile(3229, 3368).add(offset), Direction.NORTH_WEST) ?: return
     val delrith = npcs.add("delrith", Tile(3227, 3369).add(offset), Direction.SOUTH) ?: return
-    npcs.removeIndex(delrith)
+    npcs.hide(delrith)
     val wizards = listOf(wizard1, wizard2, wizard3, denath)
     for (wizard in wizards) {
         wizard.mode = PauseMode
@@ -143,7 +143,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
         player.queue.clear("demon_slayer_delrith_cutscene_end")
         delrith.tele(Tile(3227, 3367).add(offset))
         denath.tele(Tile(3236, 3368).add(offset))
-        npcs.index(delrith)
+        npcs.show(delrith)
         showTabs()
         return
     }
@@ -183,7 +183,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
         areaGfx("demon_slayer_spell_impact", target.add(offset))
     }
     delay(2)
-    npcs.index(delrith)
+    npcs.show(delrith)
     delrith.anim("delrith_appear")
     delay(2)
     player.sound("demon_slayer_break_table", delay = 10)
@@ -258,7 +258,6 @@ npcOperate("*", "delrith") {
                 delay(1)
                 correct = false
                 npcs.remove(target)
-                npcs.removeIndex(target)
                 delay(2)
             } else {
                 delay(3)
@@ -270,7 +269,6 @@ npcOperate("*", "delrith") {
             statement("Delrith is sucked into the vortex...", clickToContinue = false)
             delay(14)
             npcs.remove(target)
-            npcs.removeIndex(target)
             statement("...back into the dark dimension from which he came.")
             destroyInstance(player)
             questComplete()

@@ -102,6 +102,7 @@ data class NPCs(
             return false
         }
         if (despawnIndex < despawnQueue.size) {
+            removeIndex(element)
             despawnQueue[despawnIndex++] = element
             return true
         }

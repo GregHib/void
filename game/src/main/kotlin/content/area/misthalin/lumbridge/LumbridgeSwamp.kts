@@ -39,7 +39,6 @@ objectOperate("Search", "rocks_skull_restless_ghost_quest") {
     if (index != null) {
         val skeleton = npcs.indexed(index)
         if (skeleton != null) {
-            npcs.removeIndex(skeleton)
             npcs.remove(skeleton)
         }
     }
@@ -53,7 +52,6 @@ objectOperate("Search", "rocks_skull_restless_ghost_quest") {
     }
     World.queue("skeleton_warlock", TimeUnit.SECONDS.toTicks(60)) {
         npcs.remove(warlock)
-        npcs.removeIndex(warlock)
         player.clear("restless_ghost_warlock")
     }
 }
