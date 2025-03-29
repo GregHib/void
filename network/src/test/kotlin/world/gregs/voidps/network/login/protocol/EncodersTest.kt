@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.IsaacCipher
 import world.gregs.voidps.network.login.protocol.encode.*
@@ -76,21 +77,21 @@ class EncodersTest {
             { sendFriendsList(listOf(Friend("name", "previous", 123, true, 12, "world", true))) },
             { sendIgnoreList(listOf("name" to "previous")) },
             { updateIgnoreList("name", "previous", true) },
-            { animateInterface(123, 345, 12345) },
-            { closeInterface(123, 345) },
-            { colourInterface(123, 345, 123, 234, 255) },
-            { colourInterface(123, 345, 12345) },
-            { npcDialogueHead(123, 345, 12345) },
-            { playerDialogueHead(123, 345) },
-            { interfaceItem(123, 345, 12345, 23456) },
+            { animateInterface(InterfaceDefinition.pack(123, 345), 12345) },
+            { closeInterface(InterfaceDefinition.pack(123, 345)) },
+            { colourInterface(InterfaceDefinition.pack(123, 345), 123, 234, 255) },
+            { colourInterface(InterfaceDefinition.pack(123, 345), 12345) },
+            { npcDialogueHead(InterfaceDefinition.pack(123, 345), 12345) },
+            { playerDialogueHead(InterfaceDefinition.pack(123, 345)) },
+            { interfaceItem(InterfaceDefinition.pack(123, 345), 12345, 23456) },
             { sendInterfaceItemUpdate(123, listOf(Triple(1234, 12345, 23456), Triple(123, 12345, 234)), false) },
-            { openInterface(true, 123, 345, 12345) },
-            { sendInterfaceSettings(1234, 456, 2345, 6789, 12345) },
-            { sendInterfaceScroll(123, 456, 23456) },
-            { interfaceSprite(123, 456, 12345) },
-            { interfaceText(123, 456, "text") },
+            { openInterface(true, InterfaceDefinition.pack(123, 345), 12345) },
+            { sendInterfaceSettings(InterfaceDefinition.pack(1234, 456), 2345, 6789, 12345) },
+            { sendInterfaceScroll(InterfaceDefinition.pack(123, 456), 23456) },
+            { interfaceSprite(InterfaceDefinition.pack(123, 456), 12345) },
+            { interfaceText(InterfaceDefinition.pack(123, 456), "text") },
             { updateInterface(123, 456) },
-            { interfaceVisibility(123, 456, true) },
+            { interfaceVisibility(InterfaceDefinition.pack(123, 456), true) },
             { login("name", 1234, 123, member = false, membersWorld = false) },
             { logout() },
             { mapRegion(123, 456, true, 12, arrayOf(IntArray(4)), 1234, 123456, intArrayOf(4321)) },

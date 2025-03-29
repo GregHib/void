@@ -33,7 +33,7 @@ id = 11328
 price = 5
 limit = 5000
 weight = 0.5
-fishing = { level = 48, xp = 50.0, chance = "32-192" }
+fishing = { level = 48, xp = 50.0, chance_min = 32, chance_max = 192 }
 examine = "A sad-looking trout."
 
 [leaping_trout_noted]
@@ -44,7 +44,7 @@ id = 11330
 price = 8
 limit = 5000
 weight = 0.5
-fishing = { level = 58, xp = 70.0, chance = "16-96" }
+fishing = { level = 58, xp = 70.0, chance_min = 16, chance_max = 96 }
 examine = "Some non-tasty salmon."
 
 [leaping_salmon_noted]
@@ -55,7 +55,7 @@ id = 11332
 price = 90
 limit = 5000
 weight = 1.0
-fishing = { level = 70, xp = 80.0, chance = "8-64" }
+fishing = { level = 70, xp = 80.0, chance_min = 8, chance_max = 64 }
 examine = "A bloated sturgeon."
 
 [leaping_sturgeon_noted]

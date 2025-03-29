@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data.definition.data
 
 import it.unimi.dsi.fastutil.Hash
-import it.unimi.dsi.fastutil.objects.Object2ObjectMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
@@ -43,7 +42,8 @@ data class Uncooked(
             var level = 1
             var xp = 0.0
             var burntXp = 0.0
-            var chance: IntRange = 255..255
+            var chanceMin = 255
+            var chanceMax = 255
             var cooked = ""
             var cookedMessage = ""
             var burnt = ""
@@ -58,7 +58,8 @@ data class Uncooked(
                     "level" -> level = reader.int()
                     "xp" -> xp = reader.double()
                     "burntXp" -> burntXp = reader.double()
-                    "chance" -> chance = reader.string().toIntRange()
+                    "chance_min" -> chanceMin = reader.int()
+                    "chance_max" -> chanceMax = reader.int()
                     "cooked" -> cooked = reader.string()
                     "cooked_message" -> cookedMessage = reader.string()
                     "burnt" -> burnt = reader.string()
@@ -81,7 +82,7 @@ data class Uncooked(
                 level = level,
                 xp = xp,
                 burntXp = burntXp,
-                chance = chance,
+                chance = chanceMin until chanceMax,
                 rangeChance = rangeChance,
                 cooksRangeChance = cooksRangeChance,
                 gauntletChance = gauntletChance,

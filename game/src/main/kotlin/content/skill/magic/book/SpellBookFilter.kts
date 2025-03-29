@@ -22,7 +22,7 @@ playerSpawn { player ->
 
 interfaceOption(component = "filter_*", id = "*_spellbook") {
     val key = "spellbook_sort"
-    val id = "${id}_$component"
+    val id = "${id}:$component"
     if (player.containsVarbit(key, id)) {
         player.removeVarbit(key, id)
     } else {
@@ -38,7 +38,7 @@ interfaceOption(component = "sort_*", id = "*_spellbook") {
         player.removeVarbit(key, "${id}_sort_teleport", refresh = false)
     }
     if (component != "sort_level") {
-        player.addVarbit(key, "${id}_$component", refresh = false)
+        player.addVarbit(key, "${id}:$component", refresh = false)
     }
 }
 

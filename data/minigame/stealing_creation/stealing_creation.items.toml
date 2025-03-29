@@ -51,7 +51,8 @@ weight = 2.0
 id = 14100
 bank_stacks = false
 rank = 6
-canoe_chance = "112-350"
+canoe_chance_min = 112
+canoe_chance_max = 350
 skill_req = { woodcutting = 50 }
 charges = 29340
 slot = "Weapon"
@@ -116,7 +117,8 @@ weight = 2.0
 id = 14108
 bank_stacks = false
 rank = 6
-canoe_chance = "112-350"
+canoe_chance_min = 112
+canoe_chance_max = 350
 skill_req = { woodcutting = 50 }
 charges = 24450
 slot = "Weapon"

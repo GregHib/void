@@ -16,6 +16,12 @@ ticks = 4
 walk = false
 run = false
 
+[emote_curtsy]
+id = 12418
+ticks = 5
+walk = false
+run = false
+
 [emote_enhanced_bow]
 id = 5312
 ticks = 6

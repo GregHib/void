@@ -304,7 +304,7 @@ id = 3379
 price = 307
 limit = 1000
 weight = 2.0
-fishing = { level = 28, xp = 65.0, chance = "10-80" }
+fishing = { level = 28, xp = 65.0, chance_min = 10, chance_max = 80 }
 cooking = { level = 28, xp = 95.0, chances = { fire = "63-382" }, cooked = "cooked_slimy_eel", cooked_message = "You cook an eel.", burnt = "burnt_eel", burnt_message = "You accidentally burn the slimy eel." }
 examine = "A slime covered eel - yuck!"
 

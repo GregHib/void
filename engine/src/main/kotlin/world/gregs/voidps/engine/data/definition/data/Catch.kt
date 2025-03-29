@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data.definition.data
 
 import world.gregs.config.ConfigReader
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
 
 data class Catch(
     val level: Int = 1,
@@ -12,16 +11,18 @@ data class Catch(
         operator fun invoke(reader: ConfigReader): Catch {
             var level = 0
             var xp = 0.0
-            var chance = 1..1
+            var chanceMin = 1
+            var chanceMax = 1
             while (reader.nextEntry()) {
                 when (val key = reader.key()) {
                     "level" -> level = reader.int()
                     "xp" -> xp = reader.double()
-                    "chance" -> chance = reader.string().toIntRange()
+                    "chance_min" -> chanceMin = reader.int()
+                    "chance_max" -> chanceMax = reader.int()
                     else -> throw IllegalArgumentException("Unexpected key: '$key' ${reader.exception()}")
                 }
             }
-            return Catch(level = level, xp = xp, chance = chance)
+            return Catch(level = level, xp = xp, chance = chanceMin until chanceMax)
         }
 
         val EMPTY = Catch()

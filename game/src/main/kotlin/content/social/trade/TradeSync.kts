@@ -43,7 +43,7 @@ fun highlightRemovedSlots(player: Player, other: Player, update: ItemChanged) {
 fun Player.warn(id: String, componentId: String, slot: Int) {
     val component = interfaceDefinitions.getComponent(id, componentId) ?: return
     val inventory = inventoryDefinitions.get(component["inventory", ""])
-    sendScript("trade_warning", (component["parent", -1] shl 16) or component.id, inventory["width", 0.0], inventory["height", 0.0], slot)
+    sendScript("trade_warning", component.id, inventory["width", 0.0], inventory["height", 0.0], slot)
 }
 
 fun updateValue(player: Player, other: Player) {

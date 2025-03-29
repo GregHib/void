@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data.definition.data
 
 import world.gregs.config.ConfigReader
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
 
 /**
  * @param xp experience for successful mining
@@ -14,15 +13,17 @@ data class Ore(
     companion object {
         operator fun invoke(reader: ConfigReader): Ore {
             var xp = 0.0
-            var chance = 0..0
+            var chanceMin = 0
+            var chanceMax = 0
             while (reader.nextEntry()) {
                 when (val key = reader.key()) {
                     "xp" -> xp = reader.double()
-                    "chance" -> chance = reader.string().toIntRange()
+                    "chance_min" -> chanceMin = reader.int()
+                    "chance_max" -> chanceMax = reader.int()
                     else -> throw IllegalArgumentException("Unexpected key: '$key' ${reader.exception()}")
                 }
             }
-            return Ore(xp = xp, chance = chance)
+            return Ore(xp = xp, chance = chanceMin until chanceMax)
         }
 
         val EMPTY = Ore()

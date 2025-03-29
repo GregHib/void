@@ -1329,7 +1329,7 @@ id = 7403
 id = 7404
 tradeable = false
 weight = 2.0
-firemaking = { level = 1, xp = 50.0, chance = "256..256", life = 60, colour = "red" }
+firemaking = { level = 1, xp = 50.0, chance_min = 256, chance_max = 256, life = 60, colour = "red" }
 examine = "A number of chemical covered wooden logs."
 kept = "Wilderness"
 
@@ -1337,7 +1337,7 @@ kept = "Wilderness"
 id = 7405
 tradeable = false
 weight = 2.0
-firemaking = { level = 1, xp = 50.0, chance = "256..256", life = 60, colour = "green" }
+firemaking = { level = 1, xp = 50.0, chance_min = 256, chance_max = 256, life = 60, colour = "green" }
 examine = "A number of chemical covered wooden logs."
 kept = "Wilderness"
 
@@ -1345,7 +1345,7 @@ kept = "Wilderness"
 id = 7406
 tradeable = false
 weight = 2.0
-firemaking = { level = 1, xp = 50.0, chance = "256..256", life = 60, colour = "blue" }
+firemaking = { level = 1, xp = 50.0, chance_min = 256, chance_max = 256, life = 60, colour = "blue" }
 examine = "A number of chemical covered wooden logs."
 kept = "Wilderness"
 
@@ -1656,7 +1656,7 @@ examine = "Makes firelighting a lot easier."
 id = 10328
 tradeable = false
 weight = 0.003
-firemaking = { level = 1, xp = 50.0, chance = "256..256", life = 60, colour = "white" }
+firemaking = { level = 1, xp = 50.0, chance_min = 256, chance_max = 256, life = 60, colour = "white" }
 examine = "A number of chemical-covered wooden logs."
 kept = "Reclaim"
 
@@ -1664,7 +1664,7 @@ kept = "Reclaim"
 id = 10329
 tradeable = false
 weight = 0.003
-firemaking = { level = 1, xp = 50.0, chance = "256..256", life = 60, colour = "purple" }
+firemaking = { level = 1, xp = 50.0, chance_min = 256, chance_max = 256, life = 60, colour = "purple" }
 examine = "A number of chemical- covered wooden logs."
 kept = "Reclaim"
 

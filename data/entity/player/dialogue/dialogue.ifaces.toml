@@ -149,9 +149,7 @@ type = "dialogue_box"
 [chat_background]
 id = 137
 type = "chat_background"
-quick_chat = 54
-help_quick_chat = 5
-close_quick_chat = 4
+components = { quick_chat = 54, help_quick_chat = 5, close_quick_chat = 4 }
 
 [dialogue_select2_models]
 id = 140
@@ -650,20 +648,4 @@ components = {
 
 [dialogue_make_amount]
 id = 944
-type = "dialogue_box"
-
-[dialogue_text_box_chat]
-id = 1018
-type = "dialogue_box"
-
-[dialogue_text_box_continue2]
-id = 1020
-type = "dialogue_box"
-
-[dialogue_chat_layered_model]
-id = 1018
-type = "dialogue_box"
-
-[dialogue_chat_large]
-id = 1020
 type = "dialogue_box"

@@ -26,7 +26,8 @@ data class Pocket(
             var xp = 0.0
             var stunHit = 0
             var stunTicks = 1
-            var chance: IntRange = 1..1
+            var chanceMin = 1
+            var chanceMax = 1
             var caughtMessage = "What do you think you're doing?"
             while (reader.nextEntry()) {
                 when (val key = reader.key()) {
@@ -34,12 +35,13 @@ data class Pocket(
                     "xp" -> xp = reader.double()
                     "stun_hit" -> stunHit = reader.int()
                     "stun_ticks" -> stunTicks = reader.int()
-                    "chance" -> chance = reader.string().toIntRange()
+                    "chance_min" -> chanceMin = reader.int()
+                    "chance_max" -> chanceMax = reader.int()
                     "caught_message" -> caughtMessage = reader.string()
                     else -> throw IllegalArgumentException("Unexpected key: '$key' ${reader.exception()}")
                 }
             }
-            return Pocket(level = level, xp = xp, stunHit = stunHit, stunTicks = stunTicks, chance = chance, caughtMessage = caughtMessage)
+            return Pocket(level = level, xp = xp, stunHit = stunHit, stunTicks = stunTicks, chance = chanceMin until chanceMax, caughtMessage = caughtMessage)
         }
 
         val EMPTY = Pocket()

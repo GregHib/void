@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data.definition.data
 
 import world.gregs.config.ConfigReader
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
 
 /**
  * @param level required to attempt to light
@@ -20,20 +19,22 @@ data class Fire(
         operator fun invoke(reader: ConfigReader): Fire {
             var level = 1
             var xp = 0.0
-            var chance = 65..513
+            var chanceMin = 65
+            var chanceMax = 513
             var life = 0
             var colour = "orange"
             while (reader.nextEntry()) {
                 when (val key = reader.key()) {
                     "level" -> level = reader.int()
                     "xp" -> xp = reader.double()
-                    "chance" -> chance = reader.string().toIntRange()
+                    "chance_min" -> chanceMin = reader.int()
+                    "chance_max" -> chanceMax = reader.int()
                     "life" -> life = reader.int()
                     "colour" -> colour = reader.string()
                     else -> throw IllegalArgumentException("Unexpected key: '$key' ${reader.exception()}")
                 }
             }
-            return Fire(level = level, xp = xp, chance = chance, life = life, colour = colour)
+            return Fire(level = level, xp = xp, chance = chanceMin until chanceMax, life = life, colour = colour)
         }
 
         val EMPTY = Fire()

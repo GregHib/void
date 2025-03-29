@@ -136,7 +136,7 @@ id = 1617
 price = 10122
 limit = 5000
 weight = 0.003
-mining = { xp = 65.0, chance = "8-8" }
+mining = { xp = 65.0, chance_min = 8, chance_max = 8 }
 examine = "An uncut diamond."
 
 [uncut_diamond_noted]
@@ -147,7 +147,7 @@ id = 1619
 price = 2414
 limit = 5000
 weight = 0.003
-mining = { xp = 65.0, chance = "10-10" }
+mining = { xp = 65.0, chance_min = 10, chance_max = 10 }
 examine = "An uncut ruby."
 
 [uncut_ruby_noted]
@@ -158,7 +158,7 @@ id = 1621
 price = 1189
 limit = 5000
 weight = 0.003
-mining = { xp = 65.0, chance = "10-10" }
+mining = { xp = 65.0, chance_min = 10, chance_max = 10 }
 examine = "An uncut emerald."
 
 [uncut_emerald_noted]
@@ -169,7 +169,7 @@ id = 1623
 price = 657
 limit = 5000
 weight = 0.003
-mining = { xp = 65.0, chance = "18-18" }
+mining = { xp = 65.0, chance_min = 18, chance_max = 18 }
 examine = "An uncut sapphire."
 
 [uncut_sapphire_noted]
@@ -180,7 +180,7 @@ id = 1625
 price = 37
 limit = 5000
 weight = 0.003
-mining = { xp = 65.0, chance = "120-120" }
+mining = { xp = 65.0, chance_min = 120, chance_max = 120 }
 examine = "An uncut opal."
 
 [uncut_opal_noted]
@@ -191,7 +191,7 @@ id = 1627
 price = 129
 limit = 5000
 weight = 0.003
-mining = { xp = 65.0, chance = "60-60" }
+mining = { xp = 65.0, chance_min = 60, chance_max = 60 }
 examine = "An uncut jade."
 
 [uncut_jade_noted]
@@ -202,7 +202,7 @@ id = 1629
 price = 252
 limit = 5000
 weight = 0.003
-mining = { xp = 65.0, chance = "30-30" }
+mining = { xp = 65.0, chance_min = 30, chance_max = 30 }
 examine = "An uncut red topaz."
 
 [uncut_red_topaz_noted]

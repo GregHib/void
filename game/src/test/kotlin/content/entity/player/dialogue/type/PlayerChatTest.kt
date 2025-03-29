@@ -14,6 +14,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
@@ -118,15 +119,15 @@ internal class PlayerChatTest : DialogueTest() {
     @ValueSource(booleans = [true, false])
     fun `Send player chat head size and animation`(large: Boolean) {
         mockkStatic("world.gregs.voidps.network.login.protocol.encode.InterfaceEncodersKt")
-        mockkStatic("world.gregs.voidps.engine.data.definition.InterfaceDefinitionsKt")
+        mockkStatic("world.gregs.voidps.engine.data.definition.InterfaceDefinitions")
         val client: Client = mockk(relaxed = true)
         player.client = client
-        every { interfaceDefinitions.getComponent("dialogue_chat1", any<String>()) } returns InterfaceComponentDefinition(id = 123, extras = mapOf("parent" to 4))
+        every { interfaceDefinitions.getComponent("dialogue_chat1", any<String>()) } returns InterfaceComponentDefinition(id = InterfaceDefinition.pack(4, 123))
         dialogue {
             player<Talk>(text = "Text", largeHead = large)
         }
         verify {
-            client.playerDialogueHead(4, 123)
+            client.playerDialogueHead(InterfaceDefinition.pack(4, 123))
             interfaces.sendAnimation("dialogue_chat1", if (large) "head_large" else "head", 9803)
         }
     }

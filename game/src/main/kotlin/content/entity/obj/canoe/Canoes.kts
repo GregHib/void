@@ -5,7 +5,6 @@ import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
 import content.skill.woodcutting.Hatchet
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -113,7 +112,9 @@ objectOperate("Shape-canoe", "canoe_station_fallen") {
         return@objectOperate
     }
     val level = player.levels.get(Skill.Woodcutting)
-    val chance: IntRange = hatchet.def.getOrNull<String>("canoe_chance")?.toIntRange() ?: return@objectOperate
+    val min = hatchet.def.getOrNull<Int>("canoe_chance_min") ?: return@objectOperate
+    val max = hatchet.def.getOrNull<Int>("canoe_chance_max") ?: return@objectOperate
+    val chance: IntRange = min until max
     var count = 0
     while (count++ < 50) {
         player.anim("${hatchet.id}_shape_canoe")

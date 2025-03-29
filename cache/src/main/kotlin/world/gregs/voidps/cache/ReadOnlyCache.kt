@@ -16,7 +16,11 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
     val archives: Array<IntArray?> = arrayOfNulls(indexCount)
     val fileCounts: Array<IntArray?> = arrayOfNulls(indexCount)
     val files: Array<Array<IntArray?>?> = arrayOfNulls(indexCount)
-    private val hashes: MutableMap<Int, Int> = Int2IntOpenHashMap(16384)
+    private val hashes = Int2IntOpenHashMap(16384)
+
+    init {
+        hashes.defaultReturnValue(-1)
+    }
 
     override lateinit var versionTable: ByteArray
 
@@ -166,7 +170,7 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
 
     override fun lastArchiveId(indexId: Int) = archives.getOrNull(indexId)?.lastOrNull() ?: -1
 
-    override fun archiveId(index: Int, hash: Int) = hashes[hash] ?: -1
+    override fun archiveId(index: Int, hash: Int) = hashes[hash]
 
     override fun files(index: Int, archive: Int) = files.getOrNull(index)?.getOrNull(archive) ?: IntArray(0)
 

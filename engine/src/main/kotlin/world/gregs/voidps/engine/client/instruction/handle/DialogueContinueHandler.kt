@@ -21,7 +21,7 @@ class DialogueContinueHandler(
             return
         }
 
-        val component = definitions.getComponent(id, componentId)
+        val component = definitions.get(id).components?.get(componentId)
         if (component == null) {
             logger.debug { "Dialogue $interfaceId component $componentId not found for player $player" }
             return

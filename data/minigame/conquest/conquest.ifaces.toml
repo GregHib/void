@@ -6,3 +6,11 @@ id = 1011
 
 [conquest_commands]
 id = 1024
+
+[conquest_tutorial_chatbox]
+id = 1018
+type = "dialogue_box"
+
+[conquest_tutorial_instructions]
+id = 1020
+type = "dialogue_box"

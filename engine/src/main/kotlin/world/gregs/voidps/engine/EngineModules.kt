@@ -23,8 +23,6 @@ import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.network.client.ConnectionQueue
-import world.gregs.yaml.Yaml
-import world.gregs.yaml.read.YamlReaderConfiguration
 import java.io.File
 
 fun engineModule(files: ConfigFiles) = module {
@@ -40,7 +38,6 @@ fun engineModule(files: ConfigFiles) = module {
     }
     single { AccountManager(get(), get(), get(), get(), get(), get(), get(), get(), get(), get()) }
     // IO
-    single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }
     single {
         if (Settings["storage.type", "files"] == "database") {
             DatabaseStorage.connect(
@@ -56,7 +53,7 @@ fun engineModule(files: ConfigFiles) = module {
             if (!saves.exists()) {
                 saves.mkdir()
             }
-            FileStorage(get(), saves)
+            FileStorage(saves)
         }
     }
     single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }

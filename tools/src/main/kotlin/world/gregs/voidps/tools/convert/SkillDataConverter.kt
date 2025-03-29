@@ -39,7 +39,6 @@ object SkillDataConverter {
         }.koin
 
         val cache: Cache = koin.get()
-        val storage: Yaml = get()
         val items: ItemDefinitions = get()
         val files = configFiles()
         val sounds = SoundDefinitions().load(files.list(Settings["definitions.sounds"]))
