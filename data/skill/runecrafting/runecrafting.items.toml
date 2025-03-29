@@ -3,7 +3,7 @@ id = 1436
 price = 19
 limit = 25000
 weight = 0.002
-mining = { xp = 5.0, chance = "200-400" }
+mining = { xp = 5.0, chance_min = 200, chance_max = 400 }
 aka = ["rune_ess", "rune_esse", "essence"]
 examine = "An uncharged Rune Stone."
 kept = "Wilderness"
@@ -326,7 +326,7 @@ id = 7936
 price = 129
 limit = 25000
 weight = 0.002
-mining = { xp = 5.0, chance = "150-350" }
+mining = { xp = 5.0, chance_min = 150, chance_max = 350 }
 aka = ["pure_ess", "pure_esse", "p_ess", "p_esse", "p_essence"]
 examine = "An uncharged Rune Stone of extra capability. Used in Runecrafting for training and production."
 

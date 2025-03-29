@@ -22,7 +22,8 @@ tradeable = false
 weight = 2.267
 rank = 7
 mining_delay = 2
-canoe_chance = "112-350"
+canoe_chance_min = 112
+canoe_chance_max = 350
 skill_req = { mining = 41, woodcutting = 61, firemaking = 92 }
 slot = "Weapon"
 destroy = "If you destroy your last one, you can reclaim your Inferno Adze by talking to King Roald."

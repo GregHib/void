@@ -1,7 +1,7 @@
 [stardust]
 id = 13727
 tradeable = false
-mining = { xp = 80.0, chance = "10-75" }
+mining = { xp = 80.0, chance_min = 10, chance_max = 75 }
 destroy = "You can mine more if you find another crashed star."
 examine = "Small, shiny bits of rock."
 kept = "Wilderness"

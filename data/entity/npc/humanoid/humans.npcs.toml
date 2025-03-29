@@ -14,7 +14,8 @@ pickpocket = {
   stun_hit = 10,
   stun_ticks = 8,
   xp = 8.0,
-  chance = "180-240"
+  chance_min = 180,
+  chance_max = 240,
 }
 style = "crush"
 race = "human"

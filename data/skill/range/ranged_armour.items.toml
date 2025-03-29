@@ -5,7 +5,7 @@ limit = 5000
 weight = 0.226
 slot = "Hands"
 material = "leather"
-fishing = { level = 16, xp = 1.0, chance = "10-10" }
+fishing = { level = 16, xp = 1.0, chance_min = 10, chance_max = 10 }
 examine = "These will keep my hands warm!"
 kept = "Wilderness"
 
@@ -19,7 +19,7 @@ limit = 5000
 weight = 0.34
 slot = "Feet"
 material = "leather"
-fishing = { level = 16, xp = 1.0, chance = "10-10" }
+fishing = { level = 16, xp = 1.0, chance_min = 10, chance_max = 10 }
 examine = "Comfortable leather boots."
 kept = "Wilderness"
 

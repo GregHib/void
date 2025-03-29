@@ -30,7 +30,8 @@ data class Tree(
             var level = 1
             var xp = 0.0
             var depleteRate = 1.0
-            var chance: IntRange = 0..0
+            var chanceMin = 0
+            var chanceMax = 0
             var hatchetLowDifference: IntRange = 0..0
             var hatchetHighDifference: IntRange = 0..0
             var respawnDelay: IntRange = 0..0
@@ -40,14 +41,24 @@ data class Tree(
                     "level" -> level = reader.int()
                     "xp" -> xp = reader.double()
                     "deplete_rate" -> depleteRate = reader.double()
-                    "chance" -> chance = reader.string().toIntRange()
+                    "chance_min" -> chanceMin = reader.int()
+                    "chance_max" -> chanceMax = reader.int()
                     "hatchet_low_dif" -> hatchetLowDifference = reader.string().toIntRange()
                     "hatchet_high_dif" -> hatchetHighDifference = reader.string().toIntRange()
                     "respawn" -> respawnDelay = reader.string().toIntRange()
                     else -> throw IllegalArgumentException("Unexpected key: '$key' ${reader.exception()}")
                 }
             }
-            return Tree(log = log, level = level, xp = xp, depleteRate = depleteRate, chance = chance, hatchetLowDifference = hatchetLowDifference, hatchetHighDifference = hatchetHighDifference, respawnDelay = respawnDelay)
+            return Tree(
+                log = log,
+                level = level,
+                xp = xp,
+                depleteRate = depleteRate,
+                chance = chanceMin until chanceMax,
+                hatchetLowDifference = hatchetLowDifference,
+                hatchetHighDifference = hatchetHighDifference,
+                respawnDelay = respawnDelay
+            )
         }
 
         val EMPTY = Tree()
