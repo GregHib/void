@@ -92,8 +92,8 @@ class Interfaces(
     }
 
     private fun hasOpenOrRootParent(id: String): Boolean {
-        val parent = definitions.get(id).parent(resizable)
-        return if (parent == -1) true else contains(definitions.get(InterfaceDefinition.id(parent)).stringId)
+        val parent = definitions.getOrNull(id)?.parent(resizable) ?: return false
+        return parent == -1 || contains(definitions.get(InterfaceDefinition.id(parent)).stringId)
     }
 
     private fun sendIfOpened(id: String): Boolean {
@@ -126,7 +126,7 @@ class Interfaces(
     }
 
     private fun getParent(id: String): String {
-        val parent = definitions.get(id).parent(resizable)
+        val parent = definitions.getOrNull(id)?.parent(resizable) ?: return ""
         return if (parent == -1) {
             ROOT_ID
         } else {
@@ -135,11 +135,11 @@ class Interfaces(
     }
 
     private fun getType(id: String): String {
-        return definitions.get(id).type ?: DEFAULT_TYPE
+        return definitions.getOrNull(id)?.type ?: DEFAULT_TYPE
     }
 
     private fun sendOpen(id: String) {
-        val definition = definitions.get(id)
+        val definition = definitions.getOrNull(id) ?: return
         val parent = definition.parent(resizable)
         if (parent == -1) { // root
             client?.updateInterface(definition.id, 0)
@@ -153,8 +153,10 @@ class Interfaces(
     }
 
     private fun sendClose(id: String) {
-        val parent = definitions.get(id).parent(resizable)
-        client?.closeInterface(parent)
+        val parent = definitions.getOrNull(id)?.parent(resizable)
+        if (parent != null && parent != -1) {
+            client?.closeInterface(parent)
+        }
     }
 
     private fun notifyRefresh(id: String) {
@@ -244,7 +246,7 @@ class Interfaces(
  */
 fun Player.open(interfaceId: String, close: Boolean = true): Boolean {
     val defs: InterfaceDefinitions = get()
-    val type = defs.get(interfaceId).type
+    val type = defs.getOrNull(interfaceId)?.type
     if (close && type != null) {
         interfaces.get(type)?.let {
             interfaces.close(it)

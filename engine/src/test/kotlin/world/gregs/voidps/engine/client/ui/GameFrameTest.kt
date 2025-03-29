@@ -14,9 +14,9 @@ internal class GameFrameTest : InterfaceTest() {
     override fun setup() {
         super.setup()
         interfaces = Interfaces(events, client, definitions, open)
-        every { definitions.get("") } returns InterfaceDefinition()
-        every { definitions.get("toplevel_full") } returns InterfaceDefinition(id = -1, extras = mapOf("parent_resize" to ROOT_ID, "index_resize" to ROOT_INDEX))
-        every { definitions.get("toplevel") } returns InterfaceDefinition(extras = mapOf("parent_fixed" to ROOT_ID, "index_fixed" to ROOT_INDEX))
+        every { definitions.getOrNull("") } returns InterfaceDefinition()
+        every { definitions.getOrNull("toplevel_full") } returns InterfaceDefinition(id = -1)
+        every { definitions.getOrNull("toplevel") } returns InterfaceDefinition()
     }
 
     @Test

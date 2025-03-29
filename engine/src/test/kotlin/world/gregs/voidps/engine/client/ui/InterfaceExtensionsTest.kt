@@ -24,26 +24,21 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
         super.setup()
         player = mockk(relaxed = true)
         every { player.interfaces } returns interfaces
-        every { definitions.get(name) } returns InterfaceDefinition(id = 0)
+        every { definitions.getOrNull(name) } returns InterfaceDefinition(id = 0)
     }
 
     @Test
     fun `Open by name`() {
-        assertFalse(player.open(name))
+        assertTrue(player.open(name))
         verify { interfaces.open(name) }
         verify(exactly = 0) { interfaces.close(any<String>()) }
     }
 
     @Test
     fun `Interface already open with same type is closed first`() {
-        val extras = mapOf(
-            "type" to "interface_type",
-            "parent_fixed" to ROOT_ID,
-            "index_fixed" to ROOT_INDEX
-        )
-        every { definitions.get(ROOT_ID) } returns InterfaceDefinition(id = -1)
-        every { definitions.get("first") } returns InterfaceDefinition(id = 0, extras = extras)
-        every { definitions.get("second") } returns InterfaceDefinition(id = 1, extras = extras)
+        every { definitions.getOrNull(ROOT_ID) } returns InterfaceDefinition(id = -1)
+        every { definitions.getOrNull("first") } returns InterfaceDefinition(id = 0, type = "interface_type")
+        every { definitions.getOrNull("second") } returns InterfaceDefinition(id = 1, type = "interface_type")
         interfaces.open("first")
         val result = player.open("second")
         verifyOrder {
@@ -75,7 +70,7 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Close interface type`() {
-        every { definitions.get("second") } returns InterfaceDefinition()
+        every { definitions.getOrNull("second") } returns InterfaceDefinition()
         every { interfaces.get("interface_type") } returns "second"
         val result = player.closeType("interface_type")
         verifyOrder {

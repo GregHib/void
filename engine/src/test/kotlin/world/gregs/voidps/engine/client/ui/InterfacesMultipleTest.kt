@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
-import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_INDEX
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.network.login.protocol.encode.closeInterface
@@ -18,111 +17,115 @@ import world.gregs.voidps.network.login.protocol.encode.updateInterface
 
 internal class InterfacesMultipleTest : InterfaceTest() {
 
-    private val zero = "zero"
-    private val one = "one"
-    private val two = "two"
+    private val zeroId = "zero"
+    private val oneId = "one"
+    private val twoId = "two"
 
     @BeforeEach
     override fun setup() {
         super.setup()
-        every { definitions.get(zero) } returns InterfaceDefinition(id = 0, stringId = "0", extras = mapOf("parent_fixed" to one, "index_fixed" to ROOT_INDEX, "permanent" to false))
-        every { definitions.get(one) } returns InterfaceDefinition(id = 1, stringId = "1", extras = mapOf("parent_fixed" to two, "index_fixed" to ROOT_INDEX, "permanent" to false))
-        every { definitions.get(two) } returns InterfaceDefinition(id = 2, stringId = "2", extras = mapOf("parent_fixed" to ROOT_ID, "index_fixed" to ROOT_INDEX, "permanent" to false))
+        every { definitions.get(any<Int>()) } returns InterfaceDefinition(-1)
+        val zero = InterfaceDefinition(id = 0, stringId = "zero", permanent = false, fixed = InterfaceDefinition.pack(1, 0))
+        val one = InterfaceDefinition(id = 1, stringId = "one", permanent = false, fixed = InterfaceDefinition.pack(2, 0))
+        val two = InterfaceDefinition(id = 2, stringId = "two", permanent = false)
+        every { definitions.getOrNull(zeroId) } returns zero
+        every { definitions.getOrNull(oneId) } returns one
+        every { definitions.getOrNull(twoId) } returns two
+        every { definitions.get(1) } returns one
+        every { definitions.get(2) } returns two
     }
 
     @Test
     fun `Can't open child if parent isn't open`() {
-        assertFalse(interfaces.open(one))
+        assertFalse(interfaces.open(oneId))
 
         verify(exactly = 0) {
             client.openInterface(any(), any(), any())
-            events.emit(InterfaceOpened(one))
+            events.emit(InterfaceOpened(oneId))
         }
     }
 
     @Test
     fun `Can open parents and children`() {
-        assertTrue(interfaces.open(two))
-        assertTrue(interfaces.open(one))
-        assertTrue(interfaces.open(zero))
+        assertTrue(interfaces.open(twoId))
+        assertTrue(interfaces.open(oneId))
+        assertTrue(interfaces.open(zeroId))
 
         verifyOrder {
             client.updateInterface(2, 0)
-            events.emit(InterfaceOpened(two))
+            events.emit(InterfaceOpened(twoId))
             client.openInterface(false, InterfaceDefinition.pack(2, 0), 1)
-            events.emit(InterfaceOpened(one))
+            events.emit(InterfaceOpened(oneId))
             client.openInterface(false, InterfaceDefinition.pack(1, 0), 0)
-            events.emit(InterfaceOpened(zero))
+            events.emit(InterfaceOpened(zeroId))
         }
     }
 
     @Test
     fun `Remove doesn't close children`() {
         every { definitions.get(ROOT_ID) } returns InterfaceDefinition(id = 0)
-        interfaces.open(two)
-        interfaces.open(one)
-        interfaces.open(zero)
+        interfaces.open(twoId)
+        interfaces.open(oneId)
+        interfaces.open(zeroId)
 
-        assertTrue(interfaces.remove(two))
+        assertTrue(interfaces.remove(twoId))
 
-        assertFalse(interfaces.contains(two))
-        assertTrue(interfaces.contains(one))
-        assertTrue(interfaces.contains(zero))
+        assertFalse(interfaces.contains(twoId))
+        assertTrue(interfaces.contains(oneId))
+        assertTrue(interfaces.contains(zeroId))
 
         verifyOrder {
-            client.closeInterface(InterfaceDefinition.pack(0, 0))
-            events.emit(InterfaceClosed(two))
+            events.emit(InterfaceClosed(twoId))
         }
         verify(exactly = 0) {
             client.closeInterface(InterfaceDefinition.pack(2, 0))
-            events.emit(InterfaceClosed(one))
+            events.emit(InterfaceClosed(oneId))
             client.closeInterface(InterfaceDefinition.pack(1, 0))
-            events.emit(InterfaceClosed(zero))
+            events.emit(InterfaceClosed(zeroId))
         }
     }
 
     @Test
     fun `Close children doesn't close parent`() {
-        interfaces.open(two)
-        interfaces.open(one)
-        interfaces.open(zero)
+        interfaces.open(twoId)
+        interfaces.open(oneId)
+        interfaces.open(zeroId)
 
-        assertTrue(interfaces.closeChildren(two))
+        assertTrue(interfaces.closeChildren(twoId))
 
-        assertTrue(interfaces.contains(two))
-        assertFalse(interfaces.contains(one))
-        assertFalse(interfaces.contains(zero))
+        assertTrue(interfaces.contains(twoId))
+        assertFalse(interfaces.contains(oneId))
+        assertFalse(interfaces.contains(zeroId))
         verifyOrder {
             client.closeInterface(InterfaceDefinition.pack(2, 0))
-            events.emit(InterfaceClosed(one))
+            events.emit(InterfaceClosed(oneId))
             client.closeInterface(InterfaceDefinition.pack(1, 0))
-            events.emit(InterfaceClosed(zero))
+            events.emit(InterfaceClosed(zeroId))
         }
         verify(exactly = 0) {
             client.closeInterface(InterfaceDefinition.pack(0, 0))
-            events.emit(InterfaceClosed(two))
+            events.emit(InterfaceClosed(twoId))
         }
     }
 
     @Test
     fun `Close closes children and parent`() {
         every { definitions.get(ROOT_ID) } returns InterfaceDefinition(id = 0)
-        interfaces.open(two)
-        interfaces.open(one)
-        interfaces.open(zero)
+        interfaces.open(twoId)
+        interfaces.open(oneId)
+        interfaces.open(zeroId)
 
-        assertTrue(interfaces.close(two))
+        assertTrue(interfaces.close(twoId))
 
-        assertFalse(interfaces.contains(two))
-        assertFalse(interfaces.contains(one))
-        assertFalse(interfaces.contains(zero))
+        assertFalse(interfaces.contains(twoId))
+        assertFalse(interfaces.contains(oneId))
+        assertFalse(interfaces.contains(zeroId))
         verifyOrder {
-            client.closeInterface(InterfaceDefinition.pack(0, 0))
-            events.emit(InterfaceClosed(two))
+            events.emit(InterfaceClosed(twoId))
             client.closeInterface(InterfaceDefinition.pack(2, 0))
-            events.emit(InterfaceClosed(one))
+            events.emit(InterfaceClosed(oneId))
             client.closeInterface(InterfaceDefinition.pack(1, 0))
-            events.emit(InterfaceClosed(zero))
+            events.emit(InterfaceClosed(zeroId))
         }
     }
 }

@@ -20,11 +20,7 @@ internal class InterfacesSingleTest : InterfaceTest() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        every { definitions.get(name) } returns InterfaceDefinition(id = 1, stringId = "1", extras = mapOf(
-            "type" to "type",
-            "parent_fixed" to ROOT_ID,
-            "index_fixed" to ROOT_INDEX
-        ))
+        every { definitions.getOrNull(name) } returns InterfaceDefinition(id = 1, stringId = "1", type = "type")
         interfaces.resizable = false
     }
 
@@ -54,14 +50,14 @@ internal class InterfacesSingleTest : InterfaceTest() {
 
     @Test
     fun `Close no longer contains`() {
-        every { definitions.get("root").id } returns 2
+        every { definitions.getOrNull("zero")?.parent(any()) } returns 2
         open.add(name)
 
         assertTrue(interfaces.close(name))
         assertFalse(interfaces.contains(name))
 
         verifyOrder {
-            client.closeInterface(InterfaceDefinition.pack(2, 0))
+            client.closeInterface(2)
             events.emit(InterfaceClosed(name))
         }
     }
