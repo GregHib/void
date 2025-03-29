@@ -23,7 +23,7 @@ data class NPC(
     val id: String = "",
     override var tile: Tile = Tile.EMPTY,
     val def: NPCDefinition = NPCDefinition.EMPTY,
-    override val index: Int = -1,
+    override var index: Int = -1,
     override val levels: Levels = Levels()
 ) : Character {
     override val visuals: NPCVisuals = NPCVisuals()

@@ -5,11 +5,9 @@ import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.MAX_NPCS
-import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.CharacterMap
 import world.gregs.voidps.engine.entity.character.mode.Wander
-import world.gregs.voidps.engine.entity.character.mode.move.AreaEntered
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -17,16 +15,41 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
+import kotlin.math.log
 
 data class NPCs(
     private val definitions: NPCDefinitions,
     private val collisions: Collisions,
     private val collision: CollisionStrategyProvider,
     private val areaDefinitions: AreaDefinitions
-) : CharacterList<NPC>() {
+) : CharacterList<NPC>(), Runnable {
     override val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)
     private val logger = InlineLogger()
     private val map: CharacterMap = CharacterMap()
+    private val spawnQueue: Array<NPC?> = arrayOfNulls(MAX_NPCS)
+    private val despawnQueue: Array<NPC?> = arrayOfNulls(MAX_NPCS)
+    private var spawnIndex = 0
+    private var despawnIndex = 0
+
+    override fun run() {
+        for (i in 0 until despawnIndex) {
+            val npc = despawnQueue[i] ?: continue
+            if (!despawn(npc)) {
+                logger.warn { "Failed to despawn $npc" }
+            }
+            npc.index = -1
+            despawnQueue[i] = null
+        }
+        despawnIndex = 0
+        for (i in 0 until spawnIndex) {
+            val npc = spawnQueue[i] ?: continue
+            if (!spawn(npc)) {
+                logger.warn { "Failed to spawn $npc" }
+            }
+            spawnQueue[i] = null
+        }
+        spawnIndex = 0
+    }
 
     override operator fun get(tile: Tile): List<NPC> {
         return get(tile.regionLevel).filter { it.tile == tile }
@@ -67,54 +90,59 @@ data class NPCs(
         }
     }
 
+    // TODO separate delete from remove
+
     override fun remove(element: NPC): Boolean {
-        map.remove(element.tile.regionLevel, element)
-        return super.remove(element)
+        if (element.index == -1) {
+            logger.warn { "Unable to remove npc ${element}." }
+        }
+        despawnQueue[despawnIndex++] = element
+        return true
     }
 
     fun getDirect(region: RegionLevel): List<Int>? = this.map[region]
 
-    fun add(id: String, tile: Tile, direction: Direction = Direction.NONE, delay: Int? = null): NPC? {
-        val npc = add(id, tile, direction) ?: return null
-        val respawnDelay = delay ?: npc.def.getOrNull("respawn_delay")
-        if (respawnDelay != null && respawnDelay > 0) {
-            npc["respawn_tile"] = tile
-            npc["respawn_delay"] = respawnDelay
-            npc["respawn_direction"] = direction
-        }
-        npc.emit(Spawn)
-        for (def in areaDefinitions.get(npc.tile.zone)) {
-            if (npc.tile in def.area) {
-                npc.emit(AreaEntered(npc, def.name, def.tags, def.area))
-            }
-        }
-        return npc
-    }
-
-    private fun add(id: String, tile: Tile, direction: Direction = Direction.NONE): NPC? {
+    fun add(id: String, tile: Tile, direction: Direction = Direction.NONE): NPC? {
         val def = definitions.get(id)
         if (def.id == -1) {
             logger.warn { "No npc found for name $id" }
             return null
         }
-        val index = index() ?: return null
-        val npc = NPC(id, tile, def, index)
-        npc.levels.link(npc, NPCLevels(def))
+        val npc = NPC(id, tile, def)
+        spawnQueue[spawnIndex++] = npc
+        val dir = if (direction == Direction.NONE) Direction.all.random() else direction
+        npc.face(dir)
+        return npc
+    }
+
+    private fun despawn(npc: NPC): Boolean {
+        map.remove(npc.tile.regionLevel, npc)
+        return super.remove(npc)
+    }
+
+    private fun spawn(npc: NPC): Boolean {
+        val index = index() ?: return false
+        npc.index = index
+        npc.levels.link(npc, NPCLevels(npc.def))
         npc.levels.clear(Skill.Constitution)
         npc.levels.clear(Skill.Attack)
         npc.levels.clear(Skill.Strength)
         npc.levels.clear(Skill.Defence)
         npc.levels.clear(Skill.Ranged)
         npc.levels.clear(Skill.Magic)
-        npc["spawn_tile"] = tile
+        npc["spawn_tile"] = npc.tile
         if (Wander.wanders(npc)) {
-            npc.mode = Wander(npc, tile)
+            npc.mode = Wander(npc, npc.tile)
         }
-        val dir = if (direction == Direction.NONE) Direction.all.random() else direction
-        npc.face(dir)
         npc.collision = collision.get(npc)
         add(npc)
-        return npc
+        val respawnDelay = npc.def.getOrNull<Int>("respawn_delay")
+        if (respawnDelay != null && respawnDelay > 0) {
+            npc["respawn_tile"] = npc.tile
+            npc["respawn_delay"] = respawnDelay
+            npc["respawn_direction"] = npc.direction
+        }
+        return true
     }
 
     override fun clear() {

@@ -54,6 +54,7 @@ fun getTickStages(
     val iterator: TaskIterator<Player> = if (sequential) SequentialIterator() else ParallelIterator()
     return listOf(
         PlayerResetTask(sequentialPlayer, players, batches),
+        npcs,
         NPCResetTask(sequentialNpc, npcs),
         hunting,
         // Connections/Tick Input

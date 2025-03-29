@@ -131,7 +131,7 @@ fun cleanseEvent(forceStopped: Boolean) {
     currentActiveObject?.let { current -> objects[currentStarTile, current.id] }?.remove()
     if (!forceStopped) {
         areaSound("star_sprite_appear", currentStarTile, radius = 10)
-        val starSprite = npcs.add("star_sprite", currentStarTile, Direction.NONE, 0)
+        val starSprite = npcs.add("star_sprite", currentStarTile, Direction.NONE)
         World.queue("start_sprite_despawn_timer", TimeUnit.MINUTES.toTicks(10)) {
             npcs.remove(starSprite)
         }
