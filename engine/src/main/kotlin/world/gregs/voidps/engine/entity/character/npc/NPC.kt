@@ -28,6 +28,8 @@ data class NPC(
 ) : Character {
     override val visuals: NPCVisuals = NPCVisuals()
 
+    var hide = false
+
     init {
         if (index != -1) {
             visuals.hits.self = -index

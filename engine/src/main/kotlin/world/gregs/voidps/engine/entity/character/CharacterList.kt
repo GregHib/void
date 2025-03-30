@@ -1,11 +1,8 @@
 package world.gregs.voidps.engine.entity.character
 
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.Zone
-
 abstract class CharacterList<C : Character>(
     private val delegate: MutableList<C> = mutableListOf()
-) : MutableList<C> by delegate {
+) : MutableList<C> by delegate, CharacterSearch<C> {
 
     abstract val indexArray: Array<C?>
     private var indexer = 1
@@ -41,10 +38,6 @@ abstract class CharacterList<C : Character>(
     fun removeIndex(element: C) {
         indexArray[element.index] = null
     }
-
-    abstract operator fun get(tile: Tile): List<C>
-
-    abstract operator fun get(zone: Zone): List<C>
 
     fun indexed(index: Int): C? = indexArray[index]
 

@@ -3,9 +3,8 @@ package world.gregs.voidps.engine.entity.character.npc
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.MAX_NPCS
-import world.gregs.voidps.engine.entity.character.CharacterList
+import world.gregs.voidps.engine.entity.character.CharacterSearch
 import world.gregs.voidps.engine.entity.character.CharacterMap
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -15,34 +14,32 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
-import kotlin.math.log
 
 data class NPCs(
     private val definitions: NPCDefinitions,
     private val collisions: Collisions,
     private val collision: CollisionStrategyProvider,
     private val areaDefinitions: AreaDefinitions
-) : CharacterList<NPC>(), Runnable {
-    override val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)
-    private val logger = InlineLogger()
-    private val map: CharacterMap = CharacterMap()
+) : Runnable, Iterable<NPC>, CharacterSearch<NPC> {
+    private val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)
+    private var indexer = 1
     private val spawnQueue: Array<NPC?> = arrayOfNulls(MAX_NPCS / 4)
-    private val despawnQueue: Array<NPC?> = arrayOfNulls(MAX_NPCS / 4)
     private var spawnIndex = 0
-    private var despawnIndex = 0
+    private val removeQueue: IntArray = IntArray(MAX_NPCS / 4)
+    private var removeIndex = 0
+    private val map: CharacterMap = CharacterMap()
+    private val logger = InlineLogger()
 
     override fun run() {
-        for (i in 0 until despawnIndex) {
-            val npc = despawnQueue[i] ?: continue
-            if (!despawn(npc)) {
-                logger.warn { "Failed to despawn $npc" }
-            }
-            removeIndex(npc)
-            super.remove(npc)
+        for (i in 0 until removeIndex) {
+            val index = removeQueue[i]
+            val npc = indexArray[index]!!
+            indexArray[index] = null
+            map.remove(npc.tile.regionLevel, npc)
             npc.index = -1
-            despawnQueue[i] = null
+            removeQueue[i] = -1
         }
-        despawnIndex = 0
+        removeIndex = 0
         for (i in 0 until spawnIndex) {
             val npc = spawnQueue[i] ?: continue
             if (!spawn(npc)) {
@@ -53,25 +50,27 @@ data class NPCs(
         spawnIndex = 0
     }
 
-    override operator fun get(tile: Tile): List<NPC> {
-        return get(tile.regionLevel).filter { it.tile == tile }
-    }
+    fun indexed(index: Int): NPC? = indexArray[index]
 
-    override operator fun get(zone: Zone): List<NPC> {
-        return get(zone.regionLevel).filter { it.tile.zone == zone }
-    }
-
-    operator fun get(region: RegionLevel): List<NPC> {
-        val list = mutableListOf<NPC>()
-        for (index in map[region] ?: return list) {
-            list.add(indexed(index) ?: continue)
+    fun add(id: String, tile: Tile, direction: Direction = Direction.NONE): NPC {
+        val def = definitions.getOrNull(id)!!
+        val npc = NPC(id, tile, def)
+        if (spawnIndex < spawnQueue.size) {
+            spawnQueue[spawnIndex++] = npc
         }
-        return list
+        val dir = if (direction == Direction.NONE) Direction.all.random() else direction
+        npc.face(dir)
+        return npc
     }
 
-    override fun add(element: NPC): Boolean {
-        if (super.add(element)) {
-            map.add(element.tile.regionLevel, element)
+    fun remove(element: NPC?): Boolean {
+        if (element == null || element.index == -1) {
+            logger.warn { "Unable to remove npc ${element}." }
+            return false
+        }
+        if (removeIndex < removeQueue.size) {
+            element.hide = true
+            removeQueue[removeIndex++] = element.index
             return true
         }
         return false
@@ -84,55 +83,53 @@ data class NPCs(
         }
     }
 
-    fun clear(region: RegionLevel) {
-        for (index in map[region] ?: return) {
-            val element = indexed(index) ?: continue
-            super.remove(element)
-            removeIndex(element)
-        }
-    }
-
-    fun hide(npc: NPC) = removeIndex(npc)
-
-    fun show(npc: NPC) = index(npc)
-
-    override fun remove(element: NPC): Boolean {
-        if (element.index == -1) {
-            logger.warn { "Unable to remove npc ${element}." }
-            return false
-        }
-        if (despawnIndex < despawnQueue.size) {
-            removeIndex(element)
-            despawnQueue[despawnIndex++] = element
-            return true
-        }
-        return false
-    }
-
     fun getDirect(region: RegionLevel): List<Int>? = this.map[region]
 
-    fun add(id: String, tile: Tile, direction: Direction = Direction.NONE): NPC? {
-        val def = definitions.get(id)
-        if (def.id == -1) {
-            logger.warn { "No npc found for name $id" }
-            return null
+    override operator fun get(tile: Tile): List<NPC> {
+        val list = mutableListOf<NPC>()
+        for (index in map[tile.regionLevel] ?: return list) {
+            val npc = indexed(index) ?: continue
+            if (npc.tile == tile) {
+                list.add(npc)
+            }
         }
-        val npc = NPC(id, tile, def)
-        if (spawnIndex < spawnQueue.size) {
-            spawnQueue[spawnIndex++] = npc
-        }
-        val dir = if (direction == Direction.NONE) Direction.all.random() else direction
-        npc.face(dir)
-        return npc
+        return list
     }
 
-    private fun despawn(npc: NPC): Boolean {
-        map.remove(npc.tile.regionLevel, npc)
-        return super.remove(npc)
+    override operator fun get(zone: Zone): List<NPC> {
+        val list = mutableListOf<NPC>()
+        for (index in map[zone.regionLevel] ?: return list) {
+            val npc = indexed(index) ?: continue
+            if (npc.tile.zone == zone) {
+                list.add(npc)
+            }
+        }
+        return list
+    }
+
+    operator fun get(region: RegionLevel): List<NPC> {
+        val list = mutableListOf<NPC>()
+        for (index in map[region] ?: return list) {
+            list.add(indexed(index) ?: continue)
+        }
+        return list
+    }
+
+    private fun index(): Int? {
+        if (indexer < indexArray.size) {
+            return indexer++
+        }
+        for (i in 1 until indexArray.size) {
+            if (indexArray[i] == null) {
+                return i
+            }
+        }
+        return null
     }
 
     private fun spawn(npc: NPC): Boolean {
         val index = index() ?: return false
+        indexArray[index] = npc
         npc.index = index
         npc.levels.link(npc, NPCLevels(npc.def))
         npc.levels.clear(Skill.Constitution)
@@ -146,7 +143,8 @@ data class NPCs(
             npc.mode = Wander(npc, npc.tile)
         }
         npc.collision = collision.get(npc)
-        add(npc)
+        npc.hide = false
+        map.add(npc.tile.regionLevel, npc)
         val respawnDelay = npc.def.getOrNull<Int>("respawn_delay")
         if (respawnDelay != null && respawnDelay > 0) {
             npc["respawn_tile"] = npc.tile
@@ -156,11 +154,44 @@ data class NPCs(
         return true
     }
 
-    override fun clear() {
-        for (npc in this) {
-            npc.emit(Despawn)
-            npc.softTimers.stopAll()
+    fun clear(region: RegionLevel) {
+        for (index in map[region] ?: return) {
+            if (removeIndex < removeQueue.size) {
+                removeQueue[removeIndex++] = index
+            }
         }
-        super.clear()
+    }
+
+    fun clear() {
+        indexArray.fill(null)
+        indexer = 1
+    }
+
+    override fun iterator(): Iterator<NPC> = object : Iterator<NPC> {
+        private var nextIndex = 1
+
+        init {
+            nextIndex()
+        }
+
+        override fun hasNext(): Boolean {
+            return nextIndex < indexArray.size
+        }
+
+        override fun next(): NPC {
+            if (!hasNext()) {
+                throw NoSuchElementException("No more elements in the NPC array")
+            }
+
+            val current = indexArray[nextIndex++]!!
+            nextIndex()
+            return current
+        }
+
+        private fun nextIndex() {
+            while (nextIndex < indexArray.size && indexArray[nextIndex] == null) {
+                nextIndex++
+            }
+        }
     }
 }

@@ -10,7 +10,7 @@ abstract class CharacterTask<C : Character>(
     private val iterator: TaskIterator<C>
 ) : Runnable {
 
-    abstract val characters: CharacterList<C>
+    abstract val characters: Iterable<C>
 
     open fun predicate(character: C): Boolean = true
 

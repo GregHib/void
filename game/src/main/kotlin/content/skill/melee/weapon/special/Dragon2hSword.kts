@@ -1,6 +1,5 @@
 package content.skill.melee.weapon.special
 
-import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -10,6 +9,7 @@ import content.entity.combat.Target
 import content.entity.combat.hit.hit
 import content.area.wilderness.inMultiCombat
 import content.entity.player.combat.special.specialAttackDamage
+import world.gregs.voidps.engine.entity.character.CharacterSearch
 
 val players: Players by inject()
 val npcs: NPCs by inject()
@@ -18,7 +18,7 @@ specialAttackDamage("powerstab") { player ->
     if (!player.inMultiCombat) {
         return@specialAttackDamage
     }
-    val characters: CharacterList<*> = if (target is Player) players else npcs
+    val characters: CharacterSearch<*> = if (target is Player) players else npcs
     var remaining = if (target is Player) 2 else 14
     for (direction in Direction.reversed) {
         val tile = player.tile.add(direction)

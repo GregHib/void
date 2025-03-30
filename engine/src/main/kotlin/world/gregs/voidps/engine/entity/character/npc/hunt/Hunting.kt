@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.config.HuntModeDefinition
 import world.gregs.voidps.engine.data.definition.HuntModeDefinitions
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.CharacterList
+import world.gregs.voidps.engine.entity.character.CharacterSearch
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfWalk
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -164,7 +164,7 @@ class Hunting(
      */
     private fun <T : Character> getCharacters(
         npc: NPC,
-        characterList: CharacterList<T>,
+        characterList: CharacterSearch<T>,
         range: Int,
         definition: HuntModeDefinition
     ): MutableList<T> {
