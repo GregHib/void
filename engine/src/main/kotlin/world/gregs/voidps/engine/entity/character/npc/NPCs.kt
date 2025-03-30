@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.MAX_NPCS
 import world.gregs.voidps.engine.entity.character.CharacterSearch
 import world.gregs.voidps.engine.entity.character.CharacterMap
@@ -169,6 +170,10 @@ data class NPCs(
     }
 
     fun clear() {
+        for (npc in this) {
+            npc.emit(Despawn)
+            npc.softTimers.stopAll()
+        }
         indexArray.fill(null)
         indexer = 1
         size = 0
