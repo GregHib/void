@@ -51,6 +51,7 @@ class FloorItemsTest {
         items.add(first)
         val second = floorItem("item", Tile(10, 10, 1), owner = "player")
         items.add(second)
+        items.run()
 
         assertEquals(items[Tile.EMPTY].first(), first)
         assertEquals(items[Tile(10, 10, 1)].first(), second)
@@ -67,6 +68,7 @@ class FloorItemsTest {
         items.add(first)
         val second = floorItem("item2", Tile.EMPTY)
         items.add(second)
+        items.run()
 
         val items = items[Tile.EMPTY]
         assertEquals(items[0], first)
@@ -79,6 +81,7 @@ class FloorItemsTest {
         items.add(first)
         val second = floorItem("stackable", Tile.EMPTY, owner = "player", disappear = 10, reveal = 10)
         items.add(second)
+        items.run()
 
         val floorItem = items[Tile.EMPTY].first()
         assertEquals(floorItem.id, "stackable")
@@ -103,6 +106,7 @@ class FloorItemsTest {
         items.add(first)
         val second = floorItem("item", Tile.EMPTY, owner = "player")
         items.add(second)
+        items.run()
         val items = items[Tile.EMPTY]
         assertEquals(first, items[0])
         assertEquals(second, items[1])
@@ -114,6 +118,7 @@ class FloorItemsTest {
         items.add(first)
         val second = floorItem("item", Tile.EMPTY, 20, owner = "player")
         items.add(second)
+        items.run()
 
         val items = items[Tile.EMPTY]
         assertEquals(first, items[0])
@@ -126,6 +131,7 @@ class FloorItemsTest {
         items.add(first)
         val second = floorItem("item", Tile.EMPTY, owner = "player", disappear = 10, reveal = 10)
         items.add(second)
+        items.run()
 
         val items = items[Tile.EMPTY]
         assertEquals(first, items[0])
@@ -140,6 +146,7 @@ class FloorItemsTest {
         items.add(second)
 
         assertTrue(items.remove(first))
+        items.run()
         val items = items[Tile.EMPTY]
         assertFalse(items.contains(first))
         assertTrue(items.contains(second))
@@ -157,6 +164,7 @@ class FloorItemsTest {
 
         val item = floorItem("item", Tile.EMPTY, owner = "player")
         items.add(item)
+        items.run()
 
         val items = items[Tile.EMPTY]
         assertTrue(items.none { it.def.cost == 5 })
@@ -180,6 +188,7 @@ class FloorItemsTest {
         items.add(first)
 
         items.clear()
+        items.run()
 
         val items = items[Tile.EMPTY]
         assertTrue(items.isEmpty())
