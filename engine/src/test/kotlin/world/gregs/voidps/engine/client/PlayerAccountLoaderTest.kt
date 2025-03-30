@@ -91,14 +91,14 @@ internal class PlayerAccountLoaderTest : KoinMock() {
         val client: Client = mockk(relaxed = true)
         val player = Player(index = 4, accountName = "name", passwordHash = "\$2a\$10\$cPB7bqICWrOILrWnXuYNDu1EsbZal9AjxYMbmpMOtI1kwruazGiby", variables = mutableMapOf("display_name" to "name"))
         coEvery { queue.await() } just Runs
-        every { accounts.setup(any()) } returns true
+        every { accounts.setup(any(), client, 2) } returns true
 
         loader.connect(player, client, 2)
 
         coVerify {
             queue.await()
             client.login("name", 4, 0, membersWorld = false)
-            accounts.spawn(player, client, 2)
+            accounts.spawn(player, client)
         }
     }
 
@@ -107,7 +107,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
         mockkStatic("world.gregs.voidps.network.login.protocol.encode.LoginEncoderKt")
         val client: Client = mockk(relaxed = true)
         val player = Player(index = 4, accountName = "name", passwordHash = "\$2a\$10\$cPB7bqICWrOILrWnXuYNDu1EsbZal9AjxYMbmpMOtI1kwruazGiby", variables = mutableMapOf("display_name" to "name"))
-        every { accounts.setup(player) } returns false
+        every { accounts.setup(player, client, 2) } returns false
 
         loader.connect(player, client, 2)
 

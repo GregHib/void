@@ -63,7 +63,7 @@ class PlayerAccountLoader(
     }
 
     suspend fun connect(player: Player, client: Client? = null, displayMode: Int = 0) {
-        if (!accounts.setup(player)) {
+        if (!accounts.setup(player, client, displayMode)) {
             logger.warn { "Error setting up account" }
             client?.disconnect(Response.WORLD_FULL)
             return
@@ -72,7 +72,7 @@ class PlayerAccountLoader(
             queue.await()
             logger.info { "${if (client != null) "Player" else "Bot"} logged in ${player.accountName} index ${player.index}." }
             client?.login(player.name, player.index, player.rights.ordinal, membersWorld = World.members)
-            accounts.spawn(player, client, displayMode)
+            accounts.spawn(player, client)
         }
     }
 }

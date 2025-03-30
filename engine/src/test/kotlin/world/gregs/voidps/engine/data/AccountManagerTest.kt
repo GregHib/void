@@ -81,7 +81,7 @@ class AccountManagerTest : KoinMock() {
     @Test
     fun `Initialise player`() {
         val player = Player(0)
-        manager.setup(player)
+        manager.setup(player, null, 0)
         assertNotNull(player.visuals)
         assertNotNull(player.interfaces)
         assertNotNull(player.interfaceOptions)
@@ -94,10 +94,7 @@ class AccountManagerTest : KoinMock() {
         val player = Player(0)
         player.interfaces = Interfaces(player, definitions = get())
         val client: Client = mockk(relaxed = true)
-        manager.spawn(player, client, 2)
-        assertEquals(2, player.interfaces.displayMode)
-        assertNotNull(player.viewport)
-
+        manager.spawn(player, client)
         verify {
             client.onDisconnecting(any())
         }

@@ -53,7 +53,7 @@ class AccountManager(
         }
     }
 
-    fun setup(player: Player): Boolean {
+    fun setup(player: Player, client: Client?, displayMode: Int): Boolean {
         player.index = players.index() ?: return false
         player.visuals.hits.self = player.index
         player.interfaces = Interfaces(player, player.client, interfaceDefinitions)
@@ -74,20 +74,20 @@ class AccountManager(
         if (player.contains("new_player")) {
             accountDefinitions.add(player)
         }
-        player.collision = collisionStrategyProvider.get(character = player)
-        return true
-    }
-
-    fun spawn(player: Player, client: Client? = null, displayMode: Int = 0) {
         player.interfaces.displayMode = displayMode
         if (client != null) {
             player.viewport = Viewport()
             player.client = client
             player.interfaces.client = client
             (player.variables as PlayerVariables).client = client
-            client.onDisconnecting {
-                logout(player, false)
-            }
+        }
+        player.collision = collisionStrategyProvider.get(character = player)
+        return true
+    }
+
+    fun spawn(player: Player, client: Client?) {
+        client?.onDisconnecting {
+            logout(player, false)
         }
         player.emit(RegionLoad)
         player.open(player.interfaces.gameFrame)
