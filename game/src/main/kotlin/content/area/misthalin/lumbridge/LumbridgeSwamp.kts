@@ -43,7 +43,7 @@ objectOperate("Search", "rocks_skull_restless_ghost_quest") {
         }
     }
     player.message("A skeleton warlock has appeared.")
-    val warlock = npcs.add("skeleton_warlock", Tile(3236, 3149), Direction.SOUTH) ?: return@objectOperate
+    val warlock = npcs.add("skeleton_warlock", Tile(3236, 3149), Direction.SOUTH)
     player["restless_ghost_warlock"] = warlock.index
     warlock.anim("restless_ghost_warlock_spawn")
     val player = player

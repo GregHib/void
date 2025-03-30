@@ -121,11 +121,11 @@ suspend fun SuspendableContext<Player>.cutscene() {
     player["demon_slayer_offset"] = offset
     player.steps.clear()
     player.mode = EmptyMode
-    val wizard1 = npcs.add("dark_wizard_water", Tile(3226, 3371).add(offset), Direction.SOUTH_EAST) ?: return
-    val wizard2 = npcs.add("dark_wizard_water_2", Tile(3229, 3371).add(offset), Direction.SOUTH_WEST) ?: return
-    val wizard3 = npcs.add("dark_wizard_earth", Tile(3226, 3368).add(offset), Direction.NORTH_EAST) ?: return
-    val denath = npcs.add("denath", Tile(3229, 3368).add(offset), Direction.NORTH_WEST) ?: return
-    val delrith = npcs.add("delrith", Tile(3227, 3369).add(offset), Direction.SOUTH) ?: return
+    val wizard1 = npcs.add("dark_wizard_water", Tile(3226, 3371).add(offset), Direction.SOUTH_EAST)
+    val wizard2 = npcs.add("dark_wizard_water_2", Tile(3229, 3371).add(offset), Direction.SOUTH_WEST)
+    val wizard3 = npcs.add("dark_wizard_earth", Tile(3226, 3368).add(offset), Direction.NORTH_EAST)
+    val denath = npcs.add("denath", Tile(3229, 3368).add(offset), Direction.NORTH_WEST)
+    val delrith = npcs.add("delrith", Tile(3227, 3369).add(offset), Direction.SOUTH)
     delrith.hide = true
     val wizards = listOf(wizard1, wizard2, wizard3, denath)
     for (wizard in wizards) {

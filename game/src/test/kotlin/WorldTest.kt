@@ -103,12 +103,12 @@ abstract class WorldTest : KoinTest {
 
     fun createPlayer(name: String, tile: Tile = Tile.EMPTY): Player {
         val player = Player(tile = tile, accountName = name, passwordHash = "")
-        assertTrue(accounts.setup(player))
+        assertTrue(accounts.setup(player, null, 0))
         accountDefs.add(player)
         tick()
         player["creation"] = -1
         player["skip_level_up"] = true
-        accounts.spawn(player, null, 0)
+        accounts.spawn(player, null)
         player.softTimers.clear("restore_stats")
         player.softTimers.clear("restore_hitpoints")
         tick()
@@ -118,8 +118,9 @@ abstract class WorldTest : KoinTest {
     }
 
     fun createNPC(id: String, tile: Tile = Tile.EMPTY, block: (NPC) -> Unit = {}): NPC {
-        val npc = npcs.add(id, tile)!!
+        val npc = npcs.add(id, tile)
         block.invoke(npc)
+        npcs.run()
         return npc
     }
 
