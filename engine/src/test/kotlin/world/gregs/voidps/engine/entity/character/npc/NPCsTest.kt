@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.npc
 
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -11,23 +12,78 @@ import world.gregs.voidps.type.Tile
 
 class NPCsTest {
 
-    @Test
-    fun `Iterate through list`() {
+    private lateinit var npcs: NPCs
+
+    @BeforeEach
+    fun setup() {
         val definitions = NPCDefinitions(arrayOf(NPCDefinition(0)))
         definitions.ids = mapOf("test" to 0)
-        val npcs = NPCs(definitions, Collisions(emptyArray()), CollisionStrategyProvider(), AreaDefinitions())
-        val npc1 = npcs.add("test", Tile(123, 456))
-        val npc2 = npcs.add("test", Tile(123, 456))
-        npcs.run()
-        val npc3 = npcs.add("test", Tile(123, 456))
-        assertEquals(1, npc1.index)
-        assertEquals(2, npc2.index)
-        assertEquals(-1, npc3.index)
+        npcs = NPCs(definitions, Collisions(emptyArray()), CollisionStrategyProvider(), AreaDefinitions())
+    }
+
+    @Test
+    fun `Add character to list`() {
+        val npc = npcs.add("test", Tile(1))
+        assertEquals("test", npc.id)
+        assertEquals(Tile(1), npc.tile)
+        assertEquals(-1, npc.index)
+        assertNull(npcs.indexed(1))
         npcs.run()
 
+        assertEquals(1, npc.index)
+        assertEquals(npc, npcs.indexed(1))
+        assertEquals(1, npcs.size)
+    }
 
-        val npc4 = npcs.add("test", Tile(123, 456))
+    @Test
+    fun `Invalid npcs aren't added`() {
+        val npc = npcs.add("invalid", Tile(1))
+        assertEquals("invalid", npc.id)
+        assertEquals(Tile(1), npc.tile)
         npcs.run()
-        assertEquals(2, npc4.index)
+        assertEquals(-1, npc.index)
+        assertNull(npcs.indexed(1))
+        assertEquals(0, npcs.size)
+    }
+
+    @Test
+    fun `Remove character from list`() {
+        val npc = npcs.add("test", Tile(1))
+        npcs.run()
+
+        assertTrue(npcs.remove(npc))
+        assertNotNull(npcs.indexed(1))
+
+        npcs.run()
+
+        assertNull(npcs.indexed(1))
+        assertEquals(0, npcs.size)
+    }
+
+    @Test
+    fun `Iterate over removed index`() {
+        val npc1 = npcs.add("test", Tile(1))
+        val npc2 = npcs.add("test", Tile(1))
+        val npc3 = npcs.add("test", Tile(1))
+        npcs.run()
+
+        assertTrue(npcs.remove(npc2))
+        npcs.run()
+
+        val iterator = npcs.iterator()
+        assertTrue(iterator.hasNext())
+        assertEquals(npc1, iterator.next())
+        assertEquals(npc3, iterator.next())
+        assertFalse(iterator.hasNext())
+    }
+
+    @Test
+    fun `Clear all characters in list`() {
+        npcs.add("test", Tile(1))
+        npcs.run()
+        npcs.clear()
+
+        assertNull(npcs.indexed(1))
+        assertEquals(0, npcs.size)
     }
 }

@@ -20,11 +20,15 @@ val players: Players by inject()
 
 adminCommand("kill", "remove all bots") {
     val it = players.iterator()
+    val remove = mutableListOf<Player>()
     while (it.hasNext()) {
         val p = it.next()
         if (p.isBot) {
-            it.remove()
+            remove.add(p)
         }
+    }
+    for (bot in remove) {
+        players.remove(bot)
     }
 }
 

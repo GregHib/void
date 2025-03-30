@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.client.update
 
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
-import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.mode.Wander.Companion.wanders

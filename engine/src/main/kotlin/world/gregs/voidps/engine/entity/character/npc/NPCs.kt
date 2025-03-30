@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.npc
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.MAX_NPCS
@@ -27,6 +28,8 @@ data class NPCs(
     private var spawnIndex = 0
     private val removeQueue: IntArray = IntArray(MAX_NPCS / 4)
     private var removeIndex = 0
+    var size = 0
+        private set
     private val map: CharacterMap = CharacterMap()
     private val logger = InlineLogger()
 
@@ -38,12 +41,15 @@ data class NPCs(
             map.remove(npc.tile.regionLevel, npc)
             npc.index = -1
             removeQueue[i] = -1
+            size--
         }
         removeIndex = 0
         for (i in 0 until spawnIndex) {
             val npc = spawnQueue[i] ?: continue
             if (!spawn(npc)) {
                 logger.warn { "Failed to spawn $npc" }
+            } else {
+                size++
             }
             spawnQueue[i] = null
         }
@@ -53,7 +59,7 @@ data class NPCs(
     fun indexed(index: Int): NPC? = indexArray[index]
 
     fun add(id: String, tile: Tile, direction: Direction = Direction.NONE): NPC {
-        val def = definitions.getOrNull(id)!!
+        val def = definitions.getOrNull(id) ?: return NPC(id, tile, NPCDefinition.EMPTY)
         val npc = NPC(id, tile, def)
         if (spawnIndex < spawnQueue.size) {
             spawnQueue[spawnIndex++] = npc
@@ -63,23 +69,23 @@ data class NPCs(
         return npc
     }
 
-    fun remove(element: NPC?): Boolean {
-        if (element == null || element.index == -1) {
-            logger.warn { "Unable to remove npc ${element}." }
+    fun remove(npc: NPC?): Boolean {
+        if (npc == null || npc.index == -1) {
+            logger.warn { "Unable to remove npc ${npc}." }
             return false
         }
         if (removeIndex < removeQueue.size) {
-            element.hide = true
-            removeQueue[removeIndex++] = element.index
+            npc.hide = true
+            removeQueue[removeIndex++] = npc.index
             return true
         }
         return false
     }
 
-    fun update(from: Tile, to: Tile, element: NPC) {
+    fun update(from: Tile, to: Tile, npc: NPC) {
         if (from.regionLevel != to.regionLevel) {
-            map.remove(from.regionLevel, element)
-            map.add(to.regionLevel, element)
+            map.remove(from.regionLevel, npc)
+            map.add(to.regionLevel, npc)
         }
     }
 
@@ -165,6 +171,7 @@ data class NPCs(
     fun clear() {
         indexArray.fill(null)
         indexer = 1
+        size = 0
     }
 
     override fun iterator(): Iterator<NPC> = object : Iterator<NPC> {

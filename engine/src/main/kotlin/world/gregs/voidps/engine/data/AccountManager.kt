@@ -118,7 +118,6 @@ class AccountManager(
         connectionQueue.disconnect {
             World.queue("logout", 1) {
                 players.remove(player)
-                players.removeIndex(player)
             }
             for (def in areaDefinitions.get(player.tile.zone)) {
                 if (player.tile in def.area) {
