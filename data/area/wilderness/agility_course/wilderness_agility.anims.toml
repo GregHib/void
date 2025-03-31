@@ -18,9 +18,3 @@ id = 2582
 
 [fall_on_floor]
 id = 767
-
-[stepping_stone_step]
-id = 769
-
-[stepping_stone_jump]
-id = 741

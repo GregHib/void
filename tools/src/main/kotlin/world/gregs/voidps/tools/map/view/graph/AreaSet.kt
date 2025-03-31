@@ -69,38 +69,42 @@ class AreaSet {
 //            writer.writeValue(File(path), set.areas)
         }
 
-        fun load(path: String = "./areas.toml"): AreaSet {
+        fun load(paths: List<String>): AreaSet {
             val set = AreaSet()
             val areas = mutableListOf<Area>()
-            Config.fileReader(path) {
-                while (nextSection()) {
-                    val name = section()
-                    val x = IntArrayList()
-                    val y = IntArrayList()
-                    var level: Int? = null
-                    val tags = ObjectOpenHashSet<String>()
-                    val extras = Object2ObjectOpenHashMap<String, Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
-                    while (nextPair()) {
-                        when (val key = key()) {
-                            "x" -> while (nextElement()) {
-                                x.add(int())
+            for (path in paths) {
+                Config.fileReader(path) {
+                    while (nextSection()) {
+                        val name = section()
+                        val x = IntArrayList()
+                        val y = IntArrayList()
+                        var level: Int? = null
+                        val tags = ObjectOpenHashSet<String>()
+                        val extras = Object2ObjectOpenHashMap<String, Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
+                        while (nextPair()) {
+                            when (val key = key()) {
+                                "x" -> while (nextElement()) {
+                                    x.add(int())
+                                }
+                                "y" -> while (nextElement()) {
+                                    y.add(int())
+                                }
+                                "level" -> level = int()
+                                "tags" -> while (nextElement()) {
+                                    tags.add(string())
+                                }
+                                else -> extras[key] = value()
                             }
-                            "y" -> while (nextElement()) {
-                                y.add(int())
-                            }
-                            "level" -> level = int()
-                            "tags" -> while (nextElement()) {
-                                tags.add(string())
-                            }
-                            else -> extras[key] = value()
                         }
+                        areas.add(
+                            Area(
+                                name,
+                                level ?: 0,
+                                level ?: 0,
+                                x.mapIndexed { index, m -> Point(m, y.getInt(index)) }.toMutableList()
+                            )
+                        )
                     }
-                    areas.add(Area(
-                        name,
-                        level ?: 0,
-                        level ?: 0,
-                        x.mapIndexed { index, m -> Point(m, y.getInt(index)) }.toMutableList()
-                    ))
                 }
             }
             areas.forEach { area ->

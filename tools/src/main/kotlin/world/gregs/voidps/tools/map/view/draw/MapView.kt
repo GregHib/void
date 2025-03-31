@@ -17,10 +17,10 @@ import java.awt.Graphics
 import javax.swing.JPanel
 import javax.swing.SwingUtilities
 
-class MapView(nav: NavigationGraph?, collisions: Collisions?, private val areaFile: String) : JPanel() {
+class MapView(nav: NavigationGraph?, collisions: Collisions?, private val areaFiles: List<String>) : JPanel() {
 
     private val options = OptionsPane(this)
-    private val areaSet = AreaSet.load(areaFile)
+    private val areaSet = AreaSet.load(areaFiles)
     private val highlight = HighlightedTile(this, options)
     private val area = HighlightedArea(this, areaSet)
 
@@ -74,7 +74,7 @@ class MapView(nav: NavigationGraph?, collisions: Collisions?, private val areaFi
             while (isActive) {
                 delay(10000)
 //                MutableNavigationGraph.save(nav, graphFile)
-                AreaSet.save(areaSet, areaFile)
+//                AreaSet.save(areaSet, areaFiles)
             }
         }
         repaint()

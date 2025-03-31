@@ -1,6 +1,7 @@
 package world.gregs.voidps.tools
 
 import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.data.Settings
@@ -52,7 +53,7 @@ object ObjectDefinitions {
         }
     }
 
-    fun Array<ObjectDefinitionFull>.findTransforms(id: Int): List<ObjectDefinitionFull> {
+    fun Array<ObjectDefinition>.findTransforms(id: Int): List<ObjectDefinition> {
         return indices.mapNotNull {
             val def = getOrNull(it) ?: return@mapNotNull null
             if (def.transforms?.contains(id) == true) {

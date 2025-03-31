@@ -1,2 +1,14 @@
 [rocks_pile_climb]
 id = 839
+
+[stepping_stone_step]
+id = 769
+
+[stepping_stone_jump]
+id = 741
+
+[grapple_enter_water]
+id = 4466
+
+[grapple_exit_water]
+id = 4467

@@ -23,6 +23,10 @@ interface TargetStrategy {
     val rotation: Int
     val exitStrategy: Int
 
+    fun requiresLineOfSight(): Boolean {
+        return true
+    }
+
     fun reached(character: Character): Boolean {
         return ReachStrategy.reached(
             flags = get(),

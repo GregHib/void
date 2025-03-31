@@ -24,6 +24,7 @@ kept = "Reclaim"
 id = 33
 tradeable = false
 weight = 0.028
+aka = ["candle_lit"]
 light_source = { once_extinguish = "white_candle" }
 examine = "A lit candle."
 kept = "Reclaim"

@@ -6,6 +6,7 @@ import content.entity.combat.hit.npcCombatDamage
 import content.entity.gfx.areaGfx
 import content.entity.player.inv.inventoryItem
 import content.entity.sound.areaSound
+import content.skill.firemaking.Light
 import content.skill.firemaking.Light.hasLightSource
 import content.skill.melee.weapon.fightStyle
 import world.gregs.voidps.engine.client.ui.close
@@ -29,6 +30,7 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.itemChange
+import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.queue
@@ -137,14 +139,7 @@ fun handleDirtOnScreen(moleTile: Tile) {
     }
     for (player in nearMole) {
         player.open("dirt_on_screen")
-        player.inventory.transaction {
-            for (index in inventory.indices) {
-                val item = inventory[index]
-                if (item.id.endsWith("candle_lit")) {
-                    replace(item.id, item.id.removeSuffix("_lit"))
-                }
-            }
-        }
+        Light.extinguish(player)
     }
     World.queue("dirt_on_screen_timer_player", 3) {
         for (player in nearMole) {

@@ -29,3 +29,38 @@ examine = "I can climb over the fence with this."
 [falador_crumbling_wall]
 id = 11844
 examine = "It looks like I might be able to climb over this piece of the wall..."
+
+[lumbridge_broken_raft]
+id = 17068
+examine = "A smashed up raft."
+
+[lumbridge_swamp_stepping_stone]
+id = 5948
+examine = "I can jump from this stepping stone."
+
+[grapple_rope]
+id = 17034
+
+[strong_tree]
+id = 17036
+examine = "A sturdy tree with grapple marks on it."
+
+[strong_tree_rope]
+id = 17037
+examine = "A sturdy tree with grapple marks on it."
+
+[strong_tree_grapple]
+id = 17038
+examine = "A sturdy tree with grapple marks on it."
+
+[strong_yew]
+id = 17039
+examine = "A sturdy tree with grapple marks on it."
+
+[strong_yew_rope]
+id = 17040
+examine = "A sturdy tree with grapple marks on it."
+
+[strong_yew_grapple]
+id = 17041
+examine = "A sturdy tree with grapple marks on it."

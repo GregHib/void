@@ -192,6 +192,9 @@ open class Movement(
         if (!character.tile.within(strategy.tile, distance)) {
             return false
         }
+        if (!strategy.requiresLineOfSight()) {
+            return true
+        }
         return lineValidator.hasLineOfSight(character, strategy.tile, strategy.width, strategy.height)
     }
 

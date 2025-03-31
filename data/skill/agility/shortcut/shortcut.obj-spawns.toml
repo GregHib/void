@@ -1,0 +1,3 @@
+spawns = [
+    { id = "strong_tree", x = 3260, y = 3179, type = 10, rotation = 2 },
+]
