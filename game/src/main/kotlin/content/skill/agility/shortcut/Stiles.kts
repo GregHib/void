@@ -2,6 +2,9 @@ package content.skill.agility.shortcut
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
+import world.gregs.voidps.engine.entity.character.player.chat.obstacle
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.type.Direction
@@ -42,6 +45,14 @@ objectOperate("Climb-over", "vinesweeper_stile") {
         else -> return@objectOperate player.noInterest()
     }
     climbStile(rotation)
+}
+
+objectOperate("Climb-over", "falador_crumbling_wall") {
+    if (!player.has(Skill.Agility, 5)) {
+        player.obstacle(5)
+        return@objectOperate
+    }
+    climbStile(Direction.EAST)
 }
 
 suspend fun ObjectOption<Player>.climbStile(rotation: Direction) {

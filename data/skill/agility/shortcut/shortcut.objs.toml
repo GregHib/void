@@ -25,3 +25,7 @@ examine = "I can climb over the fence with this."
 [falconry_area_stile]
 id = 19222
 examine = "I can climb over the fence with this."
+
+[falador_crumbling_wall]
+id = 11844
+examine = "It looks like I might be able to climb over this piece of the wall..."
