@@ -76,7 +76,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     setCutsceneEnd(instance)
     delay(4)
     player.tele(Tile(3078, 3435).add(offset), clearInterfaces = false)
-    val dororan = npcs.add("dororan_cutscene", Tile(3079, 3435).add(offset), Direction.SOUTH) ?: return
+    val dororan = npcs.add("dororan_cutscene", Tile(3079, 3435).add(offset), Direction.SOUTH)
     dororan.anim("dororan_lean_on_door")
     player.anim("player_lean_on_door")
     dororan.face(Direction.NORTH)
@@ -166,11 +166,11 @@ suspend fun SuspendableContext<Player>.cutscenePart2(instance: Region) {
     val offset = instance.offset(region)
     player.tele(Tile(3083, 3426).add(offset), clearInterfaces = false)
     player.face(Direction.WEST)
-    val dororan = npcs.add("dororan_cutscene", Tile(3082, 3428).add(offset), Direction.SOUTH) ?: return
-    val gudrun = npcs.add("gudrun_cutscene", Tile(3080, 3426).add(offset), Direction.SOUTH) ?: return
-    val kjell = npcs.add("kjell_cutscene", Tile(3077, 3426).add(offset), Direction.SOUTH) ?: return
-    val gunthor = npcs.add("chieftain_gunthor_cutscene", Tile(3079, 3425).add(offset), Direction.SOUTH) ?: return
-    val haakon = npcs.add("haakon_the_champion_cutscene", Tile(3078, 3425).add(offset), Direction.SOUTH) ?: return
+    val dororan = npcs.add("dororan_cutscene", Tile(3082, 3428).add(offset), Direction.SOUTH)
+    val gudrun = npcs.add("gudrun_cutscene", Tile(3080, 3426).add(offset), Direction.SOUTH)
+    val kjell = npcs.add("kjell_cutscene", Tile(3077, 3426).add(offset), Direction.SOUTH)
+    val gunthor = npcs.add("chieftain_gunthor_cutscene", Tile(3079, 3425).add(offset), Direction.SOUTH)
+    val haakon = npcs.add("haakon_the_champion_cutscene", Tile(3078, 3425).add(offset), Direction.SOUTH)
     dororan.face(gudrun)
     player.moveCamera(Tile(3079, 3419).add(offset), 400)
     player.turnCamera(Tile(3079, 3426).add(offset), 150)
@@ -194,7 +194,6 @@ suspend fun SuspendableContext<Player>.cutscenePart2(instance: Region) {
     val npc = listOf(kjell, gunthor, haakon, gudrun, dororan)
     for (remove in npc) {
         npcs.remove(remove)
-        npcs.removeIndex(remove)
     }
     player.moveCamera(Tile(3084, 3421).add(offset), 350)
     player.turnCamera(Tile(3082, 3426).add(offset), 250)

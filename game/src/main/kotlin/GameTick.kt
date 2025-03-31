@@ -58,6 +58,8 @@ fun getTickStages(
         hunting,
         // Connections/Tick Input
         queue,
+        npcs,
+        items,
         // Tick
         InstructionTask(players, npcs, items, objects, itemDefinitions, objectDefinitions, npcDefinitions, interfaceDefinitions, handler),
         World,

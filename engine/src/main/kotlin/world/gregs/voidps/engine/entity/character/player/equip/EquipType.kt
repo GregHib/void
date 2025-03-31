@@ -7,4 +7,17 @@ enum class EquipType {
     FullFace,
     Hair,
     Mask;
+
+    companion object {
+        private val map = mapOf(
+            "None" to None,
+            "TwoHanded" to TwoHanded,
+            "Sleeveless" to Sleeveless,
+            "FullFace" to FullFace,
+            "Hair" to Hair,
+            "Mask" to Mask,
+        )
+
+        fun by(name: String): EquipType = map[name] ?: None
+    }
 }

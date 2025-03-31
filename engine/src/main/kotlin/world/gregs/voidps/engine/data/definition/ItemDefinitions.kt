@@ -38,8 +38,8 @@ class ItemDefinitions(
                         while (nextPair()) {
                             when (val key = key()) {
                                 "id" -> id = int()
-                                "slot" -> extras[key] = EquipSlot.valueOf(string())
-                                "type" -> extras[key] = EquipType.valueOf(string())
+                                "slot" -> extras[key] = EquipSlot.by(string())
+                                "type" -> extras[key] = EquipType.by(string())
                                 "kept" -> extras[key] = ItemKept.by(string())
                                 "smelting" -> extras[key] = Smelting(this)
                                 "smithing" -> extras[key] = Smithing(this)

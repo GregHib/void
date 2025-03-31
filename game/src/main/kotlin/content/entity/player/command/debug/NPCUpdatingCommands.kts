@@ -21,7 +21,7 @@ adminCommand("npckill", "kill all npcs") {
 }
 
 modCommand("npcs", "get total npc count") {
-    player.message("NPCs: ${npcs.size}")
+    player.message("NPCs: ${npcs.count()}")
 }
 
 adminCommand("npctfm") {

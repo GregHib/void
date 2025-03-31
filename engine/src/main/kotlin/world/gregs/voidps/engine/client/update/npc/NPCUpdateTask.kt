@@ -72,7 +72,7 @@ class NPCUpdateTask(
      * Calculate the type of update required for a local [npc]
      */
     private fun localChange(client: Player, viewport: Viewport, npc: NPC?): LocalChange {
-        if (npc == null || !npc.tile.within(client.tile, viewport.radius)) {
+        if (npc == null || npc.hide || !npc.tile.within(client.tile, viewport.radius)) {
             return LocalChange.Remove
         }
         val visuals = npc.visuals
@@ -151,7 +151,9 @@ class NPCUpdateTask(
         if (updates.position() >= MAX_UPDATE_SIZE) {
             return false
         }
-
+        if (npc.hide) {
+            return false
+        }
         return set.size < LOCAL_NPC_CAP && !set.contains(index) && npc.tile.within(client.tile, viewport.radius)
     }
 

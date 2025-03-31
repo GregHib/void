@@ -24,7 +24,7 @@ import world.gregs.voidps.type.Zone
 class FloorItems(
     private val batches: ZoneBatchUpdates,
     private val definitions: ItemDefinitions
-) : ZoneBatchUpdates.Sender {
+) : ZoneBatchUpdates.Sender, Runnable {
 
     internal val data = Int2ObjectOpenHashMap<MutableMap<Int, MutableList<FloorItem>>>()
     private val tilePool = object : DefaultPool<MutableList<FloorItem>>(INITIAL_POOL_CAPACITY) {
@@ -36,18 +36,32 @@ class FloorItems(
         override fun clearInstance(instance: MutableMap<Int, MutableList<FloorItem>>) = instance.apply { clear() }
     }
 
+    private val addQueue = mutableListOf<FloorItem>()
+    private val removeQueue = mutableListOf<FloorItem>()
+
+    override fun run() {
+        for (floorItem in removeQueue) {
+            floorItem.emit(Despawn)
+        }
+        removeQueue.clear()
+        for (floorItem in addQueue) {
+            floorItem.emit(Spawn)
+        }
+        addQueue.clear()
+    }
+
     fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, charges: Int = 0, owner: Player?) = add(tile, id, amount, revealTicks, disappearTicks, charges, owner?.name)
 
     fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, charges: Int = 0, owner: String? = null): FloorItem {
         if (!definitions.contains(id)) {
-            logger.warn { "Null floor item $id $tile" }
+            logger.warn { "Invalid floor item id: '$id' at $tile" }
         }
         val item = FloorItem(tile, id, amount, revealTicks, disappearTicks, charges, if (revealTicks == 0) null else owner)
         add(item)
         return item
     }
 
-    fun add(floorItem: FloorItem) {
+    internal fun add(floorItem: FloorItem) {
         val list = data.getOrPut(floorItem.tile.zone.id) { zonePool.borrow() }.getOrPut(floorItem.tile.id) { tilePool.borrow() }
         if (combined(list, floorItem)) {
             return
@@ -57,7 +71,7 @@ class FloorItems(
         }
         if (list.add(floorItem)) {
             batches.add(floorItem.tile.zone, FloorItemAddition(floorItem.tile.id, floorItem.def.id, floorItem.amount, floorItem.owner))
-            floorItem.emit(Spawn)
+            addQueue.add(floorItem)
         }
     }
 
@@ -103,6 +117,7 @@ class FloorItems(
         val zone = data.get(floorItem.tile.zone.id) ?: return false
         val list = zone[floorItem.tile.id] ?: return false
         if (list.remove(floorItem)) {
+            removeQueue.add(floorItem)
             batches.add(floorItem.tile.zone, FloorItemRemoval(floorItem.tile.id, floorItem.def.id, floorItem.owner))
             if (list.isEmpty() && zone.remove(floorItem.tile.id, list)) {
                 tilePool.recycle(list)
@@ -110,7 +125,6 @@ class FloorItems(
                     zonePool.recycle(zone)
                 }
             }
-            floorItem.emit(Despawn)
             return true
         }
         return false
@@ -121,7 +135,7 @@ class FloorItems(
             for ((_, items) in zone) {
                 for (floorItem in items) {
                     batches.add(floorItem.tile.zone, FloorItemRemoval(floorItem.tile.id, floorItem.def.id, floorItem.owner))
-                    floorItem.emit(Despawn)
+                    removeQueue.add(floorItem)
                 }
                 tilePool.recycle(items)
             }

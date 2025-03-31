@@ -15,6 +15,7 @@ internal class HuntModeTest : WorldTest() {
     @BeforeEach
     fun setup() {
         npcs.clear()
+        players.clear()
     }
 
     @Test

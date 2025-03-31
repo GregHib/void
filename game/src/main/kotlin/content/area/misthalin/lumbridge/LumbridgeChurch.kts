@@ -84,11 +84,8 @@ suspend fun Interaction<Player>.returnSkull() {
     player["restless_ghost_offset"] = offset
     player.inventory.remove("muddy_skull")
     val ghost = npcs[ghostSpawn].firstOrNull { it.id == "restless_ghost" }
-    if (ghost != null) {
-        npcs.removeIndex(ghost)
-    }
     npcs.remove(ghost)
-    val restlessGhost = npcs.add("restless_ghost", Tile(3248, 3193).add(offset), Direction.SOUTH) ?: return
+    val restlessGhost = npcs.add("restless_ghost", Tile(3248, 3193).add(offset), Direction.SOUTH)
     player.tele(Tile(3248, 3192).add(offset), clearInterfaces = false)
     npc<Happy>("restless_ghost", "Release! Thank you stranger.", clickToContinue = false)
     player.moveCamera(Tile(3251, 3193).add(offset), 320)
@@ -163,10 +160,10 @@ suspend fun Interaction<Player>.spawnGhost() {
         delay(1)
         player.sound("bigghost_appear")
         delay(1)
-        val ghost = npcs.add("restless_ghost", ghostSpawn, Direction.SOUTH) ?: return
+        val ghost = npcs.add("restless_ghost", ghostSpawn, Direction.SOUTH)
         ghost.animDelay("restless_ghost_awakens")
         ghost.softQueue("despawn", TimeUnit.SECONDS.toTicks(60)) {
-            npcs.removeIndex(ghost)
+            npcs.remove(ghost)
         }
     } else {
         player.message("There's a skeleton without a skull in here. There's no point in disturbing it.")

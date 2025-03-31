@@ -18,6 +18,7 @@ fun loadNpcSpawns(
     timedLoad("npc spawn") {
         npcs.clear()
         val membersWorld = World.members
+        var count = 0
         for (path in paths) {
             Config.fileReader(path) {
                 while (nextPair()) {
@@ -28,7 +29,6 @@ fun loadNpcSpawns(
                         var x = 0
                         var y = 0
                         var level = 0
-                        var delay: Int? = null
                         var members = false
                         while (nextEntry()) {
                             when (val key = key()) {
@@ -37,7 +37,6 @@ fun loadNpcSpawns(
                                 "y" -> y = int()
                                 "level" -> level = int()
                                 "direction" -> direction = Direction.valueOf(string())
-                                "delay" -> delay = int()
                                 "members" -> members = boolean()
                                 else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                             }
@@ -49,11 +48,12 @@ fun loadNpcSpawns(
                             logger.warn { "Invalid npc spawn id '$id' in ${path}." }
                         }
                         val tile = Tile(x, y, level)
-                        npcs.add(id, tile, direction, delay)
+                        npcs.add(id, tile, direction)
+                        count++
                     }
                 }
             }
         }
-        npcs.size
+        count
     }
 }

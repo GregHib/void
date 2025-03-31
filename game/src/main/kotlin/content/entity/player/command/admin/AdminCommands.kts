@@ -134,7 +134,7 @@ adminCommand("npc (npc-id)", "spawn an npc") {
     """.trimIndent()
     )
     val npc = npcs.add(definition.stringId, player.tile, Direction.NORTH)
-    npc?.start("movement_delay", -1)
+    npc.start("movement_delay", -1)
 }
 
 modCommand("save", "save all players") {

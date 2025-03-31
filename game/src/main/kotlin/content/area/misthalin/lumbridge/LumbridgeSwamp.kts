@@ -39,12 +39,11 @@ objectOperate("Search", "rocks_skull_restless_ghost_quest") {
     if (index != null) {
         val skeleton = npcs.indexed(index)
         if (skeleton != null) {
-            npcs.removeIndex(skeleton)
             npcs.remove(skeleton)
         }
     }
     player.message("A skeleton warlock has appeared.")
-    val warlock = npcs.add("skeleton_warlock", Tile(3236, 3149), Direction.SOUTH) ?: return@objectOperate
+    val warlock = npcs.add("skeleton_warlock", Tile(3236, 3149), Direction.SOUTH)
     player["restless_ghost_warlock"] = warlock.index
     warlock.anim("restless_ghost_warlock_spawn")
     val player = player
@@ -53,7 +52,6 @@ objectOperate("Search", "rocks_skull_restless_ghost_quest") {
     }
     World.queue("skeleton_warlock", TimeUnit.SECONDS.toTicks(60)) {
         npcs.remove(warlock)
-        npcs.removeIndex(warlock)
         player.clear("restless_ghost_warlock")
     }
 }

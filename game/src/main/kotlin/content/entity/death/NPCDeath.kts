@@ -57,7 +57,7 @@ npcDeath { npc ->
         dropLoot(npc, killer, name, tile)
         npc.attackers.clear()
         npc.softTimers.stopAll()
-        npcs.removeIndex(npc)
+        npc.hide = true
         val respawn = npc.get<Tile>("respawn_tile")
         if (respawn != null) {
             npc.tele(respawn)
@@ -65,7 +65,7 @@ npcDeath { npc ->
             npc.damageDealers.clear()
             npc.levels.clear()
             npc.face(npc["respawn_direction", Direction.NORTH], update = false)
-            npcs.index(npc)
+            npc.hide = false
             npc.dead = false
             npc.mode = EmptyMode
             npc.emit(Spawn)

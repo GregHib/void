@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.data.settingsReload
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -103,8 +102,8 @@ fun startCrashedStarEvent() {
         }
     }
     logger.info { "Crashed star event has started at: $location (${currentStarTile.x}, ${currentStarTile.y}) tier ${tier}." }
-    val shootingStarShadow: NPC? = npcs.add("shooting_star_shadow", Tile(currentStarTile.x, currentStarTile.y + 6), Direction.NONE)
-    shootingStarShadow?.walkTo(currentStarTile, noCollision = true, forceWalk = true)
+    val shootingStarShadow = npcs.add("shooting_star_shadow", Tile(currentStarTile.x, currentStarTile.y + 6), Direction.NONE)
+    shootingStarShadow.walkTo(currentStarTile, noCollision = true, forceWalk = true)
     areaSound("star_meteor_falling", currentStarTile, radius = 15, delay = 20)
     World.queue("awaiting_shadow_walk", 6) {
         val shootingStarObjectFalling: GameObject = objects.add("crashed_star_falling_object", currentStarTile)
@@ -131,7 +130,7 @@ fun cleanseEvent(forceStopped: Boolean) {
     currentActiveObject?.let { current -> objects[currentStarTile, current.id] }?.remove()
     if (!forceStopped) {
         areaSound("star_sprite_appear", currentStarTile, radius = 10)
-        val starSprite = npcs.add("star_sprite", currentStarTile, Direction.NONE, 0)
+        val starSprite = npcs.add("star_sprite", currentStarTile, Direction.NONE)
         World.queue("start_sprite_despawn_timer", TimeUnit.MINUTES.toTicks(10)) {
             npcs.remove(starSprite)
         }
