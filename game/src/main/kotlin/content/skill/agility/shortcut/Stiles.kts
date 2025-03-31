@@ -27,7 +27,12 @@ objectOperate("Climb-over", "ardougne_farm_stile") {
 }
 
 objectOperate("Climb-over", "falador_farm_stile") {
-    climbStile(Direction.EAST)
+    val rotation = when (target.rotation) {
+        2 -> Direction.NORTH
+        3 -> Direction.EAST
+        else -> return@objectOperate player.noInterest()
+    }
+    climbStile(rotation)
 }
 
 objectOperate("Climb-over", "vinesweeper_stile") {
