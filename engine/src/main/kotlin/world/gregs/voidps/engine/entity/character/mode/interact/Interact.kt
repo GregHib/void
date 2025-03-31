@@ -83,8 +83,14 @@ class Interact(
             clear()
             return
         }
-        if (character.hasClock("movement_delay") || character.visuals.moved || arrived(approachRange ?: -1) || character.suspension != null) {
+        if(character is Player) {
+            println("Check interaction")
+        }
+        if (character.hasClock("movement_delay") || character.visuals.moved || arrived(approachRange ?: -1) || character.suspension != null || character.delay != null) {
             return
+        }
+        if(character is Player) {
+            println("can't")
         }
         character.cantReach()
         clear()

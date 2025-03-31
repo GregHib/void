@@ -53,6 +53,7 @@ objectApproach("Grapple", "lumbridge_broken_raft") {
         player.face(target)
         delay(2)
         player.anim("crossbow_accurate")
+        player.sound("grapple_shoot")
         delay(3)
         player.message("You successfully grapple the raft and tie the rope to a tree.", ChatType.Filter)
         if (direction == Direction.EAST) {

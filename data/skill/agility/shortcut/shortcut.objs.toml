@@ -38,6 +38,10 @@ examine = "A smashed up raft."
 id = 5948
 examine = "I can jump from this stepping stone."
 
+[lumbridge_swamp_stepping_stone_frog]
+id = 5948
+examine = "I can jump from this stepping stone."
+
 [grapple_rope]
 id = 17034
 

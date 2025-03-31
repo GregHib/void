@@ -101,7 +101,7 @@ abstract class WorldTest : KoinTest {
         return player to client
     }
 
-    fun createPlayer(name: String, tile: Tile = Tile.EMPTY): Player {
+    fun createPlayer(name: String = "player", tile: Tile = Tile.EMPTY): Player {
         val player = Player(tile = tile, accountName = name, passwordHash = "")
         assertTrue(accounts.setup(player, null, 0))
         accountDefs.add(player)
