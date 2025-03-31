@@ -1,0 +1,9 @@
+[freds_farm_stile_south]
+option = "Climb-over"
+tile = { x = 3197, y = 3278 }
+to = { x = 3197, y = 3275 }
+
+[freds_farm_north]
+option = "Climb-over"
+tile = { x = 3197, y = 3275 }
+to = { x = 3197, y = 3278 }
