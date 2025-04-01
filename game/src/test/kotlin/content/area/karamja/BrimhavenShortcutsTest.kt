@@ -9,7 +9,7 @@ import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class BrimhavenRopeswingTest : WorldTest() {
+class BrimhavenShortcutsTest : WorldTest() {
 
     @Test
     fun `Swing to brimhaven island`() {
@@ -39,9 +39,9 @@ class BrimhavenRopeswingTest : WorldTest() {
     fun `Swing from brimhaven island`() {
         val player = createPlayer(tile = Tile(2705, 3205))
         player.levels.set(Skill.Agility, 10)
-        val ropeswing = objects[Tile(2703, 3205), "brimhaven_ropeswing_east"]!!
+        val ropeSwing = objects[Tile(2703, 3205), "brimhaven_ropeswing_east"]!!
 
-        player.objectOption(ropeswing, "Swing-on")
+        player.objectOption(ropeSwing, "Swing-on")
         tick(3)
 
         assertEquals(Tile(2709, 3205), player.tile)

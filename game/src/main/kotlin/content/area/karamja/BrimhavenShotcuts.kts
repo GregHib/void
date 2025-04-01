@@ -36,3 +36,36 @@ objectOperate("Swing-on", "brimhaven_ropeswing_east") {
     player.exp(Skill.Agility, 3.0)
     player.message("You skillfully swing across.", ChatType.Filter)
 }
+
+val steps = mutableListOf(Direction.SOUTH, Direction.SOUTH, Direction.WEST, Direction.WEST, Direction.SOUTH, Direction.SOUTH, Direction.SOUTH)
+
+objectOperate("Jump-from", "brimhaven_stepping_stones_start") {
+    player.face(target.tile.add(Direction.WEST))
+    if (!player.has(Skill.Agility, 12)) {
+        player.message("You need an agility level of 12 to attempt to swing on this vine.")
+        return@objectOperate
+    }
+    player.message("You carefully start crossing the stepping stones...", ChatType.Filter)
+    for (direction in steps) {
+        player.anim("stepping_stone_jump")
+        player.exactMoveDelay(player.tile.add(direction), direction = direction)
+        player.face(direction)
+        delay()
+    }
+    player.exp(Skill.Agility, 7.5)
+    player.message("... You safely cross to the other side.", ChatType.Filter)
+}
+
+objectOperate("Jump-from", "brimhaven_stepping_stones_end") {
+    player.face(target.tile.add(Direction.EAST))
+    player.message("You carefully start crossing the stepping stones...", ChatType.Filter)
+    for (i in steps.indices.reversed()) {
+        val direction = steps[i].inverse()
+        player.anim("stepping_stone_jump")
+        player.exactMoveDelay(player.tile.add(direction), direction = direction)
+        player.face(direction)
+        delay()
+    }
+    player.exp(Skill.Agility, 7.5)
+    player.message("... You safely cross to the other side.", ChatType.Filter)
+}
