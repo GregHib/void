@@ -1,10 +1,14 @@
 package content.area.remennik_province.lighthouse
 
+import FakeRandom
 import WorldTest
 import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.setRandom
+import kotlin.test.assertTrue
 
 class BasaltRockTest : WorldTest() {
     @Test
@@ -135,5 +139,35 @@ class BasaltRockTest : WorldTest() {
         player.objectOption(rocks, "Jump-across")
         tick(4)
         assertEquals(Tile(2522, 3595), player.tile)
+    }
+
+    @Test
+    fun `Fail jump by beach`() {
+        setRandom(object : FakeRandom() {
+            override fun nextBits(bitCount: Int): Int = 255
+        })
+        val player = createPlayer(tile = Tile(2522, 3599))
+        player.levels.set(Skill.Constitution, 12)
+
+        val rocks = objects[Tile(2522, 3602), "basalt_rock_3"]!!
+        player.objectOption(rocks, "Jump-across")
+        tick(10)
+        assertEquals(Tile(2521, 3595), player.tile)
+        assertTrue(player.levels.get(Skill.Constitution) < 12)
+    }
+
+    @Test
+    fun `Fail jump by rocky shore`() {
+        setRandom(object : FakeRandom() {
+            override fun nextBits(bitCount: Int): Int = 255
+        })
+        val player = createPlayer(tile = Tile(2514, 3615))
+        player.levels.set(Skill.Constitution, 12)
+
+        val rocks = objects[Tile(2514, 3615), "basalt_rock_7"]!!
+        player.objectOption(rocks, "Jump-across")
+        tick(10)
+        assertEquals(Tile(2515, 3619), player.tile)
+        assertTrue(player.levels.get(Skill.Constitution) < 12)
     }
 }
