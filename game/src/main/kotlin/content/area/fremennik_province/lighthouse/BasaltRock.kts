@@ -1,5 +1,6 @@
 package content.area.fremennik_province.lighthouse
 
+import content.entity.combat.hit.damage
 import content.entity.gfx.areaGfx
 import content.entity.sound.sound
 import world.gregs.voidps.engine.client.message
@@ -15,19 +16,20 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
+import world.gregs.voidps.type.random
 
-obstacle("Jump-to", "beach", Tile(2522, 3595), Direction.NORTH)
-obstacle("Jump-across", "basalt_rock_start", Tile(2522, 3597), Direction.SOUTH)
-obstacle("Jump-across", "basalt_rock_2", Tile(2522, 3600), Direction.NORTH)
-obstacle("Jump-across", "basalt_rock_3", Tile(2522, 3602), Direction.SOUTH)
-obstacle("Jump-across", "basalt_rock_4", Tile(2518, 3611), Direction.WEST)
-obstacle("Jump-across", "basalt_rock_5", Tile(2516, 3611), Direction.EAST)
-obstacle("Jump-across", "basalt_rock_6", Tile(2514, 3613), Direction.NORTH)
-obstacle("Jump-across", "basalt_rock_7", Tile(2514, 3615), Direction.SOUTH)
-obstacle("Jump-across", "basalt_rock_end", Tile(2514, 3617), Direction.NORTH)
-obstacle("Jump-to", "rocky_shore", Tile(2514, 3619), Direction.SOUTH)
+obstacle("Jump-to", "beach", Tile(2522, 3595), Direction.NORTH, exp = false)
+obstacle("Jump-across", "basalt_rock_start", Tile(2522, 3597), Direction.SOUTH, exp = false)
+obstacle("Jump-across", "basalt_rock_2", Tile(2522, 3600), Direction.NORTH, exp = true)
+obstacle("Jump-across", "basalt_rock_3", Tile(2522, 3602), Direction.SOUTH, exp = true)
+obstacle("Jump-across", "basalt_rock_4", Tile(2518, 3611), Direction.WEST, exp = true)
+obstacle("Jump-across", "basalt_rock_5", Tile(2516, 3611), Direction.EAST, exp = true)
+obstacle("Jump-across", "basalt_rock_6", Tile(2514, 3613), Direction.NORTH, exp = true)
+obstacle("Jump-across", "basalt_rock_7", Tile(2514, 3615), Direction.SOUTH, exp = true)
+obstacle("Jump-across", "basalt_rock_end", Tile(2514, 3617), Direction.NORTH, exp = false)
+obstacle("Jump-to", "rocky_shore", Tile(2514, 3619), Direction.SOUTH, exp = false)
 
-suspend fun ObjectOption<Player>.jump(opposite: Tile, direction: Direction) {
+suspend fun ObjectOption<Player>.jump(opposite: Tile, direction: Direction, exp: Boolean) {
     player.walkToDelay(target.tile)
     character.clear("face_entity")
     // Fail on jump
@@ -40,7 +42,9 @@ suspend fun ObjectOption<Player>.jump(opposite: Tile, direction: Direction) {
         player.anim("stepping_stone_step", delay = 19)
         player.sound("jump", delay = 35)
         player.exactMoveDelay(opposite, startDelay = 47, delay = 59, direction = direction)
-        player.exp(Skill.Agility, 2.0)
+        if (exp) {
+            player.exp(Skill.Agility, 2.0)
+        }
     } else {
         player.message("You slip on the slimy causeway.")
         player.anim("rope_walk_fall_left")
@@ -53,12 +57,16 @@ suspend fun ObjectOption<Player>.jump(opposite: Tile, direction: Direction) {
         player.message("The tide sweeps you back to shore.")
         player.clearRenderEmote()
         player.walkOverDelay(fail.add(direction.inverse()))
+        player.damage(random.nextInt(10))
+        if (exp) {
+            player.exp(Skill.Agility, 0.5)
+        }
     }
 }
 
-fun obstacle(option: String, rock: String, tile: Tile, direction: Direction) {
+fun obstacle(option: String, rock: String, tile: Tile, direction: Direction, exp: Boolean) {
     objectOperate(option, rock) {
-        jump(tile.add(direction).add(direction), direction)
+        jump(tile.add(direction).add(direction), direction, exp)
     }
 
     objectApproach(option, rock) {
@@ -70,9 +78,9 @@ fun obstacle(option: String, rock: String, tile: Tile, direction: Direction) {
             else -> false
         }
         if (sameSide) {
-            jump(tile.add(direction).add(direction), direction)
+            jump(tile.add(direction).add(direction), direction, exp)
         } else {
-            jump(target.tile, direction.inverse())
+            jump(target.tile, direction.inverse(), exp)
         }
     }
 }
