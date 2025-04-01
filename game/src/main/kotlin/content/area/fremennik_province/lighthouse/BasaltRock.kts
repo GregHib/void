@@ -57,7 +57,7 @@ suspend fun ObjectOption<Player>.jump(opposite: Tile, direction: Direction, exp:
         player.message("The tide sweeps you back to shore.")
         player.clearRenderEmote()
         player.walkOverDelay(fail.add(direction.inverse()))
-        player.damage(random.nextInt(10))
+        player.damage(random.nextInt(100))
         if (exp) {
             player.exp(Skill.Agility, 0.5)
         }
