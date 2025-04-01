@@ -14,7 +14,7 @@ data class CharacterTargetStrategy(
     override val height: Int
         get() = character.size
     override val rotation = 0
-    override val exitStrategy = -2
+    override val shape = -2
     override val sizeX: Int
         get() = character.size
     override val sizeY: Int

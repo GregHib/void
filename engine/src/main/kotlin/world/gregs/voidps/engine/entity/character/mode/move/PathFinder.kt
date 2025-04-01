@@ -18,7 +18,7 @@ fun PathFinder.findPath(character: Character, strategy: TargetStrategy, shape: I
     srcSize = character.size,
     destWidth = strategy.sizeX,
     destHeight = strategy.sizeY,
-    objShape = shape ?: strategy.exitStrategy,
+    objShape = shape ?: strategy.shape,
     objRot = strategy.rotation,
     blockAccessFlags = strategy.bitMask
 )

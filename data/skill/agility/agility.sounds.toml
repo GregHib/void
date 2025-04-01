@@ -10,3 +10,5 @@ land_flat = 2469
 land_flatter = 2455
 rope_climb = 2482
 fall_splash = 1421
+jump = 2461
+pool_plop = 1658

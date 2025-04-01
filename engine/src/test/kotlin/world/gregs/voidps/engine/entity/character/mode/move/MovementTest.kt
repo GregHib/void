@@ -154,7 +154,7 @@ internal class MovementTest : KoinMock() {
             override val sizeX: Int = 1
             override val sizeY: Int = 1
             override val rotation: Int = 0
-            override val exitStrategy: Int = 0
+            override val shape: Int = 0
         }
         val movement = Movement(player, strategy)
         movement.calculate()

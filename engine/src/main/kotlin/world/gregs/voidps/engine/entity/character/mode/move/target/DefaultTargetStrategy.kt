@@ -8,7 +8,7 @@ object DefaultTargetStrategy : TargetStrategy {
     override val width: Int = 1
     override val height: Int = 1
     override val rotation = 0
-    override val exitStrategy = -1
+    override val shape = -1
     override val sizeX: Int = 1
     override val sizeY: Int = 1
 }
