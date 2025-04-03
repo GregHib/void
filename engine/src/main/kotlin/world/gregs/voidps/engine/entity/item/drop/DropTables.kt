@@ -48,7 +48,7 @@ class DropTables {
                     if (drop is ReferenceTable) {
                         val dropTable = tables[drop.tableName]
                         require(dropTable != null) { "Unable to find drop table with name '${drop.tableName}'." }
-                        (table.drops as MutableList<Drop>)[i] = dropTable.copy(roll = drop.roll, chance = drop.chance)
+                        (table.drops as MutableList<Drop>)[i] = dropTable.copy(roll = drop.roll ?: dropTable.roll, chance = if (drop.chance == -1) dropTable.chance else drop.chance)
                     }
                 }
             }
@@ -58,13 +58,13 @@ class DropTables {
         return this
     }
 
-    private data class ReferenceTable(val tableName: String, val roll: Int, override val chance: Int) : Drop
+    private data class ReferenceTable(val tableName: String, val roll: Int?, override val chance: Int) : Drop
 
     private fun ConfigReader.readItemDrop(itemDefinitions: ItemDefinitions?): Drop {
         var table = ""
         var members = false
         var chance: Int? = null
-        var roll = 1
+        var roll: Int? = null
         var id = ""
         var min = 1
         var max = 1
