@@ -83,7 +83,7 @@ internal class DropTableTest {
     @Test
     fun `Roll a random item`() {
         setRandom(object : Random() {
-            override fun nextBits(bitCount: Int): Int = 0
+            override fun nextBits(bitCount: Int): Int = 2
         })
         val item1 = drop("1", 1)
         val item2 = drop("2", 1)
@@ -91,7 +91,7 @@ internal class DropTableTest {
 
         val list = root.role(members = true)
 
-        assertTrue(list.contains(item1))
+        assertEquals(listOf(item2), list)
     }
 
     @Test
