@@ -93,7 +93,7 @@ class DropTables {
                 "members" -> members = boolean()
                 "variable" -> variable = string()
                 "equals" -> eq = value()
-                "not_equal" -> {
+                "not_equals" -> {
                     eq = value()
                     negated = true
                 }
