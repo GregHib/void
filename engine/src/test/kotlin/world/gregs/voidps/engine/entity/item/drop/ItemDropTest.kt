@@ -129,7 +129,7 @@ class ItemDropTest {
             min = 10,
             max = 20,
             variable = "test",
-            within = "1-10",
+            within = 1..10,
             default = 5
         )
         val variables = Player()
