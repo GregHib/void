@@ -62,7 +62,7 @@ class DropTables {
 
     private fun ConfigReader.readItemDrop(itemDefinitions: ItemDefinitions?): Drop {
         var table = ""
-        var members = false
+        var members: Boolean? = null
         var chance: Int? = null
         var roll: Int? = null
         var id = ""

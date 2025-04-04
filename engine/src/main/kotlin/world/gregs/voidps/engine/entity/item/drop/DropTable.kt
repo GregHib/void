@@ -28,7 +28,7 @@ data class DropTable(
      * @param player the player for [ItemDrop.predicate]'s
      */
     fun role(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf(), members: Boolean = false, player: Player? = null): MutableList<ItemDrop> {
-        collect(list, maximumRoll, members, player, random(maximumRoll))
+        collect(list, maximumRoll, player, random(maximumRoll))
         return list
     }
 
@@ -36,7 +36,7 @@ data class DropTable(
         return random.nextInt(0, if (roll <= 0 && maximum != -1) maximum else roll)
     }
 
-    fun collect(list: MutableList<ItemDrop>, value: Int, members: Boolean, player: Player?, roll: Int = random(value)): Boolean {
+    fun collect(list: MutableList<ItemDrop>, value: Int, player: Player?, roll: Int = random(value)): Boolean {
         var count = 0
         for (drop in drops) {
             if (drop.chance == 0) {
@@ -49,13 +49,10 @@ data class DropTable(
                         continue
                     }
                 }
-                if (drop.collect(list, value, members, player) && type == TableType.First) {
+                if (drop.collect(list, value, player) && type == TableType.First) {
                     return true
                 }
             } else if (drop is ItemDrop) {
-                if (drop.members && !members) {
-                    continue
-                }
                 val predicate = drop.predicate
                 if (player != null && predicate != null && !predicate(player)) {
                     continue
@@ -137,7 +134,7 @@ data class DropTable(
 
         fun build(): DropTable {
             if (roll != null) {
-                val total = drops.sumOf { if (it is ItemDrop && it.members == World.members) it.chance else 0 }
+                val total = drops.sumOf { it.chance }
                 check(total <= roll!!) { "Chances $total cannot exceed roll $roll." }
             }
             return DropTable(type, roll ?: 1, drops, chance)

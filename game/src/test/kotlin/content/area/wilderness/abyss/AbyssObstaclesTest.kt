@@ -95,6 +95,7 @@ internal class AbyssObstaclesTest : WorldTest() {
         player.objectOption(obj, optionIndex = 0)
         tick(16)
 
+        println(player.tile)
         assertTrue(player.tile in center)
         assertEquals(25.0, player.experience.get(Skill.Woodcutting))
     }

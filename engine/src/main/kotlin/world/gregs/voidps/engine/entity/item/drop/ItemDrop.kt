@@ -1,17 +1,20 @@
 package world.gregs.voidps.engine.entity.item.drop
 
-import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.wildcardEquals
 
+/**
+ * A [DropTable] [Drop] which when selected will produce an [Item]
+ * @param id of the item to drop
+ * @param amount of the item randomly selected to drop
+ * @param chance the chance this item is selected compared to the overall [DropTable.roll]
+ */
 data class ItemDrop(
     val id: String,
     val amount: IntRange,
     override val chance: Int = 1,
-    val members: Boolean = false,
     val predicate: ((Player) -> Boolean)? = null
 ) : Drop {
 
@@ -27,14 +30,12 @@ data class ItemDrop(
     }
 
     companion object {
-        private val logger = InlineLogger()
-
         operator fun invoke(
             id: String = "",
             min: Int = 1,
             max: Int = 1,
             chance: Int = 1,
-            members: Boolean = false,
+            members: Boolean? = null,
             owns: String? = null,
             lacks: String? = null,
             variable: String? = null,
@@ -86,11 +87,13 @@ data class ItemDrop(
                         }
                     } else if (within != null) {
                         predicate = { it[variable, default ?: -1] in within }
+                    } else if (members != null) {
+                        predicate = { World.members == members }
                     }
                 }
             }
             val amount = min..max
-            return ItemDrop(id, amount, chance, members, predicate)
+            return ItemDrop(id, amount, chance, predicate)
         }
 
         private val inventories = listOf("inventory", "worn_equipment", "bank")
