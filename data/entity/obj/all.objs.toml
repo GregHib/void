@@ -486,14 +486,6 @@ examine = "A stone carved Pillar."
 id = 7017
 examine = "A stone carved Pillar."
 
-[tendrils]
-id = 7161
-examine = "They don't look that solid; a hatchet could help me chop them down."
-
-[tendrils_stump]
-id = 7163
-examine = "They don't look that solid; a hatchet could help me chop them down."
-
 [corpse_23]
 id = 7206
 examine = "Now that's what I call slimline!"
