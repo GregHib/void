@@ -62,7 +62,7 @@ class DropTables {
 
     private fun ConfigReader.readItemDrop(itemDefinitions: ItemDefinitions?): Drop {
         var table = ""
-        var members = false
+        var members: Boolean? = null
         var chance: Int? = null
         var roll: Int? = null
         var id = ""
@@ -70,6 +70,12 @@ class DropTables {
         var max = 1
         var owns: String? = null
         var lacks: String? = null
+        var variable: String? = null
+        var eq: Any? = null
+        var default: Any? = null
+        var withinMin: Int? = null
+        var withinMax: Int? = null
+        var negated = false
         while (nextEntry()) {
             when (val dropKey = key()) {
                 "table" -> table = string()
@@ -85,6 +91,15 @@ class DropTables {
                 "roll" -> roll = int()
                 "owns" -> owns = string()
                 "members" -> members = boolean()
+                "variable" -> variable = string()
+                "equals" -> eq = value()
+                "not_equals" -> {
+                    eq = value()
+                    negated = true
+                }
+                "default" -> default = value()
+                "within_min" -> withinMin = int()
+                "within_max" -> withinMax = int()
                 else -> throw IllegalArgumentException("Unexpected drop key: '$dropKey' ${exception()}")
             }
         }
@@ -92,6 +107,20 @@ class DropTables {
             return ReferenceTable(table, roll, chance ?: -1)
         }
         require(itemDefinitions == null || id == "nothing" || itemDefinitions.getOrNull(id) != null) { "Unable to find item with id '${id}'." }
-        return ItemDrop(id = id, min = min, max = max, chance = chance ?: 1, members = members, owns = owns, lacks = lacks)
+        val within = if (withinMin != null && withinMax != null) withinMin..withinMax else null
+        return ItemDrop(
+            id = id,
+            min = min,
+            max = max,
+            chance = chance ?: 1,
+            members = members,
+            owns = owns,
+            lacks = lacks,
+            variable = variable,
+            eq = eq,
+            default = default,
+            within = within,
+            negated = negated,
+        )
     }
 }

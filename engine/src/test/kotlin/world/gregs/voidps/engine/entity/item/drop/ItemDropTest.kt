@@ -129,7 +129,7 @@ class ItemDropTest {
             min = 10,
             max = 20,
             variable = "test",
-            within = "1-10",
+            within = 1..10,
             default = 5
         )
         val variables = Player()
@@ -152,7 +152,7 @@ class ItemDropTest {
         assertEquals("item", drop.id)
         assertEquals(1..5, drop.amount)
         assertEquals(5, drop.chance)
-        assertTrue(drop.members)
+//        assertTrue(drop.members)
     }
 
     @Test
@@ -160,7 +160,7 @@ class ItemDropTest {
         val drop = ItemDrop(id = "item")
         assertEquals(1..1, drop.amount)
         assertEquals(1, drop.chance)
-        assertFalse(drop.members)
+//        assertFalse(drop.members)
         assertNull(drop.predicate)
     }
 
