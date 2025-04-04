@@ -75,6 +75,7 @@ class DropTables {
         var default: Any? = null
         var withinMin: Int? = null
         var withinMax: Int? = null
+        var negated = false
         while (nextEntry()) {
             when (val dropKey = key()) {
                 "table" -> table = string()
@@ -91,7 +92,11 @@ class DropTables {
                 "owns" -> owns = string()
                 "members" -> members = boolean()
                 "variable" -> variable = string()
-                "eq" -> eq = value()
+                "equals" -> eq = value()
+                "not_equal" -> {
+                    eq = value()
+                    negated = true
+                }
                 "default" -> default = value()
                 "within_min" -> withinMin = int()
                 "within_max" -> withinMax = int()
@@ -114,7 +119,8 @@ class DropTables {
             variable = variable,
             eq = eq,
             default = default,
-            within = within
+            within = within,
+            negated = negated,
         )
     }
 }

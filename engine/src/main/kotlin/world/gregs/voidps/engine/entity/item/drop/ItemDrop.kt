@@ -41,29 +41,52 @@ data class ItemDrop(
             eq: Any? = null,
             default: Any? = null,
             within: IntRange? = null,
+            negated: Boolean = false,
         ): ItemDrop {
-            var predicate: ((Player) -> Boolean)? =null
+            var predicate: ((Player) -> Boolean)? = null
             if (owns != null || lacks != null) {
                 predicate = { (owns == null || ownsItem(it, owns)) && (lacks == null || !ownsItem(it, lacks)) }
             } else if (variable != null) {
-                if (eq != null) {
-                    when (default) {
-                        is Int -> predicate = { it[variable, default] == eq }
-                        is String -> predicate = { it[variable, default] == eq }
-                        is Double -> predicate = { it[variable, default] == eq }
-                        is Long -> predicate = { it[variable, default] == eq }
-                        is Boolean -> predicate = { it[variable, default] == eq }
-                        else -> when (eq) {
-                            is Int -> predicate = { it.get<Int>(variable) == eq }
-                            is String -> predicate = { it.get<String>(variable) == eq }
-                            is Double -> predicate = { it.get<Double>(variable) == eq }
-                            is Long -> predicate = { it.get<Long>(variable) == eq }
-                            is Boolean -> predicate = { it.get<Boolean>(variable) == eq }
-                            else -> {}
+                if (negated) {
+                    if (eq != null) {
+                        when (default) {
+                            is Int -> predicate = { it[variable, default] != eq }
+                            is String -> predicate = { it[variable, default] != eq }
+                            is Double -> predicate = { it[variable, default] != eq }
+                            is Long -> predicate = { it[variable, default] != eq }
+                            is Boolean -> predicate = { it[variable, default] != eq }
+                            else -> when (eq) {
+                                is Int -> predicate = { it.get<Int>(variable) != eq }
+                                is String -> predicate = { it.get<String>(variable) != eq }
+                                is Double -> predicate = { it.get<Double>(variable) != eq }
+                                is Long -> predicate = { it.get<Long>(variable) != eq }
+                                is Boolean -> predicate = { it.get<Boolean>(variable) != eq }
+                                else -> {}
+                            }
                         }
+                    } else if (within != null) {
+                        predicate = { it[variable, default ?: -1] !in within }
                     }
-                } else if (within != null) {
-                    predicate = { it[variable, default ?: -1] in within }
+                } else {
+                    if (eq != null) {
+                        when (default) {
+                            is Int -> predicate = { it[variable, default] == eq }
+                            is String -> predicate = { it[variable, default] == eq }
+                            is Double -> predicate = { it[variable, default] == eq }
+                            is Long -> predicate = { it[variable, default] == eq }
+                            is Boolean -> predicate = { it[variable, default] == eq }
+                            else -> when (eq) {
+                                is Int -> predicate = { it.get<Int>(variable) == eq }
+                                is String -> predicate = { it.get<String>(variable) == eq }
+                                is Double -> predicate = { it.get<Double>(variable) == eq }
+                                is Long -> predicate = { it.get<Long>(variable) == eq }
+                                is Boolean -> predicate = { it.get<Boolean>(variable) == eq }
+                                else -> {}
+                            }
+                        }
+                    } else if (within != null) {
+                        predicate = { it[variable, default ?: -1] in within }
+                    }
                 }
             }
             val amount = min..max
