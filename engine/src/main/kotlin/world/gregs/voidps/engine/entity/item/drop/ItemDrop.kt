@@ -40,7 +40,7 @@ data class ItemDrop(
             variable: String? = null,
             eq: Any? = null,
             default: Any? = null,
-            within: String? = null,
+            within: IntRange? = null,
         ): ItemDrop {
             var predicate: ((Player) -> Boolean)? =null
             if (owns != null || lacks != null) {
@@ -63,57 +63,11 @@ data class ItemDrop(
                         }
                     }
                 } else if (within != null) {
-                    val range = within.toIntRange(inclusive = true)
-                    predicate = { it[variable, default ?: -1] in range }
+                    predicate = { it[variable, default ?: -1] in within }
                 }
             }
             val amount = min..max
             return ItemDrop(id, amount, chance, members, predicate)
-        }
-
-        operator fun invoke(map: Map<String, Any>, itemDefinitions: ItemDefinitions? = null): ItemDrop {
-            val id = map["id"] as String
-            if (itemDefinitions != null && id != "nothing") {
-                if (itemDefinitions.getOrNull(id) == null) {
-                    logger.warn { "Invalid drop id $id" }
-                }
-            }
-            var predicate: ((Player) -> Boolean)? = null
-            if (map.containsKey("variable")) {
-                val variable = map["variable"] as String
-                if (map.containsKey("equals")) {
-                    val value = map["equals"]
-                    when (val default = map["default"]) {
-                        is Int -> predicate = { it[variable, default] == value }
-                        is String -> predicate = { it[variable, default] == value }
-                        is Double -> predicate = { it[variable, default] == value }
-                        is Long -> predicate = { it[variable, default] == value }
-                        is Boolean -> predicate = { it[variable, default] == value }
-                        else -> when (value) {
-                            is Int -> predicate = { it.get<Int>(variable) == value }
-                            is String -> predicate = { it.get<String>(variable) == value }
-                            is Double -> predicate = { it.get<Double>(variable) == value }
-                            is Long -> predicate = { it.get<Long>(variable) == value }
-                            is Boolean -> predicate = { it.get<Boolean>(variable) == value }
-                        }
-                    }
-                } else if (map.containsKey("within")) {
-                    val range = (map["within"] as String).toIntRange(inclusive = true)
-                    val default = map.getOrDefault("default", -1)
-                    predicate = { it[variable, default] in range }
-                }
-            } else if (map.containsKey("owns") || map.containsKey("lacks")) {
-                val owns = map["owns"] as? String
-                val lacks = map["lacks"] as? String
-                predicate = { (owns == null || ownsItem(it, owns)) && (lacks == null || !ownsItem(it, lacks)) }
-            }
-            return ItemDrop(
-                id = id,
-                amount = map["amount"] as? IntRange ?: map["charges"] as? IntRange ?: 1..1,
-                chance = map["chance"] as? Int ?: 1,
-                members = map["members"] as? Boolean ?: false,
-                predicate = predicate
-            )
         }
 
         private val inventories = listOf("inventory", "worn_equipment", "bank")

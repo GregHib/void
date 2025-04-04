@@ -70,6 +70,11 @@ class DropTables {
         var max = 1
         var owns: String? = null
         var lacks: String? = null
+        var variable: String? = null
+        var eq: Any? = null
+        var default: Any? = null
+        var withinMin: Int? = null
+        var withinMax: Int? = null
         while (nextEntry()) {
             when (val dropKey = key()) {
                 "table" -> table = string()
@@ -85,6 +90,11 @@ class DropTables {
                 "roll" -> roll = int()
                 "owns" -> owns = string()
                 "members" -> members = boolean()
+                "variable" -> variable = string()
+                "eq" -> eq = value()
+                "default" -> default = value()
+                "within_min" -> withinMin = int()
+                "within_max" -> withinMax = int()
                 else -> throw IllegalArgumentException("Unexpected drop key: '$dropKey' ${exception()}")
             }
         }
@@ -92,6 +102,19 @@ class DropTables {
             return ReferenceTable(table, roll, chance ?: -1)
         }
         require(itemDefinitions == null || id == "nothing" || itemDefinitions.getOrNull(id) != null) { "Unable to find item with id '${id}'." }
-        return ItemDrop(id = id, min = min, max = max, chance = chance ?: 1, members = members, owns = owns, lacks = lacks)
+        val within = if (withinMin != null && withinMax != null) withinMin..withinMax else null
+        return ItemDrop(
+            id = id,
+            min = min,
+            max = max,
+            chance = chance ?: 1,
+            members = members,
+            owns = owns,
+            lacks = lacks,
+            variable = variable,
+            eq = eq,
+            default = default,
+            within = within
+        )
     }
 }
