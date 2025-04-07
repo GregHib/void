@@ -87,10 +87,10 @@ data class ItemDrop(
                         }
                     } else if (within != null) {
                         predicate = { it[variable, default ?: -1] in within }
-                    } else if (members != null) {
-                        predicate = { World.members == members }
                     }
                 }
+            } else if (members != null) {
+                predicate = { World.members == members }
             }
             val amount = min..max
             return ItemDrop(id, amount, chance, predicate)

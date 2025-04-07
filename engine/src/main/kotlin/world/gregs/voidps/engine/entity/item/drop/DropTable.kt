@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.item.drop
 
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.random
 
@@ -24,10 +23,9 @@ data class DropTable(
      * Roll a drop from the table
      * @param maximumRoll overridable maximum roll for dynamic chances
      * @param list optional list to add the drop to
-     * @param members whether members drops should be allowed or not
      * @param player the player for [ItemDrop.predicate]'s
      */
-    fun role(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf(), members: Boolean = false, player: Player? = null): MutableList<ItemDrop> {
+    fun role(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf(), player: Player? = null): MutableList<ItemDrop> {
         collect(list, maximumRoll, player, random(maximumRoll))
         return list
     }

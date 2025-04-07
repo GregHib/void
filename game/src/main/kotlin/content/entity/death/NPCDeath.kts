@@ -126,7 +126,7 @@ fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {
         }
     }
     val combatLevel = if (killer is Player) killer.combatLevel else if (killer is NPC) killer.def.combat else -1
-    val drops = table.role(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1, members = World.members, player = killer as? Player)
+    val drops = table.role(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1, player = killer as? Player)
         .filterNot { it.id == "nothing" }
         .reversed()
         .map { it.toItem() }

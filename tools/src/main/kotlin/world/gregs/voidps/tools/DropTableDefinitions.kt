@@ -29,7 +29,7 @@ object DropTableDefinitions {
 
         val list = mutableListOf<ItemDrop>()
         repeat(1000000) {
-            table.role(list = list, members = true)
+            table.role(list = list)
         }
         val inventory = Inventory.debug(capacity = 100)
         list.forEach {
