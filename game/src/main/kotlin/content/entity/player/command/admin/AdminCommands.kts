@@ -507,7 +507,9 @@ class InventoryDelegate(
     private val list: MutableList<ItemDrop> = mutableListOf()
 ) : MutableList<ItemDrop> by list {
     override fun add(element: ItemDrop): Boolean {
-        inventory.add(element.id, element.amount.random())
+        if (!inventory.add(element.id, element.amount.random()) && element.id != "nothing") {
+            println("Failed to add $element")
+        }
         return true
     }
 }
@@ -565,12 +567,14 @@ modCommand("sim (drop-table-name) (drop-count)", "simulate any amount of drops f
                         val temp = Inventory.debug(capacity = 100)
                         val list = InventoryDelegate(temp)
                         for (i in numbers) {
-                            table.role(list = list, members = true)
+                            table.role(list = list)
                         }
                         temp
                     }
                 }.forEach {
-                    it.await().moveAll(inventory)
+                    if (!it.await().moveAll(inventory)) {
+                        println("Failed to move all simulated drops to inventory")
+                    }
                 }
             }
             if (time > 0) {

@@ -1,8 +1,10 @@
 [sub_table]
 roll = 5
 drops = [
-  { id = "coins", amount = 10, chance = 1 }, # basic
+  { id = "coins", amount = 10, chance = 2 }, # basic
   { id = "coins" }, # default
+  { id = "air_rune", members = false }, # free to play only
+  { id = "dragon_dagger", members = true }, # members only
   { id = "coins", min = 1, max = 5, chance = 1 } # range
 ]
 
@@ -10,5 +12,5 @@ drops = [
 type = "all"
 drops = [
   { id = "bones" },
-  { table = "sub_table", roll = 4 } # overrides roll
+  { table = "sub_table", roll = 10 } # overrides roll
 ]
