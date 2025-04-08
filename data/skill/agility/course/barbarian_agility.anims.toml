@@ -37,10 +37,10 @@ id = 11820
 [circus_cartwheel]
 id = 10295
 
-[barbarian_gap_jump]
+[jump_down]
 id = 2586
 
-[barbarian_jump_land]
+[jump_land]
 id = 2588
 
 [barbarian_slide_start]

@@ -124,4 +124,82 @@ internal class GrappleTest : WorldTest() {
 
         assertEquals(Tile(3246, 3179), player.tile)
     }
+
+    @Test
+    fun `Grapple falador wall south`() {
+        val player = createPlayer(tile = Tile(3005, 3393))
+        player.levels.set(Skill.Agility, 11)
+        player.levels.set(Skill.Ranged, 19)
+        player.levels.set(Skill.Strength, 37)
+        player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
+        player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
+        val obj = objects[Tile(3005, 3393), "falador_wall_south"]!!
+        player.objectOption(obj, "Grapple")
+
+        tick(13)
+
+        assertEquals(Tile(3005, 3394, 1), player.tile)
+    }
+
+    @Test
+    fun `Grapple falador wall north`() {
+        val player = createPlayer(tile = Tile(3006, 3395))
+        player.levels.set(Skill.Agility, 11)
+        player.levels.set(Skill.Ranged, 19)
+        player.levels.set(Skill.Strength, 37)
+        player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
+        player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
+        val obj = objects[Tile(3006, 3395), "falador_wall_north"]!!
+        player.objectOption(obj, "Grapple")
+
+        tick(13)
+
+        assertEquals(Tile(3006, 3394, 1), player.tile)
+    }
+
+    @Test
+    fun `Can't jump down falador wall south`() {
+        val player = createPlayer(tile = Tile(3005, 3394, 1))
+        val obj = objects[Tile(3005, 3393, 1), "falador_wall_jump_south"]!!
+        player.objectOption(obj, "Jump")
+
+        tick(2)
+
+        assertTrue(player.containsMessage("You need an agility level of at least 4"))
+    }
+
+    @Test
+    fun `Jump down falador wall south`() {
+        val player = createPlayer(tile = Tile(3005, 3394, 1))
+        player.levels.set(Skill.Agility, 4)
+        val obj = objects[Tile(3005, 3393, 1), "falador_wall_jump_south"]!!
+        player.objectOption(obj, "Jump")
+
+        tick(2)
+
+        assertEquals(Tile(3005, 3393), player.tile)
+    }
+
+    @Test
+    fun `Jump down falador wall north`() {
+        val player = createPlayer(tile = Tile(3006, 3394, 1))
+        player.levels.set(Skill.Agility, 4)
+        val obj = objects[Tile(3006, 3395, 1), "falador_wall_jump_north"]!!
+        player.objectOption(obj, "Jump")
+
+        tick(2)
+
+        assertEquals(Tile(3006, 3395), player.tile)
+    }
+
+    @Test
+    fun `Can't jump down falador wall north`() {
+        val player = createPlayer(tile = Tile(3006, 3394, 1))
+        val obj = objects[Tile(3006, 3395, 1), "falador_wall_jump_north"]!!
+        player.objectOption(obj, "Jump")
+
+        tick(2)
+
+        assertTrue(player.containsMessage("You need an agility level of at least 4"))
+    }
 }

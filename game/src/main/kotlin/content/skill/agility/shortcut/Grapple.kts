@@ -5,6 +5,8 @@ import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -28,16 +30,7 @@ val crossbows = setOf(
 val objects: GameObjects by inject()
 
 objectApproach("Grapple", "lumbridge_broken_raft") {
-    if (!player.has(Skill.Agility, 8) || !player.has(Skill.Ranged, 38) || !player.has(Skill.Strength, 17)) {
-        statement("You need at least 37 Ranged, 8 Agility and 19 Strength to do that.")
-        return@objectApproach
-    }
-    if (player.equipped(EquipSlot.Ammo).id != "mithril_grapple") {
-        player.message("You need a mithril grapple tipped bolt with a rope to do that.")
-        return@objectApproach
-    }
-    if (!crossbows.contains(player.weapon.id)) {
-        player.message("You need a crossbow equipped to do that.")
+    if (!hasRequirements(ranged = 37, agility = 8, strength = 17)) {
         return@objectApproach
     }
     player.steps.clear()
@@ -109,4 +102,76 @@ fun Grapple.alKharidTree(grapple: Boolean) {
     for (x in 3254..3259) {
         objects.add("grapple_rope", Tile(x, 3180), shape = ObjectShape.GROUND_DECOR, ticks = 8)
     }
+}
+
+objectOperate("Grapple", "falador_wall_north") {
+    player.walkToDelay(Tile(3006, 3395))
+    player.face(Direction.SOUTH)
+    delay()
+    if (!hasRequirements(ranged = 19, agility = 11, strength = 37)) {
+        return@objectOperate
+    }
+    player.anim("grapple_wall_climb")
+    player.gfx("grapple_wall_climb")
+    player.sound("grapple_shoot", delay = 45)
+    delay(11)
+    player.clearGfx()
+    player.clearAnim()
+    player.tele(3006, 3394, 1)
+}
+
+objectOperate("Grapple", "falador_wall_south") {
+    player.walkToDelay(Tile(3005, 3393))
+    player.face(Direction.NORTH)
+    delay()
+    if (!hasRequirements(ranged = 19, agility = 11, strength = 37)) {
+        return@objectOperate
+    }
+    player.anim("grapple_wall_climb")
+    player.gfx("grapple_wall_climb")
+    player.sound("grapple_shoot", delay = 45)
+    delay(11)
+    player.clearGfx()
+    player.clearAnim()
+    player.tele(3005, 3394, 1)
+}
+
+objectOperate("Jump", "falador_wall_jump_north") {
+    player.walkToDelay(Tile(3006, 3394, 1))
+    if (!player.has(Skill.Agility, 4)) {
+        player.message("You need an agility level of at least 4 to climb down this wall.")
+        return@objectOperate
+    }
+    player.anim("jump_down")
+    delay(1)
+    player.anim("jump_land")
+    player.tele(3006, 3395, 0)
+}
+
+objectOperate("Jump", "falador_wall_jump_south") {
+    player.walkToDelay(Tile(3005, 3394, 1))
+    if (!player.has(Skill.Agility, 4)) {
+        player.message("You need an agility level of at least 4 to climb down this wall.")
+        return@objectOperate
+    }
+    player.anim("jump_down")
+    delay(1)
+    player.anim("jump_land")
+    player.tele(3005, 3393, 0)
+}
+
+suspend fun ObjectOption<Player>.hasRequirements(ranged: Int, agility: Int, strength: Int): Boolean {
+    if (!player.has(Skill.Ranged, ranged) || !player.has(Skill.Agility, agility) || !player.has(Skill.Strength, strength)) {
+        statement("You need at least $ranged Ranged, $agility Agility and $strength Strength to do that.")
+        return false
+    }
+    if (player.equipped(EquipSlot.Ammo).id != "mithril_grapple") {
+        player.message("You need a mithril grapple tipped bolt with a rope to do that.")
+        return false
+    }
+    if (!crossbows.contains(player.weapon.id)) {
+        player.message("You need a crossbow equipped to do that.")
+        return false
+    }
+    return true
 }

@@ -69,10 +69,10 @@ objectOperate("Cross", "barbarian_outpost_balance_beam") {
 
 objectOperate("Jump-over", "barbarian_outpost_gap") {
     player.clearRenderEmote()
-    player.anim("barbarian_gap_jump")
+    player.anim("jump_down")
     delay()
     player.tele(2539, 3553, 2)
-    player.anim("barbarian_jump_land")
+    player.anim("jump_land")
     delay()
     player.exp(Skill.Agility, 15.0)
     player.agilityStage(7)
@@ -89,7 +89,7 @@ objectOperate("Slide-down", "barbarian_outpost_roof") {
     player.anim("barbarian_slide_jump")
     delay()
     player.tele(2544, player.tile.y, 0)
-    player.anim("barbarian_jump_land")
+    player.anim("jump_land")
     delay()
     player.exp(Skill.Agility, 15.0)
     if (player.agilityStage == 7) {

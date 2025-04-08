@@ -12,3 +12,6 @@ id = 4466
 
 [grapple_exit_water]
 id = 4467
+
+[grapple_wall_climb]
+id = 4455

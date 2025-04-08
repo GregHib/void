@@ -68,3 +68,19 @@ examine = "A sturdy tree with grapple marks on it."
 [strong_yew_grapple]
 id = 17041
 examine = "A sturdy tree with grapple marks on it."
+
+[falador_wall_south]
+id = 17050
+examine = "City wall."
+
+[falador_wall_north]
+id = 17049
+examine = "City wall."
+
+[falador_wall_jump_north]
+id = 17051
+examine = "City wall."
+
+[falador_wall_jump_south]
+id = 17052
+examine = "City wall."
