@@ -1,3 +1,7 @@
 [bank_booth_seers_village]
 id = 25808
 examine = "The bank teller will serve you from here."
+
+[log_balance]
+id = 2296
+examine = "A slippery log I can walk across."
