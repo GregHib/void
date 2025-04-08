@@ -10,3 +10,7 @@ examine = "I wonder what this does."
 [bank_booth_edgeville]
 id = 26972
 examine = "For accessing your bank account."
+
+[edgeville_monkey_bars]
+id = 29375
+examine = "I can traverse these."

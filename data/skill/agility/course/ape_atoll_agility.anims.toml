@@ -1,6 +1,9 @@
 [jump_onto_monkey_bars]
 id = 742
 
+[jump_from_monkey_bars]
+id = 743
+
 [ninja_monkey_jump]
 id = 3481
 
