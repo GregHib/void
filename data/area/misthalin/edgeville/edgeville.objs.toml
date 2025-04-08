@@ -14,3 +14,11 @@ examine = "For accessing your bank account."
 [edgeville_monkey_bars]
 id = 29375
 examine = "I can traverse these."
+
+[edgeville_underwall_tunnel]
+id = 9311
+examine = "An underwall tunnel."
+
+[grand_exchange_underwall_tunnel]
+id = 9312
+examine = "An underwall tunnel."

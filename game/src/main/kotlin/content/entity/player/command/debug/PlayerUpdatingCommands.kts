@@ -75,13 +75,13 @@ adminCommand("chat (message)", "force a chat message over players head") {
 
 adminCommand("move") {
     val move = player.visuals.exactMovement
-    move.startX = 0
-    move.startY = 0
-    move.startDelay = 60
+    move.startX = -4
+    move.startY = 2
+    move.startDelay = 0
     move.endX = 0
-    move.endY = -2
-    move.endDelay = 120
-    move.direction = Direction.SOUTH.ordinal
+    move.endY = 0
+    move.endDelay = 100
+    move.direction = Direction.EAST.ordinal
     player.flagExactMovement()
 }
 
