@@ -45,6 +45,24 @@ objectOperate("Climb-into", "grand_exchange_underwall_tunnel") {
     )
 }
 
+objectOperate("Climb-into", "falador_underwall_tunnel_north") {
+    tunnel(
+        level = 26,
+        start = Tile(2948, 3313),
+        end = Tile(2948, 3310),
+        direction = Direction.SOUTH
+    )
+}
+
+objectOperate("Climb-into", "falador_underwall_tunnel_south") {
+    tunnel(
+        level = 26,
+        start = Tile(2948, 3309),
+        end = Tile(2948, 3312),
+        direction = Direction.NORTH
+    )
+}
+
 suspend fun ObjectOption<Player>.tunnel(level: Int, start: Tile, end: Tile, direction: Direction) {
     if (!player.has(Skill.Agility, level)) {
         player.message("You need an Agility level of $level to negotiate this tunnel.")

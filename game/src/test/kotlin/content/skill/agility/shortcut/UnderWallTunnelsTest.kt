@@ -85,4 +85,42 @@ class UnderWallTunnelsTest : WorldTest() {
 
         assertTrue(player.containsMessage("You need an Agility level of 21"))
     }
+
+    @Test
+    fun `Climb south under falador wall`() {
+        val player = createPlayer(tile = Tile(2948, 3313))
+        player.levels.set(Skill.Agility, 26)
+        val wall = objects[Tile(2948, 3312), "falador_underwall_tunnel_north"]!!
+
+        player.objectOption(wall, "Climb-into")
+        tick(8)
+
+        assertEquals(Tile(2948, 3309), player.tile)
+        assertEquals(0.0, player.experience.get(Skill.Agility))
+    }
+
+    @Test
+    fun `Climb north under falador wall`() {
+        val player = createPlayer(tile = Tile(2948, 3309))
+        player.levels.set(Skill.Agility, 26)
+        val wall = objects[Tile(2948, 3310), "falador_underwall_tunnel_south"]!!
+
+        player.objectOption(wall, "Climb-into")
+        tick(8)
+
+        assertEquals(Tile(2948, 3313), player.tile)
+        assertEquals(0.0, player.experience.get(Skill.Agility))
+    }
+
+    @Test
+    fun `Can't climb under falador wall without level`() {
+        val player = createPlayer(tile = Tile(2948, 3309))
+        player.levels.set(Skill.Agility, 25)
+        val wall = objects[Tile(2948, 3310), "falador_underwall_tunnel_south"]!!
+
+        player.objectOption(wall, "Climb-into")
+        tick(2)
+
+        assertTrue(player.containsMessage("You need an Agility level of 26"))
+    }
 }
