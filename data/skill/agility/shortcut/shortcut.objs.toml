@@ -87,3 +87,7 @@ examine = "City wall."
 
 [pipe_brimhaven_dungeon]
 id = 5100
+
+[coal_truck_log_balance]
+id = 2296
+examine = "A slippery log I can walk across."

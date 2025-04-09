@@ -1,4 +1,4 @@
-package content.area.kandarin.seers_village
+package content.skill.agility.shortcut
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.type.equals
 
-objectOperate("Walk-across", "log_balance") {
+objectOperate("Walk-across", "coal_truck_log_balance") {
     if (!player.has(Skill.Agility, 20)) {
         player.message("You need at least 20 Agility to do that.") // TODO proper message
         return@objectOperate
