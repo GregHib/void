@@ -15,9 +15,9 @@ class UnderWallTunnelsTest : WorldTest() {
     fun `Climb south under yanille wall`() {
         val player = createPlayer(tile = Tile(2575, 3112))
         player.levels.set(Skill.Agility, 15)
-        val monkeyBars = objects[Tile(2575, 3111), "yanille_underwall_tunnel_hole"]!!
+        val wall = objects[Tile(2575, 3111), "yanille_underwall_tunnel_hole"]!!
 
-        player.objectOption(monkeyBars, "Climb-into")
+        player.objectOption(wall, "Climb-into")
         tick(8)
 
         assertEquals(Tile(2575, 3107), player.tile)
@@ -28,9 +28,9 @@ class UnderWallTunnelsTest : WorldTest() {
     fun `Climb north under yanille wall`() {
         val player = createPlayer(tile = Tile(2575, 3107))
         player.levels.set(Skill.Agility, 15)
-        val monkeyBars = objects[Tile(2575, 3108), "yanille_underwall_tunnel_castle_wall"]!!
+        val wall = objects[Tile(2575, 3108), "yanille_underwall_tunnel_castle_wall"]!!
 
-        player.objectOption(monkeyBars, "Climb-under")
+        player.objectOption(wall, "Climb-under")
         tick(8)
 
         assertEquals(Tile(2575, 3112), player.tile)
@@ -40,9 +40,9 @@ class UnderWallTunnelsTest : WorldTest() {
     @Test
     fun `Can't climb under yanille wall without level`() {
         val player = createPlayer(tile = Tile(2575, 3107))
-        val monkeyBars = objects[Tile(2575, 3108), "yanille_underwall_tunnel_castle_wall"]!!
+        val wall = objects[Tile(2575, 3108), "yanille_underwall_tunnel_castle_wall"]!!
 
-        player.objectOption(monkeyBars, "Climb-under")
+        player.objectOption(wall, "Climb-under")
         tick(2)
 
         assertTrue(player.containsMessage("You need an Agility level of 15"))
@@ -52,9 +52,9 @@ class UnderWallTunnelsTest : WorldTest() {
     fun `Climb west under edgeville wall`() {
         val player = createPlayer(tile = Tile(3144, 3514))
         player.levels.set(Skill.Agility, 21)
-        val monkeyBars = objects[Tile(3143, 3514), "grand_exchange_underwall_tunnel"]!!
+        val wall = objects[Tile(3143, 3514), "grand_exchange_underwall_tunnel"]!!
 
-        player.objectOption(monkeyBars, "Climb-into")
+        player.objectOption(wall, "Climb-into")
         tick(8)
 
         assertEquals(Tile(3138, 3516), player.tile)
@@ -65,9 +65,9 @@ class UnderWallTunnelsTest : WorldTest() {
     fun `Climb east under edgeville wall`() {
         val player = createPlayer(tile = Tile(3138, 3516))
         player.levels.set(Skill.Agility, 21)
-        val monkeyBars = objects[Tile(3139, 3516), "edgeville_underwall_tunnel"]!!
+        val wall = objects[Tile(3139, 3516), "edgeville_underwall_tunnel"]!!
 
-        player.objectOption(monkeyBars, "Climb-into")
+        player.objectOption(wall, "Climb-into")
         tick(8)
 
         assertEquals(Tile(3144, 3514), player.tile)
@@ -78,9 +78,9 @@ class UnderWallTunnelsTest : WorldTest() {
     fun `Can't climb under edgeville wall without level`() {
         val player = createPlayer(tile = Tile(3138, 3516))
         player.levels.set(Skill.Agility, 20)
-        val monkeyBars = objects[Tile(3139, 3516), "edgeville_underwall_tunnel"]!!
+        val wall = objects[Tile(3139, 3516), "edgeville_underwall_tunnel"]!!
 
-        player.objectOption(monkeyBars, "Climb-into")
+        player.objectOption(wall, "Climb-into")
         tick(2)
 
         assertTrue(player.containsMessage("You need an Agility level of 21"))

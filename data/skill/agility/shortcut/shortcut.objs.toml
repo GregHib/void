@@ -84,3 +84,6 @@ examine = "City wall."
 [falador_wall_jump_south]
 id = 17052
 examine = "City wall."
+
+[pipe_brimhaven_dungeon]
+id = 5100
