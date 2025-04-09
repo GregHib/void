@@ -57,3 +57,9 @@ id = 893
 
 [pick_plant]
 id = 2282
+
+[human_walk_forward]
+id = 819
+
+[human_walk_backwards]
+id = 820

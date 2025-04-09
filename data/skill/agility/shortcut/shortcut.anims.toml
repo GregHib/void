@@ -15,3 +15,9 @@ id = 4467
 
 [grapple_wall_climb]
 id = 4455
+
+[rocks_climb]
+id = 4435
+
+[rocks_climb_down]
+id = 740
