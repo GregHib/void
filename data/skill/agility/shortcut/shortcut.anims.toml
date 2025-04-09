@@ -21,3 +21,6 @@ id = 4435
 
 [rocks_climb_down]
 id = 740
+
+[rock_jump]
+id = 1604

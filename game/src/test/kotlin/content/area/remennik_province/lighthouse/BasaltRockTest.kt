@@ -11,6 +11,7 @@ import world.gregs.voidps.type.setRandom
 import kotlin.test.assertTrue
 
 class BasaltRockTest : WorldTest() {
+
     @Test
     fun `Jump to the lighthouse`() {
         val player = createPlayer(tile = Tile(2523, 3595))

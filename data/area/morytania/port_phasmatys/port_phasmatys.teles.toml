@@ -1,0 +1,19 @@
+[wrecked_ghost_ship_ladder]
+option = "Climb-up"
+tile = { x = 3609, y = 3543 }
+to = { x = 3610, y = 3543, level = 1 }
+
+[wrecked_ghost_ship_ladder]
+option = "Climb-up"
+tile = { x = 3613, y = 3543 }
+to = { x = 3614, y = 3543, level = 1 }
+
+[wrecked_ghost_ship_ladder_down]
+option = "Climb-down"
+tile = { x = 3609, y = 3543, level = 1 }
+to = { x = 3612, y = 3543 }
+
+[wrecked_ghost_ship_ladder_down]
+option = "Climb-down"
+tile = { x = 3613, y = 3543, level = 1 }
+to = { x = 3614, y = 3543 }
