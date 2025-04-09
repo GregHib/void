@@ -16,7 +16,8 @@ data class DropTable(
     val type: TableType = TableType.First,
     val roll: Int = 1,
     val drops: List<Drop>,
-    override val chance: Int = -1
+    override val chance: Int = -1,
+    override val predicate: ((Player) -> Boolean)? = null
 ) : Drop {
 
     /**
@@ -40,6 +41,10 @@ data class DropTable(
             if (drop.chance == 0) {
                 continue
             }
+            val predicate = drop.predicate
+            if (player != null && predicate != null && !predicate(player)) {
+                continue
+            }
             if (drop is DropTable) {
                 if (drop.chance != -1) {
                     count += drop.chance
@@ -51,10 +56,6 @@ data class DropTable(
                     return true
                 }
             } else if (drop is ItemDrop) {
-                val predicate = drop.predicate
-                if (player != null && predicate != null && !predicate(player)) {
-                    continue
-                }
                 if (type == TableType.All) {
                     list.add(drop)
                 } else {
