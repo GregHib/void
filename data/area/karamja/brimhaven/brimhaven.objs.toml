@@ -13,3 +13,11 @@ examine = "I can jump from this stepping stone."
 [brimhaven_stepping_stones_end]
 id = 5111
 examine = "I can jump from this stepping stone."
+
+[brimhaven_log_balance_start]
+id = 5088
+examine = "I hope I don't fall off this."
+
+[brimhaven_log_balance_end]
+id = 5090
+examine = "I hope I don't fall off this."

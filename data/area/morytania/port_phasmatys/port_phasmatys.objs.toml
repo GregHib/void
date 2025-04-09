@@ -4,20 +4,20 @@ examine = "The bank teller will serve you from here."
 
 [wrecked_ghost_ship_ladder]
 id = 5265
-examine = ""
+examine = "I can climb up here."
 
 [wrecked_ghost_ship_ladder_down]
 id = 5266
-examine = ""
+examine = "I can go below decks with this ladder."
 
 [wrecked_ghost_ship_gangplank]
 id = 5285
-examine = ""
+examine = "The tatty gangplank of a tatty ship."
 
 [wrecked_ghost_ship_gangplank_end]
 id = 5286
-examine = ""
+examine = "The tatty gangplank of a tatty ship."
 
 [wrecked_ghost_ship_rock]
 id = 5269
-examine = ""
+examine = "	I can't see a rock!"

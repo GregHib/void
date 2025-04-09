@@ -1,10 +1,14 @@
 package content.area.karamja
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
+import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -68,4 +72,26 @@ objectOperate("Jump-from", "brimhaven_stepping_stones_end") {
     }
     player.exp(Skill.Agility, 7.5)
     player.message("... You safely cross to the other side.", ChatType.Filter)
+}
+
+objectOperate("Walk-across", "brimhaven_log_balance_start") {
+    walkAcross(30, 2687, 10.0)
+}
+
+objectOperate("Walk-across", "brimhaven_log_balance_end") {
+    walkAcross(30, 2682, 10.0)
+}
+
+suspend fun ObjectOption<Player>.walkAcross(level: Int, targetX: Int, exp: Double) {
+    if (!player.has(Skill.Agility, level)) {
+        player.message("You need at least $level Agility to do that.") // TODO proper message
+        return
+    }
+    player.message("You walk carefully across the slippery log...", ChatType.Filter)
+    player.renderEmote("rope_balance")
+    player.walkOverDelay(target.tile)
+    player.walkOverDelay(target.tile.copy(targetX))
+    player.clearRenderEmote()
+    player.exp(Skill.Agility, exp)
+    player.message("... and make it safely to the other side.", ChatType.Filter)
 }
