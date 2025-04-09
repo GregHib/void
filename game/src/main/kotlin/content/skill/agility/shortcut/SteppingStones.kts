@@ -1,19 +1,27 @@
 package content.skill.agility.shortcut
 
+import content.entity.combat.hit.damage
 import content.entity.gfx.areaGfx
+import content.entity.player.combat.special.specialAttackEnergy
 import content.entity.sound.sound
 import content.skill.firemaking.Light
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectApproach
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.equals
+import kotlin.math.round
 
 objectApproach("Jump-across", "lumbridge_swamp_stepping_stone") {
     val direction = if (player.tile.x > target.tile.x) Direction.WEST else Direction.EAST
@@ -49,5 +57,60 @@ objectApproach("Jump-across", "lumbridge_swamp_stepping_stone") {
             player.message("You scramble out of the muddy water.", ChatType.Filter)
         }
         player.clearRenderEmote()
+    }
+}
+
+objectOperate("Cross", "shilo_village_waterfall_stepping_stone_*") {
+    if (player.tile.equals(2925, 2947) || player.tile.equals(2925, 2951)) {
+        cross()
+    }
+}
+
+objectApproach("Cross", "shilo_village_waterfall_stepping_stone_*") {
+    approachRange(1)
+    if (player.tile == target.tile) {
+        return@objectApproach
+    }
+    if (!player.tile.within(target.tile, 1)) {
+        player.cantReach()
+        return@objectApproach
+    }
+    cross()
+}
+
+suspend fun ObjectOption<Player>.cross() {
+    if (!player.has(Skill.Agility, 30)) {
+        player.message("You need at least 30 Agility to do that.") // TODO proper message
+        return
+    }
+    val direction = target.tile.delta(player.tile).toDirection()
+    player.message("You attempt to balance on the stepping stone.", ChatType.Filter)
+    player.anim("stepping_stone_step", delay = 20)
+    player.exactMoveDelay(target.tile, startDelay = 48, delay = 60, direction = direction)
+    player.sound("jump", delay = 30)
+    if (Level.success(player.levels.get(Skill.Agility), 51..252)) { // Unknown rate
+        delay()
+        player.message("You manage to make the jump.", ChatType.Filter)
+        player.exp(Skill.Agility, 3.0)
+    } else {
+        player.message("You slip and fall...", ChatType.Filter)
+        player.anim("rope_walk_fall_${if (direction == Direction.SOUTH) "left" else "right"}")
+        player.renderEmote("drowning")
+        player.exactMoveDelay(Tile(2928, 2949), startDelay = 52, delay = 100, direction = direction)
+        areaGfx("big_splash", Tile(2928, 2949), delay = 1)
+        player.sound("pool_plop")
+        player.levels.drain(Skill.Prayer, multiplier = 0.5)
+        player.walkOverDelay(Tile(2930, 2949))
+        delay()
+        player.renderEmote("swim")
+        player.walkOverDelay(Tile(2931, if (direction == Direction.SOUTH) 2947 else 2951))
+
+        player.clearRenderEmote()
+        player.walkOverDelay(Tile(2931, if (direction == Direction.SOUTH) 2945 else 2953))
+
+        player.message("You get washed up on the side of the river, after being nearly half drowned.", ChatType.Filter)
+        player.specialAttackEnergy = (player.specialAttackEnergy - 100).coerceAtLeast(0)
+        player.damage(round(player.levels.get(Skill.Constitution) / 5.5).toInt())
+        player.exp(Skill.Agility, 1.0)
     }
 }

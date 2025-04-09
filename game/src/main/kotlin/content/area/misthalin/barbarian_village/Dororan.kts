@@ -18,10 +18,11 @@ import content.quest.questCompleted
 import content.quest.refreshQuestJournal
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 
 itemOnItem("chisel", "ring_from_jeffery") { player: Player ->
     if (player.quest("gunnars_ground") == "jeffery_ring") {
-        player.message("Nothing interesting happens.")
+        player.noInterest()
     } else {
         player.softQueue("engraving") {
             item("dororans_engraved_ring", 400, "You engrave 'Gudrun the Fair, Gudrun the Fiery' onto the ring.")
