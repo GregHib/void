@@ -85,8 +85,13 @@ examine = "City wall."
 id = 17052
 examine = "City wall."
 
-[pipe_brimhaven_dungeon]
+[brimhaven_pipe_dragon]
+id = 5099
+examine = "A pipe I can squeeze through."
+
+[brimhaven_pipe_moss]
 id = 5100
+examine = "A pipe I can squeeze through."
 
 [coal_truck_log_balance]
 id = 2296
