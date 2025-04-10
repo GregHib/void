@@ -154,38 +154,6 @@ internal class DropTableTest {
     }
 
     @Test
-    fun `Get chance by item id`() {
-        val item1 = drop("1", 2)
-        val item2 = drop("1", 1)
-        val root = DropTable(TableType.All, 12, listOf(item1, item2), -1)
-
-        val (drop, chance) = root.chance("1")!!
-
-        assertEquals(item1, drop)
-        assertEquals(6.0, chance)
-    }
-
-    @Test
-    fun `Get chance by index`() {
-        val item1 = drop("1", 2)
-        val item2 = drop("1", 1)
-        val root = DropTable(TableType.All, 12, listOf(item1, item2), -1)
-
-        val (drop, chance) = root.chance(1)!!
-
-        assertEquals(item2, drop)
-        assertEquals(12.0, chance)
-    }
-
-    @Test
-    fun `Find no chance matches`() {
-        val root = DropTable(TableType.All, 12, listOf(), -1)
-
-        assertNull(root.chance(1))
-        assertNull(root.chance("1"))
-    }
-
-    @Test
     fun `Drop table builder`() {
         val item1 = drop("1", 2)
         val builder = DropTable.Builder()

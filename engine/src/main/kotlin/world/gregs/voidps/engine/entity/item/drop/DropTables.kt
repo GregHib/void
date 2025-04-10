@@ -30,15 +30,6 @@ class DropTables {
                         var chance = 1
                         var type = TableType.First
                         val drops = ObjectArrayList<Drop>()
-                        var members: Boolean? = null
-                        var owns: String? = null
-                        var lacks: String? = null
-                        var variable: String? = null
-                        var eq: Any? = null
-                        var default: Any? = null
-                        var withinMin: Int? = null
-                        var withinMax: Int? = null
-                        var negated = false
                         while (nextPair()) {
                             when (val key = key()) {
                                 "roll" -> roll = int()
@@ -47,23 +38,10 @@ class DropTables {
                                 "drops" -> while (nextElement()) {
                                     drops.add(readItemDrop(itemDefinitions))
                                 }
-                                "lacks" -> lacks = string()
-                                "owns" -> owns = string()
-                                "members" -> members = boolean()
-                                "variable" -> variable = string()
-                                "equals" -> eq = value()
-                                "not_equals" -> {
-                                    eq = value()
-                                    negated = true
-                                }
-                                "default" -> default = value()
-                                "within_min" -> withinMin = int()
-                                "within_max" -> withinMax = int()
                                 else -> throw IllegalArgumentException("Unexpected table key: '$key' ${exception()}")
                             }
                         }
-                        val predicate = dropPredicate(owns, lacks, variable, negated, eq, default, withinMin, withinMax, members)
-                        tables[tableName] = DropTable(type, roll, drops, chance, predicate)
+                        tables[tableName] = DropTable(type, roll, drops, chance)
                     }
                 }
             }
@@ -73,7 +51,7 @@ class DropTables {
                     if (drop is ReferenceTable) {
                         val dropTable = tables[drop.tableName]
                         require(dropTable != null) { "Unable to find drop table with name '${drop.tableName}'." }
-                        (table.drops as MutableList<Drop>)[i] = dropTable.copy(roll = drop.roll ?: dropTable.roll, chance = if (drop.chance == -1) dropTable.chance else drop.chance)
+                        (table.drops as MutableList<Drop>)[i] = dropTable.copy(roll = drop.roll ?: dropTable.roll, chance = if (drop.chance == -1) dropTable.chance else drop.chance, predicate = dropTable.predicate ?: drop.predicate)
                     }
                 }
             }
