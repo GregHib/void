@@ -91,3 +91,11 @@ id = 5100
 [coal_truck_log_balance]
 id = 2296
 examine = "A slippery log I can walk across."
+
+[ardougne_log_balance_east]
+id = 35999
+examine = "A slippery well worn log."
+
+[ardougne_log_balance_west]
+id = 35997
+examine = "A slippery well worn log."
