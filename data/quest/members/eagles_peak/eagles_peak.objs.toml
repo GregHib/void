@@ -1,0 +1,11 @@
+[eagles_peak_rocks]
+id = 19849
+examine = "A rocky outcrop."
+
+[rocky_handholds_bottom]
+id = 19846
+examine = "They're rather icy, but it might be possible to climb them anyway."
+
+[rocky_handholds_top]
+id = 19847
+examine = "They're rather icy, but it might be possible to climb them anyway."
