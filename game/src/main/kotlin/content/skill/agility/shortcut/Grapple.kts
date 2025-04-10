@@ -8,7 +8,9 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.*
@@ -174,4 +176,61 @@ suspend fun ObjectOption<Player>.hasRequirements(ranged: Int, agility: Int, stre
         return false
     }
     return true
+}
+
+objectApproach("Grapple", "catherby_crossbow_tree") {
+    if (!hasRequirements(ranged = 39, agility = 36, strength = 22)) {
+        return@objectApproach
+    }
+    player.steps.clear()
+    val start = Tile(2841, 3425)
+    if (player.tile.distanceTo(start) > 3) { // TODO areas
+        player.message("I can't do that from here.")
+        return@objectApproach
+    }
+    player.walkToDelay(start)
+    player.face(Direction.NORTH)
+    delay()
+    player.anim("grapple_aim_fire")
+    delay(2)
+    player.anim("crossbow_accurate")
+    player.sound("grapple_shoot")
+    delay(3)
+    for (y in 3427..3433) {
+        objects.add("grapple_rope", Tile(2841, y), rotation = 1, shape = ObjectShape.GROUND_DECOR, ticks = 14)
+    }
+    objects.add("catherby_rocks_rope", Tile(2841, 3426), rotation = 1, shape = ObjectShape.GROUND_DECOR, ticks = 14)
+    target.replace("catherby_crossbow_tree_grapple", ticks = 14)
+    delay(4)
+    player.anim("water_obelisk_swim")
+    areaGfx("big_splash", Tile(2841, 3428), 6)
+    player.sound("grapple_splash", delay = 6)
+    player.exactMoveDelay(Tile(2841, 3432), delay = 160, direction = Direction.NORTH)
+}
+
+objectApproach("Grapple", "catherby_rocks") {
+    if (!hasRequirements(ranged = 35, agility = 32, strength = 35)) {
+        return@objectApproach
+    }
+    player.steps.clear()
+    if (player.tile.x > 2867 || player.tile.y > 3431) { // TODO areas
+        player.message("I can't do that from here.")
+        return@objectApproach
+    }
+    player.walkToDelay(Tile(2866, 3429))
+    player.face(Direction.EAST)
+    delay()
+    player.anim("grapple_aim_fire")
+    player.sound("grapple_shoot", delay = 55)
+    delay(2)
+    player.renderEmote("climbing")
+    for (x in 2867..2869) {
+        objects.add("catherby_grapple_rope", Tile(x, 3429), shape = ObjectShape.GROUND_DECOR, ticks = 14)
+    }
+    // TODO check if varbit or not
+    objects.add("catherby_rocks_grapple", Tile(2869, 3429), shape = ObjectShape.GROUND_DECOR, ticks = 14)
+    delay()
+    player.walkOverDelay(Tile(2868, 3429))
+    player.clearRenderEmote()
+    player.walkOverDelay(Tile(2869, 3430))
 }

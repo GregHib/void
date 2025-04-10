@@ -24,3 +24,9 @@ id = 740
 
 [rock_jump]
 id = 1604
+
+[grapple_aim_fire]
+id = 4460
+
+[water_obelisk_swim]
+id = 4468
