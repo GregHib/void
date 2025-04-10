@@ -70,6 +70,7 @@ import content.entity.sound.midi
 import content.entity.sound.sound
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
+import world.gregs.voidps.engine.entity.item.drop.TableType
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import java.util.concurrent.TimeUnit
 import kotlin.collections.set
@@ -520,22 +521,36 @@ modCommand("chance (drop-table-id)", "get the chances for all items of a drop ta
         player.message("No drop table found for '$content'")
         return@modCommand
     }
-    sendChances(player, table)
+    val chances = mutableMapOf<ItemDrop, Double>()
+    collectChances(player, table, chances)
+    for ((drop, chance) in chances) {
+        val amount = when {
+            drop.amount.first == drop.amount.last && drop.amount.first > 1 -> "(${drop.amount.first})"
+            drop.amount.first != drop.amount.last && drop.amount.first > 1 -> "(${drop.amount.first}-${drop.amount.last})"
+            else -> ""
+        }
+        player.message("${drop.id} $amount - 1/${chance.toInt()}")
+    }
 }
 
-fun sendChances(player: Player, table: DropTable) {
-    for (index in table.drops.indices) {
-        val drop = table.drops[index]
+fun ItemDrop.chance(table: DropTable): Double {
+    if (table.type == TableType.All) {
+        return 1.0
+    }
+    if (chance <= 0) {
+        return 0.0
+    }
+    return table.roll / chance.toDouble()
+}
+
+fun collectChances(player: Player, table: DropTable, map: MutableMap<ItemDrop, Double>, multiplier: Double = 1.0) {
+    for (drop in table.drops) {
         if (drop is ItemDrop) {
-            val (item, chance) = table.chance(index) ?: continue
-            val amount = when {
-                item.amount.first == item.amount.last && item.amount.first > 1 -> "(${item.amount.first})"
-                item.amount.first != item.amount.last && item.amount.first > 1 -> "(${item.amount.first}-${item.amount.last})"
-                else -> ""
-            }
-            player.message("${item.id} $amount - 1/${chance.toInt()}")
+            val chance = drop.chance(table) * multiplier
+            map[drop] = chance
         } else if (drop is DropTable) {
-            sendChances(player, drop)
+            val chance = if (table.type == TableType.First && drop.chance > 0) table.roll / drop.chance.toDouble() else 1.0
+            collectChances(player, drop, map, chance)
         }
     }
 }
@@ -567,7 +582,7 @@ modCommand("sim (drop-table-name) (drop-count)", "simulate any amount of drops f
                         val temp = Inventory.debug(capacity = 100)
                         val list = InventoryDelegate(temp)
                         for (i in numbers) {
-                            table.role(list = list)
+                            table.role(list = list, player = player)
                         }
                         temp
                     }
@@ -588,6 +603,9 @@ modCommand("sim (drop-table-name) (drop-count)", "simulate any amount of drops f
         val exchange: (Item) -> Long = {
             it.amount * it.def["price", it.def.cost].toLong()
         }
+        val chances = mutableMapOf<ItemDrop, Double>()
+        collectChances(player, table, chances)
+        val itemChances = chances.map { it.key.id to it }.toMap()
         val sortByPrice = false
         try {
             if (sortByPrice) {
@@ -602,7 +620,7 @@ modCommand("sim (drop-table-name) (drop-count)", "simulate any amount of drops f
                     if (item.isNotEmpty()) {
                         alchValue += alch(item)
                         exchangeValue += exchange(item)
-                        val (drop, chance) = table.chance(item.id) ?: continue
+                        val (drop, chance) = itemChances[item.id] ?: continue
                         player.message("${item.id} 1/${(count / (item.amount / drop.amount.first.toDouble())).toInt()} (1/${chance.toInt()} real)")
                     }
                 }
