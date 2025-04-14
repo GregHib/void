@@ -1,5 +1,6 @@
 package content.skill.cooking
 
+import content.entity.player.dialogue.type.choice
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
@@ -33,8 +34,12 @@ val GameObject.cookingRange: Boolean get() = id.startsWith("cooking_range")
 
 itemOnObjectOperate(objects = setOf("fire_*", "cooking_range*"), def = "cooking") {
     val start = GameLoop.tick
-    val definition = if (player["sinew", false]) definitions.get("sinew") else if (item.id == "sinew") return@itemOnObjectOperate else item.def
-    player["sinew"] = false
+    var sinew = false
+    if (item.id == "raw_beef" && target.id.startsWith("cooking_range")) {
+        val choice = choice(listOf("Dry the meat into sinew.", "Cook the meat."))
+        sinew = choice == 1
+    }
+    val definition = if (sinew) definitions.get("sinew") else if (item.id == "sinew") return@itemOnObjectOperate else item.def
     val cooking: Uncooked = definition.getOrNull("cooking") ?: return@itemOnObjectOperate
     var amount = player.inventory.count(item.id)
     if (amount != 1) {
