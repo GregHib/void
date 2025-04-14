@@ -130,6 +130,7 @@ id = 4251
 tradeable = false
 weight = 0.035
 charges = 1
+aka = ["ecto", "ectophile"]
 degrade = "ectophial_empty"
 destroy = "The Ectophial will smash if you drop it. Velorina can replace it. You can also reclaim it from the quest storage chest."
 examine = "The Ectophial."

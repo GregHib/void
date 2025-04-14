@@ -17,3 +17,53 @@ to = { x = 3612, y = 3543 }
 option = "Climb-down"
 tile = { x = 3613, y = 3543, level = 1 }
 to = { x = 3614, y = 3543 }
+
+[wrecked_ghost_ship_ladder_down]
+option = "Climb-down"
+tile = { x = 3613, y = 3543, level = 1 }
+to = { x = 3614, y = 3543 }
+
+[trapdoor_ahoy_down]
+option = "Climb-down"
+tile = { x = 3653, y = 3519 }
+to = { x = 3699, y = 9888, level = 3 }
+
+[ectopool_shortcut_rail]
+option = "Jump-down"
+tile = { x = 3670, y = 9888, level = 3 }
+to = { x = 3671, y = 9888, level = 2 }
+
+[ectopool_shortcut_wall]
+option = "Jump-up"
+tile = { x = 3670, y = 9888, level = 2 }
+to = { x = 3670, y = 9888, level = 3 }
+
+[ectopool_staircase_down]
+option = "Climb-down"
+tile = { x = 3689, y = 9887, level = 3 }
+near = { x = 3688, y = 9887, level = 2, height = 3 }
+
+[ectopool_staircase_up]
+option = "Climb-up"
+tile = { x = 3689, y = 9887, level = 2 }
+near = { x = 3692, y = 9887, level = 3, height = 3 }
+
+[ectopool_staircase_down]
+option = "Climb-down"
+tile = { x = 3672, y = 9887, level = 2 }
+near = { x = 3675, y = 9887, level = 1, height = 3 }
+
+[ectopool_staircase_up]
+option = "Climb-up"
+tile = { x = 3672, y = 9887, level = 1 }
+near = { x = 3671, y = 9887, level = 2, height = 3 }
+
+[ectopool_staircase_down]
+option = "Climb-down"
+tile = { x = 3684, y = 9887, level = 1 }
+near = { x = 3683, y = 9887, level = 0, height = 3 }
+
+[ectopool_staircase_up]
+option = "Climb-up"
+tile = { x = 3684, y = 9887 }
+near = { x = 3687, y = 9887, level = 1, height = 3 }

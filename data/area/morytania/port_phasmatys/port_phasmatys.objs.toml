@@ -21,3 +21,27 @@ examine = "The tatty gangplank of a tatty ship."
 [wrecked_ghost_ship_rock]
 id = 5269
 examine = "	I can't see a rock!"
+
+[trapdoor_ahoy_opened]
+id = 5268
+examine = "I wonder what's down there."
+
+[trapdoor_ahoy_closed]
+id = 5267
+examine = "I wonder what's under it."
+
+[ectopool_shortcut_rail]
+id = 9308
+examine = "A well weathered wall."
+
+[ectopool_shortcut_wall]
+id = 9307
+examine = "A well weathered wall."
+
+[ectopool_staircase_down]
+id = 5263
+examine = "These stairs were carved out of the rock of the cavern."
+
+[ectopool_staircase_up]
+id = 5262
+examine = "These stairs were carved out of the rock of the cavern."

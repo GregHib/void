@@ -37,6 +37,9 @@ id = 11820
 [circus_cartwheel]
 id = 10295
 
+[jump_up]
+id = 2585
+
 [jump_down]
 id = 2586
 
