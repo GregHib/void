@@ -30,3 +30,6 @@ id = 4460
 
 [water_obelisk_swim]
 id = 4468
+
+[human_climbing_down]
+id = 1148
