@@ -105,25 +105,25 @@ examine = "A slippery well worn log."
 id = 35997
 examine = "A slippery well worn log."
 
+[catherby_rocks]
+id = 17042
+examine = "These look secure enough to grapple."
+
+[catherby_rocks_grapple]
+id = 17043
+examine = "That looks like it could hold my weight."
+
+[catherby_grapple_rope]
+id = 17067
+
 [catherby_crossbow_tree]
 id = 17062
 examine = "Looks like a way to cross."
 
 [catherby_crossbow_tree_grapple]
 id = 17063
-examine = ""
+examine = "Looks like a way to cross."
 
 [catherby_rocks_rope]
 id = 17065
-examine = ""
-
-[catherby_rocks]
-id = 17042
-examine = "Looks like a way to cross."
-
-[catherby_rocks_grapple]
-id = 17043
-examine = ""
-
-[catherby_grapple_rope]
-id = 17067
+examine = "That looks like it could hold my weight."

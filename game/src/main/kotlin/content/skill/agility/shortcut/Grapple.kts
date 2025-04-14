@@ -5,6 +5,7 @@ import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -178,13 +179,15 @@ suspend fun ObjectOption<Player>.hasRequirements(ranged: Int, agility: Int, stre
     return true
 }
 
+val areas: AreaDefinitions by inject()
+
 objectApproach("Grapple", "catherby_crossbow_tree") {
     if (!hasRequirements(ranged = 39, agility = 36, strength = 22)) {
         return@objectApproach
     }
     player.steps.clear()
     val start = Tile(2841, 3425)
-    if (player.tile.distanceTo(start) > 3) { // TODO areas
+    if (player.tile !in areas["water_obselisk_island"]) {
         player.message("I can't do that from here.")
         return@objectApproach
     }
@@ -213,7 +216,7 @@ objectApproach("Grapple", "catherby_rocks") {
         return@objectApproach
     }
     player.steps.clear()
-    if (player.tile.x > 2867 || player.tile.y > 3431) { // TODO areas
+    if (player.tile !in areas["mountain_shortcut_grapple_area"]) {
         player.message("I can't do that from here.")
         return@objectApproach
     }
@@ -227,7 +230,6 @@ objectApproach("Grapple", "catherby_rocks") {
     for (x in 2867..2869) {
         objects.add("catherby_grapple_rope", Tile(x, 3429), shape = ObjectShape.GROUND_DECOR, ticks = 14)
     }
-    // TODO check if varbit or not
     objects.add("catherby_rocks_grapple", Tile(2869, 3429), shape = ObjectShape.GROUND_DECOR, ticks = 14)
     delay()
     player.walkOverDelay(Tile(2868, 3429))
