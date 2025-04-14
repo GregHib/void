@@ -6,15 +6,14 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 
 data class DeleteIgnore(var name: String) : CancellableEvent() {
-    override val size = 2
+    override val size = 1
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when(index) {
         0 -> "delete_ignore"
-        1 -> true // prioritise non-overrides
         else -> null
     }
 }
 
-fun ignoresDelete(override: Boolean = true, block: DeleteIgnore.(Player) -> Unit) {
-    Events.handle("delete_ignore", if (override) "*" else true, override = override, handler = block)
+fun ignoresDelete(block: DeleteIgnore.(Player) -> Unit) {
+    Events.handle("delete_ignore", override = false, handler = block)
 }

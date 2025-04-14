@@ -12,8 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.chat.clan.clanChatLeave
 import world.gregs.voidps.engine.entity.character.player.chat.friend.friendsAdd
 import world.gregs.voidps.engine.entity.character.player.chat.friend.friendsDelete
-import world.gregs.voidps.engine.entity.character.player.chat.ignore.ignoresAdd
-import world.gregs.voidps.engine.entity.character.player.chat.ignore.ignoresDelete
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
@@ -117,23 +115,6 @@ friendsDelete { player ->
         if (!clan.hasRank(target, clan.joinRank)) {
             target.emit(LeaveClanChat(forced = true))
         }
-    }
-}
-
-ignoresAdd { player ->
-    val other = players.get(name)
-    if (other != null && other.friend(player) && !other.isAdmin()) {
-        other.updateFriend(Friend(player.name, player.previousName, world = 0))
-    }
-}
-
-ignoresDelete { player ->
-    if(player.privateStatus != "on") {
-        return@ignoresDelete
-    }
-    val other = players.get(name)
-    if (other != null && (other.friend(player) || other.isAdmin())) {
-        other.updateFriend(Friend(player.name, player.previousName, world = Settings.world, worldName = Settings.worldName))
     }
 }
 
