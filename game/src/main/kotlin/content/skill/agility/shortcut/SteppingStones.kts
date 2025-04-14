@@ -177,3 +177,23 @@ suspend fun ObjectOption<Player>.draynorCross() {
         player.exp(Skill.Agility, 1.0)
     }
 }
+
+objectApproach("Jump-to", "shilo_river_stepping_stone") {
+    val direction = target.tile.delta(player.tile).toDirection().vertical()
+    player.walkToDelay(target.tile.addY(-(direction.delta.y * 3)))
+    player.face(direction)
+    delay()
+    if (!player.has(Skill.Agility, 74)) {
+        player.message("You need level 74 Agility to tackle this obstacle.")
+        return@objectApproach
+    }
+    player.anim("stepping_stone_jump", delay = 15)
+    player.face(direction)
+    player.sound("jump", delay = 15)
+    player.exactMoveDelay(target.tile, startDelay = 30, delay = 45, direction = direction)
+    delay()
+    player.anim("stepping_stone_jump", delay = 15)
+    player.face(direction)
+    player.sound("jump", delay = 15)
+    player.exactMoveDelay(target.tile.addY(direction.delta.y * 3), startDelay = 30, delay = 45, direction = direction) // startDelta = Delta(0, -2), endDelta = Delta(0, 0)
+}

@@ -192,4 +192,40 @@ class SteppingStonesTest : WorldTest() {
 
         assertTrue(player.containsMessage("You need level 31 Agility"))
     }
+
+    @Test
+    fun `Cross north shilo stone`() {
+        val player = createPlayer(tile = Tile(2860, 2971))
+        player.levels.set(Skill.Agility, 74)
+
+        val stones = objects[Tile(2860, 2974), "shilo_river_stepping_stone"]!!
+        player.objectOption(stones, "Jump-to")
+        tick(5)
+
+        assertEquals(Tile(2860, 2977), player.tile)
+    }
+
+    @Test
+    fun `Can't cross shilo stone without levels`() {
+        val player = createPlayer(tile = Tile(2860, 2971))
+        player.levels.set(Skill.Agility, 73)
+
+        val stones = objects[Tile(2860, 2974), "shilo_river_stepping_stone"]!!
+        player.objectOption(stones, "Jump-to")
+        tick(2)
+
+        assertTrue(player.containsMessage("You need level 74"))
+    }
+
+    @Test
+    fun `Cross south shilo stone`() {
+        val player = createPlayer(tile = Tile(2860, 2977))
+        player.levels.set(Skill.Agility, 74)
+
+        val stones = objects[Tile(2860, 2974), "shilo_river_stepping_stone"]!!
+        player.objectOption(stones, "Jump-to")
+        tick(5)
+
+        assertEquals(Tile(2860, 2971), player.tile)
+    }
 }

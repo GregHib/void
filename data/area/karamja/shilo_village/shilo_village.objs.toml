@@ -9,3 +9,7 @@ examine = "A rocky outcrop from the running water."
 [shilo_village_waterfall_stepping_stone_south]
 id = 2335
 examine = "A rocky outcrop from the running water."
+
+[shilo_river_stepping_stone]
+id = 10536
+examine = "Handy for crossing rivers."
