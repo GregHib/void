@@ -15,5 +15,5 @@ data class AddIgnore(val name: String) : CancellableEvent() {
 }
 
 fun ignoresAdd(block: AddIgnore.(Player) -> Unit) {
-    Events.handle("add_ignore", override = false, handler = block)
+    Events.handle("add_ignore", handler = block)
 }

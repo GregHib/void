@@ -15,5 +15,5 @@ data class DeleteIgnore(var name: String) : CancellableEvent() {
 }
 
 fun ignoresDelete(block: DeleteIgnore.(Player) -> Unit) {
-    Events.handle("delete_ignore", override = false, handler = block)
+    Events.handle("delete_ignore", handler = block)
 }
