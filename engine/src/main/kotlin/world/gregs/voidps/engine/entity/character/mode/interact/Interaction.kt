@@ -42,7 +42,7 @@ abstract class Interaction<C : Character> : CancellableEvent(), SuspendableEvent
         val interact = character.mode as? Interact ?: return
         interact.updateRange(range, update)
         if (range != null) {
-            while (!interact.arrived(range)) {
+            while (!interact.arrived(range) && character.steps.isNotEmpty()) {
                 delay(1)
             }
         }

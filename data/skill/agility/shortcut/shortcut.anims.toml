@@ -12,3 +12,24 @@ id = 4466
 
 [grapple_exit_water]
 id = 4467
+
+[grapple_wall_climb]
+id = 4455
+
+[rocks_climb]
+id = 4435
+
+[rocks_climb_down]
+id = 740
+
+[rock_jump]
+id = 1604
+
+[grapple_aim_fire]
+id = 4460
+
+[water_obelisk_swim]
+id = 4468
+
+[human_climbing_down]
+id = 1148

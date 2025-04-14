@@ -32,7 +32,7 @@
 * **Rich content**: Offers a wide range of emulated content.
 * **AI player characters**: Introduced intelligent player bots to enhance immersion.
 * **User-friendly**: Simplifies content creation with [kotlin scripting](https://github.com/GregHib/void/wiki/scripts) eliminating the need for complex integration.
-* **Lighweight**: Memory usage under 300MB in low-memory mode.
+* **Lightweight**: Memory usage under 300MB in low-memory mode.
 * **Customisable**: Personalise your gameplay by tweaking settings in the `game.properties` file or modifying the code to suit your preferences.
 
 

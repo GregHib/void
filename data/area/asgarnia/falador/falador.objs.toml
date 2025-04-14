@@ -9,3 +9,11 @@ examine = "A loom."
 [bank_booth_falador]
 id = 11758
 examine = "The bank teller will serve you from here."
+
+[falador_underwall_tunnel_north]
+id = 9310
+examine = "A tunnel leading under the wall."
+
+[falador_underwall_tunnel_south]
+id = 9309
+examine = "A tunnel leading under the wall."

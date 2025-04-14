@@ -1,0 +1,15 @@
+[yanille_underwall_tunnel_hole]
+id = 9302
+examine = "A rather strategically placed hole, which appears to be in the ground."
+
+[yanille_underwall_tunnel_castle_wall]
+id = 9301
+examine = "A well constructed castle wall."
+
+[yanille_grapple_wall]
+id = 17047
+examine = "Town wall."
+
+[yanille_grapple_wall_jump]
+id = 17048
+examine = "Town wall."

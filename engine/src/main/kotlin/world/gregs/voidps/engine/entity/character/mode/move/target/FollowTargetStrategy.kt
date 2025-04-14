@@ -15,7 +15,7 @@ data class FollowTargetStrategy(
     override val height: Int
         get() = character.size
     override val rotation = 0
-    override val exitStrategy = -1
+    override val shape = -1
     override val sizeX: Int
         get() = character.size
     override val sizeY: Int

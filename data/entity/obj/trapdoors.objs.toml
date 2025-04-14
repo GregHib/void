@@ -22,14 +22,6 @@ examine = "I wonder what's down there?"
 id = 5131
 examine = "I wonder what's under it?"
 
-[trapdoor_22_opened]
-id = 5268
-examine = "I wonder what's down there."
-
-[trapdoor_22_closed]
-id = 5267
-examine = "I wonder what's under it."
-
 [trapdoor_24_opened]
 id = 5491
 examine = "I wonder what's down there?"

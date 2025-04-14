@@ -300,11 +300,11 @@ class ApeAtollTest : WorldTest() {
         val slope = objects[Tile(2752, 2731), "ape_atoll_rope_swing"]!!
 
         player.objectOption(slope, "Swing")
-        tick(9)
+        tick(10)
 
+        assertEquals(Tile(2753, 2742), player.tile)
         assertEquals(770, player.levels.get(Skill.Constitution))
         assertEquals(0.0, player.experience.get(Skill.Agility))
-        assertEquals(Tile(2753, 2742), player.tile)
     }
 
     @Test
@@ -317,11 +317,11 @@ class ApeAtollTest : WorldTest() {
         val slope = objects[Tile(2752, 2731), "ape_atoll_rope_swing"]!!
 
         player.objectOption(slope, "Swing")
-        tick(10)
+        tick(14)
 
+        assertEquals(Tile(2755, 2742), player.tile)
         assertEquals(770, player.levels.get(Skill.Constitution))
         assertEquals(0.0, player.experience.get(Skill.Agility))
-        assertEquals(Tile(2755, 2742), player.tile)
     }
 
     @Test
@@ -332,11 +332,11 @@ class ApeAtollTest : WorldTest() {
         val slope = objects[Tile(2757, 2734), "ape_atoll_tropical_tree_rope"]!!
 
         player.objectOption(slope, "Climb-down")
-        tick(14)
+        tick(15)
 
+        assertEquals(Tile(2770, 2747), player.tile)
         assertEquals(850, player.levels.get(Skill.Constitution))
         assertEquals(100.0, player.experience.get(Skill.Agility))
-        assertEquals(Tile(2770, 2747), player.tile)
     }
 
     @Test
@@ -349,12 +349,12 @@ class ApeAtollTest : WorldTest() {
         val slope = objects[Tile(2757, 2734), "ape_atoll_tropical_tree_rope"]!!
 
         player.objectOption(slope, "Climb-down")
-        tick(14)
+        tick(15)
 
+        assertEquals(Tile(2770, 2747), player.tile)
         assertEquals(850, player.levels.get(Skill.Constitution))
         assertEquals(300.0, player.experience.get(Skill.Agility))
         assertEquals(1, player["ape_atoll_course_laps", 0])
-        assertEquals(Tile(2770, 2747), player.tile)
     }
 
     @Test
@@ -383,11 +383,11 @@ class ApeAtollTest : WorldTest() {
         val slope = objects[Tile(2757, 2734), "ape_atoll_tropical_tree_rope"]!!
 
         player.objectOption(slope, "Climb-down")
-        tick(6)
+        tick(7)
 
+        assertEquals(Tile(2764, 2737), player.tile)
         assertEquals(770, player.levels.get(Skill.Constitution))
         assertEquals(0.0, player.experience.get(Skill.Agility))
-        assertEquals(Tile(2764, 2737), player.tile)
     }
 
     @Test
@@ -400,10 +400,10 @@ class ApeAtollTest : WorldTest() {
         val slope = objects[Tile(2757, 2734), "ape_atoll_tropical_tree_rope"]!!
 
         player.objectOption(slope, "Climb-down")
-        tick(6)
+        tick(7)
 
+        assertEquals(Tile(2764, 2737), player.tile)
         assertEquals(770, player.levels.get(Skill.Constitution))
         assertEquals(0.0, player.experience.get(Skill.Agility))
-        assertEquals(Tile(2764, 2737), player.tile)
     }
 }

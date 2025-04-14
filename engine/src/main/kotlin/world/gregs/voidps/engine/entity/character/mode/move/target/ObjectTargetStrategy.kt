@@ -13,12 +13,9 @@ data class ObjectTargetStrategy(
     override val sizeX = obj.def.sizeX
     override val sizeY = obj.def.sizeY
     override val rotation: Int = obj.rotation
-    override val exitStrategy: Int = obj.shape
+    override val shape: Int = obj.shape
 
     override fun requiresLineOfSight(): Boolean {
-        return when (obj.id) {
-            "lumbridge_swamp_stepping_stone", "lumbridge_broken_raft" -> false
-            else -> false
-        }
+        return false
     }
 }

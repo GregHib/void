@@ -1,0 +1,23 @@
+[brimhaven_ropeswing_west]
+id = 2322
+examine = "Use this to swing across gaps."
+
+[brimhaven_ropeswing_east]
+id = 2323
+examine = "Use this to swing across gaps."
+
+[brimhaven_stepping_stones_start]
+id = 5110
+examine = "I can jump from this stepping stone."
+
+[brimhaven_stepping_stones_end]
+id = 5111
+examine = "I can jump from this stepping stone."
+
+[brimhaven_log_balance_start]
+id = 5088
+examine = "I hope I don't fall off this."
+
+[brimhaven_log_balance_end]
+id = 5090
+examine = "I hope I don't fall off this."

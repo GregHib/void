@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Delta
+import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 
 /**
@@ -36,15 +37,21 @@ class ObjectTeleports {
             return false
         }
         val tile = when {
+            definition.delta != Delta.EMPTY && definition.to != Tile.EMPTY ->
+                Distance.getNearest(definition.to, definition.delta.x, definition.delta.y, player.tile)
             definition.delta != Delta.EMPTY -> player.tile.add(definition.delta)
             definition.to != Tile.EMPTY -> definition.to
             else -> player.tile
         }
-        val delay = teleport.delay
-        if (delay != null) {
-            context.delay(delay)
+        if (teleport.move != null) {
+            teleport.move!!.invoke(context, tile)
+        } else {
+            val delay = teleport.delay
+            if (delay != null) {
+                context.delay(delay)
+            }
+            player.tele(tile)
         }
-        player.tele(tile)
         teleport.land = true
         player.emit(teleport)
         return true
@@ -98,6 +105,25 @@ class ObjectTeleports {
                                     delta = Delta(x, y, level)
                                 }
                                 "to" -> to = readTile()
+                                "near" -> {
+                                    var x = 0
+                                    var y = 0
+                                    var level = 0
+                                    var width = 1
+                                    var height = 1
+                                    while (nextEntry()) {
+                                        when (val k = key()) {
+                                            "x" -> x = int()
+                                            "y" -> y = int()
+                                            "width" -> width = int()
+                                            "height" -> height = int()
+                                            "level" -> level = int()
+                                            else -> throw IllegalArgumentException("Unexpected key: '$k' ${exception()}")
+                                        }
+                                    }
+                                    to = Tile(x, y, level)
+                                    delta = Delta(width, height)
+                                }
                                 else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                             }
                         }

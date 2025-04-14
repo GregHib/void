@@ -68,3 +68,62 @@ examine = "A sturdy tree with grapple marks on it."
 [strong_yew_grapple]
 id = 17041
 examine = "A sturdy tree with grapple marks on it."
+
+[falador_wall_south]
+id = 17050
+examine = "City wall."
+
+[falador_wall_north]
+id = 17049
+examine = "City wall."
+
+[falador_wall_jump_north]
+id = 17051
+examine = "City wall."
+
+[falador_wall_jump_south]
+id = 17052
+examine = "City wall."
+
+[brimhaven_pipe_dragon]
+id = 5099
+examine = "A pipe I can squeeze through."
+
+[brimhaven_pipe_moss]
+id = 5100
+examine = "A pipe I can squeeze through."
+
+[coal_truck_log_balance]
+id = 2296
+examine = "A slippery log I can walk across."
+
+[ardougne_log_balance_east]
+id = 35999
+examine = "A slippery well worn log."
+
+[ardougne_log_balance_west]
+id = 35997
+examine = "A slippery well worn log."
+
+[catherby_rocks]
+id = 17042
+examine = "These look secure enough to grapple."
+
+[catherby_rocks_grapple]
+id = 17043
+examine = "That looks like it could hold my weight."
+
+[catherby_grapple_rope]
+id = 17067
+
+[catherby_crossbow_tree]
+id = 17062
+examine = "Looks like a way to cross."
+
+[catherby_crossbow_tree_grapple]
+id = 17063
+examine = "Looks like a way to cross."
+
+[catherby_rocks_rope]
+id = 17065
+examine = "That looks like it could hold my weight."

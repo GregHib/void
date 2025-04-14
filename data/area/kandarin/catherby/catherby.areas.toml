@@ -2,3 +2,11 @@
 x = [2788, 2790]
 y = [3453, 3455]
 tags = ["teleport"]
+
+[water_obselisk_island]
+x = [2833, 2833, 2847, 2849, 2849]
+y = [3416, 3427, 3427, 3422, 3416]
+
+[mountain_shortcut_grapple_area]
+x = [2860, 2866]
+y = [3427, 3432]

@@ -21,7 +21,7 @@ interface TargetStrategy {
     val sizeX: Int
     val sizeY: Int
     val rotation: Int
-    val exitStrategy: Int
+    val shape: Int
 
     fun requiresLineOfSight(): Boolean {
         return true
@@ -39,7 +39,7 @@ interface TargetStrategy {
             destWidth = sizeX,
             destHeight = sizeY,
             objRot = rotation,
-            objShape = exitStrategy,
+            objShape = shape,
             blockAccessFlags = bitMask
         )
     }
