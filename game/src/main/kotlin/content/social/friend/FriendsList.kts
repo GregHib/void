@@ -21,10 +21,15 @@ import world.gregs.voidps.network.login.protocol.encode.Friend
 import world.gregs.voidps.network.login.protocol.encode.sendFriendsList
 import content.social.chat.privateStatus
 import content.social.clan.clan
+import content.social.clan.ownClan
 import content.social.ignore.ignores
+import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
+import world.gregs.voidps.network.login.protocol.encode.Member
+import world.gregs.voidps.network.login.protocol.encode.appendClanChat
 
 val players: Players by inject()
 val accounts: AccountDefinitions by inject()
+val accountDefinitions: AccountDefinitions by inject()
 
 val maxFriends = 200
 
@@ -74,9 +79,20 @@ friendsAdd { player ->
         friend.updateFriend(player, online = true)
     }
     player.sendFriend(account)
+    val clan = player.clan ?: player.ownClan ?: return@friendsAdd
+    if (!clan.hasRank(player, ClanRank.Owner)) {
+        return@friendsAdd
+    }
+    val accountDefinition = accountDefinitions.get(friend) ?: return@friendsAdd
+    if (clan.members.any { it.accountName == accountDefinition.accountName }) {
+        val target = players.get(friend) ?: return@friendsAdd
+        for (member in clan.members) {
+            member.client?.appendClanChat(Member(target.name, Settings.world, ClanRank.Friend.value, Settings.worldName))
+        }
+    }
 }
 
-friendsDelete(override = false) { player ->
+friendsDelete { player ->
     val account = accounts.get(friend)
     if (account == null || !player.friends.contains(account.accountName)) {
         player.message("Unable to find player with name '$friend'.")
@@ -87,6 +103,20 @@ friendsDelete(override = false) { player ->
     player.friends.remove(account.accountName)
     if (player.privateStatus == "friends") {
         friend.updateFriend(player, online = false)
+    }
+    val clan = player.clan ?: player.ownClan ?: return@friendsDelete
+    if (!clan.hasRank(player, ClanRank.Owner)) {
+        return@friendsDelete
+    }
+    val accountDefinition = accountDefinitions.get(friend) ?: return@friendsDelete
+    if (clan.members.any { it.accountName == accountDefinition.accountName }) {
+        val target = players.get(friend) ?: return@friendsDelete
+        for (member in clan.members) {
+            member.client?.appendClanChat(Member(target.name, Settings.world, ClanRank.None.value, Settings.worldName))
+        }
+        if (!clan.hasRank(target, clan.joinRank)) {
+            target.emit(LeaveClanChat(forced = true))
+        }
     }
 }
 

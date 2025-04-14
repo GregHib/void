@@ -15,6 +15,6 @@ data class DeleteFriend(val friend: String) : CancellableEvent() {
     }
 }
 
-fun friendsDelete(override: Boolean = true, block: DeleteFriend.(Player) -> Unit) {
-    Events.handle("delete_friend", if (override) "*" else true, override = override, handler = block)
+fun friendsDelete(block: DeleteFriend.(Player) -> Unit) {
+    Events.handle("delete_friend", true, override = false, handler = block)
 }

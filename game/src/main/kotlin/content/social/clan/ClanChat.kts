@@ -10,8 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.*
-import world.gregs.voidps.engine.entity.character.player.chat.friend.friendsAdd
-import world.gregs.voidps.engine.entity.character.player.chat.friend.friendsDelete
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.playerDespawn
@@ -201,36 +199,5 @@ onEvent<Player, UpdateClanChatRank> { player ->
     if (clan.members.any { it.accountName == account.accountName }) {
         val target = players.get(name) ?: return@onEvent
         updateMembers(target, clan, rank)
-    }
-}
-
-friendsAdd(override = false) { player ->
-    val clan = player.clan ?: player.ownClan ?: return@friendsAdd
-    if (!clan.hasRank(player, ClanRank.Owner)) {
-        return@friendsAdd
-    }
-    val account = accountDefinitions.get(friend) ?: return@friendsAdd
-    if (clan.members.any { it.accountName == account.accountName }) {
-        val target = players.get(friend) ?: return@friendsAdd
-        for (member in clan.members) {
-            member.client?.appendClanChat(toMember(target, ClanRank.Friend))
-        }
-    }
-}
-
-friendsDelete { player ->
-    val clan = player.clan ?: player.ownClan ?: return@friendsDelete
-    if (!clan.hasRank(player, ClanRank.Owner)) {
-        return@friendsDelete
-    }
-    val account = accountDefinitions.get(friend) ?: return@friendsDelete
-    if (clan.members.any { it.accountName == account.accountName }) {
-        val target = players.get(friend) ?: return@friendsDelete
-        for (member in clan.members) {
-            member.client?.appendClanChat(toMember(target, ClanRank.None))
-        }
-        if (!clan.hasRank(target, clan.joinRank)) {
-            target.emit(LeaveClanChat(forced = true))
-        }
     }
 }
