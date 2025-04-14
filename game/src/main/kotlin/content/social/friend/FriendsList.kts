@@ -15,15 +15,15 @@ import world.gregs.voidps.engine.entity.character.player.chat.friend.friendsDele
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.network.login.protocol.encode.Friend
-import world.gregs.voidps.network.login.protocol.encode.sendFriendsList
 import content.social.chat.privateStatus
+import content.social.clan.ClanLootShare
+import content.social.clan.ClanMember
 import content.social.clan.clan
 import content.social.clan.ownClan
 import content.social.ignore.ignores
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
-import world.gregs.voidps.network.login.protocol.encode.Member
-import world.gregs.voidps.network.login.protocol.encode.appendClanChat
+import world.gregs.voidps.network.login.protocol.encode.*
 
 val players: Players by inject()
 val accounts: AccountDefinitions by inject()
@@ -85,7 +85,7 @@ friendsAdd { player ->
     if (clan.members.any { it.accountName == accountDefinition.accountName }) {
         val target = players.get(friend) ?: return@friendsAdd
         for (member in clan.members) {
-            member.client?.appendClanChat(Member(target.name, Settings.world, ClanRank.Friend.value, Settings.worldName))
+            member.client?.appendClanChat(ClanMember.of(target, ClanRank.Friend))
         }
     }
 }
@@ -110,7 +110,7 @@ friendsDelete { player ->
     if (clan.members.any { it.accountName == accountDefinition.accountName }) {
         val target = players.get(friend) ?: return@friendsDelete
         for (member in clan.members) {
-            member.client?.appendClanChat(Member(target.name, Settings.world, ClanRank.None.value, Settings.worldName))
+            member.client?.appendClanChat(ClanMember.of(target, ClanRank.None))
         }
         if (!clan.hasRank(target, clan.joinRank)) {
             target.emit(LeaveClanChat(forced = true))
@@ -149,9 +149,21 @@ interfaceOption(component = "private", id = "filter_buttons") {
 }
 
 clanChatLeave { player ->
-    val clan: Clan = player.clan ?: return@clanChatLeave
-    if (player.accountName != clan.owner || player.isAdmin()) {
-        player.sendFriends()
+    val clan: Clan? = player.remove("clan")
+    player.clear("clan_chat")
+    player.message("You have ${if (forced) "been kicked from" else "left"} the channel.", ChatType.ClanChat)
+    if (clan != null) {
+        player.client?.leaveClanChat()
+        clan.members.remove(player)
+        for (member in clan.members) {
+            if (member != player) {
+                member.client?.appendClanChat(ClanMember.of(player, ClanRank.Anyone))
+            }
+        }
+        if (player.accountName != clan.owner || player.isAdmin()) {
+            player.sendFriends()
+        }
+        ClanLootShare.update(player, clan, lootShare = false)
     }
 }
 

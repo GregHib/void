@@ -163,7 +163,7 @@ interfaceOption("Disable", "name", "clan_chat_setup") {
 }
 
 fun updateUI(clan: Clan) {
-    val membersList = clan.members.map { Member(it.name, Settings.world, clan.getRank(it).value, Settings.worldName) }
+    val membersList = clan.members.map { ClanMember.of(it, clan.getRank(it)) }
     for (member in clan.members) {
         member.client?.updateClanChat(clan.ownerDisplayName, clan.name, clan.kickRank.value, membersList)
     }

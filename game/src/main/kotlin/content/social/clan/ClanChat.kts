@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.encode.Member
 import world.gregs.voidps.network.login.protocol.encode.appendClanChat
-import world.gregs.voidps.network.login.protocol.encode.leaveClanChat
 import world.gregs.voidps.network.login.protocol.encode.updateClanChat
 import content.social.friend.world
 import content.social.friend.worldName
@@ -151,19 +150,8 @@ fun join(player: Player, clan: Clan) {
     display(player, clan)
 }
 
-clanChatLeave(override = false) { player ->
-    val clan: Clan? = player.remove("clan")
-    player.clear("clan_chat")
-    player.message("You have ${if (forced) "been kicked from" else "left"} the channel.", ChatType.ClanChat)
-    if (clan != null) {
-        player.client?.leaveClanChat()
-        clan.members.remove(player)
-        updateMembers(player, clan, ClanRank.Anyone)
-    }
-}
-
 fun display(player: Player, clan: Clan) {
-    player.client?.updateClanChat(clan.ownerDisplayName, clan.name, clan.kickRank.value, clan.members.map { toMember(it, clan.getRank(it)) })
+    player.client?.updateClanChat(clan.ownerDisplayName, clan.name, clan.kickRank.value, clan.members.map { ClanMember.of(it, clan.getRank(it)) })
     player.message("Now talking in clan channel ${clan.name}", ChatType.ClanChat)
     player.message("To talk, start each line of chat with the / symbol.", ChatType.ClanChat)
     updateMembers(player, clan)
@@ -172,17 +160,10 @@ fun display(player: Player, clan: Clan) {
 fun updateMembers(player: Player, clan: Clan, rank: ClanRank = clan.getRank(player)) {
     for (member in clan.members) {
         if (member != player) {
-            member.client?.appendClanChat(toMember(player, rank))
+            member.client?.appendClanChat(ClanMember.of(player, rank))
         }
     }
 }
-
-fun toMember(player: Player, rank: ClanRank) = Member(
-    player.name,
-    Settings.world,
-    rank.value,
-    Settings.worldName
-)
 
 val list = listOf(ClanRank.None, ClanRank.Recruit, ClanRank.Corporeal, ClanRank.Sergeant, ClanRank.Lieutenant, ClanRank.Captain, ClanRank.General)
 

@@ -42,7 +42,7 @@ timerStart("clan_loot_update") { player ->
     player["loading_loot_share"] = false
     val clan = player.clan ?: return@timerStart
     val lootShare = player.toggle("loot_share")
-    update(player, clan, lootShare)
+    ClanLootShare.update(player, clan, lootShare)
 }
 
 timerStart("clan_loot_rank_update", "clan_coin_share_update") {
@@ -57,7 +57,7 @@ timerTick("clan_loot_rank_update") { player ->
         if (clan.hasRank(member, clan.lootRank) || !member["loot_share", false]) {
             continue
         }
-        update(player, clan, lootShare = false)
+        ClanLootShare.update(player, clan, lootShare = false)
     }
 }
 
@@ -68,20 +68,5 @@ timerTick("clan_coin_share_update") { player ->
     for (member in clan.members) {
         member["coin_share"] = clan.coinShare
         member.message("CoinShare has been switched ${if (clan.coinShare) "on" else "off"}.", ChatType.ClanChat)
-    }
-}
-
-clanChatLeave { player ->
-    val clan: Clan = player.clan ?: return@clanChatLeave
-    update(player, clan, lootShare = false)
-}
-
-fun update(player: Player, clan: Clan, lootShare: Boolean) {
-    player["loot_share"] = lootShare
-    player["coin_share"] = clan.coinShare
-    if (lootShare) {
-        player.message("LootShare is now active. The CoinShare option is ${if (clan.coinShare) "on" else "off"}.", ChatType.ClanChat)
-    } else {
-        player.message("LootShare is no longer active.", ChatType.ClanChat)
     }
 }
