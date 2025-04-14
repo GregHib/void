@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 
 objTeleportTakeOff("Jump-down", "ectopool_shortcut_rail") {
