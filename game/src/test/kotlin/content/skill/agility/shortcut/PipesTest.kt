@@ -48,6 +48,7 @@ internal class PipesTest : WorldTest() {
 
         assertTrue(player.containsMessage("You need an Agility level of 22"))
     }
+
     @Test
     fun `Squeeze north through brimhaven dragon dungeon pipe`() {
         val player = createPlayer(tile = Tile(2698, 9492))
@@ -84,5 +85,43 @@ internal class PipesTest : WorldTest() {
         tick(2)
 
         assertTrue(player.containsMessage("You need an Agility level of 34"))
+    }
+
+    @Test
+    fun `Squeeze east through varrock dungeon pipe`() {
+        val player = createPlayer(tile = Tile(3149, 9906))
+        player.levels.set(Skill.Agility, 51)
+        val pipe = objects[Tile(3150, 9906), "varrock_dungeon_pipe"]!!
+
+        player.objectOption(pipe, "Squeeze-through")
+        tick(8)
+
+        assertEquals(Tile(3155, 9906), player.tile)
+        assertEquals(10.0, player.experience.get(Skill.Agility))
+    }
+
+    @Test
+    fun `Squeeze west through varrock dungeon pipe`() {
+        val player = createPlayer(tile = Tile(3155, 9906))
+        player.levels.set(Skill.Agility, 51)
+        val pipe = objects[Tile(3153, 9906), "varrock_dungeon_pipe"]!!
+
+        player.objectOption(pipe, "Squeeze-through")
+        tick(8)
+
+        assertEquals(Tile(3149, 9906), player.tile)
+        assertEquals(10.0, player.experience.get(Skill.Agility))
+    }
+
+    @Test
+    fun `Can't squeeze through varrock dungeon pipe without level`() {
+        val player = createPlayer(tile = Tile(3155, 9906))
+        player.levels.set(Skill.Agility, 50)
+        val pipe = objects[Tile(3153, 9906), "varrock_dungeon_pipe"]!!
+
+        player.objectOption(pipe, "Squeeze-through")
+        tick(2)
+
+        assertTrue(player.containsMessage("You need an Agility level of 51"))
     }
 }

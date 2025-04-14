@@ -12,3 +12,7 @@ id = 882
 [bank_booth_varrock]
 id = 11402
 examine = "The bank teller will serve you from here."
+
+[varrock_dungeon_pipe]
+id = 29370
+examine = "A pipe I can squeeze through."
