@@ -236,3 +236,41 @@ objectApproach("Grapple", "catherby_rocks") {
     player.clearRenderEmote()
     player.walkOverDelay(Tile(2869, 3430))
 }
+
+objectOperate("Grapple", "yanille_grapple_wall") {
+    val direction = if (player.tile.y >= target.tile.y) Direction.SOUTH else Direction.NORTH
+    player.walkToDelay(target.tile)
+    player.face(direction)
+    delay()
+    if (!hasRequirements(ranged = 21, agility = 39, strength = 38)) {
+        return@objectOperate
+    }
+    player.anim("grapple_wall_climb")
+    player.gfx("grapple_wall_climb")
+    player.sound("grapple_shoot", delay = 45)
+    delay(11)
+    player.clearGfx()
+    player.clearAnim()
+    var dest = target.tile
+    if (direction != Direction.NORTH) {
+        dest = target.tile.add(direction)
+    }
+    player.tele(dest.copy(level = 1))
+}
+
+objectOperate("Jump", "yanille_grapple_wall_jump") {
+    val direction = if (player.tile.y == target.tile.y) Direction.SOUTH else Direction.NORTH
+    player.walkToDelay(target.tile)
+    if (!player.has(Skill.Agility, 4)) {
+        player.message("You need an agility level of at least 4 to climb down this wall.")
+        return@objectOperate
+    }
+    player.anim("jump_down")
+    delay(1)
+    player.anim("jump_land")
+    var dest = target.tile
+    if (direction == Direction.SOUTH) {
+        dest = target.tile.add(direction)
+    }
+    player.tele(dest.copy(level = 0))
+}

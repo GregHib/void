@@ -359,4 +359,82 @@ internal class GrappleTest : WorldTest() {
         assertEquals("dialogue_message2", player.dialogue)
     }
 
+    @Test
+    fun `Grapple yanille wall south`() {
+        val player = createPlayer(tile = Tile(2556, 3072))
+        player.levels.set(Skill.Agility, 39)
+        player.levels.set(Skill.Ranged, 21)
+        player.levels.set(Skill.Strength, 38)
+        player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
+        player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
+        val obj = objects[Tile(2556, 3073), "yanille_grapple_wall"]!!
+        player.objectOption(obj, "Grapple")
+
+        tick(15)
+
+        assertEquals(Tile(2556, 3073, 1), player.tile)
+    }
+
+    @Test
+    fun `Grapple yanille wall north`() {
+        val player = createPlayer(tile = Tile(2556, 3075))
+        player.levels.set(Skill.Agility, 39)
+        player.levels.set(Skill.Ranged, 21)
+        player.levels.set(Skill.Strength, 38)
+        player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
+        player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
+        val obj = objects[Tile(2556, 3075), "yanille_grapple_wall"]!!
+        player.objectOption(obj, "Grapple")
+
+        tick(13)
+
+        assertEquals(Tile(2556, 3074, 1), player.tile)
+    }
+
+    @Test
+    fun `Jump down yanille wall south`() {
+        val player = createPlayer(tile = Tile(2556, 3073, 1))
+        player.levels.set(Skill.Agility, 4)
+        val obj = objects[Tile(2556, 3073, 1), "yanille_grapple_wall_jump"]!!
+        player.objectOption(obj, "Jump")
+
+        tick(2)
+
+        assertEquals(Tile(2556, 3072), player.tile)
+    }
+
+    @Test
+    fun `Jump down yanille wall north`() {
+        val player = createPlayer(tile = Tile(2556, 3074, 1))
+        player.levels.set(Skill.Agility, 4)
+        val obj = objects[Tile(2556, 3075, 1), "yanille_grapple_wall_jump"]!!
+        player.objectOption(obj, "Jump")
+
+        tick(4)
+
+        assertEquals(Tile(2556, 3075), player.tile)
+    }
+
+    @Test
+    fun `Can't jump down yanille wall south`() {
+        val player = createPlayer(tile = Tile(2556, 3073, 1))
+        val obj = objects[Tile(2556, 3073, 1), "yanille_grapple_wall_jump"]!!
+        player.objectOption(obj, "Jump")
+
+        tick(2)
+
+        assertTrue(player.containsMessage("You need an agility level of at least 4"))
+    }
+
+    @Test
+    fun `Can't jump down yanille wall north`() {
+        val player = createPlayer(tile = Tile(2556, 3074, 1))
+        val obj = objects[Tile(2556, 3073, 1), "yanille_grapple_wall_jump"]!!
+        player.objectOption(obj, "Jump")
+
+        tick(2)
+
+        assertTrue(player.containsMessage("You need an agility level of at least 4"))
+    }
+
 }
