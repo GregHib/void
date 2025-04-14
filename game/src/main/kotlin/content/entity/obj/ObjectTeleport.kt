@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Tile
 
 data class ObjectTeleport(
@@ -17,6 +18,7 @@ data class ObjectTeleport(
 ) : CancellableEvent(), Context<Player> {
     var delay: Int? = null
     var land: Boolean = false
+    var move: (suspend SuspendableContext<Player>.(Tile) -> Unit)? = null
 
     override val size = 5
 
