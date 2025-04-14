@@ -1,9 +1,10 @@
 package content.entity.obj
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.CancellableEvent
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.suspend.SuspendableContext
@@ -11,8 +12,7 @@ import world.gregs.voidps.type.Tile
 
 data class ObjectTeleport(
     override val character: Player,
-    val id: String,
-    val tile: Tile,
+    val target: GameObject,
     val obj: ObjectDefinition,
     val option: String
 ) : CancellableEvent(), Context<Player> {
@@ -27,7 +27,7 @@ data class ObjectTeleport(
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "${dispatcher.key}_obj_teleport_${if (land) "land" else "takeoff"}"
         1 -> dispatcher.identifier
-        2 -> id
+        2 -> target.id
         3 -> obj.stringId
         4 -> option
         else -> null

@@ -1,50 +1,71 @@
 package content.area.wilderness
 
+import content.entity.obj.ObjectTeleport
+import content.entity.obj.ObjectTeleports
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import content.entity.obj.objTeleportLand
 import content.entity.obj.objTeleportTakeOff
 import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.queue.strongQueue
 
-objectOperate("Pull", "lever_*", override = false) {
-    if (target.id == "lever_ardougne_edgeville" && player["wilderness_lever_warning", true]) {
-        statement("Warning! Pulling the lever will teleport you deep into the Wilderness.")
-        choice("Are you sure you wish to pull it?") {
-            option("Yes I'm brave.") {
-                pullLever(player)
-            }
-            option("Eeep! The Wilderness... No thank you.") {
-                cancel()
-                return@option
-            }
-            option("Yes please, don't show this message again.") {
-                player["wilderness_lever_warning"] = false // TODO proper doomsayer variable
-                pullLever(player)
+val teleports: ObjectTeleports by inject()
+
+objTeleportTakeOff("Pull", "lever_*") {
+    if (obj.stringId == "lever_ardougne_edgeville" && player["wilderness_lever_warning", true]) {
+        cancel()
+        player.strongQueue("wilderness_lever_warning") {
+            statement("Warning! Pulling the lever will teleport you deep into the Wilderness.")
+            choice("Are you sure you wish to pull it?") {
+                option("Yes I'm brave.") {
+                    pullLever(this@objTeleportTakeOff, target)
+                }
+                option("Eeep! The Wilderness... No thank you.") {
+                    return@option
+                }
+                option("Yes please, don't show this message again.") {
+                    player["wilderness_lever_warning"] = false // TODO proper doomsayer variable
+                    pullLever(this@objTeleportTakeOff, target)
+                }
             }
         }
-        return@objectOperate
+        return@objTeleportTakeOff
     }
     pullLever(player)
+    move = { tile ->
+        delay(1)
+        player.anim("teleport_modern")
+        player.sound("teleport")
+        player.gfx("teleport_modern")
+        delay(3)
+        player.tele(tile)
+    }
 }
 
-suspend fun SuspendableContext<Player>.pullLever(player: Player) {
+fun pullLever(player: Player) {
     player.message("You pull the lever...", ChatType.Filter)
     player.anim("pull_lever")
     player.start("movement_delay", 3)
-    delay(1)
 }
 
-objTeleportTakeOff("Pull", "lever_*") {
-    delay = 3
+suspend fun SuspendableContext<Player>.pullLever(teleport: ObjectTeleport, target: GameObject) {
+    pullLever(player)
+    delay(2)
+    player.anim("teleport_modern")
     player.sound("teleport")
     player.gfx("teleport_modern")
-    player.anim("teleport_modern")
+    teleport.delay = 3
+    teleport.cancelled = false
+    val definition = teleports.get("Pull")[target.tile.id]!!
+    teleports.teleportContinue(this, player, definition, teleport)
 }
 
 objTeleportLand("Pull", "lever_*") {
