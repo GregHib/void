@@ -67,11 +67,11 @@ objectOperate("Climb", "giant_mole_lair_escape_rope") {
     player.tele(acceptedTiles.random())
 }
 
-interfaceOption(component = "proceed", id = "warning_dark") {
+interfaceOption("Yes", "proceed", "warning_dark") {
     player.tele(initialCaveTile, clearInterfaces = true)
 }
 
-interfaceOption(component = "stayout", id = "warning_dark") {
+interfaceOption("No", "stayout", "warning_dark") {
     player.closeInterfaces()
 }
 

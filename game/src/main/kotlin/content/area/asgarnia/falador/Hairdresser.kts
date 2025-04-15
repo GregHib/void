@@ -88,7 +88,7 @@ interfaceClose("hairdressers_salon") { player ->
     player.softTimers.stop("dressing_room")
 }
 
-interfaceOption(component = "confirm", id = "hairdressers_salon") {
+interfaceOption("Confirm", "confirm", "hairdressers_salon") {
     player.body.setLook(BodyPart.Hair, player["makeover_hair", 0])
     player.body.setLook(BodyPart.Beard, player["makeover_beard", 0])
     player.body.setColour(BodyColour.Hair, player["makeover_colour_hair", 0])

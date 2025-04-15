@@ -120,7 +120,7 @@ interfaceOption(component = "colours", id = "thessalias_makeovers") {
     player[colour] = enums.get("colour_$part").getInt(itemSlot / 2)
 }
 
-interfaceOption(component = "confirm", id = "thessalias_makeovers") {
+interfaceOption("Confirm", "confirm", "thessalias_makeovers") {
     player.body.setLook(BodyPart.Chest, player["makeover_top", 0])
     player.body.setLook(BodyPart.Arms, player["makeover_arms", 0])
     player.body.setLook(BodyPart.Hands, player["makeover_wrists", 0])

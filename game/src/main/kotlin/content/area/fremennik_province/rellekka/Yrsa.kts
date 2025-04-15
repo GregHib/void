@@ -78,7 +78,7 @@ interfaceOption(component = "colours", id = "yrsas_shoe_store") {
     player["makeover_colour_shoes"] = enums.get("colour_shoes").getInt(itemSlot / 2)
 }
 
-interfaceOption(component = "confirm", id = "yrsas_shoe_store") {
+interfaceOption("Confirm", "confirm", "yrsas_shoe_store") {
     player.body.setLook(BodyPart.Feet, player["makeover_shoes", 0])
     player.body.setColour(BodyColour.Feet, player["makeover_colour_shoes", 0])
     player.flagAppearance()

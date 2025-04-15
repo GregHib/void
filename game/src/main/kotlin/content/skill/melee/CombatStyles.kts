@@ -49,7 +49,7 @@ interfaceOption(component = "style*", id = "combat_styles") {
     refreshStyle(player)
 }
 
-interfaceOption(component = "retaliate", id = "combat_styles") {
+interfaceOption("Auto Retaliate", "retaliate", "combat_styles") {
     player.closeInterfaces()
     player.toggle("auto_retaliate")
 }

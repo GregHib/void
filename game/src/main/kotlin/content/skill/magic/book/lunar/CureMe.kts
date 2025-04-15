@@ -11,7 +11,7 @@ import content.entity.effect.toxin.poisoned
 
 val definitions: SpellDefinitions by inject()
 
-interfaceOption(component = "cure_me", id = "lunar_spellbook") {
+interfaceOption("Cast", "cure_me", "lunar_spellbook") {
     val spell = component
     if (!player.poisoned) {
         player.message("You are not poisoned.")
