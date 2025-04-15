@@ -7,6 +7,7 @@ import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.timedLoad
@@ -22,20 +23,25 @@ class ObjectTeleports {
     private lateinit var teleports: Map<String, Map<Int, TeleportDefinition>>
 
     suspend fun teleport(objectOption: ObjectOption<Player>, option: String = objectOption.option): Boolean {
-        return teleport(objectOption, objectOption.character, objectOption.def, objectOption.target.tile, option)
+        return teleport(objectOption, objectOption.character, objectOption.target, objectOption.def, option)
     }
 
-    suspend fun teleport(context: SuspendableContext<Player>, player: Player, def: ObjectDefinition, targetTile: Tile, option: String): Boolean {
+    suspend fun teleport(context: SuspendableContext<Player>, player: Player, target: GameObject, def: ObjectDefinition, option: String): Boolean {
         val id = def.stringId.ifEmpty { def.id.toString() }
-        val definition = teleports[option]?.get(targetTile.id) ?: return false
+        val definition = teleports[option]?.get(target.tile.id) ?: return false
         if (definition.id != id) {
             return false
         }
-        val teleport = ObjectTeleport(player, definition.id, definition.tile, def, definition.option)
+        val teleport = ObjectTeleport(player, target, def, definition.option)
         player.emit(teleport)
         if (teleport.cancelled) {
             return false
         }
+        teleportContinue(context, player, definition, teleport)
+        return true
+    }
+
+    suspend fun teleportContinue(context: SuspendableContext<Player>, player: Player, definition: TeleportDefinition, teleport: ObjectTeleport) {
         val tile = when {
             definition.delta != Delta.EMPTY && definition.to != Tile.EMPTY ->
                 Distance.getNearest(definition.to, definition.delta.x, definition.delta.y, player.tile)
@@ -54,7 +60,6 @@ class ObjectTeleports {
         }
         teleport.land = true
         player.emit(teleport)
-        return true
     }
 
     fun contains(id: String, tile: Tile, option: String): Boolean {

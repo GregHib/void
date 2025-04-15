@@ -27,7 +27,7 @@ data class ObjectOption<C : Character>(
     }
 }
 
-fun objectOperate(option: String, vararg objects: String = arrayOf("*"), arrive: Boolean = true, override: Boolean = true, block: suspend ObjectOption<Player>.() -> Unit) {
+fun objectOperate(option: String, vararg objects: String = arrayOf("*"), arrive: Boolean = true, block: suspend ObjectOption<Player>.() -> Unit) {
     val handler: suspend ObjectOption<Player>.(Player) -> Unit = {
         if (arrive) {
             arriveDelay()
@@ -35,20 +35,20 @@ fun objectOperate(option: String, vararg objects: String = arrayOf("*"), arrive:
         block.invoke(this)
     }
     for (id in objects) {
-        Events.handle("player_operate_object", option, id, "player", override = override, handler = handler)
+        Events.handle("player_operate_object", option, id, "player", handler = handler)
     }
 }
 
-fun objectApproach(option: String, vararg objects: String = arrayOf("*"), override: Boolean = true, block: suspend ObjectOption<Player>.() -> Unit) {
+fun objectApproach(option: String, vararg objects: String = arrayOf("*"), block: suspend ObjectOption<Player>.() -> Unit) {
     val handler: suspend ObjectOption<Player>.(Player) -> Unit = {
         block.invoke(this)
     }
     for (id in objects) {
-        Events.handle("player_approach_object", option, id, "player", override = override, handler = handler)
+        Events.handle("player_approach_object", option, id, "player", handler = handler)
     }
 }
 
-fun npcOperateObject(option: String, vararg objects: String = arrayOf("*"), npc: String = "*", arrive: Boolean = true, override: Boolean = true, block: suspend ObjectOption<NPC>.() -> Unit) {
+fun npcOperateObject(option: String, vararg objects: String = arrayOf("*"), npc: String = "*", arrive: Boolean = true, block: suspend ObjectOption<NPC>.() -> Unit) {
     val handler: suspend ObjectOption<NPC>.(NPC) -> Unit = {
         if (arrive) {
             arriveDelay()
@@ -56,20 +56,20 @@ fun npcOperateObject(option: String, vararg objects: String = arrayOf("*"), npc:
         block.invoke(this)
     }
     for (id in objects) {
-        Events.handle("npc_operate_object", option, id, npc, override = override, handler = handler)
+        Events.handle("npc_operate_object", option, id, npc, handler = handler)
     }
 }
 
-fun npcApproachObject(option: String, vararg objects: String = arrayOf("*"), npc: String = "*", override: Boolean = true, block: suspend ObjectOption<NPC>.() -> Unit) {
+fun npcApproachObject(option: String, vararg objects: String = arrayOf("*"), npc: String = "*", block: suspend ObjectOption<NPC>.() -> Unit) {
     val handler: suspend ObjectOption<NPC>.(NPC) -> Unit = {
         block.invoke(this)
     }
     for (id in objects) {
-        Events.handle("npc_approach_object", option, id, npc, override = override, handler = handler)
+        Events.handle("npc_approach_object", option, id, npc, handler = handler)
     }
 }
 
-fun characterOperateObject(option: String, vararg objects: String = arrayOf("*"), arrive: Boolean = true, override: Boolean = true, block: suspend ObjectOption<Character>.() -> Unit) {
+fun characterOperateObject(option: String, vararg objects: String = arrayOf("*"), arrive: Boolean = true, block: suspend ObjectOption<Character>.() -> Unit) {
     val handler: suspend ObjectOption<Character>.(Character) -> Unit = {
         if (arrive) {
             arriveDelay()
@@ -77,17 +77,17 @@ fun characterOperateObject(option: String, vararg objects: String = arrayOf("*")
         block.invoke(this)
     }
     for (id in objects) {
-        Events.handle("player_operate_object", option, id, "player", override = override, handler = handler)
-        Events.handle("npc_operate_object", option, id, "*", override = override, handler = handler)
+        Events.handle("player_operate_object", option, id, "player", handler = handler)
+        Events.handle("npc_operate_object", option, id, "*", handler = handler)
     }
 }
 
-fun characterApproachObject(option: String, vararg objects: String = arrayOf("*"), override: Boolean = true, block: suspend ObjectOption<Character>.() -> Unit) {
+fun characterApproachObject(option: String, vararg objects: String = arrayOf("*"), block: suspend ObjectOption<Character>.() -> Unit) {
     val handler: suspend ObjectOption<Character>.(Character) -> Unit = {
         block.invoke(this)
     }
     for (id in objects) {
-        Events.handle("player_approach_object", option, id, "player", override = override, handler = handler)
-        Events.handle("npc_approach_object", option, id, "*", override = override, handler = handler)
+        Events.handle("player_approach_object", option, id, "player", handler = handler)
+        Events.handle("npc_approach_object", option, id, "*", handler = handler)
     }
 }

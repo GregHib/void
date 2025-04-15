@@ -6,15 +6,14 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 
 data class DeleteFriend(val friend: String) : CancellableEvent() {
-    override val size = 2
+    override val size = 1
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when(index) {
         0 -> "delete_friend"
-        1 -> true // prioritise non-overrides
         else -> null
     }
 }
 
-fun friendsDelete(override: Boolean = true, block: DeleteFriend.(Player) -> Unit) {
-    Events.handle("delete_friend", if (override) "*" else true, override = override, handler = block)
+fun friendsDelete(block: DeleteFriend.(Player) -> Unit) {
+    Events.handle("delete_friend", handler = block)
 }

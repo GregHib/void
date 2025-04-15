@@ -78,13 +78,13 @@ objTeleportTakeOff("Enter", "*_altar_ruins_enter") {
 val teleports: ObjectTeleports by inject()
 
 objTeleportTakeOff("Enter", "*_altar_portal") {
-    if (id == "chaos_altar_portal" && !player.hasClock("chaos_altar_skip")) {
+    if (target.id == "chaos_altar_portal" && !player.hasClock("chaos_altar_skip")) {
         player.softQueue("chaos_altar_check") {
             statement("Warning! This portal will teleport you into the Wilderness.")
             choice("Are you sure you wish to use this portal?") {
                 option("Yes, I'm brave.") {
                     player.start("chaos_altar_skip", 1)
-                    teleports.teleport(this, player, obj, tile, option)
+                    teleports.teleport(this, player, target, obj, option)
                 }
                 option("Eeep! The Wilderness... No thank you.") {
                     player.message("You decide not to use this portal.")
@@ -101,7 +101,7 @@ objTeleportTakeOff("Enter", "*_altar_portal") {
 }
 
 objTeleportTakeOff("Climb-down", "chaos_altar_ladder_down") {
-    if (tile.equals(2259, 4845, 1)) {
+    if (target.tile.equals(2259, 4845, 1)) {
         player.message("The ladder is broken, I can't climb it.")
         cancel()
         return@objTeleportTakeOff
@@ -109,7 +109,7 @@ objTeleportTakeOff("Climb-down", "chaos_altar_ladder_down") {
 }
 
 objTeleportTakeOff("Climb-up", "chaos_altar_ladder_up") {
-    if (tile.equals(2259, 4845)) {
+    if (target.tile.equals(2259, 4845)) {
         player.message("The ladder is broken, I can't climb it.")
         cancel()
         return@objTeleportTakeOff
