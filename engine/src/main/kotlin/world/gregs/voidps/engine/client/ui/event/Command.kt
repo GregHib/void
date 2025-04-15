@@ -5,10 +5,7 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.isAdmin
-import world.gregs.voidps.engine.entity.character.player.isMod
 import world.gregs.voidps.engine.event.EventDispatcher
-import world.gregs.voidps.engine.event.Events
 
 data class Command(
     override val character: Player,
@@ -28,34 +25,8 @@ data class Command(
     }
 
     companion object {
-
         val adminHandlers: MutableMap<String, suspend Command.(Player) -> Unit> = Object2ObjectOpenHashMap()
         val modHandlers: MutableMap<String, suspend Command.(Player) -> Unit> = Object2ObjectOpenHashMap()
-
-        fun handle(dispatcher: EventDispatcher, event: Command): Boolean {
-            if (dispatcher is Player) {
-                if (dispatcher.isAdmin()) {
-                    val handler = adminHandlers[event.prefix]
-                    if (handler != null) {
-                        Events.events.launch {
-                            handler.invoke(event, dispatcher)
-                        }
-                        return true
-                    }
-                }
-                if (dispatcher.isMod()) {
-                    val handler = modHandlers[event.prefix]
-                    if (handler != null) {
-                        Events.events.launch {
-                            handler.invoke(event, dispatcher)
-                        }
-                        return true
-                    }
-                }
-            }
-            return false
-        }
-
         var count = 0
         val adminCommands = mutableListOf<String>()
         val modCommands = mutableListOf<String>()

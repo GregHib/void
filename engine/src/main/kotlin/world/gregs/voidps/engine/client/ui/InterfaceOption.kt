@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.ui
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -28,10 +29,19 @@ data class InterfaceOption(
         4 -> itemSlot.toString()
         else -> null
     }
+
+    companion object {
+        val handlers: MutableMap<String, suspend InterfaceOption.() -> Unit> = Object2ObjectOpenHashMap()
+    }
 }
 
 fun interfaceOption(option: String = "*", component: String = "*", id: String, handler: suspend InterfaceOption.() -> Unit) {
-    Events.handle<InterfaceOption>("interface_option", id, component, option, "*") {
-        handler.invoke(this)
+    when {
+        !option.contains('*') && !component.contains('*') && !id.contains('*') -> InterfaceOption.handlers["${id}:${component}:${option}"] = handler
+        option == "*" && !component.contains('*') && !id.contains('*') -> InterfaceOption.handlers["${id}:${component}"] = handler
+        option == "*" && component == "*" && !id.contains('*') -> InterfaceOption.handlers[id] = handler
+        else -> Events.handle<InterfaceOption>("interface_option", id, component, option, "*") {
+            handler.invoke(this)
+        }
     }
 }
