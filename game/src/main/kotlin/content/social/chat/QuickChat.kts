@@ -21,7 +21,7 @@ import world.gregs.voidps.network.login.protocol.encode.privateQuickChatTo
 import world.gregs.voidps.network.login.protocol.encode.publicQuickChat
 import content.social.clan.clan
 import content.social.ignore.ignores
-import world.gregs.voidps.engine.event.onInstruction
+import world.gregs.voidps.engine.client.instruction.onInstruction
 import world.gregs.voidps.network.client.instruction.QuickChatPrivate
 import world.gregs.voidps.network.client.instruction.QuickChatPublic
 

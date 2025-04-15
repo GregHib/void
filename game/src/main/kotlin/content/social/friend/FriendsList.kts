@@ -21,7 +21,7 @@ import content.social.clan.ownClan
 import content.social.ignore.ignores
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
-import world.gregs.voidps.engine.event.onInstruction
+import world.gregs.voidps.engine.client.instruction.onInstruction
 import world.gregs.voidps.network.client.instruction.FriendAdd
 import world.gregs.voidps.network.client.instruction.FriendDelete
 import world.gregs.voidps.network.login.protocol.encode.*

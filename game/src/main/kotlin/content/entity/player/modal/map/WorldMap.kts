@@ -12,7 +12,7 @@ import world.gregs.voidps.network.login.protocol.encode.updateInterface
 import content.entity.effect.frozen
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.event.onInstruction
+import world.gregs.voidps.engine.client.instruction.onInstruction
 import world.gregs.voidps.network.client.instruction.WorldMapClick
 
 val definitions: InterfaceDefinitions by inject()

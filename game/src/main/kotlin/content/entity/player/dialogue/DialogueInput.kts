@@ -1,7 +1,7 @@
 package content.entity.player.dialogue
 
 import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
-import world.gregs.voidps.engine.event.onInstruction
+import world.gregs.voidps.engine.client.instruction.onInstruction
 import world.gregs.voidps.engine.suspend.IntSuspension
 import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.network.client.instruction.EnterInt

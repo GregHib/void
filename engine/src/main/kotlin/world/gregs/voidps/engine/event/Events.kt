@@ -5,13 +5,20 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import kotlinx.coroutines.*
 import net.pearx.kasechange.toSnakeCase
-import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.get
-import world.gregs.voidps.network.client.Instruction
-import world.gregs.voidps.network.client.instruction.*
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
+import kotlin.collections.HashSet
+import kotlin.collections.MutableMap
+import kotlin.collections.MutableSet
+import kotlin.collections.Set
+import kotlin.collections.component1
+import kotlin.collections.component2
+import kotlin.collections.contains
+import kotlin.collections.getOrPut
+import kotlin.collections.iterator
+import kotlin.collections.mutableSetOf
+import kotlin.collections.set
 
 /**
  * Events is a Trie used for efficient storage and retrieval of handlers based on an arbitrary list of parameters.
@@ -235,35 +242,6 @@ class Events(
         private fun handle(parameters: Array<out Any?>, handler: suspend Event.(EventDispatcher) -> Unit) {
             events.insert(parameters, handler)
         }
-    }
-}
-
-@Suppress("UNCHECKED_CAST")
-@JvmName("onEventDispatcher")
-inline fun <reified I : Instruction> onInstruction(noinline handler: I.(Player) -> Unit) {
-    when (I::class) {
-        FinishRegionLoad::class -> get<InstructionHandlers>().finishRegionLoad = handler as FinishRegionLoad.(Player) -> Unit
-        ChangeDisplayMode::class -> get<InstructionHandlers>().changeDisplayMode = handler as ChangeDisplayMode.(Player) -> Unit
-        Walk::class -> get<InstructionHandlers>().walk = handler as Walk.(Player) -> Unit
-        WorldMapClick::class -> get<InstructionHandlers>().worldMapClick = handler as WorldMapClick.(Player) -> Unit
-        ExamineItem::class -> get<InstructionHandlers>().examineItem = handler as ExamineItem.(Player) -> Unit
-        ExamineNpc::class -> get<InstructionHandlers>().examineNPC = handler as ExamineNpc.(Player) -> Unit
-        ExamineObject::class -> get<InstructionHandlers>().examineObject = handler as ExamineObject.(Player) -> Unit
-        EnterString::class -> get<InstructionHandlers>().enterString = handler as EnterString.(Player) -> Unit
-        EnterInt::class -> get<InstructionHandlers>().enterInt = handler as EnterInt.(Player) -> Unit
-        FriendAdd::class -> get<InstructionHandlers>().friendAddHandler = handler as FriendAdd.(Player) -> Unit
-        FriendDelete::class -> get<InstructionHandlers>().friendDeleteHandler = handler as FriendDelete.(Player) -> Unit
-        IgnoreAdd::class -> get<InstructionHandlers>().ignoreAddHandler = handler as IgnoreAdd.(Player) -> Unit
-        IgnoreDelete::class -> get<InstructionHandlers>().ignoreDeleteHandler = handler as IgnoreDelete.(Player) -> Unit
-        ChatPublic::class -> get<InstructionHandlers>().chatPublicHandler = handler as ChatPublic.(Player) -> Unit
-        ChatPrivate::class -> get<InstructionHandlers>().chatPrivateHandler = handler as ChatPrivate.(Player) -> Unit
-        QuickChatPublic::class -> get<InstructionHandlers>().quickChatPublicHandler = handler as QuickChatPublic.(Player) -> Unit
-        QuickChatPrivate::class -> get<InstructionHandlers>().quickChatPrivateHandler = handler as QuickChatPrivate.(Player) -> Unit
-        ClanChatJoin::class -> get<InstructionHandlers>().clanChatJoinHandler = handler as ClanChatJoin.(Player) -> Unit
-        ChatTypeChange::class -> get<InstructionHandlers>().chatTypeChangeHandler = handler as ChatTypeChange.(Player) -> Unit
-        ClanChatKick::class -> get<InstructionHandlers>().clanChatKickHandler = handler as ClanChatKick.(Player) -> Unit
-        ClanChatRank::class -> get<InstructionHandlers>().clanChatRankHandler = handler as ClanChatRank.(Player) -> Unit
-        else -> throw UnsupportedOperationException("Unknown Instruction type: ${I::class}")
     }
 }
 

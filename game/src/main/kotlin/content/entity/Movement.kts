@@ -15,7 +15,7 @@ import world.gregs.voidps.type.Tile
 import content.entity.combat.dead
 import content.entity.death.npcDeath
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.event.onInstruction
+import world.gregs.voidps.engine.client.instruction.onInstruction
 import world.gregs.voidps.network.client.instruction.Walk
 
 val collisions: Collisions by inject()
