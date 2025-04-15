@@ -221,47 +221,32 @@ class Events(
         }
 
         @JvmName("handleDispatcher")
-        fun <D : EventDispatcher, E : Event> handle(vararg parameters: Any?, override: Boolean = true, handler: suspend E.(D) -> Unit) {
-            handle(parameters, override, handler as suspend Event.(EventDispatcher) -> Unit)
+        fun <D : EventDispatcher, E : Event> handle(vararg parameters: Any?, handler: suspend E.(D) -> Unit) {
+            handle(parameters, handler as suspend Event.(EventDispatcher) -> Unit)
+        }
+
+        @JvmName("handleEventDispatcher")
+        fun <D : EventDispatcher, E : Event> handle(parameters: Array<out Any?>, handler: suspend E.(D) -> Unit) {
+            handle(parameters, handler as suspend Event.(EventDispatcher) -> Unit)
         }
 
         @JvmName("handleEvent")
-        fun <E : Event> handle(vararg parameters: Any?, override: Boolean = true, handler: suspend E.(EventDispatcher) -> Unit) {
-            handle(parameters, override, handler as suspend Event.(EventDispatcher) -> Unit)
+        fun <E : Event> handle(vararg parameters: Any?, handler: suspend E.(EventDispatcher) -> Unit) {
+            handle(parameters, handler as suspend Event.(EventDispatcher) -> Unit)
         }
 
-        private fun handle(parameters: Array<out Any?>, override: Boolean = true, handler: suspend Event.(EventDispatcher) -> Unit) {
-            if (!override) {
-                // Handlers override by default so find and continue onto the next handler
-                // after the current is finished by searching again but skipping itself
-                var self: (suspend Event.(EventDispatcher) -> Unit)? = null
-                self = handler@{ entity ->
-                    handler.invoke(this, entity)
-                    if (this is CancellableEvent && this.cancelled) {
-                        return@handler
-                    }
-                    val handlers = events.search(entity, this, self!!) ?: return@handler
-                    for (h in handlers) {
-                        if (entity is CancellableEvent && entity.cancelled) {
-                            break
-                        }
-                        h.invoke(this, entity)
-                    }
-                }
-                events.insert(parameters, self)
-            } else {
-                events.insert(parameters, handler)
-            }
+        private fun handle(parameters: Array<out Any?>, handler: suspend Event.(EventDispatcher) -> Unit) {
+            events.insert(parameters, handler)
         }
     }
 }
 
 @JvmName("onEventDispatcher")
-inline fun <D : EventDispatcher, reified E : Event> onEvent(vararg parameters: Any = arrayOf(E::class.simpleName!!.toSnakeCase()), override: Boolean = true, noinline handler: suspend E.(D) -> Unit) {
-    Events.handle(parameters = parameters, override, handler)
+inline fun <D : EventDispatcher, reified E : Event> onEvent(vararg parameters: Any = arrayOf(E::class.simpleName!!.toSnakeCase()), noinline handler: suspend E.(D) -> Unit) {
+    Events.handle(parameters, handler)
 }
 
 @JvmName("onEvent")
-inline fun <reified E : Event> onEvent(vararg parameters: Any = arrayOf(E::class.simpleName!!.toSnakeCase()), override: Boolean = true, noinline handler: suspend E.(EventDispatcher) -> Unit) {
-    Events.handle(parameters = parameters, override, handler)
+inline fun <reified E : Event> onEvent(vararg parameters: Any = arrayOf(E::class.simpleName!!.toSnakeCase()), noinline handler: suspend E.(EventDispatcher) -> Unit) {
+    Events.handle(parameters, handler)
 }
