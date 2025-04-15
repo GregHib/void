@@ -1,10 +1,10 @@
 package content.quest.member.druidic_ritual
 
-import world.gregs.voidps.engine.client.ui.interfaceSlot
+import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
 
-interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 33) {
+questJournalOpen("druidic_ritual") {
     val lines = when (player.quest("druidic_ritual")) {
         "completed" -> listOf(
             "<str>I told Kaqemeex I would help them prepare their ceremony",

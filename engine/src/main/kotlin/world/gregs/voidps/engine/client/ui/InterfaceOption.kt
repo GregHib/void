@@ -35,9 +35,3 @@ fun interfaceOption(option: String = "*", component: String = "*", id: String, h
         handler.invoke(this)
     }
 }
-
-fun interfaceSlot(component: String = "*", id: String, itemSlot: Int = -1, handler: suspend InterfaceOption.() -> Unit) {
-    Events.handle<InterfaceOption>("interface_option", id, component, "*", if (itemSlot == -1) "*" else itemSlot.toString()) {
-        handler.invoke(this)
-    }
-}

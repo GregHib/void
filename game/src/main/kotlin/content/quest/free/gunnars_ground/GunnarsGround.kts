@@ -1,9 +1,9 @@
 package content.quest.free.gunnars_ground
 
-import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.holdsItem
 import content.entity.player.inv.inventoryItem
+import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.letterScroll
 import content.quest.questJournal
@@ -43,7 +43,7 @@ inventoryItem("Read", "gunnars_ground", "inventory") {
     ))
 }
 
-interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 17) {
+questJournalOpen("gunnars_ground") {
     val lines = when (player.quest("gunnars_ground")) {
         "completed" -> listOf(
             "<str>I met an unhappy dwarf named Dororan just outside the",

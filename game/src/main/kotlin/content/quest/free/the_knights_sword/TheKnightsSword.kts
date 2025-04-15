@@ -1,12 +1,12 @@
 package content.quest.free.the_knights_sword
 
-import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.inv.holdsItem
 import content.entity.player.bank.ownsItem
+import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
 
-interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 8) {
+questJournalOpen("the_knights_sword") {
     val lines = when (player.quest("the_knights_sword")) {
         "completed" -> listOf(
             "<str>Thurgo needed a picture of the sword before he could",

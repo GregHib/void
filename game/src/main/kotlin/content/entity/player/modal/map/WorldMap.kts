@@ -3,7 +3,6 @@ package content.entity.player.modal.map
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.move
@@ -33,24 +32,14 @@ interfaceOption("Re-sort key", "order", "world_map") {
     }
 }
 
-interfaceSlot("key_list", "world_map", 1) {
-    player.toggle("world_map_hide_player_location")
-}
-
-interfaceSlot("key_list", "world_map", 4) {
-    player.toggle("world_map_hide_links")
-}
-
-interfaceSlot("key_list", "world_map", 12) {
-    player.toggle("world_map_hide_labels")
-}
-
-interfaceSlot("key_list", "world_map", 16) {
-    player.toggle("world_map_hide_tooltips")
-}
-
-interfaceSlot("key_list", "world_map", 19) {
-    player["world_map_marker_custom"] = 0
+interfaceOption(id = "world_map", component = "key_list") {
+    when (itemSlot) {
+        1 -> player.toggle("world_map_hide_player_location")
+        4 -> player.toggle("world_map_hide_links")
+        12 -> player.toggle("world_map_hide_labels")
+        16 -> player.toggle("world_map_hide_tooltips")
+        19 -> player["world_map_marker_custom"] = 0
+    }
 }
 
 interfaceOption("Clear marker", "marker", "world_map") {

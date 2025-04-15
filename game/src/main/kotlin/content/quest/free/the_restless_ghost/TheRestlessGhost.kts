@@ -1,11 +1,11 @@
 package content.quest.free.the_restless_ghost
 
-import world.gregs.voidps.engine.client.ui.interfaceSlot
 import content.entity.player.bank.ownsItem
+import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
 
-interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 11) {
+questJournalOpen("the_restless_ghost") {
     val lines = when (player.quest("the_restless_ghost")) {
         "completed" -> listOf(
             "<str>I've not started this quest yet.",
