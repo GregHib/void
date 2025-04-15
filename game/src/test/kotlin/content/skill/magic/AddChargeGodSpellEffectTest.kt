@@ -38,7 +38,7 @@ internal class AddChargeGodSpellEffectTest : CombatFormulaTest() {
         player.inventory.add("air_rune", 3)
         val target = createPlayer(Skill.Constitution to 990)
 
-        player.interfaceOption("modern_spellbook", "charge")
+        player.interfaceOption("modern_spellbook", "charge", "Cast")
         assertTrue(player.hasClock("charge"))
         player.hit(target, type = "magic", spell = "saradomin_strike", damage = 100)
         tick(3)
@@ -56,7 +56,7 @@ internal class AddChargeGodSpellEffectTest : CombatFormulaTest() {
         player.inventory.add("air_rune", 3)
         val target = createPlayer(Skill.Constitution to 990)
 
-        player.interfaceOption("modern_spellbook", "charge")
+        player.interfaceOption("modern_spellbook", "charge", "Cast")
         assertTrue(player.hasClock("charge"))
         player.hit(target, type = "magic", spell = "saradomin_strike", damage = 100)
         tick(3)
