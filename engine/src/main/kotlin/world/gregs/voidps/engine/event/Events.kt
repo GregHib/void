@@ -5,7 +5,11 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import kotlinx.coroutines.*
 import net.pearx.kasechange.toSnakeCase
+import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.network.client.Instruction
+import world.gregs.voidps.network.client.instruction.ChatPrivate
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
 
@@ -231,6 +235,17 @@ class Events(
         private fun handle(parameters: Array<out Any?>, handler: suspend Event.(EventDispatcher) -> Unit) {
             events.insert(parameters, handler)
         }
+    }
+}
+
+@Suppress("UNCHECKED_CAST")
+@JvmName("onEventDispatcher")
+inline fun <reified I : Instruction> onInstruction(noinline handler: I.(Player) -> Unit) {
+    when (I::class) {
+        ChatPrivate::class -> {
+            get<InstructionHandlers>().chatPrivateHandler = handler as ChatPrivate.(Player) -> Unit
+        }
+        else -> throw UnsupportedOperationException("Unknown Instruction type: ${I::class}")
     }
 }
 

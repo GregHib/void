@@ -1,5 +1,5 @@
+import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InstructionTask
-import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.CharacterTask
 import world.gregs.voidps.engine.client.update.CharacterUpdateTask
 import world.gregs.voidps.engine.client.update.NPCTask
@@ -13,10 +13,6 @@ import world.gregs.voidps.engine.client.update.npc.NPCUpdateTask
 import world.gregs.voidps.engine.client.update.player.PlayerResetTask
 import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
 import world.gregs.voidps.engine.data.SaveQueue
-import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.AiTick
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -41,13 +37,9 @@ fun getTickStages(
     queue: ConnectionQueue = get(),
     accountSave: SaveQueue = get(),
     batches: ZoneBatchUpdates = get(),
-    itemDefinitions: ItemDefinitions = get(),
-    objectDefinitions: ObjectDefinitions = get(),
-    npcDefinitions: NPCDefinitions = get(),
-    interfaceDefinitions: InterfaceDefinitions = get(),
     hunting: Hunting = get(),
-    handler: InterfaceHandler = InterfaceHandler(get(), get(), get()),
-    sequential: Boolean = CharacterTask.DEBUG
+    sequential: Boolean = CharacterTask.DEBUG,
+    handlers: InstructionHandlers = get()
 ): List<Runnable> {
     val sequentialNpc: TaskIterator<NPC> = SequentialIterator()
     val sequentialPlayer: TaskIterator<Player> = SequentialIterator()
@@ -61,7 +53,7 @@ fun getTickStages(
         npcs,
         items,
         // Tick
-        InstructionTask(players, npcs, items, objects, itemDefinitions, objectDefinitions, npcDefinitions, interfaceDefinitions, handler),
+        InstructionTask(players, handlers),
         World,
         NPCTask(sequentialNpc, npcs),
         PlayerTask(sequentialPlayer, players),

@@ -6,6 +6,8 @@ import content.bot.interact.path.Dijkstra
 import content.bot.interact.path.DijkstraFrontier
 import content.entity.player.modal.book.Books
 import content.entity.world.music.MusicTracks
+import world.gregs.voidps.engine.client.instruction.InstructionHandlers
+import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.find
@@ -27,4 +29,17 @@ fun gameModule(files: ConfigFiles) = module {
     single(createdAtStart = true) { NavigationGraph(get(), get()).load(files.find(Settings["map.navGraph"])) }
     single(createdAtStart = true) { Books().load(files.list(Settings["definitions.books"])) }
     single(createdAtStart = true) { MusicTracks().load(files.find(Settings["map.music"])) }
+    single {
+        InstructionHandlers(
+            get(),
+            get(),
+            get(),
+            get(),
+            get(),
+            get(),
+            get(),
+            get(),
+            InterfaceHandler(get(), get(), get()),
+        )
+    }
 }

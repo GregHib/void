@@ -189,7 +189,6 @@ abstract class WorldTest : KoinTest {
         saves = File(Settings["storage.players.path"])
         saves?.mkdirs()
         val millis = measureTimeMillis {
-            val handler = InterfaceHandler(get(), get(), get())
             val tickStages = getTickStages(
                 get(),
                 get(),
@@ -200,11 +199,6 @@ abstract class WorldTest : KoinTest {
                 get(),
                 get(),
                 get(),
-                get(),
-                get(),
-                get(),
-                get(),
-                handler,
                 sequential = true
             )
             engine = GameLoop(tickStages)

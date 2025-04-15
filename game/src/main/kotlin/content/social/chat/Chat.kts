@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanChatMessage
-import world.gregs.voidps.engine.entity.character.player.chat.friend.PrivateChat
 import world.gregs.voidps.engine.entity.character.player.chat.friend.PrivateChatMessage
 import world.gregs.voidps.engine.entity.character.player.chat.global.PublicChat
 import world.gregs.voidps.engine.entity.character.player.chat.global.PublicChatMessage
@@ -22,6 +21,8 @@ import world.gregs.voidps.network.login.protocol.encode.publicChat
 import content.social.clan.chatType
 import content.social.clan.clan
 import content.social.ignore.ignores
+import world.gregs.voidps.engine.event.onInstruction
+import world.gregs.voidps.network.client.instruction.ChatPrivate
 
 val players: Players by inject()
 val huffman: Huffman by inject()
@@ -40,11 +41,11 @@ onEvent<Player, PublicChatMessage> { player ->
     player.client?.publicChat(source.index, effects, source.rights.ordinal, compressed)
 }
 
-onEvent<Player, PrivateChat> { player ->
+onInstruction<ChatPrivate> { player ->
     val target = players.get(friend)
     if (target == null || target.ignores(player)) {
         player.message("Unable to send message - player unavailable.")
-        return@onEvent
+        return@onInstruction
     }
     val message = PrivateChatMessage(player, message, huffman)
     player.client?.privateChatTo(target.name, message.compressed)
