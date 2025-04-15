@@ -36,12 +36,7 @@ data class InterfaceOption(
 }
 
 fun interfaceOption(option: String = "*", component: String = "*", id: String, handler: suspend InterfaceOption.() -> Unit) {
-    when {
-        !option.contains('*') && !component.contains('*') && !id.contains('*') -> InterfaceOption.handlers["${id}:${component}:${option}"] = handler
-        option == "*" && !component.contains('*') && !id.contains('*') -> InterfaceOption.handlers["${id}:${component}"] = handler
-        option == "*" && component == "*" && !id.contains('*') -> InterfaceOption.handlers[id] = handler
-        else -> Events.handle<InterfaceOption>("interface_option", id, component, option, "*") {
-            handler.invoke(this)
-        }
+    Events.handle<InterfaceOption>("interface_option", id, component, option, "*") {
+        handler.invoke(this)
     }
 }
