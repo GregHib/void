@@ -77,7 +77,7 @@ class Events(
      */
     fun emit(dispatcher: EventDispatcher, event: SuspendableEvent): Boolean {
         val handlers = search(dispatcher, event) ?: return false
-        scope.launch(errorHandler) {
+        launch {
             handleEvent(handlers, event, dispatcher)
         }
         return true
@@ -242,6 +242,10 @@ class Events(
 @JvmName("onEventDispatcher")
 inline fun <reified I : Instruction> onInstruction(noinline handler: I.(Player) -> Unit) {
     when (I::class) {
+        FinishRegionLoad::class -> get<InstructionHandlers>().finishRegionLoad = handler as FinishRegionLoad.(Player) -> Unit
+        ChangeDisplayMode::class -> get<InstructionHandlers>().changeDisplayMode = handler as ChangeDisplayMode.(Player) -> Unit
+        Walk::class -> get<InstructionHandlers>().walk = handler as Walk.(Player) -> Unit
+        WorldMapClick::class -> get<InstructionHandlers>().worldMapClick = handler as WorldMapClick.(Player) -> Unit
         ExamineItem::class -> get<InstructionHandlers>().examineItem = handler as ExamineItem.(Player) -> Unit
         ExamineNpc::class -> get<InstructionHandlers>().examineNPC = handler as ExamineNpc.(Player) -> Unit
         ExamineObject::class -> get<InstructionHandlers>().examineObject = handler as ExamineObject.(Player) -> Unit

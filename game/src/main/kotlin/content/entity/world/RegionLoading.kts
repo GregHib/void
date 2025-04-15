@@ -9,11 +9,13 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.event.onEvent
+import world.gregs.voidps.engine.event.onInstruction
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.map.zone.RegionLoad
 import world.gregs.voidps.engine.map.zone.ReloadZone
+import world.gregs.voidps.network.client.instruction.FinishRegionLoad
 import world.gregs.voidps.network.login.protocol.encode.dynamicMapRegion
 import world.gregs.voidps.network.login.protocol.encode.mapRegion
 import world.gregs.voidps.type.Distance
@@ -30,6 +32,13 @@ val dynamicZones: DynamicZones by inject()
 val playerRegions = IntArray(MAX_PLAYERS - 1)
 
 private val blankXtea = IntArray(4)
+
+onInstruction<FinishRegionLoad> { player ->
+    if (player["debug", false]) {
+        println("Finished region load. $player ${player.viewport}")
+    }
+    player.viewport?.loaded = true
+}
 
 onEvent<Player, RegionLoad> { player ->
     player.viewport?.seen(player)

@@ -3,21 +3,22 @@ package content.area.mithalin
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.client.instruction.handle.WalkHandler
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Tile
 import WorldTest
+import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 
 internal class BorderGuardTest : WorldTest() {
 
     private lateinit var collision: Collisions
-    private val handler = WalkHandler()
+    private lateinit var handler: InstructionHandlers
 
 
     @BeforeEach
     fun start() {
+        handler = get()
         collision = get()
     }
 
@@ -26,7 +27,7 @@ internal class BorderGuardTest : WorldTest() {
         val player = createPlayer("player", Tile(3112, 3420))
         tick()
 
-        handler.validate(player, Walk(3106, 3421))
+        handler.walk(Walk(3106, 3421), player)
         tick(8)
 
         assertEquals(Tile(3106, 3421), player.tile)
@@ -37,7 +38,7 @@ internal class BorderGuardTest : WorldTest() {
         val player = createPlayer("player", Tile(3106, 3421))
         tick()
 
-        handler.validate(player, Walk(3112, 3420))
+        handler.walk(Walk(3112, 3420), player)
         tick(8)
 
         assertEquals(Tile(3112, 3420), player.tile)
@@ -48,7 +49,7 @@ internal class BorderGuardTest : WorldTest() {
         val player = createPlayer("player", Tile(3292, 3387))
         tick()
 
-        handler.validate(player, Walk(3293, 3383))
+        handler.walk(Walk(3293, 3383), player)
         tick(6)
 
         assertEquals(Tile(3293, 3383), player.tile)
@@ -59,7 +60,7 @@ internal class BorderGuardTest : WorldTest() {
         val player = createPlayer("player", Tile(3293, 3383))
         tick()
 
-        handler.validate(player, Walk(3292, 3387))
+        handler.walk(Walk(3292, 3387), player)
         tick(6)
 
         assertEquals(Tile(3292, 3387), player.tile)
