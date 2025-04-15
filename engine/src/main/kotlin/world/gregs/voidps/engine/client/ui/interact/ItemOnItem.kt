@@ -53,13 +53,12 @@ fun itemOnItem(
     fromComponent: String = "*",
     toInterface: String = fromInterface,
     toComponent: String = fromComponent,
-    override: Boolean = true,
     bidirectional: Boolean = true,
     handler: suspend ItemOnItem.(Player) -> Unit
 ) {
-    Events.handle("item_on_item", fromItem, fromInterface, fromComponent, toItem, toInterface, toComponent, override = override, handler = handler)
+    Events.handle("item_on_item", fromItem, fromInterface, fromComponent, toItem, toInterface, toComponent, handler = handler)
     if (bidirectional) {
-        Events.handle<ItemOnItem>("item_on_item", toItem, toInterface, toComponent, fromItem, fromInterface, fromComponent, override = override) {
+        Events.handle<ItemOnItem>("item_on_item", toItem, toInterface, toComponent, fromItem, fromInterface, fromComponent) {
             handler.invoke(flip(), it as Player)
         }
     }
@@ -72,7 +71,6 @@ fun itemOnItems(
     fromComponent: String = "*",
     toInterface: String = fromInterface,
     toComponent: String = fromComponent,
-    override: Boolean = true,
     bidirectional: Boolean = true,
     handler: suspend ItemOnItem.(Player) -> Unit
 ) {
@@ -81,9 +79,9 @@ fun itemOnItems(
     }
     for (fromItem in fromItems) {
         for (toItem in toItems) {
-            Events.handle("item_on_item", fromItem, fromInterface, fromComponent, toItem, toInterface, toComponent, override = override, handler = handler)
+            Events.handle("item_on_item", fromItem, fromInterface, fromComponent, toItem, toInterface, toComponent, handler = handler)
             if (bidirectional) {
-                Events.handle("item_on_item", toItem, toInterface, toComponent, fromItem, fromInterface, fromComponent, override = override, handler = bidirectionalHandler)
+                Events.handle("item_on_item", toItem, toInterface, toComponent, fromItem, fromInterface, fromComponent, handler = bidirectionalHandler)
             }
         }
     }

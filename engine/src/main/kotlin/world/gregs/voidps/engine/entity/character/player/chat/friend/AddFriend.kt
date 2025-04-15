@@ -15,5 +15,5 @@ data class AddFriend(val friend: String) : CancellableEvent() {
 }
 
 fun friendsAdd(block: AddFriend.(Player) -> Unit) {
-    Events.handle("add_friend", override = true, handler = block)
+    Events.handle("add_friend", handler = block)
 }

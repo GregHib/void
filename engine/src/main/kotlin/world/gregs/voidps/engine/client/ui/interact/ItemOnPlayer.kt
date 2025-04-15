@@ -29,14 +29,14 @@ data class ItemOnPlayer<C : Character>(
     }
 }
 
-fun itemOnPlayerOperate(item: String = "*", id: String = "*", component: String = "*", override: Boolean = true, handler: suspend ItemOnPlayer<Player>.() -> Unit) {
-    Events.handle<ItemOnPlayer<Player>>("item_on_operate_player", item, id, component, override = override) {
+fun itemOnPlayerOperate(item: String = "*", id: String = "*", component: String = "*", handler: suspend ItemOnPlayer<Player>.() -> Unit) {
+    Events.handle<ItemOnPlayer<Player>>("item_on_operate_player", item, id, component) {
         handler.invoke(this)
     }
 }
 
-fun itemOnPlayerApproach(item: String = "*", id: String = "*", component: String = "*", override: Boolean = true, handler: suspend ItemOnPlayer<Player>.() -> Unit) {
-    Events.handle<ItemOnPlayer<Player>>("item_on_approach_player", item, id, component, override = override) {
+fun itemOnPlayerApproach(item: String = "*", id: String = "*", component: String = "*", handler: suspend ItemOnPlayer<Player>.() -> Unit) {
+    Events.handle<ItemOnPlayer<Player>>("item_on_approach_player", item, id, component) {
         handler.invoke(this)
     }
 }

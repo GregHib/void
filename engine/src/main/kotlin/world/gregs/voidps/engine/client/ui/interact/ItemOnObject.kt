@@ -38,11 +38,10 @@ fun itemOnObjectOperate(
     component: String = "*",
     itemDef: String = "*",
     arrive: Boolean = true,
-    override: Boolean = true,
     handler: suspend ItemOnObject.() -> Unit
 ) {
     if (itemDef != "*") {
-        Events.handle<ItemOnObject>("item_on_operate_object", "*", obj, id, component, override = override) {
+        Events.handle<ItemOnObject>("item_on_operate_object", "*", obj, id, component) {
             if (this.item.def.contains(itemDef)) {
                 if (arrive) {
                     arriveDelay()
@@ -51,7 +50,7 @@ fun itemOnObjectOperate(
             }
         }
     } else {
-        Events.handle<ItemOnObject>("item_on_operate_object", item, obj, id, component, override = override){
+        Events.handle<ItemOnObject>("item_on_operate_object", item, obj, id, component){
             if (arrive) {
                 arriveDelay()
             }
@@ -60,8 +59,8 @@ fun itemOnObjectOperate(
     }
 }
 
-fun itemOnObjectApproach(item: String = "*", obj: String = "*", id: String = "*", component: String = "*", override: Boolean = true, handler: suspend ItemOnObject.() -> Unit) {
-    Events.handle<ItemOnObject>("item_on_approach_object", item, obj, id, component, override = override) {
+fun itemOnObjectApproach(item: String = "*", obj: String = "*", id: String = "*", component: String = "*", handler: suspend ItemOnObject.() -> Unit) {
+    Events.handle<ItemOnObject>("item_on_approach_object", item, obj, id, component) {
         handler.invoke(this)
     }
 }
@@ -73,7 +72,6 @@ fun itemOnObjectOperate(
     id: String = "*",
     component: String = "*",
     arrive: Boolean = true,
-    override: Boolean = true,
     block: suspend ItemOnObject.() -> Unit
 ) {
     val handler: suspend ItemOnObject.(Player) -> Unit = {
@@ -84,12 +82,12 @@ fun itemOnObjectOperate(
     }
     if (def != "*") {
         for (obj in objects) {
-            Events.handle("item_on_operate_object", "*", obj, id, component, handler = handler, override = override)
+            Events.handle("item_on_operate_object", "*", obj, id, component, handler = handler)
         }
     } else {
         for (obj in objects) {
             for (item in items) {
-                Events.handle("item_on_approach_object", item, obj, id, component, handler = handler, override = override)
+                Events.handle("item_on_approach_object", item, obj, id, component, handler = handler)
             }
         }
     }
