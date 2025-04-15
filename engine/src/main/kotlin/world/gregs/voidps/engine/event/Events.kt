@@ -56,19 +56,15 @@ class Events(
      * @return any handlers were found and executed
      */
     fun emit(dispatcher: EventDispatcher, event: Event): Boolean {
-        if (dispatcher is Player && dispatcher.contains("bot")) {
-            all?.invoke(dispatcher, event)
-        }
         val handlers = search(dispatcher, event) ?: return false
-        if (dispatcher is Player) {
-            if (dispatcher["debug", false]) {
-                logger.debug { "Event: $dispatcher - ${event.debug(dispatcher)}" }
-            }
-        }
         runBlocking {
             handleEvent(handlers, event, dispatcher)
         }
         return true
+    }
+
+    fun launch(block: suspend CoroutineScope.() -> Unit) {
+        scope.launch(errorHandler, block = block)
     }
 
     /**
@@ -76,9 +72,6 @@ class Events(
      * @return any handlers were found and executed
      */
     fun emit(dispatcher: EventDispatcher, event: SuspendableEvent): Boolean {
-        if (dispatcher is Player && dispatcher.contains("bot")) {
-            all?.invoke(dispatcher, event)
-        }
         val handlers = search(dispatcher, event) ?: return false
         scope.launch(errorHandler) {
             handleEvent(handlers, event, dispatcher)
