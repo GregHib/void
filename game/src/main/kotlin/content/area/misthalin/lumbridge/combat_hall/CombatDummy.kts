@@ -1,42 +1,14 @@
 package content.area.misthalin.lumbridge.combat_hall
 
-import net.pearx.kasechange.toTitleCase
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.npcApproach
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.CurrentLevelChanged
-import world.gregs.voidps.engine.entity.character.player.skill.level.npcLevelChange
 import content.entity.combat.attackers
 import content.entity.combat.combatPrepare
 import content.skill.melee.weapon.fightStyle
-
-npcApproach("Attack", "magic_dummy", "melee_dummy", override = false) {
-    val type = target.id.removeSuffix("_dummy")
-    if (player.fightStyle == type) {
-        return@npcApproach
-    }
-    player.message("You can only use ${type.toTitleCase()} against this dummy.")
-    approachRange(10, false)
-    player.mode = EmptyMode
-    cancel()
-}
-
-val itemOnHandler: suspend ItemOnNPC.() -> Unit = handler@{
-    val type = target.id.removeSuffix("_dummy")
-    if (player.fightStyle == type || type == "magic" && id.endsWith("_spellbook")) {
-        return@handler
-    }
-    player.message("You can only use ${type.toTitleCase()} against this dummy.")
-    approachRange(10, false)
-    player.mode = EmptyMode
-    cancel()
-}
-itemOnNPCApproach(npc = "melee_dummy", override = false, handler = itemOnHandler)
-itemOnNPCApproach(npc = "magic_dummy", override = false, handler = itemOnHandler)
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.CurrentLevelChanged
+import world.gregs.voidps.engine.entity.character.player.skill.level.npcLevelChange
 
 val levelHandler: suspend CurrentLevelChanged.(NPC) -> Unit = handler@{ npc ->
     if (to > 10) {
