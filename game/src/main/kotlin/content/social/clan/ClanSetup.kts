@@ -1,5 +1,6 @@
 package content.social.clan
 
+import content.entity.player.dialogue.type.stringEntry
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
@@ -7,18 +8,12 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
-import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.network.login.protocol.encode.Member
 import world.gregs.voidps.network.login.protocol.encode.leaveClanChat
 import world.gregs.voidps.network.login.protocol.encode.updateClanChat
-import content.social.friend.world
-import content.social.friend.worldName
-import content.entity.player.dialogue.type.stringEntry
 
 interfaceOption("Clan Setup", "settings", "clan_chat") {
     if (player.hasMenuOpen()) {
