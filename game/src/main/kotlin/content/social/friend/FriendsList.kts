@@ -119,32 +119,28 @@ friendsDelete { player ->
 }
 
 interfaceOption(component = "private", id = "filter_buttons") {
-    if (player.privateStatus == "on" || option == "Off") {
-        return@interfaceOption
-    }
-    val next = option.lowercase()
-    notifyBefriends(player, online = true) { it, current ->
-        when {
-            current == "off" && next == "on" -> !player.ignores(it)
-            current == "off" && next == "friends" -> !it.isAdmin() && friends(player, it)
-            current == "friends" && next == "on" -> !friends(player, it) && !player.ignores(it)
-            else -> false
+    if (player.privateStatus != "on" && option != "Off") {
+        val next = option.lowercase()
+        notifyBefriends(player, online = true) { it, current ->
+            when {
+                current == "off" && next == "on" -> !player.ignores(it)
+                current == "off" && next == "friends" -> !it.isAdmin() && friends(player, it)
+                current == "friends" && next == "on" -> !friends(player, it) && !player.ignores(it)
+                else -> false
+            }
         }
-    }
-}
-
-interfaceOption(component = "private", id = "filter_buttons") {
-    if (player.privateStatus == "off" || option == "On") {
-        return@interfaceOption
-    }
-    val next = option.lowercase()
-    notifyBefriends(player, online = false) { it, current ->
-        when {
-            current == "friends" && next == "off" -> player.friend(it) && !it.isAdmin()
-            current == "on" && next == "friends" -> !friends(player, it)
-            current == "on" && next == "off" -> !it.isAdmin()
-            else -> false
+    } else if (player.privateStatus != "off" && option != "On") {
+        val next = option.lowercase()
+        notifyBefriends(player, online = false) { it, current ->
+            when {
+                current == "friends" && next == "off" -> player.friend(it) && !it.isAdmin()
+                current == "on" && next == "friends" -> !friends(player, it)
+                current == "on" && next == "off" -> !it.isAdmin()
+                else -> false
+            }
         }
+    } else {
+        return@interfaceOption
     }
 }
 
