@@ -23,6 +23,7 @@ import content.social.ignore.ignores
 import world.gregs.voidps.engine.event.onInstruction
 import world.gregs.voidps.network.client.instruction.ChatPrivate
 import world.gregs.voidps.network.client.instruction.ChatPublic
+import world.gregs.voidps.network.client.instruction.ChatTypeChange
 
 val players: Players by inject()
 val huffman: Huffman by inject()
@@ -44,6 +45,13 @@ onInstruction<ChatPrivate> { player ->
 
 onEvent<Player, PrivateChatMessage> { player ->
     player.client?.privateChatFrom(source.name, source.rights.ordinal, compressed)
+}
+
+onInstruction<ChatTypeChange> { player ->
+    player["chat_type"] = when (type) {
+        1 -> "clan"
+        else -> "public"
+    }
 }
 
 onInstruction<ChatPublic> { player ->

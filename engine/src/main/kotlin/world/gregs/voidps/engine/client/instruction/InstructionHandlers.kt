@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.client.instruction
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.instruction.handle.*
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -20,19 +19,11 @@ class InstructionHandlers(
     npcs: NPCs,
     items: FloorItems,
     objects: GameObjects,
-    itemDefinitions: ItemDefinitions,
     objectDefinitions: ObjectDefinitions,
     npcDefinitions: NPCDefinitions,
     interfaceDefinitions: InterfaceDefinitions,
     handler: InterfaceHandler
 ) {
-    private fun <I : Instruction> empty(): I.(Player) -> Unit {
-        val logger = InlineLogger("InstructionHandler")
-        return {
-            logger.warn { "Unhandled instruction: $this $it" }
-        }
-    }
-
     private val interactFloorItem = FloorItemOptionHandler(items)
     private val interactDialogue = DialogueContinueHandler(interfaceDefinitions)
     private val closeInterface = InterfaceClosedHandler()
@@ -41,9 +32,6 @@ class InstructionHandlers(
     private val interactNPC = NPCOptionHandler(npcs, npcDefinitions)
     private val interactObject = ObjectOptionHandler(objects, objectDefinitions)
     private val interactPlayer = PlayerOptionHandler(players)
-    private val examineItem = ItemExamineHandler(itemDefinitions)
-    private val examineNPC = NPCExamineHandler(npcDefinitions)
-    private val examineObject = ObjectExamineHandler(objectDefinitions)
     private val changeDisplayMode = ScreenChangeHandler()
     private val interactInterfaceNPC = InterfaceOnNPCOptionHandler(npcs, handler)
     private val interactInterfaceObject = InterfaceOnObjectOptionHandler(objects, handler)
@@ -54,6 +42,9 @@ class InstructionHandlers(
     private val worldMapClick = WorldMapClickHandler()
     private val finishRegionLoad = FinishRegionLoadHandler()
     private val executeCommand = ExecuteCommandHandler()
+    var examineItem: (ExamineItem.(Player) -> Unit) = empty()
+    var examineNPC: (ExamineNpc.(Player) -> Unit) = empty()
+    var examineObject: (ExamineObject.(Player) -> Unit) = empty()
     var enterString: (EnterString.(Player) -> Unit) = empty()
     var enterInt: (EnterInt.(Player) -> Unit) = empty()
     var friendAddHandler: (FriendAdd.(Player) -> Unit) = empty()
@@ -65,9 +56,16 @@ class InstructionHandlers(
     var quickChatPublicHandler: (QuickChatPublic.(Player) -> Unit) = empty()
     var quickChatPrivateHandler: (QuickChatPrivate.(Player) -> Unit) = empty()
     var clanChatJoinHandler: (ClanChatJoin.(Player) -> Unit) = empty()
-    private val chatTypeChangeHandler = ChatTypeChangeHandler()
+    var chatTypeChangeHandler:(ChatTypeChange.(Player) -> Unit) = empty()
     var clanChatKickHandler: (ClanChatKick.(Player) -> Unit) = empty()
     var clanChatRankHandler: (ClanChatRank.(Player) -> Unit) = empty()
+
+    private fun <I : Instruction> empty(): I.(Player) -> Unit {
+        val logger = InlineLogger("InstructionHandler")
+        return {
+            logger.warn { "Unhandled instruction: $this $it" }
+        }
+    }
 
     fun handle(player: Player, instruction: Instruction) {
         when (instruction) {
@@ -85,9 +83,9 @@ class InstructionHandlers(
             is InteractNPC -> interactNPC.validate(player, instruction)
             is InteractObject -> interactObject.validate(player, instruction)
             is InteractPlayer -> interactPlayer.validate(player, instruction)
-            is ExamineItem -> examineItem.validate(player, instruction)
-            is ExamineNpc -> examineNPC.validate(player, instruction)
-            is ExamineObject -> examineObject.validate(player, instruction)
+            is ExamineItem -> examineItem.invoke(instruction, player)
+            is ExamineNpc -> examineNPC.invoke(instruction, player)
+            is ExamineObject -> examineObject.invoke(instruction, player)
             is ChangeDisplayMode -> changeDisplayMode.validate(player, instruction)
             is Walk -> walk.validate(player, instruction)
             is WorldMapClick -> worldMapClick.validate(player, instruction)
@@ -104,7 +102,7 @@ class InstructionHandlers(
             is QuickChatPublic -> quickChatPublicHandler.invoke(instruction, player)
             is QuickChatPrivate -> quickChatPrivateHandler.invoke(instruction, player)
             is ClanChatJoin -> clanChatJoinHandler.invoke(instruction, player)
-            is ChatTypeChange -> chatTypeChangeHandler.validate(player, instruction)
+            is ChatTypeChange -> chatTypeChangeHandler.invoke(instruction, player)
             is ClanChatKick -> clanChatKickHandler.invoke(instruction, player)
             is ClanChatRank -> clanChatRankHandler.invoke(instruction, player)
         }

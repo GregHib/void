@@ -242,6 +242,9 @@ class Events(
 @JvmName("onEventDispatcher")
 inline fun <reified I : Instruction> onInstruction(noinline handler: I.(Player) -> Unit) {
     when (I::class) {
+        ExamineItem::class -> get<InstructionHandlers>().examineItem = handler as ExamineItem.(Player) -> Unit
+        ExamineNpc::class -> get<InstructionHandlers>().examineNPC = handler as ExamineNpc.(Player) -> Unit
+        ExamineObject::class -> get<InstructionHandlers>().examineObject = handler as ExamineObject.(Player) -> Unit
         EnterString::class -> get<InstructionHandlers>().enterString = handler as EnterString.(Player) -> Unit
         EnterInt::class -> get<InstructionHandlers>().enterInt = handler as EnterInt.(Player) -> Unit
         FriendAdd::class -> get<InstructionHandlers>().friendAddHandler = handler as FriendAdd.(Player) -> Unit
@@ -253,6 +256,7 @@ inline fun <reified I : Instruction> onInstruction(noinline handler: I.(Player) 
         QuickChatPublic::class -> get<InstructionHandlers>().quickChatPublicHandler = handler as QuickChatPublic.(Player) -> Unit
         QuickChatPrivate::class -> get<InstructionHandlers>().quickChatPrivateHandler = handler as QuickChatPrivate.(Player) -> Unit
         ClanChatJoin::class -> get<InstructionHandlers>().clanChatJoinHandler = handler as ClanChatJoin.(Player) -> Unit
+        ChatTypeChange::class -> get<InstructionHandlers>().chatTypeChangeHandler = handler as ChatTypeChange.(Player) -> Unit
         ClanChatKick::class -> get<InstructionHandlers>().clanChatKickHandler = handler as ClanChatKick.(Player) -> Unit
         ClanChatRank::class -> get<InstructionHandlers>().clanChatRankHandler = handler as ClanChatRank.(Player) -> Unit
         else -> throw UnsupportedOperationException("Unknown Instruction type: ${I::class}")
