@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanChatMessage
 import world.gregs.voidps.engine.entity.character.player.chat.friend.PrivateChatMessage
-import world.gregs.voidps.engine.entity.character.player.chat.global.PublicChat
 import world.gregs.voidps.engine.entity.character.player.chat.global.PublicChatMessage
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
@@ -23,19 +22,10 @@ import content.social.clan.clan
 import content.social.ignore.ignores
 import world.gregs.voidps.engine.event.onInstruction
 import world.gregs.voidps.network.client.instruction.ChatPrivate
+import world.gregs.voidps.network.client.instruction.ChatPublic
 
 val players: Players by inject()
 val huffman: Huffman by inject()
-
-onEvent<Player, PublicChat> { player ->
-    if (player.chatType != "public") {
-        return@onEvent
-    }
-    val message = PublicChatMessage(player, effects, text, huffman)
-    players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
-        it.emit(message)
-    }
-}
 
 onEvent<Player, PublicChatMessage> { player ->
     player.client?.publicChat(source.index, effects, source.rights.ordinal, compressed)
@@ -56,22 +46,29 @@ onEvent<Player, PrivateChatMessage> { player ->
     player.client?.privateChatFrom(source.name, source.rights.ordinal, compressed)
 }
 
-onEvent<Player, PublicChat> { player ->
-    if (player.chatType != "clan") {
-        return@onEvent
-    }
-    val clan = player.clan
-    if (clan == null) {
-        player.message("You must be in a clan chat to talk.", ChatType.ClanChat)
-        return@onEvent
-    }
-    if (!clan.hasRank(player, clan.talkRank) || !clan.members.contains(player)) {
-        player.message("You are not allowed to talk in this clan chat.", ChatType.ClanChat)
-        return@onEvent
-    }
-    val message = ClanChatMessage(player, effects, text, huffman)
-    clan.members.filterNot { it.ignores(player) }.forEach {
-        it.emit(message)
+onInstruction<ChatPublic> { player ->
+    when (player.chatType) {
+        "public" -> {
+            val message = PublicChatMessage(player, effects, text, huffman)
+            players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
+                it.emit(message)
+            }
+        }
+        "clan" -> {
+            val clan = player.clan
+            if (clan == null) {
+                player.message("You must be in a clan chat to talk.", ChatType.ClanChat)
+                return@onInstruction
+            }
+            if (!clan.hasRank(player, clan.talkRank) || !clan.members.contains(player)) {
+                player.message("You are not allowed to talk in this clan chat.", ChatType.ClanChat)
+                return@onInstruction
+            }
+            val message = ClanChatMessage(player, effects, text, huffman)
+            clan.members.filterNot { it.ignores(player) }.forEach {
+                it.emit(message)
+            }
+        }
     }
 }
 

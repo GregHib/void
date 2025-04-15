@@ -3,7 +3,6 @@ package content.social.trade
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.client.ui.event.IntEntered
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
@@ -18,6 +17,7 @@ import WorldTest
 import equipItem
 import interfaceOption
 import playerOption
+import world.gregs.voidps.network.client.instruction.EnterInt
 import kotlin.test.assertFalse
 
 internal class LendTest : WorldTest() {
@@ -94,7 +94,7 @@ internal class LendTest : WorldTest() {
         val (lender, borrower) = setupTradeWithLend()
         lender.interfaceOption("trade_side", "offer", "Lend", item = Item("abyssal_whip"), slot = 0)
         lender.interfaceOption("trade_main", "loan_time", option = "Specify")
-        lender.emit(IntEntered(1))
+        lender.instructions.trySend(EnterInt(1))
         acceptTrade(lender, borrower)
         assertTrue(borrower.inventory.contains("abyssal_whip_lent"))
         assertTrue(borrower.softTimers.contains("borrow_message"))
@@ -112,7 +112,7 @@ internal class LendTest : WorldTest() {
         val (lender, borrower) = setupTradeWithLend()
         lender.interfaceOption("trade_side", "offer", "Lend", item = Item("abyssal_whip"), slot = 0)
         lender.interfaceOption("trade_main", "loan_time", option = "Specify")
-        lender.emit(IntEntered(1))
+        lender.instructions.trySend(EnterInt(1))
         acceptTrade(lender, borrower)
         assertTrue(borrower.inventory.contains("abyssal_whip_lent"))
         assertTrue(borrower.softTimers.contains("borrow_message"))
@@ -138,7 +138,7 @@ internal class LendTest : WorldTest() {
         val (lender, borrower) = setupTradeWithLend()
         lender.interfaceOption("trade_side", "offer", "Lend", item = Item("abyssal_whip"), slot = 0)
         lender.interfaceOption("trade_main", "loan_time", option = "Specify")
-        lender.emit(IntEntered(1))
+        lender.instructions.trySend(EnterInt(1))
         acceptTrade(lender, borrower)
         assertTrue(borrower.inventory.contains("abyssal_whip_lent"))
         assertTrue(borrower.softTimers.contains("borrow_message"))
@@ -181,7 +181,7 @@ internal class LendTest : WorldTest() {
         val item = Item("abyssal_whip")
         lender.interfaceOption("trade_side", "offer", "Lend", item = item, slot = 0)
         lender.interfaceOption("trade_main", "loan_time", option = "Specify")
-        lender.emit(IntEntered(1))
+        lender.instructions.trySend(EnterInt(1))
         acceptTrade(lender, borrower)
         assertTrue(borrower.inventory.contains("abyssal_whip_lent"))
 
@@ -213,7 +213,7 @@ internal class LendTest : WorldTest() {
         val item = Item("abyssal_whip")
         lender.interfaceOption("trade_side", "offer", "Lend", item = item, slot = 0)
         lender.interfaceOption("trade_main", "loan_time", option = "Specify")
-        lender.emit(IntEntered(1))
+        lender.instructions.trySend(EnterInt(1))
         acceptTrade(lender, borrower)
         borrower["borrow_timeout"] = epochSeconds()
         lender["lend_timeout"] = epochSeconds()

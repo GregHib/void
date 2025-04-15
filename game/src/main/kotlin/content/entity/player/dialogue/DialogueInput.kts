@@ -1,12 +1,11 @@
 package content.entity.player.dialogue
 
 import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
-import world.gregs.voidps.engine.client.ui.event.IntEntered
-import world.gregs.voidps.engine.client.ui.event.StringEntered
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.onEvent
+import world.gregs.voidps.engine.event.onInstruction
 import world.gregs.voidps.engine.suspend.IntSuspension
 import world.gregs.voidps.engine.suspend.StringSuspension
+import world.gregs.voidps.network.client.instruction.EnterInt
+import world.gregs.voidps.network.client.instruction.EnterString
 
 continueDialogue("dialogue_npc_chat*", "continue") { player ->
     player.continueDialogue()
@@ -37,11 +36,11 @@ continueDialogue("dialogue_multi*", "line*") { player ->
     (player.dialogueSuspension as? IntSuspension)?.resume(choice)
 }
 
-onEvent<Player, IntEntered> { player ->
+onInstruction<EnterInt> { player ->
     (player.dialogueSuspension as? IntSuspension)?.resume(value)
 }
 
-onEvent<Player, StringEntered> { player ->
+onInstruction<EnterString> { player ->
     (player.dialogueSuspension as? StringSuspension)?.resume(value)
 }
 

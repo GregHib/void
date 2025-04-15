@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.instruction
 
+import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.instruction.handle.*
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -25,6 +26,13 @@ class InstructionHandlers(
     interfaceDefinitions: InterfaceDefinitions,
     handler: InterfaceHandler
 ) {
+    private fun <I : Instruction> empty(): I.(Player) -> Unit {
+        val logger = InlineLogger("InstructionHandler")
+        return {
+            logger.warn { "Unhandled instruction: $this $it" }
+        }
+    }
+
     private val interactFloorItem = FloorItemOptionHandler(items)
     private val interactDialogue = DialogueContinueHandler(interfaceDefinitions)
     private val closeInterface = InterfaceClosedHandler()
@@ -46,20 +54,20 @@ class InstructionHandlers(
     private val worldMapClick = WorldMapClickHandler()
     private val finishRegionLoad = FinishRegionLoadHandler()
     private val executeCommand = ExecuteCommandHandler()
-    private val enterString = EnterStringHandler()
-    private val enterInt = EnterIntHandler()
-    private val friendAddHandler = FriendAddHandler()
-    private val friendDeleteHandler = FriendDeleteHandler()
-    private val ignoreAddHandler = IgnoreAddHandler()
-    private val ignoreDeleteHandler = IgnoreDeleteHandler()
-    private val chatPublicHandler = ChatPublicHandler()
-    lateinit var chatPrivateHandler: (ChatPrivate.(Player) -> Unit)
-    private val quickChatPublicHandler = QuickChatPublicHandler()
-    private val quickChatPrivateHandler = QuickChatPrivateHandler()
-    private val clanChatJoinHandler = ClanChatJoinHandler()
+    var enterString: (EnterString.(Player) -> Unit) = empty()
+    var enterInt: (EnterInt.(Player) -> Unit) = empty()
+    var friendAddHandler: (FriendAdd.(Player) -> Unit) = empty()
+    var friendDeleteHandler: (FriendDelete.(Player) -> Unit) = empty()
+    var ignoreAddHandler: (IgnoreAdd.(Player) -> Unit) = empty()
+    var ignoreDeleteHandler: (IgnoreDelete.(Player) -> Unit) = empty()
+    var chatPublicHandler: (ChatPublic.(Player) -> Unit) = empty()
+    var chatPrivateHandler: (ChatPrivate.(Player) -> Unit) = empty()
+    var quickChatPublicHandler: (QuickChatPublic.(Player) -> Unit) = empty()
+    var quickChatPrivateHandler: (QuickChatPrivate.(Player) -> Unit) = empty()
+    var clanChatJoinHandler: (ClanChatJoin.(Player) -> Unit) = empty()
     private val chatTypeChangeHandler = ChatTypeChangeHandler()
-    private val clanChatKickHandler = ClanChatKickHandler()
-    private val clanChatRankHandler = ClanChatRankHandler()
+    var clanChatKickHandler: (ClanChatKick.(Player) -> Unit) = empty()
+    var clanChatRankHandler: (ClanChatRank.(Player) -> Unit) = empty()
 
     fun handle(player: Player, instruction: Instruction) {
         when (instruction) {
@@ -85,20 +93,20 @@ class InstructionHandlers(
             is WorldMapClick -> worldMapClick.validate(player, instruction)
             is FinishRegionLoad -> finishRegionLoad.validate(player, instruction)
             is ExecuteCommand -> executeCommand.validate(player, instruction)
-            is EnterString -> enterString.validate(player, instruction)
-            is EnterInt -> enterInt.validate(player, instruction)
-            is FriendAdd -> friendAddHandler.validate(player, instruction)
-            is FriendDelete -> friendDeleteHandler.validate(player, instruction)
-            is IgnoreAdd -> ignoreAddHandler.validate(player, instruction)
-            is IgnoreDelete -> ignoreDeleteHandler.validate(player, instruction)
-            is ChatPublic -> chatPublicHandler.validate(player, instruction)
+            is EnterString -> enterString.invoke(instruction, player)
+            is EnterInt -> enterInt.invoke(instruction, player)
+            is FriendAdd -> friendAddHandler.invoke(instruction, player)
+            is FriendDelete -> friendDeleteHandler.invoke(instruction, player)
+            is IgnoreAdd -> ignoreAddHandler.invoke(instruction, player)
+            is IgnoreDelete -> ignoreDeleteHandler.invoke(instruction, player)
+            is ChatPublic -> chatPublicHandler.invoke(instruction, player)
             is ChatPrivate -> chatPrivateHandler.invoke(instruction, player)
-            is QuickChatPublic -> quickChatPublicHandler.validate(player, instruction)
-            is QuickChatPrivate -> quickChatPrivateHandler.validate(player, instruction)
-            is ClanChatJoin -> clanChatJoinHandler.validate(player, instruction)
+            is QuickChatPublic -> quickChatPublicHandler.invoke(instruction, player)
+            is QuickChatPrivate -> quickChatPrivateHandler.invoke(instruction, player)
+            is ClanChatJoin -> clanChatJoinHandler.invoke(instruction, player)
             is ChatTypeChange -> chatTypeChangeHandler.validate(player, instruction)
-            is ClanChatKick -> clanChatKickHandler.validate(player, instruction)
-            is ClanChatRank -> clanChatRankHandler.validate(player, instruction)
+            is ClanChatKick -> clanChatKickHandler.invoke(instruction, player)
+            is ClanChatRank -> clanChatRankHandler.invoke(instruction, player)
         }
     }
 }

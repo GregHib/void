@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.client.Instruction
-import world.gregs.voidps.network.client.instruction.ChatPrivate
+import world.gregs.voidps.network.client.instruction.*
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
 
@@ -242,9 +242,19 @@ class Events(
 @JvmName("onEventDispatcher")
 inline fun <reified I : Instruction> onInstruction(noinline handler: I.(Player) -> Unit) {
     when (I::class) {
-        ChatPrivate::class -> {
-            get<InstructionHandlers>().chatPrivateHandler = handler as ChatPrivate.(Player) -> Unit
-        }
+        EnterString::class -> get<InstructionHandlers>().enterString = handler as EnterString.(Player) -> Unit
+        EnterInt::class -> get<InstructionHandlers>().enterInt = handler as EnterInt.(Player) -> Unit
+        FriendAdd::class -> get<InstructionHandlers>().friendAddHandler = handler as FriendAdd.(Player) -> Unit
+        FriendDelete::class -> get<InstructionHandlers>().friendDeleteHandler = handler as FriendDelete.(Player) -> Unit
+        IgnoreAdd::class -> get<InstructionHandlers>().ignoreAddHandler = handler as IgnoreAdd.(Player) -> Unit
+        IgnoreDelete::class -> get<InstructionHandlers>().ignoreDeleteHandler = handler as IgnoreDelete.(Player) -> Unit
+        ChatPublic::class -> get<InstructionHandlers>().chatPublicHandler = handler as ChatPublic.(Player) -> Unit
+        ChatPrivate::class -> get<InstructionHandlers>().chatPrivateHandler = handler as ChatPrivate.(Player) -> Unit
+        QuickChatPublic::class -> get<InstructionHandlers>().quickChatPublicHandler = handler as QuickChatPublic.(Player) -> Unit
+        QuickChatPrivate::class -> get<InstructionHandlers>().quickChatPrivateHandler = handler as QuickChatPrivate.(Player) -> Unit
+        ClanChatJoin::class -> get<InstructionHandlers>().clanChatJoinHandler = handler as ClanChatJoin.(Player) -> Unit
+        ClanChatKick::class -> get<InstructionHandlers>().clanChatKickHandler = handler as ClanChatKick.(Player) -> Unit
+        ClanChatRank::class -> get<InstructionHandlers>().clanChatRankHandler = handler as ClanChatRank.(Player) -> Unit
         else -> throw UnsupportedOperationException("Unknown Instruction type: ${I::class}")
     }
 }

@@ -1,12 +1,12 @@
 package content.entity.player.inv
 
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.client.ui.event.IntEntered
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import WorldTest
 import itemOnItem
+import world.gregs.voidps.network.client.instruction.EnterInt
 import kotlin.test.assertEquals
 
 class ItemOnItemsTest : WorldTest() {
@@ -22,7 +22,7 @@ class ItemOnItemsTest : WorldTest() {
         val amount = 14
         tick(1)
         player["skill_creation_amount"] = amount
-        player.emit(IntEntered(0))
+        player.instructions.trySend(EnterInt(0))
         tick(amount * 2)
 
         assertEquals(0, player.inventory.count("cake"))
@@ -42,7 +42,7 @@ class ItemOnItemsTest : WorldTest() {
         val amount = 5
         tick(1)
         player["skill_creation_amount"] = amount
-        player.emit(IntEntered(0))
+        player.instructions.trySend(EnterInt(0))
         tick(amount * 2)
 
         assertEquals(9, player.inventory.count("cake"))
@@ -61,7 +61,7 @@ class ItemOnItemsTest : WorldTest() {
         val amount = 2
         tick(1)
         player["skill_creation_amount"] = amount
-        player.emit(IntEntered(0))
+        player.instructions.trySend(EnterInt(0))
         tick(amount * 2)
 
         assertEquals(0, player.inventory.count("cake"))
