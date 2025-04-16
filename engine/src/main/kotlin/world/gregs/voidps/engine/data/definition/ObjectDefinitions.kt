@@ -3,16 +3,13 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.data.definition.data.Pickable
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.data.definition.data.Tree
 import world.gregs.voidps.engine.timedLoad
-import java.nio.file.Files
-import java.nio.file.Path
-import kotlin.io.path.extension
-import kotlin.io.path.pathString
 
 class ObjectDefinitions(
     override var definitions: Array<ObjectDefinition>
@@ -47,6 +44,13 @@ class ObjectDefinitions(
                                     require(npc >= 0) { "Cannot find object id to clone '$name'" }
                                     val definition = definitions[npc]
                                     extras.putAll(definition.extras ?: continue)
+                                }
+                                "categories" -> {
+                                    val categories = ObjectLinkedOpenHashSet<String>(2, Hash.VERY_FAST_LOAD_FACTOR)
+                                    while (nextElement()) {
+                                        categories.add(string())
+                                    }
+                                    extras["categories"] = categories
                                 }
                                 else -> extras[key] = value()
                             }

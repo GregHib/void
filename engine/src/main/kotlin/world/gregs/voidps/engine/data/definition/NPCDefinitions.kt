@@ -54,7 +54,7 @@ class NPCDefinitions(
                                     extras[key] = spots
                                 }
                                 "categories" -> {
-                                    val categories = ObjectLinkedOpenHashSet<String>()
+                                    val categories = ObjectLinkedOpenHashSet<String>(2, Hash.VERY_FAST_LOAD_FACTOR)
                                     while (nextElement()) {
                                         categories.add(string())
                                     }
