@@ -1,5 +1,6 @@
 package content.entity.player.equip
 
+import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
@@ -23,6 +24,7 @@ import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.inject
 
 val areas: AreaDefinitions by inject()
+val logger = InlineLogger()
 
 inventoryOptions("Wield", "Wear", "Hold", "Equip", inventory = "inventory") {
     val def = item.def
@@ -48,8 +50,13 @@ inventoryOptions("Wield", "Wear", "Hold", "Equip", inventory = "inventory") {
             player.inventory.swap(slot, player.equipment, item.slot.index)
         }
     }
-    player.flagAppearance()
-    playEquipSound(player, def)
+    when (player.inventory.transaction.error) {
+        TransactionError.None -> {
+            player.flagAppearance()
+            playEquipSound(player, def)
+        }
+        else -> logger.warn { "Failed to equip item $player $item ${item.slot.index}" }
+    }
 }
 
 inventoryOption("Remove", "worn_equipment") {

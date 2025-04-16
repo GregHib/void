@@ -97,7 +97,6 @@ class ItemDefinitions(
                                         categories.add(category)
                                         groups.getOrPut(category) { ObjectOpenHashSet(2, Hash.VERY_FAST_LOAD_FACTOR) }.add(stringId)
                                     }
-                                    println(definitions[id].extras)
                                 }
                                 else -> extras[key] = value()
                             }
@@ -132,9 +131,11 @@ class ItemDefinitions(
                     if (normal.extras != null) {
                         val lentExtras = Object2ObjectOpenHashMap(normal.extras)
                         lentExtras.remove("aka")
-                        if (definition.extras != null) {
-                            lentExtras.putAll(definition.extras!!)
+                        val extras = definition.extras as? MutableMap<String, Any>
+                        if (extras != null) {
+                            lentExtras.putAll(extras)
                         }
+                        definition.extras = lentExtras
                     }
                 }
             }
