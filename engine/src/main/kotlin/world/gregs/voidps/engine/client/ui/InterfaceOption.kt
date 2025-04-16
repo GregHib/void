@@ -50,11 +50,7 @@ fun interfaceOption(option: String = "*", component: String = "*", id: String, h
                 added = true
             }
         }
-        if (!added) {
-            Events.handle<InterfaceOption>("interface_option", id, component, option, "*") {
-                handler.invoke(this)
-            }
-        }
+        assert(added) { "Unable to find interface id=$id, component=$component, option=$option"}
     } else {
         Events.handle<InterfaceOption>("interface_option", id, component, option, "*") {
             handler.invoke(this)

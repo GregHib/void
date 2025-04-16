@@ -31,7 +31,7 @@ val list = listOf(
     "prayer_list",
     "modern_spellbook",
     "friends_list",
-    "ignores_list",
+    "ignore_list",
     "clan_chat",
     "options",
     "emotes",
