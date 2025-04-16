@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ItemDefinition
@@ -21,7 +22,8 @@ class ItemDefinitions(
 
     val size: Int = definitions.size
 
-    override lateinit var ids: Map<String, Int>
+    override var ids: Map<String, Int> = emptyMap()
+    var groups: Map<String, Set<String>> = emptyMap()
 
     override fun empty() = ItemDefinition.EMPTY
 
@@ -29,6 +31,7 @@ class ItemDefinitions(
         timedLoad("item extra") {
             val clones = Object2ObjectOpenHashMap<String, String>(100)
             val ids = Object2IntOpenHashMap<String>(18_000)
+            val groups = Object2ObjectOpenHashMap<String, MutableSet<String>>()
             ids.defaultReturnValue(-1)
             for (path in paths) {
                 Config.fileReader(path, 256) {
@@ -90,7 +93,9 @@ class ItemDefinitions(
                                     @Suppress("UNCHECKED_CAST")
                                     val categories = extras.getOrPut("categories") { ObjectLinkedOpenHashSet<String>(4, Hash.VERY_FAST_LOAD_FACTOR) } as MutableSet<String>
                                     while (nextElement()) {
-                                        categories.add(string())
+                                        val category = string()
+                                        categories.add(category)
+                                        groups.getOrPut(category) { ObjectOpenHashSet(2, Hash.VERY_FAST_LOAD_FACTOR) }.add(stringId)
                                     }
                                     println(definitions[id].extras)
                                 }
@@ -133,6 +138,7 @@ class ItemDefinitions(
                     }
                 }
             }
+            this.groups = groups
             this.ids = ids
             ids.size
         }
