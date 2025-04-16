@@ -2,7 +2,7 @@
 id = 970
 wander_radius = 4
 shop = "diangos_toy_store"
-race = "human"
+categories = ["human"]
 examine = "A toy-seller who looks after people's toys for them."
 
 [armour_draynor_manor]

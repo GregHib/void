@@ -10,7 +10,7 @@ max_hit_melee = 60
 hunt_mode = "aggressive"
 style = "stab"
 respawn_delay = 90
-race = "wolves"
+categories = ["wolves"]
 examine = "Not man's best friend."
 
 [white_wolf]
@@ -27,7 +27,7 @@ max_hit_melee = 30
 hunt_mode = "aggressive"
 style = "stab"
 respawn_delay = 90
-race = "wolves"
+categories = ["wolves"]
 examine = "A vicious mountain wolf."
 
 [white_wolf_2]
@@ -44,7 +44,7 @@ max_hit_melee = 40
 hunt_mode = "aggressive"
 style = "stab"
 respawn_delay = 90
-race = "wolves"
+categories = ["wolves"]
 examine = "A vicious mountain wolf."
 
 [big_wolf]

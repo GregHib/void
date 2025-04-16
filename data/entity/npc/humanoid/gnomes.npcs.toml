@@ -1,6 +1,6 @@
 [gnome_trainer]
 id = 162
-race = "gnome"
+categories = ["gnome"]
 wander_radius = 4
 examine = "He can advise on training."
 
@@ -19,7 +19,7 @@ bar_crawl = {
   drink = "Your mouth and throat burn as you gulp it down.",
   effect = "Blurberry signs your card."
 }
-race = "gnome"
+categories = ["gnome"]
 wander_radius = 3
 examine = "He seems to run the cocktail bar."
 
