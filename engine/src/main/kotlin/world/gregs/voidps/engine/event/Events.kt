@@ -8,6 +8,17 @@ import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
+import kotlin.collections.HashSet
+import kotlin.collections.MutableMap
+import kotlin.collections.MutableSet
+import kotlin.collections.Set
+import kotlin.collections.component1
+import kotlin.collections.component2
+import kotlin.collections.contains
+import kotlin.collections.getOrPut
+import kotlin.collections.iterator
+import kotlin.collections.mutableSetOf
+import kotlin.collections.set
 
 /**
  * Events is a Trie used for efficient storage and retrieval of handlers based on an arbitrary list of parameters.
@@ -56,19 +67,15 @@ class Events(
      * @return any handlers were found and executed
      */
     fun emit(dispatcher: EventDispatcher, event: Event): Boolean {
-        if (dispatcher is Player && dispatcher.contains("bot")) {
-            all?.invoke(dispatcher, event)
-        }
         val handlers = search(dispatcher, event) ?: return false
-        if (dispatcher is Player) {
-            if (dispatcher["debug", false]) {
-                logger.debug { "Event: $dispatcher - ${event.debug(dispatcher)}" }
-            }
-        }
         runBlocking {
             handleEvent(handlers, event, dispatcher)
         }
         return true
+    }
+
+    fun launch(block: suspend CoroutineScope.() -> Unit) {
+        scope.launch(errorHandler, block = block)
     }
 
     /**
@@ -76,11 +83,8 @@ class Events(
      * @return any handlers were found and executed
      */
     fun emit(dispatcher: EventDispatcher, event: SuspendableEvent): Boolean {
-        if (dispatcher is Player && dispatcher.contains("bot")) {
-            all?.invoke(dispatcher, event)
-        }
         val handlers = search(dispatcher, event) ?: return false
-        scope.launch(errorHandler) {
+        launch {
             handleEvent(handlers, event, dispatcher)
         }
         return true

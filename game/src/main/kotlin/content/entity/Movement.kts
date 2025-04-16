@@ -14,10 +14,27 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.type.Tile
 import content.entity.combat.dead
 import content.entity.death.npcDeath
+import world.gregs.voidps.engine.client.ui.closeInterfaces
+import world.gregs.voidps.engine.client.instruction.onInstruction
+import world.gregs.voidps.network.client.instruction.Walk
 
 val collisions: Collisions by inject()
 val npcs: NPCs by inject()
 val players: Players by inject()
+
+onInstruction<Walk> { player ->
+    if (player.contains("delay")) {
+        return@onInstruction
+    }
+    player.closeInterfaces()
+    player.clearWatch()
+    player.queue.clearWeak()
+    player.suspension = null
+    if (minimap && !player["a_world_in_microcosm_task", false]) {
+        player["a_world_in_microcosm_task"] = true
+    }
+    player.walkTo(player.tile.copy(x, y))
+}
 
 playerSpawn { player ->
     if (players.add(player) && Settings["world.players.collision", false]) {

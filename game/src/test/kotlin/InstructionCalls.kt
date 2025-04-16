@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
-import world.gregs.voidps.engine.client.ui.event.IntEntered
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
@@ -76,7 +75,7 @@ fun Player.skillCreation(
             index = i
         }
     }
-    emit(IntEntered(index))
+    instructions.trySend(EnterInt(index))
 }
 
 fun Player.interfaceUse(

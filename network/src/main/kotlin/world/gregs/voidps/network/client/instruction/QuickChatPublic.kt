@@ -2,8 +2,12 @@ package world.gregs.voidps.network.client.instruction
 
 import world.gregs.voidps.network.client.Instruction
 
+/**
+ * A quick-chat message a player wants (but has yet) to say to everyone nearby.
+ * @param chatType 0=public, 1=clan
+ */
 data class QuickChatPublic(
-    val script: Int,
+    val chatType: Int,
     val file: Int,
     val data: ByteArray
 ) : Instruction {
@@ -13,7 +17,7 @@ data class QuickChatPublic(
 
         other as QuickChatPublic
 
-        if (script != other.script) return false
+        if (chatType != other.chatType) return false
         if (file != other.file) return false
         if (!data.contentEquals(other.data)) return false
 
@@ -21,7 +25,7 @@ data class QuickChatPublic(
     }
 
     override fun hashCode(): Int {
-        var result = script
+        var result = chatType
         result = 31 * result + file
         result = 31 * result + data.contentHashCode()
         return result

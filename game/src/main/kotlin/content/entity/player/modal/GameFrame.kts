@@ -4,9 +4,12 @@ import net.pearx.kasechange.toSnakeCase
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
+import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.instruction.onInstruction
 import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.network.client.instruction.ChangeDisplayMode
 
 val list = listOf(
     "chat_box",
@@ -43,16 +46,25 @@ Tab.entries.forEach { tab ->
     }
 }
 
+onInstruction<ChangeDisplayMode> { player ->
+    if (player.interfaces.displayMode == displayMode || !player.hasOpen("graphics_options")) {
+        return@onInstruction
+    }
+    player.interfaces.setDisplayMode(displayMode)
+}
+
 interfaceOpen("toplevel*") { player ->
     for (name in list) {
         if (name.endsWith("_spellbook")) {
             val book = player["spellbook_config", 0] and 0x3
-            player.open(when (book) {
-                1 -> "ancient_spellbook"
-                2 -> "lunar_spellbook"
-                3 -> "dungeoneering_spellbook"
-                else -> name
-            })
+            player.open(
+                when (book) {
+                    1 -> "ancient_spellbook"
+                    2 -> "lunar_spellbook"
+                    3 -> "dungeoneering_spellbook"
+                    else -> name
+                }
+            )
         } else {
             player.open(name)
         }

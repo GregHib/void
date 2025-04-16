@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.network.client.instruction.InteractInterface
 
 class InterfaceOptionHandler(
@@ -31,18 +31,24 @@ class InterfaceOptionHandler(
         }
 
         val selectedOption = options.getOrNull(option) ?: ""
-        player.emit(
-            InterfaceOption(
-                character = player,
-                id = id,
-                component = component,
-                optionIndex = option,
-                option = selectedOption,
-                item = item,
-                itemSlot = itemSlot,
-                inventory = inventory
-            )
+        val handler = InterfaceOption.handlers["${id}:${component}:${selectedOption}"] ?: InterfaceOption.handlers["${id}:${component}"] ?: InterfaceOption.handlers[id]
+        val event = InterfaceOption(
+            character = player,
+            id = id,
+            component = component,
+            optionIndex = option,
+            option = selectedOption,
+            item = item,
+            itemSlot = itemSlot,
+            inventory = inventory
         )
+        if (handler == null) {
+            player.emit(event)
+        } else {
+            Events.events.launch {
+                handler.invoke(event)
+            }
+        }
     }
 
 }

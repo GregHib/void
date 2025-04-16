@@ -38,11 +38,11 @@ interfaceClose("character_creation") { player ->
     }
 }
 
-interfaceOption(component = "female", id = "character_creation") {
+interfaceOption("Female", "female", "character_creation") {
     swapSex(player, true)
 }
 
-interfaceOption(component = "male", id = "character_creation") {
+interfaceOption("Male", "male", "character_creation") {
     swapSex(player, false)
 }
 
@@ -103,7 +103,7 @@ interfaceOption(component = "colours", id = "character_creation") {
     player["makeover_colour_${part}"] = enums.get("character_$part").getInt(itemSlot)
 }
 
-interfaceOption(component = "choose_colour", id = "character_creation") {
+interfaceOption("Choose My Colour", "choose_colour", "character_creation") {
     val colourProfile = (player["character_creation_colour_offset", 0] + 1).rem(8)
     player["character_creation_colour_offset"] = colourProfile
     updateColours(player, hairStyle = player["character_creation_hair_style", 0] + colourProfile)

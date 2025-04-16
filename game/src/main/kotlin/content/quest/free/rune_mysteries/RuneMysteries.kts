@@ -1,11 +1,11 @@
 package content.quest.free.rune_mysteries
 
-import world.gregs.voidps.engine.client.ui.interfaceSlot
+import content.entity.player.modal.tab.questJournalOpen
 import world.gregs.voidps.engine.inv.holdsItem
 import content.quest.quest
 import content.quest.questJournal
 
-interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 13) {
+questJournalOpen("rune_mysteries") {
     val lines = when (player.quest("rune_mysteries")) {
         "completed" -> listOf(
             "<str>I spoke to Duke Horacio in Lumbridge Castle. He told me",

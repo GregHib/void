@@ -13,7 +13,7 @@ import content.skill.magic.spell.removeSpellItems
 val definitions: SpellDefinitions by inject()
 val players: Players by inject()
 
-interfaceOption(component = "heal_group", id = "lunar_spellbook") {
+interfaceOption("Cast", "heal_group", "lunar_spellbook") {
     val spell = component
     if (player.levels.get(Skill.Constitution) < player.levels.getMax(Skill.Constitution) * 0.11) {
         player.message("You don't have enough life points.")

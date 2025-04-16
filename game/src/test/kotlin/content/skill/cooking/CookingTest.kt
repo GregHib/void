@@ -25,7 +25,7 @@ internal class CookingTest : WorldTest() {
 
         player.itemOnObject(fire, 0, "")
         tick()
-        player.interfaceOption("skill_creation_amount", "increment")
+        player.interfaceOption("skill_creation_amount", "increment", "+1")
         player.dialogueOption(id = "dialogue_skill_creation", component = "choice1")
         tick(8)
 

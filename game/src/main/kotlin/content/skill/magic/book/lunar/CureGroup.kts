@@ -14,7 +14,7 @@ import content.entity.effect.toxin.poisoned
 val definitions: SpellDefinitions by inject()
 val players: Players by inject()
 
-interfaceOption(component = "cure_group", id = "lunar_spellbook") {
+interfaceOption("Cast", "cure_group", "lunar_spellbook") {
     val spell = component
     if (!player.removeSpellItems(spell)) {
         return@interfaceOption

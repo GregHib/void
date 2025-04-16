@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.ui
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -28,16 +29,14 @@ data class InterfaceOption(
         4 -> itemSlot.toString()
         else -> null
     }
+
+    companion object {
+        val handlers: MutableMap<String, suspend InterfaceOption.() -> Unit> = Object2ObjectOpenHashMap()
+    }
 }
 
 fun interfaceOption(option: String = "*", component: String = "*", id: String, handler: suspend InterfaceOption.() -> Unit) {
     Events.handle<InterfaceOption>("interface_option", id, component, option, "*") {
-        handler.invoke(this)
-    }
-}
-
-fun interfaceSlot(component: String = "*", id: String, itemSlot: Int = -1, handler: suspend InterfaceOption.() -> Unit) {
-    Events.handle<InterfaceOption>("interface_option", id, component, "*", if (itemSlot == -1) "*" else itemSlot.toString()) {
         handler.invoke(this)
     }
 }

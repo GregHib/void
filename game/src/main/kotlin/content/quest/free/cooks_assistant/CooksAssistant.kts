@@ -1,12 +1,12 @@
 package content.quest.free.cooks_assistant
 
-import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.inv.holdsItem
 import content.entity.player.bank.bank
+import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
 
-interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 1) {
+questJournalOpen("cooks_assistant") {
     val lines = when (player.quest("cooks_assistant")) {
         "completed" -> listOf(
             "<str>It was the Duke of Lumbridge's birthday, but his cook had",
