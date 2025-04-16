@@ -37,18 +37,9 @@ fun Player.itemOption(
     slot: Int = inventories.inventory(inventory).indexOf(item)
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    emit(
-        InterfaceOption(
-            this,
-            id = id,
-            component = component,
-            optionIndex = optionIndex,
-            option = option,
-            item = inventories.inventory(inventory).getOrNull(slot) ?: Item(item),
-            itemSlot = slot,
-            inventory = inventory
-        )
-    )
+    val item = inventories.inventory(inventory).getOrNull(slot) ?: Item(item)
+    val definition = get<InterfaceDefinitions>().getComponent(id, component)!!
+    get<InstructionHandlers>().interactInterface.validate(this, InteractInterface(InterfaceDefinition.id(definition.id), InterfaceDefinition.componentId(definition.id), item.def.id, slot, optionIndex))
 }
 
 fun Player.interfaceOption(
@@ -163,7 +154,6 @@ private fun getOptionIndex(id: String, componentId: String, option: String): Int
     val definitions: InterfaceDefinitions = get()
     val component = definitions.getComponent(id, componentId) ?: return null
     var options: Array<String?>? = component.options
-    println("Find $option")
     if (options != null) {
         val indexOf = options.indexOf(option)
         if (indexOf != -1) {
