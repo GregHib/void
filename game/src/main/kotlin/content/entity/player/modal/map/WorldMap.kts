@@ -50,7 +50,15 @@ interfaceOption("Clear marker", "marker", "world_map") {
     player["world_map_marker_custom"] = 0
 }
 
-interfaceOption(component = "world_map", id = "toplevel*") {
+interfaceOption(component = "world_map", id = "toplevel") {
+    if (player.frozen) {
+        player.message("You cannot do this at the moment.") // TODO proper message
+    } else {
+        player.open("world_map")
+    }
+}
+
+interfaceOption(component = "world_map", id = "toplevel_full") {
     if (player.frozen) {
         player.message("You cannot do this at the moment.") // TODO proper message
     } else {

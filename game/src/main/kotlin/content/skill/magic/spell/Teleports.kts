@@ -14,16 +14,33 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.queue
 import content.entity.player.inv.inventoryItem
 import content.entity.sound.sound
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 
 val areas: AreaDefinitions by inject()
 val definitions: SpellDefinitions by inject()
 
-interfaceOption("Cast", "*_teleport", "*_spellbook") {
+interfaceOption("Cast", "*_teleport", "modern_spellbook") {
+    cast()
+}
+
+interfaceOption("Cast", "*_teleport", "ancient_spellbook") {
+    cast()
+}
+
+interfaceOption("Cast", "*_teleport", "lunar_spellbook") {
+    cast()
+}
+
+interfaceOption("Cast", "*_teleport", "dungeoneering_spellbook") {
+    cast()
+}
+
+fun InterfaceOption.cast() {
     if (component == "lumbridge_home_teleport") {
-        return@interfaceOption
+        return
     }
     if (player.contains("delay") || player.queue.contains("teleport")) {
-        return@interfaceOption
+        return
     }
     player.closeInterfaces()
     player.queue("teleport", onCancel = null) {

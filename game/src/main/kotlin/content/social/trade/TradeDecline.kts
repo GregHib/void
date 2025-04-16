@@ -8,25 +8,26 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.playerDespawn
 import content.social.trade.Trade.getPartner
 import content.social.trade.Trade.isTradeInterface
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 
 /**
  * Declining or closing cancels the trade
  */
 
-interfaceOption("Decline", "decline", "trade_*") {
-    val other = getPartner(player)
-    player.message("Declined trade.", ChatType.Trade)
-    other?.message("Other player declined trade.", ChatType.Trade)
-    player.closeMenu()
-    other?.closeMenu()
+interfaceOption("Decline", "decline", "trade_main") {
+    decline()
 }
 
-interfaceOption("Close", "close", "trade_*") {
-    val other = getPartner(player)
-    player.message("Declined trade.", ChatType.Trade)
-    other?.message("Other player declined trade.", ChatType.Trade)
-    player.closeMenu()
-    other?.closeMenu()
+interfaceOption("Decline", "decline", "trade_confirm") {
+    decline()
+}
+
+interfaceOption("Close", "close", "trade_main") {
+    decline()
+}
+
+interfaceOption("Close", "close", "trade_confirm") {
+    decline()
 }
 
 playerDespawn { player ->
@@ -36,4 +37,12 @@ playerDespawn { player ->
         other?.message("Other player declined trade.", ChatType.Trade)
         other?.closeMenu()
     }
+}
+
+fun InterfaceOption.decline() {
+    val other = getPartner(player)
+    player.message("Declined trade.", ChatType.Trade)
+    other?.message("Other player declined trade.", ChatType.Trade)
+    player.closeMenu()
+    other?.closeMenu()
 }

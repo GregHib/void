@@ -1,11 +1,14 @@
 package world.gregs.voidps.engine.client.ui
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.get
 
 data class InterfaceOption(
     override val character: Player,
@@ -36,7 +39,25 @@ data class InterfaceOption(
 }
 
 fun interfaceOption(option: String = "*", component: String = "*", id: String, handler: suspend InterfaceOption.() -> Unit) {
-    Events.handle<InterfaceOption>("interface_option", id, component, option, "*") {
-        handler.invoke(this)
+    assert(!id.contains("*")) { "Interface ids cannot contain wildcards. id=$id, component=$component, option='$option'"}
+    if (!id.contains("*") && !option.contains("*")) {
+        val definitions = get<InterfaceDefinitions>().get(id)
+        var added = false
+        for (componentDefinition in definitions.components!!.values) {
+            if (componentDefinition.stringId != "" && wildcardEquals(component, componentDefinition.stringId)) {
+                val key = "$id:${componentDefinition.stringId}:$option"
+                InterfaceOption.handlers[key] = handler
+                added = true
+            }
+        }
+        if (!added) {
+            Events.handle<InterfaceOption>("interface_option", id, component, option, "*") {
+                handler.invoke(this)
+            }
+        }
+    } else {
+        Events.handle<InterfaceOption>("interface_option", id, component, option, "*") {
+            handler.invoke(this)
+        }
     }
 }
