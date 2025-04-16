@@ -63,9 +63,13 @@ fun interfaceOption(option: String = "*", component: String = "*", id: String, h
         for (componentDefinition in definitions.components!!.values) {
             if (componentDefinition.stringId != "" && wildcardEquals(component, componentDefinition.stringId)) {
                 var options = componentDefinition.options
-                added = added || check(options, option, id, componentDefinition, handler)
+                if (check(options, option, id, componentDefinition, handler)) {
+                    added = true
+                }
                 options = componentDefinition.extras?.get("options") as? Array<String?>
-                added = added || check(options, option, id, componentDefinition, handler)
+                if (check(options, option, id, componentDefinition, handler)) {
+                    added = true
+                }
             }
         }
     }

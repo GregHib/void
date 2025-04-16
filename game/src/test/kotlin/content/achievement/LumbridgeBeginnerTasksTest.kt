@@ -1,7 +1,5 @@
 package content.achievement
 
-import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Test
 import FakeRandom
 import WorldTest
 import dialogueContinue
@@ -10,11 +8,11 @@ import interfaceOption
 import itemOnItem
 import itemOnObject
 import itemOption
+import kotlinx.coroutines.test.runTest
 import npcOption
 import objectOption
+import org.junit.jupiter.api.Test
 import walk
-import world.gregs.voidps.engine.client.ui.chat.Colours
-import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
