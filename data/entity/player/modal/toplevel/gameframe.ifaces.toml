@@ -93,6 +93,9 @@ components = {
 [energy_orb]
 id = 750
 type = "energy_orb"
+components = {
+  run_background = 1,
+}
 
 [world_map]
 id = 755

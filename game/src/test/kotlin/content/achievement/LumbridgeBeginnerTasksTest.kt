@@ -183,7 +183,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
         player.itemOnObject(anvil, 0, "")
         tick()
-        player.interfaceOption("smithing", "dagger_1")
+        player.interfaceOption("smithing", "dagger_1", "Make 1 Dagger")
         tick(3)
 
         assertTrue(player["cutting_edge_technology_task", false])
@@ -277,7 +277,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
         player.npcOption(npc, "Trade")
         tick()
-        player.interfaceOption("tanner", "cowhide", "Tan ${Colours.ORANGE.toTag()}1")
+        player.interfaceOption("tanner", "cowhide", "Tan <col=FF981F>1")
 
         assertTrue(player["tan_your_hide_task", false])
     }
@@ -530,7 +530,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         val anvil = objects[Tile(3229, 3254), "anvil_lumbridge"]!!
         player.itemOnObject(anvil, 0, "")
         tick()
-        player.interfaceOption("smithing", "mace_1")
+        player.interfaceOption("smithing", "mace_1", "Make 1 Mace")
         tick(3)
 
 
@@ -546,7 +546,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         val anvil = objects[Tile(3229, 3254), "anvil_lumbridge"]!!
         player.itemOnObject(anvil, 0, "")
         tick()
-        player.interfaceOption("smithing", "full_helm_1")
+        player.interfaceOption("smithing", "full_helm_1", "Make 1 Full helm")
         tick(3)
 
 

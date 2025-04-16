@@ -6,7 +6,6 @@ components = {
   store = 19,
   sample = {
     id = 26,
-    inventory = "inventory",
     options = {
       Info = 0,
       Take-1 = 1,
@@ -18,7 +17,6 @@ components = {
   },
   stock = {
     id = 25,
-    inventory = "inventory",
     options = {
       Info = 0,
       Buy-1 = 1,

@@ -53,7 +53,7 @@ internal class WeakInteractionTest : WorldTest() {
                 "Remove equipment" -> player.interfaceOption("worn_equipment", "weapon_slot", "*", 0, Item("bronze_sword"))
                 "Activate prayer" -> player.interfaceOption("prayer_list", "regular_prayers", "Activate", slot = 0)
                 "Skill guide" -> player.interfaceOption("stats", "attack", "View")
-                "Toggle attack style" -> player.interfaceOption("combat_styles", "style2", "Kick")
+                "Toggle attack style" -> player.interfaceOption("combat_styles", "style2", "Select")
             }
 
             assertNull(player.dialogue)

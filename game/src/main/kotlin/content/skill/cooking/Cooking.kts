@@ -101,7 +101,6 @@ fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked, offs
 fun Player.failedToReplace(item: Item, raw: Uncooked, cooked: Boolean): Boolean {
     val id = if (cooked) raw.cooked else raw.burnt
     val itemId = id.ifEmpty { item.id.replace("raw", if (cooked) "cooked" else "burnt") }
-    println("Replace ${item.id} $itemId")
     if (!inventory.replace(item.id, itemId)) {
         return true
     }

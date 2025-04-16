@@ -19,7 +19,7 @@ internal class PriceCheckerTest : WorldTest() {
         player.inventory.add("bronze_sword")
 
         player.interfaceOption("worn_equipment", "price", "Show Price-checker")
-        player.interfaceOption("price_checker_side", "items", "Add", 0, Item("bronze_sword"), slot = 0, inventory = "inventory")
+        player.interfaceOption("price_checker_side", "items", "Add", 0, Item("bronze_sword"), slot = 0)
 
         assertTrue(player.inventory[0].isEmpty())
         assertEquals(Item("bronze_sword"), player.offer[0])
@@ -31,8 +31,8 @@ internal class PriceCheckerTest : WorldTest() {
         player.inventory.add("bronze_sword")
 
         player.interfaceOption("worn_equipment", "price", "Show Price-checker")
-        player.interfaceOption("price_checker_side", "items", "Add", 0, Item("bronze_sword"), slot = 0, inventory = "inventory")
-        player.interfaceOption("price_checker", "items", "Remove-1", 0, Item("bronze_sword"), slot = 0, inventory = "trade_offer")
+        player.interfaceOption("price_checker_side", "items", "Add", 0, Item("bronze_sword"), slot = 0)
+        player.interfaceOption("price_checker", "items", "Remove-1", 0, Item("bronze_sword"), slot = 0)
 
         assertEquals(Item("bronze_sword"), player.inventory[0])
         assertTrue(player.offer[0].isEmpty())
@@ -44,7 +44,7 @@ internal class PriceCheckerTest : WorldTest() {
         player.inventory.add("bronze_sword")
 
         player.interfaceOption("worn_equipment", "price", "Show Price-checker")
-        player.interfaceOption("price_checker_side", "items", "Add", 0, Item("bronze_sword"), slot = 0, inventory = "inventory")
+        player.interfaceOption("price_checker_side", "items", "Add", 0, Item("bronze_sword"), slot = 0)
         player.walk(player.tile.addX(1))
         tick()
 

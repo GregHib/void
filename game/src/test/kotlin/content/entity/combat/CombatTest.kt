@@ -64,7 +64,7 @@ internal class CombatTest : WorldTest() {
         player.levels.boost(Skill.Attack, 25)
         player.levels.boost(Skill.Strength, 25)
 
-        player.interfaceOption("combat_styles", "style3")
+        player.interfaceOption("combat_styles", "style3", "Select")
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
         val tile = npc["death_tile", npc.tile]
@@ -96,7 +96,7 @@ internal class CombatTest : WorldTest() {
         player.experience.set(Skill.Defence, EXPERIENCE)
         player.levels.boost(Skill.Ranged, 25)
 
-        player.interfaceOption("combat_styles", "style3")
+        player.interfaceOption("combat_styles", "style3", "Select")
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
         val tile = npc["death_tile", npc.tile]
@@ -170,7 +170,7 @@ internal class CombatTest : WorldTest() {
         player.levels.set(Skill.Ranged, 50)
         player.levels.boost(Skill.Ranged, 25)
 
-        player.interfaceOption("combat_styles", "style1")
+        player.interfaceOption("combat_styles", "style1", "Select")
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
         tick(5) // npc death
@@ -198,7 +198,7 @@ internal class CombatTest : WorldTest() {
         target.inventory.add("plague_jacket", 1)
         target.skull()
 
-        player.interfaceOption("combat_styles", "style3")
+        player.interfaceOption("combat_styles", "style3", "Select")
         player.playerOption(target, "Attack")
         tickIf { target.levels.get(Skill.Constitution) > 0 }
         tick(6) // player death
@@ -225,7 +225,7 @@ internal class CombatTest : WorldTest() {
         player.levels.boost(Skill.Attack, 25)
         player.levels.boost(Skill.Strength, 25)
 
-        player.interfaceOption("combat_styles", "style3")
+        player.interfaceOption("combat_styles", "style3", "Select")
         runTest {
             player.instructions.send(InteractPlayer(target.index, 1))
         }
