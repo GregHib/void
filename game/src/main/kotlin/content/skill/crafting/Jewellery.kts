@@ -7,6 +7,7 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
@@ -39,7 +40,15 @@ itemOnObjectOperate("*_mould", "furnace*", arrive = false) {
     player.open("make_mould${if (World.members) "_slayer" else ""}")
 }
 
-interfaceRefresh("make_mould*") { player ->
+interfaceRefresh("make_mould") { player ->
+    makeMould(player)
+}
+
+interfaceRefresh("make_mould_slayer") { player ->
+    makeMould(player)
+}
+
+fun InterfaceRefreshed.makeMould(player: Player) {
     for (type in moulds) {
         val showText = !player.inventory.contains("${type}_mould")
         player.interfaces.sendVisibility(id, "${type}_text", showText)
@@ -62,7 +71,18 @@ interfaceRefresh("make_mould*") { player ->
     }
 }
 
-interfaceOption("Make *", "make*", "make_mould*") {
+interfaceOption("Make *", "make*", "make_mould") {
+    val amount = when (option) {
+        "Make 1" -> 1
+        "Make 5" -> 5
+        "Make All" -> Int.MAX_VALUE
+        "Make X" -> intEntry("Enter amount:")
+        else -> return@interfaceOption
+    }
+    make(component, amount)
+}
+
+interfaceOption("Make *", "make*", "make_mould_slayer") {
     val amount = when (option) {
         "Make 1" -> 1
         "Make 5" -> 5

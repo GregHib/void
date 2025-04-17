@@ -1,6 +1,6 @@
 [yrsa]
 id = 1301
-race = "human"
+categories = ["human"]
 wander_radius = 2
 shop = "yrsas_shoe_store"
 examine = "Pretty shabbily dressed for a clothes shop owner."

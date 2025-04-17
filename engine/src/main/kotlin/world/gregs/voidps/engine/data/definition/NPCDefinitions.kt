@@ -3,6 +3,8 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.data.Settings
@@ -18,13 +20,15 @@ class NPCDefinitions(
     override var definitions: Array<NPCDefinition>
 ) : DefinitionsDecoder<NPCDefinition> {
 
-    override lateinit var ids: Map<String, Int>
+    override var ids: Map<String, Int> = emptyMap()
+    var groups: Map<String, Set<String>> = emptyMap()
 
     override fun empty() = NPCDefinition.EMPTY
 
     fun load(paths: List<String>): NPCDefinitions {
         timedLoad("npc extra") {
             val ids = Object2IntOpenHashMap<String>()
+            val groups = Object2ObjectOpenHashMap<String, MutableSet<String>>(32)
             ids.defaultReturnValue(-1)
             for (path in paths) {
                 Config.fileReader(path, 150) {
@@ -52,6 +56,15 @@ class NPCDefinitions(
                                     }
                                     extras[key] = spots
                                 }
+                                "categories" -> {
+                                    val categories = ObjectLinkedOpenHashSet<String>(2, Hash.VERY_FAST_LOAD_FACTOR)
+                                    while (nextElement()) {
+                                        val category = string()
+                                        categories.add(category)
+                                        groups.getOrPut(category) { ObjectOpenHashSet(2, Hash.VERY_FAST_LOAD_FACTOR) }.add(stringId)
+                                    }
+                                    extras["categories"] = categories
+                                }
                                 else -> extras[key] = value()
                             }
                         }
@@ -68,6 +81,7 @@ class NPCDefinitions(
                     }
                 }
             }
+            this.groups = groups
             this.ids = ids
             ids.size
         }

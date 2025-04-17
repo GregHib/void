@@ -1,7 +1,5 @@
 package content.achievement
 
-import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Test
 import FakeRandom
 import WorldTest
 import dialogueContinue
@@ -10,11 +8,11 @@ import interfaceOption
 import itemOnItem
 import itemOnObject
 import itemOption
+import kotlinx.coroutines.test.runTest
 import npcOption
 import objectOption
+import org.junit.jupiter.api.Test
 import walk
-import world.gregs.voidps.engine.client.ui.chat.Colours
-import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -183,7 +181,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
         player.itemOnObject(anvil, 0, "")
         tick()
-        player.interfaceOption("smithing", "dagger_1")
+        player.interfaceOption("smithing", "dagger_1", "Make 1 Dagger")
         tick(3)
 
         assertTrue(player["cutting_edge_technology_task", false])
@@ -277,7 +275,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
         player.npcOption(npc, "Trade")
         tick()
-        player.interfaceOption("tanner", "cowhide", "Tan ${Colours.ORANGE.toTag()}1")
+        player.interfaceOption("tanner", "cowhide", "Tan <col=FF981F>1")
 
         assertTrue(player["tan_your_hide_task", false])
     }
@@ -530,7 +528,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         val anvil = objects[Tile(3229, 3254), "anvil_lumbridge"]!!
         player.itemOnObject(anvil, 0, "")
         tick()
-        player.interfaceOption("smithing", "mace_1")
+        player.interfaceOption("smithing", "mace_1", "Make 1 Mace")
         tick(3)
 
 
@@ -546,7 +544,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         val anvil = objects[Tile(3229, 3254), "anvil_lumbridge"]!!
         player.itemOnObject(anvil, 0, "")
         tick()
-        player.interfaceOption("smithing", "full_helm_1")
+        player.interfaceOption("smithing", "full_helm_1", "Make 1 Full helm")
         tick(3)
 
 

@@ -13,7 +13,6 @@ data class VariableBitAdded(
     val key: String,
     val value: Any
 ) : Event {
-    override val notification: Boolean = false
 
     override val size = 4
 

@@ -22,7 +22,7 @@ components = {
   magic_spellbook = 135,
   follower_details = 98,
   friends_list = 99,
-  ignores_list = 100,
+  ignore_list = 100,
   clan_chat = 101,
   options = 102,
   emotes = 103,
@@ -63,7 +63,7 @@ components = {
   magic_spellbook = 42,
   familiar_details = 43,
   friends_list = 44,
-  ignores_list = 45,
+  ignore_list = 45,
   clan_chat = 46,
   options = 47,
   emotes = 48,
@@ -93,6 +93,9 @@ components = {
 [energy_orb]
 id = 750
 type = "energy_orb"
+components = {
+  run_background = 1,
+}
 
 [world_map]
 id = 755

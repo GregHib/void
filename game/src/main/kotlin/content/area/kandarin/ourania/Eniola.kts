@@ -147,7 +147,7 @@ continueDialogue("ourania_bank_charge", "*_rune") { player ->
     (player.dialogueSuspension as? StringSuspension)?.resume(component)
 }
 
-interfaceOption("* Runes", "*_rune", "ourania_bank_charge") {
+interfaceOption("*", "*_rune", "ourania_bank_charge") {
     if (player.inventory.remove(id, 20)) {
         val id = player["ourania_interface", "bank"]
         player.open(id)

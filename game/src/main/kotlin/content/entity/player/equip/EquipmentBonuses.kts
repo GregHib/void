@@ -51,13 +51,13 @@ interfaceRefresh("equipment_side") { player ->
     player.interfaceOptions.unlockAll("equipment_side", "inventory", 0 until 28)
 }
 
-interfaceOption("Stats", "inventory", "equipment_*") {
+interfaceOption("Stats", "inventory", "equipment_bonuses") {
     if (player.equipping()) {
         showStats(player, definitions.get(item.id))
     }
 }
 
-interfaceOption("Done", "stats_done", "equipment_*") {
+interfaceOption("Done", "stats_done", "equipment_bonuses") {
     if (player.equipping()) {
         player.clear("equipment_titles")
         player.clear("equipment_names")

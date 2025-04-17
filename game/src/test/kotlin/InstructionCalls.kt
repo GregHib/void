@@ -1,5 +1,7 @@
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
+import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.ui.dialogue
@@ -35,18 +37,9 @@ fun Player.itemOption(
     slot: Int = inventories.inventory(inventory).indexOf(item)
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    emit(
-        InterfaceOption(
-            this,
-            id = id,
-            component = component,
-            optionIndex = optionIndex,
-            option = option,
-            item = inventories.inventory(inventory).getOrNull(slot) ?: Item(item),
-            itemSlot = slot,
-            inventory = inventory
-        )
-    )
+    val item = inventories.inventory(inventory).getOrNull(slot) ?: Item(item)
+    val definition = get<InterfaceDefinitions>().getComponent(id, component)!!
+    get<InstructionHandlers>().interactInterface.validate(this, InteractInterface(InterfaceDefinition.id(definition.id), InterfaceDefinition.componentId(definition.id), item.def.id, slot, optionIndex))
 }
 
 fun Player.interfaceOption(
@@ -55,11 +48,11 @@ fun Player.interfaceOption(
     option: String = "",
     optionIndex: Int = getOptionIndex(id, component, option) ?: -1,
     item: Item = Item("", -1),
-    slot: Int = -1,
-    inventory: String = ""
+    slot: Int = -1
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    emit(InterfaceOption(this, id = id, component = component, optionIndex = optionIndex, option = option, item = item, itemSlot = slot, inventory = inventory))
+    val definition = get<InterfaceDefinitions>().getComponent(id, component)!!
+    get<InstructionHandlers>().interactInterface.validate(this, InteractInterface(InterfaceDefinition.id(definition.id), InterfaceDefinition.componentId(definition.id), item.def.id, slot, optionIndex))
 }
 
 fun Player.skillCreation(
@@ -75,7 +68,7 @@ fun Player.skillCreation(
             index = i
         }
     }
-    instructions.trySend(EnterInt(index))
+    get<InstructionHandlers>().enterInt.invoke(EnterInt(index), this)
 }
 
 fun Player.interfaceUse(
@@ -160,7 +153,14 @@ private fun getItemOptionIndex(item: String, option: String): Int? {
 private fun getOptionIndex(id: String, componentId: String, option: String): Int? {
     val definitions: InterfaceDefinitions = get()
     val component = definitions.getComponent(id, componentId) ?: return null
-    val options: Array<String> = component.getOrNull("options") ?: return null
+    var options: Array<String?>? = component.options
+    if (options != null) {
+        val indexOf = options.indexOf(option)
+        if (indexOf != -1) {
+            return indexOf
+        }
+    }
+    options = component.getOrNull("options") ?: return null
     val indexOf = options.indexOf(option)
     if (indexOf == -1) {
         return null

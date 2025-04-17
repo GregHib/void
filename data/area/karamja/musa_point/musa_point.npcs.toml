@@ -1,13 +1,13 @@
 [shopkeeper_musa_point]
 id = 11674
-race = "human"
+categories = ["human"]
 shop = "karamja_general_store"
 wander_radius = 2
 examine = "Clearly takes pride in his appearance."
 
 [shop_assistant_musa_point]
 id = 11678
-race = "human"
+categories = ["human"]
 shop = "karamja_general_store"
 wander_radius = 2
 examine = "Needs a haircut."
@@ -24,6 +24,6 @@ bar_crawl = {
     drink = "You swirl it around and swallow it.",
     effect = "Zambo signs your card."
 }
-race = "human"
+categories = ["human"]
 wander_radius = 3
 examine = "Appears slightly drunk."

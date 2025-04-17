@@ -12,10 +12,10 @@ import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import content.skill.slayer.race
 import content.entity.combat.hit.characterCombatAttack
 import content.skill.melee.weapon.weapon
 import content.entity.sound.sound
+import content.skill.slayer.categories
 
 val styleDefinitions: WeaponStyleDefinitions by inject()
 val weaponDefinitions: WeaponAnimationDefinitions by inject()
@@ -61,8 +61,8 @@ fun hitAnimation(npc: NPC): String {
             return animation
         }
     }
-    if (npc.race.isNotEmpty()) {
-        animation = "${npc.race}_defend"
+    for (category in npc.categories) {
+        animation = "${category}_defend"
         if (animationDefinitions.contains(animation)) {
             return animation
         }
@@ -83,8 +83,8 @@ fun calculateHitSound(target: Character): String {
         if (soundDefinitions.contains(sound)) {
             return sound
         }
-        if (target.race.isNotEmpty()) {
-            sound = "${target.race}_defend"
+        for (category in target.categories) {
+            sound = "${category}_defend"
             if (soundDefinitions.contains(sound)) {
                 return sound
             }

@@ -1,6 +1,6 @@
 [al_the_camel]
 id = 2809
-race = "camel"
+categories = ["camel"]
 large_head = true
 wander_radius = 4
 examine = "A camel who has the soul of a poet."

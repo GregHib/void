@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Parameters
 import world.gregs.voidps.engine.data.Settings
@@ -77,8 +78,10 @@ class ParameterDefinitions(
                 extras[name] = Skill.all[value as Int]
             }
             name == "category" -> {
+                val set = ObjectOpenHashSet<String>()
                 val int = value as Int
-                extras[name] = categoryDefinitions.get(int).stringId
+                set.add(categoryDefinitions.get(int).stringId)
+                extras["categories"] = set
             }
             name == "ammo_group" -> {
                 val int = value as Int

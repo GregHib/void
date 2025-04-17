@@ -4,6 +4,7 @@ import content.area.wilderness.Wilderness
 import content.area.wilderness.inPvp
 import content.area.wilderness.inSingleCombat
 import content.area.wilderness.inWilderness
+import content.skill.slayer.categories
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.client.message
@@ -17,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.skill.slayer.race
 
 object Target {
     fun attackable(source: Character, target: Character): Boolean {
@@ -71,15 +71,15 @@ object Target {
         return true
     }
 
-    fun isDemon(target: Character) = target is NPC && target.race == "demon"
+    fun isDemon(target: Character) = target is NPC && target.categories.contains("demon")
 
-    fun isVampyre(target: Character) = target is NPC && target.race == "vampyre"
+    fun isVampyre(target: Character) = target is NPC && target.categories.contains("vampyre")
 
-    fun isShade(target: Character): Boolean = target is NPC && target.race == "shade"
+    fun isShade(target: Character): Boolean = target is NPC && target.categories.contains("shade")
 
-    fun isKalphite(target: Character): Boolean = target is NPC && target.race == "kalphite"
+    fun isKalphite(target: Character): Boolean = target is NPC && target.categories.contains("kalphite")
 
-    fun isDragon(target: Character): Boolean = target is NPC && target.race == "dragon"
+    fun isDragon(target: Character): Boolean = target is NPC && target.categories.contains("dragon")
 
     fun isMetalDragon(target: Character): Boolean = target is NPC && (target.id == "bronze_dragon" || target.id == "iron_dragon" || target.id == "steel_dragon")
 
@@ -88,7 +88,7 @@ object Target {
         if (target is Player) {
             return target.equipped(EquipSlot.Weapon).id == "staff_of_fire"
         } else if (target is NPC) {
-            return target.race == "dragon" || target.id.startsWith("fire_elemental") || target.id.startsWith("fire_giant") || target.id.startsWith("pyrefiend")
+            return target.categories.contains("dragon") || target.id.startsWith("fire_elemental") || target.id.startsWith("fire_giant") || target.id.startsWith("pyrefiend")
         }
         return false
     }

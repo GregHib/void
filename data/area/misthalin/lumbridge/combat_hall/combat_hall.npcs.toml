@@ -20,15 +20,15 @@ examine = "Ready for all you can swing at it."
 
 [mikasi]
 id = 4707
-race = "human"
+categories = ["human"]
 examine = "Mikasi looks ready to teach you about magic."
 
 [harlan]
 id = 705
-race = "human"
+categories = ["human"]
 examine = "Harlan, master of defence."
 
 [nemarti]
 id = 1861
-race = "human"
+categories = ["human"]
 examine = "Nemarti looks ready to teach you about ranged combat."

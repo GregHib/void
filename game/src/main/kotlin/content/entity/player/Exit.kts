@@ -7,7 +7,11 @@ import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.inject
 import content.entity.combat.inCombat
 
-interfaceOption("Exit", "logout", "toplevel*") {
+interfaceOption("Exit", "logout", "toplevel") {
+    player.open("logout")
+}
+
+interfaceOption("Exit", "logout", "toplevel_full") {
     player.open("logout")
 }
 

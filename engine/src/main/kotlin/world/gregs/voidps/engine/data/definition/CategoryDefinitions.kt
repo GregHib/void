@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.data.config.CategoryDefinition
 import world.gregs.voidps.engine.timedLoad
 
 /**
- * Categories used in [ParameterDefinitions]
+ * Official Categories used in [ParameterDefinitions]
  */
 class CategoryDefinitions : DefinitionsDecoder<CategoryDefinition> {
 

@@ -7,7 +7,7 @@ str = 10
 def = 5
 magic = 1
 attack_speed = 6
-race = "demon"
+categories = ["demon"]
 examine = "A freshly summoned demon."
 
 [delrith_weakened]
@@ -25,7 +25,7 @@ hitpoints = 870
 slayer_xp = 87
 max_hit_melee = 90
 style = "slash"
-race = "demon"
+categories = ["demon"]
 respawn_delay = 15
 hunt_mode = "aggressive"
 height = 60

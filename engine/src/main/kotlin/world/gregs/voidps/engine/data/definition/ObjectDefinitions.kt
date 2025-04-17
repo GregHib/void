@@ -3,22 +3,21 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.data.definition.data.Pickable
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.data.definition.data.Tree
 import world.gregs.voidps.engine.timedLoad
-import java.nio.file.Files
-import java.nio.file.Path
-import kotlin.io.path.extension
-import kotlin.io.path.pathString
 
 class ObjectDefinitions(
     override var definitions: Array<ObjectDefinition>
 ) : DefinitionsDecoder<ObjectDefinition> {
 
-    override lateinit var ids: Map<String, Int>
+    override var ids: Map<String, Int> = emptyMap()
+    var groups: Map<String, Set<String>> = emptyMap()
 
     fun getValue(id: Int): ObjectDefinition {
         return definitions[id]
@@ -29,6 +28,7 @@ class ObjectDefinitions(
     fun load(paths: List<String>): ObjectDefinitions {
         timedLoad("object extra") {
             val ids = Object2IntOpenHashMap<String>()
+            val groups = Object2ObjectOpenHashMap<String, MutableSet<String>>()
             for (path in paths) {
                 Config.fileReader(path) {
                     while (nextSection()) {
@@ -48,6 +48,15 @@ class ObjectDefinitions(
                                     val definition = definitions[npc]
                                     extras.putAll(definition.extras ?: continue)
                                 }
+                                "categories" -> {
+                                    val categories = ObjectLinkedOpenHashSet<String>(2, Hash.VERY_FAST_LOAD_FACTOR)
+                                    while (nextElement()) {
+                                        val category = string()
+                                        groups.getOrPut(category) { ObjectOpenHashSet(2, Hash.VERY_FAST_LOAD_FACTOR) }.add(stringId)
+                                        categories.add(category)
+                                    }
+                                    extras["categories"] = categories
+                                }
                                 else -> extras[key] = value()
                             }
                         }
@@ -60,6 +69,7 @@ class ObjectDefinitions(
                     }
                 }
             }
+            this.groups = groups
             this.ids = ids
             ids.size
         }

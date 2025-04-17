@@ -3,6 +3,8 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ItemDefinition
@@ -20,7 +22,8 @@ class ItemDefinitions(
 
     val size: Int = definitions.size
 
-    override lateinit var ids: Map<String, Int>
+    override var ids: Map<String, Int> = emptyMap()
+    var groups: Map<String, Set<String>> = emptyMap()
 
     override fun empty() = ItemDefinition.EMPTY
 
@@ -28,6 +31,7 @@ class ItemDefinitions(
         timedLoad("item extra") {
             val clones = Object2ObjectOpenHashMap<String, String>(100)
             val ids = Object2IntOpenHashMap<String>(18_000)
+            val groups = Object2ObjectOpenHashMap<String, MutableSet<String>>()
             ids.defaultReturnValue(-1)
             for (path in paths) {
                 Config.fileReader(path, 256) {
@@ -37,7 +41,12 @@ class ItemDefinitions(
                         val extras = Object2ObjectOpenHashMap<String, Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
                         while (nextPair()) {
                             when (val key = key()) {
-                                "id" -> id = int()
+                                "id" -> {
+                                    id = int()
+                                    if (definitions[id].extras != null) {
+                                        extras.putAll(definitions[id].extras!!)
+                                    }
+                                }
                                 "slot" -> extras[key] = EquipSlot.by(string())
                                 "type" -> extras[key] = EquipType.by(string())
                                 "kept" -> extras[key] = ItemKept.by(string())
@@ -80,6 +89,15 @@ class ItemDefinitions(
                                         extras.putAll(definition.extras ?: continue)
                                     }
                                 }
+                                "categories" -> {
+                                    @Suppress("UNCHECKED_CAST")
+                                    val categories = extras.getOrPut("categories") { ObjectLinkedOpenHashSet<String>(4, Hash.VERY_FAST_LOAD_FACTOR) } as MutableSet<String>
+                                    while (nextElement()) {
+                                        val category = string()
+                                        categories.add(category)
+                                        groups.getOrPut(category) { ObjectOpenHashSet(2, Hash.VERY_FAST_LOAD_FACTOR) }.add(stringId)
+                                    }
+                                }
                                 else -> extras[key] = value()
                             }
                         }
@@ -87,11 +105,7 @@ class ItemDefinitions(
                         ids[stringId] = id
                         definitions[id].stringId = stringId
                         if (extras.size > 0) {
-                            if (definitions[id].extras != null) {
-                                (definitions[id].extras as MutableMap<String, Any>).putAll(extras)
-                            } else {
-                                definitions[id].extras = extras
-                            }
+                            definitions[id].extras = extras
                         }
                     }
                 }
@@ -117,12 +131,15 @@ class ItemDefinitions(
                     if (normal.extras != null) {
                         val lentExtras = Object2ObjectOpenHashMap(normal.extras)
                         lentExtras.remove("aka")
-                        if (definition.extras != null) {
-                            lentExtras.putAll(definition.extras!!)
+                        val extras = definition.extras as? MutableMap<String, Any>
+                        if (extras != null) {
+                            lentExtras.putAll(extras)
                         }
+                        definition.extras = lentExtras
                     }
                 }
             }
+            this.groups = groups
             this.ids = ids
             ids.size
         }

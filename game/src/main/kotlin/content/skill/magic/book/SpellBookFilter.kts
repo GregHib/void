@@ -1,5 +1,6 @@
 package content.skill.magic.book
 
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -20,7 +21,23 @@ playerSpawn { player ->
     player.sendVariable("spellbook_config")
 }
 
-interfaceOption(component = "filter_*", id = "*_spellbook") {
+interfaceOption(component = "filter_*", id = "modern_spellbook") {
+    filter()
+}
+
+interfaceOption(component = "filter_*", id = "ancient_spellbook") {
+    filter()
+}
+
+interfaceOption(component = "filter_*", id = "lunar_spellbook") {
+    filter()
+}
+
+interfaceOption(component = "filter_*", id = "dungeoneering_spellbook") {
+    filter()
+}
+
+fun InterfaceOption.filter() {
     val key = "spellbook_sort"
     val id = "${id}:$component"
     if (player.containsVarbit(key, id)) {
@@ -30,7 +47,23 @@ interfaceOption(component = "filter_*", id = "*_spellbook") {
     }
 }
 
-interfaceOption(component = "sort_*", id = "*_spellbook") {
+interfaceOption(component = "sort_*", id = "modern_spellbook") {
+    sort()
+}
+
+interfaceOption(component = "sort_*", id = "ancient_spellbook") {
+    sort()
+}
+
+interfaceOption(component = "sort_*", id = "lunar_spellbook") {
+    sort()
+}
+
+interfaceOption(component = "sort_*", id = "dungeoneering_spellbook") {
+    sort()
+}
+
+fun InterfaceOption.sort() {
     val key = "spellbook_sort"
     if (component.startsWith("sort_")) {
         // Make sure don't sort by multiple at once
@@ -42,6 +75,18 @@ interfaceOption(component = "sort_*", id = "*_spellbook") {
     }
 }
 
-interfaceOption("Defensive Casting", "defensive_cast", "*_spellbook") {
+interfaceOption("Defensive Casting", "defensive_cast", "modern_spellbook") {
+    player.toggle(component)
+}
+
+interfaceOption("Defensive Casting", "defensive_cast", "ancient_spellbook") {
+    player.toggle(component)
+}
+
+interfaceOption("Defensive Casting", "defensive_cast", "lunar_spellbook") {
+    player.toggle(component)
+}
+
+interfaceOption("Defensive Casting", "defensive_cast", "dungeoneering_spellbook") {
     player.toggle(component)
 }

@@ -8,7 +8,7 @@ slayer_xp = 8.0
 max_hit_melee = 10
 style = "crush"
 respawn_delay = 45
-race = "cow"
+categories = ["cow"]
 height = 30
 examine = "Converts grass to beef."
 
@@ -30,7 +30,7 @@ max_hit_melee = 10
 style = "crush"
 respawn_delay = 45
 examine = "Young, but still beefy."
-race = "cow"
+categories = ["cow"]
 height = 15
 
 [cow_zanaris]

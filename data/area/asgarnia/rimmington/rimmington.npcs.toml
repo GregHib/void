@@ -1,13 +1,13 @@
 [shopkeeper_rimmington]
 id = 530
-race = "human"
+categories = ["human"]
 shop = "rimmington_general_store"
 wander_radius = 2
 examine = "Has an interesting assortment of items for sale."
 
 [shop_assistant_rimmington]
 id = 531
-race = "human"
+categories = ["human"]
 shop = "rimmington_general_store"
 wander_radius = 2
 examine = "Works on commission."

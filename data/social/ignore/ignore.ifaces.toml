@@ -1,6 +1,6 @@
-[ignores_list]
+[ignore_list]
 id = 551
-type = "ignores_list_tab"
+type = "ignore_list_tab"
 components = {
   add = 4,
   delete = 5,

@@ -13,8 +13,6 @@ data class VariableBitRemoved(
     val key: String,
     val value: Any
 ) : Event {
-    override val notification: Boolean = false
-
     override val size = 4
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {

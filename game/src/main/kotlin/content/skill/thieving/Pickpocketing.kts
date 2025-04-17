@@ -21,9 +21,9 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import content.skill.slayer.race
 import content.entity.effect.stun
 import content.entity.npc.combat.NPCAttack
+import content.skill.slayer.categories
 
 val animationDefinitions: AnimationDefinitions by inject()
 val dropTables: DropTables by inject()
@@ -64,7 +64,15 @@ npcApproach("Pickpocket") {
 }
 
 fun getLoot(target: NPC): List<ItemDrop>? {
-    val table = dropTables.get("${target.id}_pickpocket") ?: dropTables.get("${target.race}_pickpocket")
+    var table = dropTables.get("${target.id}_pickpocket")
+    if (table == null) {
+        for (category in target.categories) {
+            table = dropTables.get("${category}_pickpocket")
+            if (table != null) {
+                break
+            }
+        }
+    }
     return table?.role()
 }
 

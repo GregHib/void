@@ -12,4 +12,4 @@ max_hit_melee = 20
 style = "slash"
 respawn_delay = 35
 examine = "Dead man walking."
-race = "zombie"
+categories = ["zombie", "undead"]

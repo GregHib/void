@@ -53,6 +53,9 @@ class InterfaceHandler(
             logger.info { "No inventory component found [$player, interface=$id, inventory=$component]" }
             return null
         }
+        if (id == "shop") {
+            return player["shop"]
+        }
         val inventory = componentDefinition["inventory", ""]
         if (!player.inventories.contains(inventory)) {
             logger.info { "Player doesn't have interface inventory [$player, interface=$id, inventory=$inventory]" }
@@ -68,19 +71,23 @@ class InterfaceHandler(
             itemSlot == -1 && inventoryId == "item_loan" -> 0
             itemSlot == -1 && inventoryId == "returned_lent_items" -> 0
             id == "price_checker" -> itemSlot / 2
-            inventoryId == "inventory" -> itemSlot
+            id == "shop" -> itemSlot / 6
             else -> itemSlot
         }
         val definition = inventoryDefinitions.get(inventoryId)
-        if (slot > definition.length || slot < 0) {
-            logger.info { "Player interface inventory out of bounds [$player, inventory=$inventoryId, item_index=$itemSlot, inventory_size=${definition.length}]" }
+        val secondary = !componentDefinition["primary", true]
+        val inventory = player.inventories.getOrNull(definition, secondary = secondary)
+        if (inventory == null) {
+            logger.info { "Player invalid interface inventory [$player, interface=$id, inv=$inventoryId]" }
+            return null
+        }
+        if (slot !in inventory.items.indices) {
+            logger.info { "Player interface inventory out of bounds [$player, inventory=$inventoryId, item_index=$itemSlot, inventory_size=${definition.length}, indicies=${inventory.items.indices}]" }
             return null
         }
 
-        val secondary = !componentDefinition["primary", true]
-        val inventory = player.inventories.inventory(definition, secondary = secondary)
         if (!inventory.inBounds(slot) || inventory[slot].id != itemId) {
-            logger.info { "Player invalid interface item [$player, interface=$id, index=$slot, expected_item=$itemId, actual_item=${inventory[slot]}]" }
+            logger.info { "Player invalid interface item [$player, interface=$id, inv=$inventoryId, index=$slot, expected_item=$itemId, actual_item=${inventory[slot]}]" }
             return null
         }
         return inventory[slot]

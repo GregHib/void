@@ -31,10 +31,10 @@ import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import content.skill.slayer.race
 import content.social.clan.clan
 import content.entity.player.inv.item.tradeable
 import content.entity.sound.sound
+import content.skill.slayer.categories
 
 val npcs: NPCs by inject()
 val floorItems: FloorItems by inject()
@@ -89,8 +89,8 @@ fun deathAnimation(npc: NPC): String {
             return animation
         }
     }
-    if (npc.race.isNotEmpty()) {
-        animation = "${npc.race}_death"
+    for (category in npc.categories) {
+        animation = "${category}_death"
         if (animationDefinitions.contains(animation)) {
             return animation
         }
@@ -101,15 +101,15 @@ fun deathAnimation(npc: NPC): String {
 
 fun deathSound(npc: NPC): String {
     var sound: String
-    if (npc.race.isNotEmpty()) {
-        sound = "${npc.race}_death"
-        if (soundDefinitions.contains(sound)) {
-            return sound
-        }
-    }
     sound = "${npc.id}_death"
     if (soundDefinitions.contains(sound)) {
         return sound
+    }
+    for (category in npc.categories) {
+        sound = "${category}_death"
+        if (soundDefinitions.contains(sound)) {
+            return sound
+        }
     }
     return ""
 }
@@ -119,11 +119,14 @@ fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {
     if (table == null) {
         table = tables.get("${name}_drop_table")
     }
-    if (table == null) {
-        table = tables.get("${npc.race}_drop_table")
-        if (table == null) {
-            return
+    for (category in npc.categories) {
+        table = tables.get("${category}_drop_table")
+        if (table != null) {
+            break
         }
+    }
+    if (table == null) {
+        return
     }
     val combatLevel = if (killer is Player) killer.combatLevel else if (killer is NPC) killer.def.combat else -1
     val drops = table.role(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1, player = killer as? Player)

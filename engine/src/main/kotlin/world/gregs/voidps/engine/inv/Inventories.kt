@@ -41,6 +41,11 @@ class Inventories(
         return inventory(definition.stringId, definition, secondary)
     }
 
+    fun getOrNull(definition: InventoryDefinition, secondary: Boolean = false): Inventory? {
+        val inventoryId = if (secondary) "_${definition.stringId}" else definition.stringId
+        return instances[inventoryId]
+    }
+
     fun inventory(id: String, secondary: Boolean = false): Inventory {
         val definition = definitions.get(id)
         return inventory(id, definition, secondary)

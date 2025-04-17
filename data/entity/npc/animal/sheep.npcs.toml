@@ -1,7 +1,7 @@
 [sheep]
 id = 43
 wander_radius = 10
-race = "sheep"
+categories = ["sheep"]
 examine = "White and fluffy."
 
 [sheep_shorn]
