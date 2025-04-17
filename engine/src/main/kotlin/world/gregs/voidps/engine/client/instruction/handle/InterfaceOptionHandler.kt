@@ -31,7 +31,6 @@ class InterfaceOptionHandler(
         }
 
         val selectedOption = options.getOrNull(option) ?: ""
-        val handler = InterfaceOption.handlers["${id}:${component}:${selectedOption}"] ?: InterfaceOption.handlers["${id}:${component}"] ?: InterfaceOption.handlers[id]
         val event = InterfaceOption(
             character = player,
             id = id,
@@ -42,13 +41,7 @@ class InterfaceOptionHandler(
             itemSlot = itemSlot,
             inventory = inventory
         )
-        if (handler == null) {
-            player.emit(event)
-        } else {
-            Events.events.launch {
-                handler.invoke(event)
-            }
-        }
+        player.emit(event)
     }
 
 }
