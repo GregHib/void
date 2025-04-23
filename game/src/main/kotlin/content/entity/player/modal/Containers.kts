@@ -3,10 +3,7 @@ package content.entity.player.modal
 import world.gregs.voidps.engine.client.sendInterfaceItemUpdate
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.InventoryUpdate
 import world.gregs.voidps.engine.inv.inventoryUpdate
 
 val inventoryDefinitions: InventoryDefinitions by inject()
