@@ -63,7 +63,10 @@ objectOperate("Spin", "spinning_wheel*", arrive = false) {
     start(player, target, fibre, amount)
 }
 
-itemOnObjectOperate(obj = "spinning_wheel*", itemDef = "spinning", arrive = false) {
+itemOnObjectOperate(obj = "spinning_wheel*", arrive = false) {
+    if (!item.def.contains("spinning")) {
+        return@itemOnObjectOperate
+    }
     val (_, amount) = makeAmount(
         items = listOf(item.spinning.to),
         type = "Make",

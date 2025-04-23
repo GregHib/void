@@ -32,7 +32,7 @@ val objects: GameObjects by inject()
 
 val GameObject.cookingRange: Boolean get() = id.startsWith("cooking_range")
 
-itemOnObjectOperate(objects = setOf("fire_*", "cooking_range*"), def = "cooking") {
+itemOnObjectOperate(objects = setOf("fire_*", "cooking_range*")) {
     val start = GameLoop.tick
     var sinew = false
     if (item.id == "raw_beef" && target.id.startsWith("cooking_range")) {

@@ -65,7 +65,10 @@ itemOnObjectOperate("silver_bar", "furnace*", arrive = false) {
     player.open("silver_mould")
 }
 
-itemOnObjectOperate(obj = "furnace*", itemDef = "silver_jewellery") {
+itemOnObjectOperate(obj = "furnace*") {
+    if (!item.def.contains("silver_jewellery")) {
+        return@itemOnObjectOperate
+    }
     player.make(item, 1)
 }
 

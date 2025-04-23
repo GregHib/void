@@ -6,7 +6,10 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
-itemOnObjectOperate(objects = setOf("sink*", "fountain*", "well*", "water_trough*", "pump_and_drain*"), def = "full") {
+itemOnObjectOperate(objects = setOf("sink*", "fountain*", "well*", "water_trough*", "pump_and_drain*")) {
+    if (!item.def.contains("full")) {
+        return@itemOnObjectOperate
+    }
     while (player.inventory.contains(item.id)) {
         player.anim("take")
         player.inventory.replace(item.id, item.def["full"])

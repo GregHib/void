@@ -22,7 +22,10 @@ itemOnObjectOperate("soft_clay", "potters_wheel*", arrive = false) {
     make("spinning", item)
 }
 
-itemOnObjectOperate(obj = "pottery_oven*", itemDef = "pottery", arrive = false) {
+itemOnObjectOperate(obj = "pottery_oven*", arrive = false) {
+    if (!item.def.contains("pottery")) {
+        return@itemOnObjectOperate
+    }
     if (item.id != "soft_clay") {
         make("cook_range", item)
     }
