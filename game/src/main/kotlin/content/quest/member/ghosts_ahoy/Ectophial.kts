@@ -42,5 +42,5 @@ teleportLand("ectophial") {
     player.message("... and the world changes around you.", ChatType.Filter)
     val ectofuntus = objects[Tile(3658, 3518), "ectofuntus"] ?: return@teleportLand
     val slot = player.inventory.indexOf("ectophial")
-    player.mode = Interact(player, ectofuntus, ItemOnObject(player, ectofuntus, "inventory", "inventory", Item("ectophial_empty"), slot, "inventory"))
+    player.mode = Interact(player, ectofuntus, ItemOnObject(player, ectofuntus, Item("ectophial_empty"), slot, "inventory"))
 }

@@ -35,7 +35,7 @@ internal class MysteriousRuinsTest : WorldTest() {
             player.inventory.add("${type}_talisman")
 
             val ruins = objects[ruinsTile, "${type}_altar_ruins"]!!
-            player.itemOnObject(ruins, 0, "${type}_talisman")
+            player.itemOnObject(ruins, 0)
             tickIf { player.tile.region == tile.region }
 
             assertAtAltar(player, type, altarTile)

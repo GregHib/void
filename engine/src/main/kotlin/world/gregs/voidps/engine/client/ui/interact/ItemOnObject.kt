@@ -10,8 +10,6 @@ import world.gregs.voidps.engine.event.Events
 data class ItemOnObject(
     override val character: Player,
     override val target: GameObject,
-    val id: String,
-    val component: String,
     val item: Item,
     val itemSlot: Int,
     val inventory: String
@@ -29,12 +27,7 @@ data class ItemOnObject(
     }
 }
 
-fun itemOnObjectOperate(
-    item: String = "*",
-    obj: String = "*",
-    arrive: Boolean = true,
-    handler: suspend ItemOnObject.() -> Unit
-) {
+fun itemOnObjectOperate(item: String = "*", obj: String = "*", arrive: Boolean = true, handler: suspend ItemOnObject.() -> Unit) {
     Events.handle<ItemOnObject>("item_on_operate_object", item, obj) {
         if (arrive) {
             arriveDelay()

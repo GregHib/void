@@ -30,7 +30,7 @@ class JewelleryTest : WorldTest() {
             player.inventory.add("${type}_mould", "gold_bar")
             val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
 
-            player.itemOnObject(furnace, 0, "${type}_mould")
+            player.itemOnObject(furnace, 0)
             tick()
 
             player.interfaceOption("make_mould_slayer", "make_${type}_option_gold", "Make 1")
@@ -49,7 +49,7 @@ class JewelleryTest : WorldTest() {
         player.inventory.add("ring_mould", "gold_bar", "enchanted_gem")
         val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
 
-        player.itemOnObject(furnace, 0, "ring_mould")
+        player.itemOnObject(furnace, 0)
         tick()
 
         player.interfaceOption("make_mould_slayer", "make_ring_option_enchanted_gem", "Make 1")
@@ -70,7 +70,7 @@ class JewelleryTest : WorldTest() {
                 player.inventory.add("${type}_mould", "gold_bar", gem)
                 val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
 
-                player.itemOnObject(furnace, 0, "${type}_mould")
+                player.itemOnObject(furnace, 0)
                 tick()
 
                 player.interfaceOption("make_mould_slayer", "make_${type}_option_${gem}", "Make 1")
@@ -92,7 +92,7 @@ class JewelleryTest : WorldTest() {
         player.inventory.add("necklace_mould", "gold_bar")
         val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
 
-        player.itemOnObject(furnace, 0, "necklace_mould")
+        player.itemOnObject(furnace, 0)
         tick()
 
         player.interfaceOption("make_mould_slayer", "make_necklace_option_emerald", "Make 1")
@@ -114,7 +114,7 @@ class JewelleryTest : WorldTest() {
         player.inventory.add("ruby", 6)
         val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
 
-        player.itemOnObject(furnace, 0, "bracelet_mould")
+        player.itemOnObject(furnace, 0)
         tick()
 
         player.interfaceOption("make_mould_slayer", "make_bracelet_option_ruby", "Make 5")
@@ -139,7 +139,7 @@ class JewelleryTest : WorldTest() {
         player.inventory.add("ruby", 2)
         val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
 
-        player.itemOnObject(furnace, 0, "bracelet_mould")
+        player.itemOnObject(furnace, 0)
         tick()
 
         player.interfaceOption("make_mould_slayer", "make_bracelet_option_ruby", "Make All")
@@ -160,7 +160,7 @@ class JewelleryTest : WorldTest() {
         player.inventory.add("diamond", 2)
         val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
 
-        player.itemOnObject(furnace, 0, "bracelet_mould")
+        player.itemOnObject(furnace, 0)
         tick()
 
         player.interfaceOption("make_mould_slayer", "make_bracelet_option_diamond", "Make X")
@@ -183,7 +183,7 @@ class JewelleryTest : WorldTest() {
         player.inventory.add("dragonstone", 2)
         val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
 
-        player.itemOnObject(furnace, 0, "amulet_unstrung_mould")
+        player.itemOnObject(furnace, 0)
         tick()
 
         player.interfaceOption("make_mould_slayer", "make_amulet_unstrung_option_dragonstone", "Make X")
@@ -204,7 +204,7 @@ class JewelleryTest : WorldTest() {
         player.inventory.add("ring_mould", "gold_bar", "onyx")
         val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
 
-        player.itemOnObject(furnace, 0, "ring_mould")
+        player.itemOnObject(furnace, 0)
         tick()
 
         player.interfaceOption("make_mould_slayer", "make_ring_option_onyx", "Make 1")

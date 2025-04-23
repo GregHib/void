@@ -59,7 +59,7 @@ internal class CombinationRunecraftingTest : WorldTest() {
 
             val altarTile = RunecraftingTest.altars.first { it.type == objectElement }.altarTile
             val altar = objects[altarTile, "${objectElement}_altar"]!!
-            player.itemOnObject(altar, 0, "${element}_rune")
+            player.itemOnObject(altar, 0)
             tick(1)
             tickIf { player.visuals.moved }
 
@@ -83,7 +83,7 @@ internal class CombinationRunecraftingTest : WorldTest() {
 
             val altarTile = RunecraftingTest.altars.first { it.type == objectElement }.altarTile
             val altar = objects[altarTile, "${objectElement}_altar"]!!
-            player.itemOnObject(altar, 0, "${element}_rune")
+            player.itemOnObject(altar, 0)
             tick(1)
             tickIf { player.visuals.moved }
 

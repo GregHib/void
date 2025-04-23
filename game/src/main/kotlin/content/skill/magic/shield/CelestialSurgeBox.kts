@@ -106,15 +106,15 @@ inventoryItem("Charge", "celestial_surgebox*", "inventory") {
     charge(player, item, slot)
 }
 
-itemOnItem("air_rune", "celestial_surgebox*", "inventory") {
+itemOnItem("air_rune", "celestial_surgebox*") {
     charge(it, toItem, toSlot)
 }
 
-itemOnItem("blood_rune", "celestial_surgebox*", "inventory") {
+itemOnItem("blood_rune", "celestial_surgebox*") {
     charge(it, toItem, toSlot)
 }
 
-itemOnItem("death_rune", "celestial_surgebox*", "inventory") {
+itemOnItem("death_rune", "celestial_surgebox*") {
     charge(it, toItem, toSlot)
 }
 

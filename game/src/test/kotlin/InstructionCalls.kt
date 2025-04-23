@@ -175,9 +175,9 @@ fun Player.walk(toTile: Tile) = runTest {
     instructions.send(Walk(toTile.x, toTile.y))
 }
 
-fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: String = "inventory", inventory: String = "inventory") {
+fun Player.itemOnObject(obj: GameObject, itemSlot: Int, inventory: String = "inventory") {
     val item = inventories.inventory(inventory)[itemSlot]
-    emit(ItemOnObject(this, obj, id, component, item, itemSlot, inventory))
+    emit(ItemOnObject(this, obj, item, itemSlot, inventory))
 }
 
 fun Player.itemOnItem(

@@ -1,7 +1,6 @@
 package content.skill.magic.book.lunar
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnPlayerApproach
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -14,30 +13,31 @@ import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import content.entity.player.combat.special.specialAttackEnergy
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.energy.runEnergy
+import world.gregs.voidps.engine.client.ui.interact.interfaceOnPlayerApproach
 
 val definitions: SpellDefinitions by inject()
 
-itemOnPlayerApproach(id = "lunar_spellbook", component = "energy_transfer") {
+interfaceOnPlayerApproach(id = "lunar_spellbook", component = "energy_transfer") {
     approachRange(2)
     val spell = component
     if (target.specialAttackEnergy == MAX_SPECIAL_ATTACK) {
         player.message("This player has full special attack.")
-        return@itemOnPlayerApproach
+        return@interfaceOnPlayerApproach
     }
     if (player.specialAttackEnergy != MAX_SPECIAL_ATTACK) {
         player.message("You must have 100% special attack energy to transfer.")
-        return@itemOnPlayerApproach
+        return@interfaceOnPlayerApproach
     }
     if (player.levels.get(Skill.Constitution) < 100) {
         player.message("You need more hitpoints to cast this spell.")
-        return@itemOnPlayerApproach
+        return@interfaceOnPlayerApproach
     }
     if (!target.inMultiCombat) {
         player.message("This player is not in a multi-combat zone.")
-        return@itemOnPlayerApproach
+        return@interfaceOnPlayerApproach
     }
     if (!player.removeSpellItems(spell)) {
-        return@itemOnPlayerApproach
+        return@interfaceOnPlayerApproach
     }
     val definition = definitions.get(spell)
     player.start("movement_delay", 2)

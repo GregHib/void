@@ -13,6 +13,7 @@ import content.skill.magic.spell.spell
 import content.skill.melee.weapon.fightStyle
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.interact.interfaceOnNPCApproach
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
@@ -56,12 +57,12 @@ characterApproachPlayer("Attack") {
     combatInteraction(character, target)
 }
 
-itemOnNPCApproach(id = "*_spellbook") {
+interfaceOnNPCApproach(id = "*_spellbook") {
     approachRange(8, update = false)
     player.spell = component
     if (target.id.endsWith("_dummy") && !handleCombatDummies()) {
         player.clear("spell")
-        return@itemOnNPCApproach
+        return@interfaceOnNPCApproach
     }
     player["attack_speed"] = 5
     player["one_time"] = true

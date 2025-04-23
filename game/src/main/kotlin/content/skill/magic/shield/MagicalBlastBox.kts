@@ -108,15 +108,15 @@ inventoryItem("Charge", "magical_blastbox*", "inventory") {
     charge(player, item, slot)
 }
 
-itemOnItem("air_rune", "magical_blastbox*", "inventory") {
+itemOnItem("air_rune", "magical_blastbox*") {
     charge(it, toItem, toSlot)
 }
 
-itemOnItem("chaos_rune", "magical_blastbox*", "inventory") {
+itemOnItem("chaos_rune", "magical_blastbox*") {
     charge(it, toItem, toSlot)
 }
 
-itemOnItem("death_rune", "magical_blastbox*", "inventory") {
+itemOnItem("death_rune", "magical_blastbox*") {
     charge(it, toItem, toSlot)
 }
 

@@ -135,7 +135,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.inventory.add("raw_crayfish")
         val fire = objects[Tile(3079, 3445), "fire_orange"]!!
 
-        player.itemOnObject(fire, 0, "")
+        player.itemOnObject(fire, 0)
         tick(4)
 
         assertTrue(player["shellfish_roasting_on_an_open_fire_task", false])
@@ -164,7 +164,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
         player.inventory.add("copper_ore", "tin_ore")
 
-        player.itemOnObject(furnace, 0, "")
+        player.itemOnObject(furnace, 0)
         tick()
         player.interfaceOption("skill_creation_amount", "increment")
         player.dialogueOption(id = "dialogue_skill_creation", component = "choice1")
@@ -179,7 +179,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         val anvil = objects[Tile(3229, 3254), "anvil_lumbridge"]!!
         player.inventory.add("bronze_bar", "hammer")
 
-        player.itemOnObject(anvil, 0, "")
+        player.itemOnObject(anvil, 0)
         tick()
         player.interfaceOption("smithing", "dagger_1", "Make 1 Dagger")
         tick(3)
@@ -526,7 +526,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.inventory.add("bronze_bar", "hammer")
 
         val anvil = objects[Tile(3229, 3254), "anvil_lumbridge"]!!
-        player.itemOnObject(anvil, 0, "")
+        player.itemOnObject(anvil, 0)
         tick()
         player.interfaceOption("smithing", "mace_1", "Make 1 Mace")
         tick(3)
@@ -542,7 +542,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.inventory.add("bronze_bar", "bronze_bar", "hammer")
 
         val anvil = objects[Tile(3229, 3254), "anvil_lumbridge"]!!
-        player.itemOnObject(anvil, 0, "")
+        player.itemOnObject(anvil, 0)
         tick()
         player.interfaceOption("smithing", "full_helm_1", "Make 1 Full helm")
         tick(3)
@@ -620,7 +620,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.inventory.add("raw_herring")
         val fire = objects[Tile(3079, 3445), "fire_orange"]!!
 
-        player.itemOnObject(fire, 0, "")
+        player.itemOnObject(fire, 0)
         tick(4)
 
         assertTrue(player["its_not_a_red_one_task", false])
@@ -680,7 +680,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.inventory.add("uncooked_berry_pie")
 
         val oven = objects[Tile(3230, 3196), "cooking_range_lumbridge"]!!
-        player.itemOnObject(oven, 0, "")
+        player.itemOnObject(oven, 0)
         tick(4)
 
         assertTrue(player["berry_tasty_task", false])
