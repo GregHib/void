@@ -9,6 +9,9 @@ data class InventoryUpdate(
     val inventory: String,
     val updates: List<InventorySlotChanged>
 ) : Event {
+
+    override val notification = true
+
     override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when(index) {
