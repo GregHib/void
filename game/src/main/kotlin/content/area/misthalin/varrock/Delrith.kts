@@ -1,5 +1,24 @@
 package content.area.misthalin.varrock
 
+import content.entity.combat.combatPrepare
+import content.entity.combat.npcCombatPrepare
+import content.entity.death.Death
+import content.entity.effect.transform
+import content.entity.gfx.areaGfx
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.statement
+import content.entity.proj.shoot
+import content.entity.sound.jingle
+import content.entity.sound.sound
+import content.entity.world.music.playTrack
+import content.quest.Cutscene
+import content.quest.free.demon_slayer.DemonSlayerSpell
+import content.quest.questComplete
+import content.quest.questCompleted
+import content.quest.startCutscene
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.shakeCamera
@@ -21,36 +40,21 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.npcLevelChange
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.clear
-import world.gregs.voidps.engine.map.instance.Instances
-import world.gregs.voidps.engine.queue.*
+import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.type.Delta
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
-import content.entity.player.dialogue.type.statement
-import content.entity.combat.combatPrepare
-import content.entity.effect.transform
-import content.entity.gfx.areaGfx
-import content.entity.world.music.playTrack
-import content.entity.proj.shoot
-import content.entity.sound.jingle
-import content.entity.sound.sound
-import content.quest.*
-import content.quest.free.demon_slayer.DemonSlayerSpell
-import world.gregs.voidps.engine.entity.obj.ObjectShape
+import java.util.concurrent.TimeUnit
 
 val objects: GameObjects by inject()
-val collisions: Collisions by inject()
 val npcs: NPCs by inject()
 val areas: AreaDefinitions by inject()
 
@@ -106,7 +110,6 @@ suspend fun SuspendableContext<Player>.cutscene() {
     delay(1)
     cutscene.onEnd {
         player.start("demon_slayer_instance_exit", 2)
-        player.steps.clear()
         if (player.tile.region == cutscene.instance) {
             player.tele(cutscene.original(player.tile))
         } else {
@@ -114,17 +117,18 @@ suspend fun SuspendableContext<Player>.cutscene() {
         }
         player.clearCamera()
     }
-    player.tele(cutscene.tile(3222, 3367))
     player.face(Direction.NORTH_EAST)
     player.playTrack("delrith")
     if (player["demon_slayer_summoned", false]) {
         player.queue.clear("demon_slayer_delrith_cutscene_end")
         delrith.tele(cutscene.tile(3227, 3367))
         denath.tele(cutscene.tile(3236, 3368))
-        denath.hide = false
+        player.tele(cutscene.convert(player.tile)) // TODO could be improved by getting nearest tile in inner circle area
+        delrith.hide = false
         cutscene.showTabs()
         return
     }
+    player.tele(cutscene.tile(3222, 3367))
     delay(1)
     for (wizard in wizards) {
         wizard.anim("summon_demon")
@@ -215,7 +219,7 @@ combatPrepare("melee") { player ->
 
 val words = listOf("Carlem", "Aber", "Camerinthum", "Purchai", "Gabindo")
 
-npcOperate("*", "delrith") {
+npcOperate("Banish", "delrith") {
     if (target.transform != "delrith_weakened") {
         return@npcOperate
     }
@@ -231,11 +235,11 @@ npcOperate("*", "delrith") {
             player<Talk>(text, largeHead = true, clickToContinue = false)
             val expected = DemonSlayerSpell.getWord(player, index + 1)
             if (selected != expected) {
-                target.anim("delrith_continue")
-                delay(1)
                 correct = false
-                npcs.remove(target)
+                target.anim("delrith_continue")
                 delay(2)
+                npcs.remove(target)
+                delay(1)
             } else {
                 delay(3)
             }
@@ -260,10 +264,21 @@ npcOperate("*", "delrith") {
     }
 }
 
+npcCombatPrepare("delrith") {
+    if (it.levels.get(Skill.Constitution) <= 0) {
+        cancel()
+    }
+}
 
 npcLevelChange("delrith", Skill.Constitution) { npc ->
     if (to > 0) {
         return@npcLevelChange
+    }
+    if (npc.queue.contains("death")) {
+        npc.queue.clear("death")
+    }
+    npc.strongQueue("death", TimeUnit.MINUTES.toTicks(5)) {
+        npc.emit(Death)
     }
 //    player.playSound("demon_slayer_portal_open")
     npc.transform("delrith_weakened")
@@ -288,6 +303,9 @@ fun Context<Player>.questComplete() {
     }
 }
 
+/**
+ * Spawns energy barriers in a clockwise ring
+ */
 fun spawnEnergyBarrier(cutscene: Cutscene) {
     var tile = cutscene.tile(3221, 3367)
     var rotation = 0
