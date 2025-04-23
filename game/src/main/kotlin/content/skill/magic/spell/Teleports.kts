@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit
 val areas: AreaDefinitions by inject()
 val definitions: SpellDefinitions by inject()
 
-interfaceOption("Cast", "*_teleport", "modern_spellbook") {
+interfaceOption("Cast", "*_teleport", "*_spellbook") {
     if (component != "lumbridge_home_teleport") {
         cast()
         return@interfaceOption
@@ -63,18 +63,6 @@ interfaceOption("Cast", "*_teleport", "modern_spellbook") {
             player.start("home_teleport_timeout", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
         }
     }
-}
-
-interfaceOption("Cast", "*_teleport", "ancient_spellbook") {
-    cast()
-}
-
-interfaceOption("Cast", "*_teleport", "lunar_spellbook") {
-    cast()
-}
-
-interfaceOption("Cast", "*_teleport", "dungeoneering_spellbook") {
-    cast()
 }
 
 fun InterfaceOption.cast() {

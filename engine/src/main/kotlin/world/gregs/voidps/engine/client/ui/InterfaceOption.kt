@@ -31,7 +31,6 @@ data class InterfaceOption(
 }
 
 fun interfaceOption(option: String = "*", component: String = "*", id: String, handler: suspend InterfaceOption.() -> Unit) {
-    assert(!id.contains("*")) { "Interface ids cannot contain wildcards. id=$id, component=$component, option='$option'" }
     Events.handle<InterfaceOption>("interface_option", id, component, option, "*") {
         handler.invoke(this)
     }

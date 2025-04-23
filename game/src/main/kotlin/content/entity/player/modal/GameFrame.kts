@@ -42,10 +42,7 @@ val list = listOf(
 
 Tab.entries.forEach { tab ->
     val name = tab.name.toSnakeCase()
-    interfaceOption(name.toTitleCase(), name, "toplevel") {
-        player["tab", false] = tab.name
-    }
-    interfaceOption(name.toTitleCase(), name, "toplevel_full") {
+    interfaceOption(name.toTitleCase(), name, "toplevel*") {
         player["tab", false] = tab.name
     }
 }
@@ -57,22 +54,11 @@ onInstruction<ChangeDisplayMode> { player ->
     player.interfaces.setDisplayMode(displayMode)
 }
 
-interfaceOpen("toplevel") { player ->
+interfaceOpen("toplevel*") { player ->
     openGamframe(player)
 }
 
-interfaceOpen("toplevel_full") { player ->
-    openGamframe(player)
-}
-
-interfaceRefresh("toplevel", "dialogue_npc*") { player ->
-    player.interfaces.sendVisibility(player.interfaces.gameFrame, "wilderness_level", false)
-    player.weakQueue("wild_level", 1, onCancel = null) {
-        player.interfaces.sendVisibility(player.interfaces.gameFrame, "wilderness_level", false)
-    }
-}
-
-interfaceRefresh("toplevel_full", "dialogue_npc*") { player ->
+interfaceRefresh("toplevel*", "dialogue_npc*") { player ->
     player.interfaces.sendVisibility(player.interfaces.gameFrame, "wilderness_level", false)
     player.weakQueue("wild_level", 1, onCancel = null) {
         player.interfaces.sendVisibility(player.interfaces.gameFrame, "wilderness_level", false)

@@ -21,19 +21,7 @@ playerSpawn { player ->
     player.sendVariable("spellbook_config")
 }
 
-interfaceOption(component = "filter_*", id = "modern_spellbook") {
-    filter()
-}
-
-interfaceOption(component = "filter_*", id = "ancient_spellbook") {
-    filter()
-}
-
-interfaceOption(component = "filter_*", id = "lunar_spellbook") {
-    filter()
-}
-
-interfaceOption(component = "filter_*", id = "dungeoneering_spellbook") {
+interfaceOption(component = "filter_*", id = "*_spellbook") {
     filter()
 }
 
@@ -47,19 +35,7 @@ fun InterfaceOption.filter() {
     }
 }
 
-interfaceOption(component = "sort_*", id = "modern_spellbook") {
-    sort()
-}
-
-interfaceOption(component = "sort_*", id = "ancient_spellbook") {
-    sort()
-}
-
-interfaceOption(component = "sort_*", id = "lunar_spellbook") {
-    sort()
-}
-
-interfaceOption(component = "sort_*", id = "dungeoneering_spellbook") {
+interfaceOption(component = "sort_*", id = "*_spellbook") {
     sort()
 }
 
@@ -75,18 +51,6 @@ fun InterfaceOption.sort() {
     }
 }
 
-interfaceOption("Defensive Casting", "defensive_cast", "modern_spellbook") {
-    player.toggle(component)
-}
-
-interfaceOption("Defensive Casting", "defensive_cast", "ancient_spellbook") {
-    player.toggle(component)
-}
-
-interfaceOption("Defensive Casting", "defensive_cast", "lunar_spellbook") {
-    player.toggle(component)
-}
-
-interfaceOption("Defensive Casting", "defensive_cast", "dungeoneering_spellbook") {
+interfaceOption("Defensive Casting", "defensive_cast", "*_spellbook") {
     player.toggle(component)
 }

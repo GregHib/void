@@ -11,19 +11,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 
 val interfaceDefinitions: InterfaceDefinitions by inject()
 
-interfaceOption("Autocast", id = "modern_spellbook") {
-    toggle()
-}
-
-interfaceOption("Autocast", id = "ancient_spellbook") {
-    toggle()
-}
-
-interfaceOption("Autocast", id = "lunar_spellbook") {
-    toggle()
-}
-
-interfaceOption("Autocast", id = "dungeoneering_spellbook") {
+interfaceOption("Autocast", id = "*_spellbook") {
     toggle()
 }
 
