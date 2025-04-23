@@ -1,29 +1,5 @@
 package content.area.misthalin.lumbridge
 
-import world.gregs.voidps.engine.client.clearCamera
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.moveCamera
-import world.gregs.voidps.engine.client.turnCamera
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
-import world.gregs.voidps.engine.event.Context
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.LogoutBehaviour
-import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.type.Direction
-import world.gregs.voidps.type.Region
-import world.gregs.voidps.type.Tile
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
@@ -32,6 +8,28 @@ import content.entity.sound.jingle
 import content.entity.sound.midi
 import content.entity.sound.sound
 import content.quest.*
+import world.gregs.voidps.engine.client.clearCamera
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.moveCamera
+import world.gregs.voidps.engine.client.turnCamera
+import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
 val npcs: NPCs by inject()
@@ -173,7 +171,4 @@ suspend fun Interaction<Player>.spawnGhost() {
 playerSpawn { player ->
     player.sendVariable("rocks_restless_ghost")
     player.sendVariable("restless_ghost_coffin")
-}
-
-fun Context<Player>.endCutscene(instance: Region) {
 }
