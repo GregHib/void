@@ -33,4 +33,6 @@ examine = "An evil presence seems to rest in the stone table."
 [demon_slayer_stone_table_shattered]
 id = 17438
 examine = "The stone table has been shattered."
-demon_slayer_energy_barrier = 14874
+
+[demon_slayer_energy_barrier]
+id = 14874

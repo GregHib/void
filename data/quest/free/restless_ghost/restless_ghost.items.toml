@@ -2,6 +2,7 @@
 id = 552
 tradeable = false
 weight = 0.01
+aka = ["amulet_of_ghost_speak", "amulet_of_ghostspeak"]
 slot = "Amulet"
 examine = "It's an amulet of ghostspeak. It makes vague spooky noises."
 kept = "Wilderness"
