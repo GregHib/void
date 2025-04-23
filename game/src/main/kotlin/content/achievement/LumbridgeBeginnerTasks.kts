@@ -12,10 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelCha
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.itemAdded
-import world.gregs.voidps.engine.inv.itemChange
-import world.gregs.voidps.engine.inv.itemRemoved
-import world.gregs.voidps.engine.inv.itemReplaced
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
@@ -28,6 +24,7 @@ import content.entity.npc.shop.shopOpen
 import content.entity.obj.objTeleportLand
 import content.skill.prayer.prayerStart
 import content.skill.ranged.ammo
+import world.gregs.voidps.engine.inv.*
 
 move({ player.running && !player["on_the_run_task", false] }) {
     player["on_the_run_task"] = true
@@ -77,8 +74,8 @@ timerStop("firemaking") { player ->
     }
 }
 
-itemReplaced("raw_crayfish", "crayfish", "inventory") { player ->
-    if (player.softTimers.contains("cooking")) {
+itemRemoved("raw_crayfish", inventory = "inventory") { player ->
+    if (player.inventory[index].id == "crayfish" && player.softTimers.contains("cooking")) {
         player["shellfish_roasting_on_an_open_fire_task"] = true
     }
 }
@@ -103,7 +100,7 @@ itemAdded("bronze_dagger", inventory = "inventory") { player ->
 
 val styleDefinitions: WeaponStyleDefinitions by inject()
 
-itemChange("worn_equipment") { player ->
+inventoryChanged("worn_equipment") { player ->
     when (index) {
         EquipSlot.Feet.index, EquipSlot.Shield.index, EquipSlot.Legs.index, EquipSlot.Chest.index -> {
             if (item.id.contains("iron")) {
@@ -155,9 +152,9 @@ itemChange("worn_equipment") { player ->
     }
 }
 
-itemChange("worn_equipment", EquipSlot.Weapon.index) { player ->
+inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->
     if (player["armed_and_dangerous_task", false] && player["just_cant_get_the_staff_task", false] && player["reach_out_and_touch_someone_task", false]) {
-        return@itemChange
+        return@inventoryChanged
     }
 }
 
@@ -182,8 +179,10 @@ npcDeath("cow*") { cow ->
     }
 }
 
-itemReplaced("cowhide", "leather") { player ->
-    player["tan_your_hide_task"] = true
+itemRemoved("cowhide", inventory = "inventory") { player ->
+    if (player.inventory[index].id == "leather") {
+        player["tan_your_hide_task"] = true
+    }
 }
 
 itemAdded("leather_gloves", inventory = "inventory") { player ->
@@ -192,7 +191,7 @@ itemAdded("leather_gloves", inventory = "inventory") { player ->
     }
 }
 
-itemChange(item = "leather_gloves", index = EquipSlot.Hands.index, inventory = "worn_equipment") { player ->
+itemAdded(item = "leather_gloves", index = EquipSlot.Hands.index, inventory = "worn_equipment") { player ->
     player["handy_dandy_task"] = true
 }
 
@@ -200,7 +199,7 @@ combatAttack(spell = "wind_strike") { player ->
     player["death_from_above_task"] = true
 }
 
-itemReplaced(to = "bread", inventory = "inventory") { player ->
+itemAdded("bread", inventory = "inventory") { player ->
     if (player.softTimers.contains("cooking")) {
         player["a_labour_of_loaf_task"] = true
     }
@@ -322,14 +321,14 @@ itemAdded("raw_sardine", inventory = "inventory") { player ->
     }
 }
 
-itemReplaced("raw_herring", "herring", "inventory") { player ->
-    if (player.softTimers.contains("cooking")) {
+itemRemoved("raw_herring", inventory = "inventory") { player ->
+    if(player.inventory[index].id == "herring" && player.softTimers.contains("cooking")) {
         player["its_not_a_red_one_task"] = true
     }
 }
 
-itemReplaced("uncooked_berry_pie", "redberry_pie", "inventory") { player ->
-    if (player.softTimers.contains("cooking")) {
+itemRemoved("uncooked_berry_pie", inventory = "inventory") { player ->
+    if(player.inventory[index].id == "redberry_pie" && player.softTimers.contains("cooking")) {
         player["berry_tasty_task"] = true
     }
 }

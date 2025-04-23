@@ -71,7 +71,7 @@ inventoryOption("Remove", "worn_equipment") {
     }
 }
 
-itemChange("worn_equipment", EquipSlot.Weapon) { player ->
+inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->
     updateWeaponEmote(player)
 }
 

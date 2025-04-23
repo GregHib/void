@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.itemChange
+import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import content.skill.melee.weapon.attackRange
 import world.gregs.voidps.engine.client.ui.InterfaceOption
@@ -30,6 +30,6 @@ variableSet("autocast", to = null) { player ->
     player.clear("autocast_spell")
 }
 
-itemChange("worn_equipment", EquipSlot.Weapon) { player ->
+inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->
     player.clear("autocast")
 }

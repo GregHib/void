@@ -99,7 +99,7 @@ combatAttack(spell = "*_surge") { player ->
 }
 
 itemRemoved("celestial_surgebox*", EquipSlot.Shield, "worn_equipment") { player ->
-    setCharges(player, 0, fromItem.id != "celestial_surgebox")
+    setCharges(player, 0, item.id != "celestial_surgebox")
 }
 
 inventoryItem("Charge", "celestial_surgebox*", "inventory") {

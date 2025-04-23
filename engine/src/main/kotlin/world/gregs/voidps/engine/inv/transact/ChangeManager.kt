@@ -1,10 +1,9 @@
 package world.gregs.voidps.engine.inv.transact
 
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
-import world.gregs.voidps.engine.inv.Inventory
-import world.gregs.voidps.engine.inv.InventoryUpdate
-import world.gregs.voidps.engine.inv.ItemChanged
+import world.gregs.voidps.engine.inv.*
 import java.util.*
 
 /**
@@ -13,7 +12,7 @@ import java.util.*
 class ChangeManager(
     private val inventory: Inventory
 ) {
-    private val changes: Stack<ItemChanged> = Stack()
+    private val changes: Stack<Event> = Stack()
     private val events = mutableSetOf<EventDispatcher>()
 
     /**
@@ -25,18 +24,24 @@ class ChangeManager(
      * @param item the current state of the item
      */
     fun track(from: String, index: Int, previous: Item, fromIndex: Int, item: Item) {
-        changes.add(ItemChanged(inventory.id, index, item, from, fromIndex, previous))
+        if (previous.isNotEmpty()) {
+            changes.add(ItemRemoved(from, fromIndex, previous))
+        }
+        if (item.isNotEmpty()) {
+            changes.add(ItemAdded(inventory.id, index, item))
+        }
+        changes.add(InventorySlotChanged(inventory.id, index, item, from, fromIndex, previous))
     }
 
     /**
-     * Adds [events] to the list of recipients of [ItemChanged] updates in this inventory.
+     * Adds [events] to the list of recipients of [InventorySlotChanged] updates in this inventory.
      */
     fun bind(events: EventDispatcher) {
         this.events.add(events)
     }
 
     /**
-     * Removes [events] to the list of recipients of [ItemChanged] updates in this inventory.
+     * Removes [events] to the list of recipients of [InventorySlotChanged] updates in this inventory.
      */
     fun unbind(events: EventDispatcher) {
         this.events.remove(events)
@@ -49,7 +54,7 @@ class ChangeManager(
         if (changes.isEmpty()) {
             return
         }
-        val update = InventoryUpdate(inventory.id, changes)
+        val update = InventoryUpdate(inventory.id, changes.filterIsInstance<InventorySlotChanged>())
         for (events in events) {
             events.emit(update)
             for (change in changes) {

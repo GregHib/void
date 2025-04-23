@@ -101,7 +101,7 @@ combatAttack(spell = "*_blast") { player ->
 }
 
 itemRemoved("magical_blastbox*", EquipSlot.Shield, "worn_equipment") { player ->
-    setCharges(player, 0, fromItem.id != "magical_blastbox")
+    setCharges(player, 0, item.id != "magical_blastbox")
 }
 
 inventoryItem("Charge", "magical_blastbox*", "inventory") {

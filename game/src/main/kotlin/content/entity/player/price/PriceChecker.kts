@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.itemChange
+import world.gregs.voidps.engine.inv.inventoryUpdate
 import world.gregs.voidps.engine.inv.moveAll
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -88,7 +88,7 @@ interfaceClose("price_checker_side") { player ->
     player.open("inventory")
 }
 
-itemChange("trade_offer") { player ->
+inventoryUpdate("trade_offer") { player ->
     var total = 0L
     for (index in player.offer.indices) {
         val item = player.offer[index]

@@ -72,7 +72,6 @@ fun Player.skillCreation(
 
 fun Player.interfaceUse(
     id: String,
-    component: String,
     inventory: String = "",
     fromItem: Item = Item("", -1),
     toItem: Item = Item("", -1),
@@ -86,10 +85,6 @@ fun Player.interfaceUse(
             toItem = toItem,
             fromSlot = fromSlot,
             toSlot = toSlot,
-            fromInterface = id,
-            fromComponent = component,
-            toInterface = id,
-            toComponent = component,
             fromInventory = inventory,
             toInventory = inventory
         )
@@ -184,9 +179,7 @@ fun Player.itemOnItem(
     firstSlot: Int,
     secondSlot: Int,
     firstInventory: String = "inventory",
-    firstComponent: String = "inventory",
     secondInventory: String = firstInventory,
-    secondComponent: String = firstComponent
 ) {
     val one = inventories.inventory(firstInventory)
     val two = inventories.inventory(secondInventory)
@@ -196,10 +189,6 @@ fun Player.itemOnItem(
             two[secondSlot],
             firstSlot,
             secondSlot,
-            firstInventory,
-            firstComponent,
-            secondInventory,
-            secondComponent,
             firstInventory,
             secondInventory
         )
