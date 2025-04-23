@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.itemChange
+import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
@@ -154,7 +154,7 @@ fun areaClear(player: Player): Boolean {
     return true
 }
 
-itemChange("worn_equipment", EquipSlot.Cape) { player ->
+inventoryChanged("worn_equipment", EquipSlot.Cape) { player ->
     player["unlocked_emote_skillcape"] = item.def.contains("skill_cape") || item.def.contains("skill_cape_t") || item.id == "quest_point_cape"
 }
 

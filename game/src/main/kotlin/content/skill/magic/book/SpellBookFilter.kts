@@ -1,5 +1,6 @@
 package content.skill.magic.book
 
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -21,6 +22,10 @@ playerSpawn { player ->
 }
 
 interfaceOption(component = "filter_*", id = "*_spellbook") {
+    filter()
+}
+
+fun InterfaceOption.filter() {
     val key = "spellbook_sort"
     val id = "${id}:$component"
     if (player.containsVarbit(key, id)) {
@@ -31,6 +36,10 @@ interfaceOption(component = "filter_*", id = "*_spellbook") {
 }
 
 interfaceOption(component = "sort_*", id = "*_spellbook") {
+    sort()
+}
+
+fun InterfaceOption.sort() {
     val key = "spellbook_sort"
     if (component.startsWith("sort_")) {
         // Make sure don't sort by multiple at once

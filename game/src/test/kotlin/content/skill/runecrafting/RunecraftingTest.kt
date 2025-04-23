@@ -70,7 +70,7 @@ internal class RunecraftingTest : WorldTest() {
             player.inventory.add("pure_essence")
 
             val altar = objects[altarTile, "${type}_altar"]!!
-            player.itemOnObject(altar, 0, "pure_essence")
+            player.itemOnObject(altar, 0)
             tick(1)
             tickIf { player.visuals.moved }
 
@@ -89,7 +89,7 @@ internal class RunecraftingTest : WorldTest() {
             player.inventory.add("pure_essence")
 
             val altar = objects[altarTile, "${type}_altar"]!!
-            player.itemOnObject(altar, 0, "pure_essence")
+            player.itemOnObject(altar, 0)
             tick(1)
             tickIf { player.visuals.moved }
 

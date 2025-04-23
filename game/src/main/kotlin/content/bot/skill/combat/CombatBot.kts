@@ -32,13 +32,13 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import content.skill.slayer.race
 import content.entity.combat.attackers
 import content.entity.combat.inCombat
 import content.entity.death.playerDeath
 import content.entity.death.weightedSample
 import content.skill.magic.spell.removeSpellItems
 import content.skill.magic.spell.spell
+import content.skill.slayer.categories
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
@@ -158,7 +158,7 @@ fun Bot.isAvailableTarget(map: AreaDefinition, npc: NPC, races: Set<String>): Bo
     if (!npc.def.options.contains("Attack")) {
         return false
     }
-    if (!races.contains(npc.def.name.toSnakeCase()) && !races.contains(npc.race)) {
+    if (!races.contains(npc.def.name.toSnakeCase()) && npc.categories.none { races.contains(it) }) {
         return false
     }
     if (!map.area.contains(npc.tile)) {

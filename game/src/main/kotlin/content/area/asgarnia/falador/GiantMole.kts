@@ -28,10 +28,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.itemChange
-import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
+import world.gregs.voidps.engine.inv.inventoryUpdate
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
@@ -179,7 +176,7 @@ playerSpawn { player ->
     }
 }
 
-itemChange("inventory") { player: Player ->
+inventoryUpdate("inventory") { player: Player ->
     if (giantMoleLair.contains(player.tile)) {
         val hasLightSource = hasLightSource(player)
         if (!hasLightSource && !player.interfaces.contains("level_three_darkness")) {

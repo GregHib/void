@@ -28,7 +28,7 @@ class InstructionHandlers(
     private val interactFloorItem = FloorItemOptionHandler(items)
     private val interactDialogue = DialogueContinueHandler(interfaceDefinitions)
     private val closeInterface = InterfaceClosedHandler()
-    private val interactInterface = InterfaceOptionHandler(handler, interfaceDefinitions)
+    val interactInterface = InterfaceOptionHandler(handler, interfaceDefinitions)
     private val moveInventoryItem = InterfaceSwitchHandler(handler)
     private val interactNPC = NPCOptionHandler(npcs, npcDefinitions)
     private val interactObject = ObjectOptionHandler(objects, objectDefinitions)

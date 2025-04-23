@@ -10,8 +10,6 @@ import world.gregs.voidps.engine.event.Events
 data class ItemOnPlayer<C : Character>(
     override val character: C,
     override val target: Player,
-    val id: String,
-    val component: String,
     val item: Item,
     val itemSlot: Int,
     val inventory: String
@@ -23,20 +21,18 @@ data class ItemOnPlayer<C : Character>(
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> if (approach) "item_on_approach_player" else "item_on_operate_player"
         1 -> item.id
-        2 -> id
-        3 -> component
         else -> null
     }
 }
 
-fun itemOnPlayerOperate(item: String = "*", id: String = "*", component: String = "*", handler: suspend ItemOnPlayer<Player>.() -> Unit) {
-    Events.handle<ItemOnPlayer<Player>>("item_on_operate_player", item, id, component) {
+fun itemOnPlayerOperate(item: String = "*", handler: suspend ItemOnPlayer<Player>.() -> Unit) {
+    Events.handle<ItemOnPlayer<Player>>("item_on_operate_player", item) {
         handler.invoke(this)
     }
 }
 
-fun itemOnPlayerApproach(item: String = "*", id: String = "*", component: String = "*", handler: suspend ItemOnPlayer<Player>.() -> Unit) {
-    Events.handle<ItemOnPlayer<Player>>("item_on_approach_player", item, id, component) {
+fun itemOnPlayerApproach(item: String = "*", handler: suspend ItemOnPlayer<Player>.() -> Unit) {
+    Events.handle<ItemOnPlayer<Player>>("item_on_approach_player", item) {
         handler.invoke(this)
     }
 }

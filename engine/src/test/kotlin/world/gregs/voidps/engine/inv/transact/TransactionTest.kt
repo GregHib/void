@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.inv.Inventory
-import world.gregs.voidps.engine.inv.ItemChanged
+import world.gregs.voidps.engine.inv.InventorySlotChanged
 import world.gregs.voidps.engine.inv.transact.operation.TransactionOperationTest
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -22,7 +22,7 @@ class TransactionTest : TransactionOperationTest() {
         transaction.changes.bind(events)
         transaction.set(0, Item("item", 1))
         transaction.changes.send()
-        verify { events.emit(any<ItemChanged>()) }
+        verify { events.emit(any<InventorySlotChanged>()) }
     }
 
 

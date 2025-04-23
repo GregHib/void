@@ -22,15 +22,11 @@ val levelHandler: suspend CurrentLevelChanged.(NPC) -> Unit = handler@{ npc ->
 npcLevelChange("melee_dummy", Skill.Constitution, handler = levelHandler)
 npcLevelChange("magic_dummy", Skill.Constitution, handler = levelHandler)
 
-combatPrepare("magic") { player ->
+combatPrepare { player ->
     if (target is NPC && target.id == "magic_dummy" && player.fightStyle != "magic") {
         player.message("You can only use Magic against this dummy.")
         cancel()
-    }
-}
-
-combatPrepare("melee") { player ->
-    if (target is NPC && target.id == "melee_dummy" && player.fightStyle != "melee") {
+    } else if (target is NPC && target.id == "melee_dummy" && player.fightStyle != "melee") {
         player.message("You can only use Melee against this dummy.")
         cancel()
     }

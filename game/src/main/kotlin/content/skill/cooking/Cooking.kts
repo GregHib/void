@@ -32,7 +32,7 @@ val objects: GameObjects by inject()
 
 val GameObject.cookingRange: Boolean get() = id.startsWith("cooking_range")
 
-itemOnObjectOperate(objects = setOf("fire_*", "cooking_range*"), def = "cooking") {
+itemOnObjectOperate(objects = setOf("fire_*", "cooking_range*")) {
     val start = GameLoop.tick
     var sinew = false
     if (item.id == "raw_beef" && target.id.startsWith("cooking_range")) {
@@ -101,7 +101,6 @@ fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked, offs
 fun Player.failedToReplace(item: Item, raw: Uncooked, cooked: Boolean): Boolean {
     val id = if (cooked) raw.cooked else raw.burnt
     val itemId = id.ifEmpty { item.id.replace("raw", if (cooked) "cooked" else "burnt") }
-    println("Replace ${item.id} $itemId")
     if (!inventory.replace(item.id, itemId)) {
         return true
     }

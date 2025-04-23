@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.data.Settings
@@ -51,6 +52,13 @@ class NPCDefinitions(
                                         spots[type] = spot
                                     }
                                     extras[key] = spots
+                                }
+                                "categories" -> {
+                                    val categories = ObjectLinkedOpenHashSet<String>(2, Hash.VERY_FAST_LOAD_FACTOR)
+                                    while (nextElement()) {
+                                        categories.add(string())
+                                    }
+                                    extras["categories"] = categories
                                 }
                                 else -> extras[key] = value()
                             }

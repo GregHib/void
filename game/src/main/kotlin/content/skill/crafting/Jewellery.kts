@@ -7,6 +7,7 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
@@ -40,6 +41,10 @@ itemOnObjectOperate("*_mould", "furnace*", arrive = false) {
 }
 
 interfaceRefresh("make_mould*") { player ->
+    makeMould(player)
+}
+
+fun InterfaceRefreshed.makeMould(player: Player) {
     for (type in moulds) {
         val showText = !player.inventory.contains("${type}_mould")
         player.interfaces.sendVisibility(id, "${type}_text", showText)

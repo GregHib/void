@@ -10,8 +10,6 @@ import world.gregs.voidps.engine.event.Events
 data class ItemOnObject(
     override val character: Player,
     override val target: GameObject,
-    val id: String,
-    val component: String,
     val item: Item,
     val itemSlot: Int,
     val inventory: String
@@ -19,76 +17,39 @@ data class ItemOnObject(
 
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 
-    override val size = 5
+    override val size = 3
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> if (approach) "item_on_approach_object" else "item_on_operate_object"
         1 -> item.id
         2 -> target.id
-        3 -> id
-        4 -> component
         else -> null
     }
 }
 
-fun itemOnObjectOperate(
-    item: String = "*",
-    obj: String = "*",
-    id: String = "*",
-    component: String = "*",
-    itemDef: String = "*",
-    arrive: Boolean = true,
-    handler: suspend ItemOnObject.() -> Unit
-) {
-    if (itemDef != "*") {
-        Events.handle<ItemOnObject>("item_on_operate_object", "*", obj, id, component) {
-            if (this.item.def.contains(itemDef)) {
-                if (arrive) {
-                    arriveDelay()
-                }
-                handler.invoke(this)
-            }
+fun itemOnObjectOperate(item: String = "*", obj: String = "*", arrive: Boolean = true, handler: suspend ItemOnObject.() -> Unit) {
+    Events.handle<ItemOnObject>("item_on_operate_object", item, obj) {
+        if (arrive) {
+            arriveDelay()
         }
-    } else {
-        Events.handle<ItemOnObject>("item_on_operate_object", item, obj, id, component){
-            if (arrive) {
-                arriveDelay()
-            }
-            handler.invoke(this)
-        }
-    }
-}
-
-fun itemOnObjectApproach(item: String = "*", obj: String = "*", id: String = "*", component: String = "*", handler: suspend ItemOnObject.() -> Unit) {
-    Events.handle<ItemOnObject>("item_on_approach_object", item, obj, id, component) {
         handler.invoke(this)
     }
 }
 
-fun itemOnObjectOperate(
-    items: Set<String> = setOf("*"),
-    objects: Set<String> = setOf("*"),
-    def: String = "*",
-    id: String = "*",
-    component: String = "*",
-    arrive: Boolean = true,
-    block: suspend ItemOnObject.() -> Unit
-) {
+fun itemOnObjectApproach(item: String = "*", obj: String = "*", handler: suspend ItemOnObject.() -> Unit) {
+    Events.handle<ItemOnObject>("item_on_approach_object", item, obj) {
+        handler.invoke(this)
+    }
+}
+
+fun itemOnObjectOperate(objects: Set<String> = setOf("*"), arrive: Boolean = true, block: suspend ItemOnObject.() -> Unit) {
     val handler: suspend ItemOnObject.(Player) -> Unit = {
         if (arrive) {
             arriveDelay()
         }
         block.invoke(this)
     }
-    if (def != "*") {
-        for (obj in objects) {
-            Events.handle("item_on_operate_object", "*", obj, id, component, handler = handler)
-        }
-    } else {
-        for (obj in objects) {
-            for (item in items) {
-                Events.handle("item_on_approach_object", item, obj, id, component, handler = handler)
-            }
-        }
+    for (obj in objects) {
+        Events.handle("item_on_operate_object", "*", obj, handler = handler)
     }
 }

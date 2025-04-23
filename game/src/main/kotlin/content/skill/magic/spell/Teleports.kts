@@ -14,16 +14,60 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.queue
 import content.entity.player.inv.inventoryItem
 import content.entity.sound.sound
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.withContext
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.engine.timer.epochSeconds
+import java.util.concurrent.TimeUnit
 
 val areas: AreaDefinitions by inject()
 val definitions: SpellDefinitions by inject()
 
 interfaceOption("Cast", "*_teleport", "*_spellbook") {
-    if (component == "lumbridge_home_teleport") {
+    if (component != "lumbridge_home_teleport") {
+        cast()
         return@interfaceOption
     }
-    if (player.contains("delay") || player.queue.contains("teleport")) {
+    val seconds = player.remaining("home_teleport_timeout", epochSeconds())
+    if (seconds > 0) {
+        val remaining = TimeUnit.SECONDS.toMinutes(seconds.toLong())
+        player.message("You have to wait $remaining ${"minute".plural(remaining)} before trying this again.")
         return@interfaceOption
+    }
+    if (player.hasClock("teleport_delay")) {
+        return@interfaceOption
+    }
+    player.weakQueue("home_teleport") {
+        if (!player.removeSpellItems(component)) {
+            cancel()
+            return@weakQueue
+        }
+        onCancel = {
+            player.start("teleport_delay", 1)
+        }
+        player.start("teleport_delay", 17)
+        repeat(17) {
+            player.gfx("home_tele_${it + 1}")
+            val ticks = player.anim("home_tele_${it + 1}")
+            pause(ticks)
+        }
+        withContext(NonCancellable) {
+            player.tele(areas["lumbridge_teleport"].random())
+            player["click_your_heels_three_times_task"] = true
+            player.start("home_teleport_timeout", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
+        }
+    }
+}
+
+fun InterfaceOption.cast() {
+    if (player.contains("delay") || player.queue.contains("teleport")) {
+        return
     }
     player.closeInterfaces()
     player.queue("teleport", onCancel = null) {

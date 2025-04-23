@@ -73,7 +73,7 @@ internal class DropTest : WorldTest() {
         val player = createPlayer("player", tile)
         player.inventory.add("bronze_sword")
         val drawers = objects[tile.addX(1), "table_lumbridge"]!!
-        player.itemOnObject(drawers, itemSlot = 0, id = "bronze_sword")
+        player.itemOnObject(drawers, itemSlot = 0)
 
         assertTrue(player.inventory.isEmpty())
         assertTrue(floorItems[tile.addX(1)].any { it.id == "bronze_sword" })
@@ -86,7 +86,7 @@ internal class DropTest : WorldTest() {
         player.inventory.add("toolkit")
         val drawers = objects[tile.addX(1), "table_lumbridge"]!!
 
-        player.itemOnObject(drawers, itemSlot = 0, id = "toolkit")
+        player.itemOnObject(drawers, itemSlot = 0)
 
         assertTrue(player.inventory.contains("toolkit"))
         assertFalse(floorItems[tile.addX(1)].any { it.id == "toolkit" })

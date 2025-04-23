@@ -46,7 +46,7 @@ examine = "Speaks on behalf of His and Her Royal Frogness."
 [quiz_master]
 id = 2477
 interact_distance = 4
-race = "human"
+categories = ["human"]
 examine = "Apparently a master of quizzes!"
 
 [prison_pete]

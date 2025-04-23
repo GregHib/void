@@ -10,7 +10,7 @@ slayer_xp = 5.0
 max_hit_melee = 10
 style = "stab"
 respawn_delay = 45
-race = "giant_spider"
+categories = ["giant_spider"]
 height = 10
 examine = "I think this spider has been genetically modified."
 
@@ -27,7 +27,7 @@ hunt_range = 1
 slayer_xp = 33
 max_hit_melee = 30
 style = "stab"
-race = "giant_spider"
+categories = ["giant_spider"]
 height = 10
 examine = "I think this spider has been genetically modified."
 
@@ -45,6 +45,6 @@ hunt_range = 1
 slayer_xp = 50
 max_hit_melee = 70
 style = "stab"
-race = "giant_spider"
+categories = ["giant_spider"]
 height = 10
 examine = "I think this spider has been genetically modified."

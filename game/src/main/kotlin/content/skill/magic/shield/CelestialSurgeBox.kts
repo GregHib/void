@@ -99,22 +99,22 @@ combatAttack(spell = "*_surge") { player ->
 }
 
 itemRemoved("celestial_surgebox*", EquipSlot.Shield, "worn_equipment") { player ->
-    setCharges(player, 0, fromItem.id != "celestial_surgebox")
+    setCharges(player, 0, item.id != "celestial_surgebox")
 }
 
 inventoryItem("Charge", "celestial_surgebox*", "inventory") {
     charge(player, item, slot)
 }
 
-itemOnItem("air_rune", "celestial_surgebox*", "inventory") {
+itemOnItem("air_rune", "celestial_surgebox*") {
     charge(it, toItem, toSlot)
 }
 
-itemOnItem("blood_rune", "celestial_surgebox*", "inventory") {
+itemOnItem("blood_rune", "celestial_surgebox*") {
     charge(it, toItem, toSlot)
 }
 
-itemOnItem("death_rune", "celestial_surgebox*", "inventory") {
+itemOnItem("death_rune", "celestial_surgebox*") {
     charge(it, toItem, toSlot)
 }
 

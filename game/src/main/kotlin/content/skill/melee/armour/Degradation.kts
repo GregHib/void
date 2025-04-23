@@ -4,13 +4,10 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.charges
-import world.gregs.voidps.engine.inv.discharge
-import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.combatDamage
+import world.gregs.voidps.engine.inv.*
 
 combatDamage { player ->
     degrade(player)
@@ -44,18 +41,18 @@ fun degrade(player: Player) {
     }
 }
 
-itemChange { player ->
+inventoryChanged { player ->
     val inventory = player.inventories.inventory(inventory)
-    val degrade: String = fromItem.def.getOrNull("degrade") ?: return@itemChange
+    val degrade: String = fromItem.def.getOrNull("degrade") ?: return@inventoryChanged
     if (degrade == "destroy" && item.isNotEmpty()) {
-        return@itemChange
+        return@inventoryChanged
     }
     if (item.id != degrade) {
-        return@itemChange
+        return@inventoryChanged
     }
     if (inventory.charges(player, fromIndex) != 0) {
-        return@itemChange
+        return@inventoryChanged
     }
-    val message: String = fromItem.def.getOrNull("degrade_message") ?: return@itemChange
+    val message: String = fromItem.def.getOrNull("degrade_message") ?: return@inventoryChanged
     player.message(message)
 }

@@ -44,7 +44,10 @@ objectOperate("Weave", "loom_*", arrive = false) {
     weave(target, item, amount)
 }
 
-itemOnObjectOperate(obj = "loom_*", itemDef = "weaving", arrive = false) {
+itemOnObjectOperate(obj = "loom_*", arrive = false) {
+    if (!item.def.contains("weaving")) {
+        return@itemOnObjectOperate
+    }
     val (_, amount) = makeAmount(
         items = listOf(item.weaving.to),
         type = "Make",

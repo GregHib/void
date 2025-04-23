@@ -12,9 +12,9 @@ enum class Tab {
     PrayerList,
     MagicSpellbook,
     FriendsList,
-    FriendsChat,
-    ClanChat,
+    IgnoreList,
     Options,
+    ClanChat,
     Emotes,
     MusicPlayer,
     Notes;

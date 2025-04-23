@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.InventoryUpdate
-import world.gregs.voidps.engine.inv.ItemChanged
+import world.gregs.voidps.engine.inv.InventorySlotChanged
 
 internal class ChangeManagerTest {
 
@@ -29,7 +29,7 @@ internal class ChangeManagerTest {
         change.track(from = "inventory", index = 1, previous = Item.EMPTY, fromIndex = 1, item = Item("item", 1))
         change.send()
         verify {
-            events.emit(any<ItemChanged>())
+            events.emit(any<InventorySlotChanged>())
             events.emit(any<InventoryUpdate>())
         }
     }

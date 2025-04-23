@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.itemAdded
-import world.gregs.voidps.engine.inv.itemChange
+import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
@@ -73,7 +73,7 @@ playerSpawn { player ->
     update(player)
 }
 
-itemChange("worn_equipment", EquipSlot.Chest) { player ->
+inventoryChanged("worn_equipment", EquipSlot.Chest) { player ->
     if (item.def["material", ""] == "metal" || fromItem.def["material", ""] == "metal") {
         update(player)
     }

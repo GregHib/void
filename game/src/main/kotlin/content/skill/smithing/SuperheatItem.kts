@@ -1,7 +1,6 @@
 package content.skill.smithing
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smelting
@@ -14,24 +13,25 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.remove
 import content.skill.magic.spell.SpellRunes.removeItems
 import content.entity.sound.sound
+import world.gregs.voidps.engine.client.ui.interact.interfaceOnItem
 
 val spellDefinitions: SpellDefinitions by inject()
 val itemDefinitions: ItemDefinitions by inject()
 
-itemOnItem(fromInterface = "modern_spellbook", fromComponent = "superheat_item") { player ->
-    if (!toItem.id.endsWith("_ore")) {
+interfaceOnItem("modern_spellbook", "superheat_item") { player ->
+    if (!item.id.endsWith("_ore")) {
         player.message("You need to cast superheat item on ore.")
-        return@itemOnItem
+        return@interfaceOnItem
     }
-    var bar = toItem.id.replace("_ore", "_bar")
+    var bar = item.id.replace("_ore", "_bar")
     if (bar == "iron_bar" && player.inventory.count("coal") >= 2) {
         bar = "steel_bar"
     }
     val smelting: Smelting = itemDefinitions.get(bar)["smelting"]
     if (!player.has(Skill.Smithing, smelting.level, message = true)) {
-        return@itemOnItem
+        return@interfaceOnItem
     }
-    val spell = fromComponent
+    val spell = component
     player.inventory.transaction {
         removeItems(player, spell)
         remove(smelting.items)

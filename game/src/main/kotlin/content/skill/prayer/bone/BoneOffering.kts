@@ -12,7 +12,10 @@ import world.gregs.voidps.type.Tile
 import content.entity.player.dialogue.type.makeAmount
 import content.entity.gfx.areaGfx
 
-itemOnObjectOperate(obj = "altar*", itemDef = "prayer_xp") {
+itemOnObjectOperate(obj = "altar*") {
+    if (!item.def.contains("prayer_xp")) {
+        return@itemOnObjectOperate
+    }
     val tile = target.nearestTo(player.tile)
     val count = player.inventory.count(item.id)
     if (count > 1) {

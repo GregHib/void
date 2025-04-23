@@ -8,10 +8,10 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.inject
-import content.skill.slayer.race
 import content.entity.combat.hit.hit
 import content.entity.combat.npcCombatSwing
 import content.entity.sound.sound
+import content.skill.slayer.categories
 
 val definitions: WeaponStyleDefinitions by inject()
 val animationDefinitions: AnimationDefinitions by inject()
@@ -54,15 +54,15 @@ fun attackSound(npc: NPC): String {
             return sound
         }
     }
-    if (npc.race.isNotEmpty()) {
-        sound = "${npc.race}_attack"
-        if (soundDefinitions.contains(sound)) {
-            return sound
-        }
-    }
     sound = "${npc.id}_attack"
     if (soundDefinitions.contains(sound)) {
         return sound
+    }
+    for (category in npc.categories) {
+        sound = "${category}_attack"
+        if (soundDefinitions.contains(sound)) {
+            return sound
+        }
     }
     return ""
 }

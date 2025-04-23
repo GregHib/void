@@ -1,7 +1,6 @@
 package content.skill.magic.book.lunar
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnPlayerApproach
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.name
@@ -9,22 +8,23 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inject
 import content.entity.combat.hit.damage
 import content.skill.magic.spell.removeSpellItems
+import world.gregs.voidps.engine.client.ui.interact.interfaceOnPlayerApproach
 
 val definitions: SpellDefinitions by inject()
 
-itemOnPlayerApproach(id = "lunar_spellbook", component = "heal_other") {
+interfaceOnPlayerApproach(id = "lunar_spellbook", component = "heal_other") {
     approachRange(2)
     val spell = component
     if (target.levels.getOffset(Skill.Constitution) >= 0) {
         player.message("This player does not need healing.")
-        return@itemOnPlayerApproach
+        return@interfaceOnPlayerApproach
     }
     if (player.levels.get(Skill.Constitution) < player.levels.getMax(Skill.Constitution) * 0.11) {
         player.message("You don't have enough life points.")
-        return@itemOnPlayerApproach
+        return@interfaceOnPlayerApproach
     }
     if (!player.removeSpellItems(spell)) {
-        return@itemOnPlayerApproach
+        return@interfaceOnPlayerApproach
     }
     val definition = definitions.get(spell)
     val amount = (player.levels.get(Skill.Constitution) * 0.75).toInt() + 1

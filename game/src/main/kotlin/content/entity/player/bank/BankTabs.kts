@@ -4,11 +4,11 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.interfaceSwap
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.Inventory
-import world.gregs.voidps.engine.inv.itemChange
+import world.gregs.voidps.engine.inv.inventoryUpdate
 import world.gregs.voidps.engine.inv.shift
 import world.gregs.voidps.engine.inv.swap
 
-itemChange("bank") { player ->
+inventoryUpdate("bank") { player ->
     player["bank_spaces_used_free"] = player.bank.countFreeToPlayItems()
     player["bank_spaces_used_member"] = player.bank.count
 }

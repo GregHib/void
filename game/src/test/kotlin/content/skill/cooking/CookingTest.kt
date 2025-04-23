@@ -23,7 +23,7 @@ internal class CookingTest : WorldTest() {
         player.inventory.add("raw_shrimps", 3)
         val fire = createObject("fire_orange", emptyTile.addY(1))
 
-        player.itemOnObject(fire, 0, "")
+        player.itemOnObject(fire, 0)
         tick()
         player.interfaceOption("skill_creation_amount", "increment", "+1")
         player.dialogueOption(id = "dialogue_skill_creation", component = "choice1")

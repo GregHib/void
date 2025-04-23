@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.instruction.onInstruction
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.client.instruction.ChangeDisplayMode
 
@@ -30,7 +31,7 @@ val list = listOf(
     "prayer_list",
     "modern_spellbook",
     "friends_list",
-    "ignores_list",
+    "ignore_list",
     "clan_chat",
     "options",
     "emotes",
@@ -54,6 +55,17 @@ onInstruction<ChangeDisplayMode> { player ->
 }
 
 interfaceOpen("toplevel*") { player ->
+    openGamframe(player)
+}
+
+interfaceRefresh("toplevel*", "dialogue_npc*") { player ->
+    player.interfaces.sendVisibility(player.interfaces.gameFrame, "wilderness_level", false)
+    player.weakQueue("wild_level", 1, onCancel = null) {
+        player.interfaces.sendVisibility(player.interfaces.gameFrame, "wilderness_level", false)
+    }
+}
+
+fun GameFrame.openGamframe(player: Player) {
     for (name in list) {
         if (name.endsWith("_spellbook")) {
             val book = player["spellbook_config", 0] and 0x3
@@ -68,12 +80,5 @@ interfaceOpen("toplevel*") { player ->
         } else {
             player.open(name)
         }
-    }
-}
-
-interfaceRefresh("toplevel*", "dialogue_npc*") { player ->
-    player.interfaces.sendVisibility(player.interfaces.gameFrame, "wilderness_level", false)
-    player.weakQueue("wild_level", 1, onCancel = null) {
-        player.interfaces.sendVisibility(player.interfaces.gameFrame, "wilderness_level", false)
     }
 }

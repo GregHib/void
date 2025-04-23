@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ItemDefinition
@@ -37,7 +38,12 @@ class ItemDefinitions(
                         val extras = Object2ObjectOpenHashMap<String, Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
                         while (nextPair()) {
                             when (val key = key()) {
-                                "id" -> id = int()
+                                "id" -> {
+                                    id = int()
+                                    if (definitions[id].extras != null) {
+                                        extras.putAll(definitions[id].extras!!)
+                                    }
+                                }
                                 "slot" -> extras[key] = EquipSlot.by(string())
                                 "type" -> extras[key] = EquipType.by(string())
                                 "kept" -> extras[key] = ItemKept.by(string())
@@ -80,6 +86,13 @@ class ItemDefinitions(
                                         extras.putAll(definition.extras ?: continue)
                                     }
                                 }
+                                "categories" -> {
+                                    @Suppress("UNCHECKED_CAST")
+                                    val categories = extras.getOrPut("categories") { ObjectLinkedOpenHashSet<String>(4, Hash.VERY_FAST_LOAD_FACTOR) } as MutableSet<String>
+                                    while (nextElement()) {
+                                        categories.add(string())
+                                    }
+                                }
                                 else -> extras[key] = value()
                             }
                         }
@@ -87,11 +100,7 @@ class ItemDefinitions(
                         ids[stringId] = id
                         definitions[id].stringId = stringId
                         if (extras.size > 0) {
-                            if (definitions[id].extras != null) {
-                                (definitions[id].extras as MutableMap<String, Any>).putAll(extras)
-                            } else {
-                                definitions[id].extras = extras
-                            }
+                            definitions[id].extras = extras
                         }
                     }
                 }
@@ -117,9 +126,11 @@ class ItemDefinitions(
                     if (normal.extras != null) {
                         val lentExtras = Object2ObjectOpenHashMap(normal.extras)
                         lentExtras.remove("aka")
-                        if (definition.extras != null) {
-                            lentExtras.putAll(definition.extras!!)
+                        val extras = definition.extras as? MutableMap<String, Any>
+                        if (extras != null) {
+                            lentExtras.putAll(extras)
                         }
+                        definition.extras = lentExtras
                     }
                 }
             }

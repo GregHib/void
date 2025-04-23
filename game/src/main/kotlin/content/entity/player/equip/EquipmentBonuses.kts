@@ -14,10 +14,10 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.network.login.protocol.visual.VisualMask.APPEARANCE_MASK
 import content.entity.player.equip.EquipBonuses.names
 import content.entity.player.inv.InventoryOption
+import world.gregs.voidps.engine.inv.inventoryChanged
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -29,7 +29,7 @@ playerSpawn { player ->
     updateStats(player)
 }
 
-itemChange("worn_equipment") { player ->
+inventoryChanged("worn_equipment") { player ->
     updateStats(player, fromItem, false)
     updateStats(player, item, true)
 }
@@ -51,13 +51,13 @@ interfaceRefresh("equipment_side") { player ->
     player.interfaceOptions.unlockAll("equipment_side", "inventory", 0 until 28)
 }
 
-interfaceOption("Stats", "inventory", "equipment_*") {
+interfaceOption("Stats", "inventory", "equipment_bonuses") {
     if (player.equipping()) {
         showStats(player, definitions.get(item.id))
     }
 }
 
-interfaceOption("Done", "stats_done", "equipment_*") {
+interfaceOption("Done", "stats_done", "equipment_bonuses") {
     if (player.equipping()) {
         player.clear("equipment_titles")
         player.clear("equipment_names")

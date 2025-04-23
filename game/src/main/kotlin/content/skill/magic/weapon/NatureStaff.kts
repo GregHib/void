@@ -44,7 +44,7 @@ inventoryItem("Empty", "nature_staff", "inventory") {
     }
 }
 
-itemOnItem("nature_rune", "nature_staff", "inventory") { player ->
+itemOnItem("nature_rune", "nature_staff") { player ->
     val maximum = toItem.def.getOrNull<Int>("charges_max") ?: return@itemOnItem
     val spaces = maximum - player.inventory.charges(player, toSlot)
     val count = player.inventory.count(fromItem.id).coerceAtMost(spaces)
