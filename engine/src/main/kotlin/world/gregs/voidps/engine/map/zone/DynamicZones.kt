@@ -57,8 +57,13 @@ class DynamicZones(
      */
     fun clear(region: Region) {
         for (zone in region.toCuboid().toZones()) {
-            clear(zone)
+            objects.clear(zone)
+            collisions.clear(zone)
+            extract.loadZone(zone, zone, 0)
+            zones.remove(zone.id)
         }
+        regions.remove(region.id)
+        World.emit(ClearRegion(region))
     }
 
     private fun update(from: Zone, to: Zone, rotation: Int, set: Boolean) {

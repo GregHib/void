@@ -1,11 +1,17 @@
 package content.area.misthalin.barbarian_village
 
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
+import content.entity.sound.jingle
+import content.quest.Cutscene
+import content.quest.quest
+import content.quest.questComplete
+import content.quest.startCutscene
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -15,25 +21,17 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.LogoutBehaviour
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
-import content.quest.quest
-import content.quest.questComplete
-import content.quest.startCutscene
-import content.quest.stopCutscene
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
-import content.entity.sound.jingle
 
 val objects: GameObjects by inject()
 
@@ -71,63 +69,68 @@ val region = Region(12341)
 
 suspend fun SuspendableContext<Player>.cutscene() {
     player.open("fade_out")
-    val instance = startCutscene(region)
-    val offset = instance.offset(region)
-    setCutsceneEnd(instance)
+    val cutscene = startCutscene("gudrun", region)
+    cutscene.onEnd {
+        player.open("fade_out")
+        delay(3)
+        player.tele(3081, 3416)
+        player.clearCamera()
+        player.clearAnim()
+    }
     delay(4)
-    player.tele(Tile(3078, 3435).add(offset), clearInterfaces = false)
-    val dororan = npcs.add("dororan_cutscene", Tile(3079, 3435).add(offset), Direction.SOUTH)
+    player.tele(cutscene.tile(3078, 3435), clearInterfaces = false)
+    val dororan = npcs.add("dororan_cutscene", cutscene.tile(3079, 3435), Direction.SOUTH)
     dororan.anim("dororan_lean_on_door")
     player.anim("player_lean_on_door")
     dororan.face(Direction.NORTH)
     player.face(Direction.NORTH)
-    player.moveCamera(Tile(3079, 3430).add(offset), 280)
-    player.turnCamera(Tile(3079, 3436).add(offset), 230)
+    player.moveCamera(cutscene.tile(3079, 3430), 280)
+    player.turnCamera(cutscene.tile(3079, 3436), 230)
     delay(2)
     player.open("fade_in")
     npc<Talk>("dororan_cutscene", "How long have they been in there?")
     player.anim("player_calm_doroan")
     choice {
         option<Neutral>("They're just starting.") {
-            cutsceneMenu(instance)
+            cutsceneMenu(cutscene)
         }
         option<Neutral>("You're late.") {
-            cutsceneMenu(instance)
+            cutsceneMenu(cutscene)
         }
     }
 }
 
-suspend fun SuspendableContext<Player>.cutsceneMenu(instance: Region) {
+suspend fun SuspendableContext<Player>.cutsceneMenu(cutscene: Cutscene) {
     npc<Sad>("dororan_cutscene", "This isn't going to work.")
     choice {
         option<Neutral>("Why's that?") {
             player.anim("player_calm_doroan")
-            cutsceneMenu2(instance)
+            cutsceneMenu2(cutscene)
         }
         option<Neutral>("You're so pessimistic.") {
             player.anim("player_calm_doroan")
-            cutsceneMenu2(instance)
+            cutsceneMenu2(cutscene)
         }
     }
 }
 
-suspend fun SuspendableContext<Player>.cutsceneMenu2(instance: Region) {
+suspend fun SuspendableContext<Player>.cutsceneMenu2(cutscene: Cutscene) {
     npc<Cry>("dororan_cutscene", "What was I thinking? You should go in there and stop them before Gudrun makes a fool of herself.")
     choice {
         option<Neutral>("Okay, I will.") {
             player.anim("player_calm_doroan")
             npc<Sad>("dororan_cutscene", "No! Wait, stay here, it's too late now. We'll just have to see how it turns out.")
-            cutsceneMenu3(instance)
+            cutsceneMenu3(cutscene)
         }
         option<Neutral>("Don't be silly.") {
             player.anim("player_calm_doroan")
             npc<Sad>("dororan_cutscene", "You're right, it's too late now. We'll just have to see how it turns out.")
-            cutsceneMenu3(instance)
+            cutsceneMenu3(cutscene)
         }
     }
 }
 
-suspend fun SuspendableContext<Player>.cutsceneMenu3(instance: Region) {
+suspend fun SuspendableContext<Player>.cutsceneMenu3(cutscene: Cutscene) {
     npc<Sad>("dororan_cutscene", "I can't hear what's happening. Can you hear what's happening?")
     player.anim("player_calm_doroan")
     player<Talk>("Gunthor is laughing at something.")
@@ -135,45 +138,44 @@ suspend fun SuspendableContext<Player>.cutsceneMenu3(instance: Region) {
     player.anim("player_calm_doroan")
     choice {
         option<Neutral>("Why would he do that?") {
-            cutsceneMenu4(instance)
+            cutsceneMenu4(cutscene)
         }
         option<Neutral>("Now you're just being ridiculous.") {
-            cutsceneMenu4(instance)
+            cutsceneMenu4(cutscene)
         }
     }
 }
 
-suspend fun SuspendableContext<Player>.cutsceneMenu4(instance: Region) {
+suspend fun SuspendableContext<Player>.cutsceneMenu4(cutscene: Cutscene) {
     npc<Talk>("dororan_cutscene", "The poem says you can honour your ancestors by settling peacefully on the land they conquered.")
     npc<Sad>("dororan_cutscene", "He'll probably just find it insulting.")
     player.anim("player_calm_doroan")
     choice {
         option<Neutral>("Now's your chance to find out.") {
-            cutscenePart2(instance)
+            cutscenePart2(cutscene)
         }
         option<Neutral>("You're doomed.") {
-            cutscenePart2(instance)
+            cutscenePart2(cutscene)
         }
     }
 }
 
-suspend fun SuspendableContext<Player>.cutscenePart2(instance: Region) {
+suspend fun SuspendableContext<Player>.cutscenePart2(cutscene: Cutscene) {
     player.open("fade_out")
     delay(3)
-    npcs.clear(instance.toLevel(0))
+    npcs.clear(cutscene.instance.toLevel(0))
     player.clearAnim()
     delay(1)
-    val offset = instance.offset(region)
-    player.tele(Tile(3083, 3426).add(offset), clearInterfaces = false)
+    player.tele(cutscene.tile(3083, 3426), clearInterfaces = false)
     player.face(Direction.WEST)
-    val dororan = npcs.add("dororan_cutscene", Tile(3082, 3428).add(offset), Direction.SOUTH)
-    val gudrun = npcs.add("gudrun_cutscene", Tile(3080, 3426).add(offset), Direction.SOUTH)
-    val kjell = npcs.add("kjell_cutscene", Tile(3077, 3426).add(offset), Direction.SOUTH)
-    val gunthor = npcs.add("chieftain_gunthor_cutscene", Tile(3079, 3425).add(offset), Direction.SOUTH)
-    val haakon = npcs.add("haakon_the_champion_cutscene", Tile(3078, 3425).add(offset), Direction.SOUTH)
+    val dororan = npcs.add("dororan_cutscene", cutscene.tile(3082, 3428), Direction.SOUTH)
+    val gudrun = npcs.add("gudrun_cutscene", cutscene.tile(3080, 3426), Direction.SOUTH)
+    val kjell = npcs.add("kjell_cutscene", cutscene.tile(3077, 3426), Direction.SOUTH)
+    val gunthor = npcs.add("chieftain_gunthor_cutscene", cutscene.tile(3079, 3425), Direction.SOUTH)
+    val haakon = npcs.add("haakon_the_champion_cutscene", cutscene.tile(3078, 3425), Direction.SOUTH)
     dororan.face(gudrun)
-    player.moveCamera(Tile(3079, 3419).add(offset), 400)
-    player.turnCamera(Tile(3079, 3426).add(offset), 150)
+    player.moveCamera(cutscene.tile(3079, 3419), 400)
+    player.turnCamera(cutscene.tile(3079, 3426), 150)
     delay(2)
     player.open("fade_in")
     npc<Upset>("dororan_cutscene", "I hope they at least give me a decent burial.")
@@ -195,9 +197,9 @@ suspend fun SuspendableContext<Player>.cutscenePart2(instance: Region) {
     for (remove in npc) {
         npcs.remove(remove)
     }
-    player.moveCamera(Tile(3084, 3421).add(offset), 350)
-    player.turnCamera(Tile(3082, 3426).add(offset), 250)
-    val gudrunHugging = objects.add("gudrun_and_dororan", Tile(3082, 3426).add(offset), shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+    player.moveCamera(cutscene.tile(3084, 3421), 350)
+    player.turnCamera(cutscene.tile(3082, 3426), 250)
+    val gudrunHugging = objects.add("gudrun_and_dororan", cutscene.tile(3082, 3426), shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
     player.open("fade_in")
     npc<Happy>("gudrun_cutscene", "That was brilliant! I must know who wrote that poem.")
     npc<Sad>("dororan_cutscene", "Um, that would be me. Hello")
@@ -210,7 +212,7 @@ suspend fun SuspendableContext<Player>.cutscenePart2(instance: Region) {
     gudrunHugging.anim("gudrun_hugging")
     delay(4)
     player.queue.clear("gunnars_ground_cutscene_end")
-    endCutscene(instance)
+    cutscene.end(this)
     player["gunnars_ground"] = "gunnars_ground"
     player["kjell"] = "guitar"
     player["dororan"] = "hidden"
@@ -245,21 +247,6 @@ suspend fun SuspendableContext<Player>.gunnarsGround() {
             finishQuest()
         }
     }
-}
-
-fun Context<Player>.setCutsceneEnd(instance: Region) {
-    player.queue("gunnars_ground_cutscene_end", 1, LogoutBehaviour.Accelerate) {
-        endCutscene(instance)
-    }
-}
-
-suspend fun SuspendableContext<Player>.endCutscene(instance: Region) {
-    player.open("fade_out")
-    delay(3)
-    player.tele(3081, 3416)
-    stopCutscene(instance)
-    player.clearCamera()
-    player.clearAnim()
 }
 
 suspend fun SuspendableContext<Player>.poem() {

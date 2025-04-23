@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.MAX_NPCS
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.CharacterSearch
 import world.gregs.voidps.engine.entity.character.CharacterMap
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.mode.move.AreaEntered
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -39,12 +40,12 @@ data class NPCs(
     override fun run() {
         for (i in 0 until removeIndex) {
             val index = removeQueue[i]
-            val npc = indexArray[index]!!
+            removeQueue[i] = -1
+            size--
+            val npc = indexArray[index] ?: continue
             indexArray[index] = null
             map.remove(npc.tile.regionLevel, npc)
             npc.index = -1
-            removeQueue[i] = -1
-            size--
         }
         removeIndex = 0
         for (i in 0 until spawnIndex) {
@@ -148,11 +149,10 @@ data class NPCs(
         npc.levels.clear(Skill.Ranged)
         npc.levels.clear(Skill.Magic)
         npc["spawn_tile"] = npc.tile
-        if (Wander.wanders(npc)) {
+        if (npc.mode == EmptyMode && Wander.wanders(npc)) {
             npc.mode = Wander(npc, npc.tile)
         }
         npc.collision = collision.get(npc)
-        npc.hide = false
         map.add(npc.tile.regionLevel, npc)
         val respawnDelay = npc.def.getOrNull<Int>("respawn_delay")
         if (respawnDelay != null && respawnDelay > 0) {
