@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.client.instruction.onInstruction
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.region.RegionRetry
+import world.gregs.voidps.engine.map.zone.ClearRegion
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.map.zone.RegionLoad
 import world.gregs.voidps.engine.map.zone.ReloadZone
@@ -19,6 +20,7 @@ import world.gregs.voidps.network.client.instruction.FinishRegionLoad
 import world.gregs.voidps.network.login.protocol.encode.dynamicMapRegion
 import world.gregs.voidps.network.login.protocol.encode.mapRegion
 import world.gregs.voidps.type.Distance
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Zone
 
 /**
@@ -87,12 +89,26 @@ onEvent<ReloadZone> {
     }
 }
 
+onEvent<ClearRegion> {
+    players.forEach { player ->
+        if (player.networked && inViewOfRegion(player, region)) {
+            updateRegion(player, initial = false, force = true)
+        }
+    }
+}
+
 fun needsRegionChange(player: Player) = !inViewOfZone(player, player.viewport!!.lastLoadZone) || crossedDynamicBoarder(player)
 
 fun inViewOfZone(player: Player, zone: Zone): Boolean {
     val viewport = player.viewport!!
     val radius: Int = viewport.zoneRadius - 2
     return Distance.within(player.tile.zone.x, player.tile.zone.y, zone.x, zone.y, radius)
+}
+
+fun inViewOfRegion(player: Player, region: Region): Boolean {
+    val viewport = player.viewport!!
+    val radius: Int = viewport.tileSize shr 6
+    return Distance.within(player.tile.region.x, player.tile.region.y, region.x, region.y, radius)
 }
 
 fun crossedDynamicBoarder(player: Player) = player.viewport!!.dynamic != inDynamicView(player)
