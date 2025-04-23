@@ -1,5 +1,17 @@
 package content.area.misthalin.varrock
 
+import content.entity.effect.clearTransform
+import content.entity.effect.transform
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
+import content.entity.sound.areaSound
+import content.entity.sound.jingle
+import content.entity.sound.sound
+import content.entity.world.music.playTrack
+import content.quest.free.demon_slayer.DemonSlayerSpell.getWord
+import content.quest.free.demon_slayer.DemonSlayerSpell.randomiseOrder
+import content.quest.quest
+import content.quest.startCutscene
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.shakeCamera
@@ -16,27 +28,11 @@ import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.LogoutBehaviour
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.timer.npcTimerStart
 import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
-import world.gregs.voidps.type.Tile
-import content.quest.free.demon_slayer.DemonSlayerSpell.getWord
-import content.quest.free.demon_slayer.DemonSlayerSpell.randomiseOrder
-import content.quest.quest
-import content.quest.startCutscene
-import content.quest.stopCutscene
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
-import content.entity.effect.clearTransform
-import content.entity.effect.transform
-import content.entity.world.music.playTrack
-import content.entity.sound.areaSound
-import content.entity.sound.jingle
-import content.entity.sound.sound
 
 npcOperate("Talk-to", "gypsy_aris") {
     when (player.quest("demon_slayer")) {
@@ -211,16 +207,22 @@ suspend fun SuspendableContext<Player>.cutscene() {
     player.open("fade_out")
     statement("", clickToContinue = false)
     delay(2)
-    val instance = startCutscene(region)
-    val offset = instance.offset(region)
-    setCutsceneEnd(instance)
+    val cutscene = startCutscene("demon_slayer_aris", region)
+    cutscene.onEnd {
+        player.open("fade_out")
+        delay(3)
+        player.tele(3203, 3424)
+        player.face(Direction.WEST)
+        player.clearCamera()
+        player.clearTransform()
+    }
     delay(1)
-    player.tele(Tile(3225, 3371).add(offset), clearInterfaces = false)
+    player.tele(cutscene.tile(3225, 3371), clearInterfaces = false)
     delay(2)
     player.transform("wally")
     player.clearCamera()
-    player.moveCamera(Tile(3227, 3369).add(offset), 300)
-    player.turnCamera(Tile(3229, 3367).add(offset), 250)
+    player.moveCamera(cutscene.tile(3227, 3369), 300)
+    player.turnCamera(cutscene.tile(3229, 3367), 250)
     player.shakeCamera(type = 1, intensity = 0, movement = 10, speed = 10, cycle = 0)
     player.shakeCamera(type = 3, intensity = 0, movement = 90, speed = 1, cycle = 0)
     player.sound("rumbling")
@@ -230,23 +232,23 @@ suspend fun SuspendableContext<Player>.cutscene() {
 
     player.face(Direction.NORTH)
     player.clearCamera()
-    player.turnCamera(Tile(3227, 3367).add(offset), height = 200, constantSpeed = 2, variableSpeed = 10)
-    player.turnCamera(Tile(3227, 3367).add(offset), height = 100, constantSpeed = 1, variableSpeed = 10)
+    player.turnCamera(cutscene.tile(3227, 3367), height = 200, constantSpeed = 2, variableSpeed = 10)
+    player.turnCamera(cutscene.tile(3227, 3367), height = 100, constantSpeed = 1, variableSpeed = 10)
     player.shakeCamera(type = 3, intensity = 0, movement = 0, speed = 0, cycle = 0)
     player.sound("rumbling")
     npc<Angry>("wally", "Die, foul demon!", clickToContinue = false)
-    player.tele(Tile(3225, 3363).add(offset), clearInterfaces = false)
+    player.tele(cutscene.tile(3225, 3363), clearInterfaces = false)
 
     delay(2)
     player.running = true
-    player.walkOverDelay(Tile(3227, 3367).add(offset), forceWalk = false)
+    player.walkOverDelay(cutscene.tile(3227, 3367), forceWalk = false)
     player.face(Direction.NORTH)
     player.anim("wally_demon_slay")
     player.sound("demon_slayer_wally_sword", delay = 10)
     delay(4)
 
     player.clearCamera()
-    player.moveCamera(Tile(3227, 3369).add(offset), height = 100, constantSpeed = 2, variableSpeed = 10)
+    player.moveCamera(cutscene.tile(3227, 3369), height = 100, constantSpeed = 2, variableSpeed = 10)
     player.shakeCamera(type = 1, intensity = 0, movement = 10, speed = 5, cycle = 0)
     player.shakeCamera(type = 3, intensity = 0, movement = 2, speed = 50, cycle = 0)
     player.sound("rumbling")
@@ -260,8 +262,8 @@ suspend fun SuspendableContext<Player>.cutscene() {
     player.shakeCamera(type = 1, intensity = 0, movement = 0, speed = 0, cycle = 0)
     player.shakeCamera(type = 3, intensity = 0, movement = 0, speed = 0, cycle = 0)
     player.sound("rumbling")
-    player.moveCamera(Tile(3225, 3363).add(offset), height = 500)
-    player.turnCamera(Tile(3227, 3367).add(offset), height = 200)
+    player.moveCamera(cutscene.tile(3225, 3363), height = 500)
+    player.turnCamera(cutscene.tile(3227, 3367), height = 200)
     player.sound("equip_silverlight")
     player.jingle("quest_complete_1")
     player.face(Direction.SOUTH_WEST)
@@ -273,25 +275,9 @@ suspend fun SuspendableContext<Player>.cutscene() {
 
     statement("", clickToContinue = false)
     player.queue.clear("demon_slayer_wally_cutscene_end")
-    endCutscene(instance)
+    cutscene.end(this)
     player["demon_slayer"] = "sir_prysin"
     delrithWillCome()
-}
-
-fun Context<Player>.setCutsceneEnd(instance: Region) {
-    player.queue("demon_slayer_wally_cutscene_end", 1, LogoutBehaviour.Accelerate) {
-        endCutscene(instance)
-    }
-}
-
-suspend fun SuspendableContext<Player>.endCutscene(instance: Region) {
-    player.open("fade_out")
-    delay(3)
-    player.tele(3203, 3424)
-    player.face(Direction.WEST)
-    stopCutscene(instance)
-    player.clearCamera()
-    player.clearTransform()
 }
 
 suspend fun ChoiceBuilder<NPCOption<Player>>.withSilver(): Unit = option<Quiz>("With silver?") {

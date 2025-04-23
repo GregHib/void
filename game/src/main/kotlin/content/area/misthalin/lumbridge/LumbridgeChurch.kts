@@ -77,35 +77,35 @@ val ghostSpawn = Tile(3250, 3195)
 suspend fun Interaction<Player>.returnSkull() {
     player.message("You put the skull in the coffin.")
     val region = Region(12849)
-    val instance = startCutscene(region)
-    val offset = instance.offset(region)
-    setCutsceneEnd(instance)
-    player["restless_ghost_instance"] = instance
-    player["restless_ghost_offset"] = offset
+    val cutscene = startCutscene("the_restless_ghost", region)
+    cutscene.onEnd {
+        player.clearCamera()
+        player.tele(3247, 3193)
+    }
     player.inventory.remove("muddy_skull")
     val ghost = npcs[ghostSpawn].firstOrNull { it.id == "restless_ghost" }
     npcs.remove(ghost)
-    val restlessGhost = npcs.add("restless_ghost", Tile(3248, 3193).add(offset), Direction.SOUTH)
-    player.tele(Tile(3248, 3192).add(offset), clearInterfaces = false)
+    val restlessGhost = npcs.add("restless_ghost", cutscene.tile(3248, 3193), Direction.SOUTH)
+    player.tele(cutscene.tile(3248, 3192), clearInterfaces = false)
     npc<Happy>("restless_ghost", "Release! Thank you stranger.", clickToContinue = false)
-    player.moveCamera(Tile(3251, 3193).add(offset), 320)
-    player.turnCamera(Tile(3248, 3193).add(offset), 320)
+    player.moveCamera(cutscene.tile(3251, 3193), 320)
+    player.turnCamera(cutscene.tile(3248, 3193), 320)
     delay(2)
     player.face(Direction.NORTH)
     restlessGhost.say("Release! Thank you")
     delay(4)
     restlessGhost.say("stranger.")
     restlessGhost.animDelay("restless_ghost_ascends")
-    restlessGhost.shoot("restless_ghost", Tile(3243, 3193).add(offset), height = 20, endHeight = 0, flightTime = 50)
+    restlessGhost.shoot("restless_ghost", cutscene.tile(3243, 3193), height = 20, endHeight = 0, flightTime = 50)
     delay(2)
-    player.moveCamera(Tile(3241, 3193).add(offset), 900)
-    player.turnCamera(Tile(3244, 3191).add(offset), 900)
-    Tile(3244, 3194).add(offset).shoot("restless_ghost", Tile(3244, 3190).add(offset), height = 30, endHeight = 0, flightTime = 60)
+    player.moveCamera(cutscene.tile(3241, 3193), 900)
+    player.turnCamera(cutscene.tile(3244, 3191), 900)
+    cutscene.tile(3244, 3194).shoot("restless_ghost", cutscene.tile(3244, 3190), height = 30, endHeight = 0, flightTime = 60)
     delay(2)
-    player.turnCamera(Tile(3254, 3180).add(offset), 900, 3, 3)
-    Tile(3244, 3190).add(offset).shoot("restless_ghost", Tile(3255, 3179).add(offset), height = 50, endHeight = 0, flightTime = 100)
+    player.turnCamera(cutscene.tile(3254, 3180), 900, 3, 3)
+    cutscene.tile(3244, 3190).shoot("restless_ghost", cutscene.tile(3255, 3179), height = 50, endHeight = 0, flightTime = 100)
     delay(5)
-    endCutscene(instance)
+    cutscene.end(this)
     questComplete()
 }
 
@@ -175,15 +175,5 @@ playerSpawn { player ->
     player.sendVariable("restless_ghost_coffin")
 }
 
-fun Context<Player>.setCutsceneEnd(instance: Region) {
-    player.queue("restless_ghost_cutscene_end", 1, LogoutBehaviour.Accelerate) {
-        endCutscene(instance)
-    }
-}
-
 fun Context<Player>.endCutscene(instance: Region) {
-    npcs.clear(instance.toLevel(0))
-    player.clearCamera()
-    player.tele(3247, 3193)
-    stopCutscene(instance)
 }
