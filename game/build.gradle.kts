@@ -109,16 +109,15 @@ distributions {
         contents {
             from(tasks["collectSourcePaths"])
             from(tasks["shadowJar"])
-            from("../data/definitions/") {
-                into("data/definitions")
+
+            val emptyDirs = setOf("cache", "saves")
+            val configs = parent!!.rootDir.resolve("data").list()!!.toMutableList()
+            configs.removeAll(emptyDirs)
+            for (config in configs) {
+                from("../data/$config/") {
+                    into("data/$config")
+                }
             }
-            from("../data/map") {
-                into("data/map")
-            }
-            from("../data/spawns") {
-                into("data/spawns")
-            }
-            val emptyDirs = listOf("cache", "saves")
             for (dir in emptyDirs) {
                 val file = layout.buildDirectory.get().dir("tmp/empty/$dir/").asFile
                 file.mkdirs()
