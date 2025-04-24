@@ -25,7 +25,7 @@ class ChangeManager(
      */
     fun track(from: String, index: Int, previous: Item, fromIndex: Int, item: Item) {
         if (previous.isNotEmpty()) {
-            changes.add(ItemRemoved(from, fromIndex, previous))
+            changes.add(ItemRemoved(inventory.id, index, previous))
         }
         if (item.isNotEmpty()) {
             changes.add(ItemAdded(inventory.id, index, item))
