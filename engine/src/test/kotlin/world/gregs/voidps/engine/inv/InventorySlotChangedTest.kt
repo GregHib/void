@@ -51,7 +51,7 @@ class InventorySlotChangedTest  {
     @Test
     fun `Track removals`() {
         var removals = 0
-        itemRemoved("coins", inventory = "bank") {
+        itemRemoved("coins", inventory = "inventory") {
             removals++
         }
 

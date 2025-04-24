@@ -9,8 +9,8 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 /**
  * An item slot updated to an item in an inventory.
- * @param inventory the inventory id the item is from
- * @param index the index in the inventory the item was from
+ * @param inventory the inventory id the item was removed from
+ * @param index the index in the inventory the item was in
  * @param item the previous state of the item before it was removed
  */
 data class ItemRemoved(
