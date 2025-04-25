@@ -33,7 +33,6 @@ timerStart("shop_restock") {
 }
 
 timerTick("shop_restock") { player ->
-    logger.debug { "Restocking shops." }
     for ((name, inventory) in player.inventories.instances) {
         val def = inventoryDefinitions.get(name)
         if (!def["shop", false]) {
