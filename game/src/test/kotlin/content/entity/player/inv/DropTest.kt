@@ -21,6 +21,7 @@ internal class DropTest : WorldTest() {
         player.inventory.add("bronze_sword")
 
         player.interfaceOption("inventory", "inventory", "Drop", 4, Item("bronze_sword"), 0)
+        tick()
 
         assertTrue(player.inventory.isEmpty())
         assertTrue(floorItems[player.tile].any { it.id == "bronze_sword" })
@@ -44,10 +45,12 @@ internal class DropTest : WorldTest() {
     fun `Drop stackable items on one another`() {
         val tile = emptyTile
         val player = createPlayer("player", tile)
-        floorItems.add(tile, "coins", 500, owner = player)
+        floorItems.add(tile, "coins", 500, revealTicks = 100, owner = player)
         player.inventory.add("coins", 500)
+        tick()
 
         player.interfaceOption("inventory", "inventory", "Drop", 4, Item("coins", 500), 0)
+        tick()
 
         assertTrue(player.inventory.isEmpty())
         assertEquals(1, floorItems[tile].count { it.id == "coins" })
@@ -62,6 +65,7 @@ internal class DropTest : WorldTest() {
         player.inventory.add("bronze_sword")
 
         player.interfaceOption("inventory", "inventory", "Drop", 4, Item("bronze_sword"), 0)
+        tick()
 
         assertTrue(player.inventory.isEmpty())
         assertEquals(2, floorItems[tile].count { it.id == "bronze_sword" })
@@ -74,6 +78,7 @@ internal class DropTest : WorldTest() {
         player.inventory.add("bronze_sword")
         val drawers = objects[tile.addX(1), "table_lumbridge"]!!
         player.itemOnObject(drawers, itemSlot = 0)
+        tick()
 
         assertTrue(player.inventory.isEmpty())
         assertTrue(floorItems[tile.addX(1)].any { it.id == "bronze_sword" })
@@ -87,6 +92,7 @@ internal class DropTest : WorldTest() {
         val drawers = objects[tile.addX(1), "table_lumbridge"]!!
 
         player.itemOnObject(drawers, itemSlot = 0)
+        tick()
 
         assertTrue(player.inventory.contains("toolkit"))
         assertFalse(floorItems[tile.addX(1)].any { it.id == "toolkit" })

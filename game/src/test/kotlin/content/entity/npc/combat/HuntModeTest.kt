@@ -61,7 +61,7 @@ internal class HuntModeTest : WorldTest() {
         createObject("15516", emptyTile.addY(2)) // fence
         createFloorItem("ashes", emptyTile.addY(3))
 
-        tick(4)
+        tick(6)
 
         assertEquals(emptyTile.addY(1), npc.tile)
     }
@@ -71,7 +71,7 @@ internal class HuntModeTest : WorldTest() {
         val npc = createNPC("ash_cleaner", emptyTile)
         createFloorItem("ashes", emptyTile.addY(3))
 
-        tick(4)
+        tick(9)
 
         assertEquals(emptyTile.addY(3), npc.tile)
         assertTrue(floorItems[emptyTile.addY(3)].isEmpty())
