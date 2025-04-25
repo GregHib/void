@@ -7,6 +7,7 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
 import content.skill.slayer.*
+import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.config.SlayerTaskDefinition
 import world.gregs.voidps.engine.data.definition.SlayerTaskDefinitions
@@ -98,7 +99,7 @@ suspend fun NPCOption<Player>.assignTask() {
 
 suspend fun NPCOption<Player>.roll() {
     val (definition, amount) = assign(player)
-    npc<Happy>("Excellent, you're doing great. Your new task is to kill $amount ${definition.name}.")
+    npc<Happy>("Excellent, you're doing great. Your new task is to kill $amount ${definition.type.toSentenceCase()}.")
     choice {
         option<Quiz>("Got any tips for me?") {
             npc<Talk>(definition.tip)
@@ -115,7 +116,7 @@ suspend fun NPCOption<Player>.teachMe() {
             npc<Talk>("Oh okay then, you twisted my arm. You'll have to train against specific groups of creatures.")
             player<Quiz>("Okay, what's first?")
             val (definition, amount) = assign(player)
-            npc<Talk>("We'll start you off hunting ${definition.name}, you'll need to kill $amount of them.")
+            npc<Talk>("We'll start you off hunting ${definition.type.toSentenceCase()}, you'll need to kill $amount of them.")
             npc<Talk>("You'll also need this enchanted gem, it allows Slayer Masters like myself to contact you and update you on your progress. Don't worry if you lose it, you can buy another from any Slayer Master.")
             player.inventory.add("enchanted_gem")
             choice {

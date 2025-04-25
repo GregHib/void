@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.data.config
 
 /**
  * @param type The slayer monster category
- * @param name of the slayer category formatted
  * @param tip description of the monster and how to slay it
  * @param amount The quantity of monsters assigned to kill
  * @param weight The weighting in the overall list
@@ -12,7 +11,6 @@ package world.gregs.voidps.engine.data.config
  */
 data class SlayerTaskDefinition(
     val type: String = "",
-    val name: String = "",
     val tip: String = "",
     val amount: IntRange = 1..1,
     val weight: Int = 1,

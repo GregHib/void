@@ -62,9 +62,9 @@ fun Player.isTask(character: Character?): Boolean {
     return target.categories.contains(type)
 }
 
-fun rollTask(player: Player, definitions: List<SlayerTaskDefinition>): SlayerTaskDefinition {
+fun rollTask(player: Player, definitions: Map<String, SlayerTaskDefinition>): SlayerTaskDefinition {
     var total = 0
-    for (definition in definitions) {
+    for (definition in definitions.values) {
         if (!hasRequirements(player, definition)) {
             continue
         }
@@ -72,7 +72,7 @@ fun rollTask(player: Player, definitions: List<SlayerTaskDefinition>): SlayerTas
     }
     val roll = random.nextInt(total)
     var count = 0
-    for (definition in definitions) {
+    for (definition in definitions.values) {
         if (!hasRequirements(player, definition)) {
             continue
         }

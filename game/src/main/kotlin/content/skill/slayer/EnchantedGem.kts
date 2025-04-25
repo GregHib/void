@@ -7,6 +7,7 @@ import content.entity.player.dialogue.type.ChoiceBuilder
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.inv.inventoryItem
+import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.SlayerTaskDefinitions
@@ -38,7 +39,7 @@ inventoryItem("Kills-left", "enchanted_gem") {
 
 fun ChoiceBuilder<Action<Player>>.howAmIDoing() {
     option<Quiz>("How am I doing so far?") {
-        npc<Talk>(player.slayerMaster, "You're currently assigned to kill ${player.slayerTask.lowercase()}; only ${player.slayerTaskRemaining} more to go. Your reward point tally is ${player.slayerPoints}.")
+        npc<Happy>(player.slayerMaster, "You're currently assigned to kill ${player.slayerTask.toLowerSpaceCase()}; only ${player.slayerTaskRemaining} more to go. Your reward point tally is ${player.slayerPoints}.")
         choice {
             whoAreYou()
             whereAreYou()
@@ -79,7 +80,7 @@ fun ChoiceBuilder<Action<Player>>.whereAreYou() {
 
 fun ChoiceBuilder<Action<Player>>.anyTips() {
     option<Quiz>("Got any tips for me?") {
-        val definition = slayerDefinitions.get(player.slayerMaster).first { it.type == player.slayerTask }
+        val definition = slayerDefinitions.get(player.slayerMaster)[player.slayerTask]!!
         npc<Talk>(player.slayerMaster, definition.tip)
         choice {
             howAmIDoing()

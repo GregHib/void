@@ -11,22 +11,21 @@ import world.gregs.voidps.engine.timedLoad
 
 class SlayerTaskDefinitions {
 
-    private lateinit var taskLists: Map<String, List<SlayerTaskDefinition>>
+    private lateinit var taskLists: Map<String, Map<String, SlayerTaskDefinition>>
 
-    fun get(name: String): List<SlayerTaskDefinition> {
+    fun get(name: String): Map<String, SlayerTaskDefinition> {
         return taskLists.getValue(name)
     }
 
     fun load(paths: List<String>): SlayerTaskDefinitions {
         timedLoad("slayer task list") {
-            val lists = Object2ObjectOpenHashMap<String, List<SlayerTaskDefinition>>(10, Hash.VERY_FAST_LOAD_FACTOR)
+            val lists = Object2ObjectOpenHashMap<String, Map<String, SlayerTaskDefinition>>(10, Hash.VERY_FAST_LOAD_FACTOR)
             for (path in paths) {
                 val fileName = path.substringAfterLast('\\').removeSuffix(".${Settings["definitions.slayerTasks"]}")
-                val list = ObjectArrayList<SlayerTaskDefinition>()
+                val map = Object2ObjectOpenHashMap<String, SlayerTaskDefinition>()
                 Config.fileReader(path, 200) {
                     while (nextSection()) {
                         val type = section()
-                        var name = ""
                         var tip = ""
                         var min = 1
                         var max = 1
@@ -36,7 +35,6 @@ class SlayerTaskDefinitions {
                         val quests = ObjectOpenHashSet<String>(1)
                         while (nextPair()) {
                             when (val key = key()) {
-                                "name" -> name = string()
                                 "tip" -> tip = string()
                                 "min" -> min = int()
                                 "max" -> max = int()
@@ -47,10 +45,10 @@ class SlayerTaskDefinitions {
                                 else -> throw IllegalArgumentException("Unknown slayer task key: $key")
                             }
                         }
-                        list.add(SlayerTaskDefinition(type, name, tip, min..max, weight, slayer, combat, quests))
+                        map[type] = SlayerTaskDefinition(type, tip, min..max, weight, slayer, combat, quests)
                     }
                 }
-                lists[fileName] = list
+                lists[fileName] = map
             }
             this.taskLists = lists
             taskLists.size
