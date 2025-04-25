@@ -15,8 +15,8 @@ internal class GameFrameTest : InterfaceTest() {
         super.setup()
         interfaces = Interfaces(events, client, definitions, open)
         every { definitions.getOrNull("") } returns InterfaceDefinition()
-        every { definitions.getOrNull("toplevel_full") } returns InterfaceDefinition(id = -1)
-        every { definitions.getOrNull("toplevel") } returns InterfaceDefinition()
+        every { definitions.getOrNull("toplevel_full") } returns InterfaceDefinition(id = -1, type = "root")
+        every { definitions.getOrNull("toplevel") } returns InterfaceDefinition(type = "root")
     }
 
     @Test
@@ -32,14 +32,14 @@ internal class GameFrameTest : InterfaceTest() {
     @Test
     fun `Size set top level if full open`() {
         interfaces.resizable = true
-        open.add("toplevel_full")
+        open["root"] = "toplevel_full"
         assertTrue(interfaces.setDisplayMode(Interfaces.FIXED_SCREEN))
         assertEquals(false, interfaces.resizable)
     }
 
     @Test
     fun `Size set full if top level open`() {
-        open.add("toplevel")
+        open["root"] = "toplevel"
         assertTrue(interfaces.setDisplayMode(Interfaces.RESIZABLE_SCREEN))
         assertEquals(true, interfaces.resizable)
     }
