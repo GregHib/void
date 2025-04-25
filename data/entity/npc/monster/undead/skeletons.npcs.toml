@@ -8,7 +8,8 @@ attack_range = 5
 attack_radius = 11
 style = "magic"
 max_hit_magic = 30
-categories = ["skeleton", "undead"]
+slayer_xp = 13.8
+categories = ["skeleton", "undead", "skeletons"]
 examine = "It rattles when it moves."
 
 [skeleton_mace_shield]
@@ -24,7 +25,8 @@ hunt_mode = "aggressive_intolerant"
 style = "slash"
 height = 30
 respawn_delay = 60
-categories = ["skeleton", "undead"]
+categories = ["skeleton", "undead", "skeletons"]
+slayer_xp = 17.0
 examine = "Could do with gaining a few pounds."
 
 [skeleton_flail]
@@ -52,7 +54,8 @@ hunt_mode = "aggressive"
 style = "crush"
 height = 30
 respawn_delay = 70
-categories = ["skeleton", "undead"]
+slayer_xp = 29.0
+categories = ["skeleton", "undead", "skeletons"]
 examine = "Could do with gaining a few pounds."
 
 [skeleton_shield_helmet]
@@ -88,7 +91,7 @@ hunt_mode = "aggressive"
 style = "slash"
 height = 30
 respawn_delay = 60
-categories = ["skeleton", "undead"]
+categories = ["skeleton", "undead", "skeletons"]
 examine = "Could do with gaining a few pounds."
 
 [skeleton_sword_shield_85]

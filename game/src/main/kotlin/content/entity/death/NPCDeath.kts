@@ -1,5 +1,6 @@
 package content.entity.death
 
+import com.github.michaelbull.logging.InlineLogger
 import content.area.wilderness.inMultiCombat
 import content.entity.combat.attackers
 import content.entity.combat.damageDealers
@@ -199,11 +200,17 @@ fun notify(members: List<Player>, awardee: Player, item: Item) {
     }
 }
 
+val logger = InlineLogger()
+
 fun slay(player: Player, npc: NPC) {
     if (player.slayerTask == "nothing" || !npc.categories.contains(player.slayerTask)) {
         return
     }
     val slayerExp = npc.def["slayer_xp", 0.0]
+    if (slayerExp == 0.0) {
+        logger.warn { "No slayer exp found for slain monster: $npc" }
+        return
+    }
     player.exp(Skill.Slayer, slayerExp)
     player.slayerTaskRemaining--
     if (player.slayerTaskRemaining == 0) {
