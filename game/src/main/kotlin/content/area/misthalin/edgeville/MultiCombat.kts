@@ -1,15 +1,29 @@
 package content.area.misthalin.edgeville
 
 import world.gregs.voidps.engine.client.variable.variableSet
-import world.gregs.voidps.engine.entity.character.mode.move.characterEnterArea
-import world.gregs.voidps.engine.entity.character.mode.move.characterExitArea
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.entity.character.mode.move.*
+import world.gregs.voidps.engine.entity.npcSpawn
+import world.gregs.voidps.engine.inject
 
-characterEnterArea(tag = "multi_combat") {
-    character["in_multi_combat"] = true
+
+val areaDefinitions: AreaDefinitions by inject()
+
+npcSpawn { npc ->
+    for (def in areaDefinitions.get(npc.tile.zone)) {
+        if (def.tags.contains("multi_combat")) {
+            npc["in_multi_combat"] = true
+            break
+        }
+    }
 }
 
-characterExitArea(tag = "multi_combat") {
-    character.clear("in_multi_combat")
+enterArea(tag = "multi_combat") {
+    player["in_multi_combat"] = true
+}
+
+exitArea(tag = "multi_combat") {
+    player.clear("in_multi_combat")
 }
 
 variableSet("in_multi_combat", to = true) { player ->

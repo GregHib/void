@@ -161,11 +161,6 @@ data class NPCs(
             npc["respawn_direction"] = npc.direction
         }
         npc.emit(Spawn)
-        for (def in areaDefinitions.get(npc.tile.zone)) {
-            if (npc.tile in def.area) {
-                npc.emit(AreaEntered(npc, def.name, def.tags, def.area))
-            }
-        }
         return true
     }
 

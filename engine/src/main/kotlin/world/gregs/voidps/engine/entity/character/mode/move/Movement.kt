@@ -3,10 +3,9 @@ package world.gregs.voidps.engine.entity.character.mode.move
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
@@ -121,7 +120,7 @@ open class Movement(
 
     private fun setMovementType(run: Boolean, end: Boolean) {
         if (character is Player) {
-            character.start("last_movement", 1)
+            character.steps.last = GameLoop.tick + 1 // faster than character.start("last_movement", 1)
             character.movementType = if (run) MoveType.Run else MoveType.Walk
             character.temporaryMoveType = if (end) MoveType.Run else if (run) MoveType.Run else MoveType.Walk
         }
@@ -205,26 +204,11 @@ open class Movement(
         fun equals(one: Tile, two: Tile) = one.level == two.level && one.x == two.x && one.y == two.y
 
         fun move(character: Character, delta: Delta) {
-            val from = character.tile
+            character.steps.movedFrom = character.tile
             character.tile = character.tile.add(delta)
             character.visuals.moved = true
-            if (character is Player) {
+            if (character is Player && character.networked) {
                 character.emit(ReloadRegion)
-            }
-            character.emit(Moved(character, from, character.tile))
-            if (character is Player) {
-                val definitions = get<AreaDefinitions>()
-                val to = character.tile
-                for (def in definitions.get(from.zone)) {
-                    if (from in def.area && to !in def.area) {
-                        character.emit(AreaExited(character, def.name, def.tags, def.area))
-                    }
-                }
-                for (def in definitions.get(to.zone)) {
-                    if (to in def.area && from !in def.area) {
-                        character.emit(AreaEntered(character, def.name, def.tags, def.area))
-                    }
-                }
             }
         }
 
