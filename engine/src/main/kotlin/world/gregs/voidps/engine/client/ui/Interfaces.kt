@@ -98,7 +98,7 @@ class Interfaces(
 
     private fun sendIfOpened(id: String): Boolean {
         val type = getType(id)
-        if (!interfaces.contains(type)) {
+        if (interfaces[type] != id) {
             interfaces[type] = id
             sendOpen(id)
             events.emit(InterfaceOpened(id))
