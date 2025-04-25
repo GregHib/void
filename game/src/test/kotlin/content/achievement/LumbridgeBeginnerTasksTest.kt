@@ -39,7 +39,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
         player.running = true
         player.instructions.send(Walk(emptyTile.x, emptyTile.y + 2))
-        tick()
+        tick(2)
 
         assertTrue(player["on_the_run_task", false])
     }
@@ -738,10 +738,10 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Wait, That's Not a Sheep`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer("adventurer", Tile(3109, 3330))
 
         player.tele(3189, 3275)
-        tick()
+        tick(2)
 
         assertTrue(player["wait_thats_not_a_sheep_task", false])
     }
