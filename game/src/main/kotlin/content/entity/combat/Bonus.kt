@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.skill.slayer.hasSlayerTask
 import content.skill.slayer.isTask
+import content.skill.slayer.slayerTask
 import content.skill.slayer.undead
 
 object Bonus {
@@ -34,7 +34,7 @@ object Bonus {
                 "salve_amulet" -> return (value * (7.0 / 6.0)).toInt()
             }
         }
-        if (!source.hasSlayerTask || !source.isTask(target)) {
+        if (source.slayerTask.isBlank() || !source.isTask(target)) {
             return value
         }
         val helm = source.equipped(EquipSlot.Hat).id

@@ -1,11 +1,76 @@
 [slayer_rewards_assignment]
 id = 161
+type = "main_screen"
+components = {
+  learn = 14,
+  buy = 15,
+  reassign_text = 23,
+  reassign_points = 26,
+  block_text = 24,
+  block_points = 27,
+  cancel_1 = 37,
+  cancel_2 = 38,
+  cancel_3 = 39,
+  cancel_4 = 40,
+  cancel_5 = 41,
+  current_points = 19,
+  text_0 = 36,
+  text_1 = 30,
+  text_2 = 31,
+  text_3 = 32,
+  text_4 = 33,
+}
 
 [slayer_rewards_learn_old]
 id = 163
 
 [slayer_rewards]
 id = 164
+type = "main_screen"
+components = {
+  learn = 16,
+  assignment = 17,
+  buy_xp_icon = 25,
+  buy_xp_text = 24,
+  buy_xp_points = 32,
+  buy_ring_icon = 27,
+  buy_ring_text = 26,
+  buy_ring_points = 33,
+  buy_runes_icon = 30,
+  buy_runes_text = 28,
+  buy_runes_points = 36,
+  buy_bolts_icon = 38,
+  buy_bolts_text = 37,
+  buy_bolts_points = 34,
+  buy_arrows_icon = 40,
+  buy_arrows_text = 39,
+  buy_arrows_points = 35,
+  current_points = 20,
+}
 
 [slayer_rewards_learn]
 id = 378
+type = "main_screen"
+components = {
+  assignment = 14,
+  buy = 15,
+  broader_fletching = 76,
+  aquanites = 73,
+  ring_bling = 77,
+  killing_blow = 74,
+  malevolent_masquerade = 78,
+  strike_wyrms = 75,
+  broader_fletching_points = 90,
+  aquanites_points = 91,
+  ring_bling_points = 99,
+  killing_blow_points = 97,
+  malevolent_masquerade_points = 100,
+  strike_wyrms_points = 98,
+  broader_fletching_text = 83,
+  aquanites_text = 84,
+  ring_bling_text = 87,
+  killing_blow_text = 85,
+  malevolent_masquerade_text = 88,
+  strike_wyrms_text = 86,
+  current_points = 79,
+}

@@ -1,0 +1,5 @@
+[turael]
+id = 8461
+categories = ["human"]
+wander_radius = 3
+examine = "He looks dangerous!"
