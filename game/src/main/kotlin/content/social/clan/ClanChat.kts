@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.client.instruction.onInstruction
+import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
@@ -47,27 +47,27 @@ playerDespawn { player ->
     updateMembers(player, clan, ClanRank.Anyone)
 }
 
-onInstruction<ClanChatKick> { player ->
+instruction<ClanChatKick> { player ->
     val clan = player.clan
     if (clan == null || !clan.hasRank(player, clan.kickRank)) {
         player.message("You are not allowed to kick in this clan chat channel.", ChatType.ClanChat)
-        return@onInstruction
+        return@instruction
     }
 
     if (player.name == name) {
         player.message("You cannot kick or ban yourself.", ChatType.ClanChat)
-        return@onInstruction
+        return@instruction
     }
 
     val target = players.get(name)
     if (target == null) {
         player.message("Could not find player with the username '$name'.")
-        return@onInstruction
+        return@instruction
     }
 
     if (!clan.hasRank(player, clan.getRank(target), inclusive = false) || target.isAdmin()) {
         player.message("You cannot kick this member.", ChatType.ClanChat)
-        return@onInstruction
+        return@instruction
     }
 
     if (clan.members.contains(target)) {
@@ -76,10 +76,10 @@ onInstruction<ClanChatKick> { player ->
     player.message("Your request to kick/ban this user was successful.", ChatType.ClanChat)
 }
 
-onInstruction<ClanChatJoin> { player ->
+instruction<ClanChatJoin> { player ->
     if (name.isBlank()) {
         player.emit(LeaveClanChat(forced = false))
-        return@onInstruction
+        return@instruction
     }
     joinClan(player, name)
 }
@@ -141,16 +141,16 @@ val list = listOf(ClanRank.None, ClanRank.Recruit, ClanRank.Corporeal, ClanRank.
 
 val accountDefinitions: AccountDefinitions by inject()
 
-onInstruction<ClanChatRank> { player ->
-    val clan = player.clan ?: player.ownClan ?: return@onInstruction
+instruction<ClanChatRank> { player ->
+    val clan = player.clan ?: player.ownClan ?: return@instruction
     if (!clan.hasRank(player, ClanRank.Owner)) {
-        return@onInstruction
+        return@instruction
     }
     val rank = list[rank]
-    val account = accountDefinitions.get(name) ?: return@onInstruction
+    val account = accountDefinitions.get(name) ?: return@instruction
     player.friends[account.accountName] = rank
     if (clan.members.any { it.accountName == account.accountName }) {
-        val target = players.get(name) ?: return@onInstruction
+        val target = players.get(name) ?: return@instruction
         updateMembers(target, clan, rank)
     }
 }

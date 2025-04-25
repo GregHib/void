@@ -9,7 +9,7 @@ import content.entity.player.inv.inventoryOption
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.client.instruction.onInstruction
+import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.ExamineItem
 import world.gregs.voidps.network.client.instruction.ExamineNpc
@@ -35,21 +35,21 @@ val itemDefinitions: ItemDefinitions by inject()
 val npcDefinitions: NPCDefinitions by inject()
 val objectDefinitions: ObjectDefinitions by inject()
 
-onInstruction<ExamineItem> { player ->
+instruction<ExamineItem> { player ->
     val definition = itemDefinitions.get(itemId)
     if (definition.contains("examine")) {
         player.message(definition["examine"], ChatType.Game)
     }
 }
 
-onInstruction<ExamineNpc> { player ->
+instruction<ExamineNpc> { player ->
     val definition = npcDefinitions.get(npcId)
     if (definition.contains("examine")) {
         player.message(definition["examine"], ChatType.Game)
     }
 }
 
-onInstruction<ExamineObject> { player ->
+instruction<ExamineObject> { player ->
     val definition = objectDefinitions.get(objectId)
     if (definition.contains("examine")) {
         player.message(definition["examine"], ChatType.Game)

@@ -12,7 +12,7 @@ import world.gregs.voidps.network.login.protocol.encode.updateInterface
 import content.entity.effect.frozen
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.client.instruction.onInstruction
+import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.network.client.instruction.WorldMapClick
 
 val definitions: InterfaceDefinitions by inject()
@@ -74,7 +74,7 @@ fun updateMap(player: Player) {
     player["world_map_marker_player"] = tile
 }
 
-onInstruction<WorldMapClick> { player ->
+instruction<WorldMapClick> { player ->
     if (player.hasClock("world_map_double_click") && player["previous_world_map_click", 0] == tile) {
         player["world_map_marker_custom"] = tile
     }

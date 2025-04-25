@@ -21,7 +21,7 @@ import content.social.clan.ownClan
 import content.social.ignore.ignores
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
-import world.gregs.voidps.engine.client.instruction.onInstruction
+import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.network.client.instruction.FriendAdd
 import world.gregs.voidps.network.client.instruction.FriendDelete
 import world.gregs.voidps.network.login.protocol.encode.*
@@ -41,31 +41,31 @@ playerDespawn { player ->
     notifyBefriends(player, online = false)
 }
 
-onInstruction<FriendAdd> { player ->
+instruction<FriendAdd> { player ->
     val account = accounts.get(friendsName)
     if (account == null) {
         player.message("Unable to find player with name '$friendsName'.")
-        return@onInstruction
+        return@instruction
     }
 
     if (player.name == friendsName) {
         player.message("You are already your own best friend!")
-        return@onInstruction
+        return@instruction
     }
 
     if (player.ignores.contains(account.accountName)) {
         player.message("Please remove $friendsName from your ignore list first.")
-        return@onInstruction
+        return@instruction
     }
 
     if (player.friends.size >= maxFriends) {
         player.message("Your friends list is full. Max of 100 for free users, and $maxFriends for members.")
-        return@onInstruction
+        return@instruction
     }
 
     if (player.friends.contains(account.accountName)) {
         player.message("$friendsName is already on your friends list.")
-        return@onInstruction
+        return@instruction
     }
 
     player.friends[account.accountName] = ClanRank.Friend
@@ -73,37 +73,37 @@ onInstruction<FriendAdd> { player ->
         friendsName.updateFriend(player, online = true)
     }
     player.sendFriend(account)
-    val clan = player.clan ?: player.ownClan ?: return@onInstruction
+    val clan = player.clan ?: player.ownClan ?: return@instruction
     if (!clan.hasRank(player, ClanRank.Owner)) {
-        return@onInstruction
+        return@instruction
     }
-    val accountDefinition = accountDefinitions.get(friendsName) ?: return@onInstruction
+    val accountDefinition = accountDefinitions.get(friendsName) ?: return@instruction
     if (clan.members.any { it.accountName == accountDefinition.accountName }) {
-        val target = players.get(friendsName) ?: return@onInstruction
+        val target = players.get(friendsName) ?: return@instruction
         for (member in clan.members) {
             member.client?.appendClanChat(ClanMember.of(target, ClanRank.Friend))
         }
     }
 }
 
-onInstruction<FriendDelete> { player ->
+instruction<FriendDelete> { player ->
     val account = accounts.get(friendsName)
     if (account == null || !player.friends.contains(account.accountName)) {
         player.message("Unable to find player with name '$friendsName'.")
-        return@onInstruction
+        return@instruction
     }
 
     player.friends.remove(account.accountName)
     if (player.privateStatus == "friends") {
         friendsName.updateFriend(player, online = false)
     }
-    val clan = player.clan ?: player.ownClan ?: return@onInstruction
+    val clan = player.clan ?: player.ownClan ?: return@instruction
     if (!clan.hasRank(player, ClanRank.Owner)) {
-        return@onInstruction
+        return@instruction
     }
-    val accountDefinition = accountDefinitions.get(friendsName) ?: return@onInstruction
+    val accountDefinition = accountDefinitions.get(friendsName) ?: return@instruction
     if (clan.members.any { it.accountName == accountDefinition.accountName }) {
-        val target = players.get(friendsName) ?: return@onInstruction
+        val target = players.get(friendsName) ?: return@instruction
         for (member in clan.members) {
             member.client?.appendClanChat(ClanMember.of(target, ClanRank.None))
         }

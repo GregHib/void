@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.instruction.onInstruction
+import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.client.instruction.ChangeDisplayMode
@@ -47,9 +47,9 @@ Tab.entries.forEach { tab ->
     }
 }
 
-onInstruction<ChangeDisplayMode> { player ->
+instruction<ChangeDisplayMode> { player ->
     if (player.interfaces.displayMode == displayMode || !player.hasOpen("graphics_options")) {
-        return@onInstruction
+        return@instruction
     }
     player.interfaces.setDisplayMode(displayMode)
 }
