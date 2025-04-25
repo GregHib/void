@@ -10,7 +10,7 @@ max_hit_melee = 1
 immune_poison = true
 style = "stab"
 respawn_delay = 25
-categories = ["bird"]
+categories = ["birds"]
 examine = "Yep. Definitely a chicken."
 
 [duck_swim]
@@ -21,7 +21,7 @@ hitpoints = 30
 slayer_xp = 3.0
 max_hit_melee = 1
 style = "stab"
-categories = ["duck"]
+categories = ["duck", "birds"]
 respawn_delay = 25
 swim = true
 height = 10
@@ -29,7 +29,7 @@ examine = "Quackers."
 
 [crow]
 id = 1754
-categories = ["bird"]
+categories = ["birds"]
 examine = "A farmer's enemy."
 
 [crow_2]
@@ -75,7 +75,7 @@ examine = "It quacks like a duck."
 [ducklings]
 id = 6112
 swim = true
-categories = ["duck"]
+categories = ["duck", "birds"]
 wander_radius = 6
 examine = "Aww, cute."
 
@@ -87,7 +87,7 @@ examine = "Waddle waddle waddle quack."
 
 [wimpy_bird]
 id = 7031
-categories = ["bird"]
+categories = ["birds"]
 wander_radius = 3
 examine = "An ogre snack with wings."
 

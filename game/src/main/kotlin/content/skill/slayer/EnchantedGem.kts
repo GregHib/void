@@ -13,11 +13,17 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.SlayerTaskDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.Action
 import world.gregs.voidps.engine.queue.strongQueue
 
 val slayerDefinitions: SlayerTaskDefinitions by inject()
+
+playerSpawn { player ->
+    player.sendVariable("slayer_count")
+    player.sendVariable("slayer_target")
+}
 
 inventoryItem("Activate", "enchanted_gem") {
     player.strongQueue("enchanted_gem_activate") {
@@ -34,12 +40,20 @@ inventoryItem("Activate", "enchanted_gem") {
 }
 
 inventoryItem("Kills-left", "enchanted_gem") {
-    player.message("Your current assignment is: ${player.slayerTask.lowercase()}; only ${player.slayerTaskRemaining} more to go.")
+    if (player.slayerTask.isBlank()) {
+        player.message("") // TODO
+    } else {
+        player.message("Your current assignment is: ${player.slayerTask.lowercase()}; only ${player.slayerTaskRemaining} more to go.")
+    }
 }
 
 fun ChoiceBuilder<Action<Player>>.howAmIDoing() {
     option<Quiz>("How am I doing so far?") {
-        npc<Happy>(player.slayerMaster, "You're currently assigned to kill ${player.slayerTask.toLowerSpaceCase()}; only ${player.slayerTaskRemaining} more to go. Your reward point tally is ${player.slayerPoints}.")
+        if (player.slayerTask.isBlank()) {
+            // TODO
+        } else {
+            npc<Happy>(player.slayerMaster, "You're currently assigned to kill ${player.slayerTask.toLowerSpaceCase()}; only ${player.slayerTaskRemaining} more to go. Your reward point tally is ${player.slayerPoints}.")
+        }
         choice {
             whoAreYou()
             whereAreYou()

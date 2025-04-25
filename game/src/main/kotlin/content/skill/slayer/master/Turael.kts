@@ -82,7 +82,7 @@ suspend fun NPCOption<Player>.assignTask() {
         roll()
         return
     }
-    npc<Talk>("You're still hunting ${player.slayerTask}, you have ${player.slayerTaskRemaining} to go.")
+    npc<Talk>("You're still hunting ${player.slayerTask.toSentenceCase()}, you have ${player.slayerTaskRemaining} to go.")
     if (player.slayerMaster != "turael") {
         npc<Talk>("Although, it's not an assignment that I'd normally give... I guess I could give you a new assignment, if you'd like.")
         npc<Talk>("If you do get a new one, you will reset your task streak of ${player.slayerStreak}. Is that okay?")

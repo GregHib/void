@@ -15,9 +15,9 @@ val Character.undead: Boolean
     get() = if (this is NPC) categories.contains("undead") else false
 
 var Player.slayerTask: String
-    get() = this["slayer_task", ""]
+    get() = this["slayer_target", "nothing"]
     set(value) {
-        this["slayer_task"] = value
+        this["slayer_target"] = value
     }
 
 var Player.slayerMaster: String
@@ -27,9 +27,9 @@ var Player.slayerMaster: String
     }
 
 var Player.slayerTaskRemaining: Int
-    get() = this["slayer_task_amount_remaining", 0]
+    get() = this["slayer_count", 0]
     set(value) {
-        this["slayer_task_amount_remaining"] = value
+        this["slayer_count"] = value
     }
 
 var Player.slayerStreak: Int
@@ -77,7 +77,7 @@ fun rollTask(player: Player, definitions: Map<String, SlayerTaskDefinition>): Sl
             continue
         }
         count += definition.weight
-        if (roll < total) {
+        if (roll < count) {
             return definition
         }
     }

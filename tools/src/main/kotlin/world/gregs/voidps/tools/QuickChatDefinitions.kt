@@ -14,15 +14,15 @@ object QuickChatDefinitions {
     fun main(args: Array<String>) {
         Settings.load()
         val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
-        val options = QuickChatOptionDecoder()
+        val options = QuickChatOptionDecoder().load(cache)
         val phrases = QuickChatPhraseDecoder().load(cache)
         val enums = EnumDecoder()
         val items = ItemDecoder()
         val data = BufferReader((0..32).map { 0.toByte() }.toByteArray())
-        /*for (i in 0..32784) {
+        for (i in 0..32784) {
             val def = options.getOrNull(i) ?: continue
             println(def)
-        }*/
+        }
         for (i in phrases.indices) {
             // 612, 613, 614, 62
             val def = phrases.getOrNull(i) ?: continue

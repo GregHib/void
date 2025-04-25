@@ -10,7 +10,7 @@ respawn_delay = 35
 wander_radius = 10
 hitpoints = 120
 slayer_xp = 12
-categories = ["goblin_spear"]
+categories = ["goblins"]
 height = 30
 large_head = true
 examine = "An ugly, orange creature."
@@ -94,18 +94,15 @@ id = 4271
 [goblin_shield_battleaxe_red]
 id = 4479
 clone = "goblin_orange_hat_spear"
-categories = ["goblin_battleaxe"]
 examine = "An ugly, red creature."
 
 [goblin_staff_red]
 id = 4480
 clone = "goblin_shield_battleaxe_red"
-categories = ["goblin_staff"]
 
 [goblin_shield_warhammer_red]
 id = 4481
 clone = "goblin_shield_battleaxe_red"
-categories = ["goblin_battleaxe"]
 
 [goblin_shield_spear_red]
 id = 4482
@@ -114,33 +111,27 @@ clone = "goblin_shield_battleaxe_red"
 [goblin_battleaxe_red]
 id = 4483
 clone = "goblin_shield_battleaxe_red"
-categories = ["goblin_battleaxe"]
 
 [goblin_mohawk_staff_red]
 id = 4484
 clone = "goblin_shield_battleaxe_red"
-categories = ["goblin_staff"]
 
 [goblin_ponytail_staff_red]
 id = 4485
 clone = "goblin_shield_battleaxe_red"
-categories = ["goblin_staff"]
 
 [goblin_shield_battleaxe_green]
 id = 4486
 clone = "goblin_orange_hat_spear"
-categories = ["goblin_battleaxe"]
 examine = "An ugly, green creature."
 
 [goblin_staff_green]
 id = 4487
 clone = "goblin_shield_battleaxe_green"
-categories = ["goblin_staff"]
 
 [goblin_shield_warhammer_green]
 id = 4488
 clone = "goblin_shield_battleaxe_green"
-categories = ["goblin_battleaxe"]
 
 [goblin_shield_spear_green]
 id = 4489
@@ -149,12 +140,10 @@ clone = "goblin_shield_battleaxe_green"
 [goblin_staff_2_green]
 id = 4491
 clone = "goblin_shield_battleaxe_green"
-categories = ["goblin_staff"]
 
 [goblin_mohawk_staff_green]
 id = 4492
 clone = "goblin_shield_battleaxe_green"
-categories = ["goblin_staff"]
 
 [goblin_light_grey_bald]
 clone = "goblin_mohawk_blue"

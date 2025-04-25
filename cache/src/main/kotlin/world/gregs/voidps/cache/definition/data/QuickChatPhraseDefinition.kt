@@ -21,12 +21,20 @@ data class QuickChatPhraseDefinition(
                 val reader = BufferReader(data)
                 for (index in types.indices) {
                     append(stringParts[index])
-                    val count = QuickChatType.getType(types[index])?.bitCount ?: 0
-                    val key = reader.readBits(count)
-                    val string = when (getType(index)) {
+                    val type = getType(index)
+                    val key = when (type?.byteCount) {
+                        4 -> reader.readInt()
+                        2 -> reader.readShort()
+                        1 -> reader.readByte()
+                        else -> 0
+                    }
+                    val string = when (type) {
                         QuickChatType.MultipleChoice -> enums[ids[index].first()].getString(key)
                         QuickChatType.AllItems, QuickChatType.TradeItems -> items[key].name
-                        QuickChatType.SlayerAssignment, QuickChatType.ClanRank, QuickChatType.SkillExperience -> enums[ids[index].first()].getString(key)
+                        QuickChatType.SlayerAssignment -> {
+                            enums[ids[index].first()].getString(key)
+                        }
+                        QuickChatType.ClanRank, QuickChatType.SkillExperience -> enums[ids[index].first()].getString(key)
                         else -> key.toString()
                     }
                     append(string)

@@ -34,7 +34,9 @@ import world.gregs.voidps.type.Tile
 import content.social.clan.clan
 import content.entity.player.inv.item.tradeable
 import content.entity.sound.sound
-import content.skill.slayer.categories
+import content.skill.slayer.*
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 
 val npcs: NPCs by inject()
 val floorItems: FloorItems by inject()
@@ -54,6 +56,9 @@ npcDeath { npc ->
         val name = npc.def.name.toSnakeCase()
         (killer as? Player)?.sound(deathSound(npc))
         delay(4)
+        if (killer is Player) {
+            slay(killer, npc)
+        }
         dropLoot(npc, killer, name, tile)
         npc.attackers.clear()
         npc.softTimers.stopAll()
@@ -191,5 +196,38 @@ fun notify(members: List<Player>, awardee: Player, item: Item) {
         member.message("${awardee.name} received: ${item.amount} ${item.def.name.plural(item.amount)}.", ChatType.ClanChat)
         member.lootSharePotential += item.def.cost * item.amount
         member.message("Your chance of receiving loot has improved.", ChatType.Filter)
+    }
+}
+
+fun slay(player: Player, npc: NPC) {
+    if (player.slayerTask.isBlank() || !npc.categories.contains(player.slayerTask)) {
+        return
+    }
+    val slayerExp = npc.def["slayer_xp", 0.0]
+    player.exp(Skill.Slayer, slayerExp)
+    player.slayerTaskRemaining--
+    if (player.slayerTaskRemaining == 0) {
+        player.slayerStreak++
+        var points = when (player.slayerMaster) {
+            "mazchna" -> 15
+            "vannaka" -> 60
+            "chaeldar" -> 150
+            "sumona" -> 180
+            "duradel", "lapalok" -> 225
+            "kuradal" -> 270
+            else -> 0
+        }
+        if (player.slayerStreak.rem(50) != 0) {
+            points /= 15
+        } else if (player.slayerStreak.rem(10) == 0) {
+            points /= 3
+        }
+        player.slayerPoints += points
+        player.inc("slayer_tasks_completed")
+        player.clear("slayer_target")
+        // TODO dif message for 0 points?
+        player.message("You've completed ${player.slayerStreak} tasks in a row and gain $points points. Return to a Slayer Master.")
+    } else if (player.slayerTaskRemaining.rem(10) == 0) {
+        player.message("You still need to kill ${player.slayerTaskRemaining} monsters to completed your current Slayer assignment.", ChatType.Filter)
     }
 }
