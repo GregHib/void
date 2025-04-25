@@ -11,6 +11,10 @@ class Steps(
 ) : List<Step> by steps {
     var destination: Tile = Tile.EMPTY
         private set
+    var previous: Tile = Tile.EMPTY
+    var follow: Tile = Tile.EMPTY
+    var movedFrom: Tile = Tile.EMPTY
+    var last = 0
 
     fun peek(): Step? = steps.peek()
 

@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.client.ui
 
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.playMusicTrack
 import world.gregs.voidps.engine.client.sendScript
@@ -27,7 +27,7 @@ class Interfaces(
     private val events: EventDispatcher,
     internal var client: Client? = null,
     internal val definitions: InterfaceDefinitions,
-    private val openInterfaces: MutableSet<String> = ObjectOpenHashSet()
+    private val interfaces: MutableMap<String, String> = Object2ObjectOpenHashMap()
 ) {
     var displayMode = 0
 
@@ -67,7 +67,7 @@ class Interfaces(
     }
 
     fun remove(id: String): Boolean {
-        if (openInterfaces.remove(id)) {
+        if (interfaces.remove(getType(id), id)) {
             sendClose(id)
             events.emit(InterfaceClosed(id))
             (events as? Player)?.queue?.clearWeak()
@@ -77,15 +77,15 @@ class Interfaces(
     }
 
     fun get(type: String): String? {
-        return openInterfaces.firstOrNull { getType(it) == type }
+        return interfaces[type]
     }
 
     fun contains(id: String): Boolean {
-        return openInterfaces.contains(id)
+        return interfaces[getType(id)] == id
     }
 
     fun refresh() {
-        openInterfaces.forEach { id ->
+        for (id in interfaces.values) {
             sendOpen(id)
             notifyRefresh(id)
         }
@@ -97,7 +97,9 @@ class Interfaces(
     }
 
     private fun sendIfOpened(id: String): Boolean {
-        if (openInterfaces.add(id)) {
+        val type = getType(id)
+        if (interfaces[type] != id) {
+            interfaces[type] = id
             sendOpen(id)
             events.emit(InterfaceOpened(id))
             notifyRefresh(id)
@@ -108,10 +110,10 @@ class Interfaces(
     }
 
     private fun closeChildrenOf(parent: String) {
-        val it = openInterfaces.iterator()
+        val it = interfaces.iterator()
         val children = mutableListOf<String>()
         while (it.hasNext()) {
-            val id = it.next()
+            val (_, id) = it.next()
             if (getParent(id) == parent) {
                 it.remove()
                 sendClose(id)

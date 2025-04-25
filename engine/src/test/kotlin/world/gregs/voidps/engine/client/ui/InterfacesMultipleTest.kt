@@ -25,9 +25,9 @@ internal class InterfacesMultipleTest : InterfaceTest() {
     override fun setup() {
         super.setup()
         every { definitions.get(any<Int>()) } returns InterfaceDefinition(-1)
-        val zero = InterfaceDefinition(id = 0, stringId = "zero", permanent = false, fixed = InterfaceDefinition.pack(1, 0))
-        val one = InterfaceDefinition(id = 1, stringId = "one", permanent = false, fixed = InterfaceDefinition.pack(2, 0))
-        val two = InterfaceDefinition(id = 2, stringId = "two", permanent = false)
+        val zero = InterfaceDefinition(id = 0, stringId = "zero", type = "0", permanent = false, fixed = InterfaceDefinition.pack(1, 0))
+        val one = InterfaceDefinition(id = 1, stringId = "one", type = "1", permanent = false, fixed = InterfaceDefinition.pack(2, 0))
+        val two = InterfaceDefinition(id = 2, stringId = "two", type = "2", permanent = false)
         every { definitions.getOrNull(zeroId) } returns zero
         every { definitions.getOrNull(oneId) } returns one
         every { definitions.getOrNull(twoId) } returns two

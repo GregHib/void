@@ -21,7 +21,7 @@ import world.gregs.voidps.network.login.protocol.encode.privateQuickChatTo
 import world.gregs.voidps.network.login.protocol.encode.publicQuickChat
 import content.social.clan.clan
 import content.social.ignore.ignores
-import world.gregs.voidps.engine.client.instruction.onInstruction
+import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.network.client.instruction.QuickChatPrivate
 import world.gregs.voidps.network.client.instruction.QuickChatPublic
 
@@ -31,11 +31,11 @@ val variables: VariableDefinitions by inject()
 val enums: EnumDefinitions by inject()
 val items: ItemDefinitions by inject()
 
-onInstruction<QuickChatPrivate> { player ->
+instruction<QuickChatPrivate> { player ->
     val target = players.get(friend)
     if (target == null || target.ignores(player)) {
         player.message("Unable to send message - player unavailable.")
-        return@onInstruction
+        return@instruction
     }
     val definition = phrases.get(file)
     val data = generateData(player, file, data)
@@ -50,7 +50,7 @@ onEvent<Player, PrivateQuickChatMessage> { player ->
     player.client?.privateQuickChatFrom(source.name, source.rights.ordinal, file, data)
 }
 
-onInstruction<QuickChatPublic> { player ->
+instruction<QuickChatPublic> { player ->
     when (chatType) {
         0 -> {
             val definition = phrases.get(file)
@@ -65,11 +65,11 @@ onInstruction<QuickChatPublic> { player ->
             val clan = player.clan
             if (clan == null) {
                 player.message("You must be in a clan chat to talk.", ChatType.ClanChat)
-                return@onInstruction
+                return@instruction
             }
             if (!clan.hasRank(player, clan.talkRank) || !clan.members.contains(player)) {
                 player.message("You are not allowed to talk in this clan chat channel.", ChatType.ClanChat)
-                return@onInstruction
+                return@instruction
             }
             val definition = phrases.get(file)
             val data = generateData(player, file, data)

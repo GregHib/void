@@ -16,6 +16,7 @@ class PlayerTask(
             character.timers.run()
         }
         character.softTimers.run()
+        character.area.tick()
         character.mode.tick()
         checkTileFacing(character)
     }

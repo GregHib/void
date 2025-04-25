@@ -2,8 +2,6 @@ package world.gregs.voidps.engine.client.update.npc
 
 import world.gregs.voidps.engine.client.update.CharacterTask
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
-import world.gregs.voidps.engine.entity.character.move.followTile
-import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 
@@ -18,7 +16,7 @@ class NPCResetTask(
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun run(npc: NPC) {
         npc.visuals.reset()
-        npc.followTile = npc.previousTile
+        npc.steps.follow = npc.steps.previous
     }
 
 }

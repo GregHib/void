@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.move.AreaEntered
 import world.gregs.voidps.engine.entity.character.mode.move.AreaExited
-import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.appearance
@@ -59,13 +58,14 @@ class AccountManager(
         player.interfaces = Interfaces(player, player.client, interfaceDefinitions)
         player.interfaceOptions = InterfaceOptions(player, interfaceDefinitions, inventoryDefinitions)
         (player.variables as PlayerVariables).definitions = variableDefinitions
+        player.area.areaDefinitions = areaDefinitions
         player.inventories.definitions = inventoryDefinitions
         player.inventories.itemDefinitions = itemDefinitions
         player.inventories.validItemRule = validItems
         player.inventories.normalStack = ItemDependentStack(itemDefinitions)
         player.inventories.events = player
         player.inventories.start()
-        player.previousTile = player.tile.add(Direction.WEST.delta)
+        player.steps.previous = player.tile.add(Direction.WEST.delta)
         player.experience.events = player
         player.levels.link(player, PlayerLevels(player.experience))
         player.body.link(player.equipment)

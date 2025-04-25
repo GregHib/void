@@ -5,26 +5,42 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.encode.updateInterface
 import content.entity.effect.frozen
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.client.instruction.onInstruction
+import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.network.client.instruction.WorldMapClick
+import world.gregs.voidps.engine.client.ui.hasOpen
+import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.timerTick
 
 val definitions: InterfaceDefinitions by inject()
 
 interfaceOpen("world_map") { player ->
     updateMap(player)
+    if (player.steps.isNotEmpty()) {
+        player.softTimers.start("world_map_check")
+    }
     player.sendVariable("world_map_hide_player_location")
     player.sendVariable("world_map_hide_links")
     player.sendVariable("world_map_hide_labels")
     player.sendVariable("world_map_hide_tooltips")
     player.sendVariable("world_map_marker_custom")
     player.interfaceOptions.unlockAll("world_map", "key_list", 0..182)
+}
+
+timerStart("world_map_check") {
+    interval = 5
+}
+
+timerTick("world_map_check") { player ->
+    updateMap(player)
+    if (player.steps.isEmpty() || !player.hasOpen("world_map")) {
+        cancel()
+    }
 }
 
 interfaceOption("Re-sort key", "order", "world_map") {
@@ -64,17 +80,13 @@ interfaceOption(component = "close", id = "world_map") {
     player.open(player.interfaces.gameFrame, close = false)
 }
 
-move({ it.interfaces.contains("world_map") }) { player ->
-    updateMap(player)
-}
-
 fun updateMap(player: Player) {
     val tile = player.tile.id
     player["world_map_centre"] = tile
     player["world_map_marker_player"] = tile
 }
 
-onInstruction<WorldMapClick> { player ->
+instruction<WorldMapClick> { player ->
     if (player.hasClock("world_map_double_click") && player["previous_world_map_click", 0] == tile) {
         player["world_map_marker_custom"] = tile
     }

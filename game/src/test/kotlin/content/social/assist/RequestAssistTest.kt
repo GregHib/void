@@ -42,6 +42,7 @@ internal class RequestAssistTest : WorldTest() {
 
         receiver.walk(emptyTile.addY(22))
         tickIf { receiver.tile != emptyTile.addY(22) }
+        tick()
 
         assertFalse(assistant.hasOpen("assist_xp"))
     }

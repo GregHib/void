@@ -47,10 +47,8 @@ class FloorItemsTest {
 
     @Test
     fun `Add floor items`() {
-        val first = floorItem("item", Tile.EMPTY)
-        items.add(first)
-        val second = floorItem("item", Tile(10, 10, 1), owner = "player")
-        items.add(second)
+        val first = items.add(Tile.EMPTY, "item")
+        val second = items.add(Tile(10, 10, 1), "item", owner = "player")
         items.run()
 
         assertEquals(items[Tile.EMPTY].first(), first)
@@ -64,10 +62,8 @@ class FloorItemsTest {
 
     @Test
     fun `Add floor items in order`() {
-        val first = floorItem("item1", Tile.EMPTY)
-        items.add(first)
-        val second = floorItem("item2", Tile.EMPTY)
-        items.add(second)
+        val first = items.add(Tile.EMPTY, "item1")
+        val second = items.add(Tile.EMPTY, "item2")
         items.run()
 
         val items = items[Tile.EMPTY]
@@ -77,10 +73,9 @@ class FloorItemsTest {
 
     @Test
     fun `Adding two private stackable items combines them`() {
-        val first = floorItem("stackable", Tile.EMPTY, owner = "player", disappear = 5, reveal = 5)
-        items.add(first)
-        val second = floorItem("stackable", Tile.EMPTY, owner = "player", disappear = 10, reveal = 10)
-        items.add(second)
+        items.add(Tile.EMPTY, "stackable", owner = "player", disappearTicks = 5, revealTicks = 5)
+        items.run()
+        items.add(Tile.EMPTY, "stackable", owner = "player", disappearTicks = 10, revealTicks = 10)
         items.run()
 
         val floorItem = items[Tile.EMPTY].first()
@@ -102,10 +97,8 @@ class FloorItemsTest {
 
     @Test
     fun `Don't combine non-stackable items`() {
-        val first = floorItem("item", Tile.EMPTY, owner = "player")
-        items.add(first)
-        val second = floorItem("item", Tile.EMPTY, owner = "player")
-        items.add(second)
+        val first = items.add(Tile.EMPTY, "item", owner = "player")
+        val second = items.add(Tile.EMPTY, "item", owner = "player")
         items.run()
         val items = items[Tile.EMPTY]
         assertEquals(first, items[0])
@@ -114,10 +107,8 @@ class FloorItemsTest {
 
     @Test
     fun `Don't combine two overflowing two private stacks`() {
-        val first = floorItem("item", Tile.EMPTY, Int.MAX_VALUE - 10, owner = "player")
-        items.add(first)
-        val second = floorItem("item", Tile.EMPTY, 20, owner = "player")
-        items.add(second)
+        val first = items.add(Tile.EMPTY, "item", Int.MAX_VALUE - 10, owner = "player")
+        val second = items.add(Tile.EMPTY, "item", 20, owner = "player")
         items.run()
 
         val items = items[Tile.EMPTY]
@@ -127,10 +118,8 @@ class FloorItemsTest {
 
     @Test
     fun `Public items aren't combined`() {
-        val first = floorItem("item", Tile.EMPTY, owner = null, disappear = 5, reveal = -1)
-        items.add(first)
-        val second = floorItem("item", Tile.EMPTY, owner = "player", disappear = 10, reveal = 10)
-        items.add(second)
+        val first = items.add(Tile.EMPTY, "item", disappearTicks = 5, revealTicks = -1)
+        val second = items.add(Tile.EMPTY, "item", owner = "player", disappearTicks = 10, revealTicks = 10)
         items.run()
 
         val items = items[Tile.EMPTY]
@@ -140,10 +129,9 @@ class FloorItemsTest {
 
     @Test
     fun `Remove floor item`() {
-        val first = floorItem("item1", Tile.EMPTY)
-        items.add(first)
-        val second = floorItem("item1", Tile.EMPTY)
-        items.add(second)
+        val first = items.add(Tile.EMPTY, "item1")
+        val second = items.add(Tile.EMPTY, "item1")
+        items.run()
 
         assertTrue(items.remove(first))
         items.run()
@@ -158,12 +146,11 @@ class FloorItemsTest {
     @Test
     fun `Remove lowest value item when limit exceeded`() {
         repeat(128) {
-            val item = floorItem(if (it == 25) "cheap_item" else "item", Tile.EMPTY)
-            items.add(item)
+            items.add(Tile.EMPTY, if (it == 25) "cheap_item" else "item")
         }
+        items.run()
 
-        val item = floorItem("item", Tile.EMPTY, owner = "player")
-        items.add(item)
+        val item = items.add(Tile.EMPTY, "item", owner = "player")
         items.run()
 
         val items = items[Tile.EMPTY]
@@ -174,8 +161,7 @@ class FloorItemsTest {
     @Test
     fun `Equal value items are unstacked when limit exceeded`() {
         repeat(128 * 2) {
-            val item = floorItem(if (it >= 128) "equal_item" else "item", Tile.EMPTY)
-            items.add(item)
+            items.add(Tile.EMPTY, if (it >= 128) "equal_item" else "item")
         }
 
         val items = items[Tile.EMPTY]
@@ -184,8 +170,8 @@ class FloorItemsTest {
 
     @Test
     fun `Clear sends batch update`() {
-        val first = floorItem("item", Tile.EMPTY)
-        items.add(first)
+        items.add(Tile.EMPTY, "item")
+        items.run()
 
         items.clear()
         items.run()
@@ -195,10 +181,6 @@ class FloorItemsTest {
         verify {
             batches.add(Zone.EMPTY, FloorItemRemoval(tile = 0, id = 1, owner = null))
         }
-    }
-
-    private fun floorItem(id: String, tile: Tile, amount: Int = 1, disappear: Int = -1, reveal: Int = -1, charges: Int = 0, owner: String? = null): FloorItem {
-        return FloorItem(tile, id, amount, disappear, reveal, charges, owner)
     }
 
     @AfterEach

@@ -15,16 +15,16 @@ import world.gregs.voidps.type.Tile
 import content.entity.combat.dead
 import content.entity.death.npcDeath
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.instruction.onInstruction
+import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.network.client.instruction.Walk
 
 val collisions: Collisions by inject()
 val npcs: NPCs by inject()
 val players: Players by inject()
 
-onInstruction<Walk> { player ->
+instruction<Walk> { player ->
     if (player.contains("delay")) {
-        return@onInstruction
+        return@instruction
     }
     player.closeInterfaces()
     player.clearWatch()

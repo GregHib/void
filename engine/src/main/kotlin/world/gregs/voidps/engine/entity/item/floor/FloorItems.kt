@@ -45,6 +45,7 @@ class FloorItems(
         }
         removeQueue.clear()
         for (floorItem in addQueue) {
+            add(floorItem)
             floorItem.emit(Spawn)
         }
         addQueue.clear()
@@ -57,11 +58,11 @@ class FloorItems(
             logger.warn { "Invalid floor item id: '$id' at $tile" }
         }
         val item = FloorItem(tile, id, amount, revealTicks, disappearTicks, charges, if (revealTicks == 0) null else owner)
-        add(item)
+        display(item)
         return item
     }
 
-    internal fun add(floorItem: FloorItem) {
+    private fun display(floorItem: FloorItem) {
         val list = data.getOrPut(floorItem.tile.zone.id) { zonePool.borrow() }.getOrPut(floorItem.tile.id) { tilePool.borrow() }
         if (combined(list, floorItem)) {
             return
@@ -69,10 +70,12 @@ class FloorItems(
         if (full(list, floorItem)) {
             return
         }
-        if (list.add(floorItem)) {
-            batches.add(floorItem.tile.zone, FloorItemAddition(floorItem.tile.id, floorItem.def.id, floorItem.amount, floorItem.owner))
-            addQueue.add(floorItem)
-        }
+        addQueue.add(floorItem)
+        batches.add(floorItem.tile.zone, FloorItemAddition(floorItem.tile.id, floorItem.def.id, floorItem.amount, floorItem.owner))
+    }
+
+    private fun add(floorItem: FloorItem) {
+        data.getOrPut(floorItem.tile.zone.id) { zonePool.borrow() }.getOrPut(floorItem.tile.id) { tilePool.borrow() }.add(floorItem)
     }
 
     /**

@@ -201,7 +201,7 @@ internal class CombatTest : WorldTest() {
         player.interfaceOption("combat_styles", "style3", "Select")
         player.playerOption(target, "Attack")
         tickIf { target.levels.get(Skill.Constitution) > 0 }
-        tick(6) // player death
+        tick(7) // player death
 
         assertNotEquals(startTile, player.tile)
         assertTrue(player.experience.get(Skill.Attack) > EXPERIENCE)

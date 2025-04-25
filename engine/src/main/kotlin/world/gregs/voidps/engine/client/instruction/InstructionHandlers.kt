@@ -112,7 +112,7 @@ class InstructionHandlers(
 
 @Suppress("UNCHECKED_CAST")
 @JvmName("onEventDispatcher")
-inline fun <reified I : Instruction> onInstruction(noinline handler: I.(Player) -> Unit) {
+inline fun <reified I : Instruction> instruction(noinline handler: I.(Player) -> Unit) {
     when (I::class) {
         FinishRegionLoad::class -> get<InstructionHandlers>().finishRegionLoad = handler as FinishRegionLoad.(Player) -> Unit
         ChangeDisplayMode::class -> get<InstructionHandlers>().changeDisplayMode = handler as ChangeDisplayMode.(Player) -> Unit

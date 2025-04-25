@@ -32,14 +32,14 @@ internal class InterfacesSingleTest : InterfaceTest() {
 
     @Test
     fun `Opened contains with type`() {
-        open.add(name)
+        open["type"] = name
         assertTrue(interfaces.contains(name))
         assertEquals(name, interfaces.get("type"))
     }
 
     @Test
     fun `Reopen only refreshes`() {
-        open.add(name)
+        open["type"] = name
 
         assertFalse(interfaces.open(name))
 
@@ -50,8 +50,8 @@ internal class InterfacesSingleTest : InterfaceTest() {
 
     @Test
     fun `Close no longer contains`() {
-        every { definitions.getOrNull("zero")?.parent(any()) } returns 2
-        open.add(name)
+        every { definitions.getOrNull(name) } returns InterfaceDefinition(id = 1, stringId = "1", type = "type", resizable = 2, fixed = 2)
+        open["type"] = name
 
         assertTrue(interfaces.close(name))
         assertFalse(interfaces.contains(name))

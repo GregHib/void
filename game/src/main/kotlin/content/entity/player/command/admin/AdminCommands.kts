@@ -103,6 +103,8 @@ adminCommand("tele (x) (y) [level]", "teleport to given coordinates or area name
             else -> player.tele(int, parts[1].toInt(), if (parts.size > 2) parts[2].toInt() else 0)
         }
     }
+    player["world_map_centre"] = player.tile.id
+    player["world_map_marker_player"] = player.tile.id
 }
 
 adminCommand("teleto (player-name)", "teleport to another player") {

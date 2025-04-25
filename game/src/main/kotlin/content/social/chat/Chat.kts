@@ -20,7 +20,7 @@ import world.gregs.voidps.network.login.protocol.encode.publicChat
 import content.social.clan.chatType
 import content.social.clan.clan
 import content.social.ignore.ignores
-import world.gregs.voidps.engine.client.instruction.onInstruction
+import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.network.client.instruction.ChatPrivate
 import world.gregs.voidps.network.client.instruction.ChatPublic
 import world.gregs.voidps.network.client.instruction.ChatTypeChange
@@ -32,11 +32,11 @@ onEvent<Player, PublicChatMessage> { player ->
     player.client?.publicChat(source.index, effects, source.rights.ordinal, compressed)
 }
 
-onInstruction<ChatPrivate> { player ->
+instruction<ChatPrivate> { player ->
     val target = players.get(friend)
     if (target == null || target.ignores(player)) {
         player.message("Unable to send message - player unavailable.")
-        return@onInstruction
+        return@instruction
     }
     val message = PrivateChatMessage(player, message, huffman)
     player.client?.privateChatTo(target.name, message.compressed)
@@ -47,14 +47,14 @@ onEvent<Player, PrivateChatMessage> { player ->
     player.client?.privateChatFrom(source.name, source.rights.ordinal, compressed)
 }
 
-onInstruction<ChatTypeChange> { player ->
+instruction<ChatTypeChange> { player ->
     player["chat_type"] = when (type) {
         1 -> "clan"
         else -> "public"
     }
 }
 
-onInstruction<ChatPublic> { player ->
+instruction<ChatPublic> { player ->
     when (player.chatType) {
         "public" -> {
             val message = PublicChatMessage(player, effects, text, huffman)
@@ -66,11 +66,11 @@ onInstruction<ChatPublic> { player ->
             val clan = player.clan
             if (clan == null) {
                 player.message("You must be in a clan chat to talk.", ChatType.ClanChat)
-                return@onInstruction
+                return@instruction
             }
             if (!clan.hasRank(player, clan.talkRank) || !clan.members.contains(player)) {
                 player.message("You are not allowed to talk in this clan chat.", ChatType.ClanChat)
-                return@onInstruction
+                return@instruction
             }
             val message = ClanChatMessage(player, effects, text, huffman)
             clan.members.filterNot { it.ignores(player) }.forEach {
