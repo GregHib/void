@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.mode.move.target.TileTargetStrategy
-import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -111,7 +110,7 @@ internal class MovementTest : KoinMock() {
         assertEquals(MoveType.Walk, player.temporaryMoveType)
 
         assertEquals(Direction.NORTH_EAST, player.direction)
-        assertEquals(Tile(5, 5), player.previousTile)
+        assertEquals(Tile(5, 5), player.steps.previous)
         assertEquals(Tile(6, 6), player.tile)
     }
 
@@ -126,7 +125,7 @@ internal class MovementTest : KoinMock() {
         assertEquals(1, player.visuals.runStep)
 
         assertEquals(Direction.NORTH_EAST, player.direction)
-        assertEquals(Tile(6, 6), player.previousTile)
+        assertEquals(Tile(6, 6), player.steps.previous)
         assertEquals(Tile(7, 7), player.tile)
         assertFalse(player.steps.isEmpty())
     }

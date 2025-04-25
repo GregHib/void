@@ -32,6 +32,6 @@ fun Character.tele(delta: Delta, clearMode: Boolean = true, clearInterfaces: Boo
         movementType = MoveType.Teleport
     }
     steps.clear()
-    previousTile = tile.add(delta).add(Direction.WEST)
+    steps.previous = tile.add(delta).add(Direction.WEST)
     Movement.move(this, delta)
 }

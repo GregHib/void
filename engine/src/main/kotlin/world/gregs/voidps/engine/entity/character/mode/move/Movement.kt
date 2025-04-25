@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
-import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -109,7 +108,7 @@ open class Movement(
         } else {
             character.visuals.walkStep = clockwise(direction)
         }
-        character.previousTile = character.tile
+        character.steps.previous = character.tile
         move(character, direction.delta)
         character.face(direction, false)
         return true
