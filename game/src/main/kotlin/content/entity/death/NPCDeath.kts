@@ -217,10 +217,10 @@ fun slay(player: Player, npc: NPC) {
             "kuradal" -> 270
             else -> 0
         }
-        if (player.slayerStreak.rem(50) != 0) {
-            points /= 15
-        } else if (player.slayerStreak.rem(10) == 0) {
-            points /= 3
+        when {
+            player.slayerStreak.rem(50) == 0 -> {}
+            player.slayerStreak.rem(10) == 0 -> points /= 3
+            else -> points /= 15
         }
         player.slayerPoints += points
         player.inc("slayer_tasks_completed")
