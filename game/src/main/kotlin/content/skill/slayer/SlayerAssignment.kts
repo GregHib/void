@@ -51,12 +51,12 @@ interfaceOption("Reassign *", "reassign_*", "slayer_rewards_assignment") {
         player.message("Sorry. That would cost 30 and you only have ${player.slayerPoints} Slayer ${"Point".plural(player.slayerPoints)}.")
         return@interfaceOption
     }
-    if (player.slayerTask.isBlank()) {
+    if (player.slayerTask == "nothing") {
         player.message("You need a task in order to skip it.") // TODO proper message
         return@interfaceOption
     }
     player.slayerPoints -= 30
-    player.slayerTask = ""
+    player.slayerTask = "nothing"
 //    npc<Happy>(player["slayer_npc", ""], "") TODO proper message and save npc id on interface open
 }
 
@@ -65,7 +65,7 @@ interfaceOption("Permanently *", "block_*", "slayer_rewards_assignment") {
         player.message("Sorry. That would cost 100 and you only have ${player.slayerPoints} Slayer ${"Point".plural(player.slayerPoints)}.")
         return@interfaceOption
     }
-    if (player.slayerTask.isBlank()) {
+    if (player.slayerTask == "nothing") {
         player.message("You need a task in order to block it.") // TODO proper message
         return@interfaceOption
     }
@@ -73,7 +73,7 @@ interfaceOption("Permanently *", "block_*", "slayer_rewards_assignment") {
     for (i in 0 until 5) {
         if (!player.contains("blocked_task_$i")) {
             player["blocked_task_$i"] = player.slayerTask
-            player.slayerTask = ""
+            player.slayerTask = "nothing"
             player.slayerPoints -= 100
             blocked = true
             break

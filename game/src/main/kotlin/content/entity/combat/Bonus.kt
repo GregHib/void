@@ -34,7 +34,7 @@ object Bonus {
                 "salve_amulet" -> return (value * (7.0 / 6.0)).toInt()
             }
         }
-        if (source.slayerTask.isBlank() || !source.isTask(target)) {
+        if (source.slayerTask == "nothing" || !source.isTask(target)) {
             return value
         }
         val helm = source.equipped(EquipSlot.Hat).id

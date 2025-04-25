@@ -40,7 +40,7 @@ inventoryItem("Activate", "enchanted_gem") {
 }
 
 inventoryItem("Kills-left", "enchanted_gem") {
-    if (player.slayerTask.isBlank()) {
+    if (player.slayerTask == "nothing") {
         player.message("") // TODO
     } else {
         player.message("Your current assignment is: ${player.slayerTask.lowercase()}; only ${player.slayerTaskRemaining} more to go.")
@@ -49,7 +49,7 @@ inventoryItem("Kills-left", "enchanted_gem") {
 
 fun ChoiceBuilder<Action<Player>>.howAmIDoing() {
     option<Quiz>("How am I doing so far?") {
-        if (player.slayerTask.isBlank()) {
+        if (player.slayerTask == "nothing") {
             // TODO
         } else {
             npc<Happy>(player.slayerMaster, "You're currently assigned to kill ${player.slayerTask.toLowerSpaceCase()}; only ${player.slayerTaskRemaining} more to go. Your reward point tally is ${player.slayerPoints}.")

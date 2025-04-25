@@ -78,7 +78,7 @@ npcOperate("Rewards", "turael") {
 }
 
 suspend fun NPCOption<Player>.assignTask() {
-    if (player.slayerTask.isBlank()) {
+    if (player.slayerTask == "nothing") {
         roll()
         return
     }

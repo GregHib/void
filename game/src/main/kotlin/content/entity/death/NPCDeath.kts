@@ -200,7 +200,7 @@ fun notify(members: List<Player>, awardee: Player, item: Item) {
 }
 
 fun slay(player: Player, npc: NPC) {
-    if (player.slayerTask.isBlank() || !npc.categories.contains(player.slayerTask)) {
+    if (player.slayerTask == "nothing" || !npc.categories.contains(player.slayerTask)) {
         return
     }
     val slayerExp = npc.def["slayer_xp", 0.0]
