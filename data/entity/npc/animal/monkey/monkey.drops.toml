@@ -1,0 +1,5 @@
+[monkey_drop_table]
+type = "all"
+drops = [
+    { id = "monkey_bones" }
+]

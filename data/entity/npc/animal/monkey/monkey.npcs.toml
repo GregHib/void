@@ -1,0 +1,14 @@
+[monkey_brown]
+id = 132
+style = "crush"
+hitpoints = 60
+att = 2
+str = 3
+def = 3
+height = 15
+wander_radius = 8
+attack_radius = 14
+respawn_delay = 37
+slayer_xp = 6.0
+categories = ["monkey", "monkeys"]
+examine = "Perhaps our oldest relatives?"

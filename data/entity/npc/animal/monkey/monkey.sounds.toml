@@ -1,0 +1,8 @@
+zombie_monkey_attack = 629
+monkey_attack = 630
+monkey_caught = 631
+monkey_death = 632
+monkey_escape = 633
+monkey_defend = 634
+zombie_monkey_death = 635
+zombie_monkey_defend = 636

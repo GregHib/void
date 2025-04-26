@@ -35,7 +35,7 @@ class SlayerTaskTest : WorldTest() {
     fun `Complete a slayer task`() = listOf(
         "birds" to "chicken",
         "goblins" to "goblin_staff_green",
-//        "monkeys" to "",
+        "monkeys" to "monkey_brown",
         "rats" to "giant_rat",
         "spiders" to "giant_spider",
 //        "bats" to "",
