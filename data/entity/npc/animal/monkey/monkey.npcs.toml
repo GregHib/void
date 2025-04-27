@@ -9,6 +9,7 @@ height = 15
 wander_radius = 8
 attack_radius = 14
 respawn_delay = 37
+max_hit_melee = 10
 slayer_xp = 6.0
 categories = ["monkey", "monkeys"]
 examine = "Perhaps our oldest relatives?"
