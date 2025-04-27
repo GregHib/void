@@ -1,0 +1,149 @@
+[doric]
+id = 284
+categories = ["dwarf"]
+wander_radius = 2
+examine = "A dwarf smith. Quite handy with a hammer."
+
+[thurgo]
+id = 604
+categories = ["dwarf"]
+wander_radius = 4
+examine = "Dwarvish."
+
+[dororan]
+id = 1168
+categories = ["dwarf"]
+examine = "A dwarf in anguish."
+
+[dororan_after_cutscene]
+id = 2646
+
+[dororan_after_cutscene2]
+id = 2647
+examine = "A dwarf on top of the world."
+
+[dororan_after_quest]
+id = 2648
+categories = ["dwarf"]
+examine = "A dwarf on top of the world."
+
+[dororan_after_quest2]
+clone = "dororan_after_quest"
+id = 2651
+
+[thorgel]
+id = 2788
+
+[thorgel_normal]
+id = 2789
+categories = ["dwarf"]
+examine = "A short angry guy."
+
+[dororan_cutscene]
+id = 2863
+examine = "A dwarf in suspense."
+
+[dwarf]
+id = 118
+hitpoints = 160
+att = 8
+str = 8
+def = 8
+attack_bonus = 5
+max_hit_melee = 20
+style = "crush"
+attack_speed = 5
+respawn_delay = 25
+slayer_xp = 16.0
+wander_radius = 10
+attack_radius = 16
+categories = ["dwarf", "dwarves"]
+examine = "Loves mining."
+
+[dwarf_hammer]
+id = 120
+hitpoints = 260
+att = 15
+str = 16
+def = 16
+attack_bonus = 11
+max_hit_melee = 30
+style = "crush"
+attack_speed = 6
+respawn_delay = 25
+slayer_xp = 26.0
+wander_radius = 10
+attack_radius = 16
+categories = ["dwarf", "dwarves"]
+examine = "Loves mining, mountains and mining mountains."
+
+[dwarf_mining_guild]
+id = 3219
+hitpoints = 180
+att = 8
+str = 8
+def = 8
+attack_bonus = 5
+max_hit_melee = 20
+style = "crush"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 16.0
+wander_radius = 10
+attack_radius = 16
+categories = ["dwarf", "dwarves"]
+examine = "Loves mining."
+
+[dwarf_mining_guild_hammer]
+id = 3220
+clone = "dwarf_mining_guild"
+
+[dwarf_mining_guild_earrings]
+id = 3221
+clone = "dwarf"
+examine = "Loves mining."
+
+[dwarf_dwarven_mines_wrench_beard]
+id = 3268
+clone = "dwarf_mining_guild"
+examine = "A dwarven worker."
+
+[dwarf_dwarven_mines_wrench]
+id = 3269
+clone = "dwarf_mining_guild"
+
+[dwarf_dwarven_mines_wrench_apron_green]
+id = 3270
+clone = "dwarf_mining_guild"
+
+[dwarf_dwarven_mines_pickaxe]
+id = 3271
+clone = "dwarf_mining_guild"
+
+[dwarf_dwarven_mines_pickaxe_green]
+id = 3272
+clone = "dwarf"
+
+[dwarf_dwarven_mines_wrench_green]
+id = 3273
+clone = "dwarf_mining_guild"
+
+[dwarf_dwarven_mines_red]
+id = 3274
+clone = "dwarf_mining_guild"
+
+[dwarf_dwarven_mines_old]
+id = 3275
+hitpoints = 100
+att = 6
+str = 6
+def = 6
+attack_bonus = 5
+max_hit_melee = 20
+style = "crush"
+attack_speed = 4
+respawn_delay = 50
+slayer_xp = 10.0
+wander_radius = 10
+attack_radius = 16
+categories = ["dwarf", "dwarves"]

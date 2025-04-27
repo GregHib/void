@@ -1,0 +1,8 @@
+[dwarf_attack]
+id = 99
+
+[dwarf_defend]
+id = 100
+
+[dwarf_death]
+id = 102
