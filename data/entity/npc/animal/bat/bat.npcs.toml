@@ -1,0 +1,35 @@
+[bat]
+id = 412
+hitpoints = 80
+att = 5
+str = 5
+def = 5
+style = "stab"
+slayer_xp = 8.0
+wander_radius = 8
+attack_radius = 14
+respawn_delay = 35
+categories = ["bat", "bats"]
+examine = "An annoying flappy thing."
+
+[giant_bat]
+id = 78
+hitpoints = 320
+att = 22
+str = 22
+def = 22
+style = "stab"
+hunt_mode = "cowardly"
+slayer_xp = 32.0
+wander_radius = 8
+attack_radius = 14
+respawn_delay = 35
+categories = ["bat", "bats"]
+examine = "An annoying flappy thing."
+
+[giant_bat_brine_cavern]
+clone = "giant_bat"
+id = 3711
+max_hit = 30
+style = "crush"
+examine = "It's a pretty big bat."
