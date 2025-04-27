@@ -1,0 +1,29 @@
+[minotaur]
+id = 4404
+hitpoints = 100
+att = 12
+str = 10
+def = 10
+max_hit_melee = 20
+style = "crush"
+respawn_delay = 15
+slayer_xp = 10.0
+wander_radius = 6
+attack_radius = 8
+categories = ["minotaur", "minotaurs"]
+examine = "He doesn't look very pleased to see you."
+
+[minotaur_strong]
+id = 4406
+hitpoints = 220
+att = 23
+str = 25
+def = 25
+max_hit_melee = 30
+style = "crush"
+respawn_delay = 15
+slayer_xp = 22.0
+wander_radius = 6
+attack_radius = 8
+categories = ["minotaur", "minotaurs"]
+examine = "He doesn't look very pleased to see you."

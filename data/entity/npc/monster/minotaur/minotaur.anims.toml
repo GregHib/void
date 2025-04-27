@@ -1,0 +1,8 @@
+[minotaur_death]
+id = 4265
+
+[minotaur_attack]
+id = 4266
+
+[minotaur_defend]
+id = 4267

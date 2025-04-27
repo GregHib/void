@@ -1,0 +1,31 @@
+[minotaur_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "minotaur_secondary" },
+    { table = "easy_clue_scroll", roll = 101 },
+]
+
+[minotaur_secondary]
+roll = 101
+drops = [
+    { id = "iron_arrow", min = 5, max = 14, chance = 30, members = false },
+    { id = "iron_arrow", min = 5, max = 14, chance = 10, members = true },
+    { id = "bronze_spear", chance = 10 },
+    { id = "bronze_full_helm", chance = 20, members = false },
+    { id = "bronze_full_helm", chance = 10, members = true },
+    { id = "bronze_arrow", amount = 3, chance = 3 },
+    { id = "bronze_dagger", chance = 4 },
+    { id = "mind_rune" },
+    { id = "coins", amount = 2, chance = 11, members = true },
+    { id = "coins", amount = 7, chance = 20 },
+    { id = "coins", min = 5, max = 84, chance = 7 },
+    { id = "copper_ore_noted", chance = 6 },
+    { id = "tin_ore_noted", chance = 11, members = false },
+    { id = "tin_ore_noted", chance = 6, members = true },
+    { id = "pure_essence_noted", amount = 15, chance = 5, members = true },
+    { id = "rune_essence_noted", amount = 5, chance = 5, members = false },
+    { id = "cooked_meat", chance = 3 },
+    { id = "right_skull_half", chance = 3 },
+    { table = "gem_drop_table" },
+]
