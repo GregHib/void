@@ -126,21 +126,30 @@ object NPCSpawnConverter {
             if (!line.startsWith("|")) {
                 break
             }
-            if (line.startsWith("|x:")) {
-                for (entry in line.split("|").drop(1)) {
+            if (line.startsWith("|x:") || line.startsWith("|npcid:")) {
+                for (entry in line.replace("}}", "").split("|").drop(1)) {
                     val parts = entry.split(",", ":")
-                    val x = parts[1].toInt()
-                    val y = parts[3].toInt()
-                    println("  { id = \"${name.lowercase()}\", x = $x, y = $y${if (level != 0) ", level = $level" else ""}${if (members) ", members = true" else ""} },")
+                    if (parts.contains("type=maplink")) {
+                        continue
+                    }
+                    val index = parts.indexOf("x")
+                    val x = parts[index + 1].toInt()
+                    val y = parts[index + 3].toInt()
+                    val id = if (parts.contains("npcid")) {
+                        parts[parts.indexOf("npcid") + 1].toInt()
+                    } else {
+                        name.lowercase()
+                    }
+                    println("  { id = \"$id\", x = $x, y = $y${if (level != 0) ", level = $level" else ""}${if (members) ", members = true" else ""} },")
                 }
                 i++
                 continue
             }
             val parts = line.removePrefix("|").split("=").map { it.trim() }
             when (parts[0]) {
-                "location" -> println("  # ${parts[1]}")
+                "location", "loc" -> println("  # ${parts[1].replace("[", "").replace("]", "")}")
                 "name" -> name = parts[1]
-                "members" -> members = parts[1].equals("yes", true) || parts[1].equals("true", true)
+                "members", "mem" -> members = parts[1].equals("yes", true) || parts[1].equals("true", true)
                 "plane" -> level = parts[1].toInt()
             }
             i++
