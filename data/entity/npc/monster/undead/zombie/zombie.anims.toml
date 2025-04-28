@@ -1,0 +1,30 @@
+[zombie_defend]
+id = 5567
+
+[zombie_attack]
+id = 5568
+
+[zombie_death]
+id = 5569
+
+[zombie_weapon_attack]
+id = 5571
+
+[zombie_weapon_defend]
+id = 5574
+
+[zombie_weapon_death]
+id = 5575
+
+[zombie_dragging_attack]
+id = 5578
+
+[zombie_dragging_defend]
+id = 5579
+
+[zombie_dragging_death]
+id = 5580
+
+[zombie_champion_attack]
+id = 5581
+

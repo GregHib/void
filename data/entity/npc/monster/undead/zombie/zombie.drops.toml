@@ -1,0 +1,254 @@
+[zombie_entrana_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "zombie_entrana_secondary" },
+]
+
+[zombie_entrana_secondary]
+roll = 128
+drops = [
+    { id = "bronze_hatchet", chance = 50 },
+    { id = "bronze_med_helm", chance = 4 },
+    { id = "bronze_longsword" },
+    { id = "iron_hatchet" },
+    { id = "air_rune", amount = 13, chance = 4 },
+    { id = "bronze_arrow", amount = 8, chance = 4 },
+    { id = "nature_rune", amount = 6 },
+    { id = "fishing_bait", amount = 5, chance = 46 },
+    { id = "nothing", amount = 0, chance = 8 },
+    { id = "coins", amount = 18, chance = 3 },
+    { id = "coins", amount = 28, chance = 2 },
+]
+
+[zombie_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "zombie_secondary", roll = 128 },
+]
+
+[zombie_secondary]
+roll = 128
+drops = [
+    { id = "bronze_med_helm", chance = 4 },
+    { id = "bronze_longsword" },
+    { id = "iron_hatchet" },
+    { id = "iron_arrow", amount = 5, chance = 7 },
+    { id = "body_rune", amount = 6, chance = 5 },
+    { id = "mind_rune", amount = 5, chance = 5 },
+    { id = "air_rune", amount = 13, chance = 4 },
+    { id = "iron_arrow", amount = 8, chance = 4 },
+    { id = "steel_arrow", amount = 5, chance = 2 },
+    { id = "nature_rune", amount = 6 },
+    { id = "coins", amount = 10, chance = 11, members = true },
+    { id = "coins", amount = 10, chance = 36, members = false },
+    { id = "coins", amount = 4, chance = 4 },
+    { id = "coins", amount = 18, chance = 3 },
+    { id = "coins", amount = 13, chance = 2 },
+    { id = "coins", amount = 28, chance = 2 },
+    { id = "fishing_bait", amount = 5, chance = 37 },
+    { id = "nothing", amount = 0, chance = 8 },
+    { id = "copper_ore", chance = 2 },
+]
+
+[zombie_empty_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+]
+
+[zombie_armed_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "zombie_armed_secondary" },
+]
+
+[zombie_armed_secondary]
+roll = 128
+drops = [
+    { id = "iron_mace", chance = 3 },
+    { id = "iron_dagger", chance = 2 },
+    { id = "bronze_kiteshield" },
+    { id = "mithril_arrow", chance = 3 },
+    { id = "body_rune", amount = 3, chance = 2 },
+    { id = "air_rune", amount = 3, chance = 3 },
+    { id = "chaos_rune", amount = 4 },
+    { id = "cosmic_rune", amount = 2 },
+    { id = "fire_rune", amount = 7 },
+    { table = "herb_drop_table", chance = 30, members = true },
+    { id = "coins", amount = 10, chance = 10, members = true },
+    { id = "coins", amount = 10, chance = 40, members = false },
+    { id = "coins", amount = 18, chance = 21 },
+    { id = "coins", amount = 26, chance = 8 },
+    { id = "coins", amount = 35, chance = 6 },
+    { id = "coins", chance = 2 },
+    { id = "fishing_bait", amount = 7, chance = 26 },
+    { id = "nothing", amount = 0, chance = 3 },
+    { id = "tinderbox", chance = 2 },
+    { id = "eye_of_newt" },
+    { id = "tin_ore" },
+    { table = "gem_drop_table" },
+]
+
+[zombie_melzars_maze]
+type = "all"
+drops = [
+    { table = "bones" },
+    { id = "key_blue" },
+]
+
+[zombie_tarns_lair_low]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "zombie_tarns_lair_low_secondary" },
+]
+
+[zombie_tarns_lair_low_secondary]
+roll = 128
+drops = [
+    { id = "steel_platelegs", chance = 8 },
+    { id = "bronze_battleaxe", chance = 5 },
+    { id = "steel_knife", chance = 5 },
+    { id = "bronze_2h_sword", chance = 3 },
+    { id = "staff_of_air", chance = 3 },
+    { id = "iron_warhammer", chance = 2 },
+    { id = "steel_mace", chance = 2 },
+    { id = "steel_sq_shield" },
+    { id = "mithril_sword" },
+    { id = "water_rune", amount = 4, chance = 5 },
+    { id = "mud_rune", amount = 3, chance = 5 },
+    { id = "cannonball", amount = 3, chance = 3 },
+    { id = "steel_arrow", amount = 7, chance = 3 },
+    { id = "fire_rune", amount = 12, chance = 3 },
+    { id = "law_rune", amount = 2, chance = 3 },
+    { id = "earth_rune", amount = 8, chance = 2 },
+    { id = "chaos_rune", amount = 6, chance = 2 },
+    { table = "herb_drop_table", chance = 3 },
+    { id = "coins", amount = 19, chance = 5 },
+    { id = "coins", amount = 33, chance = 5 },
+    { id = "coins", amount = 60, chance = 5 },
+    { id = "coins", amount = 86, chance = 3 },
+    { id = "coins", amount = 2, chance = 2 },
+    { id = "coins", amount = 37, chance = 2 },
+    { id = "coins", amount = 54, chance = 2 },
+    { id = "coins", amount = 126 },
+    { id = "bowl_of_water", chance = 5 },
+    { id = "fishing_potion_1", chance = 5 },
+    { id = "pot_of_flour", chance = 5 },
+    { id = "pot_lid", chance = 5 },
+    { id = "steel_nails", chance = 5 },
+    { id = "iron_ore", amount = 2, chance = 3 },
+    { id = "plant_pot_empty", chance = 3 },
+    { id = "nothing", amount = 0, chance = 3 },
+    { id = "gold_ore", amount = 3, chance = 2 },
+    { id = "oak_plank", chance = 2 },
+    { id = "tile", chance = 2 },
+    { id = "unholy_mould", chance = 2 },
+    { id = "earth_orb" },
+    { table = "gem_drop_table" },
+]
+
+[zombie_tarns_lair_mid]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "zombie_tarns_lair_mid_secondary" },
+]
+
+[zombie_tarns_lair_mid_secondary]
+roll = 128
+drops = [
+    { id = "steel_warhammer", chance = 5 },
+    { id = "willow_shortbow", chance = 3 },
+    { id = "bronze_throwing_axe", chance = 3 },
+    { id = "leather_boots", chance = 2 },
+    { id = "steel_longsword", chance = 2 },
+    { id = "mithril_dagger", chance = 2 },
+    { id = "adamant_scimitar", chance = 2 },
+    { id = "steel_spear_p++" },
+    { id = "mithril_full_helm" },
+    { id = "mithril_kiteshield" },
+    { id = "adamant_plateskirt" },
+    { id = "rune_warhammer" },
+    { id = "steel_arrow", amount = 11, chance = 3 },
+    { id = "steel_dart", amount = 3, chance = 3 },
+    { id = "death_rune", amount = 4, chance = 3 },
+    { table = "herb_drop_table", chance = 2 },
+    { id = "coins", amount = 52, chance = 19 },
+    { id = "coins", amount = 35, chance = 5 },
+    { id = "coins", amount = 298, chance = 5 },
+    { id = "coins", amount = 67, chance = 3 },
+    { id = "coins", amount = 135, chance = 3 },
+    { id = "coins", amount = 27, chance = 2 },
+    { id = "coins", amount = 95, chance = 2 },
+    { id = "coins", amount = 132, chance = 2 },
+    { id = "knife", chance = 10 },
+    { id = "cup_of_tea", chance = 5 },
+    { id = "pure_essence_noted", amount = 14, chance = 5 },
+    { id = "super_ranging_potion_3", chance = 5 },
+    { id = "rune_nails", amount = 3, chance = 5 },
+    { id = "fire_orb", chance = 3 },
+    { id = "gold_necklace", chance = 3 },
+    { id = "holy_mould", chance = 3 },
+    { id = "limestone_brick", amount = 2, chance = 3 },
+    { id = "tinderbox", chance = 2 },
+    { id = "magic_logs", chance = 2 },
+    { id = "mithril_bar", chance = 2 },
+    { id = "ring_of_duelling_3", chance = 2 },
+    { id = "garlic" },
+    { table = "gem_drop_table" },
+]
+
+[zombie_tarns_lair_high]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "zombie_tarns_lair_high_secondary" },
+]
+
+[zombie_tarns_lair_high_secondary]
+roll = 128
+drops = [
+    { id = "steel_warhammer", chance = 5 },
+    { id = "adamant_spear", chance = 5 },
+    { id = "bronze_battleaxe", chance = 3 },
+    { id = "mithril_2h_sword", chance = 3 },
+    { id = "mithril_pickaxe", chance = 3 },
+    { id = "leather_gloves", chance = 2 },
+    { id = "steel_chainbody", chance = 2 },
+    { id = "bronze_chainbody" },
+    { id = "black_hatchet" },
+    { id = "black_chainbody" },
+    { id = "black_sq_shield" },
+    { id = "adamant_sword" },
+    { id = "rune_battleaxe" },
+    { id = "bronze_javelin", amount = 4, chance = 3 },
+    { id = "adamant_arrow_p+", amount = 3, chance = 3 },
+    { id = "nature_rune", amount = 7, chance = 3 },
+    { id = "mind_rune", amount = 10, chance = 2 },
+    { id = "mist_rune", amount = 3, chance = 2 },
+    { id = "lava_rune", amount = 8, chance = 2 },
+    { id = "cosmic_rune", amount = 2, chance = 2 },
+    { id = "law_rune", amount = 6, chance = 2 },
+    { id = "adamant_bolts", amount = 7 },
+    { table = "herb_drop_table", chance = 2 },
+    { id = "coins", amount = 17, chance = 22 },
+    { id = "coins", amount = 82, chance = 21 },
+    { id = "coins", amount = 154, chance = 5 },
+    { id = "coins", amount = 78, chance = 3 },
+    { id = "coins", amount = 55, chance = 2 },
+    { id = "coins", amount = 112 },
+    { id = "coins", amount = 410 },
+    { id = "black_nails", amount = 8, chance = 5 },
+    { id = "hard_leather_noted", amount = 2, chance = 5 },
+    { id = "fishing_bait", amount = 7, chance = 3 },
+    { id = "dwellberries_noted", amount = 4, chance = 2 },
+    { id = "pestle_and_mortar", chance = 2 },
+    { id = "white_berries", chance = 2 },
+    { id = "adamant_bar" },
+    { id = "pot_of_cream" },
+    { table = "gem_drop_table" },
+]
