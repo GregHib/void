@@ -1,0 +1,7 @@
+[bear_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "bear_fur" },
+    { id = "raw_bear_meat" },
+]

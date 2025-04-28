@@ -44,7 +44,7 @@ class SlayerTaskTest : WorldTest() {
         "minotaurs" to "minotaur",
         "scorpions" to "scorpion",
         "zombies" to "zombie",
-//        "bears" to "",
+        "bears" to "grizzly_bear",
 //        "ghosts" to "",
 //        "dogs" to "",
 //        "kalphites" to "",
