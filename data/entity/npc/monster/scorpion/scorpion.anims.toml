@@ -1,0 +1,17 @@
+[scorpion_attack]
+id = 6254
+
+[scorpion_defend]
+id = 6255
+
+[scorpion_death]
+id = 6256
+
+[small_scorpion_attack]
+id = 6261
+
+[small_scorpion_defend]
+id = 6259
+
+[small_scorpion_death]
+id = 6260

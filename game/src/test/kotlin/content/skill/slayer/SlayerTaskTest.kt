@@ -42,7 +42,7 @@ class SlayerTaskTest : WorldTest() {
         "cows" to "cow_calf",
         "dwarves" to "dwarf",
         "minotaurs" to "minotaur",
-//        "scorpions" to "",
+        "scorpions" to "scorpion",
 //        "zombies" to "zombie",
 //        "bears" to "",
 //        "ghosts" to "",
