@@ -324,7 +324,7 @@ level = 72
 xp = 162.5
 ticks = 2
 remove = ["dwarf_weed_potion_unf", "wine_of_zamorak"]
-add = ["ranging_potion_3"]
+add = ["super_ranging_potion_3"]
 animation = "mixing_potion"
 message = "You mix the wine of zamorak into your potion"
 
