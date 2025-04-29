@@ -1,0 +1,17 @@
+[jackal_defend]
+id = 6566
+
+[jackal_death]
+id = 6567
+
+[jackal_attack]
+id = 6568
+
+[medium_dog_defend]
+id = 6563
+
+[medium_dog_death]
+id = 6564
+
+[medium_dog_attack]
+id = 6565

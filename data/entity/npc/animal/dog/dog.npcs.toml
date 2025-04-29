@@ -1,0 +1,47 @@
+[jackal]
+id = 1994
+hitpoints = 270
+att = 17
+str = 18
+def = 15
+max_hit_melee = 30
+style = "stab"
+slayer_xp = 27.0
+respawn_delay = 50
+attack_radius = 8
+wander_radius = 6
+hunt_mode = "cowardly"
+categories = ["dog", "dogs"]
+examine = "He has had his day."
+
+[guard_dog]
+id = 99
+hitpoints = 490
+att = 35
+str = 36
+def = 37
+max_hit_melee = 30
+style = "stab"
+slayer_xp = 49.0
+respawn_delay = 25
+attack_radius = 8
+wander_radius = 6
+hunt_mode = "cowardly"
+categories = ["medium_dog", "dogs"]
+examine = "He doesn't seem pleased to see me."
+
+[wild_dog]
+id = 1593
+hitpoints = 620
+att = 53
+str = 54
+def = 54
+max_hit_melee = 60
+style = "stab"
+slayer_xp = 62.0
+respawn_delay = 50
+attack_radius = 8
+wander_radius = 6
+hunt_mode = "cowardly"
+categories = ["medium_dog", "dogs"]
+examine = "He doesn't seem pleased to see me."
