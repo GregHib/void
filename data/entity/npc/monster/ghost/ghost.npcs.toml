@@ -1,0 +1,90 @@
+[ghost_draynor_manor]
+id = 104
+hitpoints = 250
+att = 13
+str = 13
+def = 18
+max_hit_melee = 20
+style = "crush"
+slayer_xp = 25.0
+respawn_delay = 40
+attack_radius = 11
+wander_radius = 10
+hunt_mode = "cowardly"
+categories = ["ghost", "ghosts", "undead"]
+examine = "Eeek! A ghost!"
+
+[ghost]
+id = 103
+clone = "ghost_draynor_manor"
+attack_anim = "ghost_tendril_attack"
+defend_anim = "ghost_tendril_defend"
+death_anim = "ghost_tendril_death"
+
+[ghost_3]
+id = 5342
+clone = "ghost_draynor_manor"
+
+[ghost_4]
+id = 5343
+clone = "ghost_draynor_manor"
+
+[ghost_5]
+id = 5344
+clone = "ghost_draynor_manor"
+
+[ghost_6]
+id = 5345
+clone = "ghost_draynor_manor"
+
+[ghost_7]
+id = 5346
+clone = "ghost_draynor_manor"
+
+[ghost_8]
+id = 5347
+clone = "ghost_draynor_manor"
+
+[ghost_9]
+id = 5348
+clone = "ghost_draynor_manor"
+
+[ghost_draynor_manor_2]
+id = 5349
+clone = "ghost_draynor_manor"
+
+[ghost_draynor_manor_3]
+id = 5350
+clone = "ghost_draynor_manor"
+
+[ghost_draynor_manor_4]
+id = 5351
+clone = "ghost_draynor_manor"
+
+[ghost_draynor_manor_5]
+id = 5352
+clone = "ghost_draynor_manor"
+
+[ghost_abandoned_mine]
+id = 1549
+hitpoints = 300
+att = 23
+str = 23
+def = 28
+max_hit_melee = 30
+style = "crush"
+slayer_xp = 30.0
+attack_radius = 11
+wander_radius = 10
+hunt_mode = "cowardly"
+attack_anim = "ghost_tendril_attack"
+defend_anim = "ghost_tendril_defend"
+death_anim = "ghost_tendril_death"
+categories = ["ghost", "ghosts", "undead"]
+examine = "Eeek! A ghost!"
+
+[haze_abandoned_mine]
+id = 1537
+hunt_mode = "cowardly"
+respawn_delay = 40
+examine = "A strange disturbance in the air."
