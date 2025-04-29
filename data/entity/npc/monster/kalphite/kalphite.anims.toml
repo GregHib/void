@@ -1,0 +1,14 @@
+[kalphite_attack]
+id = 6223
+
+[kalphite_guardian_attack]
+id = 6226
+
+[kalphite_defend]
+id = 6227
+
+[kalphite_death]
+id = 6228
+
+[kalphite_guardian_death]
+id = 6230

@@ -47,7 +47,7 @@ class SlayerTaskTest : WorldTest() {
         "bears" to "grizzly_bear",
         "ghosts" to "ghost",
         "dogs" to "jackal",
-//        "kalphites" to "",
+        "kalphites" to "kalphite_worker",
         "skeletons" to "skeleton_sword_shield",
 //        "icefiends" to "",
         "wolves" to "white_wolf",
