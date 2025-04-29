@@ -1,0 +1,20 @@
+spawns = [
+    # God Wars Dungeon
+    { id = "icefiend_godwars", x = 2854, y = 5304, level = 2, members = true },
+    { id = "icefiend_godwars", x = 2875, y = 5296, level = 2, members = true },
+    { id = "icefiend_godwars", x = 2918, y = 5273, level = 2, members = true },
+    { id = "icefiend_godwars", x = 2886, y = 5312, level = 2, members = true },
+    { id = "icefiend_godwars", x = 2898, y = 5315, level = 2, members = true },
+    # Ice Mountain
+    { id = "icefiend", x = 2995, y = 3468 },
+    { id = "icefiend", x = 2999, y = 3473 },
+    { id = "icefiend", x = 3001, y = 3470 },
+    { id = "icefiend", x = 3003, y = 3483 },
+    { id = "icefiend", x = 3003, y = 3502 },
+    { id = "icefiend", x = 3004, y = 3496 },
+    { id = "icefiend", x = 3005, y = 3473 },
+    { id = "icefiend", x = 3005, y = 3480 },
+    { id = "icefiend", x = 3005, y = 3485 },
+    { id = "icefiend", x = 3006, y = 3468 },
+    { id = "icefiend", x = 3006, y = 3490 },
+]

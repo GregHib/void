@@ -1,0 +1,17 @@
+[icefiend_drop_table]
+type = "all"
+drops = [
+    { table = "icefiend_secondary" },
+    { table = "easy_clue_scroll", roll = 128 }
+]
+
+[icefiend_secondary]
+roll = 128
+drops = [
+    { id = "air_rune", min = 1, max = 5 },
+    { id = "water_rune", min = 1, max = 5, chance = 4 },
+    { id = "nothing", amount = 0, chance = 112 },
+    { id = "coins", min = 1, max = 30, chance = 4 },
+    { id = "coins", min = 1, max = 20, chance = 4 },
+    { table = "gem_drop_table", chance = 3 },
+]

@@ -49,7 +49,7 @@ class SlayerTaskTest : WorldTest() {
         "dogs" to "jackal",
         "kalphites" to "kalphite_worker",
         "skeletons" to "skeleton_sword_shield",
-//        "icefiends" to "",
+        "icefiends" to "icefiend",
         "wolves" to "white_wolf",
 //        "crawling_hands" to "",
 //        "cave_bugs" to "",
