@@ -1,0 +1,29 @@
+[crawling_hand_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "crawling_hand_secondary" },
+    { table = "crawling_hand_tertiary" },
+]
+
+[crawling_hand_secondary]
+roll = 128
+drops = [
+    { id = "leather_gloves", chance = 21 },
+    { id = "gloves_purple", chance = 2 },
+    { id = "gloves_yellow", chance = 2 },
+    { id = "gloves_red", chance = 2 },
+    { id = "gloves_teal", chance = 2 },
+    { id = "gold_ring", chance = 3 },
+    { id = "sapphire_ring", chance = 2 },
+    { id = "emerald_ring", chance = 2 },
+    { id = "coins", amount = 5, chance = 21 },
+    { id = "coins", amount = 8, chance = 23 },
+    { table = "gem_drop_table", chance = 2 },
+]
+
+[crawling_hand_tertiary]
+roll = 500
+drops = [
+    { id = "crawling_hand", chance = 1 },
+]

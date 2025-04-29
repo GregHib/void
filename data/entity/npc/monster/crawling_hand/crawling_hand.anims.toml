@@ -1,0 +1,17 @@
+[crawling_hand_attack]
+id = 9125
+
+[crawling_hand_death]
+id = 9126
+
+[crawling_hand_defend]
+id = 9127
+
+[crawling_hand_large_attack]
+id = 9444
+
+[crawling_hand_large_death]
+id = 9445
+
+[crawling_hand_large_defend]
+id = 9446
