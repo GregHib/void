@@ -54,7 +54,7 @@ object Damage {
      */
     fun maximum(source: Character, target: Character, type: String, weapon: Item, spell: String = "", special: Boolean = false): Int = when {
         type == "dragonfire" -> Dragonfire.maxHit(source, target, special || source is NPC && spell != "")
-        source is NPC -> source.def["max_hit_$type", 0]
+        source is NPC -> npcMaximum(source, target, type)
         type == "magic" && weapon.id.startsWith("saradomin_sword") -> 160
         type == "magic" && spell == "magic_dart" -> effectiveLevel(source, Skill.Magic) + 100
         type == "magic" -> {
@@ -76,6 +76,16 @@ object Damage {
             val strengthBonus = Weapon.strengthBonus(source, type, weapon)
             5 + (effectiveLevel(source, skill) * strengthBonus) / 64
         }
+    }
+
+    private fun npcMaximum(source: NPC, target: Character, type: String): Int {
+        if (source.id == "banshee" && target is Player) {
+            val hat = target.equipped(EquipSlot.Hat).id
+            if (hat == "earmuffs" || hat.startsWith("slayer_helmet") || hat.startsWith("full_slayer_helmet")) {
+                return 80
+            }
+        }
+        return source.def["max_hit_$type", 0]
     }
 
     private fun effectiveLevel(character: Character, skill: Skill): Int {

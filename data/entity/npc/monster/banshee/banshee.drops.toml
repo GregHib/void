@@ -1,0 +1,30 @@
+[banshee_drop_table]
+type = "all"
+drops = [
+    { table = "banshee_secondary" },
+    { table = "easy_clue_scroll", roll = 128 },
+]
+
+[banshee_secondary]
+roll = 512
+drops = [
+    { id = "iron_mace", chance = 2 },
+    { id = "iron_dagger", chance = 2 },
+    { id = "iron_kiteshield" },
+    { id = "dark_mystic_gloves" },
+    { id = "air_rune", amount = 3, chance = 12 },
+    { id = "cosmic_rune", amount = 2, chance = 12 },
+    { id = "chaos_rune", amount = 3, chance = 8 },
+    { id = "fire_rune", amount = 7, chance = 4 },
+    { id = "chaos_rune", amount = 7, chance = 4 },
+    { table = "herb_drop_table", chance = 136 },
+    { id = "pure_essence_noted", amount = 13, chance = 88 },
+    { id = "iron_ore", chance = 4 },
+    { id = "coins", amount = 13, chance = 40 },
+    { id = "coins", amount = 26, chance = 32 },
+    { id = "coins", amount = 35, chance = 32 },
+    { id = "fishing_bait", amount = 15, chance = 88 },
+    { id = "fishing_bait", amount = 7, chance = 20 },
+    { id = "eye_of_newt", chance = 4 },
+    { table = "gem_drop_table", chance = 8 },
+]

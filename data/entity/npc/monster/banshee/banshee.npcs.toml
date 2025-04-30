@@ -1,0 +1,14 @@
+[banshee]
+id = 1612
+hitpoints = 220
+att = 22
+str = 15
+def = 22
+max_hit_melee = 20
+slayer_xp = 22.0
+respawn_delay = 15
+attack_radius = 15
+wander_radius = 13
+hunt_mode = "cowardly"
+categories = ["banshee", "banshees", "undead"]
+examine = "A tortured screaming soul."

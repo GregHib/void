@@ -2,13 +2,18 @@ package content.skill.slayer
 
 import FakeRandom
 import WorldTest
+import interfaceUse
+import itemOnNpc
+import itemOnObject
 import npcOption
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
@@ -54,10 +59,9 @@ class SlayerTaskTest : WorldTest() {
         "crawling_hands" to "crawling_hand",
         "cave_bugs" to "cave_bug",
         "cave_crawlers" to "cave_crawler",
-//        "banshees" to "",
+        "banshees" to "banshee",
         "cave_slime" to "cave_slime",
-        "lizards" to "small_lizard_green",
-    ).map { (task, npc) ->
+    ).map { (task, id) ->
         dynamicTest("Complete a $task slayer task") {
             setRandom(object : FakeRandom() {
                 override fun nextBits(bitCount: Int): Int = bitCount
@@ -72,9 +76,9 @@ class SlayerTaskTest : WorldTest() {
             player.slayerTask = task
             player.slayerTaskRemaining = 1
 
-            val chicken = createNPC(npc, player.tile.addY(1))
-            player.npcOption(chicken, "Attack")
-            tickIf { chicken.levels.get(Skill.Constitution) > 0 }
+            val npc = createNPC(id, player.tile.addY(1))
+            player.npcOption(npc, "Attack")
+            tickIf { npc.levels.get(Skill.Constitution) > 0 }
             tick(5) // Npc death
 
             assertEquals("mazchna", player.slayerMaster)
@@ -84,6 +88,37 @@ class SlayerTaskTest : WorldTest() {
             assertEquals(1, player.slayerPoints)
             assertTrue(player.experience.get(Skill.Slayer) > 0)
         }
+    }
+
+    @Test
+    fun `Complete a lizard slayer task`() {
+        setRandom(object : FakeRandom() {
+            override fun nextBits(bitCount: Int): Int = bitCount
+        })
+        val player = createPlayer(tile = Tile(3231, 3298))
+        player.levels.set(Skill.Attack, 99)
+        player.levels.set(Skill.Strength, 99)
+        player.levels.set(Skill.Defence, 99)
+        player.levels.set(Skill.Constitution, 990)
+        player.inventory.add("ice_cooler")
+        player.equipment.set(EquipSlot.Weapon.index, "abyssal_whip")
+        player.slayerMaster = "mazchna"
+        player.slayerTask = "lizards"
+        player.slayerTaskRemaining = 1
+
+        val lizard = createNPC("lizard", player.tile.addY(1))
+        player.npcOption(lizard, "Attack")
+        tickIf { lizard.levels.get(Skill.Constitution) > 10 }
+        tick(1)
+        player.itemOnNpc(lizard, 0)
+        tick(6) // Npc death
+
+        assertEquals("mazchna", player.slayerMaster)
+        assertEquals("nothing", player.slayerTask)
+        assertEquals(0, player.slayerTaskRemaining)
+        assertEquals(1, player.slayerStreak)
+        assertEquals(1, player.slayerPoints)
+        assertTrue(player.experience.get(Skill.Slayer) > 0)
     }
 
     @Test
