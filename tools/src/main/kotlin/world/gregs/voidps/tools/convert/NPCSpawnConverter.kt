@@ -129,7 +129,7 @@ object NPCSpawnConverter {
             if (line.startsWith("|x:") || line.startsWith("|npcid:")) {
                 for (entry in line.replace("}}", "").split("|").drop(1)) {
                     val parts = entry.split(",", ":")
-                    if (parts.contains("type=maplink")) {
+                    if (parts.size <= 1) {
                         continue
                     }
                     val index = parts.indexOf("x")
