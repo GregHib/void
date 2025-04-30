@@ -1,6 +1,7 @@
 [magic_dummy]
 id = 4474
 hitpoints = 150
+immune_death = true
 immune_poison = true
 immune_deflect = true
 immune_stun = true
@@ -11,6 +12,7 @@ examine = "This is ready for you to cast magic at it."
 [melee_dummy]
 id = 7891
 hitpoints = 150
+immune_death = true
 immune_poison = true
 immune_deflect = true
 immune_stun = true

@@ -107,8 +107,8 @@ object Target {
     fun damageLimitModifiers(target: Character, damage: Int): Int {
         return if (target is NPC && target.def.contains("damage_cap")) {
             damage.coerceAtMost(target.def["damage_cap"])
-        } else if (target is NPC && (target.id == "magic_dummy" || target.id == "melee_dummy")) {
-            damage.coerceAtMost(target.levels.get(Skill.Constitution) - 1)
+        } else if (target is NPC && target.def.contains("immune_death")) {
+            damage.coerceAtMost(target.levels.get(Skill.Constitution) - 10)
         } else {
             damage
         }
