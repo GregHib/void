@@ -1,0 +1,64 @@
+[lizard_drop_table]
+type = "all"
+drops = [
+    { table = "big_bones" },
+    { table = "lizard_secondary" },
+    { table = "lizard_tertiary" },
+]
+
+[lizard_secondary]
+roll = 512
+drops = [
+    { id = "light_mystic_gloves" },
+    { id = "fire_rune", amount = 5, chance = 120 },
+    { id = "fire_rune", amount = 42, chance = 56 },
+    { id = "nature_rune", amount = 5, chance = 16 },
+    { id = "coal", chance = 52 },
+    { id = "copper_ore", chance = 12 },
+    { id = "iron_ore", chance = 88 },
+    { id = "silver_bar", chance = 8 },
+    { id = "silver_ore", chance = 12 },
+    { id = "tin_ore", chance = 16 },
+    { id = "mithril_ore", chance = 4 },
+    { table = "lizard_herbs", chance = 40 },
+    { table = "lizard_seeds", chance = 36 },
+    { id = "kebab", chance = 52 },
+    { id = "waterskin_0", amount = 2, chance = 52 },
+    { table = "gem_drop_table", chance = 16 },
+    { table = "lizard_gems", chance = 8 },
+]
+
+[lizard_tertiary]
+roll = 10000
+drops = [
+    { id = "long_bone", chance = 25 },
+    { id = "curved_bone", chance = 2 },
+]
+
+[lizard_herbs]
+type = "all"
+drops = [
+    { table = "herb_drop_table" },
+    { id = "fire_rune", amount = 42 },
+]
+
+[lizard_seeds]
+type = "all"
+drops = [
+    { table = "general_seeds" },
+    { id = "waterskin_0", amount = 2 },
+]
+
+[lizard_gems]
+type = "all"
+drops = [
+    { table = "gem_drop_table" },
+    { table = "gem_drop_table" },
+]
+
+[small_lizard_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "lizard_secondary" },
+]

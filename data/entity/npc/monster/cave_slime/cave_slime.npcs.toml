@@ -12,6 +12,5 @@ slayer_xp = 25.0
 respawn_delay = 15
 attack_radius = 13
 wander_radius = 11
-hunt_mode = "cowardly"
 categories = ["cave_slime", "cave_slimes"]
 examine = "A foul-smelling blob of protoplasm."

@@ -56,7 +56,7 @@ class SlayerTaskTest : WorldTest() {
         "cave_crawlers" to "cave_crawler",
 //        "banshees" to "",
         "cave_slime" to "cave_slime",
-//        "lizards" to "",
+        "lizards" to "small_lizard_green",
     ).map { (task, npc) ->
         dynamicTest("Complete a $task slayer task") {
             setRandom(object : FakeRandom() {

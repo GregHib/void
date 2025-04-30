@@ -4,6 +4,12 @@ drops = [
   { id = "bones" }
 ]
 
+[big_bones]
+type = "all"
+drops = [
+  { id = "big_bones" }
+]
+
 [empty_drop_table]
 type = "all"
 drops = [
