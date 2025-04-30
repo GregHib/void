@@ -1,0 +1,11 @@
+[cave_bug_attack]
+id = 6079
+
+[cave_bug_defend]
+id = 6080
+
+[cave_bug_green_death]
+id = 6081
+
+[cave_bug_death]
+id = 6082

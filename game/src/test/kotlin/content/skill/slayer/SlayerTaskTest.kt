@@ -52,7 +52,7 @@ class SlayerTaskTest : WorldTest() {
         "icefiends" to "icefiend",
         "wolves" to "white_wolf",
         "crawling_hands" to "crawling_hand",
-//        "cave_bugs" to "",
+        "cave_bugs" to "cave_bug",
 //        "cave_crawlers" to "",
 //        "banshees" to "",
 //        "cave_slime" to "",
