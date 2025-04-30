@@ -1,0 +1,8 @@
+[cave_crawler_death]
+id = 265
+
+[cave_crawler_attack]
+id = 265
+
+[cave_crawler_defend]
+id = 266
