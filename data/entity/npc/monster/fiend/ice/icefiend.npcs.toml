@@ -27,3 +27,10 @@ examine = "A small ice demon."
 
 [icefiend_melting]
 id = 7715
+
+[icefiend_ghorrock]
+id = 9066
+respawn_delay = 30
+wander_radius = 4
+race = "icefiend"
+examine = "A robust ice demon."
