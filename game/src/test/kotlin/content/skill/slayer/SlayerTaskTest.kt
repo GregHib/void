@@ -55,7 +55,7 @@ class SlayerTaskTest : WorldTest() {
         "cave_bugs" to "cave_bug",
         "cave_crawlers" to "cave_crawler",
 //        "banshees" to "",
-//        "cave_slime" to "",
+        "cave_slime" to "cave_slime",
 //        "lizards" to "",
     ).map { (task, npc) ->
         dynamicTest("Complete a $task slayer task") {
