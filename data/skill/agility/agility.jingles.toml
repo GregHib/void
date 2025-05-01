@@ -1,3 +1,8 @@
-brimhaven_agility_ticket = 71
-agility_pyramid_top = 151
-werewolf_skullball_goal = 174
+[brimhaven_agility_ticket]
+id = 71
+
+[agility_pyramid_top]
+id = 151
+
+[werewolf_skullball_goal]
+id = 174

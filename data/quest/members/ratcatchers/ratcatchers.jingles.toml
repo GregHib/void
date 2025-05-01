@@ -1,4 +1,11 @@
-ratcatchers_king_rat_dies = 123
-ratcatchers_king_rat_wins = 124
-lazy_cat = 198
-wily_cat = 199
+[ratcatchers_king_rat_dies]
+id = 123
+
+[ratcatchers_king_rat_wins]
+id = 124
+
+[lazy_cat]
+id = 198
+
+[wily_cat]
+id = 199

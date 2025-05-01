@@ -1,2 +1,5 @@
-fairy_tale_part_ii_fairy_godfather_pickpocket = 204
-fairy_tale_part_ii_fairy_queen_awakens = 205
+[fairy_tale_part_ii_fairy_godfather_pickpocket]
+id = 204
+
+[fairy_tale_part_ii_fairy_queen_awakens]
+id = 205

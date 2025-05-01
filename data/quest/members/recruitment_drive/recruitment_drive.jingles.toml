@@ -1,6 +1,17 @@
-recruitment_drive_miss_cheevers_puzzle_complete = 131
-recruitment_drive_lady_tables_puzzle_complete = 156
-recruitment_drive_sir_ren_itchoods_puzzle_complete = 159
-recruitment_drive_sir_spishyus_puzzle_complete = 160
-recruitment_drive_sir_tinleys_puzzle_complete = 161
-recruitment_drive_sir_kaum_puzzle_complete = 162
+[recruitment_drive_miss_cheevers_puzzle_complete]
+id = 131
+
+[recruitment_drive_lady_tables_puzzle_complete]
+id = 156
+
+[recruitment_drive_sir_ren_itchoods_puzzle_complete]
+id = 159
+
+[recruitment_drive_sir_spishyus_puzzle_complete]
+id = 160
+
+[recruitment_drive_sir_tinleys_puzzle_complete]
+id = 161
+
+[recruitment_drive_sir_kaum_puzzle_complete]
+id = 162

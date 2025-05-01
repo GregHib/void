@@ -1,4 +1,11 @@
-farming_amulet_alert = 7
-cacti_health_check = 9
-level_up_farming = 10
-level_up_farming_unlock = 11
+[farming_amulet_alert]
+id = 7
+
+[cacti_health_check]
+id = 9
+
+[level_up_farming]
+id = 10
+
+[level_up_farming_unlock]
+id = 11

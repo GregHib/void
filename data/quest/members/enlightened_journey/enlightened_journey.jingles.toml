@@ -1,2 +1,5 @@
-enlightened_journey_balloon_journey_test = 116
-enlightened_journey_balloon_journey = 118
+[enlightened_journey_balloon_journey_test]
+id = 116
+
+[enlightened_journey_balloon_journey]
+id = 118

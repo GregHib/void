@@ -1,2 +1,5 @@
-kings_ransom_king_arthur_is_freed = 271
-kings_ransom_trial_verdict = 272
+[kings_ransom_king_arthur_is_freed]
+id = 271
+
+[kings_ransom_trial_verdict]
+id = 272

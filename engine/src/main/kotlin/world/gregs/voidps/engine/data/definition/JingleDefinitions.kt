@@ -17,11 +17,17 @@ class JingleDefinitions : DefinitionsDecoder<JingleDefinition> {
             val definitions = Array(500) { JingleDefinition.EMPTY }
             for (path in paths) {
                 Config.fileReader(path) {
-                    while (nextPair()) {
-                        val key = key()
-                        val id = int()
-                        ids[key] = id
-                        definitions[id] = JingleDefinition(id = id, stringId = key)
+                    while (nextSection()) {
+                        val stringId = section()
+                        var id = -1
+                        while (nextPair()) {
+                            when (val key = key()) {
+                                "id" -> id = int()
+                                else -> throw IllegalArgumentException("Unknown jingle key: $key")
+                            }
+                        }
+                        ids[stringId] = id
+                        definitions[id] = JingleDefinition(id = id, stringId = stringId)
                     }
                 }
             }

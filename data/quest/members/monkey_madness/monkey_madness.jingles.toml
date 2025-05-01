@@ -1,2 +1,5 @@
-monkey_madness_jungle_demon_defated = 134
-monkey_madness_cutscene = 135
+[monkey_madness_jungle_demon_defated]
+id = 134
+
+[monkey_madness_cutscene]
+id = 135

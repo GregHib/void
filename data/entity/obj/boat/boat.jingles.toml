@@ -1,4 +1,11 @@
-swamp_boaty = 137
-ogre_boat_travel = 138
-sailing_theme_short = 171
-sailing_theme = 172
+[swamp_boaty]
+id = 137
+
+[ogre_boat_travel]
+id = 138
+
+[sailing_theme_short]
+id = 171
+
+[sailing_theme]
+id = 172
