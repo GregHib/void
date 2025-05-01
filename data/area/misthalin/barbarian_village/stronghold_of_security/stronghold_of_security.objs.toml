@@ -1,0 +1,35 @@
+[gate_of_war]
+id = 16124
+
+[gate_of_war_mirrored]
+id = 16123
+
+[stronghold_war_portal]
+id = 16150
+
+[gift_of_peace]
+id = 16135
+
+[stronghold_war_ladder_down]
+id = 16149
+
+[stronghold_famine_portal]
+id = 16082
+
+[stronghold_pestilence_portal]
+id = 16116
+
+[stronghold_death_portal]
+id = 16050
+
+[grain_of_plenty]
+id = 16077
+
+[box_of_health]
+id = 16118
+
+[cradle_of_life]
+id = 16047
+
+[stronghold_dead_explorer]
+id = 16152

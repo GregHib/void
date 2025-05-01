@@ -82,3 +82,27 @@ option = "Climb-up"
 tile = { x = 2309, y = 5240 }
 to = { x = 3081, y = 3421 }
 
+[stronghold_war_portal]
+option = "Enter"
+tile = { x = 1863, y = 5238 }
+to = { x = 1914, y = 5222 }
+
+[stronghold_famine_portal]
+option = "Enter"
+tile = { x = 2039, y = 5240 }
+to = { x = 2021, y = 5223 }
+
+[stronghold_pestilence_portal]
+option = "Enter"
+tile = { x = 2120, y = 5258 }
+to = { x = 2146, y = 5287 }
+
+[stronghold_death_portal]
+option = "Enter"
+tile = { x = 2365, y = 5212 }
+to = { x = 2341, y = 5219 }
+
+[stronghold_war_ladder_down]
+option = "Climb-down"
+tile = { x = 1902, y = 5222 }
+to = { x = 2042, y = 5245 }
