@@ -1,0 +1,8 @@
+[monkey_attack]
+id = 220
+
+[monkey_defend]
+id = 221
+
+[monkey_death]
+id = 223

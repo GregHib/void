@@ -1,0 +1,92 @@
+[crawling_hand]
+id = 1648
+hitpoints = 160
+att = 8
+str = 4
+def = 4
+max_hit_melee = 10
+style = "crush"
+slayer_xp = 16.0
+respawn_delay = 15
+attack_radius = 15
+wander_radius = 13
+categories = ["crawling_hand", "crawling_hands", "undead"]
+examine = "Gimme five. Actually, don't."
+
+[crawling_hand_black]
+id = 1649
+clone = "crawling_hand"
+
+[crawling_hand_brown]
+id = 1650
+hitpoints = 150
+att = 7
+str = 3
+def = 3
+max_hit_melee = 10
+style = "crush"
+slayer_xp = 12.0
+respawn_delay = 15
+attack_radius = 15
+wander_radius = 13
+categories = ["crawling_hand", "crawling_hands", "undead"]
+examine = "Gimme five. Actually, don't."
+
+[crawling_hand_ring]
+id = 1651
+clone = "crawling_hand"
+
+[crawling_hand_blood]
+id = 1652
+clone = "crawling_hand"
+
+[crawling_hand_large]
+id = 1653
+hitpoints = 190
+att = 11
+str = 7
+def = 7
+max_hit_melee = 20
+style = "crush"
+slayer_xp = 19.0
+respawn_delay = 15
+attack_radius = 15
+wander_radius = 13
+attack_anim = "crawling_hand_large_attack"
+defend_anim = "crawling_hand_large_defend"
+death_anim = "crawling_hand_large_death"
+categories = ["crawling_hand", "crawling_hands", "undead"]
+examine = "Now, that's handy."
+
+[crawling_hand_large_black]
+id = 1654
+clone = "crawling_hand_large"
+examine = "I'm glad it's just the hand I can see..."
+
+[crawling_hand_large_brown]
+id = 1655
+hitpoints = 180
+att = 10
+str = 6
+def = 6
+max_hit_melee = 20
+style = "crush"
+slayer_xp = 15.0
+respawn_delay = 15
+attack_radius = 15
+wander_radius = 13
+attack_anim = "crawling_hand_large_attack"
+defend_anim = "crawling_hand_large_defend"
+death_anim = "crawling_hand_large_death"
+categories = ["crawling_hand", "crawling_hands", "undead"]
+examine = "A big severed hand."
+
+[crawling_hand_large_ring]
+id = 1656
+clone = "crawling_hand_large"
+examine = "Give the guy a big hand....."
+
+[crawling_hand_large_blood]
+id = 1657
+clone = "crawling_hand_large"
+examine = "A big severed hand."

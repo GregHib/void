@@ -1,6 +1,4 @@
 spawns = [
-# 9623
-  { id = "zombie", x = 2405, y = 9713, members = true },
 # 9779
   { id = "rat", x = 2468, y = 3326, members = true },
   { id = "rat", x = 2473, y = 3326, members = true },
@@ -73,5 +71,4 @@ spawns = [
   { id = "goblin_light_grey_bald_spear", x = 2438, y = 9700 },
   { id = "goblin_light_grey_bald_spear", x = 2441, y = 9698 },
   { id = "goblin_light_grey_bald_spear", x = 2439, y = 9696 },
-  { id = "zombie", x = 2452, y = 9684, members = true },
 ]

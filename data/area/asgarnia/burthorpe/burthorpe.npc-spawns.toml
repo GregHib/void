@@ -5,4 +5,6 @@ spawns = [
 # 11574
   { id = "nora_t_hagg", x = 2904, y = 3463 },
   { id = "kaqemeex", x = 2925, y = 3486, members = true },
+  # 11575
+  { id = "turael", x = 2931, y = 3536 },
 ]

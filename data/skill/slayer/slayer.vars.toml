@@ -1,0 +1,47 @@
+[slayer_points]
+persist = true
+format = "int"
+
+[slayer_tasks_given]
+persist = true
+format = "int"
+
+[slayer_tasks_completed]
+persist = true
+format = "int"
+
+[slayer_task_streak]
+persist = true
+format = "int"
+
+[slayer_master]
+persist = true
+format = "string"
+
+[slayer_task_streak]
+persist = true
+format = "int"
+
+[broader_fletching]
+persist = true
+format = "boolean"
+
+[aquanites]
+persist = true
+format = "boolean"
+
+[ring_bling]
+persist = true
+format = "boolean"
+
+[killing_blow]
+persist = true
+format = "boolean"
+
+[malevolent_masquerade]
+persist = true
+format = "boolean"
+
+[strike_wyrms]
+persist = true
+format = "boolean"

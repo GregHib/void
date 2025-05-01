@@ -1,0 +1,740 @@
+[zombie]
+id = 73
+hitpoints = 220
+att = 8
+str = 9
+def = 10
+attack_bonus = 5
+attack_speed = 5
+wander_radius = 10
+attack_radius = 12
+slayer_xp = 22.0
+max_hit_melee = 20
+hunt_mode = "cowardly"
+style = "slash"
+respawn_delay = 35
+categories = ["zombie", "zombies", "undead"]
+examine = "Dead man walking."
+
+[zombie_green_shorts]
+id = 5293
+clone = "zombie"
+
+[zombie_armour_green_shorts]
+id = 5294
+clone = "zombie"
+
+[zombie_grey_skirt]
+id = 5295
+clone = "zombie"
+
+[zombie_grey_armour]
+id = 5296
+clone = "zombie"
+
+[zombie_blue_skirt]
+id = 5297
+clone = "zombie"
+
+[zombie_grey_suit]
+id = 5298
+clone = "zombie"
+
+[zombie_green_suit]
+id = 5300
+clone = "zombie"
+
+[zombie_black_dress]
+id = 5303
+clone = "zombie"
+
+[zombie_tan_trousers]
+id = 5304
+clone = "zombie"
+
+[zombie_grey_shorts]
+id = 5305
+clone = "zombie"
+
+[zombie_tan_shorts]
+id = 5306
+clone = "zombie"
+
+[zombie_red_skirt]
+id = 5307
+clone = "zombie"
+
+# Level 18s
+
+[zombie_brown_shorts]
+id = 5308
+hitpoints = 240
+att = 13
+str = 13
+def = 18
+attack_bonus = 5
+attack_speed = 5
+wander_radius = 10
+attack_radius = 12
+slayer_xp = 24.0
+max_hit_melee = 20
+hunt_mode = "cowardly"
+style = "slash"
+respawn_delay = 35
+drop_table = "zombie_empty"
+categories = ["zombie", "zombies", "undead"]
+
+[zombie_blue_skirt_sword]
+id = 74
+clone = "zombie_brown_shorts"
+attack_anim = "zombie_dragging_attack"
+defend_anim = "zombie_dragging_defend"
+death_anim = "zombie_dragging_death"
+
+[zombie_tan_trousers_axe]
+id = 5309
+clone = "zombie_brown_shorts"
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+
+# Level 24s
+[zombie_yellow_shirt]
+id = 5310
+hitpoints = 300
+att = 19
+str = 21
+def = 16
+attack_bonus = 5
+attack_speed = 5
+wander_radius = 10
+attack_radius = 12
+slayer_xp = 30.0
+max_hit_melee = 30
+hunt_mode = "cowardly"
+style = "slash"
+respawn_delay = 35
+drop_table = "zombie_armed"
+categories = ["zombie", "zombies", "undead"]
+
+[zombie_green_shorts_sword]
+id = 75
+clone = "zombie_yellow_shirt"
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+
+[zombie_armour_green_shorts_sword]
+id = 5314
+clone = "zombie_yellow_shirt"
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+
+[zombie_armour_grey_shorts_sword]
+id = 5315
+clone = "zombie_yellow_shirt"
+attack_anim = "zombie_dragging_attack"
+defend_anim = "zombie_dragging_defend"
+death_anim = "zombie_dragging_death"
+
+[zombie_red_outfit]
+id = 5311
+clone = "zombie_yellow_shirt"
+
+[zombie_yellow_maid]
+id = 5312
+clone = "zombie_yellow_shirt"
+
+[zombie_grey_maid]
+id = 5313
+clone = "zombie_yellow_shirt"
+
+[zombie_red_suit_sword]
+id = 5316
+clone = "zombie_yellow_shirt"
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+
+[zombie_grey_suit_sword]
+id = 5318
+clone = "zombie_yellow_shirt"
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+
+[zombie_tan_trousers_axe_2]
+id = 5319
+clone = "zombie_yellow_shirt"
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+
+[zombie_tan_shorts_axe]
+id = 5320
+clone = "zombie_yellow_shirt"
+
+[zombie_red_skirt_sword]
+id = 5321
+clone = "zombie_yellow_shirt"
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+
+[zombie_blue_skirt_sword_2]
+id = 5322
+clone = "zombie_yellow_shirt"
+attack_anim = "zombie_dragging_attack"
+defend_anim = "zombie_dragging_defend"
+death_anim = "zombie_dragging_death"
+
+[zombie_yellow_shirt_sword]
+id = 5323
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+
+[zombie_red_sword]
+id = 5324
+clone = "zombie_yellow_shirt_sword"
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+
+[zombie_grey_axe]
+id = 5325
+clone = "zombie_yellow_shirt_sword"
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+
+[zombie_red_maid_axe]
+id = 5326
+clone = "zombie_yellow_shirt_sword"
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+
+[zombie_blue_maid_axe]
+id = 5327
+clone = "zombie_yellow_shirt_sword"
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+
+# Level 25s
+
+[zombie_entrana_hat]
+id = 76
+hitpoints = 300
+att = 19
+str = 21
+def = 21
+attack_bonus = 5
+max_hit_melee = 30
+style = "slash"
+drop_table = "zombie_entrana"
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+respawn_delay = 35
+slayer_xp = 30.0
+wander_radius = 8
+attack_radius = 12
+categories = ["zombie", "zombies", "undead"]
+examine = "The walking dead."
+
+[zombie_entrana_armour]
+id = 5328
+clone = "zombie_entrana_hat"
+
+[zombie_entrana_armour_hat]
+id = 5329
+clone = "zombie_entrana_hat"
+
+[zombie_entrana_grey_skirt]
+id = 5330
+clone = "zombie_entrana_hat"
+
+[zombie_entrana_grey_armour]
+id = 5331
+clone = "zombie_entrana_hat"
+
+[zombie_melzars_maze]
+id = 6099
+hitpoints = 300
+att = 19
+str = 21
+def = 16
+attack_bonus = 5
+attack_speed = 5
+wander_radius = 10
+attack_radius = 12
+slayer_xp = 30.0
+max_hit_melee = 30
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+hunt_mode = "cowardly"
+style = "slash"
+respawn_delay = 35
+categories = ["zombie", "zombies", "undead"]
+examine = "Dead man walking."
+
+[zombie_melzars_maze_strong]
+id = 6100
+clone = "zombie_melzars_maze"
+drop_table = "zombie_empty"
+
+# Level 30s
+
+[zombie_stronghold_of_security_grey]
+id = 5376
+hitpoints = 300
+att = 25
+str = 29
+def = 20
+attack_bonus = 5
+attack_speed = 5
+wander_radius = 10
+attack_radius = 12
+slayer_xp = 30.0
+max_hit_melee = 40
+hunt_mode = "cowardly"
+style = "slash"
+respawn_delay = 35
+categories = ["zombie", "zombies", "undead"]
+examine = "Dead man walking."
+
+[zombie_stronghold_of_security_blue_skirt]
+id = 4392
+clone = "zombie_stronghold_of_security_grey"
+
+[zombie_stronghold_of_security_green_shorts]
+id = 5375
+clone = "zombie_stronghold_of_security_grey"
+
+# Level 44s
+
+[zombie_stronghold_of_security_blue_skirt_axe]
+id = 5377
+hitpoints = 400
+att = 35
+str = 40
+def = 40
+attack_bonus = 5
+attack_speed = 5
+wander_radius = 10
+attack_radius = 12
+slayer_xp = 40.0
+max_hit_melee = 50
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+hunt_mode = "cowardly"
+style = "slash"
+respawn_delay = 35
+categories = ["zombie", "zombies", "undead"]
+examine = "Dead man walking."
+
+[zombie_stronghold_of_security_trousers]
+id = 4393
+clone = "zombie_stronghold_of_security_blue_skirt_axe"
+
+[zombie_stronghold_of_security_blue_shorts_sword]
+id = 5378
+clone = "zombie_stronghold_of_security_blue_skirt_axe"
+
+# Level 53s
+[zombie_stronghold_of_security_female]
+id = 5379
+hitpoints = 500
+att = 55
+str = 40
+def = 48
+attack_bonus = 5
+attack_speed = 5
+wander_radius = 10
+attack_radius = 12
+slayer_xp = 50.0
+max_hit_melee = 30
+attack_anim = "zombie_dragging_attack"
+defend_anim = "zombie_dragging_defend"
+death_anim = "zombie_dragging_death"
+hunt_mode = "cowardly"
+style = "slash"
+respawn_delay = 35
+categories = ["zombie", "zombies", "undead"]
+examine = "The walking dead."
+
+[zombie_stronghold_of_security_male]
+id = 5380
+clone = "zombie_stronghold_of_security_female"
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+
+[zombie_stronghold_of_security_red]
+id = 4394
+clone = "zombie_stronghold_of_security_female"
+
+[zombie_tarns_lair_red_boots]
+id = 5393
+hitpoints = 380
+att = 36
+str = 35
+def = 33
+wander_radius = 10
+attack_radius = 12
+slayer_xp = 38.0
+max_hit_melee = 50
+attack_anim = "zombie_dragging_attack"
+defend_anim = "zombie_dragging_defend"
+death_anim = "zombie_dragging_death"
+drop_table = "zombie_tarns_lair_low"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 35
+categories = ["zombie", "zombies", "undead"]
+examine = "Could his name be 'Lurch'?"
+
+[zombie_tarns_lair_tan_boots]
+id = 5394
+hitpoints = 400
+att = 39
+str = 35
+def = 35
+slayer_xp = 40.0
+max_hit_melee = 50
+wander_radius = 10
+attack_radius = 12
+attack_anim = "zombie_dragging_attack"
+defend_anim = "zombie_dragging_defend"
+death_anim = "zombie_dragging_death"
+drop_table = "zombie_tarns_lair_low"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 35
+categories = ["zombie", "zombies", "undead"]
+examine = "Mostly 'armless."
+
+[zombie_tarns_lair_grey_boots]
+id = 5395
+hitpoints = 420
+att = 42
+str = 39
+def = 42
+slayer_xp = 42.0
+max_hit_melee = 60
+wander_radius = 10
+attack_radius = 12
+attack_anim = "zombie_dragging_attack"
+defend_anim = "zombie_dragging_defend"
+death_anim = "zombie_dragging_death"
+drop_table = "zombie_tarns_lair_low"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 50
+categories = ["zombie", "zombies", "undead"]
+examine = "Has anybody told him he's dead?"
+
+[zombie_tarns_lair_red_boots_hat]
+id = 5396
+hitpoints = 480
+att = 44
+str = 42
+def = 44
+slayer_xp = 48.0
+max_hit_melee = 60
+wander_radius = 10
+attack_radius = 12
+attack_anim = "zombie_dragging_attack"
+defend_anim = "zombie_dragging_defend"
+death_anim = "zombie_dragging_death"
+drop_table = "zombie_tarns_lair_low"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 50
+categories = ["zombie", "zombies", "undead"]
+examine = "Dave? Is that you?"
+
+[zombie_tarns_lair_tan_boots_hair]
+id = 5397
+hitpoints = 500
+att = 50
+str = 50
+def = 47
+slayer_xp = 50.0
+max_hit_melee = 70
+wander_radius = 10
+attack_radius = 12
+attack_anim = "zombie_dragging_attack"
+defend_anim = "zombie_dragging_defend"
+death_anim = "zombie_dragging_death"
+drop_table = "zombie_tarns_lair_low"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 50
+categories = ["zombie", "zombies", "undead"]
+examine = "Why don't zombies ever wash?"
+
+[zombie_tarns_lair_green_boots_hair]
+id = 5398
+hitpoints = 570
+att = 53
+str = 55
+def = 50
+slayer_xp = 57.0
+max_hit_melee = 70
+wander_radius = 10
+attack_radius = 12
+attack_anim = "zombie_dragging_attack"
+defend_anim = "zombie_dragging_defend"
+death_anim = "zombie_dragging_death"
+drop_table = "zombie_tarns_lair_mid"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 50
+categories = ["zombie", "zombies", "undead"]
+examine = "A shambling pile of rotten flesh."
+
+[zombie_tarns_lair_red_top]
+id = 5399
+hitpoints = 630
+att = 56
+str = 58
+def = 60
+slayer_xp = 63.0
+max_hit_melee = 80
+wander_radius = 10
+attack_radius = 12
+attack_anim = "zombie_dragging_attack"
+defend_anim = "zombie_dragging_defend"
+death_anim = "zombie_dragging_death"
+drop_table = "zombie_tarns_lair_mid"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 50
+categories = ["zombie", "zombies", "undead"]
+examine = "He needs lessons on walking."
+
+[zombie_tarns_lair_brown_top]
+id = 5400
+hitpoints = 650
+att = 61
+str = 60
+def = 61
+slayer_xp = 65.0
+max_hit_melee = 80
+wander_radius = 10
+attack_radius = 12
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+drop_table = "zombie_tarns_lair_mid"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 50
+categories = ["zombie", "zombies", "undead"]
+examine = "Fred, the undead."
+
+[zombie_tarns_lair_armour]
+id = 5401
+hitpoints = 680
+att = 61
+str = 63
+def = 62
+slayer_xp = 68.0
+max_hit_melee = 80
+wander_radius = 10
+attack_radius = 12
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+drop_table = "zombie_tarns_lair_mid"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 50
+categories = ["zombie", "zombies", "undead"]
+examine = "One of the undead."
+
+[zombie_tarns_lair_yellow_shirt]
+id = 5402
+hitpoints = 710
+att = 69
+str = 65
+def = 62
+slayer_xp = 68.0
+max_hit_melee = 90
+wander_radius = 10
+attack_radius = 12
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+drop_table = "zombie_tarns_lair_mid"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 50
+categories = ["zombie", "zombies", "undead"]
+examine = "A disgusting zombie."
+
+[zombie_tarns_lair_grey_shirt]
+id = 5403
+hitpoints = 730
+att = 72
+str = 73
+def = 62
+slayer_xp = 73.0
+max_hit_melee = 90
+wander_radius = 10
+attack_radius = 12
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+drop_table = "zombie_tarns_lair_mid"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 50
+categories = ["zombie", "zombies", "undead"]
+examine = "Somebody tell him he's already dead!"
+
+[zombie_tarns_lair_blue_shirt]
+id = 5404
+hitpoints = 750
+att = 71
+str = 81
+def = 70
+slayer_xp = 75.0
+max_hit_melee = 100
+wander_radius = 10
+attack_radius = 12
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+drop_table = "zombie_tarns_lair_high"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 50
+categories = ["zombie", "zombies", "undead"]
+examine = "He sure looks grave."
+
+[zombie_tarns_lair_tan_trousers]
+id = 5405
+hitpoints = 760
+att = 74
+str = 80
+def = 71
+slayer_xp = 76.0
+max_hit_melee = 100
+wander_radius = 10
+attack_radius = 12
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+drop_table = "zombie_tarns_lair_high"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 50
+categories = ["zombie", "zombies", "undead"]
+examine = "Can't a body get any rest around here?"
+
+[zombie_tarns_lair_grey_trousers]
+id = 5406
+hitpoints = 810
+att = 82
+str = 80
+def = 72
+slayer_xp = 81.0
+max_hit_melee = 100
+wander_radius = 10
+attack_radius = 12
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+drop_table = "zombie_tarns_lair_high"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 50
+categories = ["zombie", "zombies", "undead"]
+examine = "At least he's not legless."
+
+[zombie_tarns_lair_green_trousers]
+id = 5407
+hitpoints = 920
+att = 85
+str = 80
+def = 75
+slayer_xp = 92.0
+max_hit_melee = 100
+wander_radius = 10
+attack_radius = 12
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+drop_table = "zombie_tarns_lair_high"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 50
+categories = ["zombie", "zombies", "undead"]
+examine = "All skin and bones."
+
+[zombie_tarns_lair_brown_trousers]
+id = 5408
+hitpoints = 960
+att = 85
+str = 83
+def = 81
+slayer_xp = 96.0
+max_hit_melee = 110
+wander_radius = 10
+attack_radius = 12
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+drop_table = "zombie_tarns_lair_high"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 50
+categories = ["zombie", "zombies", "undead"]
+examine = "All skin and bones."
+
+[zombie_tarns_lair_blue_trousers]
+id = 5409
+hitpoints = 1020
+att = 86
+str = 83
+def = 81
+slayer_xp = 102.0
+max_hit_melee = 110
+wander_radius = 10
+attack_radius = 12
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+drop_table = "zombie_tarns_lair_high"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 50
+categories = ["zombie", "zombies", "undead"]
+examine = "All skin and bones."
+
+[zombie_tarns_lair_light_grey_trousers]
+id = 5410
+hitpoints = 760
+att = 69
+str = 70
+def = 71
+slayer_xp = 76.0
+max_hit_melee = 90
+wander_radius = 10
+attack_radius = 12
+attack_anim = "zombie_weapon_attack"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+drop_table = "zombie_tarns_lair_high"
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 50
+categories = ["zombie", "zombies", "undead"]
+examine = "Brains..."

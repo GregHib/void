@@ -21,6 +21,4 @@ spawns = [
   { id = "goblin_light_grey_bald_spear", x = 2519, y = 3145 },
   { id = "wolf", x = 2516, y = 3197, members = true },
   { id = "wolf", x = 2548, y = 3179, members = true },
-# 10133
-  { id = "zombie", x = 2541, y = 9569, members = true },
 ]

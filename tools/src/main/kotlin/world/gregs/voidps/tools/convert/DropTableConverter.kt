@@ -63,7 +63,7 @@ object DropTableConverter {
                     } else if (drop is DropTable) {
                         val sub = "sub_table_${i++}"
                         write("  { table = \"$sub\"")
-                        if(drop.roll != 1) {
+                        if (drop.roll != 1) {
                             write(", roll = ${drop.roll}")
                         }
                         write(" },\n")
@@ -116,14 +116,18 @@ object DropTableConverter {
             parent.addDrop(always)
         }
         val table = DropTable.Builder()
+        val roll = all.maxOf { it.roll }
+        table.withRoll(roll)
         for (child in all) {
             if (child.roll == 1) {
                 continue
             }
             table.withType(child.type)
-            table.withRoll(child.roll)
+            val multiplier = roll / child.roll
             for (drop in child.drops) {
-                table.addDrop(drop)
+                if (drop is ItemDrop) {
+                    table.addDrop(drop.copy(chance = drop.chance * multiplier))
+                }
             }
         }
         parent.addDrop(table.build())
@@ -171,7 +175,7 @@ object DropTableConverter {
             val (low, high) = quantity.split("-")
             builder.addDrop(ItemDrop(id, low.toInt()..high.toInt(), chance.toInt()))
         } else if (quantity.contains(",")) {
-            val values = quantity.split(",").map { it.toInt() }
+            val values = quantity.split(",").map { it.trim().toInt() }
             val low = values.min()
             val high = values.max()
             builder.addDrop(ItemDrop(id, low..high, chance.toInt()))

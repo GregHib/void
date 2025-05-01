@@ -1,0 +1,17 @@
+[ghost_attack]
+id = 5532
+
+[ghost_defend]
+id = 5533
+
+[ghost_death]
+id = 5534
+
+[ghost_tendrill_attack]
+id = 5540
+
+[ghost_tendrill_defend]
+id = 5541
+
+[ghost_tendrill_death]
+id = 5542

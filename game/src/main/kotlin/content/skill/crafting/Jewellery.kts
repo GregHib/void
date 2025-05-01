@@ -2,7 +2,6 @@ package content.skill.crafting
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.dialogue.type.intEntry
-import content.skill.slayer.unlocked
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
@@ -53,7 +52,7 @@ fun InterfaceRefreshed.makeMould(player: Player) {
                 player.interfaces.sendVisibility(id, "make_${type}_option_$gem", false)
             } else {
                 var item = Item("${if (player.inventory.contains("gold_bar") && (gem == "gold" || player.inventory.contains(gem))) gem else "blank"}_$type")
-                if (item.id == "enchanted_gem_ring" && player.unlocked("ring_bling")) {
+                if (item.id == "enchanted_gem_ring" && player.contains("ring_bling")) {
                     item = Item("ring_of_slaying_8")
                 }
                 val jewellery = item.jewellery

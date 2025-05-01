@@ -1,0 +1,76 @@
+[kalphite_worker_drop_table]
+roll = 128
+drops = [
+    { id = "iron_sword", chance = 3 },
+    { id = "iron_javelin", amount = 5 },
+    { id = "steel_dagger", chance = 3 },
+    { id = "steel_longsword" },
+    { id = "hardleather_body", chance = 2 },
+    { id = "body_rune", amount = 6, chance = 2 },
+    { id = "cosmic_rune", amount = 2 },
+    { id = "chaos_rune", amount = 3, chance = 2 },
+    { id = "fire_rune", amount = 7, chance = 2 },
+    { id = "water_rune", amount = 2, chance = 2 },
+    { id = "law_rune", amount = 2, chance = 3 },
+    { id = "nature_rune", amount = 4, chance = 2 },
+    { table = "herb_drop_table", chance = 7 },
+    { id = "coins", chance = 8 },
+    { id = "coins", amount = 5, chance = 12 },
+    { id = "coins", amount = 15, chance = 34 },
+    { id = "coins", amount = 28, chance = 12 },
+    { id = "coins", amount = 42, chance = 3 },
+    { id = "coins", amount = 62, chance = 4 },
+    { id = "waterskin_4", chance = 21 },
+    { table = "gem_drop_table", chance = 2 },
+]
+
+[kalphite_soldier_drop_table]
+roll = 128
+drops = [
+    { id = "steel_full_helm", chance = 4 },
+    { id = "steel_scimitar", chance = 3 },
+    { id = "steel_hatchet", chance = 4 },
+    { id = "mithril_chainbody" },
+    { id = "mithril_sq_shield" },
+    { id = "adamant_med_helm" },
+    { id = "fire_rune", amount = 30 },
+    { id = "fire_rune", amount = 60, chance = 8 },
+    { id = "chaos_rune", amount = 12, chance = 5 },
+    { id = "death_rune", amount = 3, chance = 3 },
+    { id = "nature_rune", min = 1, max = 4, chance = 2 },
+    { table = "herb_drop_table" },
+    { id = "coins", amount = 10, chance = 7 },
+    { id = "coins", amount = 40, chance = 29 },
+    { id = "coins", amount = 120, chance = 40 },
+    { id = "coins", amount = 200, chance = 10 },
+    { id = "coins", amount = 450 },
+    { id = "waterskin_4", chance = 3 },
+    { table = "gem_drop_table", chance = 4 },
+]
+
+[kalphite_guardian_drop_table]
+roll = 128
+drops = [
+    { id = "mithril_sword", chance = 4 },
+    { id = "steel_battleaxe", chance = 3 },
+    { id = "mithril_hatchet", chance = 2 },
+    { id = "adamant_dagger", chance = 2 },
+    { id = "mithril_kiteshield" },
+    { id = "rune_med_helm" },
+    { id = "rune_chainbody" },
+    { id = "air_rune", amount = 50, chance = 8 },
+    { id = "chaos_rune", amount = 10, chance = 7 },
+    { id = "blood_rune", amount = 7, chance = 4 },
+    { id = "fire_rune", amount = 37 },
+    { id = "law_rune", amount = 3 },
+    { table = "herb_drop_table", chance = 23 },
+    { id = "coins", amount = 132, chance = 40 },
+    { id = "coins", amount = 30, chance = 7 },
+    { id = "coins", amount = 44, chance = 6 },
+    { id = "coins", amount = 220, chance = 6 },
+    { id = "coins", amount = 460 },
+    { id = "lobster", chance = 3 },
+    { id = "defence_potion_3" },
+    { table = "gem_drop_table", chance = 5 },
+    { table = "rare_drop_table" },
+]

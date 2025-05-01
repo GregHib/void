@@ -52,20 +52,5 @@ data class HuntModeDefinition(
 
     companion object {
         val EMPTY = HuntModeDefinition("")
-
-        fun fromMap(map: Map<String, Any>) = HuntModeDefinition(
-            type = map["type"] as String,
-            checkVisual = map["check_visual"] as? String ?: EMPTY.checkVisual,
-            checkNotTooStrong = map["check_not_too_strong"] as? Boolean ?: EMPTY.checkNotTooStrong,
-            checkNotCombat = map["check_not_combat"] as? Boolean ?: EMPTY.checkNotCombat,
-            checkNotCombatSelf = map["check_not_combat_self"] as? Boolean ?: EMPTY.checkNotCombatSelf,
-            checkNotBusy = map["check_not_busy"] as? Boolean ?: EMPTY.checkNotBusy,
-            checkAfk = map["check_afk"] as? Boolean ?: EMPTY.checkAfk,
-            findKeepHunting = map["find_keep_hunting"] as? Boolean ?: EMPTY.findKeepHunting,
-            pauseIfNobodyNear = map["pause_if_nobody_near"] as? Boolean ?: EMPTY.pauseIfNobodyNear,
-            id = map["id"] as? String ?: EMPTY.id,
-            rate = map["rate"] as? Int ?: EMPTY.rate,
-            maxMultiAttackers = map["max_multi_attackers"] as? Int ?: EMPTY.maxMultiAttackers,
-        )
     }
 }

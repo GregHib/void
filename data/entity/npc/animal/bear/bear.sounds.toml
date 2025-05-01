@@ -1,0 +1,3 @@
+bear_attack = 300
+bear_death = 301
+bear_defend = 302

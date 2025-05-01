@@ -2,7 +2,7 @@ package world.gregs.voidps.network.login.protocol.visual.update
 
 import world.gregs.voidps.buffer.write.Writer
 
-data class Hitsplat(
+data class HitSplat(
     val amount: Int,
     val mark: Mark,
     val percentage: Int,
@@ -24,6 +24,21 @@ data class Hitsplat(
         data object Missed : Mark(8)
         data object Healed : Mark(9)
         data object Cannon : Mark(13)
+        companion object {
+            fun of(name: String): Mark = when (name.lowercase()) {
+                "melee" -> Melee
+                "range" -> Range
+                "magic" -> Magic
+                "reflected" -> Reflected
+                "absorb" -> Absorb
+                "poison" -> Poison
+                "diseased" -> Diseased
+                "missed" -> Missed
+                "healed" -> Healed
+                "cannon" -> Cannon
+                else -> Regular
+            }
+        }
     }
 
     fun write(writer: Writer, observer: Int, victim: Int, add: Boolean) {

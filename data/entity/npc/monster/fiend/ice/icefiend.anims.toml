@@ -1,0 +1,8 @@
+[icefiend_death]
+id = 11211
+
+[icefiend_attack]
+id = 12544
+
+[icefiend_defend]
+id = 8079 # TODO check

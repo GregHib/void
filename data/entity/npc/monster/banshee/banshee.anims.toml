@@ -1,0 +1,20 @@
+[banshee_attack]
+id = 5498
+
+[banshee_death_2]
+id = 9378
+
+[banshee_attack_screan]
+id = 9382
+
+[banshee_attack_normal]
+id = 9449
+
+[banshee_death]
+id = 9450
+
+[banshee_defend]
+id = 9451
+
+[ears_bleed]
+id = 1572

@@ -1,0 +1,83 @@
+spawns = [
+    # South of Rellekka
+    { id = "grizzly_bear", x = 2691, y = 3612, members = true },
+    # South-east of Rellekka
+    { id = "grizzly_bear", x = 2721, y = 3643, members = true },
+    # South-west of Tree Gnome Village
+    { id = "grizzly_bear", x = 2477, y = 3143, members = true },
+    { id = "grizzly_bear", x = 2484, y = 3155, members = true },
+    # South-west of Tree Gnome Stronghold
+    { id = "grizzly_bear", x = 2412, y = 3378, members = true },
+    { id = "grizzly_bear", x = 2419, y = 3372, members = true },
+    { id = "grizzly_bear", x = 2387, y = 3376, members = true },
+    { id = "grizzly_bear", x = 2398, y = 3366, members = true },
+    # Ardougne Zoo
+    { id = "grizzly_bear", x = 2632, y = 3280, members = true },
+    { id = "grizzly_bear", x = 2633, y = 3274, members = true },
+    # North-east of Ardougne
+    { id = "grizzly_bear", x = 2691, y = 3341, members = true },
+    { id = "grizzly_bear", x = 2692, y = 3333, members = true },
+    { id = "grizzly_bear", x = 2694, y = 3344, members = true },
+    { id = "grizzly_bear", x = 2698, y = 3331, members = true },
+    { id = "grizzly_bear", x = 2702, y = 3344, members = true },
+    { id = "grizzly_bear", x = 2706, y = 3330, members = true },
+    { id = "grizzly_bear", x = 2708, y = 3336, members = true },
+    { id = "grizzly_bear", x = 2716, y = 3336, members = true },
+    { id = "grizzly_bear", x = 2718, y = 3330, members = true },
+    # Isafdar
+    { id = "grizzly_bear_tirannwn", x = 2215, y = 3171, members = true },
+    { id = "grizzly_bear_tirannwn", x = 2200, y = 3224, members = true },
+    { id = "grizzly_bear_tirannwn", x = 2293, y = 3156, members = true },
+    # East of Varrock Palace, accessible via Varrock Sewers
+    { id = "grizzly_bear", x = 3230, y = 3500 },
+    # North-west of the Ferox Enclave
+    { id = "grizzly_bear", x = 3125, y = 3693 },
+    { id = "grizzly_bear", x = 3120, y = 3653 },
+    { id = "grizzly_bear", x = 3098, y = 3652 },
+    { id = "grizzly_bear", x = 3098, y = 3673 },
+    { id = "grizzly_bear", x = 3100, y = 3648 },
+    { id = "grizzly_bear", x = 3103, y = 3660 },
+    { id = "grizzly_bear", x = 3103, y = 3677 },
+    { id = "grizzly_bear", x = 3106, y = 3651 },
+    { id = "grizzly_bear", x = 3108, y = 3662 },
+    { id = "grizzly_bear", x = 3111, y = 3650 },
+    # North-west of Dark Warriors' Fortress
+    { id = "grizzly_bear", x = 2988, y = 3671 },
+    { id = "grizzly_bear", x = 3001, y = 3674 },
+    # South-east of Dark Warriors' Fortress
+    { id = "grizzly_bear", x = 3075, y = 3608 },
+    { id = "grizzly_bear", x = 3078, y = 3601 },
+    { id = "grizzly_bear", x = 3083, y = 3597 },
+    # Isafdar
+    { id = "grizzly_bear_club", x = 2217, y = 3171, members = true },
+    { id = "grizzly_bear_club_tirannwn", x = 2197, y = 3218, members = true },
+    { id = "grizzly_bear_club", x = 2199, y = 3222, members = true },
+    { id = "grizzly_bear_club", x = 2201, y = 3218, members = true },
+    { id = "grizzly_bear_club", x = 2291, y = 3156, members = true },
+    { id = "grizzly_bear_club_tirannwn", x = 2292, y = 3153, members = true },
+    # Varrock south-east mine
+    { id = "black_bear", x = 3296, y = 3347 },
+    # South-east of Gu'Tanoth
+    { id = "black_bear", x = 2606, y = 3008, members = true },
+    # Gnome Maze
+    { id = "black_bear", x = 2501, y = 3159, members = true },
+    # Outside the Mind Altar
+    { id = "black_bear", x = 2967, y = 3480 },
+    { id = "black_bear", x = 2973, y = 3482 },
+    { id = "black_bear", x = 2979, y = 3501 },
+    { id = "black_bear", x = 2966, y = 3456 },
+    # North-east of the Observatory
+    { id = "black_bear", x = 2460, y = 3200, members = true },
+    { id = "black_bear", x = 2478, y = 3200, members = true },
+    # Entrana
+    { id = "black_bear", x = 2809, y = 3376, members = true },
+    # Southeast of Rellekka
+    { id = "bear_cub", x = 2689, y = 3612, members = true },
+    { id = "bear_cub_black", x = 2691, y = 3610, members = true },
+    { id = "bear_cub", x = 2691, y = 3614, members = true },
+    { id = "bear_cub_black", x = 2693, y = 3612, members = true },
+    { id = "bear_cub", x = 2719, y = 3643, members = true },
+    { id = "bear_cub_black", x = 2721, y = 3641, members = true },
+    { id = "bear_cub_black", x = 2721, y = 3646, members = true },
+    { id = "bear_cub", x = 2723, y = 3643, members = true },
+]

@@ -1,0 +1,17 @@
+[bear_attack]
+id = 4925
+
+[bear_cub_attack]
+id = 4926
+
+[bear_defend]
+id = 4927
+
+[bear_cub_defend]
+id = 4928
+
+[bear_death]
+id = 4929
+
+[bear_cub_death]
+id = 4930

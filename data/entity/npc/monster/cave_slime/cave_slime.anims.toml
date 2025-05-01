@@ -1,0 +1,8 @@
+[cave_slime_attack]
+id = 1789
+
+[cave_slime_defend]
+id = 1791
+
+[cave_slime_death]
+id = 1792

@@ -4,6 +4,7 @@ import content.area.wilderness.Wilderness
 import content.area.wilderness.inPvp
 import content.area.wilderness.inSingleCombat
 import content.area.wilderness.inWilderness
+import content.entity.player.equip.Equipment
 import content.skill.slayer.categories
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
@@ -97,7 +98,13 @@ object Target {
      * Damage caps which Guthans doesn't work on
      * E.g. Kurask & Turoth
      */
-    fun damageReductionModifiers(source: Character, target: Character, damage: Int): Int {
+    fun damageModifiers(source: Character, target: Character, damage: Int): Int {
+        if (source is NPC && source.id == "banshee" && target is Player) {
+            val hat = target.equipped(EquipSlot.Hat).id
+            if (!Equipment.isEarmuffs(hat)) {
+                return 80
+            }
+        }
         return damage
     }
 
@@ -107,8 +114,8 @@ object Target {
     fun damageLimitModifiers(target: Character, damage: Int): Int {
         return if (target is NPC && target.def.contains("damage_cap")) {
             damage.coerceAtMost(target.def["damage_cap"])
-        } else if (target is NPC && (target.id == "magic_dummy" || target.id == "melee_dummy")) {
-            damage.coerceAtMost(target.levels.get(Skill.Constitution) - 1)
+        } else if (target is NPC && target.def.contains("immune_death")) {
+            damage.coerceAtMost(target.levels.get(Skill.Constitution) - 10)
         } else {
             damage
         }

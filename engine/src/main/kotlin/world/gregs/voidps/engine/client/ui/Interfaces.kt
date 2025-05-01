@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.playMusicTrack
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.ui.chat.Colour
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.event.CloseInterface
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
@@ -196,15 +197,12 @@ class Interfaces(
         return true
     }
 
-    fun sendColour(id: String, component: String, colour: Int): Boolean {
+    fun sendColour(id: String, component: String, colour: Colour): Boolean {
         val comp = definitions.getComponent(id, component) ?: return false
-        client?.colourInterface(comp.id, colour)
-        return true
-    }
-
-    fun sendColour(id: String, component: String, red: Int, green: Int, blue: Int): Boolean {
-        val comp = definitions.getComponent(id, component) ?: return false
-        client?.colourInterface(comp.id, red, green, blue)
+        val red = (colour and 0xff0000) shr 16
+        val green = (colour and 0xff00) shr 8
+        val blue = colour and 0xff
+        client?.colourInterface(comp.id, ((red / 255.0 * 31).toInt() shl 10) + ((green / 255.0 * 31).toInt() shl 5) + (blue / 255.0 * 31).toInt())
         return true
     }
 

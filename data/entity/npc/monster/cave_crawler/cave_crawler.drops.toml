@@ -1,0 +1,59 @@
+[cave_crawler_drop_table]
+type = "all"
+drops = [
+    { table = "cave_crawler_secondary" },
+]
+
+[cave_crawler_secondary]
+roll = 128
+drops = [
+    { id = "bronze_boots" },
+    { id = "nature_rune", min = 3, max = 4, chance = 6 },
+    { id = "fire_rune", amount = 12, chance = 5 },
+    { id = "earth_rune", amount = 9, chance = 2 },
+    { table = "allotment_seed_drop_table", chance = 26 },
+    { table = "herb_drop_table", chance = 22 },
+    { id = "vial_of_water", chance = 13 },
+    { id = "white_berries", chance = 5 },
+    { id = "unicorn_horn_dust", chance = 2 },
+    { id = "eye_of_newt" },
+    { id = "red_spiders_eggs" },
+    { id = "limpwurt_root" },
+    { id = "snape_grass" },
+    { id = "coins", amount = 3, chance = 5 },
+    { id = "coins", amount = 8, chance = 3 },
+    { id = "coins", amount = 29, chance = 3 },
+    { id = "coins", amount = 10 },
+    { id = "nothing", amount = 0, chance = 29 },
+    { table = "gem_drop_table" },
+]
+
+[cave_crawler_pollnivneach_drop_table]
+type = "all"
+drops = [
+    { table = "cave_crawler_pollnivneach_secondary" },
+]
+
+[cave_crawler_pollnivneach_secondary]
+roll = 256
+drops = [
+    # Estimated the chances
+    { id = "bronze_boots", chance = 2 },
+    { id = "earth_rune", amount = 9, chance = 4 },
+    { id = "fire_rune", amount = 12, chance = 10 },
+    { id = "nature_rune", min = 1, max = 3, chance = 12 },
+    { table = "allotment_seed_drop_table", chance = 52 },
+    { table = "herb_drop_table", chance = 44 },
+    { id = "vial_of_water", chance = 26 },
+    { id = "white_berries", min = 1, max = 2, chance = 10 },
+    { id = "unicorn_horn_dust", min = 1, max = 3, chance = 4 },
+    { id = "eye_of_newt", chance = 2 },
+    { id = "red_spiders_eggs", min = 1, max = 3, chance = 2 },
+    { id = "limpwurt_root", min = 1, max = 2, chance = 2 },
+    { id = "snape_grass", min = 1, max = 2, chance = 2 },
+    { id = "coins", min = 10, max = 89, chance = 16 },
+    { id = "adamant_spear", chance = 2 },
+    { id = "nothing", amount = 0, chance = 55 },
+    { table = "gem_drop_table", chance = 2 },
+    { table = "rare_drop_table" },
+]

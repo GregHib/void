@@ -1,0 +1,16 @@
+[cave_slime]
+id = 1831
+hitpoints = 250
+att = 13
+str = 13
+def = 35
+mage = 13
+max_hit_melee = 20
+style = "stab"
+poison = 30
+slayer_xp = 25.0
+respawn_delay = 15
+attack_radius = 13
+wander_radius = 11
+categories = ["cave_slime", "cave_slimes"]
+examine = "A foul-smelling blob of protoplasm."

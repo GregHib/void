@@ -54,7 +54,7 @@ object Damage {
      */
     fun maximum(source: Character, target: Character, type: String, weapon: Item, spell: String = "", special: Boolean = false): Int = when {
         type == "dragonfire" -> Dragonfire.maxHit(source, target, special || source is NPC && spell != "")
-        source is NPC -> source.def["max_hit_$type", 0]
+        source is NPC -> npcMaximum(source, target, type)
         type == "magic" && weapon.id.startsWith("saradomin_sword") -> 160
         type == "magic" && spell == "magic_dart" -> effectiveLevel(source, Skill.Magic) + 100
         type == "magic" -> {
@@ -76,6 +76,10 @@ object Damage {
             val strengthBonus = Weapon.strengthBonus(source, type, weapon)
             5 + (effectiveLevel(source, skill) * strengthBonus) / 64
         }
+    }
+
+    private fun npcMaximum(source: NPC, target: Character, type: String): Int {
+        return source.def["max_hit_$type", 0]
     }
 
     private fun effectiveLevel(character: Character, skill: Skill): Int {
@@ -113,7 +117,7 @@ object Damage {
 
         damage = Prayer.damageModifiers(source, target, type, weapon, special, damage)
 
-        damage = Target.damageReductionModifiers(source, target, damage)
+        damage = Target.damageModifiers(source, target, damage)
 
         damage = BarrowsArmour.damageModifiers(source, target, weapon, damage)
 
@@ -137,8 +141,8 @@ object Damage {
 /**
  * Damages player closing any interfaces they have open
  */
-fun Character.damage(damage: Int, delay: Int = 0, type: String = "damage") {
+fun Character.damage(damage: Int, delay: Int = 0, type: String = "damage", source: Character = this) {
     strongQueue("hit", delay) {
-        directHit(damage, type)
+        directHit(damage, type, source = source)
     }
 }

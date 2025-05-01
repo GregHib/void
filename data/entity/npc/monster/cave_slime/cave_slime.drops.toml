@@ -1,0 +1,34 @@
+[cave_slime_drop_table]
+type = "all"
+drops = [
+    { table = "cave_slime_primary" },
+    { table = "cave_slime_secondary" },
+    { table = "easy_clue_scroll", roll = 128 },
+]
+
+[cave_slime_primary]
+drops = [
+    { id = "swamp_tar", min = 1, max = 6 },
+]
+
+[cave_slime_secondary]
+roll = 128
+drops = [
+    { id = "bronze_hatchet", chance = 3 },
+    { id = "iron_sword", chance = 7 },
+    { id = "bronze_full_helm" },
+    { id = "iron_kiteshield", chance = 2 },
+    { id = "iron_boots" },
+    { id = "water_rune", amount = 15, chance = 5 },
+    { id = "earth_rune", amount = 5, chance = 3 },
+    { id = "coins", chance = 7 },
+    { id = "coins", amount = 4, chance = 30 },
+    { id = "coins", amount = 10, chance = 39 },
+    { id = "coins", amount = 22, chance = 10 },
+    { id = "coins", amount = 46, chance = 2 },
+    { id = "unlit_torch", chance = 11 },
+    { id = "oil_lantern_frame" },
+    { id = "gold_bar", chance = 2 },
+    { table = "gem_drop_table", chance = 4 },
+]
+

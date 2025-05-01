@@ -1,0 +1,5 @@
+[scorpion_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+]

@@ -1,0 +1,11 @@
+[bat_attack]
+id = 4915
+
+[bat_defend]
+id = 4916
+
+[giant_bat_death]
+id = 4917
+
+[bat_death]
+id = 4918

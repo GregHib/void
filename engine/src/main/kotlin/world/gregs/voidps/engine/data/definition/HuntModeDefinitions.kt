@@ -22,7 +22,7 @@ class HuntModeDefinitions {
                     val mode = section()
                     var type = ""
                     var checkVisual = "none"
-                    var checkNotTooStrong = false
+                    var checkNotTooStrong: Boolean? = null
                     var checkNotCombat = true
                     var checkNotCombatSelf = true
                     var checkNotBusy = true
@@ -52,19 +52,19 @@ class HuntModeDefinitions {
                         }
                     }
                     modes[mode] = HuntModeDefinition(
-                        type,
-                        checkVisual,
-                        checkNotTooStrong,
-                        checkNotCombat,
-                        checkNotCombatSelf,
-                        checkNotBusy,
-                        checkAfk,
-                        findKeepHunting,
-                        pauseIfNobodyNear,
-                        rate ?: if (type == "player") 1 else 3,
-                        id,
-                        layer,
-                        maxMultiAttackers
+                        type = type,
+                        checkVisual = checkVisual,
+                        checkNotTooStrong = checkNotTooStrong ?: (type == "player"),
+                        checkNotCombat = checkNotCombat,
+                        checkNotCombatSelf = checkNotCombatSelf,
+                        checkNotBusy = checkNotBusy,
+                        checkAfk = checkAfk,
+                        findKeepHunting = findKeepHunting,
+                        pauseIfNobodyNear = pauseIfNobodyNear,
+                        rate = rate ?: if (type == "player") 1 else 3,
+                        id = id,
+                        layer = layer,
+                        maxMultiAttackers = maxMultiAttackers
                     )
                 }
             }

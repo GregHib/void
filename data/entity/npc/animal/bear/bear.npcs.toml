@@ -1,0 +1,104 @@
+[grizzly_bear]
+id = 105
+hitpoints = 270
+att = 17
+str = 18
+def = 15
+slayer_xp = 27.0
+max_hit_melee = 30
+wander_radius = 8
+attack_radius = 10
+hunt_mode = "cowardly"
+style = "slash"
+respawn_delay = 50
+categories = ["bear", "bears"]
+examine = "Eek! A bear!"
+
+[grizzly_bear_club]
+id = 1196
+hitpoints = 350
+att = 30
+str = 26
+def = 25
+slayer_xp = 35.0
+max_hit_melee = 40
+wander_radius = 8
+attack_radius = 10
+attack_anim = "bear_cub_attack"
+defend_anim = "bear_cub_defend"
+death_anim = "bear_cub_death"
+style = "slash"
+respawn_delay = 50
+categories = ["bear", "bears"]
+examine = "Eek! A bear cub!"
+
+[grizzly_bear_tirannwn]
+id = 1195
+hitpoints = 350
+att = 40
+str = 36
+def = 35
+slayer_xp = 35.0
+max_hit_melee = 50
+wander_radius = 8
+attack_radius = 10
+hunt_mode = "cowardly"
+style = "slash"
+respawn_delay = 50
+categories = ["bear", "bears"]
+examine = "Eek! A bear!"
+
+[grizzly_bear_club_tirannwn]
+id = 1197
+hitpoints = 350
+att = 32
+str = 32
+def = 28
+slayer_xp = 35.0
+max_hit_melee = 40
+wander_radius = 8
+attack_radius = 10
+attack_anim = "bear_cub_attack"
+defend_anim = "bear_cub_defend"
+death_anim = "bear_cub_death"
+style = "slash"
+respawn_delay = 50
+categories = ["bear", "bears"]
+examine = "Eek! A bear cub!"
+
+[black_bear]
+id = 106
+hitpoints = 250
+att = 15
+str = 16
+def = 13
+slayer_xp = 25.0
+max_hit_melee = 30
+wander_radius = 8
+attack_radius = 10
+style = "slash"
+respawn_delay = 50
+categories = ["bear", "bears"]
+examine = "Eek! A bear!"
+
+[bear_cub]
+id = 1326
+hitpoints = 200
+att = 10
+str = 15
+def = 10
+slayer_xp = 20.0
+max_hit_melee = 20
+wander_radius = 8
+attack_radius = 10
+attack_anim = "bear_cub_attack"
+defend_anim = "bear_cub_defend"
+death_anim = "bear_cub_death"
+style = "slash"
+respawn_delay = 50
+categories = ["bear", "bears"]
+examine = "	Cute. But deadly."
+
+[bear_cub_black]
+id = 1327
+clone = "bear_cub"

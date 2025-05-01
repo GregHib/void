@@ -1,0 +1,35 @@
+[banshee]
+id = 1612
+hitpoints = 220
+att = 22
+str = 15
+def = 22
+max_hit_magic = 20
+slayer_xp = 22.0
+respawn_delay = 15
+attack_radius = 15
+wander_radius = 13
+combat_type = "magic"
+hit_splat = "melee"
+attack_sound = "nothing"
+hunt_mode = "cowardly"
+categories = ["banshee", "banshees", "undead"]
+examine = "A tortured screaming soul."
+
+[mighty_banshee]
+id = 7786
+hitpoints = 820
+att = 22
+str = 15
+def = 22
+max_hit_magic = 90
+slayer_xp = 85.0
+respawn_delay = 15
+attack_radius = 15
+wander_radius = 13
+combat_type = "magic"
+hit_splat = "melee"
+attack_sound = "nothing"
+hunt_mode = "cowardly"
+categories = ["banshee", "banshees", "undead"]
+examine = "Not the best of vocalists."

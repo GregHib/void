@@ -3,6 +3,4 @@ spawns = [
   { id = "butterfly_1", x = 2540, y = 9820, members = true },
   { id = "butterfly_1", x = 2546, y = 9817, members = true },
   { id = "butterfly_1", x = 2543, y = 9813, members = true },
-# 10137
-  { id = "zombie", x = 2540, y = 9823, members = true },
 ]

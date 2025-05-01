@@ -56,8 +56,7 @@ class SlayerCombatFormulaTest : CombatFormulaTest() {
         val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99)
         player.equipment.set(EquipSlot.Hat.index, "slayer_helmet")
         player.equipment.set(EquipSlot.Amulet.index, "salve_amulet")
-        player["slayer_task"] = true
-        player["slayer_type"] = "zombie"
+        player["slayer_target"] = "zombies"
         val npc = createNPC("zombie")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee")
@@ -87,8 +86,7 @@ class SlayerCombatFormulaTest : CombatFormulaTest() {
     fun `Slayer helmet ranged on slayer task`() {
         val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99)
         player.equipment.set(EquipSlot.Hat.index, "slayer_helmet")
-        player["slayer_task"] = true
-        player["slayer_type"] = "demon"
+        player["slayer_target"] = "demons"
         val npc = createNPC("greater_demon")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "ranged")
@@ -103,8 +101,7 @@ class SlayerCombatFormulaTest : CombatFormulaTest() {
     fun `Slayer helmet on slayer task`() {
         val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99)
         player.equipment.set(EquipSlot.Hat.index, "slayer_helmet")
-        player["slayer_task"] = true
-        player["slayer_type"] = "demon"
+        player["slayer_target"] = "demons"
         val npc = createNPC("greater_demon")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee")
@@ -119,8 +116,7 @@ class SlayerCombatFormulaTest : CombatFormulaTest() {
     fun `Full slayer helmet ranged on slayer task`() {
         val player = createPlayer(Skill.Attack to 75, Skill.Ranged to 99)
         player.equipment.set(EquipSlot.Hat.index, "full_slayer_helmet")
-        player["slayer_task"] = true
-        player["slayer_type"] = "demon"
+        player["slayer_target"] = "demons"
         val npc = createNPC("greater_demon")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "range")

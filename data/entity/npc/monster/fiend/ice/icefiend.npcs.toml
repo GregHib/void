@@ -1,0 +1,36 @@
+[icefiend]
+id = 7714
+hitpoints = 150
+att = 10
+str = 10
+def = 12
+max_hit_melee = 20
+style = "crush"
+slayer_xp = 15.0
+respawn_delay = 15
+categories = ["icefiend", "icefiends"]
+examine = "A small ice demon."
+
+[icefiend_godwars]
+id = 3406
+hitpoints = 200
+att = 12
+str = 16
+def = 19
+max_hit_melee = 30
+style = "crush"
+slayer_xp = 20.0
+respawn_delay = 25
+hunt_mode = "cowardly"
+categories = ["icefiend", "icefiends"]
+examine = "A small ice demon."
+
+[icefiend_melting]
+id = 7715
+
+[icefiend_ghorrock]
+id = 9066
+respawn_delay = 30
+wander_radius = 4
+race = "icefiend"
+examine = "A robust ice demon."

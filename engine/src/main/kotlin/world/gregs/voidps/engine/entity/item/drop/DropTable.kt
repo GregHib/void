@@ -72,7 +72,7 @@ data class DropTable(
 
     class Builder {
         private var type: TableType = TableType.First
-        private var roll: Int? = null
+        var roll: Int? = null
         private var chance: Int = 1
         private val drops = mutableListOf<Drop>()
 

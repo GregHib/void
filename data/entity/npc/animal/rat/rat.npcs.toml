@@ -8,7 +8,7 @@ slayer_xp = 2.0
 max_hit_melee = 1
 style = "crush"
 respawn_delay = 1
-categories = ["rat"]
+categories = ["rat", "rats"]
 height = 5
 examine = "A popular dwarven delicacy."
 
@@ -24,7 +24,7 @@ max_hit_melee = 10
 style = "stab"
 respawn_delay = 30
 examine = "Overgrown vermin."
-categories = ["giant_rat"]
+categories = ["giant_rat", "rats"]
 
 [giant_rat_dark]
 clone = "giant_rat"
