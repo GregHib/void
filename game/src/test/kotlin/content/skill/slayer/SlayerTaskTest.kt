@@ -2,9 +2,7 @@ package content.skill.slayer
 
 import FakeRandom
 import WorldTest
-import interfaceUse
 import itemOnNpc
-import itemOnObject
 import npcOption
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
@@ -59,7 +57,6 @@ class SlayerTaskTest : WorldTest() {
         "crawling_hands" to "crawling_hand",
         "cave_bugs" to "cave_bug",
         "cave_crawlers" to "cave_crawler",
-        "banshees" to "banshee",
         "cave_slime" to "cave_slime",
     ).map { (task, id) ->
         dynamicTest("Complete a $task slayer task") {
@@ -89,6 +86,41 @@ class SlayerTaskTest : WorldTest() {
             assertEquals(1, player.slayerPoints)
             assertTrue(player.experience.get(Skill.Slayer) > 0)
         }
+    }
+
+    @Test
+    fun `Banshees drain stats without earmuffs`() {
+        setRandom(object : FakeRandom() {
+            override fun nextBits(bitCount: Int): Int = bitCount
+        })
+        val player = createPlayer(tile = Tile(3231, 3298))
+        player.levels.set(Skill.Attack, 99)
+        player.levels.set(Skill.Strength, 99)
+        player.levels.set(Skill.Defence, 99)
+        player.levels.set(Skill.Prayer, 99)
+        player.levels.set(Skill.Constitution, 990)
+        player.equipment.set(EquipSlot.Weapon.index, "abyssal_whip")
+        player.slayerMaster = "mazchna"
+        player.slayerTask = "banshees"
+        player.slayerTaskRemaining = 1
+
+        val banshee = createNPC("banshee", player.tile.addY(1))
+        player.npcOption(banshee, "Attack")
+        tick(5)
+        player.equipment.set(EquipSlot.Hat.index, "slayer_helmet")
+        tickIf { banshee.levels.get(Skill.Constitution) > 0 }
+        tick(5) // Npc death
+
+        assertEquals("mazchna", player.slayerMaster)
+        assertEquals("nothing", player.slayerTask)
+        assertEquals(0, player.slayerTaskRemaining)
+        assertEquals(1, player.slayerStreak)
+        assertEquals(1, player.slayerPoints)
+        assertTrue(player.experience.get(Skill.Slayer) > 0)
+        assertEquals(80, player.levels.get(Skill.Attack))
+        assertEquals(80, player.levels.get(Skill.Strength))
+        assertEquals(80, player.levels.get(Skill.Defence))
+        assertEquals(90, player.levels.get(Skill.Prayer))
     }
 
     @Test
