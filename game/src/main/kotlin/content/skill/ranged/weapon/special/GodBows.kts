@@ -19,7 +19,7 @@ val specialHandler: suspend CombatAttack.(Player) -> Unit = combatAttack@{ sourc
         return@combatAttack
     }
     when (weapon.id) {
-        "zamorak_bow" -> target.hit(source, weapon, type, CLIENT_TICKS.toTicks(delay), spell, special, damage)
+        "zamorak_bow" -> target.hit(source, weapon, type, mark, CLIENT_TICKS.toTicks(delay), spell, special, damage)
         "saradomin_bow" -> {
             source.restoration += damage * 2
             source["restoration_amount"] = source.restoration / 10

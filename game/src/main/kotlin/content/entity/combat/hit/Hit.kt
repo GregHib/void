@@ -18,6 +18,7 @@ import content.entity.player.combat.special.specialAttack
 import content.entity.player.equip.Equipment
 import content.skill.melee.weapon.Weapon
 import content.skill.melee.weapon.weapon
+import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import kotlin.math.floor
 
 object Hit {
@@ -118,6 +119,7 @@ fun Character.hit(
     target: Character,
     weapon: Item = this.weapon,
     type: String = Weapon.type(this, weapon),
+    mark: HitSplat.Mark = Weapon.mark(this, type),
     delay: Int = if (type == "melee") 0 else 64,
     spell: String = this.spell,
     special: Boolean = (this as? Player)?.specialAttack ?: false,
@@ -125,9 +127,9 @@ fun Character.hit(
 ): Int {
     val actualDamage = Damage.modify(this, target, type, damage, weapon, spell, special)
         .coerceAtMost(target.levels.get(Skill.Constitution))
-    emit(CombatAttack(target, type, actualDamage, weapon, spell, special, delay))
+    emit(CombatAttack(target, type, mark, actualDamage, weapon, spell, special, delay))
     target.strongQueue("hit", if (delay == 0) 0 else CLIENT_TICKS.toTicks(delay) + 1) {
-        target.directHit(this@hit, actualDamage, type, weapon, spell, special)
+        target.directHit(this@hit, actualDamage, type, mark, weapon, spell, special)
     }
     return actualDamage
 }
@@ -135,20 +137,20 @@ fun Character.hit(
 /**
  * Hits player without interrupting them
  */
-fun Character.directHit(damage: Int, type: String = "damage", weapon: Item = Item.EMPTY, spell: String = "", special: Boolean = false, source: Character = this) =
-    directHit(source, damage, type, weapon, spell, special)
+fun Character.directHit(damage: Int, type: String = "damage", mark: HitSplat.Mark = HitSplat.Mark.Regular, weapon: Item = Item.EMPTY, spell: String = "", special: Boolean = false, source: Character = this) =
+    directHit(source, damage, type, mark, weapon, spell, special)
 
 /**
  * Hits player without interrupting them
  */
-fun Character.directHit(source: Character, damage: Int, type: String = "damage", weapon: Item = Item.EMPTY, spell: String = "", special: Boolean = false) {
+fun Character.directHit(source: Character, damage: Int, type: String = "damage", mark: HitSplat.Mark = HitSplat.Mark.Regular, weapon: Item = Item.EMPTY, spell: String = "", special: Boolean = false) {
     if (source.dead) {
         return
     }
-    emit(CombatDamage(source, type, damage, weapon, spell, special))
+    emit(CombatDamage(source, type, mark, damage, weapon, spell, special))
     if (source["debug", false] || this["debug", false]) {
         val player = if (this["debug", false] && this is Player) this else source as Player
-        val message = "Damage: $damage ($type, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
+        val message = "Damage: $damage ($type, $mark, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
         player.message(message)
     }
 }

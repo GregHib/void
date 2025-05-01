@@ -21,7 +21,7 @@ combatAttack(type = "magic") { source ->
     if (spell.endsWith("_burst") || spell.endsWith("_barrage")) {
         val targets = multiTargets(target, 9)
         for (target in targets) {
-            target.directHit(source, random.nextInt(0..damage), type, weapon, spell)
+            target.directHit(source, random.nextInt(0..damage), type, mark, weapon, spell)
         }
     }
 }

@@ -20,7 +20,7 @@ combatAttack(type = "range") { source ->
     if (weapon.id.endsWith("chinchompa") && target.inMultiCombat) {
         val targets = multiTargets(target, if (target is Player) 9 else 11)
         for (target in targets) {
-            target.directHit(source, random.nextInt(0..damage), type, weapon, spell)
+            target.directHit(source, random.nextInt(0..damage), type, mark, weapon, spell)
         }
     }
 }

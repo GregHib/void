@@ -22,6 +22,7 @@ import content.entity.player.combat.special.specialAttack
 import content.entity.player.equip.Equipment
 import content.entity.combat.Target
 import content.entity.combat.attackers
+import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import kotlin.random.nextInt
 
 object Weapon {
@@ -90,12 +91,36 @@ object Weapon {
 
     private fun isOutlier(special: Boolean, id: String): Boolean = (special && id.startsWith("magic") || id == "seercull" || id == "rune_thrownaxe") || id == "ogre_bow"
 
+    fun mark(character: Character, type: String): HitSplat.Mark {
+        if (character is NPC && character.def.contains("hit_splat")) {
+            return HitSplat.Mark.of(character.def["hit_splat", ""])
+        }
+        return when (type) {
+            "range" -> HitSplat.Mark.Range
+            "melee", "scorch" -> HitSplat.Mark.Melee
+            "magic", "blaze" -> HitSplat.Mark.Magic
+            "poison" -> HitSplat.Mark.Poison
+            "disease" -> HitSplat.Mark.Diseased
+            "dragonfire", "damage" -> HitSplat.Mark.Regular
+            "deflect" -> HitSplat.Mark.Reflected
+            "healed" -> HitSplat.Mark.Healed
+            else -> HitSplat.Mark.Regular
+        }
+    }
+
     fun type(character: Character, weapon: Item = character.weapon): String {
         if (character.spell.isNotBlank()) {
             return "magic"
         }
         val definitions = get<WeaponStyleDefinitions>()
-        val style = if (character is NPC) definitions.get(character.def["weapon_style", "unarmed"]) else definitions.get(weapon.def["weapon_style", 0])
+        val style = if (character is NPC) {
+            if (character.def.contains("combat_type")) {
+                return character.def["combat_type"]
+            }
+            definitions.get(character.def["weapon_style", "unarmed"])
+        } else {
+            definitions.get(weapon.def["weapon_style", 0])
+        }
         return when (style.stringId) {
             "pie", "bow", "crossbow", "thrown", "chinchompa", "sling" -> "range"
             "fixed_device" -> if (character.attackType == "aim_and_fire") "range" else "melee"

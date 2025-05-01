@@ -5,6 +5,7 @@ import content.entity.combat.hit.hit
 import content.skill.melee.weapon.weapon
 import content.entity.player.combat.special.specialAttack
 import content.entity.sound.areaSound
+import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 
 specialAttack("saradomins_lightning") { player ->
     player.anim("${id}_special")
@@ -14,6 +15,6 @@ specialAttack("saradomins_lightning") { player ->
     player.hit(target, damage = damage)
     if (damage > 0) {
         areaSound("godwars_saradomin_magic_impact", target.tile, 10)
-        player.hit(target, type = "magic")
+        player.hit(target, type = "magic", mark = HitSplat.Mark.Magic)
     }
 }
