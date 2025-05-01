@@ -79,12 +79,6 @@ object Damage {
     }
 
     private fun npcMaximum(source: NPC, target: Character, type: String): Int {
-        if (source.id == "banshee" && target is Player) {
-            val hat = target.equipped(EquipSlot.Hat).id
-            if (hat == "earmuffs" || hat.startsWith("slayer_helmet") || hat.startsWith("full_slayer_helmet")) {
-                return 80
-            }
-        }
         return source.def["max_hit_$type", 0]
     }
 
@@ -123,7 +117,7 @@ object Damage {
 
         damage = Prayer.damageModifiers(source, target, type, weapon, special, damage)
 
-        damage = Target.damageReductionModifiers(source, target, damage)
+        damage = Target.damageModifiers(source, target, damage)
 
         damage = BarrowsArmour.damageModifiers(source, target, weapon, damage)
 

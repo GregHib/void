@@ -50,6 +50,9 @@ fun attackSound(npc: NPC): String {
     var sound: String
     if (npc.def.contains("attack_sound")) {
         sound = npc.def["attack_sound"]
+        if (sound == "nothing") {
+            return ""
+        }
         if (soundDefinitions.contains(sound)) {
             return sound
         }

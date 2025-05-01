@@ -108,6 +108,8 @@ object Equipment {
 
     fun isTzhaarWeapon(weapon: String) = weapon == "toktz_xil_ak" || weapon == "tzhaar_ket_om" || weapon == "tzhaar_ket_em" || weapon == "toktz_xil_ek"
 
+    fun isEarmuffs(hat: String) = hat == "masked_earmuffs" || hat == "earmuffs" || hat.startsWith("slayer_helmet") || hat.startsWith("full_slayer_helmet")
+
     fun dragonFireImmune(target: Character) = target.protectMagic() || antiDragonShield(target) || target.antifire || target.superAntifire
 
     fun antiDragonShield(target: Character): Boolean {
