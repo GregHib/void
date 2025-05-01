@@ -72,6 +72,7 @@ class SlayerTaskTest : WorldTest() {
             player.levels.set(Skill.Defence, 99)
             player.levels.set(Skill.Constitution, 990)
             player.equipment.set(EquipSlot.Weapon.index, "abyssal_whip")
+            player.equipment.set(EquipSlot.Hat.index, "earmuffs")
             player.slayerMaster = "mazchna"
             player.slayerTask = task
             player.slayerTaskRemaining = 1
