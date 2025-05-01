@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
@@ -23,8 +24,9 @@ class SlayerTaskTest : WorldTest() {
 
     @Test
     fun `Obtain a slayer task`() {
-        val player = createPlayer(tile = Tile(2930, 3536))
-        val turael = createNPC("turael", Tile(2931, 3536))
+        val player = createPlayer(tile = emptyTile)
+        val turael = createNPC("turael", emptyTile.addY(1))
+        turael.mode = EmptyMode
 
         player.npcOption(turael, "Get-task")
         tickIf { player.dialogue == null }
