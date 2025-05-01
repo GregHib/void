@@ -46,8 +46,8 @@ val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 
 modCommand("test") {
-    player.set("slayer_count", 15)
-    player.set("slayer_target", content.toInt())
+    player["slayer_count"] = 15
+    player["slayer_target"] = content.toInt()
 //    println()
 //    println("Facing ${player.tile.delta(player.visuals.face.targetX, player.visuals.face.targetY)}")
 }
