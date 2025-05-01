@@ -22,6 +22,7 @@ import world.gregs.voidps.network.login.protocol.encode.publicQuickChat
 import content.social.clan.clan
 import content.social.ignore.ignores
 import world.gregs.voidps.engine.client.instruction.instruction
+import world.gregs.voidps.engine.client.variable.MapValues
 import world.gregs.voidps.network.client.instruction.QuickChatPrivate
 import world.gregs.voidps.network.client.instruction.QuickChatPublic
 
@@ -111,24 +112,27 @@ fun generateData(player: Player, file: Int, data: ByteArray): ByteArray {
                 return int(player[key]!!)
             }
             QuickChatType.CombatLevel -> return byteArrayOf(player.combatLevel.toByte())
-            QuickChatType.SlayerAssignment,
+            QuickChatType.SlayerAssignment -> {
+                val int = (variables.get("slayer_target")!!.values as MapValues).values[player["slayer_target"]] ?: 0
+                return int(int)
+            }
             QuickChatType.ClanRank,
             QuickChatType.AverageCombatLevel,
             QuickChatType.SoulWars -> return byteArrayOf(0)
             else -> return data
         }
     } else {
-        val list = mutableListOf<Int>()
+        val list = mutableListOf<Byte>()
         for (index in types.indices) {
             when (definition.getType(index)) {
                 QuickChatType.SkillLevel, QuickChatType.SkillExperience -> {
                     val skill = Skill.all[definition.ids!![index].last()]
-                    list.add(player.levels.getMax(skill))
+                    list.add(player.levels.getMax(skill).toByte())
                 }
                 else -> return data
             }
         }
-        return list.map { it.toByte() }.toByteArray()
+        return list.map { it }.toByteArray()
     }
 }
 
