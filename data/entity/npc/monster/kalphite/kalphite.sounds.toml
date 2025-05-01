@@ -1,3 +1,8 @@
-kalphite_attack = 537
-kalphite_death = 538
-kalphite_defend = 539
+[kalphite_attack]
+id = 537
+
+[kalphite_death]
+id = 538
+
+[kalphite_defend]
+id = 539

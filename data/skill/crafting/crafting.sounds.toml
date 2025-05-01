@@ -1,4 +1,11 @@
-cut_gem = 2586
-glassblowing = 2724
-combine_battlestaff = 2585
-pottery = 2588
+[cut_gem]
+id = 2586
+
+[glassblowing]
+id = 2724
+
+[combine_battlestaff]
+id = 2585
+
+[pottery]
+id = 2588

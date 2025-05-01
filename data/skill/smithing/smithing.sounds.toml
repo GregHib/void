@@ -1,3 +1,8 @@
-smelt_bar = 2725
-superheat_all = 190
-superheat_fail = 191
+[smelt_bar]
+id = 2725
+
+[superheat_all]
+id = 190
+
+[superheat_fail]
+id = 191

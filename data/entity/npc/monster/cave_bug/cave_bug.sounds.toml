@@ -1,3 +1,8 @@
-cave_bug_attack = 1577
-cave_bug_death = 1578
-cave_bug_defend = 1580
+[cave_bug_attack]
+id = 1577
+
+[cave_bug_death]
+id = 1578
+
+[cave_bug_defend]
+id = 1580

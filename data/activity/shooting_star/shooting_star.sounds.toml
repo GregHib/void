@@ -1,11 +1,32 @@
-star_meteor_falling = 5206
-star_meteor_landing = 5188
-star_meteor_change = 5189
-star_sprite_shake = 5193
-star_sprite_appear = 5195
-star_sprite_twinkle = 5197
-star_sprite_yawn = 5200
-star_sprite_wipe = 5201
-star_sprite_yawn_end1 = 5202
-star_sprite_blink = 5205
-star_meteor_despawn = 5207
+[star_meteor_falling]
+id = 5206
+
+[star_meteor_landing]
+id = 5188
+
+[star_meteor_change]
+id = 5189
+
+[star_sprite_shake]
+id = 5193
+
+[star_sprite_appear]
+id = 5195
+
+[star_sprite_twinkle]
+id = 5197
+
+[star_sprite_yawn]
+id = 5200
+
+[star_sprite_wipe]
+id = 5201
+
+[star_sprite_yawn_end1]
+id = 5202
+
+[star_sprite_blink]
+id = 5205
+
+[star_meteor_despawn]
+id = 5207

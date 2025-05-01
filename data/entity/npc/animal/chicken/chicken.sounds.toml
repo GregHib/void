@@ -1,3 +1,8 @@
-chicken_defend = 357
-chicken_death = 356
-chicken_attack = 355
+[chicken_defend]
+id = 357
+
+[chicken_death]
+id = 356
+
+[chicken_attack]
+id = 355

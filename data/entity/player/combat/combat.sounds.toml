@@ -1,41 +1,122 @@
-sanctuary_special = 2539
-chainhit_special = 2528
-powershot_special = 2536
-snapshot_special = 2545
-puncture_special = 2537
-rampage_special = 2538
-shatter_special = 2541
-smash_special = 2541
-impale_special = 2534
-sweep_special = 2533
-energy_drain_special = 2713
-quick_smash_special = 2715
-clobber_special = 2531
-seercull_special = 2546
-weaken_special = 225
-powerstab_special = 2530
-snipe_special = 1080
-sunder_special = 3481
-liquify_special = 3473
-god_bow_special_impact = 9513
-descent_of_dragons = 3733
-descent_of_darkness = 3737
-morrigans_javelin_special = 2699
-morrigans_throwing_axe_special = 2706
-feint_special = 2529
-spear_wall_special = 2529
-dark_bow_special = 3731
-crossbow_shoot = 2695
-dart_throw = 2696
-javelin_throw = 2699
-longbow_shoot = 2700
-out_of_ammo = 2701
-shortbow_shoot = 2702
-axe_throw = 2706
-knife_throw = 2707
-thrown = 2708
-godwars_saradomin_magic_impact = 3853
-godwars_godsword_special_attack = 3865
-rubber_chicken_whack = 2257
-chinchompa_explode = 360
-2h_stab = 2504
+[sanctuary_special]
+id = 2539
+
+[chainhit_special]
+id = 2528
+
+[powershot_special]
+id = 2536
+
+[snapshot_special]
+id = 2545
+
+[puncture_special]
+id = 2537
+
+[rampage_special]
+id = 2538
+
+[shatter_special]
+id = 2541
+
+[smash_special]
+id = 2541
+
+[impale_special]
+id = 2534
+
+[sweep_special]
+id = 2533
+
+[energy_drain_special]
+id = 2713
+
+[quick_smash_special]
+id = 2715
+
+[clobber_special]
+id = 2531
+
+[seercull_special]
+id = 2546
+
+[weaken_special]
+id = 225
+
+[powerstab_special]
+id = 2530
+
+[snipe_special]
+id = 1080
+
+[sunder_special]
+id = 3481
+
+[liquify_special]
+id = 3473
+
+[god_bow_special_impact]
+id = 9513
+
+[descent_of_dragons]
+id = 3733
+
+[descent_of_darkness]
+id = 3737
+
+[morrigans_javelin_special]
+id = 2699
+
+[morrigans_throwing_axe_special]
+id = 2706
+
+[feint_special]
+id = 2529
+
+[spear_wall_special]
+id = 2529
+
+[dark_bow_special]
+id = 3731
+
+[crossbow_shoot]
+id = 2695
+
+[dart_throw]
+id = 2696
+
+[javelin_throw]
+id = 2699
+
+[longbow_shoot]
+id = 2700
+
+[out_of_ammo]
+id = 2701
+
+[shortbow_shoot]
+id = 2702
+
+[axe_throw]
+id = 2706
+
+[knife_throw]
+id = 2707
+
+[thrown]
+id = 2708
+
+[godwars_saradomin_magic_impact]
+id = 3853
+
+[godwars_godsword_special_attack]
+id = 3865
+
+[rubber_chicken_whack]
+id = 2257
+
+[chinchompa_explode]
+id = 360
+
+[2h_stab]
+id = 2504

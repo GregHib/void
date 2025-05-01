@@ -1,3 +1,8 @@
-crawling_hand_attack = 377
-crawling_hand_death = 378
-crawling_hand_defend = 379
+[crawling_hand_attack]
+id = 377
+
+[crawling_hand_death]
+id = 378
+
+[crawling_hand_defend]
+id = 379

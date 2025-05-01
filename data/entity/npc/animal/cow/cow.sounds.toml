@@ -1,7 +1,20 @@
-calf_attack = 366
-calf_death = 367
-calf_defend = 368
-cow_attack = 369
-cow_death = 370
-cow_defend = 371
-milk_cow = 372
+[calf_attack]
+id = 366
+
+[calf_death]
+id = 367
+
+[calf_defend]
+id = 368
+
+[cow_attack]
+id = 369
+
+[cow_death]
+id = 370
+
+[cow_defend]
+id = 371
+
+[milk_cow]
+id = 372

@@ -1,3 +1,8 @@
-bat_attack = 292
-bat_death = 293
-bat_defend = 294
+[bat_attack]
+id = 292
+
+[bat_death]
+id = 293
+
+[bat_defend]
+id = 294
