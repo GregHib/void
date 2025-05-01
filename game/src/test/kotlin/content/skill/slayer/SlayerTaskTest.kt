@@ -3,6 +3,7 @@ package content.skill.slayer
 import FakeRandom
 import WorldTest
 import itemOnNpc
+import messages
 import npcOption
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
@@ -29,7 +30,12 @@ class SlayerTaskTest : WorldTest() {
         turael.mode = EmptyMode
 
         player.npcOption(turael, "Get-task")
-        tickIf { player.dialogue == null }
+        println(player.messages.last())
+        println(turael.tile)
+        tickIf {
+            println("Tick $turael $player ${player.dialogue}")
+            player.dialogue == null
+        }
 
         assertEquals("turael", player.slayerMaster)
         assertNotEquals("nothing", player.slayerTask)
