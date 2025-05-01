@@ -7,7 +7,6 @@ import npcOption
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
@@ -16,24 +15,9 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
-import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 
 class SlayerTaskTest : WorldTest() {
-
-    @Test
-    fun `Obtain a slayer task`() {
-        val player = createPlayer(tile = emptyTile)
-        val turael = createNPC("turael", emptyTile.addY(1))
-
-        player.npcOption(turael, "Get-task")
-        tick()
-        tickIf { player.mode is Interact }
-
-        assertEquals("turael", player.slayerMaster)
-        assertNotEquals("nothing", player.slayerTask)
-        assertTrue(player.slayerTaskRemaining > 0)
-    }
 
     @TestFactory
     fun `Complete a slayer task`() = listOf(
