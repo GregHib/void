@@ -1,12 +1,35 @@
-human_defend = 14
-male_defend_0 = 518
-male_defend_1 = 519
-male_defend_2 = 520
-male_defend_3 = 521
-female_defend_0 = 509
-female_defend_1 = 510
-drop_item = 2739
-take_item = 2582
-cook = 2577
-drink = 2401
-eat = 2393
+[human_defend]
+id = 14
+
+[male_defend_0]
+id = 518
+
+[male_defend_1]
+id = 519
+
+[male_defend_2]
+id = 520
+
+[male_defend_3]
+id = 521
+
+[female_defend_0]
+id = 509
+
+[female_defend_1]
+id = 510
+
+[drop_item]
+id = 2739
+
+[take_item]
+id = 2582
+
+[cook]
+id = 2577
+
+[drink]
+id = 2401
+
+[eat]
+id = 2393

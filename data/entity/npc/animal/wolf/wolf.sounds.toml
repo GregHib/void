@@ -1,3 +1,8 @@
-wolves_defend = 912
-wolves_attack = 909
-wolves_death = 911
+[wolves_defend]
+id = 912
+
+[wolves_attack]
+id = 909
+
+[wolves_death]
+id = 911

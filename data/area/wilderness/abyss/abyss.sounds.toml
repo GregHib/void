@@ -1,2 +1,5 @@
-boil_burst = 2711
-abyssal_squeezethrough = 2709
+[boil_burst]
+id = 2711
+
+[abyssal_squeezethrough]
+id = 2709

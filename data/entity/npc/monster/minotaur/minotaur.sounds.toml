@@ -1,3 +1,8 @@
-minotaur_attack = 626
-minotaur_death = 627
-minotaur_defend = 628
+[minotaur_attack]
+id = 626
+
+[minotaur_death]
+id = 627
+
+[minotaur_defend]
+id = 628

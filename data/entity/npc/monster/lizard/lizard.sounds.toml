@@ -1,3 +1,8 @@
-lizard_attack = 605
-lizard_death = 606
-lizard_defend = 607
+[lizard_attack]
+id = 605
+
+[lizard_death]
+id = 606
+
+[lizard_defend]
+id = 607

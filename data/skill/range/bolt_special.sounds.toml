@@ -1,10 +1,29 @@
-armour_piercing = 2910
-blood_forfeit = 2911
-clear_mind = 2912
-down_to_earth = 2914
-dragons_breath = 2915
-earths_fury = 2916
-life_leech = 2917
-lucky_lightning = 2918
-magical_poison = 2919
-sea_curse = 2920
+[armour_piercing]
+id = 2910
+
+[blood_forfeit]
+id = 2911
+
+[clear_mind]
+id = 2912
+
+[down_to_earth]
+id = 2914
+
+[dragons_breath]
+id = 2915
+
+[earths_fury]
+id = 2916
+
+[life_leech]
+id = 2917
+
+[lucky_lightning]
+id = 2918
+
+[magical_poison]
+id = 2919
+
+[sea_curse]
+id = 2920

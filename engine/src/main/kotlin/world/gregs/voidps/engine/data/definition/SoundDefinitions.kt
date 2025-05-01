@@ -20,10 +20,16 @@ class SoundDefinitions : DefinitionsDecoder<SoundDefinition> {
             val ids = Object2IntOpenHashMap<String>(250, Hash.VERY_FAST_LOAD_FACTOR)
             for (path in paths) {
                 Config.fileReader(path) {
-                    while (nextPair()) {
-                        val stringId = key()
-                        val id = int()
+                    while (nextSection()) {
+                        val stringId = section()
                         require(!ids.containsKey(stringId)) { "Duplicate sound id found '$stringId' at $path." }
+                        var id = 0
+                        while (nextPair()) {
+                            when (val key = key()) {
+                                "id" -> id = int()
+                                else -> throw IllegalArgumentException("Unknown sound key: $key")
+                            }
+                        }
                         ids[stringId] = id
                         definitions[id] = SoundDefinition(id = id, stringId = stringId)
                     }

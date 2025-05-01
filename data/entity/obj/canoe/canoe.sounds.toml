@@ -1,2 +1,5 @@
-canoe_roll = 2731
-canoe_sink = 2732
+[canoe_roll]
+id = 2731
+
+[canoe_sink]
+id = 2732

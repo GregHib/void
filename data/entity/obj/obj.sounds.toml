@@ -1,7 +1,21 @@
-chest_open = 52
-casket_open = 50
-cupboard_close = 57
-cupboard_open = 58
-destroy_object = 2381
-lever = 2400
-coffin_open = 54
+[chest_open]
+id = 52
+
+[casket_open]
+id = 50
+
+[cupboard_close]
+id = 57
+
+[cupboard_open]
+id = 58
+
+[destroy_object]
+id = 2381
+
+[lever]
+id = 2400
+
+[coffin_open]
+id = 54
+

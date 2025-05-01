@@ -1,3 +1,8 @@
-rat_attack = 710
-rat_defend = 713
-rat_death = 711
+[rat_attack]
+id = 710
+
+[rat_defend]
+id = 713
+
+[rat_death]
+id = 711

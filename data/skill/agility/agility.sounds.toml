@@ -1,15 +1,44 @@
-stumble_loop = 2493
-monkeybars_on = 2474
-monkeybars_loop = 2466
-monkeybars_off = 2473
-swim_stroke = 1436
-water_splash = 2496
-climbing_loop = 2454
-climb_wall = 2453
-swing_across = 1437
-land_flat = 2469
-land_flatter = 2455
-rope_climb = 2482
-fall_splash = 1421
-jump = 2461
-pool_plop = 1658
+[stumble_loop]
+id = 2493
+
+[monkeybars_on]
+id = 2474
+
+[monkeybars_loop]
+id = 2466
+
+[monkeybars_off]
+id = 2473
+
+[swim_stroke]
+id = 1436
+
+[water_splash]
+id = 2496
+
+[climbing_loop]
+id = 2454
+
+[climb_wall]
+id = 2453
+
+[swing_across]
+id = 1437
+
+[land_flat]
+id = 2469
+
+[land_flatter]
+id = 2455
+
+[rope_climb]
+id = 2482
+
+[fall_splash]
+id = 1421
+
+[jump]
+id = 2461
+
+[pool_plop]
+id = 1658

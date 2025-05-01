@@ -1,29 +1,86 @@
-equip_halloween_pumpkin = 3227
-equip_halloween_spray = 3228
-equip_salamander = 732
-equip_sled = 1864
-equip_hatchet = 2229
-equip_elemental_staff = 2230
-equip_banner = 2231
-equip_axe = 2232
-equip_blunt = 2233
-equip_bolts = 2235
-equip_hands = 2236
-equip_feet = 2237
-equip_clothes = 2238
-equip_body = 2239
-equip_helm = 2240
-equip_leather = 2241
-equip_legs = 2242
-equip_hammer = 2243
-equip_range = 2244
-equip_shield = 2245
-equip_mace = 2246
-equip_spear = 2247
-equip_sword = 2248
-equip_whip = 2249
-equip_wood = 2250
-equip_silverlight = 2990
-equip_jester = 3395
-equip_surok_ring = 3525
-equip_darkbow = 3738
+[equip_halloween_pumpkin]
+id = 3227
+
+[equip_halloween_spray]
+id = 3228
+
+[equip_salamander]
+id = 732
+
+[equip_sled]
+id = 1864
+
+[equip_hatchet]
+id = 2229
+
+[equip_elemental_staff]
+id = 2230
+
+[equip_banner]
+id = 2231
+
+[equip_axe]
+id = 2232
+
+[equip_blunt]
+id = 2233
+
+[equip_bolts]
+id = 2235
+
+[equip_hands]
+id = 2236
+
+[equip_feet]
+id = 2237
+
+[equip_clothes]
+id = 2238
+
+[equip_body]
+id = 2239
+
+[equip_helm]
+id = 2240
+
+[equip_leather]
+id = 2241
+
+[equip_legs]
+id = 2242
+
+[equip_hammer]
+id = 2243
+
+[equip_range]
+id = 2244
+
+[equip_shield]
+id = 2245
+
+[equip_mace]
+id = 2246
+
+[equip_spear]
+id = 2247
+
+[equip_sword]
+id = 2248
+
+[equip_whip]
+id = 2249
+
+[equip_wood]
+id = 2250
+
+[equip_silverlight]
+id = 2990
+
+[equip_jester]
+id = 3395
+
+[equip_surok_ring]
+id = 3525
+
+[equip_darkbow]
+id = 3738

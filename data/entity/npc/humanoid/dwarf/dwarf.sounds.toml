@@ -1,4 +1,11 @@
-dwarf_attack = 417
-dwarf_death = 418
-dwarf_defend = 419
-dwarf_work = 420
+[dwarf_attack]
+id = 417
+
+[dwarf_death]
+id = 418
+
+[dwarf_defend]
+id = 419
+
+[dwarf_work]
+id = 420

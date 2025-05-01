@@ -1,3 +1,8 @@
-bear_attack = 300
-bear_death = 301
-bear_defend = 302
+[bear_attack]
+id = 300
+
+[bear_death]
+id = 301
+
+[bear_defend]
+id = 302

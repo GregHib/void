@@ -1,8 +1,24 @@
-human_into_small_monkey = 1671
-human_into_zombie_monkey = 1680
-human_into_monkey = 1677
-human_into_gorilla = 1676
-small_monkey_into_human = 1683
-zombie_monkey_into_human = 1690
-monkey_into_human = 1681
-gorilla_into_human = 1674
+[human_into_small_monkey]
+id = 1671
+
+[human_into_zombie_monkey]
+id = 1680
+
+[human_into_monkey]
+id = 1677
+
+[human_into_gorilla]
+id = 1676
+
+[small_monkey_into_human]
+id = 1683
+
+[zombie_monkey_into_human]
+id = 1690
+
+[monkey_into_human]
+id = 1681
+
+[gorilla_into_human]
+id = 1674
+

@@ -1,4 +1,11 @@
-grapple_shoot = 2928
-grapple_splash = 2929
-jump_down = 2462
-jump_up = 2468
+[grapple_shoot]
+id = 2928
+
+[grapple_splash]
+id = 2929
+
+[jump_down]
+id = 2462
+
+[jump_up]
+id = 2468
