@@ -3,13 +3,11 @@ package content.skill.slayer
 import FakeRandom
 import WorldTest
 import itemOnNpc
-import messages
 import npcOption
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
-import world.gregs.voidps.engine.client.ui.dialogue
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
@@ -27,15 +25,10 @@ class SlayerTaskTest : WorldTest() {
     fun `Obtain a slayer task`() {
         val player = createPlayer(tile = emptyTile)
         val turael = createNPC("turael", emptyTile.addY(1))
-        turael.mode = EmptyMode
 
         player.npcOption(turael, "Get-task")
-        println(player.messages.last())
-        println(turael.tile)
-        tickIf {
-            println("Tick $turael $player ${player.dialogue}")
-            player.dialogue == null
-        }
+        tick()
+        tickIf { player.mode is Interact }
 
         assertEquals("turael", player.slayerMaster)
         assertNotEquals("nothing", player.slayerTask)

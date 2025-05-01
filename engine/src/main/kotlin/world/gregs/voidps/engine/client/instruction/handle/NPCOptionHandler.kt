@@ -50,7 +50,6 @@ class NPCOptionHandler(
             return
         }
         player.talkWith(npc, definition)
-        println("Npc option $player $npc")
         player.mode = Interact(player, npc, NPCOption(player, npc, definition, selectedOption))
     }
 
