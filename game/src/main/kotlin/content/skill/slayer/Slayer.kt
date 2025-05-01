@@ -58,8 +58,7 @@ fun Player.isTask(character: Character?): Boolean {
     if (target !is NPC) {
         return false
     }
-    val type = this["slayer_type", "null"]
-    return target.categories.contains(type)
+    return target.categories.contains(slayerTask)
 }
 
 fun rollTask(player: Player, definitions: Map<String, SlayerTaskDefinition>): SlayerTaskDefinition {
