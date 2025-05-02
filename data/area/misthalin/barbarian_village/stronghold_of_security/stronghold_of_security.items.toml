@@ -11,6 +11,7 @@ id = 9004
 price = 14
 limit = 100
 weight = 0.01
+book = "stronghold_notes"
 examine = "Information regarding the Stronghold of Security."
 
 [fancy_boots]
