@@ -6,11 +6,11 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.koin.test.mock.declareMock
+import stringEntry
 import world.gregs.voidps.cache.config.data.QuestDefinition
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
-import world.gregs.voidps.engine.suspend.StringSuspension
 
 internal class QuestStartTest : DialogueTest() {
 
@@ -86,8 +86,7 @@ internal class QuestStartTest : DialogueTest() {
         dialogue {
             start = startQuest( "test_quest")
         }
-        val suspend = player.dialogueSuspension as StringSuspension
-        suspend.resume("yes")
+        player.stringEntry("yes")
         assertTrue(start)
     }
 }

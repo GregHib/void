@@ -2,6 +2,7 @@ package content.skill.crafting
 
 import WorldTest
 import containsMessage
+import intEntry
 import interfaceOption
 import itemOnObject
 import net.pearx.kasechange.toLowerSpaceCase
@@ -13,7 +14,6 @@ import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.network.client.instruction.EnterInt
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 
@@ -164,7 +164,7 @@ class JewelleryTest : WorldTest() {
         tick()
 
         player.interfaceOption("make_mould_slayer", "make_bracelet_option_diamond", "Make X")
-        player.instructions.trySend(EnterInt(3))
+        player.intEntry(3)
         tick(6)
         assertEquals(1, player.inventory.count("gold_bar"))
         assertEquals(1, player.inventory.count("bracelet_mould"))
@@ -187,7 +187,7 @@ class JewelleryTest : WorldTest() {
         tick()
 
         player.interfaceOption("make_mould_slayer", "make_amulet_unstrung_option_dragonstone", "Make X")
-        player.instructions.trySend(EnterInt(3))
+        player.intEntry(3)
         tick(6)
         assertEquals(0, player.inventory.count("gold_bar"))
         assertEquals(1, player.inventory.count("amulet_unstrung_mould"))
