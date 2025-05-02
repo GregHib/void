@@ -12,5 +12,10 @@ interfaceOption("No", "no", "warning_*") {
 }
 
 interfaceOption("Off/On", "dont_ask", "warning_*") {
-    player[id] = !player[id, true]
+    val count = player[id, 0]
+    if (count == 6) {
+        player[id] = 7
+    } else {
+        player[id] = 6
+    }
 }

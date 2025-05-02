@@ -23,3 +23,8 @@ id = 8864
 categories = ["human"]
 shop = "lumbridge_fishing_supplies"
 examine = "A product of a consumerist society."
+
+[doomsayer]
+id = 3777
+categories = ["human"]
+examine = "Cheerful, helpful and optimistic, I'll bet."

@@ -34,11 +34,11 @@ objTeleportTakeOff("Climb-up", "stronghold_war_chain_up") {
 }
 
 objTeleportTakeOff("Climb-down", "stronghold_war_ladder_down", "stronghold_famine_ladder_down") {
-    if (!player["warning_climb_down", true]) {
+    if (player["warning_stronghold_of_security_ladders", 0] == 7) {
         return@objTeleportTakeOff
     }
     player.queue("stronghold_warning") {
-        if (!warning("climb_down")) {
+        if (!warning("stronghold_of_security_ladders")) {
             player<Shifty>("No thanks, I don't want to die!")
         } else {
             player.message("You climb down the ladder to the next level.")

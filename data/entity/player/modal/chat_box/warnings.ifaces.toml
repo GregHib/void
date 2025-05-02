@@ -1,90 +1,176 @@
-[warning_cold]
+[warning_icy_path_area]
 id = 327
+type = "main_screen"
+components = { ask_again = 19, dont_ask = 18 }
 
-[warning_spiders]
+[warning_observatory_stairs]
 id = 560
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
 [warning_kalphite_queen]
 id = 561
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_dark]
+[warning_contact_dungeon_ladder]
 id = 562
 type = "main_screen"
-components = { yes = 17, no = 18 }
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_building_mode]
+[warning_player_owned_houses]
 id = 563
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_archers]
+[warning_ranging_guild_tower]
 id = 564
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_desert]
+[warning_shantay_pass]
 id = 565
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 } # Component 20 is missing var script
 
-[warning_collect_items]
+[warning_random_event_dropped_items]
 id = 566
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_light_source]
+[warning_ham_mill_tunnel]
 id = 567
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_dark_regardless]
+[warning_mole_lair]
 id = 568
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_light_source2]
+[warning_lumbridge_cellar]
 id = 569
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_dark_scared]
+[warning_elid_genie_cave]
 id = 570
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_dark_tunnel]
+[warning_dorgesh_kaan_city_exit]
 id = 571
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_tinderbox]
+[warning_lumbridge_swamp_cave_rope]
 id = 572
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_run_past]
+[warning_watchtower_shaman_cave]
 id = 573
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_dangerous_area]
+[warning_dagannoth_kings_ladder]
 id = 574
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_one_way_wilderness]
+[warning_trollheim_wilderness_entrance]
 id = 576
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_light_source_3]
+[warning_dorgesh_kaan_kalphite_tunnel]
 id = 577
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_dark_fairy_ring]
+[warning_dorgesh_kaan_fairy_ring]
 id = 578
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_climb_down]
+[warning_stronghold_of_security_ladders]
 id = 579
 type = "main_screen"
 components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
 [warning_mort_myre]
 id = 580
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
 [warning_death_plateau]
 id = 581
+type = "main_screen"
+components = { ask_again = 19, dont_ask = 18 }
 
-[warning_messages]
+[doomsayer_warning_messages]
 id = 583
+type = "main_screen"
+components = {
+  dagannoth_kings_ladder = 51,
+  lumbridge_swamp_cave_rope = 52,
+  stronghold_of_security_ladders = 53,
+  mole_lair = 54,
+  random_event_dropped_items = 55,
+  player_owned_houses = 56,
+  contact_dungeon_ladder = 57,
+  icy_path_area = 58,
+  ham_mill_tunnel = 59,
+  dorgesh_kaan_fairy_ring = 60,
+  lumbridge_cellar = 61,
+  mort_myre = 62,
+  observatory_stairs = 63,
+  shantay_pass = 64,
+  elid_genie_cave = 65,
+  watchtower_shaman_cave = 66,
+  trollheim_wilderness_entrance = 67,
+  wilderness_wall = 68,
+  dorgesh_kaan_city_exit = 69,
+  dorgesh_kaan_kalphite_tunnel = 70,
+  ranging_guild_tower = 71,
+  death_plateau = 72,
+  godwars_wilderness_agility_route = 73,
+  duel_arena = 74,
+  bounty_hunter = 75,
+  chaos_tunnels_east = 76,
+  chaos_tunnels_central = 77,
+  chaos_tunnels_west = 78,
+  corporeal_beast = 79,
+  clan_wars_ffa_safe = 80,
+  clan_wars_ffa_dangerous = 81,
+  pvp_worlds = 82,
+  living_rock_caverns = 83,
+}
 
-[warning_wilderness2]
+[warning_godwars_wilderness_agility_route]
 id = 600
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_death]
+[warning_chaos_tunnels_east]
 id = 676
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_death2]
+[warning_chaos_tunnels_central]
 id = 677
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
-[warning_death3]
+[warning_chaos_tunnels_west]
 id = 678
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
 [warning_lots_of_items]
 id = 798
 
-[warning_death4]
+[warning_living_rock_caverns]
 id = 892
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
