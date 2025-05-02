@@ -11,68 +11,26 @@ object DropTableConverter {
     @JvmStatic
     fun main(args: Array<String>) {
         val string = """
-===100%===
-{{DropsTableHead}}
-{{DropsLine|name=Bones|quantity=1|rarity=Always}}
+==Free-to-play worlds drops==
+{{DropLogProject|kills=1464915}}
+
+The average flesh crawler kill on [[free-to-play]] worlds is worth {{Coins|{{Average drop value|mob=Flesh Crawler#Free-to-play|raw=Yes}}}}.
+
+{{DropsTableHead|dropversion=Free-to-play}}
+{{DropsLine|name=Body rune|quantity=3-12|rarity=19/100}}
+{{DropsLine|name=Coins|quantity=10|rarity=4/100|gemw=No}}
+{{DropsLine|name=Coins|quantity=5-84|rarity=7/100|gemw=No}}
+{{DropsLine|name=Iron ore|quantity=1|rarity=5/100}}
+{{DropsLine|name=Ashes|quantity=1|rarity=4/100}}
+{{DropsLine|name=Bottom of sceptre|quantity=1|rarity=3/100|raritynotes={{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1164190570698424320|date=21 August 2019|archiveurl=https://web.archive.org/web/20190909225421/https:/twitter.com/JagexAsh/status/1164190570698424320|archivedate=09 September 2019|quote=3% from ankou, 3% from fleshcrawlers 3/101 for catablepon, 3/101 for minotaurs.|name=Skull sceptre piece rates tweet}}|gemw=No}}
+{{DropsLine|name=Nothing|rarity=56/100}}
 {{DropsTableBottom}}
 
-===Weapons and armour===
-{{DropsTableHead}}
-{{DropsLine|name=Bronze axe|quantity=1|rarity=3/128}}
-{{DropsLine|name=Bronze scimitar|quantity=1|rarity=1/128}}
-{{DropsLine|name=Bronze spear|namenotes={{(m)}}|quantity=1|rarity=9/128}}
-{{DropsTableBottom}}
+===Gem drop table===
+{{GemDropTable|2/100|f2pOnly=yes|dropversion=Free-to-play}}
 
-===Runes and ammunition===
-{{DropsTableHead}}
-{{DropsLine|name=Bronze arrow|quantity=7|rarity=3/128}}
-{{DropsLine|name=Mind rune|quantity=2|rarity=3/128}}
-{{DropsLine|name=Earth rune|quantity=4|rarity=3/128}}
-{{DropsLine|name=Body rune|quantity=2|rarity=3/128}}
-{{DropsLine|name=Bronze javelin|namenotes={{(m)}}|quantity=5|rarity=2/128}}
-{{DropsLine|name=Chaos rune|quantity=1|rarity=1/128}}
-{{DropsLine|name=Nature rune|quantity=1|rarity=1/128}}
-{{DropsTableBottom}}
-
-===Herbs===
-{{HerbDropTableInfo|2/128}}
-{{DropsTableHead}}
-{{HerbDropLines|2/128|f2p=yes}}
-{{DropsTableBottom}}
-
-===Coins===
-{{DropsTableHead}}
-{{DropsLine|name=Coins|quantity=1|rarity=34/128|gemw=No}}
-{{DropsLine|name=Coins|quantity=3|rarity=13/128|gemw=No}}
-{{DropsLine|name=Coins|quantity=5|rarity=8/128|gemw=No}}
-{{DropsLine|name=Coins|quantity=16|rarity=7/128|gemw=No}}
-{{DropsLine|name=Coins|quantity=24|rarity=3/128|gemw=No}}
-{{DropsLine|name=Coins|namenotes={{(f)}}|quantity=10|rarity=2/128|raritynotes=<ref group=d>Only dropped in [[free-to-play]] worlds.</ref>|gemw=No}}
-{{DropsTableBottom}}
-{{Reflist|group=d}}
-
-===Other===
-{{DropsTableHead}}
-{{DropsLine|name=Hammer|quantity=1|rarity=9/128}}
-{{DropsLine|name=Goblin book|namenotes={{(m)}}|quantity=1|rarity=2/128|gemw=No}}
-{{DropsLine|name=Goblin mail|quantity=1|rarity=10/128|raritynotes=<ref group=d>Colour received depends on the goblin mail worn.</ref>}}
-{{DropsLine|name=Grapes|quantity=1|rarity=1/128}}
-{{DropsLine|name=Red cape|quantity=1|rarity=1/128}}
-{{DropsLine|name=Tin ore|quantity=1|rarity=1/128}}
-{{DropsTableBottom}}
-{{Reflist|group=d}}
-
-===Tertiary===
-{{DropsTableHead}}
-{{DropsLine|name=Goblin skull|namenotes={{(m)}}|quantity=1|rarity=1/4|raritynotes=<ref group=d>Goblin skulls are only dropped during [[Rag and Bone Man I]].</ref>|gemw=No}}
-{{DropsLine|name=Ensouled goblin head|namenotes={{(m)}}|quantity=1|rarity=1/30}}
-{{DropsLine|name=Clue scroll (beginner)|quantity=1|rarity=1/80|gemw=No}}
-{{DropsLineClue|type=easy|rarity=1/128|f2p=yes}}
-{{DropsLine|name=Goblin champion scroll|namenotes={{(m)}}|quantity=1|rarity=1/5000|gemw=No}}
-{{DropsTableBottom}}
-{{Reflist|group=d}}
         """.trimIndent()
-        val npc = "stronghold_goblin"
+        val npc = "flesh_crawler"
         val all = mutableListOf<Builder>()
         var builder = Builder()
         for (line in string.lines()) {
@@ -89,7 +47,16 @@ object DropTableConverter {
                 val moreParts = parts[1].split("/")
                 val chance = moreParts[0].toInt()
                 val roll = moreParts[1].toInt()
-                builder.addDrop(Builder.Drop.table("${name}_drop_table", chance = chance))
+                builder.addDrop(Builder.Drop.table("${name}_drop_table", chance = chance, roll = roll))
+                builder.withRoll(roll)
+                all.add(builder)
+                builder = Builder()
+            } else if (line.startsWith("{{GemDropTable")) {
+                val parts = line.trim('{', ' ', '}').split('|')
+                val split = parts[1].split("/")
+                val chance = split[0].toInt()
+                val roll = split[1].toInt()
+                builder.addDrop(Builder.Drop.table("gem_drop_table", chance = chance, roll = roll))
                 builder.withRoll(roll)
                 all.add(builder)
                 builder = Builder()
@@ -143,7 +110,10 @@ object DropTableConverter {
 
         val map = mutableMapOf<String, String>()
         for (i in 0 until parts.lastIndex step 2) {
-            map[parts[i].lowercase()] = parts[i + 1].removeSuffix("}}").removePrefix("{{")
+            val key = parts[i].lowercase()
+            if (!map.containsKey(key)) {
+                map[key] = parts[i + 1].removeSuffix("}}").removePrefix("{{")
+            }
         }
 
         assert(map.containsKey("name"))
@@ -183,7 +153,7 @@ object DropTableConverter {
             id = id.replace("_axe", "_hatchet")
         }
         if (quantity.contains("-")) {
-            val (low, high) = quantity.split("-")
+            val (low, high) = quantity.removeSuffix(" (noted)").split("-")
             builder.addDrop(Builder.Drop(id, low.toInt()..high.toInt(), chance, roll, members))
         } else if (quantity.contains(",")) {
             val values = quantity.split(",").map { it.trim().toInt() }
@@ -210,10 +180,7 @@ object DropTableConverter {
                     continue
                 }
                 withType(child.type)
-                val multiplier = roll / child.roll
-                for (drop in child.drops) {
-                    addDrop(drop.copy(chance = drop.chance * multiplier))
-                }
+                drops.addAll(child.drops)
             }
         }
 
