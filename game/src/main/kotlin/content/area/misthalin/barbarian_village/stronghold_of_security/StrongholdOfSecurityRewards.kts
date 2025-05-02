@@ -45,7 +45,7 @@ objectOperate("Search", "grain_of_plenty") {
     player.sound("stronghold_creaks")
     statement("The grain shifts in the sack, sighing audible words....")
     player.jingle("stronghold_of_security_grain_of_plenty")
-    player["unlocked_emote_stomp"] = true
+    player["unlocked_emote_slap_head"] = true
     item("coins_9", 400, "...congratulations adventurer, you have been deemed worthy of this reward. You have also unlocked the Slap Head emote!")
 }
 
@@ -60,21 +60,19 @@ objectOperate("Open", "box_of_health") {
     }
     player.sound("stronghold_creaks")
     statement("The box hinges creak and appear to be forming audible words....")
-    player.levels.restore(Skill.Constitution)
-    player.levels.restore(Skill.Prayer)
+    player.levels.restore(Skill.Constitution, 99)
+    player.levels.restore(Skill.Prayer, 990)
     player.message("You feel refreshed and renewed.")
     player.jingle("stronghold_of_security_box_of_health")
     player["unlocked_emote_idea"] = true
     item("coins_10", 400, "...congratulations adventurer, you have been deemed worthy of this reward. You have also unlocked the Idea emote!")
 }
 
-objectOperate("Open", "cradle_of_life") {
+objectOperate("Search", "cradle_of_life") {
     player.sound("stronghold_choir")
     statement("As your hand touches the cradle, you hear a voice in your head of a million dead adventurers...")
     if (player["unlocked_emote_stomp", false]) {
-        if (!player.ownsItem("fancy_boots") && !player.ownsItem("fighting_boots")) {
-            statement("You appear to have lost your boots.")
-        } else {
+        if (player.ownsItem("fancy_boots") || player.ownsItem("fighting_boots")) {
             choice("Would you like to swap your boots to the other style?") {
                 option<Happy>("Yes, I'd like the other pair, please.") {
                     if (player.inventory.contains("fancy_boots")) {
@@ -89,6 +87,7 @@ objectOperate("Open", "cradle_of_life") {
             }
             return@objectOperate
         }
+        statement("You appear to have lost your boots.")
     }
     statement("Welcome adventurer... you have a choice.")
     items("fancy_boots", "fighting_boots", "You can choose between these two pairs of boots.") // Zoom 400

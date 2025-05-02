@@ -3,6 +3,7 @@ package content.area.mithalin.barbarian_village
 import FakeRandom
 import WorldTest
 import content.entity.player.dialogue.continueDialogue
+import intEntry
 import messages
 import net.pearx.kasechange.toSentenceCase
 import objectOption
@@ -11,13 +12,10 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.suspend.ContinueSuspension
-import world.gregs.voidps.engine.suspend.IntSuspension
-import world.gregs.voidps.network.client.instruction.EnterInt
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
 
 class StrongholdOfSecurityDoorsTest : WorldTest() {
 
@@ -80,7 +78,7 @@ class StrongholdOfSecurityDoorsTest : WorldTest() {
                 player.continueDialogue()
                 tick()
             }
-            (player.dialogueSuspension as IntSuspension).resume(answer)
+            player.intEntry(answer)
 
             counter = 0
             while (player.dialogueSuspension is ContinueSuspension && counter++ < 10) {

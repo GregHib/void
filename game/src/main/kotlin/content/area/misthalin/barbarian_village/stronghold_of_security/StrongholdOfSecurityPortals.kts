@@ -36,7 +36,7 @@ objTeleportTakeOff("Enter", "stronghold_pestilence_portal") {
 }
 
 objTeleportTakeOff("Enter", "stronghold_death_portal") {
-    if (player["unlocked_emote_idea", false]) {
+    if (player["unlocked_emote_stomp", false]) {
         player.clear("stronghold_safe_space")
         player.message("You enter the portal to be whisked through to the treasure room.", ChatType.Filter)
         return@objTeleportTakeOff

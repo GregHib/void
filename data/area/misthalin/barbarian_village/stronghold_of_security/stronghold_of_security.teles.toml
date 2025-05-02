@@ -85,12 +85,17 @@ option = "Climb-up"
 tile = { x = 2358, y = 5216 }
 to = { x = 2123, y = 5252 }
 
+[stronghold_death_portal]
+option = "Enter"
+tile = { x = 2365, y = 5212 }
+to = { x = 2341, y = 5219 }
+
 [stronghold_death_rope_up]
 option = "Climb-up"
 tile = { x = 2309, y = 5240 }
 to = { x = 3081, y = 3421 }
 
-[stronghold_death_portal]
-option = "Enter"
-tile = { x = 2365, y = 5212 }
-to = { x = 2341, y = 5219 }
+[stronghold_death_rope_up]
+option = "Climb-up"
+tile = { x = 2350, y = 5215 }
+to = { x = 3081, y = 3421 }
