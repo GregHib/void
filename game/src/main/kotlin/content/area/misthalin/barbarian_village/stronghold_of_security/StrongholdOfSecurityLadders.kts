@@ -50,7 +50,7 @@ objTeleportTakeOff("Climb-down", "stronghold_war_ladder_down", "stronghold_famin
     cancel()
 }
 
-objTeleportTakeOff("Climb-up", "stronghold_famine_rope_up", "stronghold_pestilence_vine_up", "stronghold_death_ladder_up", "stronghold_death_rope_up") {
+objTeleportTakeOff("Climb-up", "stronghold_famine_rope_up", "stronghold_pestilence_vine_up", "stronghold_death_rope_up") {
     player.message("You shin up the rope, squeeze through a passage then climb a ladder.")
     player.message("You climb up the ladder which seems to twist and wind in all directions.")
 }

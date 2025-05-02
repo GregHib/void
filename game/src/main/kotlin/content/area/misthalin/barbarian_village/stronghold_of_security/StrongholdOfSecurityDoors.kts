@@ -69,7 +69,11 @@ suspend fun ObjectOption<Player>.enterDoor() {
         } else {
             player.tele(target.tile)
         }
-        else -> return
+        else -> if (player.tile.y >= target.tile.y) {
+            player.tele(target.tile.addY(-1))
+        } else {
+            player.tele(target.tile)
+        }
     }
     player["stronghold_safe_space"] = !player["stronghold_safe_space", false]
     player.anim("stronghold_of_security_door_appear")
@@ -226,11 +230,9 @@ suspend fun ObjectOption<Player>.randomQuestion(door: String) {
                 }
                 option("Give the player access since they are a higher level.") {
                     npc<DoorHead>(door, "Incorrect! Never share your login details with another player.")
-                    enterDoor()
                 }
                 option("Tell them you'll trade your account info for theirs.") {
                     npc<DoorHead>(door, "Incorrect! This option still puts your account and items at risk!")
-                    enterDoor()
                 }
             }
         }
@@ -268,7 +270,9 @@ suspend fun ObjectOption<Player>.randomQuestion(door: String) {
             npc<DoorHead>(door, "To pass you must answer me this: Psst! Adventurer! I've got a special offer for you, but you're going to have to trust me. If you give me some gold coins, I'll give you back twice whatever you gave me! How does that sound?")
             choice {
                 option("No way! You'll just take my gold for your own! Reported!") {
+                    println("Option 1")
                     npc<DoorHead>(door, "Correct! If it sounds too good to be true, it probably is! Be wary of these types of scams.")
+                    println("Enter door")
                     enterDoor()
                 }
                 option("I'm not sure... but giving a few coins to test it won't hurt.") {
