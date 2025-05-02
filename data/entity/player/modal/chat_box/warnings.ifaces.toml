@@ -10,10 +10,7 @@ id = 561
 [warning_dark]
 id = 562
 type = "main_screen"
-components = {
-  proceed = 17,
-  stayout = 18,
-}
+components = { yes = 17, no = 18 }
 
 [warning_building_mode]
 id = 563
@@ -62,6 +59,8 @@ id = 578
 
 [warning_climb_down]
 id = 579
+type = "main_screen"
+components = { yes = 17, no = 18, ask_again = 21, dont_ask = 20 }
 
 [warning_mort_myre]
 id = 580

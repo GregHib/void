@@ -1,0 +1,6 @@
+[warning_climb_down]
+id = 3854
+persist = true
+default = "true"
+format = "map"
+values = { "true" = 0, "false" = 7 }
