@@ -1,0 +1,25 @@
+[flesh_crawler_drop_table]
+drops = [
+    { table = "flesh_crawler_secondary" },
+]
+
+[flesh_crawler_secondary]
+roll = 100
+drops = [
+    { id = "body_rune", min = 3, max = 12, chance = 10, members = true },
+    { id = "body_rune", min = 3, max = 12, chance = 19, members = false },
+    { id = "fire_rune", amount = 42, chance = 4, members = true },
+    { id = "dust_rune", min = 3, max = 9, chance = 10, members = true },
+    { id = "nature_rune", amount = 5, chance = 4, members = true },
+    { id = "iron_ore", chance = 5 },
+    { id = "iron_ore_noted", min = 3, max = 7, chance = 12, members = true },
+    { id = "silver_bar", chance = 2, members = true },
+    { id = "coins", amount = 10, chance = 4, members = false },
+    { id = "coins", min = 5, max = 84, chance = 7 },
+    { id = "ashes", chance = 4 },
+    { id = "bottom_of_sceptre", chance = 3 },
+    { id = "nothing", chance = 2, members = true },
+    { id = "nothing", chance = 56, members = false },
+    { table = "herb_drop_table", chance = 35, members = true },
+    { table = "gem_drop_table", chance = 2 },
+]
