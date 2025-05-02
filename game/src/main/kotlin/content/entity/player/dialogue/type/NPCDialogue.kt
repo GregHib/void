@@ -39,6 +39,16 @@ suspend fun SuspendableContext<Player>.npc(expression: String, text: String, lar
 
 suspend fun SuspendableContext<Player>.npc(npcId: String, expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
     val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("q8_full").splitLines(text, 380)
+    if (lines.size > 4) {
+        for (chunk in lines.chunked(4)) {
+            npc(chunk, clickToContinue, npcId, largeHead, expression, title)
+        }
+    } else {
+        npc(lines, clickToContinue, npcId, largeHead, expression, title)
+    }
+}
+
+private suspend fun SuspendableContext<Player>.npc(lines: List<String>, clickToContinue: Boolean, npcId: String, largeHead: Boolean?, expression: String, title: String?) {
     check(lines.size <= 4) { "Maximum npc chat lines exceeded ${lines.size} for $player" }
     val id = getInterfaceId(lines.size, clickToContinue)
     check(player.open(id)) { "Unable to open npc dialogue $id for $player" }
