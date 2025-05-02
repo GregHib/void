@@ -47,13 +47,13 @@ fun refreshBook(player: Player, book: String) {
     val name: String = player["book"] ?: return
     val page: Int = player["book_page"] ?: return
     val pages = books.get(name)
-    player.interfaces.display(book, books.title(book), page, pages)
+    player.interfaces.display(book, books.title(name), page, pages)
 }
 
 fun Interfaces.display(book: String, title: String, pageNumber: Int, pages: List<List<String>>) {
     sendText(book, "title", title)
-    sendText(book, "page_number_left", (pageNumber + 1).toString())
-    sendText(book, "page_number_right", (pageNumber + 2).toString())
+    sendText(book, "page_number_left", ((pageNumber * 2) + 1).toString())
+    sendText(book, "page_number_right", ((pageNumber * 2) + 2).toString())
     sendVisibility(book, "turn_page_left", pageNumber > 0)
     sendVisibility(book, "turn_page_right", pageNumber < pages.lastIndex)
     val lines = pages.getOrNull(pageNumber)
