@@ -45,7 +45,6 @@ spawns = [
     { id = "jackal", x = 3338, y = 2783, members = true },
     { id = "jackal", x = 3337, y = 2781, members = true },
     { id = "jackal", x = 3348, y = 2783, members = true },
-    { id = "jackal", x = 3348, y = 2783, members = true },
     # North of Nardah (Fairy Ring DLQ)
     { id = "jackal", x = 3445, y = 2993, members = true },
     { id = "jackal", x = 3446, y = 2992, members = true },

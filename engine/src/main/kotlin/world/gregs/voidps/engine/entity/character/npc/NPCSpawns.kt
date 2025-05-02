@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.npc
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.config.Config
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.World
@@ -19,6 +20,8 @@ fun loadNpcSpawns(
         npcs.clear()
         val membersWorld = World.members
         var count = 0
+        val hashes = mutableSetOf<Long>()
+        val debug = !Settings["server.live", false]
         for (path in paths) {
             Config.fileReader(path) {
                 while (nextPair()) {
@@ -44,10 +47,17 @@ fun loadNpcSpawns(
                         if (!membersWorld && members) {
                             continue
                         }
-                        if (npcDefinitions.getOrNull(id) == null) {
-                            logger.warn { "Invalid npc spawn id '$id' in ${path}." }
-                        }
                         val tile = Tile(x, y, level)
+                        val definition = npcDefinitions.getOrNull(id)
+                        if (definition == null) {
+                            logger.warn { "Invalid npc spawn id '$id' in ${path}." }
+                        } else if (debug) {
+                            val hash = (tile.id.toLong() shl 32) + definition.id.toLong()
+                            if (hashes.contains(hash)) {
+                                logger.warn { "Duplicate spawn id = \"$id\" x = ${tile.x}, y = ${tile.y}${if (tile.level != 0) ", level = ${tile.level}" else ""} in ${path}." }
+                            }
+                            hashes.add(hash)
+                        }
                         npcs.add(id, tile, direction)
                         count++
                     }
