@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.item.drop
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -151,40 +150,6 @@ internal class DropTableTest {
         assertTrue(list.contains(item1))
         assertFalse(list.contains(item2))
         assertTrue(list.contains(item3))
-    }
-
-    @Test
-    fun `Drop table builder`() {
-        val item1 = drop("1", 2)
-        val builder = DropTable.Builder()
-        builder.addDrop(item1)
-        builder.withRoll(12)
-        builder.withType(TableType.All)
-        builder.withChance(6)
-
-        val table = builder.build()
-
-        assertEquals(DropTable(TableType.All, 12, listOf(item1), 6), table)
-    }
-
-    @Test
-    fun `Table builder defaults`() {
-        val builder = DropTable.Builder()
-        val table = builder.build()
-
-        assertEquals(DropTable(TableType.First, 1, listOf(), 1), table)
-    }
-
-    @Test
-    fun `Builder throws exception if roll is greater than total`() {
-        val item1 = drop("1", 2)
-        val builder = DropTable.Builder()
-        builder.addDrop(item1)
-        builder.withRoll(1)
-
-        assertThrows<IllegalStateException> {
-            builder.build()
-        }
     }
 
     @Test

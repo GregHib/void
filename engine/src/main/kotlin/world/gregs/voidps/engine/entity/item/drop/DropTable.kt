@@ -69,39 +69,4 @@ data class DropTable(
         }
         return type == TableType.All
     }
-
-    class Builder {
-        private var type: TableType = TableType.First
-        var roll: Int? = null
-        private var chance: Int = 1
-        private val drops = mutableListOf<Drop>()
-
-        fun addDrop(drop: Drop): Builder {
-            this.drops.add(drop)
-            return this
-        }
-
-        fun withRoll(total: Int): Builder {
-            this.roll = total
-            return this
-        }
-
-        fun withType(type: TableType): Builder {
-            this.type = type
-            return this
-        }
-
-        fun withChance(chance: Int): Builder {
-            this.chance = chance
-            return this
-        }
-
-        fun build(): DropTable {
-            if (roll != null) {
-                val total = drops.sumOf { it.chance }
-                check(total <= roll!!) { "Chances $total cannot exceed roll $roll." }
-            }
-            return DropTable(type, roll ?: 1, drops, chance)
-        }
-    }
 }
