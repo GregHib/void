@@ -207,3 +207,93 @@ id = 2687
 clone = "hobgoblin"
 id = 2688
 examine = "An ugly, smelly creature wielding a spear."
+
+[stronghold_of_security_goblin_armed]
+id = 4407
+hitpoints = 50
+att = 7
+str = 2
+def = 4
+attack_bonus = 12
+max_hit_melee = 10
+style = "stab"
+attack_speed = 6
+respawn_delay = 35
+wander_radius = 10
+attack_radius = 15
+slayer_xp = 5.0
+height = 30
+categories = ["stronghold_goblin", "goblin", "goblins"]
+examine = "An ugly green creature."
+
+[stronghold_of_security_goblin_helmet]
+id = 4408
+hitpoints = 160
+att = 12
+str = 13
+def = 7
+max_hit_melee = 20
+style = "crush"
+respawn_delay = 35
+wander_radius = 10
+attack_radius = 15
+slayer_xp = 16.0
+height = 30
+categories = ["stronghold_goblin", "goblin", "goblins"]
+examine = "An ugly green creature."
+
+[stronghold_of_security_goblin_green_hat]
+id = 4409
+hitpoints = 70
+att = 10
+str = 3
+def = 7
+attack_bonus = 12
+max_hit_melee = 10
+style = "stab"
+attack_speed = 6
+respawn_delay = 35
+wander_radius = 10
+attack_radius = 15
+slayer_xp = 7.0
+height = 30
+categories = ["stronghold_goblin", "goblin", "goblins"]
+examine = "An ugly green creature."
+
+[stronghold_of_security_goblin_green_armed]
+id = 4410
+hitpoints = 220
+att = 13
+str = 11
+def = 14
+attack_bonus = 22
+max_hit_melee = 30
+style = "stab"
+attack_speed = 6
+respawn_delay = 35
+wander_radius = 10
+attack_radius = 15
+slayer_xp = 22.0
+height = 30
+categories = ["stronghold_goblin", "goblin", "goblins"]
+examine = "An ugly green creature."
+
+[stronghold_of_security_goblin_hat]
+id = 4411
+hitpoints = 260
+att = 22
+str = 23
+def = 17
+max_hit_melee = 30
+style = "crush"
+respawn_delay = 35
+wander_radius = 10
+attack_radius = 15
+slayer_xp = 26.0
+height = 30
+categories = ["stronghold_goblin", "goblin", "goblins"]
+examine = "These goblins have grown strong."
+
+[stronghold_of_security_goblin_green_helmet]
+id = 4412
+clone = "stronghold_of_security_goblin_green_armed"
