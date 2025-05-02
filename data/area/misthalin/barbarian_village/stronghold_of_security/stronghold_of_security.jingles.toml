@@ -1,4 +1,11 @@
-stronghold_of_security_gift_of_peace = 157
-stronghold_of_security_cradle_of_life = 158
-stronghold_of_security_box_of_health = 177
-stronghold_of_security_grain_of_plenty = 179
+[stronghold_of_security_gift_of_peace]
+id = 157
+
+[stronghold_of_security_cradle_of_life]
+id = 158
+
+[stronghold_of_security_box_of_health]
+id = 177
+
+[stronghold_of_security_grain_of_plenty]
+id = 179

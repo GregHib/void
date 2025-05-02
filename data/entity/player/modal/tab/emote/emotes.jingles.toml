@@ -1,2 +1,5 @@
-harmony_snow_globe = 296
-air_guitar = 302
+[harmony_snow_globe]
+id = 296
+
+[air_guitar]
+id = 302

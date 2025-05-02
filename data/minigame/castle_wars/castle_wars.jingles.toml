@@ -1,3 +1,8 @@
-castle_wars_draw = 80
-castle_wars_loss = 81
-castle_wars_win = 82
+[castle_wars_draw]
+id = 80
+
+[castle_wars_loss]
+id = 81
+
+[castle_wars_win]
+id = 82

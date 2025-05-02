@@ -1,3 +1,8 @@
-easter_scape_scrambled = 99
-easter_event_complete = 249
-easter_first_task_complete = 250
+[easter_scape_scrambled]
+id = 99
+
+[easter_event_complete]
+id = 249
+
+[easter_first_task_complete]
+id = 250

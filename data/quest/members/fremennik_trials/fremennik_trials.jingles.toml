@@ -1,3 +1,8 @@
-fremennik_trials_ballad_completed = 163
-fremennik_trials_ballad_refrain = 164
-fremennik_trials_ballad_opening = 165
+[fremennik_trials_ballad_completed]
+id = 163
+
+[fremennik_trials_ballad_refrain]
+id = 164
+
+[fremennik_trials_ballad_opening]
+id = 165

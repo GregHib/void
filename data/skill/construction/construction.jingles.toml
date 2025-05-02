@@ -1,6 +1,17 @@
-enter_house_tropical_wood = 16
-enter_house_whitewashed_stone = 18
-enter_house_fremennik_style_wood = 19
-enter_house_basic_wood = 20
-enter_house_basic_stone = 21
-enter_house_fancy_stone = 22
+[enter_house_tropical_wood]
+id = 16
+
+[enter_house_whitewashed_stone]
+id = 18
+
+[enter_house_fremennik_style_wood]
+id = 19
+
+[enter_house_basic_wood]
+id = 20
+
+[enter_house_basic_stone]
+id = 21
+
+[enter_house_fancy_stone]
+id = 22

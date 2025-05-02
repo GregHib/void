@@ -1,2 +1,5 @@
-cold_war_penguin_bongos = 240
-cold_war_cowbell = 241
+[cold_war_penguin_bongos]
+id = 240
+
+[cold_war_cowbell]
+id = 241

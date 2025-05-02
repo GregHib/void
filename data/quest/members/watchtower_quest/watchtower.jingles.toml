@@ -1,1 +1,2 @@
-watchtower_reactivate = 234
+[watchtower_reactivate]
+id = 234

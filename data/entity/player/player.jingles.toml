@@ -1,2 +1,5 @@
-death_unused = 89
-death = 90
+[death_unused]
+id = 89
+
+[death]
+id = 90

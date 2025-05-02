@@ -1,2 +1,5 @@
-pest_control_defeat = 144
-pest_control_win = 145
+[pest_control_defeat]
+id = 144
+
+[pest_control_win]
+id = 145

@@ -1,1 +1,2 @@
-gnomeball_goal = 3
+[gnomeball_goal]
+id = 3

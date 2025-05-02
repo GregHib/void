@@ -1,2 +1,5 @@
-barbarian_assault_wave_complete = 142
-barbarian_assault_penance_queen_appear = 143
+[barbarian_assault_wave_complete]
+id = 142
+
+[barbarian_assault_penance_queen_appear]
+id = 143

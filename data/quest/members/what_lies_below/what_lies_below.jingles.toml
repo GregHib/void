@@ -1,2 +1,5 @@
-what_lies_below_surok_dance = 247
-what_lies_below_surok_rock = 248
+[what_lies_below_surok_dance]
+id = 247
+
+[what_lies_below_surok_rock]
+id = 248
