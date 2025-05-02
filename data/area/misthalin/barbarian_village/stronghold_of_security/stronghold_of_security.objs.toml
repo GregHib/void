@@ -1,11 +1,17 @@
+# War
 [gate_of_war]
 id = 16124
+examine = "It seems to be looking at you!"
 
 [gate_of_war_mirrored]
 id = 16123
+examine = "It seems to be looking at you!"
 
 [stronghold_war_portal]
 id = 16150
+
+[stronghold_dead_explorer]
+id = 16152
 
 [gift_of_peace]
 id = 16135
@@ -19,26 +25,13 @@ id = 16148
 [stronghold_war_chain_up]
 id = 16146
 
+# Famine
+
 [stronghold_famine_portal]
 id = 16082
 
-[stronghold_pestilence_portal]
-id = 16116
-
-[stronghold_death_portal]
-id = 16050
-
 [grain_of_plenty]
 id = 16077
-
-[box_of_health]
-id = 16118
-
-[cradle_of_life]
-id = 16047
-
-[stronghold_dead_explorer]
-id = 16152
 
 [stronghold_famine_rope_up]
 id = 16078
@@ -49,14 +42,54 @@ id = 16080
 [stronghold_famine_ladder_down]
 id = 16081
 
+[rickety_door]
+id = 16065
+examine = "Even this door looks half starved - and appears to be eyeing you up as lunch."
+
+[rickety_door_mirrored]
+id = 16066
+examine = "Even this door looks half starved - and appears to be eyeing you up as lunch."
+
+# Pestilence
+
+[stronghold_pestilence_portal]
+id = 16116
+
+[box_of_health]
+id = 16118
+
 [stronghold_pestilence_vine_up]
 id = 16112
 
 [stronghold_pestilence_ladder_up]
 id = 16114
 
+[oozing_barrier]
+id = 16089
+examine = "Are you sure you want to touch that? It seems to be alive and looking at you."
+
+[oozing_barrier_mirrored]
+id = 16090
+examine = "Are you sure you want to touch that? It seems to be alive and looking at you."
+
+# Death
+
+[stronghold_death_portal]
+id = 16050
+
+[cradle_of_life]
+id = 16047
+
 [stronghold_death_ladder_up]
 id = 16049
 
 [stronghold_death_rope_up]
 id = 16048
+
+[portal_of_death]
+id = 16043
+examine = "Elaborate portal crafted from bones of the long dead."
+
+[portal_of_death_mirrored]
+id = 16044
+examine = "Elaborate portal crafted from bones of the long dead."

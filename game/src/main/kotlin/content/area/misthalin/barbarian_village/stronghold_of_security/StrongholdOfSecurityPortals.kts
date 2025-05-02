@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.combatLevel
 
 objTeleportTakeOff("Enter", "stronghold_war_portal") {
     if (player["unlocked_emote_flap", false] || player.combatLevel > 25) {
+        player.clear("stronghold_safe_space")
         player.message("You enter the portal to be whisked through to the treasure room.", ChatType.Filter)
         return@objTeleportTakeOff
     }
@@ -16,6 +17,7 @@ objTeleportTakeOff("Enter", "stronghold_war_portal") {
 
 objTeleportTakeOff("Enter", "stronghold_famine_portal") {
     if (player["unlocked_emote_slap_head", false] || player.combatLevel > 50) {
+        player.clear("stronghold_safe_space")
         player.message("You enter the portal to be whisked through to the treasure room.", ChatType.Filter)
         return@objTeleportTakeOff
     }
@@ -25,6 +27,7 @@ objTeleportTakeOff("Enter", "stronghold_famine_portal") {
 
 objTeleportTakeOff("Enter", "stronghold_pestilence_portal") {
     if (player["unlocked_emote_idea", false] || player.combatLevel > 75) {
+        player.clear("stronghold_safe_space")
         player.message("You enter the portal to be whisked through to the treasure room.", ChatType.Filter)
         return@objTeleportTakeOff
     }
@@ -34,6 +37,7 @@ objTeleportTakeOff("Enter", "stronghold_pestilence_portal") {
 
 objTeleportTakeOff("Enter", "stronghold_death_portal") {
     if (player["unlocked_emote_idea", false]) {
+        player.clear("stronghold_safe_space")
         player.message("You enter the portal to be whisked through to the treasure room.", ChatType.Filter)
         return@objTeleportTakeOff
     }

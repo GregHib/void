@@ -25,12 +25,24 @@ objectOperate("Open", "gate_of_war*") {
     }
 }
 
+objectOperate("Open", "rickety_door*") {
+    openDoor("unlocked_emote_slap_head")
+}
+
+objectOperate("Open", "oozing_barrier*") {
+    openDoor("unlocked_emote_idea")
+}
+
+objectOperate("Open", "portal_of_death*") {
+    openDoor("unlocked_emote_stomp")
+}
+
 suspend fun ObjectOption<Player>.openDoor(variable: String) {
     // If player is in safe space and security questions are active
     if (player["stronghold_safe_space", false] && Settings["strongholdOfSecurity.quiz", false]) {
         // And they haven't completed the level (and questions on completion is active)
         if (Settings["strongholdOfSecurity.quiz.complete", false] || !player[variable, false]) {
-            randomQuestion("gate_of_war")
+            randomQuestion(target.id.removeSuffix("_mirrored"))
             return
         }
     }
@@ -52,16 +64,12 @@ suspend fun ObjectOption<Player>.enterDoor() {
         } else {
             player.tele(target.tile.addY(1))
         }
-        2 -> if (player.tile.x < target.tile.x) {
-            player.tele(target.tile)
-        } else {
+        2 -> if (player.tile.x <= target.tile.x) {
             player.tele(target.tile.addX(1))
-        }
-        else -> if (player.tile.y >= target.tile.y) {
-            player.tele(target.tile.addY(-1))
         } else {
             player.tele(target.tile)
         }
+        else -> return
     }
     player["stronghold_safe_space"] = !player["stronghold_safe_space", false]
     player.anim("stronghold_of_security_door_appear")

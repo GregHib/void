@@ -42,6 +42,7 @@ objTeleportTakeOff("Climb-down", "stronghold_war_ladder_down", "stronghold_famin
             player<Shifty>("No thanks, I don't want to die!")
         } else {
             player.message("You climb down the ladder to the next level.")
+            player.clear("stronghold_safe_space")
             val definition = teleports.get(option)[target.tile.id]!!
             teleports.teleportContinue(this, player, definition, this@objTeleportTakeOff)
         }

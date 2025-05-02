@@ -10,6 +10,7 @@ import content.entity.player.dialogue.type.statement
 import content.entity.sound.jingle
 import content.entity.sound.sound
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -32,7 +33,7 @@ objectOperate("Open", "gift_of_peace") {
     item("coins_9", 400, "...congratulations adventurer, you have been deemed worthy of this reward. You have also unlocked the Flap emote!")
 }
 
-objectOperate("Open", "grain_of_plenty") {
+objectOperate("Search", "grain_of_plenty") {
     if (player["unlocked_emote_slap_head", false]) {
         statement("You have already claimed your reward from this level.")
         return@objectOperate
@@ -59,6 +60,8 @@ objectOperate("Open", "box_of_health") {
     }
     player.sound("stronghold_creaks")
     statement("The box hinges creak and appear to be forming audible words....")
+    player.levels.restore(Skill.Constitution)
+    player.levels.restore(Skill.Prayer)
     player.message("You feel refreshed and renewed.")
     player.jingle("stronghold_of_security_box_of_health")
     player["unlocked_emote_idea"] = true
