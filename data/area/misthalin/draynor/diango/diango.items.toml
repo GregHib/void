@@ -33,7 +33,7 @@ weapon_type = "tzhaar_ket_om"
 slot = "Weapon"
 type = "TwoHanded"
 destroy = "You can get another one from a cracker by speaking to Diango in Draynor."
-examine = "Celebrating the Golden Joystick awards for Jagex."
+examine = "Celebrating the Golden Joystick awards."
 kept = "Wilderness"
 
 [tenth_anniversary_cake_no_candles]
