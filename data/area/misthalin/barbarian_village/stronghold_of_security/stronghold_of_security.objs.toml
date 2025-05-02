@@ -13,6 +13,12 @@ id = 16135
 [stronghold_war_ladder_down]
 id = 16149
 
+[stronghold_war_ladder_up]
+id = 16148
+
+[stronghold_war_chain_up]
+id = 16146
+
 [stronghold_famine_portal]
 id = 16082
 
@@ -33,3 +39,24 @@ id = 16047
 
 [stronghold_dead_explorer]
 id = 16152
+
+[stronghold_famine_rope_up]
+id = 16078
+
+[stronghold_famine_ladder_up]
+id = 16080
+
+[stronghold_famine_ladder_down]
+id = 16081
+
+[stronghold_pestilence_vine_up]
+id = 16112
+
+[stronghold_pestilence_ladder_up]
+id = 16114
+
+[stronghold_death_ladder_up]
+id = 16049
+
+[stronghold_death_rope_up]
+id = 16048

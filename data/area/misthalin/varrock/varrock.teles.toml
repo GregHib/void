@@ -4,6 +4,11 @@ option = "Climb-up"
 tile = { x = 1700, y = 4824 }
 to = { x = 1639, y = 4835 }
 
+[24427]
+option = "Walk-up"
+tile = { x = 1758, y = 4959 }
+delta = { x = 1500, y = -1505 }
+
 # 12596 varrock
 [52834]
 option = "Climb-down"
