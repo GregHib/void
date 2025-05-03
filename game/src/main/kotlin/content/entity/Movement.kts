@@ -1,5 +1,6 @@
 package content.entity
 
+import content.area.misthalin.Border
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
@@ -11,12 +12,27 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import content.entity.death.npcDeath
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.instruction.instruction
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.Movement.Companion.entityBlock
 import world.gregs.voidps.network.client.instruction.Walk
+import world.gregs.voidps.type.Distance.nearestTo
+import world.gregs.voidps.type.Zone
+import world.gregs.voidps.type.area.Rectangle
 
 val collisions: Collisions by inject()
 val npcs: NPCs by inject()
 val players: Players by inject()
+val borders = mutableMapOf<Zone, Rectangle>()
+val areas: AreaDefinitions by inject()
+
+worldSpawn {
+    for (border in areas.getTagged("border")) {
+        val passage = border.area as Rectangle
+        for (zone in passage.toZones()) {
+            borders[zone] = passage
+        }
+    }
+}
 
 instruction<Walk> { player ->
     if (player.contains("delay")) {
@@ -29,7 +45,16 @@ instruction<Walk> { player ->
     if (minimap && !player["a_world_in_microcosm_task", false]) {
         player["a_world_in_microcosm_task"] = true
     }
-    player.walkTo(player.tile.copy(x, y))
+
+    val target = player.tile.copy(x, y)
+    val border = borders[target.zone]
+    if (border != null && (target in border || player.tile in border)) {
+        val tile = border.nearestTo(player.tile)
+        val endSide = Border.getOppositeSide(border, tile)
+        player.walkTo(endSide, noCollision = true, forceWalk = true)
+    } else {
+        player.walkTo(target)
+    }
 }
 
 playerSpawn { player ->
