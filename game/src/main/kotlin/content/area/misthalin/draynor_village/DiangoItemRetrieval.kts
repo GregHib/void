@@ -32,7 +32,6 @@ interfaceOption("Claim", "items", "diangos_item_retrieval") {
             player["retrieve_more"] = true
             player.sendScript("scrollbar_resize", scrollbar, container, 0) // Scroll to top
         }
-
         "back" -> player.clear("retrieve_more")
         else -> if (!player.inventory.add(item.id)) {
             player.inventoryFull()
