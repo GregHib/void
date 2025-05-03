@@ -11,26 +11,24 @@ object DropTableConverter {
     @JvmStatic
     fun main(args: Array<String>) {
         val string = """
-==Free-to-play worlds drops==
-{{DropLogProject|kills=1464915}}
+            ==Drops==
+            {{DropLogProject|jagex=yes}}
 
-The average flesh crawler kill on [[free-to-play]] worlds is worth {{Coins|{{Average drop value|mob=Flesh Crawler#Free-to-play|raw=Yes}}}}.
+            ===Shade robes===
+            {{DropsTableHead}}
+            {{DropsLine|name=Shade robe top|namenotes={{(m)}}|quantity=1|rarity=32/128|raritynotes={{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/743213123834908673|date=15 June 2016|archiveurl=https://archive.is/c4p99|archivedate=28 May 2020|quote=Do the lvl 159 Shades in the Stronghold of Security drop the Shade Robes in F2P? No.|name=Shade robes members tweet}}}}
+            {{DropsLine|name=Shade robe|namenotes={{(m)}}|quantity=1|rarity=32/128|raritynotes={{NamedRef|Shade robes members tweet}}}}
+            {{DropsTableBottom}}
 
-{{DropsTableHead|dropversion=Free-to-play}}
-{{DropsLine|name=Body rune|quantity=3-12|rarity=19/100}}
-{{DropsLine|name=Coins|quantity=10|rarity=4/100|gemw=No}}
-{{DropsLine|name=Coins|quantity=5-84|rarity=7/100|gemw=No}}
-{{DropsLine|name=Iron ore|quantity=1|rarity=5/100}}
-{{DropsLine|name=Ashes|quantity=1|rarity=4/100}}
-{{DropsLine|name=Bottom of sceptre|quantity=1|rarity=3/100|raritynotes={{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1164190570698424320|date=21 August 2019|archiveurl=https://web.archive.org/web/20190909225421/https:/twitter.com/JagexAsh/status/1164190570698424320|archivedate=09 September 2019|quote=3% from ankou, 3% from fleshcrawlers 3/101 for catablepon, 3/101 for minotaurs.|name=Skull sceptre piece rates tweet}}|gemw=No}}
-{{DropsLine|name=Nothing|rarity=56/100}}
-{{DropsTableBottom}}
+            ===Other===
+            {{DropsTableHead}}
+            {{DropsLine|name=Nothing|rarity=64/128}}
+            {{DropsTableBottom}}
 
-===Gem drop table===
-{{GemDropTable|2/100|f2pOnly=yes|dropversion=Free-to-play}}
-
+            ===Catacombs tertiary===
+            {{CatacombsDropTable|hitpoints=115|f2p=yes|catacombsonly=yes|dropversion=Catacombs of Kourend}}
         """.trimIndent()
-        val npc = "flesh_crawler"
+        val npc = "stronghold_shade"
         val all = mutableListOf<Builder>()
         var builder = Builder()
         for (line in string.lines()) {
@@ -71,6 +69,7 @@ The average flesh crawler kill on [[free-to-play]] worlds is worth {{Coins|{{Ave
         val queue = LinkedList<Builder>()
         val parent = Builder()
         parent.name = "${npc}_drop_table"
+        parent.type = TableType.All
         queue.add(parent)
         val always = all.firstOrNull { it.name == "100%" }
         if (always != null) {

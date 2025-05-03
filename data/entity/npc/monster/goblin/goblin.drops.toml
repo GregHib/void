@@ -30,6 +30,7 @@ drops = [
 ]
 
 [stronghold_goblin_drop_table]
+type = "all"
 drops = [
     { table = "bones" },
     { table = "stronghold_goblin_secondary" },

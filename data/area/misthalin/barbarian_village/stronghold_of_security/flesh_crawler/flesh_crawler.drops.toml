@@ -1,4 +1,5 @@
 [flesh_crawler_drop_table]
+type = "all"
 drops = [
     { table = "flesh_crawler_secondary" },
 ]

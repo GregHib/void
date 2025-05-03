@@ -1,4 +1,5 @@
 [catablepon_drop_table]
+type = "all"
 drops = [
     { table = "bones" },
     { table = "catablepon_secondary" },

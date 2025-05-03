@@ -1,4 +1,5 @@
 [ankou_drop_table]
+type = "all"
 drops = [
     { table = "bones" },
     { table = "ankou_secondary" },
