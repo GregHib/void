@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
@@ -207,14 +208,29 @@ open class Movement(
         fun equals(one: Tile, two: Tile) = one.level == two.level && one.x == two.x && one.y == two.y
 
         fun move(character: Character, delta: Delta) {
-            character.steps.movedFrom = character.tile
+            val from = character.tile
             character.tile = character.tile.add(delta)
+            val to = character.tile
             character.visuals.moved = true
             if (character is Player && character.networked) {
                 character.emit(ReloadRegion)
             }
             if (Settings["world.players.collision", false] && !character.contains("dead")) {
-                move(character, character.steps.movedFrom, character.tile)
+                move(character, character.steps.movedFrom, to)
+            }
+            if (character is Player) {
+                character.emit(Moved(character, from, to))
+                val areaDefinitions: AreaDefinitions = get()
+                for (def in areaDefinitions.get(from.zone)) {
+                    if (from in def.area && to !in def.area) {
+                        character.emit(AreaExited(character, def.name, def.tags, def.area))
+                    }
+                }
+                for (def in areaDefinitions.get(to.zone)) {
+                    if (to in def.area && from !in def.area) {
+                        character.emit(AreaEntered(character, def.name, def.tags, def.area))
+                    }
+                }
             }
         }
 
