@@ -17,7 +17,7 @@ internal class MiningTest : WorldTest() {
     @Test
     fun `Mining gives ore and depletes`() {
         setRandom(Random)
-        val player = createPlayer("miner", emptyTile)
+        val player = createPlayer(emptyTile)
         player.levels.set(Skill.Mining, 100)
         val tile = emptyTile.addY(1)
         val rocks = createObject("tin_rocks_rock_1", tile)

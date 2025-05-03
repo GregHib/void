@@ -18,7 +18,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
 
     @Test
     fun `Get rewards from peace chest`() {
-        val player = createPlayer(tile = Tile(1907, 5223))
+        val player = createPlayer(Tile(1907, 5223))
         val chest = objects[Tile(1907, 5222), "gift_of_peace"]!!
 
         player.objectOption(chest, "Open")
@@ -32,7 +32,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
 
     @Test
     fun `Can't claim twice from peace chest`() {
-        val player = createPlayer(tile = Tile(1907, 5223))
+        val player = createPlayer(Tile(1907, 5223))
         player["unlocked_emote_flap"] = true
         val chest = objects[Tile(1907, 5222), "gift_of_peace"]!!
 
@@ -46,7 +46,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
 
     @Test
     fun `Can't claim with full inventory from peace chest`() {
-        val player = createPlayer(tile = Tile(1907, 5223))
+        val player = createPlayer(Tile(1907, 5223))
         player.inventory.add("shark", 28)
         val chest = objects[Tile(1907, 5222), "gift_of_peace"]!!
 
@@ -61,7 +61,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
 
     @Test
     fun `Get rewards from grain of plenty`() {
-        val player = createPlayer(tile = Tile(2021, 5214))
+        val player = createPlayer(Tile(2021, 5214))
         val grain = objects[Tile(2021, 5215), "grain_of_plenty"]!!
 
         player.objectOption(grain, "Search")
@@ -75,7 +75,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
 
     @Test
     fun `Can't claim twice from grain of plenty`() {
-        val player = createPlayer(tile = Tile(2021, 5214))
+        val player = createPlayer(Tile(2021, 5214))
         player["unlocked_emote_flap"] = true
         val grain = objects[Tile(2021, 5215), "grain_of_plenty"]!!
 
@@ -89,7 +89,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
 
     @Test
     fun `Can't claim with full inventory from grain of plenty`() {
-        val player = createPlayer(tile = Tile(2021, 5214))
+        val player = createPlayer(Tile(2021, 5214))
         player.inventory.add("shark", 28)
         val grain = objects[Tile(2021, 5215), "grain_of_plenty"]!!
 
@@ -104,7 +104,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
 
     @Test
     fun `Get rewards from box of health`() {
-        val player = createPlayer(tile = Tile(2144, 5281))
+        val player = createPlayer(Tile(2144, 5281))
         player.experience.set(Skill.Prayer, Level.experience(15))
         player.levels.set(Skill.Prayer, 10)
         player.experience.set(Skill.Constitution, Level.experience(15))
@@ -124,7 +124,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
 
     @Test
     fun `Can't claim twice from box of health`() {
-        val player = createPlayer(tile = Tile(2144, 5281))
+        val player = createPlayer(Tile(2144, 5281))
         player["unlocked_emote_flap"] = true
         player.experience.set(Skill.Prayer, Level.experience(15))
         player.levels.set(Skill.Prayer, 10)
@@ -145,7 +145,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
 
     @Test
     fun `Can't claim with full inventory from box of health`() {
-        val player = createPlayer(tile = Tile(2144, 5281))
+        val player = createPlayer(Tile(2144, 5281))
         player.inventory.add("shark", 28)
         player.experience.set(Skill.Prayer, Level.experience(15))
         player.levels.set(Skill.Prayer, 10)
@@ -166,7 +166,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
 
     @Test
     fun `Get rewards from cradle of life`() {
-        val player = createPlayer(tile = Tile(2343, 5214))
+        val player = createPlayer(Tile(2343, 5214))
         val cradle = objects[Tile(2344, 5214), "cradle_of_life"]!!
 
         player.objectOption(cradle, "Search")
@@ -186,7 +186,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
 
     @Test
     fun `Can replace lost items from cradle of life`() {
-        val player = createPlayer(tile = Tile(2343, 5214))
+        val player = createPlayer(Tile(2343, 5214))
         player["unlocked_emote_stomp"] = true
         val cradle = objects[Tile(2344, 5214), "cradle_of_life"]!!
 
@@ -206,7 +206,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
 
     @Test
     fun `Can exchange rewards from cradle of life`() {
-        val player = createPlayer(tile = Tile(2343, 5214))
+        val player = createPlayer(Tile(2343, 5214))
         player["unlocked_emote_stomp"] = true
         player.inventory.add("fancy_boots")
         val cradle = objects[Tile(2344, 5214), "cradle_of_life"]!!

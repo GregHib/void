@@ -20,7 +20,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
 
     @Test
     fun `Complete the mini-quest`() {
-        val player = createPlayer("quester", Tile(2542, 3569))
+        val player = createPlayer(Tile(2542, 3569))
         player.inventory.add("coins", 1000)
         for (skill in Skill.entries) {
             player.levels.set(skill, 50)
@@ -234,7 +234,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
 
     @Test
     fun `Can't enter gate before quest is completed`() {
-        val player = createPlayer("quester", Tile(2545, 3569))
+        val player = createPlayer(Tile(2545, 3569))
 
         val gate = objects[Tile(2545, 3569), "barbarian_outpost_gate_right_closed"]!!
         player.objectOption(gate, "Open")
@@ -244,7 +244,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
 
     @Test
     fun `Can enter gate after quest completed`() {
-        val player = createPlayer("quester", Tile(2545, 3569))
+        val player = createPlayer(Tile(2545, 3569))
         player["alfred_grimhands_barcrawl"] = "completed"
 
         val gate = objects[Tile(2545, 3569), "barbarian_outpost_gate_right_closed"]!!

@@ -27,7 +27,7 @@ internal class CombatDegradeTest : WorldTest() {
 
     @Test
     fun `Equipped items degrade during combat`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         val npc = createNPC("greater_demon", emptyTile.addY(4))
 
         player.experience.set(Skill.Defence, Level.experience(99))
@@ -64,7 +64,7 @@ internal class CombatDegradeTest : WorldTest() {
 
     @Test
     fun `Equipment is destroyed when charges run out`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         val npc = createNPC("rat", emptyTile.addY(4))
 
         player.experience.set(Skill.Defence, Level.experience(99))

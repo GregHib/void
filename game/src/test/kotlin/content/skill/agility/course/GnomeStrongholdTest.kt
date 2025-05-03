@@ -11,7 +11,7 @@ internal class GnomeStrongholdTest : WorldTest() {
 
     @Test
     fun `Walk across balance log`() {
-        val player = createPlayer("agile", Tile(2474, 3437))
+        val player = createPlayer(Tile(2474, 3437))
         val log = objects[Tile(2474, 3435), "gnome_log_balance"]!!
 
         player.objectOption(log, "Walk-across")
@@ -23,7 +23,7 @@ internal class GnomeStrongholdTest : WorldTest() {
 
     @Test
     fun `Climb first obstacle net`() {
-        val player = createPlayer("agile", Tile(2475, 3426))
+        val player = createPlayer(Tile(2475, 3426))
         val net = objects[Tile(2475, 3425), "gnome_obstacle_net"]!!
 
         player.objectOption(net, "Climb-over")
@@ -35,7 +35,7 @@ internal class GnomeStrongholdTest : WorldTest() {
 
     @Test
     fun `Climb first tree branch`() {
-        val player = createPlayer("agile", Tile(2474, 3422, 1))
+        val player = createPlayer(Tile(2474, 3422, 1))
         val branch = objects[Tile(2473, 3422, 1), "gnome_tree_branch_up"]!!
 
         player.objectOption(branch, "Climb")
@@ -47,7 +47,7 @@ internal class GnomeStrongholdTest : WorldTest() {
 
     @Test
     fun `Walk across tight rope`() {
-        val player = createPlayer("agile", Tile(2477, 3419, 2))
+        val player = createPlayer(Tile(2477, 3419, 2))
         val rope = objects[Tile(2478, 3420, 2), "gnome_balancing_rope"]!!
 
         player.objectOption(rope, "Walk-on")
@@ -59,7 +59,7 @@ internal class GnomeStrongholdTest : WorldTest() {
 
     @Test
     fun `Climb down tree branch`() {
-        val player = createPlayer("agile", Tile(2486, 3418, 2))
+        val player = createPlayer(Tile(2486, 3418, 2))
         val branch = objects[Tile(2486, 3419, 2), "gnome_tree_branch_down"]!!
 
         player.objectOption(branch, "Climb-down")
@@ -71,7 +71,7 @@ internal class GnomeStrongholdTest : WorldTest() {
 
     @Test
     fun `Climb over netting`() {
-        val player = createPlayer("agile", Tile(2487, 3424))
+        val player = createPlayer(Tile(2487, 3424))
         val net = objects[Tile(2487, 3426), "gnome_obstacle_net_free_standing"]!!
 
         player.objectOption(net, "Climb-over")
@@ -83,7 +83,7 @@ internal class GnomeStrongholdTest : WorldTest() {
 
     @Test
     fun `Climb over netting backwards`() {
-        val player = createPlayer("agile", Tile(2484, 3427))
+        val player = createPlayer(Tile(2484, 3427))
         val net = objects[Tile(2483, 3426), "gnome_obstacle_net_free_standing"]!!
 
         player.objectOption(net, "Climb-over")
@@ -95,7 +95,7 @@ internal class GnomeStrongholdTest : WorldTest() {
 
     @Test
     fun `Climb through pipe`() {
-        val player = createPlayer("agile", Tile(2488, 3431))
+        val player = createPlayer(Tile(2488, 3431))
         val pipe = objects[Tile(2487, 3431), "gnome_obstacle_pipe_east"]!!
 
         player.objectOption(pipe, "Squeeze-through")
@@ -107,7 +107,7 @@ internal class GnomeStrongholdTest : WorldTest() {
 
     @Test
     fun `Climb through pipe with bonus reward`() {
-        val player = createPlayer("agile", Tile(2483, 3430))
+        val player = createPlayer(Tile(2483, 3430))
         val pipe = objects[Tile(2483, 3431), "gnome_obstacle_pipe_west"]!!
         player.agilityCourse("gnome")
         player.agilityStage = 6

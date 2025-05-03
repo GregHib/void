@@ -25,7 +25,7 @@ class JewelleryTest : WorldTest() {
     @TestFactory
     fun `Make gold jewellery`() = moulds.map { type ->
         dynamicTest("Make gold ${type.toLowerSpaceCase()}") {
-            val player = createPlayer("Crafter", Tile(3227, 3255))
+            val player = createPlayer(Tile(3227, 3255))
             player.levels.set(Skill.Crafting, 10)
             player.inventory.add("${type}_mould", "gold_bar")
             val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
@@ -44,7 +44,7 @@ class JewelleryTest : WorldTest() {
     }
     @Test
     fun `Make ring of slaying`() {
-        val player = createPlayer("Crafter", Tile(3227, 3255))
+        val player = createPlayer(Tile(3227, 3255))
         player.levels.set(Skill.Crafting, 75)
         player.inventory.add("ring_mould", "gold_bar", "enchanted_gem")
         val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
@@ -65,7 +65,7 @@ class JewelleryTest : WorldTest() {
     fun `Make gem jewellery`() = gems.flatMap { gem ->
         moulds.map { type ->
             dynamicTest("Make $gem ${type.toLowerSpaceCase()}") {
-                val player = createPlayer("Crafter", Tile(3227, 3255))
+                val player = createPlayer(Tile(3227, 3255))
                 player.levels.set(Skill.Crafting, 99)
                 player.inventory.add("${type}_mould", "gold_bar", gem)
                 val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
@@ -87,7 +87,7 @@ class JewelleryTest : WorldTest() {
 
     @Test
     fun `Can't make gem jewellery without a gem`() {
-        val player = createPlayer("Crafter", Tile(3227, 3255))
+        val player = createPlayer(Tile(3227, 3255))
         player.levels.set(Skill.Crafting, 99)
         player.inventory.add("necklace_mould", "gold_bar")
         val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
@@ -107,7 +107,7 @@ class JewelleryTest : WorldTest() {
 
     @Test
     fun `Make 5 with more than in inventory`() {
-        val player = createPlayer("Crafter", Tile(3227, 3255))
+        val player = createPlayer(Tile(3227, 3255))
         player.levels.set(Skill.Crafting, 99)
         player.inventory.add("bracelet_mould")
         player.inventory.add("gold_bar", 6)
@@ -132,7 +132,7 @@ class JewelleryTest : WorldTest() {
 
     @Test
     fun `Make All with extra gold bar`() {
-        val player = createPlayer("Crafter", Tile(3227, 3255))
+        val player = createPlayer(Tile(3227, 3255))
         player.levels.set(Skill.Crafting, 99)
         player.inventory.add("bracelet_mould")
         player.inventory.add("gold_bar", 3)
@@ -153,7 +153,7 @@ class JewelleryTest : WorldTest() {
 
     @Test
     fun `Make X with missing gem`() {
-        val player = createPlayer("Crafter", Tile(3227, 3255))
+        val player = createPlayer(Tile(3227, 3255))
         player.levels.set(Skill.Crafting, 99)
         player.inventory.add("bracelet_mould")
         player.inventory.add("gold_bar", 3)
@@ -176,7 +176,7 @@ class JewelleryTest : WorldTest() {
 
     @Test
     fun `Make X more than has resources for`() {
-        val player = createPlayer("Crafter", Tile(3227, 3255))
+        val player = createPlayer(Tile(3227, 3255))
         player.levels.set(Skill.Crafting, 99)
         player.inventory.add("amulet_unstrung_mould")
         player.inventory.add("gold_bar", 1)
@@ -199,7 +199,7 @@ class JewelleryTest : WorldTest() {
 
     @Test
     fun `Can't make without correct crafting level`() {
-        val player = createPlayer("Crafter", Tile(3227, 3255))
+        val player = createPlayer(Tile(3227, 3255))
         player.levels.set(Skill.Crafting, 65)
         player.inventory.add("ring_mould", "gold_bar", "onyx")
         val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!

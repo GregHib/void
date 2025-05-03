@@ -21,7 +21,7 @@ internal class CombatMovementTest : WorldTest() {
 
     @Test
     fun `Player intercepts moving target`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.running = false
         val npc = createNPC("goblin_light_grey_bald", emptyTile.addX(1))
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")

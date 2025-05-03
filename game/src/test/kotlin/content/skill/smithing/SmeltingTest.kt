@@ -34,7 +34,7 @@ class SmeltingTest : WorldTest() {
     @TestFactory
     fun `Smelt bars`() = bars.map { (type, ores) ->
         dynamicTest("Smelt $type bar") {
-            val player = createPlayer("Smelter", Tile(3227, 3255))
+            val player = createPlayer(Tile(3227, 3255))
             player.levels.set(Skill.Smithing, 99)
             player.inventory.add(ores)
             val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
@@ -55,7 +55,7 @@ class SmeltingTest : WorldTest() {
 
     @Test
     fun `Smelt more than has resources for`() {
-        val player = createPlayer("Smelter", Tile(3227, 3255))
+        val player = createPlayer(Tile(3227, 3255))
         player.levels.set(Skill.Smithing, 99)
         player.inventory.add("iron_ore", 2)
         player.inventory.add("coal", 3)
@@ -75,7 +75,7 @@ class SmeltingTest : WorldTest() {
 
     @Test
     fun `Smelt more than one bar`() {
-        val player = createPlayer("Smelter", Tile(3227, 3255))
+        val player = createPlayer(Tile(3227, 3255))
         player.levels.set(Skill.Smithing, 99)
         player.inventory.add("iron_ore", 2)
         val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
@@ -93,7 +93,7 @@ class SmeltingTest : WorldTest() {
 
     @Test
     fun `Goldsmith gauntlets give bonus xp`() {
-        val player = createPlayer("Smelter", Tile(3109, 3502))
+        val player = createPlayer(Tile(3109, 3502))
         player.equipment.set(EquipSlot.Hands.index, "goldsmith_gauntlets")
         player.levels.set(Skill.Smithing, 99)
         player.inventory.add("gold_ore")
@@ -117,7 +117,7 @@ class SmeltingTest : WorldTest() {
         remove("gold")
     }.map { (type, ores) ->
         dynamicTest("Smelt multiple $type bars at once") {
-            val player = createPlayer("Smelter", Tile(3109, 3502))
+            val player = createPlayer(Tile(3109, 3502))
             player.equipment.set(EquipSlot.Chest.index, "varrock_armour_4")
             player.levels.set(Skill.Smithing, 99)
             player.inventory.add(ores)
@@ -140,7 +140,7 @@ class SmeltingTest : WorldTest() {
 
     @Test
     fun `Don't smelt multiple bars if reached limit`() {
-        val player = createPlayer("Smelter", Tile(3109, 3502))
+        val player = createPlayer(Tile(3109, 3502))
         player.equipment.set(EquipSlot.Chest.index, "varrock_armour_4")
         player.levels.set(Skill.Smithing, 99)
         player.inventory.add("iron_ore", 2)

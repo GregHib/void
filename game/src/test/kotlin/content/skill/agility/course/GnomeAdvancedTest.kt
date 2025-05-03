@@ -14,7 +14,7 @@ internal class GnomeAdvancedTest : WorldTest() {
 
     @Test
     fun `Climb up advanced branch`() {
-        val player = createPlayer("agile", Tile(2472, 3420, 2))
+        val player = createPlayer(Tile(2472, 3420, 2))
         player.levels.set(Skill.Agility, 85)
         val branch = objects[Tile(2472, 3419, 2), "gnome_tree_branch_advanced"]!!
 
@@ -27,7 +27,7 @@ internal class GnomeAdvancedTest : WorldTest() {
 
     @Test
     fun `Can't climb up advanced branch`() {
-        val player = createPlayer("agile", Tile(2472, 3420, 2))
+        val player = createPlayer(Tile(2472, 3420, 2))
         val branch = objects[Tile(2472, 3419, 2), "gnome_tree_branch_advanced"]!!
 
         player.objectOption(branch, "Climb-up")
@@ -42,7 +42,7 @@ internal class GnomeAdvancedTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = if (until == 256) -10 else 0
         })
-        val player = createPlayer("agile", Tile(2475, 3418, 3))
+        val player = createPlayer(Tile(2475, 3418, 3))
         val sign = objects[Tile(2478, 3417, 3), "gnome_sign_post_advanced"]!!
 
         player.objectOption(sign, "Run-across")
@@ -57,7 +57,7 @@ internal class GnomeAdvancedTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = if (until == 1) 0 else until
         })
-        val player = createPlayer("agile", Tile(2475, 3418, 3))
+        val player = createPlayer(Tile(2475, 3418, 3))
         val sign = objects[Tile(2478, 3417, 3), "gnome_sign_post_advanced"]!!
 
         player.objectOption(sign, "Run-across")
@@ -70,7 +70,7 @@ internal class GnomeAdvancedTest : WorldTest() {
 
     @Test
     fun `Swing across poles`() {
-        val player = createPlayer("agile", Tile(2485, 3418, 3))
+        val player = createPlayer(Tile(2485, 3418, 3))
         val pole = objects[Tile(2486, 3425, 3), "gnome_pole_advanced"]!!
 
         player.objectOption(pole, "Swing-to")
@@ -82,7 +82,7 @@ internal class GnomeAdvancedTest : WorldTest() {
 
     @Test
     fun `Jump over barrier`() {
-        val player = createPlayer("agile", Tile(2486, 3432, 3))
+        val player = createPlayer(Tile(2486, 3432, 3))
         val barrier = objects[Tile(2485, 3433, 3), "gnome_barrier_advanced"]!!
 
         player.objectOption(barrier, "Jump-over")
@@ -94,7 +94,7 @@ internal class GnomeAdvancedTest : WorldTest() {
 
     @Test
     fun `Jump over barrier with bonus reward`() {
-        val player = createPlayer("agile", Tile(2486, 3432, 3))
+        val player = createPlayer(Tile(2486, 3432, 3))
         val barrier = objects[Tile(2485, 3433, 3), "gnome_barrier_advanced"]!!
         player.agilityCourse("gnome")
         player.agilityStage = 6

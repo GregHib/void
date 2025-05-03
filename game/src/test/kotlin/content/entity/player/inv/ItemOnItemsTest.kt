@@ -13,7 +13,7 @@ class ItemOnItemsTest : WorldTest() {
 
     @Test
     fun `Combine full inventory of items`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.levels.set(Skill.Cooking, 50)
         player.inventory.add("cake", 14)
         player.inventory.add("chocolate_dust", 14)
@@ -32,7 +32,7 @@ class ItemOnItemsTest : WorldTest() {
 
     @Test
     fun `Combine part of a full inventory of items`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.levels.set(Skill.Cooking, 50)
         player.inventory.add("cake", 14)
         player.inventory.add("chocolate_dust", 14)
@@ -52,7 +52,7 @@ class ItemOnItemsTest : WorldTest() {
 
     @Test
     fun `Item on item with not enough items`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.levels.set(Skill.Cooking, 50)
         player.inventory.add("cake", 1)
         player.inventory.add("chocolate_dust", 2)
@@ -71,7 +71,7 @@ class ItemOnItemsTest : WorldTest() {
 
     @Test
     fun `Stackable item on item creation with full inventory of items`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.levels.set(Skill.Fletching, 50)
         player.inventory.add("opal_bolt_tips", 10)
         player.inventory.add("bronze_bolts", 10)

@@ -66,8 +66,8 @@ internal class TradeTest : WorldTest() {
     }
 
     private fun setupTradeWithOffer(): Pair<Player, Player> {
-        val sender = createPlayer("sender", emptyTile)
-        val receiver = createPlayer("receiver", emptyTile.addY(1))
+        val sender = createPlayer(emptyTile, "sender")
+        val receiver = createPlayer(emptyTile.addY(1), "receiver")
         sender.inventory.add("coins", 1000)
         sender.playerOption(receiver, "Trade with")
         receiver.playerOption(sender, "Trade with")

@@ -12,7 +12,7 @@ internal class LevelRestorationTest : WorldTest() {
 
     @Test
     fun `Drained levels restore over time`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.experience.set(Skill.Mining, Level.experience(99))
         player.levels.set(Skill.Mining, 99)
 
@@ -27,7 +27,7 @@ internal class LevelRestorationTest : WorldTest() {
 
     @Test
     fun `Drained levels restore faster with rapid restore`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.experience.set(Skill.Prayer, Level.experience(50))
         player.levels.set(Skill.Prayer, 50)
         player.addVarbit(PrayerConfigs.ACTIVE_PRAYERS, "rapid_restore")
@@ -45,7 +45,7 @@ internal class LevelRestorationTest : WorldTest() {
 
     @Test
     fun `Drained prayer doesn't restore`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.experience.set(Skill.Prayer, Level.experience(99))
         player.levels.set(Skill.Prayer, 99)
 
@@ -60,7 +60,7 @@ internal class LevelRestorationTest : WorldTest() {
 
     @Test
     fun `Drained summoning doesn't restore`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.experience.set(Skill.Summoning, Level.experience(99))
         player.levels.set(Skill.Summoning, 99)
 
@@ -75,7 +75,7 @@ internal class LevelRestorationTest : WorldTest() {
 
     @Test
     fun `Boosted levels drain over time`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.experience.set(Skill.Mining, Level.experience(99))
         player.levels.set(Skill.Mining, 99)
 
@@ -90,7 +90,7 @@ internal class LevelRestorationTest : WorldTest() {
 
     @Test
     fun `Boosted levels drain slower with berserker`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.experience.set(Skill.Prayer, Level.experience(99))
         player.levels.set(Skill.Prayer, 99)
         player[PrayerConfigs.PRAYERS] = "curses"

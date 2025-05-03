@@ -145,7 +145,7 @@ internal class LootShareTest : WorldTest() {
         player["loot_share"] = true
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
         player.experience.set(Skill.Attack, Experience.MAXIMUM_EXPERIENCE)
-        val member = createPlayer("member", emptyTile)
+        val member = createPlayer(emptyTile)
         repeat(2) {
             player.instructions.send(ClanChatJoin("player"))
             tick()

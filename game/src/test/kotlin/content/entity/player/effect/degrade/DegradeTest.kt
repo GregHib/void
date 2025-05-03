@@ -10,7 +10,7 @@ class DegradeTest : WorldTest() {
 
     @Test
     fun `Degrade item with player variable`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         val slot = EquipSlot.Amulet.index
         val inventory = player.equipment
         player["binding_necklace_charges"] = 16
@@ -28,7 +28,7 @@ class DegradeTest : WorldTest() {
 
     @Test
     fun `Do nothing on item degrade`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         val slot = EquipSlot.Amulet.index
         val inventory = player.equipment
         player["camulet_charges"] = 4
@@ -45,7 +45,7 @@ class DegradeTest : WorldTest() {
 
     @Test
     fun `Can't degrade item with different charge start`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         val slot = EquipSlot.Weapon.index
         val inventory = player.equipment
         assertFalse(inventory.discharge(player, slot))
@@ -59,7 +59,7 @@ class DegradeTest : WorldTest() {
 
     @Test
     fun `Degrade item without variable`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         val slot = EquipSlot.Hat.index
         player.equipment.set(slot, "black_mask_8")
         val inventory = player.equipment
@@ -72,7 +72,7 @@ class DegradeTest : WorldTest() {
 
     @Test
     fun `Degrade item without variable into non degradable`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         val slot = EquipSlot.Amulet.index
         player.equipment.set(slot, "amulet_of_glory_1")
         val inventory = player.equipment
@@ -85,7 +85,7 @@ class DegradeTest : WorldTest() {
 
     @Test
     fun `Can't discharge item without charges`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         val slot = EquipSlot.Hat.index
         player.equipment.set(slot, "black_mask")
         val inventory = player.equipment
@@ -96,7 +96,7 @@ class DegradeTest : WorldTest() {
 
     @Test
     fun `Degrade per item`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         val equipSlot = EquipSlot.Weapon.index
         player.equipment.set(equipSlot, "chaotic_rapier", 30000)
         val equipment = player.equipment
@@ -116,7 +116,7 @@ class DegradeTest : WorldTest() {
 
     @Test
     fun `Switch two identical degraded items`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         val equipSlot = EquipSlot.Weapon.index
         val equipment = player.equipment
         val inventorySlot = 0
@@ -139,7 +139,7 @@ class DegradeTest : WorldTest() {
 
     @Test
     fun `Charge item with player variable`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         val slot = EquipSlot.Amulet.index
         val inventory = player.equipment
         player["binding_necklace_charges"] = 16
@@ -156,7 +156,7 @@ class DegradeTest : WorldTest() {
 
     @Test
     fun `Can't charge item charge`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         val slot = EquipSlot.Hat.index
         val inventory = player.equipment
         player.equipment.set(slot, "black_mask_6")
@@ -168,7 +168,7 @@ class DegradeTest : WorldTest() {
 
     @Test
     fun `Can't charge non-chargeable item`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         val slot = EquipSlot.Weapon.index
         val inventory = player.equipment
         player.equipment.set(slot, "abyssal_whip")
@@ -179,7 +179,7 @@ class DegradeTest : WorldTest() {
 
     @Test
     fun `Can't do anything with invalid slot`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         val slot = EquipSlot.None.index
         val inventory = player.equipment
         assertEquals(0, inventory.charges(player, slot))

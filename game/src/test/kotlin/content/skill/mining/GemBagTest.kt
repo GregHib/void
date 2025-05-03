@@ -13,7 +13,7 @@ internal class GemBagTest : WorldTest() {
 
     @Test
     fun `Add gems to empty bag`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("gem_bag")
         player.inventory.add("uncut_emerald", 5)
         player.inventory.add("uncut_diamond", 4)
@@ -27,7 +27,7 @@ internal class GemBagTest : WorldTest() {
 
     @Test
     fun `Add gems to partially filled bag`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("gem_bag")
         player["gem_bag_ruby"] = 10
         player.inventory.add("uncut_ruby", 5)
@@ -40,7 +40,7 @@ internal class GemBagTest : WorldTest() {
 
     @Test
     fun `Add gems to almost full bag`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("gem_bag")
         player["gem_bag_sapphire"] = 10
         player["gem_bag_emerald"] = 10
@@ -56,7 +56,7 @@ internal class GemBagTest : WorldTest() {
 
     @Test
     fun `Add gems to full bag`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("gem_bag")
         player["gem_bag_sapphire"] = 25
         player["gem_bag_emerald"] = 25
@@ -72,7 +72,7 @@ internal class GemBagTest : WorldTest() {
 
     @Test
     fun `Withdraw gem from bag to almost full inventory`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("gem_bag")
         player["gem_bag_sapphire"] = 25
         player["gem_bag_emerald"] = 25
@@ -88,7 +88,7 @@ internal class GemBagTest : WorldTest() {
 
     @Test
     fun `Withdraw gem from bag to full inventory`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("gem_bag")
         player["gem_bag_emerald"] = 25
         player.inventory.add("shark", 27)
@@ -101,7 +101,7 @@ internal class GemBagTest : WorldTest() {
 
     @Test
     fun `Can't destroy filled gem bag`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player["gem_bag_emerald"] = 25
         player.inventory.add("gem_bag")
 
@@ -115,7 +115,7 @@ internal class GemBagTest : WorldTest() {
 
     @Test
     fun `Destroy empty gem bag`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("gem_bag")
 
         player.itemOption("Destroy", "gem_bag")

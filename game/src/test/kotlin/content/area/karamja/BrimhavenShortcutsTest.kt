@@ -13,7 +13,7 @@ class BrimhavenShortcutsTest : WorldTest() {
 
     @Test
     fun `Swing to brimhaven island`() {
-        val player = createPlayer(tile = Tile(2709, 3209))
+        val player = createPlayer(Tile(2709, 3209))
         player.levels.set(Skill.Agility, 10)
         val ropeswing = objects[Tile(2705, 3209), "brimhaven_ropeswing_west"]!!
 
@@ -26,7 +26,7 @@ class BrimhavenShortcutsTest : WorldTest() {
 
     @Test
     fun `Swing from brimhaven island`() {
-        val player = createPlayer(tile = Tile(2705, 3205))
+        val player = createPlayer(Tile(2705, 3205))
         player.levels.set(Skill.Agility, 10)
         val ropeSwing = objects[Tile(2703, 3205), "brimhaven_ropeswing_east"]!!
 
@@ -39,7 +39,7 @@ class BrimhavenShortcutsTest : WorldTest() {
 
     @Test
     fun `Can't swing to brimhaven island without agility level`() {
-        val player = createPlayer(tile = Tile(2709, 3209))
+        val player = createPlayer(Tile(2709, 3209))
         val ropeswing = objects[Tile(2705, 3209), "brimhaven_ropeswing_west"]!!
 
         player.objectOption(ropeswing, "Swing-on")
@@ -50,7 +50,7 @@ class BrimhavenShortcutsTest : WorldTest() {
 
     @Test
     fun `Cross log balance to red dragons`() {
-        val player = createPlayer(tile = Tile(2682, 9506))
+        val player = createPlayer(Tile(2682, 9506))
         player.levels.set(Skill.Agility, 30)
         val log = objects[Tile(2683, 9506), "brimhaven_log_balance_start"]!!
 
@@ -63,7 +63,7 @@ class BrimhavenShortcutsTest : WorldTest() {
 
     @Test
     fun `Cross log balance from red dragons`() {
-        val player = createPlayer(tile = Tile(2687, 9506))
+        val player = createPlayer(Tile(2687, 9506))
         player.levels.set(Skill.Agility, 30)
         val log = objects[Tile(2686, 9506), "brimhaven_log_balance_end"]!!
 
@@ -76,7 +76,7 @@ class BrimhavenShortcutsTest : WorldTest() {
 
     @Test
     fun `Can't cross log balance without agility level`() {
-        val player = createPlayer(tile = Tile(2687, 9506))
+        val player = createPlayer(Tile(2687, 9506))
         player.levels.set(Skill.Agility, 29)
         val log = objects[Tile(2686, 9506), "brimhaven_log_balance_end"]!!
 

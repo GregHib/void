@@ -15,7 +15,7 @@ internal class PriceCheckerTest : WorldTest() {
 
     @Test
     fun `Check price of item`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("bronze_sword")
 
         player.interfaceOption("worn_equipment", "price", "Show Price-checker")
@@ -27,7 +27,7 @@ internal class PriceCheckerTest : WorldTest() {
 
     @Test
     fun `Remove checked item`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("bronze_sword")
 
         player.interfaceOption("worn_equipment", "price", "Show Price-checker")
@@ -40,7 +40,7 @@ internal class PriceCheckerTest : WorldTest() {
 
     @Test
     fun `Return checked items on interface close`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("bronze_sword")
 
         player.interfaceOption("worn_equipment", "price", "Show Price-checker")

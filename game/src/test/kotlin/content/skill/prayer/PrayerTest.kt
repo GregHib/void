@@ -11,7 +11,7 @@ internal class PrayerTest : WorldTest() {
 
     @Test
     fun `Active prayers drain prayer points`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.experience.set(Skill.Prayer, Experience.MAXIMUM_EXPERIENCE)
 
         player.interfaceOption("prayer_list", "regular_prayers", optionIndex = 0, slot = 27)
@@ -25,7 +25,7 @@ internal class PrayerTest : WorldTest() {
 
     @Test
     fun `Active curses drain prayer points`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.experience.set(Skill.Prayer, Experience.MAXIMUM_EXPERIENCE)
         player[PrayerConfigs.PRAYERS] = "curses"
 

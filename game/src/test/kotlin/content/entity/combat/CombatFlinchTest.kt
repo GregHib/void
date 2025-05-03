@@ -22,7 +22,7 @@ internal class CombatFlinchTest : WorldTest() {
 
     @Test
     fun `Npc doesn't fight back`() {
-        val player = createPlayer("player", tile)
+        val player = createPlayer(tile)
         val npc = createNPC("cow", tile.addY(2))
 
         player.npcOption(npc, "Attack")
@@ -44,7 +44,7 @@ internal class CombatFlinchTest : WorldTest() {
 
     @Test
     fun `Npc does fight back`() {
-        val player = createPlayer("player", tile)
+        val player = createPlayer(tile)
         val npc = createNPC("cow", tile.addY(2))
 
         player.npcOption(npc, "Attack")

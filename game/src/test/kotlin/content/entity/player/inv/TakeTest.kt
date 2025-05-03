@@ -13,7 +13,7 @@ internal class TakeTest : WorldTest() {
     @Test
     fun `Take item off the floor`() {
         val tile = emptyTile
-        val player = createPlayer("player", tile)
+        val player = createPlayer(tile)
         val item = floorItems.add(tile.add(0, 2), "bronze_sword")
 
         player.floorItemOption(item, "Take")
@@ -26,7 +26,7 @@ internal class TakeTest : WorldTest() {
     @Test
     fun `Take item up off a table`() {
         val tile = Tile(3212, 3218, 1)
-        val player = createPlayer("player", tile)
+        val player = createPlayer(tile)
         val item = floorItems.add(tile.add(1, 0), "bronze_sword")
 
         player.floorItemOption(item, "Take")

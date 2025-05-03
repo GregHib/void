@@ -18,7 +18,7 @@ class WreckedGhostShipTest : WorldTest() {
 
     @Test
     fun `Jump to the end`() {
-        val player = createPlayer(tile = Tile(3605, 3550))
+        val player = createPlayer(Tile(3605, 3550))
         player.stop("energy_restore")
         player.levels.set(Skill.Agility, 25)
         player.runEnergy = 10_000
@@ -58,7 +58,7 @@ class WreckedGhostShipTest : WorldTest() {
 
     @Test
     fun `Jump to the ship`() {
-        val player = createPlayer(tile = Tile(3602, 3564))
+        val player = createPlayer(Tile(3602, 3564))
         player.stop("energy_restore")
         player.levels.set(Skill.Agility, 25)
         player.runEnergy = 10_000
@@ -98,7 +98,7 @@ class WreckedGhostShipTest : WorldTest() {
 
     @Test
     fun `Jump to the end clicking nearest`() {
-        val player = createPlayer(tile = Tile(3604, 3550))
+        val player = createPlayer(Tile(3604, 3550))
         player.stop("energy_restore")
         player.levels.set(Skill.Agility, 25)
         player.runEnergy = 10_000
@@ -133,7 +133,7 @@ class WreckedGhostShipTest : WorldTest() {
 
     @Test
     fun `Jump to the ship clicking nearest`() {
-        val player = createPlayer(tile = Tile(3601, 3564))
+        val player = createPlayer(Tile(3601, 3564))
         player.stop("energy_restore")
         player.levels.set(Skill.Agility, 25)
         player.runEnergy = 10_000
@@ -171,7 +171,7 @@ class WreckedGhostShipTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextBits(bitCount: Int): Int = 255
         })
-        val player = createPlayer(tile = Tile(3599, 3552))
+        val player = createPlayer(Tile(3599, 3552))
         player.levels.set(Skill.Agility, 25)
         player.runEnergy = 10_000
 
@@ -186,7 +186,7 @@ class WreckedGhostShipTest : WorldTest() {
 
     @Test
     fun `Can't jump rocks without agility level`() {
-        val player = createPlayer(tile = Tile(3599, 3552))
+        val player = createPlayer(Tile(3599, 3552))
         player.levels.set(Skill.Agility, 24)
         player.runEnergy = 10_000
 
@@ -201,7 +201,7 @@ class WreckedGhostShipTest : WorldTest() {
 
     @Test
     fun `Can't jump rocks without energy`() {
-        val player = createPlayer(tile = Tile(3599, 3552))
+        val player = createPlayer(Tile(3599, 3552))
         player.levels.set(Skill.Agility, 25)
         player.runEnergy = 0
 
@@ -214,7 +214,7 @@ class WreckedGhostShipTest : WorldTest() {
 
     @Test
     fun `Cross gangplank off of ship`() {
-        val player = createPlayer(tile = Tile(3605, 3545, 1))
+        val player = createPlayer(Tile(3605, 3545, 1))
 
         val rocks = objects[Tile(3605, 3546, 1), "wrecked_ghost_ship_gangplank"]!!
         player.objectOption(rocks, "Cross")
@@ -224,7 +224,7 @@ class WreckedGhostShipTest : WorldTest() {
 
     @Test
     fun `Cross gangplank onto ship`() {
-        val player = createPlayer(tile = Tile(3605, 3548))
+        val player = createPlayer(Tile(3605, 3548))
 
         val rocks = objects[Tile(3605, 3547), "wrecked_ghost_ship_gangplank_end"]!!
         player.objectOption(rocks, "Cross")

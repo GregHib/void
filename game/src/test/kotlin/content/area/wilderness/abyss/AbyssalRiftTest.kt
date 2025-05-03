@@ -21,7 +21,7 @@ internal class AbyssalRiftTest : WorldTest() {
     ).map { (tile, message) ->
         val obj = objects[tile].first { it.id.endsWith("rift") }
         dynamicTest("Can't enter ${obj.id}") {
-            val player = createPlayer("player", tile)
+            val player = createPlayer(tile)
 
             player.objectOption(obj, optionIndex = 0)
             tick(2)

@@ -25,7 +25,7 @@ internal class FriendTest : WorldTest() {
 
     @Test
     fun `Add friend to empty friends list`() = runTest {
-        val player = createPlayer("player")
+        val player = createPlayer(name = "player")
         val (_, client) = createClient("friend")
         player["private_status"] = "friends"
 
@@ -41,8 +41,8 @@ internal class FriendTest : WorldTest() {
 
     @Test
     fun `Add friend to full friends list`() = runTest {
-        val player = createPlayer("player")
-        createPlayer("friend")
+        val player = createPlayer(name = "player")
+        createPlayer(name = "friend")
         repeat(200) {
             player.friends[it.toString()] = ClanRank.Friend
         }
@@ -57,7 +57,7 @@ internal class FriendTest : WorldTest() {
 
     @Test
     fun `Add non-existent friend`() = runTest {
-        val player = createPlayer("player")
+        val player = createPlayer(name = "player")
 
         player.instructions.send(FriendAdd("non-existent"))
         tick()
@@ -69,8 +69,8 @@ internal class FriendTest : WorldTest() {
 
     @Test
     fun `Re-add an existing friend`() = runTest {
-        val player = createPlayer("player")
-        createPlayer("friend")
+        val player = createPlayer(name = "player")
+        createPlayer(name = "friend")
         player.friends["friend"] = ClanRank.Friend
 
         player.instructions.send(FriendAdd("friend"))
@@ -83,8 +83,8 @@ internal class FriendTest : WorldTest() {
 
     @Test
     fun `Add ignored friend`() = runTest {
-        val player = createPlayer("player")
-        createPlayer("friend")
+        val player = createPlayer(name = "player")
+        createPlayer(name = "friend")
         player.ignores.add("friend")
 
         player.instructions.send(FriendAdd("friend"))
@@ -97,7 +97,7 @@ internal class FriendTest : WorldTest() {
 
     @Test
     fun `Delete friend`() = runTest {
-        val player = createPlayer("player")
+        val player = createPlayer(name = "player")
         player["private_status"] = "friends"
         val (_, client) = createClient("friend")
         player.friends["friend"] = ClanRank.Friend

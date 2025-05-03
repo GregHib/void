@@ -28,7 +28,7 @@ abstract class CombatFormulaTest : WorldTest() {
     }
 
     internal fun createPlayer(vararg pairs: Pair<Skill, Int>): Player {
-        val player = createPlayer("player")
+        val player = createPlayer()
         for ((skill, level) in pairs) {
             player.levels.set(skill, level)
             player.experience.set(skill, Level.experience(skill, level))

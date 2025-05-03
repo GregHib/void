@@ -14,7 +14,7 @@ internal class WoodcuttingTest : WorldTest() {
 
     @Test
     fun `Woodcutting gives log and depletes`() {
-        val player = createPlayer("jack", emptyTile)
+        val player = createPlayer(emptyTile)
         player.levels.set(Skill.Woodcutting, 100)
         val tile = emptyTile.addY(1)
         val tree = createObject("tree", tile)

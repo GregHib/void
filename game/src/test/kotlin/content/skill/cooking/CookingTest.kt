@@ -18,7 +18,7 @@ internal class CookingTest : WorldTest() {
     @Test
     fun `Cooking a raw item gives a cooked item and experience`() {
         val start = emptyTile
-        val player = createPlayer("chef", start)
+        val player = createPlayer(start)
         player.levels.set(Skill.Cooking, 100)
         player.inventory.add("raw_shrimps", 3)
         val fire = createObject("fire_orange", emptyTile.addY(1))
@@ -36,7 +36,7 @@ internal class CookingTest : WorldTest() {
 
     @Test
     fun `Mix flour and water to make bread dough`() {
-        val player = createPlayer("chef", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("pot_of_flour")
         player.inventory.add("bowl_of_water")
 

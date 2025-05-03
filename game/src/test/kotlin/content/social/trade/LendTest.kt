@@ -246,8 +246,8 @@ internal class LendTest : WorldTest() {
     }
 
     private fun setupTradeWithLend(): Pair<Player, Player> {
-        val lender = createPlayer("lender", emptyTile)
-        val borrower = createPlayer("borrower", emptyTile.addY(1))
+        val lender = createPlayer(emptyTile, "lender")
+        val borrower = createPlayer(emptyTile.addY(1), "borrower")
         lender.inventory.add("abyssal_whip")
         lender.playerOption(borrower, "Trade with")
         borrower.playerOption(lender, "Trade with")

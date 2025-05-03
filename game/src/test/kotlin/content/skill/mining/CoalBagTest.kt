@@ -13,7 +13,7 @@ internal class CoalBagTest : WorldTest() {
 
     @Test
     fun `Add coal to empty bag`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("coal_bag")
         player.inventory.add("coal", 5)
 
@@ -25,7 +25,7 @@ internal class CoalBagTest : WorldTest() {
 
     @Test
     fun `Add coal to partially filled bag`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("coal_bag")
         player["coal_bag_coal"] = 10
         player.inventory.add("coal", 5)
@@ -38,7 +38,7 @@ internal class CoalBagTest : WorldTest() {
 
     @Test
     fun `Add coal to almost full bag`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("coal_bag")
         player["coal_bag_coal"] = 75
         player.inventory.add("coal", 10)
@@ -51,7 +51,7 @@ internal class CoalBagTest : WorldTest() {
 
     @Test
     fun `Add coal to full bag`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("coal_bag")
         player["coal_bag_coal"] = 81
         player.inventory.add("coal", 5)
@@ -64,7 +64,7 @@ internal class CoalBagTest : WorldTest() {
 
     @Test
     fun `Withdraw one coal from bag to almost full inventory`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("coal_bag")
         player["coal_bag_coal"] = 10
         player.inventory.add("shark", 26)
@@ -77,7 +77,7 @@ internal class CoalBagTest : WorldTest() {
 
     @Test
     fun `Withdraw one coal from bag to full inventory`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("coal_bag")
         player["coal_bag_coal"] = 10
         player.inventory.add("shark", 27)
@@ -90,7 +90,7 @@ internal class CoalBagTest : WorldTest() {
 
     @Test
     fun `Withdraw many coal from bag`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("coal_bag")
         player["coal_bag_coal"] = 10
 
@@ -102,7 +102,7 @@ internal class CoalBagTest : WorldTest() {
 
     @Test
     fun `Withdraw many coal from bag to almost full inventory`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("coal_bag")
         player["coal_bag_coal"] = 10
         player.inventory.add("shark", 24)
@@ -115,7 +115,7 @@ internal class CoalBagTest : WorldTest() {
 
     @Test
     fun `Withdraw many coal from bag to full inventory`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("coal_bag")
         player["coal_bag_coal"] = 10
         player.inventory.add("shark", 27)
@@ -128,7 +128,7 @@ internal class CoalBagTest : WorldTest() {
 
     @Test
     fun `Can't destroy filled gem bag`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player["coal_bag_coal"] = 25
         player.inventory.add("coal_bag")
 
@@ -142,7 +142,7 @@ internal class CoalBagTest : WorldTest() {
 
     @Test
     fun `Destroy empty gem bag`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("coal_bag")
 
         player.itemOption("Destroy", "coal_bag")

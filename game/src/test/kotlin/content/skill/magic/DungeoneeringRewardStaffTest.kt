@@ -17,7 +17,7 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
 
     @Test
     fun `Add runes to staff`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add(rune, 10)
         player.inventory.add(staff)
 
@@ -29,7 +29,7 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
 
     @Test
     fun `Add runes to mostly charged staff`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add(rune, 10)
         player.inventory.add(staff)
         player.inventory.charge(player, 1, 995)
@@ -42,7 +42,7 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
 
     @Test
     fun `Add runes to fully charged staff`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add(rune, 10)
         player.inventory.add(staff)
         player.inventory.charge(player, 1, 1000)
@@ -55,7 +55,7 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
 
     @Test
     fun `Empty staff with no charges`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add(rune, 10)
         player.inventory.add(staff)
 
@@ -67,7 +67,7 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
 
     @Test
     fun `Empty staff with some charges`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add(rune, 10)
         player.inventory.add(staff)
         player.inventory.charge(player, 1, 123)
@@ -80,7 +80,7 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
 
     @Test
     fun `Empty staff with full inventory`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add(staff)
         player.inventory.add("shark", 27)
         player.inventory.charge(player,0, 10)
@@ -93,7 +93,7 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
 
     @Test
     fun `Empty staff with full inventory with runes`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add(staff)
         player.inventory.add(rune, 5)
         player.inventory.add("shark", 26)
@@ -107,7 +107,7 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
 
     @Test
     fun `Empty staff with almost full stack`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add(staff)
         player.inventory.add(rune, Int.MAX_VALUE - 5)
         player.inventory.add("shark", 26)
@@ -121,7 +121,7 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
 
     @Test
     fun `Empty staff with full stack`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add(staff)
         player.inventory.add(rune, Int.MAX_VALUE)
         player.inventory.add("shark", 26)

@@ -34,7 +34,7 @@ internal class CombatTest : WorldTest() {
 
     @Test
     fun `Kill rat with magic`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         val npc = createNPC("giant_rat", emptyTile.addY(4))
         player.equipment.set(EquipSlot.Weapon.index, "staff_of_air")
         player.experience.set(Skill.Magic, EXPERIENCE)
@@ -54,7 +54,7 @@ internal class CombatTest : WorldTest() {
 
     @Test
     fun `Kill rat with melee`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         val npc = createNPC("giant_rat", emptyTile.addY(4))
 
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
@@ -86,7 +86,7 @@ internal class CombatTest : WorldTest() {
 
             override fun nextBits(bitCount: Int) = 100
         })
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         val npc = createNPC("giant_rat", emptyTile.addY(4))
 
         player.levels.set(Skill.Ranged, 50)
@@ -118,7 +118,7 @@ internal class CombatTest : WorldTest() {
         npcCombatDamage {
             hits++
         }
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.experience.set(Skill.Attack, EXPERIENCE)
         player.levels.set(Skill.Attack, 99)
         val npc = createNPC("rat", emptyTile.addY(1))
@@ -138,7 +138,7 @@ internal class CombatTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextBits(bitCount: Int) = 100
         })
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.experience.set(Skill.Constitution, EXPERIENCE)
         player.experience.set(Skill.Prayer, EXPERIENCE)
         player.levels.set(Skill.Constitution, 990)
@@ -161,7 +161,7 @@ internal class CombatTest : WorldTest() {
 
     @Test
     fun `Ranged attacks will run within distance and stop`() {
-        val player = createPlayer("player", Tile(3228, 3415))
+        val player = createPlayer(Tile(3228, 3415))
         val npc = createNPC("rat", Tile(3228, 3407))
 
         player.equipment.set(EquipSlot.Weapon.index, "magic_shortbow")
@@ -182,8 +182,8 @@ internal class CombatTest : WorldTest() {
     fun `Kill player with melee`() {
         val startTile = Tile(3143, 3553)
         val targetTile = startTile.addX(3)
-        val player = createPlayer("player", startTile)
-        val target = createPlayer("target", targetTile)
+        val player = createPlayer(startTile)
+        val target = createPlayer(targetTile)
 
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
         player.experience.set(Skill.Attack, EXPERIENCE)
@@ -215,8 +215,8 @@ internal class CombatTest : WorldTest() {
 
     @Test
     fun `Can't attack players`() {
-        val player = createPlayer("player", emptyTile)
-        val target = createPlayer("target", emptyTile.addY(4))
+        val player = createPlayer(emptyTile)
+        val target = createPlayer(emptyTile.addY(4))
 
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
         player.experience.set(Skill.Attack, EXPERIENCE)

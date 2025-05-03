@@ -13,7 +13,7 @@ class TreeGnomeStrongholdTest : WorldTest() {
 
     @Test
     fun `Climb up rock shortcut`() {
-        val player = createPlayer(tile = Tile(2486, 3515))
+        val player = createPlayer(Tile(2486, 3515))
         player.levels.set(Skill.Agility, 37)
         val rocks = objects[Tile(2487, 3515), "gnome_stronghold_shortcut_rock_top"]!!
         player.objectOption(rocks, "Climb")
@@ -24,7 +24,7 @@ class TreeGnomeStrongholdTest : WorldTest() {
 
     @Test
     fun `Can't climb up rock shortcut without levels`() {
-        val player = createPlayer(tile = Tile(2486, 3515))
+        val player = createPlayer(Tile(2486, 3515))
         player.levels.set(Skill.Agility, 36)
         val rocks = objects[Tile(2487, 3515), "gnome_stronghold_shortcut_rock_top"]!!
         player.objectOption(rocks, "Climb")
@@ -35,7 +35,7 @@ class TreeGnomeStrongholdTest : WorldTest() {
 
     @Test
     fun `Climb down rock shortcut`() {
-        val player = createPlayer(tile = Tile(2489, 3521))
+        val player = createPlayer(Tile(2489, 3521))
         player.levels.set(Skill.Agility, 37)
         val rocks = objects[Tile(2489, 3520), "gnome_stronghold_shortcut_rock_bottom"]!!
         player.objectOption(rocks, "Climb")
@@ -46,7 +46,7 @@ class TreeGnomeStrongholdTest : WorldTest() {
 
     @Test
     fun `Can't climb down rock shortcut without levels`() {
-        val player = createPlayer(tile = Tile(2489, 3521))
+        val player = createPlayer(Tile(2489, 3521))
         player.levels.set(Skill.Agility, 36)
         val rocks = objects[Tile(2489, 3520), "gnome_stronghold_shortcut_rock_bottom"]!!
         player.objectOption(rocks, "Climb")

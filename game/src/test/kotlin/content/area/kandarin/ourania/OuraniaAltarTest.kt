@@ -14,7 +14,7 @@ internal class OuraniaAltarTest : WorldTest() {
 
     @Test
     fun `Craft random runes with pure essence`() {
-        val player = createPlayer("player", Tile(3315, 4813))
+        val player = createPlayer(Tile(3315, 4813))
         player.inventory.add("pure_essence", 28)
 
         val altar = objects[Tile(3315, 4810), "ourania_altar"]!!
@@ -28,7 +28,7 @@ internal class OuraniaAltarTest : WorldTest() {
 
     @Test
     fun `Craft random runes with ardougne medium diary`() {
-        val player = createPlayer("player", Tile(3315, 4813))
+        val player = createPlayer(Tile(3315, 4813))
         player.inventory.add("pure_essence", 28)
         player["ardougne_medium_diary_complete"] = true
 

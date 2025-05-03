@@ -13,7 +13,7 @@ class EctopoolTest : WorldTest() {
 
     @Test
     fun `Jump down shortcut`() {
-        val player = createPlayer(tile = Tile(3670, 9888, 3))
+        val player = createPlayer(Tile(3670, 9888, 3))
         player.levels.set(Skill.Agility, 58)
         val rail = objects[Tile(3670, 9888, 3), "ectopool_shortcut_rail"]!!
 
@@ -26,7 +26,7 @@ class EctopoolTest : WorldTest() {
 
     @Test
     fun `Can't jump down shortcut without levels`() {
-        val player = createPlayer(tile = Tile(3670, 9888, 3))
+        val player = createPlayer(Tile(3670, 9888, 3))
         player.levels.set(Skill.Agility, 57)
         val rail = objects[Tile(3670, 9888, 3), "ectopool_shortcut_rail"]!!
 
@@ -38,7 +38,7 @@ class EctopoolTest : WorldTest() {
 
     @Test
     fun `Jump up shortcut`() {
-        val player = createPlayer(tile = Tile(3671, 9888, 2))
+        val player = createPlayer(Tile(3671, 9888, 2))
         player.levels.set(Skill.Agility, 58)
         val rail = objects[Tile(3670, 9888, 2), "ectopool_shortcut_wall"]!!
 
@@ -51,7 +51,7 @@ class EctopoolTest : WorldTest() {
 
     @Test
     fun `Can't jump up shortcut without levels`() {
-        val player = createPlayer(tile = Tile(3671, 9888, 2))
+        val player = createPlayer(Tile(3671, 9888, 2))
         player.levels.set(Skill.Agility, 57)
         val rail = objects[Tile(3670, 9888, 2), "ectopool_shortcut_wall"]!!
 

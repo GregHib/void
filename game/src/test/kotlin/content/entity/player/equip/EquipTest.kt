@@ -18,7 +18,7 @@ internal class EquipTest : WorldTest() {
 
     @Test
     fun `Equip item`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("bronze_sword")
         player.inventory.add("shark", 27)
 
@@ -30,7 +30,7 @@ internal class EquipTest : WorldTest() {
 
     @Test
     fun `Can replace weapon with 2h if has one space`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.equipment.set(EquipSlot.Weapon.index, "bronze_sword")
         player.inventory.add("bronze_2h_sword")
         player.inventory.add("shark", 27)
@@ -43,7 +43,7 @@ internal class EquipTest : WorldTest() {
 
     @Test
     fun `Can replace shield with 2h if inventory is full`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.equipment.set(EquipSlot.Shield.index, "bronze_sq_shield")
         player.inventory.add("bronze_2h_sword")
         player.inventory.add("shark", 27)
@@ -57,7 +57,7 @@ internal class EquipTest : WorldTest() {
 
     @Test
     fun `Can replace shield and weapon with 2h if has one space`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.equipment.set(EquipSlot.Weapon.index, "bronze_sword")
         player.equipment.set(EquipSlot.Shield.index, "bronze_sq_shield")
         player.inventory.add("bronze_2h_sword")
@@ -73,7 +73,7 @@ internal class EquipTest : WorldTest() {
 
     @Test
     fun `Can't replace shield and weapon with 2h if inventory is full`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.equipment.set(EquipSlot.Weapon.index, "bronze_sword")
         player.equipment.set(EquipSlot.Shield.index, "bronze_sq_shield")
         player.inventory.add("bronze_2h_sword")
@@ -88,7 +88,7 @@ internal class EquipTest : WorldTest() {
 
     @Test
     fun `Can replace 2h with weapon when inventory is full`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.equipment.set(EquipSlot.Weapon.index, "bronze_2h_sword")
         player.inventory.add("bronze_sword")
         player.inventory.add("shark", 27)
@@ -101,7 +101,7 @@ internal class EquipTest : WorldTest() {
 
     @Test
     fun `Can replace 2h with shield when inventory is full`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.equipment.set(EquipSlot.Weapon.index, "bronze_2h_sword")
         player.inventory.add("bronze_sq_shield")
         player.inventory.add("shark", 27)
@@ -115,7 +115,7 @@ internal class EquipTest : WorldTest() {
 
     @Test
     fun `Remove equipped item`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.equipment.set(EquipSlot.Weapon.index, "bronze_sword")
 
         player.interfaceOption("worn_equipment", "weapon_slot", "*", 0, Item("bronze_sword"))
@@ -126,7 +126,7 @@ internal class EquipTest : WorldTest() {
 
     @Test
     fun `Stack equipped items`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.experience.add(Skill.Ranged, Experience.MAXIMUM_EXPERIENCE)
         player.levels.set(Skill.Ranged, 99)
         player.equipment.set(EquipSlot.Ammo.index, "rune_arrow", 10)
