@@ -114,11 +114,10 @@ internal class NPCChatTest : DialogueTest() {
 
     @Test
     fun `Sending five or more lines to chat splits them up`() {
-        assertThrows<IllegalStateException> {
-            dialogueBlocking {
-                npc<Talk>(text = "\nOne\nTwo\nThree\nFour\nFive")
-            }
+        dialogue {
+            npc<Talk>(text = "\nOne\nTwo\nThree\nFour\nFive")
         }
+        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
         verify(exactly = 2) {
             player.open(any())
         }
