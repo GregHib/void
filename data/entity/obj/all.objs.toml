@@ -64,20 +64,12 @@ examine = "It's amazing what bees produce!"
 
 [potato]
 id = 312
-pickable = {
-  item = "raw_potato",
-  delay = 30,
-  message = "You pick a potato."
-}
+pickable = { item = "raw_potato", delay = 30, message = "You pick a potato." }
 examine = "Potato-licious!"
 
 [wheat]
 id = 313
-pickable = {
-  item = "grain",
-  delay = 30,
-  message = "You pick some wheat."
-}
+pickable = { item = "grain", delay = 30, message = "You pick some wheat." }
 examine = "Baby bread."
 
 [hat_stand]
@@ -178,11 +170,7 @@ examine = "Better than weeding."
 
 [cabbage]
 id = 1161
-pickable = {
-  item = "cabbage",
-  delay = 45,
-  message = "You pick a cabbage."
-}
+pickable = { item = "cabbage", delay = 45, message = "You pick a cabbage." }
 examine = "Cabbage... yuck!"
 
 [small_fern]
@@ -255,11 +243,7 @@ examine = "Used for fashioning clay items."
 
 [flax]
 id = 2646
-pickable = {
-  item = "flax",
-  delay = 5,
-  message = "You pick some flax."
-}
+pickable = { item = "flax", delay = 5, chance = 5, message = "You pick some flax." }
 examine = "A plant cultivated for fibres."
 
 [hopper_controls]
@@ -300,11 +284,7 @@ examine = "I don't much like the look of that..."
 
 [onion]
 id = 3366
-pickable = {
-  item = "onion",
-  delay = 30,
-  message = "You pick an onion."
-}
+pickable = { item = "onion", delay = 30, message = "You pick an onion." }
 examine = "Makes you cry."
 
 [border]
