@@ -32,7 +32,7 @@ internal class AbyssObstaclesTest : WorldTest() {
 
     @Test
     fun `Mine rock obstacle`() {
-        val player = createPlayer("player", Tile(3026, 4812))
+        val player = createPlayer(Tile(3026, 4812))
         player["abyss_obstacles"] = 0
         player.levels.set(Skill.Mining, 99)
         player.inventory.add("bronze_pickaxe")
@@ -53,7 +53,7 @@ internal class AbyssObstaclesTest : WorldTest() {
             override fun nextInt(until: Int) = until + 1
         })
         val tile = Tile(3026, 4812)
-        val player = createPlayer("player", tile)
+        val player = createPlayer(tile)
         player["abyss_obstacles"] = 0
         player.inventory.add("bronze_pickaxe")
 
@@ -70,7 +70,7 @@ internal class AbyssObstaclesTest : WorldTest() {
     @Test
     fun `Can't mine rock obstacle without pickaxe and level`() {
         val tile = Tile(3026, 4812)
-        val player = createPlayer("player", tile)
+        val player = createPlayer(tile)
         player.inventory.add("dragon_pickaxe")
         player["abyss_obstacles"] = 0
 
@@ -86,7 +86,7 @@ internal class AbyssObstaclesTest : WorldTest() {
 
     @Test
     fun `Chop tendril obstacle`() {
-        val player = createPlayer("player", Tile(3017, 4822))
+        val player = createPlayer(Tile(3017, 4822))
         player.levels.set(Skill.Woodcutting, 99)
         player.inventory.add("bronze_hatchet")
 
@@ -103,7 +103,7 @@ internal class AbyssObstaclesTest : WorldTest() {
     @Test
     fun `Can't chop tendril obstacle without hatchet and level`() {
         val tile = Tile(3017, 4822)
-        val player = createPlayer("player", tile)
+        val player = createPlayer(tile)
         player.inventory.add("dragon_hatchet")
 
         val obj = objects[Tile(3018, 4821)].first { it.id.startsWith("abyss_obstacle") }
@@ -122,7 +122,7 @@ internal class AbyssObstaclesTest : WorldTest() {
             override fun nextInt(until: Int) = until + 1
         })
         val tile = Tile(3017, 4822)
-        val player = createPlayer("player", tile)
+        val player = createPlayer(tile)
         player.inventory.add("bronze_hatchet")
 
         val obj = objects[Tile(3018, 4821)].first { it.id.startsWith("abyss_obstacle") }
@@ -137,7 +137,7 @@ internal class AbyssObstaclesTest : WorldTest() {
 
     @Test
     fun `Burn down boil obstacle`() {
-        val player = createPlayer("player", Tile(3017, 4835))
+        val player = createPlayer(Tile(3017, 4835))
         player.levels.set(Skill.Firemaking, 99)
         player.inventory.add("tinderbox")
 
@@ -153,7 +153,7 @@ internal class AbyssObstaclesTest : WorldTest() {
     @Test
     fun `Can't burn down boil obstacle without tinderbox`() {
         val tile = Tile(3017, 4835)
-        val player = createPlayer("player", tile)
+        val player = createPlayer(tile)
         player.levels.set(Skill.Firemaking, 99)
 
         val obj = objects[Tile(3018, 4833)].first { it.id.startsWith("abyss_obstacle") }
@@ -172,7 +172,7 @@ internal class AbyssObstaclesTest : WorldTest() {
             override fun nextInt(until: Int) = until + 1
         })
         val tile = Tile(3017, 4835)
-        val player = createPlayer("player", tile)
+        val player = createPlayer(tile)
         player.inventory.add("tinderbox")
 
         val obj = objects[Tile(3018, 4833)].first { it.id.startsWith("abyss_obstacle") }
@@ -187,7 +187,7 @@ internal class AbyssObstaclesTest : WorldTest() {
 
     @Test
     fun `Distract eyes obstacle`() {
-        val player = createPlayer("player", Tile(3020, 4842))
+        val player = createPlayer(Tile(3020, 4842))
         player.levels.set(Skill.Thieving, 99)
 
         val obj = objects[Tile(3021, 4842)].first { it.id.startsWith("abyss_obstacle") }
@@ -205,7 +205,7 @@ internal class AbyssObstaclesTest : WorldTest() {
             override fun nextInt(until: Int) = until + 1
         })
         val tile = Tile(3020, 4842)
-        val player = createPlayer("player", tile)
+        val player = createPlayer(tile)
         player.levels.set(Skill.Thieving, 99)
 
         val obj = objects[Tile(3021, 4842)].first { it.id.startsWith("abyss_obstacle") }
@@ -220,7 +220,7 @@ internal class AbyssObstaclesTest : WorldTest() {
 
     @Test
     fun `Squeeze through gap obstacle`() {
-        val player = createPlayer("player", Tile(3030, 4851))
+        val player = createPlayer(Tile(3030, 4851))
         player.levels.set(Skill.Agility, 99)
 
         val obj = objects[Tile(3028, 4849)].first { it.id.startsWith("abyss_obstacle") }
@@ -238,7 +238,7 @@ internal class AbyssObstaclesTest : WorldTest() {
             override fun nextInt(until: Int) = until + 1
         })
         val tile = Tile(3030, 4851)
-        val player = createPlayer("player", tile)
+        val player = createPlayer(tile)
         player.levels.set(Skill.Agility, 99)
 
         val obj = objects[Tile(3028, 4849)].first { it.id.startsWith("abyss_obstacle") }
@@ -253,7 +253,7 @@ internal class AbyssObstaclesTest : WorldTest() {
 
     @Test
     fun `Enter passage obstacle`() {
-        val player = createPlayer("player", Tile(3038, 4853))
+        val player = createPlayer(Tile(3038, 4853))
 
         val obj = objects[Tile(3038, 4853)].first { it.id.startsWith("abyss_obstacle") }
 

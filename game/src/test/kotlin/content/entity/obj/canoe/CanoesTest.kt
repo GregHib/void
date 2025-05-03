@@ -22,7 +22,7 @@ class CanoesTest : WorldTest() {
     @TestFactory
     fun `Travel by canoe`() = listOf("log", "dugout", "stable_dugout", "waka").map { canoe ->
         dynamicTest("Travel by ${canoe.toLowerSpaceCase()} canoe") {
-            val player = createPlayer("canoer", Tile(3232, 3252))
+            val player = createPlayer(Tile(3232, 3252))
             player.inventory.add("rune_hatchet")
             player.levels.set(Skill.Woodcutting, 60)
 
@@ -39,7 +39,7 @@ class CanoesTest : WorldTest() {
                 return@mapNotNull null
             }
             dynamicTest("Travel from ${from.toLowerSpaceCase()} to ${to.toLowerSpaceCase()}") {
-                val player = createPlayer("canoer", playerTile(from))
+                val player = createPlayer(playerTile(from))
                 player.inventory.add("rune_hatchet")
                 player.levels.set(Skill.Woodcutting, 60)
                 player["wilderness_canoe_warning"] = false
@@ -98,7 +98,7 @@ class CanoesTest : WorldTest() {
 
     @Test
     fun `Can't chop without a hatchet`() {
-        val player = createPlayer("canoer", Tile(3232, 3252))
+        val player = createPlayer(Tile(3232, 3252))
         player.levels.set(Skill.Woodcutting, 12)
         val station = objects[Tile(3233, 3250), "canoe_station_lumbridge"]!!
 
@@ -111,7 +111,7 @@ class CanoesTest : WorldTest() {
 
     @Test
     fun `Can't shape without the level`() {
-        val player = createPlayer("canoer", Tile(3202, 3343))
+        val player = createPlayer(Tile(3202, 3343))
         val station = objects[Tile(3200, 3341), "canoe_station_champions_guild"]!!
         player.levels.set(Skill.Woodcutting, 12)
         player.inventory.add("steel_hatchet")
@@ -132,7 +132,7 @@ class CanoesTest : WorldTest() {
 
     @Test
     fun `Can't travel far with a bad boat`() {
-        val player = createPlayer("canoer", Tile(3232, 3252))
+        val player = createPlayer(Tile(3232, 3252))
         player.inventory.add("rune_hatchet")
         player.levels.set(Skill.Woodcutting, 60)
 
@@ -143,7 +143,7 @@ class CanoesTest : WorldTest() {
 
     @Test
     fun `Can't travel to current location`() {
-        val player = createPlayer("canoer", Tile(3232, 3252))
+        val player = createPlayer(Tile(3232, 3252))
         player.inventory.add("rune_hatchet")
         player.levels.set(Skill.Woodcutting, 60)
 
@@ -154,7 +154,7 @@ class CanoesTest : WorldTest() {
 
     @Test
     fun `Can't travel to wilderness without a waka`() {
-        val player = createPlayer("canoer", Tile(3132, 3510))
+        val player = createPlayer(Tile(3132, 3510))
         player.inventory.add("rune_hatchet")
         player.levels.set(Skill.Woodcutting, 60)
         travelByCanoe(player, "edgeville", "wilderness_pond", "stable_dugout")

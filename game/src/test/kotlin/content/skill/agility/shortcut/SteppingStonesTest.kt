@@ -15,7 +15,7 @@ class SteppingStonesTest : WorldTest() {
 
     @Test
     fun `Cross north shilo village waterfall stones`() {
-        val player = createPlayer(tile = Tile(2925, 2947))
+        val player = createPlayer(Tile(2925, 2947))
         player.levels.set(Skill.Agility, 30)
 
         var stones = objects[Tile(2925, 2948), "shilo_village_waterfall_stepping_stone_south"]!!
@@ -36,7 +36,7 @@ class SteppingStonesTest : WorldTest() {
 
     @Test
     fun `Cross south shilo village waterfall stones`() {
-        val player = createPlayer(tile = Tile(2925, 2951))
+        val player = createPlayer(Tile(2925, 2951))
         player.levels.set(Skill.Agility, 30)
 
         var stones = objects[Tile(2925, 2950), "shilo_village_waterfall_stepping_stone_north"]!!
@@ -60,7 +60,7 @@ class SteppingStonesTest : WorldTest() {
         setRandom(object : Random() {
             override fun nextBits(bitCount: Int): Int = 255
         })
-        val player = createPlayer(tile = Tile(2925, 2947))
+        val player = createPlayer(Tile(2925, 2947))
         player.levels.set(Skill.Agility, 30)
         val stones = objects[Tile(2925, 2948), "shilo_village_waterfall_stepping_stone_south"]!!
         player.objectOption(stones, "Cross")
@@ -76,7 +76,7 @@ class SteppingStonesTest : WorldTest() {
         setRandom(object : Random() {
             override fun nextBits(bitCount: Int): Int = 255
         })
-        val player = createPlayer(tile = Tile(2925, 2951))
+        val player = createPlayer(Tile(2925, 2951))
         player.levels.set(Skill.Agility, 30)
         val stones = objects[Tile(2925, 2950), "shilo_village_waterfall_stepping_stone_north"]!!
         player.objectOption(stones, "Cross")
@@ -89,7 +89,7 @@ class SteppingStonesTest : WorldTest() {
 
     @Test
     fun `Can't cross shilo village waterfall without level`() {
-        val player = createPlayer(tile = Tile(2925, 2951))
+        val player = createPlayer(Tile(2925, 2951))
         player.levels.set(Skill.Agility, 29)
         val stones = objects[Tile(2925, 2950), "shilo_village_waterfall_stepping_stone_north"]!!
 
@@ -101,7 +101,7 @@ class SteppingStonesTest : WorldTest() {
 
     @Test
     fun `Cross east draynor stones`() {
-        val player = createPlayer(tile = Tile(3149, 3363))
+        val player = createPlayer(Tile(3149, 3363))
         player.levels.set(Skill.Agility, 31)
 
         var stones = objects[Tile(3150, 3363), "draynor_stepping_stone"]!!
@@ -126,7 +126,7 @@ class SteppingStonesTest : WorldTest() {
 
     @Test
     fun `Cross west draynor stones`() {
-        val player = createPlayer(tile = Tile(3154, 3363))
+        val player = createPlayer(Tile(3154, 3363))
         player.levels.set(Skill.Agility, 31)
 
         var stones = objects[Tile(3153, 3363), "draynor_stepping_stone"]!!
@@ -154,7 +154,7 @@ class SteppingStonesTest : WorldTest() {
         setRandom(object : Random() {
             override fun nextBits(bitCount: Int): Int = 255
         })
-        val player = createPlayer(tile = Tile(3149, 3363))
+        val player = createPlayer(Tile(3149, 3363))
         player.levels.set(Skill.Agility, 31)
         val stones = objects[Tile(3150, 3363), "draynor_stepping_stone"]!!
         player.objectOption(stones, "Jump-onto")
@@ -170,7 +170,7 @@ class SteppingStonesTest : WorldTest() {
         setRandom(object : Random() {
             override fun nextBits(bitCount: Int): Int = 255
         })
-        val player = createPlayer(tile = Tile(3154, 3363))
+        val player = createPlayer(Tile(3154, 3363))
         player.levels.set(Skill.Agility, 31)
         val stones = objects[Tile(3153, 3363), "draynor_stepping_stone"]!!
         player.objectOption(stones, "Jump-onto")
@@ -183,7 +183,7 @@ class SteppingStonesTest : WorldTest() {
 
     @Test
     fun `Can't cross draynor stones without level`() {
-        val player = createPlayer(tile = Tile(3149, 3363))
+        val player = createPlayer(Tile(3149, 3363))
         player.levels.set(Skill.Agility, 30)
 
         val stones = objects[Tile(3150, 3363), "draynor_stepping_stone"]!!
@@ -195,7 +195,7 @@ class SteppingStonesTest : WorldTest() {
 
     @Test
     fun `Cross north shilo stone`() {
-        val player = createPlayer(tile = Tile(2860, 2971))
+        val player = createPlayer(Tile(2860, 2971))
         player.levels.set(Skill.Agility, 74)
 
         val stones = objects[Tile(2860, 2974), "shilo_river_stepping_stone"]!!
@@ -207,7 +207,7 @@ class SteppingStonesTest : WorldTest() {
 
     @Test
     fun `Can't cross shilo stone without levels`() {
-        val player = createPlayer(tile = Tile(2860, 2971))
+        val player = createPlayer(Tile(2860, 2971))
         player.levels.set(Skill.Agility, 73)
 
         val stones = objects[Tile(2860, 2974), "shilo_river_stepping_stone"]!!
@@ -219,7 +219,7 @@ class SteppingStonesTest : WorldTest() {
 
     @Test
     fun `Cross south shilo stone`() {
-        val player = createPlayer(tile = Tile(2860, 2977))
+        val player = createPlayer(Tile(2860, 2977))
         player.levels.set(Skill.Agility, 74)
 
         val stones = objects[Tile(2860, 2974), "shilo_river_stepping_stone"]!!

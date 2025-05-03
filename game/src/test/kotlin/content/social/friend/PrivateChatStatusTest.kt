@@ -115,7 +115,7 @@ internal class PrivateChatStatusTest : WorldTest() {
     }
 
     private fun createClient(name: String): Player {
-        val player = createPlayer(name)
+        val player = createPlayer(name = name)
         val client: Client = mockk(relaxed = true)
         player.client = client
         return player

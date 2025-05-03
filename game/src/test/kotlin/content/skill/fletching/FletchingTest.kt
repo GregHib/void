@@ -15,7 +15,7 @@ internal class FletchingTest : WorldTest() {
 
     @Test
     fun `Fletch arrow shafts`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.levels.set(Skill.Fletching, 100)
         player.inventory.add("knife")
         player.inventory.add("logs")
@@ -32,7 +32,7 @@ internal class FletchingTest : WorldTest() {
 
     @Test
     fun `Fletch headless arrows`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.levels.set(Skill.Fletching, 100)
         player.inventory.add("arrow_shaft", 15)
         player.inventory.add("feather", 15)
@@ -46,7 +46,7 @@ internal class FletchingTest : WorldTest() {
 
     @Test
     fun `Fletch bronze arrows`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.levels.set(Skill.Fletching, 100)
         player.inventory.add("headless_arrow", 15)
         player.inventory.add("bronze_arrowtips", 15)
@@ -60,7 +60,7 @@ internal class FletchingTest : WorldTest() {
 
     @Test
     fun `Fletch shortbow unstrung`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.levels.set(Skill.Fletching, 100)
         player.inventory.add("knife")
         player.inventory.add("logs")
@@ -77,7 +77,7 @@ internal class FletchingTest : WorldTest() {
 
     @Test
     fun `String shortbow`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.levels.set(Skill.Fletching, 100)
         player.inventory.add("shortbow_u")
         player.inventory.add("bowstring")
@@ -91,7 +91,7 @@ internal class FletchingTest : WorldTest() {
 
     @Test
     fun `Fletch wooden stock`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.levels.set(Skill.Fletching, 100)
         player.inventory.add("knife")
         player.inventory.add("logs")
@@ -108,7 +108,7 @@ internal class FletchingTest : WorldTest() {
 
     @Test
     fun `Fletch crossbow unstrung`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.levels.set(Skill.Fletching, 100)
         player.inventory.add("bronze_crossbow_u")
         player.inventory.add("crossbow_string")
@@ -122,7 +122,7 @@ internal class FletchingTest : WorldTest() {
 
     @Test
     fun `Fletch bronze darts`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.levels.set(Skill.Fletching, 100)
         player.inventory.add("bronze_dart_tip", 10)
         player.inventory.add("feather", 10)
@@ -136,7 +136,7 @@ internal class FletchingTest : WorldTest() {
 
     @Test
     fun `Fletch bronze bolts`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.levels.set(Skill.Fletching, 100)
         player.inventory.add("bronze_bolts_unf", 10)
         player.inventory.add("feather", 10)

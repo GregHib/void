@@ -17,7 +17,7 @@ internal class FishingTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int): Int = 0
         })
-        val player = createPlayer("fisher", emptyTile)
+        val player = createPlayer(emptyTile)
         player.levels.set(Skill.Fishing, 20)
         val fishingSpot = createNPC("fishing_spot_lure_bait_lumbridge", emptyTile.addY(1))
         player.inventory.add("fly_fishing_rod")

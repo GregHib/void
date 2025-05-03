@@ -28,7 +28,7 @@ internal class ObjectTest : WorldTest() {
 
     @Test
     fun `Can't walk through a door`() {
-        val player = createPlayer("player", Tile(3227, 3214))
+        val player = createPlayer(Tile(3227, 3214))
         tick()
 
         handler.walk(Walk(3226, 3214), player)
@@ -39,7 +39,7 @@ internal class ObjectTest : WorldTest() {
 
     @Test
     fun `Can open and walk through a door`() {
-        val player = createPlayer("player", Tile(3227, 3214))
+        val player = createPlayer(Tile(3227, 3214))
         tick()
         val door = objects.getLayer(Tile(3226, 3214), ObjectLayer.WALL)!!
 
@@ -53,7 +53,7 @@ internal class ObjectTest : WorldTest() {
 
     @Test
     fun `Ladder ascending`() {
-        val player = createPlayer("player", Tile(3229, 3214))
+        val player = createPlayer(Tile(3229, 3214))
         tick()
         val ladder = objects.getLayer(Tile(3229, 3213), ObjectLayer.GROUND)!!
 
@@ -65,7 +65,7 @@ internal class ObjectTest : WorldTest() {
 
     @Test
     fun `Ladder descending`() {
-        val player = createPlayer("player", Tile(3229, 3214, 1))
+        val player = createPlayer(Tile(3229, 3214, 1))
         tick()
 
         // The one in Objects has wrong id as config replace id disabled.

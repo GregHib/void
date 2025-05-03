@@ -93,14 +93,14 @@ abstract class WorldTest : KoinTest {
     }
 
     fun createClient(name: String, tile: Tile = Tile.EMPTY): Pair<Player, Client> {
-        val player = createPlayer(name, tile)
+        val player = createPlayer(tile, name)
         val client: Client = mockk(relaxed = true)
         player.viewport = Viewport()
         player.client = client
         return player to client
     }
 
-    fun createPlayer(name: String = "player", tile: Tile = Tile.EMPTY): Player {
+    fun createPlayer(tile: Tile = Tile.EMPTY, name: String = "player"): Player {
         val player = Player(tile = tile, accountName = name, passwordHash = "")
         assertTrue(accounts.setup(player, null, 0))
         accountDefs.add(player)

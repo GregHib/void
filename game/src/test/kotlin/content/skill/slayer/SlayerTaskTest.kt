@@ -48,7 +48,7 @@ class SlayerTaskTest : WorldTest() {
             setRandom(object : FakeRandom() {
                 override fun nextBits(bitCount: Int): Int = bitCount
             })
-            val player = createPlayer(tile = Tile(3231, 3298))
+            val player = createPlayer(Tile(3231, 3298))
             player.levels.set(Skill.Attack, 99)
             player.levels.set(Skill.Strength, 99)
             player.levels.set(Skill.Defence, 99)
@@ -78,7 +78,7 @@ class SlayerTaskTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextBits(bitCount: Int): Int = bitCount
         })
-        val player = createPlayer(tile = Tile(3231, 3298))
+        val player = createPlayer(Tile(3231, 3298))
         player.levels.set(Skill.Attack, 99)
         player.levels.set(Skill.Strength, 99)
         player.levels.set(Skill.Defence, 99)
@@ -113,7 +113,7 @@ class SlayerTaskTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextBits(bitCount: Int): Int = bitCount
         })
-        val player = createPlayer(tile = Tile(3231, 3298))
+        val player = createPlayer(Tile(3231, 3298))
         player.levels.set(Skill.Attack, 99)
         player.levels.set(Skill.Strength, 99)
         player.levels.set(Skill.Defence, 99)
@@ -144,7 +144,7 @@ class SlayerTaskTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextBits(bitCount: Int): Int = bitCount
         })
-        val player = createPlayer(tile = Tile(3231, 3298))
+        val player = createPlayer(Tile(3231, 3298))
         player.levels.set(Skill.Attack, 99)
         player.levels.set(Skill.Strength, 99)
         player.levels.set(Skill.Defence, 99)
@@ -171,7 +171,7 @@ class SlayerTaskTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextBits(bitCount: Int): Int = bitCount
         })
-        val player = createPlayer(tile = Tile(3231, 3298))
+        val player = createPlayer(Tile(3231, 3298))
         player.levels.set(Skill.Attack, 99)
         player.levels.set(Skill.Strength, 99)
         player.levels.set(Skill.Defence, 99)

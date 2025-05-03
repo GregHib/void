@@ -13,7 +13,7 @@ class AlKharidMineTest : WorldTest() {
 
     @Test
     fun `Climb up mine shortcut`() {
-        val player = createPlayer(tile = Tile(3303, 3315))
+        val player = createPlayer(Tile(3303, 3315))
         player.levels.set(Skill.Agility, 38)
         val rocks = objects[Tile(3304, 3315), "al_kharid_mine_shortcut_bottom"]!!
         player.objectOption(rocks, "Climb")
@@ -24,7 +24,7 @@ class AlKharidMineTest : WorldTest() {
 
     @Test
     fun `Can't climb up mine shortcut without levels`() {
-        val player = createPlayer(tile = Tile(3303, 3315))
+        val player = createPlayer(Tile(3303, 3315))
         player.levels.set(Skill.Agility, 37)
         val rocks = objects[Tile(3304, 3315), "al_kharid_mine_shortcut_bottom"]!!
         player.objectOption(rocks, "Climb")
@@ -35,7 +35,7 @@ class AlKharidMineTest : WorldTest() {
 
     @Test
     fun `Climb down mine shortcut`() {
-        val player = createPlayer(tile = Tile(3307, 3315))
+        val player = createPlayer(Tile(3307, 3315))
         player.levels.set(Skill.Agility, 38)
         val rocks = objects[Tile(3306, 3315), "al_kharid_mine_shortcut_top"]!!
         player.objectOption(rocks, "Climb")
@@ -46,7 +46,7 @@ class AlKharidMineTest : WorldTest() {
 
     @Test
     fun `Can't climb down mine shortcut without levels`() {
-        val player = createPlayer(tile = Tile(3307, 3315))
+        val player = createPlayer(Tile(3307, 3315))
         player.levels.set(Skill.Agility, 37)
         val rocks = objects[Tile(3306, 3315), "al_kharid_mine_shortcut_top"]!!
         player.objectOption(rocks, "Climb")

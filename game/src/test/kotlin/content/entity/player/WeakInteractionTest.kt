@@ -34,7 +34,7 @@ internal class WeakInteractionTest : WorldTest() {
         "Toggle attack style"
     ).map {
         dynamicTest("$it interaction clears dialogue") {
-            val player = createPlayer("player")
+            val player = createPlayer()
             player.inventory.add("ball_of_wool", 2)
             player.equipment.set(EquipSlot.Weapon.index, "bronze_sword")
             var cancelled = false
@@ -68,7 +68,7 @@ internal class WeakInteractionTest : WorldTest() {
         "Music player"
     ).map {
         dynamicTest("$it interaction doesn't clear dialogue") {
-            val player = createPlayer("player")
+            val player = createPlayer()
             var cancelled = false
             player.weakQueue("dialogue", onCancel = { cancelled = true }) {
                 npc<Pleased>("Bob", "Hello")
@@ -90,7 +90,7 @@ internal class WeakInteractionTest : WorldTest() {
 
     @Test
     fun `Dropping an item doesn't interrupt movement`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("vial")
 
         val target = player.tile.addY(10)

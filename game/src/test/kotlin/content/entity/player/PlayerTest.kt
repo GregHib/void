@@ -15,7 +15,7 @@ internal class PlayerTest : WorldTest() {
     @Test
     fun `Walk to location`() {
         val start = emptyTile
-        val player = createPlayer("walker", start)
+        val player = createPlayer(start)
         val handler: InstructionHandlers = get()
 
         handler.walk(Walk(emptyTile.x, emptyTile.y + 10), player)
@@ -27,7 +27,7 @@ internal class PlayerTest : WorldTest() {
     @Test
     fun `Run to location`() {
         val start = emptyTile
-        val player = createPlayer("runner", start)
+        val player = createPlayer(start)
         val handler: InstructionHandlers = get()
 
         player.interfaceOption("energy_orb", "run_background", "Turn Run mode on")
@@ -40,7 +40,7 @@ internal class PlayerTest : WorldTest() {
     @Test
     fun `Restore energy over time`() {
         val start = emptyTile
-        val player = createPlayer("walker", start)
+        val player = createPlayer(start)
         player.runEnergy = 0
 
         tick(5)
@@ -51,7 +51,7 @@ internal class PlayerTest : WorldTest() {
     @Test
     fun `Restore energy faster when resting`() {
         val start = emptyTile
-        val player = createPlayer("walker", start)
+        val player = createPlayer(start)
         player.runEnergy = 0
         tick(5)
         val energy = player.runEnergy

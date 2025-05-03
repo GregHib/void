@@ -27,7 +27,7 @@ class StrongholdOfSecurityDoorsTest : WorldTest() {
         Tile(2356, 5221) to "portal_of_death"
     ).map { (tile, id) ->
         dynamicTest("${id.toSentenceCase()} door gives questions") {
-            val player = createPlayer(tile = tile)
+            val player = createPlayer(tile)
             val door = objects[tile, id]!!
 
             player["stronghold_safe_space"] = true
@@ -46,7 +46,7 @@ class StrongholdOfSecurityDoorsTest : WorldTest() {
         Tile(2356, 5221) to "portal_of_death"
     ).map { (tile, id) ->
         dynamicTest("Enter through ${id.toSentenceCase()} door") {
-            val player = createPlayer(tile = tile)
+            val player = createPlayer(tile)
             val door = objects[tile, id]!!
 
             player["stronghold_safe_space"] = false
@@ -67,7 +67,7 @@ class StrongholdOfSecurityDoorsTest : WorldTest() {
                 override fun nextInt(until: Int): Int = index
             })
             val tile = Tile(1878, 5223)
-            val player = createPlayer(tile = tile)
+            val player = createPlayer(tile)
             val door = objects[tile, "gate_of_war"]!!
             player["stronghold_safe_space"] = true
 

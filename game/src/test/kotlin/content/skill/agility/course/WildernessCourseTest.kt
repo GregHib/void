@@ -13,7 +13,7 @@ internal class WildernessCourseTest : WorldTest() {
 
     @Test
     fun `Enter course`() {
-        val player = createPlayer("agile", Tile(2998, 3916))
+        val player = createPlayer(Tile(2998, 3916))
         player.levels.set(Skill.Agility, 52)
         val door = objects[Tile(2998, 3917), "wilderness_agility_door_closed"]!!
 
@@ -26,7 +26,7 @@ internal class WildernessCourseTest : WorldTest() {
 
     @Test
     fun `Enter course without level`() {
-        val player = createPlayer("agile", Tile(2998, 3916))
+        val player = createPlayer(Tile(2998, 3916))
         val door = objects[Tile(2998, 3917), "wilderness_agility_door_closed"]!!
 
         player.objectOption(door, "Open")
@@ -37,7 +37,7 @@ internal class WildernessCourseTest : WorldTest() {
 
     @Test
     fun `Exit course`() {
-        val player = createPlayer("agile", Tile(2998, 3931))
+        val player = createPlayer(Tile(2998, 3931))
         val door = objects[Tile(2998, 3931), "wilderness_agility_gate_east_closed"]!!
 
         player.objectOption(door, "Open")
@@ -52,7 +52,7 @@ internal class WildernessCourseTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("agile", Tile(2998, 3931))
+        val player = createPlayer(Tile(2998, 3931))
         val door = objects[Tile(2998, 3931), "wilderness_agility_gate_east_closed"]!!
 
         player.objectOption(door, "Open")
@@ -64,7 +64,7 @@ internal class WildernessCourseTest : WorldTest() {
 
     @Test
     fun `Climb through pipe`() {
-        val player = createPlayer("agile", Tile(3004, 3937))
+        val player = createPlayer(Tile(3004, 3937))
         val pipe = objects[Tile(3004, 3938), "wilderness_obstacle_pipe"]!!
 
         player.objectOption(pipe, "Squeeze-through")
@@ -76,7 +76,7 @@ internal class WildernessCourseTest : WorldTest() {
 
     @Test
     fun `Climb through pipe reversed`() {
-        val player = createPlayer("agile", Tile(3004, 3950))
+        val player = createPlayer(Tile(3004, 3950))
         val pipe = objects[Tile(3004, 3948), "wilderness_obstacle_pipe"]!!
 
         player.objectOption(pipe, "Squeeze-through")
@@ -87,7 +87,7 @@ internal class WildernessCourseTest : WorldTest() {
 
     @Test
     fun `Swing on rope swing`() {
-        val player = createPlayer("agile", Tile(3005, 3953))
+        val player = createPlayer(Tile(3005, 3953))
         val rope = objects[Tile(3005, 3952), "wilderness_rope_swing"]!!
 
         player.objectOption(rope, "Swing-on")
@@ -102,7 +102,7 @@ internal class WildernessCourseTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("agile", Tile(3005, 3953))
+        val player = createPlayer(Tile(3005, 3953))
         val rope = objects[Tile(3005, 3952), "wilderness_rope_swing"]!!
 
         player.objectOption(rope, "Swing-on")
@@ -115,7 +115,7 @@ internal class WildernessCourseTest : WorldTest() {
 
     @Test
     fun `Cross stepping stones`() {
-        val player = createPlayer("agile", Tile(3002, 3960))
+        val player = createPlayer(Tile(3002, 3960))
         val stones = objects[Tile(3001, 3960), "wilderness_stepping_stone"]!!
 
         player.objectOption(stones, "Cross")
@@ -130,7 +130,7 @@ internal class WildernessCourseTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("agile", Tile(3002, 3960))
+        val player = createPlayer(Tile(3002, 3960))
         val stones = objects[Tile(3001, 3960), "wilderness_stepping_stone"]!!
 
         player.objectOption(stones, "Cross")
@@ -143,7 +143,7 @@ internal class WildernessCourseTest : WorldTest() {
 
     @Test
     fun `Cross log balance`() {
-        val player = createPlayer("agile", Tile(3001, 3946))
+        val player = createPlayer(Tile(3001, 3946))
         val stones = objects[Tile(3001, 3945), "wilderness_log_balance"]!!
 
         player.objectOption(stones, "Walk-across")
@@ -158,7 +158,7 @@ internal class WildernessCourseTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("agile", Tile(3001, 3946))
+        val player = createPlayer(Tile(3001, 3946))
         val stones = objects[Tile(3001, 3945), "wilderness_log_balance"]!!
 
         player.objectOption(stones, "Walk-across")
@@ -171,7 +171,7 @@ internal class WildernessCourseTest : WorldTest() {
 
     @Test
     fun `Climb rocks`() {
-        val player = createPlayer("agile", Tile(2994, 3937))
+        val player = createPlayer(Tile(2994, 3937))
         val rocks = objects[Tile(2994, 3936), "wilderness_agility_rocks"]!!
 
         player.objectOption(rocks, "Climb")
@@ -184,7 +184,7 @@ internal class WildernessCourseTest : WorldTest() {
 
     @Test
     fun `Climb through pipe with bonus reward`() {
-        val player = createPlayer("agile", Tile(2995, 3937))
+        val player = createPlayer(Tile(2995, 3937))
         val rocks = objects[Tile(2995, 3936), "wilderness_agility_rocks"]!!
         player.agilityCourse("wilderness")
         player.agilityStage = 4

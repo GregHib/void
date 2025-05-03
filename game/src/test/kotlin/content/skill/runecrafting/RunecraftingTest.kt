@@ -27,7 +27,7 @@ internal class RunecraftingTest : WorldTest() {
     fun `Craft runes with rune essence`() = altars.filter { !it.pure }.map { (type, _, altarTile) ->
         dynamicTest("Craft $type runes with rune essence") {
             val tile = teleports.get("${type}_altar_ruins_enter", "Enter").first().to
-            val player = createPlayer("player", tile)
+            val player = createPlayer(tile)
             player.levels.set(Skill.Runecrafting, 99)
             player.inventory.add("rune_essence")
 
@@ -46,7 +46,7 @@ internal class RunecraftingTest : WorldTest() {
     fun `Cant craft high level runes with rune essence`() = altars.filter { it.pure }.map { (type, _, altarTile) ->
         dynamicTest("Can't craft $type runes with rune essence") {
             val tile = teleports.get("${type}_altar_ruins_enter", "Enter").first().to
-            val player = createPlayer("player", tile)
+            val player = createPlayer(tile)
             player.levels.set(Skill.Runecrafting, 99)
             player.inventory.add("rune_essence")
 
@@ -65,7 +65,7 @@ internal class RunecraftingTest : WorldTest() {
     fun `Craft runes with pure essence`() = altars.map { (type, _, altarTile) ->
         dynamicTest("Craft $type runes with pure essence") {
             val tile = teleports.get("${type}_altar_ruins_enter", "Enter").first().to
-            val player = createPlayer("player", tile)
+            val player = createPlayer(tile)
             player.levels.set(Skill.Runecrafting, 99)
             player.inventory.add("pure_essence")
 
@@ -84,7 +84,7 @@ internal class RunecraftingTest : WorldTest() {
     fun `Can craft multiple runes with one essence`() = altars.filter { it.type != "law" && it.type != "death" && it.type != "blood" }.map { (type, _, altarTile) ->
         dynamicTest("Craft multiple $type runes with pure essence") {
             val tile = teleports.get("${type}_altar_ruins_enter", "Enter").first().to
-            val player = createPlayer("player", tile)
+            val player = createPlayer(tile)
             player.levels.set(Skill.Runecrafting, 99)
             player.inventory.add("pure_essence")
 
@@ -103,7 +103,7 @@ internal class RunecraftingTest : WorldTest() {
     fun `Cant craft runes without required level`() = altars.map { (type, _, altarTile) ->
         dynamicTest("Can't craft $type runes") {
             val tile = teleports.get("${type}_altar_ruins_enter", "Enter").first().to
-            val player = createPlayer("player", tile)
+            val player = createPlayer(tile)
             player.levels.set(Skill.Runecrafting, 0)
             player.inventory.add("pure_essence")
 

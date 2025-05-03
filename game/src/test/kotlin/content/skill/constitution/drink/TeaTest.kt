@@ -20,7 +20,7 @@ internal class TeaTest : WorldTest() {
 
     @Test
     fun `Cup of tea boosts attack`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("cup_of_tea")
         player.experience.set(Skill.Constitution, Level.experience(15))
         player.levels.set(Skill.Constitution, 100)
@@ -39,7 +39,7 @@ internal class TeaTest : WorldTest() {
                 return 25
             }
         })
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("guthix_rest_3")
         player.experience.set(Skill.Constitution, Level.experience(15))
         player.poison(player, 50)
@@ -56,7 +56,7 @@ internal class TeaTest : WorldTest() {
 
     @Test
     fun `Nettle tea boosts energy`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("nettle_tea")
         player.experience.set(Skill.Constitution, Level.experience(15))
         player.levels.set(Skill.Constitution, 100)
@@ -71,7 +71,7 @@ internal class TeaTest : WorldTest() {
 
     @Test
     fun `Tea flask boosts attack`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.set(0, "tea_flask", 5)
         player.experience.set(Skill.Constitution, Level.experience(15))
         player.levels.set(Skill.Constitution, 100)
@@ -86,7 +86,7 @@ internal class TeaTest : WorldTest() {
 
     @Test
     fun `Can't drink from empty tea flask`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.set(0, "tea_flask", 0)
         player.experience.set(Skill.Constitution, Level.experience(15))
         player.levels.set(Skill.Constitution, 100)
@@ -101,7 +101,7 @@ internal class TeaTest : WorldTest() {
 
     @Test
     fun `Pour tea with flask`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("tea_flask")
         player.inventory.add("empty_cup")
 
@@ -113,7 +113,7 @@ internal class TeaTest : WorldTest() {
 
     @Test
     fun `Pour tea into flask`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("tea_flask")
         player.inventory.add("cup_of_tea")
 
@@ -125,7 +125,7 @@ internal class TeaTest : WorldTest() {
 
     @Test
     fun `Can't fill full tea flask`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.set(0, "tea_flask", 5)
         player.inventory.add("cup_of_tea")
 

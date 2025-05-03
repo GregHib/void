@@ -16,7 +16,7 @@ internal class RingOfRecoilTest : WorldTest() {
 
     @Test
     fun `Ring of recoil deflects damage`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         val npc = createNPC("rat")
 
         player.equipment.set(EquipSlot.Ring.index, "ring_of_recoil")
@@ -32,7 +32,7 @@ internal class RingOfRecoilTest : WorldTest() {
 
     @Test
     fun `Ring of recoil charges are shared`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         val npc = createNPC("rat")
 
         player.equipment.set(EquipSlot.Ring.index, "ring_of_recoil")

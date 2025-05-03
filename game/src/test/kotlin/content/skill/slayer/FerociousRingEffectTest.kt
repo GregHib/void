@@ -27,10 +27,10 @@ internal class FerociousRingEffectTest : CombatFormulaTest() {
 
     @Test
     fun `Ring against target in dungeon multiplies max hit`() {
-        val player = createPlayer("source", Tile(1660, 5257))
+        val player = createPlayer(Tile(1660, 5257), "source")
         player.levels.set(Skill.Strength, 99)
         player.equipment.set(EquipSlot.Ring.index, "ferocious_ring_5")
-        val target = createPlayer("target", Tile(1660, 5257))
+        val target = createPlayer(Tile(1660, 5257), "target")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, target, "melee")
 

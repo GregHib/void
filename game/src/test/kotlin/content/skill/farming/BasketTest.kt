@@ -14,7 +14,7 @@ internal class BasketTest : WorldTest() {
 
     @Test
     fun `Fill empty sack with multiple vegetables`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("banana")
         player.inventory.add("strawberry", 5)
         player.inventory.add("basket")
@@ -28,7 +28,7 @@ internal class BasketTest : WorldTest() {
 
     @Test
     fun `Fill part filled sack with multiple vegetables`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("banana", 5)
         player.inventory.add("bananas_2")
 
@@ -40,7 +40,7 @@ internal class BasketTest : WorldTest() {
 
     @Test
     fun `Fill almost full sack with multiple vegetables`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("strawberry", 5)
         player.inventory.add("strawberries_2")
 
@@ -53,7 +53,7 @@ internal class BasketTest : WorldTest() {
 
     @Test
     fun `Sack can't be filled with more vegetables when full`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("cooking_apple", 5)
         player.inventory.add("apples_5")
 
@@ -65,7 +65,7 @@ internal class BasketTest : WorldTest() {
 
     @Test
     fun `Add one vegetable to empty sack`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("strawberry", 2)
         player.inventory.add("basket")
 
@@ -78,7 +78,7 @@ internal class BasketTest : WorldTest() {
 
     @Test
     fun `Add one vegetable to partially filled sack`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("banana", 2)
         player.inventory.add("bananas_4")
 
@@ -92,7 +92,7 @@ internal class BasketTest : WorldTest() {
 
     @Test
     fun `Can't add one vegetable to full sack`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("cooking_apple", 2)
         player.inventory.add("apples_5")
 
@@ -105,7 +105,7 @@ internal class BasketTest : WorldTest() {
 
     @Test
     fun `Empty partially filled sack`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("bananas_3")
 
         player.itemOption("Empty", "bananas_3")
@@ -116,7 +116,7 @@ internal class BasketTest : WorldTest() {
 
     @Test
     fun `Empty partially filled sack into almost full inventory`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("apples_4")
         player.inventory.add("shark", 25)
 
@@ -128,7 +128,7 @@ internal class BasketTest : WorldTest() {
 
     @Test
     fun `Can't empty partially filled sack into full inventory`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("strawberries_4")
         player.inventory.add("shark", 27)
 
@@ -140,7 +140,7 @@ internal class BasketTest : WorldTest() {
 
     @Test
     fun `Remove one vegetable from full sack`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("apples_5")
 
         player.itemOption("Remove-one", "apples_5")
@@ -151,7 +151,7 @@ internal class BasketTest : WorldTest() {
 
     @Test
     fun `Remove one vegetable from full sack into almost full inventory`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("bananas_5")
         player.inventory.add("shark", 26)
 
@@ -163,7 +163,7 @@ internal class BasketTest : WorldTest() {
 
     @Test
     fun `Can't remove one vegetable from full sack into full inventory`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("strawberries_5")
         player.inventory.add("shark", 27)
 

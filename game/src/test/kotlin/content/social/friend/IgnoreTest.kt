@@ -31,7 +31,7 @@ internal class IgnoreTest : WorldTest() {
     @Test
     fun `Add player to empty ignores list`() = runTest {
         val (player, client) = createClient("player")
-        createPlayer("nuisance")
+        createPlayer(name = "nuisance")
 
         player.instructions.send(IgnoreAdd("nuisance"))
         tick()
@@ -48,7 +48,7 @@ internal class IgnoreTest : WorldTest() {
         repeat(200) {
             player.ignores.add(it.toString())
         }
-        createPlayer("nuisance")
+        createPlayer(name = "nuisance")
 
         player.instructions.send(IgnoreAdd("nuisance"))
         tick()
@@ -72,8 +72,8 @@ internal class IgnoreTest : WorldTest() {
 
     @Test
     fun `Re-add an existing player`() = runTest {
-        val player = createPlayer("player")
-        createPlayer("nuisance")
+        val player = createPlayer(name = "player")
+        createPlayer(name = "nuisance")
         player.ignores.add("nuisance")
 
         player.instructions.send(IgnoreAdd("nuisance"))
@@ -86,8 +86,8 @@ internal class IgnoreTest : WorldTest() {
 
     @Test
     fun `Try to ignore a friend`() = runTest {
-        val player = createPlayer("player")
-        createPlayer("friend")
+        val player = createPlayer(name = "player")
+        createPlayer(name = "friend")
         player.friends["friend"] = ClanRank.Friend
 
         player.instructions.send(IgnoreAdd("friend"))
@@ -100,7 +100,7 @@ internal class IgnoreTest : WorldTest() {
 
     @Test
     fun `Delete ignore`() = runTest {
-        val player = createPlayer("player")
+        val player = createPlayer(name = "player")
         player.privateStatus = "on"
         val (nuisance, client) = createClient("nuisance")
         player.ignores.add("nuisance")
@@ -134,7 +134,7 @@ internal class IgnoreTest : WorldTest() {
 
     @Test
     fun `Private messages not receive from ignored players`() = runTest {
-        val player = createPlayer("player")
+        val player = createPlayer(name = "player")
         val (nuisance, client) = createClient("nuisance")
         player.ignores.add("nuisance")
 

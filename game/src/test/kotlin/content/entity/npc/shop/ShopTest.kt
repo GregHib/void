@@ -14,7 +14,7 @@ internal class ShopTest : WorldTest() {
 
     @Test
     fun `Buy item from the shop`() {
-        val player = createPlayer("shopper", emptyTile)
+        val player = createPlayer(emptyTile)
         val npc = createNPC("bob", emptyTile.addY(4))
         player.inventory.add("coins", 1000)
 
@@ -31,7 +31,7 @@ internal class ShopTest : WorldTest() {
 
     @Test
     fun `Take free item from the shop`() {
-        val player = createPlayer("shopper", emptyTile)
+        val player = createPlayer(emptyTile)
         val npc = createNPC("bob", emptyTile.addY(1))
         player.inventory.add("coins", 1000)
 
@@ -47,7 +47,7 @@ internal class ShopTest : WorldTest() {
 
     @Test
     fun `Sell item to the shop`() {
-        val player = createPlayer("shopper", emptyTile)
+        val player = createPlayer(emptyTile)
         val npc = createNPC("bob", emptyTile.addY(1))
         player.inventory.add("iron_battleaxe", 1)
 

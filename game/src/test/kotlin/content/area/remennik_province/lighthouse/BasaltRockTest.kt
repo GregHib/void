@@ -14,7 +14,7 @@ class BasaltRockTest : WorldTest() {
 
     @Test
     fun `Jump to the lighthouse`() {
-        val player = createPlayer(tile = Tile(2523, 3595))
+        val player = createPlayer(Tile(2523, 3595))
 
         val rock1 = Tile(2522, 3597)
         var rocks = objects[rock1, "basalt_rock_start"]!!
@@ -49,7 +49,7 @@ class BasaltRockTest : WorldTest() {
 
     @Test
     fun `Jump from the lighthouse`() {
-        val player = createPlayer(tile = Tile(2514, 3619))
+        val player = createPlayer(Tile(2514, 3619))
 
         val rock1 = Tile(2514, 3617)
         var rocks = objects[rock1, "basalt_rock_end"]!!
@@ -84,7 +84,7 @@ class BasaltRockTest : WorldTest() {
 
     @Test
     fun `Jump to the lighthouse clicking nearest`() {
-        val player = createPlayer(tile = Tile(2523, 3595))
+        val player = createPlayer(Tile(2523, 3595))
 
         val beach = objects[Tile(2522, 3595), "beach"]!!
         player.objectOption(beach, "Jump-to")
@@ -114,7 +114,7 @@ class BasaltRockTest : WorldTest() {
 
     @Test
     fun `Jump from the lighthouse clicking nearest`() {
-        val player = createPlayer(tile = Tile(2514, 3619))
+        val player = createPlayer(Tile(2514, 3619))
 
         val shore = objects[Tile(2514, 3619), "rocky_shore"]!!
         player.objectOption(shore, "Jump-to")
@@ -147,7 +147,7 @@ class BasaltRockTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextBits(bitCount: Int): Int = 255
         })
-        val player = createPlayer(tile = Tile(2522, 3599))
+        val player = createPlayer(Tile(2522, 3599))
         player.levels.set(Skill.Constitution, 12)
 
         val rocks = objects[Tile(2522, 3602), "basalt_rock_3"]!!
@@ -162,7 +162,7 @@ class BasaltRockTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextBits(bitCount: Int): Int = 255
         })
-        val player = createPlayer(tile = Tile(2514, 3615))
+        val player = createPlayer(Tile(2514, 3615))
         player.levels.set(Skill.Constitution, 12)
 
         val rocks = objects[Tile(2514, 3615), "basalt_rock_7"]!!

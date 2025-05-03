@@ -15,7 +15,7 @@ internal class HitpointRestorationTest : WorldTest() {
 
     @Test
     fun `Hitpoints restore over time`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.experience.set(Skill.Constitution, Level.experience(Skill.Constitution, 990))
         player.levels.set(Skill.Constitution, 990)
 
@@ -30,7 +30,7 @@ internal class HitpointRestorationTest : WorldTest() {
 
     @Test
     fun `Hitpoints restore faster with rapid renewal and regen bracelet`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.experience.set(Skill.Prayer, Level.experience(99))
         player.levels.set(Skill.Prayer, 99)
         player.addVarbit(PrayerConfigs.ACTIVE_PRAYERS, "rapid_renewal")
@@ -49,7 +49,7 @@ internal class HitpointRestorationTest : WorldTest() {
 
     @Test
     fun `Hitpoints shouldn't restore if dead`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.experience.set(Skill.Constitution, Level.experience(Skill.Constitution, 990))
         player.levels.set(Skill.Constitution, 980)
 

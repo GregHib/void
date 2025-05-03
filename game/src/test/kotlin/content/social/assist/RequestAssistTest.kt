@@ -57,8 +57,8 @@ internal class RequestAssistTest : WorldTest() {
     }
 
     private fun setupAssist(): Pair<Player, Player> {
-        val assistant = createPlayer("assistant", emptyTile)
-        val receiver = createPlayer("receiver", emptyTile.addY(1))
+        val assistant = createPlayer(emptyTile, "assistant")
+        val receiver = createPlayer(emptyTile.addY(1), "receiver")
         receiver.playerOption(assistant, "Req Assist")
         tick()
         assistant.playerOption(receiver, "Req Assist")

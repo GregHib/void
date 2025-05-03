@@ -17,7 +17,7 @@ internal class BankTest : WorldTest() {
 
     @Test
     fun `Deposit coins and swords`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         val bank = createObject(bankBooth, emptyTile.addY(4))
         player.inventory.add("coins", 1000)
         player.inventory.add("bronze_sword", 2)
@@ -37,7 +37,7 @@ internal class BankTest : WorldTest() {
 
     @Test
     fun `Deposit noted items`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         val bank = createObject(bankBooth, emptyTile.addY(1))
         player.inventory.add("bronze_sword_noted", 2)
         player.inventory.add("bronze_sword", 2)
@@ -52,7 +52,7 @@ internal class BankTest : WorldTest() {
 
     @Test
     fun `Deposit all`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         val bank = createObject(bankBooth, emptyTile.addY(1))
         player.inventory.add("coins", 1000)
         player.inventory.add("bronze_sword", 2)
@@ -71,7 +71,7 @@ internal class BankTest : WorldTest() {
 
     @Test
     fun `Deposit worn equipment`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         val bank = createObject(bankBooth, emptyTile.addY(1))
         player.equipment.set(EquipSlot.Ammo.index, "rune_arrow", 100)
         player.equipment.set(EquipSlot.Cape.index, "ranged_cape")
@@ -87,7 +87,7 @@ internal class BankTest : WorldTest() {
 
     @Test
     fun `Withdraw items`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         val bank = createObject(bankBooth, emptyTile.addY(1))
         player.bank.add("coins", 1000)
         player.bank.add("bronze_sword", 10)
@@ -106,7 +106,7 @@ internal class BankTest : WorldTest() {
 
     @Test
     fun `Withdraw noted items`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         val bank = createObject(bankBooth, emptyTile.addY(1))
         player.bank.add("coins", 1000)
         player.bank.add("bronze_sword", 10)

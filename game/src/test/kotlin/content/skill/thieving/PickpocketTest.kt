@@ -20,7 +20,7 @@ internal class PickpocketTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = 0
         })
-        val player = createPlayer("thief", emptyTile)
+        val player = createPlayer(emptyTile)
         val man = createNPC("man", emptyTile.addY(1))
 
         player.npcOption(man, "Pickpocket")
@@ -36,7 +36,7 @@ internal class PickpocketTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("thief", emptyTile)
+        val player = createPlayer(emptyTile)
         val man = createNPC("man", emptyTile.addY(1))
 
         player.npcOption(man, "Pickpocket")
@@ -49,7 +49,7 @@ internal class PickpocketTest : WorldTest() {
 
     @Test
     fun `Can't pickpocket with full inventory`() {
-        val player = createPlayer("thief", emptyTile)
+        val player = createPlayer(emptyTile)
         player.inventory.add("cheese", 28)
         val man = createNPC("man", emptyTile.addY(1))
 

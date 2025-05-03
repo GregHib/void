@@ -15,7 +15,7 @@ class TaskSystemTest : WorldTest() {
 
     @Test
     fun `Dismissing unrelated completed task details doesn't remove pinned task`() {
-        val player = createPlayer("achiever", Tile(3207, 3224, 2))
+        val player = createPlayer(Tile(3207, 3224, 2))
         player["unstable_foundations"] = "completed"
 
         player.interfaceOption("task_system", "task_6", "Pin/Unpin Task")
@@ -36,7 +36,7 @@ class TaskSystemTest : WorldTest() {
 
     @Test
     fun `Dismissing the completed task details removes the pinned task`() {
-        val player = createPlayer("achiever", Tile(3207, 3224, 2))
+        val player = createPlayer(Tile(3207, 3224, 2))
         player["unstable_foundations"] = "completed"
 
         player.interfaceOption("task_system", "task_5", "Pin/Unpin Task")
@@ -56,7 +56,7 @@ class TaskSystemTest : WorldTest() {
 
     @Test
     fun `Dismissing the task summary removes the pinned task`() {
-        val player = createPlayer("achiever", Tile(3207, 3224, 2))
+        val player = createPlayer(Tile(3207, 3224, 2))
         player["unstable_foundations"] = "completed"
 
         player.interfaceOption("task_system", "task_5", "Pin/Unpin Task")
@@ -76,7 +76,7 @@ class TaskSystemTest : WorldTest() {
 
     @Test
     fun `Dismissing different task details after pinned doesn't remove pinned task`() {
-        val player = createPlayer("achiever", Tile(3207, 3224, 2))
+        val player = createPlayer(Tile(3207, 3224, 2))
         player["unstable_foundations"] = "completed"
 
         player.interfaceOption("task_system", "task_5", "Pin/Unpin Task")

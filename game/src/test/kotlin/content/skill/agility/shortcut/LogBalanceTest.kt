@@ -13,7 +13,7 @@ class LogBalanceTest : WorldTest() {
 
     @Test
     fun `Walk west across coal truck log`() {
-        val player = createPlayer(tile = Tile(2602, 3478))
+        val player = createPlayer(Tile(2602, 3478))
         player.levels.set(Skill.Agility, 20)
         val log = objects[Tile(2602, 3477), "coal_truck_log_balance"]!!
 
@@ -26,7 +26,7 @@ class LogBalanceTest : WorldTest() {
 
     @Test
     fun `Walk east across coal truck log`() {
-        val player = createPlayer(tile = Tile(2598, 3477))
+        val player = createPlayer(Tile(2598, 3477))
         player.levels.set(Skill.Agility, 20)
         val log = objects[Tile(2599, 3477), "coal_truck_log_balance"]!!
 
@@ -39,7 +39,7 @@ class LogBalanceTest : WorldTest() {
 
     @Test
     fun `Can't walk across coal truck log without level`() {
-        val player = createPlayer(tile = Tile(2598, 3477))
+        val player = createPlayer(Tile(2598, 3477))
         player.levels.set(Skill.Agility, 19)
         val log = objects[Tile(2599, 3477), "coal_truck_log_balance"]!!
 
@@ -51,7 +51,7 @@ class LogBalanceTest : WorldTest() {
 
     @Test
     fun `Walk west across ardougne log`() {
-        val player = createPlayer(tile = Tile(2602, 3336))
+        val player = createPlayer(Tile(2602, 3336))
         player.levels.set(Skill.Agility, 33)
         val log = objects[Tile(2601, 3336), "ardougne_log_balance_east"]!!
 
@@ -64,7 +64,7 @@ class LogBalanceTest : WorldTest() {
 
     @Test
     fun `Walk east across ardougne log`() {
-        val player = createPlayer(tile = Tile(2598, 3336))
+        val player = createPlayer(Tile(2598, 3336))
         player.levels.set(Skill.Agility, 33)
         val log = objects[Tile(2599, 3336), "ardougne_log_balance_west"]!!
 
@@ -77,7 +77,7 @@ class LogBalanceTest : WorldTest() {
 
     @Test
     fun `Can't walk across ardougne log without level`() {
-        val player = createPlayer(tile = Tile(2602, 3336))
+        val player = createPlayer(Tile(2602, 3336))
         player.levels.set(Skill.Agility, 32)
         val log = objects[Tile(2601, 3336), "ardougne_log_balance_east"]!!
 

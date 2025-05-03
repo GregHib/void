@@ -24,7 +24,7 @@ internal class StilesTest : WorldTest() {
         dynamicTest("Climb east stile from $delta to $target") {
             val objTile = Tile(2647, 3375)
             val obj = objects[objTile, "ardougne_farm_stile"]!!
-            val player = createPlayer("", objTile.add(delta))
+            val player = createPlayer(objTile.add(delta))
 
             player.objectOption(obj, "Climb-over")
 
@@ -48,7 +48,7 @@ internal class StilesTest : WorldTest() {
         dynamicTest("Climb north stile from $delta to $target") {
             val objTile = Tile(3197, 3276)
             val obj = objects[objTile, "freds_farm_stile"]!!
-            val player = createPlayer("", objTile.add(delta))
+            val player = createPlayer(objTile.add(delta))
 
             player.objectOption(obj, "Climb-over")
 

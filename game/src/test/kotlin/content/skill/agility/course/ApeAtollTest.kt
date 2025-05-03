@@ -15,7 +15,7 @@ class ApeAtollTest : WorldTest() {
 
     @Test
     fun `Jump to stepping stones`() {
-        val player = createPlayer("monkey", Tile(2755, 2742))
+        val player = createPlayer(Tile(2755, 2742))
         player.levels.set(Skill.Constitution, 850)
         player.levels.set(Skill.Agility, 50)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
@@ -31,7 +31,7 @@ class ApeAtollTest : WorldTest() {
 
     @Test
     fun `Can't jump to stepping stones with less than 48 agility`() {
-        val player = createPlayer("monkey", Tile(2755, 2742))
+        val player = createPlayer(Tile(2755, 2742))
         val stones = objects[Tile(2754, 2742), "ape_atoll_stepping_stones"]!!
         player.objectOption(stones, "Jump-to")
         tick(4)
@@ -40,7 +40,7 @@ class ApeAtollTest : WorldTest() {
 
     @Test
     fun `Can't jump to stepping stones with other greegree`() {
-        val player = createPlayer("monkey", Tile(2755, 2742))
+        val player = createPlayer(Tile(2755, 2742))
         player.levels.set(Skill.Agility, 50)
         player.equipment.set(EquipSlot.Weapon.index, "medium_ninja_monkey_greegree")
         val stones = objects[Tile(2754, 2742), "ape_atoll_stepping_stones"]!!
@@ -51,7 +51,7 @@ class ApeAtollTest : WorldTest() {
 
     @Test
     fun `Fail jump to stepping stones as a human`() {
-        val player = createPlayer("monkey", Tile(2755, 2742))
+        val player = createPlayer(Tile(2755, 2742))
         player.levels.set(Skill.Constitution, 850)
         player.levels.set(Skill.Agility, 50)
         val stones = objects[Tile(2754, 2742), "ape_atoll_stepping_stones"]!!
@@ -66,7 +66,7 @@ class ApeAtollTest : WorldTest() {
 
     @Test
     fun `Climb tropical tree`() {
-        val player = createPlayer("monkey", Tile(2752, 2742))
+        val player = createPlayer(Tile(2752, 2742))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
         val tree = objects[Tile(2752, 2741), "ape_atoll_tropical_tree"]!!
@@ -81,7 +81,7 @@ class ApeAtollTest : WorldTest() {
 
     @Test
     fun `Can't climb tropical tree with other greegree`() {
-        val player = createPlayer("monkey", Tile(2752, 2742))
+        val player = createPlayer(Tile(2752, 2742))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "medium_ninja_monkey_greegree")
         val tree = objects[Tile(2752, 2741), "ape_atoll_tropical_tree"]!!
@@ -99,7 +99,7 @@ class ApeAtollTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("monkey", Tile(2752, 2742))
+        val player = createPlayer(Tile(2752, 2742))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
         val tree = objects[Tile(2752, 2741), "ape_atoll_tropical_tree"]!!
@@ -117,7 +117,7 @@ class ApeAtollTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("monkey", Tile(2752, 2742))
+        val player = createPlayer(Tile(2752, 2742))
         player.levels.set(Skill.Constitution, 850)
         val tree = objects[Tile(2752, 2741), "ape_atoll_tropical_tree"]!!
 
@@ -131,7 +131,7 @@ class ApeAtollTest : WorldTest() {
 
     @Test
     fun `Climb across monkey bars`() {
-        val player = createPlayer("monkey", Tile(2753, 2741, 2))
+        val player = createPlayer(Tile(2753, 2741, 2))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
         val bars = objects[Tile(2752, 2741, 2), "ape_atoll_monkeybars"]!!
@@ -146,7 +146,7 @@ class ApeAtollTest : WorldTest() {
 
     @Test
     fun `Can't climb monkey bars with other greegree`() {
-        val player = createPlayer("monkey", Tile(2753, 2741, 2))
+        val player = createPlayer(Tile(2753, 2741, 2))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "gorilla_greegree")
         val bars = objects[Tile(2752, 2741, 2), "ape_atoll_monkeybars"]!!
@@ -164,7 +164,7 @@ class ApeAtollTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("monkey", Tile(2753, 2741, 2))
+        val player = createPlayer(Tile(2753, 2741, 2))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
         val bars = objects[Tile(2752, 2741, 2), "ape_atoll_monkeybars"]!!
@@ -182,7 +182,7 @@ class ApeAtollTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("monkey", Tile(2753, 2741, 2))
+        val player = createPlayer(Tile(2753, 2741, 2))
         player.levels.set(Skill.Constitution, 850)
         val bars = objects[Tile(2752, 2741, 2), "ape_atoll_monkeybars"]!!
 
@@ -196,7 +196,7 @@ class ApeAtollTest : WorldTest() {
 
     @Test
     fun `Climb skull slope`() {
-        val player = createPlayer("monkey", Tile(2747, 2741))
+        val player = createPlayer(Tile(2747, 2741))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
         val slope = objects[Tile(2746, 2741), "ape_atoll_skull_slope"]!!
@@ -211,7 +211,7 @@ class ApeAtollTest : WorldTest() {
 
     @Test
     fun `Can't climb slope with other greegree`() {
-        val player = createPlayer("monkey", Tile(2747, 2741))
+        val player = createPlayer(Tile(2747, 2741))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "medium_zombie_monkey_greegree")
         val slope = objects[Tile(2746, 2741), "ape_atoll_skull_slope"]!!
@@ -229,7 +229,7 @@ class ApeAtollTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("monkey", Tile(2747, 2741))
+        val player = createPlayer(Tile(2747, 2741))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
         val slope = objects[Tile(2746, 2741), "ape_atoll_skull_slope"]!!
@@ -247,7 +247,7 @@ class ApeAtollTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("monkey", Tile(2747, 2741))
+        val player = createPlayer(Tile(2747, 2741))
         player.levels.set(Skill.Constitution, 850)
         val slope = objects[Tile(2746, 2741), "ape_atoll_skull_slope"]!!
 
@@ -261,7 +261,7 @@ class ApeAtollTest : WorldTest() {
 
     @Test
     fun `Use rope swing`() {
-        val player = createPlayer("monkey", Tile(2751, 2731))
+        val player = createPlayer(Tile(2751, 2731))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
         val slope = objects[Tile(2752, 2731), "ape_atoll_rope_swing"]!!
@@ -276,7 +276,7 @@ class ApeAtollTest : WorldTest() {
 
     @Test
     fun `Can't use rope swing with other greegree`() {
-        val player = createPlayer("monkey", Tile(2751, 2731))
+        val player = createPlayer(Tile(2751, 2731))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "large_zombie_monkey_greegree")
         val slope = objects[Tile(2752, 2731), "ape_atoll_rope_swing"]!!
@@ -294,7 +294,7 @@ class ApeAtollTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("monkey", Tile(2751, 2731))
+        val player = createPlayer(Tile(2751, 2731))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
         val slope = objects[Tile(2752, 2731), "ape_atoll_rope_swing"]!!
@@ -312,7 +312,7 @@ class ApeAtollTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("monkey", Tile(2751, 2731))
+        val player = createPlayer(Tile(2751, 2731))
         player.levels.set(Skill.Constitution, 850)
         val slope = objects[Tile(2752, 2731), "ape_atoll_rope_swing"]!!
 
@@ -326,7 +326,7 @@ class ApeAtollTest : WorldTest() {
 
     @Test
     fun `Climb down tropical tree rope`() {
-        val player = createPlayer("monkey", Tile(2758, 2734))
+        val player = createPlayer(Tile(2758, 2734))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
         val slope = objects[Tile(2757, 2734), "ape_atoll_tropical_tree_rope"]!!
@@ -341,7 +341,7 @@ class ApeAtollTest : WorldTest() {
 
     @Test
     fun `Climb down tropical tree rope grants lap bonus`() {
-        val player = createPlayer("monkey", Tile(2758, 2734))
+        val player = createPlayer(Tile(2758, 2734))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
         player.agilityCourse("ape_atoll")
@@ -359,7 +359,7 @@ class ApeAtollTest : WorldTest() {
 
     @Test
     fun `Can't climb down tropical tree rope with other greegree`() {
-        val player = createPlayer("monkey", Tile(2758, 2734))
+        val player = createPlayer(Tile(2758, 2734))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "monkey_greegree")
         val slope = objects[Tile(2757, 2734), "ape_atoll_tropical_tree_rope"]!!
@@ -377,7 +377,7 @@ class ApeAtollTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("monkey", Tile(2758, 2734))
+        val player = createPlayer(Tile(2758, 2734))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
         val slope = objects[Tile(2757, 2734), "ape_atoll_tropical_tree_rope"]!!
@@ -395,7 +395,7 @@ class ApeAtollTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("monkey", Tile(2758, 2734))
+        val player = createPlayer(Tile(2758, 2734))
         player.levels.set(Skill.Constitution, 850)
         val slope = objects[Tile(2757, 2734), "ape_atoll_tropical_tree_rope"]!!
 

@@ -20,7 +20,7 @@ internal class EnterTheAbyss : WorldTest() {
     @Test
     fun `Complete the mini-quest`() {
         // Talk to the mage of zamorak in the wilderness
-        val player = createPlayer("quester", Tile(3107, 3556))
+        val player = createPlayer(Tile(3107, 3556))
         player["rune_mysteries"] = "completed"
         assertEquals("unstarted", player["enter_the_abyss", "unstarted"])
 

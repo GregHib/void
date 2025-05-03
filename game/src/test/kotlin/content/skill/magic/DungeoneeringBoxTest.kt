@@ -29,7 +29,7 @@ abstract class DungeoneeringBoxTest : WorldTest() {
 
     @Test
     fun `Charge with runes in inventory`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player["${box}_mode"] = mode
         player.inventory.set(0, box, 0)
         player.inventory.add(runes)
@@ -44,7 +44,7 @@ abstract class DungeoneeringBoxTest : WorldTest() {
 
     @Test
     fun `Charge using runes on box`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player["${box}_mode"] = mode
         player.inventory.set(0, box, 0)
         player.inventory.add(runes)
@@ -62,7 +62,7 @@ abstract class DungeoneeringBoxTest : WorldTest() {
 
     @Test
     fun `Switch box mode`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player["${box}_mode"] = mode
         player.inventory.set(0, box, 0)
 
@@ -74,7 +74,7 @@ abstract class DungeoneeringBoxTest : WorldTest() {
 
     @Test
     fun `Can't charge with not enough runes`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player["${box}_mode"] = mode
         player.inventory.set(0, box, 0)
 
@@ -89,7 +89,7 @@ abstract class DungeoneeringBoxTest : WorldTest() {
     @ParameterizedTest
     @ValueSource(strings = ["line1", "line2"])
     fun `Empty runes from box`(option: String) {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player["${box}_mode"] = mode
         player.inventory.set(0, box, 2)
 
@@ -107,7 +107,7 @@ abstract class DungeoneeringBoxTest : WorldTest() {
     @ParameterizedTest
     @ValueSource(strings = ["line1", "line2"])
     fun `Can't empty with no free space`(option: String) {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         player["${box}_mode"] = mode
         player.inventory.set(0, box, 2)
         player.inventory.add("shark", 27)
@@ -124,7 +124,7 @@ abstract class DungeoneeringBoxTest : WorldTest() {
     @Test
     fun `Doesn't use spells if in inventory`() {
         setRandom(Random)
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         val npc = createNPC("rat", emptyTile.addY(1))
         player["${box}_mode"] = mode
         player.inventory.set(EquipSlot.Shield.index, box, 10)
@@ -147,7 +147,7 @@ abstract class DungeoneeringBoxTest : WorldTest() {
     @Test
     fun `Uses charges in combat`() {
         setRandom(Random)
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         val npc = createNPC("rat", emptyTile.addY(1))
         player["${box}_mode"] = mode
         player.equipment.set(EquipSlot.Shield.index, box, 10)

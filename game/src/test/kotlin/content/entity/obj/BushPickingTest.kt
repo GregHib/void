@@ -13,7 +13,7 @@ class BushPickingTest : WorldTest() {
 
     @Test
     fun `Pick cadava bush`() {
-        val player = createPlayer("picker", Tile(3268, 3369))
+        val player = createPlayer(Tile(3268, 3369))
         val bush = objects[Tile(3268, 3370), "cadava_bush_full"]!!
 
         player.objectOption(bush, "Pick-from")
@@ -25,7 +25,7 @@ class BushPickingTest : WorldTest() {
 
     @Test
     fun `Can't pick from empty cadava bush`() {
-        val player = createPlayer("picker", Tile(3268, 3369))
+        val player = createPlayer(Tile(3268, 3369))
         var bush = objects[Tile(3268, 3370), "cadava_bush_full"]!!
 
         player.objectOption(bush, "Pick-from")
@@ -41,7 +41,7 @@ class BushPickingTest : WorldTest() {
 
     @Test
     fun `Pick redberry bush`() {
-        val player = createPlayer("picker", Tile(3277, 3370))
+        val player = createPlayer(Tile(3277, 3370))
         val bush = objects[Tile(3277, 3371), "redberry_bush_full"]!!
 
         player.objectOption(bush, "Pick-from")
@@ -53,7 +53,7 @@ class BushPickingTest : WorldTest() {
 
     @Test
     fun `Can't pick from empty redberry bush`() {
-        val player = createPlayer("picker", Tile(3277, 3370))
+        val player = createPlayer(Tile(3277, 3370))
         var bush = objects[Tile(3277, 3371), "redberry_bush_full"]!!
 
         player.objectOption(bush, "Pick-from")

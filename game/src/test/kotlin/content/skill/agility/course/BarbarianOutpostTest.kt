@@ -14,7 +14,7 @@ internal class BarbarianOutpostTest : WorldTest() {
 
     @Test
     fun `Enter entrance through pipe`() {
-        val player = createPlayer("barbarian", Tile(2551, 3560))
+        val player = createPlayer(Tile(2551, 3560))
         player.levels.set(Skill.Agility, 35)
         val pipe = objects[Tile(2552, 3559), "barbarian_outpost_entrance"]!!
 
@@ -27,7 +27,7 @@ internal class BarbarianOutpostTest : WorldTest() {
 
     @Test
     fun `Fail entrance through pipe`() {
-        val player = createPlayer("barbarian", Tile(2551, 3560))
+        val player = createPlayer(Tile(2551, 3560))
         val pipe = objects[Tile(2552, 3559), "barbarian_outpost_entrance"]!!
 
         player.objectOption(pipe, "Squeeze-through")
@@ -39,7 +39,7 @@ internal class BarbarianOutpostTest : WorldTest() {
 
     @Test
     fun `Swing across rope`() {
-        val player = createPlayer("barbarian", Tile(2552, 3554))
+        val player = createPlayer(Tile(2552, 3554))
         val rope = objects[Tile(2552, 3550), "barbarian_outpost_rope_swing"]!!
 
         player.objectOption(rope, "Swing-on")
@@ -54,7 +54,7 @@ internal class BarbarianOutpostTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("barbarian", Tile(2552, 3554))
+        val player = createPlayer(Tile(2552, 3554))
         val rope = objects[Tile(2552, 3550), "barbarian_outpost_rope_swing"]!!
 
         player.objectOption(rope, "Swing-on")
@@ -66,7 +66,7 @@ internal class BarbarianOutpostTest : WorldTest() {
 
     @Test
     fun `Walk across log`() {
-        val player = createPlayer("barbarian", Tile(2551, 3546))
+        val player = createPlayer(Tile(2551, 3546))
         val log = objects[Tile(2550, 3546), "barbarian_outpost_log_balance"]!!
 
         player.objectOption(log, "Walk-across")
@@ -81,7 +81,7 @@ internal class BarbarianOutpostTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("barbarian", Tile(2551, 3546))
+        val player = createPlayer(Tile(2551, 3546))
         val log = objects[Tile(2550, 3546), "barbarian_outpost_log_balance"]!!
 
         player.objectOption(log, "Walk-across")
@@ -94,7 +94,7 @@ internal class BarbarianOutpostTest : WorldTest() {
 
     @Test
     fun `Climb net`() {
-        val player = createPlayer("barbarian", Tile(2539, 3546))
+        val player = createPlayer(Tile(2539, 3546))
         val log = objects[Tile(2538, 3545), "barbarian_outpost_obstacle_net"]!!
 
         player.objectOption(log, "Climb-over")
@@ -106,7 +106,7 @@ internal class BarbarianOutpostTest : WorldTest() {
 
     @Test
     fun `Walk across ledge`() {
-        val player = createPlayer("barbarian", Tile(2536, 3547, 1))
+        val player = createPlayer(Tile(2536, 3547, 1))
         val ledge = objects[Tile(2535, 3547, 1), "barbarian_outpost_balancing_ledge"]!!
 
         player.objectOption(ledge, "Walk-across")
@@ -121,7 +121,7 @@ internal class BarbarianOutpostTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("barbarian", Tile(2536, 3547, 1))
+        val player = createPlayer(Tile(2536, 3547, 1))
         val ledge = objects[Tile(2535, 3547, 1), "barbarian_outpost_balancing_ledge"]!!
 
         player.objectOption(ledge, "Walk-across")
@@ -134,7 +134,7 @@ internal class BarbarianOutpostTest : WorldTest() {
 
     @Test
     fun `Climb wall`() {
-        val player = createPlayer("barbarian", Tile(2537, 3554))
+        val player = createPlayer(Tile(2537, 3554))
         val wall = objects[Tile(2537, 3553), "barbarian_outpost_crumbling_wall"]!!
 
         player.objectOption(wall, "Climb-over")
@@ -146,7 +146,7 @@ internal class BarbarianOutpostTest : WorldTest() {
 
     @Test
     fun `Finish course lap`() {
-        val player = createPlayer("barbarian", Tile(2541, 3553))
+        val player = createPlayer(Tile(2541, 3553))
         val wall = objects[Tile(2542, 3553), "barbarian_outpost_crumbling_wall"]!!
 
         player.agilityCourse("barbarian")

@@ -31,7 +31,7 @@ internal class MysteriousRuinsTest : WorldTest() {
     fun `Can enter ruins with talisman`() = RunecraftingTest.altars.map { (type, ruinsTile, altarTile) ->
         dynamicTest("Enter $type ruins with talisman") {
             val tile = areas["${type}_altar_teleport"].random()
-            val player = createPlayer("player", tile)
+            val player = createPlayer(tile)
             player.inventory.add("${type}_talisman")
 
             val ruins = objects[ruinsTile, "${type}_altar_ruins"]!!
@@ -46,7 +46,7 @@ internal class MysteriousRuinsTest : WorldTest() {
     fun `Can enter ruins with tiara`() = RunecraftingTest.altars.map { (type, ruinsTile, altarTile) ->
         dynamicTest("Enter $type ruins with tiara") {
             val tile = areas["${type}_altar_teleport"].random()
-            val player = createPlayer("player", tile)
+            val player = createPlayer(tile)
             player.equipment.set(EquipSlot.Hat.index, "${type}_tiara")
             tick(1)
 
@@ -62,7 +62,7 @@ internal class MysteriousRuinsTest : WorldTest() {
     fun `Can enter ruins with omni tiara`() = RunecraftingTest.altars.map { (type, ruinsTile, altarTile) ->
         dynamicTest("Enter $type ruins with omni tiara") {
             val tile = areas["${type}_altar_teleport"].random()
-            val player = createPlayer("player", tile)
+            val player = createPlayer(tile)
             player.equipment.set(EquipSlot.Hat.index, "omni_tiara")
 
             val ruins = objects[ruinsTile, "${type}_altar_ruins"]!!
@@ -77,7 +77,7 @@ internal class MysteriousRuinsTest : WorldTest() {
     fun `Can enter ruins with omni staff`() = RunecraftingTest.altars.map { (type, ruinsTile, altarTile) ->
         dynamicTest("Enter $type ruins with omni tiara") {
             val tile = areas["${type}_altar_teleport"].random()
-            val player = createPlayer("player", tile)
+            val player = createPlayer(tile)
             player.equipment.set(EquipSlot.Weapon.index, "omni_talisman_staff")
 
             val ruins = objects[ruinsTile, "${type}_altar_ruins"]!!
@@ -103,7 +103,7 @@ internal class MysteriousRuinsTest : WorldTest() {
     fun `Cannot enter ruins with no items`() = RunecraftingTest.altars.map { (type, ruinsTile, altarTile) ->
         dynamicTest("Cannot enter $type ruins") {
             val tile = areas["${type}_altar_teleport"].random()
-            val player = createPlayer("player", tile)
+            val player = createPlayer(tile)
 
             val ruins = objects[ruinsTile, "${type}_altar_ruins"]!!
             player.objectOption(ruins, "Enter", 0)

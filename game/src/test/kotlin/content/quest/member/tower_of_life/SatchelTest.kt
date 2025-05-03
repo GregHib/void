@@ -18,7 +18,7 @@ internal class SatchelTest : WorldTest() {
 
     @Test
     fun `Empty satchel of items`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.set(0, "plain_satchel", 7)
 
         player.itemOption("Empty", "plain_satchel")
@@ -31,7 +31,7 @@ internal class SatchelTest : WorldTest() {
 
     @Test
     fun `Empty satchel of items into almost full inventory`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.set(0, "plain_satchel", 7)
         player.inventory.add("shark", 26)
 
@@ -46,7 +46,7 @@ internal class SatchelTest : WorldTest() {
     @ParameterizedTest
     @ValueSource(strings = ["cake", "banana", "triangle_sandwich"])
     fun `Add item to food satchel`(item: String) {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.set(0, "plain_satchel", 0)
         player.inventory.add(item)
 
@@ -59,7 +59,7 @@ internal class SatchelTest : WorldTest() {
     @ParameterizedTest
     @ValueSource(strings = ["cake", "banana", "triangle_sandwich"])
     fun `Can't add item to full satchel`(item: String) {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.set(0, "plain_satchel", 7)
         player.inventory.add(item)
 

@@ -21,7 +21,7 @@ internal class CombatRetaliationTest : WorldTest() {
 
     @Test
     fun `Npc fights back`() {
-        val player = createPlayer("player", emptyTile)
+        val player = createPlayer(emptyTile)
         val npc = createNPC("rat", emptyTile.addY(1))
 
         player.npcOption(npc, "Attack")
@@ -37,8 +37,8 @@ internal class CombatRetaliationTest : WorldTest() {
 
     @Test
     fun `Player with auto retaliate fights back`() {
-        val player = createPlayer("player", emptyTile)
-        val target = createPlayer("target", emptyTile.addY(1))
+        val player = createPlayer(emptyTile)
+        val target = createPlayer(emptyTile.addY(1))
         player["in_pvp"] = true
         target["in_pvp"] = true
         target["auto_retaliate"] = true
@@ -57,8 +57,8 @@ internal class CombatRetaliationTest : WorldTest() {
 
     @Test
     fun `Player with no auto retaliate doesn't fight back`() {
-        val player = createPlayer("player", emptyTile)
-        val target = createPlayer("target", emptyTile.addY(1))
+        val player = createPlayer(emptyTile)
+        val target = createPlayer(emptyTile.addY(1))
         player["in_pvp"] = true
         target["in_pvp"] = true
         target["auto_retaliate"] = false

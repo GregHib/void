@@ -13,7 +13,7 @@ class EaglesEyriesTest : WorldTest() {
 
     @Test
     fun `Climb up eagles peak`() {
-        val player = createPlayer(tile = Tile(2322, 3502))
+        val player = createPlayer(Tile(2322, 3502))
         player.levels.set(Skill.Agility, 25)
         val rocks = objects[Tile(2322, 3501), "eagles_peak_rocks"]!!
 
@@ -26,7 +26,7 @@ class EaglesEyriesTest : WorldTest() {
 
     @Test
     fun `Climb down eagles peak`() {
-        val player = createPlayer(tile = Tile(2324, 3497))
+        val player = createPlayer(Tile(2324, 3497))
         player.levels.set(Skill.Agility, 25)
         val rocks = objects[Tile(2324, 3498), "eagles_peak_rocks"]!!
 
@@ -39,7 +39,7 @@ class EaglesEyriesTest : WorldTest() {
 
     @Test
     fun `Can't climb eagels peak without level`() {
-        val player = createPlayer(tile = Tile(2324, 3497))
+        val player = createPlayer(Tile(2324, 3497))
         player.levels.set(Skill.Agility, 24)
         val rocks = objects[Tile(2323, 3497), "eagles_peak_rocks"]!!
 
@@ -51,7 +51,7 @@ class EaglesEyriesTest : WorldTest() {
 
     @Test
     fun `Climb up rellekka rocky handholds`() {
-        val player = createPlayer(tile = Tile(2740, 3830, 1))
+        val player = createPlayer(Tile(2740, 3830, 1))
         player.levels.set(Skill.Agility, 35)
         val rocks = objects[Tile(2741, 3830, 1), "rocky_handholds_bottom"]!!
 
@@ -64,7 +64,7 @@ class EaglesEyriesTest : WorldTest() {
 
     @Test
     fun `Climb down rellekka rocky handholds`() {
-        val player = createPlayer(tile = Tile(2744, 3830, 1))
+        val player = createPlayer(Tile(2744, 3830, 1))
         player.levels.set(Skill.Agility, 35)
         val rocks = objects[Tile(2743, 3830, 1), "rocky_handholds_top"]!!
 
@@ -77,7 +77,7 @@ class EaglesEyriesTest : WorldTest() {
 
     @Test
     fun `Can't climb rellekkas rocky handholds without level`() {
-        val player = createPlayer(tile = Tile(2740, 3830, 1))
+        val player = createPlayer(Tile(2740, 3830, 1))
         player.levels.set(Skill.Agility, 34)
         val rocks = objects[Tile(2741, 3830, 1), "rocky_handholds_bottom"]!!
 

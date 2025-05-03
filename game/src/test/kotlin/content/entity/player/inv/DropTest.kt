@@ -17,7 +17,7 @@ internal class DropTest : WorldTest() {
 
     @Test
     fun `Drop item onto the floor`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("bronze_sword")
 
         player.interfaceOption("inventory", "inventory", "Drop", 4, Item("bronze_sword"), 0)
@@ -30,7 +30,7 @@ internal class DropTest : WorldTest() {
     @Test
     fun `Floor item respawns after delay`() {
         val tile = Tile(3244, 3157)
-        val player = createPlayer("player", tile)
+        val player = createPlayer(tile)
 
         val floorItem = floorItems[tile].first()
         player.floorItemOption(floorItem, "Take")
@@ -44,7 +44,7 @@ internal class DropTest : WorldTest() {
     @Test
     fun `Drop stackable items on one another`() {
         val tile = emptyTile
-        val player = createPlayer("player", tile)
+        val player = createPlayer(tile)
         floorItems.add(tile, "coins", 500, revealTicks = 100, owner = player)
         player.inventory.add("coins", 500)
         tick()
@@ -60,7 +60,7 @@ internal class DropTest : WorldTest() {
     @Test
     fun `Drop items on one another`() {
         val tile = emptyTile
-        val player = createPlayer("player", tile)
+        val player = createPlayer(tile)
         floorItems.add(tile, "bronze_sword")
         player.inventory.add("bronze_sword")
 
@@ -74,7 +74,7 @@ internal class DropTest : WorldTest() {
     @Test
     fun `Place item onto a table`() {
         val tile = Tile(3212, 3218, 1)
-        val player = createPlayer("player", tile)
+        val player = createPlayer(tile)
         player.inventory.add("bronze_sword")
         val drawers = objects[tile.addX(1), "table_lumbridge"]!!
         player.itemOnObject(drawers, itemSlot = 0)
@@ -87,7 +87,7 @@ internal class DropTest : WorldTest() {
     @Test
     fun `Can't place un-tradeable item onto a table`() {
         val tile = Tile(3212, 3218, 1)
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("toolkit")
         val drawers = objects[tile.addX(1), "table_lumbridge"]!!
 

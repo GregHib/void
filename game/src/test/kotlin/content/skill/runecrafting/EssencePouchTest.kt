@@ -15,7 +15,7 @@ internal class EssencePouchTest : WorldTest() {
 
     @Test
     fun `Fill essence with empty pouch`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("small_pouch")
         player.inventory.add("rune_essence", 2)
         player.inventory.add("pure_essence", 2)
@@ -30,7 +30,7 @@ internal class EssencePouchTest : WorldTest() {
 
     @Test
     fun `Fill essence with partially filled pouch`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("small_pouch")
         player["small_pouch_essence"] = 1
         player["small_pouch_pure"] = true
@@ -47,7 +47,7 @@ internal class EssencePouchTest : WorldTest() {
 
     @Test
     fun `Fill essence with almost full pouch`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("small_pouch")
         player["small_pouch_essence"] = 2
         player.inventory.add("rune_essence", 2)
@@ -60,7 +60,7 @@ internal class EssencePouchTest : WorldTest() {
 
     @Test
     fun `Fill essence with full pouch`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("small_pouch")
         player["small_pouch_essence"] = 3
         player.inventory.add("rune_essence", 2)
@@ -73,7 +73,7 @@ internal class EssencePouchTest : WorldTest() {
 
     @Test
     fun `Empty essence from empty pouch`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.set(0, "medium_pouch", 10)
 
         player.itemOption("Empty", "medium_pouch")
@@ -86,7 +86,7 @@ internal class EssencePouchTest : WorldTest() {
 
     @Test
     fun `Empty essence from partially filled pouch`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.set(0, "medium_pouch", 10)
         player["medium_pouch_essence"] = 5
 
@@ -99,7 +99,7 @@ internal class EssencePouchTest : WorldTest() {
 
     @Test
     fun `Empty essence from full pouch`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.set(0, "large_pouch", 10)
         player["large_pouch_essence"] = 9
         player["large_pouch_pure"] = true
@@ -114,7 +114,7 @@ internal class EssencePouchTest : WorldTest() {
 
     @Test
     fun `Empty essence from full pouch into almost full inventory`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.set(0, "giant_pouch", 10)
         player["giant_pouch_essence"] = 12
         player["giant_pouch_pure"] = true
@@ -130,7 +130,7 @@ internal class EssencePouchTest : WorldTest() {
 
     @Test
     fun `Empty essence damages pouch`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.set(0, "medium_pouch", 1)
         player["medium_pouch_essence"] = 6
         player["medium_pouch_pure"] = false
@@ -147,7 +147,7 @@ internal class EssencePouchTest : WorldTest() {
 
     @Test
     fun `Add essence to empty pouch`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("small_pouch")
         player.inventory.add("rune_essence", 2)
         player.inventory.add("pure_essence", 2)
@@ -162,7 +162,7 @@ internal class EssencePouchTest : WorldTest() {
 
     @Test
     fun `Can't add pure essence to partially filled rune essence pouch`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("small_pouch")
         player["medium_pouch_pure"] = false
         player["medium_pouch_essence"] = 2
@@ -179,7 +179,7 @@ internal class EssencePouchTest : WorldTest() {
 
     @Test
     fun `Can't add rune essence to partially filled pure essence pouch`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.add("small_pouch")
         player["medium_pouch_pure"] = true
         player["medium_pouch_essence"] = 2
@@ -196,7 +196,7 @@ internal class EssencePouchTest : WorldTest() {
 
     @Test
     fun `Dropping a pouch removes the essence inside`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
         player.inventory.set(0, "medium_pouch", 10)
         player["medium_pouch_essence"] = 2
 

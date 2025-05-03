@@ -21,7 +21,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can't grapple to al kharid without mithril grapple`() {
-        val player = createPlayer(tile = Tile(3246, 3179))
+        val player = createPlayer(Tile(3246, 3179))
         player.levels.set(Skill.Agility, 8)
         player.levels.set(Skill.Ranged, 38)
         player.levels.set(Skill.Strength, 17)
@@ -35,7 +35,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can't grapple to al kharid without crossbow`() {
-        val player = createPlayer(tile = Tile(3246, 3179))
+        val player = createPlayer(Tile(3246, 3179))
         player.levels.set(Skill.Agility, 8)
         player.levels.set(Skill.Ranged, 38)
         player.levels.set(Skill.Strength, 17)
@@ -50,7 +50,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can't grapple to al kharid without levels`() {
-        val player = createPlayer(tile = Tile(3246, 3179))
+        val player = createPlayer(Tile(3246, 3179))
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
         val obj = objects[Tile(3252, 3179), "lumbridge_broken_raft"]!!
@@ -63,7 +63,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can't grapple to al kharid too far away`() {
-        val player = createPlayer(tile = Tile(3246, 3181))
+        val player = createPlayer(Tile(3246, 3181))
         player.levels.set(Skill.Agility, 8)
         player.levels.set(Skill.Ranged, 38)
         player.levels.set(Skill.Strength, 17)
@@ -79,7 +79,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can grapple to al kharid`() {
-        val player = createPlayer(tile = Tile(3246, 3180))
+        val player = createPlayer(Tile(3246, 3180))
         player.levels.set(Skill.Agility, 8)
         player.levels.set(Skill.Ranged, 38)
         player.levels.set(Skill.Strength, 17)
@@ -95,7 +95,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can't grapple to lumbridge too far away`() {
-        val player = createPlayer(tile = Tile(3259, 3178))
+        val player = createPlayer(Tile(3259, 3178))
         player.levels.set(Skill.Agility, 8)
         player.levels.set(Skill.Ranged, 38)
         player.levels.set(Skill.Strength, 17)
@@ -111,7 +111,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can grapple to lumbridge`() {
-        val player = createPlayer(tile = Tile(3259, 3180))
+        val player = createPlayer(Tile(3259, 3180))
         player.levels.set(Skill.Agility, 8)
         player.levels.set(Skill.Ranged, 38)
         player.levels.set(Skill.Strength, 17)
@@ -127,7 +127,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Grapple falador wall south`() {
-        val player = createPlayer(tile = Tile(3005, 3393))
+        val player = createPlayer(Tile(3005, 3393))
         player.levels.set(Skill.Agility, 11)
         player.levels.set(Skill.Ranged, 19)
         player.levels.set(Skill.Strength, 37)
@@ -143,7 +143,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Grapple falador wall north`() {
-        val player = createPlayer(tile = Tile(3006, 3395))
+        val player = createPlayer(Tile(3006, 3395))
         player.levels.set(Skill.Agility, 11)
         player.levels.set(Skill.Ranged, 19)
         player.levels.set(Skill.Strength, 37)
@@ -159,7 +159,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can't jump down falador wall south`() {
-        val player = createPlayer(tile = Tile(3005, 3394, 1))
+        val player = createPlayer(Tile(3005, 3394, 1))
         val obj = objects[Tile(3005, 3393, 1), "falador_wall_jump_south"]!!
         player.objectOption(obj, "Jump")
 
@@ -170,7 +170,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Jump down falador wall south`() {
-        val player = createPlayer(tile = Tile(3005, 3394, 1))
+        val player = createPlayer(Tile(3005, 3394, 1))
         player.levels.set(Skill.Agility, 4)
         val obj = objects[Tile(3005, 3393, 1), "falador_wall_jump_south"]!!
         player.objectOption(obj, "Jump")
@@ -182,7 +182,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Jump down falador wall north`() {
-        val player = createPlayer(tile = Tile(3006, 3394, 1))
+        val player = createPlayer(Tile(3006, 3394, 1))
         player.levels.set(Skill.Agility, 4)
         val obj = objects[Tile(3006, 3395, 1), "falador_wall_jump_north"]!!
         player.objectOption(obj, "Jump")
@@ -194,7 +194,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can't jump down falador wall north`() {
-        val player = createPlayer(tile = Tile(3006, 3394, 1))
+        val player = createPlayer(Tile(3006, 3394, 1))
         val obj = objects[Tile(3006, 3395, 1), "falador_wall_jump_north"]!!
         player.objectOption(obj, "Jump")
 
@@ -205,7 +205,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can grapple from water obelisk to catherby`() {
-        val player = createPlayer(tile = Tile(2841, 3425))
+        val player = createPlayer(Tile(2841, 3425))
         player.levels.set(Skill.Agility, 36)
         player.levels.set(Skill.Ranged, 39)
         player.levels.set(Skill.Strength, 22)
@@ -221,7 +221,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can't grapple to catherby wrong side of island`() {
-        val player = createPlayer(tile = Tile(2843, 3432))
+        val player = createPlayer(Tile(2843, 3432))
         player.levels.set(Skill.Agility, 36)
         player.levels.set(Skill.Ranged, 39)
         player.levels.set(Skill.Strength, 22)
@@ -237,7 +237,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can't grapple to catherby without mithril grapple`() {
-        val player = createPlayer(tile = Tile(2841, 3425))
+        val player = createPlayer(Tile(2841, 3425))
         player.levels.set(Skill.Agility, 36)
         player.levels.set(Skill.Ranged, 39)
         player.levels.set(Skill.Strength, 22)
@@ -252,7 +252,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can't grapple to catherby without crossbow`() {
-        val player = createPlayer(tile = Tile(2841, 3425))
+        val player = createPlayer(Tile(2841, 3425))
         player.levels.set(Skill.Agility, 36)
         player.levels.set(Skill.Ranged, 39)
         player.levels.set(Skill.Strength, 22)
@@ -267,7 +267,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can't grapple to catherby without levels`() {
-        val player = createPlayer(tile = Tile(2841, 3425))
+        val player = createPlayer(Tile(2841, 3425))
         player.levels.set(Skill.Agility, 35)
         player.levels.set(Skill.Ranged, 39)
         player.levels.set(Skill.Strength, 22)
@@ -283,7 +283,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can grapple to white wolf mountain`() {
-        val player = createPlayer(tile = Tile(2866, 3429))
+        val player = createPlayer(Tile(2866, 3429))
         player.levels.set(Skill.Agility, 32)
         player.levels.set(Skill.Ranged, 35)
         player.levels.set(Skill.Strength, 35)
@@ -299,7 +299,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can't grapple from wrong side of white wolf mountain`() {
-        val player = createPlayer(tile = Tile(2869, 3428))
+        val player = createPlayer(Tile(2869, 3428))
         player.levels.set(Skill.Agility, 32)
         player.levels.set(Skill.Ranged, 35)
         player.levels.set(Skill.Strength, 35)
@@ -315,7 +315,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can't grapple to white wolf mountain without mithril grapple`() {
-        val player = createPlayer(tile = Tile(2866, 3429))
+        val player = createPlayer(Tile(2866, 3429))
         player.levels.set(Skill.Agility, 32)
         player.levels.set(Skill.Ranged, 35)
         player.levels.set(Skill.Strength, 35)
@@ -330,7 +330,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can't grapple to white wolf mountain without crossbow`() {
-        val player = createPlayer(tile = Tile(2866, 3429))
+        val player = createPlayer(Tile(2866, 3429))
         player.levels.set(Skill.Agility, 32)
         player.levels.set(Skill.Ranged, 35)
         player.levels.set(Skill.Strength, 35)
@@ -345,7 +345,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can't grapple to white wolf mountain without levels`() {
-        val player = createPlayer(tile = Tile(2866, 3429))
+        val player = createPlayer(Tile(2866, 3429))
         player.levels.set(Skill.Agility, 31)
         player.levels.set(Skill.Ranged, 35)
         player.levels.set(Skill.Strength, 35)
@@ -361,7 +361,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Grapple yanille wall south`() {
-        val player = createPlayer(tile = Tile(2556, 3072))
+        val player = createPlayer(Tile(2556, 3072))
         player.levels.set(Skill.Agility, 39)
         player.levels.set(Skill.Ranged, 21)
         player.levels.set(Skill.Strength, 38)
@@ -377,7 +377,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Grapple yanille wall north`() {
-        val player = createPlayer(tile = Tile(2556, 3075))
+        val player = createPlayer(Tile(2556, 3075))
         player.levels.set(Skill.Agility, 39)
         player.levels.set(Skill.Ranged, 21)
         player.levels.set(Skill.Strength, 38)
@@ -393,7 +393,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Jump down yanille wall south`() {
-        val player = createPlayer(tile = Tile(2556, 3073, 1))
+        val player = createPlayer(Tile(2556, 3073, 1))
         player.levels.set(Skill.Agility, 4)
         val obj = objects[Tile(2556, 3073, 1), "yanille_grapple_wall_jump"]!!
         player.objectOption(obj, "Jump")
@@ -405,7 +405,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Jump down yanille wall north`() {
-        val player = createPlayer(tile = Tile(2556, 3074, 1))
+        val player = createPlayer(Tile(2556, 3074, 1))
         player.levels.set(Skill.Agility, 4)
         val obj = objects[Tile(2556, 3075, 1), "yanille_grapple_wall_jump"]!!
         player.objectOption(obj, "Jump")
@@ -417,7 +417,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can't jump down yanille wall south`() {
-        val player = createPlayer(tile = Tile(2556, 3073, 1))
+        val player = createPlayer(Tile(2556, 3073, 1))
         val obj = objects[Tile(2556, 3073, 1), "yanille_grapple_wall_jump"]!!
         player.objectOption(obj, "Jump")
 
@@ -428,7 +428,7 @@ internal class GrappleTest : WorldTest() {
 
     @Test
     fun `Can't jump down yanille wall north`() {
-        val player = createPlayer(tile = Tile(2556, 3074, 1))
+        val player = createPlayer(Tile(2556, 3074, 1))
         val obj = objects[Tile(2556, 3073, 1), "yanille_grapple_wall_jump"]!!
         player.objectOption(obj, "Jump")
 

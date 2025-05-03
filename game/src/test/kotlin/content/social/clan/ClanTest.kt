@@ -34,7 +34,7 @@ internal class ClanTest : WorldTest() {
 
     @Test
     fun `Can't join another players deactivated clan chat`() = runTest {
-        createPlayer("player")
+        createPlayer(name = "player")
         val (joiner, client) = createClient("joiner")
 
         joiner.instructions.send(ClanChatJoin("player"))
@@ -59,7 +59,7 @@ internal class ClanTest : WorldTest() {
 
     @Test
     fun `Can't join another clan without the minimum join rank`() = runTest {
-        val owner = createPlayer("player")
+        val owner = createPlayer(name = "player")
         owner.ownClan?.name = "clan"
         owner.ownClan?.joinRank = ClanRank.General
         val (joiner, client) = createClient("joiner")
@@ -92,7 +92,7 @@ internal class ClanTest : WorldTest() {
 
     @Test
     fun `Deactivate your own clan chat`() = runTest {
-        val player = createPlayer("player")
+        val player = createPlayer(name = "player")
         val clan = player.ownClan!!
         clan.name = "clan"
         player.instructions.send(ClanChatJoin("player"))
@@ -108,7 +108,7 @@ internal class ClanTest : WorldTest() {
 
     @Test
     fun `Join another clan chat with correct rank`() = runTest {
-        val owner = createPlayer("player")
+        val owner = createPlayer(name = "player")
         owner.ownClan?.name = "clan"
         owner.ownClan?.joinRank = ClanRank.Corporeal
         owner.friends["joiner"] = ClanRank.Corporeal
@@ -124,7 +124,7 @@ internal class ClanTest : WorldTest() {
 
     @Test
     fun `Leave a clan chat`() = runTest {
-        val owner = createPlayer("player")
+        val owner = createPlayer(name = "player")
         owner.ownClan?.name = "clan"
         val (joiner, client) = createClient("joiner")
         joiner.instructions.send(ClanChatJoin("player"))
@@ -140,8 +140,8 @@ internal class ClanTest : WorldTest() {
 
     @Test
     fun `Change clan rank of a friend`() = runTest {
-        createPlayer("friend")
-        val owner = createPlayer("player")
+        createPlayer(name = "friend")
+        val owner = createPlayer(name = "player")
         owner.ownClan?.name = "clan"
         owner.friends["friend"] = ClanRank.Friend
 
@@ -153,7 +153,7 @@ internal class ClanTest : WorldTest() {
 
     @Test
     fun `Deleting a friend kicks them if their rank is below minimum required`() = runTest {
-        val owner = createPlayer("player")
+        val owner = createPlayer(name = "player")
         owner.ownClan?.name = "clan"
         owner.ownClan?.joinRank = ClanRank.Corporeal
         owner.friends["joiner"] = ClanRank.Corporeal
@@ -171,7 +171,7 @@ internal class ClanTest : WorldTest() {
 
     @Test
     fun `Kick a player from a clan chat`() = runTest {
-        val owner = createPlayer("player")
+        val owner = createPlayer(name = "player")
         val clan = owner.ownClan!!
         clan.name = "clan"
         owner.friends["joiner"] = ClanRank.Friend
@@ -194,7 +194,7 @@ internal class ClanTest : WorldTest() {
         val (owner, client) = createClient("player")
         val clan = owner.ownClan!!
         clan.name = "clan"
-        val admin = createPlayer("admin")
+        val admin = createPlayer(name = "admin")
         admin.rights = PlayerRights.Admin
         admin.instructions.send(ClanChatJoin("player"))
         tick()
@@ -210,10 +210,10 @@ internal class ClanTest : WorldTest() {
 
     @Test
     fun `Admins can change another clans settings`() = runTest {
-        val owner = createPlayer("player")
+        val owner = createPlayer(name = "player")
         val clan = owner.ownClan!!
         clan.name = "clan"
-        val admin = createPlayer("admin")
+        val admin = createPlayer(name = "admin")
         admin.rights = PlayerRights.Admin
         admin.instructions.send(ClanChatJoin("player"))
         tick()
@@ -226,7 +226,7 @@ internal class ClanTest : WorldTest() {
 
     @Test
     fun `Players can't access another clans settings`() = runTest {
-        val owner = createPlayer("player")
+        val owner = createPlayer(name = "player")
         val clan = owner.ownClan!!
         clan.name = "clan"
         val (member, client) = createClient("member")
@@ -243,7 +243,7 @@ internal class ClanTest : WorldTest() {
 
     @Test
     fun `Talk in clan chat`() = runTest {
-        val owner = createPlayer("owner")
+        val owner = createPlayer(name = "owner")
         val clan = owner.ownClan!!
         clan.name = "clan"
         clan.talkRank = ClanRank.Corporeal
@@ -262,7 +262,7 @@ internal class ClanTest : WorldTest() {
 
     @Test
     fun `Can't talk without the minimum rank`() = runTest {
-        val owner = createPlayer("owner")
+        val owner = createPlayer(name = "owner")
         val clan = owner.ownClan!!
         val (player, client) = createClient("player")
         clan.name = "clan"

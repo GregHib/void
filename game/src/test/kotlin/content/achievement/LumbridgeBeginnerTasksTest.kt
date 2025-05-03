@@ -35,7 +35,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `On the Run`() = runTest {
-        val player = createPlayer("adventurer", emptyTile)
+        val player = createPlayer(emptyTile)
 
         player.running = true
         player.instructions.send(Walk(emptyTile.x, emptyTile.y + 2))
@@ -46,7 +46,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `A World in Microcosm`() = runTest {
-        val player = createPlayer("adventurer", emptyTile)
+        val player = createPlayer(emptyTile)
 
         player.instructions.send(Walk(emptyTile.x + 1, emptyTile.y + 1, minimap = true))
         tick()
@@ -56,7 +56,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Master of All I survey`() = runTest {
-        val player = createPlayer("adventurer", Tile(3207, 3224, 2))
+        val player = createPlayer(Tile(3207, 3224, 2))
         val ladder = objects[Tile(3207, 3223, 2), "lumbridge_castle_ladder"]!!
 
         player.objectOption(ladder, "Climb-up")
@@ -67,7 +67,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Raise the Roof`() = runTest {
-        val player = createPlayer("adventurer", Tile(3209, 3217, 3))
+        val player = createPlayer(Tile(3209, 3217, 3))
         val ladder = objects[Tile(3210, 3218, 3), "lumbridge_flag"]!!
 
         player.objectOption(ladder, "Raise")
@@ -81,7 +81,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = if (until == 256) until else 0
         })
-        val player = createPlayer("adventurer", Tile(3229, 3147))
+        val player = createPlayer(Tile(3229, 3147))
         player.levels.set(Skill.Mining, 100)
         val rocks = objects[Tile(3230, 3147), "copper_rocks_rock_1"]!!
         player.inventory.add("bronze_pickaxe")
@@ -94,7 +94,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Adventurer's Log`() {
-        val player = createPlayer("adventurer", Tile(3233, 3215))
+        val player = createPlayer(Tile(3233, 3215))
         player.levels.set(Skill.Woodcutting, 100)
         val tree = objects[Tile(3233, 3216), "tree_4"]!!
         player.inventory.add("bronze_hatchet")
@@ -107,7 +107,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Aren't they supposed to be twins`() {
-        val player = createPlayer("adventurer", Tile(3258, 3205))
+        val player = createPlayer(Tile(3258, 3205))
         val fishingSpot = createNPC("fishing_spot_crayfish_lumbridge", Tile(3259, 3205))
         player.inventory.add("crayfish_cage")
 
@@ -119,7 +119,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Log-a-rhythm`() {
-        val player = createPlayer("adventurer", Tile(3235, 3220))
+        val player = createPlayer(Tile(3235, 3220))
         player.levels.set(Skill.Firemaking, 100)
         player.inventory.add("tinderbox", "logs")
 
@@ -131,7 +131,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Shellfish Roasting on an Open Fire`() {
-        val player = createPlayer("adventurer", Tile(3079, 3444))
+        val player = createPlayer(Tile(3079, 3444))
         player.inventory.add("raw_crayfish")
         val fire = objects[Tile(3079, 3445), "fire_orange"]!!
 
@@ -146,7 +146,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = if (until == 256) until else 0
         })
-        val player = createPlayer("adventurer", Tile(3225, 3147))
+        val player = createPlayer(Tile(3225, 3147))
         player.levels.set(Skill.Mining, 100)
         val rocks = objects[Tile(3225, 3148), "tin_rocks_rock_1"]!!
         player.inventory.add("bronze_pickaxe")
@@ -159,7 +159,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Bar One`() {
-        val player = createPlayer("adventurer", Tile(3227, 3255))
+        val player = createPlayer(Tile(3227, 3255))
         player.levels.set(Skill.Smithing, 100)
         val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
         player.inventory.add("copper_ore", "tin_ore")
@@ -175,7 +175,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Cutting Edge Technology`() {
-        val player = createPlayer("adventurer", Tile(3228, 3254))
+        val player = createPlayer(Tile(3228, 3254))
         val anvil = objects[Tile(3229, 3254), "anvil_lumbridge"]!!
         player.inventory.add("bronze_bar", "hammer")
 
@@ -189,7 +189,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Armed and Dangerous`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
         player.inventory.add("bronze_dagger")
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("bronze_dagger"), 0)
@@ -199,7 +199,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `On Your Way`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
         player["a_world_in_microcosm_task"] = true
         player["master_of_all_i_survey_task"] = true
         player["raise_the_roof_task"] = true
@@ -217,7 +217,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `You Can Bank on Us`() {
-        val player = createPlayer("adventurer", Tile(3208, 3220, 2))
+        val player = createPlayer(Tile(3208, 3220, 2))
 
         val banker = npcs[Tile(3208, 3222, 2)].first { it.id.startsWith("banker") }
 
@@ -235,7 +235,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Hang on to Something`() {
-        val player = createPlayer("adventurer", Tile(3208, 3220, 2))
+        val player = createPlayer(Tile(3208, 3220, 2))
         player.inventory.add("coins", 1000)
         val bank = objects[Tile(3208, 3221, 2), "bank_booth_lumbridge"]!!
 
@@ -252,7 +252,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
         })
-        val player = createPlayer("adventurer", Tile(3257, 3260))
+        val player = createPlayer(Tile(3257, 3260))
         val npc = npcs[Tile(3258, 3260)].first { it.id.startsWith("cow") }
 
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
@@ -268,7 +268,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Tan Your Hide`() {
-        val player = createPlayer("adventurer", Tile(3276, 3192))
+        val player = createPlayer(Tile(3276, 3192))
         val npc = npcs[Tile(3276, 3193)].first { it.id == "ellis" }
 
         player.inventory.add("cowhide", "coins")
@@ -282,7 +282,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Handi-crafts`() {
-        val player = createPlayer("adventurer", Tile(3208, 3220, 2))
+        val player = createPlayer(Tile(3208, 3220, 2))
 
         player.inventory.add("leather", "needle", "thread")
 
@@ -296,7 +296,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Handy Dandy`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
         player.inventory.add("leather_gloves")
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("leather_gloves"), 0)
@@ -306,7 +306,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Just Can't Get the Staff`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
         player.inventory.add("staff_of_air")
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("staff_of_air"), 0)
@@ -316,7 +316,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Click Your Heels Three Times`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
 
         player.interfaceOption("modern_spellbook", "lumbridge_home_teleport", "Cast")
 
@@ -327,7 +327,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Reach Out and Touch Someone`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
         player.inventory.add("shortbow")
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("shortbow"), 0)
@@ -337,7 +337,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Death From Above`() = runTest {
-        val player = createPlayer("adventurer", Tile(3211, 3253))
+        val player = createPlayer(Tile(3211, 3253))
         player.inventory.add("air_rune", "mind_rune")
 
         val npc = npcs[player.tile.zone].first { it.id == "magic_dummy" }
@@ -350,7 +350,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Om Nom Nom Nom`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
         player.levels.set(Skill.Constitution, 12)
         player.inventory.add("crayfish")
 
@@ -361,7 +361,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `On the Level`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
 
         player.exp(Skill.Ranged, 1358.0)
 
@@ -370,7 +370,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `So That's What Ess Stands For`() {
-        val player = createPlayer("adventurer", Tile(2893, 4846))
+        val player = createPlayer(Tile(2893, 4846))
         player.levels.set(Skill.Mining, 100)
         player.inventory.add("bronze_pickaxe")
         val essence = objects[Tile(2891, 4847), "rune_essence_rocks"]!!
@@ -383,7 +383,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Air Craft`() {
-        val player = createPlayer("player", Tile(2844, 4832))
+        val player = createPlayer(Tile(2844, 4832))
         player.levels.set(Skill.Runecrafting, 99)
         player.inventory.add("rune_essence")
 
@@ -396,7 +396,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Greasing the Wheels of Commerce`() {
-        val player = createPlayer("shopper", Tile(3214, 3242))
+        val player = createPlayer(Tile(3214, 3242))
         val npc = npcs[Tile(3214, 3243)].first { it.id == "shop_assistant_lumbridge"}
         player.inventory.add("bronze_dagger", 1)
 
@@ -409,7 +409,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `I Wonder If It'll Sprout`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
         player.inventory.add("bones")
 
         player.interfaceOption("inventory", "inventory", "Bury", 0, Item("bones"), 0)
@@ -419,7 +419,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Put Your Hands Together For`() {
-        val player = createPlayer("player")
+        val player = createPlayer()
 
         player.interfaceOption("prayer_list", "regular_prayers", optionIndex = 0, slot = 0)
 
@@ -428,7 +428,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Prayer Point Power`() {
-        val player = createPlayer("player", Tile(3244, 3207))
+        val player = createPlayer(Tile(3244, 3207))
         player.levels.drain(Skill.Prayer, 1)
 
         val altar = objects[Tile(3243, 3206), "prayer_altar_lumbridge"]!!
@@ -440,7 +440,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Not What We Mean By Irony`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
         player.inventory.add("iron_dagger")
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("iron_dagger"), 0)
@@ -450,7 +450,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Alls Ferrous in Love and War`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
         player.inventory.add("iron_boots")
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("iron_boots"), 0)
@@ -460,7 +460,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `First Blood`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
 
         player.exp(Skill.Attack, 388.0)
         player.exp(Skill.Defence, 388.0)
@@ -470,7 +470,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Temper Temper`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
         player.levels.set(Skill.Attack, 5)
         player.inventory.add("steel_sword")
 
@@ -481,7 +481,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Steel Yourself For Combat`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
         player.levels.set(Skill.Defence, 5)
         player.inventory.add("steel_platebody")
 
@@ -492,7 +492,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Ammo Ammo Ammo`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
         player.inventory.add("iron_arrow")
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("iron_arrow"), 0)
@@ -502,7 +502,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Take a Bow`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
         player.inventory.add("shortbow")
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("shortbow"), 0)
@@ -512,7 +512,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Don't Bury This One`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
 
         player.inventory.add("iron_hatchet")
 
@@ -521,7 +521,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Mace Invaders`() {
-        val player = createPlayer("adventurer", Tile(3228, 3254))
+        val player = createPlayer(Tile(3228, 3254))
         player.levels.set(Skill.Smithing, 2)
         player.inventory.add("bronze_bar", "hammer")
 
@@ -537,7 +537,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Capital Protection, What`() {
-        val player = createPlayer("adventurer", Tile(3228, 3254))
+        val player = createPlayer(Tile(3228, 3254))
         player.levels.set(Skill.Smithing, 7)
         player.inventory.add("bronze_bar", "bronze_bar", "hammer")
 
@@ -553,7 +553,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Hack and Smash`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
 
         player.exp(Skill.Mining, 512.0)
 
@@ -562,7 +562,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Shrimpin' Ain't Easy`() {
-        val player = createPlayer("adventurer", Tile(3245, 3155))
+        val player = createPlayer(Tile(3245, 3155))
         player.levels.set(Skill.Fishing, 20)
         val fishingSpot = createNPC("fishing_spot_small_net_bait_lumbridge", Tile(3246, 3155))
         player.inventory.add("small_fishing_net")
@@ -575,7 +575,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `The Fruit of the Sea`() {
-        val player = createPlayer("shopper", Tile(3194, 3254))
+        val player = createPlayer(Tile(3194, 3254))
         val npc = npcs[Tile(3195, 3254)].first { it.id == "hank" }
         player.inventory.add("raw_shrimps")
 
@@ -588,7 +588,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Made For Walking`() {
-        val player = createPlayer("adventurer", Tile(3208, 3220, 2))
+        val player = createPlayer(Tile(3208, 3220, 2))
         player.levels.set(Skill.Crafting, 7)
         player.inventory.add("leather", "needle", "thread")
 
@@ -602,7 +602,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Did Anyone Bring Any Toast`() {
-        val player = createPlayer("adventurer", Tile(3086, 3230))
+        val player = createPlayer(Tile(3086, 3230))
         player.levels.set(Skill.Fishing, 5)
         val fishingSpot = createNPC("fishing_spot_small_net_bait_draynor", Tile(3085, 3230))
         player.inventory.add("fishing_rod", "fishing_bait")
@@ -615,7 +615,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `It's Not a Red One`() {
-        val player = createPlayer("adventurer", Tile(3079, 3444))
+        val player = createPlayer(Tile(3079, 3444))
         player.levels.set(Skill.Cooking, 100)
         player.inventory.add("raw_herring")
         val fire = objects[Tile(3079, 3445), "fire_orange"]!!
@@ -628,7 +628,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Not So Confusing After All`() = runTest {
-        val player = createPlayer("adventurer", Tile(3211, 3253))
+        val player = createPlayer(Tile(3211, 3253))
         player.levels.set(Skill.Magic, 3)
         player.inventory.add("water_rune", 3)
         player.inventory.add("earth_rune", 2)
@@ -644,7 +644,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Heart of Oak`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
         player.levels.set(Skill.Ranged, 5)
         player.inventory.add("oak_longbow")
 
@@ -660,7 +660,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
             override fun nextBits(bitCount: Int) = 100
         })
-        val player = createPlayer("player", Tile(3206, 3205))
+        val player = createPlayer(Tile(3206, 3205))
         val npc = npcs[Tile(3206, 3204)].first { it.id == "rat" }
 
         player.levels.set(Skill.Ranged, 50)
@@ -675,7 +675,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Berry Tasty`() {
-        val player = createPlayer("adventurer", Tile(3231, 3197))
+        val player = createPlayer(Tile(3231, 3197))
         player.levels.set(Skill.Cooking, 10)
         player.inventory.add("uncooked_berry_pie")
 
@@ -688,7 +688,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Dish water`() {
-        val player = createPlayer("adventurer", Tile(3231, 3197))
+        val player = createPlayer(Tile(3231, 3197))
         player.inventory.add("beer")
 
         player.itemOption("Drink", "beer")
@@ -698,7 +698,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Quarter Centurion`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
 
         player.exp(Skill.Attack, 8740.0)
 
@@ -707,7 +707,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Fledgeling Adventurer`() {
-        val player = createPlayer("adventurer")
+        val player = createPlayer()
 
         player["quest_points"] = 5
 
@@ -716,7 +716,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Hail to the Duke, Baby`() {
-        val player = createPlayer("adventurer", Tile(3211, 3220, 1))
+        val player = createPlayer(Tile(3211, 3220, 1))
         val duke = npcs[Tile(3212, 3220, 1)].first { it.id == "duke_horacio" }
 
         player.npcOption(duke, "Talk-to")
@@ -727,7 +727,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Window Shopping`() {
-        val player = createPlayer("shopper", Tile(3215, 3243))
+        val player = createPlayer(Tile(3215, 3243))
         val npc = npcs[Tile(3214, 3243)].first { it.id == "shop_assistant_lumbridge" }
 
         player.npcOption(npc, "Trade")
@@ -738,7 +738,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Wait, That's Not a Sheep`() {
-        val player = createPlayer("adventurer", Tile(3109, 3330))
+        val player = createPlayer(Tile(3109, 3330))
 
         player.tele(3189, 3275)
         tick(2)
@@ -748,7 +748,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `In the Countyard`() {
-        val player = createPlayer("adventurer", Tile(3109, 3330))
+        val player = createPlayer(Tile(3109, 3330))
 
         player.walk(Tile(3109, 3331))
         tick(2)
@@ -758,7 +758,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Beware of Pigzilla`() {
-        val player = createPlayer("adventurer", Tile(3081, 3258))
+        val player = createPlayer(Tile(3081, 3258))
 
         player.walk(Tile(3081, 3257))
         tick(2)
@@ -768,7 +768,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Tower Power`() {
-        val player = createPlayer("adventurer", Tile(3104, 3161, 1))
+        val player = createPlayer(Tile(3104, 3161, 1))
 
         val stairs = objects[Tile(3103, 3159, 1), "wizards_tower_staircase"]!!
         player.objectOption(stairs, "Climb-up")
@@ -779,7 +779,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Tinkle the Ivories`() {
-        val player = createPlayer("adventurer", Tile(3243, 3213))
+        val player = createPlayer(Tile(3243, 3213))
 
         val stairs = objects[Tile(3243, 3214), "lumbridge_organ"]!!
         player.objectOption(stairs, "Play")
@@ -790,7 +790,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Passing Out with money`() {
-        val player = createPlayer("adventurer", Tile(3267, 3227))
+        val player = createPlayer(Tile(3267, 3227))
         player.inventory.add("coins", 10)
 
         val guard = npcs[Tile(3267, 3226)].first { it.id == "border_guard_al_kharid" }
@@ -805,7 +805,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `Passing Out without money`() {
-        val player = createPlayer("adventurer", Tile(3267, 3227))
+        val player = createPlayer(Tile(3267, 3227))
         player.inventory.add("coins", 9)
 
         val guard = npcs[Tile(3267, 3226)].first { it.id == "border_guard_al_kharid" }
@@ -820,7 +820,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
     @Test
     fun `What is This Place`() {
-        val player = createPlayer("adventurer", Tile(3104, 9571))
+        val player = createPlayer(Tile(3104, 9571))
 
         val guard = npcs[Tile(3103, 9571)].first { it.id == "sedridor" }
         player.npcOption(guard, "Teleport")

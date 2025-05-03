@@ -15,7 +15,7 @@ internal class FiremakingTest : WorldTest() {
     @Test
     fun `Making a fire removes logs and moves player`() {
         val start = emptyTile
-        val player = createPlayer("arsonist", start)
+        val player = createPlayer(start)
         player.levels.set(Skill.Firemaking, 100)
         player.inventory.add("tinderbox")
         player.inventory.add("logs", 27)

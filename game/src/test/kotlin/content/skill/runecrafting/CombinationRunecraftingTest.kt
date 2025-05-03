@@ -48,7 +48,7 @@ internal class CombinationRunecraftingTest : WorldTest() {
     fun `Craft combination runes with binding necklace and magic imbue`() = combinationsList.map { (element, objectElement, type, xp) ->
         dynamicTest("Craft $type runes with $element runes on $objectElement altar") {
             val tile = teleports.get("${objectElement}_altar_ruins_enter", "Enter").first().to
-            val player = createPlayer("player", tile)
+            val player = createPlayer(tile)
             player.levels.set(Skill.Runecrafting, 99)
             player.equipment.set(EquipSlot.Amulet.index, "binding_necklace")
             player["binding_necklace_charges"] = 10
@@ -75,7 +75,7 @@ internal class CombinationRunecraftingTest : WorldTest() {
     fun `Combination runes have a chance of failing`() = combinationsList.map { (element, objectElement, type) ->
         dynamicTest("Craft $type runes with $element runes on $objectElement altar") {
             val tile = teleports.get("${objectElement}_altar_ruins_enter", "Enter").first().to
-            val player = createPlayer("player", tile)
+            val player = createPlayer(tile)
             player.levels.set(Skill.Runecrafting, 99)
             player.inventory.add("${element}_rune")
             player.inventory.add("pure_essence")
