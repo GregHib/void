@@ -1,0 +1,37 @@
+[ankou]
+id = 4381
+hitpoints = 600
+att = 70
+str = 70
+def = 60
+max_hit_melee = 80
+hunt_mode = "cowardly"
+hunt_range = 2
+style = "crush"
+respawn_delay = 50
+slayer_xp = 60.0
+attack_radius = 15
+wander_radius = 13
+attack_anim = "human_attack"
+defend_anim = "human_defend"
+death_anim = "human_death"
+categories = ["ankou"]
+examine = "A boney ghost."
+
+[ankou_mid]
+id = 4382
+clone = "ankou"
+hitpoints = 650
+att = 80
+str = 70
+def = 70
+slayer_xp = 65.0
+
+[ankou_high]
+id = 4383
+clone = "ankou"
+hitpoints = 700
+att = 75
+str = 75
+def = 80
+slayer_xp = 70.0
