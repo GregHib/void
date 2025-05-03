@@ -1035,6 +1035,10 @@ examine = "This tree has long been dead."
 id = 13411
 examine = "One of the most common trees in Gielinor."
 
+[wild4_tree_b]
+id = 14636
+examine = "It doesn't look healthy."
+
 [jungle_tree_7]
 clone = "tree"
 id = 15948
@@ -1108,6 +1112,14 @@ examine = "Living in the big city isn't easy."
 [dying_tree_stump]
 id = 24169
 examine = "Count the rings and see how long it lived."
+
+[dragon_slayer_qip_wild5_tree_a]
+id = 25183
+examine = "It doesn't look healthy."
+
+[dragon_slayer_qip_wild5_tree_b]
+id = 25184
+examine = "It doesn't look healthy."
 
 [eucalyptus_tree]
 id = 28951

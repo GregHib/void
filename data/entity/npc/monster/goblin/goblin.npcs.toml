@@ -181,33 +181,6 @@ id = 12360
 clone = "goblin_orange_hat_spear"
 id = 12361
 
-[hobgoblin]
-id = 2685
-hitpoints = 290
-att = 22
-str = 24
-def = 24
-style = "crush"
-max_hit_melee = 30
-hunt_mode = "cowardly"
-wander_radius = 4
-categories = ["hobgoblin"]
-respawn_delay = 30
-examine = "An ugly, smelly creature."
-
-[hobgoblin_2]
-clone = "hobgoblin"
-id = 2686
-
-[hobgoblin_3]
-clone = "hobgoblin"
-id = 2687
-
-[hobgoblin_spear]
-clone = "hobgoblin"
-id = 2688
-examine = "An ugly, smelly creature wielding a spear."
-
 [stronghold_of_security_goblin_armed]
 id = 4407
 hitpoints = 50

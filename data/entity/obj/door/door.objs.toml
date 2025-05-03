@@ -148,7 +148,7 @@ id = 780
 id = 15984
 
 [door_27_opened]
-id = 1240
+id = 2529
 examine = "The door is open."
 
 [door_27_closed]

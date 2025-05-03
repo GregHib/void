@@ -1,0 +1,14 @@
+spawns = [
+#11347
+  { id = "godwars_ancient_hobgoblin", x = 2870, y = 5345, level = 2, members = true },
+  { id = "godwars_ancient_hobgoblin", x = 2869, y = 5344, level = 2, members = true },
+  { id = "godwars_ancient_hobgoblin", x = 2870, y = 5343, level = 2, members = true },
+  { id = "godwars_ancient_hobgoblin", x = 2856, y = 5314, level = 2, members = true },
+  { id = "godwars_ancient_hobgoblin", x = 2854, y = 5313, level = 2, members = true },
+  { id = "godwars_ancient_hobgoblin", x = 2855, y = 5312, level = 2, members = true },
+  { id = "godwars_ancient_hobgoblin", x = 2879, y = 5321, level = 2, members = true },
+  { id = "godwars_ancient_hobgoblin", x = 2878, y = 5319, level = 2, members = true },
+  { id = "godwars_ancient_hobgoblin", x = 2876, y = 5318, level = 2, members = true },
+  { id = "godwars_ancient_hobgoblin", x = 2879, y = 5318, level = 2, members = true },
+  { id = "godwars_ancient_hobgoblin", x = 2878, y = 5317, level = 2, members = true }, 
+]

@@ -10,6 +10,13 @@ spawns = [
   { id = "musician_rellekka", x = 2655, y = 3694, direction = "SOUTH", members = true },
   { id = "chicken", x = 2679, y = 3665, members = true },
   { id = "chicken", x = 2680, y = 3664, members = true },
+# 10553
+  { id = "hobgoblin_armed", x = 2659, y = 3733, members = true },
+  { id = "hobgoblin_armed", x = 2654, y = 3729, members = true },
+  { id = "hobgoblin_armed", x = 2653, y = 3720, members = true },
+  { id = "hobgoblin_armed", x = 2669, y = 3725, members = true },
+  { id = "hobgoblin_armed", x = 2675, y = 3731, members = true },
+  { id = "hobgoblin_armed", x = 2684, y = 3730, members = true },
 # 11064
   { id = "musician_mountain_camp", x = 2760, y = 3645, direction = "SOUTH", members = true },
 ]

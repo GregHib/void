@@ -1,4 +1,22 @@
 spawns = [
+# 12885
+  { id = "moss_giant", x = 3204, y = 5494, members = true },
+  { id = "moss_giant", x = 3206, y = 5491, members = true },
+  { id = "moss_giant", x = 3206, y = 5485, members = true },
+  { id = "moss_giant", x = 3201, y = 5484, members = true },
+  { id = "moss_giant_2", x = 3209, y = 5481, members = true },
+  { id = "moss_giant_3", x = 3201, y = 5490, members = true },
+  { id = "moss_giant_4", x = 3200, y = 5495, members = true },
+# 12886
+  { id = "moss_giant", x = 3233, y = 5563, members = true },
+  { id = "moss_giant", x = 3235, y = 5556, members = true },
+  { id = "moss_giant", x = 3243, y = 5558, members = true },
+  { id = "moss_giant", x = 3244, y = 5550, members = true },
+  { id = "moss_giant", x = 3249, y = 5549, members = true },
+  { id = "moss_giant_5", x = 3239, y = 5559, members = true },
+  { id = "moss_giant_5", x = 3249, y = 5559, members = true },
+  { id = "moss_giant_5", x = 3239, y = 5553, members = true },
+  { id = "moss_giant_5", x = 3244, y = 5554, members = true },
 # 13142
   { id = "big_wolf", x = 3288, y = 5529, members = true },
   { id = "big_wolf", x = 3297, y = 5518, members = true },

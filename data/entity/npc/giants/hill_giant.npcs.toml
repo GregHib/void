@@ -1,0 +1,35 @@
+[hill_giant]
+id = 117
+hitpoints = 350
+att = 18
+str = 22
+def = 26
+attack_speed = 6
+hunt_mode = "aggressive"
+style = "crush"
+max_hit_melee = 40
+respawn_delay = 30
+wander_radius = 4
+slayer_xp = 35
+categories = ["hill_giants"]
+examine = "A very large foe."
+
+[hill_giant_2]
+clone = "hill_giant"
+id = 4689
+
+[hill_giant_3]
+clone = "hill_giant"
+id = 4690
+
+[hill_giant_4]
+clone = "hill_giant"
+id = 4691
+
+[hill_giant_5]
+clone = "hill_giant"
+id = 4692
+
+[hill_giant_6]
+clone = "hill_giant"
+id = 4693

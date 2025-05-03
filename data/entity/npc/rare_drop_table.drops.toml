@@ -25,7 +25,7 @@ drops = [
 [gem_drop_table]
 roll = 128
 drops = [
-    { id = "nothing", amount = 0, chance = 63 },
+    { id = "nothing", amount = 0, chance = 63, variable = "wearing_ring_of_wealth", equals = false, default = false },
     { id = "uncut_sapphire", chance = 32 },
     { id = "uncut_emerald", chance = 16 },
     { id = "uncut_ruby", chance = 8 },
