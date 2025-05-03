@@ -1,0 +1,9 @@
+spawns = [
+    # Stronghold of Security#Sepulchre of Death (4th level)|Stronghold of Security (4th level)
+    { id = "stronghold_shade", x = 2358, y = 5212 },
+    { id = "stronghold_shade", x = 2360, y = 5210 },
+    { id = "stronghold_shade", x = 2361, y = 5219 },
+    { id = "stronghold_shade", x = 2362, y = 5208 },
+    { id = "stronghold_shade", x = 2362, y = 5217 },
+    { id = "stronghold_shade", x = 2365, y = 5216 },
+]

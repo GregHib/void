@@ -1,0 +1,7 @@
+[stronghold_shade_drop_table]
+roll = 128
+drops = [
+    { id = "shade_robe_top", chance = 32, members = true },
+    { id = "shade_robe", chance = 32, members = true },
+    { id = "nothing", amount = 0, chance = 64 },
+]
