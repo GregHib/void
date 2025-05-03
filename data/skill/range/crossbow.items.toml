@@ -209,7 +209,7 @@ price = 1
 limit = 1000
 weight = 3.0
 slot = "Weapon"
-fletching_unf = { level = 9, xp = 6.0, animation = "fletching_bow_log", make_amount = 1, tick = 3 }
+fletching_unf = { level = 9, xp = 6.0, animation = "fletching_log", make_amount = 1, tick = 3 }
 examine = "A wooden crossbow stock."
 
 [wooden_stock_noted]
@@ -220,7 +220,7 @@ id = 9442
 price = 1
 limit = 1000
 weight = 3.0
-fletching_unf = { level = 24, xp = 16.0, animation = "fletching_bow_log", make_amount = 1, tick = 3 }
+fletching_unf = { level = 24, xp = 16.0, animation = "fletching_log", make_amount = 1, tick = 3 }
 slot = "Weapon"
 examine = "An oak crossbow stock."
 
@@ -232,7 +232,7 @@ id = 9444
 price = 2
 limit = 1000
 weight = 3.0
-fletching_unf = { level = 39, xp = 22.0, animation = "fletching_bow_log", make_amount = 1, tick = 3 }
+fletching_unf = { level = 39, xp = 22.0, animation = "fletching_log", make_amount = 1, tick = 3 }
 slot = "Weapon"
 examine = "A willow crossbow stock."
 
@@ -244,7 +244,7 @@ id = 9446
 price = 8
 limit = 1000
 weight = 3.0
-fletching_unf = { level = 46, xp = 27.0, animation = "fletching_bow_log", make_amount = 1, tick = 3 }
+fletching_unf = { level = 46, xp = 27.0, animation = "fletching_log", make_amount = 1, tick = 3 }
 slot = "Weapon"
 examine = "A teak crossbow stock."
 
@@ -256,7 +256,7 @@ id = 9448
 price = 12
 limit = 1000
 weight = 3.0
-fletching_unf = { level = 54, xp = 32.0, animation = "fletching_bow_log", make_amount = 1, tick = 3 }
+fletching_unf = { level = 54, xp = 32.0, animation = "fletching_log", make_amount = 1, tick = 3 }
 slot = "Weapon"
 examine = "A maple crossbow stock."
 
@@ -268,7 +268,7 @@ id = 9450
 price = 29
 limit = 1000
 weight = 3.0
-fletching_unf = { level = 61, xp = 41.0, animation = "fletching_bow_log", make_amount = 1, tick = 3 }
+fletching_unf = { level = 61, xp = 41.0, animation = "fletching_log", make_amount = 1, tick = 3 }
 slot = "Weapon"
 examine = "A mahogany crossbow stock."
 
@@ -280,7 +280,7 @@ id = 9452
 price = 36
 limit = 1000
 weight = 3.0
-fletching_unf = { level = 69, xp = 50.0, animation = "fletching_bow_log", make_amount = 1, tick = 3 }
+fletching_unf = { level = 69, xp = 50.0, animation = "fletching_log", make_amount = 1, tick = 3 }
 slot = "Weapon"
 examine = "A yew crossbow stock."
 

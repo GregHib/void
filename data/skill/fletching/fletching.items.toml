@@ -6,7 +6,7 @@ weight = 1.332
 fletching_unf = {
   level = 10,
   xp = 10.0,
-  animation = "fletching_bow_log",
+  animation = "fletching_log",
   make_amount = 1,
   tick = 3,
 }
@@ -24,7 +24,7 @@ weight = 0.992
 fletching_unf = {
   level = 5,
   xp = 5.0,
-  animation = "fletching_bow_log",
+  animation = "fletching_log",
   make_amount = 1,
   tick = 3,
 }
@@ -41,7 +41,7 @@ limit = 20000
 fletching_unf = {
   level = 1,
   xp = 5.0,
-  animation = "fletching_bow_log",
+  animation = "fletching_log",
   make_amount = 15,
   tick = 2,
 }
@@ -63,7 +63,7 @@ weight = 0.992
 fletching_unf = {
   level = 20,
   xp = 16.5,
-  animation = "fletching_bow_log",
+  animation = "fletching_log",
   make_amount = 1,
   tick = 3,
 }
@@ -81,7 +81,7 @@ weight = 1.332
 fletching_unf = {
   level = 25,
   xp = 25.0,
-  animation = "fletching_bow_log",
+  animation = "fletching_log",
   make_amount = 1,
   tick = 3,
 }
@@ -98,7 +98,7 @@ weight = 1.332
 fletching_unf = {
   level = 40,
   xp = 41.5,
-  animation = "fletching_bow_log",
+  animation = "fletching_log",
   make_amount = 1,
   tick = 3,
 }
@@ -115,7 +115,7 @@ weight = 0.992
 fletching_unf = {
   level = 35,
   xp = 33.3,
-  animation = "fletching_bow_log",
+  animation = "fletching_log",
   make_amount = 1,
   tick = 3,
 }
@@ -132,7 +132,7 @@ weight = 1.332
 fletching_unf = {
   level = 55,
   xp = 58.3,
-  animation = "fletching_bow_log",
+  animation = "fletching_log",
   make_amount = 1,
   tick = 3,
 }
@@ -149,7 +149,7 @@ weight = 0.992
 fletching_unf = {
   level = 50,
   xp = 50.0,
-  animation = "fletching_bow_log",
+  animation = "fletching_log",
   make_amount = 1,
   tick = 3,
 }
@@ -166,7 +166,7 @@ weight = 1.332
 fletching_unf = {
   level = 70,
   xp = 75.0,
-  animation = "fletching_bow_log",
+  animation = "fletching_log",
   make_amount = 1,
   tick = 3,
 }
@@ -183,7 +183,7 @@ weight = 0.992
 fletching_unf = {
   level = 65,
   xp = 67.5,
-  animation = "fletching_bow_log",
+  animation = "fletching_log",
   make_amount = 1,
   tick = 3,
 }
@@ -200,7 +200,7 @@ weight = 1.332
 fletching_unf = {
   level = 85,
   xp = 91.5,
-  animation = "fletching_bow_log",
+  animation = "fletching_log",
   make_amount = 1,
   tick = 3,
 }
@@ -217,7 +217,7 @@ weight = 0.992
 fletching_unf = {
   level = 80,
   xp = 83.3,
-  animation = "fletching_bow_log",
+  animation = "fletching_log",
   make_amount = 1,
   tick = 3,
 }
