@@ -1,9 +1,8 @@
 package world.gregs.voidps.tools.convert
 
+import net.pearx.kasechange.toSnakeCase
 import world.gregs.config.*
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
-import world.gregs.voidps.engine.entity.item.drop.DropTable
-import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.item.drop.TableType
 import java.util.*
 
@@ -12,176 +11,267 @@ object DropTableConverter {
     @JvmStatic
     fun main(args: Array<String>) {
         val string = """
-===Coins===
-{{DropsTableHead|dropversion=Regular}}
-{{DropsLine|name=Coins|quantity=37|rarity=19/128}}
-{{DropsLine|name=Coins|quantity=2|rarity=11/128|raritynotes=<ref group="d">Drop rate is decreased to 8/128 in [[members]] worlds.</ref>|altrarity=8/128}}
-{{DropsLine|name=Coins|quantity=119|rarity=10/128}}
-{{DropsLine|name=Coins|quantity=300|rarity=2/128}}
-{{DropsTableBottom}}
-{{Reflist|group=d}}
+            ==Drops==
+            {{DropLogProject|jagex=yes}}
 
+            ===Shade robes===
+            {{DropsTableHead}}
+            {{DropsLine|name=Shade robe top|namenotes={{(m)}}|quantity=1|rarity=32/128|raritynotes={{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/743213123834908673|date=15 June 2016|archiveurl=https://archive.is/c4p99|archivedate=28 May 2020|quote=Do the lvl 159 Shades in the Stronghold of Security drop the Shade Robes in F2P? No.|name=Shade robes members tweet}}}}
+            {{DropsLine|name=Shade robe|namenotes={{(m)}}|quantity=1|rarity=32/128|raritynotes={{NamedRef|Shade robes members tweet}}}}
+            {{DropsTableBottom}}
+
+            ===Other===
+            {{DropsTableHead}}
+            {{DropsLine|name=Nothing|rarity=64/128}}
+            {{DropsTableBottom}}
+
+            ===Catacombs tertiary===
+            {{CatacombsDropTable|hitpoints=115|f2p=yes|catacombsonly=yes|dropversion=Catacombs of Kourend}}
         """.trimIndent()
-        val all = mutableListOf<DropTable>()
-        var builder = DropTable.Builder()
+        val npc = "stronghold_shade"
+        val all = mutableListOf<Builder>()
+        var builder = Builder()
         for (line in string.lines()) {
             if (line.startsWith("=")) {
                 val name = toIdentifier(line.replace("=", ""))
+                builder.name = name
             } else if (line.startsWith("{{DropsLineClue|")) {
                 process(builder, line.replace("Clue|type=", "|name=").replace("|rarity=", " clue scroll|quantity=1|rarity="))
             } else if (line.startsWith("{{DropsLine|")) {
                 process(builder, line)
+            } else if (line.contains("DropTableInfo")) {
+                val parts = line.trim('{', ' ', '}').split('|')
+                val name = parts[0].removeSuffix("DropTableInfo").toSnakeCase()
+                val moreParts = parts[1].split("/")
+                val chance = moreParts[0].toInt()
+                val roll = moreParts[1].toInt()
+                builder.addDrop(Builder.Drop.table("${name}_drop_table", chance = chance, roll = roll))
+                builder.withRoll(roll)
+                all.add(builder)
+                builder = Builder()
+            } else if (line.startsWith("{{GemDropTable")) {
+                val parts = line.trim('{', ' ', '}').split('|')
+                val split = parts[1].split("/")
+                val chance = split[0].toInt()
+                val roll = split[1].toInt()
+                builder.addDrop(Builder.Drop.table("gem_drop_table", chance = chance, roll = roll))
+                builder.withRoll(roll)
+                all.add(builder)
+                builder = Builder()
             } else if (line.startsWith("{{DropsTableBottom")) {
-                val table = builder.build()
-                all.add(table)
-                builder = DropTable.Builder()
+                all.add(builder)
+                builder = Builder()
             }
         }
-        val element = builder.build()
-        if (element.drops.isNotEmpty()) {
-            all.add(element)
+        if (builder.drops.isNotEmpty()) {
+            all.add(builder)
         }
-        println(Config.stringWriter {
-            val root = combine(all)
-            val queue = LinkedList<Pair<String, DropTable>>()
-            queue.add("drop_table" to root)
-            var i = 0
-            while (queue.isNotEmpty()) {
-                val (name, table) = queue.poll()
-                writeSection(name)
-                if (table.type == TableType.All) {
-                    writePair("type", "all")
-                }
-                if (table.roll != 1) {
-                    writePair("roll", table.roll)
-                }
-                writeKey("drops")
-                write("[\n")
-                for (drop in table.drops) {
-                    if (drop is ItemDrop) {
-                        write(drop)
-                    } else if (drop is DropTable) {
-                        val sub = "sub_table_${i++}"
-                        write("  { table = \"$sub\"")
-                        if (drop.roll != 1) {
-                            write(", roll = ${drop.roll}")
-                        }
-                        write(" },\n")
-                        queue.add(sub to drop)
-                    }
-                }
-                write("]\n\n")
-            }
-        })
-    }
-
-    private fun ConfigWriter.write(value: ItemDrop) {
-        write("  { ")
-        writeKey("id")
-        writeValue(value.id)
-        if (value.amount != 1..1) {
-            write(", ")
-            if (value.amount.first == value.amount.last) {
-                writeKey("amount")
-                writeValue(value.amount.first)
-            } else {
-                writeKey("min")
-                writeValue(value.amount.first)
-                write(", ")
-                writeKey("max")
-                writeValue(value.amount.last)
-            }
-        }
-        if (value.chance != 1) {
-            write(", ")
-            writeKey("chance")
-            writeValue(value.chance)
-        }
-        if (value.predicate != null) {
-            write(", ")
-            writeKey("members")
-            writeValue(true)
-        }
-        write(" },\n")
-    }
-
-    private fun combine(all: MutableList<DropTable>): DropTable {
-        val parent = DropTable.Builder()
-        if (all.size == 1) {
-            return all.first()
-        }
-        val always = all.firstOrNull { it.roll == 1 }
-        parent.withType(TableType.All)
+        val queue = LinkedList<Builder>()
+        val parent = Builder()
+        parent.name = "${npc}_drop_table"
+        parent.type = TableType.All
+        queue.add(parent)
+        val always = all.firstOrNull { it.name == "100%" }
         if (always != null) {
-            parent.addDrop(always)
-        }
-        val table = DropTable.Builder()
-        val roll = all.maxOf { it.roll }
-        table.withRoll(roll)
-        for (child in all) {
-            if (child.roll == 1) {
-                continue
-            }
-            table.withType(child.type)
-            val multiplier = roll / child.roll
-            for (drop in child.drops) {
-                if (drop is ItemDrop) {
-                    table.addDrop(drop.copy(chance = drop.chance * multiplier))
-                }
+            always.name = "${npc}_primary"
+            all.remove(always)
+            if (always.drops.all { it.id == "bones" }) {
+                parent.addDrop(Builder.Drop.table("bones"))
+            } else if (always.drops.all { it.id == "big_bones" }) {
+                parent.addDrop(Builder.Drop.table("big_bones"))
+            } else {
+                queue.add(always)
+                parent.addDrop(Builder.Drop.table(always.name))
             }
         }
-        parent.addDrop(table.build())
-        return parent.build()
+        val tertiary = all.firstOrNull { it.name == "tertiary" }
+        if (tertiary != null) {
+            all.remove(tertiary)
+        }
+        val combined = Builder(all)
+        combined.name = "${npc}_secondary"
+        parent.addDrop(Builder.Drop.table(combined.name))
+        queue.add(combined)
+        if (tertiary != null) {
+            tertiary.name = "${npc}_tertiary"
+            queue.add(tertiary)
+            parent.addDrop(Builder.Drop.table(tertiary.name))
+        }
+        while (queue.isNotEmpty()) {
+            val table = queue.poll()
+            table.build()
+            println(table.toString())
+        }
     }
 
-    fun process(builder: DropTable.Builder, string: String) {
+    fun process(builder: Builder, string: String) {
         val parts = string.split("|", "=").drop(1)
 
         val map = mutableMapOf<String, String>()
         for (i in 0 until parts.lastIndex step 2) {
-            map[parts[i].lowercase()] = parts[i + 1].removeSuffix("}}").removePrefix("{{")
+            val key = parts[i].lowercase()
+            if (!map.containsKey(key)) {
+                map[key] = parts[i + 1].removeSuffix("}}").removePrefix("{{")
+            }
         }
 
         assert(map.containsKey("name"))
         assert(map.containsKey("rarity"))
 
         var id = toIdentifier(map.getValue("name"))
-        val members = toIdentifier(map.getOrDefault("namenotes", "")) == "m"
+        val notes = toIdentifier(map.getOrDefault("namenotes", ""))
+        val members = when (notes) {
+            "m" -> true
+            "f" -> false
+            else -> null
+        }
         val quantity = map["quantity"] ?: "0"
         val rarity = map.getValue("rarity")
-        val (chance, total) = if (rarity.contains("/")) {
-            rarity.split("/")
+        val (chance, roll) = if (rarity.contains("/")) {
+            rarity.split("/").map { it.toInt() }
         } else {
             when (rarity) {
-                "Always" -> listOf("1", "1")
-                "Very common" -> listOf("1", "8")
-                "Common" -> listOf("1", "16")
-                "Semi-common" -> listOf("1", "32")
-                "Uncommon" -> listOf("1", "64")
-                "Semi-rare" -> listOf("1", "128")
-                "Rare" -> listOf("1", "256")
-                "Very rare" -> listOf("1", "512")
+                "Always" -> listOf(1, 1)
+                "Very common" -> listOf(1, 8)
+                "Common" -> listOf(1, 16)
+                "Semi-common" -> listOf(1, 32)
+                "Uncommon" -> listOf(1, 64)
+                "Semi-rare" -> listOf(1, 128)
+                "Rare" -> listOf(1, 256)
+                "Very rare" -> listOf(1, 512)
                 else -> throw IllegalArgumentException("Unknown rarity '${rarity}'")
             }
         }
 
+        builder.withRoll(roll)
+
         if (quantity.endsWith("(noted)")) {
             id = "${id}_noted"
         }
-
-        builder.withRoll(total.toInt())
-
+        if (id.endsWith("_axe")) {
+            id = id.replace("_axe", "_hatchet")
+        }
         if (quantity.contains("-")) {
-            val (low, high) = quantity.split("-")
-            builder.addDrop(ItemDrop(id, low.toInt()..high.toInt(), chance.toInt()))
+            val (low, high) = quantity.removeSuffix(" (noted)").split("-")
+            builder.addDrop(Builder.Drop(id, low.toInt()..high.toInt(), chance, roll, members))
         } else if (quantity.contains(",")) {
             val values = quantity.split(",").map { it.trim().toInt() }
             val low = values.min()
             val high = values.max()
-            builder.addDrop(ItemDrop(id, low..high, chance.toInt()))
+            builder.addDrop(Builder.Drop(id, low..high, chance, roll, members))
         } else {
             val amount = quantity.removeSuffix(" (noted)").toInt()
-            builder.addDrop(ItemDrop(id, amount..amount, chance.toInt()))
+            builder.addDrop(Builder.Drop(id, amount..amount, chance, roll, members))
+        }
+    }
+
+    class Builder() {
+        var name: String = ""
+        var type: TableType = TableType.First
+        var roll: Int = 1
+        val drops = mutableListOf<Drop>()
+
+        constructor(all: MutableList<Builder>) : this() {
+            val roll = all.maxOf { it.roll }
+            withRoll(roll)
+            for (child in all) {
+                if (child.roll == 1) {
+                    continue
+                }
+                withType(child.type)
+                drops.addAll(child.drops)
+            }
+        }
+
+        fun build() {
+            val roll = drops.maxOf { it.roll }
+            withRoll(roll)
+            for (drop in drops) {
+                val multiplier = roll / drop.roll
+                drop.chance *= multiplier
+            }
+        }
+
+        data class Drop(
+            val id: String,
+            val amount: IntRange = 1..1,
+            var chance: Int = 1,
+            val roll: Int = 1,
+            val members: Boolean? = null,
+        ) {
+            override fun toString(): String {
+                return Config.stringWriter {
+                    write("  { ")
+                    val table = amount == -1..-1
+                    writeKey(if (table) "table" else "id")
+                    writeValue(id)
+                    if (!table && amount != 1..1) {
+                        write(", ")
+                        if (amount.first == amount.last) {
+                            writeKey("amount")
+                            writeValue(amount.first)
+                        } else {
+                            writeKey("min")
+                            writeValue(amount.first)
+                            write(", ")
+                            writeKey("max")
+                            writeValue(amount.last)
+                        }
+                    }
+                    if (chance != 1) {
+                        write(", ")
+                        writeKey("chance")
+                        writeValue(chance)
+                    }
+                    if (members != null) {
+                        write(", ")
+                        writeKey("members")
+                        writeValue(members)
+                    }
+                    write(" },\n")
+                }
+            }
+
+            companion object {
+                fun table(name: String, chance: Int = 1, roll: Int = 1, members: Boolean? = null) = Drop(
+                    name,
+                    -1..-1,
+                    chance,
+                    roll,
+                    members,
+                )
+            }
+        }
+
+        fun addDrop(drop: Drop): Builder {
+            this.drops.add(drop)
+            return this
+        }
+
+        fun withRoll(total: Int): Builder {
+            this.roll = total
+            return this
+        }
+
+        fun withType(type: TableType): Builder {
+            this.type = type
+            return this
+        }
+
+        override fun toString() = Config.stringWriter {
+            writeSection(name)
+            if (type == TableType.All) {
+                writePair("type", "all")
+            }
+            if (roll != 1) {
+                writePair("roll", roll)
+            }
+            writeKey("drops")
+            write("[\n")
+            for (drop in drops) {
+                write(drop.toString())
+            }
+            write("]\n")
         }
     }
 }

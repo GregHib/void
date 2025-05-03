@@ -6,6 +6,11 @@ to = { x = 3067, y = 10254 }
 
 [chaos_altar_portal]
 option = "Enter"
+tile = { x = 2282, y = 4837 }
+to = { x = 3060, y = 3585 }
+
+[chaos_altar_portal]
+option = "Enter"
 tile = { x = 2276, y = 4847, level = 3 }
 to = { x = 3060, y = 3585 }
 
@@ -63,12 +68,6 @@ delta = { level = -1 }
 option = "Climb-up"
 tile = { x = 2259, y = 4845 }
 delta = { level = 1 }
-
-# 9547 runecrafting
-[16048]
-option = "Climb-up"
-tile = { x = 2350, y = 5215 }
-to = { x = 3081, y = 3421 }
 
 # 9803 runecrafting
 [273]

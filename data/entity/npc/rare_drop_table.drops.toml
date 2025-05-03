@@ -29,20 +29,20 @@ drops = [
     { id = "uncut_sapphire", chance = 32 },
     { id = "uncut_emerald", chance = 16 },
     { id = "uncut_ruby", chance = 8 },
-    { id = "chaos_talisman", chance = 3 },
-    { id = "nature_talisman", chance = 3 },
+    { id = "chaos_talisman", chance = 3, members = true },
+    { id = "nature_talisman", chance = 3, members = true },
     { id = "uncut_diamond", chance = 2 },
-    { id = "rune_javelin", amount = 5, chance = 1 },
-    { id = "loop_half_of_a_key", chance = 1 },
-    { id = "tooth_half_of_a_key", chance = 1 },
-    { table = "mega_rare_drop_table", chance = 1 }
+    { id = "rune_javelin", amount = 5, chance = 1, members = true },
+    { id = "loop_half_of_a_key", chance = 1, members = true },
+    { id = "tooth_half_of_a_key", chance = 1, members = true },
+    { table = "mega_rare_drop_table", chance = 1, members = true }
 ]
 
 [mega_rare_drop_table]
 roll = 128
 drops = [
     { id = "nothing", amount = 0, chance = 113 },
-    { id = "rune_spear", chance = 8 },
-    { id = "shield_left_half", chance = 4 },
-    { id = "dragon_spear", chance = 3 }
+    { id = "rune_spear", chance = 8, members = true },
+    { id = "shield_left_half", chance = 4, members = true },
+    { id = "dragon_spear", chance = 3, members = true }
 ]

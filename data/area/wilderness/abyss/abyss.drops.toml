@@ -3,7 +3,7 @@ type = "all"
 drops = [
     { table = "ashes" },
     { table = "abyssal_secondary" },
-    { table = "medium_clue_scroll" }
+    { table = "medium_clue_scroll", roll = 256 }
 ]
 
 [abyssal_guardian_drop_table]
@@ -11,7 +11,7 @@ type = "all"
 drops = [
     { table = "ashes" },
     { table = "abyssal_secondary" },
-    { table = "medium_clue_scroll" }
+    { table = "medium_clue_scroll", roll = 256 }
 ]
 
 [abyssal_leech_drop_table]
@@ -19,7 +19,7 @@ type = "all"
 drops = [
     { table = "ashes" },
     { table = "abyssal_secondary" },
-    { table = "medium_clue_scroll" }
+    { table = "medium_clue_scroll", roll = 256 }
 ]
 
 [abyssal_secondary]

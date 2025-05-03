@@ -12,6 +12,50 @@ categories = ["rat", "rats"]
 height = 5
 examine = "A popular dwarven delicacy."
 
+[stronghold_rat]
+id = 4415
+hitpoints = 20
+attack_bonus = -47
+wander_radius = 8
+attack_radius = 18
+slayer_xp = 2.0
+max_hit_melee = 1
+respawn_delay = 30
+style = "crush"
+height = 5
+categories = ["rat", "rats"]
+examine = "A popular dwarven delicacy."
+
+[stronghold_rat_2]
+id = 4396
+categories = ["stronghold_rat"]
+clone = "stronghold_rat"
+
+[stronghold_giant_rat]
+id = 4944
+hitpoints = 50
+att = 2
+str = 3
+def = 2
+wander_radius = 8
+attack_radius = 10
+slayer_xp = 5.0
+max_hit_melee = 10
+respawn_delay = 30
+style = "stab"
+categories = ["stronghold_rat", "rat", "rats"]
+examine = "Overgrown vermin."
+
+[stronghold_giant_rat_2]
+id = 4945
+categories = ["stronghold_rat"]
+clone = "stronghold_giant_rat"
+
+[stronghold_giant_rat_3]
+id = 4395
+categories = ["stronghold_rat"]
+clone = "stronghold_giant_rat"
+
 [giant_rat]
 id = 86
 att = 2

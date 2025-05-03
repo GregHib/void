@@ -1,3 +1,6 @@
 [fire_barbarian_village]
 id = 5499
 examine = "Hot!"
+
+[stronghold_of_security_entrance]
+id = 16154

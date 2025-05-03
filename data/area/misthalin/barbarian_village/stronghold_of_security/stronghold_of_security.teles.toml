@@ -1,84 +1,101 @@
-# 7505 stronghold_of_security
-[24427]
-option = "Walk-up"
-tile = { x = 1758, y = 4959 }
-delta = { x = 1500, y = -1505 }
-
-[16148]
+# 7505 stronghold of security war level 1
+[stronghold_war_ladder_up]
 option = "Climb-up"
 tile = { x = 1859, y = 5244 }
 to = { x = 3081, y = 3421 }
 
-[16146]
-option = "Climb-up"
-tile = { x = 1881, y = 5232 }
-to = { x = 1859, y = 5243 }
-
-[16148]
+[stronghold_war_ladder_up]
 option = "Climb-up"
 tile = { x = 1913, y = 5226 }
 to = { x = 3081, y = 3421 }
 
-# 8017 stronghold_of_security
-[10699]
+[stronghold_war_chain_up]
 option = "Climb-up"
-tile = { x = 2004, y = 4426, level = 1 }
-to = { x = 3091, y = 3275 }
+tile = { x = 1881, y = 5232 }
+to = { x = 1859, y = 5243 }
 
-[16080]
+[stronghold_war_portal]
+option = "Enter"
+tile = { x = 1863, y = 5238 }
+to = { x = 1914, y = 5222 }
+
+[stronghold_war_ladder_down]
+option = "Climb-down"
+tile = { x = 1902, y = 5222 }
+to = { x = 2042, y = 5245 }
+
+# 8017 stronghold of security famine level 2
+
+[stronghold_famine_ladder_up]
 option = "Climb-up"
 tile = { x = 2042, y = 5246 }
 to = { x = 1859, y = 5243 }
 
-[16078]
+[stronghold_famine_rope_up]
 option = "Climb-up"
 tile = { x = 2040, y = 5208 }
 to = { x = 2042, y = 5245 }
 
-[16078]
+[stronghold_famine_rope_up]
 option = "Climb-up"
 tile = { x = 2031, y = 5189 }
 to = { x = 2042, y = 5245 }
 
-[16078]
+[stronghold_famine_rope_up]
 option = "Climb-up"
 tile = { x = 2011, y = 5192 }
 to = { x = 2042, y = 5245 }
 
-[16078]
+[stronghold_famine_rope_up]
 option = "Climb-up"
 tile = { x = 2017, y = 5210 }
 to = { x = 2042, y = 5245 }
 
-# 8530 stronghold_of_security
-[16081]
+[stronghold_famine_ladder_down]
 option = "Climb-down"
 tile = { x = 2026, y = 5218 }
 to = { x = 2123, y = 5252 }
 
-[16114]
+[stronghold_famine_portal]
+option = "Enter"
+tile = { x = 2039, y = 5240 }
+to = { x = 2021, y = 5223 }
+
+# 8530 stronghold of security pestilence level 3
+
+[stronghold_pestilence_ladder_up]
 option = "Climb-up"
 tile = { x = 2123, y = 5251 }
 to = { x = 2042, y = 5245 }
 
-[16112]
+[stronghold_pestilence_vine_up]
 option = "Climb-up"
 tile = { x = 2150, y = 5278 }
 to = { x = 2123, y = 5252 }
 
-# 9297 stronghold_of_security
-[chaos_altar_portal]
+[stronghold_pestilence_portal]
 option = "Enter"
-tile = { x = 2282, y = 4837 }
-to = { x = 3060, y = 3585 }
+tile = { x = 2120, y = 5258 }
+to = { x = 2146, y = 5287 }
 
-[16049]
+# 9297 stronghold of security death level 4
+
+[stronghold_death_ladder_up]
 option = "Climb-up"
 tile = { x = 2358, y = 5216 }
 to = { x = 2123, y = 5252 }
 
-[16048]
+[stronghold_death_portal]
+option = "Enter"
+tile = { x = 2365, y = 5212 }
+to = { x = 2341, y = 5219 }
+
+[stronghold_death_rope_up]
 option = "Climb-up"
 tile = { x = 2309, y = 5240 }
 to = { x = 3081, y = 3421 }
 
+[stronghold_death_rope_up]
+option = "Climb-up"
+tile = { x = 2350, y = 5215 }
+to = { x = 3081, y = 3421 }

@@ -1,7 +1,6 @@
 spawns = [
 # 9265
   { id = "butterfly_1", x = 2323, y = 3175, members = true },
-  { id = "butterfly_1", x = 2323, y = 3175, members = true },
   { id = "butterfly_1", x = 2327, y = 3171, members = true },
   { id = "butterfly_1", x = 2322, y = 3168, members = true },
   { id = "butterfly_1", x = 2342, y = 3181, members = true },

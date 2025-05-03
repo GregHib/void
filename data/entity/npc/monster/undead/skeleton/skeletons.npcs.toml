@@ -98,16 +98,47 @@ examine = "Could do with gaining a few pounds."
 clone = "skeleton_axe_shield_85"
 id = 5368
 
-[skeleton_hammer_shield]
+[stronghold_skeleton_round_shield]
+id = 4384
+hitpoints = 700
+att = 60
+str = 50
+def = 60
+max_hit_melee = 60 # Unknown
+style = "crush" # Unknown
+respawn_delay = 60
+slayer_xp = 70.0
+attack_radius = 11
+wander_radius = 9
+hunt_mode = "cowardly"
+categories = ["skeleton", "skeletons", "undead"]
+examine = "Could do with gaining a few pounds."
+
+[stronghold_skeleton_helmet]
 clone = "skeleton_axe_shield_85"
+id = 4385
+hitpoints = 700
+att = 50
+str = 50
+def = 40
+max_hit_melee = 50 # Unknown
+style = "crush" # Unknown
+respawn_delay = 70
+slayer_xp = 70.0
+attack_radius = 11
+wander_radius = 9
+hunt_mode = "cowardly"
+categories = ["skeleton", "skeletons", "undead"]
+examine = "Could do with gaining a few pounds."
+
+[skeleton_hammer_shield]
+clone = "stronghold_skeleton_helmet"
 id = 4386
 
+[stronghold_skeleton_unarmed]
+clone = "stronghold_skeleton_helmet"
+id = 5365
 
-
-
-
-
-
-
-
-
+[stronghold_skeleton_shield]
+clone = "stronghold_skeleton_helmet"
+id = 5366

@@ -51,6 +51,7 @@ data object Unstable : Expression()
 data object Quiz : Expression()
 data object Upset : Expression()
 data object Yes : Expression()
+data object DoorHead : Expression()
 
 data object SurprisedOld : Expression()
 data object SadOld : Expression()

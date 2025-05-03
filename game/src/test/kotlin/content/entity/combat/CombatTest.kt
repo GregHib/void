@@ -35,7 +35,7 @@ internal class CombatTest : WorldTest() {
     @Test
     fun `Kill rat with magic`() {
         val player = createPlayer("player", emptyTile)
-        val npc = createNPC("rat", emptyTile.addY(4))
+        val npc = createNPC("giant_rat", emptyTile.addY(4))
         player.equipment.set(EquipSlot.Weapon.index, "staff_of_air")
         player.experience.set(Skill.Magic, EXPERIENCE)
         player.inventory.add("mind_rune", 100)
@@ -55,7 +55,7 @@ internal class CombatTest : WorldTest() {
     @Test
     fun `Kill rat with melee`() {
         val player = createPlayer("player", emptyTile)
-        val npc = createNPC("rat", emptyTile.addY(4))
+        val npc = createNPC("giant_rat", emptyTile.addY(4))
 
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
         player.experience.set(Skill.Attack, EXPERIENCE)
@@ -87,7 +87,7 @@ internal class CombatTest : WorldTest() {
             override fun nextBits(bitCount: Int) = 100
         })
         val player = createPlayer("player", emptyTile)
-        val npc = createNPC("rat", emptyTile.addY(4))
+        val npc = createNPC("giant_rat", emptyTile.addY(4))
 
         player.levels.set(Skill.Ranged, 50)
         player.equipment.set(EquipSlot.Weapon.index, "magic_shortbow")

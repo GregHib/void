@@ -1,0 +1,14 @@
+[skull_sceptre]
+remove = ["strange_skull", "runed_sceptre"]
+add = [{ id = "skull_sceptre", charges = 10 }]
+ticks = 1
+
+[strange_skull]
+remove = ["left_skull_half", "right_skull_half"]
+add = ["strange_skull"]
+ticks = 1
+
+[runed_sceptre]
+remove = ["top_of_sceptre", "bottom_of_sceptre"]
+add = ["runed_sceptre"]
+ticks = 1

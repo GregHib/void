@@ -1,0 +1,114 @@
+# War
+[gate_of_war]
+id = 16124
+examine = "It seems to be looking at you!"
+
+[gate_of_war_mirrored]
+id = 16123
+examine = "It seems to be looking at you!"
+
+[stronghold_war_portal]
+id = 16150
+examine = "If you are of sufficient experience, you may take a shortcut through this level."
+
+[stronghold_dead_explorer]
+id = 16152
+examine = "He looks a bit past it... wonder what's in his bag."
+
+[gift_of_peace]
+id = 16135
+examine = "An oasis of peace in the nightmare of war."
+
+[stronghold_war_ladder_down]
+id = 16149
+examine = "Spears make a good ladder it seems..."
+
+[stronghold_war_ladder_up]
+id = 16148
+examine = "Spears make a good ladder it seems..."
+
+[stronghold_war_chain_up]
+id = 16146
+examine = "A chain rope - looks pretty painful if you slip."
+
+# Famine
+
+[stronghold_famine_portal]
+id = 16082
+examine = "If you are of sufficient experience, you may take a shortcut here."
+
+[grain_of_plenty]
+id = 16077
+examine = "A huge sack of wheat in the middle of famine."
+
+[stronghold_famine_rope_up]
+id = 16078
+examine = "This rope is threadbare and thin. Climb this to go back to the beginning."
+
+[stronghold_famine_ladder_up]
+id = 16080
+examine = "A very rickety ladder."
+
+[stronghold_famine_ladder_down]
+id = 16081
+examine = "A very rickety ladder."
+
+[rickety_door]
+id = 16065
+examine = "Even this door looks half starved - and appears to be eyeing you up as lunch."
+
+[rickety_door_mirrored]
+id = 16066
+examine = "Even this door looks half starved - and appears to be eyeing you up as lunch."
+
+# Pestilence
+
+[stronghold_pestilence_portal]
+id = 16116
+examine = "If you are of sufficient experience, you may take a shortcut through this level."
+
+[box_of_health]
+id = 16118
+examine = "A shiny box of medicine treasure away from the stinking ooze."
+
+[stronghold_pestilence_vine_up]
+id = 16112
+examine = "You'll be lucky to keep a grip on this! Climb to go back to the start of this level."
+
+[stronghold_pestilence_ladder_up]
+id = 16114
+examine = "Goo oozes from this vine."
+
+[oozing_barrier]
+id = 16089
+examine = "Are you sure you want to touch that? It seems to be alive and looking at you."
+
+[oozing_barrier_mirrored]
+id = 16090
+examine = "Are you sure you want to touch that? It seems to be alive and looking at you."
+
+# Death
+
+[stronghold_death_portal]
+id = 16050
+examine = "If you've completed this level before, you may use this portal."
+
+[cradle_of_life]
+id = 16047
+examine = "Life in the midst of death."
+
+[stronghold_death_ladder_up]
+id = 16049
+examine = "Bones of the dead lashed together."
+
+[stronghold_death_rope_up]
+id = 16048
+examine = "A chain of bones leading up."
+
+[portal_of_death]
+id = 16043
+examine = "Elaborate portal crafted from bones of the long dead."
+
+[portal_of_death_mirrored]
+id = 16044
+examine = "Elaborate portal crafted from bones of the long dead."

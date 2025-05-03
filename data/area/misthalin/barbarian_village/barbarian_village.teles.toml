@@ -20,7 +20,7 @@ option = "Enter"
 tile = { x = 3126, y = 3404 }
 to = { x = 2841, y = 4829 }
 
-[16154]
+[stronghold_of_security_entrance]
 option = "Climb-down"
 tile = { x = 3081, y = 3420 }
 to = { x = 1859, y = 5243 }

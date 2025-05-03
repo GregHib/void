@@ -1,0 +1,33 @@
+[catablepon_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "catablepon_secondary" },
+    { table = "medium_clue_scroll", roll = 101 },
+]
+
+[catablepon_secondary]
+roll = 101
+drops = [
+    { id = "adamant_med_helm", members = true },
+    { id = "fire_rune", amount = 15, chance = 7 },
+    { id = "water_rune", amount = 7, chance = 6 },
+    { id = "chaos_rune", amount = 7, members = true },
+    { id = "law_rune", amount = 2, chance = 4 },
+    { id = "cosmic_rune", amount = 2, chance = 3, members = true },
+    { id = "mithril_arrow", min = 5, max = 14, chance = 4 },
+    { table = "herb_drop_table", chance = 3 },
+    { table = "allotment_seed_drop_table" },
+    { id = "rune_essence_noted", amount = 15, chance = 5, members = false },
+    { id = "pure_essence_noted", amount = 15, chance = 5, members = true },
+    { id = "eye_of_newt", chance = 7 },
+    { id = "coal_noted", min = 3, max = 7, chance = 2 },
+    { id = "coins", amount = 10, chance = 4, members = false },
+    { id = "coins", amount = 15, chance = 6, members = true },
+    { id = "coins", amount = 44, chance = 12, members = true },
+    { id = "coins", min = 5, max = 104, chance = 10 },
+    { id = "trout", chance = 2 },
+    { id = "unlit_torch", chance = 9, members = true },
+    { id = "top_of_sceptre", chance = 3 },
+    { table = "gem_drop_table", chance = 2 },
+]

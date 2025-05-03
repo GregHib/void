@@ -606,3 +606,6 @@ id = 14710
 
 [expression_blinking]
 id = 14711
+
+[expression_door_head]
+id = 4281

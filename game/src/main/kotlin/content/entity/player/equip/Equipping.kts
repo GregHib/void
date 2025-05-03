@@ -35,6 +35,10 @@ inventoryOptions("Wield", "Wear", "Hold", "Equip", inventory = "inventory") {
         player.message("You attempt to use the Monkey Greegree but nothing happens.")
         return@inventoryOptions
     }
+    if (item.id.endsWith("goblin_mail")) {
+        player.message("That armour is too small for a human.")
+        return@inventoryOptions
+    }
     if (replaceWeaponShieldWith2h(player, def) && !player.equipment.move(EquipSlot.Shield.index, player.inventory)) {
         player.inventoryFull()
         return@inventoryOptions

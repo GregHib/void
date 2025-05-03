@@ -32,7 +32,7 @@ objTeleportTakeOff("Pull", "lever_*") {
                     return@option
                 }
                 option("Yes please, don't show this message again.") {
-                    player["wilderness_lever_warning"] = false // TODO proper doomsayer variable
+                    player["wilderness_lever_warning"] = false
                     pullLever(this@objTeleportTakeOff, target)
                 }
             }

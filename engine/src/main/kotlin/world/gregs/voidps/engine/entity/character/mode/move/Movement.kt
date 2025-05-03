@@ -3,9 +3,12 @@ package world.gregs.voidps.engine.entity.character.mode.move
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
@@ -17,6 +20,7 @@ import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Overlap
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.network.login.protocol.visual.update.player.MoveType
 import world.gregs.voidps.type.Delta
@@ -204,13 +208,49 @@ open class Movement(
         fun equals(one: Tile, two: Tile) = one.level == two.level && one.x == two.x && one.y == two.y
 
         fun move(character: Character, delta: Delta) {
-            character.steps.movedFrom = character.tile
+            val from = character.tile
             character.tile = character.tile.add(delta)
+            val to = character.tile
             character.visuals.moved = true
             if (character is Player && character.networked) {
                 character.emit(ReloadRegion)
             }
+            if (Settings["world.players.collision", false] && !character.contains("dead")) {
+                move(character, from, to)
+            }
+            if (character is Player) {
+                character.emit(Moved(character, from, to))
+                val areaDefinitions: AreaDefinitions = get()
+                for (def in areaDefinitions.get(from.zone)) {
+                    if (from in def.area && to !in def.area) {
+                        character.emit(AreaExited(character, def.name, def.tags, def.area))
+                    }
+                }
+                for (def in areaDefinitions.get(to.zone)) {
+                    if (to in def.area && from !in def.area) {
+                        character.emit(AreaEntered(character, def.name, def.tags, def.area))
+                    }
+                }
+            }
         }
+
+        private fun move(character: Character, from: Tile, to: Tile) {
+            val collisions: Collisions = get()
+            val mask = entityBlock(character)
+            val size = character.size
+            for (x in 0 until size) {
+                for (y in 0 until size) {
+                    collisions.remove(from.x + x, from.y + y, from.level, mask)
+                }
+            }
+            for (x in 0 until size) {
+                for (y in 0 until size) {
+                    collisions.add(to.x + x, to.y + y, to.level, mask)
+                }
+            }
+        }
+
+        fun entityBlock(character: Character): Int = if (character is Player) CollisionFlag.BLOCK_PLAYERS else (CollisionFlag.BLOCK_NPCS or if (character["solid", false]) CollisionFlag.FLOOR else 0)
 
         private fun clockwise(step: Direction) = when (step) {
             Direction.NORTH -> 0

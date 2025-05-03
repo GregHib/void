@@ -88,3 +88,41 @@ id = 1537
 hunt_mode = "cowardly"
 respawn_delay = 40
 examine = "A strange disturbance in the air."
+
+[stronghold_ghost_hair]
+id = 5369
+hitpoints = 800
+att = 63
+str = 63
+def = 68
+max_hit_melee = 70
+hunt_mode = "cowardly"
+hunt_range = 1
+style = "crush"
+respawn_delay = 40
+slayer_xp = 80.0
+attack_radius = 11
+wander_radius = 9
+categories = ["ghost", "ghosts", "undead"]
+examine = "Eeek! A ghost!"
+
+[stronghold_ghost]
+id = 4387
+clone = "stronghold_ghost_hair"
+attack_anim = "ghost_tendril_attack"
+defend_anim = "ghost_tendril_defend"
+death_anim = "ghost_tendril_death"
+
+[stronghold_ghost_cape]
+id = 4388
+clone = "stronghold_ghost_hair"
+hitpoints = 750
+slayer_xp = 75.0
+
+[stronghold_ghost_hood]
+id = 5370
+clone = "stronghold_ghost_hair"
+
+[stronghold_ghost_mask]
+id = 5371
+clone = "stronghold_ghost_hair"

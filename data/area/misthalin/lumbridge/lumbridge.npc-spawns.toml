@@ -165,6 +165,7 @@ spawns = [
   { id = "goblin_light_brown_mohawk", x = 3260, y = 3237 },
   { id = "goblin_light_topless_spiked", x = 3260, y = 3240 },
   { id = "explorer_jack", x = 3204, y = 3242 },
+  { id = "doomsayer", x = 3237, y = 3227, direction = "EAST" },
 # 12851
   { id = "duck_swim", x = 3235, y = 3265 },
   { id = "duck_swim", x = 3233, y = 3267 },

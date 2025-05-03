@@ -4,14 +4,13 @@ import com.github.michaelbull.logging.InlineLogger
 import content.entity.combat.attackers
 import content.entity.combat.hit.npcCombatDamage
 import content.entity.gfx.areaGfx
+import content.entity.player.dialogue.type.warning
 import content.entity.player.inv.inventoryItem
 import content.entity.sound.areaSound
 import content.skill.firemaking.Light
 import content.skill.firemaking.Light.hasLightSource
 import content.skill.melee.weapon.fightStyle
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
@@ -56,20 +55,14 @@ inventoryItem("Dig", "spade") {
     if (!acceptedTiles.contains(playerTile)) {
         return@inventoryItem
     }
-    player.open("warning_dark")
+    if (warning("mole_lair")) {
+        player.tele(initialCaveTile)
+    }
 }
 
 objectOperate("Climb", "giant_mole_lair_escape_rope") {
     player.anim("climb_up")
     player.tele(acceptedTiles.random())
-}
-
-interfaceOption("Yes", "proceed", "warning_dark") {
-    player.tele(initialCaveTile, clearInterfaces = true)
-}
-
-interfaceOption("No", "stayout", "warning_dark") {
-    player.closeInterfaces()
 }
 
 npcCombatDamage("giant_mole") {

@@ -4,7 +4,7 @@ tradeable = false
 weight = 0.1
 weapon_type = "mouse_toy"
 slot = "Weapon"
-destroy = "You can get a replacement mouse toy by speaking to Bob, the Jagex cat. You can also reclaim it from the quest storage chest."
+destroy = "You can get a replacement mouse toy by speaking to Bob, the cat. You can also reclaim it from the quest storage chest."
 examine = "An Advanced Combat Training Device."
 kept = "Wilderness"
 

@@ -121,12 +121,12 @@ internal class LootShareTest : WorldTest() {
         }
         val clan = player.clan!!
         clan.lootRank = ClanRank.Anyone
-        val npc = createNPC("rat", emptyTile.addY(1))
+        val npc = createNPC("giant_rat", emptyTile.addY(1))
         every { npc.inMultiCombat } returns false
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
         player.experience.set(Skill.Attack, Experience.MAXIMUM_EXPERIENCE)
 
-        player.interfaceOption("combat_styles", "style1")
+        player.interfaceOption("combat_styles", "style1", "Select")
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
         val tile = npc["death_tile", npc.tile]
@@ -155,11 +155,11 @@ internal class LootShareTest : WorldTest() {
         member.instructions.send(ClanChatJoin("player"))
         tick()
         member["loot_share"] = true
-        val npc = createNPC("rat", emptyTile.addY(1))
+        val npc = createNPC("giant_rat", emptyTile.addY(1))
         every { npc.inMultiCombat } returns true
         npc.damageDealers[member] = 10
 
-        player.interfaceOption("combat_styles", "style1")
+        player.interfaceOption("combat_styles", "style1", "Select")
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
         val tile = npc["death_tile", npc.tile]

@@ -1,0 +1,154 @@
+[warning_dagannoth_kings_ladder]
+id = 3851
+persist = true
+format = "int"
+
+[warning_contact_dungeon_ladder]
+id = 3852
+persist = true
+format = "int"
+
+[warning_mole_lair]
+id = 3853
+persist = true
+format = "int"
+
+[warning_stronghold_of_security_ladders]
+id = 3854
+persist = true
+format = "int"
+
+[warning_player_owned_houses]
+id = 3855
+persist = true
+format = "int"
+
+[warning_random_event_dropped_items]
+id = 3856
+persist = true
+format = "int"
+
+[warning_wilderness_wall]
+id = 3857
+persist = true
+format = "int"
+
+[warning_trollheim_wilderness_entrance]
+id = 3858
+persist = true
+format = "int"
+
+[warning_observatory_stairs]
+id = 3859
+persist = true
+format = "int"
+
+[warning_shantay_pass]
+id = 3860
+persist = true
+format = "int"
+
+[warning_icy_path_area]
+id = 3861
+persist = true
+format = "int"
+
+[warning_watchtower_shaman_cave]
+id = 3862
+persist = true
+format = "int"
+
+[warning_lumbridge_swamp_cave_rope]
+id = 3863
+persist = true
+format = "int"
+
+[warning_ham_mill_tunnel]
+id = 3864
+persist = true
+format = "int"
+
+[warning_dorgesh_kaan_fairy_ring]
+id = 3865
+persist = true
+format = "int"
+
+[warning_lumbridge_cellar]
+id = 3866
+persist = true
+format = "int"
+
+[warning_elid_genie_cave]
+id = 3867
+persist = true
+format = "int"
+
+[warning_dorgesh_kaan_kalphite_tunnel]
+id = 3868
+persist = true
+format = "int"
+
+[warning_dorgesh_kaan_city_exit]
+id = 3869
+persist = true
+format = "int"
+
+[warning_mort_myre]
+id = 3870
+persist = true
+format = "int"
+
+[warning_clan_wars_ffa_safe]
+id = 5294
+persist = true
+format = "boolean"
+
+[warning_ranging_guild_tower]
+id = 3871
+persist = true
+format = "int"
+
+[warning_death_plateau]
+id = 3872
+persist = true
+format = "int"
+
+[warning_godwars_wilderness_agility_route]
+id = 3946
+persist = true
+format = "int"
+
+[warning_duel_arena]
+id = 4132
+persist = true
+format = "int"
+
+[warning_chaos_tunnels_east]
+id = 4307
+persist = true
+format = "int"
+
+[warning_chaos_tunnels_central]
+id = 4308
+persist = true
+format = "int"
+
+[warning_chaos_tunnels_west]
+id = 4309
+persist = true
+format = "int"
+
+[warning_corporeal_beast]
+id = 5366
+persist = true
+format = "int"
+
+[warning_clan_wars_ffa_dangerous]
+id = 5295
+persist = true
+format = "boolean"
+
+[warning_living_rock_caverns]
+id = 6500
+persist = true
+format = "int"

@@ -2,8 +2,6 @@
 id = 286
 tradeable = false
 weight = 3.628
-slot = "Chest"
-material = "metal"
 examine = "Armour designed to fit goblins."
 kept = "Wilderness"
 
@@ -11,8 +9,6 @@ kept = "Wilderness"
 id = 287
 tradeable = false
 weight = 3.628
-slot = "Chest"
-material = "metal"
 examine = "Armour designed to fit goblins."
 kept = "Wilderness"
 
@@ -21,8 +17,6 @@ id = 288
 price = 114
 limit = 100
 weight = 3.628
-slot = "Chest"
-material = "metal"
 examine = "Armour designed to fit goblins."
 kept = "Wilderness"
 

@@ -9,7 +9,7 @@ drops = [
 roll = 128
 drops = [
     { id = "bronze_sq_shield", chance = 3 },
-    { id = "bronze_spear", chance = 4 },
+    { id = "bronze_spear", chance = 4, members = true },
     { id = "body_rune", amount = 7, chance = 5 },
     { id = "water_rune", amount = 6, chance = 6 },
     { id = "earth_rune", amount = 4, chance = 3 },
@@ -21,10 +21,54 @@ drops = [
     { id = "coins", amount = 1, chance = 1 },
     { id = "nothing", amount = 0, chance = 38 },
     { id = "hammer", amount = 1, chance = 15 },
-    { id = "goblin_book", amount = 1, chance = 2 },
+    { id = "goblin_book", amount = 1, chance = 2, members = true },
     { id = "goblin_mail", amount = 1, chance = 5 },
     { id = "chefs_hat", amount = 1, chance = 3 },
     { id = "beer", amount = 1, chance = 2 },
     { id = "brass_necklace", amount = 1, chance = 1 },
     { id = "air_talisman", amount = 1, chance = 1 }
+]
+
+[stronghold_goblin_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "stronghold_goblin_secondary" },
+    { table = "stronghold_goblin_tertiary" },
+]
+
+[stronghold_goblin_secondary]
+roll = 128
+drops = [
+    { id = "bronze_hatchet", chance = 3 },
+    { id = "bronze_scimitar" },
+    { id = "bronze_spear", chance = 9, members = true },
+    { id = "bronze_arrow", amount = 7, chance = 3 },
+    { id = "mind_rune", amount = 2, chance = 3 },
+    { id = "earth_rune", amount = 4, chance = 3 },
+    { id = "body_rune", amount = 2, chance = 3 },
+    { id = "bronze_javelin", amount = 5, chance = 2, members = true },
+    { id = "chaos_rune" },
+    { id = "nature_rune" },
+    { table = "herb_drop_table", chance = 256 },
+    { id = "coins", chance = 34 },
+    { id = "coins", amount = 3, chance = 13 },
+    { id = "coins", amount = 5, chance = 8 },
+    { id = "coins", amount = 16, chance = 7 },
+    { id = "coins", amount = 24, chance = 3 },
+    { id = "coins", amount = 10, chance = 2, members = false },
+    { id = "hammer", chance = 9 },
+    { id = "goblin_book", chance = 2, members = true },
+    { id = "goblin_mail", chance = 10 },
+    { id = "grapes" },
+    { id = "red_cape" },
+    { id = "tin_ore" },
+]
+
+[stronghold_goblin_tertiary]
+roll = 5000
+drops = [
+#    { id = "goblin_skull", chance = 1250, members = true },
+    { id = "clue_scroll_easy", lacks = "clue_scroll_easy*", chance = 39 },
+    { id = "goblin_champions_scroll", members = true },
 ]

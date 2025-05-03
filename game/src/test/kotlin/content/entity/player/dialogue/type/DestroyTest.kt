@@ -8,10 +8,10 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.koin.test.mock.declareMock
+import stringEntry
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.suspend.StringSuspension
 
 internal class DestroyTest : DialogueTest() {
 
@@ -59,8 +59,7 @@ internal class DestroyTest : DialogueTest() {
         dialogue {
             destroyed = destroy("1234", "question")
         }
-        val suspend = player.dialogueSuspension as StringSuspension
-        suspend.resume("confirm")
+        player.stringEntry("confirm")
         assertTrue(destroyed)
     }
 }
