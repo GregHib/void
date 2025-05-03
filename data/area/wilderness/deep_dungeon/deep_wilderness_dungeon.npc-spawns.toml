@@ -1,0 +1,9 @@
+spawns = [
+# 12193
+  { id = "hill_giant", x = 3045, y = 10321, members = true },
+  { id = "hill_giant_2", x = 3042, y = 10317, members = true },
+  { id = "hill_giant_3", x = 3046, y = 10315, members = true },
+  { id = "hill_giant_4", x = 3045, y = 10311, members = true },
+  { id = "hill_giant_5", x = 3044, y = 10306, members = true },
+  { id = "hill_giant_6", x = 3045, y = 10308, members = true },
+]

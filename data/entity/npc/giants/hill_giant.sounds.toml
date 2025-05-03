@@ -1,0 +1,9 @@
+[hill_giants_defend] 
+id = 451
+
+[hill_giants_death] 
+id = 450
+
+
+[hill_giants_attack] 
+id = 448

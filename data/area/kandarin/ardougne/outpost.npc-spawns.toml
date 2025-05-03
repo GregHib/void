@@ -9,4 +9,12 @@ spawns = [
   { id = "wolf", x = 2440, y = 3335, members = true },
   { id = "wolf", x = 2439, y = 3333, members = true },
   { id = "wolf", x = 2440, y = 3333, members = true },
+  { id = "hobgoblin_unarmed", x = 2445, y = 3362, members = true },
+  { id = "hobgoblin_unarmed", x = 2447, y = 3361, members = true },
+  { id = "hobgoblin_armed", x = 2443, y = 3359, members = true },
+  { id = "hobgoblin_armed", x = 2445, y = 3359, members = true },
+  { id = "hobgoblin_armed", x = 2446, y = 3357, members = true },
+  { id = "hobgoblin_armed", x = 2448, y = 3331, members = true },
+  { id = "hobgoblin_armed", x = 2448, y = 3329, members = true },
+  { id = "hobgoblin_armed", x = 2451, y = 3330, members = true },
 ]

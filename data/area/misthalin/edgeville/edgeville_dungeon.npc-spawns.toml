@@ -1,4 +1,17 @@
 spawns = [
+# 12441  
+  { id = "hill_giant", x = 3111, y = 9841 },
+  { id = "hill_giant", x = 3117, y = 9850 },
+  { id = "hill_giant_2", x = 3117, y = 9843 },
+  { id = "hill_giant_2", x = 3099, y = 9832 },
+  { id = "hill_giant_3", x = 3100, y = 9836 },
+  { id = "hill_giant_3", x = 3122, y = 9844 },
+  { id = "hill_giant_4", x = 3110, y = 9845 },
+  { id = "hill_giant_4", x = 3107, y = 9835 },
+  { id = "hill_giant_5", x = 3117, y = 9835 },
+  { id = "hill_giant_5", x = 3113, y = 9831 },
+  { id = "hill_giant_6", x = 3106, y = 9827 },
+  { id = "hill_giant_6", x = 3116, y = 9832 },
 # 12442
   { id = "rat", x = 3112, y = 9884 },
   { id = "rat", x = 3124, y = 9882 },
@@ -10,4 +23,9 @@ spawns = [
   { id = "giant_rat_dark", x = 3089, y = 9895 },
   { id = "giant_rat_dark", x = 3122, y = 9889 },
   { id = "giant_rat_dark_injured", x = 3117, y = 9889 },
+  { id = "hobgoblin_unarmed", x = 3122, y = 9874 },
+  { id = "hobgoblin_unarmed", x = 3126, y = 9875 },
+  { id = "hobgoblin_armed", x = 3118, y = 9871 },
+  { id = "hobgoblin_armed", x = 3123, y = 9879 },
+  { id = "hobgoblin_armed", x = 3128, y = 9876 },
 ]

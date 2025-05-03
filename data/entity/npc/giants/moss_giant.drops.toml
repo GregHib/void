@@ -1,0 +1,46 @@
+[moss_giant_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "moss_giant_secondary" },
+]
+
+[moss_giant_secondary]
+roll = 128
+drops = [
+    { id = "black_sq_shield", chance = 5 },
+    { id = "magic_staff", chance = 2 },
+    { id = "steel_med_helm", chance = 2 },
+    { id = "mithril_sword", chance = 2 },
+    { id = "mithril_spear", chance = 2, members = true },
+    { id = "steel_kiteshield", chance = 1 },
+    { id = "law_rune", amount = 3, chance = 4 },
+    { id = "air_rune", amount = 18, chance = 3 },
+    { id = "earth_rune", amount = 27, chance = 3 },
+    { id = "chaos_rune", amount = 7, chance = 3 },
+    { id = "nature_rune", amount = 6, chance = 3 },
+    { id = "cosmic_rune", amount = 3, chance = 2 },
+    { id = "iron_arrow", amount = 15, chance = 2 },
+    { id = "steel_arrow", amount = 30, chance = 1 },
+    { id = "death_rune", amount = 3, chance = 1 },
+    { id = "blood_rune", chance = 1, members = true },
+    { id = "coins", amount = 5, chance = 35, members = false },
+    { id = "coins", amount = 37, chance = 19, members = true },
+    { id = "coins", amount = 2, chance = 8, members = false },
+    { id = "coins", amount = 119, chance = 10, members = true },
+    { id = "coins", amount = 10, chance = 5, members = false },
+    { id = "coins", amount = 300, chance = 2, members = true },
+    { id = "steel_bar", chance = 6 },
+    { id = "coal", chance = 1 },
+    { id = "spinach_roll", chance = 1 },
+    { table = "gem_drop_table", chance = 4 },
+    { table = "uncommon_seed_drop_table", chance = 35, members = true },
+    { table = "herb_drop_table", chance = 5, members = true },
+]
+
+[moss_giant_glarials_tomb_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { id = "consecration_seed" }
+]

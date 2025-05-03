@@ -1,0 +1,9 @@
+spawns = [
+  { id = "hobgoblin_unarmed", x = 3010, y = 9595 },
+  { id = "hobgoblin_unarmed", x = 3010, y = 9593 },
+  { id = "hobgoblin_unarmed", x = 3016, y = 9594 },
+  { id = "hobgoblin_unarmed", x = 3010, y = 9578 },
+  { id = "hobgoblin_unarmed", x = 3011, y = 9579 },
+  { id = "hobgoblin_unarmed", x = 3016, y = 9578 },
+  { id = "hobgoblin_armed", x = 3019, y = 9591 },
+]

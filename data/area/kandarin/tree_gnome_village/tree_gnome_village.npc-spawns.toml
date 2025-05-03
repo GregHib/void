@@ -21,4 +21,7 @@ spawns = [
   { id = "goblin_light_grey_bald_spear", x = 2519, y = 3145 },
   { id = "wolf", x = 2516, y = 3197, members = true },
   { id = "wolf", x = 2548, y = 3179, members = true },
+  { id = "hill_giant", x = 2545, y = 3144, members = true },
+  { id = "hill_giant_2", x = 2548, y = 3147, members = true },
+  { id = "hill_giant_3", x = 2507, y = 3149, members = true },
 ]

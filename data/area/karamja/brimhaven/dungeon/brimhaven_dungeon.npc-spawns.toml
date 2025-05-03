@@ -1,0 +1,24 @@
+spawns = [
+# 10644
+  { id = "moss_giant", x = 2642, y = 9492, members = true },
+  { id = "moss_giant", x = 2645, y = 9532, members = true },
+  { id = "moss_giant_2", x = 2636, y = 9528, members = true },
+  { id = "moss_giant_2", x = 2647, y = 9487, members = true },
+  { id = "moss_giant_3", x = 2646, y = 9484, members = true },
+  { id = "moss_giant_4", x = 2642, y = 9518, members = true },
+# 10645
+  { id = "moss_giant", x = 2653, y = 9574, members = true },
+  { id = "moss_giant", x = 2651, y = 9564, members = true },
+  { id = "moss_giant", x = 2663, y = 9556, members = true },
+  { id = "moss_giant", x = 2670, y = 9544, members = true },
+  { id = "moss_giant", x = 2636, y = 9544, members = true },
+  { id = "moss_giant_2", x = 2673, y = 9592, members = true },
+  { id = "moss_giant_2", x = 2640, y = 9583, members = true },
+  { id = "moss_giant_2", x = 2647, y = 9554, members = true },
+  { id = "moss_giant_2", x = 2680, y = 9544, members = true },
+  { id = "moss_giant_3", x = 2654, y = 9587, members = true },
+  { id = "moss_giant_3", x = 2680, y = 9594, members = true },
+  { id = "moss_giant_3", x = 2682, y = 9573, members = true },
+  { id = "moss_giant_3", x = 2648, y = 9537, members = true },
+  { id = "moss_giant_4", x = 2659, y = 9548, members = true },
+]

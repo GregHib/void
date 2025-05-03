@@ -1,0 +1,23 @@
+spawns = [
+# 4423
+  { id = "hill_giant", x = 1108, y = 4580 },
+  { id = "hill_giant", x = 1119, y = 4575 },
+  { id = "hill_giant", x = 1123, y = 4578 },
+  { id = "hill_giant_2", x = 1113, y = 4577 },
+  { id = "hill_giant_2", x = 1114, y = 4569 },
+  { id = "hill_giant_2", x = 1129, y = 4572 },
+  { id = "hill_giant_3", x = 1109, y = 4571 },
+  { id = "hill_giant_3", x = 1124, y = 4573 },
+  { id = "hill_giant_4", x = 1131, y = 4578 },
+  { id = "hill_giant_5", x = 1119, y = 4568 },
+  { id = "hill_giant_6", x = 1113, y = 4573 },
+# 5191
+  { id = "moss_giant", x = 1307, y = 4574, members = true },
+  { id = "moss_giant", x = 1315, y = 4581, members = true },
+  { id = "moss_giant", x = 1323, y = 4587, members = true },
+  { id = "moss_giant_2", x = 1308, y = 4580, members = true },
+  { id = "moss_giant_2", x = 1323, y = 4582, members = true },
+  { id = "moss_giant_3", x = 1311, y = 4584, members = true },
+  { id = "moss_giant_3", x = 1319, y = 4577, members = true },
+  { id = "moss_giant_4", x = 1312, y = 4577, members = true },
+]

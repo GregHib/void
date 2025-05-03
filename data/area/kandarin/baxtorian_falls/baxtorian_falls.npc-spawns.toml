@@ -1,4 +1,8 @@
 spawns = [
 # 10037
   { id = "butterfly_1", x = 2556, y = 3444, members = true },
+  { id = "moss_giant", x = 2549, y = 3408, members = true },
+  { id = "moss_giant_2", x = 2554, y = 3409, members = true },
+  { id = "moss_giant_3", x = 2554, y = 3401, members = true },
+  { id = "moss_giant_4", x = 2556, y = 3406, members = true },
 ]

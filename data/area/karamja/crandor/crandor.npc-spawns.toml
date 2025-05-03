@@ -1,0 +1,10 @@
+spawns = [
+  { id = "moss_giant", x = 2831, y = 3243 },
+  { id = "moss_giant_2", x = 2834, y = 3242 },
+  { id = "moss_giant_3", x = 2827, y = 3246 },
+  { id = "hobgoblin_unarmed", x = 2834, y = 3305 },
+  { id = "hobgoblin_unarmed", x = 2824, y = 3298 },
+  { id = "hobgoblin_unarmed", x = 2818, y = 3291 },
+  { id = "hobgoblin_unarmed", x = 2822, y = 3288 },
+  { id = "hobgoblin_unarmed", x = 2822, y = 3282 },
+]

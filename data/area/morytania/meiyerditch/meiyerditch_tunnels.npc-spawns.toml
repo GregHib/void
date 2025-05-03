@@ -23,7 +23,9 @@ spawns = [
   { id = "giant_rat", x = 3502, y = 9806, members = true },
   { id = "giant_rat_dark", x = 3463, y = 9813, members = true },
   { id = "giant_rat_dark_injured", x = 3469, y = 9816, members = true },
-  { id = "goblin_light_grey_bald_spear", x = 3465, y = 9797 },
+  { id = "goblin_light_grey_bald_spear", x = 3465, y = 9797, members = true },
+  { id = "hobgoblin_unarmed", x = 3469, y = 9797, members = true },
+  { id = "hobgoblin_armed", x = 3469, y = 9796, members = true },
 # 14487
   { id = "rat", x = 3632, y = 9696, members = true },
   { id = "rat", x = 3629, y = 9690, members = true },

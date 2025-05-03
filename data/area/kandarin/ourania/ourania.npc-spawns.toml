@@ -10,4 +10,10 @@ spawns = [
   { id = "monk_of_zamorak_ourania", x = 2474, y = 3248, members = true },
   { id = "monk_of_zamorak_ourania", x = 2477, y = 3238, members = true },
   { id = "monk_of_zamorak_ourania", x = 2477, y = 3244, members = true },
+  { id = "hill_giant", x = 2438, y = 3218, members = true },
+  { id = "hill_giant_2", x = 2441, y = 3217, members = true },
+  { id = "hill_giant_3", x = 2439, y = 3212, members = true },
+  { id = "hill_giant_4", x = 2438, y = 3208, members = true },
+  { id = "hill_giant_5", x = 2443, y = 3211, members = true },
+  { id = "hill_giant_6", x = 2445, y = 3209, members = true },
 ]

@@ -1,0 +1,17 @@
+[hobgoblin_attack]
+id = 12405
+
+[hobgoblin_defend]
+id = 12406
+
+[hobgoblin_death]
+id = 4784
+
+[hobgoblin_armed_attack]
+id = 12408
+
+[hobgoblin_armed_defend]
+id = 12406
+
+[hobgoblin_armed_death]
+id = 4784

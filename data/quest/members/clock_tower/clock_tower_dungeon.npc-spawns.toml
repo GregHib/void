@@ -47,4 +47,6 @@ spawns = [
   { id = "goblin_light_grey_bald_spear", x = 2599, y = 9626 },
   { id = "goblin_light_grey_bald_spear", x = 2605, y = 9621 },
   { id = "goblin_light_grey_bald_spear", x = 2610, y = 9620 },
+  { id = "hobgoblin_unarmed", x = 2566, y = 9632, members = true },
+  { id = "hobgoblin_unarmed", x = 2573, y = 9626, members = true },
 ]
