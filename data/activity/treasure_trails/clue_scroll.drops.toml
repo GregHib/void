@@ -1,16 +1,14 @@
 [easy_clue_scroll]
 drops = [
-    { id = "clue_scroll_easy", lacks = "clue_scroll_easy*" }
+    { id = "clue_scroll_easy", lacks = "clue_scroll_easy*", members = true }
 ]
 
 [medium_clue_scroll]
-roll = 256
 drops = [
-    { id = "clue_scroll_medium", lacks = "clue_scroll_medium*" }
+    { id = "clue_scroll_medium", lacks = "clue_scroll_medium*", members = true }
 ]
 
 [hard_clue_scroll]
-type = "all"
 drops = [
-    { id = "clue_scroll_hard", lacks = "clue_scroll_hard*" }
+    { id = "clue_scroll_hard", lacks = "clue_scroll_hard*", members = true }
 ]

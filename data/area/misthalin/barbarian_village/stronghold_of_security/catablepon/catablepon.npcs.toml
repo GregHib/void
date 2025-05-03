@@ -1,0 +1,38 @@
+[catablepon]
+id = 4397
+hitpoints = 400
+att = 45
+str = 40
+def = 40
+mage = 60
+max_hit_melee = 60
+max_hit_magic = 10
+style = "stab"
+respawn_delay = 20
+wander_radius = 6
+attack_radius = 8
+slayer_xp = 40.0
+hunt_mode = "cowardly"
+categories = ["catablepon", "catablepons"]
+examine = "Big... Cow-like... But cows don't have serpent tails!"
+
+[catablepon_mid]
+id = 4398
+clone = "catablepon"
+hitpoints = 700
+att = 55
+str = 50
+def = 50
+mage = 45
+slayer_xp = 70.0
+
+[catablepon_high]
+id = 4399
+clone = "catablepon"
+max_hit_melee = 70
+hitpoints = 500
+att = 65
+str = 60
+def = 60
+mage = 60
+slayer_xp = 50.0

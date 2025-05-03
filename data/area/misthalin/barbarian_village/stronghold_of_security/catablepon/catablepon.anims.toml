@@ -1,0 +1,11 @@
+[catablepon_death]
+id = 4270
+
+[catablepon_attack]
+id = 4271
+
+[catablepon_attack_breath]
+id = 4272
+
+[catablepon_defend]
+id = 4273
