@@ -78,8 +78,8 @@ id = 9013
 tradeable = false
 weight = 1.814
 charges = 10
-charge = "skull_sceptre_charges"
 degrade = "destroy"
+# TODO destroy message?
 slot = "Weapon"
 destroy = "You can obtain another Sceptre by collecting all four pieces from the Stronghold of Security."
 examine = "A fragile magical Sceptre."

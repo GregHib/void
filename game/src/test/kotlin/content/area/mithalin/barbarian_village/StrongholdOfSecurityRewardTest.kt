@@ -2,7 +2,7 @@ package content.area.mithalin.barbarian_village
 
 import WorldTest
 import content.entity.player.dialogue.continueDialogue
-import content.entity.player.dialogue.intEntry
+import intEntry
 import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

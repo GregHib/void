@@ -3,3 +3,7 @@ id = 4282
 
 [stronghold_of_security_door_appear]
 id = 4283
+
+[teleport_skull_sceptre]
+id = 9601
+ticks = 5
