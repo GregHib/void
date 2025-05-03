@@ -34,6 +34,10 @@ npcApproach("Pickpocket") {
     if (player.hasClock("food_delay") || player.hasClock("action_delay")) { // Should action_delay and food_delay be the same??
         return@npcApproach
     }
+    if (player.hasClock("in_combat")) {
+        player.message("You can't pickpocket during combat.")
+        return@npcApproach
+    }
     val pocket: Pocket = target.def.getOrNull("pickpocket") ?: return@npcApproach
     if (!player.has(Skill.Thieving, pocket.level)) {
         return@npcApproach
