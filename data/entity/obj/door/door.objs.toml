@@ -4260,3 +4260,15 @@ examine = "The way out!"
 [brimstails_cave_exit_right]
 id = 17222
 examine = "The way out!"
+
+[tree_gnome_gate_closed]
+id = 190
+examine = "A large gate in the gnome style."
+
+[tree_gnome_gate_west_opened]
+id = 191
+examine = "A large gate in the gnome style."
+
+[tree_gnome_gate_east_opened]
+id = 192
+examine = "A large gate in the gnome style."
