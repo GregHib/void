@@ -5,7 +5,7 @@ import world.gregs.config.ConfigReader
 /**
  * @param level required to make item
  * @param xp experience per item
- * @param animation the animation the player will perform will fletching item
+ * @param animation the animation the player will perform when fletching the item
  * @param makeAmount the amount of items fletched from a log
  * @param tick the amount of ticks for fletching an item
  */

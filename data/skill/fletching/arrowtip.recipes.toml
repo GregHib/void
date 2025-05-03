@@ -185,4 +185,4 @@ remove = ["achey_tree_logs", "wolf_bones"]
 add = ["unstrung_comp_bow"]
 message = "You carefully cut the wood and add the bones."
 question = "What would you like to fletch?"
-animation = "fletching_bow_log"
+animation = "fletching_log"

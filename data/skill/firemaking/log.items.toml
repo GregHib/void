@@ -55,7 +55,7 @@ id = 1519
 price = 16
 limit = 25000
 weight = 2.0
-fletchables = ["arrow_shaft", "willow_shortbow_u", "willow_ongbow_u", "willow_stock"]
+fletchables = ["arrow_shaft", "willow_shortbow_u", "willow_longbow_u", "willow_stock"]
 firemaking = { level = 30, xp = 90.0, life = 90 }
 aka = ["willow_log"]
 examine = "Logs cut from a willow tree."

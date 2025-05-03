@@ -42,12 +42,16 @@ class InventoryDefinitions(
                 }
                 var itemIds: IntArray? = null
                 var amounts: IntArray? = null
+                var length = -1
                 while (nextPair()) {
                     when (val key = key()) {
                         "id" -> invId = int()
                         "defaults" -> {
                             var index = 0
                             val definition = definitions[invId]
+                            if (length > definition.length) {
+                                definition.length = length
+                            }
                             itemIds = IntArray(definition.length) { -1 }
                             amounts = IntArray(definition.length)
                             while (nextElement()) {
@@ -65,6 +69,7 @@ class InventoryDefinitions(
                                 amounts[index++] = amount
                             }
                         }
+                        "length" -> length = int()
                         "stack", "currency" -> extras[key] = string()
                         "width", "height" -> extras[key] = int()
                         else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
