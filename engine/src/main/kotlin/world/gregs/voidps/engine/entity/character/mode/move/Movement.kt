@@ -216,7 +216,7 @@ open class Movement(
                 character.emit(ReloadRegion)
             }
             if (Settings["world.players.collision", false] && !character.contains("dead")) {
-                move(character, character.steps.movedFrom, to)
+                move(character, from, to)
             }
             if (character is Player) {
                 character.emit(Moved(character, from, to))
