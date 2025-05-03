@@ -48,6 +48,7 @@ data class Teleport(
                 if (teleport.cancelled) {
                     return@strongQueue
                 }
+                player.steps.clear()
                 player.sound("teleport")
                 player.gfx("teleport_$type")
                 player.animDelay("teleport_$type")

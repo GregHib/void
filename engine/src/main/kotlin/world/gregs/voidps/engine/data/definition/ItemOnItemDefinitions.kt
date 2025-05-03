@@ -130,7 +130,7 @@ class ItemOnItemDefinitions {
                 while (nextEntry()) {
                     when (key()) {
                         "id" -> id = string()
-                        "amount" -> amount = int()
+                        "amount", "charges" -> amount = int()
                     }
                 }
                 if (itemDefinitions != null && !itemDefinitions.contains(id)) {

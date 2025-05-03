@@ -27,12 +27,16 @@ import world.gregs.voidps.engine.queue.weakQueue
 import content.entity.player.dialogue.type.makeAmount
 import content.entity.combat.inCombat
 import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
+import world.gregs.voidps.engine.inv.charges
+import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
 
 val itemOnItemDefs: ItemOnItemDefinitions by inject()
 
-itemOnItem { player ->
-    val overlaps = itemOnItemDefs.getOrNull(fromItem, toItem) ?: return@itemOnItem
-    if (overlaps.isEmpty()) {
+itemOnItem(bidirectional = false) { player ->
+    val overlaps = itemOnItemDefs.getOrNull(fromItem, toItem)
+    if (overlaps.isNullOrEmpty()) {
+        player.noInterest()
         return@itemOnItem
     }
     player.closeInterfaces()
@@ -193,8 +197,15 @@ fun Transaction.removeItems(def: ItemOnItemDefinition, success: Boolean): String
     }
 
     for (add in if (success) def.add else def.fail) {
+        val index = inventory.freeIndex()
         add(add.id, add.amount)
+        val charges = add.charges()
+        if (charges != 0) {
+            // Charged items can't be stackable or amount > 1 so we can assume the free index is the correct one.
+            setCharge(index, charges)
+        }
         if (failed) {
+            println(error)
             return "You don't have enough inventory space to ${def.type} this."
         }
     }
