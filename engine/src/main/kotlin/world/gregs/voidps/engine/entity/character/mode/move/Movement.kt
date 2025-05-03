@@ -3,9 +3,11 @@ package world.gregs.voidps.engine.entity.character.mode.move
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
@@ -17,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Overlap
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.network.login.protocol.visual.update.player.MoveType
 import world.gregs.voidps.type.Delta
@@ -210,7 +213,28 @@ open class Movement(
             if (character is Player && character.networked) {
                 character.emit(ReloadRegion)
             }
+            if (Settings["world.players.collision", false] && !character.contains("dead")) {
+                move(character, character.steps.movedFrom, character.tile)
+            }
         }
+
+        private fun move(character: Character, from: Tile, to: Tile) {
+            val collisions: Collisions = get()
+            val mask = entityBlock(character)
+            val size = character.size
+            for (x in 0 until size) {
+                for (y in 0 until size) {
+                    collisions.remove(from.x + x, from.y + y, from.level, mask)
+                }
+            }
+            for (x in 0 until size) {
+                for (y in 0 until size) {
+                    collisions.add(to.x + x, to.y + y, to.level, mask)
+                }
+            }
+        }
+
+        fun entityBlock(character: Character): Int = if (character is Player) CollisionFlag.BLOCK_PLAYERS else (CollisionFlag.BLOCK_NPCS or if (character["solid", false]) CollisionFlag.FLOOR else 0)
 
         private fun clockwise(step: Direction) = when (step) {
             Direction.NORTH -> 0
