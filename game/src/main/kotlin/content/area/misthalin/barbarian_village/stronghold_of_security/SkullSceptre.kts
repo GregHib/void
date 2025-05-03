@@ -3,7 +3,6 @@ package content.area.misthalin.barbarian_village.stronghold_of_security
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.inv.inventoryItem
 import content.skill.magic.spell.Teleport
-import content.skill.magic.spell.teleportLand
 import content.skill.magic.spell.teleportTakeOff
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
