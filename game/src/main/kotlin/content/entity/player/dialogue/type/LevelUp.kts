@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelCha
 import world.gregs.voidps.engine.queue.weakQueue
 import content.entity.combat.hit.combatDamage
 import content.entity.sound.jingle
+import world.gregs.voidps.engine.client.ui.closeDialogue
 
 experience { player ->
     val previousLevel = Experience.level(skill, from)
@@ -30,6 +31,9 @@ maxLevelChange { player ->
         return@maxLevelChange
     }
     player.weakQueue(name = "level_up") {
+        onCancel = {
+            player.closeDialogue()
+        }
         val unlock = when (skill) {
             Agility -> false
             Construction -> to.rem(10) == 0
