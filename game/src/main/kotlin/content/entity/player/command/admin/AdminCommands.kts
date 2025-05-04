@@ -298,24 +298,61 @@ adminCommand("unlock [activity-type]", "unlock everything or of a type (music, t
 
 adminCommand("setlevel (skill-name) (level)", "set any skill to a specific level") {
     val split = content.split(" ")
-    val skill = Skill.valueOf(split[0].toSentenceCase())
-    val level = split[1].toInt()
+
+    // Define an example usage message
+    val exampleUsage = "Example usage: setlevel attack 50 (optional: player name)"
+
+    // Check that there are enough arguments
+    if (split.size < 2) {
+        player.message("$exampleUsage", ChatType.Console)
+        return@adminCommand
+    }
+
+    // Validate and parse skill
+    val skill = try {
+        Skill.valueOf(split[0].toSentenceCase())
+    } catch (e: IllegalArgumentException) {
+        player.message("Invalid skill name: ${split[0]}. $exampleUsage", ChatType.Console)
+        return@adminCommand
+    }
+
+    // Validate and parse level
+    val level = try {
+        split[1].toInt()
+    } catch (e: NumberFormatException) {
+        player.message("Invalid level: ${split[1]}. $exampleUsage", ChatType.Console)
+        return@adminCommand
+    }
+
+    // Parse target (optional)
     val target = if (split.size > 2) {
-        val name = content.removeSuffix("${split[0]} ${split[1]} ")
+        val name = content.removePrefix("${split[0]} ${split[1]} ").trim()
         players.get(name)
     } else {
         player
     }
+
+    // Handle target not found
     if (target == null) {
-        println("Unable to find target.")
-    } else {
+        player.message("Unable to find target. $exampleUsage", ChatType.Console)
+        return@adminCommand
+    }
+
+    // Apply level changes safely
+    try {
         target.experience.set(skill, Level.experience(skill, level))
-        player.levels.set(skill, level)
-        player.softQueue("", 1) {
+        target.levels.set(skill, level)
+
+        target.softQueue("", 1) {
             target.removeVarbit("skill_stat_flash", skill.name.lowercase())
         }
+
+        player.message("Successfully set ${skill.name} to level $level for ${target.name}.", ChatType.Console)
+    } catch (e: Exception) {
+        player.message("An error occurred while setting the level: ${e.message}", ChatType.ChatAdmin)
     }
 }
+
 
 adminCommand("reset", "rest all skills to level 1") {
     for ((index, skill) in Skill.all.withIndex()) {
