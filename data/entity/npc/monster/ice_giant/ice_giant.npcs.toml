@@ -1,0 +1,30 @@
+[ice_giant]
+id = 111
+hitpoints = 700
+att = 40
+str = 40
+def = 40
+max_hit_melee = 7
+attack_speed = 4
+hunt_mode = "aggressive"
+style = "slash"
+respawn_delay = 30
+categories = ["ice_giant"]
+drop_table = "ice_giant.drops"
+slayer_xp = 70.0
+wander_radius = 5
+attack_radius = 5
+examine = "He's got icicles in his beard."
+
+
+
+
+
+
+
+
+
+
+
+
+

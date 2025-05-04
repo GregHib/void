@@ -1,0 +1,16 @@
+[ice_warrior]
+id = 125
+hitpoints = 590
+att = 47
+str = 47
+def = 47
+max_hit_melee = 7
+attack_speed = 4
+hunt_mode = "aggressive"
+style = "slash"
+respawn_delay = 30
+categories = ["ice_warrior"]
+slayer_xp = 59.0
+wander_radius = 4
+attack_radius = 5
+examine = "A cold-hearted elemental warrior."
