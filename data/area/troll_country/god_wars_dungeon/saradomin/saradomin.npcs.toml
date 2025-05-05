@@ -10,6 +10,7 @@ attack_bonus = 195
 xp_bonus = 1.325
 max_hit_melee = 270
 max_hit_magic = 200
+min_hit_magic = 100
 hunt_mode = "aggressive"
 style = "crush"
 attack_speed = 2
