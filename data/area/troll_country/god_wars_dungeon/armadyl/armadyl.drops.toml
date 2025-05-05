@@ -1,0 +1,82 @@
+[kree_arra_drop_table]
+type = "all"
+drops = [
+    { table = "kree_arra_primary" },
+    { table = "kree_arra_secondary" },
+    { table = "kree_arra_tertiary" },
+]
+
+[kree_arra_primary]
+drops = [
+    { id = "big_bones" },
+    { id = "feather", min = 1, max = 16 },
+]
+
+[kree_arra_secondary]
+roll = 762
+drops = [
+    { id = "armadyl_helmet", chance = 2 },
+    { id = "armadyl_chestplate", chance = 2 },
+    { id = "armadyl_chainskirt", chance = 2 },
+    { id = "armadyl_hilt" },
+    { id = "godsword_shard_1" },
+    { id = "godsword_shard_2" },
+    { id = "godsword_shard_3" },
+    { id = "black_dhide_body", chance = 48 },
+    { id = "rune_crossbow", chance = 48 },
+    { id = "mind_rune", min = 586, max = 601, chance = 48 },
+    { id = "rune_arrow", min = 100, max = 105, chance = 48 },
+    { id = "runite_bolts", min = 20, max = 25, chance = 48 },
+    { id = "dragonstone_bolts_e", min = 5, max = 10, chance = 48 },
+    { id = "coins", min = 19500, max = 20000, chance = 258 },
+    { id = "ranging_potion_3", amount = 3, chance = 48 },
+    { id = "super_defence_3", amount = 3, chance = 48 },
+    { id = "grimy_dwarf_weed_noted", min = 8, max = 13, chance = 48 },
+    { id = "dwarf_weed_seed", amount = 3, chance = 48 },
+    { id = "coins", min = 20500, max = 21000, chance = 6 },
+    { id = "crystal_key", chance = 6 },
+    { id = "yew_seed", chance = 6 },
+]
+
+[kree_arra_tertiary]
+roll = 5000
+drops = [
+    { table = "elite_clue_scroll", chance = 20 },
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]
+
+[armadyl_bodyguard_drop_table]
+type = "all"
+drops = [
+    { table = "armadyl_bodyguard_primary" },
+    { table = "armadyl_bodyguard_secondary" },
+    { table = "hard_clue_scroll", roll = 128 },
+]
+
+[armadyl_bodyguard_primary]
+drops = [
+    { id = "bones" },
+    { id = "feather", min = 1, max = 11 },
+]
+
+[armadyl_bodyguard_secondary]
+roll = 16129
+drops = [
+    { id = "armadyl_helmet" },
+    { id = "armadyl_chestplate" },
+    { id = "armadyl_chainskirt" },
+    { id = "coins", min = 1000, max = 1100, chance = 124 },
+    { id = "godsword_shard_1", chance = 10 },
+    { id = "godsword_shard_2", chance = 10 },
+    { id = "godsword_shard_3", chance = 10 },
+    { id = "coins", min = 1000, max = 1100, chance = 90 },
+    { id = "steel_arrow", min = 91, max = 101, chance = 889 },
+    { id = "steel_dart", min = 91, max = 101, chance = 1016 },
+    { id = "smoke_rune", min = 10, max = 15, chance = 1016 },
+    { id = "manta_ray", amount = 2, chance = 1016 },
+    { id = "mushroom_potato", amount = 3, chance = 1016 },
+    { id = "coins", min = 1000, max = 1100, chance = 8890 },
+    { id = "crushed_nest_noted", amount = 2, chance = 1016 },
+    { id = "grimy_kwuarm_noted", chance = 1016 },
+]

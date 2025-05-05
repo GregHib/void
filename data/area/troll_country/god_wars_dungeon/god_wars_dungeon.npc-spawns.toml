@@ -10,5 +10,18 @@ spawns = [
   { id = "godwars_ancient_hobgoblin", x = 2878, y = 5319, level = 2, members = true },
   { id = "godwars_ancient_hobgoblin", x = 2876, y = 5318, level = 2, members = true },
   { id = "godwars_ancient_hobgoblin", x = 2879, y = 5318, level = 2, members = true },
-  { id = "godwars_ancient_hobgoblin", x = 2878, y = 5317, level = 2, members = true }, 
+  { id = "godwars_ancient_hobgoblin", x = 2878, y = 5317, level = 2, members = true },
+
+  # Armadyl
+  { id = "kree_arra", x = 2832, y = 5302, level = 2, members = true },
+
+  # Bandos
+  { id = "general_graardor", x = 2872, y = 5358, level = 2, members = true },
+
+  # Saradomin
+  { id = "commander_zilyana", x = 2899, y = 5265, members = true },
+
+  # Zamorak
+  { id = "kril_tsutsaroth", x = 2925, y = 5322, level = 2, members = true },
+
 ]

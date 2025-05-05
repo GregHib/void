@@ -1,0 +1,81 @@
+[kree_arra]
+id = 6222
+hitpoints = 2550
+att = 300
+str = 200
+def = 260
+mage = 200
+range = 380
+xp_bonus = 1.4
+attack_bonus = 136
+max_hit_range = 690
+max_hit_magic = 210
+max_hit_melee = 250
+hunt_mode = "aggressive"
+attack_speed = 3
+respawn_delay = 150
+slayer_xp = 357.0
+categories = ["aviansie", "boss"]
+poison_immune = true
+wander_radius = 6
+attack_radius = 8
+examine = "Graceful avatar of Armadyl."
+
+[flight_kilisa]
+id = 6227
+hitpoints = 1330
+att = 124
+str = 118
+def = 175
+mage = 50
+range = 169
+max_hit_melee = 150
+hunt_mode = "aggressive"
+style = "slash"
+attack_speed = 5
+slayer_xp = 132.5
+categories = ["aviansie"]
+wander_radius = 6
+attack_radius = 8
+drop_table = "armadyl_bodyguard"
+examine = "Graceful, bird-like creature."
+
+[wingman_skree]
+id = 6223
+hitpoints = 1210
+att = 80
+str = 50
+def = 160
+mage = 150
+range = 100
+attack_bonus = 45
+xp_bonus = 1.025
+max_hit_magic = 160
+hunt_mode = "aggressive"
+style = "magic"
+attack_speed = 5
+slayer_xp = 124.0
+categories = ["aviansie"]
+wander_radius = 6
+attack_radius = 8
+drop_table = "armadyl_bodyguard"
+examine = "Graceful, bird-like creature."
+
+[blockleader_geerin]
+id = 6225
+hitpoints = 1320
+att = 80
+str = 80
+def = 175
+mage = 50
+range = 150
+max_hit_range = 250
+hunt_mode = "aggressive"
+style = "range"
+attack_speed = 5
+slayer_xp = 132.5
+categories = ["aviansie"]
+wander_radius = 6
+attack_radius = 8
+drop_table = "armadyl_bodyguard"
+examine = "Graceful, bird-like creature."

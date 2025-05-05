@@ -1,0 +1,62 @@
+[kril_tsutsaroth_drop_table]
+type = "all"
+drops = [
+    { id = "infernal_ashes" },
+    { table = "kril_tsutsaroth_secondary" },
+    { table = "elite_clue_scroll", roll = 250 },
+]
+
+[kril_tsutsaroth_secondary]
+roll = 762
+drops = [
+    { id = "steam_battlestaff", chance = 6 },
+    { id = "zamorakian_spear", chance = 6 },
+    { id = "staff_of_the_dead" },
+    { id = "zamorak_hilt" },
+    { id = "godsword_shard_1" },
+    { id = "godsword_shard_2" },
+    { id = "godsword_shard_3" },
+    { id = "adamant_arrow_p++", min = 295, max = 300, chance = 48 },
+    { id = "rune_scimitar", chance = 48 },
+    { id = "adamant_platebody", chance = 48 },
+    { id = "rune_platelegs", chance = 42 },
+    { id = "dragon_dagger_p++", chance = 12 },
+    { id = "super_attack_3", amount = 3, chance = 48 },
+    { id = "super_strength_3", amount = 3, chance = 48 },
+    { id = "super_restore_3", amount = 3, chance = 48 },
+    { id = "zamorak_brew_3", amount = 3, chance = 48 },
+    { id = "coins", min = 19500, max = 20000, chance = 216 },
+    { id = "grimy_lantadyme_noted", amount = 10, chance = 48 },
+    { id = "lantadyme_seed", amount = 3, chance = 48 },
+    { id = "death_rune", min = 120, max = 125, chance = 48 },
+    { id = "blood_rune", min = 80, max = 85, chance = 48 },
+]
+
+[zamorak_bodyguard_drop_table]
+type = "all"
+drops = [
+    { id = "malicious_ashes" },
+    { table = "zamorak_bodyguard_secondary" },
+    { table = "hard_clue_scroll", roll = 128 },
+]
+
+[zamorak_bodyguard_secondary]
+roll = 16129
+drops = [
+    { id = "zamorakian_spear", chance = 3 },
+    { id = "coins", min = 1300, max = 1400, chance = 124 },
+    { id = "godsword_shard_1", chance = 10 },
+    { id = "godsword_shard_2", chance = 10 },
+    { id = "godsword_shard_3", chance = 10 },
+    { id = "coins", min = 1300, max = 1400, chance = 90 },
+    { id = "steel_arrow", min = 95, max = 100, chance = 889 },
+    { id = "steel_dart", min = 95, max = 100, chance = 1016 },
+    { id = "death_rune", min = 5, max = 10, chance = 1016 },
+    { id = "blood_rune", min = 5, max = 10, chance = 1016 },
+    { id = "coins", min = 1300, max = 1400, chance = 8382 },
+    { id = "shark", amount = 3, chance = 1016 },
+    { id = "tuna_potato", amount = 2, chance = 1016 },
+    { id = "wine_of_zamorak_noted", min = 5, max = 10, chance = 1016 },
+    { id = "super_attack_3", chance = 254 },
+    { id = "super_strength_3", chance = 254 },
+]
