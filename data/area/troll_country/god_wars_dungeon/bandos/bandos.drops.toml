@@ -76,5 +76,5 @@ drops = [
     { id = "kebab", chance = 833 },
 #    { id = "frozen_key_piece_bandos", chance = 250 },
     { table = "hard_clue_scroll", chance = 39 },
-    { id = "goblin_champion_scroll" },
+    { id = "goblin_champions_scroll" },
 ]

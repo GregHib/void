@@ -10,8 +10,6 @@ drops = [
 roll = 762
 drops = [
     { id = "saradomin_sword", chance = 6 },
-    { id = "saradomins_light", chance = 3 },
-    { id = "armadyl_crossbow" },
     { id = "saradomin_hilt" },
     { id = "godsword_shard_1" },
     { id = "godsword_shard_2" },
@@ -28,7 +26,7 @@ drops = [
     { id = "coins", min = 19500, max = 20000, chance = 186 },
     { id = "diamond_noted", amount = 6, chance = 48 },
     { id = "law_rune", min = 95, max = 100, chance = 48 },
-    { id = "grimy_ranarr_weed_noted", amount = 5, chance = 48 },
+    { id = "grimy_ranarr_noted", amount = 5, chance = 48 },
     { id = "ranarr_seed", amount = 2, chance = 48 },
     { id = "magic_seed", chance = 6 },
 ]
@@ -38,7 +36,7 @@ type = "all"
 drops = [
     { id = "bones" },
     { table = "saradomin_bodyguard_secondary" },
-    { table = "saradomin_bodyguard_tertiary" },
+    { table = "hard_clue_scroll", roll = 128 },
 ]
 
 [saradomin_bodyguard_secondary]
@@ -56,7 +54,7 @@ drops = [
     { id = "monkfish", amount = 3, chance = 1016 },
     { id = "summer_pie", chance = 1016 },
     { id = "coins", min = 1300, max = 1400, chance = 7874 },
-    { id = "grimy_ranarr_weed_noted", chance = 1016 },
+    { id = "grimy_ranarr_noted", chance = 1016 },
     { id = "snape_grass_noted", amount = 5, chance = 889 },
     { id = "unicorn_horn_noted", amount = 6, chance = 1016 },
 ]
