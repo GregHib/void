@@ -38,13 +38,15 @@ object Damage {
         }
         val baseMaxHit = maximum(source, target, type, weapon, spell, success)
         source["max_hit"] = baseMaxHit
+        val minimum = minimum(source, type, weapon, spell)
+        source["max_hit"] = baseMaxHit
         val player = if (source is Player && source["debug", false]) source else if (target is Player && target["debug", false]) target else null
         if (player != null) {
             val message = "Base maximum hit: $baseMaxHit ($type, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
             player.message(message)
             logger.debug { message }
         }
-        return random.nextInt(baseMaxHit + 1)
+        return random.nextInt(minimum, baseMaxHit + 1)
     }
 
     /**
@@ -54,7 +56,7 @@ object Damage {
      */
     fun maximum(source: Character, target: Character, type: String, weapon: Item, spell: String = "", special: Boolean = false): Int = when {
         type == "dragonfire" -> Dragonfire.maxHit(source, target, special || source is NPC && spell != "")
-        source is NPC -> npcMaximum(source, target, type)
+        source is NPC -> source.def["max_hit_$type", 0]
         type == "magic" && weapon.id.startsWith("saradomin_sword") -> 160
         type == "magic" && spell == "magic_dart" -> effectiveLevel(source, Skill.Magic) + 100
         type == "magic" -> {
@@ -78,8 +80,12 @@ object Damage {
         }
     }
 
-    private fun npcMaximum(source: NPC, target: Character, type: String): Int {
-        return source.def["max_hit_$type", 0]
+    /**
+     * Calculates the minimum damage before modifications are applied
+     */
+    private fun minimum(source: Character, type: String, weapon: Item, spell: String = ""): Int = when {
+        source is NPC -> source.def["min_hit_$type", 0]
+        else -> 0
     }
 
     private fun effectiveLevel(character: Character, skill: Skill): Int {
