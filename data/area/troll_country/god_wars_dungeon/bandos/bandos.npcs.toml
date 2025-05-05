@@ -1,0 +1,78 @@
+[general_graardor]
+id = 6260
+hitpoints = 2500
+att = 280
+str = 350
+def = 250
+mage = 80
+range = 350
+attack_bonus = 120
+xp_bonus = 1.325
+max_hit_melee = 600
+max_hit_range = 350
+hunt_mode = "aggressive"
+style = "crush"
+attack_speed = 6
+respawn_delay = 150
+slayer_xp = 338.0
+categories = ["boss"]
+poison_immune = true
+wander_radius = 6
+attack_radius = 8
+examine = "A huge war chief."
+
+[sergeant_strongstack]
+id = 6261
+hitpoints = 1280
+att = 124
+str = 118
+def = 125
+mage = 50
+range = 50
+max_hit_melee = 150
+hunt_mode = "aggressive"
+style = "crush"
+attack_speed = 5
+slayer_xp = 128.0
+categories = ["goblins"]
+wander_radius = 6
+attack_radius = 8
+drop_table = "bandos_bodyguard"
+examine = "A battle-honed goblin."
+
+[sergeant_steelwill]
+id = 6263
+hitpoints = 1270
+att = 80
+str = 50
+def = 150
+mage = 150
+max_hit_magic = 150
+hunt_mode = "aggressive"
+style = "magic"
+attack_speed = 5
+slayer_xp = 127.0
+categories = ["goblins"]
+wander_radius = 6
+attack_radius = 8
+drop_table = "bandos_bodyguard"
+examine = "A battle-honed goblin."
+
+[sergeant_grimspike]
+id = 6265
+hitpoints = 1460
+att = 80
+str = 80
+def = 132
+mage = 50
+range = 150
+max_hit_range = 210
+hunt_mode = "aggressive"
+style = "range"
+attack_speed = 5
+slayer_xp = 128.0
+categories = ["goblins"]
+wander_radius = 6
+attack_radius = 8
+drop_table = "bandos_bodyguard"
+examine = "A battle-honed goblin."
