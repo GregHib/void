@@ -10,6 +10,7 @@ attack_bonus = 120
 xp_bonus = 1.325
 max_hit_melee = 600
 max_hit_range = 350
+min_hit_range = 150
 hunt_mode = "aggressive"
 style = "crush"
 attack_speed = 6
