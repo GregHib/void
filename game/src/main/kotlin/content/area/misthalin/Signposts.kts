@@ -8,16 +8,16 @@ import world.gregs.voidps.type.Tile
 
 @Suppress("UNCHECKED_CAST")
 objectOperate("Read", "direction_signpost_*") {
-    val locations = target.def.extras?.get("locations")!! as ObjectArrayList<Object2ObjectOpenHashMap<String, String>>
+    val locations = target.def.extras?.get("locations") as? ObjectArrayList<Object2ObjectOpenHashMap<String, String>> ?: return@objectOperate
 
     val location =
         locations.firstOrNull {
-            Tile(it["x"]!!.toInt(), it["y"]!!.toInt()) == target.tile
+            Tile(it["x", "0"].toInt(), it["y", "0"].toInt()) == target.tile
         } ?: return@objectOperate
 
     player.open("signpost_directions")
-    player.interfaces.sendText("signpost_directions", "north", location["north_text"]!!)
-    player.interfaces.sendText("signpost_directions", "east", location["east_text"]!!)
-    player.interfaces.sendText("signpost_directions", "south", location["south_text"]!!)
-    player.interfaces.sendText("signpost_directions", "west", location["west_text"]!!)
+    player.interfaces.sendText("signpost_directions", "north", location["north_text", ""])
+    player.interfaces.sendText("signpost_directions", "east", location["east_text", ""])
+    player.interfaces.sendText("signpost_directions", "south", location["south_text", ""])
+    player.interfaces.sendText("signpost_directions", "west", location["west_text", ""])
 }
