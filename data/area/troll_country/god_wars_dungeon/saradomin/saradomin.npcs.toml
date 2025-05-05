@@ -1,0 +1,75 @@
+[commander_zilyana]
+id = 6247
+hitpoints = 2550
+att = 280
+str = 196
+def = 300
+mage = 300
+range = 250
+attack_bonus = 195
+xp_bonus = 1.325
+max_hit_melee = 270
+max_hit_magic = 200
+hunt_mode = "aggressive"
+style = "crush"
+attack_speed = 2
+respawn_delay = 150
+slayer_xp = 350.0
+categories = ["boss"]
+poison_immune = true
+wander_radius = 6
+attack_radius = 8
+examine = "Commander of Saradomin's forces."
+
+[starlight]
+id = 6248
+hitpoints = 1600
+att = 120
+str = 125
+def = 120
+mage = 125
+attack_bonus = 60
+xp_bonus = 1.05
+max_hit_melee = 150
+hunt_mode = "aggressive"
+style = "crush"
+attack_speed = 5
+wander_radius = 6
+attack_radius = 8
+drop_table = "saradomin_bodyguard"
+examine = "Bane of darkness."
+
+[growler]
+id = 6250
+hitpoints = 1460
+att = 100
+str = 101
+def = 120
+mage = 150
+attack_bonus = 10
+max_hit_magic = 160
+hunt_mode = "aggressive"
+style = "magic"
+attack_speed = 5
+wander_radius = 6
+attack_radius = 8
+drop_table = "saradomin_bodyguard"
+examine = "Defender of the faithful."
+
+[bree]
+id = 6252
+hitpoints = 1620
+att = 110
+str = 80
+def = 130
+mage = 80
+range = 150
+attack_bonus = 10
+max_hit_range = 160
+hunt_mode = "aggressive"
+style = "range"
+attack_speed = 5
+wander_radius = 6
+attack_radius = 8
+drop_table = "saradomin_bodyguard"
+examine = "Champion of truth."
