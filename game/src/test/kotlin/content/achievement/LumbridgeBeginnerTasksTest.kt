@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
@@ -471,7 +472,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     @Test
     fun `Temper Temper`() {
         val player = createPlayer()
-        player.levels.set(Skill.Attack, 5)
+        player.experience.set(Skill.Attack, Level.experience(5))
         player.inventory.add("steel_sword")
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("steel_sword"), 0)
@@ -482,7 +483,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     @Test
     fun `Steel Yourself For Combat`() {
         val player = createPlayer()
-        player.levels.set(Skill.Defence, 5)
+        player.experience.set(Skill.Defence, Level.experience(5))
         player.inventory.add("steel_platebody")
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("steel_platebody"), 0)
@@ -645,7 +646,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     @Test
     fun `Heart of Oak`() {
         val player = createPlayer()
-        player.levels.set(Skill.Ranged, 5)
+        player.experience.set(Skill.Ranged, Level.experience(5))
         player.inventory.add("oak_longbow")
 
         player.interfaceOption("inventory", "inventory", "Wield", 1, Item("oak_longbow"), 0)
