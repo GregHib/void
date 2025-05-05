@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.character.player.skill.exp
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation.interpolate
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.event.EventDispatcher
 
@@ -31,17 +32,34 @@ class Experience(
         events.emit(GrantExp(skill, previous, experience))
     }
 
-    fun add(skill: Skill, experience: Double) {
-        if (experience <= 0.0) {
+    fun add(skill: Skill, baseExperience: Double) {
+        if (baseExperience <= 0.0) {
             return
         }
+
+        // Retrieve the player's maximum level in the skill
+        val playerMaxLevel = level(skill, get(skill))
+        val maxLevel = Level.MAX_LEVEL
+
+        // Calculate the modifier using linear interpolation
+        val modifier = interpolate(1.0, 5.0, playerMaxLevel.toDouble() / maxLevel)
+
+        // Apply the global experience rate from settings
+        val experienceRate = Settings["world.experienceRate", DEFAULT_EXPERIENCE_RATE]
+
+        // Adjust the base experience by the calculated modifier and experience rate
+        val adjustedExperience = baseExperience * modifier * experienceRate
+
         if (blocked.contains(skill)) {
-            events.emit(BlockedExperience(skill, experience * Settings["world.experienceRate", DEFAULT_EXPERIENCE_RATE]))
+            // If the skill is blocked, emit a BlockedExperience event
+            events.emit(BlockedExperience(skill, adjustedExperience))
         } else {
+            // Otherwise, add the adjusted experience to the skill
             val current = get(skill)
-            set(skill, current + experience * Settings["world.experienceRate", DEFAULT_EXPERIENCE_RATE])
+            set(skill, current + adjustedExperience)
         }
     }
+
 
     fun addBlock(skill: Skill) {
         blocked.add(skill)
