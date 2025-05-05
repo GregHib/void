@@ -2,3 +2,22 @@
 x = [2816, 2943]
 y = [5248, 5375]
 tags = ["multi_combat"]
+
+[armadyl_chamber]
+x = [2824, 2842]
+y = [5296, 5308]
+level = 2
+
+[bandos_chamber]
+x = [2864, 2876]
+y = [5351, 5369]
+level = 2
+
+[saradomin_chamber]
+x = [2895, 2907]
+y = [5258, 5272]
+
+[zamorak_chamber]
+x = [2918, 2936]
+y = [5318, 5331]
+level = 2
