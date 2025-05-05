@@ -76,9 +76,9 @@ object DropTableConverter {
             always.name = "${npc}_primary"
             all.remove(always)
             if (always.drops.all { it.id == "bones" }) {
-                parent.addDrop(Builder.Drop.table("bones"))
+                parent.addDrop(Builder.Drop("bones"))
             } else if (always.drops.all { it.id == "big_bones" }) {
-                parent.addDrop(Builder.Drop.table("big_bones"))
+                parent.addDrop(Builder.Drop("big_bones"))
             } else {
                 queue.add(always)
                 parent.addDrop(Builder.Drop.table(always.name))
@@ -128,7 +128,7 @@ object DropTableConverter {
         val quantity = map["quantity"] ?: "0"
         val rarity = map.getValue("rarity")
         val (chance, roll) = if (rarity.contains("/")) {
-            rarity.split("/").map { it.toInt() }
+            rarity.split("/").map { if (it.contains(".")) it.toDouble().toInt() else it.toInt() }
         } else {
             when (rarity) {
                 "Always" -> listOf(1, 1)
@@ -139,6 +139,7 @@ object DropTableConverter {
                 "Semi-rare" -> listOf(1, 128)
                 "Rare" -> listOf(1, 256)
                 "Very rare" -> listOf(1, 512)
+                "Brimstone rarity" -> return
                 else -> throw IllegalArgumentException("Unknown rarity '${rarity}'")
             }
         }
