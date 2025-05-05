@@ -344,7 +344,7 @@ level = 76
 xp = 172.5
 ticks = 2
 remove = ["lantadyme_potion_unf", "potato_cactus"]
-add = ["magic_potion_3"]
+add = ["super_magic_potion_3"]
 animation = "mixing_potion"
 message = "You mix the potato cactus into your potion"
 
