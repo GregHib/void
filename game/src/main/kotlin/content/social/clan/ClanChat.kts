@@ -35,13 +35,10 @@ playerSpawn { player ->
         val account = accountDefinitions.getByAccount(current)
         joinClan(player, account?.displayName ?: "")
     }
-
-    val clan = accounts.clan(player.name)
-    if (clan != null && clan.owner.equals(player.accountName, ignoreCase = true)) {
-        player.ownClan = clan
-        clan.friends = player.friends
-        clan.ignores = player.ignores
-    }
+    val ownClan = accounts.clan(player.name.lowercase()) ?: return@playerSpawn
+    player.ownClan = ownClan
+    ownClan.friends = player.friends
+    ownClan.ignores = player.ignores
 }
 
 playerDespawn { player ->
