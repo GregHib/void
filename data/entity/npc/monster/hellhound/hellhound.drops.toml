@@ -1,0 +1,6 @@
+[hellhound_drop_table]
+type = "all"
+drops = [
+    { id = "ashes" },
+    { table = "hard_clue_scroll", roll = 64 },
+]
