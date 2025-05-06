@@ -12,12 +12,12 @@ objectOperate("Read", "direction_signpost_*") {
 
     val location =
         locations.firstOrNull {
-            Tile(it["x", "0"].toInt(), it["y", "0"].toInt()) == target.tile
+            Tile(it.getOrDefault("x", "0").toInt(), it.getOrDefault("y", "0").toInt()) == target.tile
         } ?: return@objectOperate
 
     player.open("signpost_directions")
-    player.interfaces.sendText("signpost_directions", "north", location["north_text", ""])
-    player.interfaces.sendText("signpost_directions", "east", location["east_text", ""])
-    player.interfaces.sendText("signpost_directions", "south", location["south_text", ""])
-    player.interfaces.sendText("signpost_directions", "west", location["west_text", ""])
+    player.interfaces.sendText("signpost_directions", "north", location.getOrDefault("north_text", ""))
+    player.interfaces.sendText("signpost_directions", "east", location.getOrDefault("east_text", ""))
+    player.interfaces.sendText("signpost_directions", "south", location.getOrDefault("south_text", ""))
+    player.interfaces.sendText("signpost_directions", "west", location.getOrDefault("west_text", ""))
 }
