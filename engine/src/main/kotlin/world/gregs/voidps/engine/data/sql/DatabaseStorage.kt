@@ -48,9 +48,9 @@ class DatabaseStorage : AccountStorage {
             .groupBy(AccountsTable.id)
             .associate { row ->
                 val variables: Map<String, Any> = row[names].mapIndexed { index, s -> s to if (s == "coin_share_setting") row[booleans][index] else row[strings][index] }.toMap()
-                val playerName = row[AccountsTable.name]
-                val displayName = variables["display_name"] as? String ?: playerName
-                displayName.lowercase() to Clan(
+                val playerName = row[AccountsTable.name].lowercase()
+                val displayName = variables["display_name"] as? String ?: row[AccountsTable.name]
+                playerName to Clan(
                     owner = playerName,
                     ownerDisplayName = displayName,
                     name = variables["clan_name"] as? String ?: "",
