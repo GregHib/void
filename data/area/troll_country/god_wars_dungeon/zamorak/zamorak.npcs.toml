@@ -76,3 +76,169 @@ wander_radius = 6
 attack_radius = 8
 drop_table = "zamorak_bodyguard"
 examine = "Scourge of the Light."
+
+[god_wars_spiritual_ranger_zamorak]
+id = 6220
+hitpoints = 1200
+def = 80
+range = 140
+max_hit_range = 150
+hunt_mode = "aggressive"
+style = "range"
+respawn_delay = 25
+slayer_xp = 106.0
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+examine = "Defender of Zamorak."
+
+[god_wars_spiritual_mage_zamorak]
+id = 6221
+hitpoints = 750
+def = 61
+mage = 180
+max_hit_mage = 190
+hunt_mode = "aggressive"
+style = "magic"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 75.0
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+examine = "A deadly servant of Zamorak."
+
+[god_wars_spiritual_warrior_zamorak]
+id = 6219
+hitpoints = 1000
+att = 100
+str = 100
+def = 100
+max_hit_melee = 110
+hunt_mode = "aggressive"
+style = "slash"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 110.0
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+examine = "Warrior of Zamorak."
+
+[god_wars_imp]
+id = 6211
+hitpoints = 100
+att = 5
+str = 5
+def = 6
+attack_bonus = -42
+max_hit_melee = 10
+style = "stab"
+attack_speed = 4
+respawn_delay = 60
+categories = ["imp"]
+wander_radius = 6
+attack_radius = 8
+examine = "Have you checked your pockets lately?"
+
+[god_wars_icefiend]
+id = 3406
+hitpoints = 200
+att = 12
+str = 16
+def = 19
+max_hit_melee = 30
+hunt_mode = "aggressive"
+style = "crush"
+slayer_xp = 20.0
+respawn_delay = 25
+categories = ["icefiend", "icefiends"]
+examine = "A small ice demon."
+
+[god_wars_pyrefiend]
+id = 6216
+hitpoints = 480
+att = 60
+str = 36
+def = 22
+max_hit_magic = 40
+hunt_mode = "aggressive"
+style = "magic"
+slayer_xp = 45.0
+respawn_delay = 25
+categories = ["pyrefiend", "pyrefiends", "fiery", "demon"]
+examine = "A small fire demon."
+
+[god_wars_vampyre]
+id = 6214
+hitpoints = 600
+att = 65
+str = 66
+def = 81
+max_hit_melee = 80
+hunt_mode = "aggressive"
+style = "slash"
+slayer_xp = 60.0
+respawn_delay = 25
+categories = ["vampyre"]
+examine = "It looks really hungry."
+
+[god_wars_bloodveld]
+id = 6215
+hitpoints = 1340
+att = 80
+str = 46
+def = 30
+max_hit_magic = 60
+style = "magic"
+slayer_xp = 134.0
+respawn_delay = 25
+hunt_mode = "cowardly"
+categories = ["bloodveld", "bloodvelds"]
+examine = "The tongue of evil."
+
+[god_wars_werewolf]
+id = 6212
+hitpoints = 920
+att = 77
+str = 76
+def = 85
+max_hit_melee = 90
+hunt_mode = "aggressive"
+style = "crush"
+slayer_xp = 100.0
+respawn_delay = 25
+categories = ["werewolf", "werewolves"]
+examine = "Down, fang!"
+
+[god_wars_werewolf_male]
+id = 6213
+clone = "god_wars_werewolf"
+examine = "He doesn't look pleased to see me."
+
+[god_wars_hellhound]
+id = 6210
+hitpoints = 1160
+att = 107
+str = 116
+def = 106
+max_hit_melee = 130
+hunt_mode = "aggressive"
+style = "stab"
+slayer_xp = 116.0
+respawn_delay = 89
+categories = ["hellhound", "hellhounds"]
+examine = "From the maws of hell."
+
+[god_wars_gorak]
+id = 6218
+hitpoints = 1280
+att = 133
+str = 126
+def = 135
+max_hit_melee = 140
+hunt_mode = "aggressive"
+style = "crush"
+respawn_delay = 25
+categories = ["gorak"]
+examine = "Comes with a vicious kick."

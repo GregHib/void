@@ -79,3 +79,276 @@ wander_radius = 6
 attack_radius = 8
 drop_table = "armadyl_bodyguard"
 examine = "Graceful, bird-like creature."
+
+[god_wars_spiritual_ranger_armadyl]
+id = 6230
+hitpoints = 890
+def = 130
+range = 150
+max_hit_range = 160
+hunt_mode = "aggressive"
+style = "range"
+attack_speed = 3
+respawn_delay = 25
+slayer_xp = 120.0
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+examine = "Armadyl's favourite servant."
+
+[god_wars_spiritual_mage_armadyl]
+id = 6231
+hitpoints = 860
+def = 111
+mage = 150
+max_hit_mage = 170
+hunt_mode = "aggressive"
+style = "magic"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 75.0
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+examine = "A mage who serves Armadyl above all else - even death."
+
+[god_wars_spiritual_warrior_armadyl]
+id = 6229
+hitpoints = 980
+def = 120
+range = 141
+max_hit_melee = 150
+hunt_mode = "aggressive"
+style = "range"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 98.0
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+examine = "A servant of Armadyl."
+
+[god_wars_aviansie]
+id = 6232
+hitpoints = 700
+def = 70
+range = 71
+max_hit_range = 80
+hunt_mode = "aggressive"
+style = "range"
+respawn_delay = 25
+slayer_xp = 70.0
+categories = ["aviansie", "aviansies"]
+wander_radius = 6
+attack_radius = 8
+examine = "Graceful, bird-like creature."
+
+[god_wars_aviansie_spears]
+id = 6233
+hitpoints = 830
+def = 70
+range = 85
+max_hit_range = 90
+hunt_mode = "aggressive"
+style = "range"
+respawn_delay = 25
+slayer_xp = 83.0
+categories = ["aviansie", "aviansies"]
+wander_radius = 6
+attack_radius = 8
+examine = "A proud warrior."
+
+[god_wars_aviansie_spears_2]
+id = 6234
+hitpoints = 860
+def = 70
+range = 93
+max_hit_range = 100
+hunt_mode = "aggressive"
+style = "range"
+respawn_delay = 25
+slayer_xp = 86.0
+categories = ["aviansie", "aviansies"]
+wander_radius = 6
+attack_radius = 8
+examine = "Graceful, bird-like creature."
+
+[god_wars_aviansie_spears_3]
+id = 6235
+hitpoints = 860
+def = 100
+range = 76
+max_hit_range = 90
+hunt_mode = "aggressive"
+style = "range"
+respawn_delay = 25
+slayer_xp = 86.0
+categories = ["aviansie", "aviansies"]
+wander_radius = 6
+attack_radius = 8
+examine = "Graceful, bird-like creature."
+
+[god_wars_aviansie_spears_4]
+id = 6236
+hitpoints = 950
+def = 100
+range = 90
+max_hit_range = 90
+hunt_mode = "aggressive"
+style = "range"
+respawn_delay = 25
+slayer_xp = 95.0
+categories = ["aviansie", "aviansies"]
+wander_radius = 6
+attack_radius = 8
+examine = "Graceful, bird-like creature."
+
+[god_wars_aviansie_spear_axe]
+id = 6237
+hitpoints = 980
+def = 100
+range = 99
+max_hit_range = 110
+hunt_mode = "aggressive"
+style = "range"
+respawn_delay = 25
+slayer_xp = 98.0
+categories = ["aviansie", "aviansies"]
+wander_radius = 6
+attack_radius = 8
+examine = "Graceful, bird-like creature."
+
+[god_wars_aviansie_high_spear]
+id = 6238
+hitpoints = 1240
+def = 160
+range = 136
+max_hit_range = 150
+hunt_mode = "aggressive"
+style = "range"
+respawn_delay = 25
+slayer_xp = 124.0
+categories = ["aviansie", "aviansies"]
+wander_radius = 6
+attack_radius = 8
+examine = "Graceful, bird-like creature."
+
+[god_wars_aviansie_high_axes]
+id = 6239
+hitpoints = 1390
+def = 160
+range = 151
+max_hit_range = 160
+hunt_mode = "aggressive"
+style = "range"
+respawn_delay = 25
+slayer_xp = 139.0
+categories = ["aviansie", "aviansies"]
+wander_radius = 6
+attack_radius = 8
+examine = "Graceful, bird-like creature."
+
+[god_wars_aviansie_axes]
+id = 6240
+hitpoints = 630
+def = 55
+range = 86
+max_hit_range = 100
+hunt_mode = "aggressive"
+style = "range"
+respawn_delay = 25
+slayer_xp = 63.0
+categories = ["aviansie", "aviansies"]
+wander_radius = 6
+attack_radius = 8
+examine = "Graceful, bird-like creature."
+
+[god_wars_aviansie_spears_5]
+id = 6241
+hitpoints = 670
+def = 55
+range = 89
+max_hit_range = 100
+hunt_mode = "aggressive"
+style = "range"
+respawn_delay = 25
+slayer_xp = 67.0
+categories = ["aviansie", "aviansies"]
+wander_radius = 6
+attack_radius = 8
+examine = "Graceful, bird-like creature."
+
+[god_wars_aviansie_spears_6]
+id = 6242
+hitpoints = 770
+def = 55
+range = 96
+max_hit_range = 110
+hunt_mode = "aggressive"
+style = "range"
+respawn_delay = 25
+slayer_xp = 77.0
+categories = ["aviansie", "aviansies"]
+wander_radius = 6
+attack_radius = 8
+examine = "Graceful, bird-like creature."
+
+[god_wars_aviansie_helmet_spears]
+id = 6243
+hitpoints = 690
+def = 115
+range = 89
+max_hit_range = 120
+hunt_mode = "aggressive"
+style = "range"
+respawn_delay = 25
+slayer_xp = 69.0
+categories = ["aviansie", "aviansies"]
+wander_radius = 6
+attack_radius = 8
+examine = "Graceful, bird-like creature."
+
+[god_wars_aviansie_helmet_spears_2]
+id = 6244
+hitpoints = 750
+def = 115
+range = 96
+max_hit_range = 110
+hunt_mode = "aggressive"
+style = "range"
+respawn_delay = 25
+slayer_xp = 75.0
+categories = ["aviansie", "aviansies"]
+wander_radius = 6
+attack_radius = 8
+examine = "Graceful, bird-like creature."
+
+[god_wars_aviansie_helmet_spear]
+id = 6245
+hitpoints = 790
+def = 115
+range = 101
+max_hit_range = 110
+hunt_mode = "aggressive"
+style = "range"
+respawn_delay = 25
+slayer_xp = 79.0
+categories = ["aviansie", "aviansies"]
+wander_radius = 6
+attack_radius = 8
+examine = "Graceful, bird-like creature."
+
+[god_wars_aviansie_high_helmet_spears]
+id = 6246
+hitpoints = 1150
+def = 175
+range = 143
+max_hit_range = 150
+hunt_mode = "aggressive"
+style = "range"
+respawn_delay = 25
+slayer_xp = 115.0
+categories = ["aviansie", "aviansies"]
+wander_radius = 6
+attack_radius = 8
+examine = "Graceful, bird-like creature."
