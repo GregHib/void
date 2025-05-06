@@ -50,7 +50,7 @@ class DatabaseStorage : AccountStorage {
                 val variables: Map<String, Any> = row[names].mapIndexed { index, s -> s to if (s == "coin_share_setting") row[booleans][index] else row[strings][index] }.toMap()
                 val playerName = row[AccountsTable.name]
                 val displayName = variables["display_name"] as? String ?: playerName
-                displayName to Clan(
+                displayName.lowercase() to Clan(
                     owner = playerName,
                     ownerDisplayName = displayName,
                     name = variables["clan_name"] as? String ?: "",
@@ -71,8 +71,8 @@ class DatabaseStorage : AccountStorage {
             val names = accounts.map { it.name }
             val playerIds = AccountsTable
                 .select(AccountsTable.id, AccountsTable.name)
-                .where { AccountsTable.name inList names }
-                .associate { it[AccountsTable.name] to it[AccountsTable.id] }
+                .where { LowerCase(AccountsTable.name) inList names.map { it.lowercase() } }
+                .associate { it[AccountsTable.name].lowercase() to it[AccountsTable.id] }
             saveExperience(accounts, playerIds)
             saveLevels(accounts, playerIds)
             saveVariables(accounts, playerIds)
@@ -81,11 +81,19 @@ class DatabaseStorage : AccountStorage {
     }
 
     override fun exists(accountName: String): Boolean = transaction {
-        AccountsTable.select(AccountsTable.id).where { AccountsTable.name eq accountName }.count() > 0
+        val lower = accountName.lowercase()
+        AccountsTable
+            .select(AccountsTable.id)
+            .where { LowerCase(AccountsTable.name) eq lower }
+            .count() > 0
     }
 
     override fun load(accountName: String): PlayerSave? = transaction {
-        val playerRow = AccountsTable.selectAll().where { AccountsTable.name eq accountName }.singleOrNull() ?: return@transaction null
+        val lower = accountName.lowercase()
+        val playerRow = AccountsTable
+            .selectAll()
+            .where { LowerCase(AccountsTable.name) eq lower }
+            .singleOrNull() ?: return@transaction null
         val playerId = playerRow[AccountsTable.id]
         val experience = loadExperience(playerId)
         val blocked = playerRow[AccountsTable.blockedSkills]
