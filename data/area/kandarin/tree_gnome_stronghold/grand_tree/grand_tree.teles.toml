@@ -1,9 +1,4 @@
 # 9782 grand_tree
-[nature_altar_portal]
-option = "Enter"
-tile = { x = 2400, y = 4834 }
-to = { x = 2867, y = 3020 }
-
 [basic_ladder_bottom]
 option = "Climb-up"
 tile = { x = 2466, y = 3495 }

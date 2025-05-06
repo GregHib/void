@@ -1,0 +1,14 @@
+[brimstails_cave_entrance]
+option = "Enter"
+tile = { x = 2403, y = 3418 }
+to = { x = 2409, y = 9812 }
+
+[brimstails_cave_exit_left]
+option = "Exit"
+tile = { x = 2409, y = 9811 }
+to = { x = 2402, y = 3419 }
+
+[brimstails_cave_exit_right]
+option = "Exit"
+tile = { x = 2408, y = 9811 }
+to = { x = 2402, y = 3419 }

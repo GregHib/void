@@ -129,3 +129,7 @@ option = "Enter"
 tile = { x = 3560, y = 9780 }
 to = { x = 2468, y = 4889, level = 1 }
 
+[nature_altar_portal]
+option = "Enter"
+tile = { x = 2400, y = 4834 }
+to = { x = 2867, y = 3020 }
