@@ -1,0 +1,40 @@
+[werewolf_drop_table]
+type = "all"
+drops = [
+    { id = "wolf_bones" },
+    { table = "werewolf_secondary" },
+    { table = "werewolf_tertiary" },
+]
+
+[werewolf_secondary]
+roll = 512
+drops = [
+    { id = "steel_hatchet", chance = 25 },
+    { id = "steel_scimitar", chance = 32 },
+    { id = "steel_full_helm", chance = 15 },
+    { id = "mithril_chainbody", chance = 10 },
+    { id = "mithril_sq_shield", chance = 10 },
+    { id = "rune_med_helm", chance = 3 },
+    { table = "herb_drop_table", chance = 3 },
+    { id = "raw_chicken", amount = 5, chance = 10 },
+    { id = "raw_beef", amount = 5, chance = 10 },
+    { id = "raw_bear_meat", amount = 5, chance = 10 },
+    { id = "jug_of_wine", chance = 20 },
+    { id = "coins", amount = 10, chance = 80 },
+    { id = "coins", amount = 90, chance = 20 },
+    { id = "coins", amount = 120, chance = 20 },
+    { id = "coins", amount = 222, chance = 20 },
+    { id = "coins", amount = 364, chance = 20 },
+    { id = "grey_wolf_fur", chance = 100 },
+    { id = "fur", chance = 100 },
+    { id = "nothing", amount = 0, chance = 2 },
+    { table = "gem_drop_table", chance = 2 },
+]
+
+[werewolf_tertiary]
+roll = 512
+drops = [
+#    { id = "werewolf_bone", chance = 128 },
+    { table = "easy_clue_scroll", chance = 4 },
+    { table = "medium_clue_scroll" },
+]

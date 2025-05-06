@@ -58,3 +58,18 @@ drops = [
     { id = "snape_grass_noted", amount = 5, chance = 889 },
     { id = "unicorn_horn_noted", amount = 6, chance = 1016 },
 ]
+
+[knight_of_saradomin_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "hard_clue_scroll", roll = 128 },
+]
+
+[saradomin_priest_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "hard_clue_scroll", roll = 128 },
+]
+
