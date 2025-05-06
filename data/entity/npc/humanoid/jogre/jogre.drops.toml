@@ -1,0 +1,33 @@
+[jogre_drop_table]
+type = "all"
+drops = [
+    { id = "jogre_bones" },
+    { table = "jogre_secondary" },
+]
+
+[jogre_secondary]
+roll = 5000
+drops = [
+    { id = "bronze_spear", chance = 1140 },
+    { id = "iron_spear", chance = 152 },
+    { id = "nature_rune", amount = 2, chance = 380 },
+    { id = "nature_rune", amount = 10, chance = 76 },
+    { id = "nature_rune", amount = 5, chance = 76 },
+    { id = "steel_javelin", amount = 5, chance = 76 },
+    { table = "herb_drop_table", chance = 228 },
+    { id = "grimy_rogues_purse", chance = 190 },
+    { id = "grimy_snake_weed", chance = 190 },
+    { table = "uncommon_seed_drop_table", chance = 570 },
+    { id = "trading_sticks", amount = 22, chance = 1026 },
+    { id = "pineapple", amount = 2, chance = 304 },
+    { id = "knife", chance = 190 },
+    { id = "bones", chance = 114 },
+    { id = "big_bones", chance = 114 },
+    { id = "big_bones", amount = 3, chance = 76 },
+    { id = "bones", chance = 76 },
+    { id = "nothing", amount = 0, chance = 76 },
+    { table = "gem_drop_table", chance = 38 },
+    { id = "jogre_bone", chance = 1250 },
+    { id = "medium_clue_scroll", chance = 38 },
+    { id = "jogre_champions_scroll" },
+]
