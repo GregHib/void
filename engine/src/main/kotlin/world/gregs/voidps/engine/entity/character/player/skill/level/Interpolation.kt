@@ -14,4 +14,10 @@ object Interpolation {
     fun lerp(value: Int, inRange: IntRange, result: IntRange): Int {
         return interpolate(value, result.first, result.last, inRange.first, inRange.last)
     }
+
+    // New Double-based interpolation
+    fun interpolate(start: Double, end: Double, fraction: Double): Double {
+        return start + fraction * (end - start)
+    }
+
 }

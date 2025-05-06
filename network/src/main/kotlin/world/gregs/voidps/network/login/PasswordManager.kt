@@ -1,5 +1,6 @@
 package world.gregs.voidps.network.login
 
+import de.mkammerer.argon2.Argon2Factory
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.network.Response
 
@@ -20,18 +21,23 @@ class PasswordManager(private val account: AccountLoader) {
             }
             return Response.SUCCESS
         }
-        try {
-            if (passwordHash == null) {
-                // Failed to find accounts password despite account file existing (created since startup)
-                return Response.ACCOUNT_DISABLED
-            }
-            if (BCrypt.checkpw(password, passwordHash)) {
-                return Response.SUCCESS
-            }
-        } catch (e: IllegalArgumentException) {
-            return Response.COULD_NOT_COMPLETE_LOGIN
+        if (passwordHash == null) {
+            return Response.ACCOUNT_DISABLED
         }
-        return Response.INVALID_CREDENTIALS
+
+        return try {
+            when {
+                passwordHash.startsWith("$2a$") || passwordHash.startsWith("$2b$") ->
+                    if (BCrypt.checkpw(password, passwordHash)) Response.SUCCESS else Response.INVALID_CREDENTIALS
+
+                passwordHash.startsWith("\$argon2i\$") ->
+                    if (Argon2Factory.create().verify(passwordHash, password.toCharArray())) Response.SUCCESS else Response.INVALID_CREDENTIALS
+
+                else -> Response.COULD_NOT_COMPLETE_LOGIN // Unknown hash type
+            }
+        } catch (e: Exception) {
+            Response.COULD_NOT_COMPLETE_LOGIN
+        }
     }
 
     fun encrypt(username: String, password: String): String {
