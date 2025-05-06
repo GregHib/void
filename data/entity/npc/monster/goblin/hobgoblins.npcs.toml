@@ -58,19 +58,3 @@ wander_radius = 4
 attack_speed = 6
 categories = ["hobgoblin"]
 examine = "He doesn't look very welcoming."
-
-[godwars_ancient_hobgoblin]
-id = 6275
-max_hit_melee = 50
-hitpoints = 520
-att = 39
-str = 39
-def = 35
-style = "crush"
-hunt_mode = "cowardly"
-slayer_xp = 52
-attack_speed = 4
-respawn_delay = 40 #todo
-wander_radius = 4
-categories = ["hobgoblin"]
-examine = "An ugly, smelly creature."
