@@ -1,0 +1,30 @@
+[pyrefiend_drop_table]
+type = "all"
+drops = [
+    { id = "ashes" },
+    { table = "pyrefiend_secondary" },
+    { table = "medium_clue_scroll", roll = 128 },
+]
+
+[pyrefiend_secondary]
+roll = 128
+drops = [
+    { id = "steel_hatchet", chance = 4 },
+    { id = "steel_full_helm", chance = 4 },
+    { id = "mithril_chainbody", chance = 2 },
+    { id = "staff_of_fire", chance = 3 },
+    { id = "steel_boots" },
+    { id = "adamant_med_helm" },
+    { id = "fire_rune", amount = 30, chance = 21 },
+    { id = "fire_rune", amount = 60, chance = 8 },
+    { id = "chaos_rune", amount = 12, chance = 5 },
+    { id = "death_rune", amount = 3, chance = 3 },
+    { id = "coins", amount = 10, chance = 7 },
+    { id = "coins", amount = 40, chance = 24 },
+    { id = "coins", amount = 120, chance = 20 },
+    { id = "coins", amount = 200, chance = 10 },
+    { id = "coins", amount = 450, chance = 2 },
+    { id = "gold_ore", chance = 8 },
+    { id = "jug_of_wine", chance = 2 },
+    { table = "gem_drop_table", chance = 3 },
+]

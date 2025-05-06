@@ -1,0 +1,45 @@
+[ork_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "ork_secondary" },
+    { table = "ork_tertiary" },
+]
+
+[ork_secondary]
+roll = 128
+drops = [
+    { id = "bronze_2h_sword", chance = 5 },
+    { id = "bronze_battleaxe", chance = 5 },
+    { id = "bronze_dart", amount = 2, chance = 5 },
+    { id = "bronze_halberd", chance = 5 },
+    { id = "bronze_scimitar", chance = 5 },
+    { id = "bronze_warhammer", chance = 5 },
+    { id = "iron_dart", amount = 2, chance = 5 },
+    { id = "iron_longsword", chance = 5 },
+    { id = "iron_mace", chance = 5 },
+    { id = "iron_scimitar", chance = 5 },
+    { id = "steel_hatchet", chance = 5 },
+    { id = "steel_dagger", chance = 5 },
+    { id = "steel_mace", chance = 5 },
+    { id = "iron_spear", chance = 4 },
+    { id = "bronze_scimitar" },
+    { id = "bronze_med_helm", chance = 5 },
+    { id = "bronze_full_helm", chance = 5 },
+    { id = "bronze_platelegs", chance = 5 },
+    { id = "iron_chainbody", chance = 5 },
+    { id = "steel_med_helm", chance = 5 },
+    { id = "coins", amount = 10, chance = 8 },
+    { id = "coins", amount = 5, chance = 5 },
+    { id = "coins", amount = 8, chance = 5 },
+    { id = "coins", amount = 12, chance = 5 },
+    { id = "coins", amount = 23, chance = 5 },
+    { id = "knife", chance = 5 },
+]
+
+[ork_tertiary]
+roll = 128
+drops = [
+    { table = "easy_clue_scroll" },
+    { table = "hard_clue_scroll" },
+]
