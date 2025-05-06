@@ -1,0 +1,29 @@
+[gorak_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "gorak_secondary" },
+    { table = "gorak_tertiary" },
+]
+
+[gorak_secondary]
+roll = 512
+drops = [
+    { id = "gorak_claws", chance = 168 },
+    { id = "adamant_kiteshield", chance = 8 },
+    { id = "steel_plateskirt", chance = 8 },
+    { id = "steel_platelegs", chance = 8 },
+    { id = "rune_med_helm", chance = 4 },
+    { id = "rune_chainbody", chance = 2 },
+    { id = "shield_left_half" },
+    { table = "herb_drop_table", chance = 60 },
+    { table = "rare_drop_table", chance = 20 },
+]
+
+[gorak_tertiary]
+roll = 5000
+drops = [
+    { id = "hard_clue_scroll", chance = 39 },
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]

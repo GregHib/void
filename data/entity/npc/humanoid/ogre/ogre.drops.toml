@@ -1,0 +1,22 @@
+[ogre_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "ogre_secondary" },
+    { table = "ogre_tertiary" },
+]
+
+[ogre_secondary]
+roll = 128
+drops = [
+    { table = "uncommon_seed_drop_table", chance = 19 },
+    { id = "nothing", amount = 0, chance = 109 },
+]
+
+[ogre_tertiary]
+roll = 5000
+drops = [
+#    { id = "ogre_ribs", chance = 1250 },
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]
