@@ -77,3 +77,252 @@ wander_radius = 6
 attack_radius = 8
 drop_table = "bandos_bodyguard"
 examine = "A battle-honed goblin."
+
+[god_wars_goblin]
+id = 6279
+hitpoints = 180
+att = 14
+str = 16
+def = 14
+max_hit_melee = 30
+hunt_mode = "aggressive"
+style = "crush"
+attack_speed = 5
+respawn_delay = 60
+slayer_xp = 18.0
+categories = ["goblin", "goblins"]
+wander_radius = 6
+attack_radius = 8
+drop_table = "stronghold_goblin"
+examine = "An ancient goblin."
+
+[god_wars_goblin_hammer]
+id = 6280
+hitpoints = 150
+att = 12
+str = 6
+def = 13
+max_hit_melee = 20
+hunt_mode = "aggressive"
+style = "crush"
+attack_speed = 5
+respawn_delay = 60
+slayer_xp = 15.0
+categories = ["goblin", "goblins"]
+wander_radius = 6
+attack_radius = 8
+drop_table = "stronghold_goblin"
+examine = "A warrior for Bandos."
+
+[god_wars_goblin_flag]
+id = 6281
+hitpoints = 30
+att = 15
+str = 6
+def = 19
+max_hit_melee = 20
+style = "crush"
+attack_speed = 5
+respawn_delay = 80
+slayer_xp = 3.0
+categories = ["goblin", "goblins"]
+wander_radius = 6
+attack_radius = 8
+drop_table = "stronghold_goblin"
+examine = "A soldier to the death."
+
+[god_wars_goblin_spear]
+id = 6282
+hitpoints = 160
+att = 16
+str = 6
+def = 19
+max_hit_melee = 20
+hunt_mode = "aggressive"
+style = "crush"
+attack_speed = 5
+respawn_delay = 60
+slayer_xp = 16.0
+categories = ["goblin", "goblins"]
+wander_radius = 6
+attack_radius = 8
+drop_table = "stronghold_goblin"
+examine = "Cannon fodder, so to speak."
+
+[god_wars_goblin_axe]
+id = 6283
+hitpoints = 130
+att = 11
+str = 6
+def = 20
+max_hit_melee = 20
+hunt_mode = "aggressive"
+style = "crush"
+attack_speed = 5
+respawn_delay = 80
+slayer_xp = 13.0
+categories = ["goblin", "goblins"]
+wander_radius = 6
+attack_radius = 8
+drop_table = "stronghold_goblin"
+examine = "Footsoldier for Bandos."
+
+[god_wars_hobgoblin]
+id = 6275
+max_hit_melee = 50
+hitpoints = 520
+att = 39
+str = 39
+def = 35
+style = "crush"
+hunt_mode = "cowardly"
+slayer_xp = 52
+attack_speed = 4
+respawn_delay = 40 #todo
+wander_radius = 4
+categories = ["hobgoblin"]
+examine = "An ugly, smelly creature."
+
+[god_wars_ogre]
+id = 374
+hitpoints = 700
+att = 46
+str = 48
+def = 43
+attack_bonus = 22
+max_hit_melee = 80
+hunt_mode = "aggressive"
+style = "crush"
+attack_speed = 6
+respawn_delay = 25
+slayer_xp = 60.0
+categories = ["ogre", "ogres"]
+wander_radius = 6
+attack_radius = 8
+examine = "Ugly and bad-tempered."
+
+[god_wars_ogre_shoulder]
+id = 9184
+clone = "god_wars_ogre"
+
+[god_wars_ogre_top]
+id = 9185
+clone = "god_wars_ogre"
+
+[god_wars_jogre]
+id = 6268
+hitpoints = 700
+att = 46
+str = 48
+def = 43
+attack_bonus = 22
+max_hit_melee = 80
+hunt_mode = "aggressive"
+style = "crush"
+attack_speed = 6
+respawn_delay = 25
+categories = ["jogre", "jogres"]
+wander_radius = 6
+attack_radius = 8
+examine = "Green and aggressive."
+
+[god_wars_cyclops]
+id = 6269
+hitpoints = 110
+att = 60
+str = 70
+def = 48
+attack_bonus = 22
+max_hit_melee = 120
+hunt_mode = "aggressive"
+style = "crush"
+attack_speed = 6
+respawn_delay = 25
+slayer_xp = 110.0
+categories = ["cyclop", "cyclops", "hill_giants"]
+wander_radius = 6
+attack_radius = 8
+examine = "A one-eyed man-eater."
+
+[god_wars_cyclops_grey]
+id = 6270
+clone = "god_wars_cyclops"
+
+[god_wars_ork]
+id = 6271
+hitpoints = 1100
+att = 100
+str = 100
+def = 60
+attack_bonus = 19
+max_hit_melee = 120
+hunt_mode = "aggressive"
+style = "crush"
+attack_speed = 5
+respawn_delay = 25
+categories = ["ork"]
+wander_radius = 6
+attack_radius = 8
+examine = "Ugly, fierce and with a bad attitude."
+
+[god_wars_ork_axe]
+id = 6272
+clone = "god_wars_ork"
+
+[god_wars_ork_knife]
+id = 6273
+clone = "god_wars_ork"
+
+[god_wars_ork_mace]
+id = 6274
+clone = "god_wars_ork"
+
+[god_wars_spiritual_ranger_bandos]
+id = 6276
+hitpoints = 1310
+def = 96
+range = 121
+max_hit_range = 130
+hunt_mode = "aggressive"
+style = "range"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 131.0
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+examine = "The spirit of a ranger, serving Bandos beyond death."
+
+[god_wars_spiritual_mage_bandos]
+id = 6278
+hitpoints = 106
+def = 103
+mage = 142
+max_hit_mage = 170
+hunt_mode = "aggressive"
+style = "magic"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 106.0
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+examine = "One of Bandos's chosen."
+
+[god_wars_spiritual_warrior_bandos]
+id = 6277
+hitpoints = 1310
+att = 116
+str = 120
+def = 100
+attack_bonus = 29
+max_hit_melee = 160
+hunt_mode = "aggressive"
+style = "crush"
+attack_speed = 5
+respawn_delay = 25
+slayer_xp = 135.0
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+examine = "A true servant of Bandos."
