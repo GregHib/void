@@ -14,23 +14,6 @@ combat_sounds = "icefiend"
 categories = ["icefiends"]
 examine = "A small ice demon."
 
-[icefiend_godwars]
-id = 3406
-hitpoints = 200
-att = 12
-str = 16
-def = 19
-max_hit_melee = 30
-style = "crush"
-slayer_xp = 20.0
-respawn_delay = 25
-hunt_mode = "cowardly"
-drop_table = "icefiend"
-combat_anims = "icefiend"
-combat_sounds = "icefiend"
-categories = ["icefiends"]
-examine = "A small ice demon."
-
 [icefiend_melting]
 id = 7715
 
