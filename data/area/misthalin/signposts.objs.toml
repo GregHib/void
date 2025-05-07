@@ -1,0 +1,65 @@
+[direction_signpost_1]
+id = 2754
+examine = ""
+locations = [
+    {
+        x = "3235",
+        y = "3228",
+        north_text = "Head north towards Fred's farm and the Windmill.",
+        east_text = "Cross the bridge and head east to Al Kharid or north to Varrock.",
+        south_text = "South to the swamps of Lumbridge.",
+        west_text = "West to the Lumbridge Castle and Draynor Village. Beware the goblins!"
+    }
+]
+
+[direction_signpost_2]
+id = 18493
+examine = ""
+locations = [
+    {
+        x = "3261",
+        y = "3230",
+        north_text = "North to farms and Varrock.",
+        east_text = "East to Al Kharid - toll gate; bring some money.",
+        south_text = "The River Lum lies to the south.",
+        west_text = "West to Lumbridge."
+    },
+    {
+        x = "3107",
+        y = "3296",
+        north_text = "North to Draynor Manor.",
+        east_text = "East to Lumbridge",
+        south_text = "South to Draynor Village and the Wizards' Tower.",
+        west_text = "West to Post Sarim, Falador and Rimmington."
+    },
+    {
+        x = "2983",
+        y = "3278",
+        north_text = "North to the glorious White Knights city of Falador.",
+        east_text = "Follow the path east to Port Sarim and Draynor Village.",
+        south_text = "Follow the path south to Rimmington.",
+        west_text = "Follow the path west to the Crafting Guild."
+    }
+]
+
+[direction_signpost_3]
+id = 24263
+examine = ""
+locations = [
+    {
+        x = "3268",
+        y = "3332",
+        north_text = "Sheep lay this way.",
+        east_text = "East to Al Kharid mine and follow the path north to Varrock east gate.",
+        south_text = "South through farms to Al Kharid and Lumbridge.",
+        west_text = "West to Champions' Guild and Varrock south gate."
+    },
+    {
+        x = "3283",
+        y = "3333",
+        north_text = "North to Varrock mine and Varrock east gate.",
+        east_text = "Follow the path east to the Dig Site (members only).",
+        south_text = "South to large Mining area and Al Kharid.",
+        west_text = "West to Champions' Guild and Varrock south gate."
+    }
+]
