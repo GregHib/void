@@ -48,6 +48,7 @@ fun sendUnlocks(player: Player) {
         player.sendVariable(key)
     }
     player.interfaceOptions.unlockAll("music_player", "tracks", 0..2048) // 837.cs2
+    player.interfaceOptions.unlockAll("music_player", "playlist", 0..23)
 }
 
 move({ !it.isBot }) { player ->
