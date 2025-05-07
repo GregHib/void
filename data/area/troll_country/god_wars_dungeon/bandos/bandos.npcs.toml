@@ -146,6 +146,7 @@ slayer_xp = 16.0
 categories = ["goblin", "goblins"]
 wander_radius = 6
 attack_radius = 8
+attack_anim = "god_wars_goblin_flag_attack"
 drop_table = "stronghold_goblin"
 examine = "Cannon fodder, so to speak."
 
