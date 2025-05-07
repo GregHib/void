@@ -1,7 +1,7 @@
 [rat_tertiary]
 roll = 4
 drops = [
-    { id = "rat_bone", chance = 1 }
+    { id = "rat_bone", chance = 1, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" }
 ]
 
 [rat_drop_table]

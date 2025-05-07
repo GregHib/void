@@ -68,7 +68,6 @@ drops = [
 [stronghold_goblin_tertiary]
 roll = 5000
 drops = [
-#    { id = "goblin_skull", chance = 1250, members = true },
     { id = "clue_scroll_easy", lacks = "clue_scroll_easy*", chance = 39 },
-    { id = "goblin_champions_scroll", members = true },
+    { id = "goblin_champions_scroll", members = true, lacks = "goblin_champions_scroll" },
 ]
