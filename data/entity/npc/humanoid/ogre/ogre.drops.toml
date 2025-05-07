@@ -16,7 +16,7 @@ drops = [
 [ogre_tertiary]
 roll = 5000
 drops = [
-#    { id = "ogre_ribs", chance = 1250 },
+    { id = "ogre_ribs", chance = 1250, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
     { id = "long_bone", chance = 12 },
     { id = "curved_bone" },
 ]

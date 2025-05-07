@@ -48,6 +48,7 @@ respawn_delay = 25
 attack_radius = 11
 wander_radius = 9
 immune_death = true
+drop_table = "desert_lizard"
 hunt_mode = "cowardly"
 categories = ["small_lizard", "lizard", "lizards"]
 examine = "A cold-blooded creature, partial to warmth."

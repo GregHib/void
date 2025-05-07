@@ -3,6 +3,7 @@ type = "all"
 drops = [
     { id = "big_bones" },
     { table = "moss_giant_secondary" },
+    { table = "moss_giant_tertiary", members = true },
 ]
 
 [moss_giant_secondary]
@@ -36,6 +37,15 @@ drops = [
     { table = "gem_drop_table", chance = 4 },
     { table = "uncommon_seed_drop_table", chance = 35, members = true },
     { table = "herb_drop_table", chance = 5, members = true },
+]
+
+[moss_giant_tertiary]
+roll = 5000
+drops = [
+    { id = "moss_giant_bone", chance = 1250, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+    { id = "long_bone", chance = 12 },
+    { id = "giant_champions_scroll", lacks = "giant_champions_scroll" },
+    { id = "curved_bone" },
 ]
 
 [moss_giant_glarials_tomb_drop_table]

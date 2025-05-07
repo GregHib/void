@@ -65,7 +65,7 @@ type = "all"
 drops = [
     { id = "ashes" },
     { table = "god_wars_imp_secondary" },
-    { id = "imp_champions_scroll", roll = 5000, members = true },
+    { id = "imp_champions_scroll", roll = 5000, members = true, lacks = "imp_champions_scroll" },
 ]
 
 [god_wars_imp_secondary]
