@@ -1,0 +1,8 @@
+[ogre_attack]
+id = 11404
+
+[ogre_defend]
+id = 11427
+
+[ogre_death]
+id = 11418
