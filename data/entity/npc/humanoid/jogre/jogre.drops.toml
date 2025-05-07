@@ -27,7 +27,7 @@ drops = [
     { id = "bones", chance = 76 },
     { id = "nothing", amount = 0, chance = 76 },
     { table = "gem_drop_table", chance = 38 },
-    { id = "jogre_bone", chance = 1250 },
+    { id = "jogre_bone", chance = 1250, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
     { table = "medium_clue_scroll", chance = 38 },
-    { id = "jogre_champions_scroll" },
+    { id = "jogre_champions_scroll", lacks = "jogre_champions_scroll" },
 ]
