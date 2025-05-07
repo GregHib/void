@@ -1,0 +1,8 @@
+[cyclops_defend]
+id = 4651
+
+[cyclops_attack]
+id = 4652
+
+[cyclops_death]
+id = 4653
