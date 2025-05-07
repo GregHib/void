@@ -6,3 +6,108 @@ id = 7061
 
 [general_graardor_death]
 id = 7062
+
+[sergeant_strongstack_attack]
+id = 6154
+
+[sergeant_strongstack_defend]
+id = 6155
+
+[sergeant_strongstack_death]
+id = 6156
+
+[sergeant_steelwill_attack]
+id = 7027
+
+[sergeant_steelwill_defend]
+id = 6155
+
+[sergeant_steelwill_death]
+id = 6156
+
+[sergeant_grimspike_attack]
+id = 7029
+
+[sergeant_grimspike_defend]
+id = 6155
+
+[sergeant_grimspike_death]
+id = 6156
+
+[god_wars_jogre_attack]
+id = 8577
+
+[god_wars_jogre_defend]
+id = 8578
+
+[god_wars_jogre_death]
+id = 8576
+
+[god_wars_cyclops_attack]
+id = 4652
+
+[god_wars_cyclops_defend]
+id = 4651
+
+[god_wars_cyclops_death]
+id = 4653
+
+[god_wars_ork_attack]
+id = 13891
+
+[god_wars_ork_defend]
+id = 13893
+
+[god_wars_ork_death]
+id = 13892
+
+[god_wars_hobgoblin_attack]
+id = 163
+
+[god_wars_hobgoblin_defend]
+id = 164
+
+[god_wars_hobgoblin_death]
+id = 2958
+
+[god_wars_spiritual_ranger_bandos_attack]
+id = 7051
+
+[god_wars_spiritual_ranger_bandos_defend]
+id = 4322
+
+[god_wars_spiritual_ranger_bandos_death]
+id = 7064
+
+[god_wars_spiritual_warrior_bandos_attack]
+id = 4320
+
+[god_wars_spiritual_warrior_bandos_defend]
+id = 4322
+
+[god_wars_spiritual_warrior_bandos_death]
+id = 7064
+
+[god_wars_spiritual_mage_bandos_attack]
+id = 7052
+
+[god_wars_spiritual_mage_bandos_defend]
+id = 4322
+
+[god_wars_spiritual_mage_bandos_death]
+id = 7064
+
+[god_wars_goblin_attack]
+id = 6185
+
+[god_wars_goblin_defend]
+id = 6189
+
+[god_wars_goblin_death]
+id = 6182
+
+[god_wars_goblin_axe_attack]
+id = 6184
+
+[god_wars_goblin_flag_attack]
+id = 6188
