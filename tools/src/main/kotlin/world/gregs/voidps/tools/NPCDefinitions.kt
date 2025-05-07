@@ -2,6 +2,7 @@ package world.gregs.voidps.tools
 
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.config.decoder.RenderAnimationDecoder
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
@@ -10,7 +11,6 @@ import world.gregs.voidps.engine.data.definition.CategoryDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ParameterDefinitions
 import world.gregs.voidps.engine.data.find
-import world.gregs.yaml.Yaml
 
 object NPCDefinitions {
     @JvmStatic
@@ -23,10 +23,12 @@ object NPCDefinitions {
         val parameters = ParameterDefinitions(categories, ammo).load(files.find(Settings["definitions.parameters"]))
         val definitions = NPCDecoder(true, parameters).load(cache)
         val decoder = NPCDefinitions(definitions).load(files.getValue(Settings["definitions.npcs"]))
+        val renderAnimations = RenderAnimationDecoder().load(cache)
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.name.contains("Talent scout", ignoreCase = true)) {
-                println("$i ${def.name} ${def.extras} ${def.transforms?.contentToString()} ${def.options.contentDeepToString()}")
+            if (def.name.contains("spiritual ranger", ignoreCase = true)) {
+                val emotes = renderAnimations.getOrNull(def.renderEmote)
+                println("$i ${def.name} ${emotes?.primaryIdle} ${emotes?.primaryWalk} ${emotes?.run}")
             }
         }
     }
